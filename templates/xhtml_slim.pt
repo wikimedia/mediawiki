@@ -107,11 +107,13 @@
                   i18n:attributes="accesskey string:accesskey-randompage | default; title string:tooltip-randompage" 
                   i18n:translate="string:randompage">Random Page</a></li>
 
-                <li><a href="${nav_urls/currentevents/href"
+                <li condition="${nav_urls/currentevents/href}"><a href="${nav_urls/currentevents/href}"
+                  i18n:attributes="title string:tooltip-currentevents|default" 
                   i18n:translate="string:currentevents">Current Events</a></li>
 
                 <li><a href="${nav_urls/sitesupport/href}"
-                  i18n:translate="string:sitesupport">Contact us</a></li>
+                  i18n:attributes="title string:tooltip-sitesupport|default" 
+                  i18n:translate="string:sitesupport">Donations</a></li>
               </ul>
             </div>
           </div>
@@ -144,10 +146,11 @@
               <ul>
 
                 <li><a href="${nav_urls/help/href}"
+                  i18n:attributes="title string:tooltip-help|default" 
                   i18n:translate="string:help">Help</a></li>
 
                 <li><a href="${nav_urls/recentchanges/href}"
-                  i18n:attributes="accesskey string:accesskey-recentchanges | default; title string:tooltip-recentchanges | default" 
+                  i18n:attributes="accesskey string:accesskey-recentchanges|default; title string:tooltip-recentchanges|default" 
                   i18n:translate="string:recentchanges">Recent Changes</a></li>
 
                 <li><a href="${nav_urls/recentchangeslinked/href}"
@@ -155,15 +158,15 @@
                   i18n:translate="string:recentchangeslinked">Related Changes</a></li>
 
                 <li><a href="${nav_urls/whatlinkshere/href}"
-                  i18n:attributes="accesskey string:accesskey-whatlinkshere | default; title string:tooltip-whatlinkshere | default" 
+                  i18n:attributes="accesskey string:accesskey-whatlinkshere|default; title string:tooltip-whatlinkshere|default" 
                   i18n:translate="string:whatlinkshere">What links here</a></li>
 
                 <li><a href="${nav_urls/specialpages/href}"
-                  i18n:attributes="title string:tooltip-specialpages | default"
+                  i18n:attributes="title string:tooltip-specialpages|default"
                   i18n:translate="string:specialpages">Special Pages</a></li>
 
                 <li tal:condition="loggedin"><a href="${nav_urls/upload/href"
-                  i18n:attributes="accesskey string:accesskey-upload | default; title string:tooltip-upload | default" 
+                  i18n:attributes="accesskey string:accesskey-upload|default; title string:tooltip-upload|default" 
                   i18n:translate="string:upload">Upload a file</a></li>
 
               </ul>
