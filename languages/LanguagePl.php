@@ -20,8 +20,10 @@ include_once("{$IP}/LanguageUtf8.php");
         5       => "Dyskusja_Wikipedii",
         6       => "Grafika",
         7       => "Dyskusja_grafiki",
-                8       => "MediaWiki",
-                9       => "Dyskusja_MediaWiki"
+        8       => "MediaWiki",
+        9       => "Dyskusja_MediaWiki",
+	10	=> "Źródła",
+	11	=> "Dyskusja źródeł"
 );
 
 /* private */ $wgDefaultUserOptionsPl = array(

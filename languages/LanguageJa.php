@@ -1,6 +1,6 @@
 <?php
 global $IP;
-include_once( "$IP/LanguageUtf8.php" );
+include_once( "LanguageUtf8.php" );
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
@@ -10,6 +10,7 @@ include_once( "$IP/LanguageUtf8.php" );
 # 隠匿します。
 #
 /* private */ $wgNamespaceNamesJa = array(
+	-2	=> "Media",
 	-1	=> "特別" /* "Special" */, 
 	0	=> "",
 	1	=> "ノート" /* "Talk" */,
@@ -1060,6 +1061,7 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgUserTogglesJa;
 	}
 
+/*
 	function getLanguageName( $code ) {
 		global $wgLanguageNamesJa;
 		if ( ! array_key_exists( $code, $wgLanguageNamesJa ) ) {
@@ -1067,6 +1069,7 @@ class LanguageJa extends LanguageUtf8 {
 		}
 		return $wgLanguageNamesJa[$code];
 	}
+*/
 
 	function getMonthName( $key )
 	{

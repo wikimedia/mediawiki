@@ -1,6 +1,5 @@
 <?
-global $IP;
-include_once( "$IP/Utf8Case.php" );
+include_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -10,49 +9,81 @@ include_once( "$IP/Utf8Case.php" );
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesZh = array(
-	-1	=> "特殊", /* Special */
+	-2	=> "Media",
+	-1	=> "Special",
 	0	=> "",
-	1	=> "对话", /* Talk */
-	2	=> "用户", /* User */
-	3	=> "用户对话", /* User_talk */
-	4	=> "Wikipedia", /* Wikipedia */
-	5	=> "Wikipedia_对话", /* Wikipedia_talk */
-	6	=> "图像", /* Image */
-	7	=> "图像对话" /* Image_talk */
+	1	=> "Talk",
+	2	=> "User",
+	3	=> "User_talk",
+	4	=> "Wikipedia",
+	5	=> "Wikipedia_talk",
+	6	=> "Image",
+	7	=> "Image_talk"
 );
 
 /* private */ $wgDefaultUserOptionsZh = array(
 	"quickbar" => 1, "underline" => 1, "hover" => 1,
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "rcdays" => 3, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
+	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
+	"highlightbroken" => 1, "stubthreshold" => 0,
+ "previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
+ 	         "date" => 0
 );
 
 /* private */ $wgQuickbarSettingsZh = array(
-	"无", /* "None" */ 
+        "无", /* "None" */ 
 	"左侧固定", /* "Fixed left" */ 
 	"右侧固定", /* "Fixed right" */ 
-	"左侧漂移" /* "Floating left" */ 
+	"左侧漂移" /* "Floating left" */ 	
 );
 
 /* private */ $wgSkinNamesZh = array(
-	"标准",/* "Standard" */ 
+        "标准",/* "Standard" */ 
 	"怀旧",/* "Nostalgia" */ 
 	"科隆香水蓝" /* "Cologne Blue" */ 
 );
 
+/* private */ $wgMathNamesZh = array(
+	"永远使用PNG图像",    /* "Always render PNG" */
+	"如果是简单的公式使用HTML，否则使用PNG图像",   /* "HTML if very simple or else PNG" */
+	"如果可以用HTML，否则用PNG图像",   /* "HTML if possible or else PNG" */
+	"显示为TeX代码(使用文字浏览器时)",  /* "Leave it as TeX (for text browsers)" */
+	"推荐为新版浏览器使用"  /* "Recommended for modern browsers" */
+);
+
 /* private */ $wgUserTogglesZh = array(
-	"hover"		=> "滑过连接时显示注释",
-	"underline" => "下划连接",
-	"highlightbroken" => "高亮空白连接",
+	"hover"		=> "滑过Wiki链接时显示注释",
+/* "Show hoverbox over wiki links",*/
+	"underline" => "下划链接",
+/* "Underline links", */
+	"highlightbroken" => "毁坏链接格式<a href=\"\" class=\"new\">像这样</a> (或者像这个<a href=\"\" class=\"internal\">?</a>)",
+/* "Format broken links <a href=\"\" class=\"new\">like 
+this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"justify"	=> "段落对齐",
-	"hideminor" => "在最近更改页中隐藏细微修改",
+/* "Justify paragraphs", */
+	"hideminor" => "最近更改中隐藏细微修改",
+/* "Hide minor edits in recent changes", */
+	"usenewrc" => "最近更改增强（只适用部分浏览器）",
+/* "Enhanced recent changes (not for all browsers)", */
 	"numberheadings" => "标题自动编号",
-	"rememberpassword" => "下次登录时记住密码",
-	"editwidth" => "编辑栏最大宽度",
-	"editondblclick" => "双击编辑页面(JavaScript)",
-        "watchdefault" => "Watch new and modified articles"
+/* "Auto-number headings", */
+   "editondblclick" => "双击页面编辑(JavaScript)",
+                 "editsection"=>"允许通过点击[编辑]链接编辑段落",
+ 	         "editsectiononrightclick"=>"允许右击标题编辑段落(JavaScript)",
+ 	         "showtoc"=>"显示目录<br>(针对一页超过3个标题的文章)",
+	"rememberpassword" => "下次登陆记住密码",
+/* "Remember password across sessions", */
+	"editwidth" => "编辑栏位宽度",
+/* "Edit box has full width", */
+	"editondblclick" => "双击编辑页面（Javascript）",
+/* "Edit pages on double click (JavaScript)", */
+	"watchdefault" => "监视新的以及更改过的文章",
+/* "Watch new and modified articles", */
+	"minordefault" => "细微编辑为默认设置",
+/* "Mark all edits minor by default", */
+	"previewontop" => "在编辑框上方显示预览"
+/* "Show preview before edit box and not after it" */
 );
 
 /* private */ $wgBookstoreListZh = array(
@@ -63,173 +94,169 @@ include_once( "$IP/Utf8Case.php" );
 );
 
 /* private */ $wgLanguageNamesZh = array(
-	"aa"    => "Afar", /* 阿法尔语 */
-	"ab"    => "Abkhazian", /* 阿布哈西亚语 */
-	"af"	=> "Afrikaans", /* 南非荷兰语 */
-	"am"	=> "Amharic",/* 阿姆哈拉语 */
-	"ar"    => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236;(Araby)", /* 阿拉伯语 */
-	"as"	=> "Assamese", /* 阿萨姆语 */
-	"ay"	=> "Aymara", /* 艾马拉语 */
-	"az"	=> "Azerbaijani", /* 阿塞拜疆语 */
-	"ba"	=> "Bashkir", /* 巴什基尔语 */
-	"be"    => "(&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;)", /* 白俄罗斯语 */
-	"bh"	=> "Bihara", /* 比哈尔语 */
-	"bi"	=> "Bislama", /* 比斯拉马语 */
-	"bn"	=> "Bengali", /* 孟加拉语 */
-	"bo"	=> "Tibetan", /* 藏语 */
-	"br"    => "Brezhoneg", /* 布列塔尼語 */
-	"ca"    => "Catal&#224;", /* 加泰罗尼亚语 */
-	"ch"    => "Chamoru", /* 查莫罗语 */
-	"co"	=> "Corsican", /* 科西嘉语 */
-	"cs"    => "&#268;esk&#225;", /* 捷克语 */
-	"cy"    => "Cymraeg", /* 威尔士语 */
-	"da"    => "Dansk", # Note two different subdomains. /* 丹麦语 */
-	"dk"    => "Dansk", # 'da' is correct for the language. /* 丹麦语 */
-	"de"    => "Deutsch", /* 德语 */
-	"dz"	=> "Bhutani", /* 不丹语 */
-	"el"    => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;(Ellenika)",
-                /* 希腊语 */
-	"en"	=> "English", /* 英语 */
-	"eo"	=> "Esperanto",/* 世界语 */
-	"es"    => "Espa&#241;ol", /* 西班牙语 */
-	"et"    => "Eesti", /* 爱沙尼亚语 */
-	"eu"    => "Euskara", /* 巴斯克語 */
-	"fa"    => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236;(Farsi)",
-                /* 法尔西语 波斯语 */
-	"fi"    => "Suomi", /* 芬兰语 */
-	"fj"	=> "Fijian", /* 斐济语 */
-	"fo"	=> "Faeroese", /* 法罗语 */
-	"fr"    => "Fran&#231;ais", /* 法语 */
-	"fy"    => "Frysk", /* 弗里斯兰语 */
-	"ga"    => "Gaelige", /* 爱尔兰语 */
-	"gl"	=> "Galician", /* 加利西亚语 */
-	"gn"	=> "Guarani", /* 瓜拉尼语 */
-	"gu"    => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;(Gujarati)", 
-	        /* 古吉拉特语 */
-	"ha"	=> "Hausa", /* 豪萨语 */
-	"he"    => "&#1506;&#1489;&#1512;&#1497;&#1514;(Ivrit)",
-	        /* 希伯来语 */
-	"hi"    => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;(Hindi)",
-                /* 印地语 */
-	"hr"    => "Hrvatski", /* 克罗地亚语 */
-	"hu"    => "Magyar", /* 马札尔语 */
-	"hy"	=> "Armenian", /* 亚美尼亚语 */
-	"ia"	=> "Interlingua", /* 拉丁国际语 */
-	"id"	=> "Indonesia", /* 印度尼西亚语 */
-	"ik"	=> "Inupiak", /* Inupiak */
-	"is"    => "&#205;slenska", /* 冰岛语 */
-	"it"    => "Italiano", /* 意大利语 */
+	"aa"    => "Afar",
+	"ab"    => "Abkhazian",
+	"af"	=> "Afrikaans",
+	"am"	=> "Amharic",
+	"ar" => "‮العربية‬ (Araby)",
+	"as"	=> "Assamese",
+	"ay"	=> "Aymara",
+	"az"	=> "Azerbaijani",
+	"ba"	=> "Bashkir",
+	"be" => "Беларуски",
+	"bh"	=> "Bihara",
+	"bi"	=> "Bislama",
+	"bn"	=> "Bengali",
+	"bo"	=> "Tibetan",
+	"br" => "Brezhoneg",
+	"bs" => "Bosnian",
+	"ca" => "Català",
+	"ch" => "Chamoru",
+	"co"	=> "Corsican",
+	"cs" => "Česká",
+	"cy" => "Cymraeg",
+	"da" => "Dansk", # Note two different subdomains.
+	"dk" => "Dansk", # 'da' is correct for the language.
+	"de" => "Deutsch",
+	"dz"	=> "Bhutani",
+	"el" => "Ελληνικά (Ellenika)",
+	"en"	=> "English",
+	"eo"	=> "Esperanto",
+	"es" => "Español",
+	"et" => "Eesti",
+	"eu" => "Euskara",
+	"fa" => "‮فرسى‬ (Farsi)",
+	"fi" => "Suomi",
+	"fj"	=> "Fijian",
+	"fo"	=> "Faeroese",
+	"fr" => "Français",
+	"fy" => "Frysk",
+	"ga" => "Gaelige",
+	"gl"	=> "Galician",
+	"gn"	=> "Guarani",
+	"gu" => "ગુજરાતી (Gujarati)",
+	"ha"	=> "Hausa",
+	"he" => "עברית (Ivrit)",
+	"hi" => "हिन्दी (Hindi)",
+	"hr" => "Hrvatski",
+	"hu" => "Magyar",
+	"hy"	=> "Armenian",
+	"ia"	=> "Interlingua",
+	"id"	=> "Indonesia",
+	"ik"	=> "Inupiak",
+	"is" => "Íslenska",
+	"it" => "Italiano",
 	"iu"	=> "Inuktitut",
-	"ja"    => "&#26085;&#26412;&#35486;(Nihongo)", /* 日本语 */
-	"jv"	=> "Javanese", /* 爪哇语 */
-	"ka"    => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312;(Kartuli)", 
-                /* 格鲁吉亚语 */
-	"kk"	=> "Kazakh", /* 哈萨克语 */
-	"kl"	=> "Greenlandic", /* 格陵兰语 */
-	"km"	=> "Cambodian", /* 柬埔寨语 */
-	"kn"	=> "Kannada", /* 卡纳达语 */
-	"ko"    => "&#54620;&#44397;&#50612;(Hangukeo)",
-	        /* 韩国语 */
-	"ks"	=> "Kashmiri", /* 克什米尔语 */
-	"kw"    => "Kernewek", /* 康沃尔语 */
-	"ky"	=> "Kirghiz", /* 吉尔吉斯语 (柯尔克孜语)*/
-	"la"    => "Latina", /* 拉丁语 */
-	"ln"	=> "Lingala", /* 林加拉语 */
-	"lo"	=> "Laotian", /* 老挝语 */
-	"lt"    => "Lietuvi&#371;", /* 立陶宛语 */
-
-	"lv"	=> "Latvian", /* 拉脱维亚语 */
-	"mg"    => "Malagasy", /* 马尔加什语 */
-	"mi"	=> "Maori", /* 毛利人 */
-	"mk"	=> "Macedonian", /* 马其顿语 */
-	"ml"	=> "Malayalam", /* 马拉雅拉姆语 ？德拉维语*/
-	"mn"	=> "Mongolian", /* 蒙古语 */
-	"mo"	=> "Moldavian", /* 摩尔多瓦语 */
-	"mr"	=> "Marathi", /* 马拉地语 */
-	"ms"    => "Bahasa Melayu", /* 马来语 */
-	"my"	=> "Burmese", /* 缅甸语 */
-	"na"	=> "Nauru", /* 瑙鲁语 */
-	"ne"    => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;(Nepali)",
-                /* 尼泊尔语 */
-	"nl"    => "Nederlands", /* 荷兰语 */
-	"no"    => "Norsk", /* 挪威语 */
-	"oc"	=> "Occitan", /* 奥克语 */
-	"om"	=> "Oromo", /* 奥罗莫语 */
-	"or"	=> "Oriya", /* 奥里亚语 */
-	"pa"	=> "Punjabi", /* 旁遮普语 */
-	"pl"    => "Polski", /* 波兰语 */
-	"ps"	=> "Pashto", /* 普什图语 */
-	"pt"    => "Portugu&#234;s", /* 葡萄牙语 */
-	"qu"	=> "Quechua", /* 盖丘亚语 */
-	"rm"	=> "Rhaeto-Romance", /* Rhaeto-Romance */
-	"rn"	=> "Kirundi", /* 基隆迪语 */
-	"ro"    => "Rom&#226;n&#259;", /* 罗马尼亚语 */
-	"ru"    => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;(Russkij)",
-                /*  俄语 */
+	"ja" => "日本語 (Nihongo)",
+	"jv"	=> "Javanese",
+	"ka" => "ქართველი (Kartuli)",
+	"kk"	=> "Kazakh",
+	"kl"	=> "Greenlandic",
+	"km"	=> "Cambodian",
+	"kn"	=> "Kannada",
+	"ko" => "한국어 (Hangukeo)",
+	"ks"	=> "Kashmiri",
+	"kw" => "Kernewek",
+	"ky"	=> "Kirghiz",
+	"la" => "Latina",
+	"ln"	=> "Lingala",
+	"lo"	=> "Laotian",
+	"lt" => "Lietuvių",
+	"lv"	=> "Latvian",
+	"mg" => "Malagasy",
+	"mi"	=> "Maori",
+	"mk"	=> "Macedonian",
+	"ml"	=> "Malayalam",
+	"mn"	=> "Mongolian",
+	"mo"	=> "Moldavian",
+	"mr"	=> "Marathi",
+	"ms" => "Bahasa Melayu",
+	"my"	=> "Burmese",
+	"na"	=> "Nauru",
+	"ne" => "नेपाली (Nepali)",
+	"nl" => "Nederlands",
+	"no" => "Norsk",
+	"oc"	=> "Occitan",
+	"om"	=> "Oromo",
+	"or"	=> "Oriya",
+	"pa"	=> "Punjabi",
+	"pl" => "Polski",
+	"ps"	=> "Pashto",
+	"pt" => "Português",
+	"qu"	=> "Quechua",
+	"rm"	=> "Rhaeto-Romance",
+	"rn"	=> "Kirundi",
+	"ro" => "Română",
+	"ru" => "Русский (Russkij)",
 	"rw"	=> "Kinyarwanda",
-	"sa"    => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340;(Samskrta)",
-                /* 梵语 */
-	"sd"	=> "Sindhi", /* 信德语 */
-	"sg"	=> "Sangro", /* 桑戈语 */
-	"sh"	=> "Serbocroatian", /* 塞尔维亚-克罗地亚语 */
-	"si"	=> "Sinhalese", /* 僧伽罗语 */
-	"simple"=> "Simple English", /* 简单英语 */
-	"sk"	=> "Slovak", /* 斯洛伐克语 */
-	"sl"	=> "Slovensko", /* 斯洛文尼亚语 */
-	"sm"	=> "Samoan", /* 萨摩亚语 */
-	"sn"	=> "Shona", /* 绍纳语 */
-	"so"    => "Soomaali", /* 索马里语 */
-	"sq"    => "Shqiptare", /* 阿尔巴尼亚 */
-	"sr"    => "Srpski", /* 塞尔维亚语 */
-	"ss"	=> "Siswati", /* 西斯瓦提语 */
-	"st"	=> "Sesotho", /* 塞索托语 */
-	"su"	=> "Sudanese", /* 苏丹语 */
-	"sv"    => "Svenska", /* 瑞典语 */
-	"sw"    => "Kiswahili", /* 斯瓦希里语 */
-	"ta"	=> "Tamil", /* 泰米尔语 */
-	"te"	=> "Telugu", /* 泰卢固语 */
-	"tg"	=> "Tajik", /* 塔吉克语 */
-	"th"	=> "Thai", /* 泰国语 */
-	"ti"	=> "Tigrinya", /* 提格里尼亚语 */
-	"tk"	=> "Turkmen", /* 土库曼语 */
-	"tl"	=> "Tagalog", /* 塔加路语 */
-	"tn"	=> "Setswana", /* 茨瓦纳语 */
-	"to"	=> "Tonga", /* 汤加语 */
-	"tr"    => "T&#252;rk&#231;e", /* 土耳其语 */
-	"ts"	=> "Tsonga", /* 通加语 ？聪加语*/
-	"tt"	=> "Tatar", /* 鞑靼语 */
-	"tw"	=> "Twi", /* 特威语 ？契维、特维*/
-	"ug"	=> "Uighur", /* 维吾尔语 */
-	"uk"    => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;(Ukrayins`ka)", 
-	        /*  乌克兰语 */
-	"ur"	=> "Urdu", /* 乌尔都语 */
-	"uz"	=> "Uzbek", /* 乌兹别克语 */
-	"vi"	=> "Vietnamese", /* 越南语 */
-	"vo"    => "Volap&#252;k", /* 沃拉卜克语？佛拉普克语 */
-	"wo"	=> "Wolof", /* 沃洛夫语 */
-	"xh"    => "isiXhosa", /* 科萨语 */
-	"yi"	=> "Yiddish", /* 意第绪语 */
-	"yo"	=> "Yoruba", /* 约鲁巴语 */
-	"za"	=> "Zhuang", /* 壮语 ？ */
-	"zh"    => "中文(Zhongwen)", /* Zhongwen */
-	"zu"	=> "Zulu" /* 祖鲁语 */
+	"sa" => "संस्कृत (Samskrta)",
+	"sd"	=> "Sindhi",
+	"sg"	=> "Sangro",
+	"sh"	=> "Serbocroatian",
+	"si"	=> "Sinhalese",
+	"simple" => "Simple English",
+	"sk"	=> "Slovak",
+	"sl"	=> "Slovensko",
+	"sm"	=> "Samoan",
+	"sn"	=> "Shona",
+	"so" => "Soomaali",
+	"sq" => "Shqiptare",
+	"sr" => "Srpski",
+	"ss"	=> "Siswati",
+	"st"	=> "Sesotho",
+	"su"	=> "Sudanese",
+	"sv" => "Svenska",
+	"sw" => "Kiswahili",
+	"ta"	=> "Tamil",
+	"te"	=> "Telugu",
+	"tg"	=> "Tajik",
+	"th"	=> "Thai",
+	"ti"	=> "Tigrinya",
+	"tk"	=> "Turkmen",
+	"tl"	=> "Tagalog",
+	"tn"	=> "Setswana",
+	"to"	=> "Tonga",
+	"tr" => "Türkçe",
+	"ts"	=> "Tsonga",
+	"tt"	=> "Tatar",
+	"tw"	=> "Twi",
+	"ug"	=> "Uighur",
+	"uk" => "Українська (Ukrayins`ka)",
+	"ur"	=> "Urdu",
+	"uz"	=> "Uzbek",
+	"vi"	=> "Vietnamese",
+	"vo" => "Volapük",
+	"wo"	=> "Wolof",
+	"xh" => "isiXhosa",
+	"yi"	=> "Yiddish",
+	"yo"	=> "Yoruba",
+	"za"	=> "Zhuang",
+	"zh" => "中文 (Zhongwen)",
+	"zu"	=> "Zulu"
 );
 
 /* private */ $wgWeekdayNamesZh = array(
-	"星期日", "星期一", "星期二", "星期三", "星期四",
+        "星期日", "星期一", "星期二", "星期三", "星期四",
 	"星期五", "星期六"
+/* "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+	"Friday", "Saturday" */
 );
 
 /* private */ $wgMonthNamesZh = array(
-	"1月", "2月", "3月", "4月", "5月", "6月",
+        "1月", "2月", "3月", "4月", "5月", "6月",
 	"7月", "8月", "9月", "10月", "11月",
 	"12月"
+/* "January", "February", "March", "April", "May", "June",
+   "July", "August", "September", "October", "November",
+	"December" */
 );
 
 /* private */ $wgMonthAbbreviationsZh = array(
-	"1月", "2月", "3月", "4月", "5月", "6月",
+"1月", "2月", "3月", "4月", "5月", "6月",
 	"7月", "8月", "9月", "10月", "11月",
 	"12月"
+/* "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+	"Sep", "Oct", "Nov", "Dec" */
 );
 
 # All special pages have to be listed here: a description of ""
@@ -237,120 +264,151 @@ include_once( "$IP/Utf8Case.php" );
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesZh = array(
-	"Userlogin"	=> "",
+	"Userlogin"		=> "",
 	"Userlogout"	=> "",
-	"Preferences"	=> "我的设置", /* Set my user preferences */
-	"Watchlist"	=> "监视列表", /* My watchlist */
-	"Recentchanges" => "最近更改",  /* Recently updated pages */
-	"Upload"	=> "上载图像",  /* Upload image files */
-	"Imagelist"	=> "图像列表",  /* Image list */
-	"Listusers"	=> "注册用户",  /* Registered users */
-	"Statistics"	=> "站点统计",  /* Site statistics */
-	"Randompage"	=> "随机条目",  /* Random article */
+	"Preferences"	=> "参数设置", 
+/*"Set my user preferences", */
+	"Watchlist"		=> "监视列表",
+/* "My watchlist", */
+	"Recentchanges" => "最近更新",
+/* "Recently updated pages", */
+	"Upload"		=> "上载",
+/* "Upload image files", */
+	"Imagelist"		=> "图像列表",
+/* "Image list", */
+	"Listusers"		=> "注册用户",
+/* "Registered users", */
+	"Statistics"	=> "站点统计",
+/* "Site statistics", */
+	"Randompage"	=> "随机页面",
+/* "Random article", */
 
-	"Lonelypages"	=> "孤立条目",  /* Orphaned articles */
-	"Unusedimages"	=> "孤立图像",  /* Orphaned images */
-	"Popularpages"	=> "热点条目",  /* Popular articles */
-	"Wantedpages"	=> "待撰页面",  /* Most wanted articles */
-	"Shortpages"	=> "短条目",  /* Short articles */
-	"Longpages"	=> "长条目",  /* Long articles */
-	"Newpages"	=> "新条目",  /* Newly created articles */
-	"Allpages"	=> "所有条目",  /* All pages by title */
+	"Lonelypages"	=> "孤立页面",
+/* "Orphaned articles",*/
+	"Unusedimages"	=> "孤立图像",
+/* "Orphaned images", */
+	"Popularpages"	=> "热点条目",
+/* "Popular articles", */
+	"Wantedpages"	=> "待撰页面",
+/* "Most wanted articles", */
+	"Shortpages"	=> "短条目",
+	"Longpages"		=> "长条目",
+	"Newpages"		=> "新建条目",
+#	"Intl"		=> "跨语言链接", # this page not done yet!
+	"Allpages"		=> "所有条目",
 
-	"Ipblocklist"	=> "被封 IP 地址",  /* Blocked IP addresses */
-	"Maintenance"   => "维护页",  /* Maintenance page */
-	"Specialpages"  => "", /* Next few intentionally left blank! 特殊页面 */
-	"Contributions" => "", /* 参与者 */
-	"Emailuser"	=> "", /* 给用户发信 */
-	"Whatlinkshere" => "", /* 链入页面 */
-	"Recentchangeslinked" => "", /* 近期链出页面更改 */
-	"Movepage"	=> "", /* 移动页面 */
-	"Booksources"	=> "站外书源"  /* External book sources */
+	"Ipblocklist"	=> "被封IP地址",
+	"Maintenance" => "维护页",
+	"Specialpages"  => "",
+	"Contributions" => "",
+	"Emailuser"		=> "",
+	"Whatlinkshere" => "",
+	"Recentchangeslinked" => "",
+	"Movepage"		=> "",
+	"Booksources"	=> "站外书源",
+           "Categories" => "页面分类"
 );
 
 /* private */ $wgSysopSpecialPagesZh = array(
-	"Blockip"	=> "禁封一个 IP 地址",  /* Block an IP address */
-	"Asksql"	=> "查询数据库",  /* Query the database */
-	"Undelete"	=> "查看并恢复被删页面"
-        /* View and restore deleted pages */
+	"Blockip"		=> "查封一个IP地址",
+	"Asksql"		=> "查询数据库",
+	"Undelete"		=> "恢复被删页面"
 );
 
 /* private */ $wgDeveloperSpecialPagesZh = array(
-	"Lockdb"	=> "使数据库只读",  /* Make database read-only */
-	"Unlockdb"	=> "恢复数据库写操作",  /* Restore database write access */
-	"Debug"		=> "调试信息"  /* Debugging information */
+	"Lockdb"		=> "设置数据库只读",
+	"Unlockdb"		=> "恢复数据库修改权限",
+	"Debug"			=> "除错信息"
 );
 
 /* private */ $wgAllMessagesZh = array(
 
 # Bits of text used by many pages:
 #
-"linktrail"	=> "/^([a-z]+)(.*)\$/sD",
-"mainpage"	=> "首页", /* Main Page */
-"about"		=> "关于", /* About */
-"aboutwikipedia" => "关于 Wikipedia", /* About Wikipedia */
-"aboutpage"	=> "Wikipedia:关于", /*  */
-"help"		=> "帮助", /* Help */
-"helppage"	=> "Wikipedia:帮助", /* Wikipedia:Help */
-"wikititlesuffix" => "Wikipedia", /* Wikipedia */
-"bugreports"	=> "错误报告", /* Bug reports */
-"bugreportspage" => "Wikipedia:错误报告", /*  */
-"faq"		=> "常见问题解答", /* FAQ */
-"faqpage"	=> "Wikipedia:常见问题解答", /* Wikipedia:FAQ */
-"edithelp"	=> "编辑帮助", /* Editing help */
-"edithelppage"	=> "Wikipedia:如何编辑页面", /* Wikipedia:How_does_one_edit_a_page */
-"cancel"	=> "取消", /* Cancel */
-"qbfind"	=> "查找", /* Find */
-"qbbrowse"	=> "浏览", /* Browser */
-"qbedit"	=> "编辑", /* Edit */
-"qbpageoptions" => "页面设置", /* Page options */
-"qbpageinfo"	=> "页面信息", /* Page info */
-"qbmyoptions"	=> "我的设置", /* My options */
-"mypage"	=> "我的页面", /* My page */
-"mytalk"	=> "我的对话", /* My talk */
-"currentevents" => "新闻动态", /* Current events */
-"errorpagetitle" => "错误", /* Error */
-"returnto"	=> "返回到 $1 ", /* Return to $1. */
-"fromwikipedia"	=> "Wikipedia ，自由的百科全书。", /* From Wikipedia, the free encyclopedia. */
-"whatlinkshere"	=> "链到本页的页面", /* Pages that link here */
-"help"		=> "帮助", /* Help */
-"search"	=> "搜索", /* Search */
-"history"	=> "修订历史", /* History */
-"printableversion" => "可打印版", /* Printable version */
-"editthispage"	=> "编辑页面", /* Edit this page */
-"deletethispage" => "删除页面", /* Delete this page */
-"protectthispage" => "保护页面", /* Protect this page */
-"unprotectthispage" => "免除保护", /* Unprotect this page */
-"talkpage"	=> "对话页", /* Talk page */
-"subjectpage"	=> "主题页", /* Subject page */
-"otherlanguages" => "其它语言", /* Other languages */
-"redirectedfrom" => "（重新定向自 $1 ）", /* (Redirected from $1) */
-"lastmodified"	=> "最后更改于 $1。", /* The page was last modified $1. */
-"viewcount"	=> "页面已被浏览 $1 次", /* This page has been accessed $1 times. */
-"printsubtitle" => "（自 http://zh.wikipedia.org ）", /* (From http://www.wikipedia.org) */
-"protectedpage" => "被保护页", /* Protected page */
-"administrators" => "Wikipedia:管理员", /* Wikipedia:Administrators */
-"sysoptitle"	=> "需要 sysop 权限", /* Sysop access required */
-"sysoptext"	=> "您请求的命令只能被拥有 \"sysop\" 权限的用户执行。请参见 $1 。",
-/* The action you have requested can only be performed by users with \"sysop\" status.See $1. */
-"developertitle" => "需要 developer 权限", /* Developer access required */
-"developertext"	=> "您请求的命令只能被拥有 \"developer\" 权限的用户执行。请参见 $1 。",
-/* The action you have requested can only be performed by users with \"developer\" status. See $1.*/
-"nbytes"	=> "$1 字节", /* $1 bytes */
-"go"		=> "进入", /* Go */
-"ok"		=> "确定", /* OK */
-"sitetitle"	=> "Wikipedia", /* Wikipedia */
-"sitesubtitle"	=> "自由的百科全书", /* The Free Encyclopedia */
-"retrievedfrom" => "取自 \"$1\"", /* Retrieved from \"$1\" */
+"categories" => "页面分类",
+ 	 "category" => "分类",
+ 	 "category_header" => "类别”$1“中的条目",
+ 	 "subcategories" => "附分类",
+"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
+"mainpage"		=> "首页",
+"about"			=> "关于",
+"aboutwikipedia" => "关于Wikipedia",
+"aboutpage"		=> "Wikipedia:关于",
+"help"			=> "帮助",
+"helppage"		=> "Wikipedia:帮助",
+"wikititlesuffix" => "Wikipedia",
+"bugreports"	=> "错误报告",
+"bugreportspage" => "Wikipedia:错误报告",
+"faq"			=> "常见问题解答",
+"faqpage"		=> "Wikipedia:常见问题解答",
+"edithelp"		=> "编辑帮助",
+"edithelppage"	=> "Wikipedia:如何编辑页面",
+"cancel"		=> "取消",
+"qbfind"		=> "寻找",
+"qbbrowse"		=> "浏览",
+"qbedit"		=> "编辑",
+"qbpageoptions" => "页面选项",
+"qbpageinfo"	=> "页面信息",
+"qbmyoptions"	=> "我的选项",
+"mypage"		=> "我的页面",
+"mytalk"		=> "我的对话页",
+"currentevents" => "新闻动态",
+"errorpagetitle" => "错误",
+"returnto"		=> "返回到$1.",
+"fromwikipedia"	=> "Wikipedia，自由的百科全书",
+"whatlinkshere"	=> "链入页面",
+"help"			=> "帮助",
+"search"		=> "搜索",
+"go"		=> "进入",
+"history"		=> "较早版本",
+"printableversion" => "可打印版",
+"editthispage"	=> "编辑本页",
+"deletethispage" => "删除本页",
+"protectthispage" => "保护本页",
+"unprotectthispage" => "解除保护",
+"newpage" => "新页面",
+"talkpage"		=> "讨论本页",
+	 "postcomment"   => "发表评论",
+"articlepage"	=> "查看文章",
+"subjectpage"	=> "查看主题", # For compatibility
+"userpage" => "查看用户页",
+"wikipediapage" => "查看meta页",
+"imagepage" => 	"查看图像页面",
+"viewtalkpage" => "查看讨论",
+"otherlanguages" => "其它语言",
+"redirectedfrom" => "(重定向自$1)",
+"lastmodified"	=> "最后更改$1.",
+"viewcount"		=> "本页面已经被浏览$1次。",
+"gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文档协议证书 </a>下发布",
+"printsubtitle" => "(来自 http://zh.wikipedia.org)",
+"protectedpage" => "被保护页",
+"administrators" => "Wikipedia:管理员",
+"sysoptitle"	=> "需要管理员权限",
+"sysoptext"		=> "您刚才的请求只有拥有管理员权限的用户才可使用。
+参见$1。",
+"developertitle" => "需要发展者权限",
+"developertext"	=> "您刚才的请求只有拥有发展者权限的用户才可使用。
+参见$1。",
+"nbytes"		=> "$1字节",
+"go"			=> "进入",
+"ok"			=> "OK",
+"sitetitle"		=> "Wikipedia",
+"sitesubtitle"	=> "自由的百科全书",
+"retrievedfrom" => "取自\"$1\"",
+"newmessages" => "您有$1。",
+"newmessageslink" => "新信息",
+ "editsection"=>"编辑",	 
+ "toc" => "目录",
+"showtoc" => "显示",
+ 	 "hidetoc" => "隐藏",
 
 # Main script and global functions
 #
-"nosuchaction"	=> "没有这个命令。", /* No such action */
-"nosuchactiontext" => "URL 请求的命令无法被 Wikipedia 软件识别。",
-/* The action specified by the URL is not recognized by the Wikipedia software */
-"nosuchspecialpage" => "没有这个特殊页。", /* No such special page */
+"nosuchaction"	=> "没有这个命令",
+"nosuchactiontext" => "URL请求的命令无法被 Wikipedia 软件识别。",
+"nosuchspecialpage" => "没有这个特殊页。",
+
 "nospecialpagetext" => "您请求的页面无法被 Wikipedia 软件识别。",
-/* You have requested a special page that is not recognized by the Wikipedia software. */
 
 # General errors
 #
@@ -361,268 +419,294 @@ include_once( "$IP/Utf8Case.php" );
 也可能是由于软件自身的错误所引起。
 最后一次数据库指令是：
 <blockquote><tt>$1</tt></blockquote>
-来自于函数 \"<tt>$2</tt>\".
-MySQL返回错误 \"<tt>$3: $4</tt>\".",
-"noconnect"	=> "无法在 $1上连接数据库",
-"nodb"		=> "无法选择数据库 $1",
-"readonly"	=> "数据库禁止访问",
+来自于函数 \"<tt>$2</tt>\"。
+MySQL返回错误 \"<tt>$3: $4</tt>\"。",
+"noconnect"		=> "无法在 $1上连接数据库",
+"nodb"			=> "无法选择数据库 $1",
+"readonly"		=> "数据库禁止访问",
 "enterlockreason" => "请输入禁止访问原因, 包括估计重新开放的时间",
 "readonlytext"	=> "Wikipedia数据库目前禁止输入新内容及更改，
 这很可能是由于数据库正在维修，之后即可恢复。
 管理员有如下解释:
 <p>$1",
-"missingarticle" => "数据库找不到文字\"$1\".
-这不是一个数据库错误，而可能是由于软件错误所引起。
-请将情况连同URL告知管理员。",
-"internalerror" => "内部错误",
-"filecopyerror" => "无法复制文件\"$1\"到\"$2\".",
-"filerenameerror" => "无法重命名文件\"$1\" 到\"$2\".",
-"filedeleteerror" => "无法删除文件 \"$1\".",
-"filenotfound"	=> "找不到文件 \"$1\".",
-"unexpected"	=> "不正常值: \"$1\"=\"$2\".",
-"formerror"		=> "错误: 无法提交表单",	
-"badarticleerror" => "This action cannot be performed on this page.",
-"cannotdelete"	=> "无法删除选定页或图像.",
-"badtitle"      => "错误的标题", /* Bad title */
-"badtitletext"	=> "所请求页面的标题是无效的或者不存在，或者是错误的跨语言链接标题。",
-/* The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. */
+"missingarticle" => "数据库找不到文字\"$1\"。
 
-# Login and logout pages
+<p>通常这是由于修订历史页上过时的链接到已经被删除的页面所导致的。
+
+<p>如果情况不是这样，您可能找到了软件内的一个臭虫。
+请记录下URL地址，并向管理员报告。",
+"internalerror" => "内部错误",
+"filecopyerror" => "无法复制文件\"$1\"到\"$2\"。",
+"filerenameerror" => "无法重命名文件\"$1\" 到\"$2\"。",
+"filedeleteerror" => "无法删除文件 \"$1\"。",
+"filenotfound"	=> "找不到文件 \"$1\"。",
+"unexpected"	=> "不正常值: \"$1\"=\"$2\"。",
+"formerror"		=> "错误：无法提交表单",	
+"badarticleerror" => "无法在本页上进行此项操作。",
+"cannotdelete"	=> "无法删除选定的页面或图像（它可能已经被其他人删除了）。",
+"badtitle"		=> "错误的标题",
+"badtitletext"	=> "所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。",
+"perfdisabled" => "抱歉！由于此项操作有可能造成数据库瘫痪，目前暂时无法使用。",
+"perfdisabledsub" => "这里是自$1的复制版本：",
+
+# 登录与登出
 #
 "logouttitle"	=> "用户退出",
-"logouttext"	=> "你现在已经退出.
-你可以继续以匿名方式使用Wikipeida，或再次以相同或不同用户身份登录。\n",
+"logouttext"	=> "您现在已经退出。
+您可以继续以匿名方式使用Wikipeida，或再次以相同或不同用户身份登录。\n",
 
-"welcomecreation" => "<h2>欢迎, $1!</h2><p>你的帐号已经建立，不要忘记设置Wikipedia个人参数。",
+"welcomecreation" => "<h2>欢迎，$1!</h2><p>您的帐号已经建立，不要忘记设置Wikipedia个人参数。",
 
 "loginpagetitle" => "用户登录",
-"yourname"	=> "用户名",
-"yourpassword"	=> "密码",
-"yourpasswordagain" => "重复密码",
-"newusersonly"	=> " (仅限新用户)",
-"remembermypassword" => "下次登录记住密码.",
+"yourname"		=> "您的用户名",
+"yourpassword"	=> "您的密码",
+"yourpasswordagain" => "再次输入密码",
+"newusersonly"	=> "（仅限新用户）",
+"remembermypassword" => "下次登录记住密码。",
 "loginproblem"	=> "<b>登录有问题。</b><br>再试一次！",
-"alreadyloggedin" => "<font color=red><b> $1, 你已经登录了!</b></font><br>\n",
+"alreadyloggedin" => "<font color=red><b>用户$1，您已经登录了!</b></font><br>\n",
 
-"areyounew"	=> "如果你是Wikipedia的新用户并想得到一个用户帐号，
+"areyounew"		=> "如果您是Wikipedia的新用户并想得到一个用户帐号，
 请输入用户名，然后重复输入密码两次。
-你可以选择输入电子邮件地址; 这样如果你忘了密码时可以要求将密码寄往你所输入的地址。<br>\n",
+您可以选择输入电子邮件地址; 这样如果你忘了密码时可以要求将密码寄往您所输入的地址。<br>\n",
 
-"login"		=> "登录",
-"userlogin"	=> "用户登录",
-"logout"	=> "退出",
+"login"			=> "登录",
+"userlogin"		=> "用户登录",
+"logout"		=> "退出",
 "userlogout"	=> "用户退出",
-"createaccount"	=> "建立新帐号",
-"badretype"	=> "你所输入的密码并不相同。",
-"userexists"	=> "你所输入的用户名已有人使用。请另选一个。",
-
-"youremail"	=> "电子邮件",
-"yournick"	=> "绰号 (签名时用)",
-"emailforlost"	=> "如果你忘了你的密码, 你可以得到一个寄往你的电子邮件地址的新密码。",
+"createaccount"	=> "创建新帐号",
+ "createaccountmail"     => "通过eMail",
+"badretype"		=> "你所输入的密码并不相同。",
+"userexists"	=> "您所输入的用户名已有人使用。请另选一个。",
+"youremail"		=> "您的电子邮件*",
+"yournick"		=> "绰号（签名时用）",
+"emailforlost"	=> "* 输入一个电邮地址并不是必须的。但是这将允许他人在您未告知的情况下通过电子邮件与您联系，如果您忘了密码的话电邮地址也会有帮助。",
 "loginerror"	=> "登录错误",
-"noname"	=> "你没有输入一个有效的用户名。",
+"noname"		=> "你没有输入一个有效的用户名。",
 "loginsuccesstitle" => "登录成功",
 "loginsuccess"	=> "你现在以 \"$1\"的身份登录Wikipedia。",
-"nosuchuser"	=> "找不到用户 \"$1\".
-检查是否输入错误,或使用下面的表单创建新帐号。",
-"wrongpassword"	=> "你所输入的密码错误。请再试一次。",
-"mailmypassword" => "请将密码寄给我。",
+"nosuchuser"	=> "找不到用户 \"$1\"。
+检查您的拼写，或者用下面的表格建立一个新帐号。",
+"wrongpassword"	=> "您输入的密码错误，请再试一次。",
+"mailmypassword" => "将新密码寄给我",
 "passwordremindertitle" => "Wikipedia密码提醒",
-"passwordremindertext" => "有人 (可能是你, 来自 IP 地址 $1)要求我们将新的Wikipedia登录密码寄给你。
-用户 \"$2\" 的密码现在是 \"$3\".
+"passwordremindertext" => "有人（可能是您，来自IP地址$1)要求我们将新的Wikipedia登录密码寄给你。
+用户 \"$2\" 的密码现在是 \"$3\"。
 请立即登录并更改密码。",
-"noemail"	=> "用户\"$1\"没有登记电子邮件地址。",
+"noemail"		=> "用户\"$1\"没有登记电子邮件地址。",
 "passwordsent"	=> "用户\"$1\"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。",
 
-# Edit pages
+# 编辑
 #
-"summary"	=> "简述",
-"minoredit"	=> "这是一个细微修改",
-"savearticle"	=> "保存页面",
-"preview"	=> "预览",
+"summary"		=> "简述",
+"subject"               => "主题",
+"minoredit"		=> "这是一个小修改",
+"watchthis"		=> "监视本页",
+"savearticle"	=> "保存本页",
+"preview"		=> "预览",
 "showpreview"	=> "显示预览",
 "blockedtitle"	=> "用户被封",
-"blockedtext"	=> "你的用户名或IP地址已被$1封。
-理由是：<br>$2<p>你可以联系管理员讨论。",
-"newarticle"	=> "(新)",
-"newarticletext" => "在这里输入新页面内容。",
-"noarticletext" => "(本页目前没有文字)",
-"updated"	=> "(更新)",
-"note"		=> "<strong>注意：</strong> ",
+"blockedtext"	=> "您的用户名或IP地址已被$1封。
+理由是：<br>'''$2'''<p>您可以与$1向其他任何[[Wikipedia:管理员|管理员]]询问。",
+ "whitelistedittitle" => "登录后才可编辑",
+ 	 "whitelistedittext" => "您必须先[[Special:Userlogin|登录]]才可编辑页面。",
+ 	 "whitelistreadtitle" => "登录后才可阅读",
+ 	 "whitelistreadtext" => "您必须先[[Special:Userlogin|登录]]才可阅读页面。",
+ 	 "whitelistacctitle" => "您被禁止建立帐号",
+ 	 "whitelistacctext" => "在本Wiki中建立帐号您必须先[[Special:Userlogin|登录]]并拥有相关权限。",
+ 	 "accmailtitle" => "密码寄出",
+ 	 "accmailtext" => "'$1'的密码已经寄到$2。",
+"newarticle"	=> "（新）",
+"newarticletext" =>
+"您从一个链接进入了一个并不存在的页面。
+要创建该页面，请在下面的编辑框中输入内容（详情参见Wikipedia:帮助|帮助页面]]）。
+如果您不小心来到本页面，直接点击您浏览器中的“返回”按钮。",
+
+"anontalkpagetext" => "---- ''这是一个还未建立帐号的匿名用户的对话页。我们因此只能用[[IP地址]]来与他／她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为本页上的评语与您无关，请[[Special:Userlogin|创建新帐号或登录]]以避免在未来于其他匿名用户混淆。''",
+"noarticletext" => "（本页目前没有内容）",
+"updated"		=> "（已更新）",
+"note"			=> "<strong>注意：</strong> ",
 "previewnote"	=> "请记住这只是预览，内容还未保存！",
 "previewconflict" => "这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。",
-"editing"	=> "正在编辑$1",
-"editconflict"	=> "编辑冲突： $1",
+"editing"		=> "正在编辑$1",
+ "sectionedit"   => " (段落)",
+ "commentedit"   => " (评论)",
+"editconflict"	=> "编辑冲突：$1",
 "explainconflict" => "有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
 <b>只有</b>在上面文字框中的内容会在你点击\"保存页面\"后被保存。\n<p>",
-"yourtext"	=> "你的文字",
+"yourtext"		=> "您的文字",
 "storedversion" => "已保存版本",
 "editingold"	=> "<strong>警告：你正在编辑的是本页的旧版本。
 如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>\n",
-"yourdiff"	=> "不同",
+"yourdiff"		=> "差别",
 "copyrightwarning" => "请注意对Wikipedia的任何贡献都将被认为是在GNU自由文档协议证书下发布。
 (细节请见$1).
-如果你不希望你的文字被任意修改和再散布，请不要提交。<br>
-你同时也向我们保证你所提交的内容是你自己所作，或得自一个不受版权保护或相似自由的来源。
+如果您不希望您的文字被任意修改和再散布，请不要提交。<br>
+您同时也向我们保证你所提交的内容是你自己所作，或得自一个不受版权保护或相似自由的来源。
 <strong>不要在未获授权的情况下发表！</strong>",
-/* You are also promising us that you wrote this yourself, or copied it from a
-public domain or similar free resource. */
+
+"longpagewarning" => "警告：本页长度达$1KB；一些浏览器将无法编辑长过32KB的文章。请考虑将本文切割成几个小段落。",
+
+"readonlywarning" => "警告：数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本断文字复制并保存到文本文件，然后等一会儿再修改。",
+"protectedpagewarning" => "警告：本页已经被保护，只有拥有管理员权限的用户才可修改。请确认您遵守
+<a href='/wiki/Wikipedia:Protected_page_guidelines'>保护页面守则</a>.",
 
 # History pages
 #
-"revhistory"	=> "修订历史", /* Revision history */
-"nohistory"	=> "没有本页的修订记录。",
-/* There is no edit history for this page. */
-"revnotfound"	=> "没有找到修订记录", /* Revision not found */
-"revnotfoundtext" => "您请求的更早版本的修订记录没有找到。请检查您请求本页面用的 URL 是否正确。\n",
-/* The old revision of the page you asked for could not be found.Please check the URL you used to access this page.\n */
-"loadhist"	=> "载入页面修订历史", /* Loading page history */
-"currentrev"	=> "Current revision", /* 当前修订版本 */
-"revisionasof"	=> "$1 的修订版本", /* Revision as of $1 */
-"cur"		=> "当前", /* cur */
-"next"		=> "后继", /* next */
-"last"		=> "先前", /* last */
-"orig"		=> "初始", /* orig */
+"revhistory"	=> "修订历史",
+"nohistory"		=> "没有本页的修订记录。",
+"revnotfound"	=> "没有找到修订记录",
+"revnotfoundtext" => "您请求的更早版本的修订记录没有找到。
+请检查您请求本页面用的 URL 是否正确。\n",
+"loadhist"		=> "载入页面修订历史",
+"currentrev"	=> "当前修订版本",
+"revisionasof"	=> "$1的修订版本",
+"cur"			=> "当前",
+"next"			=> "后继",
+"last"			=> "先前",
+"orig"			=> "初始",
 "histlegend"	=> "说明：(当前)指与当前修订版本比较；(先前)指与前一个修订版本比较，小 指细微修改。",
-/* Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit */
 
 # Diffs
 #
-"difference"	=> "（修订版本间差异）", /* Difference between revisions */
-"loadingrev"	=> "载入修订版本比较", /* loading revision for diff */
-"lineno"	=> "第 $1 行：", /* Line $1:",  */
+"difference"	=> "（修订版本间差异）",
+"loadingrev"	=> "载入修订版本比较",
+"lineno"		=> "第 $1 行：",
 "editcurrent"	=> "编辑本页的当前修订版本",
-/* Edit the current version of this page */
 
 # Search results
 #
-"searchresults" => "Search results",
-"searchhelppage" => "Wikipedia:Searching",
-"searchingwikipedia" => "Searching Wikipedia",
-"searchresulttext" => "For more information about searching Wikipedia, see $1.",
-"searchquery"	=> "For query \"$1\"",
-"badquery"		=> "Badly formed search query",
-"badquerytext"	=> "We could not process your query.
-This is probably because you have attempted to search for a
-word fewer than three letters long, which is not yet supported.
-It could also be that you have mistyped the expression, for
-example \"fish and and scales\".
-Please try another query.",
-"matchtotals"	=> "The query \"$1\" matched $2 article titles
-and the text of $3 articles.",
-"titlematches"	=> "Article title matches",
-"notitlematches" => "No article title matches",
-"textmatches"	=> "Article text matches",
-"notextmatches"	=> "No article text matches",
-"prevn"		=> "previous $1",
-"nextn"		=> "next $1",
-"viewprevnext"	=> "View ($1) ($2) ($3).",
-"showingresults" => "Showing below <b>$1</b> results starting with #<b>$2</b>.",
-"nonefound"		=> "<strong>Note</strong>: unsuccessful searches are
-often caused by searching for common words like \"have\" and \"from\",
-which are not indexed, or by specifying more than one search term (only pages
-containing all of the search terms will appear in the result).",
-"powersearch" => "Search",
-"powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
-$2 List redirects &nbsp; Search for $3 $9",
+"searchresults" => "搜索结果",
+"searchhelppage" => "Wikipedia:搜索",
+"searchingwikipedia" => "搜索Wikipedia",
+"searchresulttext" => "有关搜索Wikipedia的更多详情,参见$1。",
+"searchquery"	=> "查询\"$1\"",
+"badquery"		=> "搜索查询不正确",
+"badquerytext"	=> "我们无法处理您的查询。
+这可能是由于您试图搜索一个短于3个字母的外文单词，
+或者您错误地输入了搜索项，例如\"汽车和和火车\"。
+请再尝试一个新的搜索项。",
+"matchtotals"	=> "搜索项\"$1\"与$2条文章的题目相符，和$3条文章相符。",
 
+"nogomatch" => "没有文章与搜索项完全匹配，请尝试完整文字搜索。",
+"titlematches"	=> "文章题目相符",
+"notitlematches" => "没有找到匹配文章题目",
+"textmatches"	=> "文章内容相符",
+"notextmatches"	=> "没有文章内容匹配",
+
+"prevn"			=> "先前$1",
+"nextn"			=> "之后$1",
+"viewprevnext"	=> "查看 ($1) ($2) ($3).",
+"showingresults" => "下面显示<b>$1</b>条结果，从第<b>$2</b>条开始",
+"nonefound"		=> "<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。",
+"powersearch" => "搜索",
+"powersearchtext" => "
+搜索名字空间：<br>$1<br>$2列出重定向页面；搜索$3 $9",
+
+"searchdisabled" => "<p>Wikipedia内部搜索功能由于高峰时段服务器超载而停止使用。
+您可以暂时通过
+<a href=\"http://google.com/\">google</a>搜索Wikipedia。
+谢谢您的耐心。
+<!-- Search Google -->
+<form id=\"google\" method=\"get\" action=\"http://www.google.com/custom\">
+<table bgcolor=\"#FFFFFF\" cellspacing=0 border=0>
+<tr valign=top><td>
+<a href=\"http://www.google.com/search\">
+<img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=0
+alt=\"Google\" align=\"middle\"></a>
+</td>
+<td>
+<input type=text name=\"q\" size=31 maxlength=255 value=\"$1\">
+<input type=submit name=\"sa\" value=\"Google搜索\">
+<input type=hidden name=\"cof\" value=\"LW:135;L:http://zh.wikipedia.org/upload/wiki.png;LH:133;AH:left;S:http://www.wikiped<font face=arial,sans-serif size=-1>
+<input type=hidden name=\"domains\" value=\"zh.wikipedia.org\"><br>
+<input type=radio name=\"sitesearch\" value=\"\"> 搜索WWW
+<input type=radio name=\"sitesearch\" value=\"zh.wikipedia.org\" checked> 搜索zh.wikipedia.org </font><br>
+</td></tr></table></form>
+<!-- Search Google -->\n",
 
 # Preferences page
 #
 "preferences"	=> "参数设置",
 "prefsnologin" => "还未登录",
-"prefsnologintext" => "你必须先<a href=\"" .
+"prefsnologintext"	=> "您必须先<a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>才能设置个人参数。",
 "prefslogintext" => "你已经以\"$1\"的身份登录。
-你的内部ID是$2.",
+你的内部ID是$2。",
 "prefsreset"	=> "参数重新设置。",
 "qbsettings"	=> "快速导航条设置", 
 "changepassword" => "更改密码",
-"skin"		=> "Skin",
-"saveprefs"	=> "保存参数设置",
+"skin"			=> "Skin",
+"math"			=> "数学显示",
+"math_failure"		=> "无法解析",
+"math_unknown_error"	=> "未知错误",
+"math_unknown_function"	=> "未知函数",
+"math_lexing_error"	=> "句法错误",
+"math_syntax_error"	=> "语法错误",
+"saveprefs"		=> "保存参数设置",
 "resetprefs"	=> "重设参数",
 "oldpassword"	=> "旧密码",
 "newpassword"	=> "新密码",
-"retypenew"	=> "重复新密码",
+"retypenew"		=> "重复新密码",
 "textboxsize"	=> "文字框尺寸",
-"rows"		=> "行",
-"columns"	=> "列",
+"rows"			=> "行",
+"columns"		=> "列",
 "searchresultshead" => "搜索结果设定",
-"resultsperpage" => "每页显示连接数",
-"contextlines"	=> "每连接行数",
+"resultsperpage" => "每页显示链接数",
+"contextlines"	=> "每链接行数",
 "contextchars"	=> "每行字数",
-"stubthreshold" => "Threshold for stub display",
+"stubthreshold" => "stub显示基本限制",
 "recentchangescount" => "最近更改页行数",
-"savedprefs"	=> "你的个人参数设置已经保存。",
+"savedprefs"	=> "您的个人参数设置已经保存。",
 "timezonetext"	=> "输入当地时间与服务器时间(UTC)的时差。",
 "localtime"	=> "当地时间",
 "timezoneoffset" => "差",
-"emailflag"	=> "禁止其他用户发e-mail给我",
+"emailflag"		=> "禁止其他用户发e-mail给我",
 
 # Recent changes
 #
-
-"recentchanges" => "最近更改", /* Recent changes */
-
-"recentchangestext" =>
-"本页用来察看 Wikipedia 最近的更改。
-请参看[[wikipedia:欢迎，新来者|欢迎，新来者]]、
-[[wikipedia:常见问题解答|常见问题解答]]、
-[[Wikipedia:守则与指导|参与者守则与指导]]
-（特别是[[Wikipedia:命名常规|命名常规]]、[[Wikipedia:中性的观点|中性的观点]]）
-和[[Wikipedia:最常见失礼行为|最常见失礼行为]]。
+"changes" => "更改",
+"recentchanges" => "最近更改",
+"recentchangestext" => "本页跟踪Wikipedia内最新的更改。
+[[Wikipedia:欢迎，新来者|欢迎，新来者]]！
+请参见这些页面：[[wikipedia:常见问题解答|Wikipedia常见问题解答]]、
+[[Wikipedia:守则与指导|Wikipedia守则]]
+（特别是[[wikipedia:命名常规|命名常规]]、
+[[wikipedia:中性的观点|中立观点]]）
+和[[wikipedia:最常见失礼行为|最常见失礼行为]]。
 
 如果您希望 Wikipedia 成功，那么请您不要增加受其它[[wikipedia:版权信息|版权]]
 限制的材料，这一点将非常重要。相关的法律责任会伤害本项工程，所以请不要这样做。
 此外请参见
-[http://meta.wikipedia.org/wiki/Special:Recentchanges 最近的 meta 讨论]。
-",
-/*
-Track the most recent changes to Wikipedia on this page.
-[[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
-Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|Wikipedia policy]]
-(especially [[wikipedia:Naming conventions|naming conventions]],
-[[wikipedia:Neutral point of view|neutral point of view]]),
-and [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
+[http://meta.wikipedia.org/wiki/Special:Recentchanges 最近的 meta 讨论]。",
 
-If you want to see Wikipedia succeed, it's very important that you don't add
-material restricted by others' [[wikipedia:Copyrights|copyrights]].
-The legal liability could really hurt the project, so please don't do it.
-See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].
-*/
-
-"rcloaderr"	=> "载入最近更改", /* Loading recent changes */
-"rcnote"	=> "下面是最近 <strong>$2</strong> 天内最新的 <strong>$1</strong> 次改动。",
-/* Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days. */
-# "rclinks"	=> "Show last $1 changes in last $2 hours / last $3 days",
-"rclinks"	=> "显示最近 $2 天内最新的 $1 次改动。",
-/* Show last $1 changes in last $2 days. */
-"rchide"	=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
-/* in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits. */
-"diff"		=> "差异", /* diff */
-"hist"		=> "历史", /* hist */
-"hide"		=> "隐藏", /* hide */
-"show"		=> "显示", /* show */
-"tableform"	=> "表格", /* table */
-"listform"	=> "列表", /* list */
-"nchanges"	=> "$1 次更改", /* $1 changes */
-"minoreditletter" => "小", /* M */
-"newpageletter" => "新", /* N */
+"rcloaderr"		=> "载入最近更改",
+"rcnote"		=> "下面是最近<strong>$2</strong>天内最新的<strong>$1</strong>次改动。",
+"rcnotefrom"	=> "下面是自<b>$2</b>（最多显示<b>$1</b>）。",
+"rclistfrom"	=> "显示自$1以来的新更改",
+# "rclinks"		=> "显示最后$2小时／$3天内的$1此修改",
+"rclinks"		=> "显示最近 $2 天内最新的 $1 次改动。",
+"rchide"		=> "以$4形式；$1个小修改；$2个二级名字空间；$3个多重修改",
+"diff"			=> "差异",
+"hist"			=> "历史",
+"hide"			=> "隐藏",
+"show"			=> "显示",
+"tableform"		=> "表格",
+"listform"		=> "列表",
+"nchanges"		=> "$1个更改",
+"minoreditletter" => "小",
+"newpageletter" => "新",
 
 # Upload
 #
-"upload"	=> "上载", /* Upload */
-"uploadbtn"	=> "上载文件",
+"upload"		=> "上载文件",
+"uploadbtn"		=> "上载文件",
 "uploadlink"	=> "上载图像",
-"reupload"	=> "重新上载",
+"reupload"		=> "重新上载",
 "reuploaddesc"	=> "返回上载表单。",
 "uploadnologin" => "未登录",
 "uploadnologintext"	=> "您必须先<a href=\"" .
@@ -657,18 +741,18 @@ wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
 <ul>
 </ul>
 ",
-"filename"	=> "文件名",
-"filedesc"	=> "简述",
+"filename"		=> "文件名",
+"filedesc"		=> "简述",
 "affirmation"	=> "我保证本文件的版权持有人同意将其在$1条款下发布。",
 "copyrightpage" => "Wikipedia:版权信息",
 "copyrightpagename" => "Wikipedia版权",
 "uploadedfiles"	=> "已上载文件",
-"noaffirmation" => "您必须保证您所上载的文件没有违反任何版权法律。",
+"noaffirmation" => "您必须保证您上载的文件并没有侵犯版权。",
 "ignorewarning"	=> "忽略警告并保存文件。",
 "minlength"		=> "图像名字必须至少有三个字母。",
-"badfilename"	=> "图像名已被改为\"$1\".",
+"badfilename"	=> "图像名已被改为\"$1\"。",
 "badfiletype"	=> "\".$1\"不是所推荐的图像文件格式。",
-"largefile"		=> "我们建议图像大小不超过100k。",
+"largefile"		=> "我们建议图像大小不超过100kb。",
 "successfulupload" => "上载成功",
 "fileuploaded"	=> "文件\"$1\"上载成功。
 请根据连接($2)到图像描述页添加有关文件信息，例如它的来源，在何时由谁创造，
@@ -680,326 +764,324 @@ wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
 # Image list
 #
 "imagelist"		=> "图像列表",
-"imagelisttext"	=> "以下是$1幅图像。",
+"imagelisttext"	=> "以下是按$2排列的$1幅图像列表。",
 "getimagelist"	=> "正在获取图像列表",
 "ilshowmatch"	=> "显示所有匹对的图像",
 "ilsubmit"		=> "搜索",
-"showlast"		=> "显示最后$1幅图像。",
+"showlast"		=> "显示按$2排列的最后$1幅图像。",
 "all"			=> "全部",
-"byname"		=> "按名字",
-"bydate"		=> "按日期",
-"bysize"		=> "按大小",
+"byname"		=> "名字",
+"bydate"		=> "日期",
+"bysize"		=> "大小",
 "imgdelete"		=> "删",
 "imgdesc"		=> "述",
-"imglegend"		=> "图标：(述) = 显示/编辑图像描述页。",
+"imglegend"		=> "说明：(述) = 显示/编辑图像描述页。",
 "imghistory"	=> "图像历史",
-"revertimg"		=> "恢复rev",
+"revertimg"		=> "复",
 "deleteimg"		=> "删",
-"imghistlegend" => "Legend: (现) = 目前的图像，(删) = 删除旧版本，
-(恢复) = 恢复到旧版本。
+"imghistlegend" => "egend: (现) = 目前的图像，(删) = 删除旧版本，
+(复) = 恢复到旧版本。
 <br><i>点击日期查看当天上载的图像</i>.",
-"imagelinks"	=> "图像连接",
+"imagelinks"	=> "图像链接",
+
 "linkstoimage"	=> "以下页面连接到本图像：",
-"nolinkstoimage" => "没有页面连接到本图像.",
+"nolinkstoimage" => "没有页面连接到本图像。",
 
 # Statistics
-# 统计
 #
-
-"statistics"	=> "统计", /* Statistics */
-"sitestats"		=> "站点统计", /* Site statistics */
-"userstats"		=> "用户统计", /* User statistics */
-
+"statistics"	=> "统计",
+"sitestats"		=> "站点统计",
+"userstats"		=> "用户统计",
 "sitestatstext" => "数据库中共有 <b>$1</b> 页页面；
 其中包括对话页、关于 Wikipedia 的页面、最少量的\"stub\"页、重定向的页面，
 以及未达到条目质量的页面；除此之外还有 <b>$2</b> 页可能是合乎标准的条目。
-<p>从系统软件升级（ 2002 年 10 月 27 日）以来，全站点共有页面浏览 <b>$3</b> 次，
+<p>从系统软件升级以来，全站点共有页面浏览 <b>$3</b> 次，
 页面编辑 <b>$4</b> 次，每页平均编辑 <b>$5</b> 次，
 各次编辑后页面的每个版本平均浏览 <b>$6</b> 次。",
-/* There are <b>$1</b> total pages in the database.
-This includes \"talk\" pages, pages about Wikipedia, minimal \"stub\"
-pages, redirects, and others that probably don't qualify as articles.
-Excluding those, there are <b>$2</b> pages that are probably legitimate
-articles.<p>There have been a total of <b>$3</b> page views, and <b>$4</b> page edits since the software was upgraded (July 20, 2002). That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit. */
-
-"userstatstext" => "现有 <b>$1</b> 位注册用户，
-其中 <b>$2</b> 位是管理员（参见 $3 ）。",
-/* There are <b>$1</b> registered users.<b>$2</b> of these are administrators (see $3). */
-
 
 # Maintenance Page
 #
 "maintenance"		=> "维护页",
-"maintnancepagetext"	=> "这页面提供了几个帮助Wikipedia日常维护的工具。但其中几个会对我们的数据库造成压力，所以请您不要在每修理好几个项目后就按重新载入 ;-)",
-"maintenancebacklink"	=> "回去维护页",
+"maintnancepagetext"	=> "这页面提供了几个帮助Wikipedia日常维护的工具。
+但其中几个会对我们的数据库造成压力，
+所以请您不要在每修理好几个项目后就按重新载入 ;-)",
+"maintenancebacklink"	=> "返回维护页",
 "disambiguations"	=> "消含糊页",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br>一个页面会被视为消含糊页如果它是链自$1.<br>由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
-"doubleredirects"	=> "雙重重定向",
-"doubleredirectstext"	=> "<b>请注意：</b>这列表可能包括不正确的反应。这通常表示在那页面第一个#REDIRECT之下还有文字。<br>\n每一行都包含到第一跟第二个重定向页的链接，以及第二个重定向页的第一行文字，通常显示的都会是\“真正\” 的目标页面，也就是第一个重定向页应该指向的条目。",
+"doubleredirects"	=> "双重重定向",
+"doubleredirectstext"	=> "<b>请注意：</b> 这列表可能包括不正确的反应。
+这通常表示在那页面第一个#REDIRECT之下还有文字。<br>\n
+每一行都包含到第一跟第二个重定向页的链接，以及第二个重定向页的第一行文字，
+通常显示的都会是\“真正\” 的目标页面，也就是第一个重定向页应该指向的条目。",
 "brokenredirects"	=> "损坏的重定向页",
 "brokenredirectstext"	=> "以下的重定向页指向的是不存在的条目。",
 "selflinks"		=> "有自我链接的页面",
 "selflinkstext"		=> "以下的页面都错误地包含了连到自己的链接。",
-"mispeelings"           => "Pages with misspellings",
-"mispeelingstext"               => "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage"       => "List of common misspellings",
-"missinglanguagelinks"  => "Missing Language Links",
-"missinglanguagelinksbutton"    => "Find missing language links for",
-"missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
+"mispeelings"           => "拼写错误的页面",
+"mispeelingstext"               => "以下页面包含了一些常见的拼写错误（见$1）。正确的拼法已经给出。",
+"mispeelingspage"       => "常见拼写错误列表",
+"missinglanguagelinks"  => "无语言链接",
+"missinglanguagelinksbutton"    => "寻找没有该语言的页面",
+"missinglanguagelinkstext"      => "这些条目<i>没有</i>链接到$1。
+重定向页与副页<b>并没有</b>包括在内。",
 
 
 # Miscellaneous special pages
 #
-"orphans"	=> "孤立页面", /* Orphaned pages */
-"lonelypages"	=> "孤立页面", /* Orphaned pages */
-"unusedimages"	=> "未用图像", /* Unused images */
-"popularpages"	=> "热点条目", /* Popular pages */
-"nviews"	=> "$1 次浏览", /* $1 views */
-"wantedpages"	=> "待撰页面", /* Wanted pages */
-"nlinks"	=> "$1 个链接", /* $1 links */
-"allpages"	=> "所有条目", /* All pages */
-"randompage"	=> "随机页面", /* Random page */
-"shortpages"	=> "短条目", /* Short pages */
-"longpages"	=> "长条目", /* Long pages */
-"listusers"	=> "用户列表", /* User list */
-"specialpages"	=> "特殊页面", /* Special pages */
-"spheading"	=> "特殊页面", /* Special pages */
-"sysopspheading" => "Special pages for sysop use", /* Special pages for sysop use */
-"developerspheading" => "Special pages for developer use", /* Special pages for developer use */
-"protectpage"	=> "保护页面", /* Protect page */
-"recentchangeslinked" => "链出更改", /* Watch links */
-"rclsub"	=> "(从 \"$1\"链出的页面)", /* to pages linked from \"$1\") */
-"debug"		=> "调试", /* Debug */
-"newpages"	=> "新页面", /* New pages */
-"movethispage"	=> "移动页面", /* Move this page */
-"unusedimagestext" => "<p>Please note that other web sites
-such as the international Wikipedias may link to an image with
-a direct URL, and so may still be listed here despite being
-in active use.", /*  */
-"booksources"	=> "书目来源", /* Book sources */
-"booksourcetext" => "Below is a list of links to other sites that
-sell new and used books, and may also have further information
-about books you are looking for.
-Wikipedia is not affiliated with any of these businesses, and
-this list should not be construed as an endorsement.", 
-/*  */
+"orphans"		=> "孤立条目",
+"lonelypages"	=> "孤立页面",
+"unusedimages"	=> "未使用图像",
+"popularpages"	=> "热点条目",
+"nviews"		=> "$1次浏览",
+"wantedpages"	=> "待撰页面",
+"nlinks"		=> "$1个链接",
+"allpages"		=> "所有页面",
+"randompage"	=> "随机页面",
+"shortpages"	=> "短条目",
+"longpages"		=> "长条目",
+"listusers"		=> "用户列表",
+"specialpages"	=> "特殊页面",
+"spheading"		=> "特殊页面",
+"sysopspheading" => "管理员特殊页面",
+"developerspheading" => "发展者特殊页面",
+"protectpage"	=> "保护页面",
+"recentchangeslinked" => "链出更改",
+"rclsub"		=> "（从 \"$1\"链出的页面）",
+"debug"			=> "除错",
+"newpages"		=> "新页面",
+"intl"		=> "跨语言链接",
+"movethispage"	=> "移动本页",
+"unusedimagestext" => "<p>请注意其他网站（例如其他语言版本的Wikipedia）
+有可能直接链接本图像，所以这里列出的图像有可能依然被使用。",
+"booksources"	=> "战外书源",
+"booksourcetext" => "以下是链接到销售书籍的网站列表，
+因此有可能拥有您所寻找的图书的进一步资料。
+Wikipedia与这些公司并没有任何商业关系，因此本表不应该
+被看作是一种背书。",
+"alphaindexline" => "$1 到 $2",
 
 # Email this user
 #
-"mailnologin"	=> "No send address",
-"mailnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
-to send e-mail to other users.",
-"emailuser"	=> "给用户发信", /* E-mail this user */
-"emailpage"	=> "E-mail user",
-"emailpagetext"	=> "If this user has entered a valid e-mail address in
-is user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear
-as the \"From\" address of the mail, so the recipient will be able
-to reply.",
-"noemailtitle"	=> "No e-mail address",
-"noemailtext"	=> "This user has not specified a valid e-mail address,
-or has chosen not to receive e-mail from other users.",
-"emailfrom"	=> "发件人", /* From*/
-"emailto"	=> "收件人", /* To*/
-"emailsubject"	=> "主题", /* Subject */
-"emailmessage"	=> "正文", /* Message */
-"emailsend"	=> "发送", /* Send */
-"emailsent"	=> "邮件发送", /* E-mail sent */
-"emailsenttext" => "您的邮件已经被发送",
-/* Your e-mail message has been sent. */
+"mailnologin"	=> "无电邮地址",
+"mailnologintext" => "您必须先<a href=\"" .
+  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+并在<a href=\"" .
+  wfLocalUrl( "Special:Preferences" ) . "\">参数设置</a>
+中有一个有效的e-mail地址才可以电邮其他用户。",
+"emailuser"		=> "E-mail该用户",
+"emailpage"		=> "E-mail用户",
+"emailpagetext"	=> "如果该用户已经在他或她的参数设置页中输入了有效的e-mail地址，以下的表格将寄一个信息给该用户。您在您参数设置中所输入的e-mail地址将出现在邮件“发件人”一栏中，这样该用户就可以回复您。",
+"noemailtitle"	=> "无e-mail地址",
+"noemailtext"	=> "该用户还没有指定一个有效的e-mail地址，
+或者选择不接受来自其他用户的e-mail。",
+
+"emailfrom"		=> "发件人",
+"emailto"		=> "收件人",
+"emailsubject"	=> "主题",
+"emailmessage"	=> "信息",
+"emailsend"		=> "发送",
+"emailsent"		=> "E-mail已发送",
+"emailsenttext" => "您的e-mail已经发出。",
 
 # Watchlist
 #
+"watchlist"		=> "监视列表",
+"watchlistsub"	=> "(用户\"$1\")",
+"nowatchlist"	=> "您的监视列表为空。",
+"watchnologin"	=> "未登录",
+"watchnologintext"	=> "您必须先<a href=\"" .
+  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+才能更改您的监视列表",
+"addedwatch"	=> "加入到监视列表",
+"addedwatchtext" => "本页（“$1”）已经被加入到您的<a href=\"" .
+  wfLocalUrl( "Special:Watchlist" ) . "\">监视列表</a>中。
+未来有关它或它的对话页的任何修改将会在本页中列出，
+而且还会在<a href=\"" .
+  wfLocalUrl( "Special:Recentchanges" ) . "\">最近更改列表</a>中
+以<b>粗体</b>形式列出。</p>
 
-"watchlist"	=> "监视列表", /* Watch list */
-"watchlistsub"	=> "(用户\"$1\")", /* (for user \"$1\") */
-"nowatchlist"	=> "You have no items on your watchlist.", /*  */
-"watchnologin"	=> "Not logged in", /*  */
-"watchnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-to modify your watchlist.",
-/*  */
-"addedwatch"	=> "Added to watchlist", /*  */
-"addedwatchtext" => "The page \"$1\" has been added to your <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
-Future changes to this page and its associated Talk page will be listed there,
-and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
-make it easier to pick out.</p>
-
-<p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
- /*  */
-"removedwatch"	=> "", /* Removed from watchlist */
-"removedwatchtext" => "The page \"$1\" has been removed from your watchlist.",
-/*  */
-"watchthispage"	=> "监视本页", /* Watch this page */
-"unwatchthispage" => "停止监视", /* Stop watching */
-"notanarticle"	=> "Not an article",
+<p>如果您之后想将该页面从监视列表中删除，点击导航条中的“停止监视”链接。",
+"removedwatch"	=> "停止监视",
+"removedwatchtext" => "页面“$1”已经从您的监视页面中移除。",
+"watchthispage"	=> "监视本页",
+"unwatchthispage" => "停止监视",
+"notanarticle"	=> "不是条目",
+	 "watchnochange" => "在显示的时间段内您所监视的页面没有更改。",
+ 	 "watchdetails" => "($1个页面（不含对话页）被监视；
+ 	 总共$2个页面被编辑；
+ 	 $3...
+ 	 <a href='$4'>显示并编辑完整列表</a>.)",
+ 	 "watchmethod-recent" => "检查被监视页面的最近编辑",
+ 	 "watchmethod-list" => "checking watched pages for recent edits",
+ 	 "removechecked" => "将被选页面从监视列表中移除",
+ 	 "watchlistcontains" => "您的监视列表包含$1个页面。",
+ 	 "watcheditlist" => "这里是您所监视的页面的列表。要移除某一页面，只要选择该页面然后点击”移除页面“按钮。",
+ 	 "removingchecked" => "移除页面...",
+ 	 "couldntremove" => "无法移除'$1'...",
+ 	 "iteminvalidname" => "页面'$1'错误，无效命名...",
+ 	 "wlnote" => "以下是最近<b>$2</b>小时内的最后$1次修改。",
 
 # Delete/protect/revert
 #
-"deletepage"	=> "Delete page",
-"confirm"	=> "Confirm",
-"confirmdelete" => "Confirm delete",
-"deletesub"	=> "(Deleting \"$1\")",
-"confirmdeletetext" => "You are about to permanently delete a page
-or image along with all of its history from the database.
-Please confirm that you intend to do this, that you understand the
-consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
-"confirmcheck"	=> "Yes, I really want to delete this.",
-"actioncomplete" => "Action complete",
-"deletedtext"	=> "\"$1\" has been deleted.
-See $2 for a record of recent deletions.",
-"deletedarticle" => "deleted \"$1\"",
-"dellogpage"	=> "Deletion_log",
-"dellogpagetext" => "Below is a list of the most recent deletions.
-All times shown are server time (UTC).
+"deletepage"	=> "删除页面",
+"confirm"		=> "确认",
+"confirmdelete" => "确认删除",
+"deletesub"		=> "（正在删除“$1”）",
+"confirmdeletetext" => "您即将从数据库中永远删除一个页面或图像以及其历史。
+请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。
+",
+"confirmcheck"	=> "是的，我确定要删除。",
+"actioncomplete" => "操作完成",
+"deletedtext"	=> "“$1”已经被删除。
+最近删除的纪录请参见$2。",
+"deletedarticle" => "已删除“$1”",
+
+"dellogpage"	=> "删除纪录",
+"dellogpagetext" => "以下是最近删除的纪录列表。
+所有的时间都是使用服务器时间(UTC)。
 <ul>
 </ul>
 ",
-"deletionlog"	=> "deletion log",
-"reverted"	=> "Reverted to earlier revision",
-"deletecomment"	=> "Reason for deletion",
-"imagereverted" => "Revert to earlier version was successful.",
+"deletionlog"	=> "删除纪录",
+"reverted"		=> "恢复到早期版本",
+"deletecomment"	=> "删除理由",
+"imagereverted" => "恢复到早期版本操作完成。",
+"rollback"		=> "Roll back",
+"rollbacklink"	=> "rollback",
+"cantrollback"	=> "无法恢复编辑；最后的巩县者是本文的唯一作者。",
+"revertpage"	=> "恢复到$1的最后一次编辑",
 
 # Undelete
-"undelete" => "Restore deleted page",
-"undeletepage" => "View and restore deleted pages",
-"undeletepagetext" => "The following pages have been deleted but are still in the archive and
-can be restored. The archive may be periodically cleaned out.",
-"undeletearticle" => "Restore deleted article",
-"undeleterevisions" => "$1 revisions archived",
-"undeletehistory" => "If you restore the page, all revisions will be restored to the history.
-If a new page with the same name has been created since the deletion, the restored
-revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.",
-"undeleterevision" => "Deleted revision as of $1",
-"undeletebtn" => "Restore!",
-"undeletedarticle" => "restored \"$1\"",
-"undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+"undelete" => "恢复被删页面",
+"undeletepage" => "浏览及恢复被删页面",
+"undeletepagetext" => "以下页面已经被删除，但依然在档案中并可以被恢复。
+档案库可能被定时清理。",
+"undeletearticle" => "恢复被删文章",
+"undeleterevisions" => "$1版本存档",
+"undeletehistory" => "如果您恢复了该页面，所有版本都会被恢复到修订历史中。
+如果本页删除后有一个同名的新页面建立，
+被恢复的版本将会称为较新的历史，而新页面的当前版本将无法被自动复原。",
+"undeleterevision" => "删除$1时的版本",
+"undeletebtn" => "恢复！",
+"undeletedarticle" => "已经恢复“$1”",
+"undeletedtext"   => "[[$1]]已经被成功复原。
+有关Wikipedia最近的删除与复原，参见[[Wikipedia:删除纪录]]",
 
 # Contributions
 #
-"contributions"	=> "用户贡献", /* User contributions */
-"contribsub"	=> "For $1",
-"nocontribs"	=> "No changes were found matching these criteria.",
-"ucnote"	=> "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
-"uclinks"	=> "View the last $1 changes; view the last $2 days.",
+"contributions"	=> "用户贡献",
+"mycontris" => "我的贡献",
+"contribsub"	=> "为$1",
+"nocontribs"	=> "没有找到符合特征的更改。",
+"ucnote"		=> "以下是该用户最近<b><$2/b>天内的最后<b>$1</b>次修改。",
+"uclinks"		=> "参看最后$1次修改；参看最后$2天。",
+"uctop"		=> " (顶)" ,
 
 # What links here
 #
-"whatlinkshere"	=> "链入页面", /* What links here */
-"notargettitle" => "No target", /*  */
-"notargettext"	=> "You have not specified a target page or user
-to perform this function on.",
-/*  */
-
-"linklistsub"	=> "(链到本页的页面列表)", /* (List of links) */
-"linkshere"		=> "下列页面链接到本页：",
-/* The following pages link to here:",  */
-"nolinkshere"	=> "没有页面连接到这里。", /* No pages link to here. */
-"isredirect"	=> "重定向页面", /* redirect page */
+"whatlinkshere"	=> "链入页面",
+"notargettitle" => "无目标",
+"notargettext"	=> "您还没有指定一个目标页面或用户以进行此项操作。",
+"linklistsub"	=> "(链接列表)",
+"linkshere"		=> "以下页面链接到这里：",
+"nolinkshere"	=> "没有页面链接到这里。",
+"isredirect"	=> "重定向页",
 
 # Block/unblock IP
 #
-"blockip"		=> "Block IP address",
-"blockiptext"	=> "Use the form below to block write access
-from a specific IP address.
-This should be done only only to prevent valndalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
-Fill in a specific reason below (for example, citing particular
-pages that were vandalized).",
-"ipaddress"		=> "IP Address",
-"ipbreason"		=> "Reason",
-"ipbsubmit"		=> "Block this address",
-"badipaddress"	=> "The IP address is badly formed.",
-"noblockreason" => "You must supply a reason for the block.",
-"blockipsuccesssub" => "Block succeeded",
-"blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br>See [[Special:Ipblocklist|IP block list]] to review blocks.",
-"unblockip"		=> "Unblock IP address",
-"unblockiptext"	=> "Use the form below to restore write access
-to a previously blocked IP address.",
-"ipusubmit"		=> "Unblock this address",
-"ipusuccess"	=> "IP address \"$1\" unblocked",
-"ipblocklist"	=> "List of blocked IP addresses",
-"blocklistline"	=> "$1, $2 blocked $3",
-"blocklink"		=> "block",
-"unblocklink"	=> "unblock",
-"contribslink"	=> "contribs",
+"blockip"		=> "查封IP地址",
+"blockiptext"	=> "用下面的表单来禁止来自某一特定IP地址的修改权限。
+只有在为防止破坏，及符合[[Wikipedia:守则与指导]]的情况下才可采取此行动。
+请在下面输入一个具体的理由（例如引述一个被破坏的页面）。",
+"ipaddress"		=> "IP地址",
+"ipbreason"		=> "原因",
+"ipbsubmit"		=> "查封该地址",
+"badipaddress"	=> "IP地址不正确。",
+"noblockreason" => "您必须说明查封的具体理由。",
+"blockipsuccesssub" => "查封成功",
+"blockipsuccesstext" => "IP地址“$1”已经被查封。
+<br>参看[[Special:被封IP地址列表|被封IP地址列表]]以复审查封。",
+"unblockip"		=> "解除禁封IP地址",
+"unblockiptext"	=> "用下面的表单来恢复先前被禁封的IP地址的书写权。",
+"ipusubmit"		=> "解除禁封",
+"ipusuccess"	=> "IP地址“$1”已经被解除禁封",
+"ipblocklist"	=> "被封IP地址列表",
+"blocklistline"	=> "$1，$2禁封$3",
+"blocklink"		=> "禁封",
+"unblocklink"	=> "解除禁封",
+"contribslink"	=> "贡献",
 
 # Developer tools
 #
-"lockdb"	=> "Lock database",
-"unlockdb"	=> "Unlock database",
-"lockdbtext"	=> "Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.",
-"unlockdbtext"	=> "Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.",
-"lockconfirm"	=> "Yes, I really want to lock the database.",
-"unlockconfirm"	=> "Yes, I really want to unlock the database.",
-"lockbtn"	=> "Lock database",
-"unlockbtn"	=> "Unlock database",
-"locknoconfirm" => "You did not check the confirmation box.",
-"lockdbsuccesssub" => "Database lock succeeded",
-"unlockdbsuccesssub" => "Database lock removed",
-"lockdbsuccesstext" => "The Wikipedia database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
-"unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
+"lockdb"		=> "禁止更改数据库",
+"unlockdb"		=> "开放更改数据库",
+"lockdbtext"	=> "锁住数据库将禁止所有用户进行编辑页面、更改参数、编辑监视列表以及其他需要更改数据库的操作。
+请确认您的决定，并且保证您在维护工作结束后会重新开放数据库。",
+"unlockdbtext"	=> "开放数据库将会恢复所有用户进行编辑页面、修改参数、编辑监视列表以及其他需要更改数据库的操作。
+请确认您的决定。",
+"lockconfirm"	=> "是的，我确实想要封锁数据库。",
+"unlockconfirm"	=> "是的，我确实想要开放数据库。",
+"lockbtn"		=> "数据库上锁",
+"unlockbtn"		=> "开放数据库",
+"locknoconfirm" => "您并没有勾选确认按钮。",
+"lockdbsuccesssub" => "数据库成功上锁",
+
+"unlockdbsuccesssub" => "数据库开放",
+"lockdbsuccesstext" => "Wikipedia数据库已经上锁。
+<br>请记住在维护完成后重新开放数据库。",
+"unlockdbsuccesstext" => "Wikipedia数据库重新开放。",
 
 # SQL query
 #
-"asksql"	=> "SQL query",
-"asksqltext"	=> "Use the form below to make a direct query of the
-Wikipedia database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",
-"sqlquery"	=> "Enter query",
-"querybtn"	=> "Submit query",
-"selectonly"	=> "Queries other than \"SELECT\" are restricted to
-Wikipedia developers.",
-"querysuccessful" => "Query successful",
+"asksql"		=> "SQL查询",
+"asksqltext"	=> "用下面的表单对Wikipedia数据库进行直接查询。
+使用单引号（'像这样'） 来分割字串符。
+这样做有可能增加服务器的负担，所以请慎用本功能。",
+"sqlquery"		=> "输入查询",
+"querybtn"		=> "提交查询",
+"selectonly"	=> "除了“SELECT”以外的所有查询都只限Wikipedia发展者使用。",
+"querysuccessful" => "查询成功",
 
 # Move page
 #
-"movepage"	=> "移动页面", /* Move page */
-"movepagetext"	=> "Using the form below will rename a page, moving all
-of its history to the new name.
-The old title will become a redirect page to the new title.
-Links to the old page title will not be changed, and the talk
-page, if any, will not be moved.
-<b>WARNING!</b>
-This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before
-proceeding.",
-"movearticle"	=> "移动页面", /* Move page */
-"movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-to move a page.",
-"newtitle"	=> "To new title",
-"movepagebtn"	=> "移动页面", /* Move page */
-"pagemovedsub"	=> "移动成功", /* Move succeeded */
-"pagemovedtext" => "Page \"[[$1]]\" moved to \"[[$2]]\".",
-"articleexists" => "A page of that name already exists, or the
-name you have chosen is not valid.
-Please choose another name.",
-"movedto"	=> "moved to",
-"movetalk"	=> "Move \"talk\" page as well, if applicable.",
-"talkpagemoved" => "The corresponding talk page was also moved.",
-"talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+"movepage"		=> "移动页面",
+"movepagetext"	=> "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
+老的页面将成为新页面的重定向页。
+链接到老页面的链接并不会自动更改；
+请[[Special:Maintenance|检查]]双重或损坏重定向链接。
+您应当负责确定所有链接依然会链到指定的页面。
+
+注意如果新页面已经有内容的话，页面将'''不会'''被移动，
+除非新页面无内容或是重定向页，而且没有修订历史。
+这意味着您再必要时可以在移动到新页面后再移回老的页面，
+同时您也无法覆盖现有页面。
+
+<b>警告！</b>
+对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
+请在行动前先了结其所可能带来的后果。",
+"movepagetalktext" => "有关的对话页（如果有的话）将被自动与该页面一起移动，'''除非'''：
+*您将页面移动到不同的名字空间（namespaces）；
+*新页面已经有一个包含内容的对话页，或者
+*您不勾选下面的复选框。
+
+在这些情况下，您在必要时必须手工移动或合并页面。",
+"movearticle"	=> "移动页面",
+"movenologin"	=> "未登录",
+"movenologintext" => "您必须是一名登记用户并且<a href=\"" .
+  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+后才可移动一个页面。",
+"newtitle"		=> "新标题",
+"movepagebtn"	=> "移动页面",
+"pagemovedsub"	=> "移动成功",
+"pagemovedtext" => "页面“[[$1]]”已经移动到“[[$2]]”。",
+"articleexists" => "该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。",
+"talkexists"	=> "页面本身移动成功，
+但是由于新标题下已经有对话页存在，所以对话页无法移动。请手工合并两个页面。",
+"movedto"		=> "移动到",
+"movetalk"		=> "如果可能的话，请同时移动对话页。",
+"talkpagemoved" => "相应的对话页也已经移动。",
+"talkpagenotmoved" => "相应的对话页<strong>没有</strong>被移动。",
 
 );
 
@@ -1032,7 +1114,14 @@ class LanguageZh extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		# Aliases
-        if ( 0 == strcasecmp( "Special", $text ) ) { return -1; }
+        if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
+        if ( 0 == strcasecmp( "", $text ) ) { return ; }
+        if ( 0 == strcasecmp( "对话", $text ) ) { return 1; }
+        if ( 0 == strcasecmp( "用户", $text ) ) { return 2; }
+        if ( 0 == strcasecmp( "用户对话", $text ) ) { return 3; }
+        if ( 0 == strcasecmp( "Wikipedia_对话", $text ) ) { return 5; }
+        if ( 0 == strcasecmp( "图像", $text ) ) { return 6; }
+        if ( 0 == strcasecmp( "图像对话", $text ) ) { return 7; }
 		return false;
 	}
 
@@ -1046,6 +1135,10 @@ class LanguageZh extends LanguageUtf8 {
 		return $wgSkinNamesZh;
 	}
 
+	function getMathNames() {
+		global $wgMathNamesZh;
+		return $wgMathNamesZh;
+	}
 
 	function getUserToggles() {
 		global $wgUserTogglesZh;
@@ -1071,6 +1164,13 @@ class LanguageZh extends LanguageUtf8 {
 		return $wgMonthNamesZh[$key-1];
 	}
 
+	/* by default we just return base form */
+	function getMonthNameGen( $key )
+	{
+		global $wgMonthNamesZh;
+		return $wgMonthNamesZh[$key-1];
+	}
+
 	function getMonthAbbreviation( $key )
 	{
 		global $wgMonthAbbreviationsZh;
@@ -1083,11 +1183,11 @@ class LanguageZh extends LanguageUtf8 {
 		return $wgWeekdayNamesZh[$key-1];
 	}
 
-	# The date and time functions can be tweaked if need be
+# The date and time functions can be tweaked if need be
 
 	# inherit userAdjust()
-	 
-    function date( $ts, $adj = false )
+ 
+	function date( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -1097,20 +1197,10 @@ class LanguageZh extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
 	}
-
-	# inherit default rfc1123()
 
 	function getValidSpecialPages()
 	{
@@ -1128,29 +1218,31 @@ class LanguageZh extends LanguageUtf8 {
 	{
 		global $wgDeveloperSpecialPagesZh;
 		return $wgDeveloperSpecialPagesZh;
+
 	}
 
 	function getMessage( $key )
 	{
-		global $wgAllMessagesZh, $wgAllMessagesEn;
-		$m = $wgAllMessagesZh[$key];
-
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
+		global $wgAllMessagesZh;
+		if($msg = $wgAllMessagesZh[$key])
+			return $msg;
+		else
+			return Language::getMessage( $key );
 	}
-		
+
 	# inherit default iconv(), ucfirst(), checkTitleEncoding()
 
 	function stripForSearch( $string ) {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
+		# we also separate characters as "words"
 		global $wikiLowerChars;
 		return preg_replace(
 		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 		  "' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
 		  $string );
 	}
-
 }
+
 
 ?>

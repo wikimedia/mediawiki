@@ -2,6 +2,7 @@
 # See Language.php for notes.
 
 /* private */ $wgNamespaceNamesDe = array(
+	-2	=> "Media",
 	-1	=> "Spezial",
 	0	=> "",
 	1	=> "Diskussion",
@@ -121,7 +122,7 @@
   "Recentchangeslinked" => "",
   "Booksources"         => "Externe Buchhandlungen",
 /*  "Categories"          => "Seiten Kategorien", */
-  "Export"              => ""
+/*  "Export"              => "" */
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
@@ -334,8 +335,8 @@ Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um 
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 "newarticletext" => "Hier den Text des neuen Artikels eintragen.\nBitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.",
-"anontalkpagetext" => "----
-''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden.''",
+"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte
+ an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",

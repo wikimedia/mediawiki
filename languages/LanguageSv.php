@@ -9,6 +9,7 @@
 // 
 
 /* private */ $wgNamespaceNamesSv = array(
+	-2	=> "Media",
         -1      => "Special",
         0       => "",
         1       => "Diskussion",
@@ -20,22 +21,7 @@
         7       => "Bild_diskussion"
 );
 
-/* private */ $wgDefaultUserOptionsSv = array(
-        "quickbar" => 1,
-	"underline" => 1,
-	"hover" => 1,
-        "cols" => 80,
-	"rows" => 25,
-	"searchlimit" => 20,
-        "contextlines" => 5,
-	"contextchars" => 50,
-        "skin" => 0,
-	"math" => 1, 
-	"rcdays" => 7,
-	"rclimit" => 50,
-        "highlightbroken" => 1,
-	"stubthreshold" => 0
-);
+/* inherit standard defaults */
 
 /* private */ $wgQuickbarSettingsSv = array(
         "Ingen", "Fast vänster", "Fast höger", "Flytande vänster"
@@ -51,12 +37,18 @@
         "highlightbroken"  => "Röda länkar till tomma sidor",
         "justify"          => "Justera indrag",
         "hideminor"        => "Göm små redigeringar vid senaste ändring",
+	"usenewrc"         => "Avancerad 'Senaste ändringar'",
         "numberheadings"   => "Automatisk numrering av överskrifter",
         "rememberpassword" => "Kom ihåg lösenord till nästa besök",
         "editwidth"        => "Redigeringsboxen har full bredd",
         "editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",
+	"editsection"      => "Visa [edit]-länkar för att redigera sektioner",
+	"editsectiononrightclick" => "Högerklick på rubriker redigerar sektioner",
+	"showtoc"          => "Visa automatisk innehållsförteckning (på sidor med mer än 3 sektioner)",
         "watchdefault"     => "Övervaka nya och ändrade artiklar",
-        "minordefault"     => "Markera som standard alla ändringer som mindre"
+        "minordefault"     => "Markera som standard alla ändringer som mindre",
+	"previewontop"     => "Visa förhandsgranskning före textfältet istället för efter",
+	"nocache"          => "Slå av cachning av sidor"
 );
 
 /* private */ $wgBookstoreListSv = array(
@@ -69,147 +61,6 @@
 /* Note: native names of languages are preferred where known to maximize
    ease of navigation -- people should be able to recognize their own
    languages! */
-/* private */ $wgLanguageNamesSv = array(
-        "aa" => "Afar",
-        "ab" => "Abkhasiska",
-        "af" => "Afrikaans",
-        "am" => "Amhariska",
-        "ar" => "Arabiska",
-        "as" => "Assami",
-        "ay" => "Aymara",
-        "az" => "Aserbajdsjanska",
-        "ba" => "Basjkiriska",
-        "be" => "Vitryska",
-        "bh" => "Bihari",
-        "bi" => "Bislama",
-        "bn" => "Bengali",
-        "bo" => "Tibetanska",
-        "br" => "Bretonska",
-        "ca" => "Katalanska",
-        "ch" => "Chamorro",
-        "co" => "Korsikanska",
-        "cs" => "Tjeckiska",
-        "cy" => "Walesiska",
-        "da" => "Danska", # Note two different subdomains. 
-        "dk" => "Danska", # 'da' is correct for the language.
-        "de" => "Tyska",
-        "dz" => "Bhutanesiska",
-        "el" => "Grekiska",
-        "en" => "Engelska",
-        "eo" => "Esperanto",
-        "es" => "Spanska",
-        "et" => "Estniska",
-        "eu" => "Baskiska",
-        "fa" => "Persiska",
-        "fi" => "Finska",
-        "fj" => "Fidjianska",
-        "fo" => "Färöiska",
-        "fr" => "Franska",
-        "fy" => "Frisiska",
-        "ga" => "Irländska",
-        "gl" => "Galiciska",
-        "gn" => "Guarani",
-        "gu" => "Gujarati",
-        "ha" => "Hausa",
-        "he" => "Hebreiska",
-        "hi" => "Hindi",
-        "hr" => "Kroatiska",
-        "hu" => "Ungerska",
-        "hy" => "Armeniska",
-        "ia" => "Interlingua",
-        "id" => "Indonesiska",
-        "ik" => "Inupiaq",
-        "is" => "Isländska",
-        "it" => "Italienska",
-        "iu" => "Inuktitut",
-        "ja" => "Japanska",
-        "jv" => "Javanesiska",
-        "ka" => "Georgiska",
-        "kk" => "Kazakiska",
-        "kl" => "Grönländska",
-        "km" => "Kambodjanska",
-        "kn" => "Kanaresiska",
-        "ko" => "Koreanska",
-        "ks" => "Kashmiri",
-        "kw" => "Corniska",
-        "ky" => "Kirgisiska",
-        "la" => "Latin",
-        "ln" => "Lingala",
-        "lo" => "Laotiska",
-        "lt" => "Litauiska",
-        "lv" => "Lettiska",
-        "mg" => "Malagassiska",
-        "mi" => "Maori",
-        "mk" => "Makedoniska",
-        "ml" => "Malyalam",
-        "mn" => "Mongoliska",
-        "mo" => "Moldaviska",
-        "mr" => "Marathi",
-        "ms" => "Malajiska",
-        "my" => "Burmesiska",
-        "na" => "Nauriska",
-        "ne" => "Nepaliska",
-        "nl" => "Nederländska",
-	"nn" => "Nynorska",
-        "no" => "Norska",
-        "oc" => "Occitanska",
-        "om" => "Afan Oromoo",
-        "or" => "Oriya",
-        "pa" => "Punjabi",
-        "pl" => "Polska",
-        "ps" => "Pashto",
-        "pt" => "Portugisiska",
-        "qu" => "Quechua",
-        "rm" => "Rätoromanska",
-        "rn" => "Rundi",
-        "ro" => "Rumänska",
-        "ru" => "Ryska", 
-        "rw" => "Rwanda",
-        "sa" => "Sanskrit",
-        "sd" => "Sindhi",
-        "sg" => "Sango",
-        "sh" => "Serbokroatiska",
-        "si" => "Singalesiska",
-        "simple" => "enkel Engelska",
-        "sk" => "Slovakiska",
-        "sl" => "Slovenska",
-        "sm" => "Samoanska",
-        "sn" => "Shona",
-        "so" => "Somaliska",
-        "sq" => "Albanska",
-        "sr" => "Serbiska",
-        "ss" => "Siswati",
-        "st" => "Sotho",
-        "su" => "Sudanesiska",
-        "sv" => "Svenska",
-        "sw" => "Swahili",
-        "ta" => "Tamil",
-        "te" => "Telugo",
-        "tg" => "Tadjikiska",
-        "th" => "Thailändska",
-        "ti" => "Tigrinya",
-        "tk" => "Turkmeniska",
-        "tl" => "Tagalog",
-        "tn" => "Tswana",
-        "to" => "Tonga",
-        "tr" => "Turkiska",
-        "ts" => "Tsonga",
-        "tt" => "Tatariska",
-        "tw" => "Twi",
-        "ug" => "Uiguriska",
-        "uk" => "Ukrainska",
-        "ur" => "Urdu",
-        "uz" => "Uzbekiska",
-        "vi" => "Vietnamesiska",
-        "vo" => "Volap&#252;k",
-        "wo" => "Wolof",
-        "xh" => "Xhosa",
-        "yi" => "Jiddisch",
-        "yo" => "Yoruba",
-        "za" => "Zhuang",
-        "zh" => "Kinesiska",
-        "zu" => "Zulu"
-);
 
 /* private */ $wgWeekdayNamesSv = array(
         "söndag", "måndag", "tisdag", "onsdag", "torsdag",
@@ -287,11 +138,14 @@ $wgValidSpecialPagesSv = array(
 "about"                 => "Om",
 "aboutwikipedia"        => "Om Wikipedia",
 "aboutpage"             => "Wikipedia:Om",
+
 "help"                  => "Hjälp",
 "helppage"              => "Wikipedia:Hjälp",
 "wikititlesuffix"       => "Wikipedia",
 "bugreports"            => "Felrapporter",
 "bugreportspage"        => "Wikipedia:Felrapporter",
+"sitesupport"           => "Donationer",
+"sitesupportpage"       => "", # If not set, won't appear. Can be wiki page or URL
 "faq"                   => "FAQ",
 "faqpage"               => "Wikipedia:FAQ",
 "edithelp"              => "Redigeringshjälp",
@@ -302,7 +156,7 @@ $wgValidSpecialPagesSv = array(
 "qbedit"                => "Redigera",
 "qbpageoptions"         => "Sidinställningar",
 "qbpageinfo"            => "Sidinformation",
-"qbmyoptions"           => "Mina inställingar",
+"qbmyoptions"           => "Mina inställningar",
 "mypage"                => "Min sida",
 "mytalk"                => "Min diskussion",
 "currentevents"         => "-",
@@ -316,9 +170,11 @@ $wgValidSpecialPagesSv = array(
 "printableversion"      => "Skrivarvänlig version",
 "editthispage"          => "Redigera den här sidan",
 "deletethispage"        => "Radera den här sidan",
-"protectthispage"       => "Skydda den här sida",
+"protectthispage"       => "Skydda den här sidan",
 "unprotectthispage"     => "Ta bort skydd av denna sida",
 "talkpage"              => "Diskussionssida",
+"postcomment"           => "Skriv ett inlägg",
+"articlepage"           => "Tillbaka till artikeln",
 "subjectpage"           => "Ämnessida",
 "userpage"              => "Visa användarsida",
 "wikipediapage"         => "Visa metasida",
@@ -398,7 +254,6 @@ URL:en.",
 Du kan fortsätta som anonym Wikipediaanvändare, eller så kan du logga in
 igen som samma eller annan användare.\n",
 
-
 "welcomecreation"       => "<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att anpassa dina Wikipediainställningar.",
 
 "loginpagetitle"        => "Logga in Användare",
@@ -412,14 +267,15 @@ igen som samma eller annan användare.\n",
 
 "areyounew"             => "Om du är ny på Wikipedia och önskar ett användarkonto, så skriv in ett användarnamn, därefter skriver du ett lösenord som du sedan upprepar.
 
-Observera att det finns bättre och sämre val av användarnamn, försök välja något unikt, och där du löper mindre risk att en dag behöva dela detta användarnamn med ett större antal användare som kan ha rätt till det. Exempel: Johansson, eller Peter. Allra helst ser vi attt du använder ditt eget för och efternamn, men du bestämmer naturligtvis själv.
+Observera att det finns bättre och sämre val av användarnamn, försök välja något unikt, och där du löper mindre risk att en dag behöva dela detta användarnamn med ett större antal användare som kan ha rätt till det. Exempel: Johansson, eller Peter. Allra helst ser vi att du använder ditt eget för och efternamn, men du bestämmer naturligtvis själv.
 
-Din e-postadress är frivillig; men om du glömmer ditt lösenord kan du till exempel be om att få det tillsänt till den adress du har anget.<br>\n",
+Att ange e-postadress är frivilligt; men om du glömmer ditt lösenord kan du till exempel be om att få det tillsänt till den adress du har angett.<br>\n",
 
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",
 "logout"                => "Logga ut",
 "userlogout"            => "Logga ut",
+"notloggedin" 		=> "Ej inloggad",
 "createaccount"         => "Skapa ett konto",
 "badretype"             => "De lösenord du uppgett överenstämmer inte med varandra.",
 "userexists"            => "Detta användarnamn används redan. Ange ett annat användarnamn.",
@@ -482,10 +338,10 @@ att betrakta som utgivna under GNU Free Documentation License
 (se $1 för detaljer).
 Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br>
 Du lovar oss också att du skrev texten själv, eller kopierade från en
-public domain eller liknande fri resurs.
+public domain eller liknande fri resurs.<BR>
 
 <strong>
-LÄGG ALDRIG UT MATERIAL HÄR SOM SKYDDAS AV UPPHOVSRÄTTSLAGEN UTAN FÖRFATTARENS TILLÅTELSE!
+LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!
 </strong>", //'"
 
 
@@ -530,7 +386,7 @@ och texter i $3 artiklar.",
 "textmatches"           => "Artikel texter som överensstämmer med sökordet",
 "notextmatches"         => "Ingen artikel texter överensstämmer med sökordet",
 "prevn"                 => "förra $1",
-"nextn"                 => "nästa $2",
+"nextn"                 => "nästa $1",
 
 "viewprevnext"          => "Om ($1) ($2) ($3).",
 "showingresults"        => "Nedan visas <b>$1</b> resultat som startar med nummer <b>$2</b>.",
@@ -578,33 +434,17 @@ serverns klocka (UTC).
 Den blir automatiskt inställd efter svensk tid eller skulle man till exempel för svensk vintertid, endast ha \"1\" (och \"2\" när vi har sommartid).",
 "localtime"             => "Lokal tid",
 "timezoneoffset"        => "Utjämna",
-"emailflag"             => "Stoppa andra användare att skicka e-post till dig",
+"emailflag"             => "Hindra andra användare från att skicka e-post till dig",
 
 // Recent changes
 //
 "recentchanges"         => "Senaste ändringarna",
-"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på denna 
-sida.
-
-[[Wikipedia:Välkommen|Välkommen]]!
-Vänligen läs dessa sidor: [[wikipedia:FAQ|Ofta ställda 
-frågor]], [[Wikipedia:Policy|policy]]
-
-(särskilt [[wikipedia:Namngivning|namngivning]],
-[[wikipedia:Skriv Wikipedia ifrån en neutral synpunkt|Skriv Wikipedia ifrån en neutral synpunkt]],
-och [[wikipedia:Mest vanliga nybörjarfel på Wikipedia|Mest vanliga nybörjarfel på Wikipedia]]).
-
-Det är mycket viktigt att du inte lägger material på 
-Wikipedia som andra äger upphovsrätten till. De rättsliga konsekvenserna kan bli 
-mycket kostbara och skadligt för projektet, så vänligen låt bli, om du är osäker.
-Se också [http://meta.wikipedia.org/wiki/Special:Recentchanges 
-recent meta discussion] (oftast på engelska).",
+"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på denna sida.",
 "rcloaderr"             => "Läser senaste redigerade sidor",
-"rcnote"                => "Nedanför är de senaste <strong>$1</strong> ändringarna under de 
-sista <strong>$2</strong> dagarna.",
+"rcnote"                => "Nedanför är de senaste <strong>$1</strong> ändringarna under de sista <strong>$2</strong> dagarna.",
 "rcnotefrom"            => "Nedanför är ändringarna från <b>$2</b> till <b>$1</b> visade.",
 "rclistfrom"            => "Visa nya ändringar från och med $1",
-"rclinks"               => "Visa de senaste $1 ändringarna under de senaste $2 timmarna / $3 dagarna",
+"rclinks"               => "Visa de senaste $1 ändringarna under de senaste $2 dagarna",
 // "rclinks"             => "Visa de senaste $1 ändringarna under de senaste $2 dagarna",
 "rchide"                => "i $4 form; $1 mindre ändringar; $2 andra namnrum; $3 mer än en redigering.",
 "diff"                  => "skillnad",
@@ -797,7 +637,7 @@ valt att inte ta emot något mail från andra användare.",
 "emailsubject"          => "Ämne",
 "emailmessage"          => "Meddelande",
 "emailsend"             => "Skickat",
-"emailsent"             => "E-post sskickat",
+"emailsent"             => "E-post är nu skickat",
 "emailsenttext"         => "Din e-post har skickats.",
 
 // Watchlist
@@ -830,6 +670,9 @@ och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
 //
 "deletepage"            => "Ta bort sida",
 "confirm"               => "Bekräfta",
+"excontent"             => "före radering:",
+"exbeforeblank"         => "före tömning:",
+"exblank"               => "sidan var tom",
 "confirmdelete"         => "Bekräfta borttagning",
 "deletesub"             => "(Tar bort \"$1\")",
 "confirmdeletetext"     => "Du håller på och permanent ta bort en sida
@@ -873,6 +716,7 @@ Se [[Wikipedia:Borttagningslogg]] för en lista över nyligen gjorda borttagningar
 // Contributions
 //
 "contributions"         => "Användarbidrag",
+"mycontris"             => "Mina bidrag",
 "contribsub"            => "För $1",
 "nocontribs"            => "Inga ändringar var funna som motsvarar dessa kriterier",
 "ucnote"                => "Nedan visas dennes användares senaste <b>$1</b> ändringar, under de senaste <b>$2</b> dagarna.",
@@ -981,11 +825,6 @@ class LanguageSv extends Language {
                 return $wgBookstoreListSv ;
         }
 
-        function getDefaultUserOptions () {
-                global $wgDefaultUserOptionsSv ;
-                return $wgDefaultUserOptionsSv ;
-                }
-
         function getNsText( $index ) {
                 global $wgNamespaceNamesSv;
                 return $wgNamespaceNamesSv[$index];
@@ -1018,19 +857,6 @@ class LanguageSv extends Language {
         function getUserToggles() {
                 global $wgUserTogglesSv;
                 return $wgUserTogglesSv;
-        }
-
-        function getLanguageNames() {
-                global $wgLanguageNamesSv;
-                return $wgLanguageNamesSv;
-        }
-
-        function getLanguageName( $code ) {
-                global $wgLanguageNamesSv;
-                if ( ! array_key_exists( $code, $wgLanguageNamesSv ) ) {
-                        return "";
-                }
-                return $wgLanguageNamesSv[$code];
         }
 
         function getMonthName( $key )

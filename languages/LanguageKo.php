@@ -1,12 +1,13 @@
 <?
 global $IP;
-include_once( "$IP/LanguageUtf8.php" );
+include_once( "LanguageUtf8.php" );
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 
 /* private */ $wgNamespaceNamesKo = array(
+	-2	=> "Media",
 	-1	=> "특수기능",	# Special
 	0	=> "",
 	1	=> "토론",	# Talk

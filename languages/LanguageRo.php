@@ -1,6 +1,6 @@
 <?
 
-include_once("Utf8Case.php");
+include_once("LanguageUtf8.php");
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -10,6 +10,7 @@ include_once("Utf8Case.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesRo = array(
+	-2	=> "Media",
 	-1	=> "Special",
 	0	=> "",
 	1	=> "Discuţie",
@@ -18,9 +19,7 @@ include_once("Utf8Case.php");
 	4	=> "Wikipedia",
 	5	=> "Discuţie_Wikipedia",
 	6	=> "Imagine",
-	7	=> "Discuţie_Imagine",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk"
+	7	=> "Discuţie_Imagine"
 );
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -126,8 +125,7 @@ include_once("Utf8Case.php");
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "Mută pagina",
 	"Booksources"	=> "Surse externe de cărţi",
-	"Categories"	=> "Categorii de pagini",
-	"Export"	=> "Exportă"
+	"Categories"	=> "Categorii de pagini"
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
@@ -169,8 +167,8 @@ include_once("Utf8Case.php");
 "qbfind"		=> "Găseşte",
 "qbbrowse"		=> "Răsfoieşte",
 "qbedit"		=> "Editează",
-"qbpageoptions" => "Opţiunile paginii",
-"qbpageinfo"	=> "Despre pagină",
+"qbpageoptions" => "Opţiuni ale paginii",
+"qbpageinfo"	=> "Informaţii ale paginii",
 "qbmyoptions"	=> "Opţiunile mele",
 "mypage"		=> "Pagina mea",
 "mytalk"		=> "Discuţiile mele",
@@ -184,13 +182,13 @@ include_once("Utf8Case.php");
 "go"		=> "Du-te",
 "history"		=> "Versiuni mai vechi",
 "printableversion" => "Versiune tipărire",
-"editthispage"	=> "Editează pagina",
+"editthispage"	=> "Editează această pagină",
 "deletethispage" => "Şterge pagina",
 "protectthispage" => "Protejează pagina",
 "unprotectthispage" => "Deprotejează pagina",
 "newpage" => "Pagină nouă",
 "talkpage"		=> "Discută pagina",
-"postcomment"	=> "Adaugă comentariu",
+"postcomment"	=> "Agaugă comentariu",
 "articlepage"	=> "Vezi articolul",
 "subjectpage"	=> "Vezi subiectul", # For compatibility
 "userpage" => "Vezi pagina utilizatorului",
@@ -223,8 +221,6 @@ Vezi $1.",
 "toc" => "Cuprins",
 "showtoc" => "arată",
 "hidetoc" => "ascunde",
-"thisisdeleted" => "Arată sau recuperează $1?",
-"restorelink" => "$1 editări şterse",
 
 # Main script and global functions
 #
@@ -244,7 +240,7 @@ Ultimul query încercat a fost:
 <blockquote><tt>$1</tt></blockquote>
 în cadrul funcţiei \"<tt>$2</tt>\".
 MySQL a returnat eroarea \"<tt>$3: $4</tt>\".",
-"dberrortextcl"	=> "A apărut o eroare de sintaxă în query.
+"dberrortextcl"	=> "A aoărut o eroare de sintaxă în query.
 Ultimul query încercat a fost:
 \"$1\"
 din funcţia \"$2\".
@@ -377,7 +373,7 @@ deci vă nu veţi putea salva editările în acest moment. Puteţi copia textul
 într-un fişier text local pentru a modifica conţinutul în Wikipedia când va fi posibil.",
 "protectedpagewarning" => "ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
 cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
-<a href='/wiki/Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
+<a href='Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
 
 # History pages
 #
@@ -425,31 +421,12 @@ Vă rugăm să încercaţi o altă căutare.",
 "viewprevnext"	=> "Vezi ($1) ($2) ($3).",
 "showingresults" => "Mai jos apar <b>$1</b> rezultate începând cu numărul <b>$2</b>.",
 "showingresultsnum" => "Mai jos apar <b>$3</b> rezultate începând cu numărul <b>$2</b>.",
-"nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin <i>toate</i> cuvintele specificate apar ca rezultate).",
+"nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 "powersearch" => "Caută",
 "powersearchtext" => "
 Caută în secţiunile:<br>
 $1<br>
 $2 Redirecţionări&nbsp; Căutări după $3 $9",
-"searchdisabled" => "<p>Ne pare rău! Căutarea după text a fost dezactivată temporar pentru motive de performanţă. Între timp puteţi folosi caseta de căutare Google de mai jos; trebuie să aveţi însă în vedere că rezultatele se poate să nu fie curente.</p>
-
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name='oe' value='utf-8'>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
 "blanknamespace" => "(Principală)",
 
 
@@ -560,7 +537,7 @@ Această operaţiune poate dura, mai ales dacă aveţi o legătură lentă la In
 PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet.
 
 Vă rugăm să folosiţi nume explicite pentru fişiere ca să evitaţi confuziile.
-Pentru a include o imagine într-un articol, folosiţi o legătură de forma <b>[[imagine:fişier.jpg]]</b> sau <b>[[imagine:fişier.png|text alternativ]]</b>
+Pentru a include o imagine într-un articol, folosiţi o legătură de forma <b>[[image:fişier.jpg]]</b> sau <b>[[image:fişier.png|text alternativ]]</b>
 sau <b>[[media:fişier.ogg]]</b> pentru fişiere de sunet.
 <p>Vă rugăm să reţineţi că, la fel ca şi în cazul celorlalte secţiuni din Wikipedia, alte persoane pot edita sau şterge fişierele pe care le trimiteţi dacă e în interesul enciclopediei, şi vi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzaţi de sistem.",
 "uploadlog"		=> "raport de trimitere fişiere",
@@ -572,8 +549,6 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 ",
 "filename"		=> "Nume fişier",
 "filedesc"		=> "Sumar",
-"filestatus" => "Drepturi de autor",
-"filesource" => "Sursa",
 "affirmation"	=> "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
 "copyrightpage" => "Wikipedia:Drepturi_de_autor",
 "copyrightpagename" => "Drepturi de autor în Wikipedia",
@@ -682,7 +657,7 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "booksourcetext" => "Dedesubt găsiţi o listă de surse de cărţi noi şi vechi, şi e posibil să găsiţi şi informaţii adiţionale legate de titlurile pe care le căutaţi.
 Wikipedia nu este afiliată niciuneia dintre aceste afaceri,
 iar lista de mai jos nu constituie nici un fel de garanţie sau validare a serviciilor respective din partea Wikipedia.",
-"alphaindexline" => "De la $1 la $2",
+"alphaindexline" => "$1 către $2",
 
 # Email this user
 #
@@ -746,9 +721,6 @@ pagini urmărite şi apăsaţi pe butonul corespunzător din partea de jos a pag
 "couldntremove" => "Elementul '$1' nu a putut fi şters...",
 "iteminvalidname" => "E o problemă cu elementul '$1', numele este invalid...",
 "wlnote" => "Dedesubt găsiţi ultimele $1 schimbări din ultimele <b>$2</b> ore.",
-"wlshowlast" => "Arată ultimele ",
-"wlhours"    => " ore",
-"wldays"     => " zile",
 
 # Delete/protect/revert
 #
@@ -855,7 +827,6 @@ drepturile de scriere pentru o adresă IP blocată anterior..",
 "blocklink"		=> "blochează",
 "unblocklink"	=> "deblochează",
 "contribslink"	=> "contribuţii",
-"autoblocker"	=> "Blocat automat deoarece aveţi acelaşi IP ca şi \"$1\". Motivul este \"$2\".",
 
 # Developer tools
 #
@@ -919,9 +890,9 @@ Aceasta poate fi o schimbare drastică şi neaşteptată pentru o pagină popula
 vă rugăm să vă asiguraţi că înţelegeţi toate consecinţele înainte de a continua.",
 "movepagetalktext" => "Pagina asociată de discuţii, dacă există, va fi mutată
 automat odată cu aceasta '''afară de cazul că''':
-* Mutaţi pagina în alt domeniu al Wikipedia
+* Mutaţi pagina în altă secţiune a Wikipedia
 * Există deja o pagină de discuţii cu conţinut (care nu este goală), sau
-* Debifaţi căsuţa de mai jos.
+* Deifaţi căsuţa de mai jos.
 
 În oricare din cazurile de mai sus va trebui să mutaţi sau să unificaţi
 manual paginile de discuţii, dacă doriţi acest lucru.",
@@ -943,17 +914,6 @@ să unificaţi manual cele două pagini de discuţii.",
 "movetalk"		=> "Mută şi pagina de \"discuţii\" dacă se poate.",
 "talkpagemoved" => "Şi pagina de discuţii asociată a fost mutată.",
 "talkpagenotmoved" => "Pagina asociată de discuţii <strong>nu</strong> a fost mutată.",
-"export"		=> "Exportă pagini",
-"exporttext"	=> "Puteţi exporta textul şi istoria de editare a unei anume
-pagini sau ale unui set de pagini în format XML; acestea pot fi apoi importate
-în alt Wiki ce rulează programul MediaWiki, pot fi transformate sau le puteţi
-păstra pentru scopuri personale.",
-"exportcuronly"	=> "Exportă numai versiunea actuală, nu şi versiunile mai vechi (istoria)",
-
-# Namespace 8 related
-
-"allmessages"	=> "Toate_mesajele",
-"allmessagestext"	=> "Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki:"
 
 );
 
