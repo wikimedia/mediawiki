@@ -171,10 +171,7 @@ function wfAddRow( $block, $tag ) {
 		  wfMsg( "unblocklink" ) . "</a>";
 		$wgOut->addHTML( " ({$ublink})" );
 	}
-	if ( "" != $block->mReason ) {
-		$wgOut->addHTML( " <em>(" . $sk->formatComment( $block->mReason ) .
-		  ")</em>" );
-	}
+	$wgOut->addHTML( $sk->commentBlock( $block->mReason ) );
 	$wgOut->addHTML( "</li>\n" );
 }
 

@@ -257,11 +257,7 @@ class LogViewer {
 			$titleLink = $this->skin->makeBrokenLinkObj( $title );
 		}
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );
-		if( '' === $s->log_comment ) {
-			$comment = '';
-		} else {
-			$comment = '(<em>' . $this->skin->formatComment( $s->log_comment ) . '</em>)';
-		}
+		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray );

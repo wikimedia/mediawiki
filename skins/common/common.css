@@ -291,3 +291,6 @@ div.gallerytext {
         padding: 2px 4px;
 }       
 
+span.comment {
+	font-style: italic;
+}

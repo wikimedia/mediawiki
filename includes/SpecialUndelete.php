@@ -413,8 +413,8 @@ class UndeleteForm {
 					Title::makeTitle( NS_USER, $row->ar_user_text ),
 					$userLink );
 			}
-			$comment = $sk->formatComment( $row->ar_comment );
-			$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink (<i>$comment</i>)</li>\n" );
+			$comment = $sk->commentBlock( $row->ar_comment );
+			$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
 
 		}
 		$revisions->free();
