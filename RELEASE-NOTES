@@ -9,6 +9,7 @@ Changes from 1.3.1:
 * Fix namespaced page creation links when no go match
 * When cookies are disabled, don't show login screen twice
 * Install should no longer die when PHP is pre-configured to compress output
+* Fixed bug that caused long Japanese pages to time out with Tidy active
 
 == Version 1.3.1, 2004-08-14 ==
 
