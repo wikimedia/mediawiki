@@ -350,8 +350,17 @@ class DatabasePgsql extends Database {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
-		$res = $this->query( "SELECT $field FROM $table LIMIT 1", "Database::textFieldLength" );
-		$size = pg_field_size( $res, 0 );
+		$sql = "SELECT t.typname as ftype,a.atttypmod as size
+			FROM pg_class c, pg_attribute a, pg_type t 
+			WHERE relname='$table' AND a.attrelid=c.oid AND 
+				a.atttypid=t.oid and a.attname='$field'";
+		$res =$this->query($sql);
+		$row=$this->fetchObject($res);
+		if ($row->ftype=="varchar") {
+			$size=$row->size-4;	
+		} else {
+			$size=$row->size;
+		}
 		$this->freeResult( $res );
 		return $size;
 	}
