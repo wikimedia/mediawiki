@@ -240,6 +240,10 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
+		
+		$fname = "OutputPage::output";
+		wfProfileIn( $fname );
+		
 		$sk = $wgUser->getSkin();
 
 		$this->sendCacheControl();
@@ -1196,7 +1200,7 @@ $t[] = "</table>" ;
 	/* private */ function replaceVariables( $text )
 	{
 		global $wgLang;
-		$fname = "OutputPage:replaceVariables";
+		$fname = "OutputPage::replaceVariables";
 		wfProfileIn( $fname );
 
 		/* As with sigs, use server's local time --

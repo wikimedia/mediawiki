@@ -6,12 +6,29 @@
 #
 
 global $IP;
+
+if( !isset( $wgProfiling ) )
+	$wgProfiling = false;
+
+if ( $wgProfiling ) {
+	include_once( "$IP/Profiling.php" );
+} else {
+	function wfProfileIn( $fn ) {}
+	function wfProfileOut( $fn = "" ) {}
+	function wfGetProfilingOutput( $s, $e ) {}
+	function wfProfileClose() {}
+}
+
+$fname = "Setup.php";
+wfProfileIn( $fname );
+wfProfileIn( "$fname-includes" );
+
+# Only files which are used on every invocation should be included here
+# Otherwise, include them conditionally [TS]
 include_once( "$IP/GlobalFunctions.php" );
 include_once( "$IP/Namespace.php" );
 include_once( "$IP/Skin.php" );
 include_once( "$IP/OutputPage.php" );
-include_once( "$IP/DifferenceEngine.php" );
-include_once( "$IP/SearchEngine.php" );
 include_once( "$IP/User.php" );
 include_once( "$IP/LinkCache.php" );
 include_once( "$IP/Title.php" );
@@ -20,6 +37,8 @@ include_once( "$IP/MagicWord.php" );
 include_once( "$IP/MemCachedClient.inc.php" );
 include_once( "$IP/Block.php" );
 
+wfProfileOut( "$fname-includes" );
+wfProfileIn( "$fname-memcached" );
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
@@ -42,6 +61,8 @@ if( $wgUseMemCached ) {
 		$wgUseMemCached = false;
 	}
 }
+wfProfileOut( "$fname-memcached" );
+wfProfileIn( "$fname-misc" );
 
 include_once( "$IP/Language.php" );
 
@@ -55,21 +76,14 @@ if( ! class_exists( $wgLangClass ) ) {
 }
 $wgLang = new $wgLangClass();
 
-if( !isset( $wgProfiling ) )
-	$wgProfiling = false;
-
-if ( $wgProfiling ) {
-	include_once( "$IP/Profiling.php" );
-} else {
-	function wfProfileIn( $fn ) {}
-	function wfProfileOut( $fn = "" ) {}
-	function wfGetProfilingOutput( $s, $e ) {}
-	function wfProfileClose() {}
-}
 
 $wgUser = User::loadFromSession();
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
+
+wfProfileOut( "$fname-misc" );
+wfProfileOut( $fname );
+
 ?>
