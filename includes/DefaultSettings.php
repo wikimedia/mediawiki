@@ -364,4 +364,8 @@ $wgUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
 $wgTidyOpts = '';
+
+# See list of skins and their symbolic names in language/Language.php
+$wgDefaultSkin = "monobook";
+
 ?>
