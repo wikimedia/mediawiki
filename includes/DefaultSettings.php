@@ -11,7 +11,9 @@ $wgVersion			= "1.3.0pre-alpha";
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
-$wgServer           = "http://" . getenv( "SERVER_NAME" );
+$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
+if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
+
 $wgScriptPath	    = "/wiki";
 
 # ATTN: Old installations used wiki.phtml and redirect.phtml -
