@@ -312,6 +312,7 @@ class Article {
 
 	}
 
+	# Return an array of the columns of the "cur"-table
 	function &getCurContentFields() {
 		global $wgArticleCurContentFields;
 		if ( !$wgArticleCurContentFields ) {
@@ -321,6 +322,7 @@ class Article {
 		return $wgArticleCurContentFields;
 	}
 
+	# Return an array of the columns of the "old"-table
 	function &getOldContentFields() {
 		global $wgArticleOldContentFields;
 		if ( !$wgArticleOldContentFields ) {
@@ -388,7 +390,7 @@ class Article {
 						}
 						$rid = $rt->getArticleID();
 						if ( 0 != $rid ) {
-							$redirRow = $dbr->getArray( 'cur', $this->getContentFields(), array( 'cur_id' => $rid ), $fname );
+							$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
 
 							if ( $redirRow !== false ) {
 								$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
