@@ -53,6 +53,42 @@ class element {
 	return implode ( " " , $ret ) ;
 	}
 
+    function fixLinkTails ( &$parser , $key )
+	{
+	$k2 = $key + 1 ;
+	if ( !isset ( $this->children[$k2] ) ) return ;
+	if ( !is_string ( $this->children[$k2]) ) return ;
+	if ( is_string ( $this->children[$key]) ) return ;
+	if ( $this->children[$key]->name != "LINK" ) return ;
+
+	$n = $this->children[$k2] ;
+	$s = "" ;
+	while ( $n != "" AND
+		( ( $n[0] >= 'a' AND $n[0] <= 'z' ) OR
+		  $n[0] == 'ä' OR $n[0] == 'ö' OR 
+		  $n[0] == 'ü' OR $n[0] == 'ß' ) )
+	      {
+	      $s .= $n[0] ;
+	      $n = substr ( $n , 1 ) ;
+	      }
+	$this->children[$k2] = $n ;
+
+	if ( count ( $this->children[$key]->children ) > 1 )
+	   {
+	   $kl = array_keys ( $this->children[$key]->children ) ;
+	   $kl = array_pop ( $kl ) ;
+	   $this->children[$key]->children[$kl]->children[] = $s ;
+	   }
+	else
+	   {
+	   $e = new element ;
+	   $e->name = "LINKOPTION" ;
+	   $t = $this->children[$key]->sub_makeXHTML ( $parser ) ;
+	   $e->children[] = trim ( $t ) . $s ;
+	   $this->children[$key]->children[] = $e ;
+	   }
+	}
+
     /**
     * This function generates the XHTML for the entire subtree
     */
@@ -71,7 +107,10 @@ class element {
     		$ret .= ">" ;
     		}
 
-	foreach ($this->children as $child) {
+#	foreach ( array_keys ( $this->children ) AS $x )
+#	   $this->fixLinkTails ( $parser , $x ) ;
+
+	foreach ($this->children as $key => $child) {
             if ( is_string($child) ) {
                 $ret .= $child ;
             } else if ( $child->name != "ATTRS" ) {
