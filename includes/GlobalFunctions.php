@@ -481,12 +481,10 @@ function wfImageArchiveDir( $fname , $subdir="archive")
 	return $archive;
 }
 
-function wfRecordUpload( $name, $oldver, $size, $desc )
+function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
 {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-	global $wgRequest, $wgUseCopyrightUpload; 
-	
-	extract( $wgRequest->getValues( 'wpUploadCopyStatus', 'wpUploadSource' ) );
+	global $wgUseCopyrightUpload; 
 	
 	$fname = "wfRecordUpload";
 
@@ -501,8 +499,8 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	if ( $wgUseCopyrightUpload )
 	  {
 	    $textdesc = "== " . wfMsg ( "filedesc" ) . " ==\n" . $desc . "\n" .
-	      "== " . wfMsg ( "filestatus" ) . " ==\n" . $wpUploadCopyStatus . "\n" .
-	      "== " . wfMsg ( "filesource" ) . " ==\n" . $wpUploadSource ;
+	      "== " . wfMsg ( "filestatus" ) . " ==\n" . $copyStatus . "\n" .
+	      "== " . wfMsg ( "filesource" ) . " ==\n" . $source ;
 	  }
 	else $textdesc = $desc ;
 
