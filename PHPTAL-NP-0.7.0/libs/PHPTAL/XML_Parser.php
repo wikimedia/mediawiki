@@ -20,7 +20,7 @@
 //  Authors: Laurent Bedubourg <laurent.bedubourg@free.fr>
 //  
 
-require_once "Types/Errors.php";
+require_once PT_IP . "/Types/Errors.php";
 
 /**
  * PHPTAL internal xml parser.
@@ -47,7 +47,7 @@ require_once "Types/Errors.php";
  * Here's an exemple of xml parser implementation.
  *  
  * <?php
- * require_once "PHPTAL/XML_Parser.php";
+ * require_once PT_IP . "/PHPTAL/XML_Parser.php";
  *
  * class MyParser extends PHPTAL_XML_Parser
  * {

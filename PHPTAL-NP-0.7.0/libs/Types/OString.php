@@ -21,8 +21,8 @@
 //  
 
 
-require_once "Types.php";
-require_once "Types/Errors.php";
+require_once PT_IP . "/Types.php";
+require_once PT_IP . "/Types/Errors.php";
 
 /**
  * Represents end of line string sequence '\n' of '<br/>' depending on

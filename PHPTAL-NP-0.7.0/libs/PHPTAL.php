@@ -32,6 +32,7 @@
  */
 
 $__d = dirname(__FILE__);
+define('PT_IP', $IP.'/PHPTAL-NP-0.7.0/libs');
 require_once "PEAR.php";
 
 if (OS_WINDOWS) {

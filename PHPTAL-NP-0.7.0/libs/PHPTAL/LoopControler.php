@@ -20,9 +20,9 @@
 //  Authors: Laurent Bedubourg <laurent.bedubourg@free.fr>
 //  
 
-require_once "Types/OArray.php";
-require_once "Types/OHash.php";
-require_once "Types/Iterator.php";
+require_once PT_IP . "/Types/OArray.php";
+require_once PT_IP . "/Types/OHash.php";
+require_once PT_IP . "/Types/Iterator.php";
 
 /**
  * Template loop execution controler.

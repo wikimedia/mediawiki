@@ -21,8 +21,8 @@
 //  
 // $id$
 
-require_once "Types/OString.php";
-require_once "Types/OHash.php";
+require_once PT_IP . "/Types/OString.php";
+require_once PT_IP . "/Types/OHash.php";
 
 /**
  * Common php string that extract parameters from an associative array.
@@ -60,7 +60,7 @@ if (is_object($__context__)) { extract($__context__->toHash()); }
  * It's up to the code to assert parameters using 'isset()' php function.
  *
  *      <?php
- *      require_once "Types/Code.php";
+ *      require_once PT_IP . "/Types/Code.php";
  * 
  *      $o_code = Code()
  *      $o_code->setCode('return $foo . $bar . $baz;');

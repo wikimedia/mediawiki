@@ -220,7 +220,7 @@ class PHPTAL_ES_PHP_Parser
 
         // experimental, compile php: content
 
-        require_once "Types/Code.php";
+        require_once PT_IP . "/Types/Code.php";
         
         $code = new Code();
         $code->setCode($value .";");
