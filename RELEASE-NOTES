@@ -103,7 +103,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1010) fix broken Commons image link on Classic & Cologne Blue
 * (bug 985) Fix auto-summary for section edits
 * (bug 995) Close <a> tag
-* (bug 1004) renamed norsk language links
+* (bug 1004) renamed norsk language links (twice)
 * Login works again when using an old-style default skin
 * Fix for load balancing mode, notify if using old settings format
 * (bug 1014) Missing image size option on old accounts handled gracefully
