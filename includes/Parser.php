@@ -1181,7 +1181,10 @@ class Parser
 					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
+					$pPLC=$sk->postParseLinkColour();
+					$sk->postParseLinkColour( false );
 					$t = $sk->makeLinkObj( $nnt, $t, '', '' , $prefix );
+					$sk->postParseLinkColour( $pPLC );
 					$wgLinkCache->resume();
 
 					$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
