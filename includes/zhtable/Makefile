@@ -9,7 +9,7 @@
 # other utf-8 locales, I suppose)
 #
 #
-all: ZhConversion.php tradphrases.notsure simpphrases.notsure
+all: ZhConversion.php tradphrases.notsure simpphrases.notsure wordlist
 
 Unihan.txt:
 	wget ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
@@ -32,6 +32,13 @@ tsi.src:
 	tar zxvf libtabe-0.2.3.tgz > /dev/null
 	cp libtabe/tsi-src/tsi.src .
 	rm -rf libtabe*
+
+wordlist: phrase_lib.txt EZ.txt.in tsi.src
+	iconv -c -f big5 -t utf8 tsi.src | sed 's/# //g' | sed 's/[ ][0-9].*//' > wordlist
+	sed 's/\(.*\)\t[0-9][0-9]*.*/\1/' phrase_lib.txt | sed '1,5d' >>wordlist
+	sed '1,/BEGIN_TABLE/d' EZ.txt.in | colrm 1 8 | sed 's/\t.*//' | grep "^...*" >> wordlist
+	sort wordlist | uniq | sed 's/ //g' > t
+	mv t wordlist
 
 printutf8: printutf8.c
 	gcc -o printutf8 printutf8.c
