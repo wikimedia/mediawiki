@@ -289,6 +289,7 @@ class ParserTest {
 			'wgContLanguageCode' => 'en',
 			'wgUseLatin1' => false,
 			'wgDBprefix' => 'parsertest',
+			'wgDefaultUserOptions' => array(),
 			
 			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
