@@ -104,6 +104,14 @@ if( $search = $wgRequest->getText( 'search' ) ) {
 		require_once( "includes/ImagePage.php" );
 		$wgArticle = new ImagePage( $wgTitle );
 		break;
+	case NS_CATEGORY:
+		if ( $wgUseCategoryMagic ) {
+			require_once( "includes/CategoryPage.php" );
+			$wgArticle = new CategoryPage( $wgTitle );
+			break;
+		}
+		# NO break if wgUseCategoryMagic is false, drop through to next (default).
+		# Don't insert other cases between NS_CATEGORY and default.
 	default:
 		$wgArticle = new Article( $wgTitle );
 	}
