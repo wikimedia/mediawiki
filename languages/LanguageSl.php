@@ -29,7 +29,10 @@ include_once( "LanguageUtf8.php" );
 	4	=> "Wikipedija",
 	5	=> "Pogovor_k_Wikipediji",
 	6	=> "Slika",
-	7	=> "Pogovor_k_sliki"
+	7	=> "Pogovor_k_sliki",
+	8	=> "MediaWiki",
+	9	=> "Pogovor_k_MediaWiki"
+
 );
 
 /* private */ $wgDefaultUserOptionsSl = array(
@@ -130,7 +133,10 @@ include_once( "LanguageUtf8.php" );
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"	=> "",
-	"Booksources"	=> "Zunanji knjižni viri"
+	"Booksources"	=> "Zunanji knjižni viri",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
+
 );
 
 /* private */ $wgSysopSpecialPagesSl = array(

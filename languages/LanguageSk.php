@@ -1,7 +1,7 @@
 <?
 
-include("$IP/Utf8Case.php");
-
+#include("$IP/Utf8Case.php");
+include_once("$IP/LanguageUtf8.php");
 
 # Tu môžete meniť názvy "namespaces" (no proste, rôznych častí encyklopédie),
 # ale čísla nechajte tak, ako sú! Program to tak vyžaduje...
@@ -15,7 +15,9 @@ include("$IP/Utf8Case.php");
 	4	=> "Wikipédia",
 	5	=> "Komentár_k_Wikipédii",
 	6	=> "Obrázok",
-	7	=> "Komentár_k_obrázku"
+	7	=> "Komentár_k_obrázku",
+	8	=> "MediaWiki",
+	9	=> "Komentár_k_MediaWiki"
 );
 
 /* private */ $wgQuickbarSettingsSk = array(
@@ -90,6 +92,7 @@ include("$IP/Utf8Case.php");
 	"Shortpages"	=> "Krátke články",
 	"Longpages"		=> "Dlhé články",
 	"Newpages"		=> "Nové články",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Všetky články podľa nadpisu",
 
 	"Ipblocklist"	=> "Zablokované IP adresy",
@@ -100,7 +103,10 @@ include("$IP/Utf8Case.php");
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "Eksterné stránky s knihami"
+	"Booksources"	=> "Eksterné stránky s knihami",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
+
 );
 
 /* private */ $wgSysopSpecialPagesSk = array(

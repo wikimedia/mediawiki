@@ -19,7 +19,10 @@ include_once("LanguageUtf8.php");
 	4	=> "ויקיפדיה",
 	5	=> "שיחת_ויקיפדיה",
 	6	=> "תמונה",
-	7	=> "שיחת_תמונה"
+	7	=> "שיחת_תמונה",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
+
 );
 
 /* private */ $wgDefaultUserOptionsHe = array(
@@ -111,6 +114,7 @@ include_once("LanguageUtf8.php");
 	"Shortpages"	=> "מאמרים קצרים",
 	"Longpages"		=> "מאמרים ארוכים",
 	"Newpages"		=> "מאמרים חדשים",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "כל המאמרים לפי כותרת",
 
 	"Ipblocklist"	=> "כתובות IP חסומות",
@@ -121,7 +125,9 @@ include_once("LanguageUtf8.php");
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "משאבי ספרות חיצוניים"
+	"Booksources"	=> "משאבי ספרות חיצוניים",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesHe = array(

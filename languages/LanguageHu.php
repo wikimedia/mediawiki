@@ -19,7 +19,10 @@ include_once("LanguageUtf8.php");
 	4	=> "Wikipédia",
 	5	=> "Wikipédia_vita",
 	6	=> "Kép",
-	7	=> "Kép_vita"
+	7	=> "Kép_vita",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_vita"
+
 );
 
 /* Inherit default options; make specific changes via 
@@ -111,7 +114,7 @@ include_once("LanguageUtf8.php");
 	"Longpages"		=> "Hosszú szócikkek",
 	"Newpages"		=> "Újonnan készült szócikkek",
 	"Ancientpages"	=> "Ősi szócikkek",
-	"Intl"		=> "Nyelvek közötti linkek",
+#	"Intl"		=> "Nyelvek közötti linkek",
 	"Allpages"		=> "Az összes lap cím szerint",
 
 	"Ipblocklist"	=> "Blokkolt IP címek",
@@ -122,7 +125,9 @@ include_once("LanguageUtf8.php");
 	"Whatlinkshere" => "Mi mutat ide",
 	"Recentchangeslinked" => "Kapcsolódó változások",
 	"Movepage"		=> "Lap mozgatása",
-	"Booksources"	=> "Külső könyvinformációk"
+	"Booksources"	=> "Külső könyvinformációk",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesHu = array(

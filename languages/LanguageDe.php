@@ -11,7 +11,10 @@
 	4	=> "Wikipedia",
 	5	=> "Wikipedia_Diskussion",
 	6	=> "Bild",
-	7	=> "Bild_Diskussion"
+	7	=> "Bild_Diskussion",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_Diskussion"
+
 );
 
 /* private */ $wgDefaultUserOptionsDe = array(
@@ -122,7 +125,7 @@
   "Recentchangeslinked" => "",
   "Booksources"         => "Externe Buchhandlungen",
 /*  "Categories"          => "Seiten Kategorien", */
-/*  "Export"              => "" */
+  "Export"              => "" 
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(

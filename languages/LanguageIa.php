@@ -16,7 +16,10 @@
 	4	=> "Wikipedia",
 	5	=> "Discussion_Wikipedia",
 	6	=> "Imagine",
-	7	=> "Discussion_Imagine"
+	7	=> "Discussion_Imagine",
+	8	=> "MediaWiki",
+	9	=> "Discussion_MediaWiki"
+
 );
 
 /* private */ $wgQuickbarSettingsIa = array(
@@ -98,6 +101,7 @@
 	"Shortpages"	=> "Articulos curte",
 	"Longpages"		=> "Articulos longe",
 	"Newpages"		=> "Articulos nove",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Tote le paginas (per titulo)",
 
 	"Ipblocklist"	=> "Adresses de IP blocate",
@@ -108,7 +112,9 @@
 	"Whatlinkshere" => "", # "Referentias a iste pagina",
 	"Recentchangeslinked" => "", # "Ultime modificationes (?)",
 	"Movepage"		=> "", # "Mover pagina",
-	"Booksources"	=> "Fontes externe (libros)"
+	"Booksources"	=> "Fontes externe (libros)",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesIa = array(

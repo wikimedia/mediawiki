@@ -19,7 +19,10 @@ include( "LanguageUtf8.php" );
 	4	=> "विकिपीडिया ",
 	5	=> "विकिपीडिआ वार्ता",
 	6	=> "चित्र ",
-	7	=> "चित्र वार्ता"
+	7	=> "चित्र वार्ता",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
+
 );
 
 /* private */ $wgWeekdayNamesHi = array(

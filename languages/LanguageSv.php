@@ -18,7 +18,10 @@
         4       => "Wikipedia",
         5       => "Wikipedia_diskussion",
         6       => "Bild",
-        7       => "Bild_diskussion"
+        7       => "Bild_diskussion",
+        8	=> "MediaWiki",
+        9	=> "MediaWiki_diskussion"
+
 );
 
 /* inherit standard defaults */
@@ -104,6 +107,7 @@ $wgValidSpecialPagesSv = array(
         "Shortpages"    => "Korta artiklar",
         "Longpages"     => "Långa artiklar",
         "Newpages"      => "De nyaste artiklarna",
+#       "Intl"                => "Interlanguage Links",
         "Allpages"      => "Alla sidor efter titel",
 
         "Ipblocklist"   => "Blockerade IP adresser",
@@ -114,7 +118,9 @@ $wgValidSpecialPagesSv = array(
         "Whatlinkshere" => "",
         "Recentchangeslinked" => "",
         "Movepage"      => "",
-        "Booksources"   => "Externa bokkällor"
+        "Booksources"   => "Externa bokkällor",
+#       "Categories"	=> "Page categories",
+        "Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(

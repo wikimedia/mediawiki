@@ -16,7 +16,10 @@
 	4 => "Wikipédia",
 	5 => "Discussion_Wikipédia",
 	6 => "Image",
-	7 => "Discussion_Image"
+	7 => "Discussion_Image",
+	8	=> "MediaWiki",
+	9	=> "Discussion_MediaWiki"
+
 );
 
 /* using default options */
@@ -122,6 +125,7 @@
 	"Longpages"     => "Articles longs",
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"      => "Toutes les pages",
 
 	"Ipblocklist"   => "Adresses IP bloquées",
@@ -132,8 +136,9 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne"
+	"Booksources"   => "Librairies en ligne",
 //	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
@@ -1030,6 +1035,7 @@ class LanguageFr extends Language
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFr, $wgAllMessagesEn;
+		
 		$m = $wgAllMessagesFr[$key];
 
 		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }

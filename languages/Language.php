@@ -321,11 +321,11 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Longpages"		=> "Long articles",
 	"Newpages"		=> "Newly created articles",
 	"Ancientpages"	=> "Oldest articles",
-	"Intl"		=> "Interlanguage links",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "All pages by title",
 
 	"Ipblocklist"	=> "Blocked users/IP addresses",
-	"Maintenance" => "Maintenance page",
+	"Maintenance"	=> "Maintenance page",
 	"Specialpages"  => "",
 	"Contributions" => "",
 	"Emailuser"		=> "",
@@ -333,8 +333,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "External book sources",
-"Categories" => "Page categories",
-"Export"	=> ""
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
@@ -1662,6 +1662,6 @@ class Language {
 }
 
 global $IP;
-@include_once( "{$IP}/Language" . ucfirst( $wgLanguageCode ) . ".php" );
+include_once( "{$IP}/Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
