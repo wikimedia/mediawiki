@@ -162,7 +162,7 @@ class MonoBookTemplate extends QuickTemplate {
 	      <?php foreach($this->data['language_urls'] as $langlink) { ?>
 	      <li>
 	      <a href="<?php echo htmlspecialchars($langlink['href'])
-	        ?>"><?php echo htmlspecialchars($langlink['text']) ?></a>
+	        ?>"><?php echo $langlink['text'] ?></a>
 	      </li>
 	      <?php } ?>
 	    </ul>
