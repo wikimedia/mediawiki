@@ -64,7 +64,12 @@ require_once _phptal_os_path_join($__d, 'PHPTAL', 'SourceLocator.php');
 
 define('PHPTAL_VERSION', '0.7.0');
 define('PHPTAL_MARK', str_replace('.', '_', PHPTAL_VERSION) . '_');
-define('PHPTAL_DEFAULT_CACHE_DIR', '/tmp/');
+
+if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
+	define('PHPTAL_DEFAULT_CACHE_DIR', 'c:\temp\\');
+} else {
+	define('PHPTAL_DEFAULT_CACHE_DIR', '/tmp/');
+}
 
 /**
  * This define is used to select the templates output format.
