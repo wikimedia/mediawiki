@@ -20,18 +20,6 @@
 
 );
 
-/* private */ $wgDefaultUserOptionsCy = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, 
-	"showtoc"=>1,
-	"showtoolbar" =>1,
-	"date" => 0
-);
-
 /* private */ $wgQuickbarSettingsCy = array(
 	"Dim", "Sefydlog chwith", "Sefydlog de", "Arnawf de"
 );
@@ -1042,11 +1030,6 @@ require_once( "LanguageUtf8.php" );
 
 class LanguageCy extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsCy;
-		return $wgDefaultUserOptionsCy;
-	}
-
 	function getBookstoreList () {
 		global $wgBookstoreListCy;
 		return $wgBookstoreListCy;
@@ -1136,7 +1119,7 @@ class LanguageCy extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesCy;
-		return $wgAllMessagesCy[$key];
+		return @$wgAllMessagesCy[$key];
 	}
 	
 	function getAllMessages()

@@ -221,7 +221,7 @@ class Skin {
 		return $a;
 	}
 
-	function getExternalLinkAttributes( $link, $text )
+	function getExternalLinkAttributes( $link, $text, $class='' )
 	{
 		global $wgUser, $wgOut, $wgLang;
 
@@ -230,7 +230,7 @@ class Skin {
 		$link = str_replace( "_", " ", $link );
 		$link = wfEscapeHTML( $link );
 
-		$r = " class='external'";
+		$r = ($class != '') ? " class='$class'" : " class='external'";
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
 			$r .= " title=\"{$link}\"";
@@ -292,7 +292,7 @@ class Skin {
 		global $wgUser, $wgOut, $wgSiteNotice;
 
 		if( $wgSiteNotice ) {
-			$note = "\n<div id='notice' style='font-weight: bold; color: red; text-align: center'>$wgSiteNotice</div>\n";
+			$note = "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
 		} else {
 			$note = "";
 		}
@@ -358,9 +358,9 @@ class Skin {
 		return $s;
 	}
 	
-	function getCategories () {
+	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
-		global $wgUseCategoryMagic;
+		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
 		if( !$wgUseCategoryMagic ) return "" ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return "";
 		if( !$wgOut->isArticle() ) return "";
@@ -369,7 +369,25 @@ class Skin {
 		$s = $this->makeKnownLink( "Special:Categories",
 			wfMsg( "categories" ), "article=" . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ": " . $t;
-		return "<p class='catlinks'>$s</p>";
+		
+		if($wgUseCategoryBrowser) {
+			$s .= "<br/><hr/>";
+			$catstack = array();
+			$wgTitle->getAllParentCategories(&$catstack);
+			foreach ($catstack as $key => $cat)
+			{
+				$s .= $this->makeLink($wgLang->getNSText( Namespace::getCategory() ).":".$key, $key )." &gt; ".$cat."<br/>\n";
+			}
+		}
+		
+		return $s;
+	}
+	
+	function getCategories() {
+		$catlinks=$this->getCategoryLinks();
+		if(!empty($catlinks)) {
+			return "<p class='catlinks'>{$catlinks}</p>";
+		}
 	}
 
 	function getQuickbarCompensator( $rows = 1 )
@@ -489,17 +507,27 @@ class Skin {
 				$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
 			}
 		}
-		if( $wgUser->isSysop() &&
-				(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-				($n = $wgTitle->isDeleted() ) ) {
-			$s .= " | " . wfMsg( "thisisdeleted",
-					$this->makeKnownLink(
-						$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
-						wfMsg( "restorelink", $n ) ) );
+		
+		$undelete = $this->getUndeleteLink();
+		if( !empty( $undelete ) ) {
+			$s .= " | $undelete";
 		}
 		return $s;
 	}
 
+	function getUndeleteLink() {
+		global $wgUser, $wgTitle, $wgLang, $action;
+		if( $wgUser->isSysop() &&
+			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+			($n = $wgTitle->isDeleted() ) ) {
+			return wfMsg( "thisisdeleted",
+				$this->makeKnownLink(
+					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
+					wfMsg( "restorelink", $n ) ) );
+		}
+		return "";
+	}
+	
 	function printableLink()
 	{
 		global $wgOut, $wgFeedClasses, $wgRequest;
@@ -1456,7 +1484,7 @@ class Skin {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
 			if ( "" == $text ) { $text = $nt->getPrefixedText(); }
-			$style = $this->getExternalLinkAttributes( $link, $text );
+			$style = $this->getExternalLinkAttributes( $link, $text, 'extiw' );
 
 			$inside = "";
 			if ( "" != $trail ) {
@@ -1651,6 +1679,12 @@ class Skin {
 		$this->checkTitle($title, $name);	
 		return $title->getLocalURL( $urlaction ); 
 	}
+	# this can be passed the NS number as defined in Language.php
+	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=0 ) {
+		$title = Title::makeTitle( $namespace, $name );
+		$this->checkTitle($title, $name);	
+		return $title->getLocalURL( $urlaction );
+	}
 	
 	/* these return an array with the 'href' and boolean 'exists' */
 	/*static*/ function makeUrlDetails ( $name, $urlaction='' ) {
@@ -1833,9 +1867,9 @@ class Skin {
 				"<img src=\"{$url}\" alt=\"{$alt}\" /></a>";
 		}
 		if ( "" != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}</span>\n</div>";
+			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
 		}
-		return $prefix.$s.$postfix;
+		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
 
 
@@ -1897,8 +1931,8 @@ class Skin {
 					'width="15" height="11" alt="'.$more.'" /></a></div>';
 			}
 		}
-		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div>\n</div>";
-		return $s;
+		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div></div>";
+		return str_replace("\n", ' ', $s);
 	}
 
 	function makeMediaLink( $name, $url, $alt = "" ) {
@@ -1908,14 +1942,20 @@ class Skin {
 
 	function makeMediaLinkObj( $nt, $alt = "" )
 	{
-		$name = $nt->getDBKey();
-		$url = Image::wfImageUrl( $name );
-		if ( empty( $alt ) ) {
-			$alt = preg_replace( '/\.(.+?)^/', '', $name );
+		if ( ! isset( $nt ) )
+		{
+			### HOTFIX. Instead of breaking, return empry string.
+			$s = $alt;
+		} else {
+			$name = $nt->getDBKey();
+			$url = Image::wfImageUrl( $name );
+			if ( empty( $alt ) ) {
+				$alt = preg_replace( '/\.(.+?)^/', '', $name );
+			}
+	
+			$u = htmlspecialchars( $url );
+			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		}
-
-		$u = htmlspecialchars( $url );
-		$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		return $s;
 	}
 

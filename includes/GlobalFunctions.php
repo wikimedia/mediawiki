@@ -235,7 +235,7 @@ function logProfilingData()
 	list( $usec, $sec ) = explode( " ", $wgRequestTime );
 	$start = (float)$sec + (float)$usec;
 	$elapsed = $now - $start;
-	if ( "" != $wgDebugLogFile ) {
+	if ( $wgProfiling ) {
 		$prof = wfGetProfilingOutput( $start, $elapsed );
 		$forward = "";
 		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
@@ -251,7 +251,9 @@ function logProfilingData()
 		$log = sprintf( "%s\t%04.3f\t%s\n",
 		  gmdate( "YmdHis" ), $elapsed,
 		  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
-		error_log( $log . $prof, 3, $wgDebugLogFile );
+		if ( "" != $wgDebugLogFile ) {
+			error_log( $log . $prof, 3, $wgDebugLogFile );
+		}
 	}
 }
 

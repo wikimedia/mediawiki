@@ -1,7 +1,10 @@
 <?php
 
 function convertLinks() {
+	print "Converting links table to ID-ID...\n";
+	
 	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
+	global $noKeys, $logPerformance, $fh;
 	
 	$numRows = $tuplesAdded = $numBadLinks = $curRowsRead = 0; #counters etc
 	$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
@@ -37,12 +40,11 @@ function convertLinks() {
 		print "No rows to convert. Updating schema...\n";
 		createTempTable();
 	} else {
-		$row = wfFetchObject( $res );
-		if ( is_numeric( $row->l_from ) ) {
+		$res = wfQuery( "SELECT l_from FROM links LIMIT 1", DB_READ );
+		if ( mysql_field_type( $res, 0 ) == "int" ) {
 			print "Schema already converted\n";
-			exit;
-		}
-		
+			return;
+		} 		
 		if ( $logPerformance ) { $fh = fopen ( $perfLogFilename, "w" ); }
 		$baseTime = $startTime = getMicroTime();
 		# Create a title -> cur_id map
@@ -130,7 +132,7 @@ function convertLinks() {
 		$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		if (!($dbConn->isOpen())) {
 			print "Opening connection to database failed.\n";
-			exit;
+			return;
 		}
 		# Check for existing links_backup, and delete it if it exists.
 		print "Dropping backup links table if it exists...";
@@ -149,6 +151,7 @@ function convertLinks() {
 		print "Conversion complete.  The converted table is at links_temp;\n";
 		print "the original links table is unchanged.\n";
 	}
+}
 
 #--------------------------------------------------------------------
 
@@ -159,7 +162,7 @@ function createTempTable() {
 	
 	if (!($dbConn->isOpen())) {
 		print "Opening connection to database failed.\n";
-		exit;
+		return;
 	}
 	
 	print "Dropping temporary links table if it exists...";

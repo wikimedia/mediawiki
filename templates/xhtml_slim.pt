@@ -5,29 +5,31 @@
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
     ${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
-    <style type="text/css" media="screen">/*<![CDATA[*/ @import url(${stylepath}/${skinname}/main.css); /*]]>*/</style>
+    <style type="text/css" media="screen">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
+    <style type="text/css" media="projection">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
-    <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
+    <!--[if IE]><style type="text/css" media="all">@import "${stylepath}/${skinname}/IEFixes.css";</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
-    <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
+    <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import "${stylepath}/${skinname}/rtl.css";/*]]>*/</style>
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
 
-  <body tal:attributes="ondblclick body-ondblclick|default">
+  <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
 	  <a name="top" id="contentTop"></a>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
-	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <h3 id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
 	    <div id="contentSub" tal:content="structure subtitle"></div>
+	    <div id="contentSub" tal:condition="undelete" tal:content="structure undelete"></div>
+	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	    <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
 	    <!-- the content area is cached with the remaining inexpensive skeleton, one version for all.
@@ -36,6 +38,7 @@
 
 	    ${bodytext}
 
+	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <!-- end content -->
 	    <div class="visualClear"></div>
 	  </div>
@@ -103,7 +106,7 @@
 	  <h5 i18n:translate="string:search">Search</h5>
 	  <div class="pBody">
 	    <form name="searchform" action="${searchaction}" id="searchform">
-	      <input id="searchInput" name="search" type="text" tabindex="30001"
+	      <input id="searchInput" name="search" type="text"
 	      i18n:attributes="accesskey string:accesskey-search | default"/>
 	      <input type='submit' name="go" value="Go" class="searchButton" 
 	      i18n:attributes="value string:go"/>&nbsp;<input type='submit'
@@ -172,7 +175,7 @@
 	  <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
 	</ul>
       </div>
-      <div id="colophon"></div>
     </div>
+    ${reporttime}
   </body>
 </html>

@@ -5,21 +5,24 @@ if($wgMetaNamespace === FALSE)
         $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesDe = array(
-	-2	=> "Media",
-	-1	=> "Spezial",
-	0	=> "",
-	1	=> "Diskussion",
-	2	=> "Benutzer",
-	3	=> "Benutzer_Diskussion",
-	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamespace. "_Diskussion",
-	6	=> "Bild",
-	7	=> "Bild_Diskussion",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_Diskussion",
-	10  => "Template",
-	11  => "Template_talk"
-
+        NS_MEDIA            => "Media",
+        NS_SPECIAL          => "Spezial",
+        NS_MAIN             => "",
+        NS_TALK             => "Diskussion",
+        NS_USER             => "Benutzer",
+        NS_USER_TALK        => "Benutzer_Diskussion",
+        NS_WIKIPEDIA        => $wgMetaNamespace,
+        NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_Diskussion",
+        NS_IMAGE            => "Bild",
+        NS_IMAGE_TALK       => "Bild_Diskussion",
+        NS_MEDIAWIKI        => "MediaWiki",
+        NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
+        NS_TEMPLATE         => "Vorlage",
+        NS_TEMPLATE_TALK    => "Vorlage_Diskussion",
+        NS_HELP             => "Hilfe",
+        NS_HELP_TALK        => "Hilfe_Diskussion",
+        NS_CATEGORY         => "Kategorie",
+        NS_CATEGORY_TALK    => "Kategorie_Diskussion"
 );
 
 /* private */ $wgQuickbarSettingsDe = array(
@@ -143,7 +146,7 @@ if($wgMetaNamespace === FALSE)
 
 # Bits of text used by many pages:
 #
-"categories" => "Seiten Kategorien",
+"categories" => "Seitenkategorien",
 "category" => "Kategorie",
 "category_header" => "Artikel in der Kategorie \"$1\"",
 "subcategories" => "Unterkategorien",
@@ -435,7 +438,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
 "yourdiff"		=> "Unterschiede",
 "copyrightwarning" => "
-<b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <fonz size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
+<b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <font size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <p><i>Bitte beachten Sie, dass alle {$wgSitename}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
@@ -572,6 +575,7 @@ Ihre interne ID-Nummer ist $2.",
 "stubthreshold" => "Kurze Artikel markieren bis",
 "recentchangescount" => "Anzahl \"Letzte Änderungen\"",
 "savedprefs"	=> "Ihre Einstellungen wurden gespeichert.",
+"timezonelegend" => "Zeitzone",
 "timezonetext"	=> "Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.",
 "localtime"	=> "Ortszeit",
 "timezoneoffset" => "Unterschied",

@@ -6,7 +6,7 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.3.0beta1";
+$wgVersion			= "1.3.0beta2";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -141,6 +141,11 @@ $wgIgnoreSQLErrors      = false;
 # added to the article, clicking it reveals a list of
 # all articles in the category)
 $wgUseCategoryMagic		= true;
+
+# disable experimental dmoz-like category browsing. Output things like:
+# Encyclopedia > Music > Style of Music > Jazz
+# FIXME: need fixing
+$wgUseCategoryBrowser   = false;
 
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
@@ -389,6 +394,10 @@ $wgTidyOpts = '';
 
 # See list of skins and their symbolic names in language/Language.php
 $wgDefaultSkin = "monobook";
+
+# Whether or not to allow real name fields. Defaults to true.
+
+$wgAllowRealName = true;
 
 # Extensions
 $wgExtensionFunctions = array();

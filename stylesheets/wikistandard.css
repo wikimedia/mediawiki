@@ -12,15 +12,7 @@
 
 
 /* Table of contents */
-.tocindent {
-	margin-left: 2em;
-}
-.tocline {
-	margin-bottom: 0px;
-}
-.toctoggle, .editsection {
-	font-size: smaller;
-}
+.toctoggle, .editsection { font-size: smaller; }
 
 /* ... */
 #toolbar { padding:0px; }
@@ -50,3 +42,8 @@ p.catlinks { font-size:small; margin-top:0; text-align:right;}
 td { empty-cells:show; }
 td.bottom { border-top: 1px solid gray; }
 td.top { border-bottom: 1px solid gray; }
+
+
+#siteNotice {
+    border: 1px solid red;
+}

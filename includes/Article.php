@@ -139,7 +139,7 @@ class Article {
 			$rv=$secs[0];
 		} else {
 			$headline=$secs[$section*2-1];
-			preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+			preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$headline,$matches);
 			$hlevel=$matches[1];
 			
 			# translate wiki heading into level
@@ -154,7 +154,7 @@ class Article {
 			while(!empty($secs[$count*2-1]) && !$break) {
 			
 				$subheadline=$secs[$count*2-1];
-				preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+				preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$subheadline,$matches);
 				$subhlevel=$matches[1];
 				if(strpos($subhlevel,"=")!==false) {
 					$subhlevel=strlen($subhlevel);						
@@ -171,6 +171,7 @@ class Article {
 		}
 		# reinsert stripped tags
 		$rv=$parser->unstrip($rv,$striparray);
+		$rv=$parser->unstripNoWiki($rv,$striparray);
 		$rv=trim($rv);
 		return $rv;
 
@@ -208,7 +209,7 @@ class Article {
 			if ( 0 == $id ) return;
 
 			$sql = "SELECT " .
-			  "cur_text,cur_timestamp,cur_user,cur_counter,cur_restrictions,cur_touched " .
+			  "cur_text,cur_timestamp,cur_user,cur_user_text,cur_comment,cur_counter,cur_restrictions,cur_touched " .
 			  "FROM cur WHERE cur_id={$id}";
 			wfDebug( "$sql\n" );
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -239,7 +240,7 @@ class Article {
 						}
 						$rid = $rt->getArticleID();
 						if ( 0 != $rid ) {
-							$sql = "SELECT cur_text,cur_timestamp,cur_user," .
+							$sql = "SELECT cur_text,cur_timestamp,cur_user,cur_user_text,cur_comment," .
 							  "cur_counter,cur_restrictions,cur_touched FROM cur WHERE cur_id={$rid}";
 							$res = wfQuery( $sql, DB_READ, $fname );
 	
@@ -255,6 +256,8 @@ class Article {
 
 			$this->mContent = $s->cur_text;
 			$this->mUser = $s->cur_user;
+			$this->mUserText = $s->cur_user_text;
+			$this->mComment = $s->cur_comment;
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = $s->cur_timestamp;
 			$this->mTouched = $s->cur_touched;
@@ -262,7 +265,7 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_flags FROM old " .
+			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_user_text,old_comment,old_flags FROM old " .
 			  "WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) {
@@ -278,6 +281,8 @@ class Article {
 			}
 			$this->mContent = Article::getRevisionText( $s );
 			$this->mUser = $s->old_user;
+			$this->mUserText = $s->old_user_text;
+			$this->mComment = $s->old_comment;
 			$this->mCounter = 0;
 			$this->mTimestamp = $s->old_timestamp;
 			wfFreeResult( $res );
@@ -533,48 +538,67 @@ class Article {
 				return;
 			}
 		}
-
-		$text = $this->getContent( false ); # May change mTitle by following a redirect
 		
-		# Another whitelist check in case oldid or redirects are altering the title
-		if ( !$this->mTitle->userCanRead() ) {
-			$wgOut->loginToUse();
-			$wgOut->output();
-			exit;
-		}
-		
-		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-
-		# We're looking at an old revision
-
-		if ( !empty( $oldid ) ) {
-			$this->setOldSubtitle();
-			$wgOut->setRobotpolicy( "noindex,follow" );
-		}
-		if ( "" != $this->mRedirectedFrom ) {
-			$sk = $wgUser->getSkin();
-			$redir = $sk->makeKnownLink( $this->mRedirectedFrom, "",
-			  "redirect=no" );
-			$s = wfMsg( "redirectedfrom", $redir );
-			$wgOut->setSubtitle( $s );
-		}
-
-		$wgLinkCache->preFill( $this->mTitle );
-
-		# wrap user css and user js in pre and don't parse
-		# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
-		if ( 
-			$this->mTitle->getNamespace() == Namespace::getUser() && 
-			preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
-		) {
-			$wgOut->addWikiText( wfMsg('usercssjs'));
-			$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
-		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
-			$wgOut->addWikiText( $text, true, $this );
+		# Should the parser cache be used?
+		if ( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 && empty( $oldid ) ) {
+			$pcache = true;
 		} else {
-			$wgOut->addWikiText( $text );
+			$pcache = false;
+		}
+		
+		$outputDone = false;
+		if ( $pcache ) {
+			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
+				$outputDone = true;
+			}
 		}
 
+		if ( !$outputDone ) {
+			$text = $this->getContent( false ); # May change mTitle by following a redirect
+			
+			# Another whitelist check in case oldid or redirects are altering the title
+			if ( !$this->mTitle->userCanRead() ) {
+				$wgOut->loginToUse();
+				$wgOut->output();
+				exit;
+			}
+			
+
+			# We're looking at an old revision
+
+			if ( !empty( $oldid ) ) {
+				$this->setOldSubtitle();
+				$wgOut->setRobotpolicy( "noindex,follow" );
+			}
+			if ( "" != $this->mRedirectedFrom ) {
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeKnownLink( $this->mRedirectedFrom, "",
+				  "redirect=no" );
+				$s = wfMsg( "redirectedfrom", $redir );
+				$wgOut->setSubtitle( $s );
+			
+				# Can't cache redirects				
+				$pcache = false;
+			}
+
+			$wgLinkCache->preFill( $this->mTitle );
+
+			# wrap user css and user js in pre and don't parse
+			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
+			if ( 
+				$this->mTitle->getNamespace() == Namespace::getUser() && 
+				preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
+			) {
+				$wgOut->addWikiText( wfMsg('usercssjs'));
+				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
+			} else if ( $pcache ) {
+				$wgOut->addWikiText( $text, true, $this );
+			} else {
+				$wgOut->addWikiText( $text );
+			}
+		}
+		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
 
@@ -677,7 +701,7 @@ class Article {
 					# be erased, as the mother section has been replaced with
 					# the text of all subsections.
 					$headline=$secs[$section*2-1];
-					preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+					preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$headline,$matches);
 					$hlevel=$matches[1];
 					
 					# determine headline level for wikimarkup headings
@@ -692,7 +716,7 @@ class Article {
 			
 						$subheadline=$secs[$count*2-1];
 						preg_match(
-						 "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+						 "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$subheadline,$matches);
 						$subhlevel=$matches[1];
 						if(strpos($subhlevel,"=")!==false) {
 							$subhlevel=strlen($subhlevel);		
@@ -713,6 +737,7 @@ class Article {
 				$text=join("",$secs);
 				# reinsert the stuff that we stripped out earlier
 				$text=$parser->unstrip($text,$striparray);	
+				$text=$parser->unstripNoWiki($text,$striparray);	
 			}
 								
 		}
@@ -1501,6 +1526,7 @@ class Article {
 			and (!$this->mRedirectedFrom);
 	}
 	
+	# Loads cur_touched and returns a value indicating if it should be used
 	function checkTouched() {
 		$id = $this->getID();
 		$sql = "SELECT cur_touched,cur_is_redirect FROM cur WHERE cur_id=$id";
@@ -1512,7 +1538,55 @@ class Article {
 			return false;
 		}
 	}
-	
+
+	# Edit an article without doing all that other stuff
+	function quickEdit( $text, $comment = "", $minor = 0 ) {
+		global $wgUser, $wgMwRedir;
+		$fname = "Article::quickEdit";
+		wfProfileIn( $fname );
+
+		$ns = $this->mTitle->getNamespace();
+		$dbkey = $this->mTitle->getDBkey();
+		$encDbKey = wfStrencode( $dbkey );
+		$timestamp = wfTimestampNow();
+		
+		# Save to history
+		$sql = "INSERT INTO old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp)
+		  SELECT cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,99999999999999-cur_timestamp
+		  FROM cur WHERE cur_namespace=$ns AND cur_title='$encDbKey'";
+		wfQuery( $sql, DB_WRITE );
+		
+		# Use the affected row count to determine if the article is new
+		$numRows = wfAffectedRows();
+
+		# Make an array of fields to be inserted
+		$fields = array(
+			'cur_text' => $text,
+			'cur_timestamp' => $timestamp,
+			'cur_user' => $wgUser->getID(),
+			'cur_user_text' => $wgUser->getName(),
+			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
+			'cur_comment' => $comment,
+			'cur_is_redirect' => $wgMwRedir->matchStart( $text ) ? 1 : 0,
+			'cur_minor_edit' => intval($minor),
+			'cur_touched' => $timestamp,
+		);
+
+		if ( $numRows ) {
+			# Update article
+			$fields['cur_is_new'] = 0;
+			wfUpdateArray( "cur", $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
+		} else {
+			# Insert new article
+			$fields['cur_is_new'] = 1;
+			$fields['cur_namespace'] = $ns;
+			$fields['cur_title'] = $dbkey;
+			$fields['cur_random'] = $rand = number_format( mt_rand() / mt_getrandmax(), 12, ".", "" );
+			wfInsertArray( "cur", $fields, $fname );
+		}
+		wfProfileOut( $fname );
+	}
+
 	/* static */ function incViewCount( $id )
 	{
 		$id = intval( $id );
@@ -1567,7 +1641,7 @@ class Article {
 
 	# This is called on page move and undelete, as well as edit	
 	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgUseSquid, $wgDeferredUpdateList;
 
 		$titles = $title_obj->getBrokenLinksTo();
 		
@@ -1582,34 +1656,15 @@ class Article {
 		}
 
 		# Clear persistent link cache
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
-		}
-
-		# Clear parser cache (not really used)
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
-		}
+		LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 	}
 
 	/* static */ function onArticleDelete($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
-		}
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearLinksTo( $title_obj->getArticleID() );
-		}
+		LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
 	}
 
 	/* static */ function onArticleEdit($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearPage( $title_obj->getArticleID() );
-		}
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearPage( $title_obj->getArticleID(), $title_obj->getNamespace() );
-		}
+		LinkCache::linksccClearPage( $title_obj->getArticleID() );
 	}
 }
 

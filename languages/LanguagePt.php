@@ -11,19 +11,24 @@
 # and Rodrigo Calanca Nishino from Portuguese Wikipedia
 #
 /* private */ $wgNamespaceNamesPt = array(
-    -1  => "Especial",
-    0   => "",
-    1   => "Discussão",
-    2   => "Usuário",
-    3   => "Usuário_Discussão",
-    4   => "Wikipedia",
-    5   => "Wikipedia_Discussão",
-    6   => "Imagem",
-    7   => "Imagem_Discussão",
-    8   => "MediaWiki",
-    9   => "MediaWiki_Discussão",
-	10  => "Template",
-	11  => "Template_talk"
+    NS_MEDIA		=> "Media",
+    NS_SPECIAL		=> "Especial",
+    NS_MAIN 		=> "",
+    NS_TALK  		=> "Discussão",
+    NS_USER   		=> "Usuário",
+    NS_USER_TALK   	=> "Usuário_Discussão",
+    NS_WIKIPEDIA   	=> "Wikipedia",
+    NS_WIKIPEDIA_TALK   => "Wikipedia_Discussão",
+    NS_IMAGE   		=> "Imagem",
+    NS_IMAGE_TALK   	=> "Imagem_Discussão",
+    NS_MEDIAWIKI   	=> "MediaWiki",
+    NS_MEDIAWIKI_TALK   => "MediaWiki_Discussão",
+    NS_TEMPLATE  	=> "Predefinição",
+    NS_TEMPLATE_TALK  	=> "Predefinição_Discussão",
+    NS_HELP		=> "Ajuda",
+    NS_HELP_TALK	=> "Ajuda_Discussão",
+    NS_CATEGORY		=> "Categoria",
+    NS_CATEGORY_TALK	=> "Categoria_Discussão"
 
 );
 

@@ -181,9 +181,13 @@ class OutputPage {
 	}
 	
 	function getLanguageLinks() {
-		global $wgTitle, $wgLanguageCode;
-		global $wgDBconnection, $wgDBname;
 		return $this->mLanguageLinks;
+	}
+	function addLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks += $newLinkArray;
+	}
+	function setLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks = $newLinkArray;
 	}
 	function suppressQuickbar() { $this->mSuppressQuickbar = true; }
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
@@ -204,26 +208,30 @@ class OutputPage {
 	function addWikiText( $text, $linestart = true, $cacheArticle = NULL )
 	{
 		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
-
-		$parserOutput = false;
+		
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
 		if ( $cacheArticle ) {
-			$parserOutput = $wgParserCache->get( $cacheArticle, $wgUser );
-		}
-
-		if ( $parserOutput === false ) {
-			$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
-			if ( $cacheArticle ) {
-				$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
-			}
+			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
 		
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
-		
 		$this->addHTML( $parserOutput->getText() );
-		
 	}
 
+	function tryParserCache( $article, $user ) {
+		global $wgParserCache;
+		$parserOutput = $wgParserCache->get( $article, $user );
+		if ( $parserOutput !== false ) {
+			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+			$this->addHTML( $parserOutput->getText() );
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	# Set the maximum cache time on the Squid in seconds
 	function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
@@ -407,8 +415,22 @@ class OutputPage {
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
-		$com = sprintf( "<!-- Time since request: %01.2f secs. -->",
-		  $elapsed );
+		
+		# Use real server name if available, so we know which machine
+		# in a server farm generated the current page.
+		if ( function_exists( "posix_uname" ) ) {
+			$uname = @posix_uname();
+		} else {
+			$uname = false;
+		}
+		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+			$hostname = $uname['nodename'];
+		} else {
+			# This may be a virtual server.
+			$hostname = $_SERVER['SERVER_NAME'];
+		}
+		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		  $hostname, $elapsed );
 		return $com;
 	}
 
@@ -486,7 +508,7 @@ class OutputPage {
 		$this->returnToMain();		# Flip back to the main page after 10 seconds.
 	}
 
-	function databaseError( $fname, &$conn )
+	function databaseError( $fname, $sql, $error, $errno )
 	{
 		global $wgUser, $wgCommandLineMode;
 
@@ -501,10 +523,10 @@ class OutputPage {
 			$msg = wfMsgNoDB( "dberrortext" );
 		}
 
-		$msg = str_replace( "$1", htmlspecialchars( $conn->lastQuery() ), $msg );
+		$msg = str_replace( "$1", htmlspecialchars( $sql ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
-		$msg = str_replace( "$3", $conn->lastErrno(), $msg );
-		$msg = str_replace( "$4", htmlspecialchars( $conn->lastError() ), $msg );
+		$msg = str_replace( "$3", $errno, $msg );
+		$msg = str_replace( "$4", htmlspecialchars( $error ), $msg );
 		
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";
@@ -586,6 +608,9 @@ class OutputPage {
 		$this->fatalError( wfMsg( "filenotfound", $name ) );
 	}
 
+	// return from error messages or notes
+	//   auto: 	automatically redirect the user after 10 seconds
+	//   returnto:	page title to return to. Default is Main Page.
 	function returnToMain( $auto = true, $returnto = NULL )
 	{
 		global $wgUser, $wgOut, $wgRequest;

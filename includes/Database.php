@@ -174,13 +174,15 @@ class Database {
 		}
 	
 		if ( false === $ret ) {
+			$error = mysql_error( $this->mConn );
+			$errno = mysql_errno( $this->mConn );
 			if( $this->mIgnoreErrors ) {
-				wfDebug("SQL ERROR (ignored): " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
-				wfDebug("SQL ERROR: " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR: " . $error . "\n");
 				if ( $this->mOut ) {
 					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $this ); 				
+					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
 			}
 		}
@@ -314,7 +316,10 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
-		$sql = "SHOW INDEXES FROM $table";
+		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
+		# SHOW INDEX should work for 3.x and up:
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$sql = "SHOW INDEX FROM $table";
 		$res = $this->query( $sql, DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
@@ -334,6 +339,7 @@ class Database {
 	function tableExists( $table )
 	{
 		$old = $this->mIgnoreErrors;
+		$this->mIgnoreErrors = true;
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
 		$this->mIgnoreErrors = $old;
 		if( $res ) {

@@ -8,12 +8,12 @@
 #   3. Convert the text to suit the new syntax
 
 chdir( ".." );
-require_once( "commandLine.inc" );
+require_once( "liveCmdLine.inc" );
 require_once( "moveCustomMessages.inc" );
 
 $phase = 0;
-if ( is_numeric( @$argv[2] ) && $argv[2] > 0) {
-	$phase = intval($argv[2]);
+if ( is_numeric( @$argv[3] ) && $argv[3] > 0) {
+	$phase = intval($argv[3]);
 }
 
 moveCustomMessages( $phase );

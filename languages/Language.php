@@ -105,7 +105,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
 	"editsection"=>"Enable section editing via [edit] links",
 	"editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-	"showtoc"=>"Show table of contents<br />(for articles with more than 3 headings)",
+	"showtoc"=>"Show table of contents<br />(for pages with more than 3 headings)",
 	"rememberpassword" => "Remember password across sessions",
 	"editwidth" => "Edit box has full width",
 	"watchdefault" => "Add pages you edit to your watchlist",
@@ -122,6 +122,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 );
 
 /* The following list is in native languages, not in English */
+global $wgLanguageNames;
 /* private */ $wgLanguageNames = array(
 	"aa" => "Afar",			# Afar
 	"ab" => "Abkhazian",	# Abkhazian - FIXME
@@ -150,6 +151,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ca" => "Catal&agrave;",	# Catalan
 	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;",	# Chechen
 	"ch" => "Chamoru",		# Chamorro
+	"chr" => "&#5091;&#5043;&#5033;", # Cherokee
 	"chy" => "Tsets&ecirc;hest&acirc;hese",	# Cheyenne
 	"co" => "Corsu",		# Corsican
 	"cr" => "Nehiyaw",		# Cree
@@ -263,6 +265,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"rm" => "Rumantsch",	# Raeto-Romance
 	"rn" => "Kirundi",		# Kirundi
 	"ro" => "Rom&acirc;n&#259;",	# Romanian
+	"roa-rup" => "Arm&#226;neashti", # Aromanian
 	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;",	# Russian
 	"rw" => "Kinyarwanda",
 	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340;",	# Sanskrit
@@ -292,7 +295,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ti" => "Tigrinya",		# Tigrinya - FIXME
 	"tk" => "&#1578;&#1585;&#1603;&#1605;&#1606; / &#1058;&#1091;&#1088;&#1082;&#1084;&#1077;&#1085;",	# Turkmen
 	"tl" => "Tagalog",		# Tagalog (Filipino)
-	"tlh" => "tlhIngan-Hol",	# Klingon
+	#"tlh" => "tlhIngan-Hol",	# Klingon - no interlanguage links allowed
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
 	"tokipona" => "Toki Pona",      # Toki Pona
@@ -317,6 +320,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"yo" => "Yor&ugrave;b&aacute;",	# Yoruba
 	"za" => "(Cuengh)",		# Zhuang
 	"zh" => "&#20013;&#25991;",	# (Zh&#333;ng Wén) - Chinese
+	"zh-cfr" => "&#38313;&#21335;&#35486;", # Min-nan
 	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;)",	# Simplified
 	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;)",	# Traditional
 	"zu" => "isiZulu",		# Zulu
@@ -418,7 +422,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 "about"			=> "About",
 "aboutwikipedia" => "About {{SITENAME}}",
 "aboutpage"		=> "{{ns:4}}:About",
-'article' => 'Article',
+'article' => 'Content page',
 "help"			=> "Help",
 "helppage"		=> "{{ns:12}}:Contents",
 "wikititlesuffix" => "{{SITENAME}}",
@@ -447,7 +451,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 "disclaimerpage"		=> "{{ns:4}}:General_disclaimer",
 "errorpagetitle" => "Error",
 "returnto"		=> "Return to $1.",
-"fromwikipedia"	=> "From {{SITENAME}}, the free encyclopedia.",
+"fromwikipedia"	=> "From {{SITENAME}}",
 "whatlinkshere"	=> "Pages that link here",
 "help"			=> "Help",
 "search"		=> "Search",
@@ -459,7 +463,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 "editthispage"	=> "Edit this page",
 'delete' => 'Delete',
 "deletethispage" => "Delete this page",
-"undelete_short" => "Undelete",
+"undelete_short" => "Undelete $1 edits",
 'protect' => 'Protect',
 "protectthispage" => "Protect this page",
 'unprotect' => 'Unprotect',
@@ -470,12 +474,12 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'personaltools' => 'Personal tools',
 "postcomment"   => "Post a comment",
 "addsection"   => "+",
-"articlepage"	=> "View article",
+"articlepage"	=> "View content page",
 "subjectpage"	=> "View subject", # For compatibility
 'talk' => 'Discussion',
 'toolbox' => 'Toolbox',
 "userpage" => "View user page",
-"wikipediapage" => "View meta page",
+"wikipediapage" => "View project page",
 "imagepage" => 	"View image page",
 "viewtalkpage" => "View discussion",
 "otherlanguages" => "Other languages",
@@ -691,7 +695,7 @@ Please log in again after you receive it.",
 "summary"		=> "Summary",
 "subject"		=> "Subject/headline",
 "minoredit"		=> "This is a minor edit",
-"watchthis"		=> "Watch this article",
+"watchthis"		=> "Watch this page",
 "savearticle"	=> "Save page",
 "preview"		=> "Preview",
 "showpreview"	=> "Show preview",
@@ -705,9 +709,9 @@ Note that you may not use the \"email this user\" feature unless you have a vali
 Your IP address is $3. Please include this address in any queries you make.
 ",
 "whitelistedittitle" => "Login required to edit",
-"whitelistedittext" => "You have to [[Special:Userlogin|login]] to edit articles.",
+"whitelistedittext" => "You have to [[Special:Userlogin|login]] to edit pages.",
 "whitelistreadtitle" => "Login required to read",
-"whitelistreadtext" => "You have to [[Special:Userlogin|login]] to read articles.",
+"whitelistreadtext" => "You have to [[Special:Userlogin|login]] to read pages.",
 "whitelistacctitle" => "You are not allowed to create an account",
 "whitelistacctext" => "To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.",
 "loginreqtitle"	=> "Login Required",
@@ -811,13 +815,13 @@ word fewer than three letters long, which is not yet supported.
 It could also be that you have mistyped the expression, for
 example \"fish and and scales\".
 Please try another query.",
-"matchtotals"	=> "The query \"$1\" matched $2 article titles
-and the text of $3 articles.",
+"matchtotals"	=> "The query \"$1\" matched $2 page titles
+and the text of $3 pages.",
 "nogomatch" => "No page with this exact title exists, trying full text search.",
 "titlematches"	=> "Article title matches",
-"notitlematches" => "No article title matches",
-"textmatches"	=> "Article text matches",
-"notextmatches"	=> "No article text matches",
+"notitlematches" => "No page title matches",
+"textmatches"	=> "Page text matches",
+"notextmatches"	=> "No page text matches",
 "prevn"			=> "previous $1",
 "nextn"			=> "next $1",
 "viewprevnext"	=> "View ($1) ($2) ($3).",
@@ -897,6 +901,7 @@ See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 "stubthreshold" => "Threshold for stub display",
 "recentchangescount" => "Number of titles in recent changes",
 "savedprefs"	=> "Your preferences have been saved.",
+"timezonelegend" => "Time zone",
 "timezonetext"	=> "Enter number of hours your local time differs
 from server time (UTC).",
 "localtime"	=> "Local time display",
@@ -954,7 +959,7 @@ go to the <a href=\"{{localurle:Special:Imagelist}}\">list of uploaded images</a
 Uploads and deletions are logged on the " .
 "<a href=\"{{localurle:Project:Upload_log}}\">upload log</a>.
 </p><p>Use the form below to upload new image files for use in
-illustrating your articles.
+illustrating your pages.
 On most browsers, you will see a \"Browse...\" button, which will
 bring up your operating system's standard file open dialog.
 Choosing a file will fill the name of that file into the text
@@ -966,11 +971,11 @@ This may take some time if you have a slow internet connection.
 <p>The preferred formats are JPEG for photographic images, PNG
 for drawings and other iconic images, and OGG for sounds.
 Please name your files descriptively to avoid confusion.
-To include the image in an article, use a link in the form
+To include the image in a page, use a link in the form
 <b>[[{{ns:6}}:file.jpg]]</b> or <b>[[{{ns:6}}:file.png|alt text]]</b>
 or <b>[[{{ns:-2}}:file.ogg]]</b> for sounds.
 <p>Please note that as with wiki pages, others may edit or
-delete your uploads if they think it serves the encyclopedia, and
+delete your uploads if they think it serves the project, and
 you may be blocked from uploading if you abuse the system.",
 
 "uploadlog"		=> "upload log",
@@ -1038,9 +1043,9 @@ this old version, (rev) = revert to this old version.
 "userstats"		=> "User statistics",
 "sitestatstext" => "There are '''$1''' total pages in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
-pages, redirects, and others that probably don't qualify as articles.
+pages, redirects, and others that probably don't qualify as content pages.
 Excluding those, there are '''$2''' pages that are probably legitimate
-articles.
+content pages.
 
 There have been a total of '''$3''' page views, and '''$4''' page edits
 since the wiki was setup.
@@ -1055,11 +1060,11 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
-"brokenredirectstext"	=> "The following redirects link to a non-existing article.",
+"brokenredirectstext"	=> "The following redirects link to a non-existing pages.",
 "selflinks"		=> "Pages with Self Links",
 "selflinkstext"		=> "The following pages contain a link to themselves, which they should not.",
 "mispeelings"           => "Pages with misspellings",
@@ -1067,7 +1072,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 "mispeelingspage"       => "List of common misspellings",
 "missinglanguagelinks"  => "Missing Language Links",
 "missinglanguagelinksbutton"    => "Find missing language links for",
-"missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
+"missinglanguagelinkstext"      => "These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
 
 # Miscellaneous special pages
@@ -1094,7 +1099,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 "rclsub"		=> "(to pages linked from \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "New pages",
-"ancientpages"		=> "Oldest articles",
+"ancientpages"		=> "Oldest pages",
 "intl"		=> "Interlanguage links",
 'move' => 'Move',
 "movethispage"	=> "Move this page",
@@ -1160,7 +1165,7 @@ make it easier to pick out.
 "watchthispage"		=> "Watch this page",
 'unwatch' => 'Unwatch',
 "unwatchthispage" 	=> "Stop watching",
-"notanarticle"		=> "Not an article",
+"notanarticle"		=> "Not a content page",
 "watchnochange" 	=> "None of your watched items were edited in the time period displayed.",
 "watchdetails"		=> "($1 pages watched not counting talk pages;
 $2 total pages edited since cutoff;
@@ -1216,9 +1221,9 @@ All times shown are server time (UTC).
 'rollback_short' => 'Rollback',
 "rollbacklink"	=> "rollback",
 "rollbackfailed" => "Rollback failed",
-"cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
+"cantrollback"	=> "Cannot revert edit; last contributor is only author of this page.",
 "alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already. 
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
@@ -1244,7 +1249,7 @@ See [[{{ns:4}}:Protected page]] for more information.",
 "undeletepage" => "View and restore deleted pages",
 "undeletepagetext" => "The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.",
-"undeletearticle" => "Restore deleted article",
+"undeletearticle" => "Restore deleted page",
 "undeleterevisions" => "$1 revisions archived",
 "undeletehistory" => "If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
@@ -1253,7 +1258,7 @@ will not be automatically replaced.",
 "undeleterevision" => "Deleted revision as of $1",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
-"undeletedtext"   => "The article [[$1]] has been successfully restored.
+"undeletedtext"   => "[[$1]] has been successfully restored.
 See [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
@@ -1492,15 +1497,15 @@ amusement.",
 
 # tooltip help for the main actions
 'tooltip-atom'	=> 'Atom feed for this page',
-'tooltip-article' => 'View the article [alt-a]',
-'tooltip-talk' => 'Discussion about the article [alt-t]',
+'tooltip-article' => 'View the content page [alt-a]',
+'tooltip-talk' => 'Discussion about the content page [alt-t]',
 'tooltip-edit' => 'You can edit this page. Please use the preview button before saving. [alt-e]',
 'tooltip-addsection' => 'Add a comment to this page. [alt-+]',
-'tooltip-viewsource' => 'This page is protected. You can view it\'s source. [alt-e]',
+'tooltip-viewsource' => 'This page is protected. You can view its source. [alt-e]',
 'tooltip-history' => 'Past versions of this page, [alt-h]',
 'tooltip-protect' => 'Protect this page [alt-=]',
 'tooltip-delete' => 'Delete this page [alt-d]',
-'tooltip-undelete' => "Restore $1 deleted edits to this page [alt-d]",
+'tooltip-undelete' => "Restore the $1 edits done to this page before it was deleted [alt-d]",
 'tooltip-move' => 'Move this page [alt-m]',
 'tooltip-nomove' => 'You don\'t have the permissions to move this page',
 'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
@@ -1528,12 +1533,17 @@ amusement.",
 'tooltip-upload' => 'Upload images or media files [alt-u]',
 'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
-'tooltip-save' => 'Save you changes [alt-s]',
+'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 'tooltip-contributions' => 'View the list of contributions of this user',
 'tooltip-emailuser' => 'Send a mail to this user',
 'tooltip-rss' => 'RSS feed for this page',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
+
+# stylesheets
+
+'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
@@ -1547,7 +1557,12 @@ amusement.",
 "lastmodifiedby" => "This page was last modified $1 by $2.",
 "and" => "and",
 "othercontribs" => "Based on work by $1.",
-"siteusers" => "$wgSitename user(s) $1"
+"siteusers" => "$wgSitename user(s) $1",
+"spamprotectiontitle" => "Spam protection filter",
+"spamprotectiontext" => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+
+You might want to check the following regular expression for patterns that are currently blocked:"
+
 
 );
 
@@ -1770,7 +1785,7 @@ class Language {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesEn;
-		return $wgAllMessagesEn[$key];
+		return @$wgAllMessagesEn[$key];
 	}
 	
 	function getAllMessages()
@@ -1820,6 +1835,12 @@ class Language {
 		return $in;
 	}
 
+	function firstChar( $s ) {
+		# Get the first character of a string. In ASCII, return
+		# first byte of the string. UTF8 and others have to 
+		# overload this.
+		return $s[0];
+	}
 
 	function setAltEncoding() {
 		# Some languages may have an alternate char encoding option
@@ -1877,7 +1898,11 @@ class Language {
 	function getMagic( &$mw )
 	{
 		$raw =& $this->getMagicWords(); 
-        $rawEntry = $raw[$mw->mId];
+		if( !isset( $raw[$mw->mId] ) ) {
+			# Fall back to English if local list is incomplete
+			$raw =& Language::getMagicWords();
+		}
+		$rawEntry = $raw[$mw->mId];
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
@@ -1888,18 +1913,6 @@ class Language {
 		return "<em>$text</em>";
 	}
 
-	# returns additional Regex for the tokenizer. See LanguageFr.php for an example
-	function tokenizerRegex()
-	{
-		return "";
-	}
-
-	# Process the token generated from the tokenizer by the above regex. Return
-	# NULL if the token is unknown, and the text to be added to the output otherwise
-	function processToken( &$token , &$tokenStack)
-	{
-		return NULL;
-	}
 	
 	# Normally we use the plain ASCII digits. Some languages such as Arabic will
 	# want to output numbers using script-appropriate characters: override this
@@ -1926,5 +1939,4 @@ class Language {
 
 # This should fail gracefully if there's not a localization available
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
-
 ?>

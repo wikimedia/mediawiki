@@ -468,10 +468,14 @@ class User {
 
 			if ( !isset( $skinNames[$s] ) ) {
 				$fallback = array(
-					'standard' => "Standard",
-					'nostalgia' => "Nostalgia",
-					'cologneblue' => "Cologne Blue");
-				if(is_int($s) && isset( $fallback[$s]) ){
+					0 => "SkinStandard",
+					1 => "SkinNostalgia",
+					2 => "SkinCologneBlue");
+				if ( isset( $skinNames['monobook'] ) ) {
+					$fallback[0] = "SkinMonoBook";
+				}
+				
+				if(is_numeric($s) && isset( $fallback[$s]) ){
 					$sn = $fallback[$s];
 				} else {
 					$sn = "SkinStandard";
@@ -646,7 +650,7 @@ class User {
 		}
 		
 		# Make a new block object with the desired properties
-		wfDebug( "Autoblocking {$this->mUserName}@{$wgIP}\n" );
+		wfDebug( "Autoblocking {$this->mName}@{$wgIP}\n" );
 		$ipblock->mAddress = $wgIP;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
