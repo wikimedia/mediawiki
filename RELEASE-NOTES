@@ -145,6 +145,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Gracefully ignore non-legal titles in a <gallery>
 * Fix message page caching behavior when $wgCapitalLinks is turned off
   after installation and the wiki is subsequently upgraded
+* Database error messages include the database server name/address
+* Paging support for large categories
 
 === Caveats ===
 
