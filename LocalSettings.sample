@@ -47,7 +47,6 @@ $wgDBtransactions   = false; # Set to true if using InnoDB tables
 # $wgLanguageCode = "de";
 
 $wgUseTeX			= false;
-$wgUseDynamicDates	= true;
 
 $wgLocalInterwiki   = "w";
 
