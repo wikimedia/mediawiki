@@ -1101,6 +1101,8 @@ class Title {
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
 		$won = wfInvertTimestamp( wfTimestamp(TS_MW,$now) );
+		wfSeedRandom();
+		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
 
 		# Rename cur entry
 		$dbw->updateArray( 'cur',
@@ -1127,6 +1129,7 @@ class Title {
 			'inverse_timestamp' => $won,
 			'cur_touched' => $now,
 			'cur_is_redirect' => 1,
+			'cur_random' => $rand,
 			'cur_is_new' => 1,
 			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" ), $fname
 		);
