@@ -311,10 +311,10 @@ class Title {
 		if ( count( $titles ) == 0 ) {
 			return;
 		}
-		if ( $timestamp == '' ) {
-			$timestamp = wfTimestampNow();
-		}
 		$dbw =& wfGetDB( DB_MASTER );
+		if ( $timestamp == '' ) {
+			$timestamp = $dbw->timestamp();
+		}
 		$cur = $dbw->tableName( 'cur' );
 		$sql = "UPDATE $cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
 		$first = true;
