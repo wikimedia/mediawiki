@@ -91,6 +91,12 @@ function wfFetchObject( $res )
 	return $db->fetchObject( $res ); 
 }
 
+function wfFetchRow( $res )
+{
+	$db =& wfGetDB();
+	return $db->fetchRow ( $res );
+}
+
 function wfNumRows( $res ) 
 { 
 	$db =& wfGetDB();
