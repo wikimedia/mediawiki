@@ -461,10 +461,23 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDatabase->selectDB( $wgDBname );
 
 		if( $wgDatabase->tableExists( "cur" ) ) {
-			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n<pre>";
-
+			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
+			
+			# Create user if required
+			if ( $conf->Root ) {
+				$conn = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+				if ( $conn->isOpen() ) {
+					print "<li>DB user account ok</li>\n";
+					$conn->close();
+				} else {
+					print "<li>Granting user permissions...</li>\n";
+					dbsource( "../maintenance/users.sql", $wgDatabase );
+				}
+			}
+			print "<pre>\n";
 			chdir( ".." );
 			flush();
+
 
 			# Add missing tables
 			foreach ( $wgNewTables as $tableRecord ) {
