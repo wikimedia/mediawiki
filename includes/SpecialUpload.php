@@ -317,7 +317,7 @@ class UploadForm {
 			$success = rename( $tempName, $this->mSavedFile );
 			wfRestoreWarnings();
 
-			if( ! $success ) ) {
+			if( ! $success ) {
 				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
 				return false;
 			}
