@@ -79,7 +79,7 @@ class Article {
 				if($action=="edit") {
 					if($section!="") {
 
-						$secs=preg_split("/(^=+.*?=+)/m",
+						$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
 						 $this->mContent, -1,
 						 PREG_SPLIT_DELIM_CAPTURE);
 						if($section==0) {
@@ -656,7 +656,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		// of the article
 		if ($section != "") {
 			$oldtext=$this->getContent();
-			$secs=preg_split("/(^=+.*?=+)/m",$oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
+			$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",$oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 			$secs[$section*2]=$text."\n\n"; // replace with edited
 			if($section) { $secs[$section*2-1]=""; } // erase old headline
 			$text=join("",$secs);		

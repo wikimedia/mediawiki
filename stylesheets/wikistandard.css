@@ -7,6 +7,7 @@
 }
 #quickbar { width: 140px; padding: 4px; visibility: visible; z-index: 99; }
 #topbar { padding: 4px; }
+#toc { border:1px solid #8888aa; background-color:#f3f3ff;padding:5px;font-size:90%; }
 .bodytext { }
 a.interwiki, a.external { color: #3366BB; }
 a.printable { text-decoration: underline; }
