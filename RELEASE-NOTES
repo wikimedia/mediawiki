@@ -274,6 +274,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1368) Fix SQL error on stopword/short word search w/ MySQL 3.x
 * Translated Hebrew namespace names
 * (bug 1429) Stop double-escaping of block comments; fix formatting
+* (bug 829) Fix URL-escaping on block success 
 
 === Caveats ===
 
