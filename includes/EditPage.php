@@ -71,10 +71,15 @@ class EditPage {
 		}
 		if ( $this->save ) {
 			$this->editForm( 'save' );
-		} else if ( $this->preview or $wgUser->getOption('previewonfirst')) {
+		} else if ( $this->preview ) {
 			$this->editForm( 'preview' );
 		} else { # First time through
-			$this->editForm( 'initial' );
+			$this->initForm();
+			if( $wgUser->getOption('previewonfirst') ) {
+				$this->editForm( 'preview' );
+			} else {
+				$this->editForm( 'initial' );
+			}
 		}
 	}
 
@@ -272,10 +277,7 @@ class EditPage {
 		# checking, etc.
 
 		if ( 'initial' == $formtype ) {
-			$this->edittime = $this->mArticle->getTimestamp();
-			$this->textbox1 = $this->mArticle->getContent( true );
-			$this->summary = '';
-			$this->proxyCheck();
+			$this->initForm();
 		}
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
@@ -512,6 +514,16 @@ END
 		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
 			$wgOut->addHTML('<div id="wikiPreview">' . $previewOutput . '</div>');
 		}
+	}
+	
+	/**
+	 * @todo document
+	 */
+	function initForm() {
+		$this->edittime = $this->mArticle->getTimestamp();
+		$this->textbox1 = $this->mArticle->getContent( true );
+		$this->summary = '';
+		$this->proxyCheck();
 	}
 
 	function getPreviewText( $isConflict, $isCssJsSubpage ) {
