@@ -264,6 +264,7 @@ class DifferenceEngine {
 			$s = $dbr->getArray( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
 				array( 'cur_id' => $id ), $fname );
 			if ( $s === false ) {
+				wfDebug( "Unable to load cur_id $id\n" );
 				return false;
 			}
 
@@ -276,6 +277,7 @@ class DifferenceEngine {
 				'old_flags','old_user_text','old_comment' ), array( 'old_id' => $this->mNewid ), $fname );
 
 			if ( $s === false ) {
+				wfDebug( "Unable to load old_id {$this->mNewid}\n" );
 				return false;
 			}
 
@@ -297,15 +299,20 @@ class DifferenceEngine {
 					'old_title' => $this->mNewPage->getDBkey()
 				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'name_title_timestamp' )
 			);
+			if ( $s === false ) {
+				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey . " from old\n" );
+				return false;
+			}
 		} else {
 			$s = $dbr->getArray( 'old',
 				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
 				array( 'old_id' => $this->mOldid ),
 				$fname
 			);
-		}
-		if ( $s === false ) {
-			return false;
+			if ( $s === false ) {
+				wfDebug( "Unable to load old_id {$this->mOldid}\n" );
+				return false;
+			}
 		}
 		$this->mOldPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
 		$this->mOldtext = Article::getRevisionText( $s );
