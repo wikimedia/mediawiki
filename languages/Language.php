@@ -1456,12 +1456,14 @@ amusement.',
 'importhistoryconflict' => 'Conflicting history revision exists (may have imported this page before)',
 
 # Keyboard access keys for power users
+'accesskey-search' => 'f',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
+'tooltip-search' => 'Search this wiki- [alt-f]',
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
