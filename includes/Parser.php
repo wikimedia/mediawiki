@@ -642,6 +642,9 @@ class Parser
 			'/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e',
 			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
 			$t);
+			
+		$t = str_replace ( "<></>" , "" , $t ) ; # This should fix bug 980557
+			
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
