@@ -47,12 +47,11 @@ class NewPagesPage extends QueryPage {
 			        '{$usepatrol}' as usepatrol,
 			        rc_patrolled AS patrolled,
 			        rc_id AS rcid,
-			        length(old_text) as length,
-			        old_text as text
-			FROM $recentchanges,$page,$text
+			        page_len as length,
+			        page_latest as rev_id
+			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND rc_new=1
-			  AND rc_namespace=".NS_MAIN." AND page_is_redirect=0
-			  AND page_latest=old_id";
+			  AND rc_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {
@@ -85,6 +84,17 @@ class NewPagesPage extends QueryPage {
 		$s .= $skin->commentBlock( $result->comment );
 
 		return $s;
+	}
+	
+	function feedItemDesc( $row ) {
+		if( isset( $row->rev_id ) ) {
+			$revision = Revision::newFromId( $row->rev_id );
+			if( $revision ) {
+				return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' . $text . "</p>\n<hr />\n<div>" .
+					nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
+			}
+		}
+		return parent::feedItemDesc( $row );
 	}
 }
 
