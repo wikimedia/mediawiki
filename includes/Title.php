@@ -525,9 +525,7 @@ class Title {
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
 		}
-		//convert to the desired language variant
-		$t = $wgContLang->convert($this->mPrefixedText);
-		return $t;
+		return $this->mPrefixedText;
 	}
 	
 	/**
@@ -543,9 +541,7 @@ class Title {
 		if( '' != $this->mFragment ) {
 			$text .= '#' . $this->mFragment;
 		}
-		//convert to desired language variant
-		$t = $wgContLang->convert($text);
-		return $t;
+		return $text;
 	}
 
 	/**

@@ -161,7 +161,8 @@ class OutputPage {
 	function setRobotpolicy( $str ) { $this->mRobotpolicy = $str; }
 	function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
 	function setPageTitle( $name ) {
-		global $action;
+		global $action, $wgContLang;
+		$name = $wgContLang->autoConvert($name);
 		$this->mPagetitle = $name;
 		if(!empty($action)) {
 			$taction =  $this->getPageTitleActionText();
@@ -356,12 +357,12 @@ class OutputPage {
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgContLanguageCode;
 		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
+
 		if( $this->mDoNothing ){
 			return;
 		}
 		$fname = 'OutputPage::output';
 		wfProfileIn( $fname );
-
 		$sk = $wgUser->getSkin();
 
 		if ( '' != $this->mRedirect ) {
@@ -951,6 +952,7 @@ class OutputPage {
 				$text);
 			wfProfileOut( $fname.'-interwiki' );
 		}
+
 		wfProfileOut( $fname );
 		return $colours;
 	}

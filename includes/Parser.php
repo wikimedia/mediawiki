@@ -16,6 +16,7 @@
  * Hence, we limit the number of inclusions of any given page, thus bringing any
  * attack back to O(N).
  */
+
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
@@ -136,7 +137,7 @@ class Parser
 	 * @return ParserOutput a ParserOutput
 	 */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
-		global $wgUseTidy;
+		global $wgUseTidy, $wgContLang;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
 
@@ -150,6 +151,7 @@ class Parser
 
 		$stripState = NULL;
 		$text = $this->strip( $text, $this->mStripState );
+
 		$text = $this->internalParse( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -182,6 +184,9 @@ class Parser
 		}
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
+
+		$text = $wgContLang->convert($text);
+
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
@@ -658,8 +663,6 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-		$text = $wgContLang->convert($text);
-
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->doHeadings( $text );
@@ -1061,9 +1064,13 @@ class Parser
 	 *
 	 * @access private
 	 */
+
 	function replaceInternalLinks( $s ) {
 		global $wgLang, $wgContLang, $wgLinkCache;
 		static $fname = 'Parser::replaceInternalLinks' ;
+		# use a counter to prevent too much unknown links from
+		# being checked for different language variants.
+		static $convertCount;
 		wfProfileIn( $fname );
 
 		wfProfileIn( $fname.'-setup' );
@@ -1170,12 +1177,14 @@ class Parser
 			//if the article does not exist
 			global $wgContLang;
 			$variants = $wgContLang->getVariants();
-			if(sizeof($variants) > 1) {
+
+			if(sizeof($variants) > 1 && $convertCount < 200) {
 				$varnt = false; 
 				if($nt->getArticleID() == 0) {
 					foreach ( $variants as $v ) {
 						if($v == $wgContLang->getPreferredVariant())
 							continue;
+						$convertCount ++;
 						$varlink = $wgContLang->autoConvert($link, $v);
 						$varnt = Title::newFromText($varlink);
 						if($varnt && $varnt->getArticleID()>0) {
@@ -1281,7 +1290,9 @@ class Parser
 					continue;
 				}
 			}
-			
+
+            $text = $wgContLang->convert($text);			
+
 			if( ( $nt->getPrefixedText() === $this->mTitle->getPrefixedText() ) &&
 			    ( strpos( $link, '#' ) === FALSE ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
