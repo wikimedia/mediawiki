@@ -807,26 +807,6 @@ class Linker {
 				 . "<div class='visualClear'></div>\n";
 	}
 
-	/**
-	 * These two do not check for permissions: check $wgTitle->userCanEdit
-	 * before calling them
-	 */
-	function editSectionScriptForOther( $title, $section, $head ) {
-		$ttl = Title::newFromText( $title );
-		$url = $ttl->escapeLocalURL( 'action=edit&section='.$section );
-		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
-	}
-
-	/** @todo document */
-	function editSectionScript( $nt, $section, $head ) {
-		global $wgRequest;
-		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
-			return $head;
-		}
-		$url = $nt->escapeLocalURL( 'action=edit&section='.$section );
-		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
-	}
-
 	/** @todo document */
 	function editSectionLinkForOther( $title, $section ) {
 		global $wgRequest;
