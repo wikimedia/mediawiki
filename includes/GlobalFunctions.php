@@ -760,81 +760,90 @@ $urlArr should contain the full URLs to purge as values
 XXX report broken Squids per mail or log */
 
 function wfPurgeSquidServers ($urlArr) {
-    global  $wgSquidServers;
-    $maxsocketspersquid = 8; //  socket cap per Squid
-    $urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
-    $sockspersq =  ceil(count($urlArr) / $urlspersocket );
-    if ($sockspersq == 1) {
-	/* the most common case */
-        $urlspersocket = count($urlArr);
-    } else if ($sockspersq > $maxsocketspersquid ) {
-	$urlspersocket = ceil(count($urlArr) / $maxsocketspersquid);
-	$sockspersq = $maxsocketspersquid;
-    }
-    $totalsockets = count($wgSquidServers) * $sockspersq;
-    $sockets = Array();
-    
-    /* this sets up the sockets and tests the first socket for each server. */
-    for ($ss=0;$ss < count($wgSquidServers);$ss++) {
-        $failed = false;
-        $so = 0;
-        while ($so < $sockspersq && !$failed) {
-            if ($so == 0) {
-		/* first socket for this server, do the tests */
-		list($server, $port) = explode(':', $wgSquidServers[$ss]);
-		if(!isset($port)) $port = 80;
-                $socket = @fsockopen($server, $port, $error, $errstr, 3);
-                if (!$socket) {
-                    $failed = true;
-                    $totalsockets -= $sockspersq;
-                } else {
-                    @fputs($socket,"PURGE " . $urlArr[0] . " HTTP/1.0\r\n".
-                    "Connection: Keep-Alive\r\n\r\n");
-		    $res = @fread($socket,512);
-		    /* Squid only returns http headers with 200 or 404 status, 
-		    if there's more returned something's wrong */
-		    if (strlen($res) > 250) {
-                        fclose($socket);
-                        $failed = true;
-                        $totalsockets -= $sockspersq;
-                    } else {
-                        @stream_set_blocking($socket,false);
-                        $sockets[] = $socket;
-                    }
-                } 
-            } else {
-		/* open the remaining sockets for this server */
-		list($server, $port) = explode(':', $wgSquidServers[$ss]);
-		if(!isset($port)) $port = 80;
-                $sockets[] = @fsockopen($server, $port, $error, $errstr, 2);
-                @stream_set_blocking($sockets[$s],false);
-            }
-            $so++;
-        }
-    }
-    
-    if ($urlspersocket > 1) {
-        /* now do the heavy lifting. The fread() relies on Squid returning only the headers */
-        for ($r=0;$r < $urlspersocket;$r++) {
-            for ($s=0;$s < $totalsockets;$s++) {
-		if($r != 0) {
-		    $res = '';
-		    $esc = 0;
-		    while (strlen($res) < 100 && $esc < 20  ) {
-			$res .= @fread($sockets[$s],512);
-			$esc++;
-		    }
-		}
-                $urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
-                @fputs($sockets[$s],"PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
-                "Connection: Keep-Alive\r\n\r\n");
-            }
-        }
-    }
+	global  $wgSquidServers;
+	$maxsocketspersquid = 8; //  socket cap per Squid
+	$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
+	$sockspersq =  ceil(count($urlArr) / $urlspersocket );
+	if ($sockspersq == 1) {
+		/* the most common case */
+		$urlspersocket = count($urlArr);
+	} else if ($sockspersq > $maxsocketspersquid ) {
+		$urlspersocket = ceil(count($urlArr) / $maxsocketspersquid);
+		$sockspersq = $maxsocketspersquid;
+	}
+	$totalsockets = count($wgSquidServers) * $sockspersq;
+	$sockets = Array();
 
-    foreach ($sockets as $socket) {
-        @fclose($sockets);
-    }
-    return;
+	/* this sets up the sockets and tests the first socket for each server. */
+	for ($ss=0;$ss < count($wgSquidServers);$ss++) {
+		$failed = false;
+		$so = 0;
+		while ($so < $sockspersq && !$failed) {
+			if ($so == 0) {
+				/* first socket for this server, do the tests */
+				list($server, $port) = explode(':', $wgSquidServers[$ss]);
+				if(!isset($port)) $port = 80;
+				$socket = @fsockopen($server, $port, $error, $errstr, 3);
+				if (!$socket) {
+					$failed = true;
+					$totalsockets -= $sockspersq;
+				} else {
+					@fputs($socket,"PURGE " . $urlArr[0] . " HTTP/1.0\r\n".
+					"Connection: Keep-Alive\r\n\r\n");
+					$res = @fread($socket,512);
+					/* Squid only returns http headers with 200 or 404 status, 
+					if there's more returned something's wrong */
+					if (strlen($res) > 250) {
+						fclose($socket);
+						$failed = true;
+						$totalsockets -= $sockspersq;
+					} else {
+						@stream_set_blocking($socket,false);
+						$sockets[] = $socket;
+					}
+				} 
+			} else {
+				/* open the remaining sockets for this server */
+				list($server, $port) = explode(':', $wgSquidServers[$ss]);
+				if(!isset($port)) $port = 80;
+				$sockets[] = @fsockopen($server, $port, $error, $errstr, 2);
+				@stream_set_blocking($sockets[$s],false);
+			}
+			$so++;
+		}
+	}
+
+	if ($urlspersocket > 1) {
+		/* now do the heavy lifting. The fread() relies on Squid returning only the headers */
+		for ($r=0;$r < $urlspersocket;$r++) {
+			for ($s=0;$s < $totalsockets;$s++) {
+				if($r != 0) {
+					$res = '';
+					$esc = 0;
+					while (strlen($res) < 100 && $esc < 200  ) {
+						$res .= @fread($sockets[$s],512);
+						$esc++;
+						usleep(20);
+					}
+				}
+				$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
+				@fputs($sockets[$s],"PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
+				"Connection: Keep-Alive\r\n\r\n");
+			}
+		}
+	}
+
+	foreach ($sockets as $socket) {
+		$res = '';
+		$esc = 0;
+		while (strlen($res) < 100 && $esc < 200  ) {
+			$res .= @fread($socket,1024);
+			$esc++;
+			usleep(20);
+		}
+
+		@fclose($socket);
+	}
+	return;
 }
 ?>
