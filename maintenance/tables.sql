@@ -193,7 +193,7 @@ CREATE TABLE recentchanges (
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_title varchar(255) binary NOT NULL default '',
   rc_ip char(15) NOT NULL default '',
-  UNIQUE KEY rc_id (rc_id)
+  PRIMARY KEY rc_id (rc_id)
 ) PACK_KEYS=1;
 
 CREATE TABLE watchlist (
