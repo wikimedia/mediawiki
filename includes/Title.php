@@ -1339,7 +1339,9 @@ class Title {
 			return 'badarticleerror';
 		}
 
-		if ( $auth && ( !$this->userCanEdit() || !$nt->userCanEdit() ) ) {
+		if ( $auth && (
+				!$this->userCanEdit() || !$nt->userCanEdit() ||
+				!$this->userCanMove() || !$nt->userCanMove() ) ) {
 			return 'protectedpage';
 		}
 		

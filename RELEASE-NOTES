@@ -169,6 +169,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix revert bug caused by bug 1175 fix
 * Fix CSS classes on minor, new, unpatrolled markers in enhanced RC
 * Set MySQL 4 boolean search back to 'and' mode by default
+* (bug 1193) Fix move-only page protection mode
 
 === Caveats ===
 
