@@ -79,7 +79,8 @@ if(isset($wgExtraNamespaces)) {
 	'enotifrevealaddr' 	=> 0,
 	'shownumberswatching' 	=> 1,
 	'rcusemodstyle' 	=> 1,
-	'showupdated'		=> 1
+	'showupdated'		=> 1,
+	'fancysig' => 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -155,6 +156,7 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'shownumberswatching',
 	'rcusemodstyle',
 	'showupdated',
+	'fancysig'
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -276,6 +278,7 @@ global $wgRightsText;
 'tog-shownumberswatching' 	=> 'Show the number of watching users (in recent changes view, watchlist and article page footers)',
 'tog-rcusemodstyle' 		=> 'Show recent changes in UseMod style: only the most recent change of any page is listed.',
 'tog-showupdated'		=> 'Show update marker ',
+'tog-fancysig' => 'Raw signatures (without automatic link)',
 
 # dates
 'sunday' => 'Sunday',

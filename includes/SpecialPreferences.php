@@ -476,8 +476,10 @@ class PreferencesForm {
 			}
 		}
 		
+		$fancysig = $this->getToggle( 'fancysig' );
 		$wgOut->addHTML("
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
+		<div>$fancysig<br /></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 
 		/**
