@@ -1745,8 +1745,12 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			$tocline = trim( $canonized_headline );
-			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( do_html_entity_decode( $tocline, ENT_COMPAT, $wgInputEncoding ) ) );
-			$canonized_headline = str_replace('%','.',$canonized_headline);
+			$canonized_headline = urlencode( do_html_entity_decode( str_replace(' ', '_', $tocline), ENT_COMPAT, $wgInputEncoding ) );
+			$replacearray = array(
+				'%3A' => ':',
+				'%' => '.'
+			);
+			$canonized_headline = str_replace(array_keys($replacearray),array_values($replacearray),$canonized_headline);
 			$refer[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
