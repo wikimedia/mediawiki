@@ -277,6 +277,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 829) Fix URL-escaping on block success 
 * (bug 1228) Fix double-escaping on &amp; sequences in [enclosed] URLs
 * (bug 1435) Fixed many CSS errors
+* (bug 1398) Using "go" in search field for user:john gives userpage.
 
 === Caveats ===
 
