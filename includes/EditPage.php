@@ -150,7 +150,9 @@ class EditPage {
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 			return;
 		}
-		if ( $wgUser->isBlocked() ) {
+		if ( !$this->preview && $wgUser->isBlocked( !$this->save ) ) {
+			# When previewing, don't check blocked state - will get caught at save time.
+			# Also, check when starting edition is done against slave to improve performance.
 			$this->blockedIPpage();
 			return;
 		}
@@ -184,51 +186,21 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
-		if( $request->wasPosted() ) {
-			# These fields need to be checked for encoding.
-			# Also remove trailing whitespace, but don't remove _initial_
-			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1  = rtrim( $request->getText( 'wpTextbox1' ) );
-			$this->textbox2  = rtrim( $request->getText( 'wpTextbox2' ) );
-			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
-			$this->summary   =  trim( $request->getText( 'wpSummary'  ) );
-	
-			$this->edittime = $request->getVal( 'wpEdittime' );
-			if( is_null( $this->edittime ) ) {
-				# If the form is incomplete, force to preview.
-				$this->preview  = true;
-			} else {
-				if( $this->tokenOk( $request ) ) {
-					# Some browsers will not report any submit button
-					# if the user hits enter in the comment box.
-					# The unmarked state will be assumed to be a save,
-					# if the form seems otherwise complete.
-					$this->preview = $request->getCheck( 'wpPreview' );
-				} else {
-					# Page might be a hack attempt posted from
-					# an external site. Preview instead of saving.
-					$this->preview = true;
-				}
-			}
-			$this->save    = !$this->preview;
-			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
-				$this->edittime = null;
-			}
-	
-			$this->minoredit = $request->getCheck( 'wpMinoredit' );
-			$this->watchthis = $request->getCheck( 'wpWatchthis' );
-		} else {
-			# Not a posted form? Start with nothing.
-			$this->textbox1  = '';
-			$this->textbox2  = '';
-			$this->mMetaData = '';
-			$this->summary   = '';
-			$this->edittime  = '';
-			$this->preview   = false;
-			$this->save      = false;
-			$this->minoredit = false;
-			$this->watchthis = false;
-		}
+		# These fields need to be checked for encoding.
+		# Also remove trailing whitespace, but don't remove _initial_
+		# whitespace from the text boxes. This may be significant formatting.
+		$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
+		$this->textbox2 = rtrim( $request->getText( 'wpTextbox2' ) );
+		$this->mMetaData = rtrim( $request->getText( 'metadata' ) );
+		$this->summary = trim( $request->getText( 'wpSummary' ) );
+
+		$this->edittime = $request->getVal( 'wpEdittime' );
+		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = '';
+
+		$this->preview = $request->getCheck( 'wpPreview' );
+		$this->save = $request->wasPosted() && !$this->preview;
+		$this->minoredit = $request->getCheck( 'wpMinoredit' );
+		$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 		$this->oldid = $request->getInt( 'oldid' );
 
@@ -239,24 +211,15 @@ class EditPage {
 	}
 
 	/**
-	 * Make sure the form isn't faking a user's credentials.
-	 *
-	 * @param WebRequest $request
-	 * @return bool
-	 * @access private
+	 * Since there is only one text field on the edit form,
+	 * pressing <enter> will cause the form to be submitted, but
+	 * the submit button value won't appear in the query, so we
+	 * Fake it here before going back to edit().  This is kind of
+	 * ugly, but it helps some old URLs to still work.
 	 */
-	function tokenOk( &$request ) {
-		global $wgUser;
-		if( $wgUser->getId() == 0 ) {
-			# Anonymous users may not have a session
-			# open. Don't tokenize.
-			return true;
-		} else {
-			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
-		}
-	}
-	
 	function submit() {
+		if( !$this->preview ) $this->save = true;
+
 		$this->edit();
 	}
 
@@ -310,7 +273,8 @@ class EditPage {
 				# Error messages or other handling should be performed by the filter function
 				return;
 			}
-			if ( $wgUser->isBlocked() ) {
+			if ( $wgUser->isBlocked( false ) ) {
+				# Check block state against master, thus 'false'.
 				$this->blockedIPpage();
 				return;
 			}
@@ -580,27 +544,24 @@ class EditPage {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
 		# Prepare a list of templates used by this page
-		$templates = '';
+		$db =& wfGetDB( DB_SLAVE );
+		$page = $db->tableName( 'page' );
+		$links = $db->tableName( 'links' );
 		$id = $this->mTitle->getArticleID();
-		if ( 0 !== $id ) {
-			$db =& wfGetDB( DB_SLAVE );
-			$page = $db->tableName( 'page' );
-			$links = $db->tableName( 'links' );
-			$sql = "SELECT page_namespace,page_title,page_id ".
-				"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
-			$res = $db->query( $sql, "EditPage::editform" );
-			if ( false !== $res ) {
-				if ( $db->numRows( $res ) ) {
-					$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
-					while ( $row = $db->fetchObject( $res ) ) {
-						if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-							$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-						}
-					}
-					$templates .= '</ul>';
+		$sql = "SELECT page_namespace,page_title,page_id ".
+			"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
+		$res = $db->query( $sql, "EditPage::editform" );
+
+		if ( $db->numRows( $res ) ) {
+			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
+					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 				}
-				$db->freeResult( $res );
 			}
+			$templates .= '</ul>';
+		} else {	
+			$templates = '';
 		}
 		
 		global $wgLivePreview, $wgStylePath;
@@ -659,21 +620,6 @@ END
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
-		if ( 0 != $wgUser->getID() ) {
-			/**
-			 * To make it harder for someone to slip a user a page
-			 * which submits an edit form to the wiki without their
-			 * knowledge, a random token is associated with the login
-			 * session. If it's not passed back with the submission,
-			 * we won't save the page, or render user JavaScript and
-			 * CSS previews.
-			 */
-			$token = htmlspecialchars( $wgUser->editToken() );
-			$wgOut->addHTML( "
-<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
-		}
-		
-		
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
@@ -716,7 +662,6 @@ END
 			}
 			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
-			return $previewhead;
 		} else {
 			# if user want to see preview when he edit an article
 			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
@@ -732,8 +677,8 @@ END
 			$previewHTML = $parserOutput->mText;
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
-			return $previewhead . $previewHTML;
 		}
+		return $previewhead . $previewHTML;
 	}
 	
 	/**

@@ -242,8 +242,16 @@ class User {
 	/**
 	 * Get blocking information
 	 * @access private
+	 * @param bool $bFromSlave Specify whether to check slave or master. To improve performance,
+	 *  non-critical checks are done against slaves. Check when actually saving should be done against
+	 *  master.
+	 *
+	 * Note that even if $bFromSlave is false, the check is done first against slave, then master.
+	 * The logic is that if blocked on slave, we'll assume it's either blocked on master or
+	 * just slightly outta sync and soon corrected - safer to block slightly more that less.
+	 * And it's cheaper to check slave first, then master if needed, than master always.
 	 */
-	function getBlockedStatus() {
+	function getBlockedStatus( $bFromSlave = false ) {
 		global $wgIP, $wgBlockCache, $wgProxyList;
 
 		if ( -1 != $this->mBlockedby ) { return; }
@@ -253,7 +261,8 @@ class User {
 		# User blocking
 		if ( $this->mId ) {
 			$block = new Block();
-			if ( $block->load( $wgIP , $this->mId ) ) {
+			$block->forUpdate( $bFromSlave );
+ 			if ( $block->load( $wgIP , $this->mId ) ) {
 				$this->mBlockedby = $block->mBy;
 				$this->mBlockreason = $block->mReason;
 			}
@@ -261,7 +270,14 @@ class User {
 
 		# IP/range blocking
 		if ( !$this->mBlockedby ) {
-			$block = $wgBlockCache->get( $wgIP );
+			# Check first against slave, and optionally from master.
+			$block = $wgBlockCache->get( $wgIP, true );
+			if ( !block && !$bFromSlave )
+				{
+				# Not blocked: check against master, to make sure.
+				$wgBlockCache->clearLocal( );
+				$block = $wgBlockCache->get( $wgIP, false );
+				}
 			if ( $block !== false ) {
 				$this->mBlockedby = $block->mBy;
 				$this->mBlockreason = $block->mReason;
@@ -281,8 +297,8 @@ class User {
 	 * Check if user is blocked
 	 * @return bool True if blocked, false otherwise
 	 */
-	function isBlocked() {
-		$this->getBlockedStatus();
+	function isBlocked( $bFromSlave = false ) {
+		$this->getBlockedStatus( $bFromSlave );
 		if ( 0 === $this->mBlockedby ) { return false; }
 		return true;
 	}
@@ -1186,39 +1202,6 @@ class User {
 			}
 		}
 		return false;
-	}
-	
-	/**
-	 * Initialize (if necessary) and return a session token value
-	 * which can be used in edit forms to show that the user's
-	 * login credentials aren't being hijacked with a foreign form
-	 * submission.
-	 *
-	 * @return string
-	 * @access public
-	 */
-	function editToken() {
-		if( !isset( $_SESSION['wsEditToken'] ) ) {
-			$token = dechex( mt_rand() ) . dechex( mt_rand() );
-			$_SESSION['wsEditToken'] = $token;
-		}
-		return $_SESSION['wsEditToken'];
-	}
-	
-	/**
-	 * Check given value against the token value stored in the session.
-	 * A match should confirm that the form was submitted from the
-	 * user's own login session, not a form submission from a third-party
-	 * site.
-	 *
-	 * @param string $val
-	 * @return bool
-	 * @access public
-	 */
-	function matchEditToken( $val ) {
-		if( !isset( $_SESSION['wsEditToken'] ) ) 
-			return false;
-		return $_SESSION['wsEditToken'] == $val;
 	}
 }
 
