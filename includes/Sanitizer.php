@@ -296,7 +296,6 @@ class Sanitizer {
 			'/\r\n|[\x20\x0d\x0a\x09]/',
 			' ',
 			Sanitizer::normalizeCharReferences( $text ) );
-		return $spaced;
 	}
 	
 	/**
