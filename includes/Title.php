@@ -1176,7 +1176,7 @@ class Title {
 		}
 
 		# Does the redirect point to the source?
-		if ( preg_match( "/\\[\\[\\s*([^\\]]*)]]/", $obj->cur_text, $m ) ) {
+		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $obj->cur_text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
 			if( !is_object( $redirTitle ) ||
 				$redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() ) {
