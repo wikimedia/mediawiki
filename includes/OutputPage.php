@@ -79,6 +79,7 @@ class OutputPage {
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
+				$this->mLastModified = $lastmod;
 				$this->sendCacheControl();
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->disable();
