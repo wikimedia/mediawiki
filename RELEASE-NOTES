@@ -21,6 +21,7 @@ Changes from 1.3.5:
 * (bug 187, bug 669) Fixed centered thumbnails, using <div> instead of
   <span>.
 * catch MySQL error 2000 during installation.
+* (bug 704) Removed misleading LocalSettings.sample
 
 
 == Version 1.3.5, 2004-09-30 ==
