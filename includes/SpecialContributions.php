@@ -90,14 +90,14 @@ function wfSpecialContributions( $par = '' ) {
 		$omq .= " AND old_namespace = {$namespace}";
 	}
 	
-	# We may have to force the index, as some options will cause
-	# MySQL to incorrectly pick eg the namespace index.
-	list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
-		'USE INDEX' => 'usertext_timestamp',
-		'LIMIT' => $querylimit ) );
-	
 	extract( $dbr->tableNames( 'old', 'cur' ) );
 	if ( $userCond == '' ) {
+		# We may have to force the index, as some options will cause
+		# MySQL to incorrectly pick eg the namespace index.
+		list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
+			'USE INDEX' => 'usertext_timestamp',
+			'LIMIT' => $querylimit ) );
+		
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
 		  "WHERE cur_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp $tailOpts";
@@ -108,6 +108,10 @@ function wfSpecialContributions( $par = '' ) {
 		  "ORDER BY inverse_timestamp $tailOpts";
 		$res2 = $dbr->query( $sql, $fname );
 	} else {
+		list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
+			'USE INDEX' => 'user_timestamp',
+			'LIMIT' => $querylimit ) );
+		
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
 		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp $tailOpts";
 		$res1 = $dbr->query( $sql, $fname );

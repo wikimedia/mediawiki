@@ -7,6 +7,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /**
  * @todo document
  * @package MediaWiki
@@ -145,9 +148,10 @@ class SkinStandard extends Skin {
 
 		foreach ( $wgNavigationLinks as $link ) {
 			$msg = wfMsgForContent( $link['href'] );
-			if ( $msg != '-' ) {
+			$text = wfMsg( $link['text'] );
+			if ( $msg != '-' && $text != '-' ) {
 				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
-					wfMsg( $link['text'] ) . '</a>' . $sep;
+					htmlspecialchars( $text ) . '</a>' . $sep;
 			}
 		}
 

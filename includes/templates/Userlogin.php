@@ -1,5 +1,9 @@
 <?php
 
+if( !defined( 'MEDIAWIKI' ) ) die();
+
+require_once( 'includes/SkinTemplate.php' );
+
 /**
  * HTML template for Special:Userlogin form
  * @package MediaWiki
@@ -13,7 +17,7 @@ class UserloginTemplate extends QuickTemplate {
 	<p class='error'><?php $this->html('error') ?></p>
 <?php } else { ?>
 	<h2><?php $this->msg('login'      ) ?>:</h2>
-	<p><?php  $this->msg('loginprompt') ?></p>
+	<p><?php  $this->msgWiki('loginprompt') ?></p>
 <?php } ?>
 <form name="userlogin" id="userlogin" method="post" action="<?php $this->text('action') ?>">
 	<table border='0'>
@@ -98,7 +102,7 @@ class UserloginTemplate extends QuickTemplate {
 	</table>
 </form>
 <?php
-		$this->msgHtml( 'loginend' );
+		$this->msgWiki( 'loginend' );
 	}
 }
 

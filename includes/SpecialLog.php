@@ -318,7 +318,7 @@ class LogViewer {
 	 */
 	function getUserInput() {
 		$user = htmlspecialchars( $this->reader->queryUser() );
-		return "User: <input type='text' name='user' size='12' value=\"$user\" />\n";
+		return wfMsg('specialloguserlabel') . "<input type='text' name='user' size='12' value=\"$user\" />\n";
 	}
 	
 	/**
@@ -327,7 +327,7 @@ class LogViewer {
 	 */
 	function getTitleInput() {
 		$title = htmlspecialchars( $this->reader->queryTitle() );
-		return "Title: <input type='text' name='page' size='20' value=\"$title\" />\n";
+		return wfMsg('speciallogtitlelabel') . "<input type='text' name='page' size='20' value=\"$title\" />\n";
 	}
 	
 	/**

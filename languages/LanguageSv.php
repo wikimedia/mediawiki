@@ -362,8 +362,8 @@ igen som samma eller annan användare.\n",
 "yourpasswordagain"     => "Upprepa lösenord",
 "newusersonly"          => " (bara för nya användare)",
 "remembermypassword"    => "Kom ihåg mitt lösenord till nästa gång.",
-"loginproblem"          => "<b>Det var svårt att logga in dig .</b><br>Pröva igen!",
-"alreadyloggedin"       => "<font color=red><b>Användare $1, du är redan inloggad !</b></font><br>\n",
+"loginproblem"          => "<b>Det var svårt att logga in dig .</b><br />Pröva igen!",
+"alreadyloggedin"       => "<font color=red><b>Användare $1, du är redan inloggad !</b></font><br />\n",
 
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",
@@ -404,7 +404,7 @@ Var snäll och logga in igen när du fått meddelandet.",
 "showpreview"           => "Visa förhandgranskning",
 "blockedtitle"          => "Användaren är spärrad",
 "blockedtext"           => "Ditt användarnamn har blivit spärrat av $1.
-Anledning är att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
+Anledning är att:<br />''$2''<p>Ta kontakt med $1 eller en av de andra
 [[Wikipedia:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
 "newarticle"            => "(Ny)",
 "newarticletext"        => "Du har klickat på en röd länk, en sida som inte finns ännu. Du kan hjälpa till genom att själv skriva vad du vet om ämnet i fältet nedan. Om du inte vill skriva något kan du bara trycka på \"tillbaka\" i din webbläsare.",
@@ -431,7 +431,7 @@ av den här sidan. Om du sparar den, kommer alla ändringar på denns sida före
 "copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
 att betrakta som utgivna under GNU Free Documentation License
 (se $1 för detaljer).
-Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br>
+Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<BR>
 <strong>LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!</strong>",
 
@@ -493,8 +493,8 @@ vilka inte indexeras, eller att specificera flera sökord (bara
 sidor som innehåller alla sökorden hittas).",
 "powersearch"           => "Sök",
 "powersearchtext"       => "
-Sök i namnutrymme :<br>
-$1<br>
+Sök i namnutrymme :<br />
+$1<br />
 $2 List redirects &nbsp; Sök efter $3 $9",
 
 
@@ -640,7 +640,7 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 "deleteimgcompletely"             => "radera",
 "imghistlegend"         => "Legend: (nuvarande) = detta är den nuvarande bilden, 
 (ta bort) = ta bort den gamla version, (återgå) = återgå till en gammal version.
-<br><i>Klicka på ett datum för att se bilden som laddades upp den dagen</i>.", //"
+<br /><i>Klicka på ett datum för att se bilden som laddades upp den dagen</i>.", //"
 "imagelinks"            => "Bildlänk",
 "linkstoimage"          => "De följande sidorna länkar till den här bilden:",
 "nolinkstoimage"        => "Det finns ingen sida som länkar till den här bilden.",
@@ -668,9 +668,9 @@ och <b>$6</b> sidvisningar per ändring.",
 "maintenancebacklink"   => "Tillbaka till underhållssidorna",
 "disambiguations"       => "Sidor med tvetydiga länkar",
 "disambiguationspage"   => "Wikipedia:Länkar till sidor med tvetydiga titlar",
-"disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br>En sida behandlar som tvetydig om den länkar från $1. <br>Länkar från andra namngrupper är <i>inte</i> listade här.",
+"disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br />En sida behandlar som tvetydig om den länkar från $1. <br />Länkar från andra namngrupper är <i>inte</i> listade här.",
 "doubleredirects"       => "Dubbla omdirigeringar",
-"doubleredirectstext"   => "<b>OBS:</b> Den här listan kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br>\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
+"doubleredirectstext"   => "<b>OBS:</b> Den här listan kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br />\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
 "brokenredirects"       => "Dåliga omdirigeringar",
 "brokenredirectstext"   => "Följande länkar omdirigerar till en artikel som inte existerar.",
 "selflinks"             => "Sidor med länkar till sig själva",
@@ -851,7 +851,7 @@ Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottr
 "noblockreason"         => "Du måste ange en anledning till varför du blockerar.",
 "blockipsuccesssub"     => "Blockeringen lyckades",
 "blockipsuccesstext"    => "IP-adressen \"$1\" har blockerats.
-<br>Se [[Speciel:Ipblocklist|IP blockeringslistan]] för alla blockeringar.",
+<br />Se [[Speciel:Ipblocklist|IP blockeringslistan]] för alla blockeringar.",
 "unblockip"             => "Ta bort blockering av IP-adress",
 "unblockiptext"         => "Använd nedanstående formulär för att återställa skrivrättigheten för en tidigare blockerad IP-adress.",
 "ipusubmit"             => "Ta bort blockering för den här adressen",
@@ -879,7 +879,7 @@ Bekräfta att du vill göra detta.",
 "lockdbsuccesssub"      => "Databasen har låsts",
 "unlockdbsuccesssub"    => "Databasen har låsts upp",
 "lockdbsuccesstext"     => "Wikipediadatabasen är låst.
-<br>Kom ihåg att ta bort låsningen när du är färdig med ditt underhåll.",
+<br />Kom ihåg att ta bort låsningen när du är färdig med ditt underhåll.",
 "unlockdbsuccesstext"   => "Wikipediadatabasen är upplåst.",
 
 // SQL query

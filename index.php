@@ -31,10 +31,6 @@ OutputPage::setEncodings(); # Not really used yet
 $action = $wgRequest->getVal( "action", "view" );
 $title = $wgRequest->getVal( "title" );
 
-# Placeholders in case of DB error
-$wgTitle = Title::newFromText( wfMsgForContent( "badtitle" ) );
-$wgArticle = new Article($wgTitle);
-
 $action = strtolower( trim( $action ) );
 if ($wgRequest->getVal( "printable" ) == "yes") {
 	$wgOut->setPrintable();
@@ -64,7 +60,11 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 
 wfProfileIn( "main-action" );
 $search = $wgRequest->getText( 'search' );
-if( !is_null( $search ) && $search !== '' ) {
+if( $wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
+	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
+}
+
+if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	require_once( 'includes/SpecialSearch.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	wfSpecialSearch();

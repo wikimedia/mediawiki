@@ -47,6 +47,9 @@ class SearchEngine {
 	function getNearMatch( $term ) {
 		# Exact match? No need to look further.
 		$title = Title::newFromText( $term );
+		if (is_null($title))
+			return null;
+
 		if ( $title->getNamespace() == NS_SPECIAL || 0 != $title->getArticleID() ) {
 			return $title;
 		}

@@ -23,6 +23,7 @@ class MessageCache
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages;
 	var $mInitialised = false;
+	var $mDeferred = true;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
 		$fname = 'MessageCache::initialise';
@@ -44,7 +45,12 @@ class MessageCache
 		$this->mParser = new Parser;
 		wfProfileOut( $fname.'-parser' );
 
-		$this->load();
+		# When we first get asked for a message,
+		# then we'll fill up the cache. If we
+		# can return a cache hit, this saves
+		# some extra milliseconds
+		$this->mDeferred = true;
+		
 		wfProfileOut( $fname );
 	}
 
@@ -113,6 +119,7 @@ class MessageCache
 			}
 		}
 		wfProfileOut( $fname );
+		$this->mDeferred = false;
 		return $success;
 	}
 
@@ -152,7 +159,8 @@ class MessageCache
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			foreach ( $wgAllMessagesEn as $key => $value ) {
-				array_push( $this->mKeys, $wgContLang->ucfirst( $key ) );
+				$title = $wgContLang->ucfirst( $key );
+				array_push( $this->mKeys, $title );
 			}
 		}
 		return $this->mKeys;
@@ -206,7 +214,7 @@ class MessageCache
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB, $forcontent=true ) {
+	function get( $key, $useDB, $forcontent=true, $isfullkey=false ) {
 		global $wgContLanguageCode;
 		if( $forcontent ) {
 			global $wgContLang;
@@ -221,16 +229,20 @@ class MessageCache
 		if( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
 		}
+		# If cache initialization was deferred, start it now.
+		if( $this->mDeferred ) {
+			$this->load();
+		}
 
 		$message = false;
 		if( !$this->mDisable && $useDB ) {
 			$title = $lang->ucfirst( $key );
-			if( $langcode != $wgContLanguageCode ) {
+			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
 
 			# Try the cache
-			if( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
+			if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
 				$message = $this->mCache[$title];
 			}
 

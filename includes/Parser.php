@@ -959,7 +959,9 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		$linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$linktrail = $wgContLang->linkTrail();
+		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
@@ -1013,7 +1015,7 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+					$paren = "<span class='urlexpansion'>&nbsp;(<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
 				} else {
 					$paren = '';
 				}
@@ -2191,14 +2193,14 @@ class Parser
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup'
+				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table
 				'td', 'th', 'tr'
@@ -2807,9 +2809,14 @@ class Parser
 			putenv( 'TZ='.$oldtzs );
 		}
 
-		$text = preg_replace( '/~~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
+		if( $user->getOption( 'fancysig' ) ) {
+			$sigText = $k;
+		} else {
+			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
+		}
+		$text = preg_replace( '/~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
+		$text = preg_replace( '/~~~/', $sigText, $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
@@ -3078,12 +3085,21 @@ class Parser
 				continue;
 			}
 			$nt = Title::newFromURL( $matches[1] );
+			if( is_null( $nt ) ) {
+				# Bogus title. Ignore these so we don't bomb out later.
+				continue;
+			}
 			if ( isset( $matches[3] ) ) {
 				$label = $matches[3];
 			} else {
 				$label = '';
 			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
+			
+			# FIXME: Use the full wiki parser and add its links
+			# to the page's links.
+			$html = $this->mOptions->mSkin->formatComment( $label );
+			
+			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();

@@ -54,17 +54,17 @@ class ChangesList {
 			$N = wfMsg( 'newpageletter' );
 
 			if ( $rc_type == RC_NEW ) {
-				$r .= $N ;
+				$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
 			} else {
 				$r .= '&nbsp;' ;
 			}
 			if ( $rc_minor ) {
-				$r .= $M ;
+				$r .= '<span class="minor">' . htmlspecialchars( $M ) . '</span>';
 			} else {
 				$r .= '&nbsp;' ;
 			}
 			if ( $rcObj->unpatrolled ) {
-				$r .= '!';
+				$r .= '<span class="unpatrolled">!</span>';
 			} else {
 				$r .= '&nbsp;';
 			}
@@ -154,11 +154,14 @@ class ChangesList {
 		# Main line
 		# M/N
 		$r .= '<tt>' ;
-		if ( $isnew ) $r .= $N ;
-		else $r .= '&nbsp;' ;
-		$r .= '&nbsp;' ; # Minor
+		if ( $isnew ) {
+			$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
+		} else {
+			$r .= '&nbsp;';
+		}
+		$r .= '&nbsp;'; # Minor
 		if ( $unpatrolled ) {
-			$r .= "!";
+			$r .= '<span class="unpatrolled">!</span>';
 		} else {
 			$r .= "&nbsp;";
 		}
@@ -198,19 +201,19 @@ class ChangesList {
 			$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" />';
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;' ;
 			if ( $rc_new ) {
-				$r .= $N ;
+				$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
 			} else {
 				$r .= '&nbsp;' ;
 			}
 
 			if ( $rc_minor ) {
-				$r .= $M ;
+				$r .= '<span class="minoredit">' . htmlspecialchars( $M ) . '</span>';
 			} else {
 				$r .= '&nbsp;' ;
 			}
 
 			if ( $rcObj->unpatrolled ) {
-				$r .= "!";
+				$r .= '<span class="unpatrolled">!</span>';
 			} else {
 				$r .= "&nbsp;";
 			}
@@ -350,9 +353,9 @@ class ChangesList {
 			$s .= ') . . ';
 
 			# M, N and ! (minor, new and unpatrolled)
-			if ( $rc_minor ) { $s .= ' <span class="minor">'.$message["minoreditletter"].'</span>'; }
-			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.$message["newpageletter"].'</span>'; }
-			if ( !$rc_patrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
+			if ( $rc_minor ) { $s .= ' <span class="minor">'.htmlspecialchars( $message["minoreditletter"] ).'</span>'; }
+			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.htmlspecialchars( $message["newpageletter"] ).'</span>'; }
+			if ( $unpatrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
 
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
@@ -397,7 +400,7 @@ class ChangesList {
 		$blockLink='';
 		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-			$blockLink = $this->skin->makeKnownLink( $blockLinkPage,
+			$blockLink = $this->skin->makeKnownLinkObj( $blockLinkPage,
 				$message['blocklink'], 'ip='.$rc_user_text );
 
 		}

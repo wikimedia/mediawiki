@@ -18,7 +18,7 @@ require_once('QueryPage.php');
 class BrokenRedirectsPage extends PageQueryPage {
 
 	function getName() {
-		return 'brokenredirects';
+		return 'BrokenRedirects';
 	}
 	
 	function isExpensive( ) { return true; }

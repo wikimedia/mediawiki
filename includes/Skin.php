@@ -83,7 +83,8 @@ class Skin {
 	/**#@-*/
 
 	function Skin() {
-		$this->linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$this->linktrail = $wgContLang->linkTrail();
 		
 		# Cache option lookups done very frequently
 		$options = array( 'highlightbroken', 'hover' );
@@ -305,7 +306,7 @@ class Skin {
 		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgContLang->checkTitleEncoding( $link );
-		$link = str_replace( '_', ' ', $link );
+		$link = preg_replace( '/[\\x00-\\x1f_]/', ' ', $link );
 		$link = htmlspecialchars( $link );
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
@@ -534,9 +535,12 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = htmlspecialchars( Image::wfImageUrl( $name ) );
-				$style = $this->getInternalLinkAttributes( $link, $name );
-				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				$image = new Image( $wgTitle->getDBkey() );
+				if( $image->exists() ) {
+					$link = htmlspecialchars( $image->getURL() );
+					$style = $this->getInternalLinkAttributes( $link, $name );
+					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				}
 			}
 			# This will show the "Approve" link if $wgUseApproval=true;
 			if ( isset ( $wgUseApproval ) && $wgUseApproval )
@@ -749,6 +753,20 @@ class Skin {
 		# Many people don't like this dropdown box
 		#$s .= $sep . $this->specialPagesList();
 
+		/* show links to different language variants */
+		global $wgDisableLangConversion, $wgContLang, $wgTitle;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
+			}
+		}
+
+
+
 		return $s;
 	}
 
@@ -846,17 +864,19 @@ class Skin {
 	}
 
 	function getCopyrightIcon() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
 		$out = '';
-		if( $wgRightsIcon ) {
+		if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
+			$out = $wgCopyrightIcon;
+		} else if ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$url = htmlspecialchars( $wgRightsUrl );
 				$out .= '<a href="'.$url.'">';
 			}
 			$text = htmlspecialchars( $wgRightsText );
 			$out .= "<img src=\"$icon\" alt='$text' />";
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$out .= '</a>';
 			}
 		}
@@ -1349,12 +1369,16 @@ class Skin {
 					$trail = $m[2];
 				}
 			}
-			# Assume $this->postParseLinkColour(). This prevents
-			# interwiki links from being parsed as external links.
-			global $wgInterwikiLinkHolders;
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
-			$nr = array_push($wgInterwikiLinkHolders, $t);
-			$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			if( $this->postParseLinkColour ) {
+				# There's no existence check, but this will prevent
+				# interwiki links from being parsed as external links.
+				global $wgInterwikiLinkHolders;
+				$nr = array_push($wgInterwikiLinkHolders, $t);
+				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			} else {
+				return $t;
+			}
 		} elseif ( 0 == $ns && "" == $dbkey ) {
 			# A self-link with a fragment; skip existence check.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
@@ -1402,7 +1426,6 @@ class Skin {
 						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
 							$size = $threshold*2 ; # Really big
 						}
-						$dbr->freeResult( $res );
 					} else {
 						$size = $threshold*2 ; # Really big
 					}

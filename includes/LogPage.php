@@ -127,7 +127,7 @@ class LogPage {
 			''        => 'alllogstext',
 			'block'   => 'blocklogtext',
 			'protect' => 'protectlogtext',
-			'rights'  => '',
+			'rights'  => 'rightslogtext',
 			'delete'  => 'dellogpagetext',
 			'upload'  => 'uploadlogpagetext'
 		);
@@ -140,7 +140,7 @@ class LogPage {
 	function actionText( $type, $action, $titleLink = NULL ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
-			'block/unblock' => 'blocklogentry',
+			'block/unblock' => 'unblocklogentry',
 			'protect/protect' => 'protectedarticle',
 			'protect/unprotect' => 'unprotectedarticle',
 			'rights/rights' => 'bureaucratlogentry',

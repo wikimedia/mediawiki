@@ -579,7 +579,7 @@ border=\"0\" ALT=\"Google\"></A>
 #'linklistsub' => "(List of links)",
 #'linkshere' => "The following pages link to here:",
 'linkstoimage' => "Eftirfarandi síður tengjast í mynd þessa:",
-'linktrail' => "/^([a-z]+)(.*)\$/sD",
+'linktrail' => '/^([á|ð|é|í|ó|ú|ý|þ|æ|ö|a-z]+)(.*)$/sD',
 'listadmins' => "Stjórnendalisti",
 #'listform' => "list",
 'listusers' => "Notendalisti",
@@ -802,7 +802,7 @@ You should log in and change your password now.",
 # $1<br />
 # $2 List redirects &nbsp; Search for $3 $9",
 'preferences' => "Stillingar",
-'prefs-help-userdata' => "* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+'prefs-help-userdata' => "* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your 
 email address to them, and it can be used to send you a new password if you forget it.",
 #'prefs-misc' => "Misc settings",

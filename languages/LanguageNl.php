@@ -301,8 +301,8 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "yourpasswordagain" => "Wachtwoord opnieuw ingeven",
 "newusersonly" => " (alleen nieuwe gebruikers)",
 "remembermypassword" => "Mijn wachtwoord onthouden voor latere sessies.",
-"loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br>Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<font color=red><b>Gebruiker $1, u bent al aangemeld.</b></font><br>\n",
+"loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
+"alreadyloggedin" => "<font color=red><b>Gebruiker $1, u bent al aangemeld.</b></font><br />\n",
 
 "login"   => "Aanmelden & Inschrijven",
 "userlogin"  => "Aanmelden",
@@ -315,7 +315,7 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "userexists" => "De gebruikersnaam die u heeft ingevoerd is al in gebruik. Gelieve een andere naam te kiezen.",
 "youremail"  => "Uw e-mailadres",
 "yournick"  => "Uw bijnaam (voor handtekeningen)",
-"emailforlost" => "Het opgeven van een e-mailadres is niet verplicht.<br>Enkel als er een email-adres beschikbaar is, kunt u een nieuw wachtwoord aanvragen indien u het oude vergeten bent.<br>Een emailadres geeft andere gebruikers de mogelijkheid u een email te sturen via een formulier. U kunt die functie eventueel uitzetten via de voorkeuren.",
+"emailforlost" => "Het opgeven van een e-mailadres is niet verplicht.<br />Enkel als er een email-adres beschikbaar is, kunt u een nieuw wachtwoord aanvragen indien u het oude vergeten bent.<br />Een emailadres geeft andere gebruikers de mogelijkheid u een email te sturen via een formulier. U kunt die functie eventueel uitzetten via de voorkeuren.",
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebruikersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
@@ -339,7 +339,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Nakijken",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "Gebruiker is geblokkeerd",
-"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[{{ns:4}}:Toch een paar regels|regels]] van {{SITENAME}}.<p>U kunt voor overleg contact opnemen met de [[{{ns:4}}:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
+"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br />$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[{{ns:4}}:Toch een paar regels|regels]] van {{SITENAME}}.<p>U kunt voor overleg contact opnemen met de [[{{ns:4}}:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
 "whitelistedittitle" => "Aanmelden verplicht",
 "whitelistedittext" => "Om dit artikel te kunnen wijzigen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
 "whitelistreadtitle" => "Aanmelden verplicht",
@@ -349,7 +349,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "accmailtitle" => "Wachtwoord verzonden.",
 "accmailtext" => "Het wachtwoord voor '$1' is verzonden naar $2.",
 "newarticle" => "(Nieuw)",
-"newarticletext" => "Er bestaat nog geen artikel over dit onderwerp.<br>Als u wilt, kunt u hieronder een nieuw artikel schrijven.<br>Was dit niet de bedoeling, gebruik dan de 'Terug' knop van uw browser.<p>WAARSCHUWING: Let er goed op dat uw tekst vrij van auteursrechten is, bijvoorbeeld omdat u het zelf geschreven heeft. Neem geen teksten over uit boeken, tijdschriften of andere websites tenzij u zeker weet dat deze vrij van auteursrechten zijn.",
+"newarticletext" => "Er bestaat nog geen artikel over dit onderwerp.<br />Als u wilt, kunt u hieronder een nieuw artikel schrijven.<br />Was dit niet de bedoeling, gebruik dan de 'Terug' knop van uw browser.<p>WAARSCHUWING: Let er goed op dat uw tekst vrij van auteursrechten is, bijvoorbeeld omdat u het zelf geschreven heeft. Neem geen teksten over uit boeken, tijdschriften of andere websites tenzij u zeker weet dat deze vrij van auteursrechten zijn.",
 "anontalkpagetext" => "<hr>Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het kan echter zijn dat meerdere personen hetzelfde IP-adres gebruiken. Het kan daarom zijn dat u hier berichten ontvangt die niet voor u bedoeld zijn. Mocht u dat willen voorkomen, dan kunt u [[Speciaal:Userlogin|een gebruikersnaam aanvragen of u aanmelden]].",
 "noarticletext" => "(Deze pagina bevat momenteel geen tekst)",
 "updated"  => "(Bijgewerkt)",
@@ -365,7 +365,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgeslagen versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.\n.</strong>\n",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
+"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 "longpagewarning" => "Waarschuwing! Deze pagina is $1 kilobyte lang. Pagina's langer dan 32 kb zorgen voor problemen op sommige browsers. Het is daarom waarschijnlijk een goed idee deze pagina in meerdere pagina's te splitsen.",
 "readonlywarning" => "Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken.",
 "protectedpagewarning" => "Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken.",
@@ -416,12 +416,12 @@ Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} NL ov
 ",
 "powersearch" => "Zoeken",
 "powersearchtext" => "   
- Zoek in naamruimten :<br>
-$1<br>
+ Zoek in naamruimten :<br />
+$1<br />
 $2 Toon redirects &nbsp; Zoek: $3 $9",   
 "searchdisabled" => "Wegens een overbelasting van de server zijn sommige functies die het systeem extra belasten tijdelijk niet beschikbaar.
  Hierdoor is in de interne zoekfunctie van {{SITENAME}} (vermoedelijk) niet beschikbaar voor onbepaalde duur.<p>
-Via google kunt u zoeken op {{SITENAME}}. <br>
+Via google kunt u zoeken op {{SITENAME}}. <br />
 <form method=\"get\" action=\"http://www.google.com/search\">
 <table bgcolor=\"#ffffff\" style=\"width: 752px; height: 76px;\"><tbody><tr><td>
 <a href=\"http://www.google.com/\">
@@ -431,7 +431,7 @@ Via google kunt u zoeken op {{SITENAME}}. <br>
 <input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"\">
 <input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in {{SITENAME}}\">
 <font size=\"-1\">
-<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">{{SITENAME}} NL<br>
+<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br /><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">{{SITENAME}} NL<br />
 </font>
 </td></tr></tbody></table>
 </form>
@@ -490,7 +490,7 @@ Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 # Recente wijzigingen
 "changes" => "wijzigingen",
 "recentchanges" => "Recente wijzigingen",
-"recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van {{SITENAME}} NL. <br>
+"recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van {{SITENAME}} NL. <br />
 Ben je hier nieuw? Lees dan ook [[{{ns:4}}:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[{{ns:4}}:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[{{ns:4}}:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[{{ns:4}}:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
 Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij je daartoe toestemming hebt. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming grote schade kunnen toebrengen.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
@@ -584,7 +584,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "revertimg"  => "rev",
 "deleteimg"  => "verw",
 "deleteimgcompletely"  => "verw",
-"imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br>
+"imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br />
 <i>Klik op de datum om de afbeeldingen die ge-upload zijn op die datum te zien</i>.",
 "imagelinks" => "Afbeeldingsverwijzingen",
 "linkstoimage" => "Deze afbeelding wordt gebruikt op de volgende pagina's:",
@@ -606,9 +606,9 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "maintenancebacklink"   => "Terug naar de Onderhoudspagina",
 "disambiguations"       => "Doorverwijspagina's",
 "disambiguationspage"   => "{{ns:4}}:Doorverwijspagina",
-"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[{{ns:4}}:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, {{ns:4}}:pagina's en dergelijke.",
+"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[{{ns:4}}:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br />Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br />Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, {{ns:4}}:pagina's en dergelijke.",
 "doubleredirects"       => "Dubbele redirects",
-"doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze lijst redirects staan die er niet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br>\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
+"doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze lijst redirects staan die er niet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br />\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
 "brokenredirects"       => "Gebroken redirects",
 "brokenredirectstext"   => "De onderstaande redirectpagina's bevatten een redirect naar een niet-bestaande pagina.",
 "selflinks"             => "Pagina's die naar zichzelf verwijzen",
@@ -782,7 +782,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "badipaddress" => "Geen bestaande gebruikersnaam of geldig IP-adres",
 "noblockreason" => "U dient een reden op te geven voor het blokkeren van een gebruiker.",
 "blockipsuccesssub" => "Blokkering gelukt",
-"blockipsuccesstext" => "\"$1\" is geblokkeerd.<br>
+"blockipsuccesstext" => "\"$1\" is geblokkeerd.<br />
 Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
 "unblockip"  => "De-blokkeer gebruiker",
 "unblockiptext" => "Gebruik het onderstaande formulier om terug schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.",
@@ -839,7 +839,7 @@ te zijn om een pagina te verplaatsen.",
 "movepagebtn" => "Verplaats pagina",
 "pagemovedsub" => "De verplaatsing was succesvol",
 "pagemovedtext" => "Pagina \"[[$1]]\" is verplaatst naar \"[[$2]]\".",
-"articleexists" => "Er is reeds een pagina met deze titel of de titel is ongeldig. <br>Gelieve een andere titel te kiezen.",
+"articleexists" => "Er is reeds een pagina met deze titel of de titel is ongeldig. <br />Gelieve een andere titel te kiezen.",
 "talkexists" => "De pagina zelf is verplaatst, maar de Overlegpagina kon niet worden verplaatst, omdat de doeltitel al een niet-lege overlegpagina had. Combineer de overlegpagina's a.u.b. handmatig.",
 "movedto"  => "verplaatst naar",
 "movetalk"  => "Verplaats \"Overleg\" pagina ook indien aanwezig.",

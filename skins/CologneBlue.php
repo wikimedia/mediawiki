@@ -7,6 +7,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /**
  * @todo document
  * @package MediaWiki
@@ -147,6 +150,21 @@ class SkinCologneBlue extends Skin {
 			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
 		}
 
+		/* show links to different language variants */
+		global $wgDisableLangConversion;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			$actstr = '';
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
+			}
+		}
+
+
+
 		return $s;
 	}
 
@@ -170,9 +188,10 @@ class SkinCologneBlue extends Skin {
 
 		foreach ( $wgNavigationLinks as $link ) {
 			$msg = wfMsgForContent( $link['href'] );
-			if ( $msg != '-' ) {
+			$text = wfMsg( $link['text'] );
+			if ( $msg != '-' && $text != '-' ) {
 				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
-					wfMsg( $link['text'] ) . '</a>' . $sep;
+					htmlspecialchars( $text ) . '</a>' . $sep;
 			}
 		}
 

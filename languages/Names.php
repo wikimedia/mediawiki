@@ -84,6 +84,7 @@
 	'it' => 'Italiano',		# Italian
 	'iu' => '&#5123;&#5316;&#5251;&#5198;&#5200;&#5222;',	# Inuktitut
 	'ja' => '&#26085;&#26412;&#35486;',	# Japanese
+	'jbo' => 'Lojban',
 	'jv' => 'Bahasa Jawa',	# Javanese
 	'ka' => '&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;',	# Georgian
 	'kg' => 'Kongo',		# Kongo (FIXME!)
@@ -111,7 +112,7 @@
 	'mg' => 'Malagasy',		# Malagasy - FIXME
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'M&#257;ori',	# Maori
-	'minnan' => '&#38313;&#21335;&#35486;', # Min-nan
+	'minnan' => 'B&#226;n-l&#226;m-g&#250;', # Min-nan (also zh-min-nan)
 	'mk' => '&#1052;&#1072;&#1082;&#1077;&#1076;&#1086;&#1085;&#1089;&#1082;&#1080;',	# Macedonian
 	'ml' => '&#3374;&#3378;&#3375;&#3390;&#3379;&#3330;',	# Malayalam
 	'mn' => '&#1052;&#1086;&#1085;&#1075;&#1086;&#1083;',	# Mongoloian
@@ -122,14 +123,14 @@
 	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
 	'na' => 'Ekakair&#361; Naoero',		# Nauruan
-	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
+	'nb' => 'Norsk (bokm&aring;l)',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
 	'ng' => 'Ndonga',
 	'nl' => 'Nederlands',	# Dutch
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
-	'nn' => 'Nynorsk'	,	# (Norwegian) Nynorsk
+	'nn' => 'Norsk (nynorsk)'	,	# (Norwegian) Nynorsk
 	'no' => 'Norsk',		# Norwegian
 	'nv' => 'Din&eacute; bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
@@ -185,6 +186,7 @@
 	'tr' => 'T&uuml;rk&ccedil;e',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'Tatar&ccedil;a',	# Tatar
+	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi -- FIXME
 	'ty' => 'Reo M&#257;`ohi',	# Tahitian
 	'ug' => 'Oyghurque',	# Uyghur
@@ -203,6 +205,7 @@
 	'zh' => '&#20013;&#25991;',	# (Zh&#333;ng Wén) - Chinese
 	'zh-cfr' => '&#38313;&#21335;&#35486;', # Min-nan alias (site is at minnan)
 	'zh-cn' => '&#20013;&#25991;(&#31616;&#20307;)',	# Simplified
+	'zh-min-nan' => 'B&#226;n-l&#226;m-g&#250;', # Min-nan
 	'zh-tw' => '&#20013;&#25991;(&#32321;&#39636;)',	# Traditional
 	'zh-sg' => '&#20013;&#25991;(&#31616;&#20307;)', # Simplified (Singapore)
 	'zh-hk' => '&#20013;&#25991;(&#32321;&#39636;)',	# Traditional (Hong Kong)

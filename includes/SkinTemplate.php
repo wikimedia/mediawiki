@@ -228,6 +228,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( "helppage", wfMsg('helppage'));
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
+		$tpl->set( 'search', trim( $wgRequest->getVal( 'search' ) ) );
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( "lang", $wgContLanguageCode );
@@ -448,17 +449,18 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
+		global $wgContLang;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
-		global $wgTitle, $wgUser, $wgOut, $wgRequest, $wgUseValidation;
+		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		$content_actions = array();
 
-		if( $this->iscontent and !$wgOut->isQuickbarSuppressed() ) {
+		if( $this->iscontent ) {
 
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
@@ -578,7 +580,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 			wfProfileOut( "$fname-live" );
-			
+
 			if ( $wgUser->getID() != 0 and $action != 'submit' ) {
 				if( !$wgTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
@@ -605,6 +607,7 @@ class SkinTemplate extends Skin {
 					'href' => $wgTitle->getLocalUrl( 'action=validate'.$article_time)
 				);
 			}
+
 		} else {
 			/* show special page tab */
 
@@ -614,6 +617,34 @@ class SkinTemplate extends Skin {
 				'href' => false
 			);
 		}
+
+		/* show links to different language variants */
+		global $wgDisableLangConversion;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			$highlight = $wgContLang->getPreferredVariant();
+			if( $wgContLang->getVariantname($highlight) == 'disable' ) {
+				$highlight = $wgContLang->getVariantFallback($highlight);
+				if( $highlight && $wgContLang->getVariantname($highlight) == 'false' )
+					$highlight = false;
+			}
+			$actstr = '';
+			if( $action )
+				$actstr = 'action=' . $action . '&';
+			$vcount=0;
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$selected = ( $code == $highlight )? 'selected' : false;
+				$content_actions['varlang-' . $vcount] = array(
+						'class' => $selected,
+						'text' => $varname,
+						'href' => $wgTitle->getLocalUrl( $actstr . 'variant=' . $code )
+					);
+				$vcount ++;
+			}
+		} 		
 
 		wfProfileOut( $fname );
 		return $content_actions;
@@ -936,6 +967,19 @@ class QuickTemplate {
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
+	}
+	
+	/**
+	 * An ugly, ugly hack.
+	 * @access private
+	 */
+	function msgWiki( $str ) {
+		global $wgParser, $wgTitle, $wgOut, $wgUseTidy;
+
+		$text = $this->translator->translate( $str );
+		$parserOutput = $wgParser->parse( $text, $wgTitle,
+			$wgOut->mParserOptions, true );
+		echo $parserOutput->getText();
 	}
 	
 	/**
