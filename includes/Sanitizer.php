@@ -784,10 +784,14 @@ class Sanitizer {
 			# 15.3
 			'hr'         => array_merge( $common, array( 'noshade', 'size', 'width' ) ),
 			
-			'rb'         => $common,
-			'rp'         => $common,
-			'rt'         => $common,
+			# XHTML Ruby annotation text module, simple ruby only.
+			# http://www.w3c.org/TR/ruby/
 			'ruby'       => $common,
+			# rbc
+			# rtc
+			'rb'         => $common,
+			'rt'         => $common, #array_merge( $common, array( 'rbspan' ) ),
+			'rp'         => $common,
 			);
 		return $whitelist;
 	}
