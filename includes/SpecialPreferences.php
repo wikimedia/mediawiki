@@ -184,8 +184,8 @@ function wfSpecialPreferences()
 		if ( "" == $name ) { $name = "(Main)"; }
 
 		if ( 0 != $i ) { $r1 .= " "; }
-		$r1 .= "<input type=checkbox value=\"1\" name=\"" .
-		  "wpNs{$i}\"{$checked}>{$name}\n";
+		$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
+		  "wpNs{$i}\"{$checked}>{$name}</label>\n";
 	}
 	
 	return $r1;
@@ -319,7 +319,7 @@ value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
 		} else {
 			$checked = "";
 		}
-		$wgOut->addHTML( "<input type=radio name=\"wpDate\" value=\"$i\"$checked> {$dateopts[$i]}<br>\n" );
+		$wgOut->addHTML( "<label><input type=radio name=\"wpDate\" value=\"$i\"$checked> {$dateopts[$i]}</label><br>\n" );
 	}
 	$wgOut->addHTML( "</td></tr>");
 	# Textbox rows, cols
