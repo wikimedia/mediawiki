@@ -5,10 +5,12 @@ function wfSpecialMovepage()
 {
 	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
+	# check rights. We don't want newbies to move pages to prevents possible attack
 	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}
+	# We don't move protected pages
 	if ( wfReadOnly() ) {
 		$wgOut->readOnlyPage();
 		return;
@@ -16,9 +18,9 @@ function wfSpecialMovepage()
 
 	$f = new MovePageForm();
 
-	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	if ( 'success' == $action ) { $f->showSuccess(); }
+	else if ( 'submit' == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
+	else { $f->showForm( '' ); }
 }
 
 class MovePageForm {
@@ -34,10 +36,10 @@ class MovePageForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 
-		$wgOut->setPagetitle( wfMsg( "movepage" ) );
+		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
 		if ( empty( $this->oldTitle ) ) {
-			$wgOut->errorpage( "notargettitle", "notargettext" );
+			$wgOut->errorpage( 'notargettitle', 'notargettext' );
 			return;
 		}
 		
@@ -46,22 +48,22 @@ class MovePageForm {
 		$ot = Title::newFromURL( $this->oldTitle );
 		$ott = $ot->getPrefixedText();
 
-		$wgOut->addWikiText( wfMsg( "movepagetext" ) );
+		$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
 		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
-			$wgOut->addWikiText( wfMsg( "movepagetalktext" ) );
+			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
-		$ma = wfMsg( "movearticle" );
-		$newt = wfMsg( "newtitle" );
-		$mpb = wfMsg( "movepagebtn" );
-		$movetalk = wfMsg( "movetalk" );
+		$ma = wfMsg( 'movearticle' );
+		$newt = wfMsg( 'newtitle' );
+		$mpb = wfMsg( 'movepagebtn' );
+		$movetalk = wfMsg( 'movetalk' );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+		$action = $titleObj->escapeLocalURL( 'action=submit' );
 
-		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
+		if ( $err != '' ) {
+			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
+			$wgOut->addHTML( '<p class="error">'.$err."</p>\n" );
 		}
 		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
@@ -105,6 +107,8 @@ class MovePageForm {
 		global $wgDeferredUpdateList, $wgMessageCache;
 		global  $wgUseSquid, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
+		
+		# Variables beginning with 'o' for old article 'n' for new article
 
 		$ot = Title::newFromText( $this->oldTitle );
 		$nt = Title::newFromText( $this->newTitle );
@@ -123,7 +127,7 @@ class MovePageForm {
 		$ons = $ot->getNamespace();
 		$nns = $nt->getNamespace();
 		
-		if ( ( 1 == $wgRequest->getVal('wpMovetalk') ) &&
+		if ( ( $wgRequest->getVal('wpMovetalk') == 1 ) &&
 		     ( ! Namespace::isTalk( $ons ) ) &&
 		     ( ! Namespace::isTalk( $nns ) ) ) {
 			
@@ -145,12 +149,13 @@ class MovePageForm {
 			}
 		}
 		
+		# Give back result to user.
 		
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$success = $titleObj->getFullURL( 
-		  "action=success&oldtitle=" . wfUrlencode( $ot->getPrefixedText() ) .
-		  "&newtitle=" . wfUrlencode( $nt->getPrefixedText() ) .
-		  "&talkmoved={$talkmoved}" );
+		  'action=success&oldtitle=' . wfUrlencode( $ot->getPrefixedText() ) .
+		  '&newtitle=' . wfUrlencode( $nt->getPrefixedText() ) .
+		  '&talkmoved='.$talkmoved );
 
 		$wgOut->redirect( $success );
 	}
@@ -159,23 +164,23 @@ class MovePageForm {
 	{
 		global $wgOut, $wgUser, $wgRequest;
 
-		$wgOut->setPagetitle( wfMsg( "movepage" ) );
-		$wgOut->setSubtitle( wfMsg( "pagemovedsub" ) );
+		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
+		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
 		$oldtitle = $wgRequest->getVal('oldtitle');
 		$newtitle = $wgRequest->getVal('newtitle');
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
-		$text = wfMsg( "pagemovedtext", $oldtitle, $newtitle );
+		$text = wfMsg( 'pagemovedtext', $oldtitle, $newtitle );
 		$wgOut->addWikiText( $text );
 
-		if ( 1 == $talkmoved ) {
-			$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagemoved" ) . "</p>\n" );
+		if ( $talkmoved == 1 ) {
+			$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagemoved' ) . "</p>\n" );
 		} elseif( 'articleexists' == $talkmoved ) {
-			$wgOut->addHTML( "\n<p><strong>" . wfMsg( "talkexists" ) . "</strong></p>\n" );
+			$wgOut->addHTML( "\n<p><strong>" . wfMsg( 'talkexists' ) . "</strong></p>\n" );
 		} else {
 			$ot = Title::newFromURL( $oldtitle );
 			if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
-				$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagenotmoved", wfMsg( $talkmoved ) ) . "</p>\n" );
+				$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) . "</p>\n" );
 			}
 		}
 	}
