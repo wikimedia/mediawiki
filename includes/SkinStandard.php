@@ -51,7 +51,12 @@ class SkinStandard extends Skin {
 		$a = parent::getBodyOptions();
 
 		if ( 3 == $this->qbSetting() ) { # Floating left
-			$a["onload"] = "setup(\"quickbar\")";
+			$qb = "setup(\"quickbar\")";
+			if($a["onload"]) {
+				$a["onload"] .= ";$qb";
+			} else {
+				$a["onload"] = $qb;
+			}
 		}
 		return $a;
 	}
