@@ -424,18 +424,11 @@ class SearchEngine {
 
 	function goResult()
 	{
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgGoToEdit;
 		global $wgDisableTextSearch;
 		$fname = "SearchEngine::goResult";
 		
 		$search = trim( $wgRequest->getText( "search" ) );
-
-		# Entering an IP address goes to the contributions page
-		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $search ) ) {
-			$title = Title::makeTitle( NS_SPECIAL, "Contributions" );
-			$wgOut->redirect( $title->getFullUrl( "target=$search" ) );
-			return;
-		}
 
 		# Try to go to page as entered.
 		#
@@ -477,8 +470,22 @@ class SearchEngine {
 			return;
 		}
 
+		# Entering an IP address goes to the contributions page
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $search ) ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Contributions" );
+			$wgOut->redirect( $title->getFullUrl( "target=$search" ) );
+			return;
+		}
+
 		# No match, generate an edit URL
 		$t = Title::newFromText( $this->mUsertext );
+		
+		# If the feature is enabled, go straight to the edit page
+		if ( $wgGoToEdit ) {
+			$wgOut->redirect( $t->getFullURL( "action=edit" ) );
+			return;
+		}
+
 		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $t->escapeLocalURL( "action=edit" ) ) . "</p>\n" );
 
 		# Try a fuzzy title search

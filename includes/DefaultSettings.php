@@ -354,5 +354,8 @@ $wgImportSources = array();
 $wgMaxCredits = 0;
 
 # Text matching this regex will be recognised as spam
-$wgSpamRegex 	= false; 
+$wgSpamRegex = false; 
+
+# Go button goes straight to the edit screen if the article doesn't exist
+$wgGoToEdit = false;
 ?>
