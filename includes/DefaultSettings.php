@@ -31,6 +31,10 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
 $wgPasswordSender	= "Wikipedia Mail <apache@" . getenv( "SERVER_NAME" ) . ">";
 
+# For using a direct (authenticated) SMTP server connection.
+# "host" => 'SMTP domain', "IDHost" => 'domain for MessageID', "port" => "25", "auth" => true/false, "username" => user, "password" => password
+$wgSMTP				= false;
+
 # MySQL settings
 #
 $wgDBserver         = "localhost";
