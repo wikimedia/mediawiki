@@ -797,20 +797,22 @@ class Article {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( $oldid, $diff, $rcid );
 			$de->showDiffPage();
-			wfProfileOut( $fname );
 			if( $diff == 0 ) {
 				# Run view updates for current revision only
 				$this->viewUpdates();
 			}
+			wfProfileOut( $fname );
 			return;
 		}
 		if ( empty( $oldid ) && $this->checkTouched() ) {
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
+				wfProfileOut( $fname );
 				return;
 			} else if ( $this->tryFileCache() ) {
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
 				$this->viewUpdates();
+				wfProfileOut( $fname );
 				return;
 			}
 		}
