@@ -923,9 +923,9 @@ class Parser
 						$arr[$i] = "'''''";
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
+					# We are not counting sequences of five apostrophes.
 					if (strlen ($arr[$i]) == 2) $numitalics++;  else
-					if (strlen ($arr[$i]) == 3) $numbold++;     else
-					if (strlen ($arr[$i]) == 5) { $numitalics++; $numbold++; }
+					if (strlen ($arr[$i]) == 3) $numbold++;
 				}
 				$i++;
 			}
@@ -1037,6 +1037,15 @@ class Parser
 				}
 				$i++;
 			}
+			# Now close all remaining tags.  Notice that the order is important.
+			if ($state == 'strong' || $state == 'emstrong')
+				$output .= "</strong>";
+			if ($state == 'em' || $state == 'strongem' || $state == 'emstrong')
+				$output .= "</em>";
+			if ($state == 'strongem')
+				$output .= "</strong>";
+			if ($state == 'both')
+				$output .= "<strong><em>{$buffer}</em></strong>";
 			return $output;
 		}
 	}
