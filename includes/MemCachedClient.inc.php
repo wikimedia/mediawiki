@@ -1062,7 +1062,7 @@ class MemCachedClient
 
 			// if we're almost at the end, read the rest, so 
 			// that we don't corrupt the \r\nEND\r\n
-			if ($bytes_read >= $len)
+			if ($bytes_read >= $len && $bytes_read < ($len +7))
 			{
 				$lastbit = socket_read($sock, $len - $bytes_read + 7, PHP_BINARY_READ);
 				$line .= $lastbit;

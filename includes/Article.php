@@ -1079,7 +1079,7 @@ class Article {
 				if (!$messageCache) {
 					$messageCache = wfLoadAllMessages();
 				}
-				$messageCache[$title] = $text;
+				$messageCache[$this->mTitle->getDBkey()] = $text;
 				$wgMemc->set( "$wgDBname:messages", $messageCache, 86400 );
 			}
 		}
