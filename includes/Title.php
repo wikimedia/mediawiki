@@ -644,7 +644,7 @@ class Title {
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->updateArray( 'cur', 
 			array( /* SET */ 
-				'cur_touched' => wfTimestampNow()
+				'cur_touched' => $dbw->timestamp()
 			), array( /* WHERE */ 
 				'cur_namespace' => $this->getNamespace() ,
 				'cur_title' => $this->getDBkey()
