@@ -14,7 +14,9 @@ class SearchEngine {
 	{
 		# We display the query, so let's strip it for safety
 		#
+		global $wgDBmysql4;
 		$lc = SearchEngine::legalSearchChars() . "()";
+		if( $wgDBmysql4 ) $lc .= "\"~<>*+-";
 		$this->mUsertext = trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 		$this->mSearchterms = array();
 	}
@@ -112,23 +114,19 @@ class SearchEngine {
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgDisableTextSearch;
 		$fname = "SearchEngine::showResults";
 
-		$offset		= $_REQUEST['offset'];
-		$limit		= $_REQUEST['limit'];
 		$search		= $_REQUEST['search'];
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
 		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$q = str_replace( "$1", $this->mUsertext,
-		  wfMsg( "searchquery" ) );
+		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
 		$wgOut->setSubtitle( $q );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 		$sk = $wgUser->getSkin();
-		$text = str_replace( "$1", $sk->makeKnownLink(
-		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ),
-		  wfMsg( "searchresulttext" ) );
+		$text = wfMsg( "searchresulttext", $sk->makeKnownLink(
+		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
 		$wgOut->addHTML( $text );
 
 		$this->parseQuery();
@@ -137,11 +135,7 @@ class SearchEngine {
 			  "<p>" . wfMsg( "badquerytext" ) );
 			return;
 		}
-		if ( ! isset( $limit ) ) {
-			$limit = $wgUser->getOption( "searchlimit" );
-			if ( ! $limit ) { $limit = 20; }
-		}
-		if ( ! $offset ) { $offset = 0; }
+		list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
 
 		$searchnamespaces = $this->queryNamespaces();
 		$redircond = $this->searchRedirects();
@@ -237,7 +231,12 @@ class SearchEngine {
 
 	function parseQuery()
 	{
-		global $wgDBminWordLen, $wgLang;
+		global $wgDBminWordLen, $wgLang, $wgDBmysql4;
+
+		if( $wgDBmysql4 ) {
+			# Use cleaner boolean search if available
+			return $this->parseQuery4();
+		}
 
 		$lc = SearchEngine::legalSearchChars() . "()";
 		$q = preg_replace( "/([()])/", " \\1 ", $this->mUsertext );
@@ -265,14 +264,27 @@ class SearchEngine {
 		}
 		if ( 0 == count( $this->mSearchterms ) ) { return; }
 
-		# To disable boolean:
-		# $cond = "MATCH (##field##) AGAINST('" . wfStrencode( $q ) . "')";
-
 		$this->mTitlecond = "(" . str_replace( "##field##",
 		  "si_title", $cond ) . " )";
 
 		$this->mTextcond = "(" . str_replace( "##field##",
 		  "si_text", $cond ) . " AND (cur_is_redirect=0) )";
+	}
+	
+	function parseQuery4()
+	{
+		# FIXME: not ready yet! Do not use.
+		
+		global $wgLang;
+		$lc = SearchEngine::legalSearchChars();
+		#$q = preg_replace( "/([+-]?)([$lc]+)/e",
+		#	"\"$1\" . \$wgLang->stripForSearch(\"$2\")",
+		#	$this->mUsertext );
+		
+		$q = $this->mUsertext;
+		$qq = wfStrencode( $q );
+		$this->mTitlecond = " MATCH(si_title) AGAINST('$qq' IN BOOLEAN MODE)";
+		$this->mTextcond = " (MATCH(si_text) AGAINST('$qq' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 	}
 
 	function showHit( $row )

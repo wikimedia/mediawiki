@@ -6,11 +6,7 @@ function wfSpecialUnusedimages()
 	global $limit, $offset; # From query string
 	$fname = "wfSpecialUnusedimages";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT img_name,img_user,img_user_text,img_timestamp,img_description " .
 	  "FROM image LEFT JOIN imagelinks ON img_name=il_to WHERE il_to IS NULL " .

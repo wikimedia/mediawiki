@@ -17,11 +17,10 @@ function wfSpecialWatchlist()
 		$days = $wgUser->getOption( "rcdays" );
 		if ( ! $days ) { $days = 3; }
 	}
-	if ( ! isset( $limit ) ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 100; }
-	}
-	if ( $days == 0 ) {
+	$days = (int)$days;
+	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
+	
+	if ( $days <= 0 ) {
 		$docutoff = '';
 	} else {
 		$docutoff = "cur_timestamp > '" .
@@ -40,12 +39,6 @@ function wfSpecialWatchlist()
 		return;
 	}
 
-#	$sql = "SELECT DISTINCT
-#  cur_id,cur_namespace,cur_title,cur_comment,
-#  cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
-#  FROM cur,watchlist
-#  WHERE wl_user={$uid} AND wl_namespace=cur_namespace & (~1) AND wl_title=cur_title
-#  ORDER BY cur_timestamp DESC {$dolimit}";
 	$sql = "SELECT DISTINCT
   cur_id,cur_namespace,cur_title,cur_comment,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
@@ -59,8 +52,7 @@ function wfSpecialWatchlist()
 		return;
 	}
 
-	$note = str_replace( "$1", $limit, wfMsg( "rcnote" ) );
-	$note = str_replace( "$2", $days, $note );
+	$note = wfMsg( "rcnote", $limit, $days );
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
 	$note = rcDayLimitlinks( $days, $limit, "Watchlist", "", true );
 	$wgOut->addHTML( "{$note}\n" );

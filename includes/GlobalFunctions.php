@@ -515,4 +515,24 @@ function wfClientAcceptsGzip() {
 	return false;
 }
 
+# Yay, more global functions!
+function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
+	global $wgUser;
+	
+	$limit = (int)$_REQUEST['limit'];
+	if( $limit < 0 ) $limit = 0;
+	if( ( $limit == 0 ) && ( $optionname != "" ) ) {
+		$limit = (int)$wgUser->getOption( $optionname );
+	}
+	if( $limit <= 0 ) $limit = $deflimit;
+	if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
+	
+	$offset = (int)$_REQUEST['offset'];
+	$offset = (int)$offset;
+	if( $offset < 0 ) $offset = 0;
+	if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
+	
+	return array( $limit, $offset );
+}
+
 ?>

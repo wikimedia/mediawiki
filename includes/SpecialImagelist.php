@@ -2,7 +2,7 @@
 
 function wfSpecialImagelist()
 {
-	global $wgUser, $wgOut, $wgLang, $sort, $limit;
+	global $wgUser, $wgOut, $wgLang, $sort;
 	global $wpIlMatch, $wpIlSubmit;
 
 	$fields = array( 'wpIlMatch' );
@@ -32,7 +32,7 @@ function wfSpecialImagelist()
 		$sql .= " ORDER BY img_timestamp DESC";
 		$st = $bydate;
 	}
-	if ( ! isset( $limit ) ) { $limit = 50; }
+	list( $limit, $offset ) = wfCheckLimits( 50 );
 	if ( 0 == $limit ) {
 		$lt = wfMsg( "all" );
 	} else {
@@ -41,9 +41,8 @@ function wfSpecialImagelist()
 	}
 	$wgOut->addHTML( "<p>" . wfMsg( "imglegend" ) . "\n" );
 
-	$text = str_replace( "$1", "<strong>{$lt}</strong>",
-	  wfMsg( "imagelisttext" ) );
-	$text = str_replace( "$2", "<strong>{$st}</strong>", $text );
+	$text = wfMsg( "imagelisttext",
+		"<strong>{$lt}</strong>", "<strong>{$st}</strong>" );
 	$wgOut->addHTML( "<p>{$text}\n<p>" );
 
 	$sk = $wgUser->getSkin();

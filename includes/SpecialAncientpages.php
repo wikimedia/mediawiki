@@ -3,14 +3,9 @@
 function wfSpecialAncientpages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialAncientpages";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT cur_title,cur_user,cur_user_text,cur_comment," .
 	  "cur_timestamp FROM cur USE INDEX (namespace_redirect_timestamp) " .

@@ -3,7 +3,6 @@
 function wfSpecialLongpages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialLongpages";
 
 	# Cache
@@ -17,11 +16,7 @@ function wfSpecialLongpages()
 		return;
 	}
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT cur_title, LENGTH(cur_text) AS len FROM cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .

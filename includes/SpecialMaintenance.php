@@ -85,14 +85,9 @@ function getMaintenancePageBacklink()
 function wfSpecialDisambiguations()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialDisambiguations";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$dp = wfStrencode( wfMsg("disambiguationspage") );
 
@@ -139,14 +134,9 @@ function wfSpecialDisambiguations()
 function wfSpecialDoubleRedirects()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialDoubleRedirects";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT l_from,l_to,cb.cur_text AS rt,cb.cur_title AS ti FROM links,cur AS ca, cur AS cb WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id AND l_from=ca.cur_title AND ca.cur_namespace=0 LIMIT {$offset}, {$limit}" ;
 
@@ -180,14 +170,9 @@ function wfSpecialDoubleRedirects()
 function wfSpecialBrokenRedirects()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialBrokenRedirects";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT bl_to,cur_title FROM brokenlinks,cur WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id LIMIT {$offset}, {$limit}" ;
 
@@ -219,14 +204,9 @@ function wfSpecialBrokenRedirects()
 function wfSpecialSelfLinks()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialSelfLinks";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT cur_title FROM cur,links WHERE cur_is_redirect=0 AND cur_namespace=0 AND l_from=cur_title AND l_to=cur_id LIMIT {$offset}, {$limit}";
 
@@ -254,15 +234,10 @@ function wfSpecialSelfLinks()
 function wfSpecialMispeelings ()
 {
         global $wgUser, $wgOut, $wgLang, $wgTitle;
-        global $limit, $offset; # From query string
         $sk = $wgUser->getSkin();
         $fname = "wfSpecialMispeelings";
 
-        if ( ! $limit ) {
-                $limit = $wgUser->getOption( "rclimit" );
-                if ( ! $limit ) { $limit = 50; }
-        }
-        if ( ! $offset ) { $offset = 0; }
+		list( $limit, $offset ) = wfCheckLimits();
 
         # Determine page name
         $ms = wfMsg ( "mispeelingspage" ) ;
@@ -327,16 +302,11 @@ function wfSpecialMispeelings ()
 function wfSpecialMissingLanguageLinks()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $thelang, $subfunction;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialMissingLanguageLinks";
 	$subfunction = "missinglanguagelinks" ;
 	if ( $thelang == "w" ) $thelang = "en" ; # Fix for international wikis
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0 AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[{$thelang}:%' LIMIT {$offset}, {$limit}";
 

@@ -3,7 +3,6 @@
 function wfSpecialLonelypages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialLonelypages";
 
 	# Cache
@@ -17,11 +16,7 @@ function wfSpecialLonelypages()
 		return;
 	}
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT cur_title FROM cur LEFT JOIN links ON " .
 	  "cur_id=l_to WHERE l_to IS NULL AND cur_namespace=0 AND " .

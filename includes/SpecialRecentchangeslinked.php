@@ -5,7 +5,7 @@ include_once( "$IP/SpecialRecentchanges.php" );
 function wfSpecialRecentchangeslinked()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $days, $limit, $target, $hideminor; # From query string
+	global $days, $target, $hideminor; # From query string
 	$fname = "wfSpecialRecentchangeslinked";
 
 	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
@@ -23,10 +23,8 @@ function wfSpecialRecentchangeslinked()
 		$days = $wgUser->getOption( "rcdays" );
 		if ( ! $days ) { $days = 7; }
 	}
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 100; }
-	}
+	$days = (int)$days;
+	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
 	$cutoff = date( "YmdHis", time() - ( $days * 86400 ) );
 
 	if ( ! isset( $hideminor ) ) {
@@ -52,8 +50,7 @@ function wfSpecialRecentchangeslinked()
 	  "ORDER BY inverse_timestamp LIMIT {$limit}";
 	$res = wfQuery( $sql, $fname );
 
-	$note = str_replace( "$1", $limit, wfMsg( "rcnote" ) );
-	$note = str_replace( "$2", $days, $note );
+	$note = wfMsg( "rcnote", $limit, $days );
 	$wgOut->addHTML( "<hr>\n{$note}\n<br>" );
 
 	$tu = "target=" . $nt->getPrefixedURL();

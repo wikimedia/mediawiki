@@ -2,13 +2,9 @@
 
 function wfSpecialListusers()
 {
-	global $wgUser, $wgOut, $wgLang, $offset, $limit;
+	global $wgUser, $wgOut, $wgLang;
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );

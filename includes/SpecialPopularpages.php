@@ -3,7 +3,6 @@
 function wfSpecialPopularpages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialPopularpages";
 
 	global $wgMiserMode;
@@ -12,11 +11,7 @@ function wfSpecialPopularpages()
 		return;
 	}
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$sql = "SELECT DISTINCT cur_title, cur_counter FROM cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .
@@ -34,7 +29,7 @@ function wfSpecialPopularpages()
 
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
 	while ( $obj = wfFetchObject( $res ) ) {
-		$nv = str_replace( "$1", $obj->cur_counter, wfMsg( "nviews" ) );
+		$nv = wfMsg( "nviews", $obj->cur_counter );
 		$link = $sk->makeKnownLink( $obj->cur_title, "" );
 		$s .= "<li>{$link} ({$nv})</li>\n";
 	}

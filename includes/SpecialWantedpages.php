@@ -5,7 +5,6 @@ include_once ( "LogPage.php" ) ;
 function wfSpecialWantedpages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialWantedpages";
 
 	# Cache
@@ -20,11 +19,7 @@ function wfSpecialWantedpages()
 		return;
 	}
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
 	$cache = "" ; # To be saved, eventually
 

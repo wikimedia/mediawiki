@@ -3,19 +3,10 @@
 function wfSpecialNewpages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialNewpages";
 
-	if ( ! $limit ) {
-		$limit = $wgUser->getOption( "rclimit" );
-		if ( ! $limit ) { $limit = 50; }
-	}
-	if ( ! $offset ) { $offset = 0; }
+	list( $limit, $offset ) = wfCheckLimits();
 
-#	$sql = "SELECT cur_title,cur_user,cur_user_text,cur_comment," .
-#	  "cur_timestamp FROM cur " .
-#	  "WHERE cur_is_new=1 AND cur_namespace=0 AND cur_is_redirect=0 " .
-#	  " ORDER BY cur_timestamp DESC LIMIT {$offset}, {$limit}";
 	$sql = "SELECT rc_title AS cur_title,rc_user AS cur_user,rc_user_text AS cur_user_text,cur_comment," .
 	  "rc_timestamp AS cur_timestamp,length(cur_text) as cur_length FROM recentchanges,cur " .
 	  "WHERE rc_cur_id=cur_id AND rc_new=1 AND rc_namespace=0 AND cur_text NOT LIKE '#REDIRECT%' " .

@@ -33,6 +33,7 @@ $wgDBsqluser		= "sqluser";
 $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
+$wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 
 # Language settings
 #
@@ -44,6 +45,7 @@ $wgOutputEncoding	= "ISO-8859-1";
 $wgEditEncoding		= "";
 $wgDocType          = "-//W3C//DTD HTML 4.01 Transitional//EN";
 $wgAmericanDates = false; 	# Enable for English module to print dates
+							# as eg 'May 12' instead of '12 May'
 $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
 
