@@ -17,13 +17,6 @@ class LanguageZh extends LanguageZh_cn {
 		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
 		global $wgDisableLangConversion, $wgUser;
         
-		if( $wgUser->getID()!=0 ) {
-			/* allow user to diable conversion */
-			if( $wgDisableLangConversion == false &&
-				$wgUser->getOption('nolangconversion') == 1)
-				$wgDisableLangConversion = true;
-		}		
-
 		if($wgUseZhdaemon) {
 			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
 			if(!$this->mZhClient->isconnected())
@@ -57,7 +50,7 @@ class LanguageZh extends LanguageZh_cn {
 
 		if( !$this->mZhLanguageCode ) {
 			// see if some zh- variant is set in the http header,
-			$this->mZhLanguageCode="zh-cn";
+			$this->mZhLanguageCode="zh";
 			$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 			$zh = strstr($header, 'zh-');
 			if($zh) {
@@ -83,6 +76,8 @@ class LanguageZh extends LanguageZh_cn {
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
+		if($toVariant == 'zh')
+			return $text;
 		$fname="zhautoConvert";
 		wfProfileIn( $fname );
 		$t = $this->mZhClient->convert($text, $toVariant);
@@ -111,6 +106,7 @@ class LanguageZh extends LanguageZh_cn {
 	# -{text}- in which case no conversion should take place for text
 	function convert( $text , $isTitle=false) {
 		global $wgDisableLangConversion;
+
 		if($wgDisableLangConversion)
 			return $text; 
 		
@@ -122,10 +118,14 @@ class LanguageZh extends LanguageZh_cn {
 		if( $isTitle ) {
 			global $wgRequest;
 			$isredir = $wgRequest->getText( 'redirect', 'yes' );
-			if ( $isredir == 'no')
+			$action = $wgRequest->getText( 'action' );
+			if ( $isredir == 'no' || $action == 'edit' ) {
 				return $text;
-			else
-				return $this->convertTitle($text);
+			}
+			else {
+				$text = $this->convertTitle($text);
+				return $text;
+			}
 		}
 
 		$plang = $this->getPreferredVariant();
@@ -134,7 +134,6 @@ class LanguageZh extends LanguageZh_cn {
 		$tarray = explode("-{", $text);
 		$tfirst = array_shift($tarray);
 		$text = $this->autoConvert($tfirst);
-		
 		foreach($tarray as $txt) {
 			$marked = explode("}-", $txt);
 			
@@ -188,11 +187,12 @@ class LanguageZh extends LanguageZh_cn {
 	}
 
 	function getVariants() {
-		return array("zh-cn", "zh-tw", "zh-sg", "zh-hk");
+		return array("zh", "zh-cn", "zh-tw", "zh-sg", "zh-hk");
 	}
 
 	function getVariantFallback($v) {
 		switch ($v) {
+		case 'zh': return 'zh-cn'; break;
 		case 'zh-cn': return 'zh-sg'; break;
 		case 'zh-sg': return 'zh-cn'; break;
 		case 'zh-tw': return 'zh-hk'; break;
@@ -250,8 +250,7 @@ class LanguageZh extends LanguageZh_cn {
 	function getExtraHashOptions() {
 		global $wgUser;
 		$variant = $this->getPreferredVariant();
-		$noconvert = $wgUser->getOption( 'nolangconversion' );
-		return '!' . $variant . '!' . $noconvert;
+		return '!' . $variant ;
 	}
 }
 ?>

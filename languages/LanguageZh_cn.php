@@ -147,7 +147,6 @@ require_once( "LanguageUtf8.php" );
 "tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
 "tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
 "tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
-"tog-nolangconversion" => "不进行繁简体转换", /* "disable language conversion" */
 # Dates
 
 'sunday' => "星期日",
@@ -1009,6 +1008,7 @@ email address to them, and it can be used to send you a new password if you forg
 'variantname-zh-tw' => '台湾繁体',
 'variantname-zh-hk' => '香港繁体',
 'variantname-zh-sg' => '新加坡简体',
+'variantname-zh' => '不转换',
 
 );
 

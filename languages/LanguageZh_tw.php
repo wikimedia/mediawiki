@@ -144,7 +144,7 @@ require_once( "LanguageZh_cn.php" );
 	"tog-watchdefault" => "監視新的以及更改過的文章",/* "Watch new and modified articles", */
 	"tog-minordefault" => "細微編輯為默認設置",/* "Mark all edits minor by default", */
 	"tog-previewontop" => "在編輯框上方顯示預覽", /* "Show preview before edit box and not after it" */
-"tog-nolangconversion" => "不進行繁簡體轉換", /* "disable language conversion" */
+
 
 
 # Bits of text used by many pages:
