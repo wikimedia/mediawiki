@@ -200,6 +200,7 @@ pre {
     border: 1px dashed #2f6fab;
     color: Black;
     background-color: #f9f9f9;
+    line-height: 1.1em;
 }
 
 
@@ -868,4 +869,3 @@ fieldset.operaprefsection { margin-left: 15em }
 * > html #footer {
     margin-left: 13.2em;
 }
-
