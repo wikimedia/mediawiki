@@ -33,21 +33,18 @@ class LanguageZh extends LanguageUtf8 {
         if($this->mZhLanguageCode)
             return $this->mZhLanguageCode;
 
-        /* get language variant preference for logged in users */
+        // get language variant preference for logged in users 
         if($wgUser->getID()!=0) {
             $this->mZhLanguageCode = $wgUser->getOption('variant');
         }
-        else { // see if it is in the http header, otherwise default to zh_cn
+        else {
+            // see if some zh- variant is set in the http header,
             $this->mZhLanguageCode="zh-cn";
-            $value = $_SERVER["HTTP_ACCEPT_LANGUAGE"];
-            $zh = explode("zh-", $value);
-            array_shift($zh);
-            $l = array_shift($zh);
-            if($l != NULL) {
-                $this->mZhLanguageCode = "zh-".strtolower(substr($l,0,2));
+            $header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
+            $zh = strstr($header, 'zh-');
+            if($zh) {
+                $this->mZhLanguageCode = substr($zh,0,5);
             }
-            // also set the variant option of anons
-            $wgUser->setOption('variant', $this->mZhLanguageCode);
         }
         return $this->mZhLanguageCode;
     }
@@ -65,53 +62,17 @@ class LanguageZh extends LanguageUtf8 {
 		return strtr($text, $wgZhTrad2Simp);
 	}
 	
-	function convert($text) {
+	function autoConvert($text) {
+        if($this->getPreferredVariant() == "zh-cn") {
+            return $this->trad2simp($text);
+        }
+        else {
+            return $this->simp2trad($text);
+        }
+    }
 
-		// no conversion if redirecting
-		if(substr($text,0,9) == "#REDIRECT") {
-			return $text;
-		}
-        
-		// determine the preferred language from the request header
-		$tolang = $this->getPreferredVariant();
-	
-		$ltext = explode("-{", $text);
-		$lfirst = array_shift($ltext);
-		
-		if($tolang == "zh-cn") {
-			$text = $this->trad2simp($lfirst);
-		}
-		else {
-			$text = $this->simp2trad($lfirst);
-		}
-		
-		foreach ($ltext as $txt) {
-			$a = explode("}-", $txt);
-			$b = explode("zh-", $a{0});
-			if($b{1}==NULL) {
-				$text = $text.$b{0};
-			}
-			else {
-				foreach ($b as $lang) {
-					if(substr($lang,0,2) == substr($tolang,-2)) {
-						$text = $text.substr($lang, 2);
-						break;
-					}
-				}
-			}
-			if($tolang == "zh-cn") {
-				$text = $text.$this->trad2simp($a{1});
-			}
-			else {
-				$text = $text.$this->simp2trad($a{1});
-			}
-		}
-
-		return $text;
-	}
-	
     function getVariants() {
-        return array("zh_cn", "zh_tw");
+        return array("zh-cn", "zh-tw");
     }
 
 
