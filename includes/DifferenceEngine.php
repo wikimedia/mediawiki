@@ -270,6 +270,9 @@ class DifferenceEngine {
 		} else {
 			$this->newRev =& Revision::newFromTitle( $wgTitle );
 		}
+		if( is_null( $this->newRev ) ) {
+			return false;
+		}
 		
 		if( $this->newRev->isCurrent() ) {
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
@@ -289,6 +292,9 @@ class DifferenceEngine {
 		} else {
 			$this->oldRev =& $this->newRev->getPrevious();
 			$this->mOldid = $this->oldRev->getId();
+		}
+		if( is_null( $this->oldRev ) ) {
+			return false;
 		}
 			
 		$this->mOldPage = $this->oldRev->getTitle();
