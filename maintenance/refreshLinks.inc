@@ -3,6 +3,7 @@
  * @todo document
  * @package MediaWiki
  * @subpackage Maintenance
+ * @version $Id$
  */
 
 /** */
@@ -47,6 +48,7 @@ function refreshLinks( $start ) {
 		
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );
+		$wgOut->clearHTML();
 
 		if ( $wgEnablePersistentLC ) {
 			$wgLinkCache->saveToLinkscc( $id, $dbw->strencode( $wgTitle->getPrefixedDBkey() ) );
