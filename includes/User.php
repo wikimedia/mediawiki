@@ -635,7 +635,8 @@ class User {
 			return true;
 		}
 		
-		static $groupRights = array(
+		global $wgWhitelistRead;
+		$groupRights = array(
 			'asksql'        => 'nobody',
 			'siteadmin'     => 'developer',
 			'userrights'    => 'bureaucrat',
@@ -646,7 +647,7 @@ class User {
 			'block'         => 'sysop',
 			'editinterface' => 'sysop',
 			'move'          => 'user',
-			'read'          => '*',
+			'read'          => empty( $wgWhitelistRead ) ? '*' : 'user',
 			'createaccount' => '*' );
 		
 		if( array_key_exists( $action, $groupRights ) ) {

@@ -120,6 +120,8 @@ If upgrading from an older release, see the file UPGRADING.
 * new user option for zh users to disable language conversion
 * Defer message cache initialization, shaving a few ms off file cache hits
 * Fixed Special:Allmessages when using table prefixes
+* (bug 996) Fix $wgWhitelistRead to work again
+
 
 === Caveats ===
 
