@@ -119,7 +119,7 @@
 	'na' => 'Nauru',		# Nauruan
 	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
-	'nds' => 'Platd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
+	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
 	'ng' => 'Ndonga',
 	'nl' => 'Nederlands',	# Dutch
