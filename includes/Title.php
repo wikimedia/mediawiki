@@ -1494,7 +1494,7 @@ class Title {
 			'comment' => $comment,
 			'text'    => $redirectText ) );
 		$revid = $redirectRevision->insertOn( $dbw );
-		$redirectArticle->updateRevisionOn( $dbw, $revid, $redirectText, 0 );
+		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Record in RC
@@ -1603,11 +1603,8 @@ class Title {
 			'comment' => $comment,
 			'text'    => $redirectText ) );
 		$revid = $redirectRevision->insertOn( $dbw );
-		$redirectArticle->updateRevisionOn( $dbw, $revid, $redirectText, 0 );
+		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
-
-		// attach revision to the new page
-		$dbw->update( 'revision', array('rev_page' => $newid), array('rev_id' => $revid), $fname);
 
 		# Record in RC
 		// Replaced by a log entry

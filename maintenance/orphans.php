@@ -182,7 +182,7 @@ function checkSeparation( $fix ) {
 					$maxRev = Revision::newFromId( $maxId );
 					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 					$article = new Article( $title );
-					$article->updateRevisionOn( $dbw, $maxId, $maxRev->getText() );
+					$article->updateRevisionOn( $dbw, $maxRev );
 				}
 			}
 		} else {
