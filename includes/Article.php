@@ -69,6 +69,9 @@ class Article {
 	  * @return string $text|false the text requested
 	*/
 	function getRevisionText( $row, $prefix = 'old_' ) {
+		$fname = 'Article::getRevisionText';
+		wfProfileIn( $fname );
+		
 		# Get data
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
@@ -111,6 +114,7 @@ class Article {
 			global $wgInputEncoding, $wgContLang;
 			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
 		}
+		wfProfileOut( $fname );
 		return $text;
 	}
 
