@@ -10,8 +10,7 @@ The program was written by Tomasz Wegrzanowski for use with MediaWiki;
 it's included as part of the MediaWiki package (http://wikipedia.sf.net)
 and is under the GPL license.
 
-Please report bugs at:
-http://sourceforge.net/tracker/?group_id=34373&atid=411192
+Please report bugs at: http://bugzilla.wikimedia.org/ (under "MediaWiki")
 
 == Setup ==
 
