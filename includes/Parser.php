@@ -38,7 +38,7 @@ define( 'UNIQ_PREFIX', 'NaodW29');
 define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
 define( 'HTTP_PROTOCOLS', 'http|https' );
 # Everything except bracket, space, or control characters
-define( 'EXT_LINK_URL_CLASS', '[^]<>\\x00-\\x20\\x7F]' );
+define( 'EXT_LINK_URL_CLASS', '[^]\\x00-\\x20\\x7F]' );
 # Including space
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
@@ -655,7 +655,7 @@ class Parser
 	 * @access private
 	 */
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
-        global $wgContLang;
+		global $wgContLang;
 
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
@@ -1026,8 +1026,11 @@ class Parser
 					$url = substr( $url, 0, -$numSepChars );
 				}
 
-				# Replace &amp; from obsolete syntax with &
-				$url = str_replace( '&amp;', '&', $url );
+				# Replace &amp; from obsolete syntax with &;
+				# undo escaping of '<' and '>' by removeHTMLtags(),
+				# to prevent double-escaping. All HTML entities will
+				# be escaped by makeExternalLink() or maybeMakeImageLink()
+				$url = str_replace( array('&amp;', '&lt;', '&gt;'), array('&', '<', '>'), $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeImageLink( $url );
@@ -1291,7 +1294,7 @@ class Parser
 				}
 			}
 
-            $text = $wgContLang->convert($text);			
+			$text = $wgContLang->convert($text);			
 
 			if( ( $nt->getPrefixedText() === $this->mTitle->getPrefixedText() ) &&
 			    ( strpos( $link, '#' ) === FALSE ) ) {
