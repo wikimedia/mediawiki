@@ -31,7 +31,6 @@ $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 $wgArticle = new Article($wgTitle);
 
 $action = strtolower( trim( $action ) );
-if ( "" == $action ) { $action = "view"; }
 if ($wgRequest->getVal( "printable" ) == "yes") {
 	$wgOut->setPrintable();
 }
