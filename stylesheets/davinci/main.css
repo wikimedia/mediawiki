@@ -638,6 +638,7 @@ li#personaltools-login{
     background: transparent url(user.gif) center left no-repeat;
     background-repeat: no-repeat;
     padding-left: 20px;
+    text-transform: none;
 }
 
 /*
