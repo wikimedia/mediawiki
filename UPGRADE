@@ -2,10 +2,10 @@
 
 Should generally go smoothly.
 
-Note that 1.3 betas prior to beta 6 included a potential vulnerability
-if PHP is configured with register_globals on and the includes directory
-is available. For general safety, turn register_globals *off* if you don't
-_really_ need it for another package.
+Note that the 1.3 beta releases included a potential vulnerability if PHP
+is configured with register_globals on and the includes directory is
+served to the web. For general safety, turn register_globals *off* if you
+don't _really_ need it for another package.
 
 If your hosting provider turns it on and you can't turn it off yourself,
 send them a kind note explaining that it can expose their servers and their
