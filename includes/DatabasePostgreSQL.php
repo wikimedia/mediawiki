@@ -60,6 +60,7 @@ class DatabasePgsql extends Database {
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
+		$this->mSchemas = array($wgDBschema,'public');
 		
 		$success = false;
 		
@@ -75,9 +76,9 @@ class DatabasePgsql extends Database {
 				wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 				wfDebug( $this->lastError()."\n" );
 			} else { 
+				$this->setSchema();
 				$this->mOpened = true;
 			}
-			$this->query("SET search_path = $wgDBschema,public");
 		}
 		return $this->mConn;
 	}
@@ -255,7 +256,7 @@ class DatabasePgsql extends Database {
 	}
 
 	function strencode( $s ) {
-		return pg_escape_string( $s );
+		return addslashes( $s );
 	}
 
 	/**
@@ -431,6 +432,13 @@ class DatabasePgsql extends Database {
 		$version = $row[0];
 		$this->freeResult( $res );
 		return $version;
+	}
+
+	function setSchema($schema=false) {
+		$schemas=$this->mSchemas;
+		if ($schema) { array_unshift($schemas,$schema); }
+		$searchpath=$this->makeList($schemas,LIST_NAMES);
+		$this->query("SET search_path = $searchpath");
 	}
 }
 
