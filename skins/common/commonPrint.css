@@ -73,7 +73,7 @@ div.tright {
 div.tleft {
     float: left;
     margin-right:0.5em;
-    border: 0.5em 1.4em 0.8em 0;
+    border-width: 0.5em 1.4em 0.8em 0;
 }
 
 /* table standards */
@@ -203,7 +203,7 @@ div.townBox {
     float:right;
     background:White;
     margin-left:1em;
-    border: 1px solid Grey;
+    border: 1px solid gray;
     padding:0.3em;
     width: 200px;
     overflow: hidden;

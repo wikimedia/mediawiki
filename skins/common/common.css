@@ -199,7 +199,7 @@ div.townBox {
     float:right;
     background:White;
     margin-left:1em;
-    border: 1px solid Grey;
+    border: 1px solid gray;
     padding:0.3em;
     width: 200px;
     overflow: hidden;
@@ -249,7 +249,7 @@ span.updatedmarker {
 	background-color:#00FF00;
 }
 span.newpageletter {
-	font-weight:bold
+	font-weight:bold;
 	color:black;
 	background-color:yellow;
 }
