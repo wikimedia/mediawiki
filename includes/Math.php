@@ -152,7 +152,7 @@ class MathRenderer {
 		$dbr =& wfGetDB( DB_READ );
 		$rpage = $dbr->getArray( 'math', 
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
-			array( 'math_inputhash' => pack("H32", $this->md5), # Binary packed, not hex
+			array( 'math_inputhash' => pack("H32", $this->md5)), # Binary packed, not hex
 			$fname
 		);
 
