@@ -358,7 +358,7 @@ $wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();
 
 # Placeholders in case of DB error
-$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+$wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
 
 wfProfileOut( $fname.'-misc2' );
