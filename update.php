@@ -11,18 +11,6 @@ if( !ini_get( "register_globals" ) ) {
 	echo "WARNING: register_globals is not on; MediaWiki currently relies on this option.\n\n";
 }
 
-/*
-
-  TODO: Links cache will be very unhappy without a table like this //e23
-
-	CREATE TABLE linkscc (lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
-                             lcc_title VARCHAR(255) NOT NULL UNIQUE KEY,
-                             lcc_cacheobj MEDIUMBLOB NOT NULL);
-
-*/
-
-
-
 # Update already-installed software
 #
 
@@ -75,6 +63,25 @@ if ( count( $wgAlterSpecs ) ) {
 	}
 	mysql_close( $rconn );
 }
+
+{ // Create linkscc if necessary
+        $sql = "CREATE TABLE IF NOT EXISTS linkscc (".
+               "  lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY, ".
+               "  lcc_title VARCHAR(255) NOT NULL UNIQUE KEY,".
+               "  lcc_cacheobj MEDIUMBLOB NOT NULL)";
+        // Should it be created as InnoDB?
+        $rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
+        mysql_select_db( $wgDBname );
+        print "\n$sql;\n";
+        $res = mysql_query( $sql, $rconn );
+        if ( $res === false ) {
+		print "MySQL error: " . mysql_error( $rconn ) . "\n";
+        }
+        mysql_close( $rconn );
+}
+
+
+
 
 
 #
