@@ -1445,6 +1445,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
 'setbureaucratflag' => 'Set bureaucrat flag',
 'bureaucratlog'		=> 'Bureaucrat_log',
+'rightslogtext'		=> 'This is a log of changes to user rights.',
 'bureaucratlogentry'	=> "Rights for user \"$1\" set \"$2\"",
 'rights'			=> 'Rights:',
 'set_user_rights'	=> 'Set user rights',
