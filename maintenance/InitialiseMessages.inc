@@ -111,16 +111,11 @@ function initialiseMessages( $overwrite = false) {
 	}
 	print "Done\n";
 	print "Writing...";
-<<<<<<< InitialiseMessages.inc
-	print $sql;
-	wfQuery( $sql, DB_WRITE, $fname );
-=======
 
 	if ( !$first ) {
 		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
->>>>>>> 1.7
 	print "Done\n";
 
 	$navText .= "</table>";
