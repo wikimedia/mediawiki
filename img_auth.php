@@ -1,16 +1,18 @@
 <?php
-# Image download authorisation script
-# To use, in LocalSettings.php set $wgUploadDirectory to point to a non-public directory, and
-# $wgUploadPath to point to this file. Also set $wgWhitelistRead to an array of pages you want
-# everyone to be able to access. Your server must support PATH_INFO, CGI-based configurations
-# generally don't. 
-
+/**
+ * Image download authorisation script
+ * 
+ * To use, in LocalSettings.php set $wgUploadDirectory to point to a non-public
+ * directory, and $wgUploadPath to point to this file. Also set $wgWhitelistRead
+ * to an array of pages you want everyone to be able to access. Your server must
+ * support PATH_INFO, CGI-based configurations generally don't. 
+ */
 # Valid web server entry point, enable includes
-define( "MEDIAWIKI", true );
+define( 'MEDIAWIKI', true );
 
-require_once( "includes/Defines.php" );
-require_once( "./LocalSettings.php" );
-require_once( "includes/Setup.php" );
+require_once( 'includes/Defines.php' );
+require_once( './LocalSettings.php' );
+require_once( 'includes/Setup.php' );
 
 if( !isset( $_SERVER['PATH_INFO'] ) ) {
 	wfForbidden();
@@ -40,9 +42,9 @@ if( is_dir( $filename ) ) {
 # Write file
 $type = wfGetType( $filename );
 if ( $type ) {
-	header("Content-type: $type");
+	header('Content-type: '.$type);
 } else {
-	header("Content-type: application/x-wiki");
+	header('Content-type: application/x-wiki');
 }
 
 readfile( $filename );
@@ -175,7 +177,7 @@ END_STRING;
 }
 
 function wfForbidden() {
-	header( "HTTP/1.0 403 Forbidden" );
+	header( 'HTTP/1.0 403 Forbidden' );
 	print 
 "<html><body>
 <h1>Access denied</h1>
