@@ -48,6 +48,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	
 	# SELECT all existing messages
 	foreach ( $sortedArray as $key => $enMsg ) {
+		if ( $key == "" ) {
+			continue; // Skip odd members
+		}
 		if ( $first ) {
 			$first = false;
 		} else {
@@ -87,6 +90,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	
 	# Process each message
 	foreach ( $sortedArray as $key => $enMsg ) {
+		if ( $key == "" ) {
+			continue; // Skip odd members
+		}
 		# Get message text
 		if ( $messageArray ) {
 			$message = $enMsg;
