@@ -38,6 +38,14 @@ class RawPage {
 		if( !$this->mTitle ) return '';
 		$t = wfStrencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
+		# special case
+		if($ns == NS_MEDIAWIKI) {
+			$rawtext = wfMsg($t);
+			if($wgInputEncoding != $this->mCharset)
+			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
+			return $rawtext;
+		}
+		# else get it from the DB
 		if(!empty($this->mOldId)) {
 			$sql = "SELECT old_text as text,old_timestamp as timestamp,old_user as user,old_flags as flags FROM old " .
 			"WHERE old_id={$this->mOldId}";
