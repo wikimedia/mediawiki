@@ -80,8 +80,6 @@ require_once( 'HistoryBlob.php' );
 	
 $wgRequest = new WebRequest();
 
-
-
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 global $wgUser, $wgLang, $wgContLang, $wgOut, $wgTitle;

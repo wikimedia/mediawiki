@@ -681,6 +681,7 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
+		global $wgEnotif;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
@@ -806,6 +807,10 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
+
+		include_once( "UserMailer.php" );
+		$wgEnotif = new EmailNotification ();
+		$wgEnotif->Clear( $wgUser->getID(), $this->mTitle->getDBkey(), $this->mTitle->getNamespace() );
 	}
 
 	/**
@@ -878,9 +883,10 @@ class Article {
 			array(  'cur_namespace' => $talkns, 'cur_title' => $ttl ), $fname );
 
 		# standard deferred updates
-		$this->editUpdates( $text );
+		$this->editUpdates( $text, $summary, $isminor, $now );
 
-		$this->showArticle( $text, wfMsg( 'newarticle' ) );
+		$oldid = 0; # new article
+		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
 	}
 
 
@@ -1094,7 +1100,7 @@ class Article {
 			}
 		}
 		# standard deferred updates
-		$this->editUpdates( $text );
+		$this->editUpdates( $text, $summary, $minor, $now );
 
 
 		$urls = array();
@@ -1117,7 +1123,7 @@ class Article {
 			$u->doUpdate();
 		}
 
-		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor );
+		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $oldid );
 		}
 		return $good;
 	}
@@ -1126,8 +1132,8 @@ class Article {
 	 * After we've either updated or inserted the article, update
 	 * the link tables and redirect to the new page.
 	 */
-	function showArticle( $text, $subtitle , $sectionanchor = '' ) {
-		global $wgOut, $wgUser, $wgLinkCache;
+	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
+		global $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
 
 		$wgLinkCache = new LinkCache();
 		# Select for update
@@ -1149,6 +1155,13 @@ class Article {
 		else
 			$r = '';
 		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
+
+		# this call would better fit into RecentChange::notifyEdit and RecentChange::notifyNew .
+		# this will be improved later (to-do)
+
+		include_once( "UserMailer.php" );
+		$wgEnotif = new EmailNotification ();
+		$wgEnotif->NotifyOnPageChange( $wgUser->getID(), $this->mTitle->getDBkey(), $this->mTitle->getNamespace(),$now, $summary, $me2, $oldid );
 	}
 
 	/**
@@ -1857,12 +1870,10 @@ class Article {
 		# talk page
 
 		global $wgUser;
-		
 		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-			$this->mTitle->getText() == $wgUser->getName())
-		{
-			$wgUser->setNewtalk(0);
-			$wgUser->saveNewtalk();
+			$this->mTitle->getText() == $wgUser->getName()) {
+			require_once( 'UserTalkUpdate.php' );
+			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
 		}
 	}
 
@@ -1872,7 +1883,7 @@ class Article {
 	 * @private
 	 * @param string $text
 	 */
-	function editUpdates( $text ) {
+	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange) {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser;
 
@@ -1897,15 +1908,13 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			# If this is another user's talk page, save a
-			# newtalk notification for them
+			# If this is another user's talk page,
+			# create a watchlist entry for this page
 			
 			if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-				$shortTitle != $wgUser->getName())
-			{
-				$other = User::newFromName($shortTitle);
-				$other->setNewtalk(1);
-				$other->saveNewtalk();
+				$shortTitle != $wgUser->getName()) {
+				require_once( 'UserTalkUpdate.php' );
+				$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle, $summary, $minoredit, $timestamp_of_pagechange);
 			}
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {

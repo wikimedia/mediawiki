@@ -79,6 +79,10 @@ class ChangesList {
 		if ( $rcObj->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
 
+		if ($rcObj->notificationtimestamp) {
+			$r .= wfMsg( 'updatedmarker' );
+		}
+
 		# Diff
 		$r .= ' (' ;
 		$r .= $rcObj->difflink ;
@@ -95,6 +99,10 @@ class ChangesList {
 		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->skin->formatComment($rc_comment, $rcObj->getTitle());
 			$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' );
+		}
+
+		if ($rcObj->numberofWatchingusers > 0) {
+			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rcObj->numberofWatchingusers));
 		}
 
 		$r .= "<br />\n" ;
@@ -158,9 +166,9 @@ class ChangesList {
 		else $r .= '&nbsp;' ;
 		$r .= '&nbsp;' ; # Minor
 		if ( $unpatrolled ) {
-			$r .= "!";
+			$r .= '!';
 		} else {
-			$r .= "&nbsp;";
+			$r .= '&nbsp;';
 		}
 
 		# Timestamp
@@ -171,6 +179,10 @@ class ChangesList {
 		$link = $block[0]->link ;
 		if ( $block[0]->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
+
+		if ($block[0]->notificationtimestamp) {
+			$r .= wfMsg( 'updatedmarker' );
+		}
 
 		$curIdEq = 'curid=' . $block[0]->mAttribs['rc_cur_id'];
 		if ( $block[0]->mAttribs['rc_type'] != RC_LOG ) {
@@ -187,6 +199,10 @@ class ChangesList {
 		}
 
 		$r .= $users ;
+
+		if ($block[0]->numberofWatchingusers > 0) {
+			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($block[0]->numberofWatchingusers));
+		}
 		$r .= "<br />\n" ;
 
 		# Sub-entries
@@ -210,9 +226,9 @@ class ChangesList {
 			}
 
 			if ( $rcObj->unpatrolled ) {
-				$r .= "!";
+				$r .= '!';
 			} else {
-				$r .= "&nbsp;";
+				$r .= '&nbsp;';
 			}
 
 			$r .= '&nbsp;</tt>' ;
@@ -271,7 +287,7 @@ class ChangesList {
 	 * Either returns the line, or caches it for later use
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgUser ;
+		global $wgUser;
 		$usenew = $wgUser->getOption( 'usenewrc' );
 		if ( $usenew )
 			$line = $this->recentChangesLineNew ( $rc, $watched ) ;
@@ -279,6 +295,7 @@ class ChangesList {
 			$line = $this->recentChangesLineOld ( $rc, $watched ) ;
 		return $line ;
 	}
+
 
 	function recentChangesLineOld( &$rc, $watched = false ) {
 		$fname = 'Skin::recentChangesLineOld';
@@ -350,9 +367,9 @@ class ChangesList {
 			$s .= ') . . ';
 
 			# M, N and ! (minor, new and unpatrolled)
-			if ( $rc_minor ) { $s .= ' <span class="minor">'.$message["minoreditletter"].'</span>'; }
-			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.$message["newpageletter"].'</span>'; }
-			if ( $unpatrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
+			if ( $rc_minor ) { $s .= ' <span class="minoreditletter">'.$message["minoreditletter"].'</span>'; }
+			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpageletter">'.$message["newpageletter"].'</span>'; }
+			if ( !$rc_patrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
 
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
@@ -365,6 +382,11 @@ class ChangesList {
 			if ( $watched ) {
 				$articleLink = '<strong>'.$articleLink.'</strong>';
 			}
+
+			if ($rc->notificationtimestamp) {
+				$articleLink .= wfMsg( 'updatedmarker' );
+			}
+
 			$s .= ' '.$articleLink;
 			wfProfileOut("$fname-page");
 		}
@@ -412,6 +434,11 @@ class ChangesList {
 			$rc_comment = $this->skin->formatComment($rc_comment,$rc->getTitle());
 			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
+
+		if ($rc->numberofWatchingusers > 0) {
+			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
+		}
+
 		$s .= "</li>\n";
 
 		wfProfileOut( "$fname-rest" );
@@ -477,6 +504,8 @@ class ChangesList {
 		$rc->watched = $watched ;
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
+		$rc->notificationtimestamp = $baseRC->notificationtimestamp;
+		$rc->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
 		# Make "cur" and "diff" links
 		$titleObj = $rc->getTitle();

@@ -142,7 +142,7 @@ class UserlevelsForm extends HTMLForm {
 
 	/**
 	 * The entry form
-	 * It allow a user to select or eventually add a group as well as looking up
+	 * It allows a user to select or eventually add a group as well as looking up
 	 * for a username.
 	 */
 	function switchForm() {

@@ -82,6 +82,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 			  "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
 		  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
 	}
+
 	$res = $dbr->query( $sql, $fname );
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");

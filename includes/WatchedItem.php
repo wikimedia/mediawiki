@@ -17,7 +17,12 @@ class WatchedItem {
 		$wl->mUser =& $user;
 		$wl->mTitle =& $title;
 		$wl->id = $user->getId();
-		$wl->ns = $title->getNamespace() & ~1;
+# Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
+# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
+# The change results in talk-pages not automatically included in watchlists, when their parent page is included
+#		$wl->ns = $title->getNamespace() & ~1;
+		$wl->ns = $title->getNamespace();
+
 		$wl->ti = $title->getDBkey();
 		return $wl;
 	}
@@ -57,11 +62,23 @@ class WatchedItem {
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title')),
+		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
 		  array( 
 		    'wl_user' => $this->id,
-			'wl_namespace' => $this->ns,
+			'wl_namespace' => ($this->ns & ~1),
 			'wl_title' => $this->ti,
+			'wl_notificationtimestamp' => '0'
+		  ), $fname );
+
+		# the following code compensates the new behaviour, introduced by the enotif patch,
+		# that every single watched page needs now to be listed in watchlist
+		# namespace:page and namespace_talk:page need separate entries: create them
+		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
+		  array(
+			'wl_user' => $this->id,
+			'wl_namespace' => ($this->ns | 1 ),
+			'wl_title' => $this->ti,
+			'wl_notificationtimestamp' => '0'
 		  ), $fname );
 
 		global $wgMemc;
@@ -76,7 +93,18 @@ class WatchedItem {
 		$dbw->delete( 'watchlist', 
 			array( 
 				'wl_user' => $this->id, 
-				'wl_namespace' => $this->ns,  
+				'wl_namespace' => ($this->ns & ~1),
+				'wl_title' => $this->ti
+			), $fname
+		);
+
+		# the following code compensates the new behaviour, introduced by the enotif patch,
+		# that every single watched page needs now to be listed in watchlist
+		# namespace:page and namespace_talk:page had separate entries: clear them
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $this->id,
+				'wl_namespace' => ($this->ns | 1),
 				'wl_title' => $this->ti
 			), $fname
 		);

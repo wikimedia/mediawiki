@@ -40,6 +40,10 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	lastTimestamp   timestamp of previous entry, used in WHERE clause during update
  * 	lang            the interwiki prefix, automatically set in save()
  * 
+ * temporary:		not stored in the database
+ *      notificationtimestamp
+ *      numberofWatchingusers
+ *
  * @todo document functions and variables
  * @package MediaWiki
  */
@@ -61,6 +65,8 @@ class RecentChange
 	{
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row );
+		$rc->notificationtimestamp = false;
+		$rc->numberofWatchingusers = false;
 		return $rc;
 	}
 

@@ -797,8 +797,8 @@ class Skin {
 	}
 
 	function pageStats() {
-		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax;
+		global $wgOut, $wgLang, $wgArticle, $wgRequest, $wgUser;
+		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax, $wgTitle, $wgPageShowWatchingUsers;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ''; }
@@ -818,6 +818,17 @@ class Skin {
 		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 		} else {
 		    $s .= $this->lastModified();
+		}
+
+		if ($wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			extract( $dbr->tableNames( 'watchlist' ) );
+			$sql = "SELECT COUNT(*) AS n FROM $watchlist
+				WHERE wl_title='" . $dbr->strencode($wgTitle->getDBKey()) .
+				"' AND  wl_namespace=" . $wgTitle->getNamespace() ;
+			$res = $dbr->query( $sql, 'Skin::pageStats');
+			$x = $dbr->fetchObject( $res );
+			$s .= ' ' . wfMsg('number_of_watching_users_pageview', $x->n );
 		}
 
 		return $s . ' ' .  $this->getCopyright();
@@ -1101,7 +1112,10 @@ class Skin {
 		return $wgEnableEmail &&
 		       $wgEnableUserEmail &&
 		       0 != $wgUser->getID() && # show only to signed in users
-		       0 != $id; # can only email non-anons
+		       0 != $id; # we can only email to non-anons ..
+#		       '' != $id->getEmail() && # who must have an email address stored ..
+#		       0 != $id->getEmailauthenticationtimestamp() && # .. which is authenticated
+#		       1 != $wgUser->getOption('disablemail'); # and not disabled
 	}
 	
 	function emailUserLink() {
@@ -1927,7 +1941,6 @@ class Skin {
 		}
 		return '<a href="'.$url.'"'.$style.'>'.$text.'</a>';
 	}
-
 
 	/**
 	 * This function is called by all recent changes variants, by the page history,

@@ -165,6 +165,14 @@ $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 $wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
 
 /**
+ * dummy address which should be accepted during mail send action
+ * It might be necessay to adapt the address or to set it equal
+ * to the $wgEmergencyContact address
+ */
+#$wgNoReplyAddress	= $wgEmergencyContact;
+$wgNoReplyAddress	= 'reply@not.possible';
+
+/**
  * Set to true to enable the e-mail basic features:
  * Password reminders, etc. If sending e-mail on your
  * server doesn't work, you might want to disable this.
@@ -495,9 +503,63 @@ $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 # Requires zlib support enabled in PHP.
 $wgUseGzip = false;
 
+/*	T. Gries Aug.-Nov.2004
+
+	THESE ARE MY SUGGESTED FIRST TEST global admin options FOR ENOTIF.
+	Attention: the defaults might differ from standard media wiki distributions.
+
+	However, I suggest to start with these which allow to evaluate almost all new features quickly.
+	user preferences default options SEE AS USUAL /languages/Language.php
+*/
+
+########################### CAUTION ################# ATTENTION ###############################################
+#
+# T. Gries Aug.-Dec. 2004
+#
+# SECTION FOR DEVELOPERS and SERVER ADMINS
+#
+# HERE COME TWO OPTIONS, WHICH ALLOW ACOUSTIC SIGNALS on the server beeper WHEN AN EMAIL IS ACTUALLY SENT OUT.
+# YOU MIGHT WISH TO ENABLE THESE, BUT BE CAREFUL, AS A system() CALL IS PERFORMED using the shown parameters.
+# I FIND IT VERY USEFUL, but this is a very personal comment. T. Gries
+#
+# The system speaker beeps when the wiki actually sends out a notification mail (safe default = disabled).
+#
+# The following string is passed as parameter to a system() call in UserMailer.php
+# The system() calls call - in the shown example - the beep 1.2.2 program (LINUX) with frequency f [Hz] and length l [msec]
+#
+# Beep 1.2.2 can be found on http://freshmeat.net/projects/beep/ and I like it.
+#
+########################### SAFE #################### SAFE #####################################################
+$wgEmailNotificationSystembeep	= ''; # empty string disables this feature; this appears to be safe
+######ENTER#AT#YOUR#OWN#RISK###CAUTION###### ATTENTION ###################################################
+#$wgEmailNotificationSystembeep	= '/usr/bin/beep -f 4000 -l 20 &';	# a system() call with exactly this string as parameter is executed when such a mail is sent
+########################### CAUTION ################# ATTENTION ###############################################
+
+# For email notification on page changes T.Gries/M.Arndt 01.11.2004
+$wgPasswordSender				= $wgEmergencyContact;
+$wgEmailNotificationMailsSentFromPageEditor	= false; # false: Enotif mails appear to come from $wgEmergencyContact
+#							 # true: from PageEditor if s/he opted-in
+
+# If set to true, users get a corresponding option in their preferences and can choose to enable or disable at their discretion
+# If set to false, the corresponding input form on the user preference page is suppressed
+# It call this to be a "user-preferences-option (UPO)"
+$wgEmailAuthentication				= true; # UPO (if this is set to false, texts referring to authentication are suppressed)
+$wgEmailNotificationForWatchlistPages		= true; # UPO
+$wgEmailNotificationForUserTalkPages		= true;	# UPO
+$wgEmailNotificationRevealPageEditorAddress	= true;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
+$wgEmailNotificationForMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
+#							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
+
+# Show recent changes in UseMod style, i.e. only the recent change of a page is listed
+$wgRCUseModStyle 				= true; # UPO
+# Show watching users in recent changes, watchlist and page history views
+$wgRCShowWatchingUsers 				= true; # UPO
+# Show watching users in Page views
+$wgPageShowWatchingUsers 			= true;
+# Show "Updated (since my last visit)" marker in RC view, watchlist and history view for watched pages with new changes
+$wgShowUpdatedMarker 				= true; # UPO
 
 $wgCookieExpiration = 2592000;
-
 
 # Squid-related settings
 #
@@ -743,10 +805,10 @@ $wgDefaultSkin = 'monobook';
 $wgDefaultUserOptions = array();
 
 # Whether or not to allow real name fields. Defaults to true.
+# If set to false, the corresponding input forms on the log-in page and on the user preference page is suppressed.
 $wgAllowRealName = true;
 
 # Use XML parser?
-
 $wgUseXMLparser = false ;
 
 # Extensions

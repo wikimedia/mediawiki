@@ -684,10 +684,13 @@ Alle Zeiten sind UTC.
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 "successfulupload" => "Erfolgreich hochgeladen",
-"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen. Bitte
-verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die
-Informationen über die Datei aus, insbesondere seine Herkunft, von wem und wann es
-gemacht wurde und besondere Angaben zum Copyright, falls notwendig.",
+"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen.
+Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die Informationen über die Datei
+ aus, insbesondere seine Herkunft, von wem und wann es
+ gemacht wurde und besondere Angaben zum Copyright, falls notwendig.
+ Falls es sich um ein Bild handelte, so können Sie mit
+ <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild
+ auf der Seite erzeugen lassen.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
 "uploadedimage" => "\"$1\" hochgeladen",
