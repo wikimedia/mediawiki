@@ -42,7 +42,7 @@ class EditPage {
 			if( isset( $wpSave ) or isset( $wpPreview ) ) {
 				$this->editForm( "preview" );
 			} else {
-				$wgOut->readOnlyPage();
+				$wgOut->readOnlyPage( $this->mArticle->getContent() );
 			}
 			return;
 		}

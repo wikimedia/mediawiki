@@ -488,7 +488,7 @@ class OutputPage {
 		exit();
 	}
 
-	function readOnlyPage()
+	function readOnlyPage( $source = "" )
 	{
 		global $wgUser, $wgReadOnlyFile;
 
@@ -498,6 +498,14 @@ class OutputPage {
 
 		$reason = implode( "", file( $wgReadOnlyFile ) );
 		$text = str_replace( "$1", $reason, wfMsg( "readonlytext" ) );
+		
+		if($source) {
+			$rows = $wgUser->getOption( "rows" );
+			$cols = $wgUser->getOption( "cols" );
+			$text .= "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
+				htmlspecialchars( $source ) . "\n</textarea>";
+		}
+		
 		$this->addHTML( $text );
 		$this->returnToMain( false );
 	}
