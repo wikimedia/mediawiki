@@ -67,7 +67,7 @@ class ImagePage extends Article {
 		$line = $this->img->nextHistoryLine();
 
 		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
-		  $this->mTitle->getText(),  $line->img_user,
+		  $this->mTitle->getDBkey(),  $line->img_user,
 		  $line->img_user_text, $line->img_size, $line->img_description );
 
 		while ( $line = $this->img->nextHistoryLine() ) {
