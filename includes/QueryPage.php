@@ -140,7 +140,7 @@ class QueryPage {
 			return new FeedItem(
 				$title->getText(),
 				$this->feedItemDesc( $row ),
-				$title->getURL( "", false, true ) ,
+				$title->getFullURL(),
 				$date);
 		} else {
 			return NULL;

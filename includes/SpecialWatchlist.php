@@ -93,7 +93,7 @@ function wfSpecialWatchlist()
 			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
 		
 		$wgOut->addHTML( "<form action='" .
-			$specialTitle->getURL( "action=submit", true ) .
+			$specialTitle->escapeLocalUrl( "action=submit" ) .
 			"' method='post'>\n" .
 			"<ul>\n" );
 		$sql = "SELECT wl_namespace,wl_title FROM watchlist WHERE wl_user=$uid";
@@ -135,7 +135,7 @@ function wfSpecialWatchlist()
 	
 	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
-		$specialTitle->getURL( "magic=yes", true ) ) . "</i><br>\n" );
+		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br>\n" );
 	 
 
 	$sql = "SELECT

@@ -238,7 +238,7 @@ function wfSpecialPreferences()
 	$togs = $wgLang->getUserToggles();
 
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Preferences" );
-	$action = $titleObj->getURL( "", true );
+	$action = $titleObj->escapeLocalURL();
 
 	$qb = wfMsg( "qbsettings" );
 	$cp = wfMsg( "changepassword" );

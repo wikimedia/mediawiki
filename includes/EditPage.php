@@ -129,7 +129,7 @@ class EditPage {
 				# append them and the string comparison fails
 				if ( ( "" == $wpTextbox1 ) ||
 				  ( wfMsg( "newarticletext" ) == rtrim( preg_replace("/\r/","",$wpTextbox1) ) ) ) {
-					$wgOut->redirect( $this->mTitle->getURL() );
+					$wgOut->redirect( $this->mTitle->getFullURL() );
 					return;
 				}
 				$this->mArticle->insertNewArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis );
@@ -227,7 +227,7 @@ class EditPage {
 
 		$q = "action=submit";
 		if ( "no" == $redirect ) { $q .= "&redirect=no"; }
-		$action = $this->mTitle->getURL( $q, true );
+		$action = $this->mTitle->escapeLocalURL( $q );
 
 		$summary = wfMsg( "summary" );
 		$subject = wfMsg("subject");

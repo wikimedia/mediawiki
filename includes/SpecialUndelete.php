@@ -78,7 +78,7 @@ function wfSpecialUndelete( $par )
     $wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
 
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
-	$action = $titleObj->getURL( "action=submit", true );
+	$action = $titleObj->escapeLocalURL( "action=submit" );
 	$wgOut->addHTML("<p>
 <form id=\"undelete\" method=\"post\" action=\"{$action}\">
 <input type=hidden name=\"target\" value=\"{$target}\">

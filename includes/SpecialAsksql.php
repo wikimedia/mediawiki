@@ -37,7 +37,7 @@ class SqlQueryForm {
 		$q = wfMsg( "sqlquery" );
 		$qb = wfMsg( "querybtn" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Asksql" );
-		$action = $titleObj->getURL( "action=submit", true );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		$wgOut->addHTML( "<p>
 <form id=\"asksql\" method=\"post\" action=\"{$action}\">

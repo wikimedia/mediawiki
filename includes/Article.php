@@ -154,7 +154,7 @@ class Article {
 							return;
 						}
 						if ( $rt->getNamespace() == Namespace::getSpecial() ) {
-							$wgOut->redirect( $rt->getURL() );
+							$wgOut->redirect( $rt->getFullURL() );
 							return;
 						}
 						$rid = $rt->getArticleID();
@@ -430,7 +430,7 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.$this->mTitle->getURL()
+				$this->mTitle->getInternalURL()
 			);			
 			wfPurgeSquidServers($urlArr);
 			/* this needs to be done after LinksUpdate */
@@ -546,7 +546,7 @@ class Article {
 		
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.$this->mTitle->getURL()
+				$this->mTitle->getInternalURL()
 			);			
 			wfPurgeSquidServers($urlArr);
 		}
@@ -577,7 +577,7 @@ class Article {
 			$r = "redirect=no";
 		else
 			$r = "";
-		$wgOut->redirect( $this->mTitle->getURL( $r ) );
+		$wgOut->redirect( $this->mTitle->getFullURL( $r ) );
 	}
 
 	# Add this page to my watchlist
@@ -650,7 +650,7 @@ class Article {
 		} else {
 			$log->addEntry( wfMsg( "protectedarticle", $this->mTitle->getPrefixedText() ), "" );
 		}
-		$wgOut->redirect( $this->mTitle->getURL() );
+		$wgOut->redirect( $this->mTitle->getFullURL() );
 	}
 
 	function unprotect()
@@ -766,7 +766,7 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addWikiText( wfMsg( "confirmdeletetext" ) );
 
-		$formaction = $this->mTitle->getURL( $this->mTitle, "action=delete" . $par, true );
+		$formaction = $this->mTitle->escapeLocalURL( "action=delete" . $par );
 		
 		$confirm = wfMsg( "confirm" );
 		$check = wfMsg( "confirmcheck" );
@@ -835,7 +835,7 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
-				$wgInternalServer.$this->mTitle->getURL()
+				$this->mTitle->getInternalURL()
 			);
 			wfPurgeSquidServers($urlArr);
 
@@ -845,7 +845,7 @@ class Article {
 			while ( $BL = wfFetchObject ( $res ) )
 			{
 				$tobj = Title::newFromDBkey( $BL->l_from) ; 
-				$blurlArr[] = $wgInternalServer.$tobj->getURL();
+				$blurlArr[] = $tobj->getInternalURL();
 			}
 			wfFreeResult ( $res ) ;
 			$u = new SquidUpdate( $this->mTitle, $blurlArr );

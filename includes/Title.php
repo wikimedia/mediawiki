@@ -300,20 +300,21 @@ class Title {
 	}
 
 	# Get a real URL referring to this title, with interwiki link and fragment
-	function getFullURL()
+	function getFullURL( $query = "" )
 	{
 		global $wgLang, $wgArticlePath, $wgServer, $wgScript;
 
 		if ( "" == $this->mInterwiki ) {
 			$p = $wgArticlePath;
-		} else {
-			$p = $this->getInterwikiLink( $this->mInterwiki );
+			return $wgServer . $this->getLocalUrl( $query );
 		}
+		
+		$p = $this->getInterwikiLink( $this->mInterwiki );
 		$n = $wgLang->getNsText( $this->mNamespace );
 		if ( "" != $n ) { $n .= ":"; }
 		$u = str_replace( "$1", $n . $this->mUrlform, $p );
 		if ( "" != $this->mFragment ) {
-			$u .= "#" . $this->mFragment;
+			$u .= "#" . wfUrlencode( $this->mFragment );
 		}
 		return $u;
 	}
@@ -324,9 +325,14 @@ class Title {
 	# * Optionally adds the server and escapes for HTML
 	# * Setting $query to "-" makes an old-style URL with nothing in the
 	#   query except a title
-	function getURL( $query = "", $escape = false, $full = false )
+	
+	function getURL() {
+		die( "Call to obsolete obsolete function Title::getURL()" );
+	}
+	
+	function getLocalURL( $query = "" )
 	{
-		global $wgLang, $wgArticlePath, $wgScript, $wgServer;
+		global $wgLang, $wgArticlePath, $wgScript;
 		
 		if ( $this->isExternal() ) {
 			return $this->getFullURL();
@@ -343,18 +349,25 @@ class Title {
 				$url = "{$wgScript}?title={$dbkey}&{$query}";
 			} else {
 				# Top level wiki
-				$url = "/{$dbkey}&{$query}";
+				$url = "/{$dbkey}?{$query}";
 			}
 		}
-		
-		if ( $full ) {
-			$url = $wgServer . $url;
-		}
-
-		if ( $escape ) {
-			$url = wfEscapeHTML( $url );
-		}
 		return $url;
+	}
+	
+	function escapeLocalURL( $query = "" ) {
+		return wfEscapeHTML( $this->getLocalURL( $query ) );
+	}
+	
+	function escapeFullURL( $query = "" ) {
+		return wfEscapeHTML( $this->getFullURL( $query ) );
+	}
+	
+	function getInternalURL( $query = "" ) {
+		# Used in various Squid-related code, in case we have a different
+		# internal hostname for the server than the exposed one.
+		global $wgInternalServer;
+		return $wgInternalServer . $this->getLocalURL( $query );
 	}
 
 	# Get the edit URL, or a null string if it is an interwiki link
@@ -363,7 +376,7 @@ class Title {
 		global $wgServer, $wgScript;
 
 		if ( "" != $this->mInterwiki ) { return ""; }
-		$s = $this->getURL( "action=edit" );
+		$s = $this->getLocalURL( "action=edit" );
 
 		return $s;
 	}

@@ -319,7 +319,7 @@ color='red'>$err</font>\n" );
 	$q = "action=submit";
 	if ( "" != $_REQUEST['returnto'] ) { $q .= "&returnto=" . wfUrlencode($_REQUEST['returnto']); }
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
-	$action = $titleObj->getURL( $q, true );
+	$action = $titleObj->escapeLocalUrl( $q );
 
 	$encName = wfEscapeHTML( $name );
 	$encPassword = wfEscapeHTML( $pwd );
@@ -391,7 +391,7 @@ $cambutton
 	global $wgOut, $wgLang;
 
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
-	$check = $titleObj->getURL( "wpCookieCheck=$type" );
+	$check = $titleObj->getFullURL( "wpCookieCheck=$type" );
 
 	return $wgOut->redirect( $check );
 }
