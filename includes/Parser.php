@@ -201,6 +201,7 @@ class Parser
 	# counting the sections in the wikisource
 	function strip( $text, &$state, $stripcomments = false ) {
 		$render = ($this->mOutputType == OT_HTML);
+		$html_content = array();
 		$nowiki_content = array();
 		$math_content = array();
 		$pre_content = array();
@@ -211,10 +212,23 @@ class Parser
 		$uniq_prefix = UNIQ_PREFIX;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
-
+		# html
+		global $wgRawHtml;
+		if( $wgRawHtml ) {
+			$text = Parser::extractTags('html', $text, $html_content, $uniq_prefix);
+			foreach( $html_content as $marker => $content ) {
+				if ($render ) {
+					# Raw and unchecked for validity.
+					$html_content[$marker] = $content;
+				} else {
+					$html_content[$marker] = "<html>$content</html>";
+				}
+			}
+		}
+		
 		# nowiki
 		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
-		foreach( $nowiki_content as $marker => $content ){
+		foreach( $nowiki_content as $marker => $content ) {
 			if( $render ){
 				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
 			} else {
@@ -269,6 +283,7 @@ class Parser
 
 		# Merge state with the pre-existing state, if there is one
 		if ( $state ) {
+			$state['html'] = $state['html'] + $html_content;
 			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
@@ -281,6 +296,7 @@ class Parser
 			}
 		} else {
 			$state = array(
+			  'html' => $html_content,
 			  'nowiki' => $nowiki_content,
 			  'math' => $math_content,
 			  'pre' => $pre_content,
@@ -295,7 +311,7 @@ class Parser
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
 		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
-			if( key($state) != 'nowiki') {
+			if( key($state) != 'nowiki' && key($state) != 'html') {
 				for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
 					$text = str_replace( key( $contentDict ), $content, $text );
 				}
@@ -310,6 +326,13 @@ class Parser
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
 			$text = str_replace( key( $state['nowiki'] ), $content, $text );
 		}
+		
+		global $wgRawHtml;
+		if ($wgRawHtml) {
+			for ( $content = end($state['html']); $content !== false; $content = prev( $state['html'] ) ) {
+				$text = str_replace( key( $state['html'] ), $content, $text );
+			}
+		}
 
 		return $text;
 	}
@@ -322,6 +345,7 @@ class Parser
 		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
 		if ( !$state ) {
 			$state = array(
+			  'html' => array(),
 			  'nowiki' => array(),
 			  'math' => array(),
 			  'pre' => array()
