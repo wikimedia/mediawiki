@@ -90,8 +90,9 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('WebSeitzWiki','http://webseitz.fluxent.com/wiki/$1',0),
 ('Why','http://clublet.com/c/c/why?$1',0),
 ('Wiki','http://c2.com/cgi/wiki?$1',0),
-('WikiPedia','http://www.wikipedia.org/wiki/$1',0),
-('Wiktionary','http://wiktionary.org/wiki/$1',0),
+('WikiPedia','http://en.wikipedia.org/wiki/$1',0),
+('Wiktionary','http://en.wiktionary.org/wiki/$1',0),
+('Wikiquote','http://en.wikiquote.org/wiki/$1',0),
 ('WikiWorld','http://WikiWorld.com/wiki/index.php/$1',0),
 ('YpsiEyeball','http://sknkwrks.dyndns.org:1957/writewiki/wiki.pl?$1',0),
 ('ZWiki','http://www.zwiki.org/$1',0),
@@ -107,5 +108,5 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('Turismo','http://www.tejo.org/turismo/$1',0),
 ('GEJ','http://www.esperanto.de/cgi-bin/aktivikio/wiki.pl?$1',0),
 ('BEMI','http://bemi.free.fr/vikio/index.php?$1',0),
-('EnciclopediaLibre','http://enciclopedia.us.es/wiki.phtml?title=$1',0),
-('WikiBooks','http://wikibooks.org/wiki/$1',0);
+('EnciclopediaLibre','http://enciclopedia.us.es/index.php/$1',0),
+('WikiBooks','http://en.wikibooks.org/wiki/$1',0);
