@@ -300,7 +300,7 @@ class UploadForm {
 		if( is_file( $this->mSavedFile ) ) {
 			$this->mUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
 
-			if( !rename( $this->mSavedFile, "${archive}/{$this->mUploadOldVersion}" ) ) { 
+			if( @!rename( $this->mSavedFile, "${archive}/{$this->mUploadOldVersion}" ) ) { 
 				$wgOut->fileRenameError( $this->mSavedFile,
 				  "${archive}/{$this->mUploadOldVersion}" );
 				return false;
@@ -310,12 +310,12 @@ class UploadForm {
 		}
 		
 		if( $useRename ) {
-			if( !rename( $tempName, $this->mSavedFile ) ) {
+			if( @!rename( $tempName, $this->mSavedFile ) ) {
 				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
 				return false;
 			}
 		} else {
-			if( !move_uploaded_file( $tempName, $this->mSavedFile ) ) {
+			if( @!move_uploaded_file( $tempName, $this->mSavedFile ) ) {
 				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
 				return false;
 			}
@@ -337,8 +337,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function saveTempUploadedFile( $saveName, $tempName ) {
-		global $wgOut;
-
+		global $wgOut;		
 		$archive = wfImageArchiveDir( $saveName, 'temp' );
 		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
 
@@ -359,7 +358,7 @@ class UploadForm {
 	 * @return int
 	 * @access private
 	 */
-	function stashSession() {
+	function stashSession() {		
 		$stash = $this->saveTempUploadedFile(
 			$this->mUploadSaveName, $this->mUploadTempName );
 
