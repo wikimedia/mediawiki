@@ -1528,14 +1528,23 @@ class Skin {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
+		global $wgUseSquid, $wgInternalServer;
 		$imgPath   = wfImagePath( $name );
 		$thumbName = $width."px-".$icon.$name;
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
 		if (     (! file_exists( $thumbPath ) && file_exists( $imgPath )) 
-		     ||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
-		        if ( $wgUseImageMagick ) {
+		||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
+			# Squid purging
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.$thumbUrl
+				);
+				wfPurgeSquidServers($urlArr);
+			}
+
+			if ( $wgUseImageMagick ) {
 				# use ImageMagick
 				$cmd  =  $wgImageMagickConvertCommand .
 					" -quality 85 -geometry {$width} ".
