@@ -784,7 +784,7 @@ class Parser
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		static $fname = "Parser::replaceInternalLink" ;
+		static $fname = "Parser::replaceInternalLinks" ;
 		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
@@ -802,12 +802,9 @@ class Parser
 		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
 		# Match the end of a line for a word that's not followed by whitespace,
 		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-		# first line
 		static $e2 = '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD';
-		# all other lines
-		static $e3 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
 
-
+		$useLinkPrefixExtension = $wgLang->linkPrefixExtension();
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
 		static $image = FALSE;
 		static $special = FALSE;
@@ -820,27 +817,36 @@ class Parser
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
-		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
-			$first_prefix = $m[2];
-			$s = $m[1];
+		if ( $useLinkPrefixExtension ) {
+			if ( preg_match( $e2, $s, $m ) ) {
+				$first_prefix = $m[2];
+				$s = $m[1];
+			} else {
+				$first_prefix = false;
+			}
 		} else {
-			$first_prefix = false;
+			$prefix = '';
 		}
 
 		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
-			if ( $wgLang->linkPrefixExtension() && preg_match( $e3, $s, $m ) ) {
-				$prefix = $m[2];
-				$s = $m[1];
-			} else {
-				$prefix="";
+			wfProfileIn( "$fname-prefixhandling" );
+			if ( $useLinkPrefixExtension ) {
+				if ( preg_match( $e2, $s, $m ) ) {
+					$prefix = $m[2];
+					$s = $m[1];
+				} else {
+					$prefix='';
+				}
+				# first link
+				if($first_prefix) {
+					$prefix = $first_prefix;
+					$first_prefix = false;
+				}
 			}
-			# first link
-			if($first_prefix) {
-				$prefix = $first_prefix;
-				$first_prefix = false;
-			}
+			wfProfileOut( "$fname-prefixhandling" );
+			
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
