@@ -57,7 +57,7 @@
 	"editondblclick" => "Rediger sider med dobbeltklik (JavaScript)",
 	"watchdefault" => "Overvåg nye og ændrede artikler",
 	"minordefault" => "Marker som standard alle ændringer som mindre",
-	"previewontop" => "Vis forhåndsvisning før redigeringsboksen"
+	"previewontop" => "Vis forhåndsvisning før redigeringsboksen",
 	"nocache" => "Husk ikke siderne til næste besøg"
 );
 
