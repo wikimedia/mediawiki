@@ -28,8 +28,8 @@ class MessageCache
 		$this->mInitialised = true;
 		wfProfileIn( "$fname-parseropt" );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
-		wfProfileIn( "$fname-parseropt" );
-		wfProfileOut( "$fname-parser" );
+		wfProfileOut( "$fname-parseropt" );
+		wfProfileIn( "$fname-parser" );
 		$this->mParser = new Parser;
 		wfProfileOut( "$fname-parser" );
 		
