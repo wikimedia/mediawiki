@@ -27,10 +27,14 @@ class RawPage {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage=0, max-age=86400' );
-		echo $this->getrawtext();
+		$parser=new Parser();
+		$raw = $this->getrawtext();
+		echo $parser->removeHTMLtags( $raw );
 		wfAbruptExit();
 	}
 
+
+	
 	function getrawtext () {
 		global $wgInputEncoding, $wgLang;
 		if( !$this->mTitle ) return '';
