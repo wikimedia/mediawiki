@@ -190,10 +190,10 @@ class ParserTest {
 	function quickDiff( $input, $output ) {
 		$prefix = "/tmp/mwParser-" . mt_rand();
 		
-		$infile = "$prefix-in";
+		$infile = "$prefix-expected";
 		$this->dumpToFile( $input, $infile );
 		
-		$outfile = "$prefix-out";
+		$outfile = "$prefix-actual";
 		$this->dumpToFile( $output, $outfile );
 		
 		$diff = `diff -u $infile $outfile`;
