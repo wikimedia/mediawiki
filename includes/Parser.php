@@ -109,10 +109,13 @@ class Parser
 	# $content will be an associative array filled with data on the form
 	# $unique_marker => content.
 
+	# If $content is already set, the additional entries will be appended
+
 	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ""){
-		$result = array();
 		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
-		$content = array( );
+		if ( !$content ) {
+			$content = array( );
+		}
 		$n = 1;
 		$stripped = "";
 
@@ -134,14 +137,24 @@ class Parser
 
 	# Strips <nowiki>, <pre> and <math>
 	# Returns the text, and fills an array with data needed in unstrip()
+	# If the $state is already a valid strip state, it adds to the state
 	#
 	function strip( $text, &$state )
 	{
 		$render = ($this->mOutputType == OT_HTML);
-		$nowiki_content = array(); 
-		$hiero_content = array();
-		$math_content = array();
-		$pre_content = array();
+		if ( $state ) {
+			$nowiki_content = $state['nowiki']; 
+			$hiero_content = $state['hiero'];
+			$math_content = $state['math'];
+			$pre_content = $state['pre'];
+			$item_content = $state['item'];
+		} else {
+			$nowiki_content = array(); 
+			$hiero_content = array();
+			$math_content = array();
+			$pre_content = array();
+			$item_content = array();
+		}
 
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
@@ -187,21 +200,58 @@ class Parser
 			}
 		}
 		
-		# Must expand in reverse order, otherwise nested tags will be corrupted
-		$state = array( $pre_content, $math_content, $hiero_content, $nowiki_content );
+		$state = array( 
+		  'nowiki' => $nowiki_content,
+		  'hiero' => $hiero_content,
+		  'math' => $math_content, 
+		  'pre' => $pre_content, 
+		  'item' => $item_content
+		);
 		return $text;
 	}
 
 	function unstrip( $text, &$state )
 	{
-		foreach( $state as $content_dict ){
+		# Must expand in reverse order, otherwise nested tags will be corrupted
+		/*
+		$dicts = array( 'item', 'pre', 'math', 'hiero', 'nowiki' );
+		foreach ( $dicts as $dictName ) {
+			$content_dict = $state[$dictName];
 			foreach( $content_dict as $marker => $content ){
 				$text = str_replace( $marker, $content, $text );
 			}
+		}*/
+
+		$contentDict = end( $state );
+		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) { 
+			for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
+				$text = str_replace( key( $contentDict ), $content, $text );
+			}
 		}
+
 		return $text;
 	}
+	
+	# Add an item to the strip state
+	# Returns the unique tag which must be inserted into the stripped text
+	# The tag will be replaced with the original text in unstrip()
 
+	function insertStripItem( $text, &$state )
+	{
+		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
+		if ( !$state ) {
+			$state = array( 
+			  'nowiki' => array(),
+			  'hiero' => array(),
+			  'math' => array(),
+			  'pre' => array(),
+			  'item' => array()
+			);
+		}
+		$state['item'][$rnd] = $text;
+		return $rnd;
+	}
+		
 	function categoryMagic ()
 	{
 		global $wgLang , $wgUser ;
@@ -1176,15 +1226,21 @@ class Parser
 	# Merges a copy split off with fork()
 	function merge( &$copy )
 	{
+		# Output objects
 		$this->mOutput->merge( $copy->mOutput );
 		
-		# Merge include throttling arrays
+		# Include throttling arrays
 		foreach( $copy->mIncludeCount as $dbk => $count ) {
 			if ( array_key_exists( $dbk, $this->mIncludeCount ) ) {
 				$this->mIncludeCount[$dbk] += $count;
 			} else {
 				$this->mIncludeCount[$dbk] = $count;
 			}
+		}
+
+		# Strip states
+		foreach( $copy->mStripState as $dictName => $contentDict ) {
+			$this->mStripState[$dictName] += $contentDict;
 		}
 	}
 
@@ -1311,8 +1367,18 @@ class Parser
 							} else {
 								$text = $this->removeHTMLtags( $text );
 							}
+							# Do not enter included links in link table
 							$wgLinkCache->suspend();
-							$text = $this->doTokenizedParser( $text );
+
+							# Run full parser on the included text
+							$text = $this->strip( $text, $this->mStripState );
+							$text = $this->doWikiPass2( $text, true );
+							
+							# Add the result to the strip state for re-inclusion after 
+							# the rest of the processing
+							$text = $this->insertStripItem( $text, $this->mStripState );
+							
+							# Resume the link cache and register the inclusion as a link
 							$wgLinkCache->resume();
 							$wgLinkCache->addLinkObj( $title );
 
