@@ -1958,10 +1958,57 @@ class Language {
 		return $word;
 	}
 
-	# Hook for Chinese traditional/simplified conversion
+    
+    # convert text to different variants of a language. the automatic
+    # conversion is done in autoConvert(). here we parse the text 
+    # marked with -{}-, which specifies special conversions of the 
+    # text that can not be accomplished in autoConvert()
+    #
+    # syntax of the markup:
+    # -{code1:text1;code2:text2;...}-  or
+    # -{text}- in which case no conversion should take place for text
 	function convert( $text ) {
-		return $text;
+
+        $plang = $this->getPreferredVariant();
+        if(!$plang)
+            return $text;
+
+		// no conversion if redirecting
+		if(substr($text,0,9) == "#REDIRECT") {
+			return $text;
+		}
+
+        $tarray = explode("-{", $text);
+        $tfirst = array_shift($tarray);
+        $text = $this->autoConvert($tfirst);
+
+        foreach($tarray as $txt) {
+            $marked = explode("}-", $txt);
+
+            $choice = explode(";", $marked{0});
+            if($choice{1}==NULL) {
+                $text .= $choice{0};
+            }
+            else {
+                foreach($choice as $c) {
+                    list($code, $content) = split(":", $c);
+                    $code = trim($code);
+                    $content = trim($content);
+                    if($code == $plang) {
+                        $text .= $content;
+                        break;
+                    }
+                }
+            }
+            $text .= $this->autoConvert($marked{1});
+        }
+
+        return $text;
 	}
+
+    function autoConvert($text) {
+        return $text;
+    }
 
     # see if we have a list of language variants for conversion.
     # right now mainly used in the Chinese conversion
@@ -1969,6 +2016,7 @@ class Language {
         return array();
     }
 
+    # todo: write general code to get default language variant
     function getPreferredVariant() {
         return false;
     }
