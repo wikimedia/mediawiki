@@ -29,25 +29,25 @@ class SearchEngine {
 			$namespaces = "0";
 		}
 		return "AND cur_namespace IN (" . $namespaces . ")";
-		#return "1";
 	}
 
 	function searchRedirects()
 	{
-		if ( $this->doSearchRedirects ) return "";
-		return "AND cur_is_redirect=0 ";
+		if ( $this->doSearchRedirects ) {
+			return "";
+		} else {
+			return "AND cur_is_redirect=0 ";
+		}
 	}
 
 	/* private */ function initNamespaceCheckbox( $i )
 	{
 		global $wgUser, $wgNamespacesToBeSearchedDefault;
 		
-
 		if ($wgUser->getID()) {
 			// User is logged in so we retrieve his default namespaces
 			return $wgUser->getOption( "searchNs".$i );
-		}
-		else {	
+		} else {
 			// User is not logged in so we give him the global default namespaces
 			return $wgNamespacesToBeSearchedDefault[ $i ];
 		}
@@ -147,7 +147,7 @@ class SearchEngine {
 		global $wgInputEncoding;
 		$fname = "SearchEngine::showResults";
 
-		$search		= $_REQUEST['search'];
+		$search = $_REQUEST['search'];
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
@@ -158,9 +158,9 @@ class SearchEngine {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 		$sk = $wgUser->getSkin();
-		$text = wfMsg( "searchresulttext", $sk->makeKnownLink(
+		$header = wfMsg( "searchresulttext", $sk->makeKnownLink(
 		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
-		$wgOut->addHTML( $text );
+		$wgOut->addHTML( $header );
 
 		$this->parseQuery();
 		if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
@@ -185,10 +185,8 @@ class SearchEngine {
 			$num = wfNumRows($res1);
 
 			$sk = $wgUser->getSkin();
-			$text = wfMsg( "searchresulttext", $sk->makeKnownLink(
-			  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
-			$wgOut->addHTML( $text );
-	
+			$text = "";
+
 			$this->parseQuery();
 			if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
