@@ -19,7 +19,7 @@ class EditPage {
 	var $mMetaData = '';
 	
 	# Form values
-	var $save = false, $preview = false;
+	var $save = false, $preview = false, $diff = false;
 	var $minoredit = false, $watchthis = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '';
 	var $edittime = '', $section = '';
@@ -150,7 +150,7 @@ class EditPage {
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 			return;
 		}
-		if ( !$this->preview && $wgUser->isBlocked( !$this->save ) ) {
+		if ( !$this->preview && !$this->diff && $wgUser->isBlocked( !$this->save ) ) {
 			# When previewing, don't check blocked state - will get caught at save time.
 			# Also, check when starting edition is done against slave to improve performance.
 			$this->blockedIPpage();
@@ -163,6 +163,8 @@ class EditPage {
 		if ( wfReadOnly() ) {
 			if( $this->save || $this->preview ) {
 				$this->editForm( 'preview' );
+			} else if ( $this->diff ) {
+				$this->editForm( 'diff' );
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ) );
 			}
@@ -172,6 +174,8 @@ class EditPage {
 			$this->editForm( 'save' );
 		} else if ( $this->preview ) {
 			$this->editForm( 'preview' );
+		} else if ( $this->diff ) {
+			$this->editForm( 'diff' );
 		} else { # First time through
 			if( $wgUser->getOption('previewonfirst') ) {
 				$this->editForm( 'preview', true );
@@ -206,13 +210,14 @@ class EditPage {
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
 					$this->preview = $request->getCheck( 'wpPreview' );
+					$this->diff = $request->getCheck( 'wpDiff' );
 				} else {
 					# Page might be a hack attempt posted from
 					# an external site. Preview instead of saving.
 					$this->preview = true;
 				}
 			}
-			$this->save    = !$this->preview;
+			$this->save    = ! ( $this->preview OR $this->diff );
 			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
 				$this->edittime = null;
 			}
@@ -228,6 +233,7 @@ class EditPage {
 			$this->edittime  = '';
 			$this->preview   = false;
 			$this->save      = false;
+			$this->diff	 = false;
 			$this->minoredit = false;
 			$this->watchthis = false;
 		}
@@ -269,7 +275,7 @@ class EditPage {
 	 * is made and all is well do we actually save and redirect to
 	 * the newly-edited page.
 	 *
-	 * @param string $formtype Type of form either : save, initial or preview
+	 * @param string $formtype Type of form either : save, initial, diff or preview
 	 * @param bool $firsttime True to load form data from db
 	 */
 	function editForm( $formtype, $firsttime = false ) {
@@ -510,6 +516,7 @@ class EditPage {
 		$watchthis = wfMsg ('watchthis');
 		$save = wfMsg('savearticle');
 		$prev = wfMsg('showpreview');
+		$diff = wfMsg('showdiff');
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsg('cancel') );
@@ -532,7 +539,7 @@ class EditPage {
 		}
 
 		// activate checkboxes if user wants them to be always active
-		if( !$this->preview ) {
+		if( !$this->preview && !$this->diff ) {
 			if( $wgUser->getOption( 'watchdefault' ) ) $this->watchthis = true;
 			if( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 
@@ -564,12 +571,29 @@ class EditPage {
 		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if ( 'preview' == $formtype) {
 			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
-			if( $wgUser->getOption('previewontop' ) ) {
+			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $previewOutput );
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
 		$wgOut->addHTML( '</div>' );
+		$wgOut->addHTML( '<div id="wikiDiff">' );
+		if ( 'diff' == $formtype ) {
+			require_once( 'DifferenceEngine.php' );
+			$oldtext = $this->mArticle->getContent( true );
+			$newtext = $this->textbox1;
+			$oldtitle = wfMsg( 'currentrev' );
+			$newtitle = wfMsg( 'yourtext' );
+ 				
+			if ( $oldtext != wfMsg( 'noarticletext' ) || $newtext != '' ) {
+				$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
+			}
+			if ( $wgUser->getOption('previewontop' ) ) {
+				$wgOut->addHTML( $difftext );
+				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
+			}
+		}
+
 
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
@@ -582,7 +606,7 @@ class EditPage {
 				$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 			}
 
-		if( !$this->preview ) {
+		if( !$this->preview && !$this->diff ) {
 		# Don't select the edit box on preview; this interferes with seeing what's going on.
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
@@ -660,6 +684,8 @@ END
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
+<input tabindex='6' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
+" title=\"".wfMsg('tooltip-diff')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}" );
 		$wgOut->addWikiText( $copywarn );
 		$wgOut->addHTML( "
@@ -694,13 +720,22 @@ END
 </textarea>" );
 		}
 		$wgOut->addHTML( "</form>\n" );
-		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
-			$wgOut->addHTML('<div id="wikiPreview">' . $previewOutput . '</div>');
+		if ( $formtype == 'preview' && !$wgUser->getOption( 'previewontop' ) ) {
+			$wgOut->addHTML( '<div id="wikiPreview">' . $previewOutput . '</div>' );
+		}
+		if ( $formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
+			$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
 		}
 	}
 
+	function getDiffText() {
+	}
+
+	/**
+	 * @todo document
+	 */
 	function getPreviewText( $isConflict, $isCssJsSubpage ) {
-		global $wgOut, $wgUser, $wgTitle, $wgParser;
+		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgAllowDiffPreview, $wgEnableDiffPreviewPreference;
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<p class='previewnote'>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</p>\n";
 		if ( $isConflict ) {
@@ -737,6 +772,7 @@ END
 					$wgTitle, $parserOptions );		
 			
 			$previewHTML = $parserOutput->mText;
+
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
 			return $previewhead . $previewHTML;
