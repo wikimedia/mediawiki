@@ -21,19 +21,54 @@ class element {
     var $attrs = array();
     var $children = array();
 
+    function getSourceAttrs ()
+        {
+	$ret = "" ;
+	foreach ($this->children as $child)
+	    {
+            if ( !is_string($child) AND $child->name == "ATTRS" )
+	        {
+                $ret = $child->makeXHTML ( $parser );
+		}
+	    }
+	return $ret ;
+	}
+
+    function getTheseAttrs ()
+        {
+	$ret = array() ;
+	foreach ($this->children as $child)
+	    {
+            if ( !is_string($child) AND $child->name == "ATTR" )
+	        {
+		$s = $child->attrs["NAME"] . "='" . $child->children[0] . "'" ;
+#		$s = "ATTRIBUTE=" . $child->attrs["NAME"] ;
+		$ret[] = $s ;
+		}
+	    }
+	return implode ( " " , $ret ) ;
+	}
+
     function sub_makeXHTML ( &$parser , $tag = "" , $attr = "" )
     	{
     	$ret = "" ;
+
+	$attr2 = $this->getSourceAttrs () ;
+	if ( $attr != "" AND $attr2 != "" ) $attr .= " " ;
+	$attr .= $attr2 ;
+
     	if ( $tag != "" )
     		{
     		$ret .= "<" . $tag ;
     		if ( $attr != "" ) $ret .= " " . $attr ;
     		$ret .= ">" ;
     		}
+
+
       foreach ($this->children as $child) {
             if ( is_string($child) ) {
                 $ret .= $child ;
-            } else {
+            } else if ( $child->name != "ATTRS" ) {
                 $ret .= $child->makeXHTML ( $parser );
             }
            }
@@ -93,6 +128,15 @@ class element {
     	{
     	$ret = "" ;
     	$n = $this->name ; # Shortcut
+
+	if ( $n == "EXTENSION" ) # Fix allowed HTML
+	   {
+	   $ext = strtoupper ( $this->attrs["NAME"] ) ;
+	   if ( $ext == "B" ) $n = "BOLD" ;
+	   if ( $ext == "I" ) $n = "ITALICS" ;
+	   if ( $ext == "P" ) $n = "PARAGRAPH" ;
+	   }
+
     	if ( $n == "ARTICLE" )
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
     	else if ( $n == "HEADING" )
@@ -139,6 +183,11 @@ class element {
     	else if ( $n == "CAPTION" )
     		{
     		$ret .= $this->sub_makeXHTML ( $parser , "caption" ) ;
+    		}
+
+    	else if ( $n == "ATTRS" ) # SPECIAL CASE : returning attributes
+    		{
+		return $this->getTheseAttrs () ;
     		}
 
 
