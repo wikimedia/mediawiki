@@ -367,7 +367,7 @@ class Article {
 			# not to by either the function parameter or the query
 			if ( ( 'no' != $redirect ) && ( false == $noredir ) ) {
 			  	$rt = Title::newFromRedirect( $s->cur_text );
-				if ( $rt ) {
+				if ( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
 					# Gotta hand redirects to special pages differently:
 					# Fill the HTTP response "Location" header and ignore
 					# the rest of the page we're on.
