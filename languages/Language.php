@@ -369,6 +369,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
     MAG_IMG_NONE             => array( 1,    "none"                   ),
     MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
     MAG_IMG_CENTER           => array( 1,    "center", "centre"       ),
+    MAG_IMG_FRAMED	     => array( 1,    "framed", "enframed", "frame" ),
     MAG_INT                  => array( 0,    "INT:"                   ),
     MAG_SITENAME             => array( 1,    "SITENAME"               ),
     MAG_NS                   => array( 0,    "NS:"                    ),

@@ -1568,6 +1568,8 @@ class Skin {
 			#  * right		same, but right aligned
 			#  * none		same, but not aligned
 			#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
+			#  * center		center the image
+			#  * framed		Keep original image size, no magnify-button.
 	
 			$part = explode( "|", $alt);
 	
@@ -1577,9 +1579,10 @@ class Skin {
 			$mwNone   =& MagicWord::get( MAG_IMG_NONE );
 			$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
 			$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
+			$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
 			$alt = $part[count($part)-1];
 
-			$thumb=false;
+			$framed=$thumb=false;
 
 			foreach( $part as $key => $val ) {
 				if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
@@ -1599,6 +1602,8 @@ class Skin {
 				} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
 					# $match is the image width in pixels
 					$width = intval($match);
+				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
+					$framed=true;
 				}
 			}
 			if ( "center" == $align )
@@ -1608,7 +1613,7 @@ class Skin {
 				$align   = "none";
 			}
 	
-			if ( $thumb ) {
+			if ( $thumb || $framed ) {
 	
 				# Create a thumbnail. Alignment depends on language
 				# writing direction, # right aligned for left-to-right-
@@ -1623,7 +1628,7 @@ class Skin {
 				if ( ! isset($width) ) {
 					$width = 180;
 				}
-				return $prefix.$this->makeThumbLinkObj( $nt, $alt, $align, $width ).$postfix;
+				return $prefix.$this->makeThumbLinkObj( $nt, $alt, $align, $width, $framed ).$postfix;
 	
 			} elseif ( isset($width) ) {
 				
@@ -1754,7 +1759,7 @@ class Skin {
 		return $thumbUrl;
 	}
 
-	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180 ) {
+	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180, $framed=false ) {
 		global $wgUploadPath, $wgLang;
 		$name = $nt->getDBKey();
 		$image = Title::makeTitle( Namespace::getImage(), $name );
@@ -1771,13 +1776,21 @@ class Skin {
 		} else {
 			$width = $height = 200;
 		}
-		$boxheight  = intval( $height/($width/$boxwidth) );
-		if ( $boxwidth > $width ) {
+		if ( $framed )
+		{
+			// Use image dimensions, don't scale
 			$boxwidth  = $width;
 			$boxheight = $height;
+			$thumbUrl  = $url;
+		} else {
+			$boxheight  = intval( $height/($width/$boxwidth) );
+			if ( $boxwidth > $width ) {
+				$boxwidth  = $width;
+				$boxheight = $height;
+			}
+			$thumbUrl = $this->createThumb( $name, $boxwidth );
 		}
 		$oboxwidth = $boxwidth + 2;
-		$thumbUrl = $this->createThumb( $name, $boxwidth );
 
 		$u = $nt->escapeLocalURL();
 
@@ -1793,11 +1806,14 @@ class Skin {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
 				'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
 				'width="'.$boxwidth.'" height="'.$boxheight.'" /></a>';
-			$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
-				'<a href="'.$u.'" class="internal" title="'.$more.'">'.
-				'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
-				'width="15" height="11" alt="'.$more.'" /></a></div>';
-
+			if ( $framed ) {
+				$zoomicon="";
+			} else {
+				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
+					'<a href="'.$u.'" class="internal" title="'.$more.'">'.
+					'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
+					'width="15" height="11" alt="'.$more.'" /></a></div>';
+			}
 		}
 		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div>\n</div>";
 		return $s;
