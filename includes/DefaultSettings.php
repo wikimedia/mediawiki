@@ -353,4 +353,6 @@ $wgImportSources = array();
 # For credit to authors. Set to zero to hide attribution block.
 $wgMaxCredits = 0;
 
+# Text matching this regex will be recognised as spam
+$wgSpamRegex 	= false; 
 ?>
