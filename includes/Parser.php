@@ -1220,7 +1220,7 @@ class Parser
 		}
 
 		# Double brace substitution
-		$regex = "/(\\n?){{([$titleChars]*?)(\\|.*?|)}}/s";
+		$regex = "/(\\n?){{([$titleChars]*?({{[$titleChars]+}})?)(\\|.*?|)}}/s";
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
 
 		array_pop( $this->mArgStack );
@@ -2079,6 +2079,14 @@ class ParserOptions
 function wfBraceSubstitution( $matches )
 {
 	global $wgCurParser;
+	$titleChars = Title::legalChars();
+	# Double brace substitution, expand bar in {{foo{{bar}}}}
+	if(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches)) {
+		$text = wfInternalBraceSubstitution( $internalmatches );
+		$matches[0] = str_replace($internalmatches[0], $text , $matches[0]);
+		$matches[2] = str_replace($internalmatches[0], $text , $matches[2]);
+	}
+
 	return $wgCurParser->braceSubstitution( $matches );
 }
 
@@ -2088,4 +2096,144 @@ function wfArgSubstitution( $matches )
 	return $wgCurParser->argSubstitution( $matches );
 }
 
+# XXX: i don't think this is the most elegant way to do it..
+function wfInternalBraceSubstitution( $matches ) {
+	global $wgLinkCache, $wgLang, $wgCurParser;
+	$fname = "wfInternalBraceSubstitution";
+	$found = false;
+	$nowiki = false;
+	$noparse = false;
+
+	$title = NULL;
+
+	# $newline is an optional newline character before the braces
+	# $part1 is the bit before the first |, and must contain only title characters
+	# $args is a list of arguments, starting from index 0, not including $part1
+
+	$part1 = $matches[1];
+
+	# {{{}}}
+	if ( strpos( $matches[0], "{{{" ) !== false ) {
+		$text = $matches[0];
+		$found = true;
+		$noparse = true;
+	}
+
+	# SUBST
+	if ( !$found ) {
+		$mwSubst =& MagicWord::get( MAG_SUBST );
+		if ( $mwSubst->matchStartAndRemove( $part1 ) ) {
+			if ( $wgCurParser->mOutputType != OT_WIKI ) {
+				# Invalid SUBST not replaced at PST time
+				# Return without further processing
+				$text = $matches[0];
+				$found = true;
+				$noparse= true;
+			}
+		} elseif ( $wgCurParser->mOutputType == OT_WIKI ) {
+			# SUBST not found in PST pass, do nothing
+			$text = $matches[0];
+			$found = true;
+		}
+	}
+
+	# MSG, MSGNW and INT
+	if ( !$found ) {
+		# Check for MSGNW:
+		$mwMsgnw =& MagicWord::get( MAG_MSGNW );
+		if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
+			$nowiki = true;
+		} else {
+			# Remove obsolete MSG:
+			$mwMsg =& MagicWord::get( MAG_MSG );
+			$mwMsg->matchStartAndRemove( $part1 );
+		}
+
+		# Check if it is an internal message
+		$mwInt =& MagicWord::get( MAG_INT );
+		if ( $mwInt->matchStartAndRemove( $part1 ) ) {
+			if ( $wgCurParser->incrementIncludeCount( "int:$part1" ) ) {
+				$text = wfMsgReal( $part1, array(), true );
+				$found = true;
+			}
+		}
+	}
+
+	# NS
+	if ( !$found ) {
+		# Check for NS: (namespace expansion)
+		$mwNs = MagicWord::get( MAG_NS );
+		if ( $mwNs->matchStartAndRemove( $part1 ) ) {
+			if ( intval( $part1 ) ) {
+				$text = $wgLang->getNsText( intval( $part1 ) );
+				$found = true;
+			} else {
+				$index = Namespace::getCanonicalIndex( strtolower( $part1 ) );
+				if ( !is_null( $index ) ) {
+					$text = $wgLang->getNsText( $index );
+					$found = true;
+				}
+			}
+		}
+	}
+
+	# LOCALURL and LOCALURLE
+	if ( !$found ) {
+		$mwLocal = MagicWord::get( MAG_LOCALURL );
+		$mwLocalE = MagicWord::get( MAG_LOCALURLE );
+
+		if ( $mwLocal->matchStartAndRemove( $part1 ) ) {
+			$func = 'getLocalURL';
+		} elseif ( $mwLocalE->matchStartAndRemove( $part1 ) ) {
+			$func = 'escapeLocalURL';
+		} else {
+			$func = '';
+		}
+
+		if ( $func !== '' ) {
+			$title = Title::newFromText( $part1 );
+			if ( !is_null( $title ) ) {
+				$text = $title->$func();
+				$found = true;
+			}
+		}
+	}
+
+	# Internal variables
+	if ( !$found && array_key_exists( $part1, $wgCurParser->mVariables ) ) {
+		$text = $wgCurParser->mVariables[$part1];
+		$found = true;
+		$wgCurParser->mOutput->mContainsOldMagic = true;
+	}
+
+	# Load from database
+	if ( !$found ) {
+		$title = Title::newFromText( $part1, NS_TEMPLATE );
+		if ( !is_null( $title ) && !$title->isExternal() ) {
+			# Check for excessive inclusion
+			$dbk = $title->getPrefixedDBkey();
+			if ( $wgCurParser->incrementIncludeCount( $dbk ) ) {
+				$article = new Article( $title );
+				$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
+				if ( $articleContent !== false ) {
+					$found = true;
+					$text = $articleContent;
+
+				}
+			}
+
+			# If the title is valid but undisplayable, make a link to it
+			if ( $wgCurParser->mOutputType == OT_HTML && !$found ) {
+				$text = "[[" . $title->getPrefixedText() . "]]";
+				$found = true;
+			}
+		}
+	}
+
+	if ( !$found ) {
+		return $matches[0];
+	} else {
+		return $text;
+	}
+}
 ?>
