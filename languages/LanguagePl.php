@@ -85,28 +85,6 @@ if( $wgMetaNamespace == "Wikipedia" ) {
         "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesPl = array(
-        "niedziela", "poniedziałek", "wtorek", "środa", "czwartek",
-        "piątek", "sobota"
-);
-
-/* private */ $wgMonthNamesPl = array(
-        "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
-        "lipiec", "sierpień", "wrzesień", "październik", "listopad",
-        "grudzień"
-);
-
-/* private */ $wgMonthNamesGenPl = array(
-        "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
-        "lipca", "sierpnia", "września", "października", "listopada",
-        "grudnia"
-);
-
-/* private */ $wgMonthAbbreviationsPl = array(
-        "sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie",
-        "wrz", "paź", "lis", "gru"
-);
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -160,6 +138,50 @@ if( $wgMetaNamespace == "Wikipedia" ) {
 );
 
 /* private */ $wgAllMessagesPl = array(
+# Dates
+'sunday' => "niedziela",
+'monday' => "poniedziałek",
+'tuesday' => "wtorek",
+'wednesday' => "środa",
+'thursday' => "czwartek",
+'friday' => "piątek",
+'saturday' => "sobota",
+'january' => "styczeń",
+'february' => "luty",
+'march' => "marzec",
+'april' => "kwiecień",
+'may_long' => "maj",
+'june' => "czerwiec",
+'july' => "lipiec",
+'august' => "sierpień",
+'september' => "wrzesień",
+'october' => "październik",
+'november' => "listopad",
+'december' => "grudzień",
+'january-gen' => "stycznia",
+'february-gen' => "lutego",
+'march-gen' => "marca",
+'april-gen' => "kwietnia",
+'may-gen' => "maja",
+'june-gen' => "czerwca",
+'july-gen' => "lipca",
+'august-gen' => "sierpnia",
+'september-gen' => "września",
+'october-gen' => "października",
+'november-gen' => "listopada",
+'december-gen' => "grudnia",
+'jan' => "sty",
+'feb' => "lut",
+'mar' => "mar",
+'apr' => "kwi",
+'may' => "maj",
+'jun' => "cze",
+'jul' => "lip",
+'aug' => "sie",
+'sep' => "wrz",
+'oct' => "paź",
+'nov' => "lis",
+'dec' => "gru",
 
 # Bits of text used by many pages:
 #
@@ -1087,29 +1109,12 @@ class LanguagePl extends LanguageUtf8 {
                 return $wgUserTogglesPl;
         }
 
-        function getMonthName( $key )
-        {
-                global $wgMonthNamesPl;
-                return $wgMonthNamesPl[$key-1];
-        }
-
         function getMonthNameGen( $key )
         {
-                global $wgMonthNamesGenPl;
-                return $wgMonthNamesGenPl[$key-1];
+                global $wgMonthNamesGenEn;
+                return wfMsg( $wgMonthNamesGenEn[$key-1] );
         }
 
-        function getMonthAbbreviation( $key )
-        {
-                global $wgMonthAbbreviationsPl;
-                return $wgMonthAbbreviationsPl[$key-1];
-        }
-
-        function getWeekdayName( $key )
-        {
-                global $wgWeekdayNamesPl;
-                return $wgWeekdayNamesPl[$key-1];
-        }
 
         function userAdjust( $ts )
         {

@@ -79,21 +79,6 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesWa = array(
-	"dimegne", "londi", "mårdi", "mierkidi", "djudi",
-	"vénrdi", "semdi"
-);
-
-/* private */ $wgMonthNamesWa = array(
-	"djanvî", "fevrî", "måss", "avri", "may", "djun",
-	"djulete", "awousse", "setimbe", "octôbe", "nôvimbe",
-	"decimbe"
-);
-
-/* private */ $wgMonthAbbreviationsWa = array(
-	"dja", "fev", "mås", "avr", "may", "djn", "djl", "awo",
-	"set", "oct", "nôv", "dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -154,6 +139,39 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesWa = array(
+# Dates
+'sunday' => "dimegne",
+'monday' => "londi",
+'tuesday' => "mårdi",
+'wednesday' => "mierkidi",
+'thursday' => "djudi",
+'friday' => "vénrdi",
+'saturday' => "semdi",
+'january' => "djanvî",
+'february' => "fevrî",
+'march' => "måss",
+'april' => "avri",
+'may_long' => "may",
+'june' => "djun",
+'july' => "djulete",
+'august' => "awousse",
+'september' => "setimbe",
+'october' => "octôbe",
+'november' => "nôvimbe",
+'december' => "decimbe",
+'jan' => "dja",
+'feb' => "fev",
+'mar' => "mås",
+'apr' => "avr",
+'may' => "may",
+'jun' => "djn",
+'jul' => "djl",
+'aug' => "awo",
+'sep' => "set",
+'oct' => "oct",
+'nov' => "nôv",
+'dec' => "dec",
+
 
 # Bits of text used by many pages:
 #
@@ -1202,31 +1220,6 @@ class LanguageWa extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesWa;
 		return $wgUserTogglesWa;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesWa;
-		return $wgMonthNamesWa[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesWa;
-		return $wgMonthNamesWa[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsWa;
-		return $wgMonthAbbreviationsWa[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesWa;
-		return $wgWeekdayNamesWa[$key-1];
 	}
 
 	# Inherit userAdjust()

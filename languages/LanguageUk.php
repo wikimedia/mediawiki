@@ -74,21 +74,6 @@ require_once( "LanguageUtf8.php" );
 /* Add a $wgBookstoreListUk to override default list of book links for ISBN links */
 
 
-/* private */ $wgWeekdayNamesUk = array(
-	"Неділя", "Понеділок", "Вівторок", "Середа", "Четвер",
-	"П'ятниця", "Субота"
-);
-
-/* private */ $wgMonthNamesUk = array(
-	"Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень",
-	"Липень", "Серпень", "Вересень", "Жовтень", "Листопад",
-	"Грудень"
-);
-
-/* private */ $wgMonthAbbreviationsUk = array(
-	"Січ", "Лют", "Бер", "Квіт", "Трав", "Черв", "Лип", "Серп",
-	"Вер", "Жов", "Лист", "Груд"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -140,6 +125,38 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesUk = array(
+# Dates
+'sunday' => "Неділя",
+'monday' => "Понеділок",
+'tuesday' => "Вівторок",
+'wednesday' => "Середа",
+'thursday' => "Четвер",
+'friday' => "П'ятниця",
+'saturday' => "Субота",
+'january' => "Січень",
+'february' => "Лютий",
+'march' => "Березень",
+'april' => "Квітень",
+'may_long' => "Травень",
+'june' => "Червень",
+'july' => "Липень",
+'augst' => "Серпень",
+'september' => "Вересень",
+'october' => "Жовтень",
+'november' => "Листопад",
+'december' => "Грудень",
+'jan' => "Січ",
+'feb' => "Лют",
+'mar' => "Бер",
+'apr' => "Квіт",
+'may' => "Трав",
+'jun' => "Черв",
+'jul' => "Лип",
+'aug' => "Серп",
+'sep' => "Вер",
+'oct' => "Жов",
+'nov' => "Лист",
+'dec' => "Груд",
 
 # Bits of text used by many pages:
 #
@@ -1003,36 +1020,11 @@ class LanguageUk extends LanguageUtf8 {
 		return $wgUserTogglesUk;
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesUk;
-		return $wgMonthNamesUk[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesUk;
-		return $wgMonthNamesUk[$key-1];
-	}
-
-	function getMonthRegex()
-	{
-		global $wgMonthNamesUk;
-		return implode( "|", $wgMonthNamesUk );
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsUk;
-		return $wgMonthAbbreviationsUk[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesUk;
-		return $wgWeekdayNamesUk[$key-1];
-	}
+	#function getMonthRegex()
+	#{
+	#	global $wgMonthNamesUk;
+	#	return implode( "|", $wgMonthNamesUk );
+	#}
 
 	function getValidSpecialPages()
 	{
