@@ -24,6 +24,7 @@ include_once( "$DP/DefaultSettings.php" );
 # mod_redirect to make page-viewing URLs look static.
 #
 $wgServer           = "http://www.myhost.com";
+$wgScriptPath	    = "/wiki";
 $wgArticlePath      = "{$wgScript}?title=$1";
 $wgEmergencyContact = "wikiadmin@myhost.com";
 
