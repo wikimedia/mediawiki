@@ -273,7 +273,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1402) Make link color of tab subject page link on talk page indicate whether article exists
 * (bug 1368) Fix SQL error on stopword/short word search w/ MySQL 3.x
 * Translated Hebrew namespace names
-
+* (bug 1429) Stop double-escaping of block comments; fix formatting
 
 === Caveats ===
 
