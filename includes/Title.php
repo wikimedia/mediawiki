@@ -1071,7 +1071,7 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( '/[\\s_]+/', '_', $this->mDbkeyform );
+		$t = preg_replace( '/[ _]+/', '_', $this->mDbkeyform );
 		$t = trim( $t, '_' );
 
 		if ( '' == $t ) {
