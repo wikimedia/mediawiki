@@ -1908,14 +1908,20 @@ class Skin {
 
 	function makeMediaLinkObj( $nt, $alt = "" )
 	{
-		$name = $nt->getDBKey();
-		$url = Image::wfImageUrl( $name );
-		if ( empty( $alt ) ) {
-			$alt = preg_replace( '/\.(.+?)^/', '', $name );
+		if ( ! defined( $nt ) )
+		{
+			### HOTFIX. Instead of breaking, return empry string.
+			$s = $alt;
+		} else {
+			$name = $nt->getDBKey();
+			$url = Image::wfImageUrl( $name );
+			if ( empty( $alt ) ) {
+				$alt = preg_replace( '/\.(.+?)^/', '', $name );
+			}
+	
+			$u = htmlspecialchars( $url );
+			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		}
-
-		$u = htmlspecialchars( $url );
-		$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		return $s;
 	}
 
