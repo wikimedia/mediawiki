@@ -376,7 +376,11 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
-    if($forContent) {
+	
+	$fname = 'wfMsg';
+	wfProfileIn( $fname );
+	
+	if($forContent) {
         global $wgMessageCache;
         $cache = &$wgMessageCache;
         $lang = &$wgContLang;
@@ -394,12 +398,13 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		}
     }
 
-	$fname = 'wfMsg';
-	wfProfileIn( $fname );
+
 	if ( is_object($cache) ) {
 		$message = $cache->get( $key, $useDB, $forContent );
 	} elseif (is_object($lang)) {
+		wfSuppressWarnings();
 		$message = $lang->getMessage( $key );
+		wfRestoreWarnings();
 		if(!$message)
 			$message = Language::getMessage($key);
 		if(strstr($message, '{{' ) !== false) {
