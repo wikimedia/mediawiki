@@ -886,7 +886,8 @@ created and by whom, and anything else you may know about it.",
 "uploadwarning" => "Upload warning",
 "savefile"		=> "Save file",
 "uploadedimage" => "uploaded \"$1\"",
-
+"uploaddisabled" => "Sorry, uploading is disabled.",
+				       
 # Image list
 #
 "imagelist"		=> "Image list",
