@@ -36,7 +36,7 @@ if ( isset( $options['s'] ) ) {
 } else {
 	$start = @file_get_contents( $posFile );
 	if ( !$start ) {
-		$start = wfUnix2Timestamp( time() - 86400 );
+		$start = wfTimestamp( TS_MW, time() - 86400 );
 	} 
 }
 

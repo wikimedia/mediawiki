@@ -204,7 +204,7 @@ class Validation {
 			if ( $article_time == $time ) {
 				$tablestyle .=" style='border: 2px solid red'";
 			}
-			$html .= "<h2>" . wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp2Unix( $time ) ) );
+			$html .= "<h2>" . wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp( TW_UNIX, $time ) ) );
 			$this->find_this_version ( $article_title , $time , $table_id , $table_name );
 			if( $table_name == "cur" ) {
 				$html .= " (" . wfMsg( 'val_this_is_current_version' ) . ")";

@@ -121,6 +121,69 @@ class GlobalTest extends PHPUnit_TestCase {
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
 	}
 	
+	function testMimeTypeMatch() {
+		$this->assertEquals(
+			'text/html',
+			mimeTypeMatch( 'text/html',
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.7,
+				       'text/plain'            => 0.3 ) ) );
+		$this->assertEquals(
+			'text/*',
+			mimeTypeMatch( 'text/html',
+				array( 'image/*' => 1.0,
+				       'text/*'  => 0.5 ) ) );
+		$this->assertEquals(
+			'*/*',
+			mimeTypeMatch( 'text/html',
+				array( '*/*' => 1.0 ) ) );
+		$this->assertNull(
+			mimeTypeMatch( 'text/html',
+				array( 'image/png'     => 1.0,
+				       'image/svg+xml' => 0.5 ) ) );
+	}
+	
+	function testNegotiateType() {
+		$this->assertEquals(
+			'text/html',
+			wfNegotiateType(
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.7,
+				       'text/plain'            => 0.5,
+				       'text/*'                => 0.2 ),
+				array( 'text/html'             => 1.0 ) ) );
+		$this->assertEquals(
+			'application/xhtml+xml',
+			wfNegotiateType(
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.7,
+				       'text/plain'            => 0.5,
+				       'text/*'                => 0.2 ),
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.5 ) ) );
+		$this->assertEquals(
+			'text/html',
+			wfNegotiateType(
+				array( 'text/html'             => 1.0,
+				       'text/plain'            => 0.5,
+				       'text/*'                => 0.5,
+				       'application/xhtml+xml' => 0.2 ),
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.5 ) ) );
+		$this->assertEquals(
+			'text/html',
+			wfNegotiateType(
+				array( 'text/*'                => 1.0,
+				       'image/*'               => 0.7,
+				       '*/*'                   => 0.3 ),
+				array( 'application/xhtml+xml' => 1.0,
+				       'text/html'             => 0.5 ) ) );
+		$this->assertNull(
+			wfNegotiateType(
+				array( 'text/*'                => 1.0 ),
+				array( 'application/xhtml+xml' => 1.0 ) ) );
+	}
+	
 	/* TODO: many more! */
 }
 
