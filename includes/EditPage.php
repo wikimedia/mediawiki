@@ -38,12 +38,14 @@ class EditPage {
 	/**
 	 * This is the function that extracts metadata from the article body on the first view.
 	 * To turn the feature on, set $wgUseMetadataEdit = true ; in LocalSettings
+	 *  and set $wgMetadataWhitelist to the *full* title of the template whitelist
 	 */
 	function extractMetaDataFromArticle ()
 	{
-		global $wgUseMetadataEdit , $wgLang ;
+		global $wgUseMetadataEdit , $wgMetadataWhitelist , $wgLang ;
 		$this->mMetaData = "" ;
 		if ( !$wgUseMetadataEdit ) return ;
+		if ( $wgMetadataWhitelist == "" ) return ;
 		$s = "" ;
 		$t = $this->mArticle->getContent ( true ) ;
 
@@ -78,8 +80,28 @@ class EditPage {
 		if ( count ( $ll ) ) $s .= implode ( " " , $ll ) . "\n" ;
 		$t = implode ( "\n" , $t ) ;
 
+		# Load whitelist
+		$sat = array () ; # stand-alone-templates; must be lowercase
+		$wl_title = Title::newFromText ( $wgMetadataWhitelist ) ;
+		$wl_article = new Article ( $wl_title ) ;
+		$wl = explode ( "\n" , $wl_article->getContent(true) ) ;
+		foreach ( $wl AS $x )
+		{
+			$isentry = false ;
+			$x = trim ( $x ) ;
+			while ( substr ( $x , 0 , 1 ) == "*" )
+			{
+				$isentry = true ;
+				$x = trim ( substr ( $x , 1 ) ) ;
+			}
+			if ( $isentry )
+			{
+				$sat[] = strtolower ( $x ) ;
+			}
+			   
+		}
+
 		# Templates, but only some
-		$sat = array ( "meta-template" ) ; # stand-alone-templates; must be lowercase
 		$t = explode ( "{{" , $t ) ;
 		$tl = array () ;
 		foreach ( $t AS $key => $x )
