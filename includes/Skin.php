@@ -1524,8 +1524,13 @@ class Skin {
 		$alt = htmlspecialchars( $alt );
 
 		$u = $nt->escapeLocalURL();
-		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
-		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+		if ( $url == "" )
+		{
+			$s = str_replace( "$1", $name, wfMsg("missingimage") );
+		} else {
+			$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
+				"<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+		}
 		if ( "" != $align ) {
 			$s = "<div class=\"float{$align}\">{$s}</div>";
 		}
@@ -1542,7 +1547,13 @@ class Skin {
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
-		if (     (! file_exists( $thumbPath ) && file_exists( $imgPath )) 
+		if ( ! file_exists( $imgPath ) )
+		{
+			# If there is no image, there will be no thumbnail
+			return "";
+		}
+
+		if (     (! file_exists( $thumbPath ) )
 		||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
@@ -1639,7 +1650,12 @@ class Skin {
 		$alt = preg_replace( "/<[^>]*>/", "", $label);
 		$alt = htmlspecialchars( $alt );
 		
-		list($width, $height, $type, $attr) = getimagesize( $path );
+		if ( file_exists( $path ) )
+		{
+			list($width, $height, $type, $attr) = getimagesize( $path );
+		} else {
+			$width = $height = 200;
+		}
 		$boxheight  = intval( $height/($width/$boxwidth) );
 		if ( $boxwidth > $width ) {
 			$boxwidth  = $width;
@@ -1651,13 +1667,19 @@ class Skin {
 		$u = $nt->escapeLocalURL();
 
 		$more = htmlspecialchars(wfMsg( "thumbnail-more" ));
-		
-		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">" .
-		  "<a href=\"{$u}\" class=\"internal\" title=\"{$alt}\">" .
-		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
-		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
-		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
-		  "<p>{$label}</p></div>";
+
+		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">";
+		if ( $thumbUrl == "" ) {
+			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
+		} else {
+		  	$s .= "<a href=\"{$u}\" class=\"internal\" title=\"{$alt}\">" .
+		  		"<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" " .
+				"  width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
+		  		"<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
+		    		"<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" " .
+				"  width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>";
+		}
+		$s .= "<p>{$label}</p></div>";
 		return $s;
 	}
 

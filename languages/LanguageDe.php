@@ -907,6 +907,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "export"        => "Seiten exportieren",
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
+"missingimage"          => "<b>Fehlendes Bild</b><br><i>$1</i>\n"
 );
 class LanguageDe extends Language {
 
