@@ -597,7 +597,7 @@ class OutputPage {
 		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
-			$this->mHTMLtitle = $this->mPagetitle;
+			$this->mHTMLtitle = wfMsg( "pagetitle", $this->mPagetitle );
 		}
 		if( $xml ) {
 			$xmlbits = "xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"";
@@ -606,8 +606,9 @@ class OutputPage {
 		}
 		$rtl = $wgLang->isRTL() ? " dir='RTL'" : "";
 		$ret .= "<html $xmlbits lang=\"$wgLanguageCode\" $rtl>\n";
-		$ret .= "<head>\n<title>{$this->mHTMLtitle}</title>\n";
+		$ret .= "<head>\n<title>" . htmlspecialchars( $this->mHTMLtitle ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
+		
 		$ret .= $this->getHeadLinks();
 		global $wgStyleSheetPath;
 		if( $this->isPrintable() ) {

@@ -686,6 +686,10 @@ class User {
 	{
 		wfSetVar( $this->mDataLoaded, $loaded );
 	}
+	
+	function getUserPage() {
+		return Title::makeTitle( NS_USER, $this->mName );
+	}
 }
 
 ?>

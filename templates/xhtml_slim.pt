@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
 	${headlinks}
-    <title tal:content="title">Exciting xhtml slimfast</title>
+    <title tal:content="pagetitle">Exciting xhtml slimfast</title>
 
     <style type="text/css" media="screen">
       /*<![CDATA[*/
@@ -169,6 +169,8 @@
       <!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> static footer, same for all pages but contains a few messaged that are worth caching --> 
       <div class="visualClear"></div>
       <div id="portal-footer">
+        <div id="footer-poweredby" tal:condition="poweredby">${poweredby}</div>
+        <div id="footer-copyright" tal:condition="copyright">${copyright}</div>
         <ul id="footer-list">
           <li id="footer-pagestats" tal:condition="pagestats">${pagestats}</li>
           <li id="footer-about" tal:condition="about">${about}</li>
