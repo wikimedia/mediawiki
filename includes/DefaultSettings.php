@@ -762,7 +762,7 @@ $wgCategoryMagicGallery = true;
 
 # Browser Blacklist for unicode non compliant browsers
 # Contains a list of regexps : "/regexp/"  matching problematic browsers
-$wgBrowserBlackList = array();
+$wgBrowserBlackList = "/Mozilla\/4./";
 
 } else {
 	die();
