@@ -511,8 +511,8 @@ class Database {
 	 * The value inserted should be fetched from nextSequenceValue()
 	 *
 	 * Example:
-	 * $id = $dbw->nextSequenceValue('cur_cur_id_seq');
-	 * $dbw->insert('cur',array('cur_id' => $id));
+	 * $id = $dbw->nextSequenceValue('page_page_id_seq');
+	 * $dbw->insert('page',array('page_id' => $id));
 	 * $id = $dbw->insertId();
 	 */
 	function insertId() { return mysql_insert_id( $this->mConn ); }
@@ -1149,10 +1149,15 @@ class Database {
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
 	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
+	 * srcTable may be an array of tables.
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect' ) {
 		$destTable = $this->tableName( $destTable );
-		$srcTable = $this->tableName( $srcTable );
+                if( is_array( $srcTable ) ) {
+                        $srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+		} else { 
+			$srcTable = $this->tableName( $srcTable );
+		}
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
 			' SELECT ' . implode( ',', $varMap ) . 
 			" FROM $srcTable";
