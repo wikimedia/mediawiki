@@ -422,7 +422,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' id='wpSave' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+<input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br /><div id=\"editpage-copywarn\">{$copywarn}</div>
