@@ -196,6 +196,7 @@ CREATE TABLE objectcache (
 */
 class /* abstract */ SqlBagOStuff extends BagOStuff {
 	var $table;
+
 	function SqlBagOStuff($tablename = 'objectcache') {
 		$this->table = $tablename;
 	}
@@ -242,9 +243,13 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 		return true; /* ? */
 	}
 	
+	function getTableName() {
+		return $this->table;
+	}
+	
 	function _query($sql) {
 		$reps = func_get_args();
-		$reps[0] = $this->table;
+		$reps[0] = $this->getTableName();
 		// ewwww
 		for($i=0;$i<count($reps);$i++) {
 			$sql = str_replace(
@@ -303,6 +308,8 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 }
 
 class MediaWikiBagOStuff extends SqlBagOStuff {
+	var $tableInitialised = false;
+
 	function _doquery($sql) {
 		$dbw =& wfGetDB( DB_MASTER );
 		return $dbw->query($sql, 'MediaWikiBagOStuff:_doquery');
@@ -328,6 +335,14 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _strencode($s) {
 		$dbw =& wfGetDB( DB_MASTER );
 		return $dbw->strencode($s);
+	}
+	function getTableName() {
+		if ( !$this->tableInitialised ) {
+			$dbw =& wfGetDB( DB_MASTER );
+			$this->table = $dbw->tableName( $this->table );
+			$this->tableInitialised = true;
+		}
+		return $this->table;
 	}
 }
 

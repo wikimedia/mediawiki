@@ -101,7 +101,7 @@ class LinksUpdate {
 					'bl_from'=>$this->mId,
 					'bl_to'=>$blt));
 			}
-			$dbw->insertArray($brokenlinks,$arr,array('IGNORE'));
+			$dbw->insertArray( 'brokenlinks',$arr,array('IGNORE'));
 			$dbw->query( $sql, $fname );
 		}
 
