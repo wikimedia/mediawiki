@@ -12,12 +12,16 @@ class LinksUpdate {
 		$this->mTitleEnc = wfStrencode( $title );
 	}
 
+	
 	function doUpdate()
 	{
 		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
 		
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
+
+		// Make sure links cache is regenerated on next load
+		wfQuery("DELETE FROM linkscc WHERE lcc_title = '{$safeTitle}'", DB_WRITE);
 
 		if ( !$wgUseBetterLinksUpdate ) {
 			$this->doDumbUpdate();
