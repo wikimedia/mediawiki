@@ -88,6 +88,9 @@ if ( !function_exists( 'mb_substr' ) ) {
  * @param string $charset Encoding set to use (default 'ISO-8859-1')
  */
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
+	$fname = 'do_html_entity_decode';
+	wfProfileIn( $fname );
+	
 	static $trans;
 	static $savedCharset;
 	static $regexp;
@@ -120,6 +123,7 @@ function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-
 	}
 
 	$out = preg_replace( $regexp, '$trans["$1"]', $string );
+	wfProfileOut( $fname );
 	return $out;
 }
 

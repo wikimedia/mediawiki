@@ -73,6 +73,10 @@ class LinkCache {
 			$this->mBadLinks[$title] = 1;
 		}
 	}
+	
+	function addBadLinkObj( &$nt ) {
+		$this->addBadLink( $nt->getPrefixedDBkey() );
+	}
 
 	function addImageLink( $title ) {
 		if ( $this->mActive ) { $this->mImageLinks[$title] = 1; }

@@ -1,5 +1,245 @@
 Change notes from older releases. For current info see RELEASE-NOTES.
 
+Security reminder: MediaWiki does not require PHP's register_globals
+setting since version 1.2.0. If you have it on, turn it *off* if you can.
+
+== Version 1.3.9, ****-**-** ==
+
+Changes from 1.3.8:
+* Backported "Templates used in this page"-feature of EditPage
+* Allow "MySkin" as a default skin.
+* (bug 938) Parse namespaces correctly on self-interwiki links
+
+== Version 1.3.8, 2004-11-15 ==
+
+MediaWiki 1.3.8 is a bugfix release. Those running wikis with uploads
+enabled are strongly recommended to upgrade as this fixes several problems
+with overwriting previously-uploaded files.
+
+Changes from 1.3.7:
+* (bug 506) fix array_key_exists() warning for IIS servers using
+  ISAPI mode
+* (bug 718) fix bad charset in (file) cached pages
+* use local numerals in category page (for Hindi et al)
+* alias month abbreviations to month names in Hindi
+* add localized numerals for Gujarati and Kannada
+* fix Category and project namespaces for Hindi
+* Don't output bogus timestamp on Special:Recentchanges if no entries
+* Correct template include path which broke some but not all Windows installs
+* Fix edit form submission problem with some PHP versions
+* Disallow unreachable titles with %XX hex codes
+* Allow page [[0]] to be renamed
+* (bug 774) when saving with section=new, return to the anchor as with
+  existing numbered section edits
+* Experimental shared upload overlay area (disabled by default)
+* (bug 806) Removed some "Wikipedia" hardcoding in German localization
+* User option localization fix for some extensions
+* (bug 809) now try to load the mysql php extension if it isn't loaded
+* (bug 848) fix error message in Special:Newpages RSS and Atom feeds
+* (bug 26) fix cache headers on anon talk page notification
+* (bug 874) added 'cgi' to wgFileBlacklist
+* (bug 862) localize date and time format for Finnish
+* (bug 548) Don't overwrite images until the user confirms it
+
+
+== Version 1.3.7, 2004-10-18 ==
+Changes from 1.3.6:
+* Fix protected-page related security issue.
+
+
+== Version 1.3.6, 2004-10-14 ==
+
+Changes from 1.3.5:
+* (bug 296) Variables in user interface messages are no longer substituted
+  at install time, so changes to the site name etc should be easier to make
+* (bug 149) Special:Recentchanges "changes from" link preserves limit
+* (bug 433) tooltip for "Undelete" tab now labeled correctly
+* (bug 439) unclickable "Move" tab no longer displays on protected pages
+* (bug 484) graceful deletion of images where the actual file is missing
+* (bug 686) fixed [[plural]]s in Catalan localization
+* Fixed potential HTML/JavaScript injection attack in the UnicodeConverter
+  extension. (This extension is not enabled by default.)
+* Fixed potential HTML/JavaScript injection attack via raw page views to
+  a maliciously crafted wiki page.
+* (bug 187, bug 669) Fixed centered thumbnails, using <div> instead of
+  <span>.
+* catch MySQL error 2000 during installation.
+* (bug 704) Removed misleading LocalSettings.sample
+* Fix cross site scripting bugs in SpecialIpblocklist, SpecialEmailuser
+* Fix SQL injection and cross site scripting bugs in SpecialMaintenance
+* Fix cross site scripting bugs and possible filename validation vulnerability
+  in ImagePage.
+* and more of that sort
+
+
+== Version 1.3.5, 2004-09-30 ==
+
+Changes from 1.3.4:
+* Clean up input validation in 'raw' page output mode which was a potential
+  cross-site scripting opportunity.
+
+
+== Version 1.3.4, 2004-09-28 ==
+
+************************** SECURITY NOTE! ******************************
+
+As of 1.3.4, MediaWiki performs some screening of newly uploaded files for
+validity. (Some)  corrupt image files, and HTML files mistakenly or
+maliciously masquerading as images, should now be rejected.
+
+These checks protect against Internet Explorer security holes relating
+to type autodetection which are a potential cross-site scripting attack
+vector, and also rejects at least one known version of the "JPEG virus"
+which might attack unpatched clients.
+
+If you already have invalid files uploaded this will not protect against
+them. If you have expanded the filetype whitelist or disabled the strict
+type checking, other dangerous file types may still get through. You should
+always be careful when allowing uploads!
+
+
+Changes from 1.3.3:
+* Fixed lots of template-related bugs, esp. for cases where template
+  variables are used for links, images, etc.
+* Fixed transformation of page messages when viewing Special:Allmessages
+* Handle "ISBN ISBN 1234" correctly
+* Fixed warning on Category pages
+* Fixed some bad error messages on login page
+* Fixed history entry for initial main page on install
+* Removed problematic { and } from legal title characters
+* Strip leading blank from output in preformated text.
+* Fixed problem when moving pages to titles with '#' in
+* Optional $wgRawHtml for raw <html> sections. Use only on limited-
+  participation 'trusted' wikis, as it does not protect against cross-site
+  scripting attacks. For security, this option can only be enabled if in
+  $wgWhitelistEdit mode.
+* Fixed problem where pages which were created as a redirect following
+  a move never showed on Special:Randompage.
+* Fixed line spacing on printed table of contents
+* Allow links to pages with names of the form [[RFC 1234]]
+* Fixed broken edit links being shown for sections from included templates
+* Verify that uploaded image files are of the claimed type.
+
+
+== Version 1.3.3, 2004-09-09 ==
+
+Changes from 1.3.2:
+* Fix for long numeric page titles
+* Fix Go search for "0", numeric almost-self-links
+* Avoid caching of pages with "You have new messages" headers
+* Fix for upgrades as non-root users from 1.2 command-line installs.
+* Fix for $wgDebugDumpSql debug mode.
+* $wgExtraNamespaces setting for configuring additional namespaces
+  (see note in DefaultSettings.php)
+* 'recache' on query pages now disabled when miser mode is on; special case the
+  global settings in your LocalSettings.php to do automatic updates.
+* Don't block UTF-8 titles containing byte 0xA0 (bug added in 1.3.2)
+* Watch/unwatch tabs now shown on edit pages in MonoBook.
+* Fix default skin in Irish localization (ga)
+* Add Traditional Chinese localization (zh-tw)
+* Changed default sortkey of subcategories. Don't include "Category:"-prefix
+  any longer
+* More helpful info on spam catcher.
+* Allow larger offsets for queries such as Special:Listusers
+* Semicolon (;) added to French non-break space rules
+* Possible fix for some install errors with path names permission problems.
+* Removed [[Project:All system messages]], which has been superceded by
+  the much faster [[Special:Allmessages]]. This speeds up installation
+  considerably.
+
+== Version 1.3.2, 2004-08-30 ==
+
+Changes from 1.3.1:
+* Fix namespaced page creation links when no go match
+* When cookies are disabled, don't show login screen twice
+* Install should no longer die when PHP is pre-configured to compress output
+* Fixed bug that caused long Japanese pages to time out with Tidy active
+* When session.handler is set incorrectly, try automatic override to 'files'
+* Watch/Unwatch links back to the affected page instead of Main Page
+* Upload link no longer displayed on Monobook if uploading is disabled
+* Special:Allmessages faster, shows correct original text, works in safe mode
+
+
+== Version 1.3.1, 2004-08-14 ==
+
+Changes from 1.3.0:
+* Watchlist parameters now work with register_globals off
+* Fixed parsing of ''italics'' and '''bold''' mark-up (again)
+* Special:Allpages display is more sensible on smaller wikis
+* Fixed XHTML parsing error in classic skins
+* Moved pages update watchlist correctly
+* Fixed rebuildall.php on case-sensitive Unix filesystems
+* Disabled file cache compression by default due to incompatibility
+  with output buffer compression (ob_gzhandler)
+* New magic word PAGENAMEE (URL-escaped version of PAGENAME)
+* Installation avoids blank username; better message on missing XML module
+* $wgWhitelistAccount no longer breaks all logins.
+
+== Version 1.3.0, 2004-08-11 ==
+
+Look & layout:
+* New default layout 'MonoBook' (available on PHP4 only currently)
+* Print stylesheet now built-in to every page
+* More or less correct XHTML 1.0 (served as text/html by default)
+
+Wiki features:
+* Image captions can now include links and other basic formatting
+* Image bounding box can be specified instead of width, e.g. as
+  100x100px, making the image not wider than 100px and not higher
+  than 100px, keeping aspect ratio.
+* Templates have been expanded with parameters, and separated from
+  the MediaWiki: localization scheme.
+* Categories more or less work
+* added a special page for listing users with sysop rights.
+
+Editing:
+* Automatic merging of edit conflicts that don't directly interfere
+* Edit summaries can now include basic formatting and links
+
+Metadata and output:
+* Linked Creative Commons copyright metadata (optional)
+* RSS 2.0 & Atom 0.3 feeds for Recent Changes, New Pages
+
+Optional modules:
+* WikiHiero hieroglyphic module can be added (separate download)
+* Timeline module can be added (separate download).
+  Requires ploticus.
+* TeX now has an experimental MathML output mode (incomplete!)
+
+Installation and upgrading:
+* The old install.php and update.php have been removed. In-place
+  installation introduced in 1.2 is now the standard installation
+  and upgrade method, see INSTALL and UPGRADE for directions.
+
+Database:
+* The links table has been changed to use a cur_id for l_from.
+  The link tables must be converted on upgrade, which may entail
+  some downtime.
+
+Code and compatibility:
+* Should now run clean with error reporting set to E_ALL.
+* register_globals hack from 1.2 has been replaced with safer code
+* Bundled PHPTAL 0.7.0 from http://phptal.sourceforge.net/
+  (with some patches)
+* Most image-related code moved to Image.php
+* More fixes for PHP 4.1.2 (thanks to Asheesh Laroia)
+* URL encoding fix for anchors
+* All languages now available in UTF-8 mode
+* Various other fixes
+
+=== Caveats ===
+
+Some output, particularly involving user-supplied inline HTML, may not
+produce 100% valid or well-formed XHTML output. Testers are welcome to
+set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
+cases, but this is not recommended on live sites. (This must be set for
+MathML to display properly in Mozilla.)
+
+The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
+underlying PHPTAL library. It will be automatically disabled when running
+on PHP5; the older look and feel will be used instead.
+
+
 == Version 1.2.6, 2004-05-24 ==
 * Spam blocker ($wgSpamRegex - refuses to save edits that match)
 * Updated documentation about $wgWhitelistRead

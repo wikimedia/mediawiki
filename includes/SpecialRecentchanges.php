@@ -253,6 +253,9 @@ function rcLimitLinks( $page='Recentchanges', $more='', $doall = false ) {
 }
 
 function rcFormatDiff( $row ) {
+	$fname = 'rcFormatDiff';
+	wfProfileIn( $fname );
+	
 	require_once( 'DifferenceEngine.php' );
 	$comment = "<p>" . htmlspecialchars( $row->rc_comment ) . "</p>\n";
 	
@@ -275,6 +278,7 @@ function rcFormatDiff( $row ) {
 			$newtext = $newrow->cur_text;
 		}
 		if( $row->rc_last_oldid ) {
+			wfProfileIn( "$fname-dodiff" );
 			$oldrow = $dbr->selectRow( 'old',
 				array( 'old_flags', 'old_text' ),
 				array( 'old_id' => $row->rc_last_oldid ) );
@@ -282,14 +286,17 @@ function rcFormatDiff( $row ) {
 			$diffText = DifferenceEngine::getDiff( $oldtext, $newtext,
 			  wfMsg( 'revisionasof', $wgContLang->timeanddate( $row->rc_timestamp ) ),
 			  wfMsg( 'currentrev' ) );
+			wfProfileOut( "$fname-dodiff" );
 		} else {
 			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' . 
 				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
 		}
 		
+		wfProfileOut( $fname );
 		return $comment . $diffText;
 	}
 	
+	wfProfileOut( $fname );
 	return $comment;	
 }
 
