@@ -458,30 +458,109 @@ class SearchEngine {
 			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
+		$wgOut->addHTML( wfMsg("nogomatch", 
+			htmlspecialchars( wfLocalUrl( ucfirst($this->mUsertext), "action=edit") ) )
+			. "\n<p>" );
 
-		# Try a near match
-		#
-		if( !$wgDisableTextSearch ) {
-			$this->parseQuery();										
-			$sql = "SELECT cur_id,cur_title,cur_namespace,si_page FROM cur,searchindex " .
-			  "WHERE cur_id=si_page AND {$this->mTitlecond} ORDER BY cur_namespace LIMIT 1";
-	
-			if ( "" != $this->mTitlecond ) {
-				$res = wfQuery( $sql, DB_READ, $fname );
-			} 				
-			if ( isset( $res ) && 0 != wfNumRows( $res ) ) {
-		 		$s = wfFetchObject( $res );
-	
-				$t = Title::makeTitle( $s->cur_namespace, $s->cur_title );
-				$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
-				return;
+		# Try a fuzzy title search
+		$anyhit = false;
+		global $wgDisableFuzzySearch;
+		if(! $wgDisableFuzzySearch ){
+			foreach( array(NS_MAIN, NS_WP, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
+				$anyhit |= SearchEngine::doFuzzyTitleSearch( $search, $namespace );
+			}
+		} 
+		if( ! $anyhit ){
+			$wgOut->addHTML( wfMsg("notitlematches") );		
+		}
+	}
+
+	/* static */ function doFuzzyTitleSearch( $search, $namespace ){
+		global $wgLang, $wgOut;
+		$sstr = ucfirst($search);
+		$sstr = str_replace(" ", "_", $sstr);
+		$fuzzymatches = SearchEngine::fuzzyTitles( $sstr, $namespace );
+		$fuzzymatches = array_slice($fuzzymatches, 0, 10);
+		$slen = strlen( $search );
+		$wikitext = "";
+		foreach($fuzzymatches as $res){
+			$t = str_replace("_", " ", $res[1]);
+			$tfull = $wgLang->getNsText( $namespace ) . ":$t|$t";
+			if( $namespace == NS_MAIN )
+				$tfull = "$t";
+			$distance = $res[0];
+			$closeness = (strlen( $search ) - $distance) / strlen( $search );
+			$percent = intval( $closeness * 100 ) . "%";
+			$stars = str_repeat("*", ceil(5 * $closeness) );
+			$wikitext .= "* [[$tfull]] $percent ($stars)\n";	
+		}
+		if( $wikitext ){
+			if( $namespace != NS_MAIN )
+				$wikitext = "=== " . $wgLang->getNsText( $namespace ) . " ===\n" . $wikitext;
+			$wgOut->addWikiText( $wikitext );
+			return true;
+		}
+		return false;
+	}
+
+	/* static */ function fuzzyTitles( $sstr, $namespace = NS_MAIN ){
+		$span = 0.10; // weed on title length before doing levenshtein.
+		$tolerance = 0.35; // allowed percentage of erronous characters
+		$slen = strlen($sstr);
+		$tolerance_count = ceil($tolerance * $slen);
+		$spanabs = ceil($slen * (1 + $span)) - $slen;
+		# print "Word: $sstr, len = $slen, range = [$min, $max], tolerance_count = $tolerance_count<BR>\n";
+		$result = array();
+		for( $i=0; $i <= $spanabs; $i++ ){
+			$titles = SearchEngine::getTitlesByLength( $slen + $i, $namespace );
+			if( $i != 0)
+				$titles = array_merge($titles, SearchEngine::getTitlesByLength( $slen - $i, $namespace ) );
+			foreach($titles as $t){
+				$d = levenshtein($sstr, $t);
+				if($d < $tolerance_count) 
+					$result[] = array($d, $t);
+				$cnt++;
+			}
+	        }
+		usort($result, "SearchEngine_pcmp");
+		return $result;
+	}
+
+	/* static */ function getTitlesByLength($aLength, $aNamespace = 0){
+		global $wgMemc, $wgDBname;
+
+		$mkey = "$wgDBname:titlesbylength:$aLength:$aNamespace";
+		$mkeyts = "$wgDBname:titlesbylength:createtime";
+		$ts = $wgMemc->get( $mkeyts );
+		$result = $wgMemc->get( $mkey );
+
+		if( time() - $ts < 3600 ){
+			// note: in case of insufficient memcached space, we return
+			// an empty list instead of starting to hit the DB.
+			return is_array( $result ) ? $result : array();
+		}
+
+		$wgMemc->set( $mkeyts, time() );
+		$res = wfQuery("SELECT cur_title, cur_namespace FROM cur", DB_READ);
+		$titles = array(); // length, ns, [titles]
+		while( $obj = wfFetchObject( $res ) ){
+			$title = $obj->cur_title;
+			$ns = $obj->cur_namespace;
+			$len = strlen( $title );
+			$titles[$len][$ns][] = $title;
+		} 
+		foreach($titles as $length => $length_arr){
+			foreach($length_arr as $ns => $title_arr){
+				$mkey = "$wgDBname:titlesbylength:$length:$ns";
+				$wgMemc->set( $mkey, $title_arr, 3600 * 24 );
 			}
 		}
-		$wgOut->addHTML( wfMsg("nogomatch", 
-		  htmlspecialchars( wfLocalUrl( ucfirst($this->mUsertext), "action=edit") ) )
-		  . "\n<p>" );
-		$this->showResults();
+		return $titles[$aLength][$aNamespace];
 	}
 }
+
+/* private static */ function SearchEngine_pcmp($a, $b){ return $a[0] - $b[0]; }
+
+
 
 ?>
