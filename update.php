@@ -27,6 +27,7 @@ include_once( "Version.php" );
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Update script" );
 $wgCommandLineMode = true;
+$wgAlterSpecs = array();
 
 do_revision_updates();
 
@@ -89,7 +90,8 @@ function copydirectory( $source, $dest ) {
 	$handle = opendir( $source );
 	while ( false !== ( $f = readdir( $handle ) ) ) {
 		if ( "." == $f{0} ) continue;
-		if ( "CVS" == $f ) continue;
+		# Windows turned all my CVS->cvs :(
+		if ( !strcasecmp ( "CVS", $f ) ) continue;
 		copyfile( $source, $f, $dest );
 	}
 }
@@ -102,13 +104,32 @@ function readconsole() {
 }
 
 function do_revision_updates() {
-	global $wgSoftwareRevision;
+	global $wgSoftwareRevision, $wgAlterSpecs, $wgDBserver, $wgDBadminuser;
+	global $wgDBadminpassword, $wgDBname;
 
 	if ( $wgSoftwareRevision < 1001 ) { update_passwords(); }
+	if ( $wgSoftwareRevision < 1002 ) { alter_ipblocks(); }
+
+	# Run ALTER TABLE queries.
+
+	if ( count( $wgAlterSpecs ) ) {
+		$rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
+		mysql_select_db( $wgDBname );
+		print "\n";
+		foreach ( $wgAlterSpecs as $table => $specs ) {
+			$sql = "ALTER TABLE $table $specs";
+			print "$sql;\n";
+			$res = mysql_query( $sql, $rconn );
+			if ( $res === false ) {
+				print "MySQL error: " . mysql_error( $rconn ) . "\n";
+			}
+		}
+		mysql_close( $rconn );
+	}
 }
 
 function update_passwords() {
-	$fname = "Update scripte: update_passwords()";
+	$fname = "Update script: update_passwords()";
 	print "\nIt appears that you need to update the user passwords in your\n" .
 	  "database. If you have already done this (if you've run this update\n" .
 	  "script once before, for example), doing so again will make all your\n" .
@@ -130,6 +151,38 @@ function update_passwords() {
 		  "WHERE user_id={$id}";
 		wfQuery( $sql, $fname );
 	}
+}
+
+function alter_ipblocks() {
+	global $wgAlterSpecs;
+	$fname = "Update script: alter_ipblocks";
+	
+	if ( field_exists( "ipblocks", "ipb_id" ) ) {
+		return;
+	}
+	
+	if ( array_key_exists( "ipblocks", $wgAlterSpecs ) ) {
+		$wgAlterSpecs["ipblocks"] .= ",";
+	}
+
+	$wgAlterSpecs["ipblocks"] .=
+		"ADD ipb_auto tinyint(1) NOT NULL default '0', ".
+		"ADD ipb_id int(8) NOT NULL auto_increment,".
+		"ADD PRIMARY KEY (ipb_id)";
+}
+
+function field_exists( $table, $field ) {
+	$fname = "Update script: field_exists";
+	$res = wfQuery( "DESCRIBE $table", $fname );
+	$found = false;
+	
+	while ( $row = wfFetchObject( $res ) ) {
+		if ( $row->Field == $field ) {
+			$found = true;
+			break;
+		}
+	}
+	return $found;
 }
 
 ?>

@@ -59,14 +59,13 @@ class IPBlockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpBlockAddress, $wpBlockReason, $wgSysopUserBlocks;
-		$fname = "IPBlockForm::doSubmit";
+		global $ip, $wpBlockAddress, $wpBlockReason, $wgSysopUserBans;
 		
 		$userId = 0;
 		if ( ! preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/",
 		  $wpBlockAddress ) ) 
 		{
-		  	if ( $wgSysopUserBlocks ) {	
+		  	if ( $wgSysopUserBans ) {	
 				$userId = User::idFromName( $wpBlockAddress );
 				if ( $userId == 0 ) {
 					$this->showForm( wfMsg( "badipaddress" ) );
@@ -83,12 +82,9 @@ class IPBlockForm {
 		}
 		
 		# Note: for a user block, ipb_address is only for display purposes
-		
-		$sql = "INSERT INTO ipblocks (ipb_address, ipb_user, ipb_by, " .
-		  "ipb_reason, ipb_timestamp ) VALUES ('{$wpBlockAddress}', {$userId}, " .
-		  $wgUser->getID() . ", '" . wfStrencode( $wpBlockReason ) . "','" .
-		  wfTimestampNow() . "')";
-		wfQuery( $sql, $fname );
+		$ban = new Block( $wpBlockAddress, $userId, $wgUser->getID(), 
+			wfStrencode( $wpBlockReason ), wfTimestampNow(), 0 );
+		$ban->insert();
 
 		$success = wfLocalUrl( $wgLang->specialPage( "Blockip" ),
 		  "action=success&ip={$wpBlockAddress}" );

@@ -170,7 +170,8 @@ function copydirectory( $source, $dest ) {
 	$handle = opendir( $source );
 	while ( false !== ( $f = readdir( $handle ) ) ) {
 		if ( "." == $f{0} ) continue;
-		if ( "CVS" == $f ) continue;
+		# Something made all my "CVSs" go lowercase :(
+		if ( !strcasecmp( "CVS", $f ) ) continue;
 		copyfile( $source, $f, $dest );
 	}
 }

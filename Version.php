@@ -9,5 +9,5 @@
 # update.php script.
 #
 
-$wgSoftwareRevision = 1001;
+$wgSoftwareRevision = 1002;
 ?>

@@ -5,6 +5,9 @@
 -- Only UNIQUE keys are defined here; the rest are added by
 -- indexes.sql.
 --
+-- If you change the main development branch version of this 
+-- file, please add an appropriate ALTER TABLE to update.php, 
+-- and increment the version number in Version.php.
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
@@ -104,11 +107,14 @@ CREATE TABLE site_stats (
 
 DROP TABLE IF EXISTS ipblocks;
 CREATE TABLE ipblocks (
+  ipb_id int(8) NOT NULL auto_increment,
   ipb_address varchar(40) binary NOT NULL default '',
   ipb_user int(8) unsigned NOT NULL default '0',
   ipb_by int(8) unsigned NOT NULL default '0',
   ipb_reason tinyblob NOT NULL default '',
-  ipb_timestamp char(14) binary NOT NULL default ''
+  ipb_timestamp char(14) binary NOT NULL default '',
+  ipb_auto tinyint(1) NOT NULL default '0',
+  UNIQUE KEY ipb_id
 ) TYPE=MyISAM PACK_KEYS=1;
 
 DROP TABLE IF EXISTS image;

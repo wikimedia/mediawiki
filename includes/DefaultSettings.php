@@ -23,7 +23,6 @@ $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
 #$wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>";
 $wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>\r\nReply-To: webmaster@www.wikipedia.org";
 
-
 # MySQL settings
 #
 $wgDBserver         = "localhost";

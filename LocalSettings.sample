@@ -37,6 +37,11 @@ $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
 
+# Change this key to different sequence of 8 bytes, so that sysops cannot 
+# obtain the IP addresses of logged-in users.
+$wgIPBlockKey = implode( "", array_map( "chr", 
+	array( 57, 100, 182, 241, 93, 122, 40, 195 ) ) );
+
 # Turn this on during database maintenance
 # $wgReadOnly = true;
 

@@ -165,16 +165,23 @@ oldimage (Old versions of images stored for potential revert)
 
 
 ipblocks (IP addresses and users blocked from editing)
-
+  ipb_id
+    Primary key, introduced for privacy. 
   ipb_address
-    Blocked IP address in dotted-quad form or ""
+    Blocked IP address in dotted-quad form or user name.
   ipb_user
-    Blocked user ID or 0.
+    Blocked user ID or 0 for IP blocks.
   ipb_by
     User ID who made the block.
   ipb_reason
     Text comment made by blocker.
-
+  ipb_timestamp
+    Creation (or refresh) date in standard YMDHMS form. IP
+    blocks expire automatically.
+  ipb_auto
+    Indicates that the IP address was banned because a banned
+    user accessed a page through it. If this is 1, ipb_address
+    will be hidden.
 
 
 random (Random page queue)
