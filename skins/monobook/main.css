@@ -185,7 +185,8 @@ input[type="checkbox"] { border:none; }
 select {
     border: 1px solid #2f6fab;
     color: Black;
-    vertical-align: top;
+    background: White;
+	vertical-align: top;
 }
 abbr, acronym, .explain {
     border-bottom: 1px dotted Black;
