@@ -5,9 +5,13 @@
 $wgRequestTime = microtime();
 
 unset( $IP );
-@ini_set( "allow_url_fopen", 0 ); # For security...
-if(!file_exists("LocalSettings.php")) {
-	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+@ini_set( 'allow_url_fopen', 0 ); # For security...
+if( !file_exists( 'LocalSettings.php' ) ) {
+	if ( file_exists( 'config/LocalSettings.php' ) ) {
+		die( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.\n" );
+	} else {
+		die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+	}
 }
 
 # Valid web server entry point, enable includes.
@@ -18,11 +22,6 @@ define( "MEDIAWIKI", true );
 
 require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
-if ( $wgUseData )
-	{
-	$wgExtraNamespaces[20] = 'Data' ;
-	$wgExtraNamespaces[21] = 'Data_talk' ;
-	}
 require_once( "includes/Setup.php" );
 
 wfProfileIn( "main-misc-setup" );
