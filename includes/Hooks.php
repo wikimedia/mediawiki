@@ -48,7 +48,7 @@ if (defined('MEDIAWIKI')) {
 
 		$event = array_shift($args);
 
-		if (!array_key_exists($wgHooks, $event)) {
+		if (!array_key_exists($event, $wgHooks)) {
 			return true;
 		}
 
