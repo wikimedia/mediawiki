@@ -824,15 +824,15 @@ fieldset.operaprefsection { margin-left: 15em }
 /* footer icons need a fixed width */
 *>html #f-poweredbyico,
 *>html #f-copyrightico { width: 88px; }
-
-/* more IE fixes */
-/* float/negative margin brokenness */
-* html #bodyContent,
-* html #bodyContent pre {
+*>html #bodyContent,
+*>html #bodyContent pre {
     overflow-x: auto;
     width: 100%;
     padding-bottom: 25px;
 }
+
+/* more IE fixes */
+/* float/negative margin brokenness */
 * html #footer {margin-top: 0;}
 * html #column-content {
     display: inline;
