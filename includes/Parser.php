@@ -647,7 +647,7 @@ class Parser
 	/* private */ function handle5Quotes( &$state, $token )
 	{
 		$s = "";
-		if ( $state["em"] !== false && $state["strong"] ) {
+		if ( $state["em"] !== false && $state["strong"] !== false ) {
 			if ( $state["em"] < $state["strong"] ) {
 				$s .= "</strong></em>";
 			} else {
