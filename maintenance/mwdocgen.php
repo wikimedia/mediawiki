@@ -85,10 +85,24 @@ function readaline( $prompt = '') {
 # Main !
 #
 
-if( is_array( $argv ) && isset( $argv[1] ) && $argv[1] == '--all' ) {
-	# Quick option
-	$input = 0;
-} else {
+unset( $file );
+
+if( is_array( $argv ) && isset( $argv[1] ) ) {
+	switch( $argv[1] ) {
+	case '--all':         $input = 0; break;
+	case '--includes':    $input = 1; break;
+	case '--maintenance': $input = 2; break;
+	case '--skins':       $input = 2; break;
+	case '--file':
+		$input = 4;
+		if( isset( $argv[2] ) ) {
+			$file = $argv[2];
+		}
+		break;
+	}
+}
+
+if( $input === '' ) {
 	print <<<END
 Several documentation possibilities:
  0 : whole documentation (1 + 2 + 3)
@@ -122,7 +136,9 @@ case 3:
 	$command .= "-d $mwPathS ";
 	break;
 case 4:
-	$file = readaline("\Enter file name $mwPath");
+	if( !isset( $file ) ) {
+		$file = readaline("\Enter file name $mwPath");
+	}
 	$command .= ' -f '.$mwPath.$file;
 }
 
