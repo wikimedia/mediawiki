@@ -216,6 +216,7 @@ function showTocToggle(show,hide) {
 
 
 function toggleToc() {
+	var tocmain = document.getElementById('toc');
 	var toc = document.getElementById('tocinside');
 	var showlink=document.getElementById('showlink');
 	var hidelink=document.getElementById('hidelink');
@@ -223,13 +224,14 @@ function toggleToc() {
 		toc.style.display = tocWas;
 		hidelink.style.display='';
 		showlink.style.display='none';
+		tocmain.className = '';
 
 	} else {
 		tocWas = toc.style.display;
 		toc.style.display = 'none';
 		hidelink.style.display='none';
 		showlink.style.display='';
-
+		tocmain.className = 'tochidden';
 	}
 }
 
