@@ -1,5 +1,5 @@
 <?php
-
+define("MEDIAWIKI",true);
 # Rebuild search index table from scratch.  This takes several
 # hours, depending on the database size and server configuration.
 

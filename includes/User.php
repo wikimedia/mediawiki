@@ -650,7 +650,7 @@ class User {
 		}
 		
 		# Make a new block object with the desired properties
-		wfDebug( "Autoblocking {$this->mUserName}@{$wgIP}\n" );
+		wfDebug( "Autoblocking {$this->mName}@{$wgIP}\n" );
 		$ipblock->mAddress = $wgIP;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;

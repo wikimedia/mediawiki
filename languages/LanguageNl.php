@@ -7,20 +7,24 @@
 # encapsulates some of the magic-ness.
 
 /* private */ $wgNamespaceNamesNl = array(
- -2 => "Media",
- -1 => "Speciaal",
- 0 => "",
- 1 => "Overleg",
- 2 => "Gebruiker",
- 3 => "Overleg_gebruiker",
- 4 => "Wikipedia",
- 5 => "Overleg_Wikipedia",
- 6 => "Afbeelding",
- 7 => "Overleg_afbeelding",
- 8 => "MediaWiki",
- 9 => "Overleg_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
+ NS_MEDIA => "Media",
+ NS_SPECIAL => "Speciaal",
+ NS_MAIN => "",
+ NS_TALK => "Overleg",
+ NS_USER => "Gebruiker",
+ NS_USER_TALK => "Overleg_gebruiker",
+ NS_WIKIPEDIA => "Wikipedia",
+ NS_WIKIPEDIA_TALK => "Overleg_Wikipedia",
+ NS_IMAGE => "Afbeelding",
+ NS_IMAGE_TALK => "Overleg_afbeelding",
+ NS_MEDIAWIKI => "MediaWiki",
+ NS_MEDIAWIKI_TALK => "Overleg_MediaWiki",
+ NS_TEMPLATE => "Sjabloon",
+ NS_TEMPLATE_TALK => "Overleg_sjabloon",
+ NS_HELP => "Help",
+ NS_HELP_TALK => "Overleg_help",
+ NS_CATEGORY => "Categorie",
+ NS_CATEGORY_TALK => "Overleg_categorie"
 
 );
 

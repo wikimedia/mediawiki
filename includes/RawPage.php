@@ -21,12 +21,14 @@ class RawPage {
 			
 		$charset = $wgRequest->getText( 'charset' );
 		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
+		$smaxage = $wgRequest->getText( 'smaxage' );
+		$this->mSmaxage = !empty($smaxage) ? $smaxage : 0;
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
 	}
 	function view() {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
-		header( 'Cache-Control: s-maxage=0, max-age=86400' );
+		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age=86400' );
 		echo $this->getrawtext();
 		wfAbruptExit();
 	}
@@ -36,6 +38,14 @@ class RawPage {
 		if( !$this->mTitle ) return '';
 		$t = wfStrencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
+		# special case
+		if($ns == NS_MEDIAWIKI) {
+			$rawtext = wfMsg($t);
+			if($wgInputEncoding != $this->mCharset)
+			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
+			return $rawtext;
+		}
+		# else get it from the DB
 		if(!empty($this->mOldId)) {
 			$sql = "SELECT old_text as text,old_timestamp as timestamp,old_user as user,old_flags as flags FROM old " .
 			"WHERE old_id={$this->mOldId}";

@@ -36,7 +36,7 @@ class BlockCache
 				}
 			}
 
-			if ( $this->mData === false || is_null( $this->mData ) ) {
+			if ( !is_array( $this->mData ) ) {
 				# Load from DB
 				$this->mData = array();
 				Block::enumBlocks( "wfBlockCacheInsert", "" ); # Calls $this->insert()

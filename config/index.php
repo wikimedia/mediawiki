@@ -400,6 +400,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_interwiki_update(); flush();
 			do_index_update(); flush();
 			do_linkscc_update(); flush();
+			do_linkscc_1_3_update(); flush();
 			do_hitcounter_update(); flush();
 			do_recentchanges_update(); flush();
 			convertLinks(); flush();

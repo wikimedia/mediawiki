@@ -446,7 +446,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b",
 "searchresults" => "Serĉrezultoj",
 "searchhelppage" => "{{ns:4}}:Serĉado",
 "searchingwikipedia" => "Priserĉante la {{SITENAME}}n",
-"searchresulttext" => "Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu .",
+"searchresulttext" => "Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu $1.",
 "searchquery"	=> "Serĉmendo \"$1\"",
 "badquery"		=> "Misformita serĉmendo",
 "badquerytext"	=> "Via serĉmendo ne estis plenumebla.

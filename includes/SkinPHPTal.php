@@ -62,7 +62,7 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
+			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
 			
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
@@ -97,6 +97,13 @@
 				'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
 				$out->getSubtitle()  
 			);
+			$undelete = $this->getUndeleteLink();
+			$tpl->set(
+				"undelete", !empty($undelete)?
+				'<span class="subpages">'.$undelete.'</span>':
+				''
+			);
+
 			$tpl->set( 'catlinks', $this->getCategories());
 			if( $wgOut->isSyndicated() ) {
 				$feeds = array();
@@ -114,6 +121,7 @@
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->setRef( 'skinname', &$this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
+			$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
 			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
@@ -171,7 +179,8 @@
 
 			$tpl->setRef( "debug", &$out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
-
+			$tpl->set( "sitenotice", $wgSiteNotice );
+			
 			$tpl->setRef( "bodytext", &$out->mBodytext );
 
 			$language_urls = array();
@@ -244,13 +253,13 @@
 				);
 				$personal_urls['mycontris'] = array(
 					'text' => wfMsg('mycontris'),
-					'href' => $this->makeSpecialUrl('Contributions','target=' . $this->username),
+					'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) ),
 					'ttip' => wfMsg('tooltip-mycontris'),
 					'akey' => wfMsg('accesskey-mycontris')
 				);
 				$personal_urls['logout'] = array(
 					'text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl),
+					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl ),
 					'ttip' => wfMsg('tooltip-logout'),
 					'akey' => wfMsg('accesskey-logout')
 				);
@@ -273,7 +282,7 @@
 					);
 					$personal_urls['anonlogin'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -281,7 +290,7 @@
 
 					$personal_urls['login'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -409,7 +418,7 @@
 						if ( $wgTitle->userCanEdit()) {
 							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : false,
 							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl('Movepage', 'target='.$this->thispage),
+							'href' => $this->makeSpecialUrl('Movepage', 'target='. urlencode( $this->thispage )),
 							'ttip' => wfMsg('tooltip-move'),
 							'akey' => wfMsg('accesskey-move'));
 						} else {
@@ -478,10 +487,10 @@
 			$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
 			$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
 			$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
-			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage)));
+			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage ))));
 			$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
 			$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
-			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage)));
+			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage ))));
 			$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
 			$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
@@ -489,9 +498,13 @@
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
 			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
 			
-			
-			$id=User::idFromName($wgTitle->getText());
-			$ip=User::isIP($wgTitle->getText());
+			if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
+				$id = User::idFromName($wgTitle->getText());
+				$ip = User::isIP($wgTitle->getText());
+			} else {
+				$id = 0;
+				$ip = false;
+			}
 
 			if($id || $ip) { # both anons and non-anons have contri list
 				$nav_urls['contributions'] = array(
@@ -546,13 +559,17 @@
 			}
 		}
 		/* private */ function setupUserCssJs () {
-			global $wgRequest, $wgTitle;
+			global $wgRequest, $wgTitle, $wgSquidMaxage;
 			$action = $wgRequest->getText('action');
+			# global site css from MediaWiki NS
+			$this->usercss = '@import url('.
+			$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI).');'."\n";
+			
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				// css preview
-				$this->usercss = $wgRequest->getText('wpTextbox1');
+				$this->usercss .= $wgRequest->getText('wpTextbox1');
 			} else {
-				$this->usercss = '@import url('.
+				$this->usercss .= '@import url('.
 				$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').');';
 			}
 			if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {

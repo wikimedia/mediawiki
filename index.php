@@ -48,7 +48,7 @@ wfProfileOut( "main-misc-setup" );
 # If the user is not logged in, the Namespace:title of the article must be in
 # the Read array in order for the user to see it. (We have to check here to
 # catch special pages etc. We check again in Article::view())
-if ( !$wgTitle->userCanRead() ) {
+if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	$wgOut->loginToUse();
 	$wgOut->output();
 	exit;
@@ -67,7 +67,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 } else if ( $wgTitle->getInterwiki() != "" ) {
 	$url = $wgTitle->getFullURL();
 	# Check for a redirect loop
-	if ( !preg_match( "/^" . preg_quote( $wgServer ) . "/", $url ) && $wgTitle->isLocal() ) {
+	if ( !preg_match( "/^" . preg_quote( $wgServer, "/" ) . "/", $url ) && $wgTitle->isLocal() ) {
 		$wgOut->redirect( $url );
 	} else {
 		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
