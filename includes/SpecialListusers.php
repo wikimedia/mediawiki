@@ -26,10 +26,10 @@ class ListUsersPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		$name = $skin->makeKnownLink( $wgLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
+		$name = $skin->makeLink( $wgLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
 		if( '' != $result->type ) {
 			$name .= ' (' .
-			$skin->makeKnownLink( wfMsg( "administrators" ), $result->type) .
+			$skin->makeLink( wfMsg( "administrators" ), $result->type) .
 			')';
 		}
 		return $name;
