@@ -7,6 +7,7 @@ var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('khtml') == -1));
 var is_safari = ((clientPC.indexOf('AppleWebKit')!=-1) && (clientPC.indexOf('spoofer')==-1));
+var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
 if (clientPC.indexOf('opera')!=-1) {
     var is_opera = true;
     var is_opera_preseven = (window.opera && !document.childNodes);
@@ -19,6 +20,8 @@ function addcss ( stylepath ) {
         document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera6Fixes.css">');
     } else if (is_opera_seven) {
         document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera7Fixes.css">');
+    } else if (is_khtml) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'KHTMLFixes.css">');
     }
     return;
 }
