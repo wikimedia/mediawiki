@@ -1057,7 +1057,6 @@ class Parser
 	 */
 	function replaceInternalLinks( $s ) {
 		global $wgLang, $wgContLang, $wgLinkCache;
-		global $wgNamespacesWithSubpages;
 		static $fname = 'Parser::replaceInternalLinks' ;
 		wfProfileIn( $fname );
 
@@ -1134,44 +1133,9 @@ class Parser
 				continue;
 			}
 
-			# Valid link forms:
-			# Foobar -- normal
-			# :Foobar -- override special treatment of prefix (images, language links)
-			# /Foobar -- convert to CurrentPage/Foobar
-			# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
-			
-			# Look at the first character
-			$c = substr($m[1],0,1);
-			$noforce = ($c != ':');
-			
-			# subpage
-			if( $c == '/' ) {
-				# / at end means we don't want the slash to be shown
-				if(substr($m[1],-1,1)=='/') {
-					$m[1]=substr($m[1],1,strlen($m[1])-2);
-					$noslash=$m[1];
-				} else {
-					$noslash=substr($m[1],1);
-				}
-				
-				# Some namespaces don't allow subpages
-				if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) {
-					# subpages allowed here
-					$link = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
-					if( '' == $text ) {
-						$text= $m[1];
-					} # this might be changed for ugliness reasons
-				} else {
-					# no subpage allowed, use standard link
-					$link = $noslash;
-				}
-				
-			} elseif( $noforce ) { # no subpage
-				$link = $m[1];
-			} else {
-				# We don't want to keep the first character
-				$link = substr( $m[1], 1 );
-			}
+			# Make subpage if necessary, and check for leading ':'
+			$noforce = true;
+			$link = $this->maybeDoSubpageLink( $m[1], $noforce, $text );
 			
 			$wasblank = ( '' == $text );
 			if( $wasblank ) $text = $link;
@@ -1248,6 +1212,58 @@ class Parser
 		}
 		wfProfileOut( $fname );
 		return $s;
+	}
+
+	/**
+	 * Handle link to subpage if necessary
+	 * @param $target string the source of the link
+	 * @param $target set to true unless target began with ':'
+	 * @param &$text the link text, modified as necessary
+	 * @return string the full name of the link
+	 * @access private
+	 */
+	function maybeDoSubpageLink($target, &$noforce, &$text) {
+		# Valid link forms:
+		# Foobar -- normal
+		# :Foobar -- override special treatment of prefix (images, language links)
+		# /Foobar -- convert to CurrentPage/Foobar
+		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+		global $wgNamespacesWithSubpages;
+
+		# Look at the first character
+		$c = $target{0};
+		$noforce = ($c != ':');
+		
+		# subpage
+		if( $c == '/' ) {
+			# / at end means we don't want the slash to be shown
+			if(substr($target,-1,1)=='/') {
+				$target=substr($target,1,-1);
+				$noslash=$target;
+			} else {
+				$noslash=substr($target,1);
+			}
+				
+			# Some namespaces don't allow subpages
+			if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) {
+				# subpages allowed here
+				$ret = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
+				if( '' === $text ) {
+					$text = $target;
+				} # this might be changed for ugliness reasons
+			} else {
+				# no subpage allowed, use standard link
+				$ret = $target;
+			}
+		} elseif( $noforce ) {
+			# no subpage
+			$ret = $target;
+		} else {
+			# We don't want to keep the first character
+			$ret = substr( $target, 1 );
+		}
+
+		return $ret;
 	}
 
 	/**#@+
@@ -1795,7 +1811,12 @@ class Parser
 		# Load from database
 		$itcamefromthedatabase = false;
 		if ( !$found ) {
-			$title = Title::newFromText( $part1, NS_TEMPLATE );
+			$ns = NS_TEMPLATE;
+			$part1 = $this->maybeDoSubpageLink( $part1, $noforce, $subpage='' );
+			if ($subpage !== '') {
+				$ns = $this->mTitle->getNamespace();
+			}
+			$title = Title::newFromText( $part1, $ns );
 			if ( !is_null( $title ) && !$title->isExternal() ) {
 				# Check for excessive inclusion
 				$dbk = $title->getPrefixedDBkey();
