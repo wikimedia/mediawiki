@@ -32,7 +32,7 @@
  * @package MediaWiki
  */
 class LogPage {
-	/* private */ var $type, $action, $comment, $params;
+	/* private */ var $type, $action, $comment, $params, $target;
 	var $updateRecentChanges = true;
 
 	function LogPage( $type ) {
@@ -65,11 +65,12 @@ class LogPage {
 		
 		# And update recentchanges
 		if ( $this->updateRecentChanges ) {
+			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
 			$rcComment = $this->actionText;
 			if( '' != $this->comment ) {
 				$rcComment .= ': ' . $this->comment;
 			}
-			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
+			
 			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment );
 		}
 		return true;
@@ -141,7 +142,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $titleLink = NULL, $params = array(), $filterWikilinks=false ) {
+	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
 			'block/unblock' => 'unblocklogentry',
@@ -157,13 +158,28 @@ class LogPage {
 		);
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
-			if( is_null( $titleLink ) ) {
+			if( is_null( $title ) ) {
 				$rv=wfMsgForContent( $actions[$key] );
-			} elseif ( count( $params ) == 0 ) {
-				$rv=wfMsgForContent( $actions[$key], $titleLink );
-			} else {
-				array_unshift( $params, $titleLink );
-				$rv=wfMsgReal( $actions[$key], $params, true, true );
+			} 
+			else {
+				if ( $skin ) {
+					if ( $type == 'move' ) {
+						$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
+						// Change $param[0] into a link to the title specified in $param[0]
+						$movedTo = Title::newFromText( $params[0] );
+						$params[0] = $skin->makeLinkObj( $movedTo, $params[0] );
+					} else {
+						$titleLink = $skin->makeLinkObj( $title );
+					}
+				} else {
+					$titleLink = $title->getPrefixedText();
+				}
+				if ( count( $params ) == 0 ) {
+					$rv=wfMsgForContent( $actions[$key], $titleLink );
+				} else {
+					array_unshift( $params, $titleLink );
+					$rv=wfMsgReal( $actions[$key], $params, true, true );
+				}
 			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
@@ -178,7 +194,7 @@ class LogPage {
 
 	/**
 	 * Add a log entry
-	 * @param string $action one of 'block', 'protect', 'rights', 'delete', 'upload'
+	 * @param string $action one of 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
 	 * @param object &$target A title object.
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMsg.* functions
@@ -196,7 +212,8 @@ class LogPage {
 		$this->params = LogPage::makeParamBlob( $params );
 		
 		$this->actionText = LogPage::actionText( $this->type, $action, 
-		  $target->getPrefixedText(), $params );
+		  $target, NULL, $params );
+
 		return $this->saveContent();
 	}
 

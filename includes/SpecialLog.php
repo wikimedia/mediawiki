@@ -231,8 +231,28 @@ class LogViewer {
 	 * @param OutputPage $out where to send output
 	 */
 	function showList( &$out ) {
-		$html = "\n<ul>\n";
+		global $wgLinkCache;
 		$result = $this->reader->getRows();
+
+		// Fetch results and form a batch link existence query
+		$batch = new LinkBatch;
+		while ( $s = $result->fetchObject() ) {
+			// User link
+			$title = Title::makeTitleSafe( NS_USER, $s->user_name );
+			$batch->addObj( $title );
+
+			// Move destination link
+			if ( $s->log_type == 'move' ) {
+				$paramArray = LogPage::extractParams( $s->log_params );
+				$title = Title::newFromText( $paramArray[0] );
+				$batch->addObj( $title );
+			}
+		}
+		$batch->execute( $wgLinkCache );
+
+		// Rewind result pointer and go through it again, making the HTML
+		$result->seek( 0 );
+		$html = "\n<ul>\n";
 		while( $s = $result->fetchObject() ) {
 			$html .= $this->logLine( $s );
 		}
@@ -247,20 +267,24 @@ class LogViewer {
 	 * @private
 	 */
 	function logLine( $s ) {
-		global $wgLang;
+		global $wgLang, $wgLinkCache;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
 		$time = $wgLang->timeanddate( $s->log_timestamp, true );
+
+		// Enter the existence or non-existence of this page into the link cache,
+		// for faster makeLinkObj() in LogPage::actionText()
 		if( $s->page_id ) {
-			$titleLink = $this->skin->makeKnownLinkObj( $title );
+			$wgLinkCache->addGoodLink( $s->page_id, $title->getPrefixedText() );
 		} else {
-			$titleLink = $this->skin->makeBrokenLinkObj( $title );
+			$wgLinkCache->addBadLink( $title->getPrefixedText() );
 		}
+		
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray, true );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true );
 		$out = "<li>$time $userLink $action $comment</li>\n";
 		return $out;
 	}
