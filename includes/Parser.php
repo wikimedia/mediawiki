@@ -108,13 +108,13 @@ class Parser
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
 				# only if there is something before the space
-				"/(.) (\\?|:|!|\\302\\273)/i"=>"\\1&nbsp;\\2", 
+				'/(.) (\\?|:|!|\\302\\273)/i' => '\\1&nbsp;\\2', 
 				# french spaces, Guillemet-right
 				"/(\\302\\253) /i"=>"\\1&nbsp;", 
-				"/<hr *>/i" => '<hr />',
-				"/<br *>/i" => '<br />',
-				"/<center *>/i"=>'<div class="center">',
-				"/<\\/center *>/i" => '</div>',
+				'/<hr *>/i' => '<hr />',
+				'/<br *>/i' => '<br />',
+				'/<center *>/i' => '<div class="center">',
+				'/<\\/center *>/i' => '</div>',
 				# Clean up spare ampersands; note that we probably ought to be
 				# more careful about named entities.
 				'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
@@ -123,11 +123,11 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				"/ (\\?|:|!|\\302\\273)/i"=>"&nbsp;\\1", 
+				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1', 
 				# french spaces, Guillemet-right
-				"/(\\302\\253) /i"=>"\\1&nbsp;", 
-				"/<center *>/i"=>'<div class="center">',
-				"/<\\/center *>/i" => '</div>'
+				'/(\\302\\253) /i' => '\\1&nbsp;', 
+				'/<center *>/i' => '<div class="center">',
+				'/<\\/center *>/i' => '</div>'
 			);
 			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		}
@@ -163,24 +163,24 @@ class Parser
 			$content = array( );
 		}
 		$n = 1;
-		$stripped = "";
+		$stripped = '';
 
-		while ( "" != $text ) {
+		while ( '' != $text ) {
 			if($tag==STRIP_COMMENTS) {
-				$p = preg_split( "/<!--/i", $text, 2 );
+				$p = preg_split( '/<!--/i', $text, 2 );
 			} else {
 				$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
 			}
 			$stripped .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) {
-				$text = "";
+			if ( ( count( $p ) < 2 ) || ( '' == $p[1] ) ) {
+				$text = '';
 			} else {
 				if($tag==STRIP_COMMENTS) {
-					$q = preg_split( "/-->/i", $p[1], 2 );
+					$q = preg_split( '/-->/i', $p[1], 2 );
 				} else {
 					$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
 				}
-				$marker = $rnd . sprintf("%08X", $n++);
+				$marker = $rnd . sprintf('%08X', $n++);
 				$content[$marker] = $q[0];
 				$stripped .= $marker;
 				$text = $q[1];
@@ -212,7 +212,7 @@ class Parser
 		$uniq_prefix = UNIQ_PREFIX;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
-		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
+		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
 			if( $render ){
 				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
@@ -221,7 +221,7 @@ class Parser
 			}
 		}
 
-		$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
+		$text = Parser::extractTags('hiero', $text, $hiero_content, $uniq_prefix);
 		foreach( $hiero_content as $marker => $content ){
 			if( $render && $GLOBALS['wgUseWikiHiero']){
 				$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
@@ -230,7 +230,7 @@ class Parser
 			}
 		}
 		
-		$text = Parser::extractTags("timeline", $text, $timeline_content, $uniq_prefix);
+		$text = Parser::extractTags('timeline', $text, $timeline_content, $uniq_prefix);
 		foreach( $timeline_content as $marker => $content ){
 			if( $render && $GLOBALS['wgUseTimeline']){
 				$timeline_content[$marker] = renderTimeline( $content );
@@ -239,7 +239,7 @@ class Parser
 			}
 		}
 
-		$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
+		$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
 		foreach( $math_content as $marker => $content ){
 			if( $render ) {
 				if( $this->mOptions->getUseTeX() ) {
@@ -252,10 +252,10 @@ class Parser
 			}
 		}
 
-		$text = Parser::extractTags("pre", $text, $pre_content, $uniq_prefix);
+		$text = Parser::extractTags('pre', $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
 			if( $render ){
-				$pre_content[$marker] = "<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
+				$pre_content[$marker] = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
 			} else {
 				$pre_content[$marker] = "<pre>$content</pre>";
 			}
@@ -341,8 +341,8 @@ class Parser
 	# off.
 	function categoryMagic()
 	{
-		$msg = wfMsg("usenewcategorypage");
-		if ( "0" == @$msg[0] )
+		$msg = wfMsg('usenewcategorypage');
+		if ( '0' == @$msg[0] )
 		{
 			return $this->oldCategoryMagic();
 		} else {
@@ -392,16 +392,16 @@ class Parser
 
 		# Showing subcategories
 		if ( count ( $children ) > 0 ) {
-			$r .= "<h2>".wfMsg("subcategories")."</h2>\n" ;
-			$r .= implode ( ", " , $children ) ;
+			$r .= '<h2>'.wfMsg('subcategories')."</h2>\n" ;
+			$r .= implode ( ', ' , $children ) ;
 		}
 
 		# Showing pages in this category
 		if ( count ( $articles ) > 0 ) {
 			$ti = $this->mTitle->getText() ;
-			$h =  wfMsg( "category_header", $ti );
+			$h =  wfMsg( 'category_header', $ti );
 			$r .= "<h2>{$h}</h2>\n" ;
-			$r .= implode ( ", " , $articles ) ;
+			$r .= implode ( ', ' , $articles ) ;
 		}
 
 
@@ -445,7 +445,7 @@ cl_sortkey" ;
 		foreach ( $data as $x )
 		{
 			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
-			if ( $t != "" ) $t .= ":" ;
+			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
 			
 			if ( $x->cur_namespace == $cns ) {
@@ -464,15 +464,15 @@ cl_sortkey" ;
 		if ( count ( $children ) > 0 )
 		{
 			# Showing subcategories
-			$r .= "<h2>" . wfMsg( "subcategories" ) . "</h2>\n"
-				. wfMsg( "subcategorycount", count( $children ) );
+			$r .= '<h2>' . wfMsg( "subcategories" ) . "</h2>\n"
+				. wfMsg( 'subcategorycount', count( $children ) );
 			if ( count ( $children ) > 20) {
 			
 				// divide list into three equal chunks
 				$chunk = (int) (count ( $children ) / 3);
 
 				// get and display header
-				$r .= "<table width=\"100%\"><tr valign=\"top\">";
+				$r .= '<table width="100%"><tr valign="top">';
 			
 				$startChunk = 0;
 				$endChunk = $chunk;
@@ -483,7 +483,7 @@ cl_sortkey" ;
 					$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 				{
 				
-					$r .= "<td><ul>";
+					$r .= '<td><ul>';
 					// output all subcategories to category
 					for ($index = $startChunk ;
 						$index < $endChunk && $index < count($children);
@@ -498,16 +498,16 @@ cl_sortkey" ;
 				
 						$r .= "<li>{$children[$index]}</li>";
 					}
-					$r .= "</ul></td>";
+					$r .= '</ul></td>';
 				
 							
 				}
-				$r .= "</tr></table>";
+				$r .= '</tr></table>';
 			} else {
 				// for short lists of subcategories to category.
 	
 				$r .= "<h3>{$children_start_char[0]}</h3>\n";
-				$r .= "<ul><li>".$children[0]."</li>";
+				$r .= '<ul><li>'.$children[0].'</li>';
 				for ($index = 1; $index < count($children); $index++ )
 				{
 					if ($children_start_char[$index] != $children_start_char[$index - 1])
@@ -517,12 +517,12 @@ cl_sortkey" ;
 				
 					$r .= "<li>{$children[$index]}</li>";
 				}
-				$r .= "</ul>";
+				$r .= '</ul>';
 			}
 		} # END of if ( count($children) > 0 )
 
-		$r .= "<h2>" . wfMsg( "category_header", $ti ) . "</h2>\n" .
-			wfMsg( "categoryarticlecount", count( $articles ) );
+		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n" .
+			wfMsg( 'categoryarticlecount', count( $articles ) );
 
 		# Showing articles in this category
 		if ( count ( $articles ) > 6) {
@@ -532,7 +532,7 @@ cl_sortkey" ;
 			$chunk = (int) (count ( $articles ) / 3);
 			
 			// get and display header
-			$r .= "<table width=\"100%\"><tr valign=\"top\">";
+			$r .= '<table width="100%"><tr valign="top">';
 			
 			// loop through the chunks
 			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
@@ -540,7 +540,7 @@ cl_sortkey" ;
 				$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 			{
 				
-				$r .= "<td><ul>";
+				$r .= '<td><ul>';
 				
 				// output all articles in category
 				for ($index = $startChunk ;
@@ -556,17 +556,17 @@ cl_sortkey" ;
 				
 					$r .= "<li>{$articles[$index]}</li>";
 				}
-				$r .= "</ul></td>";
+				$r .= '</ul></td>';
 				
 	
 			}
-			$r .= "</tr></table>";
+			$r .= '</tr></table>';
 		} elseif ( count ( $articles )  > 0) {
 			// for short lists of articles in categories.
 			$ti = $this->mTitle->getText() ;
 			
-			$r .= "<h3>".$articles_start_char[0]."</h3>\n";
-			$r .= "<ul><li>".$articles[0]."</li>";
+			$r .= '<h3>'.$articles_start_char[0]."</h3>\n";
+			$r .= '<ul><li>'.$articles[0].'</li>';
 			for ($index = 1; $index < count($articles); $index++ )
 			{
 				if ($articles_start_char[$index] != $articles_start_char[$index - 1])
@@ -576,7 +576,7 @@ cl_sortkey" ;
 				
 				$r .= "<li>{$articles[$index]}</li>";
 			}
-			$r .= "</ul>";
+			$r .= '</ul>';
 		}
 
 
@@ -587,16 +587,16 @@ cl_sortkey" ;
 	function getHTMLattrs ()
 	{
 		$htmlattrs = array( # Allowed attributes--no scripting, etc.
-				"title", "align", "lang", "dir", "width", "height",
-				"bgcolor", "clear", /* BR */ "noshade", /* HR */
-				"cite", /* BLOCKQUOTE, Q */ "size", "face", "color",
-				/* FONT */ "type", "start", "value", "compact",
+				'title', 'align', 'lang', 'dir', 'width', 'height',
+				'bgcolor', 'clear', /* BR */ 'noshade', /* HR */
+				'cite', /* BLOCKQUOTE, Q */ 'size', 'face', 'color',
+				/* FONT */ 'type', 'start', 'value', 'compact',
 				/* For various lists, mostly deprecated but safe */
-				"summary", "width", "border", "frame", "rules",
-				"cellspacing", "cellpadding", "valign", "char",
-				"charoff", "colgroup", "col", "span", "abbr", "axis",
-				"headers", "scope", "rowspan", "colspan", /* Tables */
-				"id", "class", "name", "style" /* For CSS */
+				'summary', 'width', 'border', 'frame', 'rules',
+				'cellspacing', 'cellpadding', 'valign', 'char',
+				'charoff', 'colgroup', 'col', 'span', 'abbr', 'axis',
+				'headers', 'scope', 'rowspan', 'colspan', /* Tables */
+				'id', 'class', 'name', 'style' /* For CSS */
 				);
 		return $htmlattrs ;
 	}
@@ -604,22 +604,22 @@ cl_sortkey" ;
 	# Remove non approved attributes and javascript in css
 	function fixTagAttributes ( $t )
 	{
-		if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+		if ( trim ( $t ) == '' ) return '' ; # Saves runtime ;-)
 		$htmlattrs = $this->getHTMLattrs() ;
 
 		# Strip non-approved attributes from the tag
 		$t = preg_replace(
-			"/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
+			'/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e',
 			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
 			$t);
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
 		if( preg_match(
-			"/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is",
+			'/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is',
 			wfMungeToUtf8( $t ) ) )
 		{
-			$t="";
+			$t='';
 		}
 
 		return trim ( $t ) ;
@@ -629,7 +629,7 @@ cl_sortkey" ;
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		global $wgInputEncoding, $wgOutputEncoding;
-		$fname = "Parser::tidy";
+		$fname = 'Parser::tidy';
 		wfProfileIn( $fname );
 		
 		$cleansource = '';
@@ -648,9 +648,9 @@ cl_sortkey" ;
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
 '<head><title>test</title></head><body>'.$text.'</body></html>';
 		$descriptorspec = array(
-			0 => array("pipe", "r"),
-			1 => array("pipe", "w"),
-			2 => array("file", "/dev/null", "a")
+			0 => array('pipe', 'r'),
+			1 => array('pipe', 'w'),
+			2 => array('file', '/dev/null', 'a')
 		);
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
@@ -685,20 +685,20 @@ cl_sortkey" ;
 			{
 				$x = trim ( $x ) ;
 				$fc = substr ( $x , 0 , 1 ) ;
-				if ( "{|" == substr ( $x , 0 , 2 ) )
+				if ( '{|' == substr ( $x , 0 , 2 ) )
 				{
-					$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
+					$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . '>' ;
 					array_push ( $td , false ) ;
-					array_push ( $ltd , "" ) ;
+					array_push ( $ltd , '' ) ;
 					array_push ( $tr , false ) ;
-					array_push ( $ltr , "" ) ;
+					array_push ( $ltr , '' ) ;
 				}
 				else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-				else if ( "|}" == substr ( $x , 0 , 2 ) )
+				else if ( '|}' == substr ( $x , 0 , 2 ) )
 				{
 					$z = "</table>\n" ;
 					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+					if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
 					array_pop ( $ltr ) ;
 					$t[$k] = $z ;
@@ -708,51 +708,51 @@ cl_sortkey" ;
 						$z = trim ( substr ( $x , 2 ) ) ;
 						$t[$k] = "<caption>{$z}</caption>\n" ;
 						}*/
-				else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
+				else if ( '|-' == substr ( $x , 0 , 2 ) ) # Allows for |---------------
 				{
 					$x = substr ( $x , 1 ) ;
-					while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
-					$z = "" ;
+					while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
+					$z = '' ;
 					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+					if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
 					array_pop ( $ltr ) ;
 					$t[$k] = $z ;
 					array_push ( $tr , false ) ;
 					array_push ( $td , false ) ;
-					array_push ( $ltd , "" ) ;
+					array_push ( $ltd , '' ) ;
 					array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
 				}
-				else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
+				else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) # Caption
 				{
-					if ( "|+" == substr ( $x , 0 , 2 ) )
+					if ( '|+' == substr ( $x , 0 , 2 ) )
 					{
-						$fc = "+" ;
+						$fc = '+' ;
 						$x = substr ( $x , 1 ) ;
 					}
 					$after = substr ( $x , 1 ) ;
-					if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
-					$after = explode ( "||" , $after ) ;
-					$t[$k] = "" ;
+					if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
+					$after = explode ( '||' , $after ) ;
+					$t[$k] = '' ;
 					foreach ( $after AS $theline )
 					{
-						$z = "" ;
-						if ( $fc != "+" )
+						$z = '' ;
+						if ( $fc != '+' )
 						{
 							$tra = array_pop ( $ltr ) ;
 							if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
 							array_push ( $tr , true ) ;
-							array_push ( $ltr , "" ) ;
+							array_push ( $ltr , '' ) ;
 						}
 
 						$l = array_pop ( $ltd ) ;
 						if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-						if ( $fc == "|" ) $l = "td" ;
-						else if ( $fc == "!" ) $l = "th" ;
-						else if ( $fc == "+" ) $l = "caption" ;
-						else $l = "" ;
+						if ( $fc == '|' ) $l = 'td' ;
+						else if ( $fc == '!' ) $l = 'th' ;
+						else if ( $fc == '+' ) $l = 'caption' ;
+						else $l = '' ;
 						array_push ( $ltd , $l ) ;
-						$y = explode ( "|" , $theline , 2 ) ;
+						$y = explode ( '|' , $theline , 2 ) ;
 						if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
 						else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
 						$t[$k] .= $y ;
@@ -764,9 +764,9 @@ cl_sortkey" ;
 		# Closing open td, tr && table
 		while ( count ( $td ) > 0 )
 		{
-			if ( array_pop ( $td ) ) $t[] = "</td>" ;
-			if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
-			$t[] = "</table>" ;
+			if ( array_pop ( $td ) ) $t[] = '</td>' ;
+			if ( array_pop ( $tr ) ) $t[] = '</tr>' ;
+			$t[] = '</table>' ;
 		}
 
 		$t = implode ( "\n" , $t ) ;
@@ -785,13 +785,13 @@ cl_sortkey" ;
 	
 	function internalParse( $text, $linestart, $args = array(), $isMain=true )
 	{
-		$fname = "Parser::internalParse";
+		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr />", $text );
+		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
@@ -822,10 +822,10 @@ cl_sortkey" ;
     # Parse headers and return html
 	/* private */ function doHeadings( $text )
 	{
-		$fname = "Parser::doHeadings";
+		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
-			$h = substr( "======", 0, $i );
+			$h = substr( '======', 0, $i );
 			$text = preg_replace( "/^{$h}(.+){$h}(\\s|$)/m",
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
@@ -835,12 +835,12 @@ cl_sortkey" ;
 
 	/* private */ function doAllQuotes( $text )
 	{
-		$fname = "Parser::doAllQuotes";
+		$fname = 'Parser::doAllQuotes';
 		wfProfileIn( $fname );
-		$outtext = "";
+		$outtext = '';
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
-			$outtext .= $this->doQuotes ( "", $line, "" ) . "\n";
+			$outtext .= $this->doQuotes ( '', $line, '' ) . "\n";
 		}
 		$outtext = substr($outtext, 0,-1);
 		wfProfileOut( $fname );
@@ -852,45 +852,45 @@ cl_sortkey" ;
 		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
 			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
 			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
-			if ( substr ($m[2], 0, 1) == "'" ) {
+			if ( substr ($m[2], 0, 1) == '\'' ) {
 				$m[2] = substr ($m[2], 1);
-				if ($mode == "em") {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "emstrong" );
-				} else if ($mode == "strong") {
-					return $m1_strong . $this->doQuotes ( "", $m[2], "" );
-				} else if (($mode == "emstrong") || ($mode == "both")) {
-					return $this->doQuotes ( "", $pre.$m1_strong.$m[2], "em" );
-				} else if ($mode == "strongem") {
-					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( "", $m[2], "em" );
+				if ($mode == 'em') {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == '') ? 'both' : 'emstrong' );
+				} else if ($mode == 'strong') {
+					return $m1_strong . $this->doQuotes ( '', $m[2], '' );
+				} else if (($mode == 'emstrong') || ($mode == 'both')) {
+					return $this->doQuotes ( '', $pre.$m1_strong.$m[2], 'em' );
+				} else if ($mode == 'strongem') {
+					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( '', $m[2], 'em' );
 				} else {
-					return $m[1] . $this->doQuotes ( "", $m[2], "strong" );
+					return $m[1] . $this->doQuotes ( '', $m[2], 'strong' );
 				}
 			} else {
-				if ($mode == "strong") {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "strongem" );
-				} else if ($mode == "em") {
-					return $m1_em . $this->doQuotes ( "", $m[2], "" );
-				} else if ($mode == "emstrong") {
-					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( "", $m[2], "strong" );
-				} else if (($mode == "strongem") || ($mode == "both")) {
-					return $this->doQuotes ( "", $pre.$m1_em.$m[2], "strong" );
+				if ($mode == 'strong') {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == '') ? 'both' : 'strongem' );
+				} else if ($mode == 'em') {
+					return $m1_em . $this->doQuotes ( '', $m[2], '' );
+				} else if ($mode == 'emstrong') {
+					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( '', $m[2], 'strong' );
+				} else if (($mode == 'strongem') || ($mode == 'both')) {
+					return $this->doQuotes ( '', $pre.$m1_em.$m[2], 'strong' );
 				} else {
-					return $m[1] . $this->doQuotes ( "", $m[2], "em" );
+					return $m[1] . $this->doQuotes ( '', $m[2], 'em' );
 				}
 			}
 		} else {
-			$text_strong = ($text == "") ? "" : "<strong>{$text}</strong>";
-			$text_em = ($text == "") ? "" : "<em>{$text}</em>";
-			if ($mode == "") {
+			$text_strong = ($text == '') ? '' : "<strong>{$text}</strong>";
+			$text_em = ($text == '') ? '' : "<em>{$text}</em>";
+			if ($mode == '') {
 				return $pre . $text;
-			} else if ($mode == "em") {
+			} else if ($mode == 'em') {
 				return $pre . $text_em;
-			} else if ($mode == "strong") {
+			} else if ($mode == 'strong') {
 				return $pre . $text_strong;
-			} else if ($mode == "strongem") {
-				return (($pre == "") && ($text == "")) ? "" : "<strong>{$pre}{$text_em}</strong>";
+			} else if ($mode == 'strongem') {
+				return (($pre == '') && ($text == '')) ? '' : "<strong>{$pre}{$text_em}</strong>";
 			} else {
-				return (($pre == "") && ($text == "")) ? "" : "<em>{$pre}{$text_strong}</em>";
+				return (($pre == '') && ($text == '')) ? '' : "<em>{$pre}{$text_strong}</em>";
 			}
 		}
 	}
@@ -901,22 +901,22 @@ cl_sortkey" ;
 
 	/* private */ function replaceExternalLinks( $text )
 	{
-		$fname = "Parser::replaceExternalLinks";
+		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
-		$text = $this->subReplaceExternalLinks( $text, "http", true );
-		$text = $this->subReplaceExternalLinks( $text, "https", true );
-		$text = $this->subReplaceExternalLinks( $text, "ftp", false );
-		$text = $this->subReplaceExternalLinks( $text, "irc", false );
-		$text = $this->subReplaceExternalLinks( $text, "gopher", false );
-		$text = $this->subReplaceExternalLinks( $text, "news", false );
-		$text = $this->subReplaceExternalLinks( $text, "mailto", false );
+		$text = $this->subReplaceExternalLinks( $text, 'http', true );
+		$text = $this->subReplaceExternalLinks( $text, 'https', true );
+		$text = $this->subReplaceExternalLinks( $text, 'ftp', false );
+		$text = $this->subReplaceExternalLinks( $text, 'irc', false );
+		$text = $this->subReplaceExternalLinks( $text, 'gopher', false );
+		$text = $this->subReplaceExternalLinks( $text, 'news', false );
+		$text = $this->subReplaceExternalLinks( $text, 'mailto', false );
 		wfProfileOut( $fname );
 		return $text;
 	}
 
 	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber )
 	{
-		$unique = "4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3";
+		$unique = '4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3';
 		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
 
 		# this is  the list of separators that should be ignored if they
@@ -925,8 +925,8 @@ cl_sortkey" ;
 		# in this case, the last comma should not become part of the URL,
 		# but in "www.foo.com/123,2342,32.htm" it should.
 		$sep = ",;\.:";
-		$fnc = "A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF";
-		$images = "gif|png|jpg|jpeg";
+		$fnc = 'A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF';
+		$images = 'gif|png|jpg|jpeg';
 
 		# PLEASE NOTE: The curly braces { } are not part of the regex,
 		# they are interpreted as part of the string (used to tell PHP
@@ -938,13 +938,13 @@ cl_sortkey" ;
 		$sk =& $this->mOptions->getSkin();
 
 		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) { # Use img tags only for HTTP urls
-			$s = preg_replace( $e1, "\\1" . $sk->makeImage( "{$unique}:\\3" .
-			  "/\\4.\\5", "\\4.\\5" ) . "\\6", $s );
+			$s = preg_replace( $e1, '\\1' . $sk->makeImage( "{$unique}:\\3" .
+			  '/\\4.\\5', '\\4.\\5' ) . '\\6', $s );
 		}
-		$s = preg_replace( $e2, "\\1" . "<a href=\"{$unique}:\\3\"" .
+		$s = preg_replace( $e2, '\\1' . "<a href=\"{$unique}:\\3\"" .
 		  $sk->getExternalLinkAttributes( "{$unique}:\\3", wfEscapeHTML(
 		  "{$unique}:\\3" ) ) . ">" . wfEscapeHTML( "{$unique}:\\3" ) .
-		  "</a>\\5", $s );
+		  '</a>\\5', $s );
 		$s = str_replace( $unique, $protocol, $s );
 
 		$a = explode( "[{$protocol}:", " " . $s );
@@ -969,7 +969,7 @@ cl_sortkey" ;
 				continue;
 			}
 			if( $link == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $link ) ) {
-				$paren = "";
+				$paren = '';
 			} else {
 				# Expand the URL for printable version
 				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $link ) . "</i>)</span>";
@@ -986,16 +986,16 @@ cl_sortkey" ;
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		static $fname = "Parser::replaceInternalLinks" ;
+		static $fname = 'Parser::replaceInternalLinks' ;
 		wfProfileIn( $fname );
 
-		wfProfileIn( "$fname-setup" );
+		wfProfileIn( $fname.'-setup' );
 		static $tc = FALSE;
 		# the % is needed to support urlencoded titles as well
-		if ( !$tc ) { $tc = Title::legalChars() . "#%"; }
+		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
 		$sk =& $this->mOptions->getSkin();
 
-		$a = explode( "[[", " " . $s );
+		$a = explode( '[[', ' ' . $s );
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
 
@@ -1030,10 +1030,10 @@ cl_sortkey" ;
 			$prefix = '';
 		}
 
-		wfProfileOut( "$fname-setup" );
+		wfProfileOut( $fname.'-setup' );
 
 		foreach ( $a as $line ) {
-			wfProfileIn( "$fname-prefixhandling" );
+			wfProfileIn( $fname.'-prefixhandling' );
 			if ( $useLinkPrefixExtension ) {
 				if ( preg_match( $e2, $s, $m ) ) {
 					$prefix = $m[2];
@@ -1047,15 +1047,15 @@ cl_sortkey" ;
 					$first_prefix = false;
 				}
 			}
-			wfProfileOut( "$fname-prefixhandling" );
+			wfProfileOut( $fname.'-prefixhandling' );
 			
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
-				if(preg_match("/%/", $m[1] )) $m[1] = urldecode($m[1]);
+				if(preg_match('/%/', $m[1] )) $m[1] = urldecode($m[1]);
 				$trail = $m[3];
 			} else { # Invalid form; output directly
-				$s .= $prefix . "[[" . $line ;
+				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
 
@@ -1066,17 +1066,17 @@ cl_sortkey" ;
 			/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
 			*/
 			$c = substr($m[1],0,1);
-			$noforce = ($c != ":");
-			if( $c == "/" ) { # subpage
-				if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
+			$noforce = ($c != ':');
+			if( $c == '/' ) { # subpage
+				if(substr($m[1],-1,1)=='/') {                 # / at end means we don't want the slash to be shown
 					$m[1]=substr($m[1],1,strlen($m[1])-2);
 					$noslash=$m[1];
 				} else {
 					$noslash=substr($m[1],1);
 				}
 				if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) { # subpages allowed here
-					$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
-					if( "" == $text ) {
+					$link = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
+					if( '' == $text ) {
 						$text= $m[1];
 					} # this might be changed for ugliness reasons
 				} else {
@@ -1087,13 +1087,13 @@ cl_sortkey" ;
 			} else {
 				$link = substr( $m[1], 1 );
 			}
-			$wasblank = ( "" == $text );
+			$wasblank = ( '' == $text );
 			if( $wasblank )
 			$text = $link;
 
 			$nt = Title::newFromText( $link );
 			if( !$nt ) {
-				$s .= $prefix . "[[" . $line;
+				$s .= $prefix . '[[' . $line;
 				continue;
 			}
 			$ns = $nt->getNamespace();
@@ -1115,7 +1115,7 @@ cl_sortkey" ;
 					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
-					$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
+					$t = $sk->makeLinkObj( $nnt, $t, '', '' , $prefix );
 					$wgLinkCache->resume();
 
 					$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
@@ -1126,9 +1126,9 @@ cl_sortkey" ;
 				}
 			}
 			if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
-			( strpos( $link, "#" ) == FALSE ) ) {
+			( strpos( $link, '#' ) == FALSE ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
-				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, "", $trail );
+				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
 
@@ -1137,10 +1137,10 @@ cl_sortkey" ;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == $special ) {
-				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
+				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
-			$s .= $sk->makeLinkObj( $nt, $text, "", $trail, $prefix );
+			$s .= $sk->makeLinkObj( $nt, $text, '', $trail, $prefix );
 		}
 		wfProfileOut( $fname );
 		return $s;
@@ -1150,12 +1150,12 @@ cl_sortkey" ;
 	#
 	/* private */ function closeParagraph()
 	{
-		$result = "";
+		$result = '';
 		if ( '' != $this->mLastSection ) {
-			$result = "</" . $this->mLastSection  . ">\n";
+			$result = '</' . $this->mLastSection  . ">\n";
 		}
 		$this->mInPre = false;
-		$this->mLastSection = "";
+		$this->mLastSection = '';
 		return $result;
 	}
 	# getCommon() returns the length of the longest common substring
@@ -1179,53 +1179,53 @@ cl_sortkey" ;
     {
 		$result = $this->closeParagraph();
 
-		if ( "*" == $char ) { $result .= "<ul><li>"; }
-		else if ( "#" == $char ) { $result .= "<ol><li>"; }
-		else if ( ":" == $char ) { $result .= "<dl><dd>"; }
-		else if ( ";" == $char ) {
-			$result .= "<dl><dt>";
+		if ( '*' == $char ) { $result .= '<ul><li>'; }
+		else if ( '#' == $char ) { $result .= '<ol><li>'; }
+		else if ( ':' == $char ) { $result .= '<dl><dd>'; }
+		else if ( ';' == $char ) {
+			$result .= '<dl><dt>';
 			$this->mDTopen = true;
 		}
-		else { $result = "<!-- ERR 1 -->"; }
+		else { $result = '<!-- ERR 1 -->'; }
 
 		return $result;
 	}
 
 	/* private */ function nextItem( $char )
 	{
-		if ( "*" == $char || "#" == $char ) { return "</li><li>"; }
-		else if ( ":" == $char || ";" == $char ) {
+		if ( '*' == $char || '#' == $char ) { return '</li><li>'; }
+		else if ( ':' == $char || ';' == $char ) {
 			$close = "</dd>";
-			if ( $this->mDTopen ) { $close = "</dt>"; }
-			if ( ";" == $char ) {
+			if ( $this->mDTopen ) { $close = '</dt>'; }
+			if ( ';' == $char ) {
 				$this->mDTopen = true;
-				return $close . "<dt>";
+				return $close . '<dt>';
 			} else {
 				$this->mDTopen = false;
-				return $close . "<dd>";
+				return $close . '<dd>';
 			}
 		}
-		return "<!-- ERR 2 -->";
+		return '<!-- ERR 2 -->';
 	}
 
 	/* private */function closeList( $char )
 	{
-		if ( "*" == $char ) { $text = "</li></ul>"; }
-		else if ( "#" == $char ) { $text = "</li></ol>"; }
-		else if ( ":" == $char ) {
+		if ( '*' == $char ) { $text = '</li></ul>'; }
+		else if ( '#' == $char ) { $text = '</li></ol>'; }
+		else if ( ':' == $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
-				$text = "</dt></dl>";
+				$text = '</dt></dl>';
 			} else {
-				$text = "</dd></dl>";
+				$text = '</dd></dl>';
 			}
 		}
-		else {	return "<!-- ERR 3 -->"; }
+		else {	return '<!-- ERR 3 -->'; }
 		return $text."\n";
 	}
 
 	/* private */ function doBlockLevels( $text, $linestart ) {
-		$fname = "Parser::doBlockLevels";
+		$fname = 'Parser::doBlockLevels';
 		wfProfileIn( $fname );
 		
 		# Parsing through the text line by line.  The main thing
@@ -1251,11 +1251,11 @@ cl_sortkey" ;
 			}
 			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
-				$prefixLength = strspn( $oLine, "*#:;" );
+				$prefixLength = strspn( $oLine, '*#:;' );
 				$pref = substr( $oLine, 0, $prefixLength );
 				
 				# eh?
-				$pref2 = str_replace( ";", ":", $pref );
+				$pref2 = str_replace( ';', ':', $pref );
 				$t = substr( $oLine, $prefixLength );
 			} else {
 				# Don't interpret any other prefixes in preformatted text
@@ -1278,7 +1278,7 @@ cl_sortkey" ;
 					# FIXME: This is not foolproof. Something better in Tokenizer might help.
 					if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
 						$term = $match[1];
-						$output .= $term . $this->nextItem( ":" );
+						$output .= $term . $this->nextItem( ':' );
 						$t = $match[2];
 					}
 				}
@@ -1298,7 +1298,7 @@ cl_sortkey" ;
 					$char = substr( $pref, $commonPrefixLength, 1 );
 					$output .= $this->openList( $char );
 
-					if ( ";" == $char ) {
+					if ( ';' == $char ) {
 						# FIXME: This is dupe of code above
 						if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
 							$term = $match[1];
@@ -1314,10 +1314,10 @@ cl_sortkey" ;
 				# No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/tr|<\\/td|<\\/th)/i", $t );
+				$openmatch = preg_match('/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/tr|<\\/td|<\\/th)/i', $t );
 				$closematch = preg_match(
-					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
-					"<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|".$uniq_prefix."-pre|<\\/li|<\\/ul)/i", $t );
+					'/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
+					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$uniq_prefix.'-pre|<\\/li|<\\/ul)/i', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
@@ -1348,7 +1348,7 @@ cl_sortkey" ;
 								if ($this->mLastSection != 'p' ) {
 									$output .= $this->closeParagraph();
 									$this->mLastSection = '';
-									$paragraphStack = "<p>";
+									$paragraphStack = '<p>';
 								} else {
 									$paragraphStack = '</p><p>';
 								}
@@ -1374,9 +1374,9 @@ cl_sortkey" ;
 			$output .= $this->closeList( $pref2{$prefixLength-1} );
 			--$prefixLength;
 		}
-		if ( "" != $this->mLastSection ) {
-			$output .= "</" . $this->mLastSection . ">";
-			$this->mLastSection = "";
+		if ( '' != $this->mLastSection ) {
+			$output .= '</' . $this->mLastSection . '>';
+			$this->mLastSection = '';
 		}
 
 		wfProfileOut( $fname );
@@ -1389,22 +1389,22 @@ cl_sortkey" ;
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return date( "m" );
+				return date( 'm' );
 			case MAG_CURRENTMONTHNAME:
-				return $wgLang->getMonthName( date("n") );
+				return $wgLang->getMonthName( date('n') );
 			case MAG_CURRENTMONTHNAMEGEN:
-				return $wgLang->getMonthNameGen( date("n") );
+				return $wgLang->getMonthNameGen( date('n') );
 			case MAG_CURRENTDAY:
-				return date("j");
+				return date('j');
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_NAMESPACE:
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
 				return $wgLang->getNsText($this->mTitle->getNamespace()); // Patch  by Dori
 			case MAG_CURRENTDAYNAME:
-				return $wgLang->getWeekdayName( date("w")+1 );
+				return $wgLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
-				return date( "Y" );
+				return date( 'Y' );
 			case MAG_CURRENTTIME:
 				return $wgLang->time( wfTimestampNow(), false );
 			case MAG_NUMBEROFARTICLES:
@@ -1433,7 +1433,7 @@ cl_sortkey" ;
 	{
 		global $wgLang, $wgScript, $wgArticlePath;
 
-		$fname = "Parser::replaceVariables";
+		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
 
 		$bail = false;
@@ -1441,7 +1441,7 @@ cl_sortkey" ;
 			$this->initialiseVariables();
 		}
 		$titleChars = Title::legalChars();
-		$nonBraceChars = str_replace( array( "{", "}" ), array( "", "" ), $titleChars );
+		$nonBraceChars = str_replace( array( '{', '}' ), array( '', '' ), $titleChars );
 
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
@@ -1452,14 +1452,14 @@ cl_sortkey" ;
 
 		if ( $this->mOutputType == OT_HTML ) {
 			# Variable substitution
-			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", "wfVariableSubstitution", $text );
+			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
 			
 			# Argument substitution
-			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", "wfArgSubstitution", $text );
+			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
 		# Template substitution
-		$regex = "/(\\n?){{([$nonBraceChars]*)(\\|.*?|)}}/s";
-		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
+		$regex = '/(\\n?){{(['.$nonBraceChars.']*)(\\|.*?|)}}/s';
+		$text = preg_replace_callback( $regex, 'wfBraceSubstitution', $text );
 
 		array_pop( $this->mArgStack );
 
@@ -1481,7 +1481,7 @@ cl_sortkey" ;
 	function braceSubstitution( $matches )
 	{
 		global $wgLinkCache, $wgLang;
-		$fname = "Parser::braceSubstitution";
+		$fname = 'Parser::braceSubstitution';
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
@@ -1495,15 +1495,15 @@ cl_sortkey" ;
 		$newline = $matches[1];
 		$part1 = $matches[2];
 		# If the third subpattern matched anything, it will start with |
-		if ( $matches[3] !== "" ) {
-			$args = explode( "|", substr( $matches[3], 1 ) );
+		if ( $matches[3] !== '' ) {
+			$args = explode( '|', substr( $matches[3], 1 ) );
 		} else {
 			$args = array();
 		}
 		$argc = count( $args );
 	
 		# {{{}}}
-		if ( strpos( $matches[0], "{{{" ) !== false ) {
+		if ( strpos( $matches[0], '{{{' ) !== false ) {
 			$text = $matches[0];
 			$found = true;
 			$noparse = true;
@@ -1542,7 +1542,7 @@ cl_sortkey" ;
 			# Check if it is an internal message
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
-				if ( $this->incrementIncludeCount( "int:$part1" ) ) {
+				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
 					$text = wfMsgReal( $part1, $args, true );
 					$found = true;
 				}
@@ -1625,7 +1625,7 @@ cl_sortkey" ;
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
-					$text = "[[" . $title->getPrefixedText() . "]]";
+					$text = '[[' . $title->getPrefixedText() . ']]';
 					$found = true;
 				}
 			}
@@ -1640,14 +1640,14 @@ cl_sortkey" ;
 			$assocArgs = array();
 			$index = 1;
 			foreach( $args as $arg ) {
-				$eqpos = strpos( $arg, "=" );
+				$eqpos = strpos( $arg, '=' );
 				if ( $eqpos === false ) {
 					$assocArgs[$index++] = $arg;
 				} else {
 					$name = trim( substr( $arg, 0, $eqpos ) );
 					$value = trim( substr( $arg, $eqpos+1 ) );
 					if ( $value === false ) {
-						$value = "";
+						$value = '';
 					}
 					if ( $name !== false ) {
 						$assocArgs[$name] = $value;
@@ -1710,26 +1710,26 @@ cl_sortkey" ;
 	/* private */ function removeHTMLtags( $text )
 	{
 		global $wgUseTidy, $wgUserHtml;
-		$fname = "Parser::removeHTMLtags";
+		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
 		
 		if( $wgUserHtml ) {
 			$htmlpairs = array( # Tags that must be closed
-				"b", "del", "i", "ins", "u", "font", "big", "small", "sub", "sup", "h1",
-				"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
-				"strike", "strong", "tt", "var", "div", "center",
-				"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
-				"ruby", "rt" , "rb" , "rp", "p"
+				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
+				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
+				'strike', 'strong', 'tt', 'var', 'div', 'center',
+				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
+				'ruby', 'rt' , 'rb' , 'rp', 'p'
 			);
 			$htmlsingle = array(
-				"br", "hr", "li", "dt", "dd"
+				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlnest = array( # Tags that can be nested--??
-				"table", "tr", "td", "th", "div", "blockquote", "ol", "ul",
-				"dl", "font", "big", "small", "sub", "sup"
+				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
+				'dl', 'font', 'big', 'small', 'sub', 'sup'
 			);
 			$tabletags = array( # Can only appear inside table
-				"td", "th", "tr"
+				'td', 'th', 'tr'
 			);
 		} else {
 			$htmlpairs = array();
@@ -1744,15 +1744,15 @@ cl_sortkey" ;
 		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
-		$text = preg_replace( "/(\\n *<!--.*--> *(?=\\n)|<!--.*-->)/sU", "$2", $text );
+		$text = preg_replace( '/(\\n *<!--.*--> *(?=\\n)|<!--.*-->)/sU', '$2', $text );
 
-		$bits = explode( "<", $text );
+		$bits = explode( '<', $text );
 		$text = array_shift( $bits );
 		if(!$wgUseTidy) {
 			$tagstack = array(); $tablestack = array();
 			foreach ( $bits as $x ) {
 				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-				preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
+				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				error_reporting( $prev );
@@ -1767,21 +1767,21 @@ cl_sortkey" ;
 							@array_push( $tagstack, $ot );
 							$badtag = 1;
 						} else {
-							if ( $t == "table" ) {
+							if ( $t == 'table' ) {
 								$tagstack = array_pop( $tablestack );
 							}
-							$newparams = "";
+							$newparams = '';
 						}
 					} else {
 						# Keep track for later
 						if ( in_array( $t, $tabletags ) &&
-						! in_array( "table", $tagstack ) ) {
+						! in_array( 'table', $tagstack ) ) {
 							$badtag = 1;
 						} else if ( in_array( $t, $tagstack ) &&
 						! in_array ( $t , $htmlnest ) ) {
 							$badtag = 1 ;
 						} else if ( ! in_array( $t, $htmlsingle ) ) {
-							if ( $t == "table" ) {
+							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
 								$tagstack = array();
 							}
@@ -1792,30 +1792,30 @@ cl_sortkey" ;
 
 					}
 					if ( ! $badtag ) {
-						$rest = str_replace( ">", "&gt;", $rest );
+						$rest = str_replace( '>', '&gt;', $rest );
 						$text .= "<$slash$t $newparams$brace$rest";
 						continue;
 					}
 				}
-				$text .= "&lt;" . str_replace( ">", "&gt;", $x);
+				$text .= '&lt;' . str_replace( '>', '&gt;', $x);
 			}
 			# Close off any remaining tags
 			while ( is_array( $tagstack ) && ($t = array_pop( $tagstack )) ) {
 				$text .= "</$t>\n";
-				if ( $t == "table" ) { $tagstack = array_pop( $tablestack ); }
+				if ( $t == 'table' ) { $tagstack = array_pop( $tablestack ); }
 			}
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
+				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
 					$newparams = $this->fixTagAttributes($params);
-					$rest = str_replace( ">", "&gt;", $rest );
+					$rest = str_replace( '>', '&gt;', $rest );
 					$text .= "<$slash$t $newparams$brace$rest";
 				} else {
-					$text .= "&lt;" . str_replace( ">", "&gt;", $x);
+					$text .= '&lt;' . str_replace( '>', '&gt;', $x);
 				}
 			}	
 		}
@@ -1865,13 +1865,13 @@ cl_sortkey" ;
 
 		# never add the TOC to the Main Page. This is an entry page that should not
 		# be more than 1-2 screens large anyway
-		if( $this->mTitle->getPrefixedText() == wfMsg("mainpage") ) {
+		if( $this->mTitle->getPrefixedText() == wfMsg('mainpage') ) {
 			$doShowToc = 0;
 		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
-		$numMatches = preg_match_all( "/<H([1-6])(.*?" . ">)(.*?)<\/H[1-6]>/i", $text, $matches );
+		$numMatches = preg_match_all( '/<H([1-6])(.*?' . '>)(.*?)<\/H[1-6]>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		if( $numMatches < 4 ) {
@@ -1895,14 +1895,14 @@ cl_sortkey" ;
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
 		$toclevel = 0;
-		$toc = "";
-		$full = "";
+		$toc = '';
+		$full = '';
 		$head = array();
 		$sublevelCount = array();
 		$level = 0;
 		$prevlevel = 0;
 		foreach( $matches[3] as $headline ) {
-			$numbering = "";
+			$numbering = '';
 			if( $level ) {
 				$prevlevel = $level;
 			}
@@ -1926,7 +1926,7 @@ cl_sortkey" ;
 				for( $i = 1; $i <= $level; $i++ ) {
 					if( !empty( $sublevelCount[$i] ) ) {
 						if( $dot ) {
-							$numbering .= ".";
+							$numbering .= '.';
 						}
 						$numbering .= $sublevelCount[$i];
 						$dot = 1;
@@ -1940,7 +1940,7 @@ cl_sortkey" ;
 			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
 
 			# strip out HTML
-			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
+			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
 			$canonized_headline = urlencode( do_html_entity_decode( str_replace(' ', '_', $tocline), ENT_COMPAT, $wgInputEncoding ) );
 			$replacearray = array(
@@ -1957,26 +1957,26 @@ cl_sortkey" ;
 			# Prepend the number to the heading text
 
 			if( $doNumberHeadings || $doShowToc ) {
-				$tocline = $numbering . " " . $tocline;
+				$tocline = $numbering . ' ' . $tocline;
 
 				# Don't number the heading if it is the only one (looks silly)
 				if( $doNumberHeadings && count( $matches[3] ) > 1) {
 					# the two are different if the line contains a link
-					$headline=$numbering . " " . $headline;
+					$headline=$numbering . ' ' . $headline;
 				}
 			}
 
 			# Create the anchor for linking from the TOC to the section
 			$anchor = $canonized_headline;
 			if($refcount[$headlineCount] > 1 ) {
-				$anchor .= "_" . $refcount[$headlineCount];
+				$anchor .= '_' . $refcount[$headlineCount];
 			}
 			if( $doShowToc ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
 			if( $showEditLink ) {
 				if ( empty( $head[$headlineCount] ) ) {
-					$head[$headlineCount] = "";
+					$head[$headlineCount] = '';
 				}
 				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
 			}
@@ -2000,7 +2000,7 @@ cl_sortkey" ;
 
 		# split up and insert constructed headlines
 
-		$blocks = preg_split( "/<H[1-6].*?" . ">.*?<\/H[1-6]>/i", $text );
+		$blocks = preg_split( '/<H[1-6].*?' . '>.*?<\/H[1-6]>/i', $text );
 		$i = 0;
 
 		foreach( $blocks as $block ) {
@@ -2032,29 +2032,29 @@ cl_sortkey" ;
 	{
 		global $wgLang;
 
-		$a = split( "ISBN ", " $text" );
+		$a = split( 'ISBN ', " $text" );
 		if ( count ( $a ) < 2 ) return $text;
 		$text = substr( array_shift( $a ), 1);
-		$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$valid = '0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 		foreach ( $a as $x ) {
-			$isbn = $blank = "" ;
-			while ( " " == $x{0} ) {
-				$blank .= " ";
+			$isbn = $blank = '' ;
+			while ( ' ' == $x{0} ) {
+				$blank .= ' ';
 				$x = substr( $x, 1 );
 			}
 			while ( strstr( $valid, $x{0} ) != false ) {
 				$isbn .= $x{0};
 				$x = substr( $x, 1 );
 			}
-			$num = str_replace( "-", "", $isbn );
-			$num = str_replace( " ", "", $num );
+			$num = str_replace( '-', '', $isbn );
+			$num = str_replace( ' ', '', $num );
 
-			if ( "" == $num ) {
+			if ( '' == $num ) {
 				$text .= "ISBN $blank$x";
 			} else {
-				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
-				$text .= "<a href=\"" .
+				$titleObj = Title::makeTitle( NS_SPECIAL, 'Booksources' );
+				$text .= '<a href="' .
 				$titleObj->escapeLocalUrl( "isbn={$num}" ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
@@ -2068,15 +2068,15 @@ cl_sortkey" ;
 	{
 		global $wgLang;
 
-		$a = split( "RFC ", " $text" );
+		$a = split( 'RFC ', ' '.$text );
 		if ( count ( $a ) < 2 ) return $text;
 		$text = substr( array_shift( $a ), 1);
-		$valid = "0123456789";
+		$valid = '0123456789';
 
 		foreach ( $a as $x ) {
-			$rfc = $blank = "" ;
-			while ( " " == $x{0} ) {
-				$blank .= " ";
+			$rfc = $blank = '' ;
+			while ( ' ' == $x{0} ) {
+				$blank .= ' ';
 				$x = substr( $x, 1 );
 			}
 			while ( strstr( $valid, $x{0} ) != false ) {
@@ -2084,11 +2084,11 @@ cl_sortkey" ;
 				$x = substr( $x, 1 );
 			}
 
-			if ( "" == $rfc ) {
+			if ( '' == $rfc ) {
 				$text .= "RFC $blank$x";
 			} else {
-				$url = wfmsg( "rfcurl" );
-				$url = str_replace( "$1", $rfc, $url);
+				$url = wfmsg( 'rfcurl' );
+				$url = str_replace( '$1', $rfc, $url);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, "RFC {$rfc}" );
                             	$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
@@ -2138,20 +2138,20 @@ cl_sortkey" ;
 		# Signatures
 		#
 		$n = $user->getName();
-		$k = $user->getOption( "nickname" );
-		if ( "" == $k ) { $k = $n; }
+		$k = $user->getOption( 'nickname' );
+		if ( '' == $k ) { $k = $n; }
 		if(isset($wgLocaltimezone)) {
-			$oldtz = getenv("TZ"); putenv("TZ=$wgLocaltimezone");
+			$oldtz = getenv('TZ'); putenv('TZ='.$wgLocaltimezone);
 		}
 		/* Note: this is an ugly timezone hack for the European wikis */
-		$d = $wgLang->timeanddate( date( "YmdHis" ), false ) .
-		  " (" . date( "T" ) . ")";
-		if(isset($wgLocaltimezone)) putenv("TZ=$oldtz");
+		$d = $wgLang->timeanddate( date( 'YmdHis' ), false ) .
+		  ' (' . date( 'T' ) . ')';
+		if(isset($wgLocaltimezone)) putenv('TZ='.$oldtzs);
 
-		$text = preg_replace( "/~~~~~/", $d, $text );
-		$text = preg_replace( "/~~~~/", "[[" . $wgLang->getNsText(
+		$text = preg_replace( '/~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~/', '[[' . $wgLang->getNsText(
 		  Namespace::getUser() ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( "/~~~/", "[[" . $wgLang->getNsText(
+		$text = preg_replace( '/~~~/', '[[' . $wgLang->getNsText(
 		  Namespace::getUser() ) . ":$n|$k]]", $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
@@ -2171,12 +2171,12 @@ cl_sortkey" ;
 		if ( preg_match( $conpat, $t, $m ) ) {
 			$context = $m[2];
 		}
-		$text = preg_replace( $p4, "[[\\1:\\2 (\\3)|\\2]]", $text );
-		$text = preg_replace( $p1, "[[\\1 (\\2)|\\1]]", $text );
-		$text = preg_replace( $p3, "[[\\1:\\2|\\2]]", $text );
+		$text = preg_replace( $p4, '[[\\1:\\2 (\\3)|\\2]]', $text );
+		$text = preg_replace( $p1, '[[\\1 (\\2)|\\1]]', $text );
+		$text = preg_replace( $p3, '[[\\1:\\2|\\2]]', $text );
 
-		if ( "" == $context ) {
-			$text = preg_replace( $p2, "[[\\1]]", $text );
+		if ( '' == $context ) {
+			$text = preg_replace( $p2, '[[\\1]]', $text );
 		} else {
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
@@ -2328,11 +2328,11 @@ class ParserOptions
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mSkin =& $user->getSkin();
-		$this->mDateFormat = $user->getOption( "date" );
-		$this->mEditSection = $user->getOption( "editsection" );
-		$this->mEditSectionOnRightClick = $user->getOption( "editsectiononrightclick" );
-		$this->mNumberHeadings = $user->getOption( "numberheadings" );
-		$this->mShowToc = $user->getOption( "showtoc" );
+		$this->mDateFormat = $user->getOption( 'date' );
+		$this->mEditSection = $user->getOption( 'editsection' );
+		$this->mEditSectionOnRightClick = $user->getOption( 'editsectiononrightclick' );
+		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
+		$this->mShowToc = $user->getOption( 'showtoc' );
 	}
 
 
