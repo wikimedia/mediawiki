@@ -29,12 +29,13 @@ New features in 1.2:
   privilege, such as the 'Developer' account created by the install.
 
 Fixes and tweaks:
+* Now works with register_globals off!
+* Works with short tags disabled.
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
   $wgEnablePersistentLC = true; to turn on the link cache table
   for a slight rendering speed boost.
 * rebuildMessages.php can now selectively update new messages, or
   overwrite everything.
-* Works with short tags disabled.
 * Various bug fixes.
 * Other stuff we forgot.
 * Documentation more out of date than ever before!
