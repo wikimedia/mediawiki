@@ -43,6 +43,7 @@
               ${bodytext}
 
               <!-- end content -->
+              <div class="visualClear"></div>
             </div>
           </div>
         </div>
@@ -69,7 +70,7 @@
               <ul id="portal-personaltools">
                 <li tal:repeat="item personal_urls" 
                 tal:attributes="id string:personaltools-${repeat/item/key};"><a href="myuserpage"
-                  tal:attributes="href item/href; accesskey item/akey | default; title item/ttip"
+                  tal:attributes="href item/href; accesskey item/akey|default; title item/ttip|default"
                   tal:content="item/text">Log in</a></li>
               </ul>
             </div>
