@@ -109,7 +109,7 @@ class RSSFeed extends ChannelFeed {
 		global $wgVersion;
 		
 		$this->outXmlHeader();
-		?><rss version="2.0">
+		?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		<title><?php print $this->getTitle() ?></title>
 		<link><?php print $this->getUrl() ?></link>
@@ -127,7 +127,7 @@ class RSSFeed extends ChannelFeed {
 			<link><?php print $item->getUrl() ?></link>
 			<description><?php print $item->getDescription() ?></description>
 			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
-			<?php if( $item->getAuthor() ) { ?><author><?php print $item->getAuthor() ?></author><?php }?>
+			<?php if( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor() ?></dc:creator><?php }?>
 			<?php if( $item->getComments() ) { ?><comments><?php print $item->getComments() ?></comments><?php }?>
 		</item>
 <?php
