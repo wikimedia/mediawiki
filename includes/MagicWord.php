@@ -15,50 +15,52 @@ define('MAG_NOTOC', 1);
 define('MAG_START', 2);
 define('MAG_CURRENTMONTH', 3);
 define('MAG_CURRENTMONTHNAME', 4);
-define('MAG_CURRENTDAY', 5);
-define('MAG_CURRENTDAYNAME', 6);
-define('MAG_CURRENTYEAR', 7);
-define('MAG_CURRENTTIME', 8);
-define('MAG_NUMBEROFARTICLES', 9);
-define('MAG_CURRENTMONTHNAMEGEN', 10);
-define('MAG_MSG', 11);
-define('MAG_SUBST', 12);
-define('MAG_MSGNW', 13);
-define('MAG_NOEDITSECTION', 14);
-define('MAG_END', 15);
-define('MAG_IMG_THUMBNAIL',  16);
-define('MAG_IMG_RIGHT',      17);
-define('MAG_IMG_LEFT',       18);
-define('MAG_IMG_NONE',       19);
-define('MAG_IMG_WIDTH',      20);
-define('MAG_IMG_CENTER',      21);
-define('MAG_INT', 22);
-define('MAG_FORCETOC', 23);
-define('MAG_SITENAME', 24);
-define('MAG_NS', 25);
-define('MAG_LOCALURL', 26);
-define('MAG_LOCALURLE', 27);
-define('MAG_SERVER', 28);
-define('MAG_IMG_FRAMED', 29);
-define('MAG_PAGENAME', 30);
-define('MAG_PAGENAMEE', 31);
-define('MAG_NAMESPACE', 32);
-define('MAG_TOC', 33);
-define('MAG_GRAMMAR', 34);
-define('MAG_NOTITLECONVERT', 35);
-define('MAG_NOCONTENTCONVERT', 36);
-define('MAG_CURRENTWEEK', 37);
-define('MAG_CURRENTDOW', 38);
+define('MAG_CURRENTMONTHNAMEGEN', 5);
+define('MAG_CURRENTMONTHABBREV', 6);
+define('MAG_CURRENTDAY', 7);
+define('MAG_CURRENTDAYNAME', 8);
+define('MAG_CURRENTYEAR', 9);
+define('MAG_CURRENTTIME', 10);
+define('MAG_NUMBEROFARTICLES', 11);
+define('MAG_MSG', 12);
+define('MAG_SUBST', 13);
+define('MAG_MSGNW', 14);
+define('MAG_NOEDITSECTION', 15);
+define('MAG_END', 16);
+define('MAG_IMG_THUMBNAIL',  17);
+define('MAG_IMG_RIGHT',      18);
+define('MAG_IMG_LEFT',       19);
+define('MAG_IMG_NONE',       20);
+define('MAG_IMG_WIDTH',      21);
+define('MAG_IMG_CENTER',      22);
+define('MAG_INT', 23);
+define('MAG_FORCETOC', 24);
+define('MAG_SITENAME', 25);
+define('MAG_NS', 26);
+define('MAG_LOCALURL', 27);
+define('MAG_LOCALURLE', 28);
+define('MAG_SERVER', 29);
+define('MAG_IMG_FRAMED', 30);
+define('MAG_PAGENAME', 31);
+define('MAG_PAGENAMEE', 32);
+define('MAG_NAMESPACE', 33);
+define('MAG_TOC', 34);
+define('MAG_GRAMMAR', 35);
+define('MAG_NOTITLECONVERT', 36);
+define('MAG_NOCONTENTCONVERT', 37);
+define('MAG_CURRENTWEEK', 38);
+define('MAG_CURRENTDOW', 39);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
 	MAG_CURRENTMONTHNAME,
+	MAG_CURRENTMONTHNAMEGEN,
+	MAG_CURRENTMONTHABBREV,
 	MAG_CURRENTDAY,
 	MAG_CURRENTDAYNAME,
 	MAG_CURRENTYEAR,
 	MAG_CURRENTTIME,
 	MAG_NUMBEROFARTICLES,
-	MAG_CURRENTMONTHNAMEGEN,
 	MAG_SITENAME,
 	MAG_SERVER,
 	MAG_PAGENAME,
