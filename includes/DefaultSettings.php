@@ -1017,6 +1017,14 @@ $wgDisableInternalSearch = false;
  */
 $wgSearchForwardUrl = null;
 
+/**
+ * If true, external URL links in wiki text will be given the
+ * rel="nofollow" attribute as a hint to search engines that
+ * they should not be followed for ranking purposes as they
+ * are user-supplied and thus subject to spamming.
+ */
+$wgNoFollowLinks = true;
+
 } else {
 	die();
 }

@@ -299,6 +299,7 @@ class ParserTest {
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,
 			'wgDefaultUserOptions' => array(),
+			'wgNoFollowLinks' => true,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
