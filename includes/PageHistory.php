@@ -64,7 +64,7 @@ class PageHistory {
 		  "FROM $oldtable $use_index " .
 		  "WHERE old_namespace={$namespace} AND " .
 		  "old_title='" . $db->strencode( $this->mTitle->getDBkey() ) . "' " .
-		  "ORDER BY inverse_timestamp".wfLimitResult($limitplus,$rawoffset);
+		  "ORDER BY inverse_timestamp".$db->limitResult($limitplus,$rawoffset);
 		$res = $db->query( $sql, $fname );
 
 		$revs = $db->numRows( $res );
