@@ -17,7 +17,7 @@ function wfSpecialStatistics() {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_rights' ) );
 
-	$sql = "SELECT COUNT(page_id) AS total FROM $page";
+	$sql = "SELECT COUNT(page_namespace) AS total FROM $page";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
