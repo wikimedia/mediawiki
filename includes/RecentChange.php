@@ -5,6 +5,8 @@ define( "RC_EDIT", 0);
 define( "RC_NEW", 1);
 define( "RC_MOVE", 2);
 define( "RC_LOG", 3);
+define( "RC_MOVE_OVER_REDIRECT", 4);
+
 
 /*
 mAttributes:
@@ -211,7 +213,7 @@ class RecentChange
 	}
 	
 	# Makes an entry in the database corresponding to a rename
-	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' )
+	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
 		if ( !$ip ) {
 			global $wgIP;
@@ -223,7 +225,7 @@ class RecentChange
 			'rc_cur_time'	=> $timestamp,
 			'rc_namespace'	=> $oldTitle->getNamespace(),
 			'rc_title'	=> $oldTitle->getDBkey(),
-			'rc_type'	=> RC_MOVE,
+			'rc_type'	=> $overRedir ? RC_MOVE_OVER_REDIRECT : RC_MOVE,
 			'rc_minor'	=> 0,
 			'rc_cur_id'	=> $oldTitle->getArticleID(),
 			'rc_user'	=> $user->getID(),
@@ -246,6 +248,14 @@ class RecentChange
 		$rc->save();
 	}
 	
+	/* static */ function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
+		RecentChange::notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip, false );
+	}
+
+	/* static */ function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
+		RecentChange::notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', true );
+	}
+
 	# A log entry is different to an edit in that previous revisions are 
 	# not kept
 	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='' )

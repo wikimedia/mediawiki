@@ -940,7 +940,7 @@ class Title {
 			$fname
 		);
 		
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
 		# Swap links
 		
@@ -1060,7 +1060,7 @@ class Title {
 		);
 		
 		# Record in RC
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
 
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );

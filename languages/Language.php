@@ -1228,6 +1228,7 @@ title. Please merge them manually.',
 'talkpagemoved' => 'The corresponding talk page was also moved.',
 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
 '1movedto2'		=> "$1 moved to $2",
+'1movedto2_redir' => '$1 moved to $2 over redirect',
 
 # Export
 
