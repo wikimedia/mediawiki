@@ -763,7 +763,7 @@ class memcached
          return null;
          
       $key = is_array($key) ? $key[1] : $key;
-      $this->stats[$cmd]++;
+      @$this->stats[$cmd]++;
       if (!fwrite($sock, "$cmd $key $amt\r\n"))
          return $this->_dead_sock($sock);
          
