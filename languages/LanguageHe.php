@@ -159,6 +159,7 @@ include_once("LanguageUtf8.php");
 "about"			=> "אודות",
 "aboutwikipedia" => "אודות ויקיפדיה",
 "aboutpage"		=> "ויקיפדיה:אודות",
+'article' => 'מאמר', #????
 "help"			=> "עזרה",
 "helppage"		=> "ויקיפדיה:עזרה",
 "wikititlesuffix" => "ויקיפדיה",
@@ -185,7 +186,9 @@ include_once("LanguageUtf8.php");
 "help"			=> "עזרה",
 "search"		=> "חפש",
 "history"		=> "גירסאות קודמות",
+"history_short" => "גירסאות קודמות",
 "printableversion" => "גירסה להדפסה",
+"edit"			=> "עריכה",
 "editthispage"	=> "ערוך דף זה",
 "deletethispage" => "מחק דף זה",
 "protectthispage" => "הפוך דף זה למוגן",
@@ -194,6 +197,8 @@ include_once("LanguageUtf8.php");
 "talkpage"		=> "שוחח על דף זה",
 "articlepage"	=> "צפה במאמר",
 "subjectpage"	=> "צפה בנושא", # For compatibility
+'talk' => 'שיחה',
+'toolbox' => 'Toolbox',
 "userpage" => "צפה בדף המשתמש",
 "wikipediapage" => "צפה בדף המטא",
 "imagepage" => 	"צפה בדף התמונה",
