@@ -59,6 +59,20 @@ class SiteConfiguration {
 			$this->extractGlobal( $varName, $wiki, $suffix, $params );
 		}
 	}
+
+	# Work out the site and language name from a database name
+	function siteFromDB( $db ) {
+		$site = NULL;
+		$lang = NULL;
+		foreach ( $this->suffixes as $suffix ) {
+			if ( substr( $db, -strlen( $suffix ) ) == $suffix ) {
+				$site = $suffix == 'wiki' ? 'wikipedia' : $suffix;
+				$lang = substr( $db, 0, strlen( $db ) - strlen( $suffix ) );
+				break;
+			}
+		}
+		return array( $site, $lang );
+	}
 }
 
 	
