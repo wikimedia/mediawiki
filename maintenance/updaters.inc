@@ -278,7 +278,7 @@ function do_schema_restructuring() {
 				if ( $firstCond ) {
 					$firstCond = false;
 				} else {
-					$sql .= ' AND ';
+					$sql .= ' OR ';
 				}
 				$sql .= "( cur_namespace = {$ns} AND cur_title in (";
 				$first = true;
