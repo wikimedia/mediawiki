@@ -47,14 +47,13 @@ if( version_compare( phpversion(), "5.0", "lt" ) ) {
 	# For now, PHPTAL 1.0.x must be installed via PEAR in system dir.
 	require_once 'PEAR.php';
 	require_once 'PHPTAL.php';
-	require_once 'PHPTAL/Attribute.php';
-	require_once 'PHPTAL/Attribute/I18N/Attributes.php';
 }
 
 /**
  * @todo document
  * @package MediaWiki
  */
+// PHPTAL 1.0 no longer has the PHPTAL_I18N stub class.
 //class MediaWiki_I18N extends PHPTAL_I18N {
 class MediaWiki_I18N {
 	var $_context = array();
@@ -74,17 +73,6 @@ class MediaWiki_I18N {
 			$value = str_replace($src, $varValue, $value);
 		}
 		return $value;
-	}
-
-	/* For PHPTAL 1.0: */
-	function setLanguage( $langCode ) {
-	}
-	
-	function setDomain( $domain ) {
-	}
-	
-	function setVar( $key, $value ) {
-		$this->set( $key, $value );
 	}
 }
 /**
@@ -131,7 +119,7 @@ class SkinPHPTal extends Skin {
 	 * @access private
 	 */
 	function &setupTemplate( $file, $repository=false, $cache_dir=false ) {
-		if( defined( 'NEW_PHPTAL' ) && NEW_PHPTAL ) {
+		if( defined( 'NEW_PHPTAL' ) ) {
 			return new PHPTAL_version_bridge( $file, $repository, $cache_dir );
 		} else {
 			return new PHPTAL( $file, $repository, $cache_dir );
