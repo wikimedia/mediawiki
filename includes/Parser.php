@@ -214,12 +214,12 @@ class Parser
 
 		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
-			if( $render ){
-				# use span to mark nowiki areas, note the trailing whitespace in span to avoid collisions with other spans
-				$nowiki_content[$marker] = '<span class="nowiki">'.wfEscapeHTMLTagsOnly( $content )."</span  >";
-			} else {
+			//if( $render ){
+				//# use span to mark nowiki areas, note the trailing whitespace in span to avoid collisions with other spans
+				//$nowiki_content[$marker] = '<span class="nowiki">'.wfEscapeHTMLTagsOnly( $content )."</span  >";
+			//} else {
 				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
-			}
+			//}
 		}
 
 		$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
@@ -1010,6 +1010,9 @@ class Parser
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
 		#
+
+		// Strip nowiki's again.
+		$text = $this->strip($text,$dblStripState);
 		$textLines = explode( "\n", $text );
 
 		$lastPrefix = $output = $lastLine = '';
@@ -1170,6 +1173,7 @@ class Parser
 			$output .= "</" . $this->mLastSection . ">";
 			$this->mLastSection = "";
 		}
+		$output = $this->unstrip( $output, $dblStripState );
 
 		wfProfileOut( $fname );
 		return $output;
