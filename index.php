@@ -21,7 +21,10 @@ if( get_magic_quotes_gpc() ) {
 	fix_magic_quotes( $_POST );
 	fix_magic_quotes( $_REQUEST );
 	fix_magic_quotes( $_SERVER );
-	fix_magic_quotes( $_FILES );
+	foreach( $_FILES as $key => $x ) {
+		# The tmp_name must not be stripped, it's a raw path
+		$_FILES[$key]["name"] = stripslashes( $_FILES[$key]["name"] );
+	}
 }
 if( get_magic_quotes_gpc() || !ini_get( "register_globals" ) ) {
 	# Import or re-import the variables
