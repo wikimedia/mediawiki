@@ -1514,6 +1514,22 @@ class Skin {
 		}
 		return $s;
 	}
+	
+	function makeSelfLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
+	{
+		$u = $nt->escapeLocalURL( $query );
+		if ( "" == $text ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
+		$inside = "";
+		if ( "" != $trail ) {
+			if ( preg_match( $this->linktrail, $trail, $m ) ) {
+				$inside = $m[1];
+				$trail = $m[2];
+			}
+		}
+		return "<strong>{$prefix}{$text}{$inside}</strong>{$trail}";
+	}
 
 	function fnamePart( $url )
 	{
