@@ -265,14 +265,14 @@ class Article {
 		# split it up by section
 		$secs =
 		  preg_split(
-		  '/(^=+.*?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)/mi',
+		  '/(^=+.+?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)(?!\S)/mi',
 		  $striptext, -1,
 		  PREG_SPLIT_DELIM_CAPTURE);
 		if($section==0) {
 			$rv=$secs[0];
 		} else {
 			$headline=$secs[$section*2-1];
-			preg_match( '/^(=+).*?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>/mi',$headline,$matches);
+			preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$headline,$matches);
 			$hlevel=$matches[1];
 
 			# translate wiki heading into level
@@ -287,7 +287,7 @@ class Article {
 			while(!empty($secs[$count*2-1]) && !$break) {
 
 				$subheadline=$secs[$count*2-1];
-				preg_match( '/^(=+).*?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>/mi',$subheadline,$matches);
+				preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$subheadline,$matches);
 				$subhlevel=$matches[1];
 				if(strpos($subhlevel,'=')!==false) {
 					$subhlevel=strlen($subhlevel);
@@ -864,7 +864,7 @@ class Article {
 				# split it up
 				# Unfortunately we can't simply do a preg_replace because that might
 				# replace the wrong section, so we have to use the section counter instead
-				$secs=preg_split('/(^=+.*?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)/mi',
+				$secs=preg_split('/(^=+.+?=+|^<h[1-6].*?' . '>.*?<\/h[1-6].*?' . '>)(?!\S)/mi',
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 				$secs[$section*2]=$text."\n\n"; // replace with edited
 
@@ -876,7 +876,7 @@ class Article {
 					# be erased, as the mother section has been replaced with
 					# the text of all subsections.
 					$headline=$secs[$section*2-1];
-					preg_match( '/^(=+).*?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>/mi',$headline,$matches);
+					preg_match( '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$headline,$matches);
 					$hlevel=$matches[1];
 
 					# determine headline level for wikimarkup headings
@@ -891,7 +891,7 @@ class Article {
 
 						$subheadline=$secs[$count*2-1];
 						preg_match(
-						 '/^(=+).*?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>/mi',$subheadline,$matches);
+						 '/^(=+).+?=+|^<h([1-6]).*?' . '>.*?<\/h[1-6].*?' . '>(?!\S)/mi',$subheadline,$matches);
 						$subhlevel=$matches[1];
 						if(strpos($subhlevel,'=')!==false) {
 							$subhlevel=strlen($subhlevel);
