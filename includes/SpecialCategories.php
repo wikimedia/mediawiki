@@ -30,12 +30,10 @@ function wfSpecialCategories()
 	$sql = "SELECT DISTINCT bl_to FROM brokenlinks WHERE bl_to LIKE \"{$cat}:%\"" ;
 	$res = wfQuery ( $sql, DB_READ ) ;
 	$r .= "<ol>\n" ;
-	while ( $x = wfFetchObject ( $res ) )
-	  {
-	    $t = explode ( ":" , $x->bl_to , 2 ) ;
-	    $t = $t[1] ;
+	while ( $x = wfFetchObject ( $res ) ) {
+		$title = Title::newFromDBkey( $x->bl_to );
 	    $r .= "<li>" ;
-	    $r .= $sk->makeBrokenLink( $x->bl_to, $t ) ;
+	    $r .= $sk->makeBrokenLinkObj( $title, $title->getText() ) ;
 	    $r .= "</li>\n" ;
 	  }
 	wfFreeResult ( $res ) ;
