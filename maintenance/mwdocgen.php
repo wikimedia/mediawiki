@@ -92,7 +92,7 @@ if( is_array( $argv ) && isset( $argv[1] ) ) {
 	case '--all':         $input = 0; break;
 	case '--includes':    $input = 1; break;
 	case '--maintenance': $input = 2; break;
-	case '--skins':       $input = 2; break;
+	case '--skins':       $input = 3; break;
 	case '--file':
 		$input = 4;
 		if( isset( $argv[2] ) ) {
