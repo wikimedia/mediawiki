@@ -2035,10 +2035,11 @@ class Language {
 		return $text;
 	}
 	
-	# see if we have a list of language variants for conversion.
+	# returns a list of language variants for conversion.
 	# right now mainly used in the Chinese conversion
 	function getVariants() {
-		return array();
+		$lang = strtolower(substr(get_class($this), 8));
+		return array($lang);
 	}
 	
 	
