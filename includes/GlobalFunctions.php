@@ -130,9 +130,9 @@ function wfMungeToUtf8($string) {
 
 function wfDebug( $text, $logonly = false )
 {
-	global $wgOut, $wgDebugLogFile;
+	global $wgOut, $wgDebugLogFile, $wgDebugComments;
 
-	if ( ! $logonly ) {
+	if ( $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
 	if ( "" != $wgDebugLogFile ) {
