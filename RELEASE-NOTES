@@ -1,11 +1,14 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc1, 2004-02-28 ==
+== Version 1.3.0pre-alpha ==
 
-This is a RELEASE CANDIDATE for the new production release. It is more or
-less in sync with what is running on Wikipedia right now. There may be
-some interesting bugs, it may eat all your data, and documentation may
-not be up to date. If you use this on a production site, BE CAREFUL.
+Various things will be happening for 1.3.0...
+* More advanced parser
+* New schema...
+* Magic goodies!
+* stuff
+
+== Version 1.2.0 ==
 
 New features in 1.2:
 * Image resizing/thumbnail generation
@@ -21,11 +24,16 @@ New features in 1.2:
 * Editing toolbar to demonstrate wiki syntax to newbies
   (off by default in user preferences)
 * Support for authenticated SMTP outgoing e-mail (experimental)
+* It's now possible to assign sysop accounts from within the wiki.
+  An account with this ability must be labeled with the "bureaucrat"
+  privilege, such as the 'Developer' account created by the install.
 
 Fixes and tweaks:
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
   $wgEnablePersistentLC = true; to turn on the link cache table
   for a slight rendering speed boost.
+* rebuildMessages.php can now selectively update new messages, or
+  overwrite everything.
 * Works with short tags disabled.
 * Various bug fixes.
 * Other stuff we forgot.
