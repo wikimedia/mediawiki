@@ -465,6 +465,11 @@ td.diff-context { background:#eeeeee; }
     background: url("discussionitem_icon.gif")  center right no-repeat;
     padding-right: 18px;
 }
+/* disable interwiki styling */
+#bodyContent a.interwiki {
+    background: none;
+    padding: 0;
+}
 /* this can be used in the content area to switch off
 special external link styling */
 #bodyContent .plainlinks a {
