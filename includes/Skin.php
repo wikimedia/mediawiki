@@ -1961,24 +1961,31 @@ class Skin {
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
-	function makeMediaLinkObj( $nt, $alt = "" )
-	{
-		if ( ! isset( $nt ) )
-		{
-			### HOTFIX. Instead of breaking, return empry string.
-			$s = $alt;
+	/**
+	 * Create a direct link to a given uploaded file.
+	 *
+	 * @param Title  $title
+	 * @param string $text   pre-sanitized HTML
+	 * @return string HTML
+	 *
+	 * @access public
+	 * @todo Handle invalid or missing images better.
+	 */
+	function makeMediaLinkObj( $title, $text = ''  ) {
+		if( is_null( $title ) ) {
+			### HOTFIX. Instead of breaking, return empty string.
+			return $text;
 		} else {
-			$name = $nt->getDBKey();
-			$img = Image::newFromTitle($nt);
-			$url = $img->getUrl();
-			if ( empty( $alt ) ) {
-				$alt = preg_replace( '/\.(.+?)^/', '', $name );
+			$name = $title->getDBKey();	
+			$img  = Image::newFromTitle( $title );
+			$url  = $img->getURL();
+			$alt  = htmlspecialchars( $title->getText() );
+			if( $text == '' ) {
+				$text = $alt;
 			}
-	
 			$u = htmlspecialchars( $url );
-			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
+			return "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$text}</a>";			
 		}
-		return $s;
 	}
 
 	function specialLink( $name, $key = "" )
@@ -2551,11 +2558,13 @@ class Skin {
 		} else {
 			$url = wfEscapeHTML( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
+				$token = urlencode( $wgUser->editToken( $img ) );
 				$rlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
-				           urlencode( $img ) );
+				           urlencode( $img ) . "&wpEditToken=$token" );
 				$dlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-				           $del, 'action=delete&oldimage=' . urlencode( $img ) );
+				           $del, 'action=delete&oldimage=' . urlencode( $img ) .
+				           "&wpEditToken=$token" );
 			} else {
 				# Having live active links for non-logged in users
 				# means that bots and spiders crawling our site can

@@ -12,10 +12,13 @@ class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
 
 	function UndeleteForm( &$request, $par = "" ) {
+		global $wgUser;
 		$this->mAction = $request->getText( 'action' );
 		$this->mTarget = $request->getText( 'target' );
 		$this->mTimestamp = $request->getText( 'timestamp' );
-		$this->mRestore = $request->getCheck( 'restore' );
+		$this->mRestore = $request->getCheck( 'restore' ) &&
+			$request->wasPosted() &&
+			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		if( $par != "" ) {
 			$this->mTarget = $par;
 		}
@@ -118,11 +121,13 @@ class UndeleteForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 		$encTarget = htmlspecialchars( $this->mTarget );
+		$token = htmlspecialchars( $wgUser->editToken() );
 		
 		$wgOut->addHTML("<p>
 	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
 	<input type=hidden name=\"target\" value=\"{$encTarget}\">
 	<input type=submit name=\"restore\" value=\"".wfMsg("undeletebtn")."\">
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 	</form>");
 
 		$log = wfGetSQL("cur", "cur_text", "cur_namespace=4 AND cur_title='".

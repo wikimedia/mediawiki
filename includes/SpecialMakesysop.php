@@ -31,12 +31,14 @@ function wfSpecialMakesysop()
 class MakesysopForm {
 	var $mTarget, $mAction, $mRights, $mUser, $mSubmit;
 
-	function MakesysopForm( &$request ) 
-	{
+	function MakesysopForm( &$request ) {
+		global $wgUser;
 		$this->mAction = $request->getText( 'action' );
 		$this->mRights = $request->getVal( 'wpRights' );
 		$this->mUser = $request->getText( 'wpMakesysopUser' );
-		$this->mSubmit = $request->getBool( 'wpMakesysopSubmit' ) && $request->wasPosted();
+		$this->mSubmit = $request->getBool( 'wpMakesysopSubmit' ) &&
+			$request->wasPosted() &&
+			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mBuro = $request->getBool( 'wpSetBureaucrat' );
 	}
 
@@ -80,8 +82,8 @@ class MakesysopForm {
 		$makeburo = wfMsg( "setbureaucratflag" );
 		$wgOut->addHTML(
 			"<tr>
-				<td>&nbsp;</td><td align=left>
-					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
+				<td>&nbsp;</td><td align='left'>
+					<input type='checkbox' name=\"wpSetBureaucrat\" value='1' />$makeburo
 				</td>
 			</tr>"
 		);
@@ -109,11 +111,13 @@ class MakesysopForm {
 		} else {
 			$mss = wfMsg( "makesysopsubmit" );
 		}
+		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML(
 			"<tr>
 				<td>&nbsp;</td><td align='left'>
 					<input type='submit' name=\"wpMakesysopSubmit\" value=\"{$mss}\" />
 				</td></tr></table>
+				<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 			</form>\n" 
 		);
 

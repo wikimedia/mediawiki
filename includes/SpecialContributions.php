@@ -182,6 +182,8 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 		$sysop = $wgUser->isSysop();
 		if($sysop ) {
 			$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';
+			$extraRollback .= '&token=' . urlencode(
+				$wgUser->editToken( array( $page->getPrefixedText(), $target ) ) );
 			# $target = $wgRequest->getText( 'target' );
 			$topmarktext .= " [". $sk->makeKnownLink( $page,
 		  	wfMsg( "rollbacklink" ),

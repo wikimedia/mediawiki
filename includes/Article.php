@@ -1094,7 +1094,9 @@ class Article {
 			return;
 		}
 
-		$confirm = $wgRequest->getBool( 'wpConfirmProtect' ) && $wgRequest->wasPosted();
+		$confirm = $wgRequest->getBool( 'wpConfirmProtect' ) &&
+			$wgRequest->wasPosted() &&
+			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$reason = $wgRequest->getText( 'wpReasonProtect' );
 
 		if ( $confirm ) {
@@ -1120,7 +1122,7 @@ class Article {
 		# Output protection confirmation dialog
 	function confirmProtect( $par, $reason, $limit = 'sysop'  )
 	{
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		wfDebug( "Article::confirmProtect\n" );
 
@@ -1147,6 +1149,7 @@ class Article {
 		}
 
 		$confirm = htmlspecialchars( wfMsg( 'confirm' ) );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "
 <form id='protectconfirm' method='post' action=\"{$formaction}\">
@@ -1177,6 +1180,7 @@ class Article {
 			</td>
 		</tr>
 	</table>
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 		$wgOut->returnToMain( false );
@@ -1192,7 +1196,9 @@ class Article {
 	{
 		global $wgUser, $wgOut, $wgMessageCache, $wgRequest, $wgIsPg;
 		$fname = 'Article::delete';
-		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->wasPosted();
+		$confirm = $wgRequest->getBool( 'wpConfirm' ) &&
+			$wgRequest->wasPosted() &&
+			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$reason = $wgRequest->getText( 'wpReason' );
 
 		# This code desperately needs to be totally rewritten
@@ -1287,7 +1293,7 @@ class Article {
 	# Output deletion confirmation dialog
 	function confirmDelete( $par, $reason )
 	{
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		wfDebug( "Article::confirmDelete\n" );
 
@@ -1301,6 +1307,7 @@ class Article {
 		$confirm = htmlspecialchars( wfMsg( 'confirm' ) );
 		$check = htmlspecialchars( wfMsg( 'confirmcheck' ) );
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
@@ -1331,6 +1338,7 @@ class Article {
 			</td>
 		</tr>
 	</table>
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 		$wgOut->returnToMain( false );
@@ -1488,6 +1496,13 @@ class Article {
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage( $this->getContent( true ) );
+			return;
+		}
+		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ),
+			array( $this->mTitle->getPrefixedText(),
+				$wgRequest->getVal( 'from' ) )  ) ) {
+			$wgOut->setPageTitle( wfMsg( 'rollbackfailed' ) );
+			$wgOut->addWikiText( wfMsg( 'sessionfailure' ) );
 			return;
 		}
 

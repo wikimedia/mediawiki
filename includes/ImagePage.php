@@ -140,7 +140,11 @@ class ImagePage extends Article {
 		
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
-			$this->doDelete();
+			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
+				$this->doDelete();
+			} else {
+				$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
+			}
 			return;
 		}
 		
@@ -161,10 +165,17 @@ class ImagePage extends Article {
 		$fname = "Article::doDelete";
 
 		$reason = $wgRequest->getVal( 'wpReason' );
-		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
 		if ( !is_null( $oldimage ) ) {
+			if ( strlen( $oldimage ) < 16 ) {
+				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				return;
+			}
+			if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
+				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				return;
+			}
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
@@ -179,9 +190,7 @@ class ImagePage extends Article {
 
 			$deleted = $oldimage;
 		} else {
-			if ( is_null ( $image ) ) {
-				$image = $this->mTitle->getDBkey();
-			}
+			$image = $this->mTitle->getDBkey();
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
 			
@@ -299,6 +308,10 @@ class ImagePage extends Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
+			$wgOut->errorpage( 'internalerror', 'sessionfailure' );
+			return;
+		}		
 		$name = substr( $oldimage, 15 );
 
 		$dest = wfImageDir( $name );

@@ -11,9 +11,14 @@ function wfSpecialUnlockdb()
 	$action = $wgRequest->getText( 'action' );
 	$f = new DBUnlockForm();
 
-	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	if ( "success" == $action ) {
+		$f->showSuccess();
+	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( "" );
+	}
 }
 
 class DBUnlockForm {
@@ -32,6 +37,7 @@ class DBUnlockForm {
 		$lb = wfMsg( "unlockbtn" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "<p>
 <form id=\"unlockdb\" method=\"post\" action=\"{$action}\">
@@ -44,6 +50,7 @@ class DBUnlockForm {
 <td>&nbsp;</td><td align=left>
 <input type=submit name=\"wpLock\" value=\"{$lb}\">
 </td></tr></table>
+<input type=\"hidden\" name=\"wpEditToken\" value=\"{$token}\" />
 </form>\n" );
 
 	}

@@ -69,8 +69,10 @@ class DifferenceEngine {
 		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ), $contribs,
 			"target=" . urlencode($this->mNewUser) );
 		if ( !$this->mNewid && $wgUser->isSysop() ) {
-			$rollback = "&nbsp;&nbsp;&nbsp;<strong>[" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( "rollbacklink" ),
-				"action=rollback&from=" . urlencode($this->mNewUser) ) . "]</strong>";
+  			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'rollbacklink' ),
+				'action=rollback&from=' . urlencode($this->mNewUser) .
+				'&token=' . urlencode( $wgUser->editToken( array( $wgTitle->getPrefixedText(), $this->mNewUser ) ) ) ) .
+				']</strong>';
 		} else {
 			$rollback = "";
 		}
