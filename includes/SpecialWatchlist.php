@@ -70,7 +70,7 @@ function wfSpecialWatchlist() {
 	extract( $dbr->tableNames( 'cur', 'watchlist', 'recentchanges' ) );
 
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
-	$res = $dbr->query( $sql );
+	$res = $dbr->query( $sql, $fname );
 	$s = $dbr->fetchObject( $res );
 	$nitems = $s->n;
 	if($nitems == 0) {
@@ -99,7 +99,7 @@ function wfSpecialWatchlist() {
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
 	        $sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
-		$res = $dbr->query( $sql );
+		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
 
@@ -114,7 +114,7 @@ function wfSpecialWatchlist() {
 			"' method='post'>\n" .
 			"<ul>\n" );
 		$sql = "SELECT wl_namespace,wl_title FROM $watchlist WHERE wl_user=$uid";
-		$res = $dbr->query( $sql );
+		$res = $dbr->query( $sql, $fname );
 		$sk = $wgUser->getSkin();
 		while( $s = $dbr->fetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
