@@ -996,6 +996,7 @@ $t[] = "</table>" ;
 		$image = Namespace::getImage();
 		$special = Namespace::getSpecial();
 		$media = Namespace::getMedia();
+		$category = wfMsg ( "category" ) ;
 		$nottalk = !Namespace::isTalk( $wgTitle->getNamespace() );
 
 		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
@@ -1078,6 +1079,16 @@ $t[] = "</table>" ;
 				$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 				continue;
 			}
+			if ( $ns == $category && $wgUseCategoryMagic ) {
+			        $t = explode ( ":" , $nt->getText() ) ;
+				array_shift ( $t ) ;
+				$t = implode ( ":" , $t ) ;
+				$t = $wgLang->ucFirst ( $t ) ;
+				$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
+				$this->mCategoryLinks[] = $t ;
+				$s .= $prefix . $trail ;
+				continue ;	    
+				}
 			if( $ns == $media ) {
 				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
