@@ -390,10 +390,13 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	  "img_user_text FROM image WHERE img_name='" . wfStrencode( $name ) . "'";
 	$res = wfQuery( $sql, $fname );
 
+	$now = wfTimestampNow();
+	$won = wfInvertTimestamp( $now );
+	
 	if ( 0 == wfNumRows( $res ) ) {
 		$sql = "INSERT INTO image (img_name,img_size,img_timestamp," .
 		  "img_description,img_user,img_user_text) VALUES ('" .
-		  wfStrencode( $name ) . "',{$size},'" . wfTimestampNow() . "','" .
+		  wfStrencode( $name ) . "',{$size},'{$now}','" .
 		  wfStrencode( $desc ) . "', '" . $wgUser->getID() .
 		  "', '" . wfStrencode( $wgUser->getName() ) . "')";
 		wfQuery( $sql, $fname );
@@ -403,8 +406,6 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		  wfStrencode( $name ) . "'";
 		$res = wfQuery( $sql, $fname );
 		if ( 0 == wfNumRows( $res ) ) {
-			$now = wfTimestampNow();
-			$won = wfInvertTimestamp( $now );
             $common =
 			  Namespace::getImage() . ",'" .
 			  wfStrencode( $name ) . "','" .
@@ -413,9 +414,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 			  "',1";
 			$sql = "INSERT INTO cur (cur_namespace,cur_title," .
 			  "cur_comment,cur_user,cur_user_text,cur_timestamp,cur_is_new," .
-			  "cur_text,inverse_timestamp) VALUES (" .
+			  "cur_text,inverse_timestamp,cur_touched) VALUES (" .
 			  $common .
-			  ",'" . wfStrencode( $desc ) . "','{$won}')";
+			  ",'" . wfStrencode( $desc ) . "','{$won}','{$now}')";
 			wfQuery( $sql, $fname );
 			$id = wfInsertId() or 0; # We should throw an error instead
 			$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
@@ -443,6 +444,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		  $wgUser->getID() . "',img_user_text='" .
 		  wfStrencode( $wgUser->getName() ) . "', img_description='" .
 		  wfStrencode( $desc ) . "' WHERE img_name='" .
+		  wfStrencode( $name ) . "'";
+		wfQuery( $sql, $fname );
+		
+		$sql = "UPDATE cur SET cur_touched='{$now}' WHERE cur_namespace=" .
+		  Namespace::getImage() . " AND cur_title='" .
 		  wfStrencode( $name ) . "'";
 		wfQuery( $sql, $fname );
 	}
