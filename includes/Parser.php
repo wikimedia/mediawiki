@@ -495,12 +495,13 @@ class Parser
 			"/<\\/center *>/i" => '</span>'
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		// another round, but without regex
-		$fixtags = array(
-			'& ' => '&amp;',
-			'&<' => '&amp;<',
-		);
-		$text = str_replace( array_keys($fixtags), array_values($fixtags), $text );
+
+		# Clean up spare ampersands; note that we probably ought to be
+		# more careful about named entities.
+		$text = preg_replace(
+			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/',
+			'&amp;',
+			$text );
 
 		$text .= $this->categoryMagic () ;
 		
