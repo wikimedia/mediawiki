@@ -489,9 +489,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 # Search results
 #
 "searchresults" => "Canlyniadau chwiliad",
-"searchhelppage" => "Wicipedia: Yn chwilio",
-"searchingwikipedia" => "Yn chwilio Wicipedia",
-"searchresulttext" => "Am mwy o hysbys amdano chwilio Wicipedia, gwelwch $1.",
+"searchresulttext" => "Am mwy o hysbys amdano chwilio Wicipedia, gwelwch [[Wicipedia: Yn chwilio|Yn chwilio Wicipedia]].",
 "searchquery" => "Am gofyniad \"$1\"",
 "badquery" => "Gofyniad chwilio drwg",
 "badquerytext" => "Roedd yn amhosibl i prosesu'ch gofyniad.

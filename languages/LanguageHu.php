@@ -480,9 +480,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchhelppage" => "Wikipédia:Keresés",
-"searchingwikipedia" => "Keresés a Wikipédiában",
-"searchresulttext" => "További információkkal a keresésről $1 szolgál.",
+"searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a Wikipédiában]] szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
 "badquery"		=> "Hibás formájú keresés",
 "badquerytext"	=> "Nem tudjuk a kérésedet végrehajtani.

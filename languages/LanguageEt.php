@@ -396,9 +396,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 # Search results
 #
 "searchresults" => "Otsingu tulemid",
-"searchhelppage" => "Vikipeedia:Otsing",
-"searchingwikipedia" => "Otsimine Vikipeediast",
-"searchresulttext" => "Lisainfot Vikipeediast otsimise kohta vaata $1.",
+"searchresulttext" => "Lisainfot Vikipeediast otsimise kohta vaata [[Vikipeedia:Otsing|Otsimine Vikipeediast]].",
 "searchquery"	=> "Päring \"$1\"",
 "badquery"		=> "Vigane päring",
 "badquerytext"	=> "Teie päringut ei saanud menetleda.

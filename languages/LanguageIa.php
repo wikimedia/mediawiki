@@ -415,9 +415,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.\n",
 # Search results
 #
 "searchresults" => "Resultatos del recerca",
-"searchhelppage" => "Wikipedia:Recerca",
-"searchingwikipedia" => "Recerca in Wikipedia",
-"searchresulttext" => "Pro plus information super le recerca de Wikipedia, vide $1.",
+"searchresulttext" => "Pro plus information super le recerca de {{SITENAME}}, vide [[Project:Recerca|Recerca in {{SITENAME}}]].",
 "searchquery"	=> "Pro le consulta \"$1\"",
 "badquery"		=> "Consulta de recerca mal formate",
 "badquerytext"	=> "Impossibile processar tu consulta.

@@ -444,8 +444,6 @@ versjonen, (forrige) = forskjell fra den forrige versjonen, M = mindre endring",
 # Search results
 #
 "searchresults" => "Søkeresultater",
-"searchhelppage" => "Wikipedia:Søking",
-"searchingwikipedia" => "Søking i Wikipedia",
 "searchresulttext" => "For mer informasjon om søking i Wikipedia, se 
 $1.",
 "searchquery"	=> "For forespørsel \"$1\"",

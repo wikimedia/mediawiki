@@ -465,9 +465,7 @@ Por favor verifique a URL que você usou para acessar esta página.\n",
 # Resultados da Busca
 #
 "searchresults" => "Buscar resultados",
-"searchhelppage" => "{{ns:4}}:Procurando",
-"searchingwikipedia" => "Busca na {{SITENAME}}",
-"searchresulttext" => "Para mais informações sobre busca na {{SITENAME}}, veja $1.",
+"searchresulttext" => "Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].",
 "searchquery"   => "Para pedido de busca \"$1\"",
 "badquery"      => "Linha de busca incorretamente formada",
 "badquerytext"  => "Nós não pudemos processar seu pedido de busca.

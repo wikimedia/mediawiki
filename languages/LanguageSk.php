@@ -388,9 +388,7 @@ Please check the URL you used to access this page.\n",
 # Search results
 #
 "searchresults" => "Search results",
-"searchhelppage" => "Wikipedia:Searching",
-"searchingwikipedia" => "Searching Wikipedia",
-"searchresulttext" => "For more information about searching Wikipedia, see $1.",
+"searchresulttext" => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
 "searchquery"	=> "For query \"$1\"",
 "badquery"		=> "Badly formed search query",
 "badquerytext"	=> "We could not process your query.

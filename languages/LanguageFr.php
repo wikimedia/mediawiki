@@ -490,9 +490,7 @@ vous suivez les <a href='$wgScript/{{ns:4}}:Page_protégée'>directives concerna
 # Search results
 #
 "searchresults" => "Résultat de la recherche",
-"searchhelppage" => "{{ns:4}}:Recherche",
-"searchingwikipedia" => "Chercher dans {{SITENAME}}",
-"searchresulttext" => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir $1.",
+"searchresulttext" => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].",
 "searchquery" => "Pour la requête \"$1\"",
 "badquery"  => "Requête mal formulée",
 "badquerytext" => "Nous n'avons pas pu traiter votre requête.

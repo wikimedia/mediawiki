@@ -639,9 +639,7 @@ MySQL дава грешка \"$3: $4\".\n",
 # Search results
 #
 'searchresults' => 'Резултати от търсенето',
-'searchhelppage' => "{{ns:4}}:Търсене",
-'searchingwikipedia' => "Търсене в {{SITENAME}}",
-'searchresulttext' => "За повече информация относно {{SITENAME}}, вижте $1.",
+'searchresulttext' => "За повече информация относно {{SITENAME}}, вижте [[Project:Търсене|Търсене в {{SITENAME}}]].",
 'searchquery'  => "За заявка \"$1\"",
 'badquery'    => 'Лошо формулирана заявка за търсене',
 'badquerytext'  => 'Вашата заявка не можа да бъде обработена.

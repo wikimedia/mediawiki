@@ -520,9 +520,7 @@ You should log in and change your password now.",
 # Search results
 #
 "searchresults" => "نتایج جستجو",
-"searchhelppage" => "ویکی‌پدیا:جستجو کردن",
-"searchingwikipedia" => "جستجوی ویکی‌پدیا",
-"searchresulttext" => "برای اطلاعات بیشتر درباره‌ی جستجوی ویکی‌پدیا، به $1 مراجعه کنید.",
+"searchresulttext" => "برای اطلاعات بیشتر درباره‌ی جستجوی ویکی‌پدیا، به [[ویکی‌پدیا:جستجو کردن|جستجوی ویکی‌پدیا]] مراجعه کنید.",
 "searchquery"	=> "برای پرس‌وجوی «$1»",
 "badquery"		=> "پرس‌وجوی جستجویی بدشکل",
 "badquerytext"	=> "نتوانستیم پرس‌وجوی شما را پردازش کنیم.

@@ -399,7 +399,6 @@ Please check the URL you used to access this page.\n",
 # 検索結果（Search results）
 #
 "searchresults" => "検索結果" /* "Search results" */,
-"searchhelppage" => "{{ns:4}}:Searching",
 "searchingwikipedia" => "{{SITENAME}} を検索中" /* "Searching Wikipedia" */,
 "searchresulttext" => "{{SITENAME}} の検索についての詳しい情報は、 $1 をご覧下さい。"
   /* "For more information about searching Wikipedia, see $1." */ ,

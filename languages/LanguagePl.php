@@ -477,9 +477,7 @@ Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.\n",
 # Search results
 #
 "searchresults" => "Wyniki wyszukiwania",
-"searchhelppage" => "{{ns:4}}:Przeszukiwanie",
-"searchingwikipedia" => "Przeszukiwanie Wikipedii",
-"searchresulttext" => "Aby dowiedzieć się więcej o przeszukiwaniu Wikipedii, zobacz $1.",
+"searchresulttext" => "Aby dowiedzieć się więcej o przeszukiwaniu Wikipedii, zobacz [[Project:Przeszukiwanie|Przeszukiwanie Wikipedii]].",
 "searchquery" => "Dla zapytania \"$1\"",
 "badquery" => "Źle sformułowane zapytanie",
 "badquerytext" => "Nie można zrealizować Twojego zapytania.
