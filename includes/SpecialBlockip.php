@@ -68,8 +68,8 @@ class IPBlockForm {
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 
-		$blockExpiryOptions = join("</option><option>", split(",", $wgBlockExpiryOptions));
-		$blockExpiryOptions = "<option>" . $blockExpiryOptions . "</option>";
+		$blockExpiryFormOptions = join("</option><option>", split(",", $wgBlockExpiryOptions));
+		$blockExpiryFormOptions = "<option>" . $blockExpiryFormOptions . "</option>";
 
 		$token = htmlspecialchars( $wgUser->editToken() );
 		
@@ -86,7 +86,7 @@ class IPBlockForm {
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
 				<select tabindex='2' name=\"wpBlockExpiry\"/>
-					<?= $blockExpiryOptions ?>
+					$blockExpiryFormOptions
 				</select>
 			</td>
 		</tr>
