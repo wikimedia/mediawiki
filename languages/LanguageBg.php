@@ -41,7 +41,8 @@
   'montparnasse' => 'Монпарнас',
   'davinci' => 'ДаВинчи',
   'mono' => 'Mono',
-  'monobook' => 'MonoBook'
+  'monobook' => 'MonoBook',
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesBg = array(
