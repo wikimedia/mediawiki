@@ -69,21 +69,21 @@ class EditPage {
 		$this->textbox1 = rtrim( $request->getText( "wpTextbox1" ) );
 		$this->textbox2 = rtrim( $request->getText( "wpTextbox2" ) );
 		$this->summary = trim( $request->getText( "wpSummary" ) );
-		
+
 		$this->edittime = $request->getVal( 'wpEdittime' );
 		if( !preg_match( '/^\d{14}$/', $this->edittime ) ) $this->edittime = "";
-		
+
 		$this->save = $request->getCheck( 'wpSave' );
 		$this->preview = $request->getCheck( 'wpPreview' );
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
 		$this->watchthis = $request->getCheck( 'wpWatchthis' );
-		
+
 		$this->oldid = $request->getInt( 'oldid' );
-		
+
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 	}
-	
+
 	# Since there is only one text field on the edit form,
 	# pressing <enter> will cause the form to be submitted, but
 	# the submit button value won't appear in the query, so we
@@ -156,13 +156,13 @@ class EditPage {
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
 
-			if( ( $this->section != "new" ) && 
+			if( ( $this->section != "new" ) &&
 				($this->mArticle->getTimestamp() != $this->edittime ) ) {
 				$isConflict = true;
 			}
 			$userid = $wgUser->getID();
 
-			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded( 
+			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
 				$this->section, $this->textbox1, $this->summary);
 			# Suppress edit conflict with self
 
@@ -200,7 +200,7 @@ class EditPage {
 			$this->proxyCheck();
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		
+
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
@@ -221,6 +221,10 @@ class EditPage {
 				} else {
 					$s.=wfMsg("sectionedit");
 				}
+				$sectitle=preg_match("/^=+(.*?)=+/mi",
+				  $this->textbox1,
+				  $matches);
+				if($matches[1]) { $this->summary = " (".trim($matches[1]).")"; }
 			}
 			$wgOut->setPageTitle( $s );
 			if ( $this->oldid ) {
@@ -280,13 +284,13 @@ class EditPage {
 		if( !$this->preview ) {
 			if( $wgUser->getOption( "watchdefault" ) ) $this->watchthis = true;
 			if( $wgUser->getOption( "minordefault" ) ) $this->minoredit = true;
-		
+
 			// activate checkbox also if user is already watching the page,
 			// require wpWatchthis to be unset so that second condition is not
 			// checked unnecessarily
 			if( !$this->watchthis && $this->mTitle->userIsWatching() ) $this->watchthis = true;
 		}
-		
+
 		$minoredithtml = "";
 
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
@@ -294,14 +298,14 @@ class EditPage {
 			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked":"")." id='wpMinoredit'>".
 			"<label for='wpMinoredit'>{$minor}</label>";
 		}
-		
+
 		$watchhtml = "";
-		
+
 		if ( 0 != $wgUser->getID() ) {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked":"")." id='wpWatchthis'>".
 			"<label for='wpWatchthis'>{$watchthis}</label>";
 		}
-		
+
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br>";
 
 		if ( "preview" == $formtype) {
@@ -320,7 +324,7 @@ class EditPage {
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
 				$wgTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
-			
+
 			if($wgUser->getOption("previewontop")) {
 				$wgOut->addHTML($previewhead);
 				$wgOut->addHTML($previewHTML);
