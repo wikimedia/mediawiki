@@ -1911,7 +1911,7 @@ class Parser
 	# It loops through all headlines, collects the necessary data, then splits up the
 	# string and re-inserts the newly formatted headlines.
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel, $wgLang;
+		global $wgInputEncoding, $wgMaxTocLevel, $wgLang, $wgLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -2022,10 +2022,13 @@ class Parser
 			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
 
 			# Remove link placeholders by the link text.
-			#     <!--LINK namespace page_title link text with suffix-->
+			#     <!--LINK number-->
 			# turns into 
 			#     link text with suffix
-			$canonized_headline = preg_replace( '/<!--LINK [0-9]* [^ ]* *(.*?)-->/','$1', $canonized_headline );
+			$canonized_headline = preg_replace( '/<!--LINK ([0-9]*)-->/e',
+							    "\$wgLinkHolders['texts'][\$1]",
+							    $canonized_headline );
+
 			# strip out HTML
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
