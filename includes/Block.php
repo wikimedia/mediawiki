@@ -2,6 +2,7 @@
 /**
  * Blocks and bans object
  * @package MediaWiki
+ * $Id$
  */
 
 /**
@@ -33,7 +34,7 @@ class Block
 		$this->mUser = $user;
 		$this->mBy = $by;
 		$this->mReason = $reason;
-		$this->mTimestamp = $timestamp;
+		$this->mTimestamp = wfTimestamp(TS_MW,$timestamp);
 		$this->mAuto = $auto;
 		$this->mExpiry = $expiry;
 		
@@ -121,7 +122,7 @@ class Block
 	{
 		$this->mAddress = $row->ipb_address;
 		$this->mReason = $row->ipb_reason;
-		$this->mTimestamp = $row->ipb_timestamp;
+		$this->mTimestamp = wfTimestamp(TS_MW,$row->ipb_timestamp);
 		$this->mUser = $row->ipb_user;
 		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
@@ -200,7 +201,7 @@ class Block
 				'ipb_user' => $this->mUser,
 				'ipb_by' => $this->mBy,
 				'ipb_reason' => $this->mReason,
-				'ipb_timestamp' => $this->mTimestamp,
+				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 				'ipb_auto' => $this->mAuto,
 				'ipb_expiry' => $this->mExpiry,
 			), 'Block::insert' 
@@ -224,7 +225,7 @@ class Block
 		if ( !$this->mExpiry ) {
 			return false;
 		} else {
-			return wfTimestampNow() > $this->mExpiry;
+			return wfTimestamp() > $this->mExpiry;
 		}
 	}
 
@@ -236,13 +237,13 @@ class Block
 	function updateTimestamp() 
 	{
 		if ( $this->mAuto ) {
-			$this->mTimestamp = wfTimestampNow();
+			$this->mTimestamp = wfTimestamp();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
 			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->updateArray( 'ipblocks', 
 				array( /* SET */ 
-					'ipb_timestamp' => $this->mTimestamp,
+					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 					'ipb_expiry' => $this->mExpiry,
 				), array( /* WHERE */
 					'ipb_address' => $this->mAddress
