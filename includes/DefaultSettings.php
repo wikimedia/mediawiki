@@ -766,6 +766,15 @@ $wgBrowserBlackList = array(
 	// FIXME: Add some accurate, true things here
 	);
 
+# Fake out the timezone that the server thinks it's in. This will be used
+# for date display and not for what's stored in the DB.
+# Leave to null to retain your server's OS-based timezone value
+# This is the same as the timezone
+# $wgLocaltimezone = 'GMT';
+# $wgLocaltimezone = 'PST8PDT';
+# $wgLocaltimezone = 'Europe/Sweden';
+# $wgLocaltimezone = 'CET';
+
 } else {
 	die();
 }
