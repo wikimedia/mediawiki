@@ -117,9 +117,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
     foreach ($contributors as $user_parts) {
 	if ($user_parts[0] != 0) {
 	    if ($wgAllowRealName && !empty($user_parts[2])) {
-		$real_names[$user_id] = creditLink($user_parts[1], $user_parts[2]);
+		$real_names[] = creditLink($user_parts[1], $user_parts[2]);
 	    } else {
-		$user_names[$user_id] = creditLink($user_parts[1]);
+		$user_names[] = creditLink($user_parts[1]);
 	    }
 	} else {
 	    $anon = wfMsg('anonymous');
@@ -128,8 +128,8 @@ function getContributorCredits($article, $cnt, $showIfMax) {
 	
     # Two strings: real names, and user names
     
-    $real = $wgLang->listToText(array_values($real_names));
-    $user = $wgLang->listToText(array_values($user_names));
+    $real = $wgLang->listToText($real_names);
+    $user = $wgLang->listToText($user_names);
 
     # "ThisSite user(s) A, B and C"
     
