@@ -67,6 +67,8 @@ class LinkCache {
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
+		wfProfileIn( "LinkCache::addLink-checkdatabase" );
+
 		$nt = Title::newFromDBkey( $title );
 		$ns = $nt->getNamespace();
 		$t = $nt->getDBkey();
@@ -84,6 +86,7 @@ class LinkCache {
 		}
 		if ( 0 == $id ) { $this->addBadLink( $title ); }
 		else { $this->addGoodLink( $id, $title ); }
+		wfProfileOut();
 		return $id;
 	}
 
@@ -101,6 +104,15 @@ class LinkCache {
 				Title::makeName( $s->cur_namespace, $s->cur_title )
 				);
 		}
+
+		$sql = "SELECT HIGH_PRIORITY bl_to
+			FROM brokenlinks
+			WHERE bl_from='{$dbkeyfrom}'";
+		$res = wfQuery( $sql, "LinkCache::preFill" );
+		while( $s = wfFetchObject( $res ) ) {
+			$this->addBadLink( $s->bl_to );
+		}
+
 		wfProfileOut();
 	}
 
