@@ -4,6 +4,8 @@
  * DO NOT USE: INSECURE.
  * 
  * TODO : remove everything related to group editing (SpecialGrouplevels.php)
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /** */
@@ -21,6 +23,8 @@ function wfSpecialUserlevels($par=null) {
 
 /**
  * A class to manage user levels rights.
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class UserlevelsForm extends HTMLForm {
 	var $mPosted, $mRequest, $mSaveprefs;

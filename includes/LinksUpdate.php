@@ -14,7 +14,7 @@ class LinksUpdate {
 	 * @access private
 	 */
 	var $mId, $mTitle;
-	/**#@- */
+	/**#@-*/
 
 	/**
 	 * Constructor
@@ -297,5 +297,4 @@ class LinksUpdate {
 		$dbw->delete( 'brokenlinks', array( 'bl_to' => $this->mTitle ), $fname );
 	}
 }
-
 ?>

@@ -8,7 +8,7 @@
 if( !defined( 'MEDIAWIKI' ) )
 	die();
 
-/* to get a list of languages in setting user's language preference */
+/** to get a list of languages in setting user's language preference */
 require_once('languages/Names.php');
 
 /**

@@ -1,10 +1,11 @@
 <?php
 /**
- *
+ * @todo document
  * @package MediaWiki
  * @subpackage SpecialPage
  */
 
+/** */
 require_once( 'Revision.php' );
 
 /**

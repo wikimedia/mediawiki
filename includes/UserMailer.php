@@ -48,8 +48,6 @@
  * case 3:	(should not happen)
  * input:	"name"
  * output:	"quoted-printable(name)"
- * 
- * @package MediaWiki
  */
 function wfQuotedPrintable_name_and_emailaddr( $string ) {
 
@@ -132,7 +130,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 }
 
 /**
- * @package MediaWiki
+ * @todo document
  */
 function mailErrorHandler( $code, $string ) {
 	global $wgErrorString;

@@ -1,8 +1,17 @@
 <?php
+/**
+ * @package MediaWiki
+ * @todo document
+ */
 
+/** */
 require_once( 'Database.php' );
 require_once( 'Article.php' );
 
+/**
+ * @package MediaWiki
+ * @todo document
+ */
 class Revision {
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -149,7 +158,7 @@ class Revision {
 		$this->mText      = $this->getRevisionText( $row );
 	}
 	
-	/** @+
+	/**#@+
 	 * @access public
 	 */
 	
@@ -246,7 +255,7 @@ class Revision {
 		$next = $this->mTitle->getNextRevisionID( $this->mId );
 		return Revision::newFromTitle( $this->mTitle, $next );
 	}
-	/** @- */
+	/**#@-*/
 
 	/**
 	  * Get revision text associated with an old or archive row
@@ -337,9 +346,5 @@ class Revision {
 		}
 		return implode( ',', $flags );
 	}
-
-
 }
-
-
 ?>

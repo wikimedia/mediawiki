@@ -31,25 +31,26 @@ INDEX ( rev_masterkey )
 
 */
 
+/** @todo document */
 function wfDataPreview ( &$t , &$dk )
 	{
-	$s = "" ;
-	$u = explode ( "((" , $t ) ;
+	$s = '' ;
+	$u = explode ( '((' , $t ) ;
 	foreach ( $u AS $x )
 		{
-		$y = explode ( "))" , $x ) ;
+		$y = explode ( '))' , $x ) ;
 		if ( count ( $y ) == 2 )
 			{
-			$z = explode ( "/" , $y[0] ) ;
+			$z = explode ( '/' , $y[0] ) ;
 			$keyname = $z[0] ;
 			$isMasterKey = false ;
-			if ( substr ( $keyname , 0 , 1 ) == "!" )
+			if ( substr ( $keyname , 0 , 1 ) == '!' )
 				{
 				$keyname = substr ( $keyname , 1 ) ;
 				$isMasterKey = true ;
 				}
 			if ( isset ( $dk[$keyname] ) ) $value= $dk[$keyname] ;
-			else $value = "" ;
+			else $value = '' ;
 			if ( $isMasterKey ) $value = "<b>{$value}</b>" ;
 			$s .= $value . $y[1] ;
 			}
@@ -58,9 +59,10 @@ function wfDataPreview ( &$t , &$dk )
 	return $s ;
 	}
 
+/** @todo document */
 function wfDataView ( $dt ) # $dt = data type
 	{
-	if ( $dt == "" ) return ;
+	if ( $dt == '' ) return ;
 	global $wgParser, $wgTitle;
 	global $wgOut , $wgUser ;
 	$nsdata = 20 ;
@@ -84,9 +86,10 @@ function wfDataView ( $dt ) # $dt = data type
 	$wgOut->AddHTML ( $s ) ;
 	}
 
+/** @todo document */
 function wfDataEdit ( $dt ) # $dt = data type
 	{
-	if ( $dt == "" ) return ;
+	if ( $dt == '' ) return ;
 	global $wgParser, $wgTitle;
 	global $wgOut , $wgUser ;
 	$nsdata = 20 ;
@@ -100,7 +103,7 @@ function wfDataEdit ( $dt ) # $dt = data type
 	else $masterkey = "" ;
 	
 	if ( isset ( $_POST['comment'] ) ) $comment = $_POST['comment'] ;
-	else $comment = "" ;
+	else $comment = '' ;
 	
 	# Read form source
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -124,8 +127,8 @@ function wfDataEdit ( $dt ) # $dt = data type
 		$r = $dbw->query( $sql, "wfDataEdit" );
 		$newrev = $dbr->fetchObject( $r ) ;
 		if ( isset ( $newrev ) AND isset ( $newrev->m ) ) $newrev = $newrev->m ;
-		else $newrev = "" ;
-		if ( $newrev == "" ) $newrev = 1 ;
+		else $newrev = '' ;
+		if ( $newrev == '' ) $newrev = 1 ;
 		
 		# Generate SQL
 		$dbw->query( "BEGIN", "wfDataEdit" );
@@ -161,11 +164,11 @@ function wfDataEdit ( $dt ) # $dt = data type
 	if ( isset ( $_POST['preview'] ) ) $s .= wfDataPreview ( $t , $dk ) . "\n<hr>\n" ;
 
 	# Editing
-	$t = explode ( "((" , $t ) ;
+	$t = explode ( '((' , $t ) ;
 	$s .= "<form method=post href=\"index.php?title=Special:Data\">" ;
 	foreach ( $t AS $x )
 		{
-		$y = explode ( "))" , $x ) ;
+		$y = explode ( '))' , $x ) ;
 		if ( count ( $y ) == 2 )
 			{
 			$z = explode ( "/" , $y[0] ) ;
@@ -177,7 +180,7 @@ function wfDataEdit ( $dt ) # $dt = data type
 				$isMasterKey = true ;
 				}
 
-			$value = "" ;
+			$value = '' ;
 			if ( isset ( $dk[$keyname] ) ) $value= $dk[$keyname] ;
 			if ( $isMasterKey )
 				{
@@ -185,8 +188,8 @@ function wfDataEdit ( $dt ) # $dt = data type
 				$masterkeyvalue = $value ;
 				}
 			
-			$input = "" ;
-			$name = "dk[" . $keyname . "]" ;
+			$input = '' ;
+			$name = 'dk[' . $keyname . ']' ;
 			
 			if ( count ( $z ) == 1 ) $z[] = "line" ; # Default
 			$type = strtolower ( $z[1] ) ;
@@ -205,7 +208,7 @@ function wfDataEdit ( $dt ) # $dt = data type
 					}
 				$s .= "</select>" ;
 				}
-			if ( $isMasterKey AND $revision != "" ) $input = "<b>{$value}</b>" ;
+			if ( $isMasterKey AND $revision != '' ) $input = "<b>{$value}</b>" ;
 				
 			$s .= "{$input}" ;
 			$s .= $y[1] ;
@@ -224,27 +227,26 @@ function wfDataEdit ( $dt ) # $dt = data type
 	$wgOut->AddHTML ( $s ) ;
 	}
 
-
-function wfSpecialData()
-{
+/** @todo document */
+function wfSpecialData() {
 	global $wgUseData ;
-	if ( !$wgUseData ) return "" ;
+	if ( !$wgUseData ) return '' ;
 	
 	global $wgOut ;
 	if ( isset ( $_GET['data_action'] ) ) $data_action = $_GET['data_action'] ;
-	else $data_action = "" ;
+	else $data_action = '' ;
 	if ( isset ( $_POST['add_data'] ) ) $data_action = "add_data" ;
 	if ( isset ( $_POST['view_data'] ) ) $data_action = "view_data" ;
 	$nsdata = 20 ;
 	
 	$last = "<hr><a href=\"index.php?title=Special:Data\">Back to data</a>" ;
 	
-	if ( $data_action == "" )
+	if ( $data_action == '' )
 		{
-		$s = "" ;
+		$s = '';
 
-		$s .= "<form method=post>" ;
-		$s .= "Data type " ;
+		$s .= '<form method=post>' ;
+		$s .= 'Data type ' ;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$sql = "SELECT cur_id,cur_title FROM cur WHERE cur_namespace={$nsdata}";
 		$res1 = $dbr->query( $sql, "wfSpecialData" );
@@ -260,20 +262,19 @@ function wfSpecialData()
 		$s .= "</form>" ;
 
 		$wgOut->AddHTML ( $s ) ;
-		$last = "" ;
+		$last = '' ;
 		}
-	else if ( $data_action == "add_data" )
+	else if ( $data_action == 'add_data' )
 		{
 		wfDataEdit ( $_POST['data_type'] ) ;
 		}
-	else if ( $data_action == "view_data" )
+	else if ( $data_action == 'view_data' )
 		{
 		wfDataView ( $_POST['data_type'] ) ;
 		}
 	
 	if ( $last ) $wgOut->AddHTML ( $last ) ;
 	
-	return "" ;
+	return '' ;
 	}
-
 ?>

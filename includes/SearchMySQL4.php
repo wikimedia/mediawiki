@@ -23,19 +23,27 @@
  * @subpackage Search
  */
 
+/** */
 require_once( 'SearchEngine.php' );
 
+/**
+ * @package MediaWiki
+ * @subpackage Search
+ */
 class SearchMySQL4 extends SearchEngine {
 	var $strictMatching = true;
 	
+	/** @todo document */
 	function SearchMySQL4( &$db ) {
 		$this->db =& $db;
 	}
-	
+
+	/** @todo document */
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
 	}
 
+	/** @todo document */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
@@ -70,6 +78,7 @@ class SearchMySQL4 extends SearchEngine {
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
 	}
 
+	/** @todo document */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$page = $this->db->tableName( 'page' );
@@ -80,28 +89,28 @@ class SearchMySQL4 extends SearchEngine {
 			'WHERE page_id=si_page AND page_latest=old_id AND ' . $match;
 	}
 
-        function update( $id, $title, $text ) {
-                $dbw=& wfGetDB(DB_MASTER);
-                $dbw->replace( 'searchindex', array(array('si_page')),
-                        array(
-                                'si_page' => $id,
-                                'si_title' => $title,
-                                'si_text' => $text
-                        ), 'SearchMySQL4::update' );
-        }
+	/** @todo document */
+    function update( $id, $title, $text ) {
+            $dbw=& wfGetDB(DB_MASTER);
+            $dbw->replace( 'searchindex', array(array('si_page')),
+                    array(
+                            'si_page' => $id,
+                            'si_title' => $title,
+                            'si_text' => $text
+                    ), 'SearchMySQL4::update' );
+    }
 
-        function updateTitle($id,$title) {
-                $dbw=& wfGetDB(DB_MASTER);
-                $lowpri=$dbw->lowPriorityOption();
-                $searchindex = $dbw->tableName( 'searchindex' );
+	/** @todo document */
+    function updateTitle($id,$title) {
+            $dbw=& wfGetDB(DB_MASTER);
+            $lowpri=$dbw->lowPriorityOption();
+            $searchindex = $dbw->tableName( 'searchindex' );
 
-                $sql = "UPDATE $lowpri $searchindex SET si_title='" .
-                          $dbw->strencode( $title ) .
-                          "' WHERE si_page={$id}";
+            $sql = "UPDATE $lowpri $searchindex SET si_title='" .
+                      $dbw->strencode( $title ) .
+                      "' WHERE si_page={$id}";
 
-                $dbw->query( $sql, "SearchMySQL4::updateTitle" );
-        }
-
+            $dbw->query( $sql, "SearchMySQL4::updateTitle" );
+    }
 }
-
 ?>

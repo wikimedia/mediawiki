@@ -4,7 +4,9 @@
  * @package MediaWiki
  */
 
-/** */
+/**
+ * @package MediaWiki
+ */
 class SearchEngine {
 	var $limit = 10;
 	var $offset = 0;
@@ -238,7 +240,9 @@ class SearchEngine {
 	
 }
 
-/** */
+/**
+ * @package MediaWiki
+ */
 class SearchEngineDummy {
 	function search( $term ) {
 		return null;

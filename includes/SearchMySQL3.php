@@ -23,8 +23,13 @@
  * @subpackage Search
  */
 
+/** */
 require_once( 'SearchEngine.php' );
 
+/**
+ * @package MediaWiki
+ * @subpackage Search
+ */
 class SearchMySQL3 extends SearchEngine {
 	function SearchMySQL3( &$db ) {
 		$this->db =& $db;

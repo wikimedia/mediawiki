@@ -41,22 +41,32 @@ if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 require_once( 'PHPUnit.php' );
 require_once( 'UtfNormal.php' );
 
+/**
+ * @package UtfNormal
+ */
 class CleanUpTest extends PHPUnit_TestCase {
+	/**
+	 * @param string $name ???
+	 */
 	function CleanUpTest( $name ) {
 		$this->PHPUnit_TestCase( $name );
 	}
 
+	/** @todo document */
 	function setUp() {
 	}
-	
+
+	/** @todo document */
 	function tearDown() {
 	}
-	
+
+	/** @todo document */
 	function testAscii() {
 		$text = 'This is plain ASCII text.';
 		$this->assertEquals( $text, UtfNormal::cleanUp( $text ) );
 	}
-	
+
+	/** @todo document */
 	function testNull() {
 		$text = "a \x00 null";
 		$expect = "a \xef\xbf\xbd null";
@@ -64,19 +74,24 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
-	
+
+	/** @todo document */
 	function testLatin() {
 		$text = "L'\xc3\xa9cole";
 		$this->assertEquals( $text, UtfNormal::cleanUp( $text ) );
 	}
-	
+
+	/** @todo document */
 	function testLatinNormal() {
 		$text = "L'e\xcc\x81cole";
 		$expect = "L'\xc3\xa9cole";
 		$this->assertEquals( $expect, UtfNormal::cleanUp( $text ) );
 	}
-	
-	# This test is *very* expensive!
+
+	/**
+	 * This test is *very* expensive!
+	 * @todo document
+	 */
 	function XtestAllChars() {
 		$rep = UTF8_REPLACEMENT;
 		global $utfCanonicalComp, $utfCanonicalDecomp;
@@ -108,14 +123,16 @@ class CleanUpTest extends PHPUnit_TestCase {
 			}
 		}
 	}
-	
+
+	/** @todo document */
 	function testAllBytes() {
 		$this->doTestBytes( '', '' );
 		$this->doTestBytes( 'x', '' );
 		$this->doTestBytes( '', 'x' );
 		$this->doTestBytes( 'x', 'x' );
 	}
-	
+
+	/** @todo document */
 	function doTestBytes( $head, $tail ) {
 		for( $i = 0x0; $i < 256; $i++ ) {
 			$char = $head . chr( $i ) . $tail;
@@ -140,14 +157,18 @@ class CleanUpTest extends PHPUnit_TestCase {
 			}
 		}
 	}
-	
+
+	/** @todo document */
 	function testDoubleBytes() {
 		$this->doTestDoubleBytes( '', '' );
 		$this->doTestDoubleBytes( 'x', '' );
 		$this->doTestDoubleBytes( '', 'x' );
 		$this->doTestDoubleBytes( 'x', 'x' );
 	}
-	
+
+	/**
+	 * @todo document
+	 */
 	function doTestDoubleBytes( $head, $tail ) {
 		for( $first = 0xc0; $first < 0x100; $first++ ) {
 			for( $second = 0x80; $second < 0x100; $second++ ) {
@@ -183,13 +204,15 @@ class CleanUpTest extends PHPUnit_TestCase {
 		}
 	}
 
+	/** @todo document */
 	function testTripleBytes() {
 		$this->doTestTripleBytes( '', '' );
 		$this->doTestTripleBytes( 'x', '' );
 		$this->doTestTripleBytes( '', 'x' );
 		$this->doTestTripleBytes( 'x', 'x' );
 	}
-	
+
+	/** @todo document */
 	function doTestTripleBytes( $head, $tail ) {
 		for( $first = 0xc0; $first < 0x100; $first++ ) {
 			for( $second = 0x80; $second < 0x100; $second++ ) {
@@ -254,7 +277,8 @@ class CleanUpTest extends PHPUnit_TestCase {
 			}
 		}
 	}
-	
+
+	/** @todo document */	
 	function testChunkRegression() {
 		# Check for regression against a chunking bug
 		$text   = "\x46\x55\xb8" .
@@ -277,6 +301,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
+	/** @todo document */
 	function testInterposeRegression() {
 		$text   = "\x4e\x30" .
 		          "\xb1" .		# bad tail
@@ -310,7 +335,8 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
-	
+
+	/** @todo document */	
 	function testOverlongRegression() {
 		$text   = "\x67" .
 		          "\x1a" . # forbidden ascii
@@ -334,7 +360,8 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
-	
+
+	/** @todo document */	
 	function testSurrogateRegression() {
 		$text   = "\xed\xb4\x96" . # surrogate 0xDD16
 		          "\x83" . # bad tail
@@ -348,7 +375,8 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
-	
+
+	/** @todo document */
 	function testBomRegression() {
 		$text   = "\xef\xbf\xbe" . # U+FFFE, illegal char
 		          "\xb2" . # bad tail
@@ -363,6 +391,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
+	/** @todo document */
 	function testForbiddenRegression() {
 		$text   = "\xef\xbf\xbf"; # U+FFFF, illegal char
 		$expect = "\xef\xbf\xbd";
@@ -370,7 +399,8 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
-	
+
+	/** @todo document */
 	function testHangulRegression() {
 		$text = "\xed\x9c\xaf" . # Hangul char
 				"\xe1\x87\x81";  # followed by another final jamo
