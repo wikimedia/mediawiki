@@ -713,13 +713,17 @@ class Parser
 		$ltd = array () ; # Was it TD or TH?
 		$tr = array () ; # Is currently a tr tag open?
 		$ltr = array () ; # tr attributes
+		$indent_level = 0; # indent level of the table
 		foreach ( $t AS $k => $x )
 		{
 			$x = trim ( $x ) ;
 			$fc = substr ( $x , 0 , 1 ) ;
-			if ( '{|' == substr ( $x , 0 , 2 ) )
+			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) )
 			{
-				$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 2 ) ) . '>' ;
+				$indent_level = strlen( $matches[1] );
+				$t[$k] = "\n" .
+					str_repeat( "<dl><dd>", $indent_level ) .
+					"<table " . $this->fixTagAttributes ( $matches[2] ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
@@ -733,7 +737,7 @@ class Parser
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
 				array_pop ( $ltr ) ;
-				$t[$k] = $z ;
+				$t[$k] = $z . str_repeat( "</dd></dl>", $indent_level );
 			}
 			else if ( '|-' == substr ( $x , 0 , 2 ) ) # Allows for |---------------
 			{
