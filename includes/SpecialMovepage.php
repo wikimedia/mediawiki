@@ -145,6 +145,7 @@ class MovePageForm {
 			}
 		}
 		
+		
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
 		$success = $titleObj->getFullURL( 
 		  "action=success&oldtitle=" . wfUrlencode( $ot->getPrefixedText() ) .
