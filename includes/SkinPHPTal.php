@@ -146,7 +146,11 @@
 			$tpl->set('personal_urls', $this->buildPersonalUrls());
 			$content_actions = $this->buildContentActionUrls();
 			$tpl->setRef('content_actions', &$content_actions);
-			if(isset($content_actions['edit']['href']) && $wgUser->getOption("editondblclick") ) {
+			// XXX: attach this from javascript, same with section editing
+			if(isset($content_actions['edit']['href']) && 
+			!(isset($content_actions['edit']['class']) && $content_actions['edit']['class'] != '') &&
+			$wgUser->getOption("editondblclick") ) 
+			{
 				$tpl->set('body-ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
 			} else {
 				$tpl->set('body-ondblclick', '');
