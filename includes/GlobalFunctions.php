@@ -137,7 +137,7 @@ function wfImageArchiveUrl( $name, $subdir="archive" )
 	$hash = md5( $name );
 	$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" .
 	  substr( $hash, 0, 2 ) . "/{$name}";
-	return $url;
+	return wfUrlencode($url);
 }
 
 function wfUrlencode ( $s )
