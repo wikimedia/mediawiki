@@ -654,6 +654,7 @@ a number of reasons why this may be so, please see
 [[{{ns:4}}:Protected page]].
 
 You can view and copy the source of this page:",
+'seriousxhtmlerrors' => 'There were serious xhtml markup errors detected by tidy.',
 
 # Login and logout pages
 #
