@@ -88,7 +88,7 @@ class Title {
 	# From a URL-encoded title
 	/* static */ function newFromURL( $url )
 	{
-		global $wgLang, $wgServer;
+		global $wgLang, $wgServer, $wgIsMySQL, $wgIsPg;
 		$t = new Title();
 		
 		# For compatibility with old buggy URLs. "+" is not valid in titles,
@@ -109,14 +109,20 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
-
 			# check that lenght of title is < cur_title size
-			$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
-			$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
+			if ($wgIsMySQL) {
+				$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
+				$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
 
-			preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_size);
+				preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_type);
+				$cur_title_size=$cur_title_type[1];
+			} else {
+				/* midom:FIXME pg_field_type does not return varchar length
+				   assume 255 */
+				$cur_title_size=255;
+			}
 
-			if (strlen($t->mDbkeyform) > $cur_title_size[1] ) {
+			if (strlen($t->mDbkeyform) > $cur_title_size ) {
 				return NULL;
 			}
 
