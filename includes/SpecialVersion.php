@@ -10,7 +10,7 @@
  */
 function wfSpecialVersion() {
 	global $wgUser, $wgOut, $wgVersion;
-	$fname = "wfSpecialVersion";
+	$fname = 'wfSpecialVersion';
 
 	$prefix = wfMsg( 'special_version_prefix' );
 	$postfix = wfMsg( 'special_version_postfix' );
