@@ -5,7 +5,8 @@ else var version = 0;
 
 window.attachEvent("onload", hookit);
 function hookit() {
-    fixalpha();
+    // replaced by special indexed logo for now
+    //fixalpha();
     if(version == 6) {
         relativeforfloats();
         fixtextarea();
