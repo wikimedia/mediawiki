@@ -643,9 +643,9 @@ You will have to merge your changes into the existing text.
 press \"Save page\".\n<p>",
 'yourtext'		=> 'Your text',
 'storedversion' => 'Stored version',
-'editingold'	=> '<strong>WARNING: You are editing an out-of-date
+'editingold'	=> "<strong>WARNING: You are editing an out-of-date
 revision of this page.
-If you save it, any changes made since this revision will be lost.</strong>\n',
+If you save it, any changes made since this revision will be lost.</strong>\n",
 'yourdiff'		=> 'Differences',
 'copyrightwarning' => "Please note that all contributions to {{SITENAME}} are
 considered to be released under the $2 (see $1 for details).
