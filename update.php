@@ -23,6 +23,13 @@ if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 umask( 000 );
 set_time_limit( 0 );
 
+include_once( "{$IP}/Version.php" );
+include_once( "{$IP}/Setup.php" );
+$wgTitle = Title::newFromText( "Update script" );
+$wgCommandLineMode = true;
+
+do_revision_updates();
+
 #
 # Copy files into installation directories
 #
@@ -32,17 +39,8 @@ copyfile( ".", "wiki.phtml", $IP );
 copyfile( ".", "redirect.phtml", $IP );
 copyfile( ".", "texvc.phtml", $IP );
 
-$handle = opendir( "./includes" );
-while ( false !== ( $f = readdir( $handle ) ) ) {
-	if ( "." == $f{0} ) continue;
-	copyfile( "./includes", $f, $IP );
-}
-
-$handle = opendir( "./stylesheets" );
-while ( false !== ( $f = readdir( $handle ) ) ) {
-	if ( "." == $f{0} ) continue;
-	copyfile( "./stylesheets", $f, $wgStyleSheetDirectory );
-}
+copydirectory( "./includes", $IP );
+copydirectory( "./stylesheets", $wgStyleSheetDirectory );
 
 copyfile( "./images", "wiki.png", $wgUploadDirectory );
 copyfile( "./languages", "Language.php", $IP );
@@ -63,22 +61,60 @@ if ( $wgUseTeX ) {
 	copyfile( "./math", "texvc_tex", "{$IP}/math", 0775 );
 }
 
-print "Done.\nIf any database changes are necessary, you may have to run\n" .
-  "one or more \"patch\" files from the maintenance directory.\n";
+copyfile( ".", "Version.php", $IP );
+
+print "Done.\n";
 exit();
 
-function copyfile( $sdir, $name, $ddir, $perms = 0644 ) {
-	global $installOwner, $installGroup;
+#
+#
+#
+
+function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
+	global $wgInstallOwner, $wgInstallGroup;
 
 	$d = "{$ddir}/{$name}";
 	if ( copy( "{$sdir}/{$name}", $d ) ) {
-		if ( isset( $installOwner ) ) { chown( $d, $installOwner ); }
-		if ( isset( $installGroup ) ) { chgrp( $d, $installGroup ); }
+		if ( isset( $wgInstallOwner ) ) { chown( $d, $wgInstallOwner ); }
+		if ( isset( $wgInstallGroup ) ) { chgrp( $d, $wgInstallGroup ); }
 		chmod( $d, $perms );
 		# print "Copied \"{$name}\" to \"{$ddir}\".\n";
 	} else {
 		print "Failed to copy file \"{$name}\" to \"{$ddir}\".\n";
 		exit();
+	}
+}
+
+function copydirectory( $source, $dest ) {
+	$handle = opendir( $source );
+	while ( false !== ( $f = readdir( $handle ) ) ) {
+		if ( "." == $f{0} ) continue;
+		if ( "CVS" == $f ) continue;
+		copyfile( $source, $f, $dest );
+	}
+}
+
+function do_revision_updates() {
+	global $wgSoftwareRevision;
+
+	if ( $wgSoftwareRevision < 1001 ) { update_passwords(); }
+}
+
+function update_passwords() {
+	$fname = "Update scripte: update_passwords()";
+	print "Updating passwords...\n";
+
+	$sql = "SELECT user_id,user_password FROM user";
+	$source = wfQuery( $sql, fname );
+
+	while ( $row = mysql_fetch_object( $source ) ) {
+		$id = $row->user_id;
+		$oldpass = $row->user_password;
+		$newpass = md5( $oldpass . $id );
+
+		$sql = "UPDATE user SET user_password='{$newpass}' " .
+		  "WHERE user_id={$id}";
+		wfQuery( $sql, $fname );
 	}
 }
 

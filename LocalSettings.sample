@@ -15,8 +15,6 @@
 
 $IP = "/usr/local/apache/htdocs/wiki";
 
-# This workaround is for the maintenance scripts:
-#
 if ( ! isset( $DP ) ) { $DP = $IP; }
 include_once( "$DP/DefaultSettings.php" );
 
@@ -31,10 +29,10 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 
 # MySQL settings
 #
-$wgDBserver         = "127.0.0.1";
+$wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
 $wgDBpassword       = "userpass";
-#wgDBsqlpassword	= "sqlpass";
+$wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
 

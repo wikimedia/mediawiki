@@ -531,17 +531,26 @@ class OutputPage {
 
 	function databaseError( $fname )
 	{
-		global $wgUser;
+		global $wgUser, $wgCommandLineMode;
 
 		$this->setPageTitle( wfMsg( "databaseerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleFlag( false );
 
-		$msg = str_replace( "$1", htmlspecialchars( wfLastDBquery() ), wfMsg( "dberrortext" ) );
+		if ( $wgCommandLineMode ) {
+			$msg = wfMsg( "dberrortextcl" );
+		} else {
+			$msg = wfMsg( "dberrortextcl" );
+		}
+		$msg = str_replace( "$1", htmlspecialchars( wfLastDBquery() ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
 		$msg = str_replace( "$3", wfLastErrno(), $msg );
 		$msg = str_replace( "$4", htmlspecialchars( wfLastError() ), $msg );
 
+		if ( $wgCommandLineMode ) {
+			print $msg;
+			exit();
+		}
 		$sk = $wgUser->getSkin();
 		$shlink = $sk->makeKnownLink( wfMsg( "searchhelppage" ),
 		  wfMsg( "searchingwikipedia" ) );

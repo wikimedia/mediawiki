@@ -19,7 +19,7 @@ $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
 
 # MySQL settings
 #
-$wgDBserver         = "127.0.0.1";
+$wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
 $wgDBintlname       = "intl";
 $wgDBconnection     = "";

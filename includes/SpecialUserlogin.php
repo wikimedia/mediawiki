@@ -31,7 +31,8 @@ function wfSpecialUserlogin()
 	}
 	$wpName = trim( $wpName );
 	if ( ( "" == $wpName ) ||
-	  preg_match( "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/", $wpName ) ) {
+	  preg_match( "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/", $wpName ) ) 
+{
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
 	}
@@ -75,17 +76,22 @@ function wfSpecialUserlogin()
 	}
 	$u->setId( $id );
 	$u->loadFromDatabase();
-	$ep = User::encryptPassword( $wpPassword );
+	$ep = $u->encryptPassword( $wpPassword );
 	if ( 0 != strcmp( $ep, $u->getPassword() ) ) {
 		if ( 0 != strcmp( $ep, $u->getNewpassword() ) ) {
 			mainLoginForm( wfMsg( "wrongpassword" ) );
 			return;
 		}
 	}
+
 	# We've verified now, update the real record
 	#
-	if ( 1 == $wpRemember ) { $r = 1; }
-	else { $r = 0; }
+	if ( 1 == $wpRemember ) {
+		$r = 1;
+		$u->setCookiePassword( $wpPassword );
+	} else {
+		$r = 0;
+	}
 	$u->setOption( "rememberpassword", $r );
 
 	$wgUser = $u;
@@ -118,6 +124,7 @@ function wfSpecialUserlogin()
 	}
 	$np = User::randomPassword();
 	$u->setNewpassword( $np );
+
 	setcookie( "wcUserPassword", "", time() - 3600 );
 	$u->saveSettings();
 
@@ -191,7 +198,8 @@ function wfSpecialUserlogin()
 	if ( "" == $err ) {
 		$wgOut->addHTML( "<h2>$li:</h2>\n" );
 	} else {
-		$wgOut->addHTML( "<h2>$le:</h2>\n<font size='+1' color='red'>$err</font>\n" );
+		$wgOut->addHTML( "<h2>$le:</h2>\n<font size='+1' 
+color='red'>$err</font>\n" );
 	}
 	if ( 1 == $wgUser->getOption( "rememberpassword" ) ) {
 		$checked = " checked";
@@ -208,39 +216,40 @@ function wfSpecialUserlogin()
 	$wpEmail = wfEscapeHTML( $wpEmail );
 
 	$wgOut->addHTML( "
-<form id=\"userlogin\" method=\"post\" action=\"{$action}\">
+<form name='userlogin' method=post action=\"{$action}\">
 <table border=0><tr>
 <td align=right>$yn:</td>
 <td colspan=2 align=left>
-<input tabindex=1 type=text name=\"wpName\" value=\"{$name}\" size=20>
+<input tabindex=1 type=text name='wpName' value=\"{$name}\" size=20>
 </td></tr><tr>
 <td align=right>$yp:</td>
 <td align=left>
-<input tabindex=2 type=password name=\"wpPassword\" value=\"{$pwd}\" size=20>
+<input tabindex=2 type=password name='wpPassword' value=\"{$pwd}\" size=20>
 </td>
 <td align=left>
-<input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
+<input tabindex=3 type=submit name='wpLoginattempt' value=\"{$li}\">
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td align=right>$ypa:</td>
 <td align=left>
-<input tabindex=4 type=password name=\"wpRetype\" value=\"{$wpRetype}\" size=20>
+<input tabindex=4 type=password name='wpRetype' value=\"{$wpRetype}\" 
+size=20>
 </td><td>$nuo</td></tr>
 <tr>
 <td align=right>$ye:</td>
 <td align=left>
-<input tabindex=5 type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20>
+<input tabindex=5 type=text name='wpEmail' value=\"{$wpEmail}\" size=20>
 </td><td align=left>
-<input tabindex=6 type=submit name=\"wpCreateaccount\" value=\"{$ca}\">
+<input tabindex=6 type=submit name='wpCreateaccount' value=\"{$ca}\">
 </td></tr>
 <tr>
 <td colspan=3 align=left>
-<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\"$checked>$rmp
+<input tabindex=7 type=checkbox name='wpRemember' value='1'$checked>$rmp
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td colspan=3 align=left>
 <p>$efl<br>
-<input tabindex=8 type=submit name=\"wpMailmypassword\" value=\"{$mmp}\">
+<input tabindex=8 type=submit name='wpMailmypassword' value=\"{$mmp}\">
 </td></tr></table>
 </form>\n" );
 }

@@ -280,6 +280,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 #
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
+"mainpagetext"	=> "Wiki software successfully installed.",
 "about"			=> "About",
 "aboutwikipedia" => "About Wikipedia",
 "aboutpage"		=> "Wikipedia:About",
@@ -368,6 +369,11 @@ The last attempted database query was:
 <blockquote><tt>$1</tt></blockquote>
 from within function \"<tt>$2</tt>\".
 MySQL returned error \"<tt>$3: $4</tt>\".",
+"dberrortextcl" => "A database query syntax error has occurred.
+The last attempted database query was:
+\"$1\"
+from within function \"$2\".
+MySQL returned error \"$3: $4\".\n",
 "noconnect"		=> "Could not connect to DB on $1",
 "nodb"			=> "Could not select database $1",
 "readonly"		=> "Database locked",

@@ -8,6 +8,7 @@ class User {
 	/* private */ var $mSkin;
 	/* private */ var $mBlockedby, $mBlockreason;
 	/* private */ var $mTouched;
+	/* private */ var $mCookiePassword;
 
 	function User()
 	{
@@ -45,14 +46,14 @@ class User {
 			return $s->user_id;
 		}
 	}
-	
+
 	# does the string match an anonymous user IP address?
 	/* static */ function isIP( $name ) {
 		return preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$name);
-	
+
 	}
-	
-	
+
+
 
 	/* static */ function randomPassword()
 	{
@@ -84,6 +85,7 @@ class User {
 		$this->mDataLoaded = false;
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
+		$this->cookiePassword = "";
 	}
 
 	/* private */ function getBlockedStatus()
@@ -152,21 +154,23 @@ class User {
 			$this->mId = 0;
 			return;
 		}
+
+		$passwordCorrect = FALSE;
+		$this->mId = $sId;
+		$this->loadFromDatabase();
+
 		if ( isset( $wsUserPassword ) ) {
-			$sPass = $wsUserPassword;
+			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else if ( isset( $HTTP_COOKIE_VARS["wcUserPassword"] ) ) {
-			$sPass = $HTTP_COOKIE_VARS["wcUserPassword"];
-			$wsUserPassword = $sPass;
+			$this->mCookiePassword = $HTTP_COOKIE_VARS["wcUserPassword"];
+			$wsUserPassword = $this->addSalt($this->mCookiePassword);
+			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else {
 			$this->mId = 0;
 			return;
 		}
-		$this->mId = $sId;
-		$this->loadFromDatabase();
 
-		if ( ( $sName == $this->mName ) &&
-		  ( ( $sPass == $this->mPassword ) ||
-		  ( $sPass == $this->mNewpassword ) ) ) {
+		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
 			return;
 		}
 		$this->loadDefaults(); # Can't log in from session
@@ -174,22 +178,22 @@ class User {
 
 	function loadFromDatabase()
 	{
-		if ( $this->mDataLoaded ) { return; }		
+		if ( $this->mDataLoaded ) { return; }
 		# check in separate table if there are changes to the talk page
 		$this->mNewtalk=0; # reset talk page status
-		if($this->mId) {		
-			$sql = "SELECT 1 FROM user_newtalk WHERE user_id={$this->mId}";									
+		if($this->mId) {
+			$sql = "SELECT 1 FROM user_newtalk WHERE user_id={$this->mId}";
 			$res = wfQuery ($sql,  "User::loadFromDatabase" );
 
-			if (wfNumRows($res)>0) {				
+			if (wfNumRows($res)>0) {
 				$this->mNewtalk= 1;
 			}
 			wfFreeResult( $res );
 		} else {
-			$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";			
+			$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
 			$res = wfQuery ($sql,  "User::loadFromDatabase" );
-			
-			if (wfNumRows($res)>0) {				
+
+			if (wfNumRows($res)>0) {
 				$this->mNewtalk= 1;
 			}
 			wfFreeResult( $res );
@@ -198,7 +202,7 @@ class User {
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
-		
+
 		$sql = "SELECT user_name,user_password,user_newpassword,user_email," .
 		  "user_options,user_rights,user_touched FROM user WHERE user_id=" .
 		  "{$this->mId}";
@@ -213,8 +217,8 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mRights = explode( ",", strtolower( $s->user_rights ) );
 			$this->mTouched = $s->user_touched;
-		}				
-		
+		}
+
 		wfFreeResult( $res );
 		$this->mDataLoaded = true;
 	}
@@ -248,19 +252,19 @@ class User {
 		$this->mNewtalk = $val;
 		$this->invalidateCache();
 	}
-	
+
 	function invalidateCache() {
 		$this->loadFromDatabase();
 		$this->mTouched = wfTimestampNow();
 		# Don't forget to save the options after this or
 		# it won't take effect!
 	}
-	
+
 	function validateCache( $timestamp ) {
 		$this->loadFromDatabase();
 		return ($timestamp >= $this->mTouched);
 	}
-	
+
 	function getPassword()
 	{
 		$this->loadFromDatabase();
@@ -273,23 +277,34 @@ class User {
 		return $this->mNewpassword;
 	}
 
-	/* static */ function encryptPassword( $p )
+	function addSalt( $p )
 	{
-		$np = md5( $p );
-		return $np;
+		return md5( "wikipedia{$this->mId}-{$p}" );
+	}
+
+	function encryptPassword( $p )
+	{
+		return $this->addSalt( md5( $p ) );
 	}
 
 	function setPassword( $str )
 	{
 		$this->loadFromDatabase();
-		$this->mPassword = User::encryptPassword( $str );
+		$this->setCookiePassword( $str );
+		$this->mPassword = $this->encryptPassword( $str );
 		$this->mNewpassword = "";
+	}
+
+	function setCookiePassword( $str )
+	{
+		$this->loadFromDatabase();
+		$this->mCookiePassword = md5( $str );
 	}
 
 	function setNewpassword( $str )
 	{
 		$this->loadFromDatabase();
-		$this->mNewpassword = User::encryptPassword( $str );
+		$this->mNewpassword = $this->encryptPassword( $str );
 	}
 
 	function getEmail()
@@ -342,15 +357,15 @@ class User {
 
 		return in_array( "developer", $this->mRights );
 	}
-	
+
 	function isBot()
 	{
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
-		
+
 		return in_array( "bot", $this->mRights );
 	}
-		
+
 	function &getSkin()
 	{
 		if ( ! isset( $this->mSkin ) ) {
@@ -443,7 +458,7 @@ class User {
 
 		$wsUserPassword = $this->mPassword;
 		if ( 1 == $this->getOption( "rememberpassword" ) ) {
-			setcookie( "wcUserPassword", $this->mPassword, $exp, "/" );
+			setcookie( "wcUserPassword", $this->mCookiePassword, $exp, "/" );
 		} else {
 			setcookie( "wcUserPassword", "", time() - 3600 );
 		}
@@ -463,22 +478,22 @@ class User {
 	function saveSettings()
 	{
 		global $wgUser;
-	
+
 		if(!$this->mNewtalk) {
-		
+
 			if($this->mId) {
 				$sql="DELETE FROM user_newtalk WHERE user_id={$this->mId}";
 				wfQuery ($sql,"User::saveSettings");
 			} else {
-			
-				
+
+
 				$sql="DELETE FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				wfQuery ($sql,"User::saveSettings");
-				
+
 			}
 		}
 
-		if ( 0 == $this->mId ) { return; }					
+		if ( 0 == $this->mId ) { return; }
 
 		$sql = "UPDATE user SET " .
 		  "user_name= '" . wfStrencode( $this->mName ) . "', " .
@@ -486,7 +501,8 @@ class User {
 		  "user_newpassword= '" . wfStrencode( $this->mNewpassword ) . "', " .
 		  "user_email= '" . wfStrencode( $this->mEmail ) . "', " .
 		  "user_options= '" . $this->encodeOptions() . "', " .
-		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " .
+		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " 
+.
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
 		wfQuery( $sql, "User::saveSettings" );
@@ -527,4 +543,5 @@ class User {
 		$this->mId = $this->idForName();
 	}
 }
+
 ?>
