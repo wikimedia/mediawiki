@@ -1260,6 +1260,11 @@ Type the name of the user in the box and press the button to make the user an ad
 
 # Validation
 'val_clear_old' => 'Clear my other validation data for $1',
+'val_merge_old' => 'Merge my other validation data into this version',
+'val_form_note' => '<b>Hint :</b> Merging your data means that, for the version you hit <i>OK</i> for, all options you have selected <i>no opinion</i> 
+will be set to the value and comment of the most recent version you have expressed an opinion for. For example, if you want to change a single option 
+on a new version, but also keep your other setting for this article in this version, just select what you intend to <i>change</i>, and merging will 
+fill up the other options with your prior settings.',
 'val_noop' => 'No opinion',
 'val_percent' => '<b>$1%</b><br>($2 of $3 points by $4 users)',
 'val_percent_single' => '<b>$1%</b><br>($2 of $3 points by one user)',
