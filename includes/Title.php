@@ -491,7 +491,7 @@ class Title {
 		# XXX: this might be better using restrictions
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
-			and !$wgUser->isDeveloper()
+			and !$wgUser->isSysop()
 			and !preg_match("/^".$wgUser->getName()."/", $this->mTextform) )
 		{ return false; }
 
