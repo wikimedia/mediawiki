@@ -22,7 +22,7 @@ class ParserCache
 		if ( $value ) {
 			# Delete if article has changed since the cache was made
 			$touched = $article->getTouched();
-			if ( $value->getTouched() != $touched || $touched > $wgCacheEpoch ) {
+			if ( $value->getCacheTime() <= $touched || $value->getCacheTime < $wgCacheEpoch ) {
 				$wgMemc->delete( $key );
 				$value = false;
 			}
@@ -37,19 +37,18 @@ class ParserCache
 	function save( $parserOutput, &$article, &$user ){
 		global $wgMemc;
 		$key = $this->getKey( $article, $user );
-		$touched = $article->getTouched();
-		$parserOutput->setTouched( $touched );
-		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $touched -->\n";
+		$now = wfTimestampNow();
+		$parserOutput->setCacheTime( $now );
+		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $now -->\n";
 
 		if( $parserOutput->containsOldMagic() ){
 			$expire = 3600; # 1 hour
 		} else {
-			$expire = 7*86400; # 7 days
+			$expire = 86400; # 1 day
 		}
 
 		$wgMemc->set( $key, $parserOutput, $expire );
 	}
-	
 }
 
 
