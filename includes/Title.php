@@ -28,6 +28,8 @@ class Title {
 
 	function newFromText( $text )
 	{
+		wfProfileIn( "Title::newFromText" );
+		
 		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
 		$trans = get_html_translation_table( HTML_ENTITIES );
@@ -41,6 +43,8 @@ class Title {
 		$t = new Title();
 		$t->mDbkeyform = str_replace( " ", "_", $text );
 		$t->secureAndSplit();
+		
+		wfProfileOut();
 		return $t;
 	}
 
@@ -266,6 +270,17 @@ class Title {
 		}
 		return $this->mRestrictions;
 	}
+	
+	function isDeleted() {
+		$ns = $this->getNamespace();
+		$t = wfStrencode( $this->getDBkey() );
+		$sql = "SELECT COUNT(*) AS n FROM archive WHERE ar_namespace=$ns AND ar_title='$t'";
+		if( $res = wfQuery( $sql ) ) {
+			$s = wfFetchObject( $res );
+			return $s->n;
+		}
+		return 0;
+	}
 
 	function getArticleID()
 	{
@@ -313,7 +328,8 @@ class Title {
 	/* private */ function secureAndSplit()
 	{
 		global $wgLang, $wgLocalInterwiki;
-
+ 		wfProfileIn( "Title::secureAndSplit" );
+		
 		$validNamespaces = $wgLang->getNamespaces();
 		unset( $validNamespaces[0] );
 
@@ -380,6 +396,8 @@ class Title {
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
 		$this->mTextform = str_replace( "_", " ", $t );
+		
+		wfProfileOut();
 	}
 }
 ?>

@@ -367,6 +367,13 @@ class Skin {
 				$s.=" | <strong>". str_replace( "$1", $tl, wfMsg("newmessages") ) . "</strong>";
 			}
 		}
+		if( $wgUser->isSysop() &&
+			($n = $wgTitle->isDeleted() ) ) {
+				$s .= " | <strong>" . wfMsg( "thisisdeleted",
+					$this->makeKnownLink(
+					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getText() ),
+					wfMsg( "restorelink", $n ) ) ) . "</strong>";
+		}
 		return $s;
 	}
 

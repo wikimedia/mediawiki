@@ -1,9 +1,10 @@
 <?
 
-function wfSpecialUndelete( )
+function wfSpecialUndelete( $par )
 {
     global $wgLang, $wgUser, $wgOut, $action, $target, $timestamp, $restore;
     
+	if( $par != "" ) $target = $par;
     if( isset($target ) ) {
     	$t = Title::newFromURL( $target );
     	$title = $t->mDbkeyform;
