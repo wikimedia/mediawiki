@@ -134,20 +134,48 @@ class ChannelFeed extends FeedItem {
 	/**#@-*/
 	
 	/**
-	 * @todo document
-	 * @param string $mimetype (optional) type of output
+	 * Setup and send HTTP headers. Don't send any content;
+	 * content might end up being cached and re-sent with
+	 * these same headers later.
+	 *
+	 * This should be called from the outHeader() method,
+	 * but can also be called separately.
+	 *
+	 * @access public
 	 */
-	function outXmlHeader( $mimetype='application/xml' ) {
-		global $wgServer, $wgStylePath, $wgOut;
+	function httpHeaders() {
+		global $wgOut;
 		
 		# We take over from $wgOut, excepting its cache header info
 		$wgOut->disable();
+		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
 		$wgOut->sendCacheControl();
 		
+	}
+	
+	/**
+	 * Return an internet media type to be sent in the headers.
+	 *
+	 * @return string
+	 * @access private
+	 */
+	function contentType() {
+		return 'application/xml';
+	}
+	
+	/**
+	 * Output the initial XML headers with a stylesheet for legibility
+	 * if someone finds it in a browser.
+	 * @access private
+	 */
+	function outXmlHeader() {
+		global $wgServer, $wgStylePath;
+		
+		$this->httpHeaders();
 		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
 		print '<' . '?xml-stylesheet type="text/css" href="' .
-			htmlspecialchars( "$wgServer$wgStylePath/feed.css" ) . '"?' . ">\n";
+			htmlspecialchars( "$wgServer$wgStylePath/common/feed.css" ) . '"?' . ">\n";
 	}
 }
 

@@ -773,6 +773,20 @@ $wgUseExternalDiffEngine = false;
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
 
+# Set maximum number of results to return in syndication feeds
+# (RSS, Atom) for eg Recentchanges, Newpages.
+$wgFeedLimit = 50;
+
+# _Minimum_ timeout for cached Recentchanges feed, in seconds.
+# A cached version will continue to be served out even if changes
+# are made, until this many seconds runs out since the last render.
+$wgFeedCacheTimeout = 60;
+
+# When generating Recentchanges RSS/Atom feed, diffs will not be
+# generated for pages larger than this size.
+$wgFeedDiffCutoff = 32768;
+
+
 # Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
 # you can create new ones here, for example, to import Help files in other languages.
 # PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
