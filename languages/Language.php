@@ -222,16 +222,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => ""
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => ""
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => ""
-
-
 # required for copyrightwarning
 global $wgRightsText;
 
@@ -304,6 +294,10 @@ global $wgRightsText;
 'mainpagetext'	=> 'Wiki software successfully installed.',
 "mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
 and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
+
+# NOTE: To turn off "Community portal" in the title links,
+# set "portal" => "-"
+
 'portal'		=> 'Community portal',
 'portal-url'		=> '{{ns:4}}:Community Portal',
 'about'			=> 'About',
@@ -335,10 +329,18 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'mytalk'		=> 'My talk',
 'anontalk'		=> 'Talk for this IP',
 'navigation' => 'Navigation',
+
+# NOTE: To turn off "Current Events" in the sidebar,
+# set "currentevents" => "-"
+				       
 'currentevents' => 'Current events',
 'currentevents-url' => 'Current events',
+
+# NOTE: To turn off "Disclaimers" in the title links,
+# set "disclaimers" => "-"
+
 'disclaimers' => 'Disclaimers',
-"disclaimerpage"		=> "{{ns:4}}:General_disclaimer",
+"disclaimerpage" => "{{ns:4}}:General_disclaimer",
 "errorpagetitle" => "Error",
 "returnto"		=> "Return to $1.",
 "tagline"      	=> "From {{SITENAME}}",

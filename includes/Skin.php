@@ -544,10 +544,7 @@ class Skin {
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
-		if ( wfMsgForContent ( 'disclaimers' ) != '-' )
-			$s .= ' | ' . $this->makeKnownLink( 
-				wfMsgForContent( 'disclaimerpage' ), 
-				wfMsgForContent( 'disclaimers' ) ) ;
+	        $s .= $this->disclaimerLink(); # may be empty
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -979,9 +976,13 @@ class Skin {
 
 
 	function disclaimerLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
-		  wfMsg( 'disclaimers' ) );
-		return $s;
+	        $disclaimers = wfMsg( 'disclaimers' );
+	        if ($disclaimers == '-') {
+		    return "";
+		} else {
+		    return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
+						 $disclaimers );
+		}
 	}
 
 	function editThisPage() {
