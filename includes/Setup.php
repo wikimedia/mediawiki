@@ -328,7 +328,7 @@ $wgDBConnections = array();
 wfSeedRandom();
 
 # Placeholders in case of DB error
-$wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
+$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
 
 wfProfileOut( $fname.'-misc2' );

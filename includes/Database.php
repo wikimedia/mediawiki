@@ -1330,7 +1330,7 @@ function wfEmergencyAbort( &$conn, $error ) {
 				echo wfMsgNoDB( 'googlesearch', htmlspecialchars( $search ), $wgInputEncoding );
 				wfErrorExit();
 			} else {
-				$t = Title::newFromText( wfMsgNoDB( 'mainpage' ) );
+				$t = Title::newFromText( wfMsgNoDBForContent( 'mainpage' ) );
 			}
 		}
 

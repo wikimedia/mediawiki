@@ -28,14 +28,14 @@ class DisambiguationsPage extends PageQueryPage {
 		$sk = $wgUser->getSkin();
 		
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsg('disambiguationspage')) )."</p><br>\n";
+		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br>\n";
 	}
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'cur', 'links' ) );
 		
-		$dp = Title::newFromText(wfMsg("disambiguationspage"));
+		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
 		$dpid = $dp->getArticleID();
 			
 		$sql = "SELECT ca.cur_namespace AS ns_art, ca.cur_title AS title_art,"
