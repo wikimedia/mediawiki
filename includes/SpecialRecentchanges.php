@@ -6,12 +6,24 @@ function wfSpecialRecentchanges( $par )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode;
-	global $days, $hideminor, $from, $hidebots, $hideliu; # From query string
 	$fname = "wfSpecialRecentchanges";
 	
+	# Get query parameters
 	$feedFormat = $wgRequest->getVal( "feed" );
 	$feeding = ( $feedFormat == "rss" );
+
+	$defaultDays = $wgUser->getOption( 'rcdays' );
+	if ( !$defaultDays ) {
+		$defaultDays = 3;
+	}
 	
+	$days = $wgRequest->getInt( 'days', $defaultDays );
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor' ) ) ? 1 : 0;
+	$from = $wgRequest->getText( 'from' );
+	$hidebots = $wgRequest->getBool( 'hidebots', true ) ? 1 : 0;
+	$hideliu = $wgRequest->getBool( 'hideliu', false ) ? 1 : 0;
+	
+	# Get query parameters from path
 	if( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		if( in_array( "hidebots", $bits ) ) $hidebots = 1;
@@ -41,12 +53,7 @@ function wfSpecialRecentchanges( $par )
 	}
 	
 	$wgOut->addWikiText( $rctext );
-
-	if ( ! $days ) {
-		$days = $wgUser->getOption( "rcdays" );
-		if ( ! $days ) { $days = 3; }
-	}
-	$days = (int)$days;
+	
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
 	$now = wfTimestampNow();
 	$cutoff_unixtime = time() - ( $days * 86400 );
@@ -61,27 +68,16 @@ function wfSpecialRecentchanges( $par )
 	$sk = $wgUser->getSkin();
 	$showhide = array( wfMsg( "show" ), wfMsg( "hide" ));
 	
-	if ( ! isset( $hideminor ) ) {
-		$hideminor = $wgUser->getOption( "hideminor" );
-	}
-	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
 		$hidem = "AND rc_minor=0";
 	} else {
 		$hidem = "";
 	}
 	
-	if ( !isset( $hidebots ) ) {
-		$hidebots = 1;
-	}
 	if( $hidebots ) {
 		$hidem .= " AND rc_bot=0";
 	}
-	$hidebots = ($hidebots ? 1 : 0);
 	
-	if ( !isset( $hideliu ) ) {
-		$hideliu = 0;
-	}
 	if ( $hideliu ) {
 		$hidem .= " AND rc_user=0";
 	}

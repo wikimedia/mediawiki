@@ -3,7 +3,7 @@ include_once( "LinksUpdate.php" );
 
 function wfSpecialMakesysop()
 {
-	global $wgUser, $wgOut, $action, $target;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
@@ -13,26 +13,36 @@ function wfSpecialMakesysop()
 		$wgOut->errorpage( "bureaucrattitle", "bureaucrattext" );
 		return;
 	}
-
+	
 	if ( wfReadOnly() ) {
 		$wgOut->readOnlyPage();
 		return;
 	}
 
-	$f = new MakesysopForm();
+	$f = new MakesysopForm( $wgRequest );
 
-	if ( $_POST['wpMakesysopSubmit'] ) { 
+	if ( $f->mSubmit ) { 
 		$f->doSubmit(); 
 	} else { 
 		$f->showForm( "" ); 
 	}
 }
 
-class MakesysopForm {	
+class MakesysopForm {
+	var $mTarget, $mAction, $mRights, $mUser, $mSubmit;
+
+	function MakesysopForm( &$request ) 
+	{
+		$this->mAction = $request->getText( 'action' );
+		$this->mRights = $request->getVal( 'wpRights' );
+		$this->mUser = $request->getText( 'wpMakesysopUser' );
+		$this->mSubmit = $request->getBool( 'wpMakesysopSubmit' ) && $request->wasPosted();
+		$this->mBuro = $request->getBool( 'wpSetBureaucrat' );
+	}
+
 	function showForm( $err = "")
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target, $wpRights, $wpMakesysopUser;
 
 		if ( $wgUser->isDeveloper() ) {
 			$wgOut->setPageTitle( wfMsg( "set_user_rights" ) );
@@ -50,8 +60,8 @@ class MakesysopForm {
 			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
 		}
 		$namedesc = wfMsg( "makesysopname" );
-		if ( isset( $wpMakesysopUser ) ) {
-			$encUser = htmlspecialchars( $wpMakesysopUser );
+		if ( !is_null( $this->mUser ) ) {
+			$encUser = htmlspecialchars( $this->mUser );
 		} else {
 			$encUser = "";
 		}
@@ -78,8 +88,8 @@ class MakesysopForm {
 
 		if ( $wgUser->isDeveloper() ) {
 			$rights = wfMsg( "rights" );
-			if ( isset( $wpRights ) ) {
-				$encRights = htmlspecialchars( $wpRights );
+			if ( !is_null( $this->mRights ) ) {
+				$encRights = htmlspecialchars( $this->mRights );
 			} else {
 				$encRights = "sysop";
 			}
@@ -111,41 +121,10 @@ class MakesysopForm {
 
 	function doSubmit()
 	{
+		global $wgOut, $wgUser, $wgLang;
+		global $wgDBname, $wgMemc, $wgLocalDatabases;
 
-		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
-		global $wgDBname, $wgMemc, $wpRights, $wgLocalDatabases;
-
-		$parts = explode( "@", $wpMakesysopUser );
-		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
-			$username = $parts[0];
-			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
-				$dbName = $wgLocalDatabases[$parts[1]];
-				$usertable = $dbName . ".user";
-			} else {
-				$this->showFail();
-				return;
-			}
-		} else {
-			$username = $wpMakesysopUser;
-			$usertable = "user";
-			$dbName = $wgDBname;
-		}
-		if ( $username{0} == "#" ) {
-			$id = intval( substr( $username, 1 ) );
-			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
-		} else {
-			$encName = wfStrencode( $username );
-			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$encName}'";
-		}
-
-		$prev = wfIgnoreSQLErrors( TRUE );
-		$res = wfQuery( $sql, DB_WRITE);
-		wfIgnoreSQLErrors( $prev );
-
-		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
-		global $wgDBname, $wgMemc, $wpRights, $wgLocalDatabases;
-
-		$parts = explode( "@", $wpMakesysopUser );
+		$parts = explode( "@", $this->mUser );
 		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
 			$username = wfStrencode( $parts[0] );
 			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
@@ -156,18 +135,17 @@ class MakesysopForm {
 				return;
 			}
 		} else {
-			$username = wfStrencode( $wpMakesysopUser );
+			$username = wfStrencode( $this->mUser );
 			$usertable = "user";
 			$dbName = $wgDBname;
 		}
 		if ( $username{0} == "#" ) {
-                        $id = intval( substr( $username, 1 ) );
-                        $sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
-                } else {
-                        $encName = wfStrencode( $username );
-                        $sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'";
-                }
-		
+			$id = intval( substr( $username, 1 ) );
+			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
+		} else {
+			$encName = wfStrencode( $username );
+			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'";
+		}
 		
 		$prev = wfIgnoreSQLErrors( TRUE );
 		$res = wfQuery("SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'", DB_WRITE);
@@ -183,8 +161,8 @@ class MakesysopForm {
 		$rightsNotation = array();
 
 		if ( $wgUser->isDeveloper() ) {
-			$newrights = (string)$wpRights;
-			$rightsNotation[] = "=$wpRights";
+			$newrights = (string)$this->mRights;
+			$rightsNotation[] = "=$this->mRights";
 		} else {
 			if( $row->user_rights ){
 				$rights = explode(",", $row->user_rights );
@@ -192,7 +170,7 @@ class MakesysopForm {
 					$rights[] = "sysop";
 					$rightsNotation[] = "+sysop ";
 				}
-				if ( $wpSetBureaucrat && !in_array( "bureaucrat", $rights ) ) {
+				if ( $this->mBuro && !in_array( "bureaucrat", $rights ) ) {
 					$rights[] = "bureaucrat";
 					$rightsNotation[] = "+bureaucrat ";
 				}
@@ -200,7 +178,7 @@ class MakesysopForm {
 			} else {
 				$newrights = "sysop";
 				$rightsNotation[] = "+sysop";
-				if ( $wpSetBureaucrat ) {
+				if ( $this->mBuro ) {
 					$rightsNotation[] = "+bureaucrat";
 					$newrights .= ",bureaucrat";
 				}
@@ -215,7 +193,7 @@ class MakesysopForm {
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
 			$bureaucratLog = wfMsg( "bureaucratlog" );
-			$action = wfMsg( "bureaucratlogentry", $wpMakesysopUser, implode( " ", $rightsNotation ) );
+			$action = wfMsg( "bureaucratlogentry", $this->mUser, implode( " ", $rightsNotation ) );
 			
 			$log = new LogPage( $bureaucratLog );
 			$log->addEntry( $action, "" );
@@ -226,14 +204,14 @@ class MakesysopForm {
 
 	function showSuccess()
 	{
-		global $wgOut, $wpMakesysopUser, $wgUser;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
 
 		if ( $wgUser->isDeveloper() ) {
-			$text = wfMsg( "user_rights_set", $wpMakesysopUser );
+			$text = wfMsg( "user_rights_set", $this->mUser );
 		} else {
-			$text = wfMsg( "makesysopok", $wpMakesysopUser );
+			$text = wfMsg( "makesysopok", $this->mUser );
 		}
 		$text .= "\n\n";
 		$wgOut->addWikiText( $text );
@@ -243,13 +221,13 @@ class MakesysopForm {
 
 	function showFail()
 	{
-		global $wgOut, $wpMakesysopUser, $wgUser;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
 		if ( $wgUser->isDeveloper() ) {
-			$this->showForm( wfMsg( "set_rights_fail", $wpMakesysopUser ) );
+			$this->showForm( wfMsg( "set_rights_fail", $this->mUser ) );
 		} else {
-			$this->showForm( wfMsg( "makesysopfail", $wpMakesysopUser ) );
+			$this->showForm( wfMsg( "makesysopfail", $this->mUser ) );
 		}
 	}
 }
