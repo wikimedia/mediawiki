@@ -858,9 +858,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "couldntremove" => "Verwijdering van '$1' onmogelijk.",
 "iteminvalidname" => "Incorrecte naam '$1'",
 "wlnote" => "Getoond worden de laatste $1 wijzigingen in de laatste $2 uur.",
-"wlshowlast" => "Toon de laatste ",
-"wlhours" => "uur",
-"wldays" => "dagen",
+"wlshowlast" => "Toon de laatste $1 uur $2 dagen $3",
 
 # Delete/protect/revert
 # Verwijderen/beschermen/annuleren
