@@ -570,14 +570,6 @@ class Parser
 		return $t ;
 	}
 
-	# Parses the text and adds the result to the strip state
-	# Returns the strip tag
-	function stripParse( $text, $newline, $args ) {
-		$text = $this->strip( $text, $this->mStripState );
-		$text = $this->internalParse( $text, (bool)$newline, $args, false );
-		return $newline.$this->insertStripItem( $text, $this->mStripState );
-	}
-
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
         global $wgLang;
 
@@ -1705,7 +1697,8 @@ class Parser
 			# Add a new element to the templace recursion path
 			$this->mTemplatePath[$part1] = 1;
 
-			$text = $this->stripParse( $text, $newline, $assocArgs );
+			$text = $this->removeHTMLtags( $text );
+			$text = $this->replaceVariables( $text, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
@@ -1732,7 +1725,8 @@ class Parser
 		$inputArgs = end( $this->mArgStack );
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
-			$text = $this->stripParse( $inputArgs[$arg], $newline, array() );
+			$text = $this->removeHTMLtags( $inputArgs[$arg] );
+			$text = $this->replaceVariables( $text, array() );
 		}
 
 		return $text;
