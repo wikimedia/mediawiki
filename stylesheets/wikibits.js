@@ -62,7 +62,7 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 function histrowinit () {
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('li');
+    lis = hf.getElementsByTagName('LI');
     for (i=0;i<lis.length;i++) {
         inputs=lis[i].getElementsByTagName('INPUT');
         if(inputs[0] && inputs[1]) {
@@ -78,7 +78,7 @@ function diffcheck() {
     var oli = false; // the li where the oldid radio is checked
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('li');
+    lis = hf.getElementsByTagName('LI');
     for (i=0;i<lis.length;i++) {
         inputs=lis[i].getElementsByTagName('INPUT');
         if(inputs[1] && inputs[0]) {

@@ -77,9 +77,9 @@ class PageHistory {
 			$this->mTitle->getPrefixedText(),
 			"action=history", $atend );
 		$s = $numbar;
-		$this->submitbuttonhtml = ( $this->linesonpage > 1) ? '<li class="histsubmitli">
-		<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
-			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions')."\" /></li>" :
+		$this->submitbuttonhtml = ( $this->linesonpage > 1) ? '<input class="historysubmit" 
+		type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
+			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions')."\" />" :
 			'';
 		$s .= $this->beginHistoryList();
 		$counter = 1;
@@ -114,10 +114,10 @@ class PageHistory {
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ).'</p>'; 
-		$s .="\n<form id=\"pagehistory\" name=\"pagehistory\" action=\"" . $wgTitle->getFullURL("-") . "\" method=\"get\">";
+		$s .="\n<form action=\"" . $wgTitle->getFullURL("-") . "\" method=\"get\">";
 		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
-		$s .= "" . "\n<ul>";
 		$s .= !empty($this->submitbuttonhtml) ? $this->submitbuttonhtml."\n":'';
+		$s .= "" . "\n<ul id=\"pagehistory\" >";
 		return $s;
 	}
 
@@ -126,8 +126,9 @@ class PageHistory {
 		$last = wfMsg( "last" );
 
 		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
+		$s .= "</ul>";
 		$s .= !empty($this->submitbuttonhtml) ? $this->submitbuttonhtml."\n":'';
-		$s .= "</ul></form>\n";
+		$s .= "</form>\n";
 		return $s;
 	}
 
