@@ -507,7 +507,7 @@ class Article {
 			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
-			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
+			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
 				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return;
@@ -698,7 +698,7 @@ class Article {
 		$fname = 'Article::loadLastEdit';
 
 		$dbr =& $this->getDB();
-		$s = $dbr->getArray( 'cur',
+		$s = $dbr->selectRow( 'cur',
 		  array( 'cur_user','cur_user_text','cur_timestamp', 'cur_comment','cur_minor_edit' ),
 		  array( 'cur_id' => $this->getID() ), $fname, $this->getSelectOptions() );
 
@@ -934,7 +934,7 @@ class Article {
 
 		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
 
-		$dbw->insertArray( 'cur', array(
+		$dbw->insert( 'cur', array(
 			'cur_id' => $cur_id,
 			'cur_namespace' => $ns,
 			'cur_title' => $ttl,
@@ -969,7 +969,7 @@ class Article {
 
 		# The talk page isn't in the regular link tables, so we need to update manually:
 		$talkns = $ns ^ 1; # talk -> normal; normal -> talk
-		$dbw->updateArray( 'cur', array('cur_touched' => $dbw->timestamp($now) ),
+		$dbw->update( 'cur', array('cur_touched' => $dbw->timestamp($now) ),
 			array(  'cur_namespace' => $talkns, 'cur_title' => $ttl ), $fname );
 
 		# standard deferred updates
@@ -991,7 +991,7 @@ class Article {
 			$dbw =& wfGetDB( DB_MASTER );
 			$ns = $this->mTitle->getNamespace();
 			$title = $this->mTitle->getDBkey();
-			$obj = $dbw->getArray( 'old', 
+			$obj = $dbw->selectRow( 'old', 
 				array( 'old_text','old_flags'), 
 				array( 'old_namespace' => $ns, 'old_title' => $title, 
 					'old_timestamp' => $dbw->timestamp($edittime)),
@@ -1122,7 +1122,7 @@ class Article {
 			$won = wfInvertTimestamp( $now );
 
 			# First update the cur row
-			$dbw->updateArray( 'cur',
+			$dbw->update( 'cur',
 				array( /* SET */
 					'cur_text' => $text,
 					'cur_comment' => $summary,
@@ -1149,7 +1149,7 @@ class Article {
 				# This overwrites $oldtext if revision compression is on
 				$flags = Article::compressRevisionText( $oldtext );
 
-				$dbw->insertArray( 'old',
+				$dbw->insert( 'old',
 					array(
 						'old_id' => $dbw->nextSequenceValue( 'old_old_id_seq' ),
 						'old_namespace' => $this->mTitle->getNamespace(),
@@ -1374,7 +1374,7 @@ class Article {
 
 		if ( $confirm ) {
 			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->updateArray( 'cur',
+			$dbw->update( 'cur',
 				array( /* SET */
 					'cur_touched' => $dbw->timestamp(),
 					'cur_restrictions' => (string)$limit
@@ -1510,7 +1510,7 @@ class Article {
 		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
-		$old = $dbr->getArray( 'old',
+		$old = $dbr->selectRow( 'old',
 			array( 'old_text', 'old_flags' ),
 			array(
 				'old_namespace' => $ns,
@@ -1525,7 +1525,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$s = $dbr->getArray( 'cur',
+		$s = $dbr->selectRow( 'cur',
 			array( 'cur_text' ),
 			array(
 				'cur_namespace' => $ns,
@@ -1764,7 +1764,7 @@ class Article {
 			$linkID = $titleObj->getArticleID();
 			$brokenLinks[] = array( 'bl_from' => $linkID, 'bl_to' => $t );
 		}
-		$dbw->insertArray( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
+		$dbw->insert( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
 
 		# Delete live links
 		$dbw->delete( 'links', array( 'l_to' => $id ) );
@@ -1808,7 +1808,7 @@ class Article {
 		$n = $this->mTitle->getNamespace();
 
 		# Get the last editor, lock table exclusively
-		$s = $dbw->getArray( 'cur',
+		$s = $dbw->selectRow( 'cur',
 			array( 'cur_id','cur_user','cur_user_text','cur_comment' ),
 			array( 'cur_title' => $tt, 'cur_namespace' => $n ),
 			$fname, 'FOR UPDATE'
@@ -1838,7 +1838,7 @@ class Article {
 		}
 
 		# Get the last edit not by this guy
-		$s = $dbw->getArray( 'old',
+		$s = $dbw->selectRow( 'old',
 			array( 'old_text','old_user','old_user_text','old_timestamp','old_flags' ),
 			array(
 				'old_namespace' => $n,
@@ -1855,7 +1855,7 @@ class Article {
 
 		if ( $bot ) {
 			# Mark all reverted edits as bot
-			$dbw->updateArray( 'recentchanges',
+			$dbw->update( 'recentchanges',
 				array( /* SET */
 					'rc_bot' => 1
 				), array( /* WHERE */
@@ -2029,7 +2029,7 @@ class Article {
 		$fname = 'Article::checkTouched';
 		$id = $this->getID();
 		$dbr =& $this->getDB();
-		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ),
+		$s = $dbr->selectRow( 'cur', array( 'cur_touched', 'cur_is_redirect' ),
 			array( 'cur_id' => $id ), $fname, $this->getSelectOptions() );
 		if( $s !== false ) {
 			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
@@ -2093,14 +2093,14 @@ class Article {
 		if ( $numRows ) {
 			# Update article
 			$fields['cur_is_new'] = 0;
-			$dbw->updateArray( 'cur', $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
+			$dbw->update( 'cur', $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
 		} else {
 			# Insert new article
 			$fields['cur_is_new'] = 1;
 			$fields['cur_namespace'] = $ns;
 			$fields['cur_title'] = $dbkey;
 			$fields['cur_random'] = $rand = wfRandom();
-			$dbw->insertArray( 'cur', $fields, $fname );
+			$dbw->insert( 'cur', $fields, $fname );
 		}
 		wfProfileOut( $fname );
 	}

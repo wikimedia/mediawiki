@@ -343,7 +343,7 @@ class ImagePage extends Article {
 		$oldver = wfTimestampNow() . "!{$name}";
 		
 		$dbr =& wfGetDB( DB_SLAVE );
-		$size = $dbr->getField( 'oldimage', 'oi_size', 'oi_archive_name=\'' .
+		$size = $dbr->selectField( 'oldimage', 'oi_size', 'oi_archive_name=\'' .
 		  $dbr->strencode( $oldimage ) . "'" );
 
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {

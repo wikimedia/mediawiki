@@ -272,7 +272,7 @@ function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		return $db->getField( $table, $var, $cond );
+		return $db->selectField( $table, $var, $cond );
 	} else {	
 		return false;
 	}
@@ -308,7 +308,7 @@ function wfIndexExists( $table, $index, $dbi = DB_LAST ) {
 function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MASTER ) {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		return $db->insertArray( $table, $array, $fname );
+		return $db->insert( $table, $array, $fname );
 	} else {	
 		return false;
 	}
@@ -332,7 +332,7 @@ function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAS
 function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi = DB_MASTER ) {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		$db->updateArray( $table, $values, $conds, $fname );
+		$db->update( $table, $values, $conds, $fname );
 		return true;
 	} else {
 		return false;

@@ -42,7 +42,7 @@ function texvc_cgi_renderMath( $tex )
 	$md5_sql = pack("H32", $md5);
 
 	$mathTable = $dbr->tableName( 'math' );
-	$rpage = $dbr->getArray( 'math', array('math_outputhash','math_html_conservativeness','math_html','math_mathml'),
+	$rpage = $dbr->selectRow( 'math', array('math_outputhash','math_html_conservativeness','math_html','math_mathml'),
 	  array( 'math_inputhash' => $md5_sql ) );
 	
 	if ( $rpage === false )
@@ -114,7 +114,7 @@ function texvc_cgi_renderMath( $tex )
 		
 		# Someone may have inserted the same hash since the SELECT, but that's no big deal, just ignore errors
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->insertArray( 'math', 
+		$dbw->insert( 'math', 
 		  array( 
 		    'math_inputhash' => $md5_sql, 
 			'math_outputhash' => $outmd5_sql,
@@ -126,7 +126,6 @@ function texvc_cgi_renderMath( $tex )
 		
 // we don't really care if it fails
 	} else {
-		$rpage = $dbr->fetchObject ( $res );
 		$outmd5 = unpack ("H32md5", $rpage->math_outputhash);
 		$outmd5 = $outmd5 ['md5'];
 		$outhtml = $rpage->math_html;

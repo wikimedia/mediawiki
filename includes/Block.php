@@ -195,7 +195,7 @@ class Block
 	function insert() 
 	{
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->insertArray( 'ipblocks',
+		$dbw->insert( 'ipblocks',
 			array(
 				'ipb_address' => $this->mAddress,
 				'ipb_user' => $this->mUser,
@@ -241,7 +241,7 @@ class Block
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
 			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->updateArray( 'ipblocks', 
+			$dbw->update( 'ipblocks', 
 				array( /* SET */ 
 					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 					'ipb_expiry' => $dbw->timestamp($this->mExpiry),

@@ -11,13 +11,10 @@
  */
 require_once( 'CacheManager.php' );
 
-/** @todo document */
+/** See Database::makeList() */
 define( 'LIST_COMMA', 0 );
-/** @todo document */
 define( 'LIST_AND', 1 );
-/** @todo document */
 define( 'LIST_SET', 2 );
-/** @todo document */
 define( 'LIST_NAMES', 3);
 
 /** Number of times to re-try an operation in case of deadlock */
@@ -450,7 +447,7 @@ class Database {
 	 * @param mixed $res A SQL result
 	 */
 	/**
-	 * @todo document
+	 * Free a result object
 	 */
 	function freeResult( $res ) {
 		if ( !@/**/mysql_free_result( $res ) ) {
@@ -459,11 +456,10 @@ class Database {
 	}
 	
 	/**
-	 * @todo FIXME: HACK HACK HACK HACK debug
+	 * Fetch the next row from the given result object, in object form
 	 */
 	function fetchObject( $res ) {
 		@/**/$row = mysql_fetch_object( $res );
-		# FIXME: HACK HACK HACK HACK debug
 		if( mysql_errno() ) {
 			wfDebugDieBacktrace( 'Error in fetchObject(): ' . htmlspecialchars( mysql_error() ) );
 		}
@@ -471,7 +467,8 @@ class Database {
 	}
 
 	/**
-	 * @todo document
+	 * Fetch the next row from the given result object
+	 * Returns an array
 	 */
  	function fetchRow( $res ) {
 		@/**/$row = mysql_fetch_array( $res );
@@ -482,7 +479,7 @@ class Database {
 	}	
 
 	/**
-	 * @todo document
+	 * Get the number of rows in a result object
 	 */
 	function numRows( $res ) {
 		@/**/$n = mysql_num_rows( $res ); 
@@ -493,32 +490,50 @@ class Database {
 	}
 	
 	/**
-	 * @todo document
+	 * Get the number of fields in a result object
+	 * See documentation for mysql_num_fields()
 	 */
 	function numFields( $res ) { return mysql_num_fields( $res ); }
 
 	/**
-	 * @todo document
+	 * Get a field name in a result object
+	 * See documentation for mysql_field_name()
 	 */
 	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
+
 	/**
-	 * @todo document
+	 * Get the inserted value of an auto-increment row
+	 *
+	 * The value inserted should be fetched from nextSequenceValue()
+	 *
+	 * Example:
+	 * $id = $dbw->nextSequenceValue('cur_cur_id_seq');
+	 * $dbw->insert('cur',array('cur_id' => $id));
+	 * $id = $dbw->insertId();
 	 */
 	function insertId() { return mysql_insert_id( $this->mConn ); }
+	
 	/**
-	 * @todo document
+	 * Change the position of the cursor in a result object
+	 * See mysql_data_seek()
 	 */
 	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
+	
 	/**
-	 * @todo document
+	 * Get the last error number
+	 * See mysql_errno()
 	 */
 	function lastErrno() { return mysql_errno(); }
+	
 	/**
-	 * @todo document
+	 * Get a description of the last error
+	 * See mysql_error() for more details
 	 */
 	function lastError() { return mysql_error(); }
+	
 	/**
-	 * @todo document
+	 * Get the number of rows affected by the last write query
+	 * See mysql_affected_rows() for more details
 	 */
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	/**#@-*/ // end of template : @param $result
@@ -539,13 +554,6 @@ class Database {
 		return !!$this->query( $sql, DB_MASTER, $fname );
 	}
 	
-	/**
-	 * @todo document
-	 */
-	function getField( $table, $var, $cond='', $fname = 'Database::getField', $options = array() ) {
-		return $this->selectField( $table, $var, $cond, $fname = 'Database::get', $options = array() );
-	}
-
 	/**
 	 * Simple SELECT wrapper, returns a single field, input must be encoded
 	 * Usually aborts on failure
@@ -632,14 +640,6 @@ class Database {
 		}
 		return $this->query( $sql, $fname );
 	}
-	
-	/**
-	 * @todo document
-	 */
-	function getArray( $table, $vars, $conds, $fname = 'Database::getArray', $options = array() ) {
-		return $this->selectRow( $table, $vars, $conds, $fname, $options );
-	}
-
 
 	/**
 	 * Single row SELECT wrapper
@@ -732,7 +732,8 @@ class Database {
 	
 	
 	/**
-	 * @todo document
+	 * Get information about an index into an object
+	 * Returns false if the index does not exist
 	 */
 	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
@@ -754,8 +755,7 @@ class Database {
 	}
 	
 	/**
-	 * @param $table
-	 * @todo document
+	 * Query whether a given table exists
 	 */
 	function tableExists( $table ) {
 		$table = $this->tableName( $table );
@@ -771,9 +771,11 @@ class Database {
 	}
 
 	/**
+	 * mysql_fetch_field() wrapper
+	 * Returns false if the field doesn't exist
+	 *
 	 * @param $table
 	 * @param $field
-	 * @todo document
 	 */
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
@@ -789,14 +791,14 @@ class Database {
 	}
 	
 	/**
-	 * @todo document
+	 * mysql_field_type() wrapper
 	 */
 	function fieldType( $res, $index ) {
 		return mysql_field_type( $res, $index );
 	}
 
 	/**
-	 * @todo document
+	 * Determines if a given index is unique
 	 */
 	function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );
@@ -804,13 +806,6 @@ class Database {
 			return NULL;
 		}
 		return !$indexInfo->Non_unique;
-	}
-
-	/**
-	 * @todo document
-	 */
-	function insertArray( $table, $a, $fname = 'Database::insertArray', $options = array() ) {
-		return $this->insert( $table, $a, $fname, $options );
 	}
 
 	/**
@@ -860,13 +855,6 @@ class Database {
 	}
 
 	/**
-	 * @todo document
-	 */
-	function updateArray( $table, $values, $conds, $fname = 'Database::updateArray' ) {
-		return $this->update( $table, $values, $conds, $fname );
-	}
-	
-	/**
 	 * UPDATE wrapper, takes a condition array and a SET array
 	 */
 	function update( $table, $values, $conds, $fname = 'Database::update' ) {
@@ -915,7 +903,7 @@ class Database {
 	}
 	
 	/**
-	 * @todo document
+	 * Change the current database
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
@@ -923,7 +911,7 @@ class Database {
 	}
 
 	/**
-	 * @todo document
+	 * Starts a timer which will kill the DB thread after $timeout seconds
 	 */
 	function startTimer( $timeout ) {
 		global $IP;
@@ -935,14 +923,23 @@ class Database {
 	}
 
 	/**
-	 * Does nothing at all
-	 * @todo document
+	 * Stop a timer started by startTimer()
+	 * Currently unimplemented.
+	 *
 	 */
 	function stopTimer() { }
 
 	/**
+	 * Format a table name ready for use in constructing an SQL query
+	 * 
+	 * This does two important things: it quotes table names which as necessary, 
+	 * and it adds a table prefix if there is one.
+	 * 
+	 * All functions of this object which require a table name call this function 
+	 * themselves. Pass the canonical name to such functions. This is only needed
+	 * when calling query() directly. 
+	 *
 	 * @param string $name database table name
-	 * @todo document
 	 */
 	function tableName( $name ) {
 		global $wgSharedDB;
@@ -958,7 +955,13 @@ class Database {
 	}
 
 	/**
-	 * @todo document
+	 * Fetch a number of table names into an array
+	 * This is handy when you need to construct SQL for joins
+	 *
+	 * Example:
+	 * extract($dbr->tableNames('user','watchlist'));
+	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user 
+	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 */
 	function tableNames() {
 		$inArray = func_get_args();
@@ -1102,8 +1105,9 @@ class Database {
 	}
 
 	/**
+	 * DELETE query wrapper
+	 *
 	 * Use $conds == "*" to delete all rows
-	 * @todo document
 	 */
 	function delete( $table, $conds, $fname = 'Database::delete' ) {
 		if ( !$conds ) {
@@ -1136,7 +1140,8 @@ class Database {
 	}
 
 	/**
-	 * @todo document
+	 * Construct a LIMIT query with optional offset
+	 * This is used for query pages
 	 */
 	function limitResult($limit,$offset) {
 		return ' LIMIT '.(is_numeric($offset)?"{$offset},":"")."{$limit} ";
@@ -1156,14 +1161,27 @@ class Database {
 	}
 
 	/**
-	 * @todo document
+	 * Determines if the last failure was due to a deadlock
 	 */
 	function wasDeadlock() {
 		return $this->lastErrno() == 1213;
 	}
 
 	/**
-	 * @todo document
+	 * Perform a deadlock-prone transaction.
+	 *
+	 * This function invokes a callback function to perform a set of write 
+	 * queries. If a deadlock occurs during the processing, the transaction 
+	 * will be rolled back and the callback function will be called again.
+	 *
+	 * Usage: 
+	 *   $dbw->deadlockLoop( callback, ... );
+	 *
+	 * Extra arguments are passed through to the specified callback function. 
+	 * 
+	 * Returns whatever the callback function returned on its successful, 
+	 * iteration, or false on error, for example if the retry limit was 
+	 * reached.
 	 */
 	function deadlockLoop() {
 		$myFname = 'Database::deadlockLoop';
@@ -1206,7 +1224,10 @@ class Database {
 
 	/**
 	 * Do a SELECT MASTER_POS_WAIT()
-	 * @todo document
+	 *
+	 * @param string $file the binlog file
+	 * @param string $pos the binlog position
+	 * @param integer $timeout the maximum number of seconds to wait for synchronisation
 	 */
 	function masterPosWait( $file, $pos, $timeout ) {
 		$encFile = $this->strencode( $file );

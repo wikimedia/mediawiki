@@ -147,7 +147,7 @@ class LinkCache {
 				$options = array();
 			}
 
-			$id = $db->getField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname, $options );
+			$id = $db->selectField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname, $options );
 			if ( !$id ) {
 				$id = 0;
 			}
@@ -304,7 +304,7 @@ class LinkCache {
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
 		}
-		$raw = $db->getField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ), $fname, $options );
+		$raw = $db->selectField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ), $fname, $options );
 		if ( $raw === false ) {
 			return false;
 		}

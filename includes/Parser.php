@@ -3129,7 +3129,7 @@ function wfLoadSiteStats() {
 
 	if ( -1 != $wgNumberOfArticles ) return;
 	$dbr =& wfGetDB( DB_SLAVE );
-	$s = $dbr->getArray( 'site_stats',
+	$s = $dbr->selectRow( 'site_stats',
 		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
 		array( 'ss_row_id' => 1 ), $fname
 	);

@@ -203,7 +203,7 @@ class DatabasePgsql extends Database {
 		return false;*/
 	}
 
-	function insertArray( $table, $a, $fname = 'Database::insertArray', $options = array() ) {
+	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
 		# PostgreSQL doesn't support options
 		# We have a go at faking one of them
 		# TODO: DELAYED, LOW_PRIORITY 
@@ -221,7 +221,7 @@ class DatabasePgsql extends Database {
 			$a = array( $a );
 		}
 		foreach ( $a as $row ) {
-			parent::insertArray( $table, $row, $fname, array() );
+			parent::insert( $table, $row, $fname, array() );
 		}
 		$this->ignoreErrors( $oldIgnore );
 		$retVal = true;
@@ -263,7 +263,7 @@ class DatabasePgsql extends Database {
 	 * Return the next in a sequence, save the value for retrieval via insertId()
 	 */
 	function nextSequenceValue( $seqName ) {
-		$value = $this->getField(''," nextval('" . $seqName . "')");
+		$value = $this->selectField(''," nextval('" . $seqName . "')");
 		$this->mInsertId = $value;
 		return $value;
 	}

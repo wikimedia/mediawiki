@@ -156,7 +156,7 @@ class MathRenderer {
 
 		$this->md5 = md5( $this->tex );
 		$dbr =& wfGetDB( DB_SLAVE );
-		$rpage = $dbr->getArray( 'math', 
+		$rpage = $dbr->selectRow( 'math', 
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
 			array( 'math_inputhash' => pack("H32", $this->md5)), # Binary packed, not hex
 			$fname

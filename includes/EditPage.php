@@ -619,13 +619,13 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 		$fname = 'EditPage::mergeChangesInto';
 		$oldDate = $this->edittime;
 		$dbw =& wfGetDB( DB_MASTER );
-		$obj = $dbw->getArray( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
+		$obj = $dbw->selectRow( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
 			$fname, 'FOR UPDATE' );
 
 		$yourtext = $obj->cur_text;
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
-		$obj = $dbw->getArray( 'old', 
+		$obj = $dbw->selectRow( 'old', 
 			array( 'old_text','old_flags'), 
 			array( 'old_namespace' => $ns, 'old_title' => $title, 
 				'old_timestamp' => $dbw->timestamp($oldDate)),

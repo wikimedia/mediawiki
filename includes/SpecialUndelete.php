@@ -168,7 +168,7 @@ class PageArchive {
 			$redir = $redirect->matchStart( $text ) ? 1 : 0;
 			
 			$rand = wfRandom();
-			$dbw->insertArray( 'cur', array(
+			$dbw->insert( 'cur', array(
 				'cur_id' => $dbw->nextSequenceValue( 'cur_cur_id_seq' ),
 				'cur_namespace' => $namespace,
 				'cur_title' => $ttl,

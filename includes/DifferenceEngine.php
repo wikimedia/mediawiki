@@ -259,7 +259,7 @@ class DifferenceEngine {
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$id = $wgTitle->getArticleID();
 
-			$s = $dbr->getArray( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
+			$s = $dbr->selectRow( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
 				array( 'cur_id' => $id ), $fname );
 			if ( $s === false ) {
 				wfDebug( "Unable to load cur_id $id\n" );
@@ -271,7 +271,7 @@ class DifferenceEngine {
 			$this->mNewUser = $s->cur_user_text;
 			$this->mNewComment = $s->cur_comment;
 		} else {
-			$s = $dbr->getArray( 'old', array( 'old_namespace','old_title','old_timestamp', 'old_text',
+			$s = $dbr->selectRow( 'old', array( 'old_namespace','old_title','old_timestamp', 'old_text',
 				'old_flags','old_user_text','old_comment' ), array( 'old_id' => $this->mNewid ), $fname );
 
 			if ( $s === false ) {
@@ -290,7 +290,7 @@ class DifferenceEngine {
 			$this->mNewComment = $s->old_comment;
 		}
 		if ( 0 == $this->mOldid ) {
-			$s = $dbr->getArray( 'old',
+			$s = $dbr->selectRow( 'old',
 				array( 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
 				array( /* WHERE */
 					'old_namespace' => $this->mNewPage->getNamespace(),
@@ -302,7 +302,7 @@ class DifferenceEngine {
 				return false;
 			}
 		} else {
-			$s = $dbr->getArray( 'old',
+			$s = $dbr->selectRow( 'old',
 				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
 				array( 'old_id' => $this->mOldid ),
 				$fname
