@@ -13,9 +13,7 @@ function wfSpecialRecentchanges( $par )
 	$feedFormat = $wgRequest->getVal( 'feed' );
 
 	$defaultDays = $wgUser->getOption( 'rcdays' );
-	if ( !$defaultDays ) {
-		$defaultDays = 3;
-	}
+	if ( !$defaultDays ) { $defaultDays = 3; }
 
 	$days = $wgRequest->getInt( 'days', $defaultDays );
 	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor' ) ) ? 1 : 0;
@@ -47,13 +45,15 @@ function wfSpecialRecentchanges( $par )
 	}
 
 	# The next few lines can probably be commented out now that wfMsg can get text from the DB
-	$rctext = $dbr->selectField( 'cur', 'cur_text',
+/*	$rctext = $dbr->selectField( 'cur', 'cur_text',
 		array( 'cur_namespace' => NS_WIKIPEDIA, 'cur_title' => 'Recentchanges' ),
 		$fname
 	);
 	if( !$rctext ) {
 		$rctext = wfMsg( "recentchangestext" );
-	}
+	} */
+
+	$rctext = wfMsg( "recentchangestext" );
 
 	$wgOut->addWikiText( $rctext );
 
