@@ -153,7 +153,7 @@ function getContributorCredits($article, $cnt, $showIfMax) {
 
     # "Based on work by ..."
     
-    return wfMsg('othercontribs', $creds);
+    return (empty($creds)) ? '' : wfMsg('othercontribs', $creds);
 }
 
 function creditLink($user_name, $link_text = '') {
