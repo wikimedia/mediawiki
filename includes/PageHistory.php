@@ -17,7 +17,7 @@ class PageHistory {
 
 	function history()
 	{
-		global $wgUser, $wgOut, $wgLang, $offset, $limit;
+		global $wgUser, $wgOut, $wgLang;
 
 		# If page hasn't changed, client can cache this
 		
@@ -39,9 +39,18 @@ class PageHistory {
 			return;
 		}
 		
-		$offset = (int)$offset;
-		$limit = (int)$limit;
-		if( $limit == 0 ) $limit = 50;
+		list( $limit, $offset ) = wfCheckLimits();
+		
+		/* We have to draw the latest revision from 'cur' */
+		$rawlimit = $limit;
+		$rawoffset = $offset - 1;
+		if( 0 == $offset ) {
+			$rawlimit--;
+			$rawoffset = 0;
+		}
+		/* Check one extra row to see whether we need to show 'next' and diff links */
+		$limitplus = $rawlimit + 1;
+		
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
 		$sql = "SELECT old_id,old_user," .
@@ -49,15 +58,11 @@ class PageHistory {
 		  "FROM old USE INDEX (name_title_timestamp) " .
 		  "WHERE old_namespace={$namespace} AND " .
 		  "old_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
-		  "ORDER BY inverse_timestamp LIMIT $offset, $limit";
+		  "ORDER BY inverse_timestamp LIMIT $rawoffset, $limitplus";
 		$res = wfQuery( $sql, DB_READ, $fname );
 
 		$revs = wfNumRows( $res );
-		if( $this->mTitle->getArticleID() == 0 ) {
-			$wgOut->addHTML( wfMsg( "nohistory" ) );
-			wfProfileOut( $fname );
-			return;
-		}
+		$atend = ($revs < $limitplus);
 		
 		$this->mSkin = $wgUser->getSkin();
 		$numbar = wfViewPrevNext(
@@ -67,20 +72,19 @@ class PageHistory {
 		$s = $numbar;
 		$s .= $this->beginHistoryList();
 
-		if($offset == 0 )
+		if( $offset == 0 )
 		$s .= $this->historyLine( $this->mArticle->getTimestamp(), $this->mArticle->getUser(),
 		  $this->mArticle->getUserText(), $namespace,
 		  $title, 0, $this->mArticle->getComment(),
 		  ( $this->mArticle->getMinorEdit() > 0 ) );
 
-		$revs = wfNumRows( $res );
 		while ( $line = wfFetchObject( $res ) ) {
 			$s .= $this->historyLine( $line->old_timestamp, $line->old_user,
 			  $line->old_user_text, $namespace,
 			  $title, $line->old_id,
 			  $line->old_comment, ( $line->old_minor_edit > 0 ) );
 		}
-		$s .= $this->endHistoryList();
+		$s .= $this->endHistoryList( !$atend );
 		$s .= $numbar;
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );
@@ -93,11 +97,11 @@ class PageHistory {
 		return $s;
 	}
 
-	function endHistoryList()
+	function endHistoryList( $skip = false )
 	{
 		$last = wfMsg( "last" );
 
-		$s = preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
+		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
 		$s .= "</ul>\n";
 		return $s;
 	}
