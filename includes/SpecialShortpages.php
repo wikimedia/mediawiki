@@ -45,9 +45,9 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
+		global $wgLang, $wgContLang;
 		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->value ) );
-		$link = $skin->makeKnownLink( $result->title, "" );
+		$link = $skin->makeKnownLink( $result->title, $wgContLang->convert( $result->title ) );
 		return "{$link} ({$nb})";
 	}
 }
