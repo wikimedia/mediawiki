@@ -1057,8 +1057,8 @@ class LanguageEs extends Language {
 	}
 
 	function getMathNames() {
-		global $wgMathNamesEn;
-		return $wgMathNamesEn;
+		global $wgMathNamesEs;
+		return $wgMathNamesEs;
 	}
 
 
