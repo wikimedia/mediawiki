@@ -513,7 +513,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "showingresultsnum" => "Hieronder <b>$3</b> resultaten vanaf nummer <b>$2</b>.",
 "nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
 
-Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF="http://pliny.wikipedia.org/tools/wikisearch.php">multi-wikipedia zoeker</a> in de andere Wikipedia's, of buiten Wikipedia in een <a href="http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op Wikipedia NL, zodat de volgende die zoekt wat u zocht het wel kan vinden. 
+Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere Wikipedia's, of buiten Wikipedia in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op Wikipedia NL, zodat de volgende die zoekt wat u zocht het wel kan vinden. 
 ",
 "powersearch" => "Zoeken",
 "powersearchtext" => "   
@@ -1083,5 +1083,3 @@ class LanguageNl extends Language {
 
 }
 ?>
-
-
