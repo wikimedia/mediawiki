@@ -1405,7 +1405,6 @@ class Skin {
 						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
 							$size = $threshold*2 ; # Really big
 						}
-						$dbr->freeResult( $res );
 					} else {
 						$size = $threshold*2 ; # Really big
 					}
