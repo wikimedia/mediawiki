@@ -2,6 +2,6 @@
 -- breaking protected page edits by sysops.
 -- 2004-10-27
 
-UPDATE `group`
+UPDATE /*$wgDBprefix*/`group`
    SET group_rights=CONCAT(group_rights,',sysop')
  WHERE group_name IN('Sysops','Bureaucrat');
