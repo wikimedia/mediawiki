@@ -26,7 +26,7 @@ OutputPage::setEncodings(); # Not really used yet
 # Query string fields
 $action = $wgRequest->getVal( "action", "view" );
 
-if( isset( $_SERVER['PATH_INFO'] ) ) {
+if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
 	$title = substr( $_SERVER['PATH_INFO'], 1 );
 } else {
 	$title = $wgRequest->getVal( "title" );

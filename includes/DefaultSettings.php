@@ -21,6 +21,9 @@ if ( @$wgCommandLineMode ) {
 $wgScriptPath	    = "/wiki";
 
 # ATTN: Old installations used wiki.phtml and redirect.phtml -
+# Whether to support URLs like index.php/Page_title
+$wgUsePathInfo		= ( strpos( php_sapi_name(), "cgi" ) === false );
+
 # make sure that LocalSettings.php is correctly set!
 $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
@@ -47,9 +50,14 @@ $wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
 $wgDBconnection     = "";
 $wgDBuser           = "wikiuser";
-$wgDBpassword       = "userpass";
+
+# Sysop SQL queries
+$wgAllowSysopQueries = false; # Dangerous if not configured properly.
 $wgDBsqluser		= "sqluser";
 $wgDBsqlpassword	= "sqlpass";
+$wgDBpassword       = "userpass";
+$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
+
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
@@ -111,7 +119,6 @@ $wgDebugRedirects		= false;
 
 $wgDebugComments        = false;
 $wgReadOnly             = false;
-$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
 
