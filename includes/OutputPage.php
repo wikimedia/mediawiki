@@ -308,7 +308,8 @@ class OutputPage {
 
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI;
-		# FIXME: This header may cause trouble with some versions of Internet Explorer
+		# don't serve compressed data to clients who can't handle it
+		# maintain different caches for logged-in users and non-logged in ones
 		header( 'Vary: Accept-Encoding, Cookie' );
 		if( $this->mEnableClientCache ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( 'session.name') ] ) &&
