@@ -45,7 +45,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# Get keys from $wgAllMessagesEn, which is more complete than the local language
 	$first = true;
 	if ( $messageArray ) {
-		$sortedArray = $wgAllMessagesEn;
+		$sortedArray = $messageArray;
 	} else {
 		$sortedArray = $wgAllMessagesEn;
 	}
@@ -175,9 +175,13 @@ $message
 	}
 }
 
-function loadArrayFromFile( $filename )
+function loadLanguageFile( $filename )
 {
 	$contents = file_get_contents( $filename );
+	# Remove header line
+	$p = strpos( $contents, "\n" ) + 1;
+	$contents = substr( $contents, $p );
+	# Unserialize
 	return unserialize( $contents );
 }
 

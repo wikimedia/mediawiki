@@ -1,7 +1,10 @@
 <?php
-if ( strpos( "wikimedia.org", `hostname -a` ) !== false ) {
+if ( strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 	require_once( "liveCmdLine.inc" );
 } else {
+	# Turn off output buffering if it's on
+	@ob_end_flush();
+	
 	if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 		print "This script must be run from the command line\n";
 		exit();
@@ -11,7 +14,8 @@ if ( strpos( "wikimedia.org", `hostname -a` ) !== false ) {
 
 	$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 	if ( @$argv[1] && @$argv[1] != "-" ) {
-		$lang = $argv[1];
+		$self = array_shift( $argv );
+		$lang = array_shift( $argv );
 		putenv( "wikilang=$lang");
 		$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
 		$newpath = "/apache/common/php$sep";
@@ -35,9 +39,8 @@ if ( strpos( "wikimedia.org", `hostname -a` ) !== false ) {
 	$wgUsePHPTal = false;
 	define("MEDIAWIKI",true);
 	include_once( "Setup.php" );
-	include_once( "./InitialiseMessages.inc" );
 	include_once( "../install-utils.inc" );
-	$wgTitle = Title::newFromText( "Rebuild messages script" );
+	$wgTitle = Title::newFromText( "Command line script" );
 	$wgCommandLineMode = true;
 	set_time_limit(0);
 }

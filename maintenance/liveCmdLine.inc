@@ -11,14 +11,17 @@ if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 }
 
 $wgCommandLineMode = true;
+$self = array_shift( $argv );
+# Turn off output buffering if it's on
+@ob_end_flush();
 
-if ( isset( $argv[1] ) ) {
-	$lang = $argv[1];
+if ( isset( $argv[0] ) ) {
+	$lang = array_shift( $argv );
 } else {
 	$lang = "aa";
 }
-if ( isset( $argv[2] ) ) {
-	$site = $argv[2];
+if ( isset( $argv[0] ) ) {
+	$site = array_shift( $argv );
 } else {
 	$site = "wikipedia";
 }
@@ -42,7 +45,8 @@ require_once( "/home/wikipedia/common/php-new/CommonSettings.php" );
 $wgUsePHPTal = false;
 
 define("MEDIAWIKI",true);
-include_once( "Setup.php" );
+require_once( "Setup.php" );
+require_once( "../install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );
 $wgCommandLineMode = true;
 set_time_limit(0);
