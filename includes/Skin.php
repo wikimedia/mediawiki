@@ -1828,7 +1828,7 @@ class Skin {
 				     	print 'rescaling by factor '. $height / $img->getHeight() . "<br>\n";
 					$width = $img->getWidth() * $height / $img->getHeight();
 				}
-				$url = $img->createThumb( $width );
+				if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
 			}
 		} # endif $wgUseImageResize
 			
@@ -1885,7 +1885,7 @@ class Skin {
 			} else {
 				$boxheight = $h;
 			}
-			$thumbUrl = $img->createThumb( $boxwidth );
+			if ( '' == $manual_thumb ) $thumbUrl = $img->createThumb( $boxwidth );
 		}
 
 		if ( $manual_thumb != '' ) # Use manually specified thumbnail
