@@ -5,17 +5,17 @@ function install_version_checks() {
 	# if PHP is globally configured to run through a gzip filter.
 	@ob_implicit_flush( true );
 	
-	if( !function_exists( "version_compare" ) ) {
+	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
 		die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
 	}
-	if( version_compare( phpversion(), "4.3.2" ) < 0 ) {
+	if( version_compare( phpversion(), '4.3.2' ) < 0 ) {
 		echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
 	}
 	
 	if (!extension_loaded('mysql')) {
 		if (!dl('mysql.so')) {
-			print "Could not load MySQL driver! Please compile ".
+			print 'Could not load MySQL driver! Please compile '.
 				  "php --with-mysql or install the mysql.so module.\n";
 		exit;
 		}
@@ -50,18 +50,18 @@ function copydirectory( $source, $dest ) {
 	$handle = opendir( $source );
 	while ( false !== ( $f = readdir( $handle ) ) ) {
 		$fullname = "$source/$f";
-		if ( $f{0} !="." && is_file( $fullname ) ) {
+		if ( $f{0} != '.' && is_file( $fullname ) ) {
 			copyfile( $source, $f, $dest );
 		}
 	}
 }
 
-function readconsole( $prompt = "" ) {
-	if ( function_exists( "readline" ) ) {
+function readconsole( $prompt = '' ) {
+	if ( function_exists( 'readline' ) ) {
 		return readline( $prompt );
 	} else {
 		print $prompt;
-		$fp = fopen( "php://stdin", "r" );
+		$fp = fopen( 'php://stdin', 'r' );
 		$resp = trim( fgets( $fp, 1024 ) );
 		fclose( $fp );
 		return $resp;
@@ -70,9 +70,9 @@ function readconsole( $prompt = "" ) {
 
 function replacevars( $ins ) {
 	$varnames = array(
-		"wgDBserver", "wgDBname", "wgDBintlname", "wgDBuser",
-		"wgDBpassword", "wgDBsqluser", "wgDBsqlpassword",
-		"wgDBadminuser", "wgDBadminpassword", "wgDBprefix"
+		'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
+		'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
+		'wgDBadminuser', 'wgDBadminpassword', 'wgDBprefix'
 	);
 
 	foreach ( $varnames as $var ) {
@@ -88,7 +88,7 @@ function replacevars( $ins ) {
 # Read and execute SQL commands from a file
 #
 function dbsource( $fname, $database = false ) {
-	$fp = fopen( $fname, "r" );
+	$fp = fopen( $fname, 'r' );
 	if ( false === $fp ) {
 		print "Could not open \"{$fname}\".\n";
 		exit();
@@ -102,14 +102,14 @@ function dbsource( $fname, $database = false ) {
 		$sl = strlen( $line ) - 1;
 
 		if ( $sl < 0 ) { continue; }
-		if ( "-" == $line{0} && "-" == $line{1} ) { continue; }
+		if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
 
-		if ( ";" == $line{$sl} ) {
+		if ( ';' == $line{$sl} ) {
 			$done = true;
 			$line = substr( $line, 0, $sl );
 		}
 
-		if ( "" != $cmd ) { $cmd .= " "; }
+		if ( '' != $cmd ) { $cmd .= ' '; }
 		$cmd .= $line;
 
 		if ( $done ) {
@@ -125,7 +125,7 @@ function dbsource( $fname, $database = false ) {
 				exit();
 			}
 
-			$cmd = "";
+			$cmd = '';
 			$done = false;
 		}
 	}
@@ -134,7 +134,7 @@ function dbsource( $fname, $database = false ) {
 
 # Obsolete, use Database::fieldExists()
 function field_exists( $table, $field ) {
-	$fname = "Update script: field_exists";
+	$fname = 'Update script: field_exists';
 	$db =& wfGetDB( DB_SLAVE );
 	$res = $db->query( "DESCRIBE $table", $fname );
 	$found = false;

@@ -2,15 +2,15 @@
 unset( $DP );
 unset( $IP );
 $wgCommandLineMode = false;
-define( "MEDIAWIKI", true );
+define( 'MEDIAWIKI', true );
 
-require_once( "./LocalSettings.php" );
+require_once( './LocalSettings.php' );
 global $wgArticlePath;
 
-require_once( "includes/WebRequest.php" );
+require_once( 'includes/WebRequest.php' );
 $wgRequest = new WebRequest();
 
-$page = $wgRequest->getVal( "wpDropdown" );
+$page = $wgRequest->getVal( 'wpDropdown' );
 
 $url = str_replace( "$1", urlencode( $page ), $wgArticlePath );
 
