@@ -171,11 +171,6 @@ if( !is_null( $search ) && $search !== '' ) {
 			$raw = new RawPage( $wgArticle );
 			$raw->view();
 			break;
-		case "editcomment":
-			require_once( "includes/EditComment.php" );
-			$ecom = new EditComment( $wgArticle, $action );
-			$ecom->process();
-			break;
 		case "purge":
 			wfPurgeSquidServers(array($wgTitle->getInternalURL()));
 			$wgOut->setSquidMaxage( $wgSquidMaxage );

@@ -157,7 +157,7 @@ function wfSpecialContributions( $par = '' ) {
 
 			$obj1 = $dbr->fetchObject( $res1 );
 			$topmark = true;
-			$oldid = 0;
+			$oldid = false;
 			--$nCur;
 		} else {
 			$ns = $obj2->old_namespace;
@@ -174,7 +174,7 @@ function wfSpecialContributions( $par = '' ) {
 			--$nOld;
 		}
 		if( $n >= $offset )
-			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext, $oldid, $id );
+			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext, $oldid );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 
@@ -207,13 +207,11 @@ function wfSpecialContributions( $par = '' ) {
  * 
  * @todo This would probably look a lot nicer in a table.
  */
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid, $id ) {
+function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid ) {
 	$fname = 'ucListEdit';
 	wfProfileIn( $fname );
 	
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
-	global $wgStylePath, $wgAllowEditComments, $wgUserEditCommentTimeout;
-	
 	static $messages;
 	if( !isset( $messages ) ) {
 		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
@@ -256,28 +254,8 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 	} else {
 		$mflag = '';
 	}
-	
-	# Show an edit user comments icon if conditions are met.
-	# Option must be on, user logged in, user these contributions are for or a sysop,
-	# and the article must be recent enough.
-	if ( $wgAllowEditComments && $wgUser->getID() &&
-		 ($id == $wgUser->getID() || $wgUser->isAllowed(EDIT_COMMENT_ALL)) &&
-		 ($wgUser->isAllowed(EDIT_COMMENT_ALL) || $wgUserEditCommentTimeout < 0 || 
-		  $ts >= wfTimestampPlus( wfTimestampNow(), -$wgUserEditCommentTimeout * 60)) ) {
-		
-		$tooltip = wfMsg( "ectooltip" );
-		$rt = $sk->makeKnownLinkObj( $page, "<img src=\"".$wgStylePath."/common/images/editcomment_icon.gif\" alt=\"{$tooltip}\" />",
-		  "action=editcomment&oldid={$oldid}&returnto=Special:Contributions&returntotarget=$target" );
-		
-		# ***** Kludge ****
-		# Swap out the tool tip created by makeKnownLink() with one appropriate for this link.
-		$rt = preg_replace( '/title\=\"[^\"]*\"/', 'title="' . $tooltip . '"', $rt);
-	}
-	else {
-		$rt = '';
-	}
 
-	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$link} {$rt} {$mflag} {$comment} {$topmarktext}</li>\n" );
+	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}</li>\n" );
 	wfProfileOut( $fname );
 }
 

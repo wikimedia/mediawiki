@@ -685,19 +685,6 @@ $wgCapitalLinks = true;
 # can be imported, these should be 'trusted'.
 $wgImportSources = array();
 
-# Set to true to allow editing comments (revision summaries) via
-# clicking on editcomment_icon.gif. This will appear in History
-# and Contributions listings for just revisions made by the
-# logged in user. SysOps may edit all revisions.
-$wgAllowEditComments = false;
-
-# If $wgAllowEditComments, the maximum age in minutes of a
-# revision a user may revise the comment of, -1 = forever,
-# 0 = never. Sysops may always edit a comment.
-# Note: The user is given an extra 2 minutes once they start
-# editing a comment.
-$wgUserEditCommentTimeout = 0;
-
 # Set this to the number of authors that you want to be credited below an
 # article text. Set it to zero to hide the attribution block, and a
 # negative number (like -1) to show all authors. Note that this will
