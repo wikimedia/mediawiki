@@ -19,13 +19,6 @@
 
 class Validation
 	{
-	# Things that should be in the language files
-	var $types = array (
-			"0" => "Style|Awful|Awesome|5",
-			"1" => "Legal|Illegal|Legal|5",
-			"2" => "Completeness|Stub|Extensive|5",
-			"3" => "Facts|Wild guesses|Concrete|5"
-			) ;
 	
 	function find_this_version ( $article_title , &$article_time , &$id , &$tab )
 		{
@@ -68,6 +61,7 @@ class Validation
 		{
 		global $wgOut, $wgLang, $wgUser;
 		if ( $wgUser->getID() == 0 ) return ; # Anon
+		$validationtypes = $wgLang->getValidationTypes() ;
 		if ( $article_title == "" )
 			{
 			$article_title = $_GET['article'] ;
@@ -102,7 +96,7 @@ class Validation
 			$sql .= $wgUser->getID() . "'" ;
 			wfQuery( $sql, DB_WRITE );
 	
-			for ( $idx = 0 ; $idx < count ( $this->types) ; $idx++ ) # Changes
+			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ ) # Changes
 				{
 				$comment = $_POST["comment{$idx}"] ;
 				$comment_sql = str_replace ( "'" , "\'" , $comment ) ;
@@ -122,22 +116,24 @@ class Validation
 		
 		# Generating HTML
 		$html = $heading ;
+		$tabsep = "<td width=0px style='border-left:2px solid black;'></td>" ;
+		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
 			{
-			if ( $time == $article_time ) $html .= "<h2>This version</h2>\n" ;
-			else $html .= "<h2>Version of {$time}</h2>\n" ;
+			if ( $time == $article_time ) $html .= wfMsg("val_this_version") ;
+			else $html .= str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
 			$html .= "<form method=post>\n" ;
 			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
-			$html .= "<table>\n" ;
-			$html .= "<tr><th>Class</th><th colspan=4>Opinion</th><th>Comment</th></tr>\n" ;
-			for ( $idx = 0 ; $idx < count ( $this->types) ; $idx++ )
+			$html .= "<table cellspacing=0 cellpadding=2>\n" ;
+			$html .= str_replace ( "$1" , $tabsep , wfMsg("val_table_header") ) ;
+			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )
 				{
-				$x = explode ( "|" , $this->types[$idx] , 4 ) ;
+				$x = explode ( "|" , $validationtypes[$idx] , 4 ) ;
 				if ( isset ( $stuff[$idx] ) ) $choice = $stuff[$idx]->val_value ;
 				else $choice = -1 ;
 				if ( isset ( $stuff[$idx] ) ) $comment = $stuff[$idx]->val_comment ;
 				else $comment = "" ;
-				$html .= "<tr><th align=left>{$x[0]}</th><td align=right>{$x[1]}</td><td align=center>" ;			
+				$html .= "<tr><th align=left>{$x[0]}</th>{$tabsep}<td align=right>{$x[1]}</td><td align=center>" ;			
 				for ( $cnt = 0 ; $cnt < $x[3] ; $cnt++)
 					{
 					$html .= "<input type=radio name='rad{$idx}' value='{$cnt}'" ;
@@ -147,14 +143,14 @@ class Validation
 				$html .= "</td><td>{$x[2]}</td>" ;
 				$html .= "<td><input type=radio name='rad{$idx}' value='-1'" ;
 				if ( $choice == -1 ) $html .= " checked" ;
-				$html .= "> " . wfMsg ( "val_noop" ) . "</td>" ;
+				$html .= "> " . wfMsg ( "val_noop" ) . "</td>{$tabsep}" ;
 				$html .= "<td><input type=text name='comment{$idx}' value='{$comment}'></td>" ;
 				$html .= "</tr>\n" ;
 				}
-			$html .= "<tr><td></td><td colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
-			$html .= str_replace ( "$1" , $article->getPrefixedURL() , wfMsg("clear_old") ) ;
-			$html .= "</td><td align=right><input type=submit name=doit value='Do it'></td>" ;
-			$html .= "</tr></table></form>\n" ;
+			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
+			$html .= str_replace ( "$1" , $article->getPrefixedURL() , wfMsg("val_clear_old") ) ;
+			$html .= "</td><td {$topstyle} align=right><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
+			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
 			}
 		return $html ;
 		}
@@ -176,6 +172,7 @@ class Validation
 		
 	function getPageStatistics ( $article_title = "" )
 		{
+		$validationtypes = $wgLang->getValidationTypes() ;
 		$article_title = $_GET['article'] ;
 		$html = "<h1>Page validation statistics</h1>\n" ;
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
@@ -183,7 +180,7 @@ class Validation
 		else $d = array () ;
 		$html .= "<table border=1 cellpadding=2>\n" ;
 		$html .= "<tr><th>Version</th>" ;
-		foreach ( $this->types AS $idx => $title )
+		foreach ( $validationtypes AS $idx => $title )
 			{
 			$title = explode ( "|" , $title ) ;
 			$html .= "<th>{$title[0]}</th>" ;
@@ -205,7 +202,7 @@ class Validation
 				}
 	
 	
-			foreach ( $this->types AS $idx => $title )
+			foreach ( $validationtypes AS $idx => $title )
 				{
 				$html .= "<td>" ;
 				if ( isset ( $vcur[$idx] ) )
