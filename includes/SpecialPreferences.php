@@ -181,12 +181,6 @@ function wfSpecialPreferences()
 			$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
 			  "wpNs$i\"{$checked}>{$name}</label>\n";
 		}
-		$name = str_replace( "_", " ", $ns[$i] );
-		if ( "" == $name ) { $name = wfMsg( "blanknamespace" ); }
-
-		if ( 0 != $i ) { $r1 .= " "; }
-		$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
-		  "wpNs{$i}\"{$checked}>{$name}</label>\n";
 	}
 	
 	return $r1;
