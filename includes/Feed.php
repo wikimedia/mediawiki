@@ -1,4 +1,23 @@
 <?php
+# Basic support for outputting syndication feeds in RSS, other formats
+# 
+# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+# http://www.mediawiki.org/
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
 
 $wgFeedClasses = array(
 	"rss" => "RSSFeed",
@@ -10,12 +29,14 @@ class FeedItem {
 	var $Description = "";
 	var $Url = "";
 	var $Date = "";
+	var $Author = "";
 	
-	function FeedItem( $Title, $Description, $Url, $Date = "" ) {
+	function FeedItem( $Title, $Description, $Url, $Date = "", $Author = "" ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;
 		$this->Date = $Date;
+		$this->Author = $Author;
 	}
 	
 	/* Static... */
@@ -43,6 +64,9 @@ class FeedItem {
 	function getDate() {
 		return $this->Date;
 	}
+	function getAuthor() {
+		return $this->xmlEncode( $this->Author );
+	}
 }
 
 class ChannelFeed extends FeedItem {
@@ -66,6 +90,7 @@ class RSSFeed extends ChannelFeed {
 	function outHeader() {
 		global $wgVersion;
 		
+		header( "Content-type: application/xml; charset=UTF-8" );
 		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
 		?><rss version="2.0">
 	<channel>
@@ -85,6 +110,7 @@ class RSSFeed extends ChannelFeed {
 			<link><?php print $item->getUrl() ?></link>
 			<description><?php print $item->getDescription() ?></description>
 			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
+			<?php if( $item->getAuthor() ) { ?><author><?php print $item->getAuthor() ?></author><?php }?>
 
 		</item>
 <?php

@@ -42,14 +42,14 @@ class QueryPage {
 	# real, honest-to-gosh query page.
 
 	function doQuery( $offset, $limit ) {
-
 		global $wgUser, $wgOut, $wgLang, $wgMiserMode;
 
 		$sname = $this->getName();
 		$fname = get_class($this) . "::doQuery";
 
+		$wgOut->setSyndicated( true );
+		
 		if ( $this->isExpensive( ) ) {
-
 			$vsp = $wgLang->getValidSpecialPages();
 			$logpage = new LogPage( "!" . $vsp[$sname] );
 			$logpage->mUpdateRecentChanges = false;
@@ -141,23 +141,39 @@ class QueryPage {
 				$title->getText(),
 				$this->feedItemDesc( $row ),
 				$title->getFullURL(),
-				$date);
+				$date,
+				$this->feedItemAuthor( $row ) );
 		} else {
 			return NULL;
 		}
 	}
 	
 	function feedItemDesc( $row ) {
+		$text = "";
 		if( isset( $row->cur_comment ) ) {
-			return $row->cur_comment;
+			$text = $row->cur_comment;
 		} elseif( isset( $row->old_comment ) ) {
-			return $row->old_comment;
+			$text = $row->old_comment;
 		} elseif( isset( $row->rc_comment ) ) {
-			return $row->rc_comment;
+			$text = $row->rc_comment;
+		}
+		$text = htmlspecialchars( $text );
+		
+		if( isset( $row->cur_text ) ) {
+			$text = "<p>" . htmlspecialchars( wfMsg( "summary" ) ) . ": " . $text . "</p>\n<hr />\n<div>" .
+				nl2br( $row->cur_text ) . "</div>";;
+		}
+		return $text;
+	}
+	
+	function feedItemAuthor( $row ) {
+		$fields = array( "cur_user_text", "old_user_text", "rc_user_text" );
+		foreach( $fields as $field ) {
+			if( isset( $row->$field ) ) return $row->field;
 		}
 		return "";
 	}
-
+	
 	function feedTitle() {
 		global $wgLanguageCode, $wgSitename, $wgLang;
 		$pages = $wgLang->getValidSpecialPages();
