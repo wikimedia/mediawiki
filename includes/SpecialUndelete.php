@@ -84,16 +84,19 @@ class PageArchive {
 		return ($n > 0);
 	}
 	
-	function undelete() {
+	function undelete( $timestamps ) {
 		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
-		global  $wgUseSquid, $wgInternalServer, $wgLinkCache;
+		global $wgUseSquid, $wgInternalServer, $wgLinkCache;
 
 		$fname = "doUndeleteArticle";
+		$restoreAll = empty( $timestamps );
+		$restoreRevisions = count( $timestamps );
 
 		$dbw =& wfGetDB( DB_MASTER );
 		extract( $dbw->tableNames( 'cur', 'archive', 'old' ) );
 		$namespace = $this->title->getNamespace();
-		$t = $dbw->strencode( $this->title->getDBkey() );
+		$ttl = $this->title->getDBkey();
+		$t = $dbw->strencode( $ttl );
 
 		# Move article and history from the "archive" table
 		$sql = "SELECT COUNT(*) AS count FROM $cur WHERE cur_namespace={$namespace} AND cur_title='{$t}' FOR UPDATE";
@@ -103,24 +106,43 @@ class PageArchive {
 
 		if( $row->count == 0) {
 			# Have to create new article...
-			$sql = "SELECT ar_text,ar_timestamp,ar_flags FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' " .
-				"ORDER BY ar_timestamp DESC LIMIT 1 FOR UPDATE";
+			$sql = "SELECT ar_text,ar_comment,ar_user,ar_user_text,ar_timestamp,ar_minor_edit,ar_flags FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' ";
+			if( !$restoreAll ) {
+				$max = $dbw->addQuotes( $dbw->timestamp( array_shift( $timestamps ) ) );
+				$sql .= "AND ar_timestamp={$max} ";
+			}
+			$sql .= "ORDER BY ar_timestamp DESC LIMIT 1 FOR UPDATE";
 			$res = $dbw->query( $sql, $fname );
 			$s = $dbw->fetchObject( $res );
-			$max = $s->ar_timestamp;
-			$redirect = MagicWord::get( MAG_REDIRECT );
-			$redir = $redirect->matchStart( $s->ar_text ) ? 1 : 0;
+			if( $restoreAll ) {
+				$max = $s->ar_timestamp;
+			}
+			$text = Article::getRevisionText( $s, "ar_" );
 			
-			$seqVal = $dbw->addQuotes( $dbw->nextSequenceValue( 'cur_cur_id_seq' ) );
-
-			$sql = "INSERT INTO $cur (cur_id,cur_namespace,cur_title,cur_text," .
-			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_is_redirect,cur_random,cur_touched)" .
-			  "SELECT $seqVal,ar_namespace,ar_title,ar_text,ar_comment," .
-			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,{$redir},RAND(),'{$now}' FROM $archive " .
-			  "WHERE ar_namespace={$namespace} AND ar_title='{$t}' AND ar_timestamp={$max}";
-			$dbw->query( $sql, $fname );
+			$redirect = MagicWord::get( MAG_REDIRECT );
+			$redir = $redirect->matchStart( $text ) ? 1 : 0;
+			
+			$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+			$dbw->insertArray( 'cur', array(
+				'cur_id' => $dbw->nextSequenceValue( 'cur_cur_id_seq' ),
+				'cur_namespace' => $namespace,
+				'cur_title' => $ttl,
+				'cur_text' => $text,
+				'cur_comment' => $s->ar_comment,
+				'cur_user' => $s->ar_user,
+				'cur_timestamp' => $s->ar_timestamp,
+				'cur_minor_edit' => $s->ar_minor_edit,
+				'cur_user_text' => $s->ar_user_text,
+				'cur_is_redirect' => $redir,
+				'cur_random' => $rand,
+				'cur_touched' => $dbw->timestamp( $now ),
+				'inverse_timestamp' => wfInvertTimestamp( wfTimestamp( TS_MW, $s->ar_timestamp ) ),
+			), $fname );
+			
 			$newid = $dbw->insertId();
-			$oldones = "AND ar_timestamp<{$max}";
+			if( $restoreAll ) {
+				$oldones = "AND ar_timestamp<{$max}";
+			}
 		} else {
 			# If already exists, put history entirely into old table
 			$oldones = "";
@@ -134,12 +156,22 @@ class PageArchive {
 			# We should merge.
 		}
 		
+		if( !$restoreAll ) {
+			$oldts = array();
+			foreach( $timestamps as $ts ) {
+				array_push( $oldts, $dbw->addQuotes( $dbw->timestamp( $ts ) ) );
+			}
+			$oldts = join( ",", $oldts );
+			$oldones = "AND ar_timestamp IN ( {$oldts} )";
+		}
 		$sql = "INSERT INTO $old (old_namespace,old_title,old_text," .
 		  "old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp,old_minor_edit," .
 		  "old_flags) SELECT ar_namespace,ar_title,ar_text,ar_comment," .
 		  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,ar_flags " .
 		  "FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
-		$dbw->query( $sql, $fname );
+		if( $restoreAll || !empty( $oldts ) ) {
+			$dbw->query( $sql, $fname );
+		}
 
 		# Finally, clean up the link tables 
 		if( $newid ) {
@@ -148,11 +180,6 @@ class PageArchive {
 			$wgLinkCache->forUpdate( true );
 			# Create a dummy OutputPage to update the outgoing links
 			$dummyOut = new OutputPage();
-			# Get the text
-			$text = $dbw->selectField( 'cur', 'cur_text', 
-				array( 'cur_id' => $newid, 'cur_namespace' => $namespace ), 
-				$fname, 'FOR UPDATE' 
-			);
 			$dummyOut->addWikiText( $text );
 
 			$u = new LinksUpdate( $newid, $this->title->getPrefixedDBkey() );
@@ -166,12 +193,25 @@ class PageArchive {
 		# Now that it's safely stored, take it out of the archive
 		$sql = "DELETE FROM $archive WHERE ar_namespace={$namespace} AND " .
 		  "ar_title='{$t}'";
+		if( !$restoreAll ) {
+			$sql .= " AND ar_timestamp IN ( {$oldts}";
+			if( $newid ) {
+				if( !empty( $oldts ) ) $sql .= ",";
+				$sql .= $max;
+			}
+			$sql .= ")";
+		}
 		$dbw->query( $sql, $fname );
 
 		
 		# Touch the log?
 		$log = new LogPage( 'delete' );
-		$log->addEntry( 'restore', $this->title, "" );
+		if( $restoreAll ) {
+			$reason = "";
+		} else {
+			$reason = wfMsg( 'undeletedrevisions', $restoreRevisions );
+		}
+		$log->addEntry( 'restore', $this->title, $reason );
 		
 		return true;
 	}
@@ -184,6 +224,7 @@ class PageArchive {
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
+	var $mTargetTimestamp;
 
 	function UndeleteForm( &$request, $par = "" ) {
 		$this->mAction = $request->getText( 'action' );
@@ -197,6 +238,16 @@ class UndeleteForm {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
 		} else {
 			$this->mTargetObj = NULL;
+		}
+		if( $this->mRestore ) {
+			$timestamps = array();
+			foreach( $_REQUEST as $key => $val ) {
+				if( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {
+					array_push( $timestamps, $matches[1] );
+				}
+			}
+			rsort( $timestamps );
+			$this->mTargetTimestamp = $timestamps;
 		}
 	}
 
@@ -282,7 +333,7 @@ class UndeleteForm {
 	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
 	<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
 	<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
-	</form>");
+	");
 
 		# Show relevant lines from the deletion log:
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
@@ -299,6 +350,7 @@ class UndeleteForm {
 		$wgOut->addHTML("<ul>");
 		$target = urlencode( $this->mTarget );
 		while( $row = $revisions->fetchObject() ) {
+			$checkBox = "<input type=\"checkbox\" name=\"ts{$row->ar_timestamp}\" value=\"1\" />";
 			$pageLink = $sk->makeKnownLinkObj( $titleObj,
 				$wgLang->timeanddate( $row->ar_timestamp, true ),
 				"target=$target&timestamp={$row->ar_timestamp}" );
@@ -309,11 +361,11 @@ class UndeleteForm {
 					$userLink );
 			}
 			$comment = $sk->formatComment( $row->ar_comment );
-			$wgOut->addHTML( "<li>$pageLink . . $userLink (<i>$comment</i>)</li>\n" );
+			$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink (<i>$comment</i>)</li>\n" );
 
 		}
 		$revisions->free();
-		$wgOut->addHTML("</ul>");
+		$wgOut->addHTML("</ul>\n</form>");
 		
 		return true;
 	}
@@ -322,7 +374,7 @@ class UndeleteForm {
 		global $wgOut;
 		if( !is_null( $this->mTargetObj ) ) {
 			$archive = new PageArchive( $this->mTargetObj );
-			if( $archive->undelete() ) {
+			if( $archive->undelete( $this->mTargetTimestamp ) ) {
 				$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
 				return true;
 			}
