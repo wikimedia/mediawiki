@@ -105,11 +105,12 @@ class SearchUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		wfProfileOut( "$fname-regexps" );
-		
-		$sql = "REPLACE  INTO $searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
-		  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
-		  $db->strencode( $text ) . "')";
-		$db->query( $sql, 'SearchUpdate::doUpdate' );
+                $db->replace( $searchindex, array(array('si_page')),
+                  array(
+                    'si_page' => $this->mId,
+                    'si_title' => $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
+                    'si_text' => $db->strencode( $text )
+                  ), 'SearchUpdate::doUpdate' );
 		wfProfileOut( $fname );
 	}
 }
