@@ -496,8 +496,9 @@ again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
 your browser cache\n",
 
-'welcomecreation' => "<h2>Welcome, $1!</h2><p>Your account has been created.
-Don't forget to change your {{SITENAME}} preferences.",
+'welcomecreation' => "== Welcome, $1! ==
+
+Your account has been created. Don't forget to change your {{SITENAME}} preferences.",
 
 'loginpagetitle' => 'User login',
 'yourname'		=> 'Your user name',
