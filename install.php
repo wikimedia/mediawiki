@@ -76,6 +76,7 @@ copyfile( "./images", "button_media.png", $wgUploadDirectory );
 copyfile( "./images", "button_nowiki.png", $wgUploadDirectory );
 copyfile( "./images", "button_sig.png", $wgUploadDirectory );
 copyfile( "./images", "button_template.png", $wgUploadDirectory );
+copyfile( "./images", "magnify-clip.png", $wgUploadDirectory );
 
 copyfile( "./languages", "Language.php", $IP );
 copyfile( "./languages", "LanguageUtf8.php", $IP );
