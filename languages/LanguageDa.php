@@ -824,7 +824,7 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "unusedimagestext" => "<p>Læg mærke til, at andre websider
 såsom de andre internationale Wikipediaer måske henviser til et billede med
 en direkte URL, så det kan stadig være listet her, selvom det er
-i aktivt brug.",
+i aktivt brug.</p>",
 "booksources"	=> "Bogkilder",
 "booksourcetext" => "Herunder er en liste af henvisninger til steder der
 udlåner og/eller sælger nye og brugte bøger, og som måske også har 
