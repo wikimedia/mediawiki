@@ -440,9 +440,11 @@ the wiki.",
 # Login and logout pages
 #
 "logouttitle"	=> "User logout",
-"logouttext"	=> "You are now logged out.
+"logouttext" => "You are now logged out.
 You can continue to use Wikipedia anonymously, or you can log in
-again as the same or as a different user.\n",
+again as the same or as a different user. Note that some pages may
+continue to be displayed as if you were still logged in, until you clear
+your browser cache\n",
 
 "welcomecreation" => "<h2>Welcome, $1!</h2><p>Your account has been created.
 Don't forget to personalize your wikipedia preferences.",
@@ -1335,7 +1337,24 @@ class Language {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesEn;
-		return $wgAllMessagesEn[$key];
+		$message = $wgAllMessagesEn[$key];
+		if ( $message{0} == ":" ) {
+			# Get message from the database
+			$message = substr( $message, 1 );
+			$title = Title::newFromText( $message );
+			$dbKey = $title->getDBkey();
+			$ns = $title->getNamespace();
+			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=$ns AND cur_title='$dbKey'";
+			$res = wfQuery( $sql, $fname );
+			if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
+				$message = $s->cur_text;
+			} else {
+				# Similar behaviour on fail to ordinary missing messages
+				$message = "<$message>";
+			}
+			wfFreeResult( $res );
+		}
+		return $message;
 	}
 	
 	function iconv( $in, $out, $string ) {
