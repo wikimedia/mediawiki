@@ -731,7 +731,7 @@ $t[] = "</table>" ;
 
 		$sk = $wgUser->getSkin();
 		$text = $sk->transformContent( $text );
-                $text .= $this->categoryMagic () ;
+		$text .= $this->categoryMagic () ;
 
 		wfProfileOut( $fname );
 		return $text;

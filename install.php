@@ -21,7 +21,7 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 $DP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
-include_once( "./maintenance/InitialiseMessages.php" );
+include_once( "./maintenance/InitialiseMessages.inc" );
 
 if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 	print "To use math functions, you must first compile texvc by\n" .
