@@ -186,7 +186,7 @@ class Title {
 				
 				$rt = Title::newFromText( $m[1] );
 				# Disallow redirects to Special:Userlogout
-				if ( $rt->getNamespace() == NS_SPECIAL && preg_match( '/^Userlogout/i', $rt->getText ) ) {
+				if ( $rt->getNamespace() == NS_SPECIAL && preg_match( '/^Userlogout/i', $rt->getText() ) ) {
 					$rt = NULL;
 				}
 			}
