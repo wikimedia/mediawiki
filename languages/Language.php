@@ -1971,14 +1971,16 @@ class Language {
     # -{text}- in which case no conversion should take place for text
 	function convert( $text ) {
 
-        $plang = $this->getPreferredVariant();
-        if(!$plang)
+        if(sizeof($this->getVariants())<2) 
             return $text;
 
 		// no conversion if redirecting
 		if(substr($text,0,9) == "#REDIRECT") {
 			return $text;
 		}
+
+
+        $plang = $this->getPreferredVariant();
 
         $tarray = explode("-{", $text);
         $tfirst = array_shift($tarray);
@@ -2018,9 +2020,24 @@ class Language {
         return array();
     }
 
-    # todo: write general code to get default language variant
+
     function getPreferredVariant() {
-        return false;
+        global $wgUser;
+        
+        // if user logged in, get in from user's preference
+        if($wguser->getID()!=0)
+            return $wgUser->getOption('variant');
+
+        // if we have multiple variants for this langauge, 
+        // pick the first one as default
+        $v=$this->getVariants() ;
+        if(!empty($v))
+            return $v{0};
+
+        // otherwise there should really be just one variant, 
+        // get it from the class name
+        $lang = strtolower(substr(class_name($this), 8));
+        return $lang;
     }
 }
 
