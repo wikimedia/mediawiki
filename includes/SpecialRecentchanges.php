@@ -1,11 +1,19 @@
 <?
 
-function wfSpecialRecentchanges()
+function wfSpecialRecentchanges( $par )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $days, $hideminor, $from, $hidebots; # From query string
 	$fname = "wfSpecialRecentchanges";
 
+	if( $par ) {
+		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+		if( in_array( "hidebots", $bits ) ) $hidebots = 1;
+		if( in_array( "bots", $bits ) ) $hidebots = 0;
+		if( in_array( "hideminor", $bits ) ) $hideminor = 1;
+		if( in_array( "minor", $bits ) ) $hideminor = 0;
+	}
+	
 	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
 	$res = wfQuery( $sql, $fname );
 	$s = wfFetchObject( $res );

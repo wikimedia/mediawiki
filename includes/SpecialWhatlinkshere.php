@@ -1,15 +1,20 @@
 <?
 
-function wfSpecialWhatlinkshere()
+function wfSpecialWhatlinkshere($par = NULL)
 {
 	global $wgUser, $wgOut, $target;
 	$fname = "wfSpecialWhatlinkshere";
 
+	if($par) {
+		$target = $par;
+	} else {
+		$target = wfCleanQueryVar( $_REQUEST['target'] );
+	}
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
 	}
-	$nt = Title::newFromURL( wfCleanQueryVar( $target ) );
+	$nt = Title::newFromURL( $target );
 	$wgOut->setPagetitle( $nt->getPrefixedText() );
 	$wgOut->setSubtitle( wfMsg( "linklistsub" ) );
 

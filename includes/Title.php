@@ -128,6 +128,14 @@ class Title {
 		if ( "" == $n ) { return $title; }
 		else { return "{$n}:{$title}"; }
 	}
+	
+	/* static */ function makeTitle( $ns, $title )
+	{
+		$t = new Title();
+		$t->mDbkeyform = Title::makeName( $ns, $title );
+		$t->secureAndSplit();
+		return $t;
+	}
 
 	function getPrefixedDBkey()
 	{

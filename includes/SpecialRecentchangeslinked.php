@@ -2,7 +2,7 @@
 global $IP;
 include_once( "$IP/SpecialRecentchanges.php" );
 
-function wfSpecialRecentchangeslinked()
+function wfSpecialRecentchangeslinked( $par = NULL )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $days, $target, $hideminor; # From query string
@@ -11,6 +11,9 @@ function wfSpecialRecentchangeslinked()
 	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
 	$sk = $wgUser->getSkin();
 
+	if( $par ) {
+		$target = $par;
+	}
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
