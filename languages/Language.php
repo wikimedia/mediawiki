@@ -961,7 +961,7 @@ to first check if such a file exists.
 <p>To view or search previously uploaded images,
 go to the <a href=\"{{localurle:Special:Imagelist}}\">list of uploaded images</a>.
 Uploads and deletions are logged on the " .
-"<a href=\"{{localurle:MetaNamespace:Upload_log}}\">upload log</a>.
+"<a href=\"{{localurle:Project:Upload_log}}\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
