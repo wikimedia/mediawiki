@@ -588,6 +588,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = "", $atend = false )
 	global $wgUser;
 	$prev = wfMsg( "prevn", $limit );
 	$next = wfMsg( "nextn", $limit );
+	$link = wfUrlencode( $link );
 
 	$sk = $wgUser->getSkin();
 	if ( 0 != $offset ) {
