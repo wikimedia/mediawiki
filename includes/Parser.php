@@ -177,9 +177,9 @@ class Parser
 		$text = Parser::extractTags("pre", $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
 			if( $render ){
-				$pre_content[$marker] = "<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
+				$pre_content[$marker] = "\n<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
 			} else {
-				$pre_content[$marker] = "<pre>$content</pre>";
+				$pre_content[$marker] = "\n<pre>$content</pre>";
 			}
 		}
 		
@@ -1038,6 +1038,7 @@ class Parser
 				if ( ! $inBlockElem ) {
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
+						$text .= $this->closeParagraph();
 						# $t = wfEscapeHTML( $t );
 					}
 					else { $newSection = "p"; }
@@ -1474,7 +1475,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			$tocline = trim( $canonized_headline );	
-			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+]+/", '_', html_entity_decode( $tocline));
+			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+']+/", '_', html_entity_decode( $tocline));
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
