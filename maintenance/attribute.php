@@ -41,8 +41,8 @@ if ( !$row ) {
 }
 
 # Initialise files
-$logfile = fopen( "attribute.log", "w" );
-$sqlfile = fopen( "attribute.sql", "w" );
+$logfile = fopen( "attribute.log", "a" );
+$sqlfile = fopen( "attribute.sql", "a" );
 
 fwrite( $logfile, "* $source &rarr; $dest\n" );
 
@@ -52,8 +52,10 @@ fwrite( $sqlfile,
 -- $source -> $dest ($uid)
 ");
 
+$omitTitle = "Wikipedia:Changing_attribution_for_an_edit";
+
 # Get old entries
-print "Getting old entries";
+print "\nOld entries\n\n";
 
 $res = wfQuery( "SELECT old_namespace, old_title, old_id, old_timestamp FROM old WHERE old_user_text='$eSource'", DB_READ );
 $row = wfFetchObject( $res );
@@ -75,6 +77,11 @@ if ( $row ) {
 		} else {
 			$fullTitle = $row->old_title;
 		}
+		if ( $fullTitle == $omitTitle ) {
+			continue;
+		}
+
+		print "$fullTitle\n";
 		$url = "http://$lang.wikipedia.org/w/wiki.phtml?title=" . urlencode( $fullTitle );
 		$eTitle = wfStrencode( $row->old_title );
 /*		
@@ -102,15 +109,14 @@ if ( $row ) {
 		fwrite( $sqlfile, "{$row->old_id} -- $url\n" );
 		fwrite( $logfile, "[$url {$row->old_id}]" );
 
-		print ".";
 	}
 	fwrite( $sqlfile, ");\n" );
 	fwrite( $logfile, "\n" );
 }
-print "\n";
 
 # Get cur entries
-print "Getting cur entries";
+print "\n\nCur entries\n\n";
+
 $res = wfQuery( "SELECT cur_title, cur_namespace, cur_timestamp, cur_id FROM cur WHERE cur_user_text='$eSource'",
 	DB_READ );
 $row = wfFetchObject( $res );
@@ -124,6 +130,9 @@ if ( $row ) {
 		} else {
 			$fullTitle = $row->cur_title;
 		}
+		if ( $fullTitle == $omitTitle ) {
+			continue;
+		}
 		$url = "http://$lang.wikipedia.org/wiki/" . urlencode($fullTitle);
 		if ( $first ) {
 			fwrite( $sqlfile, "      " );
@@ -133,7 +142,7 @@ if ( $row ) {
 		}
 		fwrite( $sqlfile, "{$row->cur_id} -- $url\n" );
 		fwrite( $logfile, "***[[$fullTitle]] {$row->cur_timestamp}\n" );
-		print ".";
+		print "$fullTitle\n";
 	}
 	fwrite( $sqlfile, ");\n" );
 }
