@@ -1105,7 +1105,15 @@ class Parser
 					$sk->postParseLinkColour( $pPLC );
 					$wgLinkCache->resume();
 
-					$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
+					if ( $wasblank ) {
+						if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+							$sortkey = $this->mTitle->getText();
+						} else {
+							$sortkey = $this->mTitle->getPrefixedText();
+						}
+					} else {
+						$sortkey = $text;
+					}
 					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 					$this->mOutput->mCategoryLinks[] = $t ;
 					$s .= $prefix . $trail ;
