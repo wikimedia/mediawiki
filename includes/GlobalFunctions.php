@@ -625,7 +625,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  */
 function wfEscapeWikiText( $text ) {
 	$text = str_replace( 
-		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=", '{{' ),
+		array( '[',		'|',	  '\'',	   'ISBN '	  , '://'	  , "\n=", '{{' ),
 		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;", '&#123;&#123;' ),
 		htmlspecialchars($text) );
 	return $text;
@@ -833,7 +833,7 @@ function wfHttpError( $code, $label, $desc ) {
 	# Don't send content if it's a HEAD request.
 	if( $_SERVER['REQUEST_METHOD'] == 'HEAD' ) {
 		header( 'Content-type: text/plain' );
-		print "$desc\n";
+		print $desc."\n";
 	}
 }
 
@@ -1042,7 +1042,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	case TS_DB:
 		return gmdate( 'Y-m-d H:i:s', $uts );
 	case TS_RFC2822:
-		return gmdate( "D, d M Y H:i:s", $uts ) . ' GMT';
+		return gmdate( 'D, d M Y H:i:s', $uts ) . ' GMT';
 	default:
 		wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
 	}
