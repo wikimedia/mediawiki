@@ -179,7 +179,14 @@ class EditPage {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
 					return;
 				}
-				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis );
+				if (wfRunHooks('ArticleSave', $this->mArticle, $wgUser, $this->textbox1, 
+							   $this->summary, $this->minoredit, $this->watchthis, NULL))
+				{
+					$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
+													   $this->minoredit, $this->watchthis );
+					wfRunHooks('ArticleSaveComplete', $this->mArticle, $wgUser, $this->textbox1, 
+							   $this->summary, $this->minoredit, $this->watchthis, NULL);
+				}
 				return;
 			}
 
@@ -238,12 +245,21 @@ class EditPage {
 						$sectionanchor = $this->sectionAnchor( $matches[2] );
 					}
 				}
-	
-				# update the article here
-				if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit, $this->watchthis, '', $sectionanchor ))
-					return;
-				else
-					$isConflict = true;
+				
+				if (wfRunHooks('ArticleSave', $this, $wgUser, $text, $this->summary,
+							   $this->minoredit, $this->watchthis, $sectionanchor))
+				{
+					# update the article here
+					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
+													   $this->watchthis, '', $sectionanchor ))
+					{
+						wfRunHooks('ArticleSaveComplete', $this, $wgUser, $text, $this->summary,
+								   $this->minoredit, $this->watchthis, $sectionanchor);
+						return;
+					}
+					else
+					  $isConflict = true;
+				}
 			}
 		}
 		# First time through: get contents, set time for conflict
