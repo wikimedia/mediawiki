@@ -244,7 +244,7 @@ class SkinTemplate extends Skin {
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
 			if($this->loggedin) {
-				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
+				$tpl->set( 'jsvarurl', $this->makeUrl($this->userpage.'/-','action=raw&smaxage=0&gen=js') );
 			} else {
 				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
 			}
