@@ -29,10 +29,17 @@ if( !function_exists('iconv') ) {
 	# Assume will only ever use utf-8 and iso-8859-1.
 	# This will *not* work in all circumstances.
 	function iconv( $from, $to, $string ) {
-		if(strcasecmp( $from, to ) == 0) return $string;
+		if(strcasecmp( $from, $to ) == 0) return $string;
 		if(strcasecmp( $from, "utf-8" ) == 0) return utf8_decode( $string );
 		if(strcasecmp( $to, "utf-8" ) == 0) return utf8_encode( $string );
 		return $string;
+	}
+}
+
+if( !function_exists('file_get_contents') ) {
+	# Exists in PHP 4.3.0+
+	function file_get_contents( $filename ) {
+		return implode( "", file( $filename ) );
 	}
 }
 
