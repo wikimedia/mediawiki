@@ -2197,7 +2197,7 @@ class Language {
 			$varnt = Title::newFromText( $v );
 			if( $varnt && $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
-				$link = $varlink;
+				$link = $v;
 				break;
 			}
 		}
