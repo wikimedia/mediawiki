@@ -21,7 +21,7 @@ class LanguageUtf8 extends Language {
 		# But that doesn't work right in a UTF-8 locale
 		global $wikiUpperChars;
 		return preg_replace (
-        	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+        	"/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiUpperChars )",
         	$string );
 	}
@@ -29,7 +29,7 @@ class LanguageUtf8 extends Language {
 	function lcfirst( $string ) {
 		global $wikiLowerChars;
 		return preg_replace (
-        	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+        	"/^([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiLowerChars )",
         	$string );
 	}
