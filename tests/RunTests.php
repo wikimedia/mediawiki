@@ -1,4 +1,9 @@
 <?php
+
+if( php_sapi_name() != 'cli' ) {
+	die( 'Must be run from the command line.' );
+}
+
 error_reporting( E_ALL );
 define( "MEDIAWIKI", true );
 
