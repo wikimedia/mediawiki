@@ -371,7 +371,7 @@ class Parser
 			$ltr = array () ; # tr attributes
 			foreach ( $t AS $k => $x )
 			{
-				$x = rtrim ( $x ) ;
+				$x = trim ( $x ) ;
 				$fc = substr ( $x , 0 , 1 ) ;
 				if ( "{|" == substr ( $x , 0 , 2 ) )
 				{
