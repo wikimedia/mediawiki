@@ -425,7 +425,13 @@ class SearchEngine {
 		global $wgOut, $wgDisableTextSearch;
 		$fname = "SearchEngine::goResult";
 		
-		$search		= $_REQUEST['search'];
+		$search		= trim( $_REQUEST['search'] );
+ 		# Entering an IP address goes to the contributions page
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $search ) ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Contributions" );
+			$wgOut->redirect( wfLocalUrl( $title->getPrefixedURL(), "target=$search" ) );
+			return;
+		}
 
 		# First try to go to page as entered.
 		#
