@@ -170,12 +170,12 @@ TODO: This would probably look a lot nicer in a table.
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target )
 {
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
-	$page = Title::makeName( $ns, $t );
-	$link = $sk->makeKnownLink( $page, "" );
+	$page = Title::makeTitle( $ns, $t );
+	$link = $sk->makeKnownLinkObj( $page, "" );
 	$topmarktext="";
 	if($topmark) {
 		if(!$isnew) {
-			$topmarktext .= $sk->makeKnownLink( $page, wfMsg("uctop"), "diff=0" );
+			$topmarktext .= $sk->makeKnownLinkObj( $page, wfMsg("uctop"), "diff=0" );
 		} else {
 			$topmarktext .= wfMsg("newarticle");
 		}
@@ -185,13 +185,13 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 			$extraRollback .= '&token=' . urlencode(
 				$wgUser->editToken( array( $page->getPrefixedText(), $target ) ) );
 			# $target = $wgRequest->getText( 'target' );
-			$topmarktext .= " [". $sk->makeKnownLink( $page,
+			$topmarktext .= " [". $sk->makeKnownLinkObj( $page,
 		  	wfMsg( "rollbacklink" ),
 		  	"action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
 		}
 
 	}
-	$histlink="(".$sk->makeKnownLink($page,wfMsg("hist"),"action=history").")";
+	$histlink="(".$sk->makeKnownLinkObj($page,wfMsg("hist"),"action=history").")";
 
 	if($comment) {
 
