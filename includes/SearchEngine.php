@@ -372,7 +372,7 @@ class SearchEngine {
 
 	function showHit( $row )
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgLang;
 
 		$t = Title::makeName( $row->cur_namespace, $row->cur_title );
 		$sk = $wgUser->getSkin();
@@ -391,33 +391,26 @@ class SearchEngine {
 		$lineno = 0;
 
 		foreach ( $lines as $line ) {
-			if ( 0 == $contextlines ) { break; }
+			if ( 0 == $contextlines ) {
+				break;
+			}
 			--$contextlines;
 			++$lineno;
-			if ( ! preg_match( $pat1, $line, $m ) ) { continue; }
-
-			$pre = $m[1];
-			if ( 0 == $contextchars ) { $pre = "..."; }
-			else {
-				if ( strlen( $pre ) > $contextchars ) {
-					$pre = "..." . substr( $pre, -$contextchars );
-				}
+			if ( ! preg_match( $pat1, $line, $m ) ) {
+				continue;
 			}
-			$pre = wfEscapeHTML( $pre );
 
-			if ( count( $m ) < 3 ) { $post = ""; }
-			else { $post = $m[3]; }
+			$pre = $wgLang->truncate( $m[1], -$contextchars, "..." );
 
-			if ( 0 == $contextchars ) { $post = "..."; }
-			else {
-				if ( strlen( $post ) > $contextchars ) {
-					$post = substr( $post, 0, $contextchars ) . "...";
-				}
+			if ( count( $m ) < 3 ) {
+				$post = "";
+			} else {
+				$post = $wgLang->truncate( $m[3], $contextchars, "..." );
 			}
-			$post = wfEscapeHTML( $post );
-			$found = wfEscapeHTML( $m[2] );
 
-			$line = "{$pre}{$found}{$post}";
+			$found = $m[2];
+
+			$line = htmlspecialchars( $pre . $found . $post );
 			$pat2 = "/(" . implode( "|", $this->mSearchterms ) . ")/i";
 			$line = preg_replace( $pat2,
 			  "<font color='red'>\\1</font>", $line );
