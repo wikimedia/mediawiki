@@ -369,10 +369,10 @@ class Skin {
 		}
 		if( $wgUser->isSysop() &&
 			($n = $wgTitle->isDeleted() ) ) {
-				$s .= " | <strong>" . wfMsg( "thisisdeleted",
+				$s .= " | " . wfMsg( "thisisdeleted",
 					$this->makeKnownLink(
-					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getText() ),
-					wfMsg( "restorelink", $n ) ) ) . "</strong>";
+					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
+					wfMsg( "restorelink", $n ) ) );
 		}
 		return $s;
 	}
