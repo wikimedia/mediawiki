@@ -697,7 +697,7 @@ $wgCompressRevisions = false;
  * This is the list of preferred extensions for uploading files. Uploading files
  * with extensions not in this list will trigger a warning.
  */
-$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'ogg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
 /** Files with these extensions will never be allowed as uploads. */
 $wgFileBlacklist = array(
@@ -912,11 +912,19 @@ $wgUseXMLparser = false ;
 $wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
 
-/** Allow user Javascript page? */
-$wgAllowUserJs = true;
+/**
+ * Allow user Javascript page?
+ * This enables a lot of neat customizations, but may
+ * increase security risk to users and server load.
+ */
+$wgAllowUserJs = false;
 
-/** Allow user Cascading Style Sheets (CSS)? */
-$wgAllowUserCss = true;
+/**
+ * Allow user Cascading Style Sheets (CSS)?
+ * This enables a lot of neat customizations, but may
+ * increase security risk to users and server load.
+ */
+$wgAllowUserCss = false;
 
 /** Use the site's Javascript page? */
 $wgUseSiteJs = true;
