@@ -27,14 +27,15 @@ else if (window.attachEvent) window.attachEvent("onload",onloadhook);
 
 
 // document.write special stylesheet links
-if (is_opera_preseven) {
-    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera6Fixes.css">');
-} else if (is_opera_seven) {
-    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera7Fixes.css">');
-} else if (is_khtml) {
-    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
+if(typeof stylepath != 'undefined' && typeof skin != 'undefined') {
+    if (is_opera_preseven) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera6Fixes.css">');
+    } else if (is_opera_seven) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera7Fixes.css">');
+    } else if (is_khtml) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
+    }
 }
-
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;
 
