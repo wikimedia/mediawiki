@@ -49,6 +49,10 @@ $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 $wgSqlTimeout		= 30;
 
+# Other wikis on this site, can be administered from a single developer account
+# Array, interwiki prefix => database name
+$wgLocalDatabases   = array();
+
 # Database load balancer
 $wgDBservers		= false; # e.g. array("larousse", "pliny")
 $wgDBloads			= false; # e.g. array(0.6, 0.4);
