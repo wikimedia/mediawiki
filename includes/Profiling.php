@@ -59,10 +59,11 @@ class Profiler
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
 			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering '.$functionname."\n" );
 		}
-		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() ) );
+		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() );
 	}
 
 	function profileOut( $functionname ) {
+		$time = microtime();
 		$memory = memory_get_usage();
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
@@ -82,9 +83,9 @@ class Profiler
 					wfDebug( "Profiling error: in({$bit[0]}), out($functionname)\n" );
 				}
 			}
-			array_push( $bit, microtime() );
-			array_push( $bit, $memory );
-			array_push( $this->mStack, $bit );
+			$bit[] = $time;
+			$bit[] = $memory;
+			$this->mStack[] = $bit;
 		}
 	}
 	
