@@ -58,7 +58,7 @@ class Profiler
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
-			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting '.$functionname."\n" );
+			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Exiting '.$functionname."\n" );
 		}
 		
 		$bit = array_pop( $this->mWorkStack );
