@@ -128,7 +128,9 @@ class MonoBookTemplate extends QuickTemplate {
 	    <form name="searchform" action="<?php $this->text('searchaction') ?>" id="searchform">
 	      <input id="searchInput" name="search" type="text"
 	        <?php if($this->haveMsg('accesskey-search')) {
-	          ?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php } ?> />
+	          ?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php }
+	        if( isset( $this->data['search'] ) ) {
+	          ?>value="<?php $this->text('search') ?>"<?php } ?> />
 	      <input type='submit' name="go" class="searchButton"
 	        value="<?php $this->msg('go') ?>"
 	        />&nbsp;<input type='submit' name="fulltext"
@@ -184,7 +186,6 @@ class MonoBookTemplate extends QuickTemplate {
 	  <?php if($this->data['copyright' ]) { ?><li id="f-copyright"><?php  $this->html('copyright')  ?></li><?php } ?>
 	  <?php if($this->data['about'     ]) { ?><li id="f-about"><?php      $this->html('about')      ?></li><?php } ?>
 	  <?php if($this->data['disclaimer']) { ?><li id="f-disclaimer"><?php $this->html('disclaimer') ?></li><?php } ?>
-	  <?php if($this->data['tagline']) { ?><li id="f-tagline"><?php echo $this->data['tagline'] ?></li><?php } ?>
 	</ul>
       </div>
     </div>
