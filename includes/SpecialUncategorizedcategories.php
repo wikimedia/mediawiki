@@ -27,7 +27,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 function wfSpecialUncategorizedcategories() {
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$lpp = new UncategorizedPagesPage();
+	$lpp = new UncategorizedCategoriesPage();
 	$lpp->requestedNamespace = NS_CATEGORY;
 
 	return $lpp->doQuery( $offset, $limit );
