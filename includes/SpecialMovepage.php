@@ -209,7 +209,10 @@ class MovePageForm {
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
 		$text = wfMsg( 'pagemovedtext', $oldtitle, $newtitle );
+		$marchingantofdoom = $wgRawHtml;
+		$wgRawHtml = false;
 		$wgOut->addWikiText( $text );
+		$wgRawHtml = $marchingantofdoom;
 
 		if ( $talkmoved == 1 ) {
 			$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagemoved' ) . "</p>\n" );
