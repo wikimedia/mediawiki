@@ -162,9 +162,6 @@ function do_copy_newtalk_to_watchlist() {
 	global $wgDatabase;
 	global $wgCommandLineMode;	# this needs to be saved while getID() and getName() are called
 
-	$CommandLineMode_save = $wgCommandLineMode;
-	$wgCommandLineMode = false;	# otherwise User:loadfromDatabase() early returns, but we need it herein
-
 	if ( $wgDatabase->tableExists( 'user_newtalk' ) ) {
 		$res = $wgDatabase->safeQuery( 'SELECT user_id, user_ip FROM !',
 			$wgDatabase->tableName( 'user_newtalk' ) );
@@ -206,7 +203,6 @@ function do_copy_newtalk_to_watchlist() {
 	} else {
 		echo "ENOTIF: No user_newtalk table found. Nothing to convert to watchlist table entries.\n";
 	}
-	$wgCommandLineMode = $CommandLineMode_save;
 }
 
 
