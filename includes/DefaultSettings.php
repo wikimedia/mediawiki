@@ -285,6 +285,17 @@ $wgInputEncoding	= 'ISO-8859-1'; # LanguageUtf8.php normally overrides this
 $wgOutputEncoding	= 'ISO-8859-1'; # unless you set the next option to true:
 $wgUseLatin1 		= false; # Enable ISO-8859-1 compatibility mode
 $wgEditEncoding		= '';
+
+# Set this to eg 'ISO-8859-1' to perform character set
+# conversion when loading old revisions not marked with
+# "utf-8" flag. Use this when converting wiki to UTF-8
+# without the burdensome mass conversion of old text data.
+#
+# NOTE! This DOES NOT touch any fields other than old_text.
+# Titles, comments, user names, etc still must be converted
+# en masse in the database before continuing as a UTF-8 wiki.
+$wgLegacyEncoding   = false;
+
 $wgMimeType			= 'text/html';
 $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';

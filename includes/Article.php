@@ -73,47 +73,68 @@ class Article {
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
 
-		if ( isset( $row->$flagsField ) ) {
+		if( isset( $row->$flagsField ) ) {
 			$flags = explode( ',', $row->$flagsField );
 		} else {
 			$flags = array();
 		}
 
-		if ( isset( $row->$textField ) ) {
+		if( isset( $row->$textField ) ) {
 			$text = $row->$textField;
 		} else {
 			return false;
 		}
 
-		if ( in_array( 'link', $flags ) ) {
-			# Handle link type
-			$text = Article::followLink( $text );
-		} elseif ( in_array( 'gzip', $flags ) ) {
+		if( in_array( 'gzip', $flags ) ) {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
 			# as pages are saved if $wgCompressRevisions is set.
-			return gzinflate( $text );
+			$text = gzinflate( $text );
+		}
+		
+		global $wgLegacyEncoding;
+		if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
+			# Old revisions kept around in a legacy encoding?
+			# Upconvert on demand.
+			global $wgInputEncoding, $wgContLang;
+			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
+		}
+		
+		if( in_array( 'link', $flags ) ) {
+			# Handle link type
+			$text = Article::followLink( $text );
 		}
 		return $text;
 	}
 
 	/**
-	 * If $wgCompressRevisions is enabled, we will compress datas
+	 * If $wgCompressRevisions is enabled, we will compress data.
+	 * The input string is modified in place.
+	 * Return value is the flags field: contains 'gzip' if the
+	 * data is compressed, and 'utf-8' if we're saving in UTF-8
+	 * mode.
+	 *
 	 * @static
 	 * @param mixed $text reference to a text
-	 * @return string 'gzip' if it get compressed, '' overwise
+	 * @return string
 	 */
 	function compressRevisionText( &$text ) {
-		global $wgCompressRevisions;
-		if( !$wgCompressRevisions ) {
-			return '';
+		global $wgCompressRevisions, $wgUseLatin1;
+		$flags = array();
+		if( !$wgUseLatin1 ) {
+			# Revisions not marked this way will be converted
+			# on load if $wgLegacyCharset is set in the future.
+			$flags[] = 'utf-8';
 		}
-		if( !function_exists( 'gzdeflate' ) ) {
-			wfDebug( "Article::compressRevisionText() -- no zlib support, not compressing\n" );
-			return '';
+		if( $wgCompressRevisions ) {
+			if( function_exists( 'gzdeflate' ) ) {
+				$text = gzdeflate( $text );
+				$flags[] = 'gzip';
+			} else {
+				wfDebug( "Article::compressRevisionText() -- no zlib support, not compressing\n" );
+			}
 		}
-		$text = gzdeflate( $text );
-		return 'gzip';
+		return implode( ',', $flags );
 	}
 
 	/**
