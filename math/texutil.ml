@@ -205,6 +205,7 @@ let find = function
     | "\\hookleftarrow"    -> LITERAL (TEX_ONLY "\\hookleftarrow ")
     | "\\mp"               -> LITERAL (TEX_ONLY "\\mp ")
     | "\\approx"           -> LITERAL (TEX_ONLY "\\approx ")
+    | "\\propto"           -> LITERAL (TEX_ONLY "\\propto ")
     | "\\flat"             -> LITERAL (TEX_ONLY "\\flat ")
     | "\\sharp"            -> LITERAL (TEX_ONLY "\\sharp ")
     | "\\natural"          -> LITERAL (TEX_ONLY "\\natural ")
