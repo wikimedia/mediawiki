@@ -63,11 +63,18 @@ function benchmarkTest( &$u, $filename, $desc ) {
 		'NFC',
 #		'NFKC',
 #		'NFD', 'NFKD',
-		'fastDecompose', 'fastCombiningSort', 'fastCompose',
+		array( 'fastDecompose', 'fastCombiningSort', 'fastCompose' ),
 		'quickIsNFC', 'quickIsNFCVerify',
 		);
 	foreach( $forms as $form ) {
-		benchmarkForm( $u, $data, $form );
+		if( is_array( $form ) ) {
+			$str = $data;
+			foreach( $form as $step ) {
+				$str = benchmarkForm( $u, $str, $step );
+			}
+		} else {
+			benchmarkForm( $u, $data, $form );
+		}
 	}
 }
 
@@ -87,6 +94,7 @@ function benchmarkForm( &$u, &$data, $form ) {
 	$same = (0 == strcmp( $data, $out ) );
 	
 	printf( " %20s %1.4fs %8d bytes/s (%s)\n", $form, $delta, $rate, ($same ? 'no change' : 'changed' ) );
+	return $out;
 }
 
 ?>
