@@ -162,7 +162,14 @@ $wgDBuser           = 'wikiuser';
 $wgDBtype           = "mysql";
 /** Table name prefix */
 $wgDBprefix         = ''; 
+/** Database schema
+ * on some databases this allows separate 
+ * logical namespace for application data
+ */
+$wgDBschema	    = 'mediawiki';
 /**#@-*/
+
+
 
 # Shared database for multiple wikis.
 # Presently used for storing a user table for single sign-on
