@@ -428,28 +428,29 @@ class OutputPage {
 	function databaseError( $fname )
 	{
 		global $wgUser, $wgCommandLineMode;
-
-		$this->setPageTitle( wfMsg( "databaseerror" ) );
+		
+		$this->setPageTitle( wfMsgNoDB( "databaseerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleFlag( false );
 
 		if ( $wgCommandLineMode ) {
-			$msg = wfMsg( "dberrortextcl" );
+			$msg = wfMsgNoDB( "dberrortextcl" );
 		} else {
-			$msg = wfMsg( "dberrortextcl" );
+			$msg = wfMsgNoDB( "dberrortextcl" );
 		}
+
 		$msg = str_replace( "$1", htmlspecialchars( wfLastDBquery() ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
 		$msg = str_replace( "$3", wfLastErrno(), $msg );
 		$msg = str_replace( "$4", htmlspecialchars( wfLastError() ), $msg );
-
+		
 		if ( $wgCommandLineMode ) {
-			print $msg;
+			print "$msg\n";
 			exit();
 		}
 		$sk = $wgUser->getSkin();
-		$shlink = $sk->makeKnownLink( wfMsg( "searchhelppage" ),
-		  wfMsg( "searchingwikipedia" ) );
+		$shlink = $sk->makeKnownLink( wfMsgNoDB( "searchhelppage" ),
+		  wfMsgNoDB( "searchingwikipedia" ) );
 		$msg = str_replace( "$5", $shlink, $msg );
 
 		$this->mBodytext = $msg;
@@ -1246,6 +1247,14 @@ $t[] = "</table>" ;
 			$v = wfNumberOfArticles();
 			$text = $mw->replace( $v, $text );
 		}
+
+		# The callbacks are in GlobalFunctions.php
+		$mw =& MagicWord::get( MAG_MSG );
+		$text = $mw->substituteCallback( $text, "replaceMsgVar" );
+
+		$mw =& MagicWord::get( MAG_MSGNW );
+		$text = $mw->substituteCallback( $text, "replaceMsgVarNw" );
+
 		wfProfileOut();
 		return $text;
 	}

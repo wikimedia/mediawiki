@@ -61,6 +61,10 @@ $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
 $wgUseDynamicDates	= true; # Allows the user to pick their preferred date format
 
+# Translation using MediaWiki: namespace
+# Not recommended unless memcached is installed
+$wgUseDatabaseMessages = false;
+
 # Miscellaneous configuration settings
 #
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
@@ -70,6 +74,8 @@ $wgReadOnly             = false;
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
+
+# User rights settings
 $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgIPBlockExpiration    = 86400; # IP blocks expire after this many seconds, 0=infinite
 $wgUserBlockExpiration  = 0; # As above, but for logged-in users
