@@ -1019,8 +1019,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
 			$res=wfQuery($sql,$fname);
 			if( $old=wfFetchObject($res)) {
-
-				$skin=new Skin();
+				$skin=$wgUser->getSkin();
 				$wgOut->addHTML("<B>".wfMsg("historywarning"));
 				$wgOut->addHTML( $skin->historyLink() ."</B><P>");
 			}
