@@ -21,6 +21,7 @@ mAttributes:
 	rc_this_oldid   old_id associated with this entry (or zero)
 	rc_last_oldid   old_id associated with the entry before this one (or zero)
 	rc_bot          is bot, hidden
+	rc_new          obsolete, use rc_type==RC_NEW
 
 mExtra:
 	prefixedDBkey   prefixed db key, used by external app via msg queue
@@ -143,7 +144,8 @@ class RecentChange
 			'rc_last_oldid'	=> $oldId,
 			'rc_bot'	=> $user->isBot() ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> ''
+			'rc_moved_to_title'	=> '',
+			'rc_new'	=> 0 # obsolete
 		);
 		
 		$rc->mExtra =  array(
@@ -173,7 +175,8 @@ class RecentChange
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> $user->isBot() ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> ''
+			'rc_moved_to_title'	=> '',
+			'rc_new'	=> 1 # obsolete
 		);
 		
 		$rc->mExtra =  array(
@@ -202,7 +205,8 @@ class RecentChange
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> $user->isBot() ? 1 : 0,
 			'rc_moved_to_ns'	=> $newTitle->getNamespace(),
-			'rc_moved_to_title'	=> $newTitle->getDBkey()
+			'rc_moved_to_title'	=> $newTitle->getDBkey(),
+			'rc_new'	=> 0 # obsolete
 		);
 		
 		$rc->mExtra = array(
@@ -233,7 +237,8 @@ class RecentChange
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> ''
+			'rc_moved_to_title'	=> '',
+			'rc_new'	=> 0 # obsolete
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
@@ -267,7 +272,8 @@ class RecentChange
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> ''
+			'rc_moved_to_title'	=> '',
+			'rc_new' => $row->cur_is_new # obsolete
 		);
 
 		$this->mExtra = array();
