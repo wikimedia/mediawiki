@@ -11,7 +11,11 @@ class LonelyPagesPage extends PageQueryPage {
     function isExpensive() {
 	return 1;
     }
-    
+
+	function sortDescending() {
+		return false;
+	}
+
     function getSQL( $offset, $limit ) {
 	
 	return "SELECT cur_namespace AS namespace, cur_title AS title, cur_title AS value " .
