@@ -111,6 +111,7 @@ $wgStyleSheetDirectory = &$wgStyleDirectory;
 $wgArticlePath      = "{$wgScript}?title=$1";
 $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
+$wgHashedUploadDirectory	= true;
 $wgLogo				= "{$wgUploadPath}/wiki.png";
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
