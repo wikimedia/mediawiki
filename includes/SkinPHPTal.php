@@ -516,20 +516,20 @@
 			global $wgRequest, $wgTitle;
 			$action = $wgRequest->getText('action');
 			# generated css
-			$this->usercss = '@import url('.$this->makeUrl('-','action=raw&gen=css').');'."\n";
+			$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css').'";'."\n";
 			
 			if( $this->loggedin ) {
 				if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 					# generated css
-					$this->usercss = '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
+					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
 					// css preview
 					$this->usercss .= $wgRequest->getText('wpTextbox1');
 				} else {
 					# generated css
-					$this->usercss .= '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0').');'."\n";
+					$this->usercss .= '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0').'";'."\n";
 					# import user stylesheet
-					$this->usercss .= '@import url('.
-					$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').');'."\n";
+					$this->usercss .= '@import "'.
+					$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').'";'."\n";
 				}
 				if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 					# XXX: additional security check/prompt?
@@ -545,9 +545,9 @@
 			$action = $wgRequest->getText('action');
 			$maxage = $wgRequest->getText('maxage');
 			$s = "/* generated user stylesheet */\n";
-			if($wgLang->isRTL()) $s .= '@import url('.$wgStylePath.'/'.$this->skinname.'/rtl.css);'."\n";
-			$s .= '@import url('.
-			$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI).');'."\n";
+			if($wgLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->skinname.'/rtl.css";'."\n";
+			$s .= '@import "'.
+			$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI)."\";\n";
 			if($wgUser->getID() != 0) {
 				if ( 1 == $wgUser->getOption( "underline" ) ) {
 					$s .= "a { text-decoration: underline; }\n";
