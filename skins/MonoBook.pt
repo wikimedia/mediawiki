@@ -63,20 +63,9 @@
 	  <h5 i18n:translate="string:navigation">Navigation</h5>
 	  <div class="pBody">
 	    <ul>
-	      <li id="n-mainpage"><a href="${nav_urls/mainpage/href}"
-		i18n:translate="string:mainpage">Main Page</a></li>
-	      <li id="n-portal" tal:condition="nav_urls/portal/href"><a href="${nav_urls/portal/href}"
-		i18n:translate="string:portal">Community Portal</a></li>
-	      <li id="n-currentevents" tal:condition="nav_urls/currentevents/href"><a href="${nav_urls/currentevents/href}"
-		i18n:translate="string:currentevents">Current Events</a></li>
-	      <li id="n-recentchanges"><a href="${nav_urls/recentchanges/href}"
-		i18n:translate="string:recentchanges">Recent Changes</a></li>
-	      <li id="n-randompage"><a href="${nav_urls/randompage/href}"
-		i18n:translate="string:randompage">Random Page</a></li>
-	      <li id="n-help"><a href="${nav_urls/help/href}"
-		i18n:translate="string:help">Help</a></li>
-	      <li id="n-sitesupport" tal:condition="nav_urls/sitesupport/href"><a href="${nav_urls/sitesupport/href}"
-		i18n:translate="string:sitesupport">Donations</a></li>
+	      <li tal:repeat="navlink navigation_urls" tal:attributes="id navlink/id">
+	        <a tal:attributes="href navlink/href" tal:content="structure navlink/text">NavLink</a>
+	      </li>
 	    </ul>
 	  </div>
 	</div>

@@ -1765,6 +1765,17 @@ class Skin {
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
+
+	# If url string starts with http, consider as external URL, else
+	# internal
+	/*static*/ function makeInternalOrExternalUrl( $name ) {
+		if ( strncmp( $name, 'http', 4 ) == 0 ) {
+			return $name;
+		} else {
+			return $this->makeUrl( $name );
+		}
+	}
+
 	# this can be passed the NS number as defined in Language.php
 	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=0 ) {
 		$title = Title::makeTitleSafe( $namespace, $name );

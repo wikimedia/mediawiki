@@ -302,6 +302,7 @@ class SkinPHPTal extends Skin {
 		$out->mBodytext .= $printfooter ;
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
+		# Language links
 		$language_urls = array();
 		foreach( $wgOut->getLanguageLinks() as $l ) {
 			$nt = Title::newFromText( $l );
@@ -314,6 +315,8 @@ class SkinPHPTal extends Skin {
 		} else {
 			$tpl->set('language_urls', false);
 		}
+
+		# Personal toolbar
 		$tpl->set('personal_urls', $this->buildPersonalUrls());
 		$content_actions = $this->buildContentActionUrls();
 		$tpl->setRef('content_actions', $content_actions);
@@ -324,6 +327,7 @@ class SkinPHPTal extends Skin {
 		} else {
 			$tpl->set('body_ondblclick', false);
 		}
+		$tpl->set( 'navigation_urls', $this->buildNavigationUrls() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// execute template
@@ -556,6 +560,22 @@ class SkinPHPTal extends Skin {
 		}
 
 		return $content_actions;
+	}
+
+	/**
+	 * build array of global navigation links
+	 */ 
+	function buildNavigationUrls () {
+		global $wgNavigationLinks;
+		$result = array();
+		foreach ( $wgNavigationLinks as $link ) {
+			$result[] = array(
+				'text' => wfMsg( $link['text'] ),
+				'href' => $this->makeInternalOrExternalUrl( wfMsg( $link['href'] ) ),
+				'id' => 'n-'.$link['text']
+			);
+		}
+		return $result;
 	}
 
 	/**
