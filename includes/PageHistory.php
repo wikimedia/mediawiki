@@ -61,13 +61,14 @@ class PageHistory {
 		$title = $this->mTitle->getText();
 
 		$db =& wfGetDB( DB_SLAVE );
-		$use_index = $db->useIndexClause( 'articleid_timestamp' );
+		$use_index = $db->useIndexClause( 'name_title_timestamp' );
 		$oldtable = $db->tableName( 'old' );
 
 		$sql = "SELECT old_id,old_user," .
 		  "old_comment,old_user_text,old_timestamp,old_minor_edit ".
 		  "FROM $oldtable $use_index " .
-		  "WHERE old_articleid='" . $db->strencode( $this->mTitle->getArticleID() ) . "' " .
+		  "WHERE old_namespace={$namespace} AND " .
+		  "old_title='" . $db->strencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY inverse_timestamp".$db->limitResult($limitplus,$rawoffset);
 		$res = $db->query( $sql, $fname );
 

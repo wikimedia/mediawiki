@@ -50,7 +50,7 @@ CREATE TABLE cur (
   cur_touched char(14) binary NOT NULL default '',
   inverse_timestamp char(14) binary NOT NULL default '',
   PRIMARY KEY cur_id (cur_id),
-  INDEX name_title (cur_namespace,cur_title),
+  UNIQUE INDEX name_title (cur_namespace,cur_title),
   
   -- Is this one necessary?
   INDEX cur_title (cur_title(20)),
@@ -65,7 +65,8 @@ CREATE TABLE cur (
 
 CREATE TABLE old (
   old_id int(8) unsigned NOT NULL auto_increment,
-  old_articleid int(8) unsigned NOT NULL,
+  old_namespace tinyint(2) unsigned NOT NULL default '0',
+  old_title varchar(255) binary NOT NULL default '',
   old_text mediumtext NOT NULL default '',
   old_comment tinyblob NOT NULL default '',
   old_user int(5) unsigned NOT NULL default '0',
@@ -76,9 +77,8 @@ CREATE TABLE old (
   inverse_timestamp char(14) binary NOT NULL default '',
   
   PRIMARY KEY old_id (old_id),
-  INDEX articleid (old_articleid),
   INDEX old_timestamp (old_timestamp),
-  INDEX articleid_timestamp (old_articleid,inverse_timestamp),
+  INDEX name_title_timestamp (old_namespace,old_title,inverse_timestamp),
   INDEX user_timestamp (old_user,inverse_timestamp),
   INDEX usertext_timestamp (old_user_text,inverse_timestamp)
 );
@@ -328,7 +328,7 @@ CREATE TABLE logging (
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
   log_namespace tinyint unsigned NOT NULL default 0,
-  log_title varchar(255) binary NOT NULL default '',
+  log_title varchar(255) NOT NULL default '',
   
   -- Freeform text. Interpreted as edit history comments.
   log_comment varchar(255) NOT NULL default '',
