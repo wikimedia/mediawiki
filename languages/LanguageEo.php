@@ -182,6 +182,7 @@ $wgEditEncoding		= "x";
 "faq"			=> "Oftaj demandoj",
 "faqpage"		=> "{{ns:4}}:Oftaj demandoj",
 "edithelp"		=> "Helpo pri redaktado",
+"newwindow"		=> "(en nova fenestro)",
 "edithelppage"	=> "{{ns:4}}:Kiel_redakti_paĝon", #FIXME: Kontrolu
 "cancel"		=> "Nuligu",
 "qbfind"		=> "Trovu",

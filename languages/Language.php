@@ -433,6 +433,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'faq'			=> 'FAQ',
 "faqpage"		=> "{{ns:4}}:FAQ",
 "edithelp"		=> "Editing help",
+"newwindow"		=> "(opens in new window)",
 "edithelppage"	=> "{{ns:12}}:Editing",
 'cancel'		=> 'Cancel',
 'qbfind'		=> 'Find',
