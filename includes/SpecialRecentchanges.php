@@ -49,25 +49,25 @@ function wfSpecialRecentchanges( $par )
 	if ( ! isset( $hideminor ) ) {
 		$hideminor = $wgUser->getOption( "hideminor" );
 	}
+	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
 		$hidem = "AND rc_minor=0";
-                $mltitle = wfMsg( "show" );
-                $mlhide = 0;
-
+		$mltitle = wfMsg( "show" );
+		$mlhide = 0;
 	} else {
 		$hidem = "";
-                $mltitle = wfMsg( "hide" );
-                $mlhide = 1;
+		$mltitle = wfMsg( "hide" );
+		$mlhide = 1;
 	}
 
-        if ( isset( $from ) ) {
-          $mlparams = "from={$from}&hideminor={$mlhide}";
-        } else {
-          $mlparams = "days={$days}&limit={$limit}&hideminor=0";
-        }
+	if ( isset( $from ) ) {
+		$mlparams = "from={$from}&hideminor={$mlhide}";
+	} else {
+		$mlparams = "days={$days}&limit={$limit}&hideminor={$mlhide}";
+	}
 
-        $mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-                                     $mltitle, $mlparams );
+	$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
+		$mltitle, $mlparams );
 	
 	if ( !isset( $hidebots ) ) {
 		$hidebots = 1;
