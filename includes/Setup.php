@@ -221,7 +221,7 @@ if( count( $wgUserLanguages ) &&
 	!empty( $wgUser->mOptions['language'] ) &&
 	in_array( $wgUser->mOptions['language'], $wgUserLanguages ) ) {
 	// Change language of the site
-	$wgLanguageCode = $wgUser->mOptions['language'];
+	$wgUserLanguageCode = $wgUser->mOptions['language'];
 	// we will load messages from file instead of from database
 	$wgUseDatabaseMessages = false;
 	# FIXME: THIS WILL BREAK NAMESPACES, VARIABLES,
@@ -258,6 +258,19 @@ if( $wgUseLatin1 && $wgLanguageCode != 'en' ) {
 // now that we have a language object, set per language user defaults options
 // if we didn't grabbed them from database.
 if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
+// and change the messages array used
+
+if(isset($wgUserLanguageCode)) {
+	/** Need to load the language datas */
+	require_once( 'languages/Language'.str_replace('-', '_', ucfirst( $wgUserLanguageCode )).'.php');
+	$sitemsgarray = 'wgAllMessages'.ucfirst($wgLanguageCode);
+	$usermsgarray = 'wgAllMessages'.str_replace('-', '_', ucfirst( $wgUserLanguageCode ));
+	$$sitemsgarray = &$$usermsgarray;
+	// rebuild the language object messages
+	$wgLang->Language();
+}
+
+
 
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
