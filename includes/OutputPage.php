@@ -658,7 +658,7 @@ class OutputPage {
 	#
 	function doWikiPass2( $text, $linestart )
 	{
-		global $wgUser, $wgLang, $wgMungeDates;
+		global $wgUser, $wgLang, $wgUseDynamicDates;
 		wfProfileIn( "OutputPage::doWikiPass2" );
 		
 		$text = $this->removeHTMLtags( $text );
@@ -671,8 +671,10 @@ class OutputPage {
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		
-		if($wgMungeDates)
+		if($wgUseDynamicDates) {
 			$text = $wgLang->replaceDates( $text );
+		}
+
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 

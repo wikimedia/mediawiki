@@ -1222,12 +1222,16 @@ class Language {
  
 	function date( $ts, $adj = false )
 	{
-		global $wgAmericanDates, $wgUser;
+		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$datePreference = $wgUser->getOption( 'date' );		
-		if ( $datePreference == 0 ) {
+		
+		if ( $wgUseDynamicDates ) {
+			$datePreference = $wgUser->getOption( 'date' );		
+			if ( $datePreference == 0 ) {
+				$datePreference = $wgAmericanDates ? 1 : 2;
+			}
+		} else {
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
 		
@@ -1371,8 +1375,13 @@ class Language {
 
 	function replaceDates( $text )
 	{
-		global $wgUser, $wgInputEncoding;
+		global $wgUser, $wgInputEncoding, $wgUseDynamicDates;
 		
+		# Feature can be disabled
+		if ( !$wgUseDynamicDates ) {
+			return;
+		}
+
 		# Setup
 		
 		$datePreference = $wgUser->getOption( 'date' );
