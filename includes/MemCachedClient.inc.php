@@ -19,7 +19,7 @@
 /**
  * version string
  */
-define("MC_VERSION", "1.0.8");
+define("MC_VERSION", "1.0.9");
 /**
  * int, buffer size used for sending and receiving
  * data from sockets
@@ -996,7 +996,7 @@ class MemCachedClient
 					$bytes_read = 0;
 
 					// get the left over data after the header is read
-					$line = substr($line, strpos($line, "\r\n")+1, strlen($line));
+					$line = substr($line, strpos($line, "\r\n")+2, strlen($line));
 				}
 				else
 				{
