@@ -213,85 +213,24 @@ function wfMsgNoDB( $key ) {
 
 # Really get a message
 function wfMsgReal( $key, $args, $useDB ) {
-	global $wgLang, $wgReplacementKeys, $wgMemc, $wgDBname;
-	global $wgUseDatabaseMessages, $wgUseMemCached, $wgOut;
-	global $wgAllMessagesEn, $wgLanguageCode;
+	global $wgReplacementKeys, $wgMessageCache, $wgLang;
 
 	$fname = "wfMsg";
 	wfProfileIn( $fname );
-	
-	static $messageCache = false;
-	$memcKey = "$wgDBname:messages";
-	$fname = "wfMsg";
-	$message = false;
-
-	# newFromText is too slow!
-	$title = ucfirst( $key );
-	if ( $messageCache ) {
-		$message = $messageCache[$title];
-	} elseif ( !$wgUseDatabaseMessages || !$useDB ) {
+	if ( $wgMessageCache ) {
+		$message = $wgMessageCache->get( $key, $useDB );
+	} elseif ( $wgLang ) {
 		$message = $wgLang->getMessage( $key );
+	} else {
+		wfDebug( "No language object when getting $key\n" );
+		$message = "&lt;$key&gt;";
 	}
 
-	if ( !$message && $wgUseMemCached ) {
-		# Try memcached
-		if ( !$messageCache ) {
-			$messageCache = $wgMemc->get( $memcKey );
-		}
-		
-		# If there's nothing in memcached, load all the messages from the database
-		# This should only happen on server reset -- ordinary changes should update
-		# memcached in editUpdates()
-		if ( !$messageCache ) {
-			# Other threads don't need to load the messages if another thread is doing it.
-			$wgMemc->set( $memcKey, "loading", time() + 60 );
-			$messageCache = wfLoadAllMessages();
-			# Save in memcached
-			$wgMemc->set( $memcKey, $messageCache, time() + 3600 );
-			
-			
-		}
-		if ( is_array( $messageCache ) && array_key_exists( $title, $messageCache ) ) {
-			$message = $messageCache[$title];
-		} elseif ( $messageCache == "loading" ) {
-			$messageCache = false;
-		}
-	}
-
-	# If there was no MemCached, load each message from the DB individually
-	if ( !$message ) {
-		if ( $useDB ) {
-			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI . 
-				" AND cur_title='$title'";
-			$res = wfQuery( $sql, DB_READ, $fname );
-
-			if ( wfNumRows( $res ) ) {
-				$obj = wfFetchObject( $res );
-				$message = $obj->cur_text;
-				wfFreeResult( $res );
-			}
-		}
-	}
-
-	# Try the array in $wgLang
-	if ( !$message ) {
-		$message = $wgLang->getMessage( $key );
-	} 
-
-	# Try the English array
-	if ( !$message && $wgLanguageCode != "en" ) {
-		$message = Language::getMessage( $key );
-	}
-	
 	# Replace arguments
 	if( count( $args ) ) {
 		$message = str_replace( $wgReplacementKeys, $args, $message );
 	}
 	wfProfileOut( $fname );
-	if ( !$message ) {
-		# Failed, message does not exist
-		return "&lt;$key&gt;";
-	}
 	return $message;
 }
 
@@ -700,20 +639,6 @@ function wfEscapeWikiText( $text )
 		array( '&#91;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;" ),
 		htmlspecialchars($text) );
 	return $text;
-}
-
-# Loads the entire MediaWiki namespace, returns the array
-function wfLoadAllMessages()
-{
-	$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
-	$res = wfQuery( $sql, DB_READ, $fname );
-	
-	$messages = array();
-	for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
-		$messages[$row->cur_title] = $row->cur_text;
-	}
-	wfFreeResult( $res );
-	return $messages;
 }
 
 function wfQuotedPrintable( $string, $charset = "" ) 

@@ -31,7 +31,9 @@ class Namespace {
 
 	function isMovable( $index )
 	{
-		if ( $index < NS_MAIN || $index > NS_WP_TALK ) { return false; }
+		if ( $index < NS_MAIN || $index == NS_IMAGE ) { 
+			return false; 
+		}
 		return true;
 	}
 

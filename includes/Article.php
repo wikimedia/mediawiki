@@ -402,7 +402,7 @@ class Article {
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis, $section = "")
+	function updateArticle( $text, $summary, $minor, $watchthis, $section = "", $forceBot = false )
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
@@ -478,13 +478,14 @@ class Article {
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			$oldid = wfInsertID( $res );
 
+			$bot = (int)($wgUser->isBot() || $forceBot);
+			
 			$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 			  "rc_namespace,rc_title,rc_new,rc_minor,rc_bot,rc_cur_id,rc_user," .
 			  "rc_user_text,rc_comment,rc_this_oldid,rc_last_oldid) VALUES (" .
 			  "'{$now}','{$now}'," . $this->mTitle->getNamespace() . ",'" .
 			  wfStrencode( $this->mTitle->getDBkey() ) . "',0,{$me2}," .
-			  ( $wgUser->isBot() ? 1 : 0 ) . "," .
-			  $this->getID() . "," . $wgUser->getID() . ",'" .
+			  "$bot," . $this->getID() . "," . $wgUser->getID() . ",'" .
 			  wfStrencode( $wgUser->getName() ) . "','" .
 			  wfStrencode( $summary ) . "',0,{$oldid})";
 			wfQuery( $sql, DB_WRITE, $fname );
@@ -705,7 +706,7 @@ class Article {
 
 	function delete()
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgMessageCache;
 		global $wpConfirm, $wpReason, $image, $oldimage;
 
 		# This code desperately needs to be totally rewritten
@@ -716,6 +717,12 @@ class Article {
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
+			return;
+		}
+
+		# Can't delete cached MediaWiki namespace (i.e. vital messages)
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $wgMessageCache->isCacheable( $this->mTitle->getDBkey() ) ) {
+			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 			return;
 		}
 
@@ -973,7 +980,10 @@ class Article {
 			$wgOut->readOnlyPage( $this->getContent() );
 			return;
 		}
-
+		
+		# Secret enhanced rollback, marks edits rc_bot=1
+		$bot = !!$_REQUEST['bot'];
+		
 		# Replace all this user's current edits with the next one down
 		$tt = wfStrencode( $this->mTitle->getDBKey() );
 		$n = $this->mTitle->getNamespace();
@@ -1007,7 +1017,7 @@ class Article {
 		}
 		
 		# Get the last edit not by this guy
-		$sql = "SELECT old_text,old_user,old_user_text
+		$sql = "SELECT old_text,old_user,old_user_text,old_timestamp
 		FROM old USE INDEX (name_title_timestamp)
 		WHERE old_namespace={$n} AND old_title='{$tt}'
 		AND (old_user <> {$uid} OR old_user_text <> '{$ut}')
@@ -1020,19 +1030,27 @@ class Article {
 			return;
 		}
 		$s = wfFetchObject( $res );
-	
+		
+		if ( $bot ) {
+			# Mark all reverted edits as bot
+			$sql = "UPDATE recentchanges SET rc_bot=1 WHERE
+				rc_cur_id=$pid AND rc_user=$uid AND rc_timestamp > '{$s->old_timestamp}'";
+			wfQuery( $sql, DB_WRITE, $fname );
+		}
+
 		# Save it!
 		$newcomment = wfMsg( "revertpage", $s->old_user_text );
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
-		$this->updateArticle( $s->old_text, $newcomment, 1, $this->mTitle->userIsWatching() );
+		$this->updateArticle( $s->old_text, $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
 
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
 		}
-	
+		
+			
 		$wgOut->returnToMain( false );
 	}
 	
@@ -1061,6 +1079,7 @@ class Article {
 	/* private */ function editUpdates( $text )
 	{
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
+		global $wgMessageCache;
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
@@ -1070,6 +1089,8 @@ class Article {
 		}
 		$id = $this->getID();
 		$title = $this->mTitle->getPrefixedDBkey();
+		$shortTitle = $this->mTitle->getDBkey();
+		
 		$adj = $this->mCountAdjustment;
 
 		if ( 0 != $id ) {
@@ -1080,24 +1101,11 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(),
-			  $this->mTitle->getDBkey() );
+			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
 			array_push( $wgDeferredUpdateList, $u );
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$messageCache = $wgMemc->get( "$wgDBname:messages" );
-
-				# If another thread is loading, poll
-				for ( $i=0; $i<70 && $messageCache == 'loading'; $i++ ) {
-					sleep(1);
-					$messageCache = $wgMemc->get( "$wgDBname:messages" );
-				}
-				
-				if ( !$messageCache || $messageCache == 'loading' ) {
-					$messageCache = wfLoadAllMessages();
-				}
-				$messageCache[$this->mTitle->getDBkey()] = $text;
-				$wgMemc->set( "$wgDBname:messages", $messageCache, 86400 );
+				$wgMessageCache->replace( $shortTitle, $text );
 			}
 		}
 	}
