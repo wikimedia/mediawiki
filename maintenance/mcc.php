@@ -36,6 +36,11 @@ do {
 				var_dump( $res );
 			}
 			break;
+		case "getsock":
+			$res = $mcc->get( $args[0] );
+			$sock = $mcc->get_sock( $args[0] );
+			var_dump( $sock );
+			break;
 		case "set":
 			$key = array_shift( $args );
 			if ( $args[0] == "#" && is_numeric( $args[1] ) ) {
@@ -55,7 +60,11 @@ do {
 				print "MemCached error\n";
 			}
 			break;				       
+		case "dumpmcc":
+			var_dump( $mcc );
+			break;
 		case "quit":
+		case "exit":
 			$quit = true;
 			break;
 		default:
