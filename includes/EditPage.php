@@ -130,7 +130,7 @@ class EditPage {
 
 		if ( "save" == $formtype ) {
 			# Check for spam
-			if ( preg_match( $wgSpamRegex, $this->textbox1 ) ) {
+			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1 ) ) {
 					sleep(10);
 					$wgOut->redirect( $this->mTitle->getFullURL() );
 					return;
