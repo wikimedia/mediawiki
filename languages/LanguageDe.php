@@ -50,7 +50,7 @@
   "numberheadings"          => "Überschriften automatisch numerieren",
   "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
   "editsection"             => "Links zum Editieren einzelner Absätze anzeigen",
-  "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick editieren (Javascript)",
+  "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (Javascript)",
   "showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr als 3 Überschriften",
   "rememberpassword"        => "Dauerhaftes Einloggen",
   "editwidth"               => "Text-Eingabefeld mit voller Breite",
@@ -497,14 +497,14 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
 <b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <fonz size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <p><i>Bitte beachten Sie, dass alle Beiträge zur Wikipedia automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
-"longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu editieren, die größer als 32KB sind.
+"longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
 "readonlywarning" => "WARNUNG: Die Datenbank wurde während dem Ändern der
 Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
-"protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass nur
-Benutzer mit Sysop-Rechten editieren können. Beachten Sie bitte die 
+"protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
+Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die 
 <a href='/wiki/Wikipedia:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
@@ -829,7 +829,7 @@ am Ende des Artikels.",
 "watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "($1 Artikel werden beobachtet (ohne Diskussionsseiten);
 $2 Artikel insgesamt bearbeitet in eingestelltem Zeitraum;
-$3... <a href='$4'>zeige und editiere komplette Liste</a>.)",
+$3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "watchmethod-recent" => "überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
 "watchmethod-list" => "überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
