@@ -20,13 +20,19 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 
 
 /* collect the originating ips */
-$wgIP = getenv("REMOTE_ADDR");
 if( $wgUseSquid && isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
 	# If the web server is behind a reverse proxy, we need to find
 	# out where our requests are really coming from.
-	$wgIP = trim( preg_replace( "/^(.*, )?([^,]+)$/", "$2",
-		$_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+	$hopips = split(', ', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+
+	while(in_array(trim(end($hopips)), $wgSquidServers)){
+		array_pop($hopips);
+	}
+	$wgIP = trim(end($hopips));
+} else {
+	$wgIP = getenv("REMOTE_ADDR");
 }
+
 
 $fname = "Setup.php";
 wfProfileIn( $fname );
@@ -148,7 +154,7 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
-if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
+if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
 }
 

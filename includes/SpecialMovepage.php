@@ -312,6 +312,7 @@ class MovePageForm {
 
 		# Change the name of the target page:
         $now = wfTimestampNow();
+        $won = wfInvertTimestamp( $now );
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->nns},cur_title='{$this->ndt}' " .
 		  "WHERE cur_id={$this->oldid}";
@@ -320,7 +321,7 @@ class MovePageForm {
 
 		# Repurpose the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
-		$sql = "UPDATE cur SET cur_touched='{$now}',cur_timestamp='{$now}'," .
+		$sql = "UPDATE cur SET cur_touched='{$now}',cur_timestamp='{$now}',inverse_timestamp='${won}'," .
 		  "cur_namespace={$this->ons},cur_title='{$this->odt}'," .
 		  "cur_text='#REDIRECT [[{$this->nft}]]\n',cur_comment='" .
 		  "{$mt} \\\"{$this->nft}\\\"',cur_user='" .  $wgUser->getID() .

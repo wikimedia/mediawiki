@@ -200,5 +200,9 @@ class MessageCache
 		}
 		return $message;
 	}
+
+	function disable() { $this->mDisable = true; }
+	function enable() { $this->mDisable = false; }
+
 }
 ?>

@@ -163,3 +163,8 @@ patch-rc-newindex.sql
 * 2004-02-14: Adds the ipb_expiry field to ipblocks
 patch-ipb_expiry.sql
 
+* 2004-03-10: Slight change to linkscc table (link data corruption bug)
+Run this again to clear out and redeclare the linkscc table.
+You may also want to rebuild your links...
+patch-linkscc.sql
+

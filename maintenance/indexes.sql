@@ -27,14 +27,6 @@ ALTER TABLE old
   ADD INDEX user_timestamp (old_user,inverse_timestamp),
   ADD INDEX usertext_timestamp (old_user_text,inverse_timestamp);
 
-ALTER TABLE links
-  ADD INDEX l_from (l_from),
-  ADD INDEX l_to (l_to);
-
-ALTER TABLE brokenlinks
-  ADD INDEX bl_from (bl_from),
-  ADD INDEX bl_to (bl_to);
-
 ALTER TABLE imagelinks
   ADD INDEX il_from (il_from(10)),
   ADD INDEX il_to (il_to(10));

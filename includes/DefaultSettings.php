@@ -6,12 +6,14 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.2.0rc1";
+$wgVersion			= "1.2.0";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
-$wgServer           = "http://" . getenv( "SERVER_NAME" );
+$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
+if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
+
 $wgScriptPath	    = "/wiki";
 
 # ATTN: Old installations used wiki.phtml and redirect.phtml -
@@ -82,8 +84,8 @@ $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars     = 32; # Maximum number of bytes in username
 
 # Translation using MediaWiki: namespace
-# Not recommended unless memcached is installed
-$wgUseDatabaseMessages = false;
+# This will increase load times by 25-60% unless memcached is installed
+$wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
 
 $wgExtraSubtitle	= "";
@@ -228,6 +230,21 @@ $wgCheckFileExtensions = true;
 # If this is turned off, users may override the warning for files not
 # covered by $wgFileExtensions.
 $wgStrictFileExtensions = true;
+
+## Set $wgUseImageResize to true if you want to enable dynamic
+## server side image resizing ("Thumbnails")
+# 
+$wgUseImageResize		= false;
+
+## Resizing can be done using PHP's internal image libraries
+## or using ImageMagick. The later supports more file formats
+## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
+##
+## Set $wgUseImageMagick to true to use Image Magick instead
+## of the builtin functions
+#
+$wgUseImageMagick		= false;
+$wgImageMagickConvertCommand    = "/usr/bin/convert";
 
 $wgPasswordSalt = true; # For compatibility with old installations set to false
 

@@ -308,15 +308,15 @@ class Database {
 	
 	function tableExists( $table )
 	{
-		$res = mysql_list_tables( $this->mDBname );
-		if( !$res ) {
-			echo "** " . $this->lastError() . "\n";
+		$old = $this->mIgnoreErrors;
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
+		$this->mIgnoreErrors = $old;
+		if( $res ) {
+			$this->freeResult( $res );
+			return true;
+		} else {
 			return false;
 		}
-		for( $i = $this->numRows( $res ) - 1; $i--; $i > 0 ) {
-			if( mysql_tablename( $res, $i ) == $table ) return true;
-		}
-		return false;
 	}
 
 	function fieldInfo( $table, $field )
