@@ -6,13 +6,7 @@
 	${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
 
-    <style type="text/css" media="screen">
-      /*<![CDATA[*/
-      @import url(${stylepath}/${skinname}/main.css);
-      /* custom css, could be either a pref or a subpage of the the user page */
-      /* @import url(${stylepath}/custom.css); */
-      /*]]>*/
-    </style>
+    <style type="text/css" media="screen">/*<![CDATA[*/ @import url(${stylepath}/${skinname}/main.css); /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
     <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
@@ -21,6 +15,11 @@
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
     <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
+    <!-- user styles and js if logged in -->
+    <style tal:condition="loggedin" type="text/css">/*<![CDATA[*/
+      @import url(${userpageurle}/${skinname}.css?action=raw&ctype=text/css); /*]]>*/</style>
+    <script tal:condition="loggedin" type="text/javascript" 
+      tal:attributes="src string:${userpageurle}/${skinname}.js?action=raw&ctype=text/javascript"></script>
   </head>
 
   <body tal:attributes="ondblclick body-ondblclick|default">
