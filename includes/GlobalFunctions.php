@@ -223,7 +223,9 @@ function wfMsgReal( $key, $args, $useDB ) {
 		}
 		if ( is_array( $messageCache ) && array_key_exists( $title, $messageCache ) ) {
 			$message = $messageCache[$title];
-		} 
+		} elseif ( $messageCache == "loading" ) {
+			$messageCache = false;
+		}
 	}
 
 	# If there was no MemCached, load each message from the DB individually
