@@ -7,6 +7,12 @@
 
 /** */
 function convertLinks() {
+	global $wgDBtype;
+	if( $wgDBtype == 'PostgreSQL' ) {
+		print "Links table already ok on PostgreSQL.\n";
+		return;
+	}
+	
 	print "Converting links table to ID-ID...\n";
 	
 	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
