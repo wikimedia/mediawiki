@@ -184,6 +184,48 @@ class GlobalTest extends PHPUnit_TestCase {
 				array( 'application/xhtml+xml' => 1.0 ) ) );
 	}
 	
+	function testTimestamp() {
+		$t = gmmktime( 12, 34, 56, 1, 15, 2001 );
+		$this->assertEquals(
+			'20010115123456',
+			wfTimestamp( TS_MW, $t ),
+			'TS_UNIX to TS_MW' );
+		$this->assertEquals(
+			979562096,
+			wfTimestamp( TS_UNIX, $t ),
+			'TS_UNIX to TS_UNIX' );
+		$this->assertEquals(
+			'2001-01-15 12:34:56',
+			wfTimestamp( TS_DB, $t ),
+			'TS_UNIX to TS_DB' );
+		
+		$this->assertEquals(
+			'20010115123456',
+			wfTimestamp( TS_MW, '20010115123456' ),
+			'TS_MW to TS_MW' );
+		$this->assertEquals(
+			979562096,
+			wfTimestamp( TS_UNIX, '20010115123456' ),
+			'TS_MW to TS_UNIX' );
+		$this->assertEquals(
+			'2001-01-15 12:34:56',
+			wfTimestamp( TS_DB, '20010115123456' ),
+			'TS_MW to TS_DB' );
+		
+		$this->assertEquals(
+			'20010115123456',
+			wfTimestamp( TS_MW, '2001-01-15 12:34:56' ),
+			'TS_DB to TS_MW' );
+		$this->assertEquals(
+			979562096,
+			wfTimestamp( TS_UNIX, '2001-01-15 12:34:56' ),
+			'TS_DB to TS_UNIX' );
+		$this->assertEquals(
+			'2001-01-15 12:34:56',
+			wfTimestamp( TS_DB, '2001-01-15 12:34:56' ),
+			'TS_DB to TS_DB' );
+	}
+	
 	/* TODO: many more! */
 }
 
