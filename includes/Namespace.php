@@ -37,7 +37,7 @@ class Namespace {
 
 	function isMovable( $index )
 	{
-		if ( $index < NS_MAIN || $index == NS_IMAGE || $index == NS_TEMPLATE) { 
+		if ( $index < NS_MAIN || $index == NS_IMAGE ) { 
 			return false; 
 		}
 		return true;
