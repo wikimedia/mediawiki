@@ -963,7 +963,8 @@ class Parser
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
 					if (strlen ($arr[$i]) == 2) $numitalics++;  else
-					if (strlen ($arr[$i]) == 3) $numbold++;
+					if (strlen ($arr[$i]) == 3) $numbold++;     else
+					if (strlen ($arr[$i]) == 5) { $numitalics++; $numbold++; }
 				}
 				$i++;
 			}
@@ -1008,7 +1009,9 @@ class Parser
 					$arr [ $firstmultiletterword-1 ] .= "'";
 				}
 				# ... otherwise use the first one that has neither.
-				else
+				# (notice that it is possible for all three to be -1 if, for example,
+				# there is only one pentuple-apostrophe in the line)
+				else if ($firstspace > -1)
 				{
 					$arr [ $firstspace ] = "''";
 					$arr [ $firstspace-1 ] .= "'";
