@@ -741,7 +741,7 @@ class Article {
 				  "<span class=\"redirectText\">$link</span>" );
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
-				$wgOut->addWikiText( $text, true, $this );
+				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
 				$wgOut->addWikiText( $text );
@@ -760,7 +760,7 @@ class Article {
 		}
 
 		# Put link titles into the link cache
-		$wgOut->replaceLinkHolders();
+		$wgOut->transformBuffer();
 
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
