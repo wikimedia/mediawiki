@@ -140,6 +140,11 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	'july', 'august', 'september', 'october', 'november',
 	'december'
 );
+/* private */ $wgMonthNamesGenEn = array(
+	'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
+	'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen',
+	'december-gen'
+);
 
 /* private */ $wgMonthAbbreviationsEn = array(
 	'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug',
