@@ -1,12 +1,12 @@
 <?
 
-#include("$IP/Utf8Case.php");
 include_once("$IP/LanguageUtf8.php");
 
 # Tu môžete meniť názvy "namespaces" (no proste, rôznych častí encyklopédie),
 # ale čísla nechajte tak, ako sú! Program to tak vyžaduje...
 #
 /* private */ $wgNamespaceNamesSk = array(
+	-2	=> "Media",
 	-1	=> "Špeciálne",
 	0	=> "",
 	1	=> "Komentár",
