@@ -1872,7 +1872,8 @@ class Skin {
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
 
-
+	# Make HTML for a thumbnail including image, border and caption
+	# $img is an Image object
 	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgLang;
 		# $image = Title::makeTitle( Namespace::getImage(), $name );
