@@ -32,7 +32,7 @@ class DBUnlockForm {
 		$lc = wfMsg( "unlockconfirm" );
 		$lb = wfMsg( "unlockbtn" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
-		$action = $titleObj->getURL( "action=submit", true );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		$wgOut->addHTML( "<p>
 <form id=\"unlockdb\" method=\"post\" action=\"{$action}\">
@@ -63,7 +63,7 @@ class DBUnlockForm {
 			return;
 		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
-		$success = $titleObj->getURL( "action=success" );
+		$success = $titleObj->getFullURL( "action=success" );
 		$wgOut->redirect( $success );
 	}
 

@@ -64,7 +64,7 @@ class MovePageForm {
 		$movetalk = wfMsg( "movetalk" );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
-		$action = $titleObj->getURL( "action=submit", true );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -168,9 +168,9 @@ class MovePageForm {
 			/* this needs to be done after LinksUpdate */
 			$urlArr = Array(				
 				# purge new title
-				$wgInternalServer.$this->nt->getURL(),
+				$wgInternalServer.$this->nt->getLocalURL(),
 				# purge old title
-				$wgInternalServer.$this->ot->getURL())
+				$wgInternalServer.$this->ot->getLocalURL())
 			);			
 			wfPurgeSquidServers($urlArr);	
 			# purge pages linking to new title
@@ -225,9 +225,9 @@ class MovePageForm {
 					/* this needs to be done after LinksUpdate */
 					$urlArr = Array(				
 						# purge new title
-						$wgInternalServer.$nt->getURL()),
+						$nt->getInternalURL()),
 						# purge old title
-						$wgInternalServer.$ot->getURL())
+						$ot->getInternalURL())
 					);			
 					wfPurgeSquidServers($urlArr);	
 					# purge pages linking to new title
@@ -242,7 +242,7 @@ class MovePageForm {
 			}
 		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
-		$success = $titleObj->getURL( 
+		$success = $titleObj->getFullURL( 
 		  "action=success&oldtitle=" . wfUrlencode( $this->ofx ) .
 		  "&newtitle=" . wfUrlencode( $this->nfx ) .
 		  "&talkmoved={$this->talkmoved}" );

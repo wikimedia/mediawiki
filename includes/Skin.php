@@ -181,7 +181,7 @@ class Skin {
 			if ( $oldid && ! isset( $diff ) ) {
 				$oid = "&oldid={$oldid}";
 			}
-			$s = $wgTitle->getUrl( "action=edit{$oid}{$red}", false, true );
+			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
 			$s = "document.location = \"" .$s ."\";";
 			$a += array ("ondblclick" => $s);
 
@@ -692,7 +692,7 @@ class Skin {
 		
 		$mp = wfMsg( "mainpage" );
 		$titleObj = Title::newFromText( $mp );
-		$s = "<a href=\"" . $titleObj->getURL( "", true )
+		$s = "<a href=\"" . $titleObj->escapeLocalURL()
 		  . "\"><img{$a} border=0 src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\"></a>";
 		return $s;
@@ -1332,7 +1332,7 @@ class Skin {
 			$u = "";
 			if ( "" == $text ) { $text = $nt->getFragment(); }
 		} else {
-			$u = $nt->getURL( $query, true );
+			$u = $nt->escapeLocalURL( $query );
 		}
 		if ( "" != $nt->getFragment() ) {
 			$u .= "#" . wfEscapeHTML( $nt->getFragment() );
@@ -1360,11 +1360,12 @@ class Skin {
 		$fname = "Skin::makeBrokenLinkObj";
 		wfProfileIn( $fname );
 
-		$link = $nt->getPrefixedURL();
-
-		if ( "" == $query ) { $q = "action=edit"; }
-		else { $q = "action=edit&{$query}"; }
-		$u = $nt->getURL( $q );
+		if ( "" == $query ) {
+			$q = "action=edit";
+		} else {
+			$q = "action=edit&{$query}";
+		}
+		$u = $nt->escapeLocalURL( $q );
 
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
@@ -1394,7 +1395,7 @@ class Skin {
 
 		$link = $nt->getPrefixedURL();
 
-		$u = $nt->getURL( $query, true );
+		$u = $nt->escapeLocalURL( $query );
 
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "stub" );
@@ -1522,7 +1523,7 @@ class Skin {
 		}
 		$alt = htmlspecialchars( $alt );
 
-		$u = $nt->getURL( "", true );
+		$u = $nt->escapeLocalURL();
 		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
 		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
 		if ( "" != $align ) {
@@ -1647,7 +1648,7 @@ class Skin {
 		
 		$thumbUrl = $this->createThumb( $name, $boxwidth );
 
-		$u = $nt->getURL( "", true );
+		$u = $nt->escapeLocalURL();
 
 		$more = htmlspecialchars(wfMsg( "thumbnail-more" ));
 		
@@ -2148,8 +2149,8 @@ class Skin {
 			$url = wfImageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isSysop() ) {
-				$link = $wgTitle->getURL( "image=" . $wgTitle->getPartialURL() . 
-				  "&action=delete", true );
+				$link = $wgTitle->escapeLocalURL( "image=" . $wgTitle->getPartialURL() . 
+				  "&action=delete" );
 				$style = $this->getInternalLinkAttributes( $link, $del );
 
 				$dlink = "<a href=\"{$link}\"{$style}>{$del}</a>";
@@ -2237,7 +2238,7 @@ class Skin {
 
 		global $wgTitle,$wgUser,$oldid;
 		if($oldid) return $head;
-		$url = $wgTitle->getUrl( "action=edit&section=$section", true );
+		$url = $wgTitle->escapeLocalURL( "action=edit&section=$section" );
 		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
 	}
 

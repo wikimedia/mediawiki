@@ -1352,7 +1352,7 @@ class Parser
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
 				$text .= "<a href=\"" .
-				$titleObj->getUrl( "isbn={$num}", false, true ) .
+				$titleObj->escapeLocalUrl( "isbn={$num}" ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}

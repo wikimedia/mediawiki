@@ -43,7 +43,7 @@ class MakesysopForm {
 		$wgOut->addWikiText( wfMsg( "makesysoptext" ) );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Makesysop" );
-		$action = $titleObj->getURL( "action=submit",  true );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );

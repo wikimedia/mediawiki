@@ -95,7 +95,7 @@ class SkinSmarty extends Skin {
 			$text = $popup = $title->getPrefixedText();
 		}
 		
-		$url = $title->getURL( $action, true );
+		$url = $title->escapeLocalURL( $action );
 		
 		if($params['text']) $text = $params['text'];
 		if($params['key']) $text = wfMsg( $params['key'] );

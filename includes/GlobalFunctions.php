@@ -50,7 +50,7 @@ function wfSeedRandom()
 }
 
 # Generates a URL from a URL-encoded title and a query string
-# Title::getURL() is preferred in most cases
+# Title::getLocalURL() is preferred in most cases
 #
 function wfLocalUrl( $a, $q = "" )
 {
@@ -77,16 +77,15 @@ function wfLocalUrl( $a, $q = "" )
 function wfLocalUrlE( $a, $q = "" )
 {
 	return wfEscapeHTML( wfLocalUrl( $a, $q ) );
+	# die( "Call to obsolete function wfLocalUrlE()" );
 }
 
 function wfFullUrl( $a, $q = "" ) {
-	$titleObj = Title::newFromURL( $a );
-	return $titleObj->getURL( $q, false, true );
+	die( "Call to obsolete function wfFullUrl()" );
 }
 
 function wfFullUrlE( $a, $q = "" ) {
-	$titleObj = Title::newFromURL( $a );
-	return $titleObj->getURL( $q, true, true );
+	die( "Call to obsolete function wfFullUrlE()" );
 
 }
 

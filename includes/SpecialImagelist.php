@@ -49,7 +49,7 @@ function wfSpecialImagelist()
 	$cap = wfMsg( "ilshowmatch" );
 	$sub = wfMsg( "ilsubmit" );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
-	$action = $titleObj->getURL(  "sort=byname&limit={$limit}", true );
+	$action = $titleObj->escapeLocalURL(  "sort=byname&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .

@@ -70,7 +70,7 @@ class EmailUserForm {
 		$ems = wfMsg( "emailsend" );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-		$action = $titleObj->getURL( "target={$target}&action=submit", true );
+		$action = $titleObj->escapeLocalURL( "target={$target}&action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -115,7 +115,7 @@ class EmailUserForm {
 		if (! $mailResult)
 		{
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-			$wgOut->redirect( $titleObj->getURL( "target={$target}&action=success" ) );
+			$wgOut->redirect( $titleObj->getFullURL( "target={$target}&action=success" ) );
 		}
 		else
 			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);

@@ -36,7 +36,7 @@ class DBLockForm {
 		$lb = wfMsg( "lockbtn" );
 		$elr = wfMsg( "enterlockreason" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
-		$action = $titleObj->getURL( "action=submit", true );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		$wgOut->addHTML( "<p>
 <form id=\"lockdb\" method=\"post\" action=\"{$action}\">
@@ -77,7 +77,7 @@ class DBLockForm {
 		fclose( $fp );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
-		$wgOut->redirect( $titleObj->getURL( "action=success" ) );
+		$wgOut->redirect( $titleObj->getFullURL( "action=success" ) );
 	}
 
 	function showSuccess()

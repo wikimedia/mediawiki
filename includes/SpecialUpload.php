@@ -209,7 +209,7 @@ function uploadWarning( $warning )
 	$iw = wfMsg( "ignorewarning" );
 	$reup = wfMsg( "reuploaddesc" );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
-	$action = $titleObj->getURL( "action=submit", true );
+	$action = $titleObj->escapeLocalURL( "action=submit" );
 
 	if ( $wgUseCopyrightUpload )
 	{
@@ -268,7 +268,7 @@ function mainUploadForm( $msg )
 	$iw = wfMsg( "ignorewarning" );
 
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
-	$action = $titleObj->getURL( "", true );
+	$action = $titleObj->escapeLocalURL();
 
 	$source = "
 <td align=right>
