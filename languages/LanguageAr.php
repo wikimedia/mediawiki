@@ -3,20 +3,24 @@
 require_once("LanguageUtf8.php");
 
 /* private */ $wgNamespaceNamesAr = array(
-	-2 => "ملف",
-	-1 => "خاص",
-	0 => "",
-	1 => "نقاش",
-	2 => "مستخدم",
-	3 => "نقاش_المستخدم",
-	4 => "ويكيبيديا",
-	5 => "ويكيبيديا_نقاش",
-	6 => "صورة",
-	7 => "نقاش_الصورة",
-	8 => "MediaWiki",
-	9 => "MediaWiki_talk",
-	10  => "Template",
-	11  => "Template_talk"
+        NS_MEDIA            => "ملف",
+        NS_SPECIAL          => "خاص",
+        NS_MAIN             => "",
+        NS_TALK             => "نقاش",
+        NS_USER             => "مستخدم",
+        NS_USER_TALK        => "نقاش_المستخدم",
+        NS_WIKIPEDIA        => "ويكيبيديا",
+        NS_WIKIPEDIA_TALK   => "نقاش_ويكيبيديا",
+        NS_IMAGE            => "صورة",
+        NS_IMAGE_TALK       => "نقاش_الصورة",
+        NS_MEDIAWIKI        => "ميدياويكي",
+        NS_MEDIAWIKI_TALK   => "نقاش_ميدياويكي",
+        NS_TEMPLATE         => "Template",
+        NS_TEMPLATE_TALK    => "نقاش_Template",
+        NS_HELP             => "مساعدة",
+        NS_HELP_TALK        => "نقاش_المساعدة",
+        NS_CATEGORY         => "تصنيف",
+        NS_CATEGORY_TALK    => "نقاش_التصنيف"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgWeekdayNamesAr = array(
