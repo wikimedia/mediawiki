@@ -12,7 +12,8 @@ function initialiseMessages( $overwrite = false) {
 
 	$timestamp = wfTimestampNow();
 	$invTimestamp = wfInvertTimestamp( $timestamp );
-	$navText = wfMsgNoDB( "allmessagestext" );
+	$mwMsg =& MagicWord::get( MAG_MSG );
+	$navText = str_replace( "$1", "allmessagestext", $mwMsg->getSynonym( 0 ) );
 	$navText .= "
 
 <table border=1 width=100%><tr><td>
@@ -29,7 +30,7 @@ function initialiseMessages( $overwrite = false) {
 	$first = true;
 	$sortedArray = $wgAllMessagesEn;
 	ksort( $sortedArray );
-
+	
 	foreach ( $sortedArray as $key => $enMsg ) {
 		if ( $first ) {
 			$first = false;
@@ -43,28 +44,22 @@ function initialiseMessages( $overwrite = false) {
 		$sql .= "'$enctitle'";
 	}
 	$sql .= ")";
-	print "Reading...";
 	$res = wfQuery( $sql, DB_READ );
-	print ".";
 	$row = wfFetchObject( $res );
-	print "done\n";
 
-	print "Setting up...";
 	$exists = array();
 	while ( $row ) {
 		$exists[$row->cur_title] = 1;
 		$row = wfFetchObject( $res );
 	}
-	print ".";
 	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
 	$first = true;
 	$mwObj =& MagicWord::get( MAG_MSGNW );
 	$msgnw = $mwObj->getSynonym( 0 );
-	print "Done\n";
-	
-	print "Processing...";
+	$talk = $wgLang->getNsText( NS_TALK );
+	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	
 	foreach ( $sortedArray as $key => $enMsg ) {
 		$message = wfMsgNoDB( $key );
@@ -102,21 +97,19 @@ function initialiseMessages( $overwrite = false) {
 		$message = wfEscapeWikiText( $message );
 		$navText .= 
 "<tr><td>
-  [$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]
+  [$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]<br>
+  [[$mwtalk:$title|$talk]]
 </td><td>
   $message
 </td><td>
   $mw
 </td></tr>";
 	}
-	print "Done\n";
-	print "Writing...";
 
 	if ( !$first ) {
 		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
-	print "Done\n";
 
 	$navText .= "</table>";
 
@@ -125,12 +118,10 @@ function initialiseMessages( $overwrite = false) {
 	$wgArticle = new Article( $titleObj );
 	$wgOut->disable();
 	$wgUser = User::newFromName( 'MediaWiki default' );
-	print "Writing to " . $titleObj->getPrefixedDBkey() . "\n";
 	if ( $titleObj->getArticleID() ) {
 		$wgArticle->updateArticle( $navText, '', 0, 0 );
 	} else {
 		$wgArticle->insertNewArticle( $navText, '', 0, 0 );
 	}
-	print "Finished\n";
 }
 
