@@ -99,7 +99,8 @@ if($wgMetaNamespace === FALSE)
 	'cologneblue' => "Cologne Blue",
 	'smarty' => "Paddington",
 	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci"
+	'davinci' => "DaVinci",
+	'mono' => "Mono"
 );
 
 /* private */ $wgMathNamesEn = array(

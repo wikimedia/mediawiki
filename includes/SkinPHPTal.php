@@ -33,15 +33,16 @@
 
 		function initPage() {
 			$this->skinname = "davinci";
+			$this->template = "xhtml_slim";
 		}
 
 		function outputPage( &$out ) {
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
-			global $wgOutputEncoding, $wgUseDatabaseMessages, $action;
+			global $wgOutputEncoding, $wgUseDatabaseMessages, $action, $oldid, $diff;
 
 			$this->initPage();
-			$tpl = new PHPTAL($this->skinname . '.pt', 'templates');
+			$tpl = new PHPTAL($this->template . '.pt', 'templates');
 			#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 
 			$tpl->setTranslator(new MediaWiki_I18N());
@@ -53,6 +54,7 @@
 			$tpl->setRef( "thispage", &$thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->setRef( 'charset', $wgOutputEncoding);
+			$tpl->setRef( 'skinname', $this->skinname );
 
 			$loggedin = $wgUser->getID() != 0;
 			$tpl->setRef( "loggedin", &$loggedin );
@@ -85,6 +87,8 @@
 			$tpl->setRef( "skin", &$this);
 			$tpl->set( "logo", $this->logoText() );
 			$tpl->set( "pagestats", $this->pageStats() );
+			$tpl->set( "disclaimer", $this->disclaimerLink() );
+			$tpl->set( "about", $this->aboutLink() );
 
 			$tpl->setRef( "debug", &$out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
@@ -162,15 +166,21 @@
 				'akey' => wfMsg('accesskey-talk'));
 
 				if ( $wgTitle->userCanEdit() ) {
+					if ( $oldid && ! isset( $diff ) ) {
+						$oid = "&oldid={$oldid}";
+					}
 					$content_actions['edit'] = array('class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
 					'text' => wfMsg('edit'),
-					'href' => $this->makeUrl($thispage, 'action=edit'),
+					'href' => $this->makeUrl($thispage, 'action=edit'.$oid),
 					'ttip' => wfMsg('tooltip-edit'),
 					'akey' => wfMsg('accesskey-edit'));
 				} else {
+					if ( $oldid && ! isset( $diff ) ) {
+						$oid = "&oldid={$oldid}";
+					}
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
 					'text' => wfMsg('viewsource'),
-					'href' => $this->makeUrl($thispage, 'action=edit'),
+					'href' => $this->makeUrl($thispage, 'action=edit'.$oid),
 					'ttip' => wfMsg('tooltip-edit'),
 					'akey' => wfMsg('accesskey-edit'));
 				}
@@ -333,6 +343,15 @@
 		function initPage() {
 			SkinPHPTal::initPage();
 			$this->skinname = "davinci";
+			$this->template = "xhtml_slim";
+		}
+	}
+	
+	class SkinMono extends SkinPHPTal {
+		function initPage() {
+			SkinPHPTal::initPage();
+			$this->skinname = "mono";
+			$this->template = "xhtml_slim";
 		}
 	}
 	
