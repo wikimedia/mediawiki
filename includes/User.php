@@ -340,6 +340,10 @@ class User {
 		if(!$this->mId) {
 			/** Get rights */
 			$anong = Group::newFromId($wgAnonGroupId);
+			if (!$anong) 
+				wfDebugDieBacktrace("Please update your database schema "
+					."and populate initial group data from "
+					."maintenance/archives patches");
 			$anong->loadFromDatabase();
 			$this->mRights = explode(',', $anong->getRights());
 			$this->mDataLoaded = true;
