@@ -5,7 +5,7 @@
 
 function wfSpecialBooksources()
 {
-	$isbn = $_REQUEST["isbn"];
+	$isbn = preg_replace( '/[^0-9X]/', '', $_REQUEST["isbn"] );
 
 	$bsl = new BookSourceList( $isbn );
 	$bsl->show();
