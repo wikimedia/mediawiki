@@ -108,6 +108,22 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "print":
 			$wgArticle->view();
 			break;
+                case "dublincore":
+                        if (!$wgEnableDublinCoreRdf) {
+                            wfHttpError(403, "Forbidden", wfMsg("nodublincore"));
+                        } else {
+                            include_once("Metadata.php");
+                            wfDublinCoreRdf($wgArticle);
+                        }
+                        break;
+                case "creativecommons":
+                        if (!$wgEnableCreativeCommonsRdf) {
+                            wfHttpError(403, "Forbidden", wfMsg("nocreativecommons"));
+                        } else {
+                            include_once("Metadata.php");
+                            wfCreativeCommonsRdf($wgArticle);
+                        }
+                        break;
 		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {

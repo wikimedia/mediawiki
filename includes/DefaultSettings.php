@@ -292,5 +292,17 @@ if( !isset( $wgCommandLineMode ) ) {
 }
 
 # Show seconds in Recent Changes
-$wgRCSeconds = false
+$wgRCSeconds = false;
+
+
+# RDF metadata toggles
+
+$wgEnableDublinCoreRdf = false;
+$wgEnableCreativeCommonsRdf = false;
+
+# Override for copyright metadata.
+
+$wgRightsPage = NULL;
+$wgRightsUrl = NULL;
+$wgRightsText = NULL;
 ?>

@@ -1548,6 +1548,15 @@ amusement.",
 'tooltip-specialpages' => 'List of all special pages',
 'tooltip-upload' => 'Upload images or media files [alt-u]',
 'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
+
+# Metadata
+"nodublincore" => "Dublin Core RDF metadata disabled for this server.",
+"nocreativecommons" => "Creative Commons RDF metadata disabled for this server.",
+"notacceptable" => "The wiki server can't provide data in a format your client can read.",
+
+# Attribution
+
+"anonymous" => "Anonymous user(s) of $wgSitename"
 );
 
 #--------------------------------------------------------------------------
