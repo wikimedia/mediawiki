@@ -70,3 +70,27 @@ function toggleToc() {
 	}
 }
 
+
+/* Temporary hack for Mozilla bug; revert to quirks mode handling of <hr> */
+if(navigator.userAgent &&
+   navigator.userAgent.indexOf('Gecko') != -1 &&
+   navigator.userAgent.indexOf('KHTML') == -1) {
+	document.writeln(
+	'<style type="text/css">\n' +
+	'hr {\n' +
+	'  display: inline;\n' +
+	'  -moz-box-sizing: border-box;\n' +
+	'  margin: 0 0.1% 0 0.1%;\n' +
+	'  font-size: -moz-initial !important;\n' +
+	'}\n' +
+	'hr:before {\n' +
+	'  white-space: pre;\n' +
+	'  content: "\\A";\n' +
+	'}\n' +
+	'hr:after {\n' +
+	'  white-space: pre;\n' +
+	'  content: "\\A";\n' +
+	'}\n' +
+	'</style>');
+}
+
