@@ -92,6 +92,15 @@ $wgSysopUserBans        = false; # Allow sysops to ban logged-in users
 $wgIPBlockExpiration    = 86400; # IP blocks expire after this many seconds, 0=infinite
 $wgUserBlockExpiration  = 0; # As above, but for logged-in users
 
+# User agent/range blocking
+# Blocks all users using a particular user agent, possibly restricted to a 
+# set of IP ranges. Note: you can't block all user agents by leaving 
+# $wgBadUserAgents blank. That would block nothing.
+$wgBadRanges 			= false; # e.g. array(array("1.2.3.0", "1.2.3.255"))
+$wgBadUserAgents 		= false; # e.g. array("OfflineExplorer/1.0")
+$wgRangeBlockUser		= 0;     # The block is attributed to this user ID
+$wgRangeBlockReason		= "";    # This reason is given (should be in wfMsg, obviously)
+
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
 

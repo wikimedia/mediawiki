@@ -94,7 +94,35 @@ class User {
 
 	/* private */ function getBlockedStatus()
 	{
+		global $wgBadRanges, $wgBadUserAgents, $wgRangeBlockUser, $wgRangeBlockReason;
+
 		if ( -1 != $this->mBlockedby ) { return; }
+		
+		# Range/user-agent blocking
+		
+		$fBlock = false; # Mmmm, Hungarian
+		if ( ( !is_array( $wgBadUserAgents ) ||
+					array_key_exists( getenv( "HTTP_USER_AGENT" ), $wgBadUserAgents ) ) &&
+				is_array( $wgBadRanges ) )
+		{
+			$iIp = ip2long( getenv( "REMOTE_ADDR" ) );
+			foreach ( $wgBadRanges as $range ) {
+				$start = ip2long( $range[0] );
+				$end = ip2long( $range[1] );
+				if ( $iIp >= $start && $iIp <= $end ) {
+					$fBlock = true;
+					break;
+				}
+			}
+		}
+
+		if ( $fBlock ) {
+			$this->mBlockedby = $wgRangeBlockUser;
+			$this->mBlockReason = $wgRangeBlockReason;
+			return;
+		}
+
+		# User/IP blocking
 
 		$block = new Block();
 		if ( !$block->load( getenv( "REMOTE_ADDR" ), $this->mId ) ) {
@@ -102,7 +130,7 @@ class User {
 			$this->mBlockedby = 0;
 			return;
 		}
-		
+
 		$this->mBlockedby = $block->mBy;
 		$this->mBlockreason = $block->mReason;
 	}
