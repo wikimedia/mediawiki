@@ -1396,7 +1396,8 @@ amusement.",
 
 # Thumbnails
 
-"thumbnail-more"      => "Enlarge"
+"thumbnail-more"	=> "Enlarge",
+"missingimage"		=> "<b>Missing image</b><br><i>$1</i>\n"
 
 
 );
