@@ -2,44 +2,58 @@
 
 require_once( "LanguageUtf8.php" );
 
-/* private */ $wgWeekdayNamesEl = array(
-	"Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη",
-	"Παρασκευή", "Σαββάτο"
+/* private */ $wgAllMessagesEl = array(
+
+'sunday' => "Κυριακή",
+'monday' => "Δευτέρα",
+'tuesday' => "Τρίτη",
+'wednesday' => "Τετάρτη",
+'thursday' => "Πέμπτη",
+'friday' => "Παρασκευή",
+'saturday' => "Σαββάτο",
+
+'january' => "Ιανουαρίου",
+'february' => "Φεβρουαρίου",
+'march' => "Μαρτίου",
+'april' => "Απριλίου",
+'may_long' => "Μαΐου",
+'june' => "Ιουνίου",
+'july' => "Ιουλίου",
+'august' => "Αυγούστου",
+'september' => "Σεπτεμβρίου",
+'october' => "Οκτωβρίου",
+'november' => "Νοεμβρίου",
+'december' => "Δεκεμβρίου",
+
+'jan' => "Ιαν",
+'feb' => "Φεβρ",
+'mar' => "Μαρτ",
+'apr' => "Απρ",
+'may' => "Μαΐου",
+'jun' => "Ιουν",
+'jul' => "Ιουλ",
+'aug' => "Αυγ",
+'sep' => "Σεπτ",
+'oct' => "Οκτ",
+'nov' => "Νοεμβ",
+'dec' => "Δεκ",
 );
 
-/* private */ $wgMonthNamesEl = array(
-	"Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
-	"Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου",
-	"Δεκεμβρίου"
-);
-
-/* private */ $wgMonthAbbreviationsEl = array(
-	"Ιαν". "Φεβρ", "Μαρτ", "Απρ", "Μαΐου", "Ιουν", "Ιουλ",
-	"Αυγ", "Σεπτ", "Οκτ", "Νοεμβ", "Δεκ"
-);
 
 class LanguageEl extends LanguageUtf8 {
 	function fallback8bitEncoding() {
 		return "windows-1253";
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesEl;
-		return $wgMonthNamesEl[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsEl;
-		return $wgMonthAbbreviationsEl[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesEl;
-		return $wgWeekdayNamesEl[$key-1];
-	}
+        function getMessage( $key )
+        {
+                global $wgAllMessagesDe;
+                if( isset( $wgAllMessagesDe[$key] ) ) {
+                        return $wgAllMessagesDe[$key];
+                } else {
+                        return "";
+                }
+        }
 
 }
 
