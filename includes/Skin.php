@@ -414,7 +414,8 @@ class Skin extends Linker {
 			$parenttree = $wgTitle->getParentCategoryTree();
 
 			# Render the array as a serie of links
-			function walkThrough ($tree) {
+			# Need to give skin cause $this is undefined at this level
+			function walkThrough ($tree, &$skin) {
 				$return = '';
 				foreach($tree as $element => $parent) {
 					if(empty($parent)) {
@@ -422,17 +423,19 @@ class Skin extends Linker {
 						$return .= '<br />';
 					} else {
 						# grab the others elements
-						$return .= walkThrough($parent);
+						$return .= walkThrough($parent, $skin);
 					}
 					# add our current element to the list
 					$eltitle = Title::NewFromText($element);
 					# FIXME : should be makeLink() [AV]
-					$return .= $this->makeLinkObj( $eltitle, $eltitle->getText() ) . ' &gt; ';
+					$return .= $skin->makeLinkObj( $eltitle, $eltitle->getText() ) . ' &gt; ';
 				}
 				return $return;
 			}
 
-			$s .= walkThrough($parenttree);
+			# Skin object passed by reference cause it can not be
+			# accessed under the method subfunction walkThrough.
+			$s .= walkThrough($parenttree, $this);
 		}
 
 		return $s;
