@@ -250,6 +250,10 @@ function setupLangObj(&$langclass, $langcode) {
 
 require_once( 'languages/Language.php' );
 
+# $wgLanguageCode may be changed later to fit with user preference.
+# The content language will remain fixed as per the configuration,
+# so let's keep it.
+$wgContLanguageCode = $wgLanguageCode;
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
 
 $wgContLang = setupLangObj( $wgContLangClass, $wgContLangClass );

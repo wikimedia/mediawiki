@@ -885,7 +885,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = \$wgSitename;
 
-\$wgContLanguageCode = \"{$slconf['LanguageCode']}\";
+\$wgLanguageCode = \"{$slconf['LanguageCode']}\";
 \$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
 \$wgProxyKey = \"$proxyKey\";
