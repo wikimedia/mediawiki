@@ -115,8 +115,8 @@ img.tex { vertical-align: middle; }
 	color: red;
 	font-size: larger;
 }
-/* preference page with js-genrated toc */
 
+/* preference page with js-genrated toc */
 #preftoc { 
     float: left;
     margin: 1em 1em 1em 1em;
@@ -137,3 +137,4 @@ img.tex { vertical-align: middle; }
     float: left;
     margin-top: 1em;
 }
+fieldset.operaprefsection { margin-left: 15em }
