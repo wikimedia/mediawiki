@@ -1,0 +1,10 @@
+/* js pref toc */
+#preftoc { float: right; }
+/* workaround for moz bug, displayed bullets on left side */
+#preftoc li { list-style: none; }
+#prefcontrol { float: right; }
+fieldset.prefsection,
+fieldset.operaprefsection { 
+    margin-left: 0;
+    margin-right: 18em;
+}

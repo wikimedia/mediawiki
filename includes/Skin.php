@@ -159,11 +159,12 @@ class Skin {
 
 	function getUserStyles()
 	{
-		global $wgOut, $wgStylePath;
+		global $wgOut, $wgStylePath, $wgLang;
 		$sheet = $this->getStylesheet();
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= "@import url(\"$wgStylePath/$sheet\");\n";
+		if($wgLang->isRTL()) $s .= "@import url(\"$wgStylePath/common_rtl.css\");\n";
 		$s .= $this->doGetUserStyles();
 		$s .= "/* */\n";
 		$s .= "</style>\n";
