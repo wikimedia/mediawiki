@@ -121,15 +121,15 @@ class MovePageForm {
 			return;
 		}
 		
-		# Update counters if the article got moved in or out of NS_MAIN namespace
+		# Update counters if the article got moved into or out of NS_MAIN namespace
 		$ons = $ot->getNamespace();
 		$nns = $nt->getNamespace();
 		
-		# moved out of article namespace ?
+		# moved out of article namespace?
 		if ( $ons == NS_MAIN and $nns != NS_MAIN ) {
 			$u = new SiteStatsUpdate( 0, 1, -1); # not viewed, edited, removing
 		}
-		# moved in article namespace ?
+		# moved into article namespace?
 		elseif ( $ons != NS_MAIN and $nns == NS_MAIN ) {
 			$u = new SiteStatsUpdate( 0, 1, +1 ); # not viewed, edited, adding
 		}
