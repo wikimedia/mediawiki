@@ -45,6 +45,13 @@ if (defined('MEDIAWIKI')) {
 		syslog(LOG_INFO, "User '" . $user->getName() . "' logged out.");
 		return true;
 	}
+
+	function syslogBlockIp(&$block, &$user) {
+		syslog(LOG_INFO, "User '" . $user->getName() . 
+			   "' blocked '" . (($block->mUser) ? $block->mUser : $block->mAddress) .
+			   "' for '" . $block->mReason . "' until '" . $block->mExpiry . "'");
+		return true;
+	}
 	
 	# Setup -- called once environment is configured
 	
@@ -57,6 +64,7 @@ if (defined('MEDIAWIKI')) {
 		
 		$wgHooks['UserLoginComplete'][] = syslogUserLogin;
 		$wgHooks['UserLogout'][] = syslogUserLogout;
+		$wgHooks['BlockIpComplete'][] = syslogBlockIp;
 		
 		return true;
 	}

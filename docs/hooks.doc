@@ -226,6 +226,14 @@ hooks than for "complete" hooks.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'BlockIp': before an IP address or user is blocked
+$block: the Block object about to be saved
+$user: the user _doing_ the block (not the one being blocked)
+
+'BlockIpComplete': after an IP address or user is blocked
+$block: the Block object that was saved
+$user: the user who did the block (not the one being blocked)
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    
@@ -235,4 +243,3 @@ $user: the user object that is about to be logged out
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
 		      
-	     
