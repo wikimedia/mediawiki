@@ -1450,9 +1450,13 @@ class Language {
 		}
 		return $text;
 	}
+
+	# For right-to-left language support
+	function isRTL() { return false; }
 }
 
 global $IP;
 @include_once( "{$IP}/Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
+v

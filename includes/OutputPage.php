@@ -1361,14 +1361,15 @@ class OutputPage {
 
 	/* private */ function headElement()
 	{
-		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding;
+		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding, $wgLang;
 
 		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = $this->mPagetitle;
 		}
-		$ret .= "<html lang=\"$wgLanguageCode\"><head><title>{$this->mHTMLtitle}</title>\n";
+		$rtl = $wgLang->isRTL() ? " dir='RTL'" : "";
+		$ret .= "<html lang=\"$wgLanguageCode\"$rtl><head><title>{$this->mHTMLtitle}</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "text/html; charset={$wgOutputEncoding}" ) );
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( "http:", substr( $tag[0], 0, 5 ) ) ) {
