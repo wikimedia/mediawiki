@@ -2,7 +2,8 @@
 
 function wfSpecialUserlogin()
 {
-	global $wpCreateaccount, $wpLoginattempt, $wpMailmypassword;
+	global $wpCreateaccount, $wpCreateaccountMail;
+	global $wpLoginattempt, $wpMailmypassword;
 	global $action;
 
 	$fields = array( "wpName", "wpPassword", "wpName",
@@ -11,6 +12,8 @@ function wfSpecialUserlogin()
 
 	if ( isset( $wpCreateaccount ) ) {
 		addNewAccount();
+	} else if ( isset( $wpCreateaccountMail ) ) {
+		addNewAccountMailPassword();
 	} else if ( isset( $wpMailmypassword ) ) {
 		mailPassword();
 	} else if ( "submit" == $action || isset( $wpLoginattempt ) ) {
@@ -20,10 +23,65 @@ function wfSpecialUserlogin()
 	}
 }
 
+
+/* private */ function addNewAccountMailPassword()
+{
+	global $wgOut, $wpEmail, $wpName;
+	
+	if ("" == $wpEmail) {
+		$m = str_replace( "$1", $wpName, wfMsg( "noemail" ) );
+		mainLoginForm( $m );
+		return;
+	}
+
+	$u = addNewaccountInternal();
+
+	if ($u == NULL) {
+		return;
+	}
+
+	$u->saveSettings();
+	mailPasswordInternal($u);
+
+	$wgOut->setPageTitle( wfMsg( "accmailtitle" ) );
+	$wgOut->setRobotpolicy( "noindex,nofollow" );
+	$wgOut->setArticleFlag( false );
+
+	$m = str_replace( "$1", $u->getName(), wfMsg( "accmailtext" ) );
+	$m = str_replace( "$2", $u->getEmail(), $m );
+	$wgOut->addWikiText( $m );
+	$wgOut->returnToMain( false );
+
+	$u = 0;
+}
+
+
 /* private */ function addNewAccount()
 {
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
 	global $wpEmail, $wgDeferredUpdateList;
+
+	$u = addNewAccountInternal();
+
+	if ($u == NULL) {
+		return;
+	}
+
+	$wgUser = $u;
+	$m = str_replace( "$1", $wgUser->getName(), wfMsg( "welcomecreation" ) );
+	successfulLogin( $m );
+}
+
+
+/* private */ function addNewAccountInternal()
+{
+	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
+	global $wpEmail, $wgDeferredUpdateList;
+
+	if (!userAllowedToCreateAccount()) {
+		userNotPrivilegedMessage();
+		return;
+	}
 
 	if ( 0 != strcmp( $wpPassword, $wpRetype ) ) {
 		mainLoginForm( wfMsg( "badretype" ) );
@@ -33,7 +91,7 @@ function wfSpecialUserlogin()
 	if ( ( "" == $wpName ) ||
 	  preg_match( "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/", $wpName ) ||
 	  (strpos( $wpName, "/" ) !== false) ) 
-{
+	{
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
 	}
@@ -53,11 +111,12 @@ function wfSpecialUserlogin()
 	if ( 1 == $wpRemember ) { $r = 1; }
 	else { $r = 0; }
 	$u->setOption( "rememberpassword", $r );
-
-	$wgUser = $u;
-	$m = str_replace( "$1", $wgUser->getName(), wfMsg( "welcomecreation" ) );
-	successfulLogin( $m );
+	
+	return $u;
 }
+
+
+
 
 /* private */ function processLogin()
 {
@@ -118,6 +177,20 @@ function wfSpecialUserlogin()
 	$u->setId( $id );
 	$u->loadFromDatabase();
 
+	if (mailPasswordInternal($u) == NULL) {
+		return;
+	}
+
+	$m = str_replace( "$1", $u->getName(), wfMsg( "passwordsent" ) );
+	mainLoginForm( $m );
+}
+
+
+/* private */ function mailPasswordInternal( $u )
+{
+	global $wgUser, $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
+	global $wgPasswordSender;
+
 	if ( "" == $u->getEmail() ) {
 		$m = str_replace( "$1", $u->getName(), wfMsg( "noemail" ) );
 		mainLoginForm( $m );
@@ -136,16 +209,18 @@ function wfSpecialUserlogin()
 	$m = str_replace( "$2", $u->getName(), $m );
 	$m = str_replace( "$3", $np, $m );
 
-	#FIXME: Generilize the email addresses for 3rd party sites...
 	mail( $u->getEmail(), wfMsg( "passwordremindertitle" ), $m,
 	  "MIME-Version: 1.0\r\n" .
 	  "Content-type: text/plain; charset={$wgOutputEncoding}\r\n" .
 	  "Content-transfer-encoding: 8bit\r\n" .
-	  "From: Wikipedia Mail <apache@www.wikipedia.org>\r\n" .
-	  "Reply-To: webmaster@www.wikipedia.org" );
-	$m = str_replace( "$1", $u->getName(), wfMsg( "passwordsent" ) );
-	mainLoginForm( $m );
+	  "From: $wgPasswordSender" );
+	  
+	return $u;
 }
+
+
+
+
 
 /* private */ function successfulLogin( $msg )
 {
@@ -163,6 +238,37 @@ function wfSpecialUserlogin()
 	$wgOut->returnToMain();
 }
 
+
+
+/* private */ function userAllowedToCreateAccount() 
+{
+	global $wgUser, $wgWhitelistAccount;
+	$allowed = false;
+	
+	if (!$wgWhitelistAccount) { return 1; }; // default behaviour
+	foreach ($wgWhitelistAccount as $right => $ok) {
+		$userHasRight = (!strcmp($right, "user") || in_array($right, $wgUser->getRights()));
+		$allowed |= ($ok && $userHasRight);
+	}
+	return $allowed;
+}
+
+
+function userNotPrivilegedMessage()
+{
+	global $wgOut, $wgUser, $wgLang;
+
+	$wgOut->setPageTitle( wfMsg( "whitelistacctitle" ) );
+	$wgOut->setRobotpolicy( "noindex,nofollow" );
+	$wgOut->setArticleFlag( false );
+
+	$wgOut->addWikiText( wfMsg( "whitelistacctext" ) );
+	$wgOut->returnToMain( false );
+}
+
+
+
+
 /* private */ function mainLoginForm( $err )
 {
 	global $wgUser, $wgOut, $wgLang, $returnto;
@@ -178,6 +284,7 @@ function wfSpecialUserlogin()
 	$nuo = wfMsg( "newusersonly" );
 	$li = wfMsg( "login" );
 	$ca = wfMsg( "createaccount" );
+	$cam = wfMsg( "createaccountmail" );
 	$ye = wfMsg( "youremail" );
 	$efl = wfMsg( "emailforlost" );
 	$mmp = wfMsg( "mailmypassword" );
@@ -216,6 +323,10 @@ color='red'>$err</font>\n" );
 	$wpRetype = wfEscapeHTML( $wpRetype );
 	$wpEmail = wfEscapeHTML( $wpEmail );
 
+	if ($wgUser->getID() != 0) {
+		$cambutton = "<input tabindex=6 type=submit name=\"wpCreateaccountMail\" value=\"{$cam}\">";
+	}
+
 	$wgOut->addHTML( "
 <form id=\"userlogin\" method=\"post\" action=\"{$action}\">
 <table border=0><tr>
@@ -229,8 +340,11 @@ color='red'>$err</font>\n" );
 </td>
 <td align=left>
 <input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
-</td></tr>
-<tr><td colspan=3>&nbsp;</td></tr><tr>
+</td></tr>");
+
+	if (userAllowedToCreateAccount($wgUser)) {
+
+$wgOut->addHTML("<tr><td colspan=3>&nbsp;</td></tr><tr>
 <td align=right>$ypa:</td>
 <td align=left>
 <input tabindex=4 type=password name=\"wpRetype\" value=\"{$wpRetype}\" 
@@ -242,7 +356,11 @@ size=20>
 <input tabindex=5 type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20>
 </td><td align=left>
 <input tabindex=6 type=submit name=\"wpCreateaccount\" value=\"{$ca}\">
-</td></tr>
+$cambutton
+</td></tr>");
+	}
+
+	$wgOut->addHTML("
 <tr>
 <td colspan=3 align=left>
 <input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\"$checked>$rmp
@@ -253,6 +371,9 @@ size=20>
 <input tabindex=8 type=submit name=\"wpMailmypassword\" value=\"{$mmp}\">
 </td></tr></table>
 </form>\n" );
+
+
+
 }
 
 ?>
