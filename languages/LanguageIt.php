@@ -13,13 +13,13 @@
 	0	=> "",
 	1	=> "Discussione",
 	2	=> "Utente",
-	3	=> "Utente_discussioni",
+	3	=> "Discussioni_utente",
 	4	=> "Wikipedia",
-	5	=> "Wikipedia_discussioni",
+	5	=> "Discussioni_Wikipedia",
 	6	=> "Immagine",
-	7	=> "Immagine_discussione",
+	7	=> "Discussioni_immagine",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_discussione",
+	9	=> "Discussione_MediaWiki",
 );
 
 /* private */ $wgDefaultUserOptionsIt = array(
