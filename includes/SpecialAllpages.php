@@ -46,7 +46,7 @@ function indexShowToplevel()
 	# There's got to be a cleaner way to do this!
 	for( $i = 1; $i < $sections; $i++ ) {
 		$from = $i * $indexMaxperpage;
-		$sql = "SELECT cur_title $fromwhere $order ".wfLimitResult(2,$from);
+		$sql = "SELECT cur_title $fromwhere $order ".$dbr->limitResult(2,$from);
 		$res = $dbr->query( $sql, $fname );
 
 		$s = $dbr->fetchObject( $res );
