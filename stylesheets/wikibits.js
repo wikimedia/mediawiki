@@ -1,15 +1,5 @@
 // Wikipedia JavaScript support functions
 
-var clientVer = parseInt(navigator.appVersion); // Get browser version
-var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-var is_ie = ((clientPC.indexOf("msie") != -1) && (clientPC.indexOf("opera") == -1));
-var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
-                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1));
-var is_moz = 0;
-var is_win = ((clientPC.indexOf("win")!=-1) || (clientPC.indexOf("16bit") != -1));
-var is_mac = (clientPC.indexOf("mac")!=-1);
-
 // for enhanced RecentChanges
 function toggleVisibility( _levelId, _otherId, _linkId) {
 	var thisLevel = document.getElementById( _levelId );
@@ -92,19 +82,19 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	var txtarea = document.editform.wpTextbox1;
 	// IE
 	if(document.selection) {
-		theSelection = document.selection.createRange().text;
+		var theSelection = document.selection.createRange().text;
 		if(!theSelection) { theSelection=sampleText;}
 		txtarea.focus();
 		document.selection.createRange().text = tagOpen + theSelection + tagClose;
 	// Mozilla
 	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
- 		startPos = txtarea.selectionStart;
-		endPos = txtarea.selectionEnd;
-		myText = (txtarea.value).substring(startPos, endPos);
+ 		var startPos = txtarea.selectionStart;
+		var endPos = txtarea.selectionEnd;
+		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
 		txtarea.value = txtarea.value.substring(0, startPos) + tagOpen + myText + tagClose + txtarea.value.substring(endPos, txtarea.value.length);
 		txtarea.focus();
-		cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
+		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
 	// All others
