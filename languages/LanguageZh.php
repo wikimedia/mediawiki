@@ -102,8 +102,8 @@ class LanguageZh extends LanguageZh_cn {
 		$this->mTables = array();
 		$this->mTables['zh-cn'] = $zh2CN;
 		$this->mTables['zh-tw'] = $zh2TW;
-		$this->mTables['zh-sg'] = array_merge($zh2CN, $zh2SG);
-		$this->mTables['zh-hk'] = array_merge($zh2TW, $zh2HK);
+		$this->mTables['zh-sg'] = $zh2SG;
+		$this->mTables['zh-hk'] = $zh2HK;
 
 		$cached = $this->parseCachedTable('zh-cn');
 		$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
@@ -112,10 +112,10 @@ class LanguageZh extends LanguageZh_cn {
 		$this->mTables['zh-tw'] = array_merge($this->mTables['zh-tw'], $cached);
 
 		$cached = $this->parseCachedTable('zh-sg');
-		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-sg'], $cached);
+		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-cn'], $this->mTables['zh-sg'], $cached);
 
 		$cached = $this->parseCachedTable('zh-hk');
-		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-hk'], $cached);
+		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk'], $cached);
 		if($this->lockCache()) {
 			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 			$this->unlockCache();
