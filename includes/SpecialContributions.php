@@ -15,7 +15,7 @@ function wfSpecialContributions( $par = "" )
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
 	}
-	
+
 	# FIXME: Change from numeric offsets to date offsets
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
 	$offlimit = $limit + $offset;
@@ -43,14 +43,12 @@ function wfSpecialContributions( $par = "" )
 	$talk = $nt->getTalkPage();
 	if( $talk )
 		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
-	else
-		$ul .= "brrrp";
 
 	if ( $target == 'newbies' ) {
 		# View the contributions of all recently created accounts
 		$max = $dbr->selectField( 'user', 'max(user_id)', false, $fname );
 		$userCond = ">" . ($max - $max / 100);
-		$ul = "";
+		$ul = wfMsg ( 'newbies' );
 		$id = 0;
 	}
 
@@ -125,7 +123,7 @@ function wfSpecialContributions( $par = "" )
 			$me = $obj1->cur_minor_edit;
 			$isnew = $obj1->cur_is_new;
 			$usertext = $obj1->cur_user_text;
-			
+
 			$obj1 = $dbr->fetchObject( $res1 );
 			$topmark = true;
 			--$nCur;
@@ -146,7 +144,7 @@ function wfSpecialContributions( $par = "" )
 			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext );
 	}
 	$wgOut->addHTML( "</ul>\n" );
-	
+
 	# Validations
 	$val = new Validation ;
 	$val = $val->countUserValidations ( $id ) ;
