@@ -88,7 +88,6 @@ $wgProfiling = false; # Enable for more detailed by-function times in debug log
 # but this will increase CPU usage.
 # Requires zlib support enabled in PHP.
 $wgUseGzip = false;
-$wgCompressByDefault = true;
 
 # Which namespaces should support subpages?
 # See Language.php for a list of namespaces.
