@@ -123,4 +123,4 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 } /* if defined(MEDIAWIKI) */ 
-?>		
+?>
