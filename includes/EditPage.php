@@ -1,4 +1,5 @@
 <?php
+# $Id$
 
 # Splitting edit page/HTML interface from Article...
 # The actual database and text munging is still in Article,
@@ -580,7 +581,8 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$title = $this->mTitle->getDBkey();
 		$obj = $dbw->getArray( 'old', 
 			array( 'old_text','old_flags'), 
-			array( 'old_namespace' => $ns, 'old_title' => $title, 'old_timestamp' => $oldDate ),
+			array( 'old_namespace' => $ns, 'old_title' => $title, 
+				'old_timestamp' => $dbw->timestamp($oldDate)),
 			$fname );
 		$oldText = Article::getRevisionText( $obj );
 		
