@@ -609,6 +609,33 @@ class User {
 	
 	}
 
+	function getPageRenderingHash(){
+		static $hash = false;
+		if( $hash ){
+			return $hash;
+		}
+
+		// stubthreshold is only included below for completeness, 
+		// it will always be 0 when this function is called by parsercache.
+
+		$confstr = 	  $this->getOption( "quickbar" );
+		$confstr .= "!" . $this->getOption( "underline" );
+		$confstr .= "!" . $this->getOption( "hover" );
+		$confstr .= "!" . $this->getOption( "skin" );
+		$confstr .= "!" . $this->getOption( "math" );
+		$confstr .= "!" . $this->getOption( "highlightbroken" );
+		$confstr .= "!" . $this->getOption( "stubthreshold" ); 
+		$confstr .= "!" . $this->getOption( "editsection" );
+		$confstr .= "!" . $this->getOption( "editsectiononrightclick" );
+		$confstr .= "!" . $this->getOption( "showtoc" );
+		$confstr .= "!" . $this->getOption( "date" );
+
+		if(strlen($confstr) > 32)
+			$hash = md5($confstr);
+		else
+			$hash = $confstr;
+		return $hash;
+	}
 
 	function isAllowedToCreateAccount() 
 	{

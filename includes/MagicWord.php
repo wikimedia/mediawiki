@@ -16,7 +16,8 @@
 class MagicWord {
 	/*private*/ var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
 	/*private*/ var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	
+	/*private*/ var $mModified;	
+
 	function MagicWord($id = 0, $syn = "", $cs = false) 
 	{
 		$this->mId = $id;
@@ -25,6 +26,7 @@ class MagicWord {
 		$this->mRegex = "";
 		$this->mRegexStart = "";
 		$this->mVariableRegex = "";
+		$this->mModified = false;
 	}
 
 	# Factory: creates an object representing an ID
@@ -43,8 +45,7 @@ class MagicWord {
 	# Initialises this object with an ID
 	function load( $id )
 	{
-		global $wgLang;
-		
+		global $wgLang;		
 		$this->mId = $id;
 		$wgLang->getMagic( $this );
 	}
@@ -112,7 +113,9 @@ class MagicWord {
 	# Replaces the word with something else
 	function replace( $replacement, $subject )
 	{
-		return preg_replace( $this->getRegex(), $replacement, $subject );
+		$res = preg_replace( $this->getRegex(), $replacement, $subject );
+		$this->mModified = !($res === $subject);
+		return $res;
 	}
 
 	# Variable handling: {{SUBST:xxx}} style words
@@ -120,7 +123,9 @@ class MagicWord {
 	# Input word must contain $1
 	function substituteCallback( $text, $callback ) {
 		$regex = $this->getVariableRegex();
-		return preg_replace_callback( $this->getVariableRegex(), $callback, $text );
+		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
+		$this->mModified = !($res === $text);
+		return $res;
 	}
 
 	# Matches the word, where $1 is a wildcard
@@ -135,6 +140,12 @@ class MagicWord {
 	# Accesses the synonym list directly
 	function getSynonym( $i ) {
 		return $this->mSynonyms[$i];
+	}
+
+	# Returns true if the last call to replace() or substituteCallback() 
+	# returned a modified text, otherwise false.
+	function getWasModified(){
+		return $this->mModified;
 	}
 }
 
