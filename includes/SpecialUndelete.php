@@ -36,7 +36,7 @@ function wfSpecialUndelete( $par )
     	$wgOut->addHTML( "<li>" .
     	  $sk->makeKnownLink( $wgLang->specialPage( "Undelete" ),
           $n, "target=" . urlencode($n) ) . " " .
-    	  str_replace( '$1', $row->count, wfMsg( "undeleterevisions" )) );
+		  wfMsg( "undeleterevisions", $row->count ) );
     }
     $wgOut->addHTML( "</ul>\n" );
     
@@ -53,8 +53,7 @@ function wfSpecialUndelete( $par )
     $row = wfFetchObject( $ret );
     
     $wgOut->setPagetitle( wfMsg( "undeletepage" ) );
-    $wgOut->addWikiText( "(" . str_replace("$1",
-      $wgLang->date($timestamp, true), wfMsg( "undeleterevision" ))
+    $wgOut->addWikiText( "(" . wfMsg( "undeleterevision", $wgLang->date($timestamp, true) )
       . ")\n<hr>\n" . $row->ar_text );
     
 	return 0;
@@ -173,7 +172,7 @@ function wfSpecialUndelete( $par )
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$log->addEntry( wfMsg( "undeletedarticle", $target ), "" );
 
-		$wgOut->addwikitext(str_replace("$1", $target, wfmsg("undeletedtext")));
+		$wgOut->addWikiText( wfMsg( "undeletedtext", $target ) );
 		return 0;
 	}
 ?>

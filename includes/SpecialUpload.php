@@ -84,15 +84,12 @@ function processUpload()
 		saveUploadedFile();
 		if ( ( ! $wpIgnoreWarning ) &&
 		  ( 0 != strcmp( ucfirst( $basename ), $wpUploadSaveName ) ) ) {
-			$warn = str_replace( "$1", $wpUploadSaveName,
-			  wfMsg( "badfilename" ) );
-			return uploadWarning( $warn );
+			return uploadWarning( wfMsg( "badfilename", $wpUploadSaveName ) );
 		}
 		$extensions = array( "png", "jpg", "jpeg", "ogg" ); 
 		if ( ( ! $wpIgnoreWarning ) &&
 		  ( ! in_array( strtolower( $ext ), $extensions ) ) ) {
-			$warn = str_replace( "$1", $ext, wfMsg( "badfiletype" ) );
-			return uploadWarning( $warn );
+			return uploadWarning( wfMsg( "badfiletype", $ext ) );
 		}
 		if ( ( ! $wpIgnoreWarning ) && ( $wpUploadSize > 150000 ) ) {
 			return uploadWarning( WfMsg( "largefile" ) );
@@ -111,8 +108,7 @@ function processUpload()
 	$dlink = $sk->makeKnownLink( $dname, $dname );
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "successfulupload" ) . "</h2>\n" );
-	$text = str_replace( "$1", $ilink, wfMsg( "fileuploaded" ) );
-	$text = str_replace( "$2", $dlink, $text );
+	$text = wfMsg( "fileuploaded", $ilink, $dlink );
 	$wgOut->addHTML( "<p>{$text}\n" );
 	$wgOut->returnToMain( false );
 }
@@ -246,7 +242,7 @@ function mainUploadForm( $msg )
 
 	$clink = $sk->makeKnownLink( wfMsg( "copyrightpage" ),
 	  wfMsg( "copyrightpagename" ) );
-	$ca = str_replace( "$1", $clink, wfMsg( "affirmation" ) );
+	$ca = wfMsg( "affirmation", $clink );
 	$iw = wfMsg( "ignorewarning" );
 
 	$action = wfLocalUrl( $wgLang->specialPage( "Upload" ) );
