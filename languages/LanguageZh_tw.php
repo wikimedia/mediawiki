@@ -29,20 +29,20 @@ include_once( "LanguageUtf8.php" );
     NS_CATEGORY_TALK    => "分類討論"
 );
 
-/* private */ $wgQuickbarSettingsZh-tw = array(
+/* private */ $wgQuickbarSettingsZh_tw = array(
         "無", /* "None" */
 	"左側固定", /* "Fixed left" */
 	"右側固定", /* "Fixed right" */
 	"左側漂移" /* "Floating left" */
 );
 
-/* private */ $wgSkinNamesZh-tw = array(
+/* private */ $wgSkinNamesZh_tw = array(
         "標準",/* "Standard" */
 	"懷舊",/* "Nostalgia" */
 	"科隆香水藍" /* "Cologne Blue" */
 );
 
-/* private */ $wgMathNamesZh-tw = array(
+/* private */ $wgMathNamesZh_tw = array(
 	"永遠使用PNG圖像",    /* "Always render PNG" */
 	"如果是簡單的公式使用HTML，否則使用PNG圖像",   /* "HTML if very simple or else PNG" */
 	"如果可以用HTML，否則用PNG圖像",   /* "HTML if possible or else PNG" */
@@ -50,7 +50,7 @@ include_once( "LanguageUtf8.php" );
 	"推薦為新版流覽器使用"  /* "Recommended for modern browsers" */
 );
 
-/* private */ $wgUserTogglesZh-tw = array(
+/* private */ $wgUserTogglesZh_tw = array(
 	"hover"		=> "滑過維基鏈結時顯示注釋",
 /* "Show hoverbox over wiki links",*/
 	"underline" => "下劃鏈結",
@@ -85,21 +85,21 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 /* "Show preview before edit box and not after it" */
 );
 
-/* private */ $wgBookstoreListZh-tw = array(
+/* private */ $wgBookstoreListZh_tw = array(
 	"博客來書店" => "http://www.books.com.tw/exep/openfind_book_keyword.php?cat1=4&key1=$1",
 	"三民書店" => "http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1",
 	"天下書店" => "http://www.cwbook.com.tw/cw/TS.jsp?schType=product.isbn&schStr=$1",
 	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
 );
 
-/* private */ $wgWeekdayNamesZh-tw = array(
+/* private */ $wgWeekdayNamesZh_tw = array(
         "星期日", "星期一", "星期二", "星期三", "星期四",
 	"星期五", "星期六"
 /* "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
 	"Friday", "Saturday" */
 );
 
-/* private */ $wgMonthNamesZh-tw = array(
+/* private */ $wgMonthNamesZh_tw = array(
         "一月", "二月", "三月", "四月", "五月", "六月",
 	"七月", "八月", "九月", "十月", "十一月",
 	"十二月"
@@ -108,7 +108,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"December" */
 );
 
-/* private */ $wgMonthAbbreviationsZh-tw = array(
+/* private */ $wgMonthAbbreviationsZh_tw = array(
 "一月", "二月", "三月", "四月", "五月", "六月",
 	"七月", "八月", "九月", "十月", "十一月",
 	"十二月"
@@ -120,7 +120,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
 #
-/* private */ $wgValidSpecialPagesZh-tw = array(
+/* private */ $wgValidSpecialPagesZh_tw = array(
 	"Userlogin"		=> "註冊",
 	"Userlogout"	=> "註銷",
 	"Preferences"	=> "參數設置",
@@ -169,18 +169,18 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Version" => "媒體維基版本",
 );
 
-/* private */ $wgSysopSpecialPagesZh-tw = array(
+/* private */ $wgSysopSpecialPagesZh_tw = array(
 	"Blockip"		=> "查封一個網址",
 	"Asksql"		=> "查詢數據庫",
 	"Undelete"		=> "恢復被刪頁面"
 );
 
-/* private */ $wgDeveloperSpecialPagesZh-tw = array(
+/* private */ $wgDeveloperSpecialPagesZh_tw = array(
 	"Lockdb"		=> "設置數據庫只讀",
 	"Unlockdb"		=> "恢復數據庫修改權限",
 );
 
-/* private */ $wgAllMessageZh-tw = array(
+/* private */ $wgAllMessageZh_tw = array(
 
 # Bits of text used by many pages:
 #
@@ -939,7 +939,7 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 
 );
 
-class LanguageZh-tw extends LanguageUtf8 {
+class LanguageZh_tw extends LanguageUtf8 {
 
         function getDefaultUserOptions () {
                 $opt = Language::getDefaultUserOptions();
@@ -947,24 +947,24 @@ class LanguageZh-tw extends LanguageUtf8 {
         }
 
 	function getBookstoreList () {
-		global $wgBookstoreListZh-tw ;
-		return $wgBookstoreListZh-tw ;
+		global $wgBookstoreListZh_tw ;
+		return $wgBookstoreListZh_tw ;
 	}
 
 	function getNamespaces() {
-		global $wgNamespaceNamesZh-tw;
-		return $wgNamespaceNamesZh-tw;
+		global $wgNamespaceNamesZh_tw;
+		return $wgNamespaceNamesZh_tw;
 	}
 
 	function getNsText( $index ) {
-		global $wgNamespaceNamesZh-tw;
-		return $wgNamespaceNamesZh-tw[$index];
+		global $wgNamespaceNamesZh_tw;
+		return $wgNamespaceNamesZh_tw[$index];
 	}
 
 	function getNsIndex( $text ) {
-		global $wgNamespaceNamesZh-tw;
+		global $wgNamespaceNamesZh_tw;
 
-		foreach ( $wgNamespaceNamesZh-tw as $i => $n ) {
+		foreach ( $wgNamespaceNamesZh_tw as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		# Aliases
@@ -980,48 +980,48 @@ class LanguageZh-tw extends LanguageUtf8 {
 	}
 
 	function getQuickbarSettings() {
-		global $wgQuickbarSettingsZh-tw;
-		return $wgQuickbarSettingsZh-tw;
+		global $wgQuickbarSettingsZh_tw;
+		return $wgQuickbarSettingsZh_tw;
 	}
 
 	function getSkinNames() {
-		global $wgSkinNamesZh-tw;
-		return $wgSkinNamesZh-tw;
+		global $wgSkinNamesZh_tw;
+		return $wgSkinNamesZh_tw;
 	}
 
 	function getMathNames() {
-		global $wgMathNamesZh-tw;
-		return $wgMathNamesZh-tw;
+		global $wgMathNamesZh_tw;
+		return $wgMathNamesZh_tw;
 	}
 
 	function getUserToggles() {
-		global $wgUserTogglesZh-tw;
-		return $wgUserTogglesZh-tw;
+		global $wgUserTogglesZh_tw;
+		return $wgUserTogglesZh_tw;
 	}
 
 	function getMonthName( $key )
 	{
-		global $wgMonthNamesZh-tw;
-		return $wgMonthNamesZh-tw[$key-1];
+		global $wgMonthNamesZh_tw;
+		return $wgMonthNamesZh_tw[$key-1];
 	}
 
 	/* by default we just return base form */
 	function getMonthNameGen( $key )
 	{
-		global $wgMonthNamesZh-tw;
-		return $wgMonthNamesZh-tw[$key-1];
+		global $wgMonthNamesZh_tw;
+		return $wgMonthNamesZh_tw[$key-1];
 	}
 
 	function getMonthAbbreviation( $key )
 	{
-		global $wgMonthAbbreviationsZh-tw;
-		return $wgMonthAbbreviationsZh-tw[$key-1];
+		global $wgMonthAbbreviationsZh_tw;
+		return $wgMonthAbbreviationsZh_tw[$key-1];
 	}
 
 	function getWeekdayName( $key )
 	{
-		global $wgWeekdayNamesZh-tw;
-		return $wgWeekdayNamesZh-tw[$key-1];
+		global $wgWeekdayNamesZh_tw;
+		return $wgWeekdayNamesZh_tw[$key-1];
 	}
 
 # The date and time functions can be tweaked if need be
@@ -1045,27 +1045,27 @@ class LanguageZh-tw extends LanguageUtf8 {
 
 	function getValidSpecialPages()
 	{
-		global $wgValidSpecialPagesZh-tw;
-		return $wgValidSpecialPagesZh-tw;
+		global $wgValidSpecialPagesZh_tw;
+		return $wgValidSpecialPagesZh_tw;
 	}
 
 	function getSysopSpecialPages()
 	{
-		global $wgSysopSpecialPagesZh-tw;
-		return $wgSysopSpecialPagesZh-tw;
+		global $wgSysopSpecialPagesZh_tw;
+		return $wgSysopSpecialPagesZh_tw;
 	}
 
 	function getDeveloperSpecialPages()
 	{
-		global $wgDeveloperSpecialPagesZh-tw;
-		return $wgDeveloperSpecialPagesZh-tw;
+		global $wgDeveloperSpecialPagesZh_tw;
+		return $wgDeveloperSpecialPagesZh_tw;
 
 	}
 
 	function getMessage( $key )
 	{
-		global $wgAllMessagesZh-tw;
-		if($msg = $wgAllMessagesZh-tw[$key])
+		global $wgAllMessagesZh_tw;
+		if($msg = $wgAllMessagesZh_tw[$key])
 			return $msg;
 		else
 			return Language::getMessage( $key );
