@@ -10,8 +10,7 @@ unihan database, and phrases not included in the SCIM package.
 - tradphrases.manual: Phrases in Traditional Chinese. A portition is obtained
   from the TongWen package (http://tongwen.mozdev.org/)
 
-- simp2tradPhrases.manual and trad2simpPhrases.manual: special phrase
-  mappings. Note that reversing a s->t mapping to get a t->s mapping will
-  not always desirable, for example, the translation of "parallel port".
+- toTW.manual, toCN.manual, toSG.manual and toHK.manual: special phrase
+  mappings. 
 
 zhengzhu at gmail.com
