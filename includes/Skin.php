@@ -636,7 +636,7 @@ class Skin {
 		global $wgOut, $wgTitle, $wgUser;
 
 		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
-		if($wgUser->getOption( 'editsectiononrightclick' ) && $wgTitle->userCanEdit()) { $s=$this->editSectionScript(0,$s);}
+		if($wgUser->getOption( 'editsectiononrightclick' ) && $wgTitle->userCanEdit()) { $s=$this->editSectionScript($wgTitle, 0,$s);}
 		return $s;
 	}
 
@@ -2585,18 +2585,18 @@ class Skin {
 		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
-	function editSectionScript( $section, $head ) {
-		global $wgTitle, $wgRequest;
+	function editSectionScript( $nt, $section, $head ) {
+		global $wgRequest;
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
 			return $head;
 		}
-		$url = $wgTitle->escapeLocalURL( 'action=edit&section='.$section );
+		$url = $nt->escapeLocalURL( 'action=edit&section='.$section );
 		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
 	function editSectionLinkForOther( $title, $section ) {
 		global $wgRequest;
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
 		$title = Title::newFromText($title);
 		$editurl = '&section='.$section;
@@ -2613,9 +2613,9 @@ class Skin {
 
 	}
 
-	function editSectionLink( $section ) {
+	function editSectionLink( $nt, $section ) {
 		global $wgRequest;
-		global $wgTitle, $wgUser, $wgContLang;
+		global $wgContLang;
 
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
 			# Section edit links would be out of sync on an old page.
@@ -2625,7 +2625,7 @@ class Skin {
 		}
 
 		$editurl = '&section='.$section;
-		$url = $this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
+		$url = $this->makeKnownLink($nt->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
 
 		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
