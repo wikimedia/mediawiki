@@ -429,11 +429,13 @@ class Database {
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	/**#@-*/ // end of template : @param $result
 
-
 	/**
 	 * Simple UPDATE wrapper
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
+	 *
+	 * This function exists for historical reasons, Database::update() has a more standard 
+	 * calling convention and feature set
 	 */
 	function set( $table, $var, $value, $cond, $fname = 'Database::set' )
 	{
