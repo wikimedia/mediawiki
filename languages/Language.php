@@ -323,7 +323,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "External book sources",
-"Categories" => "Page categories"
+"Categories" => "Page categories",
+"Export"	=> ""
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
@@ -1209,6 +1210,13 @@ title. Please merge them manually.",
 "movetalk"		=> "Move \"talk\" page as well, if applicable.",
 "talkpagemoved" => "The corresponding talk page was also moved.",
 "talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+
+"export"		=> "Export pages",
+"exporttext"	=> "You can export the text and editing history of a particular
+page or set of pages wrapped in some XML; this can then be imported into another
+wiki running MediaWiki softwore, transformed, or just kept for your private
+amusement.",
+"exportcuronly"	=> "Include only the current revision, not the full history",
 
 );
 
