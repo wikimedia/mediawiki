@@ -951,7 +951,7 @@ class Article {
 			$won = wfInvertTimestamp( $now );
 
 			$mungedText = $text;
-			$flags = Revision::compressRevisionText( $newtext );
+			$flags = Revision::compressRevisionText( $mungedText );
 			
 			$lastRevision = $dbw->selectField(
 				'page', 'page_latest', array( 'page_id' => $this->getId() ) );
