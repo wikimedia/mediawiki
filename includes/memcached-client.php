@@ -205,6 +205,22 @@ class memcached
     */
    var $_active;
 
+   /**
+    * Stream timeout in seconds. Applies for example to fread()
+    *
+    * @var     integer
+    * @access  private
+    */
+   var $_timeout_seconds;
+
+   /**
+    * Stream timeout in microseconds
+    *
+    * @var     integer
+    * @access  private
+    */
+   var $_timeout_microseconds;
+
    // }}}
    // }}}
    // {{{ methods
@@ -231,6 +247,9 @@ class memcached
       
       $this->_cache_sock = array();
       $this->_host_dead = array();
+
+      $this->_timeout_seconds = 1;
+      $this->_timeout_microseconds = 0;
    }
 
    // }}}
@@ -606,6 +625,20 @@ class memcached
          $this->_single_sock = $this->_servers[0];
    }
 
+   /**
+    * Sets the timeout for new connections
+    *
+    * @param   integer  $seconds Number of seconds
+    * @param   integer  $microseconds  Number of microseconds
+    * 
+    * @access  public
+    */
+   function set_timeout ($seconds, $microseconds)
+   {
+      $this->_timeout_seconds = $seconds;
+      $this->_timeout_microseconds = $microseconds;
+   }
+   
    // }}}
    // }}}
    // {{{ private methods
@@ -654,6 +687,10 @@ class memcached
             $this->_debugprint( "Error connecting to $host: $errstr\n" );
          return false;
       }
+
+      // Initialise timeout
+      stream_set_timeout($sock, $this->_timeout_seconds, $this->_timeout_microseconds);
+
       return true;
    }
 
