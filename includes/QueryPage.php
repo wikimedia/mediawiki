@@ -112,7 +112,7 @@ class QueryPage {
 				}
 			}
 			if( $wgMiserMode || $recache ) {
-				$type = $dbr->strencdode( $sname );
+				$type = $dbr->strencode( $sname );
 				$sql =
 					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
 					 FROM $querycache WHERE qc_type='$type'";
