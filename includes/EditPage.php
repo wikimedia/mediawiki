@@ -95,9 +95,12 @@ class EditPage {
 		$wpTextbox1 = rtrim ( $wpTextbox1 ) ; # To avoid text getting longer on each preview
 
 		if(!$this->mTitle->getArticleID()) { # new article
-
 			$wgOut->addWikiText(wfmsg("newarticletext"));
+		}
 
+		$talknamespaces = array( NS_TALK, NS_WP_TALK, NS_IMAGE_TALK, NS_MEDIAWIKI_TALK );
+		if( in_array( $this->mTitle->getNamespace(), $talknamespaces ) ) {
+			$wgOut->addWikiText(wfmsg("talkpagetext"));
 		}
 
 		# Attempt submission here.  This will check for edit conflicts,
