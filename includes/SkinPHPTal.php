@@ -97,7 +97,7 @@
 				foreach( $wgFeedClasses as $format => $class ) {
 					$feeds[$format] = array(
 						'text' => $format,
-						'href' => $wgRequest->escapeAppendQuery( "feed=$format" ),
+						'href' => $wgRequest->appendQuery( "feed=$format" ),
 						'ttip' => wfMsg('tooltip-'.$format)
 					);
 				}
