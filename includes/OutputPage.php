@@ -140,7 +140,12 @@ class OutputPage {
 		$stripped = "";
 		$stripped2 = "";
 		$stripped3 = "";
-
+		
+		# Replace any instances of the placeholders
+		$text = str_replace( $unique, '$unique', $text );
+		$text = str_replace( $unique2, '$unique2', $text );
+		$text = str_replace( $unique3, '$unique3', $text );
+		
 		global $wgEnableParserCache;
 		$use_parser_cache = 
 			$wgEnableParserCache && $action == "view" &&
@@ -153,7 +158,7 @@ class OutputPage {
 				return;
 			}
 		}
-
+		
 		while ( "" != $text ) {
 			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
 			$stripped .= $p[0];
