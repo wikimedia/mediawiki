@@ -44,7 +44,7 @@ class Image
 		global $wgUploadDirectory,$wgHashedUploadDirectory,
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
 		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
-		       $wgSharedLatin1;
+		       $wgSharedLatin1,$wgLang;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
@@ -61,27 +61,26 @@ class Image
 		# If the file is not found, and a shared upload directory 
 		# like the Wikimedia Commons is used, look for it there.
 		if (!$this->fileExists && $wgUseSharedUploads) {
-			# in case we're running a capitallinks=false wiki			
-			$sharedname=ucfirst($name);
-			$sharedtitle=$this->title->getDBkey();
+			# in case we're running a capitallinks=false wiki						
+			$sharedname=$wgLang->ucfirst($name);
+			$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
 			if($wgUseLatin1 && !$wgSharedLatin1) {
 				$sharedname=utf8_encode($sharedname);
-				$sharedtitle=utf8_encode($sharedtitle);
+				$sharedtitle=utf8_encode($sharedtitle);				
 			}
 			
 			if($wgHashedSharedUploadDirectory) {				
 				$hash = md5( $sharedtitle );
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
 					substr( $hash, 0, 2 ) . "/".$sharedname;
-			} else {
+ 			} else {
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
-			}
+			}			
 			$this->fileExists = file_exists( $this->imagePath);
-			$this->fromSharedDirectory = true;
-			#wfDebug ("File from shared directory: ".$this->imagePath."\n");			
+			$this->fromSharedDirectory = true;			
 		}		
 		if($this->fileExists) {
-			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
+			$this->url       = $this->wfImageUrl( $sharedname, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
