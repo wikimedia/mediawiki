@@ -49,7 +49,7 @@ class Skin {
 
 	var $rc_cache ; # Cache for Enhanced Recent Changes
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
-
+	var $rcMoveIndex;
 
 	function Skin()
 	{
@@ -1662,6 +1662,7 @@ class Skin {
 	function beginRecentChangesList()
 	{
 		$this->rc_cache = array() ;
+		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0 ;
 		$this->lastdate = "";
 		return "";
@@ -2083,7 +2084,8 @@ class Skin {
 		$title = $rc->getTitle();
 		$secureName = $title->getPrefixedDBkey();
 		if ( $rc_type == RC_MOVE ) {
-			array_push($this->rc_cache, array($rc) );
+			# Use an @ character to prevent collision with page names
+			$this->rc_cache["@@" . ($rcMoveIndex++)] = array($rc);
 		} else {
 			if ( !isset ( $this->rc_cache[$secureName] ) ) $this->rc_cache[$secureName] = array() ;
 			array_push ( $this->rc_cache[$secureName] , $rc ) ;
