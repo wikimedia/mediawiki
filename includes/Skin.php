@@ -1795,7 +1795,7 @@ class Skin {
 			} else {
 				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
 					'<a href="'.$u.'" class="internal" title="'.$more.'">'.
-					'<img src="'.$wgStylePath.'/magnify-clip.png" ' .
+					'<img src="'.$wgStylePath.'/images/magnify-clip.png" ' .
 					'width="15" height="11" alt="'.$more.'" /></a></div>';
 			}
 		}
