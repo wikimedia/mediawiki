@@ -1244,9 +1244,17 @@ class Database {
 	 * @param integer $timeout the maximum number of seconds to wait for synchronisation
 	 */
 	function masterPosWait( $file, $pos, $timeout ) {
+		$fname = 'Database::masterPosWait'
+		wfProfileIn( $fname );
+		
+		
+		# Commit any open transactions
+		$this->immediateCommit();
+		
+		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->strencode( $file );
 		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos, $timeout)";
-		$res = $this->query( $sql, 'Database::masterPosWait' );
+		$res = $this->doQuery( $sql );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			$this->freeResult( $res );
 			return $row[0];
