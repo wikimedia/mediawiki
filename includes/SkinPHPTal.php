@@ -63,28 +63,27 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			
-			$action = $wgRequest->getText( 'action' );
-			$oldid = $wgRequest->getVal( 'oldid' );
-			$diff = $wgRequest->getVal( 'diff' );
 
+			$this->thispage = $wgTitle->getPrefixedDbKey();
+			$this->loggedin = $wgUser->getID() != 0;
+			$this->username = $wgUser->getName();
+			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+			$this->titletxt = $wgTitle->getPrefixedText();
+			
+			
 			$this->initPage();
 			$tpl = new PHPTAL($this->template . '.pt', 'templates');
+			
 			#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
-
 			$tpl->setTranslator(new MediaWiki_I18N());
 			#}
 
-			$title = $wgTitle->getPrefixedText();
-			$tpl->setRef( "title", &$title ); // ?
-			$thispage = $wgTitle->getPrefixedDbKey();
-			$tpl->setRef( "thispage", &$thispage );
+			$tpl->setRef( "title", &$this->titletxt ); // ?
+			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->setRef( 'charset', $wgOutputEncoding);
 			$tpl->setRef( 'skinname', $this->skinname );
-
-			$loggedin = $wgUser->getID() != 0;
-			$tpl->setRef( "loggedin", &$loggedin );
+			$tpl->setRef( "loggedin", &$this->loggedin );
 			$tpl->set( "editable", ($wgTitle->getNamespace != Namespace::getSpecial() ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
 			$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
@@ -94,11 +93,8 @@
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "lang", &$wgLanguageCode );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
-
-			$username = $wgUser->getName();
-			$tpl->setRef( "username", &$username );
-			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-			$tpl->setRef( "userpage", &$userpage);
+			$tpl->setRef( "username", &$this->username );
+			$tpl->setRef( "userpage", &$this->userpage);
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			if( $wgUser->getNewtalk() ) {
 				$ntl = wfMsg( "newmessages",
@@ -134,16 +130,32 @@
 			} else {
 				$tpl->set('language_urls', false);
 			}
+			$tpl->set('personal_urls', $this->buildPersonalUrls());
+			$tpl->set('content_actions', $this->buildContentActionUrls());
+			$tpl->set( "nav_urls", $this->buildNavUrls() );
 
+			// execute template
+			$res = $tpl->execute();
+			// result may be an error
+			if (PEAR::isError($res)) {
+				echo $res->toString(), "\n";
+			} else {
+				echo $res;
+			}
+
+		}
+
+		# build array of urls for personal toolbar
+		function buildPersonalUrls() {
 			/* set up the default links for the personal toolbar */
 			$personal_urls = array();
-			if ($loggedin) {
-				$personal_urls['userpage'] = array('text' => $username,
-					'href' => $this->makeUrl($userpage),
+			if ($this->loggedin) {
+				$personal_urls['userpage'] = array('text' => $this->username,
+					'href' => $this->makeUrl($this->userpage),
 					'ttip' => wfMsg('tooltip-userpage'),
 					'akey' => wfMsg('accesskey-userpage'));
 				$personal_urls['mytalk'] = array('text' => wfMsg('mytalk'),
-					'href' => $this->makeTalkUrl($userpage),
+					'href' => $this->makeTalkUrl($this->userpage),
 					'ttip' => wfMsg('tooltip-mytalk'),
 					'akey' => wfMsg('accesskey-mytalk'));
 				$personal_urls['preferences'] = array('text' => wfMsg('preferences'),
@@ -155,11 +167,11 @@
 					'ttip' => wfMsg('tooltip-watchlist'),
 					'akey' => wfMsg('accesskey-watchlist'));
 				$personal_urls['mycontris'] = array('text' => wfMsg('mycontris'),
-					'href' => $this->makeSpecialUrl('Contributions','target=' . $username),
+					'href' => $this->makeSpecialUrl('Contributions','target=' . $this->username),
 					'ttip' => wfMsg('tooltip-mycontris'),
 					'akey' => wfMsg('accesskey-mycontris'));
 				$personal_urls['logout'] = array('text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . thispage),
+					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . $this->thispage),
 					'ttip' => wfMsg('tooltip-logout'),
 					'akey' => wfMsg('accesskey-logout'));
 			} else {
@@ -168,27 +180,29 @@
 					'ttip' => wfMsg('tooltip-login'),
 					'akey' => wfMsg('accesskey-login'));
 			}
-			$tpl->setRef('personal_urls', &$personal_urls);
-
-			/* set up the content actions */
-			$iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
-
+			return $personal_urls;
+		}
+		
+		# an array of edit links by default used for the tabs
+		function buildContentActionUrls () {
+			global $wgTitle, $wgUser, $wgRequest;
+			$action = $wgRequest->getText( 'action' );
+			$oldid = $wgRequest->getVal( 'oldid' );
+			$diff = $wgRequest->getVal( 'diff' );
 			$content_actions = array();
-			/*$content_actions['view'] = array('class' => ($action == 'view' and !Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',*/
-
-
-			/* the edit tab */
-			if( $iscontent) {
 			
+			$iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
+			if( $iscontent) {
+
 				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',
 				'text' => wfMsg('article'),
-				'href' => $this->makeArticleUrl($thispage),
+				'href' => $this->makeArticleUrl($this->thispage),
 				'ttip' => wfMsg('tooltip-article'),
 				'akey' => wfMsg('accesskey-article'));
 
 				$content_actions['talk'] = array('class' => (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : ''),
 				'text' => wfMsg('talk'),
-				'href' => $this->makeTalkUrl($title),
+				'href' => $this->makeTalkUrl($this->titletxt),
 				'ttip' => wfMsg('tooltip-talk'),
 				'akey' => wfMsg('accesskey-talk'));
 
@@ -198,7 +212,7 @@
 					}
 					$content_actions['edit'] = array('class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
 					'text' => wfMsg('edit'),
-					'href' => $this->makeUrl($thispage, 'action=edit'.$oid),
+					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 					'ttip' => wfMsg('tooltip-edit'),
 					'akey' => wfMsg('accesskey-edit'));
 				} else {
@@ -207,7 +221,7 @@
 					}
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
 					'text' => wfMsg('viewsource'),
-					'href' => $this->makeUrl($thispage, 'action=edit'.$oid),
+					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 					'ttip' => wfMsg('tooltip-edit'),
 					'akey' => wfMsg('accesskey-edit'));
 				}
@@ -216,41 +230,38 @@
 
 					$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
 					'text' => wfMsg('history_short'),
-					'href' => $this->makeUrl($thispage, 'action=history'),
+					'href' => $this->makeUrl($this->thispage, 'action=history'),
 					'ttip' => wfMsg('tooltip-history'),
 					'akey' => wfMsg('accesskey-history'));
 
-					/*
-					$content_actions['revert'] = array('class' => ($action == 'revert') ? 'selected' : '',
-					'i18n_key' => 'revert',
-					'href' => $this->makeUrl($wgTitle->getPrefixedDbKey(), 'action=revert'),
-					'akey' => wfMsg('accesskeyrevert'));
-					*/
-					if( $wgUser->getNewtalk() ) {
+					# XXX: is there a rollback action anywhere or is it planned?
+					# Don't recall where i got this from...
+					/*if( $wgUser->getNewtalk() ) {
 						$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
 						'text' => wfMsg('rollback_short'),
-						'href' => $this->makeUrl($thispage, 'action=rollback'),
+						'href' => $this->makeUrl($this->thispage, 'action=rollback'),
 						'ttip' => wfMsg('tooltip-rollback'),
 						'akey' => wfMsg('accesskey-rollback'));
-					}
+					}*/
+
 					if($wgUser->isSysop()){
 						if(!$wgTitle->isProtected()){
 							$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
 							'text' => wfMsg('protect'),
-							'href' => $this->makeUrl($thispage, 'action=protect'),
+							'href' => $this->makeUrl($this->thispage, 'action=protect'),
 							'ttip' => wfMsg('tooltip-protect'),
 							'akey' => wfMsg('accesskey-protect'));
 
 						} else {
 							$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
 							'text' => wfMsg('unprotect'),
-							'href' => $this->makeUrl($thispage, 'action=unprotect'),
+							'href' => $this->makeUrl($this->thispage, 'action=unprotect'),
 							'ttip' => wfMsg('tooltip-protect'),
 							'akey' => wfMsg('accesskey-protect'));
 						}
 						$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
 						'text' => wfMsg('delete'),
-						'href' => $this->makeUrl($thispage, 'action=delete'),
+						'href' => $this->makeUrl($this->thispage, 'action=delete'),
 						'ttip' => wfMsg('tooltip-delete'),
 						'akey' => wfMsg('accesskey-delete'));
 					}
@@ -258,30 +269,31 @@
 						if ( $wgTitle->userCanEdit()) {
 							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
 							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl('Movepage', 'target='.$thispage),
+							'href' => $this->makeSpecialUrl('Movepage', 'target='.$this->thispage),
 							'ttip' => wfMsg('tooltip-move'),
 							'akey' => wfMsg('accesskey-move'));
 						} else {
 							$content_actions['move'] = array('class' => 'inactive',
 							'text' => wfMsg('move'),
 							'href' => false,
+							'ttip' => wfMsg('tooltip-nomove'),
 							'akey' => false);
 
 						}
 					}
 				}
-			
+
 				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
 					if( !$wgTitle->userIsWatching()) {
 						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : '',
 						'text' => wfMsg('watch'),
-						'href' => $this->makeUrl($thispage, 'action=watch'),
+						'href' => $this->makeUrl($this->thispage, 'action=watch'),
 						'ttip' => wfMsg('tooltip-watch'),
 						'akey' => wfMsg('accesskey-watch'));
 					} else {
 						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : '',
 						'text' => wfMsg('unwatch'),
-						'href' => $this->makeUrl($thispage, 'action=unwatch'),
+						'href' => $this->makeUrl($this->thispage, 'action=unwatch'),
 						'ttip' => wfMsg('tooltip-unwatch'),
 						'akey' => wfMsg('accesskey-unwatch'));
 
@@ -296,68 +308,76 @@
 				'ttip' => wfMsg('tooltip-specialpage'),
 				'akey' => false);
 			}
-			$tpl->setRef('content_actions', &$content_actions);
 
+			return $content_actions;
+		}
 
-			/* prepare an array of common navigation links */
+		# build array of common navigation links
+		function buildNavUrls () {
+			global $wgTitle, $wgUser, $wgRequest;
+			global $wgSiteSupportPage;
+			
+			$action = $wgRequest->getText( 'action' );
+			$oldid = $wgRequest->getVal( 'oldid' );
+			$diff = $wgRequest->getVal( 'diff' );
 
 			$nav_urls = array();
 			$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
 			$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
 			$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
-			$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.$thispage));
-			$nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
-			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$thispage));
+			$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage));
+			if(wfMsg('currentevents') != '-') {
+				$nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
+			}
+			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage));
 			$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
-			global $wgSiteSupportPage;
 			// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
-			$nav_urls['sitesupport'] = array('href' => $this->makeUrl($wgSiteSupportPage));
+			$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
 			$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 			$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
-			$tpl->setRef( "nav_urls", &$nav_urls );
 
-
-			// execute template
-			$res = $tpl->execute();
-			// result may be an error
-			if (PEAR::isError($res)) {
-				echo $res->toString(), "\n";
-			} else {
-				echo $res;
-			}
-
+			return $nav_urls;
 		}
-
-
 
 		/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 			$title = Title::makeTitle( NS_SPECIAL, $name );
+			$this->checkTitle(&$title, &$name);	
 			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeTalkUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
 			$title = $title->getTalkPage();
+			$this->checkTitle(&$title, &$name);	
 			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeArticleUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
-			#$title->setNamespace(0);
-			#$title = Title::makeTitle( Namespace::getSubject( $wgTitle->getNamespace() ), $wgTitle->getDbKey() );
 			$title= $title->getSubjectPage();
+			$this->checkTitle(&$title, &$name);	
 			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( wfMsg($name) );
-			if(!is_object($title)) {
-				$title = Title::newFromText( $name );
-			}
+			$this->checkTitle(&$title, &$name);	
 			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
+			$this->checkTitle(&$title, &$name);	
 			return $title->getLocalURL( $urlaction ); 
 		}
+
+		# make sure we have some title to operate on, mind the '&'
+		/*static*/ function checkTitle ( &$title, &$name ) { 
+			if(!is_object($title)) {
+				$title = Title::newFromText( $name );
+				if(!is_object($title)) {
+					$title = Title::newFromText( '<error: link target missing>' );
+				}
+			}
+		}
+			
 
 	}
 
