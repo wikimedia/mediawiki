@@ -197,8 +197,7 @@ class PageHistory {
 		
 
 		if ( '' != $c && '*' != $c ) {
-
-			$c = $this->mSkin->formatcomment($c);
+			$c = $this->mSkin->formatcomment($c,$this->mTitle);
 			$s .= " <em>(" . $c . ")</em>";
 		}
 		$s .= "</li>\n";
