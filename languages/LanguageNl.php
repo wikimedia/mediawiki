@@ -452,8 +452,8 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "yourdiff"  => "Wijzigingen",
 "copyrightwarning" => "Opgelet: Alle bijdragen aan Wikipedia worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 "longpagewarning" => "Waarschuwing! Deze pagina is $1 kilobyte lang. Pagina's langer dan 32 kb zorgen voor problemen op sommige browsers. Het is daarom waarschijnlijk een goed idee deze pagina in meerdere pagina's te splitsen.",
-"readonlywarning" => "Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken."
-"protectedpagewarning" => "Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken."
+"readonlywarning" => "Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken.",
+"protectedpagewarning" => "Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken.",
 
 # History pages
 # Geschiedenis pagina's
@@ -756,7 +756,7 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "exblank" => "Dit was een lege pagina.",
 "confirmdelete" => "Bevestig verwijdering",
 "deletesub"  => "(Verwijderen \"$1\")",
-"historywarning" => "Waarschuwing: Deze pagina heeft een voorgeschiedenis. Overtuig uzelf ervan dat geen van de oudere versies een te behouden pagina is."
+"historywarning" => "Waarschuwing: Deze pagina heeft een voorgeschiedenis. Overtuig uzelf ervan dat geen van de oudere versies een te behouden pagina is.",
 "confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[Wikipedia:Instructies]].",
 "confirmcheck" => "Ja, ik wil dit voorgoed verwijderen.",
 "actioncomplete" => "Actie voltooid",
