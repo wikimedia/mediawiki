@@ -195,6 +195,35 @@ class SearchEngine {
 			$this->queryNamespaces() . ' ' .
 			$this->queryLimit();
 	}
+
+	/**
+	 * Load up the appropriate search engine class for the currently
+	   * active database backend, and return a configured instance.
+	   *
+	   * @return SearchEngine
+	   * @access private
+	*/
+	function create() {
+                global $wgDBtype, $wgDBmysql4, $wgSearchType;
+                if( $wgDBtype == 'mysql' ) {
+                        if( $wgDBmysql4 ) {
+                                $class = 'SearchMySQL4';
+                                require_once( 'SearchMySQL4.php' );
+                        } else {
+                                $class = 'SearchMysql3';
+                                require_once( 'SearchMySQL3.php' );
+                        }
+                } else if ( $wgDBtype == 'PostgreSQL' ) {
+                        $class = 'SearchTsearch2';
+                        require_once( 'SearchTsearch2.php' );
+                } else {
+                        $class = 'SearchEngineDummy';
+                }
+                $search = new $class( wfGetDB( DB_SLAVE ) );
+                $search->setLimitOffset(0,0);
+                return $search;
+	}
+
 	
 }
 
@@ -205,5 +234,3 @@ class SearchEngineDummy {
 	}
 }
 
-
-?>
