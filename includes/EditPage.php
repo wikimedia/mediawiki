@@ -27,7 +27,7 @@ class EditPage {
 		wfCleanFormFields( $fields );
 
 		if ( ! $this->mTitle->userCanEdit() ) {
-			$this->mArticle->view();
+			$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
