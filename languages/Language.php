@@ -2160,6 +2160,37 @@ class Language {
 		$lang = strtolower(substr(get_class($this), 8));
 		return $lang;
 	}
+
+	/* if a language supports multiple variants, it is
+		possible that non-existing link in one variant
+		actually exists in another variant. this function 
+		tries to find it.
+
+	*/
+	function findVariantLink(&$link, &$nt) {
+		static $count=0; //used to limit this operation
+		global $wgDisableLangConversion, $wgContLang;
+		if($wgDisableLangConversion)
+			return;
+		$variants = $wgContLang->getVariants();
+		if(sizeof($variants) > 1 && $count++<200) {
+			if($nt->getArticleID() == 0) {
+				foreach ( $variants as $v ) {
+					if($v == $wgContLang->getPreferredVariant())
+						continue;
+					$varlink = $wgContLang->autoConvert($link, $v);
+					$varnt = Title::newFromText($varlink);
+					if($varnt && $varnt->getArticleID()>0) {
+						$nt = $varnt;
+						$link = $varlink;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+
 }
 
 # This should fail gracefully if there's not a localization available

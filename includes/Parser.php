@@ -1097,7 +1097,6 @@ class Parser
 		static $fname = 'Parser::replaceInternalLinks' ;
 		# use a counter to prevent too much unknown links from
 		# being checked for different language variants.
-		static $convertCount;
 		wfProfileIn( $fname );
 
 		wfProfileIn( $fname.'-setup' );
@@ -1146,6 +1145,7 @@ class Parser
 
 		wfProfileOut( $fname.'-setup' );
 
+		$checkVariantLink = sizeof($wgContLang->getVariants())>1;
 		# Loop for each link
 		for ($k = 0; isset( $a[$k] ); $k++) {
 			$line = $a[$k];
@@ -1207,30 +1207,11 @@ class Parser
 
 			#check other language variants of the link
 			#if the article does not exist
-			if(!$wgDisableLangConversion) {
-				global $wgContLang;
-				$variants = $wgContLang->getVariants();
-
-				if(sizeof($variants) > 1 && $convertCount < 200) {
-					$varnt = false; 
-					if($nt->getArticleID() == 0) {
-						foreach ( $variants as $v ) {
-							if($v == $wgContLang->getPreferredVariant())
-								continue;
-							$convertCount ++;
-							$varlink = $wgContLang->autoConvert($link, $v);
-							$varnt = Title::newFromText($varlink);
-							if($varnt && $varnt->getArticleID()>0) {
-								break;
-							}
-						}
-					}
-					if($varnt && $varnt->getArticleID()>0) {
-						$nt = $varnt;
-						$link = $varlink;
-					}
-				}
+			if( $nt->getArticleID() == 0
+				&& $checkVariantLink ) {
+				$wgContLang->findVariantLink($link, $nt);
 			}
+
 			$ns = $nt->getNamespace();
 			$iw = $nt->getInterWiki();
 			
