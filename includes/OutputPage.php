@@ -287,17 +287,22 @@ class OutputPage {
 		}
 
 		$text = $this->doWikiPass2( $stripped3, $linestart );
-
+		
+		$specialChars = array("\\", "$");
+		$escapedChars = array("\\\\", "\\$");
 		for ( $i = 1; $i <= $presecs; ++$i ) {
-			$text = preg_replace( "/{$unique3}/", str_replace( '$', '\$', $prelist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique3}/", str_replace( $specialChars, 
+				$escapedChars, $prelist[$i] ), $text, 1 );
 		}
 
 		for ( $i = 1; $i <= $mathsecs; ++$i ) {
-			$text = preg_replace( "/{$unique2}/", str_replace( '$', '\$', $mathlist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique2}/", str_replace( $specialChars, 
+				$escapedChars, $mathlist[$i] ), $text, 1 );
 		}
 
 		for ( $i = 1; $i <= $nwsecs; ++$i ) {
-			$text = preg_replace( "/{$unique}/", str_replace( '$', '\$', $nwlist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique}/", str_replace( $specialChars, 
+				$escapedChars, $nwlist[$i] ), $text, 1 );
 		}
 		$this->addHTML( $text );
 		wfProfileOut();
@@ -787,7 +792,7 @@ class OutputPage {
 	{
 		global $wgTitle, $wgUser, $wgLang;
 		global $wgLinkCache, $wgInterwikiMagic;
-		global $wgNamespacesWithSubpages;
+		global $wgNamespacesWithSubpages, $wgLanguageCode;
 		wfProfileIn( $fname = "OutputPage::replaceInternalLinks" );
 
 		wfProfileIn( "$fname-setup" );
@@ -867,7 +872,7 @@ class OutputPage {
 					  Namespace::isTalk( $wgTitle->getNamespace() ) ) {
 						if ( "" == $text ) { $text = $link; }
 						$s .= $sk->makeLink( $link, $text, "", $trail );
-					} else {
+					} else if ( $pre != $wgLanguageCode ) {
 						array_push( $this->mLanguageLinks, "$pre:$suf" );
 						$s .= $trail;
 					}
