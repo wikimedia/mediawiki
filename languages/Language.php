@@ -617,6 +617,7 @@ Please log in again after you receive it.",
 "media_tip"=>"Media file link",
 "sig_tip"=>"Your signature with timestamp",
 "hr_tip"=>"Horizontal line (use sparingly)",
+"infobox"=>"Click a button to get an example text",
 
 # Edit pages
 #

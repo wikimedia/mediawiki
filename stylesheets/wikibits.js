@@ -78,6 +78,7 @@ function toggleToc() {
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 
+
 	speedTip=escapeQuotes(speedTip);
 	tagOpen=escapeQuotes(tagOpen);
 	tagClose=escapeQuotes(tagClose);
@@ -87,6 +88,21 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\">");
 	document.write("</a>");
 	return;
+}
+
+function addInfobox(infoText) {
+
+	// if no support for changing selection, add a small copy & paste field
+	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
+	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
+                && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
+                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1));
+ 	if(!document.selection && !is_nav) {
+	 	document.write("<form name='infoform' id='infoform'>"+
+			"<input size=80 id='infobox' name='infobox' value='"+
+			infoText+"' READONLY></form>");
+ 	}
+
 }
 
 function escapeQuotes(text) {
@@ -121,7 +137,12 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		txtarea.selectionEnd=cPos;
 	// All others
 	} else {
-		txtarea.value += tagOpen + sampleText + tagClose;
+		// Append at the end: Some people find that annoying
+		//txtarea.value += tagOpen + sampleText + tagClose;
+		//txtarea.focus();
+		tagOpen=tagOpen.replace(/\n/g,"");
+		tagClose=tagClose.replace(/\n/g,"");
+		document.infoform.infobox.value=tagOpen+sampleText+tagClose;
 		txtarea.focus();
 	}
 	// reposition cursor if possible
