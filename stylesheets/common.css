@@ -30,6 +30,7 @@ div.thumb {
     margin: 10px;
     text-align: center;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border: 1px solid #8888aa;
