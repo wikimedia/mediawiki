@@ -12,6 +12,7 @@ if ( ! is_readable( "../LocalSettings.php" ) ) {
 	exit();
 }
 
+$wgCommandLineMode = true;
 $DP = "../includes";
 include_once( "../LocalSettings.php" );
 
@@ -31,7 +32,6 @@ set_time_limit( 0 );
 
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Translation checking script" );
-$wgCommandLineMode = true;
 
 $count = $total = 0;
 $msgarray = "wgAllMessages" . ucfirst( $wgLanguageCode );

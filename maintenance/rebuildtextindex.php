@@ -1,6 +1,6 @@
 <?
 
-# Rebuild link tracking tables from scratch.  This takes several
+# Rebuild search index table from scratch.  This takes several
 # hours, depending on the database size and server configuration.
 
 if ( ! is_readable( "../LocalSettings.php" ) ) {
@@ -9,11 +9,15 @@ if ( ! is_readable( "../LocalSettings.php" ) ) {
 	exit();
 }
 
+$wgCommandLineMode = true;
 $DP = "../includes";
 include_once( "../LocalSettings.php" );
 include_once( "../AdminSettings.php" );
 
-include_once( "{$IP}/Setup.php" );
+$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
+ini_set( "include_path", "$IP$sep$include_path" );
+
+include_once( "Setup.php" );
 include_once( "./rebuildtextindex.inc" );
 $wgTitle = Title::newFromText( "Rebuild text index script" );
 set_time_limit(0);
