@@ -62,20 +62,21 @@ class ImagePage extends Article {
 		global $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
-		$s = $sk->beginImageHistoryList();		
 
 		$line = $this->img->nextHistoryLine();
+		if ( $line ) {
+			$s = $sk->beginImageHistoryList() .
+				$sk->imageHistoryLine( true, $line->img_timestamp,
+					$this->mTitle->getDBkey(),  $line->img_user,
+					$line->img_user_text, $line->img_size, $line->img_description );
+			while ( $line = $this->img->nextHistoryLine() ) {
+				$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
+					$line->oi_archive_name, $line->img_user,
+					$line->img_user_text, $line->img_size, $line->img_description );
+			}
+			$s .= $sk->endImageHistoryList();
+		} else { $s=""; }
 
-		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
-		  $this->mTitle->getDBkey(),  $line->img_user,
-		  $line->img_user_text, $line->img_size, $line->img_description );
-
-		while ( $line = $this->img->nextHistoryLine() ) {
-			$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
-			  $line->oi_archive_name, $line->img_user,
-			  $line->img_user_text, $line->img_size, $line->img_description );
-		}
-		$s .= $sk->endImageHistoryList();
 		$wgOut->addHTML( $s );
 	}
 
