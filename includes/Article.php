@@ -1166,13 +1166,6 @@ class Article {
 				return true;
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
-				if($cache->useGzip() && wfClientAcceptsGzip()) {
-					/* For some reason, adding this header line over in
-					   CacheManager::saveToFileCache() fails on my test
-					   setup at home, though it works on the live install.
-					   Make double-sure...  --brion */
-					header( "Content-Encoding: gzip" );
-				}
 				ob_start( array(&$cache, 'saveToFileCache' ) );
 			}
 		} else {
