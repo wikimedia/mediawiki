@@ -233,12 +233,16 @@ class MessageCache
 
 		# Try the array in $wgLang
 		if ( !$message ) {
+            wfSuppressWarnings();
 			$message = $wgLang->getMessage( $key );
+            wfRestoreWarnings();
 		} 
 
 		# Try the English array
 		if ( !$message && $wgLanguageCode != 'en' ) {
+            wfSuppressWarnings();
 			$message = Language::getMessage( $key );
+            wfRestoreWarnings();
 		}
 		
 		# Final fallback
