@@ -60,9 +60,6 @@
 
 /* private */ $wgDateFormatsPt = array(
     "Sem preferência",
-    "Janeiro 15, 2001",
-    "15 Janeiro 2001",
-    "2001 Janeiro 15"
 );
 
 

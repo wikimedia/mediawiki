@@ -72,10 +72,6 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgDateFormatsId = array(
 	"Tiada pilihan",
-	"Januari 15, 2001",
-	"15 Januari 2001",
-	"2001 Januari 15",
-	"2001-01-15" 
 );
 
 /* private */ $wgUserTogglesId = array(

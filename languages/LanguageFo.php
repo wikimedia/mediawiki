@@ -49,10 +49,6 @@ require_once( 'LanguageUtf8.php');
 
 /* private */ $wgDateFormatsFo = array(
 	"Ongi forrættindi",
-	"januar 15, 2001",
-	"15. januar 2001",
-	"2001 januar 15",
-	"2001-01-15"
 );
 
 /* private */ $wgBookstoreListFo = array(

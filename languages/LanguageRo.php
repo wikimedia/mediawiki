@@ -50,9 +50,6 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgDateFormatsRo = array(
 	"Nici o preferinţă",
-	"Ianuarie 15, 2001",
-	"15 Ianuarie 2001",
-	"2001 Ianuarie 15"
 );
 
 /* private */ $wgBookstoreListRo = array(

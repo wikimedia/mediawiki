@@ -63,10 +63,6 @@ DISCUSSION!
 
 /* private */ $wgDateFormatsGa = array(
     "Is cuma liom",
-    "Eanáir 15, 2001",
-    "15 Eanáir 2001",
-    "2001 Eanáir 15",
-    "2001-01-15"
 );
 
 # If possible, find Irish language book services on the Internet, searchable by ISBN

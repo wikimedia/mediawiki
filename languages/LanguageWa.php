@@ -44,10 +44,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsWa = array( /* cwè fé chal ??? */
 	"Nole preferince",
-	"January 15, 2001",
-	"15 January 2001",
-	"2001 January 15",
-	"2001-01-15"
 );
 
 /* private */ $wgBookstoreListWa = array(

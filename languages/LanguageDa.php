@@ -57,10 +57,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsDa = array(
 	"Ingen foretrukken",
-	"januar 15, 2001",
-	"15. januar 2001",
-	"2001 januar 15",
-	"2001-01-15"
 );
 
 

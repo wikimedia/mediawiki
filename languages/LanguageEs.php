@@ -56,9 +56,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsEs = array(
 	"Sin preferencia",
-	"enero 15, 2001",
-	"15 de enero de 2001",
-	"2001 enero 15"
 );
 
 /* Please customize this with some Spanish-language bookshops

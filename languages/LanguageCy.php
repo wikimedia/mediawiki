@@ -37,10 +37,6 @@
 
 /* private */ $wgDateFormatsCy = array(
 	"Dim dewis",
-	"Ionawr 15, 2001",
-	"15 Ionawr 2001",
-	"2001 Ionawr 15",
-	"2001-01-15"
 );
 
 /* private */ $wgBookstoreListCy = array(

@@ -117,10 +117,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsSl = array(
         'No preference',
-        'januar 15, 2001',
-        '15 januar 2001',
-        '2001 januar 15',
-        '2001-01-15'
 );
 
 

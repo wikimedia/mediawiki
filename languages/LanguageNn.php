@@ -74,10 +74,6 @@ $wgValidationTypesNn = array (
 
 /* private */ $wgDateFormatsNn = array(
 	'Ingen preferanse',
-	'januar 15, 2001',
-	'15 januar 2001',
-	'2001 januar 15',
-	'2001-01-15'
 );
 
 /* private */ $wgBookstoreListNn = array(

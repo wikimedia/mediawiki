@@ -48,9 +48,6 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgDateFormatsSq = array(
 	"Pa preferencë",
-	"Janar 15, 2001",
-	"15 Janar 2001",
-	"2001 Janar 15"
 );
 
 
