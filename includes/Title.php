@@ -90,11 +90,11 @@ class Title {
 	{
 		global $wgLang, $wgServer;
 		$t = new Title();
-		$s = urldecode( $url ); # This is technically wrong, as anything
-								# we've gotten is already decoded by PHP.
-								# Kept for backwards compatibility with
-								# buggy URLs we had for a while...
-		$s = $url;
+		
+		# For compatibility with old buggy URLs. "+" is not valid in titles,
+		# but some URLs used it as a space replacement and they still come
+		# from some external search tools.
+		$s = str_replace( "+", " ", $url );
 		
 		# For links that came from outside, check for alternate/legacy
 		# character encoding.
