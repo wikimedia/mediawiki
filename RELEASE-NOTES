@@ -3,6 +3,48 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Version 1.3.11, 2005-02-20 ==
+
+MediaWiki 1.3.11 is a security release.
+
+A security audit found and fixed a number of problems. Users of MediaWiki
+1.3.10 and earlier should upgrade to 1.3.11; users of 1.4 beta releases
+should upgrade to 1.4rc1.
+
+
+=== Cross-site scripting vulnerability ===
+
+XSS injection points can be used to hijack session and authentication
+cookies as well as more serious attacks.
+
+* Media: links output raw text into an attribute value, potentially
+  abusable for JavaScript injection. This has been corrected.
+* Additional checks added to file upload to protect against MSIE and
+  Safari MIME-type autodetection bugs.
+
+As of 1.3.10/1.4beta6, per-user customized CSS and JavaScript is disabled
+by default as a general precaution. Sites which want this ability may set
+$wgAllowUserCss and $wgAllowUserJs in LocalSettings.php.
+
+
+=== Cross-site request forgery ===
+
+An attacker could use JavaScript-submitted forms to perform various
+restricted actions by tricking an authenticated user into visiting
+a malicious web page. A fix for page editing in 1.3.10/1.4beta6 has
+been expanded in this release to other forms and functions.
+
+Authors of bot tools may need to update their code to include the
+additional fields.
+
+
+=== Directory traversal ===
+
+An unchecked parameter in image deletion could allow an authenticated
+administrator to delete arbitary files in directories writable by the
+web server, and confirm existence of files not deletable.
+
+
 == Version 1.3.10, 2005-02-03 ==
 
 MediaWiki 1.3.10 is a security release.
