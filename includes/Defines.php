@@ -63,12 +63,21 @@ $wgFeedClasses = array(
 	'atom' => 'AtomFeed',
 	);
 
-
+/** Maths constants */
 define( 'MW_MATH_PNG',    0 );
 define( 'MW_MATH_SIMPLE', 1 );
 define( 'MW_MATH_HTML',   2 );
 define( 'MW_MATH_SOURCE', 3 );
 define( 'MW_MATH_MODERN', 4 );
 define( 'MW_MATH_MATHML', 5 );
+
+/**
+ * User rights management
+ * a big array of string defining a right, that's how they are saved in the
+ * database.
+ */
+$wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
+'protect', 'block', 'userrights', 'createaccount', 'upload', 'asksql',
+'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
 
 ?>
