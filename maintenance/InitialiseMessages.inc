@@ -5,6 +5,7 @@
 
 function initialiseMessages( $overwrite = false) {
 	global $wgLang, $wgScript, $wgServer, $wgAllMessagesEn;
+	global $wgOut, $wgArticle, $wgUser;
 
 	$fname = "initialiseMessages";
 	$ns = NS_MEDIAWIKI;
@@ -22,30 +23,71 @@ function initialiseMessages( $overwrite = false) {
   '''Current text'''
 </td></tr>";
 	
-	print "Initialising \"MediaWiki\" namespace...";
+	print "Initialising \"MediaWiki\" namespace...\n";
+	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=$ns AND cur_title IN(";
 
-	foreach ( $wgAllMessagesEn as $key => $enMsg ) {
+	$first = true;
+	$sortedArray = ksort( $wgAllMessagesEn );
+
+	foreach ( $sortedArray as $key => $enMsg ) {
+		if ( $first ) {
+			$first = false;
+		} else {
+			$sql .= ",";
+		}
+
+		$message = wfMsgNoDB( $key );
+		$titleObj = Title::newFromText( $key );
+		$enctitle = wfStrencode($titleObj->getDBkey());
+		$sql .= "'$enctitle'";
+	}
+	$sql .= ")";
+	print "Reading...";
+	$res = wfQuery( $sql, DB_READ );
+	print ".";
+	$row = wfFetchObject( $res );
+	print "done\n";
+
+	print "Setting up...";
+	$exists = array();
+	while ( $row ) {
+		$exists[$row->cur_title] = 1;
+		$row = wfFetchObject( $res );
+	}
+	print ".";
+	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
+		cur_user_text, cur_timestamp, cur_restrictions,
+		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
+	$first = true;
+	$mwObj =& MagicWord::get( MAG_MSGNW );
+	$msgnw = $mwObj->getSynonym( 0 );
+	print "Done\n";
+	
+	print "Processing...";
+	
+	foreach ( $sortedArray as $key => $enMsg ) {
 		$message = wfMsgNoDB( $key );
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
 		$dbencMsg = wfStrencode( $message );
-		
+
 		$doInsert = true;
 		if ( $overwrite ) {
 			$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
 			wfQuery( $sql, DB_WRITE, $fname );
 		} else {	
-			$row = wfGetArray("cur", array("1"), 	
-				array("cur_namespace"=>$ns, "cur_title"=>$title));
-			if ($row) {
+			if (array_key_exists($title, $exists)) {
 				$doInsert = false;
 			}
 		}
 		if ( $doInsert ) {
-			$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
-				cur_user_text, cur_timestamp, cur_restrictions,
-				cur_is_new, inverse_timestamp, cur_touched) VALUES (
-				$ns,
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ",";
+			}
+			$sql .=
+				"($ns,
 				'$title',
 				'$dbencMsg',
 				'MediaWiki default',
@@ -54,11 +96,8 @@ function initialiseMessages( $overwrite = false) {
 				1,
 				'$invTimestamp',
 				'$timestamp')";
-			wfQuery( $sql, DB_WRITE, $fname );
 		}
-		$mwObj =& MagicWord::get( MAG_MSGNW );
-		$mw = $mwObj->getSynonym( 0 );
-		$mw = str_replace( "$1", $key, $mw );
+		$mw = str_replace( "$1", $key, $msgnw );
 
 		$message = wfEscapeWikiText( $message );
 		$navText .= 
@@ -70,26 +109,24 @@ function initialiseMessages( $overwrite = false) {
   $mw
 </td></tr>";
 	}
+	print "Done\n";
+	print "Writing...";
+	wfQuery( $sql, DB_WRITE, $fname );
+	print "Done\n";
+
 	$navText .= "</table>";
-	$navText = wfStrencode( $navText );
 
 	$title = wfMsgNoDB( "allmessages" );
-	$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
-	wfQuery( $sql, DB_WRITE, $fname );
-
-	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
-		cur_user_text, cur_timestamp, cur_restrictions,
-		cur_is_new, inverse_timestamp, cur_touched) VALUES (
-		$ns,
-		'$title',
-		'$navText',
-		'MediaWiki default',
-		'$timestamp',
-		'sysop',
-		1,
-		'$invTimestamp',
-		'$timestamp')";
-	wfQuery( $sql, DB_WRITE, $fname );
-	print "done \n";
+	$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+	$wgArticle = new Article( $titleObj );
+	$wgOut->disable();
+	$wgUser = User::newFromName( 'MediaWiki default' );
+	print "Writing to " . $titleObj->getPrefixedDBkey() . "\n";
+	if ( $titleObj->getArticleID() ) {
+		$wgArticle->updateArticle( $navText, '', 0, 0 );
+	} else {
+		$wgArticle->insertNewArticle( $navText, '', 0, 0 );
+	}
+	print "Finished\n";
 }
 

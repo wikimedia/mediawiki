@@ -24,7 +24,7 @@ if ( ! is_readable( $settingsFile ) ) {
 	exit();
 }
 
-ini_set( "include_path", "$newpath$IP$sep$include_path" );
+ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include_path" );
 
 $wgCommandLineMode = true;
 $DP = "../includes";
@@ -36,6 +36,9 @@ include_once( "../install-utils.inc" );
 $wgTitle = Title::newFromText( "Rebuild messages script" );
 $wgCommandLineMode = true;
 set_time_limit(0);
+
+$row = wfGetArray( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
+print "Current namespace size: {$row->c}\n";
 
 print	"1. Update messages to include latest additions to Language.php\n" . 
 		"2. Delete all messages and reinitialise namespace\n" .
