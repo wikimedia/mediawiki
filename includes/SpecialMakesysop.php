@@ -168,8 +168,7 @@ class MakesysopForm {
 			$id = intval( substr( $username, 1 ) );
 			$sql = "SELECT user_id, ur_rights FROM $usertable LEFT OUTER JOIN $user_rights ON user_id=ur_user WHERE user_id=$id FOR UPDATE";
 		} else {
-			$encName = $dbw->strencode( $username );
-			$sql = "SELECT user_id, ur_rights FROM $usertable LEFT OUTER JOIN $user_rights ON user_id=ur_user WHERE user_name='{$encName}' FOR UPDATE";
+			$sql = "SELECT user_id, ur_rights FROM $usertable LEFT OUTER JOIN $user_rights ON user_id=ur_user WHERE user_name='{$username}' FOR UPDATE";
 		}
 		
 		$prev = $dbw->ignoreErrors( TRUE );
