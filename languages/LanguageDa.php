@@ -19,7 +19,7 @@
 	6	=> "Billede",
 	7	=> "Billede_diskussion",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion",
+	9	=> "MediaWiki_diskussion"
 );
 
 /* private */ $wgQuickbarSettingsDa = array(
@@ -27,7 +27,7 @@
 );
 
 /* private */ $wgSkinNamesDa = array(
-	"Standard", "Nostalgi", "Cologne-blå"
+	"Standard", "Nostalgi", "Cologne-blå", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesDa = array(
@@ -42,7 +42,8 @@
 	"Ingen foretrukken",
 	"januar 15, 2001",
 	"15. januar 2001",
-	"2001 januar 15"
+	"2001 januar 15",
+	"2001-01-15"
 );
 
 /* private */ $wgUserTogglesDa = array(
@@ -53,7 +54,7 @@
 	"hideminor" => "Skjul mindre ændringer i seneste ændringer listen",
 	"usenewrc" => "Udvidet seneste ændringer liste<br>(ikke for alle browsere)",
 	"numberheadings" => "Automatisk nummerering af overskrifter",
-	"showtoolbar" => "Show edit toolbar",
+	"showtoolbar" => "Vis værktøjslinje til redigering",
 	"editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
 	"editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
 	"editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",
@@ -109,13 +110,15 @@
 
 	"Lonelypages"	=> "Forældreløse artikler",
 	"Unusedimages"	=> "Forældreløse filer",
-	"Popularpages"	=> "Populære artikler",
+#	"Popularpages"	=> "Populære artikler",
 	"Wantedpages"	=> "Mest ønskede artikler",
 	"Shortpages"	=> "Korte artikler",
-	"Longpages"	=> "Lange artikler",
-	"Newpages"	=> "Nyeste artikler",
+	"Longpages"		=> "Lange artikler",
+	"Newpages"		=> "Nyeste artikler",
 	"Ancientpages"	=> "Ældste artikler",
-	"Allpages"	=> "Alle sider efter titel",
+	"Deadendpages"	=> "Blindgydesider",
+#	"Intl"			=> "Sproghenvisninger",
+	"Allpages"		=> "Alle sider efter titel",
 
 	"Ipblocklist"	=> "Blokerede IP-adresser",
 	"Maintenance"	=> "Vedligeholdelsesside",
@@ -126,14 +129,16 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterne bogkilder",
-	"Export"	=> "XML page export",
-	"Version"	=> "Version",
+#	"Categories"	=> "Sidekategorier",
+	"Export"	=> "Eksportér sider i XML format",
+	"Version"	=> "Vis MediaWiki version",
 );
 
 /* private */ $wgSysopSpecialPagesDa = array(
 	"Blockip"		=> "Bloker en IP-adresse",
 	"Asksql"		=> "Lav en forespørgsel i databasen",
-	"Undelete"		=> "Se og gendan slettede sider"
+	"Undelete"		=> "Se og gendan slettede sider",
+	"Makesysop"		=> "Lav en bruger til administrator"
 );
 
 /* private */ $wgDeveloperSpecialPagesDa = array(
@@ -1138,12 +1143,6 @@ class LanguageDa extends Language {
 		return $wgMonthNamesDa[$key-1];
 	}
 
-	function getMonthRegex()
-	{
-		global $wgMonthNamesDa;
-		return implode( "|", $wgMonthNamesDa );
-	}
-
 	function getMonthAbbreviation( $key )
 	{
 		global $wgMonthAbbreviationsDa;
@@ -1210,7 +1209,11 @@ class LanguageDa extends Language {
             else return $m;
 	}
 
+	# Inherit iconv()
+
 	# Inherit ucfirst()
+
+	# Inherit lcfirst()
 	
 	# Inherit checkTitleEncoding()
 	
@@ -1221,11 +1224,12 @@ class LanguageDa extends Language {
 	# Inherit recodeForEdit()
 	
 	# Inherit recodeInput()
-	
-	# Inherit replaceDates()
-	
+
 	# Inherit isRTL()
+	
+	# Inherit getMagicWords()
 
 }
 
 ?>
+
