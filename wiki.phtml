@@ -42,17 +42,13 @@ if ( "" == $title && "delete" != $action ) {
 	$wgTitle = Title::newFromText( wfMsg( "mainpage" ) );
 } else {
 	$wgTitle = Title::newFromURL( $title );
-#	if( $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" or strncmp($wgTitle->getDBkey(),"_",1) == 0 ) {
-	if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
-		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
-		$wgOut->errorpage( "badtitle", "badtitletext" );
-		$wgOut->output();
-		exit;
-	}
 }
 wfProfileOut( "main-misc-setup" );
 
-if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
+if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
+	$wgOut->errorpage( "badtitle", "badtitletext" );
+} else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else if ( "" != $search ) {
 	if($go) {
