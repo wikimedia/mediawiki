@@ -388,9 +388,17 @@ class User {
 		} # the following stuff is for non-anonymous users only
 		
 		$dbr =& wfGetDB( DB_SLAVE );
-		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
-		  'user_real_name','user_options','user_touched', 'user_token' ),
-		  array( 'user_id' => $this->mId ), $fname );
+		extract( $dbr->tableNames( 'user', 'user_rights' ) );
+		$sql = "SELECT user_name,user_password,user_newpassword,user_email,user_real_name," .
+		  "user_options,user_touched,user_token,ur_rights " .
+		  "FROM $user LEFT JOIN $user_rights ON user_id=ur_user WHERE user_id={$this->mId}";
+		$res = $dbr->query( $sql );
+		if ( $res ) {
+			$s = $dbr->fetchObject( $res );
+		} else {
+			$s = false;
+		}
+		$dbr->freeResult( $res );
 		
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
@@ -401,18 +409,12 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
-			
-			/* FIXME */
-			$res = $dbr->select('user_rights',
-				array( 'ur_rights' ),
-				array( 'ur_user' => $this->mId ) );
-			$s = $dbr->fetchObject( $res );
-			if( $s ) {
+
+			if ( $s->ur_rights ) {
 				$this->mRights = explode( ',', $s->ur_rights );
 			} else {
 				$this->mRights = array();
 			}
-			$dbr->freeResult( $res );
 		}
 
 		$this->mDataLoaded = true;
