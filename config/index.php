@@ -110,9 +110,9 @@ header( "Content-type: text/html; charset=utf-8" );
 $IP = ".."; # Just to suppress notices, not for anything useful
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
-require( "../includes/DefaultSettings.php" );
-require( "../includes/MagicWord.php" );
-require( "../includes/Namespace.php" );
+require_once( "../includes/DefaultSettings.php" );
+require_once( "../includes/MagicWord.php" );
+require_once( "../includes/Namespace.php" );
 ?>
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
@@ -155,10 +155,10 @@ if( !is_writable( "." ) ) {
 }
 
 
-require( "../install-utils.inc" );
-require( "../maintenance/updaters.inc" );
-require( "../maintenance/convertLinks.inc" );
-require( "../maintenance/archives/moveCustomMessages.inc" );
+require_once( "../install-utils.inc" );
+require_once( "../maintenance/updaters.inc" );
+require_once( "../maintenance/convertLinks.inc" );
+require_once( "../maintenance/archives/moveCustomMessages.inc" );
 
 class ConfigData {
 	function getEncoded( $data ) {
@@ -904,7 +904,7 @@ function getLanguageList() {
 		$wgLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
-		require( "../languages/Names.php" );
+		require_once( "../languages/Names.php" );
 	}
 	
 	$codes = array();

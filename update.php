@@ -5,7 +5,7 @@ die("obsolete; remove this file befor 1.3.0 release\n");
 # Update already-installed software
 #
 
-include( "./install-utils.inc" );
+include_once( "./install-utils.inc" );
 require_once( "./maintenance/updaters.inc" );
 install_version_checks();
 
@@ -20,7 +20,7 @@ $IP = "./includes";
 require_once( "./LocalSettings.php" );
 require_once( "./AdminSettings.php" );
 
-include( "$IP/Version.php" );
+include_once( "$IP/Version.php" );
 
 if( $wgSitename == "MediaWiki" ) {
 	die( "You must set the site name in \$wgSitename before installation.\n\n" );
