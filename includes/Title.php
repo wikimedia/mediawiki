@@ -597,7 +597,7 @@ class Title {
 		# Clean up whitespace
 		#
 		$t = preg_replace( "/[\\s_]+/", "_", $this->mDbkeyform );
-		if ( "_" == $t{0} ) { 
+		if ( "_" == @$t{0} ) { 
 			$t = substr( $t, 1 ); 
 		}
 		$l = strlen( $t );
@@ -738,6 +738,310 @@ class Title {
 			$this->getInternalURL(),
 			$this->getInternalURL( "action=history" )
 		);
+	}
+
+	function moveNoAuth( &$nt ) {
+		return $this->moveTo( $nt, false );
+	}
+	
+	# Move a title to a new location
+	# Returns true on success, message name on failure
+	# auth indicates whether wgUser's permissions should be checked
+	function moveTo( &$nt, $auth = true ) {
+		$fname = "Title::move";
+		$oldid = $this->getArticleID();
+		$newid = $nt->getArticleID();
+
+		if( !$this or !$nt ) {
+			return "badtitletext";
+		}
+
+		if ( strlen( $nt->getDBkey() ) < 1 ) {
+			return "articleexists";
+		}
+		if ( ( ! Namespace::isMovable( $this->getNamespace() ) ) ||
+			 ( "" == $this->getDBkey() ) ||
+			 ( "" != $this->getInterwiki() ) ||
+			 ( !$oldid ) ||
+		     ( ! Namespace::isMovable( $nt->getNamespace() ) ) ||
+			 ( "" == $nt->getDBkey() ) ||
+			 ( "" != $nt->getInterwiki() ) ) {
+			return "badarticleerror";
+		}
+
+		if ( $auth && ( !$this->userCanEdit() || !$nt->userCanEdit() ) ) {
+			return "protectedpage";
+		}
+		
+		# The move is allowed only if (1) the target doesn't exist, or
+		# (2) the target is a redirect to the source, and has no history
+		# (so we can undo bad moves right after they're done).
+
+		if ( 0 != $newid ) { # Target exists; check for validity
+			if ( ! $this->isValidMoveTarget( $nt ) ) {
+				return "articleexists";
+			}
+			$this->moveOverExistingRedirect( $nt );
+		} else { # Target didn't exist, do normal move.
+			$this->moveToNewTitle( $nt, $newid );
+		}
+
+		# Update watchlists
+		
+		$oldnamespace = $this->getNamespace() & ~1;
+		$newnamespace = $nt->getNamespace() & ~1;
+		$oldtitle = $this->getDBkey();
+		$newtitle = $nt->getDBkey();
+
+		if( $oldnamespace != $newnamespace && $oldtitle != $newtitle ) {
+			WatchedItem::duplicateEntries( $this, $nt );
+		}
+
+		# Update search engine
+		$u = new SearchUpdate( $oldid, $nt->getPrefixedDBkey() );
+		$u->doUpdate();
+		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), "" );
+		$u->doUpdate();
+
+		return true;
+	}
+	
+	# Move page to title which is presently a redirect to the source page
+	
+	/* private */ function moveOverExistingRedirect( &$nt )
+	{
+		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
+		$fname = "Title::moveOverExistingRedirect";
+		$comment = wfMsg( "1movedto2", $this->getPrefixedText(), $nt->getPrefixedText() );
+		
+        $now = wfTimestampNow();
+        $won = wfInvertTimestamp( $now );
+		$newid = $nt->getArticleID();
+		$oldid = $this->getArticleID();
+		
+		# Change the name of the target page:
+		wfUpdateArray( 
+			/* table */ 'cur',
+			/* SET */ array( 
+				'cur_touched' => $now, 
+				'cur_namespace' => $nt->getNamespace(),
+				'cur_title' => $nt->getDBkey()
+			), 
+			/* WHERE */ array( 'cur_id' => $oldid ),
+			$fname
+		);
+		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
+
+		# Repurpose the old redirect. We don't save it to history since
+		# by definition if we've got here it's rather uninteresting.
+		
+		$redirectText = $wgMwRedir->getSynonym( 0 ) . " [[" . $nt->getPrefixedText() . "]]\n";
+		wfUpdateArray( 
+			/* table */ 'cur',
+			/* SET */ array(
+				'cur_touched' => $now,
+				'cur_timestamp' => $now,
+				'inverse_timestamp' => $won,
+				'cur_namespace' => $this->getNamespace(),
+				'cur_title' => $this->getDBkey(),
+				'cur_text' => $wgMwRedir->getSynonym( 0 ) . " [[" . $nt->getPrefixedText() . "]]\n",
+				'cur_comment' => $comment,
+				'cur_user' => $wgUser->getID(),
+				'cur_minor_edit' => 0,
+				'cur_counter' => 0,
+				'cur_restrictions' => '',
+				'cur_user_text' => $wgUser->getName(),
+				'cur_is_redirect' => 1,
+				'cur_is_new' => 1
+			),
+			/* WHERE */ array( 'cur_id' => $newid ),
+			$fname
+		);
+		
+		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
+
+		# Fix the redundant names for the past revisions of the target page.
+		# The redirect should have no old revisions.
+		wfUpdateArray(
+			/* table */ 'old',
+			/* SET */ array( 
+				'old_namespace' => $nt->getNamespace(),
+				'old_title' => $nt->getDBkey(),
+			),
+			/* WHERE */ array( 
+				'old_namespace' => $this->getNamespace(),
+				'old_title' => $this->getDBkey(),
+			),
+			$fname
+		);
+		
+		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+
+		# Swap links
+		
+		# Load titles and IDs
+		$linksToOld = $this->getLinksTo();
+		$linksToNew = $nt->getLinksTo();
+		
+		# Make function to convert Titles to IDs
+		$titleToID = create_function('$t', 'return $t->getArticleID();');
+
+		# Reassign links to old title
+		if ( count( $linksToOld ) ) {
+			$sql = "UPDATE links SET l_to=$newid WHERE l_from IN (";
+			$sql .= implode( ",", array_map( $titleToID, $linksToOld ) );
+			$sql .= ")";
+			wfQuery( $sql, DB_WRITE, $fname );
+		}
+		
+		# Reassign links to new title
+		if ( count( $linksToNew ) ) {
+			$sql = "UPDATE links SET l_to=$oldid WHERE l_from IN (";
+			$sql .= implode( ",", array_map( $titleToID, $linksToNew ) );
+			$sql .= ")";
+			wfQuery( $sql, DB_WRITE, $fname );
+		}
+
+		# Note: the insert below must be after the updates above!
+
+		# Now, we record the link from the redirect to the new title.
+		# It should have no other outgoing links...
+		$sql = "DELETE FROM links WHERE l_from={$newid}";
+		wfQuery( $sql, DB_WRITE, $fname );
+		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		# Purge squid
+		if ( $wgUseSquid ) {
+			$urls = array_merge( $nt->getSquidURLs(), $this->getSquidURLs() );
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
+		}
+	}
+
+	# Move page to non-existing title.
+	# Sets $newid to be the new article ID
+
+	/* private */ function moveToNewTitle( &$nt, &$newid )
+	{
+		global $wgUser, $wgLinkCache, $wgUseSquid;
+		$fname = "MovePageForm::moveToNewTitle";
+		$comment = wfMsg( "1movedto2", $this->getPrefixedText(), $nt->getPrefixedText() );
+
+		$now = wfTimestampNow();
+		$won = wfInvertTimestamp( $now );
+		$newid = $nt->getArticleID();
+		$oldid = $this->getArticleID();
+
+		# Rename cur entry
+		wfUpdateArray(
+			/* table */ 'cur',
+			/* SET */ array(
+				'cur_touched' => $now,
+				'cur_namespace' => $nt->getNamespace(),
+				'cur_title' => $nt->getDBkey()
+			),
+			/* WHERE */ array( 'cur_id' => $oldid ),
+			$fname
+		);
+		
+		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
+
+		# Insert redirct
+		wfInsertArray( 'cur', array(
+			'cur_namespace' => $this->getNamespace(),
+			'cur_title' => $this->getDBkey(),
+			'cur_comment' => $comment,
+			'cur_user' => $wgUser->getID(),
+			'cur_user_text' => $wgUser->getName(),
+			'cur_timestamp' => $now,
+			'inverse_timestamp' => $won,
+			'cur_touched' => $now,
+			'cur_is_redirect' => 1,
+			'cur_is_new' => 1,
+			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" )
+		);
+		$newid = wfInsertId();
+		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
+
+		# Rename old entries
+		wfUpdateArray( 
+			/* table */ 'old',
+			/* SET */ array(
+				'old_namespace' => $nt->getNamespace(),
+				'old_title' => $nt->getDBkey()
+			),
+			/* WHERE */ array(
+				'old_namespace' => $this->getNamespace(),
+				'old_title' => $this->getDBkey()
+			), $fname
+		);
+		
+		# Miscellaneous updates
+
+		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		Article::onArticleCreate( $nt );
+
+		# Any text links to the old title must be reassigned to the redirect
+		$sql = "UPDATE links SET l_to={$newid} WHERE l_to={$oldid}";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		# Record the just-created redirect's linking to the page
+		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		# Non-existent target may have had broken links to it; these must
+		# now be removed and made into good links.
+		$update = new LinksUpdate( $oldid, $nt->getPrefixedDBkey() );
+		$update->fixBrokenLinks();
+
+		# Purge old title from squid
+		# The new title, and links to the new title, are purged in Article::onArticleCreate()
+		$titles = $nt->getLinksTo();
+		if ( $wgUseSquid ) {
+			$urls = $this->getSquidURLs();
+			foreach ( $titles as $linkTitle ) {
+				$urls[] = $linkTitle->getInternalURL();
+			}
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
+		}
+	}
+
+	# Checks if $this can be moved to $nt
+	# Both titles must exist in the database, otherwise it will blow up
+	function isValidMoveTarget( $nt )
+	{
+		$fname = "Title::isValidMoveTarget";
+
+		# Is it a redirect?
+		$id  = $nt->getArticleID();
+		$sql = "SELECT cur_is_redirect,cur_text FROM cur " .
+		  "WHERE cur_id={$id}";
+		$res = wfQuery( $sql, DB_READ, $fname );
+		$obj = wfFetchObject( $res );
+
+		if ( 0 == $obj->cur_is_redirect ) { 
+			# Not a redirect
+			return false; 
+		}
+
+		# Does the redirect point to the source?
+		if ( preg_match( "/\\[\\[\\s*([^\\]]*)]]/", $obj->cur_text, $m ) ) {
+			$redirTitle = Title::newFromText( $m[1] );
+			if ( 0 != strcmp( $redirTitle->getPrefixedDBkey(), $this->getPrefixedDBkey() ) ) {
+				return false;
+			}
+		}
+
+		# Does the article have a history?
+		$row = wfGetArray( 'old', array( 'old_id' ), array( 
+			'old_namespace' => $nt->getNamespace(),
+			'old_title' => $nt->getDBkey() )
+		);
+
+		# Return true if there was no history
+		return $row === false;
 	}
 }
 ?>
