@@ -18,7 +18,7 @@ class DifferenceEngine {
 
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
-		$mtext = str_replace( "$1", $t, wfMsg( "missingarticle" ) );
+		$mtext = wfMsg( "missingarticle", $t );
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadText() ) {
@@ -91,8 +91,7 @@ cellpadding=0 cellspacing='4px'><tr>
 			$this->mNewtext = $s->old_text;
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
-			$this->mNewtitle = str_replace( "$1", "{$t}",
-			  wfMsg( "revisionasof" ) );
+			$this->mNewtitle = wfMsg( "revisionasof", $t );
 		}
 		if ( 0 == $this->mOldid ) {
 			$sql = "SELECT old_timestamp,old_text FROM old USE INDEX (name_title_timestamp) WHERE " .
@@ -111,8 +110,7 @@ cellpadding=0 cellspacing='4px'><tr>
 		$this->mOldtext = $s->old_text;
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
-		$this->mOldtitle = str_replace( "$1", "{$t}",
-		  wfMsg( "revisionasof" ) );
+		$this->mOldtitle = wfMsg( "revisionasof", $t );
 
 		return true;
 	}
@@ -1059,8 +1057,8 @@ class TableDiffFormatter extends DiffFormatter
 	}
     
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
-		$l1 = str_replace( "$1", $xbeg, wfMsg( "lineno" ) );
-		$l2 = str_replace( "$1", $ybeg, wfMsg( "lineno" ) );
+		$l1 = wfMsg( "lineno", $xbeg );
+		$l2 = wfMsg( "lineno", $ybeg );
 
 		$r = "<tr><td colspan=2 align=left><strong>{$l1}</strong></td>\n" .
 		  "<td colspan=2 align=left><strong>{$l2}</strong></td></tr>\n";
