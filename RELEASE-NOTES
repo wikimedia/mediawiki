@@ -387,6 +387,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Support os (Ossetic) as language code, using Russian localization base
 * (bug 1610) Support non (Old Norse) as language code, using Icelandic localization base
 * (bug 1618) Properly list custom namespaces in Special:Allpages
+* (bug 1622) Remove trailing' >' when using category browser
 
 === Caveats ===
 

@@ -496,8 +496,9 @@ class Skin {
 					}
 					# add our current element to the list
 					$eltitle = Title::NewFromText($element);
+					if(!empty($parent)) $return .= ' &gt; ';
 					# FIXME : should be makeLink() [AV]
-					$return .= $sk->makeLink($element, $eltitle->getText()).' &gt; ';
+					$return .= $sk->makeLink($element, $eltitle->getText());
 				}
 				return $return;
 			}
