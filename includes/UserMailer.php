@@ -20,7 +20,7 @@ function userMailer( $to, $from, $subject, $body )
 /* removing to: field as it should be set by the send() function below
    UNTESTED - Hashar */
 //		$headers["To"] = $qto;
-		$headers['Subject"] = $subject;
+		$headers['Subject'] = $subject;
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
 		$headers['Content-transfer-encoding'] = '8bit';
