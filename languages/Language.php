@@ -660,6 +660,7 @@ To authenticate, please login in with the temporary password which has been mail
 'savearticle'	=> 'Save page',
 'preview'		=> 'Preview',
 'showpreview'	=> 'Show preview',
+'showdiff'	=> 'Show changes',
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
@@ -1591,6 +1592,7 @@ article [[Train]].
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
+'accesskey-diff' => 'd',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
@@ -1598,6 +1600,7 @@ article [[Train]].
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
+'tooltip-diff' => 'Show which changes you made to the text. [alt-d]',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
 'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 

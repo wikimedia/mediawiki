@@ -6,91 +6,91 @@
 # For compatibility with Latin-1 installations, please
 # don't add literal characters above U+00ff.
 #
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 # See Language.php for notes.
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
+        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesDe = array(
-	NS_MEDIA            => "Media",
-	NS_SPECIAL          => "Spezial",
-	NS_MAIN             => "",
-	NS_TALK             => "Diskussion",
-	NS_USER             => "Benutzer",
-	NS_USER_TALK        => "Benutzer_Diskussion",
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskussion',
+	NS_USER             => 'Benutzer',
+	NS_USER_TALK        => 'Benutzer_Diskussion',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace . "_Diskussion",
-	NS_IMAGE            => "Bild",
-	NS_IMAGE_TALK       => "Bild_Diskussion",
-	NS_MEDIAWIKI        => "MediaWiki",
-	NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
-	NS_TEMPLATE         => "Vorlage",
-	NS_TEMPLATE_TALK    => "Vorlage_Diskussion",
-	NS_HELP             => "Hilfe",
-	NS_HELP_TALK        => "Hilfe_Diskussion",
-	NS_CATEGORY         => "Kategorie",
-	NS_CATEGORY_TALK    => "Kategorie_Diskussion"
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_Diskussion',
+	NS_IMAGE            => 'Bild',
+	NS_IMAGE_TALK       => 'Bild_Diskussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskussion',
+	NS_TEMPLATE         => 'Vorlage',
+	NS_TEMPLATE_TALK    => 'Vorlage_Diskussion',
+	NS_HELP             => 'Hilfe',
+	NS_HELP_TALK        => 'Hilfe_Diskussion',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Diskussion'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsDe = array(
-	"Keine", "Links, fest", "Rechts, fest", "Links, schwebend"
+	'Keine', 'Links, fest', 'Rechts, fest', 'Links, schwebend'
 );
 
 /* private */ $wgSkinNamesDe = array(
-	'standard'      => "Klassik",
-	'nostalgia'     => "Nostalgie",
-	'cologneblue'   => "Kölnisch Blau",
-	'smarty'        => "Paddington",
-	'montparnasse'  => "Montparnasse",
-	'davinci'       => "DaVinci",
-	'mono'          => "Mono",
-	'monobook'      => "MonoBook",
-	'myskin'        => "MySkin",
-	'chick'         => "Küken"
+	'standard'      => 'Klassik',
+	'nostalgia'     => 'Nostalgie',
+	'cologneblue'   => 'Kölnisch Blau',
+	'smarty'        => 'Paddington',
+	'montparnasse'  => 'Montparnasse',
+	'davinci'       => 'DaVinci',
+	'mono'          => 'Mono',
+	'monobook'      => 'MonoBook',
+	'myskin'        => 'MySkin',
+	'chick'         => 'Küken'
 );
 
 
 /* private */ $wgBookstoreListDe = array(
-	"Verzeichnis lieferbarer B&uuml;cher" => "http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1&x=0&y=0",
-	"abebooks.de" => "http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1",
-	"Amazon.de" => "http://www.amazon.de/exec/obidos/ISBN=$1",
-	"Lehmanns Fachbuchhandlung" => "http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1",
+	'Verzeichnis lieferbarer B&uuml;cher' => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1&x=0&y=0',
+	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
+	'Amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
 );
 
 
 /* private */ $wgValidSpecialPagesDe = array(
-  "Userlogin"           => "",
-  "Userlogout"          => "",
-  "Preferences"         => "Meine Benutzereinstellungen",
-  "Watchlist"           => "Meine Beobachtungsliste",
-  "Recentchanges"       => "Letzte Änderungen",
-  "Upload"              => "Dateien hochladen",
-  "Imagelist"           => "Hochgeladene Dateien",
-  "Listusers"           => "Registrierte Benutzer",
-  "Statistics"          => "Seitenstatistik",
-  "Randompage"          => "Zufälliger Artikel",
+  'Userlogin'           => '',
+  'Userlogout'          => '',
+  'Preferences'         => 'Meine Benutzereinstellungen',
+  'Watchlist'           => 'Meine Beobachtungsliste',
+  'Recentchanges'       => 'Letzte Änderungen',
+  'Upload'              => 'Dateien hochladen',
+  'Imagelist'           => 'Hochgeladene Dateien',
+  'Listusers'           => 'Registrierte Benutzer',
+  'Statistics'          => 'Seitenstatistik',
+  'Randompage'          => 'Zufälliger Artikel',
 
-  "Lonelypages"         => "Verwaiste Artikel",
-  "Unusedimages"        => "Verwaiste Dateien",
-  "Popularpages"        => "Beliebte Artikel",
-  "Wantedpages"         => "Gewünschte Artikel",
-  "Shortpages"          => "Kurze Artikel",
-  "Longpages"           => "Lange Artikel",
-  "Newpages"            => "Neue Artikel",
-  "Ancientpages"        => "Älteste Artikel",
+  'Lonelypages'         => 'Verwaiste Artikel',
+  'Unusedimages'        => 'Verwaiste Dateien',
+  'Popularpages'        => 'Beliebte Artikel',
+  'Wantedpages'         => 'Gewünschte Artikel',
+  'Shortpages'          => 'Kurze Artikel',
+  'Longpages'           => 'Lange Artikel',
+  'Newpages'            => 'Neue Artikel',
+  'Ancientpages'        => 'Älteste Artikel',
 /*  "Intl"                => "Interlanguage Links", */
-  "Allpages"            => "Alle Artikel (alphabetisch)",
+  'Allpages'            => 'Alle Artikel (alphabetisch)',
 
-  "Ipblocklist"         => "Blockierte IP-Adressen",
-  "Maintenance"         => "Wartungsseite",
-  "Specialpages"        => "",
-  "Contributions"       => "",
-  "Movepage"            => "",
-  "Emailuser"           => "",
-  "Whatlinkshere"       => "",
-  "Recentchangeslinked" => "",
+  'Ipblocklist'         => 'Blockierte IP-Adressen',
+  'Maintenance'         => 'Wartungsseite',
+  'Specialpages'        => '',
+  "Contributions"       => '',
+  "Movepage"            => '',
+  "Emailuser"           => '',
+  "Whatlinkshere"       => '',
+  "Recentchangeslinked" => '',
   "Booksources"         => "Externe Buchhandlungen",
   "Categories"          => "Seiten-Kategorien",
   "Export"              => "XML-Seitenexport",
@@ -168,7 +168,7 @@ if($wgMetaNamespace === FALSE)
 #
 "categories" => "Seitenkategorien",
 "category" => "Kategorie",
-"category_header" => "Artikel in der Kategorie \"$1\"",
+'category_header' => 'Artikel in der Kategorie "$1"',
 "subcategories" => "Unterkategorien",
 "linktrail"		=> "/^([ä|ö|ü|ß|a-z]+)(.*)\$/sD",
 "mainpage"		=> "Hauptseite",
@@ -248,11 +248,11 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "protectedpage" => "Geschützte Seite",
 "administrators" => "Project:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
-"sysoptext"		=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Sysop\"-Status durchgeführt werden. Siehe auch $1.",
+'sysoptext'		=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Sysop"-Status durchgeführt werden. Siehe auch $1.',
 "developertitle" => "Entwickler-Zugang notwendig",
-"developertext"	=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Entwickler\"-Status durchgeführt werden. Siehe auch $1.",
-"bureaucrattitle"	=> "Bürokraten-Rechte notwendig",
-"bureaucrattext"	=> "Dieser Vorgang kann nur von Benutzern mit \"Bürokrat\"-Status durchgeführt werden.",
+'developertext'	=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Entwickler"-Status durchgeführt werden. Siehe auch $1.',
+'bureaucrattitle'	=> 'Bürokraten-Rechte notwendig',
+'bureaucrattext'	=> 'Dieser Vorgang kann nur von Benutzern mit "Bürokrat"-Status durchgeführt werden.',
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
@@ -260,7 +260,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "sitesubtitle"	=> "Die freie Enzyklopädie",
 "pagetitle"		=> "$1 - {{SITENAME}}",
 "sitesubtitle"	=> "Die freie Wissensdatenbank",
-"retrievedfrom" => "Von \"$1\"",
+'retrievedfrom' => 'Von "$1"',
 "newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
 "editsection" => "bearbeiten",
@@ -415,6 +415,7 @@ Bitte melden Sie sich an, sobald Sie es erhalten.",
 "savearticle"	=> "Artikel speichern",
 "preview"	=> "Vorschau",
 "showpreview"	=> "Vorschau zeigen",
+"showdiff"	=> "&Auml;nderungen zeigen",
 "blockedtitle"	=> "Benutzer ist blockiert",
 "blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
 Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
@@ -1054,6 +1055,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'tooltip-minoredit' => 'Diese Änderung als klein markieren. [alt-i]',
 'tooltip-save' => 'Änderungen speichern [alt-s]',
 'tooltip-preview' => 'Vorschau der Änderungen an dieser Seite. Benutzen Sie dies vor dem Speichern! [alt-p]',
+'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-d]',
 'tooltip-contributions' => 'Liste der beiträge dieses Benutzers.',
 'tooltip-emailuser' => 'Senden Sie eine Mail an diesen Benutzer',
 'tooltip-rss' => 'RSS-Feed von dieser Seite.',
@@ -1097,6 +1099,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
+'accesskey-diff' => 'd',
 'accesskey-contributions' => '',
 'accesskey-emailuser' => '',
 'accesskey-compareselectedversions' => 'v',

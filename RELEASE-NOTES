@@ -14,6 +14,7 @@ New exciting things! Need further work and testing...
 * 'live preview' reduces preview reload burden on supported browsers
 * Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * New WikiSyntax: -- turns into &emdash; or &ndash; depending on context
+* (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * ...and more!
 
 Need to merge:
