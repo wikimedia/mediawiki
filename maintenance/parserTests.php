@@ -29,6 +29,7 @@ $options = array( 'quick', 'color', 'quiet', 'help' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
+require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
 
 /** */
