@@ -83,14 +83,15 @@
  "aa" => "Afar",
  "ak" => "Akana",
  "am" => "Amarinja",
- "ab" => "Apsua byzwa",
+ "ab" => "&#1040;&#1191;&#1089;&#1085;&#1099;",
  "ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236;",
+ "hy" => "&#1344;&#1377;&#1397;&#1381;&#1408;&#1383;&#1398;",
  "as" => "Asami",
  "av" => "Avara",
  "ay" => "Aymara",
- "az" => "Azerbacan",
+ "az" => "&#1040;&#1079;&#1241;&#1088;&#1073;&#1072;&#1112;&#1209;&#1072;&#1085;",
  "bm" => "Bambankan",
- "ba" => "Baskort",
+ "ba" => "&#1041;&#1072;&#1096;&#1082;&#1086;&#1088;&#1090;",
  "be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
  "bg" => "Bülgarski ezik",
  "bn" => "Banla",
@@ -126,7 +127,6 @@
  "gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;",
  "ko" => "&#54620;&#44397;&#50612;",
  "ha" => "Hausa",
- "hy" => "Hayeren",
  "hz" => "otshiherero",
  "hr" => "Hrvatski",
  "hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;",
@@ -143,7 +143,7 @@
  "kr" => "Kanuri",
  "ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312;",
  "ks" => "Kasmiri",
- "kk" => "Kazak",
+ "kk" => "&#1178;&#1072;&#1079;&#1072;&#1179;",
  "kw" => "Kernewek",
  "ky" => "Kirghiz",
  "ko" => "Kikongo",
@@ -157,7 +157,7 @@
  "lt" => "Lietuvi&#371;",
  "lg" => "Luganda",
  "hu" => "Magyar",
- "mk" => "Makedonski",
+ "mk" => "Makedon&scaron;ina",
  "mg" => "Malagasy",
  "ml" => "Malayalam",
  "ms" => "bahasa Malaysia",
@@ -181,7 +181,6 @@
  "or" => "Oria",
  "om" => "Oromo",
  "ug" => "Oyghurqe",
- "uz" => "O'zbek",
  "pi" => "Pali",
  "ps" => "Pashto",
  "pa" => "Punjabi",
@@ -205,12 +204,12 @@
  "sk" => "Slovenský",
  "su" => "bahasa Sunda",
  "so" => "Soomaali",
- "sr" => "Srpski",
+ "sr" => "&#1057;&#1088;&#1087;&#1089;&#1082;&#1080;",
  "sw" => "Kiswahili",
  "ss" => "siSwati",
  "tl" => "Tagalog",
  "ta" => "&#2980;&#2990;&#3007;&#2996;&#3021;",
- "tt" => "Tatar",
+ "tt" => "&#1058;&#1072;&#1090;&#1072;&#1088;",
  "te" => "&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;",
  "th" => "Thai",
  "ti" => "Tigrinya",
@@ -224,7 +223,8 @@
  "tw" => "Twi",
  "uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;",
  "ur" => "Urdu",
- "ve" => "Tshivenda",
+ "uz" => "&#1038;&#1079;&#1073;&#1077;&#1082;",
+"ve" => "Tshivenda",
  "vi" => "Tiêng Viêt Nam",
  "vo" => "Volapük",
  "wo" => "Wolof",
@@ -323,6 +323,7 @@
 "wikititlesuffix" => "Wikipedia NL",
 "bugreports" => "Foutenrapportage",
 "bugreportspage" => "Wikipedia:Foutenrapportage",
+"sitesupport" => "Donaties",
 "faq"   => "FAQ",
 "faqpage"  => "Wikipedia:Veel gestelde vragen",
 "edithelp"  => "Hulp bij bewerken",
@@ -430,12 +431,14 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 "badtitletext"  => "De opgevraagde pagina is niet beschikbaar of leeg.",
 "perfdisabled" => "Om overbelasting van het systeem te voorkomen, is deze optie momenteel niet bruikbaar.",
 "perfdisabledsub" => "We kunnen u wel onderstaande kopie van $1 tonen; deze is echter mogelijk niet up-to-date.",
+"viewsource" => "Bekijk de brontekst",
+"protectedtext" => "Deze pagina is 'beveiligd'. Dat wil zeggen dat normale gebruikers deze niet kunnen bewerken. Hieronder kunt u wel de brontekst van deze pagina bekijken.",
 
 # Login and logout pages
 # Aanmelden en afmelden
 "logouttitle" => "Afmelden gebruiker",
 "logouttext" => "U bent nu afgemeld.
-U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
+U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam. Opmerking: Het kan zijn dat sommige pagina's nog steeds getoond worden alsof u bent ingelogd; wilt u dit niet, maak dan ook de cache van uw browser leeg.\n",
 
 "welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebruikersprofiel is aangemaakt. U kan nu uw persoonlijke voorkeuren instellen.",
 
@@ -507,7 +510,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "sectionedit" => " (deelpagina)",
 "commentedit" => " (nieuwe opmerking)",
 "editconflict" => "Bewerkingsconflict: $1",
-"explainconflict" => "Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zal uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor \"Pagina opslaan\".\n<p>",
+"explainconflict" => "Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zult uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor \"Pagina opslaan\".\n<p>",
 "yourtext"  => "Uw tekst",
 "storedversion" => "Opgeslagen versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.\n.</strong>\n",
@@ -578,16 +581,19 @@ Via google kan u zoeken op Wikipedia. <br>
 <img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\"></a>
 </td>
 <td>
-<input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"\">
+<input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"$1\">
 <input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in Wikipedia\">
 <font size=\"-1\">
-<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">Wikipedia NL<br>
+<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">Wikipedia NL <input type=\"radio\" name=\"sitesearch\" value=\"wikipedia.org\">Wikipedia<br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
 </font>
 </td></tr></tbody></table>
 </form>
 <!-- SiteSearch Google -->
-<p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen. 
-Als u zoekt via google op Wikipedia zal u ook treffers vinden op Wikipedia die geen artikels zijn. 
+
+<p> U zult niet alle artikels kunnen vinden maar het zal niet veel schelen. 
+Als u zoekt via google op Wikipedia zult u ook treffers vinden op Wikipedia die geen artikels zijn. 
 Wikipedia heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's. 
 Enkel de pagina's die geen prefix hebben zijn artikels.
 ",
@@ -641,6 +647,7 @@ Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]]."
 # Recente wijzigingen
 "changes" => "wijzigingen",
 "recentchanges" => "Recente wijzigingen",
+# De volgende tekst is de default tekst; als de pagina [[Wikipedia:Recentchanges]] bestaat, wordt die tekst gebruikt.
 "recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van Wikipedia NL. <br>
 Ben je hier nieuw? Lees dan ook [[Wikipedia:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[Wikipedia:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[Wikipedia:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
 Om Wikipedia te laten slagen is het erg belangrijk geen materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij je daartoe toestemming hebt. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming grote schade kunnen toebrengen.",
@@ -853,6 +860,9 @@ op 'Verwijderen' onderaan deze pagina.",
 "couldntremove" => "Verwijdering van '$1' onmogelijk.",
 "iteminvalidname" => "Incorrecte naam '$1'",
 "wlnote" => "Getoond worden de laatste $1 wijzigingen in de laatste $2 uur.",
+"wlshowlast" => "Toon de laatste ",
+"wlhours" => "uur",
+"wldays" => "dagen",
 
 # Delete/protect/revert
 # Verwijderen/beschermen/annuleren
@@ -937,6 +947,10 @@ Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
 "unblocklink" => "de-blokkeer",
 "contribslink" => "bijdragen",
 "autoblocker" => "U werd geblokkeerd omdat uw IP-adres overeenkomt met dat van \"$1\". Deze gebruiker werd geblokkeerd met als reden: \"$2\".",
+"blocklogpage" => "Overzicht blokkeringen",
+"blocklogentry" => "blokkeerde \"$1\".",
+"blocklogtext" => "Hier volgt een lijst van de blokkeringen en deblokkeringen die door sysops zijn uitgevoerd. Automatische blokkeringen en deblokkeringen zijn niet vermeld. Zie [[Speciaal:Ipblocklist|Lijst van geblokkeerde gebruikers]] voor een lijst van momenteel geblokkeerde gebruikers en adressen.",
+"unblocklogentry" => "deblokkeerde \"$1\".",
 
 # Developer tools
 # Ontwikkelingsgereedsschap
@@ -988,8 +1002,14 @@ te zijn om een pagina te verplaatsen.",
 "movetalk"  => "Verplaats \"Overleg\" pagina ook indien aanwezig.",
 "talkpagemoved" => "De bijhorende overlegpagina is ook verplaatst.",
 "talkpagenotmoved" => "De bijhorende overlegpagina is <strong>niet</strong> verplaatst.",
+"export" => "Exporteren",
+"exporttext" => "U kunt de geschiedenis van een pagina in XML omzetten.",
+"exportcuronly" => "Alleen de actuele versie, niet de geschiedenis",
 
-);
+# Namespace 8 related 
+
+"allmessages" => "Alle berichten",
+"allmessagestext" => "Hier is een overzicht van alle berichten in de MediaWiki naamruimte.",);
 
 class LanguageNl extends Language {
 
@@ -1150,9 +1170,18 @@ class LanguageNl extends Language {
                 else return $m;
  }
 
+function getAllMessages()
+ {
+                global $wgAllMessagesNl, $wgAllMessagesEn;
+                $m = $wgAllMessagesNl;
+
+                if ( "" == $m ) { return $wgAllMessagesEn; }
+                else return $m;
+ }
+
  function isRTL() { return false; }
 
-/* private */ $wgMagicWordsEn = array(
+/* private */ $wgMagicWordsNl = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"              ),
     MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
@@ -1192,3 +1221,4 @@ class LanguageNl extends Language {
 
 }
 ?>
+
