@@ -73,6 +73,7 @@ global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages, $wgSecondaryMes
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
 global $wgLoadBalancer, $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword;
+global $wgSiteNotice;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -125,13 +126,6 @@ if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
-	# Test it to see if it's working
-	# This is necessary because otherwise wfMsg would be extremely inefficient
-	if ( !$wgMemc->set( 'test', '', 0 ) ) {
-		wfDebug( "Memcached failed setup test - connection error?\n" );
-		$wgUseMemCached = false;
-		$wgMemc = new FakeMemCachedClient();
-	}
 	$messageMemc = &$wgMemc;
 } else {
 	$wgMemc = new FakeMemCachedClient();
@@ -235,6 +229,14 @@ $wgDBConnections = array();
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
+
+if ( $wgSiteNotice{0} == ':' ) {
+	$key = substr( $wgSiteNotice, 1 );
+	$wgSiteNotice = wfMsg( $key );
+	if ( $wgSiteNotice == "&lt;$key&gt;" ) {
+		$wgSiteNotice = false;
+	}
+}
 
 wfProfileOut( $fname.'-misc' );
 wfProfileIn( $fname.'-extensions' );

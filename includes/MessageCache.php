@@ -50,18 +50,19 @@ class MessageCache
 			if ( !$this->mCache ) {
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
-				$this->loadFromDB();
-				# Save in memcached
-				# Keep trying if it fails, this is kind of important
-				for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
-					usleep(mt_rand(500000,1500000));
+				if ( $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT ) ) {
+					$this->loadFromDB();
+					# Save in memcached
+					# Keep trying if it fails, this is kind of important
+					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
+						usleep(mt_rand(500000,1500000));
+					}
+					if ( $i == 20 ) {
+						$this->mMemc->set( $this->mMemcKey, "error", 3600 );
+						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+					}
+					$this->unlock();
 				}
-				if ( $i == 20 ) {
-					$this->mMemc->set( $this->mMemcKey, "error", 86400 );
-					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
-				}
-				$this->unlock();
 			}
 			
 			if ( !is_array( $this->mCache ) ) {
