@@ -85,7 +85,7 @@ class IPBlockForm {
 		<tr>
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
-				<select tabindex='2' name=\"wpBlockExpiry\"/>
+				<select tabindex='2' name=\"wpBlockExpiry\">
 					$blockExpiryFormOptions
 				</select>
 			</td>
