@@ -25,6 +25,8 @@ define("NS_TEMPLATE", 10);
 define("NS_TEMPLATE_TALK", 11);
 define("NS_HELP", 12);
 define("NS_HELP_TALK", 13);
+define("NS_CATEGORY", 14);
+define("NS_CATEGORY_TALK", 15);
 
 # These are synonyms for the names given in the language file
 # Users and translators should not change them
@@ -43,7 +45,9 @@ define("NS_HELP_TALK", 13);
 	NS_TEMPLATE         => "Template",
 	NS_TEMPLATE_TALK    => "Template_talk",
 	NS_HELP             => "Help",
-	NS_HELP_TALK        => "Help_talk"
+	NS_HELP_TALK        => "Help_talk",
+	NS_CATEGORY	    => "Category",
+	NS_CATEGORY_TALK    => "Category_talk"
 );
 
 class Namespace {
