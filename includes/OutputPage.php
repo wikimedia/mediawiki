@@ -269,6 +269,15 @@ class OutputPage {
 		$this->addHtml( ob_get_contents() );
 		ob_end_clean();
 	}
+
+	/**
+	 * Parse wikitext and return the HTML. This is for special pages that add the text later
+	 */
+	function parse( $text, $linestart = true ) {
+		global $wgParser, $wgTitle;
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
+		return $parserOutput->getText();
+	}
 	
 	/**
 	 * @param $article
