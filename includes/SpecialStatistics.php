@@ -28,7 +28,7 @@ function wfSpecialStatistics()
 		$wgLang->formatNum( sprintf( "%.2f", $total ? $edits / $total : 0 ) ),
 		$wgLang->formatNum( sprintf( "%.2f", $edits ? $views / $edits : 0 ) ) );
 
-	$wgOut->addHTML( $text );
+	$wgOut->addWikiText( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
 	$sql = "SELECT COUNT(user_id) AS total FROM user";
@@ -43,12 +43,12 @@ function wfSpecialStatistics()
 	$admins = $row->total;
 
 	$sk = $wgUser->getSkin();
-	$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );
+	$ap = "[[" . wfMsg( "administrators" ) . "]]";
 
 	$text = wfMsg( "userstatstext",
 		$wgLang->formatNum( $total ),
 		$wgLang->formatNum( $admins ), $ap );
-	$wgOut->addHTML( $text );
+	$wgOut->addWikiText( $text );
 }
 
 ?>

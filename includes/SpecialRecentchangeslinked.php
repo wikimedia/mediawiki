@@ -58,7 +58,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$note = wfMsg( "rcnote", $limit, $days );
-	$wgOut->addHTML( "<hr>\n{$note}\n<br>" );
+	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
 	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
                                  "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",

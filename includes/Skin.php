@@ -1757,6 +1757,7 @@ class Skin {
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0 ;
 		$this->lastdate = "";
+		$this->rclistOpen = false;
 		return "";
 	}
 
@@ -1772,7 +1773,9 @@ class Skin {
 	function endRecentChangesList()
 	{
 		$s = $this->recentChangesBlock() ;
-		$s .= "</ul>\n";
+		if( $this->rclistOpen ) {
+			$s .= "</ul>\n";
+		}
 		return $s;
 	}
 
@@ -2004,6 +2007,7 @@ class Skin {
 			if ( "" != $this->lastdate ) { $s .= "</ul>\n"; }
 			$s .= "<h4>{$date}</h4>\n<ul class='special'>";
 			$this->lastdate = $date;
+			$this->rclistOpen = true;
 		}
 		$s .= "<li> ";
 

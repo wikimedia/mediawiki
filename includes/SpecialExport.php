@@ -43,7 +43,7 @@ function wfSpecialExport( $page = "" ) {
 <form method='post' action=\"$action\">
 <input type='hidden' name='action' value='submit' />
 <textarea name='pages' cols='40' rows='10'></textarea><br />
-<label><input type='checkbox' name='curonly' value='true' checked />
+<label><input type='checkbox' name='curonly' value='true' checked='checked' />
 " . wfMsg( "exportcuronly" ) . "</label><br />
 <input type='submit' />
 </form>

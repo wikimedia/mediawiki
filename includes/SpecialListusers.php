@@ -11,7 +11,7 @@ function wfSpecialListusers()
 
 	$sl = wfViewPrevNext( $offset, $limit,
 	  $wgLang->specialPage( "Listusers" ) );
-	$wgOut->addHTML( "<br>{$sl}\n<ol start=" . ( $offset + 1 ) . ">" );
+	$wgOut->addHTML( "<br />{$sl}</p>\n<ol start='" . ( $offset + 1 ) . "'>" );
 
 	$sql = "SELECT user_name,user_rights FROM user ORDER BY " .
 	  "user_name LIMIT {$offset}, {$limit}";
@@ -32,7 +32,7 @@ function wfSpecialListusers()
 		$wgOut->addHTML( "<li>{$l}</li>\n" );
 	}
 	wfFreeResult( $res );
-	$wgOut->addHTML( "</ol><p>{$sl}\n" );
+	$wgOut->addHTML( "</ol>\n<p>{$sl}</p>\n" );
 }
 
 ?>

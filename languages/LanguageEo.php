@@ -17,8 +17,8 @@ $wgEditEncoding		= "x";
 	1	=> "Diskuto",
 	2	=> "Vikipediisto",
 	3	=> "Vikipediista_diskuto",
-	4	=> "Vikipedio", # FIXME: Generalize v-isto kaj v-io
-	5	=> "Vikipedia_diskuto",
+	4	=> $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
+	5	=> "$wgMetaNamespace_diskuto",
 	6	=> "Dosiero", #FIXME: Check the magic for Image: and Media:
 	7	=> "Dosiera_diskuto",
 	8	=> "MediaWiki",
@@ -160,19 +160,19 @@ $wgEditEncoding		= "x";
 "linktrail"     => "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Ĉefpaĝo",
 "about"			=> "Enkonduko",
-"aboutwikipedia" => "Pri Vikipedio", #FIXME
-"aboutpage"		=> "Vikipedio:Enkonduko",
+"aboutwikipedia" => "Pri {{SITENAME}}", #FIXME
+"aboutpage"		=> "{{ns:4}}:Enkonduko",
 "help"			=> "Helpo",
-"helppage"		=> "Vikipedio:Helpo",
-"wikititlesuffix" => "Vikipedio",
+"helppage"		=> "{{ns:4}}:Helpo",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Raportu cimojn",
-"bugreportspage" => "Vikipedio:Raportu_cimojn",
+"bugreportspage" => "{{ns:4}}:Raportu_cimojn",
 "sitesupport"   => "Subteno",
 "sitesupportpage" => "", # FIXME
 "faq"			=> "Oftaj demandoj",
-"faqpage"		=> "Vikipedio:Oftaj demandoj",
+"faqpage"		=> "{{ns:4}}:Oftaj demandoj",
 "edithelp"		=> "Helpo pri redaktado",
-"edithelppage"	=> "Vikipedio:Kiel_redakti_paĝon", #FIXME: Kontrolu
+"edithelppage"	=> "{{ns:4}}:Kiel_redakti_paĝon", #FIXME: Kontrolu
 "cancel"		=> "Nuligu",
 "qbfind"		=> "Trovu",
 "qbbrowse"		=> "Foliumado", # FIXME
@@ -187,7 +187,7 @@ $wgEditEncoding		= "x";
 "currentevents" => "Aktualaĵoj", #FIXME - Novaĵoj? Aktualaj novaĵoj? Aktualaj eventoj?
 "errorpagetitle" => "Eraro", #FIXME - Arero? ;)
 "returnto"		=> "Revenu al $1.",
-"fromwikipedia"	=> "El Vikipedio, la libera enciklopedio.",
+"fromwikipedia"	=> "El {{SITENAME}}, la libera enciklopedio.",
 "whatlinkshere"	=> "Paĝoj kiuj ligas ĉi tien",
 "help"			=> "Helpo",
 "search"		=> "Serĉu",
@@ -211,10 +211,10 @@ $wgEditEncoding		= "x";
 "redirectedfrom" => "(Alidirektita el $1)",
 "lastmodified"	=> "Laste redaktita je $1.",
 "viewcount"		=> "Montrita $1-foje.",
-"gnunote"		=> "La enhavo de Vikipedio disponeblas laŭ permesilo <a class='internal' href='$wgScript/GFDL'>GNU Free Documentation License</a>.",
+"gnunote"		=> "La enhavo de {{SITENAME}} disponeblas laŭ permesilo <a class='internal' href='$wgScript/GFDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(El http://eo.wikipedia.org)",
 "protectedpage" => "Protektita paĝo", #FIXME: ĉu "gardita" ktp?
-"administrators" => "Vikipedio:Administrantoj", # FIXME?
+"administrators" => "{{ns:4}}:Administrantoj", # FIXME?
 "sysoptitle"	=> "Konto de administranto bezonatas",
 "sysoptext"		=> "La ago kiun vi petis fari estas
 farebla nur de uzuloj agnoskitaj kiel \"sistemestroj\".
@@ -225,7 +225,7 @@ Vidu $1.",
 "nbytes"		=> "$1 bitokoj",
 "go"			=> "Ek!", #FIXME
 "ok"			=> "Ek!", #FIXME
-"sitetitle"		=> "Vikipedio", # Wikipedia
+"sitetitle"		=> "{{SITENAME}}", # Wikipedia
 "sitesubtitle"	=> "La Libera Enciklopedio",
 "retrievedfrom" => "Citita el \"$1\"", #FIXME: Aperas post presita paĝo
 "newmessages"	=> "Jen $1 por vi.",
@@ -241,10 +241,10 @@ Vidu $1.",
 #
 "nosuchaction"	=> "Ne ekzistas tia ago",
 "nosuchactiontext" => "La agon ('action') nomitan de la URL
-ne agnoskas la programaro de Vikipedio",
+ne agnoskas la programaro de {{SITENAME}}",
 "nosuchspecialpage" => "Ne ekzistas tia speciala paĝo",
 "nospecialpagetext" => "Vi petis specialan paĝon kiun
-ne agnoskas la programaro de Vikipedio",
+ne agnoskas la programaro de {{SITENAME}}",
 
 # General errors
 #
@@ -263,7 +263,7 @@ MySQL redonis eraron  \"<tt>$3: $4</tt>\".",
 "readonly"		=> "Datumaro ŝlosita, nurlega",
 "enterlockreason" => "Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
 la estimatan tempon de malŝlosado.",
-"readonlytext"	=> "La datumaro de Vikipedio estas nun ŝlosita kontraŭ
+"readonlytext"	=> "La datumaro de {{SITENAME}} estas nun ŝlosita kontraŭ
 novaj aldonaj kaj aliaj ŝanĝoj, probable pro laŭkutima flegado de la datumaro.
 Bonvolu reprovu post iom da tempo.
 
@@ -291,7 +291,7 @@ provizore por konservi la rapidecon de la servilo.",
 "viewsource" => "Vidu vikitekston",
 "protectedtext" => "Tiu ĉi paĝon estas ŝlosita kontraŭ redaktado;
 estas diversaj eblaj kialoj por tio.
-Bv legi [[Vikipedio:Ŝlositaj paĝoj]].
+Bv legi [[{{ns:4}}:Ŝlositaj paĝoj]].
 
 Vi ja rajtas vidi kaj kopii la fontotekston de la vikipaĝo:",
 
@@ -303,7 +303,7 @@ Vi rajtas daŭre Vikipediumi sennome, aŭ vi povas reensaluti
 kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 
 "welcomecreation" => "<h2>Bonvenon, $1!</h2> Via konto estas kreita.
-<font color=\"red\">Ne forgesu fari viajn Vikipedio-preferojn!</font>",
+<font color=\"red\">Ne forgesu fari viajn {{SITENAME}}-preferojn!</font>",
 
 "loginpagetitle" => "Ensalutu / enskribu", #FIXME
 "yourname"		=> "Via salutnomo", #FIXME ĉu kaŝnomo ĉu uzantonomo ĉu kontonomo ktp?
@@ -328,14 +328,14 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 "loginerror"	=> "Ensaluta eraro", #FIXME
 "noname"		=> "Vi ne enmetis validan salutnomon.",
 "loginsuccesstitle" => "Ensalutado sukcesis",
-"loginsuccess"	=> "Vi nun estas en la Vikipedio kiel uzulo \"$1\".",
+"loginsuccess"	=> "Vi nun estas en la {{SITENAME}} kiel uzulo \"$1\".",
 "nosuchuser"	=> "Neniu uzulo nomiĝas \"$1\".
 Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei novan konton.",
 "wrongpassword"	=> "Vi tajpis malĝustan pasvorton. Bonvolu provi denove.",
 "mailmypassword" => "Retpoŝtu al mi novan pasvorton",
-"passwordremindertitle" => "Rememorigo el Vikipedio pri perdita pasvorto", #FIXME
+"passwordremindertitle" => "Rememorigo el {{SITENAME}} pri perdita pasvorto", #FIXME
 "passwordremindertext" => "Iu (probable vi, el IP-adreso $1)
-petis, ke ni sendu al vi novan pasvorton por ensaluti Vikipedion.
+petis, ke ni sendu al vi novan pasvorton por ensaluti {{SITENAME}}n.
 La pasvorto por uzulo \"$2\" nun estas \"$3\".
 Ni rekomendas, ke vi nun ensalutu kaj ŝanĝu vian pasvorton.", #FIXME
 "noemail"		=> "Retpoŝtadreso ne estas registrita por uzulo \"\".",
@@ -357,7 +357,7 @@ kiu priskribis la kialon jene:<br />$2
 <p>Vi rajtas kontakti tiun administranton por pridiskuti la forbaradon.", #FIXME - sistemestro?
 "newarticle"	=> "(Nova)",
 "newarticletext" => "Vi sekvis ligilon al paĝo jam ne ekzistanta.
-Se vi volas krei ĝin, ektajpu sube (vidu la [[Vikipedio:Helpo|helpopaĝo]] por klarigoj.)
+Se vi volas krei ĝin, ektajpu sube (vidu la [[{{ns:4}}:Helpo|helpopaĝo]] por klarigoj.)
 Se vi malintence alvenis ĉi tien, simple alklaku la \"reen\" butonon de via retumilo.",
 "anontalkpagetext" => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis
 konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran [[IP-adreso]] por tiun identigi.
@@ -385,7 +385,7 @@ vi alklakos \"Konservu\".\n<p>" , #FIXME - double-check that this makes sense
 "editingold"	=> "<strong>AVERTO: Vi nun redaktas malnovan version de tiu ĉi artikolo.
 Se vi konservos vian redakton, ĉiuj ŝanĝoj faritaj post tiu versio perdiĝos.</strong>\n",
 "yourdiff"		=> "Malsamoj",
-"copyrightwarning" => "Bonvolu noti, ke ĉiu kontribuaĵo al la Vikipedio
+"copyrightwarning" => "Bonvolu noti, ke ĉiu kontribuaĵo al la {{SITENAME}}
 estu rigardata kiel eldonita laŭ la <i>GNU Free Documentation License</i> (vidu je $1).
 Se vi volas, ke via verkaĵo ne estu redaktota senkompate kaj disvastigota
 laŭvole, ne alklaku \"Konservu\".
@@ -399,7 +399,7 @@ pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.",
 "protectedpagewarning" => "AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado
 krom per administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de
-la komunumo per via redaktado. Vidu [[Vikipedio:Ŝlositaj paĝoj]].",
+la komunumo per via redaktado. Vidu [[{{ns:4}}:Ŝlositaj paĝoj]].",
 
 # History pages
 #
@@ -431,9 +431,9 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b",
 # Search results
 #
 "searchresults" => "Serĉrezultoj",
-"searchhelppage" => "Vikipedio:Serĉado",
-"searchingwikipedia" => "Priserĉante la Vikipedion",
-"searchresulttext" => "Por pliaj informoj kiel priserĉi la Vikipedion, vidu .",
+"searchhelppage" => "{{ns:4}}:Serĉado",
+"searchingwikipedia" => "Priserĉante la {{SITENAME}}n",
+"searchresulttext" => "Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu .",
 "searchquery"	=> "Serĉmendo \"$1\"",
 "badquery"		=> "Misformita serĉmendo",
 "badquerytext"	=> "Via serĉmendo ne estis plenumebla.
@@ -571,7 +571,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 aliru la <a href=\"" . wfLocalUrl( "Special:Imagelist" ) .
 "\">liston de alŝutaĵoj</a>.
 Ĉiuj alŝutoj kaj forigoj estas registrataj en la <a href=\"" .
-wfLocalUrl( "Vikipedio:Loglibro de alŝutaĵoj" ) ."\">alŝuta loglibro</a>.</p>
+wfLocalUrl( "{{ns:4}}:Loglibro de alŝutaĵoj" ) ."\">alŝuta loglibro</a>.</p>
 
 <p>Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn
 por ilustrado de viaj artikoloj.
@@ -583,14 +583,14 @@ malobeas la leĝan kopirajton de aliuloj per alŝuto de la dosiero.
 Por plenumi la alŝutadon, alklaku la butono \"Alŝutu\".
 Tio ĉi eble iomete longe daŭros, se estas granda dosiero kaj se via interreta konekto malrapidas.</p>
 
-<p>La dosiertipoj preferataj ĉe Vikipedio estas JPEG por fotografaĵoj,
+<p>La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj,
 PNG por grafikaĵoj, diagramoj, ktp; kaj OGG por sonregistraĵoj.
 Bonvolu doni al via dosiero nomon informan, por eviti konfuzon.
 Por enmeti la dosieron en artikolon, skribu ligilon laŭ la formo
 <b>[[bildo:dosiero.jpg]]</b> aŭ <b>[[image:bildo.png|teksto por retumiloj negrafikaj]]</b>,
 aŭ <b>[[dosiero:dosiero.ogg]]</b> por sono.</p>
 
-<p>Bonvolu rimarki, ke same kiel artikoloj en la Vikipedio, aliaj Vikipediistoj
+<p>Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj Vikipediistoj
 rajtas redakti, anstataŭigi, aŭ forigi viajn alŝutaĵojn se ili pensas, ke
 tio servus la enciklopedion. Se vi aĉe misuzas la sistemon, eblas ke vi estos
 forbarita.</p>",
@@ -605,8 +605,8 @@ forbarita.</p>",
 "filedesc"		=> "Priskribo",
 "affirmation"	=> "Mi asertas, ke la laŭleĝa posedanto de la kopirajto
 de ĉi tiu dosiero konsentas eldoni ĝin laŭ la $1.",
-"copyrightpage" => "Vikipedio:Kopirajto",
-"copyrightpagename" => "permesilo GFDL uzata por la Vikipedio",
+"copyrightpage" => "{{ns:4}}:Kopirajto",
+"copyrightpagename" => "permesilo GFDL uzata por la {{SITENAME}}",
 "uploadedfiles"	=> "Alŝutitaj dosieroj",
 "noaffirmation" => "Vi nepre devas aserti, ke via alŝutaĵo ne malobeas la leĝojn de kopirajto.",
 "ignorewarning"	=> "Malatentu averton kaj tamen konservu la dosieron.",
@@ -654,14 +654,14 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "statistics"	=> "Statistiko",
 "sitestats"		=> "Pri la retejo",
 "userstats"		=> "Pri la uzularo",
-"sitestatstext" => "Troviĝas en nia datumaro sume <b>$1</b> paĝoj.
-Tiu nombro enhavas \"diskutpaĝojn\", paĝojn pri Vikipedio, \"artikoletetojn\", alidirektilojn, kaj aliajn, kiuj eble ne vere estas artikoloj. Malatentante ilin, oni povas nombri <b>$2</b> probablajn ĝustajn
-artikolojn.</p>
+"sitestatstext" => "Troviĝas en nia datumaro sume '''$1''' paĝoj.
+Tiu nombro enhavas \"diskutpaĝojn\", paĝojn pri {{SITENAME}}, \"artikoletetojn\", alidirektilojn, kaj aliajn, kiuj eble ne vere estas artikoloj. Malatentante ilin, oni povas nombri '''$2''' probablajn ĝustajn
+artikolojn.
 
-<p>Oni vidis sume <b>$3</b> paĝojn, kaj redaktis sume <b>$4</b> paĝojn
+Oni vidis sume '''$3''' paĝojn, kaj redaktis sume '''$4''' paĝojn
 ekde la starigo de la nuna vikiprogramo (novembro 2002).
-Tio estas meznombre po unu paĝo por <b>$5</b> paĝoj viditaj, kaj por <b>$6</b> redaktoj.",
-"userstatstext" => "Enskribiĝis <b>$1</b> uzuloj. El tiuj, <b>$2</b> estas administrantoj (vidu $3).",
+Tio estas meznombre po unu paĝo por '''$5''' paĝoj viditaj, kaj por '''$6''' redaktoj.",
+"userstatstext" => "Enskribiĝis '''$1''' uzuloj. El tiuj, '''$2''' estas administrantoj (vidu $3).",
 
 # Maintenance Page
 #
@@ -670,7 +670,7 @@ Tio estas meznombre po unu paĝo por <b>$5</b> paĝoj viditaj, kaj por <b>$6</b>
 Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu riparita ero!",
 "maintenancebacklink"	=> "Revenu al la ilaro",
 "disambiguations"	=> "Misligitaj apartigiloj",
-"disambiguationspage"	=> "Vikipedio:Apartigiloj",
+"disambiguationspage"	=> "{{ns:4}}:Apartigiloj",
 "disambiguationstext"	=> "La jenaj paĝoj alligas <i>paĝon-apartigilon</i>. Ili devus anstataŭe alligi la ĝustan temon.<br />Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj.<br />Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
 "doubleredirects"	=> "Duoblaj alidirektadoj",
 "doubleredirectstext"	=> "<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
@@ -695,7 +695,7 @@ Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu rip
 "popularpages"	=> "Plej vizitataj paĝoj",
 "nviews"		=> "$1-foje",
 "wantedpages"	=> "Dezirataj paĝoj",
-"nlinks"		=> " ligiloj",
+"nlinks"		=> "$1 ligiloj",
 "allpages"		=> "Ĉiuj paĝoj",
 "randompage"	=> "Hazarda paĝo",
 "shortpages"	=> "Paĝetoj",
@@ -712,12 +712,12 @@ Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu rip
 "newpages"		=> "Novaj paĝoj",
 "movethispage"	=> "Movu la paĝon",
 "unusedimagestext" => "Notu, ke aliaj TTT-ejoj, ekzemple
-la alilingvaj Vikipedioj, povas rekte ligi al dosiero per URL.
+la alilingvaj {{SITENAME}}j, povas rekte ligi al dosiero per URL.
 Tio ne estus enkalkutita en la jena listo.",
 "booksources"	=> "Libroservoj",
 "booksourcetext" => "Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
 kaj/aŭ informumos pri la libro ligita.
-La Vikipedio ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
+La {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
 komprenata kiel rekomendo aŭ reklamo.", 
 "alphaindexline" => "$1 ĝis $2",
 
@@ -758,15 +758,14 @@ aŭ elektis ne ricevi retpoŝton de aliaj vikipediistoj.",
   wfLocalUrl( "Speciala:Userlogin" ) . "\">saluti</a>
 por ŝanĝi vian atentaron.",
 "addedwatch"	=> "Aldonis al atentaro",
-"addedwatchtext" => "La paĝo \"$1\" estis aldonita al via <a href=\"" .
-  wfLocalUrl( "Speciala:Watchlist" ) . "\">atentaro</a>.
-Estontaj ŝanĝoj al tiu paĝo aperos en <b>grasa tiparo</b> en la <a href=\"" .
-  wfLocalUrl( "Speciala:Recentchanges" ) . "\">listo de Lastaj Ŝanĝoj</a>,
-kaj estos kalkulita en la listo de via atentaro.
+"addedwatchtext" => "La paĝo \"[[$1]]\" estis aldonita al via [[Speciala:Watchlist|atentaro]].
+Estontaj ŝanĝoj al tiu paĝo aperos en '''grasa tiparo''' en la
+[[Speciala:Recentchanges|listo de Lastaj Ŝanĝoj]],
+kaj estos kalkulitaj en la listo de via atentaro.
 
-<p>Se vi poste volos eksigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
+Se vi poste volos eksigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
 "removedwatch"	=> "Forigis el atentaro",
-"removedwatchtext" => "La paĝo \"$1\" estas forigita el via atentaro.",
+"removedwatchtext" => "La paĝo \"[[$1]]\" estas forigita el via atentaro.",
 "watchthispage"	=> "Priatentu paĝon",
 "unwatchthispage" => "Malatentu paĝon",
 "notanarticle"	=> "Ne estas artikolo",
@@ -800,7 +799,7 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 "confirmdeletetext" => "Vi forigos la artikolon aŭ dosieron kaj
 forviŝos ĝian tutan historion el la datumaro.<br />
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
-la sekvojn, kaj ke vi ja sekvas la [[Vikipedio:Reguloj pri forigado|regulojn pri forigado]].",
+la sekvojn, kaj ke vi ja sekvas la [[{{ns:4}}:Reguloj pri forigado|regulojn pri forigado]].",
 "confirmcheck"	=> "Jes, mi tutkore certas ke mi volas forigi tiun artikolon/dosieron.",
 "actioncomplete" => "Ago farita",
 "deletedtext"	=> "\"$1\" estas forigita.
@@ -842,7 +841,7 @@ versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭi
 "undeletebtn" => "Restarigu!",
 "undeletedarticle" => "restarigis \"$1\"",
 "undeletedtext"   => "La artikolo [[$1]] estas sukcese restarigita.
-Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj restarigoj.",
+Vidu [[{{ns:4}}:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj restarigoj.",
 
 # Contributions
 #
@@ -870,7 +869,7 @@ Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj r
 "blockiptext"	=> "Per la jena formularo vi povas forbari iun nomon aŭ
 IP-adreson de la rajto enskribiĝi en la vikion.
 Oni tion faru ''nur'' por eviti vandalismon, kaj sekvante la
-[[Vikipedio:Reguloj pri forbarado|regulojn pri forbarado]].
+[[{{ns:4}}:Reguloj pri forbarado|regulojn pri forbarado]].
 Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis
 vandalumitaj).",
 "ipaddress"		=> "IP-adreso/nomo",
@@ -913,9 +912,9 @@ Bonvolu certigu, ke vi efektive intencas tion fari.",
 "locknoconfirm" => "Vi ne konfirmis.",
 "lockdbsuccesssub" => "Datumaro ŝlosita",
 "unlockdbsuccesssub" => "Datumaro malŝlosita",
-"lockdbsuccesstext" => "La datumaro de Vikipedio estas ŝlosita.
+"lockdbsuccesstext" => "La datumaro de {{SITENAME}} estas ŝlosita.
 <br />Ne forgesu malŝlosi ĝin post kiam vi finos la riparadon.",
-"unlockdbsuccesstext" => "La datumaro de Vikipedio estas malŝlosita.",
+"unlockdbsuccesstext" => "La datumaro de {{SITENAME}} estas malŝlosita.",
 
 # SQL query
 #
@@ -926,7 +925,7 @@ Tio povas ege ŝarĝi la servilon, do bonvolu uzi tiun eblon ŝpare kaj singarde
 "sqlquery"		=> "Tajpu informpeton",
 "querybtn"		=> "Petu!",
 "selectonly"	=> "Informpetojn krom \"SELECT\" estas limigitaj je
-Vikipedio-programistoj.",
+{{SITENAME}}-programistoj.",
 "querysuccessful" => "Informpeto sukcesis",
 
 # Move page

@@ -49,6 +49,8 @@ class PreferencesForm {
 			}
 		}
 		
+		$this->mUsedToggles = array();
+		
 		# Search namespace options
 		# Note: namespaces don't necessarily have consecutive keys
 		$this->mSearchNs = array();
@@ -234,8 +236,8 @@ class PreferencesForm {
 				if ( 0 != $i ) { 
 					$r1 .= " "; 
 				}
-				$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
-				  "wpNs$i\"{$checked}>{$name}</label>\n";
+				$r1 .= "<label><input type='checkbox' value=\"1\" name=\"" .
+				  "wpNs$i\"{$checked} />{$name}</label>\n";
 			}
 		}
 		
@@ -243,7 +245,20 @@ class PreferencesForm {
 	}
 
 
-
+	function getToggle( $tname ) {
+		global $wgUser, $wgLang;
+		
+		$this->mUsedToggles[$tname] = true;
+		$ttext = $wgLang->getUserToggle( $tname );
+		
+		if ( 1 == $wgUser->getOption( $tname ) ) {
+			$checked = ' checked="checked"';
+		} else {
+			$checked = "";
+		}		
+		return "<div><input type='checkbox' value=\"1\" "
+		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label></div>\n";
+	}
 
 	/* private */ function mainPrefsForm( $err )
 	{
@@ -300,16 +315,18 @@ class PreferencesForm {
 		$dsn = wfMsg( "defaultns" );
 
 		$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
-	method=\"post\"><table border=\"1\"><tr><td valign=top nowrap><b>$qb:</b><br>\n" );
-
+	method=\"post\">" );
+	
 		# Quickbar setting
 		#
+		$wgOut->addHtml( "<fieldset>\n<legend>$qb:</legend>\n" );
 		for ( $i = 0; $i < count( $qbs ); ++$i ) {
 			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
-			$wgOut->addHTML( "<label><input type=radio name=\"wpQuickbar\"
-	value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
+	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
 		}
+		$wgOut->addHtml( "</fieldset>\n\n" );
 
 		# Fields for changing password
 		#
@@ -317,15 +334,17 @@ class PreferencesForm {
 		$this->mNewpass = wfEscapeHTML( $this->mNewpass );
 		$this->mRetypePass = wfEscapeHTML( $this->mRetypePass );
 
-		$wgOut->addHTML( "</td><td vaign=top nowrap><b>$cp:</b><br>
-	<label>$opw: <input type=password name=\"wpOldpass\" value=\"{$this->mOldpass}\" size=20></label><br>
-	<label>$npw: <input type=password name=\"wpNewpass\" value=\"{$this->mNewpass}\" size=20></label><br>
-	<label>$rpw: <input type=password name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size=20></label><br>
-	</td></tr>\n" );
+		$wgOut->addHTML( "<fieldset>
+	<legend>$cp:</legend>
+	<div><label>$opw: <input type='password' name=\"wpOldpass\" value=\"{$this->mOldpass}\" size='20' /></label></div>
+	<div><label>$npw: <input type='password' name=\"wpNewpass\" value=\"{$this->mNewpass}\" size='20' /></label></div>
+	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
+	" . $this->getToggle( "rememberpassword" ) . "
+	</fieldset>\n\n" );
 
 		# Skin setting
 		#
-		$wgOut->addHTML( "<tr><td valign=top nowrap><b>$sk:</b><br>\n" );
+		$wgOut->addHTML( "<fieldset>\n<legend>$sk:</legend>\n" );
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
@@ -334,67 +353,62 @@ class PreferencesForm {
 			} else { 
 				$checked = ""; 
 			}
-			$wgOut->addHTML( "<label><input type=radio name=\"wpSkin\"
-	value=\"$skinkey\"$checked> {$skinNames[$skinkey]}</label><br>\n" );
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\"
+	value=\"$skinkey\"$checked /> {$skinNames[$skinkey]}</label></div>\n" );
 		}
-
-		# Various checkbox options
-		#
-		if ( $wgUseDynamicDates ) {
-			$wgOut->addHTML( "</td><td rowspan=3 valign=top nowrap>\n" );
-		} else {
-			$wgOut->addHTML( "</td><td rowspan=2 valign=top nowrap>\n" );
-		}
-		$wgOut->addHTML("<table border=0>");
-		foreach ( $togs as $tname => $ttext ) {
-			if ( 1 == $wgUser->getOption( $tname ) ) {
-				$checked = ' checked="checked"';
-			} else {
-				$checked = "";
-			}		
-			$wgOut->addHTML( "<tr valign=\"top\"><td><input type=checkbox value=\"1\" "
-			  . "id=\"$tname\" name=\"wpOp$tname\"$checked></td><td><label for=\"$tname\">$ttext</label></td></tr>\n" );
-		}
-		$wgOut->addHTML( "</table></td>" );
+		$wgOut->addHTML( "</fieldset>\n\n" );
 
 		# Math setting
 		#
-		$wgOut->addHTML( "<tr><td valign=top nowrap><b>$math:</b><br>\n" );
+		$wgOut->addHTML( "<fieldset>\n<legend>$math:</legend>\n" );
 		for ( $i = 0; $i < count( $mathopts ); ++$i ) {
 			if ( $i == $this->mMath ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
-			$wgOut->addHTML( "<label><input type=radio name=\"wpMath\"
-	value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpMath\"
+	value=\"$i\"$checked /> {$mathopts[$i]}</label></div>\n" );
 		}
-		$wgOut->addHTML( "</td></tr>" );
+		$wgOut->addHTML( "</fieldset>\n\n" );
 		
 		# Date format
 		#
 		if ( $wgUseDynamicDates ) {
-			$wgOut->addHTML( "<tr><td valign=top nowrap><b>$dateFormat:</b><br>" );
+			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat:</legend>\n" );
 			for ( $i = 0; $i < count( $dateopts ); ++$i) {
 				if ( $i == $this->mDate ) {
 					$checked = ' checked="checked"';
 				} else {
 					$checked = "";
 				}
-				$wgOut->addHTML( "<label><input type=radio name=\"wpDate\" ".
-					"value=\"$i\"$checked> {$dateopts[$i]}</label><br>\n" );
+				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
+					"value=\"$i\"$checked /> {$dateopts[$i]}</label></div>\n" );
 			}
-			$wgOut->addHTML( "</td></tr>");
+			$wgOut->addHTML( "</fieldset>\n\n");
 		}
+		
 		# Textbox rows, cols
 		#
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
-		$wgOut->addHTML( "<td valign=top nowrap><b>$tbs:</b><br>
-	<label>$tbr: <input type=text name=\"wpRows\" value=\"{$this->mRows}\" size=6></label><br>
-	<label>$tbc: <input type=text name=\"wpCols\" value=\"{$this->mCols}\" size=6></label><br><br>
-	<b>$tzServerTime:</b> $nowserver<br />
-	<b>$ltz:</b> $nowlocal<br />
-	<label>$tzo*: <input type=text name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size=6></label><br />
-	<input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" />
-	</td>" );
+		$wgOut->addHTML( "<fieldset>
+	<legend>$tbs:</legend>\n
+		<div>
+			<label>$tbr: <input type='text' name=\"wpRows\" value=\"{$this->mRows}\" size='6' /></label>
+			<label>$tbc: <input type='text' name=\"wpCols\" value=\"{$this->mCols}\" size='6' /></label>
+		</div> " .
+		$this->getToggle( "editwidth" ) .
+		$this->getToggle( "showtoolbar" ) .
+		$this->getToggle( "previewontop" ) .
+		$this->getToggle( "watchdefault" ) .
+		$this->getToggle( "minordefault" ) . "
+	</fieldset>
+	
+	<fieldset>
+		<legend>$dateFormat:</legend>
+		<div><b>$tzServerTime:</b> $nowserver</div>
+		<div><b>$ltz:</b> $nowlocal</div>
+		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
+		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>
+	</fieldset>\n\n" );
 
 		# Email, etc.
 		#
@@ -405,25 +419,51 @@ class PreferencesForm {
 
 		$ps = $this->namespacesCheckboxes();
 
-		$wgOut->addHTML( "<td valign=top nowrap>
-	<label>$yem: <input type=text name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size=20></label><br>
-	<label><input type=checkbox $emfc value=\"1\" name=\"wpEmailFlag\"> $emf</label><br>
-	<label>$ynn: <input type=text name=\"wpNick\" value=\"{$this->mNick}\" size=12></label><br>
-	<label>$rcc: <input type=text name=\"wpRecent\" value=\"$this->mRecent\" size=6></label><br>
-	<label>$stt: <input type=text name=\"wpStubs\" value=\"$this->mStubs\" size=6></label><br>
-	<strong>{$srh}:</strong><br>
-	<label>$rpp: <input type=text name=\"wpSearch\" value=\"$this->mSearch\" size=6></label><br>
-	<label>$scl: <input type=text name=\"wpSearchLines\" value=\"$this->mSearchLines\" size=6></label><br>
-	<label>$scc: <input type=text name=\"wpSearchChars\" value=\"$this->mSearchChars\" size=6></label></td>
-	</tr><tr>
-	<td colspan=2>
-	<b>$dsn</b><br>
-	$ps
-	</td>
-	</tr><tr>
-	<td align=center><input type=submit name=\"wpSaveprefs\" value=\"$svp\"></td>
-	<td align=center><input type=submit name=\"wpReset\" value=\"$rsp\"></td>
-	</tr></table>* {$tzt} </form>\n" );
+		$wgOut->addHTML( "<fieldset>
+		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
+		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
+		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
+	</fieldset>
+	
+	<fieldset>
+		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
+		" . $this->getToggle( "hideminor" ) .
+		$this->getToggle( "usenewrc" ) . "
+		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>$srh</legend>
+		<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"$this->mSearch\" size='6' /></label></div>
+		<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"$this->mSearchLines\" size='6' /></label></div>
+		<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"$this->mSearchChars\" size='6' /></label></div>
+
+		<fieldset>
+			<legend>$dsn</legend>
+			$ps
+		</fieldset>
+	</fieldset>
+		" );
+	
+		# Various checkbox options
+		#
+		$wgOut->addHTML("<fieldset>");
+		foreach ( $togs as $tname => $ttext ) {
+			if( !$this->mUsedToggles[$tname] ) {
+				$wgOut->addHTML( $this->getToggle( $tname ) );
+			}
+		}
+		$wgOut->addHTML( "</fieldset>\n\n" );
+
+		$wgOut->addHTML( "
+	<div>
+		<input type='submit' name=\"wpSaveprefs\" value=\"$svp\" />
+		<input type='submit' name=\"wpReset\" value=\"$rsp\" />
+	</div>
+	
+	<div>* {$tzt}</div>
+	
+	</form>\n" );
 	}
 }
 ?>

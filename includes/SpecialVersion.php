@@ -6,7 +6,7 @@ function wfSpecialVersion()
 	$fname = "wfSpecialVersion";
 
 	$wgOut->addHTML( '
- This wiki is powered by <b><a href="http://www.mediawiki.org/">MediaWiki</a></b>,  
+ <p>This wiki is powered by <b><a href="http://www.mediawiki.org/">MediaWiki</a></b>,  
  copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, and others.</p>
  
@@ -27,7 +27,7 @@ function wfSpecialVersion()
 	');
 	$versions = array(
 		"[http://wikipedia.sf.net/ MediaWiki]" => $wgVersion,
-		"[http://www.php.net/ PHP]" => phpversion(),
+		"[http://www.php.net/ PHP]" => phpversion() . " (" . php_sapi_name() . ")",
 		"[http://www.mysql.com/ MySQL]" => mysql_get_server_info()
  	);
 	
