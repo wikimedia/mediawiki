@@ -359,11 +359,11 @@ class EditPage {
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
-<div class=\"tawrapper\"><textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
+<textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
 cols='{$cols}'{$ew}>" .
 htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 "
-</textarea></div>
+</textarea>
 <br />{$editsummary}
 {$checkboxhtml}
 <input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
@@ -381,10 +381,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<div class=\"tawrapper\"><textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+<textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
 "
-</textarea></div>" );
+</textarea>" );
 		}
 		$wgOut->addHTML( "</form>\n" );
 		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
