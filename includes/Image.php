@@ -31,13 +31,18 @@ class Image
 
 	function Image( $name )
 	{
-		global $wgUploadDirectory;
+		global $wgUploadDirectory,$wgHashedUploadDirectory;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
 		//$this->imagePath = wfImagePath( $name );
-		$hash 		 = md5( $this->title->getDBkey() );
-		$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .substr( $hash, 0, 2 ) . "/{$name}";
+		if ($wgHashedUploadDirectory) {
+			$hash 		 = md5( $this->title->getDBkey() );
+			$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .
+						substr( $hash, 0, 2 ) . "/{$name}";
+		} else {
+			$this->imagePath = $wgUploadDirectory . '/' . $name;
+		}
 
 		$this->url       = $this->wfImageUrl( $name );
 
@@ -114,11 +119,14 @@ class Image
 
 	function wfImageUrl( $name )
 	{
-		global $wgUploadPath,$wgUploadBaseUrl;
-		$hash = md5( $name );
-
-        	$url = "{$wgUploadBaseUrl}{$wgUploadPath}/" . $hash{0} . "/" .
-              	substr( $hash, 0, 2 ) . "/{$name}";
+		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory;
+		if ($wgHashedUploadDirectory) {
+			$hash = md5( $name );
+        		$url = "{$wgUploadBaseUrl}{$wgUploadPath}/" . $hash{0} . "/" .
+              		substr( $hash, 0, 2 ) . "/{$name}";
+		} else {
+			$url = "{$wgUploadBaseUrl}{$wgUploadPath}/{$name}";
+		}
         	return wfUrlencode( $url );
 	}
 
@@ -128,11 +136,15 @@ class Image
 	}
 
 	function thumbUrl( $width, $subdir='thumb' ) {
-		global $wgUploadPath;
-
+		global $wgUploadPath,$wgHashedUploadDirectory;
 		$name = $this->thumbName( $width );
-		$hash = md5( $name );
-		$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" . substr( $hash, 0, 2 ) . "/{$name}";
+		if ($wgHashedUploadDirectory) {
+			$hash = md5( $name );
+			$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" . 
+				substr( $hash, 0, 2 ) . "/{$name}";
+		} else {
+			$url = "{$wgUploadPath}/{$subdir}/{$name}";
+		}
 
 		return wfUrlencode($url);
 	}
@@ -335,7 +347,9 @@ class Image
 
 function wfImageDir( $fname )
 {
-	global $wgUploadDirectory;
+	global $wgUploadDirectory, $wgHashedUploadDirectory;
+	
+	if (!$wgHashedUploadDirectory) { return $wgUploadDirectory; }
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
@@ -355,7 +369,9 @@ function wfImageThumbDir( $fname , $subdir='thumb')
 
 function wfImageArchiveDir( $fname , $subdir='archive')
 {
-	global $wgUploadDirectory;
+	global $wgUploadDirectory, $wgHashedUploadDirectory;
+
+	if (!$wgHashedUploadDirectory) { return $wgUploadDirectory.'/'.$subdir; }
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
@@ -485,13 +501,17 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	$log->addEntry( 'upload', $descTitle, $desc );
 }
 
-function wfImageArchiveUrl( $name )
+function wfImageArchiveUrl( $name, $subdir='archive' )
 {
-	global $wgUploadPath;
+	global $wgUploadPath, $wgHashedUploadDirectory;
 
-	$hash = md5( substr( $name, 15) );
-	$url = $wgUploadPath.'/archive/' . $hash{0} . '/' .
-	  substr( $hash, 0, 2 ) . '/'.$name;
+	if ($wgHashedUploadDirectory) {
+		$hash = md5( substr( $name, 15) );
+		$url = $wgUploadPath.'/'.$subdir.'/' . $hash{0} . '/' .
+		  substr( $hash, 0, 2 ) . '/'.$name;
+	} else {
+		$url = $wgUploadPath.'/'.$subdir.'/'.$name;
+	}
 	return wfUrlencode($url);
 }
 
