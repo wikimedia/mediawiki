@@ -687,35 +687,50 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
-				$p = $m[1];
-				$lowerNs = strtolower( $p );
-				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
-					# Canonical namespace
-					$t = $m[2];
-					$this->mNamespace = $ns;
-				} elseif ( $ns = $wgLang->getNsIndex( $lowerNs )) {
-					# Ordinary namespace
-					$t = $m[2];
-					$this->mNamespace = $ns;
-				} elseif ( $this->getInterwikiLink( $p ) ) {
-					# Interwiki link
-					$t = $m[2];
-					$this->mInterwiki = $p;
-
-					if ( !preg_match( "/^([A-Za-z0-9_\\x80-\\xff]+):(.*)$/", $t, $m ) ) {
-						$done = true;
-					} elseif($this->mInterwiki != $wgLocalInterwiki) {
-						$done = true;
+			$firstPass = true;
+			do {
+				if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
+					$p = $m[1];
+					$lowerNs = strtolower( $p );
+					if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
+						# Canonical namespace
+						$t = $m[2];
+						$this->mNamespace = $ns;
+					} elseif ( $ns = $wgLang->getNsIndex( $lowerNs )) {
+						# Ordinary namespace
+						$t = $m[2];
+						$this->mNamespace = $ns;
+					} elseif( $this->getInterwikiLink( $p ) ) {
+						if( !$firstPass ) {
+							# Can't make a local interwiki link to an interwiki link.
+							# That's just crazy!
+							wfProfileOut( $fname );
+							return false;
+						}
+						
+						# Interwiki link
+						$t = $m[2];
+						$this->mInterwiki = $p;
+	
+						# Redundant interwiki prefix to the local wiki
+						if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
+							if( $t == '' ) {
+								# Can't have an empty self-link
+								wfProfileOut( $fname );
+								return false;
+							}
+							$this->mInterwiki = '';
+							$firstPass = false;
+							# Do another namespace split...
+							continue;
+						}
 					}
+					# If there's no recognized interwiki or namespace,
+					# then let the colon expression be part of the title.
 				}
-			}
+				break;
+			} while( true );
 			$r = $t;
-		}
-
-		# Redundant interwiki prefix to the local wiki
-		if ( 0 == strcmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
-			$this->mInterwiki = "";
 		}
 		
 		# Set the article ID to zero if this is not an article, to prevent unnecessary later lookups
