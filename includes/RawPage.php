@@ -60,7 +60,7 @@ class RawPage {
 	}
 	
 	function getrawtext () {
-		global $wgInputEncoding, $wgLang;
+		global $wgInputEncoding, $wgLang, $wgIsPg;
 		if( !$this->mTitle ) return '';
 		$t = wfStrencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
@@ -73,7 +73,9 @@ class RawPage {
 		}
 		# else get it from the DB
 		if(!empty($this->mOldId)) {
-			$sql = "SELECT old_text as text,old_timestamp as timestamp,old_user as user,old_flags as flags FROM old " .
+			$oldtable=$wgIsPg?'"old"':'old';
+			$sql = "SELECT old_text AS text,old_timestamp AS timestamp,".
+				    "old_user AS user,old_flags AS flags FROM $oldtable " .
 			"WHERE old_id={$this->mOldId}";
 		} else {
 			$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
