@@ -68,7 +68,7 @@ function convertLinks() {
 		performanceLog ( "Reading $numRows rows from cur table...\n" );
 		performanceLog ( "rows read vs seconds elapsed:\n" );
 		
-		$dbw->setBufferResults( false );
+		$dbw->bufferResults( false );
 		$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
 		$ids = array();
 
