@@ -1416,7 +1416,7 @@ class Title {
 		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
-		wfRunHooks( 'TitleMoveComplete', array(&$this, &$nt, &$wgUser, $oldid, $newid) );
+		wfRunHooks( 'TitleMoveComplete', $this, $nt, $wgUser, $oldid, $newid );
 		return true;
 	}
 	

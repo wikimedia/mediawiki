@@ -1,7 +1,7 @@
 <?php
 /**
  * Hooks.php -- a tool for running hook functions
- * Copyright 2004, 2005 Evan Prodromou <evan@wikitravel.org>.
+ * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ if (defined('MEDIAWIKI')) {
 	 * in here than would normally be necessary.
 	 */
 	
-	function wfRunHooks($event, $args) {
+	function wfRunHooks() {
 		
 		global $wgHooks;
 
@@ -38,6 +38,15 @@ if (defined('MEDIAWIKI')) {
 			wfDieDebugBacktrace("Global hooks array is not an array!\n");
 			return false;
 		}
+
+		$args = func_get_args();
+
+		if (count($args) < 1) {
+			wfDieDebugBacktrace("No event name given for wfRunHooks().\n");
+			return false;
+		}
+
+		$event = array_shift($args);
 
 		if (!array_key_exists($event, $wgHooks)) {
 			return true;
@@ -93,23 +102,17 @@ if (defined('MEDIAWIKI')) {
 				wfDieDebugBacktrace("Unknown datatype in hooks for " . $event . "\n");
 			}
 
-			/* We put the first data element on, if needed. */
-			
 			if ($have_data) {
 				$hook_args = array_merge(array($data), $args);
 			} else {
 				$hook_args = $args;
 			}
-
-			/* Call the hook. */
 			
 			if ($object) {
 				$retval = call_user_func_array(array($object, $method), $hook_args);
 			} else {
 				$retval = call_user_func_array($func, $hook_args);
 			}
-
-			/* String return is an error; false return means stop processing. */
 			
 			if (is_string($retval)) {
 				global $wgOut;
