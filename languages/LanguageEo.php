@@ -360,7 +360,7 @@ Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei nova
 petis, ke ni sendu al vi novan pasvorton por ensaluti {{SITENAME}}n.
 La pasvorto por uzulo \"$2\" nun estas \"$3\".
 Ni rekomendas, ke vi nun ensalutu kaj ŝanĝu vian pasvorton.", #FIXME
-"noemail"		=> "Retpoŝtadreso ne estas registrita por uzulo \"\".",
+"noemail"		=> "Retpoŝtadreso ne estas registrita por uzulo \"$1\".",
 "passwordsent"	=> "Oni sendis novan pasvorton al la retpoŝtadreso
 registrita por \"$1\".
 Bonvolu saluti denove ricevinte ĝin.",
