@@ -53,7 +53,7 @@ body {
 
 /* general styles */
 
-table, td {
+table {
     font-size: 100%;
     background: White;
 }
@@ -506,9 +506,9 @@ div.townBox {
     margin-left:1em;
     border: 1px solid Grey;
     padding:0.3em;
-    line-height: 1.0em;
     width: 200px;
     overflow: hidden;
+    clear: right;
 }
 div.townBox dl {
     padding: 0;
