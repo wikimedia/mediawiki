@@ -379,6 +379,10 @@ class User {
 	function setOption( $oname, $val )
 	{
 		$this->loadFromDatabase();
+		if ( $oname == 'skin' ) {
+			# Clear cached skin, so the new one displays immediately in Special:Preferences
+			unset( $this->mSkin );
+		}
 		$this->mOptions[$oname] = $val;
 		$this->invalidateCache();
 	}

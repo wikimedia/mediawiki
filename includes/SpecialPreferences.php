@@ -125,7 +125,7 @@ class PreferencesForm {
 
 	/* private */ function savePreferences()
 	{
-		global $wgUser, $wgLang, $wgDeferredUpdateList;
+		global $wgUser, $wgLang, $wgDeferredUpdateList, $wgOut;
 
 		if ( "" != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
@@ -170,6 +170,11 @@ class PreferencesForm {
 		$wgUser->setCookies();
 		$up = new UserUpdate();
 		array_push( $wgDeferredUpdateList, $up );
+		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+		$po = ParserOptions::newFromUser( $wgUser );
+		print get_class( $wgUser->getSkin() ) . "<br>\n";
+		print get_class( $po->mSkin ) . "<br>\n";
+		print get_class( $wgOut->mParserOptions->mSkin ) . "<br>\n";
 		$this->mainPrefsForm( wfMsg( "savedprefs" ) );
 	}
 
