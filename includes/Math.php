@@ -33,6 +33,7 @@ class MathRenderer {
 	function render() {
 		global $wgMathDirectory, $wgTmpDirectory, $wgInputEncoding;
 		global $wgTexvc;
+		$fname = 'MathRenderer::render';
 	
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
@@ -95,11 +96,11 @@ class MathRenderer {
 					$this->conservativeness = 0;
 				$this->mathml = NULL;
 			} else if ($retval == 'X') {
-				$outhtml = NULL;
+				$this->html = NULL;
 				$this->mathml = substr ($contents, 33);
 				$this->conservativeness = 0;
 			} else if ($retval == '+') {
-				$this->outhtml = NULL;
+				$this->html = NULL;
 				$this->mathml = NULL;
 				$this->conservativeness = 0;
 			} else {
@@ -132,8 +133,8 @@ class MathRenderer {
 				'math_inputhash' => $md5_sql, 
 				'math_outputhash' => $outmd5_sql,
 				'math_html_conservativeness' => $this->conservativeness,
-				'math_html' => $outhtml,
-				'math_mathml' => $mathml,
+				'math_html' => $this->html,
+				'math_mathml' => $this->mathml,
 			  ), $fname, array( 'IGNORE' ) 
 			);
 			
