@@ -198,10 +198,37 @@ $wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
 $wgLoadBalancer->loadMasterPos();
 
 wfProfileOut( $fname.'-database' );
+wfProfileIn( $fname.'-User' );
+
+# Extension setup functions
+# Entries should be added to this variable during the inclusion 
+# of the extension file. This allows the extension to perform 
+# any necessary initialisation in the fully initialised environment
+foreach ( $wgSkinExtensionFunctions as $func ) {
+	$func();
+}
+
+if( $wgCommandLineMode ) {
+	# Used for some maintenance scripts; user session cookies can screw things up
+	# when the database is in an in-between state.
+	$wgUser = new User();
+} else {
+	$wgUser = User::loadFromSession();
+}
+
+// FIXME : we don't know what the user entered (see SpecialPreferences.php [AV])
+if(isset($wgUser->mOptions['language'])) {
+	// Change language of the site
+	$wgLanguageCode = $wgUser->mOptions['language'];
+	// we will load messages from file instead of from database
+	$wgUseDatabaseMessages = false;
+	}
+
+wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
 require_once( 'languages/Language.php' );
 
-$wgMessageCache = new MessageCache; 
+$wgMessageCache = new MessageCache;
 
 $wgLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == 'en' && !$wgUseLatin1) ) {
@@ -222,6 +249,11 @@ if( $wgUseLatin1 && $wgLanguageCode != 'en' ) {
 	unset( $wgLang );
 	$wgLang = $xxx;
 }
+
+// now that we have a language object, set per language user defaults options
+// if we didn't grabbed them from database.
+if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
+
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
 
@@ -248,25 +280,6 @@ wfProfileIn( $fname.'-BlockCache' );
 $wgBlockCache = new BlockCache( true );
 
 wfProfileOut( $fname.'-BlockCache' );
-wfProfileIn( $fname.'-User' );
-
-# Extension setup functions
-# Entries should be added to this variable during the inclusion 
-# of the extension file. This allows the extension to perform 
-# any necessary initialisation in the fully initialised environment
-foreach ( $wgSkinExtensionFunctions as $func ) {
-	$func();
-}
-
-if( $wgCommandLineMode ) {
-	# Used for some maintenance scripts; user session cookies can screw things up
-	# when the database is in an in-between state.
-	$wgUser = new User();
-} else {
-	$wgUser = User::loadFromSession();
-}
-
-wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
