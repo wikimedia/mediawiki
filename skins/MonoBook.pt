@@ -11,9 +11,9 @@
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <script type="text/javascript" tal:attributes="src jsvarurl"></script>
     <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
-    <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
+    <style tal:condition="usercss" tal:content="structure usercss" type="text/css"></style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
-      tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
+      tal:condition="userjsprev" tal:content="structure userjsprev" type="text/javascript"></script>
   </head>
   <body tal:attributes="ondblclick body_ondblclick|default; class nsclass|default">
     <div id="globalWrapper">

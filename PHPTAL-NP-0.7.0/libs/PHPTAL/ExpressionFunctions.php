@@ -103,7 +103,11 @@ function PHPTAL_ES_path_toString(&$exp, $value)
     if ($value == "nothing") { return 'null'; }
     if ($value == "default") { return '$__default__'; }
     if (preg_match('/^@[_a-z][0-9a-z_]*$/i', $value)) { return substr($value, 1); }
-    return '$__ctx__->getToString("'. $value .'")';
+# HACKHACKHACKHACKHACK! <- for fixing ${foo} not being escaped.
+# In PHPTAL 1.0.0 it _is_ escaped, and apparently it's supposed to be.
+# We need to be consistent to work on both.
+#    return '$__ctx__->getToString("'. $value .'")';
+    return 'htmlspecialchars($__ctx__->get("'. $value .'"))';
 }
 
 
