@@ -151,11 +151,13 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 			require_once( "includes/Credits.php" );
 			showCreditsPage( $wgArticle );
 			break;
-		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
+				# Send a cookie so anons get talk message notifications
 				User::SetupSession();
 			}
+			# Continue...
+		case "edit":
 			require_once( "includes/EditPage.php" );
 			$editor = new EditPage( $wgArticle );
 			$editor->submit();
