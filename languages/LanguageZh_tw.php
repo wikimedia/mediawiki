@@ -1,6 +1,6 @@
 <?php
 require_once( "LanguageUtf8.php" );
-require_once( "LanguageZh.php" );
+require_once( "LanguageZh_cn.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -951,7 +951,7 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 
 );
 
-class LanguageZh_tw extends LanguageZh {
+class LanguageZh_tw extends LanguageZh_cn {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_tw ;
 		return $wgBookstoreListZh_tw ;
