@@ -40,8 +40,8 @@ if( !function_exists('is_a') ) {
 	# Exists in PHP 4.2.0+
 	function is_a( $object, $class_name ) {
 		return
-			(strcasecmp( get_class( $object, $class_name ) == 0) ||
-			 is_subclass_of( $object, $class_name ) );
+			(strcasecmp( get_class( $object ), $class_name ) == 0) ||
+			 is_subclass_of( $object, $class_name );
 	}
 }
 
