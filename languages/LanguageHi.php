@@ -10,22 +10,24 @@ require_once( "LanguageUtf8.php" );
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesHi = array(
-	-2	=> "Media",
-	-1	=> "विशेष",
-	0	=> "",
-	1	=> "वार्ता",
-	2	=> "सदस्य",
-	3	=> "सदस्य_वार्ता",
-	4	=> "विकिपीडिया",
-	5	=> "विकिपीडिआ_वार्ता",
-	6	=> "चित्र",
-	7	=> "चित्र_वार्ता",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk",
-	10  => "Template",
-	11  => "Template_talk"
-
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'विशेष',
+	NS_MAIN           => '',
+	NS_TALK           => 'वार्ता',
+	NS_USER           => 'सदस्य',
+	NS_USER_TALK      => 'सदस्य_वार्ता',
+	NS_WIKIPEDIA      => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK => $wgMetaNamespace . '_वार्ता',
+	NS_IMAGE          => 'चित्र',
+	NS_IMAGE_TALK     => 'चित्र_वार्ता',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_talk',
+	NS_TEMPLATE       => 'Template',
+	NS_TEMPLATE_TALK  => "Template_talk",
+	NS_CATEGORY       => 'श्रेणी',
+	NS_CATEGORY_TALK  => 'श्रेणी_वार्ता',
 ) + $wgNamespaceNamesEn;
+
 
 /* private */ $wgWeekdayNamesHi = array(
 	"रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार",
