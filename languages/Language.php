@@ -422,6 +422,8 @@ See $1.",
 "toc" => "Table of contents",
 "showtoc" => "show",
 "hidetoc" => "hide",
+"thisisdeleted" => "View or restore $1?",
+"restorelink" => "$1 deleted edits",
 
 # Main script and global functions
 #
