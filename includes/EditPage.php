@@ -43,10 +43,10 @@ class EditPage {
 	function extractMetaDataFromArticle ()
 	{
 		global $wgUseMetadataEdit , $wgMetadataWhitelist , $wgLang ;
-		$this->mMetaData = "" ;
+		$this->mMetaData = '' ;
 		if ( !$wgUseMetadataEdit ) return ;
 		if ( $wgMetadataWhitelist == "" ) return ;
-		$s = "" ;
+		$s = '' ;
 		$t = $this->mArticle->getContent ( true ) ;
 
 		# MISSING : <nowiki> filtering
@@ -64,20 +64,20 @@ class EditPage {
 				$first = array_shift ( $y ) ;
 				$first = explode ( ":" , $first ) ;
 				$ns = array_shift ( $first ) ;
-				$ns = trim ( str_replace ( "[" , "" , $ns ) ) ;
+				$ns = trim ( str_replace ( '[' , '' , $ns ) ) ;
 				if ( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
 				{
-					$add = "[[" . $ns . ":" . implode ( ":" , $first ) . "]]" ;
+					$add = '[[' . $ns . ':' . implode ( ':' , $first ) . ']]' ;
 					if ( strtolower ( $ns ) == $catlow ) $cat[] = $add ;
 					else $ll[] = $add ;
-					$x = implode ( "]]" , $y ) ;
+					$x = implode ( ']]' , $y ) ;
 					$t[$key] = $x ;
 					$y = trim ( strtolower ( $x ) ) ;
 				}
 			}
 		}
-		if ( count ( $cat ) ) $s .= implode ( " " , $cat ) . "\n" ;
-		if ( count ( $ll ) ) $s .= implode ( " " , $ll ) . "\n" ;
+		if ( count ( $cat ) ) $s .= implode ( ' ' , $cat ) . "\n" ;
+		if ( count ( $ll ) ) $s .= implode ( ' ' , $ll ) . "\n" ;
 		$t = implode ( "\n" , $t ) ;
 
 		# Load whitelist
@@ -89,7 +89,7 @@ class EditPage {
 		{
 			$isentry = false ;
 			$x = trim ( $x ) ;
-			while ( substr ( $x , 0 , 1 ) == "*" )
+			while ( substr ( $x , 0 , 1 ) == '*' )
 			{
 				$isentry = true ;
 				$x = trim ( substr ( $x , 1 ) ) ;
@@ -102,29 +102,29 @@ class EditPage {
 		}
 
 		# Templates, but only some
-		$t = explode ( "{{" , $t ) ;
+		$t = explode ( '{{' , $t ) ;
 		$tl = array () ;
 		foreach ( $t AS $key => $x )
 		{
-			$y = explode ( "}}" , $x , 2 ) ;
+			$y = explode ( '}}' , $x , 2 ) ;
 			if ( count ( $y ) == 2 )
 			{
 				$z = $y[0] ;
-				$z = explode ( "|" , $z ) ;
+				$z = explode ( '|' , $z ) ;
 				$tn = array_shift ( $z ) ;
 				if ( in_array ( strtolower ( $tn ) , $sat ) )
 				{
-					$tl[] = "{{" . $y[0] . "}}" ;
+					$tl[] = '{{' . $y[0] . '}}' ;
 					$t[$key] = $y[1] ;
-					$y = explode ( "}}" , $y[1] , 2 ) ;
+					$y = explode ( '}}' , $y[1] , 2 ) ;
 				}
-				else $t[$key] = "{{" . $x ;
+				else $t[$key] = '{{' . $x ;
 			}
-			else if ( $key != 0 ) $t[$key] = "{{" . $x ;
+			else if ( $key != 0 ) $t[$key] = '{{' . $x ;
 			else $t[$key] = $x ;
 		}
-		if ( count ( $tl ) ) $s .= implode ( " " , $tl ) ;
-		$t = implode ( "" , $t ) ;
+		if ( count ( $tl ) ) $s .= implode ( ' ' , $tl ) ;
+		$t = implode ( '' , $t ) ;
 
 		$t = str_replace ( "\n\n\n" , "\n" , $t ) ;
 		$this->mArticle->mContent = $t ;
@@ -306,8 +306,8 @@ class EditPage {
 
 		if ( 'save' == $formtype ) {
 			# Reintegrate metadata
-			if ( $this->mMetaData != "" ) $this->textbox1 .= "\n" . $this->mMetaData ;
-			$this->mMetaData = "" ;
+			if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
+			$this->mMetaData = '' ;
 
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
@@ -681,7 +681,7 @@ END
 <br />{$editsummary}
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
-" title=\"".wfMsg('tooltip-save')."\"/>
+" title=\"".wfMsg('tooltip-save')."\"/>&emsp;
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <input tabindex='6' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
