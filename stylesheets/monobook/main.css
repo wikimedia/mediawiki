@@ -1,5 +1,5 @@
 /*
-** Mediawiki 'mono' style sheet for CSS2-capable browsers.
+** Mediawiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://www.aulinx.de/
 **
 ** Based on http://www.positioniseverything.net/ordered-floats.html by Big John
@@ -282,7 +282,7 @@ pre {
     margin: 0;
 }
 
-#bodyContent a:hover {
+a:hover {
     text-decoration: underline;
 }
 
@@ -798,6 +798,7 @@ input.searchButton {
 #portal-personaltools li a:hover {
     background-color: White;
     padding-bottom: 0.2em;
+    text-decoration: none;
 }
 
 /* the icon in front of the user name, single quotes
@@ -866,6 +867,7 @@ li#personaltools-login {
 }
 #portlet-contentViews li a:hover {
     z-index: 3;
+    text-decoration: none;
 }
 #portlet-contentViews h5 { display: none; }
 
