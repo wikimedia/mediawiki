@@ -5,7 +5,7 @@ include_once( "$IP/CacheManager.php" );
 
 $wgLastDatabaseQuery = "";
 
-function wfGetDB( $altuser = "", $altpassword = "" )
+function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = "" )
 {
 	global $wgDBserver, $wgDBuser, $wgDBpassword;
 	global $wgDBname, $wgDBconnection, $wgEmergencyContact;
@@ -18,7 +18,9 @@ function wfGetDB( $altuser = "", $altpassword = "" )
 	  $wgEmergencyContact . "\">Wikipedia developers</a>.</p>";
 
 	if ( $altuser != "" ) {
-		$wgDBconnection = mysql_connect( $wgDBserver, $altuser, $altpassword )
+		$serve = ($altserver ? $altserver : $wgDBserver );
+		$db = ($altdb ? $altdb : $wgDBname );
+		$wgDBconnection = mysql_connect( $serve, $altuser, $altpassword )
 			or die( "bad sql user" );
 		mysql_select_db( $wgDBname, $wgDBconnection ) or die(
 		  htmlspecialchars(mysql_error()) );
@@ -35,7 +37,7 @@ function wfGetDB( $altuser = "", $altpassword = "" )
 			@$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser, $wgDBpassword )
 				or wfEmergencyAbort();
 			
-			@mysql_select_db( $wgDBname, $wgDBconnection )
+			@mysql_select_db( $db, $wgDBconnection )
 				or wfEmergencyAbort();
 		}
 	}
@@ -46,8 +48,9 @@ function wfGetDB( $altuser = "", $altpassword = "" )
 /* Call this function if we couldn't contact the database...
    We'll try to use the cache to display something in the meantime */
 function wfEmergencyAbort( $msg = "" ) {
-	global $wgTitle, $wgUseFileCache, $title;
+	global $wgTitle, $wgUseFileCache, $title, $wgOutputEncoding;
 	
+	header( "Content-type: text/html; charset=$wgOutputEncoding" );
 	if($msg == "") $msg = wfMsg( "noconnect" );
 	$text = $msg;
 
