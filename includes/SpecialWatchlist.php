@@ -4,7 +4,7 @@ require_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgLoadBalancer;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname, $wgIsMySQL;
 	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
@@ -50,18 +50,20 @@ function wfSpecialWatchlist()
 			return;
 		}
 	}
-
-
+	
+	$wgLoadBalancer->force(-1);
 	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
 	$res = wfQuery( $sql, DB_READ );
 	$s = wfFetchObject( $res );
 	$nitems = $s->n;
-	
+	$wgLoadBalancer->force(0);
 	if($nitems == 0) {
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
         return;
 	}
-
+	
+	$wgLoadBalancer->force(-1);
+	
 	if ( ! isset( $days ) ) {
 		$big = 1000;
 		if($nitems > $big) {
@@ -79,13 +81,14 @@ function wfSpecialWatchlist()
 		$cutoff = false;
 		$npages = wfMsg( "all" );
 	} else {
-		$docutoff = "AND cur_timestamp > '" .
+	        $docutoff = "AND cur_timestamp > '" .
 		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-		$sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
+	        $sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
 		$res = wfQuery( $sql, DB_READ );
 		$s = wfFetchObject( $res );
 		$npages = $s->n;
+		
 	}
 	
 	if(isset($_REQUEST['magic'])) {
@@ -116,6 +119,7 @@ function wfSpecialWatchlist()
 			wfMsg( "removechecked" ) . "' />\n" .
 			"</form>\n" );
 		
+		$wgLoadBalancer->force(0);
 		return;
 	}
 	
@@ -167,6 +171,7 @@ function wfSpecialWatchlist()
 
 	if ( wfNumRows( $res ) == 0 ) {
 		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
+		$wgLoadBalancer->force(0);
 		return;
 	}
 
@@ -187,6 +192,8 @@ function wfSpecialWatchlist()
 	if ( $wgUseWatchlistCache ) {
 		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
 	}
+	
+	$wgLoadBalancer->force(0);
 }
 
 

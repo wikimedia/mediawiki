@@ -157,7 +157,11 @@ class SearchEngine {
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgRequest;
 		global $wgDisableTextSearch, $wgInputEncoding;
-		$fname = "SearchEngine::showResults";
+		global $wgLoadBalancer;
+				
+                $wgLoadBalancer->force(-1);
+
+                $fname = "SearchEngine::showResults";
 
 		$search = $wgRequest->getText( 'search' );
 
@@ -280,7 +284,8 @@ class SearchEngine {
 			$wgOut->addHTML( "<p>{$sl}</p>\n" );
 			$wgOut->addHTML( $powersearch );
 		}
-	}
+	        $wgLoadBalancer->force(0);
+        }
 
 	function legalSearchChars()
 	{

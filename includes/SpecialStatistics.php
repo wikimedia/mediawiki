@@ -2,8 +2,10 @@
 
 function wfSpecialStatistics()
 {
-	global $wgUser, $wgOut, $wgLang, $wgIsPg;
+	global $wgUser, $wgOut, $wgLang, $wgIsPg, $wgLoadBalancer;
 	$fname = "wfSpecialStatistics";
+
+	$wgLoadBalancer->force(-1);
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 
@@ -50,6 +52,8 @@ function wfSpecialStatistics()
 		$wgLang->formatNum( $total ),
 		$wgLang->formatNum( $admins ), $ap );
 	$wgOut->addWikiText( $text );
+
+	$wgLoadBalancer->force(0);
 }
 
 ?>
