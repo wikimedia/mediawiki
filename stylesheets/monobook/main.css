@@ -273,7 +273,7 @@ pre {
     text-align: right;
     float: right;
     position: relative;
-    margin-top: -1.5em;
+    top: -1.5em;
 }
 
 #content {
@@ -340,6 +340,10 @@ pre {
 .center {
     width: 100%;
     text-align: center;
+}
+div.center * {
+    margin-left: auto;
+    margin-right: auto;
 }
 /*
 ** mediawiki-specific styles
@@ -900,7 +904,7 @@ li#contentaction-watch {
 }
 #portal-footer li {
     display: inline;
-    margin-right: 2em;
+    margin: 0 1.3em;
 }
 /* hide from incapable browsers */
 head:first-child+body #portal-footer li {
