@@ -186,7 +186,13 @@ class Article {
 		$this->mContentLoaded = true;
 	}
 
-	function getID() { return $this->mTitle->getArticleID(); }
+	function getID() {
+		if( $this->mTitle ) {
+			return $this->mTitle->getArticleID();
+		} else {
+			return 0;
+		}
+	}
 
 	function getCount()
 	{
