@@ -1113,15 +1113,7 @@ class Parser
 						}
 					} else { 
 						$newSection = "p";
-						if ( '' == trim($t) ) {
-							if ( '' == trim($lastLine) ) {
-								$text .= $this->closeParagraph();
-								$text .= "<" . $newSection . "><br/>";
-								$this->mLastSection = $newSection;
-							} else {
-								$t = '';
-							}
-						} else if ($this->mLastSection != $newSection) {
+						if ( ''==trim($t) && ( '' != trim($lastLine) )) {
 							$text .= $this->closeParagraph();
 							$text .= "<" . $newSection . ">";
 							$this->mLastSection = $newSection;
