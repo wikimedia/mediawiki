@@ -266,7 +266,7 @@ class LinksUpdate {
 		# Ignore errors. If a link existed in both the brokenlinks table and the links 
 		# table, that's an error which can be fixed at this stage by simply ignoring collisions
 		$arr=array();
-		$now = wfTimestampNow();
+		$now = $dbw->timestamp();
 		$sql2 = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_id IN (";
 		$first = true;
 		while ( $row = $dbw->fetchObject( $res ) ) {
