@@ -70,12 +70,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
 	$wgOut->errorpage( 'badtitle', 'badtitletext' );
 } else if ( $wgTitle->getInterwiki() != '' ) {
-	if( $wgUseLatin1 ) {
-		# Conversion from UTF-8 may truncate or corrupt non-Latin links.
-		# Grab a fresh copy without doing the automated conversion checks.
-		$interwiki = Title::newFromUrl( $_REQUEST['title'] );
-		if( !is_null( $interwiki ) ) $wgTitle = $interwiki;
-	}
 	if( $rdfrom = $wgRequest->getVal( 'rdfrom' ) ) {
 		$url = $wgTitle->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
 	} else {

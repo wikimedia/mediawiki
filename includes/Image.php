@@ -41,7 +41,7 @@ class Image
 	 */
 	function Image( $name, $recache = false ) {
 
-		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang, $wgMemc, $wgDBname,
+		global $wgUseSharedUploads, $wgLang, $wgMemc, $wgDBname,
 		       $wgSharedUploadDBname;
 
 		$this->name      = $name;
@@ -95,12 +95,6 @@ class Image
 				# capitalize the first letter of the filename before 
 				# looking it up in the shared repository.
 				$this->name= $wgLang->ucfirst($name);
-				
-				# Encode the filename if we're on a Latin1 wiki and the
-				# shared repository is UTF-8
-				if($wgUseLatin1 && !$wgSharedLatin1) {
-					$this->name  = utf8_encode($name);
-				}
 				
 				$this->imagePath = $this->getFullPath(true);
 				$this->fileExists = file_exists( $this->imagePath);
@@ -323,15 +317,11 @@ class Image
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath, $wgUploadBaseUrl,
-		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-		       $wgUseLatin1,$wgSharedLatin1;
+		       $wgSharedUploadPath,$wgSharedUploadDirectory;
 		$name = $this->thumbName( $width );		
 		if($this->fromSharedDirectory) {
 			$base = '';
 			$path = $wgSharedUploadPath;
-			if($wgUseLatin1 && !$wgSharedLatin1) {
-				$name=utf8_encode($name);
-			}			
 		} else {
 			$base = $wgUploadBaseUrl;
 			$path = $wgUploadPath;
@@ -350,15 +340,11 @@ class Image
 	 * @access private
 	 */
 	function thumbName( $width, $shared=false ) {
-		global $wgUseLatin1,$wgSharedLatin1;
 		$thumb = $width."px-".$this->name;
 		if( $this->extension == 'svg' ) {
 			# Rasterize SVG vector images to PNG
 			$thumb .= '.png';
 		}
-		if( $shared && $wgUseLatin1 && !$wgSharedLatin1) { 
-			$thumb=utf8_encode($thumb); 
-		} 
 		return $thumb;
 	}
 

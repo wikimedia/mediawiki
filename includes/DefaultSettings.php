@@ -342,12 +342,9 @@ $wgLanguageFile     = false;
 /** Treat language links as magic connectors, not inline links */
 $wgInterwikiMagic	= true;
 
-/** LanguageUtf8.php normally overrides this */
-$wgInputEncoding	= 'ISO-8859-1';
-/** unless you set the next option to true: */
-$wgOutputEncoding	= 'ISO-8859-1'; 
-/** Enable ISO-8859-1 compatibility mode */
-$wgUseLatin1 		= false;
+/** We speak UTF-8 all the time now, unless some oddities happen */
+$wgInputEncoding	= 'UTF-8';
+$wgOutputEncoding	= 'UTF-8'; 
 $wgEditEncoding		= '';
 
 # Set this to eg 'ISO-8859-1' to perform character set

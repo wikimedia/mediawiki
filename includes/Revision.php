@@ -400,13 +400,13 @@ class Revision {
 	 * @return string
 	 */
 	function compressRevisionText( &$text ) {
-		global $wgCompressRevisions, $wgUseLatin1;
+		global $wgCompressRevisions;
 		$flags = array();
-		if( !$wgUseLatin1 ) {
-			# Revisions not marked this way will be converted
-			# on load if $wgLegacyCharset is set in the future.
-			$flags[] = 'utf-8';
-		}
+		
+		# Revisions not marked this way will be converted
+		# on load if $wgLegacyCharset is set in the future.
+		$flags[] = 'utf-8';
+		
 		if( $wgCompressRevisions ) {
 			if( function_exists( 'gzdeflate' ) ) {
 				$text = gzdeflate( $text );

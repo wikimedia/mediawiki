@@ -186,16 +186,7 @@ function xmlsafe( $string ) {
 	 * Invalid UTF-8 sequences or forbidden control characters will make our
 	 * XML output invalid, so be sure to strip them out.
 	 */
-	global $wgUseLatin1;
-	if( $wgUseLatin1 ) {
-		/**
-		 * We know the UTF-8 is valid since we converted outselves.
-		 * Just check for forbidden controls...
-		 */
-		$string = preg_replace( '/[\x00-\x08\x0b-\x1f]/', '', $string );
-	} else {
-		$string = UtfNormal::cleanUp( $string );
-	}
+	$string = UtfNormal::cleanUp( $string );
 	
 	$string = htmlspecialchars( $string );
 	wfProfileOut( $fname );
