@@ -161,6 +161,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Add the dreaded <span> to the HTML whitelist
 * (bug 1170) Fix Russian linktrail
 * (bug 1168) Missing text on the bureaucrat log
+* (bug 1180) Fix Makesysop on shared-user-table sites
 
 === Caveats ===
 

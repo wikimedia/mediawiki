@@ -166,10 +166,10 @@ class MakesysopForm {
 		}
 		if ( $username{0} == "#" ) {
 			$id = intval( substr( $username, 1 ) );
-			$sql = "SELECT ur_user,ur_rights FROM $user_rights WHERE ur_user=$id FOR UPDATE";
+			$sql = "SELECT user_id, ur_rights FROM $usertable LEFT OUTER JOIN $user_rights ON user_id=ur_user WHERE user_id=$id FOR UPDATE";
 		} else {
 			$encName = $dbw->strencode( $username );
-			$sql = "SELECT ur_user, ur_rights FROM $usertable LEFT JOIN $user_rights ON user_id=ur_user WHERE user_name = '{$username}' FOR UPDATE";
+			$sql = "SELECT user_id, ur_rights FROM $usertable LEFT OUTER JOIN $user_rights ON user_id=ur_user WHERE user_name='{$encName}' FOR UPDATE";
 		}
 		
 		$prev = $dbw->ignoreErrors( TRUE );
@@ -182,7 +182,7 @@ class MakesysopForm {
 		}
 
 		$row = $dbw->fetchObject( $res );
-		$id = intval( $row->ur_user );
+		$id = intval( $row->user_id );
 		$rightsNotation = array();
 
 		if ( $wgUser->isDeveloper() ) {
