@@ -6,6 +6,8 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
+$wgVersion			= "1.2.0beta";
+
 $wgSitename         = "Wikipedia";
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
