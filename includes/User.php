@@ -814,18 +814,12 @@ class User {
 		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
 
-		$dbw =& wfGetDB( DB_MASTER );
-		if ( ! $this->getNewtalk() ) {
-			# Delete user_newtalk row
-			if( $this->mId ) {
-				$dbw->delete( 'user_newtalk', array( 'user_id' => $this->mId ), $fname );
-			} else {
-				$dbw->delete( 'user_newtalk', array( 'user_ip' => $this->mName ), $fname );
-				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
-			}
-		}
-		if ( 0 == $this->mId ) { return; }
+		$this->saveNewtalk();
 
+		if ( 0 == $this->mId ) { return; }
+		
+		$dbw =& wfGetDB( DB_MASTER );
+		
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
@@ -859,6 +853,39 @@ class User {
 		}
 	}
 
+	/**
+	 * Save value of new talk flag.
+	 */
+	function saveNewtalk() {
+		global $wgDBname, $wgMemc;
+		
+		$fname = 'User::saveNewtalk';
+
+		if ($this->getID() != 0) {
+			$field = 'user_id';
+			$value = $this->getID();
+			$key = "$wgDBname:user:id:$this->mId";
+		} else {
+			$field = 'user_ip';
+			$value = $this->mName;
+			$key = "$wgDBname:newtalk:ip:$this->mName";
+		}
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$dbw =& wfGetDB( DB_MASTER );
+
+		$res = $dbr->selectField('user_newtalk', $field,
+								 array($field => $value), $fname);
+
+		if ($res !== false && $this->mNewtalk == 0) {
+			$dbw->delete('user_newtalk', array($field => $value), $fname);
+			$wgMemc->delete($key);
+		} else if ($res === false && $this->mNewtalk == 1) {
+			$dbw->insert('user_newtalk', array($field => $value), $fname);
+			$wgMemc->delete($key);			
+		}
+	}
+	
 	/**
 	 * Checks if a user with the given name exists, returns the ID
 	 */
