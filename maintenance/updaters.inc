@@ -18,7 +18,7 @@ $wgNewTables = array(
 	array( 'categorylinks', 'patch-categorylinks.sql' ),
 	array( 'logging',       'patch-logging.sql' ),
 	array( 'user_rights',   'patch-user_rights.sql' ),
-	array( 'user_groups',   'patch-userlevels.sql' ),
+	array( 'group',   'patch-userlevels.sql' ),
 );
 
 $wgNewFields = array(
@@ -51,7 +51,9 @@ function add_table( $name, $patch ) {
 
 function add_field( $table, $field, $patch ) {
 	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( $table, $field ) ) {
+	if ( !$wgDatabase->tableExists( $table ) ) {
+		echo "...$table table does not exist, skipping new field patch\n";
+	} elseif ( $wgDatabase->fieldExists( $table, $field ) ) {
 		echo "...have $field field in $table table.\n";
 	} else {
 		echo "Adding $field field to table $table...";
