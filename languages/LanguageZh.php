@@ -8,7 +8,7 @@ $zh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
 $zh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
 $zh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:sg");
 $zh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
-if(empty($zhSimp2Trad) || empty($zhTrad2Simp)) {
+if(empty($zh2TW) || empty($zh2CN) || empty($zh2SG) || empty($zh2HK)) {
 	require_once("includes/ZhConversion.php");
 	$wgMemc->set($key1, $zh2TW);
 	$wgMemc->set($key2, $zh2CN);
