@@ -627,22 +627,29 @@ class Parser
 
 	/* private */ function doHeadings( $text )
 	{
+		$fname = "Parser::doHeadings";
+		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = substr( "======", 0, $i );
 			$text = preg_replace( "/^{$h}(.+){$h}(\\s|$)/m",
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
+		wfProfileOut( $fname );
 		return $text;
 	}
 
 	/* private */ function doAllQuotes( $text )
 	{
+		$fname = "Parser::doAllQuotes";
+		wfProfileIn( $fname );
 		$outtext = "";
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			$outtext .= $this->doQuotes ( "", $line, "" ) . "\n";
 		}
-		return substr($outtext, 0,-1);
+		$outtext = substr($outtext, 0,-1);
+		wfProfileOut( $fname );
+		return $outtext;
 	}
 
 	/* private */ function doQuotes( $pre, $text, $mode )
