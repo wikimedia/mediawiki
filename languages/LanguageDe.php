@@ -244,6 +244,7 @@
 
 # General errors
 #
+"error" => "Fehler",
 "databaseerror" => "Fehler in der Datenbank",
 "dberrortext"	=> "Es gab einen Syntaxfehler in der Datenbankabfrage.
 Das könnte eine illegale Suchanfrage sein (siehe $5),
@@ -641,6 +642,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikipedias, die noch die alte Software verwenden, möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. Wikipedia ist mit keinem dieser Anbieter geschäftlich verbunden.",
+"alphaindexline" => "$1 zu $2",
 
 # Email this user
 #
@@ -708,8 +710,17 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "imagereverted" => "Auf eine alte Version zurückgesetzt.",
 "rollback" => "Zurücknahme der Aenderungen",
 "rollbacklink" => "Rollback",
+"rollbackfailed" => "Zurücknahme gescheitert",
 "cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
 letzte Beitragende ist der Einzige.",
+"alreadyrolled" => "Die Zurücknahme des Artikels [[$1]] von [[Benutzer:$2|$2]] 
+([[Benutzer Diskussion:$2|Diskussion]]) ist nicht möglich, da eine andere
+Änderung oder Rücknahme erfolgt ist.
+
+Die letzte Änderung ist von [[Benutzer:$3|$3]] 
+([[Benutzer Diskussion:$3|Diskussion]])",
+#   only shown if there is an edit comment
+"editcomment" => "Der Änderungskommentar war: \"<i>$1</i>\".",
 "revertpage" => "Wiederhergestellt zur letzten Änderung von $1",
 
 # Undelete
