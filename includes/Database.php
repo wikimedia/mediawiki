@@ -532,7 +532,13 @@ class Database {
 	 * Get a description of the last error
 	 * See mysql_error() for more details
 	 */
-	function lastError() { return mysql_error(); }
+	function lastError() {
+		$error = mysql_error();
+		if( $error ) {
+			$error .= ' (' . $this->mServer . ')';
+		}
+		return $error;
+	}
 	
 	/**
 	 * Get the number of rows affected by the last write query
