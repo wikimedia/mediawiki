@@ -513,7 +513,7 @@ Please consider breaking the page into smaller sections.",
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
-users with sysop priveledges can edit it. Be sure you are following the
+users with sysop priviledges can edit it. Be sure you are following the
 <a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
