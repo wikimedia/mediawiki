@@ -547,7 +547,9 @@ class Parser
 		return $t ;
 	}
 
-	function internalParse( $text, $linestart, $args = array() )
+	// set isMain=false if you call from a template etc. and don't want to do stuff
+	// like TOC insertion for that content
+	function internalParse( $text, $linestart, $args = array(), $isMain=true )
 	{
 		$fname = "Parser::internalParse";
 		wfProfileIn( $fname );
@@ -565,7 +567,7 @@ class Parser
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
-		$text = $this->formatHeadings( $text );
+		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 
@@ -1507,7 +1509,7 @@ class Parser
 
 			# Run full parser on the included text
 			$text = $this->strip( $text, $this->mStripState );
-			$text = $this->internalParse( $text, (bool)$newline, $assocArgs );
+			$text = $this->internalParse( $text, (bool)$newline, $assocArgs, false );
 			if(!empty($newline)) $text = "\n".$text;
 
 			# Add the result to the strip state for re-inclusion after
@@ -1673,7 +1675,7 @@ class Parser
  *
  */
 
-	/* private */ function formatHeadings( $text )
+	/* private */ function formatHeadings( $text, $isMain=true )
 	{
 		global $wgInputEncoding,$wgRequest,$wgOut;
 		
@@ -1854,10 +1856,9 @@ class Parser
 			# from the wikisource is stored in the title object.
 			# This TOC is now fetched and inserted here if it exists.
 			$collapsedtoc=$wgOut->getToc();
-			if ($collapsedtoc && !$i) {
+			if ($collapsedtoc && !$i && $isMain) {
 				$full = $full.$collapsedtoc;		
-			}
-			$wgOut->setToc("");
+			}			
 
 			if( !empty( $head[$i] ) ) {
 				$full .= $head[$i];

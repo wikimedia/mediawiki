@@ -112,9 +112,10 @@ class Article {
 			# When a page is viewed in collapsed mode, only the intro section and, for
 			# pages with multiple sections, a table of contents are shown.			
 			if($collapse && $action=="view" && $section=="") {
-				$rv=$this->getSection($this->mContent,0,"");				
+				$rv=$this->getSection($this->mContent,0,$sectiontitle);				
 				$wgOut->setToc(Parser::getTocFromSource($this->mContent));				
 				if($anontalk) { $rv = $rv . "\n" . wfMsg("anontalkpage"); }
+				wfProfileOut( $fname );	
 				return $rv;
 			}
 			# $section contains a section number and is used for section viewing and editing.
