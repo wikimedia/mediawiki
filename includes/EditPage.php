@@ -170,7 +170,12 @@ class EditPage {
 				# FIXME: This is confusing. In theory we should attempt to merge, finding
 				# the equivalent section if it's unchanged and avoid the conflict.
 				if($isConflict) {
-					$this->section = "";
+					if( $this->merge() ){
+						// Successful merge! Maybe we should tell the user the good news?
+						$isConflict = false;
+					} else {
+						$this->section = "";
+					}
 				}
 			}
 			if ( ! $isConflict ) {
@@ -444,6 +449,26 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			if ( $wgUseMemCached ) {
 				$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
 			}
+		}
+	}
+
+	/* private */ function merge(){
+		$oldDate = $this->edittime;
+		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" . 
+			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
+		$obj = wfFetchObject($res);
+
+		$yourtext = $obj->cur_text;
+		$ns = $this->mTitle->getNamespace();
+		$title = wfStrencode( $this->mTitle->getDBkey() );
+		$res = wfQuery("SELECT old_text FROM old WHERE old_namespace = $ns AND ".
+		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
+		$obj = wfFetchObject($res);
+		if(wfMerge($obj->old_text, $this->textbox1, $yourtext, $result)){
+			$this->textbox1 = $result;
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
