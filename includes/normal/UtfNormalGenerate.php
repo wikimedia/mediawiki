@@ -171,7 +171,7 @@ if( $out ) {
  * @package MediaWiki
  */
 /** */
-global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp;
+global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp, \$utfCheckNFC;
 \$utfCombiningClass = unserialize( '$serCombining' );
 \$utfCanonicalComp = unserialize( '$serComp' );
 \$utfCanonicalDecomp = unserialize( '$serCanon' );
