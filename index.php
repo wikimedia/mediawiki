@@ -80,8 +80,9 @@ if( !is_null( $search ) && $search !== '' ) {
 		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 		$wgOut->errorpage( "badtitle", "badtitletext" );
 	}
-} else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title &&
-  !count( array_diff( array_keys( $_GET ), array( 'action', 'title' ) ) ) )
+} else if ( ( $action == "view" ) &&
+	(!isset( $_GET['title'] ) || $wgTitle->getPrefixedDBKey() != $_GET['title'] ) &&
+	!count( array_diff( array_keys( $_GET ), array( 'action', 'title' ) ) ) )
 {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
