@@ -182,11 +182,12 @@ class Title {
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
+		#  * % seems to work though
 		# 
 		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
 		# this breaks interlanguage links
 		
-		$set = " !\"$&'()*,\\-.\\/0-9:;<=>?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
+		$set = " %!\"$&'()*,\\-.\\/0-9:;<=>?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
 		return $set;
 	}
 	
@@ -638,6 +639,7 @@ class Title {
 		# Initialisation
 		if ( $imgpre === false ) {
 			$imgpre = ":" . $wgLang->getNsText( Namespace::getImage() ) . ":";
+			# % is needed as well
 			$rxTc = "/[^" . Title::legalChars() . "]/";
 		}
 
