@@ -188,6 +188,7 @@ case "apache":
 	break;
 case "cgi":
 case "cgi-fcgi":
+case "apache2filter":
 	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
 	$conf->prettyURLs = false;
 	break;
