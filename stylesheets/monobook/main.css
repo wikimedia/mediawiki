@@ -953,13 +953,13 @@ head:first-child+body #portal-footer li {
     display: inline;
 }
 /* float/negative margin brokenness */
-* html #bodyContent, 
 * html #bodyContent pre,
 * html #bodyContent div.fullImage {
     overflow: auto;
     overflow-y: hidden;
-    width: 100%;
+    width: 98%;
     margin-bottom: 25px;
+    margin-right: 0;
 }
 /* more float brokenness */
 * html #bodyContent {
