@@ -1042,8 +1042,8 @@ class LanguageZh extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesZh;
-		if($msg = $wgAllMessagesZh[$key])
-			return $msg;
+		if( isset( $wgAllMessagesZh[$key] ) )
+			return $wgAllMessagesZh[$key];
 		else
 			return Language::getMessage( $key );
 	}
@@ -1054,11 +1054,18 @@ class LanguageZh extends LanguageUtf8 {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
 		# we also separate characters as "words"
-		global $wikiLowerChars;
-		return preg_replace(
-		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-		  "' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		  $string );
+		if( function_exists( 'mb_strtolower' ) ) {
+			return preg_replace(
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+				"' U8' . bin2hex( \"$1\" )",
+				mb_strtolower( $string ) );
+		} else {
+			global $wikiLowerChars;
+			return preg_replace(
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+				"' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
+				$string );
+		}
 	}
 }
 

@@ -7,15 +7,18 @@ $wgOutputEncoding	= "UTF-8";
 
 if (function_exists('mb_internal_encoding')) {
 	mb_internal_encoding('UTF-8');
-}
-
-$wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
-$wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
-
-if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
-	require_once( "includes/Utf8Case.php" );
-	$wgMemc->set( $key1, $wikiUpperChars );
-	$wgMemc->set( $key2, $wikiLowerChars );
+} else {
+	# Hack our own case conversion routines
+	
+	# Loading serialized arrays is faster than parsing code :P
+	$wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
+	$wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
+	
+	if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
+		require_once( "includes/Utf8Case.php" );
+		$wgMemc->set( $key1, $wikiUpperChars );
+		$wgMemc->set( $key2, $wikiLowerChars );
+	}
 }
 
 # Base stuff useful to all UTF-8 based language files
@@ -58,17 +61,17 @@ class LanguageUtf8 extends Language {
 		# all strtolower on stripped output or argument
 		# should be removed and all stripForSearch
 		# methods adjusted to that.
-		if (function_exists('mb_strtolower')) {
+		if( function_exists( 'mb_strtolower' ) ) {
 			return preg_replace(
-	        	    "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-			    "'U8' . bin2hex( $1 )",
-          		    mb_strtolower($string) );
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+				"'U8' . bin2hex( \"$1\" )",
+				mb_strtolower( $string ) );
 		} else {
-		  global $wikiLowerChars;
-		  return preg_replace(
-		      "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-		      "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		      $string );
+			global $wikiLowerChars;
+			return preg_replace(
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+				"'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
+				$string );
 		}
 	}
 
