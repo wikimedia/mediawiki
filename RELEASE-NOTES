@@ -240,10 +240,6 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 624) Fix IE freezing rendering whilst waiting for CSS with MonoBook
 * (bug 211) Fix tabbed preferences with XHTML MIME type 
 * Fix for script execution vulnerability.
-* Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
-* Skip message cache initialization on raw page view (quick hack)
-* Fix notice errors in wfDebugDieBacktrace() in XML callbacks
-* Suppress notice error on bogus timestamp input (returns epoch as before)
 
 === Beta 6 fixes ===
 
@@ -253,6 +249,11 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1354) Fix linktrail for fo: language
 * (bug 512) Reload generated CSS on preference change
 * (bug 63) Fix displaying as if logged in after logout
+* Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
+* Skip message cache initialization on raw page view (quick hack)
+* Fix notice errors in wfDebugDieBacktrace() in XML callbacks
+* Suppress notice error on bogus timestamp input (returns epoch as before)
+* Remove unnecessary initialization and double-caching of parser variables
 
 === Caveats ===
 
