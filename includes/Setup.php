@@ -343,7 +343,7 @@ $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
-$wgParserCache = new ParserCache();
+$wgParserCache = new ParserCache( $messageMemc );
 
 if ( $wgUseXMLparser ) $wgParser = new ParserXML();
 else $wgParser = new Parser();

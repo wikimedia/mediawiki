@@ -8,8 +8,17 @@
  *
  * @package MediaWiki
  */
-class ParserCache
-{
+class ParserCache {
+	/**
+	 * Setup a cache pathway with a given back-end storage mechanism.
+	 * May be a memcached client or a BagOStuff derivative.
+	 *
+	 * @param object $memCached
+	 */
+	function ParserCache( &$memCached ) {
+		$this->mMemc =& $memCached;
+	}
+	
 	function getKey( &$article, &$user ) {
 		global $wgDBname;
 		$hash = $user->getPageRenderingHash();
@@ -19,7 +28,7 @@ class ParserCache
 	}
 	
 	function get( &$article, &$user ) {
-		global $wgMemc, $wgCacheEpoch;
+		global $wgCacheEpoch;
 		$fname = 'ParserCache::get';
 		wfProfileIn( $fname );
 
@@ -27,7 +36,7 @@ class ParserCache
 		$pageid = intval( $article->getID() );
 		$key = $this->getKey( $article, $user );
 		wfDebug( "Trying parser cache $key\n" );
-		$value = $wgMemc->get( $key );
+		$value = $this->mMemc->get( $key );
 		if ( is_object( $value ) ) {
 			wfDebug( "Found.\n" );
 			# Delete if article has changed since the cache was made
@@ -40,7 +49,7 @@ class ParserCache
 				} else {
 					wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				}
-				$wgMemc->delete( $key );
+				$this->mMemc->delete( $key );
 				$value = false;
 			}
 		} else {
@@ -53,20 +62,18 @@ class ParserCache
 	}
 	
 	function save( $parserOutput, &$article, &$user ){
-		global $wgMemc;
-
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();
 		$parserOutput->setCacheTime( $now );
 		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $now -->\n";
+		wfDebug( "Saved in parser cache with key $key and timestamp $now\n" );
 
 		if( $parserOutput->containsOldMagic() ){
 			$expire = 3600; # 1 hour
 		} else {
 			$expire = 86400; # 1 day
 		}
-
-		$wgMemc->set( $key, $parserOutput, $expire );
+		$this->mMemc->set( $key, $parserOutput, $expire );
 	}
 }
 
