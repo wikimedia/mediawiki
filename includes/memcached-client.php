@@ -388,7 +388,7 @@ class memcached
       
       if ($this->_debug)
          foreach ($val as $k => $v)
-            $this->_debugprint(sprintf("MemCache: sock %s got %s => %s\r\n", $sock, $k, $v));
+            $this->_debugprint(@sprintf("MemCache: sock %s got %s => %s\r\n", serialize($sock), $k, $v));
 
       return $val[$key];
    }
