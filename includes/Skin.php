@@ -289,7 +289,8 @@ class Skin {
 				$lm = "<br>" . $this->lastModified();
 			} else { $lm = ""; }
 
-			$s .= "<p><em>{$rf}{$lm}</em>\n";
+			$cr = wfMsg( "gnunote" );
+			$s .= "<p><em>{$rf}{$lm} {$cr}</em>\n";
 			return $s;
 		}
 		return $this->doAfterContent();
