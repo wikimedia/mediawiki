@@ -104,11 +104,11 @@ class User {
 		global $wgIP, $wgBlockCache, $wgProxyList;
 
 		if ( -1 != $this->mBlockedby ) { return; }
-	
+
 		$this->mBlockedby = 0;
-		
+
 		# User blocking
-		if ( $this->mId ) {	
+		if ( $this->mId ) {
 			$block = new Block();
 			if ( $block->load( $wgIP , $this->mId ) ) {
 				$this->mBlockedby = $block->mBy;
@@ -262,7 +262,7 @@ class User {
 		} # the following stuff is for non-anonymous users only
 
 		$s = $dbr->getArray( 'user', array( 'user_name','user_password','user_newpassword','user_email',
-		  'user_real_name','user_options','user_rights','user_touched' ), 
+		  'user_real_name','user_options','user_rights','user_touched' ),
 		  array( 'user_id' => $this->mId ), $fname );
 
 		if ( $s !== false ) {
@@ -435,7 +435,7 @@ class User {
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
 			if ( $userSkin == '' ) { $userSkin = 'standard'; }
-			
+
 			if ( !isset( $skinNames[$userSkin] ) ) {
 				# in case the user skin could not be found find a replacement
 				$fallback = array(
@@ -447,7 +447,7 @@ class User {
 				if ( isset( $skinNames['monobook'] ) ) {
 					$fallback[0] = 'SkinMonoBook';
 				}
-				
+
 				if(is_numeric($userSkin) && isset( $fallback[$userSkin]) ){
 					$sn = $fallback[$userSkin];
 				} else {
@@ -457,7 +457,7 @@ class User {
 				# The user skin is available
 				$sn = 'Skin' . $skinNames[$userSkin];
 			}
-			
+
 			# only require the needed stuff
 			switch($sn) {
 				case 'SkinMonoBook':
@@ -483,13 +483,13 @@ class User {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		return $wl->isWatched();
 	}
-	
+
 	function addWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->addWatch();
 		$this->invalidateCache();
 	}
-	
+
 	function removeWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->removeWatch();
@@ -561,7 +561,7 @@ class User {
 		}
 		if ( 0 == $this->mId ) { return; }
 
-		$dbw->update( 'user', 
+		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
 				'user_password' => $this->mPassword,
@@ -586,7 +586,7 @@ class User {
 		$gotid = 0;
 		$s = trim( $this->mName );
 		if ( 0 == strcmp( '', $s ) ) return 0;
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), $fname );
 		if ( $id === false ) {
@@ -599,7 +599,7 @@ class User {
 		$fname = 'User::addToDatabase';
 		$dbw =& wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
-		$dbw->insert( 'user', 
+		$dbw->insert( 'user',
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
@@ -616,21 +616,21 @@ class User {
 
 	function spreadBlock()
 	{
-          	global $wgIP;
+		global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
 		$fname = 'User::spreadBlock';
-		
+
 		wfDebug( "User:spreadBlock()\n" );
 		if ( $this->mId == 0 ) {
 			return;
 		}
-		
+
 		$userblock = Block::newFromDB( '', $this->mId );
 		if ( !$userblock->isValid() ) {
 			return;
 		}
-		
+
 		# Check if this IP address is already blocked
 		$ipblock = Block::newFromDB( $wgIP );
 		if ( $ipblock->isValid() ) {
@@ -638,7 +638,7 @@ class User {
 			$ipblock->updateTimestamp();
 			return;
 		}
-		
+
 		# Make a new block object with the desired properties
 		wfDebug( "Autoblocking {$this->mName}@{$wgIP}\n" );
 		$ipblock->mAddress = $wgIP;
@@ -647,7 +647,7 @@ class User {
 		$ipblock->mReason = wfMsg( 'autoblocker', $this->getName(), $userblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
-		# If the user is already blocked with an expiry date, we don't 
+		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
 		if($userblock->mExpiry) {
 			$ipblock->mExpiry = min ( $userblock->mExpiry, Block::getAutoblockExpiry( $ipblock->mTimestamp ));
@@ -657,7 +657,7 @@ class User {
 
 		# Insert it
 		$ipblock->insert();
-	
+
 	}
 
 	function getPageRenderingHash(){
@@ -665,12 +665,12 @@ class User {
 			return $this->mHash;
 		}
 
-		// stubthreshold is only included below for completeness, 
+		// stubthreshold is only included below for completeness,
 		// it will always be 0 when this function is called by parsercache.
 
 		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getOption( 'highlightbroken' );
-		$confstr .= '!' . $this->getOption( 'stubthreshold' ); 
+		$confstr .= '!' . $this->getOption( 'stubthreshold' );
 		$confstr .= '!' . $this->getOption( 'editsection' );
 		$confstr .= '!' . $this->getOption( 'editsectiononrightclick' );
 		$confstr .= '!' . $this->getOption( 'showtoc' );
@@ -683,7 +683,7 @@ class User {
 	function isAllowedToCreateAccount() {
 		global $wgWhitelistAccount;
 		$allowed = false;
-		
+
 		if (!$wgWhitelistAccount) { return 1; }; // default behaviour
 		foreach ($wgWhitelistAccount as $right => $ok) {
 			$userHasRight = (!strcmp($right, 'user') || in_array($right, $this->getRights()));
@@ -694,11 +694,11 @@ class User {
 
 	# Set mDataLoaded, return previous value
 	# Use this to prevent DB access in command-line scripts or similar situations
-	function setLoaded( $loaded ) 
+	function setLoaded( $loaded )
 	{
 		return wfSetVar( $this->mDataLoaded, $loaded );
 	}
-	
+
 	function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->mName );
 	}
@@ -711,7 +711,7 @@ class User {
 	function isNewbie() {
 		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
 	}
-	
+
 	# Check to see if the given clear-text password is one of the accepted passwords
 	function checkPassword( $password ) {
 		$this->loadFromDatabase();
