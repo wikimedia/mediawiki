@@ -198,6 +198,10 @@ If upgrading from an older release, see the file UPGRADING.
 * Correctly highlight the fallback language variant when the selected 
   variant is disabled. Used in zh: only for now.
 
+=== Beta 5 fixes ===
+
+* (bug 1124) Fix ImageGallery XHTML compliance
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
