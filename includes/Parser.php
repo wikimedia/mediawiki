@@ -623,7 +623,6 @@ class Parser
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )
 		{
-			$threeopen = false;
 			switch ( $token["type"] )
 			{
 				case "text":
