@@ -139,6 +139,11 @@ If upgrading from an older release, see the file UPGRADING.
 * Enhance upload extension blacklist to protect against vulnerable
   Apache configurations
 
+=== Beta 4 fixes ===
+
+* (bug 1090) Fix sitesupport links in CB/classic skins
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
