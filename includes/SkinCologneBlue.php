@@ -188,12 +188,12 @@ class SkinCologneBlue extends Skin {
 			  . $this->historyLink()
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
-
+			  
 			if ( Namespace::getUser() == $tns || Namespace::getTalk(Namespace::getUser()) == $tns ) {
-				if ( 0 != $wgUser->getID() ) {
-					$id=User::idFromName($wgTitle->getText());			        
-					if ($id != 0) {
-						$s .= $sep . $this->userContribsLink();
+				$id=User::idFromName($wgTitle->getText());
+				if ($id != 0) {
+					$s .= $sep . $this->userContribsLink();
+					if ( 0 != $wgUser->getID() ) {
 						$s .= $sep . $this->emailUserLink();
 					}
 				}
