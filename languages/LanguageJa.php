@@ -43,7 +43,7 @@ require_once( "LanguageUtf8.php" );
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook",
-	'myskin' => "MySkin" 
+	'myskin' => "MySkin"
 );
 
 /* private */ $wgMathNamesJa = array(
@@ -221,7 +221,7 @@ require_once( "LanguageUtf8.php" );
 "dberrortext"	=> "データベース検索の文法エラー。
 検索問合わせが間違っているか($5 を参照),
 あるいはソフトウェアのバグかもしれません。
-最後に実行を試みた問い合わせ: 
+最後に実行を試みた問い合わせ:
 <blockquote><tt>$1</tt></blockquote>
 from within function \"<tt>$2</tt>\".
 MySQL returned error \"<tt>$3: $4</tt>\".",
@@ -251,7 +251,7 @@ that it should have found, named \"$1\".
 "filedeleteerror" => "ファイル\"$1\"を削除できませんでした。Could not delete file \"$1\".",
 "filenotfound"	=> "ファイルを\"$1\"は見つかりませんでした。Could not find file \"$1\".",
 "unexpected"	=> "エラー：\"$1\" と \"$2\" が同じです。Unexpected value: \"$1\"=\"$2\".",
-"formerror"		=> "エラー: フォームを送信できませんでした。 Error: could not submit form",	
+"formerror"		=> "エラー: フォームを送信できませんでした。 Error: could not submit form",
 "badarticleerror" => "この動作はこのページではとることができません。 This action cannot be performed on this page.",
 "cannotdelete"	=> "指定されたページ、または画像を削除できませんでした。 Could not delete the page or image specified.",
 
@@ -321,7 +321,7 @@ again as the same or as a different user.\n",
 "previewnote"	=> "これはプレビューです。まだ保存されていません!",
 "previewconflict" => "このプレビューは、上の文章編集エリアの文章を保存した場合に
 どう見えるようになるかを示すものです。
-<p>" /* "This preview reflects the text in the upper 
+<p>" /* "This preview reflects the text in the upper
 text editing area as it will appear if you choose to save." */,
 "editing"		=> "Editing $1",
 "editconflict"	=> "編集競合: $1",
@@ -420,7 +420,7 @@ containing all of the search terms will appear in the result)." */,
 
 # Preferences page ユーザーオプション設定頁
 #
-"preferences"	=> "オプション" /* "Preferences" */, 
+"preferences"	=> "オプション" /* "Preferences" */,
 "prefsnologin" => "ログインしていません" /* "Not logged in" */,
 "prefsnologintext"	=>  "ユーザーオプションを変更するためには、
 <a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
@@ -428,7 +428,7 @@ containing all of the search terms will appear in the result)." */,
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to set user preferences." */,
 "prefsreset"	=> "ユーザー設定は初期化されました。" /* "Preferences have been reset from storage." */,
-"qbsettings"	=> "クイックバー設定" /* "Quickbar settings" */, 
+"qbsettings"	=> "クイックバー設定" /* "Quickbar settings" */,
 "changepassword" => "パスワード変更" /* "Change password" */,
 "skin"			=> "外装" /* "Skin" */,
 "saveprefs"		=> "設定の保存" /* "Save preferences" */,
@@ -436,7 +436,7 @@ to set user preferences." */,
 "oldpassword"	=> "古いパスワード" /* "Old password" */,
 "newpassword"	=> "新しいパスワード" /* "New password" */,
 "retypenew"		=> "新しいパスワードを再入力して下さい" /* "Retype new password" */,
-"textboxsize"	=> "テキストボックスの大きさ" /* "Textbox dimensions" */,
+"textboxsize"	=> "テキストボックスの大きさ" /* "Editing" */,
 "rows"			=> "縦" /* "Rows" */,
 "columns"		=> "横" /* "Columns" */,
 "searchresultshead" => "検索結果の表示" /* "Search result settings" */,
@@ -508,7 +508,7 @@ You must be <a href=\"{{localurle:Special:Userlogin}}\">logged in</a>
 to upload files.",
 "uploadfile"	=> "ファイルのアップロード  Upload file",
 "uploaderror"	=> "アップロード エラー  Upload error",
-"uploadtext"	=> "<strong>ご注意！</strong> 
+"uploadtext"	=> "<strong>ご注意！</strong>
 ここにファイルをアップロードする前に、ウィキペディアの<a href={{localurle:Project:画像利用の方針}}" .
   "\">画像利用の方針</a>を
 よく読んで、方針に反することのないようにして下さい。.
@@ -598,7 +598,7 @@ any copyrights." */,
 "ignorewarning"	=> "警告を無視し、保存してしまう" /* "Ignore warning and save file anyway." */,
 "minlength"		=> "ファイル名は3文字以上である必要があります。" /* "Image names must be at least three letters." */,
 "badfilename"	=> "ファイル名は\"$1\"へ変更されました。" /* "Image name has been changed to \"$1\"." */,
-"badfiletype"	=> "\".$1\" は推奨されているファイルフォーマットではありません。" /* 
+"badfiletype"	=> "\".$1\" は推奨されているファイルフォーマットではありません。" /*
 "\".$1\" is not a recommended image file format." */,
 "largefile"		=> "ファイルサイズは100キロバイト以下に抑えることが推奨されています。"
   /* It is recommended that images not exceed 100k in size." */,
@@ -607,7 +607,7 @@ any copyrights." */,
 以下のリンク($2)をクリックし、ファイルについての情報－出典、製作者や時期、
 その他知っている情報を書き込んで下さい。
 
-" /* " "File \"$1\" uploaded successfully. 
+" /* " "File \"$1\" uploaded successfully.
 Please follow this link: ($2) to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it." */,
@@ -747,7 +747,7 @@ to modify your watchlist." */,
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
   wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
-make it easier to pick out.</p> 
+make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar." */
 
@@ -980,12 +980,12 @@ class LanguageJa extends LanguageUtf8 {
 	}
 
 	# Inherit default userAdjust()
-	
+
 	function date( $ts, $adj = false )
 	{
 		global $wgWeekdayAbbreviationsJa;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
+
 		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ) + $diff,
 			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
 			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
