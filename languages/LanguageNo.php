@@ -666,6 +666,7 @@ og av hvem, og andre ting du vet om filen.",
 "imghistory"	=> "Billedhistorikk",
 "revertimg"		=> "gjenopprett",
 "deleteimg"		=> "slett",
+"deleteimgcompletely"		=> "slett",
 "imghistlegend" => "Forklaring: (nå) = dette er det nåværende bilde, 
 (slett) = slett denne gamle versjonen, (gjenopprett) = gjenopprett en gammel versjon.
 <br><i>Klikk på en dato for å se bildet som ble lastet opp da</i>.",

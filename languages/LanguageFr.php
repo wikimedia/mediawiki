@@ -688,6 +688,7 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "imghistory" => "Historique de l'image",
 "revertimg"  => "rétab",
 "deleteimg"  => "suppr",
+"deleteimgcompletely"  => "suppr",
 "imghistlegend" => "Légende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
 cette ancienne version, (rétab) = rétablir cette ancienne version.
 <br /><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",

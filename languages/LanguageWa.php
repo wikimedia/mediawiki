@@ -763,6 +763,7 @@ saveur å dfait do fitchî.",
 "imghistory"	=> "Istwere di l'&nbsp;imådje",
 "revertimg"		=> "mod.",
 "deleteimg"		=> "oist.",
+"deleteimgcompletely"		=> "oist.",
 "imghistlegend" => "Ledjinde: (ast.) = c'&nbsp;est l'&nbsp;imådje k'&nbsp;i gn a asteure, (oist.) = oister (disfacer)
 cisse viye modêye la, (mod.) = rivni a cisse viye modêye la.
 <br><i>Clitchîz sol date po vey l'&nbsp;imådje evoyeye a cisse date la.</i>",

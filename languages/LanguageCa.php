@@ -578,6 +578,7 @@ i l'autor, i qualsevol altra cosa que pugueu saber al respecte.",
 "imghistory"	=> "Història de la imatge",
 "revertimg"		=> "rev",
 "deleteimg"		=> "borr",
+"deleteimgcompletely"		=> "borr",
 "imghistlegend" => "Simbologia: (act) = aquesta és la imatge actual, (esb) = esborra
 aquesta versió antiga, (rev) = reverteix a aquesta versió antiga.
 <br><i>Cliqueu a la data per veure la imatge carregada en aquesta data</i>.",

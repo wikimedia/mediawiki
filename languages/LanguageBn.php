@@ -642,6 +642,7 @@ created and by whom, and anything else you may know about it.",
 "imghistory"  => "Image history",
 "revertimg"   => "rev",
 "deleteimg"   => "del",
+"deleteimgcompletely"   => "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br><i>Click on date to see image uploaded on that date</i>.",

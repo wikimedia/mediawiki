@@ -683,6 +683,7 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "imghistory" => "Hanes y delwedd",
 "revertimg" => "dych",
 "deleteimg" => "dil",
+"deleteimgcompletely" => "dil",
 "imghistlegend" => "Eglurhad: (cyf) = hon yw'r delwedd cyfoes, (dil) = dilewch yr hen fersiwn hon, (dych) = dychwelio i hen fersiwn hon.
 <br><i>Cliciwch ar dyddiad i weld y delwedd ag oedd llwythiad ar y dyddiad hon</i>.",
 "imagelinks" => "Cysylltiadau delwedd",

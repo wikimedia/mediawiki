@@ -670,6 +670,7 @@ en wat jo fierder mar oan ynformaasje hawwe.",
 "imghistory"	=> "Ofbyldskiednis",
 "revertimg"		=> "tebek",
 "deleteimg"		=> "wisk",
+"deleteimgcompletely"		=> "wisk",
 "imghistlegend"	=> "Utlis: (no) = dit is it hjoeddeiske ôfbyld,
 (wisk) = wiskje dizze âldere ferzje, (tebek) = set ôfbyld tebek nei dizze âldere ferzje.
 <br><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.",

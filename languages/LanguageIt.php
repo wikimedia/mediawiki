@@ -538,6 +538,7 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "imghistory"	=> "Storia di questa immagine",
 "revertimg"		=> "ripr",
 "deleteimg"		=> "canc",
+"deleteimgcompletely"		=> "canc",
 "imghistlegend" => "Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
 <br><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
 "imagelinks"	=> "Link alle immagini",

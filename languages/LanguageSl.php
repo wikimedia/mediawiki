@@ -601,6 +601,7 @@ izdelana in kdo jo je izdelal ali karkoli bi še vedeli o njej.",
 "imghistory"	        => "Zgodovina slike",
 "revertimg"		=> "vrn",
 "deleteimg"		=> "bri",
+"deleteimgcompletely"		=> "bri",
 "imghistlegend"         => "Napotek: (tre) = trenutna slika, (bri) = briši
 zadnjo inačico, (vrn) = vrni sliko na to zadnjo inačico.
 <br><i>Klikni na datum, da vidiš katera slika je bila tedaj naložena</i>.",

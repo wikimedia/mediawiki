@@ -698,6 +698,7 @@ i cokolwiek co wiesz o pliku, a wydaje Ci się ważne.",
 "imghistory" => "Historia pliku",
 "revertimg" => "przywróć",
 "deleteimg" => "usuń",
+"deleteimgcompletely" => "usuń",
 "imghistlegend" => "Legenda: (bież) = to jest obecny plik, (usuń) = usuń
 tę starszą wersję, (przywróć) = przywróć tę starszą wersję.
 <br><i>Kliknij na datę aby zobaczyć jakie pliki przesłano tego dnia</i>.",

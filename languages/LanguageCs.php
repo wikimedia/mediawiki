@@ -506,6 +506,7 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "imghistory"	=> "Historie načtených souborů",
 "revertimg"		=> "res",
 "deleteimg"		=> "for",
+"deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = toto je současná verze souboru, (for) = odstranit tuto starou verzi, (res) = obnovit starou verzi.
 <br><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Odkazy k souboru ",
