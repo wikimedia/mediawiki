@@ -486,7 +486,7 @@ class LoginForm {
 		global $wgEmailAuthentication;
 
 		if ( '' == $this->mName ) {
-			if ( 0 != $wgUser->getID() ) {
+			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {
 				$this->mName = @$_COOKIE[$wgDBname.'UserName'];
@@ -511,7 +511,7 @@ class LoginForm {
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'error', $err );
 		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
-		$template->set( 'createemail', $wgEnableEmail && ($wgUser->getID() != 0) );
+		$template->set( 'createemail', $wgEnableEmail && $wgUser->isLoggedIn() );
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'useemailauthent', $wgEmailAuthentication );

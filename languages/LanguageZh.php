@@ -224,7 +224,7 @@ class LanguageZh extends LanguageZh_cn {
 		}
 
 		// get language variant preference from logged in users 
-		if($wgUser->getID()!=0) {
+		if( $wgUser->isLoggedIn() ) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
 		}
 

@@ -18,7 +18,7 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 	
-	if ( 0 == $wgUser->getID() ||
+	if ( $wgUser->isAnon() ||
 		( !$wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) ) {
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
 		return;

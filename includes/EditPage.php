@@ -156,7 +156,7 @@ class EditPage {
 			$this->blockedIPpage();
 			return;
 		}
-		if ( !$wgUser->getID() && $wgWhitelistEdit ) {
+		if ( $wgUser->isAnon() && $wgWhitelistEdit ) {
 			$this->userNotLoggedInPage();
 			return;
 		}
@@ -249,7 +249,7 @@ class EditPage {
 	 */
 	function tokenOk( &$request ) {
 		global $wgUser;
-		if( $wgUser->getId() == 0 ) {
+		if( $wgUser->isAnon() ) {
 			# Anonymous users may not have a session
 			# open. Don't tokenize.
 			return true;
@@ -318,7 +318,7 @@ class EditPage {
 				$this->blockedIPpage();
 				return;
 			}
-			if ( !$wgUser->getID() && $wgWhitelistEdit ) {
+			if ( $wgUser->isAnon() && $wgWhitelistEdit ) {
 				$this->userNotLoggedInPage();
 				return;
 			}
@@ -541,7 +541,7 @@ class EditPage {
 
 		$minoredithtml = '';
 
-		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
+		if ( $wgUser->isLoggedIn() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
 				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
 				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".
@@ -550,7 +550,7 @@ class EditPage {
 
 		$watchhtml = '';
 
-		if ( 0 != $wgUser->getID() ) {
+		if ( $wgUser->isLoggedIn() ) {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked='checked'":"").
 				" accesskey='".wfMsg('accesskey-watch')."' id='wpWatchthis'  />".
 				"<label for='wpWatchthis' title='".wfMsg('tooltip-watch')."'>{$watchthis}</label>";
@@ -663,7 +663,7 @@ END
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
-		if ( 0 != $wgUser->getID() ) {
+		if ( $wgUser->isLoggedIn() ) {
 			/**
 			 * To make it harder for someone to slip a user a page
 			 * which submits an edit form to the wiki without their
@@ -770,7 +770,7 @@ END
 	 * @todo document
 	 */
 	function userNotLoggedInPage() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );

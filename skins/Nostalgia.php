@@ -66,7 +66,7 @@ class SkinNostalgia extends Skin {
 			$s .=  $sep . $this->editThisPage()
 			  . $sep . $this->historyLink();
 		}
-		if ( 0 == $wgUser->getID() ) {
+		if ( $wgUser->isAnon() ) {
 			$s .= $sep . $this->specialLink( "userlogin" );
 		} else {
 			$s .= $sep . $this->specialLink( "userlogout" );
@@ -77,8 +77,6 @@ class SkinNostalgia extends Skin {
 	}
 
 	function doAfterContent() {
-		global $wgUser, $wgOut;
-
 		$s = "\n</div><br clear='all' />\n";
 
 		$s .= "\n<div id='footer'><hr />";

@@ -25,7 +25,7 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doBeforeContent() {
-		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
+		global $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "";
 		$qb = $this->qbSetting();
@@ -67,7 +67,7 @@ class SkinCologneBlue extends Skin {
 
 	function doAfterContent()
 	{
-		global $wgUser, $wgOut;
+		global $wgOut;
 
 		$s = "\n</div><br clear='all' />\n";
 
@@ -96,9 +96,9 @@ class SkinCologneBlue extends Skin {
 		if ( 0 != $qb ) { $s .= $this->quickBar(); }
 		return $s;
 	}
-	function doGetUserStyles()
-	{
-		global $wgUser, $wgOut, $wgStyleSheetPath;
+	
+	function doGetUserStyles() {
+		global $wgOut, $wgStyleSheetPath;
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
 
@@ -116,8 +116,8 @@ class SkinCologneBlue extends Skin {
 		}
 		return $s;
 	}
-	function sysLinks()
-	{
+	
+	function sysLinks() {
 		global $wgUser, $wgContLang, $wgTitle;
 		$li = $wgContLang->specialPage("Userlogin");
 		$lo = $wgContLang->specialPage("Userlogout");
@@ -140,12 +140,9 @@ class SkinCologneBlue extends Skin {
 		  . " | " .
 		  $this->specialLink( "specialpages" ) . " | ";
 
-		if ( $wgUser->getID() )
-		{
+		if ( $wgUser->isLoggedIn() ) {
 			$s .=  $this->makeKnownLink( $lo, wfMsg( "logout" ), $q );
-		}
-		else
-		{
+		} else {
 			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
 		}
 
@@ -200,7 +197,7 @@ class SkinCologneBlue extends Skin {
 
 			$s .= $sep . $this->makeKnownLink( wfMsgForContent( "edithelppage" ), wfMsg( "edithelp" ) );
 
-			if ( 0 != $wgUser->getID() ) {
+			if( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isAllowed('delete') ) {
@@ -221,7 +218,7 @@ class SkinCologneBlue extends Skin {
 			$s .= $this->talkLink()
 			  . $sep . $this->commentLink() 
 			  . $sep . $this->printableLink();
-			if ( 0 != $wgUser->getID() ) {
+			if ( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->watchThisPage();
 			}
 
@@ -245,7 +242,7 @@ class SkinCologneBlue extends Skin {
 		}
 
 		$s .= $this->menuHead( "qbmyoptions" );
-		if ( 0 != $wgUser->getID() ) {
+		if ( $wgUser->isLoggedIn() ) {
 			$name = $wgUser->getName();
 			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
 				wfMsg( 'mytalk' ) );

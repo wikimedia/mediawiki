@@ -103,7 +103,7 @@ class PreferencesForm {
 	function execute() {
 		global $wgUser, $wgOut, $wgUseDynamicDates;
 		
-		if ( 0 == $wgUser->getID() ) {
+		if ( $wgUser->isAnon() ) {
 			$wgOut->errorpage( 'prefsnologin', 'prefsnologintext' );
 			return;
 		}

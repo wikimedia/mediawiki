@@ -328,7 +328,7 @@ class ChangesList {
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $wgUseRCPatrol && $wgUser->getID() != 0 && 
+		$unpatrolled = $wgUseRCPatrol && $wgUser->isLoggedIn() && 
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') ) && $rc_patrolled == 0;
 		
 		# Make date header if necessary
@@ -489,7 +489,7 @@ class ChangesList {
 		}
 		
 		# Should patrol-related stuff be shown?
-		if ( $wgUseRCPatrol && $wgUser->getID() != 0 && 
+		if ( $wgUseRCPatrol && $wgUser->isLoggedIn() && 
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') )) {
 		  	$rc->unpatrolled = !$rc_patrolled;
 		} else {

@@ -368,7 +368,7 @@ class ImagePage extends Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		if( $wgUser->getId() == 0 ) {
+		if( $wgUser->isAnon() ) {
 			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
