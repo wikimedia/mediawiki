@@ -146,7 +146,7 @@ class LogReader {
 		$sql = "SELECT log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, cur_id,
-			log_comment FROM $logging, $user ";
+			log_comment FROM $user, $logging ";
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ',', $this->joinClauses );
 		}
