@@ -433,7 +433,7 @@ class Skin {
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
-		if ( wfMsg ( "disclaimers" ) != "-" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), wfMsg( "disclaimers" ) ) ;
+		if ( wfMsg ( "disclaimers" ) != "" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), wfMsg( "disclaimers" ) ) ;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -752,7 +752,7 @@ class Skin {
 		
 		}
 		// only show watchlist link if logged in
-		if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
+		if ( wfMsg ( "currentevents" ) != "" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
 		$s .= "\n<br /><hr class='sep' />";
 		$articleExists = $wgTitle->getArticleId();
 		if ( $wgOut->isArticle() || $action =="edit" || $action =="history" || $wpPreview) {				
