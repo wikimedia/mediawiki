@@ -170,4 +170,10 @@ function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray" )
 	return $db->getArray( $table, $vars, $conds, $fname );
 }
 
+function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray" )
+{
+	$db =& wfGetDB();
+	$db->updateArray( $table, $values, $conds, $fname );
+}
+
 ?>
