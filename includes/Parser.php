@@ -1452,7 +1452,7 @@ class Parser
 	/* private */ function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
-                # Prevent to big inclusions
+                # Prevent too big inclusions
                 if(strlen($text)> MAX_INCLUDE_SIZE)
                    return $text;
 
