@@ -137,7 +137,7 @@ class OutputPage {
 				$q = preg_split( "/<\\/\\s*nowiki\\s*>/i", $p[1], 2 );
 				++$nwsecs;
 				$nwlist[$nwsecs] = wfEscapeHTMLTagsOnly($q[0]);
-				$stripped .= $unique;
+				$stripped .= $unique . $nwsecs . "s";
 				$text = $q[1];
 			}
 		}
@@ -151,7 +151,7 @@ class OutputPage {
 					$q = preg_split( "/<\\/\\s*math\\s*>/i", $p[1], 2 );
 					++$mathsecs;
 					$mathlist[$mathsecs] = renderMath($q[0]);
-					$stripped2 .= $unique2;
+					$stripped2 .= $unique2 . $mathsecs . "s";
 					$stripped = $q[1];
 				}
 			}
@@ -167,7 +167,7 @@ class OutputPage {
 				$q = preg_split( "/<\\/\\s*pre\\s*>/i", $p[1], 2 );
 				++$presecs;
 				$prelist[$presecs] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>";
-				$stripped3 .= $unique3;
+				$stripped3 .= $unique3 . $presecs . "s";
 				$stripped2 = $q[1];
 			}
 		}
@@ -177,18 +177,18 @@ class OutputPage {
 		$specialChars = array("\\", "$");
 		$escapedChars = array("\\\\", "\\$");
 		for ( $i = 1; $i <= $presecs; ++$i ) {
-			$text = preg_replace( "/{$unique3}/", str_replace( $specialChars, 
-				$escapedChars, $prelist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique3}{$i}s/", str_replace( $specialChars, 
+				$escapedChars, $prelist[$i] ), $text );
 		}
 
 		for ( $i = 1; $i <= $mathsecs; ++$i ) {
-			$text = preg_replace( "/{$unique2}/", str_replace( $specialChars, 
-				$escapedChars, $mathlist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique2}{$i}s/", str_replace( $specialChars, 
+				$escapedChars, $mathlist[$i] ), $text );
 		}
 
 		for ( $i = 1; $i <= $nwsecs; ++$i ) {
-			$text = preg_replace( "/{$unique}/", str_replace( $specialChars, 
-				$escapedChars, $nwlist[$i] ), $text, 1 );
+			$text = preg_replace( "/{$unique}{$i}s/", str_replace( $specialChars, 
+				$escapedChars, $nwlist[$i] ), $text );
 		}
 		$this->addHTML( $text );
 		wfProfileOut( $fname );
