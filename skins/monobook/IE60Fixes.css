@@ -67,7 +67,6 @@ div.visualClear {
     line-height: 0;
 }
 textarea {
-    overflow: auto;
     width: 96%;
 }
 
