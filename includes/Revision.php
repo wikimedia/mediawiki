@@ -406,6 +406,8 @@ class Revision {
 			), $fname
 		);
 		
+		$this->mId = $revisionId;
+		
 		wfProfileOut( $fname );
 		return $revisionId;
 	}

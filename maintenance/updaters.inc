@@ -35,6 +35,7 @@ $wgNewFields = array(
 	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
 	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
+ 	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
 );
 
 function add_table( $name, $patch ) {

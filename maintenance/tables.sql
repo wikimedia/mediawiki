@@ -91,6 +91,7 @@ CREATE TABLE /*$wgDBprefix*/archive (
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
   ar_flags tinyblob NOT NULL default '',
+  ar_rev_id int(8) unsigned,
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 );
