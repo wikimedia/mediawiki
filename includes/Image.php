@@ -578,7 +578,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	$dbw =& wfGetDB( DB_MASTER );
 
 	# img_name must be unique
-	if ( !$dbw->indexUnique( 'image', 'img_name' ) ) {
+	if ( !$dbw->indexUnique( 'image', 'img_name' ) && !$dbw->indexExists('image','PRIMARY') ) {
 		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 	}
 
