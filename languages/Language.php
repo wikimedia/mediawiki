@@ -487,7 +487,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "redirectedfrom" => "(Redirected from $1)",
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
-"gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"gnunote" => "All text is available under the terms of the <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(From $wgServer)",
 "protectedpage" => "Protected page",
 "administrators" => "$wgMetaNamespace:Administrators",
@@ -745,7 +745,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='/wiki/$wgMetaNamespace:Protected_page_guidelines'>protected page
+<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages
