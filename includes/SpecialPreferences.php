@@ -36,7 +36,7 @@ class PreferencesForm {
 	 * Load some values
 	 */
 	function PreferencesForm( &$request ) {	
-		global $wgLang, $wgAllowRealName;
+		global $wgLang, $wgContLang, $wgAllowRealName;
 		
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
 		$this->mOldpass = $request->getVal( 'wpOldpass' );
@@ -81,7 +81,7 @@ class PreferencesForm {
 		# Note: namespaces don't necessarily have consecutive keys
 		$this->mSearchNs = array();
 		if ( $this->mPosted ) {
-			$namespaces = $wgLang->getNamespaces();
+			$namespaces = $wgContLang->getNamespaces();
 			foreach ( $namespaces as $i => $namespace ) {
 				if ( $i >= 0 ) {
 					$this->mSearchNs[$i] = $request->getCheck( "wpNs$i" ) ? 1 : 0;
@@ -218,7 +218,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function resetPrefs() {
-		global $wgUser, $wgLang, $wgAllowRealName;
+		global $wgUser, $wgLang, $wgContLang, $wgAllowRealName;
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
@@ -249,7 +249,7 @@ class PreferencesForm {
 			$this->mToggles[$tname] = $wgUser->getOption( $tname );
 		}
 
-		$namespaces = $wgLang->getNamespaces();
+		$namespaces = $wgContLang->getNamespaces();
 		foreach ( $namespaces as $i => $namespace ) {
 			if ( $i >= 0 ) {
 				$this->mSearchNs[$i] = $wgUser->getOption( 'searchNs'.$i );
@@ -261,10 +261,10 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function namespacesCheckboxes() {
-		global $wgLang, $wgUser;
+		global $wgContLang, $wgUser;
 		
 		# Determine namespace checkboxes
-		$namespaces = $wgLang->getNamespaces();
+		$namespaces = $wgContLang->getNamespaces();
 		$r1 = '';
 
 		foreach ( $namespaces as $i => $name ) {

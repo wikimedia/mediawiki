@@ -38,8 +38,8 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
-		$name = $skin->makeLink( $wgLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
+		global $wgContLang;
+		$name = $skin->makeLink( $wgContLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
 		if( '' != $result->type ) {
 			$name .= ' (' .
 			$skin->makeLink( wfMsg( "administrators" ), $result->type) .

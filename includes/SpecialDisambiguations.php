@@ -54,8 +54,8 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgLang ;
-		$ns = $wgLang->getNamespaces() ;
+		global $wgContLang ;
+		$ns = $wgContLang->getNamespaces() ;
 
 		$from = $skin->makeKnownLink( $ns[$result->ns_art].':'.$result->title_art ,'');
 		$edit = $skin->makeBrokenLink( $ns[$result->ns_art].':'.$result->title_art , "(".wfMsg("qbedit").")" , 'redirect=no');

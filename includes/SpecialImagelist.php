@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialImagelist() {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	
 	$sort = $wgRequest->getVal( 'sort' );
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
@@ -67,7 +67,7 @@ function wfSpecialImagelist() {
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
-	$here = $wgLang->specialPage( "Imagelist" );
+	$here = $wgContLang->specialPage( "Imagelist" );
 
 	$fill = "";
 	$first = true;
@@ -110,7 +110,7 @@ function wfSpecialImagelist() {
 		$name = $s->img_name;
 		$ut = $s->img_user_text;
 		if ( 0 == $s->img_user ) { $ul = $ut; }
-		else { $ul = $sk->makeLink( $wgLang->getNsText(
+		else { $ul = $sk->makeLink( $wgContLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
 
 		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) .
@@ -118,7 +118,7 @@ function wfSpecialImagelist() {
 
 		$nb = wfMsg( "nbytes", $wgLang->formatNum( $s->img_size ) );
 		$l = "(" .
-		  $sk->makeKnownLink( $wgLang->getNsText(
+		  $sk->makeKnownLink( $wgContLang->getNsText(
 		  Namespace::getImage() ) . ":{$name}", wfMsg( "imgdesc" ) ) .
 		  ") {$ilink} . . {$nb} . . {$ul} . . " .
 		  $wgLang->timeanddate( $s->img_timestamp, true );

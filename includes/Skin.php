@@ -212,10 +212,10 @@ class Skin {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgLang, $wgAllowUserJs;
+		global $wgStylePath, $wgUser, $wgContLang, $wgAllowUserJs;
 		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->getID() != 0 ) { # logged in
-			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+			$userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
 			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
 		}
@@ -224,16 +224,16 @@ class Skin {
 
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
+		global $wgOut, $wgStylePath, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
-		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
+		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
 		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
-				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+				$userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 				$s.= '@import "'.$this->makeUrl($userpage.'/'.$this->getSkinName().'.css', 'action=raw&ctype=text/css').'";'."\n";
 			}
 		}
@@ -263,9 +263,9 @@ class Skin {
 	 * Some styles that are set by user through the user settings interface.
 	 */
 	function doGetUserStyles() {
-		global $wgUser, $wgLang;
+		global $wgUser, $wgContLang;
 
-		$csspage = $wgLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
+		$csspage = $wgContLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
 		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
 
 		if ( 1 == $wgUser->getOption( 'underline' ) ) {
@@ -313,11 +313,11 @@ class Skin {
 	}
 
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgContLang;
 
 		$same = ($link == $text);
 		$link = urldecode( $link );
-		$link = $wgLang->checkTitleEncoding( $link );
+		$link = $wgContLang->checkTitleEncoding( $link );
 		$link = str_replace( '_', ' ', $link );
 		$link = htmlspecialchars( $link );
 
@@ -389,7 +389,7 @@ class Skin {
 	}
 
 	function doBeforeContent() {
-		global $wgUser, $wgOut, $wgTitle, $wgLang, $wgSiteNotice;
+		global $wgUser, $wgOut, $wgTitle, $wgContLang, $wgSiteNotice;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -410,7 +410,7 @@ class Skin {
 
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
-		if($wgLang->isRTL()) $left = !$left;
+		if($wgContLang->isRTL()) $left = !$left;
 
 		if ( !$shove ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
@@ -418,13 +418,13 @@ class Skin {
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
-		$l = $wgLang->isRTL() ? 'right' : 'left';
+		$l = $wgContLang->isRTL() ? 'right' : 'left';
 		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
 
 		$s .= $this->topLinks() ;
 		$s .= "<p class='subtitle'>" . $this->pageTitleLinks() . "</p>\n";
 
-		$r = $wgLang->isRTL() ? "left" : "right";
+		$r = $wgContLang->isRTL() ? "left" : "right";
 		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br />" . $this->searchForm() . "</td>";
@@ -532,7 +532,7 @@ class Skin {
 	}
 
 	function doAfterContent() {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgContLang;
 		$fname =  'Skin::doAfterContent';
 		wfProfileIn( $fname );
 		wfProfileIn( $fname.'-1' );
@@ -547,14 +547,14 @@ class Skin {
 		$qb = $this->qbSetting();
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
-		if($wgLang->isRTL()) $left = !$left;
+		if($wgContLang->isRTL()) $left = !$left;
 
 		if ( $shove && $left ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
 		wfProfileOut( $fname.'-2' );
 		wfProfileIn( $fname.'-3' );
-		$l = $wgLang->isRTL() ? 'right' : 'left';
+		$l = $wgContLang->isRTL() ? 'right' : 'left';
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
@@ -579,7 +579,7 @@ class Skin {
 	}
 
 	function pageTitleLinks() {
-		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgUseApproval, $wgRequest;
+		global $wgOut, $wgTitle, $wgUser, $wgContLang, $wgUseApproval, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		$action = $wgRequest->getText( 'action' );
@@ -617,7 +617,7 @@ class Skin {
 			if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
 						$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
 				$n =$wgUser->getName();
-				$tl = $this->makeKnownLink( $wgLang->getNsText(
+				$tl = $this->makeKnownLink( $wgContLang->getNsText(
 							Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
 						wfMsg('newmessageslink') );
 				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl ) . '</strong>';
@@ -634,13 +634,13 @@ class Skin {
 	}
 
 	function getUndeleteLink() {
-		global $wgUser, $wgTitle, $wgLang, $action;
+		global $wgUser, $wgTitle, $wgContLang, $action;
 		if( $wgUser->isSysop() &&
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) ) {
 			return wfMsg( 'thisisdeleted',
 				$this->makeKnownLink(
-					$wgLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
+					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
 					wfMsg( 'restorelink', $n ) ) );
 		}
 		return '';
@@ -720,19 +720,19 @@ class Skin {
 	}
 
 	function nameAndLogin() {
-		global $wgUser, $wgTitle, $wgLang, $wgShowIPinHeader, $wgIP;
+		global $wgUser, $wgTitle, $wgLang, $wgContLang, $wgShowIPinHeader, $wgIP;
 
-		$li = $wgLang->specialPage( 'Userlogin' );
-		$lo = $wgLang->specialPage( 'Userlogout' );
+		$li = $wgContLang->specialPage( 'Userlogin' );
+		$lo = $wgContLang->specialPage( 'Userlogout' );
 
 		$s = '';
 		if ( 0 == $wgUser->getID() ) {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get('session.name')] ) ) {
 				$n = $wgIP;
 
-				$tl = $this->makeKnownLink( $wgLang->getNsText(
+				$tl = $this->makeKnownLink( $wgContLang->getNsText(
 				  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-				  $wgLang->getNsText( Namespace::getTalk( 0 ) ) );
+				  $wgContLang->getNsText( Namespace::getTalk( 0 ) ) );
 
 				$s .= $n . ' ('.$tl.')';
 			} else {
@@ -749,13 +749,13 @@ class Skin {
 		} else {
 			$n = $wgUser->getName();
 			$rt = $wgTitle->getPrefixedURL();
-			$tl = $this->makeKnownLink( $wgLang->getNsText(
+			$tl = $this->makeKnownLink( $wgContLang->getNsText(
 			  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-			  $wgLang->getNsText( Namespace::getTalk( 0 ) ) );
+			  $wgContLang->getNsText( Namespace::getTalk( 0 ) ) );
 
 			$tl = " ({$tl})";
 
-			$s .= $this->makeKnownLink( $wgLang->getNsText(
+			$s .= $this->makeKnownLink( $wgContLang->getNsText(
 			  Namespace::getUser() ) . ":{$n}", $n ) . "{$tl}<br />" .
 			  $this->makeKnownLink( $lo, wfMsg( 'logout' ),
 			  "returnto={$rt}" ) . ' | ' .
@@ -957,7 +957,7 @@ class Skin {
 	}
 
 	function quickBar() {
-		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgLang;
+		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgContLang;
 		global $wgDisableUploads, $wgRemoteUploads;
 
 		$fname =  'Skin::quickBar';
@@ -976,7 +976,7 @@ class Skin {
 		  . $sep . $this->specialLink( 'randompage' );
 		if ($wgUser->getID()) {
 		$s.= $sep . $this->specialLink( 'watchlist' ) ;
-		$s .= $sep .$this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+		$s .= $sep .$this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 		  wfMsg( 'mycontris' ), 'target=' . wfUrlencode($wgUser->getName() ) );
 
 		}
@@ -1019,7 +1019,7 @@ class Skin {
 					}
 
 					$link = $wgTitle->getText();
-					if ($nstext = $wgLang->getNsText($tns) ) { # add namespace if necessary
+					if ($nstext = $wgContLang->getNsText($tns) ) { # add namespace if necessary
 						$link = $nstext . ':' . $link ;
 					}
 
@@ -1102,7 +1102,7 @@ class Skin {
 	}
 
 	function specialPagesList() {
-		global $wgUser, $wgOut, $wgLang, $wgServer, $wgRedirectScript;
+		global $wgUser, $wgOut, $wgContLang, $wgServer, $wgRedirectScript;
 		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
@@ -1124,7 +1124,7 @@ class Skin {
 		}
 		$go = wfMsg( 'go' );
 		$sp = wfMsg( 'specialpages' );
-		$spp = $wgLang->specialPage( 'Specialpages' );
+		$spp = $wgContLang->specialPage( 'Specialpages' );
 
 		$s = '<form id="specialpages" method="get" class="inline" ' .
 		  'action="' . htmlspecialchars( "{$wgServer}{$wgRedirectScript}" ) . "\">\n";
@@ -1132,7 +1132,7 @@ class Skin {
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
 
 		foreach ( $a as $name => $desc ) {
-			$p = $wgLang->specialPage( $name );
+			$p = $wgContLang->specialPage( $name );
 			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
 		}
 		$s .= "</select>\n";
@@ -1251,10 +1251,10 @@ class Skin {
 	}
 
 	function moveThisPage() {
-		global $wgTitle, $wgLang;
+		global $wgTitle, $wgContLang;
 
 		if ( $wgTitle->userCanEdit() ) {
-			$s = $this->makeKnownLink( $wgLang->specialPage( 'Movepage' ),
+			$s = $this->makeKnownLink( $wgContLang->specialPage( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} // no message if page is protected - would be redundant
 		return $s;
@@ -1269,36 +1269,36 @@ class Skin {
 	}
 
 	function whatLinksHere() {
-		global $wgTitle, $wgLang;
+		global $wgTitle, $wgContLang;
 
-		$s = $this->makeKnownLink( $wgLang->specialPage( 'Whatlinkshere' ),
+		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ),
 		  wfMsg( 'whatlinkshere' ), 'target=' . $wgTitle->getPrefixedURL() );
 		return $s;
 	}
 
 	function userContribsLink() {
-		global $wgTitle, $wgLang;
+		global $wgTitle, $wgContLang;
 
-		$s = $this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 		  wfMsg( 'contributions' ), 'target=' . $wgTitle->getPartialURL() );
 		return $s;
 	}
 
 	function emailUserLink() {
-		global $wgTitle, $wgLang;
+		global $wgTitle, $wgContLang;
 
-		$s = $this->makeKnownLink( $wgLang->specialPage( 'Emailuser' ),
+		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Emailuser' ),
 		  wfMsg( 'emailuser' ), 'target=' . $wgTitle->getPartialURL() );
 		return $s;
 	}
 
 	function watchPageLinksLink() {
-		global $wgOut, $wgTitle, $wgLang;
+		global $wgOut, $wgTitle, $wgContLang;
 
 		if ( ! $wgOut->isArticleRelated() ) {
 			$s = '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			$s = $this->makeKnownLink( $wgLang->specialPage(
+			$s = $this->makeKnownLink( $wgContLang->specialPage(
 			  'Recentchangeslinked' ), wfMsg( 'recentchangeslinked' ),
 			  'target=' . $wgTitle->getPrefixedURL() );
 		}
@@ -1306,45 +1306,45 @@ class Skin {
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgTitle, $wgUseNewInterlanguage;
+		global $wgOut, $wgContLang, $wgTitle, $wgUseNewInterlanguage;
 
 		$a = $wgOut->getLanguageLinks();
 		if ( 0 == count( $a ) ) {
 			if ( !$wgUseNewInterlanguage ) return '';
-			$ns = $wgLang->getNsIndex ( $wgTitle->getNamespace () ) ;
+			$ns = $wgContLang->getNsIndex ( $wgTitle->getNamespace () ) ;
 			if ( $ns != 0 AND $ns != 1 ) return '' ;
 			$pn = 'Intl' ;
 			$x = 'mode=addlink&xt='.$wgTitle->getDBkey() ;
-			return $this->makeKnownLink( $wgLang->specialPage( $pn ),
+			return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
 				  wfMsg( 'intl' ) , $x );
 			}
 
 		if ( !$wgUseNewInterlanguage ) {
 			$s = wfMsg( 'otherlanguages' ) . ': ';
 		} else {
-			global $wgLanguageCode ;
+			global $wgContLanguageCode ;
 			$x = 'mode=zoom&xt='.$wgTitle->getDBkey() ;
-			$x .= '&xl='.$wgLanguageCode ;
-			$s =  $this->makeKnownLink( $wgLang->specialPage( 'Intl' ),
+			$x .= '&xl='.$wgContLanguageCode ;
+			$s =  $this->makeKnownLink( $wgContLang->specialPage( 'Intl' ),
 				  wfMsg( 'otherlanguages' ) , $x ) . ': ' ;
 			}
 
 		$s = wfMsg( 'otherlanguages' ) . ': ';
 		$first = true;
-		if($wgLang->isRTL()) $s .= '<span dir="LTR">';
+		if($wgContLang->isRTL()) $s .= '<span dir="LTR">';
 		foreach( $a as $l ) {
 			if ( ! $first ) { $s .= ' | '; }
 			$first = false;
 
 			$nt = Title::newFromText( $l );
 			$url = $nt->getFullURL();
-			$text = $wgLang->getLanguageName( $nt->getInterwiki() );
+			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			if ( '' == $text ) { $text = $l; }
 			$style = $this->getExternalLinkAttributes( $l, $text );
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}
-		if($wgLang->isRTL()) $s .= '</span>';
+		if($wgContLang->isRTL()) $s .= '</span>';
 		return $s;
 	}
 
@@ -1383,7 +1383,7 @@ class Skin {
 	}
 
 	function talkLink() {
-		global $wgLang, $wgTitle, $wgLinkCache;
+		global $wgContLang, $wgTitle, $wgLinkCache;
 
 		$tns = $wgTitle->getNamespace();
 		if ( -1 == $tns ) { return ''; }
@@ -1413,7 +1413,7 @@ class Skin {
 			$lns = Namespace::getTalk( $tns );
 			$text=$tp;
 		}
-		$n = $wgLang->getNsText( $lns );
+		$n = $wgContLang->getNsText( $lns );
 		if ( '' == $n ) { $link = $pn; }
 		else { $link = $n.':'.$pn; }
 
@@ -1425,7 +1425,7 @@ class Skin {
 	}
 
 	function commentLink() {
-		global $wgLang, $wgTitle, $wgLinkCache;
+		global $wgContLang, $wgTitle, $wgLinkCache;
 
 		$tns = $wgTitle->getNamespace();
 		if ( -1 == $tns ) { return ''; }
@@ -1434,7 +1434,7 @@ class Skin {
 
 		# assert Namespace::isTalk( $lns )
 
-		$n = $wgLang->getNsText( $lns );
+		$n = $wgContLang->getNsText( $lns );
 		$pn = $wgTitle->getText();
 
 		$link = $n.':'.$pn;
@@ -1832,7 +1832,7 @@ class Skin {
 	}
 
 	function makeImageLinkObj( $nt, $alt = '' ) {
-		global $wgLang, $wgUseImageResize;
+		global $wgContLang, $wgUseImageResize;
 		$img   = Image::newFromTitle( $nt );
 		$url   = $img->getURL();
 
@@ -1914,7 +1914,7 @@ class Skin {
 				# If  thumbnail width has not been provided, it is set
 				# here to 180 pixels
 				if ( $align == '' ) {
-					$align = $wgLang->isRTL() ? 'left' : 'right';
+					$align = $wgContLang->isRTL() ? 'left' : 'right';
 				}
 				if ( ! isset($width) ) {
 					$width = 180;
@@ -1961,7 +1961,7 @@ class Skin {
 	 * $img is an Image object
 	 */
 	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
-		global $wgStylePath, $wgLang;
+		global $wgStylePath, $wgContLang;
 		# $image = Title::makeTitleSafe( NS_IMAGE, $name );
 		$url  = $img->getURL();
 
@@ -2020,8 +2020,8 @@ class Skin {
 		$u = $img->getEscapeLocalURL();
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
-		$magnifyalign = $wgLang->isRTL() ? 'left' : 'right';
-		$textalign = $wgLang->isRTL() ? ' style="text-align:right"' : '';
+		$magnifyalign = $wgContLang->isRTL() ? 'left' : 'right';
+		$textalign = $wgContLang->isRTL() ? ' style="text-align:right"' : '';
 
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == '' ) {
@@ -2068,11 +2068,11 @@ class Skin {
 	}
 
 	function specialLink( $name, $key = '' ) {
-		global $wgLang;
+		global $wgContLang;
 
 		if ( '' == $key ) { $key = strtolower( $name ); }
-		$pn = $wgLang->ucfirst( $name );
-		return $this->makeKnownLink( $wgLang->specialPage( $pn ),
+		$pn = $wgContLang->ucfirst( $name );
+		return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
 		  wfMsg( $key ) );
 	}
 
@@ -2120,7 +2120,7 @@ class Skin {
 	 * Enhanced RC ungrouped line
 	 */
 	function recentChangesBlockLine ( $rcObj ) {
-		global $wgStylePath, $wgLang ;
+		global $wgStylePath, $wgContLang ;
 
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
@@ -2175,7 +2175,7 @@ class Skin {
 		# Comment
 		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment, $rcObj->getTitle());
-			$r .= $wgLang->emphasize( ' ('.$rc_comment.')' );
+			$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' );
 		}
 
 		$r .= "<br />\n" ;
@@ -2186,7 +2186,7 @@ class Skin {
 	 * Enhanced RC group
 	 */
 	function recentChangesBlockGroup ( $block ) {
-		global $wgStylePath, $wgLang ;
+		global $wgStylePath, $wgContLang ;
 
 		$r = '' ;
 		$M = wfMsg( 'minoreditletter' );
@@ -2219,7 +2219,7 @@ class Skin {
 		$rcl = 'RCL'.$this->rcCacheIndex ;
 		$rcm = 'RCM'.$this->rcCacheIndex ;
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')" ;
-		$arrowdir = $wgLang->isRTL() ? 'l' : 'r';
+		$arrowdir = $wgContLang->isRTL() ? 'l' : 'r';
 		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/common/images/Arr_'.$arrowdir.'.png" width="12" height="12" /></a></span>' ;
 		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/common/images/Arr_d.png" width="12" height="12" /></a></span>' ;
 		$r .= $tl ;
@@ -2291,7 +2291,7 @@ class Skin {
 			$r .= $rcObj->usertalklink ;
 			if ( $rc_comment != '' ) {
 				$rc_comment=$this->formatComment($rc_comment, $rcObj->getTitle());
-				$r .= $wgLang->emphasize( ' ('.$rc_comment.')' ) ;
+				$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' ) ;
 			}
 			$r .= "<br />\n" ;
 		}
@@ -2335,18 +2335,19 @@ class Skin {
 	}
 
 	function recentChangesLineOld( &$rc, $watched = false ) {
-		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
+		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
 
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# Make date header if necessary
-		$date = $wgLang->date( $rc_timestamp, true);
+		$date = $wgContLang->date( $rc_timestamp, true);
+		$uidate = $wgLang->date( $rc_timestamp, true);
 		$s = '';
 		if ( $date != $this->lastdate ) {
 			if ( '' != $this->lastdate ) { $s .= "</ul>\n"; }
-			$s .= "<h4>{$date}</h4>\n<ul class='special'>";
+			$s .= "<h4>{$uidate}</h4>\n<ul class='special'>";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
@@ -2415,26 +2416,26 @@ class Skin {
 
 		# User link (or contributions for unregistered users)
 		if ( 0 == $rc_user ) {
-			$userLink = $this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+			$userLink = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 			$rc_user_text, 'target=' . $rc_user_text );
 		} else {
-			$userLink = $this->makeLink( $wgLang->getNsText( NS_USER ) . ':'.$rc_user_text, $rc_user_text );
+			$userLink = $this->makeLink( $wgContLang->getNsText( NS_USER ) . ':'.$rc_user_text, $rc_user_text );
 		}
 		$s .= $userLink;
 
 		# User talk link
-		$talkname=$wgLang->getNsText(NS_TALK); # use the shorter name
+		$talkname=$wgContLang->getNsText(NS_TALK); # use the shorter name
 		global $wgDisableAnonTalk;
 		if( 0 == $rc_user && $wgDisableAnonTalk ) {
 			$userTalkLink = '';
 		} else {
-			$utns=$wgLang->getNsText(NS_USER_TALK);
+			$utns=$wgContLang->getNsText(NS_USER_TALK);
 			$userTalkLink= $this->makeLink($utns . ':'.$rc_user_text, $talkname );
 		}
 		# Block link
 		$blockLink='';
 		if ( ( 0 == $rc_user ) && $wgUser->isSysop() ) {
-			$blockLink = $this->makeKnownLink( $wgLang->specialPage(
+			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
 			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
 
 		}
@@ -2447,7 +2448,7 @@ class Skin {
 		# Add comment
 		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment,$rc->getTitle());
-			$s .= $wgLang->emphasize(' (' . $rc_comment . ')');
+			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
 		$s .= "</li>\n";
 
@@ -2455,7 +2456,7 @@ class Skin {
 	}
 
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
-		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
+		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
@@ -2465,13 +2466,14 @@ class Skin {
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# If it's a new day, add the headline and flush the cache
-		$date = $wgLang->date( $rc_timestamp, true);
+		$date = $wgContLang->date( $rc_timestamp, true);
+		$uidate = $wgLang->date( $rc_timestamp, true);
 		$ret = '';
 		if ( $date != $this->lastdate ) {
 			# Process current cache
 			$ret = $this->recentChangesBlock () ;
 			$this->rc_cache = array() ;
-			$ret .= "<h4>{$date}</h4>\n";
+			$ret .= "<h4>{$uidate}</h4>\n";
 			$this->lastdate = $date;
 		}
 
@@ -2489,7 +2491,7 @@ class Skin {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
 
-		$time = $wgLang->time( $rc_timestamp, true, $wgRCSeconds );
+		$time = $wgContLang->time( $rc_timestamp, true, $wgRCSeconds );
 		$rc->watched = $watched ;
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
@@ -2516,10 +2518,10 @@ class Skin {
 
 		# Make user link (or user contributions for unregistered users)
 		if ( $rc_user == 0 ) {
-			$userLink = $this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+			$userLink = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 			$rc_user_text, 'target=' . $rc_user_text );
 		} else {
-			$userLink = $this->makeLink( $wgLang->getNsText(
+			$userLink = $this->makeLink( $wgContLang->getNsText(
 			  Namespace::getUser() ) . ':'.$rc_user_text, $rc_user_text );
 		}
 
@@ -2529,13 +2531,13 @@ class Skin {
 		$rc->difflink = $diffLink;
 
 		# Make user talk link
-		$utns=$wgLang->getNsText(NS_USER_TALK);
-		$talkname=$wgLang->getNsText(NS_TALK); # use the shorter name
+		$utns=$wgContLang->getNsText(NS_USER_TALK);
+		$talkname=$wgContLang->getNsText(NS_TALK); # use the shorter name
 		$userTalkLink= $this->makeLink($utns . ':'.$rc_user_text, $talkname );
 
 		global $wgDisableAnonTalk;
 		if ( ( 0 == $rc_user ) && $wgUser->isSysop() ) {
-			$blockLink = $this->makeKnownLink( $wgLang->specialPage(
+			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
 			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
 			if( $wgDisableAnonTalk )
 				$rc->usertalklink = ' ('.$blockLink.')';
@@ -2582,7 +2584,7 @@ class Skin {
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 */
 	function formatComment($comment, $title = NULL) {
-		global $wgLang;
+		global $wgContLang;
 		$comment = htmlspecialchars( $comment );
 
 		# The pattern for autogen comments is / * foo * /, which makes for
@@ -2613,7 +2615,7 @@ class Skin {
 
 		# format regular and media links - all other wiki formatting
 		# is ignored
-		$medians = $wgLang->getNsText(Namespace::getMedia()).':';
+		$medians = $wgContLang->getNsText(Namespace::getMedia()).':';
 		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
 			# Handle link renaming [[foo|text]] will show link as "text"
 			if( "" != $match[3] ) {
@@ -2643,7 +2645,7 @@ class Skin {
 	}
 
 	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description ) {
-		global $wgUser, $wgLang, $wgTitle;
+		global $wgUser, $wgLang, $wgContLang, $wgTitle;
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
 		$del = wfMsg( 'deleteimg' );
@@ -2681,7 +2683,7 @@ class Skin {
 		if ( 0 == $user ) {
 			$userlink = $usertext;
 		} else {
-			$userlink = $this->makeLink( $wgLang->getNsText( Namespace::getUser() ) .
+			$userlink = $this->makeLink( $wgContLang->getNsText( Namespace::getUser() ) .
 			               ':'.$usertext, $usertext );
 		}
 		$nbytes = wfMsg( 'nbytes', $size );
@@ -2692,7 +2694,7 @@ class Skin {
 
 		if ( '' != $description && '*' != $description ) {
 			$sk=$wgUser->getSkin();
-			$s .= $wgLang->emphasize(' (' . $sk->formatComment($description,$wgTitle) . ')');
+			$s .= $wgContLang->emphasize(' (' . $sk->formatComment($description,$wgTitle) . ')');
 		}
 		$s .= "</li>\n";
 		return $s;
@@ -2752,13 +2754,13 @@ class Skin {
 
 	function editSectionLinkForOther( $title, $section ) {
 		global $wgRequest;
-		global $wgUser, $wgLang;
+		global $wgUser, $wgContLang;
 
 		$title = Title::newFromText($title);
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLink($title->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
 
-		if( $wgLang->isRTL() ) {
+		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
 			$nearside = 'right';
 		} else {
@@ -2771,7 +2773,7 @@ class Skin {
 
 	function editSectionLink( $section ) {
 		global $wgRequest;
-		global $wgTitle, $wgUser, $wgLang;
+		global $wgTitle, $wgUser, $wgContLang;
 
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
 			# Section edit links would be out of sync on an old page.
@@ -2783,7 +2785,7 @@ class Skin {
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
 
-		if( $wgLang->isRTL() ) {
+		if( $wgContLang->isRTL() ) {
 			$farside = 'left';
 			$nearside = 'right';
 		} else {

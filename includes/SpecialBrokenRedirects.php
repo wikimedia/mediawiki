@@ -42,9 +42,9 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgLang ;
+		global $wgContLang ;
 		
-		$ns = $wgLang->getNamespaces() ;
+		$ns = $wgContLang->getNamespaces() ; /* not used, why bother? */
 		$from = $skin->makeKnownLink( $result->cur_title ,'', 'redirect=no' );
 		$edit = $skin->makeBrokenLink( $result->cur_title , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeBrokenLink( $result->bl_to );

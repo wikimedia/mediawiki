@@ -133,7 +133,7 @@ class IPUnblockForm {
  * Callback function to output a block
  */
 function wfAddRow( $block, $tag ) {
-	global $wgOut, $wgUser, $wgLang;
+	global $wgOut, $wgUser, $wgLang, $wgContLang;
 
 	$sk = $wgUser->getSkin();
 
@@ -141,7 +141,7 @@ function wfAddRow( $block, $tag ) {
 	$addr = $block->mAuto ? "#{$block->mId}" : $block->mAddress;
 
 	$name = User::whoIs( $block->mBy );
-	$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
+	$ulink = $sk->makeKnownLink( $wgContLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
 	$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 	
 	if ( $block->mExpiry === "" ) {
