@@ -1,0 +1,141 @@
+/*
+** IE5.0 Fix Stylesheet
+*/
+
+/* IE 4&5 interpret keyword sizes one off */
+body {
+    font-size: xx-small;
+}
+
+* html #visual-portal-wrapper {
+  width: 100%;
+}
+* html*#visual-portal-wrapper {
+    width: auto;
+}
+
+input {
+    margin-bottom: 1px; /* bug fix */
+}
+
+table.listing td.top {
+    /* insane IE row bug workaround */
+    position: relative;
+    left: -1px;
+    top: -1px;
+}
+
+/* 5.0 doesn't like the background icon for external links and user */
+.link-external,
+.external {
+    background: none;
+    padding: 0;
+}
+
+#portal-personaltools .portalUser {
+    background: none;
+    padding-left: none;
+}
+
+/* try to prevent the sidebar from getting pushed to the bottom */
+
+.portlet {
+    width: 13.5em;
+    overflow: hidden;
+}
+
+.contentViews {
+    margin-top:-1px;
+    height:1%;
+}
+
+textarea {
+    width: 78% !important;
+}
+
+
+#portal-column-content {
+    /*width: 83% !important;*/
+    float: right !important;
+    margin: 0 0 0 -13.2em !important;
+    margin-left: -13.2em !important;
+}
+#portal-column-content #content {
+    margin: 2.4em 0 0 13.2em !important;
+    /*position: relative;*/
+/*    z-index:1;*/
+}
+
+#portlet-contentViews {
+    position:absolute;
+    top: 1.6em;
+    left: 15.8em;
+   /* margin: 1.9em 0 0 15.7em;*/
+    margin: 0;
+    white-space: nowrap !important;
+    /*width: 400px !important;*/
+    width: 70% !important;
+    height: 1.5em;
+    padding-bottom: 0.3em;
+}
+#portlet-contentViews ul {
+    margin-left: 0;
+}
+#portlet-contentViews li a {
+    height: 1.5em;
+    margin-right: 0.3em;
+    padding: 0 0.9em 0px 0.9em !important;
+}
+#portlet-contentViews .selected a {
+    padding: 0 0.9em 0px 0.9em !important;
+}
+/* offsets to distinguish the tab groups
+IE5.5/6.0 is too dumb for this, hides the right tabs
+*/
+li#contentaction-talk {
+    margin-right: 1.6em;
+}
+li#contentaction-watch {
+    margin-left: 1.6em;
+}
+
+#portlet-personal {
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    left: 0px;
+    /*width: 760px !important;*/
+    width: 100% !important;
+    white-space: nowrap !important;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+#portal-personaltools li a {
+    padding-left: 2em !important;
+    margin-left: 2em !important;
+}
+
+
+#portal-column-one {
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+}
+
+#portal-footer {
+    margin: 0 0 0 15.8em;
+}
+
+/* padding fixes */
+#content {
+    padding: 0 0 1em 0em;
+    margin: 0;
+}
+
+/*div{ border:1px solid Red !important;}*/

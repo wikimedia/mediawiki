@@ -1,0 +1,104 @@
+/* 6.0 - only fixes */
+body {
+    font-size: xx-small;
+}
+
+#visual-portal-wrapper {
+    font-size:128%
+}
+
+
+
+.portlet {
+    overflow: hidden;
+    width: 14.4em !important;
+}
+/* slightly smaller top margin for the content area */
+#portlet-contentViews {
+  /*  margin:2.1em 0 0 15.7em;*/
+  /*  top: 2em;
+    left: 17em;*/
+    top: 0;
+    left: 0;
+    height: 1.7em;
+    padding-left: 0px;
+    margin: 2em -17em 0 15.2em;
+    white-space: nowrap;
+    width: 76% !important;
+   /* border-left: 1px solid  #74ae0b;*/
+}
+                                                                                                                                                                       
+#portlet-contentViews ul {
+    display: block;
+    float: left;
+}
+#portlet-contentViews li {
+    display: block;
+    float: left;
+}
+#portlet-contentViews li a {
+    display: block;
+    width: 0.1em;
+    float: left;
+    padding-bottom: 0.2em;
+}
+
+#contentaction-view {
+}
+
+#contentaction-view a,
+#contentaction-view .selected a {
+/*    border-left: 0.9em solid #cde2a7 !important;*/
+    width: 0.1em !important;
+    height: 100%;
+}
+
+#portal-column-content {
+    width: 100%;
+    float: right;
+    margin: 2.1em 0 0 -13.5em;
+}
+
+#portal-column-content #content {
+    margin: 0 0 0 13.5em !important;
+    /*position: relative;*/
+/*    z-index:1;*/
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+/*
+.contentViews li a {
+    padding: 0 10px 0.2em 10px !important;
+}
+.contentViews .selected a {
+    padding: 0 10px 0.2em 10px !important;
+}*/
+
+
+/* height on everything... */
+#content,
+#content p,
+div.comment,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.description,
+.portalMessage {
+    height: 100%;    
+}
+
+#bodyContent h1,
+.documentFirstHeading,
+#bodyContent h2,
+#bodyContent h3,
+#bodyContent h4,
+#bodyContent h5 {
+    margin-bottom:0.4em;
+}
+
+/*{ border:1px solid Red !important;}*/
