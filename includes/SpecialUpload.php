@@ -39,7 +39,8 @@ function processUpload()
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
-	global $wgCheckFileExtensions, $wgFileExtensions;
+	global $wgCheckFileExtensions, $wgStrictFileExtensions;
+	global $wgFileExtensions, $wgFileBlacklist;
 
 	if ( $wgUseCopyrightUpload ) {
 		$wpUploadAffirm = 1;
@@ -82,6 +83,12 @@ function processUpload()
 		$nt = Title::newFromText( $basename );
 		$wpUploadSaveName = $nt->getDBkey();
 
+		/* Don't allow users to override the blacklist */
+		if( checkFileExtension( $ext, $wgFileBlacklist ) ||
+			($wgStrictFileExtensions && !checkFileExtension( $ext, $wgFileExtensions ) ) ) {
+			return uploadError( wfMsg( "badfiletype", $ext ) );
+		}
+		
 		saveUploadedFile();
 		if ( ( ! $wpIgnoreWarning ) &&
 		  ( 0 != strcmp( ucfirst( $basename ), $wpUploadSaveName ) ) ) {
@@ -90,7 +97,7 @@ function processUpload()
 	    
 		if ( $wgCheckFileExtensions ) {
 			if ( ( ! $wpIgnoreWarning ) &&
-				 ( ! in_array( strtolower( $ext ), $wgFileExtensions ) ) ) {
+				 ( ! checkFileExtension( $ext, $wgFileExtensions ) ) ) {
 				return uploadWarning( wfMsg( "badfiletype", $ext ) );
 			}
 		}
@@ -114,6 +121,10 @@ function processUpload()
 	$text = wfMsg( "fileuploaded", $ilink, $dlink );
 	$wgOut->addHTML( "<p>{$text}\n" );
 	$wgOut->returnToMain( false );
+}
+
+function checkFileExtension( $ext, $list ) {
+	return in_array( strtolower( $ext ), $list );
 }
 
 function saveUploadedFile()
@@ -165,6 +176,14 @@ function unsaveUploadedFile()
 			  $wgSavedFile );
 		}
 	}
+}
+
+function uploadError( $error )
+{
+	global $wgOut;
+	$sub = wfMsg( "uploadwarning" );
+	$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
+	$wgOut->addHTML( "<h4><font color=red>{$error}</font></h4>\n" );
 }
 
 function uploadWarning( $warning )
