@@ -106,18 +106,6 @@ class EditPage {
 		# in the back door with a hand-edited submission URL.
 
 		if ( "save" == $formtype ) {
-			# emmss spambot:
-			if ( preg_match( "/wikipedia.com$/", $_SERVER["HTTP_REFERER"] ) || 
-			  $_SERVER['HTTP_USER_AGENT'] == "Mozilla/4.0 (compatible;MSIE 5.0; Windows 2003)" || 
-		  	  preg_match( "/emmss\.com/", $wpTextbox1 ) ) {
-				sleep(30);
-				for ( $i=0; $i<20; $i++ ) {
-					sleep(10);
-					print "\n";
-				}
-			}
-
-
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
 				return;
