@@ -132,11 +132,11 @@ class Image
 								  'fromShared' => $this->fromSharedDirectory,
 								  'gis' => $this->loadAttributes());
 
-			$wgMemc->set( $cacheKey, $cachedValues, 86400 );
+			$wgMemc->set( $cacheKey, $cachedValues, 7*86400 );
 
 			if ($wgUseSharedUploads && $this->fromSharedDirectory) {
 				$cachedValues['fromShared'] = false;
-				$wgMemc->set( "$wgSharedUploadDBname:image:".$hashedName, $cachedValues, 86400 );
+				$wgMemc->set( "$wgSharedUploadDBname:image:".$hashedName, $cachedValues, 7*86400 );
 			}
 		}
 		
