@@ -19,7 +19,7 @@ function wfSpecialVersion() {
 	}
 	$wgOut->addHTML( '
  <p>This wiki is powered by <b><a href="http://www.mediawiki.org/">MediaWiki</a></b>,  
- copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+ copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, and others.</p>
  
  <p>MediaWiki is free software; you can redistribute it and/or modify
