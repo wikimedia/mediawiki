@@ -1223,12 +1223,11 @@ class Parser
 					$this->mIncludeCount[$dbk] = 0;
 				}
 				if ( ++$this->mIncludeCount[$dbk] <= MAX_INCLUDE_REPEAT ) {
-					$row = wfGetArray( "cur", array("cur_text"), array( 
-					  "cur_namespace" => $title->getNamespace(),
-					  "cur_title" => $title->getDBkey() ), $fname );
-					if ( $row !== false ) {
+					$article = new Article( $title );
+					$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
+					if ( $articleContent !== false ) {
 						$found = true;
-						$text = $row->cur_text;
+						$text = $articleContent;
 						
 						# Escaping and link table handling
 						# Not required for preSaveTransform()
