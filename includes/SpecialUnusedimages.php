@@ -26,7 +26,7 @@ function wfSpecialUnusedimages() {
 	while ( $obj = wfFetchObject( $res ) ) {
 		$name = $obj->img_name;
 		$dlink = $sk->makeKnownLink( "{$ins}:{$name}", wfMsg( "imgdesc" ) );
-		$ilink = "<a href=\"" . wfImageUrl( $name ) . "\">{$name}</a>";
+		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) . "\">{$name}</a>";
 
 		$d = $wgLang->timeanddate( $obj->img_timestamp, true );
 		$u = $obj->img_user;

@@ -137,8 +137,7 @@ class UploadForm {
 		  $this->mUploadDescription, $this->mUploadCopyStatus, $this->mUploadSource );
 
 		$sk = $wgUser->getSkin();
-		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, wfImageUrl(
-		  $this->mUploadSaveName ) );
+		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::wfImageUrl( $this->mUploadSaveName ) );
 		$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 

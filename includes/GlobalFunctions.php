@@ -89,21 +89,6 @@ function wfFullUrlE( $a, $q = "" ) {
 
 }
 
-function wfImageUrl( $img )
-{
-	global $wgUploadPath;
-
-	$nt = Title::newFromText( $img );
-	if( !$nt ) return "";
-
-	$name = $nt->getDBkey();
-	$hash = md5( $name );
-
-	$url = "{$wgUploadPath}/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return wfUrlencode( $url );
-}
-
 function wfImagePath( $img )
 {
 	global $wgUploadDirectory;
