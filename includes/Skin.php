@@ -673,11 +673,12 @@ class Skin {
 		if ( isset( $oldid ) || isset( $diff ) ) { return ""; }
 		if ( 0 == $wgArticle->getID() ) { return ""; }
 
-		if ( $wgDisableCounters ) {
-			$s = "";
-		} else {
+		$s = "";
+		if ( !$wgDisableCounters ) {
 			$count = $wgLang->formatNum( $wgArticle->getCount() );
-			$s = wfMsg( "viewcount", $count );
+			if ( $count ) {
+				$s = wfMsg( "viewcount", $count );
+			}
 		}
 		$s .= $this->lastModified();
 		$s .= " " . wfMsg( "gnunote" );
@@ -687,9 +688,14 @@ class Skin {
 	function lastModified()
 	{
 		global $wgLang, $wgArticle;
-
-		$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
-		$s = " " . wfMsg( "lastmodified", $d );
+		
+		$timestamp = $wgArticle->getTimestamp();
+		if ( $timestamp ) {
+			$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
+			$s = " " . wfMsg( "lastmodified", $d );
+		} else {
+			$s = "";
+		}
 		return $s;
 	}
 
