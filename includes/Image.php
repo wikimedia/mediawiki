@@ -527,10 +527,11 @@ class Image
 			# Check for zero-sized thumbnails. Those can be generated when 
 			# no disk space is available or some other error occurs
 			#
-			$thumbstat = stat( $thumbPath );
-			if( $thumbstat['size'] == 0 )
-			{
-				unlink( $thumbPath );
+			if( file_exists( $thumbstat ) ) {
+				$thumbstat = stat( $thumbPath );
+				if( $thumbstat['size'] == 0 ) {
+					unlink( $thumbPath );
+				}
 			}
 
 			# Purge squid

@@ -151,7 +151,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Select the content language in prefs when bogus interface language is set
 * Fix interwiki links in edit comments
 * Fix crash on banned user visit
-
+* Avoid PHP warning messages when thumbnail not generated
 
 === Caveats ===
 
