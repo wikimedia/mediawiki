@@ -130,8 +130,8 @@ class EditPage {
 
 		if ( "save" == $formtype ) {
 			# Check for spam
-			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1 ) ) {
-				$this->spamPage();
+			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
+				$this->spamPage( $matches[0] );
 				return;
 			}
 			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
@@ -486,14 +486,14 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->returnToMain( false );
 	}
 
-	function spamPage()
+	function spamPage( $match )
 	{
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "spamprotectiontitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addWikiText( wfMsg( "spamprotectiontext" ) );
+		$wgOut->addWikiText( wfMsg( "spamprotectiontext" ) . "\n\n" . $match );
 		$wgOut->returnToMain( false );
 	}
 
