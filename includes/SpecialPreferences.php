@@ -420,8 +420,8 @@ class PreferencesForm {
 		$wgOut->addHTML( "<fieldset>
 	<legend>$tbs</legend>\n
 		<div>
-			<label>$tbr: <input type='text' name=\"wpRows\" value=\"{$this->mRows}\" size='6' /></label>
-			<label>$tbc: <input type='text' name=\"wpCols\" value=\"{$this->mCols}\" size='6' /></label>
+			<label>$tbr: <input type='text' name=\"wpRows\" value=\"" . htmlspecialchars( $this->mRows ) . "\" size='6' /></label>
+			<label>$tbc: <input type='text' name=\"wpCols\" value=\"" . htmlspecialchars( $this->mCols ) . "\" size='6' /></label>
 		</div> " .
 		$this->getToggle( "editwidth" ) .
 		$this->getToggle( "showtoolbar" ) .
@@ -434,24 +434,24 @@ class PreferencesForm {
 		<legend>$timezone</legend>
 		<div><b>$tzServerTime:</b> $nowserver</div>
 		<div><b>$ltz:</b> $nowlocal</div>
-		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
+		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' /></label></div>
 		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
 		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
 
 		$wgOut->addHTML( "
 	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
-		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
+		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"" . htmlspecialchars( $this->mRecent ) . "\" size='6' /></label></div>
 		" . $this->getToggle( "hideminor" ) .
 		$this->getToggle( "usenewrc" ) . "
-		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"" . htmlspecialchars( $this->mStubs ) . "\" size='6' /></label></div>
 	</fieldset>
 	
 	<fieldset>
 		<legend>$srh</legend>
-		<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"$this->mSearch\" size='6' /></label></div>
-		<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"$this->mSearchLines\" size='6' /></label></div>
-		<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"$this->mSearchChars\" size='6' /></label></div>
+		<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"" . htmlspecialchars( $this->mSearch ) . "\" size='6' /></label></div>
+		<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"" . htmlspecialchars( $this->mSearchLines ) . "\" size='6' /></label></div>
+		<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"" . htmlspecialchars( $this->mSearchChars ) . "\" size='6' /></label></div>
 
 		<fieldset>
 			<legend>$dsn</legend>
