@@ -21,8 +21,8 @@
 	NS_MEDIAWIKI_TALK	=> "MediaWiki_diskuse",
 	NS_TEMPLATE  		=> "Šablona",
 	NS_TEMPLATE_TALK  	=> "Šablona_diskuse",
-	NS_HELP				=> "Nápoveda",
-	NS_HELP_TALK		=> "Nápoveda_diskuse",
+	NS_HELP				=> "Nápověda",
+	NS_HELP_TALK		=> "Nápověda_diskuse",
 	NS_CATEGORY			=> "Kategorie",
 	NS_CATEGORY_TALK	=> "Kategorie_diskuse",
 ) + $wgNamespaceNamesEn;
