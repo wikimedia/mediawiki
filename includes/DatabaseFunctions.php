@@ -116,6 +116,7 @@ function wfInsertId() { return mysql_insert_id( wfGetDB() ); }
 function wfDataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
 function wfLastErrno() { return mysql_errno(); }
 function wfLastError() { return mysql_error(); }
+function wfAffectedRows() { return mysql_affected_rows( wfGetDB() ); }
 
 function wfLastDBquery()
 {
