@@ -81,15 +81,14 @@ class Skin {
 
 		$s = "";
 		if ( 1 == $wgUser->getOption( "underline" ) ) {
-			$s .= "a.stub, a.new, a.internal, a.external { " .
-			  "text-decoration: underline; }\n";
+			# Don't override browser settings
 		} else {
+			# Force no underline
 			$s .= "a.stub, a.new, a.internal, a.external { " .
 			  "text-decoration: none; }\n";
 		}
 		if ( 1 == $wgUser->getOption( "highlightbroken" ) ) {
-			$s .= "a.new { color: #CC2200; }\n" .
-			  "#quickbar a.new { color: CC2200; }\n";
+			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
 		}
 		if ( 1 == $wgUser->getOption( "justify" ) ) {
 			$s .= "#article { text-align: justify; }\n";
