@@ -286,8 +286,8 @@ Plain link, capitalized: [[Main Page]]
 
 Plain link, uncapitalized: [[main Page]]
 !! result
-<p>Plain link, capitalized: <a href="/wiki/Main_Page" title ="Main Page">Main Page</a>
-</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title ="Main Page">main Page</a>
+<p>Plain link, capitalized: <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title="Main Page">main Page</a>
 </p>
 !! end
 
