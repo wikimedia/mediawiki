@@ -1,4 +1,11 @@
 <?php
+/**
+ * 
+ * @package MediaWiki
+ * @subpackage Experimental
+ */
+
+/** */
 require_once ( "Parser.php" ) ;
 
 /**
@@ -15,6 +22,8 @@ require_once ( "Parser.php" ) ;
 
 /**
  * the base class for an element
+ * @package MediaWiki
+ * @subpackage Experimental
  */
 class element {
     var $name = '';
@@ -26,78 +35,68 @@ class element {
     */
     function getSourceAttrs ()
         {
-	$ret = "" ;
-	foreach ($this->children as $child)
-	    {
-            if ( !is_string($child) AND $child->name == "ATTRS" )
-	        {
-                $ret = $child->makeXHTML ( $parser );
+	$ret = '' ;
+	foreach ($this->children as $child) {
+		if ( !is_string($child) AND $child->name == 'ATTRS' ) {
+			$ret = $child->makeXHTML ( $parser );
+			}
 		}
-	    }
 	return $ret ;
 	}
 
     /**
     * This collects the ATTR thingies for getSourceAttrs()
     */
-    function getTheseAttrs ()
-        {
-	$ret = array() ;
-	foreach ($this->children as $child)
-	    {
-            if ( !is_string($child) AND $child->name == "ATTR" )
-	        {
-		$ret[] = $child->attrs["NAME"] . "='" . $child->children[0] . "'" ;
+    function getTheseAttrs () {
+		$ret = array() ;
+		foreach ($this->children as $child) {
+			if ( !is_string($child) AND $child->name == 'ATTR' ) {
+				$ret[] = $child->attrs["NAME"] . "='" . $child->children[0] . "'" ;
+			}
 		}
-	    }
-	return implode ( " " , $ret ) ;
+		return implode ( ' ' , $ret ) ;
 	}
 
-    function fixLinkTails ( &$parser , $key )
-	{
-	$k2 = $key + 1 ;
-	if ( !isset ( $this->children[$k2] ) ) return ;
-	if ( !is_string ( $this->children[$k2]) ) return ;
-	if ( is_string ( $this->children[$key]) ) return ;
-	if ( $this->children[$key]->name != "LINK" ) return ;
-
-	$n = $this->children[$k2] ;
-	$s = "" ;
-	while ( $n != "" AND
-		( ( $n[0] >= 'a' AND $n[0] <= 'z' ) OR
-		  $n[0] == 'ä' OR $n[0] == 'ö' OR 
-		  $n[0] == 'ü' OR $n[0] == 'ß' ) )
-	      {
-	      $s .= $n[0] ;
-	      $n = substr ( $n , 1 ) ;
-	      }
-	$this->children[$k2] = $n ;
-
-	if ( count ( $this->children[$key]->children ) > 1 )
-	   {
-	   $kl = array_keys ( $this->children[$key]->children ) ;
-	   $kl = array_pop ( $kl ) ;
-	   $this->children[$key]->children[$kl]->children[] = $s ;
-	   }
-	else
-	   {
-	   $e = new element ;
-	   $e->name = "LINKOPTION" ;
-	   $t = $this->children[$key]->sub_makeXHTML ( $parser ) ;
-	   $e->children[] = trim ( $t ) . $s ;
-	   $this->children[$key]->children[] = $e ;
-	   }
+    function fixLinkTails ( &$parser , $key ) {
+		$k2 = $key + 1 ;
+		if ( !isset ( $this->children[$k2] ) ) return ;
+		if ( !is_string ( $this->children[$k2]) ) return ;
+		if ( is_string ( $this->children[$key]) ) return ;
+		if ( $this->children[$key]->name != "LINK" ) return ;
+	
+		$n = $this->children[$k2] ;
+		$s =  ;
+		while ( $n != '' AND
+			( ( $n[0] >= 'a' AND $n[0] <= 'z' ) OR
+			  $n[0] == 'ä' OR $n[0] == 'ö' OR 
+			  $n[0] == 'ü' OR $n[0] == 'ß' ) )
+		      {
+		      $s .= $n[0] ;
+		      $n = substr ( $n , 1 ) ;
+		      }
+		$this->children[$k2] = $n ;
+	
+		if ( count ( $this->children[$key]->children ) > 1 ) {
+			$kl = array_keys ( $this->children[$key]->children ) ;
+			$kl = array_pop ( $kl ) ;
+			$this->children[$key]->children[$kl]->children[] = $s ;
+	   } else {
+			$e = new element ;
+			$e->name = "LINKOPTION" ;
+			$t = $this->children[$key]->sub_makeXHTML ( $parser ) ;
+			$e->children[] = trim ( $t ) . $s ;
+			$this->children[$key]->children[] = $e ;
+		}
 	}
 
     /**
     * This function generates the XHTML for the entire subtree
     */
-    function sub_makeXHTML ( &$parser , $tag = "" , $attr = "" )
-    	{
-    	$ret = "" ;
+    function sub_makeXHTML ( &$parser , $tag = '' , $attr = '' ){
+    	$ret = '' ;
 
 	$attr2 = $this->getSourceAttrs () ;
-	if ( $attr != "" AND $attr2 != "" ) $attr .= " " ;
+	if ( $attr != '' AND $attr2 !=  ) $attr .= ' ' ;
 	$attr .= $attr2 ;
 
     	if ( $tag != "" )
@@ -388,7 +387,8 @@ class element {
 
 $ancStack = array();    // the stack with ancestral elements
 
-// Three global functions needed for parsing, sorry guys
+// START Three global functions needed for parsing, sorry guys
+/** @todo document */
 function wgXMLstartElement($parser, $name, $attrs) {
     global $ancStack;
 
@@ -399,6 +399,7 @@ function wgXMLstartElement($parser, $name, $attrs) {
     array_push($ancStack, $newElem);
 }
 
+/** @todo document */
 function wgXMLendElement($parser, $name) {
     global $ancStack, $rootElem;
     // pop element off stack
@@ -410,6 +411,7 @@ function wgXMLendElement($parser, $name) {
         array_push ($ancStack[count($ancStack)-1]->children, $elem);
 }
 
+/** @todo document */
 function wgXMLcharacterData($parser, $data) {
     global $ancStack;
     $data = trim ($data); // Don't add blank lines, they're no use...
@@ -418,13 +420,16 @@ function wgXMLcharacterData($parser, $data) {
         array_push ($ancStack[count($ancStack)-1]->children, $data);
     }
 }
-
+// END Three global functions needed for parsing, sorry guys
 
 /**
  * Here's the class that generates a nice tree
+ * @package MediaWiki
+ * @subpackage Experimental
  */
 class xml2php {
 
+	/** @todo document */
     function &scanFile( $filename ) {
         global $ancStack, $rootElem;
         $ancStack = array();
@@ -448,6 +453,7 @@ class xml2php {
         return $rootElem;
     }
 
+	/** @todo document */
     function scanString ( $input ) {
         global $ancStack, $rootElem;
         $ancStack = array();
@@ -469,7 +475,12 @@ class xml2php {
 
 }
 
-class ParserXML EXTENDS Parser
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Experimental
+ */
+class ParserXML extends Parser
 	{
 	/**#@+
 	 * @access private
@@ -545,6 +556,7 @@ class ParserXML EXTENDS Parser
 		unlink($tmpfname);		 
 	}
 
+	/** @todo document */
 	function runXMLparser ( &$text ) {
 		global $wgWiki2xml ;
 
@@ -559,6 +571,7 @@ class ParserXML EXTENDS Parser
 		unlink($tmpfname);		 
 	}
 
+	/** @todo document */
 	function plain_parse ( &$text , $inline = false , $templateOptions = array () ) {
 		$this->runXMLparser ( $text ) ;
 		$nowikicount = 0 ;
@@ -578,12 +591,12 @@ class ParserXML EXTENDS Parser
 		$this->mCurrentTemplateOptions = $oldTemplateOptions ;
 	}
 
+	/** @todo document */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
 		$this->plain_parse ( $text ) ;
 		$this->mOutput->setText ( $text ) ;
 		return $this->mOutput;
 	}	
-	
-	}
 
+}
 ?>
