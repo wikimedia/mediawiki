@@ -598,50 +598,35 @@ class OutputPage {
 		return $r ;
 	}
 
+function getHTMLattrs ()
+{
+		$htmlattrs = array( # Allowed attributes--no scripting, etc.
+			"title", "align", "lang", "dir", "width", "height",
+			"bgcolor", "clear", /* BR */ "noshade", /* HR */
+			"cite", /* BLOCKQUOTE, Q */ "size", "face", "color",
+			/* FONT */ "type", "start", "value", "compact",
+			/* For various lists, mostly deprecated but safe */
+			"summary", "width", "border", "frame", "rules",
+			"cellspacing", "cellpadding", "valign", "char",
+			"charoff", "colgroup", "col", "span", "abbr", "axis",
+			"headers", "scope", "rowspan", "colspan", /* Tables */
+			"id", "class", "name", "style" /* For CSS */
+		);
+return $htmlattrs ;
+}
 
 function fixTableTags ( $t )
 {
-if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+  if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+  $htmlattrs = $this->getHTMLattrs() ;
+  
+# Strip non-approved attributes from the tag
+  $t = preg_replace(
+		    "/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
+		    "(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
+		    $t);
 
-$r = array () ;
-
-$t = explode ( " " , $t ) ;
-$quote = false ;
-$collect = "" ;
-
-foreach ( $t AS $x )
-{
-  $cnt = substr_count($x,"\"") + substr_count($x,"'") ;
-  if ( $cnt&1 ) $quote = !$quote ;
-  $collect .= " " . $x ;
-  if ( !$quote )
-    {
-      if ( trim ( $collect ) != "" ) $r[] = trim ( $collect ) ;
-      $collect = "" ;
-    }
-}
-if ( trim ( $collect ) != "" ) $r[] = trim ( $collect ) ;
-
-$t = $r ;
-$r = array () ;
-
-foreach ( $t AS $x )
-{
-  $y = explode ( "=" , $x , 2 ) ;
-  if ( count ( $y ) == 1 ) $y[] = "" ;
-  $k = trim ( $y[0] ) ;
-  $v = trim ( $y[1] ) ;
-
-  # Filtering
-  if ( "on" == strtolower ( substr ( $k , 0 , 2 ) ) ) $k = "" ;
-  if ( $v == "" && "nowrap" != strtolower ( $k ) ) $k = "" ;
-
-  if ( $k == "" ) $v = "" ;
-  if ( $v != "" ) $k .= "={$v}" ;
-  if ( $k != "" ) $r[] = $k ;
-}
- $t = implode ( " " , $r ) ;
-return $t ;
+  return trim ( $t ) ;
 }
 
 function doTableStuff ( $t )
@@ -1274,18 +1259,8 @@ $t[] = "</table>" ;
 		$htmlsingle = array_merge( $tabletags, $htmlsingle );
 		$htmlelements = array_merge( $htmlsingle, $htmlpairs );
 
-		$htmlattrs = array( # Allowed attributes--no scripting, etc.
-			"title", "align", "lang", "dir", "width", "height",
-			"bgcolor", "clear", /* BR */ "noshade", /* HR */
-			"cite", /* BLOCKQUOTE, Q */ "size", "face", "color",
-			/* FONT */ "type", "start", "value", "compact",
-			/* For various lists, mostly deprecated but safe */
-			"summary", "width", "border", "frame", "rules",
-			"cellspacing", "cellpadding", "valign", "char",
-			"charoff", "colgroup", "col", "span", "abbr", "axis",
-			"headers", "scope", "rowspan", "colspan", /* Tables */
-			"id", "class", "name", "style" /* For CSS */
-		);
+             
+		$htmlattrs = $this->getHTMLattrs ();
 
 		# Remove HTML comments
 		$text = preg_replace( "/<!--.*-->/sU", "", $text );
