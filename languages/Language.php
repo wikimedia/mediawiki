@@ -136,7 +136,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 
 /* private */ $wgMonthNamesEn = array(
-	'january', 'february', 'march', 'april', 'may', 'june',
+	'january', 'february', 'march', 'april', 'may_long', 'june',
 	'july', 'august', 'september', 'october', 'november',
 	'december'
 );
@@ -207,7 +207,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 /* private */ $wgAllMessagesEn = array(
 
 # dates
-'sunday' => 'Sunday', 
+'sunday' => 'Sunday',
 'monday' => 'Monday',
 'tuesday' => 'Tuesday',
 'wednesday' => 'Wednesday',
@@ -218,7 +218,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 'february' => 'February',
 'march' => 'March',
 'april' => 'April',
-'may' => 'May',
+'may_long' => 'May',
 'june' => 'June',
 'july' => 'July',
 'august' => 'August',
