@@ -244,7 +244,9 @@ $conf->xml = function_exists( "utf8_encode" );
 if( $conf->xml ) {
 	print "<li>Have XML / Latin1-UTF-8 conversion support.</li>\n";
 } else {
-	print "<li><b>XML / Latin1-UTF-8 conversion is missing! Wiki will probably not work.</b></li>\n";
+	dieout( "PHP's XML module is missing; the wiki requires functions in
+		this module and won't work in this configuration.
+		If you're running Mandrake, install the php-xml package." );
 }
 
 $memlimit = ini_get( "memory_limit" );
@@ -328,6 +330,9 @@ $errs = array();
 
 if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename == "Mediawiki" ) {
 	$errs["Sitename"] = "Must not be blank or \"MediaWiki\".";
+}
+if( $conf->DBuser == "" ) {
+	$errs["DBuser"] = "Must not be blank";
 }
 if( $conf->DBpassword == "" ) {
 	$errs["DBpassword"] = "Must not be blank";
@@ -798,7 +803,10 @@ function writeLocalSettings( $conf ) {
 
 	# Add slashes to strings for double quoting
 	$slconf = array_map( "escapePhpString", get_object_vars( $conf ) );
-
+	if( $conf->License == 'gfdl' ) {
+		# Needs literal string interpolation for the current style path
+		$slconf['RightsIcon'] = $conf->RightsIcon;
+	}
 
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
@@ -889,10 +897,10 @@ if ( \$wgCommandLineMode ) {
 ## License and Creative Commons licenses are supported so far.
 {$rights}\$wgEnableCreativeCommonsRdf = true;
 \$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright
-\$wgRightsUrl = \"{$conf->RightsUrl}\";
-\$wgRightsText = \"{$conf->RightsText}\";
-\$wgRightsIcon = \"{$conf->RightsIcon}\";
-# \$wgRightsCode = \"{$conf->RightsCode}\"; # Not yet used
+\$wgRightsUrl = \"{$slconf['RightsUrl']}\";
+\$wgRightsText = \"{$slconf['RightsText']}\";
+\$wgRightsIcon = \"{$slconf['RightsIcon']}\";
+# \$wgRightsCode = \"{$slconf['RightsCode']}\"; # Not yet used
 ";
 }
 
