@@ -1,6 +1,6 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc3, 2004-03-07 ==
+== Version 1.2.0rc4, 2004-03-15 ==
 
 This is a RELEASE CANDIDATE for the new production release. It is more or
 less in sync with what is running on Wikipedia right now. There may be
@@ -37,6 +37,8 @@ Fixes and tweaks:
 * Works with short tags disabled.
 * rebuildMessages.php can now selectively update new messages, or
   overwrite everything.
+* Some layout fixes for RTL languages.
+* Now includes arrow icons for enhanced recent changes.
 * Various bug fixes.
 * Other stuff we forgot.
 * Documentation more out of date than ever before!
@@ -60,6 +62,8 @@ An index was added to recentchanges table to speed up Newpages
 Expiration date field has been added to ipblocks table
 (patch-ipb_expiry.sql for manual updaters).
 
+The links tables have slightly stricter indexes. ('links' and
+'brokenlinks' are not changed on existing installations.)
 
 == Version 1.1.0, 2003-12-08 ==
 
