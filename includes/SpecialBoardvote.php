@@ -185,7 +185,6 @@ class BoardVoteForm {
 		$record = 
 		  "Contributing: $contributing (" .$wgContributingCandidates[$contributing] . ")\n" .
 		  "Volunteer: $volunteer (" . $wgVolunteerCandidates[$volunteer] . ")\n" .
-		  "User: {$this->mUserKey}\n" .
 		  "Salt: $salt\n";
 		# Get file names
 		$input = tempnam( "/tmp", "gpg_" );
@@ -232,8 +231,13 @@ class BoardVoteForm {
 		wfFreeResult( $res );
 
 		# If the user has stacks of contributions, don't check old as well
-		$signup = wfTimestamp2Unix( $cur->t );
 		$now = time();
+		if ( is_null( $cur->t ) ) {
+			$signup = $now;
+		} else {
+			$signup = wfTimestamp2Unix( $cur->t );
+		}
+		
 		$days = ($now - $signup) / 86400;
 		if ( $cur->n > 400 && $days > 180 ) {
 			$this->mUserDays = 0x7fffffff;
@@ -247,7 +251,9 @@ class BoardVoteForm {
 		$old = wfFetchObject( $res );
 		wfFreeResult( $res );
 		
-		$signup = min( wfTimestamp2Unix( $old->t ), $signup );
+		if ( !is_null( $old->t ) ) {
+			$signup = min( wfTimestamp2Unix( $old->t ), $signup );
+		}
 		$this->mUserDays = (int)(($now - $signup) / 86400);
 		$this->mUserEdits = $cur->n + $old->n;
 	}
