@@ -151,7 +151,7 @@ class EditPage {
 				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis );
 				return;
 			}
-			
+
 			# Article exists. Check for edit conflict.
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
@@ -221,10 +221,12 @@ class EditPage {
 				} else {
 					$s.=wfMsg("sectionedit");
 				}
-				$sectitle=preg_match("/^=+(.*?)=+/mi",
-				  $this->textbox1,
-				  $matches);
-				if($matches[1]) { $this->summary = " (".trim($matches[1]).")"; }
+				if(!$this->preview) {
+					$sectitle=preg_match("/^=+(.*?)=+/mi",
+				  	$this->textbox1,
+				  	$matches);
+					if($matches[1]) { $this->summary = "(".trim($matches[1]).")"; }
+				}
 			}
 			$wgOut->setPageTitle( $s );
 			if ( $this->oldid ) {
