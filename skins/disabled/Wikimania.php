@@ -123,7 +123,8 @@ class WikimaniaTemplate extends QuickTemplate {
 	  <h5>Conference</h5>
 	  <div class="pBody">
 	    <ul>
-		<?php foreach ( array( 'Register', 'Call for Papers', 'Programme', 'Speakers',
+	        <li><a href="/registration/">Registration</a>
+		<?php foreach ( array( 'Call for papers', 'Programme', 'Speakers',
 			'Social events', 'Competitions', 'Hacking days') as $navlink ) {
 				echo '<li><a href="'.$navlink.'">'.$navlink.'</a></li>';
 			}
