@@ -947,7 +947,10 @@ class LanguageRo extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesRo;
-		return $wgAllMessagesRo[$key];
+		if($wgAllMessagesRo[$key])
+			return $wgAllMessagesRo[$key];
+		else
+			return Language::getMessage( $key );
 	}
 	
 	function fallback8bitEncoding() {
