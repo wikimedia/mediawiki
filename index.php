@@ -167,10 +167,22 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 				User::SetupSession();
 			}
 			# Continue...
-		case 'edit':
-			require_once( 'includes/EditPage.php' );
-			$editor = new EditPage( $wgArticle );
-			$editor->submit();
+		case 'edit':			
+			$internal = $wgRequest->getVal( 'internaledit' );
+			$external = $wgRequest->getVal( 'externaledit' );
+			$section = $wgRequest->getVal( 'section' );
+			$oldid = $wgRequest->getVal( 'oldid' );						
+			if(!$wgUseExternalEditor || $action=='submit' || $internal || 
+			   $section || $oldid || (!$wgUser->getOption('externaleditor') && !$external)) {
+				require_once( 'includes/EditPage.php' );
+				$editor = new EditPage( $wgArticle );
+				$editor->submit();				
+			} elseif($wgUseExternalEditor && ($external || $wgUser->getOption('externaleditor'))) {
+				require_once( 'includes/ExternalEdit.php' );
+				$mode = $wgRequest->getVal( 'mode' );
+				$extedit = new ExternalEdit( $wgArticle, $mode );				
+				$extedit->edit();
+			}
 			break;
 		case 'history':
 			if ($_SERVER['REQUEST_URI'] == $wgTitle->getInternalURL('action=history')) {

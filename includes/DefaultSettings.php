@@ -1183,6 +1183,12 @@ $wgNoFollowLinks = true;
  */
 $wgMinimalPasswordLength = 0;
 
+/**
+ * Activate external editor interface for files and pages
+ * See http://meta.wikimedia.org/wiki/Help:External_editors
+ */
+$wgUseExternalEditor = true;
+
 /** Whether or not to sort special pages in Special:Specialpages */
 
 $wgSortSpecialPages = true;
