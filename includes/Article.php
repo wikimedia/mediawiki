@@ -1216,7 +1216,6 @@ class Article {
 	 */
 	function watch( $add = true ) {
 		global $wgUser, $wgOut;
-		global $wgDeferredUpdateList;
 
 		if ( 0 == $wgUser->getID() ) {
 			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
@@ -1243,9 +1242,8 @@ class Article {
 			$text = wfMsg( 'removedwatchtext', $link );
 		$wgOut->addWikiText( $text );
 
-		$up = new UserUpdate();
-		array_push( $wgDeferredUpdateList, $up );
-
+		$wgUser->saveSettings();
+		
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 

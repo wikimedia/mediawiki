@@ -127,7 +127,6 @@ class LoginForm {
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgOut;
-		global $wgDeferredUpdateList;
 
 		$u = $this->addNewAccountInternal();
 
@@ -138,8 +137,7 @@ class LoginForm {
 		$wgUser = $u;
 		$wgUser->setCookies();
 
-		$up = new UserUpdate();
-		array_push( $wgDeferredUpdateList, $up );
+		$wgUser->saveSettings();
 
 		if( $this->hasSessionCookie() ) {
 			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ) );
@@ -147,7 +145,6 @@ class LoginForm {
 			return $this->cookieRedirectCheck( 'new' );
 		}
 	}
-
 
 	/**
 	 * @access private
@@ -233,7 +230,6 @@ class LoginForm {
 	 */
 	function processLogin() {
 		global $wgUser;
-		global $wgDeferredUpdateList;
 
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
@@ -281,9 +277,8 @@ class LoginForm {
 		$wgUser = $u;
 		$wgUser->setCookies();
 
-		$up = new UserUpdate();
-		array_push( $wgDeferredUpdateList, $up );
-
+		$wgUser->saveSettings();
+		
 		if( $this->hasSessionCookie() ) {
 			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 		} else {
