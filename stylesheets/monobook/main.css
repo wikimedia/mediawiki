@@ -338,6 +338,7 @@ div.magnify a, div.magnify img {
 .hiddenStructure {
     display: none;
 }
+img.tex { vertical-align: middle; }
 /*
 ** classes for special content elements like town boxes
 ** intended to be referenced directly from the wiki src
@@ -791,4 +792,3 @@ head:first-child+body #footer li { white-space: nowrap; }
 
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
-

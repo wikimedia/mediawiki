@@ -84,6 +84,7 @@ td.diff-context {
 }
 
 img { border: none; }
+img.tex { vertical-align: middle; }
 
 /* automatically generated edit summaries */
 .autocomment { color: gray; }
