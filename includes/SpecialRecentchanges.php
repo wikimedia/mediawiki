@@ -130,7 +130,24 @@ function wfSpecialRecentchanges( $par ) {
 			htmlspecialchars( wfMsg( 'recentchangestext' ) ),
 			$wgTitle->getFullUrl() );
 		$feed->outHeader();
+		
+		# Merge adjacent edits by one user
+		$sorted = array();
+		$n = 0;
 		foreach( $rows as $obj ) {
+			if( $n > 0 &&
+				$obj->rc_namespace >= 0 &&
+			    $obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
+			    $obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
+				$sorted[$n-1]->rc_last_oldid = $obj->rc_last_oldid;
+			} else {
+				$sorted[$n] = $obj;
+				$n++;
+			}
+			$first = false;
+		}
+		
+		foreach( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
 			$talkpage = $title->getTalkPage();
 			$item = new FeedItem(
