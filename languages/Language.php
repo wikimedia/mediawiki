@@ -507,7 +507,7 @@ Don't forget to change your {{SITENAME}} preferences.",
 
 'login'			=> 'Log in',
 'loginprompt'           => "You must have cookies enabled to log in to {{SITENAME}}.",
-'userlogin'		=> 'Log in',
+'userlogin'		=> 'Create an account or log in',
 'logout'		=> 'Log out',
 'userlogout'	=> 'Log out',
 'notloggedin'	=> 'Not logged in',
