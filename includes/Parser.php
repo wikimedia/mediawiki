@@ -1788,7 +1788,7 @@ class Parser
 		$this->mVariables = array();
 		foreach ( $wgVariableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
-			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
+			$mw->addToArray( $this->mVariables, $id );
 		}
 		wfProfileOut( $fname );
 	}
@@ -1846,6 +1846,7 @@ class Parser
 	 */
 	function variableSubstitution( $matches ) {
 		$fname = 'parser::variableSubstitution';
+		$varname = $matches[1];
 		wfProfileIn( $fname );
 		if ( !$this->mVariables ) {
 			$this->initialiseVariables();
@@ -1854,14 +1855,15 @@ class Parser
 		if ( $this->mOutputType == OT_WIKI ) {
 			# Do only magic variables prefixed by SUBST
 			$mwSubst =& MagicWord::get( MAG_SUBST );
-			if (!$mwSubst->matchStartAndRemove( $matches[1] ))
+			if (!$mwSubst->matchStartAndRemove( $varname ))
 				$skip = true;
 			# Note that if we don't substitute the variable below,
 			# we don't remove the {{subst:}} magic word, in case
 			# it is a template rather than a magic variable.
 		}
-		if ( !$skip && array_key_exists( $matches[1], $this->mVariables ) ) {
-			$text = $this->mVariables[$matches[1]];
+		if ( !$skip && array_key_exists( $varname, $this->mVariables ) ) {
+			$id = $this->mVariables[$varname];
+			$text = $this->getVariableValue( $id );
 			$this->mOutput->mContainsOldMagic = true;
 		} else {
 			$text = $matches[0];
