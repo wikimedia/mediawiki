@@ -953,23 +953,37 @@ class Parser
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
 
-		$e1 = "/^([{$uc}"."{$sep}]+)](.*)\$/sD";
-		$e2 = "/^([{$uc}"."{$sep}]+)\\s+([^\\]]+)](.*)\$/sD";
+		# Regexp for URL in square brackets
+		$e1 = "/^([{$uc}{$sep}]+)\\](.*)\$/sD";
+		# Regexp for URL with link text in square brackets
+		$e2 = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](\\S*)(.*)\$/sD";
 
 		foreach ( $a as $line ) {
+
+			# CASE 1: Link in square brackets, e.g.
+			# some text [http://domain.tld/some.link] more text
 			if ( preg_match( $e1, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$trail = $m[2];
 				if ( $autonumber ) { $text = "[" . ++$this->mAutonumber . "]"; }
 				else { $text = wfEscapeHTML( $link ); }
-			} else if ( preg_match( $e2, $line, $m ) ) {
+			}
+
+			# CASE 2: Link with link text and text directly following it, e.g.
+			# This is a collection of [http://domain.tld/some.link link]s
+			else if ( preg_match( $e2, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$text = $m[2];
-				$trail = $m[3];
-			} else {
+				$dtrail = $m[3];
+				$trail = $m[4];
+			}
+
+			# CASE 3: Nothing matches, just output the source text
+			else {
 				$s .= "[{$protocol}:" . $line;
 				continue;
 			}
+
 			if( $link == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $link ) ) {
 				$paren = '';
 			} else {
@@ -977,7 +991,7 @@ class Parser
 				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $link ) . "</i>)</span>";
 			}
 			$la = $sk->getExternalLinkAttributes( $link, $text );
-			$s .= "<a href='{$link}'{$la}>{$text}</a>{$paren}{$trail}";
+			$s .= "<a href='{$link}'{$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
 
 		}
 		return $s;
