@@ -279,20 +279,24 @@ if( $conf->zlib ) {
 }
 
 $conf->ImageMagick = false;
+$imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
+foreach( $imcheck as $dir ) {
+	$im = "$dir/convert";
+	if( file_exists( $im ) ) {
+		print "<li>Found ImageMagick: <tt>$im</tt>; image thumbnailing will be enabled if you enable uploads.</li>\n";
+		$conf->ImageMagick = $im;
+		break;
+	}
+}
 
 $conf->HaveGD = function_exists( "imagejpeg" );
 if( $conf->HaveGD ) {
-	print "<li>Found GD graphics library built-in, image thumbnailing will be enabled if you enable uploads.</li>\n";
-} else {
-	$imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin" );
-	foreach( $imcheck as $dir ) {
-		$im = "$dir/convert";
-		if( file_exists( $im ) ) {
-			print "<li>Found ImageMagick: <tt>$im</tt>; image thumbnailing will be enabled if you enable uploads.</li>\n";
-			$conf->ImageMagick = $im;
-			break;
-		}
+	print "<li>Found GD graphics library built-in";
+	if( !$conf->ImageMagick ) {
+		print ", image thumbnailing will be enabled if you enable uploads";
 	}
+	print ".</li>\n";
+} else {
 	if( !$conf->ImageMagick ) {
 		print "<li>Couldn't find GD library or ImageMagick; image thumbnailing disabled.</li>\n";
 	}

@@ -121,6 +121,14 @@ class Image
 	{
 		return $this->url;
 	}
+	
+	function getViewURL() {
+		if( $this->mustRender() ) {
+			return $this->createThumb( $this->getWidth() );
+		} else {
+			return $this->getURL();
+		}
+	}
 
 	/**
 	 * Return the image path of the image in the
@@ -319,7 +327,7 @@ class Image
 
 		if( $width > $this->width ) {
 			# Don't make an image bigger than the source
-			return $this->getURL();
+			return $this->getViewURL();
 		}
 
 		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
@@ -461,7 +469,15 @@ class Image
 		$this->historyLine = 0;
 	}
 
-
+	/**
+	 * Return true if the file is of a type that can't be directly
+	 * rendered by typical browsers and needs to be re-rasterized.
+	 * @return bool
+	 */
+	function mustRender() {
+		return ( $this->extension == 'svg' );
+	}
+	
 } //class
 
 
