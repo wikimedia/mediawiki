@@ -849,4 +849,49 @@ function wfPurgeSquidServers ($urlArr) {
 	}
 	return;
 }
+
+
+# wfMerge attempts to merge differences between three texts. 
+# Returns true for a clean merge and false for failure or a conflict.
+
+function wfMerge( $old, $mine, $yours, &$result ){
+	global $wgDiff3;
+
+	# This check may also protect against code injection in 
+	# case of broken installations.
+	if(! file_exists( $wgDiff3 ) ){ 
+		return false;
+	}
+	$td = "/tmp/";
+	$oldtextFile = fopen( $oldtextName = tempnam( $td, "merge-old-" ), "w" );
+	$mytextFile = fopen( $mytextName = tempnam( $td, "merge-mine-" ), "w" );
+	$yourtextFile = fopen( $yourtextName = tempnam( $td, "merge-your-" ), "w" );
+			
+	fwrite( $oldtextFile, $old ); fclose( $oldtextFile ); 
+	fwrite( $mytextFile, $mine ); fclose( $mytextFile ); 
+	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
+	$cmd = "{$wgDiff3} -a --overlap-only $mytextName $oldtextName $yourtextName";
+	$handle = popen( $cmd, "r" );
+
+	if( fgets( $handle ) ){
+		$conflict = true;
+	} else {
+		$conflict = false;
+	}
+	pclose( $handle );
+	$cmd = "{$wgDiff3} -a --merge $mytextName $oldtextName $yourtextName";
+	$handle = popen( $cmd, "r" );
+	$result = "";
+	do {
+		$data = fread( $handle, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$result .= $data;
+	} while ( true );
+	pclose( $handle );
+	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
+	return ! $conflict;
+}
+
 ?>

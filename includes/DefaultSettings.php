@@ -210,6 +210,10 @@ $wgDisableAnonTalk = false;
 # Requires zlib support enabled in PHP.
 $wgUseGzip = function_exists( "gzencode" );
 
+# Path to the GNU diff3 utility. If the file doesn't exist,
+# edit conflicts will fall back to the old behaviour (no merging).
+$wgDiff3 = "/usr/bin/diff3";
+
 # We can also compress text in the old revisions table. If this is set on,
 # old revisions will be compressed on page save if zlib support is available.
 # Any compressed revisions will be decompressed on load regardless of this
