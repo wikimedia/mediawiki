@@ -8,6 +8,8 @@ define( "DB_LAST", -3 );
 
 $wgLastDatabaseQuery = "";
 
+/* private */ $wgBufferSQLResults = true;
+
 function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = "" )
 {
 	global $wgDBserver, $wgDBuser, $wgDBpassword;
@@ -94,9 +96,8 @@ function wfEmergencyAbort( $msg = "" ) {
 # Replication is not actually implemented just yet
 function wfQuery( $sql, $db, $fname = "" )
 {
-	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql;
+	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql, $wgBufferSQLResults;
 	global $wgProfiling;
-
 	if ( $wgProfiling ) {
 		# wfGeneralizeSQL will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
@@ -119,7 +120,11 @@ function wfQuery( $sql, $db, $fname = "" )
 	}
 
 	$conn = wfGetDB();
-	$ret = mysql_query( $sql, $conn );
+	if( $wgBufferSQLResults ) {
+		$ret = mysql_query( $sql, $conn );
+	} else {
+		$ret = mysql_unbuffered_query( $sql, $conn );
+	}
 
 	if ( false === $ret ) {
 		$wgOut->databaseError( $fname );
@@ -130,6 +135,17 @@ function wfQuery( $sql, $db, $fname = "" )
 		wfProfileOut( $profName );
 	}
 	return $ret;
+}
+
+function wfUnbufferedQuery( $sql, $db, $fname = "" ){
+	global $wgBufferSQLResults;
+	$oldstate = $wgBufferSQLResults;
+
+	$wgBufferSQLResults = true;
+	$res = wfQuery($sql, $db, $fname);
+
+	$wgBufferSQLResults = $oldstate;
+	return $res;
 }
 
 function wfFreeResult( $res ) { mysql_free_result( $res ); }
