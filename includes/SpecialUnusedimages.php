@@ -32,21 +32,21 @@ class UnusedimagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
-		$ins = $wgContLang->getNsText(NS_IMAGE);
 		
+		$imageUrl = htmlspecialchars( Image::wfImageUrl( $result->title ) );
 		$return =
 		# The 'desc' linking to the image page
-		'('.$skin->makeKnownLink( $ins.':'.$result->title, wfMsg('imgdesc') ).') '
+		'('.$skin->makeKnownLinkObj( $title, wfMsg('imgdesc') ).') '
 		# Link to the image itself
-		. '<a href="'.Image::wfImageUrl($title->getText()).'">'.$title->getText().'</a>'
+		. '<a href="' . $imageUrl . '">' . htmlspecialchars( $title->getText() ) . '</a>'
 		# Last modified date
 		. ' . . '.$wgLang->timeanddate($result->value)
 		# Link to username
-		. ' . . '.$skin->makeLink($wgContLang->getNsText(NS_USER).':'.$result->img_user_text,$result->img_user_text);
+		. ' . . '.$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text);
 		
 		# If there is a description, show it
 		if($result->img_description != '') {
-			$return .= ' <em>('.$result->img_description.')</em>';
+			$return .= ' <i>(' . $skin->formatComment( $result->img_description ) . ')</i>';
 		}
 		return $return;
 	}
