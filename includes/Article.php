@@ -953,35 +953,16 @@ class Article {
 			  - $this->isCountable( $oldtext );
 			$now = wfTimestampNow();
 
-			$mungedText = $text;
-			$flags = Revision::compressRevisionText( $mungedText );
-			
 			$lastRevision = $dbw->selectField(
 				'page', 'page_latest', array( 'page_id' => $this->getId() ) );
 			
-			# Record the text to the text table
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_val' );
-			$dbw->insert( 'text',
-				array(
-					'old_id' => $old_id,
-					'old_text' => $mungedText,
-					'old_flags' => $flags,
-				), $fname
-			);
-			$revisionId = $dbw->insertId();
-			
-			# Record the edit in revisions
-			$dbw->insert( 'revision',
-				array(
-					'rev_id' => $revisionId,
-					'rev_page' => $this->getID(),
-					'rev_comment' => $summary,
-					'rev_minor_edit' => $me2,
-					'rev_user' => $wgUser->getID(),
-					'rev_user_text' => $wgUser->getName(),
-					'rev_timestamp' => $dbw->timestamp( $now ),
-				), $fname
-			);
+			$revision = new Revision( array(
+				'page'       => $this->getId(),
+				'comment'    => $summary,
+				'minor_edit' => $me2,
+				'text'       => $text
+				) );
+			$revisionId = $revision->insertOn( $dbw );
 			
 			# Update page
 			$dbw->update( 'page',
