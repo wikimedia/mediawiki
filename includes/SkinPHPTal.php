@@ -74,7 +74,6 @@
 			
 			$this->thispage = $wgTitle->getPrefixedDbKey();
 			$this->thisurl = $wgTitle->getPrefixedURL();
-			$this->thisurle = urlencode($this->thisurl);
 			$this->loggedin = $wgUser->getID() != 0;
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
@@ -253,7 +252,7 @@
 				);
 				$personal_urls['logout'] = array(
 					'text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurle),
+					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl),
 					'ttip' => wfMsg('tooltip-logout'),
 					'akey' => wfMsg('accesskey-logout')
 				);
@@ -273,7 +272,7 @@
 					);
 					$personal_urls['anonlogin'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurle),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -281,7 +280,7 @@
 
 					$personal_urls['login'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurle),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
