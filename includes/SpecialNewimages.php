@@ -60,7 +60,7 @@ function wfSpecialNewimages() {
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
-	$here = $wgContLang->specialPage( 'Imagelist' );
+	$here = $wgContLang->specialPage( 'Newimages' );
 
 	$fill = '';
 	$first = true;
@@ -75,7 +75,7 @@ function wfSpecialNewimages() {
 	$wgOut->addHTML( $text."\n" );
 
 	$i=0;
-	$res = $dbr->query( $sql, 'wfSpecialImagelist' );
+	$res = $dbr->query( $sql, 'wfSpecialNewimages' );
 
 	$gallery = new ImageGallery();
 
