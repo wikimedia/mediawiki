@@ -433,27 +433,50 @@ class User {
 
 	function &getSkin() {
 		if ( ! isset( $this->mSkin ) ) {
+			# get all skin names available from SkinNames.php
 			$skinNames = Skin::getSkinNames();
-			$s = $this->getOption( 'skin' );
-			if ( '' == $s ) { $s = 'standard'; }
-
-			if ( !isset( $skinNames[$s] ) ) {
+			# get the user skin
+			$userSkin = $this->getOption( 'skin' );
+			if ( $userSkin == '' ) { $userSkin = 'standard'; }
+			
+			if ( !isset( $skinNames[$userSkin] ) ) {
+				# in case the user skin could not be found find a replacement
 				$fallback = array(
 					0 => 'SkinStandard',
 					1 => 'SkinNostalgia',
 					2 => 'SkinCologneBlue');
+				# if phptal is enabled we should have monobook skin that superseed
+				# the good old SkinStandard.
 				if ( isset( $skinNames['monobook'] ) ) {
 					$fallback[0] = 'SkinMonoBook';
 				}
 				
-				if(is_numeric($s) && isset( $fallback[$s]) ){
-					$sn = $fallback[$s];
+				if(is_numeric($userSkin) && isset( $fallback[$userSkin]) ){
+					$sn = $fallback[$userSkin];
 				} else {
 					$sn = 'SkinStandard';
 				}
 			} else {
-				$sn = 'Skin' . $skinNames[$s];
+				# The user skin is available
+				$sn = 'Skin' . $skinNames[$userSkin];
 			}
+			
+			# only require the needed stuff
+			switch($sn) {
+				case 'SkinMonoBook':
+					require_once( 'SkinPHPTal.php' );
+					break;
+				case 'SkinStandard':
+					require_once( 'SkinStandard.php' );
+					break;
+				case 'SkinNostalgia':
+					require_once( 'SkinNostalgia.php' );
+					break;
+				case 'SkinCologneBlue':
+					require_once( 'SkinCologneBlue.php' );
+					break;
+			}
+			# now we can create the skin object
 			$this->mSkin = new $sn;
 		}
 		return $this->mSkin;

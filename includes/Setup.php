@@ -42,9 +42,9 @@ wfProfileIn( $fname.'-includes' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'Namespace.php' );
 require_once( 'RecentChange.php' ); 
+require_once( 'User.php' );
 require_once( 'Skin.php' );
 require_once( 'OutputPage.php' );
-require_once( 'User.php' );
 require_once( 'LinkCache.php' );
 require_once( 'Title.php' );
 require_once( 'Article.php' );
@@ -212,6 +212,7 @@ $wgBlockCache = new BlockCache( true );
 wfProfileOut( $fname.'-BlockCache' );
 wfProfileIn( $fname.'-User' );
 
+// HASHAR : implements things relevant to user like skin !
 if( $wgCommandLineMode ) {
 	# Used for some maintenance scripts; user session cookies can screw things up
 	# when the database is in an in-between state.

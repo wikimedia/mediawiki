@@ -1,18 +1,17 @@
 <?php
-
-require_once( 'Feed.php' );
-require_once( 'Image.php' );
-
 # See skin.doc
+
+require_once( 'Feed.php' );  // should not be called if the actual page isn't feed enabled
+require_once( 'Image.php' );
 
 # These are the INTERNAL names, which get mapped
 # directly to class names.  For display purposes, the
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	'standard' => 'Standard',
-	'nostalgia' => 'Nostalgia',
-	'cologneblue' => 'CologneBlue'
+	'standard'		=> 'Standard',
+	'nostalgia'		=> 'Nostalgia',
+	'cologneblue'	=> 'CologneBlue'
 );
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = 'PHPTal';
@@ -2762,14 +2761,4 @@ class Skin {
 	}
 
 }
-
-require_once( 'SkinStandard.php' );
-require_once( 'SkinNostalgia.php' );
-require_once( 'SkinCologneBlue.php' );
-
-if( $wgUsePHPTal ) {
-	require_once( 'SkinPHPTal.php' );
-}
-
-
 ?>
