@@ -20,7 +20,7 @@ require_once( "LinksUpdate.php" );
 function wfSpecialMakesysop() {
 	global $wgUser, $wgOut, $wgRequest;
 
-	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
+	if ( $wgUser->isAnon() or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}

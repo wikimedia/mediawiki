@@ -675,7 +675,7 @@ class Article {
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
-		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
+		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->isLoggedIn() &&
 		     ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
 		{
 			$wgOut->addHTML( wfMsg ( 'markaspatrolledlink',
@@ -721,7 +721,7 @@ class Article {
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
 		$rand = wfRandom();
-		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
+		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
 		
 		$mungedText = $text;
 		$flags = Revision::compressRevisionText( $mungedText );
@@ -915,7 +915,7 @@ class Article {
 		$good = true;
 
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
-		if ( $minor && $wgUser->getID() ) { $me2 = 1; } else { $me2 = 0; }
+		if ( $minor && $wgUser->isLoggedIn() ) { $me2 = 1; } else { $me2 = 0; }
 		if ( $this->isRedirect( $text ) ) {
 			# Remove all content but redirect
 			# This could be done by reconstructing the redirect from a title given by 
@@ -1097,7 +1097,7 @@ class Article {
 			$wgOut->errorpage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
-		if ( $wgUser->getID() == 0 )
+		if ( $wgUser->isAnon() )
 		{
 			$wgOut->loginToUse();
 			return;
@@ -1132,7 +1132,7 @@ class Article {
 		
 		global $wgUser, $wgOut;
 
-		if ( 0 == $wgUser->getID() ) {
+		if ( $wgUser->isAnon() ) {
 			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
@@ -1167,7 +1167,7 @@ class Article {
 
 		global $wgUser, $wgOut;
 
-		if ( 0 == $wgUser->getID() ) {
+		if ( $wgUser->isAnon() ) {
 			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
 			return;
 		}
@@ -1902,7 +1902,7 @@ class Article {
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
 			and ($this->getID() != 0)
-			and ($wgUser->getId() == 0)
+			and ($wgUser->isAnon())
 			and (!$wgUser->getNewtalk())
 			and ($this->mTitle->getNamespace() != NS_SPECIAL )
 			and (empty( $action ) || $action == 'view')

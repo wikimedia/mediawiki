@@ -29,7 +29,7 @@ class NewPagesPage extends QueryPage {
 
 	function getSQL() {
 		global $wgUser, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
-		$usepatrol = ( $wgUseRCPatrol && $wgUser->getID() != 0 &&
+		$usepatrol = ( $wgUseRCPatrol && $wgUser->isLoggedIn() &&
 		               ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'recentchanges', 'page', 'text' ) );
@@ -75,7 +75,7 @@ class NewPagesPage extends QueryPage {
 		# Since there is no diff link, we need to give users a way to
 		# mark the article as patrolled if it isn't already
 		if ( $wgUseRCPatrol && !is_null ( $result->usepatrol ) && $result->usepatrol &&
-		     $result->patrolled == 0 && $wgUser->getID() != 0 &&
+		     $result->patrolled == 0 && $wgUser->isLoggedIn() &&
 		     ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
 			$link = $skin->makeKnownLink( $result->title, '', "rcid={$result->rcid}" );
 		else

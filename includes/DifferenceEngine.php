@@ -123,7 +123,7 @@ class DifferenceEngine {
 		} else {
 			$rollback = '';
 		}
-		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
+		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isLoggedIn() &&
 		     ( $wgUser->isAllowed('rollback') || !$wgOnlySysopsCanPatrol ) )
 		{
 			$patrol = ' [' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),

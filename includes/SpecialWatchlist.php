@@ -27,8 +27,7 @@ function wfSpecialWatchlist() {
 
 	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
 
-	$uid = $wgUser->getID();
-	if( $uid == 0 ) {
+	if( $wgUser->isAnon() ) {
 		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
 		return;
 	}
@@ -52,6 +51,7 @@ function wfSpecialWatchlist() {
 			"</div>\n\n" );
 	}
 
+	$uid = $wgUser->getID();
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
