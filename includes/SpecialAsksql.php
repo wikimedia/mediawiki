@@ -2,9 +2,13 @@
 
 function wfSpecialAsksql()
 {
-	global $wgUser, $wgOut, $wgRequest;
+	global $wgUser, $wgOut, $wgRequest, $wgAllowSysopQueries;
 
-	if ( ! $wgUser->isSysop() ) {
+	if( !$wgAllowSysopQueries ) {
+		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+		return;
+	}
+	if( !$wgUser->isSysop() ) {
 		$wgOut->sysopRequired();
 		return;
 	}

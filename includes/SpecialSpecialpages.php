@@ -11,11 +11,16 @@ function wfSpecialSpecialpages()
 	
 	function wfSpecialSpecialpages_gen($SP,$heading,$sk)
 	{
-		global $wgLang, $wgOut;
+		global $wgLang, $wgOut, $wgAllowSysopQueries;
 
 		$wgOut->addHTML( "<h2>" . wfMsg( $heading ) . "</h2>\n<ul>" );
 		foreach ( $SP as $name => $desc ) {
-			if ( "" == $desc ) { continue; }
+			if( "" == $desc ) {
+				continue;
+			}
+			if( "Asksql" == $name && !$wgAllowSysopQueries ) {
+				continue;
+			}
 			$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}

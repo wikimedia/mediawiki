@@ -35,7 +35,7 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgSkinNamesEo = array(
-	"Norma", "Nostalgio", "Kolonja Bluo"
+	"Norma", "Nostalgio", "Kolonja Bluo", "Paddington", "Montparnasse", "DaVinci"
 );
 
 /* private */ $wgMathNamesEo = array(
