@@ -420,9 +420,9 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 </textarea>
 <br />{$editsummary}
 {$checkboxhtml}
-<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
+<input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+<input tabindex='6' id='wpSave' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br /><br />{$copywarn}
@@ -435,7 +435,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
 "
 </textarea>" );
