@@ -332,6 +332,9 @@ if( !isset( $wgCommandLineMode ) ) {
 # Show seconds in Recent Changes
 $wgRCSeconds = false;
 
+# Log IP addresses in the recentchanges table
+$wgPutIPinRC = false;
+
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
