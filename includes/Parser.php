@@ -866,7 +866,7 @@ class Parser
 					array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
 					$s .= $prefix . $trail ;
 					wfProfileOut( $fname );
-					return (trim($s) == '')? '': $s;
+					$s .= (trim($s) == '')? '': $s;
 					continue;
 				}
 				if ( $ns == $image ) {
@@ -874,7 +874,8 @@ class Parser
 					$wgLinkCache->addImageLinkObj( $nt );
 					wfProfileOut( $fname );
 					continue;
-				} else if ( $ns == $category ) {
+				}
+				if ( $ns == $category ) {
 					$t = $nt->getText() ;
 					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
 
