@@ -1,4 +1,16 @@
 <?php
+#
+# In general you should not make customizations in these language files
+# directly, but should use the MediaWiki: special namespace to customize
+# user interface messages through the wiki.
+# See http://meta.wikipedia.org/wiki/MediaWiki_namespace
+#
+# NOTE TO TRANSLATORS: Do not copy this whole file when making translations!
+# A lot of common constants and a base class with inheritable methods are
+# defined here, which should not be redefined. See the other LanguageXx.php
+# files for examples.
+#
+
 #--------------------------------------------------------------------------
 # Constants
 #--------------------------------------------------------------------------
@@ -164,8 +176,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ay" => "Aymar",		# Aymara
 	"az" => "Az&#601;rbaycan",	# Azerbaijani
 	"ba" => "&#1041;&#1072;&#1096;&#1185;&#1086;&#1088;&#1090;",	# Bashkir
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103; - (Belaruskaya)",	# Belarusian ''or'' Byelarussian
-	"bg" => "&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080; - (Bülgarski)",	# Bulgarian
+	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103;",	# Belarusian ''or'' Byelarussian
+	"bg" => "&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;",	# Bulgarian
 	"bh"	=> "Bihara",
 	"bi" => "Bislama",		# Bislama
 	"bn" => "&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)",	# Bengali
@@ -173,12 +185,13 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"br" => "Brezhoneg",	# Breton 
 	"bs" => "Bosanski",		# Bosnian
 	"ca" => "Catal&agrave;",	# Catalan
-	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085; - (Noxçiyn)",	# Chechen
+	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;",	# Chechen
 	"ch" => "Chamoru",		# Chamorro
 	"chy" => "Tsets&ecirc;hest&acirc;hese",	# Cheyenne
 	"co" => "Corsu",		# Corsican
 	"cr" => "Nehiyaw",		# Cree
 	"cs" => "&#268;esky",	# Czech
+	"csb" => "Cassubian",	# Cassubian - FIXME
 	"cv" => "&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)",	# Chuvash 
 	"cy" => "Cymraeg",		# Welsh
 	"da" => "Dansk",		# Danish
@@ -307,6 +320,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"tl" => "Tagalog",		# Tagalog (Filipino)
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
+	"tpi" => "Tok Pisin",	# Tok Pisin 
 	"tr" => "T&uuml;rk&ccedil;e",	# Turkish
 	"ts" => "Xitsonga",		# Tsonga
 	"tt" => "Tatar",		# Tatar
@@ -468,8 +482,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "wikititlesuffix" => "$wgSitename",
 "bugreports"	=> "Bug reports",
 "bugreportspage" => "$wgMetaNamespace:Bug_reports",
-"sitesupport"   => "Donations",
-"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
+"sitesupport"   => "Donations", # Set a URL in $wgSiteSupportPage in LocalSettings.php
 "faq"			=> "FAQ",
 "faqpage"		=> "$wgMetaNamespace:FAQ",
 "edithelp"		=> "Editing help",
