@@ -152,6 +152,7 @@ class SearchEngine {
 		  "AND {$searchnamespaces} {$redircond}" .
 		  "LIMIT {$offset}, {$limit}";
 		$res1 = wfQuery( $sql, $fname );
+		$num = wfNumRows($res1);
 
 		if ( $wgDisableTextSearch ) {
 			$res2 = 0;
@@ -162,9 +163,14 @@ class SearchEngine {
 			  "AND {$searchnamespaces} {$redircond} " .
 			  "LIMIT {$offset}, {$limit}";
 			$res2 = wfQuery( $sql, $fname );
+			$num = $num + wfNumRows($res2);
 		}
 
-		$top = wfShowingResults( $offset, $limit );
+                if ( $num == $limit ) {
+		  $top = wfShowingResults( $offset, $limit);
+		} else {
+		  $top = wfShowingResultsNum( $offset, $limit, $num );
+		}
 		$wgOut->addHTML( "<p>{$top}\n" );
 
 		# For powersearch

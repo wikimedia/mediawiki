@@ -448,6 +448,14 @@ function wfShowingResults( $offset, $limit )
 	return $top;
 }
 
+function wfShowingResultsNum( $offset, $limit, $num )
+{
+	$top = str_replace( "$1", $limit, wfMsg( "showingresultsnum" ) );
+	$top = str_replace( "$2", $offset+1, $top );
+	$top = str_replace( "$3", $num, $top );
+	return $top;
+}
+
 function wfViewPrevNext( $offset, $limit, $link, $query = "" )
 {
 	global $wgUser;
