@@ -1219,4 +1219,3 @@ class LanguageDa extends Language {
 }
 
 ?>
-
