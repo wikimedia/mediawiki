@@ -548,7 +548,7 @@ if( defined( "MEDIAWIKI" ) ) {
 					$this->usercss .= $wgRequest->getText('wpTextbox1');
 				} else {
 					# generated css
-					$this->usercss .= '@import "'.$this->makeUrl('-','action=raw&smaxage=0&gen=css').'";'."\n";
+					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&smaxage=0&gen=css').'";'."\n";
 					# import user stylesheet
 					$this->usercss .= '@import "'.
 					$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').'";'."\n";
