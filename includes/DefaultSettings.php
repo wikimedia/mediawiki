@@ -125,6 +125,9 @@ $wgUseDynamicDates  = false; # Enable to allow rewriting dates in page text
 							 # DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES
 $wgAmericanDates    = false; # Enable for English module to print dates
 							 # as eg 'May 12' instead of '12 May'
+$wgTranslateNumerals = true; # For Hindi and Arabic use local numerals instead
+                             # of Western style (0-9) numerals in interface.
+
 $wgLocalInterwiki   = 'w';
 $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars     = 32; # Maximum number of bytes in username
