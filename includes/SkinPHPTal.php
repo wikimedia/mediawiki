@@ -159,8 +159,8 @@ class SkinPHPTal extends Skin {
 		$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
-		$this->setupUserCssJs();
-
+		$this->setupUserCss();
+		$this->setupUserJs();
 		$this->titletxt = $wgTitle->getPrefixedText();
 
 		$tpl->set( 'title', $wgOut->getPageTitle() );
@@ -223,10 +223,15 @@ class SkinPHPTal extends Skin {
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
-		if($this->loggedin) {
-			$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
+		global $wgUseSiteJs;
+		if ($wgUseSiteJs) {
+			if($this->loggedin) {
+				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
+			} else {
+				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
+			}
 		} else {
-			$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
+			$tpl->set('jsvarurl', false);
 		}
 		if( $wgUser->getNewtalk() ) {
 			$usertitle = Title::newFromText( $this->userpage );
@@ -670,39 +675,62 @@ class SkinPHPTal extends Skin {
 		}
 	}
 	
+	/**
+	 * @access private
+	 */
+	
+	function setupUserCss () {
+		
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss;
+
+		$sitecss = "";
+		$usercss = "";
+		$siteargs = "";
+
+		# Add user-specific code if this is a user and we allow that kind of thing
+		
+		if ( $wgAllowUserCss && $this->loggedin ) {
+			$action = $wgRequest->getText('action');
+			
+			# if we're previewing the CSS page, use it
+			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+				$siteargs .= "&smaxage=0&maxage=0";
+				$usercss = $wgRequest->getText('wpTextbox1');
+			} else {
+				$siteargs .= "&maxage=0";
+				$usercss = '@import "' .
+				  $this->makeUrl($this->userpage . '/'.$this->skinname.'.css',
+								 'action=raw&ctype=text/css') . '";' ."\n";
+			}
+		}
+
+		# If we use the site's dynamic CSS, throw that in, too
+		
+		if ( $wgUseSiteCss ) {
+			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' . $siteargs).'";'."\n";
+		}
+		
+		# If we use any dynamic CSS, make a little CDATA block out of it.
+		
+		if ( !empty($sitecss) || !empty($usercss) ) {
+			$this->usercss = '/*<![CDATA[*/ ' . $sitecss . ' ' . $usercss . ' /*]]>*/';
+		}
+	}
 
 	/**
 	 * @access private
 	 */
-	function setupUserCssJs () {
-		global $wgRequest, $wgTitle;
+	function setupUserJs () {
+		global $wgRequest, $wgTitle, $wgAllowUserJs;
 		$action = $wgRequest->getText('action');
-		# generated css
-		$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css').'";'."\n";
 
-		if( $this->loggedin ) {
-			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
-				# generated css
-				$this->usercss = '@import "'.$this->makeUrl('-','action=raw&smaxage=0&maxage=0&gen=css').'";'."\n";
-				// css preview
-				$this->usercss .= $wgRequest->getText('wpTextbox1');
-			} else {
-				# generated css
-				$this->usercss .= '@import "'.$this->makeUrl('-','action=raw&smaxage=0&gen=css').'";'."\n";
-				# import user stylesheet
-				$this->usercss .= '@import "'.
-				$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').'";'."\n";
-			}
+		if( $wgAllowUserJs && $this->loggedin ) {
 			if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				# XXX: additional security check/prompt?
-				$this->userjsprev = $wgRequest->getText('wpTextbox1');
+				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText('wpTextbox1') . ' /*]]>*/';
 			} else {
 				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript&dontcountme=s');
 			}
-		}
-		$this->usercss = '/*<![CDATA[*/ ' . $this->usercss . ' /*]]>*/';
-		if( $this->userjsprev ) {
-			$this->userjsprev = '/*<![CDATA[*/ ' . $this->userjsprev . ' /*]]>*/';
 		}
 	}
 	
