@@ -20,11 +20,11 @@ if($wgMetaNamespace === FALSE)
   NS_MEDIA            => 'Miðlar',
   NS_SPECIAL          => 'Kerfissíða', # Special
   NS_MAIN             => '',
-  NS_TALK             => 'Spall', # Talk
+  NS_TALK             => 'Spjall', # Talk
   NS_USER             => 'Notandi',
   NS_USER_TALK        => 'Notandaspjall',
   NS_WIKIPEDIA        => $wgMetaNamespace,
-  NS_WIKIPEDIA_TALK   => $wgMetaNamespace . '_talk',
+  NS_WIKIPEDIA_TALK   => $wgMetaNamespace . 'spjall',
   NS_IMAGE            => 'Mynd',
   NS_IMAGE_TALK       => 'Myndaspjall',
   NS_MEDIAWIKI        => 'MediaWiki',
