@@ -13,7 +13,7 @@
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = '' ) {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	$fname = "wfSpecialContributions";
 
 	if( $par )
@@ -69,12 +69,12 @@ function wfSpecialContributions( $par = '' ) {
 	if ( $hideminor ) {
 		$cmq = "AND cur_minor_edit=0";
 		$omq = "AND old_minor_edit=0";
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=0" );
 	} else {
 		$cmq = $omq = "";
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  	  WfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
@@ -106,7 +106,7 @@ function wfSpecialContributions( $par = '' ) {
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgLang->specialpage( "Contributions" ),
+	  $wgContLang->specialpage( "Contributions" ),
 	  "hideminor={$hideminor}&target=" . wfUrlEncode( $target ),
 	  ($nCur + $nOld) <= $offlimit);
 
@@ -233,11 +233,11 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
  *
  */
 function ucCountLink( $lim, $d ) {
-	global $wgUser, $wgLang, $wgRequest;
+	global $wgUser, $wgContLang, $wgRequest;
 
 	$target = $wgRequest->getText( 'target' );
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+	$s = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  "{$lim}", "target={$target}&days={$d}&limit={$lim}" );
 	return $s;
 }
@@ -246,11 +246,11 @@ function ucCountLink( $lim, $d ) {
  *
  */
 function ucDaysLink( $lim, $d ) {
-	global $wgUser, $wgLang, $wgRequest;
+	global $wgUser, $wgContLang, $wgRequest;
 
 	$target = $wgRequest->getText( 'target' );
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+	$s = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  "{$d}", "target={$target}&days={$d}&limit={$lim}" );
 	return $s;
 }

@@ -106,8 +106,8 @@ class SkinPHPTal extends Skin {
 	 * initialize various variables and generate the template
 	 */
 	function outputPage( &$out ) {
-		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
-		global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
+		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
+		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
 		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
@@ -127,7 +127,7 @@ class SkinPHPTal extends Skin {
 		$this->iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
 		$this->iseditable = ($this->iscontent and !($action == 'edit' or $action == 'submit'));
 		$this->username = $wgUser->getName();
-		$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+		$this->userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 		$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
@@ -184,10 +184,10 @@ class SkinPHPTal extends Skin {
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'logopath', $wgLogo );
-		$tpl->setRef( "lang", $wgLanguageCode );
-		$tpl->set( 'dir', $wgLang->isRTL() ? "rtl" : "ltr" );
-		$tpl->set( 'rtl', $wgLang->isRTL() );
-		$tpl->set( 'langname', $wgLang->getLanguageName( $wgLanguageCode ) );
+		$tpl->setRef( "lang", $wgContLanguageCode );
+		$tpl->set( 'dir', $wgContLang->isRTL() ? "rtl" : "ltr" );
+		$tpl->set( 'rtl', $wgContLang->isRTL() );
+		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
 		$tpl->setRef( 'username', $this->username );
 		$tpl->setRef( 'userpage', $this->userpage);
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
@@ -206,7 +206,7 @@ class SkinPHPTal extends Skin {
 
 				$ntl = wfMsg( 'newmessages',
 				$this->makeKnownLink(
-					$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
+					$wgContLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
 					. ':' . $this->username,
 					wfMsg('newmessageslink') )
 				);
@@ -260,8 +260,8 @@ class SkinPHPTal extends Skin {
 		foreach( $wgOut->getLanguageLinks() as $l ) {
 			$nt = Title::newFromText( $l );
 			$language_urls[] = array('href' => $nt->getFullURL(),
-			'text' => ($wgLang->getLanguageName( $nt->getInterwiki()) != ''?$wgLang->getLanguageName( $nt->getInterwiki()) : $l),
-			'class' => $wgLang->isRTL() ? 'rtl' : 'ltr');
+			'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+			'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
 		}
 		if(count($language_urls)) {
 			$tpl->setRef( 'language_urls', $language_urls);
@@ -642,11 +642,11 @@ class SkinPHPTal extends Skin {
 	 * returns css with user-specific options
 	 */
 	function getUserStylesheet() {
-		global $wgUser, $wgRequest, $wgTitle, $wgLang, $wgSquidMaxage, $wgStylePath;
+		global $wgUser, $wgRequest, $wgTitle, $wgContLang, $wgSquidMaxage, $wgStylePath;
 		$action = $wgRequest->getText('action');
 		$maxage = $wgRequest->getText('maxage');
 		$s = "/* generated user stylesheet */\n";
-		if($wgLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->stylename.'/rtl.css";'."\n";
+		if($wgContLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->stylename.'/rtl.css";'."\n";
 		$s .= '@import "'.
 		$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI)."\";\n";
 		if($wgUser->getID() != 0) {

@@ -335,7 +335,7 @@ class LogViewer {
 	 * @private
 	 */
 	function showPrevNext( &$out ) {
-		global $wgLang;
+		global $wgContLang;
 		$pieces = array();
 		$pieces[] = 'type=' . htmlspecialchars( $this->reader->queryType() );
 		$pieces[] = 'user=' . htmlspecialchars( $this->reader->queryUser() );
@@ -346,7 +346,7 @@ class LogViewer {
 		# TODO: use timestamps instead of offsets to make it more natural
 		# to go huge distances in time
 		$html = wfViewPrevNext( $offset, $limit,
-			$wgLang->specialpage( 'Log' ),
+			$wgContLang->specialpage( 'Log' ),
 			$bits,
 			false);
 		$out->addHTML( '<p>' . $html . '</p>' );

@@ -9,8 +9,8 @@
  * shortcut to get the current language "special" namespace name
  */
 function sns() {
-	global $wgLang ;
-	$ns = $wgLang->getNamespaces() ;
+	global $wgContLang ;
+	$ns = $wgContLang->getNamespaces() ;
 	return $ns[NS_SPECIAL] ;
 }
 
@@ -19,7 +19,7 @@ function sns() {
  * Entry point
  */
 function wfSpecialMaintenance( $par=NULL ) {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest, $wgLanguageCode;
+	global $wgUser, $wgOut, $wgContLang, $wgTitle, $wgRequest, $wgContLanguageCode;
 	global $wgMiserMode;
 
 	# This pages is expensive ressource wise
@@ -53,7 +53,7 @@ function wfSpecialMaintenance( $par=NULL ) {
 	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
 
 	$sk = $wgUser->getSkin();
-	$ns = $wgLang->getNamespaces() ;
+	$ns = $wgContLang->getNamespaces() ;
 
 	# Generate page output
 	
@@ -80,10 +80,10 @@ function wfSpecialMaintenance( $par=NULL ) {
 	$r .= "\">\n" ;
 	$r .= "<select name=\"thelang\">\n" ;
 	
-	$a = $wgLang->getLanguageNames();
+	$a = $wgContLang->getLanguageNames();
 	$ak = array_keys ( $a ) ;
 	foreach ( $ak AS $k ) {
-		if ( $k != $wgLanguageCode )
+		if ( $k != $wgContLanguageCode )
 			$r .= "<option value='{$k}'>{$a[$k]}</option>\n" ;
 	}
 	$r .= "</select>\n" ;
@@ -104,9 +104,9 @@ function getMPL ( $x ) {
 
 
 function getMaintenancePageBacklink( $subfunction ) {
-	global $wgUser , $wgLang;
+	global $wgUser , $wgContLang;
 	$sk = $wgUser->getSkin() ;
-	$ns = $wgLang->getNamespaces() ;
+	$ns = $wgContLang->getNamespaces() ;
 	$r = $sk->makeKnownLink (
 		$ns[-1].':Maintenance',
 		wfMsg( 'maintenancebacklink' ) ) ;
@@ -188,7 +188,7 @@ function wfSpecialSelfLinks() {
  * 
  */
 function wfSpecialMispeelings () {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
+	global $wgUser, $wgOut, $wgContLang, $wgTitle;
 	$sk = $wgUser->getSkin();
 	$fname = 'wfSpecialMispeelings';
 
@@ -199,7 +199,7 @@ function wfSpecialMispeelings () {
 	# Determine page name
 	$ms = wfMsg ( 'mispeelingspage' ) ;
 	$mss = str_replace ( ' ' , '_' , $ms );
-	$msp = $wgLang->getNsText(4).':'.$ms ;
+	$msp = $wgContLang->getNsText(4).':'.$ms ;
 	$msl = $sk->makeKnownLink ( $msp ) ;
 
 	# Load list from database
@@ -219,7 +219,7 @@ function wfSpecialMispeelings () {
 			$x = preg_replace( '/^(\S+).*$/', '$1', $x );
 			$sql = "SELECT DISTINCT cur_title FROM $cur,$searchindex WHERE cur_id=si_page AND ".
 				"cur_namespace=0 AND cur_is_redirect=0 AND " .
-				"(MATCH(si_text) AGAINST ('" . $dbr->strencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
+				"(MATCH(si_text) AGAINST ('" . $dbr->strencode( $wgContLang->stripForSearch( $x ) ) . "'))" ;
 			$res = $dbr->query( $sql, $fname );
 			while ( $obj = $dbr->fetchObject ( $res ) ) {
 				if ( $cnt >= $offset AND $cnt < $offset+$limit ) {
@@ -257,7 +257,7 @@ function wfSpecialMispeelings () {
  *
  */
 function wfSpecialMissingLanguageLinks() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
+	global $wgUser, $wgOut, $wgContLang, $wgTitle, $wgRequest;
 	
 	$fname = 'wfSpecialMissingLanguageLinks';
 	$thelang = $wgRequest->getText( 'thelang' );
@@ -275,7 +275,7 @@ function wfSpecialMissingLanguageLinks() {
 	$res = $dbr->query( $sql, $fname );
 
 
-	$mll = wfMsg( 'missinglanguagelinkstext', $wgLang->getLanguageName($thelang) );
+	$mll = wfMsg( 'missinglanguagelinkstext', $wgContLang->getLanguageName($thelang) );
 
 	$top = getMaintenancePageBacklink( 'missinglanguagelinks' );
 	$top .= "<p>$mll</p><br>";

@@ -83,7 +83,7 @@ class SearchEngine {
 	 * that is done by showResults()
 	 */
 	function powersearch() {
-		global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
+		global $wgUser, $wgOut, $wgContLang, $wgTitle, $wgRequest;
 		$sk =& $wgUser->getSkin();
 		
 		$search			= $this->rawText;
@@ -98,7 +98,7 @@ class SearchEngine {
 		}
 		
 		# Do namespace checkboxes
-		$namespaces = $wgLang->getNamespaces();
+		$namespaces = $wgContLang->getNamespaces();
 		foreach ( $namespaces as $i => $namespace ) {
 			# Skip virtual namespaces
 			if ( $i < 0 ) {
@@ -260,7 +260,7 @@ class SearchEngine {
 	}
 	
 	function parseQuery3() {
-		global $wgDBminWordLen, $wgLang;
+		global $wgDBminWordLen, $wgContLang;
 
 		# on non mysql4 database: get list of words we don't want to search for
 		require_once( 'FulltextStoplist.php' );
@@ -272,7 +272,7 @@ class SearchEngine {
 
 		$last = $cond = '';
 		foreach ( $w as $word ) {
-			$word = $wgLang->stripForSearch( $word );
+			$word = $wgContLang->stripForSearch( $word );
 			if ( 'and' == $word || 'or' == $word || 'not' == $word
 			  || '(' == $word || ')' == $word ) {
 				$cond .= ' ' . strtoupper( $word );
@@ -303,7 +303,7 @@ class SearchEngine {
 	}
 	
 	function parseQuery4() {
-		global $wgLang;
+		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
 		$searchon = '';
 		$this->searchTerms = array();
@@ -316,7 +316,7 @@ class SearchEngine {
 				if( $this->strictMatching && ($terms[1] == '') ) {
 					$terms[1] = '+';
 				}
-				$searchon .= $terms[1] . $wgLang->stripForSearch( $terms[2] );
+				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
 				if( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3] );
 					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
@@ -379,7 +379,7 @@ class SearchEngine {
 	}
 
 	function showHit( $row ) {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgContLang;
 
 		$t = Title::makeName( $row->cur_namespace, $row->cur_title );
 		if( is_null( $t ) ) {
@@ -411,12 +411,12 @@ class SearchEngine {
 				continue;
 			}
 
-			$pre = $wgLang->truncate( $m[1], -$contextchars, '...' );
+			$pre = $wgContLang->truncate( $m[1], -$contextchars, '...' );
 
 			if ( count( $m ) < 3 ) {
 				$post = '';
 			} else {
-				$post = $wgLang->truncate( $m[3], $contextchars, '...' );
+				$post = $wgContLang->truncate( $m[3], $contextchars, '...' );
 			}
 
 			$found = $m[2];
@@ -524,7 +524,7 @@ class SearchEngine {
 	 * @static
 	 */
 	function doFuzzyTitleSearch( $search, $namespace ){
-		global $wgLang, $wgOut;
+		global $wgContLang, $wgOut;
 		
 		$this->setupPage();
 		
@@ -536,7 +536,7 @@ class SearchEngine {
 		$wikitext = '';
 		foreach($fuzzymatches as $res){
 			$t = str_replace('_', ' ', $res[1]);
-			$tfull = $wgLang->getNsText( $namespace ) . ":$t|$t";
+			$tfull = $wgContLang->getNsText( $namespace ) . ":$t|$t";
 			if( $namespace == NS_MAIN )
 				$tfull = $t;
 			$distance = $res[0];
@@ -547,7 +547,7 @@ class SearchEngine {
 		}
 		if( $wikitext ){
 			if( $namespace != NS_MAIN )
-				$wikitext = '=== ' . $wgLang->getNsText( $namespace ) . " ===\n" . $wikitext;
+				$wikitext = '=== ' . $wgContLang->getNsText( $namespace ) . " ===\n" . $wikitext;
 			$wgOut->addWikiText( $wikitext );
 			return true;
 		}

@@ -11,7 +11,7 @@ require_once( 'ImageGallery.php' );
  *
  */
 function wfSpecialNewimages() {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	
 	$sort = $wgRequest->getVal( 'sort' );
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
@@ -60,7 +60,7 @@ function wfSpecialNewimages() {
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
-	$here = $wgLang->specialPage( "Imagelist" );
+	$here = $wgContLang->specialPage( "Imagelist" );
 
 	$fill = "";
 	$first = true;
@@ -85,7 +85,7 @@ function wfSpecialNewimages() {
 
 		$nt = Title::newFromText( $name, NS_IMAGE );
 		$img = Image::newFromTitle( $nt );
-		$ul = $sk->makeLink( $wgLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+		$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
 		$gallery->add( $img, $ul.'<br /><i>'.$wgLang->timeanddate( $s->img_timestamp, true ).'</i><br />' );
 		$i++;

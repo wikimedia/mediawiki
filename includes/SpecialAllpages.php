@@ -9,12 +9,12 @@
  *
  */
 function wfSpecialAllpages( $par=NULL ) {
-	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgLang;
+	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
 	$indexMaxperpage = 480;
 	$toplevelMaxperpage = 50;
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
-	$names = $wgLang->getNamespaces();
+	$names = $wgContLang->getNamespaces();
 	if( !isset( $names[$namespace] ) ) {
 		$namespace = 0;
 	}
@@ -31,12 +31,12 @@ function wfSpecialAllpages( $par=NULL ) {
 }
 
 function namespaceForm ( $namespace = 0, $from = '' ) {
-	global $wgLang, $wgScript;
+	global $wgContLang, $wgScript;
 
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
 	$namespaceselect = '<select name="namespace">';
-	$arr = $wgLang->getNamespaces();
+	$arr = $wgContLang->getNamespaces();
 	for ( $i = 0; $i < 14; $i++ ) {
 		$namespacename = str_replace ( "_", " ", $arr[$i] );
 		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
@@ -58,7 +58,7 @@ function namespaceForm ( $namespace = 0, $from = '' ) {
 }
 
 function indexShowToplevel ( $namespace = 0 ) {
-	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgLang, $wgRequest, $wgUser;
+	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
 	$namespace = intval ($namespace);
@@ -132,7 +132,7 @@ function indexShowToplevel ( $namespace = 0 ) {
 	$morelinks = "";
 	if ( $offset > 0 ) {
 		$morelinks = $sk->makeKnownLink (
-			$wgLang->specialPage ( "Allpages" ),
+			$wgContLang->specialPage ( "Allpages" ),
 			wfMsg ( 'allpagesprev' ),
 			( $offset > $toplevelMaxperpage ) ? 'offset='.($offset-$toplevelMaxperpage) : ''
 		);
@@ -140,7 +140,7 @@ function indexShowToplevel ( $namespace = 0 ) {
 	if ( $stopat < $sections-1 ) {
 		if ( $morelinks != "" ) { $morelinks .= " | "; }
 		$morelinks .= $sk->makeKnownLink (
-			$wgLang->specialPage ( "Allpages" ),
+			$wgContLang->specialPage ( "Allpages" ),
 			wfMsg ( 'allpagesnext' ),
 			'offset=' . ($offset + $toplevelMaxperpage)
 		);
@@ -178,7 +178,7 @@ function indexShowline( $inpoint, $outpoint, $namespace = 0 ) {
 }
 
 function indexShowChunk( $from, $namespace = 0 ) {
-	global $wgOut, $wgUser, $indexMaxperpage, $wgLang;
+	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;
 	$namespacee = intval($namespace);
@@ -224,12 +224,12 @@ function indexShowChunk( $from, $namespace = 0 ) {
 	$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 	$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 	$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
-			$sk->makeKnownLink( $wgLang->specialPage( "Allpages" ),
+			$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 				wfMsg ( 'allpages' ) );
 	if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 		$out2 .= " | " . $sk->makeKnownLink(
-			$wgLang->specialPage( "Allpages" ),
+			$wgContLang->specialPage( "Allpages" ),
 			wfMsg ( 'nextpage', $s->cur_title ),
 			"from=" . wfUrlEncode ( $s->cur_title ) . $namespaceparam );
 	}

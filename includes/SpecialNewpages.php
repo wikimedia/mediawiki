@@ -54,7 +54,7 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang, $wgUser, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
+		global $wgLang, $wgContLang, $wgUser, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$u = $result->user;
 		$ut = $result->user_text;
 
@@ -65,7 +65,7 @@ class NewPagesPage extends QueryPage {
 			$ul = $ut;
 		}
 		else {
-			$ul = $skin->makeLink( $wgLang->getNsText(NS_USER) . ":{$ut}", $ut );
+			$ul = $skin->makeLink( $wgContLang->getNsText(NS_USER) . ":{$ut}", $ut );
 		}
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );

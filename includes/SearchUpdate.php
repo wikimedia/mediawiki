@@ -30,7 +30,7 @@ class SearchUpdate {
 	}
 
 	function doUpdate() {
-		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
+		global $wgDBminWordLen, $wgContLang, $wgDisableSearchUpdate;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
@@ -55,7 +55,7 @@ class SearchUpdate {
 		}
 
 		# Language-specific strip/conversion
-		$text = $wgLang->stripForSearch( $this->mText );
+		$text = $wgContLang->stripForSearch( $this->mText );
 
 		wfProfileIn( $fname.'-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][A-Za-z0-9]*\\s*([^>]*?)>/",

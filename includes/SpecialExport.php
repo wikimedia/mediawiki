@@ -60,15 +60,15 @@ function wfSpecialExport( $page = '' ) {
 }
 
 function pages2xml( $pages, $curonly = false ) {
-	global $wgLanguageCode, $wgInputEncoding, $wgLang;
+	global $wgContLanguageCode, $wgInputEncoding, $wgContLang;
 	$xml = "<" . "?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n" .
-		"<mediawiki version=\"0.1\" xml:lang=\"$wgLanguageCode\">\n";
+		"<mediawiki version=\"0.1\" xml:lang=\"$wgContLanguageCode\">\n";
 	foreach( $pages as $page ) {
 		$xml .= page2xml( $page, $curonly );
 	}
 	$xml .= "</mediawiki>\n";
 	if($wgInputEncoding != "utf-8")
-		$xml = $wgLang->iconv( $wgInputEncoding, "utf-8", $xml );
+		$xml = $wgContLang->iconv( $wgInputEncoding, "utf-8", $xml );
 	return $xml;
 }
 

@@ -148,12 +148,12 @@ class WikiRevision {
 	}
 	
 	function fixEncoding( $data ) {
-		global $wgLang, $wgInputEncoding;
+		global $wgContLang, $wgInputEncoding;
 		
 		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
 			return $data;
 		} else {
-			return $wgLang->iconv( "utf-8", $wgInputEncoding, $data );
+			return $wgContLang->iconv( "utf-8", $wgInputEncoding, $data );
 		}
 	}
 	

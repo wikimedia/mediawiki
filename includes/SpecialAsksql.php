@@ -90,7 +90,7 @@ class SqlQueryForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
+		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang, $wgContLang;
 		global $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname, $wgSqlTimeout;
 
 		# Use a limit, folks!
@@ -134,7 +134,7 @@ class SqlQueryForm {
 				foreach ( $a as $y ) {
 					$sTitle = htmlspecialchars( $y->cur_title );
 					if ( $y->cur_namespace ) {
-						$sNamespace = $wgLang->getNsText( $y->cur_namespace );
+						$sNamespace = $wgContLang->getNsText( $y->cur_namespace );
 						$link = "$sNamespace:$sTitle";
 					} else {
 						$link = "$sTitle";
@@ -159,7 +159,7 @@ class SqlQueryForm {
 							if( $x == "cur_title" ) $namespace = $y->cur_namespace;
 							if( $x == "old_title" ) $namespace = $y->old_namespace;
 							if( $x == "rc_title" ) $namespace = $y->rc_namespace;
-							if( $namespace ) $o = $wgLang->getNsText( $namespace ) . ":" . $o;
+							if( $namespace ) $o = $wgContLang->getNsText( $namespace ) . ":" . $o;
 							$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
 							  htmlspecialchars( $y->$x ) . "</a>" ;
 							} else {

@@ -47,7 +47,7 @@ class BookSourceList {
 	}
 	
 	function showList() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgContLang;
 		$fname = "BookSourceList::showList()";
 		
 		# First, see if we have a custom list setup in
@@ -63,7 +63,7 @@ class BookSourceList {
 		
 		# Otherwise, use the list of links in the default Language.php file.
 		$s = wfMsg( "booksourcetext" ) . "<ul>\n";
-		$bs = $wgLang->getBookstoreList() ;
+		$bs = $wgContLang->getBookstoreList() ;
 		$bsn = array_keys ( $bs ) ;
 		foreach ( $bsn as $name ) {
 			$adr = $bs[$name] ;

@@ -46,8 +46,8 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgLang ;
-		$ns = $wgLang->getNamespaces() ;
+		global $wgContLang ;
+		$ns = $wgContLang->getNamespaces() ;
 		$from = $skin->makeKnownLink( $ns[$result->ns_a].':'.$result->title_a ,'', 'redirect=no' );
 		$edit = $skin->makeBrokenLink( $ns[$result->ns_a].':'.$result->title_a , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeKnownLink( $ns[$result->ns_b].':'.$result->title_b ,'');
