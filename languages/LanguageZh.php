@@ -60,13 +60,24 @@ class LanguageZh extends LanguageZh_cn {
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
-		$fname="zhconvert";
+		$fname="zhautoConvert";
 		wfProfileIn( $fname );
 		$t = $this->mZhClient->convert($text, $toVariant);
 		wfProfileOut( $fname );
 		return $t;
 	}
-
+    
+	function autoConvertToAllVariants($text) {
+		$fname="zhautoConvertToAll";
+		wfProfileIn( $fname );
+		$ret = $this->mZhClient->convertToAllVariants($text);
+		if($ret == false) {//fall back...
+			$ret = Language::autoConvertToAllVariants($text);
+		}
+		wfProfileOut( $fname );
+		return $ret;
+	}
+    
 	# only convert titles having more than one character
 	function convertTitle($text) {
 		$len=0;
