@@ -201,7 +201,7 @@ textarea {
     border: 1px solid #2f6fab;  
     color: Black;
     background-color: white;
-    width: 98%;
+    width: 100%;
     padding: 0.1em;
     overflow: auto;
 }

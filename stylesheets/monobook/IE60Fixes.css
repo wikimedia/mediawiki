@@ -78,4 +78,11 @@ div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
     padding:0;
     margin:0;
 }
+textarea {
+    overflow: scroll;
+    overflow-x: hidden;
+}
 /*{ border:1px solid Red !important;}*/
+textarea {
+    padding-bottom: 25px;
+}
