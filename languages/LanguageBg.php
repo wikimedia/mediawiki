@@ -1458,11 +1458,18 @@ class LanguageBg extends LanguageUtf8 {
     return $wgDeveloperSpecialPagesBg;
   }
 
-  function getMessage( $key )
-  {
-    global $wgAllMessagesBg;
-    return $wgAllMessagesBg[$key];
-  }
+	function getMessage( $key ) {
+		global $wgAllMessagesBg;
+		if( isset( $wgAllMessagesBg[$key] ) ) {
+			return $wgAllMessagesBg[$key];
+		} else {
+			return "";
+		}
+	}
 
+	function getMagicWords()  {
+		global $wgMagicWordsBg;
+		return $wgMagicWordsBg;
+	}
 }
 ?>
