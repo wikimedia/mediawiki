@@ -1,39 +1,275 @@
 #!/usr/bin/evn perl
-# Takes STDIN and converts Converts decimal and named HTML entities to their
-# respective literals
+# Takes STDIN and converts Converts hexadecimal, decimal and named HTML
+# entities to their respective literals.
+#
 # Usage: perl entities2literals.pl < file_to_convert [> outfile]
 # Reference: http://www.w3.org/TR/REC-html40/sgml/entities.html
 # Copyright 2005 Ævar Arnfjörð Bjarmason <avarab@gmail.com> No rights reserved
 
-binmode STDOUT, ":utf8";
-undef $/;
-$file = <>;
+use strict;
 
-for (@s=split /:/,<DATA>;$i<=$#s,$_=$s[$i];++$i) {
-	($nr, $chr) = $s[$i] =~ m#(\d+)(.*)#;
-	$file =~ s/&$chr;/&#$nr;/g;
-}
+my $file = join /$\//, <>;
 
-for $i (0..length $file) {
-	if (&ss($file,$i) eq '&' and &ss($file, $i+1) eq '#') {
-		$eat = 1; # Yummie entities
-		undef $food;
-		next;
-	} elsif ($eat && &ss($file, $i) eq '#') {
-		next;
-	} elsif ($eat && &ss($file, $i) =~ /\d/) {
-		$food .= &ss($file, $i);
-		next;
-	} elsif ($eat && &ss($file, $i) =~ /;/) {
-		undef $eat;
-		$out .= chr($food);
-		undef $food;
-		next;
-	}
-	$out .= &ss($file, $i);
+$file =~ s/&#(\d+);/chr $1/eg;
+$file =~ s/&#x([0-9a-fA-F]+);/chr hex $1/eg;
+
+while (<DATA>) {
+	chomp;
+	my ($number, $entity) = split / +/;
+	$file =~ s/&$entity;/chr $number/eg;
 }
-print $out;
-sub ss {substr($_[0],$_[1],1)}
+print $file;
 
 __DATA__
-34quot:38amp:60lt:62gt:160nbsp:161iexcl:162cent:163pound:164curren:165yen:166brvbar:167sect:168uml:169copy:170ordf:171laquo:172not:173shy:174reg:175macr:176deg:177plusmn:178sup2:179sup3:180acute:181micro:182para:183middot:184cedil:185sup1:186ordm:187raquo:188frac14:189frac12:190frac34:191iquest:192Agrave:193Aacute:194Acirc:195Atilde:196Auml:197Aring:198AElig:199Ccedil:200Egrave:201Eacute:202Ecirc:203Euml:204Igrave:205Iacute:206Icirc:207Iuml:208ETH:209Ntilde:210Ograve:211Oacute:212Ocirc:213Otilde:214Ouml:215times:216Oslash:217Ugrave:218Uacute:219Ucirc:220Uuml:221Yacute:222THORN:223szlig:224agrave:225aacute:226acirc:227atilde:228auml:229aring:230aelig:231ccedil:232egrave:233eacute:234ecirc:235euml:236igrave:237iacute:238icirc:239iuml:240eth:241ntilde:242ograve:243oacute:244ocirc:245otilde:246ouml:247divide:248oslash:249ugrave:250uacute:251ucirc:252uuml:253yacute:254thorn:255yuml:338OElig:339oelig:352Scaron:353scaron:376Yuml:402fnof:710circ:732tilde:913Alpha:914Beta:915Gamma:916Delta:917Epsilon:918Zeta:919Eta:920Theta:921Iota:922Kappa:923Lambda:924Mu:925Nu:926Xi:927Omicron:928Pi:929Rho:931Sigma:932Tau:933Upsilon:934Phi:935Chi:936Psi:937Omega:945alpha:946beta:947gamma:948delta:949epsilon:950zeta:951eta:952theta:953iota:954kappa:955lambda:956mu:957nu:958xi:959omicron:960pi:961rho:962sigmaf:963sigma:964tau:965upsilon:966phi:967chi:968psi:969omega:977thetasym:978upsih:982piv:8194ensp:8195emsp:8201thinsp:8204zwnj:8205zwj:8206lrm:8207rlm:8211ndash:8212mdash:8216lsquo:8217rsquo:8218sbquo:8220ldquo:8221rdquo:8222bdquo:8224dagger:8225Dagger:8226bull:8230hellip:8240permil:8242prime:8243Prime:8249lsaquo:8250rsaquo:8254oline:8260frasl:8364euro:8465image:8472weierp:8476real:8482trade:8501alefsym:8592larr:8593uarr:8594rarr:8595darr:8596harr:8629crarr:8656lArr:8657uArr:8658rArr:8659dArr:8660hArr:8704forall:8706part:8707exist:8709empty:8711nabla:8712isin:8713notin:8715ni:8719prod:8721sum:8722minus:8727lowast:8730radic:8733prop:8734infin:8736ang:8743and:8744or:8745cap:8746cup:8747int:8756there4:8764sim:8773cong:8776asymp:8800ne:8801equiv:8804le:8805ge:8834sub:8835sup:8836nsub:8838sube:8839supe:8853oplus:8855otimes:8869perp:8901sdot:8968lceil:8969rceil:8970lfloor:8971rfloor:9001lang:9002rang:9674loz:9824spades:9827clubs:9829hearts:9830diams
+34   quot
+38   amp
+60   lt
+62   gt
+160  nbsp
+161  iexcl
+162  cent
+163  pound
+164  curren
+165  yen
+166  brvbar
+167  sect
+168  uml
+169  copy
+170  ordf
+171  laquo
+172  not
+173  shy
+174  reg
+175  macr
+176  deg
+177  plusmn
+178  sup2
+179  sup3
+180  acute
+181  micro
+182  para
+183  middot
+184  cedil
+185  sup1
+186  ordm
+187  raquo
+188  frac14
+189  frac12
+190  frac34
+191  iquest
+192  Agrave
+193  Aacute
+194  Acirc
+195  Atilde
+196  Auml
+197  Aring
+198  AElig
+199  Ccedil
+200  Egrave
+201  Eacute
+202  Ecirc
+203  Euml
+204  Igrave
+205  Iacute
+206  Icirc
+207  Iuml
+208  ETH
+209  Ntilde
+210  Ograve
+211  Oacute
+212  Ocirc
+213  Otilde
+214  Ouml
+215  times
+216  Oslash
+217  Ugrave
+218  Uacute
+219  Ucirc
+220  Uuml
+221  Yacute
+222  THORN
+223  szlig
+224  agrave
+225  aacute
+226  acirc
+227  atilde
+228  auml
+229  aring
+230  aelig
+231  ccedil
+232  egrave
+233  eacute
+234  ecirc
+235  euml
+236  igrave
+237  iacute
+238  icirc
+239  iuml
+240  eth
+241  ntilde
+242  ograve
+243  oacute
+244  ocirc
+245  otilde
+246  ouml
+247  divide
+248  oslash
+249  ugrave
+250  uacute
+251  ucirc
+252  uuml
+253  yacute
+254  thorn
+255  yuml
+338  OElig
+339  oelig
+352  Scaron
+353  scaron
+376  Yuml
+402  fnof
+710  circ
+732  tilde
+913  Alpha
+914  Beta
+915  Gamma
+916  Delta
+917  Epsilon
+918  Zeta
+919  Eta
+920  Theta
+921  Iota
+922  Kappa
+923  Lambda
+924  Mu
+925  Nu
+926  Xi
+927  Omicron
+928  Pi
+929  Rho
+931  Sigma
+932  Tau
+933  Upsilon
+934  Phi
+935  Chi
+936  Psi
+937  Omega
+945  alpha
+946  beta
+947  gamma
+948  delta
+949  epsilon
+950  zeta
+951  eta
+952  theta
+953  iota
+954  kappa
+955  lambda
+956  mu
+957  nu
+958  xi
+959  omicron
+960  pi
+961  rho
+962  sigmaf
+963  sigma
+964  tau
+965  upsilon
+966  phi
+967  chi
+968  psi
+969  omega
+977  thetasym
+978  upsih
+982  piv
+8194 ensp
+8195 emsp
+8201 thinsp
+8204 zwnj
+8205 zwj
+8206 lrm
+8207 rlm
+8211 ndash
+8212 mdash
+8216 lsquo
+8217 rsquo
+8218 sbquo
+8220 ldquo
+8221 rdquo
+8222 bdquo
+8224 dagger
+8225 Dagger
+8226 bull
+8230 hellip
+8240 permil
+8242 prime
+8243 Prime
+8249 lsaquo
+8250 rsaquo
+8254 oline
+8260 frasl
+8364 euro
+8465 image
+8472 weierp
+8476 real
+8482 trade
+8501 alefsym
+8592 larr
+8593 uarr
+8594 rarr
+8595 darr
+8596 harr
+8629 crarr
+8656 lArr
+8657 uArr
+8658 rArr
+8659 dArr
+8660 hArr
+8704 forall
+8706 part
+8707 exist
+8709 empty
+8711 nabla
+8712 isin
+8713 notin
+8715 ni
+8719 prod
+8721 sum
+8722 minus
+8727 lowast
+8730 radic
+8733 prop
+8734 infin
+8736 ang
+8743 and
+8744 or
+8745 cap
+8746 cup
+8747 int
+8756 there4
+8764 sim
+8773 cong
+8776 asymp
+8800 ne
+8801 equiv
+8804 le
+8805 ge
+8834 sub
+8835 sup
+8836 nsub
+8838 sube
+8839 supe
+8853 oplus
+8855 otimes
+8869 perp
+8901 sdot
+8968 lceil
+8969 rceil
+8970 lfloor
+8971 rfloor
+9001 lang
+9002 rang
+9674 loz
+9824 spades
+9827 clubs
+9829 hearts
+9830 diams
