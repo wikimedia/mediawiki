@@ -8,14 +8,6 @@ function initialiseMessages( $overwrite = false) {
 
 	$fname = "initialiseMessages";
 	$ns = NS_MEDIAWIKI;
-	if ( !$overwrite ) {
-		$sql = "SELECT 1 FROM cur WHERE cur_namespace=$ns LIMIT 1";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if ( wfNumRows( $res ) ) {
-			print "MediaWiki: namespace already initialised\n";
-			return;
-		}
-	}
 
 	$timestamp = wfTimestampNow();
 	$invTimestamp = wfInvertTimestamp( $timestamp );
@@ -38,24 +30,32 @@ function initialiseMessages( $overwrite = false) {
 		$title = $titleObj->getDBkey();
 		$dbencMsg = wfStrencode( $message );
 		
+		$doInsert = true;
 		if ( $overwrite ) {
 			$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
 			wfQuery( $sql, DB_WRITE, $fname );
+		} else {	
+			$row = wfGetArray("cur", array("1"), 	
+				array("cur_namespace"=>$ns, "cur_title"=>$title));
+			if ($row) {
+				$doInsert = false;
+			}
 		}
-		
-		$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
-			cur_user_text, cur_timestamp, cur_restrictions,
-			cur_is_new, inverse_timestamp, cur_touched) VALUES (
-			$ns,
-			'$title',
-			'$dbencMsg',
-			'MediaWiki default',
-			'$timestamp',
-			'sysop',
-			1,
-			'$invTimestamp',
-			'$timestamp')";
-		wfQuery( $sql, DB_WRITE, $fname );
+		if ( $doInsert ) {
+			$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
+				cur_user_text, cur_timestamp, cur_restrictions,
+				cur_is_new, inverse_timestamp, cur_touched) VALUES (
+				$ns,
+				'$title',
+				'$dbencMsg',
+				'MediaWiki default',
+				'$timestamp',
+				'sysop',
+				1,
+				'$invTimestamp',
+				'$timestamp')";
+			wfQuery( $sql, DB_WRITE, $fname );
+		}
 		$mwObj =& MagicWord::get( MAG_MSGNW );
 		$mw = $mwObj->getSynonym( 0 );
 		$mw = str_replace( "$1", $key, $mw );
@@ -74,12 +74,9 @@ function initialiseMessages( $overwrite = false) {
 	$navText = wfStrencode( $navText );
 
 	$title = wfMsgNoDB( "allmessages" );
+	$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
+	wfQuery( $sql, DB_WRITE, $fname );
 
-	if ( $overwrite ) {
-		$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
-		wfQuery( $sql, DB_WRITE, $fname );
-	}
-	
 	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES (
