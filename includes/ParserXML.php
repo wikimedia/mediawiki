@@ -1,4 +1,6 @@
 <?
+require_once ( "Parser.php" ) ;
+
 /**
  * This should one day become the XML->(X)HTML parser
  * Based on work by Jan Hidders and Magnus Manske
@@ -13,6 +15,81 @@ class element {
     var $name = '';
     var $attrs = array();
     var $children = array();
+
+    function sub_makeXHTML ( &$parser , $tag = "" , $attr = "" )
+    	{
+    	$ret = "" ;
+    	if ( $tag != "" )
+    		{
+    		$ret .= "<" . $tag ;
+    		if ( $attr != "" ) $ret .= " " . $attr ;
+    		$ret .= ">" ;
+    		}
+      foreach ($this->children as $child) {
+            if ( is_string($child) ) {
+                $ret .= $child ;
+            } else {
+                $ret .= $child->makeXHTML ( $parser );
+            }
+           }
+    	if ( $tag != "" )
+    		$ret .= "</" . $tag . ">\n" ;
+      return $ret ;
+    	}
+    
+    function makeXHTML ( &$parser )
+    	{
+    	$ret = "" ;
+    	$n = $this->name ; # Shortcut
+    	if ( $n == "ARTICLE" )
+    		$ret .= $this->sub_makeXHTML ( $parser ) ;
+    	else if ( $n == "HEADING" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "h" . $this->attrs["LEVEL"] ) ;
+    	else if ( $n == "PARAGRAPH" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "p" ) ;
+    	else if ( $n == "BOLD" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "strong" ) ;
+    	else if ( $n == "ITALICS" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "em" ) ;
+
+    	else if ( $n == "EXTENSION" )
+    		{
+    		$ext = $this->attrs["NAME"] ;
+    		
+#    		$ret .= $this->sub_makeXHTML ( $parser , "em" ) ;
+    		}
+
+    	else if ( $n == "TABLE" )
+    		{
+    		$ret .= $this->sub_makeXHTML ( $parser , "table" ) ;
+    		}
+    	else if ( $n == "TABLEROW" )
+    		{
+    		$ret .= $this->sub_makeXHTML ( $parser , "tr" ) ;
+    		}
+    	else if ( $n == "TABLECELL" )
+    		{
+    		$ret .= $this->sub_makeXHTML ( $parser , "td" ) ;
+    		}
+
+
+    	else if ( $n == "LISTITEM" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "li" ) ;
+    	else if ( $n == "LIST" )
+    		{
+    		$type = "ol" ; # Default
+    		if ( $this->attrs["TYPE"] == "bullet" ) $type = "ul" ;
+    		$ret .= $this->sub_makeXHTML ( $parser , $type ) ;
+    		}
+    		
+    	else
+    		{
+    		$ret .= "&lt;" . $n . "&gt;" ;
+    		$ret .= $this->sub_makeXHTML ( $parser ) ;
+    		$ret .= "&lt;/" . $n . "&gt;" ;
+    		}
+    	return $ret ;
+    	}
 
     function myPrint() {
         $ret = "<ul>\n";
@@ -126,5 +203,72 @@ class xml2php {
     $result = $w->scanFile( $filename );
     print $result->myPrint();
 */
+
+$dummytext = "<article><heading level='2'> R-type </heading><paragraph><link><linktarget>image:a.jpg</linktarget><linkoption>1</linkoption><linkoption>2</linkoption><linkoption>3</linkoption><linkoption>text</linkoption></link></paragraph><paragraph>The <link><linktarget>video game</linktarget><linkoption>computer game</linkoption></link> <bold>R-type</bold> is <extension name='nowiki'>cool &amp; stuff</extension> because:</paragraph><list type='bullet'><listitem>it's nice</listitem><listitem>it's fast</listitem><listitem>it has:<list type='bullet'><listitem>graphics</listitem><listitem>sound</listitem></list></listitem></list><table><tablerow><tablecell>Version 1     </tablecell><tablecell>not bad</tablecell></tablerow><tablerow><tablecell>Version 2     </tablecell><tablecell>much better </tablecell></tablerow></table><paragraph>This is a || token in the middle of text.</paragraph></article>" ;
+
+class ParserXML EXTENDS Parser
+	{
+	/**#@+
+	 * @access private
+	 */
+	# Persistent:
+	var $mTagHooks;
+
+	# Cleared with clearState():
+	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
+	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+
+	# Temporary:
+	var $mOptions, $mTitle, $mOutputType,
+	    $mTemplates,	// cache of already loaded templates, avoids
+		                // multiple SQL queries for the same string
+	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
+		                // in this path. Used for loop detection.
+
+	/**#@-*/
+
+	/**
+	 * Constructor
+	 * 
+	 * @access public
+	 */
+	function ParserXML() {
+ 		$this->mTemplates = array();
+ 		$this->mTemplatePath = array();
+		$this->mTagHooks = array();
+		$this->clearState();
+	}
+
+	/**
+	 * Clear Parser state
+	 *
+	 * @access private
+	 */
+	function clearState() {
+		$this->mOutput = new ParserOutput;
+		$this->mAutonumber = 0;
+		$this->mLastSection = "";
+		$this->mDTopen = false;
+		$this->mVariables = false;
+		$this->mIncludeCount = array();
+		$this->mStripState = array();
+		$this->mArgStack = array();
+		$this->mInPre = false;
+	}
+	
+	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
+		global $dummytext ;
+		$text = $dummytext ;
+		
+		$w = new xml2php;
+		$result = $w->scanString( $text );
+		$text .= "<hr>" . $result->makeXHTML ( $this );
+		$text .= "<hr>" . $result->myPrint();
+		
+		$this->mOutput->setText ( $text ) ;
+		return $this->mOutput;
+	}	
+	
+	}
 
 ?>
