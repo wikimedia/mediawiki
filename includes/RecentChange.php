@@ -163,7 +163,7 @@ class RecentChange
 	# Note: the title object must be loaded with the new id using resetArticleID()
 	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default" )
 	{
-		if ( $bot == "default " ) {
+		if ( $bot == "default" ) {
 			$bot = $user->isBot();
 		}
 		$rc = new RecentChange;
