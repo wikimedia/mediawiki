@@ -714,7 +714,6 @@ class User {
 	
 	# Check to see if the given clear-text password is one of the accepted passwords
 	function checkPassword( $password ) {
-		print "hello\n";
 		$this->loadFromDatabase();
 		$ep = $this->encryptPassword( $password );
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
