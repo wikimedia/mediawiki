@@ -85,9 +85,11 @@ class MakesysopForm {
 		if( count( $parts ) == 2){
 			$username = addslashes( $parts[0] );
 			$usertable = $parts[1] . "wiki.user";
+			$dbName = $parts[1] . "wiki";
 		} else {
 			$username = addslashes( $wpMakesysopUser );
 			$usertable = "user";
+			$dbName = $wgDBname;
 		}
 		$prev = wfIgnoreSQLErrors( TRUE );
 		$res = wfQuery("SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'", DB_WRITE);
@@ -100,25 +102,43 @@ class MakesysopForm {
 
 		$row = wfFetchObject( $res );
 		$id = intval( $row->user_id );
+		$rightsNotation = array();
 
 		if( $row->user_rights ){
 			$rights = explode(",", $row->user_rights );
 			if(! in_array("sysop", $rights ) ){
 				$rights[] = "sysop";
+				$rightsNotation[] = "+sysop ";
 			}
 			if ( $wpSetBureaucrat && !in_array( "bureaucrat", $rights ) ) {
 				$rights[] = "bureaucrat";
+				$rightsNotation[] = "+bureaucrat ";
 			}
 			$newrights = addslashes( implode( ",", $rights ) );
 		} else {
 			$newrights = "sysop";
+			$rightsNotation[] = "+sysop";
+			if ( $wpSetBureaucrat ) {
+				$rightsNotation[] = "+bureaucrat";
+				$newrights .= ",bureaucrat";
+			}
 		}
 		
-		$sql = "UPDATE $usertable SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
-		wfQuery($sql, DB_WRITE);
-		$wgMemc->delete( "$wgDBname:user:id:$id" );
-
-		$this->showSuccess();
+		if ( count( $rightsNotation ) == 0 ) {
+			$this->showFail();
+		} else {
+			$sql = "UPDATE $usertable SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
+			wfQuery($sql, DB_WRITE);
+			$wgMemc->delete( "$dbName:user:id:$id" );
+			
+			$bureaucratLog = wfMsg( "bureaucratlog" );
+			$action = wfMsg( "bureaucratlogentry", $wpMakesysopUser, implode( " ", $rightsNotation ) );
+			
+			$log = new LogPage( $bureaucratLog );
+			$log->addEntry( $action, "" );
+			
+			$this->showSuccess();
+		}
 	}
 
 	function showSuccess()
