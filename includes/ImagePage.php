@@ -159,7 +159,24 @@ class ImagePage extends Article {
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
-		if ( !is_null( $image ) ) {
+		if ( !is_null( $oldimage ) ) {
+			# Squid purging
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+				);
+				wfPurgeSquidServers($urlArr);
+			}
+			$this->doDeleteOldImage( $oldimage );
+			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
+			  wfStrencode( $oldimage ) . "'";
+			wfQuery( $sql, DB_WRITE, $fname );
+
+			$deleted = $oldimage;
+		} else {
+			if ( is_null ( $image ) ) {
+				$image = $this->mTitle->getDBkey();
+			}
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
 			if ( ! @unlink( "{$dest}/{$image}" ) ) {
@@ -208,24 +225,7 @@ class ImagePage extends Article {
 			$article->doDeleteArticle( $reason ); # ignore errors
 
 			$deleted = $image;
-		} else if ( !is_null( $oldimage ) ) {
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage )
-				);
-				wfPurgeSquidServers($urlArr);
-			}
-			$this->doDeleteOldImage( $oldimage );
-			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
-			  wfStrencode( $oldimage ) . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$deleted = $oldimage;
-		} else {
-			$this->doDeleteArticle( $reason ); # ignore errors
-			$deleted = $this->mTitle->getPrefixedText();
-		}
+		} 
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
