@@ -1658,6 +1658,42 @@ class Skin {
 		$this->checkTitle(&$title, &$name);	
 		return $title->getLocalURL( $urlaction ); 
 	}
+	
+	/* these return an array with the 'href' and boolean 'exists' */
+	/*static*/ function makeUrlDetails ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$this->checkTitle(&$title, &$name);
+		return array( 
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		); 
+	}
+	/*static*/ function makeTalkUrlDetails ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title = $title->getTalkPage();
+		$this->checkTitle(&$title, &$name);
+		return array( 
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		); 
+	}
+	/*static*/ function makeArticleUrlDetails ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title= $title->getSubjectPage();
+		$this->checkTitle(&$title, &$name);
+		return array( 
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		); 
+	}
+	/*static*/ function makeI18nUrlDetails ( $name, $urlaction='' ) {
+		$title = Title::newFromText( wfMsg($name) );
+		$this->checkTitle(&$title, &$name);
+		return array( 
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		); 
+	}
 
 	# make sure we have some title to operate on, mind the '&'
 	/*static*/ function &checkTitle ( $title, $name ) { 

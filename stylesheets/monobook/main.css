@@ -650,6 +650,7 @@ li#pt-login {
     padding-left: 20px;
     text-transform: none;
 }
+#p-personal a.new { color:#ba0000; }
 
 /*
 ** the page-related actions- page/talk, edit etc 
