@@ -1,7 +1,11 @@
 // Wikipedia JavaScript support functions
-var noOverwrite=false; // if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
+
+// if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
+var noOverwrite=false;
 var alertText;
-var mozVote="";
+var clientPC = navigator.userAgent.toLowerCase(); // Get client info
+var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
+                && (clientPC.indexOf('khtml') == -1));
 
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;
@@ -20,7 +24,7 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 		otherLevel.style.display = 'inline';
 		linkLevel.style.display = 'none';
 		}
-	}
+}
 
 // Timezone stuff
 // tz in format [+-]HHMM
@@ -94,8 +98,8 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 
 	// we can't change the selection, so we show example texts
 	// when moving the mouse instead, until the first button is clicked
-	if(!document.selection) {
-		// filter backslashes so it can be shown in the infobox		
+	if(!document.selection && !is_gecko) {
+		// filter backslashes so it can be shown in the infobox
 		var re=new RegExp("\\\\n","g");
 		tagOpen=tagOpen.replace(re,"");
 		tagClose=tagClose.replace(re,"");
@@ -110,25 +114,17 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	return;
 }
 
-function addInfobox(infoText,text_alert,text_moz) {
+function addInfobox(infoText,text_alert) {
 	alertText=text_alert;
 	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-	if(clientPC.indexOf('gecko')!=-1) { mozVote=text_moz; }
 
 	var re=new RegExp("\\\\n","g");
 	alertText=alertText.replace(re,"\n");
-	mozVote=mozVote.replace(re,"\n");
 
 	// if no support for changing selection, add a small copy & paste field
-	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-	/*var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
-                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
-		&& (clientPC.indexOf('khtml')==-1));*/
-
-	// document.selection is an IE property. If it is not available, we generates
-	// an infobox used by the toolbar in other browsers.
-	if(!document.selection) {
+	// document.selection is an IE-only property. The full toolbar works in IE and
+	// Gecko-based browsers.
+	if(!document.selection && !is_gecko) {
  		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
 			"<input size=80 id='infobox' name='infobox' value=\""+
@@ -160,7 +156,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 
 	var txtarea = document.editform.wpTextbox1;
 	// IE
-	if(document.selection) {
+	if(document.selection  && !is_gecko) {
 		var theSelection = document.selection.createRange().text;
 		if(!theSelection) { theSelection=sampleText;}
 		txtarea.focus();
@@ -170,12 +166,12 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		} else {
 			document.selection.createRange().text = tagOpen + theSelection + tagClose;
 		}
-	// Mozilla -- disabled because it induces a scrolling bug which makes it virtually unusable
-	//
-	/*
+
+	// Mozilla
 	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
+		var scrollTop=txtarea.scrollTop;
 		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
 		if(myText.charAt(myText.length - 1) == " "){ // exclude ending space char, if any
@@ -183,12 +179,15 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		} else {
 			subst = tagOpen + myText + tagClose;
 		}
-		txtarea.value = txtarea.value.substring(0, startPos) + subst + txtarea.value.substring(endPos, txtarea.value.length);
+		txtarea.value = txtarea.value.substring(0, startPos) + subst +
+		  txtarea.value.substring(endPos, txtarea.value.length);
 		txtarea.focus();
+
 		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
-	*/
+		txtarea.scrollTop=scrollTop
+
 	// All others
 	} else {
 		var copy_alertText=alertText;
@@ -198,7 +197,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		copy_alertText=copy_alertText.replace(re2,tagOpen+sampleText+tagClose);
 		var text;
 		if (sampleText) {
-			text=prompt(copy_alertText+mozVote);
+			text=prompt(copy_alertText);
 		} else {
 			text="";
 		}

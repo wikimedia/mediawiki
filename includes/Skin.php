@@ -2405,7 +2405,7 @@ class Skin {
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "','" . addslashes(wfMsg("infobox_mozvote"))."');\n";
+		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n</script>";
 		return $toolbar;
 	}
