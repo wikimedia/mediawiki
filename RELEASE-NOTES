@@ -204,6 +204,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1186) news: in the middle of a word
 * (bug 1283) Use underlining and borders to highlight additions/deletions
   in diff-view
+* Use user's local timezone in Special:Log display
 
 === Caveats ===
 
