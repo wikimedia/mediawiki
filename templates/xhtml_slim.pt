@@ -5,14 +5,14 @@
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
     ${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
-    <style type="text/css" media="screen">/*<![CDATA[*/ @import url(${stylepath}/${skinname}/main.css); /*]]>*/</style>
+    <style type="text/css" media="screen">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
-    <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
+    <!--[if IE]><style type="text/css" media="all">@import "${stylepath}/${skinname}/IEFixes.css";</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
-    <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
+    <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import "${stylepath}/${skinname}/rtl.css";/*]]>*/</style>
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
