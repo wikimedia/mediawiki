@@ -26,12 +26,13 @@ function wfSpecialUnusedimages() {
 	while ( $obj = wfFetchObject( $res ) ) {
 		$name = $obj->img_name;
 		$dlink = $sk->makeKnownLink( "{$ins}:{$name}", wfMsg( "imgdesc" ) );
-		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) . "\">{$name}</a>";
+		$ilink = "<a href=\"" . htmlspecialchars( Image::wfImageUrl( $name ) ) .
+			"\">" . htmlspecialchars( $name ) . "</a>";
 
 		$d = $wgLang->timeanddate( $obj->img_timestamp, true );
 		$u = $obj->img_user;
 		$ut = $obj->img_user_text;
-		$c = $obj->img_description;
+		$c = $sk->formatComment( $obj->img_description );
 
 		if ( 0 == $u ) { $ul = $ut; }
 		else { $ul = $sk->makeLink( $wgLang->getNsText(2).":{$ut}", $ut ); }
