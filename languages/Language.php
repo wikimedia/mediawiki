@@ -814,7 +814,7 @@ from server time (UTC).',
 'tableform'		=> 'table',
 'listform'		=> 'list',
 'nchanges'		=> "$1 changes",
-'minoreditletter' => 'M',
+'minoreditletter' => 'm',
 'newpageletter' => 'N',
 
 # Upload
