@@ -261,6 +261,42 @@ class Article {
 		$this->fetchContent( $oldid, $noredir, true );
 	}
 	
+	
+	/**
+	 * Fetch a page record with the given conditions
+	 * @param Database $dbr
+	 * @param array    $conditions
+	 * @access private
+	 */
+	function pageData( &$dbr, $conditions ) {
+		return $dbr->selectRow( 'page',
+			array(
+				'page_id',
+				'page_namespace',
+				'page_title',
+				'page_restrictions',
+				'page_counter',
+				'page_is_redirect',
+				'page_is_new',
+				'page_random',
+				'page_touched',
+				'page_latest',
+				'page_len' ),
+			$conditions,
+			'Article::pageData' );
+	}
+	
+	function pageDataFromTitle( &$dbr, $title ) {
+		return $this->pageData( $dbr, array(
+			'page_namespace' => $title->getNamespace(),
+			'page_title'     => $title->getDBkey() ) );
+	}
+	
+	function pageDataFromId( &$dbr, $id ) {
+		return $this->pageData( $dbr, array(
+			'page_id' => IntVal( $id ) ) );
+	}
+	
 	/**
 	 * Get text of an article from database
 	 * @param int $oldid 0 for whatever the latest revision is
@@ -287,32 +323,25 @@ class Article {
 		}
 		$this->mContent = wfMsg( 'missingarticle', $t );
 
-		if( !$oldid ) {
-			# Retrieve current version
-			$id = $this->getID();
-			if ( 0 == $id ) {
+		if( $oldid ) {
+			$revision = Revision::newFromId( $oldid );
+			if( is_null( $revision ) ) {
 				return false;
 			}
-
-			$s = $dbr->selectRow( array( 'text', 'revision', 'page' ),
-				$this->getContentFields(),
-				"page_id='$id' AND rev_page=page_id AND rev_id=page_latest AND old_id=rev_id",
-				$fname, $this->getSelectOptions() );
+			$data = $this->pageDataFromId( $dbr, $revision->getPage() );
+			if( !$data ) {
+				return false;
+			}
+			$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
 		} else {
-			# Historical revision
-			$s = $dbr->selectRow( array( 'text', 'revision', 'page' ),
-				$this->getContentFields(),
-				"rev_page=page_id AND rev_id='$oldid' AND old_id=rev_id",
-				$fname, $this->getSelectOptions() );
-		}
-		if ( $s === false ) {
-			return false;
+			$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
+			$revision = Revision::newFromId( $data->page_latest );
 		}
 
 		# If we got a redirect, follow it (unless we've been told
 		# not to by either the function parameter or the query
 		if ( !$oldid && !$noredir ) {
-			$rt = Title::newFromRedirect( Revision::getRevisionText( $s ) );
+			$rt = Title::newFromRedirect( $revision->getText() );
 			# process if title object is valid and not special:userlogout
 			if ( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
 				# Gotta hand redirects to special pages differently:
@@ -329,44 +358,39 @@ class Article {
 						return false;
 					}
 				}
-				$rid = $rt->getArticleID();
-				if ( 0 != $rid ) {
-					$redirRow = $dbr->selectRow( array( 'text', 'revision', 'page' ),
-						$this->getContentFields(),
-						"page_id='$rid' AND rev_page=page_id AND rev_id=page_latest AND old_id=rev_id",
-						$fname, $this->getSelectOptions() );
-
-					if ( $redirRow !== false ) {
+				$redirData = $this->pageDataFromTitle( $dbr, $rt );
+				if( $redirData ) {
+					$redirRev = Revision::newFromId( $redirData->page_latest );
+					if( !is_null( $redirRev ) ) {
 						$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
 						$this->mTitle = $rt;
-						$s = $redirRow;
+						$data = $redirData;
+						$revision = $redirRev;
 					}
 				}
 			}
 		}
 
 		# if the title's different from expected, update...
-		if( $globalTitle &&
-			( $this->mTitle->getNamespace() != $s->page_namespace ||
-			$this->mTitle->getDBkey() != $s->page_title ) ) {
-			$oldTitle = Title::makeTitle( $s->page_namesapce, $s->page_title );
-			$this->mTitle = $oldTitle;
+		if( $globalTitle ) {
 			global $wgTitle;
-			$wgTitle = $oldTitle;
+			if( !$this->mTitle->equals( $wgTitle ) ) {
+				$wgTitle = $this->mTitle;
+			}
 		}
 		
 		# Back to the business at hand...
-		$this->mCounter = $s->page_counter;
-		$this->mTitle->mRestrictions = explode( ',', trim( $s->page_restrictions ) );
+		$this->mCounter   = $data->page_counter;
+		$this->mTitle->mRestrictions = explode( ',', trim( $data->page_restrictions ) );
 		$this->mTitle->mRestrictionsLoaded = true;
-		$this->mTouched = wfTimestamp( TS_MW, $s->page_touched );
+		$this->mTouched   = wfTimestamp( TS_MW, $data->page_touched );
 
-		$this->mContent = Revision::getRevisionText( $s );
+		$this->mContent   = $revision->getText();
 		
-		$this->mUser = $s->rev_user;
-		$this->mUserText = $s->rev_user_text;
-		$this->mComment = $s->rev_comment;
-		$this->mTimestamp = wfTimestamp( TS_MW, $s->rev_timestamp );
+		$this->mUser      = $revision->getUser();
+		$this->mUserText  = $revision->getUserText();
+		$this->mComment   = $revision->getComment();
+		$this->mTimestamp = wfTimestamp( TS_MW, $revision->getTimestamp() );
 		
 		$this->mContentLoaded = true;
 		return $this->mContent;
