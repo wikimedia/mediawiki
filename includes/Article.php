@@ -430,7 +430,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$this->mTitle->getInternalURL()
+				$this->mTitle->getInternalURL(),
+				$this->mTitle->getInternalURL('action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 			/* this needs to be done after LinksUpdate */
@@ -546,7 +547,8 @@ class Article {
 		
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$this->mTitle->getInternalURL()
+				$this->mTitle->getInternalURL(),
+				$this->mTitle->getInternalURL('action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 		}
@@ -835,7 +837,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
-				$this->mTitle->getInternalURL()
+				$this->mTitle->getInternalURL(),
+				$this->mTitle->getInternalURL('action=history')
 			);
 			wfPurgeSquidServers($urlArr);
 
