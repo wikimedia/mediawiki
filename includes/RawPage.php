@@ -87,6 +87,7 @@ class RawPage {
 			$rawtext = Article::getRevisionText( $s, "" );
 			if($wgInputEncoding != $this->mCharset)
 			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
+			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( $s->timestamp )).' GMT' );
 			return $rawtext;
 		} else {
 			return '';
