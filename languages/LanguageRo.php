@@ -96,7 +96,7 @@ include_once("Utf8Case.php");
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
 	"Preferences"	=> "Preferinţele mele",
-	"Watchlist"		=> "Articolele pe care le urmăresc",
+	"Watchlist"		=> "Articole urmărite",
 	"Recentchanges" => "Pagini actualizate recent",
 	"Upload"		=> "Trimite imagini",
 	"Imagelist"		=> "Lista imaginilor",
@@ -111,6 +111,8 @@ include_once("Utf8Case.php");
 	"Shortpages"	=> "Articole scurte",
 	"Longpages"		=> "Articole lungi",
 	"Newpages"		=> "Articole noi",
+	"Ancientpages"	=> "Cele mai vechi articole",
+	"Intl"	=> "Legături între limbi",
 	"Allpages"		=> "Toate paginile după titlu",
 
 	"Ipblocklist"	=> "Adrese IP blocate",
@@ -121,7 +123,8 @@ include_once("Utf8Case.php");
 	"Whatlinkshere" => "Ce pagini se leagă aici",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "Mută pagina",
-	"Booksources"	=> "Surse externe de cărţi"
+	"Booksources"	=> "Surse externe de cărţi",
+	"Categories"	=> "Categorii de pagini"
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
@@ -140,15 +143,20 @@ include_once("Utf8Case.php");
 
 # Bits of text used by many pages:
 #
+"categories"	=> "Categorii de pagini",
+"category"	=> "categoria",
+"category_header"	=> "Articole din categoria \"$1\"",
+"subcategories"	=> "Subcategorii",
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Pagina principală",
+"mainpagetext"	=> "Programul Wiki a fost instalat cu succes",
 "about"			=> "Despre",
 "aboutwikipedia" => "Despre Wikipedia",
 "aboutpage"		=> "Wikipedia:Despre",
 "help"			=> "Ajutor",
 "helppage"		=> "Wikipedia:Ajutor",
 "wikititlesuffix" => "Wikipedia",
-"bugreports"	=> "Rapoarte despre probleme",
+"bugreports"	=> "Raportare probleme",
 "bugreportspage" => "Wikipedia:Rapoarte_probleme",
 "faq"			=> "Întrebări frecvente",
 "faqpage"		=> "Wikipedia:Întrebări_frecvente",
@@ -172,13 +180,14 @@ include_once("Utf8Case.php");
 "search"		=> "Caută",
 "go"		=> "Du-te",
 "history"		=> "Versiuni mai vechi",
-"printableversion" => "Versiune pentru tipărire",
+"printableversion" => "Versiune tipărire",
 "editthispage"	=> "Editează această pagină",
-"deletethispage" => "Şterge această pagină",
-"protectthispage" => "Protejează această pagină",
-"unprotectthispage" => "Deprotejează această pagină",
+"deletethispage" => "Şterge pagina",
+"protectthispage" => "Protejează pagina",
+"unprotectthispage" => "Deprotejează pagina",
 "newpage" => "Pagină nouă",
-"talkpage"		=> "Discută această pagină",
+"talkpage"		=> "Discută pagina",
+"postcomment"	=> "Agaugă comentariu",
 "articlepage"	=> "Vezi articolul",
 "subjectpage"	=> "Vezi subiectul", # For compatibility
 "userpage" => "Vezi pagina utilizatorului",
@@ -230,8 +239,14 @@ Ultimul query încercat a fost:
 <blockquote><tt>$1</tt></blockquote>
 în cadrul funcţiei \"<tt>$2</tt>\".
 MySQL a returnat eroarea \"<tt>$3: $4</tt>\".",
+"dberrortextcl"	=> "A aoărut o eroare de sintaxă în query.
+Ultimul query încercat a fost:
+\"$1\"
+din funcţia \"$2\".
+MySQL a returnat eroarea \"$3: $4\".\n",
 "noconnect"		=> "Nu s-a putut conecta baza de date pe $1",
-"nodb"			=> "Nu c-a putut selecta baza de date $1",
+"nodb"			=> "Nu s-a putut selecta baza de date $1",
+"cachederror"	=> "Aceasta este o versiune din cache a paginii cerute şi este posibil să nu fie ultima variantă a acesteia.",
 "readonly"		=> "Baza de date este blocată la scriere",
 "enterlockreason" => "Introduceţi motivul pentru blocare, incluzând o estimare a termenului când veţi debloca baza de date",
 "readonlytext"	=> "Baza de date Wikipedia este momentan blocată la scriere, probabil pentru o operaţiune de rutină, după care va fi deblocată şi se va reveni la starea normală.
@@ -250,6 +265,7 @@ Administratorul care a blocat-o a oferit această explicaţie:
 "badtitle"		=> "Titlu invalid",
 "badtitletext"	=> "Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.",
 "perfdisabled" => "Ne pare rău! Această funcţionalitate a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Vă rugăm să reveniţi la altă oră şi încercaţi din nou.", // Didn't provide any off-peak hours because they may differ on the Romanian Wikipedia.
+"perfdisabledsub"	=> "Iată o copie salvată de la $1:",
 
 # Login and logout pages
 #
@@ -275,6 +291,7 @@ Adresa de mail este opţională; dacă vă pierdeţi parola o puteţi cere la ad
 "logout"		=> "Închide sesiunea",
 "userlogout"	=> "Închide sesiunea",
 "createaccount"	=> "Creează cont nou",
+"createaccountmail"	=> "după e-mail",
 "badretype"		=> "Parolele pe care le-aţi introdus diferă.",
 "userexists"	=> "Numele de utilizator pe care l-aţi introdus există deja. Încercaţi cu un alt nume.",
 "youremail"		=> "Adresa de mail",
@@ -300,6 +317,7 @@ Vă rugăm să vă autentificaţi pe Wikipedia după ce o primiţi.",
 # Edit pages
 #
 "summary"		=> "Sumar",
+"subject"		=> "Subiect/titlu",
 "minoredit"		=> "Aceasta este o editare minoră",
 "watchthis"		=> "Urmăreşte această pagină",
 "savearticle"	=> "Salvează pagina",
@@ -309,6 +327,14 @@ Vă rugăm să vă autentificaţi pe Wikipedia după ce o primiţi.",
 "blockedtext"	=> "Utilizatorul sau parola Dvs. au fost blocate de $1.
 Motivul oferit pentru blocare a fost:<br>''$2''<p>Puteţi contacta pe $1 sau pe unul dintre ceilalţi
 [[Wikipedia:administratori|administratori]] pentru a discuta această blocare.",
+"whitelistedittitle" => "Este necesară autentificarea pentru a edita",
+"whitelistedittext" => "Trebuie să vă [[Special:Userlogin|autentificaţi]] pentru a edita articole.",
+"whitelistreadtitle" => "Este necesară autentificarea pentru a citi",
+"whitelistreadtext" => "Trebuie să vă [[Special:Userlogin|autentificaţi]] pentru a citi articole.",
+"whitelistacctitle" => "Nu aveţi dreptul de a crea conturi",
+"whitelistacctext" => "Trebuie să vă [[Special:Userlogin|autentificaţi]] şi să aveţi permisiunile corecte pentru a crea conturi.",
+"accmailtitle" => "Parola a fost trimisă.",
+"accmailtext" => "Parola pentru '$1' a fost trimisă la $2.",
 "newarticle"	=> "(Nou)",
 "newarticletext" =>
 "Aţi ajuns la o pagină care nu există.
@@ -322,6 +348,8 @@ Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele brow
 "previewnote"	=> "Reţineţi că aceasta este doar o previzualizare - articolul încă nu este salvat! Trebuie să apăsaţi butonul \"Salvează pagina\" de sub caseta de editare pentru a salva. Nu uitaţi să introduceţi şi o descriere sumară a modificărilor!",
 "previewconflict" => "Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeţi să salvaţi acum.",
 "editing"		=> "Editare $1",
+"sectionedit"	=> " (secţiune)",
+"commentedit"	=> " (comentariu)",
 "editconflict"	=> "Conflict de editare: $1",
 "explainconflict" => "Altcineva a modificat această pagină de când aţi început s-o editaţi.
 Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).
@@ -339,6 +367,12 @@ De asemenea, trimiţând aceste materiale aici vă angajaţi că le-aţi scris D
 <strong>NU TRIMITEŢI MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",
 "longpagewarning" => "ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la editarea paginilor în jur de 32 KB sau mai mari.
 Vă rugăm să luaţi în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.",
+"readonlywarning" => "ATENŢIE! Baza de date a fost blocată pentru întreţinere,
+deci vă nu veţi putea salva editările în acest moment. Puteţi copia textul
+într-un fişier text local pentru a modifica conţinutul în Wikipedia când va fi posibil.",
+"protectedpagewarning" => "ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
+cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
+<a href='Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
 
 # History pages
 #
@@ -349,12 +383,12 @@ Vă rugăm să luaţi în considerare posibilitatea de a împărţi pagina în m
 "loadhist"		=> "Încarc istoria versiunilor",
 "currentrev"	=> "Versiunea curentă",
 "revisionasof"	=> "Versiunea de la data $1",
-"cur"			=> "cur",
+"cur"			=> "actuală",
 "next"			=> "următoarea",
-"last"			=> "precedenta",
+"last"			=> "prec",
 "orig"			=> "orig",
-"histlegend"	=> "Legendă: (cur) = diferenţe faţă de versiunea curentă,
-(precedenta) = diferenţe faţă de versiunea precedentă, M = editare minoră",
+"histlegend"	=> "Legendă: (actuală) = diferenţe faţă de versiunea curentă,
+(prec) = diferenţe faţă de versiunea precedentă, M = editare minoră",
 
 # Diffs
 #
@@ -457,6 +491,7 @@ Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[d
 "rclinks"		=> "Arată ultimele $1 modificări din ultimele $2 zile.",
 
 "rchide"		=> "în in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
+"rcliu"			=> "; $1 editări operate de utilizatori autentificaţi",
 "diff"			=> "diferenţă",
 "hist"			=> "istorie",
 "hide"			=> "ascunde",
@@ -548,7 +583,7 @@ Vă rugăm să vizitaţi această legătură: ($2) pentru a descrie fişierul ş
 "imghistory"	=> "Istoria imaginii",
 "revertimg"		=> "rev",
 "deleteimg"		=> "şterg",
-"imghistlegend" => "Legend: (cur) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
+"imghistlegend" => "Legend: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
 <br><i>Apăsaţi pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 "imagelinks"	=> "Legăturile imaginii",
 "linkstoimage"	=> "Următoarele pagini leagă la această imagine:",
@@ -613,12 +648,15 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "rclsub"		=> "(cu pagini legate de la \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "Pagini noi",
+"ancientpages"		=> "Cele mai vechi articole",
+"intl"		=> "Legături între limbi",
 "movethispage"	=> "Mută această pagină",
 "unusedimagestext" => "<p>Vă rugăm să ţineţi cont de faptul că alte situri, inclusiv Wikipedii în alte limbi pot să aibă legături aici fără ca aceste pagini să fie listate aici - această listă se referă strict la Wikipedia în română.",
 "booksources"	=> "Surse de cărţi",
 "booksourcetext" => "Dedesubt găsiţi o listă de surse de cărţi noi şi vechi, şi e posibil să găsiţi şi informaţii adiţionale legate de titlurile pe care le căutaţi.
 Wikipedia nu este afiliată niciuneia dintre aceste afaceri,
 iar lista de mai jos nu constituie nici un fel de garanţie sau validare a serviciilor respective din partea Wikipedia.",
+"alphaindexline" => "$1 către $2",
 
 # Email this user
 #
@@ -646,7 +684,7 @@ sau a ales să nu primească e-mail de la alţi utilizatori.",
 
 # Watchlist
 #
-"watchlist"		=> "Articolele pe care le urmăresc",
+"watchlist"		=> "Articole urmărite",
 "watchlistsub"	=> "(pentru utilizatorul \"$1\")",
 "nowatchlist"	=> "Nu aţi ales să urmăriţi nici un articol.",
 "watchnologin"	=> "Nu sunteţi autentificat",
@@ -666,11 +704,30 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 "watchthispage"	=> "Urmăreşte pagina",
 "unwatchthispage" => "Nu mai urmări",
 "notanarticle"	=> "Nu este un articol",
+"watchnochange" => "Nici unul dintre articolele pe care le urmăriţi nu a fost modificat în perioada de timp afişată.",
+"watchdetails" => "($1 pagini urmărite în afară de paginile de discuţie;
+$2 pagini editate în total;
+$3...
+<a href='$4'>lista completă</a>.)",
+"watchmethod-recent" => "căutarea schimbărilor recente pentru paginile urmărite",
+"watchmethod-list" => "căutarea paginilor urmărite pentru schimbări recente",
+"removechecked" => "Elimină elementele bifate din lista de pagini urmărite",
+"watchlistcontains" => "Lista de articole urmărite conţine $1 pagini",
+"watcheditlist" => "Aceasta este lista alfabetică a tuturor paginilor pe care le urmăriţi.
+Bifaţi căsuţele corespunzătoare paginilor pe care doriţi să le eliminaţi din lista de
+pagini urmărite şi apăsaţi pe butonul corespunzător din partea de jos a paginii.",
+"removingchecked" => "Se elimină elementele cerute din lista de articole urmărite...",
+"couldntremove" => "Elementul '$1' nu a putut fi şters...",
+"iteminvalidname" => "E o problemă cu elementul '$1', numele este invalid...",
+"wlnote" => "Dedesubt găsiţi ultimele $1 schimbări din ultimele <b>$2</b> ore.",
 
 # Delete/protect/revert
 #
 "deletepage"	=> "Şterge pagina",
 "confirm"		=> "Confirmă",
+"excontent" => "conţinutul era:",
+"exbeforeblank" => "conţinutul înainte de golire era:",
+"exblank" => "pagina era goală",
 "confirmdelete" => "Confirmă ştergere",
 "deletesub"		=> "(Şterg \"$1\")",
 "confirmdeletetext" => "Sunteţi pe cale să ştergeţi permanent o pagină
@@ -694,7 +751,14 @@ Vezi $2 pentru o listă a elementelor şterse recent.",
 "imagereverted" => "S-a revenit la o versiune veche.",
 "rollback"		=> "Editări de revenire",
 "rollbacklink"	=> "revenire",
+"rollbackfailed" => "Revenirea nu s-a putut face",
 "cantrollback"	=> "Nu se poate reveni; ultimul contribuitor este autorul acestui articol.",
+"alreadyrolled"	=> "Nu se poate reveni peste ultima editare a [[$1]]
+făcută de către [[Utilizator:$2|$2]] ([[Discuţie utilizator:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
+
+Ultima editare a fost făcută de către [[Utilizator:$3|$3]] ([[Discuţie utilizator:$3|Discuţie]]).",
+#   only shown if there is an edit comment
+"editcomment" => "Comentariul de editare a fost: \"<i>$1</i>\".",
 "revertpage"	=> "Revenit la ultima editare de către $1",
 "historywarning" => "Atenţie! Pagina pe care o ştergeţi are istorie: ",
 
@@ -796,6 +860,7 @@ Vă rugăm să confirmaţi că intenţionaţi acest lucru.",
 Folosiţi apostrofuri ('în felul acesta') pentru a delimita şiruri de text.
 Această funcţionalitate poate solicita în mod deosebit server-ul,
 aşa că vă rugăm să nu o folosiţi în exces.",
+"sqlislogged"	=> "Vă rugăm reţineţi că toate query-urile sunt reţinute în server (logged).",
 "sqlquery"		=> "Introduceţi query",
 "querybtn"		=> "Trimiteţi query",
 "selectonly"	=> "Alte query-uri în afară de \"SELECT\" sunt accesibile numai pentru dezvoltatorii Wikipedia.",
