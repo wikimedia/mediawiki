@@ -409,7 +409,6 @@ class MovePageForm {
 			return;
 
 		WatchedItem::duplicateEntries( $this->ot, $this->nt );
-		}
 	}
 
 }
