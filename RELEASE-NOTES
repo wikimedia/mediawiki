@@ -392,7 +392,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1585) Fix page title on post-login redirection page
 * Run UTF-8 validation on old text in Recentchanges RSS diffs
 * (bug 1642) fix a mime type typo in img_auth.php
-
+* Automated interwiki redirects only for local interwikis
 
 === Caveats ===
 

@@ -382,7 +382,7 @@ class Article {
 					# Fill the HTTP response "Location" header and ignore
 					# the rest of the page we're on.
 
-					if ( $rt->getInterwiki() != '' ) {
+					if ( $rt->getInterwiki() != '' && $rt->isLocal() ) {
 						$wgOut->redirect( $rt->getFullURL() ) ;
 						return;
 					}
