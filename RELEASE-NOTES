@@ -389,6 +389,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1618) Properly list custom namespaces in Special:Allpages
 * (bug 1622) Remove trailing' >' when using category browser
 * (bug 1570) Fix php 4.2.x error on conflict merging
+* (bug 1585) Fix page title on post-login redirection page
 
 === Caveats ===
 
