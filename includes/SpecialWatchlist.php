@@ -15,7 +15,7 @@ function wfSpecialWatchlist()
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 	$specialTitle = Title::makeTitle( NS_SPECIAL, "Watchlist" );
-	
+
 	$uid = $wgUser->getID();
 	if( $uid == 0 ) {
 		$wgOut->addHTML( wfMsg( "nowatchlist" ) );
@@ -50,7 +50,7 @@ function wfSpecialWatchlist()
 			return;
 		}
 	}
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'cur', 'watchlist', 'recentchanges' ) );
 
@@ -62,7 +62,7 @@ function wfSpecialWatchlist()
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
         return;
 	}
-	
+
 	if ( ! isset( $days ) ) {
 		$big = 1000;
 		if($nitems > $big) {
@@ -74,7 +74,7 @@ function wfSpecialWatchlist()
 	} else {
 		$days = floatval($days);
 	}
-	
+
 	if ( $days <= 0 ) {
 		$docutoff = '';
 		$cutoff = false;
@@ -87,13 +87,13 @@ function wfSpecialWatchlist()
 		$res = $dbr->query( $sql );
 		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
-		
+
 	}
-	
+
 	if(isset($_REQUEST['magic'])) {
 		$wgOut->addHTML( wfMsg( "watchlistcontains", $wgLang->formatNum( $nitems ) ) .
 			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
-		
+
 		$wgOut->addHTML( "<form action='" .
 			$specialTitle->escapeLocalUrl( "action=submit" ) .
 			"' method='post'>\n" .
@@ -109,7 +109,7 @@ function wfSpecialWatchlist()
 			} else {
 				$t = $t->getPrefixedText();
 				$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
-					$sk->makeKnownLink( $t, $t ) .
+					$sk->makeLink( $t, $t ) .
 					"</li>\n" );
 			}
 		}
@@ -117,16 +117,16 @@ function wfSpecialWatchlist()
 			"<input type='submit' name='remove' value='" .
 			wfMsg( "removechecked" ) . "' />\n" .
 			"</form>\n" );
-		
+
 		return;
 	}
-	
+
 	# If the watchlist is relatively short, it's simplest to zip
 	# down its entirety and then sort the results.
-	
+
 	# If it's relatively long, it may be worth our while to zip
 	# through the time-sorted page list checking for watched items.
-	
+
 	# Up estimate of watched items by 15% to compensate for talk pages...
 	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
 		$x = "cur_timestamp";
@@ -138,11 +138,11 @@ function wfSpecialWatchlist()
 		$z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
 	}
 
-	
+
 	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
-	 
+
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
   cur_namespace,cur_title,cur_comment, cur_id,
@@ -189,7 +189,7 @@ function wfSpecialWatchlist()
 	if ( $wgUseWatchlistCache ) {
 		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
 	}
-	
+
 }
 
 
