@@ -169,6 +169,8 @@
 "qbpageoptions" => "Seitenoptionen",
 "qbpageinfo"	=> "Seitendaten",
 "qbmyoptions"	=> "Einstellungen",
+"qbspecialpages"	=> "Spezialseiten",
+"moredotdotdot"	=> "Mehr...",
 "mypage"		=> "Meine Seite",
 "mytalk"		=> "Meine Diskussion",
 "currentevents" => "-",
