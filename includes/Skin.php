@@ -35,7 +35,7 @@ function getCategories ()
   if ( !$wgOut->isArticle() ) return "" ;
   $sk = $wgUser->getSkin() ;
   $s = "" ;
-  $s .=  "\n<br>\n";
+  $s .=  "\n<br />\n";
   $s .= $sk->makeKnownLink ( "Special:Categories" , "Categories" , "article=".$wgTitle->getDBkey() ) ;
   $t = implode ( " | " , $wgOut->mCategoryLinks ) ;
   if ( $t != "" ) $s .= " : " ;
@@ -122,7 +122,7 @@ class Skin {
 		}
 		$out->out( $this->beforeContent() );
 
-		$out->out( $out->mBodytext );
+		$out->out( $out->mBodytext . "\n" );
 
 		$out->out( $this->afterContent() );
 		
@@ -142,12 +142,12 @@ class Skin {
 	{
 		global $wgOut, $wgStyleSheetPath;
 		$sheet = $this->getStylesheet();
-		$s = "<style type='text/css'><!--\n";
+		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
 		$s .= $this->doGetUserStyles();
 		$s .= "/* */\n";
-		$s .= "//--></style>\n";
+		$s .= "</style>\n";
 		return $s;
 	}
 
@@ -298,39 +298,39 @@ class Skin {
 			$borderhack = "class='top'";
 		}
 
-		$s .= "\n<div id='content'>\n<div id='topbar'>" .
-		  "<table border=0 cellspacing=0 width='98%'><tr>";
+		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
+		  "<table border='0' cellspacing='0' width='98%'>\n<tr>\n";
 
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
 		if($wgLang->isRTL()) $left = !$left;
 		
 		if ( !$shove ) {
-			$s .= "<td class='top' align=left valign=top rowspan='{$rows}'>" .
+			$s .= "<td class='top' align=left valign=top rowspan='{$rows}'>\n" .
 			  $this->logoText() . "</td>";
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
 		$l = $wgLang->isRTL() ? "right" : "left";
-		$s .= "<td {$borderhack} align='$l' valign='top'>";
+		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
 
 		$s .= $this->topLinks() ;
-		$s .= "<p class='subtitle'>" . $this->pageTitleLinks();
+		$s .= "<p class='subtitle'>" . $this->pageTitleLinks() . "</p>\n";
 
 		$r = $wgLang->isRTL() ? "left" : "right";
-		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap>";
+		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
-		$s .= "\n<br>" . $this->searchForm() . "</td>";
+		$s .= "\n<br />" . $this->searchForm() . "</td>";
 
 		if ( $langlinks ) {
-			$s .= "</tr>\n<tr><td class='top' colspan=\"2\">$langlinks</td>";
+			$s .= "</tr>\n<tr>\n<td class='top' colspan=\"2\">$langlinks</td>\n";
 		}
 
 		if ( $shove && !$left ) { # Right
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
-		$s .= "</tr></table>\n</div>\n";
-		$s .= "\n<div id='article'>";
+		$s .= "</tr>\n</table>\n</div>\n";
+		$s .= "\n<div id='article'>\n";
 
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;
@@ -352,7 +352,7 @@ class Skin {
 		global $wgUser, $wgOut, $wgServer;
 		global $wgTitle, $wgLang;
 		
-		$printfooter = "<div class=\"printfooter\">" . $this->printFooter() . "</div>\n";
+		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
 		return $printfooter . $this->doAfterContent();
 	}
 	
@@ -370,9 +370,9 @@ class Skin {
 		wfProfileIn( $fname );
 		wfProfileIn( "$fname-1" );
 
-		$s = "\n</div><br clear=all>\n";
+		$s = "\n</div><br clear='all' />\n";
 		$s .= "\n<div id='footer'>";
-		$s .= "<table border=0 cellspacing=0><tr>";
+		$s .= "<table border='0' cellspacing='0'><tr>";
 		
 		wfProfileOut( "$fname-1" );
 		wfProfileIn( "$fname-2" );
@@ -391,11 +391,11 @@ class Skin {
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br>" . $this->mainPageLink()
+		$s .= "\n<br />" . $this->mainPageLink()
 		  . " | " . $this->aboutLink()
 		  . " | " . $this->specialLink( "recentchanges" )
 		  . " | " . $this->searchForm()
-		  . "<br><span id='pagestats'>" . $this->pageStats() . "</span>";
+		  . "<br /><span id='pagestats'>" . $this->pageStats() . "</span>";
 
 		$s .= "</td>";
 		if ( $shove && !$left ) { # Right
@@ -534,7 +534,7 @@ class Skin {
 				}
 			}
 		}
-		$s = "<p class='subtitle'>{$sub}\n";
+		$s = "<p class='subtitle'>{$sub}</p>\n";
 		return $s;
 	}
 
@@ -564,7 +564,7 @@ class Skin {
 				$q = "";
 			} else { $q = "returnto={$rt}"; }
 			
-			$s .= "\n<br>" . $this->makeKnownLink( $li,
+			$s .= "\n<br />" . $this->makeKnownLink( $li,
 			  wfMsg( "login" ), $q );
 		} else {
 			$n = $wgUser->getName();
@@ -576,7 +576,7 @@ class Skin {
 			$tl = " ({$tl})"; 
 			
 			$s .= $this->makeKnownLink( $wgLang->getNsText(
-			  Namespace::getUser() ) . ":{$n}", $n ) . "{$tl}<br>" .
+			  Namespace::getUser() ) . ":{$n}", $n ) . "{$tl}<br />" .
 			  $this->makeKnownLink( $lo, wfMsg( "logout" ),
 			  "returnto={$rt}" ) . " | " .
 			  $this->specialLink( "preferences" );
@@ -593,12 +593,12 @@ class Skin {
 
 		$search = $wgRequest->getText( 'search' );;
 
-		$s = "<form name='search' class='inline' method=post action=\""
-		  . wfLocalUrl( "" ) . "\">"
-		  . "<input type=text name=\"search\" size=19 value=\""
-		  . htmlspecialchars(substr($search,0,256)) . "\">\n"
-		  . "<input type=submit name=\"go\" value=\"" . wfMsg ("go") . "\">&nbsp;"
-		  . "<input type=submit name=\"fulltext\" value=\"" . wfMsg ("search") . "\"></form>";
+		$s = "<form name='search' class='inline' method='post' action=\""
+		  . wfLocalUrl( "" ) . "\">\n"
+		  . "<input type='text' name=\"search\" size='19' value=\""
+		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
+		  . "<input type='submit' name=\"go\" value=\"" . wfMsg ("go") . "\" />&nbsp;"
+		  . "<input type='submit' name=\"fulltext\" value=\"" . wfMsg ("search") . "\" />\n</form>";
 
 		return $s;
 	}
@@ -654,11 +654,11 @@ class Skin {
 				}
 			}
 			if ( $wgUser->isSysop() && $wgTitle->getArticleId() ) {
-				$s .= "\n<br>" . $this->deleteThisPage() .
+				$s .= "\n<br />" . $this->deleteThisPage() .
 				$sep . $this->protectThisPage() .
 				$sep . $this->moveThisPage();
 			}
-			$s .= "<br>\n" . $this->otherLanguages();
+			$s .= "<br />\n" . $this->otherLanguages();
 		}
 		return $s;
 	}
@@ -707,7 +707,7 @@ class Skin {
 		$mp = wfMsg( "mainpage" );
 		$titleObj = Title::newFromText( $mp );
 		$s = "<a href=\"" . $titleObj->escapeLocalURL()
-		  . "\"><img{$a} border=0 src=\""
+		  . "\"><img{$a} border='0' src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\" /></a>";
 		return $s;
 	}
@@ -725,9 +725,9 @@ class Skin {
 		$tns=$wgTitle->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
-		$s .= "\n" . $this->logoText() . "\n<hr class='sep'>";
+		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
 
-		$sep = "\n<br>";
+		$sep = "\n<br />";
 		$s .= $this->mainPageLink()
 		  . $sep . $this->specialLink( "recentchanges" )
 		  . $sep . $this->specialLink( "randompage" );
@@ -739,7 +739,7 @@ class Skin {
 		}
 		// only show watchlist link if logged in
 		if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
-		$s .= "\n<br><hr class='sep'>";
+		$s .= "\n<br /><hr class='sep' />";
 		$articleExists = $wgTitle->getArticleId();
 		if ( $wgOut->isArticle() || $action =="edit" || $action =="history" || $wpPreview) {				
 			if($wgOut->isArticle()) {
@@ -791,7 +791,7 @@ class Skin {
 			
 
 			if( $tns%2 && $action!="edit" && !$wpPreview) {
-				$s.="<br>".$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("postcomment"),"action=edit&section=new");
+				$s.="<br />".$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("postcomment"),"action=edit&section=new");
 			}
 
 			/*
@@ -838,7 +838,7 @@ class Skin {
 					}
 				}
 			}
-			$s .= "\n<br><hr class='sep'>";
+			$s .= "\n<br /><hr class='sep' />";
 		} 
 		
 		if ( 0 != $wgUser->getID() && ( !$wgDisableUploads || $wgRemoteUploads ) ) {
@@ -849,11 +849,11 @@ class Skin {
 		
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {
-			$s .= "\n<br><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
+			$s .= "\n<br /><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
 			  "\" class=\"internal\">" . wfMsg( "sitesupport" ) . "</a>";
 		}
 	
-		$s .= "\n<br></div>\n";
+		$s .= "\n<br /></div>\n";
 		wfProfileOut( $fname );
 		return $s;
 	}
@@ -1821,7 +1821,7 @@ class Skin {
 			$r .= $wgLang->emphasize( " (".$rc_comment.")" );
 		}
 
-		$r .= "<br>\n" ;
+		$r .= "<br />\n" ;
 		return $r ;
 	}
 
@@ -1897,7 +1897,7 @@ class Skin {
 		}
 
 		$r .= $users ;
-		$r .= "<br>\n" ;
+		$r .= "<br />\n" ;
 
 		# Sub-entries
 		$r .= "<div id='{$rci}' style='display:none'>" ;
@@ -1935,7 +1935,7 @@ class Skin {
 				$rc_comment=$this->formatComment($rc_comment);
 				$r .= $wgLang->emphasize( " (".$rc_comment.")" ) ;
 			}
-			$r .= "<br>\n" ;
+			$r .= "<br />\n" ;
 		}
 		$r .= "</div>\n" ;
 

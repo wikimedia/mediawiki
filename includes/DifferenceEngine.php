@@ -50,12 +50,12 @@ class DifferenceEngine {
 			$rollback = "";
 		}
 
-		$oldHeader = "<strong>{$this->mOldtitle}</strong><br>$oldUserLink ($oldUTLink | $oldContribs)";
-		$newHeader = "<strong>{$this->mNewtitle}</strong><br>$newUserLink ($newUTLink | $newContribs) $rollback";
+		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />$oldUserLink ($oldUTLink | $oldContribs)";
+		$newHeader = "<strong>{$this->mNewtitle}</strong><br />$newUserLink ($newUTLink | $newContribs) $rollback";
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
 		  $oldHeader, $newHeader );
-		$wgOut->addHTML( "<hr><h2>{$this->mNewtitle}</h2>\n" );
+		$wgOut->addHTML( "<hr /><h2>{$this->mNewtitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
 	}
 
@@ -68,11 +68,11 @@ class DifferenceEngine {
 		$nta = explode( "\n", str_replace( "\r\n", "\n",
 		  htmlspecialchars( $ntext ) ) );
 
-		$wgOut->addHTML( "<table border=0 width='98%'
-cellpadding=0 cellspacing='4px' class='special'><tr>
-<td colspan=2 width='50%' align=center bgcolor='#cccccc'>
+		$wgOut->addHTML( "<table border='0' width='98%'
+cellpadding='0' cellspacing='4px' class='special'><tr>
+<td colspan='2' width='50%' align='center' bgcolor='#cccccc'>
 {$otitle}</td>
-<td colspan=2 width='50%' align=center bgcolor='#cccccc'>
+<td colspan='2' width='50%' align='center' bgcolor='#cccccc'>
 {$ntitle}</td>
 </tr>\n" );
 
@@ -1087,8 +1087,8 @@ class TableDiffFormatter extends DiffFormatter
 		$l1 = wfMsg( "lineno", $xbeg );
 		$l2 = wfMsg( "lineno", $ybeg );
 
-		$r = "<tr><td colspan=2 align=left><strong>{$l1}</strong></td>\n" .
-		  "<td colspan=2 align=left><strong>{$l2}</strong></td></tr>\n";
+		$r = "<tr><td colspan='2' align='left'><strong>{$l1}</strong></td>\n" .
+		  "<td colspan='2' align='left'><strong>{$l2}</strong></td></tr>\n";
 		return $r;
 	}
 

@@ -790,8 +790,8 @@ class Article {
 		$res = wfQuery( $sql, DB_READ, $fname );
 		if( ($old=wfFetchObject($res)) && !$confirm ) {
 			$skin=$wgUser->getSkin();
-			$wgOut->addHTML("<B>".wfMsg("historywarning"));
-			$wgOut->addHTML( $skin->historyLink() ."</B><P>");
+			$wgOut->addHTML("<b>".wfMsg("historywarning"));
+			$wgOut->addHTML( $skin->historyLink() ."</b><p>");
 		}
 
 		$sql="SELECT cur_text FROM cur WHERE cur_namespace=$ns and cur_title='$etitle'";
@@ -857,22 +857,40 @@ class Article {
 
 		$formaction = $this->mTitle->escapeLocalURL( "action=delete" . $par );
 		
-		$confirm = wfMsg( "confirm" );
-		$check = wfMsg( "confirmcheck" );
-		$delcom = wfMsg( "deletecomment" );
+		$confirm = htmlspecialchars( wfMsg( "confirm" ) );
+		$check = htmlspecialchars( wfMsg( "confirmcheck" ) );
+		$delcom = htmlspecialchars( wfMsg( "deletecomment" ) );
 
 		$wgOut->addHTML( "
-<form id=\"deleteconfirm\" method=\"post\" action=\"{$formaction}\">
-<table border=0><tr><td align=right>
-{$delcom}:</td><td align=left>
-<input type=text size=60 name=\"wpReason\" value=\"" . htmlspecialchars( $reason ) . "\">
-</td></tr><tr><td>&nbsp;</td></tr>
-<tr><td align=right>
-<input type=checkbox name=\"wpConfirm\" value='1' id=\"wpConfirm\">
-</td><td><label for=\"wpConfirm\">{$check}</label></td>
-</tr><tr><td>&nbsp;</td><td>
-<input type=submit name=\"wpConfirmB\" value=\"{$confirm}\">
-</td></tr></table></form>\n" );
+<form id='deleteconfirm' method='post' action=\"{$formaction}\">
+	<table border='0'>
+		<tr>
+			<td align='right'>
+				<label for='wpReason'>{$delcom}:</label>
+			</td>
+			<td align='left'>
+				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" />
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align='right'>
+				<input type='checkbox' name='wpConfirm' value='1' id='wpConfirm' />
+			</td>
+			<td>
+				<label for='wpConfirm'>{$check}</label>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type='submit' name='wpConfirmB' value=\"{$confirm}\" />
+			</td>
+		</tr>
+	</table>
+</form>\n" );
 
 		$wgOut->returnToMain( false );
 	}
@@ -1090,7 +1108,7 @@ class Article {
 		$newcomment = wfMsg( "revertpage", $s->old_user_text, $from );
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
+		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr />\n" );
 		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );

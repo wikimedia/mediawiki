@@ -297,7 +297,7 @@ class EditPage {
 
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
-			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked":"")." id='wpMinoredit'>".
+			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked":"")." id='wpMinoredit' />".
 			"<label for='wpMinoredit'>{$minor}</label>";
 		}
 
@@ -359,14 +359,14 @@ cols='{$cols}'{$ew} wrap=\"virtual\">" .
 htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 "
 </textarea>
-<br>{$editsummary}
+<br />{$editsummary}
 {$checkboxhtml}
-<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"s\">
-<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\">
+<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"s\" />
+<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\" />
 <em>{$cancel}</em> | <em>{$edithelp}</em>
-<br><br>{$copywarn}
-<input type=hidden value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\">
-<input type=hidden value=\"{$this->edittime}\" name=\"wpEdittime\">\n" );
+<br /><br />{$copywarn}
+<input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
+<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
 		if ( $isConflict ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );

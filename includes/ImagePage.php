@@ -38,7 +38,7 @@ class ImagePage extends Article {
 			
 			if ( $type != "" ) {
 				# image
-				$s = "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
+				$s = "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" /></center>";
 			} else {
 				$s = "<center>".$sk->makeMediaLink($name,"")."</center>";
 			}

@@ -466,7 +466,7 @@ function wfEmergencyAbort( &$conn ) {
 
 		$cache = new CacheManager( $t );
 		if( $cache->isFileCached() ) {
-			$msg = "<p style='color: red'><b>$msg<br>\n" .
+			$msg = "<p style='color: red'><b>$msg<br />\n" .
 				wfMsgNoDB( "cachederror" ) . "</b></p>\n";
 			
 			$tag = "<div id='article'>";

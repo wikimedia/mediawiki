@@ -188,7 +188,7 @@ class PageHistory {
 		}
 		$arbitrary = "";
 		if( $this->linesonpage > 1)
-			$arbitrary = "<input type='checkbox' onclick='anysel($oid)' title='Select any two versions to diff them'>";
+			$arbitrary = "<input type='checkbox' onclick='anysel($oid)' title='Select any two versions to diff them' />";
 		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary . .";
 		$M = wfMsg( "minoreditletter" );
 		if ( $isminor ) {

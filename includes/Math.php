@@ -3,7 +3,9 @@
 function linkToMathImage ( $tex, $outputhash )
 {
 	global $wgMathPath;
-	return "<img src=\"".$wgMathPath."/".$outputhash.".png\" alt=\"".wfEscapeHTML($tex)."\">";
+	$url = htmlspecialchars( "$wgMathPath/$outputhash.png";
+	$alt = htmlspecialchars( $tex );
+	return "<img class='tex' src=\"$url\" alt=\"$alt\" />";
 }
 
 function renderMath( $tex )
