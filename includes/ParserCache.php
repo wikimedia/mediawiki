@@ -12,6 +12,9 @@ class ParserCache
 
 	function get( &$article, &$user ) {
 		global $wgMemc;
+		$fname = "ParserCache::get";
+		wfProfileIn( $fname );
+
 		$hash = $user->getPageRenderingHash();
 		$pageid = intval( $article->getID() );
 		$key = $this->getKey( $article, $user );
@@ -25,6 +28,8 @@ class ParserCache
 		} else {
 			$value = false;
 		}
+
+		wfProfileOut( $fname );
 		return $value;
 	}
 	
