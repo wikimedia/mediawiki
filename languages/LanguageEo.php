@@ -1,5 +1,5 @@
 <?
-include("utf8Case.php");
+include("Utf8Case.php");
 $wgInputEncoding	= "utf-8";
 $wgOutputEncoding	= "utf-8";
 $wgEditEncoding		= "x";
@@ -58,149 +58,6 @@ $wgEditEncoding		= "x";
 # Se eble, trovu Esperantajn libroservoj traserĉeblaj laŭ ISBN
 # $wgBookstoreListEo = ..
 
-# Tie, kie eble, uzu la memnomo de la lingvo
-# El listo de Landoj kaj Lingvoj ce http://www.bertilow.com/lanlin/isoling.php
-/* private */ $wgLanguageNamesEo = array(
-	"aa"    => "Afar",
-	"ab"    => "Abĥaza",
-	"af"	=> "Afrikaans",
-	"am"	=> "Amhara",
-	"ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)",
-	"as"	=> "Asama",
-	"ay"	=> "Aymara",
-	"az"	=> "Azerbaijani",
-	"ba"	=> "Bashkir",
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-	"bh"	=> "Bihara",
-	"bi"	=> "Bislama",
-	"bn"	=> "Bengali",
-	"bo"	=> "Tibeta",
-	"br" => "Brezhoneg",
-	"bs" => "Bosna",
-	"ca" => "Catal&#224;",
-	"ch" => "Chamoru",
-	"co"	=> "Corsika",
-	"cs" => "&#268;esk&#225;",
-	"cy" => "Cymraeg",
-	"da" => "Dansk", # Note two different subdomains.
-	"dk" => "Dansk", # 'da' is correct for the language.
-	"de" => "Deutsch",
-	"dz"	=> "Bhutani",
-	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-	"en"	=> "English",
-	"eo"	=> "Esperanto",
-	"es" => "Espa&#241;ol",
-	"et" => "Eesti",
-	"eu" => "Euskara",
-	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
-	"fi" => "Suomi",
-	"fj"	=> "Fiĝia",
-	"fo"	=> "Feroa",
-	"fr" => "Fran&#231;ais",
-	"fy" => "Frysk",
-	"ga" => "Gaelige",
-	"gl"	=> "Galego",
-	"gn"	=> "Guarani",
-	"gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-	"ha"	=> "Hausa",
-	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
-	"hr" => "Hrvatski",
-	"hu" => "Magyar",
-	"hy"	=> "Armena",
-	"ia"	=> "Interlingua",
-	"id"	=> "Indonesia",
-	"ik"	=> "Inupiak",
-	"is" => "&#205;slenska",
-	"it" => "Italiano",
-	"iu"	=> "Inuktitut",
-	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
-	"jv"	=> "Javanese",
-	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-	"kk"	=> "Kazakh",
-	"kl"	=> "Groenlanda",
-	"km"	=> "Kampuĉa",
-	"kn"	=> "Kanada",
-	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
-	"ks"	=> "Kashmiri",
-	"kw" => "Kernewek",
-	"ky"	=> "Kirghiz",
-	"la" => "Latina",
-	"ln"	=> "Lingala",
-	"lo"	=> "Laotian",
-	"lt" => "Lietuvi&#371;",
-	"lv"	=> "Latvian",
-	"mg" => "Malagasy",
-	"mi"	=> "Maori",
-	"mk"	=> "Makedona",
-	"ml"	=> "Malayalam",
-	"mn"	=> "Mongola",
-	"mo"	=> "Moldova",
-	"mr"	=> "Marathi",
-	"ms" => "Bahasa Melayu",
-	"my"	=> "Burma",
-	"na"	=> "Nauru",
-	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
-	"nl" => "Nederlands",
-	"no" => "Norsk",
-	"oc"	=> "Occitan",
-	"om"	=> "Oromo",
-	"or"	=> "Oriya",
-	"pa"	=> "Punjabi",
-	"pl" => "Polski",
-	"ps"	=> "Pashto",
-	"pt" => "Portugu&#234;s",
-	"qu"	=> "Quechua",
-	"rm"	=> "Rumantsch",
-	"rn"	=> "Kirundi",
-	"ro" => "Rom&#226;n&#259;",
-	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
-	"rw"	=> "Kinyarwanda",
-	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-	"sd"	=> "Sindhi",
-	"sg"	=> "Sangro",
-	"sh"	=> "Srpskohvratski",
-	"si"	=> "Sinhala",
-	"simple" => "Simple English",
-	"sk"	=> "Slovak",
-	"sl"	=> "Slovensko",
-	"sm"	=> "Samoa",
-	"sn"	=> "Shona",
-	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"ss"	=> "Siswati",
-	"st"	=> "Sesotho",
-	"su"	=> "Sudana",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"ta"	=> "Tamil",
-	"te"	=> "Telugu",
-	"tg"	=> "Tajik",
-	"th"	=> "Thai",
-	"ti"	=> "Tigrinya",
-	"tk"	=> "Turkmen",
-	"tl"	=> "Tagalog",
-	"tn"	=> "Setswana",
-	"to"	=> "Tonga",
-	"tr" => "T&#252;rk&#231;e",
-	"ts"	=> "Tsonga",
-	"tt"	=> "Tatar",
-	"tw"	=> "Twi",
-	"ug"	=> "Uighur",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-	"ur"	=> "Urdu",
-	"uz"	=> "Uzbek",
-	"vi"	=> "Vietnamese",
-	"vo" => "Volap&#252;k",
-	"wo"	=> "Wolof",
-	"xh" => "isiXhosa",
-	"yi"	=> "Yiddish",
-	"yo"	=> "Yoruba",
-	"za"	=> "Zhuang",
-	"zh" => "&#20013;&#25991; (Zhongwen)",
-	"zu"	=> "Zulu"
-);
 
 # Note capitalization; also some uses may require addition of final -n
 /* private */ $wgWeekdayNamesEo = array(
@@ -1031,7 +888,7 @@ Bonvolu permane kunigi ilin.",
 );
 
 
-class LanguageEo extends Language {
+class LanguageEo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {
 		$opt = Language::getDefaultUserOptions();
@@ -1061,10 +918,6 @@ class LanguageEo extends Language {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsEo;
 		return $wgQuickbarSettingsEo;
@@ -1083,14 +936,6 @@ class LanguageEo extends Language {
 	function getUserToggles() {
 		global $wgUserTogglesEo;
 		return $wgUserTogglesEo;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesEo;
-		if ( ! array_key_exists( $code, $wgLanguageNamesEo ) ) {
-			return "";
-		}
-		return $wgLanguageNamesEo[$code];
 	}
 
 	function getMonthName( $key )
@@ -1124,21 +969,6 @@ class LanguageEo extends Language {
 		  substr( $ts, 0, 4 );
 		return $d;
 	}
-
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
-		return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-	}
-
-	# Heredu rfs1123()
 
 	function getValidSpecialPages()
 	{
@@ -1205,26 +1035,6 @@ class LanguageEo extends Language {
 			  '|\xc5[\x9c\x9d\xac\xad])x*)/ei', 'strtr( "$1", $ux )', $string );
 		}
 		return iconv( $in, $out, $string );
-	}
-	
-	function ucfirst( $string ) {
-		# For most languages, this is a wrapper for ucfirst()
-		# But that doesn't work right in a UTF-8 locale
-		global $wikiUpperChars, $wikiLowerChars;
-        return preg_replace (
-        	'/^([\x00-\x7f]|[\xc0-\xff][\x80-\xbf]*)/e',
-        	'strtr ( "$1" , $wikiUpperChars )',
-        	$string );
-	}
-	
-	function stripForSearch( $string ) {
-		# MySQL fulltext index doesn't grok utf-8, so we
-		# need to fold cases and convert to hex
-		global $wikiLowerChars;
-		return preg_replace(
-		  "/([\xc0-\xff][\x80-\xbf]*)/e",
-		  "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		  $string );
 	}
 
 	function checkTitleEncoding( $s ) {
