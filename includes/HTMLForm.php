@@ -1,8 +1,9 @@
 <?php
-/** */
-
 /**
  * Class to build various forms
+ *
+ * @package MediaWiki
+ * @author jeluf, hashar
  */
 class HTMLForm {
 	/** name of our form. Used as prefix for labels */

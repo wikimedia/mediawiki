@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
 die("This file is not complete; it's checked in so I don't forget it.");
 

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ */
 require_once('HTMLForm.php');
 
 function wfSpecialSiteSettings() {
