@@ -732,7 +732,7 @@ class OutputPage {
 		} else {
 			$media = "media='print'";
 		}
-		$printsheet = htmlspecialchars( "$wgStylePath/wikiprintable.css" );
+		$printsheet = htmlspecialchars( "$wgStylePath/common/wikiprintable.css" );
 		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
 
 		$sk = $wgUser->getSkin();

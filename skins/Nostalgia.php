@@ -19,7 +19,7 @@ class SkinNostalgia extends Skin {
 	}
 
 	function getStylesheet() {
-		return 'nostalgia.css';
+		return 'common/nostalgia.css';
 	}
 	function getSkinName() {
 		return "nostalgia";

@@ -75,7 +75,7 @@ header( "Content-type: text/html; charset=utf-8" );
 <div id="credit">
  <center>
   <a href="http://www.mediawiki.org/"><img
-    src="../stylesheets/images/wiki.png" width="135" height="135" alt="" border="0" /></a>
+    src="../skins/common/images/wiki.png" width="135" height="135" alt="" border="0" /></a>
  </center>
 
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
@@ -353,7 +353,7 @@ if( $conf->License == "gfdl" ) {
 	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
 	$conf->RightsCode = "gfdl";
-	$conf->RightsIcon = '${wgStylePath}/images/gnu-fdl.png';
+	$conf->RightsIcon = '${wgStylePath}/common/images/gnu-fdl.png';
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } else {
@@ -844,9 +844,9 @@ if ( \$wgCommandLineMode ) {
 {$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
 {$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
 
-\$wgStylePath        = \"\$wgScriptPath/stylesheets\";
-\$wgStyleDirectory   = \"\$IP/stylesheets\";
-\$wgLogo             = \"\$wgStylePath/images/wiki.png\";
+\$wgStylePath        = \"\$wgScriptPath/skins\";
+\$wgStyleDirectory   = \"\$IP/skins\";
+\$wgLogo             = \"\$wgStylePath/common/images/wiki.png\";
 
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";

@@ -105,7 +105,7 @@ class Skin {
 	}
 
 	function getStylesheet() {
-		return 'wikistandard.css';
+		return 'common/wikistandard.css';
 	}
 
 	function getSkinName() {
@@ -206,7 +206,7 @@ class Skin {
 
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgLang, $wgAllowUserJs;
-		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/wikibits.js\"></script>\n";
+		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->getID() != 0 ) { # logged in
 			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
@@ -221,7 +221,7 @@ class Skin {
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
-		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common_rtl.css\";\n";
+		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
 		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				$s .= $wgRequest->getText('wpTextbox1');
@@ -913,7 +913,7 @@ class Skin {
 
 	function getPoweredBy() {
 		global $wgStylePath;
-		$url = htmlspecialchars( "$wgStylePath/images/poweredby_mediawiki_88x31.png" );
+		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
 		$img = '<a href="http://www.mediawiki.org/"><img src="'.$url.'" alt="MediaWiki" /></a>';
 		return $img;
 	}
@@ -2019,7 +2019,7 @@ class Skin {
 			} else {
 				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
 					'<a href="'.$u.'" class="internal" title="'.$more.'">'.
-					'<img src="'.$wgStylePath.'/images/magnify-clip.png" ' .
+					'<img src="'.$wgStylePath.'/common/images/magnify-clip.png" ' .
 					'width="15" height="11" alt="'.$more.'" /></a></div>';
 			}
 		}
@@ -2112,7 +2112,7 @@ class Skin {
 		# Spacer image
 		$r = '' ;
 
-		$r .= '<img src="'.$wgStylePath.'/images/Arr_.png" width="12" height="12" border="0" />' ;
+		$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" border="0" />' ;
 		$r .= '<tt>' ;
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
@@ -2203,8 +2203,8 @@ class Skin {
 		$rcm = 'RCM'.$this->rcCacheIndex ;
 		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')" ;
 		$arrowdir = $wgLang->isRTL() ? 'l' : 'r';
-		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/images/Arr_'.$arrowdir.'.png" width="12" height="12" /></a></span>' ;
-		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/images/Arr_d.png" width="12" height="12" /></a></span>' ;
+		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/common/images/Arr_'.$arrowdir.'.png" width="12" height="12" /></a></span>' ;
+		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/common/images/Arr_d.png" width="12" height="12" /></a></span>' ;
 		$r .= $tl ;
 
 		# Main line
@@ -2246,7 +2246,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 
-			$r .= '<img src="'.$wgStylePath.'/images/Arr_.png" width="12" height="12" />';
+			$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" />';
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;' ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= '&nbsp;' ;
@@ -2756,7 +2756,7 @@ class Skin {
 	 * This function is called by EditPage.php and shows a bulletin board style
 	 * toolbar for common editing functions. It can be disabled in the user
 	 * preferences.
-	 * The necsesary JavaScript code can be found in style/wikibits.js.
+	 * The necessary JavaScript code can be found in style/wikibits.js.
 	 */
 	function getEditToolbar() {
 		global $wgStylePath, $wgLang, $wgMimeType;
@@ -2856,7 +2856,7 @@ class Skin {
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
-			$image=$wgStylePath.'/images/'.$tool['image'];
+			$image=$wgStylePath.'/common/images/'.$tool['image'];
 			$open=$tool['open'];
 			$close=$tool['close'];
 			$sample = addslashes( $tool['sample'] );

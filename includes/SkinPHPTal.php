@@ -41,7 +41,7 @@ global $IP;
 require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
 
 /**
- *
+ * @todo document
  * @package MediaWiki
  */
 class MediaWiki_I18N extends PHPTAL_I18N {
@@ -70,12 +70,36 @@ class MediaWiki_I18N extends PHPTAL_I18N {
  * @package MediaWiki
  */
 class SkinPHPTal extends Skin {
+	/**#@+
+	 * @access private
+	 */
+
+	/**
+	 * Name of our skin, set in initPage()
+	 * It probably need to be all lower case.
+	 */
+	var $skinname;
+
+	/**
+	 * Stylesheets set to use
+	 * Sub directory in ./skins/ where various stylesheets are located
+	 */
+	var $stylename;
+
+	/**
+	 * PHPTal template to be used.
+	 * '.pt' will be automaticly added to it on PHPTAL object creation
+	 */
 	var $template;
 
+	/**#@-*/
+
+	/** */
 	function initPage( &$out ) {
 		parent::initPage( $out );
-		$this->skinname = 'monobook';
-		$this->template = 'MonoBook';
+		$this->skinname  = 'monobook';
+		$this->stylename = 'monobook';
+		$this->template  = 'MonoBook';
 	}
 
 	/**
@@ -143,7 +167,9 @@ class SkinPHPTal extends Skin {
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
+		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
+		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
 		/* XXX currently unused, might get useful later
@@ -617,7 +643,7 @@ class SkinPHPTal extends Skin {
 		$action = $wgRequest->getText('action');
 		$maxage = $wgRequest->getText('maxage');
 		$s = "/* generated user stylesheet */\n";
-		if($wgLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->skinname.'/rtl.css";'."\n";
+		if($wgLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->stylename.'/rtl.css";'."\n";
 		$s .= '@import "'.
 		$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI)."\";\n";
 		if($wgUser->getID() != 0) {
