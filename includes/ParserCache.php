@@ -25,6 +25,7 @@ class ParserCache
 			# Delete if article has changed since the cache was made
 			$canCache = $article->checkTouched();
 			$cacheTime = $value->getCacheTime();
+			$touched = $article->mTouched;
 			if ( !$canCache || $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
 				if ( !$canCache ) {
 					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
