@@ -31,9 +31,12 @@ class ImagePage extends Article {
 
 	function openShowImage()
 	{
-		global $wgOut, $wgUser,$wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgMaxImageWidth, $wgUseImageResize;
 		$this->img  = Image::newFromTitle( $this->mTitle );
 		$url  = $this->img->getUrl();
+		$anchoropen = "";
+		$anchorclose = "";
+
 
 		if ( $this->img->exists() ) {
 
@@ -41,9 +44,18 @@ class ImagePage extends Article {
 			
 			if ( $this->img->getType() != "" ) {
 				# image
-				$s = "<div class=\"fullImage\">" .
-				     "<img src=\"{$url}\" width=\"" . $this->img->getWidth() . "\" height=\"" . $this->img->getHeight() .
-				     "\" alt=\"".$wgRequest->getVal( 'image' )."\" /></div>";
+				$width = $this->img->getWidth();
+				$height = $this->img->getHeight();
+				if ( $width > $wgMaxImageWidth && $wgUseImageResize ) {
+					$anchoropen  = "<a href=\"{$url}\">";
+					$anchorclose = '</a>';
+					$url=$this->img->createThumb( $wgMaxImageWidth );
+					$height = floor( $height * $wgMaxImageWidth / $width );
+					$width  = $wgMaxImageWidth;
+				}
+				$s = "<div class=\"fullImage\">" . $anchoropen .
+				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
+				     $wgRequest->getVal( 'image' )."\" />" . $anchorclose . "</div>";
 			} else {
 				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
 			}
