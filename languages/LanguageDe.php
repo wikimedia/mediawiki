@@ -165,7 +165,7 @@
   "sr" => "Srpski",
   "ss" => "Siswati",
   "st" => "Sesotho",
-  "su" => "Sudanese",
+  "su" => "Sundanese",
 	"sv" => "Svenska",
 	"sw" => "Kiswahili",
   "ta" => "Tamil",
