@@ -9,6 +9,7 @@ Changes from 1.3.3:
 * Fixed transformation of page messages when viewing Special:Allmessages
 * Handle "ISBN ISBN 1234" correctly
 * Fixed warning on Category pages
+* Fixed some bad error messages on login page
 
 
 == Version 1.3.3, 2004-09-09 ==
