@@ -411,8 +411,10 @@ class OutputPage {
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
-		$com = sprintf( "<!-- Time since request: %01.2f secs. -->",
-		  $elapsed );
+		$uname = posix_uname();
+		$hostname = $uname['nodename'];
+		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		  $hostname, $elapsed );
 		return $com;
 	}
 
