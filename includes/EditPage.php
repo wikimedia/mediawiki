@@ -225,7 +225,7 @@ class EditPage {
 					$sectitle=preg_match("/^=+(.*?)=+/mi",
 				  	$this->textbox1,
 				  	$matches);
-					if( !empty( $matches[1] ) {
+					if( !empty( $matches[1] ) ) {
 						$this->summary = "/* ". trim($matches[1])." */ ";
 					}
 				}

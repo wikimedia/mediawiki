@@ -321,7 +321,7 @@ class Skin {
 		if($wgLang->isRTL()) $left = !$left;
 		
 		if ( !$shove ) {
-			$s .= "<td class='top' align=left valign=top rowspan='{$rows}'>\n" .
+			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
 			  $this->logoText() . "</td>";
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
