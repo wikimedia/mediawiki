@@ -716,7 +716,7 @@ class Database {
 	 * @todo document
 	 */
 	function insertArray( $table, $a, $fname = 'Database::insertArray', $options = array() ) {
-		return $this->insert( $table, $a, $fname = 'Database::insertArray', $options = array() );
+		return $this->insert( $table, $a, $fname, $options );
 	}
 
 	/**
