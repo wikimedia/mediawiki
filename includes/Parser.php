@@ -18,7 +18,7 @@
 # NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
 #
 # settings:
-#   $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+#   $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
 #   $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
 #   $wgLocaltimezone
 #
@@ -596,11 +596,6 @@ class Parser
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
-
-		// if ( $isMain && !isset ( $this->categoryMagicDone ) ) {
-			// $text .= $this->categoryMagic () ;
-			// $this->categoryMagicDone = true ;
-		// }
 
 		wfProfileOut( $fname );
 		return $text;
@@ -1850,6 +1845,7 @@ class Parser
 	# string and re-inserts the newly formatted headlines.
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel;
+		#print "<pre>{$text}</pre>\n";
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -2354,7 +2350,6 @@ class ParserOptions
 {
 	# All variables are private
 	var $mUseTeX;                    # Use texvc to expand <math> tags
-	var $mUseCategoryMagic;          # Treat [[Category:xxxx]] tags specially
 	var $mUseDynamicDates;           # Use $wgDateFormatter to format dates
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
@@ -2366,7 +2361,6 @@ class ParserOptions
 	var $mShowToc;                   # Show table of contents
 
 	function getUseTeX()                        { return $this->mUseTeX; }
-	function getUseCategoryMagic()              { return $this->mUseCategoryMagic; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
@@ -2378,7 +2372,6 @@ class ParserOptions
 	function getShowToc()                       { return $this->mShowToc; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
-	function setUseCategoryMagic( $x )          { return wfSetVar( $this->mUseCategoryMagic, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
@@ -2399,7 +2392,7 @@ class ParserOptions
 
 	# Get user options
 	function initialiseFromUser( &$userInput ) {
-		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
+		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
@@ -2411,7 +2404,6 @@ class ParserOptions
 		}
 
 		$this->mUseTeX = $wgUseTeX;
-		$this->mUseCategoryMagic = $wgUseCategoryMagic;
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
