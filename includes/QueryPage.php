@@ -27,7 +27,7 @@ class QueryPage {
 	function getSQL() {
 		return "SELECT 'sample' as type, 0 as namespace, 'Sample result' as title, 42 as value";
 	}
-	
+
 	# Override to sort by increasing values
 	function sortDescending() {
 		return true;
@@ -55,10 +55,10 @@ class QueryPage {
 	function formatResult( $skin, $result ) {
 		return "";
 	}
-	
+
 	# This is the actual workhorse. It does everything needed to make a
 	# real, honest-to-gosh query page.
-	
+
 	function doQuery( $offset, $limit ) {
 		global $wgUser, $wgOut, $wgLang, $wgRequest;
 		global $wgMiserMode;
@@ -72,17 +72,17 @@ class QueryPage {
 
 		$wgOut->setSyndicated( true );
 		$res = false;
-		
+
 		if ( $this->isExpensive() ) {
 			$recache = $wgRequest->getBool( "recache" );
 			if( $recache ) {
 				# Clear out any old cached data
 				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
-				
+
 				# Do query on the (possibly out of date) slave server
 				$maxstored = 1000;
 				$res = $dbr->query( $sql . $this->getOrderLimit( 0, $maxstored ), $fname );
-				
+
 				# Fetch results
 				$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
 				$first = true;
@@ -91,7 +91,7 @@ class QueryPage {
 						$first = false;
 					} else {
 						$insertSql .= ",";
-					} 
+					}
 					$insertSql .= "(" .
 						$dbw->addQuotes( $row->type ) . "," .
 						$dbw->addQuotes( $row->namespace ) . "," .
@@ -125,8 +125,8 @@ class QueryPage {
 			$res = $dbr->query( $sql . $this->getOrderLimit( $offset, $limit ), $fname );
 			$num = $dbr->numRows($res);
 		}
-		
-		
+
+
 		$sk = $wgUser->getSkin( );
 
 		$top = wfShowingResults( $offset, $num);
@@ -134,22 +134,23 @@ class QueryPage {
 
 		# often disable 'next' link when we reach the end
 		if($num < $limit) { $atend = true; } else { $atend = false; }
-		
+
 		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ), "" ,$atend );
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
-		$s = "<ol start='" . ( $offset + 1 ) . "'>";
+		$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
 		# Only read at most $num rows, because $res may contain the whole 1000
 		for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
 			$format = $this->formatResult( $sk, $obj );
-			$s .= "<li>{$format}</li>\n";
+			$attr = ( $obj->usepatrol && $obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
+			$s .= "<li{$attr}>{$format}</li>\n";
 		}
 		$dbr->freeResult( $res );
 		$s .= "</ol>";
 		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
 	}
-	
+
 	# Similar to above, but packaging in a syndicated feed instead of a web page
 	function doFeed( $class = "" ) {
 		global $wgFeedClasses;
@@ -160,7 +161,7 @@ class QueryPage {
 				$this->feedDesc(),
 				$this->feedUrl() );
 			$feed->outHeader();
-			
+
 			$dbr =& wfGetDB( DB_SLAVE );
 			$sql = $this->getSQL() . $this->getOrderLimit( 0, 50 );
 			$res = $dbr->query( $sql, "QueryPage::doFeed" );
@@ -189,13 +190,13 @@ class QueryPage {
 			} else {
 				$date = "";
 			}
-			
+
 			$comments = "";
 			if( $title ) {
 				$talkpage = $title->getTalkPage();
 				$comments = $talkpage->getFullURL();
 			}
-			
+
 			return new FeedItem(
 				$title->getText(),
 				$this->feedItemDesc( $row ),
@@ -207,7 +208,7 @@ class QueryPage {
 			return NULL;
 		}
 	}
-	
+
 	function feedItemDesc( $row ) {
 		$text = "";
 		if( isset( $row->comment ) ) {
@@ -215,14 +216,14 @@ class QueryPage {
 		} else {
 			$text = "";
 		}
-		
+
 		if( isset( $row->text ) ) {
 			$text = "<p>" . htmlspecialchars( wfMsg( "summary" ) ) . ": " . $text . "</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $row->text ) ) . "</div>";;
 		}
 		return $text;
 	}
-	
+
 	function feedItemAuthor( $row ) {
 		if( isset( $row->user_text ) ) {
 			return $row->user_text;
@@ -230,18 +231,18 @@ class QueryPage {
 			return "";
 		}
 	}
-	
+
 	function feedTitle() {
 		global $wgLanguageCode, $wgSitename, $wgLang;
 		$page = SpecialPage::getPage( $this->getName() );
 		$desc = $page->getDescription();
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
-	
+
 	function feedDesc() {
 		return wfMsg( "fromwikipedia" );
 	}
-	
+
 	function feedUrl() {
 		global $wgLang;
 		$title = Title::MakeTitle( NS_SPECIAL, $this->getName() );
