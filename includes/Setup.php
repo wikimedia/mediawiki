@@ -37,6 +37,7 @@ include_once( "$IP/MagicWord.php" );
 include_once( "$IP/MemCachedClient.inc.php" );
 include_once( "$IP/Block.php" );
 include_once( "$IP/SearchEngine.php" );
+include_once( "$IP/DifferenceEngine.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );

@@ -38,7 +38,7 @@ set_time_limit( 0 );
 
 include_once( "Version.php" );
 include_once( "{$IP}/Setup.php" );
-include_once( "./maintenance/InitialiseMessages.php" );
+include_once( "./maintenance/InitialiseMessages.inc" );
 
 $wgTitle = Title::newFromText( "Update script" );
 $wgCommandLineMode = true;

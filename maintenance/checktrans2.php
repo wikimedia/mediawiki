@@ -72,6 +72,7 @@ function checkLanguage( $lang, $enText )
 	check("wgSysopSpecialPages", $lang, $text);
 	check("wgDeveloperSpecialPages", $lang, $text);
 	check("wgAllMessages", $lang, $text);
+	check("wgMagicWords", $lang, $text);
 }
 
 if ( $argc > 1 ) {

@@ -653,13 +653,13 @@ function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 function wfEscapeWikiText( $text )
 {
 	$text = str_replace( 
-		array( '[',     "'",     'ISBN '    , '://'),
-		array( '&#91;', '&#39;', 'ISBN&#32;', '&#58;//'),
+		array( '[',     "'",     'ISBN '    , '://'     , "\n=" ),
+		array( '&#91;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;" ),
 		htmlspecialchars($text) );
 	return $text;
 }
 
-# Loads the entire MediaWiki namespace, retuns the array
+# Loads the entire MediaWiki namespace, returns the array
 function wfLoadAllMessages()
 {
 	$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
