@@ -37,7 +37,7 @@
 */
 
 body {
-    font: x-small "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+    font: x-small "Bitstream Vera Sans", Verdana, "Lucida Grande", Lucida, Helvetica, Arial, sans-serif;
     background: #f9f9f9 url("headbg.jpg") 0px 0px no-repeat;
     color: Black;
     margin: 0;
