@@ -15,7 +15,7 @@ require_once( 'SpecialRecentchanges.php' );
  * @param string $par parent page we will look at
  */
 function wfSpecialRecentchangeslinked( $par = NULL ) {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgRequest;
 	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
@@ -53,11 +53,11 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchangeslinked' ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchangeslinked' ),
 	  	  WfMsg( 'show' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=0" );
 	} else {
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Recentchangeslinked" ),
 	  	  WfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}

@@ -20,11 +20,11 @@ class Tokenizer {
 	 * @access private
 	 */
 	function Tokenizer() {
-		global $wgLang;
+		global $wgContLang;
 
 		$this->mPos=0;
 		$this->mTokenQueue=array();
-		$this->linkPrefixExtension = $wgLang->linkPrefixExtension();
+		$this->linkPrefixExtension = $wgContLang->linkPrefixExtension();
 	}
 
 	/**

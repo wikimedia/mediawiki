@@ -208,10 +208,10 @@ function wfSpecialWatchlist() {
 
 
 function wlHoursLink( $h, $page ) {
-	global $wgUser, $wgLang;
+	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
-	  $wgLang->specialPage( $page ),
+	  $wgContLang->specialPage( $page ),
 	  $wgLang->formatNum( $h ),
 	  "days=" . ($h / 24.0) );
 	return $s;
@@ -219,10 +219,10 @@ function wlHoursLink( $h, $page ) {
 
 
 function wlDaysLink( $d, $page ) {
-	global $wgUser, $wgLang;
+	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
-	  $wgLang->specialPage( $page ),
+	  $wgContLang->specialPage( $page ),
 	  ($d ? $wgLang->formatNum( $d ) : wfMsg( "all" ) ), "days=$d" );
 	return $s;
 }

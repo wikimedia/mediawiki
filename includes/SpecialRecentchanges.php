@@ -14,8 +14,8 @@ require_once( 'Feed.php' );
  * Constructor
  */
 function wfSpecialRecentchanges( $par ) {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
-	global $wgRequest, $wgSitename, $wgLanguageCode;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
+	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
 	global $wgFeedClasses;
 	$fname = 'wfSpecialRecentchanges';
 
@@ -86,13 +86,13 @@ function wfSpecialRecentchanges( $par ) {
 	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled);
 	$hideparams = wfArrayToCGI( $urlparams );
 
-	$minorLink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),
+	$minorLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hideminor], wfArrayToCGI( array( 'hideminor' => 1-$hideminor ), $urlparams ) );
-	$botLink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),
+	$botLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hidebots], wfArrayToCGI( array( 'hidebots' => 1-$hidebots ), $urlparams ) );
-	$liuLink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),
+	$liuLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hideliu], wfArrayToCGI( array( 'hideliu' => 1-$hideliu ), $urlparams ) );
-	$patrLink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),
+	$patrLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hidepatrolled], wfArrayToCGI( array( 'hidepatrolled' => 1-$hidepatrolled ), $urlparams ) );
 
 	$uid = $wgUser->getID();
@@ -119,14 +119,14 @@ function wfSpecialRecentchanges( $par ) {
 	$note = rcDayLimitLinks( $days, $limit, 'Recentchanges', $hideparams, false, $minorLink, $botLink, $liuLink, $patrLink );
 
 	$note .= "<br />\n" . wfMsg( 'rclistfrom',
-	  $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),
+	  $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $wgLang->timeanddate( $now, true ), $hideparams.'&from='.$now ) );
 
 	$wgOut->addHTML( $note."\n" );
 
 	if( isset($wgFeedClasses[$feedFormat]) ) {
 		$feed = new $wgFeedClasses[$feedFormat](
-			$wgSitename . ' - ' . wfMsg( 'recentchanges' ) . ' [' . $wgLanguageCode . ']',
+			$wgSitename . ' - ' . wfMsg( 'recentchanges' ) . ' [' . $wgContLanguageCode . ']',
 			htmlspecialchars( wfMsg( 'recentchangestext' ) ),
 			$wgTitle->getFullUrl() );
 		$feed->outHeader();
@@ -170,9 +170,9 @@ function wfSpecialRecentchanges( $par ) {
  *
  */
 function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
-	global $wgUser, $wgLang;
+	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
+	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( 'all' ) ), "{$more}" .
 	  ($d ? "days={$d}&" : '') . 'limit='.$lim );
 	return $s;
@@ -182,9 +182,9 @@ function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
  *
  */
 function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
-	global $wgUser, $wgLang;
+	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
+	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( "all" ) ), $more.'days='.$d .
 	  ($lim ? '&limit='.$lim : '') );
 	return $s;

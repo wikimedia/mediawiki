@@ -49,7 +49,7 @@ class WantedPagesPage extends QueryPage {
         }
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
+		global $wgContLang;
 
 		$nt = Title::newFromDBkey( $result->title );
 		if( is_null( $nt ) ) {
@@ -57,7 +57,7 @@ class WantedPagesPage extends QueryPage {
 		}
 		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), "" );
 		$nl = wfMsg( "nlinks", $result->value );
-		$nlink = $skin->makeKnownLink( $wgLang->specialPage( "Whatlinkshere" ), $nl,
+		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( "Whatlinkshere" ), $nl,
 		  "target=" . $nt->getPrefixedURL() );
 
 		return "{$plink} ({$nlink})";

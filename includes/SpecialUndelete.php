@@ -214,7 +214,7 @@ class UndeleteForm {
 	}
 
 	/* private */ function showList() {
-		global $wgLang, $wgUser, $wgOut;
+		global $wgLang, $wgContLang, $wgUser, $wgOut;
 		$fname = "UndeleteForm::showList";
 		
 		# List undeletable articles    
@@ -228,7 +228,7 @@ class UndeleteForm {
 		$wgOut->addHTML( "<ul>\n" );
 		while( $row = $result->fetchObject() ) {
 			$n = ($row->ar_namespace ? 
-				($wgLang->getNsText( $row->ar_namespace ) . ":") : "").
+				($wgContLang->getNsText( $row->ar_namespace ) . ":") : "").
 				$row->ar_title;
 			$link = $sk->makeKnownLinkObj( $undelete,
 				htmlspecialchars( $n ), "target=" . urlencode( $n ) );

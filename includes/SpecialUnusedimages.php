@@ -30,9 +30,9 @@ class UnusedimagesPage extends QueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgLang;
+		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
-		$ins = $wgLang->getNsText(NS_IMAGE);
+		$ins = $wgContLang->getNsText(NS_IMAGE);
 		
 		$return =
 		# The 'desc' linking to the image page
@@ -42,7 +42,7 @@ class UnusedimagesPage extends QueryPage {
 		# Last modified date
 		. ' . . '.$wgLang->timeanddate($result->value)
 		# Link to username
-		. ' . . '.$skin->makeLink($wgLang->getNsText(NS_USER).':'.$result->img_user_text,$result->img_user_text);
+		. ' . . '.$skin->makeLink($wgContLang->getNsText(NS_USER).':'.$result->img_user_text,$result->img_user_text);
 		
 		# If there is a description, show it
 		if($result->img_description != '') {
