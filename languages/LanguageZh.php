@@ -1,7 +1,5 @@
 <?php
-require_once( "LanguageUtf8.php" );
 require_once( "LanguageZh_cn.php");
-require_once( "LanguageZh_tw.php");
 
 /* caching the conversion tables */
 $zhSimp2Trad = $wgMemc->get($key1 = "$wgDBname:zhConvert:s2t");
@@ -16,18 +14,12 @@ if(empty($zhSimp2Trad) || empty($zhTrad2Simp)) {
    right now it only distinguish zh_cn and zh_tw (actuall, zh_cn and
    non-zh_cn), will add support for zh_sg, zh_hk, etc, later.
 */
-class LanguageZh extends LanguageUtf8 {
+class LanguageZh extends LanguageZh_cn {
     
-    var $mZhLang=false, $mZhLanguageCode=false;
+    var $mZhLanguageCode=false;
 
     function LanguageZh() {
         $this->mZhLanguageCode = $this->getPreferredVariant();
-        if($this->mZhLanguageCode == "cn") {
-            $this->mZhLang = new LanguageZh_cn();
-        }
-        else {
-            $this->mZhLang = new LanguageZh_tw();
-        }
     }
 
     /* 
@@ -82,75 +74,5 @@ class LanguageZh extends LanguageUtf8 {
     function getVariants() {
         return array("zh-cn", "zh-tw");
     }
-
-
-    /* these just calls the method of the corresponding class */
-    
-    function getDefaultUserOptions () {
-        return $this->mZhLang->getDefaultUserOptions();
-    }
-
-	function getBookstoreList () {
-		return $this->mZhLang->getBookstoreList() ;
-	}
-
-	function getNamespaces() {
-		return $this->mZhLang->getNamespaces();
-	}
-
-	function getNsText( $index ) {
-        return $this->mZhLang->getNsText($index);
-	}
-
-	function getNsIndex( $text ) {
-        return $this->mZhLang->getNsIndex($text);
-	}
-
-	function getQuickbarSettings() {
-		return $this->mZhLang->getQuickbarSettings();
-	}
-
-	function getSkinNames() {
-		return $this->mZhLang->getSkinNames();
-	}
-
-	function date( $ts, $adj = false )
-	{
-        return $this->mZhLang->date($ts,$adj);
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
-		return $this->mZhLang->timeanddate($ts, $adj);
-	}
-
-	function getValidSpecialPages()
-	{
-		return $this->mZhLang->getValidSpecialPages();
-	}
-
-	function getSysopSpecialPages()
-	{
-		return $this->mZhLang->getSysopSpecialPages();
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		return $this->mZhLang->getDeveloperSpecialPages();
-
-	}
-
-	function getMessage( $key )
-	{
-        return $this->mZhLang->getMessage($key);
-	}
-
-	function stripForSearch( $string ) {
-        return $this->mZhLang->stripForSearch($string);
-	}
-
-    
 }
-
-
 ?>
