@@ -17,6 +17,8 @@ Changes from 1.3.7:
 * Fix edit form submission problem with some PHP versions
 * Disallow unreachable titles with %XX hex codes
 * Allow page [[0]] to be renamed
+* (bug 774) when saving with section=new, return to the anchor as with
+  existing numbered section edits
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:

@@ -196,7 +196,11 @@ class EditPage {
 			if ( ! $isConflict ) {
 				# All's well
 				$sectionanchor = '';
-				if( $this->section != '' ) {
+				if( $this->section == 'new' ) {
+					if( $this->summary != '' ) {
+						$sectionanchor = $this->sectionAnchor( $this->summary );
+					}
+				} elseif( $this->section != '' ) {
 					# Try to get a section anchor from the section source, redirect to edited section if header found
 					# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
 					# for duplicate heading checking and maybe parsing
@@ -205,17 +209,7 @@ class EditPage {
 					# headline would need to be parsed to improve this
 					#if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
 					if($hasmatch and strlen($matches[2]) > 0) {
-						global $wgInputEncoding;
-						$headline = do_html_entity_decode( $matches[2], ENT_COMPAT, $wgInputEncoding );
-						# strip out HTML 
-						$headline = preg_replace( "/<.*?" . ">/","",$headline );
-						$headline = trim( $headline );
-						$sectionanchor = '#'.urlencode( str_replace(' ', '_', $headline ) );
-						$replacearray = array(
-							'%3A' => ':',
-							'%' => '.'
-						);
-						$sectionanchor = str_replace(array_keys($replacearray),array_values($replacearray),$sectionanchor);
+						$sectionanchor = $this->sectionAnchor( $matches[2] );
 					}
 				}
 	
@@ -562,6 +556,29 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Format an anchor fragment as it would appear for a given section name
+	 * @param string $text
+	 * @return string
+	 * @access private
+	 */
+	function sectionAnchor( $text ) {
+		global $wgInputEncoding;
+		$headline = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
+		# strip out HTML 
+		$headline = preg_replace( '/<.*?' . '>/', '', $headline );
+		$headline = trim( $headline );
+		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
+		$replacearray = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		return str_replace(
+			array_keys( $replacearray ),
+			array_values( $replacearray ),
+			$sectionanchor );
 	}
 }
 
