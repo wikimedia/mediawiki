@@ -361,6 +361,10 @@ class LoginForm {
 		global $wgDeferredUpdateList;
 		global $wgOut;
 
+		# Run any hooks; ignore results
+		
+		wfRunHooks('UserLoginComplete', $wgUser);
+		
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );

@@ -221,8 +221,18 @@ if it shouldn't (an error occurred, or one of the hooks handled the
 action already). Checking the return value matters more for "before"
 hooks than for "complete" hooks.
 
-==Existing hooks==
+==Events and parameters==
 
-The following list of hooks exist in the code right now:
+This is a list of known events and parameters; please add to it if
+you're going to add events to the MediaWiki code.
 
-TBD
+'UserLoginComplete': after a user has logged in
+$user: the user object that was created on login
+		    
+'UserLogout': before a user logs out
+$user: the user object that is about to be logged out
+       
+'UserLogoutComplete': after a user has logged out
+$user: the user object _after_ logout (won't have name, ID, etc.)
+		      
+	     
