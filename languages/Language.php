@@ -1540,6 +1540,11 @@ amusement.",
 'tooltip-rss' => 'RSS feed for this page',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
 
+# stylesheets
+
+'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
+
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
 "nocreativecommons" => "Creative Commons RDF metadata disabled for this server.",
