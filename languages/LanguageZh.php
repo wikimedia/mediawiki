@@ -228,7 +228,8 @@ class LanguageZh extends LanguageZh_cn {
 		static $count=0; //used to limit this operation
 		static $cache=array();
 		global $wgDisableLangConversion;
-		if( $wgDisableLangConversion || $count > 50)
+		$pref = $this->getPreferredVariant();
+		if( $wgDisableLangConversion || $pref == 'zh' || $count > 50)
 			return;
 		$count++;
 		$variants = $this->autoConvertToAllVariants($link);
