@@ -110,7 +110,7 @@ class MovePageForm {
 		$nt = Title::newFromText( $this->newTitle );
 
 		# don't allow moving to pages with # in
-		if ( $nt->getFragment() != '' ) {
+		if ( !$nt || $nt->getFragment() != '' ) {
 			$this->showForm( wfMsg( "badtitletext" ) );
 			return;
 		}

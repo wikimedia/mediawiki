@@ -109,23 +109,6 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
-			# check that lenght of title is < cur_title size
-			if ($wgIsMySQL) {
-				$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
-				$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
-
-				preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_type);
-				$cur_title_size=$cur_title_type[1];
-			} else {
-				/* midom:FIXME pg_field_type does not return varchar length
-				   assume 255 */
-				$cur_title_size=255;
-			}
-
-			if (strlen($t->mDbkeyform) > $cur_title_size ) {
-				return NULL;
-			}
-
 			return $t;
 		} else {
 			return NULL;
@@ -768,6 +751,13 @@ class Title {
 		       strpos( $r, "/./" ) !== false ||
 		       strpos( $r, "/../" ) !== false ) )
 		{
+			return false;
+		}
+
+
+		# check that length of title is < cur_title size
+		# Ues hardcoded max length of 255
+		if (strlen($r) > 255 ) {
 			return false;
 		}
 
