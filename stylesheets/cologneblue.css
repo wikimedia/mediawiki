@@ -1,6 +1,6 @@
 @import url("common.css");
 
-body { margin: 0px; padding: 0px; color: black; }
+body { margin: 0px; padding: 0px; color: black; background: White; }
 #specialform { display: inline; }
 #content { top: 0; margin: 0; padding: 0; }
 #topbar { padding: 0px; }
