@@ -34,26 +34,14 @@
 # The script then print a list of wgAllMessagesXX keys that aren't
 # localised, a percentage of messages correctly localised and the
 # number of messages to be translated.
-#
-#
-# Known bugs:
-# - File paths are hardcoded
-#
 
-
-$wgCommandLineMode = true;
-# Turn off output buffering if it's on
-@ob_end_flush();
-
-require_once("../LocalSettings.php");
-require_once( "../includes/Setup.php" );
-require_once( "../install-utils.inc" );
+require_once( "commandLine.inc" );
 
 $wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
 
 # read command line argument
-if ( isset($argv[1]) ) {
-	$lang = $argv[1];
+if ( isset($args[0]) ) {
+	$lang = $args[0];
 
 # or prompt a simple menu
 } else {
@@ -91,7 +79,7 @@ if ( isset($argv[1]) ) {
 # include the language if it's not the already loaded one
 if($lang != $wgLanguageCode) {
 	print "Including language file for $lang.\n";
-	include("Language{$lang}.php");
+	include_once("Language{$lang}.php");
 }
 
 /* ugly hack to load the correct array, if you have a better way

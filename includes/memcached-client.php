@@ -667,7 +667,7 @@ class memcached
    function _dead_sock ($sock)
    {
       $host = array_search($sock, $this->_cache_sock);
-      list ($ip, $port) = explode(":", $host);
+      @list ($ip, $port) = explode(":", $host);
       $this->_host_dead[$ip] = time() + 30 + intval(rand(0, 10));
       $this->_host_dead[$host] = $this->_host_dead[$ip];
       unset($this->_cache_sock[$host]);
@@ -737,13 +737,7 @@ class memcached
     */
    function _hashfunc ($key)
    {
-      $hash = 0;
-      for ($i=0; $i<strlen($key); $i++)
-      {
-         $hash = $hash*33 + ord($key[$i]);
-      }
-      
-      return $hash;
+      return crc32($key);
    }
 
    // }}}

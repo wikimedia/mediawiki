@@ -1,8 +1,8 @@
 <?php
 if( defined( "MEDIAWIKI" ) ) {
 
-$wgInputEncoding    = "utf-8";
-$wgOutputEncoding	= "utf-8";
+$wgInputEncoding    = "UTF-8";
+$wgOutputEncoding	= "UTF-8";
 
 $wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
 $wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
@@ -19,7 +19,7 @@ class LanguageUtf8 extends Language {
 	function ucfirst( $string ) {
 		# For most languages, this is a wrapper for ucfirst()
 		# But that doesn't work right in a UTF-8 locale
-		global $wikiUpperChars, $wikiLowerChars;
+		global $wikiUpperChars;
 		return preg_replace (
         	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiUpperChars )",
@@ -27,7 +27,7 @@ class LanguageUtf8 extends Language {
 	}
 	
 	function lcfirst( $string ) {
-		global $wikiUpperChars, $wikiLowerChars;
+		global $wikiLowerChars;
 		return preg_replace (
         	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiLowerChars )",
@@ -63,6 +63,13 @@ class LanguageUtf8 extends Language {
 		if( $isutf8 ) return $s;
 
 		return $this->iconv( $this->fallback8bitEncoding(), "utf-8", $s );
+	}
+
+	function firstChar( $s ) {
+		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
+		
+		return isset( $matches[1] ) ? $matches[1] : "";
 	}
 }
 

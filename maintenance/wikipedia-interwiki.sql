@@ -25,6 +25,7 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('bo','http://bo.wikipedia.org/wiki/$1',1),
 ('bs','http://bs.wikipedia.org/wiki/$1',1),
 ('ca','http://ca.wikipedia.org/wiki/$1',1),
+('chr','http://chr.wikipedia.org/wiki/$1',1),
 ('co','http://co.wikipedia.org/wiki/$1',1),
 ('cs','http://cs.wikipedia.org/wiki/$1',1),
 ('csb','http://csb.wikipedia.org/wiki/$1',1),

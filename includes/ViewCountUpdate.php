@@ -1,6 +1,6 @@
 <?php
+# $Id$
 # See deferred.doc
-
 class ViewCountUpdate {
 
 	var $mPageID;
@@ -12,13 +12,12 @@ class ViewCountUpdate {
 
 	function doUpdate()
 	{
-		global $wgDisableCounters;
+		global $wgDisableCounters, $wgIsMySQL;
 		if ( $wgDisableCounters ) { return; }
-
-		$sql = "UPDATE LOW_PRIORITY cur SET cur_counter=(1+cur_counter)," .
+		$lowpri=$wgIsMySQL?"LOW_PRIORITY":"";
+		$sql = "UPDATE $lowpri cur SET cur_counter=(1+cur_counter)," .
 		  "cur_timestamp=cur_timestamp WHERE cur_id={$this->mPageID}";
 		$res = wfQuery( $sql, DB_WRITE, "ViewCountUpdate::doUpdate" );
 	}
 }
-
 ?>

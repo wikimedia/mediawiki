@@ -102,6 +102,19 @@ function do_linkscc_update() {
 	}
 }
 
+function do_linkscc_1_3_update() {
+	// Update linkscc table to 1.3 schema if necessary
+	global $wgDatabase, $wgVersion;
+	if( ( strpos( "1.3", $wgVersion ) === 0 ) && $wgDatabase->tableExists( "linkscc" )
+		&& $wgDatabase->fieldExists( "linkscc", "lcc_title" ) ) {
+		echo "Altering lcc_title field from linkscc table... ";
+		dbsource( "maintenance/archives/patch-linkscc-1.3.sql", $wgDatabase );
+		echo "ok\n";
+	} else {
+		echo "...linkscc is up to date, or does not exist. Good.\n";
+	}
+}
+
 function do_hitcounter_update() {
 	// Create hitcounter if necessary
 	global $wgDatabase;
@@ -119,6 +132,11 @@ function do_recentchanges_update() {
 	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_type" ) ) {
 		echo "Adding rc_type, rc_moved_to_ns, rc_moved_to_title...";
 		dbsource( "maintenance/archives/patch-rc_type.sql" , $wgDatabase );
+		echo "ok\n";
+	}
+	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_ip" ) ) {
+		echo "Adding rc_ip...";
+		dbsource( "maintenance/archives/patch-rc_ip.sql", $wgDatabase );
 		echo "ok\n";
 	}
 }
@@ -166,5 +184,4 @@ function do_categorylinks_update() {
 		echo "ok\n";
 	}
 }
-
 ?>

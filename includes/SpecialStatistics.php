@@ -2,7 +2,7 @@
 
 function wfSpecialStatistics()
 {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLang, $wgIsPg;
 	$fname = "wfSpecialStatistics";
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
@@ -31,12 +31,13 @@ function wfSpecialStatistics()
 	$wgOut->addWikiText( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
-	$sql = "SELECT COUNT(user_id) AS total FROM user";
+	$usertable=$wgIsPg?'"user"':'user';
+	$sql = "SELECT COUNT(user_id) AS total FROM $usertable";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );
 	$total = $row->total;
 
-	$sql = "SELECT COUNT(user_id) AS total FROM user " .
+	$sql = "SELECT COUNT(user_id) AS total FROM $usertable " .
 	  "WHERE user_rights LIKE '%sysop%'";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );

@@ -20,7 +20,7 @@ class LoginForm {
 	var $mLoginattempt, $mRemember, $mEmail;
 	
 	function LoginForm( &$request ) {
-		global $wgLang;
+		global $wgLang, $wgAllowRealName;
 
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
@@ -35,8 +35,12 @@ class LoginForm {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mEmail = $request->getText( 'wpEmail' );
-		$this->mRealName = $request->getText( 'wpRealName' );
-		
+	        if ($wgAllowRealName) {
+		    $this->mRealName = $request->getText( 'wpRealName' );
+		} else {
+		    $this->mRealName = '';
+		}
+	    
 		# When switching accounts, it sucks to get automatically logged out
 		if( $this->mReturnto == $wgLang->specialPage( "Userlogout" ) ) {
 			$this->mReturnto = "";
@@ -122,6 +126,19 @@ class LoginForm {
 	{
 		global $wgUser, $wgOut;
 		global $wgMaxNameChars;
+		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
+
+		if ( $wgAccountCreationThrottle ) {
+			$key = "$wgDBname:acctcreate:ip:$wgIP";
+			$value = $wgMemc->incr( $key );
+			if ( !$value ) {
+				$wgMemc->set( $key, 1, 86400 );
+			}
+			if ( $value > $wgAccountCreationThrottle ) {
+				$this->throttleHit( $wgAccountCreationThrottle );
+				return;
+			}
+		}
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
@@ -301,7 +318,7 @@ class LoginForm {
 	/* private */ function mainLoginForm( $err )
 	{
 		global $wgUser, $wgOut, $wgLang;
-		global $wgDBname;
+		global $wgDBname, $wgAllowRealName;
 
 		$le = wfMsg( "loginerror" );
 		$yn = wfMsg( "yourname" );
@@ -313,7 +330,11 @@ class LoginForm {
 		$ca = wfMsg( "createaccount" );
 		$cam = wfMsg( "createaccountmail" );
 		$ye = wfMsg( "youremail" );
-		$yrn = wfMsg( "yourrealname" );
+	        if ($wgAllowRealName) {
+		    $yrn = wfMsg( "yourrealname" );
+		} else {
+		    $yrn = '';
+		}
 		$efl = wfMsg( "emailforlost" );
 		$mmp = wfMsg( "mailmypassword" );
 		$endText = wfMsg( "loginend" );
@@ -401,20 +422,23 @@ class LoginForm {
 	<td align='right'>$ye:</td>
 	<td align='left'>
 	<input tabindex='6' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
-	</td>
-        <td>&nbsp;</td>
-        </tr>
-        <tr>
-	<td align='right'>$yrn:</td>
-	<td align='left'>
-	<input tabindex='6' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
-	</td>
-        <td align='left'>
+	</td>");
+		    
+	if ($wgAllowRealName) {
+	    $wgOut->addHTML("<td>&nbsp;</td>
+                             </tr><tr>
+	                     <td align='right'>$yrn:</td>
+	                     <td align='left'>
+	                      <input tabindex='6' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
+			      </td>");
+	}
+		    
+	$wgOut->addHTML("<td align='left'>
 	<input tabindex='7' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
 	$cambutton
 	</td></tr>");
 		}
-
+	    
 		$wgOut->addHTML("
 	<tr><td colspan='3'>&nbsp;</td></tr><tr>
 	<td colspan='3' align='left'>
@@ -456,6 +480,12 @@ class LoginForm {
 		} else {
 			return $this->successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
 		}
+	}
+
+	/* private */ function throttleHit( $limit ) {
+		global $wgOut;
+
+		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );
 	}
 }
 ?>

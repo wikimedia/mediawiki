@@ -1,5 +1,5 @@
 <?php
-
+global $wgSpecialPages;
 $wgSpecialPages = array(
 	"Userlogin"		=> new UnlistedSpecialPage( "Userlogin" ),
 	"Userlogout"	=> new UnlistedSpecialPage( "Userlogout" ),
@@ -9,11 +9,18 @@ $wgSpecialPages = array(
 	"Upload"		=> new SpecialPage( "Upload" ),
 	"Imagelist"		=> new SpecialPage( "Imagelist" ),
 	"Listusers"		=> new SpecialPage( "Listusers" ),
+	"Listadmins"	=> new SpecialPage( "Listadmins" ),
 	"Statistics"	=> new SpecialPage( "Statistics" ),
 	"Randompage"	=> new SpecialPage( "Randompage" ),
 	"Lonelypages"	=> new SpecialPage( "Lonelypages" ),
-	"Unusedimages"	=> new SpecialPage( "Unusedimages" ),
-	"Popularpages"	=> new SpecialPage( "Popularpages" ),
+	"Unusedimages"	=> new SpecialPage( "Unusedimages" )
+);
+global $wgDisableCounters;
+if( !$wgDisableCounters )
+{
+	$wgSpecialPages["Popularpages"] = new SpecialPage( "Popularpages" );
+}
+$wgSpecialPages = array_merge($wgSpecialPages, array (
 	"Wantedpages"	=> new SpecialPage( "Wantedpages" ),
 	"Shortpages"	=> new SpecialPage( "Shortpages" ),
 	"Longpages"		=> new SpecialPage( "Longpages" ),
@@ -43,7 +50,7 @@ $wgSpecialPages = array(
 	"Import"		=> new SpecialPage( "Import", "sysop" ),
 	"Lockdb"		=> new SpecialPage( "Lockdb", "developer" ),
 	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" )
-);
+));
 
 class SpecialPage
 {

@@ -55,13 +55,17 @@ function copydirectory( $source, $dest ) {
 	}
 }
 
-function readconsole() {
-	$fp = fopen( "php://stdin", "r" );
-	$resp = trim( fgets( $fp, 1024 ) );
-	fclose( $fp );
-	return $resp;
+function readconsole( $prompt = "" ) {
+	if ( function_exists( "readline" ) ) {
+		return readline( $prompt );
+	} else {
+		print $prompt;
+		$fp = fopen( "php://stdin", "r" );
+		$resp = trim( fgets( $fp, 1024 ) );
+		fclose( $fp );
+		return $resp;
+	}
 }
-
 
 function replacevars( $ins ) {
 	$varnames = array(
