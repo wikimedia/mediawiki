@@ -30,6 +30,8 @@ class User {
 	var $mToken;
 	var $mRealName;
 	var $mHash;
+	/** Array of group id the user belong to */
+	var $mGroups;
 	/**#@-*/
 
 	/** Construct using User:loadDefaults() */
@@ -142,6 +144,8 @@ class User {
 		$this->mRealName = $this->mEmail = '';
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
+		$this->mGroups = array();
+		
 		// Getting user defaults only if we have an available language
 		if(isset($wgContLang)) { $this->loadDefaultFromLanguage(); }
 		
@@ -372,10 +376,19 @@ class User {
 			$this->mNewpassword = $s->user_newpassword;
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
+			$this->mToken = $s->user_token;
+			
 			$this->mRights = explode( ",", strtolower( 
 				$dbr->selectField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
 			) );
-			$this->mToken = $s->user_token;
+			
+			// Get groups id
+			$sql = 'SELECT group_id FROM user_groups WHERE user_id = \''.$this->mId.'\';';
+			$res = $dbr->query($sql,DB_SLAVE,$fname);
+			while($group = $dbr->fetchRow($res)) {
+				$this->mGroups[] = $group[0];
+				}
+			$dbr->freeResult($res);
 		}
 
 		$this->mDataLoaded = true;
@@ -520,10 +533,21 @@ class User {
 		$this->loadFromDatabase();
 		return $this->mRights;
 	}
-
+	
 	function addRight( $rname )	{
 		$this->loadFromDatabase();
 		array_push( $this->mRights, $rname );
+		$this->invalidateCache();
+	}
+
+	function getGroups() {
+		$this->loadFromDatabase();
+		return $this->mGroups;
+	}
+
+	function setGroups($groups) {
+		$this->loadFromDatabase();
+		$this->mGroups = $groups;
 		$this->invalidateCache();
 	}
 
@@ -739,9 +763,22 @@ class User {
 				'user_id' => $this->mId
 			), $fname
 		);
-		$dbw->set( 'user_rights', 'user_rights', implode( ",", $this->mRights ),
+		$dbw->set( 'user_rights', 'user_rights', implode( ',', $this->mRights ),
 			'user_id='. $this->mId, $fname ); 
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
+		
+		// delete old groups
+		$dbw->delete( 'user_groups', array( 'user_id' => $this->mId), $fname);
+		// save new ones
+		foreach ($this->mGroups as $group) {
+			$dbw->replace( 'user_groups',
+				array(array('user_id','group_id')),
+				array(
+					'user_id' => $this->mId,
+					'group_id' => $group
+				), $fname
+			);
+		}
 	}
 
 	/**
@@ -788,7 +825,15 @@ class User {
 				'user_rights' => implode( ',', $this->mRights )
 			), $fname
 		);
-				
+		
+		foreach ($this->mGroups as $group) {
+			$dbw->insert( 'user_groups',
+				array(
+					'user_id' => $this->mId,
+					'group_id' => $group
+				), $fname
+			);
+		}
 	}
 
 	function spreadBlock() {

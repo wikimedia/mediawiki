@@ -18,6 +18,7 @@ class SiteSettingsForm extends HTMLForm {
 	function SiteSettingsForm ( &$request ) {
 		$this->mPosted = $request->wasPosted();
 		$this->mRequest = $request;
+		$this->mName = 'sitesettings';
 	}
 
 	function execute() {
