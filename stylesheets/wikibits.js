@@ -90,49 +90,28 @@ function toggleToc() {
 function insertTags(tagOpen, tagClose, sampleText) {
 
 	var txtarea = document.editform.wpTextbox1;
-	if ((clientVer >= 4) && is_ie && is_win) {
+	// IE
+	if(document.selection) {
 		theSelection = document.selection.createRange().text;
-		if (!theSelection) {
-			txtarea.value += tagOpen + sampleText + tagClose;
-			txtarea.focus();
-			return;
-		}
-		document.selection.createRange().text = tagOpen + theSelection + tagClose;
+		if(!theSelection) { theSelection=sampleText;}
 		txtarea.focus();
-		return;
-	}
-	else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
-	{
-		mozWrap(txtarea, tagOpen, tagClose, sampleText);
-		return;
-	}
-	else
-	{
+		document.selection.createRange().text = tagOpen + theSelection + tagClose;
+	// Mozilla
+	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
+ 		startPos = txtarea.selectionStart;
+		endPos = txtarea.selectionEnd;
+		myText = (txtarea.value).substring(startPos, endPos);
+		if(!myText) { myText=sampleText;}
+		txtarea.value = txtarea.value.substring(0, startPos) + tagOpen + myText + tagClose + txtarea.value.substring(endPos, txtarea.value.length);
+		txtarea.focus();
+		cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
+		txtarea.selectionStart=cPos;
+		txtarea.selectionEnd=cPos;
+	// All others
+	} else {
 		txtarea.value += tagOpen + sampleText + tagClose;
 		txtarea.focus();
 	}
-	storeCaret(txtarea);
-}
-
-// From http://www.massless.org/mozedit/
-function mozWrap(txtarea, open, close)
-{
-	var txtarea = document.editform.wpTextbox1;
-	var selLength = txtarea.textLength;
-	var selStart = txtarea.selectionStart;
-	var selEnd = txtarea.selectionEnd;
-	if (selEnd == 1 || selEnd == 2)
-		selEnd = selLength;
-
-	var s1 = (txtarea.value).substring(0,selStart);
-	var s2 = (txtarea.value).substring(selStart, selEnd)
-	var s3 = (txtarea.value).substring(selEnd, selLength);
-	txtarea.value = s1 + open + s2 + close + s3;
-	return;
-}
-
-// Insert at Claret position. Code from
-// http://www.faqts.com/knowledge_base/view.phtml/aid/1052/fid/130
-function storeCaret(textEl) {
-	if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+	// reposition cursor if possible
+	if (txtarea.createTextRange) txtarea.caretPos = document.selection.createRange().duplicate();
 }
