@@ -45,8 +45,9 @@ $wgOutputEncoding	= "ISO-8859-1";
 $wgEditEncoding		= "";
 $wgDocType          = "-//W3C//DTD HTML 4.01 Transitional//EN";
 $wgDTD              = "http://www.w3.org/TR/html4/loose.dtd";
-$wgAmericanDates = false; 	# Enable for English module to print dates
-							# as eg 'May 12' instead of '12 May'
+$wgUseDynamicDates  = false; # Enable to allow rewriting dates in page text
+$wgAmericanDates    = false; # Enable for English module to print dates
+							 # as eg 'May 12' instead of '12 May'
 $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
 
