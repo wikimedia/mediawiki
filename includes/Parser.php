@@ -591,7 +591,6 @@ class Parser
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )
 		{
-echo $token["type"]."<br>";
 			switch ( $token["type"] )
 			{
 				case "text":
