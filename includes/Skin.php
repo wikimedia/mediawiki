@@ -383,9 +383,10 @@ class Skin {
 
 	function pageTitle()
 	{
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgUser;
 
 		$s = "<h1 class='pagetitle'>" . $wgOut->getPageTitle() . "</h1>";
+		if($wgUser->getOption("editsectiononrightclick") && $wgTitle->userCanEdit()) { $s=$this->editSectionScript(0,$s);}
 		return $s;
 	}
 
@@ -514,8 +515,7 @@ class Skin {
 		if ( $wgOut->isArticle() ) {
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
 			if ( 0 != $wgUser->getID() ) {
-				$s .= $sep . $this->watchThisPage() .
-					$sep . $this->moveThisPage();
+				$s .= $sep . $this->watchThisPage();
 			}
 			$s .= $sep . $this->talkLink()
 			  . $sep . $this->historyLink()
@@ -540,7 +540,8 @@ class Skin {
 			}
 			if ( $wgUser->isSysop() && $wgTitle->getArticleId() ) {
 				$s .= "\n<br>" . $this->deleteThisPage() .
-				$sep . $this->protectThisPage();
+				$sep . $this->protectThisPage() .
+				$sep . $this->moveThisPage();
 			}
 			$s .= "<br>\n" . $this->otherLanguages();
 		}
@@ -1735,10 +1736,10 @@ class Skin {
 	$toc."</td></tr></table><P>\n";
 	}
 
+	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
 	function editSectionScript($section,$head) {
 
 		global $wgTitle,$wgUser,$oldid;
-		if($wgTitle->isProtected() && !$wgUser->isSysop()) return $head;
 		if($oldid) return $head;
 		$url = wfLocalUrlE($wgTitle->getPrefixedText(),"action=edit&section=$section");
 		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
@@ -1747,7 +1748,6 @@ class Skin {
 	function editSectionLink($section) {
 
 		global $wgTitle,$wgUser,$oldid;
-		if($wgTitle->isProtected() && !$wgUser->isSysop()) return "";
 		if($oldid) return "";
 		$editurl="&section={$section}";
 		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
