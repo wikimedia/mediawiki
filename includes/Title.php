@@ -492,6 +492,11 @@ class Title {
 		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isSysop() ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == "_" ) { return false; }
+		# protect global styles and js
+		if ( NS_MEDIAWIKI == $this->mNamespace 
+		     && !$wgUser->isDeveloper()
+	             && preg_match("/\\.(css|js)$/", $this->mTextform ))
+		{ return false; }
 		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
