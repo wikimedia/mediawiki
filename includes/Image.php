@@ -40,47 +40,38 @@ class Image
 	 */
 	function Image( $name )
 	{
-		global $wgUploadDirectory,$wgHashedUploadDirectory,
-		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
-		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
-		       $wgSharedLatin1,$wgLang;
+
+		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
-		$this->fromSharedDirectory = false;				
-		if ($wgHashedUploadDirectory) {
-			$hash 		 = md5( $this->title->getDBkey() );
-			$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .
-						substr( $hash, 0, 2 ) . "/{$name}";
-		} else {
-			$this->imagePath = $wgUploadDirectory . '/' . $name;
-		}
+		$this->fromSharedDirectory = false;
+		$this->imagePath = $this->getFullPath();
 		$this->fileExists = file_exists( $this->imagePath);		
 		
 		# If the file is not found, and a shared upload directory 
 		# like the Wikimedia Commons is used, look for it there.
-		if (!$this->fileExists && $wgUseSharedUploads) {
-			# in case we're running a capitallinks=false wiki						
-			$sharedname=$wgLang->ucfirst($name);
-			$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
-			if($wgUseLatin1 && !$wgSharedLatin1) {				
-				$sharedname=utf8_encode($sharedname);
-				$sharedtitle=utf8_encode($sharedtitle);					
+		if (!$this->fileExists && $wgUseSharedUploads) {			
+			
+			# In case we're on a wgCapitalLinks=false wiki, we 
+			# capitalize the first letter of the filename before 
+			# looking it up in the shared repository.
+			$this->name= $wgLang->ucfirst($name);
+			
+			# Encode the filename if we're on a Latin1 wiki and the
+			# shared repository is UTF-8
+			if($wgUseLatin1 && !$wgSharedLatin1) {
+				$this->name  = utf8_encode($name);
 			}
 			
-			if($wgHashedSharedUploadDirectory) {				
-				$hash = md5( $sharedtitle );
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
-					substr( $hash, 0, 2 ) . "/".$sharedname;
- 			} else {
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
-			}			
+			$this->imagePath = $this->getFullPath(true);
 			$this->fileExists = file_exists( $this->imagePath);
-			$this->fromSharedDirectory = true;			
-			$name=$sharedname;
-		}		
+			$this->fromSharedDirectory = true;
+			$name=$this->name;
+			
+		}
 		if($this->fileExists) {			
-			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
+			$this->url = $this->wfImageUrl( $this->name, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
@@ -244,24 +235,15 @@ class Image
 	 */
 	function wfImageUrl( $name, $fromSharedDirectory = false )
 	{
-		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory,
-		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath;
+		global $wgUploadPath,$wgUploadBaseUrl,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
-			$hash = $wgHashedSharedUploadDirectory;
 			$base = '';
 			$path = $wgSharedUploadPath;
 		} else {
-			$hash = $wgHashedUploadDirectory;
 			$base = $wgUploadBaseUrl;
 			$path = $wgUploadPath;
 		}			
-		if ( $hash ) {
-			$hash = md5( $name );
-        		$url = "{$base}{$path}/" . $hash{0} . "/" .
-              		substr( $hash, 0, 2 ) . "/{$name}";
-		} else {
-			$url = "{$base}{$path}/{$name}";
-		}
+        	$url = "{$base}{$path}" .  wfGetHashPath($name, $fromSharedDirectory) . "{$name}";
         	return wfUrlencode( $url );
 	}
 
@@ -280,30 +262,23 @@ class Image
 	 * @access private
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
-		global $wgUploadPath,$wgHashedUploadDirectory, $wgUploadBaseUrl,
+		global $wgUploadPath, $wgUploadBaseUrl,
 		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-		       $wgHashedSharedUploadDirectory,$wgUseLatin1,$wgSharedLatin1;
+		       $wgUseLatin1,$wgSharedLatin1;
 		$name = $this->thumbName( $width );		
 		if($this->fromSharedDirectory) {
-			$hashdir = $wgHashedSharedUploadDirectory;
 			$base = '';
 			$path = $wgSharedUploadPath;
 			if($wgUseLatin1 && !$wgSharedLatin1) {
 				$name=utf8_encode($name);
 			}			
 		} else {
-			$hashdir = $wgHashedUploadDirectory;
 			$base = $wgUploadBaseUrl;
 			$path = $wgUploadPath;
 		}
-		if ($hashdir) {
-			$hash = md5( $name );
-			$url = "{$base}{$path}/{$subdir}/" . $hash{0} . "/" . 
-				substr( $hash, 0, 2 ) . "/{$name}";
-		} else {
-			$url = "{$base}{$path}/{$subdir}/{$name}";
-		}
-
+		$url = "{$base}{$path}/{$subdir}" . 
+		wfGetHashPath($name, $this->fromSharedDirectory)
+		. "{$name}";
 		return wfUrlencode($url);
 	}
 
@@ -562,6 +537,34 @@ class Image
 		return ( $this->extension == 'svg' );
 	}
 	
+	/**
+	* Return the full filesystem path to the file. Note that this does
+	* not mean that a file actually exists under that location.
+	*
+	* This path depends on whether directory hashing is active or not,
+	* i.e. whether the images are all found in the same directory,
+	* or in hashed paths like /images/3/3c.
+	*
+	* @access public
+	* @param boolean $fromSharedDirectory Return the path to the file
+	*   in a shared repository (see $wgUseSharedRepository and related
+	*   options in DefaultSettings.php) instead of a local one.
+	* 
+	*/
+	function getFullPath( $fromSharedRepository = false )
+	{
+		global $wgUploadDirectory, $wgSharedUploadDirectory;
+	
+		$dir      = $fromSharedRepository ? $wgSharedUploadDirectory :
+		                                    $wgUploadDirectory;
+		$ishashed = $fromSharedRepository ? $wgHashedSharedUploadDirectory : 
+		                                    $wgHashedUploadDirectory;
+		$name     = $this->name;							
+		$fullpath = $dir . wfGetHashPath($name) . $name;		
+		return $fullpath;
+	}
+	
+	
 } //class
 
 
@@ -636,6 +639,29 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false )
 	umask( $oldumask );
 	return $archive;
 }
+
+
+/*
+ * Return the hash path component of an image path (URL or filesystem),
+ * e.g. "/3/3c/", or just "/" if hashing is not used.
+ *
+ * @param $dbkey The filesystem / database name of the file
+ * @param $fromSharedDirectory Use the shared file repository? It may
+ *   use different hash settings from the local one.
+ */
+function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
+	global $wgHashedSharedUploadDirectory, $wgSharedUploadDirectory;
+	
+	$ishashed = $fromSharedDirectory ? $wgHashedSharedUploadDirectory :
+	                                   $wgSharedUploadDirectory;
+	if($ishashed) {
+		$hash = md5($dbkey);
+		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . "/";
+	} else {
+		return '/';
+	}
+}
+
 
 /**
  * Record an image upload in the upload log.
