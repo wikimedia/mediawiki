@@ -696,7 +696,11 @@ class Database {
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
 			$s = 'NULL';
-		} else if ( !is_numeric( $s ) ) {
+		} else {
+			# This will also quote numeric values. This should be harmless,
+			# and protects against weird problems that occur when they really
+			# _are_ strings such as article titles and string->number->string
+			# conversion is not 1:1.
 			$s = "'" . $this->strencode( $s ) . "'";
 		} 
 		return $s;
