@@ -112,7 +112,7 @@ LIMIT {$indexMaxperpage}";
 # FIXME: Dynamic column widths, backlink to main list,
 # side links to next and previous
 	$n = 0;
-	$out = "<table border=\"0\">\n<tr>";
+	$out = "<table border=\"0\">\n";
 	while( $s = wfFetchObject( $res ) ) {
 		$t = Title::makeTitle( 0, $s->cur_title );
 		if( $t ) {
@@ -120,10 +120,13 @@ LIMIT {$indexMaxperpage}";
 		} else {
 			$link = "[[" . htmlspecialchars( $s->cur_title ) . "]]";
 		}
+		if( $n == 0 ) {
+			$out .= "<tr>\n";
+		}
 		$out .= "<td width=\"33%\">$link</td>";
 		$n = ++$n % 3;
 		if( $n == 0 ) {
-			$out .= "</tr>\n<tr>";
+			$out .= "</tr>\n";
 		}
 	}
 	if( $n != 0 ) {

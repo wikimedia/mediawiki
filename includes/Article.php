@@ -693,13 +693,13 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,follow" );
 
 		$sk = $wgUser->getSkin() ;
-		$link = $sk->makeKnownLink ( $this->mTitle->getPrefixedText() ) ;
+		$link = $this->mTitle->getPrefixedText();
 
 		if($add)
 			$text = wfMsg( "addedwatchtext", $link );
 		else
 			$text = wfMsg( "removedwatchtext", $link );
-		$wgOut->addHTML( $text );
+		$wgOut->addWikiText( $text );
 
 		$up = new UserUpdate();
 		array_push( $wgDeferredUpdateList, $up );

@@ -57,7 +57,7 @@ class MakesysopForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 		$namedesc = wfMsg( "makesysopname" );
 		if ( !is_null( $this->mUser ) ) {
@@ -66,13 +66,13 @@ class MakesysopForm {
 			$encUser = "";
 		}
 
-		$wgOut->addHTML( "<p>
+		$wgOut->addHTML( "
 			<form id=\"makesysop\" method=\"post\" action=\"{$action}\">
-			<table border=0>
+			<table border='0'>
 			<tr>
-				<td align=right>$namedesc</td>
-				<td align=left>
-					<input type=text size=40 name=\"wpMakesysopUser\" value=\"$encUser\">
+				<td align='right'>$namedesc</td>
+				<td align='left'>
+					<input type='text' size='40' name=\"wpMakesysopUser\" value=\"$encUser\" />
 				</td>
 			</tr>" 
 		);
@@ -96,9 +96,9 @@ class MakesysopForm {
 
 			$wgOut->addHTML( "
 				<tr>
-					<td align=right>$rights</td>
-					<td align=left>
-						<input type=text size=40 name=\"wpRights\" value=\"$encRights\">
+					<td align='right'>$rights</td>
+					<td align='left'>
+						<input type='text' size='40' name=\"wpRights\" value=\"$encRights\" />
 					</td>
 				</tr>" 
 			);
@@ -111,8 +111,8 @@ class MakesysopForm {
 		}
 		$wgOut->addHTML(
 			"<tr>
-				<td>&nbsp;</td><td align=left>
-					<input type=submit name=\"wpMakesysopSubmit\" value=\"{$mss}\">
+				<td>&nbsp;</td><td align='left'>
+					<input type='submit' name=\"wpMakesysopSubmit\" value=\"{$mss}\" />
 				</td></tr></table>
 			</form>\n" 
 		);

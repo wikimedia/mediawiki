@@ -1045,16 +1045,17 @@ this old version, (rev) = revert to this old version.
 "statistics"	=> "Statistics",
 "sitestats"		=> "Site statistics",
 "userstats"		=> "User statistics",
-"sitestatstext" => "There are <b>$1</b> total pages in the database.
+"sitestatstext" => "There are '''$1''' total pages in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as articles.
-Excluding those, there are <b>$2</b> pages that are probably legitimate
-articles.<p>
-There have been a total of <b>$3</b> page views, and <b>$4</b> page edits
-since the software was upgraded (July 20, 2002).
-That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
-"userstatstext" => "There are <b>$1</b> registered users.
-<b>$2</b> of these are administrators (see $3).",
+Excluding those, there are '''$2''' pages that are probably legitimate
+articles.
+
+There have been a total of '''$3''' page views, and '''$4''' page edits
+since the wiki was setup.
+That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
+"userstatstext" => "There are '''$1''' registered users.
+'''$2''' of these are administrators (see $3).",
 
 # Maintenance Page
 #
@@ -1598,6 +1599,11 @@ class Language {
 	function getUserToggles() {
 		global $wgUserTogglesEn;
 		return $wgUserTogglesEn;
+	}
+	
+	function getUserToggle( $tog ) {
+		$togs =& $this->getUserToggles();
+		return $togs[$tog];
 	}
 
 	function getLanguageNames() {

@@ -7,7 +7,7 @@ function wfSpecialCategories()
 	$sk = $wgUser->getSkin() ;
 	$sc = "Special:Categories" ;
 	$r = "" ;
-	$r .= "<OL>\n" ;
+	$r .= "<ol>\n" ;
 	$cat = ucfirst ( wfMsg ( "category" ) ) ;
 	$sql = "SELECT cur_title FROM cur WHERE cur_title LIKE \"{$cat}:%\"" ;
 	$res = wfQuery ( $sql, DB_READ ) ;
@@ -20,12 +20,12 @@ function wfSpecialCategories()
 	    $r .= "</li>\n" ;
 	  }
 	wfFreeResult ( $res ) ;
-	$r .= "</OL>\n" ;
+	$r .= "</ol>\n" ;
 
-	$r .= "<hr>\n" ;
+	$r .= "<hr />\n" ;
 	$sql = "SELECT DISTINCT bl_to FROM brokenlinks WHERE bl_to LIKE \"{$cat}:%\"" ;
 	$res = wfQuery ( $sql, DB_READ ) ;
-	$r .= "<OL>\n" ;
+	$r .= "<ol>\n" ;
 	while ( $x = wfFetchObject ( $res ) )
 	  {
 	    $t = explode ( ":" , $x->bl_to , 2 ) ;
@@ -35,7 +35,7 @@ function wfSpecialCategories()
 	    $r .= "</li>\n" ;
 	  }
 	wfFreeResult ( $res ) ;
-	$r .= "</OL>\n" ;
+	$r .= "</ol>\n" ;
 
 	$wgOut->addHTML ( $r ) ;
 }

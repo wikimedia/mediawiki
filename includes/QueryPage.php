@@ -70,7 +70,7 @@ class QueryPage {
 		$wgOut->addHTML( "<p>{$top}\n" );
 
 		$sl = wfViewPrevNext( $offset, $limit, $wgLang->specialPage( $sname ) );
-		$wgOut->addHTML( "<br />{$sl}\n" );
+		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 		$s = "<ol start='" . ( $offset + 1 ) . "'>";
 		while ( $obj = wfFetchObject( $res ) ) {
@@ -80,7 +80,7 @@ class QueryPage {
 		wfFreeResult( $res );
 		$s .= "</ol>";
 		$wgOut->addHTML( $s );
-		$wgOut->addHTML( "<p>{$sl}\n" );
+		$wgOut->addHTML( "<p>{$sl}</p>\n" );
 
 		# Saving cache
 

@@ -312,7 +312,7 @@ class EditPage {
 
 		if ( "preview" == $formtype) {
 			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large><p>\n";
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large></p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
