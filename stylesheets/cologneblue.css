@@ -92,8 +92,8 @@ a.external { color: #00C000; }
 a.external:visited { color: #008000; }
 a.stub { color:#800080; }
 a.stub:visited  { color:#600060; }
-a.new { color:#FF0000; }
-a.new:visited  { color:#800000; }
+a.new, #quickbar a.new { color:#FF0000; }
+a.new:visited , #quickbar a.new:visited { color:#800000; }
 
 a.printable { text-decoration: underline; }
 h2, h3, h4, h5, h6 { margin-bottom: 0; }
