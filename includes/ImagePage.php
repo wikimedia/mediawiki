@@ -176,8 +176,7 @@ class ImagePage extends Article {
 		  Namespace::getWikipedia() ) .
 		  ":" . wfMsg( "dellogpage" ), wfMsg( "deletionlog" ) );
 
-		$text = str_replace( "$1" , $deleted, wfMsg( "deletedtext" ) );
-		$text = str_replace( "$2", $loglink, $text );
+		$text = wfMsg( "deletedtext", $deleted, $loglink );
 
 		$wgOut->addHTML( "<p>" . $text );
 		$wgOut->returnToMain( false );
