@@ -409,7 +409,6 @@ class PreferencesForm {
         $variantArray=array();
         foreach($variants as $v) {
             $v = str_replace( '_', '-', strtolower($v));
-            print "v=$v\n";
             if($name=$wgLanguageNames[$v]) {
                 $variantArray[$v] = $name;
             }
