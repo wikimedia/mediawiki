@@ -3,6 +3,22 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+** NOTE TO COMMITTERS: Before 1.5.0 release, rearrange these nicely
+** and move 1.4 stuff to HISTORY.
+
+== MediaWiki 1.5 ==
+
+New exciting things! Need further work and testing...
+* user groups/permissions scheme
+* e-mail change notifications
+* 'live preview' reduces preview reload burden on supported browsers
+* ...and more!
+
+Need to merge:
+* SCHEMA_WORK
+* stuff
+
+
 == Version Enotif+Eauthent EN+EA v2.00/CVS, 14.12.2004 ==
 written by Thomas Gries, Berlin and Markus Arndt, Munich
 
