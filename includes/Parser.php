@@ -591,12 +591,16 @@ class Parser
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )
 		{
+echo $token["type"]."<br>";
 			switch ( $token["type"] )
 			{
 				case "text":
 					# simple text with no further markup
 					$txt = $token["text"];
 					break;
+				case "[[[":
+					# remember the tag opened with 3 [
+					$threeopen = true;
 				case "[[":
 					# link opening tag.
 					# FIXME : Treat orphaned open tags (stack not empty when text is over)
@@ -604,10 +608,13 @@ class Parser
 					array_push( $tokenStack, $token );
 					$txt="";
 					break;
+					
+				case "]]]":
 				case "]]":
 					# link close tag.
 					# get text from stack, glue it together, and call the code to handle a
 					# link
+					
 					if ( count( $tokenStack ) == 0 )
 					{
 						# stack empty. Found a ]] without an opening [[
@@ -615,14 +622,16 @@ class Parser
 					} else {
 						$linkText = "";
 						$lastToken = array_pop( $tokenStack );
-						while ( $lastToken["type"] != "[[" )
+						while ( !(($lastToken["type"] == "[[[") or ($lastToken["type"] == "[[")) )
 						{
 							if( !empty( $lastToken["text"] ) ) {
 								$linkText = $lastToken["text"] . $linkText;
 							}
 							$lastToken = array_pop( $tokenStack );
 						}
+						
 						$txt = $linkText ."]]";
+						
 						if( isset( $lastToken["text"] ) ) {
 							$prefix = $lastToken["text"];
 						} else {
@@ -636,6 +645,14 @@ class Parser
 							$txt .= $nextToken["text"];
 						}
 						$txt = $this->handleInternalLink( $txt, $prefix );
+
+						# did the tag start with 3 [ ?						
+						if($threeopen) {
+							# show the first as text
+							$txt = "[".$txt;
+							$threeopen=false;
+						}
+				
 					}
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
