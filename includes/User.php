@@ -155,6 +155,10 @@ class User {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
 			require_once( 'MemcachedSessions.php' );
+		} elseif( 'files' != ini_get( 'session.save_handler' ) ) {
+			# If it's left on 'user' or another setting from another
+			# application, it will end up failing. Try to recover.
+			ini_set ( 'session.save_handler', 'files' );
 		}
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 		session_cache_limiter( 'private, must-revalidate' );
