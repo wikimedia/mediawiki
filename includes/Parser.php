@@ -822,9 +822,6 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		global $fixLbug ;
-		if ( $fixLbug ) $text = preg_replace ( '/(l|L)\'/' , '\\1&#39;' , $text ) ;
-		
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
@@ -836,12 +833,10 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		// $text = $this->doExponent( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceInternalLinks ( $text );
-		//$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
@@ -892,57 +887,167 @@ class Parser
 		$outtext = '';
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
-			$outtext .= $this->doQuotes ( '', $line, '' ) . "\n";
+			$outtext .= $this->doQuotes ( $line ) . "\n";
 		}
 		$outtext = substr($outtext, 0,-1);
 		wfProfileOut( $fname );
 		return $outtext;
 	}
 
-	/* private */ function doQuotes( $pre, $text, $mode ) {
-		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
-			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
-			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
-			if ( substr ($m[2], 0, 1) == '\'' ) {
-				$m[2] = substr ($m[2], 1);
-				if ($mode == 'em') {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == '') ? 'both' : 'emstrong' );
-				} else if ($mode == 'strong') {
-					return $m1_strong . $this->doQuotes ( '', $m[2], '' );
-				} else if (($mode == 'emstrong') || ($mode == 'both')) {
-					return $this->doQuotes ( '', $pre.$m1_strong.$m[2], 'em' );
-				} else if ($mode == 'strongem') {
-					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( '', $m[2], 'em' );
-				} else {
-					return $m[1] . $this->doQuotes ( '', $m[2], 'strong' );
+	/* private */ function doQuotes( $text ) {
+		$arr = preg_split ("/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+		if (count ($arr) == 1)
+			return $text;
+		else
+		{
+			$i = 0;
+			foreach ($arr as $r)
+			{
+				if (($i % 2) == 1)
+				{
+					# If there are ever four apostrophes, assume the first is supposed to
+					# be text, and the remaining three constitute mark-up for bold text.
+					if (strlen ($arr[$i]) == 4)
+					{
+						$arr[$i-1] .= "'";
+						$arr[$i] = "'''";
+					}
+					# If there are more than 5 apostrophes in a row, assume they're all
+					# text except for the last 5.
+					else if (strlen ($arr[$i]) > 5)
+					{
+						$arr[$i-1] .= str_repeat ("'", strlen ($arr[$i]) - 5);
+						$arr[$i] = "'''''";
+					}
+					
 				}
-			} else {
-				if ($mode == 'strong') {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == '') ? 'both' : 'strongem' );
-				} else if ($mode == 'em') {
-					return $m1_em . $this->doQuotes ( '', $m[2], '' );
-				} else if ($mode == 'emstrong') {
-					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( '', $m[2], 'strong' );
-				} else if (($mode == 'strongem') || ($mode == 'both')) {
-					return $this->doQuotes ( '', $pre.$m1_em.$m[2], 'strong' );
-				} else {
-					return $m[1] . $this->doQuotes ( '', $m[2], 'em' );
+				$i++;
+			}
+			
+			# Now see if there's an odd or even number of "bold" and "italic"
+			# mark-up. There should normally be an even number of both.
+			$i = 0;
+			$numbold = 0;
+			$numitalics = 0;
+			foreach ($arr as $r)
+			{
+				if (($i % 2) == 1)
+				{
+					if (strlen ($r) == 2) $numitalics++;  else
+					if (strlen ($r) == 3) $numbold++;     else
+					if (strlen ($r) == 5) { $numitalics++; $numbold++; }
+				}
+				$i++;
+			}
+			
+			# If there is an odd number of both bold and italics, it is likely
+			# that one of the bold ones was meant to be an apostrophe followed
+			# by italics. Which one we cannot know for certain, but it is more
+			# likely to be one that has a single-letter word before it.
+			if (($numbold % 2 == 1) && ($numitalics % 2 == 1))
+			{
+				$i = 0;
+				$firstsingleletterword = -1;
+				$firstmultiletterword = -1;
+				$firstspace = -1;
+				foreach ($arr as $r)
+				{
+					if (($i % 2 == 1) and (strlen ($r) == 3))
+					{
+						$x1 = substr ($arr[$i-1], -1);
+						$x2 = substr ($arr[$i-1], -2, 1);
+						if ($x1 == " ") {
+							if ($firstspace == -1) $firstspace = $i;
+						} else if ($x2 == " ") {
+							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
+						} else {
+							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
+						}
+					}
+					$i++;
+				}
+		
+				# If there is a single-letter word, use it!
+				if ($firstsingleletterword > -1)
+				{
+					$arr [ $firstsingleletterword ] = "''";
+					$arr [ $firstsingleletterword-1 ] .= "'";
+				}
+				# If not, but there's a multi-letter word, use that one.
+				else if ($firstmultiletterword > -1)
+				{
+					$arr [ $firstmultiletterword ] = "''";
+					$arr [ $firstmultiletterword-1 ] .= "'";
+				}
+				# ... otherwise use the first one that has neither.
+				else
+				{
+					$arr [ $firstspace ] = "''";
+					$arr [ $firstspace-1 ] .= "'";
 				}
 			}
-		} else {
-			$text_strong = ($text == '') ? '' : "<strong>{$text}</strong>";
-			$text_em = ($text == '') ? '' : "<em>{$text}</em>";
-			if ($mode == '') {
-				return $pre . $text;
-			} else if ($mode == 'em') {
-				return $pre . $text_em;
-			} else if ($mode == 'strong') {
-				return $pre . $text_strong;
-			} else if ($mode == 'strongem') {
-				return (($pre == '') && ($text == '')) ? '' : "<strong>{$pre}{$text_em}</strong>";
-			} else {
-				return (($pre == '') && ($text == '')) ? '' : "<em>{$pre}{$text_strong}</em>";
+		
+			# Now let's actually convert our apostrophic mush to HTML!
+			$output = '';
+			$buffer = '';
+			$state = '';
+			$i = 0;
+			foreach ($arr as $r)
+			{
+				if (($i % 2) == 0)
+				{
+					if ($state == 'both')
+						$buffer .= $r;
+					else
+						$output .= $r;
+				}
+				else
+				{
+					if (strlen ($r) == 2)
+					{
+						if ($state == 'em')
+						{ $output .= "</em>"; $state = ''; }
+						else if ($state == 'strongem')
+						{ $output .= "</em>"; $state = 'strong'; }
+						else if ($state == 'emstrong')
+						{ $output .= "</strong></em><strong>"; $state = 'strong'; }
+						else if ($state == 'both')
+						{ $output .= "<strong><em>{$buffer}</em>"; $state = 'strong'; }
+						else # $state can be 'strong' or ''
+						{ $output .= "<em>"; $state .= 'em'; }
+					}
+					else if (strlen ($r) == 3)
+					{
+						if ($state == 'strong')
+						{ $output .= "</strong>"; $state = ''; }
+						else if ($state == 'strongem')
+						{ $output .= "</em></strong><em>"; $state = 'em'; }
+						else if ($state == 'emstrong')
+						{ $output .= "</strong>"; $state = 'em'; }
+						else if ($state == 'both')
+						{ $output .= "<em><strong>{$buffer}</strong>"; $state = 'em'; }
+						else # $state can be 'em' or ''
+						{ $output .= "<strong>"; $state .= 'strong'; }
+					}
+					else if (strlen ($r) == 5)
+					{
+						if ($state == 'strong')
+						{ $output .= "</strong><em>"; $state = 'em'; }
+						else if ($state == 'em')
+						{ $output .= "</em><strong>"; $state = 'strong'; }
+						else if ($state == 'strongem')
+						{ $output .= "</em></strong>"; $state = ''; }
+						else if ($state == 'emstrong')
+						{ $output .= "</strong></em>"; $state = ''; }
+						else if ($state == 'both')
+						{ $output .= "<em><strong>{$buffer}</strong></em>"; $state = ''; }
+						else # ($state == '')
+						{ $buffer = ''; $state = 'both'; }
+					}
+				}
+				$i++;
 			}
+			return $output;
 		}
 	}
 
