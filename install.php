@@ -65,6 +65,7 @@ copyfile( "./images", "button_italic.gif", $wgUploadDirectory );
 copyfile( "./images", "button_link.gif", $wgUploadDirectory );
 copyfile( "./images", "button_math.gif", $wgUploadDirectory );
 copyfile( "./images", "button_media.gif", $wgUploadDirectory );
+copyfile( "./images", "button_nowiki.gif", $wgUploadDirectory );
 copyfile( "./images", "button_sig.gif", $wgUploadDirectory );
 copyfile( "./images", "button_template.gif", $wgUploadDirectory );
 
@@ -96,24 +97,27 @@ copyfile( ".", "Version.php", $IP );
 #
 # Make and initialize database
 #
-print "\n* * *\nWarning! This script will completely erase the\n" .
+print "\n* * *\nWarning! This script will completely erase any\n" .
   "existing database \"{$wgDBname}\" and all its contents.\n" .
   "Are you sure you want to do this? (yes/no) ";
 
 $response = readconsole();
 if ( ! ( "Y" == $response{0} || "y" == $response{0} ) ) { exit(); }
 
-print "\nYou should have already created a root password for the database.\n" .
-  "Enter the root password here: ";
+print "\nFor database access, we are using the data in AdminSettings.php.\n";
+print "If you get any error message, please make sure this information is correct\n";
+print "and you have the rights to create a database using the data provided.\n";
+print "(If you have already created the database, don't worry, the script will\n";
+print "simply skip that step.)\n\n";
 
-$rootpw = readconsole();
+global $wgDBadminuser, $wgDBadminpassword;
 
 # Include rest of code to get things like internationalized messages.
 #
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Installation script" );
 
-$wgDatabase = Database::newFromParams( $wgDBserver, "root", $rootpw, "", 1 );
+$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, "", 1 );
 if ( !$wgDatabase->isOpen() ) {
 	print "Could not connect to database on \"{$wgDBserver}\" as root.\n";
 	exit();
@@ -173,20 +177,49 @@ function populatedata() {
 	$sql = "DELETE FROM user";
 	$wgDatabase->query( $sql, $fname );
 
-	$u = User::newFromName( "WikiSysop" );
-	if ( 0 == $u->idForName() ) {
-		$u->addToDatabase();
-		$u->setPassword( $wgDBadminpassword );
-		$u->addRight( "sysop" );
-		$u->saveSettings();
+	print "Do you want to create a sysop account? A sysop can protect,\n";
+	print "delete and undelete pages and ban users. Recomended. [Y/n] ";
+	$response = readconsole();
+	if(strtolower($response)!="n") {
+		print "Enter the username [Sysop]: ";
+		$sysop_user=readconsole();
+		if(!$sysop_user) { $sysop_user="Sysop"; }
+		while(!$sysop_password) {
+			print "Enter the password: ";
+			$sysop_password=readconsole();
+		}
+		$u = User::newFromName( $sysop_user );
+		if ( 0 == $u->idForName() ) {
+			$u->addToDatabase();
+			$u->setPassword( $sysop_password );
+			$u->addRight( "sysop" );
+			$u->saveSettings();
+		} else {
+			print "Could not create user - already exists!\n";
+		}
 	}
-	$u = User::newFromName( "WikiDeveloper" );
-	if ( 0 == $u->idForName() ) {
-		$u->addToDatabase();
-		$u->setPassword( $wgDBadminpassword );
-		$u->addRight( "sysop" );
-		$u->addRight( "developer" );
-		$u->saveSettings();
+	print "Do you want to create a sysop+developer account? A developer\n";
+	print "can switch the database to read-only mode and run any type of\n";
+	print "query through a web interface. [Y/n] ";
+	$response=readconsole();
+	if(strtolower($response)!="n") {
+		print "Enter the username [Developer]: ";
+		$developer_user=readconsole();
+		if(!$developer_user) { $developer_user="Developer"; }
+		while (!$developer_password) {
+			print "Enter the password: ";
+			$developer_password=readconsole();
+		}		
+		$u = User::newFromName( $developer_user );
+		if ( 0 == $u->idForName() ) {
+			$u->addToDatabase();
+			$u->setPassword( $developer_password );
+			$u->addRight( "sysop" );
+			$u->addRight( "developer" );
+			$u->saveSettings();
+		} else {
+			print "Could not create user - already exists!\n";
+		}
 	}
 	
 	$wns = Namespace::getWikipedia();
