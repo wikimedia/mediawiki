@@ -211,10 +211,10 @@ toTW.dict: simp2trad1to1.t simp2trad.phrases.t
 	cat simp2trad.phrases.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' >> toTW.dict
 
 toHK.dict: toHK.manual
-	cat toHK.manual | $(SED) 's/[ ]//g' | $(SED) 's/\(^[^ \t]*\)[ \t][ \t]*\([^ \t]*\)/"\1"\t"\2"/' > toHK.dict
+	cat toHK.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' > toHK.dict
 
 toSG.dict: toSG.manual
-	cat toSG.manual | $(SED) 's/[ ]//g' | $(SED) 's/\(^[^ \t]*\)[ \t][ \t]*\([^ \t]*\)/"\1"\t"\2"/' > toSG.dict
+	cat toSG.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' > toSG.dict
 
 
 
