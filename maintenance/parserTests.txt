@@ -658,6 +658,9 @@ Plain link to URL
 </p>
 !! end
 
+# I'm fairly sure the expected result here is wrong.
+# We want these to be URL links, not pseudo-pages with URLs for titles....
+# However the current output is also pretty screwy.
 !! test
 Piped link to URL
 !! input

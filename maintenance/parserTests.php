@@ -152,7 +152,13 @@ class ParserTest {
 		}
 		if( $total > 0 ) {
 			$ratio = IntVal( 100.0 * $success / $total );
-			print "\nPassed $success of $total tests ($ratio%)\n";
+			print $this->termColor( 1 ) . "\nPassed $success of $total tests ($ratio%) ";
+			if( $success == $total ) {
+				print $this->termColor( 32 ) . "PASSED!";
+			} else {
+				print $this->termColor( 31 ) . "FAILED!";
+			}
+			print $this->termReset() . "\n";
 			return ($success == $total);
 		} else {
 			die( "No tests found.\n" );
