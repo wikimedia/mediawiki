@@ -653,10 +653,10 @@ Don't forget to change your $wgSitename preferences.",
 "userlogout"	=> "Log out",
 "notloggedin"	=> "Not logged in",
 "createaccount"	=> "Create new account",
-"createaccountmail"	=> "by eMail",
+"createaccountmail"	=> "by email",
 "badretype"		=> "The passwords you entered do not match.",
 "userexists"	=> "The user name you entered is already in use. Please choose a different name.",
-"youremail"		=> "Your e-mail*",
+"youremail"		=> "Your email*",
 "yournick"		=> "Your nickname (for signatures)",
 "emailforlost"	=> "* Entering an email address is optional.  But it enables people to
 contact you through the website without you having to reveal your 
@@ -682,6 +682,7 @@ You should log in and change your password now.",
 registered for \"$1\".
 Please log in again after you receive it.",
 "loginend"		=> "&nbsp;",
+"mailerror" => "Error sending mail: $1",
 
 # Edit page toolbar
 "bold_sample"=>"Bold text",
@@ -1383,6 +1384,7 @@ Type the name of the user in the box and press the button to make the user an ad
 "set_user_rights"	=> "Set user rights",
 "user_rights_set"	=> "<b>User rights for \"$1\" updated</b>",
 "set_rights_fail"	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
+"makesysop"         => "Make a user into a sysop",
 
 # Move page
 #
@@ -1638,7 +1640,7 @@ class Language {
 	function userAdjust( $ts )
 	{
 		global $wgUser, $wgLocalTZoffset;
-
+		
 		$tz = $wgUser->getOption( "timecorrection" );
 		if ( $tz === "" ) {
 			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
