@@ -195,7 +195,7 @@ class LinksUpdate {
 		$a = $wgLinkCache->getGoodLinks();
 		$sql = "";
 		if ( 0 != count( $a ) ) {
-			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
+			$sql = "INSERT IGNORE INTO links (l_from,l_to) VALUES ";
 			$first = true;
 			foreach( $a as $lt => $lid ) {
 				if ( ! $first ) { $sql .= ","; }
@@ -212,7 +212,7 @@ class LinksUpdate {
 		$a = $wgLinkCache->getBadLinks();
 		$sql = "";
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
+			$sql = "INSERT IGNORE INTO brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
 			foreach( $a as $blt ) {
 				$blt = wfStrencode( $blt );
@@ -230,7 +230,7 @@ class LinksUpdate {
 		$a = $wgLinkCache->getImageLinks();
 		$sql = "";
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT INTO imagelinks (il_from,il_to) VALUES ";
+			$sql = "INSERT IGNORE INTO imagelinks (il_from,il_to) VALUES ";
 			$first = true;
 			foreach( $a as $iname => $val ) {
 				$iname = wfStrencode( $iname );
@@ -252,7 +252,7 @@ class LinksUpdate {
 			# Do the insertion
 			$sql = "";
 			if ( 0 != count ( $add ) ) {
-				$sql = "INSERT INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
+				$sql = "INSERT IGNORE INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
 				$first = true;
 				foreach( $add as $cname => $sortkey ) {
 					# FIXME: Change all this to avoid unnecessary duplication
