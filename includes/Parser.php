@@ -1040,7 +1040,10 @@ class Parser
 	 * @access private
 	 */
 	function replaceFreeExternalLinks( $text ) {
-		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$fname = 'Parser::replaceFreeExternalLinks';
+		wfProfileIn( $fname );
+		
+		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
 		$i = 0;
 
@@ -1092,6 +1095,7 @@ class Parser
 				$s .= $protocol . $remainder;
 			}
 		}
+		wfProfileOut();
 		return $s;
 	}
 
