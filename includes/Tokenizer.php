@@ -25,22 +25,31 @@ class Tokenizer {
 
 	function preParse()
 	{
-		$this->mCount = preg_match_all( "/(\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/",
-						$this->mText, $this->mMatch,
+		global $wgLang;
+		if (  $wgLang->linkPrefixExtension() ) {
+			$regex = "/(([a-zA-Z\x80-\xff]+)\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/";
+			#          000000000000000000000000000000000000000000000000000000
+			#           1111111111111111111111111111111111111111111111111111
+			#            222222222222222222
+			# which $this->mMatch[...] will contain the match.
+		} else {
+			$regex = "/(\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/";
+		}
+
+		$this->mCount = preg_match_all( $regex, $this->mText, $this->mMatch,
 						PREG_PATTERN_ORDER|PREG_OFFSET_CAPTURE);
 		$this->mMatchPos=0;
+		# print( "<pre>" );
+		# print_r( $this->mMatch );
+		# print( "</pre>" );
 	}
 
 	function nextToken()
 	{
 		$token = $this->previewToken();
 		if ( $token ) {
-			if ( $token["type"] == "text" ) {
-				$this->mPos = $token["mPos"];
-			} else {
-				$this->mMatchPos = $token["mMatchPos"];
-				$this->mPos = $token["mPos"];
-			}
+			$this->mMatchPos = $token["mMatchPos"];
+			$this->mPos = $token["mPos"];
 		}
 		return $token;
 	}
@@ -54,16 +63,30 @@ class Tokenizer {
 				$token["type"] = "text";
 				$token["text"] = substr( $this->mText, $this->mPos,
 							 $this->mMatch[0][$this->mMatchPos][1] - $this->mPos );
+				# What the pointers would change to if this would not just be a preview
+				$token["mMatchPos"] = $this->mMatchPos; 
 				$token["mPos"] = $this->mMatch[0][$this->mMatchPos][1];
 			} else {
-				$token["type"] = $this->mMatch[0][$this->mMatchPos][0];
-				$token["mPos"] = $this->mPos + strlen($token["type"]);
+				# If linkPrefixExtension is set,  $this->mMatch[2][$this->mMatchPos][0]
+				# contains the link prefix, or is null if no link prefix exist.
+				if ( $this->mMatch[2][$this->mMatchPos][0] )
+				{
+					# prefixed link open tag, [0] is "prefix[["
+					$token["type"] = "[[";
+					$token["text"] = $this->mMatch[2][$this->mMatchPos][0]; # the prefix
+				} else {
+					$token["type"] = $this->mMatch[0][$this->mMatchPos][0];
+				}
+				# What the pointers would change to if this would not just be a preview
+				$token["mPos"] = $this->mPos + strlen( $this->mMatch[0][$this->mMatchPos][0] );
 				$token["mMatchPos"] = $this->mMatchPos + 1;
 			}
 		} elseif ( $this->mPos < $this->mTextLength ) {
 			$token["type"] = "text";
 			$token["text"] = substr( $this->mText, $this->mPos );
+			# What the pointers would change to if this would not just be a preview
 			$token["mPos"] = $this->mTextLength;
+			$token["mMatchPos"] = $this->mMatchPos;
 		} else {
 			$token = FALSE;
 		}
