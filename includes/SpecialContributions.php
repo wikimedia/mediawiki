@@ -97,10 +97,12 @@ function wfSpecialContributions( $par = '' ) {
 		$index = 'user_timestamp';
 	}
 
+
+	$use_index = $dbr->useIndexClause( $index );
 	$sql = "SELECT
 		page_namespace,page_title,page_is_new,page_latest,
 		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text
-		FROM $page,$revision USE INDEX($index)
+		FROM $page,$revision $use_index
 		WHERE page_id=rev_page AND $condition $minorQuery " .
 	  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 	$res = $dbr->query( $sql, $fname );
