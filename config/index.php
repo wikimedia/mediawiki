@@ -959,9 +959,6 @@ if ( \$wgCommandLineMode ) {
 
 \$wgProxyKey = \"$proxyKey\";
 
-# The whitelist
-\$wgWhitelistRead = array(\"Special:Userlogin\");
-
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
 # \$wgDefaultSkin = 'monobook';
