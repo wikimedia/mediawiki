@@ -1,10 +1,5 @@
 <?php
-/*require_once( "../includes/DefaultSettings.php" );
-require_once( "../LocalSettings.php" );
-require_once( "../includes/MemCachedClient.inc.php" );*/
-
-
-require_once( "liveCmdLine.inc" );
+require_once( "commandLine.inc" );
 
 do {
 	$line = readconsole( "> " );
@@ -14,17 +9,6 @@ do {
 	}
 } while ( 1 );
 
-function readconsole( $prompt = "" ) {
-	if ( function_exists( "readline" ) ) {
-		return readline( $prompt );
-	} else {
-		print $prompt;
-		$fp = fopen( "php://stdin", "r" );
-		$resp = trim( fgets( $fp, 1024 ) );
-		fclose( $fp );
-		return $resp;
-	}
-}
 
 
 
