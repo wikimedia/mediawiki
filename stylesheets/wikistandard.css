@@ -38,6 +38,8 @@ table.rimage {
 	width:1pt; 
 	margin-left:1em; 
 	margin-bottom:1em;
+	text-align:center;
+	font-size:smaller;
 	}
 
 table.country {
