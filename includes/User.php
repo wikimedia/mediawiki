@@ -710,35 +710,17 @@ class User {
 	 * @deprecated
 	 */
 	function isSysop() {
-	/**
-		$this->loadFromDatabase();
-		if ( 0 == $this->mId ) { return false; }
-
-		return in_array( 'sysop', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isSysop() is deprecated. Use User::isAllowed() instead");
+		wfDebugDieBacktrace("User::isSysop() is deprecated. Use User::isAllowed() instead");
 	}
 
 	/** @deprecated */
 	function isDeveloper() {
-	/**
-		$this->loadFromDatabase();
-		if ( 0 == $this->mId ) { return false; }
-
-		return in_array( 'developer', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isDeveloper() is deprecated. Use User::isAllowed() instead");
+		wfDebugDieBacktrace("User::isDeveloper() is deprecated. Use User::isAllowed() instead");
 	}
 
 	/** @deprecated */
 	function isBureaucrat() {
-	/**
-		$this->loadFromDatabase();
-		if ( 0 == $this->mId ) { return false; }
-
-		return in_array( 'bureaucrat', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isBureaucrat() is deprecated. Use User::isAllowed() instead");
+		wfDebugDieBacktrace("User::isBureaucrat() is deprecated. Use User::isAllowed() instead");
 	}
 
 	/**
