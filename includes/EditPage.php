@@ -52,7 +52,6 @@ class EditPage {
 			}
 			return;
 		}
-		if( !$wgRequest->wasPosted() ) $this->save = false;
 		if ( $this->save ) {
 			$this->editForm( "save" );
 		} else if ( $this->preview ) {
@@ -73,8 +72,8 @@ class EditPage {
 		$this->edittime = $request->getVal( 'wpEdittime' );
 		if( !preg_match( '/^\d{14}$/', $this->edittime ) ) $this->edittime = "";
 
-		$this->save = $request->getCheck( 'wpSave' );
 		$this->preview = $request->getCheck( 'wpPreview' );
+		$this->save = $request->wasPosted() && !$this->preview;
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
 		$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
