@@ -430,12 +430,15 @@ function wfImageArchiveDir( $fname , $subdir="archive")
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
+	
+	# Suppress warning messages here; if the file itself can't
+	# be written we'll worry about it then.
 	$archive = "{$wgUploadDirectory}/{$subdir}";
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
 	$archive .= "/" . $hash{0};
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
 	$archive .= "/" . substr( $hash, 0, 2 );
-	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
 
 	umask( $oldumask );
 	return $archive;
