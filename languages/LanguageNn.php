@@ -899,12 +899,10 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 # Special:Allpages
 'nextpage'              => 'Neste side ($1)',
 'articlenamespace'      => '(innhaldssider)',
-'allpagesformtext1'     => 'Vis sider frå: $1',
-'allpagesformtext2'     => 'Velj namnerom: $1 $2',
 'allarticles'           => 'Alle innhaldssider',
 'allpagesprev'          => 'Førre',
 'allpagesnext'          => 'Neste',
-'allpagesnamespace'     => 'Alle sider ($1 namnerom)',
+'allinnamespace'     => 'Alle sider ($1 namnerom)',
 'allpagessubmit'        => 'Utfør',
 
 # Email this user

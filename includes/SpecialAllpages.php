@@ -11,23 +11,38 @@
  */
 function wfSpecialAllpages( $par=NULL ) {
 	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
+	# Config
 	$indexMaxperpage = 480;
 	$toplevelMaxperpage = 50;
+	# GET values
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
+	$invert = $wgRequest->getInt( 'invert' );
+	
 	$names = $wgContLang->getNamespaces();
+
 	if( !isset( $names[$namespace] ) ) {
 		$namespace = 0;
 	}
-	$wgOut->setPagetitle ( $namespace > 0 ? wfMsg ( 'allpagesnamespace', $names[$namespace] )
-	                                      : wfMsg ( 'allarticles' ) );
 
-	if ( $par ) {
-		indexShowChunk( $par, $namespace );
-	} elseif ( $from ) {
-		indexShowChunk( $from, $namespace );
+	if ($invert) {
+		$wgOut->setPagetitle( $namespace > 0 ?
+			wfMsg( 'allnotinnamespace', $names[$namespace] ) :
+			wfMsg( 'allnonarticles' )
+			);
 	} else {
-		indexShowToplevel ( $namespace );
+		$wgOut->setPagetitle( $namespace > 0 ?
+			wfMsg( 'allinnamespace', $names[$namespace] ) :
+			wfMsg( 'allarticles' )
+			);
+	}
+	
+	if ( $par ) {
+		indexShowChunk( $namespace, $par, $invert );
+	} elseif ( $from ) {
+		indexShowChunk( $namespace, $from, $invert );
+	} else {
+		indexShowToplevel ( $namespace, $invert );
 	}
 }
 
@@ -36,9 +51,8 @@ function wfSpecialAllpages( $par=NULL ) {
  * @param integer $namespace A namespace constant (default NS_MAIN).
  * @param string $from Article name we are starting listing at.
  */
-function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
+function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = 0) {
 	global $wgContLang, $wgScript;
-
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
 	$namespaceselect = '<select name="namespace">';
@@ -55,11 +69,12 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	$frombox = '<input type="text" size="20" name="from" value="'
 	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+	
+	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert == 1 ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
-	$out .= wfMsg ( 'allpagesformtext1', $frombox ) . '<br />';
-	$out .= wfMsg ( 'allpagesformtext2', $namespaceselect, $submitbutton );
+	$out .= wfMsg ( 'allpagesformtext', $frombox, $namespaceselect, $submitbutton, $invertbox );
 	$out .= '</form></div>';
 	return $out;
 }
@@ -68,7 +83,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
  * @todo Document
  * @param integer $namespace (default NS_MAIN)
  */
-function indexShowToplevel ( $namespace = NS_MAIN ) {
+function indexShowToplevel ( $namespace = NS_MAIN, $invert = 0 ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
@@ -79,7 +94,8 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$page = $dbr->tableName( 'page' );
-	$fromwhere = "FROM $page WHERE page_namespace=$namespace";
+	$invsql = ($invert) ? '!' : '';
+	$fromwhere = "FROM $page WHERE page_namespace$invsql=$namespace";
 	$order_arr = array ( 'ORDER BY' => 'page_title' );
 	$order_str = 'ORDER BY page_title';
 	$out = "";
@@ -87,11 +103,11 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 
 	$count = $dbr->selectField( 'page', 'COUNT(*)', $where, $fname );
 	$sections = ceil( $count / $indexMaxperpage );
-
+	
 	if ( $sections < 3 ) {
 		# If there are only two or less sections, don't even display them.
 		# Instead, display the first section directly.
-		indexShowChunk( '', $namespace );
+		indexShowChunk( $namespace, '', $invert );
 		return;
 	}
 
@@ -110,7 +126,7 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 	$lines = array();
 
 	# If we are going to show n rows, we need n+1 queries to find the relevant titles.
-	for ( $i = $offset; $i <= $stopat; $i++ ) {
+	for ( $i = $offset; $i <= $stopat; ++$i ) {
 		if ( $i == $sections )			# if we're displaying the last section, we need to
 			$from = $count-1;			# find the last page_title in the DB
 		else if ( $i > $offset )
@@ -136,8 +152,8 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 		$out .= indexShowline ( $inpoint, $outpoint, $namespace );
 	}
 	$out .= '</table>';
-
-	$nsForm = namespaceForm ( $namespace );
+	
+	$nsForm = namespaceForm ( $namespace, '', $invert );
 
 	# Is there more?
 	$morelinks = '';
@@ -193,7 +209,7 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	return '<tr><td align="right">'.$out.'</td></tr>';
 }
 
-function indexShowChunk( $from, $namespace = NS_MAIN ) {
+function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;
@@ -206,7 +222,8 @@ function indexShowChunk( $from, $namespace = NS_MAIN ) {
 	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
-	$sql = "SELECT page_title FROM $page WHERE page_namespace=$namespacee" .
+	$invsql = ($invert) ? '!' : '';
+	$sql = "SELECT page_title FROM $page WHERE page_namespace$invsql=$namespacee" .
 		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
 		" ORDER BY page_title LIMIT " . $maxPlusOne;
 	$res = $dbr->query( $sql, 'indexShowChunk' );
@@ -235,8 +252,8 @@ function indexShowChunk( $from, $namespace = NS_MAIN ) {
 		$out .= '</tr>';
 	}
 	$out .= '</table>';
-
-	$nsForm = namespaceForm ( $namespace, $from );
+	
+	$nsForm = namespaceForm ( $namespace, $from, $invert );
 	$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 	$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 	$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
@@ -244,10 +261,11 @@ function indexShowChunk( $from, $namespace = NS_MAIN ) {
 				wfMsg ( 'allpages' ) );
 	if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$namespaceparam = $namespace ? "&namespace=$namespace" : "";
+		$invertparam = $invert ? "&invert=$invert" : '';
 		$out2 .= " | " . $sk->makeKnownLink(
 			$wgContLang->specialPage( "Allpages" ),
 			wfMsg ( 'nextpage', $s->page_title ),
-			"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam );
+			"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam . $invertparam );
 	}
 	$out2 .= "</td></tr></table><hr />";
 

@@ -818,9 +818,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 # All pages
 #
-'allpagesformtext1' => "Afficher les pages à partir de : $1",
-'allpagesformtext2' => "Choisir un <i>namespace</i> : $1 $2",
-'allpagesnamespace' => "Toutes les pages (espace $1)",
+'allinnamespace' => "Toutes les pages (espace $1)",
 'allpagesnext' => "Suivant",
 'allpagesprev' => "Précédent",
 'allpagessubmit' => "Valider",

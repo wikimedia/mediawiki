@@ -709,7 +709,7 @@ Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muut
 'allarticles'       => 'Kaikki artikkelit',
 'allpagesprev'      => 'Edellinen',
 'allpagesnext'      => 'Seuraaa',
-'allpagesnamespace' => 'Kaikki sivut (nimiavaruudessa $1 )',
+'allinnamespace' => 'Kaikki sivut (nimiavaruudessa $1 )',
 'allpagessubmit'    => 'Mene',
 
 # Email this user
