@@ -18,6 +18,7 @@ define("MAG_CURRENTMONTHNAMEGEN", 10);
 define("MAG_MSG", 11);
 define("MAG_SUBST", 12);
 define("MAG_MSGNW", 13);
+define("MAG_NOEDITSECTION", 14);
 
 #--------------------------------------------------------------------------
 # Language-specific text
