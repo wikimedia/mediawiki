@@ -140,13 +140,6 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( ' ', '_', $s );
 		if( $t->secureAndSplit() ) {
-			# check that length of title is < cur_title size
-			$dbr =& wfGetDB( DB_SLAVE );
-			$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
-			if ( $maxSize != -1 && strlen( $t->mDbkeyform ) > $maxSize ) {
-				return NULL;
-			}
-
 			return $t;
 		} else {
 			return NULL;
@@ -1088,6 +1081,12 @@ class Title {
 		       strpos( $r, '/../' ) !== false ) )
 		{
 			wfProfileOut( $fname );
+			return false;
+		}
+
+		# We shouldn't need to query the DB for the size.
+		#$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
+		if ( strlen( $t ) > 255 ) {
 			return false;
 		}
 

@@ -669,6 +669,8 @@ class Parser
 		}
 		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceInternalLinks ( $text );
+		# Another call to replace links and images inside captions of images
+		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
@@ -1103,9 +1105,8 @@ class Parser
 
 		wfProfileOut( $fname.'-setup' );
 
-		# Loop for each link
-		for ($k = 0; isset( $a[$k] ); $k++) {
-			$line = $a[$k];
+		# start procedeeding each line
+		foreach ( $a as $line ) {
 			wfProfileIn( $fname.'-prefixhandling' );
 			if ( $useLinkPrefixExtension ) {
 				if ( preg_match( $e2, $s, $m ) ) {
@@ -1122,56 +1123,14 @@ class Parser
 			}
 			wfProfileOut( $fname.'-prefixhandling' );
 
-			$nt = false;
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
 				if(preg_match('/%/', $m[1] )) $m[1] = urldecode($m[1]);
 				$trail = $m[3];
-			}
-			else {
-				# Image captions are a special case: they
-				# may contain other links, so check for them
-				# and replace links inside them if necessary.
-				# If the image caption contains a link,
-				# it will be cut short, so fix it first.
-				$orig_line = $line;
-				$found = false;
-				if (strpos( $line, ']]' ) === false ) {
-					# Keep adding to $line until we find the matching ']]'
-					while (isset ($a[$k+1]) ) {
-						$line .=  '[[' . array_shift(array_splice( $a, $k + 1, 1) );
-						if ( substr_count( $line, '[[' ) === substr_count( $line, ']]' ) - 1 )
-						{
-							$found = true;
-							break;
-						}
-					}
-				}
-
-				if ($found) {
-					# Recursively do links inside [[Image:...]].
-					# In theory, we only need to do this for the
-					# image caption, but including the other options
-					# is simpler and shouldn't hurt anything.
-					$found = preg_match( $e1, $line, $m );
-					echo "wtm: line $line\n";
-				}
-
-				if ($found) {
-					$text = $m[2];
-					$trail = $m[3];
-				}
-
-				if ( $found ) {
-					$nt = Title::newFromText( $m[1] );
-					$found = !is_null($nt);
-				}
-				if (!$found || $nt->getNamespace() != NS_IMAGE ) {
-					# Invalid form; output directly
-					$s .= $prefix . '[[' . $orig_line ;
-					continue;
-				}
+			} else { # Invalid form; output directly
+				$s .= $prefix . '[[' . $line ;
+				continue;
 			}
 
 			# Don't allow internal links to pages containing
@@ -1194,9 +1153,7 @@ class Parser
 			$wasblank = ( '' == $text );
 			if( $wasblank ) $text = $link;
 
-			if (!$nt) {
-				$nt = Title::newFromText( $link );
-			}
+			$nt = Title::newFromText( $link );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -1240,7 +1197,7 @@ class Parser
 				}
 				
 				if ( $ns == NS_IMAGE ) {
-					$s .= $prefix . $this->insertStripItem( $sk->makeImageLinkObj( $nt, $text ), $this->mStripState ) . $trail;
+					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
