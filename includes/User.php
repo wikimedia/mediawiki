@@ -644,7 +644,7 @@ class User {
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
 	function &getSkin() {
-		global $IP, $wgUsePHPTal;
+		global $IP;
 		if ( ! isset( $this->mSkin ) ) {
 			# get all skin names available
 			$skinNames = Skin::getSkinNames();
