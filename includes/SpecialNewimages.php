@@ -20,24 +20,24 @@ function wfSpecialNewimages() {
 	$sql = "SELECT img_size,img_name,img_user,img_user_text," .
 	  "img_description,img_timestamp FROM $image";
 
-	$bydate = wfMsg( "bydate" );
+	$bydate = wfMsg( 'bydate' );
 
 	if ( !empty( $wpIlMatch ) ) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if($nt ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
-			$m = str_replace( "%", "\\%", $m );
-			$m = str_replace( "_", "\\_", $m );
+			$m = str_replace( '%', "\\%", $m );
+			$m = str_replace( '_', "\\_", $m );
 			$sql .= " WHERE LCASE(img_name) LIKE '%{$m}%'";
 		}
 	}
-	$sort = "bydate";
-	$sql .= " ORDER BY img_timestamp DESC";
+	$sort = 'bydate';
+	$sql .= ' ORDER BY img_timestamp DESC';
 	$st = $bydate;
 	
 	list( $limit, $offset ) = wfCheckLimits( 50 );
 	if ( 0 == $limit ) {
-		$lt = wfMsg( "all" );
+		$lt = wfMsg( 'all' );
 	} else {
 		$lt = $wgLang->formatNum( "${limit}" );
 		$sql .= " LIMIT {$limit}";
@@ -49,9 +49,9 @@ function wfSpecialNewimages() {
 	$wgOut->addHTML( "<p>{$text}\n</p>" );
 
 	$sk = $wgUser->getSkin();
-	$cap = wfMsg( "ilshowmatch" );
-	$sub = wfMsg( "ilsubmit" );
-	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
+	$cap = wfMsg( 'ilshowmatch' );
+	$sub = wfMsg( 'ilsubmit' );
+	$titleObj = Title::makeTitle( NS_SPECIAL, 'Imagelist' );
 	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
@@ -60,22 +60,22 @@ function wfSpecialNewimages() {
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
-	$here = $wgContLang->specialPage( "Imagelist" );
+	$here = $wgContLang->specialPage( 'Imagelist' );
 
-	$fill = "";
+	$fill = '';
 	$first = true;
 	foreach ( $nums as $num ) {
-		if ( ! $first ) { $fill .= " | "; }
+		if ( ! $first ) { $fill .= ' | '; }
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
 		  "sort=bydate&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
-	$text = wfMsg( "showlast", $fill, $bydate );
-	$wgOut->addHTML( "{$text}</p>\n" );
+	$text = wfMsg( 'showlast', $fill, $bydate );
+	$wgOut->addHTML( $text."</p>\n" );
 
 	$i=0;
-	$res = $dbr->query( $sql, "wfSpecialImagelist" );
+	$res = $dbr->query( $sql, 'wfSpecialImagelist' );
 
 	$gallery = new ImageGallery();
 
