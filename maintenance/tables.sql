@@ -177,3 +177,11 @@ CREATE TABLE searchindex (
   UNIQUE KEY (si_page)
 ) TYPE=MyISAM PACK_KEYS=1;
 
+DROP TABLE IF EXISTS interwiki;
+CREATE TABLE interwiki (
+  iw_prefix char(32) NOT NULL,
+  iw_url char(127) NOT NULL,
+  iw_local BOOL NOT NULL,
+  UNIQUE KEY iw_prefix (iw_prefix)
+);
+
