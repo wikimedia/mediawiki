@@ -202,6 +202,12 @@ $wgWLCacheTimeout = 3600;	# The hour or so mentioned above
 $wgUseTeX = false;
 $wgTexvc = "./math/texvc"; # Location of the texvc binary
 
+# Support for inline hieroglyphs, see http://aoineko.free.fr/ The
+# WikiHiero php files must be present in the same directory as the
+# rest of the mediawiki code, and WikiHiero must have been configured
+# with the correct image locations.
+$wgUseWikiHiero = false;
+
 # Profiling / debugging
 $wgProfiling = false; # Enable for more detailed by-function times in debug log
 $wgProfileLimit = 0.0; # Only record profiling info for pages that took longer than this
