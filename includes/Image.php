@@ -26,7 +26,8 @@ class Image
 	{
 		global $wgUploadDirectory,
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
-		       $wgHashedSharedUploadDirectory;
+		       $wgHashedSharedUploadDirectory, $wgUseLatin1, 
+		       $wgSharedLatin1, $wgLang;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
@@ -40,19 +41,26 @@ class Image
 		# If the file is not found, and a shared upload directory 
 		# like the Wikimedia Commons is used, look for it there.
 		if (!$this->fileExists && $wgUseSharedUploads) {
-			
+			# in case we're running a capitallinks=false wiki						
+			$sharedname=$wgLang->ucfirst($name);
+			$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
+			if($wgUseLatin1 && !$wgSharedLatin1) {				
+				$sharedname=utf8_encode($sharedname);
+				$sharedtitle=utf8_encode($sharedtitle);					
+			}
+			$hash 		 = md5( $sharedtitle );
 			if($wgHashedSharedUploadDirectory) {				
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
-					substr( $hash, 0, 2 ) . "/{$name}";
+					substr( $hash, 0, 2 ) . "/{$sharedname}";
 			} else {
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $name;
+				$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
 			}
 			$this->fileExists = file_exists( $this->imagePath);
 			$this->fromSharedDirectory = true;
 			#wfDebug ("File from shared directory: ".$this->imagePath."\n");
 		}		
 		if($this->fileExists) {
-			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
+			$this->url       = $this->wfImageUrl( $sharedname, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
@@ -149,11 +157,14 @@ class Image
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath,
 		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-		       $wgHashedSharedUploadDirectory;
+		       $wgHashedSharedUploadDirectory,$wgUseLatin1,$wgSharedLatin1;;
 		$name = $this->thumbName( $width );
 		if($this->fromSharedDirectory) {
 			$hashdir = $wgHashedSharedUploadDirectory;
 			$path = $wgSharedUploadPath;
+			if($wgUseLatin1 && !$wgSharedLatin1) {
+				$name=utf8_encode($name);
+			}
 		} else {
 			$hashdir = true;
 			$path = $wgUploadPath;
@@ -170,8 +181,13 @@ class Image
 	}
 
 
-	function thumbName( $width ) {
-		return $width."px-".$this->name;
+	function thumbName( $width, $shared=false ) {
+		global $wgUseLatin1, $wgSharedLatin1;
+		$thumb= $width."px-".$this->name;
+		if ($shared && $wgUseLatin1 && !$wgSharedLatin1 ) {
+			$thumb=utf8_encode($thumb);
+		}
+		return $thumb;
 	}
 
 	//**********************************************************************
@@ -187,7 +203,7 @@ class Image
 
 		$width = IntVal( $width );
 
-		$thumbName = $this->thumbName( $width );
+		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
  		$thumbPath = wfImageThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).'/'.$thumbName;
  		$thumbUrl  = $this->thumbUrl( $width );
 
