@@ -679,8 +679,13 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		$text = $this->replaceExternalLinks( $text );		
 		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->replaceExternalLinks( $text );		
+		
+		# replaceInternalLinks may sometimes leave behind
+		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
+		$text = str_replace("http-noparse://","http://",$text);
+		
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
@@ -923,9 +928,8 @@ class Parser
 	/**
 	 * Replace external links
 	 *
- 	 * Note: we have to do external links before the internal ones,
-	 * and otherwise take great care in the order of things here, so
-	 * that we don't end up interpreting some URLs twice.
+ 	 * Note: this is all very hackish and the order of execution matters a lot.
+	 * Make sure to run maintenance/parserTests.php if you change this code.
 	 *
 	 * @access private
 	 */
@@ -1313,7 +1317,7 @@ class Parser
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them
 			if( $ns == NS_MEDIA ) {
-				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
+				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text, true ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {

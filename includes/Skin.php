@@ -1889,7 +1889,7 @@ class Skin {
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
-	function makeMediaLinkObj( $nt, $alt = '' ) {		
+	function makeMediaLinkObj( $nt, $alt = '', $nourl=false ) {		
 		if ( ! isset( $nt ) )
 		{
 			### HOTFIX. Instead of breaking, return empty string.
@@ -1898,6 +1898,11 @@ class Skin {
 			$name = $nt->getDBKey();	
 			$img   = Image::newFromTitle( $nt );
 			$url = $img->getURL();
+			# $nourl can be set by the parser
+			# this is a hack to mask absolute URLs, so the parser doesn't
+			# linkify them (it is currently not context-aware)
+			# 2004-10-25
+			if ($nourl) { $url=str_replace("http://","http-noparse://",$url) ; }
 			if ( empty( $alt ) ) {
 				$alt = preg_replace( '/\.(.+?)^/', '', $name );
 			}
