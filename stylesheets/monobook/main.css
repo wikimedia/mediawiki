@@ -127,7 +127,7 @@ dt { font-weight: bold; }
 dd {
     line-height: 1.5em;
     margin-bottom: 0.8em;
-    margin-left: 1.6em;
+    margin-left: 2em;
 }
 
 fieldset {
@@ -398,24 +398,12 @@ div.townBox dl dd {
 /*
 ** Diff rendering
 */
-table.diff {
-    background:white;
-}
-td.diff-otitle {
-    background:#ffffff;
-}
-td.diff-ntitle {
-    background:#ffffff;
-}
-td.diff-addedline {
-    background:#ccffcc;
-}
-td.diff-deletedline {
-    background:#ffffaa;
-}
-td.diff-context {
-    background:#eeeeee;
-}
+table.diff { background:white; }
+td.diff-otitle { background:#ffffff; }
+td.diff-ntitle { background:#ffffff; }
+td.diff-addedline { background:#ccffcc; }
+td.diff-deletedline { background:#ffffaa; }
+td.diff-context { background:#eeeeee; }
 
 /* 
 ** keep the whitespace in front of the ^=, hides rule from konqueror
