@@ -34,7 +34,8 @@ class Tokenizer {
 		if (  $wgLang->linkPrefixExtension() ) {
 			$regex .= "|([a-zA-Z\x80-\xff]+)\[\[";
 		} else {
-			$regex .= "|\[\[";
+			# end tag that can start with 3 [
+			$regex .= "|\[\[\[?";
 		}
 		# Closing link
 		$regex .= "|\]\]";
