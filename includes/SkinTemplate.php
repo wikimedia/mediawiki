@@ -410,16 +410,14 @@ class SkinTemplate extends Skin {
 		global $wgShowIPinHeader;
 		$personal_urls = array();
 		if ($this->loggedin) {
+			/* Logged in users personal toolbar */
 			$personal_urls['userpage'] = array(
-				'text' => $this->username,
-				'href' => &$this->userpageUrlDetails['href'],
-				'class' => $this->userpageUrlDetails['exists']?false:'new'
+				'text' => wfMsg('mypage'),
+				'href' => $this->makeSpecialUrl('Mypage')
 			);
-			$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 			$personal_urls['mytalk'] = array(
 				'text' => wfMsg('mytalk'),
-				'href' => &$usertalkUrlDetails['href'],
-				'class' => $usertalkUrlDetails['exists']?false:'new'
+				'href' => $this->makeSpecialUrl('Mytalk')
 			);
 			$personal_urls['preferences'] = array(
 				'text' => wfMsg('preferences'),
@@ -431,7 +429,7 @@ class SkinTemplate extends Skin {
 			);
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg('mycontris'),
-				'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) )
+				'href' => $this->makeSpecialUrl('Mycontributions')
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
@@ -439,23 +437,22 @@ class SkinTemplate extends Skin {
 			);
 		} else {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
+				/* Anonymous with session users personal toolbar */
 				$personal_urls['anonuserpage'] = array(
-					'text' => $this->username,
-					'href' => &$this->userpageUrlDetails['href'],
-					'class' => $this->userpageUrlDetails['exists']?false:'new'
+					'text' => wfMsg('mypage'),
+					'href' => $this->makeSpecialUrl('Mypage')
 				);
-				$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
-				$personal_urls['anontalk'] = array(
-					'text' => wfMsg('anontalk'),
-					'href' => &$usertalkUrlDetails['href'],
-					'class' => $usertalkUrlDetails['exists']?false:'new'
+				$personal_urls['mytalk'] = array(
+					'text' => wfMsg('mytalk'),
+					'href' => $this->makeSpecialUrl('Mytalk')
 				);
+
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )
 				);
 			} else {
-
+				/* Anonymous users personal toolbar */
 				$personal_urls['login'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )

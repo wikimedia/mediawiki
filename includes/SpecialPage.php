@@ -31,6 +31,11 @@ $wgSpecialPages = array(
 	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
 	'Preferences'       => new SpecialPage( 'Preferences' ),
 	'Watchlist'         => new SpecialPage( 'Watchlist' ),
+	
+	'Mytalk'			=> new UnlistedSpecialPage( 'Mytalk'),
+	'Mycontributions'	=> new UnlistedSpecialPage( 'Mycontributions'),
+	'Mypage'			=> new UnlistedSpecialPage( 'Mypage'),
+	
 	'Recentchanges'     => new SpecialPage( 'Recentchanges' ),
 	'Upload'            => new SpecialPage( 'Upload' ),
 	'Imagelist'         => new SpecialPage( 'Imagelist' ),
