@@ -221,6 +221,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1323) Fix logo rendering off-screen in IE with RTL language
 * Show "block" link in Special:Recentchanges for logged in users, too, if
   wgUserSysopBans is true.
+* (bug 1326) Use content language for '1movedto2' in edit history
 
 === Caveats ===
 
