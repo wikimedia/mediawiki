@@ -207,6 +207,8 @@ class SquidUpdate {
 
 	/*static*/ function fastPurge( $urlArr ) {
 		global $wgSquidServers;
+		$fname = 'SquidUpdate::fastPurge';
+		wfProfileIn( $fname );
 		foreach ( $wgSquidServers as $server ) {
 			list($server, $port) = explode(':', $server);
 			if(!isset($port)) $port = 80;
@@ -227,6 +229,7 @@ class SquidUpdate {
 			}
 
 		}
+		wfProfileOut( $fname );
 	}
 
 	function debug( $text ) {
