@@ -11,8 +11,9 @@ function wfSpecialBlockme()
 	$blockerName = wfMsg( "proxyblocker" );
 	$reason = wfMsg( "proxyblockreason" );
 	$success = wfMsg( "proxyblocksuccess" );
-
-	$id = User::idForName( $blockerName );
+	
+	$u = User::newFromName( $blockerName );
+	$id = $u->idForName();
 	if ( !$id ) {
 		$u = User::newFromName( $blockerName );
 		$u->addToDatabase();
