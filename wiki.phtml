@@ -53,19 +53,30 @@ if ( -1 == $wgTitle->getNamespace() ) {
 } else {
 	$wgArticle = new Article();
 
-	if ( "view" == $action ) { $wgArticle->view(); }
-	else if ( "edit" == $action ) { $wgArticle->edit(); }
-	else if ( "submit" == $action ) { $wgArticle->submit(); }
-	else if ( "print" == $action ) { $wgArticle->view(); }
-	else if ( "watch" == $action ) { $wgArticle->watch(); }
-	else if ( "unwatch" == $action ) { $wgArticle->unwatch(); }
-	else if ( "history" == $action ) { $wgArticle->history(); }
-	else if ( "delete" == $action ) { $wgArticle->delete(); }
-	else if ( "revert" == $action ) { $wgArticle->revert(); }
-	else if ( "rollback" == $action ) { $wgArticle->rollback(); }
-	else if ( "protect" == $action ) { $wgArticle->protect(); }
-	else if ( "unprotect" == $action ) { $wgArticle->unprotect(); }
-	else { $wgOut->errorpage( "nosuchaction", "nosuchactiontext" ); }
+	switch( $action ) {
+		case "view":
+		case "watch":
+		case "unwatch":
+		case "history":
+		case "delete":
+		case "revert":
+		case "rollback":
+		case "protect":
+		case "unprotect":
+			$wgArticle->$action();
+			break;
+		case "print":
+			$wgArticle->view();
+			break;
+		case "edit":
+		case "submit":
+			include_once( "$IP/EditPage.php" );
+			$editor = new EditPage( $wgArticle );
+			$editor->$action();
+			break;
+		default:
+			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+	}
 }
 
 $wgOut->output();
