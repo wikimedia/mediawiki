@@ -332,16 +332,15 @@ class Database {
 	
 	function tableExists( $table )
 	{
-		$res = mysql_list_tables( $this->mDBname );
-		if( !$res ) {
-			echo "** " . $this->lastError() . "\n";
+		$old = $this->mIgnoreErrors;
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
+		$this->mIgnoreErrors = $old;
+		if( $res ) {
+			$this->freeResult( $res );
+			return true;
+		} else {
 			return false;
 		}
-		$nTables = $this->numRows( $res );
-		for( $i = 0; $i < $nTables; $i++ ) {
-			if( mysql_tablename( $res, $i ) == $table ) return true;
-		}
-		return false;
 	}
 
 	function fieldInfo( $table, $field )
