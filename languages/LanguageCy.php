@@ -36,7 +36,7 @@
 );
 
 /* private */ $wgDateFormatsCy = array(
-	"Dim dewis",
+#	"Dim dewis",
 );
 
 /* private */ $wgBookstoreListCy = array(

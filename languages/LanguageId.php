@@ -71,7 +71,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgDateFormatsId = array(
-	"Tiada pilihan",
+#	"Tiada pilihan",
 );
 
 /* private */ $wgUserTogglesId = array(

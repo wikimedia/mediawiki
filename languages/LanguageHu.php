@@ -78,7 +78,7 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 
 
 /* private */ $wgDateFormatsHu = array(
-	"Mindegy",
+#	"Mindegy",
 );
 
 

@@ -61,7 +61,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsSv = array(
-	"Ingen inställning",
+#	"Ingen inställning",
 );
 
 /* private */ $wgBookstoreListSv = array(

@@ -54,7 +54,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsTt = array(
-        "köyläwsez",
+#        "köyläwsez",
 );
 
 

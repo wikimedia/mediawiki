@@ -43,7 +43,7 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgDateFormatsWa = array( /* cwè fé chal ??? */
-	"Nole preferince",
+#	"Nole preferince",
 );
 
 /* private */ $wgBookstoreListWa = array(

@@ -55,7 +55,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsEs = array(
-	"Sin preferencia",
+#	"Sin preferencia",
 );
 
 /* Please customize this with some Spanish-language bookshops

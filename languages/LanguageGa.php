@@ -62,7 +62,7 @@ DISCUSSION!
 
 
 /* private */ $wgDateFormatsGa = array(
-    "Is cuma liom",
+#    "Is cuma liom",
 );
 
 # If possible, find Irish language book services on the Internet, searchable by ISBN

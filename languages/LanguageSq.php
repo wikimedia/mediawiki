@@ -47,7 +47,7 @@ require_once("LanguageUtf8.php");
 
 
 /* private */ $wgDateFormatsSq = array(
-	"Pa preferencë",
+#	"Pa preferencë",
 );
 
 

@@ -48,7 +48,7 @@ require_once( 'LanguageUtf8.php');
 );
 
 /* private */ $wgDateFormatsFo = array(
-	"Ongi forrættindi",
+#	"Ongi forrættindi",
 );
 
 /* private */ $wgBookstoreListFo = array(

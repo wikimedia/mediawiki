@@ -73,7 +73,7 @@ $wgValidationTypesNn = array (
 );
 
 /* private */ $wgDateFormatsNn = array(
-	'Ingen preferanse',
+#	'Ingen preferanse',
 );
 
 /* private */ $wgBookstoreListNn = array(

@@ -53,7 +53,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgDateFormatsNv = array(
-	'No preference',
+#	'No preference',
 );
 
 /* private */ $wgUserTogglesNv = array(

@@ -48,9 +48,8 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* Non-std date formats are only enabled for English, which is idiosyncratic that way */
 /* private */ $wgDateFormatsUk = array(
-	"Немає значення",
+#	"Немає значення",
 );
 
 
