@@ -1089,6 +1089,7 @@ class Article {
 		global $action, $oldid, $diff, $redirect, $printable;
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
+			and ($this->getID() != 0)
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
 			and ($this->mTitle->getNamespace != Namespace::getSpecial())
