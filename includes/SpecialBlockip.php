@@ -87,7 +87,7 @@ class IPBlockForm {
 		if ( ! preg_match( "/^$rxIP$/", $wpBlockAddress ) ) {
 		  	if ( preg_match( "/^($rxIP)\\/(\\d{1,2})$/", $wpBlockAddress, $matches ) ) {
 				if ( $wgSysopRangeBans ) {
-					if ( $matches[2] > 31 || $matches[2] < 1 ) {
+					if ( $matches[2] > 31 || $matches[2] < 16 ) {
 						$this->showForm( wfMsg( "ip_range_invalid" ) );
 					}
 					$wpBlockAddress = Block::normaliseRange( $wpBlockAddress );
