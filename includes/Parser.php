@@ -1,5 +1,7 @@
 <?php
 
+include_once('Tokenizer.php');
+
 # Globals used: 
 #    objects:   $wgUser, $wgTitle, $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut, $wgArticle
 #
@@ -352,7 +354,6 @@ function doTableStuff ( $t )
 		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
 		$text = str_replace ( "<HR>", "<hr>", $text );
 
-		$text = $this->doAllQuotes( $text );
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		
@@ -377,63 +378,6 @@ function doTableStuff ( $t )
 		return $text;
 	}
 
-	/* private */ function doAllQuotes( $text )
-	{
-		$outtext = "";
-		$lines = explode( "\r\n", $text );
-		foreach ( $lines as $line ) {
-			$outtext .= $this->doQuotes ( "", $line, "" ) . "\r\n";
-		}
-		return $outtext;
-	}
-
-	/* private */ function doQuotes( $pre, $text, $mode )
-	{
-		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
-			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
-			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
-			if ( substr ($m[2], 0, 1) == "'" ) {
-				$m[2] = substr ($m[2], 1);
-				if ($mode == "em") {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "emstrong" );
-				} else if ($mode == "strong") {
-					return $m1_strong . $this->doQuotes ( "", $m[2], "" );
-				} else if (($mode == "emstrong") || ($mode == "both")) {
-					return $this->doQuotes ( "", $pre.$m1_strong.$m[2], "em" );
-				} else if ($mode == "strongem") {
-					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( "", $m[2], "em" );
-				} else {
-					return $m[1] . $this->doQuotes ( "", $m[2], "strong" );
-				}
-			} else {
-				if ($mode == "strong") {
-					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "strongem" );
-				} else if ($mode == "em") {
-					return $m1_em . $this->doQuotes ( "", $m[2], "" );
-				} else if ($mode == "emstrong") {
-					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( "", $m[2], "strong" );
-				} else if (($mode == "strongem") || ($mode == "both")) {
-					return $this->doQuotes ( "", $pre.$m1_em.$m[2], "strong" );
-				} else {
-					return $m[1] . $this->doQuotes ( "", $m[2], "em" );
-				}
-			}
-		} else {
-			$text_strong = ($text == "") ? "" : "<strong>{$text}</strong>";
-			$text_em = ($text == "") ? "" : "<em>{$text}</em>";
-			if ($mode == "") {
-				return $pre . $text;
-			} else if ($mode == "em") {
-				return $pre . $text_em;
-			} else if ($mode == "strong") {
-				return $pre . $text_strong;
-			} else if ($mode == "strongem") {
-				return (($pre == "") && ($text == "")) ? "" : "<strong>{$pre}{$text_em}</strong>";
-			} else {
-				return (($pre == "") && ($text == "")) ? "" : "<em>{$pre}{$text_strong}</em>";
-			}
-		}
-	}
 
 	/* private */ function doHeadings( $text )
 	{
@@ -531,139 +475,301 @@ function doTableStuff ( $t )
 		return $s;
 	}
 
-	/* private */ function replaceInternalLinks( $s )
+	/* private */ function handle3Quotes( &$state, $token )
+	{
+		if ( $state["strong"] ) {
+			if ( $state["em"] && $state["em"] > $state["strong"] )
+			{
+				# ''' lala ''lala '''
+				$s = "</em></strong><em>";
+			} else {
+				$s = "</strong>";
+			}
+			$state["strong"] = FALSE;
+		} else {
+			$s = "<strong>";
+			$state["strong"] = $token["pos"];
+		}
+		return $s;
+	}
+
+	/* private */ function handle2Quotes( &$state, $token )
+	{
+		if ( $state["em"] ) {
+			if ( $state["strong"] && $state["strong"] > $state["em"] )
+			{
+				# ''lala'''lala'' ....'''
+				$s = "</strong></em><strong>";
+			} else {
+				$s = "</em>";
+			}
+			$state["em"] = FALSE;
+		} else {
+			$s = "<em>";
+			$state["em"] = $token["pos"];
+		}
+		return $s;
+	}
+	
+	/* private */ function handle5Quotes( &$state, $token )
+	{
+		if ( $state["em"] && $state["strong"] ) {
+			if ( $state["em"] < $state["strong"] ) {
+				$s .= "</strong></em>";
+			} else {
+				$s .= "</em></strong>";
+			}
+			$state["strong"] = $state["em"] = FALSE;
+		} elseif ( $state["em"] ) {
+			$s .= "</em><strong>";
+			$state["em"] = FALSE;
+			$state["strong"] = $token["pos"];
+		} elseif ( $state["strong"] ) {
+			$s .= "</strong><em>";
+			$state["strong"] = FALSE;
+			$state["em"] = $token["pos"];
+		} else { # not $em and not $strong
+			$s .= "<strong><em>";
+			$state["strong"] = $state["em"] = $token["pos"];
+		}
+		return $s;
+	}
+
+	/* private */ function replaceInternalLinks( $str )
+	{
+		$tokenizer=Tokenizer::newFromString( $str );
+		$tokenStack = array();
+		
+		$s="";
+		$state["em"]      = FALSE;
+		$state["strong"]  = FALSE;
+		$tagIsOpen = FALSE;
+
+		# The tokenizer splits the text into tokens and returns them one by one.
+		# Every call to the tokenizer returns a new token.
+		while ( $token = $tokenizer->nextToken() )
+		{
+			switch ( $token["type"] )
+			{
+				case "text":
+					# simple text with no further markup
+					$txt = $token["text"];
+					break;
+				case "[[":
+					# link opening tag.
+					# FIXME : Treat orphaned open tags (stack not empty when text is over)
+					$tagIsOpen = TRUE;
+					array_push( $tokenStack, $token );
+					$txt="";
+					break;
+				case "]]":
+					# link close tag.
+					# get text from stack, glue it together, and call the code to handle a
+					# link
+					if ( count( $tokenStack ) == 0 )
+					{
+						# stack empty. Found a ]] without an opening [[
+						$txt = "]]";
+					} else {
+						$linkText = "";
+						$lastToken = array_pop( $tokenStack );
+						while ( $lastToken["type"] != "[[" )
+						{
+							$linkText = $lastToken["text"] . $linkText;
+							$lastToken = array_pop( $tokenStack );
+						}
+						$txt = $linkText ."]]";
+						$nextToken = $tokenizer->previewToken();
+						if ( $nextToken["type"] == "text" ) 
+						{
+							# Preview just looks at it. Now we have to fetch it.
+							$nextToken = $tokenizer->nextToken();
+							$txt .= $nextToken["text"];
+						}
+						$txt = $this->handleInternalLink( $txt );
+						#$txt = "<font color=\"#00FF00\"><b>&lt;" . $txt . "&gt;</b></font>";
+					}
+					$tagIsOpen = (count( $tokenStack ) != 0);
+					break;
+				case "'''":
+					# This and the three next ones handle quotes
+					$txt = $this->handle3Quotes( $state, $token );
+					break;
+				case "''":
+					$txt = $this->handle2Quotes( $state, $token );
+					break;
+				case "'''''":
+					$txt = $this->handle5Quotes( $state, $token );
+					break;
+				case "":
+					# empty token
+					$txt="";
+					break;
+				default:
+					# An unkown token. Highlight.
+					$txt = "<font color=\"#FF0000\"><b>".$token["type"]."</b></font>";
+					$txt .= "<font color=\"#FFFF00\"><b>".$token["text"]."</b></font>";
+					break;
+			}
+			# If we're parsing the interior of a link, don't append the interior to $s,
+			# but push it to the stack so it can be processed when a ]] token is found.
+			if ( $tagIsOpen  && $txt != "" ) {
+				$token["type"] = "text";
+				$token["text"] = $txt;
+				array_push( $tokenStack, $token );
+			} else {
+				$s .= $txt;
+			}
+		} #end while
+		if ( count( $tokenStack ) != 0 )
+		{
+			# still objects on stack. opened [[ tag without closing ]] tag.
+			$txt = "";
+			while ( $lastToken = array_pop( $tokenStack ) )
+			{
+				if ( $lastToken["type"] == "text" )
+				{
+					$txt = $lastToken["text"] . $txt;
+				} else {
+					$txt = $lastToken["type"] . $txt;
+				}
+			}
+			$s .= $txt;
+		}
+		return $s;
+	}
+
+	/* private */ function handleInternalLink( $line )
 	{
 		global $wgTitle, $wgUser, $wgLang;
 		global $wgLinkCache, $wgInterwikiMagic, $wgUseCategoryMagic;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		wfProfileIn( $fname = "OutputPage::replaceInternalLinks" );
+		static $fname = "OutputPage::replaceInternalLinks" ;
+		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
-		$tc = Title::legalChars() . "#";
-		$sk = $wgUser->getSkin();
-
-		$a = explode( "[[", " " . $s );
-		$s = array_shift( $a );
-		$s = substr( $s, 1 );
+		static $tc = FALSE;
+		static $sk = FALSE;
+		if ( !$tc ) { $tc = Title::legalChars() . "#"; }
+		if ( !$sk ) { $sk = $wgUser->getSkin(); }
 
 		# Match a link having the form [[namespace:link|alternate]]trail
-		$e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD";
+		static $e1 = FALSE;
+		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
 		# Match the end of a line for a word that's not followed by whitespace,
 		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
 		#$e2 = "/^(.*)\\b(\\w+)\$/suD";
 		#$e2 = "/^(.*\\s)(\\S+)\$/suD";
-		$e2 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
+		static $e2 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
 		
 
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
-		$image = Namespace::getImage();
-		$special = Namespace::getSpecial();
-		$media = Namespace::getMedia();
-		$category = wfMsg ( "category" ) ;
-		$nottalk = !Namespace::isTalk( $wgTitle->getNamespace() );
+		static $image = FALSE;
+		static $special = FALSE;
+		static $media = FALSE;
+		static $category = FALSE;
+		static $nottalk = "";
+		if ( !$image ) { $image = Namespace::getImage(); }
+		if ( !$special ) { $special = Namespace::getSpecial(); }
+		if ( !$media ) { $media = Namespace::getMedia(); }
+		if ( !$category ) { $category = wfMsg ( "category" ) ; }
+		if ( $nottalk=="" ) { $nottalk = !Namespace::isTalk( $wgTitle->getNamespace() ); }
 
-		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
-			$new_prefix = $m[2];
-			$s = $m[1];
-		} else {
-			$new_prefix="";
-		}
 
 		wfProfileOut( "$fname-setup" );
 
-		foreach ( $a as $line ) {
-			$prefix = $new_prefix;
-			if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $line, $m ) ) {
-				$new_prefix = $m[2];
-				$line = $m[1];
-			} else {
-				$new_prefix = "";
-			}
-			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
-				$text = $m[2];
-				$trail = $m[3];				
-			} else { # Invalid form; output directly
-				$s .= $prefix . "[[" . $line ;
-				continue;
-			}
-			
-			/* Valid link forms:
-			Foobar -- normal
-			:Foobar -- override special treatment of prefix (images, language links)
-			/Foobar -- convert to CurrentPage/Foobar
-			/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
-			*/
-			$c = substr($m[1],0,1);
-			$noforce = ($c != ":");
-			if( $c == "/" ) { # subpage
-				if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
-					$m[1]=substr($m[1],1,strlen($m[1])-2); 
-					$noslash=$m[1];
-				} else {
-					$noslash=substr($m[1],1);
-				}
-				if($wgNamespacesWithSubpages[$wgTitle->getNamespace()]) { # subpages allowed here
-					$link = $wgTitle->getPrefixedText(). "/" . trim($noslash);
-					if( "" == $text ) {
-						$text= $m[1]; 
-					} # this might be changed for ugliness reasons
-				} else {
-					$link = $noslash; # no subpage allowed, use standard link
-				}
-			} elseif( $noforce ) { # no subpage
-				$link = $m[1];
-			} else {
-				$link = substr( $m[1], 1 );
-			}
-			if( "" == $text )
-				$text = $link;
-
-			$nt = Title::newFromText( $link );
-			if( !$nt ) {
-				$s .= $prefix . "[[" . $line;
-				continue;
-			}
-			$ns = $nt->getNamespace();
-			$iw = $nt->getInterWiki();
-			if( $noforce ) {
-				if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
-					array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
-					$s .= $prefix . $trail;
-					continue;
-				}
-				if( $ns == $image ) {
-					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
-					$wgLinkCache->addImageLinkObj( $nt );
-					continue;
-				}
-			}
-			if( ( $nt->getPrefixedText() == $wgTitle->getPrefixedText() ) &&
-			    ( strpos( $link, "#" ) == FALSE ) ) {
-				$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
-				continue;
-			}
- 			if ( $ns == $category && $wgUseCategoryMagic ) {
-			  $t = explode ( ":" , $nt->getText() ) ;
- 				array_shift ( $t ) ;
- 				$t = implode ( ":" , $t ) ;
- 				$t = $wgLang->ucFirst ( $t ) ;
-#				$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
-				$nnt = Title::newFromText ( $category.":".$t ) ;
-				$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
- 				$this->mCategoryLinks[] = $t ;
- 				$s .= $prefix . $trail ;
- 				continue ;	    
-			}
-			if( $ns == $media ) {
-				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
-				$wgLinkCache->addImageLinkObj( $nt );
-				continue;
-			} elseif( $ns == $special ) {
-				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
-				continue;
-			}
-			$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
+		$prefix = $new_prefix;
+		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $line, $m ) ) {
+			$new_prefix = $m[2];
+			$line = $m[1];
+		} else {
+			$new_prefix = "";
 		}
+		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
+			$text = $m[2];
+			$trail = $m[3];				
+		} else { # Invalid form; output directly
+			$s .= $prefix . "[[" . $line ;
+			return $s;
+		}
+		
+		/* Valid link forms:
+		Foobar -- normal
+		:Foobar -- override special treatment of prefix (images, language links)
+		/Foobar -- convert to CurrentPage/Foobar
+		/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+		*/
+		$c = substr($m[1],0,1);
+		$noforce = ($c != ":");
+		if( $c == "/" ) { # subpage
+			if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
+				$m[1]=substr($m[1],1,strlen($m[1])-2); 
+				$noslash=$m[1];
+			} else {
+				$noslash=substr($m[1],1);
+			}
+			if($wgNamespacesWithSubpages[$wgTitle->getNamespace()]) { # subpages allowed here
+				$link = $wgTitle->getPrefixedText(). "/" . trim($noslash);
+				if( "" == $text ) {
+					$text= $m[1]; 
+				} # this might be changed for ugliness reasons
+			} else {
+				$link = $noslash; # no subpage allowed, use standard link
+			}
+		} elseif( $noforce ) { # no subpage
+			$link = $m[1];
+		} else {
+			$link = substr( $m[1], 1 );
+		}
+		if( "" == $text )
+			$text = $link;
+
+		$nt = Title::newFromText( $link );
+		if( !$nt ) {
+			$s .= $prefix . "[[" . $line;
+			return $s;
+		}
+		$ns = $nt->getNamespace();
+		$iw = $nt->getInterWiki();
+		if( $noforce ) {
+			if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
+				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
+				$s .= $prefix . $trail;
+				return $s;
+			}
+			if( $ns == $image ) {
+				$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
+				$wgLinkCache->addImageLinkObj( $nt );
+				return $s;
+			}
+		}
+		if( ( $nt->getPrefixedText() == $wgTitle->getPrefixedText() ) &&
+		    ( strpos( $link, "#" ) == FALSE ) ) {
+			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
+			return $s;
+		}
+ 		if ( $ns == $category && $wgUseCategoryMagic ) {
+		  	$t = explode ( ":" , $nt->getText() ) ;
+ 			array_shift ( $t ) ;
+ 			$t = implode ( ":" , $t ) ;
+ 			$t = $wgLang->ucFirst ( $t ) ;
+#			$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
+			$nnt = Title::newFromText ( $category.":".$t ) ;
+			$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
+ 			$this->mCategoryLinks[] = $t ;
+ 			$s .= $prefix . $trail ;
+ 			return $s ;	    
+		}
+		if( $ns == $media ) {
+			$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
+			$wgLinkCache->addImageLinkObj( $nt );
+			return $s;
+		} elseif( $ns == $special ) {
+			$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
+			return $s;
+		}
+		$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
+
 		wfProfileOut( $fname );
 		return $s;
 	}

@@ -1636,7 +1636,9 @@ class Skin {
 		$url  = wfImageUrl( $name );
 		$path = wfImagePath( $name );
 		
-		$label = htmlspecialchars( $label );
+		#$label = htmlspecialchars( $label );
+		$alt = preg_replace( "/<[^>]*>/", "", $label);
+		$alt = htmlspecialchars( $alt );
 		
 		list($width, $height, $type, $attr) = getimagesize( $path );
 		$boxheight  = intval( $height/($width/$boxwidth) );
@@ -1649,11 +1651,11 @@ class Skin {
 
 		$u = wfLocalUrlE( $link );
 
-		$more = wfMsg( "thumbnail-more" );
+		$more = htmlspecialchars(wfMsg( "thumbnail-more" ));
 		
 		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">" .
-		  "<a href=\"{$u}\" class=\"internal\" title=\"{$label}\">" .
-		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
+		  "<a href=\"{$u}\" class=\"internal\" title=\"{$alt}\">" .
+		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
 		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
 		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
 		  "<p>{$label}</p></div>";
