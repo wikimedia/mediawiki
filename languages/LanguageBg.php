@@ -1460,4 +1460,3 @@ class LanguageBg extends LanguageUtf8 {
 
 }
 ?>
-
