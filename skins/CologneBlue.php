@@ -150,9 +150,13 @@ class SkinCologneBlue extends Skin {
 		return $s;
 	}
 
+	/**
+	 * Compute the sidebar
+	 * @private
+	 */
 	function quickBar()
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgContLang, $wgDisableUploads;
+		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgContLang, $wgDisableUploads, $wgNavigationLinks;
 
 		$tns=$wgTitle->getNamespace();
 
@@ -162,12 +166,15 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbfind" );
 		$s .= $this->searchForm();
 
-		$s .= $this->menuHead( "qbbrowse" )
-		  . $this->mainPageLink()
-		  . $sep . $this->specialLink( "recentchanges" )
-		  . $sep . $this->specialLink( "randompage" );
-		if ( wfMsgForContent ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsgForContent( "currentevents" ), "" ) ;
-			$s .= "\n";
+		$s .= $this->menuHead( "qbbrowse" );
+
+		foreach ( $wgNavigationLinks as $link ) {
+			$msg = wfMsgForContent( $link['href'] );
+			if ( $msg != '-' ) {
+				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
+					wfMsg( $link['text'] ) . '</a>' . $sep;
+			}
+		}
 
 		if ( $wgOut->isArticle() ) {
 			$s .= $this->menuHead( "qbedit" );
