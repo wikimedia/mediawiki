@@ -40,10 +40,10 @@ if ( "" == $title && "delete" != $action ) {
 wfProfileOut( "main-misc-setup" );
 
 if ( "" != $search ) {
-	if($go) {
-		wfGo( $search );
-	} else {
+	if( isset($_REQUEST['fulltext']) ) {
 		wfSearch( $search );
+	} else {
+		wfGo( $search );
 	}
 } else if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
