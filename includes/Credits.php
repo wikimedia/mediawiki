@@ -69,8 +69,8 @@ function getAuthorCredits($article) {
 	$author_credit = wfMsg('anonymous');
     } else {
 	
-	$real_name = htmlspecialchars( User::whoIsReal($last_author) );
-	$user_name = htmlspecialchars( User::whoIs($last_author) );
+	$real_name = User::whoIsReal($last_author);
+	$user_name = User::whoIs($last_author);
 	
 	if (!empty($real_name)) {
 	    $author_credit = creditLink($user_name, $real_name);
