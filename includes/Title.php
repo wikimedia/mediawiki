@@ -1,6 +1,9 @@
 <?
 # See title.doc
 
+/* private static */ $title_html_translation_table = array_flip( get_html_translation_table( HTML_ENTITIES ) );
+/* private static */ $title_interwiki_cache = array();
+
 class Title {
 	/* private */ var $mTextform, $mUrlform, $mDbkeyform;
 	/* private */ var $mNamespace, $mInterwiki, $mFragment;
@@ -28,16 +31,17 @@ class Title {
 		else
 			return NULL;
 	}
-
+	
 	function newFromText( $text )
-	{
+	{	
+		global $title_html_translation_table;
 		$fname = "Title::newFromText";
 		wfProfileIn( $fname );
 		
 		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
-		$trans = get_html_translation_table( HTML_ENTITIES );
-		$trans = array_flip( $trans );
+		$trans =& $title_html_translation_table;
+
 		$text = strtr( $text, $trans );
 		
 		$text = wfMungeToUtf8( $text );
@@ -107,10 +111,19 @@ class Title {
 	}
 
 	function getInterwikiLink( $key )
-	{
-		global $wgMemc, $wgDBname;
+	{	
+		# Performance note: It would probably be a good idea to 
+		# get/set/fetch the entire $title_interwiki_cache with memcache 
+		# here, reducing some overhead for the repeated memcache accesses. 
+		# Popular pages often has many interwiki links anyways.
+
+		global $wgMemc, $wgDBname, $title_interwiki_cache;
 		$k = "$wgDBname:interwiki:$key";
-		$s = $wgMemc->get( $k );
+
+		if( array_key_exists( $k, $title_interwiki_cache ) )
+			return $title_interwiki_cache[$k]->iw_url;
+
+		$s = $wgMemc->get( $k ); 
 		if( $s !== false ) return $s->iw_url;
 		
 		$dkey = wfStrencode( $key );
@@ -124,6 +137,7 @@ class Title {
 			$s->iw_url = "";
 		}
 		$wgMemc->set( $k, $s );
+		$title_interwiki_cache[$k] = $s;		
 		return $s->iw_url;
 	}
 
