@@ -182,7 +182,9 @@ if( !is_null( $search ) && $search !== '' ) {
 			$wgArticle->view();
 			break;
 		default:
-			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+		    if (wfRunHooks('UnknownAction', $action, $wgArticle)) {
+				$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+			}
 	}
 }
 wfProfileOut( "main-action" );
