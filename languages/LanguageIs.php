@@ -869,7 +869,7 @@ class LanguageIs extends LanguageUtf8 {
 		
 		switch( $wgUser->getOption( 'date' )  ) {
 			# 15. jan. 2001 kl. 16:12 || 16:12, 15. jan. 2001
-			case 2: case 4: return (0 + substr( $ts, 6, 2 )) . '. ' .
+			case '2': case '4': return (0 + substr( $ts, 6, 2 )) . '. ' .
 				$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . '. ' .
 				substr($ts, 0, 4);
 			# 2001-01-15 16:12:34
@@ -900,7 +900,7 @@ class LanguageIs extends LanguageUtf8 {
 		
 		switch ( $wgUser->getOption( 'date' ) ) {
 			# 16:12, 15. janúar 2001 || 16:12, 15. jan. 2001
-			case 3: case 4: return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
+			case '3': case '4': return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
 			# 2001-01-15 16:12:34
 			case 'ISO 8601': return $this->date( $ts, $adj ) . ' ' . $this->time( $ts, $adj );
 			# 15. janúar 2001 kl. 16:12 || 15. jan. 2001 kl. 16:12

@@ -101,7 +101,7 @@ class PreferencesForm {
 	}
 
 	function execute() {
-		global $wgUser, $wgOut, $wgUseDynamicDates;
+		global $wgUser, $wgOut;
 		
 		if ( $wgUser->isAnon() ) {
 			$wgOut->errorpage( 'prefsnologin', 'prefsnologintext' );
@@ -367,7 +367,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function mainPrefsForm( $err ) {
-		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
+		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
 		global $wgEmailNotificationForWatchlistPages, $wgEmailNotificationForUserTalkPages,$wgEmailNotificationForMinorEdits;
@@ -605,16 +605,13 @@ class PreferencesForm {
 		
 		# Date format
 		#
-		if ( $wgUseDynamicDates ) {
+
+		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat</legend>\n" );
-			for ( $i = 0; $i < count( $dateopts ); ++$i) {
-				if ( $i == $this->mDate ) {
-					$checked = ' checked="checked"';
-				} else {
-					$checked = "";
-				}
+			foreach($dateopts as $key => $option) {
+				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
 				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
-					"value=\"$i\"$checked /> {$dateopts[$i]}</label></div>\n" );
+					"value=\"$key\"$checked />$option</label></div>\n" );
 			}
 			$wgOut->addHTML( "</fieldset>\n\n");
 		}

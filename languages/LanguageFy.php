@@ -53,10 +53,11 @@ if($wgMetaNamespace === FALSE)
 
 
 /* private */ $wgDateFormatsFy = array(
-	"Gjin foarkar",
-	"jannewaris 8, 2001",
-	"8 jannewaris 2001",
-	"2001 jannewaris 8"
+	'Gjin foarkar',
+	'16:12, jan 15, 2001',
+	'16:12, 15 jan 2001',
+	'16:12, 2001 jan 15',
+	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
 /* private */ $wgBookstoreListFy = array(
@@ -1081,51 +1082,34 @@ class LanguageFy extends LanguageUtf8 {
 
  # Inherit userAdjust()
  
-	function date( $ts, $adj = false )
-	{
-		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
+	function date( $ts, $adj = false ) {
+		global $wgUser;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		
-		if ( $wgUseDynamicDates ) {
-			$datePreference = $wgUser->getOption( 'date' );		
-			if ( $datePreference == 0 ) {
-				$datePreference = $wgAmericanDates ? 1 : 2;
-			}
-		} else {
-			$datePreference = $wgAmericanDates ? 1 : 2;
+		switch ( $wgUser->getOption( 'date' ) ) {
+			# jan 8, 2001
+			case '0': case '1': return $d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) )
+				. ' ' . (0 + substr( $ts, 6, 2 )) . ', ' . substr( $ts, 0, 4 );
+			# 8 jannewaris 2001
+			case '2': return (0 + substr( $ts, 6, 2 )) . ' ' .
+				$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . ' ' .
+				substr( $ts, 0, 4 );
+			case 'ISO 8601': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			# 2001 jannewaris 8
+			default: return substr( $ts, 0, 4 ) . ' ' .
+				$this->getMonthAbbreviation( substr( $ts, 4, 2 ) )
+				. ' ' . (0 + substr( $ts, 6, 2 ));
 		}
+	}
+	function timeanddate( $ts, $adj = false ) {
+		global $wgUser;
 		
-		if ( $datePreference == 1 ) {
-			# MDY
-			$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-			  " " . (0 + substr( $ts, 6, 2 )) . ", " .
-			  substr( $ts, 0, 4 );
-		} else if ( $datePreference == 2 ) {
-			#DMY
-			$d = (0 + substr( $ts, 6, 2 )) . " " .
-			  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-			  substr( $ts, 0, 4 );
-		} else {
-			#YMD
-			$d = substr( $ts, 0, 4 ) . " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-				" " . (0 + substr( $ts, 6, 2 ));
+		switch ( $wgUser->getOption( 'date' ) ) {
+			case 'ISO 8601': return $this->date( $ts, $adj ) . ' ' . $this->time( $ts, $adj ); 
+			default: return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
 		}
-
-		return $d;
 	}
-
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . "." . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-# Inherit timeanddate()
-
-# Inherit rfc1123()
 
 	function getValidSpecialPages()
 	{

@@ -122,11 +122,11 @@ define( 'MW_DATE_DEFAULT', false );
 define( 'MW_DATE_USER_FORMAT', true );
 
 /* private */ $wgDateFormatsEn = array(
-	'No preference',
-	'January 15, 2001',
-	'15 January 2001',
-	'2001 January 15',
-	'2001-01-15'
+	'Default',
+	'16:12, January 15, 2001',
+	'16:12, 15 January 2001',
+	'16:12, 2001 January 15',
+	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
 /* private */ $wgUserTogglesEn = array(
@@ -1788,10 +1788,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'specialloguserlabel' => 'User: ',
 'speciallogtitlelabel' => 'Title: ',
 
-# labels for Group: and User: ond Special:Listusers
-'speciallistusersuserlabel' => 'User: ',
-'speciallistusersgrouplabel' => 'Group: ',
-
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
 # external editor support
@@ -1971,35 +1967,33 @@ class Language {
 	}
 
 	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
-		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
-
+		global $wgAmericanDates, $wgUser;
+		
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-		if ( $wgUseDynamicDates ) {
-			if ( $format == MW_DATE_USER_FORMAT ) {
-				$datePreference = $wgUser->getOption( 'date' );
-			} else {
-				$options = $this->getDefaultUserOptions();
-				$datePreference = $options['date'];
-			}
-			if ( $datePreference == 0 ) {
-				$datePreference = $wgAmericanDates ? 1 : 2;
-			}
+		
+		if ( $format == MW_DATE_USER_FORMAT ) {
+			$datePreference = $wgUser->getOption( 'date' );
 		} else {
+			$options = $this->getDefaultUserOptions();
+			$datePreference = $options['date'];
+		}
+
+		if ($datePreference == '0') {
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
 
 		$month = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ) );
-
+		
 		switch( $datePreference ) {
-			case 1: return "$month $day, $year";
-			case 2: return "$day $month $year";
-			case 4: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
-			default: return "$year $month $day";
+			case '2': return "$day $month $year";
+			case '3': return "$year $month $day";
+			case 'ISO 8601': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			default: return "$month $day, $year";
 		}
 	}
 
@@ -2010,7 +2004,7 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds || $wgUser->getOption( 'date' ) == 4) {
+		if ( $seconds || $wgUser->getOption( 'date' ) == 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
@@ -2019,11 +2013,11 @@ class Language {
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
 		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);
-		if ( 4 == $wgUser->getOption( 'date' ) ) {
-			return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
+
+		switch ( $wgUser->getOption( 'date' ) ) {
+			case 'ISO 8601': return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
 				$this->time( $ts, $adj, false, $timecorrection );
-		} else {
-			return $this->time( $ts, $adj, false, $timecorrection ) . ', ' .
+			default: return $this->time( $ts, $adj, false, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $format, $timecorrection );
 		}
 	}

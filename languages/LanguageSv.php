@@ -62,10 +62,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsSv = array(
 	"Ingen inställning",
-	"Januari 15, 2001",
-	"15 Januari 2001",
-	"2001 Januari 15",
-	"2001-01-15"
 );
 
 /* private */ $wgBookstoreListSv = array(

@@ -57,9 +57,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsTa = array(
 	"முன்னுரிமை இல்லை",
-	"ஜனவரி 15, 2001",
-	"15 ஜனவரி 2001",
-	"2001 ஜனவரி 15"
 );
 
 

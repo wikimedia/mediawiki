@@ -54,10 +54,6 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgDateFormatsNv = array(
 	'No preference',
-	'Yas Niłt\'ees 15, 2001',
-	'15 Yas Niłt\'ees 2001',
-	'2001 Yas Niłt\'ees 15',
-	'2001-01-15'
 );
 
 /* private */ $wgUserTogglesNv = array(

@@ -34,9 +34,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsSr = array(
  "Без посебних жеља",
- "Јануар 15, 2001",
- "15 Јануар 2001",
- "2001 Јануар 15"
 );
 
 

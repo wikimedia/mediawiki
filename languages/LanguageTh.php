@@ -40,10 +40,6 @@
 
 /* private */ $wgDateFormatsTh = array(
 	"No preference",
-	"มกราคม 15, 2001",
-	"15 มกราคม 2001",
-	"2001 มกราคม 15",
-	"2001-01-15"
 );
 
 

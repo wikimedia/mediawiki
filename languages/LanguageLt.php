@@ -27,10 +27,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsLt = array(
         "Nesvarbu",
-        "Sausio 15, 2001",
-        "15 Sausio 2001",
-        "2001 Sausio 15",
-        "2001-01-15"
 );
 
 /* private */ $wgWeekdayNamesLt = array(

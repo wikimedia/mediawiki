@@ -46,8 +46,6 @@
 
 /* private */ $wgDateFormatsMs = array(
 	"Tiada pilihan", # "No preference",
-	"15 Januari 2001", # "Januari 15, 2001",
-	"15 Januari 2001", # "2001 Januari 15"
 );
 
 

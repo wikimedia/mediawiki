@@ -79,9 +79,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 
 /* private */ $wgDateFormatsHu = array(
 	"Mindegy",
-	"Július 8, 2003",
-	"8 Július, 2003",
-	"2003 Július 8"
 );
 
 
