@@ -33,8 +33,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# default messages won't be overwritte
 	$username = 'MediaWiki default';
 
-	$timestamp = wfTimestampNow();
-	$invTimestamp = wfInvertTimestamp( $timestamp );
 	
 	print "Initialising \"MediaWiki\" namespace...\n";
 
@@ -42,6 +40,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 	$cur = $dbr->tableName( 'cur' );
+
+	$timestamp = wfTimestampNow();
+	$invTimestamp = wfInvertTimestamp( $timestamp );
 
 	$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM $cur WHERE cur_namespace=$ns AND cur_title IN(";
 
@@ -89,10 +90,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 
 	# Insert queries are done in one multi-row insert
 	# Here's the start of it:
-	$sql = "INSERT INTO $cur (cur_namespace, cur_title, cur_text,
-		cur_user_text, cur_timestamp, cur_restrictions,
-		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
-	$first = true;
+	$arr = array();
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	
@@ -121,29 +119,20 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			}
 			$doInsert = false;
 		} else {
-			# Queue for insertion
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ',';
-			}
-			$sql .=
-			  "($ns,
-			  '$title',
-			  '$dbencMsg',
-			  '$username',
-			  '$timestamp',
-			  'sysop',
-			  1,
-			  '$invTimestamp',
-			  '$timestamp')";
+			array_push($arr,array(
+				cur_namespace=>$ns,
+				cur_title=>$title,
+				cur_text=>$dbencMsg,
+				cur_user_text=>$username,
+				cur_timestamp=>$dbw->timestamp($timestamp),
+				cur_restrictions=>'sysop',
+				cur_is_new=>1,
+				inverse_timestamp=>$invTimestamp,
+				cur_touched=>$dbw->timestamp($timestamp)));
 		}
 	}
 
-	# Perform the insert query
-	if ( !$first ) {
-		$dbw->query( $sql, $fname );
-	}
+	$dbw->insertArray( $cur, $arr, $fname );
 
 	# Clear the relevant memcached key
 	print 'Clearing message cache...';
