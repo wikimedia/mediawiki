@@ -1084,8 +1084,8 @@ if ( \$wgCommandLineMode ) {
 ## Shared memory settings
 \$wgUseMemCached = $memcached;
 \$wgMemCachedServers = $mcservers;
-{$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && php_sapi_name() == 'apache';
-{$turck}\$wgUseEAccelShm = function_exists( 'eaccelerator_get' ) && php_sapi_name() == 'apache';
+{$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && ( php_sapi_name() == 'apache' || php_sapi_name() == 'apache2handler' );
+{$turck}\$wgUseEAccelShm = function_exists( 'eaccelerator_get' ) && ( php_sapi_name() == 'apache' || php_sapi_name() == 'apache2handler' );
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then uncomment this:
