@@ -260,6 +260,17 @@ class OutputPage {
 	}
 
 	/**
+	 * Add the output of a QuickTemplate to the output buffer
+	 * @param QuickTemplate $template
+	 */
+	function addTemplate( &$template ) {
+		ob_start();
+		$template->execute();
+		$this->addHtml( ob_get_contents() );
+		ob_end_clean();
+	}
+	
+	/**
 	 * @param $article
 	 * @param $user
 	 */
@@ -398,7 +409,9 @@ class OutputPage {
 			setcookie( $name, $val, $exp, '/' );
 		}
 
+		wfProfileIn( 'Output-skin' );
 		$sk->outputPage( $this );
+		wfProfileOut( 'Output-skin' );
 		
 		$this->sendCacheControl();
 		ob_end_flush();

@@ -49,8 +49,9 @@ class LoginForm {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
+		
 		$this->mEmail = $request->getText( 'wpEmail' );
-	        if ($wgAllowRealName) {
+		if( $wgAllowRealName ) {
 		    $this->mRealName = $request->getText( 'wpRealName' );
 		} else {
 		    $this->mRealName = '';
@@ -380,29 +381,6 @@ class LoginForm {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDBname, $wgAllowRealName;
 
-		$le = wfMsg( 'loginerror' );
-		$yn = wfMsg( 'yourname' );
-		$yp = wfMsg( 'yourpassword' );
-		$ypa = wfMsg( 'yourpasswordagain' );
-		$rmp = wfMsg( 'remembermypassword' );
-		$nuo = wfMsg( 'newusersonly' );
-		$li = wfMsg( 'login' );
-		$ca = wfMsg( 'createaccount' );
-		$cam = wfMsg( 'createaccountmail' );
-		$ye = wfMsg( 'youremail' );
-		if( $wgAllowRealName ) {
-		    $yrn = wfMsg( 'yourrealname' );
-		} else {
-		    $yrn = '';
-		}
-		$efl = wfMsg( 'emailforlost' );
-		$mmp = wfMsg( 'mailmypassword' );
-		$endText = wfMsg( 'loginend' );
-
-		if ( $endText == '&lt;loginend&gt;' ) {
-			$endText = '';
-		}
-
 		if ( '' == $this->mName ) {
 			if ( 0 != $wgUser->getID() ) {
 				$this->mName = $wgUser->getName();
@@ -411,102 +389,33 @@ class LoginForm {
 			}
 		}
 
-		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-
-		if ( '' == $err ) {
-			$lp = wfMsg( 'loginprompt' );
-			$wgOut->addHTML( "<h2>$li:</h2>\n<p>$lp</p>" );
-		} else {
-			$wgOut->addHTML( "<h2>$le:</h2>\n<font size='+1' 
-	color='red'>$err</font>\n" );
-		}
-		if ( 1 == $wgUser->getOption( 'rememberpassword' ) ) {
-			$checked = ' checked';
-		} else {
-			$checked = '';
-		}
-		
 		$q = 'action=submit';
 		if ( !empty( $this->mReturnto ) ) {
 			$q .= '&returnto=' . wfUrlencode( $this->mReturnto );
 		}
-		
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
-		$action = $titleObj->escapeLocalUrl( $q );
 
-		$encName = htmlspecialchars( $this->mName );
-		$encPassword = htmlspecialchars( $this->mPassword );
-		$encRetype = htmlspecialchars( $this->mRetype );
-		$encEmail = htmlspecialchars( $this->mEmail );
-		$encRealName = htmlspecialchars( $this->mRealName );
 
-		if ($wgUser->getID() != 0) {
-			$cambutton = "<input tabindex='6' type='submit' name=\"wpCreateaccountMail\" value=\"{$cam}\" />";
-		} else {
-			$cambutton = '';
-		}
+		require_once( 'templates/Userlogin.php' );
+		$template =& new UserloginTemplate();
+		
+		$template->set( 'name', $this->mName );
+		$template->set( 'password', $this->mPassword );
+		$template->set( 'retype', $this->mRetype );
+		$template->set( 'email', $this->mEmail );
+		$template->set( 'realname', $this->mRealName );
 
-		$wgOut->addHTML( "
-	<form name=\"userlogin\" id=\"userlogin\" method=\"post\" action=\"{$action}\">
-	<table border='0'><tr>
-	<td align='right'>$yn:</td>
-	<td align='left'>
-	<input tabindex='1' type='text' name=\"wpName\" value=\"{$encName}\" size='20' />
-	</td>
-	<td align='left'>
-	<input tabindex='3' type='submit' name=\"wpLoginattempt\" value=\"{$li}\" />
-	</td>
-	</tr>
-	<tr>
-	<td align='right'>$yp:</td>
-	<td align='left'>
-	<input tabindex='2' type='password' name=\"wpPassword\" value=\"{$encPassword}\" size='20' />
-	</td>
-	<td align='left'>
-	<input tabindex='4' type='checkbox' name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked /><label for=\"wpRemember\">$rmp</label>
-	</td>
-	</tr>");
-
-		if ($wgUser->isAllowedToCreateAccount()) {
-			$encRetype = htmlspecialchars( $this->mRetype );
-			$encEmail = htmlspecialchars( $this->mEmail );
-	$wgOut->addHTML("<tr><td colspan='3'>&nbsp;</td></tr><tr>
-	<td align='right'>$ypa:</td>
-	<td align='left'>
-	<input tabindex='5' type='password' name=\"wpRetype\" value=\"{$encRetype}\" 
-	size='20' />
-	</td><td>$nuo</td></tr>
-	<tr>
-	<td align='right'>$ye:</td>
-	<td align='left'>
-	<input tabindex='7' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
-	</td>");
-		    
-	if ($wgAllowRealName) {
-	    $wgOut->addHTML("<td>&nbsp;</td>
-                             </tr><tr>
-	                     <td align='right'>$yrn:</td>
-	                     <td align='left'>
-	                      <input tabindex='8' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
-			      </td>");
-	}
-		    
-	$wgOut->addHTML("<td align='left'>
-	<input tabindex='9' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
-	$cambutton
-	</td></tr>");
-		}
-	    
-		$wgOut->addHTML("
-	<tr><td colspan='3'>&nbsp;</td></tr><tr>
-	<td colspan='3' align='left'>
-	<p>$efl<br />
-	<input tabindex='10' type='submit' name=\"wpMailmypassword\" value=\"{$mmp}\" /></p>
-	</td></tr></table>
-	</form>\n" );
-		$wgOut->addHTML( $endText );
+		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
+		$template->set( 'error', $err );
+		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
+		$template->set( 'createemail', $wgUser->getID() != 0 );
+		$template->set( 'userealname', $wgAllowRealName );
+		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) );
+		
+		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setArticleRelated( false );
+		$wgOut->addTemplate( $template );
 	}
 
 	/**
