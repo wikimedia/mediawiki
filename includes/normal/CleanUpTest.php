@@ -303,6 +303,19 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 	
+	function testSurrogateRegression() {
+		$text   = "\xed\xb4\x96" . # surrogate 0xDD16
+		          "\x83" . # bad tail
+		          "\xb4" . # bad tail
+		          "\xac";  # bad head
+		$expect = "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd";
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
+	}
 }
 
 

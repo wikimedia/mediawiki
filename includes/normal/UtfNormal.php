@@ -380,6 +380,7 @@ class UtfNormal {
 								$replace[] = array( UTF8_REPLACEMENT,
 								             $base + $i + 1 - strlen( $sequence ),
 								             strlen( $sequence ) );
+								$head = '';
 								continue;
 							}
 						} else {
