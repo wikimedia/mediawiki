@@ -454,4 +454,42 @@ class TurckBagOStuff extends BagOStuff {
 		return true;
 	}
 }	
+
+/**
+ * This is a wrapper for eAccelerator's shared memory functions. 
+ * 
+ * This is basically identical to the Turck MMCache version,
+ * mostly because eAccelerator is based on Turck MMCache.
+ *
+ * @package MediaWiki
+ */
+class eAccelBagOStuff extends BagOStuff {
+	function get($key) {
+		$val = eaccelerator_get( $key );
+		if ( is_string( $val ) ) {
+			$val = unserialize( $val );
+		}
+		return $val;
+	}
+
+	function set($key, $value, $exptime=0) {
+		eaccelerator_put( $key, serialize( $value ), $exptime );
+		return true;
+	}
+	
+	function delete($key, $time=0) {
+		eaccelerator_rm( $key );
+		return true;
+	}
+
+	function lock($key, $waitTimeout = 0 ) {
+		eaccelerator_lock( $key );
+		return true;
+	}
+
+	function unlock($key) {
+		eaccelerator_unlock( $key );
+		return true;
+	}
+}	
 ?>

@@ -145,6 +145,12 @@ if( $wgUseMemCached ) {
 	require_once( 'ObjectCache.php' );
 	$wgMemc = new TurckBagOStuff;
 	$messageMemc = &$wgMemc;
+} elseif ( $wgUseEAccelShm ) {
+	# eAccelerator shared memory
+	#
+	require_once( 'ObjectCache.php' );
+	$wgMemc = new eAccelBagOStuff;
+	$messageMemc = &$wgMemc;
 } else {
 	/**
 	 * No shared memory

@@ -273,8 +273,14 @@ if( $conf->zlib ) {
 $conf->turck = function_exists( 'mmcache_get' );
 if ( $conf->turck ) {
 	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> installed</li>\n";
-} else {
-	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> not installed, " .
+}
+$conf->eaccel = function_exists( 'eaccelerator_get' );
+if ( $conf->eaccel ) {
+    $conf->turck = 'eaccelerator';
+    print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
+}
+if (!$conf->turck && !$conf->eaccel) {
+	print "<li>Neither <a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> nor <a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> are installed, " .
 	  "can't use object caching functions</li>\n";
 }
 
@@ -748,12 +754,19 @@ if( count( $errs ) ) {
 				echo "</li>";
 			}
 		?>
+		<?php 
+			if ( $conf->eaccel ) {
+				echo "<li>";
+				aField( $conf, "Shm", "eAccelerator", "radio", "eaccel" );
+				echo "</li>";
+			}
+		?>
 		<li><?php aField( $conf, "Shm", "Memcached", "radio", "memcached" ); ?></li>
 		<li><?php aField( $conf, "MCServers", "Memcached servers", "" ) ?></li>
 		</ul>
 	</dd>
 	<dt>
-		Using a shared memory system such as Turck MMCache or Memcached will speed
+		Using a shared memory system such as Turck MMCache, eAccelerator, or Memcached will speed
 		up MediaWiki significantly. Memcached is the best solution but needs to be 
 		installed. Specify the server addresses and ports in a comma-separted list. Only 
 		use Turck shared memory if the wiki will be running on a single Apache server.
@@ -950,6 +963,7 @@ function writeLocalSettings( $conf ) {
 			$mcservers = var_export( $conf->MCServerArray, true );
 			break;
 		case 'turck':
+		case 'eaccel':
 			$memcached = 'false';
 			$mcservers = 'array()';
 			$turck = '';
@@ -1071,6 +1085,7 @@ if ( \$wgCommandLineMode ) {
 \$wgUseMemCached = $memcached;
 \$wgMemCachedServers = $mcservers;
 {$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && php_sapi_name() == 'apache';
+{$turck}\$wgUseEAccelShm = function_exists( 'eaccelerator_get' ) && php_sapi_name() == 'apache';
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then uncomment this:
