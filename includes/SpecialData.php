@@ -2,28 +2,28 @@
 
 /* You'll need to run these CREATEs :
 
-CREATE TABLE 'data' (
-'data_cur_id' INT NOT NULL ,
-'data_revision' INT NOT NULL ,
-'data_key' VARCHAR( 255 ) NOT NULL ,
-'data_value' MEDIUMTEXT NOT NULL ,
-INDEX ( 'data_cur_id' ),
-INDEX ('data_revision') ,
-INDEX ('data_key' )
+CREATE TABLE data (
+data_cur_id INT NOT NULL ,
+data_revision INT NOT NULL ,
+data_key VARCHAR( 255 ) NOT NULL ,
+data_value MEDIUMTEXT NOT NULL ,
+INDEX ( data_cur_id ),
+INDEX (data_revision) ,
+INDEX (data_key )
 ) TYPE = MYISAM ;
 
-CREATE TABLE 'data_rev' (
-'rev_cur_id' INT NOT NULL ,
-'rev_id' INT NOT NULL ,
-'rev_masterkey' VARCHAR( 255 ) NOT NULL,
-'rev_user_id' INT NOT NULL ,
-'rev_user_text' VARCHAR( 255 ) NOT NULL ,
-'rev_comment' VARCHAR( 255 ) NOT NULL ,
-'rev_time' INT NOT NULL ,
-INDEX ( 'rev_cur_id') ,
-INDEX ('rev_id'),
-INDEX ( 'rev_user_id' ),
-INDEX ( 'rev_masterkey' )
+CREATE TABLE data_rev (
+rev_cur_id INT NOT NULL ,
+rev_id INT NOT NULL ,
+rev_masterkey VARCHAR( 255 ) NOT NULL,
+rev_user_id INT NOT NULL ,
+rev_user_text VARCHAR( 255 ) NOT NULL ,
+rev_comment VARCHAR( 255 ) NOT NULL ,
+rev_time INT NOT NULL ,
+INDEX ( rev_cur_id) ,
+INDEX (rev_id),
+INDEX ( rev_user_id ),
+INDEX ( rev_masterkey )
 ) TYPE = MYISAM ;
 
 */
