@@ -827,7 +827,7 @@ if ( \$wgCommandLineMode ) {
 	}
 } elseif ( empty( \$wgConfiguring ) ) {
 	## Compress output if the browser supports it
-	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
+	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) @ob_start( 'ob_gzhandler' );
 }
 
 \$wgSitename         = \"{$slconf['Sitename']}\";
