@@ -6,8 +6,12 @@
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	"Standard", "Nostalgia", "CologneBlue" #, "Smarty", "Montparnasse"
+	"Standard", "Nostalgia", "CologneBlue"
 );
+if( $wgUseSmarty ) {
+	$wgValidSkinNames[] = "Smarty";
+	$wgValidSkinNames[] = "Montparnasse";
+}
 
 include_once( "RecentChange.php" );
 
@@ -2381,6 +2385,8 @@ include_once( "SkinStandard.php" );
 include_once( "SkinNostalgia.php" );
 include_once( "SkinCologneBlue.php" );
 
-#include_once( "SkinSmarty.php" );
+if( $wgUseSmarty ) {
+	include_once( "SkinSmarty.php" );
+}
 
 ?>

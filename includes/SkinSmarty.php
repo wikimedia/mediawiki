@@ -1,12 +1,12 @@
 <?php
 
+# And turn on $wgUseSmarty so this file gets included
+
+# Set your include_path so Smarty/libs is available
 include_once( "Smarty.class.php" );
 
 class SkinSmarty extends Skin {
 	var $template;
-	
-	function SkinSmarty() {
-	}
 	
 	function initPage() {
 		$this->template = "paddington";

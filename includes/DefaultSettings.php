@@ -252,6 +252,9 @@ $wgSiteNotice = "";
 
 $wgAllowAnonymousMinor = false;
 
+# Enable experimental smarty skins (put Smart/libs in your include_path!)
+$wgUseSmarty = false;
+
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
