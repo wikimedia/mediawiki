@@ -1,5 +1,6 @@
 <?php
-define( "REPORTING_INTERVAL", 500 );
+define( "REPORTING_INTERVAL", 50 );
+define( "PAUSE_INTERVAL", 50 );
 
 include_once( "commandLine.inc" );
 error_reporting( E_ALL & (~E_NOTICE) );
@@ -24,19 +25,26 @@ for ($id = $start; $id <= $end; $id++) {
 	if ( !($id % REPORTING_INTERVAL) ) {
 		print "$id\n";
 	}
+
+	if ( !($id % PAUSE_INTERVAL) ) {
+		sleep(1);
+	}
 	
 	$wgTitle = Title::newFromID( $id );
 	if ( is_null( $wgTitle ) ) {
 		continue;
 	}
 	
-	$wgLinkCache = new LinkCache;
 	$wgArticle = new Article( $wgTitle );
 	$text = $wgArticle->getContent( true );
+	$wgLinkCache = new LinkCache;
 	@$wgOut->addWikiText( $text );
-	
-	$wgLinkCache->saveToLinkscc();
-	$linksUpdate = new LinksUpdate( $id, $wgTitle );
+
+	if ( $wgEnablePersistentLC ) {
+		$wgLinkCache->saveToLinkscc( $id, wfStrencode( $wgTitle->getPrefixedDBkey() ) );
+	}
+
+	$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
 	$linksUpdate->doDumbUpdate();
 	$linksUpdate->fixBrokenLinks();
 }
