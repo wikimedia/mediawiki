@@ -162,7 +162,7 @@ class QueryPage {
 		global $wgLanguageCode, $wgSitename, $wgLang;
 		$pages = $wgLang->getValidSpecialPages();
 		$title = $pages[$this->getName()];
-		return "$title - $wgSitename [$wgLanguageCode]";
+		return "$wgSitename - $title [$wgLanguageCode]";
 	}
 	
 	function feedDesc() {
