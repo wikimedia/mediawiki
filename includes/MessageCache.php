@@ -37,7 +37,7 @@ class MessageCache
 		$this->mMemcKey = $memcPrefix.':messages';
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
-        $this->mIsForContent = $forContent;
+        if ( isset ( $forContent ) ) $this->mIsForContent = $forContent;
 		wfProfileIn( $fname.'-parseropt' );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
 		wfProfileOut( $fname.'-parseropt' );
