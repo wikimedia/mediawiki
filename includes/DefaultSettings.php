@@ -121,6 +121,8 @@ $wgProfiling = false; # Enable for more detailed by-function times in debug log
 # Requires zlib support enabled in PHP.
 $wgUseGzip = false;
 
+$wgPasswordSalt = true; # For compatibility with old installations set to false
+
 # Which namespaces should support subpages?
 # See Language.php for a list of namespaces.
 #
