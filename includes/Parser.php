@@ -1576,6 +1576,9 @@ class Parser
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
 
+		# Variable substitution
+		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", 'wfVariableSubstitution', $text );
+		
 		if ( $this->mOutputType == OT_HTML ) {
 			# Argument substitution
 			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
@@ -1587,6 +1590,33 @@ class Parser
 		array_pop( $this->mArgStack );
 
 		wfProfileOut( $fname );
+		return $text;
+	}
+
+	/**
+	 * Replace magic variables
+	 * @access private
+	 */
+	function variableSubstitution( $matches ) {
+		if ( !$this->mVariables ) {
+			$this->initialiseVariables();
+		}
+		$skip = false;
+		if ( $this->mOutputType == OT_WIKI ) {
+			# Do only magic variables prefixed by SUBST
+			$mwSubst =& MagicWord::get( MAG_SUBST );
+			if (!$mwSubst->matchStartAndRemove( $matches[1] ))
+				$skip = true;
+			# Note that if we don't substitute the variable below,
+			# we don't remove the {{subst:}} magic word, in case
+			# it is a template rather than a magic variable.
+		}
+		if ( !$skip && array_key_exists( $matches[1], $this->mVariables ) ) {
+			$text = $this->mVariables[$matches[1]];
+			$this->mOutput->mContainsOldMagic = true;
+		} else {
+			$text = $matches[0];
+		}
 		return $text;
 	}
 
@@ -1733,16 +1763,6 @@ class Parser
 					$found = true;
 				}
 			}
-		}
-
-		# Internal variables
-		if ( !$this->mVariables ) {
-			$this->initialiseVariables();
-		}
-		if ( !$found && array_key_exists( $part1, $this->mVariables ) ) {
-			$text = $this->mVariables[$part1];
-			$found = true;
-			$this->mOutput->mContainsOldMagic = true;
 		}
 
 		# GRAMMAR
@@ -2771,6 +2791,11 @@ function wfBraceSubstitution( $matches ) {
 function wfArgSubstitution( $matches ) {
 	global $wgCurParser;
 	return $wgCurParser->argSubstitution( $matches );
+}
+
+function wfVariableSubstitution( $matches ) {
+	global $wgCurParser;
+	return $wgCurParser->variableSubstitution( $matches );
 }
 
 /**
