@@ -938,6 +938,14 @@ class Parser
 			$text = $bits[$i++];
 			$trail = $bits[$i++];
 
+			# The characters '<' and '>' (which were escaped by
+			# removeHTMLtags()) should not be included in
+			# URLs, per RFC 2396.
+			if (preg_match('/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE)) {
+				$trail = substr($url, $m2[0][1]) . $trail;
+				$url = substr($url, 0, $m2[0][1]);
+			}
+
 			# If the link text is an image URL, replace it with an <img> tag
 			# This happened by accident in the original parser, but some people used it extensively
 			$img = $this->maybeMakeImageLink( $text );
@@ -1013,6 +1021,14 @@ class Parser
 				$url = $protocol . $m[1];
 				$trail = $m[2];
 
+				# The characters '<' and '>' (which were escaped by
+				# removeHTMLtags()) should not be included in
+				# URLs, per RFC 2396.
+				if (preg_match('/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE)) {
+					$trail = substr($url, $m2[0][1]) . $trail;
+					$url = substr($url, 0, $m2[0][1]);
+				}
+
 				# Move trailing punctuation to $trail
 				$sep = ',;\.:!?';
 				# If there is no left bracket, then consider right brackets fair game too
@@ -1026,11 +1042,10 @@ class Parser
 					$url = substr( $url, 0, -$numSepChars );
 				}
 
-				# Replace &amp; from obsolete syntax with &;
-				# undo escaping of '<' and '>' by removeHTMLtags(),
-				# to prevent double-escaping. All HTML entities will
-				# be escaped by makeExternalLink() or maybeMakeImageLink()
-				$url = str_replace( array('&amp;', '&lt;', '&gt;'), array('&', '<', '>'), $url );
+				# Replace &amp; from obsolete syntax with &.
+				# All HTML entities will be escaped by makeExternalLink()
+				# or maybeMakeImageLink()
+				$url = str_replace( '&amp;', '&', $url );
 
 				# Is this an external image?
 				$text = $this->maybeMakeImageLink( $url );
