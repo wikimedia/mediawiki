@@ -431,7 +431,7 @@ $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 /**
  * The debug log file should be not be publicly accessible if it is used, as it
  * may contain private data. */
-$wgDebugLogFile         = '';
+$wgDebugLogFile         = 'deb.txt';
 
 /**#@+
  * @global bool
