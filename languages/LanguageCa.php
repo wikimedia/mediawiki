@@ -172,7 +172,7 @@
 
 # Bits of text used by many pages:
 #
-"linktrail"     => "/^((?:[a-z]|à|è|é|í|ò|ó|ú|ç|·|ï|ü|')]+)(.*)\$/sD",
+"linktrail"     => "/^((?:[a-z]|à|è|é|í|ò|ó|ú|ç|·|ï|ü|')+)(.*)\$/sD",
 "mainpage"		=> "Portada",
 "about"			=> "Quant a...",
 "aboutsite"      => "Quant a la {{SITENAME}}",
