@@ -197,7 +197,7 @@ class Image
 	function getWidth()
 	{
 		if ( !$this->attributesLoaded ) {
-			loadAttributes();
+			$this->loadAttributes();
 		}
 		return $this->width;
 	}
@@ -211,7 +211,7 @@ class Image
 	function getHeight()
 	{
 		if ( !$this->attributesLoaded ) {
-			loadAttributes();
+			$this->loadAttributes();
 		}
 		return $this->height;
 	}
@@ -238,7 +238,7 @@ class Image
 	function getType()
 	{
 		if ( !$this->attributesLoaded ) {
-			loadAttributes();
+			$this->loadAttributes();
 		}
 		return $this->type;
 	}
@@ -387,7 +387,7 @@ class Image
 	 */
 	function &getThumbnail( $width, $height=-1 ) {
 		if ( !$this->attributesLoaded ) {
-			loadAttributes();
+			$this->loadAttributes();
 		}
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
@@ -445,7 +445,7 @@ class Image
 		global $wgUseSquid, $wgInternalServer;
 		
 		if ( !$this->attributesLoaded ) {
-			loadAttributes();
+			$this->loadAttributes();
 		}
 
 		$width = IntVal( $width );
