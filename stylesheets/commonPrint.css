@@ -134,6 +134,10 @@ p, .documentDescription {
     line-height: 1.2em;    
 }
 
+.tocindent p {
+	margin: 0 0 0 0 ! important;
+}
+
 pre {
     border: 1pt dashed black;
     white-space: pre;
