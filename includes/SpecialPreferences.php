@@ -14,7 +14,7 @@ class PreferencesForm {
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName;
 
 	function PreferencesForm( &$request ) {	
-		global $wgLang;
+		global $wgLang, $wgAllowRealName;
 		
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
 		$this->mOldpass = $request->getVal( 'wpOldpass' );
@@ -27,7 +27,7 @@ class PreferencesForm {
 		$this->mMath = $request->getVal( 'wpMath' );
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
-		$this->mRealName = $request->getVal( 'wpRealName' );
+	        $this->mRealName = ($wgAllowRealName) ? $request->getVal( 'wpRealName' ) : '';
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
@@ -180,11 +180,11 @@ class PreferencesForm {
 
 	/* private */ function resetPrefs()
 	{
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgAllowRealName;
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = "";
 		$this->mUserEmail = $wgUser->getEmail();
-		$this->mRealName = $wgUser->getRealName();
+	        $this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
 		if ( 1 == $wgUser->getOption( "disablemail" ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
 		$this->mNick = $wgUser->getOption( "nickname" );
@@ -265,7 +265,8 @@ class PreferencesForm {
 	/* private */ function mainPrefsForm( $err )
 	{
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
-
+	        global $wgAllowRealName;
+	    
 		$wgOut->setPageTitle( wfMsg( "preferences" ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -306,7 +307,7 @@ class PreferencesForm {
 		$tzGuess = wfMsg( "guesstimezone" );
 		$tzServerTime = wfMsg( "servertime" );
 		$yem = wfMsg( "youremail" );
-		$yrn = wfMsg( "yourrealname" );
+	        $yrn = ($wgAllowRealName) ? wfMsg( "yourrealname" ) : '';
 		$emf = wfMsg( "emailflag" );
 		$ynn = wfMsg( "yournick" );
 		$stt = wfMsg ( "stubthreshold" ) ;
@@ -332,12 +333,15 @@ class PreferencesForm {
 		$ps = $this->namespacesCheckboxes();
 
 		$wgOut->addHTML( "<fieldset>
-		<legend>".wfMsg('prefs-personal')."</legend>
-		<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
+		<legend>".wfMsg('prefs-personal')."</legend>");
+	        if ($wgAllowRealName) {
+		    $wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
+		}
+	        $wgOut->addHTML("
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>\n" );
-	
+
 		# Fields for changing password
 		#
 		$this->mOldpass = wfEscapeHTML( $this->mOldpass );
