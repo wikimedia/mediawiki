@@ -890,7 +890,7 @@ from server time (UTC).',
 
 # switching pan
 'grouplevels-lookup-group' => 'Manage group rights',
-'grouplevels-group-edit' => 'Existent groups: ',
+'grouplevels-group-edit' => 'Existing groups: ',
 'editgroup' => 'Edit Group',
 'addgroup' => 'Add Group',
 
