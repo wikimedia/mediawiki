@@ -1536,9 +1536,9 @@ class Article {
 		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 		$oldtable=$wgIsPg?'"old"':'old';
 		$sql = 'SELECT old_text,old_user,old_user_text,old_timestamp,old_flags ' .
-		"FROM $oldtable {$use_index}" .
-		"WHERE old_namespace={$n} AND old_title='{$tt}'" .
-		"AND (old_user <> {$uid} OR old_user_text <> '{$ut}')" .
+		"FROM $oldtable {$use_index} " .
+		"WHERE old_namespace={$n} AND old_title='{$tt}' " .
+		"AND (old_user <> {$uid} OR old_user_text <> '{$ut}') " .
 		'ORDER BY inverse_timestamp LIMIT 1';
 		$res = wfQuery( $sql, DB_READ );
 		if( wfNumRows( $res ) != 1 ) {
@@ -1551,7 +1551,7 @@ class Article {
 		
 		if ( $bot ) {
 			# Mark all reverted edits as bot
-			$sql = 'UPDATE recentchanges SET rc_bot=1 WHERE' .
+			$sql = 'UPDATE recentchanges SET rc_bot=1 WHERE ' .
 				"rc_cur_id=$pid AND rc_user=$uid AND rc_timestamp > '{$s->old_timestamp}'";
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
