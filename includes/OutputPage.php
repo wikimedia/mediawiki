@@ -579,6 +579,12 @@ class OutputPage {
 		$a = array_merge ( $good , $bad ) ;
 		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
 		$a = implode ( "," , $a ) ;
+		$strip = array(
+			"/<.*?>/" => '',
+			"/[_]/" => ' '
+		);
+		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
+		
 		$wgOut->addMeta ( "KEYWORDS" , $a ) ;
 	}
 
@@ -644,8 +650,12 @@ class OutputPage {
 		$ret .= "<meta name=\"robots\" content=\"$p\" />\n";
 
 		if ( count( $this->mKeywords ) > 0 ) {
+			$strip = array(
+				"/<.*?>/" => '',
+				"/[_]/" => ' '
+			);
 			$ret .= "<meta name=\"keywords\" content=\"" .
-			  implode( ",", $this->mKeywords ) . "\" />\n";
+			  htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ))) . "\" />\n";
 		}
 		foreach ( $this->mLinktags as $tag ) {
 			$ret .= "<link";
