@@ -592,8 +592,18 @@ class PreferencesForm {
 	
 		# Various checkbox options
 		#
+		$togs = $wgLang->getUserToggles();
+
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
+
+		$showtoglangconv = true;
+		if( sizeof( $wgContLang->getVariants() ) < 2 ) {
+			$showtoglangconv = false;
+		}
 		foreach ( $togs as $tname ) {
+			if( !$showtoglangconv && $tname == 'nolangconversion' ) {
+				continue;
+			}
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}

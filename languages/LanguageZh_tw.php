@@ -59,10 +59,6 @@ require_once( "LanguageZh_cn.php" );
 	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
 );
 
-/* private */ $wgUserTogglesZh_tw = array(
-	'nolangconversion',
-) + $wgUserTogglesEn;
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).

@@ -127,6 +127,7 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'previewontop',
 	'previewonfirst',
 	'nocache',
+	'nolangconversion',
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -241,6 +242,7 @@ global $wgRightsText;
 'tog-previewontop' => 'Show preview before edit box and not after it',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
+"tog-nolangconversion" => 'disable language conversion',
 
 # dates
 'sunday' => 'Sunday',

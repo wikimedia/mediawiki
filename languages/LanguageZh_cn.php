@@ -58,9 +58,6 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgUserTogglesZh_cn = array(
-	'nolangconversion',
-) + $wgUserTogglesEn;
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -1013,11 +1010,6 @@ class LanguageZh_cn extends LanguageUtf8 {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_cn ;
 		return $wgBookstoreListZh_cn ;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesZh_cn;
-		return $wgUserTogglesZh_cn;
 	}
 
 	function getNamespaces() {
