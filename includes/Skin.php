@@ -1597,7 +1597,9 @@ class Skin {
 		$link = $image->getPrefixedURL();
 		$url  = wfImageUrl( $name );
 		$path = wfImagePath( $name );
-
+		
+		$label = htmlspecialchars( $label );
+		
 		list($width, $height, $type, $attr) = getimagesize( $path );
 		$cwidth   = $boxwidth;
 		$cheight  = intval( $height/($width/$cwidth) );
