@@ -481,7 +481,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
 "gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(From http://www.wikipedia.org)",
+"printsubtitle" => "(From $wgServer)",
 "protectedpage" => "Protected page",
 "administrators" => "$wgMetaNamespace:Administrators",
 "sysoptitle"	=> "Sysop access required",
@@ -591,7 +591,7 @@ continue to be displayed as if you were still logged in, until you clear
 your browser cache\n",
 
 "welcomecreation" => "<h2>Welcome, $1!</h2><p>Your account has been created.
-Don't forget to change your wikipedia preferences.",
+Don't forget to change your $wgSitename preferences.",
 
 "loginpagetitle" => "User login",
 "yourname"		=> "Your user name",
@@ -1059,8 +1059,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "ancientpages"		=> "Oldest articles",
 "intl"		=> "Interlanguage links",
 "movethispage"	=> "Move this page",
-"unusedimagestext" => "<p>Please note that other web sites
-such as the international Wikipedias may link to an image with
+"unusedimagestext" => "<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
 in active use.",
 "booksources"	=> "Book sources",
