@@ -51,4 +51,11 @@ $wgLocalInterwiki   = "w";
 $wgInputEncoding	= "ISO-8859-1";
 $wgOutputEncoding	= "ISO-8859-1";
 
+# Extremely high-traffic wikis may want to disable
+# some database-intensive features here:
+#
+# $wgDisableTextSearch = true;
+# $wgDisableCounters = true;
+# $wgMiserMode		= true;
+
 ?>

@@ -533,11 +533,14 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 		if ( isset( $oldid ) || isset( $diff ) ) { return ""; }
 		if ( 0 == $wgArticle->getID() ) { return ""; }
 
-		$count = $wgArticle->getCount();
-		$s = str_replace( "$1", $count, wfMsg( "viewcount" ) );
-
+		if ( $wgDisableCounts ) {
+			$s = "";
+		} else {
+			$count = $wgArticle->getCount();
+			$s = str_replace( "$1", $count, wfMsg( "viewcount" ) );
+		}
 		$s .= $this->lastModified();
-		$s .= " ".wfMsg( "gnunote" ) ;
+		$s .= " " . wfMsg( "gnunote" );
 		return "<span id='pagestats'>{$s}</span>";
 	}
 

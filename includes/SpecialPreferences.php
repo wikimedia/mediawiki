@@ -40,7 +40,7 @@ function wfSpecialPreferences()
 			mainPrefsForm( wfMsg( "badretype" ) );			
 			return;
 		}
-		$ep = User::encryptPassword( $wpOldpass );
+		$ep = $wgUser->encryptPassword( $wpOldpass );
 		if ( $ep != $wgUser->getPassword() ) {
 			if ( $ep != $wgUser->getNewpassword() ) {
 				mainPrefsForm( wfMsg( "wrongpassword" ) );
