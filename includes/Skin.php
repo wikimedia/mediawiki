@@ -2401,11 +2401,11 @@ class Skin {
 
 	}
 
-	function imageHistoryLine( $iscur, $ts, $img, $u, $ut, $size, $c )
+	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description )
 	{
 		global $wgUser, $wgLang, $wgTitle;
 
-		$dt = $wgLang->timeanddate( $ts, true );
+		$datetime = $wgLang->timeanddate( $timestamp, true );
 		$del = wfMsg( "deleteimg" );
 		$cur = wfMsg( "cur" );
 
@@ -2425,10 +2425,10 @@ class Skin {
 			$url = wfEscapeHTML( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 ) {
 				$rlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-				  wfMsg( "revertimg" ), "action=revert&oldimage=" .
-				  urlencode( $img ) );
+				           wfMsg( "revertimg" ), "action=revert&oldimage=" .
+				           urlencode( $img ) );
 				$dlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-				  $del, "action=delete&oldimage=" . urlencode( $img ) );
+				           $del, "action=delete&oldimage=" . urlencode( $img ) );
 			} else {
 				# Having live active links for non-logged in users
 				# means that bots and spiders crawling our site can
@@ -2437,19 +2437,21 @@ class Skin {
 				$dlink = $del;
 			}
 		}
-		if ( 0 == $u ) { $ul = $ut; }
-		else { $ul = $this->makeLink( $wgLang->getNsText(
-		  Namespace::getUser() ) . ":{$ut}", $ut ); }
+		if ( 0 == $user ) {
+			$userlink = $usertext;
+		} else {
+			$userlink = $this->makeLink( $wgLang->getNsText( Namespace::getUser() ) .
+			               ":{$usertext}", $usertext );
+		}
+		$nbytes = wfMsg( "nbytes", $size );
+		$style = $this->getInternalLinkAttributes( $url, $datetime );
 
-		$nb = wfMsg( "nbytes", $size );
-		$style = $this->getInternalLinkAttributes( $url, $dt );
+		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a>"
+		  . " . . {$userlink} ({$nbytes})";
 
-		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$dt}</a>"
-		  . " . . {$ul} ({$nb})";
-
-		if ( "" != $c && "*" != $c ) {
+		if ( "" != $description && "*" != $description ) {
 			$sk=$wgUser->getSkin();
-			$s .= $wgLang->emphasize(" (" . $sk->formatComment($c) . ")");
+			$s .= $wgLang->emphasize(" (" . $sk->formatComment($description) . ")");
 		}
 		$s .= "</li>\n";
 		return $s;
