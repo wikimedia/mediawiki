@@ -356,11 +356,11 @@ class User {
 			$this->mToken = $s->user_token;
 			
 			$this->mRights = explode( ",", strtolower( 
-				$dbr->selectField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
+				$dbr->selectField( 'user_rights', 'ur_rights', array( 'ur_uid' => $this->mId ) )
 			) );
 			
 			// Get groups id
-			$res = $dbr->select( 'user_groups', array( 'group_id' ), array( 'user_id' => $this->mId ) );
+			$res = $dbr->select( 'user_groups', array( 'ug_gid' ), array( 'ug_uid' => $this->mId ) );
 			while($group = $dbr->fetchRow($res)) {
 				$this->mGroups[] = $group[0];
 			}
@@ -769,19 +769,19 @@ class User {
 				'user_id' => $this->mId
 			), $fname
 		);
-		$dbw->set( 'user_rights', 'user_rights', implode( ',', $this->mRights ),
-			'user_id='. $this->mId, $fname ); 
+		$dbw->set( 'user_rights', 'ur_rights', implode( ',', $this->mRights ),
+			'ur_uid='. $this->mId, $fname ); 
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 		
 		// delete old groups
-		$dbw->delete( 'user_groups', array( 'user_id' => $this->mId), $fname);
+		$dbw->delete( 'user_groups', array( 'ug_uid' => $this->mId), $fname);
 		// save new ones
 		foreach ($this->mGroups as $group) {
 			$dbw->replace( 'user_groups',
-				array(array('user_id','group_id')),
+				array(array('ug_uid','ug_gid')),
 				array(
-					'user_id' => $this->mId,
-					'group_id' => $group
+					'ug_uid' => $this->mId,
+					'ug_gid' => $group
 				), $fname
 			);
 		}
@@ -827,16 +827,16 @@ class User {
 		$this->mId = $dbw->insertId();
 		$dbw->insert( 'user_rights',
 			array(
-				'user_id' => $this->mId,
-				'user_rights' => implode( ',', $this->mRights )
+				'ur_uid' => $this->mId,
+				'ur_rights' => implode( ',', $this->mRights )
 			), $fname
 		);
 		
 		foreach ($this->mGroups as $group) {
 			$dbw->insert( 'user_groups',
 				array(
-					'user_id' => $this->mId,
-					'group_id' => $group
+					'ug_uid' => $this->mId,
+					'ug_gid' => $group
 				), $fname
 			);
 		}

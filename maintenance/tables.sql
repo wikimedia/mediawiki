@@ -20,8 +20,8 @@ CREATE TABLE user (
 
 -- TODO: de-blob this; it should be a property table
 CREATE TABLE user_rights (
-  user_id int(5) unsigned NOT NULL,
-  user_rights tinyblob NOT NULL default '',
+  ur_uid int(5) unsigned NOT NULL,
+  ur_rights tinyblob NOT NULL default '',
   UNIQUE KEY user_id (user_id)
 );
 
@@ -352,7 +352,7 @@ CREATE TABLE `group` (
 
 -- Relation table between user and groups
 CREATE TABLE user_groups (
-	user_id int(5) unsigned NOT NULL default '0',
-	group_id int(5) unsigned NOT NULL default '0',
-	PRIMARY KEY  (user_id,group_id)
+	ug_uid int(5) unsigned NOT NULL default '0',
+	ug_gid int(5) unsigned NOT NULL default '0',
+	PRIMARY KEY  (ug_uid,ug_gid)
 );
