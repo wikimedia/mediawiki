@@ -97,7 +97,7 @@ class SkinTemplate extends Skin {
 	var $stylename;
 
 	/**
-	 * For QuickTemplate, name or reference to callback function which
+	 * For QuickTemplate, the name of the subclass which
 	 * will actually fill the template.
 	 *
 	 * In PHPTal mode, name of PHPTal template to be used.
@@ -118,7 +118,7 @@ class SkinTemplate extends Skin {
 		parent::initPage( $out );
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
-		$this->template  = 'MonoBookTemplate';
+		$this->template  = 'QuickTemplate';
 	}
 
 	/**
@@ -132,8 +132,8 @@ class SkinTemplate extends Skin {
 	 * @return object
 	 * @access private
 	 */
-	function &setupTemplate( $callback, $repository=false, $cache_dir=false ) {
-		return new QuickTemplate( $callback );
+	function &setupTemplate( $classname, $repository=false, $cache_dir=false ) {
+		return new $classname();
 	}
 	
 	/**
@@ -703,12 +703,10 @@ class SkinTemplate extends Skin {
 			$nav_urls['contributions'] = false;
 		}
 		$nav_urls['emailuser'] = false;
-		if ( 0 != $wgUser->getID() ) { # show only to signed in users
-			if($id) {	# can only email non-anons
-				$nav_urls['emailuser'] = array(
-					'href' => $this->makeSpecialUrl('Emailuser', "target=" . $wgTitle->getPartialURL() )
-				);
-			}
+		if( $this->showEmailUser( $id ) ) {
+			$nav_urls['emailuser'] = array(
+				'href' => $this->makeSpecialUrl('Emailuser', "target=" . $wgTitle->getPartialURL() )
+			);
 		}
 		wfProfileOut( $fname );
 		return $nav_urls;
@@ -875,27 +873,84 @@ class SkinTemplate extends Skin {
  * compatible with what we use of PHPTAL 0.7.
  */
 class QuickTemplate {
-	function QuickTemplate( $callback, $repository=false, $cache_dir=false ) {
-		$this->outputCallback = $callback;
+	/**
+	 * @access public
+	 */
+	function QuickTemplate() {
 		$this->data = array();
 		$this->translator = null;
 	}
 	
+	/**
+	 * @access public
+	 */
 	function set( $name, $value ) {
 		$this->data[$name] = $value;
 	}
 	
+	/**
+	 * @access public
+	 */
 	function setRef($name, &$value) {
 		$this->data[$name] =& $value;
 	}
 	
+	/**
+	 * @access public
+	 */
 	function setTranslator( &$t ) {
 		$this->translator = &$t;
 	}
 	
+	/**
+	 * @access public
+	 */
 	function execute() {
-		return call_user_func_array( $this->outputCallback,
-			array( &$this->data, &$this->translator ) );
+		echo "Override this function.";
+	}
+
+
+	/**
+	 * @access private
+	 */
+	function text( $str ) {
+		echo htmlspecialchars( $this->data[$str] );
+	}
+	
+	/**
+	 * @access private
+	 */
+	function html( $str ) {
+		echo $this->data[$str];
+	}
+	
+	/**
+	 * @access private
+	 */
+	function msg( $str ) {
+		echo htmlspecialchars( $this->translator->translate( $str ) );
+	}
+	
+	/**
+	 * @access private
+	 */
+	function msgHtml( $str ) {
+		echo $this->translator->translate( $str );
+	}
+	
+	/**
+	 * @access private
+	 */
+	function haveData( $str ) {
+		return $this->data[$str];
+	}
+	
+	/**
+	 * @access private
+	 */
+	function haveMsg( $str ) {
+		$msg = $this->translator->translate( $str );
+		return ($msg != '-') && ($msg != ''); # ????
 	}
 }
 
