@@ -126,10 +126,23 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	function cleanUp( $string ) {
-		if( UtfNormal::quickIsNFCVerify( $string ) )
+		if( NORMALIZE_ICU ) {
+			# We exclude a few chars that ICU would not.
+			$string = preg_replace(
+				'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
+				UTF8_REPLACEMENT,
+				$string );
+			$str = str_replace( UTF8_FFFE, UTF8_REPLACEMENT, $string );
+			
+			# UnicodeString constructor fails if the string ends with a
+			# head byte. Add a junk char at the end, we'll strip it off.
+			return rtrim( utf8_normalize( $str . "\x01", UNORM_NFC ), "\x01" );
+		} elseif( UtfNormal::quickIsNFCVerify( $string ) ) {
+			# Side effect -- $string has had UTF-8 errors cleaned up.
 			return $string;
-		else
+		} else {
 			return UtfNormal::NFC( $string );
+		}
 	}
 
 	/**

@@ -316,6 +316,20 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
+	
+	function testBomRegression() {
+		$text   = "\xef\xbf\xbe" . # U+FFFE, illegal char
+		          "\xb2" . # bad tail
+		          "\xef" . # bad head
+		          "\x59";
+		$expect = "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\x59";
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
+	}
 }
 
 
