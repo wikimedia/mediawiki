@@ -4,13 +4,17 @@ function wfSpecialUserlogin()
 {
 	global $wpCreateaccount, $wpCreateaccountMail;
 	global $wpLoginattempt, $wpMailmypassword;
-	global $action;
+	global $action, $_REQUEST;
 
 	$fields = array( "wpName", "wpPassword", "wpName",
 	  "wpPassword", "wpRetype", "wpEmail" );
 	wfCleanFormFields( $fields );
 
-	if ( isset( $wpCreateaccount ) ) {
+        $wpCookieCheck = $_REQUEST[ "wpCookieCheck" ];
+
+	if ( isset( $wpCookieCheck ) ) {
+                onCookieRedirectCheck( $wpCookieCheck );
+        } else if ( isset( $wpCreateaccount ) ) {
 		addNewAccount();
 	} else if ( isset( $wpCreateaccountMail ) ) {
 		addNewAccountMailPassword();
@@ -68,18 +72,23 @@ function wfSpecialUserlogin()
 	}
 
 	$wgUser = $u;
-	successfulLogin( wfMsg( "welcomecreation", $wgUser->getName() ) );
+        $wgUser->setCookies();
+
+        $up = new UserUpdate();
+        array_push( $wgDeferredUpdateList, $up );
+  
+        if (hasSessionCookie()) {
+            return successfulLogin( wfMsg( "welcomecreation", $wgUser->getName() ) );
+        } else {
+            return cookieRedirectCheck("new");
+        }
 }
 
 
 /* private */ function addNewAccountInternal()
 {
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
-	global $wpEmail, $wgDeferredUpdateList;
-
-        if (!cookieCheck()) {
-                return;
-        }
+	global $wpEmail;
 
 	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
@@ -124,11 +133,8 @@ function wfSpecialUserlogin()
 /* private */ function processLogin()
 {
 	global $wgUser, $wpName, $wpPassword, $wpRemember;
+        global $wgDeferredUpdateList;
 	global $returnto;
-
-        if (!cookieCheck()) {
-                return;
-        }
 
 	if ( "" == $wpName ) {
 		mainLoginForm( wfMsg( "noname" ) );
@@ -161,7 +167,16 @@ function wfSpecialUserlogin()
 	$u->setOption( "rememberpassword", $r );
 
 	$wgUser = $u;
-	successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
+        $wgUser->setCookies();
+
+        $up = new UserUpdate();
+        array_push( $wgDeferredUpdateList, $up );
+  
+        if (hasSessionCookie()) {
+	    return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
+        } else {
+            return cookieRedirectCheck( "login" );
+        }
 }
 
 /* private */ function mailPassword()
@@ -225,23 +240,16 @@ function wfSpecialUserlogin()
 
 /* private */ function successfulLogin( $msg )
 {
-	global $wgUser, $wgOut, $returnto;
-	global $wgDeferredUpdateList;
+  global $wgUser;
+  global $wgDeferredUpdateList;
+  global $wgOut, $returnto;
 
-	$wgUser->setCookies();
-	$up = new UserUpdate();
-	array_push( $wgDeferredUpdateList, $up );
-
-	$wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
-	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->setArticleFlag( false );
-	$wgOut->addHTML( $msg . "\n<p>" );
-	$wgOut->returnToMain();
+  $wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
+  $wgOut->setRobotpolicy( "noindex,nofollow" );
+  $wgOut->setArticleFlag( false );
+  $wgOut->addHTML( $msg . "\n<p>" );
+  $wgOut->returnToMain();
 }
-
-
-
-
 
 function userNotPrivilegedMessage()
 {
@@ -254,9 +262,6 @@ function userNotPrivilegedMessage()
 	$wgOut->addWikiText( wfMsg( "whitelistacctext" ) );
 	$wgOut->returnToMain( false );
 }
-
-
-
 
 /* private */ function mainLoginForm( $err )
 {
@@ -293,7 +298,8 @@ function userNotPrivilegedMessage()
 	$wgOut->setArticleFlag( false );
 
 	if ( "" == $err ) {
-		$wgOut->addHTML( "<h2>$li:</h2>\n" );
+                $lp = wfMsg( "loginprompt" );
+		$wgOut->addHTML( "<h2>$li:</h2>\n<p>$lp</p>" );
 	} else {
 		$wgOut->addHTML( "<h2>$le:</h2>\n<font size='+1' 
 color='red'>$err</font>\n" );
@@ -365,30 +371,41 @@ $cambutton
 
 }
 
-/* private */ function cookieCheck() {
-
-	global $HTTP_COOKIE_VARS, $wgOut, $returnto;
-	global $wgDisableCookieCheck;
-
-	if ( $wgDisableCookieCheck ) {
-		return true;
-	}
-
-	# XXX: kind of crude check to see if cookies are enabled, but it works OK
-
-	if ( "" == $HTTP_COOKIE_VARS[session_name()])
-	{
-		# Don't go back to login page; they won't get time to
-		# enable cookies and send us one, so they'll get this msg again. Instead, 
-		# let them enable cookies on the error page, then go back to login page.
-		# XXX: wipes returnto, unfortunately.
-
-		$returnto = "Special:Userlogin";                
-		$wgOut->errorpage( "nocookies", "nocookiestext" );
-		return false;
-	}
-
-	return true;
+/* private */ function hasSessionCookie()
+{
+  global $HTTP_COOKIE_VARS;
+  global $wgDisableCookieCheck;
+  
+  return ( $wgDisableCookieCheck ) ? true : ( "" != $HTTP_COOKIE_VARS[session_name()]);
 }
+  
+/* private */ function cookieRedirectCheck( $type )
+{
+  global $wgOut, $wgLang;
+
+  $check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
+                       "wpCookieCheck=$type" );
+
+  return $wgOut->redirect( $check );
+}
+
+/* private */ function onCookieRedirectCheck( $type ) {
+
+  global $wgUser;
+
+  if (!hasSessionCookie()) {
+    if ( $type == "new" ) {
+      return mainLoginForm( wfMsg( "nocookiesnew" ) );
+    } else if ( $type == "login" ) {
+      return mainLoginForm( wfMsg( "nocookieslogin" ) );
+    } else {
+# shouldn't happen
+      return mainLoginForm( wfMsg( "error" ) );
+    }
+  } else {
+    return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
+  }
+}
+
 
 ?>
