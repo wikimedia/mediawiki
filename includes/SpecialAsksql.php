@@ -22,9 +22,13 @@ class SqlQueryForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wpSqlQuery;
+		global $wgLogQueries;
 
 		$wgOut->setPagetitle( wfMsg( "asksql" ) );
-		$wgOut->addWikiText( wfMsg( "asksqltext" ) );
+		$note = wfMsg( "asksqltext" );
+		if($wgLogQueries)
+			$note .= " " . wfMsg( "sqlislogged" );
+		$wgOut->addWikiText( $note );
 
 		if ( "" != $err ) {
 			$wgOut->addHTML( "<p><font color='red' size='+1'>" . htmlspecialchars($err) . "</font>\n" );
@@ -67,7 +71,9 @@ class SqlQueryForm {
 		if ( ! $wgUser->isDeveloper() ) {
 			$connection = wfGetDB( $wgDBsqluser, $wgDBsqlpassword );
 		}
+		$this->logQuery( $wpSqlQuery );
 		$res = wfQuery( $wpSqlQuery, "SpecialAsksql::doSubmit" );
+		$this->logFinishedQuery();
 
 		$n = 0;
 		@$n = wfNumFields( $res );
@@ -110,6 +116,31 @@ class SqlQueryForm {
 		}
 		$this->showForm( wfMsg( "querysuccessful" ) );
 		$wgOut->addHTML( "<hr>{$r}\n" );
+	}
+
+	function logQuery( $q ) {
+		global $wgSqlLogFile, $wgLogQueries, $wgUser;
+		if(!$wgLogQueries) return;
+		
+		$f = fopen( $wgSqlLogFile, "a" );
+		fputs( $f, "\n\n" . wfTimestampNow() .
+			" query by " . $wgUser->getName() .
+			":\n$q\n" );
+		fclose( $f );
+		$this->starttime = microtime();
+	}
+	
+	function logFinishedQuery() {
+		global $wgSqlLogFile, $wgLogQueries;
+		if(!$wgLogQueries) return;
+		
+		list($sec, $usec) = explode( " ", microtime() );
+		list($sec1, $usec1) = explode( " ", $this->starttime );
+		$interval = ($sec + $usec) - ($sec1 + $usec1);
+		
+		$f = fopen( $wgSqlLogFile, "a" );
+		fputs( $f, "finished at " . wfTimestampNow() . "; took $interval secs\n" );
+		fclose( $f );
 	}
 
 }

@@ -55,6 +55,8 @@ $wgReadOnlyFile		= "{$wgUploadDirectory}/lock_yBgMBwiR";
 $wgDebugLogFile     = "{$wgUploadDirectory}/log_dlJbnMZb";
 $wgDebugComments	= false;
 $wgReadOnly			= false;
+$wgSqlLogFile		= "{$wgUploadDirectory}/sqllog_mFhyRe6";
+$wgLogQueries		= false;
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
