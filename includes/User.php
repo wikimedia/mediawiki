@@ -381,7 +381,11 @@ class User {
 	function loadFromDatabase() {
 		global $wgCommandLineMode, $wgAnonGroupId, $wgLoggedInGroupId;
 		$fname = "User::loadFromDatabase";
-		if ( $this->mDataLoaded || $wgCommandLineMode ) {
+		
+		# Counter-intuitive, breaks various things, use User::setLoaded() if you want to suppress 
+		# loading in a command line script, don't assume all command line scripts need it like this
+		#if ( $this->mDataLoaded || $wgCommandLineMode ) {
+		if ( $this->mDataLoaded ) {
 			return;
 		}
 
