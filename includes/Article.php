@@ -611,7 +611,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
-		$rand = mt_rand() / mt_getrandmax();
+		$rand = number_format( mt_rand() / mt_getrandmax(), 12, ".", "" );
 		$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 		  "cur_comment,cur_user,cur_timestamp,cur_minor_edit,cur_counter," .
 		  "cur_restrictions,cur_user_text,cur_is_redirect," .
