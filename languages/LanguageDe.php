@@ -1040,7 +1040,21 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "importfailed"  	=> "Import fehlgeschlagen: $1",
 "importnotext"  	=> "Leer oder kein Text",
 "importsuccess" 	=> "Import erfolgreich!",
-"importhistoryconflict" => "Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)"
+"importhistoryconflict" => "Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)",
+"isbn"			=> "ISBN",
+"rfcurl"		=> "http://www.faqs.org/rfcs/rfc$1.html",
+"siteuser" => "{$wgSitename}-Benutzer $1",
+"siteusers" => "{$wgSitename}-Benutzer $1",
+'watch' => 'Beobachten',
+'unwatch' => 'nicht mehr beobachten',
+'move' => "verschieben",
+'edit' => 'bearbeiten',
+'talk' => 'Diskussion',
+"infobox" => "Klicken Sie einen Button, um einen Beispieltext zu erhalten.",
+"infobox_alert" => "Bitte geben Sie den Text ein, den Sie formatiert haben möchten.\\nEr wird dann zum Kopieren in der Infobox angezeigt.\\nBeispiel:\\n$1\\nwird zu\\n$2",
+"nocookiesnew" => "Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.",
+"nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
+
 
 
 
