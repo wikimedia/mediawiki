@@ -1539,6 +1539,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'imagemaxsize' => 'Limit images on image description pages to: ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
+'newimages' => 'New images gallery',
+
 
 );
 

@@ -71,6 +71,11 @@ class Image
 		return $this->name;
 	}
 
+	function getTitle()
+	{
+		return $this->title;
+	}
+
 	function getURL()
 	{
 		return $this->url;
@@ -117,7 +122,6 @@ class Image
         	return wfUrlencode( $url );
 	}
 
-
 	function exists()
 	{
 		return $this->fileExists;
@@ -137,6 +141,24 @@ class Image
 		return $width."px-".$this->name;
 	}
 
+	function createThumb( $width, $height=-1 ) {
+		if ( $height == -1 ) {
+			return $this->renderThumb( $width );
+		}
+		if ( $width < $this->width ) {
+			$thumbheight = $this->height * $width / $this->width;
+			$thumbwidth = $width;
+		} else {
+			$thumbheight = $this->height;
+			$thumbwidth = $this->width;
+		}
+		if ( $thumbheight > $height ) {
+			$thumbwidth = $thumbwidth * $height / $thumbheight;
+			$thumbheight = $height;
+		}
+		return $this->renderThumb( $thumbwidth );
+	}
+		
 	/**
 	 * Create a thumbnail of the image having the specified width.
 	 * The thumbnail will not be created if the width is larger than the
@@ -145,7 +167,7 @@ class Image
 	 * file does not exist OR if it is older than the image.
 	 * Returns the URL.
 	 */
-	function createThumb( $width ) {
+	function /* private */ renderThumb( $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;

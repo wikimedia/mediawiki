@@ -34,6 +34,7 @@ $wgSpecialPages = array(
 	"Recentchanges"     => new SpecialPage( "Recentchanges" ),
 	"Upload"            => new SpecialPage( "Upload" ),
 	"Imagelist"         => new SpecialPage( "Imagelist" ),
+	"Newimages"         => new SpecialPage( "Newimages" ),
 	"Listusers"         => new SpecialPage( "Listusers" ),
 	"Listadmins"        => new SpecialPage( "Listadmins" ),
 	"Statistics"        => new SpecialPage( "Statistics" ),
@@ -81,7 +82,8 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 #	"Import"		=> new SpecialPage( "Import", "sysop" ),
 
 	"Lockdb"		=> new SpecialPage( "Lockdb", "developer" ),
-	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" )
+	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" ),
+//	"Sitesettings"		=> new SpecialPage( "Sitesettings" )
 ));
 
 /**
