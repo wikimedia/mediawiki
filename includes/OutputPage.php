@@ -177,7 +177,7 @@ class OutputPage {
 			else {
 				$q = preg_split( "/<\\/\\s*pre\\s*>/i", $p[1], 2 );
 				++$presecs;
-				$prelist[$presecs] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>";
+				$prelist[$presecs] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>\n";
 				$stripped3 .= $unique3 . $presecs . "s";
 				$stripped2 = $q[1];
 			}
@@ -1029,7 +1029,7 @@ $t[] = "</table>" ;
 			$result = "</" . $this->mLastSection  . ">";
 		}
 		$this->mLastSection = "";
-		return $result;
+		return $result."\n";
 	}
 	# getCommon() returns the length of the longest common substring
 	# of both arguments, starting at the beginning of both.
@@ -1083,17 +1083,18 @@ $t[] = "</table>" ;
 
 	/* private */function closeList( $char )
 	{
-		if ( "*" == $char ) { return "</li></ul>"; }
-		else if ( "#" == $char ) { return "</li></ol>"; }
+		if ( "*" == $char ) { $text = "</li></ul>"; }
+		else if ( "#" == $char ) { $text = "</li></ol>"; }
 		else if ( ":" == $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
-				return "</dt></dl>";
+				$text = "</dt></dl>";
 			} else {
-				return "</dd></dl>";
+				$text = "</dd></dl>";
 			}
 		}
-		return "<!-- ERR 3 -->";
+		else {	return "<!-- ERR 3 -->"; }
+		return $text."\n";
 	}
 
 	/* private */ function doBlockLevels( $text, $linestart )
