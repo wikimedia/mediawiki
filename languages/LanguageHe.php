@@ -21,15 +21,19 @@ require_once("LanguageUtf8.php");
 	6	=> "תמונה",
 	7	=> "שיחת_תמונה",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk",
-	10	=> "Template",
-	11	=> "Template_talk",
-	12	=> "Help",
-	13	=> "Help_talk",
-	14	=> "Category",
-	15	=> "Category_talk",
-
+	9	=> "שיחת_MediaWiki",
+	10	=> "תבנית",
+	11	=> "שיחת_תבנית",
+	12	=> "עזרה",
+	13	=> "שיחת_עזרה",
+	14	=> "קטגוריה",
+	15	=> "שיחת_קטגוריה",
 ) + $wgNamespaceNamesEn;
+
+/* Custom namespaces for portal and portal_talk */
+$wgExtraNamespaces = array(
+	100 => "פורטל",
+	101 => "שיחת_פורטל");
 
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
