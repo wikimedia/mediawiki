@@ -310,14 +310,6 @@ function wfReadOnly() {
  * Get a message from anywhere, for the UI elements
  */
 function wfMsg( $key ) {
-	global $wgRequest;
-
-	if ( $wgRequest->getVal( 'debugmsg' ) ) {
-		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
-			return "/^()(.*)$/sD";
-		else
-			return $key;
-	}
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
@@ -329,20 +321,11 @@ function wfMsg( $key ) {
  * Get a message from anywhere, for the content
  */
 function wfMsgForContent( $key ) {
-	global $wgRequest;
-	if ( $wgRequest->getVal( 'debugmsg' ) ) {
-		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
-			return "/^()(.*)$/sD";
-		else
-			return $key;
-	}
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
 	return wfMsgReal( $key, $args, true, true );
-    
-
 }
 
 /**
@@ -377,31 +360,43 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
 	
-	$fname = 'wfMsg';
+	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
 	
-	if($forContent) {
-        global $wgMessageCache;
-        $cache = &$wgMessageCache;
-        $lang = &$wgContLang;
-    }
-    else {
-		if(in_array($wgLanguageCode, $wgContLang->getVariants())){
+	if( $forContent ) {
+		/**
+		 * Message is needed for page content, and needs
+		 * to be consistent with the site's configured
+		 * language. It might be part of a page title,
+		 * or a link, or text that will go into the
+		 * parser cache and be served back to other 
+		 * visitors.
+		 */
+		global $wgMessageCache;
+		$cache = &$wgMessageCache;
+		$lang = &$wgContLang;
+	} else {
+		/**
+		 * Message is for display purposes only.
+		 * The user may have selected a conversion-based
+		 * language variant or a separate user interface
+		 * language; if so use that.
+		 */
+		if( in_array( $wgLanguageCode, $wgContLang->getVariants() ) ) {
 			global $wgLang, $wgMessageCache;
 			$cache = &$wgMessageCache;
-			$lang = $wgLang;
-		}
-        else {
+			$lang = &$wgLang;
+		} else {
 			global $wgLang;
-        	$cache = false;
-        	$lang = &$wgLang;
+			$cache = false;
+			$lang = &$wgLang;
 		}
-    }
+	}
 
 
-	if ( is_object($cache) ) {
+	if( is_object( $cache ) ) {
 		$message = $cache->get( $key, $useDB, $forContent );
-	} elseif (is_object($lang)) {
+	} elseif( is_object( $lang ) ) {
 		wfSuppressWarnings();
 		$message = $lang->getMessage( $key );
 		wfRestoreWarnings();
