@@ -1,5 +1,7 @@
 <?php
 
+die("obsolete; remove this file befor 1.3.0 release\n");
+
 # Update already-installed software
 #
 
