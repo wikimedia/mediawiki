@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Install software and create new empty database.
 #

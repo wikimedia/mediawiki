@@ -1,4 +1,4 @@
-<?
+<?php
 # Class representing a Wikipedia article and history.
 # See design.doc for an overview.
 

@@ -1,4 +1,4 @@
-<?
+<?php
 $wgCommandLineMode = true;
 
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";

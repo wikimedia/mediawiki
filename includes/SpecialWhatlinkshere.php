@@ -1,4 +1,4 @@
-<?
+<?php
 
 function wfSpecialWhatlinkshere($par = NULL)
 {

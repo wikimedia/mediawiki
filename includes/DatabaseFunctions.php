@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Backwards compatibility wrapper for Database.php
 

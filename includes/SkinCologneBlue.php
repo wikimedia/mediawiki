@@ -1,4 +1,4 @@
-<?
+<?php
 # See skin.doc
 
 class SkinCologneBlue extends Skin {

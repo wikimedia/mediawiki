@@ -1,4 +1,4 @@
-<?
+<?php
 # This file is copied to the install directory so that
 # later update scripts will be able to use it to determine
 # what they need to update. The version number here must

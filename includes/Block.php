@@ -1,4 +1,4 @@
-<?
+<?php
 # Blocks and bans object
 #
 #TODO: This could be used everywhere, but it isn't.

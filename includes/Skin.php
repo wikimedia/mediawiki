@@ -1,4 +1,4 @@
-<?
+<?php
 # See skin.doc
 
 # These are the INTERNAL names, which get mapped

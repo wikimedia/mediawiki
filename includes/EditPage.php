@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Splitting edit page/HTML interface from Article...
 # The actual database and text munging is still in Article,

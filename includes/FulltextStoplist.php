@@ -1,4 +1,4 @@
-<?
+<?php
 
 # This is the MySQL fulltext search stoplist, copied from the
 # source file "myisam/ft_static.c" in the MySQL source distribution.

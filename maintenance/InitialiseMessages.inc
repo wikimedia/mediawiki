@@ -1,4 +1,4 @@
-<?
+<?php
 
 # This script is included from update.php and install.php. Do not run it 
 # by itself.

@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once("LanguageUtf8.php");
 

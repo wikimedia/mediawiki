@@ -1,4 +1,4 @@
-<?
+<?php
 # Simple 1:1 upper/lowercase switching arrays for utf-8 text
 # Won't get context-sensitive things yet
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Checks translation of all language files
  

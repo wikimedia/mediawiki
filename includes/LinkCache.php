@@ -1,4 +1,4 @@
-<?
+<?php
 # Cache for article titles and ids linked from one source
 
 # These are used in incrementalSetup()

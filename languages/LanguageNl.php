@@ -1,4 +1,4 @@
-<?
+<?php
 
 /* WARNING: This file is still in ISO-8859-1. */
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 # This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
 # Usage:

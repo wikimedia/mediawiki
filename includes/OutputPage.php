@@ -1,4 +1,4 @@
-<?
+<?php
 # See design.doc
 
 if($wgUseTeX) include_once( "Math.php" );

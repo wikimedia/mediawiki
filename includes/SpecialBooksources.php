@@ -1,4 +1,4 @@
-<?
+<?php
 
 # ISBNs in wiki pages will create links to this page, with
 # the ISBN passed in via the query string.

@@ -1,4 +1,4 @@
-<?
+<?php
 
 function install_version_checks() {
 	if( !function_exists( "version_compare" ) ) {

@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Remove spurious brokenlinks
 

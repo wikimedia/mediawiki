@@ -1,4 +1,4 @@
-<?
+<?php
 # See diff.doc
 
 class DifferenceEngine {

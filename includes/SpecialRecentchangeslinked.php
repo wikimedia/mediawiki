@@ -1,4 +1,4 @@
-<?
+<?php
 include_once( "SpecialRecentchanges.php" );
 
 function wfSpecialRecentchangeslinked( $par = NULL )

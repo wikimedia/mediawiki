@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Check to see if all messages have been translated into
 # the selected language. To run this script, you must have

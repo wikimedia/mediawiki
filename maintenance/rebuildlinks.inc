@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Functions for rebuilding the link tracking tables; must
 # be included within a script that also includes the Setup.

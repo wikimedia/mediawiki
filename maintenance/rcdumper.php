@@ -1,4 +1,4 @@
-<?
+<?php
 
 $wgCommandLineMode = true;
 $fmB = chr(2);

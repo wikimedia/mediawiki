@@ -1,4 +1,4 @@
-<?
+<?php
 # See deferred.doc
 
 class UserTalkUpdate {

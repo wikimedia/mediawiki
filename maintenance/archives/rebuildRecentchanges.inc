@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Rebuild recent changes table.
 
