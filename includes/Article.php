@@ -731,8 +731,6 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
-
-		$wgUser->clearNotification( $this->mTitle );
 	}
 
 	/**
@@ -1852,7 +1850,10 @@ class Article {
 			$this->mTitle->getText() == $wgUser->getName()) {
 			require_once( 'UserTalkUpdate.php' );
 			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
+		} else {
+			$wgUser->clearNotification( $this->mTitle );
 		}
+
 	}
 
 	/**
