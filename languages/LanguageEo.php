@@ -11,20 +11,24 @@ $wgEditEncoding		= "x";
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesEo = array(
-	-2	=> "Media",
-	-1	=> "Speciala",
-	0	=> "",
-	1	=> "Diskuto",
-	2	=> "Vikipediisto",
-	3	=> "Vikipediista_diskuto",
-	4	=> $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
-	5	=> "{$wgMetaNamespace}_diskuto",
-	6	=> "Dosiero", #FIXME: Check the magic for Image: and Media:
-	7	=> "Dosiera_diskuto",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskuto",
-	10  => "Template",
-	11  => "Template_talk"
+	NS_MEDIA          => "Media",
+	NS_SPECIAL        => "Speciala",
+	NS_MAIN           => "",
+	NS_TALK           => "Diskuto",
+	NS_USER           => "Vikipediisto",
+	NS_USER_TALK      => "Vikipediista_diskuto",
+	NS_WIKIPEDIA      => $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
+	NS_WIKIPEDIA_TALK => "{$wgMetaNamespace}_diskuto", # FIXME
+	NS_IMAGE          => "Dosiero", #FIXME: Check the magic for Image: and Media:
+	NS_IMAGE_TALK     => "Dosiera_diskuto",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "MediaWiki_diskuto",
+	NS_TEMPLATE       => "Ŝablono",
+	NS_TEMPLATE_TALK  => "Ŝablona_diskuto",
+	NS_HELP           => "Helpo",
+	NS_HELP_TALK      => "Helpa_diskuto",
+	NS_CATEGORY       => "Kategorio",
+	NS_CATEGORY_TALK  => "Kategoria_diskuto",
 
 );
 
