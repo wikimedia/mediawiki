@@ -2081,10 +2081,12 @@ function wfBraceSubstitution( $matches )
 	global $wgCurParser;
 	$titleChars = Title::legalChars();
 	# Double brace substitution, expand bar in {{foo{{bar}}}}
-	if(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches)) {
+	$i = 0;
+	while(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches) and $i < 30) {
 		$text = wfInternalBraceSubstitution( $internalmatches );
 		$matches[0] = str_replace($internalmatches[0], $text , $matches[0]);
 		$matches[2] = str_replace($internalmatches[0], $text , $matches[2]);
+		$i++;
 	}
 
 	return $wgCurParser->braceSubstitution( $matches );
