@@ -1062,6 +1062,8 @@ class Title {
 		$won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
+		wfSeedRandom();
+		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
 
 		# Rename cur entry
 		wfUpdateArray(
@@ -1088,6 +1090,7 @@ class Title {
 			'inverse_timestamp' => $won,
 			'cur_touched' => $now,
 			'cur_is_redirect' => 1,
+			'cur_random' => $rand,
 			'cur_is_new' => 1,
 			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" )
 		);
