@@ -4,17 +4,127 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 RELEASE CANDIDATE 1 ==
+== MediaWiki 1.4.0 ==
 
-MediaWiki 1.4rc1 is a security and bug fix release for the 1.4 beta
-series.
+MediaWiki 1.4.0 is the first official stable release in the 1.4 series.
+All new installations are highly recommended to use 1.4.0 instead of 1.3.x;
+1.3.x users should consider upgrading for bug fixes and new features.
+
+1.4 beta or release candidate users should upgrade to this release.
+
+
+=== READ THIS FIRST: Upgrading ===
+
+If upgrading from an older release, see the notes in the file UPGRADE.
+There are a couple of minor database changes from the beta releases,
+and somewhat larger changes from 1.3.x.
+
+
+=== READ THIS FIRST, TOO: MySQL 4.1 ===
+
+If you have the choice of MySQL 4.0 or MySQL 4.1 and don't need 4.1 for
+some other application, you should consider sticking with 4.0 for the
+moment. 4.1 may require you to do extra fiddling to get things to work
+due to changes that aren't fully backwards-compatible.
+
+MySQL 4.1 has changed the authentication protocol in an incompatible
+way; many PHP installations still use the older client libraries and
+CANNOT CONNECT TO THE SERVER WITH A PASSWORD without some changes.
+
+See: http://dev.mysql.com/doc/mysql/en/Old_client.html
+
+If MySQL is set with utf-8 as the default character set, installation
+may fail with "key too long" errors. Set the default charset to 'latin1'
+for installation and it should work.
+
+The mysqldump backup generator now applies an automatic conversion to
+UTF-8, which may irretrivably corrupt your data. Pass the -charset option
+with the original default charset (eg 'latin1') to skip the conversion.
+
+
+=== New features ===
+
+* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed.
+* New, searchable deletion/upload/protection logs
+* Image gallery generation (Special:Newimages and <gallery> tag)
+* SVG rasterization support (requires external support tools)
+* Users can select from the available localizations to override the
+  default user interface language.
+* Traditional/Simplified Chinese conversion support
+* rel="nofollow" support to combat linkspam
+
+The current implementation adds this attribute to _all_ external URL
+links in wiki text (but not internal [[wiki links]] or interwiki links).
+To disable the attribute for _all_ external links, add this line to your
+LocalSettings.php:
+
+  $wgNoFollowLinks = false
+
+For background information on nofollow see:
+
+  http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
+
+
+=== Installation and compatibility ===
+
+* The default MonoBook theme now works with PHP 5.0
+* Installation on systems with PHP's safe mode or other oddities
+  should work more reliably, as MonoBook no longer needs to
+  create a compiled template file for the wiki to run.
+* A table prefix may be specified, to avoid conflicts with other
+  web applications forced to share a database.
+* More thorough UTF-8 input validation; fixes non-ASCII uploaded
+  filenames from Safari.
+* Command-line database upgrade script.
+
+
+=== Customizability ===
+
+* Default user options can now be overridden in LocalSettings.
+* Skins system more modular: templates and CSS are now in /skins/
+  New skins can be dropped into this directory and used immediately.
+* More extension hooks have been added.
+* Authentication plugin hook.
+* More internal code documentation, generated with phpdoc:
+  http://www.mediawiki.org/docs/html/
+
+
+=== Optimization ===
+
+* For many operations, MediaWiki 1.4 should run faster and use
+  less memory than MediaWiki 1.3. Page rendering is up to twice
+  as fast. (Use a PHP accelerator such as Turck MMCache for best
+  results with any PHP application, though!)
+* The parser cache no longer requires memcached, and is enabled
+  by default. This avoids a lot of re-rendering of pages that
+  have been shown recently, greatly speeding longer page views.
+* Support for compiled PHP modules to speed up page diff and
+  Unicode validation/normalization. (Requires ability to compile
+  and load PHP extensions).
+
+
+=== What isn't ready yet ===
+
+* A new user/groups permissions scheme has been held back to 1.5.
+* An experimental SOAP interface will be made available as an extension
+* PostgreSQL support is largely working, minus search and the installer.
+  You can perform a manual installation.
+* E-mail notification of watched page changes and verification of
+  user-submitted e-mail addresses is not yet included.
+* Log pages are not automatically imported into the new log table
+  at upgrade time. A script to import old text log entries is
+  incomplete, but may be available in later point releases.
+* Some localizations are still incomplete.
+
+
+
+== Changelog ==
 
 === Important security updates ===
 
 A security audit found and fixed a number of problems. Users of MediaWiki
 1.3.10 and earlier should upgrade to 1.3.11; users of 1.4 beta releases
-should upgrade to 1.4rc1.
-
+prior to 1.4rc1 should upgrade immediately.
 
 ==== Cross-site scripting vulnerability ====
 
@@ -61,92 +171,6 @@ links in wiki pages to reduce the effectiveness of wiki spam. This will
 cause participating search engines to ignore external URL links from wiki
 pages for purposes of page relevancy ranking.
 
-The current implementation adds this attribute to _all_ external URL
-links in wiki text (but not internal [[wiki links]] or interwiki links).
-To disable the attribute for _all_ external links, add this line to your
-LocalSettings.php:
-
-  $wgNoFollowLinks = false
-
-For background information on nofollow see:
-
-  http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
-
-
-''''' Thinking of using MySQL 4.1? Please read this first! '''''
-''''' Your PHP installation probably uses the OLD protocol '''''
-'''''   http://dev.mysql.com/doc/mysql/en/Old_client.html  '''''
-
-This is a beta release; while most things are working, there are some
-known problems and probably unknown problems. Don't run a public site
-on this beta unless you're willing to help with investigating and
-fixing any problems you encounter.
-
-CARELESS USE OF THIS CODE MAY RENDER YOU STERILE, GROW WEEDS IN YOUR
-YARD, AND FEED YOUR CAT TO A SEWER ALLIGATOR. DON'T SAY YOU WEREN'T
-WARNED, CAUSE WE WARNED YOU.
-
-If upgrading from an older release, see the file UPGRADE;
-1.4beta5 does include a minor database change from earlier betas.
-
-=== New features ===
-
-* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed.
-* New, searchable deletion/upload/protection logs
-* Image gallery generation (Special:Newimages and <gallery> tag)
-* SVG rasterization support (requires external support)
-* Users can select from the available localizations to override the
-  default user interface language.
-* Traditional/Simplified Chinese conversion support
-
-=== Installation and compatibility ===
-
-* The default MonoBook theme now works with PHP 5.0
-* Installation on systems with PHP's safe mode or other oddities
-  should work more reliably, as MonoBook no longer needs to
-  create a compiled template file for the wiki to run.
-* A table prefix may be specified, to avoid conflicts with other
-  web applications forced to share a database.
-* More thorough UTF-8 input validation; fixes non-ASCII uploaded
-  filenames from Safari.
-* Command-line database upgrade script.
-
-=== Customizability ===
-
-* Default user options can now be overridden in LocalSettings.
-* Skins system more modular: templates and CSS are now in /skins/
-  New skins can be dropped into this directory and used immediately.
-* More extension hooks have been added.
-* Authentication plugin hook.
-* More internal code documentation, generated with phpdoc:
-  http://www.mediawiki.org/docs/html/
-
-=== Optimization ===
-
-* For many operations, MediaWiki 1.4 should run faster and use
-  less memory than MediaWiki 1.3. Page rendering is up to twice
-  as fast. (Use a PHP accelerator such as Turck MMCache for best
-  results with any PHP application, though!)
-* The parser cache no longer requires memcached, and is enabled
-  by default. This avoids a lot of re-rendering of pages that
-  have been shown recently, greatly speeding longer page views.
-* Support for compiled PHP modules to speed up page diff and
-  Unicode validation/normalization. (Requires ability to compile
-  and load PHP extensions).
-
-=== What isn't ready yet ===
-
-* A new user/groups permissions scheme has been held back to 1.5.
-* An experimental SOAP interface will be made available as an extension
-* PostgreSQL support is largely working, minus search and the installer.
-  You can perform a manual installation.
-* E-mail notification of watched page changes and verification of
-  user-submitted e-mail addresses is not yet included.
-* Log pages are not automatically imported into the new log table
-  at upgrade time. A script to import old text log entries is
-  incomplete, but may be available by the time 1.4 finishes.
-* Some UI messages may be broken in Latin-1 mode in this release due
-  to some minor breakage in the language selection module.
 
 === Misc bugs fixed in beta 1 ===
 
@@ -379,7 +403,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Stub threshold displays correctly again
 
 
-=== RC2 fixes ===
+=== 1.4.0 final fixes ===
 
 * (bug 65) Fix broken interwiki link encoding on Latin-1 wikis; force to UTF-8
 * (bug 563) Fix UTF-8 interwiki URL redirects via Latin-1 wikis
@@ -415,6 +439,8 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1696) Update namespaces, dates in uk localization
 * (bug 551) Installer warns about magic_quotes_runtime and magic_quotes_sybase
   instead of trying to install with corrupt table files
+* Installer no longer tries to move non-default MediaWiki: pages into Template:
+* User-to-user email disabled by default ($wgEnableUserEmail)
 
 
 === Caveats ===
