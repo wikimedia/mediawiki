@@ -18,7 +18,7 @@ function wfSpecialRecentchanges( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
 	global $wgFeedClasses, $wgUseRCPatrol;
-	global $wgRCUseModStyle, $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
+	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -116,13 +116,11 @@ function wfSpecialRecentchanges( $par ) {
 	$patrLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hidepatrolled], wfArrayToCGI( array( 'hidepatrolled' => 1-$hidepatrolled ), $urlparams ) );
 
-	$RCUseModStyle = ($wgRCUseModStyle && $wgUser->getOption('rcusemodstyle')) ? 'AND rc_this_oldid=0 '  :  '' ;
-
 	$uid = $wgUser->getID();
 	# Patch for showing "updated since last visit" marker
 	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
-	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " . $RCUseModStyle .
+	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
 	$res = $dbr->query( $sql2, DB_SLAVE, $fname );
@@ -168,7 +166,7 @@ function wfSpecialRecentchanges( $par ) {
 
 				if ($wgShowUpdatedMarker
 					&& $wgUser->getOption( 'showupdated' )
-					&& $obj->wl_notificationtimestamp
+					&& !empty( $obj->wl_notificationtimestamp )
 					&& ($obj->rc_timestamp >= $obj->wl_notificationtimestamp)) {
 						$rc->notificationtimestamp = true;
 				} else {
