@@ -533,4 +533,9 @@ function wfInvertTimestamp( $ts ) {
 		"9876543210"
 	);
 }
+
+function wfLimitResult( $limit, $offset ) {
+	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
+}
+
 ?>
