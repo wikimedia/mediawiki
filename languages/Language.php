@@ -1482,7 +1482,7 @@ amusement.",
 'accesskey-upload' => 'u',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
-'accesskey-preview' => 'p',
+'accesskey-preview' => 'v',
 
 # tooltip help for the main actions
 'tooltip-article' => 'View the article [alt-a]',
@@ -1518,7 +1518,7 @@ amusement.",
 'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save you changes [alt-s]',
-'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
+'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-v]',
 
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
