@@ -366,13 +366,14 @@ div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
     margin-bottom: 0.5em;
-    border-style: solid; border-color: White;
+    border-style: solid;
+	border-color: #2F333B;
     width: auto;
 }
 div.thumb div {
-    border:1px solid #cccccc;
+    border:1px solid #aaaaaa;
     padding: 3px !important;
-    background-color:#f9f9f9;
+    background-color:#2F333B;
     font-size: 94%;
     text-align: center;
     overflow: hidden;
