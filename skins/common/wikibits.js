@@ -60,9 +60,9 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 function histrowinit () {
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('LI');
+    lis = hf.getElementsByTagName('li');
     for (i=0;i<lis.length;i++) {
-        inputs=lis[i].getElementsByTagName('INPUT');
+        inputs=lis[i].getElementsByTagName('input');
         if(inputs[0] && inputs[1]) {
                 inputs[0].onclick = diffcheck;
                 inputs[1].onclick = diffcheck;
@@ -76,9 +76,9 @@ function diffcheck() {
     var oli = false; // the li where the oldid radio is checked
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('LI');
+    lis = hf.getElementsByTagName('li');
     for (i=0;i<lis.length;i++) {
-        inputs=lis[i].getElementsByTagName('INPUT');
+        inputs=lis[i].getElementsByTagName('input');
         if(inputs[1] && inputs[0]) {
             if(inputs[1].checked || inputs[0].checked) { // this row has a checked radio button
                 if(inputs[1].checked && inputs[0].checked && inputs[0].value == inputs[1].value) return false;
@@ -112,17 +112,17 @@ function diffcheck() {
 function tabbedprefs() {
     prefform = document.getElementById('preferences');
     if(!prefform || !document.createElement) return;
-    if(prefform.nodeName == 'A') return; // Occasional IE problem
+    if(prefform.nodeName == 'a') return; // Occasional IE problem
     prefform.className = prefform.className + 'jsprefs';
     var sections = new Array();
     children = prefform.childNodes;
     var seci = 0;
     for(i=0;i<children.length;i++) {
-        if(children[i].nodeName.indexOf('FIELDSET') != -1) {
+        if(children[i].nodeName.indexOf('fieldset') != -1) {
             children[i].id = 'prefsection-' + seci;
             children[i].className = 'prefsection';
             if(is_opera || is_khtml) children[i].className = 'prefsection operaprefsection';
-            legends = children[i].getElementsByTagName('LEGEND');
+            legends = children[i].getElementsByTagName('legend');
             sections[seci] = new Object();
             if(legends[0] && legends[0].firstChild.nodeValue)
                 sections[seci].text = legends[0].firstChild.nodeValue;
@@ -134,16 +134,16 @@ function tabbedprefs() {
             else var selectedid = children[i].id;
         }
     }
-    var toc = document.createElement('UL');
+    var toc = document.createElement('ul');
     toc.id = 'preftoc';
     toc.selectedid = selectedid;
     for(i=0;i<sections.length;i++) {
-        var li = document.createElement('LI');
+        var li = document.createElement('li');
         if(i == 0) li.className = 'selected';
-        var a =  document.createElement('A');
+        var a =  document.createElement('a');
         a.href = '#' + sections[i].secid;
         a.onclick = uncoversection;
-        a.innerHTML = sections[i].text;
+        a.appendChild(document.createTextNode(sections[i].text));
         a.secid = sections[i].secid;
         li.appendChild(a);
         toc.appendChild(li);
@@ -159,7 +159,7 @@ function uncoversection() {
         document.getElementById(oldsecid).style.display = 'none';
         newsec.style.display = 'block';
         ul.selectedid = this.secid;
-        lis = ul.getElementsByTagName('LI');
+        lis = ul.getElementsByTagName('li');
         for(i=0;i< lis.length;i++) {
             lis[i].className = '';
         }
@@ -280,7 +280,7 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	document.write("<a href=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
 
-        document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\""+mouseOver+">");
+        document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" alt=\""+speedTip+"\" title=\""+speedTip+"\""+mouseOver+">");
 	document.write("</a>");
 	return;
 }
@@ -299,7 +299,7 @@ function addInfobox(infoText,text_alert) {
  		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
 			"<input size=80 id='infobox' name='infobox' value=\""+
-			infoText+"\" READONLY></form>");
+			infoText+"\" readonly='readonly'></form>");
  	}
 
 }
