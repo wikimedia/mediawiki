@@ -10,4 +10,4 @@ INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_
 INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_rights)
 	VALUES (3,'Sysops','Operators of this site','read,edit,move,delete,undelete,protect,block,upload,asksql,rollback,patrol,editinterface,sysop');
 INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_rights)
-	VALUES (4,'Bureaucrat','The bureaucrat group is able to make sysops for example. They have no other rights.','read,edit,move,delete,undelete,protect,block,userrights,createaccount,upload,asksql,rollback,patrol,editinterface,siteadmin,sysop');
+	VALUES (4,'Bureaucrat','The bureaucrat group is able to make sysops for example. They have no other rights.','read,edit,move,delete,undelete,protect,block,userrights,grouprights,createaccount,upload,asksql,rollback,patrol,editinterface,siteadmin,sysop');

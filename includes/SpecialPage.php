@@ -97,6 +97,7 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
 	'Userlevels'	=> new SpecialPage( 'Userlevels', 'userrights' ),
+	'Grouplevels'	=> new SpecialPage( 'Grouplevels', 'grouprights' ),
 ));
 
 /**

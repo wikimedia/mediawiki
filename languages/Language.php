@@ -889,8 +889,8 @@ from server time (UTC).',
 #
 
 # switching pan
-'userlevels-lookup-group' => 'Manage group rights',
-'userlevels-group-edit' => 'Existent groups: ',
+'grouplevels-lookup-group' => 'Manage group rights',
+'grouplevels-group-edit' => 'Existent groups: ',
 'editgroup' => 'Edit Group',
 'addgroup' => 'Add Group',
 
@@ -899,10 +899,10 @@ from server time (UTC).',
 'editusergroup' => 'Edit User Groups',
 
 # group editing
-'userlevels-editgroup' => 'Edit group',
-'userlevels-addgroup' => 'Add group',
-'userlevels-editgroup-name' => 'Group name: ',
-'userlevels-editgroup-description' => 'Group description (max 255 characters):<br />',
+'grouplevels-editgroup' => 'Edit group',
+'grouplevels-addgroup' => 'Add group',
+'grouplevels-editgroup-name' => 'Group name: ',
+'grouplevels-editgroup-description' => 'Group description (max 255 characters):<br />',
 'savegroup' => 'Save Group',
 
 # user groups editing
@@ -1110,6 +1110,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'createaccountpheading' => 'createaccount level',
 'deletepheading' => 'delete level',
 'userrightspheading' => 'userrights level',
+'grouprightspheading' => 'grouprights level',
 'siteadminpheading' => 'siteadmin level',
 
 /** obsoletes
@@ -1132,6 +1133,7 @@ in active use.</p>',
 'categoriespagetext' => 'The following categories exists in the wiki.',
 'data'	=> 'Data',
 'userlevels' => 'User levels management',
+'grouplevels' => 'Group levels management',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
