@@ -2370,7 +2370,7 @@ class Skin {
 		if($userTalkLink) $s.=' ('.$userTalkLink.')';
 
 		# Add comment
-		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE ) {
+		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment);
 			$s .= $wgLang->emphasize(' (' . $rc_comment . ')');
 		}
@@ -2403,10 +2403,14 @@ class Skin {
 		}
 		
 		# Make article link
-		if ( $rc_type == RC_MOVE ) {
-			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' );
-			$clink .= ' ' . wfMsg('movedto') . ' ';
-			$clink .= $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' );
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+			if ( $rc_type == RC_MOVE ) { 
+				$msg = "1movedto2";
+			} else {
+				$msg = "1movedto2_redir";
+			}
+			$clink = wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ), 
+			  $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 		} else {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
@@ -2417,7 +2421,7 @@ class Skin {
 		$rc->timestamp = $time;
 		
 		# Make "cur" and "diff" links
-		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE) {
+		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$curLink = wfMsg( 'cur' );
 			$diffLink = wfMsg( 'diff' );
 		} else {	
@@ -2429,7 +2433,7 @@ class Skin {
 
 		# Make "last" link
 		$titleObj = $rc->getTitle();
-		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE ) {
+		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = wfMsg( 'last' );
 		} else {
 			$lastLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'last' ),
@@ -2475,7 +2479,7 @@ class Skin {
 		# Page moves go on their own line
 		$title = $rc->getTitle();
 		$secureName = $title->getPrefixedDBkey();
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
