@@ -6,7 +6,7 @@
 		$ot = $wgRequest->getText('ot');
 		$mwMsg =& MagicWord::get( MAG_MSG );
 		set_time_limit(0);
-		$navText = str_replace( "$1", $mwMsg->getSynonym( 0 ), wfMsg("allmessagestext" ) );
+		$navText = wfMsg( 'allmessagestext', $mwMsg->getSynonym( 0 ) );
 		$first = true;
 		$sortedArray = $wgAllMessagesEn;
 		ksort( $sortedArray );

@@ -181,14 +181,14 @@ class Validation
 			{
 			$tablestyle = "cellspacing=0 cellpadding=2" ;
 			if ( $article_time == $time ) $tablestyle .=" style='border: 2px solid red'" ;
-			$html .= "<h2>" . str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
+			$html .= "<h2>" . wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp2Unix( $time ) ) ) ;
 			$this->find_this_version ( $article_title , $time , $table_id , $table_name ) ;
 			if ( $table_name == "cur" ) $html .= " (" . wfMsg ( 'val_this_is_current_version' ) . ")" ;
 			$html .= "</h2>\n" ;
 			$html .= "<form method=post>\n" ;
 			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
 			$html .= "<table {$tablestyle}>\n" ;
-			$html .= str_replace ( "$1" , $tabsep , wfMsg("val_table_header") ) ;
+			$html .= wfMsg( 'val_table_header', $tabsep ) ;
 			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )
 				{
 				$x = explode ( "|" , $validationtypes[$idx] , 4 ) ;
@@ -318,13 +318,11 @@ class Validation
 					$average = 100 * $vcur[$idx] / $vmax[$idx] ;
 					$total_count += 1 ;
 					$total_percent += $average ;
-					if ( $users[$idx] > 1 ) $h = wfMsg ( "val_percent" ) ;
-					else $h = wfMsg ( "val_percent_single" ) ;
-					$h = str_replace ( "$1" , number_format ( $average , 2 ) , $h ) ;
-					$h = str_replace ( "$2" , $vcur[$idx] , $h ) ;
-					$h = str_replace ( "$3" , $vmax[$idx] , $h ) ;
-					$h = str_replace ( "$4" , $users[$idx] , $h ) ;
-					$html .= "<td align=center valign=top>" . $h ;
+					if ( $users[$idx] > 1 ) $msgid = "val_percent" ;
+					else $msgid = "val_percent_single" ;
+					$html .= "<td align=center valign=top>" .
+							wfMsg ( $msgid, number_format ( $average , 2 ) ,
+									$vcur[$idx] , $vmax[$idx] , $users[$idx] ) ;
 					}
 				else
 					{
