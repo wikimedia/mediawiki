@@ -432,7 +432,6 @@ class PreferencesForm {
 		/* see if there are multiple language variants to choose from*/
 		if(!$wgDisableLangConversion) {
 			$variants = $wgContLang->getVariants();
-			$size=sizeof($variants);
 		
 			$variantArray=array();
 			foreach($variants as $v) {
@@ -441,7 +440,6 @@ class PreferencesForm {
 					$variantArray[$v] = $name;
 				}
 			}
-			$size=sizeof($variantArray);
 		
 			if(sizeof($variantArray) > 1) {
 			$wgOut->addHtml("
@@ -592,18 +590,9 @@ class PreferencesForm {
 	
 		# Various checkbox options
 		#
-		$togs = $wgLang->getUserToggles();
-
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
 
-		$showtoglangconv = true;
-		if( sizeof( $wgContLang->getVariants() ) < 2 ) {
-			$showtoglangconv = false;
-		}
 		foreach ( $togs as $tname ) {
-			if( !$showtoglangconv && $tname == 'nolangconversion' ) {
-				continue;
-			}
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}
