@@ -460,10 +460,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$reason = $wgUser->blockedFor();
                 $ip = $wgIP;
 		
-		if ( is_string( $id ) ) {
-			$name = $id;
-		} else {
+		if ( is_numeric( $id ) ) {
 	                $name = User::whoIs( $id );
+		} else {
+			$name = $id;
 		}
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
