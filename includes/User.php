@@ -10,6 +10,9 @@
  */
 require_once( 'WatchedItem.php' );
 
+# Number of characters in user_token field
+define( 'USER_TOKEN_LENGTH', 32 );
+
 /**
  *
  * @package MediaWiki
@@ -24,7 +27,7 @@ class User {
 	var $mSkin;
 	var $mBlockedby, $mBlockreason;
 	var $mTouched;
-	var $mCookiePassword;
+	var $mToken;
 	var $mRealName;
 	var $mHash;
 	/**#@-*/
@@ -149,10 +152,10 @@ class User {
 		$this->mDataLoaded = false;
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
-		$this->cookiePassword = '';
+		$this->setToken(); # Random
 		$this->mHash = false;
 	}
-	
+
 	/**
 	 * Used to load user options from a language.
 	 * This is not in loadDefault() cause we sometime create user before having
@@ -293,12 +296,10 @@ class User {
 			wfDebug( "User::loadFromSession() got from cache!\n" );
 		}
 
-		if ( isset( $_SESSION['wsUserPassword'] ) ) {
-			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
-		} else if ( isset( $_COOKIE["{$wgDBname}Password"] ) ) {
-			$user->mCookiePassword = $_COOKIE["{$wgDBname}Password"];
-			$_SESSION['wsUserPassword'] = $user->addSalt( $user->mCookiePassword );
-			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
+		if ( isset( $_SESSION['wsToken'] ) ) {
+			$passwordCorrect = $_SESSION['wsToken'] == $user->mToken;
+		} else if ( isset( $_COOKIE["{$wgDBname}Token"] ) ) {
+			$passwordCorrect = $user->mToken == $_COOKIE["{$wgDBname}Token"];
 		} else {
 			return new User(); # Can't log in from session
 		}
@@ -325,7 +326,7 @@ class User {
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
 			return;
 		}
-
+		
 		# Paranoia
 		$this->mId = IntVal( $this->mId );
 
@@ -358,11 +359,11 @@ class User {
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
-
+		
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
-		  'user_real_name','user_options','user_touched' ),
+		  'user_real_name','user_options','user_touched', 'user_token' ),
 		  array( 'user_id' => $this->mId ), $fname );
-
+		
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
@@ -374,6 +375,7 @@ class User {
 			$this->mRights = explode( ",", strtolower( 
 				$dbr->selectField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
 			) );
+			$this->mToken = $s->user_token;
 		}
 
 		$this->mDataLoaded = true;
@@ -442,13 +444,29 @@ class User {
 		return $this->addSalt( md5( $p ) );
 	}
 
+	# Set the password and reset the random token
 	function setPassword( $str ) {
 		$this->loadFromDatabase();
-		$this->setCookiePassword( $str );
+		$this->setToken();
 		$this->mPassword = $this->encryptPassword( $str );
 		$this->mNewpassword = '';
 	}
 
+	# Set the random token (used for persistent authentication)
+	function setToken( $token = false ) {
+		if ( !$token ) {
+			$this->mToken = '';
+			# Take random data from PRNG
+			# This is reasonably secure if the PRNG has been seeded correctly
+			for ($i = 0; $i<USER_TOKEN_LENGTH / 4; $i++) {
+				$this->mToken .= sprintf( "%04X", mt_rand( 0, 65535 ) );
+			}
+		} else {
+			$this->mToken = $token;
+		}
+	}
+
+			
 	function setCookiePassword( $str ) {
 		$this->loadFromDatabase();
 		$this->mCookiePassword = md5( $str );
@@ -665,11 +683,11 @@ class User {
 		$_SESSION['wsUserName'] = $this->mName;
 		setcookie( $wgDBname.'UserName', $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
 
-		$_SESSION['wsUserPassword'] = $this->mPassword;
+		$_SESSION['wsToken'] = $this->mToken;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			setcookie( $wgDBname.'Password', $this->mCookiePassword, $exp, $wgCookiePath, $wgCookieDomain );
+			setcookie( $wgDBname.'Token', $this->mToken, $exp, $wgCookiePath, $wgCookieDomain );
 		} else {
-			setcookie( $wgDBname.'Password', '', time() - 3600 );
+			setcookie( $wgDBname.'Token', '', time() - 3600 );
 		}
 	}
 
@@ -678,14 +696,14 @@ class User {
 	 * It will clean the session cookie
 	 */
 	function logout() {
-		global $wgCookiePath, $wgCookieDomain, $wgDBname;
+		global $wgCookiePath, $wgCookieDomain, $wgDBname, $wgIP;
 		$this->loadDefaults();
 		$this->setLoaded( true );
 
 		$_SESSION['wsUserID'] = 0;
 
 		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
-		setcookie( $wgDBname.'Password', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 	}
 
 	/**
@@ -715,7 +733,8 @@ class User {
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
 				'user_options' => $this->encodeOptions(),
-				'user_touched' => $dbw->timestamp($this->mTouched)
+				'user_touched' => $dbw->timestamp($this->mTouched),
+				'user_token' => $this->mToken
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), $fname
@@ -758,7 +777,8 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_email' => $this->mEmail,
 				'user_real_name' => $this->mRealName,
-				'user_options' => $this->encodeOptions()
+				'user_options' => $this->encodeOptions(),
+				'user_token' => $this->mToken
 			), $fname
 		);
 		$this->mId = $dbw->insertId();
@@ -772,7 +792,7 @@ class User {
 	}
 
 	function spreadBlock() {
-		global $wgIP;
+          	global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
 		$fname = 'User::spreadBlock';
