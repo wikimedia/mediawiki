@@ -191,8 +191,8 @@ class QueryPage {
 			}
 			$dbr->freeResult( $res );
 			$s .= '</ol>';
+			$wgOut->addHTML( $s );
 		}
-		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
 	}
 
