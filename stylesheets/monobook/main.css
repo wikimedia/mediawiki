@@ -967,10 +967,6 @@ head:first-child+body #portal-footer li {
     overflow: auto;
     width: 100%;
 }
-* html #bodyContent table,
-* html #bodyContent div {
-    position: relative;
-}
 
 /* opera 6 fixes */
 html>body #portal-column-one {
