@@ -44,6 +44,10 @@ if( defined( 'PRETTY_UTF8' ) ) {
 	}	
 }
 
+if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
+	dl( 'php_utfnormal.so' );
+}
+
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 
@@ -106,7 +110,8 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$cols = explode( ';', $line );
 	$char = codepointToUtf8( hexdec( $cols[0] ) );
 	$desc = $cols[0] . ": " . $cols[1];
-	if( $char >= UTF8_SURROGATE_FIRST && $char <= UTF8_SURROGATE_LAST ) {
+	if( $char === "\x00" || $char >= UTF8_SURROGATE_FIRST && $char <= UTF8_SURROGATE_LAST ) {
+		# Can't check NULL with the ICU plugin, as null bytes fail in C land.
 		# Surrogates are illegal on their own or in UTF-8, ignore.
 		continue;
 	}
