@@ -139,6 +139,16 @@ function do_recentchanges_update() {
 		dbsource( "maintenance/archives/patch-rc_ip.sql", $wgDatabase );
 		echo "ok\n";
 	}
+	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_id" ) ) {
+		echo "Adding rc_id...";
+		dbsource( "maintenance/archives/patch-rc_id.sql", $wgDatabase );
+		echo "ok\n";
+	}
+	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_patrolled" ) ) {
+		echo "Adding rc_patrolled...";
+		dbsource( "maintenance/archives/patch-rc-patrol.sql", $wgDatabase );
+		echo "ok\n";
+	}
 }
 
 function do_user_real_name_update() {
