@@ -92,6 +92,7 @@
 	"bi" => "Bislama",
 	"bn" => "Bengali",
 	"bo" => "Tibétain",
+	"bs" => "Bosanski",
 	"ca" => "Català",
 	"co" => "Corse",
 	"cs" => "&#268;esky (Tchèque)",
@@ -111,6 +112,7 @@
 	"fi" => "Suomi",
 	"fj" => "Fidjien",
 	"fo" => "Féroïen",
+	"fr" => "Français",
 	"fy" => "Frison",
 	"ga" => "Gaeilge",
 	"gl" => "Galicien",
@@ -362,7 +364,7 @@ Voir $1.",
 "toc"		=> "Sommaire",			// Looxix "Table"
 "showtoc"	=> "montrer",			// Looxix
 "hidetoc"	=> "cacher",			// Looxix
-"thisisdeleted" => "Afficher ou restaurer $?",	// Looxix "View or restore $1?"
+"thisisdeleted" => "Afficher ou restaurer $1?",	// Looxix "View or restore $1?"
 "restorelink"	=> "$1 modifications effacées",		// Looxix "$1 deleted edits"
 
 # Main script and global functions
