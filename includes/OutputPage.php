@@ -43,7 +43,7 @@ class OutputPage {
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
-	function addLink( $rel, $rev, $target ) { array_push( $this->mLinktags, array( $rel, $rev, $target ) ); }
+	function addLink( $rel, $rev, $target, $type="" ) { array_push( $this->mLinktags, array( $rel, $rev, $target, $type ) ); }
 
 	# checkLastModified tells the client to use the client-cached page if
 	# possible. If sucessful, the OutputPage is disabled so that
@@ -544,7 +544,7 @@ class OutputPage {
 
 	/* private */ function headElement()
 	{
-		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding, $wgLang;
+		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding, $wgLang, $wgRequest;
 
 		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
@@ -575,7 +575,12 @@ class OutputPage {
 			$ret .= "<link ";
 			if ( "" != $tag[0] ) { $ret .= "rel=\"{$tag[0]}\" "; }
 			if ( "" != $tag[1] ) { $ret .= "rev=\"{$tag[1]}\" "; }
+			if ( !empty( $tag[3] ) ) { $ret .= "type=\"{$tag[3]}\" "; }
 			$ret .= "href=\"{$tag[2]}\">\n";
+		}
+		if( $this->isSyndicated() ) {
+			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
+			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link'>\n";
 		}
 		$sk = $wgUser->getSkin();
 		$ret .= $sk->getHeadScripts();
