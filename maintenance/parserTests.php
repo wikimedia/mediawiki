@@ -25,7 +25,8 @@
  */
 
 /** */
-$optionsWithArgs = array('regex');
+$options = array( 'quick', 'color' );
+$optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
 require_once( 'languages/LanguageUtf8.php' );
@@ -52,33 +53,31 @@ class ParserTest {
 	 */
 	function ParserTest() {
 		global $options;
+		
+		# Only colorize output if stdout is a terminal.
 		$this->lightcolor = false;
-		if( isset( $_SERVER['argv'] ) && in_array( '--color', $_SERVER['argv'] ) ) {
-			$this->color = true;
-		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=yes', $_SERVER['argv'] ) ) {
-			$this->color = true;
-		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=light', $_SERVER['argv'] ) ) {
-			$this->color = true;
-			$this->lightcolor = true;
-		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=no', $_SERVER['argv'] ) ) {
-			$this->color = false;
-		} elseif( wfIsWindows() ) {
-			$this->color = false;
-		} else {
-			# Only colorize output if stdout is a terminal.
-			$this->color = posix_isatty(1);
+		$this->color = !wfIsWindows() && posix_isatty(1);
+		
+		if( isset( $options['color'] ) ) {
+			switch( $options['color'] ) {
+			case 'no':
+				$this->color = false;
+				break;
+			case 'light':
+				$this->lightcolor = true;
+				# Fall through
+			case 'yes':
+			default:
+				$this->color = true;
+				break;
+			}
 		}
 		
-		if( isset( $_SERVER['argv'] ) && in_array( '--quick', $_SERVER['argv'] ) ) {
-			$this->showDiffs = false;
-		} else {
-			$this->showDiffs = true;
-		}
+		$this->showDiffs = !isset( $options['quick'] );
 
 		if (isset($options['regex'])) {
 			$this->regex = $options['regex'];
-		}
-		else {
+		} else {
 			# Matches anything
 			$this->regex = '';
 		}
