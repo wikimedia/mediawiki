@@ -150,6 +150,7 @@ $wgBlockOpenProxies = false; # Automatic open proxy test on edit
 $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
+$wgProxyKey = "W1svekXc5u6lZllTZOwnzEk1nbs";
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
