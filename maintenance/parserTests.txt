@@ -1157,7 +1157,7 @@ Simple image
 !! input
 [[Image: test]]
 !! result
-<p><a href="/wiki/Image:Test" class="image" title="Image: test"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="Image: test" /></a>
+<p><a href="/wiki/Image:Test" class="image" title="Image: test"><img src="/images/0/0c/Test" alt="Image: test" /></a>
 </p>
 !! end
 
@@ -1166,7 +1166,7 @@ Right-aligned image
 !! input
 [[Image:test|right]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="right"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="right" /></a></span></div>
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="right"><img src="/images/0/0c/Test" alt="right" /></a></span></div>
 
 !! end
 
@@ -1175,7 +1175,7 @@ Image with caption
 !! input
 [[Image:test|right|Caption text]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="Caption text"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="Caption text" /></a></span></div>
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="Caption text"><img src="/images/0/0c/Test" alt="Caption text" /></a></span></div>
 
 !! end
 
@@ -1184,7 +1184,7 @@ Image with frame and link
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! result
-<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/%7Ewmahan/phase3/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
+<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
 
 !! end
 
