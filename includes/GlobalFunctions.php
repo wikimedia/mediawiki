@@ -343,29 +343,23 @@ function wfGo( $s )
 	$se->goResult();
 }
 
-
-/* private */ $wgAbruptExitCalled = false;
-
 # Just like exit() but makes a note of it.
 function wfAbruptExit(){
-	// Safety to avoid infinite recursion in case of (unlikely) bugs somewhere
-	global $wgAbruptExitCalled;
-	if ( $wgAbruptExitCalled ){
+	static $called = false;
+	if ( $called ){
 		exit();
 	}
-	$wgAbruptExitCalled = true;
+	$called = true;
 
-	if( ! function_exists( "debug_backtrace" )){ // for php < 4.3.0
-		wfDebug("WARNING: Abrupt exit from somewhere.\n");
-		exit();
-	}
-
-	wfDebug("WARNING: Abrupt exit. Backtrace follows:\n");
-	$bt = debug_backtrace();
-	for($i = 0; $i < count($bt) ; $i++){
-		$file = $bt[$i]["file"];
-		$line = $bt[$i]["line"];
-		wfDebug("Abrupt exit in $file at line $line\n");
+	if( function_exists( "debug_backtrace" ) ){ // PHP >= 4.3
+		$bt = debug_backtrace();
+		for($i = 0; $i < count($bt) ; $i++){
+			$file = $bt[$i]["file"];
+			$line = $bt[$i]["line"];
+			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
+		}
+	} else { 
+		wfDebug("WARNING: Abrupt exit\n");
 	}
 	exit();
 }
