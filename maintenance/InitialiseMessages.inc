@@ -109,7 +109,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		}
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
-		$dbencMsg = $dbw->strencode( $message );
 
 		# Update messages which already exist
 		if ( array_key_exists( $title, $existingTitles ) ) {
@@ -124,7 +123,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			array_push( $arr, array(
 				'cur_namespace' => $ns,
 				'cur_title' => $title,
-				'cur_text' => $dbencMsg,
+				'cur_text' => $message,
 				'cur_user' => 0,
 				'cur_user_text' => $username,
 				'cur_timestamp' => $dbw->timestamp( $timestamp ),
