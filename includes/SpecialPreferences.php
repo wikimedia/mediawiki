@@ -6,7 +6,7 @@
  */
 
 /* to get a list of languages in setting user's language preference */
-require_once("Names.php");
+require_once('languages/Names.php');
 
 /**
  * Entry point that create the "Preferences" object
