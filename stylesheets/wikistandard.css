@@ -7,7 +7,25 @@
 }
 #quickbar { width: 140px; padding: 4px; visibility: visible; z-index:99;font-size:95%;}
 #topbar { padding: 4px;font-size:95%; }
-#toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
+
+/* Table of contents */
+#toc {
+	border: 1px solid #8888aa;
+	background-color: #f7f8ff;
+	padding: 5px;
+	font-size: 95%;
+}
+.tocindent {
+	margin-left: 2em;
+}
+.tocline {
+	margin-bottom: 0px;
+}
+.toctoggle, .editsection {
+	font-size: smaller;
+}
+
+/* ... */
 #toolbar { padding:0px; }
 #infobox { background:#eeeeff;color:black;;}
 #editform { margin-top:1px; }
@@ -18,11 +36,6 @@ a.stub { color:#772233; text-decoration:none; }
 body { margin: 0px; padding: 4px; color: black; }
 form.inline { display: inline; }
 
-/* CHECK MERGE @@@
- * h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
- * font-size:130%; }
- * h2 { font-size: 112.5%; }
- */
 
 h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
 font-size:150%; }
@@ -78,3 +91,9 @@ table.rimage {
 	text-align:center;
 	font-size:smaller;
 	}
+
+
+/* Print-specific things to hide */
+.urlexpansion, .printfooter {
+	display: none;
+}

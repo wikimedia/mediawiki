@@ -43,7 +43,7 @@ class OutputPage {
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
-	function addLink( $rel, $rev, $target, $type="" ) { array_push( $this->mLinktags, array( $rel, $rev, $target, $type ) ); }
+	function addLink( $rel, $rev, $target, $type="", $media="" ) { array_push( $this->mLinktags, array( $rel, $rev, $target, $type, $media ) ); }
 
 	# checkLastModified tells the client to use the client-cached page if
 	# possible. If sucessful, the OutputPage is disabled so that
@@ -589,12 +589,22 @@ class OutputPage {
 			if ( "" != $tag[0] ) { $ret .= "rel=\"{$tag[0]}\" "; }
 			if ( "" != $tag[1] ) { $ret .= "rev=\"{$tag[1]}\" "; }
 			if ( !empty( $tag[3] ) ) { $ret .= "type=\"{$tag[3]}\" "; }
+			if ( !empty( $tag[4] ) ) { $ret .= "media=\"{$tag[4]}\" "; }
 			$ret .= "href=\"{$tag[2]}\">\n";
 		}
 		if( $this->isSyndicated() ) {
 			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link'>\n";
 		}
+		global $wgStyleSheetPath;
+		if( $this->isPrintable() ) {
+			$media = "";
+		} else {
+			$media = "media='print'";
+		}
+		$printsheet = htmlspecialchars( "$wgStyleSheetPath/wikiprintable.css" );
+		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet'>\n";
+
 		$sk = $wgUser->getSkin();
 		$ret .= $sk->getHeadScripts();
 		$ret .= $sk->getUserStyles();

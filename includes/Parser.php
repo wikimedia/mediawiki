@@ -531,8 +531,12 @@ class Parser
 				$s .= "[{$protocol}:" . $line;
 				continue;
 			}
-			if ( $this->mOptions->getPrintable() ) $paren = " (<i>" . htmlspecialchars ( $link ) . "</i>)";
-			else $paren = "";
+			if( $link == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $link ) ) {
+				$paren = "";
+			} else {
+				# Expand the URL for printable version
+				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $link ) . "</i>)</span>";
+			}
 			$la = $sk->getExternalLinkAttributes( $link, $text );
 			$s .= "<a href='{$link}'{$la}>{$text}</a>{$paren}{$trail}";
 
@@ -1364,44 +1368,46 @@ class Parser
  * string and re-inserts the newly formatted headlines.
  * 
  */
+
 	/* private */ function formatHeadings( $text )
 	{
-		$nh=$this->mOptions->getNumberHeadings();
-		$st=$this->mOptions->getShowToc();
-		if(!$this->mTitle->userCanEdit()) {
-			$es=0;
-			$esr=0;
+		$doNumberHeadings = $this->mOptions->getNumberHeadings();
+		$doShowToc = $this->mOptions->getShowToc();
+		if( !$this->mTitle->userCanEdit() ) {
+			$showEditLink = 0;
+			$rightClickHack = 0;
 		} else {
-			$es=$this->mOptions->getEditSection();
-			$esr=$this->mOptions->getEditSectionOnRightClick();
+			$showEditLink = $this->mOptions->getEditSection();
+			$rightClickHack = $this->mOptions->getEditSectionOnRightClick();
 		}
 
 		# Inhibit editsection links if requested in the page
 		$esw =& MagicWord::get( MAG_NOEDITSECTION );
-		if ($esw->matchAndRemove( $text )) {
-			$es=0;
+		if( $esw->matchAndRemove( $text ) ) {
+			$showEditLink = 0;
 		}
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, 
 		# do not add TOC
 		$mw =& MagicWord::get( MAG_NOTOC );
-		if ($mw->matchAndRemove( $text ))
-		{
-			$st = 0;
+		if( $mw->matchAndRemove( $text ) ) {
+			$doShowToc = 0;
 		}
 
 		# never add the TOC to the Main Page. This is an entry page that should not
 		# be more than 1-2 screens large anyway
-		if($this->mTitle->getPrefixedText()==wfMsg("mainpage")) {$st=0;}
+		if( $this->mTitle->getPrefixedText() == wfMsg("mainpage") ) {
+			$doShowToc = 0;
+		}
 
 		# We need this to perform operations on the HTML
 		$sk =& $this->mOptions->getSkin();
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links
-		preg_match_all("/<H([1-6])(.*?>)(.*?)<\/H[1-6]>/i",$text,$matches);
+		preg_match_all( "/<H([1-6])(.*?" . ">)(.*?)<\/H[1-6]>/i", $text, $matches );
 		
 		# headline counter
-		$c=0;
+		$headlineCount = 0;
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
@@ -1409,115 +1415,124 @@ class Parser
 		$toc = "";
 		$full = "";
 		$head = array();
-		foreach($matches[3] as $headline) {
-			if($level) { $prevlevel=$level;}
-			$level=$matches[1][$c];
-			if(($nh||$st) && $prevlevel && $level>$prevlevel) { 
-							
-				$h[$level]=0; // reset when we enter a new level				
-				$toc.=$sk->tocIndent($level-$prevlevel);
-				$toclevel+=$level-$prevlevel;
-			
-			} 
-			if(($nh||$st) && $level<$prevlevel) {
-				$h[$level+1]=0; // reset when we step back a level
-				$toc.=$sk->tocUnindent($prevlevel-$level);
-				$toclevel-=$prevlevel-$level;
-
+		$sublevelCount = array();
+		foreach( $matches[3] as $headline ) {
+			if( $level ) {
+				$prevlevel = $level;
 			}
-			$h[$level]++; // count number of headlines for each level
+			$level = $matches[1][$headlineCount];
+			if( ( $doNumberHeadings || $doShowToc ) && $prevlevel && $level > $prevlevel ) { 
+				# reset when we enter a new level
+				$sublevelCount[$level] = 0;
+				$toc .= $sk->tocIndent( $level - $prevlevel );
+				$toclevel += $level - $prevlevel;
+			} 
+			if( ( $doNumberHeadings || $doShowToc ) && $level < $prevlevel ) {
+				# reset when we step back a level
+				$sublevelCount[$level+1]=0;
+				$toc .= $sk->tocUnindent( $prevlevel - $level );
+				$toclevel -= $prevlevel - $level;
+			}
+			# count number of headlines for each level
+			$sublevelCount[$level]++;
 			
-			if($nh||$st) {
-				for($i=1;$i<=$level;$i++) {
-					if($h[$i]) {
-						if($dot) {$numbering.=".";}
-						$numbering.=$h[$i];
-						$dot=1;					
+			if( $doNumberHeadings || $doShowToc ) {
+				for( $i = 1; $i <= $level; $i++ ) {
+					if( $sublevelCount[$i] ) {
+						if( $dot ) {
+							$numbering .= ".";
+						}
+						$numbering .= $sublevelCount[$i];
+						$dot = 1;					
 					}
 				}
 			}
 
-			// The canonized header is a version of the header text safe to use for links
-			// Avoid insertion of weird stuff like <math> by expanding the relevant sections
-			$canonized_headline=Parser::unstrip( $headline, $this->mStripState );
-			$canonized_headline=preg_replace("/<.*?>/","",$canonized_headline); // strip out HTML
-			$tocline = trim( $canonized_headline );
-			$canonized_headline=str_replace('"',"",$canonized_headline);
-			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
-			$refer[$c]=$canonized_headline;
-			$refers[$canonized_headline]++;  // count how many in assoc. array so we can track dupes in anchors
-			$refcount[$c]=$refers[$canonized_headline];
-
-            // Prepend the number to the heading text
+			# The canonized header is a version of the header text safe to use for links
+			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
+			$canonized_headline = Parser::unstrip( $headline, $this->mStripState );
 			
-			if($nh||$st) {
-				$tocline=$numbering ." ". $tocline;
+			# strip out HTML
+			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
+			
+			$tocline = trim( $canonized_headline );
+			$canonized_headline = str_replace( '"', "", $canonized_headline );
+			$canonized_headline = str_replace( " ", "_", trim( $canonized_headline) );
+			$refer[$headlineCount] = $canonized_headline;
+			
+			# count how many in assoc. array so we can track dupes in anchors
+			$refers[$canonized_headline]++;
+			$refcount[$headlineCount]=$refers[$canonized_headline];
+
+			# Prepend the number to the heading text
+			
+			if( $doNumberHeadings || $doShowToc ) {
+				$tocline = $numbering . " " . $tocline;
 				
-				// Don't number the heading if it is the only one (looks silly)
-				if($nh && count($matches[3]) > 1) {
-					$headline=$numbering . " " . $headline; // the two are different if the line contains a link
+				# Don't number the heading if it is the only one (looks silly)
+				if( $doNumberHeadings && count( $matches[3] ) > 1) {
+					# the two are different if the line contains a link
+					$headline=$numbering . " " . $headline;
 				}
 			}
 			
-			// Create the anchor for linking from the TOC to the section
-			$anchor=$canonized_headline;
-			if($refcount[$c]>1) {$anchor.="_".$refcount[$c];}
-			if($st) {
-				$toc.=$sk->tocLine($anchor,$tocline,$toclevel);
+			# Create the anchor for linking from the TOC to the section
+			$anchor = $canonized_headline;
+			if($refcount[$headlineCount] > 1 ) {
+				$anchor .= "_" . $refcount[$headlineCount];
 			}
-			if($es) {
-				$head[$c].=$sk->editSectionLink($c+1);
+			if( $doShowToc ) {
+				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
+			}
+			if( $showEditLink ) {
+				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
 			}
 			
 			
-			// the headline might have a link
-			if(preg_match("/(.*)<a(.*)/",$headline, $headlinematches))
-			{ 
-				// if so give an anchor name to the already existent link
+			# the headline might have a link
+			if( preg_match( "/(.*)<a(.*)/", $headline, $headlinematches ) ) { 
+				# if so give an anchor name to the already existent link
 				$headline = $headlinematches[1]
-				            ."<a name=\"".$anchor."\" ".$headlinematches[2];
+				            . "<a name=\"$anchor\" " . $headlinematches[2];
 			} else {
-				// else create an anchor link for the headline
-				$headline = "<a name=\"".$anchor."\">"
-				            .$headline
-				            ."</a>";
+				# else create an anchor link for the headline
+				$headline = "<a name=\"$anchor.\">$headline</a>";
 			}
 				
-			// give headline the correct <h#> tag
-			$head[$c].="<h".$level.$matches[2][$c] .$headline."</h".$level.">";
+			# give headline the correct <h#> tag
+			$head[$headlineCount] .= "<h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
 			
-			// Add the edit section link
-			
-			if($esr) {
-				$head[$c]=$sk->editSectionScript($c+1,$head[$c]);	
+			# Add the edit section link
+			if( $rightClickHack ) {
+				$head[$headlineCount] = $sk->editSectionScript($headlineCount+1,$head[$headlineCount]);	
 			}
 			
-			$numbering="";
-			$c++;
-			$dot=0;
+			$numbering = "";
+			$headlineCount++;
+			$dot = 0;
 		}		
 
-		if($st) {
-			$toclines=$c;
-			$toc.=$sk->tocUnindent($toclevel);
-			$toc=$sk->tocTable($toc);
+		if( $doShowToc ) {
+			$toclines = $headlineCount;
+			$toc .= $sk->tocUnindent( $toclevel );
+			$toc = $sk->tocTable( $toc );
 		}
 
-		// split up and insert constructed headlines
+		# split up and insert constructed headlines
 		
-		$blocks=preg_split("/<H[1-6].*?>.*?<\/H[1-6]>/i",$text);
-		$i=0;
+		$blocks = preg_split( "/<H[1-6].*?" . ">.*?<\/H[1-6]>/i", $text );
+		$i = 0;
 
-		foreach($blocks as $block) {
-			if(($es) && $c>0 && $i==0) {
+		foreach( $blocks as $block ) {
+			if( $showEditLink && $headlineCount > 0 && $i == 0 ) {
 			    # This is the [edit] link that appears for the top block of text when 
 				# section editing is enabled
-				$full.=$sk->editSectionLink(0);
+				$full .= $sk->editSectionLink(0);
 			}
-			$full.=$block;
-			if($st && $toclines>3 && !$i) {
+			$full .= $block;
+			if( $doShowToc && $toclines>3 && !$i) {
 				# Let's add a top anchor just in case we want to link to the top of the page
-				$full="<a name=\"top\"></a>".$full.$toc;
+				$full = "<a name=\"top\"></a>".$full.$toc;
 			}
 
 			if( !empty( $head[$i] ) ) {
@@ -1752,7 +1767,6 @@ class ParserOptions
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
 	var $mEditSectionOnRightClick;   # Generate JavaScript to edit section on right click
-	var $mPrintable;                 # Generate printable output
 	var $mNumberHeadings;            # Automatically number headings
 	var $mShowToc;                   # Show table of contents
 
@@ -1765,7 +1779,6 @@ class ParserOptions
 	function getDateFormat() { return $this->mDateFormat; }
 	function getEditSection() { return $this->mEditSection; }
 	function getEditSectionOnRightClick() { return $this->mEditSectionOnRightClick; }
-	function getPrintable() { return $this->mPrintable; }
 	function getNumberHeadings() { return $this->mNumberHeadings; }
 	function getShowToc() { return $this->mShowToc; }
 
@@ -1778,7 +1791,6 @@ class ParserOptions
 	function setDateFormat( $x ) { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x ) { return wfSetVar( $this->mEditSection, $x ); }
 	function setEditSectionOnRightClick( $x ) { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
-	function setPrintable( $x ) { return wfSetVar( $this->mPrintable, $x ); }
 	function setNumberHeadings( $x ) { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setShowToc( $x ) { return wfSetVar( $this->mShowToc, $x ); }
 
@@ -1808,7 +1820,6 @@ class ParserOptions
 		$this->mDateFormat = $user->getOption( "date" );
 		$this->mEditSection = $user->getOption( "editsection" );
 		$this->mEditSectionOnRightClick = $user->getOption( "editsectiononrightclick" );
-		$this->mPrintable = false;
 		$this->mNumberHeadings = $user->getOption( "numberheadings" );
 		$this->mShowToc = $user->getOption( "showtoc" );
 	}

@@ -133,14 +133,10 @@ class Skin {
 	function getUserStyles()
 	{
 		global $wgOut, $wgStyleSheetPath;
-		if( $wgOut->isPrintable() ) {
-			$sheet = "wikiprintable.css";
-		} else {
-			$sheet = $this->getStylesheet();
-		}
+		$sheet = $this->getStylesheet();
 		$s = "<style type='text/css'><!--\n";
-		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
 		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
+		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
 		$s .= $this->doGetUserStyles();
 		$s .= "/* */\n";
 		$s .= "//--></style>\n";
@@ -206,8 +202,7 @@ class Skin {
 		$link = str_replace( "_", " ", $link );
 		$link = wfEscapeHTML( $link );
 
-		if ( $wgOut->isPrintable() ) { $r = " class='printable'"; }
-		else { $r = " class='external'"; }
+		$r = " class='external'";
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
 			$r .= " title=\"{$link}\"";
@@ -223,14 +218,12 @@ class Skin {
 		$link = str_replace( "_", " ", $link );
 		$link = wfEscapeHTML( $link );
 
-		if ( $wgOut->isPrintable() ) { 
-			$r = " class='printable'"; 
-		} else if ( $broken == "stub" ) { 
+		if ( $broken == "stub" ) { 
 			$r = " class='stub'"; 
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = " class='internal'"; 
+			$r = ""; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -243,14 +236,12 @@ class Skin {
 	{
 		global $wgUser, $wgOut;
 
-		if ( $wgOut->isPrintable() ) { 
-			$r = " class='printable'"; 
-		} else if ( $broken == "stub" ) { 
+		if ( $broken == "stub" ) { 
 			$r = " class='stub'"; 
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = " class='internal'"; 
+			$r = ""; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -272,11 +263,6 @@ class Skin {
 	{
 		global $wgUser, $wgOut, $wgSiteNotice;
 
-		if ( $wgOut->isPrintable() ) {
-			$s = $this->pageTitle() . $this->pageSubtitle() . "\n";
-			$s .= "\n<div class='bodytext'>";
-			return $s;
-		}
 		if( $wgSiteNotice ) {
 			$note = "\n<div id='notice' style='font-weight: bold; color: red; text-align: center'>$wgSiteNotice</div>\n";
 		} else {
@@ -357,24 +343,17 @@ class Skin {
 		global $wgUser, $wgOut, $wgServer;
 		global $wgTitle, $wgLang;
 		
-		if ( $wgOut->isPrintable() ) {
-			$s = "\n</div>\n";
-
-			$u = htmlspecialchars( $wgServer . $wgTitle->getFullURL() );
-			$u = "<a href=\"$u\">$u</a>";
-			$rf = wfMsg( "retrievedfrom", $u );
-
-			if ( $wgOut->isArticle() ) {
-				$lm = "<br>" . $this->lastModified();
-			} else { $lm = ""; }
-
-			$cr = wfMsg( "gnunote" );
-			$s .= "<p>" . $wgLang->emphasize("{$rf}{$lm} {$cr}\n");
-			return $s;
-		}
-		return $this->doAfterContent();
+		$printfooter = "<div class=\"printfooter\">" . $this->printFooter() . "</div>\n";
+		return $printfooter . $this->doAfterContent();
 	}
-
+	
+	function printFooter() {
+		global $wgTitle;
+		$url = htmlspecialchars( $wgTitle->getFullURL() );
+		return "<p>" . wfMsg( "retrievedfrom", "<a href=\"$url\">$url</a>" ) .
+			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
+	}
+	
 	function doAfterContent()
 	{
 		global $wgUser, $wgOut, $wgLang;
@@ -407,7 +386,7 @@ class Skin {
 		  . " | " . $this->aboutLink()
 		  . " | " . $this->specialLink( "recentchanges" )
 		  . " | " . $this->searchForm()
-		  . "<br>" . $this->pageStats();
+		  . "<br><span id='pagestats'>" . $this->pageStats() . "</span>";
 
 		$s .= "</td>";
 		if ( $shove && !$left ) { # Right
@@ -687,7 +666,7 @@ class Skin {
 		}
 		$s .= $this->lastModified();
 		$s .= " " . wfMsg( "gnunote" );
-		return "<span id='pagestats'>{$s}</span>";
+		return $s;
 	}
 
 	function lastModified()
@@ -1391,8 +1370,7 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		if ( $wgOut->isPrintable() ||
-		  ( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
+		if ( $wgUser->getOption( "highlightbroken" ) ) {
 			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
 			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
@@ -1421,8 +1399,7 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		if ( $wgOut->isPrintable() ||
-				( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
+		if ( $wgUser->getOption( "highlightbroken" ) ) {
 			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
 			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
@@ -2229,40 +2206,28 @@ class Skin {
 	}
 
 	function tocIndent($level) {
-
-		while($level-->0) $rv.="<div style=\"margin-left:2em;\">\n";
-		return $rv;
-
+		return str_repeat( "<div class='tocindent'>\n", $level );
 	}
 
 	function tocUnindent($level) {
-		$rv = "";
-		while($level-->0) $rv.="</div>\n";
-		return $rv;
+		return str_repeat( "</div>\n", $level );
 	}
 
-	// parameter level defines if we are on an indentation level
-	function tocLine($anchor,$tocline,$level) {
-		
-		if($level) { 
-		
-			return "<A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A><BR>\n";
+	# parameter level defines if we are on an indentation level
+	function tocLine( $anchor, $tocline, $level ) {
+		$link = "<a href=\"#$anchor\">$tocline</a><br />";
+		if($level) {
+			return "$link\n";
 		} else { 
-
-			return "<div style=\"margin-bottom:0px;\">\n".
-			"<A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A><BR>\n".
-			"</div>\n";
+			return "<div class='tocline'>$link</div>\n";
 		}
 
 	}
 
 	function tocTable($toc) {
-		// note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
-		global $printable;
-		
-		if (!$printable) {
-			$hideline = " <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>";
-		}
+		# note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
+		# try min-width & co when somebody gets a chance
+		$hideline = " <script type='text/javascript'>showTocToggle(\"" . addslashes( wfMsg("showtoc") ) . "\",\"" . addslashes( wfMsg("hidetoc") ) . "\")</script>";
 		return
 		"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
 		"<b>".wfMsg("toc")."</b>" .
@@ -2272,20 +2237,25 @@ class Skin {
 	}
 
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
-	function editSectionScript($section,$head) {
-
-		global $wgTitle,$wgUser,$oldid;
-		if($oldid) return $head;
+	function editSectionScript( $section, $head ) {
+		global $wgTitle, $wgRequest;
+		if( $wgRequest->getInt( "oldid" ) ) {
+			return $head;
+		}
 		$url = $wgTitle->escapeLocalURL( "action=edit&section=$section" );
-		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
+		return "<span oncontextmenu='document.location=\"$url\";return false;'>{$head}</span>";
 	}
 
-	function editSectionLink($section) {
-		global $printable,$oldid;
+	function editSectionLink( $section ) {
+		global $wgRequest;
 		global $wgTitle, $wgUser, $wgLang;
 		
-		if( isset( $oldid ) ) return "";
-		if( isset( $printable ) ) return "";
+		if( $wgRequest->getInt( "oldid" ) && ( $wgRequest->getVal( "diff" ) != "0" ) ) {
+			# Section edit links would be out of sync on an old page.
+			# But, if we're diffing to the current page, they'll be
+			# correct.
+			return "";
+		}
 		
 		$editurl = "&section={$section}";
 		$url = $this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
@@ -2297,7 +2267,7 @@ class Skin {
 			$farside = "right";
 			$nearside = "left";
 		}
-		return "<div style=\"float:$farside;margin-$nearside:5px;\"><small>[".$url."]</small></div>";
+		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
 
 	}
 
