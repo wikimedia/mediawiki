@@ -40,13 +40,6 @@
  "myskin" => "MySkin"
 );
 
-/* private */ $wgMathNamesBn = array(
-  "Always render PNG",
-  "HTML if very simple or else PNG",
-  "HTML if possible or else PNG",
-  "Leave it as TeX (for text browsers)",
-  "Recommended for modern browsers"
-);
 
 /* private */ $wgDateFormatsBn = array(
   "No preference",
@@ -82,21 +75,6 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
   "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesBn = array(
-  "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার",
-  "শুক্রবার", "শনিবার"
-);
-
-/* private */ $wgMonthNamesBn = array(
-  "জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন",
-  "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর",
-  "ডিসেম্বর"
-);
-
-/* private */ $wgMonthAbbreviationsBn = array(
-  "জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট",
-  "সেপ্টে", "অক্টো", "নভে", "ডিসে"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -152,6 +130,39 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 );
 
 /* private */ $wgAllMessagesBn = array(
+# Dates
+
+'sunday' => "রবিবার",
+'monday' => "সোমবার",
+'tuesday' => "মঙ্গলবার",
+'wednesday' => "বুধবার",
+'thursday' => "বৃহস্পতিবার",
+'friday' => "শুক্রবার",
+'saturday' => "শনিবার",
+'january' => "জানুয়ারী",
+'february' => "ফেব্রুয়ারী",
+'march' => "মার্চ",
+'april' => "এপ্রিল",
+'may_long' => "মে",
+'june' => "জুন",
+'july' => "জুলাই",
+'august' => "আগস্ট",
+'september' => "সেপ্টেম্বর",
+'october' => "অক্টোবর",
+'november' => "নভেম্বর",
+'december' => "ডিসেম্বর",
+'jan' => "জানু",
+'feb' => "ফেব্রু",
+'mar' => "মার্চ",
+'apr' => "এপ্রিল",
+'may' => "মে",
+'jun' => "জুন",
+'jul' => "জুলাই",
+'aug' => "আগস্ট",
+'sep' => "সেপ্টে",
+'oct' => "অক্টো",
+'nov' => "নভে",
+'dec' => "ডিসে",
 
 # Bits of text used by many pages:
 #
@@ -983,12 +994,6 @@ class LanguageBn extends LanguageUtf8 {
 		}
 		# fallback
 		return Language::getNsIndex( $text );
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesBn;
-		return $wgMonthNamesBn[$key-1];
 	}
 
 	function getMessage( $key )

@@ -60,24 +60,6 @@
 # Se eble, trovu Chehxajn libroservojn traserceblaj lau ISBN
 # $wgBookstoreListCs = ..
 
-# Note capitalization; also some uses may require addition of final -n
-/* private */ $wgWeekdayNamesCs = array(
-	"neděle", "pondělí", "úterý", "středa" , "čtvrtek",
-	"pátek", "sobota"
-);
-
-# Double-check capitalization
-/* private */ $wgMonthNamesCs = array(
-	"leden", "únor", "březen", "duben", "květen", "červen",
-	"červenec", "srpen", "září", "říjen", "listopad",
-	"prosinec"
-);
-
-# Hmm
-/* private */ $wgMonthAbbreviationsCs = array(
-	"Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Črv", "Srp",
-	"Zář", "Říj", "Lis", "Pro"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -85,6 +67,39 @@
 #
 # *Neměnit jména v levém sloupci, jsou to interní jména programových funkcí. Pravý sloupec  obsahuje několik mezer, které mají tak zůstat, aby se tyto funkce nezařadily do seznamu speciálních stránek.
 /* private */ $wgValidSpecialPagesCs = array(
+	# Dates
+	'sunday' => "neděle",
+	'monday' => "pondělí",
+	'tuesday' => "úterý",
+	'wednesday' => "středa",
+	'thursday' => "čtvrtek",
+	'friday' => "pátek",
+	'saturday' => "sobota",
+	'january' => "leden",
+	'february' => "únor",
+	'march' => "březen",
+	'april' => "duben",
+	'may_long' => "květen",
+	'june' => "červen",
+	'july' => "červenec",
+	'august' => "srpen",
+	'september' => "září",
+	'october' => "říjen",
+	'november' => "listopad",
+	'december' => "prosinec",
+	'jan' => "Led",
+	'feb' => "Úno",
+	'mar' => "Bře",
+	'apr' => "Dub",
+	'may' => "Kvě",
+	'jun' => "Čer",
+	'jul' => "Črv",
+	'aug' => "Srp",
+	'sep' => "Zář",
+	'oct' => "Říj",
+	'nov' => "Lis",
+	'dec' => "Pro",
+
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
 	"Preferences"	=> "Změnit moje uživatelské preference", 
@@ -773,24 +788,6 @@ class LanguageCs extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesCs;
 		return $wgUserTogglesCs;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesCs;
-		return $wgMonthNamesCs[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsCs;
-		return $wgMonthAbbreviationsCs[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesCs;
-		return $wgWeekdayNamesCs[$key-1];
 	}
 
 	# Zdědit userAdjust()

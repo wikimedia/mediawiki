@@ -66,21 +66,6 @@
 	"Amazon.com" => "http://www.noamazon.com/" #patent that
 );
 
-/* private */ $wgWeekdayNamesAf = array(
-	"Sondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag",
-	"Vrydag", "Saterdag"
-);
-
-/* private */ $wgMonthNamesAf = array(
-	"Januarie", "Februarie", "Maart", "April", "Mei", "Junie",
-	"Julie", "Augustus", "September", "Oktober", "November",
-	"Desember"
-);
-
-/* private */ $wgMonthAbbreviationsAf = array(
-	"01", "02", "03", "04", "05", "06", "07", "08",
-	"09", "10", "11", "12"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -133,6 +118,39 @@
 );
 
 /* private */ $wgAllMessagesAf = array(
+# Dates
+'sunday' => 'Sondag',
+'monday' => 'Maandag',
+'tuesday' => 'Dinsdag',
+'wednesday' => 'Woensdag',
+'thursday' => 'Donderdag',
+'friday' => 'Vrydag',
+'saturday' => 'Saterdag',
+'january' => 'Januarie',
+'february' => 'Februarie',
+'march' => 'Maart',
+'april' => 'April',
+'may_long' => 'Mei',
+'june' => 'Junie',
+'july' => 'Julie',
+'august' => 'Augustus',
+'september' => 'September',
+'october' => 'Oktober',
+'november' => 'November',
+'december' => 'Desember',
+'jan' => '01',
+'feb' => '02',
+'mar' => '03',
+'apr' => '04',
+'may' => '05',
+'jun' => '06',
+'jul' => '07',
+'aug' => '08',
+'sep' => '09',
+'oct' => '10',
+'nov' => '11',
+'dec' => '12',
+
 
 # Bits of text used by many pages:
 #
@@ -863,24 +881,6 @@ class LanguageAf extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesAf;
 		return $wgUserTogglesAf;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesAf;
-		return $wgMonthNamesAf[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsAf;
-		return $wgMonthAbbreviationsAf[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesAf;
-		return $wgWeekdayNamesAf[$key-1];
 	}
 
 	function getValidSpecialPages()

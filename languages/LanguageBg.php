@@ -83,21 +83,6 @@
   'Amazon.com'     => "http://www.amazon.com/exec/obidos/ISBN=$1",
 );
 
-/* private */ $wgWeekdayNamesBg = array(
-  'неделя', 'понеделник', 'вторник', 'сряда', 'четвъртък',
-  'петък', 'събота'
-);
-
-/* private */ $wgMonthNamesBg = array(
-  'януари', 'февруари', 'март', 'април', 'май', 'юни',
-  'юли', 'август', 'септември', 'октомври', 'ноември',
-  'декември'
-);
-
-/* private */ $wgMonthAbbreviationsBg = array(
-  'яну', 'фев', 'мар', 'апр', 'май', 'юни', 'юли', 'авг',
-  'сеп', 'окт', 'ное', 'дек'
-);
 
 
 # Note to translators:
@@ -218,6 +203,38 @@
 # въведете 'portal' => ''
 
 /* private */ $wgAllMessagesBg = array(
+# Dates
+'sunday' => 'неделя',
+'monday' => 'понеделник',
+'tuesday' => 'вторник',
+'wednesday' => 'сряда',
+'thursday' => 'четвъртък',
+'friday' => 'петък',
+'saturday' => 'събота',
+'january' => 'януари',
+'february' => 'февруари',
+'march' => 'март',
+'april' => 'април',
+'may_long' => 'май',
+'june' => 'юни',
+'july' => 'юли',
+'august' => 'август',
+'september' => 'септември',
+'october' => 'октомври',
+'november' => 'ноември',
+'december' => 'декември',
+'jan' => 'яну',
+'feb' => 'фев',
+'mar' => 'мар',
+'apr' => 'апр',
+'may' => 'май',
+'jun' => 'юни',
+'jul' => 'юли',
+'aug' => 'авг',
+'sep' => 'сеп',
+'oct' => 'окт',
+'nov' => 'ное',
+'dec' => 'дек',
 
 # Bits of text used by many pages:
 #
@@ -1421,37 +1438,6 @@ class LanguageBg extends LanguageUtf8 {
   function getUserToggles() {
     global $wgUserTogglesBg;
     return $wgUserTogglesBg;
-  }
-
-  function getMonthName( $key )
-  {
-    global $wgMonthNamesBg;
-    return $wgMonthNamesBg[$key-1];
-  }
-
-  /* by default we just return base form */
-  function getMonthNameGen( $key )
-  {
-    global $wgMonthNamesBg;
-    return $wgMonthNamesBg[$key-1];
-  }
-
-  function getMonthRegex()
-  {
-    global $wgMonthNamesBg;
-    return implode( "|", $wgMonthNamesBg );
-  }
-
-  function getMonthAbbreviation( $key )
-  {
-    global $wgMonthAbbreviationsBg;
-    return $wgMonthAbbreviationsBg[$key-1];
-  }
-
-  function getWeekdayName( $key )
-  {
-    global $wgWeekdayNamesBg;
-    return $wgWeekdayNamesBg[$key-1];
   }
 
   function getValidSpecialPages()
