@@ -1502,6 +1502,7 @@ article [[Train]].
 'categoryarticlecount' => "There are $1 articles in this category.",
 'categoryarticlecount1' => "There is $1 article in this category.",
 'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
+'listingcontinuesabbrev' => " cont.",
 
 # Info page
 "infosubtitle" => "Information for page",
