@@ -32,7 +32,10 @@ require_once( 'commandLine.inc' );
 require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
 
-/** */
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class ParserTest {
 	/**
 	 * boolean $color whereas output should be colorized

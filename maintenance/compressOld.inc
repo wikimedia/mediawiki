@@ -4,9 +4,10 @@
  * @subpackage Maintenance
  */
 
+/** */
 require_once( '../includes/Revision.php' );
 
-/** */
+/** @todo document */
 function compressOldPages( $start = 0 ) {
 	$fname = 'compressOldPages';
 
@@ -33,6 +34,7 @@ function compressOldPages( $start = 0 ) {
 	} while( true );
 }
 
+/** @todo document */
 function compressPage( $row ) {
 	$fname = 'compressPage';
 	if( false !== strpos( $row->old_flags, "gzip" ) ) {
@@ -56,6 +58,7 @@ function compressPage( $row ) {
 define( 'LS_INDIVIDUAL', 0 );
 define( 'LS_CHUNKED', 1 );
 
+/** @todo document */
 function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, $endDate )
 {
 	$fname = 'compressWithConcat';
@@ -205,5 +208,4 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	}
 	return true;
 }
-
 ?>

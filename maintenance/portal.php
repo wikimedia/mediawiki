@@ -1,5 +1,9 @@
-<?
-
+<?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ * @todo document
+ */
 $textsourcefile_web = "http://meta.wikipedia.org/w/index.php?title=PortalText&action=raw" ;
 $textsourcefile = "t.txt" ;
 #$articlecountfile_web = "http://magnusmanske.de/wikipedia/num.txt" ;
@@ -9,7 +13,7 @@ $perrow = 3 ;
 
 if ( isset ( $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"] ) )
 	$userlang = $HTTP_SERVER_VARS["HTTP_ACCEPT_LANGUAGE"] ;
-else $userlang = "" ;
+else $userlang = '' ;
 
 # Update local files
 if ( isset ( $_GET["update"] ) )
@@ -18,7 +22,9 @@ if ( isset ( $_GET["update"] ) )
 	copy ( $articlecountfile_web , $articlecountfile ) ;
 	}
 
-# Reads a file into a string
+/**
+ * Reads a file into a string
+ */
 function readafile ( $filename )
 	{
 	$handle = fopen($filename, "r");
@@ -29,7 +35,7 @@ function readafile ( $filename )
 	return $contents ;
 	}
 
-# Parsing statistics file
+/** Parsing statistics file */
 function get_numbers ( $filename )
 	{
 	$r = array () ;
@@ -44,7 +50,7 @@ function get_numbers ( $filename )
 	return $r ;
 	}
 	
-# Make shades for pref. language(s)
+/** Make shades for pref. language(s) */
 function getshades ( $l )
 	{
 	$r = array () ;
@@ -78,7 +84,7 @@ $t = readafile ( $textsourcefile ) ;
 $t = explode ( "\n" , $t ) ;
 foreach ( $t AS $x )
 	{
-	$y = explode ( ":" , $x , 2 ) ;
+	$y = explode ( ':' , $x , 2 ) ;
 	if ( count ( $y ) == 2 )
 		{
 		$language = trim ( strtolower ( $y[0] ) ) ; # language id

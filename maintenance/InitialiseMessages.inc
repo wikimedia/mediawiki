@@ -10,7 +10,7 @@
  * @subpackage Maintenance
  */
 
-
+/** */
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgContLanguageCode;
 	global $wgContLangClass, $wgAllMessagesEn;
@@ -69,15 +69,8 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			}
 		}
 	}
-
 	initialiseMessagesReal( $overwrite, $messages );
 }
-
-
-
-
-
-
 
 /** */
 function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
@@ -217,8 +210,8 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	print "Done.\n";
 }
 
-function loadLanguageFile( $filename )
-{
+/** */
+function loadLanguageFile( $filename ) {
 	$contents = file_get_contents( $filename );
 	# Remove header line
 	$p = strpos( $contents, "\n" ) + 1;
@@ -227,9 +220,9 @@ function loadLanguageFile( $filename )
 	return unserialize( $contents );
 }
 
+/** */
 function doUpdates() {
 	global $wgDeferredUpdateList;
 	foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 }
-
 ?>

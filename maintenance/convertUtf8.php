@@ -6,23 +6,28 @@
 
 die("This file is not complete; it's checked in so I don't forget it.");
 
-/*
-UTF-8 conversion of DOOOOOOOM
-
-1. Lock the wiki
-2. Make a convertlist of all pages
-3. Enable CONVERTLOCK mode and switch to UTF-8
-4. As quick as possible, convert the cur, images, *links, user, etc tables. Clear cache tables.
-5. Unlock the wiki. Attempts to access pages on the convertlist will be trapped to read-only.
-6. Go through the list, fixing up old revisions. Remove pages from the convertlist.
-*/
-
-
+/**
+ * UTF-8 conversion of DOOOOOOOM
+ *
+ * 1. Lock the wiki
+ * 2. Make a convertlist of all pages
+ * 3. Enable CONVERTLOCK mode and switch to UTF-8
+ * 4. As quick as possible, convert the cur, images, *links, user, etc tables.
+ * Clear cache tables.
+ * 5. Unlock the wiki. Attempts to access pages on the convertlist will be
+ * trapped to read-only.
+ * 6. Go through the list, fixing up old revisions. Remove pages from the
+ * convertlist.
+ */
 class UtfUpdater {
+	/** Constructor, set the database */
 	function UtfUpdater() {
 		$this->db =& wfGetDB( DB_MASTER );
 	}
-	
+
+	/**
+	 * @param string $string A string to be converted to UTF-8
+	 */	
 	function toUtf8( $string ) {
 		if( function_exists( 'iconv' ) ) {
 			# There are likely to be Windows code page 1252 chars in there.
@@ -34,6 +39,10 @@ class UtfUpdater {
 		}
 	}
 
+	/**
+	 * Truncate a table.
+	 * @param string $table The table name to be truncated
+	 */
 	function clearTable( $table ) {
 		print "Clearing $table...\n";
 		$tableName = $this->db->tableName( $table );
@@ -97,6 +106,10 @@ class UtfUpdater {
 		$this->db->freeResult( $res );
 	}
 	
+	/**
+	 * Lock tables.
+	 * @param array $tables An array of table to be locked.
+	 */
 	function lockTables( $tables ) {
 		$query = '';
 		foreach( $tables as $table ) {
@@ -106,7 +119,10 @@ class UtfUpdater {
 		}
 		$this->db->query( 'LOCK TABLES ' . $query );
 	}
-	
+
+	/**
+	 * @todo document
+	 */	
 	function updateAll() {
 		$this->lockTables( array(
 			'linkscc', 'objectcache', 'searchindex', 'querycache',
@@ -155,5 +171,4 @@ class UtfUpdater {
 	}
 	
 }
-
 ?>
