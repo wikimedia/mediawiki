@@ -101,8 +101,8 @@ class LanguageZh extends LanguageZh_cn {
 		$this->mTables = array();
 		$this->mTables['zh-cn'] = $zh2CN;
 		$this->mTables['zh-tw'] = $zh2TW;
-		$this->mTables['zh-sg'] = $zh2SG;
-		$this->mTables['zh-hk'] = $zh2HK;
+		$this->mTables['zh-sg'] = array_merge($zh2CN, $zh2SG);
+		$this->mTables['zh-hk'] = array_merge($zh2TW, $zh2HK);
 
 		$cached = $this->parseCachedTable('zh-cn');
 		$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
@@ -228,10 +228,12 @@ class LanguageZh extends LanguageZh_cn {
 		if( !$this->mZhLanguageCode ) {
 			// see if some zh- variant is set in the http header,
 			$this->mZhLanguageCode="zh";
-			$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
-			$zh = strstr($header, 'zh-');
-			if($zh) {
-				$this->mZhLanguageCode = substr($zh,0,5);
+			if(array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
+				$zh = strstr($header, 'zh-');
+				if($zh) {
+					$this->mZhLanguageCode = substr($zh,0,5);
+				}
 			}
 		}
 		return $this->mZhLanguageCode;
@@ -263,8 +265,8 @@ class LanguageZh extends LanguageZh_cn {
 		switch( $toVariant ) {
 			case 'zh-cn': $ret = strtr($text, $this->mTables['zh-cn']);break;
 			case 'zh-tw': $ret = strtr($text, $this->mTables['zh-tw']);break;
-			case 'zh-sg': $ret = strtr(strtr($text, $this->mTables['zh-cn']), $this->mTables['zh-sg']);break;
-			case 'zh-hk': $ret = strtr(strtr($text, $this->mTables['zh-tw']), $this->mTables['zh-hk']);break;
+			case 'zh-sg': $ret = strtr($text, $this->mTables['zh-sg']);break;
+			case 'zh-hk': $ret = strtr($text, $this->mTables['zh-hk']);break;
 			default: $ret = $text;
 		}
 		wfProfileOut( $fname );
@@ -451,5 +453,6 @@ class LanguageZh extends LanguageZh_cn {
 		$variant = $this->getPreferredVariant();
 		return '!' . $variant ;
 	}
+
 }
 ?>
