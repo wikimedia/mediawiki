@@ -484,22 +484,11 @@ class Parser
 	 */
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
-		global $wgInputEncoding, $wgOutputEncoding;
 		$fname = 'Parser::tidy';
 		wfProfileIn( $fname );
 
 		$cleansource = '';
-		$opts = '';
-		switch(strtoupper($wgOutputEncoding)) {
-			case 'ISO-8859-1':
-				$opts .= ($wgInputEncoding == $wgOutputEncoding)? ' -latin1':' -raw';
-				break;
-			case 'UTF-8':
-				$opts .= ($wgInputEncoding == $wgOutputEncoding)? ' -utf8':' -raw';
-				break;
-			default:
-				$opts .= ' -raw';
-			}
+		$opts = ' -utf8';
 
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.

@@ -284,7 +284,6 @@ class EditPage {
 		global $wgAllowAnonymousMinor;
 		global $wgWhitelistEdit;
 		global $wgSpamRegex, $wgFilterCallback;
-		global $wgUseLatin1;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -470,7 +469,7 @@ class EditPage {
 				$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
 			}
 			$wgOut->setPageTitle( $s );
-			if ( !$wgUseLatin1 && !$this->checkUnicodeCompliantBrowser() ) {
+			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$this->mArticle->setOldSubtitle();
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}

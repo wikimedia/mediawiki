@@ -59,12 +59,8 @@ class FeedItem {
 	 * @todo document
 	 */
 	function xmlEncode( $string ) {
-		global $wgInputEncoding, $wgContLang;
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
-		if( strcasecmp( $wgInputEncoding, 'utf-8' ) != 0 ) {
-			$string = $wgContLang->iconv( $wgInputEncoding, 'utf-8', $string );
-		}
 		return htmlspecialchars( $string );
 	}
 	

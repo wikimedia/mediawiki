@@ -291,7 +291,6 @@ class ParserTest {
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
 			'wgContLanguageCode' => 'en',
-			'wgUseLatin1' => false,
 			'wgDBprefix' => 'parsertest',
 			'wgDefaultUserOptions' => array(),
 			

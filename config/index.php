@@ -163,13 +163,8 @@ require_once( "../maintenance/archives/moveCustomMessages.inc" );
 
 class ConfigData {
 	function getEncoded( $data ) {
-		# Hackish
-		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
-			return utf8_decode( $data ); /* to latin1 wikis */
-		} else {
-			return $data;
-		}
+		# removing latin1 support, no need...
+		return $data;
 	}
 	function getSitename() { return $this->getEncoded( $this->Sitename ); }
 	function getSysopName() { return $this->getEncoded( $this->SysopName ); }
@@ -695,10 +690,8 @@ if( count( $errs ) ) {
 	</dd>
 	<dt>
 		You may select the language for the user interface of the wiki...
-		Some localizations are less complete than others. This also controls
-		the character encoding; Unicode is more flexible, but Latin-1 may be
-		more compatible with older browsers for some languages. Unicode will
-		be used where not specified otherwise.
+		Some localizations are less complete than others. Unicode (UTF-8 encoding)
+		is used for all localizations.
 	</dt>
 
 	<dd>
@@ -953,12 +946,6 @@ function writeLocalSettings( $conf ) {
 	$conf->DBmysql4 = @$conf->DBmysql4 ? 'true' : 'false';
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
-	if( preg_match( '/^([a-z]+)-latin1$/', $conf->LanguageCode, $m ) ) {
-		$conf->LanguageCode = $m[1];
-		$conf->Latin1 = true;
-	} else {
-		$conf->Latin1 = false;
-	}
 	$zlib = ($conf->zlib ? "" : "# ");
 	$magic = ($conf->ImageMagick ? "" : "# ");
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
@@ -1114,7 +1101,6 @@ if ( \$wgCommandLineMode ) {
 \$wgLocalInterwiki   = \$wgSitename;
 
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
-\$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
 \$wgProxyKey = \"$secretKey\";
 
@@ -1203,7 +1189,6 @@ function getLanguageList() {
 	}
 
 	$codes = array();
-	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
 
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
@@ -1214,12 +1199,7 @@ function getLanguageList() {
 			} else {
 				$name = $code;
 			}
-			if( in_array( $code, $latin1 ) ) {
-				$codes[$code] = $name . " - Unicode";
-				$codes[$code.'-latin1'] = $name . " - Latin-1";
-			} else {
-				$codes[$code] = $name;
-			}
+			$codes[$code] = $name;
 		}
 	}
 	closedir( $d );

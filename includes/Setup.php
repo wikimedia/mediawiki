@@ -255,13 +255,11 @@ wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language2' );
 
 function setupLangObj(&$langclass) {
-	global $wgUseLatin1, $IP;
+	global $IP;
 
 	if( ! class_exists( $langclass ) ) {
-		# Default to English/UTF-8, or for non-UTF-8, to latin-1
+		# Default to English/UTF-8
 		$baseclass = 'LanguageUtf8';
-		if( $wgUseLatin1 )
-			$baseclass = 'LanguageLatin1';
 		require_once( "$IP/languages/$baseclass.php" );
 		$lc = strtolower(substr($langclass, 8));
 		$snip = "

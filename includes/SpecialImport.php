@@ -125,7 +125,6 @@ class WikiRevision {
 	var $comment = "";
 	
 	function setTitle( $text ) {
-		$text = $this->fixEncoding( $text );
 		$this->title = Title::newFromText( $text );
 	}
 	
@@ -135,29 +134,19 @@ class WikiRevision {
 	}
 	
 	function setUsername( $user ) {
-		$this->user_text = $this->fixEncoding( $user );
+		$this->user_text = $user;
 	}
 	
 	function setUserIP( $ip ) {
-		$this->user_text = $this->fixEncoding( $ip );
+		$this->user_text = $ip;
 	}
 	
 	function setText( $text ) {
-		$this->text = $this->fixEncoding( $text );
+		$this->text = $text;
 	}
 	
 	function setComment( $text ) {
-		$this->comment = $this->fixEncoding( $text );
-	}
-	
-	function fixEncoding( $data ) {
-		global $wgContLang, $wgInputEncoding;
-		
-		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
-			return $data;
-		} else {
-			return $wgContLang->iconv( "utf-8", $wgInputEncoding, $data );
-		}
+		$this->comment = $text;
 	}
 	
 	function getTitle() {

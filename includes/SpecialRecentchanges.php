@@ -371,12 +371,9 @@ function rcFormatDiff( $row ) {
 			}
 			$oldtext = $oldrev->getText();
 				
-			global $wgUseLatin1;
-			if( !$wgUseLatin1 ) {
-				# Old entries may contain illegal characters
-				# which will damage output
-				$oldtext = UtfNormal::cleanUp( $oldtext );
-			}
+			# Old entries may contain illegal characters
+			# which will damage output
+			$oldtext = UtfNormal::cleanUp( $oldtext );
 			
 			global $wgFeedDiffCutoff;
 			if( strlen( $newtext ) > $wgFeedDiffCutoff ||

@@ -108,7 +108,7 @@ class WebRequest {
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			global $wgUseLatin1, $wgServer, $wgContLang;
+			global $wgServer, $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) &&
 				!is_array( $data ) &&
@@ -120,10 +120,8 @@ class WebRequest {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
-			if( !$wgUseLatin1 ) {
-				require_once( 'normal/UtfNormal.php' );
-				$data = $this->normalizeUnicode( $data );
-			}
+			require_once( 'normal/UtfNormal.php' );
+			$data = $this->normalizeUnicode( $data );
 			return $data;
 		} else {
 			return $default;
@@ -381,15 +379,8 @@ class WebRequest {
 		
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
-		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
-			$name = utf8_encode( $name );
-		}
 		$name = wfMungeToUtf8( $name );
 		$name = UtfNormal::cleanUp( $name );
-		if( $wgUseLatin1 ) {
-			$name = utf8_decode( $name );
-		}
 		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
 		return $name;
 	}
