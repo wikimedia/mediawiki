@@ -48,7 +48,7 @@ function wfSpecialImagelist()
 	$cap = wfMsg( "ilshowmatch" );
 	$sub = wfMsg( "ilsubmit" );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
-	$action = $titleObj->escapeLocalURL(  "sort=byname&limit={$limit}" );
+	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
@@ -64,9 +64,9 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bysize&limit={$num}" );
+		  "sort=byname&limit={$num}&wpIlMatch={$wpIlMatch}" );
 	}
-	$text = wfMsg( "showlast", $fill, $bysize );
+	$text = wfMsg( "showlast", $fill, $byname );
 	$wgOut->addHTML( "<p>{$text}<br />\n" );
 
 	$fill = "";
@@ -76,7 +76,19 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bydate&limit={$num}" );
+		  "sort=bysize&limit={$num}&wpIlMatch={$wpIlMatch}" );
+	}
+	$text = wfMsg( "showlast", $fill, $bysize );
+	$wgOut->addHTML( "{$text}<br />\n" );
+
+	$fill = "";
+	$first = true;
+	foreach ( $nums as $num ) {
+		if ( ! $first ) { $fill .= " | "; }
+		$first = false;
+
+		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
+		  "sort=bydate&limit={$num}&wpIlMatch={$wpIlMatch}" );
 	}
 	$text = wfMsg( "showlast", $fill, $bydate );
 	$wgOut->addHTML( "{$text}</p>\n<p>" );
