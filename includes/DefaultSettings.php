@@ -83,7 +83,7 @@ $wgMaxNameChars     = 32; # Maximum number of bytes in username
 
 # Translation using MediaWiki: namespace
 # This will increase load times by 25-60% unless memcached is installed
-$wgUseDatabaseMessages = true;
+$wgUseDatabaseMessages = true;		# Must be on to allow {{msg:...}} and {{subst:...} to work.
 $wgMsgCacheExpiry	= 86400;
 
 $wgExtraSubtitle	= "";
