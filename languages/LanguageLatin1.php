@@ -296,6 +296,10 @@ class LanguageLatin1 {
 	function getExtraHashOptions() {
 		return '';
 	}
+	
+	function linkTrail() {
+		return $this->lang->linkTrail();
+	}
 }
 
 ?>

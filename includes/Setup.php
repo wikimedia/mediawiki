@@ -239,15 +239,13 @@ if( $wgCommandLineMode ) {
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language2' );
 
-function setupLangObj(&$langclass) {
+function setupLangObj($langclass) {
 	global $wgUseLatin1, $IP;
 
 	if( ! class_exists( $langclass ) ) {
-		# Default to English/UTF-8, or for non-UTF-8, to latin-1
+		# Default to English/UTF-8
 		$baseclass = 'LanguageUtf8';
-		if( $wgUseLatin1 )
-			$baseclass = 'LanguageLatin1';
-		require_once( "$IP/languages/$baseclass.php" );
+		require_once( "$IP/languages/LanguageUtf8.php" );
 		$lc = strtolower(substr($langclass, 8));
 		$snip = "
 			class $langclass extends $baseclass {
@@ -262,7 +260,12 @@ function setupLangObj(&$langclass) {
 
 	$lang = new $langclass();
 
-	return $lang;
+	if( ! $wgUseLatin1 ) 
+		return $lang;
+
+	require_once( $IP . '/languages/LanguageLatin1.php' );
+	$latin1 = new LanguageLatin1( $lang );
+	return $latin1;
 }
 
 # $wgLanguageCode may be changed later to fit with user preference.
@@ -289,7 +292,6 @@ if( $wgLangClass == $wgContLangClass ) {
 	wfSuppressWarnings();
 	include_once("$IP/languages/$wgLangClass.php");
 	wfRestoreWarnings();
-
 	$wgLang = setupLangObj( $wgLangClass );
 }
 

@@ -17,8 +17,8 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgDisableLangConversion;
 	global $wgForceUIMsgAsContentMsg;
 	global $wgLanguageNames;
-	global $IP;
-
+	global $IP, $wgUseLatin1;
+	
 	# overwrite language conversion	option so that all variants 
 	# of the messages are initialised
 	$wgDisableLangConversion = false;
@@ -42,7 +42,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
 		}
 		$lang = new $langclass;
-
+		if($wgUseLatin1) {
+			require_once( "$IP/languages/LanguageLatin1.php" );
+			$latin1 = new LanguageLatin1( $lang );
+			unset($lang);
+			$lang = $latin1;
+		}
 		if($v==$wgContLanguageCode)
 			$suffix='';
 		else
