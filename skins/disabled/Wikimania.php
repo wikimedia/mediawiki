@@ -27,7 +27,7 @@ class SkinWikimania extends SkinTemplate {
 	function initPage( &$out ) {
 		SkinTemplate::initPage( $out );
 		$this->skinname  = 'wikimania';
-		$this->stylename = 'monobook';
+		$this->stylename = 'wikimania';
 		$this->template  = 'WikimaniaTemplate';
 	}
 }
