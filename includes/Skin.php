@@ -1772,7 +1772,7 @@ class Skin {
 		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$oboxwidth}px;\"><div style=\"width:{$boxwidth}px;\">";
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
-			$zoom = '';
+			$zoomicon = '';
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
 				'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
