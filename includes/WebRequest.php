@@ -115,7 +115,9 @@ class WebRequest {
 				strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) ) {
 				# For links that came from outside, check for alternate/legacy
 				# character encoding.
-				$data = $wgContLang->checkTitleEncoding( $data );
+				if ( isset( $wgContLang ) ) {
+					$data = $wgContLang->checkTitleEncoding( $data );
+				}
 			}
 			if( !$wgUseLatin1 ) {
 				require_once( 'normal/UtfNormal.php' );
