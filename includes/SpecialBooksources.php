@@ -63,7 +63,7 @@ class BookSourceList {
 				} else {
 					$adr = str_replace ( "$1" , $this->mIsbn , $adr ) ;
 				}
-				$s .= "<li><a href=\"{$adr}\">{$name}</a></li>\n" ;
+				$s .= "<li><a href=\"{$adr}\" class=\"external\">{$name}</a></li>\n" ;
 			}
 			$s .= "</ul>\n";
 

@@ -1194,7 +1194,7 @@ class Skin {
 
 		if ( "" == $alt ) { $alt = $name; }
 		$u = wfEscapeHTML( $url );
-		$s = "<a href=\"{$u}\" class='media' title=\"{$alt}\">{$alt}</a>";
+		$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		return $s;
 	}
 

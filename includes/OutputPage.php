@@ -1253,7 +1253,7 @@ class OutputPage {
 				$text .= "ISBN $blank$x";
             } else {
 				$text .= "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-				  "Booksources"), "isbn={$num}" ) . "\">ISBN $isbn</a>";
+				  "Booksources"), "isbn={$num}" ) . "\" CLASS=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
 		}
