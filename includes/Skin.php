@@ -331,7 +331,7 @@ class Skin {
 	#
 	function afterContent()
 	{
-		global $wgUser, $wgOut, $wgServer, $HTTP_SERVER_VARS;
+		global $wgUser, $wgOut, $wgServer;
 		global $wgTitle;
 		
 		if ( $wgOut->isPrintable() ) {
