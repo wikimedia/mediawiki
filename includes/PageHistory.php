@@ -69,7 +69,7 @@ class PageHistory {
 		$numbar = wfViewPrevNext(
 			$offset, $limit,
 			$this->mTitle->getPrefixedText(),
-			"action=history" );
+			"action=history", $atend );
 		$s = $numbar;
 		$s .= $this->beginHistoryList();
 
