@@ -8,8 +8,8 @@
 /**
  *
  */
-require_once( "SpecialRecentchanges.php" );
-require_once( "WatchedItem.php" );
+require_once( 'SpecialRecentchanges.php' );
+require_once( 'WatchedItem.php' );
 
 /**
  * constructor
@@ -18,18 +18,18 @@ function wfSpecialWatchlist() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $wgEnotif, $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
-	$fname = "wfSpecialWatchlist";
+	$fname = 'wfSpecialWatchlist';
 
-	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
-	$sub = wfMsg( "watchlistsub", $wgUser->getName() );
+	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
+	$sub = wfMsg( 'watchlistsub', $wgUser->getName() );
 	$wgOut->setSubtitle( $sub );
-	$wgOut->setRobotpolicy( "noindex,nofollow" );
+	$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-	$specialTitle = Title::makeTitle( NS_SPECIAL, "Watchlist" );
+	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Watchlist' );
 
 	$uid = $wgUser->getID();
 	if( $uid == 0 ) {
-		$wgOut->addHTML( wfMsg( "nowatchlist" ) );
+		$wgOut->addHTML( wfMsg( 'nowatchlist' ) );
 		return;
 	}
 
@@ -39,25 +39,25 @@ function wfSpecialWatchlist() {
 	$remove = $wgRequest->getVal( 'remove' );
 	$id = $wgRequest->getArray( 'id' );
 
-	$wgOut->addHTML( wfMsg( "email_notification_infotext" ) );
+	$wgOut->addHTML( wfMsg( 'email_notification_infotext' ) );
 
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
-	if(($action == "submit") && isset($remove) && is_array($id)) {
-		$wgOut->addHTML( wfMsg( "removingchecked" ) );
+	if(($action == 'submit') && isset($remove) && is_array($id)) {
+		$wgOut->addHTML( wfMsg( 'removingchecked' ) );
 		foreach($id as $one) {
 			$t = Title::newFromURL( $one );
-			if($t->getDBkey() != "") {
+			if($t->getDBkey() != '') {
 				$wl = WatchedItem::fromUserTitle( $wgUser, $t );
 				if( $wl->removeWatch() === false ) {
-					$wgOut->addHTML( "<br />\n" . wfMsg( "couldntremove", htmlspecialchars($one) ) );
+					$wgOut->addHTML( "<br />\n" . wfMsg( 'couldntremove', htmlspecialchars($one) ) );
 				} else {
-					$wgOut->addHTML( " (" . htmlspecialchars($one) . ")" );
+					$wgOut->addHTML( ' (' . htmlspecialchars($one) . ')' );
 				}
 			} else {
-				$wgOut->addHTML( "<br />\n" . wfMsg( "iteminvalidname", htmlspecialchars($one) ) );
+				$wgOut->addHTML( "<br />\n" . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) );
 			}
 		}
 		$wgOut->addHTML( "done.\n<p>" );
@@ -67,7 +67,7 @@ function wfSpecialWatchlist() {
 		$memckey = "$wgDBname:watchlist:id:" . $wgUser->getId();
 		$cache_s = @$wgMemc->get( $memckey );
 		if( $cache_s ){
-			$wgOut->addHTML( wfMsg("wlsaved") );
+			$wgOut->addHTML( wfMsg('wlsaved') );
 			$wgOut->addHTML( $cache_s );
 			return;
 		}
@@ -86,7 +86,7 @@ function wfSpecialWatchlist() {
 	$nitems = $s->n;
 
 	if($nitems == 0) {
-        $wgOut->addHTML( wfMsg( "nowatchlist" ) );
+        $wgOut->addHTML( wfMsg( 'nowatchlist' ) );
         return;
 	}
 	
@@ -105,7 +105,7 @@ function wfSpecialWatchlist() {
 	if ( $days <= 0 ) {
 		$docutoff = '';
 		$cutoff = false;
-		$npages = wfMsg( "all" );
+		$npages = wfMsg( 'all' );
 	} else {
 	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
@@ -118,11 +118,11 @@ function wfSpecialWatchlist() {
 	}
 
 	if(isset($_REQUEST['magic'])) {
-		$wgOut->addHTML( wfMsg( "watchlistcontains", $wgLang->formatNum( $nitems ) ) .
-			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
+		$wgOut->addHTML( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
+			'<p>' . wfMsg( 'watcheditlist' ) . "</p>\n" );
 
-		$wgOut->addHTML( "<form action='" .
-			$specialTitle->escapeLocalUrl( "action=submit" ) .
+		$wgOut->addHTML( '<form action=\'' .
+			$specialTitle->escapeLocalUrl( 'action=submit' ) .
 			"' method='post'>\n" .
 			"<ul>\n" );
 
@@ -139,7 +139,7 @@ function wfSpecialWatchlist() {
 				$wgOut->addHTML( '<!-- bad title "' . htmlspecialchars( $s->wl_title ) . '" in namespace ' . IntVal( $s->wl_namespace ) . " -->\n" );
 			} else {
 				$t = $t->getPrefixedText();
-				$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
+				$wgOut->addHTML( '<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' .
 					$sk->makeLink( $t, $t ) .
 					"</li>\n" );
 			}
@@ -160,25 +160,25 @@ function wfSpecialWatchlist() {
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
 	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
-		$x = "rev_timestamp";
-		$y = wfMsg( "watchmethod-recent" );
+		$x = 'rev_timestamp';
+		$y = wfMsg( 'watchmethod-recent' );
 		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
 		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
 		# $z = "wl_namespace=cur_namespace & ~1";
-		$z = "wl_namespace=page_namespace";
+		$z = 'wl_namespace=page_namespace';
 	} else {
-		$x = "page_timestamp";
-		$y = wfMsg( "watchmethod-list" );
+		$x = 'page_timestamp';
+		$y = wfMsg( 'watchmethod-list' );
 		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
 		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
 		# $z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
-		$z = "wl_namespace=page_namespace";
+		$z = 'wl_namespace=page_namespace';
 	}
 
 
-	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
+	$wgOut->addHTML( '<i>' . wfMsg( 'watchdetails',
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
-		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
+		$specialTitle->escapeLocalUrl( 'magic=yes' ) ) . "</i><br />\n" );
 
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
@@ -196,17 +196,17 @@ function wfSpecialWatchlist() {
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
 	if($days >= 1)
-		$note = wfMsg( "rcnote", $wgLang->formatNum( $numRows ), $wgLang->formatNum( $days ) );
+		$note = wfMsg( 'rcnote', $wgLang->formatNum( $numRows ), $wgLang->formatNum( $days ) );
 	elseif($days > 0)
-		$note = wfMsg( "wlnote", $wgLang->formatNum( $numRows ), $wgLang->formatNum( round($days*24) ) );
+		$note = wfMsg( 'wlnote', $wgLang->formatNum( $numRows ), $wgLang->formatNum( round($days*24) ) );
 	else
-		$note = "";
+		$note = '';
 	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
 	$note = wlCutoffLinks( $days );
 	$wgOut->addHTML( "{$note}\n" );
 
 	if ( $numRows == 0 ) {
-		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
+		$wgOut->addHTML( '<p><i>' . wfMsg( 'watchnochange' ) . '</i></p>' );
 		return;
 	}
 
@@ -254,7 +254,7 @@ function wlHoursLink( $h, $page ) {
 	$s = $sk->makeKnownLink(
 	  $wgContLang->specialPage( $page ),
 	  $wgLang->formatNum( $h ),
-	  "days=" . ($h / 24.0) );
+	  'days=' . ($h / 24.0) );
 	return $s;
 }
 
@@ -264,15 +264,15 @@ function wlDaysLink( $d, $page ) {
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgContLang->specialPage( $page ),
-	  ($d ? $wgLang->formatNum( $d ) : wfMsg( "all" ) ), "days=$d" );
+	  ($d ? $wgLang->formatNum( $d ) : wfMsg( 'all' ) ), "days=$d" );
 	return $s;
 }
 
-function wlCutoffLinks( $days, $page = "Watchlist" )
+function wlCutoffLinks( $days, $page = 'Watchlist' )
 {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
-	$cl = "";
+	$cl = '';
 	$i = 0;
 	foreach( $hours as $h ) {
 		$hours[$i++] = wlHoursLink( $h, $page );
@@ -281,9 +281,9 @@ function wlCutoffLinks( $days, $page = "Watchlist" )
 	foreach( $days as $d ) {
 		$days[$i++] = wlDaysLink( $d, $page );
 	}
-	return wfMsg ("wlshowlast",
-		implode(" | ", $hours),
-		implode(" | ", $days),
+	return wfMsg ('wlshowlast',
+		implode(' | ', $hours),
+		implode(' | ', $days),
 		wlDaysLink( 0, $page ) );
 }
 
