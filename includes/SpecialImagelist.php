@@ -15,17 +15,19 @@ function wfSpecialImagelist()
 	$bydate = wfMsg( "bydate" );
 	$bysize = wfMsg( "bysize" );
 
-	if ( "bysize" == $sort ) {
-		$sql .= " ORDER BY img_size DESC";
-		$st = $bysize;
-	} else if ( "byname" == $sort ) {
-		if ( $wpIlMatch ) {
-			$nt = Title::newFromUrl( $wpIlMatch );
+	if ( !empty( $wpIlMatch ) ) {
+		$nt = Title::newFromUrl( $wpIlMatch );
+		if($nt ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
 			$m = str_replace( "%", "\\%", $m );
 			$m = str_replace( "_", "\\_", $m );
 			$sql .= " WHERE LCASE(img_name) LIKE '%{$m}%'";
 		}
+	}
+	if ( "bysize" == $sort ) {
+		$sql .= " ORDER BY img_size DESC";
+		$st = $bysize;
+	} else if ( "byname" == $sort ) {
 		$sql .= " ORDER BY img_name";
 		$st = $byname;
 	} else {
@@ -53,7 +55,8 @@ function wfSpecialImagelist()
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
-	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"\" /> " .
+	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
+	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
 	$here = $wgLang->specialPage( "Imagelist" );
@@ -65,7 +68,7 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=byname&limit={$num}&wpIlMatch={$wpIlMatch}" );
+		  "sort=byname&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( "showlast", $fill, $byname );
 	$wgOut->addHTML( "<p>{$text}<br />\n" );
@@ -77,7 +80,7 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bysize&limit={$num}&wpIlMatch={$wpIlMatch}" );
+		  "sort=bysize&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( "showlast", $fill, $bysize );
 	$wgOut->addHTML( "{$text}<br />\n" );
@@ -89,7 +92,7 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bydate&limit={$num}&wpIlMatch={$wpIlMatch}" );
+		  "sort=bydate&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( "showlast", $fill, $bydate );
 	$wgOut->addHTML( "{$text}</p>\n<p>" );
