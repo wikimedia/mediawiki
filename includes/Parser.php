@@ -1218,9 +1218,8 @@ class Parser
 		if ( $this->mOutputType == OT_HTML ) {
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", "wfArgSubstitution", $text );
 		}
-
 		# Double brace substitution
-		$regex = "/(\\n?){{([$titleChars{}_]*)(\\|.*?|)}}/s";
+		$regex = "/(\\n?){{([$titleChars]*)(\\|.*?|)}}/s";
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
 
 		array_pop( $this->mArgStack );
@@ -2080,10 +2079,23 @@ function wfBraceSubstitution( $matches )
 {
 	global $wgCurParser;
 	$titleChars = Title::legalChars();
+
+	# not really nested stuff, just multiple includes separated by titlechars
+	if(preg_match("/^([^}{]*)}}([^}{]*{{)(.*)$/s", $matches[2], $m)) {
+		$text = wfInternalBraceSubstitution( $m[1] );
+		$string = $text.$m[2].$m[3];
+		while(preg_match("/^([^}{]*){{([$titleChars]*?)(}}[^}{]*{{.*)?$/s", $string, $m)) {
+			$text = wfInternalBraceSubstitution( $m[2] );
+			$trail = !empty($m[3])? preg_replace("/^}}/", '', $m[3]):'';
+			$string = $m[1].$text.$trail;
+		}
+		return $string;
+	}
+		
 	# Double brace substitution, expand bar in {{foo{{bar}}}}
 	$i = 0;
 	while(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches) and $i < 30) {
-		$text = wfInternalBraceSubstitution( $internalmatches );
+		$text = wfInternalBraceSubstitution( $internalmatches[1] );
 		$matches[0] = str_replace($internalmatches[0], $text , $matches[0]);
 		$matches[2] = str_replace($internalmatches[0], $text , $matches[2]);
 		$i++;
@@ -2099,7 +2111,7 @@ function wfArgSubstitution( $matches )
 }
 
 # XXX: i don't think this is the most elegant way to do it..
-function wfInternalBraceSubstitution( $matches ) {
+function wfInternalBraceSubstitution( $part1 ) {
 	global $wgLinkCache, $wgLang, $wgCurParser;
 	$fname = "wfInternalBraceSubstitution";
 	$found = false;
@@ -2111,15 +2123,6 @@ function wfInternalBraceSubstitution( $matches ) {
 	# $newline is an optional newline character before the braces
 	# $part1 is the bit before the first |, and must contain only title characters
 	# $args is a list of arguments, starting from index 0, not including $part1
-
-	$part1 = $matches[1];
-
-	# {{{}}}
-	if ( strpos( $matches[0], "{{{" ) !== false ) {
-		$text = $matches[0];
-		$found = true;
-		$noparse = true;
-	}
 
 	# SUBST
 	if ( !$found ) {
