@@ -469,11 +469,6 @@ Nie zapomnij dostosować <i>preferencji</i>.",
 "loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br>Spróbuj ponownie!",
 "alreadyloggedin" => "<font color=red><b>$1, jesteś już zalogowany!</b></font><br>\n",
 
-"areyounew" => "Jeśli jesteś po raz pierwszy na Wikipedii i chcesz mieć
-własne konto użytkownika, wprowadź swój pseudonim (login), a następnie wpisz
-dwukrotnie wybrane hasło. Podanie adresu e-mail jest opcjonalne - jeśli
-zapomnisz hasła możesz poprosić o przesłanie go na ów adres.<br>\n",
-
 "login" => "Zaloguj mnie",
 "userlogin" => "Logowanie",
 "logout" => "Wyloguj mnie",

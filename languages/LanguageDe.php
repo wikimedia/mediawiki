@@ -283,10 +283,6 @@ Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen. Schauen Sie doch a
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br>Bitte versuchen Sie es nochmal!",
 "alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br>\n",
 
-"areyounew"		=> "Wenn Sie neu bei Wikipedia sind und ein Benutzerkonto möchten,
-geben Sie bitte ihren Benutzernamen und ihr Passwort ein und wiederholen sie das Passwort.
-Ihre E-Mail-Adresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort vergessen sollten, können Sie sich ein neues zuschicken lassen.<br>\n",
-
 "login"			=> "Anmelden",
 "userlogin"		=> "Anmelden",
 "logout"		=> "Abmelden",

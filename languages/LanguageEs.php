@@ -316,11 +316,6 @@ No olvides perzonalizar tus preferencia de Wikipedia.",
 "loginproblem"	=> "<b>Hubo un problema con tu entrada.</b><br>¡Inténtalo otra vez!",
 "alreadyloggedin" => "<font color=red><b>Usuario $1, ya entraste!</b></font><br>\n",
 
-"areyounew"		=> "Si eres nuevo en Wikipedia en Español y
-quieres tener una cuenta de usuario, ingresa un nombre de usuario,
-y escribe y repite una contraseña.
-Tu dirección electrónica es opcional: si pierdes u olvidas tu
-contraseña, puedes pedir que se envíe a la dirección que des.  <br>\n",
 "login"			=> "Registrarse/Entrar",
 "userlogin"		=> "Registrarse/Entrar",
 "logout"		=> "Salir",

@@ -294,11 +294,6 @@ Mos harro të vendosësh preferencat e tua të uikipedias.",
 "loginproblem"	=> "<b>Kishte një problem me hyrjen tënde.</b><br>Provoje përsëri!",
 "alreadyloggedin" => "<font color=red><b>Përdorues $1, ti ke hyrë brënda më parë!</b></font><br>\n",
 
-"areyounew"		=> "N.q.s. je një përdorues i ri i $wgSitename dhe do të hapësh një llogari,
-fut një emër, pastaj fut një fjalëkalim dy herë.
-Adresa jote e email-it nuk është e detyrueshme; n.q.s. ti harron fjalëkalimin mund të kërkosh që
-ta dergojme tek adresa që na dhe.<br>\n",
-
 "login"			=> "Hyrje",
 "userlogin"		=> "Hyrje",
 "logout"		=> "Dalje",

@@ -253,9 +253,6 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br>Riprova, sarai più fortunato!",
 "alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br>\n",
 
-"areyounew"		=> "Se sei nuovo in Wikipedia e desideri creare un nuovo user account, immetti uno user name (che sarà il tuo nome per Wikipedia), poi digita una password e ripetila nella casella successiva.<br> 
-Indicare un indirizzo e-mail non è obbligatorio, solo facoltativo (sebbene consigliato).<br>Se per caso perdessi la tua password, potrai richiedere che ti sia rispedita alla casella di posta elettronica che ci fornirai.<br>\n",
-
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",

@@ -470,10 +470,6 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "loginproblem"	=> "<b>登录有问题。</b><br>再试一次！",
 "alreadyloggedin" => "<font color=red><b>用户$1，您已经登录了!</b></font><br>\n",
 
-"areyounew"		=> "如果您是Wikipedia的新用户并想得到一个用户帐号，
-请输入用户名，然后重复输入密码两次。
-您可以选择输入电子邮件地址; 这样如果你忘了密码时可以要求将密码寄往您所输入的地址。<br>\n",
-
 "login"			=> "登录",
 "userlogin"		=> "用户登录",
 "logout"		=> "退出",

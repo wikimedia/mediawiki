@@ -376,9 +376,6 @@ Můžete pracovat ve Wikipedii anonymně, nebo se přihlásit znovu jako stejný
 "loginproblem"	=> "<b>Nastal problém při vašem přihlášení.</b><br>Zkuste to znovu!",
 "alreadyloggedin" => "<font color=\"red\"><b>Uživateli $1, již jste přihlášen!</b></font><br>\n",
 
-"areyounew"		=> "Pokud jste nový u Wikipedie a chcete získat uživatelský účet, napište své přihlašovací jméno, heslo, a znovu heslo zopakujte. Podle uvážení můžete vložit svou e-mailovou adresu, abychom vám mohli poslat nové heslo, kdybyste současné zapomněl.
-<br>\n",
-
 "login"			=> "Přihlašte se", #FIXME, what exactly do the following go to?
 "userlogin"		=> "Přihlašte se",
 "logout"		=> "Na shledanou",

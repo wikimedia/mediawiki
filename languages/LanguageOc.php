@@ -440,8 +440,6 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préféren
 "loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau !",
 "alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié !</b></font><br>\n",
 
-"areyounew"	=> "Si vous êtes nouveau sur Wikipédia et souhaitez créer un compte utilisateur, entrez un nom d'utilisateur et tapez deux fois votre mot de passe. L'adresse électronique est optionnelle, mais si vous perdez votre mot de passe, vous pourrez en demander un nouveau que nous vous ferons parvenir par ce moyen.<br>\n",
-
 "login"         => "Identification",
 "userlogin"     => "Identification",
 "logout"        => "Déconnexion",

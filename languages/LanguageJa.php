@@ -386,10 +386,6 @@ again as the same or as a different user.\n",
 "loginproblem"	=> "<b>ログインでエラーが発生しました。</b><br>再度実行してください。",
 "alreadyloggedin" => "<font color=red><b>ユーザ $1 は、すでにログイン済みです。</b></font><br>\n",
 
-"areyounew"		=> "もし Wikipedia を使うのが初めてで、ユーザー登録をしたい方は、ユーザー名、パスワード、さらに確認のため同じパスワードを再入力してください。
-電子メール・アドレスの登録は、必須ではありません。ですが、もしパスワードを忘れたときには、電子メールでパスワードを取り寄せることができるので便利です。<br>\n",
-
-
 "login"			=> "ログイン",
 "userlogin"		=> "ログイン",
 "logout"		=> "ログアウト",

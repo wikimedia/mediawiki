@@ -278,12 +278,6 @@ igen som samma eller annan användare.\n",
 "loginproblem"          => "<b>Det var svårt att logga in dig .</b><br>Pröva igen!",
 "alreadyloggedin"       => "<font color=red><b>Användare $1, du är redan inloggad !</b></font><br>\n",
 
-"areyounew"             => "Om du är ny på Wikipedia och önskar ett användarkonto, så skriv in ett användarnamn, därefter skriver du ett lösenord som du sedan upprepar.
-
-Observera att det finns bättre och sämre val av användarnamn, försök välja något unikt, och där du löper mindre risk att en dag behöva dela detta användarnamn med ett större antal användare som kan ha rätt till det. Exempel: Johansson, eller Peter. Allra helst ser vi att du använder ditt eget för och efternamn, men du bestämmer naturligtvis själv.
-
-Att ange e-postadress är frivilligt; men om du glömmer ditt lösenord kan du till exempel be om att få det tillsänt till den adress du har angett.<br>\n",
-
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",
 "logout"                => "Logga ut",

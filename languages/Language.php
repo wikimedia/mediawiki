@@ -538,11 +538,6 @@ Don't forget to personalize your wikipedia preferences.",
 "loginproblem"	=> "<b>There has been a problem with your login.</b><br>Try again!",
 "alreadyloggedin" => "<font color=red><b>User $1, you are already logged in!</b></font><br>\n",
 
-"areyounew"		=> "If you are new to $wgSitename and want to get a user account,
-enter a user name, then type and re-type a password.
-Your e-mail address is optional; if you lose your password you can request
-that it be to the address you give.<br>\n",
-
 "login"			=> "Log in",
 "loginprompt"           => "You must have cookies enabled to log in to $wgSitename.",
 "userlogin"		=> "Log in",

@@ -321,8 +321,7 @@ Nu uitaţi să vă personalizaţi preferinţele în Wikipedia.",
 "remembermypassword" => "Reţine-mi parola între sesiuni.",
 "loginproblem"	=> "<b>A fost o problemă cu autentificarea Dvs.</b><br>Încercaţi din nou!",
 "alreadyloggedin" => "<font color=red><b>Sunteţi deja autentificat ca $1!</b></font><br>\n",
-"areyounew"		=> "Dacă sunteţi nou în Wikipedia şi doriţi un cont de utilizator, introduceţi un nume de utilizator, apoi scrieţi-vă parola în căsuţa următoare, şi repetaţi-o în a treia pentru confirmare.
-Adresa de mail este opţională; dacă vă pierdeţi parola o puteţi cere la adresa de mail pe care o introduceţi.<br>\n",
+
 "notloggedin" => "Nu sunteţi autentificat",
 
 "login"			=> "Autentificare",

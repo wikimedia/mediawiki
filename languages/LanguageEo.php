@@ -303,11 +303,6 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 "loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br>Bonvolu reprovi!",
 "alreadyloggedin" => "<font color=\"red\"><b>Uzulo $1, vi jam estas ensalutinta!</b></font><br>\n",
 
-"areyounew"		=> "Se vi estas nova ĉe la Vikipedio kaj volas akiri uzulan konton,
-bonvolu tajpi salutnomon, pasvorton, kaj refoje pasvorton.
-Laŭvole vi rajtas enmeti vian retpoŝtadreson por ke ni povu
-sendi al vi novan pasvorton, se vi perdos la nunan.<br>\n",
-
 "login"			=> "Ensalutu", #FIXME, what exactly do the following go to?
 "userlogin"		=> "Ensalutu",
 "logout"		=> "Elsalutu",
