@@ -79,6 +79,7 @@ class QueryPage {
 	 * Formats the results of the query for display. The skin is the current
 	 * skin; you can use it for making links. The result is a single row of
 	 * result data. You should be able to grab SQL results off of it.
+	 * If the function return "false", the line output will be skipped.
 	 */
 	function formatResult( $skin, $result ) {
 		return '';
