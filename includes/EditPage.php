@@ -196,7 +196,7 @@ class EditPage {
 					return;
 				else
 					$isConflict = true;
-			}
+			}			
 		}
 		# First time through: get contents, set time for conflict
 		# checking, etc.

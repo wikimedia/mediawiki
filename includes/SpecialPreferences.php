@@ -22,6 +22,7 @@ class PreferencesForm {
 		$this->mNewpass = $request->getVal( 'wpNewpass' );
 		$this->mRetypePass =$request->getVal( 'wpRetypePass' );
 		$this->mStubs = $request->getVal( 'wpStubs' );
+		$this->mCollapse = $request->getVal( 'wpCollapse' );
 		$this->mRows = $request->getVal( 'wpRows' );
 		$this->mCols = $request->getVal( 'wpCols' );
 		$this->mSkin = $request->getVal( 'wpSkin' );
@@ -158,6 +159,7 @@ class PreferencesForm {
 		$wgUser->setOption( "rows", $this->validateInt( $this->mRows, 4, 1000 ) );
 		$wgUser->setOption( "cols", $this->validateInt( $this->mCols, 4, 1000 ) );
 		$wgUser->setOption( "stubthreshold", $this->validateIntOrNull( $this->mStubs ) );
+		$wgUser->setOption( "collapsethreshold", $this->validateIntOrNull( $this->mCollapse ) );
 		$wgUser->setOption( "timecorrection", $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
 
 		# Set search namespace options
@@ -197,6 +199,7 @@ class PreferencesForm {
 		$this->mRows = $wgUser->getOption( "rows" );
 		$this->mCols = $wgUser->getOption( "cols" );
 		$this->mStubs = $wgUser->getOption( "stubthreshold" );
+		$this->mCollapse = $wgUser->getOption( "collapsethreshold" );
 		$this->mHourDiff = $wgUser->getOption( "timecorrection" );
 		$this->mSearch = $wgUser->getOption( "searchlimit" );
 		$this->mSearchLines = $wgUser->getOption( "contextlines" );
@@ -311,6 +314,7 @@ class PreferencesForm {
 		$emf = wfMsg( "emailflag" );
 		$ynn = wfMsg( "yournick" );
 		$stt = wfMsg ( "stubthreshold" ) ;
+		$coltr = wfMsg("collapsethreshold");
 		$srh = wfMsg( "searchresultshead" );
 		$rpp = wfMsg( "resultsperpage" );
 		$scl = wfMsg( "contextlines" );
@@ -439,6 +443,7 @@ class PreferencesForm {
 		" . $this->getToggle( "hideminor" ) .
 		$this->getToggle( "usenewrc" ) . "
 		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+		<div><label>$coltr: <input type='text' name=\"wpCollapse\" value=\"$this->mCollapse\" size='6' /></label></div>
 	</fieldset>
 	
 	<fieldset>

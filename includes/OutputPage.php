@@ -18,6 +18,8 @@ class OutputPage {
 	var $mParserOptions;
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
+	var $mToc;		# Table of contents for collapsed pages (in HTML)
+	var $mCollapse = false; # Collapse output? (Set in Article.php)
 	
 	function OutputPage()
 	{
@@ -35,6 +37,7 @@ class OutputPage {
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
 		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
 		$this->mSquidMaxage = 0;
+		$this->mToc='';
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
@@ -713,5 +716,29 @@ class OutputPage {
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
+	
+	function setToc($toc) {
+	
+		$this->mToc=$toc;
+	
+	}
+
+	function getToc() {
+	
+		return $this->mToc;
+	
+	}	
+
+	function setCollapse($collapse) {
+	
+		$this->mCollapse=$collapse;
+	
+	}
+
+	function getCollapse() {
+	
+		return $this->mCollapse;
+	
+	}	
 }
 ?>

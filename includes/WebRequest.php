@@ -101,7 +101,9 @@ class WebRequest {
 	}
 	
 	function getBool( $name, $default = false ) {
-		return $this->getVal( $name, $default ) ? true : false;
+		$val=$this->getVal( $name, $default );
+		if($val=="false") { $val=false; }
+		return $val ? true : false;
 	}
 	
 	function getCheck( $name ) {

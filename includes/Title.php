@@ -38,7 +38,7 @@ class Title {
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
-        $this->mDefaultNamespace = 0;
+        	$this->mDefaultNamespace = 0;		
 	}
 
 	# From a prefixed DB key
@@ -1139,6 +1139,6 @@ class Title {
 		Article::onArticleCreate( $this );
 		return true;
 	}
-	
+
 }
 ?>

@@ -64,14 +64,15 @@ class Article {
 	# Return the text of this revision
 	function getContent( $noredir )
 	{
-		global $wgRequest;
+		global $wgRequest,$wgUser,$wgOut;
+
+		$fname =  "Article::getContent";
+		wfProfileIn( $fname );
 
 		# Get variables from query string :P
 		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
-
-		$fname =  "Article::getContent";
-		wfProfileIn( $fname );
+		$sectiontitle = $wgRequest->getText( 'sectiontitle' );	
 
 		if ( 0 == $this->getID() ) {
 			if ( "edit" == $action ) {
@@ -80,60 +81,129 @@ class Article {
 			}
 			wfProfileOut( $fname );
 			return wfMsg( "noarticletext" );
-		} else {
+		} else {			
 			$this->loadContent( $noredir );
-
-			if(
-				# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-				( $this->mTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&
-				  preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle->getText()) &&
-				  $action=="view"
-				)
-				{
-				wfProfileOut( $fname );
-				return $this->mContent . "\n" .wfMsg("anontalkpagetext"); }
-			else {
-				if($action=="edit") {
-					if($section!="") {
-						if($section=="new") {
-							wfProfileOut( $fname );
-							return "";
-						}
-
-						# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
-						# comments to be stripped as well)
-						$striparray=array();
-						$parser=new Parser();
-						$parser->mOutputType=OT_WIKI;
-						$striptext=$parser->strip($this->mContent, $striparray, true);
-
-						# now that we can be sure that no pseudo-sections are in the source,
-						# split it up by section
-						$secs =
-						  preg_split(
-						  "/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
-						  $striptext, -1,
-						  PREG_SPLIT_DELIM_CAPTURE);
-
-						if($section==0) {
-							$rv=$secs[0];
-						} else {
-							$rv=$secs[$section*2-1] . $secs[$section*2];
-						}
-
-						# reinsert stripped tags
-						$rv=$parser->unstrip($rv,$striparray);
-						$rv=trim($rv);
-						wfProfileOut( $fname );
-						return $rv;
-					}
+			
+			# size threshold at which pages are automatically collapsed
+			$collapsethreshold=$wgUser->getOption( "collapsethreshold" );
+			if($collapsethreshold && strlen($this->mContent)>=$collapsethreshold) {
+				$collapse=true;			
+			} else {
+				$collapse=false;
+			}
+			#override user pref is expansion is explicitly requested
+			if($wgRequest->getBool('collapse')) { $collapse=true; }
+			if( $wgRequest->getText( 'collapse' ) == 'false') {			
+				$collapse=false;
+			}
+			$wgOut->setCollapse($collapse);
+			
+			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
+			# if so, a "This is an anonymous talk page .." message must be appended to the 
+			# displayed page (but not during editing!).
+			$anontalk=false;
+			if( ( $this->mTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&	   
+			    preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle->getText()) &&
+			    $action=="view" 
+			) {  $anontalk=true; }				
+			
+			# When a page is viewed in collapsed mode, only the intro section and, for
+			# pages with multiple sections, a table of contents are shown.			
+			if($collapse && $action=="view" && $section=="") {
+				$secs =
+				  preg_split(
+		  		  "/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
+		  		  $this->mContent, -1,
+		  		  PREG_SPLIT_DELIM_CAPTURE);
+				$wgOut->setToc(Parser::getTocFromSource($this->mContent));
+				$rv=$secs[0];
+				if($anontalk) { $rv = $rv . "\n" . wfMsg("anontalkpage"); }
+				return $rv;
+			}
+			# $section contains a section number and is used for section viewing and editing.
+			if($section!="") {
+				if($section=="new" && $action=="edit") {
+					wfProfileOut( $fname );
+					return "";
 				}
-				wfProfileOut( $fname );
-				return $this->mContent;
+				$rv=$this->getSection($this->mContent,$section,$sectiontitle);
+				if($anontalk) { $rv = $rv . "\n" . wfMsg("anontalkpage"); }
+				wfProfileOut( $fname );	
+				return $rv;
 			}
 		}
+					
+		if($anontalk) { return $this->mContent . "\n" . wfMsg("anontalkpage"); }
+		wfProfileOut( $fname );				
+		return $this->mContent;
+	
 	}
 
+	# This function returns the text of a section, specified by a number ($section)
+	# and a section title ($sectiontitle). A section is text under a heading like
+	# == Heading == or <h1>Heading</h1>, or the first section before any such
+	# heading (section 0).
+	#
+	# If a section contains subsections, these are also returned.
+	#
+	function getSection($text,$section,$sectiontitle)  {
+		
+		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
+		# comments to be stripped as well)
+		$striparray=array();
+		$parser=new Parser();
+		$parser->mOutputType=OT_WIKI;
+		$striptext=$parser->strip($text, $striparray, true);
+
+		# now that we can be sure that no pseudo-sections are in the source,
+		# split it up by section
+		$secs =
+		  preg_split(
+		  "/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
+		  $striptext, -1,
+		  PREG_SPLIT_DELIM_CAPTURE);
+		if($section==0) {
+			$rv=$secs[0];
+		} else {
+			$headline=$secs[$section*2-1];
+			preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+			$hlevel=$matches[1];
+			
+			# translate wiki heading into level
+			if(strpos($hlevel,"=")!==false) {
+				$hlevel=strlen($hlevel);			
+			}
+			
+			$rv=$headline. $secs[$section*2];
+			$count=$section+1;
+			
+			$break=false;
+			while(!empty($secs[$count*2-1]) && !$break) {
+			
+				$subheadline=$secs[$count*2-1];
+				preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+				$subhlevel=$matches[1];
+				if(strpos($subhlevel,"=")!==false) {
+					$subhlevel=strlen($subhlevel);						
+				}
+				if($subhlevel > $hlevel) {
+					$rv.=$subheadline.$secs[$count*2];
+				}
+				if($subhlevel <= $hlevel) {
+					$break=true;
+				}
+				$count++;
+						
+			}
+		}
+		# reinsert stripped tags
+		$rv=$parser->unstrip($rv,$striparray);
+		$rv=trim($rv);
+		return $rv;
+
+	}
+	
+	
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
@@ -472,7 +542,7 @@ class Article {
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 
-		if ( !is_null( $diff ) ) {
+		if ( !is_null( $diff ) ) {			
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( intval($oldid), intval($diff) );
 			$de->showDiffPage();
@@ -604,7 +674,7 @@ class Article {
 	/* Side effects: loads last edit */
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = ""){
 		$this->loadLastEdit();
-		$oldtext = $this->getContent( true );
+		$oldtext = $this->getContent( true );		
 		if ($section != "") {
 			if($section=="new") {
 				if($summary) $subject="== {$summary} ==\n\n";
@@ -620,15 +690,58 @@ class Article {
 
 				# now that we can be sure that no pseudo-sections are in the source,
 				# split it up
+				# Unfortunately we can't simply do a preg_replace because that might
+				# replace the wrong section, so we have to use the section counter instead
 				$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 				$secs[$section*2]=$text."\n\n"; // replace with edited
-				if($section) { $secs[$section*2-1]=""; } // erase old headline
+				
+				# section 0 is top (intro) section
+				if($section!=0) { 
+					
+					# headline of old section - we need to go through this section
+					# to determine if there are any subsections that now need to
+					# be erased, as the mother section has been replaced with
+					# the text of all subsections.
+					$headline=$secs[$section*2-1];
+					preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+					$hlevel=$matches[1];
+					
+					# determine headline level for wikimarkup headings
+					if(strpos($hlevel,"=")!==false) {
+						$hlevel=strlen($hlevel);			
+					}
+					
+					$secs[$section*2-1]=""; // erase old headline
+					$count=$section+1;
+					$break=false;
+					while(!empty($secs[$count*2-1]) && !$break) {
+			
+						$subheadline=$secs[$count*2-1];
+						preg_match(
+						 "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+						$subhlevel=$matches[1];
+						if(strpos($subhlevel,"=")!==false) {
+							$subhlevel=strlen($subhlevel);		
+						}
+						if($subhlevel > $hlevel) {
+							// erase old subsections
+							$secs[$count*2-1]="";
+							$secs[$count*2]="";
+						}
+						if($subhlevel <= $hlevel) {
+							$break=true;
+						}
+						$count++;
+						
+					}
+					
+				}
 				$text=join("",$secs);
-
 				# reinsert the stuff that we stripped out earlier
-				$text=$parser->unstrip($text,$striparray,true);
+				$text=$parser->unstrip($text,$striparray,true);	
 			}
+								
 		}
 		return $text;
 	}
