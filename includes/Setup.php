@@ -32,7 +32,7 @@ include_once( "LinkCache.php" );
 include_once( "Title.php" );
 include_once( "Article.php" );
 include_once( "MagicWord.php" );
-include_once( "MemCachedClient.inc.php" );
+include_once( "memcached-client.php" );
 include_once( "Block.php" );
 include_once( "SearchEngine.php" );
 include_once( "DifferenceEngine.php" );
@@ -46,13 +46,13 @@ global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 
-class MemCachedClientforWiki extends MemCachedClient {
+class MemCachedClientforWiki extends memcached {
 	function _debug( $text ) {
 		wfDebug( "memcached: $text\n" );
 	}
 }
 
-$wgMemc = new MemCachedClientforWiki();
+$wgMemc = new MemCachedClientforWiki( array('persistant' => true) );
 if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
@@ -60,7 +60,7 @@ if( $wgUseMemCached ) {
 	# Test it to see if it's working
 	# This is necessary because otherwise wfMsg would be extremely inefficient
 	if ( !$wgMemc->set( "test", "", 0 ) ) {
-		wfDebug( "Memcached error: " . $wgMemc->error_string() . "\n" );
+		wfDebug( "Memcached failed setup test - connection error?\n" );
 		$wgUseMemCached = false;
 	}
 }
