@@ -664,7 +664,7 @@ class OutputPage {
 
 		$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
-		$text = $this->autoNumberHeadings( $text );
+		$text = $this->formatHeadings( $text );
 
 		$sk = $wgUser->getSkin();
 		$text = $sk->transformContent( $text );
@@ -1190,41 +1190,119 @@ class OutputPage {
 		return $text;
 	}
 
-	/* private */ function autoNumberHeadings( $text )
+
+/* 
+ * 
+ * This function accomplishes several tasks:
+ * 1) Auto-number headings if that option is enabled
+ * 2) Add an [edit] link to sections for logged in users who have enabled the option
+ * 3) Add a Table of contents on the top for users who have enabled the option
+ * 4) Auto-anchor headings
+ *
+ * It loops through all headlines, collects the necessary data, then splits up the
+ * string and re-inserts the newly formatted headlines.
+ *
+ * */
+	/* private */ function formatHeadings( $text )
 	{
-		global $wgUser;
-		if ( 1 != $wgUser->getOption( "numberheadings" ) ) {
-			return $text;
-		}
-		$j = 0;
-		$n = -1;
-		for ( $i = 0; $i < 9; ++$i ) {
-			if ( stristr( $text, "<h$i>" ) != false ) {
-				++$j;
-				if ( $n == -1 ) $n = $i;
+		global $wgUser,$wgArticle,$wgTitle,$wpPreview;
+		$nh=$wgUser->getOption( "numberheadings" );
+		$st=$wgUser->getOption( "showtoc" );
+		$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
+
+		$sk=$wgUser->getSkin();
+		preg_match_all("/<H([1-6])(.*?>)(.*?)<\/H[1-6]>/i",$text,$matches);
+
+		$c=0;
+
+		foreach($matches[3] as $headline) {
+			if($level) { $prevlevel=$level;}
+			$level=$matches[1][$c];
+			if(($nh||$st) && $level>$prevlevel) { 
+							
+				$h[$level]=0; // reset when we enter a new level				
+				if($toclevel) {
+					$toc.=$sk->tocIndent($level-$prevlevel);
+				}
+				$toclevel++;
+			
+			} 
+			if(($nh||$st) && $level<$prevlevel) {
+				$h[$level+1]=0; // reset when we step back a level
+				if($toclevel) {
+					$toc.=$sk->tocUnindent($prevlevel-$level);
+				}
+				$toclevel--;
+
 			}
-		}
-		if ( $j < 2 ) return $text;
-		$i = $n;
-		$v = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
-		$t = "";
-		while ( count( spliti( "<h", $text, 2 ) ) == 2 ) {
-			$a = spliti( "<h", $text, 2 );
-			$j = substr( $a[1], 0, 1 );
-			if ( strtolower( $j ) != "r" ) {
-				$t .= $a[0] . "<h" . $j . ">";
-				++$v[$j];
-				$b = array();
-				for ( $k = $i; $k <= $j; $k++ ) array_push( $b, $v[$k] );
-				for ( $k = $j+1; $k < 9; $k++ ) $v[$k] = 0;
-				$t .= implode( ".", $b ) . " ";
-                $text = substr( $a[1] , 2 ) ;
-			} else { # <HR> tag, not a heading!
-				$t .= $a[0] . "<hr>";
-				$text = substr( $a[1], 2 );
+			$h[$level]++; // count number of headlines for each level
+			
+			if($nh||$st) {
+				for($i=1;$i<=$level;$i++) {
+					if($h[$i]) {
+						if($dot) {$numbering.=".";}
+						$numbering.=$h[$i];
+						$dot=1;					
+					}
+				}
 			}
+
+			
+			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
+			$tocline=$canonized_headline;
+			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
+			$refer[$c]=$canonized_headline;
+			$refers[$canonized_headline]++;  // count how many in assoc. array so we can track dupes in anchors
+			$refcount[$c]=$refers[$canonized_headline];
+			if($nh||$st) {
+				$tocline=$numbering ." ". $tocline;
+				if($nh) {
+					$headline=$numbering . " " . $headline; // the two are different if the line contains a link
+				}				
+			}
+			$anchor=$canonized_headline;
+			if($refcount[$c]>1) {$anchor.="_".$refcount[$c];}
+			if($st) {
+				$toc.=$sk->tocLine($anchor,$tocline);
+			}
+			$head[$c].="<H".$level.$matches[2][$c]
+			 ."<a name=\"".$anchor."\">"
+			 .$headline
+			 ."</a>"
+			 ."</H".$level.">";
+			$numbering="";
+			$c++;
+			$dot=0;
+		}		
+
+		if($st) {
+			$toclines=$c;
+			while($toclevel>0) {
+				$toc.="</ul>";
+				$toclevel--;
+			}
+
+			$toc=$sk->tocTable($toc);
 		}
-        return $t . $text;
+
+
+		// split up and insert constructed headlines
+		
+		$blocks=preg_split("/<H[1-6].*?>.*?<\/H[1-6]>/i",$text);
+		$i=0;
+		foreach($blocks as $block) {			
+			$full.=$block;
+			if($es && $c>0 && !isset($wpPreview)) {
+				$full.=$sk->editSectionLink($i);
+			}
+
+			$full.=$head[$i];
+			$i++;
+		}
+		if($st && $toclines>3) {
+			$full=$toc."<a name=\"top\"></a>".$full;
+		}
+		return $full;
 	}
 
 	/* private */ function magicISBN( $text )

@@ -50,7 +50,7 @@ class Article {
 
 	function getContent( $noredir = false )
 	{
-		global $action,$wgTitle; # From query string
+		global $action,$section,$count,$wgTitle; # From query string
 		wfProfileIn( "Article::getContent" );
 
 		if ( 0 == $this->getID() ) {
@@ -75,7 +75,20 @@ class Article {
 				) 
 				{
 				return $this->mContent . "\n" .wfMsg("anontalkpagetext"); }
-			else {
+			else {				
+				if($action=="edit") {
+					if($section!="") {
+
+						$secs=preg_split("/(^=+.*?=+)/m",
+						 $this->mContent, -1,
+						 PREG_SPLIT_DELIM_CAPTURE);
+						if($section==0) {
+							return trim($secs[0]);
+						} else {
+							return trim($secs[$section*2-1] . $secs[$section*2]);
+						}
+					}
+				}
 				return $this->mContent;
 			}
 		}
@@ -367,9 +380,11 @@ class Article {
 		global $wgOut, $wgUser, $wgTitle;
 		global $wpTextbox1, $wpSummary, $wpWatchthis;
 		global $wpSave, $wpPreview;
-		global $wpMinoredit, $wpEdittime, $wpTextbox2;
-		global $oldid, $redirect;
+		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
+		global $oldid, $redirect, $section;
 		global $wgLang;
+
+		if($wpSection) { $section=$wpSection; }
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -424,7 +439,7 @@ class Article {
 			}
 			if ( ! $isConflict ) {
 				# All's well: update the article here
-				$this->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis );
+				$this->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis, $wpSection );
 				return;
 			}
 		}
@@ -553,6 +568,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 <input tabindex=6 type=submit value=\"{$prev}\" name=\"wpPreview\">
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br><br>{$copywarn}
+<input type=hidden value=\"{$section}\" name=\"wpSection\">
 <input type=hidden value=\"{$wpEdittime}\" name=\"wpEdittime\">\n" );
 
 		if ( $isConflict ) {
@@ -628,12 +644,21 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis )
+	function updateArticle( $text, $summary, $minor, $watchthis, $section )
 	{
 		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
 		global $wgDBtransactions;
 		$fname = "Article::updateArticle";
 
+		// insert updated section into old text if we have only edited part 
+		// of the article
+		if ($section != "") {
+			$oldtext=$this->getContent();
+			$secs=preg_split("/(^=+.*?=+)/m",$oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
+			$secs[$section*2]=$text."\n\n"; // replace with edited
+			if($section) { $secs[$section*2-1]=""; } // erase old headline
+			$text=join("",$secs);		
+		}
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
 		if ( $minor ) { $me2 = 1; } else { $me2 = 0; }		
 		if ( preg_match( "/^(#redirect[^\\n]+)/i", $text, $m ) ) {

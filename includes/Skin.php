@@ -1655,6 +1655,42 @@ class Skin {
 		$s .= "</li>\n";
 		return $s;
 	}
+
+	function tocIndent($level) {
+
+		while($level--) $rv.="<ul style=\"list-style-type:none;margin:0px;\">";
+		return $rv;
+
+	}
+
+	function tocUnindent($level) {
+		while($level--) $rv.="</ul>";
+		return $rv;
+	}
+
+	function tocLine($anchor,$tocline) {
+
+		return "<li><A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A></li>";
+
+	}
+
+	function tocTable($toc) {
+
+	return
+	"<table border=\"0\" bgcolor=\"#8888aa\" cellpadding=\"0\" cellspacing=\"1\"><tr><td>" .
+	"<table border=\"0\" bgcolor=\"#f3f3ff\" CELLPADDING=5><tr><td>".
+	"<b>".wfMsg("toc")."</b><p>".
+	$toc."</td></tr></table></td></tr></table><P>";
+	}
+
+	function editSectionLink($section) {
+
+		global $wgTitle;
+		$editurl="&section={$section}";
+		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
+		return "<p style=\"text-align:left;\"><small>[".$url."]</small></p>";
+
+	}
 }
 
 include_once( "SkinStandard.php" );
