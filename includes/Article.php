@@ -1252,12 +1252,6 @@ class Article {
 		
 		$v = new Validation ;
 		$t = $v->validatePageForm ( $this , $revision ) ;
-/*		$a = $v->getTopicList () ;
-		$t = "" ;
-		foreach ( $a AS $x => $y ) {
-			$t .= $x . " : " . $y->val_comment . " (1-" . $y->val_value . ")<br>" ;
-			}
-		$t .= "Revision {$revision}" ;*/
 		
 		$wgOut->addHTML ( $t ) ;
 	}
