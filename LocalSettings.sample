@@ -16,6 +16,10 @@
 # here, otherwise your settings will be overwritten with your
 # next update.
 
+# You can get some useful informations online at:
+# http://meta.wikipedia.org/wiki/LocalSettings.php
+
+
 # The most important setting is here: $IP is the installation
 # path for the software. In the example below, the htdocs
 # dir should be set as the DocumentRoot in the httpd.conf 
