@@ -174,7 +174,10 @@ trad2simp.phrases.t: simp2trad.php simpphrases.t trad2simpPhrases.manual
 	sed 's/\(.*\)\t\(.*\)/"\1"=>"\2",/' trad2simpPhrases.manual >> trad2simp.phrases.t
 
 ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t
-	printf '<?php\n$$zhSimp2Trad=array(\n' > ZhConversion.php
+	printf '<?php\n/**\n * Simplified/Traditional Chinese conversion tables\n' > ZhConversion.php
+	printf ' *\n * Automatically generated using code and data in includes/zhtable/\n' >> ZhConversion.php
+	printf ' * Do not modify directly! \n *\n * @package MediaWiki\n*/\n\n' >> ZhConversion.php
+	printf '$$zhSimp2Trad=array(\n' >> ZhConversion.php
 	cat simp2trad1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat simp2trad.phrases.t >> ZhConversion.php
