@@ -219,19 +219,6 @@ if( $wgCommandLineMode ) {
 	$wgUser = User::loadFromSession();
 }
 
-// FIXME : we don't know what the user entered (see SpecialPreferences.php [AV])
-if( count( $wgUserLanguages ) &&
-	!empty( $wgUser->mOptions['language'] ) &&
-	in_array( $wgUser->mOptions['language'], $wgUserLanguages ) ) {
-	// Change language of the site
-	$wgUserLanguageCode = $wgUser->mOptions['language'];
-	// we will load messages from file instead of from database
-	$wgUseDatabaseMessages = false;
-	# FIXME: THIS WILL BREAK NAMESPACES, VARIABLES,
-	# SEARCH INDEX UPDATES, AND MANY MANY THINGS.
-	# DO NOT USE THIS MODE EXCEPT FOR TESTING RIGHT NOW.
-}
-
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
 
@@ -297,6 +284,23 @@ else {
 }
 
 wfProfileOut( $fname.'-MessageCache' );
+
+#
+# I guess the warning about UI switching might still apply...
+#
+# FIXME: THE ABOVE MIGHT BREAK NAMESPACES, VARIABLES,
+# SEARCH INDEX UPDATES, AND MANY MANY THINGS.
+# DO NOT USE THIS MODE EXCEPT FOR TESTING RIGHT NOW.
+#
+# To disable it, the easiest thing could be to uncomment the 
+# following; they should effectively disable the UI switch functionality
+#
+# $wgLangClass = $wgContLangClass;
+# $wgLanguageCode = $wgContLanguageCode;
+# $wgLang = $wgContLang;
+# $wgMessageCache = $wgContMessageCache;
+#
+
 wfProfileIn( $fname.'-OutputPage' );
 
 $wgOut = new OutputPage();
