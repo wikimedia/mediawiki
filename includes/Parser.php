@@ -1657,6 +1657,7 @@ class Parser
 		  " (" . date( "T" ) . ")";
 		if(isset($wgLocaltimezone)) putenv("TZ=$oldtz");
 
+		$text = preg_replace( "/~~~~~/", $d, $text );
 		$text = preg_replace( "/~~~~/", "[[" . $wgLang->getNsText(
 		  Namespace::getUser() ) . ":$n|$k]] $d", $text );
 		$text = preg_replace( "/~~~/", "[[" . $wgLang->getNsText(
