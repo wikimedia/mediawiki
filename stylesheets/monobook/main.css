@@ -914,3 +914,6 @@ div.patrollink {
 	font-size: 75%;
 	text-align: right;
 }
+span.newpage, span.minor {
+	font-weight: bold;
+}
