@@ -320,7 +320,7 @@ class Article {
 				# the rest of the page we're on.
 				if( $globalTitle ) {
 					global $wgOut;
-					if ( $rt->getInterwiki() != '' ) {
+					if ( $rt->getInterwiki() != '' && $rt->isLocal() ) {
 						$wgOut->redirect( $rt->getFullURL() ) ;
 						return false;
 					}
