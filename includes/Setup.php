@@ -69,7 +69,7 @@ wfProfileIn( "$fname-misc" );
 
 include_once( "Language.php" );
 
-$wgMessageCache = new MessageCache( $wgUseMemCached, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
+$wgMessageCache = new MessageCache; 
 
 $wgOut = new OutputPage();
 wfDebug( "\n\n" );
@@ -79,7 +79,12 @@ if( ! class_exists( $wgLangClass ) ) {
 	include_once( "LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
+
 $wgLang = new $wgLangClass();
+if ( !is_object($wgLang) ) {
+	print "No language class ($wgLang)\N";
+}
+$wgMessageCache->initialise( $wgUseMemCached, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
 
 if ( $wgUseDynamicDates ) {
 	include_once( "DateFormatter.php" );

@@ -11,10 +11,8 @@ class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys;
-
-	function MessageCache( $useMemCached, $useDB, $expiry, $memcPrefix ) {
-		$this->initialise( $useMemCached, $useDB, $expiry, $memcPrefix );
-	}
+	
+	var $mInitialised = false;
 
 	function initialise( $useMemCached, $useDB, $expiry, $memcPrefix ) {
 		$this->mUseCache = $useMemCached;
@@ -22,7 +20,8 @@ class MessageCache
 		$this->mExpiry = $expiry;
 		$this->mMemcKey = "$memcPrefix:messages";
 		$this->mKeys = false; # initialised on demand
-		
+		$this->mInitialised = true;
+
 		$this->load();
 	}
 
@@ -150,7 +149,12 @@ class MessageCache
 	
 	function get( $key, $useDB ) {
 		global $wgLang, $wgLanguageCode;
-
+		
+		# If uninitialised, someone is trying to call this halfway through Setup.php
+		if ( !$this->mInitialised ) {
+			return "&lt;$key&gt;";
+		}
+		
 		if ( $this->mDisable ) {
 			return $wgLang->getMessage( $key );
 		}
