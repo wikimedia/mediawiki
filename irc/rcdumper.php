@@ -74,7 +74,7 @@ while (1) {
 		$title = str_replace("_", " ", $title);
                 # see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
 		# no colour (\003) switches back to the term default
-		$fullString = "\0033 $title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
+		$fullString = "\00303$title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
 
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
