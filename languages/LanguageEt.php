@@ -4,7 +4,7 @@ if ( $wgSitename == "Wikipedia" ) {
 	$wgSitename = "Vikipeedia";
 }
 if ( $wgMetaNamespace = "Wikipedia" ) {
-	$wgMetaNamespace = "Vikipeedia_arutelu";
+	$wgMetaNamespace = "Vikipeedia";
 }
 
 
@@ -22,7 +22,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 	2	=> "Kasutaja",
 	3	=> "Kasutaja_arutelu",
 	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamspace."_arutelu",
+	5	=> $wgMetaNamespace."_arutelu",
 	6	=> "Pilt",
 	7	=> "Pildi_arutelu",
 	8	=> "MediaWiki",
