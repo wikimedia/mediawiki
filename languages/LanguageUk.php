@@ -11,18 +11,24 @@ require_once( "LanguageUtf8.php" );
 #
 
 /* private */ $wgNamespaceNamesUk = array(
-	-2	=> "Медіа",
-	-1	=> "Спеціальні",
-	0	=> "",
-	1	=> "Обговорення",
-	2	=> "Користувач",
-	3	=> "Користувач_обговорення",
-	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamespace . "_обговорення",
-	6	=> "Зображення",
-	7	=> "Зображення_обговорення",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_обговорення"
+	NS_MEDIA            => 'Медіа',
+	NS_SPECIAL          => 'Спеціальні',
+	NS_MAIN             => '',
+	NS_TALK             => 'Обговорення',
+	NS_USER             => 'Користувач',
+	NS_USER_TALK        => 'Обговорення_користувача',
+	NS_WIKIPEDIA        => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK   => 'Обговорення_' . $wgMetaNamespace,
+	NS_IMAGE            => 'Зображення',
+	NS_IMAGE_TALK       => 'Обговорення_зображення',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Обговорення_шаблону',
+	NS_HELP             => 'Довідка',
+	NS_HELP_TALK        => 'Обговорення_довідки',
+	NS_CATEGORY         => 'Категорія',
+	NS_CATEGORY_TALK    => 'Обговорення_категорії'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsUk = array(
@@ -55,55 +61,6 @@ require_once( "LanguageUtf8.php" );
 
 
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesUk = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Ваші настройки",
-	"Watchlist"		=> "Ваш список спостереження",
-	"Recentchanges" => "Список недавно змінених статей",
-	"Upload"		=> "Завантаження файлу (з зображенням чи звуком)",
-	"Imagelist"		=> "Список зображень",
-	"Listusers"		=> "Список зареєстрованих користувачів",
-	"Statistics"	=> "Статистика сайту",
-	"Randompage"	=> "Випадкова стаття",
-
-	"Lonelypages"	=> "Список самотніх статей",
-	"Unusedimages"	=> "Список самотніх зображень",
-	"Popularpages"	=> "Список популярних статей",
-	"Wantedpages"	=> "Список найвідвідуваніших статей",
-	"Shortpages"	=> "Список найкоротших статей",
-	"Longpages"		=> "Список найдовших статей",
-	"Newpages"		=> "Список нових статей",
-	"Ancientpages"	=> "Список найстаріших статей",
-	"Allpages"		=> "Список всіх статей",
-
-	"Ipblocklist"	=> "Список заблокованих IP-адрес",
-	"Maintenance" => "Сервісна сторінка",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "Список місць, де можна придбати необхідні книги"
-);
-
-/* private */ $wgSysopSpecialPagesUk = array(
-	"Blockip"		=> "Заблокувати IP-адресу",
-	"Asksql"		=> "Зробити запит до бази даних",
-	"Undelete"		=> "Переглянути і відновити вилучені статті"
-);
-
-/* private */ $wgDeveloperSpecialPagesUk = array(
-	"Lockdb"		=> "Зробити базу даних доступною тільки для читання",
-	"Unlockdb"		=> "Відновити можливість запису в базу даних",
-	"Debug"			=> "Відладка"
-);
-
 /* private */ $wgAllMessagesUk = array(
 'special_version_prefix' => '',
 'special_version_postfix' => '',
@@ -127,37 +84,37 @@ require_once( "LanguageUtf8.php" );
 "tog-previewontop" => "Показувати попередній текст до вікна редагування, а не післе",
 "tog-nocache" => "Заборонити кешування статей",
 # Dates
-'sunday' => "Неділя",
-'monday' => "Понеділок",
-'tuesday' => "Вівторок",
-'wednesday' => "Середа",
-'thursday' => "Четвер",
-'friday' => "П'ятниця",
-'saturday' => "Субота",
-'january' => "Січень",
-'february' => "Лютий",
-'march' => "Березень",
-'april' => "Квітень",
-'may_long' => "Травень",
-'june' => "Червень",
-'july' => "Липень",
-'augst' => "Серпень",
-'september' => "Вересень",
-'october' => "Жовтень",
-'november' => "Листопад",
-'december' => "Грудень",
-'jan' => "Січ",
-'feb' => "Лют",
-'mar' => "Бер",
-'apr' => "Квіт",
-'may' => "Трав",
-'jun' => "Черв",
-'jul' => "Лип",
-'aug' => "Серп",
-'sep' => "Вер",
-'oct' => "Жов",
-'nov' => "Лист",
-'dec' => "Груд",
+'sunday' => "неділя",
+'monday' => "понеділок",
+'tuesday' => "вівторок",
+'wednesday' => "середа",
+'thursday' => "четвер",
+'friday' => "п'ятниця",
+'saturday' => "субота",
+'january' => "січень",
+'february' => "лютий",
+'march' => "березень",
+'april' => "квітень",
+'may_long' => "травень",
+'june' => "червень",
+'july' => "липень",
+'augst' => "серпень",
+'september' => "вересень",
+'october' => "жовтень",
+'november' => "листопад",
+'december' => "грудень",
+'jan' => "січ",
+'feb' => "лют",
+'mar' => "бер",
+'apr' => "квіт",
+'may' => "трав",
+'jun' => "черв",
+'jul' => "лип",
+'aug' => "серп",
+'sep' => "вер",
+'oct' => "жов",
+'nov' => "лист",
+'dec' => "груд",
 
 # Bits of text used by many pages:
 #
@@ -1013,30 +970,6 @@ class LanguageUk extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsUk;
 		return $wgDateFormatsUk;
-	}
-
-	#function getMonthRegex()
-	#{
-	#	global $wgMonthNamesUk;
-	#	return implode( "|", $wgMonthNamesUk );
-	#}
-
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesUk;
-		return $wgValidSpecialPagesUk;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesUk;
-		return $wgSysopSpecialPagesUk;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesUk;
-		return $wgDeveloperSpecialPagesUk;
 	}
 
 	function getMessage( $key )
