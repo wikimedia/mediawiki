@@ -1106,6 +1106,11 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
 "editcomment" => "The edit comment was: \"<i>$1</i>\".", 
 "revertpage"	=> "Reverted to last edit by $1",
+"protectlogpage" => "Protection_log",
+"protectlogtext" => "Below is a list of page locks/unlocks.
+See [[$wgMetaNamespace:Protected page]] for more information.",
+"protectedarticle" => "protected [[$1]]",
+"unprotectedarticle" => "unprotected [[$1]]",
 
 # Undelete
 "undelete" => "Restore deleted page",
