@@ -1559,7 +1559,7 @@ class Skin {
 	# Pass a title object, not a title string
 	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '')
 	{
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgInputEncoding;
 
 		$fname = 'Skin::makeKnownLinkObj';
 		wfProfileIn( $fname );
@@ -1575,7 +1575,12 @@ class Skin {
 			$u = $nt->escapeLocalURL( $query );
 		}
 		if ( '' != $nt->getFragment() ) {
-			$u .= '#' . htmlspecialchars( $nt->getFragment() );
+			$anchor = urlencode( do_html_entity_decode( str_replace(' ', '_', $nt->getFragment()), ENT_COMPAT, $wgInputEncoding ) );
+			$replacearray = array(
+				'%3A' => ':',
+				'%' => '.'
+			);
+			$u .= '#' . str_replace(array_keys($replacearray),array_values($replacearray),$anchor);
 		}
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
