@@ -377,48 +377,121 @@ Normal text.
 ### Internal links
 ###
 !! test
-Internal links
+Plain link, capitalized
 !! input
-Plain link, capitalized: [[Main Page]]
-
-Plain link, uncapitalized: [[main Page]]
-
-Piped link: [[Main Page|The Main Page]]
-
-Broken link: [[Zigzagzogzagzig]]
-
-Link with prefix: xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
-
-Link with suffix: [[Main Page]]xxx, [[Main Page]]XXX
-
-Link with 3 brackets: [[[main page]]]
-
-Piped link with 3 brackets: [[[main page|the main page]]]
-
-Link to namespaces: [[Talk:Parser testing]], [[Meta:Disclaimers]]
-
-Piped link to namespace: [[Meta:Disclaimers|The disclaimers]]
-
-Link to category: [[:Category:MediaWiki User's Guide]]
-
-Link to image page: [[:Image:Ncwikicol.png]]
-
-Plain link to URL: [[http://www.example.org]]
+[[Main Page]]
 !! result
-<p>Plain link, capitalized: <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
-</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title="Main Page">main Page</a>
-</p><p>Piped link: <a href="/wiki/Main_Page" title="Main Page">The Main Page</a>
-</p><p>Broken link: <a href="/index.php?title=Zigzagzogzagzig&amp;action=edit" class="new" title="Zigzagzogzagzig">Zigzagzogzagzig</a>
-</p><p>Link with prefix: xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a>, xxx<a href="/wiki/Main_Page" title="Main Page">Main Page</a>, Xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a> XXX<a href="/wiki/Main_Page" title="Main Page">main Page</a>, XXX<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
-</p><p>Link with suffix: <a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX
-</p><p>Link with 3 brackets: [[[main page]]]
-</p><p>Piped link with 3 brackets: [[[main page|the main page]]]
-</p><p>Link to namespaces: <a href="/index.php?title=Talk:Parser_testing&amp;action=edit" class="new" title="Talk:Parser testing">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">Meta:Disclaimers</a>
-</p><p>Piped link to namespace: <a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">The disclaimers</a>
-</p><p>Link to category: <a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
-</p><p>Link to image page: <a href="/wiki/Image:Ncwikicol.png" title="Image:Ncwikicol.png">Image:Ncwikicol.png</a>
-</p><p>Plain link to URL: [<a href="http://www.example.org" class='external' title="http://www.example.org">[1]</a><span class='urlexpansion'> (<i>http://www.example.org</i>)</span>]
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
+!! end
+
+!! test
+Plain link, uncapitalized
+!! input
+[[main Page]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">main Page</a>
+</p>
+!! end
+
+!! test
+Piped link
+!! input
+[[Main Page|The Main Page]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">The Main Page</a>
+</p>
+!! end
+
+!! test
+Broken link
+!! input
+[[Zigzagzogzagzig]]
+!! result
+<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit" class="new" title="Zigzagzogzagzig">Zigzagzogzagzig</a>
+</p>
+!! end
+
+!! test
+Link with prefix
+!! input
+xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
+!! result
+<p>xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a>, xxx<a href="/wiki/Main_Page" title="Main Page">Main Page</a>, Xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a> XXX<a href="/wiki/Main_Page" title="Main Page">main Page</a>, XXX<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p>
+!! end
+
+!! test
+Link with suffix
+!! input
+[[Main Page]]xxx, [[Main Page]]XXX
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX
+</p>
+!! end
+
+!! test
+Link with 3 brackets
+!! input
+[[[main page]]]
+!! result
+<p>[[[main page]]]
+</p>
+!! end
+
+!! test
+Piped link with 3 brackets
+!! input
+[[[main page|the main page]]]
+!! result
+<p>[[[main page|the main page]]]
+</p>
+!! end
+
+!! test
+Link to namespaces
+!! input
+[[Talk:Parser testing]], [[Meta:Disclaimers]]
+!! result
+<p><a href="/index.php?title=Talk:Parser_testing&amp;action=edit" class="new" title="Talk:Parser testing">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">Meta:Disclaimers</a>
+</p>
+!! end
+
+!! test
+Piped link to namespace
+!! input
+[[Meta:Disclaimers|The disclaimers]]
+!! result
+<p><a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">The disclaimers</a>
+</p>
+!! end
+
+!! test
+Link to category
+!! input
+[[:Category:MediaWiki User's Guide]]
+!! result
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
+</p>
+!! end
+
+!! test
+Link to image page
+!! input
+[[:Image:Ncwikicol.png]]
+!! result
+<p><a href="/wiki/Image:Ncwikicol.png" title="Image:Ncwikicol.png">Image:Ncwikicol.png</a>
+</p>
+!! end
+
+!! test
+Plain link to URL
+!! input
+[[http://www.example.org]]
+!! result
+<p>[<a href="http://www.example.org" class='external' title="http://www.example.org">[1]</a><span class='urlexpansion'> (<i>http://www.example.org</i>)</span>]
+</p>
+!! end
 
 !! test
 Piped link to URL
@@ -436,5 +509,34 @@ BUG 2: [[page|http://url/]] should link to page, not http://url/
 !! result
 <p><a href="/wiki/Main_Page" title="Main Page">http://url</a>
 </p>
+!! end
+
+##
+## XHTML tidiness
+###
+
+!! test
+<br> to <br />
+!! input
+1<br>2<br />3
+!! result
+<p>1<br />2<br />3
+</p>
+!! end
+
+###
+### Block-level elements
+###
+!! test
+Common list
+!! input
+*Common list
+* item 2
+*item 3
+!! result
+<ul><li>Common list
+</li><li> item 2
+</li><li>item 3
+</li></ul>
 !! end
 
