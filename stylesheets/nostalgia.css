@@ -56,3 +56,9 @@ table.rimage {
         text-align:center;
         font-size:smaller;
         }
+
+/* Print-specific things to hide */
+.urlexpansion, .printfooter {
+        display: none;
+	}
+
