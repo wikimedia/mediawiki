@@ -1200,7 +1200,9 @@ class Article {
 			RecentChange::markPatrolled( $rcid );
 			$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
 			$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
-			$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+
+			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
 		else
 		{
