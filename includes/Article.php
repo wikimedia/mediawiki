@@ -495,7 +495,7 @@ class Article {
 			  wfStrencode( $wgUser->getName() ) .
 			  "',cur_is_redirect={$redir}, cur_is_new=0, cur_touched='{$now}', inverse_timestamp='{$won}' " .
 			  "WHERE cur_id=" . $this->getID() .
-			  " AND cur_timestamp='" . wfStrencode( $summary ) . "'";
+			  " AND cur_timestamp='" . wfStrencode( $wpEdittime ) . "'";
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			
 			if( wfAffectedRows() == 0 ) {
