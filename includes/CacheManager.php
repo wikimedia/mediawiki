@@ -39,7 +39,7 @@ class CacheManager {
 	}
 	
 	function isFileCacheGood( $timestamp ) {
-		global $wgUser, $wgCacheEpoch;
+		global $wgCacheEpoch;
 		
 		if( !$this->isFileCached() ) return false;
 		
@@ -47,7 +47,7 @@ class CacheManager {
 		$good = (( $timestamp <= $cachetime ) &&
 			 ( $wgCacheEpoch <= $cachetime ));
 		
-		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$this->mTouched} epoch {$wgCacheEpoch}, good $good\n");
+		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$timestamp} epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
 	}
 
@@ -81,19 +81,18 @@ class CacheManager {
 		if( $this->useGzip() ) {
 			if( wfClientAcceptsGzip() ) {
 				header( "Content-Encoding: gzip" );
-				readfile( $filename );
 			} else {
 				/* Send uncompressed */
 				readgzfile( $filename );
+				return;
 			}
-		} else {
-			readfile( $filename );
 		}
+		readfile( $filename );
 	}
 	
 	function checkCacheDirs() {
 		$filename = $this->fileCacheName();
-                $mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
+		$mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
 		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
 		
 		if(!file_exists($mydir1)) { mkdir($mydir1,0775); } # create if necessary
@@ -125,7 +124,6 @@ class CacheManager {
 			if( $this->useGzip() ) {
 				if( wfClientAcceptsGzip() ) {
 					header( "Content-Encoding: gzip" );
-					header( "Vary: Accept-Encoding" );
 					return $text;
 				} else {
 					return $rawtext;
