@@ -1231,7 +1231,7 @@ class Parser
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", "wfArgSubstitution", $text );
 		}
 		# Template substitution
-		$regex = "/(\\n?){{([$titleChars]*)(\\|.*?|)}}/s";
+		$regex = "/(\\n?){{([$nonBraceChars]*)(\\|*?|)}}/s";
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
 
 		array_pop( $this->mArgStack );
