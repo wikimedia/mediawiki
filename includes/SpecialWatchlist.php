@@ -14,8 +14,11 @@ function wfSpecialWatchlist()
 	$wgOut->setRobotpolicy( "index,follow" );
 
 	if ( ! isset( $days ) ) {
+		/*
 		$days = $wgUser->getOption( "rcdays" );
 		if ( ! $days ) { $days = 3; }
+		*/
+		$days = 7;
 	}
 	$days = (int)$days;
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
@@ -44,7 +47,7 @@ function wfSpecialWatchlist()
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
   FROM cur,watchlist
   WHERE wl_user={$uid} AND wl_title=cur_title
-        AND (cur_namespace=wl_namespace OR cur_namespace=wl_namespace+1)
+        AND {$docutoff} (cur_namespace=wl_namespace OR cur_namespace=wl_namespace+1)
   ORDER BY inverse_timestamp {$dolimit}";
 	$res = wfQuery( $sql, $fname );
 	if ( wfNumRows( $res ) == 0 ) {
