@@ -883,7 +883,7 @@ Please check the URL you used to access this page.
 'showpreview' => "Kaip atrodys",
 'showtoc' => "rodyti",
 #'sig_tip' => "Your signature with timestamp",
-'sitenotice' => "", #empty
+'sitenotice' => "-", #empty
 'sitestats' => "Tinklalapio statistika",
 'sitestatstext' => "Duomenų bazėje šiuo metu esančių puslapių - '''$1'''.
 Į šį skaičių įeina diskusijų puslapiai, pagalbiniai Wikipedijos puslapiai, peradresavimo puslapiai ir kiti, neskaičiuojami kaip straipsniai.

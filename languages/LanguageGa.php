@@ -350,7 +350,7 @@ chun an gníomh seo a dhéanamh.",
 "thisisdeleted" => "Breathnaigh nó cuir ar ais $1?",
 "restorelink"   => "$1 athruithe scriosaithe",
 'feedlinks' => 'Sní eolais:',
-'sitenotice'	=> '', # the equivalent to wgSiteNotice
+'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Alt',

@@ -449,7 +449,7 @@ performed by sysops with  \"bureaucrat\" status.",
 'thisisdeleted' => "View or restore $1?",
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
-'sitenotice'	=> '', # the equivalent to wgSiteNotice
+'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
