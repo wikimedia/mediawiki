@@ -68,8 +68,8 @@
 	  <li tal:repeat="action content_actions" 
 	  tal:attributes="id string:contentaction-${repeat/action/key}; class action/class">
 	  <a class="" href="?action=edit"
-	    tal:attributes="href action/href; accesskey action/akey"
-	    i18n:translate="action/i18n_key">Linktext</a>
+	    tal:attributes="href action/href; accesskey action/akey; title action/ttip"
+	    tal:content="action/text">Linktext</a>
 	  </li>
 	</ul>
 
@@ -82,37 +82,20 @@
 	  <div class="portletContent odd">
 	    <h5 class="hiddenStructure">Personal Tools</h5>
 
-	    <ul id="portal-personaltools" tal:condition="loggedin">
-	      <li class="portalUser"><a tal:attributes="href php:skin.makeUrl(userpage); accesskey ''"
-		tal:content="username">Gwicke</a></li>
-	      
-	      <li><a tal:attributes="href php:skin.makeTalkUrl(userpage); accesskey ''"
-		i18n:translate="string:mytalk">My talk</a></li>
-
-	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Preferences'); accesskey ''"
-		i18n:translate="string:preferences">Preferences</a></li>
-
-	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Watchlist'); accesskey ''"
-		i18n:translate="string:watchlist">My Watchlist</a></li>
-
-	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Contributions','target=' . username); accesskey ''"
-		i18n:translate="string:mycontris">My Contributions</a></li>
-
-	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Userlogout','returnpage=' . thispage); accesskey ''"
-		i18n:translate="string:userlogout">Log out</a></li>
-
-	    </ul>
-	    <ul id="portal-personaltools" tal:condition="not: loggedin">
-	      <li class="portalUser" i18n:translate="string:notloggedin">You are not logged in</li>
-	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Userlogin'); accesskey ''"
-		i18n:translate="string:userlogin">Log In</a></li>
+	    <ul id="portal-personaltools">
+	      <li tal:repeat="item personal_urls" 
+	      tal:attributes="id string:personaltools-${repeat/item/key};">
+	      <a class="" href="myuserpage"
+		tal:attributes="href item/href; accesskey item/akey; title item/ttip"
+		tal:content="item/text">Log in</a>
+	      </li>
 	    </ul>
 	  </div>
 	</div>
       </div>
       <!--<esi:include src="staticLogoNaviSearch"/> same for all pages, contains quite a few messages that are worth caching -->
       <div class="portlet" id="portlet-logo">
-	<a href="${urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
+	<a href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
       </div>
 
       <div class="portlet" id="portlet-navigation-tree">
@@ -121,18 +104,18 @@
 	<div class="portletBody">
 	  <div class="portletContent odd">
 	    <ul>
-	      <li><a href="${urls/mainpage/href}"
-		i18n:attributes="accesskey string:accesskey-mainpage;"
+	      <li><a href="${nav_urls/mainpage/href}"
+		i18n:attributes="accesskey string:accesskey-mainpage; title string:tooltip-mainpage"
 		i18n:translate="string:mainpage">Main Page</a></li>
 	      
-	      <li><a href="${urls/randompage/href}"
-		i18n:attributes="accesskey string:accesskey-randompage;" 
+	      <li><a href="${nav_urls/randompage/href}"
+		i18n:attributes="accesskey string:accesskey-randompage; title string:tooltip-randompage" 
 		i18n:translate="string:randompage">Random Page</a></li>
 
-	      <li><a href="${urls/currentevents/href"
+	      <li><a href="${nav_urls/currentevents/href"
 		i18n:translate="string:currentevents">Current Events</a></li>
 
-	      <li><a href="${urls/sitesupport/href}"
+	      <li><a href="${nav_urls/sitesupport/href}"
 		i18n:translate="string:sitesupport">Contact us</a></li>
 	    </ul>
 	  </div>
@@ -165,26 +148,24 @@
 	  <div class="portletContent odd">
 	    <ul>
 
-	      <li><a href="${urls/help/href}"
-		i18n:attributes="accesskey string:accesskey-help" 
+	      <li><a href="${nav_urls/help/href}"
 		i18n:translate="string:help">Help</a></li>
 
-	      <li><a href="${urls/recentchanges/href}"
+	      <li><a href="${nav_urls/recentchanges/href}"
 		i18n:attributes="accesskey string:accesskey-recentchanges" 
 		i18n:translate="string:recentchanges">Recent Changes</a></li>
 
-	      <li><a href="${urls/recentchangeslinked/href}"
-		i18n:attributes="accesskey string:accesskey-recentchangeslinked" 
+	      <li><a href="${nav_urls/recentchangeslinked/href}"
 		i18n:translate="string:recentchangeslinked">Related Changes</a></li>
 
-	      <li><a href="${urls/whatlinkshere/href}"
+	      <li><a href="${nav_urls/whatlinkshere/href}"
 		i18n:attributes="accesskey string:accesskey-whatlinkshere" 
 		i18n:translate="string:whatlinkshere">What links here</a></li>
 
-	      <li><a href="${urls/specialpages/href}"
+	      <li><a href="${nav_urls/specialpages/href}"
 		i18n:translate="string:specialpages">Special Pages</a></li>
 
-	      <li tal:condition="loggedin"><a href="${urls/upload/href"
+	      <li tal:condition="loggedin"><a href="${nav_urls/upload/href"
 		i18n:attributes="accesskey string:accesskey-upload" 
 		i18n:translate="string:upload">Upload a file</a></li>
 
