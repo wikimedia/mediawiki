@@ -31,20 +31,21 @@ function convertLinks() {
 	$perfLogFilename = "convLinksPerf.txt";
 	#--------------------------------------------------------------------
 
+	$res = wfQuery( "SELECT l_from FROM links LIMIT 1", DB_READ );
+	if ( mysql_field_type( $res, 0 ) == "int" ) {
+		print "Schema already converted\n";
+		return;
+	}
+	
 	$res = wfQuery( "SELECT COUNT(*) AS count FROM links", DB_WRITE );
 	$row = wfFetchObject($res);
 	$numRows = $row->count;
 	wfFreeResult( $res );
 
 	if ( $numRows == 0 ) {
-		print "No rows to convert. Updating schema...\n";
+		print "Updating schema (no rows to convert)...\n";
 		createTempTable();
 	} else {
-		$res = wfQuery( "SELECT l_from FROM links LIMIT 1", DB_READ );
-		if ( mysql_field_type( $res, 0 ) == "int" ) {
-			print "Schema already converted\n";
-			return;
-		} 		
 		if ( $logPerformance ) { $fh = fopen ( $perfLogFilename, "w" ); }
 		$baseTime = $startTime = getMicroTime();
 		# Create a title -> cur_id map
