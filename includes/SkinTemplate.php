@@ -583,7 +583,6 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
-				}
 			} else {
 				//article doesn't exist or is deleted
 				if($wgUser->isAllowed('delete')){
@@ -598,7 +597,7 @@ class SkinTemplate extends Skin {
 			}
 			wfProfileOut( "$fname-live" );
 
-			if ( $wgUser->isLoggedIn() and $action != 'submit' ) {
+			if( $wgUser->isLoggedIn() and $action != 'submit' ) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
@@ -613,15 +612,15 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-			# Validate tab. TODO: add validation to logged-in user rights 
-			if($wgUseValidation){ # && $wgUser->isAllowed('validate')){
+				# Validate tab. TODO: add validation to logged-in user rights 
+				if($wgUseValidation){ # && $wgUser->isAllowed('validate')){
 				$content_actions['validate'] = array(
 					'class' => ($action == 'validate') ? 'selected' : false,
 					'text' => wfMsg('val_tab'),
 					'href' => $this->mTitle->getLocalUrl( 'action=validate' )
-				);
+					);
+				}
 			}
-
 		} else {
 			/* show special page tab */
 
