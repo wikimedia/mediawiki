@@ -1089,10 +1089,10 @@ class Parser
 				# No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<td|<p|<ul|<li)/i", $t );
+				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/td)/i", $t );
 				$closematch = preg_match(
 					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
-					"<div|<\\/div|<hr|<\\/td|<\\/pre|<\\/p|".$uniq_prefix."-pre|<\\/li|<\\/ul)/i", $t );
+					"<td|<div|<\\/div|<hr|<\\/pre|<\\/p|".$uniq_prefix."-pre|<\\/li|<\\/ul)/i", $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
@@ -1536,8 +1536,8 @@ class Parser
 					if ( $slash ) {
 						# Closing a tag...
 						if ( ! in_array( $t, $htmlsingle ) &&
-						( count($tagstack) && $ot = array_pop( $tagstack ) ) != $t ) {
-							if(!empty($ot)) array_push( $tagstack, $ot );
+						( $ot = @array_pop( $tagstack ) ) != $t ) {
+							@array_push( $tagstack, $ot );
 							$badtag = 1;
 						} else {
 							if ( $t == "table" ) {
