@@ -8,15 +8,15 @@
 
 /* private */ $wgNamespaceNamesFr = array(
 	-2	=> "Media",
-	-1 => "Special",
-	0 => "",
-	1 => "Discuter",
-	2 => "Utilisateur",
-	3 => "Discussion_Utilisateur",
-	4 => "Wikipédia",
-	5 => "Discussion_Wikipédia",
-	6 => "Image",
-	7 => "Discussion_Image",
+	-1	=> "Special",
+	0	=> "",
+	1	=> "Discuter",
+	2	=> "Utilisateur",
+	3	=> "Discussion_Utilisateur",
+	4	=> "Wikipédia",
+	5	=> "Discussion_Wikipédia",
+	6	=> "Image",
+	7	=> "Discussion_Image",
 	8	=> "MediaWiki",
 	9	=> "Discussion_MediaWiki",
 );
@@ -173,7 +173,7 @@
 "bugreports"    => "Rapport d'erreurs",
 "bugreportspage" => "Wikipédia:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "Wikipédia:Donations",
+"sitesupportpage"	=> "Wikipédia:Dons",
 "faq"           => "FAQ",
 "faqpage"       => "Wikipédia:FAQ",
 "edithelp"      => "Aide",
@@ -305,6 +305,7 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences
 "userlogin"     => "Identification",
 "logout"        => "Déconnexion",
 "userlogout"    => "Déconnexion",
+"notloggedin"	=> "Non connecté",
 "createaccount" => "Créer un nouveau compte",
 "createaccountmail"	=> "par courriel", // Looxix "by eMail",
 "badretype"     => "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
@@ -338,7 +339,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "preview"      => "Prévisualiser",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter l'administrateur pour en discuter.",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p>Vous pouvez contacter $1 ou un des autres [[Wikipédia:Administrateurs|administateurs]] pour en discuter.",
 "whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
@@ -435,6 +436,29 @@ contenant tous les termes apparaissent dans les résultats).",
 Rechercher dans les espaces :<br>
 $1<br>
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
+"searchdisabled" => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
+                                                                                                                                                        
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
+value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->
+",
 "blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
 
 # Preferences page
@@ -502,6 +526,7 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas 
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 "rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
+"rcliu"		=> "; $1 modifications par des contributeurs connectés",
 "diff"            => "diff",
 "hist"            => "hist",
 "hide"            => "cacher",
@@ -551,15 +576,17 @@ L'heure indiquée est celle du serveur (UTC).
 <ul>
 </ul>
 ",
-"filename"  => "Nom",
-"filedesc"  => "Description",
-"affirmation" => "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
+"filename"	=> "Nom",
+"filedesc"	=> "Description",
+"filestatus"	=> "Statut du copyright",
+"filesource"	=> "Source",	
+"affirmation"	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
 "copyrightpage" => "Wikipédia:Copyright",
 "copyrightpagename" => "licence Wikipédia",
 "uploadedfiles" => "Fichiers copiés",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
 "ignorewarning" => "Ignorer l'avertissement et copier le fichier quand même.",
-"minlength"  => "Les noms des images doivent comporter au moins trois lettres.",
+"minlength"	=> "Les noms des images doivent comporter au moins trois lettres.",
 "badfilename" => "L'image a été renommée \"$1\".",
 "badfiletype" => "\".$1\" n'est pas un format recommandé pour les fichiers images.",
 "largefile"  => "La taille maximale conseillée pour les images est de 100Ko.",
@@ -629,6 +656,8 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "mispeelings"           => "Pages avec fautes d'orthographe",
 "mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
 "mispeelingspage"       => "Liste de fautes d'orthographe courantes",
+
+# les 3 messages suivants ne sont plus utilisés (plus de page Special:Intl)
 "missinglanguagelinks"  => "Liens inter-langues manquants",
 "missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langue pour cette page",
 "missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichés.",
@@ -661,7 +690,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
-"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Wikipédia n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire les objets d'une préférence particulière.",
+"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Wikipédia n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
 "alphaindexline" => "$1 à $2",
 
 # Email this user
@@ -824,6 +853,10 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont
 "unblocklink"	=> "débloquer",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
+"blocklogpage"	=> "Trace_des effacements",
+"blocklogentry"	=> 'blocage de "$1"',
+"blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
+"unblocklogentry"	=> 'déblocage de "$1"',
 
 
 # Developer tools
@@ -898,6 +931,14 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 
+"export"	=> "Exporter des pages",
+"exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
+"exportcuronly"	=> "Exporter uniquement la version courante sans l'historique",
+
+# Namespace 8 related
+
+"allmessages"	=> "Tous les messages",
+"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki"
 );
 
 class LanguageFr extends Language
