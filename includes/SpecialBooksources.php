@@ -3,10 +3,16 @@
 # ISBNs in wiki pages will create links to this page, with
 # the ISBN passed in via the query string.
 
-function wfSpecialBooksources()
+function wfSpecialBooksources( $par )
 {
-	$isbn = preg_replace( '/[^0-9X]/', '', $_REQUEST["isbn"] );
-
+	global $wgRequest;
+	
+	$isbn = $par;
+	if( empty( $par ) ) {
+		$isbn = $wgRequest->getVal( 'isbn' );
+	}
+	$isbn = preg_replace( '/[^0-9X]/', '', $isbn );
+	
 	$bsl = new BookSourceList( $isbn );
 	$bsl->show();
 }
@@ -23,13 +29,13 @@ class BookSourceList {
 	function show()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpBlockAddress, $wpBlockReason;
-		$fname="BookSourceList::show()";
+		$fname = "BookSourceList::show()";
+		$noautolist = false;
 
 		$wgOut->setPagetitle( wfMsg( "booksources" ) );
-		$bstext=wfMsg( "booksourcetext" );
+		$bstext = wfMsg( "booksourcetext" );
 
-		if($this->mIsbn) {
+		if( $this->mIsbn ) {
 			$bstitle = Title::newFromText( wfmsg( "booksources" ) );
 			$sql = "SELECT cur_text FROM cur " .
 				"WHERE cur_namespace=4 and cur_title='" .
@@ -38,7 +44,7 @@ class BookSourceList {
 			if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {	
 				$bstext = $s->cur_text;
 				$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
-				$noautolist = 1;
+				$noautolist = true;
 			}
 		}
 
