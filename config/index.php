@@ -544,9 +544,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			$title = $titleobj->getDBkey();
-			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
+			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched,cur_user,cur_user_text) " .
 			  "VALUES (0,'$title','" .
-			  wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) . "','$now','$won','$now')";
+			  wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) .
+			  "','$now','$won','$now',0,'MediaWiki default')";
 			$wgDatabase->query( $sql, $fname );
 			
 			print "<li><pre>";
