@@ -658,8 +658,8 @@ if( \$wgCommandLineMode ) {
 \$wgLanguageCode = \"{$conf->LanguageCode}\";
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
 
-\$wgUsePHPTAL = false;
-if ( \$wgUsePHPTAL ) {
+\$wgUsePHPTal = false;
+if ( \$wgUsePHPTal ) {
 	ini_set( \"include_path\", \"\$IP/PHPTAL-NP-0.7.0/libs:\" . ini_get(\"include_path\") );
 }
 
