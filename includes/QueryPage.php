@@ -99,7 +99,7 @@ class QueryPage {
 	 * @param $limit database query limit
 	 */
 	function doQuery( $offset, $limit ) {
-		global $wgUser, $wgOut, $wgLang, $wgRequest;
+		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
 		global $wgMiserMode;
 
 		$sname = $this->getName();
@@ -177,7 +177,7 @@ class QueryPage {
 		# often disable 'next' link when we reach the end
 		if($num < $limit) { $atend = true; } else { $atend = false; }
 
-		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ), "" ,$atend );
+		$sl = wfViewPrevNext( $offset, $limit , $wgContLang->specialPage( $sname ), "" ,$atend );
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 		$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
