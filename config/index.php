@@ -190,15 +190,7 @@ $conf = new ConfigData;
 
 install_version_checks();
 
-print "<li>PHP " . phpversion() . ": ";
-if( version_compare( phpversion(), "5.0", "lt" ) ) {
- 	print "ok";
-} else {
-	print " <b>the MonoBook skin will be disabled due to an incompatibility
-		between the PHPTAL template library and PHP 5</b>. The wiki should
-		function normally, but with the older look and feel.";
-}
-print "</li>\n";
+print "<li>PHP " . phpversion() . ": ok</li>\n";
 
 if( ini_get( "register_globals" ) ) {
 	?>

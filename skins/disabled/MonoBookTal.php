@@ -1,6 +1,13 @@
 <?php
 /**
- * See skin.doc
+ * This is for the old PHPTAL-based version of MonoBook.
+ * The main MonoBook has been converted to straight PHP
+ * to avoid the dependency on PHPTAL and, hopefully,
+ * reduce the frequent problems users have with compiled
+ * PHPTAL templates failing.
+ *
+ * You can still use MonoBook.pt as a sample, or copy it
+ * to the parent directory to test with.
  *
  * @todo document
  * @package MediaWiki
