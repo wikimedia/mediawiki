@@ -172,6 +172,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1193) Fix move-only page protection mode
 * Fix zhtable Makefile to include the traditional manual table
 * Add memcache timeout for the zh conversion tables
+* Allow user customization of the zh conversion tables through 
+  Mediawiki:zhconversiontable
 
 === Caveats ===
 

@@ -43,6 +43,9 @@ class Article {
 		$this->clear();
 	}
 
+	function getTitle() {
+		return $this->mTitle;	
+	}
 	/**
 	  * Clear the object
 	  * @private
