@@ -604,40 +604,47 @@ function doTableStuff ( $t )
   $t = explode ( "\n" , $t ) ;
   $td = array () ; # Is currently a td tag open?
   $tr = array () ; # Is currently a tr tag open?
+  $ltd = array () ; # Was it TD or TH?
   foreach ( $t AS $k => $x )
     {
       $x = rtrim ( $x ) ;
+      $fc = substr ( $x , 0 , 1 ) ;
       if ( "{|" == substr ( $x , 0 , 2 ) )
 	{
 	  $t[$k] = "<table " . substr ( $x , 3 ) . ">" ;
 	  array_push ( $td , false ) ;
+	  array_push ( $ltd , "" ) ;
 	  array_push ( $tr , false ) ;
 	}
       else if ( count ( $td ) == 0 ) { } # Don't do any of the following
       else if ( "|}" == substr ( $x , 0 , 2 ) )
 	{
 	  $z = "</table>\n" ;
+          $l = array_pop ( $ltd ) ;
           if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
 	  $t[$k] = $z ;
 	}
       else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
-{
-$z = trim ( substr ( $x , 2 ) ) ;
-$t[$k] = "<caption>{$z}</caption\n" ;
-}
+        { 
+        $z = trim ( substr ( $x , 2 ) ) ;
+        $t[$k] = "<caption>{$z}</caption>\n" ;
+        }
       else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
 	{
           $z = "" ;
+          $l = array_pop ( $ltd ) ;
           if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
 	  $t[$k] = $z ;
           array_push ( $tr , false ) ;
 	  array_push ( $td , false ) ;
+          array_push ( $ltd , "" ) ;
 	}
-      else if ( "|" == substr ( $x , 0 , 1 ) )
+      else if ( "|" == $fc || "!" == $fc )
 	{
           $after = substr ( $x , 1 ) ;
+          if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
           $after = explode ( "||" , $after ) ;
           $t[$k] = "" ;
           foreach ( $after AS $theline )
@@ -645,27 +652,22 @@ $t[$k] = "<caption>{$z}</caption\n" ;
 	  $z = "" ;
           if ( !array_pop ( $tr ) ) $z = "<tr>\n" ;
           array_push ( $tr , true ) ;
-	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+
+          $l = array_pop ( $ltd ) ;
+	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+          if ( $fc == "|" ) $l = "TD" ;
+          else if ( $fc == "!" ) $l = "TH" ;
+          else $l = "" ;
+          array_push ( $ltd , $l ) ;
 	  $y = explode ( "|" , $theline , 2 ) ;
-          if ( count ( $y ) == 1 ) $y = "{$z}<td>{$y[0]}" ;
-          else $y = $y = "{$z}<td {$y[0]}>{$y[1]}" ;
+          if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
+          else $y = $y = "{$z}<{$l} {$y[0]}>{$y[1]}" ;
           $t[$k] .= $y ;
 	  array_push ( $td , true ) ;
              }
 	}
     }
 
-# Closing open td, tr && table
-while ( count ( $td ) > 0 )
-{
-if ( array_pop ( $td ) ) $t[] = "</td>" ;
-if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
-$t[] = "</table>" ;
-}
-
-  $t = implode ( "\n" , $t ) ;
-  return $t ;
-}
 
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
