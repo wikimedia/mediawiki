@@ -582,7 +582,7 @@ class FulltextStoplist {
 	/* static */ function inList( $word )
 	{
 		global $wgFulltextStoplist;
-
+		# FIXME: this will fail badly in many circumstances
 		$w = strtolower( $word );
 		$w = preg_replace( "/[^a-z']+/", "", $w );
 		return in_array( $w, $wgFulltextStoplist );
