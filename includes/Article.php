@@ -686,6 +686,11 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			}
 		}
 		
+		# The talk page isn't in the regular link tables, so we need to update manually:
+		$talkns = $ns ^ 1; # talk -> normal; normal -> talk
+		$sql = "UPDATE cur set cur_touched='$now' WHERE cur_namespace=$talkns AND cur_title='" . wfStrencode( $ttl ) . "'";
+		wfQuery( $sql );
+		
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
@@ -980,6 +985,12 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			"cur_restrictions='{$limit}' WHERE cur_id={$id}";
 		wfQuery( $sql, DB_WRITE, "Article::protect" );
 
+		$log = new LogPage( wfMsg( "protectlogpage" ), wfMsg( "protectlogtext" ) );
+		if ( $limit === "" ) {
+	 		$log->addEntry( wfMsg( "unprotectedarticle", $wgTitle->getPrefixedText() ), "" );		
+		} else {
+			$log->addEntry( wfMsg( "protectedarticle", $wgTitle->getPrefixedText() ), "" )
+		}
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
 
@@ -1436,12 +1447,13 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		#
 		$tc = "[&;%\\-,.\\(\\)' _0-9A-Za-z\\/:\\x80-\\xff]";
 		$np = "[&;%\\-,.' _0-9A-Za-z\\/:\\x80-\\xff]"; # No parens
+		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
 		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
 
 		$p1 = "/\[\[({$np}+) \\(({$np}+)\\)\\|]]/";		# [[page (context)|]]
 		$p2 = "/\[\[\\|({$tc}+)]]/";					# [[|page]]
-		$p3 = "/\[\[([A-Za-z _]+):({$np}+)\\|]]/";		# [[namespace:page|]]
-		$p4 = "/\[\[([A-Aa-z _]+):({$np}+) \\(({$np}+)\\)\\|]]/";
+		$p3 = "/\[\[($namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]]
+		$p4 = "/\[\[($namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";
 														# [[ns:page (cont)|]]
 		$context = "";
 		$t = $this->mTitle->getText();
