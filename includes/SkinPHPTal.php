@@ -426,7 +426,7 @@ if( defined( "MEDIAWIKI" ) ) {
 					}
 				}
 
-				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
+				if ( $wgUser->getID() != 0 and $action != 'submit' ) {
 					if( !$wgTitle->userIsWatching()) {
 						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
 						'text' => wfMsg('watch'),
