@@ -1453,6 +1453,7 @@ cl_sortkey" ;
 							$output .= $this->closeParagraph().'<pre>';
 							$this->mLastSection = 'pre';
 						}
+						$t = substr( $t, 1 );
 					} else {
 						// paragraph
 						if ( '' == trim($t) ) {
