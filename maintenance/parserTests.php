@@ -85,6 +85,9 @@ class ParserTest {
 		$html = $output->getText();
 		# $languageLinks = $output->getLanguageLinks();
 		# $categoryLinks = $output->getCategoryLinks();
+
+		$op = new OutputPage();
+		$op->replaceLinkHolders($html);
 		
 		if( $result == rtrim( $html ) ) {
 			return $this->showSuccess( $desc );
