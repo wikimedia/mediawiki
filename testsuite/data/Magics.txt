@@ -1,6 +1,0 @@
-Wiki magic links test:
-
-(1) ISBN 1234567890
-
-(2) RFC 2822
-
