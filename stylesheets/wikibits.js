@@ -1,5 +1,8 @@
 // Wikipedia JavaScript support functions
 
+// Un-trap us from framesets
+if( window.top != window ) window.top.location = window.location;
+
 // for enhanced RecentChanges
 function toggleVisibility( _levelId, _otherId, _linkId) {
 	var thisLevel = document.getElementById( _levelId );
