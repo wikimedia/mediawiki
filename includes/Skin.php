@@ -220,7 +220,7 @@ class Skin {
 		  (!$wgTitle->isProtected() || $wgUser->isSysop()) ) {
 			$t = wfMsg( "editthispage" );
 			$oid = $red = "";
-			if ( $redirect ) { 
+			if ( !empty($redirect) ) { 
 				$red = "&redirect={$redirect}"; 
 			}
 			if ( !empty($oldid) && ! isset( $diff ) ) {
@@ -2544,7 +2544,7 @@ class Skin {
 		);
 		$toolbar ="<script type='text/javascript'>\n/*<![CDATA[*/\n";
 		
-		$toolbar.="document.writeln(\"<div id='toolbar' tabindex='4000000'>\");\n";
+		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
 			$image=$wgUploadPath."/".$tool["image"];
@@ -2566,7 +2566,7 @@ class Skin {
 		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n";
 		
-		$toolbar.="/*]]>*/</script>";
+		$toolbar.="/*]]>*/\n</script>";
 		return $toolbar;
 	}
 }
