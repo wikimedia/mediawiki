@@ -27,11 +27,6 @@ $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
 
-/**
- * in "zh", whether conversion of messages should take place
- */
-$wgDoZhMessageConversion = true;
-
 require_once( 'DatabaseFunctions.php' );
 require_once( 'UpdateClasses.php' );
 require_once( 'LogPage.php' );
@@ -360,7 +355,7 @@ $wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9'
 /**
  * Get a message from anywhere
  */
-function wfMsg( $key ) {
+function wfMsg( $key, $convert=true ) {
 	global $wgRequest;
 	if ( $wgRequest->getVal( 'debugmsg' ) ) {
 		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
@@ -372,26 +367,26 @@ function wfMsg( $key ) {
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, true );
+	return wfMsgReal( $key, $args, true, $convert );
 }
 
 /**
  * Get a message from the language file
  */
-function wfMsgNoDB( $key ) {
+function wfMsgNoDB( $key, $convert=true ) {
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, false );
+	return wfMsgReal( $key, $args, false, $convert );
 }
 
 /**
  * Really get a message
  */
-function wfMsgReal( $key, $args, $useDB ) {
-	global $wgReplacementKeys, $wgMessageCache, $wgLang, $wgLanguageCode;
-    global $wgDoZhMessageConversion;
+function wfMsgReal( $key, $args, $useDB, $convert=true ) {
+	global $wgReplacementKeys, $wgMessageCache, $wgLang;
+
 	$fname = 'wfMsg';
 	wfProfileIn( $fname );
 	if ( $wgMessageCache ) {
@@ -403,9 +398,10 @@ function wfMsgReal( $key, $args, $useDB ) {
 		$message = "&lt;$key&gt;";
 	}
 
-    if(strtolower($wgLanguageCode) == "zh" && $wgDoZhMessageConversion) {
-        $message = $wgLang->convert($message);
-    }
+	if ( $convert ) {
+		$message = $wgLang->convert($message);
+	}
+
 	# Replace arguments
 	if( count( $args ) ) {
 		$message = str_replace( $wgReplacementKeys, $args, $message );
