@@ -63,6 +63,7 @@ class DatabasePgsql extends Database {
 		
 		if ( '' != $dbName ) {
 			# start a database connection
+			$hstring="";
 			if ($server!=false && $server!="") {
 				$hstring="host=$server ";
 			}
