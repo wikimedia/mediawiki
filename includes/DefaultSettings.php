@@ -972,6 +972,14 @@ $wgAuth = null;
  */
 	
 $wgHooks = array();
+
+/**
+ * Experimental preview feature to fetch rendered text
+ * over an XMLHttpRequest from JavaScript instead of
+ * forcing a submit and reload of the whole page.
+ * Leave disabled unless you're testing it.
+ */
+$wgLivePreview = false;
 	
 } else {
 	die();

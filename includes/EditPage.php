@@ -43,6 +43,11 @@ class EditPage {
 		$wgOut->setArticleFlag(false);
 
 		$this->importFormData( $wgRequest );
+		
+		if( $this->live ) {
+			$this->livePreview();
+			return;
+		}
 
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
@@ -96,6 +101,8 @@ class EditPage {
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+		
+		$this->live = $request->getCheck( 'live' );
 	}
 
 	/**
@@ -400,49 +407,15 @@ class EditPage {
 
 		$checkboxhtml = $minoredithtml . $watchhtml . '<br />';
 
+		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if ( 'preview' == $formtype) {
-			$previewhead='<h2>' . wfMsg( 'preview' ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
-				wfMsg( 'note' ) . wfMsg( 'previewnote' ) . "</font></center></p>\n";
-			if ( $isConflict ) {
-				$previewhead.='<h2>' . wfMsg( 'previewconflict' ) .
-					"</h2>\n";
-			}
-
-			$parserOptions = ParserOptions::newFromUser( $wgUser );
-			$parserOptions->setEditSection( false );
-			$parserOptions->setEditSectionOnRightClick( false );
-
-			# don't parse user css/js, show message about preview
-			# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
-
-			if ( $isCssJsSubpage ) {
-				if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
-					$previewtext = wfMsg('usercsspreview');
-				} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
-					$previewtext = wfMsg('userjspreview');
-				}
-				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
-				$wgOut->addHTML( $parserOutput->mText );
-			} else {
-				# if user want to see preview when he edit an article
-				if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
-					$this->textbox1 = $this->mArticle->getContent(true);
-				}
-
-				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
-						$wgTitle, $parserOptions );		
-				
-				$previewHTML = $parserOutput->mText;
-
-				if($wgUser->getOption('previewontop')) {
-					$wgOut->addHTML($previewhead);
-					$wgOut->addHTML($previewHTML);
-				}
-				$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
-				$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
+			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
+			if( $wgUser->getOption('previewontop' ) ) {
+				$wgOut->addHTML( $previewOutput );
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
+		$wgOut->addHTML( '</div>' );
 
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
@@ -479,6 +452,27 @@ class EditPage {
 		} else {	
 			$templates = '';
 		}
+		
+		global $wgLivePreview, $wgStylePath;
+		/**
+		 * Live Preview lets us fetch rendered preview page content and
+		 * add it to the page without refreshing the whole page.
+		 * Set up the button for it; if not supported by the browser
+		 * it will fall through to the normal form submission method.
+		 */
+		if( $wgLivePreview ) {
+			$wgOut->addHTML( '<script type="text/javascript" src="' .
+				htmlspecialchars( $wgStylePath . '/common/preview.js' ) .
+				'"></script>' . "\n" );
+			$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
+			$liveOnclick = 'onclick="return !livePreview('.
+				'getElementById(\'wikiPreview\'),' .
+				'editform.wpTextbox1.value,' .
+				htmlspecialchars( '"' . $liveAction . '"' ) . ')"';
+		} else {
+			$liveOnclick = '';
+		}
+		
 		$wgOut->addHTML( "
 {$toolbar}
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
@@ -493,7 +487,7 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+<input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}" );
 		$wgOut->addWikiText( $copywarn );
@@ -515,11 +509,50 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 		}
 		$wgOut->addHTML( "</form>\n" );
 		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
-			$wgOut->addHTML($previewhead);
-			$wgOut->addHTML($previewHTML);
+			$wgOut->addHTML('<div id="wikiPreview">' . $previewOutput . '</div>');
 		}
 	}
 
+	function getPreviewText( $isConflict, $isCssJsSubpage ) {
+		global $wgOut, $wgUser, $wgTitle, $wgParser;
+		$previewhead='<h2>' . wfMsg( 'preview' ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
+			wfMsg( 'note' ) . wfMsg( 'previewnote' ) . "</font></center></p>\n";
+		if ( $isConflict ) {
+			$previewhead.='<h2>' . wfMsg( 'previewconflict' ) .
+				"</h2>\n";
+		}
+
+		$parserOptions = ParserOptions::newFromUser( $wgUser );
+		$parserOptions->setEditSection( false );
+		$parserOptions->setEditSectionOnRightClick( false );
+
+		# don't parse user css/js, show message about preview
+		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+
+		if ( $isCssJsSubpage ) {
+			if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
+				$previewtext = wfMsg('usercsspreview');
+			} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
+				$previewtext = wfMsg('userjspreview');
+			}
+			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
+			$wgOut->addHTML( $parserOutput->mText );
+		} else {
+			# if user want to see preview when he edit an article
+			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
+				$this->textbox1 = $this->mArticle->getContent(true);
+			}
+
+			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
+					$wgTitle, $parserOptions );		
+			
+			$previewHTML = $parserOutput->mText;
+			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
+			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
+		}
+		return $previewhead . $previewHTML;
+	}
+	
 	/**
 	 * @todo document
 	 */
@@ -809,6 +842,27 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 
 		$toolbar.="/*]]>*/\n</script>";
 		return $toolbar;
+	}
+	
+	/**
+	 * Output preview text only. This can be sucked into the edit page
+	 * via JavaScript, and saves the server time rendering the skin as
+	 * well as theoretically being more robust on the client (doesn't
+	 * disturb the edit box's undo history, won't eat your text on
+	 * failure, etc).
+	 *
+	 * @todo This doesn't include category or interlanguage links.
+	 *       Would need to enhance it a bit, maybe wrap them in XML
+	 *       or something... that might also require more skin
+	 *       initialization, so check whether that's a problem.
+	 */
+	function livePreview() {
+		global $wgOut;
+		$wgOut->disable();
+		header( 'Content-type: text/xml' );
+		header( 'Cache-control: no-cache' );
+		# FIXME
+		echo $this->getPreviewText( false, false );
 	}
 
 }
