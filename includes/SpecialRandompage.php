@@ -20,10 +20,9 @@ function wfSpecialRandompage() {
 	#
 	# Using a literal constant means the whole thing gets optimized on
 	# the index, and the comparison is both fast and fair.
-	$rand = mt_rand() / mt_getrandmax();
 	
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
-	$randstr = number_format( $rand, 12, ".", "" );
+	$randstr = wfRandom();
 	
 	$db =& wfGetDB( DB_SLAVE );
 	$use_index = $db->useIndexClause( 'cur_random' );

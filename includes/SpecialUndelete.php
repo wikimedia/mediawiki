@@ -167,7 +167,7 @@ class PageArchive {
 			$redirect = MagicWord::get( MAG_REDIRECT );
 			$redir = $redirect->matchStart( $text ) ? 1 : 0;
 			
-			$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+			$rand = wfRandom();
 			$dbw->insertArray( 'cur', array(
 				'cur_id' => $dbw->nextSequenceValue( 'cur_cur_id_seq' ),
 				'cur_namespace' => $namespace,

@@ -125,6 +125,22 @@ function wfSeedRandom() {
 }
 
 /**
+ * Get a random decimal value between 0 and 1, in a way
+ * not likely to give duplicate values for any realistic
+ * number of articles.
+ *
+ * @return string
+ */
+function wfRandom() {
+	# The maximum random value is "only" 2^31-1, so get two random
+	# values to reduce the chance of dupes
+	$max = mt_getrandmax();
+	$rand = number_format( mt_rand() * mt_rand()
+		/ $max / $max, 12, '.', '' );
+	return $rand;
+}
+
+/**
  * We want / and : to be included as literal characters in our title URLs.
  * %2F in the page titles seems to fatally break for some reason.
  *
