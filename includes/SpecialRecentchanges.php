@@ -93,6 +93,7 @@ function wfSpecialRecentchanges( $par )
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
 	$res = wfQuery( $sql2, DB_READ, $fname );
+	$rows = array();
 	while( $row = wfFetchObject( $res ) ){ 
 		$rows[] = $row; 
 	}
