@@ -487,8 +487,13 @@ class SearchEngine {
 			$wgOut->redirect( $t->getFullURL( "action=edit" ) );
 			return;
 		}
-
-		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $t->escapeLocalURL( "action=edit" ) ) . "</p>\n" );
+		
+		if( $t ) {
+			$editurl = $t->escapeLocalURL( "action=edit" );
+		} else {
+			$editurl = ""; # ?? 
+		}
+		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $editurl ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;
