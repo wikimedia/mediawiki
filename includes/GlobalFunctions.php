@@ -9,8 +9,20 @@
  * Some globals and requires needed
  */
  
+/**
+ * Total number of articles
+ * @global integer $wgNumberOfArticles
+ */
 $wgNumberOfArticles = -1; # Unset
+/**
+ * Total number of views
+ * @global integer $wgTotalViews
+ */
 $wgTotalViews = -1;
+/**
+ * Total number of edits
+ * @global integer $wgTotalEdits
+ */
 $wgTotalEdits = -1;
 
 require_once( 'DatabaseFunctions.php' );
@@ -69,6 +81,10 @@ if ( !function_exists( 'mb_substr' ) ) {
 /**
  * html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
  * with no UTF-8 support.
+ *
+ * @param string $string String having html entities
+ * @param $quote_style
+ * @param string $charset Encoding set to use (default 'ISO-8859-1')
  */
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
 	static $trans;
@@ -84,14 +100,20 @@ function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-
 	return strtr( $string, $trans );
 }
 
+
+/**
+ * Where as we got a random seed
+ * @var bool $wgTotalViews
+ */
 $wgRandomSeeded = false;
 
 /**
  * Seed Mersenne Twister
  * Only necessary in PHP < 4.2.0
+ *
+ * @return bool
  */
-function wfSeedRandom()
-{
+function wfSeedRandom() {
 	global $wgRandomSeeded;
 
 	if ( ! $wgRandomSeeded && version_compare( phpversion(), '4.2.0' ) < 0 ) {
@@ -104,9 +126,11 @@ function wfSeedRandom()
 /**
  * Generates a URL from a URL-encoded title and a query string
  * Title::getLocalURL() is preferred in most cases
+ *
+ * @param string $a URL encoded title
+ * @param string $q URL (default '')
  */
-function wfLocalUrl( $a, $q = '' )
-{
+function wfLocalUrl( $a, $q = '' ) {
 	global $wgServer, $wgScript, $wgArticlePath;
 
 	$a = str_replace( ' ', '_', $a );
@@ -129,6 +153,8 @@ function wfLocalUrl( $a, $q = '' )
 
 /**
  * @todo document
+ * @param string $a URL encoded title
+ * @param string $q URL (default '')
  */
 function wfLocalUrlE( $a, $q = '' )
 {
@@ -139,9 +165,11 @@ function wfLocalUrlE( $a, $q = '' )
 /**
  * We want / and : to be included as literal characters in our title URLs.
  * %2F in the page titles seems to fatally break for some reason.
+ *
+ * @param string $s
+ * @return string
 */
-function wfUrlencode ( $s )
-{
+function wfUrlencode ( $s ) {
 	$s = urlencode( $s );
 	$s = preg_replace( '/%3[Aa]/', ':', $s );
 	$s = preg_replace( '/%2[Ff]/', '/', $s );
@@ -152,7 +180,10 @@ function wfUrlencode ( $s )
 /**
  * Return the UTF-8 sequence for a given Unicode code point.
  * Currently doesn't work for values outside the Basic Multilingual Plane.
-*/
+ *
+ * @param string $codepoint UTF-8 code point.
+ * @return string HTML UTF-8 Entitie such as '&#1234;'.
+ */
 function wfUtf8Sequence( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
 	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
@@ -171,6 +202,9 @@ function wfUtf8Sequence( $codepoint ) {
 
 /**
  * Converts numeric character entities to UTF-8
+ *
+ * @param string $string String to convert.
+ * @return string Converted string.
  */
 function wfMungeToUtf8( $string ) {
 	global $wgInputEncoding; # This is debatable
@@ -184,6 +218,9 @@ function wfMungeToUtf8( $string ) {
 /**
  * Converts a single UTF-8 character into the corresponding HTML character
  * entity (for use with preg_replace_callback)
+ *
+ * @param array $matches
+ *
  */
 function wfUtf8Entity( $matches ) {
 	$char = $matches[0];
@@ -231,8 +268,7 @@ function wfUtf8ToHTML($string) {
 /**
  * @todo document
  */
-function wfDebug( $text, $logonly = false )
-{
+function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
 
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
@@ -250,6 +286,7 @@ function wfDebug( $text, $logonly = false )
 
 /**
  * Log for database errors
+ * @param string $text Database error message.
  */
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog;
@@ -262,8 +299,7 @@ function wfLogDBError( $text ) {
 /**
  * @todo document
  */
-function logProfilingData()
-{
+function logProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
 	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
 	$now = wfTime();
@@ -297,6 +333,7 @@ function logProfilingData()
  * Check if the wiki read-only lock file is present. This can be used to lock
  * off editing functions, but doesn't guarantee that the database will not be
  * modified.
+ * @return bool
  */
 function wfReadOnly() {
 	global $wgReadOnlyFile;
@@ -307,6 +344,10 @@ function wfReadOnly() {
 	return is_file( $wgReadOnlyFile );
 }
 
+/**
+ * Keys strings for replacement
+ * @global array $wgReplacementKeys
+ */
 $wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 
 /**
@@ -399,8 +440,11 @@ function wfErrorExit() {
 }
 
 /**
+ * Die with a backtrace
  * This is meant as a debugging aid to track down where bad data comes from.
  * Shouldn't be used in production code except maybe in "shouldn't happen" areas.
+ *
+ * @param string $msg Message shown when dieing.
  */
 function wfDebugDieBacktrace( $msg = '' ) {
 	global $wgCommandLineMode;
@@ -436,20 +480,27 @@ function wfDebugDieBacktrace( $msg = '' ) {
 
 /* Some generic result counters, pulled out of SearchEngine */
 
-function wfShowingResults( $offset, $limit )
-{
+
+/**
+ * @todo document
+ */
+function wfShowingResults( $offset, $limit ) {
 	global $wgLang;
 	return wfMsg( 'showingresults', $wgLang->formatNum( $limit ), $wgLang->formatNum( $offset+1 ) );
 }
 
-function wfShowingResultsNum( $offset, $limit, $num )
-{
+/**
+ * @todo document
+ */
+function wfShowingResultsNum( $offset, $limit, $num ) {
 	global $wgLang;
 	return wfMsg( 'showingresultsnum', $wgLang->formatNum( $limit ), $wgLang->formatNum( $offset+1 ), $wgLang->formatNum( $num ) );
 }
 
-function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false )
-{
+/**
+ * @todo document
+ */
+function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	global $wgUser, $wgLang;
 	$fmtLimit = $wgLang->formatNum( $limit );
 	$prev = wfMsg( 'prevn', $fmtLimit );
@@ -483,8 +534,10 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false )
 	return wfMsg( 'viewprevnext', $plink, $nlink, $nums );
 }
 
-function wfNumLink( $offset, $limit, $link, $query = '' )
-{
+/**
+ * @todo document
+ */
+function wfNumLink( $offset, $limit, $link, $query = '' ) {
 	global $wgUser, $wgLang;
 	if ( '' == $query ) { $q = ''; }
 	else { $q = $query.'&'; }
@@ -495,6 +548,12 @@ function wfNumLink( $offset, $limit, $link, $query = '' )
 	return $s;
 }
 
+/**
+ * @todo document
+ * @todo FIXME: we may want to blacklist some broken browsers
+ *
+ * @return bool Whereas client accept gzip compression
+ */
 function wfClientAcceptsGzip() {
 	global $wgUseGzip;
 	if( $wgUseGzip ) {
@@ -526,9 +585,10 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
  * As required by the callers, <nowiki> is not used. It currently does
  * not filter out characters which have special meaning only at the
  * start of a line, such as "*".
+ *
+ * @param string $text Text to be escaped
  */
-function wfEscapeWikiText( $text )
-{
+function wfEscapeWikiText( $text ) {
 	$text = str_replace( 
 		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=", '{{' ),
 		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;", '&#123;&#123;' ),
@@ -536,8 +596,10 @@ function wfEscapeWikiText( $text )
 	return $text;
 }
 
-function wfQuotedPrintable( $string, $charset = '' )
-{
+/**
+ * @todo document
+ */
+function wfQuotedPrintable( $string, $charset = '' ) {
 	# Probably incomplete; see RFC 2045
 	if( empty( $charset ) ) {
 		global $wgInputEncoding;
@@ -555,7 +617,11 @@ function wfQuotedPrintable( $string, $charset = '' )
 	return $out;
 }
 
-function wfTime(){
+/**
+ * @todo document
+ * @return float
+ */
+function wfTime() {
 	$st = explode( ' ', microtime() );
 	return (float)$st[0] + (float)$st[1];
 }
@@ -573,8 +639,7 @@ function wfHtmlEscapeFirst( $text ) {
  * Sets dest to source and returns the original value of dest
  * If source is NULL, it just returns the value, it doesn't set the variable
  */
-function wfSetVar( &$dest, $source )
-{
+function wfSetVar( &$dest, $source ) {
 	$temp = $dest;
 	if ( !is_null( $source ) ) {
 		$dest = $source;
@@ -633,8 +698,7 @@ function wfPurgeSquidServers ($urlArr) {
  * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg() 
  * function puts single quotes in regardless of OS
  */
-function wfEscapeShellArg( )
-{
+function wfEscapeShellArg( ) {
 	$args = func_get_args();
 	$first = true;
 	$retVal = '';
@@ -711,8 +775,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 /**
  * @todo document
  */
-function wfVarDump( $var )
-{
+function wfVarDump( $var ) {
 	global $wgOut;
 	$s = str_replace("\n","<br>\n", var_export( $var, true ) . "\n");
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
@@ -829,9 +892,10 @@ function wfNegotiateType( $cprefs, $sprefs ) {
  * Array lookup
  * Returns an array where the values in the first array are replaced by the
  * values in the second array with the corresponding keys
+ * 
+ * @return array
  */
-function wfArrayLookup( $a, $b )
-{
+function wfArrayLookup( $a, $b ) {
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
@@ -847,10 +911,16 @@ function wfTimestamp2Unix( $ts ) {
 		  (int)substr( $ts, 0, 4 ) );
 }
 
+/**
+ * @todo document
+ */
 function wfUnix2Timestamp( $unixtime ) {
 	return gmdate( 'YmdHis', $unixtime );
 }
 
+/**
+ * @todo document
+ */
 function wfTimestampNow() {
 	# return NOW
 	return gmdate( 'YmdHis' );
@@ -897,9 +967,13 @@ function wfRestoreWarnings() {
 }
 
 # Autodetect, convert and provide timestamps of various types
-define('TS_UNIX',0);	# Standard unix timestamp (number of seconds since 1 Jan 1970)
-define('TS_MW',1);	# Mediawiki concatenated string timestamp (yyyymmddhhmmss)
-define('TS_DB',2);	# Standard database timestamp (yyyy-mm-dd hh:mm:ss)
+
+/** Standard unix timestamp (number of seconds since 1 Jan 1970) */
+define('TS_UNIX',0);
+/** Mediawiki concatenated string timestamp (yyyymmddhhmmss) */
+define('TS_MW',1);	
+/** Standard database timestamp (yyyy-mm-dd hh:mm:ss) */
+define('TS_DB',2);
 
 /**
  * @todo document
@@ -936,7 +1010,10 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 }
 
 /**
+ * Check where as the operating system is Windows
+ *
  * @todo document
+ * @return bool True if it's windows, False otherwise.
  */
 function wfIsWindows() {   
 	if (substr(php_uname(), 0, 7) == 'Windows') {   
