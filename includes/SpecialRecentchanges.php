@@ -18,6 +18,8 @@ function wfSpecialRecentchanges( $par )
 	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
+	# 10 seconds server-side caching max
+	$wgOut->setSquidMaxage( 10 );
 	if( $wgOut->checkLastModified( $s->lastmod ) ){
 		# Client cache fresh and headers sent, nothing more to do.
 		return;
