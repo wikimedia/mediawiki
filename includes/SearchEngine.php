@@ -77,8 +77,7 @@ class SearchEngine {
 		$title = Title::newFromText( $term );
 
 		# Entering an IP address goes to the contributions page
-		if ( ( $title->getNameSpace() == NS_USER && User::isIP($title->getText() ) )
-                     || User::isIP( trim( $term ) ) ) {
+		if ( ( $title->getNameSpace() == NS_USER && User::isIP($title->getText() ) ) || User::isIP(trim($term)) ) {
 			$t2 = Title::makeTitle( NS_SPECIAL, "Contributions/" . $title->getText() );
 			return $t2;
 		}
@@ -86,10 +85,10 @@ class SearchEngine {
 
 		# Entering a user goes to the user page whether it's there or not
 		if ( $title->getNameSpace() == NS_USER ) {
-                        if (User::idFromName($title->getText())) {
-                                return $title;
-                        }
-                }
+			if (User::idFromName($title->getText())) {
+				return $title;
+			}
+		}
 		
 		return NULL;
 	}
