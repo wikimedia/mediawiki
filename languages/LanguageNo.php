@@ -196,7 +196,7 @@
 "redirectedfrom" => "(Omdirigert fra $1)",
 "lastmodified"	=> "Sist endret $1.",
 "viewcount"		=> "Denne siden er vist $1 ganger.",
-"gnunote" => "Artikkelen er utgitt under <a class=internal href='/wiki/GNU_FDL'>GNU fri dokumentasjonslisens</a>.",
+"gnunote" => "Artikkelen er utgitt under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU fri dokumentasjonslisens</a>.",
 "printsubtitle" => "(fra http://no.wikipedia.org)",
 "protectedpage" => "Beskyttet side",
 "administrators" => "Wikipedia:Administratorer",
@@ -386,7 +386,7 @@ så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.",
 "protectedpagewarning" => "ADVARSEL: Denne siden er låst, så kun administratorer
 kan redigere den. Sørg for at du følger 
-<a href='/wiki/Wikipedia:Retningslinjer_for_beskyttede_sider'>retningslinjer for 
+<a href='$wgScriptPath/$wgMetaNamespace:Retningslinjer_for_beskyttede_sider'>retningslinjer for 
 beskyttede sider</a>.",
 
 # History pages

@@ -216,7 +216,7 @@
 "redirectedfrom" => "(Redirecionado de $1)",
 "lastmodified"  => "Está página foi modificada pela última vez em $1.",
 "viewcount"     => "Esta página foi acessada $1 vezes.",
-"gnunote" => "Todo o texto é disponível sob os termos da <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"gnunote" => "Todo o texto é disponível sob os termos da <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(De http://www.wikipedia.org/pt)",
 "protectedpage" => "Página protegida",
 "administrators" => "Wikipedia:Administradores",
@@ -411,7 +411,7 @@ Você também promete que está nos enviando um artigo escrito por você mesmo, 
 Por favor considere quebrar a página em sessões menores.",
 "readonlywarning" => "CUIDADO: O banco de dados está sendo bloqueado para manutenção,
 você não está habilitado a salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo mais tarde.",
-"protectedpagewarning" => "CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o <a href='/wiki/Wikipedia:Guia_de_páginas_protegidas'>guia de páginas protegidas</a>.",
+"protectedpagewarning" => "CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o <a href='$wgScriptPath/$wgMetaNamespace:Guia_de_páginas_protegidas'>guia de páginas protegidas</a>.",
 
 # History pages
 #

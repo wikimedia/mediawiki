@@ -192,7 +192,7 @@ if($wgMetaNamespace === FALSE)
 "redirectedfrom" => "(Weitergeleitet von $1)",
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
-"gnunote" => "Diese Seite ist unter der <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a> verfügbar.",
+"gnunote" => "Diese Seite ist unter der <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a> verfügbar.",
 "protectedpage" => "Geschützte Seite",
 "administrators" => "{$wgMetaNamespace}:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
@@ -382,7 +382,7 @@ speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
 "protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
 Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die 
-<a href='/wiki/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
+<a href='$wgScriptPath/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
 #

@@ -184,7 +184,7 @@
 "redirectedfrom" => "(Redirigite de $1)",
 "lastmodified"	=> "Ultime modification: $1.",
 "viewcount"		=> "Iste pagina esseva accessate $1 vices.",
-"gnunote" => "Tote le texto es disponibile sub le terminos del <a class=internal href='/wiki/GNU_FDL'>Licentia de documentation libere GNU</a>.",
+"gnunote" => "Tote le texto es disponibile sub le terminos del <a class=internal href='$wgScriptPath/GNU_FDL'>Licentia de documentation libere GNU</a>.",
 "printsubtitle" => "(De http://ia.wikipedia.org)",
 "protectedpage" => "Pagina protegite",
 "administrators" => "Wikipedia:Administratores",

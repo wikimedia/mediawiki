@@ -190,7 +190,7 @@
 "redirectedfrom" => "(Redirigit des de $1)",
 "lastmodified"	=> "Aquesta pàgina ha estat modificada per última vegada el $1.",
 "viewcount"		=> "Aquesta pàgina ha estat visitada $1 vegades.",
-"gnunote" => "Aquesta pàgina es fa disponible sota la <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
+"gnunote" => "Aquesta pàgina es fa disponible sota la <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(De http://ca.wikipedia.org)",
 "protectedpage" => "Pàgina protegida",
 "administrators" => "Viquipèdia:Administradors",
