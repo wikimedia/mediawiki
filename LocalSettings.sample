@@ -25,23 +25,60 @@
 #
 $IP = "/usr/local/apache/htdocs/wiki";
 
+
+## Don't change this bit; install.php needs it.
+#
 if ( ! isset( $DP ) ) { $DP = $IP; }
 include_once( "$DP/DefaultSettings.php" );
 
+## Please customize!
+#
+$wgSitename         = "MediaWiki";
+
 # You can customize a lot of URLs and paths, but you will
 # almost certainly want to customize the following.  The
+
+# Normally the server will be auto-detected, but you can
+# force the base URL. Don't forget http:// (or https://)!
+#
+#$wgServer           = "http://www.myhost.com";
+
+## The location of the main script, you need this to be correct!
+#
+$wgScriptPath	    = "/wiki";
+$wgScript           = "{$wgScriptPath}/index.php";
+$wgRedirectScript   = "{$wgScriptPath}/redirect.php";
+
 # ArticlePath one is especially useful if you want to use
 # mod_redirect to make page-viewing URLs look static.
 #
-$wgServer           = "http://www.myhost.com";
-$wgScriptPath	    = "/wiki";
 $wgArticlePath      = "{$wgScript}?title=$1";
-$wgEmergencyContact = "wikiadmin@myhost.com";
+# $wgArticlePath     = "/wiki/$1"; # Prettier if you're setup for it
+
+## Normally you don't need to change these once the above are set...
+#
+$wgStyleSheetPath   = "{$wgScriptPath}/style";
+$wgStyleSheetDirectory = "{$IP}/style";
+
+$wgUploadPath       = "{$wgScriptPath}/upload";
+$wgUploadDirectory	= "{$IP}/upload";
+$wgLogo				= "{$wgUploadPath}/wiki.png";
+
+## Preferably these addresses should be able to receive mail asking for help
+#
+$wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
+$wgPasswordSender	= "Wikipedia Mail <apache@" . getenv( "SERVER_NAME" ) . ">";
 
 # MySQL settings
 #
 # The user you specify here DOES NOT NEED TO EXIST.
-# It is created by the installation script.
+# It is created by the installation script, if
+# you have root privileges on your database.
+#
+# IF on the other hand you have only limited privs
+# on your DB and have to do a manual install, use
+# your existing username and password. Be sure this
+# file doesn't get left around on the web legible...
 #
 # $wgDBsqluser is used for queries through the 
 # web interface. It is also created by the script.
@@ -51,57 +88,68 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 $wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
 $wgDBuser           = "wikiuser";
-$wgDBpassword       = "userpass";
+$wgDBpassword       = "userpass"; # Use a better password! ;)
 $wgDBsqluser        = "sqluser";
 $wgDBsqlpassword	= "sqlpass";
 
-# Advanced DB settings
+## Advanced DB settings
 #
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
-$wgDBtransactions   = false; # Set to true if using InnoDB tables
 
+## Set these to true to turn on some optimizations when using
+## MySQL 4.x:
 #
-# Set $wgUseImageResize to true if you want to enable dynamic
-# server side image resizing ("Thumbnails")
+# $wgDBmysql4			= true;
+# $wgEnablePersistentLC	= true;
+
+## Set $wgUseImageResize to true if you want to enable dynamic
+## server side image resizing ("Thumbnails")
 # 
-$wgUseImageResize		= false;
+# $wgUseImageResize		= true;
 
-# Resizing can be done using PHP's internal image libraries
-# or using ImageMagick. The later supports more file formats
-# than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
+## Resizing can be done using PHP's internal image libraries
+## or using ImageMagick. The later supports more file formats
+## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
+##
+## Set $wgUseImageMagick to true to use Image Magick instead
+## of the builtin functions
 #
-# Set $wgUseImageMagick to true to use Image Magick instead
-# of the builtin functions
-#
-$wgUseImageMagick		= false;
-$wgImageMagickConvertCommand    = "/usr/bin/convert";
+# $wgUseImageMagick		= true;
+# $wgImageMagickConvertCommand    = "/usr/bin/convert";
 
-# If you want a non-English wiki, add a line like this
+## If you have the appropriate support software installed
+## you can enable inline LaTeX equations:
+# $wgUseTeX			= true;
+# $wgMathPath         = "{$wgUploadPath}/math";
+# $wgMathDirectory    = "{$wgUploadDirectory}/math";
+# $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
+
+$wgLocalInterwiki   = $wgSitename;
+
+## If you want a non-English wiki, add a line like this
 # $wgLanguageCode = "de";
 
-# Turn this on during database maintenance
-# $wgReadOnly = true;
+## Character encoding: normally auto-selected by the language.
+## English, German, Danish, Dutch, French, Spanish, and Swedish
+## will be in ISO-8859-1 by default, all other languages in
+## UTF-8 encoding. UTF-8 is more flexible, but some older browsers
+## have trouble with it. You can force an English-language wiki
+## to UTF-8 by uncommenting the lines below. The other languages
+## mentioned above might not work properly this way without
+## additional tweaking.
+#
+# $wgInputEncoding	= "UTF-8";
+# $wgOutputEncoding	= "UTF-8";
 
-# Turn this on to get HTML debug comments
-# $wgDebugComments	= true;
-
-$wgUseTeX			= false;
-$wgUseCategoryMagic = true ;
-
-$wgLocalInterwiki   = "w";
-
-$wgInputEncoding	= "ISO-8859-1";
-$wgOutputEncoding	= "ISO-8859-1";
-
-# Extremely high-traffic wikis may want to disable
-# some database-intensive features here:
+## Extremely high-traffic wikis may want to disable
+## some database-intensive features here:
 #
 # $wgDisableTextSearch = true;
 # $wgDisableCounters = true;
 # $wgMiserMode		= true;
 
-# The following three config variables are used to define
-# the rights of users in your system. 
+## The following three config variables are used to define
+## the rights of users in your system. 
 #
 # If wgWhitelistEdit is set to true, only logged in users
 # are allowed to edit articles.
