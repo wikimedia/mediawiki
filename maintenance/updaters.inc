@@ -217,4 +217,15 @@ function do_logging_update() {
 	}
 }
 
+function do_user_rights_update() {
+	global $wgDatabase;
+	if ( $wgDatabase->tableExists( 'user_rights' ) ) {
+		echo "...user_rights table already exists.\n";
+	} else {
+		echo 'Creating user rights table...';
+		dbsource( 'maintenance/archives/patch-user_rights.sql', $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

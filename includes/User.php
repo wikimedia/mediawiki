@@ -266,7 +266,7 @@ class User {
 		} # the following stuff is for non-anonymous users only
 
 		$s = $dbr->getArray( 'user', array( 'user_name','user_password','user_newpassword','user_email',
-		  'user_real_name','user_options','user_rights','user_touched' ),
+		  'user_real_name','user_options','user_touched' ),
 		  array( 'user_id' => $this->mId ), $fname );
 
 		if ( $s !== false ) {
@@ -276,8 +276,10 @@ class User {
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
 			$this->decodeOptions( $s->user_options );
-			$this->mRights = explode( ",", strtolower( $s->user_rights ) );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
+			$this->mRights = explode( ",", strtolower( 
+				$dbr->getField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
+			) );
 		}
 
 		$this->mDataLoaded = true;
@@ -573,12 +575,13 @@ class User {
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
 				'user_options' => $this->encodeOptions(),
-				'user_rights' => implode( ",", $this->mRights ),
 				'user_touched' => $dbw->timestamp($this->mTouched)
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), $fname
 		);
+		$dbw->set( 'user_rights', 'user_rights', implode( ",", $this->mRights ),
+			'user_id='. $this->mId, $fname ); 
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
@@ -611,11 +614,17 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_email' => $this->mEmail,
 				'user_real_name' => $this->mRealName,
-				'user_rights' => implode( ',', $this->mRights ),
 				'user_options' => $this->encodeOptions()
 			), $fname
 		);
 		$this->mId = $dbw->insertId();
+		$dbw->insert( 'user_rights',
+			array(
+				'user_id' => $this->mId,
+				'user_rights' => implode( ',', $this->mRights )
+			), $fname
+		);
+				
 	}
 
 	function spreadBlock()

@@ -8,7 +8,7 @@ function wfSpecialStatistics()
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 	
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'site_stats', 'user' ) );
+	extract( $dbr->tableNames( 'cur', 'site_stats', 'user', 'user_rights' ) );
 
 	$sql = "SELECT COUNT(cur_id) AS total FROM $cur";
 	$res = $dbr->query( $sql, $fname );
@@ -39,8 +39,7 @@ function wfSpecialStatistics()
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
 
-	$sql = "SELECT COUNT(user_id) AS total FROM $user " .
-	  "WHERE user_rights LIKE '%sysop%'";
+	$sql = "SELECT COUNT(user_id) AS total FROM $user_rights WHERE user_rights LIKE '%sysop%'";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
