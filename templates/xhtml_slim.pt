@@ -112,7 +112,7 @@
 		i18n:translate="string:contributions">Contributions</a></li>
 	      <li id="t-emailuser" tal:condition="nav_urls/emailuser/href"><a href="${nav_urls/emailuser/href}"
 		i18n:translate="string:emailuser">Email this user</a></li>
-	      <li id="t-upload" tal:condition="loggedin"><a href="${nav_urls/upload/href}"
+	      <li id="t-upload" tal:condition="nav_urls/upload/href"><a href="${nav_urls/upload/href}"
 		i18n:translate="string:upload">Upload a file</a></li>
 	      <li id="t-specialpages"><a href="${nav_urls/specialpages/href}"
 		i18n:translate="string:specialpages">Special Pages</a></li>

@@ -465,7 +465,7 @@ if( defined( "MEDIAWIKI" ) ) {
 		# build array of common navigation links
 		function buildNavUrls () {
 			global $wgTitle, $wgUser, $wgRequest;
-			global $wgSiteSupportPage;
+			global $wgSiteSupportPage, $wgDisableUploads;
 
 			$action = $wgRequest->getText( 'action' );
 			$oldid = $wgRequest->getVal( 'oldid' );
@@ -483,7 +483,9 @@ if( defined( "MEDIAWIKI" ) ) {
 			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
 			$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
 			$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
-			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
+			if( $this->loggedin && !$wgDisableUploads ) {
+				$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
+			}
 			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
 
 			if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
