@@ -198,7 +198,7 @@ class element {
 	   else if ( $ext == "CAPTION" ) $n = "CAPTION" ;
 	   else if ( $ext == "NOWIKI" ) $n = "NOWIKI" ;
 	   if ( $n != $old_n ) unset ( $this->attrs["NAME"] ) ; # Cleanup
-	   else if ( $parser->nowiki > 0 ) $n = "" ; # No "real" wiki tags allowed
+	   else if ( $parser->nowiki > 0 ) $n = "" ; # No "real" wiki tags allowed in nowiki section
 	   }
 
     	if ( $n == "ARTICLE" )
@@ -293,12 +293,19 @@ class element {
 
 	# Lists
     	else if ( $n == "LISTITEM" )
-    		$ret .= $this->sub_makeXHTML ( $parser , "li" ) ;
+		{
+    		if ( $parser->mListType == "dl" ) $ret .= $this->sub_makeXHTML ( $parser , "dd" ) ;
+		else $ret .= $this->sub_makeXHTML ( $parser , "li" ) ;
+		}
     	else if ( $n == "LIST" )
     		{
     		$type = "ol" ; # Default
     		if ( $this->attrs["TYPE"] == "bullet" ) $type = "ul" ;
+    		else if ( $this->attrs["TYPE"] == "indent" ) $type = "dl" ;
+		$oldtype = $parser->mListType ;
+		$parser->mListType = $type ;
     		$ret .= $this->sub_makeXHTML ( $parser , $type ) ;
+		$parser->mListType = $oldtype ;
     		}
 
 	# Something else entirely    		
@@ -428,7 +435,7 @@ class ParserXML EXTENDS Parser
 	 * @access private
 	 */
 	# Persistent:
-	var $mTagHooks;
+	var $mTagHooks, $mListType;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
