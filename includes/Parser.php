@@ -1152,7 +1152,7 @@ class Parser
 
 		# Match a link having the form [[namespace:link|alternate]]trail
 		static $e1 = FALSE;
-		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
+		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD"; }
 		# Match cases where there is no "]]", which might still be images
 		static $e1_img = FALSE;
 		if ( !$e1_img ) { $e1_img = "/^([{$tc}]+)\\|(.*)\$/sD"; }
