@@ -64,6 +64,7 @@ CREATE TABLE /*$wgDBprefix*/page (
 CREATE TABLE /*$wgDBprefix*/revision (
   rev_id int(8) unsigned NOT NULL auto_increment,
   rev_page int(8) unsigned NOT NULL,
+  rev_text_id int(8) unsigned NOT NULL,
   rev_comment tinyblob NOT NULL default '',
   rev_user int(5) unsigned NOT NULL default '0',
   rev_user_text varchar(255) binary NOT NULL default '',

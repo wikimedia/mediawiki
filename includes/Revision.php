@@ -165,6 +165,7 @@ class Revision {
 			       'page_latest',
 			       'rev_id',
 			       'rev_page',
+			       'rev_text_id',
 			       'rev_comment',
 			       'rev_user_text',
 			       'rev_user',
@@ -183,6 +184,7 @@ class Revision {
 		if( is_object( $row ) ) {
 			$this->mId        = IntVal( $row->rev_id );
 			$this->mPage      = IntVal( $row->rev_page );
+			$this->mTextId    = IntVal( $row->rev_text_id );
 			$this->mComment   =         $row->rev_comment;
 			$this->mUserText  =         $row->rev_user_text;
 			$this->mUser      = IntVal( $row->rev_user );
@@ -204,6 +206,7 @@ class Revision {
 			
 			$this->mId        = isset( $row['id']         ) ? IntVal( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? IntVal( $row['page']       ) : null;
+			$this->mTextId    = isset( $row['text_id']    ) ? IntVal( $row['text_id']    ) : null;
 			$this->mComment   = isset( $row['comment']    ) ? StrVal( $row['comment']    ) : null;
 			$this->mUserText  = isset( $row['user_text']  ) ? StrVal( $row['user_text']  ) : $wgUser->getName();
 			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
@@ -227,6 +230,13 @@ class Revision {
 	 */
 	function getId() {
 		return $this->mId;
+	}
+	
+	/**
+	 * @return int
+	 */
+	function getTextId() {
+		return $this->mTextId;
 	}
 	
 	/**
@@ -433,23 +443,27 @@ class Revision {
 		$flags = Revision::compressRevisionText( $mungedText );
 		
 		# Record the text to the text table
-		$old_id = isset( $this->mId )
-			? $this->mId
-			: $dbw->nextSequenceValue( 'text_old_id_val' );
-		$dbw->insert( 'text',
-			array(
-				'old_id'    => $old_id,
-				'old_text'  => $mungedText,
-				'old_flags' => $flags,
-			), $fname
-		);
-		$revisionId = $dbw->insertId();
+		if( !isset( $this->mTextId ) ) {
+			$old_id = $dbw->nextSequenceValue( 'text_old_id_val' );
+			$dbw->insert( 'text',
+				array(
+					'old_id'    => $old_id,
+					'old_text'  => $mungedText,
+					'old_flags' => $flags,
+				), $fname
+			);
+			$this->mTextId = $dbw->insertId();
+		}
 		
 		# Record the edit in revisions
+		$rev_id = isset( $this->mId )
+			? $this->mId
+			: $dbw->nextSequenceValue( 'rev_rev_id_val' );
 		$dbw->insert( 'revision',
 			array(
-				'rev_id'         => $revisionId,
+				'rev_id'         => $rev_id,
 				'rev_page'       => $this->mPage,
+				'rev_text_id'    => $this->mTextId,
 				'rev_comment'    => $this->mComment,
 				'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
 				'rev_user'       => $this->mUser,
@@ -458,10 +472,10 @@ class Revision {
 			), $fname
 		);
 		
-		$this->mId = $revisionId;
+		$this->mId = $dbw->insertId();
 		
 		wfProfileOut( $fname );
-		return $revisionId;
+		return $this->mId;
 	}
 	
 	/**
@@ -478,7 +492,7 @@ class Revision {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
-			array( 'old_id' => $this->getId() ),
+			array( 'old_id' => $this->getTextId() ),
 			$fname);
 		
 		$text = Revision::getRevisionText( $row );
@@ -486,5 +500,48 @@ class Revision {
 		
 		return $text;
 	}
+
+	/**
+	 * Create a new null-revision for insertion into a page's
+	 * history. This will not re-save the text, but simply refer
+	 * to the text from the previous version.
+	 *
+	 * Such revisions can for instance identify page rename
+	 * operations and other such meta-modifications.
+	 *
+	 * @param Database $dbw
+	 * @param int      $pageId ID number of the page to read from
+	 * @param string   $summary
+	 * @param bool     $minor
+	 * @return Revision
+	 */
+	function &newNullRevision( &$dbw, $pageId, $summary, $minor ) {
+		$fname = 'Revision::newNullRevision';
+		wfProfileIn( $fname );
+		
+		$current = $dbw->selectRow(
+			array( 'page', 'revision' ),
+			array( 'page_latest', 'rev_text_id' ),
+			array(
+				'page_id' => $pageId,
+				'page_latest=rev_id',
+				),
+			$fname );
+		
+		if( $current ) {
+			$revision = new Revision( array(
+				'page'       => $pageId,
+				'comment'    => $summary,
+				'minor_edit' => $minor,
+				'text_id'    => $current->rev_text_id,
+				) );
+		} else {
+			$revision = null;
+		}
+		
+		wfProfileOut( $fname );
+		return $revision;
+	}
+	
 }
 ?>
