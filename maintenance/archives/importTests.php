@@ -1,4 +1,12 @@
-<html>
+<?php
+
+print "This script is obsolete!";
+print "It is retained in the source here in case some of its
+code might be useful for ad-hoc conversion tasks, but it is
+not maintained and probably won't even work as is.";
+exit();
+
+?><html>
 <head>
 <title>Unit tests for UseMod-to-PediaWiki import script</title>
 <meta http-equiv="Refresh" content="10;URL=importTests.php">

@@ -1,5 +1,8 @@
 // Wikipedia JavaScript support functions
 
+// Un-trap us from framesets
+if( window.top != window ) window.top.location = window.location;
+
 // for enhanced RecentChanges
 function toggleVisibility( _levelId, _otherId, _linkId) {
 	var thisLevel = document.getElementById( _levelId );
@@ -99,19 +102,29 @@ function addInfobox(infoText) {
 	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
                 && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
-		&& (clientPC.indexOf('khtml')==-1));
+		&& (clientPC.indexOf('khtml')==-1) && (clientPC.indexOf('gecko')==-1));
  	if(!document.selection && !is_nav) {
+ 		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
-			"<input size=80 id='infobox' name='infobox' value='"+
-			infoText+"' READONLY></form>");
+			"<input size=80 id='infobox' name='infobox' value=\""+
+			infoText+"\" READONLY></form>");
  	}
 
 }
 
 function escapeQuotes(text) {
+	var re=new RegExp("'","g");
+	text=text.replace(re,"\\'");
+	re=new RegExp('"',"g");
+	text=text.replace(re,'&quot;');
+	re=new RegExp("\\n","g");
+	text=text.replace(re,"\\n");
+	return text;
+}
 
-	text=text.replace(/'/g,"\\'");
-	text=text.replace(/\n/g,"\\n");
+function escapeQuotesHTML(text) {
+	var re=new RegExp('"',"g");
+	text=text.replace(re,"&quot;");
 	return text;
 }
 
@@ -132,8 +145,8 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		} else {
 			document.selection.createRange().text = tagOpen + theSelection + tagClose;
 		}
-	// Mozilla
-	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
+	// Mozilla -- disabled because it induces a scrolling bug which makes it virtually unusable
+	} else if(false && txtarea.selectionStart || txtarea.selectionStart == '0') {
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
 		var myText = (txtarea.value).substring(startPos, endPos);
@@ -153,8 +166,9 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		// Append at the end: Some people find that annoying
 		//txtarea.value += tagOpen + sampleText + tagClose;
 		//txtarea.focus();
-		tagOpen=tagOpen.replace(/\n/g,"");
-		tagClose=tagClose.replace(/\n/g,"");
+		var re=new RegExp("\\n","g");
+		tagOpen=tagOpen.replace(re,"");
+		tagClose=tagClose.replace(re,"");
 		document.infoform.infobox.value=tagOpen+sampleText+tagClose;
 		txtarea.focus();
 	}
