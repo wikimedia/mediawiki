@@ -65,7 +65,7 @@ class element {
 		if ( $this->children[$key]->name != "LINK" ) return ;
 	
 		$n = $this->children[$k2] ;
-		$s =  ;
+		$s =  '';
 		while ( $n != '' AND
 			( ( $n[0] >= 'a' AND $n[0] <= 'z' ) OR
 			  $n[0] == 'ä' OR $n[0] == 'ö' OR 
@@ -96,7 +96,7 @@ class element {
     	$ret = '' ;
 
 	$attr2 = $this->getSourceAttrs () ;
-	if ( $attr != '' AND $attr2 !=  ) $attr .= ' ' ;
+	if ( $attr != '' AND $attr2 != '' ) $attr .= ' ' ;
 	$attr .= $attr2 ;
 
     	if ( $tag != "" )
