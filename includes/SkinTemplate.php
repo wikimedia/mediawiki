@@ -807,17 +807,17 @@ class SkinTemplate extends Skin {
 				$siteargs .= "&smaxage=0&maxage=0";
 				$usercss = $wgRequest->getText('wpTextbox1');
 			} else {
-				$siteargs .= "&maxage=0";
 				$usercss = '@import "' .
 				  $this->makeUrl($this->userpage . '/'.$this->skinname.'.css',
 								 'action=raw&ctype=text/css') . '";' ."\n";
 			}
-		}
-
-		# If we use the site's dynamic CSS, throw that in, too
-		
-		if ( $wgUseSiteCss ) {
-			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' . $siteargs).'";'."\n";
+			if ( $wgUseSiteCss ) {
+				$sitecss = '@import "'.$this->makeUrl($this->userpage.'/-','action=raw&gen=css' . $siteargs ).'";'."\n";
+			}
+			
+		} else if ( $wgUseSiteCss ) {
+			# If we use the site's dynamic CSS, throw that in, too
+			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' ).'";'."\n";
 		}
 		
 		# If we use any dynamic CSS, make a little CDATA block out of it.
