@@ -21,7 +21,6 @@ class Parser
 {
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState;
-	var $mContainsOldMagic = 0;
 
 	# Temporary:
 	var $mOptions, $mTitle;
@@ -1044,13 +1043,13 @@ class Parser
 		$magic[MAG_CURRENTYEAR] = date( "Y" );
 		$magic[MAG_CURRENTTIME] = $wgLang->time( wfTimestampNow(), false );
 		
-		$this->mContainsOldMagic += MagicWord::replaceMultiple($magic, $text, $text);
+		$this->mOutput->mContainsOldMagic += MagicWord::replaceMultiple($magic, $text, $text);
 
 		$mw =& MagicWord::get( MAG_NUMBEROFARTICLES );
 		if ( $mw->match( $text ) ) {
 			$v = wfNumberOfArticles();
 			$text = $mw->replace( $v, $text );
-			if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
+			if( $mw->getWasModified() ) { $this->mOutput->mContainsOldMagic++; }
 		}
 
 		# "Variables" with an additional parameter e.g. {{MSG:wikipedia}}
