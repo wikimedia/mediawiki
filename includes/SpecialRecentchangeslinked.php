@@ -84,7 +84,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 	$wgOut->addHTML( $note."\n" );
 
-	$s = $sk->beginRecentChangesList();
+	$list =& new ChangesList( $sk );
+	$s = $list->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
 	
 	$counter = 1;
@@ -95,10 +96,10 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 
 		$rc = RecentChange::newFromCurRow( $obj );
 		$rc->counter = $counter++;
-		$s .= $sk->recentChangesLine( $rc );
+		$s .= $list->recentChangesLine( $rc );
 		--$limit;
 	}
-	$s .= $sk->endRecentChangesList();
+	$s .= $list->endRecentChangesList();
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );

@@ -105,17 +105,18 @@ class ImagePage extends Article {
 		$line = $this->img->nextHistoryLine();
 
 		if ( $line ) {
-			$s = $sk->beginImageHistoryList() .
-				$sk->imageHistoryLine( true, $line->img_timestamp,
+			$list =& new ImageHistoryList( $sk );
+			$s = $list->beginImageHistoryList() .
+				$list->imageHistoryLine( true, $line->img_timestamp,
 					$this->mTitle->getDBkey(),  $line->img_user,
 					$line->img_user_text, $line->img_size, $line->img_description );
 
 			while ( $line = $this->img->nextHistoryLine() ) {
-				$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
+				$s .= $list->imageHistoryLine( false, $line->img_timestamp,
 			  	$line->oi_archive_name, $line->img_user,
 			  	$line->img_user_text, $line->img_size, $line->img_description );
 			}
-			$s .= $sk->endImageHistoryList();
+			$s .= $list->endImageHistoryList();
 		} else { $s=''; }
 		$wgOut->addHTML( $s );
 	}
@@ -368,6 +369,80 @@ class ImagePage extends Article {
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
 		$wgOut->returnToMain( false );
 	}
+}
+
+class ImageHistoryList {
+	function ImageHistoryList( &$skin ) {
+		$this->skin =& $skin;
+	}
+	
+	function beginImageHistoryList() {
+		$s = "\n<h2>" . wfMsg( 'imghistory' ) . "</h2>\n" .
+		  "<p>" . wfMsg( 'imghistlegend' ) . "</p>\n".'<ul class="special">';
+		return $s;
+	}
+
+	function endImageHistoryList() {
+		$s = "</ul>\n";
+		return $s;
+	}
+
+	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description ) {
+		global $wgUser, $wgLang, $wgContLang, $wgTitle;
+
+		$datetime = $wgLang->timeanddate( $timestamp, true );
+		$del = wfMsg( 'deleteimg' );
+		$delall = wfMsg( 'deleteimgcompletely' );
+		$cur = wfMsg( 'cur' );
+
+		if ( $iscur ) {
+			$url = Image::wfImageUrl( $img );
+			$rlink = $cur;
+			if ( $wgUser->isAllowed('delete') ) {
+				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .
+				  '&action=delete' );
+				$style = $this->skin->getInternalLinkAttributes( $link, $delall );
+
+				$dlink = '<a href="'.$link.'"'.$style.'>'.$delall.'</a>';
+			} else {
+				$dlink = $del;
+			}
+		} else {
+			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
+			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
+				$rlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
+				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
+				           urlencode( $img ) );
+				$dlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
+				           $del, 'action=delete&oldimage=' . urlencode( $img ) );
+			} else {
+				# Having live active links for non-logged in users
+				# means that bots and spiders crawling our site can
+				# inadvertently change content. Baaaad idea.
+				$rlink = wfMsg( 'revertimg' );
+				$dlink = $del;
+			}
+		}
+		if ( 0 == $user ) {
+			$userlink = $usertext;
+		} else {
+			$userlink = $this->skin->makeLink( $wgContLang->getNsText( Namespace::getUser() ) .
+			               ':'.$usertext, $usertext );
+		}
+		$nbytes = wfMsg( 'nbytes', $size );
+		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
+
+		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a>"
+		  . " . . {$userlink} ({$nbytes})";
+
+		if ( '' != $description && '*' != $description ) {
+			$sk=$wgUser->getSkin();
+			$s .= $wgContLang->emphasize(' (' . $sk->formatComment($description,$wgTitle) . ')');
+		}
+		$s .= "</li>\n";
+		return $s;
+	}
+
 }
 
 

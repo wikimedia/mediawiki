@@ -187,15 +187,16 @@ function wfSpecialWatchlist() {
 	}
 
 	$sk = $wgUser->getSkin();
-	$s = $sk->beginRecentChangesList();
+	$list =& new ChangesList( $sk );
+	$s = $list->beginRecentChangesList();
 	$counter = 1;
 	while ( $obj = $dbr->fetchObject( $res ) ) {
 		# Make fake RC entry
 		$rc = RecentChange::newFromCurRow( $obj );
 		$rc->counter = $counter++;
-		$s .= $sk->recentChangesLine( $rc, true );
+		$s .= $list->recentChangesLine( $rc, true );
 	}
-	$s .= $sk->endRecentChangesList();
+	$s .= $list->endRecentChangesList();
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
