@@ -1,7 +1,8 @@
 <?php
 /**
+ * $Id$
  * See title.doc
- *
+ * 
  * @package MediaWiki
  */
 
@@ -970,7 +971,7 @@ class Title {
 		# Change the name of the target page:
 		$dbw->updateArray( 'cur',
 			/* SET */ array( 
-				'cur_touched' => $now, 
+				'cur_touched' => $dbw->timestamp($now), 
 				'cur_namespace' => $nt->getNamespace(),
 				'cur_title' => $nt->getDBkey()
 			), 
@@ -985,8 +986,8 @@ class Title {
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$dbw->updateArray( 'cur',
 			/* SET */ array(
-				'cur_touched' => $now,
-				'cur_timestamp' => $now,
+				'cur_touched' => $dbw->timestamp($now),
+				'cur_timestamp' => $dbw->timestamp($now),
 				'inverse_timestamp' => $won,
 				'cur_namespace' => $this->getNamespace(),
 				'cur_title' => $this->getDBkey(),
