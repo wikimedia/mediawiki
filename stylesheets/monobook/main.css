@@ -938,3 +938,22 @@ head:first-child+body #portlet-personal {
 }
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
+
+table.diff {
+        background:white;
+}
+td.diff-otitle {
+        background:#ffffff;
+}
+td.diff-ntitle {
+        background:#ffffff;
+}
+td.diff-addedline {
+        background:#ccffcc;
+}
+td.diff-deletedline {
+        background:#ffffaa;
+}
+td.diff-context {
+        background:#eeeeee;
+}

@@ -126,6 +126,25 @@ div.thumbnail-left {
 	margin-right:0.5em;
 }
 
+table.diff {
+        background:white;
+}
+td.diff-otitle {
+        background:#cccccc;
+}
+td.diff-ntitle {
+        background:#cccccc;
+}
+td.diff-addedline {
+        background:#ccffcc;
+}
+td.diff-deletedline {
+        background:#ffffaa;
+}
+td.diff-context {
+        background:#eeeeee;
+}
+
 /* table standards */
 table.rimage {
         float:right;
