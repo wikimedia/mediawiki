@@ -26,7 +26,7 @@ class Image
 		global $wgUploadDirectory;
 
 		$this->name      = $name;
-		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
+		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
 		//$this->imagePath = wfImagePath( $name );
 		$hash 		 = md5( $this->title->getDBkey() );
 		$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .substr( $hash, 0, 2 ) . "/{$name}";
@@ -377,7 +377,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 			'img_user_text' => $wgUser->getName(),
 		), $fname, 'IGNORE'
 	);
-	$descTitle = Title::makeTitle( NS_IMAGE, $name );
+	$descTitle = Title::makeTitleSafe( NS_IMAGE, $name );
 
 	if ( $dbw->affectedRows() ) {
 		# Successfully inserted, this is a new image

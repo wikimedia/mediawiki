@@ -829,7 +829,7 @@ class OutputPage {
 			foreach ( $namespaces as $key => $val ) {
 				# Make title object
 				$dbk = $dbkeys[$key];
-				$title = $titles[$key] = Title::makeTitle( $val, $dbk );
+				$title = $titles[$key] = Title::makeTitleSafe( $val, $dbk );
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.

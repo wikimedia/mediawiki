@@ -96,7 +96,7 @@ if( $search = $wgRequest->getText( 'search' ) ) {
 	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
-		$wgTitle = Title::makeTitle( Namespace::getImage(), $wgTitle->getDBkey() );
+		$wgTitle = Title::makeTitle( NS_IMAGE, $wgTitle->getDBkey() );
 	}
 
 	switch( $wgTitle->getNamespace() ) {
