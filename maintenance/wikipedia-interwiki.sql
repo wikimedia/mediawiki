@@ -90,7 +90,7 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('my','http://my.wikipedia.org/wiki/$1',1),
 ('na','http://na.wikipedia.org/wiki/$1',1),
 ('nah','http://nah.wikipedia.org/wiki/$1',1),
-('nb', http://no.wikipedia.org/wiki/$1',1),
+('nb', 'http://no.wikipedia.org/wiki/$1',1),
 ('nds','http://nds.wikipedia.org/wiki/$1',1),
 ('ne','http://ne.wikipedia.org/wiki/$1',1),
 ('nl','http://nl.wikipedia.org/wiki/$1',1),
