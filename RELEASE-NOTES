@@ -243,6 +243,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
 * Skip message cache initialization on raw page view (quick hack)
 * Fix notice errors in wfDebugDieBacktrace() in XML callbacks
+* Suppress notice error on bogus timestamp input (returns epoch as before)
 
 === Beta 6 fixes ===
 
