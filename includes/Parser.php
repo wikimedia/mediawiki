@@ -207,7 +207,7 @@ class Parser
 		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
-		$r = "<br break='all'/>\n" ;
+		$r = "<br break='all' />\n" ;
 
 		$articles = array() ;
 		$parents = array () ;
@@ -417,7 +417,7 @@ class Parser
 		$text = $this->replaceVariables( $text );
 
 		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
-		$text = str_replace ( "<HR>", "<hr/>", $text );
+		$text = str_replace ( "<HR>", "<hr />", $text );
 
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
@@ -682,7 +682,7 @@ class Parser
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
 				case "----":
-					$txt = "\n<hr/>\n";
+					$txt = "\n<hr />\n";
 					break;
 				case "'''":
 					# This and the three next ones handle quotes

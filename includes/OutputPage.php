@@ -239,7 +239,7 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		global $wgDebugRedirects;
+		global $wgDebugRedirects, $wgMimeType;
 		if( $this->mDoNothing ){
 			return;
 		}
@@ -277,7 +277,7 @@ class OutputPage {
 		
 		$this->sendCacheControl();
 		
-		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
+		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( "Content-language: {$wgLanguageCode}" );
 
 		$exp = time() + $wgCookieExpiration;
@@ -572,16 +572,30 @@ class OutputPage {
 
 	/* private */ function headElement()
 	{
-		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding, $wgLang, $wgRequest;
+		global $wgDocType, $wgDTD, $wgLanguageCode, $wgOutputEncoding, $wgMimeType;
+		global $wgUser, $wgLang, $wgRequest;
 
-		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
+		$xml = ($wgMimeType == 'text/xml');
+		if( $xml ) {
+			$ret = "<" . "?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
+		} else {
+			$ret = "";
+		}
+		
+		$ret .= "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = $this->mPagetitle;
 		}
+		if( $xml ) {
+			$xmlbits = "xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"";
+		} else {
+			$xmlbits = "";
+		}
 		$rtl = $wgLang->isRTL() ? " dir='RTL'" : "";
-		$ret .= "<html lang=\"$wgLanguageCode\"$rtl><head><title>{$this->mHTMLtitle}</title>\n";
-		array_push( $this->mMetatags, array( "http:Content-type", "text/html; charset={$wgOutputEncoding}" ) );
+		$ret .= "<html $xmlbits lang=\"$wgLanguageCode\" $rtl>\n";
+		$ret .= "<head>\n<title>{$this->mHTMLtitle}</title>\n";
+		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( "http:", substr( $tag[0], 0, 5 ) ) ) {
 				$a = "http-equiv";
@@ -589,15 +603,15 @@ class OutputPage {
 			} else {
 				$a = "name";
 			}
-			$ret .= "<meta $a=\"{$tag[0]}\" content=\"{$tag[1]}\">\n";
+			$ret .= "<meta $a=\"{$tag[0]}\" content=\"{$tag[1]}\" />\n";
 		}
 		$p = $this->mRobotpolicy;
 		if ( "" == $p ) { $p = "index,follow"; }
-		$ret .= "<meta name=\"robots\" content=\"$p\">\n";
+		$ret .= "<meta name=\"robots\" content=\"$p\" />\n";
 
 		if ( count( $this->mKeywords ) > 0 ) {
 			$ret .= "<meta name=\"keywords\" content=\"" .
-			  implode( ",", $this->mKeywords ) . "\">\n";
+			  implode( ",", $this->mKeywords ) . "\" />\n";
 		}
 		foreach ( $this->mLinktags as $tag ) {
 			$ret .= "<link ";
@@ -605,11 +619,11 @@ class OutputPage {
 			if ( "" != $tag[1] ) { $ret .= "rev=\"{$tag[1]}\" "; }
 			if ( !empty( $tag[3] ) ) { $ret .= "type=\"{$tag[3]}\" "; }
 			if ( !empty( $tag[4] ) ) { $ret .= "media=\"{$tag[4]}\" "; }
-			$ret .= "href=\"{$tag[2]}\">\n";
+			$ret .= "href=\"{$tag[2]}\" />\n";
 		}
 		if( $this->isSyndicated() ) {
 			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
-			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link'>\n";
+			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link' />\n";
 		}
 		global $wgStyleSheetPath;
 		if( $this->isPrintable() ) {
@@ -618,7 +632,7 @@ class OutputPage {
 			$media = "media='print'";
 		}
 		$printsheet = htmlspecialchars( "$wgStyleSheetPath/wikiprintable.css" );
-		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet'>\n";
+		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
 
 		$sk = $wgUser->getSkin();
 		$ret .= $sk->getHeadScripts();

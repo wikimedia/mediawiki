@@ -206,7 +206,7 @@ include_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(Redirigé depuis $1)",
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
+"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://$wgServer)",
 "protectedpage" => "Page protégée",
 "administrators" => "$wgMetaNamespace:Administrateurs",
