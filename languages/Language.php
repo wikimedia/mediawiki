@@ -76,6 +76,17 @@ define( "MW_MATH_SOURCE", 3 );
 define( "MW_MATH_MODERN", 4 );
 define( "MW_MATH_MATHML", 5 );
 
+# Validation types
+$wgValidationTypesEn = array (
+		"0" => "Style|Awful|Awesome|5",
+		"1" => "Legal|Illegal|Legal|5",
+		"2" => "Completeness|Stub|Extensive|5",
+		"3" => "Facts|Wild guesses|Solid as a rock|5",
+		"4" => "Suitable for 1.0 (paper)|No|Yes|2",
+		"5" => "Suitable for 1.0 (CD)|No|Yes|2"
+		) ;
+
+
 /* private */ $wgMathNamesEn = array(
 	MW_MATH_PNG => 'mw_math_png',
 	MW_MATH_SIMPLE => 'mw_math_simple',
@@ -1229,10 +1240,13 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysop'         => 'Make a user into a sysop',
 
 # Validation
-'val_clear_old' => 'Clear my other validation data for the <a href="$1">$2</a> article',
+'val_clear_old' => 'Clear my other validation data for <a href="$1">this article</a>',
 'val_noop' => 'No opinion',
 'val_percent' => '<b>$1%</b> ($2 of $3 points)',
 'val_tab' => 'Validate',
+'val_this_version' => "<h2>This version</h2>\n",
+'val_version_of' => "<h2>Version of $1</h2>\n" ,
+'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>\n",
 
 # Move page
 #
@@ -1503,6 +1517,11 @@ class Language {
 	function getDateFormats() {
 		global $wgDateFormatsEn;
 		return $wgDateFormatsEn;
+	}
+
+	function getValidationTypes() {
+		global $wgValidationTypesEn;
+		return $wgValidationTypesEn;
 	}
 
 	function getUserToggles() {
