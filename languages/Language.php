@@ -1412,6 +1412,9 @@ the list of currently operational bans and blocks.',
 'proxyblocker'	=> 'Proxy blocker',
 'proxyblockreason'	=> 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
 'proxyblocksuccess'	=> "Done.\n",
+'sorbs'         => 'SORBS DNSBL',
+'sorbsreason'   => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL.',
+
 
 # Developer tools
 #

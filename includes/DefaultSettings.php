@@ -1217,6 +1217,11 @@ $wgSortSpecialPages = true;
  */
 $wgDisabledActions = array();
 
+/**
+ * Use http.dnsbl.sorbs.net to check for open proxies
+ */
+$wgEnableSorbs = true;
+
 } else {
 	die();
 }
