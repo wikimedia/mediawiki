@@ -145,6 +145,16 @@ function do_image_name_unique_update() {
 	}
 }
 
+# Arbitrary script execution vulnerability white knight repair
+function do_vulnerability_patch_update() {
+	global $wgDatabase;
+	if ( $wgDatabase->tableExists( 'user_vulnerable' ) ) {
+		echo "...removing security lockdown\n";
+		extract( $wgDatabase->tableNames( 'user_vulnerable', 'user' ) );
+		$wgDatabase->query( "RENAME TABLE $user_vulnerable TO $user" );
+	}
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
 	
@@ -153,6 +163,8 @@ function do_all_updates() {
 		add_table( $tableRecord[0], $tableRecord[1] );
 		flush();
 	}
+
+	do_vulnerability_patch_update(); flush();
 
 	# Add missing fields
 	foreach ( $wgNewFields as $fieldRecord ) {
