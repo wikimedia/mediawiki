@@ -1956,6 +1956,11 @@ class Language {
 	function convertGrammar( $word, $case ) {
 		return $word;
 	}
+
+	# Hook for Chinese traditional/simplified conversion
+	function convert( $text ) {
+		return $text;
+	}
 }
 
 # This should fail gracefully if there's not a localization available

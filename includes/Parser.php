@@ -20,7 +20,7 @@
  *
  * settings:
  *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
- *  $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
+ *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
  *  $wgLocaltimezone
  *
  *  * only within ParserOptions
@@ -579,7 +579,7 @@ class Parser
 	}
 
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
-        global $wgLanguageCode, $wgLang;
+        global $wgLang;
 
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
@@ -587,9 +587,7 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-        if($wgLanguageCode == "zh") {
-             $text = $wgLang->convert($text);
-        }
+		$text = $wgLang->convert($text);
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
@@ -963,7 +961,7 @@ class Parser
 	# The wikilinks [[ ]] are procedeed here.
 	/* private */ function replaceInternalLinks( $s ) {
 		global $wgLang, $wgLinkCache;
-		global $wgNamespacesWithSubpages, $wgLanguageCode;
+		global $wgNamespacesWithSubpages;
 		static $fname = 'Parser::replaceInternalLinks' ;
 		wfProfileIn( $fname );
 
