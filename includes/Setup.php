@@ -157,7 +157,7 @@ $wgLang = new $wgLangClass();
 if ( !is_object($wgLang) ) {
 	print "No language class ($wgLang)\N";
 }
-wfProfileOut( "$fname-Language" );
+wfProfileOut( "$fname-language" );
 wfProfileIn( "$fname-MessageCache" );
 
 $wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
