@@ -235,8 +235,7 @@ class Title {
 	# The URL contains $1, which is replaced by the title
 	function getInterwikiLink( $key )
 	{	
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry;
-		static $wgTitleInterwikiCache = array();
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 
 		$k = "$wgDBname:interwiki:$key";
 

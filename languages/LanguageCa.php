@@ -5,21 +5,24 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesCa = array(
-	-2	=> "Media",
-	-1	=> "Especial",
-	0	=> "",
-	1	=> "Discussió",
-	2	=> "Usuari",
-	3	=> "Usuari_Discussió",
-	4	=> "Viquipèdia",
-	5	=> "Viquipèdia_Discussió",
-	6	=> "Imatge",
-	7	=> "Imatge_Discussió",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_Dicussió",
-	10  => "Template",
-	11  => "Template_talk"
-
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Especial',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Discussió',
+	NS_USER				=> 'Usuari',
+	NS_USER_TALK		=> 'Usuari_Discussió',
+	NS_WIKIPEDIA		=> 'Viquipèdia',
+	NS_WIKIPEDIA_TALK	=> 'Viquipèdia_Discussió',
+	NS_IMAGE			=> 'Imatge',
+	NS_IMAGE_TALK		=> 'Imatge_Discussió',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'MediaWiki_Discussió',
+	NS_TEMPLATE			=> 'Template',
+	NS_TEMPLATE_TALK	=> 'Template_Discussió',
+	NS_HELP				=> 'Ajuda',
+	NS_HELP_TALK		=> 'Ajuda_Discussió',
+	NS_CATEGORY			=> 'Categoria',
+	NS_CATEGORY_TALK	=> 'Categoria_Discussió'
 );
 
 /* Note that some default options can be customized -- see

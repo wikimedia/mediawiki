@@ -17,6 +17,7 @@ Wiki features:
 * Templates have been expanded with parameters, and separated from
   the MediaWiki: localization scheme.
 * Categories more or less work
+* added a special page for listing users with sysop rights.
 
 Editing:
 * Automatic merging of edit conflicts that don't directly interfere
@@ -24,7 +25,7 @@ Editing:
 
 Metadata and output:
 * Linked Creative Commons copyright metadata (optional)
-* RSS 2.0 feeds for Recent Changes, New Pages
+* RSS 2.0 & Atom 0.3 feeds for Recent Changes, New Pages
 
 Optional modules:
 * WikiHiero hieroglyphic module can be added (separate download)

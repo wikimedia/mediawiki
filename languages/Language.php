@@ -357,7 +357,8 @@ The last attempted database query was:
 \"$1\"
 from within function \"$2\".
 MySQL returned error \"$3: $4\".\n",
-'noconnect'		=> 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.',
+'noconnect'		=> 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server. <br />
+$1',
 'nodb'			=> "Could not select database $1",
 'cachederror'		=> 'The following is a cached copy of the requested page, and may not be up to date.',
 'readonly'		=> 'Database locked',
@@ -1308,7 +1309,6 @@ ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\');
 ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
 ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
 ta[\'pt-logout\'] = new Array(\'o\',\'Log out\'); 
-ta[\'ca-article\'] = new Array(\'a\',\'View the content page\'); 
 ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\'); 
 ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\'); 
 ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\'); 

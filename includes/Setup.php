@@ -58,6 +58,7 @@ require_once( 'BlockCache.php' );
 require_once( 'Parser.php' );
 require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
+require_once( 'LoadBalancer.php' );
 
 $wgRequest = new WebRequest();
 
@@ -70,7 +71,8 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser, $wgDontTrustMemcachedWithImportantStuff;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
+global $wgLoadBalancer, $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -141,6 +143,16 @@ if( $wgUseMemCached ) {
 }
 
 wfProfileOut( $fname.'-memcached' );
+wfProfileIn( $fname.'-database' );
+
+if ( !$wgDBservers ) {
+	$wgDBservers = array( $wgDBserver );
+	$wgDBloads = array( 1 );
+}
+$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword, $wgDBname );
+$wgLoadBalancer->force(0);
+
+wfProfileOut( $fname.'-database' );
 wfProfileIn( $fname.'-language' );
 require_once( 'languages/Language.php' );
 
@@ -218,6 +230,7 @@ $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+$wgDBConnections = array();
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );

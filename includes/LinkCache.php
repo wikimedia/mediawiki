@@ -328,9 +328,9 @@ class LinkCache {
 					"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
 			} else {
 				wfQuery("DELETE FROM linkscc WHERE lcc_pageid IN ".
-					"(SELECT l_from FROM links WHERE l_to={$pid}", DB_WRITE);
+					"(SELECT l_from FROM links WHERE l_to={$pid})", DB_WRITE);
 			}
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}')", DB_WRITE);
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
 		}
 	}
 
