@@ -397,6 +397,8 @@ If upgrading from an older release, see the file UPGRADE;
 * Trim old illegal characters from syndication feeds
 * Reduce message cache outage recovery delay from 1 day to 5 minutes
 * (bug 1403) Update Finnish localization
+* (bug 1478) Punjabi localization
+
 
 === Caveats ===
 
