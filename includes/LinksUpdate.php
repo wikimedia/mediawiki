@@ -56,12 +56,12 @@ class LinksUpdate {
 			$arr=array();
 			foreach($add as $lt=>$lid) 
 				array_push($arr,array(
-					'l_from'=>$this->mId,
-					'l_to'=>$lid));
-                        # The link cache was constructed without FOR UPDATE, so there may be collisions
-                        # Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
-                        # sure it's better than without IGNORE
-			$dbw->insertArray($links,$arr,array('IGNORE'));
+							'l_from'=>$this->mId,
+							'l_to'=>$lid));
+			# The link cache was constructed without FOR UPDATE, so there may be collisions
+			# Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
+			# sure it's better than without IGNORE
+			$dbw->insertArray('links', $arr, $fname, array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
