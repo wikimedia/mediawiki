@@ -464,6 +464,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1556) login page tab order. "remember" checkbox now come after password.
 * SQL debug log fixlets
 * (bug 1815) Fix namespace in old revision display with mismatched title
+* (bug 1788) Fix link duplication when edit/upload comment includes newlines
 
 
 === Caveats ===
