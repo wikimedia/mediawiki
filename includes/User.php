@@ -201,7 +201,7 @@ class User {
 			$newtalk = $wgMemc->get( $key );
 			if($newtalk === false) {
 				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
-				$res = wfQuery ($sql, DB_READ "User::loadFromDatabase" );
+				$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
 
 				$this->mNewtalk = (wfNumRows($res)>0) ? 1 : 0;
 				wfFreeResult( $res );
