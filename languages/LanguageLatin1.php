@@ -264,6 +264,10 @@ class LanguageLatin1 {
 		return utf8_decode( $this->lang->convert( utf8_encode( $text ) ) );
 	}
 	
+	function autoConvert($text, $toVariant=false) {
+		return utf8_decode( $this->lang->autoConvert( utf8_encode( $text ), $toVariant ) );
+	}
+	
 	function getVariants() {
 		return $this->lang->getVariants();
 	}
