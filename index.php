@@ -62,7 +62,7 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 wfProfileIn( "main-action" );
 $search = $wgRequest->getText( 'search' );
 if( !is_null( $search ) && $search !== '' ) {
-	require_once( 'SearchEngine.php' );
+	require_once( 'includes/SearchEngine.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	$searchEngine = new SearchEngine( $search );
 	if( $wgRequest->getVal( 'fulltext' ) ||
