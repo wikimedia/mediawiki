@@ -96,15 +96,16 @@ class Parser
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
 			"/<br *>/i" => '<br/>',
-			"/<center *>/i"=>'<div style="text-align:center;">',
-			"/<\\/center *>/i" => '</div>',
+			"/<center *>/i"=>'<p style="text-align:center;">',
+			"/<\\/center *>/i" => '</p>',
 			# Clean up spare ampersands; note that we probably ought to be
 			# more careful about named entities.
 			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
 		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
-		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
