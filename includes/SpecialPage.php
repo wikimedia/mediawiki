@@ -43,10 +43,17 @@ $wgSpecialPages = array(
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
 );
+
 global $wgDisableCounters;
 if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }
+
+global $wgUseData ;
+if ( $wgUseData ) {
+	$wgSpecialPages['Data'] = new SpecialPage( 'Data' );
+}
+
 $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
 	'Shortpages'	=> new SpecialPage( 'Shortpages' ),

@@ -308,6 +308,8 @@ $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 
+$wgUseData = false ;
+
 # The debug log file should be not be publicly accessible if it is
 # used, as it may contain private data.
 $wgDebugLogFile         = '';
