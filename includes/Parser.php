@@ -1261,10 +1261,7 @@ class Parser
 			$lastPrefixLength = strlen( $lastPrefix );
 			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
 			$preOpenMatch = preg_match("/<pre/i", $oLine );
-			if (!$this->mInPre) {
-				$this->mInPre = !empty($preOpenMatch);
-			}
-			if ( $preOpenMatch || !$this->mInPre ) {
+			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, '*#:;' );
 				$pref = substr( $oLine, 0, $prefixLength );
@@ -1272,6 +1269,7 @@ class Parser
 				# eh?
 				$pref2 = str_replace( ';', ':', $pref );
 				$t = substr( $oLine, $prefixLength );
+				$this->mInPre = !empty($preOpenMatch);
 			} else {
 				# Don't interpret any other prefixes in preformatted text
 				$prefixLength = 0;
