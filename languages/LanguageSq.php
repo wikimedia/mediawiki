@@ -124,6 +124,7 @@ include_once("LanguageUtf8.php");
 	"Movepage"		=> "",
 	"Booksources"	=> "Burime të jashtme librash",
 	"Export"		=> "XML export",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSq = array(
@@ -135,7 +136,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesSq = array(
 	"Lockdb"		=> "Bëje rregjistrin vetëm për tu lexuar",
 	"Unlockdb"		=> "Lejo mundësinë e shrimit në rregjistër",
-	"Debug"			=> "Raporto yçkla"
 );
 
 /* private */ $wgAllMessagesSq = array(

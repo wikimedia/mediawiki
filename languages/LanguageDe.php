@@ -115,7 +115,8 @@
   "Recentchangeslinked" => "",
   "Booksources"         => "Externe Buchhandlungen",
 /*  "Categories"          => "Seiten Kategorien", */
-  "Export"              => "XML page export"
+  "Export"              => "XML page export",
+  "Version"				=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
@@ -127,7 +128,6 @@
 /* private */ $wgDeveloperSpecialPagesDe = array(
 	"Lockdb"		=> "Datenbank sperren",
 	"Unlockdb"		=> "Datenbank freigeben",
-	"Debug"			=> "Zeige debugging information"
 );
 
 /* private */ $wgAllMessagesDe = array(

@@ -143,6 +143,7 @@ include( "LanguageUtf8.php" );
  "Booksources" => "Спољњи извори литературе",
 #"Categories" => "Категорије странице",
  "Export" => "XML export",
+ "Version" => "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSr = array(
@@ -154,7 +155,6 @@ include( "LanguageUtf8.php" );
 /* private */ $wgDeveloperSpecialPagesSr = array(
  "Lockdb"  => "Омогући само право читања из базе",
  "Unlockdb"  => "Поврати право уписа у базу",
- "Debug"   => "Подаци за уклањање грешака"
 );
 
 /* private */ $wgAllMessagesSr = array(

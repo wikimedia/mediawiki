@@ -129,6 +129,7 @@ include_once("LanguageUtf8.php");
 	"Booksources"	=> "Külső könyvinformációk",
 #	"Categories" => "Lapkategóriák",
 	"Export" => "XML export",
+	"Version" => "Version",
 );
 
 /* private */ $wgSysopSpecialPagesHu = array(
@@ -140,7 +141,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesHu = array(
 	"Lockdb"	=> "Make database read-only",
 	"Unlockdb"	=> "Restore DB write access",
-	"Debug"	=> "Debugging information"
 );
 
 /* private */ $wgAllMessagesHu = array(

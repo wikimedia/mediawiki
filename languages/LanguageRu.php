@@ -130,6 +130,7 @@ if($wgMetaNamespace === FALSE)
 	"Movepage"		=> "",
 	"Booksources"	=> "Внешние источники книг",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesRu = array(
@@ -141,7 +142,6 @@ if($wgMetaNamespace === FALSE)
 /* private */ $wgDeveloperSpecialPagesRu = array(
 	"Lockdb"		=> "Сделать базу данных доступной только для чтения",
 	"Unlockdb"		=> "Восстановить возможность записи в базу данных",
-	"Debug"			=> "Отладочная информация"
 );
 
 /* private */ $wgAllMessagesRu = array(

@@ -126,6 +126,7 @@ include_once( "LanguageUtf8.php" );
 	"Movepage"	=> "",
 	"Booksources"	=> "Zunanji knjižni viri",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSl = array(
@@ -137,7 +138,6 @@ include_once( "LanguageUtf8.php" );
 /* private */ $wgDeveloperSpecialPagesSl = array(
 	"Lockdb"		=> "Postavi podatkovno bazo samo za branje",
 	"Unlockdb"		=> "Obnovi zapisovalni dostop podatkovne baze",
-	"Debug"			=> "Razhroščevalno obvestilo"
 );
 
 /* private */ $wgAllMessagesSl = array(

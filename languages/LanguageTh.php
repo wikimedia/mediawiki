@@ -120,6 +120,7 @@
 	"Booksources"	=> "แหล่งหนังสือภายนอก",
 #	"Categories"	=> "ประเภทของหน้า",
 	"Export"		=> "การ export หน้าเป็น XML",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesTh = array(
@@ -131,7 +132,6 @@
 /* private */ $wgDeveloperSpecialPagesTh = array(
 	"Lockdb"		=> "ทำให้ฐานข้อมูลอ่านได้อย่างเดียว",
 	"Unlockdb"		=> "ทำให้ฐานข้อมูลสามารถเขียนได้",
-	"Debug"			=> "ข้อมูลการดีบัก"
 );
 
 #-------------------------------------------------------------------

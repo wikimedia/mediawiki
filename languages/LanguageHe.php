@@ -122,6 +122,7 @@ include_once("LanguageUtf8.php");
 	"Movepage"		=> "",
 	"Booksources"	=> "משאבי ספרות חיצוניים",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesHe = array(
@@ -133,7 +134,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesHe = array(
 	"Lockdb"		=> "הפוך את בסיס-הנתונים לקריא-בלבד",
 	"Unlockdb"		=> "החזר הרשאת כתיבה לבסיס-הנתונים",
-	"Debug"			=> "נתוני ניפוי שגיאות"
 );
 
 /* private */ $wgAllMessagesHe = array(

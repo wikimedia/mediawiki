@@ -129,6 +129,7 @@ if($wgMetaNamespace === FALSE)
 	"Booksources"	=> "",
 #	"Categories"      => "Kategoryen",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesFy = array(
@@ -140,7 +141,6 @@ if($wgMetaNamespace === FALSE)
 /* private */ $wgDeveloperSpecialPagesFy = array(
 	"Lockdb"  		=> "Meitsje de databank Net-Skriuwe",
 	"Unlockdb"  	=> "Meitsje de databank skriuwber",
-	"Debug"   		=> "Breksykynformaasje"
 );
 
 /* private */ $wgAllMessagesFy = array(

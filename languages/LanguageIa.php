@@ -116,7 +116,8 @@
 	"Movepage"		=> "", # "Mover pagina",
 	"Booksources"	=> "Fontes externe (libros)",
 #	"Categories"	=> "Page categories",
-	"Export"		=> "Exportar in XML"
+	"Export"		=> "Exportar in XML",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesIa = array(
@@ -128,7 +129,6 @@
 /* private */ $wgDeveloperSpecialPagesIa = array(
 	"Lockdb"		=> "Suspender modificationes",
 	"Unlockdb"		=> "Permitter modificationes",
-	"Debug"			=> "Informationes pro reparos"
 );
 
 /* private */ $wgAllMessagesIa = array(

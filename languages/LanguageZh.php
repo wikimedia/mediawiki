@@ -86,148 +86,6 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgLanguageNamesZh = array(
-	"aa"    => "Afar",
-	"ab"    => "Abkhazian",
-	"af"	=> "Afrikaans",
-	"am"	=> "Amharic",
-	"ar" => "‮العربية‬ (Araby)",
-	"as"	=> "Assamese",
-	"ay"	=> "Aymara",
-	"az"	=> "Azerbaijani",
-	"ba"	=> "Bashkir",
-	"be" => "Беларуски",
-	"bh"	=> "Bihara",
-	"bi"	=> "Bislama",
-	"bn"	=> "Bengali",
-	"bo"	=> "Tibetan",
-	"br" => "Brezhoneg",
-	"bs" => "Bosnian",
-	"ca" => "Català",
-	"ch" => "Chamoru",
-	"co"	=> "Corsican",
-	"cs" => "Česká",
-	"cy" => "Cymraeg",
-	"da" => "Dansk", # Note two different subdomains.
-	"dk" => "Dansk", # 'da' is correct for the language.
-	"de" => "Deutsch",
-	"dz"	=> "Bhutani",
-	"el" => "Ελληνικά (Ellenika)",
-	"en"	=> "English",
-	"eo"	=> "Esperanto",
-	"es" => "Español",
-	"et" => "Eesti",
-	"eu" => "Euskara",
-	"fa" => "‮فرسى‬ (Farsi)",
-	"fi" => "Suomi",
-	"fj"	=> "Fijian",
-	"fo"	=> "Faeroese",
-	"fr" => "Français",
-	"fy" => "Frysk",
-	"ga" => "Gaelige",
-	"gl"	=> "Galician",
-	"gn"	=> "Guarani",
-	"gu" => "ગુજરાતી (Gujarati)",
-	"ha"	=> "Hausa",
-	"he" => "עברית (Ivrit)",
-	"hi" => "हिन्दी (Hindi)",
-	"hr" => "Hrvatski",
-	"hu" => "Magyar",
-	"hy"	=> "Armenian",
-	"ia"	=> "Interlingua",
-	"id"	=> "Indonesia",
-	"ik"	=> "Inupiak",
-	"is" => "Íslenska",
-	"it" => "Italiano",
-	"iu"	=> "Inuktitut",
-	"ja" => "日本語 (Nihongo)",
-	"jv"	=> "Javanese",
-	"ka" => "ქართველი (Kartuli)",
-	"kk"	=> "Kazakh",
-	"kl"	=> "Greenlandic",
-	"km"	=> "Cambodian",
-	"kn"	=> "Kannada",
-	"ko" => "한국어 (Hangukeo)",
-	"ks"	=> "Kashmiri",
-	"kw" => "Kernewek",
-	"ky"	=> "Kirghiz",
-	"la" => "Latina",
-	"ln"	=> "Lingala",
-	"lo"	=> "Laotian",
-	"lt" => "Lietuvių",
-	"lv"	=> "Latvian",
-	"mg" => "Malagasy",
-	"mi"	=> "Maori",
-	"mk"	=> "Macedonian",
-	"ml"	=> "Malayalam",
-	"mn"	=> "Mongolian",
-	"mo"	=> "Moldavian",
-	"mr"	=> "Marathi",
-	"ms" => "Bahasa Melayu",
-	"my"	=> "Burmese",
-	"na"	=> "Nauru",
-	"ne" => "नेपाली (Nepali)",
-	"nl" => "Nederlands",
-	"no" => "Norsk",
-	"oc"	=> "Occitan",
-	"om"	=> "Oromo",
-	"or"	=> "Oriya",
-	"pa"	=> "Punjabi",
-	"pl" => "Polski",
-	"ps"	=> "Pashto",
-	"pt" => "Português",
-	"qu"	=> "Quechua",
-	"rm"	=> "Rhaeto-Romance",
-	"rn"	=> "Kirundi",
-	"ro" => "Română",
-	"ru" => "Русский (Russkij)",
-	"rw"	=> "Kinyarwanda",
-	"sa" => "संस्कृत (Samskrta)",
-	"sd"	=> "Sindhi",
-	"sg"	=> "Sangro",
-	"sh"	=> "Serbocroatian",
-	"si"	=> "Sinhalese",
-	"simple" => "Simple English",
-	"sk"	=> "Slovak",
-	"sl"	=> "Slovensko",
-	"sm"	=> "Samoan",
-	"sn"	=> "Shona",
-	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"ss"	=> "Siswati",
-	"st"	=> "Sesotho",
-	"su"	=> "Sudanese",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"ta"	=> "Tamil",
-	"te"	=> "Telugu",
-	"tg"	=> "Tajik",
-	"th"	=> "Thai",
-	"ti"	=> "Tigrinya",
-	"tk"	=> "Turkmen",
-	"tl"	=> "Tagalog",
-	"tn"	=> "Setswana",
-	"to"	=> "Tonga",
-	"tr" => "Türkçe",
-	"ts"	=> "Tsonga",
-	"tt"	=> "Tatar",
-	"tw"	=> "Twi",
-	"ug"	=> "Uighur",
-	"uk" => "Українська (Ukrayins`ka)",
-	"ur"	=> "Urdu",
-	"uz"	=> "Uzbek",
-	"vi"	=> "Vietnamese",
-	"vo" => "Volapük",
-	"wo"	=> "Wolof",
-	"xh" => "isiXhosa",
-	"yi"	=> "Yiddish",
-	"yo"	=> "Yoruba",
-	"za"	=> "Zhuang",
-	"zh" => "中文 (Zhongwen)",
-	"zu"	=> "Zulu"
-);
-
 /* private */ $wgWeekdayNamesZh = array(
         "星期日", "星期一", "星期二", "星期三", "星期四",
 	"星期五", "星期六"
@@ -302,6 +160,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Booksources"	=> "站外书源",
 #           "Categories" => "页面分类"
 	"Export" => "XML export",
+	"Version" => "Version",
 );
 
 /* private */ $wgSysopSpecialPagesZh = array(
@@ -313,7 +172,6 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 /* private */ $wgDeveloperSpecialPagesZh = array(
 	"Lockdb"		=> "设置数据库只读",
 	"Unlockdb"		=> "恢复数据库修改权限",
-	"Debug"			=> "除错信息"
 );
 
 /* private */ $wgAllMessagesZh = array(
@@ -1134,19 +992,6 @@ class LanguageZh extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesZh;
 		return $wgUserTogglesZh;
-	}
-
-	function getLanguageNames() {
-		global $wgLanguageNamesZh;
-		return $wgLanguageNamesZh;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesZh;
-		if ( ! array_key_exists( $code, $wgLanguageNamesZh ) ) {
-			return "";
-		}
-		return $wgLanguageNamesZh[$code];
 	}
 
 	function getMonthName( $key )

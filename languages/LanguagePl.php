@@ -69,151 +69,6 @@ include_once("LanguageUtf8.php");
         "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgLanguageNamesPl = array(
-        "ab"    => "abchaska",
-        "aa"    => "afar",
-        "af"    => "afrikaans",
-        "sq"    => "albańska",
-        "am"    => "amharska",
-        "ar"    => "arabska",
-        "hy"    => "armeńska",
-        "as"    => "asamska",
-        "ay"    => "ajmara",
-        "az"    => "azerbejdżańska",
-        "ba"    => "baszkirska",
-        "eu"    => "baskijska",
-        "be"    => "białoruska",
-        "bn"    => "bengalska",
-        "dz"    => "druk",
-        "bh"    => "biharska",
-        "bi"    => "bislama",
-        "my"    => "birmańska",
-        "br"    => "bretoński",
-        "bs"    => "bośniacka",
-                "ch"    => "czamorro",
-        "km"    => "kambodżańska",
-        "ca"    => "katalońska",
-        "zh"    => "chińska",
-                "zh-cn" => "chińska uproszczona",
-            "zh-tw" => "chińska tradycyjna",
-        "co"    => "korsykańska",
-        "hr"    => "chorwacka",
-        "cs"    => "czeska",
-        "da"    => "duńska", # Note two different subdomains. 
-        "dk"    => "duńska", # 'da' is correct for the language.
-        "nl"    => "holenderska",
-        "en"    => "angielska",
-        "w"     => "angielska", # Should this be in list this?
-        "simple" => "uproszczona angielska",
-        "eo"    => "esperanto",
-        "et"    => "estońska",
-        "fo"    => "farerska",
-        "fj"    => "fidżyjska",
-        "fi"    => "fińska",
-        "fr"    => "francuska",
-        "fy"    => "fryzyjska",
-        "gl"    => "galicyjska",
-        "ka"    => "gruzińska",
-        "de"    => "niemiecka",
-        "el"    => "grecka",
-        "kl"    => "grenlandzka",
-        "gn"    => "guarani",
-        "gu"    => "gudżarati",
-        "ha"    => "hausa",
-        "he"    => "hebrajska",
-        "hi"    => "hindi",
-        "hu"    => "węgierska",
-        "is"    => "islandzka",
-        "id"    => "indonezyjska",
-        "ia"    => "interlingua",
-        "iu"    => "inuktitut",
-        "ik"    => "inupiak",
-        "ga"    => "irlandzka",
-        "it"    => "włoska",
-        "ja"    => "japońska",
-        "jv"    => "jawajska",
-        "kn"    => "kannada",
-        "ks"    => "kaszmirska",
-                "kw"    => "kornijski",
-        "kk"    => "kazachska",
-        "rw"    => "kinya-ruanda",
-        "ky"    => "kirgiska",
-        "rn"    => "urundi",
-        "ko"    => "koreańska",
-        "lo"    => "laotańska",
-        "la"    => "łacińska",
-        "lv"    => "łotewska",
-        "ln"    => "lingala",
-        "lt"    => "litewska",
-        "mk"    => "macedońska",
-        "mg"    => "malagaska",
-        "ms"    => "malajska",
-        "ml"    => "malajalam",
-        "mi"    => "maoryska",
-        "mr"    => "marathi",
-        "mo"    => "mołdawska",
-        "mn"    => "mongolska",
-        "na"    => "nauru",
-        "ne"    => "nepalska",
-        "no"    => "norweska",
-        "oc"    => "prowansalska",
-        "or"    => "orija",
-        "om"    => "oromo",
-        "ps"    => "paszto",
-        "fa"    => "perska",
-        "pl"    => "polska",
-        "pt"    => "portugalska",
-        "pa"    => "pendżabska",
-        "qu"    => "keczua",
-        "rm"    => "retoromańska",
-        "ro"    => "rumuńska",
-        "ru"    => "rosyjska",
-        "sm"    => "samoańska",
-        "sg"    => "sangro",  //??
-        "sa"    => "sanskrycka",
-        "sr"    => "serbska",
-        "sh"    => "serbsko-chorwacka",
-        "st"    => "sotho",
-        "tn"    => "setswana",
-        "sn"    => "szona",
-        "sd"    => "sindhi",
-        "si"    => "syngaleska",
-        "ss"    => "suazi",
-        "sk"    => "słowacka",
-        "sl"    => "słoweńska",
-        "so"    => "somali",
-        "es"    => "hiszpańska",
-        "su"    => "arabska (sudańska)",
-        "sw"    => "suahili",
-        "sv"    => "szwedzka",
-        "tl"    => "tagalog",
-        "tg"    => "tadżycka",
-        "ta"    => "tamilska",
-        "tt"    => "tatarska",
-        "te"    => "telugu",
-        "th"    => "tajska",
-        "bo"    => "tybetańska",
-        "ti"    => "tigrinia",
-        "to"    => "tonga",
-        "ts"    => "tsonga",
-        "tr"    => "turecka",
-        "tk"    => "turkmeńska",
-        "tw"    => "twi",
-        "ug"    => "ujgurska",
-        "uk"    => "ukraińska",
-        "ur"    => "urdu",
-        "uz"    => "uzbecka",
-        "vi"    => "wietnamska",
-        "vo"    => "volapuk",
-        "cy"    => "walijska",
-        "wo"    => "wolof",
-        "xh"    => "xhosa",
-        "yi"    => "jidisz",
-        "yo"    => "joruba",
-        "za"    => "dolnosaksońska",
-        "zu"    => "zulu"
-);
-
 /* private */ $wgWeekdayNamesPl = array(
         "niedziela", "poniedziałek", "wtorek", "środa", "czwartek",
         "piątek", "sobota"
@@ -273,6 +128,7 @@ include_once("LanguageUtf8.php");
         "Booksources"   => "Książki",
 //	"Categories"    => "Kategorie stron",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesPl = array(
@@ -285,7 +141,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesPl = array(
         "Lockdb"        => "Zablokuj zapis do bazy danych",
         "Unlockdb"      => "Odblokuj zapis do bazy danych",
-        "Debug"         => "Odpluskwianie"
 );
 
 /* private */ $wgAllMessagesPl = array(
@@ -1211,14 +1066,6 @@ class LanguagePl extends LanguageUtf8 {
         function getUserToggles() {
                 global $wgUserTogglesPl;
                 return $wgUserTogglesPl;
-        }
-
-        function getLanguageName( $code ) {
-                global $wgLanguageNamesPl;
-                if ( ! array_key_exists( $code, $wgLanguageNamesPl ) ) {
-                        return "";
-                }
-                return $wgLanguageNamesPl[$code];
         }
 
         function getMonthName( $key )

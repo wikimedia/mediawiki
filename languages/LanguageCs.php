@@ -49,147 +49,6 @@
 # Se eble, trovu Chehxajn libroservojn traserceblaj lau ISBN
 # $wgBookstoreListCs = ..
 
-# Tie, kie eble, uzu la memnomo de la lingvo
-# These need to be replaced
-/* private */ $wgLanguageNamesCs = array(
-	"ab"	=> "Abcházština",
-	"aa"	=> "Afarština",
-    "af"    => "Afrikánština",
-    "ay"    => "Ajmarština",
-    "tw"    => "Akanština",
-	"sq"	=> "Albánština",
-	"am"	=> "Amharština",
-    "en"    => "Angličtina",
-	"w"	=> "Angličtina", # FIXME - Cu guste en la listo?
-	"simple" => "Zjednodušená angličtina",
-	"ar"	=> "Arabština",
-	"hy"	=> "Arménština",
-	"as"	=> "Ásámština",
-	"az"	=> "Ázerbájdžánština",
-	"ba"	=> "Baškirština",
-	"be"	=> "Běloruština",
-	"bn"	=> "Bengálština",
-	"bh"	=> "Bihárština", #FIXME - Bogpura, Majtila, Magaha
-    "my"    => "Birmětina",
-	"bi"	=> "Bislamština",
-    "rn"    => "Burunda",
-    "ts"    => "Konžština",
-    "tn"    => "Cvanština",
-	"zh"	=> "Čínština",
-	"cs"	=> "Čeština",
-	"da"	=> "Dánština", # Nepre uzu "da" por la lingvo
-	"dk"	=> "Dánština",
-    "dz"    => "Zonque",
-    "ik"    => "Eskymáčtina", #FIXME - Cu?
-	"eo"	=> "Esperanto",
-	"et"	=> "Estonština",
-    "eu"    => "Baskitština",
-	"fo"	=> "Faerština",
-	"fj"	=> "Fidžijština",
-    "tl"    => "Filipínština",
-	"fi"	=> "Finština", # FIXME - Cu suoma?
-	"fr"	=> "Francouzština",
-	"fy"	=> "Fríština",
-	"gl"	=> "Galicijština",
-	"de"	=> "Němčina",
-	"el"	=> "Řečtina",
-	"kl"	=> "Grónština", # FIXME Cu?
-	"gu"	=> "Gudžarátština",
-    "gn"    => "Gvaraní",
-    "za"    => "Guang",
-	"ha"	=> "Hauština",
-	"he"	=> "Hebreština",
-	"hi"	=> "Hindština", #FIXME Cu?
-    "es"    => "Španěltina",
-	"hu"	=> "Maďarština",
-	"id"	=> "Indonéština",
-	"ia"	=> "Interlingua", #FIXME - Cu interlingua?
-	"iu"	=> "Eskymáčtina", #FIXME - Cu?
-    "ga"    => "Irština",
-    "is"    => "Islandština",
-	"it"	=> "Italština",
-	"ja"	=> "Japonština",
-	"jv"	=> "Javánština", #FIXME - Cu kodo "jw"?
-    "yi"    => "Jidiš",
-	"yo"	=> "Jorubština",
-	"kn"	=> "Kanárština",
-    "ka"    => "Kartvelština, Gruzínština",
-	"ks"	=> "Kašmírština",
-    "ca"    => "Katalánština",
-	"kk"	=> "Kazachština",
-    "qu"    => "Kečujština",
-    "cy"    => "Velština",
-    "ky"    => "Kirgizština",
-    "km"    => "Kmérština",
-    "ko"    => "Korejština",
-	"co"	=> "Korsičtina",
-	"hr"	=> "Chorvatština",
-    "xh"    => "Xhoština",
-	"la"	=> "Latina",
-	"lv"	=> "Lotyština",
-    "lo"    => "Laoština",
-	"ln"	=> "Lingala",
-	"lt"	=> "Litevština",
-	"mk"	=> "Makedonština",
-	"mg"	=> "Malgaština",
-	"ms"	=> "Malajština",
-	"ml"	=> "Malajálamština",
-	"mi"	=> "Maorština",
-	"mr"	=> "Maráthština",
-	"mo"	=> "Moldavština", # " =ro rumana"
-	"mn"	=> "Mongolština",
-	"na"	=> "Nauru",
-    "nl"    => "Nizozemština",
-	"ne"	=> "Nepálština",
-	"no"	=> "Norština",
-	"oc"	=> "Okcitánština",
-	"or"	=> "Orijo",
-	"om"	=> "Oroma",
-    "pa"    => "Pandábština",
-	"ps"	=> "Paštština",
-	"fa"	=> "Perština",
-	"pl"	=> "Polština",
-	"pt"	=> "Portugalština",
-	"rm"	=> "Románština",
-    "rw"    => "Rwandština",
-	"ro"	=> "Rumunština",
-	"ru"	=> "Ruština",
-	"sm"	=> "Samoánština",
-	"sg"	=> "Sangoština",
-	"sa"	=> "Sanskrt",
-	"sr"	=> "Srbština",
-	"sh"	=> "Srbocharvátština",
-	"st"	=> "Sotština",
-	"sn"	=> "Sona",
-	"sd"	=> "Sindhština",
-	"si"	=> "Sinhalština",
-	"ss"	=> "Svazijština",
-	"sk"	=> "Slovenština",
-	"sl"	=> "Slovinština",
-	"so"	=> "Somálština",
-	"su"	=> "Sundánština",
-	"sw"	=> "Svahilština",
-	"sv"	=> "Švédština",
-	"tg"	=> "Tadžičtina",
-    "th"    => "Thajština",
-	"ta"	=> "Tamilština",
-	"tt"	=> "Tatarština",
-	"te"	=> "Telugua",
-	"bo"	=> "Tibetština",
-	"ti"	=> "Tigriňňa",
-	"to"	=> "Tonžtina",
-	"tr"	=> "Turečtina",
-	"tk"	=> "Turkmenština",
-	"ug"	=> "Ujgurština",
-	"uk"	=> "Ukrajinština",
-	"ur"	=> "Urdština",
-	"uz"	=> "Uzbečtina",
-	"vi"	=> "Vietnamština",
-	"vo"	=> "Volapük",
-	"wo"	=> "Volofština",
-	"zu"	=> "Zulština"
-);
-
 # Note capitalization; also some uses may require addition of final -n
 /* private */ $wgWeekdayNamesCs = array(
 	"neděle", "pondělí", "úterý", "středa" , "čtvrtek",
@@ -247,6 +106,7 @@
 	"Booksources"	=> "Vnější knihovny",
 #	"Categories	=> "Page categories",
 	"Export"	=> "XML page export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesCs = array(
@@ -259,7 +119,6 @@
 /* private */ $wgDeveloperSpecialPagesCs = array(
 	"Lockdb"		=> "Odemknout data",
 	"Unlockdb"		=> "Povolit změnu dat",
-	"Debug"			=> "Ukaž informace servere"
 );
 
 /* private */ $wgAllMessagesCs = array(
@@ -903,14 +762,6 @@ class LanguageCs extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesCs;
 		return $wgUserTogglesCs;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesCs;
-		if ( ! array_key_exists( $code, $wgLanguageNamesCs ) ) {
-			return "";
-		}
-		return $wgLanguageNamesCs[$code];
 	}
 
 	function getMonthName( $key )
