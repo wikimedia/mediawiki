@@ -7,7 +7,7 @@
 
 /**
  * Entry point : initialise variables and call subfunctions.
- * @param string $par ????? (default NULL)
+ * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default NULL)
  */
 function wfSpecialAllpages( $par=NULL ) {
 	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
