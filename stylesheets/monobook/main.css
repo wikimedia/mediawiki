@@ -281,10 +281,11 @@ in the bottom-right corner of the content area */
     padding:5px;
     font-size: 95%;
 }
-.tocindent { margin-left: 2em; }
-.tocline { margin-bottom: 0px; }
-.toctoggle { font-size: 94%; }
-.editsection { 
+#toc .tocindent { margin-left: 2em; }
+#toc .tocline { margin-bottom: 0px; }
+#toc p { margin: 0 }
+#toc .toctoggle { font-size: 94%; }
+#toc .editsection { 
     margin-top: 0.7em; 
     font-size: 94%;
 }
