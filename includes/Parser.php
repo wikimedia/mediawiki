@@ -1991,20 +1991,25 @@ class Parser
 		# Did we encounter this template already? If yes, it is in the cache
 		# and we need to check for loops.
 		if ( !$found && isset( $this->mTemplates[$part1] ) ) {
-			# set $text to cached message.
-			$text = $linestart . $this->mTemplates[$part1];
 			$found = true;
 
 			# Infinite loop test
 			if ( isset( $this->mTemplatePath[$part1] ) ) {
 				$noparse = true;
 				$found = true;
-				$text .= '<!-- WARNING: template loop detected -->';
+				$text = $linestart .
+					"\{\{$part1}}" .
+					'<!-- WARNING: template loop detected -->';
+				wfDebug( "$fname: template loop broken at '$part1'\n" );
+			} else {
+				# set $text to cached message.
+				$text = $linestart . $this->mTemplates[$part1];
 			}
 		}
 
 		# Load from database
 		$itcamefromthedatabase = false;
+		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
 			$ns = NS_TEMPLATE;
 			$part1 = $this->maybeDoSubpageLink( $part1, $subpage='' );
@@ -2081,9 +2086,9 @@ class Parser
 				$text = "\n" . $text;
 			}
 		}
-
-		# Empties the template path
-		$this->mTemplatePath = array();
+		# Prune lower levels off the recursion check path
+		$this->mTemplatePath = $lastPathLevel;
+		
 		if ( !$found ) {
 			wfProfileOut( $fname );
 			return $matches[0];
@@ -2115,9 +2120,8 @@ class Parser
 				}
 			}
 		}
-
-		# Empties the template path
-		$this->mTemplatePath = array();
+		# Prune lower levels off the recursion check path
+		$this->mTemplatePath = $lastPathLevel;
 		
 		if ( !$found ) {
 			wfProfileOut( $fname );
