@@ -277,19 +277,22 @@ class UtfNormal {
 				if( $n >= 0x80 && $n < 0xc0 ) {
 					$sequence .= $c;
 					if( --$remaining == 0 ) {
-						if( ($sequence >= UTF8_SURROGATE_FIRST
-								&& $sequence <= UTF8_SURROGATE_LAST)
-							|| ($head == 0xc0 && $sequence <= UTF8_OVERLONG_A)
-							|| ($head == 0xc1 && $sequence <= UTF8_OVERLONG_A)
-							|| ($head == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-							|| ($head == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-							|| ($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
-							|| ($sequence == UTF8_FFFE)
-							|| ($sequence == UTF8_FFFF)
-							|| ($sequence > UTF8_MAX) ) {
-							$out .= UTF8_REPLACEMENT;
-							$state = UTF8_HEAD;
-							continue;
+						if( $head < 0xc2 || $head == 0xed || $head == 0xe0 || $head > 0xee ) {
+							if( ( $sequence >= UTF8_SURROGATE_FIRST
+									&& $sequence <= UTF8_SURROGATE_LAST)
+								|| ($head == 0xc0 && $sequence <= UTF8_OVERLONG_A)
+								|| ($head == 0xc1 && $sequence <= UTF8_OVERLONG_A)
+								|| ($head == 0xe0 && $sequence <= UTF8_OVERLONG_B)
+								|| ($head == 0xef && 
+									($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
+									|| ($sequence == UTF8_FFFE)
+									|| ($sequence == UTF8_FFFF) )
+								|| ($head == 0xf0 && $sequence <= UTF8_OVERLONG_C)
+								|| ($sequence > UTF8_MAX) ) {
+								$out .= UTF8_REPLACEMENT;
+								$state = UTF8_HEAD;
+								continue;
+							}
 						}
 						if( isset( $utfCheckNFC[$sequence] ) ||
 							isset( $utfCombiningClass[$sequence] ) ) {
@@ -307,17 +310,20 @@ class UtfNormal {
 				$state = UTF8_HEAD;
 				$out .= UTF8_REPLACEMENT;
 			}
-			if( $n < 0x09 ) {
-				$out .= UTF8_REPLACEMENT;
-			} elseif( $n == 0x0a ) {
-				$out .= $c;
-			} elseif( $n < 0x0d ) {
-				$out .= UTF8_REPLACEMENT;
-			} elseif( $n == 0x0d ) {
-				# Strip \r silently
-			} elseif( $n < 0x20 ) {
-				$out .= UTF8_REPLACEMENT;
+			if( $n < 0x20 ) {
+				if( $n < 0x09 ) {
+					$out .= UTF8_REPLACEMENT;
+				} elseif( $n == 0x0a ) {
+					$out .= $c;
+				} elseif( $n < 0x0d ) {
+					$out .= UTF8_REPLACEMENT;
+				} elseif( $n == 0x0d ) {
+					# Strip \r silently
+				} else {
+					$out .= UTF8_REPLACEMENT;
+				}
 			} elseif( $n < 0x80 ) {
+				# Friendly ASCII chars.
 				$out .= $c;
 			} elseif( $n < 0xc0 ) {
 				# illegal tail bytes or head byte of overlong sequence
@@ -367,7 +373,7 @@ class UtfNormal {
 	 * @access private
 	 */
 	function NFC( $string ) {
-		return $out = UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
+		return UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
 	}
 	
 	/**
@@ -488,7 +494,13 @@ class UtfNormal {
 			for( $i = 0; $i < $len; $i++ ) {
 				$c = $string{$i};
 				$n = ord( $c );
-				if( $n >= 0xf0 ) {
+				if( $n < 0x80 ) {
+					# No combining characters in ASCII.
+					$out .= $lastChar;
+					$lastChar = $c;
+					$lastClass = 0;
+					continue;
+				} elseif( $n >= 0xf0 ) {
 					$c = substr( $string, $i, 4 );
 					$i += 3;
 				} elseif( $n >= 0xe0 ) {
@@ -498,20 +510,26 @@ class UtfNormal {
 					$c = substr( $string, $i, 2 );
 					$i++;
 				}
-				$class = isset( $utfCombiningClass[$c] ) ? $utfCombiningClass[$c] : 0;
+				$class = 0;
 				if( $lastClass == -1 ) {
 					# First one
 					$lastChar = $c;
+					$class = isset( $utfCombiningClass[$c] ) ? $utfCombiningClass[$c] : 0;
 					$lastClass = $class;
-				} elseif( $lastClass > $class && $class > 0 ) {
-					# Swap -- put this one on the stack
-					$out .= $c;
-					$replacedCount++;
-				} else {
-					$out .= $lastChar;
-					$lastChar = $c;
-					$lastClass = $class;
+					continue;
 				}
+				if( isset( $utfCombiningClass[$c] ) ) {
+					$class = $utfCombiningClass[$c];
+					if( $lastClass > $class ) {
+						# Swap -- put this one on the stack
+						$out .= $c;
+						$replacedCount++;
+						continue;
+					}
+				}
+				$out .= $lastChar;
+				$lastChar = $c;
+				$lastClass = $class;
 			}
 			$out .= $lastChar;
 			$string = $out;
@@ -534,10 +552,20 @@ class UtfNormal {
 		$lastClass = -1;
 		$startChar = '';
 		$combining = '';
+		$x1 = ord(substr(UTF8_HANGUL_VBASE,0,1));
+		$x2 = ord(substr(UTF8_HANGUL_TEND,0,1));
 		for( $i = 0; $i < $len; $i++ ) {
 			$c = $string{$i};
 			$n = ord( $c );
-			if( $n >= 0xf0 ) {
+			if( $n < 0x80 ) {
+				# No combining characters here...
+				$out .= $startChar;
+				$out .= $combining;
+				$startChar = $c;
+				$combining = '';
+				$lastClass = 0;
+				continue;
+			} elseif( $n >= 0xf0 ) {
 				$c = substr( $string, $i, 4 );
 				$i += 3;
 			} elseif( $n >= 0xe0 ) {
@@ -547,55 +575,65 @@ class UtfNormal {
 				$c = substr( $string, $i, 2 );
 				$i++;
 			}
-			$class = isset( $utfCombiningClass[$c] ) ? $utfCombiningClass[$c] : 0;
 			$pair = $startChar . $c;
-			if( empty( $utfCombiningClass[$c] ) ) {
-				# New start char
-				if( $lastClass == 0 && isset( $utfCanonicalComp[$pair] ) ) {
-					$startChar = $utfCanonicalComp[$pair];
-				} elseif( $lastClass == 0 &&
-				          $c >= UTF8_HANGUL_VBASE &&
-				          $c <= UTF8_HANGUL_VEND &&
-				          $startChar >= UTF8_HANGUL_LBASE &&
-				          $startChar <= UTF8_HANGUL_LEND ) {
-					$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
-					$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
-					$hangulPoint = UNICODE_HANGUL_FIRST +
-						UNICODE_HANGUL_TCOUNT *
-						(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
-					$startChar = codepointToUtf8( $hangulPoint );
-				} elseif( $lastClass == 0 &&
-				          $c >= UTF8_HANGUL_TBASE &&
-				          $c <= UTF8_HANGUL_TEND &&
-				          $startChar >= UTF8_HANGUL_FIRST &&
-				          $startChar <= UTF8_HANGUL_LAST ) {
-					$tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
-					$hangulPoint = utf8ToCodepoint( $startChar ) + $tIndex;
-					$startChar = codepointToUtf8( $hangulPoint );
-				} else {
-					$out .= $startChar;
-					$out .= $combining;
-					$startChar = $c;
-					$combining = '';
-				}
-			} else {
-				# A combining char; see what we can do with it
-				if( !empty( $startChar ) &&
-					$lastClass < $class &&
-					$class > 0 &&
-					isset( $utfCanonicalComp[$pair] ) ) {
-					$startChar = $utfCanonicalComp[$pair];
-					$class = 0;
-				} else {
-					$combining .= $c;
+			if( $n > 0x80 ) {
+				if( isset( $utfCombiningClass[$c] ) ) {
+					# A combining char; see what we can do with it
+					$class = $utfCombiningClass[$c];
+					if( !empty( $startChar ) &&
+						$lastClass < $class &&
+						$class > 0 &&
+						isset( $utfCanonicalComp[$pair] ) ) {
+						$startChar = $utfCanonicalComp[$pair];
+						$class = 0;
+					} else {
+						$combining .= $c;
+					}
+					$lastClass = $class;
+					continue;
 				}
 			}
-			$lastClass = $class;
+			# New start char
+			if( $lastClass == 0 ) {
+				if( isset( $utfCanonicalComp[$pair] ) ) {
+					$startChar = $utfCanonicalComp[$pair];
+					continue;
+				}
+				if( $n >= $x1 && $n <= $x2 ) {
+					# WARNING: Hangul code is painfully slow.
+					if( $c >= UTF8_HANGUL_VBASE &&
+						$c <= UTF8_HANGUL_VEND &&
+						$startChar >= UTF8_HANGUL_LBASE &&
+						$startChar <= UTF8_HANGUL_LEND ) {
+						#
+						$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
+						$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
+						$hangulPoint = UNICODE_HANGUL_FIRST +
+							UNICODE_HANGUL_TCOUNT *
+							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
+						$startChar = codepointToUtf8( $hangulPoint );
+						continue;
+					} elseif( $c >= UTF8_HANGUL_TBASE &&
+							  $c <= UTF8_HANGUL_TEND &&
+							  $startChar >= UTF8_HANGUL_FIRST &&
+							  $startChar <= UTF8_HANGUL_LAST ) {
+						$tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
+						$hangulPoint = utf8ToCodepoint( $startChar ) + $tIndex;
+						$startChar = codepointToUtf8( $hangulPoint );
+						continue;
+					}
+				}
+			}
+			$out .= $startChar;
+			$out .= $combining;
+			$startChar = $c;
+			$combining = '';
+			$lastClass = 0;
 		}
 		$out .= $startChar . $combining;
 		return $out;
 	}
-
+	
 	/**
 	 * This is just used for the benchmark, comparing how long it takes to
 	 * interate through a string without really doing anything of substance.
