@@ -451,7 +451,8 @@ $1<br>
 $2 பட்டியல் &nbsp; $3 $9 க்கான தேடலை மீள்வழிப்படுத்துகிறது",
 "searchdisabled" => "<p>மன்னிக்கவும்! செயற்திறன் காரணங்களுக்காக முழு அளவு உரை தேடல் தற்காலிகமாக முடக்கப்பட்டுள்ளது. அதுவரை நீங்கள் கீழேயுள்ள கூகிள் (Google) தேடலைப் பயன்படுத்தலாம். இது சில சமயம் இற்றைப்படுத்தப்படாததாய் இருக்கக்கூடும்.</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

@@ -470,7 +470,8 @@ w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że
 po zbliżającej się modyfikacji sprzętu możliwość ta zostanie przywrócona.
 W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

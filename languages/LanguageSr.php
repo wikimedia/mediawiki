@@ -487,7 +487,8 @@ $1<br>
 $2 Излистај преусмерења &nbsp; Тражи $3 $9",
 "searchdisabled" => "<p>Жалимо! Пуна претрага текста је привремено онемогућена, због бржег рада Википедије. Умеђувремену, можете користити Гугле претрагу испод, која може бити застарела.</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

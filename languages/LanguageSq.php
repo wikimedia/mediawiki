@@ -475,7 +475,8 @@ $2 Lidhje ridrejtuese &nbsp; Kërko për $3 $9",
 shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjëndje normale mbas disa punimeve.
 Gjer atëherë, mund të përdorësh google për kërkime:</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">
