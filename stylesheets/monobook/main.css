@@ -874,6 +874,7 @@ li#contentaction-watch {
 #portal-footer li {
     display: inline;
     margin-right: 2em;
+    white-space: nowrap;
 }
 
 #footer-poweredby, #footer-copyright {
@@ -919,6 +920,8 @@ li#contentaction-watch {
 
 * html #bodyContent {
     display: inline;
+    overflow: auto;
+    width: 100%;
 }
 
 /* opera 6 fixes */
