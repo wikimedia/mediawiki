@@ -184,15 +184,22 @@ class MovePageForm {
 			
 		}
 
-		# Move talk page if (1) the checkbox says to, (2) the source
-		# and target namespaces are identical, (3) the namespaces are not
-		# themselves talk namespaces, and of course (4) it exists.
+		# Move talk page if
+		# (1) the checkbox says to,
+		# (2) the namespaces are not themselves talk namespaces, and of course
+		# (3) it exists.
 
 		if ( ( 1 == $_REQUEST['wpMovetalk'] ) &&
-			 ( ! Namespace::isTalk( $this->ons ) ) &&
-			 ( $this->ons == $this->nns ) ) {
+		     ( ! Namespace::isTalk( $this->ons ) ) &&
+		     ( ! Namespace::isTalk( $this->nns ) ) ) {
 			
-			$this->ons = $this->nns = Namespace::getTalk( $this->ons );
+			# get old talk page namespace
+			$this->ons = Namespace::getTalk( $this->ons );
+			# get new talk page namespace
+			$this->nns = Namespace::getTalk( $this->nns );
+			
+			
+			# grab the newer title objects
 			$this->ot = Title::makeTitle( $this->ons, $this->ot->getDBkey() );
 			$this->nt = Title::makeTitle( $this->nns, $this->nt->getDBkey() );
 
