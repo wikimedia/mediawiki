@@ -168,3 +168,10 @@ patch-ipb_expiry.sql
 everywhere. **Rebuild your links after this with refreshLinks.php**
 
 patch-linktables.sql
+
+
+* 2004-04: Add user_real_name field
+patch-user-realname.sql
+
+* 2004-05-08: Add querycache table for caching special pages
+patch-querycache.sql

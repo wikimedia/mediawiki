@@ -9,19 +9,27 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return 1;
+		return true;
 	}
 
-	function getSQL( $offset, $limit ) {
-		return "SELECT cur_title, LENGTH(cur_text) AS len FROM cur " .
-		  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY len " .
-		  "LIMIT {$offset}, {$limit}";
+	function getSQL() {
+		return
+			"SELECT 'Shortpages' as type,
+					cur_namespace as namespace,
+			        cur_title as title,
+			        LENGTH(cur_text) AS value
+			FROM cur
+			WHERE cur_namespace=0 AND cur_is_redirect=0";
+	}
+	
+	function sortDescending() {
+		return false;
 	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->len ) );
-		$link = $skin->makeKnownLink( $result->cur_title, "" );
+		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->value ) );
+		$link = $skin->makeKnownLink( $result->title, "" );
 		return "{$link} ({$nb})";
 	}
 }

@@ -643,7 +643,8 @@ an incorrectly linked inter-language or inter-wiki title.",
 "perfdisabled" => "Sorry! This feature has been temporarily disabled
 because it slows the database down to the point that no one can use
 the wiki.",
-"perfdisabledsub" => "Here's a saved copy from $1:",
+"perfdisabledsub" => "Here's a saved copy from $1:", # obsolete?
+"perfcached" => "The following data is cached and may not be completely up to date:",
 "wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2

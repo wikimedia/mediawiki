@@ -9,33 +9,46 @@ class NewPagesPage extends QueryPage {
 	}
 	
 	function isExpensive() {
-		return parent::isExpensive();
+		# Indexed on RC, and will *not* work with querycache yet.
+		return false;
+		#return parent::isExpensive();
 	}
 
 	function getSQL( $offset, $limit ) {
-		return "SELECT rc_namespace AS cur_namespace, rc_title AS cur_title,rc_user AS cur_user,rc_user_text AS cur_user_text,rc_comment as cur_comment," .
-		  "rc_timestamp AS cur_timestamp,length(cur_text) as cur_length,cur_text FROM recentchanges,cur " .
-		  "WHERE rc_cur_id=cur_id AND rc_new=1 AND rc_namespace=0 AND cur_is_redirect=0 " .
-		  "ORDER BY rc_timestamp DESC LIMIT {$offset}, {$limit}";
+		return
+			"SELECT 'Newpages' as type,
+			        rc_namespace AS namespace,
+			        rc_title AS title,
+			        rc_cur_id AS value,
+			        
+			        rc_user AS user,
+			        rc_user_text AS user_text,
+			        rc_comment as comment,
+			        rc_timestamp AS timestamp,
+			        length(cur_text) as length,
+			        cur_text as text
+			FROM recentchanges,cur
+			WHERE rc_cur_id=cur_id AND rc_new=1
+			  AND rc_namespace=0 AND cur_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		$u = $result->cur_user;
-		$ut = $result->cur_user_text;
+		$u = $result->user;
+		$ut = $result->user_text;
 
-		$length = wfmsg( "nbytes", $wgLang->formatNum( $result->cur_length ) );
-		$c = $skin->formatComment($result->cur_comment );
+		$length = wfMsg( "nbytes", $wgLang->formatNum( $result->length ) );
+		$c = $skin->formatComment($result->comment );
 
 		if ( 0 == $u ) { # not by a logged-in user
 			$ul = $ut;
 		}
 		else {
-			$ul = $skin->makeLink( $wgLang->getNsText(2) . ":{$ut}", $ut );
+			$ul = $skin->makeLink( $wgLang->getNsText(NS_USER) . ":{$ut}", $ut );
 		}
 
-		$d = $wgLang->timeanddate( $result->cur_timestamp, true );
-		$link = $skin->makeKnownLink( $result->cur_title, "" );
+		$d = $wgLang->timeanddate( $result->timestamp, true );
+		$link = $skin->makeKnownLink( $result->title, "" );
 		$s = "{$d} {$link} ({$length}) . . {$ul}";
 
 		if ( "" != $c && "*" != $c ) {

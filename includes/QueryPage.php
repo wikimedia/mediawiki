@@ -1,6 +1,5 @@
 <?php
 
-require_once ( "LogPage.php" ) ;
 require_once ( "Feed.php" );
 
 # This is a class for doing query pages; since they're almost all the same,
@@ -16,10 +15,30 @@ class QueryPage {
 		return "";
 	}
 
-	# Subclasses return a SQL query here.
+	# Subclasses return an SQL query here.
+	#
+	# Note that the query itself should return the following three columns:
+	# 'type' (your special page's name), 'namespace, 'title', and 'value'
+	# (numeric) *in that order*. These may be stored in the querycache table
+	# for expensive queries, and that cached data will be returned sometimes,
+	# so the presence of extra fields can't be relied on.
+	#
+	# Don't include an ORDER or LIMIT clause, this will be added.
 
-	function getSQL( $offset, $limit ) {
-		return "";
+	function getSQL() {
+		return "SELECT 'sample' as type, 0 as namespace, 'Sample result' as title, 42 as value";
+	}
+	
+	# Override to sort by increasing values
+	function sortDescending() {
+		return true;
+	}
+
+	# Don't override this unless you're darn sure.
+	function getOrderLimit( $offset, $limit ) {
+		return " ORDER BY value " .
+			($this->sortDescending() ? "DESC" : "")
+			. " LIMIT {$offset}, {$limit}";
 	}
 
 	# Is this query expensive (for some definition of expensive)? Then we
@@ -40,29 +59,43 @@ class QueryPage {
 	
 	# This is the actual workhorse. It does everything needed to make a
 	# real, honest-to-gosh query page.
-
+	
 	function doQuery( $offset, $limit ) {
-		global $wgUser, $wgOut, $wgLang, $wgMiserMode;
+		global $wgUser, $wgOut, $wgLang, $wgRequest;
+		global $wgMiserMode;
 
 		$sname = $this->getName();
 		$fname = get_class($this) . "::doQuery";
+		$sql = $this->getSQL( $offset, $limit );
 
 		$wgOut->setSyndicated( true );
 		
-		if ( $this->isExpensive( ) ) {
-			$vsp = $wgLang->getValidSpecialPages();
-			$logpage = new LogPage( "!" . $vsp[$sname] );
-			$logpage->mUpdateRecentChanges = false;
+		if ( $this->isExpensive() ) {
+			$type = wfStrencode( $sname );
+			$recache = $wgRequest->getBool( "recache" );
+			if( $recache ) {
+				# Clear out any old cached data
+				$res = wfQuery( "DELETE FROM querycache WHERE qc_type='$type'", DB_WRITE, $fname );
 
-			if ( $wgMiserMode ) {
-				$logpage->showAsDisabledPage();
-				return;
+				# Save results into the querycache table
+				$maxstored = 1000;
+				$res = wfQuery(
+					"INSERT INTO querycache(qc_type,qc_namespace,qc_title,qc_value) " .
+					$this->getSQL() .
+					$this->getOrderLimit( 0, $maxstored ),
+					DB_WRITE, $fname );
+			}
+			if( $wgMiserMode || $recache ) {
+				$sql =
+					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
+					 FROM querycache WHERE qc_type='$type'";
+			}
+			if( $wgMiserMode ) {
+				$wgOut->addWikiText( wfMsg( "perfcached" ) );
 			}
 		}
 
-		$sql = $this->getSQL( $offset, $limit );
-
-		$res = wfQuery( $sql, DB_READ, $fname );
+		$res = wfQuery( $sql . $this->getOrderLimit( $offset, $limit ), DB_READ, $fname );
 		
 		$num = wfNumRows($res);
 		
@@ -86,12 +119,6 @@ class QueryPage {
 		$s .= "</ol>";
 		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
-
-		# Saving cache
-
-		if ( $this->isExpensive() && $offset == 0 && $limit >= 50 ) {
-			$logpage->replaceContent( $s );
-		}
 	}
 	
 	# Similar to above, but packaging in a syndicated feed instead of a web page
@@ -122,23 +149,15 @@ class QueryPage {
 
 	# Override for custom handling. If the titles/links are ok, just do feedItemDesc()
 	function feedResult( $row ) {
-		if( isset( $row->cur_title ) ) {
-			$title = Title::MakeTitle( $row->cur_namespace, $row->cur_title );
-		} elseif( isset( $row->old_title ) ) {
-			$title = Title::MakeTitle( $row->old_namespace, $row->old_title );
-		} elseif( isset( $row->rc_title ) ) {
-			$title = Title::MakeTitle( $row->rc_namespace, $row->rc_title );
-		} else {
+		if( !isset( $row->title ) ) {
 			return NULL;
 		}
+		$title = Title::MakeTitle( IntVal( $row->namespace ), $row->title );
 		if( $title ) {
-			$date = "";
-			if( isset( $row->cur_timestamp ) ) {
-				$date = $row->cur_timestamp;
-			} elseif( isset( $row->old_timestamp ) ) {
-				$date = $row->old_timestamp;
-			} elseif( isset( $row->rc_cur_timestamp ) ) {
-				$date = $row->rc_cur_timestamp;
+			if( isset( $row->timestamp ) ) {
+				$date = $row->timestamp;
+			} else {
+				$date = "";
 			}
 			
 			$comments = "";
@@ -161,34 +180,25 @@ class QueryPage {
 	
 	function feedItemDesc( $row ) {
 		$text = "";
-		if( isset( $row->cur_comment ) ) {
-			$text = $row->cur_comment;
-		} elseif( isset( $row->old_comment ) ) {
-			$text = $row->old_comment;
-		} elseif( isset( $row->rc_comment ) ) {
-			$text = $row->rc_comment;
+		if( isset( $row->comment ) ) {
+			$text = htmlspecialchars( $row->comment );
+		} else {
+			$text = "";
 		}
-		$text = htmlspecialchars( $text );
 		
-		if( isset( $row->cur_text ) ) {
+		if( isset( $row->text ) ) {
 			$text = "<p>" . htmlspecialchars( wfMsg( "summary" ) ) . ": " . $text . "</p>\n<hr />\n<div>" .
-				nl2br( $row->cur_text ) . "</div>";;
+				nl2br( htmlspecialchars( $row->text ) ) . "</div>";;
 		}
 		return $text;
 	}
 	
 	function feedItemAuthor( $row ) {
-		/* old code
-		$fields = array( "cur_user_text", "old_user_text", "rc_user_text" );
-		foreach( $fields as $field ) {
-			if( isset( $row->$field ) ) return $row->field;
+		if( isset( $row->user_text ) ) {
+			return $row->user_text;
+		} else {
+			return "";
 		}
-		
-		new code follow, that's an ugly hack to fix things: */
-		if( isset( $row->cur_user_text ) ) return $row->cur_user_text;
-		if( isset( $row->old_user_text ) ) return $row->old_user_text;
-		if( isset( $row->rc_user_text  ) ) return $row->rc_user_text;
-		return "";
 	}
 	
 	function feedTitle() {
@@ -216,7 +226,8 @@ class QueryPage {
 class PageQueryPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
-		return $skin->makeKnownLink( $result->cur_title, "" );
+		$nt = Title::makeTitle( $result->namespace, $result->title );
+		return $skin->makeKnownLinkObj( $nt, "" );
 	}
 }
 

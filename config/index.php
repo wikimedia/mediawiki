@@ -395,6 +395,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_linkscc_update(); flush();
 			do_hitcounter_update(); flush();
 			do_recentchanges_update(); flush();
+			echo "FIXME: need the link table change here\n";
+			do_user_real_name_update(); flush();
+			do_querycache_update(); flush();
 			initialiseMessages(); flush();
 			chdir( "config" );
 			

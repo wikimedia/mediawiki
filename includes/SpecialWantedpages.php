@@ -9,22 +9,31 @@ class WantedPagesPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return 1;
+		return true;
 	}
 
-	function getSQL( $offset, $limit ) {
-		return "SELECT bl_to, COUNT( DISTINCT bl_from ) as nlinks " .
-		  "FROM brokenlinks GROUP BY bl_to HAVING nlinks > 1 " .
-		  "ORDER BY nlinks DESC LIMIT {$offset}, {$limit}";
+	function getSQL() {
+		# We cheat and return the full-text from bl_to in the title.
+		# In the future, a pre-parsed name will be available.
+		return
+			"SELECT 'Wantedpages' as type,
+			        0 as namespace,
+			        bl_to as title,
+			        COUNT(DISTINCT bl_from) as value
+			FROM brokenlinks
+			GROUP BY bl_to
+			HAVING value > 1";
 	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 
-		$nt = Title::newFromDBkey( $result->bl_to );
-
+		$nt = Title::newFromDBkey( $result->title );
+		if( is_null( $nt ) ) {
+			return "<!-- Bad title '" . htmlspecialchars( $result->title ) . "' -->";
+		}
 		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), "" );
-		$nl = wfMsg( "nlinks", $result->nlinks );
+		$nl = wfMsg( "nlinks", $result->value );
 		$nlink = $skin->makeKnownLink( $wgLang->specialPage( "Whatlinkshere" ), $nl,
 		  "target=" . $nt->getPrefixedURL() );
 
