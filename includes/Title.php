@@ -522,7 +522,7 @@ class Title {
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		global $wgUser;
-		return ( $wgUser->isSysop() or preg_match("/^".$wgUser->getName()."/", $this->mTextform) );
+		return ( $wgUser->isSysop() or preg_match("/^".preg_quote($wgUser->getName())."/", $this->mTextform) );
 	}
 
 	# Accessor/initialisation for mRestrictions
