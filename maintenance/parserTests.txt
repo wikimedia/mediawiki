@@ -1,0 +1,60 @@
+!! test
+Blank input
+!! input
+!! result
+!! end
+
+!! test
+Simple paragraph
+!! input
+This is a simple paragraph.
+!! result
+<p>This is a simple paragraph.
+</p>
+!! end
+
+!! test
+Simple list
+!! input
+* Item 1
+* Item 2
+!! result
+<ul><li> Item 1
+</li><li> Item 2
+</li></ul>
+!! end
+
+!! test
+Italics and bold
+!! input
+* plain
+* plain''italic''plain
+* plain''italic''plain''italic''plain
+* plain'''bold'''plain
+* plain'''bold'''plain'''bold'''plain
+* plain''italic''plain'''bold'''plain
+* plain'''bold'''plain''italic''plain
+* plain''italic'''bold-italic'''italic''plain
+* plain'''bold''bold-italic''bold'''plain
+* plain'''''bold-italic'''italic''plain
+* plain'''''bold-italic''bold'''plain
+* plain''italic'''bold-italic'''''plain
+* plain'''bold''bold-italic'''''plain
+* plain l'''italic''plain
+!! result
+<ul><li> plain
+</li><li> plain<i>italic</i>plain
+</li><li> plain<i>italic</i>plain<i>italic</i>plain
+</li><li> plain<b>bold</b>plain
+</li><li> plain<b>bold</b>plain<b>bold</b>plain
+</li><li> plain<i>italic</i>plain<b>bold</b>plain
+</li><li> plain<b>bold</b>plain<i>italic</i>plain
+</li><li> plain<i>italic<b>bold-italic</b>italic</i>plain
+</li><li> plain<b>bold<i>bold-italic</i>bold</b>plain
+</li><li> plain<i><b>bold-italic</b>italic</i>plain
+</li><li> plain<b><i>bold-italic</i>bold</b>plain
+</li><li> plain<i>italic<b>bold-italic</b></i>plain
+</li><li> plain<b>bold<i>bold-italic</i></b>plain
+</li><li> plain l'<i>italic</i>plain
+</li></ul>
+!! end
