@@ -241,9 +241,6 @@ wfProfileIn( $fname.'-language2' );
 
 function setupLangObj(&$langclass) {
 	global $wgUseLatin1, $IP;
-	wfSuppressWarnings();
-	include_once("$IP/languages/$langclass.php");
-	wfRestoreWarnings();
 
 	if( ! class_exists( $langclass ) ) {
 		# Default to English/UTF-8, or for non-UTF-8, to latin-1
@@ -289,6 +286,10 @@ $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 } else {
+	wfSuppressWarnings();
+	include_once("$IP/languages/$wgLangClass.php");
+	wfRestoreWarnings();
+
 	$wgLang = setupLangObj( $wgLangClass );
 }
 
