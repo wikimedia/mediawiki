@@ -566,7 +566,7 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
-		global $wgEnotif;
+		global $wgEnotif, $wgParser;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
@@ -669,7 +669,12 @@ class Article {
 
 				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'" alt="#REDIRECT" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
-
+				
+				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
+				$catlinks = $parseout->getCategoryLinks();
+				$wgOut->addCategoryLinks($catlinks);
+				$skin = $wgUser->getSkin();
+				#$wgOut->addHTML($skin->getCategoryLinks());
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
 				$wgOut->addPrimaryWikiText( $text, $this );
