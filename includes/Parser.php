@@ -1397,20 +1397,9 @@ class Parser
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
 					# title and definition, without b0rking links.
-					# Don't count ':' in a URL
-					$pos = 0;
-					while (($colon = strpos($t, ':', $pos)) !== false) {
-						$m1 = substr($t, 0, $colon);
-						$m2 = substr($t, $colon + 1);
-						if (!preg_match('/(?:'.URL_PROTOCOLS.')$/', $m1)) {
-							break;
-						}
-						$pos = $colon + 1;
-					}
-					if( $colon !== false ) {
-						$term = $m1;
+					if ($this->findColonNoLinks($t, $term, $t2) !== false) {
+						$t = $t2;
 						$output .= $term . $this->nextItem( ':' );
-						$t = $m2;
 					}
 				}
 			} elseif( $prefixLength || $lastPrefixLength ) {
@@ -1431,19 +1420,9 @@ class Parser
 
 					if ( ';' == $char ) {
 						# FIXME: This is dupe of code above
-						$pos = 0;
-						while (($colon = strpos($t, ':', $pos)) !== false) {
-							$m1 = substr($t, 0, $colon);
-							$m2 = substr($t, $colon + 1);
-							if (!preg_match('/(?:'.URL_PROTOCOLS.')$/', $m1)) {
-								break;
-							}
-							$pos = $colon + 1;
-						}
-						if( $colon !== false ) {
-							$term = $m1;
+						if ($this->findColonNoLinks($t, $term, $t2) !== false) {
+							$t = $t2;
 							$output .= $term . $this->nextItem( ':' );
-							$t = $m2;
 						}
 					}
 					++$commonPrefixLength;
@@ -1522,6 +1501,46 @@ class Parser
 
 		wfProfileOut( $fname );
 		return $output;
+	}
+
+	/**
+	 * Split up a string on ':', ignoring any occurences inside
+	 * <a>..</a> or <span>...</span>
+	 * @param $str string the string to split
+	 * @param &$before string set to everything before the ':'
+	 * @param &$after string set to everything after the ':'
+	 * return string the position of the ':', or false if none found
+	 */
+	function findColonNoLinks($str, &$before, &$after) {
+		# I wonder if we should make this count all tags, not just <a>
+		# and <span>. That would prevent us from matching a ':' that
+		# comes in the middle of italics other such formatting....
+		# -- Wil
+		$fname = 'Parser::findColonNoLinks';
+		wfProfileIn( $fname );
+		$pos = 0;
+		do {
+			$colon = strpos($str, ':', $pos);
+
+			if ($colon !== false) {
+				$before = substr($str, 0, $colon);
+				$after = substr($str, $colon + 1);
+
+				# Skip any ':' within <a> or <span> pairs
+				$a = substr_count($before, '<a');
+				$s = substr_count($before, '<span');
+				$ca = substr_count($before, '</a>');
+				$cs = substr_count($before, '</span>');
+
+				if ($a <= $ca and $s <= $cs) {
+					# Tags are balanced before ':'; ok
+					break;
+				}
+				$pos = $colon + 1;
+			}
+		} while ($colon !== false);
+		wfProfileOut( $fname );
+		return $colon;
 	}
 
 	/**
