@@ -343,4 +343,7 @@ $wgCapitalLinks = true;
 # can be imported, these should be 'trusted'.
 $wgImportSources = array();
 
+# For credit to authors. Set to zero to hide attribution block.
+$wgMaxCredits = 0;
+
 ?>

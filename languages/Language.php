@@ -1564,7 +1564,11 @@ amusement.",
 # Attribution
 
 "anonymous" => "Anonymous user(s) of $wgSitename",
-"siteuser" => "$wgSitename user $1"				       
+"siteuser" => "$wgSitename user $1",
+"lastmodifiedby" => "This page was last modified $1 by $2.",
+"and" => "and",
+"contributions" => "Based on work by $1.",
+"siteusers" => "$wgSitename user(s) $1",
 );
 
 #--------------------------------------------------------------------------
@@ -1924,6 +1928,20 @@ class Language {
 		return $number;
 	}
 
+        function listToText( $l ) {
+	        $s = "";
+	        $m = count($l) - 1;
+	        for ($i = $m; $i >= 0; $i--) {
+		    if ($i == $m) {
+			$s = $l[$i];
+		    } else if ($i == $m - 1) {
+			$s = $l[$i] . " " . $this->getMessage("and") . " " . $s;
+		    } else {
+			$s = $l[$i] . ", " . $s;
+		    }
+		}
+	        return $s;
+	}
 }
 
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
