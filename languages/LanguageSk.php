@@ -36,7 +36,7 @@ require_once("LanguageUtf8.php");
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+ "myskin" => "MySkin"
 );
 
 /* private */ $wgMathNamesSk = array(
@@ -62,7 +62,7 @@ require_once("LanguageUtf8.php");
 	"watchdefault" => "Upozorňuj na nové a novu upravené stránky",
 	"minordefault" => "Označ všetky zmeny ako drobné",
 	"previewontop" => "Zobrazuj ukážku pred editovacím oknom, a nie až za ním"
-	
+
 );
 
 /* private */ $wgWeekdayNamesSk = array(
@@ -239,7 +239,7 @@ Prosím ohláste túto chybu správcovi, uveďte aj linku (URL).",
 "filedeleteerror" => "Neviem vymazať súbor \"$1\".",
 "filenotfound"	=> "Neviem nájsť súbor \"$1\".",
 "unexpected"	=> "Nečakaná hodnota: \"$1\"=\"$2\".",
-"formerror"		=> "Chyba: neviem odoslať formulár",	
+"formerror"		=> "Chyba: neviem odoslať formulár",
 "badarticleerror" => "Na tejto stránke túto akciu vykonať nemožno.",
 "cannotdelete"	=> "Neviem vymazať danú stránku alebo obrázok. (Možno to už vymazal niekto iný.)",
 "badtitle"		=> "Zlý nadpis",
@@ -308,7 +308,7 @@ The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
 "newarticle"	=> "(New)",
 "newarticletext" =>
 "You've followed a link to a page that doesn't exist yet.
-To create the page, start typing in the box below 
+To create the page, start typing in the box below
 (see the [[Wikipedia:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
@@ -415,7 +415,7 @@ to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.",
 "prefsreset"	=> "Preferences have been reset from storage.",
-"qbsettings"	=> "Quickbar settings", 
+"qbsettings"	=> "Quickbar settings",
 "changepassword" => "Change password",
 "skin"			=> "Skin",
 "math"			=> "Rendering math",
@@ -429,7 +429,7 @@ Your internal ID number is $2.",
 "oldpassword"	=> "Old password",
 "newpassword"	=> "New password",
 "retypenew"		=> "Retype new password",
-"textboxsize"	=> "Textbox dimensions",
+"textboxsize"	=> "Editing",
 "rows"			=> "Rows",
 "columns"		=> "Columns",
 "searchresultshead" => "Search result settings",
@@ -966,7 +966,7 @@ class LanguageSk extends LanguageUtf8 {
 			return $wgAllMessagesSk[$key];
 		return Language::getMessage( $key );
 	}
-	
+
 	function fallback8bitEncoding() {
 		return "iso-8859-2"; #?
 	}
