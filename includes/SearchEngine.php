@@ -180,23 +180,26 @@ class SearchEngine {
 
 		$searchnamespaces = $this->queryNamespaces();
 		$redircond = $this->searchRedirects();
-
+		$dbr =& wfGetDB( DB_SLAVE );
+		$searchindex = $dbr->tableName( 'searchindex' );
+		$cur = $dbr->tableName( 'cur' );
+		
 		if ( $wgDisableTextSearch ) {
 			$wgOut->addHTML( wfMsg( "searchdisabled" ) );
 			$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), $GLOBALS['wgInputEncoding'] ) );
 		} else {
 			$sql = "SELECT cur_id,cur_namespace,cur_title," .
-			  "cur_text FROM cur,searchindex " .
+			  "cur_text FROM $cur,$searchindex " .
 			  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
 			  "{$searchnamespaces} {$redircond}" .
 			  "LIMIT {$offset}, {$limit}";
-			$res1 = wfQuery( $sql, DB_READ, $fname );
-			$num = wfNumRows($res1);
+			$res1 = $dbr->query( $sql, $fname );
+			$num = $dbr->numRows($res1);
 
 			$sk = $wgUser->getSkin();
 			$text = "";
 
-			$this->parseQuery();
+			$this->parseQuery( $dbr );
 			if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
 				  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
@@ -208,20 +211,20 @@ class SearchEngine {
 			$redircond = $this->searchRedirects();
 	
 			$sql = "SELECT cur_id,cur_namespace,cur_title," .
-			  "cur_text FROM cur,searchindex " .
+			  "cur_text FROM $cur,$searchindex " .
 			  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
 			  "{$searchnamespaces} {$redircond}" .
 			  "LIMIT {$offset}, {$limit}";
-			$res1 = wfQuery( $sql, DB_READ, $fname );
-			$num = wfNumRows($res1);
+			$res1 = $dbr->query( $sql, $fname );
+			$num = $dbr->numRows($res1);
 	
 			$sql = "SELECT cur_id,cur_namespace,cur_title," .
-			  "cur_text FROM cur,searchindex " .
+			  "cur_text FROM $cur,$searchindex " .
 			  "WHERE cur_id=si_page AND {$this->mTextcond} " .
 			  "{$searchnamespaces} {$redircond} " .
 			  "LIMIT {$offset}, {$limit}";
-			$res2 = wfQuery( $sql, DB_READ, $fname );
-			$num = $num + wfNumRows($res2);
+			$res2 = $dbr->query( $sql, $fname );
+			$num = $num + $dbr->numRows($res2);
 
 			if ( $num == $limit ) {
 			  $top = wfShowingResults( $offset, $limit);
@@ -244,7 +247,7 @@ class SearchEngine {
 	
 			$foundsome = false;
 	
-			if ( 0 == wfNumRows( $res1 ) ) {
+			if ( 0 == $dbr->numRows( $res1 ) ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "notitlematches" ) .
 				  "</h2>\n" );
 			} else {
@@ -253,14 +256,14 @@ class SearchEngine {
 				$wgOut->addHTML( "<h2>" . wfMsg( "titlematches" ) .
 				  "</h2>\n<ol start='{$off}'>" );
 	
-				while ( $row = wfFetchObject( $res1 ) ) {
+				while ( $row = $dbr->fetchObject( $res1 ) ) {
 					$this->showHit( $row );
 				}
-				wfFreeResult( $res1 );
+				$dbr->freeResult( $res1 );
 				$wgOut->addHTML( "</ol>\n" );
 			}
 
-			if ( 0 == wfNumRows( $res2 ) ) {
+			if ( 0 == $dbr->numRows( $res2 ) ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "notextmatches" ) .
 				  "</h2>\n" );
 			} else {
@@ -268,10 +271,10 @@ class SearchEngine {
 				$off = $offset + 1;
 				$wgOut->addHTML( "<h2>" . wfMsg( "textmatches" ) . "</h2>\n" .
 				  "<ol start='{$off}'>" );
-				while ( $row = wfFetchObject( $res2 ) ) {
+				while ( $row = $dbr->fetchObject( $res2 ) ) {
 					$this->showHit( $row );
 				}
-				wfFreeResult( $res2 );
+				$dbr->freeResult( $res2 );
 				$wgOut->addHTML( "</ol>\n" );
 			}
 			if ( ! $foundsome ) {
@@ -288,13 +291,13 @@ class SearchEngine {
 		return $lc;
 	}
 
-	function parseQuery()
+	function parseQuery( &$db )
 	{
 		global $wgDBminWordLen, $wgLang, $wgDBmysql4;
 
 		if( $wgDBmysql4 ) {
 			# Use cleaner boolean search if available
-			return $this->parseQuery4();
+			return $this->parseQuery4( $db );
 		}
 		# on non mysql4 database: get list of words we don't want to search for
 		require_once( "FulltextStoplist.php" );
@@ -318,7 +321,7 @@ class SearchEngine {
 			} else {
 				if ( "" != $last ) { $cond .= " AND"; }
 				$cond .= " (MATCH (##field##) AGAINST ('" .
-				  wfStrencode( $word ). "'))";
+				  $db->strencode( $word ). "'))";
 				$last = $word;
 				array_push( $this->mSearchterms, "\\b" . $word . "\\b" );
 			}
@@ -332,7 +335,7 @@ class SearchEngine {
 		  "si_text", $cond ) . " AND (cur_is_redirect=0) )";
 	}
 	
-	function parseQuery4()
+	function parseQuery4( &$db )
 	{
 		global $wgLang;
 		$lc = SearchEngine::legalSearchChars();
@@ -362,7 +365,7 @@ class SearchEngine {
 			wfDebug( "Can't understand search query '$this->mUsertext'\n" );
 		}
 		
-		$searchon = wfStrencode( $searchon );
+		$searchon = $db->strencode( $searchon );
 		$this->mTitlecond = " MATCH(si_title) AGAINST('$searchon' IN BOOLEAN MODE)";
 		$this->mTextcond = " (MATCH(si_text) AGAINST('$searchon' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 	}
@@ -567,7 +570,8 @@ class SearchEngine {
 
 	/* static */ function getTitlesByLength($aLength, $aNamespace = 0){
 		global $wgMemc, $wgDBname;
-
+		$fname = 'SearchEngin::getTitlesByLength';
+		
 		// to avoid multiple costly SELECTs in case of no memcached
 		if( $this->all_titles ){ 
 			if( isset( $this->all_titles[$aLength][$aNamespace] ) ){
@@ -589,10 +593,11 @@ class SearchEngine {
 		}
 
 		$wgMemc->set( $mkeyts, time() );
-
-		$res = wfQuery("SELECT cur_title, cur_namespace FROM cur", DB_READ);
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'cur', array( 'cur_title', 'cur_namespace' ), false, $fname );
 		$titles = array(); // length, ns, [titles]
-		while( $obj = wfFetchObject( $res ) ){
+		while( $obj = $dbr->fetchObject( $res ) ){
 			$title = $obj->cur_title;
 			$ns = $obj->cur_namespace;
 			$len = strlen( $title );

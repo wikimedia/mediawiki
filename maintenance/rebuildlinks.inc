@@ -27,42 +27,42 @@ function rebuildLinkTables()
 	print "Rebuilding link tables.\n";
 
 	print "Setting AUTOCOMMIT=1\n";
-	wfQuery("SET SESSION AUTOCOMMIT=1", DB_WRITE);
+	wfQuery("SET SESSION AUTOCOMMIT=1", DB_MASTER);
 
 	print "Extracting often used data from cur (may take a few minutes)\n";
 	$sql = "CREATE TEMPORARY TABLE cur_fast SELECT cur_namespace, cur_title, cur_id FROM cur";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 	$sql = "ALTER TABLE cur_fast ADD INDEX(cur_namespace, cur_title)";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 
 	print "Locking tables\n";
 	$sql = "LOCK TABLES cur READ, cur_fast READ, interwiki READ, user_newtalk READ, " .
 		"links WRITE, brokenlinks WRITE, imagelinks WRITE";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 
 
 	print "Deleting old data in links table.\n";
 	$sql = "DELETE FROM links";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 
 	print "Deleting old data in brokenlinks table.\n";
 	$sql = "DELETE FROM brokenlinks";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 
 	print "Deleting old data in imagelinks table.\n";
 	$sql = "DELETE FROM imagelinks";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 
 	print "Finding number of articles to process... ";
 	$sql = "SELECT COUNT(*) as count FROM cur";
-	$res = wfQuery( $sql, DB_READ );
+	$res = wfQuery( $sql, DB_SLAVE );
 	$obj = wfFetchObject( $res );
 	$total = $obj->count;
 	print "$total\n";
 
 	print "Finding highest article id\n";
 	$sql = "SELECT MIN(cur_id) AS min, MAX(cur_id) AS max FROM cur";
-	$res = wfQuery( $sql, DB_READ );
+	$res = wfQuery( $sql, DB_SLAVE );
 	$obj = wfFetchObject( $res );
  
 	$cur_pulser = new SelectPulser("SELECT cur_id,cur_namespace,cur_title,cur_text " .
@@ -169,7 +169,7 @@ function rebuildLinkTables()
 			}
 			$sql = "SELECT cur_namespace, cur_title, cur_id FROM cur_fast WHERE " . 
 				implode(" OR ", $parts);
-			$res = wfQuery( $sql, DB_WRITE );
+			$res = wfQuery( $sql, DB_MASTER );
 			while($row = wfFetchObject( $res ) ){
 				$pos = $titles_needing_curdata_pos[$row->cur_title . $row->cur_namespace];
 				$titles_needing_curdata[$pos]->mArticleID = intval($row->cur_id);
@@ -226,7 +226,7 @@ function rebuildLinkTables()
 	print "$count articles scanned.\n";
 
 	$sql = "UNLOCK TABLES";
-	wfQuery( $sql, DB_WRITE );
+	wfQuery( $sql, DB_MASTER );
 	print "Done\n";
 }
 
@@ -267,7 +267,7 @@ class InsertBuffer {
 	function flush(){
 		if( $this->mBufcount > 0 ){
 			$sql = $this->mSql . implode(",", $this->mBuf);
-			wfQuery( $sql, DB_WRITE );
+			wfQuery( $sql, DB_MASTER );
 			$this->mBuf = array();
 			$this->mBufcount = 0;
 			// print "Wrote query of size " . strlen( $sql ) . "\n";
@@ -303,7 +303,7 @@ class SelectPulser {
 				" AND " . ($this->mPos + $this->mSetsize - 1);
 			$this->mPos += $this->mSetsize;
 
-			$res = wfQuery( $sql, DB_READ );
+			$res = wfQuery( $sql, DB_SLAVE );
 			while ( $row = wfFetchObject( $res ) ) {
 				$this->mSet[] = $row;
 			}

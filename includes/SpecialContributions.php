@@ -22,7 +22,7 @@ function wfSpecialContributions( $par = "" )
 	$querylimit = $offlimit + 1;
 	$hideminor = ($wgRequest->getVal( 'hideminor' ) ? 1 : 0);
 	$sk = $wgUser->getSkin();
-
+	$dbr =& wfGetDB( DB_SLAVE );
 	$userCond = "";
 
 	$nt = Title::newFromURL( $target );
@@ -44,8 +44,8 @@ function wfSpecialContributions( $par = "" )
 
 	if ( $target == 'newbies' ) {
 		# View the contributions of all recently created accounts
-		$row = wfGetArray("user",array("max(user_id) as m"),false);
-		$userCond = ">" . ($row->m - $row->m / 100);
+		$max = $dbr->selectField( 'user', 'max(user_id)', false, $fname );
+		$userCond = ">" . ($max - $max / 100);
 		$ul = "";
 		$id = 0;
 	}
@@ -65,28 +65,28 @@ function wfSpecialContributions( $par = "" )
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
-	$oldtable = wfTableName( 'old', DB_READ );
+	extract( $dbr->tableNames( 'old', 'cur' ) );
 	if ( $userCond == "" ) {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM cur " .
-		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur " .
+		  "WHERE cur_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
-		$res1 = wfQuery( $sql, DB_READ, $fname );
+		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $oldtable " .
-		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $old " .
+		  "WHERE old_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
-		$res2 = wfQuery( $sql, DB_READ, $fname );
+		$res2 = $dbr->query( $sql, $fname );
 	} else {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur " .
 		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
-		$res1 = wfQuery( $sql, DB_READ, $fname );
+		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $oldtable " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $old " .
 		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
-		$res2 = wfQuery( $sql, DB_READ, $fname );
+		$res2 = $dbr->query( $sql, $fname );
 	}
-	$nCur = wfNumRows( $res1 );
-	$nOld = wfNumRows( $res2 );
+	$nCur = $dbr->numRows( $res1 );
+	$nOld = $dbr->numRows( $res2 );
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
@@ -104,8 +104,8 @@ function wfSpecialContributions( $par = "" )
 		$wgOut->addHTML( "\n<p>" . wfMsg( "nocontribs" ) . "</p>\n" );
 		return;
 	}
-	if ( 0 != $nCur ) { $obj1 = wfFetchObject( $res1 ); }
-	if ( 0 != $nOld ) { $obj2 = wfFetchObject( $res2 ); }
+	if ( 0 != $nCur ) { $obj1 = $dbr->fetchObject( $res1 ); }
+	if ( 0 != $nOld ) { $obj2 = $dbr->fetchObject( $res2 ); }
 
 	$wgOut->addHTML( "<ul>\n" );
 	for( $n = 0; $n < $offlimit; $n++ ) {
@@ -122,7 +122,7 @@ function wfSpecialContributions( $par = "" )
 			$isnew = $obj1->cur_is_new;
 			$usertext = $obj1->cur_user_text;
 			
-			$obj1 = wfFetchObject( $res1 );
+			$obj1 = $dbr->fetchObject( $res1 );
 			$topmark = true;
 			--$nCur;
 		} else {
@@ -133,7 +133,7 @@ function wfSpecialContributions( $par = "" )
 			$me = $obj2->old_minor_edit;
 			$usertext = $obj2->old_user_text;
 
-			$obj2 = wfFetchObject( $res2 );
+			$obj2 = $dbr->fetchObject( $res2 );
 			$topmark = false;
 			$isnew = false;
 			--$nOld;

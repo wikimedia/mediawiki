@@ -1,9 +1,11 @@
 <?php
 
 function isTemplateInitialised() {
-	$sql = "SELECT 1 FROM cur WHERE cur_namespace=" . NS_TEMPLATE . " LIMIT 1";
-	$res = wfQuery( $sql, DB_READ );
-	return wfNumRows( $res ) ? true : false;
+	$fname = 'isTemplateInitialised';
+
+	$dbw =& wfGetDB( DB_MASTER );
+	$res = $dbw->select( 'cur', 1, array( 'cur_namespace' => NS_TEMPLATE ), $fname, array( 'LIMIT' => 1 ) );
+	return $dbw->numRows( $res ) ? true : false;
 }
 
 function moveCustomMessages( $phase ) {
@@ -15,7 +17,9 @@ function moveCustomMessages( $phase ) {
 	$wgUser->setName( "Template namespace initialisation script" );
 	$wgUser->addRight( "bot" );
 
-	wfIgnoreSQLErrors( true );
+	$dbw =& wfGetDB( DB_MASTER );
+
+	$dbw->setIgnoreErrors( true );
 
 	# Compose DB key array
 	$dbkeys = array();
@@ -25,17 +29,16 @@ function moveCustomMessages( $phase ) {
 		$dbkeys[$title->getDBkey()] = 1;
 	}
 
-	$sql = "SELECT cur_id, cur_title FROM cur WHERE cur_namespace= " . NS_MEDIAWIKI;
-	$res = wfQuery( $sql, DB_READ );
+	$res = $dbw->select( 'cur', array( 'cur_id', 'cur_title' ), array( 'cur_namespace' => NS_MEDIAWIKI ) );
 
 	# Compile target array
 	$targets = array();
-	while ( $row = wfFetchObject( $res ) ) {
+	while ( $row = $dbw->fetchObject( $res ) ) {
 		if ( !array_key_exists( $row->cur_title, $dbkeys ) ) {
 			$targets[$row->cur_title] = 1;
 		}
 	}
-	wfFreeResult( $res );
+	$dbw->freeResult( $res );
 
 	# Create redirects from destination to source
 	if ( $phase == 0 || $phase == 1 ) {
@@ -61,7 +64,7 @@ function moveCustomMessages( $phase ) {
 	if ( $phase == 0 || $phase == 2 ) {
 		print "\nMoving pages...\n";
 		foreach ( $targets as $partial => $dummy ) {
-			wfQuery( "BEGIN", DB_WRITE );
+			$dbw->query( "BEGIN" );
 			$ot = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
 			print "$partial...";
@@ -76,7 +79,7 @@ function moveCustomMessages( $phase ) {
 				$up = array_pop( $wgDeferredUpdateList );
 				$up->doUpdate();
 			}
-			wfQuery( "COMMIT", DB_WRITE );
+			$dbw->query( "COMMIT" );
 		}
 	}
 
@@ -97,12 +100,12 @@ function moveCustomMessages( $phase ) {
 			$dest = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$linksTo = $dest->getLinksTo();
 			foreach( $linksTo as $source ) {
-				wfQuery( "BEGIN", DB_WRITE );
+				$dbw->query( "BEGIN" );
 				$pdbk = $source->getPrefixedDBkey();
 				if ( !array_key_exists( $pdbk, $completedTitles ) ) {	
 					$completedTitles[$pdbk] = 1;
 					$id = $source->getArticleID();
-					$row = wfGetArray( 'cur', array( 'cur_text' ), 
+					$row = $dbw->selectRow( 'cur', array( 'cur_text' ), 
 						array( 'cur_id' => $source->getArticleID() ) );
 					$parser->startExternalParse( $source, $options, OT_WIKI );
 					$text = $parser->strip( $row->cur_text, $stripState, false );
@@ -125,7 +128,7 @@ function moveCustomMessages( $phase ) {
 						print "($pdbk)\n";
 					}
 				} 
-				wfQuery( "COMMIT", DB_WRITE );
+				$dbw->query( "COMMIT" );
 			}
 		}
 	}

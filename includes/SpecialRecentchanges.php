@@ -33,23 +33,24 @@ function wfSpecialRecentchanges( $par )
 		if( in_array( "hideliu", $bits) ) $hideliu = 1;
 	}
 	
-	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$s = wfFetchObject( $res );
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
+	
+	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
-	if( $wgOut->checkLastModified( $s->lastmod ) ){
+	if( $wgOut->checkLastModified( $lastmod ) ){
 		# Client cache fresh and headers sent, nothing more to do.
 		return;
 	}
 
-	$rctext = wfMsg( "recentchangestext" );
-	
 	# The next few lines can probably be commented out now that wfMsg can get text from the DB
-	$sql = "SELECT cur_text FROM cur WHERE cur_namespace=4 AND cur_title='Recentchanges'";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
-		$rctext = $s->cur_text;
+	$rctext = $dbr->selectField( 'cur', 'cur_text', 
+		array( 'cur_namespace' => NS_WIKIPEDIA, 'cur_title' => 'Recentchanges' ),
+		$fname
+	);
+	if( !$rctext ) {
+		$rctext = wfMsg( "recentchangestext" );
 	}
 	
 	$wgOut->addWikiText( $rctext );
@@ -94,17 +95,18 @@ function wfSpecialRecentchanges( $par )
 	  $showhide[1-$hideliu], wfArrayToCGI( array( "hideliu" => 1-$hideliu ), $urlparams ) );
 
 	$uid = $wgUser->getID();
-	$sql2 = "SELECT recentchanges.*" . ($uid ? ",wl_user" : "") . " FROM recentchanges " .
-	  ($uid ? "LEFT OUTER JOIN watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
+	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user" : "") . " FROM $recentchanges " .
+	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
-	$res = wfQuery( $sql2, DB_READ, $fname );
+	$res = $dbr->query( $sql2, DB_SLAVE, $fname );
 	$rows = array();
-	while( $row = wfFetchObject( $res ) ){ 
+	while( $row = $dbr->fetchObject( $res ) ){ 
 		$rows[] = $row; 
 	}
-
+	$dbr->freeResult( $res );
+	
 	if(isset($from)) {
 		$note = wfMsg( "rcnotefrom", $wgLang->formatNum( $limit ),
 			$wgLang->timeanddate( $from, true ) );
@@ -160,7 +162,6 @@ function wfSpecialRecentchanges( $par )
 		$s .= $sk->endRecentChangesList();
 		$wgOut->addHTML( $s );
 	}
-	wfFreeResult( $res );
 }
 
 function rcCountLink( $lim, $d, $page="Recentchanges", $more="" )

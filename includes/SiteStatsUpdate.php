@@ -32,9 +32,11 @@ class SiteStatsUpdate {
 		else $m = "";
 		array_push( $a, "ss_good_articles=(ss_good_articles$m)" );
 
-		$db =& wfGetDB( DB_WRITE );
+		$db =& wfGetDB( DB_MASTER );
+		$site_stats = $db->tableName( 'site_stats' );
 		$lowpri = $db->lowPriorityOption();
-		$sql = "UPDATE $lowpri site_stats SET " . implode ( ",", $a ) .
+
+		$sql = "UPDATE $lowpri $site_stats SET " . implode ( ",", $a ) .
 		  " WHERE ss_row_id=1";
 		$db->query( $sql, "SiteStatsUpdate::doUpdate" );
 	}

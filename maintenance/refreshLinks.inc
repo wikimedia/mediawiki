@@ -6,9 +6,9 @@ define( "PAUSE_INTERVAL", 50 );
 function refreshLinks( $start ) {
 	global $wgUser, $wgTitle, $wgArticle, $wgEnablePersistentLC, $wgLinkCache, $wgOut;
 
-	$res = wfQuery("SELECT max(cur_id) as m FROM cur", DB_READ);
-	$row = wfFetchObject( $res );
-	$end = $row->m;
+	$dbw =& wfGetDB( DB_MASTER );
+	
+	$end = $dbw->selectField( 'cur_id', 'max(cur_id)', false );
 
 	print("Refreshing link table. Starting from cur_id $start of $end.\n");
 
@@ -32,10 +32,11 @@ function refreshLinks( $start ) {
 		$wgArticle = new Article( $wgTitle );
 		$text = $wgArticle->getContent( true );
 		$wgLinkCache = new LinkCache;
+		$wgLinkCache->forUpdate( true );
 		$wgOut->addWikiText( $text );
 
 		if ( $wgEnablePersistentLC ) {
-			$wgLinkCache->saveToLinkscc( $id, wfStrencode( $wgTitle->getPrefixedDBkey() ) );
+			$wgLinkCache->saveToLinkscc( $id, $dbw->strencode( $wgTitle->getPrefixedDBkey() ) );
 		}
 
 		$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );

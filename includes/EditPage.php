@@ -543,7 +543,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	/* private */ function mergeChangesInto( &$text ){
 		$fname = 'EditPage::mergeChangesInto';
 		$oldDate = $this->edittime;
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$obj = $dbr->getArray( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
 			$fname, 'FOR UPDATE' );
 

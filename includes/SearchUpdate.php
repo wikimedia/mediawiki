@@ -31,13 +31,14 @@ class SearchUpdate {
 			return false;
 		}
 		$lc = SearchEngine::legalSearchChars() . "&#;";
-		$db =& wfGetDB( DB_WRITE );
+		$db =& wfGetDB( DB_MASTER );
+		$searchindex = $db->tableName( 'searchindex' );
 		
 		if( $this->mText == false ) {
 			# Just update the title
 			$lowpri = $db->lowPriorityOption();
-			$sql = "UPDATE $lowpri searchindex SET si_title='" .
-			  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
+			$sql = "UPDATE $lowpri $searchindex SET si_title='" .
+			  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
 			  "' WHERE si_page={$this->mId}";
 			$db->query( $sql, "SearchUpdate::doUpdate" );
 			return;
@@ -79,9 +80,9 @@ class SearchUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		
-		$sql = "REPLACE  INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
-		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
-		  wfStrencode( $text ) . "')";
+		$sql = "REPLACE  INTO $searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
+		  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
+		  $db->strencode( $text ) . "')";
 		$db->query( $sql, "SearchUpdate::doUpdate" );
 	}
 }

@@ -64,7 +64,9 @@ class RawPage {
 		$fname = 'RawPage::getrawtext';
 		
 		if( !$this->mTitle ) return '';
-		$dbr = wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
+		extract( $dbr->tableNames( 'cur', 'old' ) );
+
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
 		# special case
@@ -76,13 +78,12 @@ class RawPage {
 		}
 		# else get it from the DB
 		if(!empty($this->mOldId)) {
-			$oldtable = $dbr->tableName( 'old', DB_READ );
 			$sql = "SELECT old_text AS text,old_timestamp AS timestamp,".
-				    "old_user AS user,old_flags AS flags FROM $oldtable " .
+				    "old_user AS user,old_flags AS flags FROM $old " .
 			"WHERE old_id={$this->mOldId}";
 		} else {
 			$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
-			"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM cur " .
+			"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM $cur " .
 			"WHERE cur_namespace=$ns AND cur_title='$t'";
 		}
 		$res = $dbr->query( $sql, $fname );

@@ -21,7 +21,8 @@ if ( isset( $args[0] ) ) {
 }
 
 if ( $response == 0 ) {
-	$row = wfGetArray( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$row = $dbr->selectRow( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
 	print "Current namespace size: {$row->c}\n";
 
 	print	"1. Update messages to include latest additions to Language.php\n" . 

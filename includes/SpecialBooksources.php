@@ -41,15 +41,11 @@ class BookSourceList {
 		
 		# First, see if we have a custom list setup in
 		# [[Wikipedia:Book sources]] or equivalent.
-		$bstitle = Title::newFromText( wfmsg( "booksources" ) );
-		$sql = "SELECT cur_text FROM cur " .
-			"WHERE cur_namespace=4 and cur_title='" .
-			wfStrencode( $bstitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {	
-			$bstext = $s->cur_text;
+		$bstitle = Title::makeTitle( NS_WIKIPEDIA, wfMsg( "booksources" ) );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$bstext = $dbr->selectField( 'cur', 'cur_text', $bstitle->curCond(), $fname );
+		if( $bstext ) {	
 			$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
-			
 			$wgOut->addWikiText( $bstext );
 			return;
 		}

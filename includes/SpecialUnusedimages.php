@@ -5,11 +5,13 @@ function wfSpecialUnusedimages() {
 	$fname = "wfSpecialUnusedimages";
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'image','imagelinks' ) );
 
 	$sql = "SELECT img_name,img_user,img_user_text,img_timestamp,img_description " .
-	  "FROM image LEFT JOIN imagelinks ON img_name=il_to WHERE il_to IS NULL " .
+	  "FROM $image LEFT JOIN $imagelinks ON img_name=il_to WHERE il_to IS NULL " .
 	  "ORDER BY img_timestamp ".wfLimitResult($limit,$offset);
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	$sk = $wgUser->getSkin();
 
@@ -23,7 +25,7 @@ function wfSpecialUnusedimages() {
 
 	$ins = $wgLang->getNsText ( 6 ) ;
 	$s = "<ol start='" . ( $offset + 1 ) . "'>";
-	while ( $obj = wfFetchObject( $res ) ) {
+	while ( $obj = $dbr->fetchObject( $res ) ) {
 		$name = $obj->img_name;
 		$dlink = $sk->makeKnownLink( "{$ins}:{$name}", wfMsg( "imgdesc" ) );
 		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) . "\">{$name}</a>";
@@ -41,7 +43,7 @@ function wfSpecialUnusedimages() {
 		if ( "" != $c && "*" != $c ) { $s .= " <em>({$c})</em>"; }
 		$s .= "</li>\n";
 	}
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$s .= "</ol>\n\n";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}</p>\n" );

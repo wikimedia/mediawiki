@@ -63,11 +63,13 @@ function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-
 
 $wgRandomSeeded = false;
 
+# Seed Mersenne Twister
+# Only necessary in PHP < 4.2.0
 function wfSeedRandom()
 {
 	global $wgRandomSeeded;
 
-	if ( ! $wgRandomSeeded ) {
+	if ( ! $wgRandomSeeded && version_compare( phpversion(), '4.2.0' ) < 0 ) {
 		$seed = hexdec(substr(md5(microtime()),-8)) & 0x7fffffff;
 		mt_srand( $seed );
 		$wgRandomSeeded = true;
@@ -423,7 +425,7 @@ function wfNumberOfArticles()
 	$fname = 'wfLoadSiteStats';
 
 	if ( -1 != $wgNumberOfArticles ) return;
-	$dbr =& wfGetDB( DB_READ );
+	$dbr =& wfGetDB( DB_SLAVE );
 	$s = $dbr->getArray( 'site_stats', 
 		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
 		array( 'ss_row_id' => 1 ), $fname
@@ -508,11 +510,10 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	global $wgUseCopyrightUpload; 
 	
 	$fname = 'wfRecordUpload';
-	$dbw =& wfGetDB( DB_WRITE );
+	$dbw =& wfGetDB( DB_MASTER );
 	
 	# img_name must be unique
-	$indexInfo = $dbw->indexInfo( 'image', 'img_name' );
-	if ( $indexInfo && $indexInfo->Non_unique ) {
+	if ( !$dbw->indexUnique( 'image', 'img_name' ) ) {
 		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-img_name_unique.sql' );
 	}
 			
@@ -535,7 +536,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	# Test to see if the row exists using INSERT IGNORE
 	# This avoids race conditions by locking the row until the commit, and also 
 	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insertArray( 'image', 
+	$dbw->insert( 'image', 
 		array(
 			'img_name' => $name,
 			'img_size'=> $size,
@@ -545,63 +546,70 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 			'img_user_text' => $wgUser->getName(),
 		), $fname, 'IGNORE'
 	);
+	$descTitle = Title::makeTitle( NS_IMAGE, $name );
 
 	if ( $dbw->affectedRows() ) {
 		# Successfully inserted, this is a new image
+		$id = $descTitle->getArticleID();
 		
-		$sql = 'SELECT cur_id,cur_text FROM cur WHERE cur_namespace=' .
-		  Namespace::getImage() . " AND cur_title='" .
-		  wfStrencode( $name ) . "'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if ( 0 == wfNumRows( $res ) ) {
-			$common =
-			  Namespace::getImage() . ",'" .
-			  wfStrencode( $name ) . "','" .
-			  wfStrencode( $desc ) . "','" . $wgUser->getID() . "','" .
-			  wfStrencode( $wgUser->getName() ) . "','" . $now .
-			  "',1";
-			$sql = 'INSERT INTO cur (cur_namespace,cur_title,' .
-			  'cur_comment,cur_user,cur_user_text,cur_timestamp,cur_is_new,' .
-			  'cur_text,inverse_timestamp,cur_touched) VALUES (' .
-			  $common .
-			  ",'" . wfStrencode( $textdesc ) . "','{$won}','{$now}')";
-			wfQuery( $sql, DB_WRITE, $fname );
-			$id = wfInsertId() or 0; # We should throw an error instead
+		if ( $id == 0 ) {
+			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
+			$dbw->insertArray( 'cur', 
+				array( 
+					'cur_id' => $seqVal,
+					'cur_namespace' => NS_IMAGE,
+					'cur_title' => $name,
+					'cur_comment' => $desc,
+					'cur_user' => $wgUser->getID(),
+					'cur_user_text' => $wgUser->getName(),
+					'cur_timestamp' => $now,
+					'cur_is_new' => 1,
+					'cur_text' => $textdesc,
+					'inverse_timestamp' => $won,
+					'cur_touched' => $now
+				), $fname
+			);
+			$id = $dbw->insertId() or 0; # We should throw an error instead
 			
-			$titleObj = Title::makeTitle( NS_IMAGE, $name );
-			RecentChange::notifyNew( $now, $titleObj, 0, $wgUser, $desc );
+			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
 			
 			$u = new SearchUpdate( $id, $name, $desc );
 			$u->doUpdate();
 		}
 	} else {
 		# Collision, this is an update of an image
+		# Get current image row for update
 		$s = $dbw->getArray( 'image', array( 'img_name','img_size','img_timestamp','img_description',
 		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
-		$s = wfFetchObject( $res );
 
-		$sql = 'INSERT INTO oldimage (oi_name,oi_archive_name,oi_size,' .
-		  "oi_timestamp,oi_description,oi_user,oi_user_text) VALUES ('" .
-		  wfStrencode( $s->img_name ) . "','" .
-		  wfStrencode( $oldver ) .
-		  "',{$s->img_size},'{$s->img_timestamp}','" .
-		  wfStrencode( $s->img_description ) . "','" .
-		  wfStrencode( $s->img_user ) . "','" .
-		  wfStrencode( $s->img_user_text) . "')";
-		wfQuery( $sql, DB_WRITE, $fname );
-
-		$sql = "UPDATE image SET img_size={$size}," .
-		  "img_timestamp='" . wfTimestampNow() . "',img_user='" .
-		  $wgUser->getID() . "',img_user_text='" .
-		  wfStrencode( $wgUser->getName() ) . "', img_description='" .
-		  wfStrencode( $desc ) . "' WHERE img_name='" .
-		  wfStrencode( $name ) . "'";
-		wfQuery( $sql, DB_WRITE, $fname );
+		# Insert it into oldimage
+		$dbw->insertArray( 'oldimage',
+			array(
+				'oi_name' => $s->img_name,
+				'oi_archive_name' => $oldver,
+				'oi_size' => $s->img_size,
+				'oi_timestamp' => $s->img_timestamp,
+				'oi_description' => $s->img_description,
+				'oi_user' => $s->img_user,
+				'oi_user_text' => $s->img_user_text
+			), $fname
+		);
 		
-		$sql = "UPDATE cur SET cur_touched='{$now}' WHERE cur_namespace=" .
-		  Namespace::getImage() . " AND cur_title='" .
-		  wfStrencode( $name ) . "'";
-		wfQuery( $sql, DB_WRITE, $fname );
+		# Update the current image row
+		$dbw->updateArray( 'image', 
+			array( /* SET */
+				'img_size' => $size,
+				'img_timestamp' => wfTimestampNow(),
+				'img_user' => $wgUser->getID(),
+				'img_user_text' => $wgUser->getName(),
+				'img_description' => $desc,
+			), array( /* WHERE */
+				'img_name' => $name
+			), $fname
+		);
+		
+		# Invalidate the cache for the description page
+		$descTitle->invalidateCache();
 	}
 
 	$log = new LogPage( wfMsg( 'uploadlogpage' ), wfMsg( 'uploadlogpagetext' ) );
@@ -755,10 +763,13 @@ function wfHtmlEscapeFirst( $text ) {
 }
 
 # Sets dest to source and returns the original value of dest
+# If source is NULL, it just returns the value, it doesn't set the variable
 function wfSetVar( &$dest, $source )
 {
 	$temp = $dest;
-	$dest = $source;
+	if ( !is_null( $source ) ) {
+		$dest = $source;
+	}
 	return $temp;
 }
 

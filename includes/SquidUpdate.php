@@ -18,36 +18,54 @@ class SquidUpdate {
 	}
 
 	/* static */ function newFromLinksTo( &$title ) {
+		$fname = 'SquidUpdate::newFromLinksTo';
+		wfProfileIn( $fname );
+
 		# Get a list of URLs linking to this page
 		$id = $title->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title FROM links,cur WHERE l_to={$id} and l_from=cur_id" ;
-		$res = wfQuery ( $sql, DB_READ ) ;
+
+		$dbr =& wfGetDB( DB_SLAVE );
+		$links = $dbr->tableName( 'links' );
+		$cur = $dbr->tableName( 'cur' );
+
+		$sql = "SELECT cur_namespace,cur_title FROM $links,$cur WHERE l_to={$id} and l_from=cur_id" ;
+		$res = $dbr->query( $sql, $fname ) ;
 		$blurlArr = $title->getSquidURLs();
-		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
-			while ( $BL = wfFetchObject ( $res ) )
+		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = $dbr->fetchObject ( $res ) )
 			{
 				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
-		wfFreeResult ( $res ) ;
+		$dbr->freeResult ( $res ) ;
+
+		wfProfileOut( $fname );
 		return new SquidUpdate( $blurlArr );
 	}
 
 	/* static */ function newFromBrokenLinksTo( &$title ) {
+		$fname = 'SquidUpdate::newFromBrokenLinksTo';
+		wfProfileIn( $fname );
+
 		# Get a list of URLs linking to this (currently non-existent) page
-		$encTitle = $title->getPrefixedDBkey();
-		$sql = "SELECT cur_namespace,cur_title FROM brokenlinks,cur WHERE bl_to={$encTitle} AND bl_from=cur_id";
-		$res = wfQuery( $sql, DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$brokenlinks = $dbr->tableName( 'brokenlinks' );
+		$cur = $dbr->tableName( 'cur' );
+		$encTitle = $dbr->addQuotes( $title->getPrefixedDBkey() );
+
+		$sql = "SELECT cur_namespace,cur_title FROM $brokenlinks,$cur WHERE bl_to={$encTitle} AND bl_from=cur_id";
+		$res = $dbr->query( $sql, $fname );
 		$blurlArr = array();
-		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
-			while ( $BL = wfFetchObject( $res ) )
+		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = $dbr->fetchObject( $res ) )
 			{
 				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
-		wfFreeResult( $res );
+		$dbr->freeResult( $res );
+		wfProfileOut( $fname );
 		return new SquidUpdate( $blurlArr );
 	}
 
@@ -73,6 +91,9 @@ class SquidUpdate {
 			return;
 		}
 
+		$fname = 'SquidUpdate::purge';
+		wfProfileIn( $fname );
+		
 		$maxsocketspersquid = 8; //  socket cap per Squid
 		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$firsturl = $urlArr[0];
@@ -169,6 +190,7 @@ class SquidUpdate {
 			@fclose($socket);
 		}
 		#$this->debug("\n");
+		wfProfileOut( $fname );
 	}
 
 	function debug( $text ) {

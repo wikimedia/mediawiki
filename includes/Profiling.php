@@ -151,7 +151,7 @@ class Profiler
 
 	/* static */ function logToDB($name, $timeSum, $eventCount) 
 	{
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$profiling = $dbw->tableName( 'profiling' );
 
 		$name = $dbw->strencode( $name );
@@ -165,7 +165,7 @@ class Profiler
 		if( $rc == 0) {
 			$sql = "INSERT IGNORE INTO $profiling (pf_name,pf_count,pf_time) ".
 				"VALUES ('{$name}', {$eventCount}, {$timeSum}) ";
-			$dbw->query($sql , DB_WRITE);
+			$dbw->query($sql , DB_MASTER);
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:

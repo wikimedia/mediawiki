@@ -36,7 +36,6 @@ ALTER TABLE ipblocks
   ADD INDEX ipb_user (ipb_user);
 
 ALTER TABLE image
-  ADD INDEX img_name (img_name(10)),
   ADD INDEX img_size (img_size),
   ADD INDEX img_timestamp (img_timestamp);
 

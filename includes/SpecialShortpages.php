@@ -17,12 +17,15 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$cur = $dbr->tableName( 'cur' );
+		
 		return
 			"SELECT 'Shortpages' as type,
 					cur_namespace as namespace,
 			        cur_title as title,
 			        LENGTH(cur_text) AS value
-			FROM cur
+			FROM $cur
 			WHERE cur_namespace=0 AND cur_is_redirect=0";
 	}
 	

@@ -66,8 +66,8 @@ class QueryPage {
 		$sname = $this->getName();
 		$fname = get_class($this) . "::doQuery";
 		$sql = $this->getSQL();
-		$dbr =& wfGetDB( DB_READ );
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$querycache = $dbr->tableName( 'querycache' );
 
 		$wgOut->setSyndicated( true );
@@ -161,7 +161,7 @@ class QueryPage {
 				$this->feedUrl() );
 			$feed->outHeader();
 			
-			$dbr = wfGetDB( DB_READ );
+			$dbr =& wfGetDB( DB_SLAVE );
 			$sql = $this->getSQL() . $this->getOrderLimit( 0, 50 );
 			$res = $dbr->query( $sql, "QueryPage::doFeed" );
 			while( $obj = $dbr->fetchObject( $res ) ) {

@@ -160,7 +160,8 @@ CREATE TABLE image (
   img_description tinyblob NOT NULL default '',
   img_user int(5) unsigned NOT NULL default '0',
   img_user_text varchar(255) binary NOT NULL default '',
-  img_timestamp char(14) binary NOT NULL default ''
+  img_timestamp char(14) binary NOT NULL default '',
+  UNIQUE KEY img_name (img_name)
 ) PACK_KEYS=1;
 
 CREATE TABLE oldimage (

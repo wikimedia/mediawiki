@@ -40,7 +40,13 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 </td></tr>";
 	
 	print "Initialising \"MediaWiki\" namespace...\n";
-	$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM cur WHERE cur_namespace=$ns AND cur_title IN(";
+
+	
+	$dbr =& wfGetDB( DB_SLAVE );
+	$dbw =& wfGetDB( DB_MASTER );
+	$cur = $dbr->tableName( 'cur' );
+
+	$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM $cur WHERE cur_namespace=$ns AND cur_title IN(";
 
 	# Get keys from $wgAllMessagesEn, which is more complete than the local language
 	$first = true;
@@ -51,8 +57,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	}
 	
 	ksort( $sortedArray );
-	
+
 	# SELECT all existing messages
+	# Can't afford to be locking all rows for update, this script can take quite a long time to complete
 	foreach ( $sortedArray as $key => $enMsg ) {
 		if ( $key == '' ) {
 			continue; // Skip odd members
@@ -63,12 +70,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			$sql .= ',';
 		}
 		$titleObj = Title::newFromText( $key );
-		$enctitle = wfStrencode($titleObj->getDBkey());
+		$enctitle = $dbr->strencode($titleObj->getDBkey());
 		$sql .= "'$enctitle'";
 	}
 	$sql .= ')';
-	$res = wfQuery( $sql, DB_READ );
-	$row = wfFetchObject( $res );
+	$res = $dbr->query( $sql );
+	$row = $dbr->fetchObject( $res );
 
 	# Read the results into an array
 	# Decide whether or not each one needs to be overwritten
@@ -80,12 +87,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			$existingTitles[$row->cur_title] = 'chuck';
 		}
 
-		$row = wfFetchObject( $res );
+		$row = $dbr->fetchObject( $res );
 	}
 
 	# Insert queries are done in one multi-row insert
 	# Here's the start of it:
-	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
+	$sql = "INSERT INTO $cur (cur_namespace, cur_title, cur_text,
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
 	$first = true;
@@ -105,7 +112,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		}
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
-		$dbencMsg = wfStrencode( $message );
+		$dbencMsg = $dbw->strencode( $message );
 
 		# Update messages which already exist
 		if ( array_key_exists( $title, $existingTitles ) ) {
@@ -150,7 +157,7 @@ $message
 
 	# Perform the insert query
 	if ( !$first ) {
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->query( $sql, $fname );
 	}
 
 	# Write the navigation page

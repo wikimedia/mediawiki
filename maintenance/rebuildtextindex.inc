@@ -10,29 +10,30 @@ define( "RTI_CHUNK_SIZE", 500 );
 
 function dropTextIndex( &$database )
 {
-	if ( wfIndexExists( "searchindex", "si_title" ) ) {
+	$searchindex = $database->tableName( 'searchindex' );
+	if ( $database->indexExists( "searchindex", "si_title" ) ) {
 		echo "Dropping index...\n";
-		$sql = "ALTER TABLE searchindex DROP INDEX si_title, DROP INDEX si_text";
+		$sql = "ALTER TABLE $searchindex DROP INDEX si_title, DROP INDEX si_text";
 		$database->query($sql, "dropTextIndex" );
 	}
-	# Truncate table, in an attempt to bring the slaves to a consistent state
-	# (zwinger was accidentally written to)
-	$database->query( "TRUNCATE TABLE searchindex", "dropTextIndex" );
 }
 
 function createTextIndex( &$database )
 {
+	$searchindex = $database->tableName( 'searchindex' );
 	echo "Rebuild the index...\n";
-	$sql = "ALTER TABLE searchindex ADD FULLTEXT si_title (si_title), " .
+	$sql = "ALTER TABLE $searchindex ADD FULLTEXT si_title (si_title), " .
 	  "ADD FULLTEXT si_text (si_text)";
 	$database->query($sql, "createTextIndex" );
 }
 
 function rebuildTextIndex( &$database )
 {
-	$sql = "SELECT MAX(cur_id) AS count FROM cur";
+	extract( $database->tableNames( 'cur', 'searchindex' ) );
+
+	$sql = "SELECT MAX(cur_id) AS count FROM $cur";
 	$res = $database->query($sql, "rebuildTextIndex" );
-	$s = wfFetchObject($res);
+	$s = $database->fetchObject($res);
 	$count = $s->count;
 	echo "Rebuilding index fields for {$count} pages...\n";
 	$n = 0;
@@ -40,14 +41,14 @@ function rebuildTextIndex( &$database )
 	while ( $n < $count ) {
 		print "$n\n";
 		$end = $n + RTI_CHUNK_SIZE - 1;
-		$sql = "SELECT cur_id, cur_namespace, cur_title, cur_text FROM cur WHERE cur_id BETWEEN $n AND $end";
+		$sql = "SELECT cur_id, cur_namespace, cur_title, cur_text FROM $cur WHERE cur_id BETWEEN $n AND $end";
 		$res = $database->query($sql, "rebuildTextIndex" );
 
-		while( $s = wfFetchObject($res) ) {
+		while( $s = $database->fetchObject($res) ) {
 			$u = new SearchUpdate( $s->cur_id, $s->cur_title, $s->cur_text );
 			$u->doUpdate();
 		}
-		wfFreeResult( $res );
+		$database->freeResult( $res );
 		$n += RTI_CHUNK_SIZE;
 	}
 }

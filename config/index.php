@@ -184,6 +184,7 @@ class ConfigData {
 <?php
 $endl = "
 ";
+$wgConfiguring = true;
 $conf = new ConfigData;
 
 install_version_checks();
@@ -441,6 +442,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_querycache_update(); flush();
 			do_objectcache_update(); flush();
 			do_categorylinks_update(); flush();
+			do_image_name_unique_update(); flush();
 
 			if ( isTemplateInitialised() ) {
 				print "Template namespace already initialised\n";
@@ -744,7 +746,7 @@ function writeLocalSettings( $conf ) {
 		for ( $i=0; $i<8; $i++ ) {
 			$proxyKey .= dechex(mt_rand(0, 0x7fffffff));
 		}
-		print "Warning: \$wgProxyKey is insecure\n";
+		print "<li>Warning: \$wgProxyKey is insecure</li>\n";
 	}
 
 	# Add slashes to strings for double quoting
@@ -768,7 +770,7 @@ if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
 		die( \"This script must be run from the command line\\n\" );
 	}
-} else {
+} elseif ( !\$wgConfiguring ) {
 	## Compress output if the browser supports it
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
 }

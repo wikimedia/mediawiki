@@ -55,7 +55,7 @@ class PageHistory {
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
 		
-		$db =& wfGetDB( DB_READ );
+		$db =& wfGetDB( DB_SLAVE );
 		$use_index = $db->useIndexClause( 'name_title_timestamp' );
 		$oldtable = $db->tableName( 'old' );
 

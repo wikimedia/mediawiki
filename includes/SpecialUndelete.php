@@ -47,9 +47,13 @@ class UndeleteForm {
 		$fname = "UndeleteForm::showList";
 		
 		# List undeletable articles    
-		$sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM archive " . 
+		$dbr =& wfGetDB( DB_SLAVE );
+		$archive = $dbr->tableName( 'archive' );
+
+		$sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM $archive " . 
 		  "GROUP BY ar_namespace,ar_title ORDER BY ar_namespace,ar_title";
-		$res = wfQuery( $sql, DB_READ, $fname );
+
+		$res = $dbr->query( $sql, $fname );
 		
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
@@ -57,7 +61,7 @@ class UndeleteForm {
 		$special = $wgLang->getNsText( Namespace::getSpecial() );
 		$sk = $wgUser->getSkin();
 		$wgOut->addHTML( "<ul>\n" );
-		while ($row = wfFetchObject( $res )) {
+		while ($row = $dbr->fetchObject( $res )) {
 			$n = ($row->ar_namespace ? 
 				($wgLang->getNsText( $row->ar_namespace ) . ":") : "").
 				$row->ar_title;
@@ -77,12 +81,14 @@ class UndeleteForm {
 		$fname = "UndeleteForm::showRevision";
 
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
-		
-		$sql = "SELECT ar_text,ar_flags FROM archive ". 
+
+		$dbr =& wfGetDB( DB_SLAVE );
+		$archive = $dbr->tableName( 'archive' );
+		$sql = "SELECT ar_text,ar_flags FROM $archive ". 
 		  "WHERE ar_namespace={$namespace} AND ar_title='" .
-		  wfStrencode( $title ) . "' AND ar_timestamp='" . wfStrencode( $timestamp ) ."'";
-		$ret = wfQuery( $sql, DB_READ, $fname );
-		$row = wfFetchObject( $ret );
+		  $dbr->strencode( $title ) . "' AND ar_timestamp='" . $dbr->strencode( $timestamp ) ."'";
+		$ret = $dbr->query( $sql, $fname );
+		$row = $dbr->fetchObject( $ret );
 		
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision", $wgLang->date($timestamp, true) )
@@ -96,26 +102,28 @@ class UndeleteForm {
 		
 		$sk = $wgUser->getSkin();
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$archive = $dbr->tableName( 'archive' );
 		
 		# Get text of first revision
-		$sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title='" .
-		  wfStrencode( $title ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
-		$ret = wfQuery( $sql, DB_READ );
+		$sql = "SELECT ar_text FROM $archive WHERE ar_namespace={$namespace} AND ar_title='" .
+		  $dbr->strencode( $title ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
+		$ret = $dbr->query( $sql );
 
-		if( wfNumRows( $ret ) == 0 ) {
+		if( $dbr->numRows( $ret ) == 0 ) {
 			$wgOut->addWikiText( wfMsg( "nohistory" ) );
 			return 0;
 		}
-		$row = wfFetchObject( $ret );
+		$row = $dbr->fetchObject( $ret );
 		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
 
 		# Get remaining revisions
 		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-		  FROM archive WHERE ar_namespace={$namespace} AND ar_title='" . wfStrencode( $title ) .
+		  FROM archive WHERE ar_namespace={$namespace} AND ar_title='" . $dbr->strencode( $title ) .
 		  "' ORDER BY ar_timestamp DESC";
-		$ret = wfQuery( $sql, DB_READ );
+		$ret = $dbr->query( $sql );
 		# Ditch first row
-		$row = wfFetchObject( $ret );
+		$row = $dbr->fetchObject( $ret );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
@@ -127,8 +135,8 @@ class UndeleteForm {
 	<input type=submit name=\"restore\" value=\"".wfMsg("undeletebtn")."\">
 	</form>");
 
-		$log = wfGetSQL("cur", "cur_text", "cur_namespace=4 AND cur_title='".
-		  wfStrencode( wfMsg("dellogpage") ) . "'" );
+		$log = $dbr->selectField( "cur", "cur_text", 
+			array( 'cur_namespace' => NS_WIKIPEDIA, 'cur_title' => wfMsg("dellogpage") ) );
 		if(preg_match("/^(.*".
 			preg_quote( ($namespace ? ($wgLang->getNsText($namespace) . ":") : "")
 			. str_replace("_", " ", $title), "/" ).".*)$/m", $log, $m)) {
@@ -137,7 +145,7 @@ class UndeleteForm {
 		
 		$special = $wgLang->getNsText( Namespace::getSpecial() );
 		$wgOut->addHTML("<ul>");
-		while( $row = wfFetchObject( $ret ) ) {
+		while( $row = $dbr->fetchObject( $ret ) ) {
 			$wgOut->addHTML( "<li>" .
 			  $sk->makeKnownLink( $wgLang->specialPage( "Undelete" ),
 			  $wgLang->timeanddate( $row->ar_timestamp, true ),
@@ -154,7 +162,7 @@ class UndeleteForm {
 	/* private */ function undelete( $namespace, $title )
 	{
 		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
-		global  $wgUseSquid, $wgInternalServer;
+		global  $wgUseSquid, $wgInternalServer, $wgLinkCache;
 
 		$fname = "doUndeleteArticle";
 
@@ -162,30 +170,35 @@ class UndeleteForm {
 			$wgOut->fatalError( wfMsg( "cannotundelete" ) );
 			return;
 		}
-		$t = wfStrencode($title);
+		$dbw =& wfGetDB( DB_MASTER );
+		extract( $dbw->tableNames( 'cur', 'archive' ) );
+		$t = $dbw->strencode($title);
 
 		# Move article and history from the "archive" table
-		$sql = "SELECT COUNT(*) AS count FROM cur WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
-		$res = wfQuery( $sql, DB_READ );
-		$row = wfFetchObject( $res );
+		$sql = "SELECT COUNT(*) AS count FROM $cur WHERE cur_namespace={$namespace} AND cur_title='{$t}' FOR UPDATE";
+		$res = $dbw->query( $sql, $fname );
+		$row = $dbw->fetchObject( $res );
 		$now = wfTimestampNow();
 
 		if( $row->count == 0) {
 			# Have to create new article...
-			$sql = "SELECT ar_text,ar_timestamp,ar_flags FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' ORDER BY ar_timestamp DESC LIMIT 1";
-			$res = wfQuery( $sql, DB_READ, $fname );
-			$s = wfFetchObject( $res );
+			$sql = "SELECT ar_text,ar_timestamp,ar_flags FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' " .
+				"ORDER BY ar_timestamp DESC LIMIT 1 FOR UPDATE";
+			$res = $dbw->query( $sql, $fname );
+			$s = $dbw->fetchObject( $res );
 			$max = $s->ar_timestamp;
 			$redirect = MagicWord::get( MAG_REDIRECT );
 			$redir = $redirect->matchStart( $s->ar_text ) ? 1 : 0;
 			
-			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
+			$seqVal = addQuotes( $dbw->nextSequenceValue( 'cur_cur_id_seq' ) );
+
+			$sql = "INSERT INTO $cur (cur_id,cur_namespace,cur_title,cur_text," .
 			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_is_redirect,cur_random,cur_touched)" .
-			  "SELECT ar_namespace,ar_title,ar_text,ar_comment," .
-			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,{$redir},RAND(),'{$now}' FROM archive " .
+			  "SELECT $seqVal,ar_namespace,ar_title,ar_text,ar_comment," .
+			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,{$redir},RAND(),'{$now}' FROM $archive " .
 			  "WHERE ar_namespace={$namespace} AND ar_title='{$t}' AND ar_timestamp={$max}";
-			wfQuery( $sql, DB_WRITE, $fname );
-			$newid = wfInsertId();
+			$dbw->query( $sql, $fname );
+			$newid = $dbw->insertId();
 			$oldones = "AND ar_timestamp<{$max}";
 		} else {
 			# If already exists, put history entirely into old table
@@ -193,45 +206,46 @@ class UndeleteForm {
 			$newid = 0;
 			
 			# But to make the history list show up right, we need to touch it.
-			$sql = "UPDATE cur SET cur_touched='{$now}' WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$sql = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
+			$dbw->query( $sql, $fname );
 			
 			# FIXME: Sometimes restored entries will be _newer_ than the current version.
 			# We should merge.
 		}
 		
-		$sql = "INSERT INTO old (old_namespace,old_title,old_text," .
+		$sql = "INSERT INTO $old (old_namespace,old_title,old_text," .
 		  "old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp,old_minor_edit," .
 		  "old_flags) SELECT ar_namespace,ar_title,ar_text,ar_comment," .
 		  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,ar_flags " .
-		  "FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		  "FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
+		$dbw->query( $sql, $fname );
 
 		# Finally, clean up the link tables 
 		if( $newid ) {
+			$wgLinkCache = new LinkCache();
+			# Select for update
+			$wgLinkCache->forUpdate( true );
 			# Create a dummy OutputPage to update the outgoing links
-			# This works at the moment due to good luck. It may stop working in the 
-			# future. Damn globals.
 			$dummyOut = new OutputPage();
-			$res = wfQuery( "SELECT cur_text FROM cur WHERE cur_id={$newid} " .
-			  "AND cur_namespace={$namespace}", DB_READ, $fname );
-			$row = wfFetchObject( $res );
-			$text = $row->cur_text;
+			# Get the text
+			$text = $dbw->selectField( 'cur', 'cur_text', 
+				array( 'cur_id' => $newid, 'cur_namespace' => $namespace ), 
+				$fname, 'FOR UPDATE' 
+			);
 			$dummyOut->addWikiText( $text );
-			wfFreeResult( $res );
 
 			$u = new LinksUpdate( $newid, $this->mTargetObj->getPrefixedDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
-				
+			
 			Article::onArticleCreate( $this->mTargetObj );
 
 			#TODO: SearchUpdate, etc.
 		}
 
 		# Now that it's safely stored, take it out of the archive
-		$sql = "DELETE FROM archive WHERE ar_namespace={$namespace} AND " .
+		$sql = "DELETE FROM $archive WHERE ar_namespace={$namespace} AND " .
 		  "ar_title='{$t}'";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->query( $sql, $fname );
 
 		
 		# Touch the log?

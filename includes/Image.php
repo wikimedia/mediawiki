@@ -261,8 +261,8 @@ class Image
 	function nextHistoryLine()
 	{
 		$fname = "Image::nextHistoryLine()";
+		$dbr =& wfGetDB( DB_SLAVE );
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur 
-			$dbr =& wfGetDB( DB_READ );
 			$this->historyRes = $dbr->select( 'image', 
 				array( 'img_size','img_description','img_user','img_user_text','img_timestamp', "'' AS oi_archive_name" ), 
 				array( 'img_name' => $this->title->getDBkey() ),
@@ -272,7 +272,6 @@ class Image
 				return FALSE; 
 			}
 		} else if ( $this->historyLine == 1 ) {
-			$dbr =& wfGetDB( DB_READ );
 			$this->historyRes = $dbr->select( 'oldimage', 
 				array( 'oi_size AS img_size', 'oi_description AS img_description', 'oi_user AS img_user',
 					'oi_user_text AS img_user_text', 'oi_timestamp AS img_timestamp', 'oi_archive_name'
@@ -281,7 +280,7 @@ class Image
 		}
 		$this->historyLine ++;
 
-		return wfFetchObject( $this->historyRes );
+		return $dbr->fetchObject( $this->historyRes );
 	}
 
 	function resetHistory()

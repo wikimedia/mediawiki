@@ -51,9 +51,12 @@ function wfSpecialWatchlist()
 		}
 	}
 	
-	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
-	$res = wfQuery( $sql, DB_READ );
-	$s = wfFetchObject( $res );
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'watchlist', 'recentchanges' ) );
+
+	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
+	$res = $dbr->query( $sql );
+	$s = $dbr->fetchObject( $res );
 	$nitems = $s->n;
 	if($nitems == 0) {
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
@@ -80,9 +83,9 @@ function wfSpecialWatchlist()
 	        $docutoff = "AND cur_timestamp > '" .
 		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-	        $sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
-		$res = wfQuery( $sql, DB_READ );
-		$s = wfFetchObject( $res );
+	        $sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
+		$res = $dbr->query( $sql );
+		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
 		
 	}
@@ -95,11 +98,11 @@ function wfSpecialWatchlist()
 			$specialTitle->escapeLocalUrl( "action=submit" ) .
 			"' method='post'>\n" .
 			"<ul>\n" );
-		$sql = "SELECT wl_namespace,wl_title FROM watchlist WHERE wl_user=$uid";
-		$res = wfQuery( $sql, DB_READ );
+		$sql = "SELECT wl_namespace,wl_title FROM $watchlist WHERE wl_user=$uid";
+		$res = $dbr->query( $sql );
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
-		while( $s = wfFetchObject( $res ) ) {
+		while( $s = $dbr->fetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
 			if( is_null( $t ) ) {
 				$wgOut->addHTML( '<!-- bad title "' . htmlspecialchars( $s->wl_title ) . '" in namespace ' . IntVal( $s->wl_namespace ) . " -->\n" );
@@ -140,11 +143,11 @@ function wfSpecialWatchlist()
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 	 
-	$use_index = wfUseIndexClause( $x, DB_READ );
+	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
   cur_namespace,cur_title,cur_comment, cur_id,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
-  FROM watchlist,cur $use_index
+  FROM $watchlist,$cur $use_index
   WHERE wl_user=$uid
   AND $z
   AND wl_title=cur_title
@@ -152,7 +155,7 @@ function wfSpecialWatchlist()
   ORDER BY cur_timestamp DESC";
 
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	if($days >= 1)
 		$note = wfMsg( "rcnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
@@ -164,7 +167,7 @@ function wfSpecialWatchlist()
 	$note = wlCutoffLinks( $days, $limit );
 	$wgOut->addHTML( "{$note}\n" );
 
-	if ( wfNumRows( $res ) == 0 ) {
+	if ( $dbr->numRows( $res ) == 0 ) {
 		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
 		return;
 	}
@@ -172,7 +175,7 @@ function wfSpecialWatchlist()
 	$sk = $wgUser->getSkin();
 	$s = $sk->beginRecentChangesList();
 	$counter = 1;
-	while ( $obj = wfFetchObject( $res ) ) {
+	while ( $obj = $dbr->fetchObject( $res ) ) {
 		# Make fake RC entry
 		$rc = RecentChange::newFromCurRow( $obj );
 		$rc->counter = $counter++;
@@ -180,7 +183,7 @@ function wfSpecialWatchlist()
 	}
 	$s .= $sk->endRecentChangesList();
 
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
 
 	if ( $wgUseWatchlistCache ) {

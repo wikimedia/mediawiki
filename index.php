@@ -54,6 +54,8 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	exit;
 }
 
+$db =& wfGetDB( DB_MASTER );
+
 if ( $search = $wgRequest->getText( 'search' ) ) {
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	if( $wgRequest->getVal( 'fulltext' ) || !is_null( $wgRequest->getVal( 'offset' ) ) ) {
@@ -95,8 +97,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		$wgArticle = new Article( $wgTitle );
 	}
 
-	$db =& wfGetDB( DB_WRITE );
-	$db->query("BEGIN", DB_WRITE);
+	$db->query("BEGIN");
 	switch( $action ) {
 		case "view":
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
@@ -169,12 +170,13 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	$db->query("COMMIT");
 }
 
+$wgLoadBalancer->saveMasterPos();
 $wgOut->output();
 
 foreach ( $wgDeferredUpdateList as $up ) {
-	wfQuery("BEGIN", DB_WRITE);
+	$db->query("BEGIN");
 	$up->doUpdate();
-	wfQuery("COMMIT", DB_WRITE);
+	$db->query("COMMIT");
 }
 logProfilingData();
 wfDebug( "Request ended normally\n" );

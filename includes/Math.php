@@ -120,7 +120,7 @@ class MathRenderer {
 		
 			$md5_sql = pack("H32", $this->md5); # Binary packed, not hex
 			
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->replace( 'math', array( 'math_inputhash' ),
 			  array( 
 				'math_inputhash' => $md5_sql, 
@@ -149,7 +149,7 @@ class MathRenderer {
 		$fname = 'MathRenderer::_recall';
 
 		$this->md5 = md5( $this->tex );
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$rpage = $dbr->getArray( 'math', 
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
 			array( 'math_inputhash' => pack("H32", $this->md5)), # Binary packed, not hex

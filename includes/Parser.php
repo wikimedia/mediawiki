@@ -361,7 +361,7 @@ class Parser
 		$id = $this->mTitle->getArticleID() ;
 
 		# FIXME: add limits
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
@@ -425,7 +425,7 @@ class Parser
 		$id = $this->mTitle->getArticleID() ;
 
 		# FIXME: add limits
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 

@@ -143,7 +143,7 @@ class Article {
 					$index = $matches[4];
 					if ( $machineID == 0 ) {
 						# Current connection
-						$db =& wfGetDB( DB_READ );
+						$db =& wfGetDB( DB_SLAVE );
 					} else {
 						# Alternate connection
 						$db =& $wgLoadBalancer->getConnection( $machineID );
@@ -337,7 +337,7 @@ class Article {
 	{
 		global $wgOut, $wgMwRedir, $wgRequest;
 
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$redirect = $wgRequest->getVal( 'redirect' );
@@ -445,7 +445,7 @@ class Article {
 		$this->mContent = false;
 
 		$fname = 'Article::getContentWithout';
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 
 		if ( ! $oldid ) {	# Retrieve current version
 			$id = $this->getID();
@@ -516,7 +516,7 @@ class Article {
 	{
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& wfGetDB( DB_READ );
+			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mCounter = $dbr->getField( 'cur', 'cur_counter', "cur_id={$id}" );
 		}
 		return $this->mCounter;
@@ -546,7 +546,7 @@ class Article {
 		
 		$fname = 'Article::loadLastEdit';
 
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->getArray( 'cur', 
 		  array( 'cur_user','cur_user_text','cur_timestamp', 'cur_comment','cur_minor_edit' ),
 		  array( 'cur_id' => $this->getID() ), $fname );
@@ -598,7 +598,7 @@ class Article {
 
 	        $title = $this->mTitle;
 	        $contribs = array();
-		$dbr = wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$oldTable = $dbr->tableName( 'old' );
 		$userTable = $dbr->tableName( 'user' );
 		$encDBkey = $dbr->strencode( $title->getDBkey() );
@@ -759,7 +759,7 @@ class Article {
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
 		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		$cur_id = $dbw->nextSequenceValue( 'cur_cur_id_seq' ); 
 
@@ -903,7 +903,7 @@ class Article {
 		else { $redir = 0; }
 
 		$text = $this->preSaveTransform( $text );
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		# Update article, but only if changed.
 
@@ -1029,7 +1029,9 @@ class Article {
 		global $wgMwRedir;
 
 		$wgLinkCache = new LinkCache();
-
+		# Select for update
+		$wgLinkCache->forUpdate( true );
+		
 		# Get old version of link table to allow incremental link updates
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgLinkCache->clear();
@@ -1110,7 +1112,7 @@ class Article {
 		$reason = $wgRequest->getText( 'wpReasonProtect' );
 
 		if ( $confirm ) {
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->updateArray( 'cur', 
 				array( /* SET */
 					'cur_touched' => wfTimestampNow(),
@@ -1240,7 +1242,7 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$old = $dbr->getArray( 'old', 
@@ -1402,7 +1404,7 @@ class Article {
 		$fname = 'Article::doDeleteArticle';
 		wfDebug( $fname."\n" );
 		
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
 		$t = $this->mTitle->getDBkey();
 		$id = $this->mTitle->getArticleID();
@@ -1527,7 +1529,7 @@ class Article {
 			$wgOut->readOnlyPage( $this->getContent( true ) );
 			return;
 		}
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		# Enhanced rollback, marks edits rc_bot=1
 		$bot = $wgRequest->getBool( 'bot' );
@@ -1633,7 +1635,7 @@ class Article {
 		
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$cutoff = wfUnix2Timestamp( time() - ( 7 * 86400 ) );
 			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
 			$dbw->query( $sql );
@@ -1733,8 +1735,10 @@ class Article {
 
 	# Loads cur_touched and returns a value indicating if it should be used
 	function checkTouched() {
+		$fname = 'Article::checkTouched';
+
 		$id = $this->getID();
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ), 
 			array( 'cur_id' => $id ), $fname );
 		if( $s !== false ) {
@@ -1751,7 +1755,7 @@ class Article {
 		$fname = 'Article::quickEdit';
 		wfProfileIn( $fname );
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
 		$dbkey = $this->mTitle->getDBkey();
 		$encDbKey = $dbw->strencode( $dbkey );
@@ -1810,7 +1814,7 @@ class Article {
 		$id = intval( $id );
 		global $wgHitcounterUpdateFreq;
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$curTable = $dbw->tableName( 'cur' );
 		$hitcounterTable = $dbw->tableName( 'hitcounter' );
 		$acchitsTable = $dbw->tableName( 'acchits' );
@@ -1894,31 +1898,32 @@ class Article {
 	function info()
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgAllowPageInfo;
-
+		$fname = 'Article::info';
+	
 		if ( !$wgAllowPageInfo ) {
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 			return;
 		}
+		
+		$dbr =& wfGetDB( DB_SLAVE );
 
 		$basenamespace = $wgTitle->getNamespace() & (~1);
-		$cur_clause = "cur_title='".$wgTitle->getDBkey()."' AND cur_namespace=".$basenamespace;
-		$old_clause = "old_title='".$wgTitle->getDBkey()."' AND old_namespace=".$basenamespace;
-		$wl_clause  =  "wl_title='".$wgTitle->getDBkey()."' AND  wl_namespace=".$basenamespace;
+		$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace );
+		$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace );
+		$wl_clause  = array( 'wl_title' => $wgTitle->getDBkey(), 'wl_namespace' => $basenamespace );
 		$fullTitle = $wgTitle->makeName($basenamespace, $wgTitle->getDBKey());
 		$wgOut->setPagetitle(  $fullTitle );
 		$wgOut->setSubtitle( wfMsg( "infosubtitle" ));
 
 		# first, see if the page exists at all.
-		$sql = "SELECT COUNT(*) FROM cur WHERE ".$cur_clause;
-		$exists = wfSingleQuery( $sql , DB_READ );
+		$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname );
 		if ($exists < 1) {
 			$wgOut->addHTML( wfMsg("noarticletext") );
 		} else {
-			$sql = "SELECT COUNT(*) FROM watchlist WHERE ".$wl_clause;
-			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers") . wfSingleQuery( $sql, DB_READ ) . "</li>" );
-			$sql = "SELECT COUNT(*) FROM old WHERE ".$old_clause;
-			$old = wfSingleQuery( $sql, DB_READ );
-			$wgOut->addHTML( "<li>" . wfMsg("numedits") . ($old + 1) . "</li>");
+			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname );
+			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . "</li>" );
+			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname );
+			$wgOut->addHTML( "<li>" . wfMsg("numedits", $old + 1) . "</li>");
 
 			# to find number of distinct authors, we need to do some
 			# funny stuff because of the cur/old table split:
@@ -1926,40 +1931,33 @@ class Article {
 			# - then, find the number of *other* authors in 'old'
 
 			# find 'cur' author
-			$sql = "SELECT cur_user_text FROM cur WHERE ".$cur_clause;
-			$cur_author = wfSingleQuery( $sql, DB_READ );
+			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
 
 			# find number of 'old' authors excluding 'cur' author
-			$sql = "SELECT COUNT(DISTINCT old_user_text) FROM old WHERE ".$old_clause
-					." AND old_user_text<>'" . $cur_author . "'";
-			$authors = wfSingleQuery( $sql, DB_READ ) + 1;
+			$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)', 
+				$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname ) + 1;
 
 			# now for the Talk page ...
-			$cur_clause = "cur_title='".$wgTitle->getDBkey()."' AND cur_namespace=".($basenamespace+1);
-			$old_clause = "old_title='".$wgTitle->getDBkey()."' AND old_namespace=".($basenamespace+1);
+			$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace+1 );
+			$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace+1 );
 
 			# does it exist?
-			$sql = "SELECT COUNT(*) FROM cur WHERE ".$cur_clause;
-			$exists = wfSingleQuery( $sql , DB_READ );
+			$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname );
 
 			# number of edits
 			if ($exists > 0) {
-				$sql = "SELECT COUNT(*) FROM old WHERE ".$old_clause;
-				$old = wfSingleQuery( $sql, DB_READ );
-				$wgOut->addHTML( "<li>" . wfMsg("numtalkedits") . ($old + 1) . "</li>");
+				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname );
+				$wgOut->addHTML( "<li>" . wfMsg("numtalkedits", $old + 1) . "</li>");
 			}
-			$wgOut->addHTML( "<li>" . wfMsg("numauthors") . $authors . "</li>" );
+			$wgOut->addHTML( "<li>" . wfMsg("numauthors", $authors) . "</li>" );
 
 			# number of authors
 			if ($exists > 0) {
-				$sql = "SELECT cur_user_text FROM cur WHERE ".$cur_clause;
-				$cur_author = wfSingleQuery( $sql, DB_READ );
+				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
+				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)', 
+					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname );
 
-				$sql = "SELECT COUNT(DISTINCT old_user_text) FROM old WHERE "
-						.$old_clause." AND old_user_text<>'" . $cur_author . "'";
-				$authors = wfSingleQuery( $sql, DB_READ ) + 1;
-
-				$wgOut->addHTML( "<li>" . wfMsg("numtalkauthors") . $authors . "</li></ul>" );
+				$wgOut->addHTML( "<li>" . wfMsg("numtalkauthors", $authors) . "</li></ul>" );
 			}
 		}
 	}

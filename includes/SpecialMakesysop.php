@@ -123,40 +123,42 @@ class MakesysopForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDBname, $wgMemc, $wgLocalDatabases;
-
+		
+		$dbw =& wfGetDB( DB_MASTER );
 		$parts = explode( "@", $this->mUser );
-		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
-			$username = wfStrencode( $parts[0] );
+		$usertable = $dbw->tableName( 'user' );
+
+		if( count( $parts ) == 2 && $wgUser->isDeveloper() && strpos( '.', $usertable ) === false ){
+			$username = $dbw->strencode( $parts[0] );
 			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
 				$dbName = $wgLocalDatabases[$parts[1]];
-				$usertable = $dbName . ".user";
+				$usertable = $dbName . "." . $usertable;
 			} else {
 				$this->showFail();
 				return;
 			}
 		} else {
 			$username = wfStrencode( $this->mUser );
-			$usertable = "user";
 			$dbName = $wgDBname;
 		}
 		if ( $username{0} == "#" ) {
 			$id = intval( substr( $username, 1 ) );
-			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
+			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id FOR UPDATE";
 		} else {
-			$encName = wfStrencode( $username );
-			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'";
+			$encName = $dbw->strencode( $username );
+			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}' FOR UPDATE";
 		}
 		
-		$prev = wfIgnoreSQLErrors( TRUE );
-		$res = wfQuery( $sql, DB_WRITE );
-		wfIgnoreSQLErrors( $prev );
+		$prev = $dbw->setIgnoreErrors( TRUE );
+		$res = $dbw->query( $sql );
+		$dbw->setIgnoreSQLErrors( $prev );
 
-		if( wfLastErrno() || ! $username || wfNumRows( $res ) == 0 ){
+		if( $dbw->lastErrno() || ! $username || $dbw->numRows( $res ) == 0 ){
 			$this->showFail();
 			return;
 		}
 
-		$row = wfFetchObject( $res );
+		$row = $dbw->fetchObject( $res );
 		$id = intval( $row->user_id );
 		$rightsNotation = array();
 
@@ -189,7 +191,7 @@ class MakesysopForm {
 			$this->showFail();
 		} else {
 			$sql = "UPDATE $usertable SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
-			wfQuery($sql, DB_WRITE);
+			$dbw->query($sql);
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
 			$bureaucratLog = wfMsg( "bureaucratlog" );

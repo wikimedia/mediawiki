@@ -59,6 +59,7 @@ $wgDBname           = 'wikidb';
 $wgDBconnection     = '';
 $wgDBuser           = 'wikiuser';
 $wgDBtype           = "mysql"; # "mysql" for working code and "PostgreSQL" for development/broken code
+$wgDBprefix         = ''; # Table name prefix
 
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
@@ -68,7 +69,7 @@ $wgDBtype           = "mysql"; # "mysql" for working code and "PostgreSQL" for d
 #   user:      DB user
 #   password:  DB password
 #   type:      "mysql" or "pgsql"
-#   load:      ratio of DB_READ load, must be >=0, the sum of all loads must be >0
+#   load:      ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 

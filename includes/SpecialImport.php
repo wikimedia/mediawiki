@@ -95,40 +95,8 @@ function wfSpecialImport( $page = "" ) {
 }
 
 function wfImportOldRevision( &$revision ) {
-	global $wgOut;
-	$fname = "wfImportOldRevision";
-	
-	# Sneak a single revision into place
-	$ns = IntVal( $revision->title->getNamespace() );
-	$t = wfStrencode( $revision->title->getDBkey() );
-	$text = wfStrencode( $revision->getText() );
-	$ts = wfStrencode( $revision->timestamp );
-	$its = wfStrencode( wfInvertTimestamp( $revision->timestamp ) ) ;
-	$comment = wfStrencode( $revision->getComment() );
-	
-	$user = User::newFromName( $revision->getUser() );
-	$user_id = IntVal( $user->getId() );
-	$user_text = wfStrencode( $user->getName() );
-
-	$minor = 0; # ??
-	$flags = "";
-	
-	# Make sure it doesn't already exist
-	$sql = "SELECT 1 FROM old WHERE old_namespace=$ns AND old_title='$t' AND old_timestamp='$ts'";
-	$res = wfQuery( $sql, DB_WRITE, $fname );
-	$numrows = wfNumRows( $res );
-	wfFreeResult( $res );
-	if( $numrows > 0 ) {
-		return wfMsg( "importhistoryconflict" );
-	}
-	
-	$res = wfQuery( "INSERT INTO old " .
-	  "(old_namespace,old_title,old_text,old_comment,old_user,old_user_text," .
-	  "old_timestamp,inverse_timestamp,old_minor_edit,old_flags) " .
-	  "VALUES ($ns,'$t','$text','$comment',$user_id,'$user_text','$ts','$its',$minor,'$flags')",
-	  DB_WRITE, $fname );
-	
-	return wfMsg( "ok" );
+	$dbw =& wfGetDB( DB_MASTER );
+	$dbw->deadlockLoop( array( &$revision, 'importOldRevision' ) );
 }
 
 class WikiRevision {
@@ -485,6 +453,44 @@ class WikiImporter {
 			return $this->throwXMLerror( "Expected </contributor>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_revision", "out_revision" );
+	}
+
+	function importOldRevision() {
+		$fname = "WikiImporter::importOldRevision";
+		$dbw =& wfGetDB( DB_MASTER );
+		
+		# Sneak a single revision into place
+		$user = User::newFromName( $this->getUser() );
+
+		$res = $dbw->select( 'old', 1, 
+			$this->title->oldCond() + array( 'old_timestamp' => $this->timestamp ),
+			$fname, 'FOR UPDATE'
+		);
+		
+		$numrows = $dbw->numRows( $res );
+		$dbw->freeResult( $res );
+		if( $numrows > 0 ) {
+			return wfMsg( "importhistoryconflict" );
+		}
+		
+		# Insert the row
+		$oldIgnore = $dbw->setIgnoreErrors( true );
+		$success = $dbw->insert( 'old', 
+			array( 
+				'old_namespace' => intval( $this->title->getNamespace() ),
+				'old_title' => $this->title->getDBkey(),
+				'old_text' => $this->getText(),
+				'old_comment' => $this->getComment(),
+				'old_user' => intval( $user->getId() ),
+				'old_user_text' => $user->getName(),
+				'old_timestamp' => $this->timestamp
+				'inverse_timestamp' => wfInvertTimestamp( $this->timestamp ),
+				'old_minor_edit' => 0,
+				'old_flags' => ''
+			), $fname
+		);
+		
+		return wfMsg( "ok" );
 	}
 }
 

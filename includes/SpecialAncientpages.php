@@ -13,14 +13,15 @@ class AncientPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
-		$db = wfGetDB( DB_READ );
+		$db =& wfGetDB( DB_SLAVE );
+		$cur = $db->tableName( 'cur' );
 		$use_index = $db->useIndexClause( 'cur_timestamp' );
 		return
 			"SELECT 'Ancientpages' as type,
 					cur_namespace as namespace,
 			        cur_title as title,
 			        UNIX_TIMESTAMP(cur_timestamp) as value
-			FROM cur $use_index
+			FROM $cur $use_index
 			WHERE cur_namespace=0 AND cur_is_redirect=0";
 	}
 	
