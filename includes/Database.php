@@ -1244,7 +1244,7 @@ class Database {
 	 * @param integer $timeout the maximum number of seconds to wait for synchronisation
 	 */
 	function masterPosWait( $file, $pos, $timeout ) {
-		$fname = 'Database::masterPosWait'
+		$fname = 'Database::masterPosWait';
 		wfProfileIn( $fname );
 		
 		
