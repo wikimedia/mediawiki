@@ -228,6 +228,7 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
+		global $wgDebugRedirects;
 		if( $this->mDoNothing ){
 			return;
 		}
@@ -236,24 +237,33 @@ class OutputPage {
 		
 		$sk = $wgUser->getSkin();
 
-		
 		if ( "" != $this->mRedirect ) {
 			if( substr( $this->mRedirect, 0, 4 ) != "http" ) {
 				# Standards require redirect URLs to be absolute
 				global $wgServer;
 				$this->mRedirect = $wgServer . $this->mRedirect;
 			}
-			if( $this->mRdirectCode == '301') {
-				header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
+			if( $this->mRedirectCode == '301') {
+				if( !$wgDebugRedirects ) {
+					header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
+				}
 				$this->mLastModified = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 					max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 			}
                         
 			$this->sendCacheControl();
 			
-			header( "Location: {$this->mRedirect}" );
+			if( $wgDebugRedirects ) {
+				$url = htmlspecialchars( $this->mRedirect );
+				print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
+				print "<p>Location: <a href=\"$url\">$url</a></p>\n";
+				print "</body>\n</html>\n";
+			} else {
+				header( "Location: {$this->mRedirect}" );
+			}
 			return;
 		}
+		
 		
 		$this->sendCacheControl();
 		
