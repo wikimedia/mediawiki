@@ -714,6 +714,11 @@ function wfQuotedPrintable( $string, $charset = "" )
 	return $out;
 }
 
+function wfTime(){
+	$st = explode( " ", microtime() );
+	return (float)$st[0] + (float)$st[1];
+}
+
 # Changes the first character to an HTML entity
 function wfHtmlEscapeFirst( $text ) {
 	$ord = ord($text);
