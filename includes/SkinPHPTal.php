@@ -62,7 +62,7 @@
 
 		function outputPage( &$out ) {
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
-			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
+			global $wgScript, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 			global $wgDisableCounters;
 			
