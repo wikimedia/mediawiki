@@ -377,9 +377,9 @@ class Parser
 
 						$l = array_pop ( $ltd ) ;
 						if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-						if ( $fc == "|" ) $l = "TD" ;
-						else if ( $fc == "!" ) $l = "TH" ;
-						else if ( $fc == "+" ) $l = "CAPTION" ;
+						if ( $fc == "|" ) $l = "td" ;
+						else if ( $fc == "!" ) $l = "th" ;
+						else if ( $fc == "+" ) $l = "caption" ;
 						else $l = "" ;
 						array_push ( $ltd , $l ) ;
 						$y = explode ( "|" , $theline , 2 ) ;
@@ -418,6 +418,8 @@ class Parser
 
 		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
 		$text = str_replace ( "<HR>", "<hr />", $text );
+		$text = str_replace ( "<br>", "<br />", $text );
+		$text = str_replace ( "<br >", "<br />", $text );
 
 		$text = $this->doHeadings( $text );
 		
@@ -1025,7 +1027,7 @@ class Parser
 				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = true;
-				} else if ( preg_match("/(<hr)/i", $t ) ) {
+				} else if ( preg_match("/(<hr|<\\/td)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = false;
 				}
@@ -1468,8 +1470,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			
-			$tocline = trim( $canonized_headline );
-			$canonized_headline = preg_replace( "/[^a-z0-9]/i", "_", trim( $canonized_headline ) );
+			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+]+/", '_', html_entity_decode(trim( $canonized_headline )));
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
