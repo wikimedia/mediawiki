@@ -1226,9 +1226,12 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'removingchecked' 	=> 'Removing requested items from watchlist...',
 'couldntremove' 	=> "Couldn't remove item '$1'...",
 'iteminvalidname' 	=> "Problem with item '$1', invalid name...",
-'wlnote' 			=> "Below are the last $1 changes in the last <b>$2</b> hours.",
-'wlshowlast' 		=> "Show last $1 hours $2 days $3",
-'wlsaved'			=> 'This is a saved version of your watchlist.',
+'wlnote' 		=> 'Below are the last $1 changes in the last <b>$2</b> hours.',
+'wlshowlast' 		=> 'Show last $1 hours $2 days $3',
+'wlsaved'		=> 'This is a saved version of your watchlist.',
+'wlhideshowown'   	=> '$1 my edits.',
+'wlshow'		=> 'Show',
+'wlhide'		=> 'Hide',
 
 'updatedmarker'		=> '<span class=\'updatedmarker\'>&nbsp;updated (since my last visit)&nbsp;</span>',
 

@@ -15,7 +15,7 @@ require_once( 'WatchedItem.php' );
  * constructor
  */
 function wfSpecialWatchlist() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest, $wgContLang;;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $wgEnotif, $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
 	$fname = 'wfSpecialWatchlist';
@@ -36,6 +36,7 @@ function wfSpecialWatchlist() {
 	$days = $wgRequest->getVal( 'days' );
 	$action = $wgRequest->getVal( 'action' );
 	$remove = $wgRequest->getVal( 'remove' );
+	$hideOwn = $wgRequest->getVal( 'hideOwn' );		
 	$id = $wgRequest->getArray( 'id' );
 
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
@@ -55,6 +56,7 @@ function wfSpecialWatchlist() {
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
+
 
 	if(($action == 'submit') && isset($remove) && is_array($id)) {
 		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
@@ -128,6 +130,10 @@ function wfSpecialWatchlist() {
 		$npages = $s->n;
 
 	}
+	if ( is_null( $hideOwn ) ) {
+		# default is false (don't hide own edits)
+		$hideOwn = 0;
+	}
 
 	if(isset($_REQUEST['magic'])) {
 		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
@@ -187,7 +193,12 @@ function wfSpecialWatchlist() {
 		$z = 'wl_namespace=page_namespace';
 	}
 
-
+	if ( 0 == $hideOwn )
+		$andHideOwn = '';
+	else
+		$andHideOwn = "AND (rev_user <> $uid)";
+		
+	
 	$wgOut->addHTML( '<i>' . wfMsg( 'watchdetails',
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( 'magic=yes' ) ) . "</i><br />\n" );
@@ -198,6 +209,7 @@ function wfSpecialWatchlist() {
   rev_user,rev_user_text,rev_timestamp,rev_minor_edit,page_is_new,wl_notificationtimestamp
   FROM $watchlist,$page,$revision  $use_index
   WHERE wl_user=$uid
+  $andHideOwn
   AND $z
   AND wl_title=page_title
   AND page_latest=rev_id
@@ -216,7 +228,16 @@ function wfSpecialWatchlist() {
 	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
 	$note = wlCutoffLinks( $days );
 	$wgOut->addHTML( "{$note}\n" );
-
+	
+	$sk = $wgUser->getSkin();
+	$s = $sk->makeKnownLink(
+		$wgContLang->specialPage( 'Watchlist' ),
+		(0 == $hideOwn) ? wfMsg( 'wlhide' ) : wfMsg( 'wlshow' ),	
+	  	'hideOwn=' . $wgLang->formatNum( 1-$hideOwn ) );
+	  	
+	$note = wfMsg( "wlhideshowown", $s );
+	$wgOut->addHTML( "\n<br />{$note}\n<br />" );
+	
 	if ( $numRows == 0 ) {
 		$wgOut->addHTML( '<p><i>' . wfMsg( 'watchnochange' ) . '</i></p>' );
 		return;
