@@ -226,6 +226,20 @@ hooks than for "complete" hooks.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'ArticleProtect': before an article is protected
+$article: the article being protected
+$user: the user doing the protection
+$protect: boolean whether this is a protect or an unprotect
+$reason: Reason for protect
+$moveonly: boolean whether this is for move only or not
+
+'ArticleProtectComplete': after an article is protected
+$article: the article that was protected
+$user: the user who did the protection
+$protect: boolean whether it was a protect or an unprotect
+$reason: Reason for protect
+$moveonly: boolean whether it was for move only or not
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)

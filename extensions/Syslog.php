@@ -47,9 +47,18 @@ if (defined('MEDIAWIKI')) {
 	}
 
 	function syslogBlockIp(&$block, &$user) {
-		syslog(LOG_INFO, "User '" . $user->getName() . 
+		syslog(LOG_NOTICE, "User '" . $user->getName() . 
 			   "' blocked '" . (($block->mUser) ? $block->mUser : $block->mAddress) .
 			   "' for '" . $block->mReason . "' until '" . $block->mExpiry . "'");
+		return true;
+	}
+
+	function syslogArticleProtect(&$article, &$user, $protect, &$reason, &$moveonly) {
+		$title = $article->mTitle;
+		syslog(LOG_NOTICE, "User '" . $user->getName() . "' " .
+			   (($protect) ? "protected" : "unprotected") . " article '" .
+			   $title->getPrefixedText() .
+			   "' for '" . $reason . "' " . (($moveonly) ? "(moves only)" : "") );
 		return true;
 	}
 	
@@ -65,6 +74,7 @@ if (defined('MEDIAWIKI')) {
 		$wgHooks['UserLoginComplete'][] = syslogUserLogin;
 		$wgHooks['UserLogout'][] = syslogUserLogout;
 		$wgHooks['BlockIpComplete'][] = syslogBlockIp;
+		$wgHooks['ArticleProtectComplete'][] = syslogArticleProtect;
 		
 		return true;
 	}

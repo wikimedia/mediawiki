@@ -1281,28 +1281,33 @@ class Article {
 		$reason = $wgRequest->getText( 'wpReasonProtect' );
 
 		if ( $confirm ) {
+
 			$restrictions = "move=" . $limit;
 			if( !$moveonly ) {
 				$restrictions .= ":edit=" . $limit;
 			}
-			
-			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->update( 'cur',
-				array( /* SET */
-					'cur_touched' => $dbw->timestamp(),
-					'cur_restrictions' => $restrictions
-				), array( /* WHERE */
-					'cur_id' => $id
-				), 'Article::protect'
-			);
-
-			$log = new LogPage( 'protect' );
-			if ( $limit === '' ) {
+			if (wfRunHooks('ArticleProtect', $this, $wgUser, $limit == 'sysop', $reason, $moveonly)) {
+				
+				$dbw =& wfGetDB( DB_MASTER );
+				$dbw->update( 'cur',
+							  array( /* SET */
+									 'cur_touched' => $dbw->timestamp(),
+									 'cur_restrictions' => $restrictions
+									 ), array( /* WHERE */
+											   'cur_id' => $id
+											   ), 'Article::protect'
+							  );
+				
+				wfRunHooks('ArticleProtectComplete', $this, $wgUser, $limit == 'sysop', $reason, $moveonly);
+				
+				$log = new LogPage( 'protect' );
+				if ( $limit === '' ) {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
-			} else {
+				} else {
 					$log->addEntry( 'protect', $this->mTitle, $reason );
+				}
+				$wgOut->redirect( $this->mTitle->getFullURL() );
 			}
-			$wgOut->redirect( $this->mTitle->getFullURL() );
 			return;
 		} else {
 			$reason = htmlspecialchars( wfMsg( 'protectreason' ) );
