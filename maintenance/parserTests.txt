@@ -382,24 +382,14 @@ Internal links
 Plain link, capitalized: [[Main Page]]
 
 Plain link, uncapitalized: [[main Page]]
-!! result
-<p>Plain link, capitalized: <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
-</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title="Main Page">main Page</a>
-</p>
-!! end
-
-!! test
-Internal links 2
-!! disabled
-!!input
 
 Piped link: [[Main Page|The Main Page]]
 
 Broken link: [[Zigzagzogzagzig]]
 
-Link with prefix: XXX[[main Page]], XXX[[Main Page]]
+Link with prefix: xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
 
-Link with suffix: [[Main Page]]XXX
+Link with suffix: [[Main Page]]xxx, [[Main Page]]XXX
 
 Link with 3 brackets: [[[main page]]]
 
@@ -414,22 +404,37 @@ Link to category: [[:Category:MediaWiki User's Guide]]
 Link to image page: [[:Image:Ncwikicol.png]]
 
 Plain link to URL: [[http://www.example.org]]
+!! result
+<p>Plain link, capitalized: <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title="Main Page">main Page</a>
+</p><p>Piped link: <a href="/wiki/Main_Page" title="Main Page">The Main Page</a>
+</p><p>Broken link: <a href="/index.php?title=Zigzagzogzagzig&amp;action=edit" class="new" title="Zigzagzogzagzig">Zigzagzogzagzig</a>
+</p><p>Link with prefix: xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a>, xxx<a href="/wiki/Main_Page" title="Main Page">Main Page</a>, Xxx<a href="/wiki/Main_Page" title="Main Page">main Page</a> XXX<a href="/wiki/Main_Page" title="Main Page">main Page</a>, XXX<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p><p>Link with suffix: <a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX
+</p><p>Link with 3 brackets: [[[main page]]]
+</p><p>Piped link with 3 brackets: [[[main page|the main page]]]
+</p><p>Link to namespaces: <a href="/index.php?title=Talk:Parser_testing&amp;action=edit" class="new" title="Talk:Parser testing">Talk:Parser testing</a>, <a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">Meta:Disclaimers</a>
+</p><p>Piped link to namespace: <a href="/index.php?title=Meta:Disclaimers&amp;action=edit" class="new" title="Meta:Disclaimers">The disclaimers</a>
+</p><p>Link to category: <a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
+</p><p>Link to image page: <a href="/wiki/Image:Ncwikicol.png" title="Image:Ncwikicol.png">Image:Ncwikicol.png</a>
+</p><p>Plain link to URL: [<a href="http://www.example.org" class='external' title="http://www.example.org">[1]</a><span class='urlexpansion'> (<i>http://www.example.org</i>)</span>]
+</p>
 
+!! test
+Piped link to URL
+!! input
 Piped link to URL: [[http://www.example.org|an example URL]]
 !! result
-</p><p>Piped link: <a href="/wiki/Main_Page">The Main Page</a></p>
-<p>Broken link: <a href="/w/wiki.phtml?title=Zigzagzogzagzig&action=edit" class="new">Zigzagzogzagzig</a></p>
-<p>Link with prefix: xxx<a href="/wiki/Main_Page">main Page</a>, xxx<a href="/wiki/Main_Page">Main Page</a>, Xxx<a href=
-"/wiki/Main_Page">main Page</a> XXX<a href="/wiki/Main_Page">main Page</a>, XXX<a href="/wiki/Main_Page">Main Page</a></p>
-<p>Link with suffix: <a href="/wiki/Main_Page">Main Pagexxx</a>, <a href="/wiki/Main_Page">Main Page</a>XXX</p>
-<p>Link with 3 brackets: [[[main page]]]</p>
-<p>Piped link with 3 brackets: [[[main page|the main page]]]</p>
-<p>Link to namespaces: <a href="/w/wiki.phtml?title=Talk:Parser_testing&action=edit" class="new">Talk:Parser testing</a>,
-<a href="/w/wiki.phtml?title=Meta:Disclaimers&action=edit" class="new">Meta:Disclaimers</a></p>
-<p>Piped link to namespace: <a href="/w/wiki.phtml?title=Meta:Disclaimers&action=edit" class="new">The disclaimers</a></p>
-<p>Link to category: <a href="/wiki/Category:MediaWiki_User%27s_Guide">Category:MediaWiki User's Guide</a></p>
-<p>Link to image page: <a href="/wiki/Image:Ncwikicol.png">Image:Ncwikicol.png</a></p>
-<p>Plain link to URL: [<a href='http://www.example.org' class='external'>[1]</a> <span class=
-'urlexpansion'>(<i>http://www.example.org</i>)</span>]</p>
-<p>Piped link to URL: <a href="/w/wiki.phtml?title=Http://www.example.org&action=edit" class="new">an example URL</a></p>
+<p>Piped link to URL: <a href="/index.php?title=http://www.example.org&amp;action=edit" class="new">an example URL</a>
+</p>
 !! end
+
+!! test
+BUG 2: [[page|http://url/]] should link to page, not http://url/
+!! input
+[[Main Page|http://url/]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">http://url</a>
+</p>
+!! end
+
