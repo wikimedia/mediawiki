@@ -1821,6 +1821,7 @@ cl_sortkey" ;
 			}
 
 			# Run full parser on the included text
+			$text = $this->strip( $text, $this->mStripState );
 			$text = $this->removeHTMLtags( $text );
 			$text = $this->replaceVariables( $text, $assocArgs );
 
@@ -1845,7 +1846,8 @@ cl_sortkey" ;
 		$inputArgs = end( $this->mArgStack );
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
-			$text = $this->removeHTMLtags( $inputArgs[$arg] );
+			$text = $this->strip( $inputArgs[$arg], $this->mStripState );
+			$text = $this->removeHTMLtags( $text );
 			$text = $this->replaceVariables( $text, array() );
 		}
 
