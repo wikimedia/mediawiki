@@ -487,15 +487,15 @@ class Title {
 	# Can $wgUser edit this page?
 	function userCanEdit()
 	{
-
+		global $wgUser;
 		if ( -1 == $this->mNamespace ) { return false; }
+		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isSysop() ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == "_" ) { return false; }
 		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		global $wgUser;
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
 			and !$wgUser->isSysop()
