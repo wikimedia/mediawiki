@@ -18,7 +18,9 @@
   4  => $wgMetaNamespace,
   5  => $wgMetaNamespace . "_беседа",
   6  => "Картинка",
-  7  => "Картинка_беседа"
+  7  => "Картинка_беседа",
+  8 => "MediaWiki",
+  9 => "MediaWiki_беседа",
 );
 
 /* private */ $wgQuickbarSettingsBg = array(
