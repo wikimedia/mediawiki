@@ -932,6 +932,11 @@ class Database {
 		$this->query( 'COMMIT', $fname );
 		$this->mTrxLevel = 0;
 	}
+
+	# Return MW-style timestamp used for MySQL schema
+	function timestamp( $ts=0 ) {
+		return wfTimestamp(TS_MW,$ts);
+	}
 } 
 
 class DatabaseMysql extends Database {

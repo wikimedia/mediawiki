@@ -321,6 +321,11 @@ class DatabasePgsql extends Database {
 	function wasDeadlock() {
 		return false;
 	}
+
+        # Return DB-style timestamp used for MySQL schema
+        function timestamp( $ts=0 ) {
+                return wfTimestamp(TS_DB,$ts);
+        }
 }
 
 # Just an alias.
