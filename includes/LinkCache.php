@@ -1,5 +1,5 @@
 <?php
-# Cache for article titles and ids linked from one source
+# Cache for article titles (prefixed DB keys) and ids linked from one source
 
 # These are used in incrementalSetup()
 define ('LINKCACHE_GOOD', 0);
