@@ -25,7 +25,7 @@ class LoginForm {
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
 		$this->mRetype = $request->getText( 'wpRetype' );
-		$this->mReturnto = $request->getText( 'returnto' );
+		$this->mReturnto = $request->getVal( 'returnto' );
 		$this->mCookieCheck = $request->getVal( "wpCookieCheck" );
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
