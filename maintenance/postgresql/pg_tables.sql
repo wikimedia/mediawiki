@@ -134,7 +134,7 @@ CREATE TABLE ipblocks (
     ipb_reason text NOT NULL,
     ipb_timestamp timestamp without time zone NOT NULL,
     ipb_auto smallint NOT NULL,
-    ipb_expiry timestamp with time zone NOT NULL
+    ipb_expiry timestamp without time zone NOT NULL
 );
 CREATE INDEX ipb_address_idx ON ipblocks (ipb_address);
 CREATE INDEX ipb_user_idx ON ipblocks (ipb_user);
