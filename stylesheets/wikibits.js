@@ -376,6 +376,14 @@ function akeytt() {
                     ak = '';
                 }
                 a.title = ta[id][1]+ak;
+            } else {
+                if(ta[id][0].length > 0) {
+                    n.accessKey = ta[id][0];
+                    ak = ' ['+pref+ta[id][0]+']';
+                } else {
+                    ak = '';
+                }
+                n.title = ta[id][1]+ak;
             }
         }
     }
