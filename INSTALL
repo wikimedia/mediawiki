@@ -25,18 +25,10 @@ Don't forget to check the RELEASE-NOTES file...
 
 ********************** WARNING **************************
 
-The web-based install is still somewhat experimental. It
-doesn't yet support updating the format of an existing
-MediaWiki database, the maintenance scripts aren't available,
-and there may be all kinds of horrible bugs or security
-problems that haven't been worked out yet.
-
-HOWEVER it is much easier, safer, and more reliable than
-the old install.php, and does not require root access
-if you already have a database and user access to it.
-
 REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING
 TO INSTALL OR UPGRADE!!!
+
+********************** WARNING **************************
 
 ----
 In-place web install
