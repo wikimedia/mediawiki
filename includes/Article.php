@@ -286,14 +286,6 @@ class Article {
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgOut->addWikiText( $text );
 
-		# If the article we've just shown is in the "Image" namespace,
-		# follow it with the history list and link list for the image
-		# it describes.
-
-		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
-			$this->imageHistory();
-			$this->imageLinks();
-		}
 		$this->viewUpdates();
 		wfProfileOut();
 	}
@@ -494,72 +486,9 @@ class Article {
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL(), $r ) );
 	}
 
-	# If the page we've just displayed is in the "Image" namespace,
-	# we follow it with an upload history of the image and its usage.
-
-	function imageHistory()
-	{
-		global $wgUser, $wgOut, $wgLang;
-		$fname = "Article::imageHistory";
-
-		$sql = "SELECT img_size,img_description,img_user," .
-		  "img_user_text,img_timestamp FROM image WHERE " .
-		  "img_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, $fname );
-
-		if ( 0 == wfNumRows( $res ) ) { return; }
-
-		$sk = $wgUser->getSkin();
-		$s = $sk->beginImageHistoryList();		
-
-		$line = wfFetchObject( $res );
-		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
-		  $this->mTitle->getText(),  $line->img_user,
-		  $line->img_user_text, $line->img_size, $line->img_description );
-
-		$sql = "SELECT oi_size,oi_description,oi_user," .
-		  "oi_user_text,oi_timestamp,oi_archive_name FROM oldimage WHERE " .
-		  "oi_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
-		  "ORDER BY oi_timestamp DESC";
-		$res = wfQuery( $sql, $fname );
-
-		while ( $line = wfFetchObject( $res ) ) {
-			$s .= $sk->imageHistoryLine( false, $line->oi_timestamp,
-			  $line->oi_archive_name, $line->oi_user,
-			  $line->oi_user_text, $line->oi_size, $line->oi_description );
-		}
-		$s .= $sk->endImageHistoryList();
-		$wgOut->addHTML( $s );
-	}
-
-	function imageLinks()
-	{
-		global $wgUser, $wgOut;
-
-		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
-
-		$sql = "SELECT il_from FROM imagelinks WHERE il_to='" .
-		  wfStrencode( $this->mTitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, "Article::imageLinks" );
-
-		if ( 0 == wfNumRows( $res ) ) {
-			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "\n" );
-			return;
-		}
-		$wgOut->addHTML( "<p>" . wfMsg( "linkstoimage" ) .  "\n<ul>" );
-
-		$sk = $wgUser->getSkin();
-		while ( $s = wfFetchObject( $res ) ) {
-			$name = $s->il_from;
-			$link = $sk->makeKnownLink( $name, "" );
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
-		}
-		$wgOut->addHTML( "</ul>\n" );
-	}
-
 	# Add this page to my watchlist
 
-	function watch()
+	function watch( $add = true )
 	{
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDeferredUpdateList;
@@ -572,16 +501,21 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$wgUser->addWatch( $this->mTitle );
+		if( $add )
+			$wgUser->addWatch( $this->mTitle );
+		else
+			$wgUser->removeWatch( $this->mTitle );
 
-		$wgOut->setPagetitle( wfMsg( "addedwatch" ) );
+		$wgOut->setPagetitle( wfMsg( $add ? "addedwatch" : "removedwatch" ) );
 		$wgOut->setRobotpolicy( "noindex,follow" );
 
 		$sk = $wgUser->getSkin() ;
 		$link = $sk->makeKnownLink ( $this->mTitle->getPrefixedText() ) ;
 
-		$text = str_replace( "$1", $link ,
-		  wfMsg( "addedwatchtext" ) );
+		if($add)
+			$text = wfMsg( "addedwatchtext", $link );
+		else
+			$text = wfMsg( "removedwatchtext", $link );
 		$wgOut->addHTML( $text );
 
 		$up = new UserUpdate();
@@ -592,33 +526,7 @@ class Article {
 
 	function unwatch()
 	{
-		global $wgUser, $wgOut, $wgLang;
-		global $wgDeferredUpdateList;
-
-		if ( 0 == $wgUser->getID() ) {
-			$wgOut->errorpage( "watchnologin", "watchnologintext" );
-			return;
-		}
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-		$wgUser->removeWatch( $this->mTitle );
-
-		$wgOut->setPagetitle( wfMsg( "removedwatch" ) );
-		$wgOut->setRobotpolicy( "noindex,follow" );
-
-		$sk = $wgUser->getSkin() ;
-		$link = $sk->makeKnownLink ( $this->mTitle->getPrefixedText() ) ;
-
-		$text = str_replace( "$1", $link ,
-		  wfMsg( "removedwatchtext" ) );
-		$wgOut->addHTML( $text );
-
-		$up = new UserUpdate();
-		array_push( $wgDeferredUpdateList, $up );
-
-		$wgOut->returnToMain( false );
+		$this->watch( false );
 	}
 
 	# This shares a lot of issues (and code) with Recent Changes
@@ -690,7 +598,7 @@ class Article {
 		wfProfileOut();
 	}
 
-	function protect()
+	function protect( $limit = "sysop" )
 	{
 		global $wgUser, $wgOut;
 
@@ -708,7 +616,7 @@ class Article {
 			return;
 		}
         $sql = "UPDATE cur SET cur_touched='" . wfTimestampNow() . "'," .
-		  "cur_restrictions='sysop' WHERE cur_id={$id}";
+			"cur_restrictions='{$limit}' WHERE cur_id={$id}";
 		wfQuery( $sql, "Article::protect" );
 
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
@@ -716,26 +624,7 @@ class Article {
 
 	function unprotect()
 	{
-		global $wgUser, $wgOut;
-
-		if ( ! $wgUser->isSysop() ) {
-			$wgOut->sysopRequired();
-			return;
-		}
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-		$id = $this->mTitle->getArticleID();
-		if ( 0 == $id ) {
-			$wgOut->fatalEror( wfMsg( "badarticleerror" ) );
-			return;
-		}
-		$sql = "UPDATE cur SET cur_touched='" . wfTimestampNow() . "'," .
-		  "cur_restrictions='' WHERE cur_id={$id}";
-		wfQuery( $sql, "Article::unprotect" );
-
-		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
+		return $this->protect( "" );
 	}
 
 	function delete()
@@ -757,100 +646,82 @@ class Article {
 
 		# Better double-check that it hasn't been deleted yet!
 		$wgOut->setPagetitle( wfMsg( "confirmdelete" ) );
-		if ( $image ) {
-			if ( "" == trim( $image ) ) {
-				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
-				return;
-			}
-			$sub = str_replace( "$1", $image, wfMsg( "deletesub" ) );			
-		} else {
-
-			if ( ( "" == trim( $this->mTitle->getText() ) )
-			  or ( $this->mTitle->getArticleId() == 0 ) ) {
-				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
-				return;
-			}
-			$sub = str_replace( "$1", $this->mTitle->getPrefixedText(),
-			  wfMsg( "deletesub" ) );			
-
-			# determine whether this page has earlier revisions
-			# and insert a warning if it does
-			# we select the text because it might be useful below
-			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
-			$res=wfQuery($sql,$fname);
-			if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
-				$skin=$wgUser->getSkin();
-				$wgOut->addHTML("<B>".wfMsg("historywarning"));
-				$wgOut->addHTML( $skin->historyLink() ."</B><P>");
-			}
-
-			$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."'";
-			$res=wfQuery($sql,$fname);
-			if( ($s=wfFetchObject($res))) {
-
-				# if this is a mini-text, we can paste part of it into the deletion reason
-
-				#if this is empty, an earlier revision may contain "useful" text
-				if($s->cur_text!="") {
-					$text=$s->cur_text;
-				} else {
-					if($old) {
-						$text=$old->old_text;
-						$blanked=1;
-					}
-					
-				}
-				
-				$length=strlen($text);				
-				
-				# this should not happen, since it is not possible to store an empty, new
-				# page. Let's insert a standard text in case it does, though
-				if($length==0 && !$wpReason) { $wpReason=wfmsg("exblank");}
-				
-				
-				if($length < 500 && !$wpReason) {
-										
-					# comment field=255, let's grep the first 150 to have some user
-					# space left
-					$text=substr($text,0,150);
-					# let's strip out newlines and HTML tags
-					$text=preg_replace("/\"/","'",$text);
-					$text=preg_replace("/\</","&lt;",$text);
-					$text=preg_replace("/\>/","&gt;",$text);
-					$text=preg_replace("/[\n\r]/","",$text);
-					if(!$blanked) {
-						$wpReason=wfMsg("excontent"). " '".$text;
-					} else {
-						$wpReason=wfMsg("exbeforeblank") . " '".$text;
-					}
-					if($length>150) { $wpReason .= "..."; } # we've only pasted part of the text
-					$wpReason.="'"; 
-				}
-			}
-
-		}
-
-		# Likewise, deleting old images doesn't require confirmation
-		if ( $oldimage || 1 == $wpConfirm ) {
-			$this->doDelete();
+		if ( ( "" == trim( $this->mTitle->getText() ) )
+		  or ( $this->mTitle->getArticleId() == 0 ) ) {
+			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 			return;
 		}
 
-		$wgOut->setSubtitle( $sub );
+		# determine whether this page has earlier revisions
+		# and insert a warning if it does
+		# we select the text because it might be useful below
+		$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
+		$res=wfQuery($sql,$fname);
+		if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
+			$skin=$wgUser->getSkin();
+			$wgOut->addHTML("<B>".wfMsg("historywarning"));
+			$wgOut->addHTML( $skin->historyLink() ."</B><P>");
+		}
+
+		$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."'";
+		$res=wfQuery($sql,$fname);
+		if( ($s=wfFetchObject($res))) {
+
+			# if this is a mini-text, we can paste part of it into the deletion reason
+
+			#if this is empty, an earlier revision may contain "useful" text
+			if($s->cur_text!="") {
+				$text=$s->cur_text;
+			} else {
+				if($old) {
+					$text=$old->old_text;
+					$blanked=1;
+				}
+				
+			}
+			
+			$length=strlen($text);				
+			
+			# this should not happen, since it is not possible to store an empty, new
+			# page. Let's insert a standard text in case it does, though
+			if($length==0 && !$wpReason) { $wpReason=wfmsg("exblank");}
+			
+			
+			if($length < 500 && !$wpReason) {
+									
+				# comment field=255, let's grep the first 150 to have some user
+				# space left
+				$text=substr($text,0,150);
+				# let's strip out newlines and HTML tags
+				$text=preg_replace("/\"/","'",$text);
+				$text=preg_replace("/\</","&lt;",$text);
+				$text=preg_replace("/\>/","&gt;",$text);
+				$text=preg_replace("/[\n\r]/","",$text);
+				if(!$blanked) {
+					$wpReason=wfMsg("excontent"). " '".$text;
+				} else {
+					$wpReason=wfMsg("exbeforeblank") . " '".$text;
+				}
+				if($length>150) { $wpReason .= "..."; } # we've only pasted part of the text
+				$wpReason.="'"; 
+			}
+		}
+
+		return $this->confirmDelete();
+	}
+	
+	function confirmDelete( $par = "" )
+	{
+		global $wgOut;
+		
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
+		$wgOut->setSubtitle( wfMsg( "deletesub", $sub ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addWikiText( wfMsg( "confirmdeletetext" ) );
 
 		$t = $this->mTitle->getPrefixedURL();
-		$q = "action=delete";
 
-		if ( $image ) {
-			$q .= "&image={$image}";
-		} else if ( $oldimage ) {
-			$q .= "&oldimage={$oldimage}";
-		} else {
-			$q .= "&title={$t}";
-		}
-		$formaction = wfEscapeHTML( wfLocalUrl( "", $q ) );
+		$formaction = wfEscapeHTML( wfLocalUrl( $t, "action=delete" . $par ) );
 		$confirm = wfMsg( "confirm" );
 		$check = wfMsg( "confirmcheck" );
 		$delcom = wfMsg( "deletecomment" );
@@ -874,49 +745,12 @@ class Article {
 	function doDelete()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $image, $oldimage, $wpReason;
+		global $wpReason;
 		$fname = "Article::doDelete";
 
-		if ( $image ) {
-			$dest = wfImageDir( $image );
-			$archive = wfImageDir( $image );
-			if ( ! unlink( "{$dest}/{$image}" ) ) {
-				$wgOut->fileDeleteError( "{$dest}/{$image}" );
-				return;
-			}
-			$sql = "DELETE FROM image WHERE img_name='" .
-			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, $fname );
+		$this->doDeleteArticle( $this->mTitle );
+		$deleted = $this->mTitle->getPrefixedText();
 
-			$sql = "SELECT oi_archive_name FROM oldimage WHERE oi_name='" .
-			  wfStrencode( $image ) . "'";
-			$res = wfQuery( $sql, $fname );
-
-			while ( $s = wfFetchObject( $res ) ) {
-				$this->doDeleteOldImage( $s->oi_archive_name );
-			}	
-			$sql = "DELETE FROM oldimage WHERE oi_name='" .
-			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, $fname );
-
-			# Image itself is now gone, and database is cleaned.
-			# Now we remove the image description page.
-
-			$nt = Title::newFromText( $wgLang->getNsText( Namespace::getImage() ) . ":" . $image );
-			$this->doDeleteArticle( $nt );
-
-			$deleted = $image;
-		} else if ( $oldimage ) {
-			$this->doDeleteOldImage( $oldimage );
-			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
-			  wfStrencode( $oldimage ) . "'";
-			wfQuery( $sql, $fname );
-
-			$deleted = $oldimage;
-		} else {
-			$this->doDeleteArticle( $this->mTitle );
-			$deleted = $this->mTitle->getPrefixedText();
-		}
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
@@ -930,17 +764,6 @@ class Article {
 
 		$wgOut->addHTML( "<p>" . $text );
 		$wgOut->returnToMain( false );
-	}
-
-	function doDeleteOldImage( $oldimage )
-	{
-		global $wgOut;
-
-		$name = substr( $oldimage, 15 );
-		$archive = wfImageArchiveDir( $name );
-		if ( ! unlink( "{$archive}/{$oldimage}" ) ) {
-			$wgOut->fileDeleteError( "{$archive}/{$oldimage}" );
-		}
 	}
 
 	function doDeleteArticle( $title )
@@ -1038,48 +861,6 @@ class Article {
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
 		$this->mTitle->mArticleID = 0;
-	}
-
-	function revert()
-	{
-		global $wgOut;
-		global $oldimage;
-
-		if ( strlen( $oldimage ) < 16 ) {
-			$wgOut->unexpectedValueError( "oldimage", $oldimage );
-			return;
-		}
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-		$name = substr( $oldimage, 15 );
-
-		$dest = wfImageDir( $name );
-		$archive = wfImageArchiveDir( $name );
-		$curfile = "{$dest}/{$name}";
-
-		if ( ! is_file( $curfile ) ) {
-			$wgOut->fileNotFoundError( $curfile );
-			return;
-		}
-		$oldver = wfTimestampNow() . "!{$name}";
-		$size = wfGetSQL( "oldimage", "oi_size", "oi_archive_name='" .
-		  wfStrencode( $oldimage ) . "'" );
-
-		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
-			$wgOut->fileRenameError( $curfile, "${archive}/{$oldver}" );
-			return;
-		}
-		if ( ! copy( "{$archive}/{$oldimage}", $curfile ) ) {
-			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
-		}
-		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
-
-		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->addHTML( wfMsg( "imagereverted" ) );
-		$wgOut->returnToMain( false );
 	}
 
 	function rollback()
@@ -1274,16 +1055,6 @@ class Article {
 		} else {
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
-		# Replace local image links with new [[image:]] style
-
-		$text = preg_replace(
-		  "/(^|[^[])http:\/\/(www.|)wikipedia.com\/upload\/" .
-		  "([a-zA-Z0-9_:.~\%\-]+)\.(png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF)/",
-		  "\\1[[image:\\3.\\4]]", $text );
-		$text = preg_replace(
-		  "/(^|[^[])http:\/\/(www.|)wikipedia.com\/images\/uploads\/" .
-		  "([a-zA-Z0-9_:.~\%\-]+)\.(png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF)/",
-		  "\\1[[image:\\3.\\4]]", $text );
 
 		return $text;
 	}
