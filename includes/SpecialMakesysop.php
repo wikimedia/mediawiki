@@ -70,9 +70,19 @@ class MakesysopForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wgDBname, $wgMemc;
-		$sqname = addslashes($wpMakesysopUser);
-		$res = wfQuery("SELECT user_id, user_rights FROM user WHERE user_name = '{$sqname}'", DB_WRITE);
-		if( ! $sqname || wfNumRows( $res ) == 0 ){
+		$parts = explode( "@", $wpMakesysopUser );
+		if( count( $parts ) == 2){
+			$username = addslashes( $parts[0] );
+			$usertable = $parts[1] . "wiki.user";
+		} else {
+			$username = addslashes( $wpMakesysopUser );
+			$usertable = "user";
+		}
+		$prev = wfIgnoreSQLErrors( TRUE );
+		$res = wfQuery("SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'", DB_WRITE);
+		wfIgnoreSQLErrors( $prev );
+
+		if( wfLastErrno() || ! $username || wfNumRows( $res ) == 0 ){
 			$this->showFail();
 			return;
 		}
@@ -90,7 +100,7 @@ class MakesysopForm {
 			$newrights = "sysop";
 		}
 		
-		$sql = "UPDATE user SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
+		$sql = "UPDATE $usertable SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
 		wfQuery($sql, DB_WRITE);
 		$wgMemc->delete( "$wgDBname:user:id:$id" );
 
