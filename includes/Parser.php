@@ -722,7 +722,8 @@ class Parser
 		if ( isset( $wgUseGeoMode ) && $wgUseGeoMode ) {
 			$text = $this->magicGEO( $text );
 		}
-		$text = $this->magicRFC( $text );
+		$text = $this->magicRFC( $text, 'RFC ', 'rfcurl' );
+		$text = $this->magicRFC( $text, 'PMID ', 'pubmedurl' );
 		return $text;
 	}
 
@@ -731,11 +732,11 @@ class Parser
 	 *
 	 * @access private
 	 */
-	function doExponent ( $text ) {
+	function doExponent( $text ) {
 		$fname = 'Parser::doExponent';
-		wfProfileIn( $fname);
+		wfProfileIn( $fname );
 		$text = preg_replace('/\^\^(.*)\^\^/','<small><sup>\\1</sup></small>', $text);
-		wfProfileOut( $fname);
+		wfProfileOut( $fname );
 		return $text;
 	}
 
@@ -779,8 +780,8 @@ class Parser
 	 * @access private
 	 */
 	function doQuotes( $text ) {
-		$arr = preg_split ("/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE);
-		if (count ($arr) == 1)
+		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		if ( count( $arr ) == 1 )
 			return $text;
 		else
 		{
@@ -790,29 +791,29 @@ class Parser
 			$i = 0;
 			$numbold = 0;
 			$numitalics = 0;
-			foreach ($arr as $r)
+			foreach ( $arr as $r )
 			{
-				if (($i % 2) == 1)
+				if ( ( $i % 2 ) == 1 )
 				{
 					# If there are ever four apostrophes, assume the first is supposed to
 					# be text, and the remaining three constitute mark-up for bold text.
-					if (strlen ($arr[$i]) == 4)
+					if ( strlen( $arr[$i] ) == 4 )
 					{
 						$arr[$i-1] .= "'";
 						$arr[$i] = "'''";
 					}
 					# If there are more than 5 apostrophes in a row, assume they're all
 					# text except for the last 5.
-					else if (strlen ($arr[$i]) > 5)
+					else if ( strlen( $arr[$i] ) > 5 )
 					{
-						$arr[$i-1] .= str_repeat ("'", strlen ($arr[$i]) - 5);
+						$arr[$i-1] .= str_repeat( "'", strlen( $arr[$i] ) - 5 );
 						$arr[$i] = "'''''";
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
-					if (strlen ($arr[$i]) == 2) $numitalics++;  else
-					if (strlen ($arr[$i]) == 3) $numbold++;     else
-					if (strlen ($arr[$i]) == 5) { $numitalics++; $numbold++; }
+					if ( strlen( $arr[$i] ) == 2 ) $numitalics++;  else
+					if ( strlen( $arr[$i] ) == 3 ) $numbold++;     else
+					if ( strlen( $arr[$i] ) == 5 ) { $numitalics++; $numbold++; }
 				}
 				$i++;
 			}
@@ -821,15 +822,15 @@ class Parser
 			# that one of the bold ones was meant to be an apostrophe followed
 			# by italics. Which one we cannot know for certain, but it is more
 			# likely to be one that has a single-letter word before it.
-			if (($numbold % 2 == 1) && ($numitalics % 2 == 1))
+			if ( ( $numbold % 2 == 1 ) && ( $numitalics % 2 == 1 ) )
 			{
 				$i = 0;
 				$firstsingleletterword = -1;
 				$firstmultiletterword = -1;
 				$firstspace = -1;
-				foreach ($arr as $r)
+				foreach ( $arr as $r )
 				{
-					if (($i % 2 == 1) and (strlen ($r) == 3))
+					if ( ( $i % 2 == 1 ) and ( strlen( $r ) == 3 ) )
 					{
 						$x1 = substr ($arr[$i-1], -1);
 						$x2 = substr ($arr[$i-1], -2, 1);
@@ -2632,30 +2633,34 @@ class Parser
 	 * @access private
 	 * @param string $text text to be processed
 	 */
-	function magicRFC( $text ) {
+	function magicRFC( $text, $keyword='RFC ', $urlmsg='rfcurl'  ) {
 		global $wgLang;
 		
 		$valid = '0123456789';
 		$internal = false;
 
-		$a = split( 'RFC ', ' '.$text );
-		if ( count ( $a ) < 2 ) return $text;
+		$a = split( $keyword, ' '.$text );
+		if ( count ( $a ) < 2 ) {
+			return $text;
+		}
 		$text = substr( array_shift( $a ), 1);
 		
-		/* Check if RFC keyword is preceed by [[.
+		/* Check if keyword is preceed by [[.
 		 * This test is made here cause of the array_shift above
 		 * that prevent the test to be done in the foreach.
 		 */
-		if(substr($text, -2) == '[[') { $internal = true; }
+		if ( substr( $text, -2 ) == '[[' ) {
+			$internal = true;
+		}
 
 		foreach ( $a as $x ) {
 			/* token might be empty if we have RFC RFC 1234 */
-			if($x=='') {
-				$text.='RFC ';
+			if ( $x=='' ) {
+				$text.=$keyword;
 				continue;
 				}
 
-			$rfc = $blank = '' ;
+			$id = $blank = '' ;
 
 			/** remove and save whitespaces in $blank */
 			while ( $x{0} == ' ' ) {
@@ -2663,29 +2668,29 @@ class Parser
 				$x = substr( $x, 1 );
 			}
 
-			/** remove and save the rfc number in $rfc */
+			/** remove and save the rfc number in $id */
 			while ( strstr( $valid, $x{0} ) != false ) {
-				$rfc .= $x{0};
+				$id .= $x{0};
 				$x = substr( $x, 1 );
 			}
 
-			if ( $rfc == '') {
+			if ( $id == '' ) {
 				/* call back stripped spaces*/
-				$text .= "RFC $blank$x";
-			} elseif( $internal) {
+				$text .= $keyword.$blank.$x;
+			} elseif( $internal ) {
 				/* normal link */
-				$text .= "RFC $rfc$x";
+				$text .= $keyword.$id.$x;
 			} else {
 				/* build the external link*/
-				$url = wfmsg( 'rfcurl' );
-				$url = str_replace( '$1', $rfc, $url);
+				$url = wfmsg( $urlmsg );
+				$url = str_replace( '$1', $id, $url);
 				$sk =& $this->mOptions->getSkin();
-				$la = $sk->getExternalLinkAttributes( $url, 'RFC '.$rfc );
-				$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
+				$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
+				$text .= "<a href='{$url}'{$la}>{$keyword}{$id}</a>{$x}";
 			}
 			
 			/* Check if the next RFC keyword is preceed by [[ */
-			$internal = (substr($x,-2) == '[[');
+			$internal = ( substr($x,-2) == '[[' );
 		}
 		return $text;
 	}
@@ -2715,7 +2720,7 @@ class Parser
 		$pairs = array(
 			"\r\n" => "\n",
 			);
-		$text = str_replace(array_keys($pairs), array_values($pairs), $text);
+		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
 		$text = $this->strip( $text, $stripState, false );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->unstrip( $text, $stripState );
@@ -2739,15 +2744,18 @@ class Parser
 		$n = $user->getName();
 		$k = $user->getOption( 'nickname' );
 		if ( '' == $k ) { $k = $n; }
-		if(isset($wgLocaltimezone)) {
-			$oldtz = getenv('TZ'); putenv('TZ='.$wgLocaltimezone);
+		if ( isset( $wgLocaltimezone ) ) {
+			$oldtz = getenv( 'TZ' );
+			putenv( 'TZ='.$wgLocaltimezone );
 		}
 		/* Note: this is an ugly timezone hack for the European wikis */
 		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false ) .
 		  ' (' . date( 'T' ) . ')';
-		if(isset($wgLocaltimezone)) putenv('TZ='.$oldtzs);
+		if ( isset( $wgLocaltimezone ) ) {
+			putenv( 'TZ='.$oldtzs );
+		}
 
-		$text = preg_replace( '/~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~~~/', $d, $text );
 		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
 		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
 
@@ -2985,13 +2993,14 @@ class Parser
 			$text = preg_replace_callback(
 				'/<!--IWLINK (.*?)-->/',
 				"outputReplaceMatches",
-				$text);
+				$text );
 			wfProfileOut( $fname.'-interwiki' );
 		}
 
 		wfProfileOut( $fname );
 		return $colours;
 	}
+
 	/**
 	 * Renders an image gallery from a text with one line per image.
 	 * text labels may be given by using |-style alternative text. E.g.
@@ -3007,7 +3016,10 @@ class Parser
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
 		$lines = explode( "\n", $text );
+
 		foreach ( $lines as $line ) {
+			# match lines like these:
+			# Image:someimage.jpg|This is some image
 			preg_match( "/^([^|]+)(\\|(.*))?$/", $line, $matches );
 			# Skip empty lines
 			if ( count( $matches ) == 0 ) {
@@ -3045,16 +3057,16 @@ class ParserOutput
 		$this->mCacheTime = '';
 	}
 
-	function getText() { return $this->mText; }
-	function getLanguageLinks() { return $this->mLanguageLinks; }
-	function getCategoryLinks() { return $this->mCategoryLinks; }
-	function getCacheTime() { return $this->mCacheTime; }
-	function containsOldMagic() { return $this->mContainsOldMagic; }
-	function setText( $text ) { return wfSetVar( $this->mText, $text ); }
-	function setLanguageLinks( $ll ) { return wfSetVar( $this->mLanguageLinks, $ll ); }
-	function setCategoryLinks( $cl ) { return wfSetVar( $this->mCategoryLinks, $cl ); }
+	function getText()                   { return $this->mText; }
+	function getLanguageLinks()          { return $this->mLanguageLinks; }
+	function getCategoryLinks()          { return $this->mCategoryLinks; }
+	function getCacheTime()              { return $this->mCacheTime; }
+	function containsOldMagic()          { return $this->mContainsOldMagic; }
+	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
+	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
+	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategoryLinks, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
-	function setCacheTime( $t ) { return wfSetVar( $this->mCacheTime, $t ); }
+	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
 	function merge( $other ) {
 		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
@@ -3148,7 +3160,7 @@ class ParserOptions
  * Callback function used by Parser::replaceLinkHolders()
  * to substitute link placeholders.
  */
-function &outputReplaceMatches($matches) {
+function &outputReplaceMatches( $matches ) {
 	global $outputReplace;
 	return $outputReplace[$matches[1]];
 }

@@ -1065,7 +1065,8 @@ about books you are looking for.
 {{SITENAME}} is not affiliated with any of these businesses, and
 this list should not be construed as an endorsement.",
 'isbn'	=> 'ISBN',
-'rfcurl' =>  "http://www.faqs.org/rfcs/rfc$1.html",
+'rfcurl' =>  'http://www.faqs.org/rfcs/rfc$1.html',
+'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
 'log'		=> 'Logs',
