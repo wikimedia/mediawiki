@@ -968,7 +968,15 @@ $wgNoFollowLinks = true;
  */
 $wgDisabledActions = array();
 
+
+/**
+ * Use http.dnsbl.sorbs.net to check for open proxies
+ */
+$wgEnableSorbs = true;
+
+
 } else {
 	die("MEDIAWIKI not defined, this is not a valid entry point\n");
 }
+
 ?>

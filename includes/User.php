@@ -229,7 +229,7 @@ class User {
 	 * @access private
 	 */
 	function getBlockedStatus() {
-		global $wgIP, $wgBlockCache, $wgProxyList;
+		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 
@@ -254,15 +254,55 @@ class User {
 			}
 		}
 
-		# Proxy blocking
-		if ( !$this->mBlockedby ) {
-			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
-				$this->mBlockedby = wfMsg( 'proxyblocker' );
-				$this->mBlockreason = wfMsg( 'proxyblockreason' );
+		if ( !$this->isSysop() ) {
+			# Proxy blocking
+			if ( !$this->mBlockedby ) {
+				if ( array_key_exists( $wgIP, $wgProxyList ) ) {
+					$this->mBlockedby = wfMsg( 'proxyblocker' );
+					$this->mBlockreason = wfMsg( 'proxyblockreason' );
+				}
+			}
+
+			# DNSBL
+			if ( !$this->mBlockedby && $wgEnableSorbs ) {
+				if ( $this->inSorbsBlacklist( $wgIP ) ) {
+					$this->mBlockedBy = wfMsg( 'sorbs' );
+					$this->mBlockereason = wfMsg( 'sorbsreason' );
+				}
 			}
 		}
+			
 	}
 
+	function inSorbsBlacklist( $ip ) {
+		$fname = 'User::inSorbsBlacklist';
+		wfProfileIn( $fname );
+		
+		$found = false;
+		$host = '';
+		
+		if ( preg_match( '/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m ) ) {
+			# Make hostname
+			for ( $i=4; $i>=1; $i-- ) {
+				$host .= $m[$i] . '.';
+			}
+			$host .= 'http.dnsbl.sorbs.net.';
+
+			# Send query
+			$ipList = gethostbynamel( $host );
+			
+			if ( $ipList ) {
+				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy!\n" );
+				$found = true;
+			} else {
+				wfDebug( "Requested $host, not found.\n" );
+			}
+		}
+
+		wfProfileOut( $fname );
+		return $found;
+	}
+	
 	/**
 	 * Check if user is blocked
 	 * @return bool True if blocked, false otherwise
