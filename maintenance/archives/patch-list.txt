@@ -138,6 +138,20 @@ plain interwiki.sql to load up the default set of mappings.
 * 2003-09: Ipblocks auto-expiry update
 patch-ipblocks.sql
 
+* Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+ 
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
+
+* 2003-11: Indexes
+Fixes up indexes on links, brokenlinks, recentchanges, watchlist,
+and archive tables to boost speed.
+
+Run patch-indexes.sql.
+
 * 2003-11: linkscc table creation
 patch-linkscc.sql
 
