@@ -414,19 +414,21 @@ function wfMsgNoDBForContent( $key ) {
 	return wfMsgReal( $key, $args, false, true );
 }
 
+
 /**
  * Really get a message
  */
 function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
-	global $wgReplacementKeys;
+	global $wgReplacementKeys, $wgParser, $wgMsgParserOptions;
+
     if($forContent) {
-        global $wgContMessageCache, $wgContLang;
-        $cache = &$wgContMessageCache;
+        global $wgMessageCache, $wgContLang;
+        $cache = &$wgMessageCache;
         $lang = &$wgContLang;
     }
     else {
-        global $wgMessageCache, $wgLang;
-        $cache = &$wgMessageCache;
+        global $wgLang;
+        $cache = false;
         $lang = &$wgLang;
     }
 
@@ -436,6 +438,9 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		$message = $cache->get( $key, $useDB );
 	} elseif (is_object($lang)) {
 		$message = $lang->getMessage( $key );
+		if(strstr($message, '{{' ) !== false) {
+			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
+		}
 	} else {
 		wfDebug( "No language object when getting $key\n" );
 		$message = "&lt;$key&gt;";
