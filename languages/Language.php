@@ -1274,6 +1274,7 @@ this function sparingly.",
 "makesysoptitle"	=> "Make a user into a sysop",
 "makesysoptext"		=> "This form is used by bureaucrats to turn ordinary users into administrators. 
 Type the name of the user in the box and press the button to make the user an administrator",
+"makesysopname"		=> "Name of the user:",
 "makesysopsubmit"	=> "Make this user into a sysop",
 "makesysopok"		=> "<b>User '$1' is now a sysop</b>",
 "makesysopfail"		=> "<b>User '$1' could not be made into a sysop. (Did you enter the name correctly?)</b>",
