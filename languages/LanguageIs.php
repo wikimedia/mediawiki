@@ -1197,6 +1197,13 @@ class LanguageIs extends LanguageUtf8 {
 		global $wgMagicWordsIs;
 		return $wgMagicWordsIs;
 	}
+
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
+		$date = (0 + substr( $ts, 6, 2 )) . '. ' . $this->getMonthName( substr( $ts, 4, 2 ) );
+		return $date;
+	}
+
 }
 
 ?>
