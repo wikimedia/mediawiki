@@ -7,8 +7,9 @@ class OutputPage {
 	var $mHeaders, $mCookies, $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
-	var $mSubtitle, $mRedirect, $mHeadtext;
+	var $mSubtitle, $mRedirect;
 	var $mLastModified, $mCategoryLinks;
+	var $mScripts;
 
 	var $mSuppressQuickbar;
 	var $mOnloadHandler;
@@ -35,6 +36,7 @@ class OutputPage {
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
 		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
 		$this->mSquidMaxage = 0;
+		$this->mScripts = "";
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
@@ -44,6 +46,8 @@ class OutputPage {
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
+	function addScript( $script ) { $this->mScripts .= $script; }
+	function getScript() { return $this->mScripts; }
 	
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
@@ -186,7 +190,6 @@ class OutputPage {
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
 
 	function addHTML( $text ) { $this->mBodytext .= $text; }
-	function addHeadtext( $text ) { $this->mHeadtext .= $text; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
 	function setParserOptions( $options )
@@ -664,6 +667,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		$ret .= $sk->getHeadScripts();
+		$ret .= $this->mScripts;
 		$ret .= $sk->getUserStyles();
 
 		$ret .= "</head>\n";
