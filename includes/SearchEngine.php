@@ -478,7 +478,7 @@ class SearchEngine {
 		}
 
 		# No match, generate an edit URL
-		$t = Title::newFromText( $this->mUsertext );
+		$t = Title::newFromText( $wgRequest->getText( "search" ) );
 		
 		# If the feature is enabled, go straight to the edit page
 		if ( $wgGoToEdit ) {
