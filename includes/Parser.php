@@ -553,7 +553,6 @@ $t[] = "</table>" ;
 		global $wgTitle, $wgUser, $wgLang;
 		global $wgLinkCache, $wgInterwikiMagic, $wgUseCategoryMagic;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		global $wgUseLinkPrefixCombination;
 		wfProfileIn( $fname = "OutputPage::replaceInternalLinks" );
 
 		wfProfileIn( "$fname-setup" );
@@ -591,7 +590,7 @@ $t[] = "</table>" ;
 
 		foreach ( $a as $line ) {
 			$prefix = $new_prefix;
-			if ( $wgUseLinkPrefixCombination && preg_match( $e2, $line, $m ) ) {
+			if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $line, $m ) ) {
 				$new_prefix = $m[2];
 				$line = $m[1];
 			} else {
