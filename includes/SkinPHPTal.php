@@ -64,6 +64,9 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
+			global $wgDisableCounters;
+			
+			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 			$this->thispage = $wgTitle->getPrefixedDbKey();
 			$this->loggedin = $wgUser->getID() != 0;
@@ -120,9 +123,18 @@
 			$tpl->setRef( "newtalk", &$ntl );
 			$tpl->setRef( "skin", &$this);
 			$tpl->set( "logo", $this->logoText() );
-			$tpl->set( "pagestats", $this->pageStats() );
-			$tpl->set( "copyright", $this->getCopyrightIcon() );
-			$tpl->set( "poweredby", $this->getPoweredBy() );
+			if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 0 != $wgArticle->getID() ) {
+				if ( !$wgDisableCounters ) {
+					$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
+					if ( $viewcount ) {
+						$tpl->set('viewcount', wfMsg( "viewcount", $viewcount ));
+					}
+				}
+				$tpl->set('lastmod', $this->lastModified());
+			        $tpl->set('copyright',$this->getCopyright());
+			}
+			$tpl->set( "copyrightico", $this->getCopyrightIcon() );
+			$tpl->set( "poweredbyico", $this->getPoweredBy() );
 			$tpl->set( "disclaimer", $this->disclaimerLink() );
 			$tpl->set( "about", $this->aboutLink() );
 
