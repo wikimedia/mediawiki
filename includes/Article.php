@@ -1080,7 +1080,14 @@ class Article {
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$messageCache = $wgMemc->get( "$wgDBname:messages" );
-				if (!$messageCache) {
+
+				# If another thread is loading, poll
+				for ( $i=0; $i<70 && $messageCache == 'loading'; $i++ ) {
+					sleep(1);
+					$messageCache = $wgMemc->get( "$wgDBname:messages" );
+				}
+				
+				if ( !$messageCache || $messageCache == 'loading' ) {
 					$messageCache = wfLoadAllMessages();
 				}
 				$messageCache[$this->mTitle->getDBkey()] = $text;
@@ -1172,6 +1179,14 @@ class Article {
 		$mw =& MagicWord::get( MAG_SUBST );
 		$text = $mw->substituteCallback( $text, "wfReplaceSubstVar" );
 
+/* Experimental:
+		# Trim trailing whitespace
+		# MAG_END (__END__) tag allows for trailing 
+		# whitespace to be deliberately included
+		$text = rtrim( $text );
+		$mw =& MagicWord::get( MAG_END );
+		$mw->matchAndRemove( $text );
+*/
 		return $text;
 	}
 
