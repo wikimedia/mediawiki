@@ -549,6 +549,19 @@ $wgUseExternalDiffEngine = false;
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
 
+# Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
+# you can create new ones here, for example, to import Help files in other languages.
+# PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
+# If you rename it, then you can access them through the new namespace name.
+#
+# Custom namespaces should start at 100.
+#$wgExtraNamespaces= 
+#	array(100 => "Hilfe", 
+#	      101 => "Hilfe_Diskussion",
+#	      102 =>"Aide", 
+#	      103 =>"Discussion_Aide"
+#	      );
+
 } else {
 	die();
 }
