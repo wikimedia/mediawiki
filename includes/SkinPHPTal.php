@@ -601,5 +601,12 @@
 			$this->skinname = "monobook";
 		}
 	}
+
+	class SkinMySkin extends SkinPHPTal {
+		function initPage( &$out ) {
+			SkinPHPTal::initPage( $out );
+			$this->skinname = "myskin";
+		}
+	}
 	
 ?>

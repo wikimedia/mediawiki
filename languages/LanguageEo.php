@@ -44,7 +44,8 @@ $wgEditEncoding		= "x";
 	'cologneblue' => "Kolonja Bluo",
 	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
-	'monobook' => "Librejo"
+	'monobook' => "Librejo",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesEo = array(

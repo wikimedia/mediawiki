@@ -19,6 +19,7 @@ if( $wgUsePHPTal ) {
     #$wgValidSkinNames['davinci'] = "DaVinci";
     #$wgValidSkinNames['mono'] = "Mono";
     $wgValidSkinNames['monobook'] = "MonoBook";
+    $wgValidSkinNames['myskin'] = "MySkin";
     #$wgValidSkinNames['monobookminimal'] = "MonoBookMinimal";
 }
 
