@@ -259,16 +259,6 @@ $wgDBservers		= false;
 /** How long to wait for a slave to catch up to the master */ 
 $wgMasterWaitTimeout = 10;
 
-# Sysop SQL queries
-#   The sql user shouldn't have too many rights other the database, restrict
-#   it to SELECT only on 'page', 'revision' and 'text' tables for example
-#
-/** Dangerous if not configured properly. */
-$wgAllowSysopQueries = false;
-$wgDBsqluser = 'sqluser';
-$wgDBsqlpassword = 'sqlpass';
-$wgDBpassword = 'userpass';
-$wgSqlLogFile = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 /** File to log MySQL errors to */
 $wgDBerrorLog		= false;
 

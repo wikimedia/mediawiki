@@ -1065,16 +1065,6 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 
-## To allow SQL queries through the wiki's Special:Askaql page,
-## uncomment the next lines. THIS IS VERY INSECURE. If you want
-## to allow semipublic read-only SQL access for your sysops,
-## you should define a MySQL user with limited privileges.
-## See MySQL docs: http://www.mysql.com/doc/en/GRANT.html
-#
-# \$wgAllowSysopQueries = true;
-# \$wgDBsqluser        = \"sqluser\";
-# \$wgDBsqlpassword    = \"sqlpass\";
-
 # If you're on MySQL 3.x, this next line must be FALSE:
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 

@@ -58,7 +58,7 @@ from language files [av] */
  * @param $sk skin object ???
  */
 function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
-	global $wgLang, $wgOut, $wgAllowSysopQueries;
+	global $wgLang, $wgOut;
 
 	$wgOut->addHTML( '<h2>' . wfMsg( $heading ) . "</h2>\n<ul>" );
 	foreach ( $pages as $name => $page ) {
