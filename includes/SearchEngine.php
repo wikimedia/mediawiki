@@ -296,6 +296,8 @@ class SearchEngine {
 			# Use cleaner boolean search if available
 			return $this->parseQuery4();
 		}
+		# on non mysql4 database: get list of words we don't want to search for
+		require_once( "FulltextStoplist.php" );
 
 		$lc = SearchEngine::legalSearchChars() . "()";
 		$q = preg_replace( "/([()])/", " \\1 ", $this->mUsertext );
