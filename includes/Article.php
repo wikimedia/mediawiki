@@ -121,8 +121,21 @@ class Article {
 
 		if ( $this->mContentLoaded ) return;
 		$fname = "Article::loadContent";
-		$success = true;
 		
+		# Pre-fill content with error message so that if something 	 
+		# fails we'll have something telling us what we intended. 	 
+
+		$t = $this->mTitle->getPrefixedText(); 	 
+		if ( isset( $oldid ) ) { 	 
+			$oldid = IntVal( $oldid ); 	 
+			$t .= ",oldid={$oldid}"; 	 
+		} 	 
+		if ( isset( $redirect ) ) { 	 
+			$redirect = ($redirect == "no") ? "no" : "yes"; 	 
+			$t .= ",redirect={$redirect}"; 	 
+		} 	 
+		$this->mContent = wfMsg( "missingarticle", $t );
+	
 		if ( ! $oldid ) {	# Retrieve current version
 			$id = $this->getID();
 			if ( 0 == $id ) return;
@@ -194,22 +207,6 @@ class Article {
 			$this->mTimestamp = $s->old_timestamp;
 			wfFreeResult( $res );
 		}
-
-		# Return error message :P
-		# Horrible, confusing UI and data. I think this should return false on error -- TS
-		if ( !$success ) {
-			$t = $this->mTitle->getPrefixedText();
-			if ( isset( $oldid ) ) {
-				$oldid = IntVal( $oldid );
-				$t .= ",oldid={$oldid}";
-			}
-			if ( isset( $redirect ) ) {
-				$redirect = ($redirect == "no") ? "no" : "yes";
-				$t .= ",redirect={$redirect}";
-			}
-			$this->mContent = wfMsg( "missingarticle", $t );
-		}
-
 		$this->mContentLoaded = true;
 	}
 
