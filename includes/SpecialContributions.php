@@ -34,6 +34,12 @@ function wfSpecialContributions( $par = '' ) {
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 	$userCond = "";
+	$namespace = $wgRequest->getVal( 'namespace', '' );
+	if( $namespace != '' ) {
+		$namespace = IntVal( $namespace );
+	} else {
+		$namespace = NULL;
+	}
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
@@ -71,12 +77,17 @@ function wfSpecialContributions( $par = '' ) {
 		$omq = 'AND old_minor_edit=0';
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 	  	  WfMsg( 'show' ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&offset={$offset}&limit={$limit}&hideminor=0" );
+		  "&offset={$offset}&limit={$limit}&hideminor=0&namespace={$namespace}" );
 	} else {
 		$cmq = $omq = '';
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  	  WfMsg( 'hide' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&offset={$offset}&limit={$limit}&hideminor=1" );
+		  "&offset={$offset}&limit={$limit}&hideminor=1&namespace={$namespace}" );
+	}
+	
+	if( !is_null($namespace) ) {
+		$cmq .= " AND cur_namespace = {$namespace}";
+		$omq .= " AND old_namespace = {$namespace}";
 	}
 
 	extract( $dbr->tableNames( 'old', 'cur' ) );
@@ -102,12 +113,14 @@ function wfSpecialContributions( $par = '' ) {
 	$nCur = $dbr->numRows( $res1 );
 	$nOld = $dbr->numRows( $res2 );
 
+	$wgOut->addHTML( namespaceForm( $target, $hideminor, $namespace ) );
+
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit,
 	  $wgContLang->specialpage( 'Contributions' ),
-	  "hideminor={$hideminor}&target=" . wfUrlEncode( $target ),
+	  "hideminor={$hideminor}&namespace={$namespace}&target=" . wfUrlEncode( $target ),
 	  ($nCur + $nOld) <= $offlimit);
 
         $shm = wfMsg( 'showhideminor', $mlink );
@@ -255,5 +268,44 @@ function ucDaysLink( $lim, $d ) {
 	$s = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 	  "{$d}", "target={$target}&days={$d}&limit={$lim}" );
 	return $s;
+}
+
+/**
+ * Generates a form used to restrict display of contributions
+ * to a specific namespace
+ *
+ * @return	none
+ * @param	string	$target	target user to show contributions for
+ * @param	string	$hideminor whether minor contributions are hidden
+ * @param	string	$namespace currently selected namespace, NULL for show all
+ */
+function namespaceForm ( $target, $hideminor, $namespace ) {
+	global $wgContLang, $wgScript;
+
+	$namespaceselect = '<form><select name="namespace">';
+	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'all' ).'</option>';
+	$arr = $wgContLang->getNamespaces();
+	foreach( array_keys( $arr ) as $i ) {
+		if( $i < 0 ) {
+			continue;
+		}
+		$namespacename = str_replace ( "_", " ", $arr[$i] );
+		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
+		$sel = ($i === $namespace) ? ' selected="selected"' : '';
+		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
+	}
+	$namespaceselect .= '</select>';
+
+	$frombox = '<input type="text" size="20" name="from" value="'
+	            . htmlspecialchars ( $from ) . '"/>';
+	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+
+	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
+	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
+	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
+	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
+	$out .= wfMsg ( 'allpagesformtext2', $namespaceselect, $submitbutton );
+	$out .= '</form>';
+	return $out;
 }
 ?>
