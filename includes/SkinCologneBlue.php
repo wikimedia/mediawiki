@@ -13,7 +13,7 @@ class SkinCologneBlue extends Skin {
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "";
 		$qb = $this->qbSetting();
@@ -45,6 +45,9 @@ class SkinCologneBlue extends Skin {
 
 		$s .= "\n</div>\n<div id='article'>";
 
+		if( $wgSiteNotice ) {
+			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		}
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() . "\n";
 		return $s;
