@@ -478,6 +478,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_objectcache_update(); flush();
 			do_categorylinks_update(); flush();
 			do_image_name_unique_update(); flush();
+			do_logging_update(); flush();
 
 			if ( isTemplateInitialised() ) {
 				print "Template namespace already initialised\n";

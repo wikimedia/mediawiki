@@ -96,9 +96,8 @@ class IPUnblockForm {
 		$block->delete();
 
 		# Make log entry
-		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = wfMsg( "unblocklogentry", $this->ip );
-		$log->addEntry( $action, $this->reason );
+		$log = new LogPage( 'block' );
+		$log->addEntry( 'unblock', Title::makeTitle( NS_USER, $this->ip ), $this->reason );
 
 		# Report to the user
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );

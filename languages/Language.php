@@ -1014,6 +1014,9 @@ this list should not be construed as an endorsement.",
 'rfcurl' =>  "http://www.faqs.org/rfcs/rfc$1.html",
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
+'log'		=> 'Logs',
+'alllogstext'	=> 'Combined display of upload, deletion, protection, blocking, and sysop logs.
+You can narrow down the view by selecting a log type, the user name, or the affected page.',
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',

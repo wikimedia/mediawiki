@@ -180,7 +180,7 @@ CREATE TABLE recentchanges (
   rc_cur_time varchar(14) binary NOT NULL default '',
   rc_user int(10) unsigned NOT NULL default '0',
   rc_user_text varchar(255) binary NOT NULL default '',
-  rc_namespace tinyint(3) unsigned NOT NULL default '0',
+  rc_namespace tinyint(3) NOT NULL default '0',
   rc_title varchar(255) binary NOT NULL default '',
   rc_comment varchar(255) binary NOT NULL default '',
   rc_minor tinyint(3) unsigned NOT NULL default '0',
@@ -265,4 +265,31 @@ CREATE TABLE `validate` (
   `val_value` int(11) default '0',
   `val_comment` varchar(255) NOT NULL default '',
   KEY `val_user` (`val_user`,`val_title`,`val_timestamp`)
-) TYPE=MyISAM;
+);
+
+
+CREATE TABLE logging (
+  -- Symbolic keys for the general log type and the action type
+  -- within the log. The output format will be controlled by the
+  -- action field, but only the type controls categorization.
+  log_type char(10) NOT NULL default '',
+  log_action char(10) NOT NULL default '',
+  
+  -- Timestamp. Duh.
+  log_timestamp char(14) NOT NULL default '19700101000000',
+  
+  -- The user who performed this action; key to user_id
+  log_user int unsigned NOT NULL default 0,
+  
+  -- Key to the page affected. Where a user is the target,
+  -- this will point to the user page.
+  log_namespace tinyint unsigned NOT NULL default 0,
+  log_title varchar(255) NOT NULL default '',
+  
+  -- Freeform text. Interpreted as edit history comments.
+  log_comment varchar(255) NOT NULL default '',
+  
+  KEY type_time (log_type, log_timestamp),
+  KEY user_time (log_user, log_timestamp),
+  KEY page_time (log_namespace, log_title, log_timestamp)
+);

@@ -247,8 +247,8 @@ class UndeleteForm {
 
 		
 		# Touch the log?
-		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
-		$log->addEntry( wfMsg( "undeletedarticle", $this->mTarget ), "" );
+		$log = new LogPage( 'delete' );
+		$log->addEntry( 'restore', Title::makeTitle( $namespace, $title ), "" );
 
 		$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
 		return 0;

@@ -8,7 +8,6 @@
 # moved to separate EditPage and CacheManager classes.
 
 require_once ( 'CacheManager.php' );
-include_once ( 'SpecialValidate.php' ) ;
 
 $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;
@@ -1088,6 +1087,7 @@ class Article {
 	function validate () {
 		global $wgOut, $wgUseValidation;
 		if( $wgUseValidation ) {
+			require_once ( 'SpecialValidate.php' ) ;
 			$wgOut->setPagetitle( wfMsg( 'validate' ) . ': ' . $this->mTitle->getPrefixedText() );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
 			if( $this->mTitle->getNamespace() != 0 ) {
@@ -1210,11 +1210,11 @@ class Article {
 				), 'Article::protect'
 			);
 
-			$log = new LogPage( wfMsg( 'protectlogpage' ), wfMsg( 'protectlogtext' ) );
+			$log = new LogPage( 'protect' );
 			if ( $limit === '' ) {
-					$log->addEntry( wfMsg( 'unprotectedarticle', $this->mTitle->getPrefixedText() ), $reason );
+					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 			} else {
-					$log->addEntry( wfMsg( 'protectedarticle', $this->mTitle->getPrefixedText() ), $reason );
+					$log->addEntry( 'protect', $this->mTitle, $reason );
 			}
 			$wgOut->redirect( $this->mTitle->getFullURL() );
 			return;
@@ -1592,9 +1592,8 @@ class Article {
 		$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
 
 		# Log the deletion
-		$log = new LogPage( wfMsg( 'dellogpage' ), wfMsg( 'dellogpagetext' ) );
-		$art = $this->mTitle->getPrefixedText();
-		$log->addEntry( wfMsg( 'deletedarticle', $art ), $reason );
+		$log = new LogPage( 'delete' );
+		$log->addEntry( 'delete', $this->mTitle, $reason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );

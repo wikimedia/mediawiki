@@ -443,11 +443,8 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		$descTitle->invalidateCache();
 	}
 
-	$log = new LogPage( wfMsg( 'uploadlogpage' ), wfMsg( 'uploadlogpagetext' ) );
-	$da = wfMsg( 'uploadedimage', '[[:' . $wgLang->getNsText(
-	  Namespace::getImage() ) . ":{$name}|{$name}]]" );
-	$ta = wfMsg( 'uploadedimage', $name );
-	$log->addEntry( $da, $desc, $ta );
+	$log = new LogPage( 'upload' );
+	$log->addEntry( 'upload', $descTitle, $desc );
 }
 
 function wfImageArchiveUrl( $name )
