@@ -22,16 +22,10 @@
 
 /**
  * Contain a feed class as well as classes to build rss / atom ... feeds
+ * Available feeds are defined in Defines.php
  * @package MediaWiki
  */
 
-/**
- * Available feeds objects
- */
-$wgFeedClasses = array(
-	'rss' => 'RSSFeed',
-	'atom' => 'AtomFeed',
-	);
 
 /**
  * @todo document

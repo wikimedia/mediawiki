@@ -11,8 +11,6 @@
 if( defined( "MEDIAWIKI" ) ) {
 
 # See skin.doc
-
-require_once( 'Feed.php' );  // should not be called if the actual page isn't feed enabled
 require_once( 'Image.php' );
 
 # These are the INTERNAL names, which get mapped directly to class names and

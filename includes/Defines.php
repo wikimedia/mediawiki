@@ -52,4 +52,14 @@ define('NS_WP_TALK', NS_PROJECT_TALK);
 define('NS_WIKIPEDIA', NS_PROJECT);
 define('NS_WIKIPEDIA_TALK', NS_PROJECT_TALK);
 /**#@-*/
+
+/**
+ * Available feeds objects
+ * Should probably only be defined when a page is syndicated ie when
+ * $wgOut->isSyndicated() is true
+ */
+$wgFeedClasses = array(
+	'rss' => 'RSSFeed',
+	'atom' => 'AtomFeed',
+	);
 ?>
