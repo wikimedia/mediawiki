@@ -156,16 +156,14 @@ class SqlQueryForm {
 			" query by " . $wgUser->getName() .
 			":\n$q\n" );
 		fclose( $f );
-		$this->starttime = microtime();
+		$this->starttime = wfTime();
 	}
 	
 	function logFinishedQuery() {
 		global $wgSqlLogFile, $wgLogQueries;
 		if(!$wgLogQueries) return;
 		
-		list($sec, $usec) = explode( " ", microtime() );
-		list($sec1, $usec1) = explode( " ", $this->starttime );
-		$interval = ($sec + $usec) - ($sec1 + $usec1);
+		$interval = wfTime() - $this->starttime;
 		
 		$f = fopen( $wgSqlLogFile, "a" );
 		fputs( $f, "finished at " . wfTimestampNow() . "; took $interval secs\n" );

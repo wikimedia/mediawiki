@@ -401,9 +401,7 @@ class OutputPage {
 	{
 		global $wgRequestTime;
 
-		list( $usec, $sec ) = explode( " ", microtime() );
-		$now = (float)$sec + (float)$usec;
-
+		$now = wfTime();
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
