@@ -5,21 +5,24 @@ if($wgMetaNamespace === FALSE)
         $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesDe = array(
-	-2	=> "Media",
-	-1	=> "Spezial",
-	0	=> "",
-	1	=> "Diskussion",
-	2	=> "Benutzer",
-	3	=> "Benutzer_Diskussion",
-	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamespace. "_Diskussion",
-	6	=> "Bild",
-	7	=> "Bild_Diskussion",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_Diskussion",
-	10  => "Template",
-	11  => "Template_talk"
-
+        NS_MEDIA            => "Media",
+        NS_SPECIAL          => "Spezial",
+        NS_MAIN             => "",
+        NS_TALK             => "Diskussion",
+        NS_USER             => "Benutzer",
+        NS_USER_TALK        => "Benutzer_Diskussion",
+        NS_WIKIPEDIA        => $wgMetaNamespace,
+        NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_Diskussion",
+        NS_IMAGE            => "Bild",
+        NS_IMAGE_TALK       => "Bild_Diskussion",
+        NS_MEDIAWIKI        => "MediaWiki",
+        NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
+        NS_TEMPLATE         => "Kategorie",
+        NS_TEMPLATE_TALK    => "Kategorie_Diskussion",
+        NS_HELP             => "Hilfe",
+        NS_HELP_TALK        => "Hilfe_Diskussion",
+        NS_CATEGORY         => "Kategorie",
+        NS_CATEGORY_TALK    => "Kategorie_Diskussion"
 );
 
 /* private */ $wgQuickbarSettingsDe = array(
