@@ -18,6 +18,7 @@ body { margin: 0px; padding: 0px; color: black; }
  margin-top: 1ex; margin-bottom: 0;
 }
 p, pre, td, th, li, dd, dt { line-height: 12pt; }
+textarea { overflow: auto; }
 
 #footer { padding: 4px; }
 #footer form { display: inline; }
