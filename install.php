@@ -176,7 +176,7 @@ function copydirectory( $source, $dest ) {
 
 function readconsole() {
 	$fp = fopen( "php://stdin", "r" );
-	$resp = trim( fgets( $fp ) );
+	$resp = trim( fgets( $fp, 1024 ) );
 	fclose( $fp );
 	return $resp;
 }
