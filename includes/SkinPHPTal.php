@@ -83,12 +83,9 @@
 			$tpl->setTranslator(new MediaWiki_I18N());
 			#}
 
-			$tpl->setRef( "title", &$this->titletxt ); // ?
-			if(!empty($action)) {
-				$taction =  $this->getPageTitleActionText();
-			        $taction = !empty($taction)?' - '.$taction:'';
-			} else { $taction = '';	}
-			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt.$taction ) );
+			$tpl->set( "title", $wgOut->getPageTitle() );
+			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
+			
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->set( 'catlinks', getCategories());
