@@ -7,10 +7,16 @@ function wfSpecialRecentchanges( $par )
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode;
 	$fname = "wfSpecialRecentchanges";
-	
+
 	# Get query parameters
 	$feedFormat = $wgRequest->getVal( "feed" );
-	$feeding = ( $feedFormat == "rss" );
+	
+	// imported from Feed.php
+	$wgFeedClasses = array (
+		"rss" => "RSSFeed",
+		"atom" => "AtomFeed",
+		);
+	// end of import
 
 	$defaultDays = $wgUser->getOption( 'rcdays' );
 	if ( !$defaultDays ) {
@@ -121,8 +127,8 @@ function wfSpecialRecentchanges( $par )
 
 	$wgOut->addHTML( "{$note}\n" );
 
-	if( $feeding ) {
-		$feed = new RSSFeed(
+	if( isset($wgFeedClasses[$feedFormat]) ) {
+		$feed = new $wgFeedClasses[$feedFormat](
 			$wgSitename . " - " . wfMsg( "recentchanges" ) . " [" . $wgLanguageCode . "]",
 			htmlspecialchars( wfMsg( "recentchangestext" ) ),
 			$wgTitle->getFullUrl() );
