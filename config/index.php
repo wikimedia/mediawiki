@@ -74,19 +74,20 @@ header( "Content-type: text/html; charset=utf-8" );
 
 <div id="credit">
  <center>
-  <a href="http://www.mediawiki.org/"><img
-    src="../skins/common/images/wiki.png" width="135" height="135" alt="" border="0" /></a>
+  <a href="http://www.mediawiki.org/">
+   <img src="../skins/common/images/wiki.png" width="135" height="135" alt="" border="0" />
+  </a>
  </center>
 
- <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
- Copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+ <strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is
+ Copyright (C) 2001-<?=date('Y')?> by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, Gabriel Wicke, Thomas Gries and others.</p>
 
  <ul>
- <li><a href="../README">Readme</a></li>
- <li><a href="../RELEASE-NOTES">Release notes</a></li>
- <li><a href="../docs/">doc/</a></li>
- <li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
+  <li><a href="../README">Readme</a></li>
+  <li><a href="../RELEASE-NOTES">Release notes</a></li>
+  <li><a href="../docs/">doc/</a></li>
+  <li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
  </ul>
 
  <p>This program is free software; you can redistribute it and/or modify
@@ -149,10 +150,10 @@ if( !is_writable( "." ) ) {
 
 	<p>To make the directory writable on a Unix/Linux system:</p>
 
-	<pre>
-	cd <i>/path/to/wiki</i>
-	chmod a+w config
-	</pre>" );
+	<blockquote>
+	<tt>cd /path/to/wiki</tt><br>
+	<tt>chmod a+w config</tt>
+	</blockquote>" );
 }
 
 
@@ -173,7 +174,7 @@ class ConfigData {
 
 ?>
 
-<p><i>Please include all of the lines below when reporting installation problems.</i></p>
+<p><em>Please include all of the lines below when reporting installation problems.</em></p>
 
 <h2>Checking environment...</h2>
 <ul>
@@ -189,18 +190,18 @@ print "<li>PHP " . phpversion() . ": ok</li>\n";
 
 if( ini_get( "register_globals" ) ) {
 	?>
-	<li><b class='error'>Warning:</b> <b>PHP's
+	<li><b class='error'>Warning:</strong> <strong>PHP's
 	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
-	option is enabled.</b> MediaWiki will work correctly, but this setting
+	option is enabled.</strong> MediaWiki will work correctly, but this setting
 	increases your exposure to potential security vulnerabilities in PHP-based
-	software running on your server. <b>You should disable it if you are able.</b></li>
+	software running on your server. <strong>You should disable it if you are able.</strong></li>
 	<?php
 }
 
 if( ini_get( "safe_mode" ) ) {
 	?>
-	<li class='error'><b>Warning: PHP's
-	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active!</b>
+	<li class='error'><strong>Warning: PHP's
+	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active!</strong>
 	You may have problems caused by this, particularly if using image uploads.
 	</li>
 	<?php
@@ -210,7 +211,7 @@ $fatal = false;
 
 if( ini_get( "magic_quotes_runtime" ) ) {
 	$fatal = true;
-	?><li class='error'><b>Fatal: <a href='http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime'>magic_quotes_runtime</a> is active!</b>
+	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime'>magic_quotes_runtime</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
 	MediaWiki unless this option is disabled.
 	<?php
@@ -218,7 +219,7 @@ if( ini_get( "magic_quotes_runtime" ) ) {
 
 if( ini_get( "magic_quotes_sybase" ) ) {
 	$fatal = true;
-	?><li class='error'><b>Fatal: <a href='http://www.php.net/manual/en/ref.sybase.php#ini.magic-quotes-sybase'>magic_quotes_sybase</a> is active!</b>
+	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.sybase.php#ini.magic-quotes-sybase'>magic_quotes_sybase</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
 	MediaWiki unless this option is disabled.
 	<?php
@@ -261,7 +262,7 @@ $conf->raiseMemory = false;
 if( empty( $memlimit ) ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
 } else {
-	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <b>If this is too low, installation may fail!</b> ";
+	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <strong>If this is too low, installation may fail!</strong> ";
 	$n = IntVal( $memlimit );
 	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
 		$n = IntVal( $m[1] * (1024*1024) );
@@ -682,6 +683,7 @@ if( count( $errs ) ) {
 	<dd>
 		<label class='column' for="LanguageCode">Language</label>
 		<select id="LanguageCode" name="LanguageCode">
+
 		<?php
 			$list = getLanguageList();
 			foreach( $list as $code => $name ) {
