@@ -13,10 +13,6 @@ include_once( "Feed.php" );
 	'nostalgia' => "Nostalgia",
 	'cologneblue' => "CologneBlue"
 );
-if( $wgUseSmarty ) {
-	$wgValidSkinNames['smarty'] = "Smarty";
-	$wgValidSkinNames['montparnasse'] = "Montparnasse";
-}
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = "PHPTal";
     #$wgValidSkinNames['davinci'] = "DaVinci";
@@ -97,25 +93,47 @@ class Skin {
 		$fname = "Skin::initPage";
 		wfProfileIn( $fname );
 		
-		$out->addLink( "shortcut icon", "", "/favicon.ico" );
-
-	        $this->addMetadataLinks($out);
+		$out->addLink( array( "rel" => "shortcut icon", "href" => "/favicon.ico" ) );
+		
+		$this->addMetadataLinks($out);
 	    
 		wfProfileOut( $fname );
 	}
 	
-        function addMetadataLinks( &$out ) {
-	    global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf, $wgRdfMimeType, $action;
+	function addMetadataLinks( &$out ) {
+		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf, $wgRdfMimeType, $action;
+		global $wgRightsPage, $wgRightsUrl;
 
-	    if ($action == 'view') {
-		# note: buggy CC software only reads first "meta" link
-		if ($wgEnableCreativeCommonsRdf) {
-		    $out->addMetadataLink('application/rdf+xml', wfLocalUrl($wgTitle->getPrefixedURL(), "action=creativecommons"));
+		if( $out->isArticleRelated() ) {
+			# note: buggy CC software only reads first "meta" link
+			if( $wgEnableCreativeCommonsRdf ) {
+				$out->addMetadataLink( array(
+					'title' => 'Creative Commons',
+					'type' => 'application/rdf+xml',
+					'href' => $wgTitle->getLocalURL( "action=creativecommons") ) );
+			}
+			if( $wgEnableDublinCoreRdf ) {
+				$out->addMetadataLink( array(
+					'title' => 'Dublin Core',
+					'type' => 'application/rdf+xml',
+					'href' => $wgTitle->getLocalURL( "action=dublincore" ) ) );
+			}
 		}
-		if ($wgEnableDublinCoreRdf) {
-		    $out->addMetadataLink('application/rdf+xml', wfLocalUrl($wgTitle->getPrefixedURL(), "action=dublincore"));
+		$copyright = "";
+		if( $wgRightsPage ) {
+			$copy = Title::newFromText( $wgRightsPage );
+			if( $copy ) {
+				$copyright = $copy->getLocalURL();
+			}
 		}
-	    }
+		if( !$copyright && $wgRightsUrl ) {
+			$copyright = $wgRightsUrl;
+		}
+		if( $copyright ) {
+			$out->addLink( array(
+				"rel" => "copyright",
+				"href" => $copyright ) );
+		}
 	}
     
 	function outputPage( &$out ) {
@@ -2501,9 +2519,6 @@ include_once( "SkinStandard.php" );
 include_once( "SkinNostalgia.php" );
 include_once( "SkinCologneBlue.php" );
 
-if( $wgUseSmarty ) {
-	include_once( "SkinSmarty.php" );
-}
 if( $wgUsePHPTal ) {
 	include_once( "SkinPHPTal.php" );
 }

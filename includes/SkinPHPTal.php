@@ -54,7 +54,8 @@
 	class SkinPHPTal extends Skin {
 		var $template;
 
-		function initPage() {
+		function initPage( &$out ) {
+			parent::initPage( $out );
 			$this->skinname = "davinci";
 			$this->template = "xhtml_slim";
 		}
@@ -71,7 +72,7 @@
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
 			
-			$this->initPage();
+			$this->initPage( $out );
 			$tpl = new PHPTAL($this->template . '.pt', 'templates');
 			
 			#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
@@ -403,26 +404,23 @@
 	}
 
 	class SkinDaVinci extends SkinPHPTal {
-		function initPage() {
-			SkinPHPTal::initPage();
+		function initPage( &$out ) {
+			SkinPHPTal::initPage( $out );
 			$this->skinname = "davinci";
-			$this->template = "xhtml_slim";
 		}
 	}
 	
 	class SkinMono extends SkinPHPTal {
-		function initPage() {
-			SkinPHPTal::initPage();
+		function initPage( &$out ) {
+			SkinPHPTal::initPage( $out );
 			$this->skinname = "mono";
-			$this->template = "xhtml_slim";
 		}
 	}
 	
 	class SkinMonoBook extends SkinPHPTal {
-		function initPage() {
-			SkinPHPTal::initPage();
+		function initPage( &$out ) {
+			SkinPHPTal::initPage( $out );
 			$this->skinname = "monobook";
-			$this->template = "xhtml_slim";
 		}
 	}
 	
