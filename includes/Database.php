@@ -946,16 +946,18 @@ class Database {
 	 */
 	function tableName( $name ) {
 		global $wgSharedDB;
-		if ( $this->mTablePrefix !== '' ) {
-			if ( strpos( '.', $name ) === false ) {
-				$name = $this->mTablePrefix . $name;
+
+		# Skip quoted literals
+		if ( $name{0} != '`' ) {
+			if ( $this->mTablePrefix !== '' &&  strpos( '.', $name ) === false ) {
+				$name = "{$this->mTablePrefix}$name";
 			}
-		}
-		if ( isset( $wgSharedDB ) && 'user' == $name ) {
-			$name = $wgSharedDB . '.' . $name;
-		}
-		if( $name == 'group' ) {
-			$name = '`' . $name . '`';
+			if ( isset( $wgSharedDB ) && 'user' == $name ) {
+				$name = "`$wgSharedDB`.`$name`";
+			} else {
+				# Standard quoting
+				$name = "`$name`";
+			}
 		}
 		return $name;
 	}

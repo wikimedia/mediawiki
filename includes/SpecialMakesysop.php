@@ -93,13 +93,7 @@ class MakesysopForm {
 		);
 		
 		$makeburo = wfMsg( "setbureaucratflag" );
-		$wgOut->addHTML(
-			"<tr>
-				<td>&nbsp;</td><td align=left>
-					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
-				</td>
-			</tr>"
-		);
+
 
 		if ( $wgUser->isDeveloper() ) {
 			$rights = wfMsg( "rights" );
@@ -116,6 +110,14 @@ class MakesysopForm {
 						<input type='text' size='40' name=\"wpRights\" value=\"$encRights\" />
 					</td>
 				</tr>" 
+			);
+		} else {
+			$wgOut->addHTML(
+				"<tr>
+					<td>&nbsp;</td><td align=left>
+						<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
+					</td>
+				</tr>"
 			);
 		}
 
@@ -136,7 +138,7 @@ class MakesysopForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
-		global $wgDBname, $wgMemc, $wgLocalDatabases;
+		global $wgDBname, $wgMemc, $wgLocalDatabases, $wgSharedDB;
 
 		$fname = 'MakesysopForm::doSubmit';
 		
@@ -144,14 +146,21 @@ class MakesysopForm {
 		$parts = explode( '@', $this->mUser );
 		$user_rights = $dbw->tableName( 'user_rights' );
 		$usertable   = $dbw->tableName( 'user' );
+		
+		print "0000000000000000\n";
 
 		if( count( $parts ) == 2 && $wgUser->isDeveloper() && strpos( '.', $user_rights ) === false ){
+			print "0.5\n";
 			$username = $dbw->strencode( $parts[0] );
 			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
+				print "0.6\n";
 				$dbName = $wgLocalDatabases[$parts[1]];
-				$user_rights = $dbName . '.' . $user_rights;
-				$usertable   = $usertable . '.' . $usertable;
+				$user_rights = "`$dbName`.$user_rights";
+				if ( !$wgSharedDB ) {
+					$usertable   = "`$dbName`.$usertable";
+				}
 			} else {
+				print "1111111111111\n";
 				$this->showFail();
 				return;
 			}
@@ -210,7 +219,7 @@ class MakesysopForm {
 		} else {
 			#$sql = "UPDATE $user_rights SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
 			#$dbw->query($sql);
-			$dbw->replace( 'user_rights', array( array( 'ur_user', 'ur_rights' )),
+			$dbw->replace( $user_rights, array( array( 'ur_user', 'ur_rights' )),
 				array( 'ur_user' => $id, 'ur_rights' => $newrights ) , $fname );
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
