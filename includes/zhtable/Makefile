@@ -53,7 +53,7 @@ unihan.t2s.t: Unihan.txt printutf8
 trad2simp.t: trad2simp.manual unihan.t2s.t
 	cp unihan.t2s.t tmp1
 	for I in `colrm 11 < trad2simp.manual` ; do $(SED) "/^$$I/d" tmp1 > tmp2; mv tmp2 tmp1; done
-	cat trad2simp.manual tmp1 > trad2simp.t
+	cat tmp1 trad2simp.manual > trad2simp.t
 
 unihan.s2t.t: Unihan.txt printutf8
 	$(GREP) kTraditionalVariant Unihan.txt | $(SED)  '/#/d' | $(SED)  's/kTraditionalVariant//' | ./printutf8 > unihan.s2t.t
@@ -61,7 +61,7 @@ unihan.s2t.t: Unihan.txt printutf8
 simp2trad.t: unihan.s2t.t simp2trad.manual
 	cp unihan.s2t.t tmp1
 	for I in `colrm 11 < simp2trad.manual` ; do $(SED) "/^$$I/d" tmp1 > tmp2; mv tmp2 tmp1; done
-	cat simp2trad.manual tmp1 > simp2trad.t
+	cat tmp1 simp2trad.manual > simp2trad.t
 
 t2s_1tomany.t: trad2simp.t
 	$(GREP) -s ".\{19,\}" trad2simp.t | $(SED)  's/U+...../"/' | $(SED)  's/|U+...../"=>"/' | $(SED)  's/|U+.....//g' | $(SED)  's/|/",/'  > t2s_1tomany.t
