@@ -130,6 +130,7 @@ class MovePageForm {
 			 ( "" == $this->odt ) ||
 			 ( "" != $this->ot->getInterwiki() ) ||
 			 ( !$this->ot->userCanEdit() ) ||
+			 ( !$this->oldid ) ||
 		     ( ! Namespace::isMovable( $nns ) ) ||
 			 ( "" == $this->ndt ) ||
 			 ( "" != $this->nt->getInterwiki() ) ||

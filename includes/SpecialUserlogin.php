@@ -165,7 +165,8 @@ function wfSpecialUserlogin()
 /* private */ function mailPassword()
 {
 	global $wgUser, $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
-
+	global $wgCookiePath, $wgCookieDomain, $wgDBname;
+	
 	if ( "" == $wpName ) {
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
@@ -202,7 +203,7 @@ function wfSpecialUserlogin()
 	$np = User::randomPassword();
 	$u->setNewpassword( $np );
 
-	setcookie( "wcUserPassword", "", time() - 3600 );
+	setcookie( "{$wgDBname}Password", "", time() - 3600, $wgCookiePath, $wgCookieDomain );
 	$u->saveSettings();
 
 	$ip = getenv( "REMOTE_ADDR" );
@@ -264,7 +265,7 @@ function userNotPrivilegedMessage()
 {
 	global $wgUser, $wgOut, $wgLang, $returnto;
 	global $wpName, $wpPassword, $wpRetype, $wpRemember;
-	global $wpEmail, $HTTP_COOKIE_VARS;
+	global $wpEmail, $HTTP_COOKIE_VARS, $wgDBname;
 
 	$le = wfMsg( "loginerror" );
 	$yn = wfMsg( "yourname" );
@@ -285,7 +286,7 @@ function userNotPrivilegedMessage()
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
 		} else {
-			$name = $HTTP_COOKIE_VARS["wcUserName"];
+			$name = $HTTP_COOKIE_VARS["{$wgDBname}UserName"];
 		}
 	}
 	$pwd = $wpPassword;
@@ -319,7 +320,7 @@ color='red'>$err</font>\n" );
 	}
 
 	$wgOut->addHTML( "
-<form id=\"userlogin\" method=\"post\" action=\"{$action}\">
+<form name=\"userlogin\" id=\"userlogin\" method=\"post\" action=\"{$action}\">
 <table border=0><tr>
 <td align=right>$yn:</td>
 <td colspan=2 align=left>
