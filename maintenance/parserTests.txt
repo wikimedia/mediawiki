@@ -917,6 +917,15 @@ title=[[Main Page]]
 </p>
 !! end
 
+!! test
+<nowiki> inside a link
+!! input
+[[Main<nowiki> Page</nowiki>]] [[Main Page|the main page <nowiki>[it's not very good]</nowiki>]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> <a href="/wiki/Main_Page" title="Main Page">the main page [it's not very good]</a>
+</p>
+!! end
+
 ###
 ### Interwiki links
 ###
@@ -1603,6 +1612,8 @@ es:Alimento fr:Nourriture zh:食品
 ###
 !! test
 Basic section headings
+!! options
+title=[[Parser test script]]
 !! input
 == Headline 1 ==
 Some text
@@ -1625,6 +1636,8 @@ Blah blah
 
 !! test
 Section headings with TOC
+!! options
+title=[[Parser test script]]
 !! input
 == Headline 1 ==
 === Subheadline 1 ===
@@ -1671,6 +1684,8 @@ Some text
 
 !! test
 Resolving duplicate section names
+!! options
+title=[[Parser test script]]
 !! input
 == Foo bar ==
 ==Foo bar==
@@ -1689,7 +1704,8 @@ Template:sections
 
 !! test
 Template with sections, __NOTOC__
-!! options title=[[Parser test script]]
+!! options
+title=[[Parser test script]]
 !! input
 __NOTOC__
 ==Section 0==
@@ -1712,6 +1728,17 @@ __NOEDITSECTION__
 !! result
 <a name="Section_1"></a><h2>Section 1</h2>
 <a name="Section_2"></a><h2>Section 2</h2>
+
+!! end
+
+!! test
+Link inside a section heading
+!! options
+title=[[Parser test script]]
+!! input
+==Section with a [[Main Page|link]] in it==
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Section_with_a_link_in_it"></a><h2>Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</h2>
 
 !! end
 
