@@ -331,9 +331,7 @@ function wfReadOnly() {
  */
 function wfMsg( $key ) {
 	$args = func_get_args();
-	if ( count( $args ) ) {
-		array_shift( $args );
-	}
+	array_shift( $args );
 	return wfMsgReal( $key, $args, true );
 }
 
@@ -342,9 +340,7 @@ function wfMsg( $key ) {
  */
 function wfMsgForContent( $key ) {
 	$args = func_get_args();
-	if ( count( $args ) ) {
-		array_shift( $args );
-	}
+	array_shift( $args );
 	return wfMsgReal( $key, $args, true, true );
 }
 
@@ -353,9 +349,7 @@ function wfMsgForContent( $key ) {
  */
 function wfMsgNoDB( $key ) {
 	$args = func_get_args();
-	if ( count( $args ) ) {
-		array_shift( $args );
-	}
+	array_shift( $args );
 	return wfMsgReal( $key, $args, false );
 }
 
@@ -363,11 +357,8 @@ function wfMsgNoDB( $key ) {
  * Get a message from the language file, for the content
  */
 function wfMsgNoDBForContent( $key ) {
-
 	$args = func_get_args();
-	if ( count( $args ) ) {
-		array_shift( $args );
-	}
+	array_shift( $args );
 	return wfMsgReal( $key, $args, false, true );
 }
 
