@@ -1426,9 +1426,7 @@ class Parser
 		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
 
-		$bail = false;
 		$titleChars = Title::legalChars();
-		$nonBraceChars = str_replace( array( '{', '}' ), array( '', '' ), $titleChars );
 
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
@@ -1438,7 +1436,7 @@ class Parser
 
 		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_MSG ) {
 			# Variable substitution
-			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
+			$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", 'wfVariableSubstitution', $text );
 		}
 		
 		if ( $this->mOutputType == OT_HTML ) {
@@ -1446,7 +1444,7 @@ class Parser
 			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
 		# Template substitution
-		$regex = '/{{(['.$nonBraceChars.']*)(\\|.*?|)}}/s';
+		$regex = '/{{(['.$titleChars.']*)(\\|.*?|)}}/s';
 		$text = preg_replace_callback( $regex, 'wfBraceSubstitution', $text );
 
 		array_pop( $this->mArgStack );
@@ -1781,7 +1779,7 @@ class Parser
 		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
-		$text = preg_replace( '/(\\n *<!--.*--> *|<!--.*?-->)/sU', '', $text );
+		$text = preg_replace( '/(\\n *<!--.*--> *|<!--.*-->)/sU', '', $text );
 
 		$bits = explode( '<', $text );
 		$text = array_shift( $bits );
