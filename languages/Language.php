@@ -314,7 +314,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Intl"		=> "Interlanguage links",
 	"Allpages"		=> "All pages by title",
 
-	"Ipblocklist"	=> "Blocked IP addresses",
+	"Ipblocklist"	=> "Blocked users/IP addresses",
 	"Maintenance" => "Maintenance page",
 	"Specialpages"  => "",
 	"Contributions" => "",
@@ -328,7 +328,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
-	"Blockip"		=> "Block an IP address",
+	"Blockip"		=> "Block a user/IP address",
 	"Asksql"		=> "Query the database",
 	"Undelete"		=> "Restore deleted pages"
 );

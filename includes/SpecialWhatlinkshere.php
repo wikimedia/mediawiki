@@ -25,7 +25,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 	if ( 0 == $id ) {
 		$sql = "SELECT DISTINCT bl_from FROM brokenlinks WHERE bl_to='" .
 		  wfStrencode( $nt->getPrefixedDBkey() ) . "' LIMIT 500";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 
 		if ( 0 == wfNumRows( $res ) ) {
 			$wgOut->addHTML( wfMsg( "nolinkshere" ) );
@@ -37,7 +37,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 				$lid = $row->bl_from;
 				$sql = "SELECT cur_namespace,cur_title,cur_is_redirect " .
 				  "FROM cur WHERE cur_id={$lid}";
-				$res2 = wfQuery( $sql, $fname );
+				$res2 = wfQuery( $sql, DB_READ, $fname );
 				$s = wfFetchObject( $res2 );
 
 				$n = Title::makeName( $s->cur_namespace, $s->cur_title );
@@ -64,7 +64,7 @@ function wfShowIndirectLinks( $level, $lid )
 	$fname = "wfShowIndirectLinks";
 
 	$sql = "SELECT DISTINCT l_from FROM links WHERE l_to={$lid} LIMIT 500";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if ( 0 == wfNumRows( $res ) ) {
 		if ( 0 == $level ) {
@@ -89,7 +89,7 @@ function wfShowIndirectLinks( $level, $lid )
 
 		$sql = "SELECT cur_id,cur_is_redirect FROM cur " .
 		  "WHERE cur_namespace={$ns} AND cur_title='{$t}'";
-		$res2 = wfQuery( $sql, $fname );
+		$res2 = wfQuery( $sql, DB_READ, $fname );
 		$s = wfFetchObject( $res2 );
 
 		if ( 1 == $s->cur_is_redirect ) {

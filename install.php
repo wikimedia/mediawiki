@@ -246,14 +246,14 @@ function populatedata() {
 	$fname = "Installation script: populatedata()";
 
 	$sql = "DELETE FROM site_stats";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 		"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "DELETE FROM user";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$u = User::newFromName( "WikiSysop" );
 	if ( 0 == $u->idForName() ) {
@@ -276,22 +276,22 @@ function populatedata() {
 	$dlp = addslashes( wfMsg( "dellogpage" ) );
 
 	$sql = "DELETE FROM cur";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions) VALUES ({$wns},'{$ulp}','" .
 	  wfStrencode( wfMsg( "uploadlogpagetext" ) ) . "','sysop')";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions) VALUES ({$wns},'{$dlp}','" .
 	  wfStrencode( wfMsg( "dellogpagetext" ) ) . "','sysop')";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text) " .
 	  "VALUES (0,'" . wfStrencode( wfMsg( "mainpage" ) ) . "','" .
 	  wfStrencode( wfMsg( "mainpagetext" ) ) . "')";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE, $fname );
 }
 
 ?>

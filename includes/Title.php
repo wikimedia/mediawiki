@@ -72,7 +72,7 @@ class Title {
 	{
 		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE " .
 		  "cur_id={$id}";
-		$res = wfQuery( $sql, "Article::nameOf" );
+		$res = wfQuery( $sql, DB_READ, "Article::nameOf" );
 		if ( 0 == wfNumRows( $res ) ) { return NULL; }
 
 		$s = wfFetchObject( $res );
@@ -103,7 +103,7 @@ class Title {
 		
 		$dkey = wfStrencode( $key );
 		$query = "SELECT iw_url FROM interwiki WHERE iw_prefix='$dkey'";
-		$res = wfQuery( $query, "Title::getInterwikiLink" );
+		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
 		if(!$res) return "";
 		
 		$s = wfFetchObject( $res );
@@ -288,7 +288,7 @@ class Title {
 		$ns = $this->getNamespace();
 		$t = wfStrencode( $this->getDBkey() );
 		$sql = "SELECT COUNT(*) AS n FROM archive WHERE ar_namespace=$ns AND ar_title='$t'";
-		if( $res = wfQuery( $sql ) ) {
+		if( $res = wfQuery( $sql, DB_READ ) ) {
 			$s = wfFetchObject( $res );
 			return $s->n;
 		}

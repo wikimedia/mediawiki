@@ -38,7 +38,7 @@ class User {
 		$nt = Title::newFromText( $name );
 		$sql = "SELECT user_id FROM user WHERE user_name='" .
 		  wfStrencode( $nt->getText() ) . "'";
-		$res = wfQuery( $sql, "User::idFromName" );
+		$res = wfQuery( $sql, DB_READ, "User::idFromName" );
 
 		if ( 0 == wfNumRows( $res ) ) { return 0; }
 		else {
@@ -189,7 +189,7 @@ class User {
 		$this->mNewtalk=0; # reset talk page status
 		if($this->mId) {
 			$sql = "SELECT 1 FROM user_newtalk WHERE user_id={$this->mId}";
-			$res = wfQuery ($sql,  "User::loadFromDatabase" );
+			$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
 
 			if (wfNumRows($res)>0) {
 				$this->mNewtalk= 1;
@@ -201,7 +201,7 @@ class User {
 			$newtalk = $wgMemc->get( $key );
 			if($newtalk === false) {
 				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
-				$res = wfQuery ($sql,  "User::loadFromDatabase" );
+				$res = wfQuery ($sql, DB_READ "User::loadFromDatabase" );
 
 				$this->mNewtalk = (wfNumRows($res)>0) ? 1 : 0;
 				wfFreeResult( $res );
@@ -219,7 +219,7 @@ class User {
 		$sql = "SELECT user_name,user_password,user_newpassword,user_email," .
 		  "user_options,user_rights,user_touched FROM user WHERE user_id=" .
 		  "{$this->mId}";
-		$res = wfQuery( $sql, "User::loadFromDatabase" );
+		$res = wfQuery( $sql, DB_READ, "User::loadFromDatabase" );
 
 		if ( wfNumRows( $res ) > 0 ) {
 			$s = wfFetchObject( $res );
@@ -414,7 +414,7 @@ class User {
 			  WHERE wl_user={$this->mId} AND
 			  wl_namespace = " . ($title->getNamespace() & ~1) . " AND
 			  wl_title='" . wfStrencode( $title->getDBkey() ) . "'";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_READ );
 			return (wfNumRows( $res ) > 0);
 		} else {
 			return false;
@@ -429,7 +429,7 @@ class User {
 			$sql = "REPLACE INTO watchlist (wl_user, wl_namespace,wl_title)
 			  VALUES ({$this->mId}," . (($title->getNamespace() | 1) - 1) .
 			  ",'" . wfStrencode( $title->getDBkey() ) . "')";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 			$this->invalidateCache();
 		}
 	}
@@ -440,7 +440,7 @@ class User {
 			$sql = "DELETE FROM watchlist WHERE wl_user={$this->mId} AND
 			  wl_namespace=" . (($title->getNamespace() | 1) - 1) .
 			  " AND wl_title='" . wfStrencode( $title->getDBkey() ) . "'";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
             $this->invalidateCache();
 		}
 	}
@@ -506,10 +506,10 @@ class User {
 		if ( ! $this->mNewtalk ) {
 			if( $this->mId ) {
 				$sql="DELETE FROM user_newtalk WHERE user_id={$this->mId}";
-				wfQuery ($sql,"User::saveSettings");
+				wfQuery ($sql, DB_WRITE, "User::saveSettings");
 			} else {
 				$sql="DELETE FROM user_newtalk WHERE user_ip='{$this->mName}'";
-				wfQuery ($sql,"User::saveSettings");
+				wfQuery ($sql, DB_WRITE, "User::saveSettings");
 				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
 			}
 		}
@@ -524,7 +524,7 @@ class User {
 		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " .
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
-		wfQuery( $sql, "User::saveSettings" );
+		wfQuery( $sql, DB_WRITE, "User::saveSettings" );
 		#$wgMemc->replace( "$wgDBname:user:id:$this->mId", $this );
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
@@ -539,7 +539,7 @@ class User {
 
 		$sql = "SELECT user_id FROM user WHERE user_name='" .
 		  wfStrencode( $s ) . "'";
-		$res = wfQuery( $sql, "User::idForName" );
+		$res = wfQuery( $sql, DB_READ, "User::idForName" );
 		if ( 0 == wfNumRows( $res ) ) { return 0; }
 
 		$s = wfFetchObject( $res );
@@ -560,7 +560,7 @@ class User {
 		  wfStrencode( $this->mEmail ) . "', '" .
 		  wfStrencode( implode( ",", $this->mRights ) ) . "', '" .
 		  $this->encodeOptions() . "')";
-		wfQuery( $sql, "User::addToDatabase" );
+		wfQuery( $sql, DB_WRITE, "User::addToDatabase" );
 		$this->mId = $this->idForName();
 	}
 
