@@ -992,14 +992,19 @@ class Parser
 
 			$dtrail = '';
 
+			# Set linktype for CSS - if URL==text, link is essentially free
+			$linktype = ($text == $url) ? 'free' : 'text';
+
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
 				# Autonumber if allowed
 				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) {
 					$text = '[' . ++$this->mAutonumber . ']';
+					$linktype = 'autonumber';
 				} else {
 					# Otherwise just use the URL
 					$text = htmlspecialchars( $url );
+					$linktype = 'free';
 				}
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
@@ -1007,19 +1012,6 @@ class Parser
 				if ( preg_match( $linktrail, $trail, $m2 ) ) {
 					$dtrail = $m2[1];
 					$trail = $m2[2];
-				}
-			}
-
-			$encUrl = htmlspecialchars( $url );
-			# Bit in parentheses showing the URL for the printable version
-			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, '/' ) . "/?$!", $url ) ) {
-				$paren = '';
-			} else {
-				# Expand the URL for printable version
-				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'>&nbsp;(<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
-				} else {
-					$paren = '';
 				}
 			}
 
@@ -1031,7 +1023,7 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= $sk->makeExternalLink( $url, $text, false ) . $dtrail. $paren . $trail;
+			$s .= $sk->makeExternalLink( $url, $text, false, $linktype ) . $dtrail . $trail;
 		}
 
 		wfProfileOut( $fname );
@@ -1091,7 +1083,7 @@ class Parser
 				$text = $this->maybeMakeImageLink( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
-					$text = $sk->makeExternalLink( $url, $url );
+					$text = $sk->makeExternalLink( $url, $url, true, 'free' );
 				}
 				$s .= $text . $trail;
 			} else {

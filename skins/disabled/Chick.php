@@ -27,7 +27,6 @@ class SkinChick extends SkinPHPTal {
 		$this->skinname = 'chick';
 		$this->template = 'Chick';
 	}
-	function suppressUrlExpansion() { return true; }
 	function printSource() { return ''; }
 }
 
