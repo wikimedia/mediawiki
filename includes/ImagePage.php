@@ -172,7 +172,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
-		$fname = 'Article::doDelete';
+		$fname = 'ImagePage::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
@@ -258,8 +258,12 @@ class ImagePage extends Article {
 
 		$name = substr( $oldimage, 15 );
 		$archive = wfImageArchiveDir( $name );
-		if ( ! unlink( "{$archive}/{$oldimage}" ) ) {
+		if ( ! @unlink( "{$archive}/{$oldimage}" ) ) {
 			$wgOut->fileDeleteError( "{$archive}/{$oldimage}" );
+		} else {
+			# Log the deletion
+			$log = new LogPage( 'delete' );
+			$log->addEntry( 'delete', $this->mTitle, wfMsg('deletedrevision',$oldimage) );
 		}
 	}
 
