@@ -290,7 +290,8 @@ class UndeleteForm {
 		$logViewer =& new LogViewer(
 			new LogReader(
 				new FauxRequest(
-					array( 'page', $this->mTargetObj->getPrefixedText() ) ) ) );
+					array( 'page' => $this->mTargetObj->getPrefixedText(),
+					       'type' => 'delete' ) ) ) );
 		$logViewer->showList( $wgOut );
 		
 		# The page's stored (deleted) history:

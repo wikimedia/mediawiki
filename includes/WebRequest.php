@@ -392,11 +392,11 @@ class FauxRequest extends WebRequest {
 	var $data = null;
 	var $wasPosted = false;
 	
-	function WebRequest( $data, $wasPosted = false ) {
+	function FauxRequest( $data, $wasPosted = false ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
-			wfDebugDieBacktrace( "FauxReqeust() got bogus data" );
+			wfDebugDieBacktrace( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
 	}
