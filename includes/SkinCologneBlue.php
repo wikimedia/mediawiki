@@ -17,23 +17,23 @@ class SkinCologneBlue extends Skin {
 		$mainPageObj = Title::newMainPage();
 		
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
-		  "<table width='100%' border=0 cellspacing=0 cellpadding=8><tr>";
+		  "<table width='100%' border='0' cellspacing='0' cellpadding='8'><tr>";
 
-		$s .= "<td class='top' align=left valign=middle nowrap>";
+		$s .= "<td class='top' align='left' valign='middle' nowrap='nowrap'>";
 		$s .= "<a href=\"" . $mainPageObj->escapeLocalURL() . "\">";
 		$s .= "<span id='sitetitle'>" . wfMsg( "sitetitle" ) . "</span></a>";
 
-		$s .= "</td><td class='top' align=right valign=bottom width='100%'>";
+		$s .= "</td><td class='top' align='right' valign='bottom' width='100%'>";
 		$s .= $this->sysLinks();
-		$s .= "</td></tr><tr><td valign=top>";
+		$s .= "</td></tr><tr><td valign='top'>";
 
 		$s .= "<font size='-1'><span id='sitesub'>";
-		$s .= wfMsg( "sitesubtitle" ) . "</span></font>";
-		$s .= "</td><td align=right>" ;
+		$s .= htmlspecialchars( wfMsg( "sitesubtitle" ) ) . "</span></font>";
+		$s .= "</td><td align='right'>" ;
 
 		$s .= "<font size='-1'><span id='langlinks'>" ;
 		$s .= str_replace ( "<br>" , "" , $this->otherLanguages() ) ;
-		$s .= "<br>" . $this->pageTitleLinks();
+		$s .= "<br />" . $this->pageTitleLinks();
 		$s .= "</span></font>";
 
 		$s .= "</td></tr></table>\n";
@@ -41,7 +41,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "\n</div>\n<div id='article'>";
 
 		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n<p>";
+		$s .= $this->pageSubtitle() . "\n";
 		return $s;
 	}
 
@@ -49,24 +49,23 @@ class SkinCologneBlue extends Skin {
 	{
 		global $wgUser, $wgOut;
 
-		$s = "\n</div><br clear=all>\n";
+		$s = "\n</div><br clear='all' />\n";
 
 		$s .= "\n<div id='footer'>";
-		$s .= "<table width='98%' border=0 cellspacing=0><tr>";
+		$s .= "<table width='98%' border='0' cellspacing='0'><tr>";
 
 		$qb = $this->qbSetting();
 		if ( 1 == $qb || 3 == $qb ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
-		$s .= "<td class='bottom' align=center valign=top>";
+		$s .= "<td class='bottom' align='center' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br>" . $this->makeKnownLink( wfMsg( "mainpage" ),
-		  wfMsg( "mainpage" ) ) . " | "
+		$s .= "\n<br />" . $this->makeKnownLink( wfMsg( "mainpage" ) ) . " | "
 		  . $this->aboutLink() . " | "
 		  . $this->searchForm( wfMsg( "qbfind" ) );
 
-		$s .= "\n<br>" . $this->pageStats();
+		$s .= "\n<br />" . $this->pageStats();
 
 		$s .= "</td>";
 		if ( 2 == $qb ) { # Right
@@ -106,9 +105,6 @@ class SkinCologneBlue extends Skin {
 			$q = "returnto={$rt}"; 
 		}
 		
-		$s .= "\n<br>" . $this->makeKnownLink( $li,
-		  wfMsg( "login" ), $q );
-
 		$s = "" .
 		  $this->makeKnownLink( wfMsg( "mainpage" ), wfMsg( "mainpage" ) )
 		  . " | " .
@@ -140,7 +136,7 @@ class SkinCologneBlue extends Skin {
 
 		$s = "\n<div id='quickbar'>";
 
-		$sep = "<br>";
+		$sep = "<br />";
 		$s .= $this->menuHead( "qbfind" );
 		$s .= $this->searchForm();
 
@@ -254,9 +250,9 @@ class SkinCologneBlue extends Skin {
 		  wfLocalUrlE( "" ) . "\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
 
-		$s .= "<input type=text name=\"search\" size=14 value=\""
-		  . htmlspecialchars(substr($search,0,256)) . "\">"
-		  . "<br><input type=submit name=\"go\" value=\"" . wfMsg( "go" ) . "\"> <input type=submit name=\"fulltext\" value=\"" . wfMsg( "search" ) . "\"></form>";
+		$s .= "<input type='text' name=\"search\" size='14' value=\""
+		  . htmlspecialchars(substr($search,0,256)) . "\" />"
+		  . "<br /><input type='submit' name=\"go\" value=\"" . htmlspecialchars( wfMsg( "go" ) ) . "\" /> <input type='submit' name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
 
 		return $s;
 	}
