@@ -71,17 +71,12 @@ while (1) {
 			$url = $URLFirstPart . urlencode($title) .
 				"&diff=0&oldid=$lastid";
 		}
-		$boldTitle = $fmB . str_replace("_", " ", $title) . $fmB;
-
-		if ( $comment !== "" ) {
-			$comment = "($comment)";
-		}
 		
-		$fullString = "$boldTitle   $flag   $url   $user $comment\n"; 
+		$title = str_replace("_", " ", $title);
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# no colour (\003) switches back to the term default
+		$fullString = "\00303$title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
 
-		if ( $fullString{0} == "/" ) {
-			$fullString = " $fullString";
-		}
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
 		sleep(2);
