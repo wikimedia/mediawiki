@@ -404,7 +404,7 @@ Va trebui să editaţi manual caseta de sus pentru a reflecta modificările pe c
 "storedversion" => "Versiunea curentă",
 "editingold"	=> "<strong>ATENŢIE! Editaţi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>\n",
 "yourdiff"		=> "Diferenţe",
-"copyrightwarning" => "Reţineţi că toate contribuţiile la Wikipedia sunt considerate ca respectând licenţa GNU Free Documentation License
+"copyrightwarning" => "Ajutor pentru editare, caractere speciale: ă â î ş ţ Ă Â Î Ş Ţ<br><br>Reţineţi că toate contribuţiile la Wikipedia sunt considerate ca respectând licenţa GNU Free Documentation License
 (vezi $1 pentru detalii).
 Dacă nu doriţi ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br>
 De asemenea, trimiţând aceste materiale aici vă angajaţi că le-aţi scris Dvs. sau că sunt copiate dintr-o sursă care permite includerea materialelor sub această licenţă.
