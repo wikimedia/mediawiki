@@ -40,7 +40,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 		</style>
 	</head>
 	<body>
-		<img src='skins/common/images/wiki.png' alt='The MediaWiki logo' />
+		<img src='skins/common/images/mediawiki.png' alt='The MediaWiki logo' />
 		
 		<h1>MediaWiki <?php echo $wgVersion ?></h1>
 		<div class='error'>
