@@ -6,6 +6,7 @@ $wgOutputEncoding	= "utf-8";
 # Won't get context-sensitive things yet
 
 # Hack for bugs in ucfirst() and company
+# TODO: store this in shared memory or something
 
 $wikiUpperChars = array(
 	"a" => "A",
@@ -1496,11 +1497,11 @@ $wikiLowerChars = array (
 # Base stuff useful to all UTF-8 based language files
 class LanguageUtf8 extends Language {
 
-    function ucfirst( $string ) {
+	function ucfirst( $string ) {
 		# For most languages, this is a wrapper for ucfirst()
 		# But that doesn't work right in a UTF-8 locale
 		global $wikiUpperChars, $wikiLowerChars;
-        return preg_replace (
+		return preg_replace (
         	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiUpperChars )",
         	$string );
@@ -1514,6 +1515,27 @@ class LanguageUtf8 extends Language {
 		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 		  "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
 		  $string );
+	}
+
+	function fallback8bitEncoding() {
+		# Windows codepage 1252 is a superset of iso 8859-1
+		# override this to use difference source encoding to
+		# translate incoming 8-bit URLs.
+		return "windows-1252";
+	}
+
+	function checkTitleEncoding( $s ) {
+		global $wgInputEncoding;
+
+		# Check for non-UTF-8 URLs
+		$ishigh = preg_match( '/[\x80-\xff]/', $s);
+		if(!$ishigh) return $s;
+		
+		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		if( $isutf8 ) return $s;
+
+		return $this->iconv( $this->fallback8bitEncoding(), "utf-8", $s );
 	}
 }
 
