@@ -399,7 +399,11 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		}
 
 		wfSuppressWarnings();
-		$message = $lang->getMessage( $key );
+		if( is_object( $message ) ) {
+			$message = $lang->getMessage( $key );
+		} else {
+			$message = '';
+		}
 		wfRestoreWarnings();
 		if(!$message)
 			$message = Language::getMessage($key);
