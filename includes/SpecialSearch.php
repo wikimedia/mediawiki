@@ -141,7 +141,9 @@ class SpecialSearch {
 			return;
 		}
 
-		$search =& $this->getSearchEngine();
+		$search =& SearchEngine::create();
+		$search->setLimitOffset( $this->limit, $this->offset );
+		$search->setNamespaces( $this->namespaces );
 		$titleMatches = $search->searchTitle( $term );
 		$textMatches = $search->searchText( $term );
 		
@@ -203,35 +205,6 @@ class SpecialSearch {
 		$wgOut->setSubtitle( wfMsg( 'searchquery', htmlspecialchars( $term ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-	}
-
-	/**
-	 * Load up the appropriate search engine class for the currently
-	 * active database backend, and return a configured instance.
-	 *
-	 * @return SearchEngine
-	 * @access private
-	 */
-	function &getSearchEngine() {
-		global $wgDBtype, $wgDBmysql4, $wgSearchType;
-		if( $wgDBtype == 'mysql' ) {
-			if( $wgDBmysql4 ) {
-				$class = 'SearchMySQL4';
-				require_once( 'SearchMySQL4.php' );
-			} else {
-				$class = 'SearchMysql3';
-				require_once( 'SearchMySQL3.php' );
-			}
-		} else if ( $wgDBtype == 'PostgreSQL' ) {
-			$class = 'SearchTsearch2';
-			require_once( 'SearchTsearch2.php' );
-		} else {
-			$class = 'SearchEngineDummy';
-		}
-		$search = new $class( wfGetDB( DB_SLAVE ) );
-		$search->setLimitOffset( $this->limit, $this->offset );
-		$search->setNamespaces( $this->namespaces );
-		return $search;
 	}
 	
 	/**

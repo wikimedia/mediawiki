@@ -81,6 +81,28 @@ class SearchMySQL3 extends SearchEngine {
 			"FROM $cur,$searchindex " .
 			'WHERE cur_id=si_page AND ' . $match;
 	}
+
+	function update( $id, $title, $text ) {
+		$dbw=& wfGetDB(DB_MASTER);
+                $dbw->replace( 'searchindex', array(array('si_page')),
+                        array(
+                                'si_page' => $id,
+                                'si_title' => $dbw->strencode($title),
+                                'si_text' => $dbw->strencode( $text )
+                        ), 'SearchMySQL3::update' );
+	}
+
+	function updateTitle($id,$title) {
+		$dbw=& wfGetDB(DB_MASTER);
+		$lowpri=$dbw->lowPriorityOption();
+		$searchindex = $dbw->tableName( 'searchindex' );
+
+		$sql = "UPDATE $lowpri $searchindex SET si_title='" .
+                          $db->strencode( $title ) .
+                          "' WHERE si_page={$id}";
+
+		$dbw->query( $sql, "SearchMySQL3::updateTitle" );
+	}
 }
 
 ?>
