@@ -1959,6 +1959,11 @@ class Parser
 			$canonized_headline = $this->unstrip( $headline, $this->mStripState );
 			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
 
+			# Remove link placeholders by the link text.
+			#     <!--LINK namespace page_title link text with suffix-->
+			# turns into 
+			#     link text with suffix
+			$canonized_headline = preg_replace( '/<!--LINK [0-9]* [^ ]* *(.*?)-->/','$1', $canonized_headline );
 			# strip out HTML
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
