@@ -1441,6 +1441,11 @@ class Skin {
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' )
 	{
 		global $wgOut, $wgUser, $wgLoadBalancer;
+
+		# Fail gracefully
+		if ( ! isset($nt) )
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
