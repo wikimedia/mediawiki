@@ -1,6 +1,9 @@
 <?php
 
 function install_version_checks() {
+	# Turn off output buffering if it's on
+	@ob_end_flush();
+	
 	if( !function_exists( "version_compare" ) ) {
 		# version_compare was introduced in 4.1.0
 		die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
