@@ -5,7 +5,7 @@
  */
 
 /** */
-require_once( '../includes/Revision.php' );
+require_once( 'includes/Revision.php' );
 
 /** @todo document */
 function compressOldPages( $start = 0 ) {
@@ -82,12 +82,12 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	}
 	if ( $loadStyle == LS_CHUNKED ) {
 		$tables = array( 'revision', 'text' );
-		$fields = array( 'rev_id', 'old_flags', 'old_text' );
-		$conds[] = 'rev_id=old_id';
+		$fields = array( 'rev_id', 'rev_text_id', 'old_flags', 'old_text' );
+		$conds[] = 'rev_text_id=old_id';
 		$revLoadOptions = 'FOR UPDATE';
 	} else {
 		$tables = array( 'revision' );
-		$fields = array( 'rev_id' );
+		$fields = array( 'rev_id', 'rev_text_id' );
 		$revLoadOptions = array();
 	}
 
@@ -97,7 +97,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		print $titleObj->getPrefixedDBkey() . " ";
 
 		# Load revisions
-		$revRes = $dbw->select( 'old', $fields,
+		$revRes = $dbw->select( $tables, $fields,
 			array( 'rev_page' => $pageRow->page_id ) + $conds, 
 			$fname,
 			$revLoadOptions
@@ -126,11 +126,11 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			$stubs = array();
 			$dbw->begin();
 			$usedChunk = false;
-			$primaryOldid = $revs[$i]->rev_id;
+			$primaryOldid = $revs[$i]->rev_text_id;
 			
 			# Get the text of each revision and add it to the object
 			for ( $j = 0; $j < $thisChunkSize && $chunk->isHappy( $maxChunkFactor, $factorThreshold ); $j++ ) {
-				$oldid = $revs[$i + $j]->rev_id;
+				$oldid = $revs[$i + $j]->rev_text_id;
 				
 				# Get text
 				if ( $loadStyle == LS_INDIVIDUAL ) {
