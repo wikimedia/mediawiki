@@ -316,18 +316,25 @@ table.small { font-size: 100% }
 div.floatright, table.floatright {
     clear: right;
     float: right;
-    margin: 0;
     position: relative;
+    margin: 0;
+    border: 0
+/*
     border: 0.5em solid White;
     border-width: 0.5em 0 0.8em 1.4em;
+*/
 }
 div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
     float: left;
-    margin: 0.3em 0.5em 0.5em 0;
     position: relative;
+    margin: 0;
+    border: 0
+/*
+    margin: 0.3em 0.5em 0.5em 0;
     border: 0.5em solid White;
     border-width: 0.5em 1.4em 0.8em 0;
+*/
 }
 div.floatleft p { font-style: italic; }
 /* thumbnails */
