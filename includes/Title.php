@@ -1189,37 +1189,56 @@ class Title {
 			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 			wfFreeResult ( $res ) ;
 		} else {
-			$data = array();
+			$data = "";
 		}
 		return $data;
 	}
 	
 	# will get the parents and grand-parents
+	# TODO : not sure what's happening when a loop happen like:
+	# 	Encyclopedia > Astronomy > Encyclopedia
 	function getAllParentCategories(&$stack)
 	{
-		global $wgUser;
-		$sk =& $wgUser->getSkin() ;
-
+		global $wgUser,$wgLang;
+		$result = "";
+		
 		# getting parents
 		$parents = $this->getParentCategories( );
-				
-		foreach($parents as $parent)
+
+		if($parents == "")
 		{
-			# create a title object for the parent
-			$tpar = Title::newFromID($parent->cur_id);
-			
-			if(isset($stack[$this->getText()]))
+			# The current element has no more parent so we dump the stack
+			# and make a clean line of categories
+			$sk =& $wgUser->getSkin() ;
+
+			foreach ( array_reverse($stack) as $child => $parent )
 			{
-				$stack[$tpar->getText()] = $sk->makeLink( $this->getPrefixedDBkey(), $this->getText() );
-				$stack[$tpar->getText()] .= " &gt; ".$stack[$this->getText()];
-			} else {
-				# don't make a link for current page
-				$stack[$tpar->getText()] = $this->getText();
+				# make a link of that parent
+				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).":".$parent,$parent);
+				$result .= " &gt; ";
+				$lastchild = $child;
 			}
+			# append the last child
+			$result .= "$lastchild<br/>\n";
 			
-			unset( $stack[$this->getText()] );
-			$tpar->getAllParentCategories(&$stack);
+			# now we can empty the stack
+			$stack = array();
+			
+		} else {
+			# look at parents of current category
+			foreach($parents as $parent)
+			{
+				# create a title object for the parent
+				$tpar = Title::newFromID($parent->cur_id);
+				# add it to the stack
+				$stack[$this->getText()] = $tpar->getText();
+				# grab its parents
+				$result .= $tpar->getAllParentCategories(&$stack);
+			}
 		}
+
+		if(isset($result)) { return $result; }
+		else { return ""; };
 	}
 	
 	
