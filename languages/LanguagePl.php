@@ -27,7 +27,7 @@ include_once("{$IP}/Utf8Case.php");
         "contextlines" => 5, "contextchars" => 50,
         "skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
         "highlightbroken" => 1, "stubthreshold" => 0,
-		"previewontop" => 1, "editsection" => 1, "showtoc" => 1
+                "previewontop" => 1, "editsection" => 1, "editsectiononrightclick" => 0, "showtoc" => 1
 );
 
 /* private */ $wgQuickbarSettingsPl = array(
@@ -54,15 +54,16 @@ include_once("{$IP}/Utf8Case.php");
         "hideminor" => "Ukryj drobne zmiany w \"Ostatnich zmianach\"",
         "usenewrc" => "Konsolidacja ostatnich zmian (JavaScript)",
         "numberheadings" => "Automatyczna numeracja nagłówków",
-		"editsection" => "Możliwość edycji poszczególnych części artykułu",
-		"showtoc" =>  "Spis treści w artykułach zawierających więcej niż 3 nagłówki",
+        "editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
+                "editsection" => "Możliwość edycji poszczególnych sekcji strony",
+                "editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br>rozpoczyna jej edycję (JavaScript)",
+                "showtoc" =>  "Spis treści (na stronach zawierających więcej niż 3 nagłówki)",
         "rememberpassword" => "Pamiętaj hasło między sesjami",
         "editwidth" => "Obszar edycji o pełnej szerokości",
-        "editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
-        "watchdefault" => "Obserwuj artykuły, które będę edytować",
+        "watchdefault" => "Obserwuj strony, które będę edytować",
         "minordefault" => "Wszystkie zmiany zaznaczaj domyślnie jako drobne",
         "previewontop" => "Pokazuj podgląd przed oknem edycji",
-		"nocache" => "Wyłącz pamięć podręczną"
+                "nocache" => "Wyłącz pamięć podręczną"
 );
 
 /* private */ $wgBookstoreListPl = array(
@@ -91,11 +92,12 @@ include_once("{$IP}/Utf8Case.php");
         "bh"    => "biharska",
         "bi"    => "bislama",
         "my"    => "birmańska",
+        "bs"    => "bośniacka",
         "km"    => "kambodżańska",
         "ca"    => "katalońska",
         "zh"    => "chińska",
-		"zh-cn" => "chińska uproszczona",
- 	    "zh-tw" => "chińska tradycyjna",
+                "zh-cn" => "chińska uproszczona",
+            "zh-tw" => "chińska tradycyjna",
         "co"    => "korsykańska",
         "hr"    => "chorwacka",
         "cs"    => "czeska",
@@ -258,8 +260,7 @@ include_once("{$IP}/Utf8Case.php");
         "Shortpages"    => "Najkrótsze",
         "Longpages"     => "Najdłuższe",
         "Newpages"      => "Nowoutworzone",
-		"Ancientpages" => "Najstarsze",
-        "Intl"          => "Linki międzywikipediowe",
+                "Ancientpages" => "Najstarsze",
         "Allpages"      => "Wszystkie",
 
         "Ipblocklist"   => "Zablokowane adresy IP",
@@ -270,7 +271,8 @@ include_once("{$IP}/Utf8Case.php");
         "Whatlinkshere" => "",
         "Recentchangeslinked" => "",
         "Movepage"      => "",
-        "Booksources"   => "Książki"
+        "Booksources"   => "Książki",
+                "Categories"    => "Kategorie stron"
 );
 
 /* private */ $wgSysopSpecialPagesPl = array(
@@ -290,6 +292,10 @@ include_once("{$IP}/Utf8Case.php");
 
 # Bits of text used by many pages:
 #
+"categories" => "Kategorie stron",
+"category" => "kategoria",
+"category_header" => "Artykuły w kategorii \"$1\"",
+"subcategories" => "Podkategorie",
 "linktrail" => "/^([a-z]+)(.*)\$/sD",
 "mainpage" => "Strona główna",
 "mainpagetext" => "Instalacja oprogramowania powiodła się.",
@@ -314,7 +320,7 @@ include_once("{$IP}/Utf8Case.php");
 "qbmyoptions" => "Moje opcje",
 "mypage" => "Moja strona",
 "mytalk" => "Moja dyskusja",
-"currentevents" => "Bieżące wydarzenia",
+"currentevents" => "-",
 "errorpagetitle" => "Błąd",
 "returnto" => "Wróć do strony: $1.",
 "fromwikipedia" => "Z Wikipedii, wolnej encyklopedii.",
@@ -330,15 +336,16 @@ include_once("{$IP}/Utf8Case.php");
 "unprotectthispage" => "Odbezpiecz",
 "newpage" => "Nowa strona",
 "talkpage" => "Dyskusja",
-"subjectpage" => "Strona dyskutowana", # for compatibility
+"postcomment" => "Skomentuj",
 "articlepage" => "Strona artykułu", 
+"subjectpage" => "Strona dyskutowana", # for compatibility
 "userpage" => "Strona wikipedysty", 
 "wikipediapage" => "Strona metaartykułu", 
 "imagepage" =>  "Strona grafiki", 
 "viewtalkpage" => "Strona dyskusji",
 "otherlanguages" => "Wersja",
 "redirectedfrom" => "(Przekierowano z $1)",
-"lastmodified" => "ostatnio zmodyfikowano o $1;",
+"lastmodified" => "Tę stronę ostatnio zmodyfikowano o $1;",
 "viewcount" => "Tę stronę obejrzano $1 razy;",
 "gnunote" => "udostępniana jest w oparciu o licencję <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>; możesz ją samodzielnie uzupełnić lub poprawić.",
 "printsubtitle" => "(z http://pl.wikipedia.org)",
@@ -364,6 +371,8 @@ Zobacz $1.",
 "toc" => "Spis treści",
 "showtoc" => "pokaż",
 "hidetoc" => "schowaj",
+"thisisdeleted" => "Pokaż/odtwórz $1 ?",
+"restorelink" => "skasowane wersje, w sumie $1",
 
 # Main script and global functions
 #
@@ -390,8 +399,9 @@ Ostatnie, nieudane zapytanie to:
 \"$1\"
 wywołane zostało przez funkcję \"$2\".
 MySQL zgłosił błąd \"$3: $4\".\n",
-"noconnect" => "Poprzez $1 nie można połączyć się z systemem zarządzającym bazą danych",
+"noconnect" => "Przepraszamy! Wikipedia ma chwilowe problemy techniczne. Nie można połączyć się z serwerem bazy danych.",
 "nodb" => "Nie można odnaleźć bazy danych $1",
+"cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już niekatualny.",
 "readonly" => "Baza danych jest zablokowana",
 "enterlockreason" => "Podaj powód zablokowania bazy oraz szacunkowy czas
 jej odblokowania",
@@ -404,7 +414,7 @@ Administrator, który zablokował bazę, podał następujące wyjaśnienie:
 "missingarticle" => "Oprogramowanie nie odnalazło tekstu strony,
 która powinna się znajdować w bazie, tzn. strony \"$1\".
 <p>Zazwyczaj zdarza się to, gdy wybrane zostanie łącze
-do skasowanej strony, np. w starszej wersji artykułu.
+do skasowanej strony, np. w starszej wersji innej ze stron.
 <p>Inne okoliczności świadczyłyby o tym, że w oprogramowaniu jest błąd.
 W takim przypadku zgłoś, proszę, ten fakt administratorowi
 podając także powyższy adres.",
@@ -480,6 +490,7 @@ Po otrzymaniu go zaloguj się ponownie.",
 # Edit pages
 #
 "summary" => "Opis zmian",
+"subject" => "Temat/nagłówek",
 "minoredit" => "To jest drobna zmiana.",
 "watchthis" => "Obserwuj",
 "savearticle" => "Zapisz",
@@ -505,6 +516,7 @@ nie są skierowane do Ciebie, [[Specjalna:Userlogin|utwórz proszę konto i/albo
 z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.",
 "editing" => "Edytujesz \"$1\"",
 "sectionedit" => " (fragment)",
+"commentedit" => " (komentarz)",
 "editconflict" => "Konflikt edycji: $1",
 "explainconflict" => "Ktoś zdążył wprowadzić swoją wersję artykułu
 w trakcie Twojej edycji.
@@ -578,8 +590,8 @@ liczba znalezionych artykułów: $3.",
 "nogomatch" => "Nie istnieją strony o dokładnie takim tytule. Spróbuj pełnego przeszukiwania. ",
 "titlematches" => "Znaleziono w tytułach:",
 "notitlematches" => "Nie znaleziono w tytułach",
-"textmatches" => "Znaleziono w artykułach:",
-"notextmatches" => "Nie znaleziono w artykułach",
+"textmatches" => "Znaleziono na stronach:",
+"notextmatches" => "Nie znaleziono w tekście stron",
 "prevn" => "poprzednie $1",
 "nextn" => "następne $1",
 "viewprevnext" => "Zobacz ($1) ($2) ($3).",
@@ -594,7 +606,8 @@ tylko te, które zawierają wszystkie podane słowa).",
 "powersearchtext" => "
 Szukaj w przestrzeniach nazw :<br>
 $1<br>
-$2 Pokaż przekierowania &nbsp; Szukany tekst $3 $9",
+$2 Pokaż przekierowania   Szukany tekst $3 $9",
+"blanknamespace" => "(Główna)",
 
 
 # Preferences page
@@ -845,7 +858,6 @@ odpowiednika w tym języku. Na tej liście <i>pominięto</i> podstrony oraz prze
 "debug" => "Odpluskwianie",
 "newpages" => "Nowe strony",
 "ancientpages" => "Najstarsze strony",
-"intl" => "Linki międzywikipediowe",
 "movethispage" => "Przenieś",
 "unusedimagestext" => "<p>Pamiętaj, proszę, że inne witryny,
 np. Wikipedie w innych językach, mogą odwoływać się do tych plików
@@ -857,7 +869,7 @@ które pośredniczą w sprzedaży nowych i używanych książek i mogą podać
 informacje o książkach, których szukasz.
 Wikipedia nie jest stowarzyszona z żadnym ze sprzedawców,
 a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach.",
-"alphaindexline" => "$1 --&gt; $2",
+"alphaindexline" => "$1 --> $2",
 
 # Email this user
 #
@@ -909,6 +921,23 @@ a nazwa samej strony zostanie <b>wytłuszczona</b> na <a href=\"" .
 "unwatchthispage" => "Przestań obserwować",
 "notanarticle" => "To nie artykuł",
 
+
+"watchnochange" => "Żadna z obserwowanych stron nie była edytowana w podanym okresie.",
+"watchdetails" => "(Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji;
+liczba stron edytowanych od ostatniej cezury: $2;
+$3...
+<a href='$4'>pokaż i edytuj pełną listę</a>.)",
+"watchmethod-recent" => "poszukiwanie ostatnich zmian wśród obserwowanych stron",
+"watchmethod-list" => "poszukiwanie obserwowanych stron wśród ostatnich zmian",
+"removechecked" => "Usuń zaznaczone pozycje z listy obserwowanych",
+"watcheditlist" => "Oto alfabetyczna lista obserwowanych stron.
+Zaznacz, które z nich mamy usunąć z listy i kliknij przycisk
+<i>Usuń...</i> znajdujący się na dole strony.",
+"removingchecked" => "Usuwamy zaznaczone pozycje z listy obserwowanych...",
+"couldntremove" => "Nie można było usunąć pozycji '$1'...",
+"iteminvalidname" => "Problem z pozycją '$1', niepoprawna nazwa...",
+"wlnote" => "Poniżej pokazano zmiany dokonane w ciągu ostatnich <b>$2</b> godzin (maksymalna liczba pozycji: $1).",
+
 # Delete/protect/revert
 #
 "deletepage" => "Usuń stronę",
@@ -943,10 +972,10 @@ Podane czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "rollback" => "Cofnij edycję", 
 "rollbacklink" => "cofnij",
 "rollbackfailed" => "Nie udało się cofnąć zmiany",
-"cantrollback" => "Nie można cofnąć edycji; jest tylko jedna wersja tego artykułu.",
-"alreadyrolled" => "Nie można cofnąć ostatniej zmiany w artykule [[$1]],
+"cantrollback" => "Nie można cofnąć edycji; jest tylko jedna wersja tej strony.",
+"alreadyrolled" => "Nie można cofnąć ostatniej zmiany strony [[$1]],
 której autorem jest [[Wikipedysta:$2|$2]] ([[Dyskusja_wikipedysty:$2|Dyskusja]]).
-Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do artykułu.
+Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 Autorem ostatniej zmiany jest teraz [[Wikipedysta:$3|$3]] ([[Dyskusja_wikipedysty:$3|Dyskusja]]).",
 # only shown if there is an edit comment
 "editcomment" => "Opisano ją następująco: \"<i>$1</i>\".",
@@ -958,7 +987,7 @@ Autorem ostatniej zmiany jest teraz [[Wikipedysta:$3|$3]] ([[Dyskusja_wikipedyst
 "undeletepage" => "Odtwarzanie skasowanych stron",
 "undeletepagetext" => "Poniższe strony zostały skasowane, ale ich kopia wciąż
 znajduje się w archiwum.<br><b>Uwaga:</b> archiwum co jakiś czas także jest kasowane!",
-"undeletearticle" => "Odtwórz skasowany artykuł",
+"undeletearticle" => "Odtwórz skasowaną stronę",
 "undeleterevisions" => "Liczba zarchiwizowanych wersji: $1",
 "undeletehistory" => "Odtworzenie strony spowoduje przywrócenie także jej
 wszystkich poprzednich wersji. Jeśli od czasu skasowania ktoś utworzył nową stronę
@@ -967,7 +996,7 @@ pozostanie bez zmian.",
 "undeleterevision" => "Skasowano wersję z $1",
 "undeletebtn" => "Odtwórz!",
 "undeletedarticle" => "odtworzono \"$1\"",
-"undeletedtext" => "Pomyślnie odtworzono artykuł [[$1]].
+"undeletedtext" => "Pomyślnie odtworzono stronę [[$1]].
 Zobacz [[Wikipedia:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
 skasowanych i odtworzonych stron.",
 
@@ -991,7 +1020,7 @@ użytkownika w ciągu ostatnich <b>$2</b> dni.",
 ta operacja ma być wykonana.",
 "linklistsub" => "(Lista linków)",
 "linkshere" => "Do tej strony odwołują się następujące inne strony:",
-"nolinkshere" => "Do tej strony nie odwołuje się do żadna inna.",
+"nolinkshere" => "Do tej strony nie odwołuje się żadna inna.",
 "isredirect" => "strona przekierowująca",
 
 # Block/unblock IP
