@@ -131,7 +131,7 @@ class SkinPHPTal extends Skin {
 	 * @access private
 	 */
 	function &setupTemplate( $file, $repository=false, $cache_dir=false ) {
-		if( NEW_PHPTAL ) {
+		if( defined( 'NEW_PHPTAL' ) && NEW_PHPTAL ) {
 			return new PHPTAL_version_bridge( $file, $repository, $cache_dir );
 		} else {
 			return new PHPTAL( $file, $repository, $cache_dir );
