@@ -19,13 +19,14 @@
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
+	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	  <a name="top" id="contentTop"></a>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
 	    <h3 id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
 	    <div id="contentSub" tal:content="structure subtitle"></div>
 	    <div id="contentSub" tal:condition="undelete" tal:content="structure undelete"></div>
-	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
+
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
 	    <!-- start content -->
 	    ${bodytext}
