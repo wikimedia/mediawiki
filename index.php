@@ -153,10 +153,10 @@ if( !is_null( $search ) && $search !== '' ) {
 				wfCreativeCommonsRdf( $wgArticle );
 			}
 			break;
-  	        case "credits":
-	                require_once( "includes/Credits.php" );
+		case "credits":
+			require_once( "includes/Credits.php" );
 			showCreditsPage( $wgArticle );
-	                break;
+			break;
 		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {

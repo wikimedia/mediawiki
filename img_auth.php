@@ -8,8 +8,13 @@
 # Valid web server entry point, enable includes
 define( "MEDIAWIKI", true );
 
+require_once( "includes/Defines.php" );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
+
+if( !isset( $_SERVER['PATH_INFO'] ) ) {
+	wfForbidden();
+}
 
 # Get filenames/directories
 $filename = realpath( $wgUploadDirectory . $_SERVER['PATH_INFO'] );
@@ -25,10 +30,19 @@ if ( is_array( $wgWhitelistRead ) && !in_array( $imageName, $wgWhitelistRead ) &
 	wfForbidden();
 }
 
+if( !file_exists( $filename ) ) {
+	wfForbidden();
+}
+if( is_dir( $filename ) ) {
+	wfForbidden();
+}
+
 # Write file
 $type = wfGetType( $filename );
 if ( $type ) {
 	header("Content-type: $type");
+} else {
+	header("Content-type: application/x-wiki");
 }
 
 readfile( $filename );
@@ -128,8 +142,6 @@ model/mesh msh mesh silo
 model/vrml wrl vrml
 text/calendar ics ifb
 text/css css
-text/html html htm
-text/plain asc txt
 text/richtext rtx
 text/rtf rtf
 text/sgml sgml sgm
@@ -147,7 +159,7 @@ END_STRING;
 	$endl = "
 ";
 	$types = explode( $endl, $types );
-	if ( !preg_match( "/\.(.*?)$/", $filename, $matches ) ) {
+	if ( !preg_match( "/\.([^.]*?)$/", $filename, $matches ) ) {
 		return false;
 	}
 
