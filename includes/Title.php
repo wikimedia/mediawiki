@@ -478,7 +478,7 @@ class Title {
 	 * @param int $n the namespace index, one of the NS_xxxx constants
 	 * @access public
 	 */
-	function setNamespace( $n ) { $this->mNamespace = IntVal( $n; ) }
+	function setNamespace( $n ) { $this->mNamespace = IntVal( $n ); }
 	/**
 	 * Get the interwiki prefix (or null string)
 	 * @return string
