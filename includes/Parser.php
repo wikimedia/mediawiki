@@ -426,7 +426,7 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 
-		$text = $this->replaceExternalLinks( $text );
+		$text = ' '.$this->replaceExternalLinks( $text );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
