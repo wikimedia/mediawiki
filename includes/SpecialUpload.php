@@ -178,7 +178,7 @@ class UploadForm {
 		if( is_null( $nt ) ) {
 			return $this->uploadError( wfMsg( 'illegalfilename', htmlspecialchars( $filtered ) ) );
 		}
-		$nt->setNamespace( NS_IMAGE );
+		$nt =& Title::makeTitle( NS_IMAGE, $nt->getDBkey() );
 		$this->mUploadSaveName = $nt->getDBkey();
 		
 		/**

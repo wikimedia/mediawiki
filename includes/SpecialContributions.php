@@ -40,7 +40,7 @@ function wfSpecialContributions( $par = '' ) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
-	$nt->setNamespace( Namespace::getUser() );
+	$nt =& Title::makeTitle( NS_USER, $nt->getDBkey() );
 
 	$id = User::idFromName( $nt->getText() );
 
