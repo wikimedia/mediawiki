@@ -735,50 +735,8 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source
 		$id = $descTitle->getArticleID();
 
 		if ( $id == 0 ) {
-			$now = wfTimestampNow();
-			$won = wfInvertTimestamp( $now );
-
-			$text_old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
-			$dbw->insert( 'text',
-				array(
-					'old_id' => $text_old_id,
-					'old_text' => $textdesc,
-					'old_flags' => '' ),
-				$fname );
-			if ( is_null( $text_old_id ) ) $text_old_id = $dbw->insertId();
-
-			$page_page_id = $dbw->nextSequenceValue( 'page_page_id' );
-			$dbw->insert( 'page',
-				array(
-					'page_id'	 => $page_page_id,
-					'page_namespace' => NS_IMAGE,
-					'page_title'	 => $name,
-					'page_restrictions' => '',
-					'page_counter'	 => 0,
-					'page_is_redirect' => 0,
-					'page_is_new'	 => 1,
-					'page_random'	 => 0.5,
-					'page_touched'	 => $now,
-					'page_latest'	 => $text_old_id ),
-				$fname );
-			if ( is_null( $page_page_id ) ) $page_page_id = $dbw->insertId();
-
-			$dbw->insert( 'revision',
-				array(
-					'rev_id'	=> $text_old_id,
-					'rev_page'	=> $page_page_id,
-					'rev_comment'	=> $desc,
-					'rev_user'	=> $wgUser->getID(),
-					'rev_user_text'	=> $wgUser->getName(),
-					'rev_timestamp'	=> $now,
-					'inverse_timestamp' => $won,
-					'rev_minor_edit' => 0 ),
-				$fname );
-
-			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
-
-			$u = new SearchUpdate( $page_page_id, $name, $desc );
-			$u->doUpdate();
+			$article = new Article( $descTitle );
+			$article->insertNewArticle( $textdesc, $desc, false, false );
 		}
 	} else {
 		# Collision, this is an update of an image
