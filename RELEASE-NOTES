@@ -12,6 +12,7 @@ Changes from 1.3.5:
 * (bug 149) Special:Recentchanges "changes from" link preserves limit
 * (bug 433) tooltip for "Undelete" tab now labeled correctly
 * (bug 439) unclickable "Move" tab no longer displays on protected pages
+* (bug 484) graceful deletion of images where the actual file is missing
 * Fixed potential HTML/JavaScript injection attack in the UnicodeConverter
   extension. (This extension is not enabled by default.)
 * Fixed potential HTML/JavaScript injection attack via raw page views to
