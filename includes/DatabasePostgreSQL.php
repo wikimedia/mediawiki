@@ -52,7 +52,7 @@ class Database {
 	
 	# Output page, used for reporting errors
 	# FALSE means discard output
-	function &setOutputPage( &$out ) { return wfSetRef( $this->mOut, $out ); }
+	function &setOutputPage( &$out ) { $this->mOut =& $out; }
 	
 	# Boolean, controls output of large amounts of debug information 
 	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
