@@ -127,13 +127,6 @@ class Article {
 						wfProfileOut( $fname );
 						return $rv;
 					}
-				} else if ( 
-					# wrap user css and user js in pre
-					$this->mTitle->getNamespace() == Namespace::getUser() && 
-					preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
-				) 
-				{
-					$this->mContent = '<pre>'.htmlspecialchars($this->mContent)."\n</pre>";
 				}
 				wfProfileOut( $fname );
 				return $this->mContent;
@@ -508,8 +501,14 @@ class Article {
 		}
 
 		$wgLinkCache->preFill( $this->mTitle );
-		
-		if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
+
+		# wrap user css and user js in pre and don't parse
+		if ( 
+			$this->mTitle->getNamespace() == Namespace::getUser() && 
+			preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
+		) {
+			$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
+		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
 			$wgOut->addWikiText( $text, true, $this );
 		} else {
 			$wgOut->addWikiText( $text );
