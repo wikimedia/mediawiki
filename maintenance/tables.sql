@@ -312,14 +312,13 @@ CREATE TABLE /*$wgDBprefix*/blobs (
 
 CREATE TABLE /*$wgDBprefix*/validate (
   `val_user` int(11) NOT NULL default '0',
-  `val_title` varchar(255) binary NOT NULL default '',
-  `val_timestamp` varchar(14) binary NOT NULL default '',
-  `val_type` int(10) unsigned NOT NULL default '0',
+  `val_page` int(11) unsigned NOT NULL default '0',
+  `val_revision` int(11) unsigned NOT NULL default '0',
+  `val_type` int(11) unsigned NOT NULL default '0',
   `val_value` int(11) default '0',
   `val_comment` varchar(255) NOT NULL default '',
-  KEY `val_user` (`val_user`,`val_title`,`val_timestamp`)
-);
-
+  KEY `val_user` (`val_user`,`val_revision`)
+) TYPE=MyISAM;
 
 CREATE TABLE /*$wgDBprefix*/logging (
   -- Symbolic keys for the general log type and the action type
