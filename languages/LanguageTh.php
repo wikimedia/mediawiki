@@ -125,8 +125,8 @@
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "แก้ไขหน้าโดยใช้ double click (ผ่าน JavaScript)",
 "tog-editsection"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ลิงก์ [แก้ไข]",
-"tog-editsectiononrightclick"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ right click<br> บนชื่อส่วนย่อย (ผ่าน JavaScript)",
-"tog-showtoc"=>"แสดงสารบัญ<br>(สำหรับบทความที่มีมากกว่า 3 หัวข้อ)",
+"tog-editsectiononrightclick"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ right click<br /> บนชื่อส่วนย่อย (ผ่าน JavaScript)",
+"tog-showtoc"=>"แสดงสารบัญ<br />(สำหรับบทความที่มีมากกว่า 3 หัวข้อ)",
 "tog-rememberpassword" => "จำ password ระหว่าง session",
 "tog-editwidth" => "กล่องสำหรับการแก้ไขกว้างเต็มหน้าจอ",
 "tog-watchdefault" => "นำหน้าที่แก้ไขไปใส่ watchlist",
@@ -313,8 +313,8 @@ an incorrectly linked inter-language or inter-wiki title.",
 because it slows the database down to the point that no one can use
 the wiki.",
 "perfdisabledsub" => "Here's a saved copy from $1:",
-"wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br>
-Function: $1<br>
+"wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br />
+Function: $1<br />
 Query: $2
 ",
 "viewsource" => "View source",
@@ -342,8 +342,8 @@ Don't forget to personalize your wikipedia preferences.",
 "yourpasswordagain" => "พิมพ์รหัสผ่านอีกครั้ง",
 "newusersonly"	=> " (เฉพาะผู้ใช้ใหม่)",
 "remembermypassword" => "Remember my password across sessions.",
-"loginproblem"	=> "<b>There has been a problem with your login.</b><br>Try again!",
-"alreadyloggedin" => "<font color=red><b>User $1, you are already logged in!</b></font><br>\n",
+"loginproblem"	=> "<b>There has been a problem with your login.</b><br />Try again!",
+"alreadyloggedin" => "<font color=red><b>User $1, you are already logged in!</b></font><br />\n",
 
 "login"			=> "ล็อกอิน",
 "loginprompt"           => "ต้อง enable cookie เพื่อล็อกอินสู่ $wgSitename ได้",
@@ -392,7 +392,7 @@ Please log in again after you receive it.",
 "showpreview"	=> "Show preview",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
-The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
+The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
 [[$wgMetaNamespace:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
@@ -447,7 +447,7 @@ If you save it, any changes made since this revision will be lost.</strong>\n",
 considered to be released under the GNU Free Documentation License
 (see $1 for details).
 If you don't want your writing to be edited mercilessly and redistributed
-at will, then don't submit it here.<br>
+at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a
 public domain or similar free resource.
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
@@ -516,8 +516,8 @@ which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",
 "powersearch" => "Search",
 "powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
+Search in namespaces :<br />
+$1<br />
 $2 List redirects &nbsp; Search for $3 $9",
 "searchdisabled" => "<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>
 
@@ -533,7 +533,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -680,7 +680,7 @@ created and by whom, and anything else you may know about it.",
 "deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
-<br><i>Click on date to see image uploaded on that date</i>.",
+<br /><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Image links",
 "linkstoimage"	=> "The following pages link to this image:",
 "nolinkstoimage" => "There are no pages that link to this image.",
@@ -708,9 +708,9 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "$wgMetaNamespace:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
 "brokenredirectstext"	=> "The following redirects link to a non-existing article.",
 "selflinks"		=> "Pages with Self Links",
@@ -932,7 +932,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "\"$1\" has been blocked.
-<br>See [[Special:Ipblocklist|IP block list]] to review blocks.",
+<br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock user",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address or username.",
@@ -972,7 +972,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "Database lock succeeded",
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
+<br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The database has been unlocked.",
 
 # SQL query

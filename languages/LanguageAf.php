@@ -286,13 +286,13 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.",
 "yourpasswordagain" => "Tik weer jou wagwoord in",
 "newusersonly"	=> " (slegs nuwe gebruikers)",
 "remembermypassword" => "Onthou my wagwoord oor sessies.",
-"loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br>Probeer weer.",
-"alreadyloggedin" => "<font color=red><b>Gebruiker $1, jy is reeds ingeteken.</b></font><br>\n",
+"loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br />Probeer weer.",
+"alreadyloggedin" => "<font color=red><b>Gebruiker $1, jy is reeds ingeteken.</b></font><br />\n",
 
 "areyounew"		=> "Indien jy nuut is by {{SITENAME}}, en ingeteken,
 voer jou gebruikersnaam en wagwoord in.
 Jou e-pos is opsioneel; indien jy jou wagwoord vergeet, kan jy vra dat dit na
-die e-pos adres gestuur word.<br>\n",
+die e-pos adres gestuur word.<br />\n",
 
 "login"			=> "Teken in",
 "userlogin"		=> "Teken in",
@@ -331,7 +331,7 @@ Teken asseblief in na jy dit ontvang het.",
 "showpreview"	=> "Wys voorskou",
 "blockedtitle"	=> "Gebruiker is geblokkeer",
 "blockedtext"	=> "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br>''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak 
+<br />''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak 
 om dit te bespreek.",
 "newarticle"	=> "(Nuut)", 
 "newarticletext" => 
@@ -359,7 +359,7 @@ As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</stro
 "yourdiff"		=> "Wysigings",
 "copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder 
 die ''GNU Free Documentation License'' (lees $1 vir meer inligting).
-As jy nie wil hê dat jou werk ongemagtig gewysig of versprei mag word nie, moet jy dit nie hier indien nie.<br>
+As jy nie wil hê dat jou werk ongemagtig gewysig of versprei mag word nie, moet jy dit nie hier indien nie.<br />
 Jy belowe ons ook dat jy dit self geskryf het, of verkry het van 'n bron wat toelaat dat dit hier mag wees.<br />
 <strong>Moenie werk beskerm deur kopiereg sonder toestemming indien nie!</strong>",
 "longpagewarning" => "Waarskuwing: hierdie bladsy is $1 kilogrepe lank; sekere blaaiers
@@ -413,8 +413,8 @@ woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (sle
 bevat, word gewys).",
 "powersearch" => "Soek",
 "powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
+Search in namespaces :<br />
+$1<br />
 $2 List redirects   Search for $3 $9", #fixMe
 
 
@@ -571,7 +571,7 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "deleteimg"		=> "skrap",
 "deleteimgcompletely"		=> "skrap",
 "imghistlegend" => "Legende: (huidig) = dit is die huidige prent, (skrap) = skrap hierdie ou weergawe, (gaan terug) = gaan terug na hierdie ou weergawe.
-<br><i>Kliek die datum om die prent te sien wat op daardie datum gelaai is</i>.",
+<br /><i>Kliek die datum om die prent te sien wat op daardie datum gelaai is</i>.",
 "imagelinks"	=> "Prentskakels",
 "linkstoimage"	=> "Die volgende bladsye gebruik hierdie prent:",
 "nolinkstoimage" => "Daar is geen bladsye wat hierdie prent gebruik nie.",
@@ -597,9 +597,9 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "maintenancebacklink"	=> "Terug na die instandhoudingsbladsy",
 "disambiguations"	=> "Bladsye wat onduidelikhede opklaar",
 "disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "Die volgende artikels skakel na 'n <i>bladsy wat onduidelikhede opklaar</i>. Hulle behoort eerder na die relevante onderwerp te skakel.<br>'n Bladsy word gesien as een wat onduidelikhede opklaar as $1 daarna toe skakel.<br>Skakels van ander naamkontekste is <i>nie</i> hier gelys nie.",
+"disambiguationstext"	=> "Die volgende artikels skakel na 'n <i>bladsy wat onduidelikhede opklaar</i>. Hulle behoort eerder na die relevante onderwerp te skakel.<br />'n Bladsy word gesien as een wat onduidelikhede opklaar as $1 daarna toe skakel.<br />Skakels van ander naamkontekste is <i>nie</i> hier gelys nie.",
 "doubleredirects"	=> "Dubbele aansture",
-"doubleredirectstext"	=> "<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br>\nElke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die \"regte\" teikenbladsy gee waarna die eerste aanstuur behoort te wys.",
+"doubleredirectstext"	=> "<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br />\nElke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die \"regte\" teikenbladsy gee waarna die eerste aanstuur behoort te wys.",
 "brokenredirects"	=> "Stukkende aansture",
 "brokenredirectstext"	=> "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
 "selflinks"		=> "Bladsye met selfskakels",
@@ -760,7 +760,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 "noblockreason" => "Jy moet 'n rede vir die blokkering gee.",
 "blockipsuccesssub" => "Blokkering het geslaag",
 "blockipsuccesstext" => "Die IP-adres \"$1\" is geblok.
-<br>Kyk na [[Special:Ipblocklist|IP block list]] vir 'n oorsig van blokkerings.",
+<br />Kyk na [[Special:Ipblocklist|IP block list]] vir 'n oorsig van blokkerings.",
 "unblockip"		=> "Maak IP-adres oop",
 "unblockiptext"	=> "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
 "ipusubmit"		=> "Maak hierdie adres oop",
@@ -787,7 +787,7 @@ Bevestig asseblief dat dit is wat jy wil doen.",
 "lockdbsuccesssub" => "Databasissluit het geslaag",
 "unlockdbsuccesssub" => "Databasisslot is verwyder",
 "lockdbsuccesstext" => "Die {{SITENAME}} databasis is gesluit.
-<br>Onthou om dit te ontsluit wanneer jou onderhoud afgehandel is.",
+<br />Onthou om dit te ontsluit wanneer jou onderhoud afgehandel is.",
 "unlockdbsuccesstext" => "Die {{SITENAME}} databasis is ontsluit.",
 
 # SQL query

@@ -123,7 +123,7 @@ require_once( "LanguageUtf8.php" );
 
 "tog-hover"		=> "Racsegnes cwand on passe so les loyéns",
 "tog-underline" => "Sorlignî les loyéns",
-"tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
+"tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Djustifyî les hagnons",
 "tog-hideminor" => "Èn nén moster les <i>dierins candjmints</i> mineurs", 
 "tog-usenewrc" => "Ramidrés <i>dierins candjmints</i> (nén tos les betchteus)",
@@ -131,7 +131,7 @@ require_once( "LanguageUtf8.php" );
 "tog-editondblclick" => "Candjî les pådjes avou on dobe-clitch (JavaScript)",
 "tog-editsection" => "Eployî les loyéns «[candjî]» po candjî rén k'&nbsp;ene seccion",
 "tog-editsectiononrightclick" => "Candjî les seccions avou on dobe-clitch sol tite (JavaScript)",
-"tog-showtoc" => "Mostrer l'&nbsp;tåvlea d'&nbsp;ådvins<br>(po ls årtikes avou pus di 3 seccions)",
+"tog-showtoc" => "Mostrer l'&nbsp;tåvlea d'&nbsp;ådvins<br />(po ls årtikes avou pus di 3 seccions)",
 "tog-rememberpassword" => "Rimimbrer li scret inte les sessions",
 "tog-editwidth" => "Li boesse d'&nbsp;aspougnaedje prind tote li lårdjeu",
 "tog-watchdefault" => "Shuve les årtikes ki dj'&nbsp;fwai ou ki dj'&nbsp;candje",
@@ -352,7 +352,7 @@ on conte d'&nbsp;uzeu, tapez on no no d'&nbsp;uzeu ki vos vloz eployî,
 et poy deus côps on on scret (li minme, on côp dins tchake boesse).
 Come rawete vos ploz (mins c'&nbsp;est nén oblidjî) dner voste adresse
 emile; ça vént a pont si vos rovyîz vosse sicret, po dmander k'&nbsp;on
-vs evoye èn ôte pa emile.<br>\n",
+vs evoye èn ôte pa emile.<br />\n",
 
 "login"			=> "S'&nbsp;elodjî",
 "loginprompt"		=> "Vos dvoz permete les coûkes po vs elodjî so Wikipedia.",
@@ -406,7 +406,7 @@ Relodjîz vs avou ç'&nbsp;noû scret on côp ki vos l'&nbsp;åroz rçuvou s'&nb
 "showpreview"	=> "Vey divant",
 "blockedtitle"	=> "L'&nbsp;uzeu est bloké",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
-The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
+The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
 [[Wikipedia:Manaedjeus|administrators]] to discuss the block.
 
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Sipeciås:Preferences|user preferences]].
@@ -475,11 +475,11 @@ dvèt esse dizo li licince di documintåcion libe di GNU
 (GFDL, loukîz $1 po pus di racsegnes).
 Si&nbsp;vos n'&nbsp;voloz nén ki vosse tecse poye esse candjî eyet spårdou
 pa tot l'&nbsp;minme kî, adon nel evoyîz nén chal.
-<br>
+<br />
 Vos nos acertinez eto ki vos avoz scrît l'&nbsp;tecse vos minme, oudonbén
 l'&nbsp;avoz copyî d'&nbsp;on sourdant libe (dominne publik ou on sourdant
 pareymint libe).
-<br>
+<br />
 <strong>N'&nbsp;EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION&nbsp;!</strong>",
 "longpagewarning" => "ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k'&nbsp;i gn a polèt aveut des rujhes po-z aspougnî
@@ -544,8 +544,8 @@ ki corespond eyet $3 årtikes avou l'&nbsp;tecse ki corespond.",
 "nonefound"		=> "<strong>Note</strong>: des cweraedjes ki n'&nbsp;dinèt nou rzultat c'&nbsp;est sovint li cweraedje di ptits mots trop corants (come «les», «des») ki n'&nbsp;sont nén indecsés, oudonbén des cweraedjes di pus d'&nbsp;on mot (seulmint les pådjes avou tos les mots dmandés sront håynêyes dins l'&nbsp;rizultat do cweraedje).",
 "powersearch" => "Cweri",
 "powersearchtext" => "
-Cweraedje ezès espåces di nos&nbsp;:<br>
-$1<br>
+Cweraedje ezès espåces di nos&nbsp;:<br />
+$1<br />
 $2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9",
 "searchdisabled" => "<p>Mande escuzes! Li cweraedje å dvins des årtikes a stî dismetou
 pol moumint, cåze ki l'&nbsp;sierveu est fortcherdjî.
@@ -563,9 +563,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Cweri avou Google\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br />
 <input type=radio name=sitesearch value=\"\"> sol waibe 
-<input type=radio name=sitesearch value=\"{$wgServer}\" checked> so {$wgServer} <br>
+<input type=radio name=sitesearch value=\"{$wgServer}\" checked> so {$wgServer} <br />
 <input type='hidden' name='hl' value='wa'>
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
@@ -758,7 +758,7 @@ saveur å dfait do fitchî.",
 "deleteimgcompletely"		=> "oist.",
 "imghistlegend" => "Ledjinde: (ast.) = c'&nbsp;est l'&nbsp;imådje k'&nbsp;i gn a asteure, (oist.) = oister (disfacer)
 cisse viye modêye la, (mod.) = rivni a cisse viye modêye la.
-<br><i>Clitchîz sol date po vey l'&nbsp;imådje evoyeye a cisse date la.</i>",
+<br /><i>Clitchîz sol date po vey l'&nbsp;imådje evoyeye a cisse date la.</i>",
 "imagelinks"	=> "Loyéns viè ciste imådje chal",
 "linkstoimage"	=> "Les pådjes shuvantes eployèt ciste imådje chal:",
 "nolinkstoimage" => "I n'&nbsp;a nole pådje k'&nbsp;eploye ciste imådje chal.",
@@ -797,11 +797,11 @@ ki vos fjhoz on ptit candjmint ;-)",
 "maintenancebacklink"	=> "Rivni al pådje di manaedjmint",
 "disambiguations"	=> "Pådjes d'&nbsp;omonimeye",
 "disambiguationspage"	=> "Wikipedia:Loyéns_viè_les_pådjes_d'_omonimeye",
-"disambiguationstext"	=> "Les årtikes shuvants ont des loyéns viè en <i>pådje d'&nbsp;omonimeye</i>. I dvrént purade loyî viè l'&nbsp;bon årtike.<br>
-Ene pådje est considerêye come pådje d'&nbsp;omonimeye si elle aparexhe e $1.<br>
+"disambiguationstext"	=> "Les årtikes shuvants ont des loyéns viè en <i>pådje d'&nbsp;omonimeye</i>. I dvrént purade loyî viè l'&nbsp;bon årtike.<br />
+Ene pådje est considerêye come pådje d'&nbsp;omonimeye si elle aparexhe e $1.<br />
 Les loyéns a pårti d'&nbsp;ôtes espåces di lomaedje èn sont <i>nén</i> håynés chal.",
 "doubleredirects"	=> "Dobes redjiblaedjes",
-"doubleredirectstext"	=> "<b>Asteme:</b> Cisse djivêye chal pout aveur des fås pôzitifs. Dj'&nbsp;ô bén k'&nbsp;i pout aveur do tecse di pus, avou des loyéns, après li prumî «#REDIRECT».<br>\n
+"doubleredirectstext"	=> "<b>Asteme:</b> Cisse djivêye chal pout aveur des fås pôzitifs. Dj'&nbsp;ô bén k'&nbsp;i pout aveur do tecse di pus, avou des loyéns, après li prumî «#REDIRECT».<br />\n
 Tchaeke roye a-st on loyén viè l'&nbsp;prumî eyet l'&nbsp;deujhinme redjiblaedje, avou on mostraedje del prumire roye do tecse do deujhinme redjiblaedje, çou ki å pus sovint dene li «vraiy» årtike såme, ki l'&nbsp;prumî redjiblaedje dvreut evoyî viè lu.",
 "brokenredirects"	=> "Pierdous redjiblaedjes",
 "brokenredirectstext"	=> "Les redjiblaedjes shuvants evoyèt so ene pådje ki n'&nbsp;egzistêye nén.",
@@ -1031,7 +1031,7 @@ pages that were vandalized).", # co a fé
 "noblockreason" => "Vos dvoz dner ene råjhon pol blocaedje.",
 "blockipsuccesssub" => "Li blocaedje a stî comifåt",
 "blockipsuccesstext" => "«$1» a stî bloké.
-<br>Loukîz li [[Sipeciås:Ipblocklist|Djivêye des blocaedjes]] po candjî on blocaedje.",
+<br />Loukîz li [[Sipeciås:Ipblocklist|Djivêye des blocaedjes]] po candjî on blocaedje.",
 "unblockip"		=> "Disbloker èn uzeu",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.", # co a fé
@@ -1071,7 +1071,7 @@ Please confirm that this is what you intend to do.", # co a fé
 "lockdbsuccesssub" => "Database lock succeeded", # co a fé
 "unlockdbsuccesssub" => "Database lock removed", # co a fé
 "lockdbsuccesstext" => "The database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.", # co a fé
+<br />Remember to remove the lock after your maintenance is complete.", # co a fé
 "unlockdbsuccesstext" => "The database has been unlocked.", # co a fé
 
 # SQL query

@@ -154,13 +154,13 @@ require_once( "LanguageUtf8.php" );
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
 "tog-justify"	=> "Justér afsnit",
 "tog-hideminor" => "Skjul mindre ændringer i seneste ændringer listen",
-"tog-usenewrc" => "Udvidet seneste ændringer liste<br>(ikke for alle browsere)",
+"tog-usenewrc" => "Udvidet seneste ændringer liste<br />(ikke for alle browsere)",
 "tog-numberheadings" => "Automatisk nummerering af overskrifter",
 "tog-showtoolbar" => "Vis værktøjslinje til redigering",
 "tog-editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
 "tog-editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
-"tog-editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",
-"tog-showtoc"=>"Vis indholdsfortegnelse<br>(for artikler med mere end tre afsnit)",
+"tog-editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br /> på afsnittets titel (JavaScript)",
+"tog-showtoc"=>"Vis indholdsfortegnelse<br />(for artikler med mere end tre afsnit)",
 "tog-rememberpassword" => "Husk adgangskode til næste besøg",
 "tog-editwidth" => "Redigeringsboksen har fuld bredde",
 "tog-watchdefault" => "Overvåg nye og ændrede artikler",
@@ -364,9 +364,9 @@ oprettet. Glem ikke at personliggøre dine Wikipedia-indstillinger.",
 "newusersonly"	=> " (kun nye brugere)",
 "remembermypassword" => "Husk min adgangskode til næste gang.",
 "loginproblem"	=> "<b>Der har været et problem med at få dig logget  
-på.</b><br>Prøv igen!",
+på.</b><br />Prøv igen!",
 "alreadyloggedin" => "<font color=red><b>Bruger $1, du er allerede logget 
-på!</b></font><br>\n",
+på!</b></font><br />\n",
 
 "login"			=> "Log på",
 "userlogin"		=> "Log på",
@@ -412,16 +412,16 @@ Du bør logge på og ændre din adgangskode straks efter, du har modtaget den.",
 "showpreview"	=> "Forhåndsvisning",
 "blockedtitle"	=> "Brugeren er blokeret",
 "blockedtext"	=> "Dit brugernavn eller din IP-adresse er blevet blokeret af 
-$1. Begrundelsen er denne:<br>$2<p>Du kan kontakte $1
+$1. Begrundelsen er denne:<br />$2<p>Du kan kontakte $1
 eller en af de andre [[Wikipedia:Administratorer|administratorer]] for at diskutere blokeringen.
 
 Din IP-adresse er $3.
 Sørg venligst for at inkludere dette nummer i alle henvendelser til en administrator.
 ",
 "newarticle"	=> "(Ny)",
-"newarticletext" => "Der er på nuværende tidspunkt ingen tekst på denne side.<br>
+"newarticletext" => "Der er på nuværende tidspunkt ingen tekst på denne side.<br />
 Du kan begynde en artikel ved at skrive i boksen herunder. 
-(se [[Wikipedia:Hjælp|hjælpen]] for yderligere information).<br>
+(se [[Wikipedia:Hjælp|hjælpen]] for yderligere information).<br />
 Hvis det ikke var din mening, så tryk på '''Tilbage''' eller '''Back''' knappen.",
 "anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger der 
 ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at 
@@ -461,7 +461,7 @@ overskrevet.</strong>\n",
 at betragte som udgivet under GNU Free Documentation License
 (se $1 for detaljer).
 Hvis du ikke vil have din tekst redigeret uden nåde og kopieret efter
-forgodtbefindene, så skal du ikke lægge det her.<br>
+forgodtbefindene, så skal du ikke lægge det her.<br />
 Du lover os også, at du skrev teksten selv, kopierede fra en
 public domain eller lignende fri ressource.
 <strong>LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN 
@@ -533,8 +533,8 @@ der ikke er indekseret, eller ved at specificere mere end et søgeord (da kun
 sider der indeholder alle søgeordene vil blive fundet).",
 "powersearch" => "Søg",
 "powersearchtext" => "
-Søg i navnerum :<br>
-$1<br>
+Søg i navnerum :<br />
+$1<br />
 $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 "searchdisabled" => "<p>Søgefunktionen er midlertidigt afbrudt på grund af
 for stort pres på serveren; vi håber vi kan sætte den på igen når vi har
@@ -552,9 +552,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -735,7 +735,7 @@ og af hvem, og andre ting du ved om filen.",
 "deleteimgcompletely"		=> "slet",
 "imghistlegend" => "Forklaring: (nuværende) = dette er det nuværende billede, 
 (slet) = slet denne gamle version, (gendan) = gendan en gammel version.
-<br><i>Klik på en dato for at se billedet, som er lagt op den dag</i>.",
+<br /><i>Klik på en dato for at se billedet, som er lagt op den dag</i>.",
 "imagelinks"	=> "Billedehenvisninger",
 "linkstoimage"	=> "De følgende sider henviser til dette billede:",
 "nolinkstoimage" => "Der er ingen sider der henviser til dette billede.",
@@ -770,12 +770,12 @@ hver gang du har rettet en enkelt ting ;-)",
 "disambiguationspage"	=> "Wikipedia:Henvisninger til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler henviser til 
 <i>artikler med flertydige titler</i>. De skulle henvise til en ikke-flertydig 
-titel i stedet for.<br>En artikel bliver behandlet som flertydig, hvis den er
-henvist fra $1.<br>Henvisninger fra andre navnerum er <i>ikke</i> listet her.",
+titel i stedet for.<br />En artikel bliver behandlet som flertydig, hvis den er
+henvist fra $1.<br />Henvisninger fra andre navnerum er <i>ikke</i> listet her.",
 "doubleredirects"	=> "Dobbelte omdirigeringer",
 "doubleredirectstext"	=> "<b>Bemærk:</b> Denne liste kan indeholde forkerte 
 resultater. Det er som regel, fordi siden indeholder ekstra tekst under den
-første #REDIRECT.<br>\nHver linje indeholder henvisninger til den første og den 
+første #REDIRECT.<br />\nHver linje indeholder henvisninger til den første og den 
 anden omdirigering, og den første linje fra den anden omdirigeringstekst, 
 det giver som regel den \"rigtige\" målartikel, som den første omdirigering 
 skulle have peget på.",
@@ -1012,7 +1012,7 @@ sider der har været udsat for vandalisme).",
 "noblockreason" => "Du skal angive en begrundelse for denne blokering.",
 "blockipsuccesssub" => "Blokering udført med success",
 "blockipsuccesstext" => "\"$1\" er blevet blokeret.
-<br>Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
+<br />Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
 "unblockip"		=> "Ophæv blokering af bruger",
 "unblockiptext"	=> "Brug formularen herunder for at gendanne skriveadgangen
 for en tidligere blokeret IP-adresse eller bruger.",
@@ -1046,7 +1046,7 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "lockdbsuccesssub" => "Databasen er nu låst",
 "unlockdbsuccesssub" => "Databasen er nu låst op",
 "lockdbsuccesstext" => "Wikipediadatabasen er låst.
-<br>Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
+<br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
 "unlockdbsuccesstext" => "Wikipediadatabasen er låst op.",
 
 # SQL query
