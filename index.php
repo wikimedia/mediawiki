@@ -170,7 +170,11 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 
 $wgOut->output();
 
-foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
+foreach ( $wgDeferredUpdateList as $up ) {
+	wfQuery("BEGIN", DB_WRITE);
+	$up->doUpdate();
+	wfQuery("COMMIT", DB_WRITE);
+}
 logProfilingData();
 wfDebug( "Request ended normally\n" );
 ?>
