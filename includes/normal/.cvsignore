@@ -1,0 +1,8 @@
+CompositionExclusions.txt
+DerivedNormalizationProps.txt
+NormalizationCorrections.txt
+NormalizationTest.txt
+testdata
+UnicodeData.txt
+UTF-8-test.txt
+*~
