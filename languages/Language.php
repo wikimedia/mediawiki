@@ -487,7 +487,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "redirectedfrom" => "(Redirected from $1)",
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
-"gnunote" => "All text is available under the terms of the <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
+"gnunote" => "All text is available under the terms of the <a class=internal href='$wgScriptPath/index.php/GNU_Free_Documentation_License'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(From $wgServer)",
 "protectedpage" => "Protected page",
 "administrators" => "$wgMetaNamespace:Administrators",
