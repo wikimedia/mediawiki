@@ -46,7 +46,7 @@ function wfSpecialMovepage() {
  */
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
-	var $moveTalk;
+	var $moveTalk, $deleteAndMove;
 		
 	function MovePageForm() {
 		global $wgRequest;
@@ -54,6 +54,7 @@ class MovePageForm {
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 		$this->reason = $wgRequest->getText( 'wpReason' );
 		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
+		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' );
 	}
 	
 	function showForm( $err ) {
@@ -75,18 +76,36 @@ class MovePageForm {
 			# when the form is first opened.
 			$encNewTitle = $oldTitle;
 		} else {
-			$encNewTitle = htmlspecialchars( $this->newTitle );
+			$nt = Title::newFromURL( $this->newTitle );
+			if ( $nt ) {
+				// Check if it's valid
+				if ( !$nt->isValidMoveTarget( $ot ) ) {
+					$err = 'articleexists';
+				}
+				$encNewTitle = htmlspecialchars( $this->newTitle );
+			} else {
+				$encNewTitle = $oldTitle;
+			}
 		}
 		$encReason = htmlspecialchars( $this->reason );
 
-		$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
+		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
+			$wgOut->addWikiText( wfMsg( 'delete_and_move_text', $encNewTitle ) );
+			$movepagebtn = wfMsg( 'delete_and_move' );
+			$submitVar = 'wpDeleteAndMove';
+			$err = '';
+		} else {
+			$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
+			$movepagebtn = wfMsg( 'movepagebtn' );
+			$submitVar = 'wpMove';
+		}
+
 		if ( !$ot->isTalkPage() ) {
 			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
 		$movearticle = wfMsg( 'movearticle' );
 		$newtitle = wfMsg( 'newtitle' );
-		$movepagebtn = wfMsg( 'movepagebtn' );
 		$movetalk = wfMsg( 'movetalk' );
 		$movereason = wfMsg( 'movereason' );
 
@@ -96,7 +115,7 @@ class MovePageForm {
 
 		if ( $err != '' ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addHTML( '<p class="error">'.$err."</p>\n" );
+			$wgOut->addHTML( '<p class="error">' . wfMsg($err) . "</p>\n" );
 		}
 
 		if ( $this->moveTalk ) {
@@ -139,7 +158,7 @@ class MovePageForm {
 		<tr>
 			<td>&nbsp;</td>
 			<td align='left'>
-				<input type='submit' name=\"wpMove\" value=\"{$movepagebtn}\" />
+				<input type='submit' name=\"{$submitVar}\" value=\"{$movepagebtn}\" />
 			</td>
 		</tr>
 	</table>
@@ -156,19 +175,25 @@ class MovePageForm {
 		
 		# Variables beginning with 'o' for old article 'n' for new article
 
-		# Attempt to move the article
 		$ot = Title::newFromText( $this->oldTitle );
 		$nt = Title::newFromText( $this->newTitle );
 
+		# Delete to make way if requested
+		if ( $wgUser->isAllowed( 'delete' ) && $this->deleteAndMove ) {
+			$article = new Article( $nt );
+			// This may output an error message and exit
+			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
+		}
+
 		# don't allow moving to pages with # in
 		if ( !$nt || $nt->getFragment() != '' ) {
-			$this->showForm( wfMsg( "badtitletext" ) );
+			$this->showForm( 'badtitletext' );
 			return;
 		}
 
 		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
-			$this->showForm( wfMsg( $error ) );
+			$this->showForm( $error );
 			return;
 		}
 
