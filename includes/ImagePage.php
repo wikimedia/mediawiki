@@ -90,7 +90,7 @@ class ImagePage extends Article {
 		# Anybody can delete old revisions of images; only sysops
 		# can delete articles and current images
 
-		if ( ( ! $oldimage ) && ( ! $wgUser->isSysop() ) ) {
+		if ( !$wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
 			return;
 		}
