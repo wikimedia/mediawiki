@@ -457,7 +457,7 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = wfEscapeHTML( wfImageUrl( $name ) );
+				$link = wfEscapeHTML( Image::wfImageUrl( $name ) );
 				$style = $this->getInternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 			}
@@ -1673,15 +1673,15 @@ class Skin {
 		global $wgUploadPath, $wgLang;
 		# $image = Title::makeTitle( Namespace::getImage(), $name );
 		$url  = $img->getURL();
-		$path = $img->getImagePath();
 		
 		#$label = htmlspecialchars( $label );
 		$alt = preg_replace( "/<[^>]*>/", "", $label);
 		$alt = htmlspecialchars( $alt );
 		
-		if ( file_exists( $path ) )
+		if ( $img->exists() )
 		{
-			list($width, $height, $type, $attr) = getimagesize( $path );
+			$width  = $img->getWidth();
+			$height = $img->getHeight();
 		} else {
 			$width = $height = 200;
 		}
@@ -1736,7 +1736,7 @@ class Skin {
 	function makeMediaLinkObj( $nt, $alt = "" )
 	{
 		$name = $nt->getDBKey();
-		$url = wfImageUrl( $name );
+		$url = Image::wfImageUrl( $name );
 		if ( empty( $alt ) ) {
 			$alt = preg_replace( '/\.(.+?)^/', '', $name );
 		}
@@ -2281,7 +2281,7 @@ class Skin {
 		$cur = wfMsg( "cur" );
 
 		if ( $iscur ) {
-			$url = wfImageUrl( $img );
+			$url = Image::wfImageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isSysop() ) {
 				$link = $wgTitle->escapeLocalURL( "image=" . $wgTitle->getPartialURL() .

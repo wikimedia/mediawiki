@@ -89,7 +89,7 @@ function wfSpecialImagelist()
 		else { $ul = $sk->makeLink( $wgLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
 
-		$ilink = "<a href=\"" . wfImageUrl( $name ) .
+		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) .
 		  "\">{$name}</a>";
 
 		$nb = wfMsg( "nbytes", $wgLang->formatNum( $s->img_size ) );

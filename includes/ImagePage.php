@@ -27,21 +27,20 @@ class ImagePage extends Article {
 	function openShowImage()
 	{
 		global $wgOut, $wgUser,$wgRequest;
-		$name = $this->mTitle->getText();
-		$path = wfImagePath( $name );
-		$url   = wfImageUrl( $name );
+		$img  = Image::newFromTitle( $this->mTitle );
+		$url  = $img->getUrl();
 
-		if ( file_exists( $path ) ) {
-			list($width, $height, $type, $attr) = getimagesize( $path );
+		if ( $img->exists() ) {
 
 			$sk = $wgUser->getSkin();
 			
-			if ( $type != "" ) {
+			if ( $img->getType() != "" ) {
 				# image
-				$s = "<div class=\"fullImage\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
-				"alt=\"".$wgRequest->getVal( 'image' )."\" /></div>";
+				$s = "<div class=\"fullImage\">" .
+				     "<img src=\"{$url}\" width=\"" . $img->getWidth() . "\" height=\"" . $img->getHeight() .
+				     "\" alt=\"".$wgRequest->getVal( 'image' )."\" /></div>";
 			} else {
-				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($name,"")."</div>";
+				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($img->getName(),"")."</div>";
 			}
 			$wgOut->addHTML( $s );
 		}

@@ -9,15 +9,25 @@ class Image
 	var	$name,		# name of the image
 		$imagePath,	# Path of the image
 		$url,		# Image URL
-		$title;		# Title object for this image. Initialized when needed.
+		$title,		# Title object for this image. Initialized when needed.
+		$fileExists,	# does the image file exist on disk?
+		$width,		# \
+		$height,	#  --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
+		$type,		#  |
+		$attr;		# /
 
 
 	function Image( $name )
 	{
 		$this->name      = $name;
+		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
 		$this->imagePath = wfImagePath( $name );
-		$this->url       = wfImageUrl( $name );
-		$this->title     = NULL;
+		$this->url       = $this->wfImageUrl( $name );
+		
+		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
+		{
+			list($this->width, $this->height, $this->type, $this->attr) = getimagesize( $this->imagePath );
+		}
 	}
 
 	function newFromTitle( $nt )
@@ -42,14 +52,42 @@ class Image
 		return $this->imagePath;
 	}
 
+	function getWidth()
+	{
+		return $this->width;
+	}
+
+	function getHeight()
+	{
+		return $this->height;
+	}
+
+	function getType()
+	{
+		return $this->type;
+	}
+
 	function getEscapeLocalURL()
 	{
-		if ( $this->title == NULL )
-		{
-			$this->title = Title::makeTitle( Namespace::getImage(), $this->name );
-		}
 		return $this->title->escapeLocalURL();
 	}
+
+	function wfImageUrl( $name )
+	{
+		global $wgUploadPath;
+		$hash = md5( $name );
+
+        	$url = "{$wgUploadPath}/" . $hash{0} . "/" .
+              	substr( $hash, 0, 2 ) . "/{$name}";
+        	return wfUrlencode( $url );
+	}
+
+
+	function exists()
+	{
+		return $this->fileExists;
+	}
+
 
 	function createThumb( $width ) {
 		global $wgUploadDirectory;
@@ -60,14 +98,14 @@ class Image
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
-		if ( ! file_exists( $this->imagePath ) )
+		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
 			return "";
 		}
 
-		if (     (! file_exists( $thumbPath ) )
-		||  ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
+		if (    (! file_exists( $thumbPath ) )
+		     || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
@@ -88,8 +126,8 @@ class Image
 				#
 				# First find out what kind of file this is, and select the correct
 				# input routine for this.
-				list($src_width, $src_height, $src_type, $src_attr) = getimagesize( $this->imagePath );
-				switch( $src_type ) {
+				
+				switch( $this->type ) {
 					case 1: # GIF
 						$src_image = imagecreatefromgif( $this->imagePath );
 						break;
@@ -109,12 +147,12 @@ class Image
 						return "Image type not supported";
 						break;
 				}
-				$height = floor( $src_height * ( $width/$src_width ) );
+				$height = floor( $this->height * ( $width/$this->width ) );
 				$dst_image = imagecreatetruecolor( $width, $height );
 				imagecopyresampled( $dst_image, $src_image, 
 							0,0,0,0,
-							$width, $height, $src_width, $src_height );
-				switch( $src_type ) {
+							$width, $height, $this->width, $this->height );
+				switch( $this->type ) {
 					case 1:  # GIF
 					case 3:  # PNG
 					case 15: # WBMP
@@ -142,7 +180,6 @@ class Image
 			# no disk space is available or some other error occurs
 			#
 			$thumbstat = stat( $thumbPath );
-			$imgstat   = stat( $this->imagePath );
 			if( $thumbstat["size"] == 0 )
 			{
 				unlink( $thumbPath );
