@@ -1644,7 +1644,7 @@ class Skin {
 	}
 
 	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180 ) {
-		global $wgUploadPath;
+		global $wgUploadPath, $wgLang;
 		$name = $nt->getDBKey();
 		$image = Title::makeTitle( Namespace::getImage(), $name );
 		$url  = wfImageUrl( $name );
@@ -1670,7 +1670,9 @@ class Skin {
 
 		$u = $nt->escapeLocalURL();
 
-		$more = htmlspecialchars(wfMsg( "thumbnail-more" ));
+		$more = htmlspecialchars( wfMsg( "thumbnail-more" ) );
+		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
+		$textalign = $wgLang->isRTL() ? " style=\"text-align:right\"" : "";
 
 		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">";
 		if ( $thumbUrl == "" ) {
@@ -1681,9 +1683,9 @@ class Skin {
 				"  width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
 		  		"<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
 		    		"<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" " .
-				"  width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>";
+				"  width=\"26\" height=\"24\" align=\"{$magnifyalign}\" alt=\"{$more}\"></a>";
 		}
-		$s .= "<p>{$label}</p></div>";
+		$s .= "<p{$textalign}>{$label}</p></div>";
 		return $s;
 	}
 
