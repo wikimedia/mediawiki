@@ -411,7 +411,7 @@ class User {
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
-			$this->mEmailAuthenticationtimestamp = $s->user_emailauthenticationtimestamp;
+			$this->mEmailAuthenticationtimestamp = wfTimestamp(TS_MW,$s->user_emailauthenticationtimestamp);
 			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
@@ -810,10 +810,13 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 */
 	function clearNotification( $title ) {
+		$userid = $this->getId();
+		if ($userid==0)
+			return;
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'watchlist',
 				array( /* SET */
-					'wl_notificationtimestamp' => 0
+					'wl_notificationtimestamp' => $dbw->timestamp(0)
 				), array( /* WHERE */
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
@@ -940,7 +943,7 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
-		 		'user_emailauthenticationtimestamp' => $this->mEmailAuthenticationtimestamp,
+		 		'user_emailauthenticationtimestamp' => $dbw->timestamp($this->mEmailAuthenticationtimestamp),
 				'user_options' => $this->encodeOptions(),
 				'user_touched' => $dbw->timestamp($this->mTouched),
 				'user_token' => $this->mToken
@@ -1000,7 +1003,7 @@ class User {
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
 				'user_email' => $this->mEmail,
-				'user_emailauthenticationtimestamp' => $this->mEmailAuthenticationtimestamp,
+				'user_emailauthenticationtimestamp' => $dbw->timestamp($this->mEmailAuthenticationtimestamp),
 				'user_real_name' => $this->mRealName,
 				'user_options' => $this->encodeOptions(),
 				'user_token' => $this->mToken
