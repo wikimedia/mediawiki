@@ -72,7 +72,9 @@ class SearchMySQL3 extends SearchEngine {
 			}
 		}
 		if ( 0 == count( $this->searchTerms ) ) {
-			return null;
+			# No searchable terms remaining.
+			# We have to return a term for the query or we get an SQL error.
+			return "0";
 		}
 
 		return '(' . $cond . ' )';
