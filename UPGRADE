@@ -59,6 +59,11 @@ http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
 
 == Caveats ==
 
+=== Upgrading from 1.4beta1 ===
+
+There are no database changes from beta1; just update the files.
+
+
 === Upgrading from 1.3.x ===
 
 This should generally go smoothly.
