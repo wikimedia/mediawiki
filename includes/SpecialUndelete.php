@@ -103,7 +103,7 @@ function wfSpecialUndelete( )
 	
 /* private */ function doUndeleteArticle( $namespace, $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $target;
+		global $wgUser, $wgOut, $wgLang, $target, $wgDeferredUpdateList;
 
 		$fname = "doUndeleteArticle";
 
@@ -141,10 +141,24 @@ function wfSpecialUndelete( )
 		  "FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
 		wfQuery( $sql, $fname );
 
-        # Finally, clean up the link tables
-        if( $newid ) {
-        	$to = Title::newFromDBKey( $target );
-			$to->resetArticleID( $newid );
+        # Finally, clean up the link tables 
+		if( $newid ) {
+			# Create a dummy OutputPage to update the outgoing links
+			# This works at the moment due to good luck. It may stop working in the 
+			# future. Damn globals.
+			$dummyOut = new OutputPage();
+			$to = Title::newFromDBKey( $target );
+			$res = wfQuery( "SELECT cur_text FROM cur WHERE cur_id={$newid} " .
+			  "AND cur_namespace={$namespace}", $fname );
+			$row = wfFetchObject( $res );
+			$text = $row->cur_text;
+			$dummyOut->addWikiText( $text );
+			wfFreeResult( $res );
+
+			$u = new LinksUpdate( $newid, $to->getPrefixedDBkey() );
+			array_push( $wgDeferredUpdateList, $u );
+
+			#TODO: SearchUpdate, etc.
 		}
 
 		# Now that it's safely stored, take it out of the archive

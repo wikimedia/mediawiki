@@ -565,61 +565,61 @@ class OutputPage {
 	}
 
 
-function categoryMagic ()
-{
-global $wgTitle , $wgUseCategoryMagic ;
-if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return ;
-$id = $wgTitle->getArticleID() ;
-$cat = ucfirst ( wfMsg ( "category" ) ) ;
-$ti = $wgTitle->getText() ;
-$ti = explode ( ":" , $ti , 2 ) ;
-if ( $cat != $ti[0] ) return "" ;
-$r = "<br break=all>\n" ;
+	function categoryMagic ()
+	{
+		global $wgTitle , $wgUseCategoryMagic ;
+		if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return ;
+		$id = $wgTitle->getArticleID() ;
+		$cat = ucfirst ( wfMsg ( "category" ) ) ;
+		$ti = $wgTitle->getText() ;
+		$ti = explode ( ":" , $ti , 2 ) ;
+		if ( $cat != $ti[0] ) return "" ;
+		$r = "<br break=all>\n" ;
 
-$articles = array() ;
-$parents = array () ;
-$children = array() ;
-
-
-global $wgUser ;
-$sk = $wgUser->getSkin() ;
-$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
-$res = wfQuery ( $sql ) ;
-while ( $x = wfFetchObject ( $res ) )
-{
-#  $t = new Title ; 
-#  $t->newFromDBkey ( $x->l_from ) ;
-#  $t = $t->getText() ;
-  $t = $x->l_from ;
-  $y = explode ( ":" , $t , 2 ) ;
-  if ( count ( $y ) == 2 && $y[0] == $cat ) 
-    {
-      array_push ( $children , $sk->makeLink ( $t , $y[1] ) ) ;
-    }
-  else array_push ( $articles , $sk->makeLink ( $t ) ) ;
-}
-wfFreeResult ( $res ) ;
-
-# Children
- if ( count ( $children ) > 0 )
-   {
-     asort ( $children ) ;
-     $r .= "<h2>".wfMsg("subcategories")."</h2>\n" ;
-     $r .= implode ( ", " , $children ) ;
-   }
-
-# Articles
- if ( count ( $articles ) > 0 )
-   {
-     asort ( $articles ) ;
-     $h = str_replace ( "$1" , $ti[1] , wfMsg("category_header") ) ;
-     $r .= "<h2>{$h}</h2>\n" ;
-     $r .= implode ( ", " , $articles ) ;
-   }
+		$articles = array() ;
+		$parents = array () ;
+		$children = array() ;
 
 
-return $r ;
-}
+		global $wgUser ;
+		$sk = $wgUser->getSkin() ;
+		$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+		$res = wfQuery ( $sql ) ;
+		while ( $x = wfFetchObject ( $res ) )
+		{
+		#  $t = new Title ; 
+		#  $t->newFromDBkey ( $x->l_from ) ;
+		#  $t = $t->getText() ;
+			$t = $x->l_from ;
+			$y = explode ( ":" , $t , 2 ) ;
+			if ( count ( $y ) == 2 && $y[0] == $cat ) 
+			{
+				array_push ( $children , $sk->makeLink ( $t , $y[1] ) ) ;
+			}
+			else array_push ( $articles , $sk->makeLink ( $t ) ) ;
+		}
+		wfFreeResult ( $res ) ;
+
+		# Children
+		if ( count ( $children ) > 0 )
+		{
+			asort ( $children ) ;
+			$r .= "<h2>".wfMsg("subcategories")."</h2>\n" ;
+			$r .= implode ( ", " , $children ) ;
+		}
+
+		# Articles
+		if ( count ( $articles ) > 0 )
+		{
+			asort ( $articles ) ;
+			$h = str_replace ( "$1" , $ti[1] , wfMsg("category_header") ) ;
+			$r .= "<h2>{$h}</h2>\n" ;
+			$r .= implode ( ", " , $articles ) ;
+		}
+
+
+		return $r ;
+	}
 
 
 	# Well, OK, it's actually about 14 passes.  But since all the

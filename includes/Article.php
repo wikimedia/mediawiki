@@ -507,7 +507,8 @@ class Article {
 			$wgLinkCache->clear();
 		}
 
-		# Now update the link cache by parsing the text
+		# Now update the link cache by parsing the text	
+		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
 
 		$this->editUpdates( $text );
