@@ -74,7 +74,7 @@ class MessageCache
 				wfDebug( "MessageCache::load(): loading all messages\n" );
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$success = $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
+				$success = $this->mMemc->add( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
 				if ( $success ) {
 					wfProfileIn( $fname.'-load' );
 					$this->loadFromDB();
