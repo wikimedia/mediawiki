@@ -1741,7 +1741,7 @@ class Skin {
 
 		global $wgTitle,$wgUser,$oldid;
 		if($oldid) return $head;
-		$url = wfLocalUrlE($wgTitle->getPrefixedText(),"action=edit&section=$section");
+		$url = wfLocalUrlE(urlencode($wgTitle->getPrefixedText()),"action=edit&section=$section");
 		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
 	}
 
