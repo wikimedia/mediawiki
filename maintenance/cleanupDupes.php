@@ -21,14 +21,16 @@
  * If on the old non-unique indexes, check the cur table for duplicate
  * entries and remove them...
  *
+ * @author <brion@pobox.com>
  * @package MediaWiki
  * @subpackage Maintenance
  */
 
 $options = array( 'fix' );
 
-require_once( "commandLine.inc" );
-$wgTitle = Title::newFromText( "Dupe cur entry cleanup script" );
+/** */
+require_once( 'commandLine.inc' );
+$wgTitle = Title::newFromText( 'Dupe cur entry cleanup script' );
 
 checkDupes( isset( $options['fix'] ) );
 
@@ -87,5 +89,4 @@ function checkDupes( $fixthem = false ) {
 		fixDupes( $fixthem );
 	}
 }
-
 ?>
