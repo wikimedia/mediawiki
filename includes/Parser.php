@@ -1095,8 +1095,7 @@ class Parser
 		global $wgLang, $wgContLang, $wgLinkCache;
 		global $wgDisableLangConversion;
 		static $fname = 'Parser::replaceInternalLinks' ;
-		# use a counter to prevent too much unknown links from
-		# being checked for different language variants.
+
 		wfProfileIn( $fname );
 
 		wfProfileIn( $fname.'-setup' );
