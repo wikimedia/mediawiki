@@ -22,13 +22,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# of the messages are initialised
 	$wgDisableLangConversion = false;
 
-	$langclass = 'Language'. str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
-	require_once("$IP/languages/$langclass.php");
-
-	$variants = $wgContLang->getVariants();
-	if(!in_array($wgContLanguageCode, $variants))
-		$variants[]=$wgContLanguageCode;
-
 	if ( $messageArray ) {
 		$sortedArray = $messageArray;
 	} else {
@@ -36,20 +29,35 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	}
 	
 	ksort( $sortedArray );
-	
 	$messages=array();
-	foreach ($variants as $v) {
-		$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
-		$lang = new $langclass;
-		if(!is_object($lang)) {
-			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
-		}
-		if($v==$wgContLanguageCode)
-			$suffix='';
-		else
-			$suffix="/$v";
+
+	/* check special case where the language does 
+	   not have a language file 
+	*/
+	if( get_class($wgContLang) != 'language'.strtolower($wgContLanguageCode) ) {
 		foreach ($sortedArray as $key => $msg) {
-			$messages[$key.$suffix] = $lang->getMessage($key);
+			$messages[$key] = $wgContLang->getMessage($key);
+		}
+	}
+	else {
+		$variants = $wgContLang->getVariants();
+		if(!in_array($wgContLanguageCode, $variants))
+			$variants[]=$wgContLanguageCode;
+
+		foreach ($variants as $v) {
+			$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
+			if( !class_exists($langclass) ) {
+				die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
+			}
+			$lang = new $langclass;
+
+			if($v==$wgContLanguageCode)
+				$suffix='';
+			else
+				$suffix="/$v";
+			foreach ($sortedArray as $key => $msg) {
+				$messages[$key.$suffix] = $lang->getMessage($key);
+			}
 		}
 	}	
 
