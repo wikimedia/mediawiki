@@ -143,7 +143,7 @@ class EmailUserForm {
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
 		$subject = wfQuotedPrintable( $this->subject );
 		
-		if (wfRunHooks('EmailUser', $this->mAddress, $from, $subject, $this->text)) {
+		if (wfRunHooks('EmailUser', array(&$this->mAddress, &$from, &$subject, &$this->text))) {
 			
 			$mailResult = userMailer( $this->mAddress, $from, $subject, $this->text );
 			
@@ -151,7 +151,7 @@ class EmailUserForm {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
 				$encTarget = wfUrlencode( $this->target );
 				$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
-				wfRunHooks('EmailUserComplete', $this->mAddress, $from, $subject, $this->text);
+				wfRunHooks('EmailUserComplete', array($this->mAddress, $from, $subject, $this->text));
 			} else {
 			  $wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 			}

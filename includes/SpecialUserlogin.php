@@ -461,7 +461,7 @@ class LoginForm {
 
 		# Run any hooks; ignore results
 		
-		wfRunHooks('UserLoginComplete', $wgUser);
+		wfRunHooks('UserLoginComplete', array(&$wgUser));
 		
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
