@@ -32,8 +32,10 @@ class UserloginTemplate extends QuickTemplate {
 					value="<?php $this->text('name') ?>" size='20' />
 			</td>
 			<td align='left'>
-				<input tabindex='3' type='submit' name="wpLoginattempt"
-					value="<?php $this->msg('login') ?>" />
+				<input tabindex='3' type='checkbox' name="wpRemember"
+					value="1" id="wpRemember"
+					<?php if( $this->data['remember'] ) { ?>checked="checked"<?php } ?>
+					/><label for="wpRemember"><?php $this->msg('remembermypassword') ?></label>
 			</td>
 		</tr>
 		<tr>
@@ -43,10 +45,8 @@ class UserloginTemplate extends QuickTemplate {
 					value="<?php $this->text('password') ?>" size='20' />
 			</td>
 			<td align='left'>
-				<input tabindex='4' type='checkbox' name="wpRemember"
-					value="1" id="wpRemember"
-					<?php if( $this->data['remember'] ) { ?>checked="checked"<?php } ?>
-					/><label for="wpRemember"><?php $this->msg('remembermypassword') ?></label>
+				<input tabindex='4' type='submit' name="wpLoginattempt"
+					value="<?php $this->msg('login') ?>" />
 			</td>
 		</tr>
 	<?php if( $this->data['create'] ) { ?>
