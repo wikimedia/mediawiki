@@ -66,9 +66,21 @@ class LogPage {
 		return true;
 	}
 
-	/* static */ function &validTypes() {
+	/* static */ function validTypes() {
 		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload' );
 		return $types;
+	}
+	
+	/* static */ function validActions( $type ) {
+		static $actions = array(
+			'' => NULL,
+			'block' => array( 'block', 'unblock' ),
+			'protect' => array( 'protect', 'unprotect' ),
+			'rights' => array( 'rights' ),
+			'delete' => array( 'delete', 'restore' ),
+			'upload' => array( 'upload' )
+		);
+		return $actions[$type];
 	}
 	
 	/* static */ function isLogType( $type ) {
@@ -99,7 +111,7 @@ class LogPage {
 		return wfMsg( $headerText[$type] );
 	}
 	
-	/* static */ function actionText( $type, $action, $titleLink ) {
+	/* static */ function actionText( $type, $action, $titleLink = NULL ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
 			'block/unblock' => 'blocklogentry',
@@ -113,7 +125,11 @@ class LogPage {
 		);
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
-			return wfMsg( $actions[$key], $titleLink );
+			if( is_null( $titleLink ) ) {
+				return wfMsg( $actions[$key] );
+			} else {
+				return wfMsg( $actions[$key], $titleLink );
+			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
 			return "$action $titleLink";
