@@ -709,8 +709,6 @@ class Parser
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
-		$sk =& $this->mOptions->getSkin();
-		$text = $sk->transformContent( $text );
 
 		wfProfileOut( $fname );
 		return $text;
