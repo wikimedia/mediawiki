@@ -401,12 +401,6 @@ class Title {
 		$this->mInterwiki = $this->mFragment = "";
 		$this->mNamespace = 0;
 
-		# Reject illegal characters.
-		#
-		if( preg_match( $rxTc, $this->mDbkeyform ) ) {
-			return false;
-		}
-
 		# Clean up whitespace
 		#
 		$t = preg_replace( "/[\\s_]+/", "_", $this->mDbkeyform );
@@ -464,8 +458,13 @@ class Title {
 			$r = substr( $r, 0, strlen( $r ) - strlen( $f ) );
 		}
 
-		$t = $r;
-		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $t );
+		# Reject illegal characters.
+		#
+		if( preg_match( $rxTc, $r ) ) {
+			return false;
+		}
+
+		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $r );
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
 		$this->mTextform = str_replace( "_", " ", $t );
