@@ -666,10 +666,14 @@ class Database {
 	}
 
 	function tableName( $name ) {
+		global $wgUserTablePrefix;
 		if ( $this->mTablePrefix !== '' ) {
 			if ( strpos( '.', $name ) === false ) {
 				$name = $this->mTablePrefix . $name;
 			}
+		}
+		if ( isset( $wgUserTablePrefix ) && 'user' == $name ) {
+			$name = $wgUserTablePrefix . '.' . $name;
 		}
 		return $name;
 	}
