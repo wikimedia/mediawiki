@@ -38,7 +38,8 @@ class Article {
 
 	/* static */ function getRevisionText( $row, $prefix = "old_" ) {
 		# Deal with optional compression of archived pages.
-		# This can be done periodically via maintenance/compressOld.php
+		# This can be done periodically via maintenance/compressOld.php, and
+		# as pages are saved if $wgCompressRevisions is set.
 		$text = $prefix . "text";
 		$flags = $prefix . "flags";
 		if( isset( $row->$flags ) && (false !== strpos( $row->$flags, "gzip" ) ) ) {
@@ -48,6 +49,19 @@ class Article {
 			return $row->$text;
 		}
 		return false;
+	}
+	
+	/* static */ function compressRevisionText( &$text ) {
+		global $wgCompressRevisions;
+		if( !$wgCompressRevisions ) {
+			return "";
+		}
+		if( !function_exists( "gzdeflate" ) ) {
+			wfDebug( "Article::compressRevisionText() -- no zlib support, not compressing\n" );
+			return "";
+		}
+		$text = gzdeflate( $text );
+		return "gzip";
 	}
 	
 	# Note that getContent/loadContent may follow redirects if
@@ -479,9 +493,12 @@ class Article {
 				return false;
 			}
 
+			# This overwrites $oldtext if revision compression is on
+			$flags = Article::compressRevisionText( $oldtext );
+			
 			$sql = "INSERT INTO old (old_namespace,old_title,old_text," .
 			  "old_comment,old_user,old_user_text,old_timestamp," .
-			  "old_minor_edit,inverse_timestamp) VALUES (" .
+			  "old_minor_edit,inverse_timestamp,old_flags) VALUES (" .
 			  $this->mTitle->getNamespace() . ", '" .
 			  wfStrencode( $this->mTitle->getDBkey() ) . "', '" .
 			  wfStrencode( $oldtext ) . "', '" .
@@ -489,7 +506,7 @@ class Article {
 			  $this->getUser() . ", '" .
 			  wfStrencode( $this->getUserText() ) . "', '" .
 			  $this->getTimestamp() . "', " . $me1 . ", '" .
-			  wfInvertTimestamp( $this->getTimestamp() ) . "')";
+			  wfInvertTimestamp( $this->getTimestamp() ) . "','$flags')";
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			$oldid = wfInsertID( $res );
 

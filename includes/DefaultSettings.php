@@ -150,7 +150,13 @@ $wgDisableAnonTalk = false;
 # We can serve pages compressed in order to save bandwidth,
 # but this will increase CPU usage.
 # Requires zlib support enabled in PHP.
-$wgUseGzip = false;
+$wgUseGzip = function_exists( "gzencode" );
+
+# We can also compress text in the old revisions table. If this is set on,
+# old revisions will be compressed on page save if zlib support is available.
+# Any compressed revisions will be decompressed on load regardless of this
+# setting *but will not be readable at all* if zlib support is not available.
+$wgCompressRevisions = false;
 
 # This is the list of preferred extensions for uploading files. Uploading
 # files with extensions not in this list will trigger a warning.
