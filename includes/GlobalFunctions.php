@@ -279,29 +279,16 @@ function wfMsgReal( $key, $args, $useDB ) {
 
 function wfCleanFormFields( $fields )
 {
-	global $HTTP_POST_VARS;
 	global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding, $wgLang;
 
-	if ( get_magic_quotes_gpc() ) {
-		foreach ( $fields as $fname ) {
-			if ( isset( $HTTP_POST_VARS[$fname] ) ) {
-				$HTTP_POST_VARS[$fname] = stripslashes(
-				  $HTTP_POST_VARS[$fname] );
-			}
-			global ${$fname};
-			if ( isset( ${$fname} ) ) {
-				${$fname} = stripslashes( ${$fname} );
-			}
-		}
-	}
 	$enc = $wgOutputEncoding;
 	if( $wgEditEncoding != "") $enc = $wgEditEncoding;
 	if ( $enc != $wgInputEncoding ) {
 		foreach ( $fields as $fname ) {
-			if ( isset( $HTTP_POST_VARS[$fname] ) ) {
-				$HTTP_POST_VARS[$fname] = $wgLang->iconv(
+			if ( isset( $_POST[$fname] ) ) {
+				$_POST[$fname] = $wgLang->iconv(
 				  $wgOutputEncoding, $wgInputEncoding,
-				  $HTTP_POST_VARS[$fname] );
+				  $_POST[$fname] );
 			}
 			global ${$fname};
 			if ( isset( ${$fname} ) ) {
@@ -331,9 +318,6 @@ function wfDemungeQuotes( $in )
 function wfCleanQueryVar( $var )
 {
 	global $wgLang;
-	if ( get_magic_quotes_gpc() ) {
-		$var = stripslashes( $var );
-	}
 	return $wgLang->recodeInput( $var );
 }
 
@@ -855,4 +839,5 @@ function wfPurgeSquidServers ($urlArr) {
 	}
 	return;
 }
+
 ?>

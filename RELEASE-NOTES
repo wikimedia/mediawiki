@@ -1,5 +1,14 @@
 = MediaWiki release notes =
 
+== Version 1.2.1, 2004-03-27 ==
+
+Installation, compatibility, security fixlets:
+* Detect use of PHP as CGI and disable index.php/Title URLs
+* Try to auto-create math tmp & output directories if not present
+* Disable Asksql in default install ($wgAllowSysopQueries)
+* Better handling of get_magic_quotes_gpc (apostrophe problems)
+* French localisation no longer hard-codes "Wikipedia" name
+
 == Version 1.2.0, 2004-03-24 ==
 
 This is the new production release; it is more or less in sync with what

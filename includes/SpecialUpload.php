@@ -35,7 +35,7 @@ function processUpload()
 {
 	global $wgUser, $wgOut, $wgLang, $wpUploadAffirm, $wpUploadFile;
 	global $wpUploadDescription, $wpIgnoreWarning;
-	global $HTTP_POST_FILES, $wgUploadDirectory;
+	global $wgUploadDirectory;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
@@ -54,13 +54,13 @@ function processUpload()
 		return;
 	}
 	if ( ! $wpUploadTempName ) {
-		$wpUploadTempName = $HTTP_POST_FILES['wpUploadFile']['tmp_name'];
+		$wpUploadTempName = $_FILES['wpUploadFile']['tmp_name'];
 	}
 	if ( ! $wpUploadSize ) {
-		$wpUploadSize = $HTTP_POST_FILES['wpUploadFile']['size'];
+		$wpUploadSize = $_FILES['wpUploadFile']['size'];
 	}
 	$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-	$oname = wfCleanQueryVar( $HTTP_POST_FILES['wpUploadFile']['name'] );
+	$oname = wfCleanQueryVar( $_FILES['wpUploadFile']['name'] );
 	if ( $wpUploadSaveName != "" ) $wpUploadSaveName = wfCleanQueryVar( $wpUploadSaveName );
 	error_reporting( $prev );
 
@@ -77,10 +77,14 @@ function processUpload()
 		$partname = substr( $basename, 0, strlen( $basename ) - $xl );
 
 		if ( strlen( $partname ) < 3 ) {
-			mainUploadForm( WfMsg( "minlength" ) );
+			mainUploadForm( wfMsg( "minlength" ) );
 			return;
 		}
 		$nt = Title::newFromText( $basename );
+		if( !$nt ) {
+			mainUploadForm( wfMsg( "badtitle" ) );
+			return;
+		}
 		$wpUploadSaveName = $nt->getDBkey();
 
 		/* Don't allow users to override the blacklist */

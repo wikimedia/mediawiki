@@ -1,12 +1,35 @@
 <?php
 # Main wiki script; see design.doc
 #
-$wgRequestTime = microtime();
 
-if( !ini_get( "register_globals" ) ) {
-	# Insecure, but at least it'll run
-	import_request_variables( "GPC" );
+# Fudge the variable imports to work around oddness with
+# magic_quotes_gpc being on and register_globals being off
+function &fix_magic_quotes( &$arr ) {
+	foreach( $arr as $key => $val ) {
+		if( is_array( $val ) ) {
+			fix_magic_quotes( $arr[$key] );
+		} else {
+			$arr[$key] = stripslashes( $val );
+		}
+	}
+	return $arr;
 }
+if( get_magic_quotes_gpc() ) {
+	fix_magic_quotes( $_COOKIE );
+	fix_magic_quotes( $_ENV );
+	fix_magic_quotes( $_GET );
+	fix_magic_quotes( $_POST );
+	fix_magic_quotes( $_REQUEST );
+	fix_magic_quotes( $_SERVER );
+	fix_magic_quotes( $_FILES );
+}
+if( get_magic_quotes_gpc() || !ini_get( "register_globals" ) ) {
+	# Import or re-import the variables
+	extract( $_REQUEST );
+}
+
+# Now that that's done, let's get on with business!
+$wgRequestTime = microtime();
 
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
