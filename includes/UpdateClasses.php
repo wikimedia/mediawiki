@@ -1,11 +1,10 @@
 <?
 # See deferred.doc
-global $IP;
-include_once( "$IP/UserUpdate.php" );
-include_once( "$IP/ViewCountUpdate.php" );
-include_once( "$IP/SiteStatsUpdate.php" );
-include_once( "$IP/LinksUpdate.php" );
-include_once( "$IP/SearchUpdate.php" );
-include_once( "$IP/UserTalkUpdate.php" );
+include_once( "UserUpdate.php" );
+include_once( "ViewCountUpdate.php" );
+include_once( "SiteStatsUpdate.php" );
+include_once( "LinksUpdate.php" );
+include_once( "SearchUpdate.php" );
+include_once( "UserTalkUpdate.php" );
 
 ?>

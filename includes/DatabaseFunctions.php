@@ -1,7 +1,6 @@
 <?
-global $IP;
-include_once( "$IP/FulltextStoplist.php" );
-include_once( "$IP/CacheManager.php" );
+include_once( "FulltextStoplist.php" );
+include_once( "CacheManager.php" );
 
 define( "DB_READ", -1 );
 define( "DB_WRITE", -2 );

@@ -10,9 +10,16 @@ session_register( "wsUserName" );
 session_register( "wsUserPassword" );
 session_register( "wsUploadFiles" );
 
-global $IP;
+unset( $IP );
+ini_set( "allow_url_fopen", 0 ); # For security...
 include_once( "./LocalSettings.php" );
-include_once( "$IP/Setup.php" );
+
+$include_path = ini_get( "include_path" );
+# Windows requires ';' as separator, ':' for Unix
+if( strchr( $include_path, ";" ) ) $sep = ";"; else $sep = ":";
+ini_set( "include_path", $IP . $sep . ini_get( "include_path" ) );
+
+include_once( "Setup.php" );
 
 wfProfileIn( "main-misc-setup" );
 OutputPage::setEncodings(); # Not really used yet
@@ -64,7 +71,7 @@ if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	
 	switch( $wgTitle->getNamespace() ) {
 	case 6:
-		include_once( "$IP/ImagePage.php" );
+		include_once( "ImagePage.php" );
 		$wgArticle = new ImagePage( $wgTitle );
 		break;
 	default:
@@ -88,7 +95,7 @@ if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 			break;
 		case "edit":
 		case "submit":
-			include_once( "$IP/EditPage.php" );
+			include_once( "EditPage.php" );
 			$editor = new EditPage( $wgArticle );
 			$editor->$action();
 			break;

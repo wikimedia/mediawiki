@@ -1650,7 +1650,6 @@ class Language {
 	}
 }
 
-global $IP;
-include_once( "{$IP}/Language" . ucfirst( $wgLanguageCode ) . ".php" );
+include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
