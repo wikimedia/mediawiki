@@ -61,8 +61,9 @@ textarea {
     don't ask why..*/
     margin-left: -12.2em;
 }
-#tawrapper {
+div.tawrapper {
     width: 100%;
+    text-align: left;
     overflow: hidden;
 }
 .special li {

@@ -359,7 +359,7 @@ class EditPage {
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
-<div id=\"tawrapper\"><textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
+<div class=\"tawrapper\"><textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
 cols='{$cols}'{$ew}>" .
 htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 "
@@ -381,10 +381,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+<div class=\"tawrapper\"><textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
 "
-</textarea>" );
+</textarea></div>" );
 		}
 		$wgOut->addHTML( "</form>\n" );
 		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {

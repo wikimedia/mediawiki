@@ -176,6 +176,7 @@ li#personaltools-login {
 /* IE 6 fix fixes, hide from everything else */
 i {content: "\"/*" }
 * html textarea {
+    text-align:  right;
     margin-right: -12.2em;
     margin-left: 0;
 }
