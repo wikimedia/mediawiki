@@ -2,36 +2,34 @@
 /* content area */ 
 
 /* workaround for various ie float bugs */
-#portal-column-content #content {
+#column-content #content {
     margin-top: 3em;
     overflow: auto;
     height: 1%;
 }
 
-#portal-column-content {
-    display: inline;
-}
+#column-content { display: inline; }
 
 /* the tabs */
 
-#portlet-contentViews {
+#p-cactions {
     z-index: 3;
 }
 
-#portlet-contentViews li {
+#p-cactions li {
     float: left;
     padding-top: 0;
     padding-bottom: 0 !important;
     height: 0.9em;
 }
-#portlet-contentViews li a {
+#p-cactions li a {
     display: block;
     padding-bottom: 0.045em;
 }
-#portlet-contentViews li.selected a {
+#p-cactions li.selected a {
     padding-bottom: 0.17em;
 }
-#portlet-contentViews li a:hover {
+#p-cactions li a:hover {
     padding-bottom: 0.17em;
 }
 #portal-personaltools {
@@ -46,8 +44,8 @@
 }
 
 /* show the hand */
-#portlet-logo a,
-#portlet-logo a:hover {
+#p-logo a,
+#p-logo a:hover {
     cursor: pointer;
 }
 div.visualClear {

@@ -1,8 +1,8 @@
 /* small tweaks for opera seven */
-#portlet-contentViews {
+#p-cactions {
     margin-top: 0.1em;
 }
-#portlet-contentViews li a {
+#p-cactions li a {
     top: 2px;
 }
 #bodyContent a.external {

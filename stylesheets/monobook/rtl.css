@@ -78,39 +78,39 @@ div.magnify,
 	float: left;
 }
 
-#portlet-logo {
+#p-logo {
 	left: auto;
 	right: 0;
 }
-#portlet-personal {
+#p-personal {
 	left: auto;
 	right: 0;
 }
 
-#portlet-contentViews {
+#p-cactions {
 	left: auto;
 	right: 11.5em;
         padding-left: 0;
         padding-right: 1em;
 }
-#portlet-contentViews li {
+#p-cactions li {
     margin-left: 0.3em;
     margin-right: 0;
     float: right;
 }
-* html #portlet-contentViews li a {
+* html #p-cactions li a {
     display: block;
     padding-bottom: 0;
 }
-* html #portlet-contentViews li a:hover {
+* html #p-cactions li a:hover {
     padding-bottom: 0.2em;
 }
 /* offsets to distinguish the tab groups */
-li#contentaction-talk {
+li#ca-talk {
     margin-right: auto;
     margin-left: 1.6em;
 }
-li#contentaction-watch {
+li#ca-watch {
     margin-right: 1.6em !important;
 }
 
@@ -170,7 +170,7 @@ li#personaltools-login {
     padding: 0 !important;
     background: none !important;
 }
-#portal-footer {
+#footer {
     clear: both;
 }
 /* IE 6 fix fixes, hide from everything else */

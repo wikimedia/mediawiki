@@ -193,7 +193,7 @@ a:link, a:visited {
    content: " ( " attr(href) " ) ";
 }*/
 
-#visual-portal-wrapper {
+#globalWrapper {
     width: 100% !important;
     min-width: 0 !important;
 }
@@ -231,9 +231,3 @@ a, a.external, a.new, a.stub {
 .urlexpansion {
 	display: inline ! important;
 }
-
-.printfooter {
-	border-top: solid 1px black;
-	display: block ! important;
-}
-

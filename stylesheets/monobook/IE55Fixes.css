@@ -1,49 +1,36 @@
 /* IE5.5/win- only fixes */
 
-#portal-column-content {
-    display: inline;
-}
-#portal-column-content #content {
-    margin-top: 3em;
+#column-content { display: inline; }
+#column-content #content { 
+    margin-top: 3em; 
     overflow: auto;
+    height: 1%;
 }
-#bodyContent center,
-#bodyContent pre {
-    overflow: auto;
-}
+#bodyContent div,
+#bodyContent pre { overflow: auto; }
 
-#portal-personaltools {
-    padding-bottom: 0.1em;
-}
-img {
-    position: relative;
-}
-div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
-    position:relative;
-}
+#p-personal { padding-bottom: 0.1em; }
 
-body {
-    font-size: xx-small;
-}
-#portlet-contentViews {
+body { font-size: xx-small; }
+#p-cactions {
     width: 76% !important;
     z-index: 3 !important;
     float: none;
 }
-#portlet-contentViews li {
+#p-cactions li {
     float: left;
     padding-top: 0;
     padding-bottom: 0 !important;
     height: 0.9em;
 }
-#portlet-contentViews li a {
+#p-cactions li a {
     display: block;
     padding-bottom: 0.045em;
 }
-#portlet-contentViews li.selected a {
+#p-cactions li.selected a {
     padding-bottom: 0.17em;
 }
-#portlet-contentViews li a:hover {
+#p-cactions li a:hover {
     padding-bottom: 0.17em;
 }
 .portlet {
@@ -54,8 +41,8 @@ body {
     padding-right: 13px;
 }
 /* show the hand */
-#portlet-logo a,
-#portlet-logo a:hover {
+#p-logo a,
+#p-logo a:hover {
     cursor: pointer;
 }
 .visualClear {
@@ -64,4 +51,3 @@ body {
     padding:0;
     margin:0;
 }
-#catlinks { z-index: 4; }
