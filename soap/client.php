@@ -1,10 +1,16 @@
 <?php
 
+if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
+        print "This script must be run from the command line\n";
+        exit();
+}
+
+
 require_once('nusoap.php');
 
 $t = 'Hello, World!';
 
-$s = new soapclient( 'http://localhost:80/soap/' );
+$s = new soapclient( 'http://mediawiki.mormo.org:80/soap/' );
 print "==echoString==\n";
 $r = $s->call( 'echoString', array( $t ) );
 
@@ -30,7 +36,7 @@ print_r( $r );
 print( "Error: ".$s->getError() . "\n" );
 
 print "\n\n==searchTitles==\n";
-$r = $s->call( 'searchTitles', array( 'furt', 1 ) );
+$r = $s->call( 'searchTitles', array( 'Frankfurt', 0 ) );
 
 print_r( $r );
 print( "Error: ".$s->getError() . "\n" );
