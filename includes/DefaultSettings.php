@@ -526,7 +526,7 @@ $wgProxyScriptPath = "$IP/proxy_check.php";
 /** */
 $wgProxyMemcExpiry = 86400;
 /** This should always be customised in LocalSettings.php */
-$wgSecretKey = 'W1svekXc5u6lZllTZOwnzEk1nbs';
+$wgSecretKey = false;
 /** big list of banned IP addresses, in the keys not the values */
 $wgProxyList = array();
 

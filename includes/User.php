@@ -592,8 +592,15 @@ class User {
 
 	# Set the random token (used for persistent authentication)
 	function setToken( $token = false ) {
-		global $wgSecretKey, $wgDBname;
+		global $wgSecretKey, $wgProxyKey, $wgDBname;
 		if ( !$token ) {
+			if ( $wgSecretKey ) {
+				$key = $wgSecretKey;
+			} elseif ( $wgProxyKey ) {
+				$key = $wgProxyKey;
+			} else {
+				$key = microtime();
+			}
 			$this->mToken = md5( $wgSecretKey . mt_rand( 0, 0x7fffffff ) . $wgDBname . $this->mId );
 		} else {
 			$this->mToken = $token;
