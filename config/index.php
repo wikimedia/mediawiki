@@ -278,6 +278,14 @@ if( $conf->zlib ) {
 	print "<li>No zlib support.</li>\n";
 }
 
+$conf->turck = function_exists( 'mmcache_get' );
+if ( $conf->turck ) {
+	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> installed</li>\n";
+} else {
+	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> not installed, " .
+	  "can't use object caching functions</li>\n";
+}
+
 $conf->ImageMagick = false;
 $imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
 foreach( $imcheck as $dir ) {
@@ -363,6 +371,24 @@ if( $conf->License == "gfdl" ) {
 	$conf->RightsText = importRequest( "RightsText", "" );
 	$conf->RightsCode = importRequest( "RightsCode", "" );
 	$conf->RightsIcon = importRequest( "RightsIcon", "" );
+}
+
+$conf->Shm = importRequest( "Shm", "none" );
+$conf->MCServers = importRequest( "MCServers" );
+
+/* Test memcached servers */
+
+if ( $conf->Shm == 'memcached' && $conf->MCServers ) {
+	$conf->MCServerArray = array_map( 'trim', explode( ',', $conf->MCServers ) );
+	foreach ( $conf->MCServerArray as $server ) {
+		$error = testMemcachedServer( $server );
+		if ( $error ) {
+			$errs["MCServers"] = $error;
+			break;
+		}
+	}
+} else if ( $conf->Shm == 'memcached' ) {
+	$errs["MCServers"] = "Please specify at least one server if you wish to use memcached";
 }
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
@@ -690,7 +716,30 @@ if( count( $errs ) ) {
 		wiki database, a sysop account will be created with the given name
 		and password.
 	</dt>
-</dl>
+
+	<dd>
+		<label class='column'>Shared memory caching</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "Shm", "no caching", "radio", "none" ); ?></li>
+		<?php 
+			if ( $conf->turck ) {
+				echo "<li>";
+				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
+				echo "</li>";
+			}
+		?>
+		<li><?php aField( $conf, "Shm", "Memcached", "radio", "memcached" ); ?></li>
+		<li><?php aField( $conf, "MCServers", "Memcached servers", "" ) ?></li>
+		</ul>
+	</dd>
+	<dt>
+		Using a shared memory system such as Turck MMCache or Memcached will speed
+		up MediaWiki significantly. Memcached is the best solution but needs to be 
+		installed. Specify the server addresses and ports in a comma-separted list. Only 
+		use Turck shared memory if the wiki will be running on a single Apache server.
+	</dl>
 
 <h2>Database config</h2>
 
@@ -784,6 +833,24 @@ function writeLocalSettings( $conf ) {
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
+	
+	switch ( $conf->Shm ) {
+		case 'memcached':
+			$memcached = 'true';
+			$turck = '#';
+			$mcservers = var_export( $conf->MCServerArray, true );
+			break;
+		case 'turck':
+			$memcached = 'false';
+			$mcservers = 'array()';
+			$turck = '';
+			break;
+		default:
+			$memcached = 'false';
+			$mcservers = 'array()';
+			$turck = '#';
+	}
+
 
 	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
@@ -862,6 +929,11 @@ if ( \$wgCommandLineMode ) {
 # \$wgDBsqlpassword    = \"sqlpass\";
 
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
+
+## Shared memory settings
+\$wgUseMemcached = $memcached;
+\$wgMemCachedServers = $mcservers;
+{$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && php_sapi_name() == 'apache';
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then uncomment this:
@@ -988,6 +1060,50 @@ function getLanguageList() {
 	return $codes;
 }
 
+# Test a memcached server
+function testMemcachedServer( $server ) {
+	$hostport = explode(":", $server);
+	$errstr = false;
+	$fp = false;
+	if ( !function_exists( 'fsockopen' ) ) {
+		$errstr = "Can't connect to memcached, fsockopen() not present";
+	}
+	if ( !$errstr &&  count( $hostport ) != 2 ) {
+		$errstr = 'Please specify host and port';
+		var_dump( $hostport );
+	}
+	if ( !$errstr ) {
+		list( $host, $port ) = $hostport;
+		$errno = 0;
+		$fsockerr = '';
+
+		$fp = @fsockopen( $host, $port, $errno, $fsockerr, 1.0 );
+		if ( $fp === false ) {
+			$errstr = "Cannot connect to memcached on $host:$port : $fsockerr";
+		}
+	}
+	if ( !$errstr ) {
+		$command = "version\r\n";
+		$bytes = fwrite( $fp, $command );
+		if ( $bytes != strlen( $command ) ) {
+			$errstr = "Cannot write to memcached socket on $host:$port";
+		}
+	}
+	if ( !$errstr ) {
+		$expected = "VERSION ";
+		$response = fread( $fp, strlen( $expected ) );
+		if ( $response != $expected ) {
+			$errstr = "Didn't get correct memcached response from $host:$port";
+		}
+	}
+	if ( $fp ) {
+		fclose( $fp );
+	}
+	if ( !$errstr ) {
+		echo "<li>Connected to memcached on $host:$port successfully";
+	}
+	return $errstr;
+}
 ?>
 
 </body>
