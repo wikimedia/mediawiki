@@ -584,6 +584,7 @@ class Parser
 				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
 			}
 			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
+				# $x is a table row
 				if ( '|+' == substr ( $x , 0 , 2 ) ) {
 					$fc = '+' ;
 					$x = substr ( $x , 1 ) ;
@@ -592,6 +593,8 @@ class Parser
 				if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
 				$after = explode ( '||' , $after ) ;
 				$t[$k] = '' ;
+
+				# Loop through each table cell
 				foreach ( $after AS $theline )
 				{
 					$z = '' ;
@@ -610,8 +613,16 @@ class Parser
 					else if ( $fc == '+' ) $l = 'caption' ;
 					else $l = '' ;
 					array_push ( $ltd , $l ) ;
+
+					# Cell parameters
 					$y = explode ( '|' , $theline , 2 ) ;
-					if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
+					# Note that a '|' inside an invalid link should not
+					# be mistaken as delimiting cell parameters
+					if ( strpos( $y[0], '[[' ) !== false ) {
+						$y = array ($theline);
+					}
+					if ( count ( $y ) == 1 )
+						$y = "{$z}<{$l}>{$y[0]}" ;
 					else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
 					$t[$k] .= $y ;
 					array_push ( $td , true ) ;
