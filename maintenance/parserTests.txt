@@ -276,7 +276,27 @@ Definition list with URL link
 !! input
 ; http://example.com/ : definition
 !! result
-<dl><dt> <a href="http://example.com/" class='external'>http://example.com/</a></dt><dd> definition
+<dl><dt> <a href="http://example.com/" class='external'>http://example.com/</a>&nbsp;</dt><dd> definition
+</dd></dl>
+
+!! end
+
+!! test
+Definition list with bracketed URL link
+!! input
+;[http://www.google.com/ Google]:Number one search engine
+!! result
+<dl><dt><a href="http://www.google.com/" class='external' title="http://www.google.com/">Google</a><span class='urlexpansion'> (<i>http://www.google.com/</i>)</span></dt><dd>Number one search engine
+</dd></dl>
+
+!! end
+
+!! test
+Definition list with wikilink containing colon
+!! input
+; [[Wikipedia:FAQ]]: The least-read page on Wikipedia
+!! result
+<dl><dt> <a href="/index.php?title=Wikipedia:FAQ&amp;action=edit" class="new" title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -903,6 +923,15 @@ Magic links: internal link to RFC
 !! end
 
 !! test
+Magic links: RFC
+!! input
+RFC 822
+!! result
+<p><a href='http://www.faqs.org/rfcs/rfc822.html' class='external' title="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>
+</p>
+!! end
+
+!! test
 Magic links: ISBN
 !! input
 ISBN 0-306-40615-2
@@ -1114,9 +1143,11 @@ Template:MSGNW test
 {{test}}
 !! endarticle
 
-# hmm, fix this or just disable/deprecate msgnw?
+# hmm, fix this or just deprecate msgnw and document its behavior?
 !! test
 msgnw keyword
+!! options
+disabled
 !! input
 {{msgnw:MSGNW test}}
 !! result
