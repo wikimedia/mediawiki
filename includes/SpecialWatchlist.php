@@ -110,7 +110,7 @@ function wfSpecialWatchlist()
 			} else {
 				$t = $t->getPrefixedText();
 				$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
-					$sk->makeKnownLink( $t, $t ) .
+					$sk->makeLink( $t, $t ) .
 					"</li>\n" );
 			}
 		}
