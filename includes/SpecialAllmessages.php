@@ -13,12 +13,6 @@ function wfSpecialAllmessages() {
 	global $wgLanguageCode, $wgContLanguageCode, $wgContLang;
 	global $wgUseDatabaseMessages;
 
-	if($wgLanguageCode != $wgContLanguageCode &&
-		!in_array($wgLanguageCode, $wgContLang->getVariants())) {
-		$err = wfMsg('allmessagesnotsupportedUI', $wgLanguageCode);
-		$wgOut->addHTML( $err );
-		return;
-	}
 	if(!$wgUseDatabaseMessages) {
 		$wgOut->addHTML(wfMsg('allmessagesnotsupportedDB'));
 		return;
