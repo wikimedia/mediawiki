@@ -1809,7 +1809,7 @@ class Skin {
 			$r .= "; " ;
 
 			# History
-			$r .= $this->makeKnownLink( $block[0]->getTitle(), wfMsg( "history" ), "{$curIdEq}&action=history" );
+			$r .= $this->makeKnownLinkObj( $block[0]->getTitle(), wfMsg( "history" ), "{$curIdEq}&action=history" );
 			$r .= ")" ;
 		}
 
