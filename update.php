@@ -124,7 +124,7 @@ function update_passwords() {
 	while ( $row = mysql_fetch_object( $source ) ) {
 		$id = $row->user_id;
 		$oldpass = $row->user_password;
-		$newpass = md5( $oldpass . $id );
+		$newpass = md5( "{$id}-{$oldpass}" );
 
 		$sql = "UPDATE user SET user_password='{$newpass}' " .
 		  "WHERE user_id={$id}";

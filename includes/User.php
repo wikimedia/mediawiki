@@ -277,7 +277,7 @@ class User {
 
 	function addSalt( $p )
 	{
-		return md5( "wikipedia{$this->mId}-{$p}" );
+		return md5( "{$this->mId}-{$p}" );
 	}
 
 	function encryptPassword( $p )
