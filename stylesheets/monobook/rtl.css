@@ -32,10 +32,6 @@ body * {
 /*    unicode-bidi: bidi-override;*/
     unicode-bidi: embed;
 }
-/* very ugly IE6 bug workaround (disappearing right padding on #documentContent) */
-* html body {
-    padding-left: 19px;
-}
 #portal-column-content {
 	margin: 0 -12.2em 0 0;
         float: left;
@@ -177,3 +173,17 @@ li#personaltools-login {
 #portal-footer {
     clear: both;
 }
+/* IE 6 fix fixes, hide from everything else */
+i {content: "\"/*" }
+* html textarea {
+    /* same negative margin as on #portal-column-content
+    don't ask why..*/
+    margin-right: -12.2em;
+    margin-left: 0;
+}
+i {content: "\"/*" }
+* html body {
+    padding-left: 19px;
+}
+/* */ 
+/* the body margin is an ugly workaround for the onLoad-disappearing right padding on #documentContent */
