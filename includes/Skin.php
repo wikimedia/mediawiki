@@ -119,7 +119,7 @@ class Skin {
 		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $oldid, $redirect, $diff,$action;
 
 		if ( 0 != $wgTitle->getNamespace() ) {
-			$a = array( "bgcolor" => "#f7f7ff" );
+			$a = array( "bgcolor" => "#ffffec" );
 		}
 		else $a = array( "bgcolor" => "#FFFFFF" );
 		if($wgOut->isArticle() && $wgUser->getOption("editondblclick")
