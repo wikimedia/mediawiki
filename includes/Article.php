@@ -365,6 +365,9 @@ class Article {
 			$wgOut->addWikiText( $text );
 		}
 
+		# Add link titles as META keywords
+		$wgOut->addMetaTags() ;
+
 		$this->viewUpdates();
 		wfProfileOut( $fname );
 	}

@@ -542,6 +542,19 @@ class OutputPage {
 		$wgOut->addHTML( "\n<p>$r\n" );
 	}
 
+	# This function takes the existing and broken links for the page
+	# and uses the first 10 of them for META keywords
+	function addMetaTags ()
+	{
+		global $wgLinkCache , $wgOut ;
+		$good = array_keys ( $wgLinkCache->mGoodLinks ) ;
+		$bad = array_keys ( $wgLinkCache->mBadLinks ) ;
+		$a = array_merge ( $good , $bad ) ;
+		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
+		$a = implode ( "," , $a ) ;
+		$wgOut->addMeta ( "KEYWORDS" , $a ) ;
+	}
+
 	/* private */ function headElement()
 	{
 		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding, $wgLang, $wgRequest;
