@@ -22,7 +22,7 @@
     padding:0;
 }
 #portal-column-content #content {
-    margin: 2.7em 0 0 12.2em;
+    margin: 2.8em 0 0 12.2em;
 }
 #portal-column-one {
     padding-top: 160px;
@@ -781,7 +781,7 @@ li#personaltools-login {
 
 #portlet-contentViews {
     position:absolute;
-    top: 1.2em;
+    top: 1.3em;
     left: 11.5em;
     margin: 0;
     white-space:nowrap;

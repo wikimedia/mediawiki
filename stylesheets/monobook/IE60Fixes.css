@@ -3,15 +3,19 @@
 
 /* workaround for various ie float bugs */
 #portal-column-content #content {
-    margin-top: 2.9em;
+    margin-top: 3em;
     overflow: auto;
 }
 
 #portal-column-content {
     display: inline;
 }
-#bodyContent center, /* the full-size images are in center tags */
-#bodyContent pre {
+/* the full-size images are in center tags */
+#bodyContent, 
+#bodyContent pre,
+#bodyContent img,
+#bodyContent div,
+#bodyContent p {
     overflow: auto;
 }
 
