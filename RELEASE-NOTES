@@ -345,6 +345,8 @@ If upgrading from an older release, see the file UPGRADE;
 * Correct the name of the main page it LanguageIt
 * Allow Special:Makesysop to work for usernames containing SQL special
   characters.
+* Fix annoying blue line in Safari on scaled-down images on description page
+
 
 === Caveats ===
 
