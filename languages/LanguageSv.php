@@ -617,7 +617,7 @@ information om filen, som till exempel var den kommer ifrån,
 när den skapades och vem som gjort den och allt annat du vet om den.",
 "uploadwarning"         => "Uppladdnings varning",
 "savefile"              => "Spara fil",
-"uploadedimage"         => "uppladdad \"$1\"",
+"uploadedimage"         => "uppladdad \"[[$1]]\"",
 
 // Image list
 //

@@ -594,7 +594,7 @@ tentang fail tersebut, seperti fail itu dari mana, bila ia dibuat dan
 oleh siapa, dan lain-lain yang anda ketahui.",
 "uploadwarning" => "Amaran muaturun", # Upload warning",
 "savefile"		=> "Simpan fail", #"Save file",
-"uploadedimage" => "Telah dimuaturun \"$1\"",     #"uploaded \"$1\"",
+"uploadedimage" => "Telah dimuaturun \"[[$1]]\"",     #"uploaded \"$1\"",
 
 # Image list
 #

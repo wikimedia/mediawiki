@@ -618,7 +618,7 @@ alt=\"Google\" align=\"middle\"></a>
 以及其他任何您知道的关于改图像的信息。",
 "uploadwarning" => "上载警告",
 "savefile"		=> "保存文件",
-"uploadedimage" => "已上载\"$1\"",
+"uploadedimage" => "已上载\"[[$1]]\"",
 
 # Image list
 #

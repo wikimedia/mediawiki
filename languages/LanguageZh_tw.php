@@ -613,7 +613,7 @@ alt=\"Google\" align=\"middle\"></a>
 以及其他任何您知道的關於改圖像的信息。",
 "uploadwarning" => "上載警告",
 "savefile"		=> "保存文件",
-"uploadedimage" => "已上載\"$1\"",
+"uploadedimage" => "已上載\"[[$1]]\"",
 
 # Image list
 #

@@ -890,7 +890,7 @@ asjassepuutuvad andmed faili kohta: kust on ta pärit, millal
 ja kelle poolt ta loodi, jne.",
 "uploadwarning" => "Hoiatus üleslaadimise asjus",
 "savefile"		=> "Salvesta fail",
-"uploadedimage" => "laadisin üles \"$1\"",
+"uploadedimage" => "laadisin üles \"[[$1]]\"",
 
 /*
  </nowiki>

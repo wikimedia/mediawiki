@@ -718,7 +718,7 @@ file-ról, mint például hogy honnan való, mikor és ki készítette, vagy bá
 más információ amit meg tudsz adni.",
 "uploadwarning" => "Felküldési figyelmeztetés",
 "savefile"		=> "File mentése",
-"uploadedimage" => "\"$1\" felküldve",
+"uploadedimage" => "\"[[$1]]\" felküldve",
 
 # Image list
 #

@@ -681,7 +681,7 @@ takie jak: pochodzenie pliku, kiedy i przez kogo został utworzony
 i cokolwiek co wiesz o pliku, a wydaje Ci się ważne.",
 "uploadwarning" => "Ostrzeżenie o przesyłce",
 "savefile" => "Zapisz plik",
-"uploadedimage" => "przesłano \"$1\"",
+"uploadedimage" => "przesłano \"[[$1]]\"",
 "uploaddisabled" => "Przepraszamy! Możliwość przesyłania plików na ten serwer została wyłączona.",
 
 # Image list

@@ -576,7 +576,7 @@ L'heure indiquée est celle du serveur (UTC).
 Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.",
 "uploadwarning" => "Attention !",
 "savefile"  => "Sauvegarder le fichier",
-"uploadedimage" => " \"$1\" copié sur le serveur",
+"uploadedimage" => " \"[[$1]]\" copié sur le serveur",
 
 # Image list
 #

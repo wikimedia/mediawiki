@@ -655,7 +655,7 @@ en wat jo fierder mar oan ynformaasje hawwe.",
 
 "uploadwarning" 	=> "Oanbied waarskôging",
 "savefile"		=> "Lis bestân fêst",
-"uploadedimage" 	=> " \"$1\" oanbean",
+"uploadedimage" 	=> " \"[[$1]]\" oanbean",
 "uploaddisabled" => "Sorry, op dizze tsjinner kin net oanbean wurde.",
 
 # Image list

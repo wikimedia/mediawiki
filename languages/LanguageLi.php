@@ -460,7 +460,7 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 "fileuploaded" => "<b>Het uploaden van bestand \"$1\" is geslaagd.</b> Gelieve deze link naar de omschrijvingspagina te volgen: ($2). Vul daar informatie in over dit bestand, bijvoorbeeld de oorsprong, wanneer en door wie het gemaakt is en wat u verder er nog over te vertellen heeft.",
 "uploadwarning" => "Upload waarschuwing ",
 "savefile"  => "Bestand opslaan",
-"uploadedimage" => "heeft ge-upload: \"$1\"",
+"uploadedimage" => "heeft ge-upload: \"[[$1]]\"",
 
 # Image list
 # Afbeeldingsliest

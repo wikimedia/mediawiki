@@ -695,7 +695,7 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
  auf der Seite erzeugen lassen.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
-"uploadedimage" => "\"$1\" hochgeladen",
+"uploadedimage" => "\"[[$1]]\" hochgeladen",
 
 # Image list
 #
@@ -1134,8 +1134,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
 "protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
-"protectedarticle" => "Artikel $1 geschützt",
-"unprotectedarticle" => "Artikel $1 freigegeben",
+"protectedarticle" => "Artikel [[$1]] geschützt",
+"unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
 "confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
 "ipbexpiry"		=> "Ablaufzeit",

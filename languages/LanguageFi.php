@@ -602,7 +602,7 @@ Katso myös [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta di
 'fileuploaded'        => 'Tiedosto "$1" on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä kuvaan liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen artikkeliin näin: <tt>[[Kuva:$1|thumb|Kuvaus]]</tt>',
 'uploadwarning' => 'Tallennusvaroitus',
 'savefile'    => 'Tallenna',
-'uploadedimage' => 'tallennettiin "$1"',
+'uploadedimage' => 'tallennettiin "[[$1]]"',
 'uploaddisabled' => 'Tiedostojen lähettäminen on toistaiseksi poissa käytöstä.',
 
 # Image list

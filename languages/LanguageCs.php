@@ -486,7 +486,7 @@ může mu být zablokován přístup k redigování.",
 Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár informací o souboru. Např. odkud pochází, kdy a kdo ho vytvořil či cokoliv dalšího, co o něm víš..",
 "uploadwarning" => "Varování",
 "savefile"		=> "Ulož soubor $1",
-"uploadedimage" => "načetl \"$1\"",
+"uploadedimage" => "načetl \"[[$1]]\"",
 
 # Image list
 #

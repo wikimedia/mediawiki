@@ -756,7 +756,7 @@ tentang file tersebut, seperti file itu dari mana, kapan ia dibuat dan
 oleh siapa, dan informasi lain yang Anda ketahui.",
 "uploadwarning" => "Peringatan pengunggahan", # Upload warning",
 "savefile"	      => "Simpan file", #"Save file",
-"uploadedimage" => "mengunggahkan \"$1\"",     #"uploaded \"$1\"",
+"uploadedimage" => "mengunggahkan \"[[$1]]\"",     #"uploaded \"$1\"",
 "uploaddisabled" => "Maaf, pengunggahan dimatikan.",
 
 # Image list 
@@ -979,8 +979,8 @@ Edit terakhir oleh [[Pengguna:$3|$3]] ([[Bicara_pengguna:$3|Pembicaraan]]). ",
 "protectlogpage" => "Catatan_Perlindungan",
 "protectlogtext" => "Di bawah ini adalah daftar catatan perlindungan/penghilangan perlindungan halaman. 
 Lihat [[{{ns:4}}:Protected page]] untuk informasi lebih lanjut.",
-"protectedarticle" => "melindungi $1",
-"unprotectedarticle" => "menghilangkan perlindungan $1",
+"protectedarticle" => "melindungi [[$1]]",
+"unprotectedarticle" => "menghilangkan perlindungan [[$1]]",
 "protectsub" =>"(Melindungi \"$1\")",
 "confirmprotecttext" => "Apakah Anda benar-benar ingin melindungi halaman ini?",
 "confirmprotect" => "Konfirmasi perlindungan",

@@ -735,7 +735,7 @@ fwait, et pa kî, et tot l'&nbsp;minme kéne informåcion interessante ki vos pl
 saveur å dfait do fitchî.",
 "uploadwarning" => "Adviertixhmint so l'&nbsp;eberwetaedje",
 "savefile"		=> "Schaper l'&nbsp;fitchî",
-"uploadedimage" => "eberwetaedje di «$1»",
+"uploadedimage" => "eberwetaedje di «[[$1]]»",
 
 # Image list
 #
@@ -969,8 +969,8 @@ Li dierin candjmint a stî fwait pa [[Uzeu:$3|$3]] ([[Uzeu copene:$3|Copene]]). 
 "protectlogtext" => "Chal pa dzo c'&nbsp;est ene djivêye des protedjaedjes
 et disprotedjaedjes des pådjes.
 Loukîz [[{{ns:4}}:Pådje protedjeye]] po pus di racsegnes.",
-"protectedarticle" => "$1 protedjî",
-"unprotectedarticle" => "$1 disprotedjî",
+"protectedarticle" => "[[$1]] protedjî",
+"unprotectedarticle" => "[[$1]] disprotedjî",
 
 # Undelete
 "undelete" => "Rapexhî des disfacêyès pådjes",

@@ -625,7 +625,7 @@ created and by whom, and anything else you may know about it." */,
 
 "uploadwarning" => "アップロード 警告" /* "Upload warning" */,
 "savefile"		=> "ファイルを保存" /* "Save file" */,
-"uploadedimage" => "\"$1\"をアップロードしました。" /* "uploaded \"$1\"" */,
+"uploadedimage" => "\"[[$1]]\"をアップロードしました。" /* "uploaded \"$1\"" */,
 
 # Image list
 #
