@@ -879,7 +879,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 		$conflict = false;
 	}
 	pclose( $handle );
-	$cmd = "{$wgDiff3} -a --merge $mytextName $oldtextName $yourtextName";
+	$cmd = "{$wgDiff3} -a -e --merge $mytextName $oldtextName $yourtextName";
 	$handle = popen( $cmd, "r" );
 	$result = "";
 	do {
