@@ -402,7 +402,8 @@ class LoadBalancer {
 	function closeAll() {
 		foreach( $this->mConnections as $i => $conn ) {
 			if ( $this->isOpen( $i ) ) {
-				$conn->close();
+				// Need to use this syntax because $conn is a copy not a reference
+				$this->mConnections[$i]->close();
 			}
 		}
 	}
@@ -410,7 +411,8 @@ class LoadBalancer {
 	function commitAll() {
 		foreach( $this->mConnections as $i => $conn ) {
 			if ( $this->isOpen( $i ) ) {
-				$conn->immediateCommit();
+				// Need to use this syntax because $conn is a copy not a reference
+				$this->mConnections[$i]->immediateCommit();
 			}
 		}
 	}
