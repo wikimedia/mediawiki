@@ -391,6 +391,7 @@ class Parser
 		return $r ;
 	}
 
+	# Return allowed HTML attributes
 	function getHTMLattrs ()
 	{
 		$htmlattrs = array( # Allowed attributes--no scripting, etc.
@@ -408,6 +409,7 @@ class Parser
 		return $htmlattrs ;
 	}
 
+	# Remove non approved attributes and javascript in css
 	function fixTagAttributes ( $t )
 	{
 		if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
@@ -431,7 +433,7 @@ class Parser
 		return trim ( $t ) ;
 	}
 
-	/* interface with html tidy, used if $wgUseTidy = true */
+	# interface with html tidy, used if $wgUseTidy = true
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		global $wgInputEncoding, $wgOutputEncoding;
@@ -479,6 +481,7 @@ class Parser
 		}
 	}
 
+	# parse the wiki syntax used to render tables
 	function doTableStuff ( $t )
 	{
 		$t = explode ( "\n" , $t ) ;
@@ -624,7 +627,7 @@ class Parser
 		return $text;
 	}
 
-
+    # Parse headers and return html
 	/* private */ function doHeadings( $text )
 	{
 		$fname = "Parser::doHeadings";
@@ -1188,6 +1191,7 @@ class Parser
 		return $output;
 	}
 
+	# Return value of a magic variable (like PAGENAME)
 	function getVariableValue( $index ) {
 		global $wgLang, $wgSitename, $wgServer;
 
@@ -1222,6 +1226,7 @@ class Parser
 		}
 	}
 
+	# initialise the magic variables (like CURRENTMONTHNAME)
 	function initialiseVariables()
 	{
 		global $wgVariableIDs;
@@ -1830,6 +1835,7 @@ class Parser
 		return $full;
 	}
 
+	# Return an HTML link for the "ISBN 123456" text
 	/* private */ function magicISBN( $text )
 	{
 		global $wgLang;
@@ -1864,6 +1870,8 @@ class Parser
 		}
 		return $text;
 	}
+	
+	# Return an HTML link for the "RFC 1234" text
 	/* private */ function magicRFC( $text )
 	{
 		global $wgLang;
