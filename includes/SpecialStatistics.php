@@ -15,9 +15,9 @@ function wfSpecialStatistics() {
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 	
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'site_stats', 'user', 'user_rights' ) );
+	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_rights' ) );
 
-	$sql = "SELECT COUNT(cur_id) AS total FROM $cur";
+	$sql = "SELECT COUNT(page_id) AS total FROM $page";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;

@@ -73,55 +73,39 @@ function wfSpecialContributions( $par = '' ) {
 	$wgOut->setSubtitle( wfMsg( 'contribsub', $ul ) );
 
 	if ( $hideminor ) {
-		$cmq = 'AND cur_minor_edit=0';
-		$omq = 'AND old_minor_edit=0';
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-	  	  WfMsg( 'show' ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
+		$minorQuery = "AND rev_minor_edit=0";
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
+	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=0&namespace={$namespace}" );
 	} else {
-		$cmq = $omq = '';
+		$minorQuery = "";
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 	  	  WfMsg( 'hide' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=1&namespace={$namespace}" );
 	}
 	
 	if( !is_null($namespace) ) {
-		$cmq .= " AND cur_namespace = {$namespace}";
-		$omq .= " AND old_namespace = {$namespace}";
+		$minorQuery .= " AND page_namespace = {$namespace}";
 	}
 	
 	extract( $dbr->tableNames( 'old', 'cur' ) );
-	if ( $userCond == '' ) {
-		# We may have to force the index, as some options will cause
-		# MySQL to incorrectly pick eg the namespace index.
-		list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
-			'USE INDEX' => 'usertext_timestamp',
-			'LIMIT' => $querylimit ) );
-		
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
-		  "WHERE cur_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$cmq} " .
-		  "ORDER BY inverse_timestamp $tailOpts";
-		$res1 = $dbr->query( $sql, $fname );
-
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old $useIndex " .
-		  "WHERE old_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$omq} " .
-		  "ORDER BY inverse_timestamp $tailOpts";
-		$res2 = $dbr->query( $sql, $fname );
+	if ( $userCond == "" ) {
+		$condition = "rev_user_text=" . $dbr->addQuotes( $nt->getText() );
+		$index = 'usertext_timestamp';
 	} else {
-		list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
-			'USE INDEX' => 'user_timestamp',
-			'LIMIT' => $querylimit ) );
-		
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
-		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp $tailOpts";
-		$res1 = $dbr->query( $sql, $fname );
-
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old $useIndex " .
-		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp $tailOpts";
-		$res2 = $dbr->query( $sql, $fname );
+		$condition = "rev_user {$userCond}";
+		$index = 'user_timestamp';
 	}
-	$nCur = $dbr->numRows( $res1 );
-	$nOld = $dbr->numRows( $res2 );
+	$page = $dbr->tableName( 'page' );
+	$revision = $dbr->tableName( 'revision' );
+	$sql = "SELECT
+		page_namespace,page_title,page_is_new,page_latest,
+		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text
+		FROM $page,$revision USE INDEX($index)
+		WHERE page_id=rev_page AND $condition $minorQuery " .
+	  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
+	$res = $dbr->query( $sql, $fname );
+	$numRows = $dbr->numRows( $res );
 
 	$wgOut->addHTML( namespaceForm( $target, $hideminor, $namespace ) );
 
@@ -129,56 +113,31 @@ function wfSpecialContributions( $par = '' ) {
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgContLang->specialpage( 'Contributions' ),
+	  $wgContLang->specialpage( "Contributions" ),
 	  "hideminor={$hideminor}&namespace={$namespace}&target=" . wfUrlEncode( $target ),
-	  ($nCur + $nOld) <= $offlimit);
+	  ($numRows) <= $offlimit);
 
-        $shm = wfMsg( 'showhideminor', $mlink );
+	$shm = wfMsg( "showhideminor", $mlink );
 	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
 
 
-	if ( 0 == $nCur && 0 == $nOld ) {
-		$wgOut->addHTML( "\n<p>" . wfMsg( 'nocontribs' ) . "</p>\n" );
+	if ( 0 == $numRows ) {
+		$wgOut->addHTML( "\n<p>" . wfMsg( "nocontribs" ) . "</p>\n" );
 		return;
 	}
-	if ( 0 != $nCur ) { $obj1 = $dbr->fetchObject( $res1 ); }
-	if ( 0 != $nOld ) { $obj2 = $dbr->fetchObject( $res2 ); }
 
 	$wgOut->addHTML( "<ul>\n" );
-	for( $n = 0; $n < $offlimit; $n++ ) {
-		if ( 0 == $nCur && 0 == $nOld ) { break; }
-
-		if ( ( 0 == $nOld ) ||
-		  ( ( 0 != $nCur ) &&
-		  ( $obj1->cur_timestamp >= $obj2->old_timestamp ) ) ) {
-			$ns = $obj1->cur_namespace;
-			$t = $obj1->cur_title;
-			$ts = $obj1->cur_timestamp;
-			$comment =$obj1->cur_comment;
-			$me = $obj1->cur_minor_edit;
-			$isnew = $obj1->cur_is_new;
-			$usertext = $obj1->cur_user_text;
-
-			$obj1 = $dbr->fetchObject( $res1 );
-			$topmark = true;
-			$oldid = false;
-			--$nCur;
-		} else {
-			$ns = $obj2->old_namespace;
-			$t = $obj2->old_title;
-			$ts = $obj2->old_timestamp;
-			$comment =$obj2->old_comment;
-			$me = $obj2->old_minor_edit;
-			$usertext = $obj2->old_user_text;
-			$oldid = $obj2->old_id;
-
-			$obj2 = $dbr->fetchObject( $res2 );
-			$topmark = false;
-			$isnew = false;
-			--$nOld;
-		}
-		if( $n >= $offset )
-			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext, $oldid );
+	while( $obj = $dbr->fetchObject( $res ) ) {
+		ucListEdit( $sk,
+			$obj->page_namespace,
+			$obj->page_title,
+			$obj->rev_timestamp,
+			($obj->rev_id == $obj->page_latest),
+			$obj->rev_comment,
+			($obj->rev_minor_edit),
+			$obj->page_is_new,
+			$obj->rev_user_text,
+			$obj->rev_id );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 

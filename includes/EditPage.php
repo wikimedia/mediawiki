@@ -434,17 +434,17 @@ class EditPage {
 		}
 		# Prepare a list of templates used by this page
 		$db =& wfGetDB( DB_SLAVE );
-		$cur = $db->tableName( 'cur' );
+		$page = $db->tableName( 'page' );
 		$links = $db->tableName( 'links' );
 		$id = $this->mTitle->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id ".
-			"FROM $cur,$links WHERE l_to=cur_id AND l_from={$id} and cur_namespace=".NS_TEMPLATE;
+		$sql = "SELECT page_namespace,page_title,page_id ".
+			"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
 		$res = $db->query( $sql, "EditPage::editform" );
 
 		if ( $db->numRows( $res ) ) {
 			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
 			while ( $row = $db->fetchObject( $res ) ) {
-				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
 					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 				}
 			}
@@ -473,14 +473,15 @@ class EditPage {
 			$liveOnclick = '';
 		}
 		
-		$wgOut->addHTML( "
+		$wgOut->addHTML( <<<END
 {$toolbar}
-<form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
-enctype=\"multipart/form-data\">
+<form id="editform" name="editform" method="post" action="$action"
+enctype="multipart/form-data">
 {$commentsubject}
-<textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
-cols='{$cols}'{$ew}>" .
-htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
+<textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
+cols='{$cols}'{$ew}>
+END
+. htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 "
 </textarea>
 <br />{$editsummary}
@@ -659,21 +660,12 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 	 * @todo document
 	 */
 	function mergeChangesInto( &$text ){
-		$fname = 'EditPage::mergeChangesInto';
-		$oldDate = $this->edittime;
-		$dbw =& wfGetDB( DB_MASTER );
-		$obj = $dbw->selectRow( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
-			$fname, 'FOR UPDATE' );
-
-		$yourtext = $obj->cur_text;
-		$ns = $this->mTitle->getNamespace();
-		$title = $this->mTitle->getDBkey();
-		$obj = $dbw->selectRow( 'old', 
-			array( 'old_text','old_flags'), 
-			array( 'old_namespace' => $ns, 'old_title' => $title, 
-				'old_timestamp' => $dbw->timestamp($oldDate)),
-			$fname );
-		$oldText = Article::getRevisionText( $obj );
+		$yourtext = $this->mArticle->fetchRevisionText();
+		
+		$db =& wfGetDB( DB_SLAVE );
+		$oldText = $this->mArticle->fetchRevisionText(
+			$db->timestamp( $this->edittime ),
+			'rev_timestamp' );
 		
 		if(wfMerge($oldText, $text, $yourtext, $result)){
 			$text = $result;

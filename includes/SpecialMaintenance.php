@@ -157,8 +157,8 @@ function wfSpecialSelfLinks() {
 
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$sql = "SELECT cur_namespace,cur_title FROM cur,links " . 
-	  "WHERE l_from=l_to AND l_to=cur_id " . 
+	$sql = "SELECT page_namespace,page_title FROM page,links " . 
+	  "WHERE l_from=l_to AND l_to=page_id " . 
 	  "LIMIT {$offset}, {$limit}";
 
 	$res = wfQuery( $sql, DB_SLAVE, $fname );
@@ -175,7 +175,7 @@ function wfSpecialSelfLinks() {
 	$sk = $wgUser->getSkin();
 	$s = '<ol start=' . ( $offset + 1 ) . '>';
 	while ( $obj = wfFetchObject( $res ) ) {
-		$title = Title::makeTitle( $obj->cur_namespace, $obj->cur_title );
+		$title = Title::makeTitle( $obj->page_namespace, $obj->page_title );
 		$s .= "<li>".$sk->makeKnownLinkObj( $title )."</li>\n" ;
 	}
 	wfFreeResult( $res );

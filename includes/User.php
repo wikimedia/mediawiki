@@ -1025,7 +1025,7 @@ class User {
 	}
 
 	function spreadBlock() {
-          	global $wgIP;
+		global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
 		$fname = 'User::spreadBlock';

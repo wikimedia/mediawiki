@@ -62,24 +62,27 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$dbw =& wfGetDB( DB_MASTER );
 
 	# First get a list of all pages
-	$pageRes = $dbw->select( 'cur', array('cur_namespace', 'cur_title'), false, $fname );
+	$pageRes = $dbw->select( 'page', 'page_id', false, $fname );
 
 	# For each of those, get a list of revisions which fit the criteria
 	$conds = array();
 	if ( $beginDate ) {
-		$conds[] = "old_timestamp>'" . $beginDate . "'";
+		$conds[] = "rev_timestamp>'" . $beginDate . "'";
 	} 
 	if ( $endDate )  {
-		$conds[] = "old_timestamp<'" . $endDate . "'";
+		$conds[] = "rev_timestamp<'" . $endDate . "'";
 	}
 	if ( $startId ) {
-		$conds[] = 'old_id>=' . $startId;
+		$conds[] = 'rev_id>=' . $startId;
 	}
 	if ( $loadStyle == LS_CHUNKED ) {
-		$fields = array( 'old_id', 'old_flags', 'old_text' );
+		$tables = array( 'revision', 'text' );
+		$fields = array( 'rev_id', 'old_flags', 'old_text' );
+		$conds[] = 'rev_id=old_id';
 		$revLoadOptions = 'FOR UPDATE';
 	} else {
-		$fields = array( 'old_id' );
+		$tables = array( 'revision' );
+		$fields = array( 'rev_id' );
 		$revLoadOptions = array();
 	}
 
@@ -90,7 +93,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 
 		# Load revisions
 		$revRes = $dbw->select( 'old', $fields,
-			array( 'old_namespace' => $pageRow->cur_namespace, 'old_title' => $pageRow->cur_title ) + $conds, 
+			array( 'rev_page' => $pageRow->page_id ) + $conds, 
 			$fname,
 			$revLoadOptions
 		);
@@ -118,15 +121,15 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			$stubs = array();
 			$dbw->begin();
 			$usedChunk = false;
-			$primaryOldid = $revs[$i]->old_id;
+			$primaryOldid = $revs[$i]->rev_id;
 			
 			# Get the text of each revision and add it to the object
 			for ( $j = 0; $j < $thisChunkSize && $chunk->isHappy( $maxChunkFactor, $factorThreshold ); $j++ ) {
-				$oldid = $revs[$i + $j]->old_id;
+				$oldid = $revs[$i + $j]->rev_id;
 				
 				# Get text
 				if ( $loadStyle == LS_INDIVIDUAL ) {
-					$textRow = $dbw->selectRow( 'old', 
+					$textRow = $dbw->selectRow( 'text', 
 						array( 'old_flags', 'old_text' ),
 						array( 'old_id' => $oldid ),
 						$fname,
@@ -167,7 +170,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			# If we couldn't actually use any stubs because the pages were too small, do nothing
 			if ( $usedChunk ) {
 				# Store the main object
-				$dbw->update( 'old',
+				$dbw->update( 'text',
 					array( /* SET */
 						'old_text' => serialize( $chunk ),
 						'old_flags' => 'object',
@@ -180,7 +183,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 				for ( $j = 1; $j < $thisChunkSize; $j++ ) {
 					# Skip if not compressing
 					if ( $stubs[$j] !== false ) {
-						$dbw->update( 'old',
+						$dbw->update( 'text',
 							array( /* SET */
 								'old_text' => $stubs[$j],
 								'old_flags' => 'object',
@@ -200,4 +203,5 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	}
 	return true;
 }
+
 ?>

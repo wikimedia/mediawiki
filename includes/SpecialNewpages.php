@@ -32,8 +32,9 @@ class NewPagesPage extends QueryPage {
 		$usepatrol = ( $wgUseRCPatrol && $wgUser->getID() != 0 &&
 		               ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'recentchanges', 'cur' ) );
+		extract( $dbr->tableNames( 'recentchanges', 'page', 'text' ) );
 
+		# FIXME: text will break with compression
 		return
 			"SELECT 'Newpages' as type,
 			        rc_namespace AS namespace,
@@ -46,11 +47,12 @@ class NewPagesPage extends QueryPage {
 			        '{$usepatrol}' as usepatrol,
 			        rc_patrolled AS patrolled,
 			        rc_id AS rcid,
-			        length(cur_text) as length,
-			        cur_text as text
-			FROM $recentchanges,$cur
-			WHERE rc_cur_id=cur_id AND rc_new=1
-			  AND rc_namespace=0 AND cur_is_redirect=0";
+			        length(old_text) as length,
+			        old_text as text
+			FROM $recentchanges,$page,$text
+			WHERE rc_cur_id=page_id AND rc_new=1
+			  AND rc_namespace=0 AND page_is_redirect=0
+			  AND page_latest=old_id";
 	}
 
 	function formatResult( $skin, $result ) {

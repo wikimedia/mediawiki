@@ -39,7 +39,8 @@ class PageHistory {
 		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-		if( $this->mTitle->getArticleID() == 0 ) {
+		$id = $this->mTitle->getArticleID();
+		if( $id == 0 ) {
 			$wgOut->addHTML( wfMsg( 'nohistory' ) );
 			wfProfileOut( $fname );
 			return;
@@ -47,15 +48,8 @@ class PageHistory {
 
 		list( $limit, $offset ) = wfCheckLimits();
 
-		/* We have to draw the latest revision from 'cur' */
-		$rawlimit = $limit;
-		$rawoffset = $offset - 1;
-		if( 0 == $offset ) {
-			$rawlimit--;
-			$rawoffset = 0;
-		}
 		/* Check one extra row to see whether we need to show 'next' and diff links */
-		$limitplus = $rawlimit + 1;
+		$limitplus = $limit + 1;
 
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
@@ -70,15 +64,15 @@ class PageHistory {
 			$notificationtimestamp = $row->wl_notificationtimestamp;
 		} else $notificationtimestamp = false ;
 
-		$use_index = $db->useIndexClause( 'name_title_timestamp' );
-		$oldtable = $db->tableName( 'old' );
+		$db =& wfGetDB( DB_SLAVE );
+		$use_index = $db->useIndexClause( 'page_timestamp' );
+		$revision = $db->tableName( 'revision' );
 
-		$sql = "SELECT old_id,old_user," .
-		  "old_comment,old_user_text,old_timestamp,old_minor_edit ".
-		  "FROM $oldtable $use_index " .
-		  "WHERE old_namespace={$namespace} AND " .
-		  "old_title='" . $db->strencode( $this->mTitle->getDBkey() ) . "' " .
-		  "ORDER BY inverse_timestamp".$db->limitResult($limitplus,$rawoffset);
+		$sql = "SELECT rev_id,rev_user," .
+		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit ".
+		  "FROM $revision $use_index " .
+		  "WHERE rev_page=$id " .
+		  "ORDER BY inverse_timestamp ".$db->limitResult($limitplus,$offset);
 		$res = $db->query( $sql, $fname );
 
 		$revs = $db->numRows( $res );
@@ -104,27 +98,17 @@ class PageHistory {
 		}
 		$s .= $this->beginHistoryList();
 		$counter = 1;
-		if( $offset == 0 ){
-			$this->linesonpage++;
-			$s .= $this->historyLine(
-				$this->mArticle->getTimestamp(),
-				$this->mArticle->getUser(),
-				$this->mArticle->getUserText(), $namespace,
-				$title, 0, $this->mArticle->getComment(),
-				( $this->mArticle->getMinorEdit() > 0 ),
-				$counter++,
-				$notificationtimestamp
-			);
-		}
 		while ( $line = $db->fetchObject( $res ) ) {
 			$s .= $this->historyLine(
-				$line->old_timestamp, $line->old_user,
-				$line->old_user_text, $namespace,
-				$title, $line->old_id,
-				$line->old_comment, ( $line->old_minor_edit > 0 ),
-				$counter++,
-				$notificationtimestamp
+				$line->rev_timestamp, $line->rev_user,
+				$line->rev_user_text, $namespace,
+				$title, $line->rev_id,
+				$line->rev_comment, ( $line->rev_minor_edit > 0 ),
+				$counter,
+				$notificationtimestamp,
+				($counter == 1 && $offset == 0)
 			);
+			$counter++;
 		}
 		$s .= $this->endHistoryList( !$atend );
 		$s .= $numbar;
@@ -154,7 +138,7 @@ class PageHistory {
 		return $s;
 	}
 
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '', $notificationtimestamp = false ) {
+	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '', $notificationtimestamp = false, $latest = false ) {
 		global $wgLang, $wgContLang;
 
 		static $message;
@@ -189,7 +173,7 @@ class PageHistory {
 		}
 
 		$s = '<li>';
-		if ( $oid ) {
+		if ( $oid && !$latest ) {
 			$curlink = $this->mSkin->makeKnownLinkObj( $this->mTitle, $message['cur'],
 			  'diff=0&oldid='.$oid );
 		} else {
@@ -199,7 +183,7 @@ class PageHistory {
 		if( $this->linesonpage > 1) {
 			# XXX: move title texts to javascript
 			$checkmark = '';
-			if ( !$oid ) {
+			if ( !$oid || $latest ) {
 				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.$message['selectolderversionfordiff'].'" />';
 				$checkmark = ' checked="checked"';
 			} else {

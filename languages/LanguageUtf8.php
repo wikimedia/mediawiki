@@ -104,6 +104,9 @@ class LanguageUtf8 extends Language {
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
 
+		if( is_array( $s ) ) {
+			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
+		}
 		# Check for non-UTF-8 URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		if(!$ishigh) return $s;

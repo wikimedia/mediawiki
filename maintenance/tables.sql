@@ -35,55 +35,51 @@ CREATE TABLE /*$wgDBprefix*/user_rights (
 --  INDEX user_ip (user_ip)
 -- );
 
-CREATE TABLE /*$wgDBprefix*/cur (
-  cur_id int(8) unsigned NOT NULL auto_increment,
-  cur_namespace tinyint(2) unsigned NOT NULL default '0',
-  cur_title varchar(255) binary NOT NULL default '',
-  cur_text mediumtext NOT NULL default '',
-  cur_comment tinyblob NOT NULL default '',
-  cur_user int(5) unsigned NOT NULL default '0',
-  cur_user_text varchar(255) binary NOT NULL default '',
-  cur_timestamp char(14) binary NOT NULL default '',
-  cur_restrictions tinyblob NOT NULL default '',
-  cur_counter bigint(20) unsigned NOT NULL default '0',
-  cur_is_redirect tinyint(1) unsigned NOT NULL default '0',
-  cur_minor_edit tinyint(1) unsigned NOT NULL default '0',
-  cur_is_new tinyint(1) unsigned NOT NULL default '0',
-  cur_random real unsigned NOT NULL,
-  cur_touched char(14) binary NOT NULL default '',
-  inverse_timestamp char(14) binary NOT NULL default '',
-  PRIMARY KEY cur_id (cur_id),
-  UNIQUE INDEX name_title (cur_namespace,cur_title),
-  
-  -- Is this one necessary?
-  INDEX cur_title (cur_title(20)),
-  
-  INDEX cur_timestamp (cur_timestamp),
-  INDEX (cur_random),
-  INDEX name_title_timestamp (cur_namespace,cur_title,inverse_timestamp),
-  INDEX user_timestamp (cur_user,inverse_timestamp),
-  INDEX usertext_timestamp (cur_user_text,inverse_timestamp),
-  INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp)
+CREATE TABLE /*$wgDBprefix*/page (
+  page_id int(8) unsigned NOT NULL auto_increment,
+  page_namespace tinyint NOT NULL,
+  page_title varchar(255) binary NOT NULL,
+  page_restrictions tinyblob NOT NULL default '',
+  page_counter bigint(20) unsigned NOT NULL default '0',
+  page_is_redirect tinyint(1) unsigned NOT NULL default '0',
+  page_is_new tinyint(1) unsigned NOT NULL default '0',
+  page_random real unsigned NOT NULL,
+  page_touched char(14) binary NOT NULL default '',
+  page_latest int(8) unsigned NOT NULL,
+
+  PRIMARY KEY page_id (page_id),
+  UNIQUE INDEX name_title (page_namespace,page_title),
+  INDEX (page_random)
 );
 
-CREATE TABLE /*$wgDBprefix*/old (
-  old_id int(8) unsigned NOT NULL auto_increment,
-  old_namespace tinyint(2) unsigned NOT NULL default '0',
-  old_title varchar(255) binary NOT NULL default '',
-  old_text mediumtext NOT NULL default '',
-  old_comment tinyblob NOT NULL default '',
-  old_user int(5) unsigned NOT NULL default '0',
-  old_user_text varchar(255) binary NOT NULL,
-  old_timestamp char(14) binary NOT NULL default '',
-  old_minor_edit tinyint(1) NOT NULL default '0',
-  old_flags tinyblob NOT NULL default '',
+CREATE TABLE /*$wgDBprefix*/revision (
+  rev_id int(8) unsigned NOT NULL auto_increment,
+  rev_page int(8) unsigned NOT NULL,
+  rev_comment tinyblob NOT NULL default '',
+  rev_user int(5) unsigned NOT NULL default '0',
+  rev_user_text varchar(255) binary NOT NULL default '',
+  rev_timestamp char(14) binary NOT NULL default '',
+  rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
   inverse_timestamp char(14) binary NOT NULL default '',
   
-  PRIMARY KEY old_id (old_id),
-  INDEX old_timestamp (old_timestamp),
-  INDEX name_title_timestamp (old_namespace,old_title,inverse_timestamp),
-  INDEX user_timestamp (old_user,inverse_timestamp),
-  INDEX usertext_timestamp (old_user_text,inverse_timestamp)
+  PRIMARY KEY rev_page_id (rev_page, rev_id),
+  UNIQUE INDEX rev_id (rev_id),
+  INDEX rev_timestamp (rev_timestamp),
+  INDEX page_timestamp (rev_page,inverse_timestamp),
+  INDEX user_timestamp (rev_user,inverse_timestamp),
+  INDEX usertext_timestamp (rev_user_text,inverse_timestamp)
+);
+
+
+--
+-- Holds text of individual page revisions.
+--
+CREATE TABLE /*$wgDBprefix*/text (
+  old_id int(8) unsigned NOT NULL auto_increment,
+  old_text mediumtext NOT NULL default '',
+  old_flags tinyblob NOT NULL default '',
+  
+  PRIMARY KEY old_id (old_id)
 );
 
 CREATE TABLE /*$wgDBprefix*/archive (

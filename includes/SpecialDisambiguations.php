@@ -34,18 +34,18 @@ class DisambiguationsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'cur', 'links' ) );
+		extract( $dbr->tableNames( 'page', 'links' ) );
 		
 		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
 		$dpid = $dp->getArticleID();
 			
-		$sql = "SELECT ca.cur_namespace AS ns_art, ca.cur_title AS title_art,"
-			.        " cb.cur_namespace AS ns_dis, cb.cur_title AS title_dis"
-		    . " FROM links as la, links as lb, cur as ca, cur as cb"
+		$sql = "SELECT pa.page_namespace AS ns_art, pa.page_title AS title_art,"
+			.        " pb.page_namespace AS ns_dis, pb.page_title AS title_dis"
+		    . " FROM {$links} as la, {$links} as lb, {$page} as pa, {$page} as pb"
 		    . " WHERE la.l_to = '{$dpid}'"
 		    . " AND la.l_from = lb.l_to"
-		    . " AND ca.cur_id = lb.l_from"
-		    . " AND cb.cur_id = lb.l_to";
+		    . " AND pa.page_id = lb.l_from"
+		    . " AND pb.page_id = lb.l_to";
 
 		return $sql;
 	}

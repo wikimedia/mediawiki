@@ -12,10 +12,10 @@ New exciting things! Need further work and testing...
 * user groups/permissions scheme
 * e-mail change notifications
 * 'live preview' reduces preview reload burden on supported browsers
+* Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * ...and more!
 
 Need to merge:
-* SCHEMA_WORK
 * stuff
 
 

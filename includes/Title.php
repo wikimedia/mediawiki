@@ -165,19 +165,19 @@ class Title {
 	
 	/**
 	 * Create a new Title from an article ID
-	 * @todo This is inefficiently implemented, the cur row is requested
+	 * @todo This is inefficiently implemented, the page row is requested
 	 * but not used for anything else
-	 * @param int $id the cur_id corresponding to the Title to create
+	 * @param int $id the page_id corresponding to the Title to create
 	 * @return Title the new object, or NULL on an error
 	 * @access public
 	 */
 	/* static */ function newFromID( $id ) {
 		$fname = 'Title::newFromID';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'cur', array( 'cur_namespace', 'cur_title' ), 
-			array( 'cur_id' => $id ), $fname );
+		$row = $dbr->selectRow( 'page', array( 'page_namespace', 'page_title' ), 
+			array( 'page_id' => $id ), $fname );
 		if ( $row !== false ) {
-			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		} else {
 			$title = NULL;
 		}
@@ -275,7 +275,7 @@ class Title {
 
 	/**
 	 * Get the prefixed DB key associated with an ID
-	 * @param int $id the cur_id of the article
+	 * @param int $id the page_id of the article
 	 * @return Title an object representing the article, or NULL
 	 * 	if no such article was found
 	 * @static
@@ -285,10 +285,10 @@ class Title {
 		$fname = 'Title::nameOf';
 		$dbr =& wfGetDB( DB_SLAVE );
 		
-		$s = $dbr->selectRow( 'cur', array( 'cur_namespace','cur_title' ),  array( 'cur_id' => $id ), $fname );
+		$s = $dbr->selectRow( 'page', array( 'page_namespace','page_title' ),  array( 'page_id' => $id ), $fname );
 		if ( $s === false ) { return NULL; }
 
-		$n = Title::makeName( $s->cur_namespace, $s->cur_title );
+		$n = Title::makeName( $s->page_namespace, $s->page_title );
 		return $n;
 	}
 
@@ -436,7 +436,7 @@ class Title {
 	}
 
 	/**
-	 * Update the cur_touched field for an array of title objects
+	 * Update the page_touched field for an array of title objects
 	 * @todo Inefficient unless the IDs are already loaded into the
 	 *	link cache
 	 * @param array $titles an array of Title objects to be touched
@@ -453,8 +453,8 @@ class Title {
 		if ( $timestamp == '' ) {
 			$timestamp = $dbw->timestamp();
 		}
-		$cur = $dbw->tableName( 'cur' );
-		$sql = "UPDATE $cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
+		$page = $dbw->tableName( 'page' );
+		$sql = "UPDATE $page SET page_touched='{$timestamp}' WHERE page_id IN (";
 		$first = true;
 
 		foreach ( $titles as $title ) {
@@ -926,7 +926,7 @@ class Title {
 
 		if ( ! $this->mRestrictionsLoaded ) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
+			$res = $dbr->selectField( 'page', 'page_restrictions', 'page_id='.$id );
 			$this->loadRestrictions( $res );
 		}
 		if( isset( $this->mRestrictions[$action] ) ) {
@@ -976,7 +976,7 @@ class Title {
 	 * keys in the "bad links" section of $wgLinkCache.
 	 *
 	 * - This is called from Article::insertNewArticle() to allow
-	 * loading of the new cur_id. It's also called from
+	 * loading of the new page_id. It's also called from
 	 * Article::doDeleteArticle()
 	 *
 	 * @param int $newid the new Article ID
@@ -993,19 +993,19 @@ class Title {
 	}
 	
 	/**
-	 * Updates cur_touched for this page; called from LinksUpdate.php
+	 * Updates page_touched for this page; called from LinksUpdate.php
 	 * @return bool true if the update succeded
 	 * @access public
 	 */
 	function invalidateCache() {
 		$now = wfTimestampNow();
 		$dbw =& wfGetDB( DB_MASTER );
-		$success = $dbw->update( 'cur', 
+		$success = $dbw->update( 'page', 
 			array( /* SET */ 
-				'cur_touched' => $dbw->timestamp()
+				'page_touched' => $dbw->timestamp()
 			), array( /* WHERE */ 
-				'cur_namespace' => $this->getNamespace() ,
-				'cur_title' => $this->getDBkey()
+				'page_namespace' => $this->getNamespace() ,
+				'page_title' => $this->getDBkey()
 			), 'Title::invalidateCache'
 		);
 		return $success;
@@ -1167,7 +1167,7 @@ class Title {
 		}
 
 		# We shouldn't need to query the DB for the size.
-		#$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
+		#$maxSize = $dbr->textFieldSize( 'page', 'page_title' );
 		if ( strlen( $r ) > 255 ) {
 			return false;
 		}
@@ -1233,16 +1233,16 @@ class Title {
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 		}
-		$cur = $db->tableName( 'cur' );
+		$page = $db->tableName( 'page' );
 		$links = $db->tableName( 'links' );
 
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM $cur,$links WHERE l_from=cur_id AND l_to={$id} $options";
+		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$links WHERE l_from=page_id AND l_to={$id} $options";
 		$res = $db->query( $sql, 'Title::getLinksTo' );
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
-				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
-					$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
+				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
+					$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
 					$retVal[] = $titleObj;
 				}
 			}
@@ -1267,18 +1267,18 @@ class Title {
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 		}
-		$cur = $db->tableName( 'cur' );
+		$page = $db->tableName( 'page' );
 		$brokenlinks = $db->tableName( 'brokenlinks' );
 		$encTitle = $db->strencode( $this->getPrefixedDBkey() );
 
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM $brokenlinks,$cur " .
-		  "WHERE bl_from=cur_id AND bl_to='$encTitle' $options";
+		$sql = "SELECT page_namespace,page_title,page_id FROM $brokenlinks,$page " .
+		  "WHERE bl_from=page_id AND bl_to='$encTitle' $options";
 		$res = $db->query( $sql, "Title::getBrokenLinksTo" );
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
-				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
-				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
+				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
 				$retVal[] = $titleObj;
 			}
 		}
@@ -1400,6 +1400,7 @@ class Title {
 		
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
+		$rand = wfRandom();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1409,59 +1410,49 @@ class Title {
 		# by definition if we've got here it's rather uninteresting.
 		# We have to remove it so that the next step doesn't trigger
 		# a conflict on the unique namespace+title index...
-		$dbw->delete( 'cur', array( 'cur_id' => $newid ), $fname );
+		$dbw->delete( 'page', array( 'page_id' => $newid ), $fname );
 		
 		# Change the name of the target page:
-		$dbw->update( 'cur',
+		$dbw->update( 'page',
 			/* SET */ array( 
-				'cur_touched' => $dbw->timestamp($now), 
-				'cur_namespace' => $nt->getNamespace(),
-				'cur_title' => $nt->getDBkey()
+				'page_touched' => $dbw->timestamp($now), 
+				'page_namespace' => $nt->getNamespace(),
+				'page_title' => $nt->getDBkey()
 			), 
-			/* WHERE */ array( 'cur_id' => $oldid ),
+			/* WHERE */ array( 'page_id' => $oldid ),
 			$fname
 		);
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Recreate the redirect, this time in the other direction.
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->insert( 'cur',
-			/* SET */ array(
-				'cur_id' => $newid,
-				'cur_touched' => $dbw->timestamp($now),
-				'cur_timestamp' => $dbw->timestamp($now),
-				'inverse_timestamp' => $won,
-				'cur_namespace' => $this->getNamespace(),
-				'cur_title' => $this->getDBkey(),
-				'cur_text' => $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n",
-				'cur_comment' => $comment,
-				'cur_user' => $wgUser->getID(),
-				'cur_minor_edit' => 0,
-				'cur_counter' => 0,
-				'cur_restrictions' => '',
-				'cur_user_text' => $wgUser->getName(),
-				'cur_is_redirect' => 1,
-				'cur_is_new' => 1
-			),
-			$fname
+		$dbw->insert( 'revision', array(
+			'rev_id' => $dbw->nextSequenceValue('rev_rev_id_seq'),
+			'rev_comment' => $comment,
+			'rev_user' => $wgUser->getID(),
+			'rev_user_text' => $wgUser->getName(),
+			'rev_timestamp' => $now,
+			'inverse_timestamp' => $won ), $fname
 		);
-		
+		$revid = $dbw->insertId();
+		$dbw->insert( 'text', array(
+			'old_id' => $revid,
+			'old_flags' => '',
+			'old_text' => $redirectText,
+			), $fname
+		);
+		$dbw->insert( 'page', array(
+			'page_id' => $dbw->nextSequenceValue('page_page_id_seq'),
+			'page_namespace' => $this->getNamespace(),
+			'page_title' => $this->getDBkey(),
+			'page_touched' => $now,
+			'page_is_redirect' => 1,
+			'page_random' => $rand,
+			'page_is_new' => 1,
+			'page_latest' => $revid), $fname
+		);
+		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
-
-		# Fix the redundant names for the past revisions of the target page.
-		# The redirect should have no old revisions.
-		$dbw->update(
-			/* table */ 'old',
-			/* SET */ array( 
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey(),
-			),
-			/* WHERE */ array( 
-				'old_namespace' => $this->getNamespace(),
-				'old_title' => $this->getDBkey(),
-			),
-			$fname
-		);
 		
 		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
@@ -1530,6 +1521,7 @@ class Title {
 	 */
 	/* private */ function moveToNewTitle( &$nt, &$newid ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
+		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -1542,50 +1534,48 @@ class Title {
 		$rand = wfRandom();
 
 		# Rename cur entry
-		$dbw->update( 'cur',
+		$dbw->update( 'page',
 			/* SET */ array(
-				'cur_touched' => $now,
-				'cur_namespace' => $nt->getNamespace(),
-				'cur_title' => $nt->getDBkey()
+				'page_touched' => $now,
+				'page_namespace' => $nt->getNamespace(),
+				'page_title' => $nt->getDBkey()
 			),
-			/* WHERE */ array( 'cur_id' => $oldid ),
+			/* WHERE */ array( 'page_id' => $oldid ),
 			$fname
 		);
 		
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirect
-		$dbw->insert( 'cur', array(
-			'cur_id' => $dbw->nextSequenceValue('cur_cur_id_seq'),
-			'cur_namespace' => $this->getNamespace(),
-			'cur_title' => $this->getDBkey(),
-			'cur_comment' => $comment,
-			'cur_user' => $wgUser->getID(),
-			'cur_user_text' => $wgUser->getName(),
-			'cur_timestamp' => $now,
-			'inverse_timestamp' => $won,
-			'cur_touched' => $now,
-			'cur_is_redirect' => 1,
-			'cur_random' => $rand,
-			'cur_is_new' => 1,
-			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" ), $fname
+		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
+		$dbw->insert( 'revision', array(
+			'rev_id' => $dbw->nextSequenceValue('rev_rev_id_seq'),
+			'rev_comment' => $comment,
+			'rev_user' => $wgUser->getID(),
+			'rev_user_text' => $wgUser->getName(),
+			'rev_timestamp' => $now,
+			'inverse_timestamp' => $won ), $fname
+		);
+		$revid = $dbw->insertId();
+		$dbw->insert( 'text', array(
+			'old_id' => $revid,
+			'old_flags' => '',
+			'old_text' => $redirectText
+			), $fname
+		);
+		$dbw->insert( 'page', array(
+			'page_id' => $dbw->nextSequenceValue('page_page_id_seq'),
+			'page_namespace' => $this->getNamespace(),
+			'page_title' => $this->getDBkey(),
+			'page_touched' => $now,
+			'page_is_redirect' => 1,
+			'page_random' => $rand,
+			'page_is_new' => 1,
+			'page_latest' => $revid), $fname
 		);
 		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
-		# Rename old entries
-		$dbw->update( 
-			/* table */ 'old',
-			/* SET */ array(
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey()
-			),
-			/* WHERE */ array(
-				'old_namespace' => $this->getNamespace(),
-				'old_title' => $this->getDBkey()
-			), $fname
-		);
-		
 		# Record in RC
 		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
 
@@ -1625,21 +1615,24 @@ class Title {
 	 * @access public
 	 */
 	function isValidMoveTarget( $nt ) {
+		
 		$fname = 'Title::isValidMoveTarget';
 		$dbw =& wfGetDB( DB_MASTER );
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
-		$obj = $dbw->selectRow( 'cur', array( 'cur_is_redirect','cur_text' ), 
-			array( 'cur_id' => $id ), $fname, 'FOR UPDATE' );
+		$obj = $dbw->selectRow( array( 'page', 'text') ,
+			array( 'page_is_redirect','old_text' ), 
+			array( 'page_id' => $id, 'page_latest=old_id' ),
+			$fname, 'FOR UPDATE' );
 
-		if ( !$obj || 0 == $obj->cur_is_redirect ) { 
+		if ( !$obj || 0 == $obj->page_is_redirect ) { 
 			# Not a redirect
 			return false; 
 		}
 
 		# Does the redirect point to the source?
-		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $obj->cur_text, $m ) ) {
+		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $obj->old_text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
 			if( !is_object( $redirTitle ) ||
 				$redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() ) {
@@ -1648,10 +1641,11 @@ class Title {
 		}
 
 		# Does the article have a history?
-		$row = $dbw->selectRow( 'old', array( 'old_id' ), 
-			array( 
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey() 
+		$row = $dbw->selectRow( array( 'page', 'revision'),
+			array( 'rev_id' ), 
+			array( 'page_namespace' => $nt->getNamespace(),
+				'page_title' => $nt->getDBkey(),
+				'page_id=rev_page AND page_latest != rev_id'
 			), $fname, 'FOR UPDATE' 
 		);
 
@@ -1678,23 +1672,41 @@ class Title {
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
-		$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-
-		$dbw->insert( 'cur', array(
-			'cur_id' => $seqVal,
-			'cur_namespace' => $this->getNamespace(),
-			'cur_title' => $this->getDBkey(),
-			'cur_comment' => $comment,
-			'cur_user' => $wgUser->getID(),
-			'cur_user_text' => $wgUser->getName(),
-			'cur_timestamp' => $now,
-			'inverse_timestamp' => $won,
-			'cur_touched' => $now,
-			'cur_is_redirect' => 1,
-			'cur_is_new' => 1,
-			'cur_text' => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n" 
+		
+		$seqVal = $dbw->nextSequenceValue( 'page_page_id_seq' );
+		$dbw->insert( 'page', array(
+			'page_id' => $seqVal,
+			'page_namespace' => $this->getNamespace(),
+			'page_title' => $this->getDBkey(),
+			'page_touched' => $now,
+			'page_is_redirect' => 1,
+			'page_is_new' => 1,
+			'page_latest' => NULL,
 		), $fname );
 		$newid = $dbw->insertId();
+
+		$seqVal = $dbw->nextSequenceValue( 'text_old_id_seq' );
+		$dbw->insert( 'text', array(
+			'old_id' => $seqVal,
+			'old_flags' => '',
+			'old_text' => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n"
+		), $fname );
+		$revisionId = $dbw->insertId();
+		
+		$dbw->insert( 'revision', array(
+			'rev_id' => $seqVal,
+			'rev_page' => $newid,
+			'rev_comment' => $comment,
+			'rev_user' => $wgUser->getID(),
+			'rev_user_text' => $wgUser->getName(),
+			'rev_timestamp' => $now,
+			'inverse_timestamp' => $won,
+		), $fname );
+		
+		$dbw->update( 'page',
+			/* SET */   array( 'page_latest' => $revisionId ),
+			/* WHERE */ array( 'page_id' => $newid ),
+			$fname );
 		$this->resetArticleID( $newid );
 		
 		# Link table
@@ -1789,6 +1801,7 @@ class Title {
 	 * @access public
 	 */
 	function curCond() {
+		wfDebugDieBacktrace( 'curCond called' );
 		return array( 'cur_namespace' => $this->mNamespace, 'cur_title' => $this->mDbkeyform );
 	}
 
@@ -1800,6 +1813,7 @@ class Title {
 	 * @access public
 	 */
 	function oldCond() {
+		wfDebugDieBacktrace( 'oldCond called' );
 		return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
 	}
 
@@ -1811,10 +1825,9 @@ class Title {
 	 */
 	function getPreviousRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'old', 'old_id',
-			'old_title=' . $dbr->addQuotes( $this->getDBkey() ) .
-			' AND old_namespace=' . IntVal( $this->getNamespace() ) .
-			' AND old_id<' . IntVal( $revision ) . ' ORDER BY old_id DESC' );
+		return $dbr->selectField( 'revision', 'rev_id',
+			'rev_page=' . IntVal( $this->getArticleId() ) .
+			' AND rev_id<' . IntVal( $revision ) . ' ORDER BY rev_id DESC' );
 	}
 
 	/**
@@ -1825,10 +1838,9 @@ class Title {
 	 */
 	function getNextRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'old', 'old_id',
-			'old_title=' . $dbr->addQuotes( $this->getDBkey() ) .
-			' AND old_namespace=' . IntVal( $this->getNamespace() ) .
-			' AND old_id>' . IntVal( $revision ) . ' ORDER BY old_id' );
+		return $dbr->selectField( 'revision', 'rev_id',
+			'rev_page=' . IntVal( $this->getArticleId() ) .
+			' AND rev_id>' . IntVal( $revision ) . ' ORDER BY rev_id' );
 	}
 
 }

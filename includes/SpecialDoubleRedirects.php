@@ -31,14 +31,15 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'cur', 'links' ) );
+		extract( $dbr->tableNames( 'page', 'links', 'text' ) );
 
-		$sql = "SELECT ca.cur_namespace as ns_a, ca.cur_title as title_a," . 
-			   "  cb.cur_namespace as ns_b, cb.cur_title as title_b," .
-			   "  cb.cur_text AS rt " . 
-			   "FROM $links,$cur AS ca,$cur AS cb ". 
-			   "WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id " .
-			   "  AND l_from=ca.cur_id " ;
+		$sql = "SELECT pa.page_namespace as ns_a, pa.page_title as title_a,
+			     pb.page_namespace as ns_b, pb.page_title as title_b,
+			     old_text AS rt 
+			   FROM $text AS t, $links,$page AS pa,$page AS pb 
+			   WHERE pa.page_is_redirect=1 AND pb.page_is_redirect=1 AND l_to=pb.page_id 
+			     AND l_from=pa.page_id 
+			     AND pb.page_latest=t.old_id" ;
 		return $sql;
 	}
 

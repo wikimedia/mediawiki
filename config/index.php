@@ -494,7 +494,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgDatabase->selectDB( $wgDBname );
 
-		if( $wgDatabase->tableExists( "cur" ) ) {
+		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
 			
 			# Create user if required
@@ -556,16 +556,26 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			$now = wfTimestampNow();
 			$won = wfInvertTimestamp( $now );
-			$wgDatabase->insert( 'cur',
-				array( 'cur_namespace'     => $titleobj->getNamespace(),
-				       'cur_title'         => $titleobj->getDBkey(),
-				       'cur_text'          => wfMsg( 'mainpagetext' ) . "\n\n" .
-				                              wfMsg( 'mainpagedocfooter' ),
-				       'cur_timestamp'     => $now,
-				       'inverse_timestamp' => $won,
-				       'cur_touched'       => $now,
-				       'cur_user'          => 0,
-				       'cur_user_text'     => 'MediaWiki default' ) );
+			
+			extract( $wgDatabase->tableNames( 'text', 'page', 'revision' ) );
+			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+			$title = $titleobj->getDBkey();
+			$sql = "INSERT INTO $text (old_text, old_flags) VALUES ('" .
+				wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) .
+				"', '')";
+			$wgDatabase->query( $sql, $fname );
+			$text_id = $wgDatabase->insertID();
+
+			$sql = "INSERT INTO $page (page_namespace, page_title, page_restrictions, page_counter, page_is_redirect, 
+				page_is_new, page_random, page_touched, page_latest) VALUES (
+				0, '{$title}', '', 0, 0, 1, 0.5, '{$now}', {$text_id} )";
+			$wgDatabase->query( $sql, $fname );
+			$page_id = $wgDatabase->insertID();
+
+			$sql = "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text,
+					rev_timestamp, inverse_timestamp, rev_minor_edit)
+				VALUES ({$text_id}, {$page_id}, '', 0, 'MediaWiki default', '{$now}', '{$won}', 0)";
+			$wgDatabase->query( $sql, $fname );
 
 			print "<li><pre>";
 			initialiseMessages();

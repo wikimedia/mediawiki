@@ -62,27 +62,24 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}
 	if ( $hideminor ) {
-		$cmq = 'AND cur_minor_edit=0';
+		$cmq = 'AND rev_minor_edit=0';
 	} else { $cmq = ''; }
 
 	// If target is a Category, use categorylinks and invert from and to
-	if ( $nt->getNamespace() == NS_CATEGORY ) {
-		extract( $dbr->tableNames( 'cur', 'categorylinks' ) );
+	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
-		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
-	  	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $categorylinks, $cur " .
-	  	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND cl_from=cur_id AND cl_to=$catkey " .
-	  	  "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
-	  	  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+		$sql = "SELECT page_id,page_namespace,page_title,rev_user,rev_comment," .
+		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $categorylinks, $revision, $page " .
+		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND cl_from=page_id AND cl_to=$catkey " .
+			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
+		  "rev_timestamp,rev_minor_edit,page_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
 	} else {
-		extract( $dbr->tableNames( 'cur', 'links' ) );
-		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
-		  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $links, $cur " .
-		  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from=$id " .
-			  "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
-		  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+		$sql = "SELECT page_id,page_namespace,page_title,rev_user,rev_comment," .
+		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $links, $revision, $page " .
+		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND l_to=page_id AND l_from=$id " .
+			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
+		  "rev_timestamp,rev_minor_edit,page_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
 	}
-
 	$res = $dbr->query( $sql, $fname );
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");

@@ -349,16 +349,16 @@ class RecentChange
 	function loadFromCurRow( $row )
 	{
 		$this->mAttribs = array(
-			'rc_timestamp' => $row->cur_timestamp,
-			'rc_cur_time' => $row->cur_timestamp,
-			'rc_user' => $row->cur_user,
-			'rc_user_text' => $row->cur_user_text,
-			'rc_namespace' => $row->cur_namespace,
-			'rc_title' => $row->cur_title,
-			'rc_comment' => $row->cur_comment,
-			'rc_minor' => !!$row->cur_minor_edit,
-			'rc_type' => $row->cur_is_new ? RC_NEW : RC_EDIT,
-			'rc_cur_id' => $row->cur_id,
+			'rc_timestamp' => $row->rev_timestamp,
+			'rc_cur_time' => $row->rev_timestamp,
+			'rc_user' => $row->rev_user,
+			'rc_user_text' => $row->rev_user_text,
+			'rc_namespace' => $row->page_namespace,
+			'rc_title' => $row->page_title,
+			'rc_comment' => $row->rev_comment,
+			'rc_minor' => !!$row->rev_minor_edit,
+			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
+			'rc_cur_id' => $row->page_id,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> 0,
@@ -367,7 +367,7 @@ class RecentChange
 			'rc_ip' => '',
 			'rc_patrolled' => '1',  # we can't support patrolling on the Watchlist
 			                        # currently because it uses cur, not recentchanges
-			'rc_new' => $row->cur_is_new # obsolete
+			'rc_new' => $row->page_is_new # obsolete
 		);
 
 		$this->mExtra = array();

@@ -292,7 +292,7 @@ class SpecialSearch {
 		wfProfileIn( $fname );
 		global $wgUser, $wgContLang;
 
-		$t = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+		$t = Title::makeTitle( $row->page_namespace, $row->page_title );
 		if( is_null( $t ) ) {
 			wfProfileOut( $fname );
 			return "<!-- Broken link in search result -->\n";
@@ -305,9 +305,10 @@ class SpecialSearch {
 		if ( '' == $contextchars ) { $contextchars = 50; }
 
 		$link = $sk->makeKnownLinkObj( $t, '' );
-		$size = wfMsg( 'nbytes', strlen( $row->cur_text ) );
+		$text = Article::getRevisionText( $row );
+		$size = wfMsg( 'nbytes', strlen( $text ) );
 
-		$lines = explode( "\n", $row->cur_text );
+		$lines = explode( "\n", $text );
 
 		$max = IntVal( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";

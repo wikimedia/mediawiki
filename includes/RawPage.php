@@ -93,7 +93,7 @@ class RawPage {
 		
 		if( !$this->mTitle ) return '';
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'cur', 'old' ) );
+		extract( $dbr->tableNames( 'revision', 'page', 'text' ) );
 
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
@@ -103,14 +103,14 @@ class RawPage {
 			return $rawtext;
 		}
 		# else get it from the DB
+		$sql = "SELECT old_text AS text, rev_timestamp AS timestamp
+			FROM $text, $revision";
 		if(!empty($this->mOldId)) {
-			$sql = "SELECT old_text AS text,old_timestamp AS timestamp,".
-				    "old_user AS user,old_flags AS flags FROM $old " .
-			"WHERE old_id={$this->mOldId}";
+			$sql .= " WHERE old_id={$this->mOldId} AND rev_id={$this->mOldId}";
 		} else {
-			$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
-			"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM $cur " .
-			"WHERE cur_namespace=$ns AND cur_title='$t'";
+			$sql .= ", $page
+				WHERE page_namespace=$ns AND page_title='$t'
+				  AND page_latest=rev_id AND rev_id=old_id";
 		}
 		$res = $dbr->query( $sql, $fname );
 		if( $s = $dbr->fetchObject( $res ) ) {

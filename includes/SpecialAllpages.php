@@ -67,14 +67,14 @@ function indexShowToplevel ( $namespace = 0 ) {
 	# in the querycache table.
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	$cur = $dbr->tableName( 'cur' );
-	$fromwhere = "FROM $cur WHERE cur_namespace=$namespace";
-	$order_arr = array ( 'ORDER BY' => 'cur_title' );
-	$order_str = 'ORDER BY cur_title';
+	$page = $dbr->tableName( 'page' );
+	$fromwhere = "FROM $page WHERE page_namespace=$namespace";
+	$order_arr = array ( 'ORDER BY' => 'page_title' );
+	$order_str = 'ORDER BY page_title';
 	$out = "";
-	$where = array( 'cur_namespace' => $namespace );
+	$where = array( 'page_namespace' => $namespace );
 
-	$count = $dbr->selectField( 'cur', 'COUNT(*)', $where, $fname );
+	$count = $dbr->selectField( 'page', 'COUNT(*)', $where, $fname );
 	$sections = ceil( $count / $indexMaxperpage );
 
 	if ( $sections < 3 ) {
@@ -95,24 +95,24 @@ function indexShowToplevel ( $namespace = 0 ) {
 	$stopat = ( $offset + $toplevelMaxperpage < $sections )
 	          ? $offset + $toplevelMaxperpage : $sections ;
 
-	# This array is going to hold the cur_titles in order.
+	# This array is going to hold the page_titles in order.
 	$lines = array();
 
 	# If we are going to show n rows, we need n+1 queries to find the relevant titles.
 	for ( $i = $offset; $i <= $stopat; $i++ ) {
 		if ( $i == $sections )			# if we're displaying the last section, we need to
-			$from = $count-1;			# find the last cur_title in the DB
+			$from = $count-1;			# find the last page_title in the DB
 		else if ( $i > $offset )
 			$from = $i * $indexMaxperpage - 1;
 		else
 			$from = $i * $indexMaxperpage;
 		$limit = ( $i == $offset || $i == $stopat ) ? 1 : 2;
-		$sql = "SELECT cur_title $fromwhere $order_str " . $dbr->limitResult ( $limit, $from );
+		$sql = "SELECT page_title $fromwhere $order_str " . $dbr->limitResult ( $limit, $from );
 		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
-		array_push ( $lines, $s->cur_title );
+		array_push ( $lines, $s->page_title );
 		if ( $s = $dbr->fetchObject( $res ) ) {
-			array_push ( $lines, $s->cur_title );
+			array_push ( $lines, $s->page_title );
 		}
 		$dbr->freeResult( $res );
 	}
@@ -185,14 +185,14 @@ function indexShowChunk( $from, $namespace = 0 ) {
 
 	$out = "";
 	$dbr =& wfGetDB( DB_SLAVE );
-	$cur = $dbr->tableName( 'cur' );
+	$page = $dbr->tableName( 'page' );
 	
 	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
-	$sql = "SELECT cur_title FROM $cur WHERE cur_namespace=$namespacee" .
-		" AND cur_title >= ".  $dbr->addQuotes( $fromKey ) .
-		" ORDER BY cur_title LIMIT " . $maxPlusOne;
+	$sql = "SELECT page_title FROM $page WHERE page_namespace=$namespacee" .
+		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
+		" ORDER BY page_title LIMIT " . $maxPlusOne;
 	$res = $dbr->query( $sql, "indexShowChunk" );
 
 	### FIXME: side link to previous
@@ -200,11 +200,11 @@ function indexShowChunk( $from, $namespace = 0 ) {
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
-		$t = Title::makeTitle( $namespacee, $s->cur_title );
+		$t = Title::makeTitle( $namespacee, $s->page_title );
 		if( $t ) {
 			$link = $sk->makeKnownLinkObj( $t, $t->getText() );
 		} else {
-			$link = '[[' . htmlspecialchars( $s->cur_title ) . ']]';
+			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 		}
 		if( $n % 3 == 0 ) {
 			$out .= '<tr>';
@@ -230,8 +230,8 @@ function indexShowChunk( $from, $namespace = 0 ) {
 		$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 		$out2 .= " | " . $sk->makeKnownLink(
 			$wgContLang->specialPage( "Allpages" ),
-			wfMsg ( 'nextpage', $s->cur_title ),
-			"from=" . wfUrlEncode ( $s->cur_title ) . $namespaceparam );
+			wfMsg ( 'nextpage', $s->page_title ),
+			"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam );
 	}
 	$out2 .= "</td></tr></table><hr />";
 

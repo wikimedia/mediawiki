@@ -259,26 +259,31 @@ class DifferenceEngine {
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
+			/* Fetch current revision */
 			$wgOut->setArticleFlag( true );
 			$newLink = $wgTitle->escapeLocalUrl();
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$id = $wgTitle->getArticleID();
 
-			$s = $dbr->selectRow( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
-				array( 'cur_id' => $id ), $fname );
+			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
+				array( 'old_flags', 'old_text', 'rev_user_text', 'rev_comment' ),
+				"page_id=$id AND page_id=rev_page AND rev_id=old_id", $fname );
 			if ( $s === false ) {
-				wfDebug( "Unable to load cur_id $id\n" );
+				wfDebug( "Unable to load page_id $id\n" );
 				return false;
 			}
 
 			$this->mNewPage = &$wgTitle;
-			$this->mNewtext = $s->cur_text;
-			$this->mNewUser = $s->cur_user_text;
-			$this->mNewComment = $s->cur_comment;
+			$this->mNewtext = Article::getRevisionText( $s );
+			$this->mNewUser = $s->rev_user_text;
+			$this->mNewComment = $s->rev_comment;
 		} else {
-			$s = $dbr->selectRow( 'old', array( 'old_namespace','old_title','old_timestamp', 'old_text',
-				'old_flags','old_user_text','old_comment' ), array( 'old_id' => $this->mNewid ), $fname );
+			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
+				array( 'page_namespace','page_title','rev_timestamp', 'old_text',
+				'old_flags','rev_user_text','rev_comment' ),
+				"page_id=rev_page AND rev_id=old_id AND rev_id={$this->mNewid}",
+				$fname );
 
 			if ( $s === false ) {
 				wfDebug( "Unable to load old_id {$this->mNewid}\n" );
@@ -287,13 +292,13 @@ class DifferenceEngine {
 
 			$this->mNewtext = Article::getRevisionText( $s );
 
-			$t = $wgLang->timeanddate( $s->old_timestamp, true );
-			$this->mNewPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
+			$t = $wgLang->timeanddate( $s->rev_timestamp, true );
+			$this->mNewPage = Title::MakeTitle( $s->page_namespace, $s->page_title );
 			$newLink = $wgTitle->escapeLocalUrl ('oldid=' . $this->mNewid);
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
-			$this->mNewUser = $s->old_user_text;
-			$this->mNewComment = $s->old_comment;
+			$this->mNewUser = $s->rev_user_text;
+			$this->mNewComment = $s->rev_comment;
 		}
 		if ( 0 == $this->mOldid ) {
 			$s = $dbr->selectRow( 'old',
@@ -308,9 +313,9 @@ class DifferenceEngine {
 				return false;
 			}
 		} else {
-			$s = $dbr->selectRow( 'old',
-				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
-				array( 'old_id' => $this->mOldid ),
+			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
+				array( 'page_namespace','page_title','rev_timestamp','old_text','old_flags','rev_user_text','rev_comment'),
+				"page_id=rev_page AND rev_id=old_id AND rev_id={$this->mOldid}",
 				$fname
 			);
 			if ( $s === false ) {
@@ -318,14 +323,14 @@ class DifferenceEngine {
 				return false;
 			}
 		}
-		$this->mOldPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
+		$this->mOldPage = Title::MakeTitle( $s->page_namespace, $s->page_title );
 		$this->mOldtext = Article::getRevisionText( $s );
 
-		$t = $wgLang->timeanddate( $s->old_timestamp, true );
+		$t = $wgLang->timeanddate( $s->rev_timestamp, true );
 		$oldLink = $this->mOldPage->escapeLocalUrl ('oldid=' . $this->mOldid);
 		$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
-		$this->mOldUser = $s->old_user_text;
-		$this->mOldComment = $s->old_comment;
+		$this->mOldUser = $s->rev_user_text;
+		$this->mOldComment = $s->rev_comment;
 
 		return true;
 	}

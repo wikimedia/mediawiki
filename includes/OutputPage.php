@@ -818,6 +818,7 @@ class OutputPage {
 	function transformBuffer( $options = 0 ) {
 	}
 
+
 }
 
 }

@@ -119,7 +119,7 @@ class SqlQueryForm {
 				array_push( $k, $conn->fieldName( $res, $x ) );
 			}
 
-			if ( $n == 2 && in_array( "cur_title", $k ) && in_array( "cur_namespace", $k ) ) {
+			if ( $n == 2 && in_array( "page_title", $k ) && in_array( "page_namespace", $k ) ) {
 				$titleList = true;
 			}
 
@@ -132,9 +132,9 @@ class SqlQueryForm {
 			if ( $titleList ) {
 				$r = "";
 				foreach ( $a as $y ) {
-					$sTitle = htmlspecialchars( $y->cur_title );
-					if ( $y->cur_namespace ) {
-						$sNamespace = $wgContLang->getNsText( $y->cur_namespace );
+					$sTitle = htmlspecialchars( $y->page_title );
+					if ( $y->page_namespace ) {
+						$sNamespace = $wgContLang->getNsText( $y->page_namespace );
 						$link = "$sNamespace:$sTitle";
 					} else {
 						$link = "$sTitle";
@@ -154,10 +154,9 @@ class SqlQueryForm {
 					$r .= "<tr>";
 					foreach ( $k as $x ) {
 						$o = $y->$x ;
-						if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
+						if ( $x == "page_title"  or $x == "rc_title") {
 							$namespace = 0;
-							if( $x == "cur_title" && isset( $y->cur_namespace ) ) $namespace = $y->cur_namespace;
-							if( $x == "old_title" && isset( $y->old_namespace ) ) $namespace = $y->old_namespace;
+							if( $x == "page_title" && isset( $y->page_namespace ) ) $namespace = $y->page_namespace;
 							if( $x == "rc_title" && isset( $y->rc_namespace ) ) $namespace = $y->rc_namespace;
 							$title =& Title::makeTitle( $namespace, $o );
 							$o = "<a href=\"" . $title->escapeLocalUrl() . "\" class='internal'>" .

@@ -29,16 +29,21 @@ class ShortPagesPage extends QueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
+		$text = $dbr->tableName( 'text' );
 		$name = $dbr->addQuotes( $this->getName() );
 		
+		# FIXME: Not only is this teh suck, it will fail
+		# if we compress revisions on save as it will return
+		# the compressed size.
 		return
 			"SELECT $name as type,
-					cur_namespace as namespace,
-			        cur_title as title,
-			        LENGTH(cur_text) AS value
-			FROM $cur
-			WHERE cur_namespace=0 AND cur_is_redirect=0";
+					page_namespace as namespace,
+			        page_title as title,
+			        LENGTH(old_text) AS value
+			FROM $page, $text
+			WHERE page_namespace=0 AND page_is_redirect=0
+			  AND page_latest=old_id";
 	}
 	
 	function sortDescending() {
