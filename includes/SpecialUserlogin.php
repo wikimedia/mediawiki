@@ -278,7 +278,7 @@ class LoginForm {
 		$wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
-		$wgOut->addHTML( $msg . "\n<p>" );
+		$wgOut->addHTML( $msg );
 		$wgOut->returnToMain();
 	}
 
@@ -357,56 +357,56 @@ class LoginForm {
 		$encEmail = wfEscapeHTML( $this->mEmail );
 
 		if ($wgUser->getID() != 0) {
-			$cambutton = "<input tabindex=6 type=submit name=\"wpCreateaccountMail\" value=\"{$cam}\">";
+			$cambutton = "<input tabindex='6' type='submit' name=\"wpCreateaccountMail\" value=\"{$cam}\" />";
 		} else {
 			$cambutton = "";
 		}
 
 		$wgOut->addHTML( "
 	<form name=\"userlogin\" id=\"userlogin\" method=\"post\" action=\"{$action}\">
-	<table border=0><tr>
-	<td align=right>$yn:</td>
-	<td align=left>
-	<input tabindex=1 type=text name=\"wpName\" value=\"{$encName}\" size=20>
+	<table border='0'><tr>
+	<td align='right'>$yn:</td>
+	<td align='left'>
+	<input tabindex='1' type='text' name=\"wpName\" value=\"{$encName}\" size='20' />
 	</td>
-	<td align=left>
-	<input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
+	<td align='left'>
+	<input tabindex='3' type='submit' name=\"wpLoginattempt\" value=\"{$li}\" />
 	</td>
 	</tr>
 	<tr>
-	<td align=right>$yp:</td>
-	<td align=left>
-	<input tabindex=2 type=password name=\"wpPassword\" value=\"{$encPassword}\" size=20>
+	<td align='right'>$yp:</td>
+	<td align='left'>
+	<input tabindex='2' type='password' name=\"wpPassword\" value=\"{$encPassword}\" size='20' />
 	</td>
-	<td align=left>
-	<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked><label for=\"wpRemember\">$rmp</label>
-	</td>			   
+	<td align='left'>
+	<input tabindex='7' type='checkbox' name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked /><label for=\"wpRemember\">$rmp</label>
+	</td>
 	</tr>");
 
 		if ($wgUser->isAllowedToCreateAccount()) {
 			$encRetype = htmlspecialchars( $this->mRetype );
 			$encEmail = htmlspecialchars( $this->mEmail );
-	$wgOut->addHTML("<tr><td colspan=3>&nbsp;</td></tr><tr>
-	<td align=right>$ypa:</td>
-	<td align=left>
-	<input tabindex=4 type=password name=\"wpRetype\" value=\"{$encRetype}\" 
-	size=20>
+	$wgOut->addHTML("<tr><td colspan='3'>&nbsp;</td></tr><tr>
+	<td align='right'>$ypa:</td>
+	<td align='left'>
+	<input tabindex='4' type='password' name=\"wpRetype\" value=\"{$encRetype}\" 
+	size='20' />
 	</td><td>$nuo</td></tr>
 	<tr>
-	<td align=right>$ye:</td>
-	<td align=left>
-	<input tabindex=5 type=text name=\"wpEmail\" value=\"{$encEmail}\" size=20>
-	</td><td align=left>
-	<input tabindex=6 type=submit name=\"wpCreateaccount\" value=\"{$ca}\">
+	<td align='right'>$ye:</td>
+	<td align='left'>
+	<input tabindex='5' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
+	</td><td align='left'>
+	<input tabindex='6' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
 	$cambutton
 	</td></tr>");
 		}
 
 		$wgOut->addHTML("
-	<tr><td colspan=3>&nbsp;</td></tr><tr>
-	<td colspan=3 align=left>
-	<p>$efl<br>
-	<input tabindex=8 type=submit name=\"wpMailmypassword\" value=\"{$mmp}\">
+	<tr><td colspan='3'>&nbsp;</td></tr><tr>
+	<td colspan='3' align='left'>
+	<p>$efl<br />
+	<input tabindex='8' type='submit' name=\"wpMailmypassword\" value=\"{$mmp}\" /></p>
 	</td></tr></table>
 	</form>\n" );
 		$wgOut->addHTML( $endText );
