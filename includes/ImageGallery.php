@@ -134,12 +134,9 @@ class ImageGallery
 			$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
 			$s .= '<td><div class="gallerybox">' .
 				'<div class="thumb" style="padding: ' . $vpad . 'px 0;">'.
-				$sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
-			if($text <> '') {
-				$s .= '<div class="gallerytext">' .
-					$textlink . $text . $nb .
-					'</div>';
-			}
+				$sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div><div class="gallerytext">' .
+				$textlink . $text . $nb .
+				'</div>';
 			$s .= "</div></td>\n";
 			$s .= ($i%4==3) ? '</tr>' : '';
 			$i++;
