@@ -175,7 +175,8 @@ class IPBlockForm {
 
 			# Report to the user
 			$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip='.$this->BlockAddress ) );
+			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
+				urlencode( $this->BlockAddress ) ) );
 		}
 	}
 
