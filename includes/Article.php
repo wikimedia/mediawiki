@@ -1089,9 +1089,7 @@ class Article {
 		# It's important that we either rollback or complete, otherwise an attacker could
 		# overwrite cur entries by sending precisely timed user aborts. Random bored users
 		# could conceivably have the same effect, especially if cur is locked for long periods.
-		if( $wgDBtransactions ) {
-			$dbw->query( 'BEGIN', $fname );
-		} else {
+		if( !$wgDBtransactions ) {
 			$userAbort = ignore_user_abort( true );
 		}
 
@@ -1128,9 +1126,7 @@ class Article {
 			}
 		}
 
-		if( $wgDBtransactions ) {
-			$dbw->query( 'COMMIT', $fname );
-		} else {
+		if( !$wgDBtransactions ) {
 			ignore_user_abort( $userAbort );
 		}
 
