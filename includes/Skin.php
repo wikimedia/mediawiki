@@ -1527,7 +1527,7 @@ class Skin {
 		        if ( $wgUseImageMagick ) {
 				# use ImageMagick
 				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 95 -geometry {$width} ".
+					" -quality 85 -geometry {$width} ".
 					escapeshellarg($imgPath) . " " .
 					escapeshellarg($thumbPath);
 				$conv = shell_exec( $cmd );
@@ -1585,6 +1585,16 @@ class Skin {
 
 
 			}
+			#
+			# Check for zero-sized thumbnails. Those can be generated when 
+			# no disk space is available or some other error occurs
+			#
+			$thumbstat = stat( $thumbPath );
+			$imgstat   = stat( $imgPath );
+			if( $thumbstat["size"] == 0 )
+			{
+				unlink( $thumbPath );
+			}
 
 		}
 		return $thumbUrl;
@@ -1601,18 +1611,13 @@ class Skin {
 		$label = htmlspecialchars( $label );
 		
 		list($width, $height, $type, $attr) = getimagesize( $path );
-		$cwidth   = $boxwidth;
-		$cheight  = intval( $height/($width/$cwidth) );
-		if ($cheight > $boxwidth*1.5) {
-			$cheight = $boxwidth*1.3;
-			$cwidth  = intval( $width/($height/$cheight) );
-		}
-		if ( $cwidth > $width ) {
-			$cwidth  = $width;
-			$cheight = $height;
+		$boxheight  = intval( $height/($width/$boxwidth) );
+		if ( $boxwidth > $width ) {
+			$boxwidth  = $width;
+			$boxheight = $height;
 		}
 		
-		$thumbUrl = $this->createThumb( $name, $cwidth );
+		$thumbUrl = $this->createThumb( $name, $boxwidth );
 
 		$u = wfLocalUrlE( $link );
 
@@ -1620,7 +1625,7 @@ class Skin {
 		
 		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">" .
 		  "<a href=\"{$u}\" class=\"internal\" title=\"{$label}\">" .
-		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$cwidth}\" height=\"{$cheight}\"></a>" .
+		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
 		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
 		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
 		  "<p>{$label}</p></div>";
