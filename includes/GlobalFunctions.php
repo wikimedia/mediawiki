@@ -390,8 +390,7 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 
 	if( is_object( $wgMessageCache ) ) {
 		$message = $wgMessageCache->get( $key, $useDB, $forContent );
-    }
-	else {
+	} else {
 		if( $forContent ) {
 			$lang = &$wgContLang;
 		} else {
@@ -399,6 +398,7 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		}
 
 		wfSuppressWarnings();
+		
 		if( is_object( $lang ) ) {
 			$message = $lang->getMessage( $key );
 		} else {
