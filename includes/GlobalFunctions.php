@@ -445,6 +445,8 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		$message = $cache->get( $key, $useDB, $forContent );
 	} elseif (is_object($lang)) {
 		$message = $lang->getMessage( $key );
+		if(!$message)
+			$message = Language::getMessage($key);
 		if(strstr($message, '{{' ) !== false) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
