@@ -167,7 +167,9 @@ class EditPage {
 			$wpSummary = "";
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->setArticleFlag( false );
+		
+		# Enabled article-related sidebar, toplinks, etc.
+		$wgOut->setArticleRelated( true );
 
 		if ( $isConflict ) {
 			$s = wfMsg( "editconflict", $this->mTitle->getPrefixedText() );
@@ -342,7 +344,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 		$wgOut->setPageTitle( wfMsg( "blockedtitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->setArticleFlag( false );
+		$wgOut->setArticleRelated( false );
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
@@ -364,7 +366,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 		$wgOut->setPageTitle( wfMsg( "whitelistedittitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->setArticleFlag( false );
+		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( "whitelistedittext" ) );
 		$wgOut->returnToMain( false );

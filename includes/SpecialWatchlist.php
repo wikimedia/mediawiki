@@ -123,7 +123,7 @@ function wfSpecialWatchlist()
 	 
 
 	$sql = "SELECT
-  cur_namespace,cur_title,cur_comment,
+  cur_namespace,cur_title,cur_comment, cur_id
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
   FROM watchlist,cur USE INDEX ($x)
   WHERE wl_user=$uid
@@ -154,17 +154,9 @@ function wfSpecialWatchlist()
 	$s = $sk->beginRecentChangesList();
 
 	while ( $obj = wfFetchObject( $res ) ) {
-		$ts = $obj->cur_timestamp;
-		$u = $obj->cur_user;
-		$ut = $obj->cur_user_text;
-		$ns = $obj->cur_namespace;
-		$ttl = $obj->cur_title;
-		$com = $obj->cur_comment;
-		$me = ( $obj->cur_minor_edit > 0 );
-		$new = ( $obj->cur_is_new  > 0 );
-		$watched = true;
-
-		$s .= $sk->recentChangesLine( $ts, $u, $ut, $ns, $ttl, $com, $me, $new, $watched );
+		# Make fake RC entry
+		$rc = RecentChange::newFromCurRow( $obj );
+		$s .= $sk->recentChangesLine( $rc, true );
 	}
 	$s .= $sk->endRecentChangesList();
 

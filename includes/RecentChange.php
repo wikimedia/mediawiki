@@ -42,6 +42,13 @@ class RecentChange
 		return $rc;
 	}
 	
+	/* static */ function newFromCurRow( $row )
+	{
+		$rc = new RecentChange;
+		$rc->loadFromCurRow( $row );
+		return $rc;
+	}
+
 	# Accessors
 	
 	function setAttribs( $attribs ) 
@@ -242,6 +249,31 @@ class RecentChange
 		$this->mExtra = array();
 	}
 	
+	# Makes a pseudo-RC entry from a cur row, for watchlists and things
+	function loadFromCurRow( $row )
+	{
+		$this->mAttribs = array(
+			"rc_timestamp" => $row->cur_timestamp,
+			"rc_cur_time" => $row->cur_timestamp,
+			"rc_user" => $row->cur_user,
+			"rc_user_text" => $row->cur_user_text,
+			"rc_namespace" => $row->cur_namespace,
+			"rc_title" => $row->cur_title,
+			"rc_comment" => $row->cur_comment,
+			"rc_minor" => !!$row->cur_minor_edit,
+			"rc_type" => $row->cur_is_new ? RC_NEW : RC_EDIT,
+			"rc_cur_id" => $row->cur_id,
+			'rc_this_oldid'	=> 0,
+			'rc_last_oldid'	=> 0,
+			'rc_bot'	=> 0,
+			'rc_moved_to_ns'	=> 0,
+			'rc_moved_to_title'	=> ''
+		);
+
+		$this->mExtra = array();
+	}
+
+
 	# Gets the end part of the diff URL assoicated with this object
 	# Blank if no diff link should be displayed
 	function diffLinkTrail( $forceCur )

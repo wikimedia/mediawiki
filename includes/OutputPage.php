@@ -15,6 +15,7 @@ class OutputPage {
 	var $mOnloadHandler;
 	var $mDoNothing;
 	var $mContainsOldMagic, $mContainsNewMagic; 
+	var $mIsArticleRelated;
 
 	function OutputPage()
 	{
@@ -24,7 +25,7 @@ class OutputPage {
 		$this->mLastSection = $this->mRedirect = $this->mLastModified =
 		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy = 
 		$this->mOnloadHandler = "";
-		$this->mIsarticle = $this->mPrintable = true;
+		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
 		$this->mSupressQuickbar = $this->mDTopen = $this->mPrintable = false;
 		$this->mLanguageLinks = array();
                 $this->mCategoryLinks = array() ;
@@ -100,7 +101,6 @@ class OutputPage {
 	function getPageTitle() { return $this->mPagetitle; }
 	function setSubtitle( $str ) { $this->mSubtitle = $str; }
 	function getSubtitle() { return $this->mSubtitle; }
-	function setArticleFlag( $v ) { $this->mIsarticle = $v; }
 	function isArticle() { return $this->mIsarticle; }
 	function setPrintable() { $this->mPrintable = true; }
 	function isPrintable() { return $this->mPrintable; }
@@ -108,6 +108,25 @@ class OutputPage {
 	function getOnloadHandler() { return $this->mOnloadHandler; }
 	function disable() { $this->mDoNothing = true; }
 
+	function setArticleRelated( $v )
+	{
+		$this->mIsArticleRelated = $v;
+		if ( !$v ) {
+			$this->mIsarticle = false;
+		}
+	}
+	function setArticleFlag( $v ) { 
+		$this->mIsarticle = $v; 
+		if ( $v ) {
+			$this->mIsArticleRelated = $v;
+		}
+	}
+
+	function isArticleRelated( $v )
+	{
+		return $this->mIsArticleRelated;
+	}
+	
 	function getLanguageLinks() {
 		global $wgTitle, $wgLanguageCode;
 		global $wgDBconnection, $wgDBname;
@@ -375,7 +394,7 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( $title ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 
 		$this->mBodytext = "";
 		$this->addHTML( "<p>" . wfMsg( $msg ) . "\n" );
@@ -392,7 +411,7 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( "sysoptitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 		$this->mBodytext = "";
 
 		$sk = $wgUser->getSkin();
@@ -408,7 +427,7 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( "developertitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 		$this->mBodytext = "";
 
 		$sk = $wgUser->getSkin();
@@ -423,7 +442,7 @@ class OutputPage {
 		
 		$this->setPageTitle( wfMsgNoDB( "databaseerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 
 		if ( $wgCommandLineMode ) {
 			$msg = wfMsgNoDB( "dberrortextcl" );
@@ -455,7 +474,7 @@ class OutputPage {
 		global $wgUser, $wgReadOnlyFile;
 
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 
 		if( $protected ) {
 			$this->setPageTitle( wfMsg( "viewsource" ) );
@@ -481,7 +500,7 @@ class OutputPage {
 	{
 		$this->setPageTitle( wfMsg( "internalerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
-		$this->setArticleFlag( false );
+		$this->setArticleRelated( false );
 
 		$this->mBodytext = $message;
 		$this->output();

@@ -32,12 +32,26 @@ class DifferenceEngine {
 		$wgOut->setRobotpolicy( "noindex,follow" );
 		
 		$sk = $wgUser->getSkin();
-		$oldUserTitle = Title::makeTitle( NS_USER, $this->mOldUser );
-		$newUserTitle = Title::makeTitle( NS_USER, $this->mNewUser );
-		$oldUserLink = $sk->makeLinkObj( $oldUserTitle, $this->mOldUser );
-		$newUserLink = $sk->makeLinkObj( $newUserTitle, $this->mNewUser );
-		$oldHeader = "<strong>{$this->mOldtitle}</strong><br>$oldUserLink";
-		$newHeader = "<strong>{$this->mNewtitle}</strong><br>$newUserLink";
+		$talk = $wgLang->getNsText( NS_TALK );
+		$contribs = wfMsg( "contribslink" );
+
+		$oldUserLink = $sk->makeLinkObj( Title::makeTitle( NS_USER, $this->mOldUser ), $this->mOldUser );
+		$newUserLink = $sk->makeLinkObj( Title::makeTitle( NS_USER, $this->mNewUser ), $this->mNewUser );
+		$oldUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mOldUser ), $talk );
+		$newUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mNewUser ), $talk );
+		$oldContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ), $contribs,
+			"target=" . urlencode($this->mOldUser) );
+		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ), $contribs,
+			"target=" . urlencode($this->mNewUser) );
+		if ( !$this->mNewid && $wgUser->isSysop() ) {
+			$rollback = "&nbsp;&nbsp;&nbsp;<strong>[" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( "rollbacklink" ),
+				"action=rollback&from=" . urlencode($this->mNewUser) ) . "]</strong>";
+		} else {
+			$rollback = "";
+		}
+
+		$oldHeader = "<strong>{$this->mOldtitle}</strong><br>$oldUserLink ($oldUTLink | $oldContribs)";
+		$newHeader = "<strong>{$this->mNewtitle}</strong><br>$newUserLink ($newUTLink | $newContribs) $rollback";
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
 		  $oldHeader, $newHeader );
