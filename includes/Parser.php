@@ -828,13 +828,11 @@ class Parser
 		$text = $this->doAllQuotes( $text );
 		// $text = $this->doExponent( $text );
 		$text = $this->replaceExternalLinks( $text );
+		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		//$text = $this->doTokenizedParser ( $text );
-		$text = $this->doTableStuff ( $text ) ;
-		$text = $this->magicISBN( $text );
-		$text = $this->magicGEO( $text );
-		$text = $this->magicRFC( $text );
+		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
@@ -845,6 +843,13 @@ class Parser
 		}
 
 		wfProfileOut( $fname );
+		return $text;
+	}
+	
+	/* private */ function &doMagicLinks( &$text ) {
+		$text = $this->magicISBN( $text );
+		$text = $this->magicGEO( $text );
+		$text = $this->magicRFC( $text );
 		return $text;
 	}
 
