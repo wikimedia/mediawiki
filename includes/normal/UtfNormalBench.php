@@ -41,6 +41,7 @@ if( php_sapi_name() != 'cli' ) {
 $testfiles = array(
 	'testdata/washington.txt' => 'English text',
 	'testdata/berlin.txt' => 'German text',
+	'testdata/bulgakov.txt' => 'Russian text',
 	'testdata/tokyo.txt' => 'Japanese text',
 	'testdata/sociology.txt' => 'Korean text'
 );
