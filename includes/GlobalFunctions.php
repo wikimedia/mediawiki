@@ -452,20 +452,8 @@ function wfClientAcceptsGzip() {
 
 # Yay, more global functions!
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
-	global $wgUser, $wgRequest;
-
-	$limit = $wgRequest->getInt( 'limit', 0 );
-	if( $limit < 0 ) $limit = 0;
-	if( ( $limit == 0 ) && ( $optionname != '' ) ) {
-		$limit = (int)$wgUser->getOption( $optionname );
-	}
-	if( $limit <= 0 ) $limit = $deflimit;
-	if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
-
-	$offset = $wgRequest->getInt( 'offset', 0 );
-	if( $offset < 0 ) $offset = 0;
-
-	return array( $limit, $offset );
+	global $wgRequest;
+	return $wgRequest->getLimitOffset( $deflimit, $optionname );
 }
 
 # Escapes the given text so that it may be output using addWikiText()

@@ -145,6 +145,22 @@ class WebRequest {
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
 	
+	function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
+		global $wgUser;
+	
+		$limit = $this->getInt( 'limit', 0 );
+		if( $limit < 0 ) $limit = 0;
+		if( ( $limit == 0 ) && ( $optionname != '' ) ) {
+			$limit = (int)$wgUser->getOption( $optionname );
+		}
+		if( $limit <= 0 ) $limit = $deflimit;
+		if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
+	
+		$offset = $this->getInt( 'offset', 0 );
+		if( $offset < 0 ) $offset = 0;
+	
+		return array( $limit, $offset );
+	}
 }
 
 ?>
