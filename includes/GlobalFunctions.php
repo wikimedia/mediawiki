@@ -787,7 +787,9 @@ function wfPurgeSquidServers ($urlArr) {
         while ($so < $sockspersq && !$failed) {
             if ($so == 0) {
 		/* first socket for this server, do the tests */
-                $socket = @fsockopen($wgSquidServers[$ss], 80, $error, $errstr, 3);
+		list($server, $port) = explode(':', $wgSquidServers[$ss]);
+		if(!isset($port)) $port = 80;
+                $socket = @fsockopen($server, $port, $error, $errstr, 3);
                 if (!$socket) {
                     $failed = true;
                     $totalsockets -= $sockspersq;
@@ -808,7 +810,9 @@ function wfPurgeSquidServers ($urlArr) {
                 } 
             } else {
 		/* open the remaining sockets for this server */
-                $sockets[] = @fsockopen($wgSquidServers[$ss], 80, $error, $errstr, 2);
+		list($server, $port) = explode(':', $wgSquidServers[$ss]);
+		if(!isset($port)) $port = 80;
+                $sockets[] = @fsockopen($server, $port, $error, $errstr, 2);
                 @stream_set_blocking($sockets[$s],false);
             }
             $so++;
