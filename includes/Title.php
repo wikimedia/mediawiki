@@ -68,7 +68,13 @@ class Title {
 
 	function legalChars()
 	{
-		return "-,.()' &;%!?_0-9A-Za-z\\/:\\x80-\\xFF";
+		global $wgInputEncoding;
+		if( $wgInputEncoding == "utf-8" ) {
+			return "-,.()' &;%!?_0-9A-Za-z\\/:\\x80-\\xFF";
+		} else {
+			# ISO 8859-* don't allow 0x80-0x9F
+			return "-,.()' &;%!?_0-9A-Za-z\\/:\\xA0-\\xFF";
+		}
 	}
 
 	function getInterwikiLink( $key )
