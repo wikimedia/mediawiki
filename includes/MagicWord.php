@@ -44,8 +44,9 @@ define("MAG_LOCALURLE", 27);
 define("MAG_SERVER", 28);
 define("MAG_IMG_FRAMED", 29);
 define("MAG_PAGENAME", 30);
-define("MAG_NAMESPACE", 31);
-define("MAG_TOC", 32);
+define("MAG_PAGENAMEE", 31);
+define("MAG_NAMESPACE", 32);
+define("MAG_TOC", 33);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -56,9 +57,10 @@ $wgVariableIDs = array(
 	MAG_CURRENTTIME,
 	MAG_NUMBEROFARTICLES,
 	MAG_CURRENTMONTHNAMEGEN,
-    MAG_SITENAME,
+	MAG_SITENAME,
 	MAG_SERVER,
 	MAG_PAGENAME,
+	MAG_PAGENAMEE,
 	MAG_NAMESPACE
 );
 
@@ -67,21 +69,19 @@ class MagicWord {
 	/*private*/ var $mRegexStart, $mBaseRegex, $mVariableRegex;
 	/*private*/ var $mModified;	
 
-	function MagicWord($id = 0, $syn = "", $cs = false) 
-	{
+	function MagicWord($id = 0, $syn = '', $cs = false) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
-		$this->mRegex = "";
-		$this->mRegexStart = "";
-		$this->mVariableRegex = "";
-		$this->mVariableStartToEndRegex = "";
+		$this->mRegex = '';
+		$this->mRegexStart = '';
+		$this->mVariableRegex = '';
+		$this->mVariableStartToEndRegex = '';
 		$this->mModified = false;
 	}
 
 	# Factory: creates an object representing an ID
-	/*static*/ function &get( $id )
-	{
+	/*static*/ function &get( $id ) {
 		global $wgMagicWords;
 		
 		if ( !is_array( $wgMagicWords ) ) {
@@ -96,16 +96,14 @@ class MagicWord {
 	}
 	
 	# Initialises this object with an ID
-	function load( $id )
-	{
+	function load( $id ) {
 		global $wgLang;		
 		$this->mId = $id;
 		$wgLang->getMagic( $this );
 	}
 	
 	# Preliminary initialisation
-	/* private */ function initRegex()
-	{
+	/* private */ function initRegex() {
 		$variableClass = Title::legalChars();
 		$escSyn = array_map( "preg_quote", $this->mSynonyms );
 		$this->mBaseRegex = implode( "|", $escSyn );
@@ -118,9 +116,8 @@ class MagicWord {
 	}
 	
 	# Gets a regex representing matching the word
-	function getRegex()
-	{
-		if ($this->mRegex == "" ) {
+	function getRegex() {
+		if ($this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegex;
@@ -128,18 +125,16 @@ class MagicWord {
 
 	# Gets a regex matching the word, if it is at the 
 	# string start
-	function getRegexStart()
-	{
-		if ($this->mRegex == "" ) {
+	function getRegexStart() {
+		if ($this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegexStart;
 	}
 
 	# regex without the slashes and what not
-	function getBaseRegex()
-	{
-		if ($this->mRegex == "") {
+	function getBaseRegex() {
+		if ($this->mRegex == '') {
 			$this->initRegex();
 		}
 		return $this->mBaseRegex;
@@ -151,8 +146,7 @@ class MagicWord {
 	}
 
 	# Returns true if the text starts with the word
-	function matchStart( $text ) 
-	{
+	function matchStart( $text ) {
 		return preg_match( $this->getRegexStart(), $text );
 	}
 
@@ -174,25 +168,23 @@ class MagicWord {
 
 	# Returns true if the text matches the word, and alters the
 	# input string, removing all instances of the word
-	function matchAndRemove( &$text )
-	{
+	function matchAndRemove( &$text ) {
 		global $wgMagicFound;
 		$wgMagicFound = false;
-		$text = preg_replace_callback( $this->getRegex(), "pregRemoveAndRecord", $text );
+		$text = preg_replace_callback( $this->getRegex(), 'pregRemoveAndRecord', $text );
 		return $wgMagicFound;
 	}
 
 	function matchStartAndRemove( &$text ) {
 		global $wgMagicFound;
 		$wgMagicFound = false;
-		$text = preg_replace_callback( $this->getRegexStart(), "pregRemoveAndRecord", $text );
+		$text = preg_replace_callback( $this->getRegexStart(), 'pregRemoveAndRecord', $text );
 		return $wgMagicFound;
 	}		
 
 
 	# Replaces the word with something else
-	function replace( $replacement, $subject )
-	{
+	function replace( $replacement, $subject ) {
 		$res = preg_replace( $this->getRegex(), $replacement, $subject );
 		$this->mModified = !($res === $subject);
 		return $res;
@@ -209,18 +201,16 @@ class MagicWord {
 	}
 
 	# Matches the word, where $1 is a wildcard
-	function getVariableRegex()
-	{
-		if ( $this->mVariableRegex == "" ) {
+	function getVariableRegex()	{
+		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
 		} 
 		return $this->mVariableRegex;
 	}
 
 	# Matches the entire string, where $1 is a wildcard
-	function getVariableStartToEndRegex()
-	{
-		if ( $this->mVariableStartToEndRegex == "" ) {
+	function getVariableStartToEndRegex() {
+		if ( $this->mVariableStartToEndRegex == '' ) {
 			$this->initRegex();
 		} 
 		return $this->mVariableStartToEndRegex;
@@ -256,8 +246,7 @@ class MagicWord {
 	}
 
 	# Adds all the synonyms of this MagicWord to an array, to allow quick lookup in a list of magic words
-	function addToArray( &$array, $value ) 
-	{
+	function addToArray( &$array, $value ) {
 		foreach ( $this->mSynonyms as $syn ) {
 			$array[$syn] = $value;
 		}
@@ -265,11 +254,10 @@ class MagicWord {
 }
 
 # Used in matchAndRemove()
-/*private*/ function pregRemoveAndRecord( $match )
-{
+/*private*/ function pregRemoveAndRecord( $match ) {
 	global $wgMagicFound;
 	$wgMagicFound = true;
-	return "";
+	return '';
 }
 
 ?>
