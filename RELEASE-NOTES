@@ -111,6 +111,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1018) Some pages fail with stub threshold enabled
 * (bug 1024) Fix link to high-res image version on Image: pages
 * (bug 1016) Fix handling of lines omitting Image: in a <gallery> tag
+* security fix for image galleries
 
 
 === Caveats ===

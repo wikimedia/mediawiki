@@ -123,7 +123,7 @@ class ImageGallery
 				'<table width="100%" height="150px">'.
 				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
 				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="" />' ) . '</td></tr></table> ' .
-				$textlink . $text . $nb; 
+				$textlink . htmlspecialchars( $text ) . $nb; 
 
 			$s .= "</td>\n" .  (($i%4==3) ? "</tr>\n" : '');
 
