@@ -809,11 +809,11 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang;
 
-		$sitecss = "";
-		$usercss = "";
-		$siteargs = "";
+		$sitecss = '';
+		$usercss = '';
+		$siteargs = '';
 
 		# Add user-specific code if this is a user and we allow that kind of thing
 		
@@ -835,8 +835,7 @@ class SkinTemplate extends Skin {
 		# If we use the site's dynamic CSS, throw that in, too
 		
 		if ( $wgUseSiteCss ) {
-			$sitecss = '';
-			if($wgContLang->isRTL()) $s .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+			if ($wgContLang->isRTL()) $s .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
 			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
 		}
