@@ -9,8 +9,11 @@ all : UtfNormalData.inc
 UtfNormalData.inc : UtfNormalGenerate.php UtfNormalUtil.php UnicodeData.txt CompositionExclusions.txt NormalizationCorrections.txt DerivedNormalizationProps.txt
 	$(PHP) UtfNormalGenerate.php
 
-test : UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
+test : testutf8 UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
 	$(PHP) UtfNormalTest.php
+
+testutf8 : Utf8Test.php UTF-8-test.txt
+	$(PHP) Utf8Test.php
 
 bench : UtfNormalData.inc
 	$(PHP) UtfNormalBench.php
@@ -37,3 +40,5 @@ DerivedNormalizationProps.txt :
 UnicodeData.txt :
 	$(FETCH) $(BASE)/UnicodeData.txt
 
+UTF-8-test.txt :
+	$(FETCH) http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt

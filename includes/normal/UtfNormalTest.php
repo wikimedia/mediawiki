@@ -99,6 +99,10 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$cols = explode( ';', $line );
 	$char = codepointToUtf8( hexdec( $cols[0] ) );
 	$desc = $cols[0] . ": " . $cols[1];
+	if( $char >= UTF8_SURROGATE_FIRST && $char <= UTF8_SURROGATE_LAST ) {
+		# Surrogates are illegal on their own or in UTF-8, ignore.
+		continue;
+	}
 	if( empty( $testedChars[$char] ) ) {
 		$total++;
 		if( testInvariant( $normalizer, $char, $desc ) ) {
