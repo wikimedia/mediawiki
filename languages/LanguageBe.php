@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 # Belarusian (Беларуская мова)
 # File by Ævar Arnfjörð Bjarmason and translations by 
 # be:EugeneZelenko, be:Monk (and others)

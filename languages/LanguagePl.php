@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 require_once("LanguageUtf8.php");
 
 # FIXME: Lots of hardcoded Wikipedia-related text needs to be cleaned up.

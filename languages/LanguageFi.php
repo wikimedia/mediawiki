@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # FIXME: use $wgSitename, $wgMetaNamespace instead of hard-coded Wikipedia
 

@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 global $IP;
 require_once( "LanguageUtf8.php" );
 

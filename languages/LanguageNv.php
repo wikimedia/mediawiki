@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # Navajo language file
 # No messages at the moment, just all the other stuff

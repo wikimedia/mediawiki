@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 # Nynorsk version translated by Olve Utne, Guttorm Flatabø and others
 # see:
 # <http://meta.wikimedia.org/w/wiki.phtml?title=LanguageNn.php&action=history>

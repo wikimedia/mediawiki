@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 #
 # Low Saxon (Plattdüütsch) localisation for MediaWiki
 #

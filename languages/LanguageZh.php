@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
 require_once( "LanguageZh_sg.php");

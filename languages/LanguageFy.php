@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"

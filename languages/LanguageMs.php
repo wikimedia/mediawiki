@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # This localisation is based on a file kindly donated by the folks at MIMOS
 # http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
