@@ -1691,8 +1691,6 @@ $t[] = "</table>" ;
 		$ser = addslashes( gzcompress( serialize( $data ) ) );
 		if( $this->mContainsOldMagic ){
 			$expire = "1 HOUR";
-		} else if( $this->mContainsNewMagic ){
-			$expire = "1 DAY";
 		} else {
 			$expire = "7 DAY";
 		}
@@ -1725,9 +1723,13 @@ $t[] = "</table>" ;
 	}
 
 	# $pid is a page id
-	/* static */ function parsercacheClearPage( $pid ){
+	/* static */ function parsercacheClearPage( $pid, $namespace ){
 		$pid = intval( $pid );
-		wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
+		if( $namespace == NS_MEDIAWIKI ){
+			OutputPage::parsercacheClearLinksTo( $pid );
+		} else {
+			wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
+		}
 	}
 }
 

@@ -1310,7 +1310,7 @@ class Article {
 			LinkCache::linksccClearPage( $title_obj->getArticleID() );
 		}
 		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearPage( $title_obj->getArticleID() );
+			OutputPage::parsercacheClearPage( $title_obj->getArticleID(), $title_obj->getNamespace() );
 		}
 	}
 }
