@@ -165,6 +165,7 @@ function logProfilingData()
 	$elapsed = $now - $start;
 	if ( "" != $wgDebugLogFile ) {
 		$prof = wfGetProfilingOutput( $start, $elapsed );
+		$forward = "";
 		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
 			$forward = " forwarded for " . $_SERVER['HTTP_X_FORWARDED_FOR'];
 		if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )

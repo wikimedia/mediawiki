@@ -1188,7 +1188,7 @@ class Article {
 			and ($this->getID() != 0)
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
-			and ($this->mTitle->getNamespace != Namespace::getSpecial())
+			and ($this->mTitle->getNamespace() != Namespace::getSpecial())
 			and ($action == "view")
 			and (!isset($oldid))
 			and (!isset($diff))
