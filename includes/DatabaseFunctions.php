@@ -46,7 +46,7 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 /* Call this function if we couldn't contact the database...
    We'll try to use the cache to display something in the meantime */
 function wfEmergencyAbort( $msg = "" ) {
-	global $wgTitle, $wgUseFileCache, $title, $wgOutputEncoding;
+	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
 	
 	header( "Content-type: text/html; charset=$wgOutputEncoding" );
 	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
@@ -58,6 +58,10 @@ function wfEmergencyAbort( $msg = "" ) {
 		} else {
 			if($title) {
 				$t = Title::newFromURL( $title );
+			} elseif ($_REQUEST['search']) {
+				$search = $_REQUEST['search'];
+				echo wfMsgNoDB( "searchdisabled", htmlspecialchars( $search ), $wgInputEncoding );
+				wfAbruptExit();
 			} else {
 				$t = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			}
