@@ -27,11 +27,6 @@ class DifferenceEngine {
 			$this->mNewid = intval($old);
 
 			$this->mOldid = $wgTitle->getPreviousRevisionID( $this->mNewid );
-			#$dbr =& wfGetDB( DB_SLAVE );
-			#$this->mOldid = $dbr->selectField( 'old', 'old_id',
-				#"old_title='" . $wgTitle->getDBkey() . "'" .
-				#' AND old_namespace=' . $wgTitle->getNamespace() .
-				#" AND old_id<{$this->mNewid} ORDER BY old_id DESC" );
 
 		} elseif ( 'next' == $new ) {
 
@@ -40,11 +35,6 @@ class DifferenceEngine {
 			#
 			$this->mOldid = intval($old);
 			$this->mNewid = $wgTitle->getNextRevisionID( $this->mOldid );
-			#$dbr =& wfGetDB( DB_SLAVE );
-			#$this->mNewid = $dbr->selectField( 'old', 'old_id',
-			#	"old_title='" . $wgTitle->getDBkey() . "'" .
-			#	' AND old_namespace=' . $wgTitle->getNamespace() .
-			#	" AND old_id>{$this->mOldid} ORDER BY old_id " );
 			if ( false === $this->mNewid ) {
 				# if no result, NewId points to the newest old revision. The only newer
 				# revision is cur, which is "0".
