@@ -814,6 +814,7 @@ class User {
 	}
 
 	function getPageRenderingHash() {
+        global $wgLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -829,6 +830,12 @@ class User {
 		$confstr .= '!' . $this->getOption( 'showtoc' );
 		$confstr .= '!' . $this->getOption( 'date' );
 		$confstr .= '!' . $this->getOption( 'numberheadings' );
+
+        // add in language variant option if there are multiple variants
+        // supported by the language object
+        if(sizeof($wgLang->getVariants())>1) {
+             $confstr .= '!' . $this->getOption( 'variant' );
+        }
 
 		$this->mHash = $confstr;
 		return $confstr ;
