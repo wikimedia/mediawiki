@@ -16,7 +16,8 @@ require_once( "QueryPage.php" );
  * @subpackage SpecialPage
  */
 class UncategorizedPagesPage extends PageQueryPage {
-
+	var $requestedNamespace = 0;
+	
 	function getName() {
 		return "Uncategorizedpages";
 	}
@@ -36,7 +37,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 
 		return "SELECT 'Uncategorizedpages' as type, cur_namespace AS namespace, cur_title AS title, cur_title AS value " .
 			"FROM $cur LEFT JOIN $categorylinks ON cur_id=cl_from ".
-			"WHERE cl_from IS NULL AND cur_namespace=0 AND cur_is_redirect=0";
+			"WHERE cl_from IS NULL AND cur_namespace=$this->requestedNamespace AND cur_is_redirect=0";
 	}
 }
 
