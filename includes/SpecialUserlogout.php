@@ -7,7 +7,7 @@ function wfSpecialUserlogout()
 	$wgUser->logout();
 	$wgOut->mCookies = array();
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->addHTML( wfMsg( "logouttext" ) . "\n<p>" );
+	$wgOut->addHTML( wfMsg( "logouttext" ) );
 	$wgOut->returnToMain();
 }
 

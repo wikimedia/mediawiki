@@ -554,7 +554,7 @@ class OutputPage {
 			$titleObj = Title::newFromText( $returnto );
 			$wgOut->addMeta( "http:Refresh", "10;url=" . $titleObj->escapeFullURL() );
 		}
-		$wgOut->addHTML( "\n<p>$r\n" );
+		$wgOut->addHTML( "\n<p>$r</p>\n" );
 	}
 
 	# This function takes the existing and broken links for the page
