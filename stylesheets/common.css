@@ -193,3 +193,6 @@ div.townBox dl dd {
     padding:5px;
     font-size: 95%;
 }
+#siteNotice {
+    border:1px solid #aaaaaa;
+}

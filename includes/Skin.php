@@ -317,19 +317,14 @@ class Skin {
 	#
 	function beforeContent()
 	{
-		global $wgUser, $wgOut, $wgSiteNotice;
+		global $wgUser, $wgOut;
 
-		if( $wgSiteNotice ) {
-			$note = "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
-		} else {
-			$note = '';
-		}
-		return $this->doBeforeContent() . $note;
+		return $this->doBeforeContent();
 	}
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle, $wgLang;
+		global $wgUser, $wgOut, $wgTitle, $wgLang, $wgSiteNotice;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -379,6 +374,9 @@ class Skin {
 		$s .= "</tr>\n</table>\n</div>\n";
 		$s .= "\n<div id='article'>\n";
 
+		if( $wgSiteNotice ) {
+			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		}
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;
 		$s .= $this->getCategories();

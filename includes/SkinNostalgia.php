@@ -18,7 +18,7 @@ class SkinNostalgia extends Skin {
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "\n<div id='content'>\n<div id='topbar'>";
 		$s .= $this->logoText( "right" );
@@ -27,6 +27,9 @@ class SkinNostalgia extends Skin {
 		$s .= $this->pageSubtitle() . "\n";
 
 		$s .= $this->topLinks() . "\n<br />";
+		if( $wgSiteNotice ) {
+			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		}
 		$s .= $this->pageTitleLinks();
 
 		$ol = $this->otherLanguages();
