@@ -28,6 +28,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
 	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
 
+	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
 	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
