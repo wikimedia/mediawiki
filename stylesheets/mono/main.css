@@ -168,7 +168,7 @@ h6 {
 
 
 ul { 
-    line-height: 1.2em;
+    line-height: 1.5em;
     list-style-type: square;
     margin: 0.3em 0 0 1.5em;
     padding:0;
@@ -184,7 +184,7 @@ ul a, ol a {
     text-decoration: none;
 }
 li {
-    margin-bottom: 0.4em;
+    margin-bottom: 0.1em;
 }
 dt {
     font-weight: bold;    
@@ -399,7 +399,7 @@ pre {
 }
 .portlet h5 { 
 /*    background: #fabd23;*/
-    background: White;
+    background: transparent;
    /* border: 1px solid #fabd23;
     border-style: solid solid none solid;*/
     padding: 0em 1em 0em 0.5em;
@@ -465,15 +465,15 @@ pre {
 }
 
 .portlet ul {
+    line-height: 1.5em;
     list-style-type: square;
     list-style-image: url("bullet.gif");
-    font-size:107%;
+    font-size:108%;
 }
 .portlet li {
-    line-height: 1.3em;
-    font-size:106%;
     padding:0;
-    line-height: 1em;
+    margin: 0 0 0 0;
+    margin-bottom: 0;
 }
 
 .even {
