@@ -175,7 +175,7 @@ class LinksUpdate {
 
 	/**
 	  * Link update which clears the previous entries and inserts new ones
-	  * May be slower or faster depending on level of link contention and write speed of DB
+	  * May be slower or faster depending on level of lock contention and write speed of DB
 	  * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
 	 */
 	function doDumbUpdate() {
