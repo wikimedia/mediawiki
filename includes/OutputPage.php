@@ -142,9 +142,9 @@ class OutputPage {
 		$stripped3 = "";
 		
 		# Replace any instances of the placeholders
-		$text = str_replace( $unique, '$unique', $text );
-		$text = str_replace( $unique2, '$unique2', $text );
-		$text = str_replace( $unique3, '$unique3', $text );
+		$text = str_replace( $unique, wfHtmlEscapeFirst( $unique ), $text );
+		$text = str_replace( $unique2, wfHtmlEscapeFirst( $unique2 ), $text );
+		$text = str_replace( $unique3, wfHtmlEscapeFirst( $unique3 ), $text );
 		
 		global $wgEnableParserCache;
 		$use_parser_cache = 
