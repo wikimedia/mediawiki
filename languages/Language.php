@@ -1485,7 +1485,7 @@ amusement.",
 
 # Special:Import
 "import"	=> "Import pages",
-"importtext"	=> "Blah blah blah",
+"importtext"	=> "Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.",
 "importfailed"	=> "Import failed: $1",
 "importnotext"	=> "Empty or no text",
 "importsuccess"	=> "Import succeeded!",
