@@ -230,7 +230,7 @@ class User {
 			global $wgDBname, $wgMemc;
 			$key = "$wgDBname:newtalk:ip:{$this->mName}";
 			$newtalk = $wgMemc->get( $key );
-			if( ! is_integer($newtalk) ) {
+			if( ! is_scalar( $newtalk ) ){
 				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
 
