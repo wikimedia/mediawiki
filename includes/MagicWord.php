@@ -27,6 +27,7 @@ class MagicWord {
 		$this->mVariableRegex = "";
 	}
 
+	# Factory: creates an object representing an ID
 	/*static*/ function &get( $id )
 	{
 		global $wgMagicWords;
@@ -39,6 +40,7 @@ class MagicWord {
 		return $wgMagicWords[$id];
 	}
 	
+	# Initialises this object with an ID
 	function load( $id )
 	{
 		global $wgLang;
@@ -47,6 +49,7 @@ class MagicWord {
 		$wgLang->getMagic( $this );
 	}
 	
+	# Preliminary initialisation
 	/* private */ function initRegex()
 	{
 		$escSyn = array_map( "preg_quote", $this->mSynonyms );
@@ -57,6 +60,7 @@ class MagicWord {
 		$this->mVariableRegex = str_replace( "\\$1", "([A-Za-z0-9_\-]*)", $this->mRegex );
 	}
 	
+	# Gets a regex representing matching the word
 	function getRegex()
 	{
 		if ($this->mRegex == "" ) {
@@ -65,6 +69,8 @@ class MagicWord {
 		return $this->mRegex;
 	}
 
+	# Gets a regex matching the word, if it is at the 
+	# string start
 	function getRegexStart()
 	{
 		if ($this->mRegex == "" ) {
@@ -73,6 +79,7 @@ class MagicWord {
 		return $this->mRegexStart;
 	}
 	
+	# regex without the slashes and what not
 	function getBaseRegex()
 	{
 		if ($this->mRegex == "") {
@@ -81,15 +88,19 @@ class MagicWord {
 		return $this->mBaseRegex;
 	}
 		
+	# Returns true if the text contains the word
 	function match( $text ) {
 		return preg_match( $this->getRegex(), $text );
 	}
 
+	# Returns true if the text starts with the word
 	function matchStart( $text ) 
 	{
 		return preg_match( $this->getRegexStart(), $text );
 	}
 
+	# Returns true if the text matches the word, and alters the
+	# input string, removing all instances of the word
 	function matchAndRemove( &$text )
 	{
 		global $wgMagicFound;
@@ -98,16 +109,21 @@ class MagicWord {
 		return $wgMagicFound;
 	}
 
+	# Replaces the word with something else
 	function replace( $replacement, $subject )
 	{
 		return preg_replace( $this->getRegex(), $replacement, $subject );
 	}
 
+	# Variable handling: {{SUBST:xxx}} style words
+	# Calls back a function to determine what to replace xxx with
+	# Input word must contain $1
 	function substituteCallback( $text, $callback ) {
 		$regex = $this->getVariableRegex();
 		return preg_replace_callback( $this->getVariableRegex(), $callback, $text );
 	}
 
+	# Matches the word, where $1 is a wildcard
 	function getVariableRegex()
 	{
 		if ( $this->mVariableRegex == "" ) {
@@ -116,11 +132,13 @@ class MagicWord {
 		return $this->mVariableRegex;
 	}
 
+	# Accesses the synonym list directly
 	function getSynonym( $i ) {
 		return $this->mSynonyms[$i];
 	}
 }
 
+# Used in matchAndRemove()
 /*private*/ function pregRemoveAndRecord( $match )
 {
 	global $wgMagicFound;
