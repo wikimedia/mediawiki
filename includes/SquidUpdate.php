@@ -13,7 +13,6 @@ class SquidUpdate {
 	function doUpdate()
 	{
 		if (count( $this->urlArr ) == 0) { // newly created Article
-			global $wgInternalServer;
 			/* prepare the list of urls to purge */
 			$id= $this->title->getArticleID();
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
@@ -21,7 +20,7 @@ class SquidUpdate {
 			while ( $BL = wfFetchObject ( $res ) )
 			{
 				$t = Title::newFromDBkey( $BL->l_from) ; 
-				$this->urlArr[] = $wgInternalServer.$t->getLocalURL() ;
+				$this->urlArr[] = $t->getInternalURL() ;
 			}
 			wfFreeResult ( $res ) ;
 
