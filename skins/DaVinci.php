@@ -1,5 +1,5 @@
 <?php
-
+if ($wgUsePHPTal) {
 require_once($IP.'/includes/SkinPHPTal.php');
 
 class SkinDaVinci extends SkinPHPTal {
@@ -8,5 +8,7 @@ class SkinDaVinci extends SkinPHPTal {
 		$this->skinname = 'davinci';
 		$this->template = 'MonoBook';
 	}
+}
+
 }
 ?>

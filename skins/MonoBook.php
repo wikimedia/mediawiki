@@ -1,4 +1,5 @@
 <?php
+if ($wgUsePHPTal) {
 require_once($IP.'/includes/SkinPHPTal.php');
 
 class SkinMonoBook extends SkinPHPTal {
@@ -8,4 +9,5 @@ class SkinMonoBook extends SkinPHPTal {
 	}
 }
 
+}
 ?>

@@ -2,6 +2,7 @@
 # Tentative to make a skin for wikimedia.org
 # $Id$
 
+if($wgUsePHPTal) {
 require_once($IP.'/includes/SkinPHPTal.php');
 
 $wgExtraSkins['wikimediawiki'] = 'Wikimediawiki';
@@ -74,5 +75,5 @@ class SkinWikimediawiki extends SkinMonoBook {
 	}
 }
 
-
+}
 ?>

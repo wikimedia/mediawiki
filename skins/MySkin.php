@@ -1,4 +1,5 @@
 <?php
+if ($wgUsePHPTal) {
 
 require_once($IP.'/includes/SkinPHPTal.php');
 
@@ -7,5 +8,7 @@ class SkinMySkin extends SkinPHPTal {
 		SkinPHPTal::initPage( $out );
 		$this->skinname = 'myskin';
 	}
+}
+
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+if ($wgUsePHPTal) {
 require_once($IP.'/includes/SkinPHPTal.php');
 
 class SkinChick extends SkinPHPTal {
@@ -11,4 +12,5 @@ class SkinChick extends SkinPHPTal {
 	function printSource() { return ''; }
 }
 
+}
 ?>
