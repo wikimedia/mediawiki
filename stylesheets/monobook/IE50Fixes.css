@@ -87,6 +87,9 @@ ul#portal-personaltools {
     white-space: nowrap !important;
 }
 
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.5em;
+}
 /* 5.0 doesn't like the background icon for external links and user */
 .link-external,
 .external {

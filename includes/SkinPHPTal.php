@@ -32,19 +32,16 @@
 	{
 		var $_context = array();
 
-		function set($varName, $value)
-		{
+		function set($varName, $value) {
 			$this->_context[$varName] = $value;
 		}
 
-		function translate($value)
-		{
+		function translate($value) {
 			$value = wfMsg( $value );
-
 			// interpolate variables
 			while (preg_match('/\$([0-9]*?)/sm', $value, $m)) {
 				list($src, $var) = $m;
-				$varValue = $this->_context[$var];
+				$varValue = @$this->_context[$var];
 				$value = str_replace($src, $varValue, $value);
 			}
 			return $value;
@@ -87,7 +84,12 @@
 			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
 			
 			$tpl->setRef( "thispage", &$this->thispage );
-			$tpl->set( "subtitle", $out->getSubtitle() );
+			$subpagestr = $this->subPageSubtitle();
+			$tpl->set( 
+				"subtitle",  !empty($subpagestr)?
+				'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
+				$out->getSubtitle()  
+			);
 			$tpl->set( 'catlinks', $this->getCategories());
 			if( $wgOut->isSyndicated() ) {
 				$feeds = array();
