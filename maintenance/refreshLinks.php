@@ -17,7 +17,9 @@ $end = $row->m;
 
 print("Refreshing link table. Starting from cur_id $start of $end.\n");
 
+# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
 $wgUser->setOption("math", 3);
+
 for ($id = $start; $id <= $end; $id++) {
 	if ( !($id % REPORTING_INTERVAL) ) {
 		print "$id\n";
@@ -33,10 +35,11 @@ for ($id = $start; $id <= $end; $id++) {
 	$text = $wgArticle->getContent( true );
 	@$wgOut->addWikiText( $text );
 	
+	$wgLinkCache->saveToLinkscc();
 	$linksUpdate = new LinksUpdate( $id, $wgTitle );
 	$linksUpdate->doDumbUpdate();
+	$linksUpdate->fixBrokenLinks();
 }
-
 
 exit();
 
