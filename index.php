@@ -108,6 +108,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "rollback":
 		case "protect":
 		case "unprotect":
+		case "info":
 			$wgArticle->$action();
 			break;
 		case "print":
