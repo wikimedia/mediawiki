@@ -2,13 +2,6 @@
 
 // require_once('Tokenizer.php');
 
-if( $GLOBALS['wgUseWikiHiero'] ){
-	require_once('extensions/wikihiero/wikihiero.php');
-}
-if( $GLOBALS['wgUseTimeline'] ){
-	require_once('extensions/timeline/Timeline.php');
-}
-
 # PHP Parser
 #
 # Processes wiki markup
@@ -52,6 +45,8 @@ define( "STRIP_COMMENTS", "HTMLCommentStrip" );
 
 # prefix for escaping, used in two functions at least
 define( "UNIQ_PREFIX", "NaodW29");
+
+/* private */ $wgParserHooks = array();
 
 class Parser
 {
@@ -200,18 +195,21 @@ class Parser
 	# counting the sections in the wikisource
 	function strip( $text, &$state, $stripcomments = false )
 	{
+		global $wgParserHooks;
+
 		$render = ($this->mOutputType == OT_HTML);
 		$nowiki_content = array();
-		$hiero_content = array();
-		$timeline_content = array();
 		$math_content = array();
 		$pre_content = array();
 		$comment_content = array();
-
+		$ext_content = array();
+		
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
+
+		# nowiki
 		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
 			if( $render ){
@@ -221,24 +219,7 @@ class Parser
 			}
 		}
 
-		$text = Parser::extractTags('hiero', $text, $hiero_content, $uniq_prefix);
-		foreach( $hiero_content as $marker => $content ){
-			if( $render && $GLOBALS['wgUseWikiHiero']){
-				$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
-			} else {
-				$hiero_content[$marker] = "<hiero>$content</hiero>";
-			}
-		}
-		
-		$text = Parser::extractTags('timeline', $text, $timeline_content, $uniq_prefix);
-		foreach( $timeline_content as $marker => $content ){
-			if( $render && $GLOBALS['wgUseTimeline']){
-				$timeline_content[$marker] = renderTimeline( $content );
-			} else {
-				$timeline_content[$marker] = "<timeline>$content</timeline>";
-			}
-		}
-
+		# math
 		$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
 		foreach( $math_content as $marker => $content ){
 			if( $render ) {
@@ -252,6 +233,7 @@ class Parser
 			}
 		}
 
+		# pre
 		$text = Parser::extractTags('pre', $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
 			if( $render ){
@@ -260,6 +242,8 @@ class Parser
 				$pre_content[$marker] = "<pre>$content</pre>";
 			}
 		}
+
+		# Comments
 		if($stripcomments) {
 			$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
 			foreach( $comment_content as $marker => $content ){
@@ -267,23 +251,38 @@ class Parser
 			}
 		}
 
+		# Extensions
+		foreach ( $wgParserHooks as $tag => $callback ) {
+			$ext_contents[$tag] = array();
+			$text = Parser::extractTags( $tag, $text, $ext_content[$tag], $uniq_prefix );
+			foreach( $ext_content[$tag] as $marker => $content ) {
+				if ( $render ) {
+					$ext_content[$tag][$marker] = $callback( $content );
+				} else {
+					$ext_content[$tag][$marker] = "<$tag>$content</$tag>";
+				}
+			}
+		}
+
 		# Merge state with the pre-existing state, if there is one
 		if ( $state ) {
 			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
-			$state['hiero'] = $state['hiero'] + $hiero_content;
-			$state['timeline'] = $state['timeline'] + $timeline_content;
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 			$state['comment'] = $state['comment'] + $comment_content;
+			
+			foreach( $ext_content as $tag => $array ) {
+				if ( array_key_exists( $tag, $state ) ) {
+					$state[$tag] = $state[$tag] + $array;
+				}
+			}
 		} else {
 			$state = array(
 			  'nowiki' => $nowiki_content,
-			  'hiero' => $hiero_content,
-			  'timeline' => $timeline_content,
 			  'math' => $math_content,
 			  'pre' => $pre_content,
-			  'comment' => $comment_content
-			);
+			  'comment' => $comment_content,
+			) + $ext_content;
 		}
 		return $text;
 	}
@@ -324,7 +323,6 @@ class Parser
 		if ( !$state ) {
 			$state = array(
 			  'nowiki' => array(),
-			  'hiero' => array(),
 			  'math' => array(),
 			  'pre' => array()
 			);
@@ -2222,6 +2220,16 @@ cl_sortkey" ;
 
 		$executing = false;
 		return $text;
+	}
+
+	# Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
+	# Callback will be called with the text within
+	# Transform and return the text within
+	/* static */ function setHook( $tag, $callback ) {
+		global $wgParserHooks;
+		$oldVal = @$wgParserHooks[$tag];
+		$wgParserHooks[$tag] = $callback;
+		return $oldVal;
 	}
 }
 

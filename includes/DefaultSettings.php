@@ -227,17 +227,6 @@ $wgWLCacheTimeout = 3600;	# The hour or so mentioned above
 $wgUseTeX = false;
 $wgTexvc = './math/texvc'; # Location of the texvc binary
 
-# Support for inline hieroglyphs, see http://aoineko.free.fr/ The
-# WikiHiero php files must be present in the same directory as the
-# rest of the mediawiki code, and WikiHiero must have been configured
-# with the correct image locations.
-$wgUseWikiHiero = false;
-
-# Support for inline timelines, see http://members.chello.nl/epzachte/Wikipedia/EasyTimeline/Introduction.htm
-# The Timeline php files must be present in the extension directory and you must have the
-# ploticus tool available, see http://ploticus.sourceforge.net/
-$wgUseTimeline = false;
-
 # Profiling / debugging
 $wgProfiling = false; # Enable for more detailed by-function times in debug log
 $wgProfileLimit = 0.0; # Only record profiling info for pages that took longer than this
@@ -292,6 +281,9 @@ $wgCheckFileExtensions = true;
 # If this is turned off, users may override the warning for files not
 # covered by $wgFileExtensions.
 $wgStrictFileExtensions = true;
+
+# Warn if uploaded files are larger than this
+$wgUploadSizeWarning = 150000;
 
 $wgPasswordSalt = true; # For compatibility with old installations set to false
 
