@@ -2191,7 +2191,7 @@ class Parser
 		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		$doShowToc = $this->mOptions->getShowToc();
+		$doShowToc = true;
 		$forceTocHere = false;
 		if( !$this->mTitle->userCanEdit() ) {
 			$showEditLink = 0;
@@ -2210,7 +2210,7 @@ class Parser
 		# do not add TOC
 		$mw =& MagicWord::get( MAG_NOTOC );
 		if( $mw->matchAndRemove( $text ) ) {
-			$doShowToc = 0;
+			$doShowToc = false;
 		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
@@ -2219,7 +2219,7 @@ class Parser
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		if( $numMatches < 4 ) {
-			$doShowToc = 0;
+			$doShowToc = false;
 		}
 
 		# if the string __TOC__ (not case-sensitive) occurs in the HTML,
@@ -2227,20 +2227,20 @@ class Parser
 
 		$mw =& MagicWord::get( MAG_TOC );
 		if($mw->match( $text ) ) {
-			$doShowToc = 1;
+			$doShowToc = true;
 			$forceTocHere = true;
 		} else {
 			# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
 			# override above conditions and always show TOC above first header
 			$mw =& MagicWord::get( MAG_FORCETOC );
 			if ($mw->matchAndRemove( $text ) ) {
-				$doShowToc = 1;
+				$doShowToc = true;
 			}
 		}
 
 		# Never ever show TOC if no headers
 		if( $numMatches < 1 ) {
-			$doShowToc = 0;
+			$doShowToc = false;
 		}
 
 		# We need this to perform operations on the HTML
@@ -2990,7 +2990,6 @@ class ParserOptions
 	var $mEditSection;               # Create "edit section" links
 	var $mEditSectionOnRightClick;   # Generate JavaScript to edit section on right click
 	var $mNumberHeadings;            # Automatically number headings
-	var $mShowToc;                   # Show table of contents
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -3001,7 +3000,6 @@ class ParserOptions
 	function getEditSection()                   { return $this->mEditSection; }
 	function getEditSectionOnRightClick()       { return $this->mEditSectionOnRightClick; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
-	function getShowToc()                       { return $this->mShowToc; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -3011,7 +3009,6 @@ class ParserOptions
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setEditSectionOnRightClick( $x )   { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
-	function setShowToc( $x )                   { return wfSetVar( $this->mShowToc, $x ); }
 
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 
@@ -3048,7 +3045,6 @@ class ParserOptions
 		$this->mEditSection = $user->getOption( 'editsection' );
 		$this->mEditSectionOnRightClick = $user->getOption( 'editsectiononrightclick' );
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
-		$this->mShowToc = $user->getOption( 'showtoc' );
 		wfProfileOut( $fname );
 	}
 }

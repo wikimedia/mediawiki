@@ -299,6 +299,9 @@ END;
 		if( $wgUser->getOption( 'justify' ) ) {
 			$s .= "#article { text-align: justify; }\n";
 		}
+		if( !$wgUser->getOption( 'showtoc' ) ) {
+			$s .= "#toc { display: none; }\n";
+		}
 		return $s;
 	}
 
