@@ -65,149 +65,6 @@
   "nocache"                 => "Seitencache deaktivieren"
 );
 
-/* private */ $wgLanguageNamesDe = array(
-  "aa" => "Afar",
-  "ab" => "Abkhazian",
-  "af" => "Afrikaans",
-  "am" => "Amharic",
-  "ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1617;&#1577; (Araby)",
-  "as" => "Assamese",
-  "ay" => "Aymara",
-  "az" => "Azerbaijani",
-  "ba" => "Bashkir",
-  "be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-  "bh" => "Bihara",
-  "bi" => "Bislama",
-  "bn" => "Bengali",
-  "bo" => "Tibetan",
-  "br" => "Brezhoneg",
-  "bs" => "Bosnian",
-  "ca" => "Català",
-  "ch" => "Chamoru",
-  "co" => "Corsican",
-  "cs" => "&#268;esky",
-  "cy" => "Cymraeg",
-  "da" => "Dansk",
-  "dk" => "Dansk",
-  "dz" => "Bhutani",
-  "el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellinika)",
-  "en" => "English",
-  "eo" => "Esperanto",
-  "es" => "Español",
-  "et" => "Eesti",
-  "eu" => "Euskara",
-  "fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
-  "fi" => "Suomi",
-  "fj" => "Fijian",
-  "fo" => "Faeroese",
-  "fr" => "Français",
-  "fy" => "Frysk",
-  "ga" => "Gaeilge",
-  "gl" => "Galician",
-  "gn" => "Guarani",
-  "gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-  "ha" => "Hausa",
-  "he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-  "hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
-  "hr" => "Hrvatski",
-  "hu" => "Magyar",
-  "hy" => "Armenian",
-  "ia" => "Interlingua",
-  "id" => "Indonesia",
-  "ik" => "Inupiak",
-  "is" => "Íslenska",
-  "it" => "Italiano",
-  "iu" => "Inuktitut",
-  "ja" => "&#26085;&#26412;&#35486; (Nihongo)",
-  "jv" => "Javanese",
-  "ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-  "kk" => "Kazakh",
-  "kl" => "Greenlandic",
-  "km" => "Cambodian",
-  "kn" => "Kannada",
-  "ko" => "&#54620;&#44397;&#50612; (Hangul)",
-  "ks" => "Kashmiri",
-  "kw" => "Kernewek",
-  "ky" => "Kirghiz",
-  "la" => "Latina",
-  "ln" => "Lingala",
-  "lo" => "Laotian",
-  "lt" => "Lietuvi&#371;",
-  "lv" => "Latvian",
-  "mg" => "Malagasy",
-  "mi" => "Maori",
-  "mk" => "Macedonian",
-  "ml" => "Malayalam",
-  "mn" => "Mongolian",
-  "mo" => "Moldavian",
-  "mr" => "Marathi",
-  "ms" => "Bahasa Melayu",
-  "my" => "Burmese",
-  "na" => "Nauru",
-  "ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
-  "nl" => "Nederlands",
-  "no" => "Norsk",
-  "oc" => "Occitan",
-  "om" => "Oromo",
-  "or" => "Oriya",
-  "pa" => "Punjabi",
-  "pl" => "Polski",
-  "ps" => "Pashto",
-  "pt" => "Português",
-  "qu" => "Quechua",
-  "rm" => "Rhaeto-Romance",
-  "rn" => "Kirundi",
-  "ro" => "Român&#259;",
-  "ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
-  "rw" => "Kinyarwanda",
-  "sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-  "sd" => "Sindhi",
-  "sg" => "Sangro",
-  "sh" => "Serbocroatisch",
-  "si" => "Sinhalese",
-  "simple" => "Einfaches Englisch",
-  "sk" => "Slovak",
-  "sl" => "Slovensko",
-  "sm" => "Samoan",
-  "sn" => "Shona",
-  "so" => "Soomaali",
-  "sq" => "Shqiptare",
-  "sr" => "Srpski",
-  "ss" => "Siswati",
-  "st" => "Sesotho",
-  "su" => "Sundanese",
-  "sv" => "Svenska",
-  "sw" => "Kiswahili",
-  "ta" => "Tamil",
-  "te" => "Telugu",
-  "tg" => "Tajik",
-  "th" => "Thai",
-  "ti" => "Tigrinya",
-  "tk" => "Turkmen",
-  "tl" => "Tagalog",
-  "tn" => "Setswana",
-  "to" => "Tonga",
-  "tr" => "Türkçe",
-  "ts" => "Tsonga",
-  "tt" => "Tatar",
-  "tw" => "Twi",
-  "ug" => "Uighur",
-  "uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-  "ur" => "Urdu",
-  "uz" => "Uzbek",
-  "vi" => "Vietnamese",
-  "vo" => "Volap&#252;k",
-  "wo" => "Wolof",
-  "xh" => "isiXhosa",
-  "yi" => "Yiddish",
-  "yo" => "Yoruba",
-  "za" => "Zhuang",
-  "zh" => "&#20013;&#25991; (Zhongwen)",
-  "zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)",
-  "zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)",
-  "zu" => "Zulu"
-);
-
 /* private */ $wgBookstoreListDe = array(
 	"Verzeichnis lieferbarer B&uuml;cher" => "http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1&x=0&y=0",
 	"abebooks.de" => "http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1",
@@ -581,7 +438,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 border=\"0\" ALT=\"Google\"></A>
 </td>
 <td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
 <input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name
@@ -1092,19 +949,6 @@ class LanguageDe extends Language {
 	function getUserToggles() {
 		global $wgUserTogglesDe;
 		return $wgUserTogglesDe;
-	}
-
-	function getLanguageNames() {
-		global $wgLanguageNamesDe;
-		return $wgLanguageNamesDe;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesDe;
-		if ( ! array_key_exists( $code, $wgLanguageNamesDe ) ) {
-			return "";
-		}
-		return $wgLanguageNamesDe[$code];
 	}
 
 	function getMonthName( $key )
