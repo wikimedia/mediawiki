@@ -304,7 +304,7 @@
 					);
 				} else {
 					$content_actions['talk'] = array(
-						'class' => $talk_class.' new',
+						'class' => $talk_class?$talk_class.' new':'new',
 						'text' => wfMsg('talk'),
 						'href' => $this->makeTalkUrl($this->titletxt,'action=edit'),
 						'ttip' => wfMsg('tooltip-talk'),

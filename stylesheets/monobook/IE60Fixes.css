@@ -41,10 +41,6 @@
     width: 98%;
 }
 
-div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
-    position:relative;
-}
-
 /* show the hand */
 #portlet-logo a,
 #portlet-logo a:hover {
