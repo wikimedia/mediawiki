@@ -208,7 +208,16 @@ class Validation
 			$html .= "</td><td {$topstyle} align=right valign=center><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
 			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
 			}
-		return $html ;
+		
+		global $wgArticle ;
+		$html .= "<h2>" . wfMsg ( 'preview' ) . "</h2>" ;
+		$wgOut->addHTML ( $html ) ;
+		$wgOut->addWikiText ( $wgArticle->getContent( true ) ) ;
+		return "" ;
+		
+#		$html .= $wgArticle->getContent( true ) ;
+#		$html .= $wgArticle->view () ;
+#		return $html ;
 		}
 		
 	function getData ( $user = -1 , $title = "" , $type = -1 )
