@@ -642,11 +642,11 @@ class Database {
 	# If it's a string, adds quotes and backslashes
 	# Otherwise returns as-is
 	function addQuotes( $s ) {
-		if ( !is_numeric( $s ) ) {
-			$s = "'" . $this->strencode( $s ) . "'";
-		} else if ( is_null( $s ) ) {
+		if ( is_null( $s ) ) {
 			$s = 'NULL';
-		}
+		} else if ( !is_numeric( $s ) ) {
+			$s = "'" . $this->strencode( $s ) . "'";
+		} 
 		return $s;
 	}
 		
