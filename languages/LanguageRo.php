@@ -37,20 +37,31 @@ include_once("Utf8Case.php");
 	"Recomandat pentru browsere moderne"
 );
 
+/* private */ $wgDateFormatsRo = array(
+	"Nici o preferinţă",
+	"Ianuarie 15, 2001",
+	"15 Ianuarie 2001",
+	"2001 Ianuarie 15"
+);
+
 /* private */ $wgUserTogglesRo = array(
 	"hover"		=> "Arată info deasupra legăturilor",
 	"underline" => "Subliniază legăturile",
 	"highlightbroken" => "Formatează legăturile inexistente <a href=\"\" class=\"new\">în felul acesta</a> (alternativa este aşa<a href=\"\" class=\"internal\">?</a>).",
 	"justify"	=> "Aliniază paragrafele",
 	"hideminor" => "Ascunde schimbările minore în pagina de schimbări recente",
-	"usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore (nu merge în toate browserele)",
+	"usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br>(nu merge în toate browserele)",
 	"numberheadings" => "Auto-numerotează titlurile",
+	"editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
+        "editsection" => "Permite editarea secţiunilor folosind legături [editează] pe pagină",
+	"editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br>butonului din dreapta al mouse-ului pe titlu<br>(necesită JavaScript)",
+        "showtoc" => "Arată cuprinsul paginilor<br>(pentru pagini cu cel puţin trei titluri)",
 	"rememberpassword" => "Păstrează parola între sesiuni",
 	"editwidth" => "Lăţime maximă pentru caseta de editare",
-	"editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
 	"watchdefault" => "Urmăreşte articolele pe care le creezi sau le editezi",
 	"minordefault" => "Marchează implicit toate editările ca minore",
-	"previewontop" => "Arată pagina după caseta de editare, nu înainte"
+	"previewontop" => "Arată pagina după caseta de editare, nu înainte",
+        "nocache" => "Nu folosi cache (conexiunea merge mai greu,<br>dar sunt afişate toate modificările paginilor)"
 	
 );
 
@@ -89,8 +100,8 @@ include_once("Utf8Case.php");
 	"Recentchanges" => "Pagini actualizate recent",
 	"Upload"		=> "Trimite imagini",
 	"Imagelist"		=> "Lista imaginilor",
-	"Listusers"		=> "Utilizatori înreistraţi",
-	"Statistics"	=> "Statistici pentru sit",
+	"Listusers"		=> "Utilizatori înregistraţi",
+	"Statistics"	=> "Statistici pentru site",
 	"Randompage"	=> "Articol aleator",
 
 	"Lonelypages"	=> "Articole orfane",
@@ -154,7 +165,7 @@ include_once("Utf8Case.php");
 "mytalk"		=> "Discuţiile mele",
 "currentevents" => "Evenimente curente",
 "errorpagetitle" => "Eroare",
-"returnto"		=> "Întoarce-te la $1.",
+"returnto"		=> "Înapoi la $1.",
 "fromwikipedia"	=> "De la Wikipedia, enciclopedia liberă.",
 "whatlinkshere"	=> "Pagini care se leagă aici",
 "help"			=> "Ajutor",
@@ -177,7 +188,7 @@ include_once("Utf8Case.php");
 "otherlanguages" => "În alte limbi",
 "redirectedfrom" => "(Redirectat de la $1)",
 "lastmodified"	=> "Ultima modificare $1.",
-"viewcount"		=> "Această pagină a fost modificată de $1 ori.",
+"viewcount"		=> "Această pagină a fost vizitată de $1 ori.",
 "gnunote" => "Tot textul este disponibil în termenii licenţei <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(De la http://ro.wikipedia.org)",
 "protectedpage" => "Pagină protejată",
@@ -196,6 +207,10 @@ Vezi $1.",
 "retrievedfrom" => "Adus de la \"$1\"",
 "newmessages" => "Aveţi $1.",
 "newmessageslink" => "mesaje noi",
+"editsection"=>"editează",
+"toc" => "Cuprins",
+"showtoc" => "arată",
+"hidetoc" => "ascunde",
 
 # Main script and global functions
 #
@@ -238,7 +253,7 @@ Administratorul care a blocat-o a oferit această explicaţie:
 
 # Login and logout pages
 #
-"logouttitle"	=> "Închieiere sesiune",
+"logouttitle"	=> "Sesiune închisă",
 "logouttext"	=> "Sesiunea Dvs. în Wikipedia a fost închisă.
 Puteţi continua să folosiţi Wikipedia anonim, sau puteţi să vă reautentificaţi ca acelaşi sau ca alt utilizator.\n",
 "welcomecreation" => "<h2>Bun venit, $1!</h2><p>A fost creat un cont pentru Dvs.
@@ -253,11 +268,12 @@ Nu uitaţi să vă personalizaţi preferinţele în Wikipedia.",
 "alreadyloggedin" => "<font color=red><b>Sunteţi deja autentificat ca $1!</b></font><br>\n",
 "areyounew"		=> "Dacă sunteţi nou în Wikipedia şi doriţi un cont de utilizator, introduceţi un nume de utilizator, apoi scrieţi-vă parola în căsuţa următoare, şi repetaţi-o în a treia pentru confirmare.
 Adresa de mail este opţională; dacă vă pierdeţi parola o puteţi cere la adresa de mail pe care o introduceţi.<br>\n",
+"notloggedin" => "Nu sunteţi autentificat",
 
 "login"			=> "Autentificare",
 "userlogin"		=> "Autentificare",
 "logout"		=> "Închide sesiunea",
-"userlogout"	=> "Încehide sesiunea",
+"userlogout"	=> "Închide sesiunea",
 "createaccount"	=> "Creează cont nou",
 "badretype"		=> "Parolele pe care le-aţi introdus diferă.",
 "userexists"	=> "Numele de utilizator pe care l-aţi introdus există deja. Încercaţi cu un alt nume.",
@@ -287,8 +303,8 @@ Vă rugăm să vă autentificaţi pe Wikipedia după ce o primiţi.",
 "minoredit"		=> "Aceasta este o editare minoră",
 "watchthis"		=> "Urmăreşte această pagină",
 "savearticle"	=> "Salvează pagina",
-"preview"		=> "Pre-vizualizare",
-"showpreview"	=> "Arată pre-vizualizarea",
+"preview"		=> "Previzualizare",
+"showpreview"	=> "Arată previzualizare",
 "blockedtitle"	=> "Utilizatorul este blocat",
 "blockedtext"	=> "Utilizatorul sau parola Dvs. au fost blocate de $1.
 Motivul oferit pentru blocare a fost:<br>''$2''<p>Puteţi contacta pe $1 sau pe unul dintre ceilalţi
@@ -303,7 +319,7 @@ Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele brow
 "noarticletext" => "(Nu există text în această pagină)",
 "updated"		=> "(Actualizat)",
 "note"			=> "<strong>Notă:</strong> ",
-"previewnote"	=> "Reţineţi că aceasta este o pre-vizualizare şi articolul încă nu este salvat!",
+"previewnote"	=> "Reţineţi că aceasta este doar o previzualizare - articolul încă nu este salvat! Trebuie să apăsaţi butonul \"Salvează pagina\" de sub caseta de editare pentru a salva. Nu uitaţi să introduceţi şi o descriere sumară a modificărilor!",
 "previewconflict" => "Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeţi să salvaţi acum.",
 "editing"		=> "Editare $1",
 "editconflict"	=> "Conflict de editare: $1",
@@ -368,13 +384,15 @@ Vă rugăm să încercaţi o altă căutare.",
 "prevn"			=> "anterioarele $1",
 "nextn"			=> "următoarele $1",
 "viewprevnext"	=> "Vezi ($1) ($2) ($3).",
-"showingresults" => "Mai jos apar <b>$1</b> rezultate începând cu nr. <b>$2</b>.",
+"showingresults" => "Mai jos apar <b>$1</b> rezultate începând cu numărul <b>$2</b>.",
+"showingresultsnum" => "Mai jos apar <b>$3</b> rezultate începând cu numărul <b>$2</b>.",
 "nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 "powersearch" => "Caută",
 "powersearchtext" => "
 Caută în secţiunile:<br>
 $1<br>
 $2 Redirecţionări&nbsp; Căutări după $3 $9",
+"blanknamespace" => "(Principală)",
 
 
 # Preferences page
@@ -390,7 +408,9 @@ Numărul intern de identificare este $2 (nu trebuie să-l reţineţi decât dac�
 "qbsettings"	=> "Setări pentru quickbar", 
 "changepassword" => "Schimbă parola",
 "skin"			=> "Aparenţă",
+
 "math"			=> "Apareţă formule",
+"dateformat" => "Formatul datelor",
 "math_failure"		=> "Nu s-a putut interpreta",
 "math_unknown_error"	=> "eroare necunoscută",
 "math_unknown_function"	=> "funcţie necunoscută ",
@@ -415,7 +435,10 @@ Numărul intern de identificare este $2 (nu trebuie să-l reţineţi decât dac�
 "timezonetext"	=> "Introduceţi numărul de ore diferenţă între ora locală şi ora serverului (UTC, timp universal - pentru România, cifra este 3).",
 "localtime"	=> "Ora locală",
 "timezoneoffset" => "Diferenţa",
+"servertime"	=> "Ora serverului (UTC)",
+"guesstimezone" => "Încearcă determinarea automată a diferenţei",
 "emailflag"		=> "Dezactivează serviciul de e-mail de la alţi utilizatori",
+"defaultns" => "Caută în aceste secţiuni implicit:",
 
 # Recent changes
 #
@@ -428,7 +451,7 @@ Numărul intern de identificare este $2 (nu trebuie să-l reţineţi decât dac�
 Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[drepturi de autor]]. Problemele legale rezultate ar putea prejudicia în mod serios proiectul în întregime, aşa că vă rugăm insistent să aveţi grijă să nu faceţi asta.",
 "rcloaderr"		=> "Încarc ultimele modificări",
 "rcnote"		=> "Dedesubt găsiţi ultimele <strong>$1</strong> modificări din ultimele <strong>$2</strong> zile.",
-"rcnotefrom"	=> "Dedesubt sunt modificările de la <b>$2</b> (vizibile numai până la <b>$1</b>).",
+"rcnotefrom"	=> "Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbaţi numărul maxim de linii alegând altă valoare mai jos).",
 "rclistfrom"	=> "Arată modificările începând de la $1",
 # "rclinks"		=> "Arată ultimele $1 modificări din ultimele $2 ore / ultimele $3 zile",
 "rclinks"		=> "Arată ultimele $1 modificări din ultimele $2 zile.",
@@ -673,6 +696,7 @@ Vezi $2 pentru o listă a elementelor şterse recent.",
 "rollbacklink"	=> "revenire",
 "cantrollback"	=> "Nu se poate reveni; ultimul contribuitor este autorul acestui articol.",
 "revertpage"	=> "Revenit la ultima editare de către $1",
+"historywarning" => "Atenţie! Pagina pe care o ştergeţi are istorie: ",
 
 # Undelete
 "undelete" => "Recuperează pagina ştearsă",
@@ -855,6 +879,7 @@ class LanguageRo extends LanguageUtf8 {
 
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsRo;
+
 		return $wgQuickbarSettingsRo;
 	}
 
@@ -867,6 +892,11 @@ class LanguageRo extends LanguageUtf8 {
 		global $wgMathNamesRo;
 		return $wgMathNamesRo;
 	}
+
+        function getDateFormats() {
+                global $wgDateFormatsRo;
+                return $wgDateFormatsRo;
+        }
 
 	function getUserToggles() {
 		global $wgUserTogglesRo;
