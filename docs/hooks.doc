@@ -293,6 +293,14 @@ $text: text of the mail
 $action: action name
 $article: article "acted on"
 
+'UnwatchArticle': before a watch is removed from an article
+$user: user watching
+$article: article object to be removed
+
+'UnwatchArticle': after a watch is removed from an article
+$user: user that was watching
+$article: article object removed
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    
@@ -302,3 +310,11 @@ $user: the user object that is about to be logged out
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
 		      
+'WatchArticle': before a watch is added to an article
+$user: user that will watch
+$article: article object to be watched
+
+'WatchArticleComplete': after a watch is added to an article
+$user: user that watched
+$article: article object watched
+

@@ -32,29 +32,6 @@ if (defined('MEDIAWIKI')) {
 		$wgSyslogFacility = LOG_USER;
 	}
 
-	# Hook for login
-	
-	function syslogUserLogin(&$user) {
-		syslog(LOG_INFO, "User '" . $user->getName() . "' logged in.");
-		return true;
-	}
-
-	# Hook for logout
-	
-	function syslogUserLogout(&$user) {
-		syslog(LOG_INFO, "User '" . $user->getName() . "' logged out.");
-		return true;
-	}
-
-	# Hook for IP & user blocks
-	
-	function syslogBlockIp(&$block, &$user) {
-		syslog(LOG_NOTICE, "User '" . $user->getName() . 
-			   "' blocked '" . (($block->mUser) ? $block->mUser : $block->mAddress) .
-			   "' for '" . $block->mReason . "' until '" . $block->mExpiry . "'");
-		return true;
-	}
-
 	# Hook for article protection
 	
 	function syslogArticleProtect(&$article, &$user, $protect, &$reason, &$moveonly) {
@@ -88,10 +65,47 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 
+	# Hook for IP & user blocks
+	
+	function syslogBlockIp(&$block, &$user) {
+		syslog(LOG_NOTICE, "User '" . $user->getName() . 
+			   "' blocked '" . (($block->mUser) ? $block->mUser : $block->mAddress) .
+			   "' for '" . $block->mReason . "' until '" . $block->mExpiry . "'");
+		return true;
+	}
+
 	function syslogEmailUser(&$to, &$from, &$subject, &$text) {
 		syslog(LOG_INFO, "Email sent from '$from' to '$to' with subject '$subject'");
 	}
+
+	# Hook for unwatch
 	
+	function syslogUnwatch(&$user, &$article) {
+		syslog(LOG_INFO, "User '" . $user->getName() . "' stopped watching '" .
+			   $article->mTitle->getPrefixedText() . "'");
+	}
+	
+	# Hook for login
+
+	function syslogUserLogin(&$user) {
+		syslog(LOG_INFO, "User '" . $user->getName() . "' logged in");
+		return true;
+	}
+
+	# Hook for logout
+	
+	function syslogUserLogout(&$user) {
+		syslog(LOG_INFO, "User '" . $user->getName() . "' logged out");
+		return true;
+	}
+
+	# Hook for watch
+	
+	function syslogWatch(&$user, &$article) {
+		syslog(LOG_INFO, "User '" . $user->getName() . "' started watching '" .
+			   $article->mTitle->getPrefixedText() . "'");
+	}
+
 	# Setup -- called once environment is configured
 	
 	function setupSyslog() {
@@ -108,6 +122,8 @@ if (defined('MEDIAWIKI')) {
 		$wgHooks['ArticleDeleteComplete'][] = 'syslogArticleDelete';
 		$wgHooks['ArticleSaveComplete'][] = 'syslogArticleSave';
 		$wgHooks['EmailUserComplete'][] = 'syslogEmailUser';
+		$wgHooks['WatchArticleComplete'][] = 'syslogWatch';
+		$wgHooks['UnwatchArticleComplete'][] = 'syslogUnwatch';
 		
 		return true;
 	}

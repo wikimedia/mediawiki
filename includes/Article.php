@@ -1210,9 +1210,11 @@ class Article {
 
 
 	/**
-	 * Add or remove this page to my watchlist based on value of $add
+	 * Add this page to $wgUser's watchlist
 	 */
-	function watch( $add = true ) {
+	
+	function watch() {
+		
 		global $wgUser, $wgOut;
 
 		if ( 0 == $wgUser->getID() ) {
@@ -1223,33 +1225,58 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		if( $add )
+
+		if (wfRunHooks('WatchArticle', $wgUser, $this)) {
+			
 			$wgUser->addWatch( $this->mTitle );
-		else
-			$wgUser->removeWatch( $this->mTitle );
+			$wgUser->saveSettings();
 
-		$wgOut->setPagetitle( wfMsg( $add ? 'addedwatch' : 'removedwatch' ) );
-		$wgOut->setRobotpolicy( 'noindex,follow' );
-
-		$sk = $wgUser->getSkin() ;
-		$link = $this->mTitle->getPrefixedText();
-
-		if($add)
+			wfRunHooks('WatchArticleComplete', $wgUser, $this);
+			
+			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
+			$wgOut->setRobotpolicy( 'noindex,follow' );
+			
+			$link = $this->mTitle->getPrefixedText();
 			$text = wfMsg( 'addedwatchtext', $link );
-		else
-			$text = wfMsg( 'removedwatchtext', $link );
-		$wgOut->addWikiText( $text );
-
-		$wgUser->saveSettings();
+			$wgOut->addWikiText( $text );
+		}
 		
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
 	/**
-	 * Stop watching a page, it act just like a call to watch(false)
+	 * Stop watching a page
 	 */
+	
 	function unwatch() {
-		$this->watch( false );
+
+		global $wgUser, $wgOut;
+
+		if ( 0 == $wgUser->getID() ) {
+			$wgOut->errorpage( 'watchnologin', 'watchnologintext' );
+			return;
+		}
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+
+		if (wfRunHooks('UnwatchArticle', $wgUser, $this)) {
+			
+			$wgUser->removeWatch( $this->mTitle );
+			$wgUser->saveSettings();
+			
+			wfRunHooks('UnwatchArticleComplete', $wgUser, $this);
+			
+			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
+			$wgOut->setRobotpolicy( 'noindex,follow' );
+			
+			$link = $this->mTitle->getPrefixedText();
+			$text = wfMsg( 'removedwatchtext', $link );
+			$wgOut->addWikiText( $text );
+		}
+		
+		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
 	/**
