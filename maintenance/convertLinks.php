@@ -47,7 +47,7 @@ if ( !wfNumRows( $res ) ) {
 
 	while ( $row = wfFetchObject( $res ) ) {
 		if ( array_key_exists( $row->l_from, $ids ) ) {
-			$links[$ids[$row->l_from]] = $row->l_to;
+			$links[$row->l_from][$row->l_to] = 1;
 		} else {
 			$numBad ++;
 		}
@@ -60,13 +60,15 @@ if ( !wfNumRows( $res ) ) {
 	$sql = "INSERT INTO links_temp(l_from,l_to) VALUES ";
 
 	$first = true;
-	foreach( $links as $from => $to ) {
-		if ( $first ) {
-			$first = false;
-		} else {
-			$sql .= ",";
+	foreach( $links as $from => $toArray ) {
+		foreach ( $toArray as $to => $one ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ",";
+			}
+			$sql .= "($from,$to)";
 		}
-		$sql .= "($from,$to)";
 	}
 
 	wfQuery( $sql, DB_WRITE );
