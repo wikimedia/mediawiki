@@ -52,7 +52,7 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgDateFormatsUk = array(
 	"Немає значення",
 	"Січень 15, 2001",
-	"15 січень 2001",
+	"15 січня 2001",
 	"2001 січень 15"
 );
 
@@ -103,7 +103,18 @@ require_once( "LanguageUtf8.php" );
 'october' => "жовтень",
 'november' => "листопад",
 'december' => "грудень",
-'jan' => "січ",
+'january-gen' => 'січня',
+'february-gen' => 'лютого',
+'march-gen' => 'березня',
+'april-gen' => 'квітня',
+'may-gen' => 'травня',
+'june-gen' => 'червня',
+'july-gen' => 'липня',
+'august-gen' => 'серпня',
+'september-gen' => 'вересня',
+'october-gen' => 'жовтня',
+'november-gen' => 'листопада',
+'december-gen' => 'грудня','jan' => "січ",
 'feb' => "лют",
 'mar' => "бер",
 'apr' => "квіт",
@@ -970,6 +981,11 @@ class LanguageUk extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsUk;
 		return $wgDateFormatsUk;
+	}
+
+	function getMonthNameGen( $key ) {
+		global $wgMonthNamesGenEn;
+		return wfMsg( $wgMonthNamesGenEn[$key-1] );
 	}
 
 	function getMessage( $key )
