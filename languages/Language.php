@@ -12,56 +12,6 @@
 #
 
 #--------------------------------------------------------------------------
-# Constants
-#--------------------------------------------------------------------------
-
-# Magic words
-define("MAG_REDIRECT", 0);
-define("MAG_NOTOC", 1);
-define("MAG_START", 2);
-define("MAG_CURRENTMONTH", 3);
-define("MAG_CURRENTMONTHNAME", 4);
-define("MAG_CURRENTDAY", 5);
-define("MAG_CURRENTDAYNAME", 6);
-define("MAG_CURRENTYEAR", 7);
-define("MAG_CURRENTTIME", 8);
-define("MAG_NUMBEROFARTICLES", 9);
-define("MAG_CURRENTMONTHNAMEGEN", 10);
-define("MAG_MSG", 11);
-define("MAG_SUBST", 12);
-define("MAG_MSGNW", 13);
-define("MAG_NOEDITSECTION", 14);
-define("MAG_END", 15);
-define("MAG_IMG_THUMBNAIL",  16);
-define("MAG_IMG_RIGHT",      17);
-define("MAG_IMG_LEFT",       18);
-define("MAG_IMG_NONE",       19);
-define("MAG_IMG_WIDTH",      20);
-define("MAG_IMG_CENTER",      21);
-define("MAG_INT", 22);
-define("MAG_FORCETOC", 23);
-define("MAG_SITENAME", 24);
-define("MAG_NS", 25);
-define("MAG_LOCALURL", 26);
-define("MAG_LOCALURLE", 27);
-define("MAG_SERVER", 28);
-
-$wgVariableIDs = array(
-	MAG_CURRENTMONTH,
-	MAG_CURRENTMONTHNAME,
-	MAG_CURRENTDAY,
-	MAG_CURRENTDAYNAME,
-	MAG_CURRENTYEAR,
-	MAG_CURRENTTIME,
-	MAG_NUMBEROFARTICLES,
-	MAG_CURRENTMONTHNAMEGEN,
-    MAG_SITENAME,
-	MAG_SERVER
-);
-
-
-
-#--------------------------------------------------------------------------
 # Language-specific text
 #--------------------------------------------------------------------------
 
@@ -768,7 +718,7 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
-[[{{ns4}}:Administrators|administrators]] to discuss the block.
+[[{{ns:4}}:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
@@ -1011,7 +961,7 @@ to first check if such a file exists.
 <p>To view or search previously uploaded images,
 go to the <a href=\"{{localurle:Special:Imagelist}}\">list of uploaded images</a>.
 Uploads and deletions are logged on the " .
-"<a href=\"{{localurle:Wikipedia:Upload_log}}\">upload log</a>.
+"<a href=\"{{localurle:MetaNamespace:Upload_log}}\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -1026,8 +976,8 @@ This may take some time if you have a slow internet connection.
 for drawings and other iconic images, and OGG for sounds.
 Please name your files descriptively to avoid confusion.
 To include the image in an article, use a link in the form
-<b>[[image:file.jpg]]</b> or <b>[[image:file.png|alt text]]</b>
-or <b>[[media:file.ogg]]</b> for sounds.
+<b>[[{{ns:6}}:file.jpg]]</b> or <b>[[{{ns:6}}:file.png|alt text]]</b>
+or <b>[[{{ns:-2}}:file.ogg]]</b> for sounds.
 <p>Please note that as with wiki pages, others may edit or
 delete your uploads if they think it serves the encyclopedia, and
 you may be blocked from uploading if you abuse the system.",

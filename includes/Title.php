@@ -58,14 +58,14 @@ class Title {
 		static $trans;
 		$fname = "Title::newFromText";
 		wfProfileIn( $fname );
-		
+
 		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
 		if( !isset( $trans ) ) {
 			global $wgInputEncoding;
 			$trans = array_flip( get_html_translation_table( HTML_ENTITIES ) );
 			if( strcasecmp( "utf-8", $wgInputEncoding ) == 0 ) {
-			    $trans = array_map( "utf8_encode", $trans );
+				$trans = array_map( "utf8_encode", $trans );
 			}
 		}
 
@@ -73,7 +73,7 @@ class Title {
 			wfDebugDieBacktrace( "Called with object instead of string." );
 		}
 		$text = strtr( $text, $trans );
-		
+
 		$text = wfMungeToUtf8( $text );
 		
 		
@@ -82,8 +82,8 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = str_replace( " ", "_", $text );
-        $t->mDefaultNamespace = $defaultNamespace;
-        
+		$t->mDefaultNamespace = $defaultNamespace;
+
 		wfProfileOut( $fname );
 		if ( !is_object( $t ) ) {
 			var_dump( debug_backtrace() );
