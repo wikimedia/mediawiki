@@ -26,7 +26,7 @@ class CategoriesPage extends QueryPage {
 	}
 
 	function getPageHeader() {
-		return '<p>'.wfMsg('categoriespagetext')."</p><br>\n";
+		return '<p>'.wfMsg('categoriespagetext')."</p><br />\n";
 	}
 	function getSQL() {
 		$NScat = NS_CATEGORY;
