@@ -1029,7 +1029,7 @@ class Parser
 			$preCloseMatch = preg_match("/<\\/pre/i", $t );
 			$preOpenMatch = preg_match("/<pre/i", $t );
 			if (!$this->mInPre) {
-				$this->mInPre = ($preOpenMatch)? true : false;
+				$this->mInPre = !empty($preOpenMatch);
 			}
 			if ( !$this->mInPre ) {
 				$opl = strlen( $lastPref );
@@ -1037,46 +1037,51 @@ class Parser
 				$pref = substr( $t, 0, $npl );
 				$pref2 = str_replace( ";", ":", $pref );
 				$t = substr( $t, $npl );
-				// list generation
-				if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
-					$text .= $this->nextItem( substr( $pref, -1 ) );
-					if ( $pstack ) { $pstack = false; }
+			} else {
+				$opl = strlen( $lastPref );
+				$npl = 0;
+				$pref = $pref2 = '';
+			}
 
-					if ( ";" == substr( $pref, -1 ) ) {
+			// list generation
+			if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
+				$text .= $this->nextItem( substr( $pref, -1 ) );
+				if ( $pstack ) { $pstack = false; }
+
+				if ( ";" == substr( $pref, -1 ) ) {
+					$cpos = strpos( $t, ":" );
+					if ( false !== $cpos ) {
+						$term = substr( $t, 0, $cpos );
+						$text .= $term . $this->nextItem( ":" );
+						$t = substr( $t, $cpos + 1 );
+					}
+				}
+			} else if (0 != $npl || 0 != $opl) {
+				$cpl = $this->getCommon( $pref, $lastPref );
+				if ( $pstack ) { $pstack = false; }
+
+				while ( $cpl < $opl ) {
+					$text .= $this->closeList( $lastPref{$opl-1} );
+					--$opl;
+				}
+				if ( $npl <= $cpl && $cpl > 0 ) {
+					$text .= $this->nextItem( $pref{$cpl-1} );
+				}
+				while ( $npl > $cpl ) {
+					$char = substr( $pref, $cpl, 1 );
+					$text .= $this->openList( $char );
+
+					if ( ";" == $char ) {
 						$cpos = strpos( $t, ":" );
-						if ( false !== $cpos ) {
+						if ( ! ( false === $cpos ) ) {
 							$term = substr( $t, 0, $cpos );
 							$text .= $term . $this->nextItem( ":" );
 							$t = substr( $t, $cpos + 1 );
 						}
 					}
-				} else if (0 != $npl || 0 != $opl) {
-					$cpl = $this->getCommon( $pref, $lastPref );
-					if ( $pstack ) { $pstack = false; }
-
-					while ( $cpl < $opl ) {
-						$text .= $this->closeList( $lastPref{$opl-1} );
-						--$opl;
-					}
-					if ( $npl <= $cpl && $cpl > 0 ) {
-						$text .= $this->nextItem( $pref{$cpl-1} );
-					}
-					while ( $npl > $cpl ) {
-						$char = substr( $pref, $cpl, 1 );
-						$text .= $this->openList( $char );
-
-						if ( ";" == $char ) {
-							$cpos = strpos( $t, ":" );
-							if ( ! ( false === $cpos ) ) {
-								$term = substr( $t, 0, $cpos );
-								$text .= $term . $this->nextItem( ":" );
-								$t = substr( $t, $cpos + 1 );
-							}
-						}
-						++$cpl;
-					}
-					$lastPref = $pref2;
+					++$cpl;
 				}
+				$lastPref = $pref2;
 			}
 			if ( 0 == $npl ) { # No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
