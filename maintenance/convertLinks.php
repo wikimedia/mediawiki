@@ -17,7 +17,7 @@ $linksConvInsertInterval = 1000; #number of rows between INSERTs and, optionally
 $initialRowOffset = 0;
 $finalRowOffset = 0; # not used yet; highest row number from links table to process
 $createTemporaryTable = 1; # create a temporary table to hold new links table during conv process
-$overwriteLinksTable = 0; # overwrite the old links table with the new one
+$overwriteLinksTable = 1; # overwrite the old links table with the new one
 
 $res = wfQuery( "SELECT COUNT(*) AS count FROM links", DB_WRITE );
 $row = wfFetchObject($res);
