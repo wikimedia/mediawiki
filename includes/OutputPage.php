@@ -13,8 +13,6 @@ if( defined( 'MEDIAWIKI' ) ) {
 
 if($wgUseTeX) require_once( 'Math.php' );
 
-define( 'RLH_FOR_UPDATE', 1 );
-
 /**
  * @todo document
  * @package MediaWiki
@@ -236,9 +234,6 @@ class OutputPage {
 		global $wgParser, $wgTitle, $wgUseTidy;
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
-		if ($wgUseTidy) {
-			$text = Parser::tidy($text);
-		}
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $parserOutput->getText() );
@@ -253,13 +248,7 @@ class OutputPage {
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, true );
 
-		# Replace link holders
 		$text = $parserOutput->getText();
-		$this->replaceLinkHolders( $text );
-		if ($wgUseTidy) {
-			$text = Parser::tidy($text);
-		}
-		$parserOutput->setText( $text );
 		
 		if ( $cacheArticle ) {
 			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
@@ -394,9 +383,7 @@ class OutputPage {
 
 
 		$this->sendCacheControl();
-		# Perform link colouring
 		$this->transformBuffer();
-		$this->replaceLinkHolders( $this->mSubtitle );
 		
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
@@ -805,164 +792,10 @@ class OutputPage {
 	 * Run any necessary pre-output transformations on the buffer text
 	 */
 	function transformBuffer( $options = 0 ) {
-		$this->replaceLinkHolders( $this->mBodytext, $options );
 	}
 
-	/**
-	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
-	 * Returns an array of links found, indexed by PDBK:
-	 *  0 - broken
-	 *  1 - normal link
-	 *  2 - stub
-	 * $options is a bit field, RLH_FOR_UPDATE to select for update
-	 */
-	function replaceLinkHolders( &$text, $options = 0 ) {
-		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
-		
-		if ( $wgUseOldExistenceCheck ) {
-			return array();
-		}
-
-		$fname = 'OutputPage::replaceLinkHolders';
-		wfProfileIn( $fname );
-
-		$pdbks = array();
-		$colours = array();
-		
-		#if ( !empty( $tmpLinks[0] ) ) { #TODO
-		if ( !empty( $wgLinkHolders['namespaces'] ) ) {
-			wfProfileIn( $fname.'-check' );
-			$dbr =& wfGetDB( DB_SLAVE );
-			$cur = $dbr->tableName( 'cur' );
-			$sk = $wgUser->getSkin();
-			$threshold = $wgUser->getOption('stubthreshold');
-			
-			# Sort by namespace
-			asort( $wgLinkHolders['namespaces'] );
-	
-			# Generate query
-			$query = false;
-			foreach ( $wgLinkHolders['namespaces'] as $key => $val ) {
-				# Make title object
-				$title = $wgLinkHolders['titles'][$key];
-
-				# Skip invalid entries.
-				# Result will be ugly, but prevents crash.
-				if ( is_null( $title ) ) {
-					continue;
-				}
-				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
-
-				# Check if it's in the link cache already
-				if ( $wgLinkCache->getGoodLinkID( $pdbk ) ) {
-					$colours[$pdbk] = 1;
-				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
-					$colours[$pdbk] = 0;
-				} else {
-					# Not in the link cache, add it to the query
-					if ( !isset( $current ) ) {
-						$current = $val;
-						$query =  "SELECT cur_id, cur_namespace, cur_title";
-						if ( $threshold > 0 ) {
-							$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
-						} 
-						$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
-					} elseif ( $current != $val ) {
-						$current = $val;
-						$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
-					} else {
-						$query .= ', ';
-					}
-				
-					$query .= $dbr->addQuotes( $wgLinkHolders['dbkeys'][$key] );
-				}
-			}
-			if ( $query ) {
-				$query .= '))';
-				if ( $options & RLH_FOR_UPDATE ) {
-					$query .= ' FOR UPDATE';
-				}
-			
-				$res = $dbr->query( $query, $fname );
-				
-				# Fetch data and form into an associative array
-				# non-existent = broken
-				# 1 = known
-				# 2 = stub
-				while ( $s = $dbr->fetchObject($res) ) {
-					$title = Title::makeTitle( $s->cur_namespace, $s->cur_title );
-					$pdbk = $title->getPrefixedDBkey();
-					$wgLinkCache->addGoodLink( $s->cur_id, $pdbk );
-					
-					if ( $threshold >  0 ) {
-						$size = $s->cur_len;
-						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
-							$colours[$pdbk] = 1;
-						} else {
-							$colours[$pdbk] = 2;
-						}
-					} else {
-						$colours[$pdbk] = 1;
-					}
-				}
-			}
-			wfProfileOut( $fname.'-check' );
-			
-			# Construct search and replace arrays
-			wfProfileIn( $fname.'-construct' );
-			global $outputReplace;
-			$outputReplace = array();
-			foreach ( $wgLinkHolders['namespaces'] as $key => $ns ) {
-				$pdbk = $pdbks[$key];
-				$searchkey = '<!--LINK '.$key.'-->';
-				$title = $wgLinkHolders['titles'][$key];
-				if ( empty( $colours[$pdbk] ) ) {
-					$wgLinkCache->addBadLink( $pdbk );
-					$colours[$pdbk] = 0;
-					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
-				} elseif ( $colours[$pdbk] == 1 ) {
-					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
-				} elseif ( $colours[$pdbk] == 2 ) {
-					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
-				}
-			}
-			wfProfileOut( $fname.'-construct' );
-
-			# Do the thing
-			wfProfileIn( $fname.'-replace' );
-			
-			$text = preg_replace_callback(
-				'/(<!--LINK .*?-->)/',
-				"outputReplaceMatches",
-				$text);
-			wfProfileOut( $fname.'-replace' );
-
-			wfProfileIn( $fname.'-interwiki' );
-			global $wgInterwikiLinkHolders;
-			$outputReplace = $wgInterwikiLinkHolders;
-			$text = preg_replace_callback(
-				'/<!--IWLINK (.*?)-->/',
-				"outputReplaceMatches",
-				$text);
-			wfProfileOut( $fname.'-interwiki' );
-		}
-
-		wfProfileOut( $fname );
-		return $colours;
-	}
-}
-
-function &outputReplaceMatches($matches) {
-	global $outputReplace;
-	return $outputReplace[$matches[1]];
 }
 
 }
+
 ?>
