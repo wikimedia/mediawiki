@@ -330,6 +330,12 @@ END;
 
 		}
 		$a['onload'] = $wgOut->getOnloadHandler();
+		if( $wgUser->getOption( 'editsectiononrightclick' ) ) {
+			if( $a['onload'] != '' ) {
+				$a['onload'] .= ';';
+			}
+			$a['onload'] .= 'setupRightClickEdit()';
+		}
 		return $a;
 	}
 
@@ -595,7 +601,6 @@ END;
 		global $wgOut, $wgTitle, $wgUser;
 
 		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
-		if($wgUser->getOption( 'editsectiononrightclick' ) && $wgTitle->userCanEdit()) { $s=$this->editSectionScript($wgTitle, 0,$s);}
 		return $s;
 	}
 

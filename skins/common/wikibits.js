@@ -414,3 +414,42 @@ function akeytt() {
         }
     }
 }
+
+function setupRightClickEdit() {
+	if( document.getElementsByTagName ) {
+		var divs = document.getElementsByTagName( 'div' );
+		for( var i = 0; i < divs.length; i++ ) {
+			var el = divs[i];
+			if( el.className == 'editsection' ) {
+				addRightClickEditHandler( el );
+			}
+		}
+	}
+}
+
+function addRightClickEditHandler( el ) {
+	for( var i = 0; i < el.childNodes.length; i++ ) {
+		var link = el.childNodes[i];
+		if( link.nodeType == 1 && link.nodeName.toLowerCase() == 'a' ) {
+			var editHref = link.getAttribute( 'href' );
+			
+			// find the following a
+			var next = el.nextSibling;
+			while( next.nodeType != 1 )
+				next = next.nextSibling;
+			
+			// find the following header
+			next = next.nextSibling;
+			while( next.nodeType != 1 )
+				next = next.nextSibling;
+			
+			if( next && next.nodeType == 1 &&
+				next.nodeName.match( /^[Hh][1-6]$/ ) ) {
+				next.oncontextmenu = function() {
+					document.location = editHref;
+					return false;
+				}
+			}
+		}
+	}
+}

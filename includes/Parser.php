@@ -2195,10 +2195,8 @@ class Parser
 		$forceTocHere = false;
 		if( !$this->mTitle->userCanEdit() ) {
 			$showEditLink = 0;
-			$rightClickHack = 0;
 		} else {
 			$showEditLink = $this->mOptions->getEditSection();
-			$rightClickHack = $this->mOptions->getEditSectionOnRightClick();
 		}
 
 		# Inhibit editsection links if requested in the page
@@ -2387,14 +2385,6 @@ class Parser
 					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
 				else
 					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1);
-			}
-
-			# Add the edit section span
-			if( $rightClickHack ) {
-				if( $istemplate )
-					$headline = $sk->editSectionScriptForOther($templatetitle, $templatesection, $headline);
-				else
-					$headline = $sk->editSectionScript($this->mTitle, $sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
@@ -2988,7 +2978,6 @@ class ParserOptions
 	var $mSkin;                      # Reference to the preferred skin
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
-	var $mEditSectionOnRightClick;   # Generate JavaScript to edit section on right click
 	var $mNumberHeadings;            # Automatically number headings
 
 	function getUseTeX()                        { return $this->mUseTeX; }
@@ -2998,7 +2987,6 @@ class ParserOptions
 	function getSkin()                          { return $this->mSkin; }
 	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
-	function getEditSectionOnRightClick()       { return $this->mEditSectionOnRightClick; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
@@ -3007,7 +2995,6 @@ class ParserOptions
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
 	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
-	function setEditSectionOnRightClick( $x )   { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 
 	function setSkin( &$x ) { $this->mSkin =& $x; }
@@ -3043,7 +3030,6 @@ class ParserOptions
 		wfProfileOut( $fname.'-skin' );
 		$this->mDateFormat = $user->getOption( 'date' );
 		$this->mEditSection = $user->getOption( 'editsection' );
-		$this->mEditSectionOnRightClick = $user->getOption( 'editsectiononrightclick' );
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		wfProfileOut( $fname );
 	}
