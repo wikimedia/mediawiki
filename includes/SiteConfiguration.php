@@ -11,6 +11,15 @@
  *
  * @package MediaWiki
  */
+
+/**
+ * The include paths change after this file is included from commandLine.inc, 
+ * meaning that require_once() fails to detect that it is including the same
+ * file again. We use DIY C-style protection as a workaround.
+ */
+if (!defined('SITE_CONFIGURATION')) {
+define('SITE_CONFIGURATION', 1);
+
 class SiteConfiguration {
 	var $suffixes, $wikis, $settings;
 	var $localDatabases;
@@ -84,6 +93,6 @@ class SiteConfiguration {
 		return array( $site, $lang );
 	}
 }
-
+}
 	
 ?>
