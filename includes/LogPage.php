@@ -36,7 +36,7 @@ class LogPage {
 	var $updateRecentChanges = true;
 
 	function LogPage( $type ) {
-		# Type is one of 'block', 'protect', 'rights', 'delete', 'upload'
+		# Type is one of 'block', 'protect', 'rights', 'delete', 'upload', 'move'
 		$this->type = $type;
 	}
 
@@ -79,7 +79,7 @@ class LogPage {
 	 * @static
 	 */
 	function validTypes() {
-		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload' );
+		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
 		return $types;
 	}
 	
@@ -93,7 +93,8 @@ class LogPage {
 			'protect' => array( 'protect', 'unprotect' ),
 			'rights' => array( 'rights' ),
 			'delete' => array( 'delete', 'restore' ),
-			'upload' => array( 'upload' )
+			'upload' => array( 'upload' ),
+			'move' => array( 'move' )
 		);
 		return $actions[$type];
 	}
@@ -116,6 +117,7 @@ class LogPage {
 			'rights'  => 'bureaucratlog',
 			'delete'  => 'dellogpage',
 			'upload'  => 'uploadlogpage',
+			'move'    => 'movelogpage'
 		);
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
@@ -130,7 +132,8 @@ class LogPage {
 			'protect' => 'protectlogtext',
 			'rights'  => 'rightslogtext',
 			'delete'  => 'dellogpagetext',
-			'upload'  => 'uploadlogpagetext'
+			'upload'  => 'uploadlogpagetext',
+			'move'    => 'movelogpagetext'
 		);
 		return wfMsg( $headerText[$type] );
 	}
@@ -149,6 +152,8 @@ class LogPage {
 			'delete/restore' => 'undeletedarticle',
 			'upload/upload' => 'uploadedimage',
 			'upload/revert' => 'uploadedimage',
+			'move/move' => '1movedto2',
+			'move/move_redir' => '1movedto2_redir'
 		);
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
@@ -169,8 +174,9 @@ class LogPage {
 	/**
 	 * Add a log entry
 	 * @param string $action one of 'block', 'protect', 'rights', 'delete', 'upload'
-	 * @param &$target
+	 * @param object &$target A title object.
 	 * @param string $comment Description associated
+	 * @param array $params Parameters passed later to wfMsg.* functions
 	 */
 	function addEntry( $action, &$target, $comment, $params = array() ) {
 		global $wgLang, $wgUser;

@@ -909,12 +909,14 @@ from server time (UTC).',
 'savegroup' => 'Save Group',
 
 # user groups editing
+#
 'userlevels-editusergroup' => 'Edit user groups',
 'saveusergroups' => 'Save User Groups',
 'userlevels-groupsmember' => 'Member of:',
 'userlevels-groupsavailable' => 'Available groups:',
 'userlevels-groupshelp' => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can unselect a group by using CTRL + Left Click',
+
 # Recent changes
 #
 'changes' => 'changes',
@@ -1542,6 +1544,8 @@ title. Please merge them manually.',
 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
 '1movedto2'		=> "$1 moved to $2",
 '1movedto2_redir' => '$1 moved to $2 over redirect',
+'movelogpage' => 'Move log',
+'movelogpagetext' => 'Below is a list of page moved.',
 
 # Export
 
