@@ -200,8 +200,7 @@ function logProfilingData()
 {
 	global $wgRequestTime, $wgDebugLogFile;
 	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
-	list( $usec, $sec ) = explode( " ", microtime() );
-	$now = (float)$sec + (float)$usec;
+	$now = wfTime();
 
 	list( $usec, $sec ) = explode( " ", $wgRequestTime );
 	$start = (float)$sec + (float)$usec;
