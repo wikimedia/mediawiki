@@ -48,6 +48,7 @@ div.thumb {
     margin-bottom: 0.5em;
     border-style: solid; border-color: White;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border:1px solid #cccccc;
