@@ -48,7 +48,7 @@
 /* private */ $wgDateFormatsEn = array(
 	"No preference",
 	"January 15, 2001",
-	"15 January, 2001",
+	"15 January 2001",
 	"2001 January 15"
 );
 
