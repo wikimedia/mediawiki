@@ -121,11 +121,12 @@ function wfSpecialUserlogin()
 		return;
 	}
 	$u = User::newFromName( $wpName );
-
+	
 	if ( 0 != $u->idForName() ) {
 		mainLoginForm( wfMsg( "userexists" ) );
 		return;
 	}
+	$u->loadDefaultUserOptions();
 	$u->addToDatabase();
 	$u->setPassword( $wpPassword );
 	$u->setEmail( $wpEmail );

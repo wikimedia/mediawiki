@@ -59,6 +59,11 @@ if($wgMetaNamespace === FALSE)
 	7	=> "Image_talk",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk"
+	
+	# Temporarily commented out:
+	/*,
+	10	=> "Template",
+	11	=> "Template_talk"*/
 );
 
 /* private */ $wgDefaultUserOptionsEn = array(
@@ -70,6 +75,10 @@ if($wgMetaNamespace === FALSE)
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
 	"showtoolbar" =>1,
 	"date" => 0
+);
+
+/* private */ $wgDefaultAnonOptionsEn = array(
+	"editsection" => 0
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -1311,11 +1320,15 @@ this function sparingly.",
 Type the name of the user in the box and press the button to make the user an administrator",
 "makesysopname"		=> "Name of the user:",
 "makesysopsubmit"	=> "Make this user into a sysop",
-"makesysopok"		=> "<b>User '$1' is now a sysop</b>",
-"makesysopfail"		=> "<b>User '$1' could not be made into a sysop. (Did you enter the name correctly?)</b>",
+"makesysopok"		=> "<b>User \"$1\" is now a sysop</b>",
+"makesysopfail"		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
 "setbureaucratflag" => "Set bureaucrat flag",
 "bureaucratlog"		=> "Bureaucrat_log",
-"bureaucratlogentry"	=> " set $1: $2",
+"bureaucratlogentry"	=> "Rights for user \"$1\" set \"$2\"",
+"rights"			=> "Rights:",
+"set_user_rights"	=> "Set user rights",
+"user_rights_set"	=> "<b>User rights for \"$1\" updated</b>",
+"set_rights_fail"	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
 
 # Move page
 #
@@ -1412,8 +1425,13 @@ class Language {
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsEn ;
 		return $wgDefaultUserOptionsEn ;
-		}
+	}
 
+	function getDefaultAnonOptions() {
+		global $wgDefaultAnonOptionsEn;
+		return $wgDefaultAnonOptionsEn + $this->getDefaultUserOptions();
+	}
+	
 	function getBookstoreList () {
 		global $wgBookstoreListEn ;
 		return $wgBookstoreListEn ;
