@@ -295,10 +295,13 @@ class Article {
 			return;
 		}
 
-		if ( !isset( $oldid ) ) {
-			if( $this->checkTouched() ) {
-				$wgOut->checkLastModified( $this->mTouched );
-				$this->tryFileCache();
+		if ( !isset( $oldid ) and $this->checkTouched() ) {
+			if( $wgOut->checkLastModified( $this->mTouched ) ){
+				return;
+			} else if ( $this->tryFileCache() ) {
+				# tell wgOut that output is taken care of
+				$wgOut->disable();
+				return;
 			}
 		}
 
@@ -320,6 +323,7 @@ class Article {
 			$s = wfMsg( "redirectedfrom", $redir );
 			$wgOut->setSubtitle( $s );
 		}
+
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgOut->addWikiText( $text );
 
@@ -598,7 +602,10 @@ class Article {
 
 		# If page hasn't changed, client can cache this
 		
-		$wgOut->checkLastModified( $this->getTimestamp() );
+		if( $wgOut->checkLastModified( $this->getTimestamp() ) ){
+			# Client cache fresh and headers sent, nothing more to do.
+			return;
+		}
 		$fname = "Article::history";
 		wfProfileIn( $fname );
 
@@ -1191,7 +1198,10 @@ class Article {
 	}
 
 	/* Caching functions */
-	
+
+	# checkLastModified returns true iff it has taken care of all
+	# output to the client that is necessary for this request.
+	# (that is, it has sent a cached version of the page)
 	function tryFileCache() {
 		static $called = false;
 		if( $called ) {
@@ -1211,8 +1221,7 @@ class Article {
 				global $wgOut;
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
-				$wgOut->reportTime(); # For profiling
-				wfAbruptExit();
+				return true;
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
 				if($cache->useGzip() && wfClientAcceptsGzip()) {

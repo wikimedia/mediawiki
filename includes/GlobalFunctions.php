@@ -153,6 +153,36 @@ function wfDebug( $text, $logonly = false )
 	}
 }
 
+function logProfilingData()
+{
+	global $wgRequestTime, $wgDebugLogFile;
+	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
+	list( $usec, $sec ) = explode( " ", microtime() );
+	$now = (float)$sec + (float)$usec;
+
+	list( $usec, $sec ) = explode( " ", $wgRequestTime );
+	$start = (float)$sec + (float)$usec;
+	$elapsed = $now - $start;
+	if ( "" != $wgDebugLogFile ) {
+		$prof = wfGetProfilingOutput( $start, $elapsed );
+		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+			$forward = " forwarded for " . $_SERVER['HTTP_X_FORWARDED_FOR'];
+		if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
+			$forward .= " client IP " . $_SERVER['HTTP_CLIENT_IP'];
+		if( !empty( $_SERVER['HTTP_FROM'] ) )
+			$forward .= " from " . $_SERVER['HTTP_FROM'];
+		if( $forward )
+			$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
+		if($wgUser->getId() == 0)
+			$forward .= " anon";
+		$log = sprintf( "%s\t%04.3f\t%s\n",
+		  gmdate( "YmdHis" ), $elapsed,
+		  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
+		error_log( "TJOHEJ". $log . $prof, 3, $wgDebugLogFile );
+	}
+}
+
+
 function wfReadOnly()
 {
 	global $wgReadOnlyFile;
@@ -385,9 +415,11 @@ function wfAbruptExit(){
 	$wgAbruptExitCalled = true;
 
 	$bt = debug_backtrace();
-	$file = $bt[0]["file"];
-	$line = $bt[0]["line"];
-	wfDebug("WARNING: Abrupt exit in $file at line $line\n");
+	for($i = 0; $i < count($bt) ; $i++){
+		$file = $bt[$i]["file"];
+		$line = $bt[$i]["line"];
+		wfDebug("WARNING: Abrupt exit in $file at line $line\n");
+	}
 	exit();
 }
 

@@ -142,7 +142,10 @@ class LogPage {
 	function showAsDisabledPage( $rawhtml = true )
 	{
 		global $wgLang, $wgOut;
-		$wgOut->checkLastModified( $this->getTimestamp() );
+		if( $wgOut->checkLastModified( $this->getTimestamp() ) ){
+			# Client cache fresh and headers sent, nothing more to do.
+			return;
+		}
 		$func = ( $rawhtml ? "addHTML" : "addWikiText" );
 		$wgOut->$func(
 			"<p>" . wfMsg( "perfdisabled" ) . "</p>\n\n" .
