@@ -9,10 +9,6 @@ Compatibility:
 * IE/Mac 5.2: none of the :before content works; doesn't get the charset right and displays garbage for non-ASCII.
 * IE/Win 6.0: No background color, borders, font size, font weight, or :before content.
 
-Basic bugs:
-* The Atom <link> puts its actual URL in an attribute. Not sure how to
-  extract that, if it's possible.
-
 */
 
 /* RSS: */ rss, channel, title, link, description, language, generator, lastBuildDate, item, pubDate, author, comments, creator,
@@ -29,11 +25,11 @@ rss, feed {
 }
 
 rss:before {
-	content: "This RSS feed is meant to be read by a syndicated news reader, and isn't ideal for a web browser.";
+	content: "This RSS feed is meant to be read in a syndicated news reader, and isn't ideal for a web browser.";
 }
 
 feed:before {
-	content: "This Atom feed is meant to be read by a syndicated news reader, and isn't ideal for a web browser.";
+	content: "This Atom feed is meant to be read in a syndicated news reader, and isn't ideal for a web browser.";
 }
 rss:before, feed:before {
 	color: red;
@@ -91,3 +87,6 @@ summary:before, comment:before, creator:before {
 	font-weight: bold;
 }
 
+feed link:after {
+	content: attr(href);
+}
