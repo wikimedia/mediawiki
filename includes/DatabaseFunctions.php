@@ -26,6 +26,7 @@ if ($wgDBtype=="mysql") {
 # If errors are explicitly ignored, returns success
 function wfQuery( $sql, $db, $fname = "" )
 {
+	global $wgOut;
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
 		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params", $db, $sql ) );
