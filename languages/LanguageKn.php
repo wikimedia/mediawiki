@@ -2,6 +2,20 @@
 
 require_once( "LanguageUtf8.php" );
 
+/* private */ $wgMonthNamesKn = array(
+	'ಜನವರಿ',
+	'ಫೆಬ್ರುವರಿ',
+	'ಮಾರ್ಚ್',
+	'ಎಪ್ರಿಲ್',
+	'ಮೇ',
+	'ಜೂನ್',
+	'ಜುಲೈ',
+	'ಆಗಸ್ಟ್',
+	'ಸೆಪ್ಟೆಂಬರ್',
+	'ಅಕ್ಟೋಬರ್',
+	'ನವೆಂಬರ್',
+	'ಡಿಸೆಂಬರ್' );
+
 class LanguageKn extends LanguageUtf8 {
 	var $digitTransTable = array(
 		"0" => "೦",
@@ -16,6 +30,15 @@ class LanguageKn extends LanguageUtf8 {
 		"9" => "೯"
 	);
 
+	function getMonthName( $key ) {
+		global $wgMonthNamesKn;
+		return $wgMonthNamesKn[$key-1];
+	}
+	
+	function getMonthAbbreviation( $key ) {
+		return $this->getMonthName( $key );
+	}
+	
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		if( $wgTranslateNumerals ) {
