@@ -1694,7 +1694,9 @@ class Skin {
 	return
 	"<table border=\"0\" bgcolor=\"#8888aa\" cellpadding=\"0\" cellspacing=\"1\"><tr><td>\n" .
 	"<table border=\"0\" bgcolor=\"#f3f3ff\" CELLPADDING=5><tr><td>\n".
-	"<b>".wfMsg("toc")."</b><p>\n".
+	"<b>".wfMsg("toc")."</b>" .
+	" <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>" .
+	"</td></tr><tr id='tocinside'><td>\n".
 	$toc."</td></tr></table></td></tr></table><P>\n";
 	}
 

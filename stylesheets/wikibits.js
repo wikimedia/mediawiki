@@ -34,6 +34,7 @@ function checkTimezone( tz, msg ) {
 // in [-][H]H format...
 // won't yet work with non-even tzs
 function fetchTimezone() {
+	// FIXME: work around Safari bug
 	var localclock = new Date();
 	// returns negative offset from GMT in minutes
 	var tzRaw = localclock.getTimezoneOffset();
@@ -45,3 +46,27 @@ function fetchTimezone() {
 function guessTimezone(box) {
 	document.preferences.wpHourDiff.value = fetchTimezone();
 }
+
+var tocShow, tocHide;
+function showTocToggle(show,hide) {
+	if(document.getElementById) {
+		document.writeln('<small>[<a href="javascript:toggleToc()" id="toctoggle">' +
+			hide + '/' + show + '</a>]</small>');
+		tocShow = show;
+		tocHide = hide;
+	}
+}
+
+function toggleToc() {
+	var toc = document.getElementById('tocinside');
+	var tog = document.getElementById('toctoggle');
+	if(toc.style.display == 'none') {
+		toc.style.display = tocWas;
+		// tog.innerHtml = tocHide;
+	} else {
+		tocWas = toc.style.display;
+		toc.style.display = 'none';
+		// tog.innerHtml = tocShow;
+	}
+}
+
