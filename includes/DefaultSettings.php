@@ -358,4 +358,10 @@ $wgSpamRegex = false;
 
 # Go button goes straight to the edit screen if the article doesn't exist
 $wgGoToEdit = false;
+
+# Optional: use tidy to make sure the output is sane, switch on by setting $wgUseTidy = true;
+$wgUseTidy = false;
+$wgTidyBin = 'tidy';
+$wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
+$wgTidyOpts = '';
 ?>
