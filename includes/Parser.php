@@ -277,6 +277,7 @@ class Parser
 		$pre_content = array();
 		$comment_content = array();
 		$ext_content = array();
+		$gallery_content = array();
 
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
@@ -330,6 +331,18 @@ class Parser
 			}
 		}
 
+		# gallery
+		$text = Parser::extractTags('gallery', $text, $gallery_content, $uniq_prefix);
+		foreach( $gallery_content as $marker => $content ) {
+			require_once( 'ImageGallery.php' );
+			if ( $render ) {
+				$ig = ImageGallery::newFromTextList( $content );
+				$gallery_content[$marker] = $ig->toHTML();
+			} else {
+				$gallery_content[$marker] = '<gallery>'.$content.'</gallery>';
+			}
+		}
+
 		# Comments
 		if($stripcomments) {
 			$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
@@ -358,6 +371,7 @@ class Parser
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 			$state['comment'] = $state['comment'] + $comment_content;
+			$state['gallery'] = $state['gallery'] + $gallery_content;
 
 			foreach( $ext_content as $tag => $array ) {
 				if ( array_key_exists( $tag, $state ) ) {
@@ -371,6 +385,7 @@ class Parser
 			  'math' => $math_content,
 			  'pre' => $pre_content,
 			  'comment' => $comment_content,
+			  'gallery' => $gallery_content,
 			) + $ext_content;
 		}
 		return $text;

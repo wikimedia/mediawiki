@@ -19,13 +19,15 @@ if( defined( 'MEDIAWIKI' ) ) {
  */
 class ImageGallery
 {
-	var $mImages;
+	var $mImages, $mShowBytes, $mShowFilename;
 
 	/** 
 	 * Create a new image gallery object.
 	 */
 	function ImageGallery( ) {
-		$this->mImages=array();
+		$this->mImages = array();
+		$this->mShowBytes = true;
+		$this->mShowFilename = true;
 	}
 
 	/**
@@ -43,6 +45,26 @@ class ImageGallery
 	 */
 	function isEmpty() {
 		return empty( $this->mImages );
+	}
+
+	/**
+	 * Enable/Disable showing of the file size of an image in the gallery.
+	 * Enabled by default.
+	 * 
+	 * @param boolean $f	set to false to disable
+	 */
+	function setShowBytes( $f ) {
+		$this->mShowBytes = ( $f == true);
+	}
+
+	/**
+	 * Enable/Disable showing of the filename of an image in the gallery.
+	 * Enabled by default.
+	 * 
+	 * @param boolean $f	set to false to disable
+	 */
+	function setShowFilename( $f ) {
+		$this->mShowFilename = ( $f == true);
 	}
 
 	/**
@@ -72,15 +94,19 @@ class ImageGallery
 			//TODO
 			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
-			$nb = wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) );
+			$nb = $this->mShowBytes ? 
+				wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) )  . '<br />' :
+				'' ;
+			$textlink = $this->mShowFilename ?
+				$sk->makeKnownLinkObj( $nt, Language::truncate( $nt->getText(), 20, '...' ) ) . '<br />' :
+				'' ;
 
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
 				'<table width="100%" height="150px">'.
 				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
 				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="">' ) . '</td></tr></table> ' .
-				$sk->makeKnownLinkObj( $nt, Language::truncate( $nt->getText(), 20, '...' ) ) .
-				"<br />{$text}{$nb}<br />" ;
+				$textlink . $text . $nb; 
 
 			$s .= '</td>' .  (($i%4==3) ? '</tr>' : '');
 
@@ -90,6 +116,37 @@ class ImageGallery
 
 		return $s;
 	}
+
+	/**
+	 * Transparently generates an image gallery from a text with one line per image.
+	 * text labels may be given by using |-style alternative text. E.g.
+	 *   Image:one.jpg|The number "1"
+	 *   Image:tree.jpg|A tree
+	 * given as text will return a gallery with two images, labeled 'The number "1"' and
+	 * 'A tree'.
+	 */
+	function newFromTextList( $text ) {
+		$ig = new ImageGallery();
+		$ig->setShowBytes( false );
+		$ig->setShowFilename( false );
+		$lines = explode( "\n", $text );
+		foreach ( $lines as $line ) {
+			preg_match( "/^([^|]+)(\\|(.*))?$/", $line, $matches );
+			# Skip empty lines
+			if ( count( $matches ) == 0 ) {
+				continue;
+			}
+			$nt = Title::newFromURL( $matches[1] );
+			if ( isset( $matches[3] ) ) {
+				$label = $matches[3];
+			} else {
+				$label = '';
+			}
+			$ig->add( Image::newFromTitle( $nt ), $label );
+		}
+		return $ig;
+	}
+		
 
 } //class
 
