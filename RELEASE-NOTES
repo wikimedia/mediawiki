@@ -264,6 +264,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1380) Update Nynorsk language file
 * (bug 1232) Fix sorting of cached Special:Wantedpages in miser mode
 * (bug 1217) Image within an image caption broke rendering
+* (bug 1384) Make patrol signs have the same width for page moves as for edits
 
 === Caveats ===
 
