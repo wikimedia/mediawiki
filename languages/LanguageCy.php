@@ -15,9 +15,8 @@
 	7  => "Sgwrs_Delwedd",
 	8  => "MediaWiki",
 	9  => "Sgwrs_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
-
+	10  => "Nodyn",
+	11  => "Sgwrs_Nodyn"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCy = array(
@@ -81,24 +80,24 @@
     MAG_NOTOC                => array( 0,    "__NOTOC__", "__DIMTAFLENCYNNWYS__"          ),
     MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__DIMADRANGOLYGU__"    ),
     MAG_START                => array( 0,    "__START__", "__DECHRAU__"                   ),
-    MAG_CURRENTMONTH         => array( 1,    " CURRENTMONTH", "MISCYFOES"                 ),
+    MAG_CURRENTMONTH        => array( 1, "CURRENTMONTH", "MISCYFOES"                ),
     MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "ENWMISCYFOES"           ),
     MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "DYDDIADCYFOES"                ),   
     MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "ENWDYDDCYFOES"            ),
     MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "FLWYDDYNCYFOES"              ),
     MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "NIFEROERTHYGLAU"        ),
+    MAG_NUMBEROFARTICLES    => array( 1, "NUMBEROFARTICLES","NIFEROERTHYGLAU"       ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
     MAG_MSG                  => array( 1,    "MSG:"                                       ),
     MAG_SUBST                => array( 1,    "SUBST:"                                     ),
     MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
-    MAG_END                  => array( 0,    "DIWEDD_"                                    ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "ewin bawd", "bawd", "thumbnail", "thumb"    ),
+    MAG_END                 => array( 0, "DIWEDD"                                   ),
+    MAG_IMG_THUMBNAIL       => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
     MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
     MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
     MAG_IMG_NONE             => array( 1,    "dim", "none"                                ),
     MAG_IMG_WIDTH            => array( 1,    "$1px"                                       ),
-    MAG_IMG_CENTER           => array( 1,    "canol", "center", "centre"                  ),
+    MAG_IMG_CENTER          => array( 1, "canol", "centre", "center"                ),
     MAG_INT                  => array( 0,    "INT:"                                       )
 
 );
@@ -170,7 +169,7 @@
 'april' => 'Ebrill',
 'may_long' => 'Mai',
 'june' => 'Mehefin',
-'july' => 'Gorffenaf',
+'july' => 'Gorffennaf',
 'august' => 'Awst',
 'september' => 'Medi',
 'october' => 'Hydref',
@@ -196,7 +195,7 @@
 "category" => "categori",
 "category_header" => "Erthyglau mewn categori \"$1\"",
 "subcategories" => "Is-categorïau",
-"linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|[a-z])+)(.*)\$/sD",
+"linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|ŵ|ŷ|[a-z])+)(.*)\$/sD",
 "mainpage" => "Prif tudalen",
 "mainpagetext" => "Meddalwedd Wicipedia wedi sefydlu'n llwyddiannus",
 "about"	=> "Amdano",
