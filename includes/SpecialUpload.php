@@ -128,6 +128,13 @@ class UploadForm {
 		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
 
 		/**
+		 * If there was no filename or a zero size given, give up quick.
+		 */
+		if( ( trim( $this->mOname ) == '' ) || empty( $this->mUploadSize ) ) {
+			return $this->mainUploadForm('<li>'.wfMsg( 'emptyfile' ).'</li>');
+		}
+		
+		/**
 		 * When using detailed copyright, if user filled field, assume he
 		 * confirmed the upload
 		 */
@@ -142,15 +149,10 @@ class UploadForm {
 
 		/** User need to confirm his upload */
 		if( !$this->mUploadAffirm ) {
-			$this->mainUploadForm( WfMsg( 'noaffirmation' ) );
+			$this->mainUploadForm( wfMsg( 'noaffirmation' ) );
 			return;
 		}
 
-		if ( $this->mOname == '' && !isset($this->mUploadSaveName) ) {
-			// no filename given!
-			return $this->uploadError('<li>'.wfMsg( 'emptyfile' ).'</li>');
-		}
-		
 		# Chop off any directories in the given filename
 		$basename = basename( $this->mOname );
 
@@ -171,7 +173,7 @@ class UploadForm {
 		 * Filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-		$filtered = preg_replace ( "/[^".Title::legalChars()."]/", '-', $basename );
+		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $basename );
 		$nt = Title::newFromText( $filtered );
 		if( is_null( $nt ) ) {
 			return $this->uploadError( wfMsg( 'illegalfilename', htmlspecialchars( $filtered ) ) );
