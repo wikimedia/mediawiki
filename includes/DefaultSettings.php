@@ -980,7 +980,13 @@ $wgHooks = array();
  * Leave disabled unless you're testing it.
  */
 $wgLivePreview = false;
-	
+
+/**
+ * Disable the internal MySQL-based search, to allow it to be
+ * implemented by an extension instead.
+ */
+$wgDisableInternalSearch = false;
+
 } else {
 	die();
 }
