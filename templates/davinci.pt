@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=${charset}" />
 
     <title tal:content="title">Leonardo Da Vinci - Wikipedia</title>
 
@@ -41,8 +41,10 @@
 	    <h1 class="documentFirstHeading" tal:content="title">Leonardo da Vinci</h1>
 
 	    <div id="bodyContent" class="plain">
-	      <h3 id="documentSubtitle" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
+	      <h3 id="siteSubtitle" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
+	      <div tal:condition="subtitle"  id="documentSubtitle" tal:content="structure subtitle"></div>
 	      <!--esi:include src="userxy/message"/> cached per user, purged on new message-->
+	      <div tal:condition="newtalk" class="portalMessage" tal:content="newtalk"></div>
 	      <!-- the content area is cached with the remaining inexpensive sceleton, one version for all.
 	      The edit links and right-click section stuff is attached from js -->
 	      <!-- start content -->
@@ -80,8 +82,6 @@
 
 	<div class="portletBody">
 	  <div class="portletContent odd">
-	    <h5 class="hiddenStructure">Personal Tools</h5>
-
 	    <ul id="portal-personaltools">
 	      <li tal:repeat="item personal_urls" 
 	      tal:attributes="id string:personaltools-${repeat/item/key};">
