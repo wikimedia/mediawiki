@@ -4,74 +4,19 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
+*** COMMITTERS! Before 1.4 release, make sure 1.3.x release notes are
+*** up to date in the file HISTORY. Don't put 1.3 updates here please.
 
-**** THIS FILE IS NOT UP TO DATE *****
-**** BEFORE 1.4 RELEASE, BE SURE TO FIX IT *****
+== MediaWiki 1.4 PRE-ALPHA ==
 
-== Version 1.3.1, 2004-08-?? ==
-
-Changes from 1.3.0:
-* Watchlist parameters now work with register_globals off
-* Fixed parsing of ''italics'' and '''bold''' mark-up (again)
-* Special:Allpages display is more sensible on smaller wikis
-* Fixed XHTML parsing error in classic skins
-* Moved pages update watchlist correctly
-* Fixed rebuildall.php on case-sensitive Unix filesystems
-* New magic word PAGENAMEE (URL-escaped version of PAGENAME)
-* Articles count now updated correctly when an article is moved
-  in/out of the article namespace.  
-
-== Version 1.3.0, 2004-08-11 ==
-
-Look & layout:
-* New default layout 'MonoBook' (available on PHP4 only currently)
-* Print stylesheet now built-in to every page
-* More or less correct XHTML 1.0 (served as text/html by default)
-
-Wiki features:
-* Image captions can now include links and other basic formatting
-* Image bounding box can be specified instead of width, e.g. as
-  100x100px, making the image not wider than 100px and not higher
-  than 100px, keeping aspect ratio.
-* Templates have been expanded with parameters, and separated from
-  the MediaWiki: localization scheme.
-* Categories more or less work
-* added a special page for listing users with sysop rights.
-
-Editing:
-* Automatic merging of edit conflicts that don't directly interfere
-* Edit summaries can now include basic formatting and links
-
-Metadata and output:
-* Linked Creative Commons copyright metadata (optional)
-* RSS 2.0 & Atom 0.3 feeds for Recent Changes, New Pages
-
-Optional modules:
-* WikiHiero hieroglyphic module can be added (separate download)
-* Timeline module can be added (separate download).
-  Requires ploticus.
-* TeX now has an experimental MathML output mode (incomplete!)
-
-Installation and upgrading:
-* The old install.php and update.php have been removed. In-place
-  installation introduced in 1.2 is now the standard installation
-  and upgrade method, see INSTALL and UPGRADE for directions.
-
-Database:
-* The links table has been changed to use a cur_id for l_from.
-  The link tables must be converted on upgrade, which may entail
-  some downtime.
-
-Code and compatibility:
-* Should now run clean with error reporting set to E_ALL.
-* register_globals hack from 1.2 has been replaced with safer code
-* Bundled PHPTAL 0.7.0 from http://phptal.sourceforge.net/
-  (with some patches)
-* Most image-related code moved to Image.php
-* More fixes for PHP 4.1.2 (thanks to Asheesh Laroia)
-* URL encoding fix for anchors
-* All languages now available in UTF-8 mode
-* Various other fixes
+Major changes from 1.3.x:
+* (?) Support for table prefixes for better sharing with other web apps
+* (?) PostgreSQL support
+* Optional article validation voting features
+* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed
+* Support for faster C++ diff module (WikiDiff extension)
+* More scary link caching modes
+* ... and more!
 
 === Caveats ===
 
@@ -86,7 +31,7 @@ underlying PHPTAL library. It will be automatically disabled when running
 on PHP5; the older look and feel will be used instead.
 
 
-For notes on 1.2.x and older releases, see HISTORY.
+For notes on 1.3.x and older releases, see HISTORY.
 
 
 === Online documentation ===
