@@ -446,9 +446,10 @@ class Parser
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
+		$text .= $this->categoryMagic () ;
+		
 		# needs to be called last
 		$text = $this->doBlockLevels( $text, $linestart );		
-		$text .= $this->categoryMagic () ;
 
 		wfProfileOut( $fname );
 		return $text;
@@ -900,10 +901,10 @@ class Parser
 	{
 		$result = "";
 		if ( '' != $this->mLastSection ) {
-			$result = "</" . $this->mLastSection  . ">";
+			$result = "</" . $this->mLastSection  . ">\n";
 		}
 		$this->mLastSection = "";
-		return $result."\n";
+		return $result;
 	}
 	# getCommon() returns the length of the longest common substring
 	# of both arguments, starting at the beginning of both.
@@ -980,7 +981,7 @@ class Parser
 		# and making lists from lines starting with * # : etc.
 		#
 		$a = explode( "\n", $text );
-		$lastPref = $text = '';
+		$lastPref = $text = $lastLine = '';
 		$this->mDTopen = $inBlockElem = false;
 
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
@@ -1033,34 +1034,44 @@ class Parser
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
-				$inBlockElem=false;
-				if ( preg_match(
-				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t ) ) {
+				// XXX: use a stack for nestable elements like span, table and div
+				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t );
+				$closematch = preg_match( 
+					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
+					"<\\/p|<\\/div|<hr|<\\/td|".$uniq_prefix."-pre)/i", $t );
+				if ( $openmatch or $closematch ) {
 					$text .= $this->closeParagraph();
-					$inBlockElem = true;
-				} else if ( preg_match("/(<hr|<\\/td|".$uniq_prefix."-pre)/i", $t ) ) {
-					$text .= $this->closeParagraph();
-					$inBlockElem = false;
-				}
-				if ( !$inBlockElem ) {
+					if ( !$closematch  ) {
+						$inBlockElem = true;
+					} else {
+						$inBlockElem = false;
+					}
+				} else if ( !$inBlockElem ) {
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
 						$text .= $this->closeParagraph();
-						# $t = wfEscapeHTML( $t );
-					}
-					else { $newSection = "p"; }
-
-					if ( ( '' == trim( $oLine ) ) ||  ( $this->mLastSection == $newSection and $newSection != 'p' )) {
-						$text .= $this->closeParagraph();
 						$text .= "<" . $newSection . ">";
 						$this->mLastSection = $newSection;
-					} 
-				}
-				if ( $inBlockElem &&
-				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p<\\/div)/i", $t ) ) {
-					$inBlockElem = false;
-				}
+					} else { 
+						$newSection = "p";
+						if ( '' == $oLine ) {
+							if ( '' == $lastLine ) {
+								$text .= $this->closeParagraph();
+								$text .= "<" . $newSection . "><br/>";
+								$this->mLastSection = $newSection;
+							} else {
+								$t = '';
+							}
+						} else {
+							$text .= $this->closeParagraph();
+							$text .= "<" . $newSection . ">";
+							$this->mLastSection = $newSection;
+						}
+					}
+
+				} 
 			}
+			$lastLine = $t;
 			$text .= $t;
 		}
 		while ( $npl ) {
@@ -1426,7 +1437,6 @@ class Parser
 
 	/* private */ function formatHeadings( $text )
 	{
-		return $text;
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		if( !$this->mTitle->userCanEdit() ) {
