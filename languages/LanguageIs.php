@@ -579,7 +579,7 @@ border=\"0\" ALT=\"Google\"></A>
 #'linklistsub' => "(List of links)",
 #'linkshere' => "The following pages link to here:",
 'linkstoimage' => "Eftirfarandi síður tengjast í mynd þessa:",
-'linktrail' => "/^([a-z]+)(.*)\$/sD",
+'linktrail' => '/^([á|ð|é|í|ó|ú|ý|þ|æ|ö|a-z]+)(.*)$/sD',
 'listadmins' => "Stjórnendalisti",
 #'listform' => "list",
 'listusers' => "Notendalisti",
