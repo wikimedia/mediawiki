@@ -1420,6 +1420,7 @@ amusement.',
 
 'spamprotectiontitle' => 'Spam protection filter',
 'spamprotectiontext' => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.',
+'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
 'subcategorycount' => "There are $1 subcategories to this category.",
 'subcategorycount1' => "There is $1 subcategorie to this category.",
 'categoryarticlecount' => "There are $1 articles in this category.",
