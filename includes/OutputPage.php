@@ -232,9 +232,12 @@ class OutputPage {
 	 * Convert wikitext to HTML and add it to the buffer
 	 */
 	function addWikiText( $text, $linestart = true ) {
-		global $wgParser, $wgTitle;
+		global $wgParser, $wgTitle, $wgUseTidy;
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
+		if ($wgUseTidy) {
+			$text = Parser::tidy($text);
+		}
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $parserOutput->getText() );
@@ -245,13 +248,16 @@ class OutputPage {
 	 * Saves the text into the parser cache if possible
 	 */
 	function addPrimaryWikiText( $text, $cacheArticle ) {
-		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
+		global $wgParser, $wgParserCache, $wgUser, $wgTitle, $wgUseTidy;
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, true );
 
 		# Replace link holders
 		$text = $parserOutput->getText();
 		$this->replaceLinkHolders( $text );
+		if ($wgUseTidy) {
+			$text = Parser::tidy($text);
+		}
 		$parserOutput->setText( $text );
 		
 		if ( $cacheArticle ) {

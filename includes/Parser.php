@@ -184,9 +184,6 @@ class Parser
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
-		if($wgUseTidy) {
-			$text = $this->tidy($text);
-		}
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
 		return $this->mOutput;
@@ -483,7 +480,8 @@ class Parser
 	/**
 	 * interface with html tidy, used if $wgUseTidy = true
 	 *
-	 * @access private
+	 * @access public
+	 * @static
 	 */
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
@@ -492,15 +490,16 @@ class Parser
 		wfProfileIn( $fname );
 
 		$cleansource = '';
+		$opts = '';
 		switch(strtoupper($wgOutputEncoding)) {
 			case 'ISO-8859-1':
-				$wgTidyOpts .= ($wgInputEncoding == $wgOutputEncoding)? ' -latin1':' -raw';
+				$opts .= ($wgInputEncoding == $wgOutputEncoding)? ' -latin1':' -raw';
 				break;
 			case 'UTF-8':
-				$wgTidyOpts .= ($wgInputEncoding == $wgOutputEncoding)? ' -utf8':' -raw';
+				$opts .= ($wgInputEncoding == $wgOutputEncoding)? ' -utf8':' -raw';
 				break;
 			default:
-				$wgTidyOpts .= ' -raw';
+				$opts .= ' -raw';
 			}
 
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
@@ -511,7 +510,7 @@ class Parser
 			1 => array('pipe', 'w'),
 			2 => array('file', '/dev/null', 'a')
 		);
-		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
+		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
 			fwrite($pipes[0], $wrappedtext);
 			fclose($pipes[0]);
