@@ -1,6 +1,7 @@
 /*
 ** Stylesheet filter for some b0rked browser
-** Don't touch!
+** Don't touch, don't add anything here (can break the filter)
+** Add rules to the individual stylesheets.
 */
 /* IE6.0 */
 @import "null?\"\{"; 
