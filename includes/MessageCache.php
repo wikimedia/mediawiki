@@ -18,6 +18,7 @@ class MessageCache
 		$this->mUseCache = $useMemCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
+		$this->mDisableTransform = false;
 		$this->mMemcKey = "$memcPrefix:messages";
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
@@ -197,19 +198,21 @@ class MessageCache
 		
 		# Replace brace tags
 		$message = $this->transform( $message );
-		
 		return $message;
 	}
 
 	function transform( $message ) {
-		if ( strstr( $message, "{{" ) !== false ) {
-			$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
+		if( !$this->mDisableTransform ) { 
+			if ( strstr( $message, "{{" ) !== false ) {
+				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
+			}
 		}
 		return $message;
 	}
 	
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
+	function disableTransform() { $this->mDisableTransform = true; }
 
 }
 ?>
