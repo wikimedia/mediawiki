@@ -12,7 +12,7 @@
  *
  * Support for external editors to modify both text and files
  * in external application. It works as follows: MediaWiki
- * sends a meta-file with the MIME type 'application/external-editor'
+ * sends a meta-file with the MIME type 'application/x-external-editor'
  * to the client. The user has to associate that MIME type with
  * a helper application (a reference implementation in Perl
  * can be found in extensions/ee), which will launch the editor,
@@ -35,7 +35,7 @@ class ExternalEdit {
 		$wgOut->disable();
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;
-		header ( "Content-type: application/external-editor; charset=".$this->mCharset );
+		header ( "Content-type: application/x-external-editor; charset=".$this->mCharset );
 		if(!isset($this->mMode)) {
 			$type="Edit text";		
 			$url=$this->mTitle->getFullURL("action=edit&internaledit=true");
