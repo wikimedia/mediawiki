@@ -447,6 +447,7 @@ pages for purposes of page relevancy ranking.
 
 * (bug 1720) fix genitive month names for uk
 * (bug 1704) fixed untranslateable string in Special:Log
+* (bug 1638) Added Belrusian language file
 
 
 === Caveats ===
