@@ -326,6 +326,14 @@ class DatabasePgsql extends Database {
         function timestamp( $ts=0 ) {
                 return wfTimestamp(TS_DB,$ts);
         }
+
+        function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+               $message = "A database error has occurred\n" .
+                                  "Query: $sql\n" .
+                                  "Function: $fname\n" .
+                                  "Error: $errno $error\n";
+		wfDebugDieBacktrace($message);
+	}
 }
 
 # Just an alias.
