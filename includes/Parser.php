@@ -956,7 +956,7 @@ class Parser
 		# Regexp for URL in square brackets
 		$e1 = "/^([{$uc}{$sep}]+)\\](.*)\$/sD";
 		# Regexp for URL with link text in square brackets
-		$e2 = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](\\S*)(.*)\$/sD";
+		$e2 = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](.*)\$/sD";
 
 		foreach ( $a as $line ) {
 
@@ -974,8 +974,12 @@ class Parser
 			else if ( preg_match( $e2, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$text = $m[2];
-				$dtrail = $m[3];
-				$trail = $m[4];
+				$dtrail = '';
+				$trail = $m[3];
+				if ( preg_match( wfMsg ('linktrail'), $trail, $m2 ) ) {
+					$dtrail = $m2[1];
+					$trail = $m2[2];
+				}
 			}
 
 			# CASE 3: Nothing matches, just output the source text
