@@ -22,6 +22,8 @@ class EditPage {
 		global $wgOut, $wgUser, $wgWhitelistEdit;
 		global $wpTextbox1, $wpSummary, $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2;
+		// this is not an article
+		$wgOut->setArticleFlag(false);
 
 		$fields = array( "wpTextbox1", "wpSummary", "wpTextbox2" );
 		wfCleanFormFields( $fields );
