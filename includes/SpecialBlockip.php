@@ -91,7 +91,7 @@ class IPBlockForm {
 
 		# Make log entry
 		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = wfMsg( "blocklogentry", $wgBlockAddress );
+		$action = wfMsg( "blocklogentry", $wpBlockAddress );
 		$log->addEntry( $action, $wpBlockReason );
 
 		# Report to the user
