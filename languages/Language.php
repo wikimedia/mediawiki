@@ -466,6 +466,7 @@ registered for \"$1\".
 Please log in again after you receive it.",
 'loginend'		=> '&nbsp;',
 'mailerror' => "Error sending mail: $1",
+'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 
 # Edit page toolbar
 'bold_sample'=>'Bold text',
@@ -592,6 +593,7 @@ Please check the URL you used to access this page.\n",
 'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
+'history_copyright'    => '-',
 
 # Diffs
 #
@@ -803,6 +805,7 @@ agrees to license it under the terms of the $1.",
 'badfilename'	=> "Image name has been changed to \"$1\".",
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
 'largefile'		=> 'It is recommended that images not exceed 100k in size.',
+'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
 'fileuploaded'	=> "File \"$1\" uploaded successfully.
 Please follow this link: $2 to the description page and fill
@@ -1228,6 +1231,7 @@ title. Please merge them manually.',
 'talkpagemoved' => 'The corresponding talk page was also moved.',
 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
 '1movedto2'		=> "$1 moved to $2",
+'1movedto2_redir' => '$1 moved to $2 over redirect',
 
 # Export
 

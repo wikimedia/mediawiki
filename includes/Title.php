@@ -193,7 +193,7 @@ class Title {
 		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
 		# this breaks interlanguage links
 		
-		$set = " %!\"$&'()*,\\-.\\/0-9:;<=>?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
+		$set = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
 		return $set;
 	}
 	
@@ -375,9 +375,6 @@ class Title {
 		$n = $wgLang->getNsText( $this->mNamespace );
 		if ( "" != $n ) { $n .= ":"; }
 		$u = str_replace( "$1", $n . $this->mUrlform, $p );
-		if ( "" != $this->mFragment ) {
-			$u .= "#" . wfUrlencode( $this->mFragment );
-		}
 		return $u;
 	}
 
@@ -531,7 +528,7 @@ class Title {
 		if( in_array( $name, $wgWhitelistRead ) ) return true;
 		
 		# Compatibility with old settings
-		if( $this->getNamespace() == NS_ARTICLE ) {
+		if( $this->getNamespace() == NS_MAIN ) {
 			if( in_array( ":" . $name, $wgWhitelistRead ) ) return true;
 		}
 		return false;
@@ -680,7 +677,7 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				$lowerNs = strtolower( $p );
@@ -729,7 +726,12 @@ class Title {
 		}
 		
 		# "." and ".." conflict with the directories of those namesa
-		if ( $r === "." || $r === ".." || strpos( $r, "./" ) !== false ) {
+		if ( strpos( $r, "." ) !== false &&
+		     ( $r === "." || $r === ".." ||
+		       strpos( $r, "./" ) === 0 ||
+		       strpos( $r, "/./" !== false ) ||
+		       strpos( $r, "/../" !== false ) ) )
+		{
 			return false;
 		}
 
@@ -940,7 +942,7 @@ class Title {
 			$fname
 		);
 		
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
 		# Swap links
 		
@@ -1060,7 +1062,7 @@ class Title {
 		);
 		
 		# Record in RC
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
 
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );

@@ -27,6 +27,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 	require_once "GlobalFunctions.php";
+	global $IP;
 	require_once $IP."/PHPTAL-NP-0.7.0/libs/PHPTAL.php";
 
 	class MediaWiki_I18N extends PHPTAL_I18N
@@ -176,7 +177,10 @@
 				}
 				$tpl->set('lastmod', $this->lastModified());
 			        $tpl->set('copyright',$this->getCopyright());
+			} elseif ( isset( $oldid ) && !isset( $diff ) ) {
+				$tpl->set('copyright', $this->getCopyright());
 			}
+
 			$tpl->set( "copyrightico", $this->getCopyrightIcon() );
 			$tpl->set( "poweredbyico", $this->getPoweredBy() );
 			$tpl->set( "disclaimer", $this->disclaimerLink() );

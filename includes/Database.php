@@ -89,6 +89,12 @@ class Database {
 	{
 		global $wgEmergencyContact;
 		
+		# Test for missing mysql.so
+		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		if ( !function_exists( 'mysql_connect' ) ) {
+			die( "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+		}
+		
 		$this->close();
 		$this->mServer = $server;
 		$this->mUser = $user;
@@ -151,7 +157,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function query( $sql, $fname = "" )
 	{
-		global $wgProfiling;
+		global $wgProfiling, $wgCommandLineMode;
 		
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
@@ -180,7 +186,13 @@ class Database {
 				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
 				wfDebug("SQL ERROR: " . $error . "\n");
-				if ( $this->mOut ) {
+				if ( $wgCommandLineMode ) {
+					wfDebugDieBacktrace( "A database error has occurred\n" .
+					  "Query: $sql\n" .
+					  "Function: $fname\n" .
+					  "Error: $errno $error\n"
+					);
+				} elseif ( $this->mOut ) {
 					// this calls wfAbruptExit()
 					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
@@ -265,8 +277,12 @@ class Database {
 	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
 	{
 		$vars = implode( ",", $vars );
-		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		if ( $conds !== false ) {
+			$where = Database::makeList( $conds, LIST_AND );
+			$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		} else {
+			$sql = "SELECT $vars FROM $table LIMIT 1";
+		}
 		$res = $this->query( $sql, $fname );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;

@@ -28,8 +28,8 @@
 # aren't suited to it!
 #
 
-$wgInputEncoding = "iso-8859-1";
-$wgOutputEncoding = "iso-8859-1";
+$wgInputEncoding = "ISO-8859-1";
+$wgOutputEncoding = "ISO-8859-1";
 
 function utf8_decode_array( $arr ) {
 	if( !is_array( $arr ) ) {

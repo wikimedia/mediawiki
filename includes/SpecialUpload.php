@@ -73,13 +73,14 @@ class UploadForm {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgUploadDirectory;
 		global $wgSavedFile, $wgUploadOldVersion;
-		global $wgUseCopyrightUpload;
+		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist, $wgUploadSizeWarning;
 
 		if ( $wgUseCopyrightUpload ) {
 			$this->mUploadAffirm = 1;
-			if ( trim ( $this->mUploadCopyStatus ) == "" || trim ( $this->mUploadSource ) == "" ) {
+			if ($wgCheckCopyrightUpload && 
+				(trim ( $this->mUploadCopyStatus ) == "" || trim ( $this->mUploadSource ) == "" )) {
 				$this->mUploadAffirm = 0;
 			}
 		}
@@ -106,6 +107,7 @@ class UploadForm {
 				return;
 			}
 			$nt = Title::newFromText( $basename );
+			$nt->setNamespace( Namespace::getImage() );
 			$this->mUploadSaveName = $nt->getDBkey();
 
 			/* Don't allow users to override the blacklist */
@@ -115,20 +117,31 @@ class UploadForm {
 			}
 			
 			$this->saveUploadedFile( $this->mUploadSaveName, $this->mUploadTempName );
-			if ( ( ! $this->mIgnoreWarning ) &&
-			  ( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) ) {
-				return $this->uploadWarning( wfMsg( "badfilename", $this->mUploadSaveName ) );
-			}
+			if ( !$nt->userCanEdit() ) {
+				return $this->uploadError( wfMsg( "protectedpage" ) );
+		        }
 			
-			if ( $wgCheckFileExtensions ) {
-				if ( ( ! $this->mIgnoreWarning ) &&
-					 ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) ) {
-					return $this->uploadWarning( wfMsg( "badfiletype", $ext ) );
+			if ( ! $this->mIgnoreWarning ) {
+				$warning = '';
+				if( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
+					$warning .=  '<li>'.wfMsg( "badfilename", $this->mUploadSaveName ).'</li>';
 				}
-			}
-			if ( $wgUploadSizeWarning && ( ! $this->mIgnoreWarning ) && 
-			  ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
-				return $this->uploadWarning( wfMsg( "largefile" ) );
+
+				if ( $wgCheckFileExtensions ) {
+					if ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) {
+						$warning .= '<li>'.wfMsg( "badfiletype", $ext ).'</li>';
+					}
+				}
+				if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
+					$warning .= '<li>'.wfMsg( "largefile" ).'</li>';
+				}
+				if( $nt->getArticleID() ) {
+					$sk = $wgUser->getSkin();
+					$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
+					$dlink = $sk->makeKnownLink( $dname, $dname );
+					$warning .= '<li>'.wfMsg( "fileexists", $dlink ).'</li>';
+				}
+				if($warning != '') return $this->uploadWarning($warning);
 			}
 		}
 		if ( !is_null( $this->mUploadOldVersion ) ) {
@@ -221,7 +234,7 @@ class UploadForm {
 
 		$sub = wfMsg( "uploadwarning" );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
-		$wgOut->addHTML( "<h4><font color=red>{$warning}</font></h4>\n" );
+		$wgOut->addHTML( "<ul class='warning'>{$warning}</ul><br/>\n" );
 
 		$save = wfMsg( "savefile" );
 		$reupload = wfMsg( "reupload" );

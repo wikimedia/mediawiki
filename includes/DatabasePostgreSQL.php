@@ -122,6 +122,8 @@ class Database {
 				wfDebug( "DB connection error\n" );
 				wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 				wfDebug( $this->lastError()."\n" );
+			} else { 
+				$this->mOpened = true;
 			}
 		}
 		return $this->mConn;

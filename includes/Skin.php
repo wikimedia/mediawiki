@@ -1,18 +1,17 @@
 <?php
-
-require_once( 'Feed.php' );
-require_once( 'Image.php' );
-
 # See skin.doc
+
+require_once( 'Feed.php' );  // should not be called if the actual page isn't feed enabled
+require_once( 'Image.php' );
 
 # These are the INTERNAL names, which get mapped
 # directly to class names.  For display purposes, the
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	'standard' => 'Standard',
-	'nostalgia' => 'Nostalgia',
-	'cologneblue' => 'CologneBlue'
+	'standard'		=> 'Standard',
+	'nostalgia'		=> 'Nostalgia',
+	'cologneblue'	=> 'CologneBlue'
 );
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = 'PHPTal';
@@ -28,7 +27,7 @@ require_once( 'RecentChange.php' );
 class RCCacheEntry extends RecentChange
 {
 	var $secureName, $link;
-	var $curlink , $lastlink , $usertalklink , $versionlink ;
+	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
 	var $userlink, $timestamp, $watched;
 
 	function newFromParent( $rc )
@@ -390,9 +389,12 @@ class Skin {
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
 		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
+	
 		if( !$wgUseCategoryMagic ) return '' ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
-		if( !$wgOut->isArticle() ) return '';
+		
+		# Taken out so that they will be displayed in previews -- TS
+		#if( !$wgOut->isArticle() ) return '';
 		
 		$t = implode ( ' | ' , $wgOut->mCategoryLinks ) ;
 		$s = $this->makeKnownLink( 'Special:Categories',
@@ -870,7 +872,18 @@ class Skin {
 	}
     
 	function getCopyright() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest;
+		
+		
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
+	
+		if ( !is_null( $oldid ) && is_null( $diff ) && wfMsg( 'history_copyright' ) !== '-' ) {
+			$msg = 'history_copyright';
+		} else {
+			$msg = 'copyright';
+		}
+		
 		$out = '';
 		if( $wgRightsPage ) {
 			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
@@ -880,7 +893,7 @@ class Skin {
 			# Give up now
 			return $out;
 		}
-		$out .= wfMsg( 'copyright', $link );
+		$out .= wfMsg( $msg, $link );
 		return $out;
 	}
 	
@@ -1085,6 +1098,7 @@ class Skin {
 	function specialPagesList()
 	{
 		global $wgUser, $wgOut, $wgLang, $wgServer, $wgRedirectScript;
+		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
 		
@@ -1564,6 +1578,9 @@ class Skin {
 		$fname = 'Skin::makeKnownLinkObj';
 		wfProfileIn( $fname );
 
+		if ( !is_object( $nt ) ) {
+			return $text;
+		}
 		$link = $nt->getPrefixedURL();
 
 		if ( '' == $link ) {
@@ -1757,7 +1774,7 @@ class Skin {
 		if(!is_object($title)) {
 			$title = Title::newFromText( $name );
 			if(!is_object($title)) {
-				$title = Title::newFromText( '<error: link target missing>' );
+				$title = Title::newFromText( '--error: link target missing--' );
 			}
 		}
 	}
@@ -2055,7 +2072,7 @@ class Skin {
 		$r .= '<img src="'.$wgStylePath.'/images/Arr_.png" width="12" height="12" border="0" />' ;
 		$r .= '<tt>' ;
 
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;';
 		} else {
 			# M & N (minor & new)
@@ -2083,9 +2100,9 @@ class Skin {
 		if ( $rcObj->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
 
-		# Cur
+		# Diff
 		$r .= ' (' ;
-		$r .= $rcObj->curlink ;
+		$r .= $rcObj->difflink ;
 		$r .= '; ' ;
 
 		# Hist
@@ -2096,7 +2113,7 @@ class Skin {
 		$r .= $rcObj->usertalklink ;
 
 		# Comment
-		if ( $rc_comment != '' && $rc_type != RC_MOVE ) {
+		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment);
 			$r .= $wgLang->emphasize( ' ('.$rc_comment.')' );
 		}
@@ -2273,7 +2290,7 @@ class Skin {
 		}
 		$s .= '<li> ';
 
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
 			$s .= '(' . wfMsg( 'diff' ) . ') (';
 			# Hist
@@ -2281,10 +2298,13 @@ class Skin {
 				') . . ';
 			
 			# "[[x]] moved to [[y]]"
-
-			$s .= wfMsg( '1movedto2', $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
+			if ( $rc_type == RC_MOVE ) {
+				$msg = '1movedto2';
+			} else {
+				$msg = '1movedto2_redir';
+			}
+			$s .= wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 				$this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
-
 		} else {
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
@@ -2350,7 +2370,7 @@ class Skin {
 		if($userTalkLink) $s.=' ('.$userTalkLink.')';
 
 		# Add comment
-		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE ) {
+		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment);
 			$s .= $wgLang->emphasize(' (' . $rc_comment . ')');
 		}
@@ -2383,10 +2403,14 @@ class Skin {
 		}
 		
 		# Make article link
-		if ( $rc_type == RC_MOVE ) {
-			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' );
-			$clink .= ' ' . wfMsg('movedto') . ' ';
-			$clink .= $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' );
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+			if ( $rc_type == RC_MOVE ) { 
+				$msg = "1movedto2";
+			} else {
+				$msg = "1movedto2_redir";
+			}
+			$clink = wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ), 
+			  $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 		} else {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
@@ -2396,17 +2420,20 @@ class Skin {
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
 		
-		# Make "cur" link
-		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE) {
+		# Make "cur" and "diff" links
+		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$curLink = wfMsg( 'cur' );
-		} else {
-			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'cur' ),
-			  $curIdEq.'&diff=0&oldid='.$rc_this_oldid ,'' ,'' , ' tabindex="'.$baseRC->counter.'"' );
+			$diffLink = wfMsg( 'diff' );
+		} else {	
+			$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
+			$aprops = ' tabindex="'.$baseRC->counter.'"';
+			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'cur' ), $query, '' ,'' , $aprops );
+			$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'diff'), $query, '' ,'' , $aprops );
 		}
 
 		# Make "last" link
 		$titleObj = $rc->getTitle();
-		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE ) {
+		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = wfMsg( 'last' );
 		} else {
 			$lastLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'last' ),
@@ -2425,6 +2452,8 @@ class Skin {
 		$rc->userlink = $userLink ;
 		$rc->lastlink = $lastLink ;
 		$rc->curlink = $curLink ;
+		$rc->difflink = $diffLink;
+
 
 		# Make user talk link		
 		$utns=$wgLang->getNsText(NS_USER_TALK);
@@ -2450,7 +2479,7 @@ class Skin {
 		# Page moves go on their own line
 		$title = $rc->getTitle();
 		$secureName = $title->getPrefixedDBkey();
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
@@ -2762,14 +2791,4 @@ class Skin {
 	}
 
 }
-
-require_once( 'SkinStandard.php' );
-require_once( 'SkinNostalgia.php' );
-require_once( 'SkinCologneBlue.php' );
-
-if( $wgUsePHPTal ) {
-	require_once( 'SkinPHPTal.php' );
-}
-
-
 ?>

@@ -77,7 +77,7 @@ class SearchUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		
-		$sql = "REPLACE DELAYED INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
+		$sql = "REPLACE  INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  wfStrencode( $text ) . "')";
 		wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );

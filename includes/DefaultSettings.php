@@ -7,7 +7,7 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= '1.3.0beta3';
+$wgVersion			= '1.3.0beta4';
 
 $wgSitename         = 'MediaWiki'; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -181,6 +181,8 @@ $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
 $wgProxyKey = 'W1svekXc5u6lZllTZOwnzEk1nbs';
+$wgProxyList = array();  # big list of banned IP addresses, in the keys not the values
+$wgAccountCreationThrottle = 0; # Number of accounts each IP address may create, 0 to disable. Requires memcached
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
@@ -350,6 +352,14 @@ $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
 
+# Set this to true if you want detailed copyright information forms on Upload.
+$wgUseCopyrightUpload = false;
+
+# Set this to false if you want to disable checking that detailed 
+# copyright information values are not empty.
+$wgCheckCopyrightUpload = true;
+
+
 # Set this to false to avoid forcing the first letter of links
 # to capitals. WARNING: may break links! This makes links
 # COMPLETELY case-sensitive. Links appearing with a capital at
@@ -371,6 +381,8 @@ $wgMaxCredits = 0;
 # Text matching this regular expression will be recognised as spam
 # See http://en.wikipedia.org/wiki/Regular_expression
 $wgSpamRegex = false; 
+# Similarly if this function returns true
+$wgFilterCallback = false;
 
 # Go button goes straight to the edit screen if the article doesn't exist
 $wgGoToEdit = false;
