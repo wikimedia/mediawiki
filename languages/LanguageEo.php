@@ -972,7 +972,6 @@ class LanguageEo extends LanguageUtf8 {
 	function getDefaultUserOptions () {
 		$opt = Language::getDefaultUserOptions();
 		$opt["altencoding"] = 0;
-		$opt["skin"] = 2;
 		return $opt;
 	}
 
