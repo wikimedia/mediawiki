@@ -579,7 +579,7 @@ class OutputPage {
 
 	function categoryMagic ()
 	{
-		global $wgTitle , $wgUseCategoryMagic ;
+		global $wgTitle , $wgUseCategoryMagic , $wgLang ;
 		if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return ;
 		$id = $wgTitle->getArticleID() ;
 		$cat = ucfirst ( wfMsg ( "category" ) ) ;
@@ -595,14 +595,22 @@ class OutputPage {
 
 		global $wgUser ;
 		$sk = $wgUser->getSkin() ;
-		$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+
+		$doesexist = false ;
+		if ( $doesexist ) $sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+		else $sql = "SELECT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) )
 		{
 		#  $t = new Title ; 
 		#  $t->newFromDBkey ( $x->l_from ) ;
 		#  $t = $t->getText() ;
-			$t = $x->l_from ;
+		        if ( $doesexist ) $t = $x->l_from ;
+			else {
+				$t = $wgLang->getNsText ( $x->cur_namespace ) ;
+				if ( $t != "" ) $t .= ":" ;
+				$t .= $x->cur_title ;
+				}
 			$y = explode ( ":" , $t , 2 ) ;
 			if ( count ( $y ) == 2 && $y[0] == $cat ) {
 				array_push ( $children , $sk->makeLink ( $t , $y[1] ) ) ;
@@ -628,7 +636,6 @@ class OutputPage {
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ", " , $articles ) ;
 		}
-
 
 		return $r ;
 	}
@@ -1084,7 +1091,9 @@ $t[] = "</table>" ;
 				array_shift ( $t ) ;
 				$t = implode ( ":" , $t ) ;
 				$t = $wgLang->ucFirst ( $t ) ;
-				$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
+#				$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
+				$nnt = Title::newFromText ( $category.":".$t ) ;
+				$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
 				$this->mCategoryLinks[] = $t ;
 				$s .= $prefix . $trail ;
 				continue ;	    
