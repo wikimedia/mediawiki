@@ -114,3 +114,14 @@ OutputPage.php User.php maintenance/buildTables.inc maintenance/patch-cache.sql 
 
 * 2003-05-30: File upload license fields
 Adds fields to 'image' table.
+INCOMPLETE, DO NOT USE
+
+
+* 2003-08-21: Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
+
