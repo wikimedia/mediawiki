@@ -139,7 +139,8 @@ class User {
 		global $wgContLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
 
-		$this->mId = $this->mNewtalk = 0;
+		$this->mId = 0;
+		$this->mNewtalk = -1;
 		$this->mName = $wgIP;
 		$this->mRealName = $this->mEmail = '';
 		$this->mPassword = $this->mNewpassword = '';
@@ -334,36 +335,12 @@ class User {
 		# Paranoia
 		$this->mId = IntVal( $this->mId );
 
-		# check in separate table if there are changes to the talk page
-		$this->mNewtalk=0; # reset talk page status
-		$dbr =& wfGetDB( DB_SLAVE );
-		if($this->mId) {
-			$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
-
-			if ( $dbr->numRows($res)>0 ) {
-				$this->mNewtalk= 1;
-			}
-			$dbr->freeResult( $res );
-		} else {
-			global $wgDBname, $wgMemc;
-			$key = "$wgDBname:newtalk:ip:{$this->mName}";
-			$newtalk = $wgMemc->get( $key );
-			if( ! is_integer( $newtalk ) ){
-				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
-
-				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
-				$dbr->freeResult( $res );
-
-				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
-			} else {
-				$this->mNewtalk = $newtalk ? 1 : 0;
-			}
-		}
 		if(!$this->mId) {
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
 		
+		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
 		  'user_real_name','user_options','user_touched', 'user_token' ),
 		  array( 'user_id' => $this->mId ), $fname );
@@ -383,11 +360,10 @@ class User {
 			) );
 			
 			// Get groups id
-			$sql = 'SELECT group_id FROM user_groups WHERE user_id = \''.$this->mId.'\';';
-			$res = $dbr->query($sql,DB_SLAVE,$fname);
+			$res = $dbr->select( 'user_groups', array( 'group_id' ), array( 'user_id' => $this->mId ) );
 			while($group = $dbr->fetchRow($res)) {
 				$this->mGroups[] = $group[0];
-				}
+			}
 			$dbr->freeResult($res);
 		}
 
@@ -411,7 +387,37 @@ class User {
 	}
 
 	function getNewtalk() {
+		$fname = 'User::getNewtalk';
 		$this->loadFromDatabase();
+		
+		# Load the newtalk status if it is unloaded (mNewtalk=-1)
+		if ( $this->mNewtalk == -1 ) {
+			$this->mNewtalk=0; # reset talk page status
+			$dbr =& wfGetDB( DB_SLAVE );
+			if($this->mId) {
+				$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
+
+				if ( $dbr->numRows($res)>0 ) {
+					$this->mNewtalk= 1;
+				}
+				$dbr->freeResult( $res );
+			} else {
+				global $wgDBname, $wgMemc;
+				$key = "$wgDBname:newtalk:ip:{$this->mName}";
+				$newtalk = $wgMemc->get( $key );
+				if( ! is_integer( $newtalk ) ){
+					$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
+
+					$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
+					$dbr->freeResult( $res );
+
+					$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
+				} else {
+					$this->mNewtalk = $newtalk ? 1 : 0;
+				}
+			}
+		}
+
 		return ( 0 != $this->mNewtalk );
 	}
 
@@ -738,7 +744,7 @@ class User {
 		$fname = 'User::saveSettings';
 
 		$dbw =& wfGetDB( DB_MASTER );
-		if ( ! $this->mNewtalk ) {
+		if ( ! $this->getNewtalk() ) {
 			# Delete user_newtalk row
 			if( $this->mId ) {
 				$dbw->delete( 'user_newtalk', array( 'user_id' => $this->mId ), $fname );
