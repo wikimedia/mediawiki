@@ -1237,7 +1237,7 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 <ul>
 <li>You will be notified by email when someone changes a page which is listed in your watchlist.</li>
 <li>A flag is set so that you receive only one email on the first change.</li>
-<li>Your own edits do <b>not</b> trigger the sending of notifications.
+<li>Your own edits do <b>not</b> trigger the sending of notifications.</li>
 <li>{{MediaWiki:updatedmarker}} means that the <b><i>page has changed since your last visit and that a notification mail has been sent to you.</i></b>.</li>
 <li>The flag is automatically cleared when you visit such pages.</li>
 <li> Alternatively, you can reset all flags at once by clicking on&nbsp; <input type="submit" name="dummy" value=\'Reset all notification flags (set their status to "visited")\'><input type="hidden" name="reset" value="all"></form></li>
