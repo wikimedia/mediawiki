@@ -163,7 +163,7 @@ class User {
 				return new User();
 			}
 		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}UserID"] ) ) {
-			$sId = $HTTP_COOKIE_VARS["{$wgDBname}UserID"];
+			$sId = IntVal( $HTTP_COOKIE_VARS["{$wgDBname}UserID"] );
 			$wsUserID = $sId;
 		} else {
 			return new User();
@@ -214,6 +214,10 @@ class User {
 	function loadFromDatabase()
 	{
 		if ( $this->mDataLoaded ) { return; }
+		
+		# Paranoia
+		$this->mId = IntVal( $this->mId );
+
 		# check in separate table if there are changes to the talk page
 		$this->mNewtalk=0; # reset talk page status
 		if($this->mId) {
