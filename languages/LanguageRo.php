@@ -13,30 +13,30 @@ require_once("LanguageUtf8.php");
 	NS_MESIA			=> 'Media',
 	NS_SPECIAL			=> 'Special',
 	NS_MAIN				=> '',
-	NS_TALK				=> 'DiscuÅ£ie',
+	NS_TALK				=> 'Discuţie',
 	NS_USER				=> 'Utilizator',
-	NS_USER_TALK		=> 'DiscuÅ£ie_Utilizator',
+	NS_USER_TALK		=> 'Discuţie_Utilizator',
 	NS_PROJECT			=> 'Wikipedia',
-	NS_PROJECT_TALK		=> 'DiscuÅ£ie_Wikipedia',
+	NS_PROJECT_TALK		=> 'Discuţie_Wikipedia',
 	NS_IMAGE			=> 'Imagine',
-	NS_IMAGE_TALK		=> 'DiscuÅ£ie_Imagine',
+	NS_IMAGE_TALK		=> 'Discuţie_Imagine',
 	NS_MEDIAWIKI		=> 'MediaWiki',
-	NS_MEDIAWIKI_TALK	=> 'DiscuÅ£ie_MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Discuţie_MediaWiki',
 	NS_TEMPLATE			=> 'Format',
-	NS_TEMPLATE_TALK	=> 'DiscuÅ£ie_Format',
+	NS_TEMPLATE_TALK	=> 'Discuţie_Format',
 	NS_HELP				=> 'Ajutor',
-	NS_HELP_TALK		=> 'DiscuÅ£ie_Ajutor',
+	NS_HELP_TALK		=> 'Discuţie_Ajutor',
 	NS_CATEGORY			=> 'Categorie',
-	NS_CATEGORY_TALK	=> 'DiscuÅ£ie_Categorie'
+	NS_CATEGORY_TALK	=> 'Discuţie_Categorie'
 				
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRo = array(
-	"FÄrÄ", "FixÄ, Ã®n stÃ¢nga", "FixÄ, Ã®n dreapta", "LiberÄ"
+	"Fără", "Fixă, în stânga", "Fixă, în dreapta", "Liberă"
 );
 
 /* private */ $wgSkinNamesRo = array(
-	'standard' => "NormalÄ",
+	'standard' => "Normală",
 	'nostalgia' => "Nostalgie",
 	'cologneblue' => "Cologne Blue",
 	'smarty' => "Paddington",
@@ -49,7 +49,7 @@ require_once("LanguageUtf8.php");
 
 
 /* private */ $wgDateFormatsRo = array(
-	"Nici o preferinÅ£Ä",
+	"Nici o preferinţă",
 	"Ianuarie 15, 2001",
 	"15 Ianuarie 2001",
 	"2001 Ianuarie 15"
@@ -61,6 +61,7 @@ require_once("LanguageUtf8.php");
 	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
+
 
 
 
@@ -100,12 +101,12 @@ require_once("LanguageUtf8.php");
 /* private */ $wgValidSpecialPagesRo = array(
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
-	"Preferences"	=> "PreferinÅ£ele mele",
-	"Watchlist"		=> "Articole urmÄrite",
+	"Preferences"	=> "Preferinţele mele",
+	"Watchlist"		=> "Articole urmărite",
 	"Recentchanges" => "Pagini actualizate recent",
 	"Upload"		=> "Trimite imagini",
 	"Imagelist"		=> "Lista imaginilor",
-	"Listusers"		=> "Utilizatori Ã®nregistraÅ£i",
+	"Listusers"		=> "Utilizatori înregistraţi",
 	"Statistics"	=> "Statistici pentru site",
 	"Randompage"	=> "Articol aleator",
 
@@ -117,33 +118,33 @@ require_once("LanguageUtf8.php");
 	"Longpages"		=> "Articole lungi",
 	"Newpages"		=> "Articole noi",
 	"Ancientpages"	=> "Cele mai vechi articole",
-        "Deadendpages"  => "Pagini fÄrÄ legÄturi",
-#	"Intl"	=> "LegÄturi Ã®ntre limbi",
-	"Allpages"		=> "Toate paginile dupÄ titlu",
+        "Deadendpages"  => "Pagini fără legături",
+#	"Intl"	=> "Legături între limbi",
+	"Allpages"		=> "Toate paginile după titlu",
 
 	"Ipblocklist"	=> "Adrese IP blocate",
-	"Maintenance" => "Pagina de Ã®ntreÅ£inere",
+	"Maintenance" => "Pagina de întreţinere",
 	"Specialpages"  => "Pagini speciale",
-	"Contributions" => "ContribuÅ£ii",
+	"Contributions" => "Contribuţii",
 	"Emailuser"		=> "Trimite e-mail utilizatorului",
-	"Whatlinkshere" => "Ce pagini se leagÄ aici",
+	"Whatlinkshere" => "Ce pagini se leagă aici",
 	"Recentchangeslinked" => "",
-	"Movepage"		=> "MutÄ pagina",
-	"Booksources"	=> "Surse externe de cÄrÅ£i",
+	"Movepage"		=> "Mută pagina",
+	"Booksources"	=> "Surse externe de cărţi",
 	"Categories"	=> "Categorii de pagini",
 	"Export"	=> "XML export",
 	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
-	"Blockip"		=> "BlocheazÄ adresa IP",
-	"Asksql"		=> "EfectueazÄ un query Ã®n baza de date",
-	"Undelete"		=> "AfiÅeazÄ Åi restaureazÄ pagini Återse"
+	"Blockip"		=> "Blochează adresa IP",
+	"Asksql"		=> "Efectuează un query în baza de date",
+	"Undelete"		=> "Afişează şi restaurează pagini şterse"
 );
 
 /* private */ $wgDeveloperSpecialPagesRo = array(
-	"Lockdb"		=> "BlocheazÄ baza de date la scriere",
-	"Unlockdb"		=> "DeblocheazÄ baza de date",
+	"Lockdb"		=> "Blochează baza de date la scriere",
+	"Unlockdb"		=> "Deblochează baza de date",
 );
 
 /* private */ $wgAllMessagesRo = array(
