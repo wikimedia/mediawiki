@@ -43,7 +43,9 @@
 			// interpolate variables
 			while (preg_match('/\$([0-9]*?)/sm', $value, $m)) {
 				list($src, $var) = $m;
-				$varValue = @$this->_context[$var];
+				wfSuppressWarnings();
+				$varValue = $this->_context[$var];
+				wfRestoreWarnings();
 				$value = str_replace($src, $varValue, $value);
 			}
 			return $value;

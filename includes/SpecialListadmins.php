@@ -16,8 +16,7 @@ class ListAdminsPage extends PageQueryPage {
 	}
 
 	function getSQL() {
-		global $wgIsPg;
-		$usertable = $wgIsPg?'"user"':'user';
+		$usertable = wfTableName( 'user' );
 		$userspace = Namespace::getUser();
 		return 'SELECT user_rights as type,'.$userspace.' as namespace,'.
 		       'user_name as title, user_name as value '.

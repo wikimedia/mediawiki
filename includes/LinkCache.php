@@ -131,15 +131,10 @@ class LinkCache {
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
 		if( ! is_integer( $id ) ) {
-			$sql = "SELECT cur_id FROM cur WHERE cur_namespace=" .
-			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
-			$res = wfQuery( $sql, DB_READ, "LinkCache::addLink" );
-
-			if ( 0 == wfNumRows( $res ) ) {
+			$dbr =& wfGetDB( DB_READ );
+			$id = $dbr->getField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
+			if ( !$id ) {
 				$id = 0;
-			} else {
-				$s = wfFetchObject( $res );
-				$id = $s->cur_id;
 			}
 			if( $wgLinkCacheMemcached )
 				$wgMemc->add( $key, $id, 3600*24 );
@@ -176,20 +171,21 @@ class LinkCache {
 			}
 		}
 
+		$dbr =& wfGetDB( DB_READ );
+		$cur = $dbr->tableName( 'cur' );
+		$links = $dbr->tableName( 'links' );
+
 		$sql = "SELECT cur_id,cur_namespace,cur_title
-			FROM cur,links
+			FROM $cur,$links
 			WHERE cur_id=l_to AND l_from=$id";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		while( $s = wfFetchObject( $res ) ) {
+		$res = $dbr->query( $sql, $fname );
+		while( $s = $dbr->fetchObject( $res ) ) {
 			$this->addGoodLink( $s->cur_id,
 				Title::makeName( $s->cur_namespace, $s->cur_title )
 				);
 		}
 		
-		$sql = "SELECT bl_to
-			FROM brokenlinks
-			WHERE bl_from='{$id}'";
-		$res = wfQuery( $sql, DB_READ, "LinkCache::preFill" );
+		$res = $dbr->select( 'brokenlinks', array( 'bl_to' ), array( 'bl_from' => $id ), $fname );
 		while( $s = wfFetchObject( $res ) ) {
 			$this->addBadLink( $s->bl_to );
 		}
@@ -276,18 +272,18 @@ class LinkCache {
 
 	/* private */ function fillFromLinkscc( $id ){ 
 		$id = IntVal( $id );
-		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_pageid = $id", 
-			DB_READ);
-		$row = wfFetchObject( $res );
-		if( $row == FALSE)
-			return false;	
-
+		$dbr =& wfGetDB( DB_READ );
+		$raw = $dbr->getField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ) );
+		if ( $raw === false ) {
+			return false;
+		}
+		
 		$cacheobj = false;
 		if( function_exists( "gzuncompress" ) )
-			$cacheobj = @gzuncompress( $row->lcc_cacheobj );
+			$cacheobj = @gzuncompress( $raw );
 
 		if($cacheobj == FALSE){
-			$cacheobj = $row->lcc_cacheobj;
+			$cacheobj = $raw;
 		}
 		$cc = @unserialize( $cacheobj );
 		if( isset( $cc->mClassVer ) and ($cc->mClassVer == $this->mClassVer ) ){
@@ -302,51 +298,41 @@ class LinkCache {
 	}
 
 	/* private */ function saveToLinkscc( $pid ){
-		global $wgCompressedPersistentLC, $wgIsMySQL;
+		global $wgCompressedPersistentLC;
 		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
-			$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
+			$ser = gzcompress( serialize( $this ), 3 );
 		} else {
-			$ser = wfStrencode( serialize( $this ) );
+			$ser = serialize( $this );
 		}
-		if ($wgIsMySQL) {
-			wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_cacheobj) " .
-				"VALUES({$pid}, '{$ser}')", DB_WRITE);
-		} else {
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid={$pid}",DB_WRITE);
-			wfQuery("INSERT INTO linkscc(lcc_pageid,lcc_cacheobj) " .
-				"VALUES({$pid}, '{$ser}')", DB_WRITE);
-		}
+		$db =& wfGetDB( DB_WRITE );
+		$db->replace( 'linkscc', array( 'lcc_pageid' ), array( 'lcc_pageid' => $pid, 'lcc_cacheobj' => $ser ) );
 	}
 
+	# Delete linkscc rows which link to here
 	# $pid is a page id
 	/* static */ function linksccClearLinksTo( $pid ){
-		global $wgEnablePersistentLC, $wgIsMySQL;
+		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
+			$fname = "LinkCache::linksccClearLinksTo";
 			$pid = intval( $pid );
-			if ($wgIsMySQL) {
-				wfQuery("DELETE linkscc FROM linkscc,links ".
-					"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
-			} else {
-				wfQuery("DELETE FROM linkscc WHERE lcc_pageid IN ".
-					"(SELECT l_from FROM links WHERE l_to={$pid})", DB_WRITE);
-			}
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+			$dbw =& wfGetDB( DB_WRITE );
+			# Delete linkscc rows which link to here
+			$dbw->deleteJoin( 'linkscc', 'links', 'lcc_pageid', 'l_from', array( 'l_to' => $pid ), $fname );
+			# Delete linkscc row representing this page
+			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ), $fname);
 		}
+
 	}
 
+	# Delete linkscc rows with broken links to here
 	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
 	/* static */ function linksccClearBrokenLinksTo( $title ){
-		global $wgEnablePersistentLC,$wgIsMySQL;
+		global $wgEnablePersistentLC;
+		$fname = 'LinkCache::linksccClearBrokenLinksTo';
+
 		if ( $wgEnablePersistentLC ) {
-			$title = wfStrencode( $title );
-			if ($wgIsMySQL) {
-				wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-					"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
-			} else {
-				wfQuery("DELETE FROM linkscc WHERE lcc_pageid IN ".
-					"(SELECT bl_from FROM brokenlinks ".
-					"WHERE bl_to='{$title}')",DB_WRITE);
-			}
+			$dbw =& wfGetDB( DB_WRITE );
+			$dbw->deleteJoin( 'linkscc', 'brokenlinks', 'lcc_pageid', 'bl_from', array( 'bl_to' => $title ), $fname );
 		}
 	}
 
@@ -355,7 +341,8 @@ class LinkCache {
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			$pid = intval( $pid );
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+			$dbw =& wfGetDB( DB_WRITE );
+			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ) );
 		}
 	}
 }

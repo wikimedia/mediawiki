@@ -37,6 +37,7 @@ class MessageCache
 		global $wgAllMessagesEn;
 		
 		if ( $this->mDisable ) {
+			wfDebug( "MessageCache::load(): disabled\n" );
 			return true;
 		}
 		
@@ -47,6 +48,7 @@ class MessageCache
 			
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
+				wfDebug( "MessageCache::load(): loading all messages\n" );
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
 				$this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
@@ -64,6 +66,7 @@ class MessageCache
 			}
 			
 			if ( !is_array( $this->mCache ) ) {
+				wfMsg( "MessageCache::load(): individual message mode\n" );
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
 				# Causing too much DB load, disabling -- TS 
 				$this->mDisable = true;
@@ -86,18 +89,20 @@ class MessageCache
 	# Loads all cacheable messages from the database
 	function loadFromDB()
 	{
-	        global $wgLoadBalancer;
 	        $fname = "MessageCache::loadFromDB";
-		$wgLoadBalancer->force(-1);
-		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
-		$res = wfQuery( $sql, DB_READ, $fname );
-		$wgLoadBalancer->force(0);
+		$dbr =& wfGetDB( DB_READ );
+		$res = $dbr->select( 'cur', 
+			array( 'cur_title', 'cur_text' ), 
+			array( 'cur_is_redirect' => 0, 'cur_namespace' => NS_MEDIAWIKI ),
+			$fname
+		);
+		
 		$this->mCache = array();
-		for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
+		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
 			$this->mCache[$row->cur_title] = $row->cur_text;
 		}
 
-		wfFreeResult( $res );
+		$dbr->freeResult( $res );
 	}
 	
 	# Not really needed anymore
@@ -176,7 +181,8 @@ class MessageCache
 			
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message && $useDB) {
-				$result = wfGetArray( "cur", array("cur_text"), 
+				$dbr =& wfGetDB( DB_READ );
+				$result = $dbr->getArray( "cur", array("cur_text"), 
 				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
 				  "MessageCache::get" );
 				if ( $result ) {

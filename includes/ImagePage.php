@@ -85,18 +85,22 @@ class ImagePage extends Article {
 
 		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
 
-		$sql = "SELECT cur_namespace,cur_title FROM imagelinks,cur WHERE il_to='" .
-		  wfStrencode( $this->mTitle->getDBkey() ) . "' AND il_from=cur_id";
-		$res = wfQuery( $sql, DB_READ, "Article::imageLinks" );
+		$dbr =& wfGetDB( DB_READ );
+		$cur = $dbr->tableName( 'cur' );
+		$imagelinks = $dbr->tableName( 'imagelinks' );
+		
+		$sql = "SELECT cur_namespace,cur_title FROM $imagelinks,$cur WHERE il_to=" .
+		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=cur_id";
+		$res = $dbr->query( $sql, DB_READ, "Article::imageLinks" );
 
-		if ( 0 == wfNumRows( $res ) ) {
+		if ( 0 == $dbr->numRows( $res ) ) {
 			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "</p>\n" );
 			return;
 		}
 		$wgOut->addHTML( "<p>" . wfMsg( "linkstoimage" ) .  "</p>\n<ul>" );
 
 		$sk = $wgUser->getSkin();
-		while ( $s = wfFetchObject( $res ) ) {
+		while ( $s = $dbr->fetchObject( $res ) ) {
 			$name = Title::MakeTitle( $s->cur_namespace, $s->cur_title );
 			$link = $sk->makeKnownLinkObj( $name, "" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
@@ -157,6 +161,8 @@ class ImagePage extends Article {
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
+		
+		$dbw =& wfGetDB( DB_WRITE );
 
 		if ( !is_null( $image ) ) {
 			$dest = wfImageDir( $image );
@@ -165,14 +171,9 @@ class ImagePage extends Article {
 				$wgOut->fileDeleteError( "{$dest}/{$image}" );
 				return;
 			}
-			$sql = "DELETE FROM image WHERE img_name='" .
-			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "SELECT oi_archive_name FROM oldimage WHERE oi_name='" .
-			  wfStrencode( $image ) . "'";
-			$res = wfQuery( $sql, DB_READ, $fname );
-			
+			$dbw->delete( 'image', array( 'img_name' => $image ) );
+			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );
+						
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
@@ -183,7 +184,7 @@ class ImagePage extends Article {
 			
 
 			$urlArr = Array();
-			while ( $s = wfFetchObject( $res ) ) {
+			while ( $s = $dbr->fetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
 				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
 			}	
@@ -195,9 +196,7 @@ class ImagePage extends Article {
 				array_push( $wgDeferredUpdateList, $u );
 			}
 			
-			$sql = "DELETE FROM oldimage WHERE oi_name='" .
-			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->delete( 'oldimage', array( 'oi_name' => $image ) );
 
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
@@ -216,10 +215,7 @@ class ImagePage extends Article {
 				wfPurgeSquidServers($urlArr);
 			}
 			$this->doDeleteOldImage( $oldimage );
-			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
-			  wfStrencode( $oldimage ) . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
-
+			$dbw->delete( 'oldimage', array( 'oi_archive_name' => $oldimage ) );
 			$deleted = $oldimage;
 		} else {
 			$this->doDeleteArticle( $reason ); # ignore errors
@@ -276,8 +272,10 @@ class ImagePage extends Article {
 			return;
 		}
 		$oldver = wfTimestampNow() . "!{$name}";
-		$size = wfGetSQL( "oldimage", "oi_size", "oi_archive_name='" .
-		  wfStrencode( $oldimage ) . "'" );
+		
+		$dbr =& wfGetDB( DB_READ );
+		$size = $dbr->getField( "oldimage", "oi_size", "oi_archive_name='" .
+		  $dbr->strencode( $oldimage ) . "'" );
 
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
 			$wgOut->fileRenameError( $curfile, "${archive}/{$oldver}" );

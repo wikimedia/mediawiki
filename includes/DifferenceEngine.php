@@ -118,32 +118,33 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 	#
 	function loadText()
 	{
-		global $wgTitle, $wgOut, $wgLang, $wgIsMySQL, $wgIsPg;
+		global $wgTitle, $wgOut, $wgLang;
 		$fname = "DifferenceEngine::loadText";
 		
-		$oldtable=$wgIsPg?'"old"':'old';
+		$dbr =& wfGetDB( DB_READ );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
 			$this->mNewtitle = wfMsg( "currentrev" );
 			$id = $wgTitle->getArticleID();
 			
-			$sql = "SELECT cur_text, cur_user_text, cur_comment FROM cur WHERE cur_id={$id}";
-			$res = wfQuery( $sql, DB_READ, $fname );
-			if ( 0 == wfNumRows( $res ) ) { return false; }
+			$s = $dbr->getArray( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ), 
+				array( 'cur_id' => $id ), $fname );
+			if ( $s === false ) { 
+				return false; 
+			}
 
-			$s = wfFetchObject( $res );
 			$this->mNewPage = &$wgTitle;
 			$this->mNewtext = $s->cur_text;
 			$this->mNewUser = $s->cur_user_text;
 			$this->mNewComment = $s->cur_comment;
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
-			  "old_id={$this->mNewid}";
+			$s = $dbr->getArray( 'old', array( 'old_namespace','old_title','old_timestamp', 'old_text',
+				'old_flags','old_user_text','old_comment' ), array( 'old_id' => $this->mNewid ), $fname );
 
-			$res = wfQuery( $sql, DB_READ, $fname );
-			if ( 0 == wfNumRows( $res ) ) { return false; }
+			if ( $s === false ) { 
+				return false; 
+			}
 
-			$s = wfFetchObject( $res );
 			$this->mNewtext = Article::getRevisionText( $s );
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
@@ -153,21 +154,23 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 			$this->mNewComment = $s->old_comment;
 		}
 		if ( 0 == $this->mOldid ) {
-			$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment " .
-			  "FROM $oldtable $use_index WHERE " .
-			  "old_namespace=" . $this->mNewPage->getNamespace() . " AND " .
-			  "old_title='" . wfStrencode( $this->mNewPage->getDBkey() ) .
-			  "' ORDER BY inverse_timestamp LIMIT 1";
-			$res = wfQuery( $sql, DB_READ, $fname );
+			$s = $dbr->getArray( 'old', 
+				array( 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ), 
+				array( /* WHERE */
+					'old_namespace' => $this->mNewPage->getNamespace(), 
+					'old_title' => $this->mNewPage->getDBkey() 
+				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'name_title_timestamp' )
+			);
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
-			  "old_id={$this->mOldid}";
-			$res = wfQuery( $sql, DB_READ, $fname );
+			$s = $dbr->getArray( 'old', 
+				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
+				array( 'old_id' => $this->mOldid ), 
+				$fname
+			);
 		}
-		if ( 0 == wfNumRows( $res ) ) { return false; }
-
-		$s = wfFetchObject( $res );
+		if ( $s === false ) { 
+			return false; 
+		}
 		$this->mOldPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
 		$this->mOldtext = Article::getRevisionText( $s );
 

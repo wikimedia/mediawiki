@@ -25,19 +25,21 @@ class SearchUpdate {
 
 	function doUpdate()
 	{
-		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate, $wgIsMySQL;
+		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
 		$lc = SearchEngine::legalSearchChars() . "&#;";
+		$db =& wfGetDB( DB_WRITE );
+		
 		if( $this->mText == false ) {
 			# Just update the title
-			$lowpri=$wgIsMySQL?"LOW_PRIORITY":"";
+			$lowpri = $db->lowPriorityOption();
 			$sql = "UPDATE $lowpri searchindex SET si_title='" .
 			  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
 			  "' WHERE si_page={$this->mId}";
-			wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
+			$db->query( $sql, "SearchUpdate::doUpdate" );
 			return;
 		}
 
@@ -80,7 +82,7 @@ class SearchUpdate {
 		$sql = "REPLACE  INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  wfStrencode( $text ) . "')";
-		wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
+		$db->query( $sql, "SearchUpdate::doUpdate" );
 	}
 }
 

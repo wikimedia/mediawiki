@@ -253,32 +253,31 @@ class Image
 
 	//**********************************************************************
 	// Return the image history of this image, line by line.
-	// start with current version, than old versions.
-	// use $this->historyLine to check which line to return:
+	// starts with current version, then old versions.
+	// uses $this->historyLine to check which line to return:
 	//  0      return line for current version
 	//  1      query for old versions, return first one
 	//  2, ... return next old version from above query
 	function nextHistoryLine()
 	{
 		$fname = "Image::nextHistoryLine()";
-		
-		if ( $this->historyLine == 0 ) // called for the first time, return line from cur
-		{ 
-			$sql = "SELECT img_size,img_description,img_user," .
-			  "img_user_text,img_timestamp, '' AS oi_archive_name FROM image WHERE " .
-			  "img_name='" . wfStrencode( $this->title->getDBkey() ) . "'";
-			$this->historyRes = wfQuery( $sql, DB_READ, $fname );
-
-			if ( 0 == wfNumRows( $this->historyRes ) ) { return FALSE; }
-
-		} else if ( $this->historyLine == 1 )
-		{
-			$sql = "SELECT oi_size AS img_size, oi_description AS img_description," .
-			  "oi_user AS img_user," .
-			  "oi_user_text AS img_user_text, oi_timestamp AS img_timestamp , oi_archive_name FROM oldimage WHERE " .
-			  "oi_name='" . wfStrencode( $this->title->getDBkey() ) . "' " .
-			  "ORDER BY oi_timestamp DESC";
-			$this->historyRes = wfQuery( $sql, DB_READ, $fname );
+		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur 
+			$dbr =& wfGetDB( DB_READ );
+			$this->historyRes = $dbr->select( 'image', 
+				array( 'img_size','img_description','img_user','img_user_text','img_timestamp', "'' AS oi_archive_name" ), 
+				array( 'img_name' => $this->title->getDBkey() ),
+				$fname
+			);
+			if ( 0 == wfNumRows( $this->historyRes ) ) { 
+				return FALSE; 
+			}
+		} else if ( $this->historyLine == 1 ) {
+			$dbr =& wfGetDB( DB_READ );
+			$this->historyRes = $dbr->select( 'oldimage', 
+				array( 'oi_size AS img_size', 'oi_description AS img_description', 'oi_user AS img_user',
+					'oi_user_text AS img_user_text', 'oi_timestamp AS img_timestamp', 'oi_archive_name'
+				), array( 'oi_name' => $this->title->getDBkey() ), $fname, array( 'ORDER BY' => 'oi_timestamp DESC' ) 
+			);
 		}
 		$this->historyLine ++;
 

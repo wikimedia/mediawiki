@@ -60,7 +60,8 @@ class Database {
 # Other functions
 #------------------------------------------------------------------------------
 
-	function Database()
+	function Database( $server = false, $user = false, $password = false, $dbName = false, 
+		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
 	{
 		global $wgOut;
 		# Can't get a reference if it hasn't been set yet
@@ -68,27 +69,27 @@ class Database {
 			$wgOut = NULL;
 		}
 		$this->mOut =& $wgOut;
-	
+
+		$this->mFailFunction = $failFunction;
+		$this->mIgnoreErrors = $ignoreErrors;
+		$this->mDebug = $debug;
+		$this->mBufferResults = $bufferResults;
+		if ( $server ) {
+			$this->open( $server, $user, $password, $dbName );
+		}
 	}
 	
 	/* static */ function newFromParams( $server, $user, $password, $dbName, 
 		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
 	{
-		$db = new Database;
-		$db->mFailFunction = $failFunction;
-		$db->mIgnoreErrors = $ignoreErrors;
-		$db->mDebug = $debug;
-		$db->mBufferResults = $bufferResults;
-		$db->open( $server, $user, $password, $dbName );
-		return $db;
+		return new Database( $server, $user, $password, $dbName, $failFunction, $debug, 
+		  $bufferResults, $ignoreErrors );
 	}
 	
 	# Usually aborts on failure
 	# If the failFunction is set to a non-zero integer, returns success
 	function open( $server, $user, $password, $dbName )
 	{
-		global $wgEmergencyContact;
-		
 		# Test for missing mysql.so
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysql_connect' ) ) {
@@ -155,7 +156,7 @@ class Database {
 	
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns success
-	function query( $sql, $fname = "" )
+	function query( $sql, $fname = "", $tempIgnore = false )
 	{
 		global $wgProfiling, $wgCommandLineMode;
 		
@@ -173,16 +174,26 @@ class Database {
 			$sqlx = wordwrap(strtr($sqlx,"\t\n","  "));
 			wfDebug( "SQL: $sqlx\n" );
 		}
-		if( $this->mBufferResults ) {
-			$ret = mysql_query( $sql, $this->mConn );
+		# Add a comment for easy SHOW PROCESSLIST interpretation
+		if ( $fname ) {
+			$commentedSql = "/* $fname */ $sql";
 		} else {
-			$ret = mysql_unbuffered_query( $sql, $this->mConn );
+			$commentedSql = $sql;
+		}
+		
+		if( $this->mBufferResults ) {
+			$ret = mysql_query( $commentedSql, $this->mConn );
+		} else {
+			$ret = mysql_unbuffered_query( $commentedSql, $this->mConn );
 		}
 	
 		if ( false === $ret ) {
+			# Ignore errors during error handling to avoid infinite recursion
+			$ignore = $this->setIgnoreErrors( true );
+
 			$error = mysql_error( $this->mConn );
 			$errno = mysql_errno( $this->mConn );
-			if( $this->mIgnoreErrors ) {
+			if( $ignore || $tempIgnore ) {
 				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
 				$sql1line = str_replace( "\n", "\\n", $sql );
@@ -199,6 +210,7 @@ class Database {
 					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
 			}
+			$this->setIgnoreErrors( $ignore );
 		}
 		
 		if ( $wgProfiling ) {
@@ -216,7 +228,7 @@ class Database {
 		@$row = mysql_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
 		if( mysql_errno() ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+			wfDebugDieBacktrace( "Error in fetchObject(): " . htmlspecialchars( mysql_error() ) );
 		}
 		return $row;
 	}
@@ -224,7 +236,7 @@ class Database {
  	function fetchRow( $res ) {
 		@$row = mysql_fetch_array( $res );
 		if (mysql_errno() ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+			wfDebugDieBacktrace( "Error in fetchRow(): " . htmlspecialchars( mysql_error() ) );
 		}
 		return $row;
 	}	
@@ -232,7 +244,7 @@ class Database {
 	function numRows( $res ) {
 		@$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+			wfDebugDieBacktrace( "Error in numRows(): " . htmlspecialchars( mysql_error() ) );
 		}
 		return $n;
 	}
@@ -249,6 +261,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function set( $table, $var, $value, $cond, $fname = "Database::set" )
 	{
+		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET $var = '" .
 		  wfStrencode( $value ) . "' WHERE ($cond)";
 		return !!$this->query( $sql, DB_WRITE, $fname );
@@ -257,41 +270,89 @@ class Database {
 	# Simple SELECT wrapper, returns a single field, input must be encoded
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns FALSE on failure
-	function get( $table, $var, $cond, $fname = "Database::get" )
+	function getField( $table, $var, $cond, $fname = "Database::get" )
 	{
-		$sql = "SELECT $var FROM $table WHERE ($cond)";
-		$result = $this->query( $sql, DB_READ, $fname );
+		$table = $this->tableName( $table );
+		$from = $table?" FROM $table ":"";
+		if ( is_array( $cond ) ) {
+			$where = ' WHERE ' . $this->makeList( $cond, LIST_AND );
+		} elseif ( $cond ) {
+			$where = " WHERE ($cond)";
+		} else {
+			$where = '';
+		}
+		$sql = "SELECT $var $from $where LIMIT 1";
+		$result = $this->query( $sql, $fname );
 	
-		$ret = "";
-		if ( mysql_num_rows( $result ) > 0 ) {
-			$s = mysql_fetch_object( $result );
-			$ret = $s->$var;
-			mysql_free_result( $result );
+		$ret = false;
+		if ( $this->numRows( $result ) > 0 ) {
+			$s = $this->fetchRow( $result );
+			$ret = $s[0];
+			$this->freeResult( $result );
 		}
 		return $ret;
 	}
 	
-	# More complex SELECT wrapper, single row only
+	# SELECT wrapper
+	function select( $table, $vars, $conds, $fname = "Database::select", $options = array() )
+	{
+		$vars = implode( ",", $vars );
+		$table = $this->tableName( $table );
+		if ( !is_array( $options ) ) {
+			$options = array( $options );
+		}
+
+		$tailOpts = '';
+
+		if ( isset( $options['ORDER BY'] ) ) {
+			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
+		} 
+		if ( isset( $options['LIMIT'] ) ) {
+			$tailOpts .= " LIMIT {$options['LIMIT']}";
+		}
+
+		if ( is_numeric( array_search( 'FOR UPDATE', $options ) ) ) {
+			$tailOpts .= ' FOR UPDATE';
+		}
+		
+		if ( is_numeric( array_search( 'LOCK IN SHARE MODE', $options ) ) ) {
+			$tailOpts .= ' LOCK IN SHARE MODE';
+		}
+
+		if ( isset( $options['USE INDEX'] ) ) {
+			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
+		} else {
+			$useIndex = '';
+		}
+
+		if ( $conds !== false ) {
+			$where = $this->makeList( $conds, LIST_AND );
+			$sql = "SELECT $vars FROM $table $useIndex WHERE $where $tailOpts";
+		} else {
+			$sql = "SELECT $vars FROM $table $useIndex $tailOpts";
+		}
+		return $this->query( $sql, $fname );
+	}
+	
+	# Single row SELECT wrapper
 	# Aborts or returns FALSE on error
+	#
+	# $vars: the selected variables
+	# $conds: a condition map, terms are ANDed together. 
+	#    Items with numeric keys are taken to be literal conditions
 	# Takes an array of selected variables, and a condition map, which is ANDed
 	# e.g. getArray( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
 	#   would return an object where $obj->cur_id is the ID of the Astronomy article
-	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
-	{
-		$vars = implode( ",", $vars );
-		if ( $conds !== false ) {
-			$where = Database::makeList( $conds, LIST_AND );
-			$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
-		} else {
-			$sql = "SELECT $vars FROM $table LIMIT 1";
-		}
-		$res = $this->query( $sql, $fname );
+	function getArray( $table, $vars, $conds, $fname = "Database::getArray", $options = array() ) {
+		$options['LIMIT'] = 1;
+		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
 		}
 		$obj = $this->fetchObject( $res );
 		$this->freeResult( $res );
 		return $obj;
+		
 	}
 	
 	# Removes most variables from an SQL query and replaces them with X or N for numbers.
@@ -322,6 +383,7 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function fieldExists( $table, $field, $fname = "Database::fieldExists" )
 	{
+		$table = $this->tableName( $table );
 		$res = $this->query( "DESCRIBE $table", DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
@@ -343,28 +405,35 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
+		$info = $this->indexInfo( $table, $index, $fname );
+		if ( is_null( $info ) ) {
+			return NULL;
+		} else {
+			return $info !== false;
+		}
+	}
+	
+	function indexInfo( $table, $index, $fname = "Database::indexInfo" ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$table = $this->tableName( $table );
 		$sql = "SHOW INDEX FROM $table";
-		$res = $this->query( $sql, DB_READ, $fname );
+		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
 			return NULL;
 		}
 		
-		$found = false;
-		
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->Key_name == $index ) {
-				$found = true;
-				break;
+				return $row;
 			}
 		}
-		return $found;
+		return false;
 	}
-	
 	function tableExists( $table )
 	{
+		$table = $this->tableName( $table );
 		$old = $this->mIgnoreErrors;
 		$this->mIgnoreErrors = true;
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
@@ -379,6 +448,7 @@ class Database {
 
 	function fieldInfo( $table, $field )
 	{
+		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1" );
 		$n = mysql_num_fields( $res );
 		for( $i = 0; $i < $n; $i++ ) {
@@ -391,39 +461,61 @@ class Database {
 	}
 
 	# INSERT wrapper, inserts an array into a table
-	# Keys are field names, values are values
+	#
+	# $a may be a single associative array, or an array of these with numeric keys, for 
+	# multi-row insert.
+	#
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns success
-	function insertArray( $table, $a, $fname = "Database::insertArray" )
+	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() )
 	{
-		$sql1 = "INSERT INTO $table (";
-		$sql2 = "VALUES (" . Database::makeList( $a );
-		$first = true;
-		foreach ( $a as $field => $value ) {
-			if ( !$first ) {
-				$sql1 .= ",";
-			}
-			$first = false;
-			$sql1 .= $field;
+		$table = $this->tableName( $table );
+		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
+			$multi = true;
+			$keys = array_keys( $a[0] );
+		} else {
+			$multi = false;
+			$keys = array_keys( $a );
 		}
-		$sql = "$sql1) $sql2)";
+		
+		$sql = 'INSERT ' . implode( ' ', $options ) . 
+			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+
+		if ( $multi ) {
+			$first = true;
+			foreach ( $a as $row ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",";
+				}
+				$sql .= '(' . $this->makeList( $row ) . ')';
+			}
+		} else {
+			$sql .= '(' . $this->makeList( $a ) . ')';
+		}
 		return !!$this->query( $sql, $fname );
 	}
 	
-	# A cross between insertArray and getArray, takes a condition array and a SET array
+	# UPDATE wrapper, takes a condition array and a SET array
 	function updateArray( $table, $values, $conds, $fname = "Database::updateArray" )
 	{
+		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
 		$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		$this->query( $sql, $fname );
 	}
 	
 	# Makes a wfStrencoded list from an array
-	# $mode: LIST_COMMA - comma separated, no field names
-	#        LIST_AND   - ANDed WHERE clause (without the WHERE)
-	#        LIST_SET   - comma separated with field names, like a SET clause
-	/* static */ function makeList( $a, $mode = LIST_COMMA )
+	# $mode: LIST_COMMA         - comma separated, no field names
+	#        LIST_AND           - ANDed WHERE clause (without the WHERE)
+	#        LIST_SET           - comma separated with field names, like a SET clause
+	function makeList( $a, $mode = LIST_COMMA )
 	{
+		if ( !is_array( $a ) ) {
+			wfDebugDieBacktrace( 'Database::makeList called with incorrect parameters' );
+		}
+
 		$first = true;
 		$list = "";
 		foreach ( $a as $field => $value ) {
@@ -436,13 +528,13 @@ class Database {
 			} else {
 				$first = false;
 			}
-			if ( $mode == LIST_AND || $mode == LIST_SET ) {
-				$list .= "$field=";
-			}
-			if ( !is_numeric( $value ) ) {
-				$list .= "'" . wfStrencode( $value ) . "'";
+			if ( $mode == LIST_AND && is_numeric( $field ) ) {
+				$list .= "($value)";
 			} else {
-				$list .= $value;
+				if ( $mode == LIST_AND || $mode == LIST_SET ) {
+					$list .= "$field=";
+				}
+				$list .= $this->addQuotes( $value );
 			}
 		}
 		return $list;
@@ -465,7 +557,150 @@ class Database {
 	function stopTimer()
 	{
 	}
+
+	function tableName( $name ) {
+		return $name;
+	}
+
+	function strencode( $s ) {
+		return addslashes( $s );
+	}
+
+	# If it's a string, adds quotes and backslashes
+	# Otherwise returns as-is
+	function addQuotes( $s ) {
+		if ( !is_numeric( $s ) ) {
+			$s = "'" . $this->strencode( $s ) . "'";
+		} else if ( is_null( $s ) ) {
+			$s = 'NULL';
+		}
+		return $s;
+	}
+		
+	# Returns an appropriately quoted sequence value for inserting a new row.
+	# MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
+	# subclass will return an integer, and save the value for insertId()
+	function nextSequenceValue( $seqName ) {
+		return NULL;
+	}
+
+	# USE INDEX clause
+	# PostgreSQL doesn't have them and returns ""
+	function useIndexClause( $index ) {
+		return "USE INDEX ($index)";
+	}
+
+	# REPLACE query wrapper
+	# PostgreSQL simulates this with a DELETE followed by INSERT
+	# $row is the row to insert, an associative array
+	# $uniqueIndexes is an array of indexes. Each element may be either a 
+	# field name or an array of field names
+	#
+	# It may be more efficient to leave off unique indexes which are unlikely to collide. 
+	# However if you do this, you run the risk of encountering errors which wouldn't have 
+	# occurred in MySQL
+	function replace( $table, $uniqueIndexes, $rows, $fname = "Database::replace" ) {
+		$table = $this->tableName( $table );
+
+		# Single row case
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$sql = "REPLACE INTO $table (" . implode( ',', array_flip( $rows[0] ) ) .") VALUES ";
+		$first = true;
+		foreach ( $rows as $row ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ",";
+			}
+			$sql .= "(" . $this->makeList( $row ) . ")";
+		}
+		return $this->query( $sql, $fname );
+	}
+
+	# DELETE where the condition is a join
+	# MySQL does this with a multi-table DELETE syntax, PostgreSQL does it with sub-selects
+	#
+	# $delTable is the table to delete from
+	# $joinTable is the other table
+	# $delVar is the variable to join on, in the first table
+	# $joinVar is the variable to join on, in the second table
+	# $conds is a condition array of field names mapped to variables, ANDed together in the WHERE clause
+	#
+	# For safety, an empty $conds will not delete everything. If you want to delete all rows where the 
+	# join condition matches, set $conds='*'
+	#
+	# DO NOT put the join condition in $conds
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "Database::deleteJoin" ) {
+		if ( !$conds ) {
+			wfDebugDieBacktrace( 'Database::deleteJoin() called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
+		if ( $conds != '*' ) {
+			$sql .= " AND " . $this->makeList( $conds, LIST_AND );
+		}
+		
+		return $this->query( $sql, $fname );
+	}
+
+	# Returns the size of a text field, or -1 for "unlimited"
+	function textFieldSize( $table, $field ) {
+		$table = $this->tableName( $table );
+		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
+		$res = $this->query( $sql, "Database::textFieldSize" );
+		$row = wfFetchObject( $res );
+		$this->freeResult( $res );
+
+		if ( preg_match( "/\((.*)\)/", $row->Type, $m ) ) {
+			$size = $m[1];
+		} else {
+			$size = -1;
+		}
+		return $size;
+	}
+
+	function lowPriorityOption() {
+		return 'LOW_PRIORITY';
+	}
+
+	# Use $conds == "*" to delete all rows
+	function delete( $table, $conds, $fname = "Database::delete" ) {
+		if ( !$conds ) {
+			wfDebugDieBacktrace( "Database::delete() called with no conditions" );
+		}
+		$table = $this->tableName( $table );
+		$sql = "DELETE FROM $table ";
+		if ( $conds != '*' ) {
+			$sql .= "WHERE " . $this->makeList( $conds, LIST_AND );
+		}
+		return $this->query( $sql, $fname );
+	}
+
+	# INSERT SELECT wrapper
+	# $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
+	# Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
+	# $conds may be "*" to copy the whole table
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect' ) {
+		$destTable = $this->tableName( $destTable );
+		$srcTable = $this->tableName( $srcTable );
+		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ")" .
+			" SELECT " . implode( ',', $varMap ) . 
+			" FROM $srcTable";
+		if ( $conds != '*' ) {
+			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+		}
+		return $this->query( $sql, $fname );
+	}
 } 
+
+class DatabaseMysql extends Database {
+	# Inherit all
+}
 
 #------------------------------------------------------------------------------
 # Global functions
@@ -518,11 +753,6 @@ function wfEmergencyAbort( &$conn, $error ) {
 	
 	echo $text;
 	wfAbruptExit();
-}
-
-function wfStrencode( $s )
-{
-	return addslashes( $s );
 }
 
 function wfLimitResult( $limit, $offset ) {

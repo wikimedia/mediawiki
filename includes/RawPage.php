@@ -56,13 +56,16 @@ class RawPage {
 		} else {
 			echo $this->getrawtext();
 		}
-		wfAbruptExit();
+		$wgOut->disable();
 	}
 	
 	function getrawtext () {
-		global $wgInputEncoding, $wgLang, $wgIsPg;
+		global $wgInputEncoding, $wgLang;
+		$fname = 'RawPage::getrawtext';
+		
 		if( !$this->mTitle ) return '';
-		$t = wfStrencode( $this->mTitle->getDBKey() );
+		$dbr = wfGetDB( DB_READ );
+		$t = $dbr->strencode( $this->mTitle->getDBKey() );
 		$ns = $this->mTitle->getNamespace();
 		# special case
 		if($ns == NS_MEDIAWIKI) {
@@ -73,7 +76,7 @@ class RawPage {
 		}
 		# else get it from the DB
 		if(!empty($this->mOldId)) {
-			$oldtable=$wgIsPg?'"old"':'old';
+			$oldtable = $dbr->tableName( 'old', DB_READ );
 			$sql = "SELECT old_text AS text,old_timestamp AS timestamp,".
 				    "old_user AS user,old_flags AS flags FROM $oldtable " .
 			"WHERE old_id={$this->mOldId}";
@@ -82,8 +85,8 @@ class RawPage {
 			"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM cur " .
 			"WHERE cur_namespace=$ns AND cur_title='$t'";
 		}
-		$res = wfQuery( $sql, DB_READ );
-		if( $s = wfFetchObject( $res ) ) {
+		$res = $dbr->query( $sql, $fname );
+		if( $s = $dbr->fetchObject( $res ) ) {
 			$rawtext = Article::getRevisionText( $s, "" );
 			if($wgInputEncoding != $this->mCharset)
 			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );

@@ -307,7 +307,7 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		global $wgDebugRedirects, $wgMimeType, $wgProfiling;
+		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
 		if( $this->mDoNothing ){
 			return;
 		}

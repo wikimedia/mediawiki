@@ -65,38 +65,67 @@ class QueryPage {
 
 		$sname = $this->getName();
 		$fname = get_class($this) . "::doQuery";
-		$sql = $this->getSQL( $offset, $limit );
+		$sql = $this->getSQL();
+		$dbr =& wfGetDB( DB_READ );
+		$dbw =& wfGetDB( DB_WRITE );
+		$querycache = $dbr->tableName( 'querycache' );
 
 		$wgOut->setSyndicated( true );
+		$res = false;
 		
 		if ( $this->isExpensive() ) {
-			$type = wfStrencode( $sname );
 			$recache = $wgRequest->getBool( "recache" );
 			if( $recache ) {
 				# Clear out any old cached data
-				$res = wfQuery( "DELETE FROM querycache WHERE qc_type='$type'", DB_WRITE, $fname );
-
-				# Save results into the querycache table
+				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
+				
+				# Do query on the (possibly out of date) slave server
 				$maxstored = 1000;
-				$res = wfQuery(
-					"INSERT INTO querycache(qc_type,qc_namespace,qc_title,qc_value) " .
-					$this->getSQL() .
-					$this->getOrderLimit( 0, $maxstored ),
-					DB_WRITE, $fname );
+				$res = $dbr->query( $sql . $this->getOrderLimit( 0, $maxstored ), $fname );
+				
+				# Fetch results
+				$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
+				$first = true;
+				while ( $row = $dbr->fetchObject( $res ) ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$insertSql .= ",";
+					} 
+					$insertSql .= "(" .
+						$dbw->addQuotes( $row->type ) . "," .
+						$dbw->addQuotes( $row->namespace ) . "," .
+						$dbw->addQuotes( $row->title ) . "," .
+						$dbw->addQuotes( $row->value ) . ")"
+				}
+
+				# Save results into the querycache table on the master
+				$dbw->query( $insertSql, $fname );
+
+				# Set result pointer to allow reading for display
+				$numRows = $dbr->numRows( $res );
+				if ( $numRows <= $offset ) {
+					$num = 0;
+				} else {
+					$dbr->dataSeek( $res, $offset );
+					$num = max( $limit, $numRows - $offset );
+				}
 			}
 			if( $wgMiserMode || $recache ) {
+				$type = $dbr->strencdode( $sname );
 				$sql =
 					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
-					 FROM querycache WHERE qc_type='$type'";
+					 FROM $querycache WHERE qc_type='$type'";
 			}
 			if( $wgMiserMode ) {
 				$wgOut->addWikiText( wfMsg( "perfcached" ) );
 			}
 		}
-
-		$res = wfQuery( $sql . $this->getOrderLimit( $offset, $limit ), DB_READ, $fname );
+		if ( $res === false ) {
+			$res = $dbr->query( $sql . $this->getOrderLimit( $offset, $limit ), $fname );
+			$num = $dbr->numRows($res);
+		}
 		
-		$num = wfNumRows($res);
 		
 		$sk = $wgUser->getSkin( );
 
@@ -110,11 +139,12 @@ class QueryPage {
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 		$s = "<ol start='" . ( $offset + 1 ) . "'>";
-		while ( $obj = wfFetchObject( $res ) ) {
+		# Only read at most $num rows, because $res may contain the whole 1000
+		for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
 			$format = $this->formatResult( $sk, $obj );
 			$s .= "<li>{$format}</li>\n";
 		}
-		wfFreeResult( $res );
+		$dbr->freeResult( $res );
 		$s .= "</ol>";
 		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
@@ -131,13 +161,14 @@ class QueryPage {
 				$this->feedUrl() );
 			$feed->outHeader();
 			
-			$sql = $this->getSQL( 0, 50 );
-			$res = wfQuery( $sql, DB_READ, "QueryPage::doFeed" );
-			while( $obj = wfFetchObject( $res ) ) {
+			$dbr = wfGetDB( DB_READ );
+			$sql = $this->getSQL() . $this->getOrderLimit( 0, 50 );
+			$res = $dbr->query( $sql, "QueryPage::doFeed" );
+			while( $obj = $dbr->fetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );
 				if( $item ) $feed->outItem( $item );
 			}
-			wfFreeResult( $res );
+			$dbr->freeResult( $res );
 
 			$feed->outFooter();
 			return true;

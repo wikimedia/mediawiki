@@ -13,8 +13,8 @@ class AncientPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
-		global $wgIsMySQL;
-		$use_index=$wgIsMySQL?"USE INDEX (cur_timestamp)":"";
+		$db = wfGetDB( DB_READ );
+		$use_index = $db->useIndexClause( 'cur_timestamp' );
 		return
 			"SELECT 'Ancientpages' as type,
 					cur_namespace as namespace,

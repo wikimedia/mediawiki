@@ -18,13 +18,16 @@ class LogPage {
 
 	function getContent( $defaulttext = "<ul>\n</ul>" )
 	{
-		$sql = "SELECT cur_id,cur_text,cur_timestamp FROM cur " .
-			"WHERE cur_namespace=" . Namespace::getWikipedia() . " AND " .
-			"cur_title='" . wfStrencode($this->mTitle ) . "'";
-		$res = wfQuery( $sql, DB_READ, "LogPage::getContent" );
+		$fname = 'LogPage::getContent';
 
-		if( wfNumRows( $res ) > 0 ) {
-			$s = wfFetchObject( $res );
+		$dbw =& wfGetDB( DB_WRITE );
+		$s = $dbw->getArray( 'cur', 
+			array( 'cur_id','cur_text','cur_timestamp' ),
+			array( 'cur_namespace' => Namespace::getWikipedia(), 'cur_title' => $this->mTitle ), 
+			$fname, 'FOR UPDATE' 
+		);
+
+		if( $s !== false ) {
 			$this->mId = $s->cur_id;
 			$this->mContent = $s->cur_text;
 			$this->mTimestamp = $s->cur_timestamp;
@@ -52,31 +55,49 @@ class LogPage {
 
 		global $wgUser;
 		$fname = "LogPage::saveContent";
+
+		$dbw =& wfGetDB( DB_WRITE );
 		$uid = $wgUser->getID();
-		$ut = wfStrencode( $wgUser->getName() );
 
 		if( !$this->mContentLoaded ) return false;
 		$this->mTimestamp = $now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
 		if($this->mId == 0) {
-			$sql = "INSERT INTO cur (cur_timestamp,cur_user,cur_user_text,
-				cur_namespace,cur_title,cur_text,cur_comment,cur_restrictions,
-				inverse_timestamp,cur_touched)
-				VALUES ('{$now}', {$uid}, '{$ut}', " .
-				Namespace::getWikipedia() . ", '" .
-				wfStrencode( $this->mTitle ) . "', '" .
-				wfStrencode( $this->mContent ) . "', '" .
-				wfStrencode( $this->mComment ) . "', 'sysop', '{$won}','{$now}')";
-			wfQuery( $sql, DB_WRITE, $fname );
-			$this->mId = wfInsertId();
+			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
+
+			# Note: this query will deadlock if another thread has called getContent(), 
+			# at least in MySQL 4.0.17 InnoDB
+			$dbw->insertArray( 'cur',
+				array(
+					'cur_id' => $seqVal,
+					'cur_timestamp' => $now,
+					'cur_user' => $uid,
+					'cur_user_text' => $wgUser->getName(),
+					'cur_namespace' => NS_WIKIPEDIA,
+					'cur_title' => $this->mTitle, 
+					'cur_text' => $this->mContent,
+					'cur_comment' => $this->mComment,
+					'cur_restrictions' => 'sysop',
+					'inverse_timestamp' => $won,
+					'cur_touched' => $now,
+				), $fname
+			);
+			$this->mId = $dbw->insertId();
 		} else {
-			$sql = "UPDATE cur SET cur_timestamp='{$now}', " .
-			  "cur_user={$uid}, cur_user_text='{$ut}', " .
-			  "cur_text='" . wfStrencode( $this->mContent ) . "', " .
-			  "cur_comment='" . wfStrencode( $this->mComment ) . "', " .
-			  "cur_restrictions='sysop', inverse_timestamp='{$won}', cur_touched='{$now}' " .
-			  "WHERE cur_id={$this->mId}";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->updateArray( 'cur',
+				array( /* SET */ 
+					'cur_timestamp' => $now,
+					'cur_user' => $uid, 
+					'cur_user_text' => $wgUser->getName(),
+					'cur_text' => $this->mContent,
+					'cur_comment' => $this->mComment,
+					'cur_restrictions' => 'sysop', 
+					'inverse_timestamp' => $won,
+					'cur_touched' => $now,
+				), array( /* WHERE */
+					'cur_id' => $this->mId
+				), $fname
+			);
 		}
 		
 		# And update recentchanges

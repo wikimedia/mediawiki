@@ -61,8 +61,16 @@ $wgDBuser           = 'wikiuser';
 $wgDBtype           = "mysql"; # "mysql" for working code and "pgsql" for development/broken code
 
 # Database load balancer
-$wgDBservers		= false; # e.g. array(0 => "larousse", 1 => "pliny")
-$wgDBloads			= false; # e.g. array(0 => 0.6, 1 => 0.4);
+# This is a two-dimensional array, an array of server info structures
+# Fields are: 
+#   host:      Host name
+#   dbname:    Default database name
+#   user:      DB user
+#   password:  DB password
+#   type:      "mysql" or "pgsql"
+#   load:      ratio of DB_READ load, must be >=0, the sum of all loads must be >0
+# Leave at false to use the single-server variables above
+$wgDBservers		= false; 
 
 # Sysop SQL queries
 $wgAllowSysopQueries = false; # Dangerous if not configured properly.

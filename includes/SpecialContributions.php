@@ -2,7 +2,7 @@
 
 function wfSpecialContributions( $par = "" )
 {
-	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgIsPg;
+	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = "wfSpecialContributions";
 	$sysop = $wgUser->isSysop();
 
@@ -65,7 +65,7 @@ function wfSpecialContributions( $par = "" )
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
-	$oldtable=$wgIsPg?'"old"':'old';
+	$oldtable = wfTableName( 'old', DB_READ );
 	if ( $userCond == "" ) {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .

@@ -4,8 +4,8 @@ require_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgLoadBalancer;
-	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname, $wgIsMySQL;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc;
+	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
 
@@ -51,18 +51,14 @@ function wfSpecialWatchlist()
 		}
 	}
 	
-	$wgLoadBalancer->force(-1);
 	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
 	$res = wfQuery( $sql, DB_READ );
 	$s = wfFetchObject( $res );
 	$nitems = $s->n;
-	$wgLoadBalancer->force(0);
 	if($nitems == 0) {
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
         return;
 	}
-	
-	$wgLoadBalancer->force(-1);
 	
 	if ( ! isset( $days ) ) {
 		$big = 1000;
@@ -119,7 +115,6 @@ function wfSpecialWatchlist()
 			wfMsg( "removechecked" ) . "' />\n" .
 			"</form>\n" );
 		
-		$wgLoadBalancer->force(0);
 		return;
 	}
 	
@@ -145,7 +140,7 @@ function wfSpecialWatchlist()
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 	 
-	$use_index=$wgIsMySQL?"USE INDEX ($x)":"";
+	$use_index = wfUseIndexClause( $x, DB_READ );
 	$sql = "SELECT
   cur_namespace,cur_title,cur_comment, cur_id,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
@@ -171,7 +166,6 @@ function wfSpecialWatchlist()
 
 	if ( wfNumRows( $res ) == 0 ) {
 		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
-		$wgLoadBalancer->force(0);
 		return;
 	}
 
@@ -193,7 +187,6 @@ function wfSpecialWatchlist()
 		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
 	}
 	
-	$wgLoadBalancer->force(0);
 }
 
 

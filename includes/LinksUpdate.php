@@ -9,7 +9,6 @@ class LinksUpdate {
 	{
 		$this->mId = $id;
 		$this->mTitle = $title;
-		$this->mTitleEnc = wfStrencode( $title );
 	}
 
 	
@@ -27,10 +26,11 @@ class LinksUpdate {
 		$del = array();
 		$add = array();
 
-		if( $wgDBtransactions ) {
-			$sql = "BEGIN";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
+		$dbw =& wfGetDB( DB_WRITE );
+		$links = $dbw->tableName( 'links' );
+		$brokenlinks = $dbw->tableName( 'brokenlinks' );
+		$imagelinks = $dbw->tableName( 'imagelinks' );
+		$categorylinks = $dbw->tableName( 'categorylinks' );
 		
 		#------------------------------------------------------------------------------
 		# Good links
@@ -38,15 +38,14 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$sql = "DELETE FROM links WHERE l_from={$this->mId} AND l_to IN(".
+				$sql = "DELETE FROM $links WHERE l_from={$this->mId} AND l_to IN(".
 					implode( ",", $del ) . ")";
-				wfQuery( $sql, DB_WRITE, $fname );
+				$dbw->query( $sql, $fname );
 			}
 		} else {
 			# Delete everything
-			$sql = "DELETE FROM links WHERE l_from={$this->mId}";
-			wfQuery( $sql, DB_WRITE, $fname );
-			
+			$dbw->delete( 'links', array( 'l_from' => $this->mId ), $fname );
+						
 			# Get the addition list
 			$add = $wgLinkCache->getGoodLinks();
 		}
@@ -57,10 +56,9 @@ class LinksUpdate {
 			# The link cache was constructed without FOR UPDATE, so there may be collisions
 			# Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
 			# sure it's better than without IGNORE
-			$sql = "INSERT IGNORE INTO links (l_from,l_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
 			$first = true;
 			foreach( $add as $lt => $lid ) {
-				
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
@@ -68,7 +66,7 @@ class LinksUpdate {
 			}
 		}
 		if ( "" != $sql ) { 
-			wfQuery( $sql, DB_WRITE, $fname ); 
+			$dbw->query( $sql, $fname ); 
 		}
 
 		#------------------------------------------------------------------------------
@@ -77,14 +75,21 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_BAD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId} AND bl_to IN('" . 	
-					implode( "','", array_map( "wfStrencode", $del ) ) . "')";
-				wfQuery( $sql, DB_WRITE, $fname );
+				$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId} AND bl_to IN(";
+				$first = true;
+				foreach( $del as $badTitle ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$sql .= ",";
+					}
+					$sql .= $dbw->addQuotes( $badTitle );
+				}
+				$dbw->query( $sql, $fname );
 			}
 		} else {
 			# Delete all
-			$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->delete( 'brokenlinks', array( 'bl_from' => $this->mId ) );
 			
 			# Get addition list
 			$add = $wgLinkCache->getBadLinks();
@@ -93,10 +98,10 @@ class LinksUpdate {
 		# Do additions
 		$sql = "";
 		if ( 0 != count ( $add ) ) {
-			$sql = "INSERT IGNORE INTO brokenlinks (bl_from,bl_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
 			foreach( $add as $blt ) {
-				$blt = wfStrencode( $blt );
+				$blt = $dbw->strencode( $blt );
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
@@ -104,13 +109,13 @@ class LinksUpdate {
 			}
 		}
 		if ( "" != $sql ) { 
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->query( $sql, $fname );
 		}
 
 		#------------------------------------------------------------------------------
 		# Image links
-		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mId}'";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$sql = "DELETE FROM $imagelinks WHERE il_from='{$this->mId}'";
+		$dbw->query( $sql, $fname );
 		
 		# Get addition list
 		$add = $wgLinkCache->getImageLinks();
@@ -119,7 +124,7 @@ class LinksUpdate {
 		$sql = "";
 		$image = Namespace::getImage();
 		if ( 0 != count ( $add ) ) {
-			$sql = "INSERT IGNORE INTO imagelinks (il_from,il_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
 			$first = true;
 			foreach( $add as $iname => $val ) {
 				# FIXME: Change all this to avoid unnecessary duplication
@@ -127,20 +132,22 @@ class LinksUpdate {
 				if( !$nt ) continue;
 				$nt->invalidateCache();
 
-				$iname = wfStrencode( $iname );
+				$iname = $dbw->strencode( $iname );
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
 				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		if ( "" != $sql ) { 
+			$dbw->query( $sql, $fname ); 
+		}
 
 		#------------------------------------------------------------------------------
 		# Category links
 		if( $wgUseCategoryMagic ) {
-			$sql = "DELETE FROM categorylinks WHERE cl_from='{$this->mId}'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}'";
+			$dbw->query( $sql, $fname );
 			
 			# Get addition list
 			$add = $wgLinkCache->getCategoryLinks();
@@ -148,7 +155,7 @@ class LinksUpdate {
 			# Do the insertion
 			$sql = "";
 			if ( 0 != count ( $add ) ) {
-				$sql = "INSERT IGNORE INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
+				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
 				$first = true;
 				foreach( $add as $cname => $sortkey ) {
 					# FIXME: Change all this to avoid unnecessary duplication
@@ -159,19 +166,17 @@ class LinksUpdate {
 					if ( ! $first ) { $sql .= ","; }
 					$first = false;
 	
-					$sql .= "({$this->mId},'" . wfStrencode( $cname ) .
-						"','" . wfStrencode( $sortkey ) . "')";
+					$sql .= "({$this->mId},'" . $dbw->strencode( $cname ) .
+						"','" . $dbw->strencode( $sortkey ) . "')";
 				}
 			}
-			if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+			if ( "" != $sql ) { 
+				$dbw->query( $sql, $fname ); 
+			}
 		}
 		
 		$this->fixBrokenLinks();
 
-		if( $wgDBtransactions ) {
-			$sql = "COMMIT";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
 		wfProfileOut( $fname );
 	}
 	
@@ -179,23 +184,24 @@ class LinksUpdate {
 	{
 		# Old inefficient update function
 		# Used for rebuilding the link table
-		
 		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
 		$fname = "LinksUpdate::doDumbUpdate";
 		wfProfileIn( $fname );
-
-		if( $wgDBtransactions ) {
-			$sql = "BEGIN";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
 		
-		$sql = "DELETE FROM links WHERE l_from={$this->mId}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		
+		$dbw =& wfGetDB( DB_WRITE );
+		$links = $dbw->tableName( 'links' );
+		$brokenlinks = $dbw->tableName( 'brokenlinks' );
+		$imagelinks = $dbw->tableName( 'imagelinks' );
+		$categorylinks = $dbw->tableName( 'categorylinks' );
+		
+		$sql = "DELETE FROM $links WHERE l_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
 		$sql = "";
 		if ( 0 != count( $a ) ) {
-			$sql = "INSERT IGNORE INTO links (l_from,l_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
 			$first = true;
 			foreach( $a as $lt => $lid ) {
 				if ( ! $first ) { $sql .= ","; }
@@ -204,47 +210,53 @@ class LinksUpdate {
 				$sql .= "({$this->mId},{$lid})";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		if ( "" != $sql ) { 
+			$dbw->query( $sql, $fname ); 
+		}
 
-		$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getBadLinks();
 		$sql = "";
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT IGNORE INTO brokenlinks (bl_from,bl_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
 			foreach( $a as $blt ) {
-				$blt = wfStrencode( $blt );
+				$blt = $dbw->strencode( $blt );
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
 				$sql .= "({$this->mId},'{$blt}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		if ( "" != $sql ) { 
+			$dbw->query( $sql, $fname ); 
+		}
 		
-		$sql = "DELETE FROM imagelinks WHERE il_from={$this->mId}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$sql = "DELETE FROM $imagelinks WHERE il_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
 		$sql = "";
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT IGNORE INTO imagelinks (il_from,il_to) VALUES ";
+			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
 			$first = true;
 			foreach( $a as $iname => $val ) {
-				$iname = wfStrencode( $iname );
+				$iname = $dbw->strencode( $iname );
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
 				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		if ( "" != $sql ) { 
+			$dbw->query( $sql, $fname ); 
+		}
 
 		if( $wgUseCategoryMagic ) {
-			$sql = "DELETE FROM categorylinks WHERE cl_from='{$this->mId}'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}'";
+			$dbw->query( $sql, $fname );
 			
 			# Get addition list
 			$add = $wgLinkCache->getCategoryLinks();
@@ -252,7 +264,7 @@ class LinksUpdate {
 			# Do the insertion
 			$sql = "";
 			if ( 0 != count ( $add ) ) {
-				$sql = "INSERT IGNORE INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
+				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
 				$first = true;
 				foreach( $add as $cname => $sortkey ) {
 					# FIXME: Change all this to avoid unnecessary duplication
@@ -263,18 +275,15 @@ class LinksUpdate {
 					if ( ! $first ) { $sql .= ","; }
 					$first = false;
 	
-					$sql .= "({$this->mId},'" . wfStrencode( $cname ) .
-						"','" . wfStrencode( $sortkey ) . "')";
+					$sql .= "({$this->mId},'" . $dbw->strencode( $cname ) .
+						"','" . $dbw->strencode( $sortkey ) . "')";
 				}
 			}
-			if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+			if ( "" != $sql ) { 
+				$dbw->query( $sql, $fname ); 
+			}
 		}
 		$this->fixBrokenLinks();
-
-		if( $wgDBtransactions ) {
-			$sql = "COMMIT";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
 		wfProfileOut( $fname );
 	}
 	
@@ -282,18 +291,22 @@ class LinksUpdate {
 		/* Update any brokenlinks *to* this page */
 		/* Call for a newly created page, or just to make sure state is consistent */
 		$fname = "LinksUpdate::fixBrokenLinks";
+
+		$dbw =& wfGetDB( DB_WRITE );
+		$cur = $dbw->tableName( 'cur' );
+		$links = $dbw->tableName( 'links' );
 		
-		$sql = "SELECT bl_from FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if ( 0 == wfNumRows( $res ) ) { return; }
+		$res = $dbw->select( 'brokenlinks', array( 'bl_from' ), array( 'bl_to' => $this->mTitle ), 
+		  $fname, 'FOR UPDATE' );
+		if ( 0 == $dbw->numRows( $res ) ) { return; }
 
 		# Ignore errors. If a link existed in both the brokenlinks table and the links 
 		# table, that's an error which can be fixed at this stage by simply ignoring collisions
-		$sql = "INSERT IGNORE INTO links (l_from,l_to) VALUES ";
+		$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
 		$now = wfTimestampNow();
-		$sql2 = "UPDATE cur SET cur_touched='{$now}' WHERE cur_id IN (";
+		$sql2 = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_id IN (";
 		$first = true;
-		while ( $row = wfFetchObject( $res ) ) {
+		while ( $row = $dbw->fetchObject( $res ) ) {
 			if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
 			$first = false;
 
@@ -301,13 +314,11 @@ class LinksUpdate {
 			$sql2 .= $row->bl_from;
 		}
 		$sql2 .= ")";
-		wfQuery( $sql, DB_WRITE, $fname );
-		wfQuery( $sql2, DB_WRITE, $fname );
+		$dbw->query( $sql, $fname );
+		$dbw->query( $sql2, $fname );
 
-		$sql = "DELETE FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->delete( 'brokenlinks', array( 'bl_to' => $this->mTitle ), $fname );
 	}
-	
 }
 
 ?>
