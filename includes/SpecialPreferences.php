@@ -392,14 +392,14 @@ class PreferencesForm {
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
-		<div><label>$yl: <select name=\"wpUserLanguage\" />\n");
+		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 
 		foreach($wgLanguageNames as $code => $name) {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
 			if(file_exists($langfile)) {
-				$sel = ($code == $this->mUserLanguage)? "selected" : "";
+				$sel = ($code == $this->mUserLanguage)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}
 		}
@@ -420,9 +420,9 @@ class PreferencesForm {
 		
 		if(sizeof($variantArray) > 1) {
 			$wgOut->addHtml("
-				<div><label>$yv: <select name=\"wpUserVariant\" />\n");
+				<div><label>$yv: <select name=\"wpUserVariant\">\n");
 			foreach($variantArray as $code => $name) {
-				$sel = ($code==$this->mUserVariant)? "selected" : "";
+				$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}
 			$wgOut->addHtml("</select></label></div>\n");
@@ -527,7 +527,7 @@ class PreferencesForm {
 		<div><b>$tzServerTime:</b> $nowserver</div>
 		<div><b>$ltz:</b> $nowlocal</div>
 		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
-		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
+		<div><input type=\"button\" value=\"$tzGuess\" onclick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
 		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
 
@@ -541,7 +541,7 @@ class PreferencesForm {
 		
 		$imageLimitOptions='';
 		foreach ( $wgImageLimits as $index => $limits ) {
-			$selected = ($index == $this->mImageSize) ? ' selected ': '';
+			$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
 			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
 		}
 		$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>
