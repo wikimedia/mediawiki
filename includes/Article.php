@@ -1805,7 +1805,8 @@ class Article {
 			global $wgRCMaxAge;
 			$dbw =& wfGetDB( DB_MASTER );
 			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
-			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
+			$recentchanges = $dbw->tableName( 'recentchanges' );
+			$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
 			$dbw->query( $sql );
 		}
 		$id = $this->getID();
