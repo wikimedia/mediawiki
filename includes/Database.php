@@ -237,7 +237,9 @@ class Database {
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
 		}
-		return $this->fetchObject( $res );
+		$obj = $this->fetchObject( $res );
+		$this->freeResult( $res );
+		return $obj;
 	}
 	
 	# Removes most variables from an SQL query and replaces them with X or N for numbers.
