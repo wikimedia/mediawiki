@@ -148,6 +148,46 @@ function wfMungeToUtf8($string) {
 	return $string;
 }
 
+# Converts a single UTF-8 character into the corresponding HTML character entity
+function wfUtf8Entity( $char ) {
+	# Find the length
+	$z = ord( $char{0} );
+	if ( $z & 0x80 ) {
+		$length = 0;
+		while ( $z & 0x80 ) {
+			$length++;
+			$z <<= 1;
+		}
+	} else {
+		$length = 1;
+	}
+	
+	if ( $length != strlen( $char ) ) {
+		return "";
+	}
+	if ( $length == 1 ) {
+		return $char;
+	}
+
+	# Mask off the length-determining bits and shift back to the original location
+	$z &= 0xff;
+	$z >>= $length;
+
+	# Add in the free bits from subsequent bytes
+	for ( $i=1; $i<$length; $i++ ) {
+		$z <<= 6;
+		$z |= ord( $char{$i} ) & 0x3f;
+	}
+
+	# Make entity
+	return "&#$z;";
+}
+
+# Converts all multi-byte characters in a UTF-8 string into the appropriate character entity
+function wfUtf8ToHTML($string) {
+	return preg_replace_callback( '/[\\xc0-\\xfd][\\x80-\\xbf]*/', 'wfUtf8Entity', $string );
+}
+
 function wfDebug( $text, $logonly = false )
 {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly;
@@ -736,7 +776,7 @@ function wfEscapeShellArg( )
 		}
 
 		if (substr(php_uname(), 0, 7) == "Windows") {
-			$retVal .= "\"$arg\"";
+			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
 		} else {
 			$retVal .= escapeshellarg( $arg );
 		}

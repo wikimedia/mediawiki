@@ -422,7 +422,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Export"		=> "XML page export",
 	"Version"		=> "Show MediaWiki version",
 	"Allmessages"	=> "All system messages",
-	"Search"		=> "",
+	"Search"		=> ""
+#	"Boardvote"     => "Wikimedia Foundation Board of Trustees election"
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
@@ -1590,6 +1591,41 @@ amusement.",
 "and" => "and",
 "othercontribs" => "Based on work by $1.",
 "siteusers" => "$wgSitename user(s) $1",
+
+# Board vote
+"boardvote" => "Wikimedia Board of Trustees election",
+"boardvote_entry" => 
+"* [[Special:Boardvote/vote|Vote]]
+* [[Special:Boardvote/list|List votes to date]]
+* [[Special:Boardvote/dump|Dump encrypted election record]]",
+"boardvote_intro" => "<p>Please choose your preferred candidate for both the 
+Contributing Representative and the Volunteer Representative.</p>",
+"boardvote_intro_change" => "<p>You have voted before. However you may change 
+your vote using the form below.</p>",
+"boardvote_abstain" => "Abstain",
+"boardvote_footer" => "&nbsp;",
+"boardvote_entered" => "Thank you, your vote has been recorded.
+
+Following is your encrypted vote record. It will appear publicly at [[Special:Boardvote/dump]]. 
+
+<pre>$1</pre>
+
+[[Special:Boardvote/entry|Back]]",
+"boardvote_notloggedin" => "You are not logged in. To vote, you must use an account
+which has existed for at least 90 days.",
+"boardvote_notqualified" => "Sorry, your first contribution was only $1 days ago. 
+You need to have been contributing for at least 90 days to vote in this election.",
+"boardvote_novotes" => "Nobody has voted yet.",
+"boardvote_contributing" => "Contributing candidate",
+"boardvote_volunteer" => "Volunteer candidate",
+"boardvote_time" => "Time",
+"boardvote_user" => "User",
+"boardvote_listintro" => "<p>This is a list of all votes which have been recorded 
+to date. $1 for the full encrypted election record.</p>",
+"boardvote_dumplink" => "Click here",
+"boardvote_dumpheader" => "<caption><strong>Election administrator private dump</strong></caption>
+<tr><th>Time</th><th>User</th><th>Edits</th><th>Days</th>
+<th>IP</th><th>User agent</th><th>Record</th></tr>"
 );
 
 #--------------------------------------------------------------------------
