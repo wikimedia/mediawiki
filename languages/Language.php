@@ -209,6 +209,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_SERVER               => array( 0,    'SERVER'                 ),
 	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               ),
 	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'),
+	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
 );
 
 #-------------------------------------------------------------------

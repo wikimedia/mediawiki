@@ -37,7 +37,7 @@ class LanguageZh extends LanguageZh_cn {
 	var $mTables=false; //the mapping tables
 	var $mTablesLoaded = false;
 	var $mCacheKey;
-	var $mDoTitleConvert = true;
+	var $mDoTitleConvert = true, $mDoContentConvert = true;
 	function LanguageZh() {
 		global $wgDBname;
 		$this->mCacheKey = $wgDBname . ":zhtables";
@@ -213,6 +213,11 @@ class LanguageZh extends LanguageZh_cn {
 		if( $mw->matchAndRemove( $text ) )
 			$this->mDoTitleConvert = false;
 
+		$mw =& MagicWord::get( MAG_NOCONTENTCONVERT );
+		if( $mw->matchAndRemove( $text ) ) {
+			$this->mDoContentConvert = false;
+		}
+
 		// no conversion if redirecting
 		$mw =& MagicWord::get( MAG_REDIRECT );
 		if( $mw->matchStart( $text ))
@@ -232,6 +237,9 @@ class LanguageZh extends LanguageZh_cn {
 				return $this->autoConvert($text);
 			}
 		}
+
+		if( !$this->mDoContentConvert )
+			return $text;
 
 		$plang = $this->getPreferredVariant();
 		$fallback = $this->getVariantFallback($plang);
