@@ -35,8 +35,7 @@ polygon(germany-bavaria-bw,germany-bw-south,germany-bw-west,germany-bw-rp,german
 !name[de]:Deutschland
 !name[en]:Germany
 !region[political]:
-addregs(germany-bavaria,germany-bw);
-include(danube)
+addregs(germany-bavaria,germany-bw)
 ",
 
 "danube" => "
@@ -44,8 +43,8 @@ include(danube)
 !region:polyline(danube_germany,danube_austria)
 " ,
 
-"danube_germany" =>"!data:1.2,3.5 1.8,2.5 2,2.9" ,
-"danube_austria" =>"!data:2.2,3.5 2.5,3.2 3,3.7" ,
+"danube_germany" =>"!data:120,350 180,250 200,290" ,
+"danube_austria" =>"!data:220,350 250,320 300,370" ,
 
 ) ;
 
@@ -229,7 +228,7 @@ class geo
 		$text = $this->get_specs ( "name" , array ( "de" ) ) ;
 		if ( $text == "" ) return "" ;
 		$text = utf8_decode ( $this->data[$text][0] ) ;
-		$ret = "<text style='text-anchor:middle' x='{$x}' y='{$y}'>{$text}</text>\n" ;
+		$ret = "<text style='text-anchor:middle;fill-opacity:0.7' x='{$x}' y='{$y}'>{$text}</text>\n" ;
 		return $ret ;
 		}
 	
