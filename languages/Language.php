@@ -2025,7 +2025,7 @@ class Language {
         global $wgUser;
         
         // if user logged in, get in from user's preference
-        if($wguser->getID()!=0)
+        if($wgUser->getID()!=0)
             return $wgUser->getOption('variant');
 
         // if we have multiple variants for this langauge, 
@@ -2036,7 +2036,7 @@ class Language {
 
         // otherwise there should really be just one variant, 
         // get it from the class name
-        $lang = strtolower(substr(class_name($this), 8));
+        $lang = strtolower(substr(get_class($this), 8));
         return $lang;
     }
 }
