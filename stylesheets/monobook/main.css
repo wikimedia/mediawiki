@@ -899,6 +899,7 @@ li#contentaction-watch {
 }
 
 #footer-poweredbyico, #footer-copyrightico {
+	width: 88px;
 	margin: 0 8px;
 	position: relative;
 	top: -2px; /* Bump it up just a tad */
