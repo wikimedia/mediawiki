@@ -732,10 +732,13 @@ function doTableStuff ( $t )
           foreach ( $after AS $theline )
              {
 	  $z = "" ;
-          $tra = array_pop ( $ltr ) ;
-          if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
-          array_push ( $tr , true ) ;
-          array_push ( $ltr , "" ) ;
+	  if ( $fc != "+" )
+	  {  
+            $tra = array_pop ( $ltr ) ;
+            if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
+            array_push ( $tr , true ) ;
+            array_push ( $ltr , "" ) ;
+	  }
 
           $l = array_pop ( $ltd ) ;
 	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
