@@ -258,6 +258,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 730) configurable $wgRCMaxAge; don't try to update purged RC entries
 * Add $wgNoFollowLinks option to add rel="nofollow" on external links
   (on by default)
+* (bug 1130) Show actual title when moving page instead of encoded one.
 
 === Caveats ===
 
