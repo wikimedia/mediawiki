@@ -231,6 +231,8 @@ if( $wgCommandLineMode ) {
 	# Used for some maintenance scripts; user session cookies can screw things up
 	# when the database is in an in-between state.
 	$wgUser = new User();
+	# Prevent loading User settings from the DB.
+	$wgUser->setLoaded( true );
 } else {
 	$wgUser = User::loadFromSession();
 }
