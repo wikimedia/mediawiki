@@ -56,8 +56,8 @@ class NewPagesPage extends QueryPage {
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
 
-		# If it's a new article, there is no diff link, but if it hasn't been
-		# patrolled yet, we need to give users a way to do so
+		# Since there is no diff link, we need to give users a way to
+		# mark the article as patrolled if it isn't already
 		if ( $result->usepatrol && $result->patrolled == 0 && $wgUser->getID() != 0 &&
 		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 			$link = $skin->makeKnownLink( $result->title, '', "rcid={$result->rcid}" );
