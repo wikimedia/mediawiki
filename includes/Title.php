@@ -591,7 +591,7 @@ class Title {
 			$r = substr( $t, 1 );
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+):_*(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				if ( $ns = $wgLang->getNsIndex( strtolower( $p ) )) {
