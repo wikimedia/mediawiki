@@ -245,13 +245,13 @@
 				);
 				$personal_urls['mycontris'] = array(
 					'text' => wfMsg('mycontris'),
-					'href' => $this->makeSpecialUrl('Contributions','target=' . $this->username),
+					'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) ),
 					'ttip' => wfMsg('tooltip-mycontris'),
 					'akey' => wfMsg('accesskey-mycontris')
 				);
 				$personal_urls['logout'] = array(
 					'text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl),
+					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl ),
 					'ttip' => wfMsg('tooltip-logout'),
 					'akey' => wfMsg('accesskey-logout')
 				);
@@ -274,7 +274,7 @@
 					);
 					$personal_urls['anonlogin'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -282,7 +282,7 @@
 
 					$personal_urls['login'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurl),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -410,7 +410,7 @@
 						if ( $wgTitle->userCanEdit()) {
 							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : false,
 							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl('Movepage', 'target='.$this->thispage),
+							'href' => $this->makeSpecialUrl('Movepage', 'target='. urlencode( $this->thispage )),
 							'ttip' => wfMsg('tooltip-move'),
 							'akey' => wfMsg('accesskey-move'));
 						} else {
@@ -479,10 +479,10 @@
 			$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
 			$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
 			$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
-			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage)));
+			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage ))));
 			$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
 			$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
-			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage)));
+			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage ))));
 			$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
 			$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
