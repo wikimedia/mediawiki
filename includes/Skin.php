@@ -195,26 +195,17 @@ class Skin {
 	{
 		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $wgRequest;
 		
-		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
+		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff', 'section','sectiontitle') );
+		$collapse=$wgOut->getCollapse();
 
 		if ( 0 != $wgTitle->getNamespace() ) {
 			$a = array( "bgcolor" => "#ffffec" );
 		}
 		else $a = array( "bgcolor" => "#FFFFFF" );
-		if($wgOut->isArticle() && $wgUser->getOption("editondblclick") && 
-		  (!$wgTitle->isProtected() || $wgUser->isSysop()) ) {
-			$t = wfMsg( "editthispage" );
-			$oid = $red = "";
-			if ( !empty($redirect) ) { 
-				$red = "&redirect={$redirect}"; 
-			}
-			if ( !empty($oldid) && ! isset( $diff ) ) {
-				$oid = "&oldid={$oldid}";
-			}
-			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
+		if($wgOut->isArticle() && $wgUser->getOption("editondblclick")) {
+			$s = $this->editThisPage(false);
 			$s = "document.location = \"" .$s ."\";";
 			$a += array ("ondblclick" => $s);
-
 		}
 		$a['onload'] = $wgOut->getOnloadHandler();
 		return $a;
@@ -524,9 +515,17 @@ class Skin {
 
 	function pageTitle()
 	{
-		global $wgOut, $wgTitle, $wgUser;
-
-		$s = "<h1 class='pagetitle'>" . htmlspecialchars( $wgOut->getPageTitle() ) . "</h1>";
+		global $wgOut, $wgTitle, $wgUser, $wgRequest;
+		$section=$wgRequest->getVal('section');
+		$action=$wgRequest->getVal('action');
+				
+		if ($section && $action=="view") {	
+			$link= $this->makeLink( $wgTitle->getPrefixedText(), htmlspecialchars($wgOut->getPageTitle()) );
+			$s = "<h1 class='pagetitle'>" . $link . " " . wfMsg("sectionedit")."</h1>";			
+		} else {
+		
+			$s = "<h1 class='pagetitle'>" . htmlspecialchars( $wgOut->getPageTitle() ) . "</h1>";	
+		}
 		if($wgUser->getOption("editsectiononrightclick") && $wgTitle->userCanEdit()) { $s=$this->editSectionScript(0,$s);}
 		return $s;
 	}
@@ -1105,15 +1104,19 @@ class Skin {
 		return $s;
 	}
 
-	function editThisPage()
+	# if makeLink is false, just return the edit URL
+	function editThisPage($makeLink=true)
 	{
 		global $wgOut, $wgTitle, $wgRequest;
 		
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		$redirect = $wgRequest->getVal( 'redirect' );
+		$section = $wgRequest->getVal('section');
+		$sectiontitle = $wgRequest->getVal('sectiontitle');
+		$collapse = $wgOut->getCollapse();
 		
-		if ( ! $wgOut->isArticleRelated() ) {
+		if ( ! $wgOut->isArticleRelated() && $makeLink) {
 			$s = wfMsg( "protectedpage" );
 		} else {
 			$n = $wgTitle->getPrefixedText();
@@ -1123,13 +1126,27 @@ class Skin {
 				#$t = wfMsg( "protectedpage" );
 				$t = wfMsg( "viewsource" );
 			}
-			$oid = $red = "";
+			$oid = $red = $sid = $stl = "";
 
 			if ( !is_null( $redirect ) ) { $red = "&redirect={$redirect}"; }
 			if ( $oldid && ! isset( $diff ) ) {
 				$oid = "&oldid={$oldid}";
 			}
-			$s = $this->makeKnownLink( $n, $t, "action=edit{$oid}{$red}" );
+			if ( !empty($section) ) {
+				$sid = "&section={$section}";
+			}
+			if ( !empty($sectiontitle) ) {
+				$stl = "&sectiontitle={$sectiontitle}";
+			}
+			if ($collapse && !$section) {
+				$sid = "&section=0";
+			}
+			$action="action=edit{$oid}{$red}{$sid}{$stl}";
+			if($makeLink) {
+				$s = $this->makeKnownLink( $n, $t, $action );
+			} else {
+				$s = $wgTitle->getFullUrl($action);
+			}
 		}
 		return $s;
 	}
@@ -2481,8 +2498,11 @@ class Skin {
 	}
 
 	# parameter level defines if we are on an indentation level
-	function tocLine( $anchor, $tocline, $level ) {
-		$link = "<a href=\"#$anchor\">$tocline</a><br />";
+	function tocLine( $anchor, $tocline, $level,$section=0 ) {
+		global $wgTitle;		
+		$url = $section ?  $wgTitle->getLocalURL( "action=view&section={$section}&sectiontitle={$anchor}" ) 
+		       : "#$anchor";		
+		$link = "<a href=\"$url\" class='internal'>$tocline</a><br />";
 		if($level) {
 			return "$link\n";
 		} else {
@@ -2494,13 +2514,31 @@ class Skin {
 	function tocTable($toc) {
 		# note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
 		# try min-width & co when somebody gets a chance
+		global $wgRequest,$wgTitle,$wgOut;
+		$collapse=$wgOut->getCollapse();
+		$section=$wgRequest->getVal('section');
+		$collapseexpand="";
+		if(!$section) {
+			if($collapse) {
+				$url=$wgTitle->getLocalURL("action=view&collapse=false");
+				$collapseexpand="<a href=\"$url\" class=\"internal\">".wfMsg("expandpage")."</A>";
+			} else {
+				$url=$wgTitle->getLocalURL("action=view&collapse=true");
+				$collapseexpand="<a href=\"$url\" class=\"internal\">".wfMsg("collapsepage")."</A>";
+			}
+		}
 		$hideline = " <script type='text/javascript'>showTocToggle(\"" . addslashes( wfMsg("showtoc") ) . "\",\"" . addslashes( wfMsg("hidetoc") ) . "\")</script>";
-		return
+		$rv=
 		"<table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
 		"<b>".wfMsg("toc")."</b>" .
 		$hideline .
 		"</td></tr><tr id='tocinside'><td>\n".
-		$toc."</td></tr></table>\n";
+		$toc."</td></tr>";
+		if($collapseexpand) {
+			$rv.="<tr><td align=\"center\"><I>$collapseexpand</I></td></tr>";
+		}
+		$rv.="</table>\n";
+		return $rv;
 	}
 
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
