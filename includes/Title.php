@@ -235,11 +235,11 @@ class Title {
 	# Returns a stripped-down a title string ready for the search index
 	# Takes a namespace index and a text-form main part
 	/* static */ function indexTitle( $ns, $title ) {
-		global $wgDBminWordLen, $wgLang;
+		global $wgDBminWordLen, $wgContLang;
 		require_once( 'SearchEngine.php' );
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
-		$t = $wgLang->stripForSearch( $title );
+		$t = $wgContLang->stripForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = strtolower( $t );
 
@@ -257,9 +257,9 @@ class Title {
 	
 	# Make a prefixed DB key from a DB key and a namespace index
 	/* static */ function makeName( $ns, $title ) {
-		global $wgLang;
+		global $wgContLang;
 
-		$n = $wgLang->getNsText( $ns );
+		$n = $wgContLang->getNsText( $ns );
 		if ( '' == $n ) { return $title; }
 		else { return $n.':'.$title; }
 	}
@@ -403,14 +403,14 @@ class Title {
 
 	# Get a real URL referring to this title, with interwiki link and fragment
 	function getFullURL( $query = '' ) {
-		global $wgLang, $wgArticlePath, $wgServer, $wgScript;
+		global $wgContLang, $wgArticlePath, $wgServer, $wgScript;
 
 		if ( '' == $this->mInterwiki ) {
 			$p = $wgArticlePath;
 			return $wgServer . $this->getLocalUrl( $query );
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
-			$namespace = $wgLang->getNsText( $this->mNamespace );
+			$namespace = $wgContLang->getNsText( $this->mNamespace );
 			if ( '' != $namespace ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
 				$namepace .= ':';
@@ -660,14 +660,14 @@ class Title {
 
 	# Prefixes some arbitrary text with the namespace or interwiki prefix of this object
 	/* private */ function prefix( $name ) {
-		global $wgLang;
+		global $wgContLang;
 
 		$p = '';
 		if ( '' != $this->mInterwiki ) {
 			$p = $this->mInterwiki . ':';
 		}
 		if ( 0 != $this->mNamespace ) {
-			$p .= $wgLang->getNsText( $this->mNamespace ) . ':';
+			$p .= $wgContLang->getNsText( $this->mNamespace ) . ':';
 		}
 		return $p . $name;
 	}
@@ -682,7 +682,7 @@ class Title {
 	#
 	/* private */ function secureAndSplit()
 	{
-		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
+		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
 		$fname = 'Title::secureAndSplit';
  		wfProfileIn( $fname );
 		
@@ -691,7 +691,7 @@ class Title {
 
 		# Initialisation
 		if ( $imgpre === false ) {
-			$imgpre = ':' . $wgLang->getNsText( Namespace::getImage() ) . ':';
+			$imgpre = ':' . $wgContLang->getNsText( Namespace::getImage() ) . ':';
 			# % is needed as well
 			$rxTc = '/[^' . Title::legalChars() . ']/';
 		}
@@ -738,7 +738,7 @@ class Title {
 					# Canonical namespace
 					$t = $m[2];
 					$this->mNamespace = $ns;
-				} elseif ( $ns = $wgLang->getNsIndex( $lowerNs )) {
+				} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
 					# Ordinary namespace
 					$t = $m[2];
 					$this->mNamespace = $ns;
@@ -796,7 +796,7 @@ class Title {
 
 		# Initial capital letter
 		if( $wgCapitalLinks && $this->mInterwiki == '') {
-			$t = $wgLang->ucfirst( $r );
+			$t = $wgContLang->ucfirst( $r );
 		} else {
 			$t = $r;
 		}
@@ -1274,7 +1274,7 @@ class Title {
 	# Return an array of parents in the form:
 	#  $parent => $currentarticle
 	function getParentCategories() {
-		global $wgLang,$wgUser;
+		global $wgContLang,$wgUser;
 		
 		$titlekey = $this->getArticleId();
 		$sk =& $wgUser->getSkin();
@@ -1293,8 +1293,8 @@ class Title {
 		
 		if($dbr->numRows($res) > 0) {
 			while ( $x = $dbr->fetchObject ( $res ) )
-				//$data[] = Title::newFromText($wgLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to);
-				$data[$wgLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
+				//$data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to);
+				$data[$wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
 			$dbr->freeResult ( $res ) ;
 		} else {
 			$data = '';

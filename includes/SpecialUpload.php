@@ -109,7 +109,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function processUpload() {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang, $wgContLang;
 		global $wgUploadDirectory;
 		global $wgSavedFile, $wgUploadOldVersion;
 		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
@@ -200,7 +200,7 @@ class UploadForm {
 				}
 				if( $nt->getArticleID() ) {
 					$sk = $wgUser->getSkin();
-					$dname = $wgLang->getNsText( Namespace::getImage() ) .':'.$this->mUploadSaveName;
+					$dname = $wgContLang->getNsText( Namespace::getImage() ) .':'.$this->mUploadSaveName;
 					$dlink = $sk->makeKnownLink( $dname, $dname );
 					$warning .= '<li>'.wfMsg( 'fileexists', $dlink ).'</li>';
 				}
@@ -219,7 +219,7 @@ class UploadForm {
 
 		$sk = $wgUser->getSkin();
 		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::wfImageUrl( $this->mUploadSaveName ) );
-		$dname = $wgLang->getNsText( Namespace::getImage() ) . ':'.$this->mUploadSaveName;
+		$dname = $wgContLang->getNsText( Namespace::getImage() ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
 		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );

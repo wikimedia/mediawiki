@@ -108,14 +108,14 @@ class WebRequest {
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			global $wgUseLatin1, $wgServer, $wgLang;
+			global $wgUseLatin1, $wgServer, $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) &&
 				( empty( $_SERVER['HTTP_REFERER'] ) ||
 				strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) ) {
 				# For links that came from outside, check for alternate/legacy
 				# character encoding.
-				$data = $wgLang->checkTitleEncoding( $data );
+				$data = $wgContLang->checkTitleEncoding( $data );
 			}
 			if( !$wgUseLatin1 ) {
 				require_once( 'normal/UtfNormal.php' );
@@ -140,9 +140,9 @@ class WebRequest {
 	function getGPCText( &$arr, $name, $default ) {
 		# Text fields may be in an alternate encoding which we should check.
 		# Also, strip CRLF line endings down to LF to achieve consistency.
-		global $wgLang;
+		global $wgContLang;
 		if( isset( $arr[$name] ) ) {
-			return str_replace( "\r\n", "\n", $wgLang->recodeInput( $arr[$name] ) );
+			return str_replace( "\r\n", "\n", $wgContLang->recodeInput( $arr[$name] ) );
 		} else {
 			return $default;
 		}
