@@ -81,7 +81,7 @@ class User {
 
 		$this->mId = $this->mNewtalk = 0;
 		$this->mName = $wgIP;
-		$this->mEmail = '';
+		$this->mRealName = $this->mEmail = '';
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$defOpt = $wgLang->getDefaultUserOptions() ;
