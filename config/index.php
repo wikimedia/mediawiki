@@ -709,15 +709,15 @@ if ( \$wgCommandLineMode ) {
 {$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
 {$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
 
-\$wgStylePath   = \"\$wgScriptPath/stylesheets\";
-\$wgStyleSheetDirectory = \"\$IP/stylesheets\";
+\$wgStylePath        = \"\$wgScriptPath/stylesheets\";
+\$wgStyleDirectory   = \"\$IP/stylesheets\";
+\$wgLogo             = \"\$wgStylePath/images/wiki.png\";
 
 \$wgUploadPath       = \"\$wgScriptPath/images\";
-\$wgUploadDirectory	= \"\$IP/images\";
-\$wgLogo				= \"\$wgUploadPath/wiki.png\";
+\$wgUploadDirectory  = \"\$IP/images\";
 
 \$wgEmergencyContact = \"{$conf->EmergencyContact}\";
-\$wgPasswordSender	= \"{$conf->PasswordSender}\";
+\$wgPasswordSender   = \"{$conf->PasswordSender}\";
 
 \$wgDBserver         = \"{$conf->DBserver}\";
 \$wgDBname           = \"{$conf->DBname}\";

@@ -34,8 +34,9 @@ $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
 
 $wgStylePath   = "{$wgScriptPath}/style";
+$wgStyleDirectory = "{$IP}/style";
 $wgStyleSheetPath = &$wgStylePath;
-$wgStyleSheetDirectory = "{$IP}/style";
+$wgStyleSheetDirectory = &$wgStyleDirectory;
 $wgArticlePath      = "{$wgScript}?title=$1";
 $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
