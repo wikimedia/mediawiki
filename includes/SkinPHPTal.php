@@ -297,24 +297,30 @@
 
 					if($wgUser->isSysop()){
 						if(!$wgTitle->isProtected()){
-							$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
-							'text' => wfMsg('protect'),
-							'href' => $this->makeUrl($this->thispage, 'action=protect'),
-							'ttip' => wfMsg('tooltip-protect'),
-							'akey' => wfMsg('accesskey-protect'));
+							$content_actions['protect'] = array(
+								'class' => ($action == 'protect') ? 'selected' : '',
+								'text' => wfMsg('protect'),
+								'href' => $this->makeUrl($this->thispage, 'action=protect'),
+								'ttip' => wfMsg('tooltip-protect'),
+								'akey' => wfMsg('accesskey-protect')
+							);
 
 						} else {
-							$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
-							'text' => wfMsg('unprotect'),
-							'href' => $this->makeUrl($this->thispage, 'action=unprotect'),
-							'ttip' => wfMsg('tooltip-protect'),
-							'akey' => wfMsg('accesskey-protect'));
+							$content_actions['unprotect'] = array(
+								'class' => ($action == 'unprotect') ? 'selected' : '',
+								'text' => wfMsg('unprotect'),
+								'href' => $this->makeUrl($this->thispage, 'action=unprotect'),
+								'ttip' => wfMsg('tooltip-protect'),
+								'akey' => wfMsg('accesskey-protect')
+							);
 						}
-						$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
-						'text' => wfMsg('delete'),
-						'href' => $this->makeUrl($this->thispage, 'action=delete'),
-						'ttip' => wfMsg('tooltip-delete'),
-						'akey' => wfMsg('accesskey-delete'));
+						$content_actions['delete'] = array(
+							'class' => ($action == 'delete') ? 'selected' : '',
+							'text' => wfMsg('delete'),
+							'href' => $this->makeUrl($this->thispage, 'action=delete'),
+							'ttip' => wfMsg('tooltip-delete'),
+							'akey' => wfMsg('accesskey-delete')
+						);
 					}
 					if ( $wgUser->getID() != 0 ) {
 						if ( $wgTitle->userCanEdit()) {
@@ -330,6 +336,19 @@
 							'ttip' => wfMsg('tooltip-nomove'),
 							'akey' => false);
 
+						}
+					}
+				} else { 
+					//article doesn't exist or is deleted
+					if($wgUser->isSysop()){
+						if( $n = $wgTitle->isDeleted() ) {
+							$content_actions['delete'] = array(
+								'class' => '',
+								'text' => wfMsg( "undelete_short", $n ),
+								'href' => $this->makeSpecialUrl('Undelete/'.$this->thispage),
+								'ttip' => wfMsg('tooltip-undelete', $n),
+								'akey' => wfMsg('accesskey-undelete')
+							);
 						}
 					}
 				}
