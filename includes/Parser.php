@@ -888,8 +888,11 @@ class Parser
 	}
 
 	/* private */ function &doMagicLinks( &$text ) {
+		global $wgUseGeoMode;
 		$text = $this->magicISBN( $text );
-		$text = $this->magicGEO( $text );
+		if ( isset( $wgUseGeoMode ) && $wgUseGeoMode ) {
+			$text = $this->magicGEO( $text );
+		}
 		$text = $this->magicRFC( $text );
 		return $text;
 	}
@@ -2360,7 +2363,6 @@ class Parser
 	# Return an HTML link for the "GEO ..." text
 	/* private */ function magicGEO( $text ) {
 		global $wgLang, $wgUseGeoMode;
-		if ( !isset ( $wgUseGeoMode ) || !$wgUseGeoMode ) return $text ;
 		$fname = 'Parser::magicGEO';
 		wfProfileIn( $fname );
 
