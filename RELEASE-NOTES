@@ -106,6 +106,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1004) renamed norsk language links
 * Login works again when using an old-style default skin
 * Fix for load balancing mode, notify if using old settings format
+* (bug 1014) Missing image size option on old accounts handled gracefully
 
 
 === Caveats ===

@@ -45,8 +45,16 @@ class ImagePage extends Article {
 		$url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
-		if ( $wgUseImageResize && $wgUser->getOption( 'imagesize' ) != '' ) {
-			$max = $wgImageLimits[ intval( $wgUser->getOption( 'imagesize' ) ) ];
+		if ( $wgUseImageResize ) {
+			if( $wgUser->getOption( 'imagesize' ) == '' ) {
+				$sizeSel = User::getDefaultOption( 'imagesize' );
+			} else {
+				$sizeSel = IntVal( $wgUser->getOption( 'imagesize' ) );
+			}
+			if( !isset( $wgImageLimits[$sizeSel] ) ) {
+				$sizeSel = User::getDefaultOption( 'imagesize' );
+			}
+			$max = $wgImageLimits[$sizeSel];
 			$maxWidth = $max[0];
 			$maxHeight = $max[1];
 		}
