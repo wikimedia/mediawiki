@@ -423,7 +423,8 @@ function wfEmergencyAbort( &$conn ) {
 				$t = Title::newFromURL( $title );
 			} elseif ($_REQUEST['search']) {
 				$search = $_REQUEST['search'];
-				echo wfMsgNoDB( "searchdisabled", htmlspecialchars( $search ), $wgInputEncoding );
+				echo wfMsgNoDB( "searchdisabled" );
+				echo wfMsgNoDB( "googlesearch", htmlspecialchars( $search ), $wgInputEncoding );
 				wfAbruptExit();
 			} else {
 				$t = Title::newFromText( wfMsgNoDB( "mainpage" ) );
