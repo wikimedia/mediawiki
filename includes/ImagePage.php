@@ -97,7 +97,7 @@ class ImagePage extends Article {
 						$url = $full_url;
 					}
 					$anchoropen  = "<a href=\"{$full_url}\">";
-					$anchorclose = "<br />{$msg}</a>";
+					$anchorclose = "</a><br />\n$anchoropen{$msg}</a>";
 				} else {
 					$url = $full_url;
 				}
