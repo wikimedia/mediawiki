@@ -4,7 +4,9 @@
 /* workaround for various ie float bugs */
 #column-content #content {
     margin-top: 3em;
-    overflow: auto;
+    height: 1%;
+}
+#bodyContent {
     height: 1%;
 }
 
@@ -39,9 +41,6 @@
     background: url(external.png) center right no-repeat;
     padding-right: 13px;
 }
-#bodyContent {
-    height: 1%;
-}
 
 /* show the hand */
 #p-logo a,
@@ -55,10 +54,6 @@ div.visualClear {
 textarea {
     overflow: auto;
     width: 97%;
-}
-.special li {
-    overflow: auto;
-    width: 100%;
 }
 
 div.editsection,
