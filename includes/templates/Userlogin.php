@@ -17,7 +17,7 @@ class UserloginTemplate extends QuickTemplate {
 	<p class='error'><?php $this->html('error') ?></p>
 <?php } else { ?>
 	<h2><?php $this->msg('login'      ) ?>:</h2>
-	<p><?php  $this->msgWiki('loginprompt') ?></p>
+	<?php  $this->msgWiki('loginprompt') ?>
 <?php } ?>
 <form name="userlogin" id="userlogin" method="post" action="<?php $this->text('action') ?>">
 	<table border='0'>

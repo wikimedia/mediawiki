@@ -431,10 +431,10 @@ class PreferencesForm {
 
 		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
 			if ($wgUser->getEmailAuthenticationtimestamp() != 0) {
-				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationtimestamp(), true ) ).'<br>';
+				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationtimestamp(), true ) ).'<br />';
 				$disabled = '';
 			} else {
-				$emailauthenticated = wfMsg('emailnotauthenticated').'<br>';
+				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />';
 				$disabled = ' '.wfMsg('disableduntilauthent');
 			}
 		} else {
@@ -459,7 +459,7 @@ class PreferencesForm {
 
 			if ($wgAllowRealName) {
 			$wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
-			$prefs_help_realname = wfMsg('prefs-help-realname').'<br>';
+			$prefs_help_realname = wfMsg('prefs-help-realname').'<br />';
 		}
 		
 		if( $wgEnableEmail ) {

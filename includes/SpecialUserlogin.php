@@ -342,9 +342,9 @@ class LoginForm {
 				#	This appears to be more intuitive than alternative 2.
 
 				if ($error === '') {
-					$mailmsg = '<br>' . wfMsg( 'passwordsentforemailauthentication', $u->getName() );
+					$mailmsg = '<br />' . wfMsg( 'passwordsentforemailauthentication', $u->getName() );
 				} else {
-					$mailmsg = '<br>' . wfMsg( 'mailerror', $error ) ;
+					$mailmsg = '<br />' . wfMsg( 'mailerror', $error ) ;
 				}
 			}
 		}

@@ -86,11 +86,11 @@ if ( isset ( $_POST['convert'] ) )
 	}
 else $p1 = $p2 = $np1 = $np2 = "" ;
 
-print "<br/>Coordinates so far:<br>\n" ;
+print "<br />Coordinates so far:<br />\n" ;
 print "<form method=post><textarea style='width:100%' rows=5 cols=40 name='ctext'>\n" ;
 print str_replace ( ";" , " " , $coords ) ;
 print "</textarea>\n" ;
-print "Conversion : Point <input type='text' name='p1'/ value='{$p1}'> matches coordinates <input type='text' name='np1' value='{$np1}'/><br>" ;
+print "Conversion : Point <input type='text' name='p1'/ value='{$p1}'> matches coordinates <input type='text' name='np1' value='{$np1}'/><br />" ;
 print "and point <input type='text' name='p2' value='{$p2}'/> matches coordinates <input type='text' name='np2' value='{$np2}'/>" ;
 print " <input type='submit' name='convert' value='Convert'/>" ;
 print "</form>" ;

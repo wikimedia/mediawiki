@@ -62,7 +62,7 @@ class ListUsersPage extends QueryPage {
 		// form header
 		$out = '<form method="get" action="'.$action.'">' .
 				'<input type="hidden" name="title" value="'.$special.'" />' .
-				'Group: <select name="group">' .
+				'Group: <select name="group">';
 
 		// get all group names and id
 		$dbr = & wfGetDB( DB_SLAVE );
