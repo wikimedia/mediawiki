@@ -398,8 +398,8 @@ class Article {
 			$this->mUserText = $s->cur_user_text;
 			$this->mComment = $s->cur_comment;
 			$this->mCounter = $s->cur_counter;
-			$this->mTimestamp = $s->cur_timestamp;
-			$this->mTouched = $s->cur_touched;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
+			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
 			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
@@ -419,7 +419,7 @@ class Article {
 			$this->mUserText = $s->old_user_text;
 			$this->mComment = $s->old_comment;
 			$this->mCounter = 0;
-			$this->mTimestamp = $s->old_timestamp;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->old_timestamp);
 		}
 		$this->mContentLoaded = true;
 		return $this->mContent;
@@ -472,8 +472,8 @@ class Article {
 			$this->mUserText = $s->cur_user_text;
 			$this->mComment = $s->cur_comment;
 			$this->mCounter = $s->cur_counter;
-			$this->mTimestamp = $s->cur_timestamp;
-			$this->mTouched = $s->cur_touched;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
+			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
 			$this->mTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
@@ -486,7 +486,7 @@ class Article {
 			$this->mUserText = $s->old_user_text;
 			$this->mComment = $s->old_comment;
 			$this->mCounter = 0;
-			$this->mTimestamp = $s->old_timestamp;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->old_timestamp);
 		}
 		$this->mContentLoaded = true;
 		return $this->mContent;
@@ -537,7 +537,7 @@ class Article {
 		if ( $s !== false ) {
 			$this->mUser = $s->cur_user;
 			$this->mUserText = $s->cur_user_text;
-			$this->mTimestamp = $s->cur_timestamp;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
 			$this->mComment = $s->cur_comment;
 			$this->mMinorEdit = $s->cur_minor_edit;
 		}
@@ -930,15 +930,15 @@ class Article {
 					'cur_comment' => $summary,
 					'cur_minor_edit' => $me2,
 					'cur_user' => $wgUser->getID(),
-					'cur_timestamp' => $now,
+					'cur_timestamp' => $dbw->timestamp($now),
 					'cur_user_text' => $wgUser->getName(),
 					'cur_is_redirect' => $redir,
 					'cur_is_new' => 0,
-					'cur_touched' => $now,
+					'cur_touched' => $dbw->timestamp($now),
 					'inverse_timestamp' => $won
 				), array( /* WHERE */
 					'cur_id' => $this->getID(),
-					'cur_timestamp' => $this->getTimestamp()
+					'cur_timestamp' => $dbw->timestamp($this->getTimestamp())
 				), $fname
 			);
 
@@ -960,7 +960,7 @@ class Article {
 						'old_comment' => $this->getComment(),
 						'old_user' => $this->getUser(),
 						'old_user_text' => $this->getUserText(),
-						'old_timestamp' => $this->getTimestamp(),
+						'old_timestamp' => $dbw->timestamp($this->getTimestamp()),
 						'old_minor_edit' => $me1,
 						'inverse_timestamp' => wfInvertTimestamp( $this->getTimestamp() ),
 						'old_flags' => $flags,
@@ -1168,7 +1168,7 @@ class Article {
 			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->updateArray( 'cur',
 				array( /* SET */
-					'cur_touched' => wfTimestampNow(),
+					'cur_touched' => $dbw->timestamp(),
 					'cur_restrictions' => (string)$limit
 				), array( /* WHERE */
 					'cur_id' => $id
@@ -1788,7 +1788,7 @@ class Article {
 		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ),
 			array( 'cur_id' => $id ), $fname );
 		if( $s !== false ) {
-			$this->mTouched = $s->cur_touched;
+			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
 			return !$s->cur_is_redirect;
 		} else {
 			return false;
@@ -1837,7 +1837,7 @@ class Article {
 			'cur_comment' => $comment,
 			'cur_is_redirect' => $wgMwRedir->matchStart( $text ) ? 1 : 0,
 			'cur_minor_edit' => intval($minor),
-			'cur_touched' => $timestamp,
+			'cur_touched' => $dbw->timestamp($timestamp),
 		);
 
 		if ( $numRows ) {
