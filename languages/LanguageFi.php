@@ -63,21 +63,6 @@
 	
 );
 
-/* private */ $wgWeekdayNamesFi = array(
-	"sunnuntai", "maanantai", "tiistai", "keskiviikko", "torstai",
-	"perjantai", "lauantai"
-);
-
-/* private */ $wgMonthNamesFi = array(
-	"tammikuu", "helmikuu", "maaliskuu", "huhtikuu", "toukokuu",
-        "kesäkuu", "heinäkuu", "elokuu", "syyskuu", "lokakuu", "marraskuu",
-	"joulukuu"
-);
-
-/* private */ $wgMonthAbbreviationsFi = array(
-	"tammi", "helmi", "maalis", "huhti", "touko", "kesä", "heinä", "elo",
-	"syys", "loka", "marras", "joulu"
-);
 
 /* private */ $wgValidSpecialPagesFi = array(
 	"Userlogin"		=> "Sisäänkirjautuminen",
@@ -127,6 +112,39 @@
 
 
 /* private */ $wgAllMessagesFi = array(
+# Dates
+'sunday' => 'sunnuntai',
+'monday' => 'maanantai',
+'tuesday' => 'tiistai',
+'wednesday' => 'keskiviikko',
+'thursday' => 'torstai',
+'friday' => 'perjantai',
+'saturday' => 'lauantai',
+'january' => 'tammikuu',
+'february' => 'helmikuu',
+'march' => 'maaliskuu',
+'april' => 'huhtikuu',
+'may_long' => 'toukokuu',
+'june' => 'kesäkuu',
+'july' => 'heinäkuu',
+'august' => 'elokuu',
+'september' => 'syyskuu',
+'october' => 'lokakuu',
+'november' => 'marraskuu',
+'december' => 'joulukuu',
+'jan' => 'tammi',
+'feb' => 'helmi',
+'mar' => 'maalis',
+'apr' => 'huhti',
+'may' => 'touko',
+'jun' => 'kesä',
+'jul' => 'heinä',
+'aug' => 'elo',
+'sep' => 'syys',
+'oct' => 'loka',
+'nov' => 'marras',
+'dec' => 'joulu',
+
 # Bits of text used by many pages:
 #
 "linktrail"		=> "/^((?:ä|ö|[a-z])+)(.*)\$/sD",
@@ -851,31 +869,6 @@ class LanguageFi extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesFi;
 		return $wgUserTogglesFi;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesFi;
-		return $wgMonthNamesFi[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesFi;
-		return $wgMonthNamesFi[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsFi;
-		return $wgMonthAbbreviationsFi[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesFi;
-		return $wgWeekdayNamesFi[$key-1];
 	}
 
 	# Inherit userAdjust()
