@@ -417,11 +417,11 @@ class UtfNormal {
 	 * (depending on which decomposition map is passed to us).
 	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
 	 * @access private
-	 * @param string &$string Valid UTF-8 string
-	 * @param array &$map hash of expanded decomposition map
+	 * @param string $string Valid UTF-8 string
+	 * @param array $map hash of expanded decomposition map
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
 	 */
-	function fastDecompose( &$string, &$map ) {
+	function fastDecompose( $string, &$map ) {
 		UtfNormal::loadData();
 		$len = strlen( $string );
 		$out = '';
@@ -445,6 +445,7 @@ class UtfNormal {
 			}
 			if( isset( $map[$c] ) ) {
 				$out .= $map[$c];
+				continue;
 			} else {
 				if( $c >= UTF8_HANGUL_FIRST && $c <= UTF8_HANGUL_LAST ) {
 					# Decompose a hangul syllable into jamo;
@@ -465,10 +466,10 @@ class UtfNormal {
 					} elseif( $t ) {
 						$out .= "\xe1\x86" . chr( 0xa7 + $t );
 					}
-				} else {
-					$out .= $c;
+					continue;
 				}
 			}
+			$out .= $c;
 		}
 		return $out;
 	}
