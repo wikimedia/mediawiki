@@ -55,16 +55,13 @@ class PageHistory {
 		$title = $this->mTitle->getText();
 		$uid = $wgUser->getID();
 		$db =& wfGetDB( DB_SLAVE );
-		if ($wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' )) {
-			$dbr =& wfGetDB( DB_MASTER );
-			$row = $dbr->selectRow( 'watchlist',
-				array( 'wl_notificationtimestamp' ),
-				array( 'wl_namespace' => $namespace, 'wl_title' => $this->mTitle->getDBkey(), 'wl_user' => $wgUser->getID() ),
+		if ($uid && $wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' ))
+			$notificationtimestamp = $db->selectField( 'watchlist',
+				'wl_notificationtimestamp',
+				array( 'wl_namespace' => $namespace, 'wl_title' => $this->mTitle->getDBkey(), 'wl_user' => $uid ),
 				$fname );
-			$notificationtimestamp = $row->wl_notificationtimestamp;
-		} else $notificationtimestamp = false ;
+		else $notificationtimestamp = false;
 
-		$db =& wfGetDB( DB_SLAVE );
 		$use_index = $db->useIndexClause( 'page_timestamp' );
 		$revision = $db->tableName( 'revision' );
 
