@@ -155,3 +155,8 @@ Run patch-indexes.sql.
 * 2003-11: linkscc table creation
 patch-linkscc.sql
 
+
+* 2004-01-25: recentchanges additional index
+Adds an index to recentchanges to optimize Special:Newpages
+patch-rc-newindex.sql
+

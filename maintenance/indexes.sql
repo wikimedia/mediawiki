@@ -58,7 +58,8 @@ ALTER TABLE searchindex
 ALTER TABLE recentchanges
   ADD INDEX rc_timestamp (rc_timestamp),
   ADD INDEX rc_namespace_title (rc_namespace, rc_title),
-  ADD INDEX rc_cur_id (rc_cur_id);
+  ADD INDEX rc_cur_id (rc_cur_id),
+  ADD INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp);
 
 ALTER TABLE archive
   ADD KEY `name_title_timestamp` (`ar_namespace`,`ar_title`,`ar_timestamp`);
