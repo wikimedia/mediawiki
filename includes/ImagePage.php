@@ -37,7 +37,8 @@ class ImagePage extends Article {
 
 	function openShowImage()
 	{
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
+		       $wgUseImageResize, $wgRepositoryBaseUrl;
 		$this->img  = Image::newFromTitle( $this->mTitle );
 		$url  = $this->img->getViewURL();
 		$anchoropen = '';
@@ -82,7 +83,12 @@ class ImagePage extends Article {
 			}
 			$wgOut->addHTML( $s );
 			if($this->img->fromSharedDirectory) {
-				$wgOut->addWikiText("<div class=\"sharedUploadNotice\">".wfMsg("sharedupload")."</div>");
+				$sharedtext="<div class=\"sharedUploadNotice\">" . wfMsg("sharedupload");
+				if($wgRepositoryBaseUrl) {
+					$sharedtext .= " ". wfMsg("shareduploadwiki",$wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey()));
+				}
+				$sharedtext.="</div>";
+				$wgOut->addWikiText($sharedtext);
 			}
 		}
 	}

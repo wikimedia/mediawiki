@@ -139,6 +139,13 @@ $wgSharedUploadDirectory = "/var/www/wiki3/images";
 $wgHashedSharedUploadDirectory = true;
 # set true if the repository uses latin1 filenames
 $wgSharedLatin1=false;
+# Base URL for a repository wiki. Leave this blank if uploads are just
+# stored in a shared directory and not meant to be accessible throug
+# a separate wiki. Otherwise the image description pages on the local
+# wiki will link to the image description page on this wiki.
+#
+# Please specify the namespace, as in the example below.
+$wgRepositoryBaseUrl="http://commons.wikimedia.org/wiki/Image:";
 
 # Email settings
 #
