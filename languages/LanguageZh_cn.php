@@ -58,6 +58,10 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
+/* private */ $wgUserTogglesZh_cn = array(
+	'nolangconversion',
+) + $wgUserTogglesEn;
+
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -147,7 +151,7 @@ require_once( "LanguageUtf8.php" );
 "tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
 "tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
 "tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
-
+"tog-nolangconversion" => "不进行繁简体转换", /* "disable language conversion" */
 # Dates
 
 'sunday' => "星期日",
@@ -956,6 +960,11 @@ class LanguageZh_cn extends LanguageUtf8 {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_cn ;
 		return $wgBookstoreListZh_cn ;
+	}
+
+	function getUserToggles() {
+		global $wgUserTogglesZh_cn;
+		return $wgUserTogglesZh_cn;
 	}
 
 	function getNamespaces() {

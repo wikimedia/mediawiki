@@ -15,7 +15,14 @@ class LanguageZh extends LanguageZh_cn {
 	var $mZhClient=false;	
 	function LanguageZh() {
 		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
-		global $wgDisableLangConversion;
+		global $wgDisableLangConversion, $wgUser;
+        
+		if( $wgUser->getID()!=0 ) {
+			/* allow user to diable conversion */
+			if( $wgDisableLangConversion == false &&
+				$wgUser->getOption('nolangconversion') == 1)
+				$wgDisableLangConversion = true;
+		}		
 
 		$this->mZhLanguageCode = $this->getPreferredVariant();
 		if($wgUseZhdaemon) {
@@ -138,6 +145,10 @@ class LanguageZh extends LanguageZh_cn {
 		$terms = implode( '|', $this->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;
+	}
+
+	function getExtraHashOptions() {
+		return array('variant', 'nolangconversion');
 	}
 }
 ?>

@@ -292,6 +292,11 @@ class LanguageLatin1 {
 	function convertForSearchResult( $termsArray ) {
 		return $termsArray;
 	}	
+
+	function getExtraHashOptions() {
+		return array();
+	}
+
 }
 
 ?>
