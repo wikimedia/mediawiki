@@ -119,6 +119,7 @@ If upgrading from an older release, see the file UPGRADING.
 * use $wgForceUIMsgAsContentMsg to make regular UI messages act as content
 * new user option for zh users to disable language conversion
 * Defer message cache initialization, shaving a few ms off file cache hits
+* Fixed Special:Allmessages when using table prefixes
 
 === Caveats ===
 
