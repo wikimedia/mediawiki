@@ -53,7 +53,6 @@ require_once( 'LinkCache.php' );
 require_once( 'Title.php' );
 require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
-require_once( 'memcached-client.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
 require_once( 'BlockCache.php' );
@@ -103,44 +102,44 @@ if (!$wgUseOldExistenceCheck) {
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
-# Set up Memcached
-#
-class MemCachedClientforWiki extends memcached {
-	function _debugprint( $text ) {
-		wfDebug( "memcached: $text\n" );
-	}
-}
-
 # FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
 # It acts as a memcached server with no RAM, that is, all objects are
 # cleared the moment they are set. All set operations succeed and all
 # get operations return null.
 
-class FakeMemCachedClient {
-	function add ($key, $val, $exp = 0) { return true; }
-	function decr ($key, $amt=1) { return null; }
-	function delete ($key, $time = 0) { return false; }
-	function disconnect_all () { }
-	function enable_compress ($enable) { }
-	function forget_dead_hosts () { }
-	function get ($key) { return null; }
-	function get_multi ($keys) { return array_pad(array(), count($keys), null); }
-	function incr ($key, $amt=1) { return null; }
-	function replace ($key, $value, $exp=0) { return false; }
-	function run_command ($sock, $cmd) { return null; }
-	function set ($key, $value, $exp=0){ return true; }
-	function set_compress_threshold ($thresh){ }
-	function set_debug ($dbg) { }
-	function set_servers ($list) { }
-}
-
 if( $wgUseMemCached ) {
+	# Set up Memcached
+	#
+	require_once( 'memcached-client.php' );
+	class MemCachedClientforWiki extends memcached {
+		function _debugprint( $text ) {
+			wfDebug( "memcached: $text\n" );
+		}
+	}
+
 	$wgMemc = new MemCachedClientforWiki( array('persistant' => true) );
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
 	$messageMemc = &$wgMemc;
 } else {
+	class FakeMemCachedClient {
+		function add ($key, $val, $exp = 0) { return true; }
+		function decr ($key, $amt=1) { return null; }
+		function delete ($key, $time = 0) { return false; }
+		function disconnect_all () { }
+		function enable_compress ($enable) { }
+		function forget_dead_hosts () { }
+		function get ($key) { return null; }
+		function get_multi ($keys) { return array_pad(array(), count($keys), null); }
+		function incr ($key, $amt=1) { return null; }
+		function replace ($key, $value, $exp=0) { return false; }
+		function run_command ($sock, $cmd) { return null; }
+		function set ($key, $value, $exp=0){ return true; }
+		function set_compress_threshold ($thresh){ }
+		function set_debug ($dbg) { }
+		function set_servers ($list) { }
+	}
 	$wgMemc = new FakeMemCachedClient();
 	
 	# Give the message cache a separate cache in the DB.
