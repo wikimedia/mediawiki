@@ -97,12 +97,17 @@
 			$tpl->setRef( "userpage", &$this->userpage);
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			if( $wgUser->getNewtalk() ) {
-				$ntl = wfMsg( "newmessages",
-				$this->makeKnownLink( 
-					$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
-					. ":" . $wgUser->getName(),
-					wfMsg("newmessageslink") ) 
-				);
+				$usertitle = Title::newFromText( $this->userpage );
+				$usertalktitle = $usertitle->getTalkPage();
+				if($usertalktitle->getPrefixedDbKey() != $this->thispage){
+					
+					$ntl = wfMsg( "newmessages",
+					$this->makeKnownLink( 
+						$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
+						. ":" . $wgUser->getName(),
+						wfMsg("newmessageslink") ) 
+					);
+				}
 			} else {
 				$ntl = "";
 			}
@@ -200,21 +205,31 @@
 				'ttip' => wfMsg('tooltip-article'),
 				'akey' => wfMsg('accesskey-article'));
 
-				$content_actions['talk'] = array('class' => (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : ''),
-				'text' => wfMsg('talk'),
-				'href' => $this->makeTalkUrl($this->titletxt),
-				'ttip' => wfMsg('tooltip-talk'),
-				'akey' => wfMsg('accesskey-talk'));
+				/* set up the classes for the talk link */
+				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : '');				
+				$talktitle = Title::newFromText( $this->titletxt );
+				$talktitle = $talktitle->getTalkPage();
+				$this->checkTitle(&$title, &$name);	
+				$talk_class .= ($talktitle->getArticleId() != 0 ? '':' new'); 
+				$content_actions['talk'] = array(
+					'class' => $talk_class,
+					'text' => wfMsg('talk'),
+					'href' => $this->makeTalkUrl($this->titletxt),
+					'ttip' => wfMsg('tooltip-talk'),
+					'akey' => wfMsg('accesskey-talk')
+				);
 
 				if ( $wgTitle->userCanEdit() ) {
 					if ( $oldid && ! isset( $diff ) ) {
 						$oid = "&oldid={$oldid}";
 					}
-					$content_actions['edit'] = array('class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
-					'text' => wfMsg('edit'),
-					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
-					'ttip' => wfMsg('tooltip-edit'),
-					'akey' => wfMsg('accesskey-edit'));
+					$content_actions['edit'] = array(
+						'class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
+						'text' => wfMsg('edit'),
+						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
+						'ttip' => wfMsg('tooltip-edit'),
+						'akey' => wfMsg('accesskey-edit')
+					);
 				} else {
 					if ( $oldid && ! isset( $diff ) ) {
 						$oid = "&oldid={$oldid}";
@@ -320,7 +335,7 @@
 			$action = $wgRequest->getText( 'action' );
 			$oldid = $wgRequest->getVal( 'oldid' );
 			$diff = $wgRequest->getVal( 'diff' );
-
+			// XXX: remove htmlspecialchars when tal:attributes works with i18n:attributes
 			$nav_urls = array();
 			$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
 			$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
