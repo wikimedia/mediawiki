@@ -318,7 +318,6 @@ div.floatright {
 }
 div.floatright p { font-style: italic; } 
 div.floatleft { 
-    clear: left;
     float: left; 
     margin: 0.3em 0.5em 0.5em 0;
     position: relative;
