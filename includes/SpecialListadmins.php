@@ -8,6 +8,10 @@ class ListAdminsPage extends PageQueryPage {
 		return 'Listadmins';
 	}
 
+	function sortDescending() {
+		return false;
+	}
+
 	function getSQL() {
 		global $wgIsPg;
 		$usertable = $wgIsPg?'"user"':'user';
