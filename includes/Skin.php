@@ -2471,7 +2471,7 @@ class Skin {
 			$toolbar .= "<![CDATA[";
 		}
 
-		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
+		$toolbar.="document.writeln(\"<div id='toolbar' tabindex='4000000'>\");\n";
 		foreach($toolarray as $tool) {
 
 			$image=$wgUploadPath."/".$tool["image"];
