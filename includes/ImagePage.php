@@ -261,6 +261,10 @@ class ImagePage extends Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
+		if ( ! $this->mTitle->userCanEdit() ) {
+			$wgOut->sysopRequired();
+			return;
+		}
 		$name = substr( $oldimage, 15 );
 
 		$dest = wfImageDir( $name );
