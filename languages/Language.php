@@ -1835,6 +1835,12 @@ class Language {
 		return $in;
 	}
 
+	function firstChar( $s ) {
+		# Get the first character of a string. In ASCII, return
+		# first byte of the string. UTF8 and others have to 
+		# overload this.
+		return $s[0];
+	}
 
 	function setAltEncoding() {
 		# Some languages may have an alternate char encoding option
@@ -1896,7 +1902,7 @@ class Language {
 			# Fall back to English if local list is incomplete
 			$raw =& Language::getMagicWords();
 		}
-        $rawEntry = $raw[$mw->mId];
+		$rawEntry = $raw[$mw->mId];
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
@@ -1907,18 +1913,6 @@ class Language {
 		return "<em>$text</em>";
 	}
 
-	# returns additional Regex for the tokenizer. See LanguageFr.php for an example
-	function tokenizerRegex()
-	{
-		return "";
-	}
-
-	# Process the token generated from the tokenizer by the above regex. Return
-	# NULL if the token is unknown, and the text to be added to the output otherwise
-	function processToken( &$token , &$tokenStack)
-	{
-		return NULL;
-	}
 	
 	# Normally we use the plain ASCII digits. Some languages such as Arabic will
 	# want to output numbers using script-appropriate characters: override this
