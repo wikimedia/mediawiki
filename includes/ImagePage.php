@@ -21,7 +21,7 @@ class ImagePage extends Article {
 				 // available in doDelete etc.
 
 	function view() {
-		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
+		if( $this->mTitle->getNamespace() == NS_IMAGE ) {
 			$this->openShowImage();
 		}
 
@@ -31,7 +31,7 @@ class ImagePage extends Article {
 		# follow it with the history list and link list for the image
 		# it describes.
 
-		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
+		if( $this->mTitle->getNamespace() == NS_IMAGE ) {
 			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
@@ -303,7 +303,7 @@ class ImagePage extends Article {
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
 
-			$nt = Title::newFromText( $wgContLang->getNsText( Namespace::getImage() ) . ":" . $image );
+			$nt = Title::makeTitleSafe( NS_IMAGE, $image );
 			$article = new Article( $nt );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
@@ -314,9 +314,9 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLink( $wgContLang->getNsText(
-		  Namespace::getWikipedia() ) .
-		  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
+		$loglink = $sk->makeKnownLinkObj(
+			Title::makeTitle( NS_SPECIAL, 'Delete/log' ),
+			wfMsg( 'deletionlog' ) );
 
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
@@ -481,8 +481,9 @@ class ImageHistoryList {
 		if ( 0 == $user ) {
 			$userlink = $usertext;
 		} else {
-			$userlink = $this->skin->makeLink( $wgContLang->getNsText( Namespace::getUser() ) .
-			               ':'.$usertext, $usertext );
+			$userlink = $this->skin->makeLinkObj(
+				Title::makeTitle( NS_USER, $usertext ),
+				$usertext );
 		}
 		$nbytes = wfMsg( 'nbytes', $size );
 		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
@@ -490,10 +491,7 @@ class ImageHistoryList {
 		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a>"
 		  . " . . {$userlink} ({$nbytes})";
 
-		if ( '' != $description && '*' != $description ) {
-			$sk=$wgUser->getSkin();
-			$s .= $wgContLang->emphasize(' (' . $sk->formatComment($description,$wgTitle) . ')');
-		}
+		$s .= $this->skin->commentBlock( $description, $wgTitle );
 		$s .= "</li>\n";
 		return $s;
 	}

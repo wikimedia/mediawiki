@@ -156,7 +156,7 @@ class SkinStandard extends Skin {
 		}
 
 
-		if ($wgUser->getID()) {
+		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
 			$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 				wfMsg( 'mycontris' ), 'target=' . wfUrlencode($wgUser->getName() ) );
@@ -204,7 +204,7 @@ class SkinStandard extends Skin {
 					}
 
 					$s .= $this->makeLink( $link, $text );
-				} elseif( $wgTitle->getNamespace() != Namespace::getSpecial() ) {
+				} elseif( $wgTitle->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
 					$s .= '<strong>' . wfMsg('newpage') . '</strong>';
@@ -223,7 +223,7 @@ class SkinStandard extends Skin {
 			article with "Watch this article" checkbox disabled, the article is transparently
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/
-			if ( 0 != $wgUser->getID() && $articleExists) {
+			if ( $wgUser->isLoggedIn() && $articleExists) {
 				if($action!='edit' && $action != 'submit' )
 				{
 					$s .= $sep . $this->watchThisPage();
@@ -245,9 +245,8 @@ class SkinStandard extends Skin {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
-			if ( Namespace::getUser() == $wgTitle->getNamespace()
-			|| $wgTitle->getNamespace() == Namespace::getTalk(Namespace::getUser())
-			) {
+			if ( NS_USER == $wgTitle->getNamespace()
+				|| $wgTitle->getNamespace() == NS_USER_TALK ) {
 
 				$id=User::idFromName($wgTitle->getText());
 				$ip=User::isIP($wgTitle->getText());
@@ -262,7 +261,7 @@ class SkinStandard extends Skin {
 			$s .= "\n<br /><hr class='sep' />";
 		}
 
-		if ( 0 != $wgUser->getID() && ( !$wgDisableUploads || $wgRemoteUploads ) ) {
+		if ( $wgUser->isLoggedIn() && ( !$wgDisableUploads || $wgRemoteUploads ) ) {
 			$s .= $this->specialLink( 'upload' ) . $sep;
 		}
 		$s .= $this->specialLink( 'specialpages' )

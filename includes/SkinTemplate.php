@@ -171,11 +171,12 @@ class SkinTemplate extends Skin {
 		wfProfileIn( "$fname-stuff" );
 		$this->thispage = $this->mTitle->getPrefixedDbKey();
 		$this->thisurl = $this->mTitle->getPrefixedURL();
-		$this->loggedin = $wgUser->getID() != 0;
-		$this->iscontent = ($this->mTitle->getNamespace() != Namespace::getSpecial() );
+		$this->loggedin = $wgUser->isLoggedIn();
+		$this->iscontent = ($this->mTitle->getNamespace() != NS_SPECIAL );
 		$this->iseditable = ($this->iscontent and !($action == 'edit' or $action == 'submit'));
 		$this->username = $wgUser->getName();
-		$this->userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+		$userPage = $wgUser->getUserPage();
+		$this->userpage = $userPage->getPrefixedText();
 		$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
@@ -573,10 +574,10 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
 					);
 				}
-				if ( $wgUser->getID() != 0 ) {
+				if ( $wgUser->isLoggedIn() ) {
 					if ( $this->mTitle->userCanMove()) {
 						$content_actions['move'] = array(
-							'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : false,
+							'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
 							'text' => wfMsg('move'),
 							'href' => $this->makeSpecialUrl('Movepage', 'target='. urlencode( $this->thispage ) )
 						);
@@ -596,7 +597,7 @@ class SkinTemplate extends Skin {
 			}
 			wfProfileOut( "$fname-live" );
 
-			if ( $wgUser->getID() != 0 and $action != 'submit' ) {
+			if ( $wgUser->isLoggedIn() and $action != 'submit' ) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
@@ -861,17 +862,17 @@ class SkinTemplate extends Skin {
 		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
 
-		if($wgUser->getID() != 0) {
-			if ( 1 == $wgUser->getOption( "underline" ) ) {
+		if( $wgUser->isLoggedIn() ) {
+			if ( $wgUser->getOption( "underline" ) ) {
 				$s .= "a { text-decoration: underline; }\n";
 			} else {
 				$s .= "a { text-decoration: none; }\n";
 			}
 		}
-		if ( 1 != $wgUser->getOption( "highlightbroken" ) ) {
+		if ( !$wgUser->getOption( "highlightbroken" ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
 		}
-		if ( 1 == $wgUser->getOption( "justify" ) ) {
+		if ( $wgUser->getOption( "justify" ) ) {
 			$s .= "#bodyContent { text-align: justify; }\n";
 		}
 		wfProfileOut( $fname );
@@ -885,7 +886,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::getUserJs';
 		wfProfileIn( $fname );
 		
-		global $wgUser, $wgStylePath;
+		global $wgStylePath;
 		$s = '/* generated javascript */';
 		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
 		$s .= '/* MediaWiki:'.ucfirst($this->skinname)." */\n";

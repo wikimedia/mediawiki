@@ -864,10 +864,6 @@ class LanguageFi extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFi;
 		return $wgQuickbarSettingsFi;

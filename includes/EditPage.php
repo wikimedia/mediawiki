@@ -283,13 +283,14 @@ class EditPage {
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$isCssJsSubpage = (Namespace::getUser() == $wgTitle->getNamespace() and preg_match("/\\.(css|js)$/", $wgTitle->getText() ));
+		$isCssJsSubpage = $wgTitle->isCssJsSubpage();
+		
 
 		if(!$this->mTitle->getArticleID()) { # new article
 			$wgOut->addWikiText(wfmsg('newarticletext'));
 		}
 
-		if( Namespace::isTalk( $this->mTitle->getNamespace() ) ) {
+		if( $this->mTitle->isTalkPage() ) {
 			$wgOut->addWikiText(wfmsg('talkpagetext'));
 		}
 
@@ -758,7 +759,7 @@ END
 		} else {
 			$name = $id;
 		}
-		$link = '[[' . $wgContLang->getNsText( Namespace::getUser() ) .
+		$link = '[[' . $wgContLang->getNsText( NS_USER ) .
 		  ":{$name}|{$name}]]";
 
 		$wgOut->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );

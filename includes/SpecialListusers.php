@@ -104,7 +104,7 @@ class ListUsersPage extends QueryPage {
 		$group = $dbr->tableName( 'group' );
 		$user_groups = $dbr->tableName( 'user_groups' );
 		
-		$userspace = Namespace::getUser();
+		$userspace = NS_USER;
 		$sql = "SELECT group_name as type, $userspace AS namespace, user_name AS title, user_name as value " .
 			"FROM $user ".
 			"LEFT JOIN $user_groups ON user_id =ug_user " .
@@ -171,7 +171,7 @@ class ListUsersPage extends QueryPage {
  * constructor
  */
 function wfSpecialListusers() {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgRequest;
 
 	list( $limit, $offset ) = wfCheckLimits();
 

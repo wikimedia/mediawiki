@@ -58,7 +58,7 @@ function wfSpecialContributions( $par = '' ) {
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
-		$ul .= ' (' . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ')';
+		$ul .= ' (' . $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) ) . ')';
 	}
 
 

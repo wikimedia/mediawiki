@@ -144,7 +144,7 @@ function wfAddRow( $block, $tag ) {
 	$addr = $block->mAuto ? "#{$block->mId}" : $block->mAddress;
 
 	$name = User::whoIs( $block->mBy );
-	$ulink = $sk->makeKnownLink( $wgContLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
+	$ulink = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $name ), $name );
 	$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 	
 	if ( $block->mExpiry === "" ) {

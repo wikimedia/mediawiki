@@ -232,7 +232,7 @@ class SkinCologneBlue extends Skin {
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
 			  
-			if ( Namespace::getUser() == $tns || Namespace::getTalk(Namespace::getUser()) == $tns ) {
+			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
 				$id=User::idFromName($wgTitle->getText());
 				if ($id != 0) {
 					$s .= $sep . $this->userContribsLink();
@@ -247,16 +247,17 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbmyoptions" );
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
-			$tl = $this->makeKnownLink( $wgContLang->getNsText(
-			  Namespace::getTalk( Namespace::getUser() ) ) . ":{$name}",
-			  wfMsg( "mytalk" ) );
-			if ( 0 != $wgUser->getNewtalk() ) { $tl .= " *"; }
+			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+				wfMsg( 'mytalk' ) );
+			if ( $wgUser->getNewtalk() ) {
+				$tl .= " *";
+			}
 
-			$s .= $this->makeKnownLink( $wgContLang->getNsText(
-			  Namespace::getUser() ) . ":{$name}", wfMsg( "mypage" ) )
+			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
+				wfMsg( "mypage" ) )
 			  . $sep . $tl
 			  . $sep . $this->specialLink( "watchlist" )
-			  . $sep . $this->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
+			  . $sep . $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ),
 			  	wfMsg( "mycontris" ), "target=" . wfUrlencode($wgUser->getName() ) )		
 		  	  . $sep . $this->specialLink( "preferences" )
 		  	  . $sep . $this->specialLink( "userlogout" );
@@ -269,7 +270,7 @@ class SkinCologneBlue extends Skin {
 		  . $sep . $this->specialLink( "imagelist" ) 
 		  . $sep . $this->specialLink( "statistics" ) 
 		  . $sep . $this->bugReportsLink();
-		if ( 0 != $wgUser->getID() && !$wgDisableUploads ) {
+		if ( $wgUser->isLoggedIn() && !$wgDisableUploads ) {
 			$s .= $sep . $this->specialLink( "upload" );
 		}
 		global $wgSiteSupportPage;
@@ -278,7 +279,9 @@ class SkinCologneBlue extends Skin {
 			      .wfMsg( "sitesupport" )."</a>";
 		}
 		
-		$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( "Specialpages" ), wfMsg("moredotdotdot") );
+		$s .= $sep . $this->makeKnownLinkObj(
+			Title::makeTitle( NS_SPECIAL, 'Specialpages' ),
+			wfMsg( 'moredotdotdot' ) );
 
 		$s .= $sep . "\n</div>\n";
 		return $s;
