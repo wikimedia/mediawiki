@@ -444,11 +444,11 @@ class Title {
 	}
 	
 	function escapeLocalURL( $query = "" ) {
-		return wfEscapeHTML( $this->getLocalURL( $query ) );
+		return htmlspecialchars( $this->getLocalURL( $query ) );
 	}
 	
 	function escapeFullURL( $query = "" ) {
-		return wfEscapeHTML( $this->getFullURL( $query ) );
+		return htmlspecialchars( $this->getFullURL( $query ) );
 	}
 	
 	function getInternalURL( $query = "" ) {
@@ -473,7 +473,7 @@ class Title {
 	# For the title field in <a> tags
 	function getEscapedText()
 	{
-		return wfEscapeHTML( $this->getPrefixedText() );
+		return htmlspecialchars( $this->getPrefixedText() );
 	}
 	
 	# Is the title interwiki?
