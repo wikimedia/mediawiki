@@ -224,7 +224,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 		$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
 		$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
-		$tpl->set( "protect", count($wgTitle->getRestrictions()) ? "unprotect" : "protect" );
+		$tpl->set( "protect", count($wgTitle->isProtected()) ? "unprotect" : "protect" );
 		$tpl->set( "helppage", wfMsg('helppage'));
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
@@ -557,7 +557,7 @@ class SkinTemplate extends Skin {
 					);
 				}
 				if ( $wgUser->getID() != 0 ) {
-					if ( $wgTitle->userCanEdit()) {
+					if ( $wgTitle->userCanMove()) {
 						$content_actions['move'] = array(
 							'class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : false,
 							'text' => wfMsg('move'),

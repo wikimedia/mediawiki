@@ -305,7 +305,7 @@ class EditPage {
 		} else if ( $isCssJsSubpage and 'preview' != $formtype) {
 			$wgOut->addHTML( wfMsg( 'usercssjsyoucanpreview' ));
 		}
-		if( $this->mTitle->isProtected() ) {
+		if( $this->mTitle->isProtected('edit') ) {
 			$wgOut->addHTML( '<strong>' . wfMsg( 'protectedpagewarning' ) .
 			  "</strong><br />\n" );
 		}

@@ -407,8 +407,7 @@ class Article {
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
 			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
-			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
-			$this->mTitle->mRestrictionsLoaded = true;
+			$this->mTitle->loadRestrictions( $s->cur_restrictions );
 		} else { # oldid set, retrieve historical version
 			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
 				$fname, $this->getSelectOptions() );
@@ -486,8 +485,7 @@ class Article {
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
 			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
-			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
-			$this->mTitle->mRestrictionsLoaded = true;
+			$this->mTitle->loadRestrictions( $s->cur_restrictions );
 		} else { # oldid set, retrieve historical version
 			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
 				$fname, $this->getSelectOptions() );
@@ -1275,14 +1273,20 @@ class Article {
 		}
 
 		$confirm = $wgRequest->getBool( 'wpConfirmProtect' ) && $wgRequest->wasPosted();
+		$moveonly = $wgRequest->getBool( 'wpMoveOnly' );
 		$reason = $wgRequest->getText( 'wpReasonProtect' );
 
 		if ( $confirm ) {
+			$restrictions = "move=" . $limit;
+			if( !$moveonly ) {
+				$restrictions .= ":edit=" . $limit;
+			}
+			
 			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->update( 'cur',
 				array( /* SET */
 					'cur_touched' => $dbw->timestamp(),
-					'cur_restrictions' => (string)$limit
+					'cur_restrictions' => $restrictions
 				), array( /* WHERE */
 					'cur_id' => $id
 				), 'Article::protect'
@@ -1315,6 +1319,7 @@ class Article {
 
 		$check = '';
 		$protcom = '';
+		$moveonly = '';
 
 		if ( $limit === '' ) {
 			$wgOut->setPageTitle( wfMsg( 'confirmunprotect' ) );
@@ -1328,6 +1333,7 @@ class Article {
 			$wgOut->setSubtitle( wfMsg( 'protectsub', $sub ) );
 			$wgOut->addWikiText( wfMsg( 'confirmprotecttext' ) );
 			$check = htmlspecialchars( wfMsg( 'confirmprotect' ) );
+			$moveonly = htmlspecialchars( wfMsg( 'protectmoveonly' ) );
 			$protcom = htmlspecialchars( wfMsg( 'protectcomment' ) );
 			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
 		}
@@ -1355,7 +1361,19 @@ class Article {
 			<td>
 				<label for='wpConfirmProtect'>{$check}</label>
 			</td>
-		</tr>
+		</tr> " );
+		if($moveonly != '') {
+			$wgOut->AddHTML( "
+		<tr>
+			<td align='right'>
+				<input type='checkbox' name='wpMoveOnly' value='1' id='wpMoveOnly' />
+			</td>
+			<td>
+				<label for='wpMoveOnly'>{$moveonly}</label>
+			</td>
+		</tr> " );
+		}
+		$wgOut->addHTML( "
 		<tr>
 			<td>&nbsp;</td>
 			<td>

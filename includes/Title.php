@@ -702,13 +702,21 @@ class Title {
 
 	/**
 	 * Does the title correspond to a protected article?
+	 * @param string $what the action the page is protected from,
+	 *	by default checks move and edit
 	 * @return boolean
 	 * @access public
 	 */
-	function isProtected() {
+	function isProtected($action = '') {
 		if ( -1 == $this->mNamespace ) { return true; }
-		$a = $this->getRestrictions();
-		if ( in_array( 'sysop', $a ) ) { return true; }
+		if($action == 'edit' || $action == '') {
+			$a = $this->getRestrictions("edit");
+			if ( in_array( 'sysop', $a ) ) { return true; }
+		}
+		if($action == 'move' || $action == '') {
+			$a = $this->getRestrictions("move");
+			if ( in_array( 'sysop', $a ) ) { return true; }	
+		}	
 		return false;
 	}
 
@@ -726,12 +734,13 @@ class Title {
 		return $wgUser->isWatched( $this );
 	}
 
-	/**
-	 * Can $wgUser edit this page?
+ 	/**
+	 * Is $wgUser perform $action this page?
+	 * @param string $action action that permission needs to be checked for
 	 * @return boolean
-	 * @access public
-	 */
-	function userCanEdit() {
+	 * @access private
+ 	 */
+	function userCan($action) {
 		$fname = 'Title::userCanEdit';
 		wfProfileIn( $fname );
 		
@@ -770,7 +779,7 @@ class Title {
 			return false;
 		}
 
-		foreach( $this->getRestrictions() as $right ) {
+		foreach( $this->getRestrictions($action) as $right ) {
 			if( '' != $right && !$wgUser->isAllowed( $right ) ) {
 				wfProfileOut( $fname );
 				return false;
@@ -778,6 +787,24 @@ class Title {
 		}
 		wfProfileOut( $fname );
 		return true;
+	}
+
+	/**
+	 * Can $wgUser edit this page?
+	 * @return boolean
+	 * @access public
+	 */
+	function userCanEdit() {
+		return $this->userCan('edit');
+	}
+	
+	/**
+	 * Can $wgUser move this page?
+	 * @return boolean
+	 * @access public
+	 */	
+	function userCanMove() {
+		return $this->userCan('move');
 	}
 
 	/**
@@ -855,21 +882,41 @@ class Title {
 	}
 
 	/**
+	 * Loads a string into mRestrictions array
+	 * @param string $res restrictions in string format	 
+	 * @access public
+	 */
+	function loadRestrictions( $res ) {
+		foreach( explode( ':', trim( $res ) ) as $restrict ) {
+			$temp = explode( '=', trim( $restrict ) );
+			if(count($temp) == 1) {
+				// old format should be treated as edit/move restriction
+				$this->mRestrictions["edit"] = explode( ',', trim( $temp[0] ) );
+				$this->mRestrictions["move"] = explode( ',', trim( $temp[0] ) );
+			} else {
+				$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
+			}
+		}
+		$this->mRestrictionsLoaded = true;
+	}
+
+	/**
 	 * Accessor/initialisation for mRestrictions
+	 * @param string $action action that permission needs to be checked for	 
 	 * @return array the array of groups allowed to edit this article
 	 * @access public
 	 */
-	function getRestrictions() {
+	function getRestrictions($action) {
 		$id = $this->getArticleID();
 		if ( 0 == $id ) { return array(); }
 
 		if ( ! $this->mRestrictionsLoaded ) {
 			$dbr =& wfGetDB( DB_SLAVE );
 			$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
-			$this->mRestrictions = explode( ',', trim( $res ) );
-			$this->mRestrictionsLoaded = true;
+			$this->loadRestrictions( $res );
 		}
-		return $this->mRestrictions;
+		$result = $this->mRestrictions[$action];
+		return $result ? $result : array();
 	}
 	
 	/**
