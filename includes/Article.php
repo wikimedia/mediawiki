@@ -248,7 +248,7 @@ class Article {
 	}
 
 	# This function returns the text of a section, specified by a number ($section).
- 	# A section is text under a heading like == Heading == or <h1>Heading</h1>, or
+	# A section is text under a heading like == Heading == or <h1>Heading</h1>, or
 	# the first section before any such heading (section 0).
 	#
 	# If a section contains subsections, these are also returned.
