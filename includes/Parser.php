@@ -1443,10 +1443,10 @@ class Parser
 		
 		if ( $this->mOutputType == OT_HTML ) {
 			# Argument substitution
-			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
+			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
 		# Template substitution
-		$regex = '/(\\n?){{(['.$nonBraceChars.']*)(\\|.*?|)}}/s';
+		$regex = '/{{(['.$nonBraceChars.']*)(\\|.*?|)}}/s';
 		$text = preg_replace_callback( $regex, 'wfBraceSubstitution', $text );
 
 		array_pop( $this->mArgStack );
@@ -1502,15 +1502,13 @@ class Parser
 
 		$title = NULL;
 
-		# $newline is an optional newline character before the braces
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
 
-		$newline = $matches[1];
-		$part1 = $matches[2];
-		# If the third subpattern matched anything, it will start with |
+		$part1 = $matches[1];
+		# If the second subpattern matched anything, it will start with |
 
-		$args = $this->getTemplateArgs($matches[3]);
+		$args = $this->getTemplateArgs($matches[2]);
 		$argc = count( $args );
 
 		# {{{}}}
@@ -1719,8 +1717,7 @@ class Parser
 
 	# Triple brace replacement -- used for template arguments
 	function argSubstitution( $matches ) {
-		$newline = $matches[1];
-		$arg = trim( $matches[2] );
+		$arg = trim( $matches[1] );
 		$text = $matches[0];
 		$inputArgs = end( $this->mArgStack );
 
