@@ -99,6 +99,7 @@ header( "Content-type: text/html; charset=utf-8" );
 </div>
 
 <?php
+$IP = ".."; # Just to suppress notices, not for anything useful
 include( "../includes/DefaultSettings.php" );
 ?>
 
@@ -165,7 +166,8 @@ class ConfigData {
 <h2>Checking environment...</h2>
 <ul>
 <?php
-
+$endl = "
+";
 $conf = new ConfigData;
 
 install_version_checks();
@@ -279,19 +281,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		include_once( "../maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
-		
-		if( $conf->Root ) {
-			$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-		} else {
-			$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-		}
+		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
 		$wgDatabase->mIgnoreErrors = true;
 		
-		if ( !$wgDatabase->isOpen() ) {
-			$errs["DBserver"] = "Couldn't connect to database";
-			continue;
-		}
-
 		@$myver = mysql_get_server_info( $wgDatabase->mConn );
 		if( !$myver ) {
 			print "<li>MySQL error " . ($err = mysql_errno() ) .
@@ -302,9 +294,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				if( $conf->Root ) {
 					$errs["RootPW"] = "Check password";
 				} else {
-					print "<li>Trying root...\n";
-					/* Try a blank root password... */
-					$wgDatabase = Database::newFromParams( $wgDBserver, "root", "", "", 1 );
+					print "<li>Trying regular user...\n";
+					/* Try the regular user... */
+					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
 					$wgDatabase->isOpen();
 					$wgDatabase->mIgnoreErrors = true;
 					@$myver = mysql_get_server_info( $wgDatabase->mConn );
@@ -333,6 +325,12 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			if( !$ok ) continue;
 		}
+		
+		if ( !$wgDatabase->isOpen() ) {
+			$errs["DBserver"] = "Couldn't connect to database";
+			continue;
+		}
+
 		print "<li>Connected to database... $myver";
 		if( version_compare( $myver, "4.0.0" ) >= 0 ) {
 			print "; enabling MySQL 4 enhancements";
@@ -408,7 +406,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				"uploadlogpage" => "uploadlogpagetext",
 				"dellogpage" => "dellogpagetext",
 				"protectlogpage" => "protectlogtext",
-				"blocklogpage" => "bloglogtext"
+				"blocklogpage" => "blocklogtext"
 			);
 			$metaNamespace = Namespace::getWikipedia();
 			$now = wfTimestampNow();
@@ -441,7 +439,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
-		$localSettings =  "<" . "?php\n$local\n?" . ">";
+		$localSettings =  "<" . "?php$endl$local$endl?" . ">";
 		
 		if( version_compare( phpversion(), "4.3.2" ) >= 0 ) {
 			$xt = "xt"; # Refuse to overwrite an existing file
@@ -609,7 +607,7 @@ function writeAdminSettings( $conf ) {
 }
 
 function writeLocalSettings( $conf ) {
-	$conf->DBmysql4 = $conf->DBmysql4 ? 'true' : 'false';
+	$conf->DBmysql4 = @$conf->DBmysql4 ? 'true' : 'false';
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
 	if( $conf->LanguageCode == "en-utf8" ) {
