@@ -62,6 +62,9 @@ $wgSqlLogFile		= "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries		= false;
 $wgUseBetterLinksUpdate = true;
 
+# If wgWhitelistEdit is set to true, only logged in users
+# are allowed to edit articles.
+# $wgWhitelistEdit	= true;
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages

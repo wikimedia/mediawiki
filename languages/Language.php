@@ -506,6 +506,8 @@ Please log in again after you receive it.",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
 [[Wikipedia:administrators|administrators]] to discuss the block.",
+"whitelistedittitle" => "User not logged in",
+"whitelistedittext" => "You have to [[Spezial:Userlogin|login]] to edit articles.",
 "newarticle"	=> "(New)",
 "newarticletext" =>
 "You've followed a link to a page that doesn't exist yet.
