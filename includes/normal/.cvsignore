@@ -6,3 +6,5 @@ testdata
 UnicodeData.txt
 UTF-8-test.txt
 *~
+._*
+.DS_Store
