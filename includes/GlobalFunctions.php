@@ -132,12 +132,22 @@ function wfThumbUrl( $img )
 }
 
 
-function wfImageArchiveUrl( $name, $subdir="archive" )
+function wfImageThumbUrl( $name, $subdir="thumb" )
 {
 	global $wgUploadPath;
 
 	$hash = md5( $name );
 	$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" .
+	  substr( $hash, 0, 2 ) . "/{$name}";
+	return wfUrlencode($url);
+}
+
+function wfImageArchiveUrl( $name )
+{
+	global $wgUploadPath;
+
+	$hash = md5( substr( $name, 15) );
+	$url = "{$wgUploadPath}/archive/" . $hash{0} . "/" .
 	  substr( $hash, 0, 2 ) . "/{$name}";
 	return wfUrlencode($url);
 }
@@ -460,6 +470,11 @@ function wfImageDir( $fname )
 	
 	umask( $oldumask );
 	return $dest;
+}
+
+function wfImageThumbDir( $fname , $subdir="thumb")
+{
+	return wfImageArchiveDir( $fname, $subdir );
 }
 
 function wfImageArchiveDir( $fname , $subdir="archive")

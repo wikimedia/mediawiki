@@ -1519,8 +1519,8 @@ class Skin {
 		global $wgUseImageMagick;
 		$imgPath   = wfImagePath( $name );
 		$thumbName = $width."px-".$icon.$name;
-		$thumbPath = wfImageArchiveDir( $thumbName, "thumb" )."/".$thumbName;
-		$thumbUrl  = wfImageArchiveUrl( $thumbName, "thumb" );
+		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
+		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
 		if (     (! file_exists( $thumbPath ) && file_exists( $imgPath )) 
 		     ||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
