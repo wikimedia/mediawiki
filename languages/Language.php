@@ -1279,6 +1279,8 @@ Type the name of the user in the box and press the button to make the user an ad
 "makesysopok"		=> "<b>User '$1' is now a sysop</b>",
 "makesysopfail"		=> "<b>User '$1' could not be made into a sysop. (Did you enter the name correctly?)</b>",
 "setbureaucratflag" => "Set bureaucrat flag",
+"bureaucratlog"		=> "Bureaucrat_log",
+"bureaucratlogentry"	=> " set $1: $2",
 
 # Move page
 #
