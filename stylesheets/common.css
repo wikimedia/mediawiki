@@ -78,24 +78,22 @@ div.tleft {
     border:1px dashed #aaaaaa;
 }
 
-table.diff {
-        background:white;
+table.diff { background:white; }
+td.diff-otitle { background:#cccccc; }
+td.diff-ntitle { background:#cccccc; }
+td.diff-addedline { 
+    background:#ccffcc;
+    font-size: smaller;
 }
-td.diff-otitle {
-        background:#cccccc;
-}
-td.diff-ntitle {
-        background:#cccccc;
-}
-td.diff-addedline {
-        background:#ccffcc;
-}
-td.diff-deletedline {
-        background:#ffffaa;
+td.diff-deletedline { 
+    background:#ffffaa;
+    font-size: smaller;
 }
 td.diff-context {
-        background:#eeeeee;
+    background:#eeeeee;
+    font-size: smaller;
 }
+span.diffchange { color: red; }
 
 img { border: none; }
 img.tex { vertical-align: middle; }
