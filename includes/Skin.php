@@ -1891,12 +1891,19 @@ class Skin {
 		$alt = preg_replace( '/<[^>]*>/', '', $label);
 		$alt = htmlspecialchars( $alt );
 
+		$width = $height = 0;
 		if ( $img->exists() )
 		{
 			$width  = $img->getWidth();
 			$height = $img->getHeight();
-		} else {
+		}
+		if ( 0 == $width || 0 == $height )
+		{
 			$width = $height = 200;
+		}
+		if ( $boxwidth == 0 )
+		{
+			$boxwidth = 200;
 		}
 		if ( $framed )
 		{
