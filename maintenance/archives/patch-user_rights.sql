@@ -8,7 +8,7 @@
 CREATE TABLE user_rights (
 	ur_user int(5) unsigned NOT NULL,
 	ur_rights tinyblob NOT NULL default '',
-	UNIQUE KEY user_id (user_id)
+	UNIQUE KEY ur_user (ur_user)
 ) PACK_KEYS=1;
 
 INSERT INTO user_rights SELECT user_id,user_rights FROM user;
