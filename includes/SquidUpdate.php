@@ -91,16 +91,21 @@ class SquidUpdate {
 	XXX report broken Squids per mail or log */
 
 	/* static */ function purge( $urlArr ) {
-		global  $wgSquidServers;
+		global  $wgSquidServers, $wgSquidFastPurge;
 
 		if ( $wgSquidServers == 'echo' ) {
 			echo implode("<br />\n", $urlArr);
 			return;
 		}
+		
+		if ( $wgSquidFastPurge ) {
+			SquidUpdate::fastPurge( $urlArr );
+			return;
+		}
 
 		$fname = 'SquidUpdate::purge';
 		wfProfileIn( $fname );
-		
+
 		$maxsocketspersquid = 8; //  socket cap per Squid
 		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$firsturl = $urlArr[0];
@@ -198,6 +203,22 @@ class SquidUpdate {
 		}
 		#$this->debug("\n");
 		wfProfileOut( $fname );
+	}
+
+	function fastPurge( $urlArr ) {
+		global $wgSquidServers;
+		foreach ( $wgSquidServers as $server ) {
+			list($server, $port) = explode(':', $server)
+			$conn = @pfsockopen( $server, $port, $error, $errstr, 3 );
+			if ( $conn ) {
+				$msg = '';
+				foreach ( $this->urlArr as $url ) {
+					$msg .= 'PURGE ' . $firsturl . " HTTP/1.0\r\n".
+					"Connection: Keep-Alive\r\n\r\n";
+				}
+				@fputs( $msg );
+			}
+		}
 	}
 
 	function debug( $text ) {

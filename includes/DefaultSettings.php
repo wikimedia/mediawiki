@@ -516,6 +516,8 @@ $wgSquidServersNoPurge = array();
 # Maximum number of titles to purge in any one client operation
 $wgMaxSquidPurgeTitles = 400;
 
+# When purging, use persistent connections and don't wait for the response
+$wgSquidFastPurge = true;
 
 # Cookie settings:
 #   Set to set an explicit domain on the login cookies
