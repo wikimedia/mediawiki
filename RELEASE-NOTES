@@ -4,7 +4,7 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA 1 ==
+== MediaWiki 1.4 BETA 2 ==
 
 ''''' Thinking of using MySQL 4.1? Please read this first! '''''
 ''''' Your PHP installation probably uses the OLD protocol '''''
