@@ -15,31 +15,16 @@
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( defined( 'MEDIAWIKI' ) ) {
 
-/**
- * MediaWiki version number
- * @global string $wgVersion
- */
+/** MediaWiki version number */
 $wgVersion			= '1.5pre-alpha';
 
-/** 
- * Name of the site.
- * It must be changed in LocalSettings.php
- * @global string $wgSitename
- */
+/** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
 
-/**
- * Will be same as you set @see $wgSitename
- * @global mixed $wgMetaNamespace
- */
+/** Will be same as you set @see $wgSitename */
 $wgMetaNamespace    = FALSE;
 
-
-/** 
- * URL of the server
- * It will be automaticly build including https mode
- * @global string $wgServer
- */
+/** URL of the serve. It will be automaticly build including https mode */
 $wgServer = '';
 
 if( isset( $_SERVER['SERVER_NAME'] ) ) {
@@ -64,7 +49,6 @@ unset($wgProto);
 /**
  * The path we should point to.
  * It might be a virtual path in case with use apache mod_rewrite for example
- * @global string $wgScriptPath
  */
 $wgScriptPath	    = '/wiki';
 
@@ -118,37 +102,46 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgUploadBaseUrl    = "";
 /**#@-*/
 
-# If you operate multiple wikis, you can define a shared upload
-# path here. Uploads to this wiki will NOT be put there - they
-# will be put into $wgUploadDirectory.
-#
-# If $wgUseSharedUploads is set, the wiki will look in the
-# shared repository if no file of the given name is found in
-# the local repository (for [[Image:..]], [[Media:..]] links).
-# Thumbnails will also be looked for and generated in this
-# directory.
-#
+/**
+ * If you operate multiple wikis, you can define a shared upload path here.
+ * Uploads to this wiki will NOT be put there - they will be put into
+ * $wgUploadDirectory.
+ * If $wgUseSharedUploads is set, the wiki will look in the shared repository if
+ * no file of the given name is found in the local repository (for [[Image:..]],
+ * [[Media:..]] links). Thumbnails will also be looked for and generated in this
+ * directory.
+ */
 $wgUseSharedUploads = false;
-# Full path on the web server where shared uploads can be found
+/** Full path on the web server where shared uploads can be found */
 $wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
-# Path on the file system where shared uploads can be found
+/** Path on the file system where shared uploads can be found */
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
-# Set this to false especially if you have a set of files that need to be
-# accessible by all wikis, and you do not want to use the hash (path/a/aa/)
-# directory layout.
+
+/**
+ * Set the following to false especially if you have a set of files that need to
+ * be accessible by all wikis, and you do not want to use the hash (path/a/aa/)
+ * directory layout.
+ */
 $wgHashedSharedUploadDirectory = true;
-# set true if the repository uses latin1 filenames
+
+/** set true if the repository uses latin1 filenames */
 $wgSharedLatin1=false;
-# Base URL for a repository wiki. Leave this blank if uploads are just
-# stored in a shared directory and not meant to be accessible through
-# a separate wiki. Otherwise the image description pages on the local
-# wiki will link to the image description page on this wiki.
-#
-# Please specify the namespace, as in the example below.
+
+/**
+ * Base URL for a repository wiki. Leave this blank if uploads are just stored
+ * in a shared directory and not meant to be accessible through a separate wiki.
+ * Otherwise the image description pages on the local wiki will link to the
+ * image description page on this wiki.
+ *
+ * Please specify the namespace, as in the example below.
+ */
 $wgRepositoryBaseUrl="http://commons.wikimedia.org/wiki/Image:";
 
+
+#
 # Email settings
 #
+
 /**
  * Site admin email address
  * Default to wikiadmin@SERVER_NAME
@@ -236,11 +229,12 @@ $wgDBschema	    = 'mediawiki';
 
 
 
-# Shared database for multiple wikis.
-# Presently used for storing a user table for single sign-on
-# The server for this database must be the same as for the main
-# database.
-# EXPERIMENTAL
+/**
+ * Shared database for multiple wikis. Presently used for storing a user table
+ * for single sign-on. The server for this database must be the same as for the
+ * main database.
+ * EXPERIMENTAL
+ */
 $wgSharedDB = null;
 
 # Database load balancer
@@ -262,7 +256,7 @@ $wgSharedDB = null;
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 
-# How long to wait for a slave to catch up to the master 
+/** How long to wait for a slave to catch up to the master */ 
 $wgMasterWaitTimeout = 10;
 
 # Sysop SQL queries
@@ -394,8 +388,9 @@ $wgSiteSupportPage	= ''; # A page where you users can receive donations
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 $wgUseData = false ;
 
-# The debug log file should be not be publicly accessible if it is
-# used, as it may contain private data.
+/**
+ * The debug log file should be not be publicly accessible if it is used, as it
+ * may contain private data. */
 $wgDebugLogFile         = '';
 
 /**#@+
@@ -409,8 +404,8 @@ $wgReadOnly             = false;
 $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
 
-# Whether to disable automatic generation of "we're sorry,
-# but there has been a database error" pages.
+/** Whether to disable automatic generation of "we're sorry, but there has been
+ * a database error" pages. */
 $wgIgnoreSQLErrors      = false;
 
 # Should [[Category:Dog]] on a page associate it with the
@@ -419,8 +414,10 @@ $wgIgnoreSQLErrors      = false;
 # all articles in the category)
 $wgUseCategoryMagic		= true;
 
-# disable experimental dmoz-like category browsing. Output things like:
-# Encyclopedia > Music > Style of Music > Jazz
+/**
+ * disable experimental dmoz-like category browsing. Output things like:
+ * Encyclopedia > Music > Style of Music > Jazz
+ */
 $wgUseCategoryBrowser   = false;
 
 $wgEnablePersistentLC	= false;	# Obsolete, do not use
@@ -439,16 +436,18 @@ $wgEnableParserCache = true;
 
 /**#@-*/
 
-# wgHitcounterUpdateFreq sets how often page counters should be
-# updated, higher values are easier on the database. A value of 1
-# causes the counters to be updated on every hit, any higher value n
-# cause them to update *on average* every n hits. Should be set to
-# either 1 or something largish, eg 1000, for maximum efficiency.
-
+/**
+ * wgHitcounterUpdateFreq sets how often page counters should be updated, higher
+ * values are easier on the database. A value of 1 causes the counters to be
+ * updated on every hit, any higher value n cause them to update *on average*
+ * every n hits. Should be set to either 1 or something largish, eg 1000, for
+ * maximum efficiency.
+*/
 $wgHitcounterUpdateFreq = 1;
 
-# User rights
-#   It's not 100% safe, there could be security hole using that one. Use at your
+# User rights settings
+#
+#  It's not 100% safe, there could be security hole using that one. Use at your
 # own risks.
 
 $wgWhitelistEdit = false;   # true = user must login to edit.
@@ -464,6 +463,8 @@ $wgDefaultBlockExpiry	= '24 hours'; # default expiry time
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 
 # Proxy scanner settings
+#
+#
 # If you enable this, every editor's IP address will be scanned for open
 # HTTP proxies.
 #
@@ -507,42 +508,24 @@ $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 # Requires zlib support enabled in PHP.
 $wgUseGzip = false;
 
-/*	T. Gries Aug.-Nov.2004
 
-	THESE ARE MY SUGGESTED FIRST TEST global admin options FOR ENOTIF.
-	Attention: the defaults might differ from standard media wiki distributions.
+# Email notification settings
+#
 
-	However, I suggest to start with these which allow to evaluate almost all new features quickly.
-	user preferences default options SEE AS USUAL /languages/Language.php
-*/
+# Program to run when the email is actually sent out. You might want to make
+# your server beep for example with:
+#
+#  $wgEmailNotificationSystembeep = '/usr/bin/beep -f 4000 -l 20 &';
+#
+# Usermailer.php will make a system() call with exactly that string as parameter
+$wgEmailNotificationSystembeep	= '';
 
-########################### CAUTION ################# ATTENTION ###############################################
-#
-# T. Gries Aug.-Dec. 2004
-#
-# SECTION FOR DEVELOPERS and SERVER ADMINS
-#
-# HERE COME TWO OPTIONS, WHICH ALLOW ACOUSTIC SIGNALS on the server beeper WHEN AN EMAIL IS ACTUALLY SENT OUT.
-# YOU MIGHT WISH TO ENABLE THESE, BUT BE CAREFUL, AS A system() CALL IS PERFORMED using the shown parameters.
-# I FIND IT VERY USEFUL, but this is a very personal comment. T. Gries
-#
-# The system speaker beeps when the wiki actually sends out a notification mail (safe default = disabled).
-#
-# The following string is passed as parameter to a system() call in UserMailer.php
-# The system() calls call - in the shown example - the beep 1.2.2 program (LINUX) with frequency f [Hz] and length l [msec]
-#
-# Beep 1.2.2 can be found on http://freshmeat.net/projects/beep/ and I like it.
-#
-########################### SAFE #################### SAFE #####################################################
-$wgEmailNotificationSystembeep	= ''; # empty string disables this feature; this appears to be safe
-######ENTER#AT#YOUR#OWN#RISK###CAUTION###### ATTENTION ###################################################
-#$wgEmailNotificationSystembeep	= '/usr/bin/beep -f 4000 -l 20 &';	# a system() call with exactly this string as parameter is executed when such a mail is sent
-########################### CAUTION ################# ATTENTION ###############################################
+# For email notification on page changes
+$wgPasswordSender = $wgEmergencyContact;
 
-# For email notification on page changes T.Gries/M.Arndt 01.11.2004
-$wgPasswordSender				= $wgEmergencyContact;
-$wgEmailNotificationMailsSentFromPageEditor	= false; # false: Enotif mails appear to come from $wgEmergencyContact
-#							 # true: from PageEditor if s/he opted-in
+# true: from PageEditor if s/he opted-in
+# false: Enotif mails appear to come from $wgEmergencyContact
+$wgEmailNotificationMailsSentFromPageEditor	= false; 
 
 # If set to true, users get a corresponding option in their preferences and can choose to enable or disable at their discretion
 # If set to false, the corresponding input form on the user preference page is suppressed
@@ -553,6 +536,8 @@ $wgEmailNotificationForUserTalkPages		= false;	# UPO
 $wgEmailNotificationRevealPageEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
 $wgEmailNotificationForMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
+
+
 
 # Show watching users in recent changes, watchlist and page history views
 $wgRCShowWatchingUsers 				= false; # UPO
@@ -715,96 +700,103 @@ if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
 
-# Show seconds in Recent Changes
+/** Show seconds in Recent Changes */
 $wgRCSeconds = false;
 
-# Log IP addresses in the recentchanges table
+/** Log IP addresses in the recentchanges table */
 $wgPutIPinRC = false;
 
 # Recentchanges items are periodically purged;
 # entries older than this many seconds will go.
 $wgRCMaxAge = 7 * 24 * 3600; # our one week cutoff
 
-# RDF metadata toggles
+/** RDF metadata toggles */
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
 
-# Override for copyright metadata.
-# TODO: these options need documentation
+/** Override for copyright metadata.
+ * TODO: these options need documentation
+ */
 $wgRightsPage = NULL;
 $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
 
-# Set this to some HTML to override the rights icon with an arbitrary logo
+/** Set this to some HTML to override the rights icon with an arbitrary logo */
 $wgCopyrightIcon = NULL;
 
-# Set this to true if you want detailed copyright information forms on Upload.
+/** Set this to true if you want detailed copyright information forms on Upload. */
 $wgUseCopyrightUpload = false;
 
-# Set this to false if you want to disable checking that detailed 
-# copyright information values are not empty.
+/** Set this to false if you want to disable checking that detailed copyright
+ * information values are not empty. */
 $wgCheckCopyrightUpload = true;
 
 
-# Set this to false to avoid forcing the first letter of links
-# to capitals. WARNING: may break links! This makes links
-# COMPLETELY case-sensitive. Links appearing with a capital at
-# the beginning of a sentence will *not* go to the same place
-# as links in the middle of a sentence using a lowercase initial.
+/**
+ * Set this to false to avoid forcing the first letter of links to capitals.
+ * WARNING: may break links! This makes links COMPLETELY case-sensitive. Links
+ * appearing with a capital at the beginning of a sentence will *not* go to the
+ * same place as links in the middle of a sentence using a lowercase initial.
+ */
 $wgCapitalLinks = true;
 
-# List of interwiki prefixes for wikis we'll accept as sources
-# for Special:Import (for sysops). Since complete page history
-# can be imported, these should be 'trusted'.
+/**
+ * List of interwiki prefixes for wikis we'll accept as sources for
+ * Special:Import (for sysops). Since complete page history# can be imported,
+ * these should be 'trusted'.
+ */
 $wgImportSources = array();
 
-# Set this to the number of authors that you want to be credited below an
-# article text. Set it to zero to hide the attribution block, and a
-# negative number (like -1) to show all authors. Note that this will
-# require 2-3 extra database hits, which can have a not insignificant
-# impact on performance for large wikis.
+/**
+ * Set this to the number of authors that you want to be credited below an
+ * article text. Set it to zero to hide the attribution block, and a negative
+ * number (like -1) to show all authors. Note that this will# require 2-3 extra
+ * database hits, which can have a not insignificant impact on performance for
+ * large wikis.
+ */
 $wgMaxCredits = 0;
 
-# If there are more than $wgMaxCredits authors, show $wgMaxCredits of them.
-# Otherwise, link to a separate credits page.
+/** If there are more than $wgMaxCredits authors, show $wgMaxCredits of them.
+ * Otherwise, link to a separate credits page. */
 $wgShowCreditsIfMax = true;
 
-# Text matching this regular expression will be recognised as spam
-# See http://en.wikipedia.org/wiki/Regular_expression
+/** Text matching this regular expression will be recognised as spam
+ * See http://en.wikipedia.org/wiki/Regular_expression */
 $wgSpamRegex = false; 
-# Similarly if this function returns true
+/** Similarly if this function returns true */
 $wgFilterCallback = false;
 
-# Go button goes straight to the edit screen if the article doesn't exist
+/** Go button goes straight to the edit screen if the article doesn't exist. */
 $wgGoToEdit = false;
 
-# Allow limited user-specified HTML in wiki pages?
-# It will be run through a whitelist for security.
-# Set this to false if you want wiki pages to consist only of wiki
-# markup. Note that replacements do not yet exist for all HTML
-# constructs.
+/** Allow limited user-specified HTML in wiki pages?
+ * It  will be run through a whitelist for security. Set this to false if you
+ * want wiki pages to consist only of wiki markup. Note that replacements do not
+ * yet exist for all HTML constructs.*/
 $wgUserHtml = true;
 
-# Allow raw, unchecked HTML in <html>...</html> sections.
-# THIS IS VERY DANGEROUS on a publically editable site, so
-# you can't enable it unless you've restricted editing to
-# trusted users only with $wgWhitelistEdit.
+/** Allow raw, unchecked HTML in <html>...</html> sections.
+ * THIS IS VERY DANGEROUS on a publically editable site, so you can't enable it
+ * unless you've restricted editing to trusted users only with $wgWhitelistEdit.
+ */
 $wgRawHtml = false;
 
-# $wgUseTidy: use tidy to make sure HTML output is sane.
-# This should only be enabled if $wgUserHtml is true.
-# tidy is a free tool that fixes broken HTML. 
-# See http://www.w3.org/People/Raggett/tidy/
-# $wgTidyBin should be set to the path of the binary and 
-# $wgTidyConf to the path of the configuration file.
-# $wgTidyOpts can include any number of parameters.
+/**
+ * $wgUseTidy: use tidy to make sure HTML output is sane.
+ * This should only be enabled if $wgUserHtml is true.
+ * tidy is a free tool that fixes broken HTML.
+ * See http://www.w3.org/People/Raggett/tidy/
+ * $wgTidyBin should be set to the path of the binary and
+ * $wgTidyConf to the path of the configuration file.
+ * $wgTidyOpts can include any number of parameters.
+ */
 $wgUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
 $wgTidyOpts = '';
 
-# See list of skins and their symbolic names in languagel/Language.php
+/** See list of skins and their symbolic names in languagel/Language.php */
 $wgDefaultSkin = 'monobook';
 
 # Settings added to this array will override the language globals for
@@ -816,71 +808,74 @@ $wgDefaultSkin = 'monobook';
 #
 $wgDefaultUserOptions = array();
 
-# Whether or not to allow real name fields. Defaults to true.
-# If set to false, the corresponding input forms on the log-in page and on the user preference page is suppressed.
+/** Whether or not to allow and use real name fields. Defaults to true. */
 $wgAllowRealName = true;
 
-# Use XML parser?
+/** Use XML parser? */
 $wgUseXMLparser = false ;
 
-# Extensions
+/** Extensions */
 $wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
 
-# Allow user Javascript page?
+/** Allow user Javascript page? */
 $wgAllowUserJs = true;
 
-# Allow user Cascading Style Sheets (CSS)?
+/** Allow user Cascading Style Sheets (CSS)? */
 $wgAllowUserCss = true;
 
-# Use the site's Javascript page?
+/** Use the site's Javascript page? */
 $wgUseSiteJs = true;
 
-# Use the site's Cascading Style Sheets (CSS)?
+/** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
 	
-# Filter for Special:Randompage. Part of a WHERE clause
+/** Filter for Special:Randompage. Part of a WHERE clause */
 $wgExtraRandompageSQL = false;
 
-# Allow the "info" action, very inefficient at the moment
+/** Allow the "info" action, very inefficient at the moment */
 $wgAllowPageInfo = false;
 
-# Maximum indent level of toc.
+/** Maximum indent level of toc. */
 $wgMaxTocLevel = 999;
 
-# Recognise longitude/latitude coordinates
+/** Recognise longitude/latitude coordinates */
 $wgUseGeoMode = false;
 
-# Validation for print or other production versions
+/** Validation for print or other production versions */
 $wgUseValidation = false;
 
-# Use external C++ diff engine (module wikidiff from the
-# extensions package)
+/** Use external C++ diff engine (module wikidiff from the extensions package) */
 $wgUseExternalDiffEngine = false;
 
-# Use RC Patrolling to check for vandalism
+/** Use RC Patrolling to check for vandalism */
 $wgUseRCPatrol = true;
 
-# Set maximum number of results to return in syndication feeds
-# (RSS, Atom) for eg Recentchanges, Newpages.
+/** Set maximum number of results to return in syndication feeds (RSS, Atom) for
+ * eg Recentchanges, Newpages. */
 $wgFeedLimit = 50;
 
-# _Minimum_ timeout for cached Recentchanges feed, in seconds.
-# A cached version will continue to be served out even if changes
-# are made, until this many seconds runs out since the last render.
+/** _Minimum_ timeout for cached Recentchanges feed, in seconds.
+ * A cached version will continue to be served out even if changes
+ * are made, until this many seconds runs out since the last render. */
 $wgFeedCacheTimeout = 60;
 
-# When generating Recentchanges RSS/Atom feed, diffs will not be
-# generated for pages larger than this size.
+/** When generating Recentchanges RSS/Atom feed, diffs will not be generated for
+ * pages larger than this size. */
 $wgFeedDiffCutoff = 32768;
 
 
-# Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
-# you can create new ones here, for example, to import Help files in other languages.
-# PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
-# If you rename it, then you can access them through the new namespace name.
-#
-# Custom namespaces should start at 100 and stop at 255 (hard limit set by database)
+/**
+ * Additional namespaces. If the namespaces defined in Language.php and
+ * Namespace.php are insufficient,# you can create new ones here, for example,
+ * to import Help files in other languages.
+ * PLEASE  NOTE: Once you delete a namespace, the pages in that namespace will
+ * no longer be accessible. If you rename it, then you can access them through
+ * the new namespace name.
+ * 
+ * Custom namespaces should start at 100 and stop at 255 (hard limit set by
+ * database).
+ */
 #$wgExtraNamespaces =
 #	array(100 => "Hilfe",
 #	      101 => "Hilfe_Diskussion",
@@ -889,17 +884,21 @@ $wgFeedDiffCutoff = 32768;
 #	      );
 $wgExtraNamespaces = NULL;
 
-# Enable SOAP interface. Off by default
-# SOAP is a protocoll for remote procedure calls (RPC) using http as middleware.
-# This interface can be used by bots or special clients to receive articles from
-# a wiki.
-# Most bots use the normal HTTP interface and don't use SOAP.
-# If unsure, set to false.
+/**
+ * Enable SOAP interface. Off by default
+ * SOAP is a protocoll for remote procedure calls (RPC) using http as
+ * middleware. This interface can be used by bots or special clients to receive
+ * articles from a wiki.
+ * Most bots use the normal HTTP interface and don't use SOAP.
+ * If unsure, set to false.
+ */
 $wgEnableSOAP = false;
 
-# Limit images on image description pages to a user-selectable limit. In order to
-# reduce disk usage, limits can only be selected from a list. This is the list of
-# settings the user can choose from:
+/**
+ * Limit images on image description pages to a user-selectable limit. In order
+ * to reduce disk usage, limits can only be selected from a list. This is the
+ * list of settings the user can choose from:
+ */
 $wgImageLimits = array (
 	array(320,240),
 	array(640,480),
@@ -925,51 +924,57 @@ $wgNavigationLinks = array (
 	array( 'text'=>'sitesupport',	'href'=>'sitesupport-url' ),
 );
 
-# On category pages, show thumbnail gallery for images belonging to that category
-# instead of listing them as articles.
+/**
+ *  On  category pages, show thumbnail gallery for images belonging to that
+ * category instead of listing them as articles.
+ */
 $wgCategoryMagicGallery = true;
 
-# Browser Blacklist for unicode non compliant browsers
-# Contains a list of regexps : "/regexp/"  matching problematic browsers
+/**
+ * Browser Blacklist for unicode non compliant browsers
+ * Contains a list of regexps : "/regexp/"  matching problematic browsers
+ */
 $wgBrowserBlackList = array(
 	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/"
 	// FIXME: Add some accurate, true things here
 	);
 
-# Fake out the timezone that the server thinks it's in. This will be used
-# for date display and not for what's stored in the DB.
-# Leave to null to retain your server's OS-based timezone value
-# This is the same as the timezone
+/**
+ * Fake out the timezone that the server thinks it's in. This will be used for
+ * date display and not for what's stored in the DB. Leave to null to retain
+ * your server's OS-based timezone value. This is the same as the timezone.
+ */
 # $wgLocaltimezone = 'GMT';
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
 $wgLocaltimezone = null;
 
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
+/**
+ * User level management
+ * The number is the database id of a group you want users to be attached by
+ * default. A better interface should be coded [av]
+ */
 $wgAnonGroupId = 1;
 $wgLoggedInGroupId = 2;
 $wgSysopGroupId = 3;
 $wgBureaucratGroupId = 4;
 
-/*
-When translating messages with wfMsg(), it is not always clear what should
-be considered UI messages and what shoud be content messages. 
-
-For example, for regular wikipedia site like en, there should be only one 
-'mainpage', therefore when getting the link of 'mainpage', we should 
-treate it as content of the site and call wfMsgForContent(), while for 
-rendering the text of the link, we call wfMsg(). The code in default
-behaves this way. However, sites like common do offer different versions 
-of 'mainpage' and the like for different languages. This array provides a
-way to override the default behavior. For example, to allow language specific
-mainpage and community portal, set
-
-$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
-
-*/
+/**
+ * When translating messages with wfMsg(), it is not always clear what should be
+ * considered UI messages and what shoud be content messages.
+ *
+ * For example, for regular wikipedia site like en, there should be only one
+ * 'mainpage', therefore when getting the link of 'mainpage', we should treate
+ * it as content of the site and call wfMsgForContent(), while for rendering the
+ * text of the link, we call wfMsg(). The code in default behaves this way.
+ * However, sites like common do offer different versions of 'mainpage' and the
+ * like for different languages. This array provides a way to override the
+ * default behavior. For example, to allow language specific mainpage and
+ * community portal, set
+ *
+ * $wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+ */
 $wgForceUIMsgAsContentMsg = array();
 
 
@@ -986,8 +991,7 @@ $wgAuth = null;
  *     $wgHooks['event_name'][] = array($function, $data);
  * or:
  *     $wgHooks['event_name'][] = array($object, 'method');
- */
-	
+ */	
 $wgHooks = array();
 
 /**
