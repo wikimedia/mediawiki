@@ -322,7 +322,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Fix notice error on nonexistent template in wikitext system message
 * (bug 1469) add missing <ul> tags on Special:Log
 * (bug 1470) remove extra <ul> tags from Danish log messages
-
+* Fix notice on purge w/ squid mode off
 
 === Caveats ===
 
