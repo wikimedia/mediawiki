@@ -47,6 +47,7 @@ define('MAG_PAGENAME', 30);
 define('MAG_PAGENAMEE', 31);
 define('MAG_NAMESPACE', 32);
 define('MAG_TOC', 33);
+define('MAG_GRAMMAR', 34);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
