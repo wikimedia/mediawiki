@@ -175,14 +175,16 @@ print "<li>PHP " . phpversion() . " ok</li>\n";
 $conf->zlib = function_exists( "gzencode" );
 $z = $conf->zlib ? "Have" : "No";
 print "<li>$z zlib support</li>\n";
+*/
 
-$conf->gd = function_exists( "imagejpeg" );
-if( $conf->gd ) {
-	print "<li>Found GD graphics library built-in</li>\n";
+$conf->HaveGD = function_exists( "imagejpeg" );
+if( $conf->HaveGD ) {
+	print "<li>Found GD graphics library built-in, image thumbnailing will be enabled if you enable uploads.</li>\n";
 } else {
-	print "<li>No built-in GD library</li>\n";
+	print "<li>No built-in GD library, image thumbnailing disabled.</li>\n";
 }
 
+/*
 if( file_exists( "/usr/bin/convert" ) ) {
 	$conf->ImageMagick = "/usr/bin/convert";
 	print "<li>Found ImageMagick: /usr/bin/convert</li>\n";
@@ -194,6 +196,8 @@ if( file_exists( "/usr/bin/convert" ) ) {
 	print "<li>No ImageMagick.</li>\n";
 }
 */
+
+$conf->UseImageResize = $conf->HaveGD;
 
 # $conf->IP = "/Users/brion/Sites/inplace";
 chdir( ".." );
@@ -274,25 +278,42 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		if( !$myver ) {
 			print "<li>MySQL error " . ($err = mysql_errno() ) .
 				": " . htmlspecialchars( mysql_error() );
+			$ok = false;
 			switch( $err ) {
 			case 1045:
 				if( $conf->Root ) {
 					$errs["RootPW"] = "Check password";
 				} else {
-					$errs["DBuser"] = "Check name/pass";
-					$errs["DBpassword"] = "or enter root";
-					$errs["DBpassword2"] = "password below";
-					$errs["RootPW"] = "Got root?";
+					print "<li>Trying root...\n";
+					/* Try a blank root password... */
+					$wgDatabase = Database::newFromParams( $wgDBserver, "root", "", "", 1 );
+					$wgDatabase->isOpen();
+					$wgDatabase->mIgnoreErrors = true;
+					@$myver = mysql_get_server_info( $wgDatabase->mConn );
+					if( !$myver ) {
+						$errs["DBuser"] = "Check name/pass";
+						$errs["DBpassword"] = "or enter root";
+						$errs["DBpassword2"] = "password below";
+						$errs["RootPW"] = "Got root?";
+						print " need password.</li>\n";
+					} else {
+						$conf->Root = true;
+						$conf->RootPW = "";
+						print " ok.</li>\n";
+						# And keep going...
+						$ok = true;
+					}
+					break;
 				}
-				break;
 			case 2002:
 			case 2003:
 				$errs["DBserver"] = "Connection failed";
 				break;
 			default:
 				$errs["DBserver"] = "Couldn't connect to database";
+				break;
 			}
-			continue;
+			if( !$ok ) continue;
 		}
 		print "<li>Connected to database... $myver";
 		if( version_compare( $myver, "4.0.0" ) >= 0 ) {
@@ -613,14 +634,17 @@ if( \$wgCommandLineMode ) {
 
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 
+## To enable image uploads, make sure the 'images' directory
+## is writable, then uncomment this:
+# \$wgDisableUploads		= false;
 \$wgUseImageResize		= {$conf->UseImageResize};
 
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:
 # \$wgUseTeX			= true;
-# \$wgMathPath         = \"{$wgUploadPath}/math\";
-# \$wgMathDirectory    = \"{$wgUploadDirectory}/math\";
-# \$wgTmpDirectory     = \"{$wgUploadDirectory}/tmp\";
+# \$wgMathPath         = \"{\$wgUploadPath}/math\";
+# \$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
+# \$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
 
 \$wgLocalInterwiki   = \$wgSitename;
 
