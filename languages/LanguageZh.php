@@ -102,6 +102,77 @@ class LanguageZh extends LanguageZh_cn {
 		return $ret;
 	}
     
+	# convert text to different variants of a language. the automatic
+	# conversion is done in autoConvert(). here we parse the text 
+	# marked with -{}-, which specifies special conversions of the 
+	# text that can not be accomplished in autoConvert()
+	#
+	# syntax of the markup:
+	# -{code1:text1;code2:text2;...}-  or
+	# -{text}- in which case no conversion should take place for text
+	function convert( $text , $isTitle=false) {
+		global $wgDisableLangConversion;
+		if($wgDisableLangConversion)
+			return $text; 
+		if(sizeof($this->getVariants())<2) 
+			return $text;
+		
+		if($isTitle)
+			return $this->convertTitle($text);
+
+		// no conversion if redirecting
+		if(substr($text,0,9) == "#REDIRECT") {
+			return $text;
+		}
+
+
+		$plang = $this->getPreferredVariant();
+		$fallback = $this->getVariantFallback($plang);
+
+		$tarray = explode("-{", $text);
+		$tfirst = array_shift($tarray);
+		$text = $this->autoConvert($tfirst);
+		
+		foreach($tarray as $txt) {
+			$marked = explode("}-", $txt);
+			
+			$choice = explode(";", $marked{0});
+			if(!array_key_exists(1, $choice)) {
+				/* a single choice */
+				$text .= $choice{0};
+			} else {
+				$choice1=false;
+				$choice2=false;
+				foreach($choice as $c) {
+					$v = explode(":", $c);
+					if(!array_key_exists(1, $v)) {
+						//syntax error in the markup, give up
+						break;			
+					}
+					$code = trim($v{0});
+					$content = trim($v{1});
+					if($code == $plang) {
+						$choice1 = $content;
+						break;
+					}
+					if($code == $fallback)
+						$choice2 = $content;
+				}
+				if ( $choice1 )
+					$text .= $choice1;
+				elseif ( $choice2 )
+					$text .= $choice2;
+				else
+					$text .= $marked{0};
+			}
+			if(array_key_exists(1, $marked))
+				$text .= $this->autoConvert($marked{1});
+		}
+		
+		return $text;
+	}
+
+
 	# only convert titles having more than one character
 	function convertTitle($text) {
 		$len=0;
@@ -149,6 +220,29 @@ class LanguageZh extends LanguageZh_cn {
 		$terms = implode( '|', $this->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;
+	}
+
+	function findVariantLink( &$link, &$nt ) {
+		static $count=0; //used to limit this operation
+		static $cache=array();
+		global $wgDisableLangConversion;
+		if( $wgDisableLangConversion || $count > 50)
+			return;
+		$count++;
+		$variants = $this->autoConvertToAllVariants($link);
+		if($variants == false) //give up
+			return;
+		foreach( $variants as $v ) {
+			if(isset($cache[$v]))
+				continue;
+			$cache[$v] = 1;
+			$varnt = Title::newFromText( $v );
+			if( $varnt && $varnt->getArticleID() > 0 ) {
+				$nt = $varnt;
+				$link = $v;
+				break;
+			}
+		}
 	}
 
 	function getExtraHashOptions() {
