@@ -1105,9 +1105,11 @@ class Parser
 				} else if ( !$inBlockElem ) {
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
-						$text .= $this->closeParagraph();
-						$text .= "<" . $newSection . ">";
-						$this->mLastSection = $newSection;
+						if ($this->mLastSection != 'pre') {
+							$text .= $this->closeParagraph();
+							$text .= "<" . $newSection . ">";
+							$this->mLastSection = $newSection;
+						}
 					} else { 
 						$newSection = "p";
 						if ( '' == trim($t) ) {
