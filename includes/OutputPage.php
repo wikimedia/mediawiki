@@ -807,6 +807,12 @@ class OutputPage {
 				# Make title object
 				$dbk = $dbkeys[$key];
 				$title = $titles[$key] = Title::makeTitle( $val, $dbk );
+
+				# Skip invalid entries.
+				# Result will be ugly, but prevents crash.
+				if ( is_null( $title ) ) {
+					continue;
+				}
 				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
 
 				# Check if it's in the link cache already
