@@ -1,4 +1,8 @@
 <?php
+unset( $DP );
+unset( $IP );
+$wgCommandLineMode = false;
+
 include_once( "./LocalSettings.php" );
 global $wgArticlePath;
 
