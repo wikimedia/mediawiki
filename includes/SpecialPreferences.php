@@ -404,7 +404,7 @@ class PreferencesForm {
                $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
            }
         }
-        $wgOut->addHtml("</label></div>\n" );
+        $wgOut->addHtml("</select></label></div>\n" );
 
         /* see if there are multiple language variants to choose from*/
         $variants = $wgContLang->getVariants();
@@ -426,7 +426,7 @@ class PreferencesForm {
               $sel = ($code==$this->mUserVariant)? "selected" : "";
               $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
             }
-            $wgOut->addHtml("</label></div>\n");
+            $wgOut->addHtml("</select></label></div>\n");
         }
 
 		# Fields for changing password
