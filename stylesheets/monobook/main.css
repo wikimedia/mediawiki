@@ -17,7 +17,7 @@
     margin: 0 0 0.6em -12.2em;
     padding:0;
 }
-#column-content #content {
+#content {
     margin: 2.8em 0 0 12.2em;
     padding: 0em 1em 1.5em 1em;
     background: White;
@@ -564,7 +564,7 @@ td.diff-context {
 }
 input.searchButton {
     margin-top:1px;
-    padding: 0 0.4em!important;
+    padding: 0 0.4em !important;
     font-size: 95%;
     cursor: pointer;
     background-color: White;
@@ -787,7 +787,7 @@ head:first-child+body #footer li { white-space: nowrap; }
 * html #bodyContent {
     overflow-x: auto;
     width: 100%;
-    padding-bottom: 14px;
+    padding-bottom: 25px;
 }
 * html #footer {margin-top: 0;}
 * html #column-content {margin-bottom: 0;}
