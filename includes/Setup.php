@@ -41,26 +41,6 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
         function wfProfileClose() {}
 }
 
-
-
-/* collect the originating ips */
-if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-	# If the web server is behind a reverse proxy, we need to find
-	# out where our requests are really coming from.
-	$hopips = array_map( 'trim', explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
-
-	$allsquid = array_merge($wgSquidServers, $wgSquidServersNoPurge);
-	while(in_array(trim(end($hopips)), $allsquid)){
-		array_pop($hopips);
-	}
-	$wgIP = trim(end($hopips));
-} elseif( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-	$wgIP = $_SERVER['REMOTE_ADDR'];
-} else {
-	# Running on CLI?
-	$wgIP = '127.0.0.1';
-}
-
 if ( $wgUseData ) {
 	$wgExtraNamespaces[20] = 'Data' ;
 	$wgExtraNamespaces[21] = 'Data_talk' ;
@@ -91,10 +71,7 @@ require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
-	
-$wgRequest = new WebRequest();
-
-
+require_once( 'ProxyTools.php' );
 
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
@@ -110,6 +87,9 @@ global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
 global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
 
 global $wgFullyInitialised;
+
+$wgIP = wfGetIP();
+$wgRequest = new WebRequest();
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
