@@ -10,6 +10,8 @@ if ( ! is_readable( "../LocalSettings.php" ) ) {
 }
 
 $wgCommandLineMode = true;
+ini_set("implicit_flush", 1);
+
 $DP = "../includes";
 include_once( "../LocalSettings.php" );
 include_once( "../AdminSettings.php" );
