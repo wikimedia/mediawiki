@@ -533,17 +533,26 @@ class Skin {
 
 	function pageSubtitle()
 	{
-		global $wgOut,$wgTitle,$wgNamespacesWithSubpages;
+		global $wgOut;
 
 		$sub = $wgOut->getSubtitle();
 		if ( "" == $sub ) {
 			global $wgExtraSubtitle;
 			$sub = wfMsg( "fromwikipedia" ) . $wgExtraSubtitle;
 		}
+		$subpages = $this->subPageSubtitle();
+		$sub .= !empty($subpages)?"</p><p class='subpages'>$subpages":'';
+		$s = "<p class='subtitle'>{$sub}</p>\n";
+		return $s;
+	}
+
+	function subPageSubtitle()
+	{
+		global $wgOut,$wgTitle,$wgNamespacesWithSubpages;
+		$subpages = '';
 		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
 			$ptext=$wgTitle->getPrefixedText();
 			if(preg_match("/\//",$ptext)) {
-				$sub.="</p><p class='subpages'>";
 				$links=explode("/",$ptext);
 				$c=0;
 				$growinglink="";
@@ -554,19 +563,17 @@ class Skin {
 						$getlink = $this->makeLink( $growinglink, $link );
 						if(preg_match("/class='new'/i",$getlink)) { break; } # this is a hack, but it saves time
 						if ($c>1) {
-							$sub .= " | ";
+							$subpages .= " | ";
 						} else  {
-							$sub .="&lt; ";
+							$subpages .="&lt; ";
 						}
-						$sub .= $getlink;
+						$subpages .= $getlink;
 						$growinglink.="/";
 					}
-					
 				}
 			}
 		}
-		$s = "<p class='subtitle'>{$sub}</p>\n";
-		return $s;
+		return $subpages;
 	}
 
 	function nameAndLogin()

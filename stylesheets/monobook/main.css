@@ -266,6 +266,9 @@ pre {
     color: #7d7d7d;
     width: auto;
 }
+span.subpages {
+    display: block;
+}
 #siteSubtitle {
     display: none;    
 }
