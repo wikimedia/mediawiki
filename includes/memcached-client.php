@@ -649,8 +649,11 @@ class memcached
          $sock = @fsockopen($ip, $port, $errno, $errstr, $timeout);
       }
       
-      if (!$sock)
+      if (!$sock) {
+         if ($this->_debug)
+            $this->_debugprint( "Error connecting to $host: $errstr\n" );
          return false;
+      }
       return true;
    }
 
@@ -737,7 +740,10 @@ class memcached
     */
    function _hashfunc ($key)
    {
-      return crc32($key);
+      # Hash function must on [0,0x7ffffff]
+      # We take the first 31 bits of the MD5 hash, which unlike the hash 
+      # function used in a previous version of this client, works
+      return hexdec(substr(md5($key),0,8)) & 0x7fffffff;
    }
 
    // }}}
