@@ -342,9 +342,14 @@ function wfMsg( $key ) {
  * Get a message from anywhere, for the content
  */
 function wfMsgForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, true, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key, $wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, true, $forcontent );
 }
 
 /**
@@ -360,9 +365,14 @@ function wfMsgNoDB( $key ) {
  * Get a message from the language file, for the content
  */
 function wfMsgNoDBForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, false, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key,	$wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, false, $forcontent );
 }
 
 
@@ -378,48 +388,22 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
 
-	if( $forContent ) {
-		/**
-		 * Message is needed for page content, and needs
-		 * to be consistent with the site's configured
-		 * language. It might be part of a page title,
-		 * or a link, or text that will go into the
-		 * parser cache and be served back to other 
-		 * visitors.
-		 */
-		$cache = &$wgMessageCache;
-		$lang = &$wgContLang;
-	} else {
-		/**
-		 * Message is for display purposes only.
-		 * The user may have selected a conversion-based
-		 * language variant or a separate user interface
-		 * language; if so use that.
-		 */
-		if ( is_object( $wgContLang ) ) {
-			if( in_array( $wgLanguageCode, $wgContLang->getVariants() ) ) {
-				$cache = &$wgMessageCache;
-				$lang = &$wgLang;
-			} else {
-				$cache = false;
-				$lang = &$wgLang;
-			}
+	if( is_object( $wgMessageCache ) ) {
+		$message = $wgMessageCache->get( $key, $useDB, $forContent );
+    }
+	else {
+		if( $forContent ) {
+			$lang = &$wgContLang;
 		} else {
-			$cache = false;
-			$lang = false;
+			$lang = &$wgLang;
 		}
-	}
 
-
-	if( is_object( $cache ) ) {
-		$message = $cache->get( $key, $useDB, $forContent );
-	} else {
-		if ( !is_object( $lang ) ) {
-			$lang = new Language;
-		}
-	
 		wfSuppressWarnings();
-		$message = $lang->getMessage( $key );
+		if( is_object( $lang ) ) {
+			$message = $lang->getMessage( $key );
+		} else {
+			$message = '';
+		}
 		wfRestoreWarnings();
 		if(!$message)
 			$message = Language::getMessage($key);
@@ -491,12 +475,21 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		}
 		$backtrace = debug_backtrace();
 		foreach( $backtrace as $call ) {
-			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-			$file = $f[count($f)-1];
-			if ( $wgCommandLineMode ) {
-				$msg .= "$file line {$call['line']} calls ";
+			if( isset( $call['file'] ) ) {
+				$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
+				$file = $f[count($f)-1];
 			} else {
-				$msg .= '<li>' . $file . ' line ' . $call['line'] . ' calls ';
+				$file = '-';
+			}
+			if( isset( $call['line'] ) ) {
+				$line = $call['line'];
+			} else {
+				$line = '-';
+			}
+			if ( $wgCommandLineMode ) {
+				$msg .= "$file line $line calls ";
+			} else {
+				$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
 			$msg .= $call['function'] . '()';
@@ -819,7 +812,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
  */
 function wfVarDump( $var ) {
 	global $wgOut;
-	$s = str_replace("\n","<br>\n", var_export( $var, true ) . "\n");
+	$s = str_replace("\n","<br />\n", var_export( $var, true ) . "\n");
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
@@ -1063,5 +1056,14 @@ function wfIsWindows() {
 		return false;   
 	}   
 } 
+
+/**
+ * Swap two variables
+ */
+function swap( &$x, &$y ) {
+	$z = $x;
+	$x = $y;
+	$y = $z;
+}
 
 ?>

@@ -26,8 +26,6 @@ define( 'MW_PARSER_VERSION', '1.4.0' );
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
-define( 'RLH_FOR_UPDATE', 1 );
-
 # Allowed values for $mOutputType
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
@@ -51,7 +49,7 @@ define( 'EXT_LINK_URL_CLASS', '[^]<>"\\x00-\\x20\\x7F]' );
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
 define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
-define( 'EXT_LINK_BRACKETED',  '/\[(('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
+define( 'EXT_LINK_BRACKETED',  '/\[(\b('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
 define( 'EXT_IMAGE_REGEX',
 	'/^('.HTTP_PROTOCOLS.':)'.  # Protocol
 	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
@@ -93,7 +91,7 @@ class Parser
 	 * @access private
 	 */
 	# Persistent:
-	var $mTagHooks;
+	var $mTagHooks, $mForUpdate;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
@@ -117,6 +115,7 @@ class Parser
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
+		$this->mForUpdate = false;
 		$this->clearState();
 	}
 
@@ -959,7 +958,9 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		$linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$linktrail = $wgContLang->linkTrail();
+		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
@@ -1006,6 +1007,11 @@ class Parser
 				}
 			}
 
+			# Replace &amp; from obsolete syntax with &.
+			# All HTML entities will be escaped by makeExternalLink()
+			# or maybeMakeImageLink()
+			$url = str_replace( '&amp;', '&', $url );
+			
 			$encUrl = htmlspecialchars( $url );
 			# Bit in parentheses showing the URL for the printable version
 			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, '/' ) . "/?$!", $url ) ) {
@@ -1013,7 +1019,7 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+					$paren = "<span class='urlexpansion'>&nbsp;(<i>$encUrl</i>)</span>";
 				} else {
 					$paren = '';
 				}
@@ -1042,7 +1048,7 @@ class Parser
 		$fname = 'Parser::replaceFreeExternalLinks';
 		wfProfileIn( $fname );
 		
-		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$bits = preg_split( '/(\b(?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
 		$i = 0;
 
@@ -1148,7 +1154,7 @@ class Parser
 
 		# Match a link having the form [[namespace:link|alternate]]trail
 		static $e1 = FALSE;
-		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
+		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD"; }
 		# Match cases where there is no "]]", which might still be images
 		static $e1_img = FALSE;
 		if ( !$e1_img ) { $e1_img = "/^([{$tc}]+)\\|(.*)\$/sD"; }
@@ -1216,7 +1222,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/^((?:'.URL_PROTOCOLS.'):)/', $m[1])) {
+			if (preg_match('/^(\b(?:'.URL_PROTOCOLS.'):)/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
@@ -1310,8 +1316,8 @@ class Parser
 					$text = $this->replaceExternalLinks($text);
 					$text = $this->replaceInternalLinks($text);
 					
-					# replace the image with a link-holder so that replaceExternalLinks() can't mess with it
-					$s .= $prefix . $this->insertStripItem( $sk->makeImageLinkObj( $nt, $text ), $this->mStripState ) . $trail;
+					# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
+					$s .= $prefix . str_replace('http://', 'http-noparse://', $sk->makeImageLinkObj( $nt, $text ) ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					
 					wfProfileOut( "$fname-image" );
@@ -1742,6 +1748,10 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
+			case MAG_CURRENTWEEK:
+				return $varCache[$index] = $wgContLang->formatNum( date('W') );
+			case MAG_CURRENTDOW:
+				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
@@ -1765,7 +1775,7 @@ class Parser
 		$this->mVariables = array();
 		foreach ( $wgVariableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
-			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
+			$mw->addToArray( $this->mVariables, $id );
 		}
 		wfProfileOut( $fname );
 	}
@@ -1823,6 +1833,7 @@ class Parser
 	 */
 	function variableSubstitution( $matches ) {
 		$fname = 'parser::variableSubstitution';
+		$varname = $matches[1];
 		wfProfileIn( $fname );
 		if ( !$this->mVariables ) {
 			$this->initialiseVariables();
@@ -1831,14 +1842,15 @@ class Parser
 		if ( $this->mOutputType == OT_WIKI ) {
 			# Do only magic variables prefixed by SUBST
 			$mwSubst =& MagicWord::get( MAG_SUBST );
-			if (!$mwSubst->matchStartAndRemove( $matches[1] ))
+			if (!$mwSubst->matchStartAndRemove( $varname ))
 				$skip = true;
 			# Note that if we don't substitute the variable below,
 			# we don't remove the {{subst:}} magic word, in case
 			# it is a template rather than a magic variable.
 		}
-		if ( !$skip && array_key_exists( $matches[1], $this->mVariables ) ) {
-			$text = $this->mVariables[$matches[1]];
+		if ( !$skip && array_key_exists( $varname, $this->mVariables ) ) {
+			$id = $this->mVariables[$varname];
+			$text = $this->getVariableValue( $id );
 			$this->mOutput->mContainsOldMagic = true;
 		} else {
 			$text = $matches[0];
@@ -2191,14 +2203,14 @@ class Parser
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup'
+				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table
 				'td', 'th', 'tr'
@@ -2351,7 +2363,7 @@ class Parser
 	 * @access private
 	 */
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders;
+		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -2471,7 +2483,7 @@ class Parser
 			# The canonized header is a version of the header text safe to use for links
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$canonized_headline = $this->unstrip( $headline, $this->mStripState );
-			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
+			$canonized_headline = $this->unstripNoWiki( $canonized_headline, $this->mStripState );
 
 			# Remove link placeholders by the link text.
 			#     <!--LINK number-->
@@ -2479,6 +2491,9 @@ class Parser
 			#     link text with suffix
 			$canonized_headline = preg_replace( '/<!--LINK ([0-9]*)-->/e',
 							    "\$wgLinkHolders['texts'][\$1]",
+							    $canonized_headline );
+			$canonized_headline = preg_replace( '/<!--IWLINK ([0-9]*)-->/e',
+							    "\$wgInterwikiLinkHolders[\$1]",
 							    $canonized_headline );
 
 			# strip out HTML
@@ -2807,9 +2822,14 @@ class Parser
 			putenv( 'TZ='.$oldtzs );
 		}
 
-		$text = preg_replace( '/~~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
+		if( $user->getOption( 'fancysig' ) ) {
+			$sigText = $k;
+		} else {
+			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
+		}
+		$text = preg_replace( '/~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
+		$text = preg_replace( '/~~~/', $sigText, $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
@@ -2908,12 +2928,11 @@ class Parser
 	 *  0 - broken
 	 *  1 - normal link
 	 *  2 - stub
-	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
-	function replaceLinkHolders( &$text, $options = 0 ) {
+	function replaceLinkHolders( &$text ) {
 		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
 		global $wgInterwikiLinkHolders;
-		global $outputReplace;
+		global $outputReplace, $wgAntiLockFlags;
 		
 		if ( $wgUseOldExistenceCheck ) {
 			return array();
@@ -2975,7 +2994,11 @@ class Parser
 			}
 			if ( $query ) {
 				$query .= '))';
-				if ( $options & RLH_FOR_UPDATE ) {
+				if ( $this->forUpdate() ) {
+					# Preload results to reduce lock time
+					if ( $wgAntiLockFlags & ALF_PRELOAD_EXISTENCE ) { 
+						$dbr->query( $query, $fname );
+					}
 					$query .= ' FOR UPDATE';
 				}
 			
@@ -3078,15 +3101,28 @@ class Parser
 				continue;
 			}
 			$nt = Title::newFromURL( $matches[1] );
+			if( is_null( $nt ) ) {
+				# Bogus title. Ignore these so we don't bomb out later.
+				continue;
+			}
 			if ( isset( $matches[3] ) ) {
 				$label = $matches[3];
 			} else {
 				$label = '';
 			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
+			
+			# FIXME: Use the full wiki parser and add its links
+			# to the page's links.
+			$html = $this->mOptions->mSkin->formatComment( $label );
+			
+			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();
+	}
+
+	function forUpdate( $x = NULL ) {
+		return wfSetVar( $this->mForUpdate, $x );
 	}
 }
 

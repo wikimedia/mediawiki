@@ -42,21 +42,19 @@ if( !function_exists( "gzdeflate" ) ) {
 	print "Please see http://www.php.net/manual/en/ref.zlib.php\n\n";
 	die();
 }
-
 $defaults = array( 
 	't' => 'concat',
 	'c' => 20,
 	's' => 0,
 	'f' => 3,
-	'h' => 100,
+	'h' => 1024,
 	'b' => '',
 	'e' => '',
 );
 
-$args = $args + $defaults;
-
-if ( $args['t'] != 'concat' && $args['t'] != 'gzip' ) {
-	print "Type \"{$args['t']}\" not supported\n";
+$options = $options + $defaults;
+if ( $options['t'] != 'concat' && $options['t'] != 'gzip' ) {
+	print "Type \"{$options['t']}\" not supported\n";
 }
 
 print "Depending on the size of your database this may take a while!\n";
@@ -66,10 +64,10 @@ print "Press control-c to abort first (will proceed automatically in 5 seconds)\
 #sleep(5);
 
 $success = true;
-if ( $args['t'] == 'concat' ) {
-	$success = compressWithConcat( $args['s'], $args['c'], $args['f'], $args['h'], $args['b'], $args['e'] );
+if ( $options['t'] == 'concat' ) {
+	$success = compressWithConcat( $options['s'], $options['c'], $options['f'], $options['h'], $options['b'], $options['e'] );
 } else {
-	compressOldPages( $args['s'] );
+	compressOldPages( $options['s'] );
 } 
 
 if ( $success ) {

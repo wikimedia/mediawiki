@@ -526,13 +526,29 @@ class Database {
 	 * Get the last error number
 	 * See mysql_errno()
 	 */
-	function lastErrno() { return mysql_errno(); }
+	function lastErrno() { 
+		if ( $this->mConn ) {
+			return mysql_errno( $this->mConn ); 
+		} else {
+			return mysql_errno();
+		}
+	}
 	
 	/**
 	 * Get a description of the last error
 	 * See mysql_error() for more details
 	 */
-	function lastError() { return mysql_error(); }
+	function lastError() { 
+		if ( $this->mConn ) {
+			$error = mysql_error( $this->mConn ); 
+		} else {
+			$error = mysql_error();
+		}
+		if( $error ) {
+			$error .= ' (' . $this->mServer . ')';
+		}
+		return $error;
+	}
 	
 	/**
 	 * Get the number of rows affected by the last write query
@@ -620,7 +636,7 @@ class Database {
 	 */
 	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array() )
 	{
-		if ( is_array( $vars ) ) {
+		if( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
 		}
 		if( is_array( $table ) ) {
@@ -633,7 +649,7 @@ class Database {
 
 		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
 		
-		if ( $conds !== false && $conds != '' ) {
+		if( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
@@ -946,16 +962,18 @@ class Database {
 	 */
 	function tableName( $name ) {
 		global $wgSharedDB;
-		if ( $this->mTablePrefix !== '' ) {
-			if ( strpos( '.', $name ) === false ) {
-				$name = $this->mTablePrefix . $name;
+
+		# Skip quoted literals
+		if ( $name{0} != '`' ) {
+			if ( $this->mTablePrefix !== '' &&  strpos( '.', $name ) === false ) {
+				$name = "{$this->mTablePrefix}$name";
 			}
-		}
-		if ( isset( $wgSharedDB ) && 'user' == $name ) {
-			$name = $wgSharedDB . '.' . $name;
-		}
-		if( $name == 'group' ) {
-			$name = '`' . $name . '`';
+			if ( isset( $wgSharedDB ) && 'user' == $name ) {
+				$name = "`$wgSharedDB`.`$name`";
+			} else {
+				# Standard quoting
+				$name = "`$name`";
+			}
 		}
 		return $name;
 	}
@@ -1236,9 +1254,17 @@ class Database {
 	 * @param integer $timeout the maximum number of seconds to wait for synchronisation
 	 */
 	function masterPosWait( $file, $pos, $timeout ) {
+		$fname = 'Database::masterPosWait';
+		wfProfileIn( $fname );
+		
+		
+		# Commit any open transactions
+		$this->immediateCommit();
+		
+		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->strencode( $file );
 		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos, $timeout)";
-		$res = $this->query( $sql, 'Database::masterPosWait' );
+		$res = $this->doQuery( $sql );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			$this->freeResult( $res );
 			return $row[0];
@@ -1430,7 +1456,41 @@ class ResultWrapper {
  */
 function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
+	global $wgSitename, $wgServer;
 	
+	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
+	# Hard coding strings instead.
+
+	$noconnect = 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server. <br />
+$1';
+	$mainpage = 'Main Page';
+	$searchdisabled = <<<EOT
+<p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
+<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of $wgSitename content may be out of date.</span></p>',
+EOT;
+
+	$googlesearch = "
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"$wgServer\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"$wgServer\" checked> $wgServer <br />
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->";
+	$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
+
+
 	if( !headers_sent() ) {
 		header( 'HTTP/1.0 500 Internal Server Error' );
 		header( 'Content-type: text/html; charset='.$wgOutputEncoding );
@@ -1439,7 +1499,9 @@ function wfEmergencyAbort( &$conn, $error ) {
 		header( 'Pragma: nocache' );
 	}
 	$msg = $wgSiteNotice;
-	if($msg == '') $msg = wfMsgNoDB( 'noconnect', $error );
+	if($msg == '') {
+		$msg = str_replace( '$1', $error, $noconnect );
+	}
 	$text = $msg;
 
 	if($wgUseFileCache) {
@@ -1450,18 +1512,19 @@ function wfEmergencyAbort( &$conn, $error ) {
 				$t = Title::newFromURL( $title );
 			} elseif (@/**/$_REQUEST['search']) {
 				$search = $_REQUEST['search'];
-				echo wfMsgNoDB( 'searchdisabled' );
-				echo wfMsgNoDB( 'googlesearch', htmlspecialchars( $search ), $wgInputEncoding );
+				echo $searchdisabled;
+				echo str_replace( array( '$1', '$2' ), array( htmlspecialchars( $search ), 
+				  $wgInputEncoding ), $googlesearch );
 				wfErrorExit();
 			} else {
-				$t = Title::newFromText( wfMsgNoDBForContent( 'mainpage' ) );
+				$t = Title::newFromText( $mainpage );
 			}
 		}
 
 		$cache = new CacheManager( $t );
 		if( $cache->isFileCached() ) {
 			$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
-				wfMsgNoDB( 'cachederror' ) . "</b></p>\n";
+				$cachederror . "</b></p>\n";
 			
 			$tag = '<div id="article">';
 			$text = str_replace(

@@ -160,7 +160,7 @@ class IPBlockForm {
 		# Note: for a user block, ipb_address is only for display purposes
 
 		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(), 
-			wfStrencode( $this->BlockReason ), wfTimestampNow(), 0, $expiry );
+			$this->BlockReason, wfTimestampNow(), 0, $expiry );
 		
 		if (wfRunHooks('BlockIp', $ban, $wgUser)) {
 			
@@ -170,11 +170,13 @@ class IPBlockForm {
 			
 			# Make log entry
 			$log = new LogPage( 'block' );
-			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $this->BlockReason );
+			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), 
+			  $this->BlockReason, $this->BlockExpiry );
 
 			# Report to the user
 			$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip='.$this->BlockAddress ) );
+			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip=' .
+				urlencode( $this->BlockAddress ) ) );
 		}
 	}
 

@@ -80,4 +80,11 @@ $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
 'protect', 'block', 'userrights', 'createaccount', 'upload', 'asksql',
 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
 
+/**
+ * Anti-lock flags
+ * See DefaultSettings.php for a description
+ */
+define( 'ALF_PRELOAD_LINKS', 1 );
+define( 'ALF_PRELOAD_EXISTENCE', 2 );
+
 ?>

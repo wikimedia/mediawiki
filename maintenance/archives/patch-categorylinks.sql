@@ -4,7 +4,7 @@
 -- cl_sortkey is the title of the linking page or an optional override
 -- cl_timestamp marks when the link was last added
 --
-CREATE TABLE categorylinks (
+CREATE TABLE /*$wgDBprefix*/categorylinks (
   cl_from int(8) unsigned NOT NULL default '0',
   cl_to varchar(255) binary NOT NULL default '',
   cl_sortkey varchar(255) binary NOT NULL default '',

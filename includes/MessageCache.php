@@ -23,6 +23,7 @@ class MessageCache
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages;
 	var $mInitialised = false;
+	var $mDeferred = true;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
 		$fname = 'MessageCache::initialise';
@@ -44,7 +45,12 @@ class MessageCache
 		$this->mParser = new Parser;
 		wfProfileOut( $fname.'-parser' );
 
-		$this->load();
+		# When we first get asked for a message,
+		# then we'll fill up the cache. If we
+		# can return a cache hit, this saves
+		# some extra milliseconds
+		$this->mDeferred = true;
+		
 		wfProfileOut( $fname );
 	}
 
@@ -71,8 +77,8 @@ class MessageCache
 
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
+				wfProfileIn( $fname.'-fromdb');
 				wfDebug( "MessageCache::load(): loading all messages\n" );
-				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
 				$success = $this->mMemc->add( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
 				if ( $success ) {
@@ -91,11 +97,12 @@ class MessageCache
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 					}
 				}
-				$this->unlock();
+				wfProfileOut( $fname.'-fromdb' );
 			}
 
 			if ( !is_array( $this->mCache ) ) {
-				wfMsg( "MessageCache::load(): individual message mode\n" );
+				wfProfileIn( $fname.'-error' );
+				wfDebug( "MessageCache::load(): individual message mode\n" );
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
 				# Causing too much DB load, disabling -- TS
 				$this->mDisable = true;
@@ -110,9 +117,11 @@ class MessageCache
 					$success = false;
 				}*/
 				$this->mCache = false;
+				wfProfileOut( $fname.'-error' );
 			}
 		}
 		wfProfileOut( $fname );
+		$this->mDeferred = false;
 		return $success;
 	}
 
@@ -152,7 +161,8 @@ class MessageCache
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			foreach ( $wgAllMessagesEn as $key => $value ) {
-				array_push( $this->mKeys, $wgContLang->ucfirst( $key ) );
+				$title = $wgContLang->ucfirst( $key );
+				array_push( $this->mKeys, $title );
 			}
 		}
 		return $this->mKeys;
@@ -189,11 +199,15 @@ class MessageCache
 			return true;
 		}
 
+		$fname = 'MessageCache::lock';
+		wfProfileIn( $fname );
+		
 		$lockKey = $this->mMemcKey . 'lock';
 		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
 		}
 
+		wfProfileOut( $fname );
 		return $i >= MSG_WAIT_TIMEOUT;
 	}
 
@@ -206,7 +220,7 @@ class MessageCache
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB, $forcontent=true ) {
+	function get( $key, $useDB, $forcontent=true, $isfullkey=false ) {
 		global $wgContLanguageCode;
 		if( $forcontent ) {
 			global $wgContLang;
@@ -221,16 +235,20 @@ class MessageCache
 		if( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
 		}
+		# If cache initialization was deferred, start it now.
+		if( $this->mDeferred ) {
+			$this->load();
+		}
 
 		$message = false;
 		if( !$this->mDisable && $useDB ) {
 			$title = $lang->ucfirst( $key );
-			if( $langcode != $wgContLanguageCode ) {
+			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
 
 			# Try the cache
-			if( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
+			if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
 				$message = $this->mCache[$title];
 			}
 

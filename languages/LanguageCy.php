@@ -325,8 +325,8 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi'r URL.",
 "badtitletext" => "Mae'r teitl rydych wedi gofyn yn anilys, gwag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau.",
 "perfdisabled" => "Sori! Mae'r nodwedd hon wedi cael eu anablo am achosion perfformiadau yn yr amserau brysyrach; dewch yn ôl rhwng 02:00 a 14:00 GMT a triwch eto.",
 "perfdisabledsub" => "Dyma copi rydym wedi cadw ers $1:",
-"wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br>
-Function: $1<br>
+"wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br />
+Function: $1<br />
 Query: $2
 ",
 "viewsource" => "Gwyliwch y ffynhonnell",
@@ -348,10 +348,10 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "yourpasswordagain" => "Ail-teipiwch allweddair",
 "newusersonly" => " (defnyddwyr newydd yn unig)",
 "remembermypassword" => "Cofiwch fy allweddair dros mwy nag un sesiwn.",
-"loginproblem" => "<b>Mae problem efo'ch mewngofnodi.</b><br>Triwch eto!",
-"alreadyloggedin" => "<font color=red><b>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</b></font><br>\n",
+"loginproblem" => "<b>Mae problem efo'ch mewngofnodi.</b><br />Triwch eto!",
+"alreadyloggedin" => "<font color=red><b>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</b></font><br />\n",
 
-"areyounew" => "Os ydych chi newydd wedi dod i Wicipedia ac yn eisiau cael accownt defnyddwr, teipiwch enw defnyddwr, felly teipiwch ac ail-teipiwch allweddair. Dydy eich cyfeiriad e-bost ddim yn gorfodol; os collwch eich allweddair mae'n bosibl i chi gofyn i gael hi eu anfon at y cyfeiriad e-bost hon.<br>\n",
+"areyounew" => "Os ydych chi newydd wedi dod i Wicipedia ac yn eisiau cael accownt defnyddwr, teipiwch enw defnyddwr, felly teipiwch ac ail-teipiwch allweddair. Dydy eich cyfeiriad e-bost ddim yn gorfodol; os collwch eich allweddair mae'n bosibl i chi gofyn i gael hi eu anfon at y cyfeiriad e-bost hon.<br />\n",
 
 "login"	=> "Mewngofnodi",
 "loginprompt" => "Rhaid i chi galluogi cwcis i mewngofnodi i $wgSitename.",
@@ -416,7 +416,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "preview" => "Blaenwelediad",
 "showpreview" => "Gweler blaenwelediad",
 "blockedtitle"	=> "Mae'r defnyddwr wedi gael eu blocio",
-"blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br>''$2''<p>Ellwch cysylltu $1 neu un o'r 
+"blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br />''$2''<p>Ellwch cysylltu $1 neu un o'r 
 [[Wicipedia:administrators|swyddogion]] eraill i trafodi'r bloc.",
 "whitelistedittitle" => "Rhaid mewngofnodi i golygu",
 "whitelistedittext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]] i olygu erthyglau.",
@@ -450,10 +450,10 @@ Fydd rhaid i chi ymsoddi eich newidiadau i mewn i'r testun sydd mewn bod.
 "editingold" => "<strong>RHYBUDD: Rydych yn golygu hen fersiwn y tudalen hon. Os cadwch hi, fydd unrhyw newidiadau hwyrach yn gael eu colli!.</strong>\n",
 "yourdiff" => "Gwahaniaethau",
 "copyrightwarning" => "Sylwch mae pob cyfraniad i Wicipedia yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
-Os nid ydych chi'n fodlon cael eich ysgrifeniad eu golygu heb trugaredd, a creu copïau dros y wê, peidiwch cyfranu'r ysgrifeniad yma.<br>
+Os nid ydych chi'n fodlon cael eich ysgrifeniad eu golygu heb trugaredd, a creu copïau dros y wê, peidiwch cyfranu'r ysgrifeniad yma.<br />
 Hefyd, rydych chi'n addo chi yw'r awdur y cyfraniad, neu rydych chi wedi copïo fe oddiwrth y parth cyhoeddus neu rhyw modd rhydd tebyg.
 <strong>PEIDIWCH CYFRANNU GWAITH O DAN HAWLFRAINT HEB CANIATÂD!</strong>",
-"longpagewarning" => "RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br>
+"longpagewarning" => "RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
 Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.",
 "readonlywarning" => "RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
@@ -507,8 +507,8 @@ Mae'n tebygol roedd hyn am achos yr ydych wedi trio chwilio a gair gyda llai na 
 sydd ddim yn cael eu mynegai.",
 "powersearch" => "Chwilio",
 "powersearchtext" => "
-Edrychwch mewn lle-enw:<br>
-$1<br>
+Edrychwch mewn lle-enw:<br />
+$1<br />
 $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9",
 "searchdisabled" => "<p>Mae'r peiriant chwilio'r holl databas wedi cael eu troi i ffwrdd i gwneud pethau'n hawddach ar y gwasanaethwr. Gobeithiwn fydd yn bosibl i troi'r peiriant ymlaen cyn bo hir, ond yn y cyfamser mae'n posibl gofyn Google:</p>",
 "googlesearch" => "
@@ -524,9 +524,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -688,7 +688,7 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "deleteimg" => "dil",
 "deleteimgcompletely" => "dil",
 "imghistlegend" => "Eglurhad: (cyf) = hon yw'r delwedd cyfoes, (dil) = dilewch yr hen fersiwn hon, (dych) = dychwelio i hen fersiwn hon.
-<br><i>Cliciwch ar dyddiad i weld y delwedd ag oedd llwythiad ar y dyddiad hon</i>.",
+<br /><i>Cliciwch ar dyddiad i weld y delwedd ag oedd llwythiad ar y dyddiad hon</i>.",
 "imagelinks" => "Cysylltiadau delwedd",
 "linkstoimage" => "Mae'r tudalennau isod yn cysylltu i'r delwedd hon: ",
 "nolinkstoimage" => "Does dim tudalen yn cysylltu i'r  delwedd hon. ",
@@ -712,9 +712,9 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "maintenancebacklink" => "Back to Maintenance Page",
 "disambiguations" => "Disambiguation pages",
 "disambiguationspage" => "Wicipedia:Links_to_disambiguating_pages",
-"disambiguationstext" => "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext" => "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects" => "Double Redirects",
-"doubleredirectstext" => "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext" => "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects" => "Broken Redirects",
 "brokenredirectstext" => "The following redirects link to a non-existing article.",
 "selflinks" => "Pages with Self Links",
@@ -913,7 +913,7 @@ Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "noblockreason" => "Rhaid i chi rhoi rheswm am y bloc.",
 "blockipsuccesssub" => "Bloc yn llwyddiannus",
 "blockipsuccesstext" => "Mae cyfeiriad IP \"$1\" wedi cael eu blocio.
-<br>Gwelwch [[Arbennig:Ipblocklist|rhestr bloc IP]] i arolygu blociau.",
+<br />Gwelwch [[Arbennig:Ipblocklist|rhestr bloc IP]] i arolygu blociau.",
 "unblockip" => "Di-blociwch cyfeiriad IP",
 "unblockiptext"	=> "Defnyddwch y ffurflen isod i di-blocio mynedfa ysgrifenol i cyfeiriad IP sydd wedi cael eu blocio'n gynt.",
 "ipusubmit" => "Di-blociwch y cyfeiriad hwn",
@@ -956,7 +956,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "Database lock succeeded",
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
+<br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The database has been unlocked.",
 
 # SQL query -- left untranslated

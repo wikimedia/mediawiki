@@ -91,16 +91,21 @@ class SquidUpdate {
 	XXX report broken Squids per mail or log */
 
 	/* static */ function purge( $urlArr ) {
-		global  $wgSquidServers;
+		global  $wgSquidServers, $wgSquidFastPurge;
 
 		if ( $wgSquidServers == 'echo' ) {
-			echo implode("<br>\n", $urlArr);
+			echo implode("<br />\n", $urlArr);
+			return;
+		}
+		
+		if ( $wgSquidFastPurge ) {
+			SquidUpdate::fastPurge( $urlArr );
 			return;
 		}
 
 		$fname = 'SquidUpdate::purge';
 		wfProfileIn( $fname );
-		
+
 		$maxsocketspersquid = 8; //  socket cap per Squid
 		$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$firsturl = $urlArr[0];
@@ -123,7 +128,7 @@ class SquidUpdate {
 			$so = 0;
 			while ($so < $sockspersq && !$failed) {
 				if ($so == 0) {
-					/* first socket for this server, do the tests */
+					/* first socket for this server, do some testing */
 					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
 					#$this->debug("Opening socket to $server:$port");
@@ -136,23 +141,13 @@ class SquidUpdate {
 						$msg = 'PURGE ' . $firsturl . " HTTP/1.0\r\n".
 						"Connection: Keep-Alive\r\n\r\n";
 						#$this->debug($msg);
+						@stream_set_blocking($socket,false);
 						@fputs($socket,$msg);
 						#$this->debug("...");
-						$res = @fread($socket,512);
-						#$this->debug("\n");
-						/* Squid only returns http headers with 200 or 404 status, 
-						if there's more returned something's wrong */
-						if (strlen($res) > 250) {
-							fclose($socket);
-							$failed = true;
-							$totalsockets -= $sockspersq;
-						} else {
-							@stream_set_blocking($socket,false);
-							$sockets[] = $socket;
-						}
+						$sockets[] = $socket;
 					} 
 				} else {
-					/* open the remaining sockets for this server */
+					/* all seems to be well, open the remaining sockets for this server */
 					list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
 					$sockets[] = @fsockopen($server, $port, $error, $errstr, 2);
@@ -163,40 +158,69 @@ class SquidUpdate {
 		}
 
 		if ($urlspersocket > 0) {
-			/* now do the heavy lifting. The fread() relies on Squid returning only the headers */
+			# now do the heavy lifting if there are more than a single url to purge.
+			# all squids are done at the same time by looping through the sockets, 
+			# many squids take only little more time than a single squid.
+			# we have to read from the sockets once in a while to avoid the network buffer filling up which otherwise
+			# blocks the socket after about 500 purges
 			for ($r=0;$r < $urlspersocket;$r++) {
 				for ($s=0;$s < $totalsockets;$s++) {
-					if($r != 0) {
-						$res = '';
-						$esc = 0;
-						while (strlen($res) < 100 && $esc < 200  ) {
-							$res .= @fread($sockets[$s],512);
-							$esc++;
-							usleep(20);
+					if($sockets[$s]) {
+						if($r != 0 && ( $r == 2 || !(r % 200))) {
+							$res = '';
+							$tries = $len = 0;
+							while (($len < 100 && $tries < 5) || $len == $oldlen  ) {
+								$oldlen = $len;
+								$res .= @fread($sockets[$s],2048);
+								$len = strlen($res);
+								$tries++;
+							}
 						}
+						$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
+						$msg = 'PURGE ' . $urlArr[$urindex] . " HTTP/1.0\r\n".
+						"Connection: Keep-Alive\r\n\r\n";
+						#$this->debug($msg);
+						@fputs($sockets[$s],$msg);
+						#$this->debug("\n");
+						# sanity check: if we got html error pages (access denied for example) from the squid
+						# after the second purge remove this socket to avoid hanging while trying to write to it
+						if($r == 2 && $len > 5000) $sockets[$s] = false;
 					}
-					$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
-					$msg = 'PURGE ' . $urlArr[$urindex] . " HTTP/1.0\r\n".
-					"Connection: Keep-Alive\r\n\r\n";
-					#$this->debug($msg);
-					@fputs($sockets[$s],$msg);
-					#$this->debug("\n");
 				}
 			}
 		}
-		#$this->debug("Reading response...");
+		#$this->debug("Closing sockets...");
 		foreach ($sockets as $socket) {
-			$res = '';
-			$esc = 0;
-			while (strlen($res) < 100 && $esc < 200  ) {
-				$res .= @fread($socket,1024);
-				$esc++;
-				usleep(20);
-			}
-
-			@fclose($socket);
+			if($socket) @fclose($socket);
 		}
 		#$this->debug("\n");
+		wfProfileOut( $fname );
+	}
+
+	/*static*/ function fastPurge( $urlArr ) {
+		global $wgSquidServers;
+		$fname = 'SquidUpdate::fastPurge';
+		wfProfileIn( $fname );
+		foreach ( $wgSquidServers as $server ) {
+			list($server, $port) = explode(':', $server);
+			if(!isset($port)) $port = 80;
+			
+			$conn = @pfsockopen( $server, $port, $error, $errstr, 3 );
+			if ( $conn ) {
+				wfDebug( 'Purging ' . count($urlArr) . " URL(s) on server $server:$port..." );
+				$msg = '';
+				foreach ( $urlArr as $url ) {
+					$msg .= 'PURGE ' . $url . " HTTP/1.0\r\n".
+					"Connection: Keep-Alive\r\n\r\n";
+				}
+				wfDebug( "\n$msg" );
+				@fputs( $conn, $msg );
+				wfDebug( "done\n" );
+			} else {
+				wfDebug( "SquidUpdate::fastPurge(): Error connecting to $server:$port\n" );
+			}
+
+		}
 		wfProfileOut( $fname );
 	}
 

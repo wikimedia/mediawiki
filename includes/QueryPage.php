@@ -99,7 +99,7 @@ class QueryPage {
 	 * @param $limit database query limit
 	 */
 	function doQuery( $offset, $limit ) {
-		global $wgUser, $wgOut, $wgLang, $wgRequest;
+		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 		global $wgMiserMode;
 
 		$sname = $this->getName();
@@ -177,20 +177,22 @@ class QueryPage {
 		# often disable 'next' link when we reach the end
 		if($num < $limit) { $atend = true; } else { $atend = false; }
 
-		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ), "" ,$atend );
+		$sl = wfViewPrevNext( $offset, $limit , $wgContLang->specialPage( $sname ), "" ,$atend );
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
-		$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
-		# Only read at most $num rows, because $res may contain the whole 1000
-		for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
-			$format = $this->formatResult( $sk, $obj );
-			$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
-			          $obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
-			$s .= "<li{$attr}>{$format}</li>\n";
+		if ( $num > 0 ) {
+			$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
+			# Only read at most $num rows, because $res may contain the whole 1000
+			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
+				$format = $this->formatResult( $sk, $obj );
+				$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
+									$obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
+				$s .= "<li{$attr}>{$format}</li>\n";
+			}
+			$dbr->freeResult( $res );
+			$s .= '</ol>';
+			$wgOut->addHTML( $s );
 		}
-		$dbr->freeResult( $res );
-		$s .= '</ol>';
-		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
 	}
 

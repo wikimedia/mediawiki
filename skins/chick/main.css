@@ -7,7 +7,7 @@
 */
 
 body {
-    font: sans-serif;
+    font-family: sans-serif;
     color: Black;
     margin: 0;
     padding: 0.3em;
@@ -15,7 +15,7 @@ body {
 
 a { color: #002bb8; }
 a:visited { color: #5a3696; }
-a:active { color: Orange; }
+a:active { color: #ffa500; }
 a.stub { color: #772233; }
 a.new,
 #p-personal a.new { color:#ba0000; }
@@ -185,7 +185,7 @@ span.subpages { display: block; }
     font-size: 95%;
     padding: 0 0.9em 0 0.9em;
 }
-#siteNotice p { margin: none; padding: none; }
+#siteNotice p { margin: 0; padding: 0; }
 .error {
     color: red;
     font-size: larger;
@@ -345,7 +345,7 @@ div.townBox {
     float:right;
     background:White;
     margin-left:1em;
-    border: 1px solid Grey;
+    border: 1px solid gray;
     padding:0.3em;
     width: 200px;
     overflow: hidden;
@@ -430,3 +430,50 @@ div.patrollink {
 span.newpage, span.minor {
 	font-weight: bold;
 }
+
+span.updatedmarker {
+	color:black;
+	background-color:#00FF00;
+}
+span.newpageletter {
+	font-weight:bold;
+	color:black;
+	background-color:yellow;
+}
+span.minoreditletter {
+	color:black;
+	background-color:#C5FFE6;
+}
+
+table.gallery {
+        border:  1px solid #cccccc;
+        margin:  2px;
+        padding: 2px;
+        background-color:#ffffff;
+}
+
+table.gallery tr { 
+        vertical-align:top;
+}
+
+table.gallery td {
+      vertical-align:top;
+      background-color:#f9f9f9;
+      border: solid 2px white;
+}
+
+div.gallerybox {
+        margin: 2px;
+        width:  150px;
+}
+
+div.gallerybox div.thumb {
+        text-align: center;
+        border: 1px solid #cccccc;
+        margin: 2px;
+}       
+
+div.gallerytext {
+        font-size: 94%;
+        padding: 2px 4px;
+}       

@@ -63,7 +63,7 @@ a {
     background: none;
 }
 a:visited { color: #5a3696; }
-a:active { color: Orange; }
+a:active { color: #ffa500; }
 a:hover { text-decoration: underline; }
 a.stub { color: #772233; }
 a.new,
@@ -155,24 +155,13 @@ form {
 }
 
 textarea {
-    border: 1px solid #2f6fab;
     color: Black;
     background-color: white;
     width: 100%;
     padding: 0.1em;
-    overflow: auto;
 }
-/* hide this from ie/mac and konq2.2 */
-@media All {
-    head:first-child+body input {
-        visibility: visible;
-        border: 1px solid #2f6fab;
-        color: Black;
-        background-color: white;
-        vertical-align: middle;
-        padding: 0.2em;
-    }
-}
+
+
 input.historysubmit {
     padding: 0 0.3em 0.3em 0.3em !important;
     font-size: 94%;
@@ -180,12 +169,8 @@ input.historysubmit {
     height: 1.7em !important;
     margin-left: 1.6em;
 }
-input[type="radio"],
-input[type="checkbox"] { border:none; }
 select {
-    border: 1px solid #2f6fab;
-    color: Black;
-    vertical-align: top;
+	vertical-align: top;
 }
 abbr, acronym, .explain {
     border-bottom: 1px dotted Black;
@@ -250,7 +235,10 @@ span.subpages { display: block; }
     font-size: 95%;
     padding: 0 0.9em 0 0.9em;
 }
-#siteNotice p { margin: none; padding: none; }
+#siteNotice p {
+    margin: 0;
+    padding: 0;
+}
 .error {
     color: red;
     font-size: larger;
@@ -414,7 +402,7 @@ div.townBox {
     float:right;
     background:White;
     margin-left:1em;
-    border: 1px solid Grey;
+    border: 1px solid gray;
     padding:0.3em;
     width: 200px;
     overflow: hidden;
@@ -586,9 +574,8 @@ special external link styling */
     font-size:95%;
 }
 .portlet li {
-    padding:0;
-    margin: 0 0 0 0;
-    margin-bottom: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /*
@@ -636,16 +623,16 @@ special external link styling */
 }
 input.searchButton {
     margin-top:1px;
-    padding: 0 0.4em !important;
     font-size: 95%;
-    cursor: pointer;
-    background-color: White;
-    border: 1px solid #2f6fab;
+}
+#searchGoButton {
+    padding-left: .5em;
+    padding-right: .5em;
+    font-weight: bold;
 }
 #searchInput {
-    border: 1px solid #2f6fab;
     width:10.9em;
-    margin: 0 0 0 0;
+    margin: 0;
     font-size: 95%;
 }
 #p-search .pBody {
@@ -659,8 +646,8 @@ input.searchButton {
 #p-personal {
     width:100%;
     white-space:nowrap;
-    padding:0 0 0 0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     position:absolute;
     left:0px;
     top:0px;
@@ -723,8 +710,7 @@ in bg url to hide it from iemac */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
-    background:  url('user.gif') top left no-repeat;
-    background-repeat: no-repeat;
+    background: url('user.gif') top left no-repeat;
     padding-left: 20px;
     text-transform: none;
 }
@@ -790,7 +776,7 @@ li#pt-login {
 }
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
-li#ca-watch, li#ca-watch { margin-left: 1.6em; }
+li#ca-watch, li#ca-watch, li#ca-varlang-0 { margin-left: 1.6em; }
 
 
 /*
@@ -934,4 +920,51 @@ span.searchmatch {
 }
 .sharedUploadNotice {
         font-style: italic;
+}
+
+span.updatedmarker {
+	color:black;
+	background-color:#00FF00;
+}
+span.newpageletter {
+	font-weight:bold;
+	color:black;
+	background-color:yellow;
+}
+span.minoreditletter {
+	color:black;
+	background-color:#C5FFE6;
+}
+
+table.gallery {
+	border:  1px solid #cccccc;
+	margin:  2px;
+	padding: 2px;
+	background-color:#ffffff;
+}
+
+table.gallery tr {
+	vertical-align:top;
+}
+
+table.gallery td {
+	vertical-align:top;
+	background-color:#f9f9f9;
+	border: solid 2px white;
+}
+
+div.gallerybox {
+	margin: 2px;
+	width:  150px;
+}
+
+div.gallerybox div.thumb {
+	text-align: center;
+	border: 1px solid #cccccc;
+	margin: 2px;
+}
+
+div.gallerytext {
+	font-size: 94%;
+	padding: 2px 4px;
 }

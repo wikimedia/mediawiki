@@ -58,7 +58,8 @@ if(isset($wgExtraNamespaces)) {
 	'highlightbroken' => 1, 'stubthreshold' => 0,
 	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
 	'showtoolbar' =>1,
-	'date' => 0, 'imagesize' => 2
+	'date' => 0, 'imagesize' => 2,
+	'fancysig' => 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -127,6 +128,7 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'previewontop',
 	'previewonfirst',
 	'nocache',
+	'fancysig'
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -205,7 +207,11 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
 	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
 	MAG_SERVER               => array( 0,    'SERVER'                 ),
-	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               ),
+	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'),
+	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
+	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
+	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 );
 
 #-------------------------------------------------------------------
@@ -241,6 +247,7 @@ global $wgRightsText;
 'tog-previewontop' => 'Show preview before edit box and not after it',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
+'tog-fancysig' => 'Raw signatures (without automatic link)',
 
 # dates
 'sunday' => 'Sunday',
@@ -404,7 +411,7 @@ performed by sysops with  \"bureaucrat\" status.",
 'thisisdeleted' => "View or restore $1?",
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
-'sitenotice'	=> '', # the equivalent to wgSiteNotice
+'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
@@ -446,6 +453,7 @@ MySQL returned error \"$3: $4\".\n",
 $1',
 'nodb'			=> "Could not select database $1",
 'cachederror'		=> 'The following is a cached copy of the requested page, and may not be up to date.',
+'laggedslave'   => 'Warning: Page may not contain recent updates.',
 'readonly'		=> 'Database locked',
 'enterlockreason' => 'Enter a reason for the lock, including an estimate
 of when the lock will be released',
@@ -471,6 +479,9 @@ Please report this to an administrator, making note of the URL.",
 'formerror'		=> 'Error: could not submit form',
 'badarticleerror' => 'This action cannot be performed on this page.',
 'cannotdelete'	=> 'Could not delete the page or image specified. (It may have already been deleted by someone else.)',
+'block_compress_delete' => "Can't delete this article because it contains block-compressed revisions. 
+This is a temporary situation which the developers are well aware of, and should be fixed within a month or two. 
+Please mark the article for deletion and wait for a developer to fix our buggy software.",
 'badtitle'		=> 'Bad title',
 'badtitletext' => "The requested page title was invalid, empty, or
 an incorrectly linked inter-language or inter-wiki title.",
@@ -530,7 +541,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
-'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.',
 'loginerror'	=> 'Login error',
@@ -689,7 +700,7 @@ Please check the URL you used to access this page.\n",
 'next'			=> 'next',
 'last'			=> 'last',
 'orig'			=> 'orig',
-'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
@@ -1016,6 +1027,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'validate'		=> 'Validate page',
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
+'uncategorizedcategories'	=> 'Uncategorized categories',
 'unusedimages'	=> 'Unused images',
 'popularpages'	=> 'Popular pages',
 'nviews'		=> '$1 views',
@@ -1053,7 +1065,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'movethispage'	=> 'Move this page',
 'unusedimagestext' => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
-in active use.',
+in active use.</p>',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exists in the wiki.',
 'data'	=> 'Data',
@@ -1280,7 +1292,7 @@ to a previously blocked IP address or username.',
 'blocklogpage'	=> 'Block_log',
 'blocklogentry'	=> 'blocked "$1" with an expiry time of $2',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
+blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked "$1"',
 'range_block_disabled'	=> 'The sysop ability to create range blocks is disabled.',
@@ -1338,6 +1350,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
 'setbureaucratflag' => 'Set bureaucrat flag',
 'bureaucratlog'		=> 'Bureaucrat_log',
+'rightslogtext'		=> 'This is a log of changes to user rights.',
 'bureaucratlogentry'	=> "Rights for user \"$1\" set \"$2\"",
 'rights'			=> 'Rights:',
 'set_user_rights'	=> 'Set user rights',
@@ -1356,8 +1369,8 @@ for a newer revision, but also keep your other settings for this article in
 this revision, just select which option you intend to <i>change</i>, and
 merging will fill in the other options with your previous settings.',
 'val_noop' => 'No opinion',
-'val_percent' => '<b>$1%</b><br>($2 of $3 points<br>by $4 users)',
-'val_percent_single' => '<b>$1%</b><br>($2 of $3 points<br>by one user)',
+'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
+'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
 'val_total' => 'Total',
 'val_version' => 'Version',
 'val_tab' => 'Validate',
@@ -1443,13 +1456,14 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
 
 'thumbnail-more'	=> 'Enlarge',
 'missingimage'		=> "<b>Missing image</b><br /><i>$1</i>\n",
+'filemissing'		=> 'File missing',
 
 # Special:Import
 'import'	=> 'Import pages',
@@ -1472,6 +1486,7 @@ article [[Train]].
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
+'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
 # stylesheets
 
@@ -1597,6 +1612,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'New images gallery',
+'noimages'  => 'Nothing to see.',
 
 'sitesettings'                  => 'Site Settings',
 'sitesettings-features'         => 'Features',
@@ -1632,6 +1648,21 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'sitesettings-performance' => 'Performance',
 'sitesettings-images' => 'Images',
 
+# short names for language variants used for language conversion links. 
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn' => 'cn',
+'variantname-zh-tw' => 'tw',
+'variantname-zh-hk' => 'hk',
+'variantname-zh-sg' => 'sg',
+'variantname-zh' => 'zh',
+
+# Chinese conversion table
+'zhconversiontable' => '-{}-',
+
+# labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'User: ',
+'speciallogtitlelabel' => 'Title: ',
 
 );
 
@@ -1688,6 +1719,12 @@ class Language {
 		return false;
 	}
 
+	# short names for language variants used for language conversion links. 
+	# so far only used by zh
+	function getVariantname( $code ) {
+		return wfMsg( 'variantname-' . $code );
+	}
+
 	function specialPage( $name ) {
 		return $this->getNsText(NS_SPECIAL) . ':' . $name;
 	}
@@ -1740,8 +1777,12 @@ class Language {
 	}
 
 	function getMonthName( $key ) {
-		global $wgMonthNamesEn;
-		return wfMsg($wgMonthNamesEn[$key-1]);
+		global $wgMonthNamesEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
+			return wfMsgForContent($wgMonthNamesEn[$key-1]);
+		else
+			return wfMsg($wgMonthNamesEn[$key-1]);
 	}
 
 	/* by default we just return base form */
@@ -1750,13 +1791,21 @@ class Language {
 	}
 
 	function getMonthAbbreviation( $key ) {
-		global $wgMonthAbbreviationsEn;
-		return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
+		global $wgMonthAbbreviationsEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
+			return wfMsgForContent(@$wgMonthAbbreviationsEn[$key-1]);
+		else
+			return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
 	function getWeekdayName( $key ) {
-		global $wgWeekdayNamesEn;
-		return wfMsg($wgWeekdayNamesEn[$key-1]);
+		global $wgWeekdayNamesEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
+			return wfMsgForContent($wgWeekdayNamesEn[$key-1]);
+		else
+			return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
 	function userAdjust( $ts ) {
@@ -2036,106 +2085,18 @@ class Language {
 		return $word;
 	}
 
-	
-	# convert text to different variants of a language. the automatic
-	# conversion is done in autoConvert(). here we parse the text 
-	# marked with -{}-, which specifies special conversions of the 
-	# text that can not be accomplished in autoConvert()
-	#
-	# syntax of the markup:
-	# -{code1:text1;code2:text2;...}-  or
-	# -{text}- in which case no conversion should take place for text
+	# languages like Chinese need to be segmented in order for the diff
+	# to be of any use
+	function segmentForDiff( $text ) {
+		return $text;
+	}
+	# and unsegment to show the result
+	function unsegmentForDiff( $text ) {
+		return $text;
+	}
+
+	# convert text to different variants of a language.
 	function convert( $text , $isTitle=false) {
-		global $wgDisableLangConversion;
-		if($wgDisableLangConversion)
-			return $text; 
-		if(sizeof($this->getVariants())<2) 
-			return $text;
-		
-		if($isTitle)
-			return $this->convertTitle($text);
-
-		// no conversion if redirecting
-		if(substr($text,0,9) == "#REDIRECT") {
-			return $text;
-		}
-
-
-		$plang = $this->getPreferredVariant();
-		$fallback = $this->getVariantFallback($plang);
-
-		$tarray = explode("-{", $text);
-		$tfirst = array_shift($tarray);
-		$text = $this->autoConvert($tfirst);
-		
-		foreach($tarray as $txt) {
-			$marked = explode("}-", $txt);
-			
-			$choice = explode(";", $marked{0});
-			if(!array_key_exists(1, $choice)) {
-				/* a single choice */
-				$text .= $choice{0};
-			} else {
-				$choice1=false;
-				$choice2=false;
-				foreach($choice as $c) {
-					$v = explode(":", $c);
-					if(!array_key_exists(1, $v)) {
-						//syntax error in the markup, give up
-						break;			
-					}
-					$code = trim($v{0});
-					$content = trim($v{1});
-					if($code == $plang) {
-						$choice1 = $content;
-						break;
-					}
-					if($code == $fallback)
-						$choice2 = $content;
-				}
-				if ( $choice1 )
-					$text .= $choice1;
-				elseif ( $choice2 )
-					$text .= $choice2;
-				else
-					$text .= $marked{0};
-			}
-			if(array_key_exists(1, $marked))
-				$text .= $this->autoConvert($marked{1});
-		}
-		
-		return $text;
-	}
-
-	/* this does the real conversion to the preferred variant.
-	   see LanguageZh.php for example
-	*/
-	function autoConvert( $text, $toVariant=false ) {
-		return $text;
-	}
-
-	/* returns all possible variants of the given text
-
-	   normally we will just call autoConvert() for each variant, but
-	   in case of zh where the conversion is performed by zhdaemon, 
-	   possibily over the network, we want to 
-	   cut down the number of connections to save time. 
-	*/
-	function autoConvertToAllVariants($text) {
-		$ret = array();
-		$variants = $this->getVariants();
-		if(sizeof($variants)==1) {
-			return $false;
-		}
-		foreach( $variants as $lang=>$v ) {
-			$ret[$v] = $this->autoConvert( $text, $v );
-		}
-		return $ret;
-	}
-
-	/* hook for converting the title, which may needs special treatment
-	*/
-	function convertTitle( $text ) {
 		return $text;
 	}
 
@@ -2156,51 +2117,42 @@ class Language {
 	}
 
 	function getPreferredVariant() {
-		global $wgUser;
-		
-		// if user logged in, get in from user's preference
-		if( $wgUser->getID() != 0 )
-			return $wgUser->getOption( 'variant' );
-		
-		// if we have multiple variants for this langauge, 
-		// pick the first one as default
-		$v = $this->getVariants();
-		if( !empty( $v ) )
-			return $v{0};
-		
-		// otherwise there should really be just one variant, 
-		// get it from the class name
-		$lang = strtolower( substr( get_class( $this ), 8 ) );
-		return $lang;
+		return strtolower( substr( get_class( $this ), 8 ) );
 	}
 
 	/* if a language supports multiple variants, it is
 		possible that non-existing link in one variant
 		actually exists in another variant. this function 
-		tries to find it.
+		tries to find it. See e.g. LanguageZh.php
 
 	*/
 	function findVariantLink( &$link, &$nt ) {
-		static $count=0; //used to limit this operation
-		static $cache=array();
-		global $wgDisableLangConversion;
-		$count++;
-		if( $wgDisableLangConversion || $count > 50)
-			return;
-		$variants = $this->autoConvertToAllVariants($link);
-		if($variants == false) //give up
-			return;
-		foreach( $variants as $v ) {
-			if(isset($cache[$v]))
-				continue;
-			$cache[$v] = 1;
-			$varnt = Title::newFromText( $v );
-			if( $varnt && $varnt->getArticleID() > 0 ) {
-				$nt = $varnt;
-				$link = $v;
-				break;
-			}
-		}
+		return;
+	}
+
+	/*
+		returns an array of extra options used by User::getPageRenderHash()
+	*/
+	function getExtraHashOptions() {
+		return '';
+	}
+	
+	/**
+	 * A regular expression to match legal word-trailing characters
+	 * which should be merged onto a link of the form [[foo]]bar.
+	 * FIXME
+	 *
+	 * @return string
+	 * @access public
+	 */
+	function linkTrail() {
+		$trail = $this->getMessage( 'linktrail' );
+		if( empty( $trail ) ) $trail = Language::linkTrail();
+		return $trail;
+	}
+
+	function getLangObj() {
+		return $this;
 	}
 }
 

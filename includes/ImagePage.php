@@ -6,6 +6,9 @@
 /**
  *
  */
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 require_once( 'Image.php' );
 
 /**
@@ -39,14 +42,21 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
 		$this->img  = Image::newFromTitle( $this->mTitle );
-		$url  = $this->img->getViewURL();
+		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
-		if ( $wgUseImageResize && $wgUser->getOption( 'imagesize' ) != '' ) {
-			$max = $wgImageLimits[ intval( $wgUser->getOption( 'imagesize' ) ) ];
-			$maxWidth = $max[0];
-			$maxHeight = $max[1];
+
+		if( $wgUser->getOption( 'imagesize' ) == '' ) {
+			$sizeSel = User::getDefaultOption( 'imagesize' );
+		} else {
+			$sizeSel = IntVal( $wgUser->getOption( 'imagesize' ) );
 		}
+		if( !isset( $wgImageLimits[$sizeSel] ) ) {
+			$sizeSel = User::getDefaultOption( 'imagesize' );
+		}
+		$max = $wgImageLimits[$sizeSel];
+		$maxWidth = $max[0];
+		$maxHeight = $max[1];
 
 
 		if ( $this->img->exists() ) {
@@ -58,27 +68,42 @@ class ImagePage extends Article {
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
-				if ( $width > $maxWidth && $wgUseImageResize ) {
-					$anchoropen  = "<a href=\"{$url}\">";
-					$anchorclose = "<br>{$msg}</a>";
-
-					$url = $this->img->createThumb( $maxWidth );
+				if ( $width > $maxWidth ) {
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
 				} 
-				if ( $height > $maxHeight && $wgUseImageResize ) {
-					$anchoropen  = "<a href=\"{$url}\">";
-					$anchorclose = "<br>{$msg}</a>";
-
+				if ( $height > $maxHeight ) {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
-					$url = $this->img->createThumb( $width );
 				}
-				$s = "<div class=\"fullImageLink\">" . $anchoropen .
+				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
+					if( $wgUseImageResize ) {
+						$thumbnail = $this->img->getThumbnail( $width );
+						if (    ( ! $this->img->mustRender() )
+						     && ( $thumbnail->getSize() > $this->img->getSize() ) ) {
+							# the thumbnail is bigger thatn the original image.
+							# show the original image instead of the thumb.
+							$url = $full_url;
+							$width = $this->img->getWidth();
+							$height = $this->img->getHeight();
+						} else {
+							$url = $thumbnail->getUrl();
+						}
+					} else {
+						# No resize ability? Show the full image, but scale
+						# it down in the browser so it fits on the page.
+						$url = $full_url;
+					}
+					$anchoropen  = "<a href=\"{$full_url}\">";
+					$anchorclose = "<br />{$msg}</a>";
+				} else {
+					$url = $full_url;
+				}
+				$s = '<div class="fullImageLink">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-				     htmlspecialchars( $wgRequest->getVal( 'image' ) )."\" />" . $anchorclose . "</div>";
+				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>';
 			} else {
-				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
+				$s = "<div class=\"fullMedia\">" . $sk->makeMediaLink( $this->img->getName(),'' ) . '</div>';
 			}
 			$wgOut->addHTML( $s );
 			if($this->img->fromSharedDirectory) {
@@ -132,7 +157,8 @@ class ImagePage extends Article {
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 		
 		$sql = "SELECT cur_namespace,cur_title FROM $imagelinks,$cur WHERE il_to=" .
-		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=cur_id";
+		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=cur_id"
+		  . " LIMIT 500"; # quickie emergency brake
 		$res = $dbr->query( $sql, DB_SLAVE, "Article::imageLinks" );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
@@ -163,6 +189,9 @@ class ImagePage extends Article {
 		if ( !$wgUser->isAllowed('delete') ) {
 			$wgOut->sysopRequired();
 			return;
+		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
@@ -209,8 +238,11 @@ class ImagePage extends Article {
 		if ( !is_null( $oldimage ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
+				$archUrl = wfImageArchiveUrl( $oldimage );
+				# don't prefix with internal server if we share one (-> Commons)
+				$prefix = preg_match("/^http:\/\//",$archUrl) ? '' : $wgInternalServer;
 				$urlArr = Array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+					$prefix.$archUrl
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -237,8 +269,11 @@ class ImagePage extends Article {
 						
 			# Squid purging
 			if ( $wgUseSquid ) {
+				$curUrl = Image::wfImageUrl( $image );
+				# don't prefix with internal server if we share one (-> Commons)
+				$prefix = preg_match("/^http:\/\//",$curUrl) ? '' : $wgInternalServer;
 				$urlArr = Array(
-					$wgInternalServer . Image::wfImageUrl( $image )
+					$prefix.$curUrl
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -273,9 +308,8 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLink( $wgContLang->getNsText(
-		  Namespace::getWikipedia() ) .
-		  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
+		$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
+		  ':Log/delete', wfMsg( 'deletionlog' ) );
 
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
@@ -310,7 +344,7 @@ class ImagePage extends Article {
 
 	function revert()
 	{
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
@@ -330,6 +364,9 @@ class ImagePage extends Article {
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->sysopRequired();
 			return;
+		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
 		}
 		$name = substr( $oldimage, 15 );
 
@@ -357,9 +394,12 @@ class ImagePage extends Article {
 		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
 		# Squid purging
 		if ( $wgUseSquid ) {
+			$archUrl = wfImageArchiveUrl( $name );
+			$curUrl = Image::wfImageUrl( $name );
+			$prefix = preg_match("/^http:\/\//",$curUrl) ? '' : $wgInternalServer;
 			$urlArr = Array(
-				$wgInternalServer.wfImageArchiveUrl( $name ),
-				$wgInternalServer . Image::wfImageUrl( $name )
+			        $prefix.$archUrl,
+			        $prefix.$curUrl
 			);
 			wfPurgeSquidServers($urlArr);
 		}
@@ -368,6 +408,14 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
 		$wgOut->returnToMain( false );
+	}
+	
+	function blockedIPpage() {
+		# yucky hack
+		require_once( 'EditPage.php' );
+		$edit = new EditPage( $this->mTitle );
+		$edit->blockedIPpage();
+		return;
 	}
 }
 
@@ -442,7 +490,6 @@ class ImageHistoryList {
 		$s .= "</li>\n";
 		return $s;
 	}
-
 }
 
 

@@ -83,7 +83,8 @@ class Skin {
 	/**#@-*/
 
 	function Skin() {
-		$this->linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$this->linktrail = $wgContLang->linkTrail();
 		
 		# Cache option lookups done very frequently
 		$options = array( 'highlightbroken', 'hover' );
@@ -209,6 +210,30 @@ class Skin {
 		return $r;
 	}
 
+	/**
+	 * To make it harder for someone to slip a user a fake
+	 * user-JavaScript or user-CSS preview, a random token
+	 * is associated with the login session. If it's not
+	 * passed back with the preview request, we won't render
+	 * the code.
+	 *
+	 * @param string $action
+	 * @return bool
+	 * @access private
+	 */
+	function userCanPreview( $action ) {
+		global $wgTitle, $wgRequest, $wgUser;
+		
+		if( $action != 'submit' )
+			return false;
+		if( !$wgRequest->wasPosted() )
+			return false;
+		if( !$wgTitle->userCanEditCssJsSubpage() ) 
+			return false;
+		return $wgUser->matchEditToken(
+			$wgRequest->getVal( 'wpEditToken' ) );
+	}
+	
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
 		global $wgOut, $wgStylePath, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
@@ -217,7 +242,7 @@ class Skin {
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
 		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
-			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
 				$userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
@@ -305,7 +330,7 @@ class Skin {
 		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgContLang->checkTitleEncoding( $link );
-		$link = str_replace( '_', ' ', $link );
+		$link = preg_replace( '/[\\x00-\\x1f_]/', ' ', $link );
 		$link = htmlspecialchars( $link );
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
@@ -534,9 +559,12 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = htmlspecialchars( Image::wfImageUrl( $name ) );
-				$style = $this->getInternalLinkAttributes( $link, $name );
-				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				$image = new Image( $wgTitle->getDBkey() );
+				if( $image->exists() ) {
+					$link = htmlspecialchars( $image->getURL() );
+					$style = $this->getInternalLinkAttributes( $link, $name );
+					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				}
 			}
 			# This will show the "Approve" link if $wgUseApproval=true;
 			if ( isset ( $wgUseApproval ) && $wgUseApproval )
@@ -749,6 +777,20 @@ class Skin {
 		# Many people don't like this dropdown box
 		#$s .= $sep . $this->specialPagesList();
 
+		/* show links to different language variants */
+		global $wgDisableLangConversion, $wgContLang, $wgTitle;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
+			}
+		}
+
+
+
 		return $s;
 	}
 
@@ -846,17 +888,19 @@ class Skin {
 	}
 
 	function getCopyrightIcon() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
 		$out = '';
-		if( $wgRightsIcon ) {
+		if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
+			$out = $wgCopyrightIcon;
+		} else if ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$url = htmlspecialchars( $wgRightsUrl );
 				$out .= '<a href="'.$url.'">';
 			}
 			$text = htmlspecialchars( $wgRightsText );
 			$out .= "<img src=\"$icon\" alt='$text' />";
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$out .= '</a>';
 			}
 		}
@@ -871,7 +915,7 @@ class Skin {
 	}
 
 	function lastModified() {
-		global $wgLang, $wgArticle;
+		global $wgLang, $wgArticle, $wgLoadBalancer;
 
 		$timestamp = $wgArticle->getTimestamp();
 		if ( $timestamp ) {
@@ -879,6 +923,9 @@ class Skin {
 			$s = ' ' . wfMsg( 'lastmodified', $d );
 		} else {
 			$s = '';
+		}
+		if ( $wgLoadBalancer->getLaggedSlaveMode() ) {
+			$s .= ' <strong>' . wfMsg( 'laggedslavemode' ) . '</strong>';
 		}
 		return $s;
 	}
@@ -1349,12 +1396,16 @@ class Skin {
 					$trail = $m[2];
 				}
 			}
-			# Assume $this->postParseLinkColour(). This prevents
-			# interwiki links from being parsed as external links.
-			global $wgInterwikiLinkHolders;
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
-			$nr = array_push($wgInterwikiLinkHolders, $t);
-			$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			if( $this->postParseLinkColour ) {
+				# There's no existence check, but this will prevent
+				# interwiki links from being parsed as external links.
+				global $wgInterwikiLinkHolders;
+				$nr = array_push($wgInterwikiLinkHolders, $t);
+				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			} else {
+				return $t;
+			}
 		} elseif ( 0 == $ns && "" == $dbkey ) {
 			# A self-link with a fragment; skip existence check.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
@@ -1402,7 +1453,6 @@ class Skin {
 						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
 							$size = $threshold*2 ; # Really big
 						}
-						$dbr->freeResult( $res );
 					} else {
 						$size = $threshold*2 ; # Really big
 					}
@@ -1778,7 +1828,7 @@ class Skin {
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
 			$s = wfMsg( 'missingimage', $img->getName() );
-			$s .= "<br>{$alt}<br>{$url}<br>\n";
+			$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
 				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
@@ -1918,6 +1968,10 @@ class Skin {
 
 	function makeExternalLink( $url, $text, $escape = true ) {
 		$style = $this->getExternalLinkAttributes( $url, $text );
+		global $wgNoFollowLinks;
+		if( $wgNoFollowLinks ) {
+			$style .= ' rel="nofollow"';
+		}
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );

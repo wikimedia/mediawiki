@@ -5,6 +5,9 @@
  * @subpackage SpecialPage
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /* to get a list of languages in setting user's language preference */
 require_once('languages/Names.php');
 
@@ -87,6 +90,11 @@ class PreferencesForm {
 					$this->mSearchNs[$i] = $request->getCheck( "wpNs$i" ) ? 1 : 0;
 				}
 			}
+		}
+
+		# Validate language
+		if ( !preg_match( '/^[a-z\-]*$/', $this->mUserLanguage ) ) {
+			$this->mUserLanguage = 'nolanguage';
 		}
 	}
 
@@ -230,7 +238,12 @@ class PreferencesForm {
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
-		$this->mUserLanguage = $wgUser->getOption( 'language');
+		$this->mUserLanguage = $wgUser->getOption( 'language' );
+		if( empty( $this->mUserLanguage ) ) {
+			# Quick hack for conversions, where this value is blank
+			global $wgContLanguageCode;
+			$this->mUserLanguage = $wgContLanguageCode;
+		}
         $this->mUserVariant = $wgUser->getOption( 'variant');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
@@ -320,7 +333,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
-
+		global $wgContLanguageCode;
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -406,16 +419,28 @@ class PreferencesForm {
 			}
 		}
 		
+		$fancysig = $this->getToggle( 'fancysig' );
 		$wgOut->addHTML("
-		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
+		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='25' /></label></div>
+		<div>$fancysig<br /></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 
+		/**
+		 * If a bogus value is set, default to the content language.
+		 * Otherwise, no default is selected and the user ends up
+		 * with an Afrikaans interface since it's first in the list.
+		 */
+		if( isset( $wgLanguageNames[$this->mUserLanguage] ) ) {
+			$selectedLang = $this->mUserLanguage;
+		} else {
+			$selectedLang = $wgContLanguageCode;
+		}
 		foreach($wgLanguageNames as $code => $name) {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-			if(file_exists($langfile)) {
-				$sel = ($code == $this->mUserLanguage)? 'selected="selected"' : '';
+			if(file_exists($langfile) || $code == $wgContLanguageCode) {
+				$sel = ($code == $selectedLang)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}
 		}
@@ -424,7 +449,6 @@ class PreferencesForm {
 		/* see if there are multiple language variants to choose from*/
 		if(!$wgDisableLangConversion) {
 			$variants = $wgContLang->getVariants();
-			$size=sizeof($variants);
 		
 			$variantArray=array();
 			foreach($variants as $v) {
@@ -433,7 +457,6 @@ class PreferencesForm {
 					$variantArray[$v] = $name;
 				}
 			}
-			$size=sizeof($variantArray);
 		
 			if(sizeof($variantArray) > 1) {
 			$wgOut->addHtml("
@@ -442,6 +465,7 @@ class PreferencesForm {
 					$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
 					$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 				}
+			$wgOut->addHtml("</select></label></div>\n");
 			}
 		}
 		# Fields for changing password
@@ -584,6 +608,7 @@ class PreferencesForm {
 		# Various checkbox options
 		#
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
+
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );

@@ -21,6 +21,9 @@
  * @subpackage Maintenance
  */
 
+if( php_sapi_name() != 'cli' ) {
+	die( "Please customize the settings and run me from the command line." );
+}
 
 /** Set these correctly! */
 $wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */

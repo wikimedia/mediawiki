@@ -43,6 +43,9 @@ class Article {
 		$this->clear();
 	}
 
+	function getTitle() {
+		return $this->mTitle;	
+	}
 	/**
 	  * Clear the object
 	  * @private
@@ -529,7 +532,7 @@ class Article {
 	 */
 	function getSelectOptions( $options = '' ) {
 		if ( $this->mForUpdate ) {
-			if ( $options ) {
+			if ( is_array( $options ) ) {
 				$options[] = 'FOR UPDATE';
 			} else {
 				$options = 'FOR UPDATE';
@@ -1127,22 +1130,39 @@ class Article {
 	 * the link tables and redirect to the new page.
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '' ) {
-		global $wgOut, $wgUser, $wgLinkCache;
+		global $wgOut, $wgUser, $wgLinkCache, $wgUseDumbLinkUpdate;
+		global $wgAntiLockFlags, $wgParser;
+		
+		$wgLinkCache = new LinkCache;
 
-		$wgLinkCache = new LinkCache();
-		# Select for update
-		$wgLinkCache->forUpdate( true );
-
-		# Get old version of link table to allow incremental link updates
-		$wgLinkCache->preFill( $this->mTitle );
-		$wgLinkCache->clear();
+		if ( !$wgUseDumbLinkUpdate ) {
+			# Preload links to reduce lock time
+			if ( $wgAntiLockFlags & ALF_PRELOAD_LINKS ) {
+				$wgLinkCache->preFill( $this->mTitle );
+				$wgLinkCache->clear();
+			}
+		}
 
 		# Parse the text and replace links with placeholders
+		# Do this outside the locks on the links table
+		# The existence test queries need to be FOR UPDATE
+		$oldUpdate = $wgParser->forUpdate( true );
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
+		$wgParser->forUpdate( $oldUpdate );
 
-		# Look up the links in the DB and add them to the link cache
-		$wgOut->transformBuffer( RLH_FOR_UPDATE );
+		if ( !$wgUseDumbLinkUpdate ) {
+			# Move the current links back to the second register
+			$wgLinkCache->swapRegisters();
+
+			# Get old version of link table to allow incremental link updates
+			# Lock this data now since it is needed for an update
+			$wgLinkCache->forUpdate( true );
+			$wgLinkCache->preFill( $this->mTitle );
+
+			# Swap this old version back into its rightful place
+			$wgLinkCache->swapRegisters();
+		}
 
 		if( $this->isRedirect( $text ) )
 			$r = 'redirect=no';
@@ -1200,7 +1220,9 @@ class Article {
 			RecentChange::markPatrolled( $rcid );
 			$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
 			$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
-			$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+
+			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
 		else
 		{
@@ -1454,6 +1476,25 @@ class Article {
 			return;
 		}
 
+		$dbr =& $this->getDB();
+		$ns = $this->mTitle->getNamespace();
+		$title = $this->mTitle->getDBkey();
+
+		# Temporary hack:
+		# Fail if any of the old rows have old_flags=object
+		$row = $dbr->selectRow( 'old', 
+			array( 'old_flags' ),
+			array(
+				'old_namespace' => $ns,
+				'old_title' => $title,
+				"old_flags LIKE '%object%'",
+			), $fname, $this->getSelectOptions()
+		);
+		if ( $row ) {
+			$wgOut->fatalError( wfMsg( 'block_compress_delete' ) );
+			return;
+		}
+
 		if ( $confirm ) {
 			$this->doDelete( $reason );
 			return;
@@ -1462,9 +1503,6 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& $this->getDB();
-		$ns = $this->mTitle->getNamespace();
-		$title = $this->mTitle->getDBkey();
 		$old = $dbr->selectRow( 'old',
 			array( 'old_text', 'old_flags' ),
 			array(
@@ -1604,8 +1642,8 @@ class Article {
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
 				
 				$sk = $wgUser->getSkin();
-				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_PROJECT ) .
-											   ':' . wfMsgForContent( 'dellogpage' ),
+				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
+											   ':log/delete',
 											   wfMsg( 'deletionlog' ) );
 				
 				$text = wfMsg( 'deletedtext', $deleted, $loglink );
@@ -1876,8 +1914,10 @@ class Article {
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
+			# Periodically flush old entries from the recentchanges table.
+			global $wgRCMaxAge;
 			$dbw =& wfGetDB( DB_MASTER );
-			$cutoff = $dbw->timestamp( time() - ( 7 * 86400 ) );
+			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
 			$dbw->query( $sql );
 		}
@@ -1956,11 +1996,6 @@ class Article {
 		$called = true;
 		if($this->isFileCacheable()) {
 			$touched = $this->mTouched;
-			if( $this->mTitle->getPrefixedDBkey() == wfMsg( 'mainpage' ) ) {
-				# Expire the main page quicker
-				$expire = wfUnix2Timestamp( time() - 3600 );
-				$touched = max( $expire, $touched );
-			}
 			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
 				global $wgOut;

@@ -36,7 +36,8 @@ if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 	# out where our requests are really coming from.
 	$hopips = array_map( 'trim', explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
 
-	while(in_array(trim(end($hopips)), $wgSquidServers)){
+	$allsquid = array_merge($wgSquidServers, $wgSquidServersNoPurge);
+	while(in_array(trim(end($hopips)), $allsquid)){
 		array_pop($hopips);
 	}
 	$wgIP = trim(end($hopips));
@@ -93,7 +94,7 @@ global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgMsgParserOptions;
 global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
-global $wgUseOldExistenceCheck, $wgEnablePersistentLC;
+global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
 
 global $wgFullyInitialised;
 
@@ -205,7 +206,7 @@ if ( !$wgDBservers ) {
 		'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
 	));
 }
-$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
+$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers, false, $wgMasterWaitTimeout );
 $wgLoadBalancer->loadMasterPos();
 
 wfProfileOut( $fname.'-database' );
@@ -239,29 +240,32 @@ if( $wgCommandLineMode ) {
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language2' );
 
-function setupLangObj(&$langclass, $langcode) {
+function setupLangObj($langclass) {
 	global $wgUseLatin1, $IP;
-
 
 	if( ! class_exists( $langclass ) ) {
 		# Default to English/UTF-8
+		$baseclass = 'LanguageUtf8';
 		require_once( "$IP/languages/LanguageUtf8.php" );
-		$langclass = 'LanguageUtf8';
+		$lc = strtolower(substr($langclass, 8));
+		$snip = "
+			class $langclass extends $baseclass {
+				function getVariants() {
+					return array(\"$lc\");
+				}
+
+			}";
+		eval($snip);
 	}
 
 	$lang = new $langclass();
-	if ( !is_object($lang) ) {
-		print "No language class ($wgLang)\N";
-	}
 
-	if( $wgUseLatin1 ) {
-		# For non-UTF-8 latin-1 downconversion
-		require_once( "$IP/languages/LanguageLatin1.php" );
-		$xxx = new LanguageLatin1( $lang );
-		unset( $lang );
-		$lang = $xxx;
-	}
-	return $lang;
+	if( ! $wgUseLatin1 ) 
+		return $lang;
+
+	require_once( $IP . '/languages/LanguageLatin1.php' );
+	$latin1 = new LanguageLatin1( $lang );
+	return $latin1;
 }
 
 # $wgLanguageCode may be changed later to fit with user preference.
@@ -270,8 +274,7 @@ function setupLangObj(&$langclass, $langcode) {
 $wgContLanguageCode = $wgLanguageCode;
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
 
-$wgContLang = setupLangObj( $wgContLangClass, $wgContLangClass );
-$n = get_class($wgContLang);
+$wgContLang = setupLangObj( $wgContLangClass );
 
 // set default user option from content language
 if( !$wgUser->mDataLoaded ) {
@@ -280,16 +283,21 @@ if( !$wgUser->mDataLoaded ) {
 
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');
+# Validate $wgLanguageCode, which will soon be sent to an eval()
+if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z\-]*$/', $wgLanguageCode ) ) {
+	$wgLanguageCode = $wgContLanguageCode;
+}
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 
 if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 } else {
-	require_once("$IP/languages/$wgLangClass.php");
-	$wgLang = setupLangObj( $wgLangClass, $wgLanguageCode );
+	wfSuppressWarnings();
+	include_once("$IP/languages/$wgLangClass.php");
+	wfRestoreWarnings();
+	$wgLang = setupLangObj( $wgLangClass );
 }
-
 
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
@@ -356,8 +364,31 @@ $wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();
 
 # Placeholders in case of DB error
-$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+$wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
+
+# Site notice
+# FIXME: This is an ugly hack, which wastes runtime on cache hits
+# and raw page views by forcing initialization of the message cache.
+# Try to fake around it for raw at least:
+if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] != 'raw' ) {
+	$notice = wfMsg( 'sitenotice' );
+	if($notice == '&lt;sitenotice&gt;') $notice = '';
+	# Allow individual wikis to turn it off
+	if ( $notice == '-' ) {
+		$wgSiteNotice = '';
+	} else {
+		# if($wgSiteNotice) $notice .= $wgSiteNotice;
+		if ($notice == '') {
+			$notice = $wgSiteNotice;
+		}
+		if($notice != '-' && $notice != '') {
+			$specialparser = new Parser();
+			$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
+			$wgSiteNotice = $parserOutput->getText();
+		}
+	}
+}
 
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );

@@ -146,7 +146,7 @@ class LogReader {
 		$sql = "SELECT log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, cur_id,
-			log_comment FROM $user, $logging ";
+			log_comment, log_params FROM $user, $logging ";
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ',', $this->joinClauses );
 		}
@@ -249,7 +249,7 @@ class LogViewer {
 		global $wgLang;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
-		$time = $wgLang->timeanddate( $s->log_timestamp );
+		$time = $wgLang->timeanddate( $s->log_timestamp, true );
 		if( $s->cur_id ) {
 			$titleLink = $this->skin->makeKnownLinkObj( $title );
 		} else {
@@ -261,8 +261,9 @@ class LogViewer {
 		} else {
 			$comment = '(<em>' . $this->skin->formatComment( $s->log_comment ) . '</em>)';
 		}
+		$paramArray = LogPage::extractParams( $s->log_params );
 		
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray );
 		$out = "<li>$time $userLink $action $comment</li>\n";
 		return $out;
 	}
@@ -318,7 +319,7 @@ class LogViewer {
 	 */
 	function getUserInput() {
 		$user = htmlspecialchars( $this->reader->queryUser() );
-		return "User: <input type='text' name='user' size='12' value=\"$user\" />\n";
+		return wfMsg('specialloguserlabel') . "<input type='text' name='user' size='12' value=\"$user\" />\n";
 	}
 	
 	/**
@@ -327,7 +328,7 @@ class LogViewer {
 	 */
 	function getTitleInput() {
 		$title = htmlspecialchars( $this->reader->queryTitle() );
-		return "Title: <input type='text' name='page' size='20' value=\"$title\" />\n";
+		return wfMsg('speciallogtitlelabel') . "<input type='text' name='page' size='20' value=\"$title\" />\n";
 	}
 	
 	/**
@@ -335,13 +336,13 @@ class LogViewer {
 	 * @private
 	 */
 	function showPrevNext( &$out ) {
-		global $wgContLang;
+		global $wgContLang,$wgRequest;
 		$pieces = array();
 		$pieces[] = 'type=' . htmlspecialchars( $this->reader->queryType() );
 		$pieces[] = 'user=' . htmlspecialchars( $this->reader->queryUser() );
 		$pieces[] = 'page=' . htmlspecialchars( $this->reader->queryTitle() );
 		$bits = implode( '&', $pieces );
-		$offset = 0; $limit = 50;
+		list( $limit, $offset ) = $wgRequest->getLimitOffset();
 		
 		# TODO: use timestamps instead of offsets to make it more natural
 		# to go huge distances in time

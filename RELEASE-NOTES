@@ -4,36 +4,318 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA ==
+== MediaWiki 1.4 BETA 6 ==
 
-[Not everything is 100% working in beta yet, the installer needs fixes still.]
+MediaWiki 1.4beta6 is a security and bug fix release for the 1.4 beta
+series.
 
-Major changes from 1.3.x:
-* (?) Support for table prefixes for better sharing with other web apps
-* (?) PostgreSQL support
-* Optional article validation voting features
-* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed
-* Support for faster C++ diff module (WikiDiff extension)
-* More scary link caching modes
-* Old manually maintained log pages replaced with searchable Special:Log
+An attacker could craft a URL which, when visited by a particular
+logged-in user, would execute arbitrary JavaScript code on the user's
+browser in the wiki's site context. This attack has been blocked, and as
+an extra precaution the user CSS and JavaScript subpage support is now
+disabled by default. Sites which want this ability may set $wgAllowUserCss
+and $wgAllowUserJs in LocalSettings.php.
+
+Additional protections have been added against off-site form submissions
+hijacking user credentials. Authors of bot tools may need to update their
+code to include additional fields.
+
+These problems affects the 1.3.x releases as well; 1.3 users should
+upgrade to 1.3.10.
+
+Note that 1.4 beta releases prior to beta 5 include an input validation
+error which could lead to execution of arbitrary PHP code on the server.
+Users of older betas should upgrade immediately to the current version.
+
+
+Beta 6 also introduces the use of rel="nofollow" attributes on external
+links in wiki pages to reduce the effectiveness of wiki spam. This will
+cause participating search engines to ignore external URL links from wiki
+pages for purposes of page relevancy ranking.
+
+The current implementation adds this attribute to _all_ external URL
+links in wiki text (but not internal [[wiki links]] or interwiki links).
+To disable the attribute for _all_ external links, add this line to your
+LocalSettings.php:
+
+  $wgNoFollowLinks = false
+
+For background information on nofollow see:
+
+  http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
+
+
+''''' Thinking of using MySQL 4.1? Please read this first! '''''
+''''' Your PHP installation probably uses the OLD protocol '''''
+'''''   http://dev.mysql.com/doc/mysql/en/Old_client.html  '''''
+
+This is a beta release; while most things are working, there are some
+known problems and probably unknown problems. Don't run a public site
+on this beta unless you're willing to help with investigating and
+fixing any problems you encounter.
+
+CARELESS USE OF THIS CODE MAY RENDER YOU STERILE, GROW WEEDS IN YOUR
+YARD, AND FEED YOUR CAT TO A SEWER ALLIGATOR. DON'T SAY YOU WEREN'T
+WARNED, CAUSE WE WARNED YOU.
+
+If upgrading from an older release, see the file UPGRADE;
+1.4beta5 does include a minor database change from earlier betas.
+
+=== New features ===
+
+* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed.
+* New, searchable deletion/upload/protection logs
+* Image gallery generation (Special:Newimages and <gallery> tag)
+* SVG rasterization support (requires external support)
+* Users can select from the available localizations to override the
+  default user interface language.
+* Traditional/Simplified Chinese conversion support
+
+=== Installation and compatibility ===
+
+* The default MonoBook theme now works with PHP 5.0
+* Installation on systems with PHP's safe mode or other oddities
+  should work more reliably, as MonoBook no longer needs to
+  create a compiled template file for the wiki to run.
+* A table prefix may be specified, to avoid conflicts with other
+  web applications forced to share a database.
+* More thorough UTF-8 input validation; fixes non-ASCII uploaded
+  filenames from Safari.
+* Command-line database upgrade script.
+
+=== Customizability ===
+
+* Default user options can now be overridden in LocalSettings.
 * Skins system more modular: templates and CSS are now in /skins/
-* New user preference for limitting the image size for images on image description
-  pages 
-* Error pages no more offer edit / talk / watch links (bug #502)
-* Allow user to preview article on first edit (bug #530)
-* New dark background skin named Amethyst (thanks Sorwena and Sorkhiri)
-* [[RFC 1234]] will now make an internal link (bug #479)
-* PhpTal skins shown bogus 'What links here' etc on special pages (bug #511)
-* Experimental code to manage user and group rights (Special:Userlevels)
-* UI language switching
-* Adding filter and username exact search match for Special:Listusers (bug #770)
-* Special:Listadmins outdated, use Special:Listusers instead (bug #857)
-* Traditional/Simplified Chinese conversion
-* New tag "<gallery>" to generate a table of image thumbnails
-* Installer die if it can not write LocalSettings.php (bug #733)
-* Various special pages no more show the rss/atom feed links (bug #705)
-* Support for external authentication plug-ins
-* ... and more!
+  New skins can be dropped into this directory and used immediately.
+* More extension hooks have been added.
+* Authentication plugin hook.
+* More internal code documentation, generated with phpdoc:
+  http://www.mediawiki.org/docs/html/
+
+=== Optimization ===
+
+* For many operations, MediaWiki 1.4 should run faster and use
+  less memory than MediaWiki 1.3. Page rendering is up to twice
+  as fast. (Use a PHP accelerator such as Turck MMCache for best
+  results with any PHP application, though!)
+* The parser cache no longer requires memcached, and is enabled
+  by default. This avoids a lot of re-rendering of pages that
+  have been shown recently, greatly speeding longer page views.
+* Support for compiled PHP modules to speed up page diff and
+  Unicode validation/normalization. (Requires ability to compile
+  and load PHP extensions).
+
+=== What isn't ready yet ===
+
+* A new user/groups permissions scheme has been held back to 1.5.
+* An experimental SOAP interface will be made available as an extension
+* PostgreSQL support is largely working, but search and installer
+  support are not complete. These are being actively worked on
+  and should come in later betas.
+* E-mail notification of watched page changes and verification of
+  user-submitted e-mail addresses is not yet included. If updates
+  are available, this may make it into later betas.
+* Log pages are not automatically imported into the new log table
+  at upgrade time. A script to import old text log entries is
+  incomplete, but may be available by the time 1.4 finishes.
+* UI messages may be broken in Latin-1 mode in this release due to some
+  minor breakage in the language selection module.
+
+=== Misc bugs fixed in beta 1 ===
+
+* (bug 95) Templates no longer limited to 5 inclusions per page
+* New user preference for limiting the image size for images on image description
+  pages
+* (bug 530) Allow user to preview article on first edit
+* (bug 479) [[RFC 1234]] will now make an internal link
+* (bug 511) PhpTal skins shown bogus 'What links here' etc on special pages
+* (bug 770) Adding filter and username exact search match for Special:Listusers
+* (bug 733) Installer die if it can not write LocalSettings.php
+* (bug 705) Various special pages no more show the rss/atom feed links
+* (bug 114) use category backlinks in Special:Recentchangeslinked
+
+=== Beta 2 fixes ===
+
+* (bug 987) Reverted bogus fix for bug 502
+* (bug 992) Fix enhanced recent changes in PHP5
+* (bug 1009) Fix Special:Makesysop when using table prefixes
+* (bug 1010) fix broken Commons image link on Classic & Cologne Blue
+* (bug 985) Fix auto-summary for section edits
+* (bug 995) Close <a> tag
+* (bug 1004) renamed norsk language links (twice)
+* Login works again when using an old-style default skin
+* Fix for load balancing mode, notify if using old settings format
+* (bug 1014) Missing image size option on old accounts handled gracefully
+* (bug 1027) Fix page moves with table prefix
+* (bug 1018) Some pages fail with stub threshold enabled
+* (bug 1024) Fix link to high-res image version on Image: pages
+* (bug 1016) Fix handling of lines omitting Image: in a <gallery> tag
+* security fix for image galleries
+* (bug 1039) Avoid error message in certain message cache failure modes
+* Fix string escaping with PostgreSQL
+* (bug 1015) [partial] -- use comment formatter on image gallery text
+* Allow customization of all UI languages
+* use $wgForceUIMsgAsContentMsg to make regular UI messages act as content
+* new user option for zh users to disable language conversion
+* Defer message cache initialization, shaving a few ms off file cache hits
+* Fixed Special:Allmessages when using table prefixes
+* (bug 996) Fix $wgWhitelistRead to work again
+* (bug 1028) fix page move over redirect to not fail on the unique index
+
+=== Beta 3 fixes ===
+
+* Hide RC patrol markers when patrol is disabled or not allowed to patrol.
+* Fix language selection for upgraded accounts
+* (bug 1076) navigation links in QueryPage should be translated by wgContLang.
+* (bug 922) bogus DOS line endings in LanguageEl.php
+* Fix index usage in contribs
+* Caching and load limiting options for Recentchanges RSS/Atom feed
+* (bug 1074) Add stock icons for non-image files in gallery/Newimages
+* Add width and height attributes on thumbs in gallery/Newimages
+* Enhance upload extension blacklist to protect against vulnerable
+  Apache configurations
+
+=== Beta 4 fixes ===
+
+* (bug 1090) Fix sitesupport links in CB/classic skins
+* Gracefully ignore non-legal titles in a <gallery>
+* Fix message page caching behavior when $wgCapitalLinks is turned off
+  after installation and the wiki is subsequently upgraded
+* Database error messages include the database server name/address
+* Paging support for large categories
+* Fix image page scaling when thumbnail generation is disabled
+* Select the content language in prefs when bogus interface language is set
+* Fix interwiki links in edit comments
+* Fix crash on banned user visit
+* Avoid PHP warning messages when thumbnail not generated
+* (bug 1157) List unblocks correctly in Special:Log
+* Fix fatal errors in LanguageLi.php
+* Undo overly bright, difficult to read colors in Cologne Blue
+* (bug 1162) fix five-tilde date inserter
+* Add raw signatures option for those who simply must have cute sigs
+* (bug 1164) Let wikitext be used in Loginprompt and Loginend messages
+* Add the dreaded <span> to the HTML whitelist
+* (bug 1170) Fix Russian linktrail
+* (bug 1168) Missing text on the bureaucrat log
+* (bug 1180) Fix Makesysop on shared-user-table sites
+* (bug 1178) Fix previous diff link when using 'oldid=0'
+* (bug 1173) Stop blocked accounts from reverting/deleting images
+* Keep generated stylesheets cache-separated for each user
+* (bug 1175) Fix "preview on first edit" mode
+* Fix revert bug caused by bug 1175 fix
+* Fix CSS classes on minor, new, unpatrolled markers in enhanced RC
+* Set MySQL 4 boolean search back to 'and' mode by default
+* (bug 1193) Fix move-only page protection mode
+* Fix zhtable Makefile to include the traditional manual table
+* Add memcache timeout for the zh conversion tables
+* Allow user customization of the zh conversion tables through 
+  Mediawiki:zhconversiontable
+* Add zh-min-man (back) to language names list
+* Ported $wgCopyrightIcon setting from REL1_3A
+* (bug 1218) Show the original image on image pages if the thumbnail would be
+  bigger than the original image
+* (bug 1213) i18n of Special:Log labels
+* (bug 1013) Fix jbo, minnan in language names list
+* Added magic word MAG_NOTITLECONVERT to indicate that the title of the page
+  do not need to be converted. Useful in zh:
+* (bug 1224) Use proper date messages for date reformatter
+* (bug 1241) Don't show 'cont.' for first entry of the category list
+* (bug 1240) Special:Preferences was broken in Slovenian locale when
+  $wgUseDynamicDates is enabled
+* Added magic word MAG_NOCONTENTCONVERT to supress the conversion of the
+  content of an article. Useful in zh:
+* write-lock for updating the zh conversion tables in memcache
+* recursively parse subpages of MediaWiki:Zhconversiontable
+* (bug 1144) Fix export for fy language
+* make removal of an entry from zhconversiontable work
+* (bug 752) Don't insert newline in link title for url with %0a
+* Fix missing search box contents in MonoBook skin
+* Add option to forward search directly to an external URL (eg google)
+* Correctly highlight the fallback language variant when the selected 
+  variant is disabled. Used in zh: only for now.
+
+=== Beta 5 fixes ===
+
+* (bug 1124) Fix ImageGallery XHTML compliance
+* (bug 1186) news: in the middle of a word
+* (bug 1283) Use underlining and borders to highlight additions/deletions
+  in diff-view
+* Use user's local timezone in Special:Log display
+* Show filename for images in gallery by default (restore beta 3 behaviour)
+* (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
+* When using squid reverse proxy, cache the redirect to the Main_Page
+* (bug 1302) Fix Norwegian language file
+* (bug 1205) Fix broken article saving in PHP 5.1
+* (bug 1206) Implement CURRENTWEEK and CURRENTDOW magic keyword (will give
+  number of the week and number of the day).
+* (bug 1204) Blocks do not expire automatically
+* (bug 1184) expiry time of indefinite blocks shown as the current time
+* (bug 1317) Fix external links in image captions
+* (bug 1084) Fix logo not rendering centrally in IE
+* (bug 288) Fix tabs wrapping in IE6
+* (bug 119) Fix full-width tabs with RTL text in IE
+* (bug 1323) Fix logo rendering off-screen in IE with RTL language
+* Show "block" link in Special:Recentchanges for logged in users, too, if
+  wgUserSysopBans is true.
+* (bug 1326) Use content language for '1movedto2' in edit history
+* zh: Fix warning when HTTP_ACCEPT_LANGUAGE is not set
+* zh: Fix double conversion for zh-sg and zh-hk
+* (bug 1132) Fix concatenation of link lists in refreshLinks
+* (bug 1101) Fix memory leak in refreshLinks
+* (bug 1339) Fix order of @imports in Cologne Blue CSS
+* Don't try to create links without namespaces ([[Category:]] link bug)
+* Memcached data compression fixes
+* Several valid XHTML fixes
+* (bug 624) Fix IE freezing rendering whilst waiting for CSS with MonoBook
+* (bug 211) Fix tabbed preferences with XHTML MIME type 
+* Fix for script execution vulnerability.
+
+=== Beta 6 fixes ===
+
+* (bug 1335) implement 'tooltip-watch' in Language.php
+* Fix linktrail for nn: language
+* (bug 1214) Fix prev/next links in Special:Log
+* (bug 1354) Fix linktrail for fo: language
+* (bug 512) Reload generated CSS on preference change
+* (bug 63) Fix displaying as if logged in after logout
+* Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
+* Skip message cache initialization on raw page view (quick hack)
+* Fix notice errors in wfDebugDieBacktrace() in XML callbacks
+* Suppress notice error on bogus timestamp input (returns epoch as before)
+* Remove unnecessary initialization and double-caching of parser variables
+* Call-tree output mode for profiling
+* (bug 730) configurable $wgRCMaxAge; don't try to update purged RC entries
+* Add $wgNoFollowLinks option to add rel="nofollow" on external links
+  (on by default)
+* (bug 1130) Show actual title when moving page instead of encoded one.
+* (bug 925) Fix headings containing <math>
+* (bug 1131) Fix headings containing interwiki links
+* (bug 1380) Update Nynorsk language file
+* (bug 1232) Fix sorting of cached Special:Wantedpages in miser mode
+* (bug 1217) Image within an image caption broke rendering
+* (bug 1384) Make patrol signs have the same width for page moves as for edits
+* (bug 1364) fix "clean up whitespace" in Title:SecureAndSplit
+* (bug 1389) i18n for proxyblocker message
+* Add fur/Furlan/Friulian to language names list
+* Add TitleMoveComplete hook on page renames
+* Allow simple comments for each translation rules in MW:Zhconversiontable
+* (bug 1402) Make link color of tab subject page link on talk page indicate whether article exists
+* (bug 1368) Fix SQL error on stopword/short word search w/ MySQL 3.x
+* Translated Hebrew namespace names
+* (bug 1429) Stop double-escaping of block comments; fix formatting
+* (bug 829) Fix URL-escaping on block success 
+* (bug 1228) Fix double-escaping on &amp; sequences in [enclosed] URLs
+* (bug 1435) Fixed many CSS errors
+* (bug 1457) Fix XHTML validation on category column list
+* (bug 1458) Don't save if edit form submission is incomplete
+* Logged-in edits and preview of user CSS/JS are now locked to a session token.
+* Per-user CSS and JavaScript subpage customizations now disabled by default.
+  They can be re-enabled via $wgAllowUserJs and $wgAllowUserCss.
+* Removed .ogg from the default uploads whitelist as an extra precaution.
+  If your web server is configured to serve Ogg files with the correct
+  Content-Type header, you can re-add it in LocalSettings.php:
+    $wgFileExtensions[] = 'ogg';
 
 === Caveats ===
 
@@ -42,10 +324,6 @@ produce 100% valid or well-formed XHTML output. Testers are welcome to
 set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
-
-The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
-underlying PHPTAL library. It will be automatically disabled when running
-on PHP5; the older look and feel will be used instead.
 
 
 For notes on 1.3.x and older releases, see HISTORY.
@@ -66,6 +344,12 @@ A MediaWiki-l mailing list has been set up distinct from the Wikipedia
 wikitech-l list:
 
   http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
 
 
 === IRC help ===

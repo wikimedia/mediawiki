@@ -1,5 +1,9 @@
 <?php
 
+if( !defined( 'MEDIAWIKI' ) ) die();
+
+require_once( 'includes/SkinTemplate.php' );
+
 /**
  * HTML template for Special:Userlogin form
  * @package MediaWiki
@@ -13,14 +17,14 @@ class UserloginTemplate extends QuickTemplate {
 	<p class='error'><?php $this->html('error') ?></p>
 <?php } else { ?>
 	<h2><?php $this->msg('login'      ) ?>:</h2>
-	<p><?php  $this->msg('loginprompt') ?></p>
+	<?php  $this->msgWiki('loginprompt') ?>
 <?php } ?>
 <form name="userlogin" id="userlogin" method="post" action="<?php $this->text('action') ?>">
 	<table border='0'>
 		<tr>
-			<td align='right'><?php $this->msg('yourname') ?>:</td>
+			<td align='right'><label for='wpName'><?php $this->msg('yourname') ?>:</label></td>
 			<td align='left'>
-				<input tabindex='1' type='text' name="wpName"
+				<input tabindex='1' type='text' name="wpName" id="wpName"
 					value="<?php $this->text('name') ?>" size='20' />
 			</td>
 			<td align='left'>
@@ -29,9 +33,9 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><?php $this->msg('yourpassword') ?>:</td>
+			<td align='right'><label for='wpPassword'><?php $this->msg('yourpassword') ?>:</label></td>
 			<td align='left'>
-				<input tabindex='2' type='password' name="wpPassword"
+				<input tabindex='2' type='password' name="wpPassword" id="wpPassword"
 					value="<?php $this->text('password') ?>" size='20' />
 			</td>
 			<td align='left'>
@@ -46,9 +50,9 @@ class UserloginTemplate extends QuickTemplate {
 			<td colspan='3'>&nbsp;</td>
 		</tr>
 		<tr>
-			<td align='right'><?php $this->msg('yourpasswordagain') ?>:</td>
+			<td align='right'><label for='wpRetype'><?php $this->msg('yourpasswordagain') ?>:</label></td>
 			<td align='left'>
-				<input tabindex='5' type='password' name="wpRetype"
+				<input tabindex='5' type='password' name="wpRetype" id="wpRetype"
 					value="<?php $this->text('retype') ?>" 
 					size='20' />
 			</td>
@@ -56,18 +60,18 @@ class UserloginTemplate extends QuickTemplate {
 		</tr>
 		<tr>
 			<?php if( $this->data['useemail'] ) { ?>
-				<td align='right'><?php $this->msg('youremail') ?>:</td>
+				<td align='right'><label for='wpEmail'><?php $this->msg('youremail') ?>:</label></td>
 				<td align='left'>
-					<input tabindex='7' type='text' name="wpEmail"
+					<input tabindex='7' type='text' name="wpEmail" id="wpEmail"
 						value="<?php $this->text('email') ?>" size='20' />
 				</td>
 			<?php } ?>
 			<?php if( $this->data['userealname'] ) { ?>
 				</tr>
 				<tr>
-					<td align='right'><?php $this->msg('yourrealname') ?>:</td>
+					<td align='right'><label for='wpRealName'><?php $this->msg('yourrealname') ?>:</label></td>
 					<td align='left'>
-						<input tabindex='8' type='text' name="wpRealName" 
+						<input tabindex='8' type='text' name="wpRealName" id="wpRealName"
 							value="<?php $this->text('realname') ?>" size='20' />
 					</td>
 			<?php } ?>
@@ -98,7 +102,7 @@ class UserloginTemplate extends QuickTemplate {
 	</table>
 </form>
 <?php
-		$this->msgHtml( 'loginend' );
+		$this->msgWiki( 'loginend' );
 	}
 }
 

@@ -1,1 +1,1 @@
- ALTER TABLE `user` ADD INDEX ( `user_name` );
+ ALTER TABLE /*$wgDBprefix*/user ADD INDEX ( `user_name` );

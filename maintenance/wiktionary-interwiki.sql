@@ -1,7 +1,7 @@
 -- For convenience, here are the *in-project* interwiki prefixes
 -- for Wikipedia.
 
-REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
+REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('w','http://www.wikipedia.org/wiki/$1',1),
 ('m','http://meta.wikipedia.org/wiki/$1',1),
 ('meta','http://meta.wikipedia.org/wiki/$1',1),

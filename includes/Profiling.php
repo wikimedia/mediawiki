@@ -103,6 +103,80 @@ class Profiler
 			return "No profiling output\n";
 		}
 		$this->close();
+		
+		global $wgProfileCallTree;
+		if( $wgProfileCallTree ) {
+			return $this->getCallTree();
+		} else {
+			return $this->getFunctionReport();
+		}
+	}
+	
+	function getCallTree( $start = 0 ) {
+		return implode( '',
+			array_map(
+				array( &$this, 'getCallTreeLine' ),
+				$this->remapCallTree( $this->mStack ) ) );
+	}
+	
+	function remapCallTree( $stack ) {
+		if( count( $stack ) < 2 ) {
+			return $stack;
+		}
+		$outputs = array();
+		for( $max = count( $stack ) - 1; $max > 0; ) {
+			/* Find all items under this entry */
+			$level = $stack[$max][1];
+			$working = array();
+			for( $i = $max - 1; $i >= 0; $i-- ) {
+				if( $stack[$i][1] > $level ) {
+					$working[] = $stack[$i];
+				} else {
+					break;
+				}
+			}
+			$working = $this->remapCallTree( array_reverse( $working ) );
+			$output = array();
+			foreach( $working as $item ) {
+				array_push( $output, $item );
+			}
+			array_unshift( $output, $stack[$max] );
+			$max = $i;
+			
+			array_unshift( $outputs, $output );
+		}
+		$final = array();
+		foreach( $outputs as $output ) {
+			foreach( $output as $item ) {
+				$final[] = $item;
+			}
+		}
+		return $final;
+	}
+	
+	function getCallTreeLine( $entry ) {
+		list( $fname, $level, $start, $x, $end ) = $entry;
+		$delta = $this->microDelta( $start, $end );
+		$space = str_repeat( ' ', $level );
+		
+		# The ugly double sprintf is to work around a PHP bug,
+		# which has been fixed in recent releases.
+		return sprintf( "%10s %s %s\n",
+			trim( sprintf( "%7.3f", $delta * 1000.0 ) ),
+			$space, $fname );
+	}
+	
+	function micro2Float( $micro ) {
+		list( $whole, $fractional ) = explode( ' ', $micro );
+		return (float)$whole + (float)$fractional;
+	}
+	
+	function microDelta( $start, $end ) {
+		return $this->micro2Float( $end ) -
+		       $this->micro2Float( $start );
+	}
+	
+	function getFunctionReport() {		
 		$width = 125;
 		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f) [%d]\n";
 		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
@@ -227,6 +301,7 @@ class Profiler
 	 * @static
 	 */
 	function logToDB($name, $timeSum, $eventCount) {
+		$fname = 'Profiler::logToDB';
 		$dbw =& wfGetDB( DB_MASTER );
 		$profiling = $dbw->tableName( 'profiling' );
 

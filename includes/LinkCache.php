@@ -73,10 +73,6 @@ class LinkCache {
 			$this->mBadLinks[$title] = 1;
 		}
 	}
-	
-	function addBadLinkObj( &$nt ) {
-		$this->addBadLink( $nt->getPrefixedDBkey() );
-	}
 
 	function addImageLink( $title ) {
 		if ( $this->mActive ) { $this->mImageLinks[$title] = 1; }
@@ -214,8 +210,6 @@ class LinkCache {
 			$this->addBadLink( $s->bl_to );
 		}
 		
-		$this->mOldBadLinks = $this->mBadLinks;
-		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
 
 		if ( $wgEnablePersistentLC ) {
@@ -286,12 +280,25 @@ class LinkCache {
 	}
 
 	/**
-	 * Clears cache but leaves old preFill copies alone
+	 * Clears cache
 	 */
 	function clear() {
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
+		$this->mCategoryLinks = array();
+		$this->mOldGoodLinks = array();
+		$this->mOldBadLinks = array();
+		$this->mOldImageLinks = array();
+	}
+
+	/** 
+	 * Swaps old and current link registers
+	 */
+	function swapRegisters() {
+		swap( $this->mGoodLinks, $this->mOldGoodLinks );
+		swap( $this->mBadLinks, $this->mOldBadLinks );
+		swap( $this->mImageLinks, $this->mOldImageLinks );
 	}
 
 	/**

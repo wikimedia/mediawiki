@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4-beta0';
+$wgVersion			= '1.4beta6';
 
 /** 
  * Name of the site.
@@ -247,6 +247,9 @@ $wgSharedDB = null;
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 
+# How long to wait for a slave to catch up to the master 
+$wgMasterWaitTimeout = 10;
+
 # Sysop SQL queries
 #   The sql user shouldn't have too many rights other the database, restrict
 #   it to SELECT only on 'cur' table for example
@@ -352,9 +355,11 @@ $wgPartialMessageCache = false;
 # supports this function, to convert between Traditional and Simplified
 # Chinese. This flag is meant to isolate the (untested) conversion 
 # code, so that if it breaks, only zh will be affected
-$wgDisableLangConversion = true;
+$wgDisableLangConversion = false;
 
 # Whether to use zhdaemon to perform Chinese text processing
+# zhdaemon is under developement, so normally you don't want to
+# use it unless for testing
 $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
@@ -506,10 +511,13 @@ $wgCookieExpiration = 2592000;
 # A list of proxy servers (ips if possible) to purge on changes
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
+$wgSquidServersNoPurge = array();
 
 # Maximum number of titles to purge in any one client operation
 $wgMaxSquidPurgeTitles = 400;
 
+# When purging, use persistent connections and don't wait for the response
+$wgSquidFastPurge = true;
 
 # Cookie settings:
 #   Set to set an explicit domain on the login cookies
@@ -539,6 +547,8 @@ $wgProfileLimit = 0.0; # Only record profiling info for pages that took longer t
 $wgProfileOnly = false; # Don't put non-profiling info into log file
 $wgProfileToDatabase = false; # Log sums from profiling into "profiling" table in db.
 $wgProfileSampleRate = 1; # Only profile every n requests when profiling is turned on
+$wgProfileCallTree = false; # If true, print a raw call tree instead of per-function report
+
 $wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
 $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut
 $wgDebugSquid = false; # Lots of debugging output from SquidUpdate.php
@@ -549,6 +559,16 @@ $wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, th
 $wgDisableUploads = true; # Uploads have to be specially set up to be secure
 $wgRemoteUploads = false; # Set to true to enable the upload _link_ while local uploads are disabled. Assumes that the special page link will be bounced to another server where uploads do work.
 $wgDisableAnonTalk = false;
+$wgUseDumbLinkUpdate = false; # Do DELETE/INSERT for link updates instead of incremental
+
+/**
+ * Anti-lock flags - bitfield
+ *   ALF_PRELOAD_LINKS
+ *       Preload links during link update for save
+ *   ALF_PRELOAD_EXISTENCE
+ *       Preload cur_id during replaceLinkHolders
+ */
+$wgAntiLockFlags = 0;
 
 # Path to the GNU diff3 utility. If the file doesn't exist,
 # edit conflicts will fall back to the old behaviour (no merging).
@@ -563,7 +583,7 @@ $wgCompressRevisions = false;
 
 # This is the list of preferred extensions for uploading files. Uploading
 # files with extensions not in this list will trigger a warning.
-$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'ogg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
 # Files with these extensions will never be allowed as uploads.
 $wgFileBlacklist = array(
@@ -640,6 +660,10 @@ $wgRCSeconds = false;
 # Log IP addresses in the recentchanges table
 $wgPutIPinRC = false;
 
+# Recentchanges items are periodically purged;
+# entries older than this many seconds will go.
+$wgRCMaxAge = 7 * 24 * 3600; # our one week cutoff
+
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
@@ -650,6 +674,9 @@ $wgRightsPage = NULL;
 $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
+
+# Set this to some HTML to override the rights icon with an arbitrary logo
+$wgCopyrightIcon = NULL;
 
 # Set this to true if you want detailed copyright information forms on Upload.
 $wgUseCopyrightUpload = false;
@@ -740,10 +767,14 @@ $wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
 
 # Allow user Javascript page?
-$wgAllowUserJs = true;
+# This enables a lot of neat customizations, but may
+# increase security risk to users and server load.
+$wgAllowUserJs = false;
 
 # Allow user Cascading Style Sheets (CSS)?
-$wgAllowUserCss = true;
+# This enables a lot of neat customizations, but may
+# increase security risk to users and server load.
+$wgAllowUserCss = false;
 
 # Use the site's Javascript page?
 $wgUseSiteJs = true;
@@ -772,6 +803,20 @@ $wgUseExternalDiffEngine = false;
 
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
+
+# Set maximum number of results to return in syndication feeds
+# (RSS, Atom) for eg Recentchanges, Newpages.
+$wgFeedLimit = 50;
+
+# _Minimum_ timeout for cached Recentchanges feed, in seconds.
+# A cached version will continue to be served out even if changes
+# are made, until this many seconds runs out since the last render.
+$wgFeedCacheTimeout = 60;
+
+# When generating Recentchanges RSS/Atom feed, diffs will not be
+# generated for pages larger than this size.
+$wgFeedDiffCutoff = 32768;
+
 
 # Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
 # you can create new ones here, for example, to import Help files in other languages.
@@ -842,14 +887,26 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
+$wgLocaltimezone = null;
 
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
+/*
+When translating messages with wfMsg(), it is not always clear what should
+be considered UI messages and what shoud be content messages. 
 
-$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+For example, for regular wikipedia site like en, there should be only one 
+'mainpage', therefore when getting the link of 'mainpage', we should 
+treate it as content of the site and call wfMsgForContent(), while for 
+rendering the text of the link, we call wfMsg(). The code in default
+behaves this way. However, sites like common do offer different versions 
+of 'mainpage' and the like for different languages. This array provides a
+way to override the default behavior. For example, to allow language specific
+mainpage and community portal, set
+
+$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+
+*/
+$wgForceUIMsgAsContentMsg = array();
+
 
 /**
  * Authentication plugin.
@@ -868,6 +925,34 @@ $wgAuth = null;
 	
 $wgHooks = array();
 	
+
+/**
+ * Disable internal search so that extensions can implement it.
+ */
+
+$wgDisableInternalSearch = false;
+
+/**
+ * Set this to a URL to forward search requests to some external location.
+ * If the URL includes '$1', this will be replaced with the URL-encoded
+ * search term.
+ * 
+ * For example, to forward to Google you'd have something like:
+ * $wgSearchForwardUrl = 'http://www.google.com/search?q=$1' .
+ *                       '&domains=http://example.com' .
+ *                       '&sitesearch=http://example.com' .
+ *                       '&ie=utf-8&oe=utf-8';
+ */
+$wgSearchForwardUrl = null;
+
+/**
+ * If true, external URL links in wiki text will be given the
+ * rel="nofollow" attribute as a hint to search engines that
+ * they should not be followed for ranking purposes as they
+ * are user-supplied and thus subject to spamming.
+ */
+$wgNoFollowLinks = true;
+
 } else {
 	die();
 }

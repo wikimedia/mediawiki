@@ -7,6 +7,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /**
  * @todo document
  * @package MediaWiki
@@ -44,7 +47,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "</td><td align='right'>" ;
 
 		$s .= "<font size='-1'><span id='langlinks'>" ;
-		$s .= str_replace ( "<br>" , "" , $this->otherLanguages() );
+		$s .= str_replace ( "<br />" , "" , $this->otherLanguages() );
 		$cat = $this->getCategoryLinks();
 		if( $cat ) $s .= "<br />$cat\n";
 		$s .= "<br />" . $this->pageTitleLinks();
@@ -96,7 +99,7 @@ class SkinCologneBlue extends Skin {
 	function doGetUserStyles()
 	{
 		global $wgUser, $wgOut, $wgStyleSheetPath;
-		$s = '';
+		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right
@@ -111,7 +114,6 @@ class SkinCologneBlue extends Skin {
 			  "#article { margin-left:148px; margin-right: 4px; } \n" .
 			  "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
 		}
-		$s .= parent::doGetUserStyles();
 		return $s;
 	}
 	function sysLinks()
@@ -147,6 +149,21 @@ class SkinCologneBlue extends Skin {
 			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
 		}
 
+		/* show links to different language variants */
+		global $wgDisableLangConversion;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			$actstr = '';
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$s .= ' | <a href="' . $wgTitle->getLocalUrl( 'variant=' . $code ) . '">' . $varname . '</a>';
+			}
+		}
+
+
+
 		return $s;
 	}
 
@@ -170,9 +187,10 @@ class SkinCologneBlue extends Skin {
 
 		foreach ( $wgNavigationLinks as $link ) {
 			$msg = wfMsgForContent( $link['href'] );
-			if ( $msg != '-' ) {
+			$text = wfMsg( $link['text'] );
+			if ( $msg != '-' && $text != '-' ) {
 				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
-					wfMsg( $link['text'] ) . '</a>' . $sep;
+					htmlspecialchars( $text ) . '</a>' . $sep;
 			}
 		}
 

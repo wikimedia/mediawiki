@@ -11,6 +11,13 @@ require_once( 'normal/UtfNormal.php' );
 $wgTitleInterwikiCache = array();
 define ( 'GAID_FOR_UPDATE', 1 );
 
+# Title::newFromTitle maintains a cache to avoid
+# expensive re-normalization of commonly used titles.
+# On a batch operation this can become a memory leak
+# if not bounded. After hitting this many titles,
+# reset the cache.
+define( 'MW_TITLECACHE_MAX', 1000 );
+
 /**
  * Title class
  * - Represents a title, which may contain an interwiki designation or namespace
@@ -128,6 +135,10 @@ class Title {
 
 		if( $t->secureAndSplit() ) {
 			if( $defaultNamespace == 0 ) {
+				if( count( $titleCache ) >= MW_TITLECACHE_MAX ) {
+					# Avoid memory leaks on mass operations...
+					$titleCache = array();
+				}
 				$titleCache[$text] =& $t;
 			}
 			wfProfileOut( $fname );
@@ -837,7 +848,7 @@ class Title {
 			/** If anon users can create an account,
 			    they need to reach the login page first! */
 			if( $wgUser->isAllowed( 'createaccount' )
-			    && $this->mId == NS_SPECIAL
+			    && $this->getNamespace() == NS_SPECIAL
 			    && $this->getText() == 'Userlogin' ) {
 				return true;
 			}
@@ -1060,7 +1071,7 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( '/[\\s_]+/', '_', $this->mDbkeyform );
+		$t = preg_replace( '/[ _]+/', '_', $this->mDbkeyform );
 		$t = trim( $t, '_' );
 
 		if ( '' == $t ) {
@@ -1169,6 +1180,7 @@ class Title {
 		# We shouldn't need to query the DB for the size.
 		#$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
 		if ( strlen( $r ) > 255 ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1184,6 +1196,18 @@ class Title {
 			$t = $wgContLang->ucfirst( $r );
 		} else {
 			$t = $r;
+		}
+		
+		/**
+		 * Can't make a link to a namespace alone...
+		 * "empty" local links can only be self-links
+		 * with a fragment identifier.
+		 */
+		if( $t == '' &&
+			$this->mInterwiki == '' &&
+			$this->mNamespace != NS_MAIN ) {
+			wfProfileOut( $fname );
+			return false;
 		}
 		
 		# Fill fields
@@ -1339,7 +1363,9 @@ class Title {
 			return 'badarticleerror';
 		}
 
-		if ( $auth && ( !$this->userCanEdit() || !$nt->userCanEdit() ) ) {
+		if ( $auth && (
+				!$this->userCanEdit() || !$nt->userCanEdit() ||
+				!$this->userCanMove() || !$nt->userCanMove() ) ) {
 			return 'protectedpage';
 		}
 		
@@ -1359,7 +1385,8 @@ class Title {
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
 		
 		$dbw =& wfGetDB( DB_MASTER );
-		$sql = "UPDATE categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
+		$categorylinks = $dbw->tableName( 'categorylinks' );
+		$sql = "UPDATE $categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
 			" WHERE cl_from=" . $dbw->addQuotes( $this->getArticleID() ) .
 			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
 		$dbw->query( $sql, 'SpecialMovepage::doSubmit' );
@@ -1381,6 +1408,7 @@ class Title {
 		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
+		wfRunHooks( 'TitleMoveComplete', $this, $nt, $wgUser, $oldid, $newid );
 		return true;
 	}
 	
@@ -1395,7 +1423,7 @@ class Title {
 	/* private */ function moveOverExistingRedirect( &$nt ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
-		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
@@ -1404,6 +1432,12 @@ class Title {
 		$dbw =& wfGetDB( DB_MASTER );
 		$links = $dbw->tableName( 'links' );
 
+		# Delete the old redirect. We don't save it to history since
+		# by definition if we've got here it's rather uninteresting.
+		# We have to remove it so that the next step doesn't trigger
+		# a conflict on the unique namespace+title index...
+		$dbw->delete( 'cur', array( 'cur_id' => $newid ), $fname );
+		
 		# Change the name of the target page:
 		$dbw->update( 'cur',
 			/* SET */ array( 
@@ -1416,12 +1450,11 @@ class Title {
 		);
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
-		# Repurpose the old redirect. We don't save it to history since
-		# by definition if we've got here it's rather uninteresting.
-		
+		# Recreate the redirect, this time in the other direction.
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->update( 'cur',
+		$dbw->insert( 'cur',
 			/* SET */ array(
+				'cur_id' => $newid,
 				'cur_touched' => $dbw->timestamp($now),
 				'cur_timestamp' => $dbw->timestamp($now),
 				'inverse_timestamp' => $won,
@@ -1437,7 +1470,6 @@ class Title {
 				'cur_is_redirect' => 1,
 				'cur_is_new' => 1
 			),
-			/* WHERE */ array( 'cur_id' => $newid ),
 			$fname
 		);
 		
@@ -1526,7 +1558,7 @@ class Title {
 	/* private */ function moveToNewTitle( &$nt, &$newid ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
 		$fname = 'MovePageForm::moveToNewTitle';
-		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();

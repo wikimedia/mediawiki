@@ -91,11 +91,6 @@ class OutputPage {
 			wfDebug( "CACHE DISABLED\n", false );
 			return;
 		}
-		if( preg_match( '/MSIE ([1-4]|5\.0)/', $_SERVER["HTTP_USER_AGENT"] ) ) {
-			# IE 5.0 has probs with our caching
-			wfDebug( "-- bad client, not caching\n", false );
-			return;
-		}
 		if( $wgUser->getOption( 'nocache' ) ) {
 			wfDebug( "USER DISABLED CACHE\n", false );
 			return;
@@ -111,7 +106,7 @@ class OutputPage {
 			$ismodsince = wfTimestamp( TS_MW, strtotime( $modsince ) );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false );
-			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
+			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
 				$this->mLastModified = $lastmod;
@@ -525,8 +520,6 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
-		$this->suppressQuickbar();
-		
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 
@@ -807,9 +800,7 @@ class OutputPage {
 			$link = $wgRequest->escapeAppendQuery( 'feed=atom' );
 			$ret .= "<link rel='alternate' type='application/rss+atom' title='Atom 0.3' href='$link' />\n";
 		}
-		# FIXME: get these working
-		# $fix = htmlspecialchars( $wgStylePath . "/ie-png-fix.js" );
-		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'>< /script><![endif]-->";
+
 		return $ret;
 	}
 	

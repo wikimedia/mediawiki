@@ -23,7 +23,7 @@
 -- cur and old need (user,timestamp) index for contribs
 -- cur and old need (user_text,timestamp) index for contribs
 
-ALTER TABLE cur
+ALTER TABLE /*$wgDBprefix*/cur
   DROP INDEX cur_user,
   DROP INDEX cur_user_text,
   ADD COLUMN cur_random real unsigned NOT NULL,
@@ -33,11 +33,11 @@ ALTER TABLE cur
   ADD INDEX user_timestamp (cur_user,inverse_timestamp),
   ADD INDEX usertext_timestamp (cur_user_text,inverse_timestamp);
 
-UPDATE cur SET
+UPDATE /*$wgDBprefix*/cur SET
   inverse_timestamp=99999999999999-cur_timestamp,
   cur_random=RAND();
 
-ALTER TABLE old
+ALTER TABLE /*$wgDBprefix*/old
   DROP INDEX old_user,
   DROP INDEX old_user_text,
   ADD COLUMN inverse_timestamp char(14) binary NOT NULL default '',
@@ -45,10 +45,10 @@ ALTER TABLE old
   ADD INDEX user_timestamp (old_user,inverse_timestamp),
   ADD INDEX usertext_timestamp (old_user_text,inverse_timestamp);
 
-UPDATE old SET
+UPDATE /*$wgDBprefix*/old SET
   inverse_timestamp=99999999999999-old_timestamp;
 
 -- If leaving wiki publicly accessible in read-only mode during
 -- the upgrade, comment out the below line; leave 'random' table
 -- in place until the new software is installed.
-DROP TABLE random;
+DROP TABLE /*$wgDBprefix*/random;

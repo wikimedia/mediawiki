@@ -1,7 +1,7 @@
 -- Add the logging table and adjust recentchanges to accomodate special pages
 -- 2004-08-24
 
-CREATE TABLE logging (
+CREATE TABLE /*$wgDBprefix*/logging (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.

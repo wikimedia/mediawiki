@@ -66,10 +66,14 @@ class EditPage {
 		}
 		if ( $this->save ) {
 			$this->editForm( 'save' );
-		} else if ( $this->preview or $wgUser->getOption('previewonfirst')) {
+		} else if ( $this->preview ) {
 			$this->editForm( 'preview' );
 		} else { # First time through
-			$this->editForm( 'initial' );
+			if( $wgUser->getOption('previewonfirst') ) {
+				$this->editForm( 'preview', true );
+			} else {
+				$this->editForm( 'initial', true );
+			}
 		}
 	}
 
@@ -77,20 +81,49 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
-		# These fields need to be checked for encoding.
-		# Also remove trailing whitespace, but don't remove _initial_
-		# whitespace from the text boxes. This may be significant formatting.
-		$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
-		$this->textbox2 = rtrim( $request->getText( 'wpTextbox2' ) );
-		$this->summary = trim( $request->getText( 'wpSummary' ) );
-
-		$this->edittime = $request->getVal( 'wpEdittime' );
-		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = '';
-
-		$this->preview = $request->getCheck( 'wpPreview' );
-		$this->save = $request->wasPosted() && !$this->preview;
-		$this->minoredit = $request->getCheck( 'wpMinoredit' );
-		$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		if( $request->wasPosted() ) {
+			# These fields need to be checked for encoding.
+			# Also remove trailing whitespace, but don't remove _initial_
+			# whitespace from the text boxes. This may be significant formatting.
+			$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
+			$this->textbox2 = rtrim( $request->getText( 'wpTextbox2' ) );
+			$this->summary  =  trim( $request->getText( 'wpSummary'  ) );
+	
+			$this->edittime = $request->getVal( 'wpEdittime' );
+			if( is_null( $this->edittime ) ) {
+				# If the form is incomplete, force to preview.
+				$this->preview  = true;
+			} else {
+				if( $this->tokenOk( $request ) ) {
+					# Some browsers will not report any submit button
+					# if the user hits enter in the comment box.
+					# The unmarked state will be assumed to be a save,
+					# if the form seems otherwise complete.
+					$this->preview = $request->getCheck( 'wpPreview' );
+				} else {
+					# Page might be a hack attempt posted from
+					# an external site. Preview instead of saving.
+					$this->preview = true;
+				}
+			}
+			$this->save    = !$this->preview;
+			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
+				$this->edittime = null;
+			}
+	
+			$this->minoredit = $request->getCheck( 'wpMinoredit' );
+			$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		} else {
+			# Not a posted form? Start with nothing.
+			$this->textbox1  = '';
+			$this->textbox2  = '';
+			$this->summary   = '';
+			$this->edittime  = '';
+			$this->preview   = false;
+			$this->save      = false;
+			$this->minoredit = false;
+			$this->watchthis = false;
+		}
 
 		$this->oldid = $request->getInt( 'oldid' );
 
@@ -99,15 +132,24 @@ class EditPage {
 	}
 
 	/**
-	 * Since there is only one text field on the edit form,
-	 * pressing <enter> will cause the form to be submitted, but
-	 * the submit button value won't appear in the query, so we
-	 * Fake it here before going back to edit().  This is kind of
-	 * ugly, but it helps some old URLs to still work.
+	 * Make sure the form isn't faking a user's credentials.
+	 *
+	 * @param WebRequest $request
+	 * @return bool
+	 * @access private
 	 */
+	function tokenOk( &$request ) {
+		global $wgUser;
+		if( $wgUser->getId() == 0 ) {
+			# Anonymous users may not have a session
+			# open. Don't tokenize.
+			return true;
+		} else {
+			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		}
+	}
+	
 	function submit() {
-		if( !$this->preview ) $this->save = true;
-
 		$this->edit();
 	}
 
@@ -119,8 +161,9 @@ class EditPage {
 	 * the newly-edited page.
 	 *
 	 * @param string $formtype Type of form either : save, initial or preview
+	 * @param bool $firsttime True to load form data from db
 	 */
-	function editForm( $formtype ) {
+	function editForm( $formtype, $firsttime = false ) {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgContLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
@@ -149,7 +192,7 @@ class EditPage {
 		if ( 'save' == $formtype ) {
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-				$this->spamPage ( $matches );
+				$this->spamPage ( $matches[0] );
 				return;
 			}
 			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
@@ -245,14 +288,14 @@ class EditPage {
 					}
 				}
 				
-				if (wfRunHooks('ArticleSave', $this, $wgUser, $text, $this->summary,
+				if (wfRunHooks('ArticleSave', $this->mArticle, $wgUser, $text, $this->summary,
 							   $this->minoredit, $this->watchthis, $sectionanchor))
 				{
 					# update the article here
 					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 													   $this->watchthis, '', $sectionanchor ))
 					{
-						wfRunHooks('ArticleSaveComplete', $this, $wgUser, $text, $this->summary,
+						wfRunHooks('ArticleSaveComplete', $this->mArticle, $wgUser, $text, $this->summary,
 								   $this->minoredit, $this->watchthis, $sectionanchor);
 						return;
 					}
@@ -264,7 +307,7 @@ class EditPage {
 		# First time through: get contents, set time for conflict
 		# checking, etc.
 
-		if ( 'initial' == $formtype ) {
+		if ( 'initial' == $formtype || $firsttime ) {
 			$this->edittime = $this->mArticle->getTimestamp();
 			$this->textbox1 = $this->mArticle->getContent( true );
 			$this->summary = '';
@@ -292,11 +335,11 @@ class EditPage {
 					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
 				}
 				if(!$this->preview) {
-					$sectitle=preg_match("/^=+(.*?)=+/mi",
-				  	$this->textbox1,
-				  	$matches);
-					if( !empty( $matches[1] ) ) {
-						$this->summary = "/* ". trim($matches[1])." */ ";
+					preg_match( "/^(=+)(.+)\\1/mi",
+						$this->textbox1,
+						$matches );
+					if( !empty( $matches[2] ) ) {
+						$this->summary = "/* ". trim($matches[2])." */ ";
 					}
 				}
 			} else {
@@ -424,11 +467,6 @@ class EditPage {
 				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
-				# if user want to see preview when he edit an article
-				if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
-					$this->textbox1 = $this->mArticle->getContent(true);
-				}
-
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
 						$wgTitle, $parserOptions );		
 				
@@ -501,6 +539,20 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
+		if ( 0 != $wgUser->getID() ) {
+			/**
+			 * To make it harder for someone to slip a user a page
+			 * which submits an edit form to the wiki without their
+			 * knowledge, a random token is associated with the login
+			 * session. If it's not passed back with the submission,
+			 * we won't save the page, or render user JavaScript and
+			 * CSS previews.
+			 */
+			$token = htmlspecialchars( $wgUser->editToken() );
+			$wgOut->addHTML( "
+<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+		}
+		
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
@@ -563,7 +615,7 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 	/**
 	 * @todo document
 	 */
-	function spamPage ( $matches = array() )
+	function spamPage ( $match = false )
 	{
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
@@ -571,8 +623,8 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'spamprotectiontext' ) );
-		if ( isset ( $matches[0] ) ) {
-			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$matches[0]}</nowiki>" ) );
+		if ( $match ) {
+			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
 		}
 		$wgOut->returnToMain( false );
 	}

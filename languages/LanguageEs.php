@@ -142,8 +142,8 @@ require_once( "LanguageUtf8.php" );
 "tog-editwidth" => "La caja de edición tiene el ancho máximo",
 "tog-editondblclick" => "Editar páginas con doble click (JavaScript)",
 "tog-editsection"=>"Habilitar la edicion de secciones usando el enlace [editar]",
-"tog-editsectiononrightclick"=>"Habilitar la edición de secciones presionando el boton de la derecha<br> en los titulos de secciones (JavaScript)",
-"tog-showtoc"=>"Mostrar la tabla de contenidos<br>(para paginas con mas de 3 encabezados)",
+"tog-editsectiononrightclick"=>"Habilitar la edición de secciones presionando el boton de la derecha<br /> en los titulos de secciones (JavaScript)",
+"tog-showtoc"=>"Mostrar la tabla de contenidos<br />(para paginas con mas de 3 encabezados)",
 "tog-watchdefault" => "Vigilar artículos nuevos y modificados",
 "tog-minordefault" => "Marcar todas las ediciones como menores por defecto",
 "tog-previewontop" => "Mostrar la previsualización antes de la caja de edición en lugar de después",
@@ -336,8 +336,8 @@ No olvides perzonalizar tus preferencia de $wgSitename.",
 "yourpasswordagain" => "Repite tu contraseña",
 "newusersonly"	=> " (sólo usuarios nuevos)",
 "remembermypassword" => "Quiero que recuerden mi contraseña entre sesiones.",
-"loginproblem"	=> "<b>Hubo un problema con tu entrada.</b><br>¡Inténtalo otra vez!",
-"alreadyloggedin" => "<font color=red><b>Usuario $1, ya entraste!</b></font><br>\n",
+"loginproblem"	=> "<b>Hubo un problema con tu entrada.</b><br />¡Inténtalo otra vez!",
+"alreadyloggedin" => "<font color=red><b>Usuario $1, ya entraste!</b></font><br />\n",
 
 "login"			=> "Registrarse/Entrar",
 "userlogin"		=> "Registrarse/Entrar",
@@ -378,7 +378,7 @@ Por favor entra otra vez después de que la recibas.",
 "showpreview"	=> "Mostrar previsualización",
 "blockedtitle"	=> "El usuario está bloqueado",
 "blockedtext"	=> "Tu nombre de usuario o dirección IP ha sido bloqueada por $1.
-La razón dada es la que sigue:<br>$2<p> Puedes contactar a $1 o a otro de los [[$wgMetaNamespace:Administradores|administradores]] para
+La razón dada es la que sigue:<br />$2<p> Puedes contactar a $1 o a otro de los [[$wgMetaNamespace:Administradores|administradores]] para
 discutir el bloqueo.",
 "newarticle"	=> "(Nuevo)",
 "newarticletext" => "$wgSitename es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[$wgMetaNamespace:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
@@ -407,15 +407,15 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>\n",
 "yourdiff"		=> "Diferencias",
-"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br><br>Nota por favor que todas las contribuciones a $wgSitename 
+"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br /><br />Nota por favor que todas las contribuciones a $wgSitename 
 se consideran hechas públicas bajo la Licencia de Documentación Libre GNU 
 (ver detalles en $1). 
  Si no deseas que la gente corrija tus escritos sin piedad 
-y los distribuya libremente, entonces no los pongas aquí. <br>
+y los distribuya libremente, entonces no los pongas aquí. <br />
 También tú nos aseguras que escribiste esto tú mismo y 
 eres dueño de los derechos de autor, o lo copiaste desde el dominio público 
 u otra fuente libre.
- <strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br>",
+ <strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />",
 "longpagewarning" => "ADVERTENCIA: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
 Por favor considera la posibilidad de descomponer esta página en secciones más pequeñas.",
 "readonlywarning" => "ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
@@ -476,8 +476,8 @@ que no están en el índice, o por especificar más de una palabra para buscar (
 que contengan todos los términos de una búsqueda aparecerán en el resultado).",
 "powersearch" => "Búsqueda",
 "powersearchtext" => "
-Buscar en espacios de nombre :<br>
-$1<br>
+Buscar en espacios de nombre :<br />
+$1<br />
 $2 Listar redirecciones   Buscar $3 $9",
 "searchdisabled" => "<p>Búsqueda en todo el texto ha sido desactivada temporalmente
 debido a carga alta del servidor; esperamos tenerla otra vez en linea despues de algunas actualizaciones de 
@@ -495,9 +495,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -676,7 +676,7 @@ creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 "deleteimgcompletely"		=> "borr",
 "imghistlegend" => "Simbología: (act) = esta es la imagen actual, (borr) = borrar
 esta versión antigua, (rev) = revertir a esta versión antigua.
-<br><i>Click en la fecha para ver imagen subida en esa fecha</i>.",
+<br /><i>Click en la fecha para ver imagen subida en esa fecha</i>.",
 "imagelinks"	=> "Enlaces a la imagen",
 "linkstoimage"	=> "Las siguientes páginas enlazan a esta imagen:",
 "nolinkstoimage" => "No hay páginas que enlacen a esta imagen.",
@@ -704,9 +704,9 @@ de los cuales <b>$2</b> son administradores (ver $3).",
 "maintenancebacklink"	=> "Volver a la Página de Mantenimiento",
 "disambiguations"	=> "Páginas de desambiguación",
 "disambiguationspage"	=> "$wgMetaNamespace:Enlaces a páginas de desambiguación",
-"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br>Una página es considerada de desambiguación si está enlazada desde $1.<br>Enlaces desde otros espacios de nombre (Como $wgMetaNamespace: o usuario:) <b>no</b> son listados aquí.",
+"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br />Una página es considerada de desambiguación si está enlazada desde $1.<br />Enlaces desde otros espacios de nombre (Como $wgMetaNamespace: o usuario:) <b>no</b> son listados aquí.",
 "doubleredirects"	=> "Redirecciones Dobles",
-"doubleredirectstext"	=> "<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br>\nCada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo \"real\" al que el primer redirect debería apuntar.",
+"doubleredirectstext"	=> "<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />\nCada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo \"real\" al que el primer redirect debería apuntar.",
 "brokenredirects"	=> "Redirecciones incorrectas",
 "brokenredirectstext"	=> "Las redirecciones siguientes enlazan a un artículo que no existe.",
 "selflinks"		=> "Páginas con autoenlaces",
@@ -909,7 +909,7 @@ ls páginas en particular que han sido objeto de vandalismo desde la dirección 
 "noblockreason" => "Debes dar una razón para el bloqueo.",
 "blockipsuccesssub" => "Bloqueo exitoso",
 "blockipsuccesstext" => "La direccion IP  \"$1\" ha sido bloqueada.
-<br>Ver [[Especial:Ipblocklist|lista de IP bloqueadas]] para revisar bloqueos.",
+<br />Ver [[Especial:Ipblocklist|lista de IP bloqueadas]] para revisar bloqueos.",
 "unblockip"		=> "Desbloquear dirección IP",
 "unblockiptext"	=> "Usa el formulario que sigue para restaurar el 
 acceso de escritura a una dirección IP previamente bloqueada.",
@@ -937,7 +937,7 @@ acceso de escritura a una dirección IP previamente bloqueada.",
 "lockdbsuccesssub" => "El bloqueo se ha realizado con éxito",
 "unlockdbsuccesssub" => "El desbloqueo se ha realizado con éxito",
 "lockdbsuccesstext" => "La base de datos de $wgSitename ha sido bloqueada.
-<br>Recuerda retirar el bloqueo después de completar las tareas de mantenimiento.",
+<br />Recuerda retirar el bloqueo después de completar las tareas de mantenimiento.",
 "unlockdbsuccesstext" => "La base de datos de $wgSitename ha sido desbloqueada.",
 
 # SQL query
