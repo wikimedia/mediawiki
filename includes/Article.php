@@ -394,12 +394,13 @@ class Article {
 	function loadContent( $noredir = false ) {
 		global $wgOut, $wgRequest;
 
+		if ( $this->mContentLoaded ) return;
+		
 		$dbr =& $this->getDB();
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$redirect = $wgRequest->getVal( 'redirect' );
 
-		if ( $this->mContentLoaded ) return;
 		$fname = 'Article::loadContent';
 
 		# Pre-fill content with error message so that if something
@@ -496,11 +497,8 @@ class Article {
 	 * Returns false on error
 	 *
 	 * @param integer $oldid
-	 * @uses $wgMwRedir
 	 */
 	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
-		global $wgMwRedir;
-
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
@@ -610,8 +608,8 @@ class Article {
 		}
 	}
 
-	/*
-	 * @todo document function
+	/**
+	 * Get the view count for this article
 	 */
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
@@ -628,13 +626,26 @@ class Article {
 	 * suitable for including in the article count)?
 	 */
 	function isCountable( $text ) {
-		global $wgUseCommaCount, $wgMwRedir;
+		global $wgUseCommaCount;
 
 		if ( 0 != $this->mTitle->getNamespace() ) { return 0; }
-		if ( $wgMwRedir->matchStart( $text ) ) { return 0; }
+		if ( $this->isRedirect( $text ) ) { return 0; }
 		$token = ($wgUseCommaCount ? ',' : '[[' );
 		if ( false === strstr( $text, $token ) ) { return 0; }
 		return 1;
+	}
+
+	/** 
+	 * Tests if the article text represents a redirect
+	 */
+	function isRedirect( $text = false ) {
+		if ( $text === false ) {
+			$this->loadContent();
+			$titleObj = Title::newFromRedirect( $this->mText );
+		} else {
+			$titleObj = Title::newFromRedirect( $text );
+		}
+		return $titleObj !== NULL;
 	}
 
 	/**
@@ -727,7 +738,7 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir, $wgOnlySysopsCanPatrol;
+		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgOnlySysopsCanPatrol;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		$sk = $wgUser->getSkin();
 
@@ -860,7 +871,7 @@ class Article {
 	 * @private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis ) {
-		global $wgOut, $wgUser, $wgMwRedir;
+		global $wgOut, $wgUser;
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = 'Article::insertNewArticle';
@@ -870,7 +881,7 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
-		if ( $wgMwRedir->matchStart( $text ) ) { $redir = 1; }
+		if ( $this->isRedirect( $text ) ) { $redir = 1; }
 		else { $redir = 0; }
 
 		$now = wfTimestampNow();
@@ -1007,7 +1018,11 @@ class Article {
 	}
 
 	/**
-	 * @todo document this function
+	 * Change an existing article. Puts the previous version back into the old table, updates RC 
+	 * and all necessary caches, mostly via the deferred update array.
+	 *
+	 * It is possible to call this function from a command-line script, but note that you should 
+	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		global $wgOut, $wgUser;
@@ -1019,9 +1034,15 @@ class Article {
 
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
 		if ( $minor && $wgUser->getID() ) { $me2 = 1; } else { $me2 = 0; }
-		if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ')[^\\n]+)/i', $text, $m ) ) {
-			$redir = 1;
-			$text = $m[1] . "\n"; # Remove all content but redirect
+		if ( $this->isRedirect( $text ) ) {
+			# Remove all content but redirect
+			# This could be done by reconstructing the redirect from a title given by 
+			# Title::newFromRedirect(), but then we wouldn't know which synonym the user
+			# wants to see
+			if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ')[^\\n]+)/i', $text, $m ) ) {
+				$redir = 1;
+				$text = $m[1] . "\n";
+			}
 		}
 		else { $redir = 0; }
 
@@ -1149,7 +1170,6 @@ class Article {
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '' ) {
 		global $wgOut, $wgUser, $wgLinkCache;
-		global $wgMwRedir;
 
 		$wgLinkCache = new LinkCache();
 		# Select for update
@@ -1166,7 +1186,7 @@ class Article {
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );
 
-		if( $wgMwRedir->matchStart( $text ) )
+		if( $this->isRedirect( $text ) )
 			$r = 'redirect=no';
 		else
 			$r = '';
@@ -1971,7 +1991,7 @@ class Article {
 	 * @param integer $minor whereas it's a minor modification
 	 */
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
-		global $wgUser, $wgMwRedir;
+		global $wgUser;
 		$fname = 'Article::quickEdit';
 		wfProfileIn( $fname );
 
@@ -2009,7 +2029,7 @@ class Article {
 			'cur_user_text' => $wgUser->getName(),
 			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
 			'cur_comment' => $comment,
-			'cur_is_redirect' => $wgMwRedir->matchStart( $text ) ? 1 : 0,
+			'cur_is_redirect' => $this->isRedirect( $text ) ? 1 : 0,
 			'cur_minor_edit' => intval($minor),
 			'cur_touched' => $dbw->timestamp($timestamp),
 		);
