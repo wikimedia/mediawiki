@@ -77,6 +77,10 @@ function wfSpecialUserlogin()
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
 	global $wpEmail, $wgDeferredUpdateList;
 
+        if (!cookieCheck()) {
+                return;
+        }
+
 	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
 		return;
@@ -122,6 +126,10 @@ function wfSpecialUserlogin()
 	global $wgUser, $wpName, $wpPassword, $wpRemember;
 	global $returnto;
 
+        if (!cookieCheck()) {
+                return;
+        }
+
 	if ( "" == $wpName ) {
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
@@ -160,7 +168,7 @@ function wfSpecialUserlogin()
 {
 	global $wgUser, $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
 	global $wgCookiePath, $wgCookieDomain, $wgDBname;
-	
+
 	if ( "" == $wpName ) {
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
@@ -355,6 +363,32 @@ $cambutton
 
 
 
+}
+
+/* private */ function cookieCheck() {
+
+	global $HTTP_COOKIE_VARS, $wgOut, $returnto;
+	global $wgDisableCookieCheck;
+
+	if ( $wgDisableCookieCheck ) {
+		return true;
+	}
+
+	# XXX: kind of crude check to see if cookies are enabled, but it works OK
+
+	if ( "" == $HTTP_COOKIE_VARS[session_name()])
+	{
+		# Don't go back to login page; they won't get time to
+		# enable cookies and send us one, so they'll get this msg again. Instead, 
+		# let them enable cookies on the error page, then go back to login page.
+		# XXX: wipes returnto, unfortunately.
+
+		$returnto = "Special:Userlogin";                
+		$wgOut->errorpage( "nocookies", "nocookiestext" );
+		return false;
+	}
+
+	return true;
 }
 
 ?>

@@ -121,6 +121,7 @@ $wgCookieExpiration = 2592000;
 # eg, "justthis.domain.org" or ".any.subdomain.net"
 $wgCookieDomain = "";
 $wgCookiePath = "/";
+$wgDisableCookieCheck = false;
 
 $wgAllowExternalImages = true;
 $wgMiserMode = false; # Disable database-intensive features

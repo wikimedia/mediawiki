@@ -1,0 +1,25 @@
+#article { }
+#specialform { display: inline; }
+#powersearch {
+  background: #DDEEFF; border-style: solid; border-width: 1; padding: 2;
+}
+.bodytext { }
+/* BAD: intended to format links, but formats headings on TOC pages as well 
+a { color: #0000FF; }
+*/
+a:visited { color: #000080; }
+a.interwiki { color: #00C000; }
+a.interwiki:visited { color: #008000; }
+a.external { color: #00C000; }
+a.external:visited { color: #008000; }
+a.new { color: #FF0000; }
+a.new:visited { color: #800000; }
+
+a.stub { color:#800080 }
+a.stub:visited { color:#600060 }
+
+h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0; }
+h2, h3, h4, h5, h6 { margin-bottom: 0; }
+p.subtitle { padding-top: 0; margin-top: 0; }
+#toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
+
