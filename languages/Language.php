@@ -60,13 +60,13 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesEn = array(
-	'standard' => 'Standard',
+	'standard' => 'Classic',
 	'nostalgia' => 'Nostalgia',
 	'cologneblue' => 'Cologne Blue',
 	'davinci' => 'DaVinci',
 	'mono' => 'Mono',
 	'monobook' => 'MonoBook',
- 'myskin' => 'MySkin' 
+	'myskin' => 'MySkin' 
 );
 
 define( "MW_MATH_PNG",    0 );
