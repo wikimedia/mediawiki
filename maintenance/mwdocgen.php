@@ -41,7 +41,7 @@ $pdOutput = "{$here}{$sep}docs{$sep}html";
 /** Some more Phpdoc settings */
 $pdOthers = '';
 //$pdOthers = ' -dn \'MediaWiki\' ';
-$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' ';
+$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' --ignore AdminSettings.php,LocalSettings.php';
 
 /** MediaWiki location */
 #$mwPath = '/var/www/mediawiki/';
