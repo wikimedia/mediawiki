@@ -14,9 +14,20 @@ function wfSpecialAllpages()
 
 function indexShowToplevel()
 {
-	global $wgOut, $indexMaxperpage;
+	global $wgOut, $indexMaxperpage, $wgLang;
 	$fname = "indexShowToplevel";
-	# FIXME: This may be slow; we may need to cache it
+
+	# Cache
+	$vsp = $wgLang->getValidSpecialPages();
+	$log = new LogPage( $vsp["Allpages"] );
+	$log->mUpdateRecentChanges = false;
+
+	global $wgMiserMode;
+	if ( $wgMiserMode ) {
+		$log->showAsDisabledPage();
+		return;
+	}
+
 
 #	$fromwhere = "FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0";
 	$fromwhere = "FROM cur WHERE cur_namespace=0";
@@ -58,6 +69,9 @@ function indexShowToplevel()
 	$outpoint = $s->cur_title;
 	$out .= indexShowline( $inpoint, $outpoint );
 	$out .= "</table>\n";
+
+	# Saving cache
+	$log->replaceContent( $out );
 	
 	$wgOut->addHtml( $out );
 }

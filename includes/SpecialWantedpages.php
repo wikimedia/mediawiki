@@ -1,6 +1,6 @@
 <?
-global $IP;
-include_once ( "$IP/LogPage.php" ) ;
+
+include_once ( "LogPage.php" ) ;
 
 function wfSpecialWantedpages()
 {
@@ -10,17 +10,13 @@ function wfSpecialWantedpages()
 
 	# Cache
 	$vsp = $wgLang->getValidSpecialPages() ;
-	$mw = $vsp["Wantedpages"] ;
-	$mw = str_replace ( " " , "_" , $mw ) ; # DBKEY
-	$log = new LogPage ( $mw ) ;
-	$log->mUpdateRecentChanges = false ;
+	$log = new LogPage( $vsp["Wantedpages"] );
+	$log->mUpdateRecentChanges = false;
 
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 	global $wgMiserMode;
 	if ( $wgMiserMode ) {
-		$s = "=== " . wfMsg( "perfdisabled" ) . " ===\n" ;
-		$s .= $log->getContent() ;
-		$wgOut->addWikiText ( $s ) ;
+		$log->showAsDisabledPage();
 		return;
 	}
 
@@ -66,9 +62,7 @@ function wfSpecialWantedpages()
 
 	# Saving cache
 	if ( $offset > 0 OR $limit < 50 ) return ; #Not suitable
-	$log->mContent = $cache ;
-	$log->mContentLoaded = true ;
-	$log->saveContent() ;
+	$log->replaceContent( $s );
 }
 
 ?>

@@ -9,7 +9,7 @@ class LogPage {
 	{
 		# For now, assume title is correct dbkey
 		# and log pages always go in Wikipedia namespace
-		$this->mTitle = $title;
+		$this->mTitle = str_replace( " ", "_", $title );
 		$this->mId = 0;
 		$this->mUpdateRecentChanges = true ;
 		$this->mContentLoaded = false;
@@ -18,7 +18,7 @@ class LogPage {
 
 	function getContent( $defaulttext = "<ul>\n</ul>" )
 	{
-		$sql = "SELECT cur_id,cur_text FROM cur " .
+		$sql = "SELECT cur_id,cur_text,cur_timestamp FROM cur " .
 			"WHERE cur_namespace=" . Namespace::getWikipedia() . " AND " .
 			"cur_title='" . wfStrencode($this->mTitle ) . "'";
 		$res = wfQuery( $sql, "LogPage::getContent" );
@@ -27,24 +27,36 @@ class LogPage {
 			$s = wfFetchObject( $res );
 			$this->mId = $s->cur_id;
 			$this->mContent = $s->cur_text;
+			$this->mTimestamp = $s->cur_timestamp;
 		} else {
 			$this->mId = 0;
 			$this->mContent = $defaulttext;
+			$this->mTimestamp = wfTimestampNow();
 		}
 		$this->mContentLoaded = true; # Well, sort of
 		
 		return $this->mContent;
 	}
+	
+	function getTimestamp()
+	{
+		if( !$this->mContentLoaded ) {
+			$this->getContent();
+		}
+		return $this->mTimestamp;
+	}
 
 	function saveContent()
 	{
+		if( wfReadOnly() ) return;
+
 		global $wgUser;
 		$fname = "LogPage::saveContent";
 		$uid = $wgUser->getID();
 		$ut = wfStrencode( $wgUser->getName() );
 
 		if( !$this->mContentLoaded ) return false;
-		$now = date( "YmdHis" );
+		$this->mTimestamp = $now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
 		if($this->mId == 0) {
 			$sql = "INSERT INTO cur (cur_timestamp,cur_user,cur_user_text,
@@ -112,6 +124,29 @@ class LogPage {
 		# TODO: automatic log rotation...
 		
 		return $this->saveContent();
+	}
+	
+	function replaceContent( $text, $comment = "" )
+	{
+		$this->mContent = $text;
+		$this->mComment = $comment;
+		$this->mTimestamp = wfTimestampNow();
+		return $this->saveContent();
+	}
+
+	function showAsDisabledPage( $rawhtml = true )
+	{
+		global $wgLang, $wgOut;
+		$wgOut->checkLastModified( $this->getTimestamp() );
+		$func = ( $rawhtml ? "addHTML" : "addWikiText" );
+		$wgOut->$func(
+			"<p>" . wfMsg( "perfdisabled" ) . "</p>\n\n" .
+			"<p>" . wfMsg( "perfdisabledsub", $wgLang->timeanddate( $this->getTimestamp() ) ) . "</p>\n\n" .
+			"<hr />\n\n" .
+			$this->getContent()
+			);
+		return;
+		
 	}
 }
 

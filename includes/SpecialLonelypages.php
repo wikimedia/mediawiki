@@ -6,9 +6,14 @@ function wfSpecialLonelypages()
 	global $limit, $offset; # From query string
 	$fname = "wfSpecialLonelypages";
 
+	# Cache
+	$vsp = $wgLang->getValidSpecialPages();
+	$log = new LogPage( $vsp["Lonelypages"] );
+	$log->mUpdateRecentChanges = false;
+
 	global $wgMiserMode;
 	if ( $wgMiserMode ) {
-		$wgOut->addWikiText( wfMsg( "perfdisabled" ) );
+		$log->showAsDisabledPage();
 		return;
 	}
 
@@ -41,6 +46,10 @@ function wfSpecialLonelypages()
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
+
+	# Saving cache
+	if ( $offset > 0 OR $limit < 50 ) return ; #Not suitable
+	$log->replaceContent( $s );
 }
 
 ?>

@@ -6,9 +6,14 @@ function wfSpecialShortpages()
 	global $limit, $offset; # From query string
 	$fname = "wfSpecialShortpages";
 
+	# Cache
+	$vsp = $wgLang->getValidSpecialPages();
+	$log = new LogPage( $vsp["Shortpages"] );
+	$log->mUpdateRecentChanges = false;
+
 	global $wgMiserMode;
 	if ( $wgMiserMode ) {
-		$wgOut->addWikiText( wfMsg( "perfdisabled" ) );
+		$log->showAsDisabledPage();
 		return;
 	}
 
@@ -41,6 +46,11 @@ function wfSpecialShortpages()
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
+
+
+	# Saving cache
+	if ( $offset > 0 OR $limit < 50 ) return ; #Not suitable
+	$log->replaceContent( $s );
 }
 
 ?>
