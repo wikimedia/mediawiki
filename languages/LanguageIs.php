@@ -99,6 +99,15 @@ if($wgMetaNamespace === FALSE)
 	"2001-01-15"
 );
 
+/* private */ $wgMathNamesIs = array(
+	 "Alltaf birta PNG mynd",
+	 "HTML fyrir einfaldar jöfnur annars PNG",
+	 "HTML ef hægt er, annars PNG",
+	 "Sýna TeX jöfnu (fyrir textavafra)",
+	 "Mælt með fyrir nýja vafra",
+	 'MathML'
+);
+
 /* private */ $wgUserTogglesIs = array(
 	"hover"		=> "Sýna hjálpartexta á wiki hlekkjum",
 	"underline" => "Undirstrika hlekki",
@@ -1274,6 +1283,11 @@ class LanguageIs extends LanguageUtf8 {
 	{
 		global $wgAllMessagesIs;
 		return $wgAllMessagesIs;
+	}
+
+	function getMathNames() {
+		global $wgMathNamesIs;
+		return $wgMathNamesIs;
 	}
 
 	function iconv( $in, $out, $string ) {
