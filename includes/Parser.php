@@ -2297,9 +2297,9 @@ cl_sortkey" ;
 
 		$p1 = "/\[\[({$np}+) \\(({$np}+)\\)\\|]]/";		# [[page (context)|]]
 		$p2 = "/\[\[\\|({$tc}+)]]/";					# [[|page]]
-		$p3 = "/\[\[($namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]]
-		$p4 = "/\[\[($namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";
-														# [[ns:page (cont)|]]
+		$p3 = "/\[\[(:*$namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]] and [[:namespace:page|]]
+		$p4 = "/\[\[(:*$namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";	# [[ns:page (cont)|]] and [[:ns:page (cont)|]]
+
 		$context = "";
 		$t = $this->mTitle->getText();
 		if ( preg_match( $conpat, $t, $m ) ) {
