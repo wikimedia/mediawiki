@@ -367,10 +367,10 @@ class EditPage {
 				} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
 					$previewtext = wfMsg('userjspreview');
 				}
-				$parserOutput = $wgParser->parse( $this->textbox1 , $wgTitle, $parserOptions );
+				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
-				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
+				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
 				$wgTitle, $parserOptions );
 				$previewHTML = $parserOutput->mText;
 
