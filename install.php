@@ -17,9 +17,9 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 }
 
 $DP = "./includes";
-include_once( "./LocalSettings.php" );
-include_once( "./AdminSettings.php" );
-include_once( "./maintenance/InitialiseMessages.inc" );
+require_once( "./LocalSettings.php" );
+require_once( "./AdminSettings.php" );
+require_once( "./maintenance/InitialiseMessages.inc" );
 
 if( $wgSitename == "MediaWiki" ) {
 	die( "You must set the site name in \$wgSitename before installation.\n\n" );
@@ -131,7 +131,7 @@ $rootpw=readconsole();
 #
 $wgUseDatabaseMessages = false; # no DB yet
 
-include_once( "{$IP}/Setup.php" );
+require_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Installation script" );
 
 $wgDatabase = Database::newFromParams( $wgDBserver, "root", $rootpw, "", 1 );

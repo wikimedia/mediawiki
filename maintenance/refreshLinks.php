@@ -2,7 +2,7 @@
 define( "REPORTING_INTERVAL", 50 );
 define( "PAUSE_INTERVAL", 50 );
 
-include_once( "commandLine.inc" );
+require_once( "commandLine.inc" );
 error_reporting( E_ALL & (~E_NOTICE) );
 
 

@@ -1028,7 +1028,7 @@ med den nye tittelen. Du er nødt til å flette dem sammen manuelt.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageNo extends LanguageUtf8 {
 

@@ -1,7 +1,7 @@
 <?php
-include_once( "../includes/DefaultSettings.php" );
-include_once( "../LocalSettings.php" );
-include_once( "../includes/MemCachedClient.inc.php" );
+require_once( "../includes/DefaultSettings.php" );
+require_once( "../LocalSettings.php" );
+require_once( "../includes/MemCachedClient.inc.php" );
 
 $mcc = new MemCachedClient();
 $mcc->set_servers( $wgMemCachedServers );

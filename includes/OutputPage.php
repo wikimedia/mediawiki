@@ -1,7 +1,7 @@
 <?php
 # See design.doc
 
-if($wgUseTeX) include_once( "Math.php" );
+if($wgUseTeX) require_once( "Math.php" );
 
 class OutputPage {
 	var $mHeaders, $mCookies, $mMetatags, $mKeywords;

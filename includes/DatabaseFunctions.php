@@ -11,7 +11,7 @@
 # not access the $wgDatabase variable directly unless
 # you intend to set it. Use wfGetDB().
 
-include_once( "Database.php" );
+require_once( "Database.php" );
 
 # Query the database
 # $db: DB_READ  = -1    read from slave (or only server)

@@ -971,7 +971,7 @@ title. Please merge them manually.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageBn extends LanguageUtf8 {
 	function getNamespaces() {

@@ -2,7 +2,7 @@
 
 # Wikipedia localization for Persian
 
-include_once("LanguageUtf8.php");
+require_once("LanguageUtf8.php");
 
 #--------------------------------------------------------------------------
 # Language-specific text

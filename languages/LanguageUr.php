@@ -2,7 +2,7 @@
 
 # Stub for Urdu
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageUr extends LanguageUtf8 {
 

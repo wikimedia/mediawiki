@@ -1,5 +1,5 @@
 <?php
-include_once( "SpecialRecentchanges.php" );
+require_once( "SpecialRecentchanges.php" );
 
 function wfSpecialRecentchangeslinked( $par = NULL )
 {

@@ -1,6 +1,6 @@
 <?php
-include_once( "SpecialRecentchanges.php" );
-include_once( "WatchedItem.php" );
+require_once( "SpecialRecentchanges.php" );
+require_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {

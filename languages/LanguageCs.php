@@ -732,7 +732,7 @@ abys mohl stránku přesunout.",
 );
 
 global $IP;
-include_once("LanguageUtf8.php");
+require_once("LanguageUtf8.php");
 
 class LanguageCs extends LanguageUtf8 {
 

@@ -1,6 +1,6 @@
 <?php
-include_once( "FulltextStoplist.php" );
-include_once( "CacheManager.php" );
+require_once( "FulltextStoplist.php" );
+require_once( "CacheManager.php" );
 
 define( "DB_READ", -1 );
 define( "DB_WRITE", -2 );

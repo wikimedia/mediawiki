@@ -939,7 +939,7 @@ Por favor, escolha outro nome.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguagePt extends LanguageUtf8 {
 

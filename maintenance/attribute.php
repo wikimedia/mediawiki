@@ -20,8 +20,8 @@ $DP = "../includes";
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 ini_set( "include_path", "$IP$sep$include_path" );
 
-include_once( "/apache/htdocs/$lang/w/LocalSettings.php" );
-include_once( "Setup.php" );
+require_once( "/apache/htdocs/$lang/w/LocalSettings.php" );
+require_once( "Setup.php" );
 
 $wgTitle = Title::newFromText( "Changing attribution script" );
 set_time_limit(0);

@@ -49,7 +49,7 @@ if ( ! is_readable( "../LocalSettings.php" ) ) {
 }
 
 $DP = "../includes";
-include_once( "../LocalSettings.php" );
+require_once( "../LocalSettings.php" );
 
 if ( "en" == $wgLanguageCode ) {
 	print "Current selected language is English. Cannot check translations.\n";
@@ -65,7 +65,7 @@ if ( ! is_readable( "{$IP}/{$include}" ) ) {
 umask( 000 );
 set_time_limit( 0 );
 
-include_once( "{$IP}/Setup.php" );
+require_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Translation checking script" );
 $wgCommandLineMode = true;
 

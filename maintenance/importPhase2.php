@@ -31,8 +31,8 @@ $wgCommandLineMode = true;
 ini_set("implicit_flush", 1);
 
 $DP = "../includes";
-include_once( "../LocalSettings.php" );
-include_once( "../AdminSettings.php" );
+require_once( "../LocalSettings.php" );
+require_once( "../AdminSettings.php" );
 
 $wgDBuser = $wgDBadminuser;
 $wgDBpassword = $wgDBadminpassword;
@@ -40,13 +40,13 @@ $wgDBpassword = $wgDBadminpassword;
 $sep = ( DIRECTORY_SEPARATOR == "\\" ) ? ";" : ":";
 ini_set( "include_path", "$IP$sep$include_path" );
 
-include_once( "Setup.php" );
+require_once( "Setup.php" );
 
-include_once( "../install-utils.inc" );
-include_once( "InitialiseMessages.inc" );
-include_once( "rebuildlinks.inc" );
-include_once( "rebuildrecentchanges.inc" );
-include_once( "rebuildtextindex.inc" );
+require_once( "../install-utils.inc" );
+require_once( "InitialiseMessages.inc" );
+require_once( "rebuildlinks.inc" );
+require_once( "rebuildrecentchanges.inc" );
+require_once( "rebuildtextindex.inc" );
 
 class Phase2Importer {
 	var $olddb, $titleCache;

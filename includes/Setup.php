@@ -11,7 +11,7 @@ if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
 if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {        
-	include_once( "Profiling.php" );
+	require_once( "Profiling.php" );
 } else {
 	function wfProfileIn( $fn ) {}
 	function wfProfileOut( $fn = "" ) {}
@@ -39,25 +39,25 @@ wfProfileIn( $fname );
 global $wgUseDynamicDates;
 wfProfileIn( "$fname-includes" );
 
-include_once( "GlobalFunctions.php" );
-include_once( "Namespace.php" );
-include_once( "RecentChange.php" ); 
-include_once( "Skin.php" );
-include_once( "OutputPage.php" );
-include_once( "User.php" );
-include_once( "LinkCache.php" );
-include_once( "Title.php" );
-include_once( "Article.php" );
-include_once( "MagicWord.php" );
-include_once( "memcached-client.php" );
-include_once( "Block.php" );
-include_once( "SearchEngine.php" );
-include_once( "DifferenceEngine.php" );
-include_once( "MessageCache.php" );
-include_once( "BlockCache.php" );
-include_once( "Parser.php" );
-include_once( "ParserCache.php" );
-include_once( "WebRequest.php" );
+require_once( "GlobalFunctions.php" );
+require_once( "Namespace.php" );
+require_once( "RecentChange.php" ); 
+require_once( "Skin.php" );
+require_once( "OutputPage.php" );
+require_once( "User.php" );
+require_once( "LinkCache.php" );
+require_once( "Title.php" );
+require_once( "Article.php" );
+require_once( "MagicWord.php" );
+require_once( "memcached-client.php" );
+require_once( "Block.php" );
+require_once( "SearchEngine.php" );
+require_once( "DifferenceEngine.php" );
+require_once( "MessageCache.php" );
+require_once( "BlockCache.php" );
+require_once( "Parser.php" );
+require_once( "ParserCache.php" );
+require_once( "WebRequest.php" );
 $wgRequest = new WebRequest();
 
 
@@ -135,13 +135,13 @@ if( $wgUseMemCached ) {
 wfProfileOut( "$fname-memcached" );
 wfProfileIn( "$fname-misc" );
 
-include_once( "Language.php" );
+require_once( "Language.php" );
 
 $wgMessageCache = new MessageCache; 
 
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == "en" && strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) ) {
-	include_once( "LanguageUtf8.php" );
+	require_once( "LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
 
@@ -155,7 +155,7 @@ $wgOut = new OutputPage();
 wfDebug( "\n\n" );
 
 if ( $wgUseDynamicDates ) {
-	include_once( "DateFormatter.php" );
+	require_once( "DateFormatter.php" );
 	global $wgDateFormatter;
 	$wgDateFormatter = new DateFormatter;
 }

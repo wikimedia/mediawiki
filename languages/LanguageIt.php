@@ -782,7 +782,7 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageIt extends LanguageUtf8 {
 

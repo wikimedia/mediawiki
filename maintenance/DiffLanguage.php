@@ -45,9 +45,9 @@ $wgCommandLineMode = true;
 # Turn off output buffering if it's on
 @ob_end_flush();
 
-include_once("../LocalSettings.php");
-include_once( "../includes/Setup.php" );
-include_once( "../install-utils.inc" );
+require_once("../LocalSettings.php");
+require_once( "../includes/Setup.php" );
+require_once( "../install-utils.inc" );
 
 $wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
 

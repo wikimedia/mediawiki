@@ -11,7 +11,7 @@
 # $wgFileCacheDirectory
 # $wgUseGzip
 
-include_once( "Title.php" );
+require_once( "Title.php" );
 
 class CacheManager {
 	var $mTitle, $mFileCache;

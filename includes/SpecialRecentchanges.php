@@ -1,6 +1,6 @@
 <?php
 
-include_once( "Feed.php" );
+require_once( "Feed.php" );
 
 function wfSpecialRecentchanges( $par )
 {

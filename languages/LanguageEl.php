@@ -1,6 +1,6 @@
 <?php
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageEl extends LanguageUtf8 {
 	function fallback8bitEncoding() {

@@ -4,9 +4,9 @@
 
 # The wiki should be put into read-only mode while this script executes
 
-include_once( "commandLine.inc" );
+require_once( "commandLine.inc" );
 # the below should probably be moved into commandLine.inc at some point
-include_once( "../AdminSettings.php" );
+require_once( "../AdminSettings.php" );
 
 $numRows = $tuplesAdded = $numBadLinks = $curRowsRead = 0; #counters etc
 $totalTuplesInserted = 0; # total tuples INSERTed into links_temp

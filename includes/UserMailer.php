@@ -12,7 +12,7 @@ function userMailer( $to, $from, $subject, $body )
 	
 	if (is_array( $wgSMTP ))
 	{
-		include_once( "Mail.php" );
+		require_once( "Mail.php" );
 		
 		$timestamp = time();
 	

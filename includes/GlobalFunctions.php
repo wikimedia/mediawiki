@@ -5,9 +5,9 @@ $wgNumberOfArticles = -1; # Unset
 $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
-include_once( "DatabaseFunctions.php" );
-include_once( "UpdateClasses.php" );
-include_once( "LogPage.php" );
+require_once( "DatabaseFunctions.php" );
+require_once( "UpdateClasses.php" );
+require_once( "LogPage.php" );
 
 /*
  * Compatibility functions
@@ -296,7 +296,7 @@ function wfSpecialPage()
 		$wgOut->setPageTitle( wfMsg( strtolower( $wgTitle->getText() ) ) );
 
 		$inc = "Special" . $t . ".php";
-		include_once( $inc );
+		require_once( $inc );
 		$call = "wfSpecial" . $t;
 		$call( $par );
 	} else if ( array_key_exists( $t, $sysopSP ) ) {

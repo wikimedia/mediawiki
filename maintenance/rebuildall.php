@@ -11,16 +11,16 @@ if ( ! is_readable( "../LocalSettings.php" ) ) {
 
 $wgCommandLineMode = true;
 $DP = "../includes";
-include_once( "../LocalSettings.php" );
-include_once( "../AdminSettings.php" );
+require_once( "../LocalSettings.php" );
+require_once( "../AdminSettings.php" );
 
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 ini_set( "include_path", "$IP$sep$include_path" );
 
-include_once( "Setup.php" );
-include_once( "./rebuildlinks.inc" );
-include_once( "./rebuildtextindex.inc" );
-include_once( "./rebuildrecentchanges.inc" );
+require_once( "Setup.php" );
+require_once( "./rebuildlinks.inc" );
+require_once( "./rebuildtextindex.inc" );
+require_once( "./rebuildrecentchanges.inc" );
 $wgTitle = Title::newFromText( "Rebuild links script" );
 set_time_limit(0);
 

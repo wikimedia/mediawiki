@@ -1,5 +1,5 @@
 <?php
-include_once( "commandLine.inc" );
+require_once( "commandLine.inc" );
 
 $messages = array();
 foreach ( $wgAllMessagesEn as $key => $englishValue )
