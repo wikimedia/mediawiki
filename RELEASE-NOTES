@@ -1,5 +1,12 @@
 = MediaWiki release notes =
 
+== Version 1.2.5, ?? ==
+* Fixed Special:Emailuser/Username links
+* Fixed main-page edit links on fuzzy search results
+* Fixed wikipedia-interwiki.sql
+* Fixed install with apache2filter (ugly URLs)
+* IP in 'go' search brings up contributions
+
 == Version 1.2.4, 2004-04-13 ==
 
 * Fixed edit toolbar in Mozilla
