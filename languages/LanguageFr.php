@@ -163,24 +163,24 @@ include_once( "LanguageUtf8.php" );
 
 "linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
 "mainpage"      => "Accueil",
-"mainpagetext"	=> "Logiciel $wgSitename installé.",
+"mainpagetext"	=> "Logiciel {{SITENAME}} installé.",
 "portal"	=> "Accueil communauté",
 "portal-url"	=> "{{ns:4}}:Accueil",
 "about"         => "À propos",
-"aboutwikipedia" => "À propos de $wgSitename",
-"aboutpage"     => "$wgMetaNamespace:À propos",
+"aboutwikipedia" => "À propos de {{SITENAME}}",
+"aboutpage"     => "{{ns:4}}:À propos",
 "article"	=> "Article",
 "help"          => "Aide",
-"helppage"      => "$wgMetaNamespace:Aide",
-"wikititlesuffix" => "$wgSitename",
+"helppage"      => "{{ns:4}}:Aide",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"    => "Rapport d'erreurs",
-"bugreportspage" => "$wgMetaNamespace:Rapport d'erreurs",
+"bugreportspage" => "{{ns:4}}:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "$wgMetaNamespace:Dons",
+"sitesupportpage"	=> "{{ns:4}}:Dons",
 "faq"           => "FAQ",
-"faqpage"       => "$wgMetaNamespace:FAQ",
+"faqpage"       => "{{ns:4}}:FAQ",
 "edithelp"      => "Aide",
-"edithelppage"  => "$wgMetaNamespace:Comment éditer une page",
+"edithelppage"  => "{{ns:4}}:Comment éditer une page",
 "cancel"        => "Annuler",
 "qbfind"        => "Rechercher",
 "qbbrowse"      => "Défiler",
@@ -197,7 +197,7 @@ include_once( "LanguageUtf8.php" );
 "currentevents" => "Actualités",
 "errorpagetitle" => "Erreur",
 "returnto"      => "Revenir à la page $1.",
-"fromwikipedia" => "Un article de $wgSitename, l'encyclopéde libre.",
+"fromwikipedia" => "Un article de {{SITENAME}}, l'encyclopéde libre.",
 "whatlinkshere" => "Références à cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
@@ -226,7 +226,7 @@ include_once( "LanguageUtf8.php" );
 "gnunote"       => "Tous les textes sont disponibles sous les termes de la <a href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://$wgServer)",
 "protectedpage" => "Page protégée",
-"administrators" => "$wgMetaNamespace:Administrateurs",
+"administrators" => "{{ns:4}}:Administrateurs",
 "sysoptitle"    => "Accès administrateur requis",
 "sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
 Voir $1.",
@@ -240,7 +240,7 @@ Voir $1.",
 "ok"            => "OK",
 "history"	=> "Historique de la page",
 "history_short" => "Historique",
-"sitetitle"     => "$wgSitename",
+"sitetitle"     => "{{SITENAME}}",
 "sitesubtitle"  => "L'encyclopédie libre",
 "retrievedfrom" => "Récupérée de \"$1\"",
 "newmessages"   => "Vous avez des $1.",
@@ -272,7 +272,7 @@ MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour",
 "readonly"	=> "Mises à jour bloquées sur la base de données",
 "enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
-"readonlytext"	=> "Les ajouts et mises à jour sur la base de donnée$wgSitename sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
+"readonlytext"	=> "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
 "missingarticle" => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
 Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
@@ -299,10 +299,10 @@ ne peut utiliser le wiki.",
 #
 "logouttitle"	=> "Déconnexion",
 "logouttext"	=> "Vous êtes à présent déconnecté(e).
-Vous pouvez continuer à utiliser $wgSitename de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
+Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
 
 "welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
-N'oubliez pas de personnaliser votre $wgSitename en consultant la page Préférences.",
+N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préférences.",
 
 "loginpagetitle"     => "Votre identifiant",
 "yourname"           => "Votre nom d'utilisateur",
@@ -331,12 +331,12 @@ N'oubliez pas de personnaliser votre $wgSitename en consultant la page Préfére
 "nocookieslogin" => "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
 "loginsuccesstitle" => "Identification réussie.",
-"loginsuccess"  => "Vous êtes actuellement connecté sur $wgSitename en tant que \"$1\".",
+"loginsuccess"  => "Vous êtes actuellement connecté sur {{SITENAME}} en tant que \"$1\".",
 "nosuchuser"    => "L'utilisateur \"$1\" n'existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
 "wrongpassword" => "Le mot de passe est incorrect. Essayez à nouveau.",
 "mailmypassword" => "Envoyez-moi un nouveau mot de passe",
-"passwordremindertitle" => "Votre nouveau mot de passe sur $wgSitename",
+"passwordremindertitle" => "Votre nouveau mot de passe sur {{SITENAME}}",
 "passwordremindertext" => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès au wiki.
 Le mot de passe de l'utilisateur \"$2\" est à présent \"$3\".
 Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
@@ -378,7 +378,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "preview"      => "Prévisualiser",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[$wgMetaNamespace:Administrateurs|administateurs]] pour en discuter.",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateurs|administateurs]] pour en discuter.",
 "whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
@@ -406,7 +406,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actue
 "storedversion" => "Version enregistrée",
 "editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
 "yourdiff"  => "Différences",
-"copyrightwarning" => "Toutes les contributions à $wgSitename sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
+"copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
 "longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
@@ -444,9 +444,9 @@ vous suivez les <a href='$wgScript/{{ns:4}}:Page_protégée'>directives concerna
 # Search results
 #
 "searchresults" => "Résultat de la recherche",
-"searchhelppage" => "$wgMetaNamespace:Recherche",
-"searchingwikipedia" => "Chercher dans $wgSitename",
-"searchresulttext" => "Pour plus d'informations sur la recherche dans $wgSitename, voir $1.",
+"searchhelppage" => "{{ns:4}}:Recherche",
+"searchingwikipedia" => "Chercher dans {{SITENAME}}",
+"searchresulttext" => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir $1.",
 "searchquery" => "Pour la requête \"$1\"",
 "badquery"  => "Requête mal formulée",
 "badquerytext" => "Nous n'avons pas pu traiter votre requête.
@@ -510,7 +510,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 pour modifier vos préférences d'utilisateur.",
 "prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
 
-Voir [[$wgMetaNamespace:Aide pour les préférences]] pour les explications concernant les options.",
+Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant les options.",
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
 "changepassword"    => "Modification du mot de passe",
@@ -553,15 +553,15 @@ Voir [[$wgMetaNamespace:Aide pour les préférences]] pour les explications conc
 #
 "changes"	=> "modifications",
 "recentchanges" => "Modifications récentes",
-"recentchangestext" => "Suivez sur cette page les dernières modifications de $wgSitename.
-[[$wgMetaNamespace:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[$wgMetaNamespace:FAQ|foire aux questions]],
-[[$wgMetaNamespace:Recommandations et règles à suivre|recommandations et règles à suivre]]
-(notamment [[$wgMetaNamespace:Règles de nommage|conventions de nommage]],
-[[$wgMetaNamespace:La neutralité de point de vue|la neutralité de point de vue]]),
-et [[$wgMetaNamespace:Les faux-pas les plus courants|les faux-pas les plus courants]].
+"recentchangestext" => "Suivez sur cette page les dernières modifications de {{SITENAME}}.
+[[{{ns:4}}:Bienvenue|Bienvenue]] aux nouveaux participants!
+Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[{{ns:4}}:FAQ|foire aux questions]],
+[[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]]
+(notamment [[{{ns:4}}:Règles de nommage|conventions de nommage]],
+[[{{ns:4}}:La neutralité de point de vue|la neutralité de point de vue]]),
+et [[{{ns:4}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que $wgSitename connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[$wgMetaNamespace:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:4}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 "rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
@@ -597,10 +597,10 @@ pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de $wgSitename et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
+prenez connaissance des <a href=\"" .wfLocalUrlE( "{{ns:4}}:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de {{SITENAME}} et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "{{ns:4}}:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
 <p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
-Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:Journal_des_uploads" ) . "\">journal des uploads</a>.
+Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "{{ns:4}}:Journal_des_uploads" ) . "\">journal des uploads</a>.
 <p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
 Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenêtre de dialogue standard de votre système d'exploitation pour l'ouverture des fichiers.
 Sélectionnez un fichier, son nom apparaîtra dans le champ situé à côté du bouton.
@@ -613,7 +613,7 @@ Donnez à vos fichiers des noms descriptifs clairs, afin d'éviter toute confusi
 Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé comme suit:
 <b>[[image:nom_du_fichier.jpg]]</b> ou <b>[[image:nom_du_fichier.png|autre texte]]</b>
 ou <b>[[media:nom_du_fichier.ogg]]</b> pour les sons.
-<p>N'oubliez pas que, comme toutes les pages de $wgSitename, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
+<p>N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
 "uploadlog"  => "log d'upload",		// FIXME
 "uploadlogpage" => "Log_d'upload",	// FIXME
 "uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
@@ -627,7 +627,7 @@ L'heure indiquée est celle du serveur (UTC).
 "filesource"	=> "Source",	
 "affirmation"	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
 "copyrightpage" => "$wgNamespace:Copyright",
-"copyrightpagename" => "licence $wgSitename",
+"copyrightpagename" => "licence {{SITENAME}}",
 "uploadedfiles" => "Fichiers copiés",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
 "ignorewarning" => "Ignorer l'avertissement et copier le fichier quand même.",
@@ -675,7 +675,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 "userstats"  => "Statistiques utilisateur",
 "sitestatstext" => "La base de données contient actuellement <b>$1</b> pages.
 
-Ce chiffre inclut les pages \"discussion\", les pages relatives à $wgSitename, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
+Ce chiffre inclut les pages \"discussion\", les pages relatives à {{SITENAME}}, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
 Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
 <b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées
 
@@ -691,7 +691,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
 "maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
-"disambiguationspage"	=> "$wgMetaNamespace:Liens_aux_pages_d'homonymie",
+"disambiguationspage"	=> "{{ns:4}}:Liens_aux_pages_d'homonymie",
 "disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
 "doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
@@ -736,7 +736,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
-"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. $wgSitename n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
+"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
 "alphaindexline" => "$1 à $2",
 "version" => "Version",
 
@@ -811,7 +811,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
-Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[$wgMetaNamespace:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
+Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:4}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
 "confirmcheck"	=> "Oui, je confirme la suppression.",
 "actioncomplete" => "Suppression effectuée",
 "deletedtext"	=> "\"$1\" a été supprimé.
@@ -839,7 +839,7 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 "editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
 "revertpage"	=> "restitution de la dernière modification de $1",
 "protectlogpage" => "Log_de_protection",
-"protectlogtext" => "Voir les [[$wgMetaNamespace:Page protégée|directives concernant les pages protégées]].",
+"protectlogtext" => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
 "protectedarticle" => "a protégée [[$1]]",
 "unprotectedarticle" => "a déprotégé [[$1]]",
 
@@ -870,7 +870,7 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 "undeletebtn"	=> "Restaurer!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
 "undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
-Voir [[$wgMetaNamespace:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
+Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
 # Contributions
 #
 "contributions"	=> "Contributions",
@@ -895,7 +895,7 @@ Voir [[$wgMetaNamespace:Trace des effacements]] pour la liste des suppressions e
 #
 "blockip"	=> "Bloquer une adresse IP",
 "blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[$wgMetaNamespace:Recommandations et règles à suivre|recommandations et règles à suivre]].
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
 "ipaddress"	=> "Adresse IP",
 "ipbreason"	=> "Motif",
@@ -942,15 +942,15 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 "locknoconfirm" => "Vous n'avez pas coché la case de confirmation.",
 "lockdbsuccesssub" => "Verrouillage de la base réussi.",
 "unlockdbsuccesssub" => "Base déverrouillée.",
-"lockdbsuccesstext" => "La base de données de $wgSitename est verrouillée.
+"lockdbsuccesstext" => "La base de données de {{SITENAME}} est verrouillée.
 
 <br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
-"unlockdbsuccesstext" => "La base de données de $wgSitename est déverrouillée.",
+"unlockdbsuccesstext" => "La base de données de {{SITENAME}} est déverrouillée.",
 
 # SQL query
 #
 "asksql"	=> "Requête SQL",
-"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de $wgSitename.
+"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de {{SITENAME}}.
 Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
 Cette opération peut surcharger considérablement le serveur, faites en usage
 avec modération.",
@@ -1127,12 +1127,12 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "notacceptable" => "Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.",
 
 # Attribution
-"anonymous"	=> "Utilisateur(s) anonyme(s) de $wgSitename",
-"siteuser"	=> "Utilisateur $1 de $wgSitename",
+"anonymous"	=> "Utilisateur(s) anonyme(s) de {{SITENAME}}",
+"siteuser"	=> "Utilisateur $1 de {{SITENAME}}",
 "lastmodifiedby" => "Cette page a été modifiée pour la dernière fois le $1 par $2",
 "and"	=> "et",
 "contributions" => "Basé sur le travail de $1.",
-"siteusers"	=> "Utilisateur(s) $1 de $wgSitename"
+"siteusers"	=> "Utilisateur(s) $1 de {{SITENAME}}"
 );
 
 class LanguageFr extends LanguageUtf8
