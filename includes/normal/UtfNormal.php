@@ -322,20 +322,40 @@ class UtfNormal {
 	# These take a string and run the normalization on them, without
 	# checking for validity or any optimization etc. Input must be
 	# VALID UTF-8!
+	/**
+	 * @param string $string
+	 * @return string
+	 * @access private
+	 */
 	function NFC( $string ) {
 		return $out = UtfNormal::fastCompose( UtfNormal::NFD( $string ) );
 	}
 	
+	/**
+	 * @param string $string
+	 * @return string
+	 * @access private
+	 */
 	function NFD( $string ) {
 		global $utfCanonicalDecomp;
 		return UtfNormal::fastCombiningSort(
 			UtfNormal::fastDecompose( $string, $utfCanonicalDecomp ) );
 	}
 	
+	/**
+	 * @param string $string
+	 * @return string
+	 * @access private
+	 */
 	function NFKC( $string ) {
 		return UtfNormal::fastCompose( UtfNormal::NFKD( $string ) );
 	}
 	
+	/**
+	 * @param string $string
+	 * @return string
+	 * @access private
+	 */
 	function NFKD( $string ) {
 		global $utfCompatibilityDecomp;
 		if( !isset( $utfCompatibilityDecomp ) ) {
@@ -350,7 +370,7 @@ class UtfNormal {
 	 * Perform decomposition of a UTF-8 string into either D or KD form
 	 * (depending on which decomposition map is passed to us).
 	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
-	 * @private
+	 * @access private
 	 * @param string &$string Valid UTF-8 string
 	 * @param array &$map hash of expanded decomposition map
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
@@ -391,6 +411,7 @@ class UtfNormal {
 
 	/**
 	 * Decompose a Hangul syllable character into its constituent jamo.
+	 * @access private
 	 * @param int $c Unicode code point of the character
 	 * @return string a UTF-8 string containing a sequence of jamo
 	 */
@@ -409,6 +430,7 @@ class UtfNormal {
 	/**
 	 * Sorts combining characters into canonical order. This is the
 	 * final step in creating decomposed normal forms D and KD.
+	 * @access private
 	 * @param string $string a valid, decomposed UTF-8 string. Input is not validated.
 	 * @return string a UTF-8 string with combining characters sorted in canonical order
 	 */
@@ -458,6 +480,7 @@ class UtfNormal {
 	/**
 	 * Produces canonically composed sequences, i.e. normal form C or KC.
 	 *
+	 * @access private
 	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
 	 * @return string a UTF-8 string with canonical precomposed characters used where possible
 	 */
