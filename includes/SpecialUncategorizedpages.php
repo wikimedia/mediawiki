@@ -28,6 +28,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function isExpensive() {
 		return true;
 	}
+	function isSyndicated() { return false; }
 	
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );

@@ -29,6 +29,8 @@ class DeadendPagesPage extends PageQueryPage {
 	function isExpensive( ) {
 		return 1;
 	}
+	
+	function isSyndicated() { return false; }
 
 	/**
 	 * @return false

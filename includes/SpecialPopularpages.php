@@ -25,6 +25,7 @@ class PopularPagesPage extends QueryPage {
 		# cur_counter is not indexed
 		return true;
 	}
+	function isSyndicated() { return false; }
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );

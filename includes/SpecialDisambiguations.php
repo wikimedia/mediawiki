@@ -22,6 +22,7 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 	
 	function isExpensive( ) { return true; }
+	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
 		global $wgUser;
