@@ -469,7 +469,7 @@ class User {
 			
 			# only require the needed stuff
 			switch($sn) {
-				case 'SkinMonoBook':
+				case 'SkinMonoBook': case 'SkinMySkin':
 					require_once( 'SkinPHPTal.php' );
 					break;
 				case 'SkinStandard':
