@@ -154,13 +154,29 @@ function update_passwords() {
 
 function do_ipblocks_update() {
 	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( "ipblocks", "ipb_id" ) ) {
-		echo "...ipblocks table is up to date.\n";
-	} else {
-		echo "Updating ipblocks table... ";
-		dbsource( "maintenance/archives/patch-ipblocks.sql", $wgDatabase );
-		echo "ok\n";
+
+	$do1 = $do2 = false;
+
+	if ( !$wgDatabase->fieldExists( "ipblocks", "ipb_id" ) ) {
+		$do1 = true;
 	}
+	if ( !$wgDatabase->fieldExists( "ipblocks", "ipb_expiry" ) ) {
+		$do2 = true;
+	}
+
+	if ( $do1 || $do2 ) {
+		echo "Updating ipblocks table... ";
+		if ( $do1 ) {
+			dbsource( "maintenance/archives/patch-ipblocks.sql", $wgDatabase );
+		}
+		if ( $do2 ) {
+			dbsource( "maintenance/archives/patch-ipb_expiry.sql", $wgDatabase );
+		}
+		echo "ok\n";
+	} else {
+		echo "...ipblocks is up to date.\n";
+	}
+	
 }
 
 

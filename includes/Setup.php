@@ -48,6 +48,7 @@ include_once( "Block.php" );
 include_once( "SearchEngine.php" );
 include_once( "DifferenceEngine.php" );
 include_once( "MessageCache.php" );
+include_once( "BlockCache.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
@@ -56,6 +57,21 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
+global $wgBlockCache;
+
+# Useful debug output
+if ( function_exists( "getallheaders" ) ) {
+	wfDebug( "\nStart request\n" );
+	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	$headers = getallheaders();
+	foreach ($headers as $name => $value) {
+		wfDebug( "$name: $value\n" );
+	}
+	wfDebug( "\n" );
+} else {
+	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+}
+
 
 class MemCachedClientforWiki extends memcached {
 	function _debugprint( $text ) {
@@ -134,6 +150,7 @@ if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
 	User::SetupSession();
 }
 
+$wgBlockCache = new BlockCache( true );
 $wgUser = User::loadFromSession();
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();

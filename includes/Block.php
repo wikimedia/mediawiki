@@ -8,12 +8,15 @@
 #
 # To use delete(), you only need to fill $mAddress
 
+# Globals used: $wgIPBlockCache, $wgAutoblockExpiry
+
 class Block
 {
-	var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId;
+	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;
+	/* private */ var $mNetworkBits, $mIntegerAddr;
 	
 	function Block( $address = "", $user = "", $by = 0, $reason = "", 
-		$timestamp = "" , $auto = 0) 
+		$timestamp = "" , $auto = 0, $expiry = "" ) 
 	{
 		$this->mAddress = $address;
 		$this->mUser = $user;
@@ -21,21 +24,27 @@ class Block
 		$this->mReason = $reason;
 		$this->mTimestamp = $timestamp;
 		$this->mAuto = $auto;
-	}
+		$this->mExpiry = $expiry;
 
-	/*static*/ function newFromDB( $address, $user = 0, $killExpired = true ) {
+		$this->initialiseRange();
+	}
+	
+	/*static*/ function newFromDB( $address, $user = 0, $killExpired = true ) 
+	{
 		$ban = new Block();
 		$ban->load( $address, $user, $killExpired );
 		return $ban;
 	}
-		
-	function clear() {
+	
+	function clear() 
+	{
 		$mAddress = $mReason = $mTimestamp = "";
 		$mUser = $mBy = 0;
 	}
 
 	# Get a ban from the DB, with either the given address or the given username
-	function load( $address, $user = 0, $killExpired = true ) {
+	function load( $address, $user = 0, $killExpired = true ) 
+	{
 		$fname = "Block::load";
 		$ret = false;
 		$killed = false;
@@ -83,7 +92,8 @@ class Block
 		return $ret;
 	}
 	
-	function initFromRow( $row ) {
+	function initFromRow( $row ) 
+	{
 		$this->mAddress = $row->ipb_address;
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = $row->ipb_timestamp;
@@ -91,10 +101,30 @@ class Block
 		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
 		$this->mId = $row->ipb_id;
+		$this->mExpiry = $row->ipb_expiry;
+
+		$this->initialiseRange();
 	}	
 
+	function initialiseRange()
+	{
+		if ( $this->mUser == 0 ) {
+			$rangeParts = explode( "/", $this->mAddress );
+			if ( count( $rangeParts ) == 2 ) {
+				$this->mNetworkBits = $rangeParts[1];
+			} else {
+				$this->mNetworkBits = 32;
+			}
+			$this->mIntegerAddr = ip2long( $rangeParts[0] );
+		} else {
+			$this->mNetworkBits = false;
+			$this->mIntegerAddr = false;
+		}
+	}
+	
 	# Callback with a Block object for every block
-	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) {
+	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) 
+	{
 		$sql = "SELECT * FROM ipblocks ORDER BY ipb_timestamp DESC";
 		$res = wfQuery( $sql, DB_READ, "Block::enumBans" );
 		$block = new Block();
@@ -112,7 +142,8 @@ class Block
 		wfFreeResult( $res );
 	}
 
-	function delete() {
+	function delete() 
+	{
 		$fname = "Block::delete";
 		if ( $this->mAddress == "" ) {
 			$sql = "DELETE FROM ipblocks WHERE ipb_id={$this->mId}";
@@ -121,17 +152,23 @@ class Block
 				wfStrencode( $this->mAddress ) . "'";
 		}
 		wfQuery( $sql, DB_WRITE, "Block::delete" );
+
+		$this->clearCache();
 	}
 
-	function insert() {
+	function insert() 
+	{
 		$sql = "INSERT INTO ipblocks 
-		  (ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto ) 
+		  (ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry ) 
 		  VALUES ('" . wfStrencode( $this->mAddress ) . "', {$this->mUser}, {$this->mBy}, '" . 
-		  wfStrencode( $this->mReason ) . "','{$this->mTimestamp}', {$this->mAuto})";
+		  wfStrencode( $this->mReason ) . "','{$this->mTimestamp}', {$this->mAuto}, '{$this->mExpiry}')";
 		wfQuery( $sql, DB_WRITE, "Block::insert" );
+
+		$this->clearCache();
 	}
 
-	function deleteIfExpired() {
+	function deleteIfExpired() 
+	{
 		if ( $this->isExpired() ) {
 			$this->delete();
 			return true;
@@ -140,31 +177,64 @@ class Block
 		}
 	}
 
-	function isExpired() {
-		global $wgIPBlockExpiration, $wgUserBlockExpiration;
-		
-		$period = $this->mUser ? $wgUserBlockExpiration : $wgIPBlockExpiration;
-		
-		# Period==0 means no expiry
-		if ( !$period ) { 
-			return false;
-		}
-		$expiry = wfTimestamp2Unix( $this->mTimestamp ) + $period;
-		$now = wfTimestamp2Unix( wfTimestampNow() );
-		if ( $now > $expiry ) {
-			return true;
-		} else {
-			return false;
-		}
+	function isExpired() 
+	{	
+		return wfTimestampNow() > $this->mExpiry;
 	}
 
-	function isValid() {
+	function isValid() 
+	{
 		return $this->mAddress != "";
 	}
 	
 	function updateTimestamp() {
-		wfQuery( "UPDATE ipblocks SET ipb_timestamp='" . wfTimestampNow() . 
-			"' WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
+		
+		$this->mTimestamp = wfTimestampNow();
+		$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
+
+		wfQuery( "UPDATE ipblocks SET " .
+			"ipb_timestamp='" . $this->mTimestamp . "', " .
+			"ipb_expiry='" . $this->mExpiry . "' " .
+			"WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
+		
+		$this->clearCache();
+	}
+
+	/* private */ function clearCache()
+	{
+		global $wgBlockCache;
+		if ( is_object( $wgBlockCache ) ) {
+			$wgBlockCache->clear();
+		}
+	}
+	
+	function getIntegerAddr()
+	{
+		return $this->mIntegerAddr;
+	}
+	
+	function getNetworkBits()
+	{
+		return $this->mNetworkBits;
+	}
+
+	/* static */ function getAutoblockExpiry( $timestamp )
+	{
+		global $wgAutoblockExpiry;
+		return wfUnix2Timestamp( wfTimestamp2Unix( $timestamp ) + $wgAutoblockExpiry );
+	}
+
+	/* static */ function normaliseRange( $range )
+	{
+		$parts = explode( "/", $range );
+		if ( count( $parts ) == 2 ) {
+			$shift = 32 - $parts[1];
+			$ipint = ip2long( $parts[0] );
+			$ipint = $ipint >> $shift << $shift;
+			$newip = long2ip( $ipint );
+			$range = "$newip/{$parts[1]}";
+		}
+		return $range;
 	}
 
 }

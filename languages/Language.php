@@ -643,11 +643,6 @@ The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.
-
-==Note to AOL users==
-Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused.
-
-If this happens to you, please email an administrator, using an AOL email address. Be sure to include the IP address given above.
 ",
 "whitelistedittitle" => "Login required to edit",
 "whitelistedittext" => "You have to [[Special:Userlogin|login]] to edit articles.",
@@ -1208,9 +1203,10 @@ accordance with [[$wgMetaNamespace:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address/username",
+"ipbexpiry"		=> "Expiry",
 "ipbreason"		=> "Reason",
 "ipbsubmit"		=> "Block this user",
-"badipaddress"	=> "No user exists by that name",
+"badipaddress"	=> "Invalid IP address",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "\"$1\" has been blocked.
@@ -1221,17 +1217,20 @@ to a previously blocked IP address or username.",
 "ipusubmit"		=> "Unblock this address",
 "ipusuccess"	=> "\"$1\" unblocked",
 "ipblocklist"	=> "List of blocked IP addresses and usernames",
-"blocklistline"	=> "$1, $2 blocked $3",
+"blocklistline"	=> "$1, $2 blocked $3 (expires $4)",
 "blocklink"		=> "block",
 "unblocklink"	=> "unblock",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
 "blocklogpage"	=> "Block_log",
-"blocklogentry"	=> 'blocked "$1"',
+"blocklogentry"	=> 'blocked "$1" with an expiry time of $2',
 "blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.",
 "unblocklogentry"	=> 'unblocked "$1"',
+"range_block_disabled"	=> "The sysop ability to create range blocks is disabled.",
+"ipb_expiry_invalid"	=> "Expiry time invalid.",
+"ip_range_invalid"	=> "Invalid IP range.\n",
 
 # Developer tools
 #
