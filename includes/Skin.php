@@ -528,15 +528,15 @@ class Skin {
 
 	function nameAndLogin()
 	{
-		global $wgUser, $wgTitle, $wgLang, $wgShowIPinHeader;
+		global $wgUser, $wgTitle, $wgLang, $wgShowIPinHeader, $wgIP;
 
 		$li = $wgLang->specialPage( "Userlogin" );
 		$lo = $wgLang->specialPage( "Userlogout" );
 
 		$s = "";
 		if ( 0 == $wgUser->getID() ) {
-			if( $wgShowIPinHeader ) {
-				$n = getenv( "REMOTE_ADDR" );
+			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
+				$n = $wgIP;
 
 				$tl = $this->makeKnownLink( $wgLang->getNsText(
 				  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
@@ -579,7 +579,7 @@ class Skin {
 	{
 		global $search;
 
-		$s = "<form name='search' class='inline' method=get action=\""
+		$s = "<form name='search' class='inline' method=post action=\""
 		  . wfLocalUrl( "" ) . "\">"
 		  . "<input type=text name=\"search\" size=19 value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\">\n"
@@ -684,7 +684,7 @@ class Skin {
 		else { $a = ""; }
 
 		$mp = wfMsg( "mainpage" );
-		$s = "<a href=\"" . wfLocalUrlE( urlencode( $mp ) )
+		$s = "<a href=\"" . wfLocalUrlE( urlencode( str_replace(' ','_',$mp) ) )
 		  . "\"><img{$a} border=0 src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\"></a>";
 		return $s;
@@ -2200,7 +2200,7 @@ class Skin {
 
 		global $wgTitle,$wgUser,$oldid;
 		if($oldid) return $head;
-		$url = wfLocalUrlE(urlencode($wgTitle->getPrefixedText()),"action=edit&section=$section");
+		$url = wfLocalUrlE(urlencode(str_replace(' ','_',$wgTitle->getPrefixedText())),"action=edit&section=$section");
 		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
 	}
 

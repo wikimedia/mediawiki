@@ -17,6 +17,16 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	function wfProfileClose() {}
 }
 
+
+
+/* collect the originating ips */
+if ($_SERVER["HTTP_X_FORWARDED_FOR"]) {
+  $wgIP = trim(preg_replace("/^(.*, )?([^,]+)$/", "$2",
+                        $_SERVER['HTTP_X_FORWARDED_FOR']));
+} else {
+  $wgIP = getenv("REMOTE_ADDR");
+}
+
 $fname = "Setup.php";
 wfProfileIn( $fname );
 global $wgUseDynamicDates;
@@ -119,17 +129,8 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
-if( !$wgCommandLineMode ) {
-	if( $wgSessionsInMemcached ) {
-		include_once( "MemcachedSessions.php" );
-	}
-	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
-	session_cache_limiter( "private, must-revalidate" );
-	session_start();
-	session_register( "wsUserID" );
-	session_register( "wsUserName" );
-	session_register( "wsUserPassword" );
-	session_register( "wsUploadFiles" );
+if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
+	User::SetupSession();
 }
 
 $wgUser = User::loadFromSession();

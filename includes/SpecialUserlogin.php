@@ -4,7 +4,10 @@ function wfSpecialUserlogin()
 {
 	global $wpCreateaccount, $wpCreateaccountMail;
 	global $wpLoginattempt, $wpMailmypassword;
-	global $action, $_REQUEST;
+	global $action, $_REQUEST, $wgCommandLineMode;
+	if( !$wgCommandLineMode && !isset( $_COOKIE[ini_get("session.name")] )  ) {
+		User::SetupSession();
+	}
 	
 	$fields = array( "wpName", "wpPassword", "wpName",
 	  "wpPassword", "wpRetype", "wpEmail" );
@@ -212,7 +215,7 @@ function wfSpecialUserlogin()
 /* private */ function mailPasswordInternal( $u )
 {
 	global $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
-	global $wgPasswordSender, $wgDBname;
+	global $wgPasswordSender, $wgDBname, $wgIP;
 
 	if ( "" == $u->getEmail() ) {
 		mainLoginForm( wfMsg( "noemail", $u->getName() ) );
@@ -224,8 +227,8 @@ function wfSpecialUserlogin()
 	setcookie( "{$wgDBname}Password", "", time() - 3600, $wgCookiePath, $wgCookieDomain );
 	$u->saveSettings();
 
-	$ip = getenv( "REMOTE_ADDR" );
-	if ( "" == $ip ) { $ip = "(Unknown)"; }
+	$ip = $wgIP;
+        if ( "" == $ip ) { $ip = "(Unknown)"; }
 
 	$m = wfMsg( "passwordremindertext", $ip, $u->getName(), $np );
 

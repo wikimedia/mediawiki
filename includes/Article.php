@@ -405,7 +405,7 @@ class Article {
 		$newid = wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
 
-		Article::onArticleCreate( $this->mTitle );
+		Article::onArticleCreate( $this->mTitle, $text );
 		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
 		
 		if ($watchthis) { 		
@@ -544,7 +544,14 @@ class Article {
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
 
-		$this->editUpdates( $text );
+		# Every 1000th edit, prune the recent changes table.
+		wfSeedRandom();
+		if ( 0 == mt_rand( 0, 999 ) ) {
+			$cutoff = wfUnix2Timestamp( time() - ( 7 * 86400 ) );
+			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
+			wfQuery( $sql, DB_WRITE );
+		}
+
 		if( $wgMwRedir->matchStart( $text ) )
 			$r = "redirect=no";
 		else
@@ -988,42 +995,7 @@ class Article {
 		}
 	}
 
-	# Do standard deferred updates after page edit.
-	# Every 1000th edit, prune the recent changes table.
 
-	/* private */ function editUpdates( $text )
-	{
-		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
-		global $wgMessageCache;
-
-		wfSeedRandom();
-		if ( 0 == mt_rand( 0, 999 ) ) {
-			$cutoff = wfUnix2Timestamp( time() - ( 7 * 86400 ) );
-			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
-			wfQuery( $sql, DB_WRITE );
-		}
-		$id = $this->getID();
-		$title = $this->mTitle->getPrefixedDBkey();
-		$shortTitle = $this->mTitle->getDBkey();
-		
-		$adj = $this->mCountAdjustment;
-
-		if ( 0 != $id ) {
-			$u = new LinksUpdate( $id, $title );
-			array_push( $wgDeferredUpdateList, $u );
-			$u = new SiteStatsUpdate( 0, 1, $adj );
-			array_push( $wgDeferredUpdateList, $u );
-			$u = new SearchUpdate( $id, $title, $text );
-			array_push( $wgDeferredUpdateList, $u );
-
-			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
-			array_push( $wgDeferredUpdateList, $u );
-
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$wgMessageCache->replace( $shortTitle, $text );
-			}
-		}
-	}
 
 	/* private */ function setOldSubtitle()
 	{
@@ -1234,33 +1206,122 @@ class Article {
 	#
 	# This is a good place to put code to clear caches, for instance. 
 
-	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+	/* static */ function onArticleCreate($title_obj,$text=''){
+		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid;
+		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
+		global $wgMessageCache, $wgInternalServer;
+		# Do standard deferred updates after page edit.
+		$id = $title_obj->getArticleID();
+		$title = $title_obj->getPrefixedDBkey();
+		$shortTitle = $title_obj->getDBkey();
+
+		$adj = $this->mCountAdjustment;
+
+		if ( 0 != $id ) {
+			$u = new LinksUpdate( $id, $title );
+			array_push( $wgDeferredUpdateList, $u );
+			$u = new SiteStatsUpdate( 0, 1, $adj );
+			array_push( $wgDeferredUpdateList, $u );
+			$u = new SearchUpdate( $id, $title, $text );
+			array_push( $wgDeferredUpdateList, $u );
+
+			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
+			array_push( $wgDeferredUpdateList, $u );
+
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$wgMessageCache->replace( $shortTitle, $text );
+			}
+		}
 		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
+			LinkCache::linksccClearBrokenLinksTo( $title );
 		}
 		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
+			OutputPage::parsercacheClearBrokenLinksTo( $title );
+		}
+		if ( $wgUseSquid ) {
+			$urlArr = Array( 
+				$wgInternalServer.wfLocalUrl( $title_obj->getPrefixedURL())
+			);			
+			wfPurgeSquidServers($urlArr);
+			/* this needs to be done after LinksUpdate */
+			$u = new SquidUpdate($title_obj);
+			array_push( $wgDeferredUpdateList, $u );
 		}
 	}
 
-	/* static */ function onArticleDelete($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+	/* static */ function onArticleDelete($title_obj,$text=''){
+		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
+		global $wgMessageCache, $wgInternalServer;
+
+		$id = $title_obj->getArticleID();
+		$title = $title_obj->getPrefixedDBkey();
+		$shortTitle = $title_obj->getDBkey();
+
 		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
+			LinkCache::linksccClearLinksTo( $id );
 		}
 		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearLinksTo( $title_obj->getArticleID() );
+			OutputPage::parsercacheClearLinksTo( $id );
+		}
+		if ( $wgUseSquid ) {
+			$urlArr = Array(
+				$wgInternalServer.wfLocalUrl( $title_obj->getPrefixedURL())
+			);
+			wfPurgeSquidServers($urlArr);
+
+			/* prepare the list of urls to purge */
+			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+			$res = wfQuery ( $sql, DB_READ ) ;
+			while ( $BL = wfFetchObject ( $res ) )
+			{
+				$t = Title::newFromDBkey( $BL->l_from) ; 
+				$blurlArr[] = $wgInternalServer.wfLocalUrl( $t->getPrefixedURL() );
+			}
+			wfFreeResult ( $res ) ;
+			$u = new SquidUpdate( $title_obj, $blurlArr );
+			array_push( $wgDeferredUpdateList, $u );
+
 		}
 	}
 
-	/* static */ function onArticleEdit($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+	/* static */ function onArticleEdit($title_obj,$text=''){
+		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid;
+		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
+		global $wgMessageCache, $wgInternalServer;
+
+		$id = $title_obj->getArticleID();
+		$title = $title_obj->getPrefixedDBkey();
+		$shortTitle = $title_obj->getDBkey();
+
+		$adj = $this->mCountAdjustment;
+
+		if ( 0 != $id ) {
+			$u = new LinksUpdate( $id, $title );
+			array_push( $wgDeferredUpdateList, $u );
+			$u = new SiteStatsUpdate( 0, 1, $adj );
+			array_push( $wgDeferredUpdateList, $u );
+			$u = new SearchUpdate( $id, $title, $text );
+			array_push( $wgDeferredUpdateList, $u );
+
+			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
+			array_push( $wgDeferredUpdateList, $u );
+
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$wgMessageCache->replace( $shortTitle, $text );
+			}
+		}
 		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearPage( $title_obj->getArticleID() );
+			LinkCache::linksccClearPage( $id );
 		}
 		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearPage( $title_obj->getArticleID() );
+			OutputPage::parsercacheClearPage( $id );
+		}
+		if ( $wgUseSquid ) {
+			$urlArr = Array( 
+				$wgInternalServer.wfLocalUrl( $title_obj->getPrefixedURL()),
+			);
+			wfPurgeSquidServers($urlArr);
 		}
 	}
 }
