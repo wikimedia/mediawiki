@@ -61,7 +61,7 @@ table {
 }
 a {
     text-decoration: none;
-    color: #0014a6;
+    color: #004ba6;
     background: none;
 }
 a:visited { color: #5a3696; }
@@ -466,7 +466,7 @@ td.diff-context { background:#eeeeee; }
     padding-right: 18px;
 }
 /* disable interwiki styling */
-#bodyContent a.interwiki {
+#bodyContent a.extiw {
     color: #3366bb;
     background: none;
     padding: 0;
