@@ -1444,7 +1444,7 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
@@ -2183,20 +2183,14 @@ class Language {
 		// utf8 if the language does not have a language file)
 		$v = $this->getVariants();
 		if( !empty( $v ) ) {
-			foreach ($v as $v2) {
-				if($v2 != 'utf8') {
-					$lang = $v2;
-					break;
-				}
-			}
+			$lang = $v[0];
 		}
 		if($lang != '')
 			return $lang;
 
 		// get it from the class name
 		$lang = strtolower( substr( get_class( $this ), 8 ) );
-		if($lang == 'utf8')
-			$lang = 'en';
+
 		return $lang;
 	}
 
