@@ -9,6 +9,7 @@ Changes from 1.3.8:
 * Backported "Templates used in this page"-feature of EditPage
 * Allow "MySkin" as a default skin.
 * (bug 938) Parse namespaces correctly on self-interwiki links
+* (bug 1010) fix broken Commons image link on Classic & Cologne Blue
 
 == Version 1.3.8, 2004-11-15 ==
 

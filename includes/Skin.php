@@ -505,9 +505,12 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = wfEscapeHTML( Image::wfImageUrl( $name ) );
-				$style = $this->getInternalLinkAttributes( $link, $name );
-				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				$image = new Image( $wgTitle->getDBkey() );
+				if( $image->exists() ) {
+					$link = htmlspecialchars( $image->getURL() );
+					$style = $this->getInternalLinkAttributes( $link, $name );
+					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				}
 			}
 			# This will show the "Approve" link if $wgUseApproval=true;
 			if ( isset ( $wgUseApproval ) && $wgUseApproval )
