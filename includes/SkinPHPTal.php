@@ -559,13 +559,17 @@
 			}
 		}
 		/* private */ function setupUserCssJs () {
-			global $wgRequest, $wgTitle;
+			global $wgRequest, $wgTitle, $wgSquidMaxage;
 			$action = $wgRequest->getText('action');
+			# global site css from MediaWiki NS
+			$this->usercss = '@import url('.
+			$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI).');'."\n";
+			
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				// css preview
-				$this->usercss = $wgRequest->getText('wpTextbox1');
+				$this->usercss .= $wgRequest->getText('wpTextbox1');
 			} else {
-				$this->usercss = '@import url('.
+				$this->usercss .= '@import url('.
 				$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').');';
 			}
 			if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
