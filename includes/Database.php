@@ -1,8 +1,8 @@
 <?php
-# $Id$
 /**
  * This file deals with MySQL interface functions 
  * and query specifics/optimisations
+ * @version # $Id$
  */
 
 /**
@@ -10,60 +10,76 @@
  */
 require_once( 'CacheManager.php' );
 
+/** @todo document */
 define( 'LIST_COMMA', 0 );
+/** @todo document */
 define( 'LIST_AND', 1 );
+/** @todo document */
 define( 'LIST_SET', 2 );
 
-# Number of times to re-try an operation in case of deadlock
+/** Number of times to re-try an operation in case of deadlock */
 define( 'DEADLOCK_TRIES', 4 );
-# Minimum time to wait before retry, in microseconds
+/** Minimum time to wait before retry, in microseconds */
 define( 'DEADLOCK_DELAY_MIN', 500000 );
-# Maximum time to wait before retry
+/** Maximum time to wait before retry */
 define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
 /**
  * Database abstraction object
  * @category database
+ * @version # $Id$
  */
 class Database {
 
 #------------------------------------------------------------------------------
 # Variables
-#------------------------------------------------------------------------------	
-	/* private */ var $mLastQuery = '';
+#------------------------------------------------------------------------------
+	/**#@+
+	 * @access private
+	 */
+	var $mLastQuery = '';
 	
-	/* private */ var $mServer, $mUser, $mPassword, $mConn, $mDBname;
-	/* private */ var $mOut, $mOpened = false;
+	var $mServer, $mUser, $mPassword, $mConn, $mDBname;
+	var $mOut, $mOpened = false;
 	
-	/* private */ var $mFailFunction; 
-	/* private */ var $mTablePrefix;
-	/* private */ var $mFlags;
-	/* private */ var $mTrxLevel = 0;
+	var $mFailFunction; 
+	var $mTablePrefix;
+	var $mFlags;
+	var $mTrxLevel = 0;
+	/**#@-*/
 
 #------------------------------------------------------------------------------
 # Accessors
 #------------------------------------------------------------------------------
 	# These optionally set a variable and return the previous state
 	
-	# Fail function, takes a Database as a parameter
-	# Set to false for default, 1 for ignore errors
+	/**
+	 * Fail function, takes a Database as a parameter
+	 * Set to false for default, 1 for ignore errors
+	 */
 	function failFunction( $function = NULL ) { 
 		return wfSetVar( $this->mFailFunction, $function ); 
 	}
 	
-	# Output page, used for reporting errors
-	# FALSE means discard output
+	/**
+	 * Output page, used for reporting errors
+	 * FALSE means discard output
+	 */
 	function &setOutputPage( &$out ) { 
 		$this->mOut =& $out; 
 	}
 	
-	# Boolean, controls output of large amounts of debug information 
+	/**
+	 * Boolean, controls output of large amounts of debug information
+	 */
 	function debug( $debug = NULL ) { 
 		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug ); 
 	}
 	
-	# Turns buffering of SQL result sets on (true) or off (false). Default is
-	# "on" and it should not be changed without good reasons. 
+	/**
+	 * Turns buffering of SQL result sets on (true) or off (false).
+	 * Default is "on" and it should not be changed without good reasons.
+	 */
 	function bufferResults( $buffer = NULL ) {
 		if ( is_null( $buffer ) ) {
 			return !(bool)( $this->mFlags & DBO_NOBUFFER );
@@ -72,32 +88,51 @@ class Database {
 		}
 	}
 
-	# Turns on (false) or off (true) the automatic generation and sending
-	# of a "we're sorry, but there has been a database error" page on
-	# database errors. Default is on (false). When turned off, the
-	# code should use wfLastErrno() and wfLastError() to handle the
-	# situation as appropriate.
+	/**
+	 * Turns on (false) or off (true) the automatic generation and sending
+	 * of a "we're sorry, but there has been a database error" page on
+	 * database errors. Default is on (false). When turned off, the
+	 * code should use wfLastErrno() and wfLastError() to handle the
+	 * situation as appropriate.
+	 */
 	function ignoreErrors( $ignoreErrors = NULL ) { 
 		return wfSetBit( $this->mFlags, DBO_IGNORE, $ignoreErrors ); 
 	}
 	
-	# The current depth of nested transactions
+	/**
+	 * The current depth of nested transactions
+	 * @param integer $level
+	 */
 	function trxLevel( $level = NULL ) {
 		return wfSetVar( $this->mTrxLevel, $level );
 	}
 
-	# Get functions
-	
+	/**#@+
+	 * Get function
+	 */
 	function lastQuery() { return $this->mLastQuery; }
 	function isOpen() { return $this->mOpened; }
+	/**#@-*/
 
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------
 
+	/**#@+
+	 * @param string $server database server host
+	 * @param string $user database user name
+	 * @param string $password database user password
+	 * @param string $dbname database name
+	 */
+	 
+	/**
+	 * @param failFunction
+	 * @param $flags
+	 * @param string $tablePrefix Database table prefixes. By default use the prefix gave in LocalSettings.php
+	 */
 	function Database( $server = false, $user = false, $password = false, $dbName = false, 
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
-	{
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
+		
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
@@ -115,7 +150,8 @@ class Database {
 				$this->mFlags |= DBO_TRX;
 			}
 		}
-
+		
+		/** Get the default table prefix*/
 		if ( $tablePrefix == 'get from global' ) {
 			$this->mTablePrefix = $wgDBprefix;
 		} else {
@@ -127,16 +163,22 @@ class Database {
 		}
 	}
 	
-	/* static */ function newFromParams( $server, $user, $password, $dbName, 
+	/**
+	 * @static
+	 * @param failFunction
+	 * @param $flags
+	 */
+	function newFromParams( $server, $user, $password, $dbName, 
 		$failFunction = false, $flags = 0 )
 	{
 		return new Database( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 	
-	# Usually aborts on failure
-	# If the failFunction is set to a non-zero integer, returns success
-	function open( $server, $user, $password, $dbName )
-	{
+	/**
+	 * Usually aborts on failure
+	 * If the failFunction is set to a non-zero integer, returns success
+	 */
+	function open( $server, $user, $password, $dbName ) {
 		# Test for missing mysql.so
 		# Otherwise we get a suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysql_connect' ) ) {
@@ -176,10 +218,14 @@ class Database {
 		$this->mOpened = $success;
 		return $success;
 	}
+	/**#@-*/
 	
-	# Closes a database connection, if it is open
-	# Commits any open transactions
-	# Returns success, true if already closed
+	/**
+	 * Closes a database connection.
+	 * if it is open : commits any open transactions
+	 *
+	 * @return bool operation success. true if already closed.
+	 */
 	function close()
 	{
 		$this->mOpened = false;
@@ -193,8 +239,12 @@ class Database {
 		}
 	}
 	
-	/* private */ function reportConnectionError( $msg = '')
-	{
+	/**
+	 * @access private
+	 * @param string $msg error message ?
+	 * @todo parameter $msg is not used
+	 */
+	function reportConnectionError( $msg = '') {
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
 				$ff = $this->mFailFunction;
@@ -205,10 +255,11 @@ class Database {
 		}
 	}
 	
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
-	function query( $sql, $fname = '', $tempIgnore = false )
-	{
+	/**
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 */
+	function query( $sql, $fname = '', $tempIgnore = false ) {
 		global $wgProfiling, $wgCommandLineMode;
 		
 		if ( $wgProfiling ) {
@@ -249,7 +300,10 @@ class Database {
 		return $ret;
 	}
 	
-	# The DBMS-dependent part of query()
+	/**
+	 * The DBMS-dependent part of query()
+	 * @param string $sql SQL query.
+	 */
 	function doQuery( $sql ) {
 		if( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );
@@ -259,6 +313,13 @@ class Database {
 		return $ret;
 	}
 
+	/**
+	 * @param $error
+	 * @param $errno
+	 * @param $sql
+	 * @param string $fname
+	 * @param bool $tempIgnore
+	 */
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		global $wgCommandLineMode, $wgFullyInitialised;
 		# Ignore errors during error handling to avoid infinite recursion
@@ -287,11 +348,22 @@ class Database {
 		$this->ignoreErrors( $ignore );
 	}
 
+
+	/**#@+
+	 * @param mixed $res A SQL result
+	 */
+	/**
+	 * @todo document
+	 */
 	function freeResult( $res ) {
 		if ( !@/**/mysql_free_result( $res ) ) {
 			wfDebugDieBacktrace( "Unable to free MySQL result\n" );
 		}
 	}
+	
+	/**
+	 * @todo FIXME: HACK HACK HACK HACK debug
+	 */
 	function fetchObject( $res ) {
 		@/**/$row = mysql_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
@@ -300,7 +372,10 @@ class Database {
 		}
 		return $row;
 	}
-	
+
+	/**
+	 * @todo document
+	 */
  	function fetchRow( $res ) {
 		@/**/$row = mysql_fetch_array( $res );
 		if (mysql_errno() ) {
@@ -309,6 +384,9 @@ class Database {
 		return $row;
 	}	
 
+	/**
+	 * @todo document
+	 */
 	function numRows( $res ) {
 		@/**/$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
@@ -316,17 +394,44 @@ class Database {
 		}
 		return $n;
 	}
-	function numFields( $res ) { return mysql_num_fields( $res ); }
-	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
-	function insertId() { return mysql_insert_id( $this->mConn ); }
-	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
-	function lastErrno() { return mysql_errno(); }
-	function lastError() { return mysql_error(); }
-	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	
-	# Simple UPDATE wrapper
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
+	/**
+	 * @todo document
+	 */
+	function numFields( $res ) { return mysql_num_fields( $res ); }
+
+	/**
+	 * @todo document
+	 */
+	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
+	/**
+	 * @todo document
+	 */
+	function insertId() { return mysql_insert_id( $this->mConn ); }
+	/**
+	 * @todo document
+	 */
+	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
+	/**
+	 * @todo document
+	 */
+	function lastErrno() { return mysql_errno(); }
+	/**
+	 * @todo document
+	 */
+	function lastError() { return mysql_error(); }
+	/**
+	 * @todo document
+	 */
+	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
+	/**#@-*/ // end of template : @param $result
+
+
+	/**
+	 * Simple UPDATE wrapper
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 */
 	function set( $table, $var, $value, $cond, $fname = 'Database::set' )
 	{
 		$table = $this->tableName( $table );
@@ -335,15 +440,19 @@ class Database {
 		return !!$this->query( $sql, DB_MASTER, $fname );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function getField( $table, $var, $cond='', $fname = 'Database::getField', $options = array() ) {
 		return $this->selectField( $table, $var, $cond, $fname = 'Database::get', $options = array() );
 	}
 
-	# Simple SELECT wrapper, returns a single field, input must be encoded
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns FALSE on failure
-	function selectField( $table, $var, $cond='', $fname = 'Database::selectField', $options = array() )
-	{
+	/**
+	 * Simple SELECT wrapper, returns a single field, input must be encoded
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns FALSE on failure
+	 */
+	function selectField( $table, $var, $cond='', $fname = 'Database::selectField', $options = array() ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -362,7 +471,10 @@ class Database {
 		}
 	}
 	
-	# Returns an optional USE INDEX clause to go after the table, and a string to go at the end of the query
+	/**
+	 * Returns an optional USE INDEX clause to go after the table, and a
+	 * string to go at the end of the query
+	 */
 	function makeSelectOptions( $options ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
@@ -393,7 +505,9 @@ class Database {
 		return array( $useIndex, $tailOpts );
 	}
 
-	# SELECT wrapper
+	/**
+	 * SELECT wrapper
+	 */
 	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array() )
 	{
 		if ( is_array( $vars ) ) {
@@ -417,19 +531,27 @@ class Database {
 		return $this->query( $sql, $fname );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function getArray( $table, $vars, $conds, $fname = 'Database::getArray', $options = array() ) {
 		return $this->selectRow( $table, $vars, $conds, $fname, $options );
 	}
-	
-	# Single row SELECT wrapper
-	# Aborts or returns FALSE on error
-	#
-	# $vars: the selected variables
-	# $conds: a condition map, terms are ANDed together. 
-	#    Items with numeric keys are taken to be literal conditions
-	# Takes an array of selected variables, and a condition map, which is ANDed
-	# e.g. selectRow( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
-	#   would return an object where $obj->cur_id is the ID of the Astronomy article
+
+
+	/**
+	 * Single row SELECT wrapper
+	 * Aborts or returns FALSE on error
+	 * 
+	 * $vars: the selected variables
+	 * $conds: a condition map, terms are ANDed together. 
+	 *   Items with numeric keys are taken to be literal conditions
+	 * Takes an array of selected variables, and a condition map, which is ANDed
+	 * e.g. selectRow( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
+	 *   would return an object where $obj->cur_id is the ID of the Astronomy article
+	 *
+	 * @todo migrate documentation to phpdocumentor format
+	 */
 	function selectRow( $table, $vars, $conds, $fname = 'Database::selectRow', $options = array() ) {
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
@@ -442,10 +564,14 @@ class Database {
 		
 	}
 	
-	# Removes most variables from an SQL query and replaces them with X or N for numbers.
-	# It's only slightly flawed. Don't use for anything important.
-	/* static */ function generalizeSQL( $sql )
-	{	
+	/**
+	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
+	 * It's only slightly flawed. Don't use for anything important.
+	 *
+	 * @param string $sql A SQL Query
+	 * @static
+	 */
+	function generalizeSQL( $sql ) {	
 		# This does the same as the regexp below would do, but in such a way
 		# as to avoid crashing php on some large strings.
 		# $sql = preg_replace ( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql);
@@ -465,11 +591,12 @@ class Database {
 		return $sql;
 	}
 	
-	# Determines whether a field exists in a table
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns NULL on failure
-	function fieldExists( $table, $field, $fname = 'Database::fieldExists' )
-	{
+	/**
+	 * Determines whether a field exists in a table
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns NULL on failure
+	 */
+	function fieldExists( $table, $field, $fname = 'Database::fieldExists' ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( 'DESCRIBE '.$table, DB_SLAVE, $fname );
 		if ( !$res ) {
@@ -487,11 +614,12 @@ class Database {
 		return $found;
 	}
 	
-	# Determines whether an index exists
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns NULL on failure
-	function indexExists( $table, $index, $fname = 'Database::indexExists' ) 
-	{
+	/**
+	 * Determines whether an index exists
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns NULL on failure
+	 */
+	function indexExists( $table, $index, $fname = 'Database::indexExists' ) {
 		$info = $this->indexInfo( $table, $index, $fname );
 		if ( is_null( $info ) ) {
 			return NULL;
@@ -500,6 +628,10 @@ class Database {
 		}
 	}
 	
+	
+	/**
+	 * @todo document
+	 */
 	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
@@ -518,8 +650,12 @@ class Database {
 		}
 		return false;
 	}
-	function tableExists( $table )
-	{
+	
+	/**
+	 * @param $table
+	 * @todo document
+	 */
+	function tableExists( $table ) {
 		$table = $this->tableName( $table );
 		$old = $this->ignoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
@@ -532,8 +668,12 @@ class Database {
 		}
 	}
 
-	function fieldInfo( $table, $field )
-	{
+	/**
+	 * @param $table
+	 * @param $field
+	 * @todo document
+	 */
+	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1" );
 		$n = mysql_num_fields( $res );
@@ -546,10 +686,16 @@ class Database {
 		return false;
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function fieldType( $res, $index ) {
 		return mysql_field_type( $res, $index );
 	}
 
+	/**
+	 * @todo document
+	 */
 	function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );
 		if ( !$indexInfo ) {
@@ -558,19 +704,23 @@ class Database {
 		return !$indexInfo->Non_unique;
 	}
 
+	/**
+	 * @todo document
+	 */
 	function insertArray( $table, $a, $fname = 'Database::insertArray', $options = array() ) {
 		return $this->insert( $table, $a, $fname = 'Database::insertArray', $options = array() );
 	}
 
-	# INSERT wrapper, inserts an array into a table
-	#
-	# $a may be a single associative array, or an array of these with numeric keys, for 
-	# multi-row insert.
-	#
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
-	function insert( $table, $a, $fname = 'Database::insert', $options = array() )
-	{
+	/**
+	 * INSERT wrapper, inserts an array into a table
+	 *
+	 * $a may be a single associative array, or an array of these with numeric keys, for 
+	 * multi-row insert.
+	 *
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 */
+	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -607,25 +757,30 @@ class Database {
 		return !!$this->query( $sql, $fname );
 	}
 
+	/**
+	 * @todo document
+	 */
 	function updateArray( $table, $values, $conds, $fname = 'Database::updateArray' ) {
 		return $this->update( $table, $values, $conds, $fname );
 	}
 	
-	# UPDATE wrapper, takes a condition array and a SET array
-	function update( $table, $values, $conds, $fname = 'Database::update' )
-	{
+	/**
+	 * UPDATE wrapper, takes a condition array and a SET array
+	 */
+	function update( $table, $values, $conds, $fname = 'Database::update' ) {
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
 		$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		$this->query( $sql, $fname );
 	}
 	
-	# Makes a wfStrencoded list from an array
-	# $mode: LIST_COMMA         - comma separated, no field names
-	#        LIST_AND           - ANDed WHERE clause (without the WHERE)
-	#        LIST_SET           - comma separated with field names, like a SET clause
-	function makeList( $a, $mode = LIST_COMMA )
-	{
+	/**
+	 * Makes a wfStrencoded list from an array
+	 * $mode: LIST_COMMA         - comma separated, no field names
+	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
+	 *        LIST_SET           - comma separated with field names, like a SET clause
+	 */
+	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
 			wfDebugDieBacktrace( 'Database::makeList called with incorrect parameters' );
 		}
@@ -654,14 +809,18 @@ class Database {
 		return $list;
 	}
 	
-	function selectDB( $db ) 
-	{
+	/**
+	 * @todo document
+	 */
+	function selectDB( $db ) {
 		$this->mDBname = $db;
 		mysql_select_db( $db, $this->mConn );
 	}
 
-	function startTimer( $timeout )
-	{
+	/**
+	 * @todo document
+	 */
+	function startTimer( $timeout ) {
 		global $IP;
 		if( function_exists( 'mysql_thread_id' ) ) {
 			# This will kill the query if it's still running after $timeout seconds.
@@ -670,10 +829,16 @@ class Database {
 		}
 	}
 
-	function stopTimer()
-	{
-	}
+	/**
+	 * Does nothing at all
+	 * @todo document
+	 */
+	function stopTimer() { }
 
+	/**
+	 * @param string $name database table name
+	 * @todo document
+	 */
 	function tableName( $name ) {
 		global $wgSharedDB;
 		if ( $this->mTablePrefix !== '' ) {
@@ -687,6 +852,9 @@ class Database {
 		return $name;
 	}
 
+	/**
+	 * @todo document
+	 */
 	function tableNames() {
 		$inArray = func_get_args();
 		$retVal = array();
@@ -696,12 +864,19 @@ class Database {
 		return $retVal;
 	}
 	
+	/**
+	 * Wrapper for addslashes()
+	 * @param string $s String to be slashed.
+	 * @return string slashed string.
+	 */
 	function strencode( $s ) {
 		return addslashes( $s );
 	}
 
-	# If it's a string, adds quotes and backslashes
-	# Otherwise returns as-is
+	/**
+	 * If it's a string, adds quotes and backslashes
+	 * Otherwise returns as-is
+	 */
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
 			$s = 'NULL';
@@ -715,28 +890,36 @@ class Database {
 		return $s;
 	}
 		
-	# Returns an appropriately quoted sequence value for inserting a new row.
-	# MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
-	# subclass will return an integer, and save the value for insertId()
+	/**
+	 * Returns an appropriately quoted sequence value for inserting a new row.
+	 * MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
+	 * subclass will return an integer, and save the value for insertId()
+	 */
 	function nextSequenceValue( $seqName ) {
 		return NULL;
 	}
 
-	# USE INDEX clause
-	# PostgreSQL doesn't have them and returns ""
+	/**
+	 * USE INDEX clause
+	 * PostgreSQL doesn't have them and returns ""
+	 */
 	function useIndexClause( $index ) {
 		return 'USE INDEX ('.$index.')';
 	}
 
-	# REPLACE query wrapper
-	# PostgreSQL simulates this with a DELETE followed by INSERT
-	# $row is the row to insert, an associative array
-	# $uniqueIndexes is an array of indexes. Each element may be either a 
-	# field name or an array of field names
-	#
-	# It may be more efficient to leave off unique indexes which are unlikely to collide. 
-	# However if you do this, you run the risk of encountering errors which wouldn't have 
-	# occurred in MySQL
+	/**
+	 * REPLACE query wrapper
+	 * PostgreSQL simulates this with a DELETE followed by INSERT
+	 * $row is the row to insert, an associative array
+	 * $uniqueIndexes is an array of indexes. Each element may be either a 
+	 * field name or an array of field names
+	 * 
+	 * It may be more efficient to leave off unique indexes which are unlikely to collide. 
+	 * However if you do this, you run the risk of encountering errors which wouldn't have 
+	 * occurred in MySQL
+	 *
+	 * @todo migrate comment to phodocumentor format
+	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
 		$table = $this->tableName( $table );
 
@@ -758,19 +941,21 @@ class Database {
 		return $this->query( $sql, $fname );
 	}
 
-	# DELETE where the condition is a join
-	# MySQL does this with a multi-table DELETE syntax, PostgreSQL does it with sub-selects
-	#
-	# $delTable is the table to delete from
-	# $joinTable is the other table
-	# $delVar is the variable to join on, in the first table
-	# $joinVar is the variable to join on, in the second table
-	# $conds is a condition array of field names mapped to variables, ANDed together in the WHERE clause
-	#
-	# For safety, an empty $conds will not delete everything. If you want to delete all rows where the 
-	# join condition matches, set $conds='*'
-	#
-	# DO NOT put the join condition in $conds
+	/**
+	 * DELETE where the condition is a join
+	 * MySQL does this with a multi-table DELETE syntax, PostgreSQL does it with sub-selects
+	 *
+	 * For safety, an empty $conds will not delete everything. If you want to delete all rows where the 
+	 * join condition matches, set $conds='*'
+	 *
+	 * DO NOT put the join condition in $conds
+	 *
+	 * @param string $delTable The table to delete from.
+	 * @param string $joinTable The other table.
+	 * @param string $delVar The variable to join on, in the first table.
+	 * @param string $joinVar The variable to join on, in the second table.
+	 * @param array $conds Condition array of field names mapped to variables, ANDed together in the WHERE clause
+	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'Database::deleteJoin' ) {
 		if ( !$conds ) {
 			wfDebugDieBacktrace( 'Database::deleteJoin() called with empty $conds' );
@@ -786,7 +971,9 @@ class Database {
 		return $this->query( $sql, $fname );
 	}
 
-	# Returns the size of a text field, or -1 for "unlimited"
+	/**
+	 * Returns the size of a text field, or -1 for "unlimited"
+	 */
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
@@ -802,11 +989,17 @@ class Database {
 		return $size;
 	}
 
+	/**
+	 * @return string Always return 'LOW_PRIORITY'
+	 */
 	function lowPriorityOption() {
 		return 'LOW_PRIORITY';
 	}
 
-	# Use $conds == "*" to delete all rows
+	/**
+	 * Use $conds == "*" to delete all rows
+	 * @todo document
+	 */
 	function delete( $table, $conds, $fname = 'Database::delete' ) {
 		if ( !$conds ) {
 			wfDebugDieBacktrace( 'Database::delete() called with no conditions' );
@@ -819,10 +1012,12 @@ class Database {
 		return $this->query( $sql, $fname );
 	}
 
-	# INSERT SELECT wrapper
-	# $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
-	# Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
-	# $conds may be "*" to copy the whole table
+	/**
+	 * INSERT SELECT wrapper
+	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
+	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
+	 * $conds may be "*" to copy the whole table
+	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect' ) {
 		$destTable = $this->tableName( $destTable );
 		$srcTable = $this->tableName( $srcTable );
@@ -835,14 +1030,23 @@ class Database {
 		return $this->query( $sql, $fname );
 	}
 
+	/**
+	 * @todo document
+	 */
 	function limitResult($limit,$offset) {
 		return ' LIMIT '.(is_numeric($offset)?"{$offset},":"")."{$limit} ";
 	}
 
+	/**
+	 * @todo document
+	 */
 	function wasDeadlock() {
 		return $this->lastErrno() == 1213;
 	}
 
+	/**
+	 * @todo document
+	 */
 	function deadlockLoop() {
 		$myFname = 'Database::deadlockLoop';
 		
@@ -882,7 +1086,10 @@ class Database {
 		}
 	}
 
-	# Do a SELECT MASTER_POS_WAIT()
+	/**
+	 * Do a SELECT MASTER_POS_WAIT()
+	 * @todo document
+	 */
 	function masterPosWait( $file, $pos, $timeout ) {
 		$encFile = $this->strencode( $file );
 		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos, $timeout)";
@@ -895,7 +1102,9 @@ class Database {
 		}
 	}
 
-	# Get the position of the master from SHOW SLAVE STATUS
+	/**
+	 * Get the position of the master from SHOW SLAVE STATUS
+	 */
 	function getSlavePos() {
 		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
 		$row = $this->fetchObject( $res );
@@ -906,7 +1115,9 @@ class Database {
 		}
 	}
 	
-	# Get the position of the master from SHOW MASTER STATUS
+	/**
+	 * Get the position of the master from SHOW MASTER STATUS
+	 */
 	function getMasterPos() {
 		$res = $this->query( 'SHOW MASTER STATUS', 'Database::getMasterPos' );
 		$row = $this->fetchObject( $res );
@@ -917,7 +1128,9 @@ class Database {
 		}
 	}
 
-	# Begin a transaction, or if a transaction has already started, continue it
+	/**
+	 * Begin a transaction, or if a transaction has already started, continue it
+	 */
 	function begin( $fname = 'Database::begin' ) {
 		if ( !$this->mTrxLevel ) {
 			$this->immediateBegin( $fname );
@@ -926,7 +1139,9 @@ class Database {
 		}
 	}
 
-	# End a transaction, or decrement the nest level if transactions are nested
+	/**
+	 * End a transaction, or decrement the nest level if transactions are nested
+	 */
 	function commit( $fname = 'Database::commit' ) {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxLevel--;
@@ -936,29 +1151,40 @@ class Database {
 		}
 	}
 
-	# Rollback a transaction
+	/**
+	 * Rollback a transaction
+	 */
 	function rollback( $fname = 'Database::rollback' ) {
 		$this->query( 'ROLLBACK', $fname );
 		$this->mTrxLevel = 0;
 	}
 
-	# Begin a transaction, committing any previously open transaction
+	/**
+	 * Begin a transaction, committing any previously open transaction
+	 */
 	function immediateBegin( $fname = 'Database::immediateBegin' ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
 	
-	# Commit transaction, if one is open
+	/**
+	 * Commit transaction, if one is open
+	 */
 	function immediateCommit( $fname = 'Database::immediateCommit' ) {
 		$this->query( 'COMMIT', $fname );
 		$this->mTrxLevel = 0;
 	}
 
-	# Return MW-style timestamp used for MySQL schema
+	/**
+	 * Return MW-style timestamp used for MySQL schema
+	 */
 	function timestamp( $ts=0 ) {
 		return wfTimestamp(TS_MW,$ts);
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function &resultObject( &$result ) {
 		if( empty( $result ) ) {
 			return NULL;
@@ -970,7 +1196,10 @@ class Database {
 
 /**
  * Database abstraction object for mySQL
+ * Inherit all methods and properties of Database::Database()
  * @category database
+ * @see Database
+ * @version # $Id$
  */
 class DatabaseMysql extends Database {
 	# Inherit all
@@ -980,27 +1209,43 @@ class DatabaseMysql extends Database {
 /**
  * Result wrapper for grabbing data queried by someone else
  * @category database
+ * @version # $Id$ 
  */
 class ResultWrapper {
 	var $db, $result;
 	
+	/**
+	 * @todo document
+	 */
 	function ResultWrapper( $database, $result ) {
 		$this->db =& $database;
 		$this->result =& $result;
 	}
-	
+
+	/**
+	 * @todo document
+	 */
 	function numRows() {
 		return $this->db->numRows( $this->result );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function &fetchObject() {
 		return $this->db->fetchObject( $this->result );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function &fetchRow() {
 		return $this->db->fetchRow( $this->result );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function free() {
 		$this->db->freeResult( $this->result );
 		unset( $this->result );
