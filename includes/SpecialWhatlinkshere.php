@@ -6,11 +6,12 @@
  */
 
 /**
- *
+ * Entry point
+ * @param string $par An article name ??
  */
 function wfSpecialWhatlinkshere($par = NULL) {
 	global $wgUser, $wgOut, $wgRequest;
-	$fname = "wfSpecialWhatlinkshere";
+	$fname = 'wfSpecialWhatlinkshere';
 
 	$target = $wgRequest->getVal( 'target' );
 	$limit = $wgRequest->getInt( 'limit', 500 );
@@ -18,23 +19,23 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	if(!empty($par)) {
 		$target = $par;
 	} else if ( is_null( $target ) ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 
 	$nt = Title::newFromURL( $target );
 	if( !$nt ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$wgOut->setPagetitle( $nt->getPrefixedText() );
-	$wgOut->setSubtitle( wfMsg( "linklistsub" ) );
+	$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
 
 	$id = $nt->getArticleID();
 	$sk = $wgUser->getSkin();
-	$isredir = " (" . wfMsg( "isredirect" ) . ")\n";
+	$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
-	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
+	$wgOut->addHTML('&lt; '.$sk->makeKnownLinkObj($nt, '', 'redirect=no' )."<br />\n");
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'brokenlinks', 'links' ) );
 
@@ -44,9 +45,9 @@ function wfSpecialWhatlinkshere($par = NULL) {
 		$res = $dbr->query( $sql, $fname );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
-			$wgOut->addHTML( wfMsg( "nolinkshere" ) );
+			$wgOut->addHTML( wfMsg( 'nolinkshere' ) );
 		} else {
-			$wgOut->addHTML( wfMsg( "linkshere" ) );
+			$wgOut->addHTML( wfMsg( 'linkshere' ) );
 			$wgOut->addHTML( "\n<ul>" );
 
 			while ( $row = $dbr->fetchObject( $res ) ) {
@@ -54,7 +55,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
 				if( !$nt ) {
 					continue;
 				}
-				$link = $sk->makeKnownLinkObj( $nt, "", "redirect=no" );
+				$link = $sk->makeKnownLinkObj( $nt, '', 'redirect=no' );
 				$wgOut->addHTML( "<li>{$link}" );
 
 				if ( $row->page_is_redirect ) {
@@ -76,7 +77,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
  */
 function wfShowIndirectLinks( $level, $lid, $limit ) {
 	global $wgOut, $wgUser;
-	$fname = "wfShowIndirectLinks";
+	$fname = 'wfShowIndirectLinks';
 
 	$dbr =& wfGetDB( DB_READ );
 	extract( $dbr->tableNames( 'links','page' ) );
@@ -86,32 +87,32 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 
 	if ( 0 == $dbr->numRows( $res ) ) {
 		if ( 0 == $level ) {
-			$wgOut->addHTML( wfMsg( "nolinkshere" ) );
+			$wgOut->addHTML( wfMsg( 'nolinkshere' ) );
 		}
 		return;
 	}
 	if ( 0 == $level ) {
-		$wgOut->addHTML( wfMsg( "linkshere" ) );
+		$wgOut->addHTML( wfMsg( 'linkshere' ) );
 	}
 	$sk = $wgUser->getSkin();
-	$isredir = " (" . wfMsg( "isredirect" ) . ")\n";
+	$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
-	$wgOut->addHTML( "<ul>" );
+	$wgOut->addHTML( '<ul>' );
 	while ( $row = $dbr->fetchObject( $res ) ) {
 		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 		if( !$nt ) {
-			$wgOut->addHTML( "<!-- bad backlink: " . htmlspecialchars( $row->l_from ) . " -->\n" );
+			$wgOut->addHTML( '<!-- bad backlink: ' . htmlspecialchars( $row->l_from ) . " -->\n" );
 			continue;
 		}
 
 		if ( $row->page_is_redirect ) {
-			$extra = "redirect=no";
+			$extra = 'redirect=no';
 		} else {
-			$extra = "";
+			$extra = '';
 		}
 
-		$link = $sk->makeKnownLinkObj( $nt, "", $extra );
-		$wgOut->addHTML( "<li>{$link}" );
+		$link = $sk->makeKnownLinkObj( $nt, '', $extra );
+		$wgOut->addHTML( '<li>'.$link );
 
 		if ( $row->page_is_redirect ) {
 			$wgOut->addHTML( $isredir );
