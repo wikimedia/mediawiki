@@ -843,8 +843,7 @@ class Parser
 		if( $noforce ) {
 			if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
-				$s .= $prefix . $trail;
-				return $s;
+				return (trim($s) == '')? '': $s;
 			}
 			if( $ns == $image ) {
 				$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
@@ -1049,7 +1048,7 @@ class Parser
 							$text .= $this->closeParagraph();
 							$text .= "<" . $newSection . ">";
 							$this->mLastSection = $newSection;
-						} else if ( $this->mLastSection == 'p') {
+						} else if ( $this->mLastSection == 'p' and '' == $oLine) {
 							$text .= '<br />';
 						}
 					} else if ( $this->mLastSection == $newSection and $newSection != 'p' ) {
