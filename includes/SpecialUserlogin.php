@@ -363,7 +363,7 @@ $cambutton
 	$wgOut->addHTML("
 <tr>
 <td colspan=3 align=left>
-<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\"$checked>$rmp
+<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked><label for=\"wpRemember\">$rmp</label>
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td colspan=3 align=left>
