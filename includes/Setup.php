@@ -80,9 +80,9 @@ wfProfileIn( $fname.'-misc1' );
 global $wgUser, $wgLang, $wgContLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
-global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages, $wgContMessageCach;
+global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections, $wgMsgParserOptions;
 global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
 global $wgUseOldExistenceCheck, $wgEnablePersistentLC;
@@ -261,7 +261,8 @@ if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
 $wgLanguageCode = $wgUser->getOption('language');
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
-if($wgLangClass == $wgContLangClass) {
+
+if($wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 }
 else {
@@ -273,15 +274,8 @@ else {
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
 
-$wgContMessageCache = new MessageCache;
-$wgContMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname, $wgContLang, $wgContLanguageCode );
-if($wgLangClass == $wgContLangClass) {
-	$wgMessageCache = &$wgContMessageCache;
-}
-else {
-	$wgMessageCache = new MessageCache;
-	$wgMessageCache->initialise( $messageMemc,false , $wgMsgCacheExpiry, $wgDBname.":$wgLangClass", $wgLang, $wgLanguageCode);
-}
+$wgMessageCache = new MessageCache;
+$wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname);
 
 wfProfileOut( $fname.'-MessageCache' );
 
@@ -298,7 +292,6 @@ wfProfileOut( $fname.'-MessageCache' );
 # $wgLangClass = $wgContLangClass;
 # $wgLanguageCode = $wgContLanguageCode;
 # $wgLang = $wgContLang;
-# $wgMessageCache = $wgContMessageCache;
 #
 # TODO: Need to change reference to $wgLang to $wgContLang at proper 
 #       places, including namespaces, dates in signatures, magic words,
@@ -338,6 +331,7 @@ $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 $wgDBConnections = array();
+$wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();
 
 # Placeholders in case of DB error
