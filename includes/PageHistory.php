@@ -107,7 +107,7 @@ class PageHistory {
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul class='special'>";
 		$url = $wgTitle->getFullURL("-");
-		$s .= "<SCRIPT>
+		$s .= "<script type='text/javascript'>
 			var sel = -1;
 			function anysel(oid){ 
 				row = document.getElementById(\"ver\" + oid);
@@ -134,7 +134,7 @@ class PageHistory {
 				u = \"{$url}diff=\" + diff + \"&oldid=\" + oldid;
 				location.href=u;
 			}
-		</SCRIPT>";
+		</script>";
 		return $s;
 	}
 
@@ -188,13 +188,13 @@ class PageHistory {
 		}
 		$arbitrary = "";
 		if( $this->linesonpage > 1)
-			$arbitrary = "<INPUT TYPE=CHECKBOX onClick='anysel($oid)' TITLE='Select any two versions to diff them'>";
+			$arbitrary = "<input type='checkbox' onclick='anysel($oid)' title='Select any two versions to diff them'>";
 		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary . .";
 		$M = wfMsg( "minoreditletter" );
 		if ( $isminor ) {
 			$s .= " <strong>{$M}</strong>";
 		}
-		$s .= " <span ID='ver$oid'>{$link} . . {$ul}</span>";
+		$s .= " <span id='ver$oid'>{$link} . . {$ul}</span>";
 
 		if ( "" != $c && "*" != $c ) {
 
