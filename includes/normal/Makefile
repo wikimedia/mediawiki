@@ -15,7 +15,7 @@ test : testutf8 UtfNormalTest.php UtfNormalData.inc NormalizationTest.txt
 testutf8 : Utf8Test.php UTF-8-test.txt
 	$(PHP) Utf8Test.php
 
-bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/sociology.txt
+bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/sociology.txt testdata/bulgakov.txt
 	$(PHP) UtfNormalBench.php
 
 clean :
@@ -54,3 +54,6 @@ testdata/tokyo.txt :
 
 testdata/sociology.txt :
 	mkdir -p testdata && wget -U MediaWiki/test -O testdata/sociology.txt "http://ko.wikipedia.org/w/wiki.phtml?title=%EC%82%AC%ED%9A%8C%ED%95%99&oldid=16409&action=raw"
+
+testdata/bulgakov.txt :
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/bulgakov.txt "http://ru.wikipedia.org/w/wiki.phtml?title=%D0%91%D1%83%D0%BB%D0%B3%D0%B0%D0%BA%D0%BE%D0%B2%2C_%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%B2%D0%B8%D1%87&oldid=17704&action=raw"
