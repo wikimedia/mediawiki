@@ -454,13 +454,13 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 	function searchForm()
 	{
 		global $search;
-		$s = "<form id=\"search\" class=\"inline\" method=\"get\" action=\""
+
+		$s = "<form name='search' class='inline' method=get action=\""
 		  . wfLocalUrl( "" ) . "\">"
 		  . "<input type=text name=\"search\" size=19 value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\">\n"
-		  . "<input type=submit value=\"" . wfMsg( "search" )
-		  . "\">&nbsp;<input type=submit name=\"go\" value=\""
-		  . wfMsg ("go") . "\"></form>";		  
+		  . "<input type=submit name=\"go\" value=\"" . wfMsg ("go") . "\">&nbsp;"
+		  . "<input type=submit value=\"" . wfMsg ("search") . "\"></form>";
 
 		return $s;
 	}
