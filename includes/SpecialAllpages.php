@@ -17,7 +17,7 @@ function wfSpecialAllpages( $par=NULL ) {
 	# GET values
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
-	$invert = $wgRequest->getInt( 'invert' );
+	$invert = $wgRequest->getBool( 'invert' );
 	
 	$names = $wgContLang->getNamespaces();
 
@@ -50,8 +50,9 @@ function wfSpecialAllpages( $par=NULL ) {
  * HTML for the top form
  * @param integer $namespace A namespace constant (default NS_MAIN).
  * @param string $from Article name we are starting listing at.
+ * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = 0) {
+function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = false) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
@@ -70,7 +71,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = 0) {
 	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
 	
-	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert == 1 ? ' checked="checked"' : '' ) . ' />';
+	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
@@ -80,8 +81,8 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = 0) {
 }
 
 /**
- * @todo Document
  * @param integer $namespace (default NS_MAIN)
+ * @param bool $invert true if we want the namespaces inverted (default false)
  */
 function indexShowToplevel ( $namespace = NS_MAIN, $invert = 0 ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
@@ -209,6 +210,11 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	return '<tr><td align="right">'.$out.'</td></tr>';
 }
 
+/**
+ * @param integer $namespace (Default NS_MAIN)
+ * @param string $from list all pages from this name (default FALSE)
+ * @param bool $invert true if we want the namespaces inverted (default false)
+ */
 function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
 	$sk = $wgUser->getSkin();
