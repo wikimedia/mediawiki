@@ -98,6 +98,10 @@ $wgValidationTypesEn = array (
 	MW_MATH_MATHML => 'mw_math_mathml'
 );
 
+# Whether to use user or default setting in Language::date()
+define( "MW_DATE_DEFAULT", false );
+define( "MW_DATE_USER_FORMAT", true );
+
 /* private */ $wgDateFormatsEn = array(
 	'No preference',
 	'January 15, 2001',
@@ -1644,14 +1648,18 @@ class Language {
 		return date( 'YmdHis', $t );
 	}
 
-	function date( $ts, $adj = false )
+	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT )
 	{
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
 		if ( $wgUseDynamicDates ) {
-			$datePreference = $wgUser->getOption( 'date' );
+			if ( $format == MW_DATE_USER_FORMAT ) {
+				$datePreference = $wgUser->getOption( 'date' );
+			} else {
+				$options = $this->getDefaultUserOptions();
+				$datePreference = $options['date'];
+			}
 			if ( $datePreference == 0 ) {
 				$datePreference = $wgAmericanDates ? 1 : 2;
 			}
@@ -1681,9 +1689,9 @@ class Language {
 		return $this->formatNum( $t );
 	}
 
-	function timeanddate( $ts, $adj = false )
+	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT )
 	{
-		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
+		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj, $format );
 	}
 
 	function rfc1123( $ts )
