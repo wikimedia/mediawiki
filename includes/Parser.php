@@ -217,19 +217,19 @@ class Parser
 #		$sk =& $this->mGetSkin();
 		$sk =& $wgUser->getSkin() ;
 
-		$doesexist = false ;
-		if ( $doesexist ) {
-			$sql = "SELECT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
-		} else {
-			$sql = "SELECT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
-		}
+		$data = array () ;
+		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
+		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
 
-		$res = wfQuery ( $sql, DB_READ ) ;
-		while ( $x = wfFetchObject ( $res ) )
+		$res = wfQuery ( $sql1, DB_READ ) ;
+		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+
+		$res = wfQuery ( $sql2, DB_READ ) ;
+		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+
+
+		foreach ( $data AS $x )
 		{
-		#  $t = new Title ; 
-		#  $t->newFromDBkey ( $x->l_from ) ;
-		#  $t = $t->getText() ;
 			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != "" ) $t .= ":" ;
 			$t .= $x->cur_title ;
@@ -867,6 +867,7 @@ class Parser
  			$s .= $prefix . $trail ;
 			return $s ;
 		}
+
 		if( $ns == $media ) {
 			$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 			$wgLinkCache->addImageLinkObj( $nt );
