@@ -1,5 +1,7 @@
 <?php
 
+require_once('UserMailer.php');
+
 function wfSpecialUserlogin()
 {
 	global $wpCreateaccount, $wpCreateaccountMail;
@@ -232,11 +234,7 @@ function wfSpecialUserlogin()
 
 	$m = wfMsg( "passwordremindertext", $ip, $u->getName(), $np );
 
-	mail( $u->getEmail(), wfMsg( "passwordremindertitle" ), $m,
-	  "MIME-Version: 1.0\r\n" .
-	  "Content-type: text/plain; charset={$wgOutputEncoding}\r\n" .
-	  "Content-transfer-encoding: 8bit\r\n" .
-	  "From: $wgPasswordSender" );
+	userMailer( $u->getEmail(), $wgPasswordSender, wfMsg( "passwordremindertitle" ), $m );
 	  
 	return $u;
 }

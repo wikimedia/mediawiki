@@ -1,5 +1,7 @@
 <?php
 
+require_once('UserMailer.php');
+
 function wfSpecialEmailuser()
 {
 	global $wgUser, $wgOut, $action, $target;
@@ -107,22 +109,17 @@ class EmailUserForm {
 		global $wpSubject, $wpText, $target;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
-  	    $to = wfQuotedPrintable( $this->mAddress );
+		
+		$mailResult = userMailer( $this->mAddress, $from, wfQuotedPrintable( $wpSubject ), $wpText );
 
-		$headers =
-			"MIME-Version: 1.0\r\n" .
-			"Content-type: text/plain; charset={$wgOutputEncoding}\r\n" .
-			"Content-transfer-encoding: 8bit\r\n" .
-			"From: {$from}\r\n" .
-			"Reply-To: {$from}\r\n" .
-			"To: {$to}\r\n" .
-			"X-Mailer: MediaWiki interuser e-mailer";
-		mail( $this->mAddress, wfQuotedPrintable( $wpSubject ), $wpText, $headers );
-
-
-		$success = wfLocalUrl( $wgLang->specialPage( "Emailuser" ),
-		  "target={$target}&action=success" );
-		$wgOut->redirect( $success );
+		if (! $mailResult)
+		{
+			$success = wfLocalUrl( $wgLang->specialPage( "Emailuser" ),
+		  		"target={$target}&action=success" );
+			$wgOut->redirect( $success );
+		}
+		else
+			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 	}
 
 	function showSuccess()
