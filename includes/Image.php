@@ -1,6 +1,7 @@
 <?php
 /**
  * @package MediaWiki
+ * $Id$
  */
 
 /**
@@ -376,11 +377,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	# Test to see if the row exists using INSERT IGNORE
 	# This avoids race conditions by locking the row until the commit, and also
 	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insert( 'image',
+	$dbw->insertArray( 'image',
 		array(
 			'img_name' => $name,
 			'img_size'=> $size,
-			'img_timestamp' => $now,
+			'img_timestamp' => $dbw->timestamp($now),
 			'img_description' => $desc,
 			'img_user' => $wgUser->getID(),
 			'img_user_text' => $wgUser->getName(),
@@ -402,11 +403,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 					'cur_comment' => $desc,
 					'cur_user' => $wgUser->getID(),
 					'cur_user_text' => $wgUser->getName(),
-					'cur_timestamp' => $now,
+					'cur_timestamp' => $dbw->timestamp($now),
 					'cur_is_new' => 1,
 					'cur_text' => $textdesc,
 					'inverse_timestamp' => $won,
-					'cur_touched' => $now
+					'cur_touched' => $dbw->timestamp($now)
 				), $fname
 			);
 			$id = $dbw->insertId() or 0; # We should throw an error instead
@@ -428,7 +429,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 				'oi_name' => $s->img_name,
 				'oi_archive_name' => $oldver,
 				'oi_size' => $s->img_size,
-				'oi_timestamp' => $s->img_timestamp,
+				'oi_timestamp' => $dbw->timestamp($s->img_timestamp),
 				'oi_description' => $s->img_description,
 				'oi_user' => $s->img_user,
 				'oi_user_text' => $s->img_user_text
@@ -439,7 +440,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		$dbw->updateArray( 'image',
 			array( /* SET */
 				'img_size' => $size,
-				'img_timestamp' => wfTimestampNow(),
+				'img_timestamp' => $dbw->timestamp(),
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
 				'img_description' => $desc,
