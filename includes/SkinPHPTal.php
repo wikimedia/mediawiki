@@ -322,20 +322,20 @@
 			$diff = $wgRequest->getVal( 'diff' );
 
 			$nav_urls = array();
-			$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
-			$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
-			$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
-			$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage));
+			$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
+			$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
+			$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
+			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage)));
 			if(wfMsg('currentevents') != '-') {
-				$nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
+				$nav_urls['currentevents'] = array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents')));
 			}
-			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage));
-			$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
-			// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
-			$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
-			$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
-			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
-			$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
+			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage)));
+			$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
+			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
+			$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
+			$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
+			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
+			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
 
 			return $nav_urls;
 		}
