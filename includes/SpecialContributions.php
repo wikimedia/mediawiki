@@ -167,6 +167,8 @@ function wfSpecialContributions( $par = '' ) {
 		$val = $val->countUserValidations ( $id ) ;
 		$wgOut->addHTML( wfMsg ( 'val_user_validations', $val ) );
 	}
+
+	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
 }
 
 
