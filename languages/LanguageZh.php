@@ -432,7 +432,7 @@ class LanguageZh extends LanguageZh_cn {
 		static $cache=array();
 		global $wgDisableLangConversion;
 		$pref = $this->getPreferredVariant();
-		if( $wgDisableLangConversion || $pref == 'zh' || $count > 50)
+		if( $count > 50 )
 			return;
 		$count++;
 		$variants = $this->autoConvertToAllVariants($link);
@@ -445,7 +445,8 @@ class LanguageZh extends LanguageZh_cn {
 			$varnt = Title::newFromText( $v );
 			if( $varnt && $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
-				$link = $v;
+				if( !$wgDisableLangConversion && $pref != 'zh' )
+					$link = $v;
 				break;
 			}
 		}
