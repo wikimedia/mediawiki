@@ -131,16 +131,16 @@ class Tokenizer {
 						break;
 					case "\n": // for block levels, actually, only "----" is handled.
 					case "\r":
-						if ( isset($this->mText[$this->mPos+4]) &&
-						     $this->mText[$this->mPos+1] == "-" &&
-						     $this->mText[$this->mPos+2] == "-" &&
-						     $this->mText[$this->mPos+3] == "-" &&
-						     $this->mText[$this->mPos+4] == "-" ) {
+						if ( @isset( $this->mText[$this->mPos+4] ) &&
+						     @$this->mText[$this->mPos+1] == "-" &&
+						     @$this->mText[$this->mPos+2] == "-" &&
+						     @$this->mText[$this->mPos+3] == "-" &&
+						     @$this->mText[$this->mPos+4] == "-" ) {
 						     	$queueToken["type"] = "----";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 5;
-							while (isset($this->mText[$this->mPos]) and $this->mText[$this->mPos] == "-" ) {
+							while (@isset($this->mText[$this->mPos]) and $this->mText[$this->mPos] == "-" ) {
 								$this->mPos ++;
 							}
 							break 2;
