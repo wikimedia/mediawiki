@@ -276,7 +276,7 @@ Voir $1.",
 "thisisdeleted" => "Afficher ou restaurer $1?",
 "restorelink"	=> "$1 modifications effacées",
 'feedlinks'	=> 'Flux:',
-'sitenotice'	=> '', # the equivalent to wgSiteNotice
+'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',

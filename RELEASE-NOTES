@@ -240,7 +240,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 624) Fix IE freezing rendering whilst waiting for CSS with MonoBook
 * (bug 211) Fix tabbed preferences with XHTML MIME type 
 * Fix for script execution vulnerability.
-
+* Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
 
 === Beta 6 fixes ===
 
