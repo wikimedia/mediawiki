@@ -106,7 +106,8 @@ class Parser
 		if(!$wgUseTidy) {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				"/ (\\?|:|!|\\302\\273)/i"=>"&nbsp;\\1", 
+				# only if there is something before the space
+				"/(.) (\\?|:|!|\\302\\273)/i"=>"\\1&nbsp;\\2", 
 				# french spaces, Guillemet-right
 				"/(\\302\\253) /i"=>"\\1&nbsp;", 
 				"/<hr *>/i" => '<hr/>',
