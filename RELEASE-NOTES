@@ -268,6 +268,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1364) fix "clean up whitespace" in Title:SecureAndSplit
 * (bug 1389) i18n for proxyblocker message
 * Add fur/Furlan/Friulian to language names list
+* Add TitleMoveComplete hook on page renames
 
 === Caveats ===
 
