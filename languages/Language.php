@@ -122,6 +122,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 );
 
 /* The following list is in native languages, not in English */
+global $wgLanguageNames;
 /* private */ $wgLanguageNames = array(
 	"aa" => "Afar",			# Afar
 	"ab" => "Abkhazian",	# Abkhazian - FIXME
@@ -150,6 +151,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ca" => "Catal&agrave;",	# Catalan
 	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;",	# Chechen
 	"ch" => "Chamoru",		# Chamorro
+	"chr" => "&#5091;&#5043;&#5033;", # Cherokee
 	"chy" => "Tsets&ecirc;hest&acirc;hese",	# Cheyenne
 	"co" => "Corsu",		# Corsican
 	"cr" => "Nehiyaw",		# Cree
@@ -263,6 +265,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"rm" => "Rumantsch",	# Raeto-Romance
 	"rn" => "Kirundi",		# Kirundi
 	"ro" => "Rom&acirc;n&#259;",	# Romanian
+	"roa-rup" => "Arm&#226;neashti", # Aromanian
 	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;",	# Russian
 	"rw" => "Kinyarwanda",
 	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340;",	# Sanskrit
@@ -317,6 +320,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"yo" => "Yor&ugrave;b&aacute;",	# Yoruba
 	"za" => "(Cuengh)",		# Zhuang
 	"zh" => "&#20013;&#25991;",	# (Zh&#333;ng Wén) - Chinese
+	"zh-cfr" => "&#38313;&#21335;&#35486;", # Min-nan
 	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;)",	# Simplified
 	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;)",	# Traditional
 	"zu" => "isiZulu",		# Zulu
