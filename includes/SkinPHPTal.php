@@ -28,10 +28,10 @@
 
 
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
-if( defined( "MEDIAWIKI" ) ) {
-	require_once "GlobalFunctions.php";
+if( defined( 'MEDIAWIKI' ) ) {
+	require_once 'GlobalFunctions.php';
 	global $IP;
-	require_once $IP."/PHPTAL-NP-0.7.0/libs/PHPTAL.php";
+	require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
 
 	class MediaWiki_I18N extends PHPTAL_I18N
 	{
@@ -60,8 +60,8 @@ if( defined( "MEDIAWIKI" ) ) {
 
 		function initPage( &$out ) {
 			parent::initPage( $out );
-			$this->skinname = "davinci";
-			$this->template = "xhtml_slim";
+			$this->skinname = 'davinci';
+			$this->template = 'xhtml_slim';
 		}
 
 		function outputPage( &$out ) {
@@ -94,13 +94,13 @@ if( defined( "MEDIAWIKI" ) ) {
 
 			$this->titletxt = $wgTitle->getPrefixedText();
 
-			$tpl->set( "title", $wgOut->getPageTitle() );
-			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
+			$tpl->set( 'title', $wgOut->getPageTitle() );
+			$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
 
 			$tpl->setRef( "thispage", $this->thispage );
 			$subpagestr = $this->subPageSubtitle();
 			$tpl->set(
-				"subtitle",  !empty($subpagestr)?
+				'subtitle',  !empty($subpagestr)?
 				'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
 				$out->getSubtitle()
 			);
@@ -127,7 +127,7 @@ if( defined( "MEDIAWIKI" ) ) {
 			$tpl->setRef( 'charset', $wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->setRef( 'skinname', $this->skinname );
-			$tpl->setRef( "loggedin", $this->loggedin );
+			$tpl->setRef( 'loggedin', $this->loggedin );
 			$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
 			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
@@ -137,43 +137,43 @@ if( defined( "MEDIAWIKI" ) ) {
 			$tpl->set( "helppage", wfMsg('helppage'));
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			*/
-			$tpl->set( "searchaction", $this->escapeSearchLink() );
-			$tpl->setRef( "stylepath", $wgStylePath );
-			$tpl->setRef( "logopath", $wgLogo );
+			$tpl->set( 'searchaction', $this->escapeSearchLink() );
+			$tpl->setRef( 'stylepath', $wgStylePath );
+			$tpl->setRef( 'logopath', $wgLogo );
 			$tpl->setRef( "lang", $wgLanguageCode );
-			$tpl->set( "dir", $wgLang->isRTL() ? "rtl" : "ltr" );
-			$tpl->set( "rtl", $wgLang->isRTL() );
-			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
-			$tpl->setRef( "username", $this->username );
-			$tpl->setRef( "userpage", $this->userpage);
-			$tpl->setRef( "userpageurl", $this->userpageUrlDetails['href']);
-			$tpl->setRef( "usercss", $this->usercss);
-			$tpl->setRef( "userjs", $this->userjs);
-			$tpl->setRef( "userjsprev", $this->userjsprev);
+			$tpl->set( 'dir', $wgLang->isRTL() ? "rtl" : "ltr" );
+			$tpl->set( 'rtl', $wgLang->isRTL() );
+			$tpl->set( 'langname', $wgLang->getLanguageName( $wgLanguageCode ) );
+			$tpl->setRef( 'username', $this->username );
+			$tpl->setRef( 'userpage', $this->userpage);
+			$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
+			$tpl->setRef( 'usercss', $this->usercss);
+			$tpl->setRef( 'userjs', $this->userjs);
+			$tpl->setRef( 'userjsprev', $this->userjsprev);
 			if($this->loggedin) {
-				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
+				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
 			} else {
-				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&gen=js') );
+				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
 			}
 			if( $wgUser->getNewtalk() ) {
 				$usertitle = Title::newFromText( $this->userpage );
 				$usertalktitle = $usertitle->getTalkPage();
 				if($usertalktitle->getPrefixedDbKey() != $this->thispage){
 
-					$ntl = wfMsg( "newmessages",
+					$ntl = wfMsg( 'newmessages',
 					$this->makeKnownLink(
 						$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
-						. ":" . $this->username,
-						wfMsg("newmessageslink") )
+						. ':' . $this->username,
+						wfMsg('newmessageslink') )
 					);
 				}
 			} else {
-				$ntl = "";
+				$ntl = '';
 			}
 
-			$tpl->setRef( "newtalk", $ntl );
-			$tpl->setRef( "skin", $this);
-			$tpl->set( "logo", $this->logoText() );
+			$tpl->setRef( 'newtalk', $ntl );
+			$tpl->setRef( 'skin', $this);
+			$tpl->set( 'logo', $this->logoText() );
 			if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 0 != $wgArticle->getID() ) {
 				if ( !$wgDisableCounters ) {
 					$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
@@ -191,24 +191,24 @@ if( defined( "MEDIAWIKI" ) ) {
 			            $this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 			        }
 
- 		                $tpl->setRef( "credits", $this->credits );
+ 		                $tpl->setRef( 'credits', $this->credits );
 
 			} elseif ( isset( $oldid ) && !isset( $diff ) ) {
 				$tpl->set('copyright', $this->getCopyright());
 			}
 
-			$tpl->set( "copyrightico", $this->getCopyrightIcon() );
-			$tpl->set( "poweredbyico", $this->getPoweredBy() );
-			$tpl->set( "disclaimer", $this->disclaimerLink() );
-			$tpl->set( "about", $this->aboutLink() );
+			$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
+			$tpl->set( 'poweredbyico', $this->getPoweredBy() );
+			$tpl->set( 'disclaimer', $this->disclaimerLink() );
+			$tpl->set( 'about', $this->aboutLink() );
 
-			$tpl->setRef( "debug", $out->mDebugtext );
-			$tpl->set( "reporttime", $out->reportTime() );
-			$tpl->set( "sitenotice", $wgSiteNotice );
+			$tpl->setRef( 'debug', $out->mDebugtext );
+			$tpl->set( 'reporttime', $out->reportTime() );
+			$tpl->set( 'sitenotice', $wgSiteNotice );
 
 			$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 			$out->mBodytext .= $printfooter ;
-			$tpl->setRef( "bodytext", $out->mBodytext );
+			$tpl->setRef( 'bodytext', $out->mBodytext );
 
 			$language_urls = array();
 			foreach( $wgOut->getLanguageLinks() as $l ) {
@@ -232,7 +232,7 @@ if( defined( "MEDIAWIKI" ) ) {
 			} else {
 				$tpl->set('body-ondblclick', false);
 			}
-			$tpl->set( "nav_urls", $this->buildNavUrls() );
+			$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 			// execute template
 			$res = $tpl->execute();
@@ -448,7 +448,7 @@ if( defined( "MEDIAWIKI" ) ) {
 					$article_time = "&timestamp=" . $wgArticle->mTimestamp ;
 					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,
 						'text' => wfMsg('val_tab'),
-						'href' => $this->makeUrl($this->thispage, "action=validate{$article_time}"));
+						'href' => $this->makeUrl($this->thispage, 'action=validate'.$article_time));
 					}
 
 			} else {
@@ -601,7 +601,7 @@ if( defined( "MEDIAWIKI" ) ) {
 		}
 		function getUserJs() {
 			global $wgUser, $wgStylePath;
-			$s = "/* generated javascript */";
+			$s = '/* generated javascript */';
 			$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
 			$s .= '/* MediaWiki:'.ucfirst($this->skinname)." */\n";
 			$s .= wfMsg(ucfirst($this->skinname).'.js');
@@ -612,39 +612,39 @@ if( defined( "MEDIAWIKI" ) ) {
 	class SkinDaVinci extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
-			$this->skinname = "davinci";
+			$this->skinname = 'davinci';
 		}
 	}
 
 	class SkinMono extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
-			$this->skinname = "mono";
+			$this->skinname = 'mono';
 		}
 	}
 
 	class SkinMonoBook extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
-			$this->skinname = "monobook";
+			$this->skinname = 'monobook';
 		}
 	}
 
 	class SkinMySkin extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
-			$this->skinname = "myskin";
+			$this->skinname = 'myskin';
 		}
 	}
 
 	class SkinChick extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
-			$this->skinname = "chick";
-			$this->template = "xhtml_minimal";
+			$this->skinname = 'chick';
+			$this->template = 'xhtml_minimal';
 		}
 		function suppressUrlExpansion() { return true; }
-		function printSource() { return ""; }
+		function printSource() { return ''; }
 	}
 }
 ?>
