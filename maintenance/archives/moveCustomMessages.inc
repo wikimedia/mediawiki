@@ -106,6 +106,7 @@ function moveCustomMessages( $phase ) {
 					# [[MediaWiki:]] -> [[Template:]]
 					$text = preg_replace_callback( $linkRegex, "wfReplaceMediaWiki", $text );
 					$text = $parser->unstrip( $text, $stripState );
+					$text = $parser->unstripNoWiki( $text, $stripState );
 					if ( $text != $row->cur_text ) {
 						wfUpdateArray( 'cur', array( 'cur_text' => $text ), array( 'cur_id' => $id ) );
 						print "$pdbk\n";

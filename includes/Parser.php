@@ -78,7 +78,6 @@ class Parser
 		$this->mStripState = array();
 		$this->mArgStack = array();
 		$this->mInPre = false;
-		$this->mInNowiki = false;
 	}
 
 	# First pass--just handle <nowiki> sections, pass the rest off
@@ -134,6 +133,7 @@ class Parser
 		}
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
+		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		if($wgUseTidy) {
 			$text = $this->tidy($text);
 		}
@@ -214,12 +214,11 @@ class Parser
 
 		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
-			//if( $render ){
-				//# use span to mark nowiki areas, note the trailing whitespace in span to avoid collisions with other spans
-				//$nowiki_content[$marker] = '<span class="nowiki">'.wfEscapeHTMLTagsOnly( $content )."</span  >";
-			//} else {
+			if( $render ){
+				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
+			} else {
 				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
-			//}
+			}
 		}
 
 		$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
@@ -289,14 +288,27 @@ class Parser
 		return $text;
 	}
 
+	# always call unstripNoWiki() after this one
 	function unstrip( $text, &$state )
 	{
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
 		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
-			for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
-				$text = str_replace( key( $contentDict ), $content, $text );
+			if( key($state) != 'nowiki') {
+				for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
+					$text = str_replace( key( $contentDict ), $content, $text );
+				}
 			}
+		}
+
+		return $text;
+	}
+	# always call this after unstrip() to preserve the order 
+	function unstripNoWiki( $text, &$state )
+	{
+		# Must expand in reverse order, otherwise nested tags will be corrupted
+		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
+			$text = str_replace( key( $state['nowiki'] ), $content, $text );
 		}
 
 		return $text;
@@ -1010,9 +1022,6 @@ class Parser
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
 		#
-
-		// Strip nowiki's again.
-		$text = $this->strip($text,$dblStripState);
 		$textLines = explode( "\n", $text );
 
 		$lastPrefix = $output = $lastLine = '';
@@ -1025,22 +1034,12 @@ class Parser
 		}
 		foreach ( $textLines as $oLine ) {
 			$lastPrefixLength = strlen( $lastPrefix );
-			$preOpenMatch = preg_match("/<pre/i", $oLine );
 			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
-			$nowikiOpenMatch = preg_match("/<span class=\"nowiki\"/", $oLine );
-			$nowikiCloseMatch = preg_match("/<\\/span  >/", $oLine );
-			if($nowikiOpenMatch) $nowikiFullMatch = preg_match("/^(.*)<span class=\"nowiki\"/", $oLine, $nowikiOpenMatches );
+			$preOpenMatch = preg_match("/<pre/i", $oLine );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
-			if (!$this->mInNowiki) {
-				$this->mInNowiki = !empty($nowikiOpenMatch);
-			}
-			if ( 
-				!$this->mInPre && (!$this->mInNowiki || 
-				($nowikiOpenMatch && strlen($nowikiOpenMatches[1]) > 0) ) 
-			) 
-			{
+			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, "*#:;" );
 				$pref = substr( $oLine, 0, $prefixLength );
@@ -1120,11 +1119,8 @@ class Parser
 					} else {
 						$inBlockElem = true;
 					}
-				} else if ( 
-					!$inBlockElem && !$this->mInPre && 
-					(!$this->mInNowiki || ($nowikiOpenMatch && trim($nowikiOpenMatches[1]) == ''  ) ) ) 
-					{
-					if ( " " == $t{0} and trim($t) != '' and (!$this->mInNowiki || $nowikiOpenMatch && strlen($nowikiOpenMatches[1]) > 0 ) ) {
+				} else if ( !$inBlockElem && !$this->mInPre ) {
+					if ( " " == $t{0} and trim($t) != '' ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
 							$paragraphStack = false;
@@ -1160,7 +1156,6 @@ class Parser
 					}
 				}
 			}
-			if($nowikiCloseMatch) $this->mInNowiki = false;
 			if ($paragraphStack === false) {
 				$output .= $t."\n";
 			}
@@ -1173,7 +1168,6 @@ class Parser
 			$output .= "</" . $this->mLastSection . ">";
 			$this->mLastSection = "";
 		}
-		$output = $this->unstrip( $output, $dblStripState );
 
 		wfProfileOut( $fname );
 		return $output;
@@ -1731,6 +1725,7 @@ class Parser
 			# The canonized header is a version of the header text safe to use for links
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$canonized_headline = $this->unstrip( $headline, $this->mStripState );
+			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
 
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
@@ -1910,6 +1905,7 @@ class Parser
 		$text = $this->strip( $text, $stripState, false );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->unstrip( $text, $stripState );
+		$text = $this->unstripNoWiki( $text, $stripState );
 		return $text;
 	}
 

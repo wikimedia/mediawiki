@@ -171,6 +171,7 @@ class Article {
 		}
 		# reinsert stripped tags
 		$rv=$parser->unstrip($rv,$striparray);
+		$rv=$parser->unstripNoWiki($rv,$striparray);
 		$rv=trim($rv);
 		return $rv;
 
@@ -717,6 +718,7 @@ class Article {
 				$text=join("",$secs);
 				# reinsert the stuff that we stripped out earlier
 				$text=$parser->unstrip($text,$striparray);	
+				$text=$parser->unstripNoWiki($text,$striparray);	
 			}
 								
 		}
