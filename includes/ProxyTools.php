@@ -32,12 +32,10 @@ function wfGetIP()
 	if ( count( $trustedProxies ) ) {
 		# Append XFF on to $ipchain
 		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$xff = explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] );
-			for ( $i = 1; $i <= count( $xff ); $i++ ) {
-				$ipchain[$i] = trim( $xff[count($xff) - $i );
-			}
+			$xff = array_map( 'trim', explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+			$xff = array_reverse( $xff );
+			$ipchain = array_merge( $ipchain, $xff );
 		}
-		var_dump( $ipchain );
 		# Step through XFF list and find the last address in the list which is a trusted server
 		# Set $ip to the IP address given by that trusted server, unless the address is not sensible (e.g. private)
 		foreach ( $ipchain as $i => $curIP ) {
