@@ -506,7 +506,7 @@ class Image
 			# Check for zero-sized thumbnails. Those can be generated when 
 			# no disk space is available or some other error occurs
 			#
-			if( file_exists( $thumbstat ) ) {
+			if( file_exists( $thumbPath ) ) {
 				$thumbstat = stat( $thumbPath );
 				if( $thumbstat['size'] == 0 ) {
 					unlink( $thumbPath );
@@ -979,6 +979,20 @@ class ThumbnailImage {
 		$html .= '/>';
 		return $html;
 	}
+
+        /**             
+         * Return the size of the thumbnail file, in bytes
+         * @access public 
+         */                     
+        function getSize()
+        {               
+                $st = stat( $this->path );
+                if( $st ) {     
+                        return $st['size']; 
+                } else {        
+                        return false;                }                       
+        }
+
 }
 
 ?>
