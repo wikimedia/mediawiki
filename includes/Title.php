@@ -983,7 +983,11 @@ class Title {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
 		wfQuery( $sql, DB_WRITE, $fname );
-
+		
+		# Clear linkscc
+		LinkCache::linksccClearLinksTo( $oldid );
+		LinkCache::linksccClearLinksTo( $newid );
+		
 		# Purge squid
 		if ( $wgUseSquid ) {
 			$urls = array_merge( $nt->getSquidURLs(), $this->getSquidURLs() );
@@ -1050,14 +1054,16 @@ class Title {
 			), $fname
 		);
 		
-		# Miscellaneous updates
-
+		# Record in RC
 		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+
+		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
 
 		# Any text links to the old title must be reassigned to the redirect
 		$sql = "UPDATE links SET l_to={$newid} WHERE l_to={$oldid}";
 		wfQuery( $sql, DB_WRITE, $fname );
+		LinkCache::linksccClearLinksTo( $oldid );
 
 		# Record the just-created redirect's linking to the page
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
