@@ -5,7 +5,7 @@ require_once( "WatchedItem.php" );
 function wfSpecialWatchlist()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc;
-	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
+	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname, $wgIsMySQL;
 	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
 
@@ -137,11 +137,11 @@ function wfSpecialWatchlist()
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 	 
-
+	$use_index=$wgIsMySQL?"USE INDEX ($x)":"";
 	$sql = "SELECT
   cur_namespace,cur_title,cur_comment, cur_id,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
-  FROM watchlist,cur USE INDEX ($x)
+  FROM watchlist,cur $use_index
   WHERE wl_user=$uid
   AND $z
   AND wl_title=cur_title
