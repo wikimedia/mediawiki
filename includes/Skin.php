@@ -306,7 +306,7 @@ class Skin {
 		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgContLang->checkTitleEncoding( $link );
-		$link = str_replace( '_', ' ', $link );
+		$link = preg_replace( '/[\\x00-\\x1f_]/', ' ', $link );
 		$link = htmlspecialchars( $link );
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
