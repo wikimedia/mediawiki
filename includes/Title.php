@@ -159,6 +159,13 @@ class Title {
 		$rt = NULL;
 		if ( $wgMwRedir->matchStart( $text ) ) {
 			if ( preg_match( '/\\[\\[([^\\]\\|]+)[\\]\\|]/', $text, $m ) ) {
+				# categories are escaped using : for example one can enter:
+				# #REDIRECT [[:Category:Music]]. Need to remove it.
+				if ( substr($m[1],0,1) == ':') {
+					# We don't want to keep the ':'
+					$m[1] = substr( $m[1], 1 );
+				}
+				
 				$rt = Title::newFromText( $m[1] );
 			}
 		}
