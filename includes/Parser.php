@@ -2005,7 +2005,7 @@ class ParserOptions
 	/* static */ function newFromUser( &$user )
 	{
 		$popts = new ParserOptions;
-		$popts->initialiseFromUser( &$user );
+		$popts->initialiseFromUser( $user );
 		return $popts;
 	}
 
