@@ -526,7 +526,7 @@ class PreferencesForm {
 		<legend>$timezone</legend>
 		<div><b>$tzServerTime:</b> $nowserver</div>
 		<div><b>$ltz:</b> $nowlocal</div>
-		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
+		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' /></label></div>
 		<div><input type=\"button\" value=\"$tzGuess\" onclick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
 		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
