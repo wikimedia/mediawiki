@@ -108,6 +108,7 @@ class EditPage {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgParser, $wgTitle;
 	    global $wgAllowAnonymousMinor;
+	    global $wgWhitelistEdit;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;

@@ -586,7 +586,8 @@ class Parser
 		$state["em"]      = FALSE;
 		$state["strong"]  = FALSE;
 		$tagIsOpen = FALSE;
-
+		$threeopen = false;
+		
 		# The tokenizer splits the text into tokens and returns them one by one.
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )

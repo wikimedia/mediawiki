@@ -129,13 +129,13 @@ function wfSpecialContributions( $par = "" )
 
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 {
-	global $wgLang, $wgOut, $wgUser, $target;
+	global $wgLang, $wgOut, $wgUser, $wgRequest, $target;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
 	$topmarktext = $topmark ? wfMsg ( "uctop" ) : "";
 	$sysop = $wgUser->isSysop();
 
-	$extraRollback = $_REQUEST['bot'] ? '&bot=1' : '';	
+	$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';	
 	if($sysop && $topmark ) {
 		$topmarktext .= " [". $sk->makeKnownLink( $page,
 		  wfMsg( "rollbacklink" ), 
@@ -148,9 +148,11 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
-        if ($isminor) {
-          $mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
-        }
+	if ($isminor) {
+		$mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
+	} else {
+		$mflag = "";
+	}
 
 	$wgOut->addHTML( "<li>{$d} {$mflag}{$link} {$comment}{$topmarktext}</li>\n" );
 }
