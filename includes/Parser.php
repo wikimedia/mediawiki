@@ -483,7 +483,7 @@ cl_sortkey" ;
 		{
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
-				. wfMsg( 'subcategorycount', count( $children ) );
+				. wfMsg( 'subcategorycount', $wgLang->formatNum( count( $children ) ) );
 			if ( count ( $children ) > 6 ) {
 
 				// divide list into three equal chunks
@@ -540,7 +540,7 @@ cl_sortkey" ;
 		} # END of if ( count($children) > 0 )
 
 		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n" .
-			wfMsg( 'categoryarticlecount', count( $articles ) );
+			wfMsg( 'categoryarticlecount', $wgLang->formatNum( count( $articles ) ) );
 
 		# Showing articles in this category
 		if ( count ( $articles ) > 6) {

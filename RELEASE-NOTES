@@ -8,6 +8,8 @@ Changes from 1.3.7:
 * (bug 506) fix array_key_exists() warning for IIS servers using
   ISAPI mode
 * (bug 718) fix bad charset in (file) cached pages
+* use local numerals in category page (for Hindi et al)
+
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:
