@@ -5,9 +5,6 @@
 # See rebuildlinks.php, for example.
 #
 
-# Turn this on if you've got memory to burn
-$wgUseMemoryTables = false;
-
 # Buffer this many rows before inserting them all in one sweep. More
 # than about 1000 will probably not increase speed significantly on
 # most setups.
@@ -16,7 +13,7 @@ $wgUseMemoryTables = false;
 function rebuildLinkTables()
 {
 	error_reporting (E_ALL);
-	global $wgLang, $wgUseMemoryTables, $wgLinkCache, $rowbuf_size;
+	global $wgLang, $wgLinkCache, $rowbuf_size;
 
 	print "This script may take several hours to complete. If you abort during that time,\n";
 	print "your wiki will be in an inconsistent state. If you are going to abort, this is\n";
@@ -123,7 +120,7 @@ function rebuildLinkTables()
 			} else {
 				$nt = Title::newFromText( $link );
 				if (! $nt) {
-					print "\nInvalid link in page '$ns:{$from_full_title}': '$link'\n";
+					print "\nInvalid link in page '{$from_full_title}': '$link'\n";
 					continue;
 				}
 				
@@ -148,7 +145,7 @@ function rebuildLinkTables()
 				$nt->mArticleID = 0; // assume broken link until proven otherwise
 
 				$pos = array_push($titles_needing_curdata, $nt) - 1;
-				$titles_needing_curdata_pos[$nt->getDBkey()] = $pos;
+				$titles_needing_curdata_pos[$nt->getDBkey() . $nt->getNamespace()] = $pos;
 				$links_corresponding_to_titles[] = $link;
 				unset( $link ); // useless outside this loop, but tempting 
 			}
@@ -161,10 +158,10 @@ function rebuildLinkTables()
 				$parts[] = " (cur_namespace = " . $nt->getNamespace() . " AND " .
 					"cur_title='" . wfStrencode( $nt->getDBkey() ) . "')";
 			}
-			$sql = "SELECT cur_title, cur_id FROM cur WHERE " . implode(" OR ", $parts);
+			$sql = "SELECT cur_namespace, cur_title, cur_id FROM cur WHERE " . implode(" OR ", $parts);
 			$res = wfQuery( $sql, DB_WRITE );
 			while($row = wfFetchObject( $res ) ){
-				$pos = $titles_needing_curdata_pos[$row->cur_title];
+				$pos = $titles_needing_curdata_pos[$row->cur_title . $row->cur_namespace];
 				$titles_needing_curdata[$pos]->mArticleID = intval($row->cur_id);
 			}
 			for( $k = 0; $k < count( $titles_needing_curdata ) ; $k++) {
