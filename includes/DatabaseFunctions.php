@@ -33,19 +33,11 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 	}
 
 	if ( ! $wgDBconnection ) {
-		@$wgDBconnection = mysql_pconnect( $wgDBserver, $wgDBuser, $wgDBpassword )
+		@$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser, $wgDBpassword )
 			or wfEmergencyAbort();
 		
-		if( !mysql_select_db( $wgDBname, $wgDBconnection ) ) {
-			/* Persistent connections may become stuck in an unusable state */
-			wfDebug( "Persistent connection is broken?\n", true );
-			
-			@$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser, $wgDBpassword )
-				or wfEmergencyAbort();
-			
-			@mysql_select_db( $wgDBname, $wgDBconnection )
-				or wfEmergencyAbort();
-		}
+		@mysql_select_db( $wgDBname, $wgDBconnection )
+			or wfEmergencyAbort();
 	}
 	# mysql_ping( $wgDBconnection );
 	return $wgDBconnection;
