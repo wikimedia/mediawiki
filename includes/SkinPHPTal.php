@@ -69,6 +69,8 @@
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 			$this->thispage = $wgTitle->getPrefixedDbKey();
+			$this->thisurl = $wgTitle->getPrefixedURL();
+			$this->thisurle = urlencode($this->thisurl);
 			$this->loggedin = $wgUser->getID() != 0;
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
@@ -82,7 +84,9 @@
 			#}
 
 			$tpl->setRef( "title", &$this->titletxt ); // ?
-			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt ) );
+			$taction =  $this->getPageTitleActionText();
+			$taction = !empty($taction)?' - '.$taction:'';
+			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt.$taction ) );
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->set( 'catlinks', getCategories());
@@ -114,7 +118,7 @@
 					$ntl = wfMsg( "newmessages",
 					$this->makeKnownLink( 
 						$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
-						. ":" . $wgUser->getName(),
+						. ":" . $this->username,
 						wfMsg("newmessageslink") ) 
 					);
 				}
@@ -152,7 +156,7 @@
 				'text' => ($wgLang->getLanguageName( $nt->getInterwiki()) != ''?$wgLang->getLanguageName( $nt->getInterwiki()) : $l),
 				'class' => $wgLang->isRTL() ? 'rtl' : 'ltr');
 			}
-			if(count($language_urls) != 0 ) {
+			if(count($language_urls)) {
 				$tpl->setRef( 'language_urls', &$language_urls);
 			} else {
 				$tpl->set('language_urls', false);
@@ -185,38 +189,76 @@
 		# build array of urls for personal toolbar
 		function buildPersonalUrls() {
 			/* set up the default links for the personal toolbar */
+			global $wgShowIPinHeader;
 			$personal_urls = array();
 			if ($this->loggedin) {
-				$personal_urls['userpage'] = array('text' => $this->username,
+				$personal_urls['userpage'] = array(
+					'text' => $this->username,
 					'href' => $this->makeUrl($this->userpage),
 					'ttip' => wfMsg('tooltip-userpage'),
-					'akey' => wfMsg('accesskey-userpage'));
-				$personal_urls['mytalk'] = array('text' => wfMsg('mytalk'),
+					'akey' => wfMsg('accesskey-userpage')
+				);
+				$personal_urls['mytalk'] = array(
+					'text' => wfMsg('mytalk'),
 					'href' => $this->makeTalkUrl($this->userpage),
 					'ttip' => wfMsg('tooltip-mytalk'),
-					'akey' => wfMsg('accesskey-mytalk'));
-				$personal_urls['preferences'] = array('text' => wfMsg('preferences'),
+					'akey' => wfMsg('accesskey-mytalk')
+				);
+				$personal_urls['preferences'] = array(
+					'text' => wfMsg('preferences'),
 					'href' => $this->makeSpecialUrl('Preferences'),
 					'ttip' => wfMsg('tooltip-preferences'),
-					'akey' => wfMsg('accesskey-preferences'));
-				$personal_urls['watchlist'] = array('text' => wfMsg('watchlist'),
+					'akey' => wfMsg('accesskey-preferences')
+				);
+				$personal_urls['watchlist'] = array(
+					'text' => wfMsg('watchlist'),
 					'href' => $this->makeSpecialUrl('Watchlist'),
 					'ttip' => wfMsg('tooltip-watchlist'),
-					'akey' => wfMsg('accesskey-watchlist'));
-				$personal_urls['mycontris'] = array('text' => wfMsg('mycontris'),
+					'akey' => wfMsg('accesskey-watchlist')
+				);
+				$personal_urls['mycontris'] = array(
+					'text' => wfMsg('mycontris'),
 					'href' => $this->makeSpecialUrl('Contributions','target=' . $this->username),
 					'ttip' => wfMsg('tooltip-mycontris'),
-					'akey' => wfMsg('accesskey-mycontris'));
-				$personal_urls['logout'] = array('text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . $this->thispage),
+					'akey' => wfMsg('accesskey-mycontris')
+				);
+				$personal_urls['logout'] = array(
+					'text' => wfMsg('userlogout'),
+					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . $this->thisurle),
 					'ttip' => wfMsg('tooltip-logout'),
-					'akey' => wfMsg('accesskey-logout'));
+					'akey' => wfMsg('accesskey-logout')
+				);
 			} else {
-				$personal_urls['login'] = array('text' => wfMsg('userlogin'),
-					'href' => $this->makeSpecialUrl('Userlogin'),
-					'ttip' => wfMsg('tooltip-login'),
-					'akey' => wfMsg('accesskey-login'));
+				if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
+					$personal_urls['anonuserpage'] = array(
+						'text' => $this->username,
+						'href' => $this->makeUrl($this->userpage),
+						'ttip' => wfMsg('tooltip-anonuserpage'),
+						'akey' => wfMsg('accesskey-anonuserpage')
+					);
+					$personal_urls['anontalk'] = array(
+						'text' => wfMsg('anontalk'),
+						'href' => $this->makeTalkUrl($this->userpage),
+						'ttip' => wfMsg('tooltip-anontalk'),
+						'akey' => wfMsg('accesskey-anontalk')
+					);
+					$personal_urls['anonlogin'] = array(
+						'text' => wfMsg('userlogin'),
+						'href' => $this->makeSpecialUrl('Userlogin', 'return='.$this->thisurle),
+						'ttip' => wfMsg('tooltip-login'),
+						'akey' => wfMsg('accesskey-login')
+					);
+				} else {
+
+					$personal_urls['login'] = array(
+						'text' => wfMsg('userlogin'),
+						'href' => $this->makeSpecialUrl('Userlogin', 'return='.$this->thisurle),
+						'ttip' => wfMsg('tooltip-login'),
+						'akey' => wfMsg('accesskey-login')
+					);
+				}
 			}
+
 			return $personal_urls;
 		}
 		
@@ -428,6 +470,27 @@
 			return $nav_urls;
 		}
 
+		function getPageTitleActionText () {
+			global $action;
+			switch($action) {
+				case edit:
+					return 	wfMsg('edit');
+				case history:
+					return wfMsg('history_short');
+				case protect:
+					return wfMsg('unprotect');
+				case unprotect:
+					return wfMsg('unprotect');
+				case delete:
+					return wfMsg('delete');
+				case watch:
+					return wfMsg('watch');
+				case unwatch:
+					return wfMsg('unwatch');
+				default:
+					return '';
+			}
+		}
 		/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 			$title = Title::makeTitle( NS_SPECIAL, $name );
 			$this->checkTitle(&$title, &$name);	
