@@ -1243,7 +1243,7 @@ You will be notified by email when someone changes a page which is listed in you
 'email_notification_reset'			=> 'Reset all notification flags (set their status to "visited")',
 'email_notification_newpagetext'=> 'This is a new page.',
 'email_notification_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
-'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE_QP has been changed by $PAGEEDITOR_QP',
+'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE has been changed by $PAGEEDITOR',
 'email_notification_lastvisitedrevisiontext' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
 'email_notification_body' => 'Dear $WATCHINGUSERNAME,
 
