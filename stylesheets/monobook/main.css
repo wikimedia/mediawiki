@@ -783,19 +783,11 @@ head:first-child+body #footer li { white-space: nowrap; }
 * html #column-content { display: inline; }
 
 /* float/negative margin brokenness */
-* html #bodyContent pre,
-* html #bodyContent div.fullImage {
-    overflow: auto;
-    overflow-y: hidden;
-    width: 95%;
-    margin-bottom: 25px;
-    margin-right: 0;
-}
 /* more float brokenness */
 * html #bodyContent {
-    display: inline;
     overflow-x: auto;
     width: 100%;
+    padding-bottom: 14px;
 }
 * html #footer {margin-top: 0;}
 * html #column-content {margin-bottom: 0;}
