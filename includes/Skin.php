@@ -2468,13 +2468,8 @@ class Skin {
 				"key"=>"R"
 				)
 		);
-		$toolbar ="<script type='text/javascript'>\n";
-
-		$xml = ($wgMimeType == "text/xml");
-		if( $xml ) {
-			$toolbar .= "<![CDATA[";
-		}
-
+		$toolbar ="<script type='text/javascript'>\n/*<![CDATA[*/\n";
+		
 		$toolbar.="document.writeln(\"<div id='toolbar' tabindex='4000000'>\");\n";
 		foreach($toolarray as $tool) {
 
@@ -2496,11 +2491,8 @@ class Skin {
 
 		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n";
-
-		if( $xml ) {
-			$toolbar .= "]]>";
-		}
-		$toolbar.="</script>";
+		
+		$toolbar.="/*]]>*/</script>";
 		return $toolbar;
 	}
 }
