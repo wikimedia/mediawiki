@@ -420,6 +420,8 @@ class Parser
 		$text = str_replace ( "<HR>", "<hr />", $text );
 		$text = str_replace ( "<br>", "<br />", $text );
 		$text = str_replace ( "<br >", "<br />", $text );
+		$text = str_replace ( '<center>', '<span style="text-align: center">', $text );
+		$text = str_replace ( '</center>', '</span>', $text );
 
 		$text = $this->doHeadings( $text );
 		
@@ -1270,7 +1272,7 @@ class Parser
 		$htmlpairs = array( # Tags that must be closed
 			"b", "i", "u", "font", "big", "small", "sub", "sup", "h1",
 			"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
-			"strike", "strong", "tt", "var", "div", "center",
+			"strike", "strong", "tt", "var", "div", "span",
 			"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
 			"ruby", "rt" , "rb" , "rp", "p"
 		);
@@ -1469,8 +1471,8 @@ class Parser
 			
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
-			
-			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+]+/", '_', html_entity_decode(trim( $canonized_headline )));
+			$tocline = trim( $canonized_headline );	
+			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+]+/", '_', html_entity_decode( $tocline));
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
