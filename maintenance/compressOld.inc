@@ -39,7 +39,7 @@ function compressPage( $row ) {
 	}
 	$dbw =& wfGetDB( DB_MASTER );
 	$flags = $row->old_flags ? "{$row->old_flags},gzip" : "gzip";
-	$compress = $dbw->strencode( gzdeflate( $row->old_text ) );
+	$compress = gzdeflate( $row->old_text );
 	$dbw->update( 'old', 
 		array( /* SET */
 			'old_flags' => $flags,
