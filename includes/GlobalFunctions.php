@@ -93,8 +93,8 @@ function wfLocalUrl( $a, $q = "" )
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else if ($wgScript != '' ) {
 		$a = "{$wgScript}?title={$a}&{$q}";	
-	} else { //XXX ugly hack for toplevel wikis
-		$a = "/{$a}&{$q}";	
+	} else { //XXX hackish solution for toplevel wikis
+		$a = "/{$a}?{$q}";	
 	}
 	return $a;
 }
