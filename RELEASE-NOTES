@@ -129,7 +129,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix language selection for upgraded accounts
 * (bug 1076) navigation links in QueryPage should be translated by wgContLang.
 * (bug 922) bogus DOS line endings in LanguageEl.php
-
+* Fix index usage in contribs
 
 === Caveats ===
 
