@@ -2218,14 +2218,14 @@ class Parser
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup'
+				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table
 				'td', 'th', 'tr'
