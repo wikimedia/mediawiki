@@ -88,7 +88,15 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesIs = array(
-	"Venjulegt", "Gamaldags", "Kölnarblátt", "Paddington", "Montparnasse"
+	'standard' 	=> 'Venjulegt',
+	'nostalgia' 	=> 'Gamaldags',
+	'cologneblue' 	=> 'Kölnarblátt',
+	'paddington' 	=> 'Paddington',
+	'montparnasse' 	=> 'Montparnasse',
+	'davinci' 	=> 'DaVinci',
+	'mono' 		=> 'Mono',
+	'monobook' 	=> 'MonoBook',
+	'myskin' 	=> 'MySkin'
 );
 
 /* private */ $wgDateFormatsIs = array(
@@ -125,7 +133,8 @@ if($wgMetaNamespace === FALSE)
 	"watchdefault" => "Bæta síðum sem þú breytir við eftirlitslista",
 	"minordefault" => "Láta breytingar vera sjálfgefnar sem minniháttar",
 	"previewontop" => "Setja prufuhnapp fyrir framan breytingahnapp",
-	"nocache" => "Slökkva á flýtivistun síðna"
+	"nocache" => "Slökkva á flýtivistun síðna",
+	'showtoolbar' => 'Show edit toolbar'
 );
 
 /* private */ $wgBookstoreListIs = array(
