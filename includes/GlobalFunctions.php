@@ -66,7 +66,7 @@ function wfLocalUrlE( $a, $q = "" )
 
 function wfFullUrl( $a, $q = "" ) {
 	global $wgServer;
-	return $wgServer . "/" . wfLocalUrl( $a, $q );
+	return $wgServer . wfLocalUrl( $a, $q );
 }
 
 function wfFullUrlE( $a, $q = "" ) {
