@@ -229,12 +229,11 @@ pre {
 span.subpages { display: block; }
 
 /* Some space under the headers in the content area */
-#bodyContent h1,
-#bodyContent h2,
+#bodyContent h1, #bodyContent h2 { margin-bottom:0.6em; }
 #bodyContent h3,
 #bodyContent h4,
 #bodyContent h5 {
-    margin-bottom:0.8em;
+    margin-bottom: 0.3em;
 }
 .firstHeading { margin-bottom:0.1em; }
 
