@@ -403,6 +403,10 @@ class ImagePage extends Article {
 	}
 }
 
+/**
+ * @todo document
+ * @package MediaWiki
+ */
 class ImageHistoryList {
 	function ImageHistoryList( &$skin ) {
 		$this->skin =& $skin;

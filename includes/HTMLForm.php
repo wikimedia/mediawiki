@@ -2,6 +2,7 @@
 /**
  * This file contain a class to easily build HTML forms as well as custom
  * functions used by SpecialUserlevels.php and SpecialGrouplevels.php
+ * @package MediaWiki
  */
 
 /**

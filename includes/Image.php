@@ -906,6 +906,7 @@ function getSVGsize( $filename ) {
 
 /**
  * Wrapper class for thumbnail images
+ * @package MediaWiki
  */
 class ThumbnailImage {
 	/**

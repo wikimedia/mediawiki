@@ -5,6 +5,7 @@
 
 /**
  * Class to manage a group
+ * @package MediaWiki
  */
 class Group {
 	/**#@+
@@ -20,7 +21,7 @@ class Group {
 	var $dataLoaded;
 	/** string $rights Contain rights values : "foo,bar,bla" */
 	var $rights;
-	/**#@- */
+	/**#@-*/
 	
 	/** Constructor */
 	function Group() {

@@ -1,15 +1,17 @@
 <?
+/**
+ * @package MediaWiki
+ */ 
 
-/* 
- *	@package Mediawiki
+/** 
+ * @package Mediawiki
  *
- *	This class should provide methods for message 
- *	cache key hints for various scopes */
-
+ * This class should provide methods for message cache key hints for various
+ * scopes
+ */
 class MessageCacheHints {
-	function get($scope="global") {
+	function get($scope='global') {
 		return array('TODO');
 	}
 }
-
 ?>

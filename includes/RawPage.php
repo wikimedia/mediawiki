@@ -10,6 +10,7 @@
  * @package MediaWiki
  */
 
+/** */
 require_once( 'Revision.php' );
 
 /**

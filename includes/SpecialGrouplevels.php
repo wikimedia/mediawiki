@@ -2,6 +2,8 @@
 /**
  * Provide an administration interface
  * DO NOT USE: INSECURE.
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /** */
@@ -19,6 +21,8 @@ function wfSpecialGrouplevels($par=null) {
 
 /**
  * A class to manage group levels rights.
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class GrouplevelsForm extends HTMLForm {
 	var $mPosted, $mRequest, $mSaveprefs;

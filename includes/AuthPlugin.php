@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package MediaWiki
+ */
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 # 
@@ -32,7 +35,6 @@
  *
  * @package MediaWiki
  */
-
 class AuthPlugin {
 	/**
 	 * Check whether there exists a user account with the given name.

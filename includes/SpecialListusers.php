@@ -49,7 +49,7 @@ class ListUsersPage extends QueryPage {
 	/**
 	 * Show a drop down list to select a group as well as a user name
 	 * search box.
-	 * @TODO: localize
+	 * @todo localize
 	 */
 	function getPageHeader( ) {
 		global $wgScript;

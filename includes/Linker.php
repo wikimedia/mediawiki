@@ -1,11 +1,13 @@
 <?php
-
 /**
  * Split off some of the internal bits from Skin.php.
  * These functions are used for primarily page content:
  * links, embedded images, table of contents. Links are
  * also used in the skin.
- *
+ * @package MediaWiki
+ */
+
+/**
  * For the moment, Skin is a descendent class of Linker.
  * In the future, it should probably be further split
  * so that ever other bit of the wiki doesn't have to
@@ -13,11 +15,11 @@
  *
  * @package MediaWiki
  */
-
 class Linker {
 	var $linktrail ; # linktrail regexp
 	var $postParseLinkColour = false;
 
+	/** @todo document */
 	function Linker() {
 		global $wgContLang;
 		$this->linktrail = $wgContLang->linkTrail();
@@ -37,6 +39,7 @@ class Linker {
 		return wfSetVar( $this->postParseLinkColour, $setting );
 	}
 
+	/** @todo document */
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		global $wgContLang;
 
@@ -54,6 +57,7 @@ class Linker {
 		return $r;
 	}
 
+	/** @todo document */
 	function getInternalLinkAttributes( $link, $text, $broken = false ) {
 		$link = urldecode( $link );
 		$link = str_replace( '_', ' ', $link );
@@ -109,6 +113,7 @@ class Linker {
 		return $result;
 	}
 
+	/** @todo document */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -119,6 +124,7 @@ class Linker {
 		}
 	}
 
+	/** @todo document */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -129,6 +135,7 @@ class Linker {
 		}
 	}
 
+	/** @todo document */
 	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
@@ -360,6 +367,7 @@ class Linker {
 		return $s;
 	}
 
+	/** @todo document */
 	function makeSelfLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$u = $nt->escapeLocalURL( $query );
 		if ( '' == $text ) {
@@ -375,6 +383,7 @@ class Linker {
 		return "<strong>{$prefix}{$text}{$inside}</strong>{$trail}";
 	}
 
+	/** @todo document */
 	function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
 		if ( false === $basename ) {
@@ -385,6 +394,7 @@ class Linker {
 		return htmlspecialchars( $basename );
 	}
 
+	/** @todo document */
 	function makeImage( $url, $alt = '' ) {
 		global $wgOut;
 		if ( '' == $alt ) {
@@ -394,11 +404,13 @@ class Linker {
 		return $s;
 	}
 
+	/** @todo document */
 	function makeImageLink( $name, $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
 		return $this->makeImageLinkObj( $nt, $alt );
 	}
 
+	/** @todo document */
 	function makeImageLinkObj( $nt, $alt = '' ) {
 		global $wgContLang, $wgUseImageResize;
 		$img   = Image::newFromTitle( $nt );
@@ -610,11 +622,13 @@ class Linker {
 		return str_replace("\n", ' ', $s);
 	}
 
+	/** @todo document */
 	function makeMediaLink( $name, $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
+	/** @todo document */
 	function makeMediaLinkObj( $nt, $alt = '', $nourl=false ) {		
 		if ( ! isset( $nt ) )
 		{
@@ -638,6 +652,7 @@ class Linker {
 		return $s;
 	}
 
+	/** @todo document */
 	function specialLink( $name, $key = '' ) {
 		global $wgContLang;
 
@@ -647,6 +662,7 @@ class Linker {
 		  wfMsg( $key ) );
 	}
 
+	/** @todo document */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '' ) {
 		$style = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
 		global $wgNoFollowLinks;
@@ -738,11 +754,13 @@ class Linker {
 		wfProfileOut( $fname );
 		return $comment;
 	}
-	
+
+	/** @todo document */
 	function tocIndent() {
 		return "\n<ul>";
 	}
 
+	/** @todo document */
 	function tocUnindent($level) {
 		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level>0 ? $level : 0 );
 	}
@@ -754,11 +772,12 @@ class Linker {
 		return "\n<li class='toclevel-$level'><a href=\"#" . $anchor . '"><span class="tocnumber">' . $tocnumber . '</span> <span class="toctext">' . $tocline . '</span></a>';
 	}
 
-	function tocLineEnd()
-	{
+	/** @todo document */
+	function tocLineEnd() {
 		return "</li>\n";
  	}
 
+	/** @todo document */
 	function tocList($toc) {
 		return "<div id='toc'>\n" 
 			   . "<div id='toctitle'><h2>" . wfMsg('toc') . "</h2></div>\n"
@@ -784,6 +803,7 @@ class Linker {
 		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
+	/** @todo document */
 	function editSectionScript( $nt, $section, $head ) {
 		global $wgRequest;
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
@@ -793,6 +813,7 @@ class Linker {
 		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
+	/** @todo document */
 	function editSectionLinkForOther( $title, $section ) {
 		global $wgRequest;
 		global $wgContLang;
@@ -812,6 +833,7 @@ class Linker {
 
 	}
 
+	/** @todo document */
 	function editSectionLink( $nt, $section ) {
 		global $wgRequest;
 		global $wgContLang;
@@ -834,9 +856,6 @@ class Linker {
 			$nearside = 'left';
 		}
 		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
-
 	}
-
 }
-
 ?>

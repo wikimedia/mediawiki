@@ -23,8 +23,14 @@
  * @subpackage Search
  */
 
+/** */
 require_once( 'SearchEngine.php' );
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Search
+ */
 class SearchTsearch2 extends SearchEngine {
 	var $strictMatching = false;
 	

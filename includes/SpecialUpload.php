@@ -32,7 +32,7 @@ class UploadForm {
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey;
-	/**#@- */
+	/**#@-*/
 
 	/**
 	 * Constructor : initialise object

@@ -105,7 +105,10 @@ class SearchUpdate {
 	}
 }
 
-/* Placeholder class */
+/**
+ * Placeholder class
+ * @package MediaWiki
+ */
 class SearchUpdateMyISAM extends SearchUpdate {
 	# Inherits everything
 }

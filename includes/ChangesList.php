@@ -1,14 +1,23 @@
 <?php
+/**
+ * @package MediaWiki
+ */
 
+/**
+ * @package MediaWiki
+ */
 class ChangesList {
 	# Called by history lists and recent changes
 	#
 
+	/** @todo document */
 	function ChangesList( &$skin ) {
 		$this->skin =& $skin;
 	}
 	
-	# Returns text for the start of the tabular part of RC
+	/** 
+	 * Returns text for the start of the tabular part of RC
+	 */
 	function beginRecentChangesList() {
 		$this->rc_cache = array() ;
 		$this->rcMoveIndex = 0;
@@ -587,6 +596,4 @@ class ChangesList {
 	}
 
 }
-
-
 ?>

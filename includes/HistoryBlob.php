@@ -10,18 +10,30 @@
  */
 class HistoryBlob
 {
-	# setMeta and getMeta currently aren't used for anything, I just thought they might be useful in the future
-	# The meta value is a single string
+	/**
+	 * setMeta and getMeta currently aren't used for anything, I just thought
+	 * they might be useful in the future.
+	 * @param string $meta a single string
+	 */
 	function setMeta( $meta ) {}
 
-	# Gets the meta-value
+	/**
+	 * setMeta and getMeta currently aren't used for anything, I just thought
+	 * they might be useful in the future.
+	 * Gets the meta-value
+	 */
 	function getMeta() {}
 
-	# Adds an item of text, returns a stub object which points to the item
-	# You must call setLocation() on the stub object before storing it to the database
+	/**
+	 * Adds an item of text, returns a stub object which points to the item.
+	 * You must call setLocation() on the stub object before storing it to the
+	 * database
+	 */
 	function addItem() {}
 
-	# Get item by hash
+	/** 
+	 * Get item by hash
+	 */
 	function getItem( $hash ) {}
 	
 	# Set the "default text"
@@ -30,7 +42,9 @@ class HistoryBlob
 	# be other revisions in the same object
 	function setText() {}
 
-	# Get default text. This is called from Revision::getRevisionText()
+	/**
+	 * Get default text. This is called from Revision::getRevisionText()
+	 */
 	function getText() {}
 }
 
@@ -48,17 +62,20 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 			die( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
 	}
-	
+
+	/** @todo document */
 	function setMeta( $metaData ) {
 		$this->uncompress();
 		$this->mItems['meta'] = $metaData;
 	}
 
+	/** @todo document */
 	function getMeta() {
 		$this->uncompress();
 		return $this->mItems['meta'];
 	}
-	
+
+	/** @todo document */
 	function addItem( $text ) {
 		$this->uncompress();
 		$hash = md5( $text );
@@ -69,6 +86,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		return $stub;
 	}
 
+	/** @todo document */
 	function getItem( $hash ) {
 		$this->uncompress();
 		if ( array_key_exists( $hash, $this->mItems ) ) {
@@ -78,11 +96,13 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		}
 	}
 
+	/** @todo document */
 	function removeItem( $hash ) {
 		$this->mSize -= strlen( $this->mItems[$hash] );
 		unset( $this->mItems[$hash] );
 	}
-	
+
+	/** @todo document */
 	function compress() {
 		if ( !$this->mCompressed  ) {
 			$this->mItems = gzdeflate( serialize( $this->mItems ) );
@@ -90,6 +110,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		}
 	}
 
+	/** @todo document */
 	function uncompress() { 
 		if ( $this->mCompressed ) {
 			$this->mItems = unserialize( gzinflate( $this->mItems ) );
@@ -97,27 +118,33 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		}
 	}
 
+	/** @todo document */
 	function getText() {
 		$this->uncompress();
 		return $this->getItem( $this->mDefaultHash );
 	}
-	
+
+	/** @todo document */
 	function setText( $text ) {
 		$this->uncompress();
 		$stub = $this->addItem( $text );
 		$this->mDefaultHash = $stub->mHash;
 	}
 
+	/** @todo document */
 	function __sleep() {
 		$this->compress();
 		return array( 'mVersion', 'mCompressed', 'mItems', 'mDefaultHash' );
 	}
 
+	/** @todo document */
 	function __wakeup() {
 		$this->uncompress();
 	}
 
-	# Determines if this object is happy
+	/**
+	 * Determines if this object is happy
+	 */
 	function isHappy( $maxFactor, $factorThreshold ) {
 		if ( count( $this->mItems ) == 0 ) {
 			return true;
@@ -140,19 +167,26 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 }
 
-class HistoryBlobStub
-{
+/**
+ * @package MediaWiki
+ */
+class HistoryBlobStub {
 	var $mOldId, $mHash;
 
+	/** @todo document */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
 	}
 	
-	# Sets the location (old_id) of the main object to which this object points
+	/**
+	 * Sets the location (old_id) of the main object to which this object
+	 * points
+	 */
 	function setLocation( $id ) {
 		$this->mOldId = $id;
 	}
-	
+
+	/** @todo document */
 	function getText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
@@ -166,6 +200,7 @@ class HistoryBlobStub
 		return $obj->getItem( $this->mHash );
 	}
 
+	/** @todo document */
 	function getHash() {
 		return $this->mHash;
 	}

@@ -30,6 +30,7 @@ if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
+/** */
 require_once( 'UtfNormal.php' );
 require_once( '../DifferenceEngine.php' );
 

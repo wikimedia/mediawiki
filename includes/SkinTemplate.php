@@ -916,6 +916,8 @@ class SkinTemplate extends Skin {
 /**
  * Generic wrapper for template functions, with interface
  * compatible with what we use of PHPTAL 0.7.
+ * @package MediaWiki
+ * @subpackage Skins
  */
 class QuickTemplate {
 	/**

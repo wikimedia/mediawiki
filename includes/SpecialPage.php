@@ -12,6 +12,7 @@
  * DO NOT manipulate this array at run-time.
  *
  * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -137,7 +138,7 @@ class SpecialPage
 	 * File which needs to be included before the function above can be called
 	 */
 	var $mFile;
-	/**#@- */
+	/**#@-*/
 
 	/**
 	 * Add a page to the list of valid special pages

@@ -9,7 +9,8 @@
 require_once("QueryPage.php");
 
 /**
- *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class UnusedimagesPage extends QueryPage {
 

@@ -108,6 +108,11 @@ class SkinPHPTal extends SkinTemplate {
 	}
 }
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class PHPTAL_version_bridge {
 	function PHPTAL_version_bridge( $file, $repository=false, $cache_dir=false ) {
 		$this->tpl =& new PHPTAL( $file );

@@ -23,6 +23,7 @@
  * @subpackage SpecialPage
  */
 
+/** */
 require_once( 'SearchEngine.php' );
 require_once( 'Revision.php' );
 
@@ -40,8 +41,13 @@ function wfSpecialSearch( $par='' ) {
 	}
 }
 
-
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ */
 class SpecialSearch {
+
 	/**
 	 * Set up basic search parameters from the request and user settings.
 	 * Typically you'll pass $wgRequest and $wgUser.
