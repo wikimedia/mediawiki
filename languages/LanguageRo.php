@@ -91,7 +91,7 @@ include_once("LanguageUtf8.php");
 	"Sep", "Oct", "Noi", "Dec"
 );
 
-/* private */ $wgMagicWordsEn = array(
+/* private */ $wgMagicWordsRo = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"              ),
     MAG_NOTOC                => array( 0,    "__FARACUPRINS__"              ),
