@@ -135,7 +135,7 @@ function wfSpecialWatchlist()
 	 
 
 	$sql = "SELECT
-  cur_namespace,cur_title,cur_comment, cur_id
+  cur_namespace,cur_title,cur_comment, cur_id,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
   FROM watchlist,cur USE INDEX ($x)
   WHERE wl_user=$uid
