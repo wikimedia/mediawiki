@@ -14,8 +14,8 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	$fname = 'wfSpecialWhatlinkshere';
 
 	$target = $wgRequest->getVal( 'target' );
-	$limit = $wgRequest->getInt( 'limit', 500 );
-	
+	list( $limit, $offset ) = $wgRequest->getLimitOffset();	
+
 	if(!empty($par)) {
 		$target = $par;
 	} else if ( is_null( $target ) ) {
@@ -36,12 +36,20 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
 	$wgOut->addHTML('&lt; '.$sk->makeKnownLinkObj($nt, '', 'redirect=no' )."<br />\n");
+
+	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
+	$wgOut->addHTML( wfViewPrevNext( $offset, $limit, $specialTitle, 'target=' . urlencode( $target ) ) );
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'brokenlinks', 'links' ) );
 
 	if ( 0 == $id ) {
+		print $dbr->limitResult( $limit, $offset );
+		exit;
+
 		$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $brokenlinks,$page WHERE bl_to='" .
-		  $dbr->strencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=page_id LIMIT $limit";
+		  $dbr->strencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=page_id " . 
+		  $dbr->limitResult( $limit, $offset );
 		$res = $dbr->query( $sql, $fname );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
@@ -60,7 +68,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
 
 				if ( $row->page_is_redirect ) {
 					$wgOut->addHTML( $isredir );
-					wfShowIndirectLinks( 1, $row->page_id, $limit );
+					wfShowIndirectLinks( 1, $row->page_id, 500 );
 				}
 				$wgOut->addHTML( "</li>\n" );
 			}
@@ -68,21 +76,28 @@ function wfSpecialWhatlinkshere($par = NULL) {
 			$dbr->freeResult( $res );
 		}
 	} else {
-		wfShowIndirectLinks( 0, $id, $limit );
+		wfShowIndirectLinks( 0, $id, $limit, $offset );
 	}
+	$wgOut->addHTML( wfViewPrevNext( $offset, $limit, $specialTitle, 'target=' . urlencode( $target ) ) );
 }
 
 /**
  *
  */
-function wfShowIndirectLinks( $level, $lid, $limit ) {
+function wfShowIndirectLinks( $level, $lid, $limit, $offset = 0 ) {
 	global $wgOut, $wgUser;
 	$fname = 'wfShowIndirectLinks';
 
 	$dbr =& wfGetDB( DB_READ );
 	extract( $dbr->tableNames( 'links','page' ) );
+	
+	if ( $level == 0 ) {
+		$limitSql = $dbr->limitResult( $limit, $offset );
+	} else {
+		$limitSql = "LIMIT $limit";
+	}
 
-	$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $links,$page WHERE l_to={$lid} AND l_from=page_id LIMIT $limit";
+	$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $links,$page WHERE l_to={$lid} AND l_from=page_id $limitSql";
 	$res = $dbr->query( $sql, $fname );
 
 	if ( 0 == $dbr->numRows( $res ) ) {
@@ -117,7 +132,7 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 		if ( $row->page_is_redirect ) {
 			$wgOut->addHTML( $isredir );
 			if ( $level < 2 ) {
-				wfShowIndirectLinks( $level + 1, $row->page_id, $limit );
+				wfShowIndirectLinks( $level + 1, $row->page_id, 500 );
 			}
 		}
 		$wgOut->addHTML( "</li>\n" );
