@@ -351,7 +351,9 @@ $wgImageMagickConvertCommand    = '/usr/bin/convert';
 # PHPTal is a library for page templates. MediaWiki includes
 # a recent PHPTal distribution. It is required to use the
 # Monobook (default) skin.
-$wgUsePHPTal = true;
+#
+# Currently it does not work on PHP5.
+$wgUsePHPTal = version_compare( phpversion(), "5.0", "lt" );
 
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
