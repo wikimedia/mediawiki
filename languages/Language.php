@@ -1640,6 +1640,13 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'sitesettings-performance' => 'Performance',
 'sitesettings-images' => 'Images',
 
+# short names for language variants used for language conversion links. 
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn' => 'cn',
+'variantname-zh-tw' => 'tw',
+'variantname-zh-hk' => 'hk',
+'variantname-zh-sg' => 'sg',
 
 );
 
@@ -1694,6 +1701,12 @@ class Language {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		return false;
+	}
+
+	# short names for language variants used for language conversion links. 
+	# so far only used by zh
+	function getVariantname( $code ) {
+		return wfMsg( 'variantname-' . $code );
 	}
 
 	function specialPage( $name ) {

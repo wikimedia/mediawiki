@@ -1002,6 +1002,13 @@ email address to them, and it can be used to send you a new password if you forg
 'yourrealname' => "真实姓名*", //"Your real name"
 'yourvariant' => "中文字体", //"language variant"
 
+# short names for language variants used for language conversion links. 
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn' => '大陆简体',
+'variantname-zh-tw' => '台湾繁体',
+'variantname-zh-hk' => '香港繁体',
+'variantname-zh-sg' => '新加坡简体',
 
 );
 

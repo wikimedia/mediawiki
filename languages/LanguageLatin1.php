@@ -275,6 +275,9 @@ class LanguageLatin1 {
 		return utf8_decode( $this->lang->convert( utf8_encode( $text ), $isTitle ) );
 	}
 	
+	function getVariantname( $code ) {
+		return utf8_decode( $this->lang->getVariantname( $code ) );
+	}
 
 	function getVariants() {
 		return $this->lang->getVariants();

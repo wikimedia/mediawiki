@@ -46,7 +46,7 @@ class LanguageZh extends LanguageZh_cn {
 			return $this->mZhLanguageCode;
 
 		// see if the preference is set in the request
-		$zhreq = $wgRequest->getText( 'zh' );
+		$zhreq = $wgRequest->getText( 'variant' );
 		if( in_array( $zhreq, $this->getVariants() ) ) {
 			$this->mZhLanguageCode = $zhreq;
 			return $zhreq;
@@ -56,7 +56,7 @@ class LanguageZh extends LanguageZh_cn {
 		if($wgUser->getID()!=0) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
 		}
-		else {
+		if( !$this->mZhLanguageCode ) {
 			// see if some zh- variant is set in the http header,
 			$this->mZhLanguageCode="zh-cn";
 			$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
