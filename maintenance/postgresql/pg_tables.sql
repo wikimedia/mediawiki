@@ -283,5 +283,5 @@ CREATE TABLE "group" (
 CREATE TABLE user_groups (
 	ug_user integer NOT NULL,
 	ug_group integer NOT NULL,
-	PRIMARY KEY  (user_id,group_id)
+	PRIMARY KEY  (ug_user,ug_group)
 );
