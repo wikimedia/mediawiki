@@ -255,6 +255,14 @@ class LanguageLatin1 {
 	function convertGrammar( $word, $case ) {
 		return $word;
 	}
+
+	function getPreferredVariant() {
+		return $this->lang->getPreferredVariant();
+	}
+
+	function convert( $text ) {
+		return utf8_decode( $this->lang->convert( utf8_encode( $text ) ) );
+	}
 }
 
 ?>
