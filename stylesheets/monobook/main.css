@@ -953,8 +953,8 @@ head:first-child+body #portal-footer li {
     display: inline;
 }
 /* only indexed png transparency */
-#portlet-logo a,
-#portlet-logo a:hover {
+* html #portlet-logo a,
+* html #portlet-logo a:hover {
     background: url(wiki-indexed.png) no-repeat;
 }
 
