@@ -876,6 +876,7 @@ agrees to license it under the terms of the $1.",
 'badfilename'	=> "Image name has been changed to \"$1\".",
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
 'largefile'		=> 'It is recommended that images not exceed 100k in size.',
+'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
 'fileuploaded'	=> "File uploaded successfully.
