@@ -709,19 +709,18 @@ $t[] = "</table>" ;
 		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
 		$text = str_replace ( "<HR>", "<hr>", $text );
 
-                $text = $this->doAllQuotes( $text );
-                $text = $this->doHeadings( $text );
+		$text = $this->doAllQuotes( $text );
+		$text = $this->doHeadings( $text );
+		$text = $this->doBlockLevels( $text, $linestart );
+		
+		if($wgUseDynamicDates) {
+			global $wgDateFormatter;
+			$text = $wgDateFormatter->reformat( $wgUser->getOption("date"), $text );
+		}
 
-                if($wgUseDynamicDates) {
-                        global $wgDateFormatter;
-                        $text = $wgDateFormatter->reformat( $wgUser->getOption("date"), $text );
-                }
-
-                $text = $this->replaceExternalLinks( $text );
-                $text = $this->replaceInternalLinks ( $text );
-
-                $text = $this->doTableStuff ( $text ) ;
-                $text = $this->doBlockLevels( $text, $linestart );
+		$text = $this->replaceExternalLinks( $text );
+		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->doTableStuff ( $text ) ;
 
 		$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
