@@ -199,12 +199,12 @@ function wfInvertTimestamp( $ts ) {
 # It's only slightly flawed. Don't use for anything important.
 function wfGeneralizeSQL( $sql )
 {
-        # This could be done faster with some arrays and a single preg_replace,
-        # but this show more clearly what's going on. Which may be a good thing.
-        $sql = preg_replace ( "/([\'\"])([^\\\\]|\\\\\\\\)*?\\1/", "\\1X\\1", $sql);
-        $sql = preg_replace ( "/-?\d+/" , "N", $sql);
-        $sql = preg_replace ( "/\s+/", " ", $sql);
-        return $sql;
+	# This could be done faster with some arrays and a single preg_replace,
+	# but this show more clearly what's going on. Which may be a good thing.
+	$sql = preg_replace ( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql);
+	$sql = preg_replace ( "/-?\d+/" , "N", $sql);
+	$sql = preg_replace ( "/\s+/", " ", $sql);
+	return $sql;
 }
 
 function wfFieldExists( $table, $field )
