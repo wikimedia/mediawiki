@@ -780,8 +780,9 @@ Please check the URL you used to access this page.\n",
 "next"			=> "next",
 "last"			=> "last",
 "orig"			=> "orig",
-"histlegend"	=> "Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit.<br/>Select any two versions and hit enter or the button at the bottom.",
+"histlegend"	=> "Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+Legend: (cur) = difference with current version,
+(last) = difference with preceding version, M = minor edit.",
 
 # Diffs
 #
