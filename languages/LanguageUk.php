@@ -98,7 +98,7 @@ require_once( "LanguageUtf8.php" );
 'may_long' => "травень",
 'june' => "червень",
 'july' => "липень",
-'augst' => "серпень",
+'august' => "серпень",
 'september' => "вересень",
 'october' => "жовтень",
 'november' => "листопад",
