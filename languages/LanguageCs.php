@@ -39,13 +39,15 @@
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+	'myskin' => "MySkin" 
 );
 
 
 # Se eble, trovu Chehxajn libroservojn traserceblaj lau ISBN
 # $wgBookstoreListCs = ..
-
+/* private */ $wgBookstoreListCs = array(
+	'Národní knihovna' => 'http://sigma.nkp.cz/F/?func=find-a&find_code=WRD&request=&request_op=AND&find_code=WAU&request=&request_op=AND&find_code=WTL&request=&request_op=AND&find_code=WYR&request=&request_op=AND&find_code=WPB&request=&request_op=AND&find_code=ISN&request=$1'
+);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
