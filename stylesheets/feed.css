@@ -1,6 +1,21 @@
-/* Make RSS and Atom feeds at least semi-legible to folk who accidentally load them in a browser */
+/*
+Make RSS and Atom feeds at least semi-legible to folk who accidentally
+load them in a browser...
 
-/* RSS: */ rss, channel, title, link, description, language, generator, lastBuildDate, item, pubDate, author, comments,
+Compatibility:
+* Mozilla is fine.
+* Safari 1.2: the RSS <link> text isn't shown
+* Opera 7.5 uses the style sheet instead of its native RSS mode.
+* IE/Mac 5.2: none of the :before content works; doesn't get the charset right and displays garbage for non-ASCII.
+* IE/Win 6.0: No background color, borders, font size, font weight, or :before content.
+
+Basic bugs:
+* The Atom <link> puts its actual URL in an attribute. Not sure how to
+  extract that, if it's possible.
+
+*/
+
+/* RSS: */ rss, channel, title, link, description, language, generator, lastBuildDate, item, pubDate, author, comments, creator,
 /* Atom: */ feed, modified, tagline, entry, issued, created, summary, comment {
 	display: block;
 }
@@ -53,7 +68,7 @@ item>description, entry>summary {
 
 pubDate:before { content: "Date: " }
 link:before { content: "Link: " }
-author:before { content: "Author: " }
+author:before, creator:before { content: "Author: " }
 description:before { content: "Description: " }
 
 generator:before { content: "Generator: " }
@@ -71,7 +86,7 @@ comment:before { content: "Comment: " }
 pubDate:before, link:before, author:before, description:before,
 language:before, generator:before, lastBuildDate:before, comments:before,
 tagline:before, issued:before, created:before, modified:before,
-summary:before, comment:before {
+summary:before, comment:before, creator:before {
 	color: #224;
 	font-weight: bold;
 }
