@@ -529,7 +529,7 @@ class OutputPage {
 		$this->mRedirect = '';
 
 		$this->mBodytext = '';
-		$this->addHTML( '<p>' . wfMsg( $msg ) . "</p>\n" );
+		$this->addHTML( '<p class="error">' . wfMsg( $msg ) . "</p>\n" );
 		$this->returnToMain( false );
 
 		$this->output();
@@ -676,8 +676,9 @@ class OutputPage {
 	 * return from error messages or notes
 	 * @param $auto automatically redirect the user after 10 seconds
 	 * @param $returnto page title to return to. Default is Main Page.
+	 * @param $query extra parameters to be added to the $returnto URL.
 	 */
-	function returnToMain( $auto = true, $returnto = NULL ) {
+	function returnToMain( $auto = true, $returnto = NULL, $query = NULL ) {
 		global $wgUser, $wgOut, $wgRequest;
 
 		if ( $returnto == NULL ) {
@@ -689,12 +690,12 @@ class OutputPage {
 		if ( '' == $returnto ) {
 			$returnto = wfMsgForContent( 'mainpage' );
 		}
-		$link = $sk->makeKnownLink( $returnto, '' );
+		$link = $sk->makeKnownLink( $returnto, '', $query );
 
 		$r = wfMsg( 'returnto', $link );
 		if ( $auto ) {
 			$titleObj = Title::newFromText( $returnto );
-			$wgOut->addMeta( 'http:Refresh', '10;url=' . $titleObj->escapeFullURL() );
+			$wgOut->addMeta( 'http:Refresh', '10;url=' . $titleObj->escapeFullURL( $query ) );
 		}
 		$wgOut->addHTML( "\n<p>$r</p>\n" );
 	}

@@ -144,7 +144,8 @@ class PageHistory {
 	}
 
 	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' ) {
-		global $wgLang, $wgContLang;
+		global $wgLang, $wgContLang, $wgUser;
+		global $wgStylePath, $wgAllowEditComments, $wgUserEditCommentTimeout;
 
 		static $message;
 		if( !isset( $message ) ) {
@@ -199,6 +200,27 @@ class PageHistory {
 			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.$message['selectnewerversionfordiff'].'"'.$checkmark.' />';
 		}
 		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='user'>{$ul}</span>";
+		
+		# Show an edit user comments icon if conditions are met.
+		# Option must be on, user logged in, user edited comment or a sysop,
+		# and the article must be recent enough.
+		if ( $wgAllowEditComments && $wgUser->getID() && 
+		     ($u == $wgUser->getID() || $wgUser->isAllowed(EDIT_COMMENT_ALL)) &&
+		     ($wgUser->isAllowed(EDIT_COMMENT_ALL) || $wgUserEditCommentTimeout < 0 || 
+		      $ts >= wfTimestampPlus( wfTimestampNow(), -$wgUserEditCommentTimeout * 60)) ) {
+			
+			$tooltip = wfMsg( "ectooltip" );
+			$rt = $this->mTitle->getPrefixedURL();
+			$rt = $this->mSkin->makeKnownLinkObj( $this->mTitle, "<img src=\"".$wgStylePath."/common/images/editcomment_icon.gif\" alt=\"{$tooltip}\" />",
+			  "action=editcomment&oldid={$oid}&returnto={$rt}&returntoaction=history" );
+			
+			# ***** Kludge ****
+			# Swap out the tool tip created by makeKnownLink() with one appropriate for this link.
+			$rt = preg_replace( '/title\=\"[^\"]*\"/', 'title="' . $tooltip . '"', $rt);
+			
+			$s .= $rt;
+		}
+		
 		$s .= $isminor ? ' <span class="minor">'.$message['minoreditletter'].'</span>': '' ;
 
 
