@@ -110,7 +110,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		# Update messages which already exist
 		if ( array_key_exists( $title, $existingTitles ) ) {
 			if ( $existingTitles[$title] == "chuck" || $overwrite) {
-				print "$title\n";
+				# print "$title\n";
 				$mwTitleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
 				$article = new Article( $mwTitleObj );
 				$article->quickEdit( $message );
