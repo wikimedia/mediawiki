@@ -41,6 +41,7 @@ define( "MAX_INCLUDE_PASSES", 3 );
 # Allowed values for $mOutputType
 define( "OT_HTML", 1 );
 define( "OT_WIKI", 2 );
+define( "OT_MSG", 3 );
 
 class Parser
 {
@@ -1077,7 +1078,7 @@ class Parser
 	}
 
 	function getVariableValue( $index ) {
-		global $wgLang;
+		global $wgLang, $wgSitename, $wgServer;
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
@@ -1096,6 +1097,10 @@ class Parser
 				return $wgLang->time( wfTimestampNow(), false );
 			case MAG_NUMBEROFARTICLES:
 				return wfNumberOfArticles();
+			case MAG_SITENAME:
+				return $wgSitename;
+			case MAG_SERVER:
+				return $wgServer;
 			default:
 				return NULL;
 		}
@@ -1124,7 +1129,7 @@ class Parser
 			$this->initialiseVariables();
 		}
 		$titleChars = Title::legalChars();
-		$regex = "/{{([$titleChars]*?)}}/s";
+		$regex = "/{{([$titleChars\\|]*?)}}/s";
 
 		# "Recursive" variable expansion: run it through a couple of passes
 		for ( $i=0; $i<MAX_INCLUDE_REPEAT && !$bail; $i++ ) {
@@ -1170,7 +1175,7 @@ class Parser
 
 	function braceSubstitution( $matches )
 	{
-		global $wgLinkCache;
+		global $wgLinkCache, $wgLang;
 		$fname = "Parser::braceSubstitution";
 		$found = false;
 		$nowiki = false;
@@ -1180,7 +1185,7 @@ class Parser
 		# SUBST
 		$mwSubst =& MagicWord::get( MAG_SUBST );
 		if ( $mwSubst->matchStartAndRemove( $text ) ) {
-			if ( $this->mOutputType == OT_HTML ) {
+			if ( $this->mOutputType != OT_WIKI ) {
 				# Invalid SUBST not replaced at PST time
 				# Return without further processing
 				$text = $matches[0];
@@ -1192,7 +1197,7 @@ class Parser
 			$found = true;
 		}
 		
-		# Various prefixes
+		# MSG, MSGNW and INT
 		if ( !$found ) {
 			# Check for MSGNW:
 			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
@@ -1210,6 +1215,54 @@ class Parser
 				$text = wfMsg( $text );
 				$found = true;
 			}
+		}
+	
+		# NS
+		if ( !$found ) {
+			# Check for NS: (namespace expansion)
+			$mwNs = MagicWord::get( MAG_NS );
+			if ( $mwNs->matchStartAndRemove( $text ) ) {
+				if ( intval( $text ) ) {
+					$text = $wgLang->getNsText( intval( $text ) );
+					$found = true;
+				} else {
+					$index = Namespace::getCanonicalIndex( strtolower( $text ) );
+					if ( !is_null( $index ) ) {
+						$text = $wgLang->getNsText( $index );
+						$found = true;
+					}
+				}
+			}
+		}
+		
+		# LOCALURL and LOCALURLE
+		if ( !$found ) {
+			$mwLocal = MagicWord::get( MAG_LOCALURL );
+			$mwLocalE = MagicWord::get( MAG_LOCALURLE );
+
+			if ( $mwLocal->matchStartAndRemove( $text ) ) {
+				$func = 'getLocalURL';
+			} elseif ( $mwLocalE->matchStartAndRemove( $text ) ) {
+				$func = 'escapeLocalURL';
+			} else {
+				$func = '';
+			}
+			
+			if ( $func !== '' ) {
+				$args = explode( "|", $text );
+				$n = count( $args );
+				if ( $n > 0 ) {
+					$title = Title::newFromText( $args[0] );
+					if ( !is_null( $title ) ) {
+						if ( $n > 1 ) {
+							$text = $title->$func( $args[1] );
+						} else {
+							$text = $title->$func();
+						}
+						$found = true;
+					}
+				}
+			}	
 		}
 		
 		# Check for a match against internal variables
@@ -1741,6 +1794,26 @@ class Parser
 			$this->clearState();
 		}
 	}
+
+	function transformMsg( $text, $options ) {
+		global $wgTitle;
+		static $executing = false;
+		
+		# Guard against infinite recursion
+		if ( $executing ) {
+			return $text;
+		}
+		$executing = true;
+
+		$this->mTitle = $wgTitle;
+		$this->mOptions = $options;
+		$this->mOutputType = OT_MSG;
+		$this->clearState();
+		$text = $this->replaceVariables( $text );
+		
+		$executing = false;
+		return $text;
+	}
 }
 
 class ParserOutput
@@ -1825,6 +1898,7 @@ class ParserOptions
 		
 		if ( !$userInput ) {
 			$user = new User;
+			$user->setLoaded( true );
 		} else {
 			$user =& $userInput;
 		}

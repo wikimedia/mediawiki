@@ -10,7 +10,7 @@ define( "MSG_WAIT_TIMEOUT", 10);
 class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
-	var $mMemcKey, $mKeys;
+	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	
 	var $mInitialised = false;
 
@@ -21,7 +21,9 @@ class MessageCache
 		$this->mMemcKey = "$memcPrefix:messages";
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
-
+		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
+		$this->mParser = new Parser;
+		
 		$this->load();
 	}
 
@@ -157,7 +159,7 @@ class MessageCache
 		}
 		
 		if ( $this->mDisable ) {
-			return $wgLang->getMessage( $key );
+			return $this->transform( $wgLang->getMessage( $key ) );
 		}
 		$title = $wgLang->ucfirst( $key );
 		
@@ -192,9 +194,20 @@ class MessageCache
 		if ( !$message ) {
 			$message = "&lt;$key&gt;";
 		}
+		
+		# Replace brace tags
+		$message = $this->transform( $message );
+		
 		return $message;
 	}
 
+	function transform( $message ) {
+		if ( strstr( $message, "{{" ) !== false ) {
+			$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
+		}
+		return $message;
+	}
+	
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
 

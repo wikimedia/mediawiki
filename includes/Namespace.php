@@ -26,6 +26,26 @@ define("NS_TEMPLATE_TALK", 11);
 define("NS_HELP", 12);
 define("NS_HELP_TALK", 13);
 
+# These are synonyms for the names given in the language file
+# Users and translators should not change them
+/* private */ $wgCanonicalNamespaceNames = array(
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Special",
+	NS_TALK	            => "Talk",
+	NS_USER             => "User",
+	NS_USER_TALK        => "User_talk",
+	NS_WIKIPEDIA        => "Wikipedia",
+	NS_WIKIPEDIA_TALK   => "Wikipedia_talk",
+	NS_IMAGE            => "Image",
+	NS_IMAGE_TALK       => "Image_talk",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_talk",
+	NS_TEMPLATE         => "Template",
+	NS_TEMPLATE_TALK    => "Template_talk",
+	NS_HELP             => "Help",
+	NS_HELP_TALK        => "Help_talk"
+);
+
 class Namespace {
 
 	/* These functions are deprecated */
@@ -69,6 +89,32 @@ class Namespace {
 			return $index - 1;
 		} else {
 			return $index;
+		}
+	}
+
+	# Returns the canonical (English Wikipedia) name for a given index
+	function &getCanonicalName( $index )
+	{
+		global $wgCanonicalNamespaceNames;
+		return $wgCanonicalNamespaceNames[$index];
+	}
+
+	# Returns the index for a given canonical name, or NULL
+	# The input *must* be converted to lower case first
+	function &getCanonicalIndex( $name )
+	{
+		global $wgCanonicalNamespaceNames;
+		static $xNamespaces = false;
+		if ( $xNamespaces === false ) {
+			$xNamespaces = array();
+			foreach ( $wgCanonicalNamespaceNames as $i => $text ) {
+				$xNamespaces[strtolower($text)] = $i;
+			}
+		}
+		if ( array_key_exists( $name, $xNamespaces ) ) {
+			return $xNamespaces[$name];
+		} else {
+			return NULL;
 		}
 	}
 }
