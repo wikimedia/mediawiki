@@ -204,6 +204,8 @@ if( defined( "MEDIAWIKI" ) ) {
 			$tpl->set( "reporttime", $out->reportTime() );
 			$tpl->set( "sitenotice", $wgSiteNotice );
 
+			$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
+			$out->mBodytext .= $printfooter ;
 			$tpl->setRef( "bodytext", $out->mBodytext );
 
 			$language_urls = array();
