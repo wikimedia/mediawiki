@@ -111,8 +111,8 @@ function wfCreativeCommonsRdf($article) {
 	
 	$contributors = dcContributors($article->mTitle);
 	
-	foreach ($contributors as $cid) {
-		dcPerson('contributor', $cid);
+	foreach ($contributors as $user_name => $cid) {
+		dcPerson('contributor', $cid, $user_name);
 	}
 	
 	dcRights($article);
@@ -204,13 +204,15 @@ function wfCreativeCommonsRdf($article) {
 	print "    <dc:{$name} rdf:resource=\"{$url}\" />\n";
 }
 
-/* private */ function dcPerson($name, $id) {
+/* private */ function dcPerson($name, $id, $user_name="") {
 	global $wgLang;
 
 	if ($id == 0) {
 		dcElement($name, wfMsg("anonymous"));
 	} else {
-		$user_name = User::whoIs($id);
+		if( empty( $user_name ) ) {
+			$user_name = User::whoIs($id);
+		}
 		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ":" . $user_name, $user_name);
 	}
 }
@@ -219,13 +221,13 @@ function wfCreativeCommonsRdf($article) {
 	
 	$contribs = array();
 	
-	$res = wfQuery("SELECT DISTINCT old_user" .
+	$res = wfQuery("SELECT DISTINCT old_user,old_user_text" .
 	               " FROM old " .
 	               " WHERE old_namespace = " . $title->getNamespace() .
 	               " AND old_title = '" . $title->getDBkey() . "'", DB_READ);
 	
 	while ( $line = wfFetchObject( $res ) ) {
-		$contribs[] = $line->old_user;
+		$contribs[$line->old_user_text] = $line->old_user;
 	}    
 	
 	return $contribs;
