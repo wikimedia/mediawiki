@@ -102,7 +102,7 @@ class Article {
 
 	function loadContent( $noredir = false )
 	{
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgMwRedir;
 		global $oldid, $redirect; # From query
 
 		if ( $this->mContentLoaded ) return;
@@ -130,9 +130,8 @@ class Article {
 
 			# If we got a redirect, follow it (unless we've been told
 			# not to by either the function parameter or the query
-
 			if ( ( "no" != $redirect ) && ( false == $noredir ) &&
-			  ( preg_match( "/^#redirect/i", $s->cur_text ) ) ) {
+			  ( $wgMwRedir->matchStart( $s->cur_text ) ) ) {
 				if ( preg_match( "/\\[\\[([^\\]\\|]+)[\\]\\|]/",
 				  $s->cur_text, $m ) ) {
 					$rt = Title::newFromText( $m[1] );
@@ -204,10 +203,10 @@ class Article {
 
 	function isCountable( $text )
 	{
-		global $wgTitle, $wgUseCommaCount;
-
+		global $wgTitle, $wgUseCommaCount, $wgMwRedir;
+		
 		if ( 0 != $wgTitle->getNamespace() ) { return 0; }
-		if ( preg_match( "/^#redirect/i", $text ) ) { return 0; }
+		if ( $wgMwRedir->matchStart( $text ) ) { return 0; }
 		$token = ($wgUseCommaCount ? "," : "[[" );
 		if ( false === strstr( $text, $token ) ) { return 0; }
 		return 1;
@@ -331,13 +330,13 @@ class Article {
 
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
-		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
+		global $wgOut, $wgUser, $wgTitle, $wgLinkCache, $wgMwRedir;
 		$fname = "Article::insertNewArticle";
 
 		$ns = $wgTitle->getNamespace();
 		$ttl = $wgTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
-		if ( preg_match( "/^#redirect/i", $text ) ) { $redir = 1; }
+		if ( $wgMwRedir->matchStart( $text ) ) { $redir = 1; }
 		else { $redir = 0; }
 
 		$now = wfTimestampNow();
@@ -381,7 +380,7 @@ class Article {
 	function updateArticle( $text, $summary, $minor, $watchthis, $section="" )
 	{
 		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
-		global $wgDBtransactions;
+		global $wgDBtransactions, $wgMwRedir;
 		$fname = "Article::updateArticle";
 
 		$this->loadLastEdit();
@@ -403,7 +402,7 @@ class Article {
 		}
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
 		if ( $minor ) { $me2 = 1; } else { $me2 = 0; }		
-		if ( preg_match( "/^(#redirect[^\\n]+)/i", $text, $m ) ) {
+		if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ")[^\\n]+)/i", $text, $m ) ) {
 			$redir = 1;
 			$text = $m[1] . "\n"; # Remove all content but redirect
 		}
@@ -498,6 +497,7 @@ class Article {
 	function showArticle( $text, $subtitle )
 	{
 		global $wgOut, $wgTitle, $wgUser, $wgLinkCache, $wgUseBetterLinksUpdate;
+		global $wgMwRedir;
 
 		$wgLinkCache = new LinkCache();
 
@@ -511,7 +511,7 @@ class Article {
 		$wgOut->addWikiText( $text );
 
 		$this->editUpdates( $text );
-		if( preg_match( "/^#redirect/i", $text ) )
+		if( $wgMwRedir->matchStart( $text ) )
 			$r = "redirect=no";
 		else
 			$r = "";

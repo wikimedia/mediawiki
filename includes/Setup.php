@@ -16,13 +16,12 @@ include_once( "$IP/User.php" );
 include_once( "$IP/LinkCache.php" );
 include_once( "$IP/Title.php" );
 include_once( "$IP/Article.php" );
+include_once( "$IP/MagicWord.php" );
 include_once( "$IP/MemCachedClient.inc.php" );
-
-wfDebug( "\n\n" );
 
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
-global $wgMemc;
+global $wgMemc, $wgMagicWords, $wgMwRedir;
 
 class MemCachedClientforWiki extends MemCachedClient {
 	function _debug( $text ) {
@@ -39,6 +38,8 @@ if( $wgUseMemCached ) {
 include_once( "$IP/Language.php" );
 
 $wgOut = new OutputPage();
+wfDebug( "\n\n" );
+
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) ) {
 	include_once( "$IP/LanguageUtf8.php" );
@@ -49,5 +50,6 @@ $wgLang = new $wgLangClass();
 $wgUser = User::loadFromSession();
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
-
+$wgMagicWords = array();
+$wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 ?>
