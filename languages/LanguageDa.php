@@ -1117,19 +1117,6 @@ class LanguageDa extends Language {
 		return $wgUserTogglesDa;
 	}
 
-	function getLanguageNames() {
-		global $wgLanguageNamesDa;
-		return $wgLanguageNamesDa;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesDa;
-		if ( ! array_key_exists( $code, $wgLanguageNamesDa ) ) {
-			return "";
-		}
-		return $wgLanguageNamesDa[$code];
-	}
-
 	function getMonthName( $key )
 	{
 		global $wgMonthNamesDa;
