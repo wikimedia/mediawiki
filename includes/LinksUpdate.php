@@ -21,11 +21,6 @@ class LinksUpdate {
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
 
-		if ( $wgEnablePersistentLC ) {
-			// Make sure links cache is regenerated on next load
-			wfQuery("DELETE FROM linkscc WHERE lcc_title = '{$safeTitle}'", DB_WRITE);
-		}
-
 		if ( !$wgUseBetterLinksUpdate ) {
 			$this->doDumbUpdate();
 			return;
