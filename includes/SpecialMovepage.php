@@ -103,7 +103,7 @@ class MovePageForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDeferredUpdateList, $wgMessageCache;
-		global  $wgUseSquid;
+		global  $wgUseSquid, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
 
 		$ot = Title::newFromText( $this->oldTitle );
@@ -123,7 +123,7 @@ class MovePageForm {
 		$ons = $ot->getNamespace();
 		$nns = $nt->getNamespace();
 		
-		if ( ( 1 == $_REQUEST['wpMovetalk'] ) &&
+		if ( ( 1 == $wgRequest->getVal('wpMovetalk') ) &&
 		     ( ! Namespace::isTalk( $ons ) ) &&
 		     ( ! Namespace::isTalk( $nns ) ) ) {
 			
@@ -156,21 +156,23 @@ class MovePageForm {
 
 	function showSuccess()
 	{
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgRequest;
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 		$wgOut->setSubtitle( wfMsg( "pagemovedsub" ) );
-	
-		$text = wfMsg( "pagemovedtext", $_REQUEST['oldtitle'], $_REQUEST['newtitle'] );
+		$oldtitle = $wgRequest->getVal('oldtitle');
+		$newtitle = $wgRequest->getVal('newtitle');
+		$talkmoved = $wgRequest->getVal('talkmoved');
+
+		$text = wfMsg( "pagemovedtext", $oldtitle, $newtitle );
 		$wgOut->addWikiText( $text );
 
-		$talkmoved = $_REQUEST['talkmoved'];
 		if ( 1 == $talkmoved ) {
 			$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagemoved" ) . "</p>\n" );
 		} elseif( 'articleexists' == $talkmoved ) {
 			$wgOut->addHTML( "\n<p><strong>" . wfMsg( "talkexists" ) . "</strong></p>\n" );
 		} else {
-			$ot = Title::newFromURL( $_REQUEST['oldtitle'] );
+			$ot = Title::newFromURL( $oldtitle );
 			if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
 				$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagenotmoved", wfMsg( $talkmoved ) ) . "</p>\n" );
 			}
