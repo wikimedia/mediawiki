@@ -204,17 +204,43 @@ class Skin {
 		$link = str_replace( "_", " ", $link );
 		$link = wfEscapeHTML( $link );
 
-		if ( $wgOut->isPrintable() ) { $r = " class='printable'"; }
-                else if ( $broken == "stub" ) { $r = " class='stub'"; }
-		else if ( $broken == "yes" ) { $r = " class='new'"; }
-		else { $r = " class='internal'"; }
+		if ( $wgOut->isPrintable() ) { 
+			$r = " class='printable'"; 
+		} else if ( $broken == "stub" ) { 
+			$r = " class='stub'"; 
+		} else if ( $broken == "yes" ) { 
+			$r = " class='new'"; 
+		} else { 
+			$r = " class='internal'"; 
+		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
 			$r .= " title=\"{$link}\"";
 		}
 		return $r;
 	}
+	
+	function getInternalLinkAttributesObj( &$nt, $text, $broken = false )
+	{
+		global $wgUser, $wgOut;
+		$link = $nt->getEscapedText();
 
+		if ( $wgOut->isPrintable() ) { 
+			$r = " class='printable'"; 
+		} else if ( $broken == "stub" ) { 
+			$r = " class='stub'"; 
+		} else if ( $broken == "yes" ) { 
+			$r = " class='new'"; 
+		} else { 
+			$r = " class='internal'"; 
+		}
+
+		if ( 1 == $wgUser->getOption( "hover" ) ) {
+			$r .= ' title ="' . $nt->getEscapedText() . '"';
+		}
+		return $r;
+	}		
+	
 	function getLogo()
 	{
 		global $wgLogo;
@@ -455,7 +481,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 					$c++;
 					if ($c<count($links)) {						
 						$growinglink.=$link;
-						$getlink=$this->makeLink($growinglink,$link);						
+						$getlink=$this->makeLink( $growingLink, $link);						
 						if(preg_match("/class='new'/i",$getlink)) { break; } # this is a hack, but it saves time
 						if ($c>1) { 
 							$sub .= " | ";
@@ -701,7 +727,8 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 					if ($nstext = $wgLang->getNsText($tns) ) { # add namespace if necessary
 						$link = $nstext . ":" . $link ;
 					}			
-					$s .= $this->makeLink($link, $text );			
+
+					$s .= $this->makeLink( $link, $text );			
 				} elseif( $wgTitle->getNamespace() != Namespace::getSpecial() ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
@@ -1111,12 +1138,28 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	# Note: This function MUST call getArticleID() on the link,
 	# otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
 	#
-	function makeLink( $title, $text= "", $query = "", $trail = "" )
+	function makeLink( $title, $text = "", $query = "", $trail = "" ) {
+		return $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+	}
+
+	function makeKnownLink( $title, $text = "", $query = "", $trail = "" ) {
+		return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+	}
+
+	function makeBrokenLink( $title, $text = "", $query = "", $trail = "" ) {
+		return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+	}
+	
+	function makeStubLink( $title, $text = "", $query = "", $trail = "" ) {
+		return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+	}
+
+	# Pass a title object, not a title string
+	function makeLinkObj( &$nt, $text= "", $query = "", $trail = "" )
 	{
 		global $wgOut, $wgUser;
-
-		$nt = Title::newFromText( $title );
-
+		$fname = "Skin::makeLinkObj";
+		wfProfileIn( $fname );
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			if ( "" == $text ) { $text = $nt->getPrefixedText(); }
@@ -1129,43 +1172,53 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 					$trail = $m[2];
 				}
 			}
-			return "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
-		}
-		if ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
-			return $this->makeKnownLink( $title, $text, $query, $trail );
-		}
-		if ( ( -1 == $nt->getNamespace() ) ||
+			$retVal = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+		} elseif ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
+			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
+		} elseif ( ( -1 == $nt->getNamespace() ) ||
 				( Namespace::getImage() == $nt->getNamespace() ) ) {
-			return $this->makeKnownLink( $title, $text, $query, $trail );
-		}
-		$aid = $nt->getArticleID() ;
-		if ( 0 == $aid ) {
-			return $this->makeBrokenLink( $title, $text, $query, $trail );
+			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
 		} else {
-			$threshold = $wgUser->getOption("stubthreshold") ;
-			if ( $threshold > 0 ) {
-				$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
+			$aid = $nt->getArticleID() ;
+			if ( 0 == $aid ) {
+				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
+			} else {
+				$threshold = $wgUser->getOption("stubthreshold") ;
+				if ( $threshold > 0 ) {
+					$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
 
-				if ( wfNumRows( $res ) > 0 ) {
-					$s = wfFetchObject( $res );
-					$size = $s->x;
-					if ( $s->cur_is_redirect OR $s->cur_namespace != 0 )
+					if ( wfNumRows( $res ) > 0 ) {
+						$s = wfFetchObject( $res );
+						$size = $s->x;
+						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
+							$size = $threshold*2 ; # Really big
+						}
+						wfFreeResult( $res );
+					} else {
 						$size = $threshold*2 ; # Really big
-							wfFreeResult( $res );
-				} else $size = $threshold*2 ; # Really big
-			} else $size = 1 ;
-
-			if ( $size < $threshold )
-				return $this->makeStubLink( $title, $text, $query, $trail );
-			return $this->makeKnownLink( $title, $text, $query, $trail );
+					}
+				} else {
+					$size = 1 ;
+				}	
+				if ( $size < $threshold ) {
+					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail );
+				} else {
+					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
+				}
+			}
 		}
+		wfProfileOut( $fname );
+		return $retVal;
 	}
 
-	function makeKnownLink( $title, $text = "", $query = "", $trail = "" )
+	# Pass a title object, not a title string
+	function makeKnownLinkObj( &$nt, $text = "", $query = "", $trail = "" )
 	{
 		global $wgOut, $wgTitle;
 
-		$nt = Title::newFromText( $title );
+		$fname = "Skin::makeKnownLinkObj";
+		wfProfileIn( $fname );
+
 		$link = $nt->getPrefixedURL();
 
 		if ( "" == $link ) {
@@ -1178,7 +1231,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			$u .= "#" . wfEscapeHTML( $nt->getFragment() );
 		}
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
-		$style = $this->getInternalLinkAttributes( $link, $text );
+		$style = $this->getInternalLinkAttributesObj( $nt, $text );
 
 		$inside = "";
 		if ( "" != $trail ) {
@@ -1188,14 +1241,18 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			}
 		}
 		$r = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+		wfProfileOut( $fname );
 		return $r;
 	}
-
-	function makeBrokenLink( $title, $text = "", $query = "", $trail = "" )
+	
+	# Pass a title object, not a title string
+	function makeBrokenLinkObj( &$nt, $text = "", $query = "", $trail = "" )
 	{
 		global $wgOut, $wgUser;
+		
+		$fname = "Skin::makeBrokenLinkObj";
+		wfProfileIn( $fname );
 
-		$nt = Title::newFromText( $title );
 		$link = $nt->getPrefixedURL();
 
 		if ( "" == $query ) { $q = "action=edit"; }
@@ -1203,7 +1260,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		$u = wfLocalUrlE( $link, $q );
 
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
-		$style = $this->getInternalLinkAttributes( $link, $text, "yes" );
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
 
 		$inside = "";
 		if ( "" != $trail ) {
@@ -1218,36 +1275,38 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		} else {
 			$s = "{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
 		}
+
+		wfProfileOut( $fname );
 		return $s;
 	}
+	
+	# Pass a title object, not a title string
+	function makeStubLinkObj( &$nt, $text = "", $query = "", $trail = "" )
+	{
+		global $wgOut, $wgUser;
 
-        function makeStubLink( $title, $text = "", $query = "", $trail = "" )
-        {
-                global $wgOut, $wgUser;
+		$link = $nt->getPrefixedURL();
 
-                $nt = Title::newFromText( $title );
-                $link = $nt->getPrefixedURL();
+		$u = wfLocalUrlE( $link, $query );
 
-                $u = wfLocalUrlE( $link, $query );
+		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, "stub" );
 
-                if ( "" == $text ) { $text = $nt->getPrefixedText(); }
-                $style = $this->getInternalLinkAttributes( $link, $text, "stub" );
-
-                $inside = "";
-                if ( "" != $trail ) {
-                        if ( preg_match( wfMsg("linktrail"), $trail, $m ) ) {
-                                $inside = $m[1];
-                                $trail = $m[2];
-                        }
-                }
-                if ( $wgOut->isPrintable() ||
-                  ( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
-                        $s = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
-                } else {
-                        $s = "{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
-                }
-                return $s;
-        }
+		$inside = "";
+		if ( "" != $trail ) {
+			if ( preg_match( wfMsg("linktrail"), $trail, $m ) ) {
+				$inside = $m[1];
+				$trail = $m[2];
+			}
+		}
+		if ( $wgOut->isPrintable() ||
+				( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
+			$s = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+		} else {
+			$s = "{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
+		}
+		return $s;
+	}
 
 	function fnamePart( $url )
 	{
@@ -1372,8 +1431,9 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		if ( 0 == $u ) {
             $ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$ut, "target=" . $ut );
-		} else { $ul = $this->makeLink( $wgLang->getNsText(
-		  Namespace::getUser() ) . ":{$ut}", $ut ); }
+		} else { 
+			$ul = $this->makeLink( $wgLang->getNsText(
+				Namespace::getUser() ) . ":{$ut}", $ut ); }
 
 		$s = "<li>";
 		if ( $oid ) {
@@ -1584,8 +1644,9 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		if ( 0 == $u ) {
 		$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$ut, "target=" . $ut );					
-		} else { $ul = $this->makeLink( $wgLang->getNsText(
-		  Namespace::getUser() ) . ":{$ut}", $ut ); }
+		} else { 
+			$ul = $this->makeLink( $wgLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut ); 
+		}
 		  
 		$utns=$wgLang->getNsText(Namespace::getTalk(Namespace::getUser()));
 		$talkname=$wgLang->getNsText(Namespace::getTalk(0)); # use the shorter name

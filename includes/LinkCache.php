@@ -74,6 +74,12 @@ class LinkCache {
 
 	function addLink( $title )
 	{
+		return $this->addLinkObj( Title::newFromDBkey( $title ) );
+	}
+	
+	function addLinkObj( &$nt )
+	{
+		$title = $nt->getDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
@@ -82,19 +88,17 @@ class LinkCache {
 		$fname = "LinkCache::addLink-checkdatabase";
 		wfProfileIn( $fname );
 
-		$nt = Title::newFromDBkey( $title );
 		$ns = $nt->getNamespace();
-		$t = $nt->getDBkey();
 
-		if ( "" == $t ) { 
-			wfProfileOut( $fname);
+		if ( "" == $title ) { 
+			wfProfileOut( $fname );
 			return 0; 
 		}
 
 		$id = $wgMemc->get( $key = "$wgDBname:lc:title:$title" );
 		if( $id === FALSE ) {
 			$sql = "SELECT HIGH_PRIORITY cur_id FROM cur WHERE cur_namespace=" .
-			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
+			  "{$ns} AND cur_title='" . wfStrencode( $title ) . "'";
 			$res = wfQuery( $sql, DB_READ, "LinkCache::addLink" );
 
 			if ( 0 == wfNumRows( $res ) ) {
@@ -111,7 +115,7 @@ class LinkCache {
 		return $id;
 	}
 
-	function preFill( $fromtitle )
+	function preFill( &$fromtitle )
 	{
 		$fname = "LinkCache::preFill";
 		wfProfileIn( $fname );

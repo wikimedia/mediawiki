@@ -551,11 +551,11 @@ class OutputPage {
 		#  $t = $t->getText() ;
 			$t = $x->l_from ;
 			$y = explode ( ":" , $t , 2 ) ;
-			if ( count ( $y ) == 2 && $y[0] == $cat ) 
-			{
+			if ( count ( $y ) == 2 && $y[0] == $cat ) {
 				array_push ( $children , $sk->makeLink ( $t , $y[1] ) ) ;
+			} else {
+				array_push ( $articles , $sk->makeLink ( $t ) ) ;
 			}
-			else array_push ( $articles , $sk->makeLink ( $t ) ) ;
 		}
 		wfFreeResult ( $res ) ;
 
@@ -921,7 +921,6 @@ $t[] = "</table>" ;
 		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
-			wfProfileIn( "$fname-loop" );
 			if ( preg_match( $e1, $line, $m ) ) { # page with alternate text
 				
 				$text = $m[2];
@@ -935,7 +934,7 @@ $t[] = "</table>" ;
 			
 			else { # Invalid form; output directly
 				$s .= "[[" . $line ;
-				wfProfileOut( "$fname-loop" );
+				wfProfileOut( "$fname-loop1" );
 				continue;
 			}
 			if(substr($m[1],0,1)=="/") { # subpage
@@ -957,7 +956,7 @@ $t[] = "</table>" ;
 			} else { # no subpage
 				$link = $m[1]; 
 			}
-
+			
 			if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z\\x80-\\xff]+):(.*)\$/", $link,  $m ) ) {
 				$pre = strtolower( $m[1] );
 				$suf = trim($m[2]);
@@ -982,15 +981,16 @@ $t[] = "</table>" ;
 					$s .= $sk->makeMediaLink( $name,
 					  wfImageUrl( $name ), $text );
 					$s .= $trail;
-                                } else if ( isset($wgUseCategoryMagic) && $wgUseCategoryMagic && $pre == wfMsg ( "category" ) ) {
-                                        $l = $sk->makeLink ( $pre.":".ucfirst($m[2]) , ucfirst ( $m[2] ) ) ;
-                                        array_push ( $this->mCategoryLinks , $l ) ;
-                                        $s .= $trail ;
+				} else if ( isset($wgUseCategoryMagic) && $wgUseCategoryMagic && $pre == wfMsg ( "category" ) ) {
+					$l = $sk->makeLink ( $pre.":".ucfirst( $m[2] ), ucfirst ( $m[2] ) ) ;
+					array_push ( $this->mCategoryLinks , $l ) ;
+					$s .= $trail ;
 				} else {
 					$l = $wgLang->getLanguageName( $pre );
-					if ( "" == $l or !$wgInterwikiMagic or
-					  Namespace::isTalk( $wgTitle->getNamespace() ) ) {
-						if ( "" == $text ) { $text = $link; }
+					if ( "" == $l or !$wgInterwikiMagic or Namespace::isTalk( $wgTitle->getNamespace() ) ) {
+						if ( "" == $text ) { 
+							$text = $link; 
+						}
 						$s .= $sk->makeLink( $link, $text, "", $trail );
 					} else if ( $pre != $wgLanguageCode ) {
 						array_push( $this->mLanguageLinks, "$pre:$suf" );
@@ -1002,9 +1002,9 @@ $t[] = "</table>" ;
 #				$s .= "<a name=\"{$link}\">{$text}</a>{$trail}";
 			} else {
 				if ( "" == $text ) { $text = $link; }
+				# Hotspot: 
 				$s .= $sk->makeLink( $link, $text, "", $trail );
 			}
-			wfProfileOut( "$fname-loop" );
 		}
 		wfProfileOut( $fname );
 		return $s;
