@@ -900,7 +900,12 @@ class Parser
 			return $text;
 		else
 		{
+			# First, do some preliminary work. This may shift some apostrophes from
+			# being mark-up to being text. It also counts the number of occurrences
+			# of bold and italics mark-ups.
 			$i = 0;
+			$numbold = 0;
+			$numitalics = 0;
 			foreach ($arr as $r)
 			{
 				if (($i % 2) == 1)
@@ -919,23 +924,10 @@ class Parser
 						$arr[$i-1] .= str_repeat ("'", strlen ($arr[$i]) - 5);
 						$arr[$i] = "'''''";
 					}
-					
-				}
-				$i++;
-			}
-			
-			# Now see if there's an odd or even number of "bold" and "italic"
-			# mark-up. There should normally be an even number of both.
-			$i = 0;
-			$numbold = 0;
-			$numitalics = 0;
-			foreach ($arr as $r)
-			{
-				if (($i % 2) == 1)
-				{
-					if (strlen ($r) == 2) $numitalics++;  else
-					if (strlen ($r) == 3) $numbold++;     else
-					if (strlen ($r) == 5) { $numitalics++; $numbold++; }
+					# Count the number of occurrences of bold and italics mark-ups.
+					if (strlen ($arr[$i]) == 2) $numitalics++;  else
+					if (strlen ($arr[$i]) == 3) $numbold++;     else
+					if (strlen ($arr[$i]) == 5) { $numitalics++; $numbold++; }
 				}
 				$i++;
 			}
