@@ -3,5 +3,5 @@
 -- their values from local settings.
 --
 
-DROP DATABASE IF EXISTS {$wgDBname};
-CREATE DATABASE {$wgDBname};
+DROP DATABASE IF EXISTS `{$wgDBname}`;
+CREATE DATABASE `{$wgDBname}`;
