@@ -7,7 +7,9 @@
 # ______________________________________________________
 #         1.00.20 XJamRastafire 2003-11-05 |    COMPLETE
 #         1.00.30 romanm        2003-11-07 |    minor changes
-#
+#         1.00.31 romanm        2003-11-11 |    merged incorrectly broken lines
+#         1.00.32 romanm        2003-11-19 |    merged incorrectly broken lines
+#         1.00.40 romanm        2003-11-21 |    fixed Google search
 #
 
 include_once( "LanguageUtf8.php" );
@@ -31,8 +33,7 @@ include_once( "LanguageUtf8.php" );
 	6	=> "Slika",
 	7	=> "Pogovor_k_sliki",
 	8	=> "MediaWiki",
-	9	=> "Pogovor_k_MediaWiki"
-
+	9	=> "MediaWiki_talk",
 );
 
 /* private */ $wgDefaultUserOptionsSl = array(
@@ -62,9 +63,7 @@ include_once( "LanguageUtf8.php" );
 /* private */ $wgUserTogglesSl = array(
 	"hover"		   => "Prikaži lebdečo škatlo nad wikijevimi povezavami",
 	"underline"        => "Podčrtane povezave",
-	"highlightbroken"  => "Oblikuj prekinjene povezave <a href=\"\" class=\"new\">kot </a>
-
-(druga možnost: kot<a href=\"\" class=\"internal\">?</a>).",
+	"highlightbroken"  => "Oblikuj prekinjene povezave <a href=\"\" class=\"new\">kot</a> (druga možnost: kot<a href=\"\" class=\"internal\">?</a>).",
 	"justify"	   => "Poravnaj odstavke",
 	"hideminor"        => "Skrij manjše popravke v trenutnih spremembah",
 	"usenewrc"         => "Izbolšane trenutne spremembe (ni za vse brskljalnike)",
@@ -115,7 +114,6 @@ include_once( "LanguageUtf8.php" );
 	"Listusers"	=> "Vpisani uporabniki",
 	"Statistics"	=> "Statistika strani",
 	"Randompage"	=> "Naključni članek",
-
 	"Lonelypages"	=> "Osamljeni članki",
 	"Unusedimages"	=> "Osamljene slike",
 	"Popularpages"	=> "Priljubljeni članki",
@@ -123,8 +121,8 @@ include_once( "LanguageUtf8.php" );
 	"Shortpages"	=> "Kratki članki",
 	"Longpages"	=> "Dolgi članki",
 	"Newpages"	=> "Nanovo ustvarjeni članki",
+	"Ancientpages"	=> "Oldest pages",
 	"Allpages"	=> "Vse strani po naslovu",
-
 	"Ipblocklist"	=> "Zaprti IP naslovi",
 	"Maintenance"   => "Vzdrževalna stran",
 	"Specialpages"  => "",
@@ -134,9 +132,7 @@ include_once( "LanguageUtf8.php" );
 	"Recentchangeslinked" => "",
 	"Movepage"	=> "",
 	"Booksources"	=> "Zunanji knjižni viri",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
-
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesSl = array(
@@ -238,9 +234,7 @@ include_once( "LanguageUtf8.php" );
 #
 "error"			=> "Napaka",
 "databaseerror"         => "Napaka podatkovne baze",
-"dberrortext"	        => "Nastopila je skladenjska povpraševanja podatkovne baze. To je
-
-lahko zaradi nepravilnega iskalnega povpraševanja (glej $5),
+"dberrortext"	        => "Nastopila je skladenjska povpraševanja podatkovne baze. To je lahko zaradi nepravilnega iskalnega povpraševanja (glej $5),
 ali pa lahko nakazuje hrošča v programju.
 Zadnje poskušano povpraševanje podatkovne baze je bilo:
 <blockquote><tt>$1</tt></blockquote>
@@ -393,11 +387,8 @@ Prosimo preverite URL, ki ste ga uporabili za dostop do te strani.\n",
 To je verjetno zaradi tega, ker ste hoteli iskati besedo, dolgo manj kot tri črke, kar še ni podprto.
 Lahko ste tudi narobe vnesli izraz, na primer \"Ribi in in Tehntnica\".
 Prosimo poskusite z drugim povpraševanjem.",
-"matchtotals"	        => "Povpraševanje \"$1\" se ujema z $2 naslovi člankov in
-z besedilom $3 člankov.",
-"nogomatch"             => "Ne obstaja stran z natančno tem naslovom, poskušam z iskanjem
-
-celotnega besedila. ",
+"matchtotals"	        => "Povpraševanje \"$1\" se ujema z $2 naslovi člankov in z besedilom $3 člankov.",
+"nogomatch"             => "Ne obstaja stran z natančno tem naslovom, poskušam z iskanjem celotnega besedila. ",
 "titlematches"	        => "Ujemanje z naslovom članka",
 "notitlematches"        => "Noben naslov članka se ne ujema",
 "textmatches"	        => "Ujemanje z besedilom članka",
@@ -406,9 +397,7 @@ celotnega besedila. ",
 "nextn"			=> "naslednji $1",
 "viewprevnext"	        => "Pogled ($1) ($2) ($3).",
 "showingresults"        => "Spodaj prikažem <b>$1</b> izidov, začenši z #<b>$2</b>.",
-"nonefound"		=> "<strong>Opomba</strong>: neuspešna iskanja velikokrat
-
-povzročijo iskanja vsakdanjih besed kot sta \"imeti\" in \"iz\", katera niso vnešena v seznam, ali navajanja več iskalnih izrazov (v izidu se bodo pojavile samo strani, ki vsebujejo iskalne izraze).",
+"nonefound"		=> "<strong>Opomba</strong>: neuspešna iskanja velikokrat povzročijo iskanja vsakdanjih besed kot sta \"imeti\" in \"iz\", katera niso vnešena v seznam, ali navajanja več iskalnih izrazov (v izidu se bodo pojavile samo strani, ki vsebujejo iskalne izraze).",
 "powersearch"           => "Iskanje",
 "powersearchtext" => "
 Iskanje v imenskem prostoru :<br>
@@ -417,22 +406,20 @@ $2 Seznam se preusmerja   Iskanje za $3 $9",
 "searchdisabled" => "<p>Oprostite! Iskanje po celotni bazi je zaradi hitrejšega delovanja Wikipedije trenutno onomogočena. Lahko pa se poslužite z Googlovim iskalnikom.</p>
 
 <!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/intl/sl/search\">
+<FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/intl/sl/\">
 <IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
 border=\"0\" ALT=\"Google\"></A>
 </td>
 <td>
-<INPUT TYPE=hidden name=hl value=sr>
+<INPUT TYPE=hidden name=hl value=sl>
 <INPUT TYPE=hidden name=ie value=UTF-8>
 <INPUT TYPE=hidden name=oe value=UTF-8>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Iskanje z Googlom\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\"
-
-checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
 </font>
 </td></tr></TABLE>
 </FORM>
@@ -473,9 +460,7 @@ Notranja ID števka je $2.",
 "stubthreshold"         => "Prag za škrbinski prikaz",
 "recentchangescount"    => "Število naslovov v trenutnih spremembah",
 "savedprefs"	        => "Vaše nastavitve so bile shranjene.",
-"timezonetext"	        => "Vnesite za koliko ur se vaš krajevni čas razlikuje od strežnikovega
-
-časa (UTC).",
+"timezonetext"	        => "Vnesite za koliko ur se vaš krajevni čas razlikuje od strežnikovega časa (UTC).",
 "localtime"	        => "Krajevni čas",
 "timezoneoffset"        => "Izravnava",
 "emailflag"		=> "Ne prikažem elektronske pošte drugim uporabnikom",
@@ -487,9 +472,7 @@ Notranja ID števka je $2.",
 "recentchanges"         => "Trenutne spremembe",
 "recentchangestext"     => "Sledi najpoznejšim spremembam v Wikipediji na tej strani.
 [[Wikipedija:Dobrodošli,_novinci|Dobrodošli, novinci]]!
-Prosimo poglejte na naslednje strani: [[Wikipedija:Najpogostejša vprašanja|Najpogostejša
-
-vprašanja]],
+Prosimo poglejte na naslednje strani: [[Wikipedija:Najpogostejša vprašanja|Najpogostejša vprašanja]],
 [[Wikipedija:Primernosti in smernice|Smernice]]
 (še posebej [[Wikipedija:Dogovori o poimenovanjih|Dogovori o poimenovanjih]],
 [[Wikipedija:Nepristransko stališče videnja|Nepristransko stališče videnja (NSV)]]),
@@ -499,16 +482,12 @@ snovi, ki je pridržana z drugimi [[wikipedia:Avtorske pravice|avtorskimi pravic
 Zakonita obveza lahko v resnici škodi opravilu, zatorej ne počnite tega.
 Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Nalagam trenutne spremembe",
-"rcnote"		=> "Spodaj so zadnje <strong>$1</strong> spremembe v zadnjih
-
-<strong>$2</strong> dnevih.",
+"rcnote"		=> "Spodaj so zadnje <strong>$1</strong> spremembe v zadnjih <strong>$2</strong> dnevih.",
 "rcnotefrom"	=> "Spodaj so spremembe od <b>$2</b> (prikazane do <b>$1</b>).",
 "rclistfrom"	=> "Prikaži nove spremembe od $1",
 # "rclinks"		=> "Prikaži zadnjih $1 sprememb v zadnjih $2 urah / zadnjih $3 dnevih",
 "rclinks"		=> "Prikaži zadnjih $1 sprememb v zadnjih $2 dnevih.",
-"rchide"		=> "v $4 obliki; $1 manjša urejanja; $2 druga poimenovanja; $3 večkratna
-
-urejevanja.",
+"rchide"		=> "v $4 obliki; $1 manjša urejanja; $2 druga poimenovanja; $3 večkratna urejevanja.",
 "diff"			=> "razl",
 "hist"			=> "zgod",
 "hide"			=> "skrij",
@@ -627,15 +606,12 @@ Do sedaj je bilo <b>$3</b> pregledov strani in <b>$4</b> urejanj strani od
 nadgraditve programske opreme (20. julij 2002).
 To da skupaj povprečno <b>$5</b> urejevanj na stran in <b>$6</b> pogledov
 na eno urejevanje.",
-"userstatstext" => "<b>$1</b> je vpisanih uporabnikov.
-Od tega jih je <b>$2</b> administratorjev (glej $3).",
+"userstatstext" => "<b>$1</b> je vpisanih uporabnikov. Od tega jih je <b>$2</b> administratorjev (glej $3).",
 
 # Vzdrževalna stran
 #
 "maintenance"		=> "Vzdrževalna stran",
-"maintnancepagetext"	=> "Ta stran vsebuje več pripravnih pripomočkov za vsakdanje vzdrževanje. Nekatere teh funkcij obremenjujejo podatkovno bazo, zato prosim ne poženite
-
-novega nalaganja pri vsakem popravljanju ;-)",
+"maintnancepagetext"	=> "Ta stran vsebuje več pripravnih pripomočkov za vsakdanje vzdrževanje. Nekatere teh funkcij obremenjujejo podatkovno bazo, zato prosim ne poženite novega nalaganja pri vsakem popravljanju ;-)",
 "maintenancebacklink"	=> "Nazaj na vzdrževalno stran",
 "disambiguations"	=> "Razjasnjevalne strani",
 "disambiguationspage"	=> "Wikipedija:Povezave_na_razjasnjevalne_strani",
@@ -693,9 +669,7 @@ in imeti veljaven naslov e-pošte v vaših <a href=\"" .
 da lahko pošljete pošto drugim uporabnikom.",
 "emailuser"	=> "Pošlji e-pošto temu uporabniku",
 "emailpage"	=> "Pošlji e-pošto uporabniku",
-"emailpagetext"	=> "Če je ta uporabnik vnesel veljaven naslov e-pošte v svojih ali njenih
-
-nastavitvah, bo spodnji vprašalnik poslal sporočilo.
+"emailpagetext"	=> "Če je ta uporabnik vnesel veljaven naslov e-pošte v svojih ali njenih nastavitvah, bo spodnji vprašalnik poslal sporočilo.
 Naslov e-pošte, ki ste jo vnesli v vaših uporabniških nastavitvah, bo v
  \"From\" naslovu pošte in bo lahko prejemnik odgovoril nanjo.",
 "noemailtitle"	=> "Ni naslova e-pošte",
@@ -722,7 +696,6 @@ za spremembo seznama nadzorov.",
   wfLocalUrl( "Special:Watchlist" ) . "\">seznam nadzorov</a>.
 Morebitne spremembe te strani in njena pripadajoča pogovorna stran bosta navedeni tam in stran bo prikazana <b>krepko</b> v <a href=\"" .
   wfLocalUrl( "Special:Recentchanges" ) . "\">seznamu trenutnih sprememb</a>, da jo boste tudi lažje izbrali.</p>
-
 <p>Če želite kasneje odstraniti stran iz seznama nadzorov, pritisnite \"Prekini nadzor\" v stranski vrstici.",
 "removedwatch"	=> "Odstranjena iz seznama nadzorov",
 "removedwatchtext" => "Stran \"$1\" je odstranjena iz vašega seznama nadzorov.",
@@ -761,9 +734,7 @@ Vsi časi so časi strežnika (UTC).
 "rollbacklink"	=> "vrni",
 "cantrollback"	=> "Ne morem vrniti ureditve; zadnji avtor je hkrati edini.",
 "alreadyrolled" => "Ne morem vrniti zadnje spremembe [[$1]]
-od uporabnika [[Uporabnik:$2|$2]] ([[Pogovor z uporabnikom:$2|Pogovor]]); nekdo drug je že
-
-spremenil ali vrnil članek.
+od uporabnika [[Uporabnik:$2|$2]] ([[Pogovor z uporabnikom:$2|Pogovor]]); nekdo drug je že spremenil ali vrnil članek.
 
 Zadnja sprememba od uporabnika [[Uporabnik:$3|$3]] ([[Pogovor z uporabnikom:$3|Pogovor]]). ",
 #   only shown if there is an edit comment
@@ -888,8 +859,7 @@ V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite
 "movepagebtn"	=> "Prestavite stran",
 "pagemovedsub"	=> "Prstavitev uspela",
 "pagemovedtext" => "Stran \"[[$1]]\" prestavljena na \"[[$2]]\".",
-"articleexists" => "Stran s tem imenom že obstaja ali pa izbrano ime ni pravilno.
-Prosimo izberite drugo ime.",
+"articleexists" => "Stran s tem imenom že obstaja ali pa izbrano ime ni pravilno. Prosimo izberite drugo ime.",
 "talkexists"	=> "Stran sama je prestavljena uspešno, pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo povežite ju ročno.",
 "movedto"	=> "prestavljeno na",
 "movetalk"	=> "Prestavite tudi \"pogovorno\" stran, če je mogoče.",

@@ -1,5 +1,7 @@
 <?
 
+/* WARNING: This file is still in ISO-8859-1. */
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -115,6 +117,7 @@
  "dz" => "Dzongkha",
  "et" => "Eesti",
  "el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;",
+ "als" => "Elsässisch",
  "eu" => "Euskara",
  "ee" => "Eve",
  "fo" => "Føroyskt",
@@ -293,7 +296,7 @@
  "Movepage"  => "",
  "Booksources" => "",
 # "Categories" => "Rubrieken",
-# "Export" => ""
+ "Export" => "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesNl = array(

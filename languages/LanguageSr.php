@@ -141,7 +141,7 @@ include( "LanguageUtf8.php" );
  "Movepage"  => "",
  "Booksources" => "Спољњи извори литературе",
 #"Categories" => "Категорије странице",
-"Export" => ""
+ "Export" => "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesSr = array(

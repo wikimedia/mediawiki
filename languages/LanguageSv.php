@@ -19,9 +19,8 @@
         5       => "Wikipedia_diskussion",
         6       => "Bild",
         7       => "Bild_diskussion",
-        8	=> "MediaWiki",
-        9	=> "MediaWiki_diskussion"
-
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_diskussion",
 );
 
 /* inherit standard defaults */
@@ -107,7 +106,7 @@ $wgValidSpecialPagesSv = array(
         "Shortpages"    => "Korta artiklar",
         "Longpages"     => "Långa artiklar",
         "Newpages"      => "De nyaste artiklarna",
-#       "Intl"                => "Interlanguage Links",
+        "Ancientpages"  => "Oldest pages",
         "Allpages"      => "Alla sidor efter titel",
 
         "Ipblocklist"   => "Blockerade IP adresser",
@@ -119,8 +118,7 @@ $wgValidSpecialPagesSv = array(
         "Recentchangeslinked" => "",
         "Movepage"      => "",
         "Booksources"   => "Externa bokkällor",
-#       "Categories"	=> "Page categories",
-        "Export"		=> ""
+        "Export"        => "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(
@@ -178,9 +176,10 @@ $wgValidSpecialPagesSv = array(
 "deletethispage"        => "Radera den här sidan",
 "protectthispage"       => "Skydda den här sidan",
 "unprotectthispage"     => "Ta bort skydd av denna sida",
+"newpage"               => "Ny sida",
 "talkpage"              => "Diskussionssida",
 "postcomment"           => "Skriv ett inlägg",
-"articlepage"           => "Tillbaka till artikeln",
+"articlepage"           => "Visa artikel",
 "subjectpage"           => "Ämnessida",
 "userpage"              => "Visa användarsida",
 "wikipediapage"         => "Visa metasida",
@@ -205,6 +204,14 @@ Se $1.",
 "sitetitle"             => "Wikipedia",
 "sitesubtitle"          => "Den fria encyklopedin",
 "retrievedfrom"         => "Hämtat från \"$1\"",
+"newmessages"           => "Du har $1.",
+"newmessageslink"       => "nya meddelanden",
+"editsection"           => "edit",
+"toc"                   => "Innehåll",
+"showtoc"               => "visa",
+"hidetoc"               => "göm",
+"thisisdeleted"         => "Visa eller återställ $1?",
+"restorelink"           => "$1 raderade versioner",
 
 // Main script and global functions
 //
@@ -319,7 +326,8 @@ Var snäll och logga in igen när du fått meddelandet.",
 Anledning är att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
 [[Wikipedia:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
 "newarticle"            => "(Ny)",
-"newarticletext"        => "Skriv den nya sidan här.",
+"newarticletext"        => "Du har klickat på en röd länk, en sida som inte finns ännu. Du kan hjälpa till genom att själv skriva vad du vet om ämnet i fältet nedan. Om du inte vill skriva något kan du bara trycka på \"tillbaka\" i din webbläsare.",
+"anontalkpagetext"      => "---- ''Detta är en diskussionssida för en anonym användare, en användare som inte har skapat sig ett konto, eller som inte har loggat in på det. Vi måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du är en anonym användare och ser meddelanden på den här sidan som inte tycks vara riktade till dig, var vänlig [[Special:Userlogin|logga in]] så du undviker förväxling med andra anonyma användare i framtiden.'' ",
 "noarticletext"         => "(Det finns för tillfället ingen text på den här sidan.)",
 "updated"               => "(Uppdaterad)",
 "note"                  => "<strong>Notera:</strong> ",
@@ -339,17 +347,21 @@ Du måste infoga dina ändringar i den existerande texten.
 "editingold"            => "<strong>VARNING: Du redigerar en gammal version
 av denna sida. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>\n",
 "yourdiff"              => "Skillnader",
-"copyrightwarning"      => "Lägg märke till att alla bidrag till Wikipedia är
+"copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
 att betrakta som utgivna under GNU Free Documentation License
 (se $1 för detaljer).
 Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br>
-Du lovar oss också att du skrev texten själv, eller kopierade från en
-public domain eller liknande fri resurs.<BR>
+Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<BR>
+<strong>LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!</strong>",
 
-<strong>
-LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!
-</strong>", //'"
-
+"longpagewarning"       => "VARNING: Den här artikeln är $1 kilobytes lång; vissa äldre webbläsare
+kan ha problem med att redigera sidor som är omkring 32 kb eller större.
+Du kanske vill överväga att dela upp artikeln i mindre delar.",
+"readonlywarning"       => "VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara 
+dina ändringar just nu. För säkerhets skull kanske du vill överväga att kopiera över texten till din egen dator tills
+databasen är upplåst igen.",
+"protectedpagewarning"  => "VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
+Försäkra dig om att du följer rekommendationerna för <a href='/wiki/Wikipedia:Skyddade sidor'>skyddade sidor</a>",
 
 // History pages
 //
@@ -359,7 +371,7 @@ LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!
 "revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå denna sida.\n",
 "loadhist"              => "Läser sidans versioner",
 "currentrev"            => "Nuvarande version",
-"revisionasof"          => "Versionen från",
+"revisionasof"          => "Versionen från $1",
 "cur"                   => "nuvarande",
 "next"                  => "nästa",
 "last"                  => "föregående",

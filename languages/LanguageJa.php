@@ -21,8 +21,7 @@ include_once( "LanguageUtf8.php" );
 	6	=> "画像" /* "Image" */,
 	7	=> "画像‐ノート" /* "Image_talk" */,
 	8	=> "MediaWiki",
-	9	=> "MediaWiki‐ノート"
-
+	9	=> "MediaWikiノート",
 );
 
 /* private */ $wgQuickbarSettingsJa = array(
@@ -230,7 +229,7 @@ include_once( "LanguageUtf8.php" );
 	"Shortpages"	=> "短い記事",
 	"Longpages"		=> "長い記事",
 	"Newpages"		=> "新しく登場した記事",
-#	"Intl"                => "Interlanguage Links",
+	"Ancientpages"	=> "Oldest articles",
 	"Allpages"		=> "タイトル別全ページ",
 
 	"Ipblocklist"	=> "ブロックされたIPアドレス",
@@ -242,8 +241,7 @@ include_once( "LanguageUtf8.php" );
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "外部の参考文献",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesJa = array(

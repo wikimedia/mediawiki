@@ -23,7 +23,9 @@ if($wgMetaNamespace === FALSE)
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_oerlis",
 	6	=> "Ofbyld",
-	7	=> "Ofbyld_oerlis"
+	7	=> "Ofbyld_oerlis",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_oerlis",
 );
 
 /* private */ $wgQuickbarSettingsFy = array(
@@ -124,7 +126,8 @@ if($wgMetaNamespace === FALSE)
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "",
-	"Categories"      => "Kategoryen",
+#	"Categories"      => "Kategoryen",
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesFy = array(

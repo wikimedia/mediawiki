@@ -115,7 +115,7 @@
 	"Movepage"		=> "", # "Mover pagina",
 	"Booksources"	=> "Fontes externe (libros)",
 #	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"		=> "Exportar in XML"
 );
 
 /* private */ $wgSysopSpecialPagesIa = array(

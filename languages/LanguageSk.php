@@ -105,8 +105,7 @@ include_once("LanguageUtf8.php");
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterné stránky s knihami",
 #	"Categories"	=> "Page categories",
-	"Export"		=> ""
-
+	"Export"		=> "Export XML",
 );
 
 /* private */ $wgSysopSpecialPagesSk = array(
