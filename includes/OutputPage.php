@@ -168,8 +168,12 @@ class OutputPage {
 			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 		
 		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
-			$ismodsince = wfUnix2Timestamp( strtotime( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) );
-			wfDebug( "-- client send If-Modified-Since: " . $_SERVER["HTTP_IF_MODIFIED_SINCE"] . "\n", false );
+			# IE sends sizes after the date for compressed pages:
+			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
+			# this breaks strtotime().
+			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
+			$ismodsince = wfUnix2Timestamp( strtotime( $modsince ) );
+			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
 		
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
@@ -320,16 +324,20 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
+		global $wgUseGzip;
 		if( $this->mLastModified != "" ) {
 			wfDebug( "** private caching; {$this->mLastModified} **\n", false );
 			header( "Cache-Control: private, must-revalidate, max-age=0" );
-			header( "Vary: Accept-Encoding" );
 			header( "Last-modified: {$this->mLastModified}" );
+			if( $wgUseGzip ) {
+				# We should put in Accept-Encoding, but IE chokes on anything but
+				# User-Agent in a Vary: header (at least through 6.0)
+				header( "Vary: User-Agent" );
+			}
 		} else {
 			wfDebug( "** no caching **\n", false );
 			header( "Cache-Control: no-cache" ); # Experimental - see below
 			header( "Pragma: no-cache" );
-			header( "Vary: Accept-Encoding" );
 			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
 		}
 		header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
