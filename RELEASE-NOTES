@@ -340,6 +340,8 @@ If upgrading from an older release, see the file UPGRADE;
 * XHTML encoding fix for usernames containing & in Special:Emailuser
 * (for zh) Search for variant links even when conversion is turned off, 
   to help prevent duplicate articles.
+* Disallow ISO 8859-1 C1 characters and "no-break space" in user names
+  on Latin-1 wikis.
 
 === Caveats ===
 
