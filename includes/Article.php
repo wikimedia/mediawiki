@@ -1750,8 +1750,8 @@ class Article {
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
-		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'revisionasoflink' ) );
-		$r = wfMsg( 'revisionasof', $td, $lnk );
+		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+		$r = wfMsg( 'revisionasofwithlink', $td, $lnk );
 		$wgOut->setSubtitle( $r );
 	}
 
