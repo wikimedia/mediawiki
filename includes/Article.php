@@ -843,8 +843,8 @@ class Article {
 			$res = wfQuery ( $sql, DB_READ ) ;
 			while ( $BL = wfFetchObject ( $res ) )
 			{
-				$t = Title::newFromDBkey( $BL->l_from) ; 
-				$blurlArr[] = $wgInternalServer.wfLocalUrl( $t->getPrefixedURL() );
+				$tobj = Title::newFromDBkey( $BL->l_from) ; 
+				$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
 			}
 			wfFreeResult ( $res ) ;
 			$u = new SquidUpdate( $this->mTitle, $blurlArr );
