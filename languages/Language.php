@@ -1390,7 +1390,7 @@ class Language {
 		
 		$datePreference = $wgUser->getOption( 'date' );
 
-		static $monthNames = "", $rxDM, $rxMD, $rxY, $rxDMY, $rxYMD, $rxMDY, $rxYMD;
+		static $monthNames = "", $rxDM, $rxMD, $rxY, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
 		if ( $monthNames == "" ) {
 			$monthNames = $this->getMonthRegex();
 			
