@@ -182,21 +182,24 @@ function populatedata() {
 	$sql = "DELETE FROM cur";
 	wfQuery( $sql, DB_WRITE, $fname );
 
+	$now = wfTimestampNow();
+	$won = wfInvertTimestamp( $now );
+	
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
-	  "cur_restrictions) VALUES ({$wns},'{$ulp}','" .
-	  wfStrencode( wfMsgNoDB( "uploadlogpagetext" ) ) . "','sysop')";
+	  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) VALUES ({$wns},'{$ulp}','" .
+	  wfStrencode( wfMsg( "uploadlogpagetext" ) ) . "','sysop','$now','$won','$now')";
 	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
-	  "cur_restrictions) VALUES ({$wns},'{$dlp}','" .
-	  wfStrencode( wfMsgNoDB( "dellogpagetext" ) ) . "','sysop')";
+	  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) VALUES ({$wns},'{$dlp}','" .
+	  wfStrencode( wfMsg( "dellogpagetext" ) ) . "','sysop','$now','$won','$now')";
 	wfQuery( $sql, DB_WRITE, $fname );
 	
 	$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 	$title = $titleobj->getDBkey();
-	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text) " .
+	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
 	  "VALUES (0,'$title','" .
-	  wfStrencode( wfMsgNoDB( "mainpagetext" ) ) . "')";
+	  wfStrencode( wfMsg( "mainpagetext" ) ) . "','$now','$won','$now')";
 	wfQuery( $sql, DB_WRITE, $fname );
 	
 	initialiseMessages();
