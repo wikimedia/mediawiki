@@ -1,5 +1,11 @@
 <?php
 
+print "This script is obsolete!";
+print "It is retained in the source here in case some of its
+code might be useful for ad-hoc conversion tasks, but it is
+not maintained and probably won't even work as is.";
+exit();
+
 /*
 	Import data from a UseModWiki into a PediaWiki wiki
 	2003-02-09 Brion VIBBER <brion@pobox.com>
