@@ -13,7 +13,7 @@ CREATE TABLE cur (
     cur_user integer NOT NULL,
     cur_user_text varchar(255) NOT NULL,
     cur_timestamp timestamp without time zone NOT NULL,
-    cur_restrictions text NOT NULL,
+    cur_restrictions text DEFAULT '':text NOT NULL,
     cur_counter bigint DEFAULT 0 NOT NULL,
     cur_is_redirect smallint DEFAULT 0 NOT NULL,
     cur_minor_edit smallint DEFAULT 0 NOT NULL,
