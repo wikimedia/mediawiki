@@ -2230,6 +2230,20 @@ class Language {
 	function getExtraHashOptions() {
 		return array();
 	}
+	
+	/**
+	 * A regular expression to match legal word-trailing characters
+	 * which should be merged onto a link of the form [[foo]]bar.
+	 * FIXME
+	 *
+	 * @return string
+	 * @access public
+	 */
+	function linkTrail() {
+		$trail = $this->getMessage( 'linktrail' );
+		if( empty( $trail ) ) $trail = Language::linkTrail();
+		return $trail;
+	}
 
 }
 
