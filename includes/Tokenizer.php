@@ -1,10 +1,12 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
  *
+ * @package MediaWiki
  */
 class Tokenizer {
 	/* private */ var $mText, 		# Text to be processed by the tokenizer

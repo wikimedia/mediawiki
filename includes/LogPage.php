@@ -21,12 +21,16 @@
 
 /**
  * Contain log classes
+ *
+ * @package MediaWiki
  */
 
 /**
  * Class to simplify the use of log pages.
  * The logs are now kept in a table which is easier to manage and trim
  * than ever-growing wiki pages.
+ *
+ * @package MediaWiki
  */
 class LogPage {
 	/* private */ var $type, $action, $comment;

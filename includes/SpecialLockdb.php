@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -24,6 +26,8 @@ function wfSpecialLockdb()
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class DBLockForm {
 	var $reason = '';

@@ -1,6 +1,7 @@
 <?php
 /**
  * This file is only included if profiling is enabled
+ * @package MediaWiki
  */
 
 /**
@@ -38,6 +39,7 @@ if( !function_exists( 'memory_get_usage' ) ) {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class Profiler
 {

@@ -19,6 +19,8 @@
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**

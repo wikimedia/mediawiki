@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -39,6 +41,8 @@ function wfSpecialMakesysop() {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class MakesysopForm {
 	var $mTarget, $mAction, $mRights, $mUser, $mSubmit;

@@ -1,6 +1,7 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
@@ -13,6 +14,8 @@ define( 'MSG_WAIT_TIMEOUT', 10);
 /**
  * Message cache
  * Performs various useful MediaWiki namespace-related functions
+ *
+ * @package MediaWiki
  */
 class MessageCache
 {

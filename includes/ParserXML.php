@@ -2,10 +2,12 @@
 /**
  * This should one day become the XML->(X)HTML parser
  * Based on work by Jan Hidders and Magnus Manske
+ * @package MediaWiki
  */
 
 /**
  * the base class for an element
+ * @package MediaWiki
  */
 class element {
   var $name = '';
@@ -75,6 +77,7 @@ function wgXMLcharacterData($parser, $data) {
 /**
  * Here's the class that generates a nice tree
  * package parserxml
+ * @package MediaWiki
  */
 class xml2php {
 

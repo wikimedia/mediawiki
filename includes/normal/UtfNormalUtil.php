@@ -17,9 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Some of these functions are adapted from places in MediaWiki.
-# Should probably merge them for consistency.
+/**
+ * Some of these functions are adapted from places in MediaWiki.
+ * Should probably merge them for consistency.
+ *
+ * @package MediaWiki
+ */
 
+/** */
 function codepointToUtf8( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
 	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .

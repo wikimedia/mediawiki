@@ -16,6 +16,11 @@ $wgExtraSkins['wikimediawiki'] = 'Wikimediawiki';
 
 require_once('MonoBook.php');
 
+/**
+ *
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class SkinWikimediawiki extends SkinMonoBook {
 	function initPage( &$out ) {
 		SkinPHPTal::initPage( $out );

@@ -19,10 +19,14 @@
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class Validation {
 	

@@ -2,6 +2,7 @@
 /**
  * See user.doc
  *
+ * @package MediaWiki
  */
 
 /**
@@ -11,6 +12,7 @@ require_once( 'WatchedItem.php' );
 
 /**
  *
+ * @package MediaWiki
  */
 class User {
 	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;

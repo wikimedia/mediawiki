@@ -17,6 +17,12 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ *
+ * @package MediaWiki
+ */
+
+/** */
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 

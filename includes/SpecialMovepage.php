@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -34,6 +36,8 @@ function wfSpecialMovepage() {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class MovePageForm {
 	var $oldTitle, $newTitle; # Text input

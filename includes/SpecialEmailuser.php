@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -53,6 +55,8 @@ function wfSpecialEmailuser( $par ) {
 
 /**
  * @todo document
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class EmailUserForm {
 

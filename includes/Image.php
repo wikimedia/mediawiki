@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * @package MediaWiki
  */
 
 /**
@@ -8,6 +8,7 @@
  * 
  * Provides methods to retrieve paths (physical, logical, URL),
  * to generate thumbnails or for uploading.
+ * @package MediaWiki
  */
 class Image
 {

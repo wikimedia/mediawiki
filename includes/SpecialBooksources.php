@@ -3,7 +3,8 @@
  * ISBNs in wiki pages will create links to this page, with the ISBN passed
  * in via the query string.
  *
- *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -24,6 +25,8 @@ function wfSpecialBooksources( $par ) {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class BookSourceList {
 	var $mIsbn;

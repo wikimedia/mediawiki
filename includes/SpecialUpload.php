@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -19,6 +21,8 @@ function wfSpecialUpload() {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class UploadForm {
 	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;

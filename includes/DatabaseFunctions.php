@@ -5,6 +5,7 @@
  * Note: $wgDatabase has ceased to exist. Destroy all references.
  *
  * @version # $Id$
+ * @package MediaWiki
  */
 
 /**
@@ -90,7 +91,7 @@ function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST ) {
 	}
 }
 
-/**@#+
+/**#@+
  * @param $res database result handler
  * @param $dbi
 */
@@ -176,7 +177,7 @@ function wfFieldName( $res, $n, $dbi = DB_LAST )
 		return false;
 	}
 }
-/**@#-*/
+/**#@-*/
 
 /**
  * @todo document function

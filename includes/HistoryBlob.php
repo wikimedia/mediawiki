@@ -1,10 +1,12 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
  * Pure virtual parent
+ * @package MediaWiki
  */
 class HistoryBlob
 {
@@ -16,6 +18,7 @@ class HistoryBlob
 
 /**
  * The real object
+ * @package MediaWiki
  */
 class ConcatenatedGzipHistoryBlob
 {

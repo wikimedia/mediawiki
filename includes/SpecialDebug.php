@@ -1,6 +1,8 @@
 <?php
 /**
  * Let developpers receive the full phpinfo output
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
  
 /**

@@ -21,6 +21,7 @@
 
 /**
  * Contain a feed class as well as classes to build rss / atom ... feeds
+ * @package MediaWiki
  */
 
 /**
@@ -33,9 +34,10 @@ $wgFeedClasses = array(
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class FeedItem {
-	/**@#+
+	/**#@+
 	 * @var string
 	 * @access private
 	 */
@@ -44,7 +46,7 @@ class FeedItem {
 	var $Url = '';
 	var $Date = '';
 	var $Author = '';
-	/**@#-*/
+	/**#@-*/
 	
 	/**
 	 * @todo document
@@ -106,9 +108,10 @@ class FeedItem {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class ChannelFeed extends FeedItem {
-	/**@#+
+	/**#@+
 	 * Abstract function, override!
 	 */
 	 
@@ -148,12 +151,13 @@ class ChannelFeed extends FeedItem {
 		print '<' . '?xml-stylesheet type="text/css" href="' .
 			htmlspecialchars( "$wgServer$wgStylePath/feed.css" ) . '"?' . ">\n";
 	}
-	/**@#-*/
+	/**#@-*/
 }
 
 /**
  * Generate a RSS feed
  * @todo document
+ * @package MediaWiki
  */
 class RSSFeed extends ChannelFeed {
 
@@ -211,6 +215,7 @@ class RSSFeed extends ChannelFeed {
 /**
  * Generate an Atom feed
  * @todo document
+ * @package MediaWiki
  */
 class AtomFeed extends ChannelFeed {
 	/**

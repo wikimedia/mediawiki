@@ -1,6 +1,7 @@
 <?php
 /**
  * Contain a class for special pages
+ * @package MediaWiki
  */
 
 /**
@@ -13,6 +14,7 @@ require_once ( 'Feed.php' );
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
  *
+ * @package MediaWiki
  */
 class QueryPage {
 
@@ -293,6 +295,8 @@ class QueryPage {
  * This is a subclass for very simple queries that are just looking for page
  * titles that match some criteria. It formats each result item as a link to
  * that page.
+ *
+ * @package MediaWiki
  */
 class PageQueryPage extends QueryPage {
 

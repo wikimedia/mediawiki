@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -10,6 +12,8 @@ require_once('QueryPage.php');
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class DisambiguationsPage extends PageQueryPage {
 

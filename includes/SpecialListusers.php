@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -13,6 +15,8 @@ require_once("QueryPage.php");
  * rights (sysop, bureaucrat, developer) will have them displayed
  * next to their names.
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class ListUsersPage extends QueryPage {
 

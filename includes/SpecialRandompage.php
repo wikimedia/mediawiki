@@ -1,8 +1,8 @@
 <?php
-# $Id$
-
 /**
- *
+ * @version # $Id$
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**

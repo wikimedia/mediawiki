@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -24,6 +26,8 @@ function wfSpecialUserlogin() {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnto, $mCookieCheck, $mPosted;

@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * @package MediaWiki
  */
 
 /**
@@ -10,6 +10,7 @@ require_once( 'Image.php' );
 
 /**
  * Special handling for image description pages
+ * @package MediaWiki
  */
 class ImagePage extends Article {
 

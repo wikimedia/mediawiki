@@ -1,6 +1,7 @@
 <?php
 /**
  * Deal with importing all those nasssty globals and things
+ * @package MediaWiki
  */
 
 # Copyright (C) 2003 Brion Vibber <brion@pobox.com>
@@ -24,6 +25,7 @@
 /**
  * Hypothetically, we could use a WebRequest object to fake a
  * self-contained request (FauxRequest).
+ * @package MediaWiki
  */
 class WebRequest {
 	function WebRequest() {
@@ -228,6 +230,7 @@ class WebRequest {
 
 /**
  *
+ * @package MediaWiki
  */
 class FauxRequest extends WebRequest {
 	var $data = null;

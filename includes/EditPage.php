@@ -2,6 +2,7 @@
 # $Id$
 /**
  * Contain the EditPage class
+ * @package MediaWiki
  */
 
 /**
@@ -9,6 +10,8 @@
  * The actual database and text munging is still in Article,
  * but it should get easier to call those from alternate
  * interfaces.
+ *
+ * @package MediaWiki
  */
 class EditPage {
 	var $mArticle;

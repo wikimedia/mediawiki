@@ -2,10 +2,12 @@
 # $Id$
 /**
  * See deferred.doc
+ * @package MediaWiki
  */
 
 /**
  *
+ * @package MediaWiki
  */
 class SearchUpdate {
 

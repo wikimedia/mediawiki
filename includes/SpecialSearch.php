@@ -19,6 +19,8 @@
 
 /**
  * Token special page for marking search requests properly in the skin.
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
