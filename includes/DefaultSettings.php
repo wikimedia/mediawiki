@@ -58,7 +58,7 @@ $wgDBserver         = 'localhost';
 $wgDBname           = 'wikidb';
 $wgDBconnection     = '';
 $wgDBuser           = 'wikiuser';
-$wgDBtype           = "mysql"; # "mysql" for working code and "pgsql" for development/broken code
+$wgDBtype           = "mysql"; # "mysql" for working code and "PostgreSQL" for development/broken code
 
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
