@@ -167,7 +167,7 @@ class Validation
 				$html .= "</tr>\n" ;
 				}
 			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
-			$html .= str_replace ( "$1" , $article->getLocalURL() , wfMsg("val_clear_old") ) ;
+			$html .= wfMsg ( 'val_clear_old', $skin->makeKnownLinkObj( $article ) );
 			$html .= "</td><td {$topstyle} align=right><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
 			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
 			}
