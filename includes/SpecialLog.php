@@ -249,7 +249,7 @@ class LogViewer {
 		global $wgLang;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
-		$time = $wgLang->timeanddate( $s->log_timestamp );
+		$time = $wgLang->timeanddate( $s->log_timestamp, true );
 		if( $s->page_id ) {
 			$titleLink = $this->skin->makeKnownLinkObj( $title );
 		} else {
