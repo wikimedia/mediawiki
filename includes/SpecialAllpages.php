@@ -48,7 +48,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 		$namespacename = str_replace ( '_', ' ', $name);
 		$n = ($ns == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
 		$sel = ($ns == $namespace) ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='{$ns}'{$sel}>{$n}</option>";		
+		$namespaceselect .= "<option value='{$ns}'{$sel}>{$n}</option>";	
 	}
 	$namespaceselect .= '</select>';
 
