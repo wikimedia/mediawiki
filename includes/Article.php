@@ -884,8 +884,8 @@ class Article {
 <input type=text size=60 name=\"wpReason\" value=\"{$wpReason}\">
 </td></tr><tr><td>&nbsp;</td></tr>
 <tr><td align=right>
-<input type=checkbox name=\"wpConfirm\" value='1'>
-</td><td>{$check}</td>
+<input type=checkbox name=\"wpConfirm\" value='1' id=\"wpConfirm\">
+</td><td><label for=\"wpConfirm\">{$check}</label></td>
 </tr><tr><td>&nbsp;</td><td>
 <input type=submit name=\"wpConfirmB\" value=\"{$confirm}\">
 </td></tr></table></form>\n" );
