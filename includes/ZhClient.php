@@ -106,7 +106,7 @@ class ZhClient {
 		$result = $this->query($q);
 		if(!$result)
 			return false;
-		list($infoline, $data) = explode('|', $result);
+		list($infoline, $data) = explode('|', $result, 2);
 		$info = explode(";", $infoline);
 		$ret = array();
 		$i=0;
