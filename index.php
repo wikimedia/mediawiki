@@ -18,6 +18,11 @@ define( "MEDIAWIKI", true );
 
 require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
+if ( $wgUseData )
+	{
+	$wgExtraNamespaces[20] = 'Data' ;
+	$wgExtraNamespaces[21] = 'Data_talk' ;
+	}
 require_once( "includes/Setup.php" );
 
 wfProfileIn( "main-misc-setup" );

@@ -1015,6 +1015,7 @@ a direct URL, and so may still be listed here despite being
 in active use.',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exists in the wiki.',
+'data'	=> 'Data',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
