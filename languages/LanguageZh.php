@@ -112,8 +112,8 @@ class LanguageZh extends LanguageZh_cn {
 		//better to use zh-cn for search, since conversion from 
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
-        $string = $this->autoConvert($string, 'zh-cn');
 		$t = $this->mZhClient->segment($string);
+        $t = $this->autoConvert($t, 'zh-cn');
 		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
