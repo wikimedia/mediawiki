@@ -316,8 +316,12 @@ class EditPage {
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
 			htmlspecialchars( wfMsg( 'newwindow' ) );
-		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
-		  wfMsg( "copyrightpage" ) ) );
+
+		global $wgRightsText;
+		$copywarn = "<div id=\"editpage-copywarn\">\n" .
+			wfMsg( $wgRightsText ? "copyrightwarning" : "copyrightwarning2",
+				"[[" . wfMsg( "copyrightpage" ) . "]]",
+				$wgRightsText ) . "\n</div>";
 
 		if( $wgUser->getOption("showtoolbar") and !$isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
@@ -424,8 +428,9 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
-<em>{$cancel}</em> | <em>{$edithelp}</em>
-<br /><div id=\"editpage-copywarn\">{$copywarn}</div>
+<em>{$cancel}</em> | <em>{$edithelp}</em>" );
+		$wgOut->addWikiText( $copywarn );
+		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 

@@ -638,12 +638,17 @@ revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>\n',
 'yourdiff'		=> 'Differences',
 'copyrightwarning' => "Please note that all contributions to {{SITENAME}} are
-considered to be released under the $wgRightsText
-(see $1 for details).
+considered to be released under the $2 (see $1 for details).
 If you don't want your writing to be edited mercilessly and redistributed
 at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a
 public domain or similar free resource.
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
+'copyrightwarning2' => "Please note that all contributions to {{SITENAME}}
+may be edited, altered, or removed by other contributors.
+If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
+You are also promising us that you wrote this yourself, or copied it from a
+public domain or similar free resource (see $1 for details).
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
 'longpagewarning' => "WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
