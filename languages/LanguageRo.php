@@ -919,7 +919,7 @@ Aceasta poate fi o schimbare drastică şi neaşteptată pentru o pagină popula
 vă rugăm să vă asiguraţi că înţelegeţi toate consecinţele înainte de a continua.",
 "movepagetalktext" => "Pagina asociată de discuţii, dacă există, va fi mutată
 automat odată cu aceasta '''afară de cazul că''':
-* Mutaţi pagina în altă secţiune a Wikipedia
+* Mutaţi pagina în alt domeniu al Wikipedia
 * Există deja o pagină de discuţii cu conţinut (care nu este goală), sau
 * Debifaţi căsuţa de mai jos.
 
