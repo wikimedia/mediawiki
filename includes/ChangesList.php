@@ -301,10 +301,11 @@ class ChangesList {
 
 
 	function recentChangesLineOld( &$rc, $watched = false ) {
+		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol,
+			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
+
 		$fname = 'Skin::recentChangesLineOld';
 		wfProfileIn( $fname );
-		
-		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
 
 		static $message;
 		if( !isset( $message ) ) {
@@ -420,7 +421,7 @@ class ChangesList {
 		}
 		# Block link
 		$blockLink='';
-		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
+		if ( ( $wgSysopUserBans || 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
 			$blockLink = $this->skin->makeKnownLinkObj( $blockLinkPage,
 				$message['blocklink'], 'ip='.$rc_user_text );
@@ -450,8 +451,8 @@ class ChangesList {
 	}
 
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
-		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds;
-		global $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
+		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds,
+			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
 		
 		static $message;
 		if( !isset( $message ) ) {
@@ -556,7 +557,7 @@ class ChangesList {
 		$userTalkLink = $this->skin->makeLinkObj( $userTalkPage, $talkname );
 
 		global $wgDisableAnonTalk;
-		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
+		if ( ( $wgSysopUserBans || 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockPage =& Title::makeTitle( NS_SPECIAL, 'Blockip' );
 			$blockLink = $this->skin->makeKnownLinkObj( $blockPage,
 				$message['blocklink'], 'ip='.$rc_user_text );
