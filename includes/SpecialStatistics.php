@@ -8,13 +8,13 @@ function wfSpecialStatistics()
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 
 	$sql = "SELECT COUNT(cur_id) AS total FROM cur";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );
 	$total = $row->total;
 
 	$sql = "SELECT ss_total_views, ss_total_edits, ss_good_articles " .
 	  "FROM site_stats WHERE ss_row_id=1";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );
 	$views = $row->ss_total_views;
 	$edits = $row->ss_total_edits;
@@ -31,13 +31,13 @@ function wfSpecialStatistics()
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
 	$sql = "SELECT COUNT(user_id) AS total FROM user";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );
 	$total = $row->total;
 
 	$sql = "SELECT COUNT(user_id) AS total FROM user " .
 	  "WHERE user_rights LIKE '%sysop%'";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$row = wfFetchObject( $res );
 	$admins = $row->total;
 

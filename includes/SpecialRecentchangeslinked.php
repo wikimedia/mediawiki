@@ -51,7 +51,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from='" .
       wfStrencode( $nt->getPrefixedDBkey() ) . "' GROUP BY cur_id " .
 	  "ORDER BY inverse_timestamp LIMIT {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$note = wfMsg( "rcnote", $limit, $days );
 	$wgOut->addHTML( "<hr>\n{$note}\n<br>" );

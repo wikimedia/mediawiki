@@ -26,7 +26,7 @@ function wfSpecialWantedpages()
 	$sql = "SELECT bl_to, COUNT( DISTINCT bl_from ) as nlinks " .
 	  "FROM brokenlinks GROUP BY bl_to HAVING nlinks > 1 " .
 	  "ORDER BY nlinks DESC LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$sk = $wgUser->getSkin();
 

@@ -15,7 +15,7 @@ function wfSpecialRecentchanges( $par )
 	}
 	
 	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$wgOut->checkLastModified( $s->lastmod );
 
@@ -23,7 +23,7 @@ function wfSpecialRecentchanges( $par )
 	
 	# The next few lines can probably be commented out now that wfMsg can get text from the DB
 	$sql = "SELECT cur_text FROM cur WHERE cur_namespace=4 AND cur_title='Recentchanges'";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
 		$rctext = $s->cur_text;
 	}
@@ -72,7 +72,7 @@ function wfSpecialRecentchanges( $par )
 	  ($uid ? "LEFT OUTER JOIN watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
-	$res = wfQuery( $sql2, $fname );
+	$res = wfQuery( $sql2, DB_READ, $fname );
 
 	if(isset($from)) {
 		$note = wfMsg( "rcnotefrom", $limit,

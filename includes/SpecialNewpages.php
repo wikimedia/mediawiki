@@ -11,7 +11,7 @@ function wfSpecialNewpages()
 	  "rc_timestamp AS cur_timestamp,length(cur_text) as cur_length FROM recentchanges,cur " .
 	  "WHERE rc_cur_id=cur_id AND rc_new=1 AND rc_namespace=0 AND cur_is_redirect=0 " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
