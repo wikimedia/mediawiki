@@ -31,7 +31,7 @@ class UploadForm {
 	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
-	var $mOname, $mSessionKey;
+	var $mOname, $mSessionKey, $mStashed;
 	/**#@-*/
 
 	/**
@@ -69,6 +69,7 @@ class UploadForm {
 			$this->mUploadTempName   = $data['mUploadTempName'];
 			$this->mUploadSize       = $data['mUploadSize'];
 			$this->mOname            = $data['mOname'];
+			$this->mStashed	 	 = true;
 		} else {
 			/**
 			 *Check for a newly uploaded file.
@@ -77,6 +78,7 @@ class UploadForm {
 			$this->mUploadSize     = $request->getFileSize( 'wpUploadFile' );
 			$this->mOname          = $request->getFileName( 'wpUploadFile' );
 			$this->mSessionKey     = false;
+			$this->mStashed        = false;
 		}
 	}
 
@@ -207,7 +209,7 @@ class UploadForm {
 		 * type but it's corrupt or data of the wrong type, we should
 		 * probably not accept it.
 		 */
-		if( !$this->verify( $this->mUploadTempName, $finalExt ) ) {
+		if( !$this->mStashed && !$this->verify( $this->mUploadTempName, $finalExt ) ) {
 			return $this->uploadError( wfMsg( 'uploadcorrupt' ) );
 		}
 		
