@@ -107,6 +107,7 @@ class element {
     		$ret .= ">" ;
     		}
 
+# THIS SHOULD BE DONE IN THE WIKI2XML-PARSER INSTEAD
 #	foreach ( array_keys ( $this->children ) AS $x )
 #	   $this->fixLinkTails ( $parser , $x ) ;
 
