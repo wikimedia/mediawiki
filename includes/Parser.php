@@ -92,6 +92,8 @@ class Parser
 		$stripState = NULL;
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->doWikiPass2( $text, $linestart );
+		# needs to be called last
+		$text = $this->doBlockLevels( $text, $linestart );		
 		$text = $this->unstrip( $text, $this->mStripState );
 		# Clean up special characters
 		$fixtags = array(
@@ -502,9 +504,6 @@ class Parser
 
 		$text .= $this->categoryMagic () ;
 		
-		# needs to be called last
-		$text = $this->doBlockLevels( $text, $linestart );		
-
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -1386,7 +1385,7 @@ class Parser
 
 							# Run full parser on the included text
 							$text = $this->strip( $text, $this->mStripState );
-							$text = $this->doWikiPass2( $text, true );
+							$text = $this->doWikiPass2( $text, true  );
 							
 							# Add the result to the strip state for re-inclusion after 
 							# the rest of the processing
