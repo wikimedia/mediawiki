@@ -40,8 +40,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesKo = array(
-#	"Standard", "Nostalgia", "Cologne Blue"
-	"보통", "그리움", "쾰른 파랑"
+	'standard' => "보통",
+	'nostalgia' => "그리움",
+	'cologneblue' => "쾰른 파랑",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgUserTogglesKo = array(

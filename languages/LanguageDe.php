@@ -27,11 +27,14 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesDe = array(
-	"Standard",
-	"Nostalgia",
-	"Cologne Blue",
-/*	"Paddington",
-	"Montparnasse" */
+	'standard' => "Standard",
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "Cologne Blue",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesDe = array(
@@ -516,7 +519,7 @@ Ihre interne ID-Nummer ist $2.",
 
 # Recent changes
 #
-"changes" => "Änderungen",
+"changes" => "Ã„nderungen",
 "recentchanges" => "Letzte Änderungen",
 "recentchangestext" => "
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br>

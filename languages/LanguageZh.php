@@ -34,9 +34,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesZh = array(
-        "标准",/* "Standard" */ 
-	"怀旧",/* "Nostalgia" */ 
-	"科隆香水蓝" /* "Cologne Blue" */ 
+	'standard' => "标准",
+	'nostalgia' => "怀旧",
+	'cologneblue' => "科隆香水蓝",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesZh = array(

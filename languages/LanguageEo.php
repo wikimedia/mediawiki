@@ -41,7 +41,8 @@ $wgEditEncoding		= "x";
 	'smarty' => "Paddington",
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
-	'mono' => "Senkolora"
+	'mono' => "Senkolora",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesEo = array(

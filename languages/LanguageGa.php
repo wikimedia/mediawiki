@@ -46,7 +46,14 @@ Sourceforge (when that gets added.)
 );
 
 /* private */ $wgSkinNamesGa = array(
-    "Gnáth", "Sean-nós", "Gorm na Cologne", "Paddington", "Montparnasse"
+	'standard' => "Gnáth",
+	'nostalgia' => "Sean-nós",
+	'cologneblue' => "Gorm na Cologne",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesGa = array(

@@ -28,7 +28,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesOc = array(
-	"Normal", "Nostalgia", "Còlonha Blau"
+	'standard' => "Normal",
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "Còlonha Blau",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesOc = array(

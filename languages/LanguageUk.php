@@ -30,7 +30,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesUk = array(
-	"Стандартне", "Ностальгія", "Кельнське Синє"
+	'standard' => "Стандартне",
+	'nostalgia' => "Ностальгія",
+	'cologneblue' => "Кельнське Синє",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesUk = array(

@@ -42,7 +42,14 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSkinNamesFa = array(
-	"استاندارد", "نوستالژی", "آبی کلون", "پدینگتون", "مون‌پارناس"
+	'standard' => "استاندارد",
+	'nostalgia' => "نوستالژی",
+	'cologneblue' => "آبی کلون",
+	'smarty' => "پدینگتون",
+	'montparnasse' => "مون‌پارناس",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesFa = array(

@@ -33,7 +33,14 @@
 );
 
 /* private */ $wgSkinNamesSv = array(
-        "Standard", "Nostalgi", "Cologne Blå"
+	'standard' => "Standard",
+	'nostalgia' => "Nostalgi",
+	'cologneblue' => "Cologne Blå",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgUserTogglesSv = array(

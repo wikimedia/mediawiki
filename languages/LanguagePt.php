@@ -42,7 +42,14 @@
 );
 
 /* private */ $wgSkinNamesPt = array(
-    "Padrão", "Nostalgia", "Azul Colonial"
+	'standard' => "Padrão",
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "Azul Colonial",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesPt = array(
