@@ -170,7 +170,6 @@ class SiteSettingsForm extends HTMLForm {
 			$this->checkbox( 'wgDebugComments' ) .
 			$this->checkbox( 'wgLogQueries' ) .
 			$this->checkbox( 'wgDebugDumpSql' ) .
-			$this->checkbox( 'wgIgnoreSQLErrors' ) .
 			$this->fieldset( 'sitesettings-debugging-profiling',
 				$this->checkbox( 'wgProfiling' ) .
 				$this->textbox( 'wgProfileLimit' ) .
