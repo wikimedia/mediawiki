@@ -40,10 +40,17 @@ class LanguageZh extends LanguageZh_cn {
 		the setting pages is finalized.
 	*/
 	function getPreferredVariant() {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 		
 		if($this->mZhLanguageCode)
 			return $this->mZhLanguageCode;
+
+		// see if the preference is set in the request
+		$zhreq = $wgRequest->getText( 'zh' );
+		if( in_array( $zhreq, $this->getVariants() ) ) {
+			$this->mZhLanguageCode = $zhreq;
+			return $zhreq;
+		}
 
 		// get language variant preference for logged in users 
 		if($wgUser->getID()!=0) {
