@@ -249,8 +249,8 @@ class DifferenceEngine {
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
-			$newLink = $wgTitle->getLocalUrl();
-			$this->mPagetitle = wfMsg( 'currentrev' );
+			$newLink = $wgTitle->escapeLocalUrl();
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$id = $wgTitle->getArticleID();
 
@@ -278,8 +278,8 @@ class DifferenceEngine {
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
 			$this->mNewPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
-			$newLink = $wgTitle->getLocalUrl ('oldid=' . $this->mNewid);
-			$this->mPagetitle = wfMsg( 'revisionasof', $t );
+			$newLink = $wgTitle->escapeLocalUrl ('oldid=' . $this->mNewid);
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewUser = $s->old_user_text;
 			$this->mNewComment = $s->old_comment;
@@ -311,8 +311,8 @@ class DifferenceEngine {
 		$this->mOldtext = Article::getRevisionText( $s );
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
-		$oldLink = $this->mOldPage->getLocalUrl ('oldid=' . $this->mOldid);
-		$this->mOldtitle = "<a href='$oldLink'>" . wfMsg( 'revisionasof', $t ) . '</a>';
+		$oldLink = $this->mOldPage->escapeLocalUrl ('oldid=' . $this->mOldid);
+		$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
 		$this->mOldUser = $s->old_user_text;
 		$this->mOldComment = $s->old_comment;
 
