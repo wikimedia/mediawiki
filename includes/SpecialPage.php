@@ -89,7 +89,7 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	# 'Makesysop'		=> new SpecialPage( 'Makesysop', 'userrights' ),
 
 # Special:Import is half-written
-#	"Import"		=> new SpecialPage( "Import", "sysop" ),
+	"Import"		=> new SpecialPage( "Import", "sysop" ),
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
