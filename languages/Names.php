@@ -132,6 +132,7 @@
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => 'Norsk (nynorsk)'	,	# Norwegian (Nynorsk)
 	'no' => 'Norsk',		# Norwegian
+	'non' => 'Norr&#511;na',		# Old Norse
 	'nv' => 'Din&eacute; bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
