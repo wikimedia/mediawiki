@@ -403,6 +403,7 @@ class Skin {
 		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang, $wgUseApproval ;
 
 		$s = $this->printableLink();
+		if ( wfMsg ( "disclaimers" ) != "-" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), "disclaimers" ) ;
 
 		if ( $wgOut->isArticle() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -888,6 +889,14 @@ class Skin {
 	{
 		$s = $this->makeKnownLink( wfMsg( "aboutpage" ),
 		  wfMsg( "aboutwikipedia" ) );
+		return $s;
+	}
+
+
+      function disclaimerLink()
+	{
+		$s = $this->makeKnownLink( wfMsg( "disclaimerpage" ),
+		  wfMsg( "disclaimers" ) );
 		return $s;
 	}
 
