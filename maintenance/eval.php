@@ -7,8 +7,8 @@ require_once( "../includes/MemCachedClient.inc.php" );*/
 require_once( "liveCmdLine.inc" );
 
 do {
-	$line = readconsole( "> " ). ";" ;
-	eval( $line );
+	$line = readconsole( "> " );
+	eval( $line . ";" );
 	if ( function_exists( "readline_add_history" ) ) {
 		readline_add_history( $line );
 	}
