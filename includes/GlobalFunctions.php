@@ -1057,4 +1057,13 @@ function wfIsWindows() {
 	}   
 } 
 
+/**
+ * Swap two variables
+ */
+function swap( &$x, &$y ) {
+	$z = $x;
+	$x = $y;
+	$y = $z;
+}
+
 ?>

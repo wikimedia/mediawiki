@@ -26,8 +26,6 @@ define( 'MW_PARSER_VERSION', '1.4.0' );
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
-define( 'RLH_FOR_UPDATE', 1 );
-
 # Allowed values for $mOutputType
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
@@ -93,7 +91,7 @@ class Parser
 	 * @access private
 	 */
 	# Persistent:
-	var $mTagHooks;
+	var $mTagHooks, $mForUpdate;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
@@ -117,6 +115,7 @@ class Parser
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
+		$this->mForUpdate = false;
 		$this->clearState();
 	}
 
@@ -2921,12 +2920,11 @@ class Parser
 	 *  0 - broken
 	 *  1 - normal link
 	 *  2 - stub
-	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
-	function replaceLinkHolders( &$text, $options = 0 ) {
+	function replaceLinkHolders( &$text ) {
 		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
 		global $wgInterwikiLinkHolders;
-		global $outputReplace;
+		global $outputReplace, $wgAntiLockFlags;
 		
 		if ( $wgUseOldExistenceCheck ) {
 			return array();
@@ -2988,7 +2986,11 @@ class Parser
 			}
 			if ( $query ) {
 				$query .= '))';
-				if ( $options & RLH_FOR_UPDATE ) {
+				if ( $this->forUpdate() ) {
+					# Preload results to reduce lock time
+					if ( $wgAntiLockFlags & ALF_PRELOAD_EXISTENCE ) { 
+						$dbr->query( $query, $fname );
+					}
 					$query .= ' FOR UPDATE';
 				}
 			
@@ -3109,6 +3111,10 @@ class Parser
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();
+	}
+
+	function forUpdate( $x = NULL ) {
+		return wfSetVar( $this->mForUpdate, $x );
 	}
 }
 

@@ -557,6 +557,16 @@ $wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, th
 $wgDisableUploads = true; # Uploads have to be specially set up to be secure
 $wgRemoteUploads = false; # Set to true to enable the upload _link_ while local uploads are disabled. Assumes that the special page link will be bounced to another server where uploads do work.
 $wgDisableAnonTalk = false;
+$wgUseDumbLinkUpdate = false; # Do DELETE/INSERT for link updates instead of incremental
+
+/**
+ * Anti-lock flags - bitfield
+ *   ALF_PRELOAD_LINKS
+ *       Preload links during link update for save
+ *   ALF_PRELOAD_EXISTENCE
+ *       Preload cur_id during replaceLinkHolders
+ */
+$wgAntiLockFlags = 0;
 
 # Path to the GNU diff3 utility. If the file doesn't exist,
 # edit conflicts will fall back to the old behaviour (no merging).

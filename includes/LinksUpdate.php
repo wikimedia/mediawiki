@@ -33,9 +33,14 @@ class LinksUpdate {
 	 */
 	
 	function doUpdate() {
-		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
+		global $wgUseDumbLinkUpdate, $wgLinkCache, $wgDBtransactions;
 		global $wgEnablePersistentLC, $wgUseCategoryMagic;
 
+		if ( $wgUseDumbLinkUpdate ) {
+			$this->doDumbUpdate();
+			return;
+		}
+		
 		$fname = 'LinksUpdate::doUpdate';
 		wfProfileIn( $fname );
 
