@@ -179,11 +179,12 @@ class Profiler
 		$dbw =& wfGetDB( DB_MASTER );
 		$profiling = $dbw->tableName( 'profiling' );
 
-		$name = substr($dbw->strencode( $name ),0,255);
+		$name = substr($name,0,255);
+		$encname = $dbw->strencode($name);
 		$sql = "UPDATE $profiling ".
 			"SET pf_count=pf_count+{$eventCount}, ".
 			"pf_time=pf_time + {$timeSum} ".
-			"WHERE pf_name='{$name}'";
+			"WHERE pf_name='{$encname}'";
 		$dbw->query($sql);
 
 		$rc = $dbw->affectedRows();	
