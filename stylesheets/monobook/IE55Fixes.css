@@ -6,8 +6,8 @@
     overflow: auto;
     height: 1%;
 }
-#bodyContent div,
-#bodyContent pre { overflow: auto; }
+/*#bodyContent div,
+#bodyContent pre { overflow: auto; }*/
 
 #p-personal { padding-bottom: 0.1em; }
 
