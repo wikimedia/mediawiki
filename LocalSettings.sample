@@ -166,8 +166,8 @@ $wgLocalInterwiki   = $wgSitename;
 #
 # If wgWhitelistEdit is set to true, only logged in users
 # are allowed to edit articles.
-# If wgWhitelistRead is set to true, only logged in users
-# are allowed to read articles.
+# If wgWhitelistRead is set to an array of page names, only logged in users
+# are allowed to read pages *not in the list*.
 #
 # wgWhitelistAccount lists user types that can add user accounts:
 # "key" => 1 defines permission if user has right "key".
@@ -181,7 +181,7 @@ $wgLocalInterwiki   = $wgSitename;
 #
 # Invitation-only closed shop type of system
 # $wgWhitelistEdit = true;
-# $wgWhitelistRead = true;
+# $wgWhitelistRead = array ( ":Main_Page" );
 # $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
 #
 # Public website, closed editorial team
