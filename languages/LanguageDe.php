@@ -17,8 +17,8 @@ if($wgMetaNamespace === FALSE)
         NS_IMAGE_TALK       => "Bild_Diskussion",
         NS_MEDIAWIKI        => "MediaWiki",
         NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
-        NS_TEMPLATE         => "Kategorie",
-        NS_TEMPLATE_TALK    => "Kategorie_Diskussion",
+        NS_TEMPLATE         => "Vorlage",
+        NS_TEMPLATE_TALK    => "Vorlage_Diskussion",
         NS_HELP             => "Hilfe",
         NS_HELP_TALK        => "Hilfe_Diskussion",
         NS_CATEGORY         => "Kategorie",
@@ -146,7 +146,7 @@ if($wgMetaNamespace === FALSE)
 
 # Bits of text used by many pages:
 #
-"categories" => "Seiten Kategorien",
+"categories" => "Seitenkategorien",
 "category" => "Kategorie",
 "category_header" => "Artikel in der Kategorie \"$1\"",
 "subcategories" => "Unterkategorien",
