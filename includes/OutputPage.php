@@ -1,6 +1,6 @@
 <?php
 /**
- * $Id$
+ * @version $Id$
  * @package MediaWiki
  */
 
@@ -506,6 +506,8 @@ class OutputPage {
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
+		$this->suppressQuickbar();
+		
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 

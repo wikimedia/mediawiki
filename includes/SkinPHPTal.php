@@ -358,14 +358,14 @@ class SkinPHPTal extends Skin {
 	 * an array of edit links by default used for the tabs
 	 */
 	function buildContentActionUrls () {
-		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
+		global $wgTitle, $wgUser, $wgOut, $wgRequest, $wgUseValidation;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		$content_actions = array();
 
-		if( $this->iscontent ) {
+		if( $this->iscontent and !$wgOut->isQuickbarSuppressed() ) {
 
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
