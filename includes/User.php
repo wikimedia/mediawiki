@@ -863,7 +863,7 @@ class User {
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'watchlist',
 				array( /* SET */
-					'wl_notificationtimestamp' => $dbw->timestamp(0)
+					'wl_notificationtimestamp' => 0
 				), array( /* WHERE */
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
