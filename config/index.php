@@ -237,7 +237,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
 		include_once( "Setup.php" );
+		include_once( "../maintenance/InitialiseMessages.inc" );
 
+		$wgTitle = Title::newFromText( "Installation script" );
+		
 		if( $conf->Root ) {
 			$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
 		} else {
@@ -332,7 +335,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			
 			# FIXME: Main page, logs
 			# FIXME: Initialize messages
-			print "<li>(NYI: accounts, pages, messages)</li>\n";
+			print "<li>(NYI: pages)</li>\n";
+			
+			print "<li>";
+			initialiseMessages();
+			print "</li>\n";
 			
 			if( $conf->Root ) {
 				# Grant user permissions
