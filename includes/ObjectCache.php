@@ -232,7 +232,7 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		if($row=$this->_fetchobject($res)) {
 			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
-			return unserialize($row->value);
+			return $this->_unserialize($row->value);
 		} else {
 			$this->_debug('get: no matching rows');
 		}
@@ -252,7 +252,7 @@ class SqlBagOStuff extends BagOStuff {
 		$this->delete( $key );
 		$this->_query(
 			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2','$exp')",
-			$key, serialize($value));
+			$key, $this->_serialize($value));
 		return true; /* ? */
 	}
 	
@@ -323,6 +323,38 @@ class SqlBagOStuff extends BagOStuff {
 	function deleteall() {
 		/* Clear *all* items from cache table */
 		$this->_query( "DELETE FROM $0" );
+	}
+	
+	/**
+	 * Serialize an object and, if possible, compress the representation.
+	 * On typical message and page data, this can provide a 3X decrease
+	 * in storage requirements.
+	 *
+	 * @param mixed $data
+	 * @return string
+	 */
+	function _serialize( &$data ) {
+		$serial = serialize( $data );
+		if( function_exists( 'gzdeflate' ) ) {
+			return gzdeflate( $serial );
+		} else {
+			return $serial;
+		}
+	}
+	
+	/**
+	 * Unserialize and, if necessary, decompress an object.
+	 * @param string $serial
+	 * @return mixed
+	 */
+	function &_unserialize( $serial ) {
+		if( function_exists( 'gzinflate' ) ) {
+			$decomp = @gzinflate( $serial );
+			if( false !== $decomp ) {
+				$serial = $decomp;
+			}
+		}
+		return unserialize( $serial );
 	}
 }
 
