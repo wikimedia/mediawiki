@@ -698,10 +698,10 @@ END
 
 	function getPreviewText( $isConflict, $isCssJsSubpage ) {
 		global $wgOut, $wgUser, $wgTitle, $wgParser;
-		$previewhead='<h2>' . wfMsg( 'preview' ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
-			wfMsg( 'note' ) . wfMsg( 'previewnote' ) . "</font></center></p>\n";
+		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
+			"<p class='previewnote'>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</p>\n";
 		if ( $isConflict ) {
-			$previewhead.='<h2>' . wfMsg( 'previewconflict' ) .
+			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) .
 				"</h2>\n";
 		}
 

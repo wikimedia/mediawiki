@@ -294,3 +294,12 @@ div.gallerytext {
 span.comment {
 	font-style: italic;
 }
+
+span.changedby {
+	font-size: 95%;
+}
+
+.previewnote {
+	text-align: center;
+	color: #cc0000;
+}

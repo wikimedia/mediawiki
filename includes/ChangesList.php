@@ -155,7 +155,7 @@ class ChangesList {
 			if ( $count > 1 ) $text .= " ({$count}&times;)" ;
 			array_push ( $users , $text ) ;
 		}
-		$users = ' <font size="-1">['.implode('; ',$users).']</font>' ;
+		$users = ' <span class="changedby">['.implode('; ',$users).']</span>';
 
 		# Arrow
 		$rci = 'RCI'.$this->rcCacheIndex ;
