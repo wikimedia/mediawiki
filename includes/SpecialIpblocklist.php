@@ -169,7 +169,7 @@ function wfAddRow( $block, $tag ) {
 		$wgOut->addHTML( " ({$ublink})" );
 	}
 	if ( "" != $block->mReason ) {
-		$wgOut->addHTML( " <em>(" . htmlspecialchars( $block->mReason ) .
+		$wgOut->addHTML( " <em>(" . $sk->formatComment( $block->mReason ) .
 		  ")</em>" );
 	}
 	$wgOut->addHTML( "</li>\n" );
