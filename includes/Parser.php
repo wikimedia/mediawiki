@@ -1289,13 +1289,22 @@ class Parser
 				$head[$c].=$sk->editSectionLink($c+1);
 			}
 			
-			// Put it all together
 			
-			$head[$c].="<h".$level.$matches[2][$c]
-			 ."<a name=\"".$anchor."\">"
-			 .$headline
-			 ."</a>"
-			 ."</h".$level.">";
+			// the headline might have a link
+			if(preg_match("/(.*)<a(.*)/",$headline, $headlinematches))
+			{ 
+				// if so give an anchor name to the already existent link
+				$headline = $headlinematches[1]
+				            ."<a name=\"".$anchor."\" ".$headlinematches[2];
+			} else {
+				// else create an anchor link for the headline
+				$headline = "<a name=\"".$anchor."\">"
+				            .$headline
+				            ."</a>";
+			}
+				
+			// give headline the correct <h#> tag
+			$head[$c].="<h".$level.$matches[2][$c] .$headline."</h".$level.">";
 			
 			// Add the edit section link
 			
