@@ -802,9 +802,10 @@ class Parser
 		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
 		# Match the end of a line for a word that's not followed by whitespace,
 		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-		#$e2 = "/^(.*)\\b(\\w+)\$/suD";
-		#$e2 = "/^(.*\\s)(\\S+)\$/suD";
-		static $e2 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
+		# first line
+		static $e2 = '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD';
+		# all other lines
+		static $e3 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
 
 
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
@@ -820,17 +821,26 @@ class Parser
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
 		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
-			$new_prefix = $m[2];
+			$first_prefix = $m[2];
 			$s = $m[1];
 		} else {
-			$new_prefix="";
+			$first_prefix = false;
 		}
 
 		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
-			$prefix = $new_prefix;
-
+			if ( $wgLang->linkPrefixExtension() && preg_match( $e3, $s, $m ) ) {
+				$prefix = $m[2];
+				$s = $m[1];
+			} else {
+				$prefix="";
+			}
+			# first link
+			if($first_prefix) {
+				$prefix = $first_prefix;
+				$first_prefix = false;
+			}
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
@@ -930,7 +940,7 @@ class Parser
 				wfProfileOut( $fname );
 				continue;
 			}
-			$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
+			$s .= $sk->makeLinkObj( $nt, $text, "", $trail, $prefix );
 		}
 		wfProfileOut( $fname );
 		return $s;
