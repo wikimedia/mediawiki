@@ -312,11 +312,14 @@ div.thumb div {
     padding: 3px !important;
     background-color:#f9f9f9;
     font-size: 94%;
+    text-align: center;
+}
+div.thumb div a {
+    margin-left: auto;
+    margin-right: auto;
 }
 div.thumb div a img {
     border:1px solid #cccccc;
-    margin-left: auto;
-    margin-right: auto;
 }
 div div.thumbcaption {
     border: none;
