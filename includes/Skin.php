@@ -1455,13 +1455,6 @@ class Skin {
 		return "";
 	}
 
-	function beginHistoryList()
-	{
-		$this->lastdate = $this->lastline = "";
-		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul>";
-		return $s;
-	}
-
 	function beginImageHistoryList()
 	{
 		$s = "\n<h2>" . wfMsg( "imghistory" ) . "</h2>\n" .
@@ -1476,67 +1469,10 @@ class Skin {
 		return $s;
 	}
 
-	function endHistoryList()
-	{
-		$last = wfMsg( "last" );
-
-		$s = preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
-		$s .= "</ul>\n";
-		return $s;
-	}
-
 	function endImageHistoryList()
 	{
 		$s = "</ul>\n";
 		return $s;
-	}
-
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor )
-	{
-		global $wgLang;
-
-		$artname = Title::makeName( $ns, $ttl );
-		$last = wfMsg( "last" );
-		$cur = wfMsg( "cur" );
-		$cr = wfMsg( "currentrev" );
-
-		if ( $oid && $this->lastline ) {
-			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->makeKnownLink(
-			  $artname, $last, "diff=\\1&oldid={$oid}" ), $this->lastline );
-		} else {
-			$ret = "";
-		}
-		$dt = $wgLang->timeanddate( $ts, true );
-
-		if ( $oid ) { $q = "oldid={$oid}"; }
-		else { $q = ""; }
-		$link = $this->makeKnownLink( $artname, $dt, $q );
-
-		if ( 0 == $u ) {
-			$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-			$ut, "target=" . $ut );
-		} else { 
-			$ul = $this->makeLink( $wgLang->getNsText(
-				Namespace::getUser() ) . ":{$ut}", $ut ); }
-
-		$s = "<li>";
-		if ( $oid ) {
-			$curlink = $this->makeKnownLink( $artname, $cur,
-			  "diff=0&oldid={$oid}" );
-		} else {
-			$curlink = $cur;
-		}
-		$s .= "({$curlink}) (!OLDID!{$oid}!) . .";
-
-		$M = wfMsg( "minoreditletter" );
-		if ( $isminor ) { $s .= " <strong>{$M}</strong>"; }
-		$s .= " {$link} . . {$ul}";
-
-		if ( "" != $c && "*" != $c ) { $s .= " <em>(" . wfEscapeHTML($c) . ")</em>"; }
-		$s .= "</li>\n";
-
-		$this->lastline = $s;
-		return $ret;
 	}
 
 	function recentChangesBlockLine ( $y ) {

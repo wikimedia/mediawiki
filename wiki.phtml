@@ -74,7 +74,6 @@ if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 		case "view":
 		case "watch":
 		case "unwatch":
-		case "history":
 		case "delete":
 		case "revert":
 		case "rollback":
@@ -90,6 +89,11 @@ if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 			include_once( "EditPage.php" );
 			$editor = new EditPage( $wgArticle );
 			$editor->$action();
+			break;
+		case "history":
+			include_once( "PageHistory.php" );
+			$history = new PageHistory( $wgArticle );
+			$history->history();
 			break;
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
