@@ -252,3 +252,17 @@ CREATE TABLE user_rights (
     user_id integer PRIMARY KEY,
     user_rights text NOT NULL
 );
+
+CREATE TABLE logging (
+    log_type character(10) NOT NULL,
+    log_action character(10) NOT NULL,
+    log_timestamp timestamp without time zone NOT NULL,
+    log_user integer NOT NULL,
+    log_namespace smallint NOT NULL,
+    log_title character varying(255) NOT NULL,
+    log_comment character varying(255) NOT NULL
+);
+
+CREATE INDEX log_type_time ON logging USING btree (log_type, log_timestamp);
+CREATE INDEX log_user_time ON logging USING btree (log_user, log_timestamp);
+CREATE INDEX log_page_time ON logging USING btree (log_namespace, log_title, log_timestamp);
