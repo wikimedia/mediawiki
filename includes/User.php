@@ -159,15 +159,16 @@ class User {
 	 * a language object.
 	 */	
 	function loadDefaultFromLanguage(){
-		global $wgLang;
-		$defOpt = $wgLang->getDefaultUserOptions() ;
+		global $wgContLang;
+		$defOpt = $wgContLang->getDefaultUserOptions() ;
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}		
-        /* so that new user will have a default 
-           language variant set using info from the http header 
+        /* 
+           default language setting
         */
-        $this->setOption('variant', $wgLang->getPreferredVariant());
+        $this->setOption('variant', $wgContLang->getPreferredVariant());
+        $this->setOption('language', $wgContLang->getPreferredVariant());
 	}
 
 	/**
