@@ -112,7 +112,7 @@ include( "LanguageUtf8.php" );
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "ÐÐÐÐÐ ÐÐ¡ÐÐÐÐÐÐÐ¢Ð ÐÐÐ£Ð¢ÐÐÐÐÐÐ¡ÐÐ¦Ð"),
  MAG_MSG                  => array( 1,    "MSG:", "ÐÐÐ :"             ),
  MAG_SUBST                => array( 1,    "SUBST:", "ÐÐÐÐ¡Ð¢:"           ),
-    MAG_MSGNW                => array( 1,    "MSGNW:", "ÐÐÐÐÐ :"           )
+    MAG_MSGNW                => array( 1,    "MSGNW:", "ÐÐÐÐÐ :"           ),
 	MAG_END                  => array( 0,    "__END__"                ),
     MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
     MAG_IMG_RIGHT            => array( 1,    "right"                  ),
