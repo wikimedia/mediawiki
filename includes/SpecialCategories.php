@@ -9,7 +9,7 @@ function wfSpecialCategories()
 	$r = "" ;
 	$r .= "<ol>\n" ;
 	$cat = ucfirst ( wfMsg ( "category" ) ) ;
-	$sql = "SELECT cur_title FROM cur WHERE cur_title LIKE \"{$cat}:%\"" ;
+	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=".Namespace::getCategory() ;
 	$res = wfQuery ( $sql, DB_READ ) ;
 	while ( $x = wfFetchObject ( $res ) )
 	  {
@@ -31,7 +31,7 @@ function wfSpecialCategories()
 	    $t = explode ( ":" , $x->bl_to , 2 ) ;
 	    $t = $t[1] ;
 	    $r .= "<li>" ;
-	    $r .= $sk->makeBrokenLink ( $x->bl_to , $t ) ;
+	    $r .= $sk->makeBrokenLink ( $x->bl_to ) ;
 	    $r .= "</li>\n" ;
 	  }
 	wfFreeResult ( $res ) ;
