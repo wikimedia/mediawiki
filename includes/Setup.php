@@ -36,7 +36,8 @@ if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 	# out where our requests are really coming from.
 	$hopips = array_map( 'trim', explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
 
-	while(in_array(trim(end($hopips)), $wgSquidServers)){
+	$allsquid = array_merge($wgSquidSErvers, $wgSquidServersNoPurge);
+	while(in_array(trim(end($hopips)), $allsquid)){
 		array_pop($hopips);
 	}
 	$wgIP = trim(end($hopips));
