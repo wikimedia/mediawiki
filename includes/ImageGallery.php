@@ -93,8 +93,17 @@ class ImageGallery
 			//TODO
 			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
-			$nb = $this->mShowBytes ? 
-				wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) )  . '<br />' :
+			if( $this->mShowBytes ) {
+				if( $img->exists() ) {
+					$nb = wfMsg( 'nbytes', $wgLang->formatNum( $img->getSize() ) );
+				} else {
+					$nb = wfMsg( 'filemissing' );
+				}
+				$nb = htmlspecialchars( $nb ) . '<br />';
+			} else {
+				$nb = '';
+			}
+				
 				'' ;
 			$textlink = $this->mShowFilename ?
 				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . '<br />' :
