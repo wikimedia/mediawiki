@@ -77,6 +77,9 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
+	# actions that need to be made when we have a special pages
+	require_once( 'includes/SpecialPage.php' );
+	if ( !$wgAllowSysopQueries ) {SpecialPage::removePage( 'Asksql' ); }
 	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
@@ -165,4 +168,5 @@ $wgOut->output();
 foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 logProfilingData();
 wfDebug( "Request ended normally\n" );
+print_r($GLOBALS);
 ?>
