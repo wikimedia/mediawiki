@@ -292,16 +292,17 @@ value=\"$i\"$checked> {$skins[$i]}</label><br>\n" );
 	} else {
 		$wgOut->addHTML( "</td><td rowspan=2 valign=top nowrap>\n" );
 	}
+	$wgOut->addHTML("<table border=0>");
 	foreach ( $togs as $tname => $ttext ) {
 		if ( 1 == $wgUser->getOption( $tname ) ) {
 			$checked = " checked";
 		} else {
 			$checked = "";
-		}
-		$wgOut->addHTML( "<label><input type=checkbox value=\"1\" "
-		  . "name=\"wpOp$tname\"$checked>$ttext</label><br>\n" );
+		}		
+		$wgOut->addHTML( "<tr valign=\"top\"><td><input type=checkbox value=\"1\" "
+		  . "id=\"$tname\" name=\"wpOp$tname\"$checked></td><td><label for=\"$tname\">$ttext</label></td></tr>\n" );
 	}
-	$wgOut->addHTML( "</td>" );
+	$wgOut->addHTML( "</table></td>" );
 
 	# Math setting
 	#

@@ -40,7 +40,7 @@ class SkinStandard extends Skin {
 			  "#article { margin-left: 4px; margin-right: 152px; }\n";
 		} else if ( 1 == $qb || 3 == $qb ) {
 			$s .= "#quickbar { position: absolute; top: 4px; left: 4px; " .
-			  "border-right: 2px solid #000000; }\n" .
+			  "border-right: 1px solid gray; }\n" .
 			  "#article { margin-left: 152px; margin-right: 4px; }\n";
 		}
 		return $s;

@@ -1,13 +1,13 @@
 #article { padding: 4px; }
 #content { margin: 0; padding: 0; }
-#footer { padding: 4px; }
+#footer { padding: 4px;font-size:95%; }
 #pagestats { font-size: 9pt; }
 #powersearch {
   background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
 }
-#quickbar { width: 140px; padding: 4px; visibility: visible; z-index: 99; }
-#topbar { padding: 4px; }
-#toc { border:1px solid #8888aa; background-color:#f3f3ff;padding:5px;font-size:90%; }
+#quickbar { width: 140px; padding: 4px; visibility: visible; z-index:99;font-size:95%;}
+#topbar { padding: 4px;font-size:95%; }
+#toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
 .bodytext { }
 a.interwiki, a.external { color: #3366BB; }
 a.printable { text-decoration: underline; }
@@ -15,14 +15,16 @@ a.stub { color:#772233; text-decoration:none; }
 a.stub { color:#772233; text-decoration:none; }
 body { margin: 0px; padding: 4px; }
 form.inline { display: inline; }
-h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0; }
-h2 { font-size: 125%; }
-h2, h3, h4, h5, h6 { margin-bottom: 0; }
-h3 { font-size: 112.5%; }
-h4 { font-size: 106.25%; }
-h5 { font-size: 103.125%; }
-h6 { font-size: 100%; }
+h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
+font-size:125%; }
+h2 { font-size: 112.5%; }
+h2, h3, h4, h5, h6 { margin-bottom: 0;border-bottom:1px dotted #dddddd; }
+h3 { font-size: 106.25%; }
+h4 { font-size: 103.125%; }
+h5 { font-size: 100%; }
+h6 { font-size: 95%; }
+hr.sep { color:gray;height:1px;background-color:gray;}
 p.subpages { font-size:small;}
-p.subtitle { padding-top: 0; margin-top: 0; }
-td.bottom { border-top: 2px solid #000000; }
-td.top { border-bottom: 2px solid #000000; }
+p.subtitle { padding-top: 0; margin-top: 0;}
+td.bottom { border: 1px solid gray;background-color:#f4f4ff; }
+td.top { border-bottom: 1px solid gray; }
