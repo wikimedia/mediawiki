@@ -94,7 +94,7 @@ global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgMsgParserOptions;
 global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
-global $wgUseOldExistenceCheck, $wgEnablePersistentLC;
+global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
 
 global $wgFullyInitialised;
 
@@ -206,7 +206,7 @@ if ( !$wgDBservers ) {
 		'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
 	));
 }
-$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
+$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers, false, $wgMasterWaitTimeout );
 $wgLoadBalancer->loadMasterPos();
 
 wfProfileOut( $fname.'-database' );
