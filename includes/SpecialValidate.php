@@ -61,7 +61,13 @@ class Validation
 	function validate_form ( $article_title = "" )
 		{
 		global $wgOut, $wgLang, $wgUser;
-		if ( $wgUser->getID() == 0 ) return ; # Anon
+		
+		if ( $wgUser->getID() == 0 ) # Anon
+			{
+			$wgOut->addHTML ( wfMsg ( 'val_no_anon_validation' ) . $this->getPageStatistics ( $article_title ) ) ;
+			return ;
+			}
+			
 		$validationtypes = $wgLang->getValidationTypes() ;
 		if ( $article_title == "" )
 			{
@@ -73,7 +79,7 @@ class Validation
 		if ( isset ( $_GET['timestamp'] ) ) $article_time = $_GET['timestamp'] ;
 		else $article_time = "" ;
 		$article = Title::newFromText ( $article_title ) ;
-			
+		
 		# Now we get all the "votes" for the different versions of this article for this user
 		$val = $this->get_prev_data ( $wgUser->getID() , $article_title ) ;
 		
@@ -225,11 +231,6 @@ class Validation
 		$html .= "<h2>" . wfMsg ( 'preview' ) . "</h2>" ;
 		$wgOut->addHTML ( $html ) ;
 		$wgOut->addWikiText ( $wgArticle->getContent( true ) ) ;
-		return "" ;
-		
-#		$html .= $wgArticle->getContent( true ) ;
-#		$html .= $wgArticle->view () ;
-#		return $html ;
 		}
 		
 	function getData ( $user = -1 , $title = "" , $type = -1 )
@@ -252,7 +253,7 @@ class Validation
 		{
 		global $wgLang, $wgUser ;
 		$validationtypes = $wgLang->getValidationTypes() ;
-		$article_title = $_GET['article_title'] ;
+		if ( $article_title == "" ) $article_title = $_GET['article_title'] ;
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
 		if ( count ( $d ) ) $d = array_shift ( $d ) ;
 		else $d = array () ;

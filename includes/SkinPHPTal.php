@@ -435,7 +435,7 @@
 					}
 				}
 
-				if ( $wgUseValidation && $wgUser->getID() != 0 && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
+				if ( $wgUseValidation && /*$wgUser->getID() != 0 && */ $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
 					global $wgArticle ;
 					$article_time = "&timestamp=" . $wgArticle->mTimestamp ;
 					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,
