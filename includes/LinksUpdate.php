@@ -14,12 +14,148 @@ class LinksUpdate {
 
 	function doUpdate()
 	{
-		/* Update link tables with outgoing links from an updated article */
-		/* Currently this is 'dumb', removing all links and putting them back. */
+		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
 		
+		wfDebug("Hello\n");
+
+		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
-		global $wgLinkCache, $wgDBtransactions;
+
+		if ( !$wgUseBetterLinksUpdate ) {
+			$this->doDumbUpdate();
+			return;
+		}
+
 		$fname = "LinksUpdate::doUpdate";
+		wfProfileIn( $fname );
+
+		$del = array();
+		$add = array();
+
+		if( $wgDBtransactions ) {
+			$sql = "BEGIN";
+			wfQuery( $sql, $fname );
+		}
+		
+		#------------------------------------------------------------------------------
+		# Good links
+
+		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
+			# Delete where necessary
+			$baseSql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
+			foreach ($del as $title => $id ) {
+				wfDebug( "Incremental deletion  from {$this->mTitleEnc} to $title\n" );
+				$sql = $baseSql . " AND l_to={$id}";
+				wfQuery( $sql, $fname );
+			}
+		} else {
+			# Delete everything
+			wfDebug( "Complete deletion from {$this->mTitleEnc}\n" );
+			$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
+			wfQuery( $sql, $fname );
+			
+			# Get the addition list
+			$add = $wgLinkCache->getGoodLinks();
+		}
+
+		# Do the insertion
+		$sql = "";
+		if ( 0 != count( $add ) ) {
+			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
+			$first = true;
+			foreach( $add as $lt => $lid ) {
+				wfDebug( "Inserting from {$this->mTitleEnc} to $lt\n" );
+				
+				if ( ! $first ) { $sql .= ","; }
+				$first = false;
+
+				$sql .= "('{$this->mTitleEnc}',{$lid})";
+			}
+		}
+		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+
+		#------------------------------------------------------------------------------
+		# Bad links
+
+		if ( $wgLinkCache->incrementalSetup( LINKCACHE_BAD, $del, $add ) ) {
+			# Delete where necessary
+			$baseSql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
+			foreach ( $del as $title ) {
+				$sql = $baseSql . " AND bl_to={$title}";
+				wfQuery( $sql, $fname );
+			}
+		} else {
+			# Delete all
+			$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
+			wfQuery( $sql, $fname );
+			
+			# Get addition list
+			$add = $wgLinkCache->getBadLinks();
+		}
+
+		# Do additions
+		$sql = "";
+		if ( 0 != count ( $add ) ) {
+			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
+			$first = true;
+			foreach( $add as $blt ) {
+				$blt = wfStrencode( $blt );
+				if ( ! $first ) { $sql .= ","; }
+				$first = false;
+
+				$sql .= "({$this->mId},'{$blt}')";
+			}
+		}
+		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+
+		#------------------------------------------------------------------------------
+		# Image links
+		if ( $wgLinkCache->incrementalSetup( LINKCACHE_IMAGE, $del, $add ) ) {
+			# Delete where necessary
+			$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
+			foreach ($del as $title ) {
+				$sql = $baseSql . " AND il_to={$title}";
+				wfQuery( $sql, $fname );
+			}
+		} else {
+			# Delete all
+			$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
+			wfQuery( $sql, $fname );
+			
+			# Get addition list
+			$add = $wgLinkCache->getImageLinks();
+		}
+		
+		# Do the insertion
+		$sql = "";
+		if ( 0 != count ( $add ) ) {
+			$sql = "INSERT INTO imagelinks (il_from,il_to) VALUES ";
+			$first = true;
+			foreach( $add as $iname => $val ) {
+				$iname = wfStrencode( $iname );
+				if ( ! $first ) { $sql .= ","; }
+				$first = false;
+
+				$sql .= "('{$this->mTitleEnc}','{$iname}')";
+			}
+		}
+		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+
+		$this->fixBrokenLinks();
+
+		if( $wgDBtransactions ) {
+			$sql = "COMMIT";
+			wfQuery( $sql, $fname );
+		}
+		wfProfileOut();
+	}
+
+	function doDumbUpdate()
+	{
+		# Old update function. This can probably be removed eventually, if the new one
+		# proves to be stable
+		global $wgLinkCache, $wgDBtransactions;
+		$fname = "LinksUpdate::doDumbUpdate";
 		wfProfileIn( $fname );
 
 		if( $wgDBtransactions ) {
@@ -61,8 +197,8 @@ class LinksUpdate {
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
-
-		$sql = "DELETE FROM imagelinks WHERE il_from='{$t}'";
+		
+		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
 		wfQuery( $sql, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
@@ -75,7 +211,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$t}','{$iname}')";
+				$sql .= "('{$this->mTitleEnc}','{$iname}')";
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, $fname ); }

@@ -1,17 +1,26 @@
 <?
 # Cache for article titles and ids linked from one source
 
+# These are used in incrementalSetup()
+define ('LINKCACHE_GOOD', 0);
+define ('LINKCACHE_BAD', 1);
+define ('LINKCACHE_IMAGE', 2);
+
 class LinkCache {
 
 	/* private */ var $mGoodLinks, $mBadLinks, $mActive;
-	/* private */ var $mImageLinks;
-
+	/* private */ var $mImageLinks; 
+	/* private */ var $mPreFilled, $mOldGoodLinks, $mOldBadLinks;
+	
 	function LinkCache()
 	{
 		$this->mActive = true;
+		$this->mPreFilled = false;
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
+		$this->mOldGoodLinks = array();
+		$this->mOldBadLinks = array();
 	}
 
 	function getGoodLinkID( $title )
@@ -104,18 +113,102 @@ class LinkCache {
 				Title::makeName( $s->cur_namespace, $s->cur_title )
 				);
 		}
-
+		
+		$this->suspend();
+		$id = $fromtitle->getArticleID();
+		$this->resume();
+		
 		$sql = "SELECT HIGH_PRIORITY bl_to
 			FROM brokenlinks
-			WHERE bl_from='{$dbkeyfrom}'";
+			WHERE bl_from='{$id}'";
 		$res = wfQuery( $sql, "LinkCache::preFill" );
 		while( $s = wfFetchObject( $res ) ) {
 			$this->addBadLink( $s->bl_to );
 		}
-
+		
+		wfDebug("preFill dbkeyfrom=$dbkeyfrom\n");
+		$this->mOldBadLinks = $this->mBadLinks;
+		$this->mOldGoodLinks = $this->mGoodLinks;
+		$this->mPreFilled = true;
+		
 		wfProfileOut();
 	}
 
-}
+	function getGoodAdditions() 
+	{
+		return array_diff( $this->mGoodLinks, $this->mOldGoodLinks );
+	}
 
+	function getBadAdditions() 
+	{
+		return array_values( array_diff( $this->mBadLinks, $this->mOldBadLinks ) );
+	}
+
+	function getImageAdditions()
+	{
+		return array_diff_assoc( $this->mImageLinks, $this->mOldImageLinks );
+	}
+
+	function getGoodDeletions() 
+	{
+		return array_diff( $this->mOldGoodLinks, $this->mGoodLinks );
+	}
+
+	function getBadDeletions()
+	{
+		return array_values( array_diff( $this->mOldBadLinks, $this->mBadLinks ) );
+	}
+
+	function getImageDeletions()
+	{
+		return array_diff_assoc( $this->mOldImageLinks, $this->mImageLinks );
+	}
+
+	#     Parameters: $which is one of the LINKCACHE_xxx constants, $del and $add are 
+	# the incremental update arrays which will be filled. Returns whether or not it's
+	# worth doing the incremental version. For example, if [[List of mathematical topics]]
+	# was blanked, it would take a long, long time to do incrementally.
+	function incrementalSetup( $which, &$del, &$add )
+	{
+		if ( ! $this->mPreFilled ) {
+			return false;
+		}
+
+		switch ( $which ) {
+			case LINKCACHE_GOOD:
+				$old =& $this->mOldGoodLinks;
+				$cur =& $this->mGoodLinks;
+				$del = $this->getGoodDeletions();
+				$add = $this->getGoodAdditions();
+				break;
+			case LINKCACHE_BAD:
+				$old =& $this->mOldBadLinks;
+				$cur =& $this->mBadLinks;
+				$del = $this->getBadDeletions();
+				$add = $this->getBadAdditions();
+				break;
+			default: # LINKCACHE_IMAGE
+				return false;		
+		}
+		wfDebug( "which = $which\n" );
+		wfDebug( '$old = ' . implode(", ", $old) . "\n" );
+		wfDebug( '$cur = ' . implode(", ", $cur) . "\n" );
+		wfDebug( '$del = ' . implode(", ", $del) . "\n" );
+		wfDebug( '$add = ' . implode(", ", $add) . "\n" );
+
+		# Coefficients here (1,1,3,1) could probably be put in a global object
+		$timeDumb = count( $old ) + count( $cur );
+		$timeIncr = count( $del ) * 3 + count( $new );
+		
+		return $timeIncr < $timeDumb;
+	}
+
+	# Clears cache but leaves old preFill copies alone
+	function clear() 
+	{
+		$this->mGoodLinks = array();
+		$this->mBadLinks = array();
+		$this->mImageLinks = array();
+	}
+}
 ?>

@@ -754,7 +754,13 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		global $wgOut, $wgTitle, $wgUser, $wgLinkCache;
 
 		$wgLinkCache = new LinkCache();
-		$wgOut->addWikiText( $text ); # Just to update links
+
+		# Get old version of link table to allow incremental link updates
+		$wgLinkCache->preFill( $wgTitle );
+		$wgLinkCache->clear();
+
+		# Now update the link cache by parsing the text
+		$wgOut->addWikiText( $text );
 
 		$this->editUpdates( $text );
 		if( preg_match( "/^#redirect/i", $text ) )
