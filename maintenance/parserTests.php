@@ -25,13 +25,15 @@ class ParserTest {
 		$n = 0;
 		while( false !== ($line = fgets( $infile ) ) ) {
 			$n++;
-			if (is_null($section) && preg_match('/^#/', $line)) {
-				# skip comment
-				continue;
-			}
 			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
 				$section = strtolower( $matches[1] );
 				if( $section == 'end' ) {
+					if  (isset ($data['disabled'])) {
+						# disabled test
+						$data = array();
+						$section = null;
+						continue;
+					}
 					if( !isset( $data['test'] ) ) {
 						die( "'end' without 'test' at line $n\n" );
 					}
