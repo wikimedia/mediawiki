@@ -889,6 +889,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 #
 'orphans'		=> 'Orphaned pages',
 'lonelypages'	=> 'Orphaned pages',
+'uncategorizedpages'	=> 'Uncategorized pages',
 'unusedimages'	=> 'Unused images',
 'popularpages'	=> 'Popular pages',
 'nviews'		=> '$1 views',
