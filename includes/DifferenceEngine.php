@@ -14,14 +14,35 @@ class DifferenceEngine {
 	{
 		global $wgTitle;
 		if ( 'prev' == $new ) {
+			# Show diff between revision $old and the previous one.
+			# Get previous one from DB.
+			#
 			$this->mNewid = intval($old);
 			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mOldid = $dbr->selectField( 'old', 'old_id',  
 				"old_title='" . $wgTitle->getDBkey() . "'" .
 				' AND old_namespace=' . $wgTitle->getNamespace() .
-				" AND old_id<{$this->mNewid} order by old_id desc" );
+				" AND old_id<{$this->mNewid} ORDER BY old_id DESC" );
+
+		} elseif ( 'next' == $new ) {
+
+			# Show diff between revision $old and the previous one.
+			# Get previous one from DB.
+			#
+			$this->mOldid = intval($old);
+			$dbr =& wfGetDB( DB_SLAVE );
+			$this->mNewid = $dbr->selectField( 'old', 'old_id',  
+				"old_title='" . $wgTitle->getDBkey() . "'" .
+				' AND old_namespace=' . $wgTitle->getNamespace() .
+				" AND old_id>{$this->mOldid} ORDER BY old_id " );
+			if ( false === $this->mNewid ) {
+				# if no result, NewId points to the newest old revision. The only newer
+				# revision is cur, which is "0".
+				$this->mNewid = 0;
+			}
 
 		} else {
+
 			$this->mOldid = intval($old);
 			$this->mNewid = intval($new);
 		}
@@ -33,6 +54,15 @@ class DifferenceEngine {
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
+
+		# mOldid is false if the difference engine is called with a "vague" query for
+		# a diff between a version V and its previous version V' AND the version V
+		# is the first version of that article. In that case, V' does not exist.
+		if ( $this->mOldid === false ) {
+			$this->showFirstRevision();
+			wfProfileOut( $fname );
+			return;
+		}
 
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
@@ -94,13 +124,83 @@ class DifferenceEngine {
 			$patrol = '';
 		}
 
+		$prevlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'previousdiff' ), 'diff=prev&oldid='.$this->mOldid );
+		if ( $this->mNewid == 0 ) {
+			$nextlink = '';
+		} else {
+			$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid );
+		}
+
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />$oldUserLink " .
-			"($oldUTLink | $oldContribs)<br />" . $this->mOldComment;
+			"($oldUTLink | $oldContribs)<br />" . $this->mOldComment .
+			'<br />' . $prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />$newUserLink " .
-			"($newUTLink | $newContribs) $rollback<br />" . $this->mNewComment . $patrol;
+			"($newUTLink | $newContribs) $rollback<br />" . $this->mNewComment . 
+			'<br />' . $nextlink . $patrol;
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
 		  $oldHeader, $newHeader );
+		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
+		$wgOut->addWikiText( $this->mNewtext );
+
+		wfProfileOut( $fname );
+	}
+
+	# Show the first revision of an article. Uses normal diff headers in contrast to normal
+	# "old revision" display style.
+	#
+	function showFirstRevision()
+	{
+		global $wgOut, $wgTitle, $wgUser, $wgLang;
+
+		$fname = 'DifferenceEngine::showFirstRevision';
+		wfProfileIn( $fname );
+
+
+		$this->mOldid = $this->mNewid; # hack to make loadText() work.
+
+		# Get article text from the DB
+		#
+		if ( ! $this->loadText() ) {
+			$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
+			  "{$this->mNewid})";
+			$mtext = wfMsg( 'missingarticle', $t );
+			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
+			$wgOut->addHTML( $mtext );
+			wfProfileOut( $fname );
+			return;
+		}
+
+		# Check if user is allowed to look at this page. If not, bail out.
+		#
+		if ( !( $this->mOldPage->userCanRead() ) ) {
+			$wgOut->loginToUse();
+			$wgOut->output();
+			wfProfileOut( $fname );
+			exit;
+		}
+
+		# Prepare the header box
+		#
+		$sk = $wgUser->getSkin();
+
+		$uTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mOldUser ),  $wgLang->getNsText( NS_TALK ) );
+		$userLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
+		$contribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ),
+			'target=' . urlencode($this->mOldUser) );
+		$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid );
+		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />$userLink " .
+			"($uTLink | $contribs)<br />" . $this->mOldComment .
+			'<br />' . $nextlink. "</div>\n";
+	
+		$wgOut->addHTML( $header );
+
+		$wgOut->setSubtitle( wfMsg( 'difference' ) );
+		$wgOut->setRobotpolicy( 'noindex,follow' );
+
+
+		# Show current revision
+		#
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
 

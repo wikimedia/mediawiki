@@ -1525,6 +1525,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',
 
+# browsing diffs
+'previousdiff' => '&larr; Go to previous diff',
+'nextdiff' => 'Go to next diff &rarr;',
+
 
 );
 
