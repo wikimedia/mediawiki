@@ -445,6 +445,12 @@ class Parser
 			"/<\\/center *>/i" => '</span>'
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+		// another round, but without regex
+		$fixtags = array(
+			'& ' => '&amp;',
+			'&<' => '&amp;<',
+		);
+		$text = str_replace( array_keys($fixtags), array_values($fixtags), $text );
 
 		$text .= $this->categoryMagic () ;
 		
@@ -1035,16 +1041,16 @@ class Parser
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t );
+				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre|<tr|<td)/i", $t );
 				$closematch = preg_match( 
 					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
-					"<\\/p|<\\/div|<hr|<\\/td|".$uniq_prefix."-pre)/i", $t );
+					"<\\/div|<hr|<\\/td|<\\/pre|<\\/p|".$uniq_prefix."-pre)/i", $t );
 				if ( $openmatch or $closematch ) {
 					$text .= $this->closeParagraph();
-					if ( !$closematch  ) {
-						$inBlockElem = true;
-					} else {
+					if ( $closematch  ) {
 						$inBlockElem = false;
+					} else {
+						$inBlockElem = true;
 					}
 				} else if ( !$inBlockElem ) {
 					if ( " " == $t{0} ) {
@@ -1054,8 +1060,8 @@ class Parser
 						$this->mLastSection = $newSection;
 					} else { 
 						$newSection = "p";
-						if ( '' == $oLine ) {
-							if ( '' == $lastLine ) {
+						if ( '' == trim($t) ) {
+							if ( '' == trim($lastLine) ) {
 								$text .= $this->closeParagraph();
 								$text .= "<" . $newSection . "><br/>";
 								$this->mLastSection = $newSection;
