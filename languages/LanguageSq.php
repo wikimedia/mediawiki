@@ -22,8 +22,7 @@ include_once("LanguageUtf8.php");
 	6	=> "Figura",
 	7	=> "Figura_diskutim",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskutim"
-
+	9	=> "MediaWiki_talk",
 );
 
 /* private */ $wgQuickbarSettingsSq = array(
@@ -112,7 +111,6 @@ include_once("LanguageUtf8.php");
 	"Longpages"		=> "Artikuj të gjatë",
 	"Newpages"		=> "Artikuj të rinj",
 	"Ancientpages"	=> "Artikuj më të vjetër",
-#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Të gjitha faqet sipas emrave",
 
 	"Ipblocklist"	=> "Përdoruesit dhe IP-të e bllokuara",
@@ -124,8 +122,7 @@ include_once("LanguageUtf8.php");
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Burime të jashtme librash",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesSq = array(

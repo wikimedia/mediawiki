@@ -7,7 +7,6 @@ include_once( "LanguageUtf8.php" );
 // encapsulates some of the magic-ness.
 
 /* private */ $wgNamespaceNamesOc = array(
-	-2 => "Media",
 	-1 => "Especial",
 	0 => "",
 	1 => "Discutir",
@@ -18,7 +17,7 @@ include_once( "LanguageUtf8.php" );
 	6 => "Image",
 	7 => "Discutida_Image",
 	8	=> "MediaWiki",
-	9	=> "Discutida_MediaWiki"
+	9	=> "MediaWiki_talk",
 );
 
 /* using default options */
@@ -264,7 +263,6 @@ include_once( "LanguageUtf8.php" );
 	"Longpages"     => "Articles longs",
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
-#	"Intl"                => "Interlanguage Links",
 	"Allpages"      => "Toutes les pages",
 
 	"Ipblocklist"   => "Adresses IP bloquées",
@@ -277,7 +275,7 @@ include_once( "LanguageUtf8.php" );
 	"Movepage"      => "",
 	"Booksources"   => "Librairies en ligne",
 //	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
-	"Export"		=> ""
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesOc = array(

@@ -20,7 +20,7 @@ include_once( "LanguageUtf8.php" );
 	6	=> "Image",
 	7	=> "Image_talk",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk"
+	9	=> "MediaWiki_talk",
 );
 
 /* private */ $wgDefaultUserOptionsZh = array(
@@ -297,6 +297,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Longpages"		=> "长条目",
 	"Newpages"		=> "新建条目",
 #	"Intl"		=> "跨语言链接", # this page not done yet!
+	"Ancientpages"		=> "Oldest pages",
 	"Allpages"		=> "所有条目",
 
 	"Ipblocklist"	=> "被封IP地址",
@@ -308,9 +309,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "站外书源",
-#	"Categories" => "页面分类"
-	"Export"		=> ""
-
+#           "Categories" => "页面分类"
+	"Export" => "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesZh = array(

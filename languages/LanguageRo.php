@@ -21,7 +21,7 @@ include_once("LanguageUtf8.php");
 	6	=> "Imagine",
 	7	=> "Discuţie_Imagine",
 	8	=> "MediaWiki",
-	9	=> "Discuţie_MediaWiki"
+	9	=> "MediaWiki_talk",
 );
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -127,8 +127,8 @@ include_once("LanguageUtf8.php");
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "Mută pagina",
 	"Booksources"	=> "Surse externe de cărţi",
-#	"Categories"	=> "Categorii de pagini"
-	"Export"		=> ""
+	"Categories"	=> "Categorii de pagini",
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(

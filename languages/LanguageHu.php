@@ -21,8 +21,7 @@ include_once("LanguageUtf8.php");
 	6	=> "Kép",
 	7	=> "Kép_vita",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_vita"
-
+	9	=> "MediaWiki_vita",
 );
 
 /* Inherit default options; make specific changes via 
@@ -33,7 +32,7 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSkinNamesHu = array(
-	"Alap", "Nosztalgia", "Kölni kék"
+	"Alap", "Nosztalgia", "Kölni kék", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesHu = array(
@@ -52,7 +51,7 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgUserTogglesHu = array(
-	"hover"		=> "Mutassa a címdobozt a linkek fölött",
+	"hover"	=> "Mutassa a címdobozt a linkek fölött",
 	"underline" => "Linkek aláhúzása",
 	"highlightbroken" => "Törött linkek <a href=\"\" class=\"new\">így</a> (alternatíva: így<a href=\"\" class=\"internal\">?</a>).",
 	"justify"	=> "Bekezdések teljes szélességű tördelése",
@@ -60,6 +59,7 @@ include_once("LanguageUtf8.php");
 	"usenewrc" => "Modern változások listája (nem minden böngészőre)",
 	"numberheadings" => "Címsorok automatikus számozása",
 	"editsection"=>"Linkek az egyes szakaszok szerkesztéséhez",
+	"editsectiononrightclick"=>"Egyes szakaszok szerkesztése a szakaszcímre klikkeléssel (Javascript)",
 	"showtoc"=>"Három fejezetnél többel rendelkező cikkeknél mutasson tartalomjegyzéket",
 	"rememberpassword" => "Jelszó megjegyzése a használatok között",
 	"editwidth" => "Teljes szélességű szerkesztőterület",
@@ -95,57 +95,61 @@ include_once("LanguageUtf8.php");
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesHu = array(
-	"Userlogin"		=> "",
+	"Userlogin"	=> "",
 	"Userlogout"	=> "",
 	"Preferences"	=> "Beállításaim",
-	"Watchlist"		=> "Figyelőlistám",
+	"Watchlist"	=> "Figyelőlistám",
 	"Recentchanges" => "Frissen változtatott oldalak",
-	"Upload"		=> "Képek feltöltése",
-	"Imagelist"		=> "Képek listája",
-	"Listusers"		=> "Regisztrált felhasználók",
+	"Upload"	=> "Képek feltöltése",
+	"Imagelist"	=> "Képek listája",
+	"Listusers"	=> "Regisztrált felhasználók",
 	"Statistics"	=> "Weblap statisztika",
 	"Randompage"	=> "Egy lap találomra",
-
+	
 	"Lonelypages"	=> "Árva szócikkek",
 	"Unusedimages"	=> "Árva képek",
 	"Popularpages"	=> "Népszerű szócikkek",
 	"Wantedpages"	=> "Hiányszócikkek",
 	"Shortpages"	=> "Rövid szócikkek",
-	"Longpages"		=> "Hosszú szócikkek",
-	"Newpages"		=> "Újonnan készült szócikkek",
+	"Longpages"	=> "Hosszú szócikkek",
+	"Newpages"	=> "Újonnan készült szócikkek",
 	"Ancientpages"	=> "Ősi szócikkek",
-#	"Intl"		=> "Nyelvek közötti linkek",
-	"Allpages"		=> "Az összes lap cím szerint",
-
+#	"Intl"	=> "Nyelvek közötti linkek",
+	"Allpages"	=> "Az összes lap cím szerint",
+	
 	"Ipblocklist"	=> "Blokkolt IP címek",
 	"Maintenance" => "Karbantartási lap",
 	"Specialpages"  => "Speciális lapok",
 	"Contributions" => "Hozzájárulások",
-	"Emailuser"		=> "Email írása",
+	"Emailuser"	=> "Email írása",
 	"Whatlinkshere" => "Mi mutat ide",
 	"Recentchangeslinked" => "Kapcsolódó változások",
-	"Movepage"		=> "Lap mozgatása",
+	"Movepage"	=> "Lap mozgatása",
 	"Booksources"	=> "Külső könyvinformációk",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+#	"Categories" => "Lapkategóriák",
+	"Export" => "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesHu = array(
-	"Blockip"		=> "Block an IP address",
-	"Asksql"		=> "Query the database",
-	"Undelete"		=> "Restore deleted pages"
+	"Blockip"	=> "Block an IP address",
+	"Asksql"	=> "Query the database",
+	"Undelete"	=> "Restore deleted pages"
 );
 
 /* private */ $wgDeveloperSpecialPagesHu = array(
-	"Lockdb"		=> "Make database read-only",
-	"Unlockdb"		=> "Restore DB write access",
-	"Debug"			=> "Debugging information"
+	"Lockdb"	=> "Make database read-only",
+	"Unlockdb"	=> "Restore DB write access",
+	"Debug"	=> "Debugging information"
 );
 
 /* private */ $wgAllMessagesHu = array(
 
 # Bits of text used by many pages:
 #
+"categories" 	=> "Lapkategóriák",
+"category" 		=> "kategória",
+"category_header" => "Cikkek a(z) \"$1\" kategóriában",
+"subcategories" => "Alkategóriák",
 "linktrail"		=> "/^((?:[a-z]|á|é|í|ú|ó|ö|ü|ő|ű|Á|É|Í|Ó|Ú|Ö|Ü|Ő|Ű)+)(.*)\$/sD",
 "mainpage"		=> "Kezdőlap",
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
@@ -177,26 +181,27 @@ include_once("LanguageUtf8.php");
 "whatlinkshere"	=> "Lapok, melyek ide mutatnak",
 "help"			=> "Segítség",
 "search"		=> "Keresés",
-"go"		=> "Menj!",
+"go"			=> "Menj!",
 "history"		=> "Laptörténet",
 "printableversion" => "Nyomtatható változat",
 "editthispage"	=> "Szerkeszd ezt a lapot",
 "deletethispage" => "Lap törlése",
 "protectthispage" => "Védelem a lapnak",
 "unprotectthispage" => "Védelem megszüntetése",
-"newpage" => "Új lap",
+"newpage" 		=> "Új lap",
 "talkpage"		=> "Lap megbeszélése",
+"postcomment"	=> "Üzenethagyás",
 "articlepage"	=> "Szócikk megtekintése",
 "subjectpage"	=> "Témalap megtekintése", # For compatibility
-"userpage" => "Felhasználói lap",
+"userpage" 		=> "Felhasználói lap",
 "wikipediapage" => "Metalap",
-"imagepage" => 	"Képlap",
-"viewtalkpage" => "Beszélgetés megtekintése",
+"imagepage" 	=> "Képlap",
+"viewtalkpage"	=> "Beszélgetés megtekintése",
 "otherlanguages" => "Egyéb nyelvek",
 "redirectedfrom" => "(Átirányítva $1 cikkből)",
 "lastmodified"	=> "A lap utolsó módosítása $1.",
 "viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
-"gnunote" => "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
+"gnunote" 		=> "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
 "printsubtitle" => "(From http://www.wikipedia.org/)",
 "protectedpage" => "Védett lap",
 "administrators" => "Wikipédia:Adminisztrátorok",
@@ -213,10 +218,14 @@ See $1.",
 "sitetitle"		=> "Wikipédia",
 "sitesubtitle"	=> "A szabad enciklopédia",
 "retrievedfrom" => "Retrieved from \"$1\"",
-"newmessages" => "$1 van.",
+"newmessages" 	=> "$1 van.",
 "newmessageslink" => "Új üzeneted",
-"editsection"=>"szerkesztés",
-"toc" => "Tartalomjegyzék",
+"editsection"	=> "szerkesztés",
+"toc" 			=> "Tartalomjegyzék",
+"showtoc" 		=> "mutat",
+"hidetoc" 		=> "elrejt",
+"thisisdeleted" => "$1 megnézése vagy helyreállítása?",
+"restorelink" 	=> "$1 törölt szerkesztés",
 
 # Main script and global functions
 #
@@ -229,7 +238,7 @@ software nem ismer fel.",
 
 # General errors
 #
-"error"			=> "Hiba",
+"error"	=> "Hiba",
 "databaseerror" => "Adatbázis hiba",
 "dberrortext"	=> "Adatbázis formai hiba történt.
 Ennek lehet oka egy illegális keresési parancs (lásd $5),
@@ -245,6 +254,7 @@ a \"$2\" függvényből történt.
 A MySQL hiba \"$3: $4\".\n",
 "noconnect"		=> "Nem tudok a $1 adatbázis gépre csatlakozni",
 "nodb"			=> "Nem tudom elérni a $1 adatbázist",
+"cachederror"	=> "Ez a kért cikk egy régebben elmentett példánya, lehetséges, hogy nem tartalmazza a legújabb módosításokat.",
 "readonly"		=> "Adatbázis lezárva",
 "enterlockreason" => "Add meg a lezárás indoklását valamint egy becslést,
 hogy mikor kerül a lezárás feloldásra",
@@ -268,13 +278,13 @@ találtál a software-ben. Kérlek értesíts erről egy adminisztrátort,
 "filedeleteerror" => "Nem tudom a \"$1\" file-t letörölni.",
 "filenotfound"	=> "Nem találom a \"$1\" file-t.",
 "unexpected"	=> "Váratlan érték: \"$1\"=\"$2\".",
-"formerror"		=> "Hiba: nem tudom a formot elküldeni",	
+"formerror"		=> "Hiba: nem tudom a formot elküldeni",
 "badarticleerror" => "Ez a tevékenység nem végezhető ezen a lapon.",
 "cannotdelete"	=> "Nem tudom a megadott lapot vagy képet törölni. (Talán már valaki más törölte.)",
 "badtitle"		=> "Hibás cím",
 "badtitletext"	=> "A kért cím helytelen, üres vagy hibásan hivatkozik
 egy nyelvek közötti vagy wikik közötti címre.",
-"perfdisabled" => "Bocsánat! Ez a lehetőség időszakosan nem elérhető
+"perfdisabled" 	=> "Bocsánat! Ez a lehetőség időszakosan nem elérhető
 mert annyira lelassítja az adatbázist, hogy senki nem tudja a 
 wikit használni.",
 "perfdisabledsub" => "Íme $1 egy elmentett másolata:",
@@ -310,6 +320,7 @@ Az email cím megadása nem kötelező; ha elveszíted a jelszavad, akkor
 "userlogout"	=> "Kilépés",
 "notloggedin"	=> "Nincs belépve",
 "createaccount"	=> "Új felhasználó készítése",
+"createaccountmail"	=> "eMail alapján", /* FIXME??? */
 "badretype"		=> "A két jelszó eltér egymástól.",
 "userexists"	=> "A név amit megadtál már létezik. Kérlek, adj meg más nevet.",
 "youremail"		=> "Az emailed*",
@@ -331,13 +342,14 @@ Ellenőrizd a gépelést, vagy készíts új nevet a fent látható űrlappal.",
 azt kérte, hogy küldjük el a jelszavadat.
 A jelszavad a \"$2\" felhasználóhoz most \"$3\".
 Lépj be, és változtasd meg a jelszavad.",
-"noemail"		=> "Nincs a \"$1\" felhasználóhoz email felvéve.",
+"noemail"	=> "Nincs a \"$1\" felhasználóhoz email felvéve.",
 "passwordsent"	=> "Az új jelszót elküldtük \"$1\" email címére.
 Lépj be a levélben található adatokkal.",
 
 # Edit pages
 #
 "summary"		=> "Összefoglaló",
+"subject"		=> "Téma/főcím",
 "minoredit"		=> "Ez egy apró változtatás",
 "watchthis"		=> "Figyeld a szócikket",
 "savearticle"	=> "Lap mentése",
@@ -348,6 +360,14 @@ Lépj be a levélben található adatokkal.",
 Az indoklás:<br>''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
 [[Wikipédia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+"whitelistedittitle" => "A szerkesztéshez be kell lépned",
+"whitelistedittext" => "A szócikkek szerkesztéséhez [[Special:Userlogin|be kell lépned]].",
+"whitelistreadtitle" => "Az olvasáshoz be kell lépned",
+"whitelistreadtext" => "[[Special:Userlogin|Be kell lépned]] ahhoz, hogy cikkeket tudj olvasni.",
+"whitelistacctitle" => "Nem készíthetsz új bejelentkezési kódot",
+"whitelistacctext" => "Ahhoz, hogy ezen a Wikin új nevet regisztrálj [[Special:Userlogin|be kell lépned]] a szükséges engedélyszinttel.",
+"accmailtitle"	=> "Jelszó elküldve.",
+"accmailtext"	=> "'$1' jelszavát elküldtük $2 címre.",
 "newarticle"	=> "(Új)",
 "newarticletext" =>
 "Egy olyan lapra jutottál ami még nem létezik.
@@ -366,6 +386,7 @@ gombját.",
 szövegnek megfelelő képet mutatja, ahogy az elmentés után kinézne.",
 "editing"		=> "$1 szerkesztés alatt",
 "sectionedit"	=> " (szakasz)",
+"commentedit"	=> " (üzenet)",
 "editconflict"	=> "Szerkesztési ütközés: $1",
 "explainconflict" => "Valaki megváltoztatta a lapot azóta,
 mióta szerkeszteni kezdted.
@@ -443,7 +464,7 @@ Lehet az is hogy elgépelted a kifejezést, például \"hal and and mérleg\".
 Kérlek próbálj másik kifejezést keresni.",
 "matchtotals"	=> "A \"$1\" keresés $2 címszót talált és
 $3 szócikk szövegét.",
-"nogomatch" => "Nincs pontosan ezzel megegyező címszó,
+"nogomatch"		=> "Nincs pontosan ezzel megegyező címszó,
 próbálom a keresést a cikkek szövegében.",
 "titlematches"	=> "Címszó egyezik",
 "notitlematches" => "Nincs egyező címszó",
@@ -451,7 +472,7 @@ próbálom a keresést a cikkek szövegében.",
 "notextmatches"	=> "Nincs szócikk szöveg egyezés",
 "prevn"			=> "előző $1",
 "nextn"			=> "következő $1",
-"viewprevnext"	=> "Nézz ($1) ($2) ($3).",
+"viewprevnext"	=> "Nézd ($1) ($2) ($3).",
 "showingresults" => "Lent látható <b>$1</b> találat, az eleje #<b>$2</b>.",
 "showingresultsnum" => "Lent látható <b>$3</b> találat, az eleje #<b>$2</b>.",
 "nonefound"		=> "<strong>Megyjegyzés</strong>: a sikertelen keresések
@@ -464,12 +485,32 @@ végeredményben).",
 Keresés a névterekben:<br>
 $1<br>
 $2 Átirányítások listája &nbsp; Keresés:$3 $9",
+"searchdisabled" => "<p>Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.</p>
 
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->",
+"blanknamespace" => "(Alap)",
 
 # Preferences page
 #
-"preferences"	=> "Beálltások",
-"prefsnologin" => "Nem vagy belépve",
+"preferences"	=> "Beállítások",
+"prefsnologin"	=> "Nem vagy belépve",
 "prefsnologintext"	=> "Ahhoz hogy a 
 beállításaidat rögzíthesd <a href=\"" .
   wfLocalUrl( "Speciális:Belépés" ) . "\">be kell lépned</a>.",
@@ -482,7 +523,7 @@ A belső azonosítód $2.",
 "skin"			=> "Skin",
 "math"			=> "Képletek megjelenítése",
 "dateformat"	=> "Dátum formátuma",
-"math_failure"		=> "Értelmezés sikertelen",
+"math_failure"	=> "Értelmezés sikertelen",
 "math_unknown_error"	=> "ismertlen hiba",
 "math_unknown_function"	=> "ismeretlen függvény ",
 "math_lexing_error"	=> "lexing error",
@@ -505,7 +546,7 @@ A belső azonosítód $2.",
 "savedprefs"	=> "A beállításaidat letároltam.",
 "timezonetext"	=> "Add meg az órák számát, amennyivel a helyi
 idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
-"localtime"	=> "Helyi idő",
+"localtime"		=> "Helyi idő",
 "timezoneoffset" => "Eltérés",
 "servertime"	=> "A server ideje most",
 "guesstimezone" => "Töltse ki a böngésző",
@@ -515,7 +556,7 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 # Recent changes  'legutóbbi változtatások', 'friss v.'
 #
 
-"changes" => "változtatás",
+"changes" 		=> "változtatás",
 "recentchanges" => "Friss változtatások",
 "recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
 változtatásokat. [[Wikipédia:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
@@ -601,6 +642,8 @@ Minden időpont a server idejében (UTC) van megadva.
 ",
 "filename"		=> "Filenév",
 "filedesc"		=> "Összefoglaló",
+"filestatus" 	=> "Szerzői jogi állapot",
+"filesource" 	=> "Forrás",
 "affirmation"	=> "Igazolom hogy ezen file szerzői jogainak tulajdonosa
 elfogadja azt, hogy az anyag a $1 licenc alapján publikálásra kerül.",
 "copyrightpage" => "Wikipédia:Copyright",
@@ -668,21 +711,21 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 
 # Maintenance Page
 #
-"maintenance"		=> "Karbantartás",
-"maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
-"maintenancebacklink"	=> "Back to Maintenance Page",
-"disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipédia:Links_to_disambiguating_pages",
+"maintenance"	=> "Karbantartás",
+"maintnancepagetext" => "Ezen a lapon a mindennapi karbantartáshoz hasznos dologkat lelsz. Mivel ezek az adatbázist a szokásosnál jobban terhelik kérlek ne nyomj minden kijavított cikk után reloadot ;-)",
+"maintenancebacklink" => "Vissza a karbantartás lapra",
+"disambiguations" => "Egyértelműsítő lapok",
+"disambiguationspage" => "Wikipédia:Egyértelműsítő lapok",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
 "brokenredirectstext"	=> "The following redirects link to a non-existing article.",
-"selflinks"		=> "Pages with Self Links",
-"selflinkstext"		=> "The following pages contain a link to themselves, which they should not.",
+"selflinks"	=> "Pages with Self Links",
+"selflinkstext"	=> "The following pages contain a link to themselves, which they should not.",
 "mispeelings"           => "Pages with misspellings",
-"mispeelingstext"               => "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage"       => "List of common misspellings",
+"mispeelingstext"	=> "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
+"mispeelingspage"	=> "Wikipédia:Gyakori elírások listája",
 "missinglanguagelinks"  => "Missing Language Links",
 "missinglanguagelinksbutton"    => "Find missing language links for",
 "missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
@@ -713,8 +756,8 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "rclsub"		=> "(a \"$1\" lapról hivatkozott lapok)",
 "debug"			=> "Debug",
 "newpages"		=> "Új lapok",
-"ancientpages"		=> "Ősi szócikkek",
-"intl"		=> "Nyelvek közötti linkek",
+"ancientpages"	=> "Ősi szócikkek",
+"intl"			=> "Nyelvek közötti linkek",
 "movethispage"	=> "Mozgasd ezt a lapot",
 "unusedimagestext" => "<p>Vedd figyelembe azt hogy más
 lapok - mint például a nemzetközi Wikipédiák - közvetlenül
@@ -777,14 +820,31 @@ oldalmenü \"Figyelés vége\" pontjával teheted meg.",
 "watchthispage"	=> "Lap figyelése",
 "unwatchthispage" => "Figyelés vége",
 "notanarticle"	=> "Nem szócikk",
+"watchdetails" => "($1 lap figyelése a vitalapokon kívül, 
+$2 lap változott az adott határokon belül, 
+$3...
+<a href='$4'>teljes lista áttekintés és szerkesztés</a>.)",
+"watchmethod-recent" => "a figyelt lapokon belüli legfrissebb szerkesztések",
+"watchmethod-list" => "a legfrissebb szerkesztésekben található figyelt lapok",
+"removechecked" => "A kijelölt lapok eltávolítása a figyelésből",
+"watchlistcontains" => "A figyelőlistád $1 lapot tartalmaz.",
+"watcheditlist" => "Íme a figyelőlistádban található lapok
+betűrendes listája. Jelöld ki azokat a lapokat, amiket el
+szeretnél távolítani, és válaszd a 'Kijelöltek eltávolítása'
+gombot a lap alján.",
+"removingchecked" => "A kért lapok eltávolítása a figyelőlistáról...",
+"couldntremove" => "'$1' nem távolítható el...",
+"iteminvalidname" => "Probléma a '$1' elemmel: érvénytelen név...",
+"wlnote" => "Lentebb az utolsó <b>$2</b> óra $1 változtatása látható.",
+"wlshowlast" => "Módosítások az utolsó $1 órában $2 napon $3",
 
 # Delete/protect/revert
 #
 "deletepage"	=> "Delete page",
 "confirm"		=> "Confirm",
-"excontent" => "content was:",
+"excontent" 	=> "content was:",
 "exbeforeblank" => "content before blanking was:",
-"exblank" => "page was empty",
+"exblank"		=> "page was empty",
 "confirmdelete" => "Confirm delete",
 "deletesub"		=> "(Deleting \"$1\")",
 "historywarning" => "Warning: The page you are about to delete has a history: ",
@@ -845,7 +905,7 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 "nocontribs"	=> "Nem találtam a feltételnek megfelelő módosítást.",
 "ucnote"		=> "Lentebb <b>$1</b> módosításai láthatóak az elmúlt <b>$2</b> napban.",
 "uclinks"		=> "View the last $1 changes; view the last $2 days.",
-"uctop"		=> " (top)" ,
+"uctop"			=> " (top)",
 
 # What links here
 #
@@ -858,7 +918,8 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 "isredirect"	=> "átirányítás",
 
 # Block/unblock IP
-#
+# 
+#FIXME:
 "blockip"		=> "Block IP address",
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
@@ -884,6 +945,13 @@ to a previously blocked IP address.",
 "blocklink"		=> "block",
 "unblocklink"	=> "unblock",
 "contribslink"	=> "contribs",
+"autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+"blocklogpage"	=> "Block_log",
+"blocklogentry"	=> 'blocked "$1"',
+"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
+blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
+the list of currently operational bans and blocks.",
+"unblocklogentry"	=> 'unblocked "$1"',
 
 # Developer tools
 #
@@ -972,26 +1040,36 @@ lap az új helyen. Kérlek gondoskodj a két lap összefűzéséről.",
 "talkpagemoved" => "A laphoz tartozó vita lap is átmozgatásra került.",
 "talkpagenotmoved" => "A laphoz tartozó vita lap <strong>nem került</strong> átmozgatásra.",
 
+"export"		=> "Lapok exportálása",
+"exporttext"	=> "Egy adott lap vagy lapcsoport szövegét és változtatásait
+tudod egyfajta XML-be exportálni; ezt használhatod egy másik MediaWiki alapú
+rendszerbe való importálásra, átalakításra vagy a saját szórakoztatásodra.",
+"exportcuronly"	=> "Csak a legfrissebb állapot, teljes laptörténet nélkül",
+
+# Namespace 8 related
+
+"allmessages"	=> "All_messages",
+"allmessagestext"	=> "Ez a MediaWiki: névtérben elérhető összes üzenet listája"
 );
 
 class LanguageHu extends LanguageUtf8 {
-
+	
 	/* inherit getDefaultUserOptions() */
 	/* inherit stub getBookstoreList() */
-
+	
 	function getNamespaces() {
 		global $wgNamespaceNamesHu;
 		return $wgNamespaceNamesHu;
 	}
-
+	
 	function getNsText( $index ) {
 		global $wgNamespaceNamesHu;
 		return $wgNamespaceNamesHu[$index];
 	}
-
+	
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesHu;
-
+		
 		foreach ( $wgNamespaceNamesHu as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
@@ -1001,17 +1079,17 @@ class LanguageHu extends LanguageUtf8 {
 		if( 0 == strcasecmp( "Wikipedia_talk", $text ) ) { return 5; }
 		return false;
 	}
-
+	
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsHu;
 		return $wgQuickbarSettingsHu;
 	}
-
+	
 	function getSkinNames() {
 		global $wgSkinNamesHu;
 		return $wgSkinNamesHu;
 	}
-
+	
 	function getMathNames() {
 		global $wgMathNamesHu;
 		return $wgMathNamesHu;
@@ -1021,14 +1099,14 @@ class LanguageHu extends LanguageUtf8 {
 		global $wgDateFormatsHu;
 		return $wgDateFormatsHu;
 	}
-
+	
 	function getUserToggles() {
 		global $wgUserTogglesHu;
 		return $wgUserTogglesHu;
 	}
-
+	
 	/* inherit common getLanguageNames() */
-
+	
 	function getMonthName( $key )
 	{
 		global $wgMonthNamesHu;
@@ -1040,32 +1118,31 @@ class LanguageHu extends LanguageUtf8 {
 		global $wgMonthAbbreviationsHu;
 		return $wgMonthAbbreviationsHu[$key-1];
 	}
-
+	
 	function getWeekdayName( $key )
 	{
 		global $wgWeekdayNamesHu;
 		return $wgWeekdayNamesHu[$key-1];
 	}
- 
+	 
 	function getValidSpecialPages()
 	{
 		global $wgValidSpecialPagesHu;
 		return $wgValidSpecialPagesHu;
 	}
-
+	
 	function getSysopSpecialPages()
 	{
-
 		global $wgSysopSpecialPagesHu;
 		return $wgSysopSpecialPagesHu;
 	}
-
+	
 	function getDeveloperSpecialPages()
 	{
 		global $wgDeveloperSpecialPagesHu;
 		return $wgDeveloperSpecialPagesHu;
 	}
-
+	
 	function getMessage( $key )
 	{
 		global $wgAllMessagesHu;
@@ -1074,34 +1151,34 @@ class LanguageHu extends LanguageUtf8 {
 		else
 			return Language::getMessage($key);
 	}
-
+	
 	function fallback8bitEncoding() {
 		return "iso8859-2";
 	}
 
-        # localised date and time
-        function date( $ts, $adj = false )
-        {
-          if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-          $d = substr( $ts, 0, 4 ) . " " .
-            $this->getMonthName( substr( $ts, 4, 2 ) ) . " ".
-            (0 + substr( $ts, 6, 2 ));
-          return $d;
-        }
-
-        function time( $ts, $adj = false )
-        {
-          if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-          $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-          return $t;
-        }
-
-        function timeanddate( $ts, $adj = false )
-        {
-          return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
-        }
+	# localised date and time
+	function date( $ts, $adj = false )
+	{
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$d = substr( $ts, 0, 4 ) . " " .
+		$this->getMonthName( substr( $ts, 4, 2 ) ) . " ".
+			(0 + substr( $ts, 6, 2 ));
+		return $d;
+	}
+	
+	function time( $ts, $adj = false )
+	{
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+		return $t;
+	}
+	
+	function timeanddate( $ts, $adj = false )
+	{
+		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
+	}
 }
 
 ?>

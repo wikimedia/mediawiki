@@ -19,8 +19,7 @@
 	6	=> "Billede",
 	7	=> "Billede_diskussion",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion"
-
+	9	=> "MediaWiki_diskussion",
 );
 
 /* private */ $wgDefaultUserOptionsDa = array(
@@ -45,7 +44,7 @@
 	"Vis altid som PNG",
 	"HTML hvis meget simpel ellers PNG",
 	"HTML hvis muligt ellers PNG",
-	"Lad være som TeX (for tekst browsere)",
+	"Lad være som TeX (for tekstbrowsere)",
     "Anbefalet til moderne browsere"
 );
 
@@ -67,7 +66,7 @@
 	"editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
 	"editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
 	"editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",
- 	"showtoc"=>"Vis indholdsfortegnelse<br>(for artikler med mere end 3 afsnit)",
+ 	"showtoc"=>"Vis indholdsfortegnelse<br>(for artikler med mere end tre afsnit)",
 	"rememberpassword" => "Husk adgangskode til næste besøg",
 	"editwidth" => "Redigeringsboksen har fuld bredde",
 	"watchdefault" => "Overvåg nye og ændrede artikler",
@@ -90,14 +89,14 @@
    languages! */
 /* private */ $wgLanguageNamesDa = array(
     "aa"    => "Afar",
-    "ab"    => "Abkhazian",
+	"ab"    => "&#1040;&#1191;&#1089;&#1085;&#1099; (Apsny)",
 	"af"	=> "Afrikaans",
 	"am"	=> "Amharisk",
 	"ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)",
 	"as"	=> "Assamesisk",
 	"ay"	=> "Aymará",
-	"az"	=> "Aserbajdsjansk",
-	"ba"	=> "Bajkirsk",
+	"az"	=> "&#1040;&#1079;&#1241;&#1088;&#1073;&#1072;&#1112;&#1209;&#1072;&#1085; (Azerbajan)",
+	"ba"	=> "&#1041;&#1072;&#1096;&#1082;&#1086;&#1088;&#1090; (Bashkort)",
 	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
 	"bh"	=> "Bihara",
 	"bi"	=> "Bislama",
@@ -120,22 +119,24 @@
 	"es" => "Espa&#241;ol",
 	"et" => "Eesti",
 	"eu" => "Euskara",
-	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236;(Farsi)",
+	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
 	"fi" => "Suomi",
 	"fj"	=> "Fijian",
 	"fo"	=> "Færøsk",
 	"fr" => "Fran&#231;ais",
-	"fy"	=> "Frisisk",
-	"ga"	=> "Irsk",
-	"gl"	=> "Galicisk",
+	"fy" => "Frysk",
+	"ga" => "Gaelige",
+    "gd" => "G&agrave;idhlig",
+	"gl"	=> "Galician",
 	"gn"	=> "Guarani",
 	"gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
+    "gv" => "Gaelg",
 	"ha"	=> "Hausa",
 	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
 	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
 	"hr" => "Hrvatski",
 	"hu" => "Magyar",
-	"hy"	=> "Armensk",
+	"hy"	=> "&#1344;&#1377;&#1397;&#1381;&#1408;&#1383;&#1398; (Armjan)",
 	"ia" => "Interlingua",
 	"id" => "Indonesia",
 	"ik"	=> "Inupiaq",
@@ -145,14 +146,14 @@
 	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
 	"jv"	=> "Javanesisk",
 	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-	"kk"	=> "Kasakhisk",
+	"kk"	=> "&#1178;&#1072;&#1079;&#1072;&#1179; (Kazakh)",
 	"kl"	=> "Grønlandsk",
 	"km"	=> "Cambodjansk",
-	"kn"	=> "Kannaresisk",
+	"kn"	=> "&#3221;&#3240;&#3277;&#3240;&#3233; (Kannada)",
 	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
 	"ks"	=> "Kashmiri",
 	"kw" => "Kernewek",
-	"ky"	=> "Kirgisisk",
+	"ky"	=> "Kirghiz",
 	"la" => "Latina",
 	"ln"	=> "Lingala",
 	"lo"	=> "Laotisk",
@@ -168,6 +169,8 @@
 	"ms" => "Bahasa Melayu",
 	"my"	=> "Burmesisk",
 	"na"	=> "Nauru",
+	"nah" => "Nahuatl",
+	"nds" => "Plattdüütsch",
 	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
 	"nl" => "Nederlands",
 	"no" => "Norsk",
@@ -187,7 +190,7 @@
 	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
 	"sd"	=> "Sindhi",
 	"sg"	=> "Sango",
-	"sh"	=> "Kroatisk",
+	"sh"	=> "&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)",
 	"si"	=> "Singalesisk",
 	"simple" => "Simple English",
 	"sk"	=> "Slovakisk",
@@ -195,38 +198,40 @@
 	"sm"	=> "Samoansk",
 	"sn"	=> "Shona",
 	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"ss"	=> "Swati",
-	"st"	=> "Sotho",
+	"sq" => "Shqip",
+	"sr" => "&#1057;&#1088;&#1087;&#1089;&#1082;&#1080; (Srpski)",
+	"ss"	=> "Siswati",
+	"st"	=> "Sesotho",
 	"su"	=> "Sudanesisk",
 	"sv" => "Svenska",
 	"sw" => "Kiswahili",
-	"ta"	=> "Tamilsk",
-	"te"	=> "Telugu",
+	"ta"	=> "&#2980;&#2990;&#3007;&#2996;&#3021; (Tamil)",
+	"te"	=> "&#3108;&#3142;&#3122;&#3137;&#3095;&#3137; (Telugu)",
 	"tg"	=> "Tajik",
 	"th"	=> "Thai",
-	"ti"	=> "Tigrinja",
-	"tk"	=> "Turkmensk",
+	"ti"	=> "Tigrinya",
+	"tk"	=> "Turkmen",
 	"tl"	=> "Tagalog",
-	"tn"	=> "Tswana",
+	"tn"	=> "Setswana",
 	"to"	=> "Tonga",
 	"tr" => "T&#252;rk&#231;e",
 	"ts"	=> "Tsonga",
-	"tt"	=> "Tatarisk",
+	"tt"	=> "&#1058;&#1072;&#1090;&#1072;&#1088; (Tatar)",
 	"tw"	=> "Twi",
-	"ug"	=> "Uigurisk",
+	"ug"	=> "Uighur",
 	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
 	"ur"	=> "Urdu",
-	"uz"	=> "Uzbekisk",
+	"uz"	=> "&#1038;&#1079;&#1073;&#1077;&#1082; (Uzbek)",
 	"vi"	=> "Vietnamesisk",
 	"vo" => "Volap&#252;k",
 	"wo"	=> "Wolof",
 	"xh" => "isiXhosa",
-	"yi"	=> "Jiddisch",
+	"yi"	=> "Yiddish",
 	"yo"	=> "Yoruba",
 	"za"	=> "Zhuang",
 	"zh" => "&#20013;&#25991; (Zhongwen)",
+	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (simplificeret kinesisk)",
+	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (tradtionelt kinesisk)",
 	"zu"	=> "Zulu"
 );
 
@@ -270,7 +275,6 @@
 	"Longpages"	=> "Lange artikler",
 	"Newpages"	=> "Nyeste artikler",
 	"Ancientpages"	=> "Ældste artikler",
-#	"Intl"                => "Interlanguage Links",
 	"Allpages"	=> "Alle sider efter titel",
 
 	"Ipblocklist"	=> "Blokerede IP-adresser",
@@ -282,8 +286,7 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterne bogkilder",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"	=> "XML page export",
 );
 
 /* private */ $wgSysopSpecialPagesDa = array(
@@ -309,7 +312,7 @@
 
 "linktrail"		=> "/^([a-z|æ|ø|å]+)(.*)\$/sD",
 "mainpage"		=> "Forside",
-"mainpagetext"	=> "Wiki software er nu installeret.",
+"mainpagetext"	=> "Wiki-software er nu installeret.",
 "about"			=> "Om",
 "aboutwikipedia" => "Om Wikipedia",
 "aboutpage"		=> "Wikipedia:Om",
@@ -318,6 +321,8 @@
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Fejlrapporter",
 "bugreportspage" => "Wikipedia:Fejlrapporter",
+"sitesupport"   => "Donation",
+"sitesupportpage" => "Wikipedia:Donation", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "OSS",
 "faqpage"		=> "Wikipedia:OSS",
 "edithelp"		=> "Hjælp til redigering",
@@ -334,7 +339,7 @@
 "currentevents" => "Aktuelle begivenheder",
 "errorpagetitle" => "Fejl",
 "returnto"		=> "Tilbage til $1.",
-"fromwikipedia"	=> "Fra Wikipedia, den frie encyklopædi.",
+"fromwikipedia"	=> "Fra Wikipedia, den frie encyklopædi",
 "whatlinkshere"	=> "Sider med en henvisning hertil",
 "help"			=> "Hjælp",
 "search"		=> "Søg",
@@ -357,7 +362,7 @@
 "otherlanguages" => "Andre sprog",
 "redirectedfrom" => "(Omdirigeret fra $1)",
 "lastmodified"	=> "Sidst ændret den $1.",
-"viewcount"		=> "Siden er vist ialt $1 gange.",
+"viewcount"		=> "Siden er vist i alt $1 gange.",
 "gnunote" => "Denne side er udgivet under <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(Fra http://da.wikipedia.org)",
 "protectedpage" => "Beskyttet side",
@@ -514,14 +519,18 @@ Du bør logge på og ændre din adgangskode straks efter, du har modtaget den.",
 "showpreview"	=> "Forhåndsvisning",
 "blockedtitle"	=> "Brugeren er blokeret",
 "blockedtext"	=> "Dit brugernavn eller din IP-adresse er blevet blokeret af 
-$1. Begrundelsen er denne:<br>$2<p>Du kan kontakte 
-administratoren for at diskutere blokeringen.",
+$1. Begrundelsen er denne:<br>$2<p>Du kan kontakte $1
+eller en af de andre [[Wikipedia:Administratorer|administratorer]] for at diskutere blokeringen.
+
+Din IP-adresse er $3.
+Sørg venligst for at inkludere dette nummer i alle henvendelser til en administrator.
+",
 "newarticle"	=> "(Ny)",
 "newarticletext" => "Der er på nuværende tidspunkt ingen tekst på denne side.<br>
 Du kan begynde en artikel ved at skrive i boksen herunder. 
 (se [[Wikipedia:Hjælp|hjælpen]] for yderligere information).<br>
 Hvis det ikke var din mening, så tryk på '''Tilbage''' eller '''Back''' knappen.",
-"anontalkpagetext" => "---- ''Dette er en diskussionsside for anonyme brugere der 
+"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger der 
 ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at 
 bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende.
 En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger 
@@ -604,8 +613,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 "searchresults" => "Søgeresultater",
 "searchhelppage" => "Wikipedia:Søgning",
 "searchingwikipedia" => "Søgning på Wikipedia",
-"searchresulttext" => "For mere information om søgning på Wikipedia, se 
-$1.",
+"searchresulttext" => "For mere information om søgning på Wikipedia, se $1.",
 "searchquery"	=> "For forespørgsel \"$1\"",
 "badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
@@ -809,6 +817,7 @@ og af hvem, og andre ting du ved om filen.",
 "uploadwarning" => "Oplægningsadvarsel",
 "savefile"		=> "Gem fil",
 "uploadedimage" => "Lagde \"$1\" op",
+"uploaddisabled" => "Desværre er funktionen til at lægge billeder op afbrudt på denne server.",
 
 # Image list
 #
@@ -1044,6 +1053,11 @@ Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|
 #   only shown if there is an edit comment
 "editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".", 
 "revertpage"	=> "Gendannet siden til tidligere version redigeret af $1",
+"protectlogpage" => "Liste_over_beskyttede_sider",
+"protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
+Se [[Wikipedia:Beskyttet side]] for mere information.",
+"protectedarticle" => "beskyttet [[$1]]",
+"unprotectedarticle" => "fjernet beskyttelse [[$1]]",
 
 # Undelete
 "undelete" => "Gendan en slettet side",
@@ -1088,27 +1102,27 @@ at udføre denne funktion på.",
 
 # Block/unblock IP
 #
-"blockip"		=> "Bloker IP-adresse",
+"blockip"		=> "Bloker bruger",
 "blockiptext"	=> "Brug formularen herunder til at blokere for skriveadgangen
-fra en specifik IP-adresse.
+fra en specifik IP-adresse eller et brugernavn.
 Dette må kun gøres for at forhindre vandalisme, og i
 overensstemmelse med [[Wikipedia:Politik|Wikipedia politik]].
 Udfyld en speciel begrundelse herunder (for eksempel med et citat fra
 sider der har været udsat for vandalisme).",
-"ipaddress"		=> "IP-Adresse",
+"ipaddress"		=> "IP-Adresse/brugernavn",
 "ipbreason"		=> "Begrundelse",
-"ipbsubmit"		=> "Bloker denne adresse",
-"badipaddress"	=> "IP-adressen er udformet forkert.",
+"ipbsubmit"		=> "Bloker denne bruger",
+"badipaddress"	=> "IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.",
 "noblockreason" => "Du skal angive en begrundelse for denne blokering.",
 "blockipsuccesssub" => "Blokering udført med success",
-"blockipsuccesstext" => "IP-adressen \"$1\" er blevet blokeret.
+"blockipsuccesstext" => "\"$1\" er blevet blokeret.
 <br>Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
-"unblockip"		=> "Ophæv blokeringen af IP-adresse",
+"unblockip"		=> "Ophæv blokering af bruger",
 "unblockiptext"	=> "Brug formularen herunder for at gendanne skriveadgangen
-for en tidligere blokeret IP-adresse.",
+for en tidligere blokeret IP-adresse eller bruger.",
 "ipusubmit"		=> "Ophæv blokeringen af denne adresse",
-"ipusuccess"	=> "IP-adressen \"$1\" har fået ophævet blokeringen",
-"ipblocklist"	=> "Liste af blokerede IP-adresser",
+"ipusuccess"	=> "\"$1\" har fået ophævet blokeringen",
+"ipblocklist"	=> "Liste af blokerede IP-adresser og brugernavne",
 "blocklistline"	=> "$1, $2 blokerede $3",
 "blocklink"		=> "bloker",
 "unblocklink"	=> "ophæv blokering",
@@ -1196,7 +1210,7 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.",
 diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en 
 med den nye titel. Du er nødt til at flette dem sammen manuelt.",
 "movedto"		=> "flyttet til",
-"movetalk"		=> "Flyt også \"diskussion\" siden, hvis den eksisterer.",
+"movetalk"		=> "Flyt også \"diskussion\"ssiden, hvis den eksisterer.",
 "talkpagemoved" => "Den tilhørende diskussionsside blev også flyttet.",
 "talkpagenotmoved" => "Den tilhørende diskussionsside blev 
 <strong>ikke</strong> flyttet.",
@@ -1329,7 +1343,7 @@ class LanguageDa extends Language {
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
+		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
 	}
 
 	# Inherit rfc1123()

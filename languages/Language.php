@@ -324,7 +324,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Movepage"		=> "",
 	"Booksources"	=> "External book sources",
 #	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"		=> "XML page export",
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(

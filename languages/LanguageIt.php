@@ -19,8 +19,7 @@
 	6	=> "Immagine",
 	7	=> "Immagine_discussione",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_discussioni"
-
+	9	=> "MediaWiki_discussione",
 );
 
 /* private */ $wgDefaultUserOptionsIt = array(
@@ -104,7 +103,7 @@
 	"Shortpages"	=> "Articoli più corti",
 	"Longpages"		=> "Articoli più lunghi",
 	"Newpages"		=> "Articoli nuovi",
-#	"Intl"                => "Interlanguage Links",
+	"Ancientpages"		=> "Oldest pages",
 	"Allpages"		=> "Tutti i titoli",
 
 	"Ipblocklist"	=> "Indirizzi IP bloccati",
@@ -116,8 +115,7 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Export"	=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesIt = array(

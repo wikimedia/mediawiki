@@ -18,8 +18,7 @@
 	6	=> "Soubor", #FIXME: Check the magic for Image: and Media:
 	7	=> "Soubor_diskuse",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskuse"
-
+	9	=> "MediaWiki_diskuse",
 );
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
@@ -233,7 +232,7 @@
 	"Shortpages"	=> "Krátké články",
 	"Longpages"		=> "Dlouhé stránky",
 	"Newpages"		=> "Nově vytvořené stránky",
-#	"Intl"                => "Interlanguage Links",
+	"Ancientpages"	=> "Oldest articles",
 	"Allpages"		=> "Každá stránka podle titulu",
 
 	"Ipblocklist"	=> "Blokované adresy IP",
@@ -245,8 +244,8 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Vnější knihovny",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+#	"Categories	=> "Page categories",
+	"Export"	=> "XML page export",
 );
 
 /* private */ $wgSysopSpecialPagesCs = array(

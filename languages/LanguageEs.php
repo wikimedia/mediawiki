@@ -16,7 +16,7 @@
 	6	=> "Imagen",
 	7	=> "Imagen_Discusión",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_Discusión"
+	9	=> "MediaWiki_Discusión",
 );
 
 /* Note that some default options can be customized -- see
@@ -139,9 +139,7 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"   => "Fuentes externas de libros",
-#	"Categories"	=> "Page categories",
-	"Export"		=> ""
+	"Booksources"   => "Fuentes externas de libros"
 );
 
 /* private */ $wgSysopSpecialPagesEs = array(
