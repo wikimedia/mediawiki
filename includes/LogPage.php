@@ -66,6 +66,39 @@ class LogPage {
 		return true;
 	}
 
+	/* static */ function &validTypes() {
+		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload' );
+		return $types;
+	}
+	
+	/* static */ function isLogType( $type ) {
+		return in_array( $type, LogPage::validTypes() );
+	}
+	
+	/* static */ function logName( $type ) {
+		static $typeText = array(
+			''        => 'log',
+			'block'   => 'blocklogpage',
+			'protect' => 'protectlogpage',
+			'rights'  => 'bureaucratlog',
+			'delete'  => 'dellogpage',
+			'upload'  => 'uploadlogpage',
+		);
+		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
+	}
+	
+	/* static */ function logHeader( $type ) {
+		static $headerText = array(
+			''        => 'alllogstext',
+			'block'   => 'blocklogtext',
+			'protect' => 'protectlogtext',
+			'rights'  => '',
+			'delete'  => 'dellogpagetext',
+			'upload'  => 'uploadlogpagetext'
+		);
+		return wfMsg( $headerText[$type] );
+	}
+	
 	/* static */ function actionText( $type, $action, $titleLink ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',

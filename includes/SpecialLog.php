@@ -141,15 +141,6 @@ class LogReader {
 
 class LogViewer {
 	var $reader, $skin;
-	var $typeText = array(
-		''        => array( 'log',            'alllogstext'       ),
-		'block'   => array( 'blocklogpage',   'blocklogtext'      ),
-		'protect' => array( 'protectlogpage', 'protectlogtext'    ),
-		'rights'  => array( 'bureaucratlog',  ''                  ),
-		'delete'  => array( 'dellogpage',     'dellogpagetext'    ),
-		'upload'  => array( 'uploadlogpage',  'uploadlogpagetext' )
-	);
-
 	
 	function LogViewer( &$reader ) {
 		global $wgUser;
@@ -202,10 +193,9 @@ class LogViewer {
 	
 	function showHeader( &$out ) {
 		$type = $this->reader->queryType();
-		if( isset( $this->typeText[$type] ) ) {
-			list( $title, $headertext ) = $this->typeText[$type];
-			$out->setPageTitle( str_replace( '_', ' ', wfMsg( $title ) ) );
-			$out->addWikiText( wfMsg( $headertext ) );
+		if( LogPage::isLogType( $type ) ) {
+			$out->setPageTitle( LogPage::logName( $type ) );
+			$out->addWikiText( LogPage::logHeader( $type ) );
 		}
 	}
 	
@@ -225,8 +215,8 @@ class LogViewer {
 	
 	function getTypeMenu() {
 		$out = "<select name='type'>\n";
-		foreach( $this->typeText as $type => $msg ) {
-			$text = htmlspecialchars( str_replace( '_', ' ', wfMsg( $msg[0] ) ) );
+		foreach( LogPage::validTypes() as $type ) {
+			$text = htmlspecialchars( LogPage::logName( $type ) );
 			$selected = ($type == $this->reader->queryType()) ? ' selected="selected"' : '';
 			$out .= "<option value=\"$type\"$selected>$text</option>\n";
 		}

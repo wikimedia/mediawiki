@@ -2334,6 +2334,11 @@ class Skin {
 			$msg = ( $rc_type == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 			$s .= wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 				$this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
+			# Log updates, etc
+			$logtype = $matches[1];
+			$logname = LogPage::logName( $logtype );
+			$s .= '(' . $this->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
 		} else {
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
@@ -2445,6 +2450,11 @@ class Skin {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
+			# Log updates, etc
+			$logtype = $matches[1];
+			$logname = LogPage::logName( $logtype );
+			$clink = '(' . $this->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
 		} else {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
@@ -2537,7 +2547,10 @@ class Skin {
 	   direct link to the section in the autocomment.
 	   Main author: Erik Moeller (moeller@scireview.de)
 	*/
-	function formatComment($comment, &$title)
+	# Note: there's not always a title to pass to this function.
+	# Since you can't set a default parameter for a reference, I've turned it
+	# temporarily to a value pass. Should be adjusted further. --brion
+	function formatComment($comment, $title = NULL)
 	{
 		global $wgLang;
 		$comment = htmlspecialchars( $comment );
