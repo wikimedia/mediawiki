@@ -24,7 +24,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 		output( "   --- Waiting for lock ---" );
 		lockSearchindex();
 		$lockTime = time();
-		output( "done\n" );
+		output( "\n" );
 	}
 
 	# Loop through the results and do a search update
