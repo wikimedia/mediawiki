@@ -9,30 +9,31 @@ Wikipedia project. There are many good general-purpose Wikis
 in the world. I personally recommend UseMod
 (http://www.usemod.com/).
 
-The code as a whole is Copyright 2002-3 by Lee Daniel Crocker,
-Magnus Manske, Jan Hidders, Brion Vibber, Axel Boldt,
-Geoffrey T. Dairiki, Tomasz Wegrzanowski, and others,
-licensed under the terms of the GNU General Public License,
-version 2 (see http://www.fsf.org/licenses/gpl.html).
-Derivative works and later versions of the code will also be
-considered free software licensed under the same terms.
-
-Many thanks to the Wikipedia regulars for testing and
-suggestions.
+The code as a whole is Copyright 2002,2003 by
+Lee Daniel Crocker, Magnus Manske, Jan Hidders, Brion Vibber,
+Axel Boldt, Geoffrey T. Dairiki, Tomasz Wegrzanowski, and
+others, licensed under the terms of the
+GNU General Public License, version 2 (see
+http://www.fsf.org/licenses/gpl.html). Derivative works and
+later versions of the code will also be considered free
+software licensed under the same terms.
 
 Sections of code written exclusively by Lee Crocker are also
 released into the public domain, wich does not impair the
 obligations of users under the GPL for use of the whole code
 or other sections thereof.
 
+Many thanks to the Wikipedia regulars for testing and
+suggestions.
+
 The code is currently maintained at Sourceforge under the
-project "wikipedia", module name "phase3".  You can view the
+project "wikipedia", module name "phase3". You can view the
 code in CVS, report bugs and make feature requests there:
 
   http://wikipedia.sourceforge.net
 
 The code is written in PHP. It was tested mainly on version
-4.06, but it is known to run in later versions.  I requires
+4.06, but it is known to run in later versions. It requires
 MySQL 3.23 or later, and PHP-MySQL. It is now running with
 PHP 4.2.2 and MySQL 3.23.49 at http://www.wikipedia.org .
 The code was written on and for Linux, and no attempt has

@@ -1,3 +1,7 @@
+----
+Installing Wikipedia Phase III Software
+----
+
 The Wikipedia software was developed collabortively by
 many people, so it's something of a hodgepodge. The
 main wiki software itself is written in PHP, and requires
@@ -18,13 +22,40 @@ static binaries. TeTeX and ImageMagick are required at
 runtime, and ImageMagick requires GhostScript. These are
 present in most Linux distributions.
 
+----
+Scripts install.php and update.php
+----
+
 Before installing the software, you must copy the file
 "LocalSettings.sample" to "LocalSettings.php", and
 "AdminSettings.sample" to "AdminSettings.php", and
 customize both of the php files to your local setup
 (things like installation parh, passwords, etc.) The
-script install.php in the maintenance directory can then
-be run to install the software.
+script install.php can then be run to install the
+software. It must be run from the command line with
+PHP: that is, type "php install.php" (you may need to
+specify the path the php executable). You will probably
+need to run as root.
+
+This script will copy all the necessary software over to
+the directories you have specified in the settings files.
+It will then warn you that it is about to create the
+database and give you the chance to exit. If you are
+installing the software to an existing database, you can
+answer "no" here and it will be left alone. The software
+installation will be otherwise complete. If you do choose
+to create a new database, you will need te root password
+to your MySQL installation.
+
+If you are merely updating an existing installation, run
+"php update.php" instead of install.  This will copy all
+the software, and also run any dtabase updates that may
+be necessary. These should give appropriate warnings if
+there are any dangerous ones.
+
+----
+Building from scratch
+----
 
 Here are some more notes on building a system from scratch
 the way it was done for the Wikipedia server:
@@ -128,9 +159,9 @@ And for math support:
   You'll need to compile the texvc helper script; enter the math
   subdirectory of the source tree and run "make".
 
-  If you don't want embedded TeX support, disable it by setting
+  If you want embedded TeX support, enable it by setting
 
-   $wgUseTex = false;
+   $wgUseTex = true;
 
   in LocalSettings.php
 
