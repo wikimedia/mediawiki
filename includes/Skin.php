@@ -876,7 +876,7 @@ class Skin {
 
 	function logoText( $align = '' )
 	{
-		if ( '' != $align ) { $a = ' align="'.$align.'"'; }
+		if ( '' != $align ) { $a = " align='{$align}'"; }
 		else { $a = ''; }
 
 		$mp = wfMsg( 'mainpage' );
@@ -887,9 +887,8 @@ class Skin {
 			$url = '';
 		}
 
-		$s = '<a href="' . $url
-		  . '"><img'.$a.' src="'
-		  . $this->getLogo() . '" alt="' . "[{$mp}]\" /></a>";
+		$logourl = $this->getLogo();
+		$s = "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
 		return $s;
 	}
 
