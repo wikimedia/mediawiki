@@ -45,7 +45,8 @@ $wgEditEncoding		= "x";
 	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
 	'monobook' => "Librejo",
-	'myskin' => 'MySkin'
+	'myskin' => 'MySkin',
+	'chick' => 'Kokido',
 );
 
 
@@ -533,6 +534,9 @@ Via interna identeconumero estas $2.",
 "math_unknown_function"	=> "Nekonata funkcio",
 "math_lexing_error"	=> "Leksika analizo malsukcesis",
 "math_syntax_error" => "Eraro de sintakso",
+'prefs-personal'	=> 'Idento',
+'prefs-rc'		=> 'Lastaj Ŝanĝoj kaj elmontro de stumpoj',
+'prefs-misc'	=> 'Miksitaĵoj',
 "saveprefs"		=> "Konservu preferojn",
 "resetprefs"	=> "Restarigi antaŭajn preferojn",
 "oldpassword"	=> "Malnova pasvorto",
@@ -548,6 +552,7 @@ Via interna identeconumero estas $2.",
 "stubthreshold" => "Indiku paĝojn malpli grandajn ol",
 "recentchangescount" => "Montru kiom da titoloj en 'Lastaj ŝanĝoj'",
 "savedprefs"	=> "Viaj preferoj estas konservitaj.",
+'timezonelegend'	=> 'Horzono',
 "timezonetext"	=> "Indiku je kiom da horoj via
 loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somertempo.",
