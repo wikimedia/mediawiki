@@ -75,12 +75,9 @@ class Validation
 			
 		# Now we get all the "votes" for the different versions of this article for this user
 		$val = $this->get_prev_data ( $wgUser->getID() , $article_title ) ;
-		krsort ( $val ) ; # Newest versions first
-		
-		#print "!" . count ( $val ) ;
 		
 		# No votes for this version, initial data
-		if ( count ( $val ) == 0 )
+		if ( !isset ( $val[$article_time] ) )
 			{
 			if ( $article_time == "" )
 				{
@@ -89,7 +86,9 @@ class Validation
 				}
 			$val[$article_time] = array () ;
 			}
-		
+
+		krsort ( $val ) ; # Newest versions first
+
 		# User has clicked "Doit" before, so evaluate form
 		if ( isset ( $_POST['doit'] ) )
 			{
@@ -168,7 +167,7 @@ class Validation
 				$html .= "</tr>\n" ;
 				}
 			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
-			$html .= str_replace ( "$1" , $article->getPrefixedURL() , wfMsg("val_clear_old") ) ;
+			$html .= str_replace ( "$1" , $article->getLocalURL() , wfMsg("val_clear_old") ) ;
 			$html .= "</td><td {$topstyle} align=right><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
 			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
 			}
@@ -186,7 +185,7 @@ class Validation
 		if ( $sql != "" ) $sql = " WHERE " . $sql ;
 		$sql = "SELECT * FROM validate" . $sql ;
 		$res = wfQuery( $sql, DB_READ );
-		while( $s = wfFetchObject( $res ) ) $ret["{$s->val_title}"]["{$s->val_timestamp}"]["{$s->val_type}"] = $s ;
+		while( $s = wfFetchObject( $res ) ) $ret["{$s->val_title}"]["{$s->val_timestamp}"]["{$s->val_type}"][] = $s ;
 		return $ret ;
 		}
 		
@@ -199,6 +198,7 @@ class Validation
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
 		if ( count ( $d ) ) $d = array_shift ( $d ) ;
 		else $d = array () ;
+		krsort ( $d ) ;
 		$html .= "<table border=1 cellpadding=2>\n" ;
 		$html .= "<tr><th>Version</th>" ;
 		foreach ( $validationtypes AS $idx => $title )
@@ -210,20 +210,23 @@ class Validation
 		foreach ( $d AS $version => $data )
 			{
 			$title = Title::newFromDBkey ( $article_title ) ;
-			$version_link = $title->getFullURL( "action=validate&timestamp={$version}" ) ;
+			$version_link = $title->getLocalURL( "action=validate&timestamp={$version}" ) ;
 			$version_link = "<a class=intern href=\"{$version_link}\">" . gmdate("F d, Y H:i:s",wfTimestamp2Unix($version)) . "</a>" ;
 			$html .= "<tr>" ;
 			$html .= "<th align=left>{$version_link}</th>" ;
 
 			$vmax = array() ;
 			$vcur = array() ;
-			foreach ( $data AS $type => $x )
+			foreach ( $data AS $type => $x2 )
 				{
 				if ( !isset ( $vcur[$type] ) ) $vcur[$type] = 0 ;
 				if ( !isset ( $vmax[$type] ) ) $vmax[$type] = 0 ;
-				$vcur[$type] += $x->val_value ;
-				$temp = explode ( "|" , $validationtypes[$type]) ;
-				$vmax[$type] += $temp[3] - 1 ;
+				foreach ( $x2 AS $user => $x )
+					{
+					$vcur[$type] += $x->val_value ;
+					$temp = explode ( "|" , $validationtypes[$type]) ;
+					$vmax[$type] += $temp[3] - 1 ;
+					}
 				}
 	
 	
