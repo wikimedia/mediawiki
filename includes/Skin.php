@@ -407,29 +407,32 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 
 	function nameAndLogin()
 	{
-		global $wgUser, $wgTitle, $wgLang;
+		global $wgUser, $wgTitle, $wgLang, $wgShowIPinHeader;
 
 		$li = $wgLang->specialPage( "Userlogin" );
 		$lo = $wgLang->specialPage( "Userlogout" );
 
 		$s = "";
 		if ( 0 == $wgUser->getID() ) {
-			$n = getenv( "REMOTE_ADDR" );
+			if( $wgShowIPinHeader ) {
+				$n = getenv( "REMOTE_ADDR" );
+
+  				$tl = $this->makeKnownLink( $wgLang->getNsText(
+				  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
+				  $wgLang->getNsText( Namespace::getTalk( 0 ) ) );
+			  
+				$s .= $n .  " (".$tl.")";
+			} else {
+				$s .= wfMsg("notloggedin");
+			}
+			
 			$rt = $wgTitle->getPrefixedURL();
 			if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
 				$q = "";
 			} else { $q = "returnto={$rt}"; }
-
-			  
-  			$tl = $this->makeKnownLink( $wgLang->getNsText(
-			  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-			  $wgLang->getNsText( Namespace::getTalk( 0 ) ) );
-			  
-			$s .= $n .  " (".$tl.")" . "\n<br>" . $this->makeKnownLink( $li,
-			  wfMsg( "login" ), $q );
-			  
-			$tl = " ({$tl})"; 
 			
+			$s .= "\n<br>" . $this->makeKnownLink( $li,
+			  wfMsg( "login" ), $q );
 		} else {
 			$n = $wgUser->getName();
 			$rt = $wgTitle->getPrefixedURL();
