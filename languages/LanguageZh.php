@@ -109,6 +109,7 @@ class LanguageZh extends LanguageZh_cn {
 		$fname="zhsegment";
 		wfProfileIn( $fname );
 		$t = $this->mZhClient->segment($string);
+		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
 
