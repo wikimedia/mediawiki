@@ -156,7 +156,7 @@ function wfSetSQL( $table, $var, $value, $cond )
 	return $db->set( $table, $var, $value, $cond );
 }
 
-function wfGetSQL( $table, $var, $cond )
+function wfGetSQL( $table, $var, $cond="" )
 {
 	$db =& wfGetDB();
 	return $db->get( $table, $var, $cond );
