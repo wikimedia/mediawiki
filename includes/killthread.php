@@ -7,15 +7,20 @@
 /**
  *
  */
+if( php_sapi_name() != 'cli' ) {
+	die('');
+}
+
+define( 'MEDIAWIKI', 1 );
 $wgCommandLineMode = true;
 
 unset( $IP );
 ini_set( 'allow_url_fopen', 0 ); # For security...
-require_once( './LocalSettings.php' );
+require_once( '../LocalSettings.php' );
 
-# Windows requires ';' as separator, ':' for Unix
-$sep = strchr( $include_path = ini_get( 'include_path' ), ';' ) ? ';' : ':';
-ini_set( 'include_path', "$IP$sep$include_path" );
+if( !$wgAllowSysopQueries ) {
+	die( "Queries disabled.\n" );
+}
 
 require_once( 'Setup.php' );
 
