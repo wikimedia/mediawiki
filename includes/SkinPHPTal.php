@@ -98,7 +98,7 @@
 			$tpl->set( "helppage", wfMsg('helppage'));
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			*/
-			$tpl->setRef( "searchaction", &$wgScriptPath );
+			$tpl->setRef( "searchaction", &$wgScript );
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "lang", &$wgLanguageCode );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
