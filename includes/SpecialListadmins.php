@@ -19,7 +19,7 @@ class ListAdminsPage extends PageQueryPage {
 		return 'SELECT user_rights as type,'.$userspace.' as namespace,'.
 		       'user_name as title, user_name as value '.
 		       "FROM $usertable ".
-			   'WHERE user_rights = "sysop"';
+			   'WHERE user_rights LIKE "%sysop%"';
 	}
 }
 
