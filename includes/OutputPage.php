@@ -1350,13 +1350,31 @@ return $r ;
 		$nh=$wgUser->getOption( "numberheadings" );
 		$st=$wgUser->getOption( "showtoc" );
 		$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
+		$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
+
+		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, do not 
+		# add TOC
+		if($st && preg_match("/__NOTOC__/i",$text)) { 
+			$text=preg_replace("/__NOTOC__/i","",$text);
+			$st=0; 
+		}
+
+		# never add the TOC to the Main Page. This is an entry page that should not
+		# be more than 1-2 screens large anyway
 		if($wgTitle->getPrefixedText()==wfMsg("mainpage")) {$st=0;}
 
+		# We need this to perform operations on the HTML
 		$sk=$wgUser->getSkin();
-		preg_match_all("/<H([1-6])(.*?>)(.*?)<\/H[1-6]>/i",$text,$matches);
 
+		# Get all headlines for numbering them and adding funky stuff like [edit]
+		# links
+		preg_match_all("/<H([1-6])(.*?>)(.*?)<\/H[1-6]>/i",$text,$matches);
+		
+		# headline counter
 		$c=0;
 
+		# Ugh .. the TOC should have neat indentation levels which can be
+		# passed to the skin functions. These are determined here
 		foreach($matches[3] as $headline) {
 			if($level) { $prevlevel=$level;}
 			$level=$matches[1][$c];
@@ -1412,6 +1430,9 @@ return $r ;
 			 .$headline
 			 ."</a>"
 			 ."</H".$level.">";
+			if($esr && !isset($wpPreview)) {
+				$head[$c]=$sk->editSectionScript($c+1,$head[$c]);	
+			}
 			$numbering="";
 			$c++;
 			$dot=0;
@@ -1430,11 +1451,14 @@ return $r ;
 
 
 		foreach($blocks as $block) {
-			if($es && !isset($wpPreview) && $c>0 && $i==0) {
+			if(($es || $esr) && !isset($wpPreview) && $c>0 && $i==0) {
+			    # This is the [edit] link that appears for the top block of text when 
+				# section editing is enabled
 				$full.=$sk->editSectionLink(0);				
 			}
 			$full.=$block;
 			if($st && $toclines>3 && !$i) {
+				# Let's add a top anchor just in case we want to link to the top of the page
 				$full="<a name=\"top\"></a>".$full.$toc;
 			}
 

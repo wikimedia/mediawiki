@@ -119,7 +119,7 @@ class Skin {
 		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $oldid, $redirect, $diff,$action;
 
 		if ( 0 != $wgTitle->getNamespace() ) {
-			$a = array( "bgcolor" => "#FFFFDD" );
+			$a = array( "bgcolor" => "#f7f7ff" );
 		}
 		else $a = array( "bgcolor" => "#FFFFFF" );
 		if($wgOut->isArticle() && $wgUser->getOption("editondblclick")
@@ -499,7 +499,8 @@ class Skin {
 			$s .=  $sep . $this->editThisPage()
 			  . $sep . $this->historyLink();
 		}
-		$s .= $sep . $this->specialPagesList();
+		# Many people don't like this dropdown box
+		#$s .= $sep . $this->specialPagesList();
 
 		return $s;
 	}
@@ -591,9 +592,10 @@ class Skin {
 		global $wgOut, $wgTitle, $wgUser, $action, $wgLang;
 		global $wpPreview;
 		wfProfileIn( "Skin::quickBar" );
+		$tns=$wgTitle->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
-		$s .= "\n" . $this->logoText() . "\n<hr>";
+		$s .= "\n" . $this->logoText() . "\n<hr class='sep'>";
 
 		$sep = "\n<br>";
 		$s .= $this->mainPageLink()
@@ -607,16 +609,14 @@ class Skin {
 		}
 		// only show watchlist link if logged in
                 if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
-                $s .= "\n<hr>";
+                $s .= "\n<br><hr class='sep'>";
 		$articleExists = $wgTitle->getArticleId();
 		if ( $wgOut->isArticle() || $action =="edit" || $action =="history" || $wpPreview) {
 						
 			if($wgOut->isArticle()) {
 				$s .= "<strong>" . $this->editThisPage() . "</strong>";
 			} else { # backlink to the article in edit or history mode
-
 				if($articleExists){ # no backlink if no article
-					$tns=$wgTitle->getNamespace();		
 					switch($tns) {
 						case 0:
 						$text = wfMsg("articlepage");
@@ -659,6 +659,11 @@ class Skin {
 			
 			}
 			
+
+			if( $tns%2 && $action!="edit" && !$wpPreview) {
+				$s.="<br>".$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("postcomment"),"action=edit&section=new");
+			}
+
 			/*
 			watching could cause problems in edit mode:
 			if user edits article, then loads "watch this article" in background and then saves
@@ -699,7 +704,7 @@ class Skin {
 					}
 				}
 			}
-			$s .= "\n<hr>";
+			$s .= "\n<br><hr class='sep'>";
 		} 
 		
 		if ( 0 != $wgUser->getID() ) {
@@ -708,7 +713,7 @@ class Skin {
 		$s .= $this->specialLink( "specialpages" )
 		  . $sep . $this->bugReportsLink();
 
-		$s .= "\n</div>\n";
+		$s .= "\n<br></div>\n";
 		wfProfileOut();
 		return $s;
 	}
@@ -1723,11 +1728,20 @@ class Skin {
 	function tocTable($toc) {
 	// note to CSS fanatics: putting this in a div does not works -- div won't auto-expand
 	return
-	"<table border=\"0\" align=\"center\" id=\"toc\"><tr><td align=\"center\">\n".
+	"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
 	"<b>".wfMsg("toc")."</b>" .
 	" <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>" .
 	"</td></tr><tr id='tocinside'><td align=\"left\">\n".
 	$toc."</td></tr></table><P>\n";
+	}
+
+	function editSectionScript($section,$head) {
+
+		global $wgTitle,$wgUser,$oldid;
+		if($wgTitle->isProtected() && !$wgUser->isSysop()) return $head;
+		if($oldid) return $head;
+		$url = wfLocalUrlE($wgTitle->getPrefixedText(),"action=edit&section=$section");
+		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
 	}
 
 	function editSectionLink($section) {
@@ -1735,7 +1749,7 @@ class Skin {
 		global $wgTitle,$wgUser,$oldid;
 		if($wgTitle->isProtected() && !$wgUser->isSysop()) return "";
 		if($oldid) return "";
-		$editurl="&section={$section}";		
+		$editurl="&section={$section}";
 		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
 		return "<div style=\"float:right;margin-left:5px;\"><small>[".$url."]</small></div>";
 
