@@ -103,13 +103,13 @@ function wfSpecialWatchlist()
 		while( $s = wfFetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
 			$t = $t->getPrefixedText();
-			$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\">" .
+			$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
 				$sk->makeKnownLink( $t, $t ) .
 				"</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" .
 			"<input type='submit' name='remove' value='" .
-			wfMsg( "removechecked" ) . "'>\n" .
+			wfMsg( "removechecked" ) . "' />\n" .
 			"</form>\n" );
 		
 		return;
@@ -135,7 +135,7 @@ function wfSpecialWatchlist()
 	
 	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
-		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br>\n" );
+		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 	 
 
 	$sql = "SELECT
@@ -157,7 +157,7 @@ function wfSpecialWatchlist()
 		$note = wfMsg( "wlnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( round($days*24) ) );
 	else
 		$note = "";
-	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
+	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
 	$note = wlCutoffLinks( $days, $limit );
 	$wgOut->addHTML( "{$note}\n" );
 

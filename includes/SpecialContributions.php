@@ -84,7 +84,7 @@ function wfSpecialContributions( $par = "" )
 	  ($nCur + $nOld) <= $offlimit);
 
         $shm = wfMsg( "showhideminor", $mlink );
-	$wgOut->addHTML( "<br>{$sl} ($shm) \n");
+	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
 
 
 	if ( 0 == $nCur && 0 == $nOld ) {
