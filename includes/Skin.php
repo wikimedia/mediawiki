@@ -2301,10 +2301,8 @@ class Skin {
 			$s .= ') . . ';
 
 			# M and N (minor and new)
-			$M = wfMsg( 'minoreditletter' );
-			$N = wfMsg( 'newpageletter' );
-			if ( $rc_minor ) { $s .= ' <strong>'.$M.'</strong>'; }
-			if ( $rc_type == RC_NEW ) { $s .= '<strong>'.$N.'</strong>'; }
+			if ( $rc_minor ) { $s .= ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>'; }
+			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.wfMsg( "newpageletter" ).'</span>'; }
 
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been

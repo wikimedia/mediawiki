@@ -205,7 +205,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 	$d = $wgLang->timeanddate( $ts, true );
 
 	if ($isminor) {
-		$mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
+		$mflag = '<span class="minor">'.wfMsg( "minoreditletter" ).'</span> ';
 	} else {
 		$mflag = "";
 	}
