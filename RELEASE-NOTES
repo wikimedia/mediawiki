@@ -14,6 +14,7 @@ New features in 1.1:
 * XML-wrapped page source export with optional history:
   http://meta.wikipedia.org/wiki/XML_import_and_export
   (There is not yet an import function!)
+* "Magic words"
 
 Fixes and tweaks:
 * linkscc table caches link data for rendering; faster rebuildlinks.php
@@ -25,6 +26,20 @@ Fixes and tweaks:
 * Contributions offset and minor edit bugs fixed
 * Whatlinkshere now sorted alphabetically
 * Various small bugs fixed.
+
+Internal changes:
+* wfQuery has had a second parameter inserted, DB_READ or DB_WRITE. This value
+  is not actually used so far.
+* Partial code for categories and Smarty template-based skins is in the tree
+  but disabled.
+* Parts of Article.php have been moved to EditPage.php and ImagePage.php.
+
+New translations:
+* fi - Finnish
+* ia - Interlingua
+* no - Norwegian
+* sk - Slovak
+* ta - Tamil
 
 === Database changes ===
 
