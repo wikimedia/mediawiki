@@ -21,6 +21,9 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+die( "This import script is not currently maintained.
+If you need it you'll have to modify it as necessary.\n");
+
 if ( ! is_readable( "../LocalSettings.php" ) ) {
 	print "A copy of your installation's LocalSettings.php\n" .
 	  "must exist in the source directory.\n";
