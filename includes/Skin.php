@@ -783,7 +783,7 @@ class Skin {
 			}
 		}
 
-	        if (isset($wgMaxCredits) && $wgMaxCredits > 0) {
+	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
 		    require_once("Credits.php");
 		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits);
 		} else {

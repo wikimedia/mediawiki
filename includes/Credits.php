@@ -40,8 +40,6 @@ function showCreditsPage($article)
 	$s = getCredits($article, -1);
     }
 
-    wfDebug("Credits: '$s'\n");
-    
     $wgOut->addHTML( $s );
     
     wfProfileOut( $fname );
@@ -70,14 +68,17 @@ function getAuthorCredits($article) {
     if ($last_author == 0) {
 	$author_credit = wfMsg('anonymous');
     } else {
+	
 	$real_name = User::whoIsReal($last_author);
+	$user_name = User::whoIs($last_author);
+	
 	if (!empty($real_name)) {
-	    $author_credit = $real_name;
+	    $author_credit = creditLink($user_name, $real_name);
 	} else {
-	    $author_credit = wfMsg('siteuser', User::whoIs($last_author));
+	    $author_credit = wfMsg('siteuser', creditLink($user_name));
 	}
     }
-    
+
     $timestamp = $article->getTimestamp();
     if ($timestamp) {
 	$d = $wgLang->timeanddate($article->getTimestamp(), true);
@@ -101,9 +102,9 @@ function getContributorCredits($article, $cnt) {
     foreach ($contributors as $user_id => $user_parts) {
 	if ($user_id != 0) {
 	    if ($wgAllowRealName && !empty($user_parts[1])) {
-		$real_names[$user_id] = $user_parts[1];
+		$real_names[$user_id] = creditLink($user_parts[0], $user_parts[1]);
 	    } else {
-		$user_names[$user_id] = $user_parts[0];
+		$user_names[$user_id] = creditLink($user_parts[0]);
 	    }
 	}
     }
@@ -124,6 +125,13 @@ function getContributorCredits($article, $cnt) {
     $creds = $wgLang->listToText(array($real, $user, $anon));
     
     return wfMsg('othercontribs', $creds);
+}
+
+function creditLink($user_name, $link_text = '') {
+    global $wgUser, $wgLang;
+    $skin = $wgUser->getSkin();
+    return $skin->makeKnownLink($wgLang->getNsText(NS_USER) . ":" . $user_name,
+				(empty($link_text)) ? $user_name : $link_text);
 }
 
 ?>
