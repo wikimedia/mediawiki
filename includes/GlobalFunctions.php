@@ -854,8 +854,16 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 }
 
 /**
- * @todo document
- * @private
+ * Checks if a given MIME type matches any of the keys in the given
+ * array. Basic wildcards are accepted in the array keys.
+ *
+ * Returns the matching MIME type (or wildcard) if a match, otherwise
+ * NULL if no match.
+ *
+ * @param string $type
+ * @param array $avail
+ * @return string
+ * @access private
  */
 function mimeTypeMatch( $type, $avail ) {
 	if( array_key_exists($type, $avail) ) {
@@ -873,6 +881,15 @@ function mimeTypeMatch( $type, $avail ) {
 }
 
 /**
+ * Returns the 'best' match between a client's requested internet media types
+ * and the server's list of available types. Each list should be an associative
+ * array of type to preference (preference is a float between 0.0 and 1.0).
+ * Wildcards in the types are acceptable.
+ *
+ * @param array $cprefs Client's acceptable type list
+ * @param array $sprefs Server's offered types
+ * @return string
+ *
  * @todo FIXME: doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
  */
@@ -923,31 +940,13 @@ function wfArrayLookup( $a, $b ) {
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
-
 /**
- * Ideally we'd be using actual time fields in the db
- * @todo fixme
- */
-function wfTimestamp2Unix( $ts ) {
-	return gmmktime( ( (int)substr( $ts, 8, 2) ),
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-		  (int)substr( $ts, 0, 4 ) );
-}
-
-/**
- * @todo document
- */
-function wfUnix2Timestamp( $unixtime ) {
-	return gmdate( 'YmdHis', $unixtime );
-}
-
-/**
- * @todo document
+ * Convenience function; returns MediaWiki timestamp for the present time.
+ * @return string
  */
 function wfTimestampNow() {
 	# return NOW
-	return gmdate( 'YmdHis' );
+	return wfTimestamp( TS_MW, time() );
 }
 
 /**

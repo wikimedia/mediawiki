@@ -115,7 +115,7 @@ class RawPage {
 		$res = $dbr->query( $sql, $fname );
 		if( $s = $dbr->fetchObject( $res ) ) {
 			$rawtext = Article::getRevisionText( $s, "" );
-			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( $s->timestamp )).' GMT' );
+			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp( TS_UNIX, $s->timestamp )).' GMT' );
 			return $rawtext;
 		} else {
 			return '';
