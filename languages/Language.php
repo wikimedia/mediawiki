@@ -1278,6 +1278,7 @@ Type the name of the user in the box and press the button to make the user an ad
 "makesysopsubmit"	=> "Make this user into a sysop",
 "makesysopok"		=> "<b>User '$1' is now a sysop</b>",
 "makesysopfail"		=> "<b>User '$1' could not be made into a sysop. (Did you enter the name correctly?)</b>",
+"setbureaucratflag" => "Set bureaucrat flag",
 
 # Move page
 #

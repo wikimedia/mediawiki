@@ -56,6 +56,15 @@ class MakesysopForm {
 				</td>
 			</tr>" 
 		);
+		$makeburo = wfMsg( "setbureaucratflag" );
+		$wgOut->addHTML(
+			"<tr>
+				<td>&nbsp;</td><td align=left>
+					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
+				</td>
+			</tr>"
+		);
+
 		$mss = wfMsg( "makesysopsubmit" );
 		$wgOut->addHTML(
 			"<tr>
@@ -69,7 +78,9 @@ class MakesysopForm {
 
 	function doSubmit()
 	{
-		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wgDBname, $wgMemc;
+		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
+		global $wgDBname, $wgMemc;
+		
 		$parts = explode( "@", $wpMakesysopUser );
 		if( count( $parts ) == 2){
 			$username = addslashes( $parts[0] );
@@ -94,6 +105,9 @@ class MakesysopForm {
 			$rights = explode(",", $row->user_rights );
 			if(! in_array("sysop", $rights ) ){
 				$rights[] = "sysop";
+			}
+			if ( $wpSetBureaucrat && !in_array( "bureaucrat", $rights ) ) {
+				$rights[] = "bureaucrat";
 			}
 			$newrights = addslashes( implode( ",", $rights ) );
 		} else {
