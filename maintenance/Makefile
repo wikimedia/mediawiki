@@ -1,3 +1,4 @@
+.PHONY: help make test
 help:
 	# Run 'make test' to run the parser tests.
 	# Run 'make doc' to run the phpdoc generation.

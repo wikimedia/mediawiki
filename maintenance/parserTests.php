@@ -293,6 +293,7 @@ class ParserTest {
 			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
+			'wgMaxTocLevel' => 999,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
@@ -445,7 +446,7 @@ class ParserTest {
 		$outfile = "$prefix-actual";
 		$this->dumpToFile( $output, $outfile );
 		
-		$diff = `diff -u $infile $outfile`;
+		$diff = `diff -au $infile $outfile`;
 		unlink( $infile );
 		unlink( $outfile );
 		
