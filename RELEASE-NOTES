@@ -206,7 +206,7 @@ If upgrading from an older release, see the file UPGRADING.
   in diff-view
 * Use user's local timezone in Special:Log display
 * Show filename for images in gallery by default (restore beta 3 behaviour)
-* (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks
+* (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
 
 === Caveats ===
 
