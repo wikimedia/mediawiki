@@ -225,6 +225,8 @@
 "headline_tip"=>"Ebene 2 Überschrift",
 "math_sample"=>"Formel hier einfügen",
 "math_tip"=>"Mathematische Formel (LaTeX)",
+"nowiki_sample"=>"Unformatierten Text hier einfügen",
+"nowiki_tip"=>"Unformatierter Text",
 "image_sample"=>"Beispiel.jpg",
 "image_tip"=>"Bild-Verweis",
 "media_sample"=>"Beispiel.mp3",
