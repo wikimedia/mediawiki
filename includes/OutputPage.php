@@ -1036,32 +1036,6 @@ $t[] = "</table>" ;
 				if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 					array_push( $this->mLanguageLinks, $nt->getPrefixedText() );
 					$s .= $trail;
-/* CHECK MERGE @@@
-				} else if ( "media" == $pre ) {
-					$nt = Title::newFromText( $suf );
-					$name = $nt->getDBkey();
-					if ( "" == $text ) { $text = $nt->GetText(); }
-
-					$wgLinkCache->addImageLink( $name );
-					$s .= $sk->makeMediaLink( $name,
-					  wfImageUrl( $name ), $text );
-					$s .= $trail;
-				} else if ( isset($wgUseCategoryMagic) && $wgUseCategoryMagic && $pre == wfMsg ( "category" ) ) {
-					$l = $sk->makeLink ( $pre.":".ucfirst( $m[2] ), ucfirst ( $m[2] ) ) ;
-					array_push ( $this->mCategoryLinks , $l ) ;
-					$s .= $trail ;
-				} else {
-					$l = $wgLang->getLanguageName( $pre );
-					if ( "" == $l or !$wgInterwikiMagic or Namespace::isTalk( $wgTitle->getNamespace() ) ) {
-						if ( "" == $text ) { 
-							$text = $link; 
-						}
-						$s .= $sk->makeLink( $link, $text, "", $trail );
-					} else if ( $pre != $wgLanguageCode ) {
-						array_push( $this->mLanguageLinks, "$pre:$suf" );
-						$s .= $trail;
-					}
-*/
 					continue;
 				}
 				if( $ns == $image ) {
@@ -1069,15 +1043,6 @@ $t[] = "</table>" ;
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
-/* CHECK MERGE @@@
-#			} else if ( 0 == strcmp( "##", substr( $link, 0, 2 ) ) ) {
-#				$link = substr( $link, 2 );
-#				$s .= "<a name=\"{$link}\">{$text}</a>{$trail}";
-			} else {
-				if ( "" == $text ) { $text = $link; }
-				# Hotspot: 
-				$s .= $sk->makeLink( $link, $text, "", $trail );
-*/
 			}
 			if( $ns == $media ) {
 				$s .= $sk->makeMediaLinkObj( $nt, $text ) . $trail;
