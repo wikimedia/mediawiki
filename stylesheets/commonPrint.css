@@ -25,6 +25,7 @@ a.new{ color:#ba0000; text-decoration:none; }
 .toctoggle, .editsection {
 	font-size: smaller;
 }
+
 /* images */
 div.floatright { 
     float: right; 
@@ -53,25 +54,27 @@ div.thumb div {
     padding: 3px !important;
     background-color:#f9f9f9;
     font-size: 94%;
+    text-align: center;
 }
 div.thumb div a img {
     border:1px solid #cccccc;
 }
-div div.thumbcaption {
+div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
-    padding: 0.3em 0 0.1em 0 !important;
+    padding: 0.3em 0 0.1em 0;
 }
-div.magnify {
+div.magnify { display: none; }
+div.tright {
     float: right;
-    border: none !important;
-    background: none !important;
+    border-width: 0.5em 0 0.8em 1.4em;
 }
-div.magnify a, div.magnify img {
-    display: block;
-    border: none !important;
-    background: none !important;
+div.tleft {
+    float: left;
+    margin-right:0.5em;
+    border: 0.5em 1.4em 0.8em 0;
 }
+
 /* table standards */
 table.rimage {
     float:right; 
