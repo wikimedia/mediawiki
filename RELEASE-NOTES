@@ -227,6 +227,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1132) Fix concatenation of link lists in refreshLinks
 * (bug 1101) Fix memory leak in refreshLinks
 * (bug 1339) Fix order of @imports in Cologne Blue CSS
+* Don't try to create links without namespaces ([[Category:]] link bug)
 
 === Caveats ===
 
