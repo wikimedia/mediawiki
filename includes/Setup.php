@@ -193,6 +193,10 @@ if ( !$wgAllowSysopQueries ) {
 	SpecialPage::removePage( "Asksql" );
 }
 
+# Placeholders in case of DB error
+$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
+$wgArticle = new Article($wgTitle);
+
 # Extension setup functions
 # Entries should be added to this variable during the inclusion 
 # of the extension file. This allows the extension to perform 

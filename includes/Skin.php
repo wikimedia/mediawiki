@@ -292,7 +292,7 @@ class Skin {
 		global $wgUser, $wgOut, $wgSiteNotice;
 
 		if( $wgSiteNotice ) {
-			$note = "\n<div id='notice' style='font-weight: bold; color: red; text-align: center'>$wgSiteNotice</div>\n";
+			$note = "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
 		} else {
 			$note = "";
 		}

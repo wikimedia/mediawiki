@@ -62,7 +62,7 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
+			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
 			
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
@@ -172,7 +172,8 @@
 
 			$tpl->setRef( "debug", &$out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
-
+			$tpl->set( "sitenotice", $wgSiteNotice );
+			
 			$tpl->setRef( "bodytext", &$out->mBodytext );
 
 			$language_urls = array();
