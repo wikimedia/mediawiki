@@ -10,7 +10,7 @@
 
 /** */
 require_once( "commandLine.inc" );
-require_once( "./rebuildrecentchanges.inc" );
+require_once( "rebuildrecentchanges.inc" );
 $wgTitle = Title::newFromText( "Rebuild recent changes script" );
 
 $wgDBuser			= $wgDBadminuser;
