@@ -279,7 +279,7 @@ if( !$wgUser->mDataLoaded ) {
 }
 
 // wgLanguageCode now specifically means the UI language
-$wgLanguageCode = $wgUser->getOption('language2');
+$wgLanguageCode = $wgUser->getOption('language');
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 
