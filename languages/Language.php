@@ -1363,8 +1363,7 @@ class Language {
 	/* by default we just return base form */
 	function getMonthNameGen( $key )
 	{
-		global $wgMonthNamesEn;
-		return $wgMonthNamesEn[$key-1];
+		return $this->getMonthName( $key );
 	}
 
 	function getMonthAbbreviation( $key )
