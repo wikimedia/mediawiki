@@ -463,8 +463,8 @@ pages for purposes of page relevancy ranking.
 * Installation fixes for running under IIS
 * (bug 1556) login page tab order. "remember" checkbox now come after password.
 * SQL debug log fixlets
+* (bug 1815) Fix namespace in old revision display with mismatched title
 
->>>>>>> 1.40.2.211
 
 === Caveats ===
 

@@ -422,7 +422,7 @@ class Article {
 
 			if( $this->mTitle->getNamespace() != $s->old_namespace ||
 				$this->mTitle->getDBkey() != $s->old_title ) {
-				$oldTitle = Title::makeTitle( $s->old_namesapce, $s->old_title );
+				$oldTitle = Title::makeTitle( $s->old_namespace, $s->old_title );
 				$this->mTitle = $oldTitle;
 				$wgTitle = $oldTitle;
 			}
