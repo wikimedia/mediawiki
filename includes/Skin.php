@@ -1026,10 +1026,12 @@ class Skin extends Linker {
 		global $wgTitle, $wgContLang;
 
 		if ( $wgTitle->userCanMove() ) {
-			$s = $this->makeKnownLink( $wgContLang->specialPage( 'Movepage' ),
+			return $this->makeKnownLink( $wgContLang->specialPage( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
-		} // no message if page is protected - would be redundant
-		return $s;
+		} else {
+			// no message if page is protected - would be redundant
+			return '';
+		}
 	}
 
 	function historyLink() {
