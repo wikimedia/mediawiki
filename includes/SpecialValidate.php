@@ -254,7 +254,7 @@ class Validation
 	# Show statistics for the different versions of a single article
 	function getPageStatistics ( $article_title = "" )
 		{
-		global $wgLang, $wgUser ;
+		global $wgLang, $wgUser , $wgOut ;
 		$validationtypes = $wgLang->getValidationTypes() ;
 		if ( $article_title == "" ) $article_title = $_GET['article_title'] ;
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
@@ -271,8 +271,10 @@ class Validation
 			}
  
 		# Generating HTML
-		$html = "<h1>Page validation statistics</h1>\n" ;
-
+		$title = Title::newFromDBkey ( $article_title ) ;
+		$wgOut->setPageTitle ( wfMsg ( 'val_page_validation_statistics' , $title->getText() ) ) ;
+#		$html = "<h1>" . wfMsg ( 'val_page_validation_statistics' , $title->getText() ) . "</h1>\n" ;
+		$html = "" ;
 		$skin = $wgUser->getSkin() ;
 		$listurl = $skin->makeSpecialURL ( "validate" , "mode=list_page" ) ;
 		$html .= "<a href=\"{$listurl}\">" . wfMsg('val_article_lists') . "</a><br><br>\n" ;
@@ -365,6 +367,117 @@ class Validation
 		
 	function getArticleList ()
 		{
+		global $wgLang , $wgOut ;
+		$validationtypes = $wgLang->getValidationTypes() ;
+		$wgOut->setPageTitle ( wfMsg ( 'val_article_lists' ) ) ;
+		$html = "" ;
+		
+		# Choices
+		$choice = array () ;
+		$maxw = 0 ;
+		foreach ( $validationtypes AS $idx => $data )
+			{
+			$x = explode ( "|" , $data , 4 ) ;
+			if ( $x[3] > $maxw ) $maxw = $x[3] ;
+			}
+		foreach ( $validationtypes AS $idx => $data )
+			{
+			$choice[$idx] = array () ;
+			for ( $a = 0 ; $a < $maxw ; $a++ )
+				{
+				$var = "cb_{$idx}_{$a}" ;
+				if ( isset ( $_POST[$var] ) ) $choice[$idx][$a] = $_POST[$var] ; # Selected
+				else if ( !isset ( $_POST["doit"] ) ) $choice[$idx][$a] = 1 ; # First time
+				else $choice[$idx][$a] = 0 ; # De-selected
+				}
+			}
+
+		
+		# The form
+		$html .= "<form method=post>\n" ;
+		$html .= "<table border=1 cellspacing=0 cellpadding=2>" ;
+		foreach ( $validationtypes AS $idx => $data )
+			{
+			$x = explode ( "|" , $data , 4 ) ;
+			
+			$html .= "<tr>" ;
+			$html .= "<th nowrap>{$x[0]}</th>" ;
+			$html .= "<td align=right nowrap>{$x[1]}</td>" ;
+
+			for ( $a = 0 ; $a < $maxw ; $a++ )
+				{
+				if ( $a < $x[3] )
+					{
+					$td = "<input type=checkbox name='cb_{$idx}_{$a}' value=1" ;
+					if ( $choice[$idx][$a] == 1 ) $td .= " checked" ;
+					$td .= ">" ;
+					}
+				else $td = '' ;
+				$html .= "<td>{$td}</td>" ;
+				}
+
+			$html .= "<td nowrap>{$x[2]}</td>" ;
+			$html .= "</tr>\n" ;
+			}
+		$html .= "<tr><td colspan=" . ( $maxw + 2 ) . "></td>\n" ;
+		$html .= "<td align=right valign=center><input type=submit name=doit value='" . wfMsg ( 'ok' ) . "'></td></tr>" ;
+		$html .= "</table>\n" ;
+		$html .= "</form>\n" ;
+
+		# The query
+		$articles = array() ;
+		$sql = "SELECT DISTINCT val_title,val_timestamp,val_type,avg(val_value) AS avg FROM validate GROUP BY val_title,val_timestamp,val_type" ;
+		$res = wfQuery( $sql, DB_READ );
+		while( $s = wfFetchObject( $res ) ) $articles[$s->val_title][$s->val_timestamp][$s->val_type] = $s ;
+
+		# The list
+		$html .= "<ul>\n" ;
+		foreach ( $articles AS $dbkey => $timedata )
+			{
+			$title = Title::newFromDBkey ( $dbkey ) ;
+			$out = array () ;
+			krsort ( $timedata ) ;
+			
+			foreach ( $timedata AS $timestamp => $typedata )
+				{
+				$showit = true ;
+				foreach ( $typedata AS $type => $data )
+					{
+					$avg = intval ( $data->avg + 0.5 ) ;
+					if ( $choice[$type][$avg] == 0 ) $showit = false ;
+					}
+				if ( $showit )
+					{
+					$out[] = "<li>" . $this->getVersionLink ( $title , $timestamp ) . "</li>\n" ;
+					}
+				}
+				
+			if ( count ( $out ) > 0 )
+				{
+				$html .= "<li>\n" ;
+				$html .= $title->getText() . "\n" ;
+				$html .= "<ul>\n" ;			
+				$html .= implode ( "\n" , $out ) ;
+				$html .= "</ul>\n</li>\n" ;
+				}
+			}
+		$html .= "</ul>\n" ;
+		return $html ;
+		}
+
+	function getVersionLink ( &$title , $timestamp )
+		{
+		$dbkey = $title->getDBkey () ;
+		$this->find_this_version ( $dbkey , $timestamp , $table_id , $table_name ) ;
+		if ( $table_name == 'cur' ) $link = $title->getLocalURL( "" ) ;
+		else $link = $title->getLocalURL( "action=validate&timestamp={$table_id}" ) ;
+		$linktitle = wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp2Unix( $timestamp ) ) ) ;
+		$link = "<a href=\"{$link}\">" . $linktitle . "</a>" ;
+		if ( $table_name == 'cur' ) $link .= " (" . wfMsg ( 'val_this_is_current_version' ) . ")" ;
+		
+		$vlink = wfMsg ( 'val_tab' ) ;
+		$vlink = "[<a href=\"" . $title->getLocalURL( "action=validate&timestamp={$timestamp}" ) . "\">{$vlink}</a>] " . $link ;
+		return $vlink ;
 		}
 
 	}
