@@ -204,7 +204,7 @@ if( defined( "MEDIAWIKI" ) ) {
 			$tpl->set( "reporttime", $out->reportTime() );
 			$tpl->set( "sitenotice", $wgSiteNotice );
 
-			$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
+			$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 			$out->mBodytext .= $printfooter ;
 			$tpl->setRef( "bodytext", $out->mBodytext );
 
@@ -603,7 +603,6 @@ if( defined( "MEDIAWIKI" ) ) {
 			$s .= wfMsg(ucfirst($this->skinname).'.js');
 			return $s;
 		}
-
 	}
 
 	class SkinDaVinci extends SkinPHPTal {
