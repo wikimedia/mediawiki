@@ -145,7 +145,7 @@ function convertLinks() {
 		$dbConn->query( "RENAME TABLE links TO links_backup, links_temp TO links", DB_WRITE );
 		print " done.\n\n";
 		
-		$dbConn->close();
+		# $dbConn->close();
 		print "Conversion complete. The old table remains at links_backup;\n";
 		print "delete at your leisure.\n";
 	} else {
