@@ -154,9 +154,10 @@ class SqlQueryForm {
 					$r .= "<tr>";
 					foreach ( $k as $x ) {
 						$o = $y->$x ;
-						if ( $x == "cur_title" or $x == "rc_title") {
+						if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
 							$namespace = 0;
 							if( $x == "cur_title" ) $namespace = $y->cur_namespace;
+							if( $x == "old_title" ) $namespace = $y->old_namespace;
 							if( $x == "rc_title" ) $namespace = $y->rc_namespace;
 							if( $namespace ) $o = $wgContLang->getNsText( $namespace ) . ":" . $o;
 							$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .

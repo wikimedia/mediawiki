@@ -88,7 +88,7 @@ class PageArchive {
 		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
 		global  $wgUseSquid, $wgInternalServer, $wgLinkCache;
 
-		$fname = "undelete";
+		$fname = "doUndeleteArticle";
 
 		$dbw =& wfGetDB( DB_MASTER );
 		extract( $dbw->tableNames( 'cur', 'archive', 'old' ) );
@@ -134,9 +134,9 @@ class PageArchive {
 			# We should merge.
 		}
 		
-		$sql = "INSERT INTO $old (old_articleid,old_text," .
+		$sql = "INSERT INTO $old (old_namespace,old_title,old_text," .
 		  "old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp,old_minor_edit," .
-		  "old_flags) SELECT ".$this->title->getArticleID().",ar_text,ar_comment," .
+		  "old_flags) SELECT ar_namespace,ar_title,ar_text,ar_comment," .
 		  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,ar_flags " .
 		  "FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
 		$dbw->query( $sql, $fname );
