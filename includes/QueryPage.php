@@ -18,10 +18,13 @@ class QueryPage {
 	#
 	# Note that the query itself should return the following four columns:
 	# 'type' (your special page's name), 'namespace', 'title', and 'value'
-	# *in that order*. 'value' is used for sorting. These may be stored in
-	# the querycache table for expensive queries, and that cached data will
-	# be returned sometimes, so the presence of extra fields can't be
-	# relied upon.
+	# *in that order*. 'value' is used for sorting.
+	#
+	# These may be stored in the querycache table for expensive queries,
+	# and that cached data will be returned sometimes, so the presence of
+	# extra fields can't be relied upon. The cached 'value' column will be
+	# an integer; non-numeric values are useful only for sorting the initial
+	# query.
 	#
 	# Don't include an ORDER or LIMIT clause, this will be added.
 
