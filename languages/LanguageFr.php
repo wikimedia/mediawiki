@@ -21,12 +21,12 @@ require_once( "LanguageUtf8.php" );
 	NS_IMAGE_TALK		=> "Discussion_Image",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "Discussion_MediaWiki",
-	NS_TEMPLATE		=> "Template",
-	NS_TEMPLATE_TALK	=> "Discussion_Template",
+	NS_TEMPLATE		=> "Modèle",
+	NS_TEMPLATE_TALK	=> "Discussion_Modèle",
 	NS_HELP			=> "Aide",
 	NS_HELP_TALK		=> "Discussion_Aide",
-	NS_CATEGORY		=> "Categorie",
-	NS_CATEGORY_TALK	=> "Discussion_Categorie"
+	NS_CATEGORY		=> "Catégorie",
+	NS_CATEGORY_TALK	=> "Discussion_Catégorie"
 );
 
 /* private */ $wgQuickbarSettingsFr = array(
