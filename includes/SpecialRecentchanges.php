@@ -17,7 +17,10 @@ function wfSpecialRecentchanges( $par )
 	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
-	$wgOut->checkLastModified( $s->lastmod );
+	if( $wgOut->checkLastModified( $s->lastmod ) ){
+		# Client cache fresh and headers sent, nothing more to do.
+		return;
+	}
 
 	$rctext = wfMsg( "recentchangestext" );
 	

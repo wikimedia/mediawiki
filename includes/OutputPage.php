@@ -13,6 +13,7 @@ class OutputPage {
 	var $mDTopen, $mLastSection; # Used for processing DL, PRE
 	var $mLanguageLinks, $mSupressQuickbar;
 	var $mOnloadHandler;
+	var $mDoNothing;
 
 	function OutputPage()
 	{
@@ -27,6 +28,7 @@ class OutputPage {
 		$this->mLanguageLinks = array();
                 $this->mCategoryLinks = array() ;
 		$this->mAutonumber = 0;
+		$this->mDoNothing = false;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
@@ -38,6 +40,10 @@ class OutputPage {
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addLink( $rel, $rev, $target ) { array_push( $this->mLinktags, array( $rel, $rev, $target ) ); }
 
+	# checkLastModified tells the client to use the client-cached page if
+	# possible. If sucessful, the OutputPage is disabled so that
+	# any future call to OutputPage->output() have no effect. The method
+	# returns true iff cache-ok headers was sent. 
 	function checkLastModified ( $timestamp )
 	{
 		global $wgLang, $wgCachePages, $wgUser;
@@ -74,8 +80,8 @@ class OutputPage {
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 				header( "Last-Modified: {$lastmod}" );			
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
-				$this->reportTime(); # For profiling
-				wfAbruptExit();
+				$this->disable();
+				return true;
 			} else {
 				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->mLastModified = $lastmod;
@@ -98,6 +104,7 @@ class OutputPage {
 	function isPrintable() { return $this->mPrintable; }
 	function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
 	function getOnloadHandler() { return $this->mOnloadHandler; }
+	function disable() { $this->mDoNothing = true; }
 
 	function getLanguageLinks() {
 		global $wgTitle, $wgLanguageCode;
@@ -225,7 +232,9 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		
+		if( $this->mDoNothing ){
+			return;
+		}
 		$fname = "OutputPage::output";
 		wfProfileIn( $fname );
 		
@@ -310,10 +319,11 @@ class OutputPage {
 		$wgOutputEncoding = $wgInputEncoding;
 	}
 
+	# Returns a HTML comment with the elapsed time since request. 
+	# This method has no side effects.
 	function reportTime()
 	{
-		global $wgRequestTime, $wgDebugLogFile;
-		global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
+		global $wgRequestTime;
 
 		list( $usec, $sec ) = explode( " ", microtime() );
 		$now = (float)$sec + (float)$usec;
@@ -321,24 +331,6 @@ class OutputPage {
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
-
-		if ( "" != $wgDebugLogFile ) {
-			$prof = wfGetProfilingOutput( $start, $elapsed );
-			if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
-				$forward = " forwarded for " . $_SERVER['HTTP_X_FORWARDED_FOR'];
-			if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
-				$forward .= " client IP " . $_SERVER['HTTP_CLIENT_IP'];
-			if( !empty( $_SERVER['HTTP_FROM'] ) )
-				$forward .= " from " . $_SERVER['HTTP_FROM'];
-			if( $forward )
-				$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
-			if($wgUser->getId() == 0)
-				$forward .= " anon";
-			$log = sprintf( "%s\t%04.3f\t%s\n",
-			  gmdate( "YmdHis" ), $elapsed,
-			  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
-			error_log( $log . $prof, 3, $wgDebugLogFile );
-		}
 		$com = sprintf( "<!-- Time since request: %01.2f secs. -->",
 		  $elapsed );
 		return $com;
