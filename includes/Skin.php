@@ -2607,7 +2607,7 @@ class Skin {
 			return $head;
 		}
 		$url = $wgTitle->escapeLocalURL( 'action=edit&section='.$section );
-		return '<span oncontextmenu="document.location="'.$url.'";return false;">'.$head.'</span>';
+		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
 	function editSectionLink( $section ) {
