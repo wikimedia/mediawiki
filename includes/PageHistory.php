@@ -15,7 +15,7 @@ include_once ( "SpecialValidate.php" ) ;
  
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
-	var $lastline, $lastdate;
+	var $lastdate;
 	var $linesonpage;
 	function PageHistory( $article ) {
 		$this->mArticle =& $article;
@@ -88,7 +88,7 @@ class PageHistory {
 			$limits .= " LIMIT $limitplus ";
 
 		$sql = "SELECT rev_id,rev_user," .
-		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit ".
+		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,rev_deleted ".
 		  "FROM $revision $use_index " .
 		  "WHERE rev_page=$id " .
 		  $offsets .
@@ -133,24 +133,12 @@ class PageHistory {
 				$bits);
 
 		$s = $numbar;
-		if($this->linesonpage > 0) {
-			$submitpart1 = '<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
-			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions').'"';
-			$this->submitbuttonhtml1 = $submitpart1 . ' />';
-			$this->submitbuttonhtml2 = $submitpart1 . ' id="historysubmit" />';
-		}
 		$s .= $this->beginHistoryList();
 		$counter = 1;
-		foreach($pages as $line) {
-			$s .= $this->historyLine(
-				$line->rev_timestamp, $line->rev_user,
-				$line->rev_user_text, $namespace,
-				$title, $line->rev_id,
-				$line->rev_comment, ( $line->rev_minor_edit > 0 ),
-				$counter,
-				$notificationtimestamp,
-				($counter == 1 && $offset == 0)
-			);
+		foreach($pages as $i => $line) {
+			$first = ($counter == 1 && $offset == 0);
+			$next = isset( $pages[$i + 1] ) ? $pages[$i + 1 ] : null;
+			$s .= $this->historyLine( $line, $next, $counter, $notificationtimestamp, $first );
 			$counter++;
 		}
 		$s .= $this->endHistoryList( !$atend );
@@ -167,27 +155,39 @@ class PageHistory {
 
 	function beginHistoryList() {
 		global $wgTitle;
-		$this->lastdate = $this->lastline = '';
+		$this->lastdate = '';
 		$s = '<p>' . wfMsg( 'histlegend' ) . '</p>';
 		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
 		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey());
 		$s .= "<input type='hidden' name='title' value=\"{$prefixedkey}\" />\n";
-		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
+		$s .= $this->submitButton();
 		$s .= '<ul id="pagehistory">';
 		return $s;
 	}
 
-	function endHistoryList( $skip = false ) {
+	function endHistoryList() {
 		$last = wfMsg( 'last' );
 
-		$s = $skip ? '' : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
-		$s .= '</ul>';
-		$s .= !empty($this->submitbuttonhtml2) ? $this->submitbuttonhtml2 : '';
+		$s = '</ul>';
+		$s .= $this->submitButton( array( 'id' => 'historysubmit' ) );
 		$s .= '</form>';
 		return $s;
 	}
+	
+	function submitButton( $bits = array() ) {
+		return ( $this->linesonpage > 0 )
+			? wfElement( 'input', array_merge( $bits,
+				array(
+					'class'     => 'historysubmit',
+					'type'      => 'submit',
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'value'     => wfMsg( 'compareselectedversions' ),
+				) ) )
+			: '';
+	}
 
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '', $notificationtimestamp = false, $latest = false ) {
+	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false ) {
 		global $wgLang, $wgContLang;
 
 		static $message;
@@ -197,65 +197,130 @@ class PageHistory {
 			}
 		}
 		
-		if ( $oid && $this->lastline ) {
-			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->mSkin->makeKnownLinkObj(
-			  $this->mTitle, $message['last'], "diff=\\1&oldid={$oid}",'' ,'' ,' tabindex="'.$counter.'"' ), $this->lastline );
-		} else {
-			$ret = '';
-		}
-		$dt = $wgLang->timeanddate( $ts, true );
+		$link = $this->revLink( $row );
 
-		if ( $oid ) {
-			$q = 'oldid='.$oid;
-		} else {
-			$q = '';
-		}
-		$link = $this->mSkin->makeKnownLinkObj( $this->mTitle, $dt, $q );
-
-		if ( 0 == $u ) {
+		if ( 0 == $row->rev_user ) {
 			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );
 			$ul = $this->mSkin->makeKnownLinkObj( $contribsPage,
-				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
+				htmlspecialchars( $row->rev_user_text ),
+				'target=' . urlencode( $row->rev_user_text ) );
 		} else {
-			$userPage =& Title::makeTitle( NS_USER, $ut );
-			$ul = $this->mSkin->makeLinkObj( $userPage , htmlspecialchars( $ut ) );
+			$userPage =& Title::makeTitle( NS_USER, $row->rev_user_text );
+			$ul = $this->mSkin->makeLinkObj( $userPage , htmlspecialchars( $row->rev_user_text ) );
 		}
 
 		$s = '<li>';
-		if ( $oid && !$latest ) {
-			$curlink = $this->mSkin->makeKnownLinkObj( $this->mTitle, $message['cur'],
-			  'diff=0&oldid='.$oid );
-		} else {
-			$curlink = $message['cur'];
+		if( $row->rev_deleted ) {
+			$s .= '<span class="deleted">';
 		}
-		$arbitrary = '';
-		if( $this->linesonpage > 1) {
-			# XXX: move title texts to javascript
-			$checkmark = '';
-			if ( !$oid || $latest ) {
-				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.$message['selectolderversionfordiff'].'" />';
-				$checkmark = ' checked="checked"';
-			} else {
-				if( $counter == 2 ) $checkmark = ' checked="checked"';
-				$arbitrary = '<input type="radio" name="oldid" value="'.$oid.'" title="'.$message['selectolderversionfordiff'].'"'.$checkmark.' />';
-				$checkmark = '';
-			}
-			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.$message['selectnewerversionfordiff'].'"'.$checkmark.' />';
+		$curlink = $this->curLink( $row, $latest );
+		$lastlink = $this->lastLink( $row, $next, $counter );
+		$arbitrary = $this->diffButtons( $row, $latest, $counter );
+		$s .= "({$curlink}) ({$lastlink}) $arbitrary {$link} <span class='user'>{$ul}</span>";
+
+		if( $row->rev_minor_edit ) {
+			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), $message['minoreditletter'] );
 		}
-		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='user'>{$ul}</span>";
-		$s .= $isminor ? ' <span class="minor">'.$message['minoreditletter'].'</span>': '' ;
 
 
-		$s .= $this->mSkin->commentBlock( $c, $this->mTitle );
-		if ($notificationtimestamp && ($ts >= $notificationtimestamp)) {
+		$s .= $this->mSkin->commentBlock( $row->rev_comment, $this->mTitle );
+		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= wfMsg( 'updatedmarker' );
+		}
+		if( $row->rev_deleted ) {
+			$s .= "</span> " . htmlspecialchars( wfMsg( 'deletedrev' ) );
 		}
 		$s .= '</li>';
 
-		$this->lastline = $s;
-		return $ret;
+		return $s;
 	}
 
+	function revLink( $row ) {
+		global $wgUser, $wgLang;
+		$date = $wgLang->timeanddate( $row->rev_timestamp, true );
+		if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+			return $date;
+		} else {
+			return $this->mSkin->makeKnownLinkObj(
+				$this->mTitle,
+				$date,
+				'oldid='.$row->rev_id );
+		}
+	}
+	
+	function curLink( $row, $latest ) {
+		global $wgUser;
+		$cur = htmlspecialchars( wfMsg( 'cur' ) );
+		if( $latest
+			|| ( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) ) {
+			return $cur;
+		} else {
+			return $this->mSkin->makeKnownLinkObj(
+				$this->mTitle,
+				$cur,
+				'diff=0&oldid=' . $row->rev_id );
+		}
+	}
+	
+	function lastLink( $row, $next, $counter ) {
+		global $wgUser;
+		$last = htmlspecialchars( wfMsg( 'last' ) );
+		if( is_null( $next )
+			|| ( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) ) {
+			return $last;
+		} else {
+			return $this->mSkin->makeKnownLinkObj(
+			  $this->mTitle,
+			  $last,
+			  "diff={$next->rev_id}&oldid={$row->rev_id}",
+			  '',
+			  '',
+			  ' tabindex="'.$counter.'"' );
+		}
+	}
+	
+	function diffButtons( $row, $latest, $counter ) {
+		global $wgUser;
+		if( $this->linesonpage > 1) {
+			$radio = array(
+				'type'  => 'radio',
+				'value' => $row->rev_id,
+				'title' => wfMsg( 'selectolderversionfordiff' )
+			);
+			if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+				$radio['disabled'] = 'disabled';
+			}
+			
+			# XXX: move title texts to javascript
+			if ( $latest ) {
+				$first = wfElement( 'input', array_merge(
+					$radio,
+					array(
+						'style' => 'visibility:hidden',
+						'name'  => 'oldid' ) ) );
+				$checkmark = array( 'checked' => 'checked' );
+			} else {
+				if( $counter == 2 ) {
+					$checkmark = array( 'checked' => 'checked' );
+				} else {
+					$checkmark = array();
+				}
+				$first = wfElement( 'input', array_merge(
+					$radio,
+					$checkmark,
+					array( 'name'  => 'oldid' ) ) );
+				$checkmark = array();
+			}
+			$second = wfElement( 'input', array_merge(
+				$radio,
+				$checkmark,
+				array( 'name'  => 'diff' ) ) );
+			return $first . $second;
+		} else {
+			return '';
+		}
+	}
+	
 }
 
 ?>

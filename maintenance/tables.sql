@@ -70,6 +70,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_user_text varchar(255) binary NOT NULL default '',
   rev_timestamp char(14) binary NOT NULL default '',
   rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
+  rev_deleted tinyint(1) unsigned NOT NULL default '0',
   
   PRIMARY KEY rev_page_id (rev_page, rev_id),
   UNIQUE INDEX rev_id (rev_id),

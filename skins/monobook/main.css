@@ -1104,3 +1104,9 @@ span.changedby {
 	font-style:italic;
 	color:gray;
 }
+
+li span.deleted {
+	text-decoration: line-through;
+	color: #888;
+	font-style: italic;
+}

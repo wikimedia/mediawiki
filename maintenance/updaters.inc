@@ -36,6 +36,7 @@ $wgNewFields = array(
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
  	array( 'page',          'page_len',         'patch-page_len.sql' ),
+ 	array( 'revision',      'rev_deleted',      'patch-rev_deleted.sql' ),
 );
 
 function add_table( $name, $patch ) {
