@@ -71,7 +71,8 @@ class Validation
 		if ( $article_title == "" )
 			{
 			$article_title = $_GET['article'] ;
-			$heading = "<h1>" . $article->getPrefixedText() . "</h1>\n" ;
+#			$heading = "<h1>" . $article->getPrefixedText() . "</h1>\n" ;
+			$heading = "<h1>" . $article_title . "</h1>\n" ;
 			}
 		else $heading = "" ;
 		$article_time = "" ;
