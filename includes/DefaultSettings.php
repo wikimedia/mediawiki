@@ -618,6 +618,8 @@ $wgProfileLimit = 0.0; # Only record profiling info for pages that took longer t
 $wgProfileOnly = false; # Don't put non-profiling info into log file
 $wgProfileToDatabase = false; # Log sums from profiling into "profiling" table in db.
 $wgProfileSampleRate = 1; # Only profile every n requests when profiling is turned on
+$wgProfileCallTree = false; # If true, print a raw call tree instead of per-function report
+
 $wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
 $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut
 $wgDebugSquid = false; # Lots of debugging output from SquidUpdate.php
