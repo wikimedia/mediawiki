@@ -527,6 +527,12 @@ $wgMaxSquidPurgeTitles = 400;
 # When purging, use persistent connections and don't wait for the response
 $wgSquidFastPurge = true;
 
+/** HTCP multicast purging */
+$wgHTCPPort = 4827;
+$wgHTCPMulticastTTL = 1;
+# $wgHTCPMulticastAddress = "224.0.0.85";
+
+
 # Cookie settings:
 #   Set to set an explicit domain on the login cookies
 #   eg, "justthis.domain.org" or ".any.subdomain.net"
