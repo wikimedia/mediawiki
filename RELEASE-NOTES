@@ -278,6 +278,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1228) Fix double-escaping on &amp; sequences in [enclosed] URLs
 * (bug 1435) Fixed many CSS errors
 * (bug 1457) Fix XHTML validation on category column list
+* (bug 1458) Don't save if edit form submission is incomplete
 
 === Caveats ===
 
