@@ -110,7 +110,7 @@ class SkinPHPTal extends Skin {
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
 		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
-			global $wgMaxCredits, $wgShowCreditsIfMax;
+		global $wgMaxCredits, $wgShowCreditsIfMax;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
