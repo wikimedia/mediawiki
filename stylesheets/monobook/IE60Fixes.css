@@ -1,6 +1,6 @@
 /* 6.0 - only fixes */
 /* content area */ 
-
+body { font-family: Verdana, Arial, sans-serif; }
 /* workaround for various ie float bugs */
 #column-content { 
     float: none; 

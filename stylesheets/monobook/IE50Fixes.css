@@ -22,7 +22,7 @@
 }
 
 /* IE 5 & 5.5 interpret keyword sizes one off */
-body { font-size: xx-small; }
+body { font: xx-small Verdana, Arial, sans-serif; }
 /*
 ** the edit tabs
 */
