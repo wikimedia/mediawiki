@@ -620,6 +620,7 @@ function writeLocalSettings( $conf ) {
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
+	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
 	
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
@@ -703,6 +704,7 @@ if ( \$wgUseSmarty ) {
 
 \$wgLanguageCode = \"{$conf->LanguageCode}\";
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
+\$wgProxyKey = $proxyKey;
 
 ";
 }

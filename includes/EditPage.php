@@ -445,14 +445,16 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		# Fork the processes
 		if ( !$skip ) {
 			$title = Title::makeTitle( NS_SPECIAL, "Blockme" );
-			$url = $title->getFullURL();
+			$iphash = md5( $wgIP . $wgProxyKey );
+			$url = wfFullUrl( $title->getPrefixedURL(), "ip=$iphash" );
+
 			foreach ( $wgProxyPorts as $port ) {
 				$params = implode( " ", array(
-				  escapeshellarg( $wgProxyScriptPath ),
-				  escapeshellarg( $wgIP ),
-				  escapeshellarg( $port ),
-				  escapeshellarg( $url )
-				));
+							escapeshellarg( $wgProxyScriptPath ),
+							escapeshellarg( $wgIP ),
+							escapeshellarg( $port ),
+							escapeshellarg( $url )
+							));
 				exec( "php $params &>/dev/null &" );
 			}
 			# Set MemCached key
