@@ -499,4 +499,20 @@ function wfNumLink( $offset, $limit, $link, $query = "" )
 	return $s;
 }
 
+function wfClientAcceptsGzip() {
+	global $wgUseGzip;
+	if( $wgUseGzip ) {
+		# FIXME: we may want to blacklist some broken browsers
+		if( preg_match(
+			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+			$_SERVER["HTTP_ACCEPT_ENCODING"],
+			$m ) ) {
+			if( ( $m[1] == "q" ) && ( $m[2] == 0 ) ) return false;
+			wfDebug( " accepts gzip\n" );
+			return true;
+		}
+	}
+	return false;
+}
+
 ?>

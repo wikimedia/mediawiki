@@ -75,6 +75,12 @@ $wgMiserMode = false; # Disable database-intensive features
 $wgUseTeX = false;
 $wgProfiling = false; # Enable for more detailed by-function times in debug log
 
+# We can serve pages compressed in order to save bandwidth,
+# but this will increase CPU usage.
+# Requires zlib support enabled in PHP.
+$wgUseGzip = false;
+$wgCompressByDefault = true;
+
 # Which namespaces should support subpages?
 # See Language.php for a list of namespaces.
 #

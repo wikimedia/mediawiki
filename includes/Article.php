@@ -1537,12 +1537,25 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 	}
 
 	function loadFromFileCache() {
+		global $wgUseGzip;
 		wfDebug(" loadFromFileCache()\n");
-		readfile($this->fileCacheName());
+		$filename=$this->fileCacheName();
+		$filenamegz = "{$filename}.gz";
+		if( $wgUseGzip
+			&& wfClientAcceptsGzip()
+			&& file_exists( $filenamegz)
+			&& ( filemtime( $filenamegz ) >= filemtime( $filename ) ) ) {
+			wfDebug("  sending gzip\n");
+			header( "Content-Encoding: gzip" );
+			header( "Vary: Accept-Encoding" );
+			$filename = $filenamegz;
+		}
+		readfile( $filename );
 	}
 	
 	function saveToFileCache( $text ) {
-
+		global $wgUseGzip, $wgCompressByDefault;
+		
         wfDebug(" saveToFileCache()\n");
 		$filename=$this->fileCacheName();
 		$mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
@@ -1551,10 +1564,38 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		if(!file_exists($mydir2)) { mkdir($mydir2,0777); }			
 		$f = fopen( $filename, "w" );
 		if($f) {
+			$now = wfTimestampNow();
 			fwrite( $f, str_replace( "</html>",
-				"<!-- Cached " . wfTimestampNow() . " -->\n</html>",
+				"<!-- Cached $now -->\n</html>",
 				$text ) );
 			fclose( $f );
+			if( $wgUseGzip and $wgCompressByDefault ) {
+				$start = microtime();
+				wfDebug("  saving gzip\n");
+				$gzout = gzencode( str_replace( "</html>",
+						"<!-- Cached/compressed $now -->\n</html>",
+						$text ) );
+				if( $gzout === false ) {
+					wfDebug("  failed to gzip compress, sending plaintext\n");
+					return $text;
+				}
+				if( $f = fopen( "{$filename}.gz", "w" ) ) {
+					fwrite( $f, $gzout );
+					fclose( $f );
+					$end = microtime();
+					
+					list($usec1, $sec1) = explode(" ",$start);
+					list($usec2, $sec2) = explode(" ",$end);
+					$interval = ((float)$usec2 + (float)$sec2) -
+								((float)$usec1 + (float)$sec1);
+					wfDebug("  saved gzip in $interval\n");
+				} else {
+					wfDebug("  failed to write gzip, still sending\n" );
+				}
+				header( "Content-Encoding: gzip" );
+				header( "Vary: Accept-Encoding" );
+				return $gzout;
+			}
 		}
 		return $text;
 	}
