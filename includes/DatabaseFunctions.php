@@ -1,6 +1,7 @@
 <?
 global $IP;
 include_once( "$IP/FulltextStoplist.php" );
+include_once( "$IP/CacheManager.php" );
 
 $wgLastDatabaseQuery = "";
 
@@ -24,21 +25,61 @@ function wfGetDB( $altuser = "", $altpassword = "" )
 	}
 
 	if ( ! $wgDBconnection ) {
-		$wgDBconnection = mysql_pconnect( $wgDBserver, $wgDBuser,
-		  $wgDBpassword ) or die( $noconn .
-		"\n<p><b>" . htmlspecialchars(mysql_error()) . "</b></p>\n" . $helpme );
+		@$wgDBconnection = mysql_pconnect( $wgDBserver, $wgDBuser, $wgDBpassword )
+			or wfEmergencyAbort();
+		
 		if( !mysql_select_db( $wgDBname, $wgDBconnection ) ) {
+			/* Persistent connections may become stuck in an unusable state */
 			wfDebug( "Persistent connection is broken?\n", true );
 			
-			$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser,
-			  $wgDBpassword ) or die( $noconn .
-	          "\n<p><b>" . htmlspecialchars(mysql_error()) . "</b> (tried non-p connect)</p>\n" . $helpme );
-			mysql_select_db( $wgDBname, $wgDBconnection ) or die( $nodb .
-			  "\n<p><b>" . htmlspecialchars(mysql_error()) . "</b> (tried non-p connect)</p>\n" . $helpme );
-        }
+			@$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser, $wgDBpassword )
+				or wfEmergencyAbort();
+			
+			@mysql_select_db( $wgDBname, $wgDBconnection )
+				or wfEmergencyAbort();
+		}
 	}
 	# mysql_ping( $wgDBconnection );
 	return $wgDBconnection;
+}
+
+/* Call this function if we couldn't contact the database...
+   We'll try to use the cache to display something in the meantime */
+function wfEmergencyAbort( $msg = "" ) {
+	global $wgTitle, $wgUseFileCache, $title;
+	
+	if($msg == "") $msg = wfMsg( "noconnect" );
+	$text = $msg;
+
+	if($wgUseFileCache) {
+		if($wgTitle) {
+			$t =& $wgTitle;
+		} else {
+			if($title) {
+				$t = Title::newFromURL( $title );
+			} else {
+				$t = Title::newFromText( wfMsg("mainpage") );
+			}
+		}
+
+		$cache = new CacheManager( $t );
+		if( $cache->isFileCached() ) {
+			$msg = "<p style='color: red'><b>$msg<br>\n" .
+				wfMsg( "cachederror" ) . "</b></p>\n";
+			
+			$tag = "<div id='article'>";
+			$text = str_replace(
+				$tag,
+				$tag . $msg,
+				$cache->fetchPageText() );
+		}
+	}
+	
+	/* Don't cache error pages!  They cause no end of trouble... */
+	header( "Cache-control: none" );
+	header( "Pragma: nocache" );
+	echo $text;
+	exit;
 }
 
 function wfQuery( $sql, $fname = "" )

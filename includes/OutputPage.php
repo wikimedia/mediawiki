@@ -323,11 +323,13 @@ class OutputPage {
 		if( $this->mLastModified != "" ) {
 			wfDebug( "** private caching; {$this->mLastModified} **\n", false );
 			header( "Cache-Control: private, must-revalidate, max-age=0" );
+			header( "Vary: Accept-Encoding" );
 			header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "** no caching **\n", false );
 			header( "Cache-Control: no-cache" ); # Experimental - see below
 			header( "Pragma: no-cache" );
+			header( "Vary: Accept-Encoding" );
 			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
 		}
 		header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!

@@ -401,8 +401,9 @@ The last attempted database query was:
 \"$1\"
 from within function \"$2\".
 MySQL returned error \"$3: $4\".\n",
-"noconnect"		=> "Could not connect to DB on $1",
+"noconnect"		=> "Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.",
 "nodb"			=> "Could not select database $1",
+"cachederror"		=> "The following is a cached copy of the requested page, and may not be up to date.",
 "readonly"		=> "Database locked",
 "enterlockreason" => "Enter a reason for the lock, including an estimate
 of when the lock will be released",
