@@ -449,7 +449,8 @@ pages for purposes of page relevancy ranking.
 * (bug 1704) fixed untranslateable string in Special:Log
 * (bug 1638) Added Belrusian language file
 * (bug 1736) typo in SpecialValidate.php
-* Categories inserted with upload description are set correctly
+* (bug 73) Upload doesn't run edit updates on description page (links,
+  search index and categories)
 
 === Caveats ===
 
