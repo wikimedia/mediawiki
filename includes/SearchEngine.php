@@ -381,7 +381,7 @@ class SearchEngine {
 		#
 		$this->parseQuery();										
 		$sql = "SELECT cur_id,cur_title,cur_namespace,si_page FROM cur,searchindex " .
-		  "WHERE cur_id=si_page AND {$this->mTitlecond} LIMIT 1";
+		  "WHERE cur_id=si_page AND {$this->mTitlecond} ORDER BY cur_namespace LIMIT 1";
 
 		if ( "" != $this->mTitlecond ) {
 			$res = wfQuery( $sql, $fname );
