@@ -1,10 +1,23 @@
 <?php
-# See skin.doc
+/**
+ * See skin.doc
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class SkinStandard extends Skin {
 
-	function getHeadScripts()
-	{
+	/**
+	 *
+	 */
+	function getHeadScripts() {
 		global $wgStylePath;
 
 		$s = parent::getHeadScripts();
@@ -15,8 +28,10 @@ class SkinStandard extends Skin {
 		return $s;
 	}
 
-	function getUserStyles()
-	{
+	/**
+	 *
+	 */
+	function getUserStyles() {
 		global $wgStylePath;
 		$s = '';
 		if ( 3 == $this->qbSetting() ) { # Floating left
@@ -27,8 +42,10 @@ class SkinStandard extends Skin {
 		return $s;
 	}
 
-	function doGetUserStyles()
-	{
+	/**
+	 *
+	 */
+	function doGetUserStyles() {
 		global $wgUser, $wgOut, $wgStylePath;
 
 		$s = parent::doGetUserStyles();
@@ -46,8 +63,10 @@ class SkinStandard extends Skin {
 		return $s;
 	}
 
-	function getBodyOptions()
-	{
+	/**
+	 *
+	 */
+	function getBodyOptions() {
 		$a = parent::getBodyOptions();
 
 		if ( 3 == $this->qbSetting() ) { # Floating left

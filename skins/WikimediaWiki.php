@@ -1,6 +1,13 @@
 <?php
-# Tentative to make a skin for wikimedia.org
-# $Id$
+/**
+ * Tentative to make a skin for wikimedia.org
+ *
+ * @version $Id$
+ * @package MediaWiki
+ * @subpackage Skins
+ */
+
+/** */
 
 if($wgUsePHPTal) {
 require_once('includes/SkinPHPTal.php');

@@ -1,18 +1,27 @@
 <?php
-# See skin.doc
+/**
+ * See skin.doc
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class SkinCologneBlue extends Skin {
 
-	function getStylesheet()
-	{
+	function getStylesheet() {
 		return "cologneblue.css";
 	}
 	function getSkinName() {
 		return "cologneblue";
 	}
 
-	function doBeforeContent()
-	{
+	function doBeforeContent() {
 		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "";
