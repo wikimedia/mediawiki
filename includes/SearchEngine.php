@@ -2,7 +2,7 @@
 # See search.doc
 
 class SearchEngine {
-	/* private */ var $mUsertext, $mSearchterms;
+	/* private */ var $mRawtext, $mUsertext, $mSearchterms;
 	/* private */ var $mTitlecond, $mTextcond;
 
 	var $doSearchRedirects = true;
@@ -18,6 +18,7 @@ class SearchEngine {
 		global $wgDBmysql4;
 		$lc = SearchEngine::legalSearchChars() . "()";
 		if( $wgDBmysql4 ) $lc .= "\"~<>*+-";
+		$this->mRawtext = $text;
 		$this->mUsertext = trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 		$this->mSearchterms = array();
 		$this->mStrictMatching = true; # Google-style, add '+' on all terms
@@ -146,7 +147,7 @@ class SearchEngine {
 	function setupPage() {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
+		$q = wfMsg( "searchquery", htmlspecialchars( $this->mRawtext ) );
 		$wgOut->setSubtitle( $q );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -478,7 +479,7 @@ class SearchEngine {
 		}
 
 		# No match, generate an edit URL
-		$t = Title::newFromText( $wgRequest->getText( "search" ) );
+		$t = Title::newFromText( $this->mRawtext );
 		
 		# If the feature is enabled, go straight to the edit page
 		if ( $wgGoToEdit ) {
