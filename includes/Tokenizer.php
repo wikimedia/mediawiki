@@ -134,7 +134,7 @@ class Tokenizer {
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 5;
-							while ($this->mText[$this->mPos] == "-" ) {
+							while (isset($this->mText[$this->mPos]) and $this->mText[$this->mPos] == "-" ) {
 								$this->mPos ++;
 							}
 							break 2;
