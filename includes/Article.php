@@ -1055,11 +1055,15 @@ class Article {
 	function validate ()
 	{
 		global $wgOut ;
-		$v = new Validation ;
-		$html = $v->validate_form ( $this->mTitle->getDBkey() ) ;		
-		$wgOut->setPagetitle( wfMsg( 'validate' ) . " : " . $this->mTitle->getText()  );
+		$wgOut->setPagetitle( wfMsg( 'validate' ) . " : " . $this->mTitle->getPrefixedText()  );
 		$wgOut->setRobotpolicy( 'noindex,follow' );
-		$wgOut->addHTML( $html ) ;
+		if ( $this->mTitle->getNamespace() != 0 )
+			{
+			$wgOut->addHTML ( wfMsg ( 'val_validate_article_namespace_only' ) ) ;
+			return ;
+			}
+		$v = new Validation ;
+		$v->validate_form ( $this->mTitle->getDBkey() ) ;		
 	}
 
 	# Add this page to my watchlist
