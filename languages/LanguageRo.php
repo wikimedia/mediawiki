@@ -208,7 +208,7 @@ include_once("LanguageUtf8.php");
 "go"		=> "Du-te",
 "history"		=> "Versiuni mai vechi",
 "printableversion" => "Versiune tipărire",
-"editthispage"	=> "Editează această pagină",
+"editthispage"	=> "Editează pagina",
 "deletethispage" => "Şterge pagina",
 "protectthispage" => "Protejează pagina",
 "unprotectthispage" => "Deprotejează pagina",
