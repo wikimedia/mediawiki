@@ -30,7 +30,7 @@
 	    <div id="contentSub" tal:content="structure subtitle"></div>
 	    <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
-	    <!-- the content area is cached with the remaining inexpensive sceleton, one version for all.
+	    <!-- the content area is cached with the remaining inexpensive skeleton, one version for all.
 	    The edit links and right-click section stuff can be attached from js -->
 	    <!-- start content -->
 
