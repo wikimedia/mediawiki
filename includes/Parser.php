@@ -994,6 +994,7 @@ class Parser
 			$trail = $m[3];
 		} else { # Invalid form; output directly
 			$s .= $prefix . "[[" . $line ;
+			wfProfileOut( $fname );
 			return $s;
 		}
 
@@ -1032,6 +1033,7 @@ class Parser
 		$nt = Title::newFromText( $link );
 		if( !$nt ) {
 			$s .= $prefix . "[[" . $line;
+			wfProfileOut( $fname );
 			return $s;
 		}
 		$ns = $nt->getNamespace();
@@ -1040,11 +1042,13 @@ class Parser
 			if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
 				$s .= $prefix . $trail ;
+				wfProfileOut( $fname );
 				return (trim($s) == '')? '': $s;
 			}
 			if( $ns == $image ) {
 				$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
+				wfProfileOut( $fname );
 				return $s;
 			}
 			if ( $ns == $category ) {
@@ -1059,6 +1063,7 @@ class Parser
 				$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 				$this->mOutput->mCategoryLinks[] = $t ;
 				$s .= $prefix . $trail ;
+				wfProfileOut( $fname );
 				return $s ;
 			}
 		}
@@ -1066,15 +1071,18 @@ class Parser
 		    ( strpos( $link, "#" ) == FALSE ) ) {
 			# Self-links are handled specially; generally de-link and change to bold.
 			$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, "", $trail );
+			wfProfileOut( $fname );
 			return $s;
 		}
 
 		if( $ns == $media ) {
 			$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 			$wgLinkCache->addImageLinkObj( $nt );
+			wfProfileOut( $fname );
 			return $s;
 		} elseif( $ns == $special ) {
 			$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
+			wfProfileOut( $fname );
 			return $s;
 		}
 		$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
@@ -1394,6 +1402,7 @@ class Parser
 
 		array_pop( $this->mArgStack );
 
+		wfProfileOut( $fname );
 		return $text;
 	}
 
