@@ -52,7 +52,7 @@ class RawPage {
 	function view() {
 		global $wgUser, $wgOut, $wgScript;
 
-		if( strncmp( $wgScript . '?', $_SERVER['REQUEST_URI'], strlen( $wgScript ) + 1 ) ) {
+		if( strcmp( $wgScript, $_SERVER['PHP_SELF'] ) ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
 			# all raw requests are done through the script node, which will
@@ -63,6 +63,7 @@ class RawPage {
 				'&ctype=' . urlencode( $this->mContentType ) .
 				'&smaxage=' . urlencode( $this->mSmaxage ) .
 				'&maxage=' . urlencode( $this->mMaxage ) .
+				'&gen=' . urlencode( $this->mGen ) .
 				'&oldid=' . urlencode( $this->mOldId ) );
 			header( 'Location: ' . $destUrl );
 			$wgOut->disable();
