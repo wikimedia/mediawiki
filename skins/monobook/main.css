@@ -155,24 +155,14 @@ form {
 }
 
 textarea {
-    border: 1px solid #2f6fab;
     color: Black;
     background-color: white;
     width: 100%;
     padding: 0.1em;
     overflow: auto;
 }
-/* hide this from ie/mac and konq2.2 */
-@media All {
-    head:first-child+body input {
-        visibility: visible;
-        border: 1px solid #2f6fab;
-        color: Black;
-        background-color: white;
-        vertical-align: middle;
-        padding: 0.2em;
-    }
-}
+
+
 input.historysubmit {
     padding: 0 0.3em 0.3em 0.3em !important;
     font-size: 94%;
@@ -180,13 +170,8 @@ input.historysubmit {
     height: 1.7em !important;
     margin-left: 1.6em;
 }
-input[type="radio"],
-input[type="checkbox"] { border:none; }
 select {
-    border: 1px solid #2f6fab;
-    color: Black;
-    background: White;
-    vertical-align: top;
+	vertical-align: top;
 }
 abbr, acronym, .explain {
     border-bottom: 1px dotted Black;
@@ -637,14 +622,14 @@ special external link styling */
 }
 input.searchButton {
     margin-top:1px;
-    padding: 0 0.4em !important;
     font-size: 95%;
-    cursor: pointer;
-    background-color: White;
-    border: 1px solid #2f6fab;
+}
+#searchGoButton {
+    padding-left: .5em;
+    padding-right: .5em;
+    font-weight: bold;
 }
 #searchInput {
-    border: 1px solid #2f6fab;
     width:10.9em;
     margin: 0 0 0 0;
     font-size: 95%;
