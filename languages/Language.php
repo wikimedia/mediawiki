@@ -448,7 +448,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "category_header" => "Articles in category \"$1\"",
 "subcategories" => "Subcategories",
 
-'' => '',
 
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
@@ -503,6 +502,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "unprotectthispage" => "Unprotect this page",
 "newpage" => "New page",
 "talkpage"		=> "Discuss this page",
+'specialpage' => 'Special Page',
 'personaltools' => 'Personal tools',
 "postcomment"   => "Post a comment",
 "articlepage"	=> "View article",
@@ -1473,6 +1473,7 @@ amusement.",
 'accesskey-recentchangeslinked' => '',
 'accesskey-whatlinkshere' => 'b',
 'accesskey-specialpages' => '',
+'accesskey-specialpage' => '',
 'accesskey-upload' => 'u',
 
 # tooltip help for the main actions
@@ -1502,7 +1503,7 @@ amusement.",
 'tooltip-whatlinkshere' => '',
 'tooltip-specialpages' => '',
 'tooltip-upload' => 'u',
-'tooltip-special' => 'This is a special page.',
+'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
 );
 
 #--------------------------------------------------------------------------
