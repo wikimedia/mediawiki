@@ -66,7 +66,7 @@ if($wgMetaNamespace === FALSE)
 	'davinci' => 'DaVinci',
 	'mono' => 'Mono',
 	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin' 
+	'myskin' => 'MySkin'
 );
 
 define( "MW_MATH_PNG",    0 );
@@ -145,10 +145,10 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	'Sep', 'Oct', 'Nov', 'Dec'
 );
 
-# Note to translators: 
-#   Please include the English words as synonyms.  This allows people 
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
 #   from other wikis to contribute more easily.
-# 
+#
 /* private */ $wgMagicWordsEn = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    '#redirect'              ),
@@ -166,7 +166,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
     MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
 		MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
-		MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),		
+		MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
 	MAG_MSG                  => array( 0,    'MSG:'                   ),
 	MAG_SUBST                => array( 0,    'SUBST:'                 ),
     MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
@@ -260,6 +260,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'go'		=> 'Go',
 "history"		=> 'Page history',
 'history_short' => 'History',
+'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
@@ -441,10 +442,10 @@ Don't forget to change your {{SITENAME}} preferences.",
 'youremail'		=> 'Your email*',
 'yourrealname'		=> 'Your real name*',
 'yournick'		=> 'Your nickname (for signatures)',
-'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your 
+'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
 'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
-* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your 
+* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.',
 'loginerror'	=> 'Login error',
 'nocookiesnew'	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
@@ -525,7 +526,7 @@ Your IP address is $3. Please include this address in any queries you make.
 'newarticle'	=> '(New)',
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
-To create the page, start typing in the box below 
+To create the page, start typing in the box below
 (see the [[{{ns:4}}:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
@@ -674,8 +675,8 @@ Your internal ID number is $2.
 
 See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
-'qbsettings'	=> 'Quickbar settings', 
-'qbsettingsnote'	=> 'This preference only works in the \'Standard\' and the \'CologneBlue\' skin.', 
+'qbsettings'	=> 'Quickbar settings',
+'qbsettingsnote'	=> 'This preference only works in the \'Standard\' and the \'CologneBlue\' skin.',
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
 'math'			=> 'Rendering math',
@@ -816,7 +817,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'savefile'		=> 'Save file',
 'uploadedimage' => "uploaded \"$1\"",
 'uploaddisabled' => 'Sorry, uploading is disabled.',
-				       
+
 # Image list
 #
 'imagelist'		=> 'Image list',
@@ -894,7 +895,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'randompage'	=> 'Random page',
 'shortpages'	=> 'Short pages',
 'longpages'		=> 'Long pages',
-'deadendpages'  => 'Dead-end pages',				       
+'deadendpages'  => 'Dead-end pages',
 'listusers'		=> 'User list',
 'listadmins'	=> 'Admins list',
 'specialpages'	=> 'Special pages',
@@ -939,7 +940,7 @@ The e-mail address you entered in your user preferences will appear
 as the "From" address of the mail, so the recipient will be able
 to reply.',
 'usermailererror' => 'Mail object returned error: ',
-'defemailsubject'  => "{{SITENAME}} e-mail",				       
+'defemailsubject'  => "{{SITENAME}} e-mail",
 'noemailtitle'	=> 'No e-mail address',
 'noemailtext'	=> 'This user has not specified a valid e-mail address,
 or has chosen not to receive e-mail from other users.',
@@ -1030,11 +1031,11 @@ All times shown are server time (UTC).
 'rollbackfailed' => 'Rollback failed',
 'cantrollback'	=> 'Cannot revert edit; last contributor is only author of this page.',
 'alreadyrolled'	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
-'editcomment' => "The edit comment was: \"<i>$1</i>\".", 
+'editcomment' => "The edit comment was: \"<i>$1</i>\".",
 'revertpage'	=> "Reverted edit of $2, changed back to last version by $1",
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
@@ -1120,7 +1121,7 @@ to a previously blocked IP address or username.',
 'autoblocker'	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
 'blocklogpage'	=> 'Block_log',
 'blocklogentry'	=> 'blocked "$1" with an expiry time of $2',
-'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically 
+'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked "$1"',
@@ -1171,7 +1172,7 @@ this function sparingly.",
 
 # Make sysop
 'makesysoptitle'	=> 'Make a user into a sysop',
-'makesysoptext'		=> 'This form is used by bureaucrats to turn ordinary users into administrators. 
+'makesysoptext'		=> 'This form is used by bureaucrats to turn ordinary users into administrators.
 Type the name of the user in the box and press the button to make the user an administrator',
 'makesysopname'		=> 'Name of the user:',
 'makesysopsubmit'	=> 'Make this user into a sysop',
@@ -1292,7 +1293,7 @@ amusement.',
 'lastmodifiedby' => "This page was last modified $1 by $2.",
 'and' => 'and',
 'othercontribs' => "Based on work by $1.",
-'others' => 'others',					  
+'others' => 'others',
 'siteusers' => "$wgSitename user(s) $1",
 'creditspage' => 'Page credits',
 'nocredits' => 'There is no credits info available for this page.',
@@ -1300,65 +1301,73 @@ amusement.',
 # Spam protection
 
 'spamprotectiontitle' => 'Spam protection filter',
-'spamprotectiontext' => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+'spamprotectiontext' => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.
 
 You might want to check the following regular expression for patterns that are currently blocked:',
 'subcategorycount' => "There are $1 subcategories to this category.",
 'categoryarticlecount' => "There are $1 articles in this category.",
 'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
 
+# Info page
+"infosubtitle" => "Information for page",
+"numedits" => "Number of edits (article): ",
+"numtalkedits" => "Number of edits (discussion page): ",
+"numwatchers" => "Number of watchers: ",
+"numauthors" => "Number of distinct authors (article): ",
+"numtalkauthors" => "Number of distinct authors (discussion page): ",
+
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
 ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\'); 
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\\\'re editing as\'); 
-ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\'); 
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\'); 
-ta[\'pt-preferences\'] = new Array(\'\',\'My preferences\'); 
-ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\\\'re monitoring for changes.\'); 
-ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\'); 
-ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
-ta[\'pt-logout\'] = new Array(\'o\',\'Log out\'); 
-ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\'); 
-ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\'); 
-ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\'); 
-ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\'); 
-ta[\'ca-history\'] = new Array(\'h\',\'Past versions of this page.\'); 
-ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\'); 
-ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\'); 
-ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\'); 
-ta[\'ca-move\'] = new Array(\'m\',\'Move this page\'); 
-ta[\'ca-nomove\'] = new Array(\'\',\'You don\\\'t have the permissions to move this page\'); 
-ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\'); 
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\'); 
-ta[\'search\'] = new Array(\'f\',\'Search this wiki\'); 
-ta[\'p-logo\'] = new Array(\'\',\'Main Page\'); 
-ta[\'n-mainpage\'] = new Array(\'z\',\'Visit the Main Page\'); 
-ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\'); 
-ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\'); 
-ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\'); 
-ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\'); 
-ta[\'n-help\'] = new Array(\'\',\'The place to find out.\'); 
-ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\'); 
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'List of all wiki pages that link here\'); 
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linking to this page\'); 
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\'); 
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\'); 
-ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\'); 
-ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\'); 
-ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\'); 
-ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\'); 
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\'); 
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\'); 
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\'); 
-ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\'); 
-ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\'); 
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\'); 
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\'); 
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\'); 
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\'); 
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\'); 
+ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\\\'re editing as\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\');
+ta[\'pt-preferences\'] = new Array(\'\',\'My preferences\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\\\'re monitoring for changes.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\');
+ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Log out\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\');
+ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Past versions of this page.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\');
+ta[\'ca-move\'] = new Array(\'m\',\'Move this page\');
+ta[\'ca-nomove\'] = new Array(\'\',\'You don\\\'t have the permissions to move this page\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\');
+ta[\'search\'] = new Array(\'f\',\'Search this wiki\');
+ta[\'p-logo\'] = new Array(\'\',\'Main Page\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Visit the Main Page\');
+ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\');
+ta[\'n-help\'] = new Array(\'\',\'The place to find out.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'List of all wiki pages that link here\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linking to this page\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
+ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\');
+ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 '
 
 
@@ -1392,7 +1401,7 @@ class Language {
 		global $wgDefaultUserOptionsEn ;
 		return $wgDefaultUserOptionsEn ;
 	}
-	
+
 	function getBookstoreList () {
 		global $wgBookstoreListEn ;
 		return $wgBookstoreListEn ;
@@ -1435,7 +1444,7 @@ class Language {
 		global $wgMathNamesEn;
 		return $wgMathNamesEn;
 	}
-	
+
 	function getDateFormats() {
 		global $wgDateFormatsEn;
 		return $wgDateFormatsEn;
@@ -1445,7 +1454,7 @@ class Language {
 		global $wgUserTogglesEn;
 		return $wgUserTogglesEn;
 	}
-	
+
 	function getUserToggle( $tog ) {
 		$togs =& $this->getUserToggles();
 		return $togs[$tog];
@@ -1469,7 +1478,7 @@ class Language {
 		global $wgMonthNamesEn;
 		return $wgMonthNamesEn[$key-1];
 	}
-	
+
 	/* by default we just return base form */
 	function getMonthNameGen( $key )
 	{
@@ -1491,11 +1500,11 @@ class Language {
 	function userAdjust( $ts )
 	{
 		global $wgUser, $wgLocalTZoffset;
-		
+
 		$tz = $wgUser->getOption( 'timecorrection' );
 		if ( $tz === '' ) {
 			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
-			$minDiff = 0;		
+			$minDiff = 0;
 		} elseif ( strpos( $tz, ":" ) !== false ) {
 			$tzArray = explode( ":", $tz );
 			$hrDiff = intval($tzArray[0]);
@@ -1505,7 +1514,7 @@ class Language {
 		}
 		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
 
-		$t = mktime( ( 
+		$t = mktime( (
 		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
 		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
 		  (int)substr( $ts, 12, 2 ), # Seconds
@@ -1514,26 +1523,26 @@ class Language {
 		  (int)substr( $ts, 0, 4 ) ); #Year
 		return date( 'YmdHis', $t );
 	}
- 
+
 	function date( $ts, $adj = false )
 	{
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
+
 		if ( $wgUseDynamicDates ) {
-			$datePreference = $wgUser->getOption( 'date' );		
+			$datePreference = $wgUser->getOption( 'date' );
 			if ( $datePreference == 0 ) {
 				$datePreference = $wgAmericanDates ? 1 : 2;
 			}
 		} else {
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
-		
+
 		$month = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ) );
-		
+
 		switch( $datePreference ) {
 			case 1: return "$month $day, $year";
 			case 2: return "$day $month $year";
@@ -1546,7 +1555,7 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds ) { 
+		if ( $seconds ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
@@ -1585,7 +1594,7 @@ class Language {
 		global $wgAllMessagesEn;
 		return @$wgAllMessagesEn[$key];
 	}
-	
+
 	function getAllMessages()
 	{
 		global $wgAllMessagesEn;
@@ -1596,19 +1605,19 @@ class Language {
 		# For most languages, this is a wrapper for iconv
 		return iconv( $in, $out, $string );
 	}
-	
+
 	function ucfirst( $string ) {
 		# For most languages, this is a wrapper for ucfirst()
 		return ucfirst( $string );
 	}
-	
+
 	function lcfirst( $s ) {
 		return strtolower( $s{0}  ). substr( $s, 1 );
 	}
 
 	function checkTitleEncoding( $s ) {
         global $wgInputEncoding;
-		
+
         # Check for UTF-8 URLs; Internet Explorer produces these if you
 		# type non-ASCII chars in the URL bar or follow unescaped links.
         $ishigh = preg_match( '/[\x80-\xff]/', $s);
@@ -1617,15 +1626,15 @@ class Language {
 
 		if( ($wgInputEncoding != 'utf-8') and $ishigh and $isutf )
 			return @iconv( 'UTF-8', $wgInputEncoding, $s );
-		
+
 		if( ($wgInputEncoding == 'utf-8') and $ishigh and !$isutf )
 			return utf8_encode( $s );
-		
+
 		# Other languages can safely leave this function, or replace
 		# it with one to detect and convert another legacy encoding.
 		return $s;
 	}
-	
+
 	function stripForSearch( $in ) {
 		# Some languages have special punctuation to strip out
 		# or characters which need to be converted for MySQL's
@@ -1635,7 +1644,7 @@ class Language {
 
 	function firstChar( $s ) {
 		# Get the first character of a string. In ASCII, return
-		# first byte of the string. UTF8 and others have to 
+		# first byte of the string. UTF8 and others have to
 		# overload this.
 		return $s[0];
 	}
@@ -1686,7 +1695,7 @@ class Language {
 	function linkPrefixExtension() { return false; }
 
 
-	function &getMagicWords() 
+	function &getMagicWords()
 	{
 		global $wgMagicWordsEn;
 		return $wgMagicWordsEn;
@@ -1695,7 +1704,7 @@ class Language {
 	# Fill a MagicWord object with data from here
 	function getMagic( &$mw )
 	{
-		$raw =& $this->getMagicWords(); 
+		$raw =& $this->getMagicWords();
 		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
 			$raw =& Language::getMagicWords();
@@ -1711,7 +1720,7 @@ class Language {
 		return '<em>'.$text.'</em>';
 	}
 
-	
+
 	# Normally we use the plain ASCII digits. Some languages such as Arabic will
 	# want to output numbers using script-appropriate characters: override this
 	# function with a translator. See LanguageAr.php for an example.
