@@ -23,10 +23,14 @@ class ParserCache
 		if ( $value ) {
 			wfDebug( "Found.\n" );
 			# Delete if article has changed since the cache was made
-			$touched = $article->getTouched();
+			$canCache = $article->checkTouched();
 			$cacheTime = $value->getCacheTime();
-			if ( $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
-				wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+			if ( !$canCache || $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
+				if ( !$canCache ) {
+					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+				} else {
+					wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+				}
 				$wgMemc->delete( $key );
 				$value = false;
 			}
@@ -40,6 +44,7 @@ class ParserCache
 	
 	function save( $parserOutput, &$article, &$user ){
 		global $wgMemc;
+
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();
 		$parserOutput->setCacheTime( $now );
