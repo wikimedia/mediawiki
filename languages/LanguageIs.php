@@ -1035,34 +1035,6 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 'uploadnologin' => "Óinnskráð(ur)",
 'uploadnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
 to upload files.",
-'uploadtext' => "<strong>STOP!</strong> Before you upload here,
-make sure to read and follow the <a href=\"/wiki/Special:Image_use_policy\">image use policy</a>.
-<p>If a file with the name you are specifying already
-exists on the wiki, it'll be replaced without warning.
-So unless you mean to update a file, it's a good idea
-to first check if such a file exists.
-<p>To view or search previously uploaded images,
-go to the <a href=\"/wiki/Special:Imagelist\">list of uploaded images</a>.
-Uploads and deletions are logged on the <a href=\"/wiki/Wikipedia:Upload_log\">upload log</a>.
-</p><p>Use the form below to upload new image files for use in
-illustrating your pages.
-On most browsers, you will see a \"Browse...\" button, which will
-bring up your operating system's standard file open dialog.
-Choosing a file will fill the name of that file into the text
-field next to the button.
-You must also check the box affirming that you are not
-violating any copyrights by uploading the file.
-Press the \"Upload\" button to finish the upload.
-This may take some time if you have a slow internet connection.
-<p>The preferred formats are JPEG for photographic images, PNG
-for drawings and other iconic images, and OGG for sounds.
-Please name your files descriptively to avoid confusion.
-To include the image in a page, use a link in the form
-<b>[[Image:file.jpg]]</b> or <b>[[Image:file.png|alt text]]</b>
-or <b>[[Media:file.ogg]]</b> for sounds.
-<p>Please note that as with wiki pages, others may edit or
-delete your uploads if they think it serves the project, and
-you may be blocked from uploading if you abuse the system.",
 #'uploadwarning' => "Upload warning",
 #'usenewcategorypage' => "1
 #

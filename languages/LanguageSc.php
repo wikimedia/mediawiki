@@ -460,25 +460,29 @@ Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente
 per fare lo upload di files.",
 "uploadfile"	=> "Upload file",
 "uploaderror"	=> "Errore di Upload",
-"uploadtext"	=> "<strong>FERMA!</strong> Prima di effettuare un upload su Wikipedia, accertati di avere ben letto e soprattutto compreso <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">le regole di Wikipedia sull'uso delle immagini</a>.
-<p>Per visualizzare o cercare immagini precedentemente caricate su Wikipedia, vai alla <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lista delle immagini già caricate</a>.
-Uploads e cancellazioni delle immagini sono registrati nello <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
-<p>Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
+"uploadtext"	=> "'''FERMA!''' Prima di effettuare un upload su Wikipedia, accertati di avere ben letto e soprattutto compreso
+[[Project:Image_use_policy|le regole di Wikipedia sull'uso delle immagini]].
+
+Per visualizzare o cercare immagini precedentemente caricate su Wikipedia, vai alla [[Special:Imagelist|lista delle immagini già caricate]].
+Uploads e cancellazioni delle immagini sono registrati nello
+[[Project:Upload_log|upload log]].
+
+Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
 Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.
 Scegliendo uno dei files sul tuo PC, il nome di questo file verrà scritto in automatico nella casella di testo a fianco al bottone.
 Devi anche selezionare la casellina nella quale affermi che con questo upload non stai violando nessun copyright.
 Premi poi il bottone \"Upload\" per completare il caricamento.
 Il caricamento può richiedere qualche minuto se hai una connessione ad Internet lenta, o se l'immagine è eccessivamente pesante (sconsigliato).
-<p>I formati immagine preferibili sono il JPEG per immagini fotografiche, il PNG
+
+I formati immagine preferibili sono il JPEG per immagini fotografiche, il PNG
 per disegni ed altre immagini iconiche o simboliche, il OGG per i suoni.
 Per cortesia, rinomina i tuoi files, prima di caricarli, usando un nome il più possibile descrittivo del contenuto, così da evitare confusioni. 
 Per inserire la nuova immagine in un articolo, usa semplicemente un link nella forma
-<b>[[image:file.jpg]]</b> o <b>[[image:file.png|alt text, testo alternativo]]</b>
-o <b>[[media:file.ogg]]</b> per i suoni.
-<p>Tieni presente che, come per tutte le pagine di Wikipedia, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
+'''<nowiki>[[image:file.jpg]]</nowiki>''' o
+'''<nowiki>[[image:file.png|alt text, testo alternativo]]</nowiki>''' o
+'''<nowiki>[[media:file.ogg]]</nowiki>''' per i suoni.
+
+Tieni presente che, come per tutte le pagine di Wikipedia, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
 "uploadlog"		=> "upload log",
 "uploadlogpage" => "Upload_log",
 "uploadlogpagetext" => "Qui di seguito la lista degli ultimi files caricati sul server di Wikipedia.

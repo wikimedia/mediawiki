@@ -503,23 +503,28 @@ Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabe
 om lêers te laai.",
 "uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
-"uploadtext"	=> "<strong>STOP!</strong> Voor jy hier laai, lees en volg Wikipedia se <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">beleid oor prentgebruik</a>.
-<p>Om prente wat voorheen gelaai is te sien of te soek, gaan na die <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lys van gelaaide prente</a>.
-Laai van lêers en skrappings word aangeteken in die <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">laailog</a>.
-<p>Gebruik die vorm hier onder om nuwe prente te laai wat jy ter illustrasie in jou artikels wil gebruik.
+"uploadtext"	=> "'''STOP!''' Voor jy hier laai, lees en volg Wikipedia se
+[[Project:Image_use_policy|beleid oor prentgebruik]].
+
+Om prente wat voorheen gelaai is te sien of te soek, gaan na die
+[[Special:Imagelist|lys van gelaaide prente]].
+Laai van lêers en skrappings word aangeteken in die
+[[Project:Upload_log|laailog]].
+
+Gebruik die vorm hier onder om nuwe prente te laai wat jy ter illustrasie in jou artikels wil gebruik.
 In die meeste webblaaiers sal jy 'n \"Browse...\" knop sien, wat jou bedryfstelsel se standaard lêeroopmaak dialoogblokkie sal oopmaak.
 Deur 'n lêer in hierdie dialoogkassie te kies, vul jy die teksboks naas die knop met die naam van die lêer.
 Jy moet ook die blokkie merk om te bevestig dat jy geen kopieregte skend deur die lêer op te laai nie.
 Kliek die \"Laai\" knop om die laai af te handel.
 Dit mag dalk 'n rukkie neem as jy 'n stadige internetverbinding het.
-<p>Die voorkeurformate is JPEG vir fotografiese prente, PNG vir tekeninge en ander ikoniese prente, en OGG vir klanklêers.
+
+Die voorkeurformate is JPEG vir fotografiese prente, PNG vir tekeninge en ander ikoniese prente, en OGG vir klanklêers.
 Gebruik asseblief beskrywende lêername om verwarring te voorkom.
-Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat <b>[[image:file.jpg]]</b> of <b>[[image:file.png|alt text]]</b>
-of <b>[[media:file.ogg]]</b> vir klanklêers.
-<p>Let asseblief op dat, soos met Wikipedia bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
+Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<nowiki>[[image:file.jpg]]</nowiki>''' of
+'''<nowiki>[[image:file.png|alt text]]</nowiki>''' of
+'''<nowiki>[[media:file.ogg]]</nowiki>''' vir klanklêers.
+
+Let asseblief op dat, soos met Wikipedia bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
 "uploadlog"		=> "laailog",
 "uploadlogpage" => "laai_log",
 "uploadlogpagetext" => "Hier onder is 'n lys van die mees onlangse lêers wat gelaai is.

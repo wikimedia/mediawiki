@@ -623,14 +623,16 @@ Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[d
 ca să trimiteţi fişiere.",
 "uploadfile"	=> "Trimite fişier",
 "uploaderror"	=> "Eroare la trimitere fişier",
-"uploadtext"	=> "<strong>STOP!</strong> Înainte de a trimite un fişier aici,
-vă rugăm să citiţi şi să respectaţi <a href=\"" .
-wfLocalUrlE("Wikipedia:Politica_de_utilizare_a_imaginilor" ) . "\">politica de utilizare a imaginilor</a>.
-<p>Pentru a vizualiza sau căuta imagini deja trimise, mergeţi la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lista de imagini</a>.
-Fişierele noi şi cele şterse sunt contorizate pe paginile de <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">raport de trimiteri</a>.
-<p>Folosiţi formularul de mai jos pentru a trimite imagini noi
+"uploadtext"	=> "'''STOP!''' Înainte de a trimite un fişier aici,
+vă rugăm să citiţi şi să respectaţi
+[[Project:Politica_de_utilizare_a_imaginilor|politica de utilizare a imaginilor]].
+
+Pentru a vizualiza sau căuta imagini deja trimise, mergeţi la
+[[Special:Imagelist|lista de imagini]].
+Fişierele noi şi cele şterse sunt contorizate pe paginile de
+[[Project:Upload_log|raport de trimiteri]].
+
+Folosiţi formularul de mai jos pentru a trimite imagini noi
 pe care le veţi putea folosi pentru a vă ilustra articolele.
 În majoritatea browserelor veţi vedea un buton \"Browse...\"
 care vă va deschide fereastra standard dialog a sistemului Dvs. de operare
@@ -644,9 +646,12 @@ Această operaţiune poate dura, mai ales dacă aveţi o legătură lentă la In
 PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet.
 
 Vă rugăm să folosiţi nume explicite pentru fişiere ca să evitaţi confuziile.
-Pentru a include o imagine într-un articol, folosiţi o legătură de forma <b>[[image:fişier.jpg]]</b> sau <b>[[image:fişier.png|text alternativ]]</b>
-sau <b>[[media:fişier.ogg]]</b> pentru fişiere de sunet.
-<p>Vă rugăm să reţineţi că, la fel ca şi în cazul celorlalte secţiuni din Wikipedia, alte persoane pot edita sau şterge fişierele pe care le trimiteţi dacă e în interesul enciclopediei, şi vi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzaţi de sistem.",
+Pentru a include o imagine într-un articol, folosiţi o legătură de forma
+'''<nowiki>[[image:fişier.jpg]]</nowiki>''' sau
+'''<nowiki>[[image:fişier.png|text alternativ]]</nowiki>''' sau
+'''<nowiki>[[media:fişier.ogg]]</nowiki>''' pentru fişiere de sunet.
+
+Vă rugăm să reţineţi că, la fel ca şi în cazul celorlalte secţiuni din Wikipedia, alte persoane pot edita sau şterge fişierele pe care le trimiteţi dacă e în interesul enciclopediei, şi vi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzaţi de sistem.",
 "uploadlog"		=> "raport de trimitere fişiere",
 "uploadlogpage" => "Raport de trimitere fişiere",
 "uploadlogpagetext" => "Găsiţi mai jos lista ultimelor fişiere trimise.

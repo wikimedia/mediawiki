@@ -642,9 +642,9 @@ um Dateien hochladen zu können.",
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
 Um hochgeladene Bilder zu suchen und anzusehen,
-gehen Sie zu der <a href=\"" . wfLocalUrl( "Spezial:Imagelist" ) .
-"\">Liste hochgeladener Bilder</a>.
-<p>Benutzen Sie das Formular, um neue Bilder hochzuladen und
+gehen Sie zu der [[Spezial:Imagelist|Liste hochgeladener Bilder]].
+
+Benutzen Sie das Formular, um neue Bilder hochzuladen und
 sie in Artikeln zu verwenden.
 In den meisten Browsern werden Sie ein \"Durchsuchen\"-Feld sehen,
 das einen Standard-Dateidialog öffnet.
@@ -652,10 +652,13 @@ Suchen Sie sich eine Datei aus. Die Datei wird dann im Textfeld angezeigt.
 Bestätigen Sie dann die Copyright-Vereinbarung.
 Schließlich drücken Sie den \"Hochladen\"-Knopf.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
-<p>Für Photos wird das JPEG-Format, für Zeichnungen und Symbole das PNG-Format bevorzugt.
+
+Für Photos wird das JPEG-Format, für Zeichnungen und Symbole das PNG-Format bevorzugt.
 Um ein Bild in einem Artikel zu verwenden, schreiben Sie an Stelle des Bildes
-<b>[[bild:datei.jpg]]</b> oder <b>[[bild:datei.jpg|Beschreibung]]</b>.
-<p>Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.",
+'''<nowiki>[[bild:datei.jpg]]</nowiki>''' oder
+'''<nowiki>[[bild:datei.jpg|Beschreibung]]</nowiki>'''.
+
+Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Dateien löschen oder verändern können.",
 "uploadlog"		=> "Datei-Logbuch",
 "uploadlogpage" => "Datei-Logbuch",
 "uploadlogpagetext" => "Hier ist die Liste der letzten hochgeladenen Dateien.

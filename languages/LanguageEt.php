@@ -508,33 +508,6 @@ Vaata ka [http://meta.wikipedia.org/wiki/Special:Recentchanges hiljutist inglisk
   wfLocalUrl( "Special:Userlogin" ) . "\">sisse logima</a>.",
 "uploadfile"	=> "Upload file",
 "uploaderror"	=> "Upload error",
-"uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
-make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
-<p>To view or search previously uploaded images,
-go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">list of uploaded images</a>.
-Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
-<p>Use the form below to upload new image files for use in
-illustrating your articles.
-On most browsers, you will see a \"Browse...\" button, which will
-bring up your operating system's standard file open dialog.
-Choosing a file will fill the name of that file into the text
-field next to the button.
-You must also check the box affirming that you are not
-violating any copyrights by uploading the file.
-Press the \"Upload\" button to finish the upload.
-This may take some time if you have a slow internet connection.
-<p>The preferred formats are JPEG for photographic images, PNG
-for drawings and other iconic images, and OGG for sounds.
-Please name your files descriptively to avoid confusion.
-To include the image in an article, use a link in the form
-<b>[[image:file.jpg]]</b> or <b>[[image:file.png|alt text]]</b>
-or <b>[[media:file.ogg]]</b> for sounds.
-<p>Please note that as with Wikipedia pages, others may edit or
-delete your uploads if they think it serves the encyclopedia, and
-you may be blocked from uploading if you abuse the system.",
 "uploadlog"		=> "upload log",
 "uploadlogpage" => "Upload_log",
 "uploadlogpagetext" => "Below is a list of the most recent file uploads.

@@ -527,17 +527,21 @@ Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voeg
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
-"uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het {{SITENAME}} NL <a href=\"" .
-wfLocalUrlE( "{{ns:4}}:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
-<p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
-"\">lijst van ge-uploade bestanden</a>.
-Uploads en verwijderingen worden bijgehouden in het <a href=\"" .
-wfLocalUrlE( "{{ns:4}}:Upload_logboek" ) . "\">upload logboek</a>.
-<p>Gebruik het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
-<p>Gebruik bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
-Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
-<p>Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} NL ontzegd worden.",
+"uploadtext" => "'''STOP!''' Voor u iets hier upload,
+wees zeker dat het in overeenkomst is met het {{SITENAME}} NL
+[[Project:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
+
+Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de
+[[Speciaal:Imagelist|lijst van ge-uploade bestanden]].
+Uploads en verwijderingen worden bijgehouden in het
+[[Project:Upload_logboek|upload logboek]].
+
+Gebruik het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
+
+Gebruik bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
+Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  '''<nowiki>[[afbeelding:uw_foto.jpg]]</nowiki>''' of '''<nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki>''' of '''<nowiki>[[media:uw_geluid.ogg]]</nowiki>''' voor audio.
+
+Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} NL ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de lijst met de meest recent ge-uploade bestanden. Alle tijden zijn servertijd (UTC).

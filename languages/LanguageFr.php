@@ -641,24 +641,30 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
-"uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .wfLocalUrlE( "{{ns:4}}:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de {{SITENAME}} et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "{{ns:4}}:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
-<p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
-allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
-Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "{{ns:4}}:Journal_des_uploads" ) . "\">journal des uploads</a>.
-<p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
+"uploadtext"   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
+prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de {{SITENAME}} et assurez-vous que vous les respectez.<br />
+N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.
+
+Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
+allez à la [[Special:Imagelist|liste des images]].
+Les uploads et les suppressions sont listés dans le [[Project:Journal_des_uploads|journal des uploads]].
+
+Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
 Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenêtre de dialogue standard de votre système d'exploitation pour l'ouverture des fichiers.
 Sélectionnez un fichier, son nom apparaîtra dans le champ situé à côté du bouton.
 Vous devez également confirmer, en cochant la case prévue à cet effet, que la copie de ce fichier ne viole aucun copyright.
 Cliquez sur le bouton \"Envoyer\" pour terminer.
 Si votre connexion est lente, l'opération peut prendre un certain temps.
-<p>Les formats recommandés sont JPEG pour les photos, PNG
+
+Les formats recommandés sont JPEG pour les photos, PNG
 pour les dessins et les autres images, et OGG pour les fichiers sonores.
 Donnez à vos fichiers des noms descriptifs clairs, afin d'éviter toute confusion.
 Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé comme suit:
-<b>[[image:nom_du_fichier.jpg]]</b> ou <b>[[image:nom_du_fichier.png|autre texte]]</b>
-ou <b>[[media:nom_du_fichier.ogg]]</b> pour les sons.
-<p>N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
+'''<nowiki>[[image:nom_du_fichier.jpg]]</nowiki>''' ou
+'''<nowiki>[[image:nom_du_fichier.png|autre texte]]</nowiki>''' ou
+'''<nowiki>[[media:nom_du_fichier.ogg]]</nowiki>''' pour les sons.
+
+N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
 "uploadlog"  => "log d'upload",		// FIXME
 "uploadlogpage" => "Log_d'upload",	// FIXME
 "uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.

@@ -655,21 +655,22 @@ border=\"0\" ALT=\"گوگل\"></A>
   wfLocalUrl( "ویژه:Userlogin" ) . "\">وارد سیستم شوید</a>.",
 "uploadfile"	=> "بار کردن تصاویر، اصوات، اسناد، و غیره",
 "uploaderror"	=> "خطا در بار کردن",
-"uploadtext"	=> "<strong>ایست!</strong> قبل از این که چیزی اینجا بار کنید،
+"uploadtext"	=> "'''ایست!''' قبل از این که چیزی اینجا بار کنید،
 مطمئن شوید که 
-<a href=\"" .
-wfLocalUrlE( "ویکی‌پدیا:سیاست_استفاده_از_تصاویر" ). "\">سیاست استفاده از تصاویر</a>
+[[Project:سیاست_استفاده_از_تصاویر|سیاست استفاده از تصاویر]]
 را خوانده‌اید و از آن پیروی می‌کنید.
-<p>If a file with the name you are specifying already
+
+If a file with the name you are specifying already
 exists on the wiki, it'll be replaced without warning.
 So unless you mean to update a file, it's a good idea
 to first check if such a file exists.
-<p>To view or search previously uploaded images,
-go to the <a href=\"" . wfLocalUrlE( "ویژه:Imagelist" ) .
-"\">list of uploaded images</a>.
-Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Upload_log" ) . "\">upload log</a>.
-<p>Use the form below to upload new image files for use in
+
+To view or search previously uploaded images,
+go to the [[Special:Imagelist|list of uploaded images]].
+Uploads and deletions are logged on the
+[[Project:Upload_log|upload log]].
+
+Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
 bring up your operating system's standard file open dialog.
@@ -679,13 +680,16 @@ You must also check the box affirming that you are not
 violating any copyrights by uploading the file.
 Press the \"Upload\" button to finish the upload.
 This may take some time if you have a slow internet connection.
-<p>The preferred formats are JPEG for photographic images, PNG
+
+The preferred formats are JPEG for photographic images, PNG
 for drawings and other iconic images, and OGG for sounds.
 Please name your files descriptively to avoid confusion.
 To include the image in an article, use a link in the form
-<b>[[image:file.jpg]]</b> or <b>[[image:file.png|alt text]]</b>
-or <b>[[media:file.ogg]]</b> for sounds.
-<p>Please note that as with wiki pages, others may edit or
+'''<nowiki>[[image:file.jpg]]</nowiki>''' or
+'''<nowiki>[[image:file.png|alt text]]</nowiki>''' or
+'''<nowiki>[[media:file.ogg]]</nowiki>''' for sounds.
+
+Please note that as with wiki pages, others may edit or
 delete your uploads if they think it serves the encyclopedia, and
 you may be blocked from uploading if you abuse the system.",
 

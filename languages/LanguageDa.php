@@ -653,16 +653,16 @@ sidste <strong>$2</strong> dage.",
 for at kunne lægge filer op.",
 "uploadfile"	=> "Læg filen op",
 "uploaderror"	=> "Fejl under oplægning af fil",
-"uploadtext"	=> "<strong>STOP!</strong> Før du lægger filer op her,
-så vær sikker på du har læst og følger Wikipedias <a href=\"" .
-wfLocalUrlE( "Wikipedia:Politik om brug af billeder" ) . "\">politik om brug 
-af billeder</a>.
-<p>For at se eller søge i billeder, som tidligere er lagt op,
-gå til <a href=\"" . wfLocalUrlE( "Speciel:Imagelist" ) .
-"\">listen over billeder</a>.
-Oplægning og sletninger er registreret i <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">log over oplagte filer</a>.
-<p>Brug formularen herunder til at lægge nye billeder op, der kan bruges
+"uploadtext"	=> "'''STOP!''' Før du lægger filer op her,
+så vær sikker på du har læst og følger Wikipedias
+[[Project:Politik om brug af billeder|politik om brug af billeder]].
+
+For at se eller søge i billeder, som tidligere er lagt op,
+gå til [[Speciel:Imagelist|listen over billeder]].
+Oplægning og sletninger er registreret i
+[[Project:Upload_log|log over oplagte filer]].
+
+Brug formularen herunder til at lægge nye billeder op, der kan bruges
 som illustration i dine artikler.
 På de fleste browsere vil du se en \"Browse...\" knap eller en 
 \"Gennemse...\" knap, som vil
@@ -673,14 +673,17 @@ Du skal også verificere, at du ikke er ved at bryde nogens ophavsret.
 Det gør du ved at sætte et mærke i checkboksen.
 Tryk på \"Læg op\"-knappen for at lægge filen op.
 Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse.
-<p>De foretrukne formater er JPEG til fotografiske billeder, PNG
+
+De foretrukne formater er JPEG til fotografiske billeder, PNG
 til tegninger og andre små billeder, og OGG til lyd.
 Sørg for at navngive din fil med et beskrivende navn for at undgå 
 forvirring om indholdet.
 For at bruge billedet i en artikel, så brug et link af denne slags
-<b>[[billede:fil.jpg]]</b> eller <b>[[billede:fil.png|alternativ tekst]]</b>
-eller <b>[[media:fil.ogg]]</b> for lyd.
-<p>Læg mærke til at præcis som med Wikipedia-sider, så kan og må andre gerne 
+'''<nowiki>[[billede:fil.jpg]]</nowiki>''' eller
+'''<nowiki>[[billede:fil.png|alternativ tekst]]</nowiki>''' eller
+'''<nowiki>[[media:fil.ogg]]</nowiki>''' for lyd.
+
+Læg mærke til at præcis som med Wikipedia-sider, så kan og må andre gerne 
 redigere eller
 slette de filer, du har lagt op, hvis de mener det hjælper encyklopædien, og
 du kan blive blokeret fra at lægge op hvis du misbruger systemet.",

@@ -569,25 +569,29 @@ alt=\"Google\" align=\"middle\"></a>
 才能上载文件。",
 "uploadfile"	=> "上载文件",
 "uploaderror"	=> "上载错误",
-"uploadtext"	=> "<strong>停止！</strong>在您上载之前，请先阅读并遵守Wikipedia<a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">图像使用守则</a>。
-<p>如果您要查看或搜索之前上载的图像，
-请到<a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">已上载图像列表</a>.
-所有上载与删除行为都被记录在<a href=\"" .
-wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
-<p>使用下面的表单来上载用在条目内新的图像文件。
+"uploadtext"	=> "'''停止！'''在您上载之前，请先阅读并遵守Wikipedia
+[[Project:Image use policy|图像使用守则]]。
+
+如果您要查看或搜索之前上载的图像，
+请到[[Special:Imagelist|已上载图像列表]].
+所有上载与删除行为都被记录在
+[[Project:上载纪录|上载纪录]]内。
+
+使用下面的表单来上载用在条目内新的图像文件。
 在绝大多数浏览器内，你会看到一个\"浏览...\"按钮，点击它后就会跳出一个打开文件对话框。
 选择一个文件后文件名将出现在按钮旁边的文字框中。
 您也必须点击旁边的复选框确认您所上载的文件并没有违反相关版权法律。
 点击\"上载\" 按钮完成上载程序。
 如果您使用的是较慢的网络连接的话那么这个上载过程会需要一些时间。
-<p>我们建议照相图片使用JPEG格式，绘图及其他图标图像使用PNG格式，音像则使用OGG格式。
+
+我们建议照相图片使用JPEG格式，绘图及其他图标图像使用PNG格式，音像则使用OGG格式。
 请使用具有描述性的语言来命名您的文件以避免混乱。
 要在文章中加入图像，使用以下形式的连接：
-<b>[[图像:file.jpg]]</b>或者<b>[[图像:file.png|解释文字]]</b>
-或<b>[[media:file.ogg]]</b>来连接音像文件。
-<p>请注意在Wikipedia页面中，其他人可能会为了百科全书的利益而编辑或删除您的上载文件，
+'''<nowiki>[[图像:file.jpg]]</nowiki>'''或者
+'''<nowiki>[[图像:file.png|解释文字]]</nowiki>'''
+或'''<nowiki>[[media:file.ogg]]</nowiki>'''来连接音像文件。
+
+请注意在Wikipedia页面中，其他人可能会为了百科全书的利益而编辑或删除您的上载文件，
 而如果您滥用上载系统，您则有可能被禁止使用上载功能。",
 "uploadlog"		=> "上载纪录",
 "uploadlogpage" => "上载纪录",

@@ -509,13 +509,12 @@ per carregar arxius.",
 "uploadfile"	=> "Carrega arxiu",
 "uploaderror"	=> "S'ha produït un error en l'intent de carregar",
 "uploadtext"	=> "Per veure o cercar imatges que s'hagin carregat
-previament, aneu al <a href=\"" . wfLocalUrlE( "Especial:Imagelist" ) .
-"\">llistat d'imatges carregades</a>.
-Le càrregues i els esborrats són registrats en el <a href=\"" .
-wfLocalUrlE( "Viquipèdia:Registre de càrregues" ) . "\">registre de càrregues</a>.
-Aneu també a <a href=\"" . wfLocalUrlE( "Viquipèdia:Política d'ús d'imatges" ) .
-"\">política d'ús d'imatges</a>.
-<p>Empreu la forma de sota per carregar nous arxius d'imatges per il·lustrar els articles.
+previament, aneu al [[Especial:Imagelist|llistat d'imatges carregades]].
+Le càrregues i els esborrats són registrats en el
+[[Project:Registre de càrregues|registre de càrregues]].
+Aneu també a [[Project:Política d'ús d'imatges|política d'ús d'imatges]].
+
+Empreu la forma de sota per carregar nous arxius d'imatges per il·lustrar els articles.
 Amb la majoria dels navegadors, veureu un botó \"Browse...\", que
 farà aparèixer la selecció d'arxius estàndard en el vostre sistema operatiu.
 Quan escolliu un arxiu el nom d'aqueix arxiu apareixerà en el camp de text
@@ -524,13 +523,16 @@ També heu de marcar la caixa afirmant que no esteu
 violant cap copyright en carregar l'arxiu.
 Pitgeu el botó \"Carrega\" per completar la càrrega.
 això pot prendre algun temps si teniu una connexió lenta a internet.
-<p>Els formats preferits són el JPEG per imatges fotogràfiques, el PNG
+
+Els formats preferits són el JPEG per imatges fotogràfiques, el PNG
 per dibuixos i altres imatges icòniques, i OGG per sons.
 Seria convenient que donéssiu noms descriptius als arxius per evitar confusions.
 Per incloure la imatge en un article, empreu un enllaç de la forma
-<b>[[imatge:arxiu.jpg]]</b> o <b>[[imatge:arxiu.png|alt text]]</b>
-o <b>[[media:arxiu.ogg]]</b> per sons.
-<p>Noteu que de la mateixa manera com passa amb les pàgines de la Viquipèdia, altri pot
+'''<nowiki>[[imatge:arxiu.jpg]]</nowiki> o
+'''<nowiki>[[imatge:arxiu.png|alt text]]</nowiki> o
+'''<nowiki>[[media:arxiu.ogg]]</nowiki>''' per sons.
+
+Noteu que de la mateixa manera com passa amb les pàgines de la Viquipèdia, altri pot
 editar o esborrar els arxius que heu carregat si pensen que és bo per a
 l'enciclopèdia, i se us pot bloquejar, impedint-vos carregar arxius si abuseu del sistema.",
 "uploadlog"		=> "registre de càrregues",

@@ -669,24 +669,22 @@ dzo Wikipedia.",
 vos pleur eberweter des fitchîs.",
 "uploadfile"	=> "Eberweter des imådjes, des sons, evnd.",
 "uploaderror"	=> "Aroke d'&nbsp;eberwetaedje",
-"uploadtext"	=> "<strong>ASTEME!</strong> Divant d'&nbsp;eberweter on
+"uploadtext"	=> "'''ASTEME!''' Divant d'&nbsp;eberweter on
 fitchî chal, léjhoz et s'&nbsp;vos asseurer di bén shure 
-les <a href=\"" .
-wfLocalUrlE( "Wikipedia:Rîles_po_l'_eployaedje_des_imådjes" ) . "\">rîles po
-l'&nbsp;eployaedje des imådjes</a> di Wikipedia.
-<p>
+les [[Project:Rîles_po_l'_eployaedje_des_imådjes|rîles po l'&nbsp;eployaedje des imådjes]]
+di Wikipedia.
+
 Si on fitchî avou l'&nbsp;minme no egzistêye dedja, i srè replaecî
 sins adviertixhmint pa l'&nbsp;ci ki vos årîz eberweté.
 Dj'&nbsp;ô bén ki, a moens ki vos vôrîz mete a djoû on fitchî tot
 l'&nbsp;replaeçant pa on pus noû, vos dvrîz tofer vos acertiner
 k'&nbsp;i n'&nbsp;a nén ddja on fitchî do minme no.
-<p>
+
 Po håyner ou cweri des imådjes k'&nbsp;ont ddja stî rçuvowes, 
-alez sol <a href=\"" . wfLocalUrlE( "Sipeciås:Imagelist" ) .
-"\">djivêye des imådjes dedja eberwetêyes</a>.
-Les eberwetaedjes et disfaçaedjes sont metous èn on <a href=\"" .
-wfLocalUrlE( "Wikipedia:Djournå_des_eberwetaedjes" ) . "\">djournå des eberwetaedjes</a>.
-<p>
+alez sol [[Sipeciås:Imagelist|djivêye des imådjes dedja eberwetêyes]].
+Les eberwetaedjes et disfaçaedjes sont metous èn on
+[[Project:Djournå_des_eberwetaedjes|djournå des eberwetaedjes]].
+
 Eployîz les boesses d'&nbsp;intrêye chal pa dzo po-z eberweter
 des noveas fitchîs d'&nbsp;imådjes po vos årtikes.
 Sol plupårt des betchteus, vos voeroz on boton «Foyter...» (ou «Browse...»)
@@ -699,16 +697,17 @@ dins l'&nbsp;Wikipedia.
 Clitchîz sol boton «Eberweter» po-z evoyî l'&nbsp;fitchî sol sierveu.
 çoula pout prinde do tins si l'&nbsp;raloyaedje al daegntoele est
 londjin.
-<p>
+
 Les cognes di fitchîs k'&nbsp;on-z a ptchî c'&nbsp;est li JPEG po
 les imådjes foto, eyet li PNG po les dessins, mapes, drapeas, imådjetes...
 et li OGG po les sons.
 S'&nbsp;i vs plait, dinez a vosse fitchî on no ki dit bén çou 
 k'&nbsp;c'&nbsp;est, c'&nbsp;est pus åjhey insi.
 Po håyner l'&nbsp;imådje dins èn årtike, eployîz on loyén del
-foûme <b>[[imådje:fitchî.jpg]]</b> ou <b>[[imådje:fitchî.png|tecse po les betchteus nén grafikes]]</b>
-ou co <b>[[media:fitchî.ogg]]</b> po les sons.
-<p>
+foûme '''<nowiki>[[imådje:fitchî.jpg]]</nowiki>''' ou
+'''<nowiki>[[imådje:fitchî.png|tecse po les betchteus nén grafikes]]</nowiki>'''
+ou co '''<nowiki>[[media:fitchî.ogg]]</nowiki>''' po les sons.
+
 Notez bén ki, tot come po les pådjes del Wikipedia, les ôtès djins polèt
 candjî ou disfacer vos eberwetaedjes s'&nbsp;i pinsèt ki c'&nbsp;est mî
 po l'&nbsp;eciclopedeye; eyet vos ploz esse espaitchî d'&nbsp;eberweter
