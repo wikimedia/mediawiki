@@ -5,11 +5,13 @@ function wfSpecialAllpages( $par=NULL )
 	global $indexMaxperpage, $wgRequest;
 	$indexMaxperpage = 480;
 	$from = $wgRequest->getVal( 'from' );
-	
+	$namespace = $wgRequest->getVal( 'namespace' );
+	if ( is_null($namespace) ) { $namespace = 0; }
+
 	if( $par ) {
-		indexShowChunk( $par );
+		indexShowChunk( $par, $namespace );
 	} elseif( !is_null( $from ) ) {
-		indexShowChunk( $from );
+		indexShowChunk( $from, $namespace );
 	} else {
 		indexShowToplevel();
 	}
@@ -30,7 +32,7 @@ function indexShowToplevel()
 		$log->showAsDisabledPage();
 		return;
 	}
-	
+
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cur = $dbr->tableName( 'cur' );
 	$fromwhere = "FROM $cur WHERE cur_namespace=0";
@@ -41,7 +43,7 @@ function indexShowToplevel()
 	$count = $dbr->selectField( 'cur', 'COUNT(*)', $where, $fname );
 	$sections = ceil( $count / $indexMaxperpage );
 	$inpoint = $dbr->selectField( 'cur', 'cur_title', $where, $fname, $order );
-	
+
 	$out .= "<table>\n";
 	# There's got to be a cleaner way to do this!
 	for( $i = 1; $i < $sections; $i++ ) {
@@ -91,16 +93,17 @@ function indexShowline( $inpoint, $outpoint )
 	return "<tr><td align=\"right\">{$out}</td></tr>\n";
 }
 
-function indexShowChunk( $from )
+function indexShowChunk( $from, $namespace = 0 )
 {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;
+	$namespacee = intval($namespace);
 
 	$out = "";
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cur = $dbr->tableName( 'cur' );
-	$sql = "SELECT cur_title FROM $cur WHERE cur_namespace=0 AND cur_title >= '"
+	$sql = "SELECT cur_title FROM $cur WHERE cur_namespace=$namespacee AND cur_title >= '"
 		. $dbr->strencode( $from ) . "' ORDER BY cur_title LIMIT " . $maxPlusOne;
 	$res = $dbr->query( $sql, "indexShowChunk" );
 
@@ -109,7 +112,7 @@ function indexShowChunk( $from )
 	$n = 0;
 	$out = "<table border=\"0\" width=\"100%\">\n";
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
-		$t = Title::makeTitle( 0, $s->cur_title );
+		$t = Title::makeTitle( $namespacee, $s->cur_title );
 		if( $t ) {
 			$link = $sk->makeKnownLinkObj( $t );
 		} else {
