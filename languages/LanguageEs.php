@@ -26,12 +26,12 @@ require_once( "LanguageUtf8.php" );
 	NS_IMAGE_TALK     => "Imagen_Discusión",
 	NS_MEDIAWIKI      => "MediaWiki",
 	NS_MEDIAWIKI_TALK => "MediaWiki_Discusión",
-	NS_TEMPLATE       => "Template",
-	NS_TEMPLATE_TALK  => "Template_talk",
+	NS_TEMPLATE       => "Plantilla",
+	NS_TEMPLATE_TALK  => "Plantilla_Discusión",
 	NS_HELP           => "Ayuda",
 	NS_HELP_TALK      => "Ayuda_Discusión",
-	NS_CATEGORY       => "Category",
-	NS_CATEGORY_TALK  => "Category_talk",
+	NS_CATEGORY       => "Categoría",
+	NS_CATEGORY_TALK  => "Categoría_Discusión",
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEs = array(
