@@ -2,7 +2,7 @@
 
 #article { padding: 4px; }
 #content { margin: 0; padding: 0; }
-#footer { padding: 4px;font-size:95%; }
+#footer { padding: 4px;font-size:95%;clear: both; }
 #pagestats { font-size: 9pt; }
 #powersearch {
   background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
@@ -50,4 +50,3 @@ p.catlinks { font-size:small; margin-top:0; text-align:right;}
 td { empty-cells:show; }
 td.bottom { border-top: 1px solid gray; }
 td.top { border-bottom: 1px solid gray; }
-
