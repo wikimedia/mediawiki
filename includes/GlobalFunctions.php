@@ -342,6 +342,7 @@ function wfGo( $s )
 	$se->goResult();
 }
 
+
 /* private */ $wgAbruptExitCalled = false;
 
 # Just like exit() but makes a note of it.
@@ -353,11 +354,17 @@ function wfAbruptExit(){
 	}
 	$wgAbruptExitCalled = true;
 
+	if( ! function_exists( "debug_backtrace" )){ // for php < 4.3.0
+		wfDebug("WARNING: Abrupt exit from somewhere.\n");
+		exit();
+	}
+
+	wfDebug("WARNING: Abrupt exit. Backtrace follows:\n");
 	$bt = debug_backtrace();
 	for($i = 0; $i < count($bt) ; $i++){
 		$file = $bt[$i]["file"];
 		$line = $bt[$i]["line"];
-		wfDebug("WARNING: Abrupt exit in $file at line $line\n");
+		wfDebug("Abrupt exit in $file at line $line\n");
 	}
 	exit();
 }
