@@ -72,21 +72,6 @@ require_once( "LanguageUtf8.php" );
 	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
 );
 
-/* private */ $wgWeekdayNamesFr = array(
-	"dimanche", "lundi", "mardi", "mercredi", "jeudi",
-	"vendredi", "samedi"
-);
-
-/* private */ $wgMonthNamesFr = array(
-	"janvier", "février", "mars", "avril", "mai", "juin",
-	"juillet", "août", "septembre", "octobre", "novembre",
-	"décembre"
-);
-
-/* private */ $wgMonthAbbreviationsFr = array(
-	"jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû",
-	"sep", "oct", "nov", "déc"
-);
 
 // All special pages have to be listed here: a description of ""
 // will make them not show up on the "Special Pages" page, which
@@ -144,6 +129,40 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesFr = array(
+# Dates
+
+'sunday' => "dimanche",
+'monday' => "lundi",
+'tuesday' => "mardi",
+'wednesday' => "mercredi",
+'thursday' => "jeudi",
+'friday' => "vendredi",
+'saturday' => "samedi",
+'january' => "janvier",
+'february' => "février",
+'march' => "mars",
+'april' => "avril",
+'may' => "mai",
+'june' => "juin",
+'july' => "juillet",
+'august' => "août",
+'september' => "septembre",
+'october' => "octobre",
+'november' => "novembre",
+'december' => "décembre",
+'jan' => "jan",
+'feb' => "fév",
+'mar' => "mar",
+'apr' => "avr",
+'may' => "mai",
+'jun' => "jun",
+'jul' => "jul",
+'aug' => "aoû",
+'sep' => "sep",
+'oct' => "oct",
+'nov' => "nov",
+'dec' => "déc",
+
 
 # Bits of text used by many pages:
 #
@@ -1213,24 +1232,6 @@ class LanguageFr extends LanguageUtf8
 	{
 		global $wgUserTogglesFr;
 		return $wgUserTogglesFr;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesFr;
-		return $wgMonthNamesFr[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsFr;
-		return $wgMonthAbbreviationsFr[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesFr;
-		return $wgWeekdayNamesFr[$key-1];
 	}
 
 	// Inherit userAdjust()

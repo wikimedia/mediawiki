@@ -92,29 +92,6 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesZh = array(
-        "星期日", "星期一", "星期二", "星期三", "星期四",
-	"星期五", "星期六"
-/* "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-	"Friday", "Saturday" */
-);
-
-/* private */ $wgMonthNamesZh = array(
-        "1月", "2月", "3月", "4月", "5月", "6月",
-	"7月", "8月", "9月", "10月", "11月",
-	"12月"
-/* "January", "February", "March", "April", "May", "June",
-   "July", "August", "September", "October", "November",
-	"December" */
-);
-
-/* private */ $wgMonthAbbreviationsZh = array(
-"1月", "2月", "3月", "4月", "5月", "6月",
-	"7月", "8月", "9月", "10月", "11月",
-	"12月"
-/* "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-	"Sep", "Oct", "Nov", "Dec" */
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -181,6 +158,39 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 );
 
 /* private */ $wgAllMessagesZh = array(
+# Dates
+
+'sunday' => "星期日",
+'monday' => "星期一",
+'tuesday' => "星期二",
+'wednesday' => "星期三",
+'thursday' => "星期四",
+'friday' => "星期五",
+'saturday' => "星期六",
+'january' => "1月",
+'february' => "2月",
+'march' => "3月",
+'april' => "4月",
+'may' => "5月",
+'june' => "6月",
+'july' => "7月",
+'august' => "8月",
+'september' => "9月",
+'october' => "10月",
+'november' => "11月",
+'december' => "12月",
+'jan' => "1月",
+'feb' => "2月",
+'mar' => "3月",
+'apr' => "4月",
+'may' => "5月",
+'jun' => "6月",
+'jul' => "7月",
+'aug' => "8月",
+'sep' => "9月",
+'oct' => "10月",
+'nov' => "11月",
+'dec' => "12月",
 
 # Bits of text used by many pages:
 #
@@ -1001,31 +1011,6 @@ class LanguageZh extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesZh;
 		return $wgUserTogglesZh;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesZh;
-		return $wgMonthNamesZh[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesZh;
-		return $wgMonthNamesZh[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsZh;
-		return $wgMonthAbbreviationsZh[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesZh;
-		return $wgWeekdayNamesZh[$key-1];
 	}
 
 # The date and time functions can be tweaked if need be
