@@ -1060,7 +1060,7 @@ class Skin {
 	function moveThisPage() {
 		global $wgTitle, $wgContLang;
 
-		if ( $wgTitle->userCanEdit() ) {
+		if ( $wgTitle->userCanMove() ) {
 			$s = $this->makeKnownLink( $wgContLang->specialPage( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} // no message if page is protected - would be redundant
