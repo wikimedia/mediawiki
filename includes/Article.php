@@ -1620,18 +1620,20 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		return $text;
 	}
 
-
 	/* Caching functions */
 	
-    function tryFileCache() {
+	function tryFileCache() {
+		global $wgTitle;
+		
 		if($this->isFileCacheable()) {
-			if($this->isFileCacheGood()) {
-                wfDebug( " tryFileCache() - about to load\n" );
-				$this->loadFromFileCache();
+			$cache = new CacheManager( $wgTitle );
+			if($cache->isFileCacheGood( $this->mTouched )) {
+				wfDebug( " tryFileCache() - about to load\n" );
+				$cache->loadFromFileCache();
 				exit;
 			} else {
-	            wfDebug( " tryFileCache() - starting buffer\n" );			
-		        ob_start( array(&$this, 'saveToFileCache' ) );
+				wfDebug( " tryFileCache() - starting buffer\n" );			
+				ob_start( array(&$cache, 'saveToFileCache' ) );
 			}
 		} else {
 			wfDebug( " tryFileCache() - not cacheable\n" );
@@ -1655,100 +1657,6 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			
 	}
 	
-	function fileCacheName() {
-		global $wgTitle, $wgFileCacheDirectory, $wgLang;
-		if( !$this->mFileCache ) {
-			$hash = md5( $key = $wgTitle->getDbkey() );
-			if( $wgTitle->getNamespace() )
-				$key = $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $key;
-			$key = str_replace( ".", "%2E", urlencode( $key ) );
-			$hash1 = substr( $hash, 0, 1 );
-			$hash2 = substr( $hash, 0, 2 );
-			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
-			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
-		}
-		return $this->mFileCache;
-	}
-
-	function isFileCacheGood() {
-		global $wgUser, $wgCacheEpoch;
-		if(!file_exists( $fn = $this->fileCacheName() ) ) return false;
-		$cachetime = wfUnix2Timestamp( filemtime( $fn ) );
-		$good = (( $this->mTouched <= $cachetime ) &&
-			($wgCacheEpoch <= $cachetime ));
-        wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$this->mTouched} epoch {$wgCacheEpoch}, good $good\n");
-		return $good;
-	}
-
-	function loadFromFileCache() {
-		global $wgUseGzip, $wgOut;
-		wfDebug(" loadFromFileCache()\n");
-		$filename=$this->fileCacheName();
-		$filenamegz = "{$filename}.gz";
-		$wgOut->sendCacheControl();
-		if( $wgUseGzip
-			&& wfClientAcceptsGzip()
-			&& file_exists( $filenamegz)
-			&& ( filemtime( $filenamegz ) >= filemtime( $filename ) ) ) {
-			wfDebug("  sending gzip\n");
-			header( "Content-Encoding: gzip" );
-			header( "Vary: Accept-Encoding" );
-			$filename = $filenamegz;
-		}
-		readfile( $filename );
-	}
-	
-	function saveToFileCache( $text ) {
-		global $wgUseGzip, $wgCompressByDefault;
-		if(strcmp($text,"") == 0) return "";
-		
-        wfDebug(" saveToFileCache()\n", false);
-		$filename=$this->fileCacheName();
-                $mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
-		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
-		if(!file_exists($mydir1)) { mkdir($mydir1,0775); } # create if necessary
-		if(!file_exists($mydir2)) { mkdir($mydir2,0775); }
-		
-		$f = fopen( $filename, "w" );
-		if($f) {
-			$now = wfTimestampNow();
-			fwrite( $f, str_replace( "</html>",
-				"<!-- Cached $now -->\n</html>",
-				$text ) );
-			fclose( $f );
-			if( $wgUseGzip and $wgCompressByDefault ) {
-				$start = microtime();
-				wfDebug("  saving gzip\n");
-				$gzout = gzencode( str_replace( "</html>",
-						"<!-- Cached/compressed $now -->\n</html>",
-						$text ) );
-				if( $gzout === false ) {
-					wfDebug("  failed to gzip compress, sending plaintext\n");
-					return $text;
-				}
-				if( $f = fopen( "{$filename}.gz", "w" ) ) {
-					fwrite( $f, $gzout );
-					fclose( $f );
-					$end = microtime();
-					
-					list($usec1, $sec1) = explode(" ",$start);
-					list($usec2, $sec2) = explode(" ",$end);
-					$interval = ((float)$usec2 + (float)$sec2) -
-								((float)$usec1 + (float)$sec1);
-					wfDebug("  saved gzip in $interval\n");
-				} else {
-					wfDebug("  failed to write gzip, still sending\n" );
-				}
-				if(wfClientAcceptsGzip()) {
-					header( "Content-Encoding: gzip" );
-					header( "Vary: Accept-Encoding" );
-					wfDebug("  sending NEW gzip now...\n" );
-					return $gzout;
-				}
-			}
-		}
-		return $text;
-	}
 
 }
 
