@@ -73,7 +73,7 @@ class Namespace {
 		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK
 	== $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index ||
 	NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ||
-	NS_CATEGORY_TALK ) {
+	NS_CATEGORY_TALK == $index ) {
 			return true;
 		}
 		return false;
