@@ -9,8 +9,8 @@ exit();
 # Convert watchlists to new format
 
 global $IP;
-include_once( "../LocalSettings.php" );
-include_once( "$IP/Setup.php" );
+require_once( "../LocalSettings.php" );
+require_once( "$IP/Setup.php" );
 
 $wgTitle = Title::newFromText( "Rebuild links script" );
 set_time_limit(0);

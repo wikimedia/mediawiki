@@ -1,5 +1,5 @@
 <?php
-include_once("LanguageUtf8.php");
+require_once("LanguageUtf8.php");
 $wgInputEncoding	= "utf-8";
 $wgOutputEncoding	= "utf-8";
 $wgEditEncoding		= "x";

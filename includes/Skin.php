@@ -1,7 +1,7 @@
 <?php
 
-include_once( "Feed.php" );
-include_once( "Image.php" );
+require_once( "Feed.php" );
+require_once( "Image.php" );
 
 # See skin.doc
 
@@ -22,7 +22,7 @@ if( $wgUsePHPTal ) {
     #$wgValidSkinNames['monobookminimal'] = "MonoBookMinimal";
 }
 
-include_once( "RecentChange.php" );
+require_once( "RecentChange.php" );
 
 class RCCacheEntry extends RecentChange
 {
@@ -2644,12 +2644,12 @@ class Skin {
 	}
 }
 
-include_once( "SkinStandard.php" );
-include_once( "SkinNostalgia.php" );
-include_once( "SkinCologneBlue.php" );
+require_once( "SkinStandard.php" );
+require_once( "SkinNostalgia.php" );
+require_once( "SkinCologneBlue.php" );
 
 if( $wgUsePHPTal ) {
-	include_once( "SkinPHPTal.php" );
+	require_once( "SkinPHPTal.php" );
 }
 
 

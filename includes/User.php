@@ -1,7 +1,7 @@
 <?php
 # See user.doc
 
-include_once( "WatchedItem.php" );
+require_once( "WatchedItem.php" );
 
 class User {
 	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
@@ -151,7 +151,7 @@ class User {
 	function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
-			include_once( "MemcachedSessions.php" );
+			require_once( "MemcachedSessions.php" );
 		}
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 		session_cache_limiter( "private, must-revalidate" );

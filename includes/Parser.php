@@ -1,12 +1,12 @@
 <?php
 
-include_once('Tokenizer.php');
+require_once('Tokenizer.php');
 
 if( $GLOBALS['wgUseWikiHiero'] ){
-	include_once('wikihiero.php');
+	require_once('wikihiero.php');
 }
 if( $GLOBALS['wgUseTimeline'] ){
-	include_once('extensions/timeline/Timeline.php');
+	require_once('extensions/timeline/Timeline.php');
 }
 
 # PHP Parser

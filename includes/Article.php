@@ -5,7 +5,7 @@
 # Note: edit user interface and cache support functions have been
 # moved to separate EditPage and CacheManager classes.
 
-include_once( "CacheManager.php" );
+require_once( "CacheManager.php" );
 
 class Article {
 	/* private */ var $mContent, $mContentLoaded;

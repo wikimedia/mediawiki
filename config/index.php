@@ -302,8 +302,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBadminpassword = $wgDBpassword;
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
-		include_once( "Setup.php" );
-		include_once( "../maintenance/InitialiseMessages.inc" );
+		require_once( "Setup.php" );
+		require_once( "../maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
@@ -688,7 +688,7 @@ function writeLocalSettings( $conf ) {
 
 \$IP = \"{$conf->IP}\";
 ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
-include_once( \"DefaultSettings.php\" );
+require_once( \"DefaultSettings.php\" );
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {

@@ -812,7 +812,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 "talkpagenotmoved" => "Artikkelin keskustelusivua <strong>ei</strong> siirretty.",
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageFi extends LanguageUtf8 {
 

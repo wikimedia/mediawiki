@@ -1,6 +1,6 @@
 <?php
 
-include_once("LanguageUtf8.php");
+require_once("LanguageUtf8.php");
 
 # Tu môžete meniť názvy "namespaces" (no proste, rôznych častí encyklopédie),
 # ale čísla nechajte tak, ako sú! Program to tak vyžaduje...

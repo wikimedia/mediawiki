@@ -889,7 +889,7 @@ Incorporeu-les manualment, si us plau.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 class LanguageCa extends LanguageUtf8 {
 
 	# Inherent default user options unless customization is desired

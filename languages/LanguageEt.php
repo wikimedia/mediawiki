@@ -877,7 +877,7 @@ to move a page.",
 
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageEt extends LanguageUtf8 {
 

@@ -1,7 +1,7 @@
 <?php
 
-include_once ( "LogPage.php" ) ;
-include_once ( "Feed.php" );
+require_once ( "LogPage.php" ) ;
+require_once ( "Feed.php" );
 
 # This is a class for doing query pages; since they're almost all the same,
 # we factor out some of the functionality into a superclass, and let

@@ -6,13 +6,13 @@ $wgCommandLineMode = true;
 
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
-include_once( "./LocalSettings.php" );
+require_once( "./LocalSettings.php" );
 
 # Windows requires ';' as separator, ':' for Unix
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 ini_set( "include_path", "$IP$sep$include_path" );
 
-include_once( "Setup.php" );
+require_once( "Setup.php" );
 
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 $wgArticle = new Article($wgTitle);

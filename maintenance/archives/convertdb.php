@@ -11,14 +11,14 @@ exit();
 # dump files.
 
 global $IP;
-include_once( "../LocalSettings.php" );
-include_once( "../AdminSettings.php" );
-include_once( "$IP/Setup.php" );
+require_once( "../LocalSettings.php" );
+require_once( "../AdminSettings.php" );
+require_once( "$IP/Setup.php" );
 
 $wgTitle = Title::newFromText( "Conversion script" );
-include_once( "./rebuildLinks.inc" );
-include_once( "./rebuildRecentchanges.inc" );
-include_once( "./buildTables.inc" );
+require_once( "./rebuildLinks.inc" );
+require_once( "./rebuildRecentchanges.inc" );
+require_once( "./buildTables.inc" );
 set_time_limit(0);
 
 $wgDBuser			= "wikiadmin";

@@ -1,5 +1,5 @@
 <?php
-include_once( "LinksUpdate.php" );
+require_once( "LinksUpdate.php" );
 
 function wfSpecialMakesysop()
 {

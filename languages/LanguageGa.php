@@ -1125,7 +1125,7 @@ air, nó is féidir leat é a coinnigh do do siamsa féin.",
 "allmessagestext"   => "Seo é liosta de na teachtaireachtaí go léir atá le fáil san roinn MediaWiki: ."
 );
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageGa extends LanguageUtf8 {
 

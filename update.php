@@ -6,7 +6,7 @@ die("obsolete; remove this file befor 1.3.0 release\n");
 #
 
 include( "./install-utils.inc" );
-include_once( "./maintenance/updaters.inc" );
+require_once( "./maintenance/updaters.inc" );
 install_version_checks();
 
 if ( ! ( is_readable( "./LocalSettings.php" )
@@ -17,8 +17,8 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 }
 
 $IP = "./includes";
-include_once( "./LocalSettings.php" );
-include_once( "./AdminSettings.php" );
+require_once( "./LocalSettings.php" );
+require_once( "./AdminSettings.php" );
 
 include( "$IP/Version.php" );
 
@@ -40,8 +40,8 @@ do_update_files();
 $wgDBuser			= $wgDBadminuser;
 $wgDBpassword		= $wgDBadminpassword;
 
-include_once( "{$IP}/Setup.php" );
-include_once( "./maintenance/InitialiseMessages.inc" );
+require_once( "{$IP}/Setup.php" );
+require_once( "./maintenance/InitialiseMessages.inc" );
 
 $wgTitle = Title::newFromText( "Update script" );
 

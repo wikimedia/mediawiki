@@ -8,7 +8,7 @@
 #   3. Convert the text to suit the new syntax
 
 chdir( ".." );
-include_once( "commandLine.inc" );
+require_once( "commandLine.inc" );
 
 $phase = 0;
 if ( is_numeric( @$argv[2] ) && $argv[2] > 0) {

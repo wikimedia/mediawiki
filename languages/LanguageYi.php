@@ -2,7 +2,7 @@
 
 # Stub for Yiddish
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 class LanguageYi extends LanguageUtf8 {
 

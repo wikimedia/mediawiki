@@ -32,11 +32,11 @@ ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include
 
 $wgCommandLineMode = true;
 $DP = "../includes";
-include_once( $settingsFile );
+require_once( $settingsFile );
 
-include_once( "Setup.php" );
-include_once( "./InitialiseMessages.inc" );
-include_once( "../install-utils.inc" );
+require_once( "Setup.php" );
+require_once( "./InitialiseMessages.inc" );
+require_once( "../install-utils.inc" );
 $wgTitle = Title::newFromText( "Rebuild messages script" );
 $wgCommandLineMode = true;
 set_time_limit(0);

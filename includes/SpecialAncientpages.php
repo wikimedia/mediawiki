@@ -1,6 +1,6 @@
 <?php
 
-include_once( "QueryPage.php" );
+require_once( "QueryPage.php" );
 
 class AncientPagesPage extends QueryPage {
 

@@ -1,5 +1,5 @@
 <?php
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"

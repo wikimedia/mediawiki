@@ -7,7 +7,7 @@ $wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
 $wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
 
 if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
-	include_once( "Utf8Case.php" );
+	require_once( "Utf8Case.php" );
 	$wgMemc->set( $key1, $wikiUpperChars );
 	$wgMemc->set( $key2, $wikiLowerChars );
 }

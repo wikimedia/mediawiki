@@ -8,7 +8,7 @@
 # encapsulates some of the magic-ness.
 #
 
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );

@@ -31,8 +31,8 @@ ini_set( "include_path", "$newpath$IP$sep$include_path" );
 
 $wgCommandLineMode = true;
 $DP = "../includes";
-include_once( $settingsFile );
-include_once( "Setup.php" );
+require_once( $settingsFile );
+require_once( "Setup.php" );
 $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
 set_time_limit(0);
