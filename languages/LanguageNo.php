@@ -1094,11 +1094,6 @@ class LanguageNo extends LanguageUtf8 {
 		return $wgSkinNamesNo;
 	}
 
-	function getDateFormats() {
-		global $wgDateFormatsNo;
-		return $wgDateFormatsNo;
-	}
-
 	# Inherit userAdjust()
 
 	function date( $ts, $adj = false )
