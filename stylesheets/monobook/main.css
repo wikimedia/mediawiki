@@ -886,6 +886,7 @@ fieldset.operaprefsection { margin-left: 15em }
 /*div{ border:1px solid #000000;}*/
 
 #siteNotice {
+    margin-top: 10px;
     border: 1px solid red;
 }
 
