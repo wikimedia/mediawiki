@@ -174,5 +174,6 @@
       </div>
       <div id="colophon"></div>
     </div>
+    ${reporttime}
   </body>
 </html>
