@@ -300,30 +300,30 @@
 
 		/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 			$title = Title::makeTitle( NS_SPECIAL, $name );
-			return $title->escapeLocalURL( $urlaction );
+			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeTalkUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
 			$title = $title->getTalkPage();
-			return $title->escapeLocalURL( $urlaction );
+			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeArticleUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
 			#$title->setNamespace(0);
 			#$title = Title::makeTitle( Namespace::getSubject( $wgTitle->getNamespace() ), $wgTitle->getDbKey() );
 			$title= $title->getSubjectPage();
-			return $title->escapeLocalURL( $urlaction );
+			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( wfMsg($name) );
 			if(!is_object($title)) {
 				$title = Title::newFromText( $name );
 			}
-			return $title->escapeLocalURL( $urlaction );
+			return $title->getLocalURL( $urlaction );
 		}
 		/*static*/ function makeUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( $name );
-			return $title->escapeLocalURL( $urlaction ); 
+			return $title->getLocalURL( $urlaction ); 
 		}
 
 	}
