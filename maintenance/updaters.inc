@@ -57,7 +57,7 @@ function do_ipblocks_update() {
 	} else {
 		echo "...ipblocks is up to date.\n";
 	}
-	
+
 }
 
 
@@ -209,7 +209,7 @@ function do_image_name_unique_update() {
 function do_logging_update() {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( 'logging' ) ) {
-		echo "...logging table already unique.\n";
+		echo "...logging table already exists.\n";
 	} else {
 		echo "Creating logging table and adjusting recentchanges... ";
 		dbsource( "maintenance/archives/patch-logging.sql", $wgDatabase );
