@@ -583,7 +583,7 @@ class User {
 			
 			# Check if we got if not failback to default skin
 			$className = 'Skin'.$sn;
-			if( !class_exists( $ClassName ) ) {
+			if( !class_exists( $className ) ) {
 				# DO NOT die if the class isn't found. This breaks maintenance
 				# scripts and can cause a user account to be unrecoverable
 				# except by SQL manipulation if a previously valid skin name
@@ -591,7 +591,7 @@ class User {
 				$sn = 'SkinStandard';
 				require_once( $IP.'/skins/Standard.php' );
 			}
-			$this->mSkin = new $sn;
+			$this->mSkin = new $className;
 		}
 		return $this->mSkin;
 	}
