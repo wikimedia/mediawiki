@@ -855,7 +855,7 @@ class Skin extends Linker {
 
 		$timestamp = $wgArticle->getTimestamp();
 		if ( $timestamp ) {
-			$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
+			$d = $wgLang->timeanddate( $timestamp, true );
 			$s = ' ' . wfMsg( 'lastmodified', $d );
 		} else {
 			$s = '';
