@@ -57,7 +57,7 @@ class EmailUserForm {
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
 
-		if ( ! $wpSubject ) { $wpSubject = "Wikipedia e-mail"; }
+		if ( ! $wpSubject ) { $wpSubject = wfMsg( "defemailsubject" ); }
 
 		$emf = wfMsg( "emailfrom" );
 		$sender = $wgUser->getName();
