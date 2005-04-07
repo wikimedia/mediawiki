@@ -100,6 +100,7 @@ class WebRequest {
 	
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
+	 *
 	 * @param array &$arr
 	 * @param string $name
 	 * @param mixed $default
