@@ -2105,7 +2105,7 @@ class Language {
 	 *               validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function date( $ts, $adj = false, $format = '0', $timecorrection = false ) {
+	function date( $ts, $adj = false, $format = false, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
 		
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
@@ -2138,7 +2138,7 @@ class Language {
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
-	function time( $ts, $adj = false, $format = '0', $timecorrection = false ) {
+	function time( $ts, $adj = false, $format = false, $timecorrection = false ) {
 		global $wgUser, $wgAmericanDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
@@ -2166,7 +2166,7 @@ class Language {
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
-	function timeanddate( $ts, $adj = false, $format = '0', $timecorrection = false) {
+	function timeanddate( $ts, $adj = false, $format = false, $timecorrection = false) {
 		global $wgUser, $wgAmericanDates;
 		
 		$datePreference = $this->dateFormat($format);
