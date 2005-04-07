@@ -1,15 +1,16 @@
 <?php
-/**
+/** Nynorsk (Nynorsk)
+  *
+  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+  *
+  * @author Olve Utne
+  * @author Guttorm Flatabø
+  * @link http://meta.wikimedia.org/w/wiki.phtml?title=LanguageNn.php&action=history
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-
-# Nynorsk version translated by Olve Utne, Guttorm Flatabø and others
-# see:
-# <http://meta.wikimedia.org/w/wiki.phtml?title=LanguageNn.php&action=history>
-# for edit history.
-# To be included in the MediaWiki software.
-# This file is dual-licensed under GFDL and GPL.
 
 require_once( 'LanguageUtf8.php' );
 
@@ -60,10 +61,6 @@ $wgValidationTypesNn = array (
 	'3' => "Fakta|Ville gjetningar|Botnsolide|5",
 	'4' => "Eignar seg for 1.0 (papir)|Nei|Ja|2",
 	'5' => "Eignar seg for 1.0 (CD)|Nei|Ja|2"
-);
-
-/* private */ $wgDateFormatsNn = array(
-#	'Ingen preferanse',
 );
 
 /* private */ $wgBookstoreListNn = array(
@@ -261,7 +258,6 @@ $wgValidationTypesNn = array (
 'delete'                  => 'Slett',
 'deletethispage'          => 'Slett side',
 'undelete_short'          => 'Attopprett $1 redigeringar',
-'undelete_short1'          => 'Attopprett 1 redigeringar',
 'protect'                 => 'Vern',
 'protectthispage'         => 'Vern denne sida',
 'unprotect'               => 'Fjern vern',
@@ -389,7 +385,7 @@ Brukarkontoen din har blitt oppretta. Det er tilrådd at du ser gjennom brukarin
 'newusersonly'	          => ' (berre nye brukarar)',
 'remembermypassword'      => 'Hugs passordet.',
 'loginproblem'	          => '<b>Du vart ikkje innlogga.</b><br />Prøv om att!',
-'alreadyloggedin'         => '<div class="alreadyloggedin">Brukar $1, du er allereie innlogga!</div>',
+'alreadyloggedin'         => '<font color=red><b>Brukar $1, du er allereie innlogga!</b></font><br />',
 'login'			  => 'Logg inn',
 'loginprompt'             => 'Nettlesaren din må akseptere informasjonskapslar for at du skal kunna logge inn.',
 'userlogin'		  => 'Lag brukarkonto / logg inn',
@@ -479,15 +475,15 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 'accmailtitle'            => 'Passord er sendt.',
 'accmailtext'             => 'Passordet for "$1" er vorte sendt til $2.',
 'newarticle'	          => '(Ny)',
-'newarticletext'          => '<div style="border: 1px solid #ccc; padding: 7px;">\'\'\'{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.\'\'\'
+'newarticletext'          => '\'\'\'{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.\'\'\'
 * For å lage ei slik side kan du skrive i boksen under og klikke på "Lagre". Endringane vil vera synlege med det same.
 * Om du er ny her er det tilrådd å sjå på [[Project:Retningsliner|retningsliner]] og [[Help:Innhald|hjelp]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette ho sjølv. Ver difor venleg og bruk [[Project:Sandkassa|sandkassa]] til å eksperimentere.
-* Dersom du ikkje ønskjer å redigere, kan du utan risiko klikke på \'\'\'attende\'\'\'-knappen i nettlesaren din.
-</div>',
+* Dersom du ikkje ønskjer å redigere, kan du utan risiko klikke på \'\'\'attende\'\'\'-knappen i nettlesaren din.',
 'talkpagetext'            => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext'        => '---- \'\'Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.\'\'',
-'noarticletext'           => '({{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.)',
+'noarticletext'           => '\'\'\'{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.\'\'\'
+* Klikk på \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} redigér]\'\'\' for å laga ei slik side.',
 'clearyourcache'          => '\'\'\'Merk:\'\'\' Etter lagring bør du tømme nettlesaren sitt mellomlager for å sjå endringane. \'\'\'Mozilla og Konqueror:\'\'\' trykk \'\'Ctrl-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-R\'\'.',
 'usercssjsyoucanpreview'  => '<strong>Tip:</strong> Bruk "Førehandsvis"-knappen for å teste den nye CSS- eller JS-koden din føre du lagrar.',
 'usercsspreview'          => '\'\'\'Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!\'\'\'',
@@ -573,7 +569,7 @@ Du kan <b><a href="$1" class="new">laga ei side med denne namnet</a></b>.
 'viewprevnext'	          => 'Vis ($1) ($2) ($3).',
 'showingresults'          => 'Nedanfor er opp til <strong>$1</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
 'showingresultsnum'       => 'Nedanfor er <strong>$3</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
-'nonefound'               => '\'\'\'Merk\'\'\': søk utan resultat kjem ofte av at ein leitar etter alminnelege engelske ord som "have" og "from", som ikkje er indekserte, eller ved å spesifisere meir enn eitt søkjeord (ettersom berre sider som inneheld alle søkjeorda vil bli funne).',
+'nonefound'               => '\'\'\'Merk\'\'\': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller fordi du har gjeve meir enn eitt søkjeord (ettersom berre sider som inneheld alle søkjeorda vil bli funne).',
 'powersearch'             => 'Søk',
 'powersearchtext'         => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'searchdisabled'          => '<p style="margin: 1.5em 2em 1em">Søkefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenaren akkurat no. I mellomtida kan du leite gjennom Google eller Yahoo! <span style="font-size: 89%; display: block; margin-left: .2em">Ver oppmerksam på at registra deira kan vera utdaterte.</span></p>',
@@ -593,7 +589,6 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'changepassword'        => 'Skift passord',
 'skin'			=> 'Drakt',
 'math'			=> 'Matematiske formlar',
-'dateformat'	        => 'Datoformat',
 'math_failure'		=> 'Klarte ikkje å tolke formelen',
 'math_unknown_error'	=> 'ukjend feil',
 'math_unknown_function'	=> 'ukjend funksjon ',
@@ -697,12 +692,10 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'uploaderror'	        => 'Feil under opplasting av fil',
 'uploadtext'	        => 'Denne sida kan brukast til å laste opp filer.
 
-<div style="border: 1px solid grey; background: #ddf; padding: 7px; margin: 0 auto;">
 * For å bruke eit bilete på ei side, skriv inn ei lenkje av dette slaget: <tt><nowiki>[[{{ns:6}}:Eksempelbilete.jpg]]</nowiki></tt> eller <tt><nowiki>[[{{ns:6}}:Eksempelbilete.png|bilettekst]]</nowiki></tt>, eller <tt><nowiki>[[{{ns:-2}}:Eksempelfil.ogg]]</nowiki></tt> for lydar og andre filer. For å leggje inn eit bilete som miniatyr, skriv <tt><nowiki>[[{{ns:6}}:Eksempelbilete.jpg|mini|Bilettekst]]</nowiki></tt>. Sjå [[Help:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.
 * Om du lastar opp ei fil med same namn som ei eksisterande fil vil du få spørsmål om å bekrefte, og den eksisterande fila vil ikkje bli sletta.
 
 Sjå [[Help:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet fungerer og korleis ein bruker filer på wikisider.
-</div>
 
 For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som opnar ein standarddialog for val av fil. Når du vel ei fil, vil namnet på denne fila dukke opp i tekstfeltet ved sida av knappen. Skriv inn \'\'\'all\'\'\' nødvendig informasjon i \'\'Samandrag\'\' feltet, kryss av at du ikkje bryt nokon sin opphavsrett, og klikk til slutt på \'\'Last opp fil\'\'.',
 'uploadlog'		=> 'opplastingslogg',
@@ -741,6 +734,7 @@ For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som
 'ilshowmatch'	        => 'Vis alle treff på filer med namn',
 'ilsubmit'		=> 'Søk',
 'showlast'		=> 'Vis dei siste $1 filene sorterte $2.',
+'all'           => 'alle',
 'byname'		=> 'etter namn',
 'bydate'		=> 'etter dato',
 'bysize'		=> 'etter storleik',
@@ -851,10 +845,12 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 # Special:Allpages
 'nextpage'              => 'Neste side ($1)',
 'articlenamespace'      => '(innhaldssider)',
+'allpagesformtext1'     => 'Vis sider frå: $1',
+'allpagesformtext2'     => 'Velj namnerom: $1 $2',
 'allarticles'           => 'Alle innhaldssider',
 'allpagesprev'          => 'Førre',
 'allpagesnext'          => 'Neste',
-'allinnamespace'     => 'Alle sider ($1 namnerom)',
+'allpagesnamespace'     => 'Alle sider ($1 namnerom)',
 'allpagessubmit'        => 'Utfør',
 
 # Email this user
@@ -882,7 +878,7 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 'watchlistsub'	        => '(for brukar "$1")',
 'nowatchlist'	        => 'Du har ikkje noko i overvakingslista di.',
 'watchnologin'	        => 'Ikkje innlogga',
-'watchnologintext'	=> 'Du lyt vera <a href="{{localurl:Spesial:Userlogin}}">innlogga</a> for å kunna endre overvakingslista.',
+'watchnologintext'	    => 'Du lyt vera <a href="{{localurl:Special:Userlogin}}">innlogga</a> for å kunna endre overvakingslista.',
 'addedwatch'	        => 'Lagt til overvakingslista',
 'addedwatchtext'        => 'Sida "$1" er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera \'\'\'utheva\'\'\' i [[Special:Recentchanges|siste endringar]] lista for å gjera deg merksam på henne.
 
@@ -920,6 +916,7 @@ og klikk på "Fjern overvaking"-knappen nedst på sida.',
 'deletesub'		=> '(Slettar "$1")',
 'historywarning'        => 'Åtvaring: Sida du held på å slette har ein historikk: ',
 'confirmdeletetext'     => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Bekreft at du verkeleg vil gjera dette, at du skjønner konsekvensane, og at du gjer dette i tråd med [[Project:Retningsliner|retningslinene]].',
+'confirmcheck'          => 'Ja, eg vil verkeleg slette.',
 'actioncomplete'        => 'Ferdig',
 'deletedtext'	        => '"$1" er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
 'deletedarticle'        => 'sletta "$1"',
@@ -1400,8 +1397,7 @@ class LanguageNn extends LanguageUtf8 {
 		return false;
 	}
 
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
@@ -1410,22 +1406,25 @@ class LanguageNn extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
+	function time( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 4 );
 		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . ' kl. ' . $this->time( $ts, $adj );
 	}
 	
+	var $digitTransTable = array(
+		'.' => ',',
+		',' => '&nbsp;'
+	);
+
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
 	}
 
 	function getMessage( $key )
