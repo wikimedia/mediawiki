@@ -44,7 +44,7 @@ class LanguageZh extends LanguageZh_cn {
 	var $mTablesLoaded = false;
 	var $mCacheKey;
 	var $mDoTitleConvert = true, $mDoContentConvert = true;
-	var $mTitleDisplay=false;
+	var $mTitleDisplay='';
 	function LanguageZh() {
 		global $wgDBname;
 		$this->mCacheKey = $wgDBname . ":zhtables";
@@ -323,10 +323,11 @@ class LanguageZh extends LanguageZh_cn {
 			return $text;
 
 		if( $isTitle ) {
-			if( !$this->mDoTitleConvert )
+			if( !$this->mDoTitleConvert ) {
+				$this->mTitleDisplay = $text;
 				return $text;
-
-			if( $this->mTitleDisplay != false )
+			}
+			if( !empty($this->mTitleDisplay))
 				return $this->mTitleDisplay;
 
 			global $wgRequest;
@@ -336,7 +337,8 @@ class LanguageZh extends LanguageZh_cn {
 				return $text;
 			}
 			else {
-				return $this->autoConvert($text);
+				$this->mTitleDisplay = $this->autoConvert($text);
+				return $this->mTitleDisplay;
 			}
 		}
 
@@ -488,5 +490,8 @@ class LanguageZh extends LanguageZh_cn {
 		return '!' . $variant ;
 	}
 
+	function getParsedTitle() {
+		return $this->mTitleDisplay;
+	}
 }
 ?>

@@ -750,7 +750,12 @@ class Article {
 				$wgOut->addWikiText( $text );
 			}
 		}
-		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		/* title may have been set from the cache */
+		$t = $wgOut->getPageTitle();	
+		if( empty( $t ) ) {
+			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		}
+
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
 		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->isLoggedIn() &&
