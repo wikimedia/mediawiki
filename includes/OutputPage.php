@@ -486,7 +486,20 @@ class OutputPage {
 	 * This method has no side effects.
 	 */
 	function reportTime() {
-		global $wgRequestTime;
+		global $wgRequestTime, $wgProfiling, $wgProfileToCommentUser, $wgUser;
+
+
+		if ( $wgProfiling && $wgUser && $wgProfileToCommentUser &&
+		  $wgProfileToCommentUser == $wgUser->getName() ) 
+		{
+			$prof = wfGetProfilingOutput();
+			// Strip end of comment
+			$prof = str_replace( '-->', '--&lt;', $prof );
+			$com = "<!--\n$prof\n-->\n";
+		} else {
+			$com = '';
+		}
+
 
 		$now = wfTime();
 		list( $usec, $sec ) = explode( ' ', $wgRequestTime );
@@ -506,7 +519,7 @@ class OutputPage {
 			# This may be a virtual server.
 			$hostname = $_SERVER['SERVER_NAME'];
 		}
-		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		$com .= sprintf( "<!-- Served by %s in %01.2f secs. -->\n",
 		  $hostname, $elapsed );
 		return $com;
 	}

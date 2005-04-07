@@ -562,6 +562,7 @@ $wgProfileOnly = false; # Don't put non-profiling info into log file
 $wgProfileToDatabase = false; # Log sums from profiling into "profiling" table in db.
 $wgProfileSampleRate = 1; # Only profile every n requests when profiling is turned on
 $wgProfileCallTree = false; # If true, print a raw call tree instead of per-function report
+$wgProfileToCommentUser = false; # Put profiling data in HTML comments in the output file, for a given user only
 
 $wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
 $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut

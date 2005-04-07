@@ -292,7 +292,7 @@ function logProfilingData() {
 	$start = (float)$sec + (float)$usec;
 	$elapsed = $now - $start;
 	if ( $wgProfiling ) {
-		$prof = wfGetProfilingOutput( $start, $elapsed );
+		$prof = wfGetProfilingOutput();
 		$forward = '';
 		if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
 			$forward = ' forwarded for ' . $_SERVER['HTTP_X_FORWARDED_FOR'];

@@ -20,9 +20,9 @@ function wfProfileOut( $functionname = 'missing' ) {
 	$wgProfiler->profileOut( $functionname );
 }
 
-function wfGetProfilingOutput( $start, $elapsed ) {
+function wfGetProfilingOutput() {
 	global $wgProfiler;
-	return $wgProfiler->getOutput( $start, $elapsed );
+	return $wgProfiler->getOutput();
 }
 
 function wfProfileClose() {
@@ -179,9 +179,10 @@ class Profiler
 	function getFunctionReport() {		
 		$width = 125;
 		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f) [%d]\n";
-		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
+		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %9s %9s %9s %9s\n";
 		$prof = "\nProfiling data\n";
-		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
+		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 
+			'Mem', 'Min', 'Max', 'Overhead' );
 		$this->mCollated = array();
 		$this->mCalls = array();
 		$this->mMemory = array();
@@ -258,12 +259,12 @@ class Profiler
 		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
-		asort( $this->mCollated, SORT_NUMERIC );
+		arsort( $this->mCollated, SORT_NUMERIC );
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
-			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
+			$prof .= sprintf( $format, substr( $fname, 0, $width-34), $calls, (float)($elapsed * 1000), 
 					(float)($elapsed * 1000) / $calls, $percent, $memory,
 					($this->mMin[$fname] * 1000.0),
 					($this->mMax[$fname] * 1000.0),
