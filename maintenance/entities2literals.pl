@@ -6,6 +6,7 @@
 # Reference: http://www.w3.org/TR/REC-html40/sgml/entities.html
 # Copyright 2005 Ævar Arnfjörð Bjarmason <avarab@gmail.com> No rights reserved
 
+use encoding 'utf8';
 use strict;
 
 my $file = join /$\//, <>;
