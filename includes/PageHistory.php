@@ -272,7 +272,7 @@ class PageHistory {
 			return $this->mSkin->makeKnownLinkObj(
 			  $this->mTitle,
 			  $last,
-			  "diff={$next->rev_id}&oldid={$row->rev_id}",
+			  "diff={$row->rev_id}&oldid={$next->rev_id}",
 			  '',
 			  '',
 			  ' tabindex="'.$counter.'"' );
