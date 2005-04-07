@@ -1021,19 +1021,19 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		$uts = 0;
 	}
 
-	if ($ts==0)
-		$uts=time();
+	if ($ts==0) { $uts=time(); }
+		
  	switch($outputtype) {
-	case TS_UNIX:
-		return $uts;
-	case TS_MW:
-		return gmdate( 'YmdHis', $uts );
-	case TS_DB:
-		return gmdate( 'Y-m-d H:i:s', $uts );
-	case TS_RFC2822:
-		return gmdate( 'D, d M Y H:i:s', $uts ) . ' GMT';
-	default:
-		wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
+		case TS_UNIX:
+			return $uts;
+		case TS_MW:
+			return gmdate( 'YmdHis', $uts );
+		case TS_DB:
+			return gmdate( 'Y-m-d H:i:s', $uts );
+		case TS_RFC2822:
+			return gmdate( 'D, d M Y H:i:s', $uts ) . ' GMT';
+		default:
+			wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
 	}
 }
 
