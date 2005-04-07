@@ -31,7 +31,7 @@ class ExternalEdit {
 	}
 	
 	function edit() {
-		global $wgUser, $wgOut, $wgScript, $wgServer;
+		global $wgUser, $wgOut, $wgScript, $wgScriptPath, $wgServer;
 		$wgOut->disable();
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;
@@ -45,7 +45,7 @@ class ExternalEdit {
 		} elseif($this->mMode=="file") {
 			$type="Edit file"; 
 			$url = Image::newFromTitle( $this->mTitle );
-			$url = $url->url; # php sucks
+			$url = $wgServer . $url->url; # php sucks
 			
 			$extension=substr($name, $pos);
 		}					 
@@ -54,6 +54,8 @@ class ExternalEdit {
 Type=$type
 Engine=MediaWiki
 Script={$wgServer}{$wgScript}
+Server={$wgServer}
+Path={$wgScriptPath}
 
 [File]
 Extension=$extension
