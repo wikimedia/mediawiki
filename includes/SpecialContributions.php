@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @package MediaWiki
  * @subpackage SpecialPage
  */
@@ -16,11 +15,13 @@ function wfSpecialContributions( $par = '' ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	$fname = 'wfSpecialContributions';
 
-	if( $par )
-		$target = $par;
-	else
-		$target = $wgRequest->getVal( 'target' );
-
+	// GET values
+	$target = $par ? $par : $wgRequest->getVal( 'target' );
+	$namespace = $wgRequest->getInt( 'namespace', '' );
+	$namespace = ($namespace == '') ? NULL : $namespace;
+	$invert = $wgRequest->getBool( 'invert' );
+	$hideminor = ($wgRequest->getBool( 'hideminor' ) ? true : false);
+	
 	if ( '' == $target ) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
@@ -30,16 +31,9 @@ function wfSpecialContributions( $par = '' ) {
 	list( $limit, $offset ) = wfCheckLimits( 50, '' );
 	$offlimit = $limit + $offset;
 	$querylimit = $offlimit + 1;
-	$hideminor = ($wgRequest->getVal( 'hideminor' ) ? 1 : 0);
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 	$userCond = "";
-	$namespace = $wgRequest->getVal( 'namespace', '' );
-	if( $namespace != '' ) {
-		$namespace = IntVal( $namespace );
-	} else {
-		$namespace = NULL;
-	}
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
@@ -85,7 +79,7 @@ function wfSpecialContributions( $par = '' ) {
 	}
 	
 	if( !is_null($namespace) ) {
-		$minorQuery .= " AND page_namespace = {$namespace}";
+		$minorQuery .= ' AND page_namespace ' . ($invert ? '!' : '') . "= {$namespace}";
 	}
 	
 	extract( $dbr->tableNames( 'page', 'revision' ) );
@@ -109,7 +103,7 @@ function wfSpecialContributions( $par = '' ) {
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
 
-	$wgOut->addHTML( namespaceForm( $target, $hideminor, $namespace ) );
+	$wgOut->addHTML( namespaceForm( $target, $hideminor, $namespace, $invert ) );
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
@@ -220,8 +214,9 @@ function ucListEdit( $sk, $row ) {
  * @param	string	$target	target user to show contributions for
  * @param	string	$hideminor whether minor contributions are hidden
  * @param	string	$namespace currently selected namespace, NULL for show all
+ * @param	bool    $invert  inverts the namespace selection on true (default null)
  */
-function namespaceForm ( $target, $hideminor, $namespace ) {
+function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
 	global $wgContLang, $wgScript;
 
 	$namespaceselect = '<select name="namespace">';
@@ -231,7 +226,7 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 		if( $i < 0 ) {
 			continue;
 		}
-		$namespacename = str_replace ( "_", " ", $arr[$i] );
+		$namespacename = str_replace ( '_', ' ', $arr[$i] );
 		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
 		$sel = ($i === $namespace) ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
@@ -239,12 +234,13 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 	$namespaceselect .= '</select>';
 
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
 	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
 	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
-	$out .= wfMsg ( 'contributionsformtext', $namespaceselect, $submitbutton );
+	$out .= wfMsg ( 'contributionsformtext', $namespaceselect, $submitbutton, $invertbox );
 	$out .= '</form></div>';
 	return $out;
 }
