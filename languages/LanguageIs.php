@@ -58,7 +58,7 @@ if($wgMetaNamespace === FALSE)
 #-------------------------------------------------------------------
 
 $wgAllMessagesIs = array(
-'linktrail' => '/^([áðéíóúýþæö-z]+)(.*)$/sDu',
+'linktrail' => '/^([áðéíóúýþæöa-z]+)(.*)$/sDu',
 
 '1movedto2' => "$1 færð á $2",
 '1movedto2_redir' => "$1 færð á $2 yfir tilvísun",
