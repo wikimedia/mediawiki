@@ -177,9 +177,10 @@ class Profiler
 	}
 	
 	function getFunctionReport() {		
-		$width = 125;
-		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f) [%d]\n";
-		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %9s %9s %9s %9s\n";
+		$width = 140;
+		$nameWidth = $width - 65;
+		$format =      "%-{$nameWidth}s %6d %9.3f %9.3f %9.3f%% %6d (%9.3f -%9.3f) [%d]\n";
+		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %6s %14s  %14s %9s\n";
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 
 			'Mem', 'Min', 'Max', 'Overhead' );
@@ -264,7 +265,7 @@ class Profiler
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
-			$prof .= sprintf( $format, substr( $fname, 0, $width-34), $calls, (float)($elapsed * 1000), 
+			$prof .= sprintf( $format, substr( $fname, 0, $nameWidth), $calls, (float)($elapsed * 1000), 
 					(float)($elapsed * 1000) / $calls, $percent, $memory,
 					($this->mMin[$fname] * 1000.0),
 					($this->mMax[$fname] * 1000.0),
