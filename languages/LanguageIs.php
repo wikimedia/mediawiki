@@ -28,8 +28,8 @@ if($wgMetaNamespace === FALSE)
 	NS_PROJECT_TALK		=> $wgMetaNamespace . 'spjall',
 	NS_IMAGE		=> 'Mynd',
 	NS_IMAGE_TALK		=> 'Myndaspjall',
-	NS_MEDIAWIKI		=> 'Kerfismelding',
-	NS_MEDIAWIKI_TALK	=> 'Kerfismeldingarspjall',
+	NS_MEDIAWIKI		=> 'Melding',
+	NS_MEDIAWIKI_TALK	=> 'Meldingarspjall',
 	NS_TEMPLATE		=> 'Snið',
 	NS_TEMPLATE_TALK	=> 'Sniðaspjall',
 	NS_HELP			=> 'Hjálp',
@@ -67,7 +67,7 @@ if($wgMetaNamespace === FALSE)
 #-------------------------------------------------------------------
 
 $wgAllMessagesIs = array(
-'linktrail' => '/^([áðéíóúýþæö-z]+)(.*)$/sDu',
+'linktrail' => '/^([áðéíóúýþæöa-z]+)(.*)$/sDu',
 
 '1movedto2' => "$1 færð á $2",
 '1movedto2_redir' => "$1 færð á $2 yfir tilvísun",
@@ -506,7 +506,6 @@ to set user preferences.",
 'protectsub' => "(Vernda „$1“)",
 'qbedit' => "Breyta",
 'qbsettings' => "Valblað",
-'qbsettingsnote' => "Þessi stilling virkar bara í „Venjulega“ og „Kölnarblátt“ þemanu.",
 'querybtn' => "Senda inn fyrirspurn",
 'randompage' => "Handahófsvalin síða",
 'rclinks' => "Sýna síðustu $1 breytingar síðustu $2 daga<br/>$3",
@@ -797,11 +796,12 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgMagicWordsIs;
 	}
 	
-	function date( $ts, $adj = false ) {
+	function date( $ts, $adj = false, $format = true) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
-
-		switch( $wgUser->getOption( 'date' )  ) {
+		$format = $this->dateFormat($format);
+		
+		switch( $format ) {
 			# 15. jan. 2001 kl. 16:12 || 16:12, 15. jan. 2001
 			case '2': case '4': return (0 + substr( $ts, 6, 2 )) . '. ' .
 				$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . '. ' .
@@ -817,11 +817,13 @@ class LanguageIs extends LanguageUtf8 {
 		
 	}
 
-	function time($ts, $adj = false) {
+	function time($ts, $adj = false, $format = true) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 		
-		switch( $wgUser->getOption( 'date' )  ) {
+		$format = $this->dateFormat($format);
+		
+		switch( $format ) {
 			# 2001-01-15 16:12:34
 			case 'ISO 8601': return substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 ) . ':' . substr( $ts, 12, 2 );
 			default: return substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
@@ -829,15 +831,18 @@ class LanguageIs extends LanguageUtf8 {
 
 	}
 
-	function timeanddate( $ts, $adj = false ) {
+	function timeanddate( $ts, $adj = false, $format = true) {
 		global $wgUser;
-		switch ( $wgUser->getOption( 'date' ) ) {
+		
+		$format = $this->dateFormat($format);
+		
+		switch ( $format ) {
 			# 16:12, 15. janúar 2001 || 16:12, 15. jan. 2001
-			case '3': case '4': return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
+			case '3': case '4': return $this->time( $ts, $adj, $format ) . ', ' . $this->date( $ts, $adj, $format );
 			# 2001-01-15 16:12:34
-			case 'ISO 8601': return $this->date( $ts, $adj ) . ' ' . $this->time( $ts, $adj );
+			case 'ISO 8601': return $this->date( $ts, $adj, $format ) . ' ' . $this->time( $ts, $adj, $format );
 			# 15. janúar 2001 kl. 16:12 || 15. jan. 2001 kl. 16:12
-			default: return $this->date( $ts, $adj ) . ' kl. ' . $this->time( $ts, $adj );
+			default: return $this->date( $ts, $adj, $format ) . ' kl. ' . $this->time( $ts, $adj, $format );
 			
 		}
 
