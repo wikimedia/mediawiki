@@ -516,8 +516,8 @@ $wgWhitelistAccount = array ( 'user' => 1, 'sysop' => 1, 'developer' => 1 );
 
 $wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'minor'
 
-$wgSysopUserBans        = false; # Allow sysops to ban logged-in users
-$wgSysopRangeBans		= false; # Allow sysops to ban IP ranges
+$wgSysopUserBans        = true; # Allow sysops to ban logged-in users
+$wgSysopRangeBans		= true; # Allow sysops to ban IP ranges
 
 /** Comma-separated list of options to show on the IP block form. 
   * Use strtotime() format, or "infinite" for an infinite block 
