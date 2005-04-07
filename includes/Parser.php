@@ -2596,8 +2596,13 @@ class Parser
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
 		}
-		/* Note: this is an ugly timezone hack for the European wikis */
-		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false ) .
+
+		/* Note: This is the timestamp saved as hardcoded wikitext to
+		 * the database, we use $wgContLang here in order to give
+		 * everyone the same signiture and use the default one rather
+		 * than the one selected in each users preferences.
+		 */
+		$d = $wgContLang->timeanddate( wfTimestampNow(), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
 			putenv( 'TZ='.$oldtzs );
