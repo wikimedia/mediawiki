@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @package MediaWiki
  * @subpackage SpecialPage
  */
@@ -237,10 +236,17 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
+	
+	$namespaces = $wgContLang->getNamespaces();
+	foreach($namespaces as $key => $ns) {
+		$namespaces[$key] = str_replace('_', ' ', $namespaces[$key]);
+	}
+	
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
-			$link = $sk->makeKnownLinkObj( $t, $t->getText() );
+			$link = $sk->makeKnownLinkObj( $t, $t->getText(), false, false, $namespaces[$s->page_namespace] .
+				(($invert && $namespaces[$s->page_namespace] != NS_MAIN) ? ':' :'') ); 
 		} else {
 			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 		}
