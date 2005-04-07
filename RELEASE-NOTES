@@ -465,6 +465,7 @@ pages for purposes of page relevancy ranking.
 * SQL debug log fixlets
 * (bug 1815) Fix namespace in old revision display with mismatched title
 * (bug 1788) Fix link duplication when edit/upload comment includes newlines
+* Change default on $wgSysopUserBans and $wgSysopRangeBans to true
 
 
 === Caveats ===
