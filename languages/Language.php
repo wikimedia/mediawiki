@@ -97,7 +97,6 @@ $wgValidationTypesEn = array (
 );
 
 # Whether to use user or default setting in Language::date()
-define( 'MW_DATE_DEFAULT', false );
 define( 'MW_DATE_USER_FORMAT', true );
 
 /* private */ $wgDateFormatsEn = array(
