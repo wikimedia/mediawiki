@@ -8,16 +8,16 @@
 require_once( 'LanguageUtf8.php' );
 
 /* private */ $wgNamespaceNamesBn = array(
-  NS_SPECIAL  => 'বিশেষ',
-  NS_MAIN => '',
-  NS_TALK => 'আলাপ',
-  NS_USER => 'ব্যবহারকারী',
-  NS_USER_TALK => 'ব্যবহারকারী_আলাপ',
-  NS_PROJECT => 'উইকিপেডিয়া',
-  NS_PROJECT_TALK => 'উইকিপেডিয়া_আলাপ',
-  NS_IMAGE => 'চিত্র',
-  NS_IMAGE_TALK => 'চিত্র_আলাপ',
-  NS_MEDIAWIKI_TALK => 'MediaWik i_আলাপ',
+	NS_SPECIAL  => 'বিশেষ',
+	NS_MAIN => '',
+	NS_TALK => 'আলাপ',
+	NS_USER => 'ব্যবহারকারী',
+	NS_USER_TALK => 'ব্যবহারকারী_আলাপ',
+	NS_PROJECT => 'উইকিপেডিয়া',
+	NS_PROJECT_TALK => 'উইকিপেডিয়া_আলাপ',
+	NS_IMAGE => 'চিত্র',
+	NS_IMAGE_TALK => 'চিত্র_আলাপ',
+	NS_MEDIAWIKI_TALK => 'MediaWik i_আলাপ',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgDateFormatsBn = array();
