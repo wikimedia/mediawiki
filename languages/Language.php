@@ -2505,10 +2505,13 @@ class Language {
 		return $this;
 	}
 
-	/* for languages that support multiple variants, the title of an
-	article may be displayed differently in different variants. this
-	function returns the apporiate title defined in the body of the article.
-	*/
+	/**
+	 * for languages that support multiple variants, the title of an
+	 * article may be displayed differently in different variants. this
+	 * function returns the apporiate title defined in the body of the article.
+	 * 
+	 * @return string
+	 */
 	function getParsedTitle() {
 		return '';
 	}
