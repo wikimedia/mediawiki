@@ -1,5 +1,7 @@
 <?php
 /**
+ * English (English)
+ * 
  * @package MediaWiki
  * @subpackage Language
  */
@@ -1890,6 +1892,9 @@ class Language {
 		return $wgBookstoreListEn ;
 	}
 	
+	/**
+	 * @return array
+	 */
 	function getNamespaces() {
 		global $wgNamespaceNamesEn;
 		return $wgNamespaceNamesEn;
@@ -2054,7 +2059,40 @@ class Language {
 		  (int)substr( $ts, 0, 4 ) ); #Year
 		return date( 'YmdHis', $t );
 	}
-
+	
+	/**
+	 * This is meant to be used by time(), date(), and timeanddate() to get
+	 * the date preference they're supposed to use, it should be used in
+	 * all children.
+	 *
+	 *<code>
+	 * function timeanddate([...], $format = '0') {
+	 * 	$datePreference = $this->dateFormat($format);
+	 * [...]
+	 *</code>
+	 *
+	 * @param mixed $format
+	 * @return string
+	 */
+	function dateFormat( $format ) {
+		global $wgUser;
+		
+		if ( MW_DATE_USER_FORMAT === true) {
+			// Some files, such as Parser.php want us to return the
+			// default format no matter what, obey them!
+			if ($format === false) {
+				return false; // Pass it along..
+			} elseif ( $wgUser->isLoggedIn() )  {
+				return $wgUser->getOption( 'date' );
+			} else {
+				return '0';
+			}
+		} else {
+			$options = $this->getDefaultUserOptions();
+			return $options['date'];
+		}
+	}
+	
 	/**
 	 * @access public
 	 * @param mixed  $ts the time format which needs to be turned into a
@@ -2067,24 +2105,14 @@ class Language {
 	 *               validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
+	function date( $ts, $adj = false, $format = '0', $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
 		
-		$ts=wfTimestamp(TS_MW,$ts); // FIXME: Is this even needed anymore?
-
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		
-		// It's probably best to turn this whole mess into a function -ævar
-		if ( $format ) {
-			$datePreference = $wgUser->getOption( 'date' );
-		} else {
-			$options = $this->getDefaultUserOptions();
-			$datePreference = $options['date'];
-		}
-
-		if ($datePreference == '0') { // Not == 0 for the obvious reasons
-			$datePreference = $wgAmericanDates ? 1 : 2;
-		}
+		$datePreference = $this->dateFormat($format);
+		
+		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
 
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
@@ -2110,22 +2138,17 @@ class Language {
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
-	function time( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
+	function time( $ts, $adj = false, $format = '0', $timecorrection = false ) {
 		global $wgUser, $wgAmericanDates;
-		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
-
-		if ( $format ) {
-			$datePreference = $wgUser->getOption( 'date' );
-		} else {
-			$options = $this->getDefaultUserOptions();
-			$datePreference = $options['date'];
-		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
+		$datePreference = $this->dateFormat($format);
+		
+		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
 		
-		if ( $format == 'ISO 8601' ) {
+		if ( $datePreference === 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
@@ -2141,25 +2164,18 @@ class Language {
 	*               default one.
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
-	* @param ???    $dateandtime ??? (default false)
 	* @return string
 	*/
-	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
+	function timeanddate( $ts, $adj = false, $format = '0', $timecorrection = false) {
 		global $wgUser, $wgAmericanDates;
-		$ts=wfTimestamp(TS_MW,$ts);
-
-		if ( $format ) {
-		 	$datePreference = $wgUser->getOption( 'date' );
-		} else {
-			$options = $this->getDefaultUserOptions();
-			$datePreference = $options['date'];
-		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
+		
+		$datePreference = $this->dateFormat($format);
 		
 		switch ( $datePreference ) {
-			case 'ISO 8601': return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
-				$this->time( $ts, $adj, $format, $timecorrection );
-			default: return $this->time( $ts, $adj, $format, $timecorrection ) . ', ' .
-				$this->date( $ts, $adj, $format, $timecorrection );
+			case 'ISO 8601': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' ' .
+				$this->time( $ts, $adj, $datePreference, $timecorrection );
+			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
+				$this->date( $ts, $adj, $datePreference, $timecorrection );
 		}
 	}
 
