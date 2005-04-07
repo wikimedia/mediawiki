@@ -561,18 +561,17 @@ class PreferencesForm {
 	</fieldset>
 	<div class='prefsectiontip'>".$prefs_help_realname.wfMsg('prefs-help-email').$prefs_help_email_enotif."</div>\n</fieldset>\n" );
 
-	
 		# Quickbar setting
 		#
-		$wgOut->addHtml( "<fieldset>\n<legend>$qb</legend>\n" );
-		for ( $i = 0; $i < count( $qbs ); ++$i ) {
-			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
-			else { $checked = ""; }
-			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
-	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
+		if ($this->mSkin == 'cologneblue' || $this->mSkin == 'standard') {
+			$wgOut->addHtml( "<fieldset>\n<legend>$qb</legend>\n" );
+			for ( $i = 0; $i < count( $qbs ); ++$i ) {
+				if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
+				else { $checked = ""; }
+				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\" value=\"$i\"$checked />{$qbs[$i]}</label></div>\n" );
+			}
+			$wgOut->addHtml( "</fieldset>\n\n" );
 		}
-		$wgOut->addHtml('<div class="prefsectiontip">'.wfMsg('qbsettingsnote').'</div>');
-		$wgOut->addHtml( "</fieldset>\n\n" );
 
 		# Skin setting
 		#
@@ -594,8 +593,7 @@ class PreferencesForm {
 			if( $skinkey == $wgDefaultSkin ) {
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
 			}
-			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\"
-	value=\"$skinkey\"$checked /> {$sn}</label></div>\n" );
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\" value=\"$skinkey\"$checked /> {$sn}</label></div>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
@@ -659,15 +657,6 @@ class PreferencesForm {
 		$this->getToggle( "hideminor" ) . $shownumberswatching .
 		$this->getToggle( "usenewrc" ) . $this->getToggle('showupdated', wfMsg('updatedmarker')) .
 		"<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
-                <div><label>".wfMsg('imagemaxsize')."<select name=\"wpImageSize\">");
-		
-		$imageLimitOptions='';
-		foreach ( $wgImageLimits as $index => $limits ) {
-			$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
-			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
-		}
-		$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>
-
 	</fieldset>
 	
 	<fieldset>
@@ -686,6 +675,17 @@ class PreferencesForm {
 		# Various checkbox options
 		#
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
+
+		$wgOut->addHTML( '<div><label>' . wfMsg('imagemaxsize') . "<select name=\"wpImageSize\">");
+
+		$imageLimitOptions='';
+		foreach ( $wgImageLimits as $index => $limits ) {
+			$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
+			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
+		}
+		$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>" );
+
+
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
