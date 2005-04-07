@@ -201,14 +201,14 @@
 	'uz' => 'Ўзбек',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vi' => 'Tiếng Việt',	# Vietnamese
-	'vo' => 'Volapük',	# VolapÃ¼k
+	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
 	'wo' => 'Wollof',		# Wolof
 	'xh' => 'isiXhosa',		# Xhosan
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'za' => '(Cuengh)',		# Zhuang
-	'zh' => '中文',	# (Zhōng WÃ©n) - Chinese
+	'zh' => '中文',	# (Zhōng Wén) - Chinese
 	'zh-cfr' => '閩南語', # Min-nan alias (site is at minnan)
 	'zh-cn' => '中文(简体)',	# Simplified
 	'zh-hk' => '中文(繁體)',	# Traditional (Hong Kong)
