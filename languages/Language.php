@@ -2505,6 +2505,14 @@ class Language {
 		return $this;
 	}
 
+	/* for languages that support multiple variants, the title of an
+	article may be displayed differently in different variants. this
+	function returns the apporiate title defined in the body of the article.
+	*/
+	function getParsedTitle() {
+		return '';
+	}
+
 }
 
 # This should fail gracefully if there's not a localization available

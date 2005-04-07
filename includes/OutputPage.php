@@ -288,6 +288,10 @@ class OutputPage {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 			$this->addHTML( $parserOutput->getText() );
+			$t = $parserOutput->getTitleText();
+			if( !empty( $t ) ) {
+				$this->setPageTitle( $t );
+ 			}
 			return true;
 		} else {
 			return false;

@@ -214,7 +214,7 @@ class Parser
 
 		$this->replaceLinkHolders( $text );
 		$text = $wgContLang->convert($text);
-
+		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
@@ -2917,9 +2917,10 @@ class ParserOutput
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
 	var $mCacheTime; # Used in ParserCache
 	var $mVersion;   # Compatibility check
+	var $mTitleText; # title text of the chosen language variant
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
-		$containsOldMagic = false )
+		$containsOldMagic = false, $titletext = '' )
 	{
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
@@ -2927,18 +2928,22 @@ class ParserOutput
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mCacheTime = '';
 		$this->mVersion = MW_PARSER_VERSION;
+		$this->mTitleText = $titletext;
 	}
 
 	function getText()                   { return $this->mText; }
 	function getLanguageLinks()          { return $this->mLanguageLinks; }
 	function getCategoryLinks()          { return array_keys( $this->mCategoryLinks ); }
 	function getCacheTime()              { return $this->mCacheTime; }
+	function getTitleText()              { return $this->mTitleText; }
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
 	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategoryLinks, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+	function setTitleText( $t )          { return wfSetVar ($this->mTitleText, $t); }
+
 	function addCategoryLink( $c )       { $this->mCategoryLinks[$c] = 1; }
 
 	function merge( $other ) {
