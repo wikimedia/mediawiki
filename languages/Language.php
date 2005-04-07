@@ -1380,6 +1380,10 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
                 <td align="right">Namespace:</td>
                 <td align="left">$1 $2</td>
         </tr>
+	<tr>
+		<td align="right">$3</td>
+		<td>Invert</td>
+	</tr>
 </table>',
 'nocontribs'    => 'No changes were found matching these criteria.',
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
@@ -2468,19 +2472,18 @@ class Language {
 		return strtolower( substr( get_class( $this ), 8 ) );
 	}
 
-	/* if a language supports multiple variants, it is
-		possible that non-existing link in one variant
-		actually exists in another variant. this function 
-		tries to find it. See e.g. LanguageZh.php
-
-	*/
+	/** if a language supports multiple variants, it is
+	 * possible that non-existing link in one variant
+	 * actually exists in another variant. this function 
+	 * tries to find it. See e.g. LanguageZh.php
+	 */
 	function findVariantLink( &$link, &$nt ) {
 		return;
 	}
 
 	/*
-		returns an array of extra options used by User::getPageRenderHash()
-	*/
+	 * returns an array of extra options used by User::getPageRenderHash()
+	 */
 	function getExtraHashOptions() {
 		return '';
 	}
