@@ -2475,8 +2475,12 @@ class Parser
 
 	/**
 	 * Return an HTML link for the "RFC 1234" text
+	 *
 	 * @access private
-	 * @param string $text text to be processed
+	 * @param string $text     Text to be processed
+	 * @param string $keyword  Magic keyword to use (default RFC)
+	 * @param string $urlmsg   Interface message to use (default rfcurl)
+	 * @return string
 	 */
 	function magicRFC( $text, $keyword='RFC ', $urlmsg='rfcurl'  ) {
 		global $wgLang;
@@ -2527,8 +2531,7 @@ class Parser
 				$text .= $keyword.$id.$x;
 			} else {
 				/* build the external link*/
-				$url = wfmsg( $urlmsg );
-				$url = str_replace( '$1', $id, $url);
+				$url = wfMsg( $urlmsg, $id);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
 				$text .= "<a href='{$url}'{$la}>{$keyword}{$id}</a>{$x}";
