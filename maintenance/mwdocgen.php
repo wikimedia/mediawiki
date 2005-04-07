@@ -31,23 +31,30 @@ if( php_sapi_name() != 'cli' ) {
 $pdExec = 'phpdoc';
 
 /** Figure out the base directory. */
-$sep = DIRECTORY_SEPARATOR;
-$here = dirname( dirname( __FILE__ ) ) . $sep;
+$here = dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR;
 
 /** where Phpdoc should output documentation */
 #$pdOutput = '/var/www/mwdoc/';
-$pdOutput = "{$here}{$sep}docs{$sep}html";
+$pdOutput = "{$here}docs" . DIRECTORY_SEPARATOR . 'html';
 
 /** Some more Phpdoc settings */
-$pdOthers = ' -dn \'MediaWiki\' ';
-$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' --ignore AdminSettings.php,LocalSettings.php,tests/LocalTestSettings.php --parseprivate on ';
+# This will be used as the default for all files that don't have a package,
+# it's useful to set it to something like 'untagged' to hunt down and fix files
+# that don't have a package name declared.
+$pdOthers = " -dn MediaWiki"; 
+$pdOthers .= ' --title "MediaWiki generated documentation"'; 
+$pdOthers .= ' --output "HTML:Smarty:HandS"'; #,HTML:Smarty:HandS"'; ###### HTML:frames:DOM/earthli
+$pdOthers .= ' --ignore AdminSettings.php,LocalSettings.php,tests/LocalTestSettings.php';
+$pdOthers .= ' --parseprivate on';
+$pdOthers .= ' --sourcecode on';
 
 /** MediaWiki location */
 #$mwPath = '/var/www/mediawiki/';
-$mwPath = "{$here}{$sep}";
+$mwPath = "{$here}";
 
 /** MediaWiki subpaths */
 $mwPathI = $mwPath.'includes/';
+$mwPathL = $mwPath.'languages/';
 $mwPathM = $mwPath.'maintenance/';
 $mwPathS = $mwPath.'skins/';
 $mwBaseFiles = $mwPath.'*php ';
@@ -80,10 +87,11 @@ if( is_array( $argv ) && isset( $argv[1] ) ) {
 	switch( $argv[1] ) {
 	case '--all':         $input = 0; break;
 	case '--includes':    $input = 1; break;
-	case '--maintenance': $input = 2; break;
-	case '--skins':       $input = 3; break;
+	case '--languages':   $input = 2; break;
+	case '--maintenance': $input = 3; break;
+	case '--skins':       $input = 4; break;
 	case '--file':
-		$input = 4;
+		$input = 5;
 		if( isset( $argv[2] ) ) {
 			$file = $argv[2];
 		}
@@ -92,15 +100,13 @@ if( is_array( $argv ) && isset( $argv[1] ) ) {
 }
 
 if( $input === '' ) {
-	print <<<END
-Several documentation possibilities:
+?>Several documentation possibilities:
  0 : whole documentation (1 + 2 + 3)
  1 : only includes
- 2 : only maintenance
- 3 : only skins
- 4 : only a given file
-END;
-
+ 2 : only languages
+ 3 : only maintenance
+ 4 : only skins
+ 5 : only a given file<?php
 	while ( !is_numeric($input) )
 	{
 		$input = readaline( "\nEnter your choice [0]:" );
@@ -113,42 +119,45 @@ END;
 $command = 'phpdoc ';
 switch ($input) {
 case 0:
-	$command .= " -f $mwBaseFiles -d $mwPathI,$mwPathM,$mwPathS ";
+	$command .= " -f $mwBaseFiles -d $mwPathI,$mwPathL,$mwPathM,$mwPathS";
 	break;
 case 1:
-	$command .= "-d $mwPathI ";
+	$command .= "-d $mwPathI";
 	break;
-case 2:
-	$command .= "-d $mwPathM ";
+case 2: 
+	$command .= "-d $mwPathL";
 	break;
 case 3:
-	$command .= "-d $mwPathS ";
+	$command .= "-d $mwPathM";
 	break;
 case 4:
+	$command .= "-d $mwPathS";
+	break;
+case 5:
 	if( !isset( $file ) ) {
-		$file = readaline("\Enter file name $mwPath");
+		$file = readaline("Enter file name $mwPath");
 	}
 	$command .= ' -f '.$mwPath.$file;
 }
 
 $command .= " -t $pdOutput ".$pdOthers;
 
-print <<<END
+?>
 ---------------------------------------------------
 Launching the command:
-$command
+
+<?php echo $command ?>
+
 ---------------------------------------------------
-END;
+<?php
 
-passthru( $command);
+passthru($command);
 
-print <<<END
+?>
 ---------------------------------------------------
 Phpdoc execution finished.
 Check above for possible errors.
-
-END;
-
+<?php
 
 # phpdoc -d ./mediawiki/includes/ ./mediawiki/maintenance/ -f ./mediawiki/*php -t ./mwdoc/ -dn 'MediaWiki' --title 'MediaWiki generated documentation' -o 'HTML:frames:DOM/earthli'
 
