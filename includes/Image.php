@@ -45,7 +45,7 @@ class Image
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
 		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
 		       $wgSharedLatin1,$wgLang,
-			   $wgMemc, $wgDBname;
+			   $wgMemc, $wgDBname, $wgSharedDBname;
 		
 		$this->attributesLoaded = false;
 		$this->name      = $name;
