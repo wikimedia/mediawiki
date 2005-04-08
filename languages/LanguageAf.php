@@ -1,31 +1,25 @@
 <?php
+/** Afrikaans (Afrikaans)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-# Om "Current Events" af te skakel in die kantkolom,
-# stel "currentevents" => "-"
+require_once( 'LanguageUtf8.php' );
 
-# Die name en spasies kan gewysig word, maar moenie die nommers
-# wysig of beweeg nie.
-# Afrikaanse 2003-07-06t11:04z
 /* private */ $wgNamespaceNamesAf = array(
-	NS_MEDIA			=> "Media",
-	NS_SPECIAL			=> "Spesiaal",
-	NS_MAIN				=> "",
-	NS_TALK				=> "BronnemateriaalEnBespreking",
-	NS_USER				=> "Gebruiker",
+	NS_MEDIA		=> "Media",
+	NS_SPECIAL		=> "Spesiaal",
+	NS_MAIN			=> "",
+	NS_TALK			=> "BronnemateriaalEnBespreking",
+	NS_USER			=> "Gebruiker",
 	NS_USER_TALK		=> "GebruikerBespreking",
-	NS_PROJECT			=> $wgMetaNamespace,
-	NS_PROJECT_TALK	=> $wgMetaNamespace."Bespreking",
-	NS_IMAGE			=> "Beeld",
+	NS_PROJECT		=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> $wgMetaNamespace."Bespreking",
+	NS_IMAGE		=> "Beeld",
 	NS_IMAGE_TALK		=> "BeeldBespreking",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "MediaWikiBespreking",
-	NS_TEMPLATE			=> "Template",
-	NS_TEMPLATE_TALK	=> "Template_talk",
-	NS_HELP				=> "Help",
-	NS_HELP_TALK		=> "Help_talk",
-	NS_CATEGORY			=> "Category",
-	NS_CATEGORY_TALK	=> "Category_talk"
-
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsAf = array(
@@ -36,15 +30,7 @@
 	'standard' => "Standaard",
 	'nostalgia' => "Nostalgie",
 	'cologneblue' => "Keulen blou",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
-
-
+) + $wgSkinNamesEn;
 
 /* private */ $wgBookstoreListAf = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -109,7 +95,6 @@
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Wys drywende inligting oor wiki skakels.",
 "tog-underline" => "Onderstreep skakels.",
 "tog-highlightbroken" => "Wys gebroke skakels <a href=\"\" class=\"new\">so</a> of so<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Justeer paragrawe.",
@@ -549,7 +534,7 @@ Alle tye is bedienertyd (UGT).
 Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in oor die die lêer, soos waar dit vandaan kom, wie het dit geskep en wanneer, en enige iets anders wat jy daarvan af weet.",
 "uploadwarning" => "Laaiwaarskuwing",
 "savefile"		=> "Stoor lêer",
-"uploadedimage" => "Het \"$1\" gelaai",
+"uploadedimage" => "Het \"[[$1]]\" gelaai",
 
 # Image list
 #
@@ -693,7 +678,6 @@ Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy 
 "deletesub"		=> "(Besig om \"$1\" te skrap)",
 "confirmdeletetext" => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{ns:4}}:Policy]].",
-"confirmcheck"	=> "Ja, ek wil dit regtig skrap.",
 "actioncomplete" => "Aksie uitgevoer",
 "deletedtext"	=> "\"$1\" is geskrap.
 Kyk na $2 vir 'n rekord van onlangse skrappings.",
@@ -847,8 +831,6 @@ Kies asseblief 'n ander naam.",
 	'mw_math_mathml' => 'MathML',
 
 );
-
-require_once( "LanguageUtf8.php" );
 
 class LanguageAf extends LanguageUtf8 {
 
