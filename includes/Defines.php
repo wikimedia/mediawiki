@@ -47,17 +47,6 @@ define('NS_CATEGORY', 14);
 define('NS_CATEGORY_TALK', 15);
 /**#@-*/
 
-/**#@+
- * Fix the code and remove these...
- * @todo Constants that need to be removed after code cleaning
- * @deprecated
- */
-define('NS_WP', NS_PROJECT);
-define('NS_WP_TALK', NS_PROJECT_TALK);
-define('NS_WIKIPEDIA', NS_PROJECT);
-define('NS_WIKIPEDIA_TALK', NS_PROJECT_TALK);
-/**#@-*/
-
 /**
  * Available feeds objects
  * Should probably only be defined when a page is syndicated ie when

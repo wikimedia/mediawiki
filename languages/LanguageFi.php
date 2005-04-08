@@ -1153,7 +1153,7 @@ require_once( 'LanguageUtf8.php' );
 class LanguageFi extends LanguageUtf8 {
 	function LanguageFi() {
 		global $wgNamespaceNamesFi, $wgMetaNamespace;
-		$wgNamespaceNamesFi[NS_WP_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+		$wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
 	}
 
 	function getBookstoreList () {
