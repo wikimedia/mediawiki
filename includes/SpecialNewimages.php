@@ -118,7 +118,7 @@ function wfSpecialNewimages() {
 	/**
 	 * Paging controls...
 	 */
-	$now = wfTimestamp( TS_MW );
+	$now = wfTimestampNow();
 	$date = $wgLang->timeanddate( $now );
 	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsg( 'rclistfrom', $date ), 'from=' . $now );
 	
