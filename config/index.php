@@ -190,7 +190,7 @@ print "<li>PHP " . phpversion() . ": ok</li>\n";
 
 if( ini_get( "register_globals" ) ) {
 	?>
-	<li><b class='error'>Warning:</strong> <strong>PHP's
+	<li><b class='error'>Warning:</b> <strong>PHP's
 	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
 	option is enabled.</strong> MediaWiki will work correctly, but this setting
 	increases your exposure to potential security vulnerabilities in PHP-based
