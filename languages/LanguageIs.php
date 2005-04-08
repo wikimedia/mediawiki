@@ -14,9 +14,6 @@
 
 require_once( 'LanguageUtf8.php' );
 
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-
 /* private */ $wgNamespaceNamesIs = array(
 	NS_MEDIA		=> 'Miðill',
 	NS_SPECIAL		=> 'Kerfissíða',
