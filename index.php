@@ -81,6 +81,12 @@ if ( '' == $title && 'delete' != $action ) {
 	$wgTitle = Title::newFromID( $curid );
 } else {
 	$wgTitle = Title::newFromURL( $title );
+	/* check variant links so that interwiki links don't have to worry about 
+	   the possible different language variants
+	*/
+	if( $wgTitle->getArticleID() == 0 )
+		$wgContLang->findVariantLink( $title, $wgTitle );
+	
 }
 wfProfileOut( 'main-misc-setup' );
 
