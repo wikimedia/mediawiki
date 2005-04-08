@@ -173,7 +173,7 @@
 	'sr' => 'Српски / Srpski',	# Serbian
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'seSotho',		# Southern Sotho
-	'su' => 'Bahasa Sunda',	# Sundanese
+	'su' => 'Basa Sunda',	# Sundanese
 	'sv' => 'Svenska',		# Swedish
 	'sw' => 'Kiswahili',	# Swahili
 	'ta' => 'தமிழ்',	# Tamil
