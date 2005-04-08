@@ -2452,18 +2452,27 @@ class Language {
 		return $text;
 	}
 
-	# returns a list of language variants for conversion.
-	# right now mainly used in the Chinese conversion
+	/**
+	 * get the list of variants supported by this langauge
+	 * see sample implementation in LanguageZh.php
+	 *
+	 * @return array an array of language codes
+	 */
 	function getVariants() {
 		$lang = strtolower( substr( get_class( $this ), 8 ) );
 		return array( $lang );
 	}
-	
-	# in case some variant is not defined in the markup, we need
-	# to have some fallback. for example, in zh, normally people
-	# will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
-	# when zh-sg is preferred but not defined, we will pick zh-cn
-	# in this case. right now this is only used by zh.
+
+	/**
+	 * in case some variant is not defined in the markup, we need
+	 * to have some fallback. for example, in zh, normally people
+	 * will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
+	 * when zh-sg is preferred but not defined, we will pick zh-cn
+	 * in this case. right now this is only used by zh.
+	 *	
+	 * @param string $v the language code of the variant
+	 * @return string the code of the fallback language or false if there is no fallback
+	*/
 	function getVariantFallback( $v ) {
 		return false;
 	}
@@ -2472,17 +2481,26 @@ class Language {
 		return strtolower( substr( get_class( $this ), 8 ) );
 	}
 
-	/** if a language supports multiple variants, it is
+	/**
+	 * if a language supports multiple variants, it is
 	 * possible that non-existing link in one variant
 	 * actually exists in another variant. this function 
 	 * tries to find it. See e.g. LanguageZh.php
+	 *
+	 * @param string $link the name of the link
+	 * @param mixed $nt the title object of the link
+	 * @return null the input parameters may be modified upon return
 	 */
 	function findVariantLink( &$link, &$nt ) {
 		return;
 	}
 
-	/*
-	 * returns an array of extra options used by User::getPageRenderHash()
+	/**
+	 * returns language specific options used by User::getPageRenderHash()
+	 * for example, the preferred language variant
+	 *
+	 * @return string
+	 * @access public
 	 */
 	function getExtraHashOptions() {
 		return '';
