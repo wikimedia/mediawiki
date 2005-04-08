@@ -1040,7 +1040,6 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 /**
  * Check where as the operating system is Windows
  *
- * @todo document
  * @return bool True if it's windows, False otherwise.
  */
 function wfIsWindows() {   
