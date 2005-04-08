@@ -1,35 +1,25 @@
 <?php
-/**
+/** Afrikaans (Afrikaans)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
 
-# Om "Current Events" af te skakel in die kantkolom,
-# stel "currentevents" => "-"
+require_once( 'LanguageUtf8.php' );
 
-# Die name en spasies kan gewysig word, maar moenie die nommers
-# wysig of beweeg nie.
-# Afrikaanse 2003-07-06t11:04z
 /* private */ $wgNamespaceNamesAf = array(
-	NS_MEDIA			=> "Media",
-	NS_SPECIAL			=> "Spesiaal",
-	NS_MAIN				=> "",
-	NS_TALK				=> "BronnemateriaalEnBespreking",
-	NS_USER				=> "Gebruiker",
+	NS_MEDIA		=> "Media",
+	NS_SPECIAL		=> "Spesiaal",
+	NS_MAIN			=> "",
+	NS_TALK			=> "BronnemateriaalEnBespreking",
+	NS_USER			=> "Gebruiker",
 	NS_USER_TALK		=> "GebruikerBespreking",
-	NS_PROJECT			=> $wgMetaNamespace,
-	NS_PROJECT_TALK	=> $wgMetaNamespace."Bespreking",
-	NS_IMAGE			=> "Beeld",
+	NS_PROJECT		=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> $wgMetaNamespace."Bespreking",
+	NS_IMAGE		=> "Beeld",
 	NS_IMAGE_TALK		=> "BeeldBespreking",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "MediaWikiBespreking",
-	NS_TEMPLATE			=> "Template",
-	NS_TEMPLATE_TALK	=> "Template_talk",
-	NS_HELP				=> "Help",
-	NS_HELP_TALK		=> "Help_talk",
-	NS_CATEGORY			=> "Category",
-	NS_CATEGORY_TALK	=> "Category_talk"
-
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsAf = array(
@@ -40,15 +30,7 @@
 	'standard' => "Standaard",
 	'nostalgia' => "Nostalgie",
 	'cologneblue' => "Keulen blou",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
-
-
+) + $wgSkinNamesEn;
 
 /* private */ $wgBookstoreListAf = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -848,8 +830,6 @@ Kies asseblief 'n ander naam.",
 	'mw_math_mathml' => 'MathML',
 
 );
-
-require_once( "LanguageUtf8.php" );
 
 class LanguageAf extends LanguageUtf8 {
 
