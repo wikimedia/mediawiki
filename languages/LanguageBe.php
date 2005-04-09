@@ -1,16 +1,15 @@
 <?php
-/**
+/** Belarusian (Беларуская мова)
+  *
   * @package MediaWiki
   * @subpackage Language
+  *
+  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+  * @bug 1638
+  * @link http://be.wikipedia.org/wiki/Talk:LanguageBe.php
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
   */
-# Belarusian (Беларуская мова)
-# File by Ævar Arnfjörð Bjarmason and translations by 
-# be:EugeneZelenko, be:Monk (and others)
-#
-# This file is dual-licensed under GFDL and GPL.
-#
-# See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1638
-#      http://be.wikipedia.org/wiki/Talk:LanguageBe.php
 
 require_once('LanguageUtf8.php');
 

@@ -50,13 +50,6 @@ require_once( "LanguageUtf8.php" );
 #	"Nole preferince",
 );
 
-/* private */ $wgBookstoreListWa = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -1164,11 +1157,6 @@ amusement.", # co a fé
 #--------------------------------------------------------------------------
 
 class LanguageWa extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListWa ;
-		return $wgBookstoreListWa ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesWa;

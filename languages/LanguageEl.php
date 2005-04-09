@@ -1,5 +1,6 @@
 <?php
-/**
+/** Greek (Ελληνικά)
+  *
   * @package MediaWiki
   * @subpackage Language
   */

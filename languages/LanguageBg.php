@@ -1,8 +1,10 @@
 <?php
-/**
+/** Bulgarian (Български)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
+
 #--------------------------------------------------------------------------
 # Language-specific text
 #--------------------------------------------------------------------------
@@ -13,97 +15,81 @@
 #
 
 /* private */ $wgNamespaceNamesBg = array(
-  NS_MEDIA            => 'Медия', # -2
-  NS_SPECIAL          => 'Специални', # -1
-  NS_MAIN             => '', # 0
-  NS_TALK             => 'Беседа', # 1
-  NS_USER             => 'Потребител', # 2
-  NS_USER_TALK        => 'Потребител_беседа', # 3
-  NS_PROJECT          => $wgMetaNamespace, # 4
-  NS_PROJECT_TALK     => $wgMetaNamespace . '_беседа', # 5
-  NS_IMAGE            => 'Картинка', # 6
-  NS_IMAGE_TALK       => 'Картинка_беседа', # 7
-  NS_MEDIAWIKI        => 'МедияУики', # 8
-  NS_MEDIAWIKI_TALK   => 'МедияУики_беседа', # 9
-  NS_TEMPLATE         => 'Шаблон', # 10
-  NS_TEMPLATE_TALK    => 'Шаблон_беседа', # 11
-  NS_HELP             => 'Помощ', # 12
-  NS_HELP_TALK        => 'Помощ_беседа', # 13
-  NS_CATEGORY         => 'Категория', # 14
-  NS_CATEGORY_TALK    => 'Категория_беседа' # 15
+	NS_MEDIA            => 'Медия',
+	NS_SPECIAL          => 'Специални',
+	NS_MAIN             => '',
+	NS_TALK             => 'Беседа',
+	NS_USER             => 'Потребител',
+	NS_USER_TALK        => 'Потребител_беседа',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_беседа',
+	NS_IMAGE            => 'Картинка',
+	NS_IMAGE_TALK       => 'Картинка_беседа',
+	NS_MEDIAWIKI        => 'МедияУики',
+	NS_MEDIAWIKI_TALK   => 'МедияУики_беседа',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблон_беседа',
+	NS_HELP             => 'Помощ',
+	NS_HELP_TALK        => 'Помощ_беседа',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категория_беседа'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsBg = array(
-  'Без меню', 'Неподвижно вляво', 'Неподвижно вдясно', 'Плаващо вляво'
+	'Без меню', 'Неподвижно вляво', 'Неподвижно вдясно', 'Плаващо вляво'
 );
 
 /* private */ $wgSkinNamesBg = array(
-  'standard' => 'Основен',
-  'nostalgia' => 'Носталгия',
-  'cologneblue' => 'Кьолнско синьо',
-  'smarty' => 'Падингтън',
-  'montparnasse' => 'Монпарнас',
-  'davinci' => 'ДаВинчи',
-  'mono' => 'Mono',
-  'monobook' => 'MonoBook',
- "myskin" => "MySkin" 
-);
+	'standard' => 'Основен',
+	'nostalgia' => 'Носталгия',
+	'cologneblue' => 'Кьолнско синьо',
+	'smarty' => 'Падингтън',
+	'montparnasse' => 'Монпарнас',
+	'davinci' => 'ДаВинчи',
+) + $wgSkinNamesBg;
 
 
-/* private */ $wgDateFormatsBg = array(
-#	'Без предпочитание',
-);
-
+/* private */ $wgDateFormatsBg = array();
 
 /* private */ $wgBookstoreListBg = array(
-  'books.bg'       => "http://www.books.bg/ISBN/$1",
-  'AddALL'         => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-  'PriceSCAN'      => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-  'Barnes & Noble' => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-  'Amazon.com'     => "http://www.amazon.com/exec/obidos/ISBN=$1",
-);
+	'books.bg'       => "http://www.books.bg/ISBN/$1",
+) + $wgBookstoreListEn;
 
-
-
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
 
 /* private */ $wgMagicWordsBg = array(
 #   ID                                 CASE  SYNONYMS
-  MAG_REDIRECT             => array( 0, '#redirect', '#пренасочване', '#виж' ),
-  MAG_NOTOC                => array( 0, '__NOTOC__', '__БЕЗСЪДЪРЖАНИЕ__' ),
-  MAG_FORCETOC             => array( 0, '__FORCETOC__', '__СЪДЪРЖАНИЕ__' ),
-  MAG_NOEDITSECTION        => array( 0, '__NOEDITSECTION__', '__БЕЗ_РЕДАКТИРАНЕ_НА_РАЗДЕЛИ__' ),
-  MAG_START                => array( 0, '__START__', '__НАЧАЛО__'         ),
-  MAG_CURRENTMONTH         => array( 1, 'CURRENTMONTH', 'ТЕКУЩМЕСЕЦ'      ),
-  MAG_CURRENTMONTHNAME     => array( 1, 'CURRENTMONTHNAME', 'ТЕКУЩМЕСЕЦИМЕ' ),
-  MAG_CURRENTDAY           => array( 1, 'CURRENTDAY', 'ТЕКУЩДЕН'            ),
-  MAG_CURRENTDAYNAME       => array( 1, 'CURRENTDAYNAME', 'ТЕКУЩДЕНИМЕ'     ),
-  MAG_CURRENTYEAR          => array( 1, 'CURRENTYEAR', 'ТЕКУЩАГОДИНА'       ),
-  MAG_CURRENTTIME          => array( 1, 'CURRENTTIME', 'ТЕКУЩОВРЕМЕ'        ),
-  MAG_NUMBEROFARTICLES     => array( 1, 'NUMBEROFARTICLES', 'БРОЙСТАТИИ'    ),
-  MAG_CURRENTMONTHNAMEGEN  => array( 1, 'CURRENTMONTHNAMEGEN' ),
-  MAG_PAGENAME             => array( 1, 'PAGENAME', 'СТРАНИЦА'               ),
-  MAG_NAMESPACE            => array( 1, 'NAMESPACE', 'ИМЕНПРОСТРАНСТВО'              ),
-  MAG_MSG                  => array( 0, 'MSG:', 'СЪОБЩ:'                 ),
-  MAG_SUBST                => array( 0, 'SUBST:', 'ЗАМЕСТ:'              ),
-  MAG_MSGNW                => array( 0, 'MSGNW:', 'СЪОБЩNW:'             ),
-  MAG_END                  => array( 0, '__END__', '__КРАЙ__'            ),
-  MAG_IMG_THUMBNAIL        => array( 1, 'thumbnail', 'thumb', 'мини'     ),
-  MAG_IMG_RIGHT            => array( 1, 'right', 'вляво'                 ),
-  MAG_IMG_LEFT             => array( 1, 'left', 'вдясно'                 ),
-  MAG_IMG_NONE             => array( 1, 'none'                   ),
-  MAG_IMG_WIDTH            => array( 1, "$1px", "$1пкс"          ),
-  MAG_IMG_CENTER           => array( 1, 'center', 'centre', 'център' ),
-  MAG_IMG_FRAMED           => array( 1, 'framed', 'enframed', 'frame', 'рамка', 'врамка' ),
-  MAG_INT                  => array( 0, 'INT:'                   ),
-  MAG_SITENAME             => array( 1, 'SITENAME', 'САЙТ'       ),
-  MAG_NS                   => array( 0, 'NS:'                    ),
-  MAG_LOCALURL             => array( 0, 'LOCALURL:'              ),
-  MAG_LOCALURLE            => array( 0, 'LOCALURLE:'             ),
-  MAG_SERVER               => array( 0, 'SERVER', 'СЪРВЪР'       )
+	MAG_REDIRECT             => array( 0, '#redirect', '#пренасочване', '#виж' ),
+	MAG_NOTOC                => array( 0, '__NOTOC__', '__БЕЗСЪДЪРЖАНИЕ__' ),
+	MAG_FORCETOC             => array( 0, '__FORCETOC__', '__СЪДЪРЖАНИЕ__' ),
+	MAG_NOEDITSECTION        => array( 0, '__NOEDITSECTION__', '__БЕЗ_РЕДАКТИРАНЕ_НА_РАЗДЕЛИ__' ),
+	MAG_START                => array( 0, '__START__', '__НАЧАЛО__'         ),
+	MAG_CURRENTMONTH         => array( 1, 'CURRENTMONTH', 'ТЕКУЩМЕСЕЦ'      ),
+	MAG_CURRENTMONTHNAME     => array( 1, 'CURRENTMONTHNAME', 'ТЕКУЩМЕСЕЦИМЕ' ),
+	MAG_CURRENTDAY           => array( 1, 'CURRENTDAY', 'ТЕКУЩДЕН'            ),
+	MAG_CURRENTDAYNAME       => array( 1, 'CURRENTDAYNAME', 'ТЕКУЩДЕНИМЕ'     ),
+	MAG_CURRENTYEAR          => array( 1, 'CURRENTYEAR', 'ТЕКУЩАГОДИНА'       ),
+	MAG_CURRENTTIME          => array( 1, 'CURRENTTIME', 'ТЕКУЩОВРЕМЕ'        ),
+	MAG_NUMBEROFARTICLES     => array( 1, 'NUMBEROFARTICLES', 'БРОЙСТАТИИ'    ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1, 'CURRENTMONTHNAMEGEN' ),
+	MAG_PAGENAME             => array( 1, 'PAGENAME', 'СТРАНИЦА'               ),
+	MAG_NAMESPACE            => array( 1, 'NAMESPACE', 'ИМЕНПРОСТРАНСТВО'              ),
+	MAG_MSG                  => array( 0, 'MSG:', 'СЪОБЩ:'                 ),
+	MAG_SUBST                => array( 0, 'SUBST:', 'ЗАМЕСТ:'              ),
+	MAG_MSGNW                => array( 0, 'MSGNW:', 'СЪОБЩNW:'             ),
+	MAG_END                  => array( 0, '__END__', '__КРАЙ__'            ),
+	MAG_IMG_THUMBNAIL        => array( 1, 'thumbnail', 'thumb', 'мини'     ),
+	MAG_IMG_RIGHT            => array( 1, 'right', 'вляво'                 ),
+	MAG_IMG_LEFT             => array( 1, 'left', 'вдясно'                 ),
+	MAG_IMG_NONE             => array( 1, 'none'                   ),
+	MAG_IMG_WIDTH            => array( 1, "$1px", "$1пкс"          ),
+	MAG_IMG_CENTER           => array( 1, 'center', 'centre', 'център' ),
+	MAG_IMG_FRAMED           => array( 1, 'framed', 'enframed', 'frame', 'рамка', 'врамка' ),
+	MAG_INT                  => array( 0, 'INT:'                   ),
+	MAG_SITENAME             => array( 1, 'SITENAME', 'САЙТ'       ),
+	MAG_NS                   => array( 0, 'NS:'                    ),
+	MAG_LOCALURL             => array( 0, 'LOCALURL:'              ),
+	MAG_LOCALURLE            => array( 0, 'LOCALURLE:'             ),
+	MAG_SERVER               => array( 0, 'SERVER', 'СЪРВЪР'       )
 );
 
 # All special pages have to be listed here: a description of ""
@@ -111,59 +97,57 @@
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesBg = array(
-  'Userlogin'           => 'Влизане',
-  'Userlogout'          => 'Излизане',
-  'Preferences'         => 'Потребителски настройки',
-  'Watchlist'           => 'Наблюдавани страници',
-  'Recentchanges'       => 'Последни промени',
-  'Upload'              => 'Качване на картинки',
-  'Imagelist'           => 'Списък на картинките',
-  'Listusers'           => 'Регистрирани потребители',
-  'Statistics'          => 'Статистика',
-  'Randompage'          => 'Случайна статия',
+	'Userlogin'           => 'Влизане',
+	'Userlogout'          => 'Излизане',
+	'Preferences'         => 'Потребителски настройки',
+	'Watchlist'           => 'Наблюдавани страници',
+	'Recentchanges'       => 'Последни промени',
+	'Upload'              => 'Качване на картинки',
+	'Imagelist'           => 'Списък на картинките',
+	'Listusers'           => 'Регистрирани потребители',
+	'Statistics'          => 'Статистика',
+	'Randompage'          => 'Случайна статия',
 
-  'Lonelypages'         => 'Статии сираци',
-  'Unusedimages'        => 'Картинки сираци',
-  'Popularpages'        => 'Известни статии',
-  'Wantedpages'         => 'Желани статии',
-  'Shortpages'          => 'Кратки статии',
-  'Longpages'           => 'Дълги статии',
-  'Newpages'            => 'Нови статии',
-  'Ancientpages'        => 'Стари статии',
-  'Deadendpages'        => 'Задънени статии',
-# 'Intl'                => 'Междуезикови препратки',
-  'Allpages'            => 'Всички статии по заглавие',
+	'Lonelypages'         => 'Статии сираци',
+	'Unusedimages'        => 'Картинки сираци',
+	'Popularpages'        => 'Известни статии',
+	'Wantedpages'         => 'Желани статии',
+	'Shortpages'          => 'Кратки статии',
+	'Longpages'           => 'Дълги статии',
+	'Newpages'            => 'Нови статии',
+	'Ancientpages'        => 'Стари статии',
+	'Deadendpages'        => 'Задънени статии',
+	# 'Intl'                => 'Междуезикови препратки',
+	'Allpages'            => 'Всички статии по заглавие',
 
-  'Ipblocklist'         => 'Блокирани потребители/IP-адреси',
-  'Maintenance'         => 'Страница за поддръжка',
-  'Specialpages'        => '',
-  'Contributions'       => '',
-  'Emailuser'           => '',
-  'Whatlinkshere'       => '',
-  'Recentchangeslinked' => '',
-  'Movepage'            => '',
-  'Blockme'             => '',
-  'Booksources'         => 'Външни източници на книги',
-  'Categories'          => 'Категории страници',
-  'Export'              => 'Изнасяне като XML',
-  'Version'             => 'Версия на МедияУики',
-  'Allmessages'         => 'Всички системни съобщения',
-  'Search'              => '',
+	'Ipblocklist'         => 'Блокирани потребители/IP-адреси',
+	'Maintenance'         => 'Страница за поддръжка',
+	'Specialpages'        => '',
+	'Contributions'       => '',
+	'Emailuser'           => '',
+	'Whatlinkshere'       => '',
+	'Recentchangeslinked' => '',
+	'Movepage'            => '',
+	'Blockme'             => '',
+	'Booksources'         => 'Външни източници на книги',
+	'Categories'          => 'Категории страници',
+	'Export'              => 'Изнасяне като XML',
+	'Version'             => 'Версия на МедияУики',
+	'Allmessages'         => 'Всички системни съобщения',
+	'Search'              => '',
 );
 
 /* private */ $wgSysopSpecialPagesBg = array(
-  'Blockip'    => 'Блокиране на потребител/IP-адрес',
-  'Asksql'     => 'Справка към базата данни',
-  'Undelete'   => 'Възстановяване на изтрити страници',
-  'Makesysop'  => 'Превръщане на потребител в администратор',
-  'Import'     => 'Внасяне на страница с история',
+	'Blockip'    => 'Блокиране на потребител/IP-адрес',
+	'Asksql'     => 'Справка към базата данни',
+	'Undelete'   => 'Възстановяване на изтрити страници',
+	'Makesysop'  => 'Превръщане на потребител в администратор',
+	'Import'     => 'Внасяне на страница с история',
 );
 
 /* private */ $wgDeveloperSpecialPagesBg = array(
-  'Lockdb'    => 'Забрана на достъп за писане към базата данни',
-  'Unlockdb'  => 'Разрешаване на достъп за писане към базата данни',
-
-
+	'Lockdb'    => 'Забрана на достъп за писане към базата данни',
+	'Unlockdb'  => 'Разрешаване на достъп за писане към базата данни',
 );
 
 #-------------------------------------------------------------------
@@ -1391,73 +1375,69 @@ require_once( 'LanguageUtf8.php' );
 
 class LanguageBg extends LanguageUtf8 {
 
-  function getBookstoreList () {
-    global $wgBookstoreListBg ;
-    return $wgBookstoreListBg ;
-  }
+	function getBookstoreList () {
+		global $wgBookstoreListBg ;
+		return $wgBookstoreListBg ;
+	}
 
-  function getNamespaces() {
-    global $wgNamespaceNamesBg;
-    return $wgNamespaceNamesBg;
-  }
+	function getNamespaces() {
+		global $wgNamespaceNamesBg;
+		return $wgNamespaceNamesBg;
+	}
 
-  function getNsText( $index ) {
-    global $wgNamespaceNamesBg;
-    return $wgNamespaceNamesBg[$index];
-  }
+	function getNsText( $index ) {
+		global $wgNamespaceNamesBg;
+		return $wgNamespaceNamesBg[$index];
+	}
 
-  function getNsIndex( $text ) {
-    global $wgNamespaceNamesBg, $wgNamespaceNamesEn;
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesBg, $wgNamespaceNamesEn;
 
-    foreach ( $wgNamespaceNamesBg as $i => $n ) {
-      if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-    }
-  # Existing links; fall back to support English names
-    foreach ( $wgNamespaceNamesEn as $i => $n ) {
-      if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-    }
-    return false;
-  }
+		foreach ( $wgNamespaceNamesBg as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
 
-  function getQuickbarSettings() {
-    global $wgQuickbarSettingsBg;
-    return $wgQuickbarSettingsBg;
-  }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsBg;
+		return $wgQuickbarSettingsBg;
+	}
 
-  function getSkinNames() {
-    global $wgSkinNamesBg;
-    return $wgSkinNamesBg;
-  }
+	function getSkinNames() {
+		global $wgSkinNamesBg;
+		return $wgSkinNamesBg;
+	}
 
-  function getDateFormats() {
-    global $wgDateFormatsBg;
-    return $wgDateFormatsBg;
-  }
+	function getDateFormats() {
+		global $wgDateFormatsBg;
+		return $wgDateFormatsBg;
+	}
 
-  function getValidSpecialPages()
-  {
-    global $wgValidSpecialPagesBg;
-    return $wgValidSpecialPagesBg;
-  }
+	function getValidSpecialPages()
+	{
+		global $wgValidSpecialPagesBg;
+		return $wgValidSpecialPagesBg;
+	}
 
-  function getSysopSpecialPages()
-  {
-    global $wgSysopSpecialPagesBg;
-    return $wgSysopSpecialPagesBg;
-  }
+	function getSysopSpecialPages()
+	{
+		global $wgSysopSpecialPagesBg;
+		return $wgSysopSpecialPagesBg;
+	}
 
-  function getDeveloperSpecialPages()
-  {
-    global $wgDeveloperSpecialPagesBg;
-    return $wgDeveloperSpecialPagesBg;
-  }
+	function getDeveloperSpecialPages()
+	{
+		global $wgDeveloperSpecialPagesBg;
+		return $wgDeveloperSpecialPagesBg;
+	}
 
 	function getMessage( $key ) {
 		global $wgAllMessagesBg;
 		if( isset( $wgAllMessagesBg[$key] ) ) {
 			return $wgAllMessagesBg[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 

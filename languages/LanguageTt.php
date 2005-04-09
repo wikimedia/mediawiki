@@ -61,14 +61,6 @@ require_once( "LanguageUtf8.php" );
 #        "köyläwsez",
 );
 
-
-/* private */ $wgBookstoreListTt = array(
-        "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-        "PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-        "Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-        "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
 # Read language names
 global $wgLanguageNames;
 require_once( "Names.php" );
@@ -192,11 +184,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 
 class LanguageTt extends LanguageUtf8 {
 
-	function getBookstoreList () {
-		global $wgBookstoreListTt;
-		return $wgBookstoreListTt;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesTt;
 		return $wgNamespaceNamesTt;
@@ -275,29 +262,9 @@ class LanguageTt extends LanguageUtf8 {
 		if( isset( $wgAllMessagesTt[$key] ) ) {
 			return $wgAllMessagesTt[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
-
-	# Inherit iconv()
-
-	# Inherit ucfirst()
-
-	# Inherit lcfirst()
-
-	# Inherit checkTitleEncoding()
-
-	# Inherit stripForSearch()
-
-	# Inherit setAltEncoding()
-
-	# Inherit recodeForEdit()
-
-	# Inherit recodeInput()
-
-	# Inherit isRTL()
-
-	# Inherit getMagicWords()
 
 	function fallback8bitEncoding() {
 		# Windows codepage 1252 is a superset of iso 8859-1

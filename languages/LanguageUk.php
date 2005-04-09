@@ -4,7 +4,7 @@
   * @subpackage Language
   */
 
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -55,10 +55,6 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgDateFormatsUk = array(
 #	"Немає значення",
 );
-
-
-/* Add a $wgBookstoreListUk to override default list of book links for ISBN links */
-
 
 
 /* private */ $wgAllMessagesUk = array(

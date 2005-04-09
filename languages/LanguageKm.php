@@ -3,6 +3,8 @@
   *
   * @package MediaWiki
   * @subpackage Language
+  *
+  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
   */
 
 require_once( 'LanguageUtf8.php' );

@@ -1,15 +1,9 @@
 <?php
-/**
+/** Spanish (Español)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-#
-# Spanish localisation for MediaWiki
-#
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
 
 require_once( "LanguageUtf8.php" );
 
@@ -39,37 +33,14 @@ require_once( "LanguageUtf8.php" );
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEs = array(
-
-	"None", "Fixed left", "Fixed right", "Floating left"
-);
-/* private */ $wgQuickbarSettingsEs = array(
 	"Ninguna", "Fija a la izquierda", "Fija a la derecha", "Flotante a la izquierda"
 );
 
 /* private */ $wgSkinNamesEs = array(
 	'standard' => "Estándar",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) +  $wgSkinNamesEn;
 
-/* private */ $wgDateFormatsEs = array(
-#	"Sin preferencia",
-);
-
-/* Please customize this with some Spanish-language bookshops
-   and/or reference sites that can look up by ISBN number */
-/* private */ $wgBookstoreListEs = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
+/* private */ $wgDateFormatsEs = array();
 
 
 # All special pages have to be listed here: a description of ""
@@ -1207,9 +1178,6 @@ class LanguageEs extends LanguageUtf8 {
 	}
 
 
-
-	# Inherit userAdjust()
-        
 	function shortdate( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -1257,7 +1225,7 @@ class LanguageEs extends LanguageUtf8 {
 		if( isset( $wgAllMessagesEs[$key] ) ) {
 			return $wgAllMessagesEs[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 }

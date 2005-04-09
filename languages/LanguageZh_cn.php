@@ -53,15 +53,6 @@ require_once( "LanguageUtf8.php" );
 	'myskin' => "MySkin"
 );
 
-
-
-/* private */ $wgBookstoreListZh_cn = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
 /* private */ $wgUserTogglesZh_cn = array(
 	'nolangconversion',
 ) + $wgUserTogglesEn;
@@ -1016,11 +1007,6 @@ email address to them, and it can be used to send you a new password if you forg
 );
 
 class LanguageZh_cn extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListZh_cn ;
-		return $wgBookstoreListZh_cn ;
-	}
 
 	function getUserToggles() {
 		global $wgUserTogglesZh_cn;

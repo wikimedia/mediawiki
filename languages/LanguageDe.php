@@ -1,15 +1,10 @@
 <?php
-/**
+/** German (Deutsch)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-#
-# German localisation for MediaWiki
-#
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
+
 require_once( 'LanguageUtf8.php' );
 
 # See Language.php for notes.

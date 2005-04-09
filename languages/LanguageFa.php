@@ -1,5 +1,6 @@
 <?php
-/**
+/** Persian (فارسی)
+  *
   * @package MediaWiki
   * @subpackage Language
   */

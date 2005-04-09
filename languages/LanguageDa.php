@@ -1,15 +1,9 @@
 <?php
-/**
+/** Danish (Dansk)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-#
-# Danish localisation for MediaWiki
-#
-# This file is encoded in UTF-8, no byte order mark.
-# For compatibility with Latin-1 installations, please
-# don't add literal characters above U+00ff.
-#
 
 require_once( "LanguageUtf8.php" );
 
@@ -52,26 +46,15 @@ require_once( "LanguageUtf8.php" );
 	'nostalgia' => "Nostalgi",
 	'cologneblue' => "Cologne-blå",
 	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) + $wgSkinNamesEn;
 
-/* private */ $wgDateFormatsDa = array(
-#	"Ingen foretrukken",
-);
+/* private */ $wgDateFormatsDa = array();
 
 
 /* private */ $wgBookstoreListDa = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
 	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
+) + $wgBookstoreLisEn;
 
 
 # All special pages have to be listed here: a description of ""
