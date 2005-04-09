@@ -442,7 +442,6 @@ See $1.",
 "bureaucrattext"	=> "The action you have requested can only be
 performed by sysops with  \"bureaucrat\" status.",
 'nbytes'		=> '$1 bytes',
-'go'			=> 'Go',
 'ok'			=> 'OK',
 'sitetitle'		=> "{{SITENAME}}",
 'pagetitle'		=> "$1 - {{SITENAME}}",
