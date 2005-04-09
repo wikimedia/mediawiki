@@ -1291,7 +1291,13 @@ class Parser
 					}
 					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 					$this->mOutput->addCategoryLink( $t );
-					$s .= $prefix . $trail ;
+					
+					/**
+					 * Strip the whitespace Category links produce, see bug 87
+					 * @todo We might want to use trim($tmp, "\n") here.
+					 */
+					$tmp = $prefix . $trail;
+					$s .= trim($tmp) == '' ? '': $tmp;
 					
 					wfProfileOut( "$fname-category" );
 					continue;
