@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 require_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
@@ -49,14 +53,9 @@ require_once( "LanguageUtf8.php" );
 	'myskin' => "MySkin"
 );
 
-
-
-/* private */ $wgBookstoreListZh_cn = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
+/* private */ $wgUserTogglesZh_cn = array(
+	'nolangconversion',
+) + $wgUserTogglesEn;
 
 
 # All special pages have to be listed here: a description of ""
@@ -128,7 +127,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "滑过Wiki链接时显示注释", /* "Show hoverbox over wiki links",*/
 "tog-underline" => "下划链接", /* "Underline links", */
 /* "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 "tog-highlightbroken" => "毁坏链接格式<a href=\"\" class=\"new\">像这样</a> (或者像这个<a href=\"\" class=\"internal\">?</a>)",
@@ -614,7 +612,7 @@ alt=\"Google\" align=\"middle\"></a>
 以及其他任何您知道的关于改图像的信息。",
 "uploadwarning" => "上载警告",
 "savefile"		=> "保存文件",
-"uploadedimage" => "已上载\"$1\"",
+"uploadedimage" => "已上载\"[[$1]]\"",
 
 # Image list
 #
@@ -624,7 +622,6 @@ alt=\"Google\" align=\"middle\"></a>
 "ilshowmatch"	=> "显示所有匹对的图像",
 "ilsubmit"		=> "搜索",
 "showlast"		=> "显示按$2排列的最后$1幅图像。",
-"all"			=> "全部",
 "byname"		=> "名字",
 "bydate"		=> "日期",
 "bysize"		=> "大小",
@@ -787,7 +784,6 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "confirmdeletetext" => "您即将从数据库中永远删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。
 ",
-"confirmcheck"	=> "是的，我确定要删除。",
 "actioncomplete" => "操作完成",
 "deletedtext"	=> "“$1”已经被删除。
 最近删除的纪录请参见$2。",
@@ -956,9 +952,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 'allmessages' => "系统界面", //"All system messages",
 'allmessagesnotsupportedDB' => "系统界面功能处于关闭状态 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
 'allmessagestext' => "这里列出所有可定制的系统界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
-'allpagesformtext1' => "列出从 $1 起的条目", //"Display pages starting at: $1",
-'allpagesformtext2' => "选定名字空间： $1 $2", //"Choose namespace: $1 $2",
-'allpagesnamespace' => "所有 $1 名字空间的条目", //"All pages ($1 namespace)",
+'allinnamespace' => "所有 $1 名字空间的条目", //"All pages ($1 namespace)",
 'allpagesnext' => "下一页", //"Next",
 'allpagesprev' => "上一页", //"Previous",
 'allpagessubmit' => "提交", //"Go",
@@ -1014,9 +1008,9 @@ email address to them, and it can be used to send you a new password if you forg
 
 class LanguageZh_cn extends LanguageUtf8 {
 
-	function getBookstoreList () {
-		global $wgBookstoreListZh_cn ;
-		return $wgBookstoreListZh_cn ;
+	function getUserToggles() {
+		global $wgUserTogglesZh_cn;
+		return $wgUserTogglesZh_cn;
 	}
 
 	function getNamespaces() {

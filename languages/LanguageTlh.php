@@ -1,6 +1,9 @@
 <?php
-
-# Hooray for Klingon, the most controversial language addition to date
+/** Klingon (tlhIngan-Hol)
+  * 
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 require_once( "LanguageUtf8.php" );
 

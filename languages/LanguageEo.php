@@ -1,4 +1,8 @@
 <?php
+/** Esperanto (Esperanto)
+  * @package MediaWiki
+  * @subpackage Language
+  */
 require_once("LanguageUtf8.php");
 
 # See language.doc
@@ -39,12 +43,10 @@ require_once("LanguageUtf8.php");
 	'standard' => "Klasika",
 	'nostalgia' => "Nostalgio",
 	'cologneblue' => "Kolonja Bluo",
-	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
 	'monobook' => "Librejo",
-	'myskin' => 'MySkin',
 	'chick' => 'Kokido',
-);
+) + $wgSkinNamesEn;
 
 
 
@@ -112,7 +114,6 @@ require_once("LanguageUtf8.php");
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User toggles
-"tog-hover"		=> "Montru helpilon super viki-ligiloj",
 "tog-underline" => "Substreku ligilojn",
 "tog-highlightbroken" => "Ruĝigu ligilojn al neekzistantaj paĝoj",
 "tog-justify"	=> "Alkadrigu liniojn",
@@ -482,9 +483,7 @@ Serĉu en sekcioj: :<br />
 $1<br />
 $2 Kun alidirektiloj   Serĉu $3 $9",
 "searchdisabled" => "<p>Oni provizore malŝaltis serĉadon per la plenteksta
-indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>
-                                                                                                                                                        
-",
+indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>",
 "blanknamespace" => "(Artikoloj)",
 
 # Preferences page
@@ -619,7 +618,7 @@ verki iom da informo pri la dosiero. Ekzemple, de kie ĝi devenas;
 kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "uploadwarning" => "Averto",
 "savefile"		=> "Konservu dosieron",
-"uploadedimage" => "alŝutis \"$1\"",
+"uploadedimage" => "alŝutis \"[[$1]]\"",
 "uploaddisabled" => "Ni petas pardonon, sed oni malebligis alŝutadon.",
 
 # Image list
@@ -630,7 +629,6 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "ilshowmatch"	=> "Montru tiujn dosierojn kies nomoj trafas",
 "ilsubmit"		=> "Trovu!",
 "showlast"		=> "Montru la $1 lastajn bildojn laŭ $2.",
-"all"			=> "ĉiuj",
 "byname"		=> "nomo",
 "bydate"		=> "dato",
 "bysize"		=> "grandeco",
@@ -796,7 +794,6 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 forviŝos ĝian tutan historion el la datumaro.<br />
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
 la sekvojn, kaj ke vi ja sekvas la [[{{ns:4}}:Reguloj pri forigado|regulojn pri forigado]].",
-"confirmcheck"	=> "Jes, mi tutkore certas ke mi volas forigi tiun artikolon/dosieron.",
 "actioncomplete" => "Ago farita",
 "deletedtext"	=> "\"$1\" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.",
@@ -983,7 +980,7 @@ Bonvolu permane kunigi ilin.",
 class LanguageEo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {
-		$opt = Language::getDefaultUserOptions();
+		$opt = parent::getDefaultUserOptions();
 		$opt["altencoding"] = 0;
 		return $opt;
 	}
@@ -1019,8 +1016,6 @@ class LanguageEo extends LanguageUtf8 {
 		return $wgSkinNamesEo;
 	}
 
-	# Heredu userAdjust()
- 
 	# La dato- kaj tempo-funkciojn oni povas precizigi laŭ lingvo
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }

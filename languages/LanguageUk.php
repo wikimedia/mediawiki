@@ -1,6 +1,10 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -48,17 +52,9 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* Non-std date formats are only enabled for English, which is idiosyncratic that way */
 /* private */ $wgDateFormatsUk = array(
-	"Немає значення",
-	"Січень 15, 2001",
-	"15 січня 2001",
-	"2001 січень 15"
+#	"Немає значення",
 );
-
-
-/* Add a $wgBookstoreListUk to override default list of book links for ISBN links */
-
 
 
 /* private */ $wgAllMessagesUk = array(
@@ -66,7 +62,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Показувати випливаючу підказку над зв'язками вікі",
 "tog-underline" => "Підкреслювати зв'язки",
 "tog-highlightbroken" => "Форматувати неіснуючі зв'язки <a href=\"\" class=\"new\">ось так</a> (Альтернатива: ось так<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Вирівнювати параграфи",
@@ -589,7 +584,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 Будь-ласка, перейдіть за наступним посиланням: ($2) до сторінки з описом і внесіть наступну інформацію про файл: джерело файлу, коли й ким він був створений, та іншу інформацію про цей файл.",
 "uploadwarning" => "Попередження",
 "savefile"		=> "Зберегти файл",
-"uploadedimage" => "завантажено \"$1\"",
+"uploadedimage" => "завантажено \"[[$1]]\"",
 "uploaddisabled" => "Вибачте, можливість завантаження на даний сервер відключена.",
 
 # Image list
@@ -600,7 +595,6 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 "ilshowmatch"	=> "Показати всі зображення з співпадаючими назвами",
 "ilsubmit"		=> "Шукати",
 "showlast"		=> "Показати останні $1 зображень, відсортованих $2.",
-"all"			=> "всі",
 "byname"		=> "за назвою",
 "bydate"		=> "за датою",
 "bysize"		=> "за розміром",
@@ -762,7 +756,6 @@ $3...
 "confirmdeletetext" => "Ви ось-ось назавжди вилучите статтю чи файл і всі її журнали редагувань з бази даних.
 Будь-ласка, підтвердіть, що ви бажаєте зробити це, що ви повністю розумієте наслідки й що ви робите це в відповідності з
 [[$wgMetaNamespace:Правила|правилами Вікіпедії]].",
-"confirmcheck"	=> "Так, я дійсно хочу це вилучити.",
 "actioncomplete" => "Дію виконано",
 "deletedtext"	=> "\"$1\" було вилучено.
 Див. $2 для перегляду списку останніх вилучень.",
@@ -790,8 +783,8 @@ $3...
 "protectlogpage" => "Журнал_захисту",
 "protectlogtext" => "Нижче наведено список установок й зняття захисту з сторінки.
 Додаткова інформація: [[$wgMetaNamespace:Захищена стаття]].",
-"protectedarticle" => "захист на $1 встановлено",
-"unprotectedarticle" => "захист з $1 знято",
+"protectedarticle" => "захист на [[$1]] встановлено",
+"unprotectedarticle" => "захист з [[$1]] знято",
 
 # Undelete
 "undelete" => "Відновити вилучену статтю",
@@ -987,7 +980,7 @@ class LanguageUk extends LanguageUtf8 {
 
 	function getMonthNameGen( $key ) {
 		global $wgMonthNamesGenEn;
-		return wfMsgUTF8( $wgMonthNamesGenEn[$key-1] );
+		return wfMsg( $wgMonthNamesGenEn[$key-1] );
 	}
 
 	function getMessage( $key )

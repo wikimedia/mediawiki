@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 #
 # Tatarish localisation for MediaWiki
 #
@@ -54,19 +58,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsTt = array(
-        "köyläwsez",
-        "Ğínwar 15, 2001",
-        "15. Ğínwar 2001",
-        "2001 Ğínwar 15",
-        "2001-01-15"
-);
-
-
-/* private */ $wgBookstoreListTt = array(
-        "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-        "PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-        "Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-        "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
+#        "köyläwsez",
 );
 
 # Read language names
@@ -170,7 +162,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 'dec' => "Dek",
 
 # User Toggles
-"tog-hover"                       => "Show hoverbox over wiki links",
 "tog-underline"           => "Underline links",
 "tog-highlightbroken"     => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"             => "Justify paragraphs",
@@ -192,11 +183,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 );
 
 class LanguageTt extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListTt;
-		return $wgBookstoreListTt;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesTt;
@@ -276,29 +262,9 @@ class LanguageTt extends LanguageUtf8 {
 		if( isset( $wgAllMessagesTt[$key] ) ) {
 			return $wgAllMessagesTt[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
-
-	# Inherit iconv()
-
-	# Inherit ucfirst()
-
-	# Inherit lcfirst()
-
-	# Inherit checkTitleEncoding()
-
-	# Inherit stripForSearch()
-
-	# Inherit setAltEncoding()
-
-	# Inherit recodeForEdit()
-
-	# Inherit recodeInput()
-
-	# Inherit isRTL()
-
-	# Inherit getMagicWords()
 
 	function fallback8bitEncoding() {
 		# Windows codepage 1252 is a superset of iso 8859-1

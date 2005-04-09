@@ -1,4 +1,9 @@
 <?php
+/** Persian (فارسی)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # Wikipedia localization for Persian
 
@@ -119,7 +124,6 @@ require_once("LanguageUtf8.php");
 'special_version_postfix' => '',
 # User toggles
 
-"tog-hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",
 "tog-underline" => "زیر پیوندها خط کشیده شود",
 "tog-highlightbroken" => "قالب‌بندی پیوندهای ناقص <a href=\"\" class=\"new\">به این شکل</a> (امکان دیگر: به این شکل<a href=\"\" class=\"internal\">؟</a>).",
 "tog-justify"	=> "تنظیم بندها",
@@ -712,7 +716,7 @@ you may be blocked from uploading if you abuse the system.",
 و هر چیز دیگری که ممکن است در مورد آن بدانید، پر کنید.",
 "uploadwarning" => "هشدار بار کردن",
 "savefile"		=> "ذخیره‌ی پرونده",
-"uploadedimage" => "«$1» بار شد",
+"uploadedimage" => "«[[$1]]» بار شد",
 "uploaddisabled" => "شرمنده، بار کردن از کار افتاده است.",
 				       
 # Image list
@@ -723,7 +727,6 @@ you may be blocked from uploading if you abuse the system.",
 "ilshowmatch"	=> "نمایش همه‌ی تصاویر با نام نظیر",
 "ilsubmit"		=> "جستجو",
 "showlast"		=> "نمایش آخرین $1 تصویر مرتب‌شده $2.",
-"all"			=> "همه",
 "byname"		=> "از روی نام",
 "bydate"		=> "از روی تاریخ",
 "bysize"		=> "از روی اندازه",
@@ -899,7 +902,6 @@ or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
 [[$wgMetaNamespace:Policy]].",
-"confirmcheck"	=> "بله، جداً می‌خواهم این را حذف کنم.",
 "actioncomplete" => "عمل انجام شد",
 "deletedtext"	=> "«$1» حذف شده است.
 برای سابقه‌ی حذف‌های اخیر به $2 مراجعه کنید.",
@@ -928,8 +930,8 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "protectlogpage" => "سیاهه‌ی_محافظت",
 "protectlogtext" => "در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحات آمده است.
 برای اطلاعات بیشتر به [[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.",
-"protectedarticle" => "$1 محافظت شد",
-"unprotectedarticle" => "$1 از محافظت در آمد",
+"protectedarticle" => "[[$1]] محافظت شد",
+"unprotectedarticle" => "[[$1]] از محافظت در آمد",
 
 # Undelete
 "undelete" => "احیای صفحه‌ی حذف شده",

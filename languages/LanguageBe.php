@@ -1,12 +1,15 @@
 <?php
-# Belarusian (Беларуская мова)
-# File by Ævar Arnfjörð Bjarmason and translations by 
-# be:EugeneZelenko, be:Monk (and others)
-#
-# This file is dual-licensed under GFDL and GPL.
-#
-# See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1638
-#      http://be.wikipedia.org/wiki/Talk:LanguageBe.php
+/** Belarusian (Беларуская мова)
+  *
+  * @package MediaWiki
+  * @subpackage Language
+  *
+  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+  * @bug 1638
+  * @link http://be.wikipedia.org/wiki/Talk:LanguageBe.php
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
+  */
 
 require_once('LanguageUtf8.php');
 
@@ -106,7 +109,6 @@ require_once('LanguageUtf8.php');
 'addgroup' => 'Дадаць групу',
 'administrators' => 'Project:Адміністратары',
 'affirmation' => 'Я пацьвярджаю, што ўладальнік/уладальніца аўтарскіх правоў на гэты файл згодзен/згодная распаўсюджваць яго адпаведна з умовамі ліцэнзіі $1.',
-'all' => 'усе',
 'allarticles' => 'Усе артыкулы',
 'allmessages' => 'Усе сыстэмныя паведамленьні',
 'allpages' => 'Усе старонкі',
@@ -346,7 +348,7 @@ public domain or similar free resource.<br />
 'upload' => 'Загрузіць файл',
 'uploadbtn' => 'Загрузіць файл',
 'uploadedfiles' => 'Загружаныя файлы',
-'uploadedimage' => 'загружаная \'$1\'',
+'uploadedimage' => 'загружаная \'[[$1]]\'',
 'uploadlink' => 'Загрузіць выявы',
 'uploadtext' => '\'\'\'Перад тым, як загрузіць файл:\'\'\'
 * Азнаёмцеся з \'\'\'[[Project:Правілы выкарыстаньня выяваў|правіламі выкарыстаньня выяваў у Вікіпэдыі]]\'\'\'.

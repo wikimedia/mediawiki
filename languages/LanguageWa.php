@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 require_once( "LanguageUtf8.php" );
 
@@ -43,18 +47,7 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgDateFormatsWa = array( /* cwè fé chal ??? */
-	"Nole preferince",
-	"January 15, 2001",
-	"15 January 2001",
-	"2001 January 15",
-	"2001-01-15"
-);
-
-/* private */ $wgBookstoreListWa = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
+#	"Nole preferince",
 );
 
 
@@ -121,7 +114,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Racsegnes cwand on passe so les loyéns",
 "tog-underline" => "Sorlignî les loyéns",
 "tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Djustifyî les hagnons",
@@ -735,7 +727,7 @@ fwait, et pa kî, et tot l'&nbsp;minme kéne informåcion interessante ki vos pl
 saveur å dfait do fitchî.",
 "uploadwarning" => "Adviertixhmint so l'&nbsp;eberwetaedje",
 "savefile"		=> "Schaper l'&nbsp;fitchî",
-"uploadedimage" => "eberwetaedje di «$1»",
+"uploadedimage" => "eberwetaedje di «[[$1]]»",
 
 # Image list
 #
@@ -745,7 +737,6 @@ saveur å dfait do fitchî.",
 "ilshowmatch"	=> "Mostrer totes les imådjes avou des nos ki corespondèt a",
 "ilsubmit"		=> "Cweri",
 "showlast"		=> "Mostrer les $1 dierinnès imådjes relîtes $2.",
-"all"			=> "totes",
 "byname"		=> "påzès nos",
 "bydate"		=> "pazès dates",
 "bysize"		=> "pa grandeu",
@@ -940,7 +931,6 @@ pådje ou ene imådje, avou tote si istwere.
 Acertinez s'&nbsp;i vs plait ki c'&nbsp;est bén çoula ki vos vloz fé,
 ki vos comprindoz les consecwinces, et ki vos fjhoz çoula
 tot [[Wikipedia:Rîles a shure|shuvant les rîles]].",
-"confirmcheck"	=> "Oyi, dji vou vormint disfacer ci fitchî chal.",
 "actioncomplete" => "Fwait",
 "deletedtext"	=> "Li pådje «$1» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.",
@@ -970,8 +960,8 @@ Li dierin candjmint a stî fwait pa [[Uzeu:$3|$3]] ([[Uzeu copene:$3|Copene]]). 
 "protectlogtext" => "Chal pa dzo c'&nbsp;est ene djivêye des protedjaedjes
 et disprotedjaedjes des pådjes.
 Loukîz [[{{ns:4}}:Pådje protedjeye]] po pus di racsegnes.",
-"protectedarticle" => "$1 protedjî",
-"unprotectedarticle" => "$1 disprotedjî",
+"protectedarticle" => "[[$1]] protedjî",
+"unprotectedarticle" => "[[$1]] disprotedjî",
 
 # Undelete
 "undelete" => "Rapexhî des disfacêyès pådjes",
@@ -1167,11 +1157,6 @@ amusement.", # co a fé
 #--------------------------------------------------------------------------
 
 class LanguageWa extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListWa ;
-		return $wgBookstoreListWa ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesWa;
