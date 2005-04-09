@@ -1,7 +1,5 @@
 <?php
 /**
- * English (English)
- * 
  * @package MediaWiki
  * @subpackage Language
  */

@@ -1,9 +1,9 @@
 <?php
-/**
+/** English (English)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-# See language.doc
 
 require_once( 'LanguageUtf8.php' );
 
