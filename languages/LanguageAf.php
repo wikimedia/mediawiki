@@ -32,14 +32,6 @@ require_once( 'LanguageUtf8.php' );
 	'cologneblue' => "Keulen blou",
 ) + $wgSkinNamesEn;
 
-/* private */ $wgBookstoreListAf = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.noamazon.com/" #patent that
-);
-
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -544,7 +536,6 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "ilshowmatch"	=> "Wys alle prente met name wat pas",
 "ilsubmit"		=> "Soek",
 "showlast"		=> "Wys laaste $1 prente gesorteer $2.",
-"all"			=> "alles",
 "byname"		=> "volgens naam",
 "bydate"		=> "volgens datum",
 "bysize"		=> "volgens grootte",
@@ -833,11 +824,6 @@ Kies asseblief 'n ander naam.",
 );
 
 class LanguageAf extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListAf ;
-		return $wgBookstoreListAf ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesAf;
