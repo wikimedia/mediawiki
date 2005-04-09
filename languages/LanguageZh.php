@@ -347,6 +347,7 @@ class LanguageZh extends LanguageZh_cn {
 
 		$plang = $this->getPreferredVariant();
 		$fallback = $this->getVariantFallback($plang);
+		$variants = $this->getVariants();
 
 		$tarray = explode("-{", $text);
 		$tfirst = array_shift($tarray);
@@ -358,54 +359,81 @@ class LanguageZh extends LanguageZh_cn {
 			//all spaces should be stripped in this tag anyway.
 			$marked[0] = str_replace('&nbsp;', '', $marked[0]);
 
-			$choice = explode(";", $marked[0]);
-			/* see if this conversion is specifically for the
-			  article title. the format is
-				-{T|zh-cn:foo;zh-tw:bar}-
+			/* see if this conversion has special meaning
+			   # for article title:
+				 -{T|zh-cn:foo;zh-tw:bar}-
+			   # convert all occurence of foo/bar in this article:
+				 -{A|zh-cn:foo;zh-tw:bar}-
 			*/
-			$fortitle = false;
+			$flag = '';
+			$choice = false;
 			$tt = explode("|", $marked[0], 2);
-			if(sizeof($tt) == 2 && trim($tt[0]) == 'T') {
+			if(sizeof($tt) == 2) {
+				$flag = trim($tt[0]);
 				$choice = explode(";", $tt[1]);
-				$fortitle = true;
 			}
-			else {
+
+			if(!$choice) {
 				$choice = explode(";", $marked[0]);
 			}
 			$disp = '';
+			$carray = array();
 			if(!array_key_exists(1, $choice)) {
 				/* a single choice */
 				$disp = $choice[0];
-			} else {
-				$choice1=false;
-				$choice2=false;
+
+				/* fill the carray if the conversion is for the whole article*/
+				if($flag == 'A') {
+					foreach($variants as $v)
+						$carray[$v] = $disp;
+				}
+			} 
+			else {
 				foreach($choice as $c) {
 					$v = explode(":", $c);
-					if(!array_key_exists(1, $v)) {
-						//syntax error in the markup, give up
-						break;			
-					}
-					$code = trim($v[0]);
-					$content = trim($v[1]);
-					if($code == $plang) {
-						$choice1 = $content;
-						break;
-					}
-					if($code == $fallback)
-						$choice2 = $content;
+					if(sizeof($v) != 2) // syntax error, skip
+						continue;
+					$carray[trim($v[0])] = trim($v[1]);
 				}
-				if ( $choice1 )
-					$disp = $choice1;
-				elseif ( $choice2 )
-					$disp = $choice2;
-				else
-					$disp = $marked[0];
+				if(array_key_exists($plang, $carray))
+					$disp = $carray[$plang];
+				else if(array_key_exists($fallback, $carray))
+					$disp = $carray[$fallback];
 			}
+			if(empty($disp)) { // syntax error
+				$text .= $marked[0];
+			}
+			else {	
+				if($flag == 'T') // for title only
+					$this->mTitleDisplay = $disp;
+				else {
+					$text .= $disp;
+					if($flag == 'A') {
+						/* modify the conversion table for this session*/
 
-			if($fortitle)
-				$this->mTitleDisplay = $disp;
-			else
-				$text .= $disp;
+						/* fill in the missing variants, if any,
+						    with fallbacks */ 
+						foreach($variants as $v) {
+							if(!array_key_exists($v, $carray)) {
+								$vf = $this->getVariantFallback($v);
+								if(array_key_exists($vf, $carray))
+									$carray[$v] = $carray[$vf];
+							}
+						}
+						foreach($variants as $vfrom) {
+							if(!array_key_exists($vfrom, $carray))
+								continue;
+							foreach($variants as $vto) {
+								if($vfrom == $vto)
+									continue;
+								if(!array_key_exists($vto, $carray))
+									continue;
+								$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
+							}
+						}
+					}
+				}
+			}
 			if(array_key_exists(1, $marked))
 				$text .= $this->autoConvert($marked[1]);
 		}
