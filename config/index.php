@@ -609,6 +609,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
 		$localSettings =  "<" . "?php$endl$local$endl?" . ">";
+		// Fix up a common line-ending problem (due to CVS on Windows)
+		$localSettings = str_replace( "\r\n", "\n", $localSettings );
 
 		if( version_compare( phpversion(), "4.3.2" ) >= 0 ) {
 			$xt = "xt"; # Refuse to overwrite an existing file
@@ -953,20 +955,17 @@ function writeLocalSettings( $conf ) {
 	
 	switch ( $conf->Shm ) {
 		case 'memcached':
-			$memcached = 'true';
-			$turck = '#';
+			$cacheType = 'CACHE_MEMCACHED';
 			$mcservers = var_export( $conf->MCServerArray, true );
 			break;
 		case 'turck':
 		case 'eaccel':
-			$memcached = 'false';
+			$cacheType = 'CACHE_ACCEL';
 			$mcservers = 'array()';
-			$turck = '';
 			break;
 		default:
-			$memcached = 'false';
+			$cacheType = 'CACHE_NONE';
 			$mcservers = 'array()';
-			$turck = '#';
 	}
 
 	if ( $conf->Email == 'email_enabled' ) {
@@ -1077,10 +1076,8 @@ if ( \$wgCommandLineMode ) {
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 
 ## Shared memory settings
-\$wgUseMemCached = $memcached;
+\$wgMainCacheType = $cacheType;
 \$wgMemCachedServers = $mcservers;
-{$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && ( php_sapi_name() == 'apache' || php_sapi_name() == 'apache2handler' );
-{$turck}\$wgUseEAccelShm = function_exists( 'eaccelerator_get' ) && ( php_sapi_name() == 'apache' || php_sapi_name() == 'apache2handler' );
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then uncomment this:

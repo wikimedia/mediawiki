@@ -16,7 +16,10 @@ if( defined( 'MEDIAWIKI' ) ) {
 # setting up a few globals.
 #
 
-global $wgProfiling, $wgProfileSampleRate, $wgIP, $IP;
+// Check to see if we are at the file scope
+if ( !isset( $wgVersion ) ) {
+	die( "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n" );
+}
 
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
@@ -43,8 +46,8 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 
 $fname = 'Setup.php';
 wfProfileIn( $fname );
-global $wgUseDynamicDates;
 wfProfileIn( $fname.'-includes' );
+
 
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
@@ -67,21 +70,10 @@ require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
 require_once( 'ProxyTools.php' );
+require_once( 'ObjectCache.php' );
 
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
-global $wgUser, $wgLang, $wgContLang, $wgOut, $wgTitle;
-global $wgLangClass, $wgContLangClass;
-global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
-global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
-global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
-global $wgMsgCacheExpiry, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser, $wgMsgParserOptions;
-global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
-global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
-global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
-
-global $wgFullyInitialised;
 
 $wgIP = wfGetIP();
 $wgRequest = new WebRequest();
@@ -90,7 +82,7 @@ $wgRequest = new WebRequest();
 if ( $wgCommandLineMode ) {
 	# wfDebug( '"' . implode( '"  "', $argv ) . '"' );
 } elseif ( function_exists( 'getallheaders' ) ) {
-	wfDebug( "\nStart request\n" );
+	wfDebug( "\n\nStart request\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 	$headers = getallheaders();
 	foreach ($headers as $name => $value) {
@@ -109,72 +101,13 @@ if (!$wgUseOldExistenceCheck) {
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
-# FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
-# It acts as a memcached server with no RAM, that is, all objects are
-# cleared the moment they are set. All set operations succeed and all
-# get operations return null.
+$wgMemc =& wfGetMainCache();
+$messageMemc =& wfGetMessageCacheStorage();
+$parserMemc =& wfGetParserCacheStorage();
 
-if( $wgUseMemCached ) {
-	# Set up Memcached
-	#
-	require_once( 'memcached-client.php' );
-	
-	/**
-	 *
-	 * @package MediaWiki
-	 */
-	class MemCachedClientforWiki extends memcached {
-		function _debugprint( $text ) {
-			wfDebug( "memcached: $text\n" );
-		}
-	}
-
-	$wgMemc = new MemCachedClientforWiki( array('persistant' => true, 'compress_threshold' => 1500 ) );
-	$wgMemc->set_servers( $wgMemCachedServers );
-	$wgMemc->set_debug( $wgMemCachedDebug );
-
-	$messageMemc = &$wgMemc;
-} elseif ( $wgUseTurckShm ) {
-	# Turck shared memory
-	#
-	require_once( 'ObjectCache.php' );
-	$wgMemc = new TurckBagOStuff;
-	$messageMemc = &$wgMemc;
-} elseif ( $wgUseEAccelShm ) {
-	# eAccelerator shared memory
-	#
-	require_once( 'ObjectCache.php' );
-	$wgMemc = new eAccelBagOStuff;
-	$messageMemc = &$wgMemc;
-} else {
-	/**
-	 * No shared memory
-	 * @package MediaWiki
-	 */
-	class FakeMemCachedClient {
-		function add ($key, $val, $exp = 0) { return true; }
-		function decr ($key, $amt=1) { return null; }
-		function delete ($key, $time = 0) { return false; }
-		function disconnect_all () { }
-		function enable_compress ($enable) { }
-		function forget_dead_hosts () { }
-		function get ($key) { return null; }
-		function get_multi ($keys) { return array_pad(array(), count($keys), null); }
-		function incr ($key, $amt=1) { return null; }
-		function replace ($key, $value, $exp=0) { return false; }
-		function run_command ($sock, $cmd) { return null; }
-		function set ($key, $value, $exp=0){ return true; }
-		function set_compress_threshold ($thresh){ }
-		function set_debug ($dbg) { }
-		function set_servers ($list) { }
-	}
-	$wgMemc = new FakeMemCachedClient();
-	
-	# Give the message cache a separate cache in the DB.
-	# This is a speedup over separately querying every message used
-	require_once( 'ObjectCache.php' );
-	$messageMemc = new MediaWikiBagOStuff('objectcache');
-}
+wfDebug( 'Main cache: ' . get_class( $wgMemc ) . 
+       "\nMessage cache: " . get_class( $messageMemc ) . 
+	   "\nParser cache: " . get_class( $parserMemc ) . "\n" );
 
 wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
@@ -296,7 +229,7 @@ wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
 
 $wgMessageCache = new MessageCache;
-$wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname);
+$wgMessageCache->initialise( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname);
 
 wfProfileOut( $fname.'-MessageCache' );
 
@@ -325,14 +258,12 @@ wfProfileOut( $fname.'-MessageCache' );
 wfProfileIn( $fname.'-OutputPage' );
 
 $wgOut = new OutputPage();
-wfDebug( "\n\n" );
 
 wfProfileOut( $fname.'-OutputPage' );
 wfProfileIn( $fname.'-DateFormatter' );
 
 if ( $wgUseDynamicDates ) {
 	require_once( 'DateFormatter.php' );
-	global $wgDateFormatter;
 	$wgDateFormatter = new DateFormatter;
 }
 
@@ -377,6 +308,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 	$func();
 }
 
+wfDebug( "\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
