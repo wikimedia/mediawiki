@@ -1,30 +1,23 @@
 <?php
-/**
+/** Latin (lingua Latina)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesLa = array(
-	NS_MEDIA			=> 'Media',
-	NS_SPECIAL			=> 'Specialis',
-	NS_MAIN				=> '',
-	NS_TALK				=> 'Disputatio',
-	NS_USER				=> 'Usor',
+	NS_SPECIAL		=> 'Specialis',
+	NS_MAIN			=> '',
+	NS_TALK			=> 'Disputatio',
+	NS_USER			=> 'Usor',
 	NS_USER_TALK		=> 'Disputatio_Usoris',
-	NS_PROJECT			=> 'Wikipedia',
+	NS_PROJECT		=> 'Wikipedia',
 	NS_PROJECT_TALK		=> 'Disputatio_Wikipedia',
-	NS_IMAGE			=> 'Imago',
+	NS_IMAGE		=> 'Imago',
 	NS_IMAGE_TALK		=> 'Disputatio_Imaginis',
 	NS_MEDIAWIKI		=> 'MediaWiki',
 	NS_MEDIAWIKI_TALK	=> 'Disputatio_MediaWiki',
-	NS_TEMPLATE			=> 'Template',
+	NS_TEMPLATE		=> 'Template',
 	NS_TEMPLATE_TALK	=> 'Template_talk'
 
 
