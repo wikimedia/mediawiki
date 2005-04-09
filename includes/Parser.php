@@ -1849,7 +1849,7 @@ class Parser
 		# merged with the next arg because the '|' character between belongs
 		# to the link syntax and not the template parameter syntax.
 		$argc = count($args);
-		$i = 0;
+		
 		for ( $i = 0; $i < $argc-1; $i++ ) {
 			if ( substr_count ( $args[$i], '[[' ) != substr_count ( $args[$i], ']]' ) ) {
 				$args[$i] .= '|'.$args[$i+1];
