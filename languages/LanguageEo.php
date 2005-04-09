@@ -1,5 +1,5 @@
 <?php
-/**
+/** Esperanto (Esperanto)
   * @package MediaWiki
   * @subpackage Language
   */
@@ -43,12 +43,10 @@ require_once("LanguageUtf8.php");
 	'standard' => "Klasika",
 	'nostalgia' => "Nostalgio",
 	'cologneblue' => "Kolonja Bluo",
-	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
 	'monobook' => "Librejo",
-	'myskin' => 'MySkin',
 	'chick' => 'Kokido',
-);
+) + $wgSkinNamesEn;
 
 
 
@@ -982,7 +980,7 @@ Bonvolu permane kunigi ilin.",
 class LanguageEo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {
-		$opt = Language::getDefaultUserOptions();
+		$opt = parent::getDefaultUserOptions();
 		$opt["altencoding"] = 0;
 		return $opt;
 	}
@@ -1018,8 +1016,6 @@ class LanguageEo extends LanguageUtf8 {
 		return $wgSkinNamesEo;
 	}
 
-	# Heredu userAdjust()
- 
 	# La dato- kaj tempo-funkciojn oni povas precizigi laŭ lingvo
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }

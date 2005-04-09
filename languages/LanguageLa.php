@@ -19,8 +19,6 @@
 	NS_MEDIAWIKI_TALK	=> 'Disputatio_MediaWiki',
 	NS_TEMPLATE		=> 'Template',
 	NS_TEMPLATE_TALK	=> 'Template_talk'
-
-
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsLa = array(
