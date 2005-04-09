@@ -1731,7 +1731,7 @@ class Parser
 			case MAG_CURRENTDOW:
 				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
-				return $varCache[$index] = $wgContLang->formatNum( commafyNum( wfNumberOfArticles() ) );
+				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -3055,40 +3055,6 @@ class ParserOptions
 function &outputReplaceMatches( $matches ) {
 	global $outputReplace;
 	return $outputReplace[$matches[1]];
-}
-
-/**
- * Formats a number like 1520626 as 1,520,626 and 1520626.34 as 1,520,626.34
- *
- * @todo It's possible to do this with a regex, see perlfaq5
- *
- * @param mixed Numbers in the form of integers, floats or strings.
- * @return string
- */
-function commafyNum( $input ) {
-	if ( preg_match('/^\d+$/', $input) ) {
-		$intpart =& $input;
-	} elseif ( preg_match('/^\d+\.\d+$/', $input) ) {
-		list($intpart, $floatpart) = explode( '.', $input);
-	} else {
-		wfDebug("Error: Invalid input given to seperateNumber()\n");
-		return;
-	}
-
-	$chars = preg_split( '//', $intpart, -1, PREG_SPLIT_NO_EMPTY );
-
-	$len = count($chars);
-	for($i = 0, $nr = 0; $i < $len; ++$i ) {
-		if ($nr++ % 3 === 0 && $i !== 0)
-			$t[] = ',';
-		$t[] = array_pop($chars);
-	}
-
-	$str = implode( null, array_reverse($t) );
-
-	if ( isset($floatpart) )
-		$str .= '.' . $floatpart;
-	return $str;
 }
 
 /**
