@@ -540,8 +540,7 @@ class Parser
 			$fc = substr ( $x , 0 , 1 ) ;
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
-				$t[$k] = "\n" .
-					str_repeat( '<dl><dd>', $indent_level ) .
+				$t[$k] = str_repeat( '<dl><dd>', $indent_level ) .
 					'<table' . Sanitizer::fixTagAttributes ( $matches[2], 'table' ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
@@ -550,7 +549,7 @@ class Parser
 			}
 			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
 			else if ( '|}' == substr ( $x , 0 , 2 ) ) {
-				$z = "</table>" . substr ( $x , 2) . "\n";
+				$z = "</table>" . substr ( $x , 2);
 				$l = array_pop ( $ltd ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
