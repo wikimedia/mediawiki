@@ -20,16 +20,16 @@ Unihan.txt:
 	unzip Unihan.zip
 
 EZ.txt.in:
-	wget http://freedesktop.org/~suzhe/sources/scim-tables-0.4.3.tar.gz
-	tar zxvf scim-tables-0.4.3.tar.gz > /dev/null
-	cp scim-tables-0.4.3/zh/EZ.txt.in .
-	rm -rf scim-tables-0.4.3* 
+	wget http://easynews.dl.sourceforge.net/sourceforge/scim/scim-tables-0.5.1.tar.gz
+	tar zxvf scim-tables-0.5.1.tar.gz > /dev/null
+	cp scim-tables-0.5.1/zh/EZ.txt.in .
+	rm -rf scim-tables-0.5.1* 
 
 phrase_lib.txt:
-	wget http://freedesktop.org/~suzhe/scim-chinese/scim-chinese-0.4.2.tar.gz 
-	tar zxvf scim-chinese-0.4.2.tar.gz > /dev/null
-	cp scim-chinese-0.4.2/data/phrase_lib.txt .
-	rm -rf scim-chinese-0.4.2*
+	wget http://easynews.dl.sourceforge.net/sourceforge/scim/scim-pinyin-0.5.0.tar.gz
+	tar zxvf scim-pinyin-0.5.0.tar.gz > /dev/null
+	cp scim-pinyin-0.5.0/data/phrase_lib.txt .
+	rm -rf scim-pinyin-0.5.0*
 
 tsi.src:
 	wget http://unc.dl.sourceforge.net/sourceforge/libtabe/libtabe-0.2.3.tgz	
