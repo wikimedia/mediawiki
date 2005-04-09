@@ -1128,6 +1128,15 @@ class LanguagePl extends LanguageUtf8 {
 		return "iso-8859-2";
 	}
 
+	var $digitTransTable = array(
+		',' => '&nbsp;',
+		'.' => ','
+	);
+
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
+	}
 }
 
 ?>
