@@ -303,40 +303,25 @@ $wgSqlTimeout		= 30;
  */ 
 $wgLocalDatabases   = array();
 
+/**
+ * Object cache settings
+ * See Defines.php for types
+ */
+$wgMainCacheType = CACHE_NONE;
+$wgMessageCacheType = CACHE_ANYTHING;
+$wgParserCacheType = CACHE_ANYTHING;
 
-# Memcached settings
-# See docs/memcached.doc
-#
-$wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server isn't working
-$wgUseMemCached     = false;
-$wgMemCachedServers = array( '127.0.0.1:11000' );
-$wgMemCachedDebug   = false;
 $wgSessionsInMemcached = false;
 $wgLinkCacheMemcached = false; # Not fully tested
 
 /**
- * Turck MMCache shared memory
- * You can use this for persistent caching where your wiki runs on a single 
- * server. Enabled by default if Turck is installed. Mutually exclusive with
- * memcached and eAccelerator, the preference order priorities being memcached first, 
- * Turck MMCache second, and eAccelerator third.
- *
- * @global bool $wgUseTurckShm Enable or disabled Turck MMCache
+ * Memcached-specific settings
+ * See docs/memcached.doc
  */
-$wgUseTurckShm      = false;
+$wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server isn't working
+$wgMemCachedServers = array( '127.0.0.1:11000' );
+$wgMemCachedDebug   = false;
 
-/**
- * eAccelerator shared memory
- * You can use this for persistent caching where your wiki runs on a single 
- * server. Enabled by default if eAccelerator is installed. Mutually exclusive with
- * memcached and Turck MMCache, the preference order being memcached first, 
- * Turck MMCache second, and eAccelerator third.
- *
- * Most of the code to support this is directly copied from the Turck code.
- *
- * @global bool $wgUseEAccelShm Enable or disabled eAccelerator
- */
-$wgUseEAccelShm     = false;
 
 
 # Language settings
