@@ -1343,6 +1343,17 @@ class LanguageFr extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " à " . $this->time( $ts, $adj );
 	}
 
+	var $digitTransTable = array(
+		',' => '&nbsp;',
+		'.' => ','
+	);
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
+	}
+
+
 	function getValidSpecialPages() {
 		global $wgValidSpecialPagesFr;
 		return $wgValidSpecialPagesFr;
