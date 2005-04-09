@@ -467,7 +467,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1788) Fix link duplication when edit/upload comment includes newlines
 * Change default on $wgSysopUserBans and $wgSysopRangeBans to true
 * Fix link conversion for URL request
-
+* (bug 1851) Updated download URL for the SCIM packages used by zhtable
 
 === Caveats ===
 
