@@ -9,6 +9,7 @@
 GREP = LANG=zh_CN.UTF8 grep
 SED = LANG=zh_CN.UTF8 sed
 DIFF = LANG=zh_CN.UTF8 diff
+CC ?= gcc
 
 #installation directory
 INSTDIR = /usr/local/share/zhdaemons/
@@ -16,26 +17,20 @@ INSTDIR = /usr/local/share/zhdaemons/
 all: ZhConversion.php tradphrases.notsure simpphrases.notsure wordlist toCN.dict toTW.dict toHK.dict toSG.dict
 
 Unihan.txt:
-	wget ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
-	unzip Unihan.zip
+	wget -nc ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
+	unzip -q Unihan.zip
 
 EZ.txt.in:
-	wget http://easynews.dl.sourceforge.net/sourceforge/scim/scim-tables-0.5.1.tar.gz
-	tar zxvf scim-tables-0.5.1.tar.gz > /dev/null
-	cp scim-tables-0.5.1/zh/EZ.txt.in .
-	rm -rf scim-tables-0.5.1* 
+	wget -nc http://easynews.dl.sourceforge.net/sourceforge/scim/scim-tables-0.5.1.tar.gz
+	tar -xzf scim-tables-0.5.1.tar.gz -O scim-tables-0.5.1/zh/EZ.txt.in > EZ.txt.in
 
 phrase_lib.txt:
-	wget http://easynews.dl.sourceforge.net/sourceforge/scim/scim-pinyin-0.5.0.tar.gz
-	tar zxvf scim-pinyin-0.5.0.tar.gz > /dev/null
-	cp scim-pinyin-0.5.0/data/phrase_lib.txt .
-	rm -rf scim-pinyin-0.5.0*
+	wget -nc http://easynews.dl.sourceforge.net/sourceforge/scim/scim-pinyin-0.5.0.tar.gz
+	tar -xzf scim-pinyin-0.5.0.tar.gz -O scim-pinyin-0.5.0/data/phrase_lib.txt > phrase_lib.txt
 
 tsi.src:
-	wget http://unc.dl.sourceforge.net/sourceforge/libtabe/libtabe-0.2.3.tgz	
-	tar zxvf libtabe-0.2.3.tgz > /dev/null
-	cp libtabe/tsi-src/tsi.src .
-	rm -rf libtabe*
+	wget -nc http://unc.dl.sourceforge.net/sourceforge/libtabe/libtabe-0.2.3.tgz	
+	tar -xzf libtabe-0.2.3.tgz -O libtabe/tsi-src/tsi.src > tsi.src
 
 wordlist: phrase_lib.txt EZ.txt.in tsi.src
 	iconv -c -f big5 -t utf8 tsi.src | $(SED) 's/# //g' | $(SED) 's/[ ][0-9].*//' > wordlist
@@ -45,7 +40,7 @@ wordlist: phrase_lib.txt EZ.txt.in tsi.src
 	mv t wordlist
 
 printutf8: printutf8.c
-	gcc -o printutf8 printutf8.c
+	$(CC) -o printutf8 printutf8.c
 
 unihan.t2s.t: Unihan.txt printutf8
 	$(GREP) kSimplifiedVariant Unihan.txt | $(SED)  '/#/d' | $(SED)  's/kSimplifiedVariant//' | ./printutf8 > unihan.t2s.t
@@ -251,6 +246,23 @@ ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.
 	printf '?>' >> ZhConversion.php
 
 
-clean:
-	rm -f ZhConversion.php tmp1 tmp2 tmp3 t3 *.t trad2simp.php simp2trad.php *.dict printutf8 *~
+clean: cleantmp cleandl
+
+cleantmp:
+	# Stuff unpacked from the files fetched by wget
+	rm -f \
+		Unihan.txt \
+		EZ.txt.in \
+		phrase_lib.txt \
+		tsi.src
+	# Temporary files and other trash
+	rm -f ZhConversion.php tmp1 tmp2 tmp3 t3 *.t trad2simp.php simp2trad.php *.dict printutf8 *~ \
+		simpphrases.notsure tradphrases.notsure wordlist
+
+cleandl:
+	rm -f \
+		Unihan.zip \
+		scim-tables-0.5.1.tar.gz \
+		scim-pinyin-0.5.0.tar.gz \
+		libtabe-0.2.3.tgz
 
