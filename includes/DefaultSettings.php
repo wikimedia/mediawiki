@@ -1218,6 +1218,12 @@ $wgDisabledActions = array();
  */
 $wgEnableSorbs = true;
 
+/**
+ * On Special:Unusedimages, consider images "used", if they are put
+ * into a category. Default (false) is not to count those as used.
+ */
+$wgCountCategorizedImagesAsUsed = false;
+
 } else {
 	die();
 }
