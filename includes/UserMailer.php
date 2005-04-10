@@ -308,7 +308,7 @@ class EmailNotification {
 		$keys['%24PAGETITLE']        = $pagetitle; # needed for the {{localurl:$PAGETITLE}} in the messagetext, "$" appears here as "%24"
 		$keys['$PAGETITLE']          = $pagetitle;
 		$keys['$PAGETIMESTAMP']      = $article->mTimestamp;	# this is the raw internal timestamp - can be useful, too
-		$keys['$PAGEEDITDATEUTC']    = $wgLang->timeanddate( $article->mTimestamp, false, false, false, true );
+		$keys['$PAGEEDITDATEUTC']    = $wgLang->timeanddate( $article->mTimestamp, false, false, false );
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
 	
@@ -394,7 +394,7 @@ class EmailNotification {
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
 		$body = str_replace('$PAGEEDITDATE',
-			$wgLang->timeanddate( $article->mTimestamp, true, false, $timecorrection, true),
+			$wgLang->timeanddate( $article->mTimestamp, true, false, $timecorrection ),
 			$body);
 		
 		$error = userMailer( $to, $mail->from, $mail->subject, $body, $mail->replyto );
