@@ -46,7 +46,7 @@
 	'smarty' => 'Падингтън',
 	'montparnasse' => 'Монпарнас',
 	'davinci' => 'ДаВинчи',
-) + $wgSkinNamesBg;
+) + $wgSkinNamesEn;
 
 
 /* private */ $wgDateFormatsBg = array();
