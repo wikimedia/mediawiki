@@ -54,7 +54,7 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgBookstoreListDa = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
 	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
-) + $wgBookstoreLisEn;
+) + $wgBookstoreListEn;
 
 
 # All special pages have to be listed here: a description of ""
