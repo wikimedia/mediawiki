@@ -599,20 +599,16 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 
-		if( $wgShowSQLErrors ) {
-			if ( $wgCommandLineMode ) {
-				$msg = wfMsgNoDB( 'dberrortextcl', htmlspecialchars( $sql ),
-							htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
-			} else {
-				$msg = wfMsgNoDB( 'dberrortext', htmlspecialchars( $sql ),
-							htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
-			}
+		if( !$wgShowSQLErrors ) {
+			$sql = wfMsg( 'sqlhidden' );
+		}
+
+		if ( $wgCommandLineMode ) {
+			$msg = wfMsgNoDB( 'dberrortextcl', htmlspecialchars( $sql ),
+						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
 		} else {
-			if( $wgCommandLineMode ) {
-				$msg = wfMsg( 'internalerror' );
-			} else {
-				$msg = htmlspecialchars( wfMsg( 'internalerror' ) );
-			}
+			$msg = wfMsgNoDB( 'dberrortext', htmlspecialchars( $sql ),
+						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
 		}
 
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
