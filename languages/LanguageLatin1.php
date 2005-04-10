@@ -288,6 +288,10 @@ class LanguageLatin1 {
 		return $this->lang->getVariants();
 	}
 
+	function findVariantLink( &$link, &$nt ) {
+		return;
+	}
+
 	function convertForSearchResult( $termsArray ) {
 		return $termsArray;
 	}	

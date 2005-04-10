@@ -469,7 +469,7 @@ pages for purposes of page relevancy ranking.
 * Fix link conversion for URL request
 * (bug 1851) Updated download URL for the SCIM packages used by zhtable
 * (bug 1853) Try stripping quotes from term for 'go' title match
-
+* Fix missing function in Latin1 mode
 
 === Caveats ===
 
