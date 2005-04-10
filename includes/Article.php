@@ -1093,6 +1093,7 @@ class Article {
 
 		$text = $this->preSaveTransform( $text );
 		$dbw =& wfGetDB( DB_MASTER );
+		$now = wfTimestampNow();
 
 		# Update article, but only if changed.
 
@@ -1104,6 +1105,7 @@ class Article {
 		}
 
 		$oldtext = $this->getContent( true );
+		$lastRevision = 0;
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
 			$this->mCountAdjustment = $this->isCountable( $text )
@@ -1130,7 +1132,7 @@ class Article {
 			} else {
 				# Update recentchanges and purge cache and whatnot
 				$bot = (int)($wgUser->isBot() || $forceBot);
-				RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary,
+				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot );
 				Article::onArticleEdit( $this->mTitle );
 			}
@@ -1172,7 +1174,7 @@ class Article {
 				array_push( $wgPostCommitUpdateList, $u );
 			}
 	
-			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $lastRevision );
+			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
 		}
 		return $good;
 	}
