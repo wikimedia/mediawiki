@@ -42,6 +42,7 @@ class SearchEngine {
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
 	 *
+	 * @static
 	 * @param string $term
 	 * @return Title
 	 * @access private
@@ -86,6 +87,11 @@ class SearchEngine {
 		# Entering a user goes to the user page whether it's there or not
 		if ( $title->getNamespace() == NS_USER ) {
 			return $title;
+		}
+		
+		# Quoted term? Try without the quotes...
+		if( preg_match( '/^"([^"]+)"$/', $term, $matches ) ) {
+			return SearchEngine::getNearMatch( $matches[1] );
 		}
 		
 		return NULL;
