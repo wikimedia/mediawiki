@@ -468,6 +468,8 @@ pages for purposes of page relevancy ranking.
 * Change default on $wgSysopUserBans and $wgSysopRangeBans to true
 * Fix link conversion for URL request
 * (bug 1851) Updated download URL for the SCIM packages used by zhtable
+* (bug 1853) Try stripping quotes from term for 'go' title match
+
 
 === Caveats ===
 
