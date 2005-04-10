@@ -137,7 +137,7 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser, $wgLinkHolders;
+		global $wgOut, $wgUser, $wgLinkHolders, $wgInputEncoding;
 		$fname = 'Skin::makeLinkObj';
 		wfProfileIn( $fname );
 
@@ -163,7 +163,26 @@ class Linker {
 					$trail = $m[2];
 				}
 			}
+
+			# Check for anchors, normalize the anchor
+
+			$parts = explode( '#', $u, 2 );
+			if ( count( $parts ) == 2 ) {
+				$anchor = urlencode( do_html_entity_decode( str_replace(' ', '_', $parts[1] ),
+									ENT_COMPAT,
+									$wgInputEncoding ) );
+				$replacearray = array(
+					'%3A' => ':',
+					'%' => '.'
+				);
+				$u = $parts[0] . '#' .
+				     str_replace( array_keys( $replacearray ),
+				    		 array_values( $replacearray ),
+						 $anchor );
+			}
+
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
+				
 			if( $this->postParseLinkColour ) {
 				# There's no existence check, but this will prevent
 				# interwiki links from being parsed as external links.
