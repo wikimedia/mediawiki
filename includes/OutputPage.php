@@ -534,7 +534,7 @@ class OutputPage {
 		$this->mRedirect = '';
 
 		$this->mBodytext = '';
-		$this->addHTML( '<p>' . wfMsg( $msg ) . "</p>\n" );
+		$this->addWikiText( wfMsg( $msg ) );
 		$this->returnToMain( false );
 
 		$this->output();

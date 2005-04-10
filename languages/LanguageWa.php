@@ -571,8 +571,7 @@ border=\"0\" ALT=\"Google\"></A>
 #
 "preferences"	=> "Preferinces",
 "prefsnologin" => "Vos n'&nbsp;estoz nén elodjî",
-"prefsnologintext"	=> "I vs fåt esse <a href=\"" .
-  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
+"prefsnologintext"	=> "I vs fåt esse [[Sipeciås:Userlogin|elodjî]]
 po pleur candjî vos preferinces.",
 "prefslogintext" => "Vos estoz elodjî dizo l'&nbsp;uzeu «$1».
 Vosse divintrin idintifiant est l'&nbsp;limero $2.
@@ -647,8 +646,7 @@ dzo Wikipedia.",
 "reupload"		=> "Reberweter",
 "reuploaddesc"	=> "Rivni al pådje d'&nbsp;eberwetaedje.",
 "uploadnologin" => "Nén elodjî",
-"uploadnologintext"	=> "I vs fåt esse <a href=\"" .
-  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a> por
+"uploadnologintext"	=> "I vs fåt esse [[Sipeciås:Userlogin|elodjî]] por
 vos pleur eberweter des fitchîs.",
 "uploadfile"	=> "Eberweter des imådjes, des sons, evnd.",
 "uploaderror"	=> "Aroke d'&nbsp;eberwetaedje",
@@ -849,11 +847,9 @@ chal èn doet nén esse veyowe come èn aspoya ou nerén ene reclame.",
 # Email this user
 #
 "mailnologin"	=> "Nole adresse d'&nbsp;evoyeu",
-"mailnologintext" => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse <a href=\"" .
-  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
+"mailnologintext" => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse [[Sipeciås:Userlogin|elodjî]]
 eyet aveur ene adresse emile d'&nbsp;evoyeu ki soeye valide 
-dins vos <a href=\"" .
-  "{{localurle:Sipeciås:Preferences}}\">preferinces</a>.",
+dins vos [[Sipeciås:Preferences|preferinces]].",
 "emailuser"		=> "Emiler a l'&nbsp;uzeu",
 "emailpage"		=> "Emilaedje a èn uzeu",
 "emailpagetext"	=> "Si cist uzeu chal a dné ene adresse emile valide dins
@@ -879,8 +875,7 @@ Do côp, c'&nbsp;est nén possibe di lyi evoyî èn emile.",
 "watchlistsub"	=> "(po l'&nbsp;uzeu «$1»)",
 "nowatchlist"	=> "Vosse djivêye des pådjes a shuve est vude.",
 "watchnologin"	=> "Vos n'&nbsp;estoz nén elodjî",
-"watchnologintext"	=> "I vs fåt esse <a href=\"" .
-  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
+"watchnologintext"	=> "I vs fåt esse [[Sipeciås:Userlogin|elodjî]]
 po pleur candjî vosse djivêye des pådjes a shuve.",
 "addedwatch"	=> "Radjouté ås shuvous",
 "addedwatchtext" => "Li pådje «$1» a stî radjoutêye a vosse <a href=\"" .
@@ -1113,8 +1108,7 @@ si contnou, si vos l'&nbsp;vloz mete adlé l'&nbsp;novea no
 d'&nbsp;l'&nbsp;årtike.",
 "movearticle"	=> "Displaecî di",
 "movenologin"	=> "Nén elodjî",
-"movenologintext" => "I vs fåt esse èn uzeu eredjîstré eyet esse <a href=\"" .
-  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a> por vos
+"movenologintext" => "I vs fåt esse èn uzeu eredjîstré eyet esse [[Sipeciås:Userlogin|elodjî]] por vos
 pleur displaecî ene pådje.",
 "newtitle"		=> "Viè l'&nbsp;novea tite",
 "movepagebtn"	=> "Displaecî",

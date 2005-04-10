@@ -594,7 +594,7 @@ $2 List redirects   Search for $3 $9",
 # 
 "preferences" => "Konfigurasi", #"Preferences",
 "prefsnologin" => "Belum login", #"Not logged in",
-"prefsnologintext" => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin}}\">login</a> 
+"prefsnologintext" => "Anda harus [[Istimewa:Userlogin|login]] 
 untuk menetapkan konfigurasi Anda.", #"You must be <a href=\"" . 
 "prefslogintext" => "Anda telah login sebagai \"$1\". Nomor ID Anda ialah $2.",
 
@@ -670,7 +670,7 @@ untuk menetapkan konfigurasi Anda.", #"You must be <a href=\"" .
 "reupload"	      => "Unggahkan ulang", #"Re-upload",
 "reuploaddesc"	      => "Kembali ke formulir pengunggahan", #"Return to the upload form.",
 "uploadnologin" => "Belum login", #"Not logged in",
-"uploadnologintext"   => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin}}\">login</a> untuk dapat mengunggahkan file.",
+"uploadnologintext"   => "Anda harus [[Istimewa:Userlogin|login]] untuk dapat mengunggahkan file.",
 "uploadfile"  => "Unggahkan file", #"Upload file",
 "uploaderror" => "Kesalahan Pengunggahan", #"Upload error",
 "uploadtext"  => "<strong>STOP!</strong> Sebelum Anda mengunggahkan di sini, 
@@ -849,7 +849,7 @@ dan daftar ini seharusnya tidak dianggap sebagai sebuah dukungan.",
 # Email this user 
 # 
 "mailnologin" => "Tidak ada alamat e-mail", #"No send address",
-"mailnologintext" => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin\">login</a> dan mempunyai alamat e-mail yang sah di dalam <a href=\"{{localurl:Istimewa:Preferences}}\">konfigurasi</a> untuk mengirimkan e-mail kepada pengguna lain.",  #"You must be <a href=\"{{localurle:Istimewa:Userlogin}}\">logged in</a> and have a valid e-mail address in your <#a href=\"{{localurle:Istimewa:Preferences}}\">preferences</a> to send e-mail to other users.",
+"mailnologintext" => "Anda harus [[Istimewa:Userlogin|login]] dan mempunyai alamat e-mail yang sah di dalam [[Istimewa:Preferences|konfigurasi]] untuk mengirimkan e-mail kepada pengguna lain.",  #"You must be <a href=\"{{localurle:Istimewa:Userlogin}}\">logged in</a> and have a valid e-mail address in your <#a href=\"{{localurle:Istimewa:Preferences}}\">preferences</a> to send e-mail to other users.",
 
 "emailuser"	      => "e-mail pengguna ini", #"E-mail this user",
 "emailpage"	      => "e-mail pengguna", #"E-mail user",
@@ -879,7 +879,7 @@ dan daftar ini seharusnya tidak dianggap sebagai sebuah dukungan.",
 "watchlistsub"	      => "(untuk pengguna \"$1\")",   #"(for user \"$1\")",
 "nowatchlist" => "Tiada apa-apa dalam daftar pengamatan.",    #"You have no items on your watchlist.",
 "watchnologin"	      => "Belum login", #"Not logged in",
-"watchnologintext"    => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin}}\">login</a> 
+"watchnologintext"    => "Anda harus [[Istimewa:Userlogin|login]] 
 untuk mengubah daftar pengamatan.",
 "addedwatch"  => "Tambahkan ke daftar pengamatan",
 "addedwatchtext" => "Halaman \"$1\" telah ditambahkan ke [[{{ns:-1}}:Daftar_pengamatan|daftar pengamatan]]. 
@@ -1131,7 +1131,7 @@ dari perbuatan ini sebelum melanjutkan.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle" => "Pindahkan halaman", #"Move page",
 "movenologin" => "Belum login", #"Not logged in",
-"movenologintext" => "Anda harus menjadi pengguna terdaftar dan telah <a href=\"{{localurl:Istimewa:Userlogin}}\">login</a> 
+"movenologintext" => "Anda harus menjadi pengguna terdaftar dan telah [[Istimewa:Userlogin|login]] 
 untuk memindahkan halaman.",
 "newtitle"    => "Ke judul baru",   #"To new title",
 "movepagebtn" => "Pindahkan halaman", #"Move page",

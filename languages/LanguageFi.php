@@ -505,7 +505,7 @@ $2 Luettelo uudelleenohjauksista<br />Etsi $3 $9',
 #
 'preferences'         => 'Asetukset',
 'prefsnologin'        => 'Et ole kirjautunut sisään',
-'prefsnologintext'    => 'Sinun täytyy <a href="http:{{localurle:Special:Userlogin}}">kirjautua sisään</a>, jotta voisit muuttaa asetuksia.', // TODO: NO WIKIMARKUP
+'prefsnologintext'    => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]], jotta voisit muuttaa asetuksia.', // TODO: NO WIKIMARKUP
 'prefslogintext'      => 'Olet kirjautunut sisään käyttäjänä \'\'\'$1\'\'\'. Sisäinen tunnistenumerosi on \'\'\'$2\'\'\'.',
 'prefsreset'          => 'Asetukset on palautettu talletettujen mukaisiksi.',
 'qbsettings'          => 'Pikavalikon asetukset',
@@ -583,7 +583,7 @@ $2 Luettelo uudelleenohjauksista<br />Etsi $3 $9',
 'reupload'            => 'Uusi tallennus',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
 'uploadnologin'       => 'Et ole kirjaunut sisään',
-'uploadnologintext'   => 'Sinun pitää olla <a href="http:{{localurle:Special:Userlogin}}">kirjautuneena sisään</a>, jotta voisit tallentaa tiedostoja.', // TODO NO WIKIMARKUP
+'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.', // TODO NO WIKIMARKUP
 'uploadfile'          => 'Tallenna tiedosto',
 'uploaderror'         => 'Tallennusvirhe',
 'uploadtext'          => '\'\'\'SEIS!\'\'\' Ennen kuin tallennat tiedostoja {{GRAMMAR:illative|{{SITENAME}}}}, tutustu [[Project:Kuvien_käyttösäännöt|kuvien käyttösääntöihin]] ja noudata niitä.
@@ -746,7 +746,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 # Email this user
 #
 'mailnologin'         => 'Lähettäjän osoite puuttuu',
-'mailnologintext'     => 'Sinun pitää olla <a href="http:{{localurle:Special:Userlogin}}">kirjautuneena sisään</a> ja <a href="http:{{localurle:Special:Preferences}}">asetuksissasi</a> pitää olla toimiva sähköpostiosoite jotta voit lähettää sähköpostia muille käyttäjille.',
+'mailnologintext'     => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva sähköpostiosoite jotta voit lähettää sähköpostia muille käyttäjille.',
 'emailuser'           => 'Lähetä sähköpostia tälle käyttäjälle',
 'emailpage'           => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'       => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakeella voi lähettää yhden viestin hänelle. Omissa asetuksissasi annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi vastata viestiin.',

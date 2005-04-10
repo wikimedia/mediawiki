@@ -505,8 +505,7 @@ $2 Излистај преусмерења &nbsp; Тражи $3 $9",
 #
 "preferences" => "Подешавања",
 "prefsnologin" => "Нисте пријављени",
-"prefsnologintext" => "Морате бити <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">пријављени</a>
+"prefsnologintext" => "Морате бити [[Special:Userlogin|пријављени]]
 да бисте подешавали корисничка подешавања.",
 "prefslogintext" => "Пријављени сте као \"$1\".
 Ваш интерни ИД број је $2.
@@ -595,8 +594,7 @@ $2 Излистај преусмерења &nbsp; Тражи $3 $9",
 "reupload"  => "Поново пошаљи",
 "reuploaddesc" => "Врати се на упитник за слање.",
 "uploadnologin" => "Нисте пријављени",
-"uploadnologintext" => "Морате бити <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">пријављени</a>
+"uploadnologintext" => "Морате бити [[Special:Userlogin|пријављени]]
 да бисте слали фајлове.",
 "uploadfile" => "Пошаљи слике, звуке, документа итд.",
 "uploaderror" => "Грешка при слању",
@@ -766,10 +764,8 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 # Email this user
 #
 "mailnologin" => "Нема адресе за слање",
-"mailnologintext" => "Морате бити <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">пријављени</a>
-и имати исправну е-адресу in your <a href=\"" .
-  "{{localurle:Special:Preferences}}\">подешавањима</a>
+"mailnologintext" => "Морате бити [[Special:Userlogin|пријављени]]
+и имати исправну е-адресу in your [[Special:Preferences|подешавањима]]
 да бисте слали електронску пошту другим корисницима.",
 "emailuser"  => "Пошаљи е-писмо овом кориснику",
 "emailpage"  => "Пошаљи е-писмо кориснику",
@@ -795,8 +791,7 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 "watchlistsub" => "(за корисника \"$1\")",
 "nowatchlist" => "Немате ништа на свом списку надгледања.",
 "watchnologin" => "Нисте пријављени",
-"watchnologintext" => "Морате бити <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">пријављени</a>
+"watchnologintext" => "Морате бити [[Special:Userlogin|пријављени]]
 да бисте мењали списак надгледања.",
 "addedwatch" => "Додати списку надгледања",
 "addedwatchtext" => "Страница \"$1\" је додата вашој <a href=\"" .
@@ -1013,8 +1008,7 @@ $3...
 У тим случајевима, мораћете ручно да преместите страницу уколико то желите.",
 "movearticle" => "Премести страницу",
 "movenologin" => "Нисте улоговани",
-"movenologintext" => "Морате бити регистровани корисник и <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">пријављени</a>
+"movenologintext" => "Морате бити регистровани корисник и [[Special:Userlogin||пријављени]]
 да бисте преместили страницу.",
 "newtitle"  => "Нови наслов",
 "movepagebtn" => "премести страницу",

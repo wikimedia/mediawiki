@@ -499,9 +499,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 #
 "preferences"		=> "Ynstellings",
 "prefsnologin" 		=> "Net oanmeld",
-"prefsnologintext"	=> "Jo moatte <a href=\""
-. "{{localurle:Wiki:Userlogin}}" 
-. "\">oanmeld</a> wêze om jo ynstellings te feroarjen.",
+"prefsnologintext"	=> "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om jo ynstellings te feroarjen.",
 
 "prefslogintext" 		=> "Jo binne oanmeld, $1.
 Jo Wiki-nûmer is $2.
@@ -573,9 +571,7 @@ Jo Wiki-nûmer is $2.
 "reupload"		=> "Op 'e nij oanbiede",
 "reuploaddesc"	=> "Werom nei oanbied-side.",
 "uploadnologin" 	=> "Net oanmelde",
-"uploadnologintext" => "Jo moatte <a href=\""
-. "{{localurle:Wiki:Userlogin}}" 
-. "\">oanmeld</a> wêze om in bestân oanbieden te kinnen.",
+"uploadnologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.",
 
 "uploadfile"	=> "Bied ôfbylden, lûden, dokuminten ensfh. oan.",
 "uploaderror"	=> "Oanbied-fout",
@@ -754,10 +750,8 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 # Email this brûker
 #
 "mailnologin"	=> "Gjin adres beskikber",
-"mailnologintext" => "Jo moatte <a href=\""
-. "{{localurle:Wiki:Userlogin}}\">oanmeld</a>
-wêze, en in jildich e-postadres <a href=\"" .
-  "{{localurle:Wiki:Preferences}}\">ynsteld</a>
+"mailnologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]]
+wêze, en in jildich e-postadres [[Wiki:Preferences|ynsteld]]
 hawwe, om oan oare brûkers e-post stjoere te kinnen.",
 
 "emailuser"		=> "Skriuw dizze brûker",
@@ -783,9 +777,7 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 "watchlistsub"	=> "(foar brûker \"$1\")",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
 "watchnologin"	=> "Not oanmeld in",
-"watchnologintext"=> "Jo moatte <a href=\""
-. "{{localurle:Wiki:Userlogin}}" 
-. "\">oanmeld</a> wêze om jo folchlist te feroarjen.",
+"watchnologintext"=> "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.",
 
 "addedwatch"	=> "Oan folchlist tafoege",
 "addedwatchtext"	=> "De side \"$1\" is tafoege oan jo <a href=\"" 
@@ -982,9 +974,7 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 
 "movearticle"	=> "Werneam side",
 "movenologin"	=> "Net oameld",
-"movenologintext" => "Jo moatte <a href=\""
-. "{{localurle:Wiki:Userlogin}}" 
-. "\">oanmeld</a> wêze om in side wer te neamen.",
+"movenologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om in side wer te neamen.",
 
 "newtitle"		=> "As nij titel",
 "movepagebtn"	=> "Werneam side",

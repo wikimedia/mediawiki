@@ -447,8 +447,7 @@ $2 Inclure les page de redirections   Rechercher $3 $9",
 #
 "preferences"       => "Préférences",
 "prefsnologin"      => "Non connecté",
-"prefsnologintext"  => "Vous devez être <a href=\"" .
-		"{{localurle:Special:Userlogin}}\">connecté</a>
+"prefsnologintext"  => "Vous devez être [[Special:Userlogin|connecté]]
 pour modifier vos préférences d'utilisateur.",
 "prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
 
@@ -527,8 +526,7 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pa
 "reuploaddesc" => "Retour au formulaire.",
 
 "uploadnologin" => "Non connecté(e)",
-"uploadnologintext" => "Vous devez être <a href=\"" .
-		"{{localurle:Special:Userlogin}}\">connecté</a>
+"uploadnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
@@ -679,10 +677,8 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 # Email this user
 #
 "mailnologin" => "Pas d'adresse",
-"mailnologintext" => "Vous devez être <a href=\"" .
-		"{{localurle:Special:Userlogin}}\">connecté</a>
-et avoir indiqué une adresse électronique valide dans vos <a href=\"" .
-		"{{localurle:Special:Preferences}}\">préférences</a>
+"mailnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
+et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
 pour pouvoir envoyer un message à un autre utilisateur.",
 "emailuser"  => "Envoyer un message à cet utilisateur",
 "emailpage"  => "Email user",
@@ -705,8 +701,7 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 "watchlistsub"	=> "(pour l'utilisateur \"$1\")",
 "nowatchlist"	=> "Votre liste de suivi ne contient aucun article.",
 "watchnologin"	=> "Non connecté",
-"watchnologintext" => "Vous devez être <a href=\"" .
-		"{{localurle:Special:Userlogin}}\">connecté</a>
+"watchnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour modifier votre liste.",
 "addedwatch"	=> "Ajouté à la liste",
 "addedwatchtext" => "La page \"$1\" a été ajoutée à votre <a href=\"" .
@@ -893,8 +888,7 @@ Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le 
 
 "movearticle"	=> "Déplacer l'article",
 "movenologin"	=> "Non connecté",
-"movenologintext" => "Pour pouvoir déplacer un article, vous devez être <a href=\"" .
-		"{{localurle:Special:Userlogin}}\">connecté</a>
+"movenologintext" => "Pour pouvoir déplacer un article, vous devez être [[Special:Userlogin|connecté]]
 en tant qu'utilisateur enregistré.",
 "newtitle"	=> "Nouveau titre",
 "movepagebtn"	=> "Déplacer l'article",

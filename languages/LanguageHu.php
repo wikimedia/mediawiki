@@ -544,8 +544,7 @@ $2 Átirányítások listája &nbsp; Keresés:$3 $9",
 "preferences"	=> "Beállítások",
 "prefsnologin"	=> "Nem vagy belépve",
 "prefsnologintext"	=> "Ahhoz hogy a 
-beállításaidat rögzíthesd <a href=\"" .
-  "{{localurle:Speciális:Belépés}}\">be kell lépned</a>.",
+beállításaidat rögzíthesd [[Speciális:Belépés|be kell lépned]].",
 "prefslogintext" => "Be vagy lépve \"$1\" néven.
 A belső azonosítód $2.",
 "prefsreset"	=> "A beállítások törlődtek a tárolóból vett értékekre.",
@@ -631,8 +630,7 @@ Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 "reuploaddesc"	=> "Visszatérés a felküldési űrlaphoz.",
 "uploadnologin" => "Nincs belépve",
 "uploadnologintext"	=> "Ahhoz hogy file-okat tudj
-felküldeni <a href=\"" .
-  "{{localurle:Speciális:Belépés}}\">logged in</a>
+felküldeni [[Speciális:Belépés|logged in]]
 to upload files.",
 "uploadfile"	=> "File felküldés",
 "uploaderror"	=> "Felküldési hiba",
@@ -811,10 +809,8 @@ ezt a listát semmiképpen ne tekintsd bármiféle ajánlásnak.",
 #
 "mailnologin"	=> "Nincs feladó",
 "mailnologintext" => "Ahhoz hogy másoknak emailt küldhess
-<a href=\"" .
-  "{{localurle:Speciális:Belépés}}\">be kell jelentkezned</a>
-és meg kell adnod egy érvényes email címet a <a href=\"" .
-  "{{localurle:Speciális:Beállítások}}\">beállításaidban</a>.",
+[[Speciális:Belépés|be kell jelentkezned]]
+és meg kell adnod egy érvényes email címet a [[Speciális:Beállítások|beállításaidban]].",
 "emailuser"		=> "E-mail küldése ezen felhasználónak",
 "emailpage"		=> "E-mail küldése",
 "emailpagetext"	=> "Ha ez a felhasználó megadott egy érvényes email
@@ -838,8 +834,7 @@ nem kíván másoktól leveleket kapni.",
 "watchlistsub"	=> "(\"$1\" user)",
 "nowatchlist"	=> "Nincs lap a figyelőlistádon.",
 "watchnologin"	=> "Nincs belépve",
-"watchnologintext"	=> "Ahhoz hogy figyelőlistád lehessen <a href=\"" .
-  "{{localurle:Speciál:Belépés}}\">be kell lépned</a>.",
+"watchnologintext"	=> "Ahhoz hogy figyelőlistád lehessen [[Speciál:Belépés|be kell lépned]].",
 "addedwatch"	=> "Figyelőlistához hozzáfűzve",
 "addedwatchtext" => "A \"$1\" lapot hozzáadtam a <a href=\"" .
   "{{localurle:Speciális:Figyelőlista}}\">figyelőlistádhoz</a>.
@@ -1057,8 +1052,7 @@ Ezen esetekben a vita lapot külön, kézzel kell átnevezned a kívánságaid
 szerint.",
 "movearticle"	=> "Lap mozgatás",
 "movenologin"	=> "Nincs belépve",
-"movenologintext" => "Ahhoz hogy mozgass egy lapot <a href=\"" .
-  "{{localurle:Speciális:Belépés}}\">be kell lépned</a>.",
+"movenologintext" => "Ahhoz hogy mozgass egy lapot [[Speciális:Belépés|be kell lépned]].",
 "newtitle"		=> "Az új névre",
 "movepagebtn"	=> "Lap mozgatása",
 "pagemovedsub"	=> "Átmozgatás sikeres",

@@ -756,8 +756,7 @@ $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 #
 "preferences"	=> "Teie eelistused",
 "prefsnologin" => "Te ei ole sisse loginud",
-"prefsnologintext"	=> "Et oma eelistusi seada, <a href=\"" .
- "{{localurle:Special:Userlogin}}\">tuleb Teil</a>
+"prefsnologintext"	=> "Et oma eelistusi seada, [[Special:Userlogin|tuleb Teil]]
 sisse logida.",
 "prefslogintext" => "Te olete sisse loginud kasutajanimega \"$1\".
 Teie sisemine ID-number on $2.",
@@ -832,8 +831,7 @@ Teie sisemine ID-number on $2.",
 "reupload"		=> "Uuesti üleslaadimine",
 "reuploaddesc"	=> "Tagasi üleslaadimise vormi juurde.",
 "uploadnologin" => "sisse logimata",
-"uploadnologintext"	=> "Kui Te soovite faile üles laadida, peate <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">sisse logima</a>.",
+"uploadnologintext"	=> "Kui Te soovite faile üles laadida, peate [[Special:Userlogin|sisse logima]].",
 "uploadfile"	=> "Faili üleslaadimine",
 "uploaderror"	=> "Viga üleslaadimisel",
 "uploadtext"	=> "<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,

@@ -572,8 +572,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 #
 "preferences"	=> "ترجیحات",
 "prefsnologin" => "به سیستم وارد نشده‌اید",
-"prefsnologintext"	=> "برای تنظیم ترجیحات کاربر باید <a href=\"" .
-  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
+"prefsnologintext"	=> "برای تنظیم ترجیحات کاربر باید [[ویژه:Userlogin|به سیستم وارد شوید]].",
 "prefslogintext" => "شما با نام «$1» وارد سیستم شده‌اید.
 شماره‌ی شناسایی داخلی شما $2 است.
 
@@ -646,8 +645,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "reupload"		=> "بار کردن مجدد",
 "reuploaddesc"	=> "بازگشت به فرم بار کردن",
 "uploadnologin" => "به سیستم وارد نشده‌اید",
-"uploadnologintext"	=> "برای بار کردن پرونده‌ها باید <a href=\"" .
-  "{{localurle:ویژه:Userlogin}}\">وارد سیستم شوید</a>.",
+"uploadnologintext"	=> "برای بار کردن پرونده‌ها باید [[ویژه:Userlogin|وارد سیستم شوید]].",
 "uploadfile"	=> "بار کردن تصاویر، اصوات، اسناد، و غیره",
 "uploaderror"	=> "خطا در بار کردن",
 "uploadtext"	=> "'''ایست!''' قبل از این که چیزی اینجا بار کنید،
@@ -823,10 +821,8 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 # Email this user
 #
 "mailnologin"	=> "نشانی فرستنده‌ای نیست",
-"mailnologintext" => "برای فرستادن پست الکترونیکی به کاربران دیگر باید <a href=\"" .
-  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>
-و نشانی پست الکترونیکی معتبری در <a href=\"" .
-  "{{localurle:ویژه:ترجیحات}}\">ترجیحات</a>
+"mailnologintext" => "برای فرستادن پست الکترونیکی به کاربران دیگر باید [[ویژه:Userlogin|به سیستم وارد شوید]]
+و نشانی پست الکترونیکی معتبری در [[ویژه:ترجیحات|ترجیحات]]
 خود داشته باشید.",
 "emailuser"		=> "پست الکترونیکی به این کاربر",
 "emailpage"		=> "پست الکترونیکی به کاربر",
@@ -851,8 +847,7 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 "watchlistsub"		=> "(برای کاربر «$1»)",
 "nowatchlist"		=> "در فهرست تعقیبات شما هیچ موردی نیست.",
 "watchnologin"		=> "به سیستم وارد نشده‌اید",
-"watchnologintext"	=> "برای تغییر فهرست تعقیباتتان باید <a href=\"" .
-  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
+"watchnologintext"	=> "برای تغییر فهرست تعقیباتتان باید [[ویژه:Userlogin|به سیستم وارد شوید]].",
 "addedwatch"		=> "به فهرست تعقیبات اضافه شود",
 "addedwatchtext"	=> "صفحه‌ی «$1» به <a href=\"" .
   "{{localurle:ویژه:Watchlist}}\">فهرست تعقیبات</a> شما اضافه شد.
@@ -1066,8 +1061,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "انتقال صفحه",
 "movenologin"	=> "به سیستم وارد نشده‌اید",
 "movenologintext" => "برای انتقال صفحات باید کاربر ثبت‌شده بوده و 
-<a href=\"" .
-  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
+[[ویژه:Userlogin|به سیستم وارد شوید]].",
 "newtitle"		=> "به عنوان جدید",
 "movepagebtn"	=> "صفحه منتقل شود",
 "pagemovedsub"	=> "انتقال با موفقیت انجام شد",

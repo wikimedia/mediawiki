@@ -449,8 +449,7 @@ Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebb
 # Voorkeuren
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
-"prefsnologintext" => "U dient <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
+"prefsnologintext" => "U dient [[Special:Userlogin|aangemeld]] te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
 
 Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
@@ -521,8 +520,7 @@ Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voeg
 "reupload"  => "Opnieuw uploaden",
 "reuploaddesc" => "Terug naar het uploadformulier.",
 "uploadnologin" => "Niet aangemeld",
-"uploadnologintext" => "U dient <a href=\"" .
-  "{{localurle:Speciaal:Userlogin}}\">aangemeld te zijn</a>
+"uploadnologintext" => "U dient [[Speciaal:Userlogin|aangemeld te zijn]]
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
@@ -656,10 +654,8 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # Email this user
 # E-mail deze gebruiker
 "mailnologin" => "Geen verzendadres beschikbaar",
-"mailnologintext" => "U dient <a href=\"" .
-  "{{localurle:Speciaal:Userlogin}}\">aangemeld te zijn </a>
-en een geldig e-mailadres in uw <a href=\"" .
-  "{{localurle:Speciaal:Preferences}}\">voorkeuren</a>
+"mailnologintext" => "U dient [[Speciaal:Userlogin|aangemeld te zijn]]
+en een geldig e-mailadres in uw [[Speciaal:Preferences|voorkeuren]]
 te vermelden om deze functie te kunnen gebruiken.",
 "emailuser"  => "E-mail deze gebruiker",
 "emailpage"  => "E-mail gebruiker",
@@ -680,8 +676,7 @@ te vermelden om deze functie te kunnen gebruiken.",
 "watchlistsub" => "(van gebruiker \"$1\")",
 "nowatchlist" => "Er staat niets op uw volglijst.",
 "watchnologin" => "U bent niet aangemeld",
-"watchnologintext" => "Om uw volglijst te veranderen dient u eerst <a href=\"" .
-  "{{localurle:Speciaal:Userlogin}}\">aangemeld</a>
+"watchnologintext" => "Om uw volglijst te veranderen dient u eerst [[Speciaal:Userlogin|aangemeld]]
 te zijn.",
 "addedwatch" => "Toegevoegd aan volglijst",
 "addedwatchtext" => "De pagina \"$1\" is aan uw <a href=\"" .
@@ -833,8 +828,7 @@ Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 * Als u de onderstaande radiobox niet aangevinkt laat",
 "movearticle" => "Verplaats pagina",
 "movenologin" => "Niet aangemeld",
-"movenologintext" => "U dient <a href=\"" .
-  "{{localurle:Speciaal:Userlogin}}\">aangemeld</a>
+"movenologintext" => "U dient [[Speciaal:Userlogin|aangemeld]]
 te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Naar de nieuwe titel",
 "movepagebtn" => "Verplaats pagina",

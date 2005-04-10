@@ -383,7 +383,7 @@ Legend: (nú) = núverandi útgáfa,
 'move' => "Færa",
 'movearticle' => "Færa",
 'movenologin' => "Óinnskráð(ur)",
-'movenologintext' => "Þú verður að vera <a href=\"{{localurl:Kerfissíða:Userlogin}}\">innskráð(ur)</a> til  að geta fært síður.",
+'movenologintext' => "Þú verður að vera [[Kerfissíða:Userlogin|innskráð(ur)]] til  að geta fært síður.",
 'movepage' => "Færa síðu",
 'movepagebtn' => "Færa síðuna",
 'movepagetalktext' => "Spallsíða síðunnar verður sjálfkrafa færð með ef hún er til nema:
@@ -485,7 +485,7 @@ $2 Sýna tilvísarnir &nbsp; Leita að $3 $9",
 
 [[m:Help:Preferences|Stillingarhjálpin]] (á ensku)
 inniheldur útskýringu á valmöguleikunum.",
-'prefsnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'prefsnologintext' => "You must be [[Special:Userlogin|logged in]]
 to set user preferences.",
 'preview' => "Forskoða",
 'previewnote' => " Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað.",
@@ -665,7 +665,7 @@ in active use.",
 'uploadlog' => "innhlaðningarskrá",
 'uploadlogpage' => "Innhlaðningarskrá",
 'uploadnologin' => "Óinnskráð(ur)",
-'uploadnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'uploadnologintext' => "You must be [[Special:Userlogin|logged in]]
 to upload files.",
 'uploadtext' => "'''Áður en skrá er hlaðið inn''':
 * Notaðu [[JPEG]] skráarsniðið fyrir ljósmyndir, [[GIF]] fyrir hreyfimyndir, [[PNG]] fyrir aðrar myndir og [[Ogg Vorbis]] fyrir hljóðskrár.

@@ -706,8 +706,8 @@ Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai m
 'mailerror' => "Eroare la trimitere e-mail: $1",
 'mailmypassword' => "Trimite-mi parola pe e-mail!",
 'mailnologin' => "Nu există adresă de trimitere",
-'mailnologintext' => "Trebuie să fii <a href=\"/wiki/Special:Userlogin\">autentificat</a>
-şi să ai o adresă validă de e-mail în <a href=\"/wiki/Special:Preferences\">preferinţe</a>
+'mailnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
+şi să ai o adresă validă de e-mail în [[Special:Preferences|preferinţe]]
 pentru a trimite e-mail altor utilizatori.",
 'mainpage' => "Pagina principală",
 'mainpagedocfooter' => "Vezi [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentaţia asupra costumizării interfeţei]
@@ -755,7 +755,7 @@ Tastează numele utilizatorului în cutie şi apasă butonul pentru a face din u
 'movearticle' => "Mută pagina",
 'movedto' => "mutată la",
 'movenologin' => "Nu eşti autentificat",
-'movenologintext' => "Trebuie să fi un utilizator înregistrat şi să te <a href=\"/wiki/Special:Userlogin\">autentifici</a>
+'movenologintext' => "Trebuie să fi un utilizator înregistrat şi să te [[Special:Userlogin|autentifici]]
 pentru a muta o pagină.",
 'movepage' => "Mută pagina",
 'movepagebtn' => "Mută pagina",
@@ -908,7 +908,7 @@ $2 Redirijări&nbsp; Căutări după $3 $9",
 'prefslogintext' => "Eşti autentificat ca \"$1\".
 Numărul intern de identificare este $2 (nu trebuie să-l reţi decât dacă ai probleme).",
 'prefsnologin' => "Neautentificat",
-'prefsnologintext' => "Trebuie să fii <a href=\"/wiki/Special:Userlogin\">autentificat</a>
+'prefsnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
 pentru a-ţi putea salva preferinţele.",
 'prefsreset' => "Preferinţele au fost resetate.",
 'preview' => "Previzualizare",
@@ -1183,7 +1183,7 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 </ul>
 ",
 'uploadnologin' => "Nu eşti autentificat",
-'uploadnologintext' => "Trebuie să fi <a href=\"/wiki/Special:Userlogin\">autentificat</a>
+'uploadnologintext' => "Trebuie să fi [[Special:Userlogin|autentificat]]
 ca să trimiţi fişiere.",
 'uploadtext' => "<strong>STOP!</strong> Înainte de a trimite un fişier aici,
 te rugăm să citeşti şi să respecţi <a href=\"/wiki/Project:Politica_de_utilizare_a_imaginilor\">politica de utilizare a imaginilor</a>.
@@ -1243,7 +1243,7 @@ pagini urmărite şi apasă pe butonul corespunzător din partea de jos a pagini
 'watchmethod-recent' => "căutarea schimbărilor recente pentru paginile urmărite",
 'watchnochange' => "Nici unul dintre articolele pe care le urmăreşti nu a fost modificat în perioada de timp afişată.",
 'watchnologin' => "Nu eşti autentificat",
-'watchnologintext' => "Trebuie să fii <a href=\"/wiki/Special:Userlogin\">autentificat</a>
+'watchnologintext' => "Trebuie să fii [[Special:Userlogin|autentificat]]
 pentru a-ţi modifica lista de articole urmărite.",
 'watchthis' => "Urmăreşte această pagină",
 'watchthispage' => "Urmăreşte pagina",

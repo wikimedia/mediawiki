@@ -453,8 +453,7 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9",
 #
 "preferences"	=> "Preferentias",
 "prefsnologin" => "Session non aperte",
-"prefsnologintext"	=> "Tu debe <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aperir un session</a>
+"prefsnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro definir tu preferentias.",
 "prefslogintext" => "Tu es identificate como \"$1\".
 Tu numero interne de ID es $2.",
@@ -531,8 +530,7 @@ In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recent
 "reupload"		=> "Recargar",
 "reuploaddesc"	=> "Retornar al formulario de carga.",
 "uploadnologin" => "Session non aperte",
-"uploadnologintext"	=> "Tu debe <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aperir un session</a>
+"uploadnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro poter cargar files.",
 "uploadfile"	=> "Cargar file",
 "uploaderror"	=> "Error de carga",
@@ -713,10 +711,8 @@ non debe esser interpretate como alcun appoio special.",
 # Email this user
 #
 "mailnologin"	=> "Necun adresse de invio",
-"mailnologintext" => "Tu debe <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aperir un session</a>
-e haber un adresse de e-mail valide in tu <a href=\"" .
-  "{{localurle:Special:Preferences}}\">preferentias</a>
+"mailnologintext" => "Tu debe [[Special:Userlogin|aperir un session]]
+e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.",
 "emailuser"		=> "Inviar e-mail a iste usator",
 "emailpage"		=> "Inviar e-mail al usator",
@@ -742,8 +738,7 @@ o ha optate pro non reciper e-mail de altere usatores.",
 "watchlistsub"	=> "(pro usator \"$1\")",
 "nowatchlist"	=> "Tu non ha paginas sub observation.",
 "watchnologin"	=> "Session non aperte",
-"watchnologintext"	=> "Tu debe <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aperir un session</a>
+"watchnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro modificar tu lista de paginas sub observation.",
 "addedwatch"	=> "Ponite sub observation",
 "addedwatchtext" => "Le pagina \"$1\" es ora in tu <a href=\"" .
@@ -920,8 +915,7 @@ ante proceder.",
 Il tal casos, tu debera mover o fusionar le pagina manualmente si desirate.",
 "movearticle"	=> "Mover pagina",
 "movenologin"	=> "Session non aperte",
-"movenologintext" => "Tu debe esser un usator registrate e <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">aperir un session</a>
+"movenologintext" => "Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
 pro mover un pagina.",
 "newtitle"		=> "Al nove titulo",
 "movepagebtn"	=> "Mover pagina",

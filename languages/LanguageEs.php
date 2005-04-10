@@ -481,8 +481,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 #
 "preferences"	=> "Preferencias",
 "prefsnologin" => "No has entrado",
-"prefsnologintext"	=> "Debes <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">entrar</a>
+"prefsnologintext"	=> "Debes [[Especial:Userlogin|entrar]]
 para seleccionar preferencias de usuario.",
 "prefslogintext" => "Has entrado con el nombre \"$1\".
 Tu número de identificación interno es $2.",
@@ -562,8 +561,7 @@ Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión rec
 "reupload"		=> "Subir otra vez",
 "reuploaddesc"	=> "Regresar al formulario para subir.",
 "uploadnologin" => "No has iniciado sesión",
-"uploadnologintext"	=> "Tú debes <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
+"uploadnologintext"	=> "Tú debes [[Especial:Userlogin|iniciar sesión]]
 para subir archivos.",
 "uploadfile"	=> "Subir archivo",
 "uploaderror"	=> "Error tratando de subir",
@@ -727,10 +725,8 @@ $wgSitename no está relacionada con ninguno de estos negocios, y esta lista no 
 # Email this user
 #
 "mailnologin"	=> "No enviar dirección",
-"mailnologintext" => "Debes <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
-y tener una dirección electrónica válida en tus <a href=\"" .
-  "{{localurle:Especial:Preferences}}\">preferencias</a>
+"mailnologintext" => "Debes [[Especial:Userlogin|iniciar sesión]]
+y tener una dirección electrónica válida en tus [[Especial:Preferences|preferencias]]
 para enviar un correo electrónico a otros usuarios.",
 "emailuser"		=> "Enviar correo electrónico a este usuario",
 "emailpage"		=> "Correo electrónico a usuario",
@@ -752,8 +748,7 @@ La dirección electrónica que indicaste en tus preferencias de usuario aparecer
 "watchlistsub"	=> "(para el usuario \"$1\")",
 "nowatchlist"	=> "No tienes ninguna página en tu lista de seguimiento.",
 "watchnologin"	=> "No has iniciado sesión",
-"watchnologintext"	=> "Debes <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
+"watchnologintext"	=> "Debes [[Especial:Userlogin|iniciar sesión]]
 para modificar tu lista de seguimiento.",
 "addedwatch"	=> "Añadido a la lista de seguimiento",
 "addedwatchtext" => "La página \"$1\" ha sido añadida a tu  <a href=\"" .
@@ -947,8 +942,7 @@ antes de seguir adelante.",
 En estos casos, deberás trasladar manualmente el contenido de la página de discusión.",
 "movearticle"	=> "Renombrar página",
 "movenologin"	=> "No has iniciado sesión",
-"movenologintext" => "Es necesario ser usuario registrado y <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">haber iniciado sesión</a>
+"movenologintext" => "Es necesario ser usuario registrado y [[Especial:Userlogin|haber iniciado sesión]]
 para renombrar una página.",
 "newtitle"		=> "A título nuevo",
 "movepagebtn"	=> "Renombrar página",

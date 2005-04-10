@@ -491,8 +491,7 @@ alt=\"Google\" align=\"middle\"></a>
 #
 "preferences"	=> "參數設置",
 "prefsnologin" => "還未登錄",
-"prefsnologintext"	=> "您必須先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登錄</a>才能設置個人參數。",
+"prefsnologintext"	=> "您必須先[[Special:Userlogin|登錄]]才能設置個人參數。",
 "prefslogintext" => "你已經以\"$1\"的身份登錄。
 你的內部ID是$2。",
 "prefsreset"	=> "參數重新設置。",
@@ -566,8 +565,7 @@ alt=\"Google\" align=\"middle\"></a>
 "reupload"		=> "重新上載",
 "reuploaddesc"	=> "返回上載表單。",
 "uploadnologin" => "未登錄",
-"uploadnologintext"	=> "您必須先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登錄</a>
+"uploadnologintext"	=> "您必須先[[Special:Userlogin|登錄]]
 才能上載文件。",
 "uploadfile"	=> "上載文件",
 "uploaderror"	=> "上載錯誤",
@@ -719,10 +717,8 @@ alt=\"Google\" align=\"middle\"></a>
 # Email this user
 #
 "mailnologin"	=> "無電郵地址",
-"mailnologintext" => "您必須先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登錄</a>
-並在<a href=\"" .
-  "{{localurle:Special:Preferences}}\">參數設置</a>
+"mailnologintext" => "您必須先[[Special:Userlogin|登錄]]
+並在[[Special:Preferences|參數設置]]
 中有一個有效的電子郵件地址才可以電郵其他用戶。",
 "emailuser"		=> "電子郵件該用戶",
 "emailpage"		=> "電子郵件用戶",
@@ -745,8 +741,7 @@ alt=\"Google\" align=\"middle\"></a>
 "watchlistsub"	=> "(用戶\"$1\")",
 "nowatchlist"	=> "您的監視列表為空。",
 "watchnologin"	=> "未登錄",
-"watchnologintext"	=> "您必須先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登錄</a>
+"watchnologintext"	=> "您必須先[[Special:Userlogin|登錄]]
 才能更改您的監視列表",
 "addedwatch"	=> "加入到監視列表",
 "addedwatchtext" => "本頁（“$1”）已經被加入到您的<a href=\"" .
@@ -922,8 +917,7 @@ alt=\"Google\" align=\"middle\"></a>
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 "movearticle"	=> "移動頁面",
 "movenologin"	=> "未登錄",
-"movenologintext" => "您必須是一名登記用戶並且<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登錄</a>
+"movenologintext" => "您必須是一名登記用戶並且[[Special:Userlogin|登錄]]
 後才可移動一個頁面。",
 "newtitle"		=> "新標題",
 "movepagebtn"	=> "移動頁面",

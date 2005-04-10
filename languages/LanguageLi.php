@@ -365,7 +365,7 @@ $2 Toon redirects   Zoek: $3 $9",
 # Voorkeuren
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
-"prefsnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
+"prefsnologintext" => "U dient [[Special:Userlogin|aangemeld]] te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
@@ -423,7 +423,7 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 "reupload"  => "Opnieuw uploaden",
 "reuploaddesc" => "Terug naar het uploadformulier.",
 "uploadnologin" => "Niet aangemeld",
-"uploadnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn</a>
+"uploadnologintext" => "U dient [[Special:Userlogin|aangemeld te zijn]]
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
@@ -549,8 +549,8 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # Email this user
 # E-mail deze gebroeker
 "mailnologin" => "Geen e-mailadres gekend voor deze gebroeker",
-"mailnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn </a>
-en een geldig e-mailadres in uw <a href=\"{{localurl:Special:Preferences}}\">voorkeuren</a>
+"mailnologintext" => "U dient [[Special:Userlogin|aangemeld te zijn]]
+en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]]
 to send e-mail to other users.",
 "emailuser"  => "E-mail deze gebroeker",
 "emailpage"  => "E-mail gebroeker",
@@ -571,7 +571,7 @@ to send e-mail to other users.",
 "watchlistsub" => "(van gebroeker \"$1\")",
 "nowatchlist" => "Er staat neets op uw volgliest.",
 "watchnologin" => "U bent neet aangemeld",
-"watchnologintext" => "Om uw volgliest te veranderen dient u eerst <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
+"watchnologintext" => "Om uw volgliest te veranderen dient u eerst [[Special:Userlogin|aangemeld]]
 te zijn.",
 "addedwatch" => "Toegevoegd aan volgliest",
 "addedwatchtext" => "De pagina \"$1\" is aan uw [[Special:Watchlist|volgliest]] toegevoegd.
@@ -697,7 +697,7 @@ Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 * Als u de onderstaande radiobox neet aangevinkt laat",
 "movearticle" => "Verplaatsj pagina",
 "movenologin" => "Neet aangemeld",
-"movenologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
+"movenologintext" => "U dient [[Special:Userlogin|aangemeld]]
 te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Noa de nuuje titel",
 "movepagebtn" => "Verplaatsj pagina",

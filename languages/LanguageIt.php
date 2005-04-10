@@ -406,8 +406,7 @@ $2 Elenca i redirects &nbsp; cerca per $3 $9",
 #
 "preferences"	=> "Preferenze",
 "prefsnologin" => "Non hai eseguito il login",
-"prefsnologintext"	=> "Devi avere eseguito il <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">login</a>
+"prefsnologintext"	=> "Devi avere eseguito il [[Special:Userlogin|login]]
 per poter personalizzare le tue preferenze.",
 "prefslogintext" => "Sei connesso a Wikipedia come \"$1\".
 Il tuo numero identificativo (ID) interno è $2.",
@@ -473,8 +472,7 @@ Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente
 "reupload"		=> "Ri-upload",
 "reuploaddesc"	=> "Torna al modulo per lo upload.",
 "uploadnologin" => "Devi fare il login per eseguire questa operazione.",
-"uploadnologintext"	=> "Devi eseguire  <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">il login</a>
+"uploadnologintext"	=> "Devi eseguire [[Special:Userlogin|il login]]
 per fare lo upload di files.",
 "uploadfile"	=> "Upload",
 "uploaderror"	=> "Errore di Upload",
@@ -622,10 +620,8 @@ this list should not be construed as an endorsement.",
 # Email this user
 #
 "mailnologin"	=> "No send address",
-"mailnologintext" => "Devi fare il  <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">login</a>
-ed aver registrato una valida casella e-mail nelle tue <a href=\"" .
-  "{{localurle:Special:Preferences}}\">preferenze</a> per mandare posta elettronica ad altri Utenti.",
+"mailnologintext" => "Devi fare il  [[Special:Userlogin|login]]
+ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.",
 "emailuser"		=> "Manda una E-mail a questo Utente",
 "emailpage"		=> "E-mail user",
 "emailpagetext"	=> "Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
@@ -646,8 +642,7 @@ La e-mail che hai indicato nelle tue preferenze apparirà nel campo \"From\" del
 "watchlistsub"	=> "(per l'Utente \"$1\")",
 "nowatchlist"	=> "Non hai indicato articoli da tenere d'occhio.",
 "watchnologin"	=> "Manca il login",
-"watchnologintext"	=> "Devi prima fare il <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">login</a>
+"watchnologintext"	=> "Devi prima fare il [[Special:Userlogin|login]]
 per modificare la tua lista di osservati speciali.",
 "addedwatch"	=> "Aggiunto ai tuoi Osservati Speciali",
 "addedwatchtext" => " La pagina  \"$1\" è stata aggiunta alla tua <a href=\"" .
@@ -795,8 +790,7 @@ Questo cambiamento drastico potrebbe creare inattesi contrattempi, specialmente 
 In questi casi, se lo ritieni opportuno, dovrai spostare o aggiungere manualmente la pagina di discussione.",
 "movearticle"	=> "Rinomina articolo",
 "movenologin"	=> "Non hai effettuato il login",
-"movenologintext" => "Devi essere un Utente registrato ed aver effettuato il <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">login</a>
+"movenologintext" => "Devi essere un Utente registrato ed aver effettuato il [[Special:Userlogin|login]]
 per poter spostare una pagina.",
 "newtitle"		=> "Al nuovo titolo di ",
 "movepagebtn"	=> "Sposta questa pagina",

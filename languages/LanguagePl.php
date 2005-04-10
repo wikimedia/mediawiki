@@ -522,8 +522,7 @@ W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>
 #
 "preferences" => "Preferencje",
 "prefsnologin" => "Brak logowania",
-"prefsnologintext" => "Musisz się <a href=\"" .
-  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
+"prefsnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
 przez zmianą swoich preferencji.",
 "prefslogintext" => "Zalogowano Cię jako \"$1\". Twój numer identyfikacyjny to $2.
 
@@ -596,8 +595,7 @@ Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrze
 "reupload" => "Prześlij ponownie",
 "reuploaddesc" => "Wróć do formularza wysyłki.",
 "uploadnologin" => "Brak logowania",
-"uploadnologintext" => "Musisz się <a href=\"" .
-  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
+"uploadnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
 przed przesłaniem pików.",
 "uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
@@ -787,10 +785,8 @@ a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach."
 # Email this user
 #
 "mailnologin" => "Brak adresu",
-"mailnologintext" => "Musisz się <a href=\"" .
-  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
-i mieć wpisany aktualny adres e-mailowy w swoich <a href=\"" .
-  "{{localurle:Specjalna:Preferences}}\">preferencjach</a>,
+"mailnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
+i mieć wpisany aktualny adres e-mailowy w swoich [[Specjalna:Preferences|preferencjach]],
 aby móc wysłać e-mail do innych użytkowników.",
 "emailuser" => "Wyślij e-mail do tego użytkownika",
 "emailpage" => "Wyślij e-mail do użytkownika",
@@ -815,8 +811,7 @@ albo zadecydował, że nie chce otrzymywać e-maili od innych użytkowników.",
 "watchlistsub" => "(dla użytkownika \"$1\")",
 "nowatchlist" => "Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.",
 "watchnologin" => "Brak logowania",
-"watchnologintext" => "Musisz się <a href=\"" .
-  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
+"watchnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
 przed modyfikacją listy obserwowanych artykułów.",
 "addedwatch" => "Dodana do listy obserwowanych",
 "addedwatchtext" => "Strona \"$1\" została dodana do Twojej <a href=\"" .
@@ -1031,8 +1026,7 @@ z istniejącym, ręcznie.
 Możesz też zrezygnować z przeniesienia dyskusji (poniższy <i>checkbox</i>).",
 "movearticle" => "Przenieś stronę",
 "movenologin" => "Brak logowania",
-"movenologintext" => "Musisz być zarejestrowanym i <a href=\"" .
-  "{{localurle:Specjalna:Userlogin}}\">zalogowanym</a>
+"movenologintext" => "Musisz być zarejestrowanym i [[Specjalna:Userlogin|zalogowanym]]
 użytkownikiem aby móc przenieść stronę.",
 "newtitle" => "Nowy tytuł",
 "movepagebtn" => "Przenieś stronę",
