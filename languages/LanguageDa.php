@@ -1,9 +1,11 @@
 <?php
-/** Danish (Dansk)
-  *
-  * @package MediaWiki
-  * @subpackage Language
-  */
+#
+# Danish localisation for MediaWiki
+#
+# This file is encoded in UTF-8, no byte order mark.
+# For compatibility with Latin-1 installations, please
+# don't add literal characters above U+00ff.
+#
 
 require_once( "LanguageUtf8.php" );
 
@@ -46,15 +48,30 @@ require_once( "LanguageUtf8.php" );
 	'nostalgia' => "Nostalgi",
 	'cologneblue' => "Cologne-blå",
 	'smarty' => "Paddington",
-) + $wgSkinNamesEn;
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
+);
 
-/* private */ $wgDateFormatsDa = array();
+/* private */ $wgDateFormatsDa = array(
+	"Ingen foretrukken",
+	"januar 15, 2001",
+	"15. januar 2001",
+	"2001 januar 15",
+	"2001-01-15"
+);
 
 
 /* private */ $wgBookstoreListDa = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
 	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
-) + $wgBookstoreLisEn;
+	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
+	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
+	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
+	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
+);
 
 
 # All special pages have to be listed here: a description of ""
@@ -132,6 +149,7 @@ require_once( "LanguageUtf8.php" );
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User Toggles
+"tog-hover"		=> "Vis svævende tekst over wikihenvisninger",
 "tog-underline" => "Understreg henvisninger",
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
 "tog-justify"	=> "Justér afsnit",
@@ -520,7 +538,9 @@ $1<br />
 $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 "searchdisabled" => "<p>Søgefunktionen er midlertidigt afbrudt på grund af
 for stort pres på serveren; vi håber vi kan sætte den på igen når vi har
-opgraderet softwaren. I mellemtiden kan du søge via google:</p>",
+opgraderet softwaren. I mellemtiden kan du søge via google:</p>
+                                                                                                                                                        
+",
 "blanknamespace" => "(Hoved)",
 
 # Preferences page
@@ -668,7 +688,7 @@ information omkring filen, såsom hvor den kom fra, hvornår den er lavet
 og af hvem, og andre ting du ved om filen.",
 "uploadwarning" => "Oplægningsadvarsel",
 "savefile"		=> "Gem fil",
-"uploadedimage" => "Lagde \"[[$1]]\" op",
+"uploadedimage" => "Lagde \"$1\" op",
 "uploaddisabled" => "Desværre er funktionen til at lægge billeder op afbrudt på denne server.",
 
 # Image list
@@ -679,6 +699,7 @@ og af hvem, og andre ting du ved om filen.",
 "ilshowmatch"	=> "Vis alle billeder med navne der matcher",
 "ilsubmit"		=> "Søg",
 "showlast"		=> "Vis de sidste $1 billeder sorteret $2.",
+"all"			=> "alle",
 "byname"		=> "efter navn",
 "bydate"		=> "efter dato",
 "bysize"		=> "efter størrelse",
@@ -876,6 +897,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
 konsekvenserne, og at du gør dette i overensstemmelse med
 [[Wikipedia:Politik]].",
+"confirmcheck"	=> "Ja, jeg vil virkelig slette den her.",
 "actioncomplete" => "Gennemført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en fortegnelse over de nyeste sletninger.",
@@ -905,8 +927,8 @@ Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|
 "protectlogpage" => "Liste_over_beskyttede_sider",
 "protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
 Se [[Wikipedia:Beskyttet side]] for mere information.",
-"protectedarticle" => "beskyttet [[$1]]",
-"unprotectedarticle" => "fjernet beskyttelse [[$1]]",
+"protectedarticle" => "beskyttet $1",
+"unprotectedarticle" => "fjernet beskyttelse $1",
 
 # Undelete
 "undelete" => "Gendan en slettet side",
