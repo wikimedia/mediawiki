@@ -266,17 +266,19 @@ class UploadForm {
 			 * Update the upload log and create the description page
 			 * if it's a new file.
 			 */
-			wfRecordUpload( $this->mUploadSaveName,
-			                $this->mUploadOldVersion,
-			                $this->mUploadSize, 
-			                $this->mUploadDescription,
-			                $this->mUploadCopyStatus,
-			                $this->mUploadSource );
+			$img = Image::newFromName( $this->mUploadSaveName );
+			$success = $img->recordUpload( $this->mUploadOldVersion,
+			                                $this->mUploadDescription,
+			                                $this->mUploadCopyStatus,
+			                                $this->mUploadSource );
 
-			/* refresh image metadata cache */
-			new Image( $this->mUploadSaveName, true );
-
-			$this->showSuccess();
+			if ( $success ) {
+				$this->showSuccess();
+			} else {
+				// Image::recordUpload() fails if the image went missing, which is 
+				// unlikely, hence the lack of a specialised message
+				$wgOut->fileNotFoundError( $this->mUploadSaveName );
+			}
 		}
 	}
 
@@ -411,7 +413,7 @@ class UploadForm {
 		global $wgUser, $wgOut, $wgContLang;
 		
 		$sk = $wgUser->getSkin();
-		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::wfImageUrl( $this->mUploadSaveName ) );
+		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::imageUrl( $this->mUploadSaveName ) );
 		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 

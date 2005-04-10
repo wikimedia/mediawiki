@@ -124,7 +124,6 @@ class ImageGallery
 				$nb = '';
 			}
 				
-				'' ;
 			$textlink = $this->mShowFilename ?
 				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . '<br />' :
 				'' ;

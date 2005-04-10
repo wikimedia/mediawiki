@@ -132,10 +132,12 @@ $wgActionPaths = array();
 $wgUseSharedUploads = false;
 /** Full path on the web server where shared uploads can be found */
 $wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
-/** Path on the file system where shared uploads can be found */
+/** Path on the file system where shared uploads can be found. */
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
-/** Path on the file system where shared uploads can be found */
-$wgSharedUploadDBname = "commons";
+/** DB name with metadata about shared directory. Set this to false if the uploads do not come from a wiki. */
+$wgSharedUploadDBname = false;
+/** Cache shared metadata in memcached. Don't do this if the commons wiki is in a different memcached domain */
+$wgCacheSharedUploads = true;
 
 /**
  * Set the following to false especially if you have a set of files that need to

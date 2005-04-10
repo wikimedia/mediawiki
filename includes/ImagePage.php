@@ -17,7 +17,7 @@ require_once( 'Image.php' );
  */
 class ImagePage extends Article {
 
-	/* private */ var $img;  // Image object this page is shown for. Initilaized in openShowImage, not
+	/* private */ var $img;  // Image object this page is shown for. Initialized in openShowImage, not
 				 // available in doDelete etc.
 
 	function view() {
@@ -47,7 +47,7 @@ class ImagePage extends Article {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
 		       $wgUseImageResize, $wgRepositoryBaseUrl, 
 		       $wgUseExternalEditor;
-		$this->img  = Image::newFromTitle( $this->mTitle );
+		$this->img  = new Image( $this->mTitle );
 		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
@@ -270,10 +270,15 @@ class ImagePage extends Article {
 				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
+			
+			# Invalidate description page cache
+			$this->mTitle->invalidateCache();
+
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+					$wgInternalServer.wfImageArchiveUrl( $oldimage ),
+					$wgInternalServer.$this->mTitle->getFullURL()
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -299,7 +304,7 @@ class ImagePage extends Article {
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
-					$wgInternalServer . Image::wfImageUrl( $image )
+					$wgInternalServer . Image::imageUrl( $image )
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -323,12 +328,13 @@ class ImagePage extends Article {
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
 
-			$nt = Title::makeTitleSafe( NS_IMAGE, $image );
-			$article = new Article( $nt );
+			$article = new Article( $this->mTitle );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
 			/* refresh image metadata cache */
-			new Image( $image, true );
+			$imgObj = new Image( $this->mTitle );
+			$imgObj->loadFromFile();
+			$imgObj->saveToCache();
 
 			$deleted = $image;
 		}
@@ -338,13 +344,13 @@ class ImagePage extends Article {
 
 		$sk = $wgUser->getSkin();
 		$loglink = $sk->makeKnownLinkObj(
-			Title::makeTitle( NS_SPECIAL, 'Delete/log' ),
+			Title::makeTitle( NS_SPECIAL, 'Log/delete' ),
 			wfMsg( 'deletionlog' ) );
 
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
 		$wgOut->addHTML( '<p>' . $text . "</p>\n" );
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
 	}
 
 	function doDeleteOldImage( $oldimage )
@@ -416,8 +422,7 @@ class ImagePage extends Article {
 		$oldver = wfTimestampNow() . "!{$name}";
 		
 		$dbr =& wfGetDB( DB_SLAVE );
-		$size = $dbr->selectField( 'oldimage', 'oi_size', 'oi_archive_name=\'' .
-		  $dbr->strencode( $oldimage ) . "'" );
+		$size = $dbr->selectField( 'oldimage', 'oi_size', array( 'oi_archive_name' => $oldimage )  );
 
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
 			$wgOut->fileRenameError( $curfile, "${archive}/{$oldver}" );
@@ -426,16 +431,16 @@ class ImagePage extends Article {
 		if ( ! copy( "{$archive}/{$oldimage}", $curfile ) ) {
 			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
 		}
-		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
 
-		/* refresh image metadata cache */
-		new Image( $name, true );
+		# Record upload and update metadata cache
+		$img = Image::newFromName( $name );
+		$img->recordUpload( $oldver, wfMsg( "reverted" ) );
 
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
 				$wgInternalServer.wfImageArchiveUrl( $name ),
-				$wgInternalServer . Image::wfImageUrl( $name )
+				$wgInternalServer . Image::imageUrl( $name ),
 			);
 			wfPurgeSquidServers($urlArr);
 		}
@@ -443,7 +448,9 @@ class ImagePage extends Article {
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
-		$wgOut->returnToMain( false );
+
+		$descTitle = $img->getTitle();
+		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
 	}
 }
 
@@ -476,7 +483,7 @@ class ImageHistoryList {
 		$cur = wfMsg( 'cur' );
 
 		if ( $iscur ) {
-			$url = Image::wfImageUrl( $img );
+			$url = Image::imageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isAllowed('delete') ) {
 				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .

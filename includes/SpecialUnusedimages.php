@@ -35,7 +35,7 @@ class UnusedimagesPage extends QueryPage {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
 		
-		$imageUrl = htmlspecialchars( Image::wfImageUrl( $result->title ) );
+		$imageUrl = htmlspecialchars( Image::imageUrl( $result->title ) );
 		$return =
 		# The 'desc' linking to the image page
 		'('.$skin->makeKnownLinkObj( $title, wfMsg('imgdesc') ).') '
