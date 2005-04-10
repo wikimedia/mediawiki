@@ -543,6 +543,7 @@ a number of reasons why this may be so, please see
 
 You can view and copy the source of this page:",
 'seriousxhtmlerrors' => 'There were serious xhtml markup errors detected by tidy.',
+'sqlhidden' => '(SQL query hidden)',
 
 # Login and logout pages
 #
