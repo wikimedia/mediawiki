@@ -396,7 +396,7 @@ class Linker {
 	/** @todo document */
 	function makeImageLinkObj( $nt, $alt = '' ) {
 		global $wgContLang, $wgUseImageResize;
-		$img   = Image::newFromTitle( $nt );
+		$img   = new Image( $nt );
 		$url   = $img->getViewURL();
 
 		$align = '';
@@ -567,7 +567,7 @@ class Linker {
 		if ( $manual_thumb != '' ) # Use manually specified thumbnail
 		{
 			$manual_title = Title::makeTitleSafe( NS_IMAGE, $manual_thumb ); #new Title ( $manual_thumb ) ;
-			$manual_img = Image::newFromTitle( $manual_title );
+			$manual_img = new Image( $manual_title );
 			$thumbUrl = $manual_img->getViewURL();
 			if ( $manual_img->exists() )
 			{
@@ -631,7 +631,7 @@ class Linker {
 			return $text;
 		} else {
 			$name = $title->getDBKey();	
-			$img  = Image::newFromTitle( $title );
+			$img  = new Image( $title );
 			$url  = $img->getURL();
 			if( $nourl ) {
 				$url = str_replace( "http://", "http-noparse://", $url );

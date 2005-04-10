@@ -115,7 +115,7 @@ function wfSpecialImagelist() {
 			$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 		}
 
-		$ilink = "<a href=\"" . htmlspecialchars( Image::wfImageUrl( $name ) ) .
+		$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
 		  "\">" . htmlspecialchars( $name ) . "</a>";
 
 		$nb = wfMsg( "nbytes", $wgLang->formatNum( $s->img_size ) );

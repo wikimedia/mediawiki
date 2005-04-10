@@ -2906,7 +2906,7 @@ class Parser
 			$html = $wgParser->parse( $label , $wgTitle, $parserOptions );
 			$html = $html->mText;
 			
-			$ig->add( Image::newFromTitle( $nt ), $html );
+			$ig->add( new Image( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();

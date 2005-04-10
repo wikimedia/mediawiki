@@ -15,167 +15,277 @@ class Image
 	/**#@+
 	 * @access private
 	 */
-	var	$name,		# name of the image
-		$imagePath,	# Path of the image
-		$url,		# Image URL
-		$title,		# Title object for this image. Initialized when needed.
-		$fileExists,	# does the image file exist on disk?
-		$fromSharedDirectory, # load this image from $wgSharedUploadDirectory
-		$historyLine,	# Number of line to return by nextHistoryLine()
-		$historyRes,	# result of the query for the image's history
-		$width,		# \
-		$height,	#  |
-		$bits,		#   --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
-		$type,		#  |
-		$attr;		# /
+	var	$name,          # name of the image (constructor)
+		$imagePath,     # Path of the image (loadFromXxx)
+		$url,           # Image URL (accessor)
+		$title,         # Title object for this image (constructor)
+		$fileExists,    # does the image file exist on disk? (loadFromXxx)
+		$fromSharedDirectory, # load this image from $wgSharedUploadDirectory (loadFromXxx)
+		$historyLine,	# Number of line to return by nextHistoryLine() (constructor)
+		$historyRes,	# result of the query for the image's history (nextHistoryLine)
+		$width,         # \
+		$height,        #  |
+		$bits,          #   --- returned by getimagesize (loadFromXxx)
+		$type,          #  |
+		$attr,          # /
+		$size,          # Size in bytes (loadFromXxx)
+		$dataLoaded;    # Whether or not all this has been loaded from the database (loadFromXxx)
+
 
 	/**#@-*/
-
 
 	/**
 	 * Create an Image object from an image name
 	 *
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
-	 * @param bool $recache if true, ignores anything in memcached and sets the updated metadata
 	 * @access public
 	 */
-	function Image( $name, $recache = false ) {
+	function newFromName( $name ) {
+		$title = Title::makeTitleSafe( NS_IMAGE, $name );
+		return new Image( $title );
+	}
 
-		global $wgUseSharedUploads, $wgLang, $wgMemc, $wgDBname,
-		       $wgSharedUploadDBname;
+	/** 
+	 * Obsolete factory function, use constructor
+	 */
+	function newFromTitle( &$title ) {
+		return new Image( $title );
+	}
+	
+	function Image( &$title ) {
+		$this->title =& $title;
+		$this->name = $title->getDBkey();
 
-		$this->name      = $name;
-		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
-		$this->fromSharedDirectory = false;
-		$this->imagePath = $this->getFullPath();
+		$n = strrpos( $this->name, '.' );
+		$this->extension = strtolower( $n ? substr( $this->name, $n + 1 ) : '' );
+		$this->historyLine = 0;
 
-		$n = strrpos( $name, '.' );
-		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
-		$gis = false;
-		$hashedName = md5($this->name);
-		$cacheKey = "$wgDBname:Image:".$hashedName;
-		$foundCached = false;
+		$this->dataLoaded = false;
+	}
+
+	/**
+	 * Get the memcached keys
+	 * Returns an array, first element is the local cache key, second is the shared cache key, if there is one
+	 */
+	function getCacheKeys( $shared = false ) {
+		global $wgDBname, $wgUseSharedUploads, $wgSharedUploadDBname, $wgCacheSharedUploads;
 		
-		if ( !$recache ) {
-			$cachedValues = $wgMemc->get( $cacheKey );
+		$foundCached = false;
+		$hashedName = md5($this->name);
+		$keys = array( "$wgDBname:Image:$hashedName" );
+		if ( $wgUseSharedUploads && $wgSharedUploadDBname && $wgCacheSharedUploads ) {
+			$keys[] = "$wgSharedUploadDBname:Image:$hashedName";
+		}
+		return $keys;
+	}
+	
+	/** 
+	 * Try to load image metadata from memcached. Returns true on success.
+	 */
+	function loadFromCache() {
+		global $wgUseSharedUploads, $wgMemc;
+		$fname = 'Image::loadFromMemcached';
+		wfProfileIn( $fname );
+		$this->dataLoaded = false;
+		$keys = $this->getCacheKeys();
+		$cachedValues = $wgMemc->get( $keys[0] );
 
-			if (!empty($cachedValues) && is_array($cachedValues)) {
-				if ($wgUseSharedUploads && $cachedValues['fromShared']) {
-					# if this is shared file, we need to check if image
-					# in shared repository has not changed
-					$commonsCachedValues = $wgMemc->get( "$wgSharedUploadDBname:Image:".$hashedName );
-					if (!empty($commonsCachedValues) && is_array($commonsCachedValues)) {
+		// Check if the key existed and belongs to this version of MediaWiki
+		if (!empty($cachedValues) && is_array($cachedValues) && isset($cachedValues['width']) && $cachedValues['fileExists']) {
+			if ( $wgUseSharedUploads && $cachedValues['fromShared']) {
+				# if this is shared file, we need to check if image
+				# in shared repository has not changed
+				if ( isset( $keys[1] ) ) {
+					$commonsCachedValues = $wgMemc->get( $keys[1] );
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues) && isset($commonsCachedValues['width'])) {
 						$this->name = $commonsCachedValues['name'];
 						$this->imagePath = $commonsCachedValues['imagePath'];
 						$this->fileExists = $commonsCachedValues['fileExists'];
+						$this->width = $commonsCachedValues['width'];
+						$this->height = $commonsCachedValues['height'];
+						$this->bits = $commonsCachedValues['bits'];
+						$this->type = $commonsCachedValues['type'];
 						$this->fromSharedDirectory = true;
-						$gis = $commonsCachedValues['gis'];
-						$foundCached = true;
+						$this->dataLoaded = true;
 					}
 				}
-				else {
-					$this->name = $cachedValues['name'];
-					$this->imagePath = $cachedValues['imagePath'];
-					$this->fileExists = $cachedValues['fileExists'];
-					$this->fromSharedDirectory = false;
-					$gis = $cachedValues['gis'];
-					$foundCached = true;
-				}
+			}
+			else {
+				$this->name = $cachedValues['name'];
+				$this->imagePath = $cachedValues['imagePath'];
+				$this->fileExists = $cachedValues['fileExists'];
+				$this->width = $cachedValues['width'];
+				$this->height = $cachedValues['height'];
+				$this->bits = $cachedValues['bits'];
+				$this->type = $cachedValues['type'];
+				$this->fromSharedDirectory = false;
+				$this->dataLoaded = true;
 			}
 		}
 
-		if (!$foundCached) {
-			$this->fileExists = file_exists( $this->imagePath); 	
+		wfProfileOut( $fname );
+		return $this->dataLoaded;
+	}
 
-			# If the file is not found, and a shared upload directory 
-			# like the Wikimedia Commons is used, look for it there.
-			if (!$this->fileExists && $wgUseSharedUploads) {			
-				
-				# In case we're on a wgCapitalLinks=false wiki, we 
-				# capitalize the first letter of the filename before 
-				# looking it up in the shared repository.
-				$this->name= $wgLang->ucfirst($name);
-				
-				$this->imagePath = $this->getFullPath(true);
-				$this->fileExists = file_exists( $this->imagePath);
-				$this->fromSharedDirectory = true;
-				$name=$this->name;
-			}
-
-			if ( $this->fileExists ) {
-				# Don't try to get the size of sound and video files, that's bad for performance
-				if ( !Image::isKnownImageExtension( $this->extension ) ) {
-					$gis = false;
-				} elseif( $this->extension == 'svg' ) {
-					wfSuppressWarnings();
-					$gis = getSVGsize( $this->imagePath );
-					wfRestoreWarnings();
-				} else {
-					wfSuppressWarnings();
-					$gis = getimagesize( $this->imagePath );
-					wfRestoreWarnings();
-				}
-			}
-
+	/** 
+	 * Save the image metadata to memcached
+	 */
+	function saveToCache() {
+		global $wgMemc;
+		$this->load();
+		// We can't cache metadata for non-existent files, because if the file later appears 
+		// in commons, the local keys won't be purged.
+		if ( $this->fileExists ) {
+			$keys = $this->getCacheKeys();
+		
 			$cachedValues = array('name' => $this->name,
 								  'imagePath' => $this->imagePath,
 								  'fileExists' => $this->fileExists,
 								  'fromShared' => $this->fromSharedDirectory,
-								  'gis' => $gis);
+								  'width' => $this->width,
+								  'height' => $this->height,
+								  'bits' => $this->bits,
+								  'type' => $this->type);
 
-			$wgMemc->set( $cacheKey, $cachedValues );
+			$wgMemc->set( $keys[0], $cachedValues );
+		}
+	}
+	
+	/** 
+	 * Load metadata from the file itself
+	 */
+	function loadFromFile() {
+		global $wgUseSharedUploads, $wgSharedUploadDirectory;
+		$fname = 'Image::loadFromFile';
+		wfProfileIn( $fname );
+		$this->imagePath = $this->getFullPath();
+		$this->fileExists = file_exists( $this->imagePath );
+		$gis = false;
 
-			if ($wgUseSharedUploads && $this->fromSharedDirectory) {
-				$cachedValues['fromShared'] = false;
-				$wgMemc->set( "$wgSharedUploadDBname:Image:".$hashedName, $cachedValues );
-			}
+		# If the file is not found, and a non-wiki shared upload directory is used, look for it there.
+		if (!$this->fileExists && $wgUseSharedUploads && $wgSharedUploadDirectory) {			
+			# In case we're on a wgCapitalLinks=false wiki, we 
+			# capitalize the first letter of the filename before 
+			# looking it up in the shared repository.
+			$this->name = $wgLang->ucfirst($name);
+			
+			$this->imagePath = $this->getFullPath(true);
+			$this->fileExists = file_exists( $this->imagePath);
+			$this->fromSharedDirectory = true;
 		}
 
-		if( $gis !== false ) {
+		if ( $this->fileExists ) {
+			# Get size in bytes
+			$s = stat( $this->imagePath );
+			$this->size = $s['size'];
+
+			# Height and width
+			# Don't try to get the width and height of sound and video files, that's bad for performance
+			if ( !Image::isKnownImageExtension( $this->extension ) ) {
+				$gis = false;
+			} elseif( $this->extension == 'svg' ) {
+				wfSuppressWarnings();
+				$gis = wfGetSVGsize( $this->imagePath );
+				wfRestoreWarnings();
+			} else {
+				wfSuppressWarnings();
+				$gis = getimagesize( $this->imagePath );
+				wfRestoreWarnings();
+			}
+		}
+		if( $gis === false ) {
+			$this->width = 0;
+			$this->height = 0;
+			$this->bits = 0;
+			$this->type = 0;
+		} else {
 			$this->width = $gis[0];
 			$this->height = $gis[1];
 			$this->type = $gis[2];
-			$this->attr = $gis[3];
 			if ( isset( $gis['bits'] ) )  {
 				$this->bits = $gis['bits'];
 			} else {
 				$this->bits = 0;
 			}
 		}
+		$this->dataLoaded = true;
+		wfProfileOut( $fname );
+	}
 
-		if($this->fileExists) {			
-			$this->url = $this->wfImageUrl( $this->name, $this->fromSharedDirectory );
-		} else {
-			$this->url='';
+	/** 
+	 * Load image metadata from the DB
+	 */
+	function loadFromDB() {
+		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgLang;
+		$fname = 'Image::loadFromDB';
+		wfProfileIn( $fname );
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'image', 
+			array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' ),
+			array( 'img_name' => $this->name ), $fname );
+		if ( $row ) {
+			$this->fromSharedDirectory = false;
+			$this->fileExists = true;
+			$this->loadFromRow( $row );
+			$this->imagePath = $this->getFullPath();
+		} elseif ( $wgUseSharedUploads && $wgSharedUploadDBname ) {
+			# In case we're on a wgCapitalLinks=false wiki, we 
+			# capitalize the first letter of the filename before 
+			# looking it up in the shared repository.
+			$name = $wgLang->ucfirst($this->name);
+
+			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.image", 
+				array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' ),
+				array( 'img_name' => $name ), $fname );
+			if ( $row ) {
+				$this->fromSharedDirectory = true;
+				$this->fileExists = true;
+				$this->imagePath = '';
+				$this->name = $name;
+				$this->loadFromRow( $row );
+			}
 		}
-		$this->historyLine = 0;				
+		
+		if ( !$row ) {
+			$this->size = 0;
+			$this->width = 0;
+			$this->height = 0;
+			$this->bits = 0;
+			$this->type = 0;
+			$this->fileExists = false;
+			$this->fromSharedDirectory = false;
+		}
+
+		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
+		$this->dataLoaded = true;
+	}
+
+	/*
+	 * Load image metadata from a DB result row
+	 */
+	function loadFromRow( &$row ) {
+		$this->size = $row->img_size;
+		$this->width = $row->img_width;
+		$this->height = $row->img_height;
+		$this->bits = $row->img_bits;
+		$this->type = $row->img_type;
+		$this->dataLoaded = true;
 	}
 
 	/**
-	 * Remove image metadata from cache if any
-	 *
-	 * Don't call this, use the $recache parameter of Image::Image() instead
-	 *
-	 * @param string $name the title of an image
-	 * @static
+	 * Load image metadata from cache or DB, unless already loaded
 	 */
-	function invalidateMetadataCache( $name ) {
-		global $wgMemc, $wgDBname;
-		$wgMemc->delete("$wgDBname:Image:".md5($name));
-	}
-
-	/**
-	 * Factory function
-	 *
-	 * Create a new image object from a title object.
-	 *
-	 * @param Title $nt Title object. Must be from namespace "image"
-	 * @access public
-	 */
-	function newFromTitle( $nt ) {
-		$img = new Image( $nt->getDBKey() );
-		$img->title = $nt;
-		return $img;
+	function load() {
+		if ( !$this->dataLoaded ) {
+			if ( !$this->loadFromCache() ) {
+				$this->loadFromDB();
+				if ( $this->fileExists ) {
+					$this->saveToCache();
+				}
+			}
+			$this->dataLoaded = true;
+		}
 	}
 
 	/**
@@ -199,6 +309,14 @@ class Image
 	 * @access public
 	 */
 	function getURL() {
+		if ( !$this->url ) {
+			$this->load();
+			if($this->fileExists) {			
+				$this->url = Image::imageUrl( $this->name, $this->fromSharedDirectory );
+			} else {
+				$this->url = '';
+			}
+		}
 		return $this->url;
 	}
 	
@@ -215,8 +333,8 @@ class Image
 	 * local file system as an absolute path
 	 * @access public
 	 */
-	function getImagePath()
-	{
+	function getImagePath() {
+		$this->load();
 		return $this->imagePath;
 	}
 
@@ -227,6 +345,7 @@ class Image
 	 * @access public
 	 */
 	function getWidth() {
+		$this->load();
 		return $this->width;
 	}
 
@@ -237,6 +356,7 @@ class Image
 	 * @access public
 	 */
 	function getHeight() {
+		$this->load();
 		return $this->height;
 	}
 
@@ -245,12 +365,8 @@ class Image
 	 * @access public
 	 */
 	function getSize() {
-		$st = stat( $this->getImagePath() );
-		if( $st ) {
-			return $st['size'];
-		} else {
-			return false;
-		}
+		$this->load();
+		return $this->size;
 	}
 
 	/**
@@ -263,6 +379,7 @@ class Image
 	 * - 16 XBM
 	 */
 	function getType() {
+		$this->load();
 		return $this->type;
 	}
 
@@ -271,6 +388,7 @@ class Image
 	 * @access public
 	 */
 	function getEscapeLocalURL() {
+		$this->getTitle();
 		return $this->title->escapeLocalURL();
 	}
 
@@ -279,6 +397,7 @@ class Image
 	 * @access public
 	 */
 	function getEscapeFullURL() {
+		$this->getTitle();
 		return $this->title->escapeFullURL();
 	}
 
@@ -288,8 +407,9 @@ class Image
 	 * @param string $name	Name of the image, without the leading "Image:"
 	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?	 
 	 * @access public
+	 * @static
 	 */
-	function wfImageUrl( $name, $fromSharedDirectory = false ) {
+	function imageUrl( $name, $fromSharedDirectory = false ) {
 		global $wgUploadPath,$wgUploadBaseUrl,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
 			$base = '';
@@ -303,11 +423,12 @@ class Image
 	}
 
 	/**
-	 * Returns true iff the image file exists on disk.
+	 * Returns true if the image file exists on disk.
 	 *
 	 * @access public
 	 */
 	function exists() {
+		$this->load();
 		return $this->fileExists;
 	}
 
@@ -616,6 +737,7 @@ class Image
 	 * @return bool
 	 */
 	function mustRender() {
+		$this->load();
 		return ( $this->extension == 'svg' );
 	}
 	
@@ -651,6 +773,113 @@ class Image
 	function isKnownImageExtension( $ext ) {
 		static $extensions = array( 'svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'xbm' );
 		return in_array( $ext, $extensions );
+	}
+
+	/**
+	 * Record an image upload in the upload log and the image table
+	 */
+	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '' ) {
+		global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
+		global $wgUseCopyrightUpload;
+
+		$fname = 'Image::recordUpload';
+		$dbw =& wfGetDB( DB_MASTER );
+
+		# img_name must be unique
+		if ( !$dbw->indexUnique( 'image', 'img_name' ) && !$dbw->indexExists('image','PRIMARY') ) {
+			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
+		}
+
+		// Fill metadata fields by querying the file
+		$this->loadFromFile();
+		$this->saveToCache();
+
+		// Fail now if the image isn't there
+		if ( !$this->fileExists || $this->fromSharedDirectory ) {
+			return false;
+		}
+
+		if ( $wgUseCopyrightUpload ) {
+			$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
+			  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+			  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
+		} else {
+			$textdesc = $desc;
+		}
+
+		$now = wfTimestampNow();
+
+		# Test to see if the row exists using INSERT IGNORE
+		# This avoids race conditions by locking the row until the commit, and also
+		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
+		$dbw->insert( 'image',
+			array(
+				'img_name' => $this->name,
+				'img_size'=> $this->size,
+				'img_width' => $this->width,
+				'img_height' => $this->height,
+				'img_bits' => $this->bits,
+				'img_type' => $this->type,
+				'img_timestamp' => $dbw->timestamp($now),
+				'img_description' => $desc,
+				'img_user' => $wgUser->getID(),
+				'img_user_text' => $wgUser->getName(),
+			), $fname, 'IGNORE' 
+		);
+		$descTitle = $this->getTitle();
+
+		if ( $dbw->affectedRows() ) {
+			# Successfully inserted, this is a new image
+			$id = $descTitle->getArticleID();
+
+			if ( $id == 0 ) {
+				$article = new Article( $descTitle );
+				$article->insertNewArticle( $textdesc, $desc, false, false, true );
+			}
+		} else {
+			# Collision, this is an update of an image
+			# Insert previous contents into oldimage
+			$dbw->insertSelect( 'oldimage', 'image', 
+				array(
+					'oi_name' => 'img_name',
+					'oi_archive_name' => $dbw->addQuotes( $oldver ),
+					'oi_size' => 'img_size',
+					'oi_width' => 'img_width',
+					'oi_height' => 'img_height',
+					'oi_bits' => 'img_bits',
+					'oi_type' => 'img_type',
+					'oi_timestamp' => 'img_timestamp',
+					'oi_description' => 'img_description',
+					'oi_user' => 'img_user',
+					'oi_user_text' => 'img_user_text',
+				), array( 'img_name' => $this->name ), $fname
+			);
+
+			# Update the current image row
+			$dbw->update( 'image',
+				array( /* SET */
+					'img_size' => $this->size,
+					'img_width' => $this->width,
+					'img_height' => $this->height,
+					'img_bits' => $this->bits,
+					'img_type' => $this->type,
+					'img_timestamp' => $dbw->timestamp(),
+					'img_user' => $wgUser->getID(),
+					'img_user_text' => $wgUser->getName(),
+					'img_description' => $desc,
+				), array( /* WHERE */
+					'img_name' => $this->name
+				), $fname
+			);
+			
+			# Invalidate the cache for the description page
+			$descTitle->invalidateCache();
+		}
+
+		$log = new LogPage( 'upload' );
+		$log->addEntry( 'upload', $descTitle, $desc );
+
+		return true;
 	}
 	
 } //class
@@ -748,98 +977,6 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 	}
 }
 
-
-/**
- * Record an image upload in the upload log.
- */
-function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source = '' ) {
-	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-	global $wgUseCopyrightUpload;
-
-	$fname = 'wfRecordUpload';
-	$dbw =& wfGetDB( DB_MASTER );
-
-	# img_name must be unique
-	if ( !$dbw->indexUnique( 'image', 'img_name' ) && !$dbw->indexExists('image','PRIMARY') ) {
-		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
-	}
-
-
-	$now = wfTimestampNow();
-	$size = IntVal( $size );
-
-	if ( $wgUseCopyrightUpload ) {
-		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
-		  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
-		  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
-	}
-	else $textdesc = $desc ;
-
-	$now = wfTimestampNow();
-
-	# Test to see if the row exists using INSERT IGNORE
-	# This avoids race conditions by locking the row until the commit, and also
-	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insert( 'image',
-		array(
-			'img_name' => $name,
-			'img_size'=> $size,
-			'img_timestamp' => $dbw->timestamp($now),
-			'img_description' => $desc,
-			'img_user' => $wgUser->getID(),
-			'img_user_text' => $wgUser->getName(),
-		), $fname, 'IGNORE' 
-	);
-	$descTitle = Title::makeTitleSafe( NS_IMAGE, $name );
-
-	if ( $dbw->affectedRows() ) {
-		# Successfully inserted, this is a new image
-		$id = $descTitle->getArticleID();
-
-		if ( $id == 0 ) {
-			$article = new Article( $descTitle );
-			$article->insertNewArticle( $textdesc, $desc, false, false, true );
-		}
-	} else {
-		# Collision, this is an update of an image
-		# Get current image row for update
-		$s = $dbw->selectRow( 'image', array( 'img_name','img_size','img_timestamp','img_description',
-		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
-
-		# Insert it into oldimage
-		$dbw->insert( 'oldimage',
-			array(
-				'oi_name' => $s->img_name,
-				'oi_archive_name' => $oldver,
-				'oi_size' => $s->img_size,
-				'oi_timestamp' => $dbw->timestamp($s->img_timestamp),
-				'oi_description' => $s->img_description,
-				'oi_user' => $s->img_user,
-				'oi_user_text' => $s->img_user_text
-			), $fname
-		);
-
-		# Update the current image row
-		$dbw->update( 'image',
-			array( /* SET */
-				'img_size' => $size,
-				'img_timestamp' => $dbw->timestamp(),
-				'img_user' => $wgUser->getID(),
-				'img_user_text' => $wgUser->getName(),
-				'img_description' => $desc,
-			), array( /* WHERE */
-				'img_name' => $name
-			), $fname
-		);
-
-		# Invalidate the cache for the description page
-		$descTitle->invalidateCache();
-	}
-
-	$log = new LogPage( 'upload' );
-	$log->addEntry( 'upload', $descTitle, $desc );
-}
-
 /**
  * Returns the image URL of an image's old version
  * 
@@ -867,7 +1004,7 @@ function wfImageArchiveUrl( $name, $subdir='archive' ) {
  * @param string $length
  * @return int Length in pixels
  */
-function scaleSVGUnit( $length ) {
+function wfScaleSVGUnit( $length ) {
 	static $unitLength = array(
 		'px' => 1.0,
 		'pt' => 1.25,
@@ -897,7 +1034,7 @@ function scaleSVGUnit( $length ) {
  * @param string $filename
  * @return array
  */
-function getSVGsize( $filename ) {
+function wfGetSVGsize( $filename ) {
 	$width = 256;
 	$height = 256;
 	
@@ -913,10 +1050,10 @@ function getSVGsize( $filename ) {
 	}
 	$tag = $matches[1];
 	if( preg_match( '/\bwidth\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
-		$width = scaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
+		$width = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
 	}
 	if( preg_match( '/\bheight\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
-		$height = scaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
+		$height = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
 	}
 	
 	return array( $width, $height, 'SVG',
@@ -985,7 +1122,7 @@ class ThumbnailImage {
      * can't be stat().
      * @access public
      */                     
-    function getSize() {               
+    function getSize() {         
 		$st = stat( $this->path );
 		if( $st ) {     
 			return $st['size']; 

@@ -198,10 +198,15 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 CREATE TABLE /*$wgDBprefix*/image (
   img_name varchar(255) binary NOT NULL default '',
   img_size int(8) unsigned NOT NULL default '0',
+  img_width int(5)  NOT NULL default '0',
+  img_height int(5)  NOT NULL default '0',
+  img_bits int(3)  NOT NULL default '0',
+  img_type int(3)  NOT NULL default '0',
   img_description tinyblob NOT NULL default '',
   img_user int(5) unsigned NOT NULL default '0',
   img_user_text varchar(255) binary NOT NULL default '',
   img_timestamp char(14) binary NOT NULL default '',
+  
   PRIMARY KEY img_name (img_name),
   INDEX img_size (img_size),
   INDEX img_timestamp (img_timestamp)
@@ -211,10 +216,15 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_name varchar(255) binary NOT NULL default '',
   oi_archive_name varchar(255) binary NOT NULL default '',
   oi_size int(8) unsigned NOT NULL default 0,
+  oi_width int(5) NOT NULL default 0,
+  oi_height int(5) NOT NULL default 0,
+  oi_bits int(3) NOT NULL default 0,
+  oi_type int(3) NOT NULL default 0,
   oi_description tinyblob NOT NULL default '',
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL default '',
   oi_timestamp char(14) binary NOT NULL default '',
+
   INDEX oi_name (oi_name(10))
 );
 

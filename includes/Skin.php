@@ -519,7 +519,7 @@ END;
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == NS_IMAGE ) {
 				$name = $wgTitle->getDBkey();
-				$image = new Image( $wgTitle->getDBkey() );
+				$image = new Image( $wgTitle );
 				if( $image->exists() ) {
 					$link = htmlspecialchars( $image->getURL() );
 					$style = $this->getInternalLinkAttributes( $link, $name );
