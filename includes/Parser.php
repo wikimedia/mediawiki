@@ -2445,7 +2445,7 @@ class Parser
 			return $text;
 		}
 		$text = substr( array_shift( $a ), 1);
-		$valid = '0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$valid = '0123456789-Xx';
 
 		foreach ( $a as $x ) {
 			$isbn = $blank = '' ;
@@ -2463,6 +2463,7 @@ class Parser
 			}
 			$num = str_replace( '-', '', $isbn );
 			$num = str_replace( ' ', '', $num );
+			$num = str_replace( 'x', 'X', $num );
 
 			if ( '' == $num ) {
 				$text .= "ISBN $blank$x";
