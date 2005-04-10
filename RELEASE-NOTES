@@ -470,6 +470,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1851) Updated download URL for the SCIM packages used by zhtable
 * (bug 1853) Try stripping quotes from term for 'go' title match
 * Fix missing function in Latin1 mode
+* (bug 1860) Anchors of interwiki links did not get normalized
 
 === Caveats ===
 
