@@ -2992,7 +2992,9 @@ class Parser
 						if ( $threshold > 0 ) {
 							$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
 						} 
-						$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
+						// Use name_title_timestamp index, table scans tend to bring the DB to a grinding halt
+						$query .= " FROM $cur " . $dbr->useIndexClause( 'name_title_timestamp' ) .
+							"WHERE (cur_namespace=$val AND cur_title IN(";
 					} elseif ( $current != $val ) {
 						$current = $val;
 						$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
