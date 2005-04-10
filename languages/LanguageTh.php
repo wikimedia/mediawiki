@@ -527,8 +527,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 #
 "preferences"	=> "Preferences",
 "prefsnologin" => "Not logged in",
-"prefsnologintext"	=> "You must be <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
+"prefsnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.
@@ -602,8 +601,7 @@ from server time (UTC).",
 "reupload"		=> "Re-upload",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Not logged in",
-"uploadnologintext"	=> "You must be <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
+"uploadnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
 "uploadfile"	=> "Upload images, sounds, documents etc.",
 "uploaderror"	=> "Upload error",
@@ -746,10 +744,8 @@ this list should not be construed as an endorsement.",
 # Email this user
 #
 "mailnologin"	=> "No send address",
-"mailnologintext" => "You must be <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
-and have a valid e-mail address in your <a href=\"" .
-  "{{localurle:Special:Preferences}}\">preferences</a>
+"mailnologintext" => "You must be [[Special:Userlogin|logged in]]
+and have a valid e-mail address in your [[Special:Preferences|preferences]]
 to send e-mail to other users.",
 "emailuser"		=> "E-mail this user",
 "emailpage"		=> "E-mail user",
@@ -775,8 +771,7 @@ or has chosen not to receive e-mail from other users.",
 "watchlistsub"	=> "(for user \"$1\")",
 "nowatchlist"	=> "You have no items on your watchlist.",
 "watchnologin"	=> "Not logged in",
-"watchnologintext"	=> "You must be <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
+"watchnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to modify your watchlist.",
 "addedwatch"	=> "Added to watchlist",
 "addedwatchtext" => "The page \"$1\" has been added to your <a href=\"" .
@@ -997,8 +992,7 @@ proceeding.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Move page",
 "movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
+"movenologintext" => "You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.",
 "newtitle"		=> "To new title",
 "movepagebtn"	=> "Move page",

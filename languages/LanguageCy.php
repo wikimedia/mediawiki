@@ -517,8 +517,7 @@ $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9",
 #
 "preferences" => "ffafraethau",
 "prefsnologin" => "Nid wedi mewngofnodi",
-"prefsnologintext" => "Rhaid i chi <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
+"prefsnologintext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]]
 i setio ffafraethau defnyddwr.",
 "prefslogintext"  => "Yr ydych wedi mewngofnodi fel \"$1\".
 $2 yw eich rhif hunaniaith mewnol.",
@@ -587,8 +586,7 @@ $2 yw eich rhif hunaniaith mewnol.",
 "reupload" => "Ail-llwytho i fynu",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Nid wedi mewngofnodi",
-"uploadnologintext" => "Rhaid i chi bod wedi <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
+"uploadnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i lwytho ffeiliau i fynu.",
 "uploadfile" => "Llwytho ffeil i fynu",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
@@ -739,10 +737,8 @@ Does gan Wicipedia dim cysylltiad gyda unrhyw o'r masnachau, a dydy rhestr hon d
 # Email this user
 #
 "mailnologin" => "Dim cyfeiriad i anfon",
-"mailnologintext" => "Rhaid i chi wedi <a href=\"" .
-  "{{localurle:Arbennig:Mewngofnodidefnyddwr}}\">mewngofnodi</a>
-a rhoi cyfeiriad e-bost dilyn yn eich <a href=\"" .
-  "{{localurle:Arbennig:Ffafraethau}}\">ffafraethau</a>
+"mailnologintext" => "Rhaid i chi wedi [[Arbennig:Mewngofnodidefnyddwr|mewngofnodi]]
+a rhoi cyfeiriad e-bost dilyn yn eich [[Arbennig:Ffafraethau|ffafraethau]]
 i anfon e-bost i ddefnyddwyr eraill.",
 "emailuser" => "Anfon e-bost i defnyddwr hwn",
 "emailpage" => "Anfon e-bost i defnyddwr",
@@ -764,8 +760,7 @@ i anfon e-bost i ddefnyddwyr eraill.",
 "watchlistsub" => "(am defnyddwr \"$1\")",
 "nowatchlist"  => "Does ganddoch chi ddim eitem ar eich rhestr gwylio.",
 "watchnologin"	=> "Dydych chi ddim wedi mewngofnodi",
-"watchnologintext" => "Rhaid i chi bod wedi <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
+"watchnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i adnewid eich rhestr gwylio.",
 "addedwatch" => "Wedi adio i'ch rhestr gwylio",
 "addedwatchtext" => "Mae tudalen \"$1\" wedi gael eu ychwanegu i eich <a href=\"" .
@@ -976,8 +971,7 @@ Ellith hwn bod newid sydyn a llym i tudalen poblogol; byddwch yn siwr rydych chi
 *rydych chi'n di-ticio'r blwch isod.",
 "movearticle" => "Symud tudalen",
 "movenologin" => "Nid wedi mewngofnodi",
-"movenologintext" => "Rhaid i chi bod defnyddwr cofrestredig ac wedi <a href=\"" .
-  "{{localurle:Arbennig:Userlogin}}\">mewngofnodi</a>
+"movenologintext" => "Rhaid i chi bod defnyddwr cofrestredig ac wedi [[Arbennig:Userlogin|mewngofnodi]]
 to move a page.",
 "newtitle" => "i teitl newydd",
 "movepagebtn" => "Symud tudalen",

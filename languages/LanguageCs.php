@@ -377,8 +377,7 @@ která popsala příčinu takto:<br /><p>Máte právo se spojit se správcem sys
 #
 "preferences"	=> "Preference",
 "prefsnologin" => "Dosud nepřihlášen!",
-"prefsnologintext"	=> "Určite <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">se přihlaste</a>
+"prefsnologintext"	=> "Určite [[Special:Userlogin|se přihlaste]]
 dříve než je možno měnit priority.",
 "prefslogintext" => "Přihlásil jste se \"$1\".
 Vaše interní identifikační číslo je  .",
@@ -444,8 +443,7 @@ Také se podívejte na
 "reupload"		=> "Načti znovu",
 "reuploaddesc"	=> "Vrať se k načtení.",
 "uploadnologin" => "Nepřihlášený",
-"uploadnologintext"	=> "Musíte mít účet a <a href=\"" .
-  "{{localurle:Speciala:Userlogin}}\">přihlaste se</a>
+"uploadnologintext"	=> "Musíte mít účet a [[Speciala:Userlogin|přihlaste se]]
 pro načtení souboru.",
 "uploadfile"	=> "Načti soubor",
 "uploaderror"	=> "Při načítání došlo k chybě",
@@ -581,10 +579,8 @@ Každý řádek ukazuje odkaz k prvnímu a druhému přesměrování, plus prvn�
 # Email this user
 #
 "mailnologin"	=> "Žádná adresa k zaslání",
-"mailnologintext" => "Určitě uveď <a href=\"" .
-  "{{localurle:Speciala:Userlogin}}\">jméno</a>
-a měj platnou e-mailovou adresu ve svých <a href=\"" .
-  "{{localurle:Speciala:Preferences}}\">preferencích</a>
+"mailnologintext" => "Určitě uveď [[Speciala:Userlogin|jméno]]
+a měj platnou e-mailovou adresu ve svých [[Speciala:Preferences|preferencích]]
 abys mohl mailovat jiným wikipediistům.",
 "emailuser"		=> "Pošli mail",
 "emailpage"		=> "Pošli mail",
@@ -609,8 +605,7 @@ pošty, aby adresát mohl odpovědět.",
 "watchlistsub"	=> "(uživatele \"$1\")",
 "nowatchlist"	=> "Zatím jsi neuvedl žádné oblíbené stránky.",
 "watchnologin"	=> "Neuvedeno jméno",
-"watchnologintext"	=> "Nutno uvést <a href=\"" .
-  "{{localurle:Speciala:Userlogin}}\">jméno</a>
+"watchnologintext"	=> "Nutno uvést [[Speciala:Userlogin|jméno]]
 pro aktivaci tvých oblíbených stránek.",
 "addedwatch"	=> "Přidáno k oblíbeným",
 "addedwatchtext" => "Stránka \"$1\" je přidána k tvým <a href=\"" .
@@ -739,8 +734,7 @@ Odkazy na předchozí název <i>ne</i>budou změněny.
 Může to být drastická a nečekaná změna pro oblíbené stránky. Ujisti se, že si uvědomuješ důsledky, než změnu provedeš.",
 "movearticle"	=> "Přesuň stránku",
 "movenologin"	=> "Neuvedeno přihlašovací jméno",
-"movenologintext" => "Musíš být přihlášeným uživatelem a <a href=\"" .
-  "{{localurle:Speciala:Userlogin}}\">uveď přihlašovací jméno</a>
+"movenologintext" => "Musíš být přihlášeným uživatelem a [[Speciala:Userlogin|uveď přihlašovací jméno]]
 abys mohl stránku přesunout.",
 "newtitle"		=> "Na nový název",
 "movepagebtn"	=> "Přesuň stránku",

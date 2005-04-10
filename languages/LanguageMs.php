@@ -477,8 +477,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 #
 "preferences"	=> "Konfigurasi", #"Preferences",
 "prefsnologin" => "Belum mendaftar masuk", #"Not logged in",
-"prefsnologintext"	=> "Anda mesti <a href=\"" .
-  "{{localurle:Istimewa:Userlogin}}\">mendaftar masuk</a>
+"prefsnologintext"	=> "Anda mesti [[Istimewa:Userlogin|mendaftar masuk]]
 untuk tetapkan butir-butir diri anda.", #"You must be <a href=\"" .
 "prefslogintext" => "Anda telah masuk sebagai \"$1\".
 Nombor ID anda ialah $2.",
@@ -562,8 +561,7 @@ jadi sila patuhi amaran ini.",
 "reupload"		=> "Muatnaik semula", #"Re-upload",
 "reuploaddesc"	=> "Kembali ke borang muatnaik", #"Return to the upload form.",
 "uploadnologin" => "Tidak mendaftar masuk", #"Not logged in",
-"uploadnologintext"	=> "Anda mesti <a href=\"" .
-  "{{localurle:Istimewa:Userlogin}}\">pengguna</a>
+"uploadnologintext"	=> "Anda mesti [[Istimewa:Userlogin|pengguna]]
 untuk muatnaik fail.",
 "uploadfile"	=> "Muatnaik fail", #"Upload file",
 "uploaderror"	=> "Muatnaik ralat", #"Upload error",
@@ -701,7 +699,7 @@ dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 # Email this user
 #
 "mailnologin"	=> "Tidak dibenarkan hantar alamat", #"No send address",
-"mailnologintext" => "Anda mesti <a href=\"{{localurle:Istimewa:Userlogin}}\logged in</a> dan mempunyai alamat email yang sah di <a href=\"{{localurle:Istimewa:Preferences}}\"preferences</a> untuk menghantar email kepada pengguna lain.",
+"mailnologintext" => "Anda mesti [[Istimewa:Userlogin|logged in]] dan mempunyai alamat email yang sah di [[Istimewa:Preferences|preferences]] untuk menghantar email kepada pengguna lain.",
 #"You must be <a href=\"{{localurle:Special:Userlogin}}\">logged in</a> and have a valid e-mail address in your <#a href=\"{{localurle:Special:Preferences}}\">preferences</a> to send e-mail to other users.",
 
 "emailuser"		=> "E-mail pengguna ini", #"E-mail this user",
@@ -730,8 +728,7 @@ dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 "watchlistsub"	=> "( untuk pengguna \"$1\")",   #"(for user \"$1\")",
 "nowatchlist"	=> "Tiada apa-apa dalam senarai pilihan.",    #"You have no items on your watchlist.",
 "watchnologin"	=> "Tidak memasuki sistem", #"Not logged in",
-"watchnologintext"	=> "Anda mesti < a href=\"".
-  "{{localurle:Istimewa:Userlogin}}\">mendaftar masuk<a/>
+"watchnologintext"	=> "Anda mesti [[Istimewa:Userlogin|mendaftar masuk]]
 untuk mengubah senarai pilihan.",
 "addedwatch"	=> "Tambah ke senarai pilihan",
 "addedwatchtext" => "Halaman \"$1\" telah ditambah pada <a href=\"".
@@ -923,8 +920,7 @@ belok borang ini sebelum anda teruskan.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Alih halaman", #"Move page",
 "movenologin"	=> "Tidak masuk sistem", #"Not logged in",
-"movenologintext" => "Anda mesti menjadi pengguna berdaftar dan <a href=\"" .
-  "{{localurle:Istimewa:Userlogin}}\">logged in</a>
+"movenologintext" => "Anda mesti menjadi pengguna berdaftar dan [[Istimewa:Userlogin|logged in]]
 untuk mengalihkan halaman.",
 "newtitle"	=> "Tajuk baru",   #"To new title",
 "movepagebtn"	=> "Alih halaman", #"Move page",

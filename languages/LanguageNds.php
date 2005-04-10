@@ -609,7 +609,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 #
 'preferences'          => 'Instellen',
 'prefsnologin'       => 'Nich anmellt',
-'prefsnologintext'   => 'Du muttst <a href=\'{{localurle:Special:Userlogin}}\'>anmellt</a> ween, üm dien Instellen to ännern.',
+'prefsnologintext'   => 'Du muttst [[Special:Userlogin|anmellt]] ween, üm dien Instellen to ännern.',
 'prefslogintext'     => 'Du büst anmellt as „$1“.
 Dien interne ID-Nummer is $2.',
 'prefsreset'            => 'Instellen sünd op Standard trüchsett.',
@@ -678,7 +678,7 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'reupload'                      => 'Nieg hoochladen',
 'reuploaddesc'          => 'Trüch to de Hoochladen-Siet.',
 'uploadnologin'     => 'Nich anmellt',
-'uploadnologintext'     => 'Du muttst <a href=\'{{localurle:Spezial:Userlogin}}\'>anmellt ween</a> üm Datein hoochladen to könen.',
+'uploadnologintext'     => 'Du muttst [[Spezial:Userlogin|anmellt ween]] üm Datein hoochladen to könen.',
 'uploadfile'            => 'Datei hoochladen',
 'uploaderror'         => 'Fehler bi dat Hoochladen',
 'uploadtext'           => "
@@ -853,7 +853,7 @@ Du kannst de List kötter maken, wenn du den Logtyp, den Brukernaam oder de de S
 # E-Mail an'n Bruker
 #
 'mailnologin'             => 'Du büst nich anmellt.',
-'mailnologintext'       => 'Du muttst <a href=\'{{localurle:Spezial:Userlogin}}\'>anmellt ween</a> un en güllige E-Mail-Adress hebben, dormit du en annern Bruker en E-Mail sennen kannst.',
+'mailnologintext'       => 'Du muttst [[Spezial:Userlogin|anmellt ween]] un en güllige E-Mail-Adress hebben, dormit du en annern Bruker en E-Mail sennen kannst.',
 'emailuser'                     => 'E-Mail an dissen Bruker',
 'emailpage'                     => 'E-Mail an Bruker',
 'emailpagetext'         => 'Wenn disse Bruker en güllige E-Mail-Adress angeven hett, kannst du em mit den nerrn stahn Formular en E-Mail sennen. As Afsenner warrt de E-Mail-Adress ut dien Instellen indregen, dormit de Bruker di antern kann.',
@@ -884,7 +884,7 @@ Du kannst de List kötter maken, wenn du den Logtyp, den Brukernaam oder de de S
 'watchlistsub'           => '(för Bruker „$1“)',
 'nowatchlist'           => 'Du hest kene Indreeg op dien Oppasslist.',
 'watchnologin'            => 'Du büst nich anmellt',
-'watchnologintext'      => 'Du muttst <a href=\'{{localurle:Spezial:Userlogin}}\'>anmellt</a> ween, wenn du dien Oppasslist ännern willst.',
+'watchnologintext'      => 'Du muttst [[Spezial:Userlogin|anmellt]] ween, wenn du dien Oppasslist ännern willst.',
 'addedwatch'            => 'To de Oppasslist hentofögt',
 'addedwatchtext'        => 'De Siet „$1“ is to dien <a href=\'{{localurle:Spezial:Watchlist}}\'>Oppasslist</a> hentofögt worrn.
 Ännern, de in Tokumst an disse Siet un an de toheurige Diskuschoonssiet mookt warrn, sünd dorop list un de Siet is op de
@@ -1057,7 +1057,7 @@ In disse Fäll muttst du de Siet, wenn du dat wullst, vun Hand schuven.",
 'movearticle'           => 'Siet schuven',
 'movenologin'           => 'Du büst nich anmellt',
 'movenologintext'       => 'Du muttst en registreert Bruker un
-<a href=\'{{localurle:Special:Userlogin}}\'>anmellt</a> ween,
+[[Special:Userlogin|anmellt]] ween,
 üm en Siet to schuven.',
 'newtitle'                     => 'To niegen Titel',
 'movepagebtn'             => 'Siet schuven',

@@ -501,8 +501,7 @@ $2 List redirects &nbsp; Sök efter $3 $9",
 //
 "preferences"           => "Inställningar",
 "prefsnologin"          => "Du är inte inloggad",
-"prefsnologintext"      => "Du måste vara <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">inloggad</a>
+"prefsnologintext"      => "Du måste vara [[Special:Userlogin|inloggad]]
 för att kunna ändra i inställningar.",
 "prefslogintext"        => "Du är inloggad som \"$1\".
 Ditt IP-nummer är $2.",
@@ -562,8 +561,7 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel f�
 "reupload"              => "återuppladdning",
 "reuploaddesc"          => "Tillbaka till uppladdningsformulär.",
 "uploadnologin"         => "Inte inloggad",
-"uploadnologintext"     => "Du måste vara <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">inloggad</a>
+"uploadnologintext"     => "Du måste vara [[Special:Userlogin|inloggad]]
 för att kunna ladda upp filer.",
 "uploadfile"            => "Ladda upp fil",
 "uploaderror"           => "Uppladdnings fel",
@@ -716,10 +714,8 @@ Wikipedia har <b>inget</b> affärssamarbete med ovanstående företag och ska in
 // Email this user
 //
 "mailnologin"           => "Ingen adress att skicka till",
-"mailnologintext"       => "Du ska vara<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">inloggad</a>
-och ha angivit en korrekt epost-adress i dina <a href=\"" .
-  "{{localurle:Special:Preferences}}\">användarinställningar</a>
+"mailnologintext"       => "Du ska vara [[Special:Userlogin|inloggad]]
+och ha angivit en korrekt epost-adress i dina [[Special:Preferences|användarinställningar]]
 för att kunna skicka e-post till andra användare.",
 "emailuser"             => "Skicka e-post till den här användaren",
 "emailpage"             => "Skicka e-post till annan användare",
@@ -744,8 +740,7 @@ valt att inte ta emot något mail från andra användare.",
 "watchlistsub"          => "(för användare \"$1\")",
 "nowatchlist"           => "Du har inga sidor upptagna på din övervakningslista.",
 "watchnologin"          => "Du är inte inloggad",
-"watchnologintext"      => "Du ska vara<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">inloggad</a>
+"watchnologintext"      => "Du ska vara [[Special:Userlogin|inloggad]]
 för att kunna göra ändringar på din övervakningslista.",
 "addedwatch"            => "Tillagd på övervakningslistan",
 "addedwatchtext"        => "Sidan \"$1\" har satts upp på din <a href=\"" .
@@ -903,8 +898,7 @@ var säker på att du inser konsekvenserna i förväg.",
 
 "movearticle"           => "Flytta sida",
 "movenologin"           => "Ej inloggad",
-"movenologintext"       => "Du måste vara registrerad användare och ha <a href=\"" .
-  "{{localurle:Speciel:Userlogin}}\">loggat in</a>
+"movenologintext"       => "Du måste vara registrerad användare och ha [[Speciel:Userlogin|loggat in]]
 för att kunna flytta en sida.",
 "newtitle"              => "Till ny titel",
 "movepagebtn"           => "Flytta sida",
@@ -946,7 +940,7 @@ proceeding.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Move page",
 "movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+"movenologintext" => "You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.",
 "newtitle"		=> "To new title",
 "movepagebtn"	=> "Move page",

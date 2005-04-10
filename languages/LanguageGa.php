@@ -671,8 +671,7 @@ a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thí­os 
 #
 "preferences"   => "Sainroghanna",
 "prefsnologin" => "Ní­l tú logáilte isteach",
-"prefsnologintext"  => "Ní mór duit bheith <a href=\"" .
-  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
+"prefsnologintext"  => "Ní mór duit bheith [[Speisialta:Userlogin|logáilte isteach]]
 chun do chuid sainroghanna phearsanta a athrú.",
 "prefslogintext" => "Tá tú logáilte isteach mar \"$1\".
 Is é $2 d'uimhir aitheantais inmhéanach.
@@ -754,8 +753,7 @@ den am an innill friothála­ (UTC).",
 "reupload"      => "Athuaslódáil",
 "reuploaddesc"  => "Dul ar ais chuig an fhoirm uaslódála.",
 "uploadnologin" => "Nil tú logáilte isteach",
-"uploadnologintext" => "Caithfifh tú bheith <a href=\"" .
-  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
+"uploadnologintext" => "Caithfifh tú bheith [[Speisialta:Userlogin|logáilte isteach]]
 chun comhaid a uaslódáil.",
 "uploadfile"    => "Uaslódáil í­omhánna, fuaimeanna, doiciméid srl.",
 "uploaderror"   => "Earráid uaslódála",
@@ -948,8 +946,8 @@ aontú leo é an liosta seo.",
 # Email this user
 #
 "mailnologin"   => "Ní­l aon seoladh maith ann",
-"mailnologintext" => "Ní mór duit bheith  <a href=\"{{localurl:Special:Userlogin\">logáilte isteach</a>
-agus bheith le seoladh rí­omhphoist bhailí­ i do chuid <a href=\"{{localurl:Special:Preferences}}\">sainroghanna</a>
+"mailnologintext" => "Ní mór duit bheith  [[Special:Userlogin|logáilte isteach]]
+agus bheith le seoladh rí­omhphoist bhailí­ i do chuid [[Special:Preferences|sainroghanna]]
 más mian leat rí­omhphost a sheoladh chuig úsáideoirí­ eile.",
 "emailuser"     => "Cuir rí­omhphost chuig an úsáideoir seo",
 "emailpage"     => "Seol rí­omhphost",
@@ -976,8 +974,7 @@ mian leis rí­omhphost a fháil ón úsáideoirí­ eile.",
 "watchlistsub"  => "(don úsáideoir \"$1\")",
 "nowatchlist"   => "Ní­l aon rud i do liosta faire.",
 "watchnologin"  => "Ní­l tú logáilte isteach",
-"watchnologintext"  => "Ní mór duit bheith <a href=\"" .
-  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
+"watchnologintext"  => "Ní mór duit bheith [[Speisialta:Userlogin|logáilte isteach]]
 chun do liosta faire a athrú.",
 "addedwatch"    => "Curtha san liosta faire",
 "addedwatchtext" => "Cuireadh an leathanach \"$1\" le do <a href=\"" .
@@ -1258,8 +1255,7 @@ cinntigh go dtuigeann tú na iarmhairtí­ go léir roimh a leanfá.",
 Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lámha má tá sin an rud atá uait.",
 "movearticle"   => "Aistrigh an leathanach",
 "movenologin"   => "Ní­l tú logtha ann",
-"movenologintext" => "Ní mór duit bheith úsáideoir cláraithe agus <a href=\"" .
-  "{{localurle:Speisialta:Userlogin}}\">logtha ann</a>
+"movenologintext" => "Ní mór duit bheith úsáideoir cláraithe agus [[Speisialta:Userlogin|logtha ann]]
 chun leathanach a aistrigh.",
 "newtitle"      => "Go teideal nua",
 "movepagebtn"   => "Aistrigh an leathanach",

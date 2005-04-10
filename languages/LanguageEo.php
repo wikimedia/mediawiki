@@ -490,7 +490,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>",
 #
 "preferences"	=> "Preferoj",
 "prefsnologin" => "Ne jam salutis!",
-"prefsnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">Ensalutu</a>
+"prefsnologintext"	=> "[[Special:Userlogin|Ensalutu]]
 kaj vi povos ŝanĝi viajn preferojn.",
 "prefslogintext" => "Vi ensalutis kiel \"$1\".
 Via interna identeconumero estas $2.",
@@ -561,7 +561,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 "reupload"		=> "Realŝutu",
 "reuploaddesc"	=> "Revenu al la alŝuta formularo.",
 "uploadnologin" => "Ne ensalutinta",
-"uploadnologintext"	=> "Se vi volas alŝuti dosierojn, vi devas <a href=\"{{localurle:Special:Userlogin}}\">ensaluti</a>.",
+"uploadnologintext"	=> "Se vi volas alŝuti dosierojn, vi devas [[Special:Userlogin|ensaluti]].",
 "uploadfile"	=> "Alŝutu dosieron",
 "uploaderror"	=> "Eraro okazis dum alŝuto",
 "uploadtext"	=> "Por okulumi aŭ serĉi jam alŝutitajn dosierojn,
@@ -721,8 +721,8 @@ komprenata kiel rekomendo aŭ reklamo.",
 # Email this user
 #
 "mailnologin"	=> "Neniu alsendota adreso",
-"mailnologintext" => "Vi nepre estu <a href=\"{{localurle:Special:Userlogin}}\">salutanta</a>
-kaj havanta validan retpoŝtadreson en viaj <a href=\"{{localurle:Special:Preferences}}\">preferoj</a>
+"mailnologintext" => "Vi nepre estu [[Special:Userlogin|salutanta]]
+kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]]
 por retpoŝti al aliaj Vikipediistoj.",
 "emailuser"		=> "Retpoŝtu",
 "emailpage"		=> "Retpoŝtu",
@@ -749,7 +749,7 @@ aŭ elektis ne ricevi retpoŝton de aliaj vikipediistoj.",
 "watchlistsub"	=> "(de uzulo \"$1\")",
 "nowatchlist"	=> "Vi ne jam elektis priatenti iun ajn paĝon.",
 "watchnologin"	=> "Ne salutinta",
-"watchnologintext"	=> "Nepras <a href=\"{{localurle:Special:Userlogin}}\">saluti</a>
+"watchnologintext"	=> "Nepras [[Special:Userlogin|saluti]]
 por ŝanĝi vian atentaron.",
 "addedwatch"	=> "Aldonis al atentaro",
 "addedwatchtext" => "La paĝo \"[[$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]].
@@ -951,7 +951,7 @@ ol vi antaŭeniru.",
 Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 "movearticle"	=> "Movu paĝon",
 "movenologin"	=> "Ne ensalutinta",
-"movenologintext" => "Vi nepre estu registrita uzulo kaj <a href=\"{{localurle:Special:Userlogin}}\">ensalutu</a>
+"movenologintext" => "Vi nepre estu registrita uzulo kaj [[Special:Userlogin|ensalutu]]
 por rajti movi paĝojn.",
 "newtitle"		=> "Al nova titolo",
 "movepagebtn"	=> "Movu paĝon",

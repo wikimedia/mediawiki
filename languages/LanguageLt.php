@@ -519,8 +519,8 @@ Please consider breaking the page into smaller sections.",*/
 #'mailerror' => "Error sending mail: $1",
 'mailmypassword' => "Siųsti naują slaptažodį paštu",
 #'mailnologin' => "No send address",
-'mailnologintext' => "You must be <a href=\"{{localurl:Special:Userlogin\">logged in</a>
-and have a valid e-mail address in your <a href=\"/wiki/Special:Preferences\">preferences</a>
+'mailnologintext' => "You must be [[Special:Userlogin|logged in]]
+and have a valid e-mail address in your [[Special:Preferences|preferences]]
 to send e-mail to other users.",
 'mainpage' => "Pradžia",
 /*#'mainpagedocfooter' => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
@@ -576,7 +576,7 @@ Please report this to an administrator, making note of the URL.",*/
 #'movearticle' => "Move page",
 #'movedto' => "moved to",
 #'movenologin' => "Not logged in",
-'movenologintext' => "You must be a registered user and <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'movenologintext' => "You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.",
 #'movepage' => "Move page",
 #'movepagebtn' => "Move page",
@@ -736,7 +736,7 @@ Jūsų vidinis numeris yra $2.
 
 <!--See [[Wikipedia:User preferences help]] for help deciphering the options.-->",
 #'prefsnologin' => "Not logged in",
-'prefsnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'prefsnologintext' => "You must be [[Special:Userlogin|logged in]]
 to set user preferences.",
 #'prefsreset' => "Preferences have been reset from storage.",
 'preview' => "Peržiūra",
@@ -987,7 +987,7 @@ All times shown are server time (UTC).
 </ul>
 ",*/
 #'uploadnologin' => "Not logged in",
-'uploadnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'uploadnologintext' => "You must be [[Special:Userlogin|logged in]]
 to upload files.",
 #'uploadwarning' => "Upload warning",
 /*#'usenewcategorypage' => "1
@@ -1027,7 +1027,7 @@ esantį mygtuką 'Išmesti iš stebimų'.",
 #'watchmethod-recent' => "checking recent edits for watched pages",
 'watchnochange' => "Pasirinktu laikotarpiu nebuvo redaguotas nei vienas stebimas straipsnis.",
 #'watchnologin' => "Not logged in",
-'watchnologintext' => "You must be <a href=\"/wiki/Special:Userlogin\">logged in</a>
+'watchnologintext' => "You must be [[Special:Userlogin|logged in]]
 to modify your watchlist.",
 'watchthis' => "Stebėti straipsnį",
 'watchthispage' => "Stebėti puslapį",

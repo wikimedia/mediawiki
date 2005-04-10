@@ -495,7 +495,7 @@ $2 Lista redireciona &nbsp; Procura por $3 $9",
 #
 "preferences"   => "Preferências",
 "prefsnologin" => "Não autenticado",
-"prefsnologintext"  => "Você precisa estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+"prefsnologintext"  => "Você precisa estar [[Special:Userlogin|autenticado]]
 para definir suas preferências.",
 "prefslogintext" => "Você está autenticado como \"$1\".
 Seu número identificador interno é $2.
@@ -577,7 +577,7 @@ Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "reupload"      => "Re-carregar",
 "reuploaddesc"  => "Retornar ao formulário de Uploads.",
 "uploadnologin" => "Não autenticado",
-"uploadnologintext" => "Você deve estar<a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+"uploadnologintext" => "Você deve estar [[Special:Userlogin|autenticado]]
 para carregar arquivos.",
 "uploadfile"    => "Carregar imagens, sons, documentos etc.",
 "uploaderror"   => "Erro ao Carregar",
@@ -729,8 +729,8 @@ A {{SITENAME}} não é afiliada a nenhum destes empreendimentos, e a lista não 
 # Email this user
 #
 "mailnologin"   => "No send address",
-"mailnologintext" => "Você deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
-e ter um e-mail válido em suas <a href=\"{{localurle:Special:Preferences}}\">preferências</a>
+"mailnologintext" => "Você deve estar [[Special:Userlogin|autenticado]]
+e ter um e-mail válido em suas [[Special:Preferences|preferências]]
 para poder enviar e-mails para outros usuários.",
 "emailuser"     => "Contactar usuário",
 "emailpage"     => "Enviar e-mail ao usuário",
@@ -752,7 +752,7 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 "watchlistsub"  => "(do usuário \"$1\")",
 "nowatchlist"   => "Você não está monitorando nenhum artigo.",
 "watchnologin"  => "Não está autenticado",
-"watchnologintext"  => "Você deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+"watchnologintext"  => "Você deve estar [[Special:Userlogin|autenticado]]
 para modificar sua lista de artigos interessantes.",
 "addedwatch"    => "Adicionados �  lista",
 "addedwatchtext" => "A página \"$1\" foi adicionada a sua <a href=\"{{localurle:Special:Watchlist}}\">lista de artigos de vosso interesse</a>.
@@ -929,7 +929,7 @@ por favor tenha certeza de que compreende as consequencias disto antes de proced
 Nestes casos, você terá que mover ou mesclar a página manualmente se desejar .",
 "movearticle"   => "Mover página",
 "movenologin"   => "Não Autenticado",
-"movenologintext" => "Você deve ser um usuário registrado e <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+"movenologintext" => "Você deve ser um usuário registrado e [[Special:Userlogin|autenticado]]
 para mover uma página.",
 "newtitle"      => "Pata novo título",
 "movepagebtn"   => "Mover página",

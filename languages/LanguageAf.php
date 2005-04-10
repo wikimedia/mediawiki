@@ -399,8 +399,7 @@ $2 List redirects   Search for $3 $9", #fixMe
 #
 "preferences"	=> "Voorkeure",
 "prefsnologin" => "Nie ingeteken nie",
-"prefsnologintext"	=> "Jy moet <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">ingeteken wees</a>
+"prefsnologintext"	=> "Jy moet [[Special:Userlogin|ingeteken wees]]
 om voorkeure te spesifiseer.",
 "prefslogintext" => "Jy is ingeteken as \"$1\".
 Jou internet ID-nommer is $2.",
@@ -475,8 +474,7 @@ Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabe
 "reupload"		=> "Herlaai",
 "reuploaddesc"	=> "Keer terug na die laaivorm.",
 "uploadnologin" => "Nie ingeteken nie",
-"uploadnologintext"	=> "Teken eers in <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">logged in</a>
+"uploadnologintext"	=> "Teken eers in [[Special:Userlogin|logged in]]
 om lêers te laai.",
 "uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
@@ -620,10 +618,8 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 # Email this user
 #
 "mailnologin"	=> "Geen verstuuradres",
-"mailnologintext" => "Jy moet <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">ingeteken</a>
-wees en 'n geldige e-posadres in jou <a href=\"" .
-  "{{localurle:Special:Preferences}}\">voorkeure</a>
+"mailnologintext" => "Jy moet [[Special:Userlogin|ingeteken]]
+wees en 'n geldige e-posadres in jou [[Special:Preferences|voorkeure]]
 hê om e-pos aan ander gebruikers te stuur.",
 "emailuser"		=> "Stuur e-pos na hierdie gebruiker",
 "emailpage"		=> "Stuur e-pos na gebruiker",
@@ -645,8 +641,7 @@ Die e-posadres wat jy in jou gebruikersvoorkeure het sal verkyn as die \"Van\" a
 "watchlistsub"	=> "(vir gebruiker \"$1\")",
 "nowatchlist"	=> "Jy het geen items in jou dophoulys nie.",
 "watchnologin"	=> "Nie ingeteken nie",
-"watchnologintext"	=> "Jy moet <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">ingeteken</a>
+"watchnologintext"	=> "Jy moet [[Special:Userlogin|ingeteken]]
 wees om jou dophoulys te verander.",
 "addedwatch"	=> "Bygevoeg tot dophoulys",
 "addedwatchtext" => "Die bladsy \"$1\" is by jou <a href=\"" .
@@ -798,8 +793,7 @@ maak asseblief seker dat jy die gevolge verstaan voordat jy voortgaan.",
 In hierdie gevalle, sal jy die bladsy met die hand moet skuif of saamsmelt as jy wil.",
 "movearticle"	=> "Skuif bladsy",
 "movenologin"	=> "Nie ingeteken nie",
-"movenologintext" => "Jy moet 'n geregistreerde gebruiker wees en <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">ingeteken</a>
+"movenologintext" => "Jy moet 'n geregistreerde gebruiker wees en [[Special:Userlogin|ingeteken]]
 wees om 'n bladsy te skuif.",
 "newtitle"		=> "Na nuwe titel",
 "movepagebtn"	=> "Skuif bladsy",

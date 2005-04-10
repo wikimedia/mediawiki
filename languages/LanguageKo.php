@@ -449,7 +449,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 #
 "preferences"	=> "개인 맞춤",
 "prefsnologin" => "나와 있습니다.",
-"prefsnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만,
+"prefsnologintext"	=> "[[Special:Userlogin|들어와]] 있을 때에만,
 # Special:Userlogin => 특수기능:들어가기 개인 환경을 맞출 수 있습니다.",
 "prefslogintext" => "당신은 \"$1\", 맞죠?
 당신의 내부 ID 번호는 $2입니다.",
@@ -520,7 +520,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 "reupload"		=> "다시 올리기",
 "reuploaddesc"	=> "올리기 틀로 돌아감",
 "uploadnologin" => "나와있습니다.",
-"uploadnologintext"	=> "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만
+"uploadnologintext"	=> "{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때에만
 # special:userlogin 특수기능:들어가기
 파일을 올릴 수 있습니다.",
 "uploadfile"	=> "파일 올리기",
@@ -678,8 +678,8 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 # Email this user
 #
 "mailnologin"	=> "누리편지주소 없음",
-"mailnologintext" => "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때, 또,
-<a href=\"{{localurle:Special:Preferences}}\">개인 맞춤</a>에 
+"mailnologintext" => "{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때, 또,
+[[Special:Preferences|개인 맞춤]]에 
 자기의 누리편지주소를 기억시켰을 때에만,
 다른 사용자에게 편지를 보낼 수 있습니다.",
 "emailuser"		=> "사용자에게 편지쓰기",
@@ -705,7 +705,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "watchlistsub"	=> "(\"$1\"의)",
 "nowatchlist"	=> "눈여겨보는 문서가 아직 없습니다.",
 "watchnologin"	=> "나와있습니다.",
-"watchnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">들어와</a>
+"watchnologintext"	=> "[[Special:Userlogin|들어와]]
 있을 때에만 눈여겨보기 목록을 볼 수 있습니다.",
 "addedwatch"	=> "눈여겨 봅니다.",
 "addedwatchtext" => "앞으로 \"$1\"문서와 딸린 토론를
@@ -859,7 +859,7 @@ Wikipedia developers.",
 옮기는 것이 옳다는 확신이 들 때에만 진행하세요.",
 "movearticle"	=> "문서 옮기기",
 "movenologin"	=> "나와 있습니다.",
-"movenologintext" => "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만
+"movenologintext" => "{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때에만
 문서를 옮길 수 있습니다.",
 "newtitle"		=> "새 이름",
 "movepagebtn"	=> "옮기기",

@@ -542,8 +542,7 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 #
 "preferences"	=> "Einstellungen",
 "prefsnologin" => "Nicht angemeldet",
-"prefsnologintext"	=> "Sie müssen <a href=\"" .
-  "{{localurle:Spezial:Userlogin}}\">angemeldet</a>
+"prefsnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet]]
 sein, um Ihre Einstellungen zu ändern.",
 "prefslogintext" => "Sie sind angemeldet als \"$1\".
 Ihre interne ID-Nummer ist $2.",
@@ -614,8 +613,7 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "reupload"		=> "Erneut hochladen",
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
-"uploadnologintext"	=> "Sie müssen <a href=\"" .
-  "{{localurle:Spezial:Userlogin}}\">angemeldet sein</a>
+"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]]
 um Dateien hochladen zu können.",
 "uploadfile"	=> "Datei hochladen",
 "uploaderror"	=> "Fehler beim Hochladen",
@@ -765,8 +763,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Email this user
 #
 "mailnologin"	=> "Sie sind nicht angemeldet.",
-"mailnologintext" => "Sie müssen <a href=\"" .
-  "{{localurle:Spezial:Userlogin}}\">angemeldet sein</a>
+"mailnologintext" => "Sie müssen [[Spezial:Userlogin|angemeldet sein]]
 und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.",
 "emailuser"		=> "E-Mail an diesen Benutzer",
 "emailpage"		=> "E-Mail an Benutzer",
@@ -790,8 +787,7 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 "watchlistsub"	=> "(für Benutzer \"$1\")",
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
 "watchnologin"	=> "Sie sind nicht angemeldet",
-"watchnologintext"	=> "Sie müssen <a href=\"" .
-  "{{localurle:Spezial:Userlogin}}\">angemeldet</a>
+"watchnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet]]
 sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
 "addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer <a href=\"" .
@@ -974,7 +970,7 @@ In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.
 "movearticle"	=> "Artikel verschieben",
 "movenologin"   => "Sie sind nicht angemeldet",
 "movenologintext" => "Sie müssen ein registrierter Benutzer und
-<a href=\"{{localurle:Special:Userlogin}}\">angemeldet</a> sein,
+[[Special:Userlogin|angemeldet]] sein,
 um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",

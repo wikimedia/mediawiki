@@ -423,8 +423,7 @@ $2 Llista redireccions   Cerca $3 $9",
 #
 "preferences"	=> "Preferències",
 "prefsnologin" => "No heu entrat",
-"prefsnologintext"	=> "Has haver <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">entrat</a>
+"prefsnologintext"	=> "Has haver [[Especial:Userlogin|entrat]]
 per seleccionar preferències d'usuari.",
 "prefslogintext" => "Heu entrat amb el nom \"$1\".
 El vostre número d'identificació intern és $2.",
@@ -499,8 +498,7 @@ Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió re
 "reupload"		=> "Carrega de nou",
 "reuploaddesc"	=> "Torna al formulari per pujar.",
 "uploadnologin" => "No heu iniciat una sessió",
-"uploadnologintext"	=> "Deveu haver <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">entrat</a>
+"uploadnologintext"	=> "Deveu haver [[Especial:Userlogin|entrat]]
 per carregar arxius.",
 "uploadfile"	=> "Carrega arxiu",
 "uploaderror"	=> "S'ha produït un error en l'intent de carregar",
@@ -672,11 +670,8 @@ La {{SITENAME}} no està afiliada amb cap d'aquests negocis, i aquest llistat no
 # Email this user
 #
 "mailnologin"	=> "No enviïs la direcció",
-"mailnologintext" => "Heu d'haver <a href=\"" .
-
-  "{{localurle:Especial:Userlogin}}\">entrat</a>
-i tenir una direcció electrònica vàlida en les vostres <a href=\"" .
-  "{{localurle:Especial:Preferences}}\">preferències</a>
+"mailnologintext" => "Heu d'haver [[Especial:Userlogin|entrat]]
+i tenir una direcció electrònica vàlida en les vostres [[Especial:Preferences|preferències]]
 per enviar un correu electrònic a altres usuaris.",
 "emailuser"		=> "Envia correu electrònic a aquest usuari",
 "emailpage"		=> "Correu electrònic a usuari",
@@ -704,8 +699,7 @@ respondre.",
 "watchlistsub"	=> "(per a l'usuari \"$1\")",
 "nowatchlist"	=> "No teniu cap element en el vostre llistat de seguiment.",
 "watchnologin"	=> "No heu iniciat sessió",
-"watchnologintext"	=> "Heu d'<a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">entrar</a>
+"watchnologintext"	=> "Heu d'[[Especial:Userlogin|entrar]]
 per modificar el vostre llistat de seguiment.",
 "addedwatch"	=> "Afegit al llistat de seguiment",
 "addedwatchtext" => "La pàgina \"$1\" ha estat afegida al vostre  <a href=\"" .
@@ -884,8 +878,7 @@ abans de seguir endavant.",
 En aquests casos, haureu de traslladar o barrejar la pàgina manualment si ho desitgeu.",
 "movearticle"	=> "Reanomena pàgina",
 "movenologin"	=> "No sou a dins d'una sessió",
-"movenologintext" => "Heu de ser un usuari registrat i estar<a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">dintre d'una sessió</a>
+"movenologintext" => "Heu de ser un usuari registrat i estar[[Especial:Userlogin|dintre d'una sessió]]
 per reanomenar una pàgina.",
 "newtitle"		=> "A títol nou",
 "movepagebtn"	=> "Reanomena pàgina",

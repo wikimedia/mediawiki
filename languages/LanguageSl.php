@@ -509,8 +509,7 @@ Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta 
 "reupload"		=> "Ponovno naložite",
 "reuploaddesc"	        => "Vrnite se v obrazec za nalaganje.",
 "uploadnologin"         => "Niste vpisani",
-"uploadnologintext"	=> "Za nalaganje datotek morate biti <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">vpisani</a>
+"uploadnologintext"	=> "Za nalaganje datotek morate biti [[Special:Userlogin|vpisani]]
 .",
 "uploadfile"	        => "Naložite datoteko",
 "uploaderror"	        => "Naložite napako",
@@ -669,10 +668,8 @@ Wikipedija ne služi z nobenim od teh poslov in ta spisek ni pokazatelj njihovih
 # Email this user
 #
 "mailnologin"	=> "Ni naslova odpošiljatelja",
-"mailnologintext" => "Morate biti <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">prijavljeni</a>
-in imeti veljaven naslov e-pošte v vaših <a href=\"" .
-  "{{localurle:Special:Preferences}}\">nastavitvah</a>,
+"mailnologintext" => "Morate biti [[Special:Userlogin|prijavljeni]]
+in imeti veljaven naslov e-pošte v vaših [[Special:Preferences|nastavitvah]],
 da lahko pošljete pošto drugim uporabnikom.",
 "emailuser"	=> "Pošlji e-pošto temu uporabniku",
 "emailpage"	=> "Pošlji e-pošto uporabniku",
@@ -695,8 +692,7 @@ Naslov e-pošte, ki ste jo vnesli v vaših uporabniških nastavitvah, bo v
 "watchlistsub"	=> "(za uporabnika \"$1\")",
 "nowatchlist"	=> "Na vašem spisku nadzorov ni nobenega članka.",
 "watchnologin"	=> "Niste prijavljeni",
-"watchnologintext" => "Morate biti <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">prijavljeni</a>
+"watchnologintext" => "Morate biti [[Special:Userlogin|prijavljeni]]
 za spremembo seznama nadzorov.",
 "addedwatch"	=> "Dodano k seznamu nadzorov",
 "addedwatchtext" => "Stran \"$1\" je dodana na vaš <a href=\"" .
@@ -859,8 +855,7 @@ prosimo bodite prepričani, da razumete posledice tega, preden nadaljujete.",
 V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite.",
 "movearticle"	=> "Prestavite stran",
 "movenologin"	=> "Niste vpisani",
-"movenologintext" => "Za prestavitev strani morate biti zabeležen uporabnik in <a href=\"" .
-  "{{localurle:Special:Userlogin}}\">prijavljeni</a>.",
+"movenologintext" => "Za prestavitev strani morate biti zabeležen uporabnik in [[Special:Userlogin|prijavljeni]].",
 "newtitle"	=> "Na nov naslov",
 "movepagebtn"	=> "Prestavite stran",
 "pagemovedsub"	=> "Prstavitev uspela",

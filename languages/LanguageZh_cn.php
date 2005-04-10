@@ -483,8 +483,7 @@ alt=\"Google\" align=\"middle\"></a>
 #
 "preferences"	=> "参数设置",
 "prefsnologin" => "还未登录",
-"prefsnologintext"	=> "您必须先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登录</a>才能设置个人参数。",
+"prefsnologintext"	=> "您必须先[[Special:Userlogin|登录]]才能设置个人参数。",
 "prefslogintext" => "你已经以\"$1\"的身份登录。
 你的内部ID是$2。",
 "prefsreset"	=> "参数重新设置。",
@@ -558,8 +557,7 @@ alt=\"Google\" align=\"middle\"></a>
 "reupload"		=> "重新上载",
 "reuploaddesc"	=> "返回上载表单。",
 "uploadnologin" => "未登录",
-"uploadnologintext"	=> "您必须先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登录</a>
+"uploadnologintext"	=> "您必须先[[Special:Userlogin|登录]]
 才能上载文件。",
 "uploadfile"	=> "上载文件",
 "uploaderror"	=> "上载错误",
@@ -717,10 +715,8 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 # Email this user
 #
 "mailnologin"	=> "无电邮地址",
-"mailnologintext" => "您必须先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登录</a>
-并在<a href=\"" .
-  "{{localurle:Special:Preferences}}\">参数设置</a>
+"mailnologintext" => "您必须先[[Special:Userlogin|登录]]
+并在[[Special:Preferences|参数设置]]
 中有一个有效的e-mail地址才可以电邮其他用户。",
 "emailuser"		=> "E-mail该用户",
 "emailpage"		=> "E-mail用户",
@@ -743,8 +739,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "watchlistsub"	=> "(用户\"$1\")",
 "nowatchlist"	=> "您的监视列表为空。",
 "watchnologin"	=> "未登录",
-"watchnologintext"	=> "您必须先<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登录</a>
+"watchnologintext"	=> "您必须先[[Special:Userlogin|登录]]
 才能更改您的监视列表",
 "addedwatch"	=> "加入到监视列表",
 "addedwatchtext" => "本页（“$1”）已经被加入到您的<a href=\"" .
@@ -920,8 +915,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 在这些情况下，您在必要时必须手工移动或合并页面。",
 "movearticle"	=> "移动页面",
 "movenologin"	=> "未登录",
-"movenologintext" => "您必须是一名登记用户并且<a href=\"" .
-  "{{localurle:Special:Userlogin}}\">登录</a>
+"movenologintext" => "您必须是一名登记用户并且[[Special:Userlogin|登录]]
 后才可移动一个页面。",
 "newtitle"		=> "新标题",
 "movepagebtn"	=> "移动页面",

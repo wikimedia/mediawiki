@@ -437,7 +437,7 @@ containing all of the search terms will appear in the result)." */,
 "preferences"	=> "オプション" /* "Preferences" */,
 "prefsnologin" => "ログインしていません" /* "Not logged in" */,
 "prefsnologintext"	=>  "ユーザーオプションを変更するためには、
-<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
+[[Special:Userlogin|ログイン]]している必要があります。"
 /* "You must be <a href=\"" .
   "{{localurle:Special:Userlogin}}\">logged in</a>
 to set user preferences." */,
@@ -516,9 +516,9 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "reuploaddesc"	=> "アップロードのフォームへ戻る Return to the upload form.",
 "uploadnologin" => "ログインしていません、 Not logged in",
 "uploadnologintext"	=> "ユーザーオプションを変更するためには、
-<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。
+[[Special:Userlogin|ログイン]]している必要があります。
 
-You must be <a href=\"{{localurle:Special:Userlogin}}\">logged in</a>
+You must be [[Special:Userlogin|logged in]]
 to upload files.",
 "uploadfile"	=> "ファイルのアップロード  Upload file",
 "uploaderror"	=> "アップロード エラー  Upload error",
@@ -700,9 +700,9 @@ created and by whom, and anything else you may know about it." */,
 #
 "mailnologin"	=> "送信先のアドレスがありません。" /* No send address"*/,
 "mailnologintext" => "ログインしていません。メールを送信するためには、
-あなたの電子メールアドレスを<a href=\"{{localurle:Special:Userlogin}}\">ユーザーオプション</a>
+あなたの電子メールアドレスを[[Special:Userlogin|ユーザーオプション]]
 で指定し、
-<a href=\"{{localurle:Special:Userlogin\">ログイン</a>している必要があります。"
+[[Special:Userlogin|ログイン]]している必要があります。"
 /* You must be <a href=\"" .
   "{{localurle:Special:Userlogin}}\">logged in</a>
 and have a valid e-mail address in your <a href=\"" .
@@ -739,7 +739,7 @@ or has chosen not to receive e-mail from other users." */,
 "nowatchlist"	=> "あなたのウォッチリストは空です。" /* "You have no items on your watchlist." */,
 "watchnologin"	=> "ログインしていません" /* "Not logged in" */,
 "watchnologintext"	=> "ウォッチリストを変更するためには、
-<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
+[[Special:Userlogin|ログイン]]している必要があります。"
 /* "You must be <a href=\"" .
   "{{localurle:Special:Userlogin}}\">logged in</a>
 to modify your watchlist." */,
@@ -917,7 +917,7 @@ proceeding." */,
 "movearticle"	=> "ページの移動",
 "movenologin"	=> "ログインしていません",
 "movenologintext" => "この機能を利用するためには、ユーザー登録をして、
-<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要が
+[[Special:Userlogin|ログイン]]している必要が
 あります。",
 "newtitle"		=> "新しいページへ" /* "To new title" */,
 "movepagebtn"	=> "ページを移動" /* "Move page" */,

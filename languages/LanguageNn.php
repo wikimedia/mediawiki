@@ -583,7 +583,7 @@ Du kan <b><a href="$1" class="new">laga ei side med denne namnet</a></b>.
 #
 'preferences'	        => 'Innstillingar',
 'prefsnologin'          => 'Ikkje innlogga',
-'prefsnologintext'	=> 'Du må vera [[{{ns:-1}}:Userlogin|innlogga]] for å endre brukarinnstillingane.',
+'prefsnologintext'	=> 'Du må vera [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane.',
 'prefslogintext'        => 'Du er innlogga som "$1". Det interne ID-nummeret ditt er $2.
 
 Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstillingane.',
@@ -692,7 +692,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'reupload'		=> 'Nytt forsøk',
 'reuploaddesc'	        => 'Attende til opplastingsskjemaet.',
 'uploadnologin'         => 'Ikkje innlogga',
-'uploadnologintext'	=> 'Du lyt vera [[{{ns:-1}}:Userlogin|innlogga]] for å kunna laste opp filer.',
+'uploadnologintext'	=> 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna laste opp filer.',
 'uploadfile'	        => 'Last opp bilete, rekneark, dokument, osb.',
 'uploaderror'	        => 'Feil under opplasting av fil',
 'uploadtext'	        => 'Denne sida kan brukast til å laste opp filer.
@@ -860,7 +860,7 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 # Email this user
 #
 'mailnologin'	        => 'Inga avsendaradresse',
-'mailnologintext'       => 'Du lyt vera [[{{ns:-1}}:Userlogin|innlogga]] og ha ei gyldig e-postadresse sett i [[{{ns:-1}}:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
+'mailnologintext'       => 'Du lyt vera [[Special:Userlogin|innlogga]] og ha ei gyldig e-postadresse sett i [[{{ns:-1}}:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser'		=> 'Send e-post åt denne brukaren',
 'emailpage'		=> 'Send e-post åt brukar',
 'emailpagetext'	        => 'Om denne brukaren har gjeve ei gyldig e-postadresse i brukarinnstillingane sine, vil dette skjemaet sende ei enkel melding. E-postadressa di frå brukarinnstillingane dine vil vera synleg i "Frå"-feltet i denne e-posten, slik at mottakaren kan svara deg.',
@@ -882,7 +882,7 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 'watchlistsub'	        => '(for brukar "$1")',
 'nowatchlist'	        => 'Du har ikkje noko i overvakingslista di.',
 'watchnologin'	        => 'Ikkje innlogga',
-'watchnologintext'	=> 'Du lyt vera <a href="{{localurl:Spesial:Userlogin}}">innlogga</a> for å kunna endre overvakingslista.',
+'watchnologintext'	=> 'Du lyt vera [[Spesial:Userlogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'	        => 'Lagt til overvakingslista',
 'addedwatchtext'        => 'Sida "$1" er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera \'\'\'utheva\'\'\' i [[Special:Recentchanges|siste endringar]] lista for å gjera deg merksam på henne.
 
@@ -1111,7 +1111,7 @@ Merk at sida \'\'\'ikkje\'\'\' kan flyttast dersom det allereie finst ei side me
 I desse falla lyt du flytte eller flette saman sida manuelt. Om det ikkje er mogleg for deg å gjera dette kan du kontakte ein [[{{ns:4}}:Administratorar|administrator]], men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på redigeringshistorikken.',
 'movearticle'	        => 'Flytt side',
 'movenologin'	        => 'Ikkje innlogga',
-'movenologintext'       => 'Du lyt vera registrert brukar og vera [[{{ns:-1}}:Userlogin|innlogga]] for å flytte ei side.',
+'movenologintext'       => 'Du lyt vera registrert brukar og vera [[Special:Userlogin|innlogga]] for å flytte ei side.',
 'newtitle'		=> 'Til ny tittel',
 'movepagebtn'	        => 'Flytt side',
 'pagemovedsub'	        => 'Flyttinga er gjennomført',

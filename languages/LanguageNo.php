@@ -486,8 +486,7 @@ oppgradert programvaren. I mellomtiden kan du søke via Google:</p>",
 #
 "preferences"	=> "Innstillinger",
 "prefsnologin" => "Ikke logget inn",
-"prefsnologintext"	=> "Du må være <a href=\"" .
-  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
+"prefsnologintext"	=> "Du må være [[Spesial:Userlogin|logget inn]]
 for å endre brukerinnstillingene.",
 "prefslogintext" => "Du logget inn som \"$1\".
 Ditt interne ID-nummer er $2.
@@ -560,8 +559,7 @@ siste <strong>$2</strong> dagene.",
 "reupload"		=> "Last opp fil igjen",
 "reuploaddesc"	=> "Tilbake til skjemaet for å laste opp filer.",
 "uploadnologin" => "Ikke logget inn",
-"uploadnologintext"	=> "Du må være <a href=\"" .
-  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
+"uploadnologintext"	=> "Du må være [[Spesial:Userlogin|logget inn]]
 for å kunne laste opp filer.",
 "uploadfile"	=> "Last opp filer",
 "uploaderror"	=> "Feil under opplasting av fil",
@@ -753,10 +751,8 @@ og denne listen skal ikke sees på som en anbefaling av disse.",
 # Email this user
 #
 "mailnologin"	=> "Ingen avsenderadresse",
-"mailnologintext" => "Du må være <a href=\"" .
-  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
-og ha en gyldig e-postadresse satt i <a href=\"" .
-  "{{localurle:Spesial:Preferences}}\">brukerinnstillingene</a>
+"mailnologintext" => "Du må være [[Spesial:Userlogin|logget inn]]
+og ha en gyldig e-postadresse satt i [[Spesial:Preferences|brukerinnstillingene]]
 for å sende e-post til andre brukere.",
 "emailuser"		=> "E-post til denne brukeren",
 "emailpage"		=> "E-post til bruker",
@@ -782,8 +778,7 @@ eller har valgt å ikke motta e-post fra andre brukere.",
 "watchlistsub"	=> "(for bruker \"$1\")",
 "nowatchlist"	=> "Du har ingenting i overvåkningslisten.",
 "watchnologin"	=> "Ikke logget inn",
-"watchnologintext"	=> "Du må være <a href=\"" .
-  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
+"watchnologintext"	=> "Du må være [[Spesial:Userlogin|logget inn]]
 for å kunne endre overvåkningslisten.",
 "addedwatch"	=> "Tilføyd til overvåkningslisten",
 "addedwatchtext" => "Siden \"$1\" er tilføyd <a href=\"" .
@@ -1007,8 +1002,7 @@ vil automatisk bli flyttet med siden '''med mindre:'''
 I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt.",
 "movearticle"	=> "Flytt side",
 "movenologin"	=> "Ikke logget inn",
-"movenologintext" => "Du må være registrert bruker og være <a href=\"" .
-  "{{localurle:Spesial:Userlogin}}\">logget på</a>
+"movenologintext" => "Du må være registrert bruker og være [[Spesial:Userlogin|logget på]]
 for å flytte en side.",
 "newtitle"		=> "Til ny tittel",
 "movepagebtn"	=> "Flytt side",
