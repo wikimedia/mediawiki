@@ -905,6 +905,7 @@ class Article {
 		$ttl = $this->mTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
 		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
+		$now = wfTimestampNow();
 
 		$dbw =& wfGetDB( DB_MASTER );
 
