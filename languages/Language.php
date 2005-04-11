@@ -577,21 +577,17 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'createaccountmail'	=> 'by email',
 'badretype'		=> 'The passwords you entered do not match.',
 'userexists'	=> 'The user name you entered is already in use. Please choose a different name.',
-'youremail'		=> 'Your email**',
-'yourrealname'		=> 'Your real name*',
+'youremail'		=> 'Your email²',
+'yourrealname'		=> 'Your real name¹',
 'yourlanguage'	=> 'Interface language',
 'yourvariant'  => 'Language variant',
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'		=> "Fields marked with stars (*, **) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
-'prefs-help-email' 	=> '** <strong>Email</strong> (optional): Enables others to contact you through your user or user_talk page without the need of revealing your
-email address. It also allows the wiki to sent you a temporary password in case you forgot your current one.',
 'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
-'prefs-help-realname' 	=> '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.',
-'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
-* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
-email address to them, and it can be used to send you a new password if you forget it.',
+'prefs-help-realname' 	=> '¹ Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'	=> 'Login error',
+'prefs-help-email'      => '² Email (optional): Enables others to contact you through your user or user_talk page without the need of revealing your',
 'nocookiesnew'	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
 'nocookieslogin'	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 'noname'		=> 'You have not specified a valid user name.',
