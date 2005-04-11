@@ -21,7 +21,6 @@ function onloadhook () {
     unhidetzbutton();
     tabbedprefs();
     akeytt();
-    searchfocus();
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
 else if (window.attachEvent) window.attachEvent("onload",onloadhook);
@@ -392,10 +391,4 @@ function akeytt() {
             }
         }
     }
-}
-
-function searchfocus() {
-	// @bug 1864, autofocus on the searchform for MonoBook
-	// The former search is <form name="searchform" and the latter is <input name="search"
-	document.searchform.search.focus();
 }
