@@ -608,8 +608,8 @@ class PreferencesForm {
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 		
-		# Date format
-		#
+                # Date format
+                #
 		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat</legend>\n" );
 			foreach($dateopts as $key => $option) {
@@ -619,11 +619,24 @@ class PreferencesForm {
 			}
 			$wgOut->addHTML( "</fieldset>\n\n");
 		}
-		
-		# Textbox rows, cols
+
+		# Time zone
 		#
+		
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
+		 
+		$wgOut->addHTML( "<fieldset>
+			<legend>$timezone</legend>
+			<div><b>$tzServerTime:</b>" .  $nowserver . "</div>
+			<div><b>$ltz:</b> $nowlocal</div>
+			<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' /></label></div>
+			<div><input type=\"button\" value=\"$tzGuess\" onclick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
+			<div class='prefsectiontip'>* {$tzt}</div>
+		</fieldset>\n\n" );		
+		
+		# Editing
+		#
 		$wgOut->addHTML( "<fieldset>
 	<legend>$tbs</legend>\n
 		<div>
@@ -638,17 +651,8 @@ class PreferencesForm {
 		$this->getToggle( "minordefault" ) . 
 		$this->getToggle( "externaleditor" ) .
 		"
-	</fieldset>
+	</fieldset>");
 	
-	<fieldset>
-		<legend>$timezone</legend>
-		<div><b>$tzServerTime:</b> $nowserver</div>
-		<div><b>$ltz:</b> $nowlocal</div>
-		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' /></label></div>
-		<div><input type=\"button\" value=\"$tzGuess\" onclick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
-		<div class='prefsectiontip'>* {$tzt}</div>
-	</fieldset>\n\n" );
-
 		$shownumberswatching = ($wgRCShowWatchingUsers) ? $this->getToggle('shownumberswatching') : '';
 
 		$wgOut->addHTML( "
