@@ -11,7 +11,7 @@ ALTER TABLE /*$wgDBprefix*/oldimage ADD (
   oi_width int(5) NOT NULL default 0,
   oi_height int(5) NOT NULL default 0,
   oi_bits int(3) NOT NULL default 0,
-  oi_type int(3) NOT NULL default 0,
+  oi_type int(3) NOT NULL default 0
 );
 
 
