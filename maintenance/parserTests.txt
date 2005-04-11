@@ -276,7 +276,7 @@ Definition list with URL link
 !! input
 ; http://example.com/ : definition
 !! result
-<dl><dt> <a href="http://example.com/" class='external free' rel="nofollow">http://example.com/</a>&nbsp;</dt><dd> definition
+<dl><dt> <a href="http://example.com/" class='external free' title="http://example.com/" rel="nofollow">http://example.com/</a>&nbsp;</dt><dd> definition
 </dd></dl>
 
 !! end
@@ -296,7 +296,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Wikipedia:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="http://en.wikipedia.org/wiki/FAQ" class='extiw'>Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="http://en.wikipedia.org/wiki/FAQ" class='extiw' title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -307,7 +307,7 @@ Definition list with wikilink containing colon
 !! input
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! result
-<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' rel="nofollow">news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' title="news:alt.wikipedia.rox" rel="nofollow">news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
 </dd></dl>
 
 !! end
@@ -317,7 +317,7 @@ Malformed definition list with colon
 !! input
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! result
-<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' rel="nofollow">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' title="news:alt.wikipedia.rox" rel="nofollow">news:alt.wikipedia.rox</a>&nbsp;&mdash; don't crash or enter an infinite loop
 </dt></dl>
 
 !! end
@@ -341,7 +341,7 @@ External links: non-bracketed
 !! input
 Non-bracketed: http://example.com
 !! result
-<p>Non-bracketed: <a href="http://example.com" class='external free' rel="nofollow">http://example.com</a>
+<p>Non-bracketed: <a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a>
 </p>
 !! end
 
@@ -377,7 +377,7 @@ External links: dollar sign in URL
 !! input
 http://example.com/1$2345
 !! result
-<p><a href="http://example.com/1$2345" class='external free' rel="nofollow">http://example.com/1$2345</a>
+<p><a href="http://example.com/1$2345" class='external free' title="http://example.com/1$2345" rel="nofollow">http://example.com/1$2345</a>
 </p>
 !! end
 
@@ -413,7 +413,7 @@ Link to non-http image, no img tag
 !! input
 Link to non-http image, no img tag: ftp://example.com/test.jpg
 !! result
-<p>Link to non-http image, no img tag: <a href="ftp://example.com/test.jpg" class='external free' rel="nofollow">ftp://example.com/test.jpg</a>
+<p>Link to non-http image, no img tag: <a href="ftp://example.com/test.jpg" class='external free' title="ftp://example.com/test.jpg" rel="nofollow">ftp://example.com/test.jpg</a>
 </p>
 !! end
 
@@ -422,7 +422,7 @@ External links: terminating separator
 !! input
 Terminating separator: http://example.com/thing,
 !! result
-<p>Terminating separator: <a href="http://example.com/thing" class='external free' rel="nofollow">http://example.com/thing</a>,
+<p>Terminating separator: <a href="http://example.com/thing" class='external free' title="http://example.com/thing" rel="nofollow">http://example.com/thing</a>,
 </p>
 !! end
 
@@ -431,7 +431,7 @@ External links: intervening separator
 !! input
 Intervening separator: http://example.com/1,2,3
 !! result
-<p>Intervening separator: <a href="http://example.com/1,2,3" class='external free' rel="nofollow">http://example.com/1,2,3</a>
+<p>Intervening separator: <a href="http://example.com/1,2,3" class='external free' title="http://example.com/1,2,3" rel="nofollow">http://example.com/1,2,3</a>
 </p>
 !! end
 
@@ -458,7 +458,7 @@ External links: URL in text
 !! input
 URL in text: [http://example.com http://example.com]
 !! result
-<p>URL in text: <a href="http://example.com" class='external free' rel="nofollow">http://example.com</a>
+<p>URL in text: <a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a>
 </p>
 !! end
 
@@ -476,7 +476,7 @@ External links: raw ampersand
 !! input
 Old &amp; use: http://x&y
 !! result
-<p>Old &amp; use: <a href="http://x&amp;y" class='external free' rel="nofollow">http://x&amp;y</a>
+<p>Old &amp; use: <a href="http://x&amp;y" class='external free' title="http://x&amp;y" rel="nofollow">http://x&amp;y</a>
 </p>
 !! end
 
@@ -485,7 +485,7 @@ External links: encoded ampersand
 !! input
 Old &amp; use: http://x&amp;y
 !! result
-<p>Old &amp; use: <a href="http://x&amp;y" class='external free' rel="nofollow">http://x&amp;y</a>
+<p>Old &amp; use: <a href="http://x&amp;y" class='external free' title="http://x&amp;y" rel="nofollow">http://x&amp;y</a>
 </p>
 !! end
 
@@ -512,7 +512,7 @@ External links: www.jpeg.org (bug 554)
 !! input
 http://www.jpeg.org
 !!result
-<p><a href="http://www.jpeg.org" class='external free' rel="nofollow">http://www.jpeg.org</a>
+<p><a href="http://www.jpeg.org" class='external free' title="http://www.jpeg.org" rel="nofollow">http://www.jpeg.org</a>
 </p>
 !! end
 
@@ -539,7 +539,7 @@ BUG 289: ">"-token in URL-tail
 !! input
 http://www.example.com/<hello>
 !! result
-<p><a href="http://www.example.com/" class='external free' rel="nofollow">http://www.example.com/</a>&lt;hello&gt;
+<p><a href="http://www.example.com/" class='external free' title="http://www.example.com/" rel="nofollow">http://www.example.com/</a>&lt;hello&gt;
 </p>
 !!end
 
@@ -548,7 +548,7 @@ BUG 289: literal ">"-token in URL-tail
 !! input
 http://www.example.com/<b>html</b>
 !! result
-<p><a href="http://www.example.com/" class='external free' rel="nofollow">http://www.example.com/</a><b>html</b>
+<p><a href="http://www.example.com/" class='external free' title="http://www.example.com/" rel="nofollow">http://www.example.com/</a><b>html</b>
 </p>
 !!end
 
@@ -575,7 +575,7 @@ BUG 289: literal double quote at end of URL
 !! input
 http://www.example.com/"hello"
 !! result
-<p><a href="http://www.example.com/" class='external free' rel="nofollow">http://www.example.com/</a>"hello"
+<p><a href="http://www.example.com/" class='external free' title="http://www.example.com/" rel="nofollow">http://www.example.com/</a>"hello"
 </p>
 !!end
 
@@ -593,7 +593,7 @@ External links: invalid character
 !! input
 [http://www.example.com  test]
 !! result
-<p>[<a href="http://www.example.com" class='external free' rel="nofollow">http://www.example.com</a>  test]
+<p>[<a href="http://www.example.com" class='external free' title="http://www.example.com" rel="nofollow">http://www.example.com</a>  test]
 </p>
 !! end
 
@@ -987,7 +987,7 @@ Inline interwiki link
 !! input
 [[MeatBall:SoftSecurity]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw'>MeatBall:SoftSecurity</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw' title="MeatBall:SoftSecurity">MeatBall:SoftSecurity</a>
 </p>
 !! end
 
