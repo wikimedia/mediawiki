@@ -179,8 +179,8 @@ class Profiler
 	function getFunctionReport() {		
 		$width = 140;
 		$nameWidth = $width - 65;
-		$format =      "%-{$nameWidth}s %6d %9.3f %9.3f %9.3f%% %6d (%9.3f -%9.3f) [%d]\n";
-		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %6s %14s  %14s %9s\n";
+		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
+		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %9s %14s   %14s %9s\n";
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 
 			'Mem', 'Min', 'Max', 'Overhead' );
