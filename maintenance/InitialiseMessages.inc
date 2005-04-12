@@ -154,7 +154,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	# Decide whether or not each one needs to be overwritten
 	$existingTitles = array();
 	while ( $row ) {
-		if ( $row->cur_user_text != $username ) {
+		if ( $row->cur_user_text != $username && $row->cur_user_text != 'Template namespace initialisation script' ) {
 			$existingTitles[$row->cur_title] = 'keep';
 		} else {
 			$existingTitles[$row->cur_title] = 'chuck';
