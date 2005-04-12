@@ -2,6 +2,7 @@
 /**
  * Contain the blockcache class
  * @package MediaWiki
+ * @package Cache
  */
 
 /**
