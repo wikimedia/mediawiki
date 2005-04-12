@@ -1151,6 +1151,14 @@ class Parser
 			
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
+				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
+				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
+				# the real problem is with the $e1 regex
+				# See bug 1300.
+				if (preg_match( "/^\](.*)/", $m[3], $n ) ) {
+					$text .= ']'; # so that replaceExternalLinks($text) works later
+					$m[3] = $n[1];
+				}
 				# fix up urlencoded title texts
 				if(preg_match('/%/', $m[1] )) $m[1] = urldecode($m[1]);
 				$trail = $m[3];
