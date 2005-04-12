@@ -1068,7 +1068,7 @@ function wfIsBadImage( $name ) {
 
 	$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
 	foreach ( $lines as $line ) {
-		if ( preg_match( '/^\*\s*\[\[:(' . $wgLang->getNsText( NS_IMAGE ) . ':[^\]]*)\]\]/', $line, $m ) ) {
+		if ( preg_match( '/^\*\s*\[\[:(' . $wgLang->getNsText( NS_IMAGE ) . ':.*(?=]]))\]\]/', $line, $m ) ) {
 			$t = Title::newFromText( $m[1] );
 			if ( $t->getDBkey() == $name ) {
 				return true;
