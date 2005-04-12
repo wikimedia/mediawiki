@@ -64,9 +64,37 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage() {
-		global $wgUser, $wgTitle, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
+		global $wgUser, $wgTitle, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol,
+		       $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
+				
+	 	# If external diffs are enabled both globally and for the user,
+		# we'll use the application/x-external-editor interface to call
+		# an external diff tool like kompare, kdiff3, etc.
+		if($wgUseExternalEditor) {
+			global $wgInputEncoding,$wgServer,$wgScript;
+			$wgOut->disable();
+			header ( "Content-type: application/x-external-editor; charset=".$wgInputEncoding );
+			$url1=$wgTitle->getFullURL("action=raw&oldid=".$this->mOldid);
+			$url2=$wgTitle->getFullURL("action=raw&oldid=".$this->mNewid);
+			$control=<<<CONTROL
+[Process]
+Type=Diff text
+Engine=MediaWiki
+Script={$wgServer}{$wgScript}
+
+[File]
+Extension=wiki
+URL=$url1
+
+[File 2]
+Extension=wiki
+URL=$url2
+CONTROL;
+			echo($control);
+			return;
+		}
 
 		# mOldid is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V

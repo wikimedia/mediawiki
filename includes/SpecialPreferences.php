@@ -668,6 +668,9 @@ class PreferencesForm {
 			<label>$tbr: <input type='text' name=\"wpRows\" value=\"{$this->mRows}\" size='6' /></label>
 			<label>$tbc: <input type='text' name=\"wpCols\" value=\"{$this->mCols}\" size='6' /></label>
 		</div> " .
+		$this->getToggle( "editsection" ) .
+		$this->getToggle( "editsectiononrightclick" ) .
+		$this->getToggle( "editondblclick" ) .
 		$this->getToggle( "editwidth" ) .
 		$this->getToggle( "showtoolbar" ) .
 		$this->getToggle( "previewonfirst" ) .
@@ -675,6 +678,7 @@ class PreferencesForm {
 		$this->getToggle( "watchdefault" ) .
 		$this->getToggle( "minordefault" ) . 
 		$this->getToggle( "externaleditor" ) .
+		$this->getToggle( "externaldiff" ) .
 		"
 	</fieldset>");
 	
@@ -684,7 +688,9 @@ class PreferencesForm {
 	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
 		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
 		$this->getToggle( "hideminor" ) . $shownumberswatching .
-		$this->getToggle( "usenewrc" ) . $this->getToggle('showupdated', wfMsg('updatedmarker')) .
+		$this->getToggle( "usenewrc" ) . 
+		$this->getToggle( "rcusemodstyle" ) .
+		$this->getToggle('showupdated', wfMsg('updatedmarker')) .
 		"<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
 	</fieldset>
 	

@@ -11,7 +11,7 @@
  * @package MediaWiki
  *
  * Support for external editors to modify both text and files
- * in external application. It works as follows: MediaWiki
+ * in external applications. It works as follows: MediaWiki
  * sends a meta-file with the MIME type 'application/x-external-editor'
  * to the client. The user has to associate that MIME type with
  * a helper application (a reference implementation in Perl
@@ -36,7 +36,11 @@ class ExternalEdit {
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;
 		header ( "Content-type: application/x-external-editor; charset=".$this->mCharset );
-		if(!isset($this->mMode)) {
+		
+		# $type can be "Edit text", "Edit file" or "Diff text" at the moment
+		# See the protocol specifications at [[m:Help:External editors/Tech]] for
+		# details.
+		if(!isset($this->mMode)) {		
 			$type="Edit text";		
 			$url=$this->mTitle->getFullURL("action=edit&internaledit=true");
 			# *.wiki file extension is used by some editors for syntax 
@@ -44,12 +48,11 @@ class ExternalEdit {
 			$extension="wiki"; 
 		} elseif($this->mMode=="file") {
 			$type="Edit file"; 
-			$url = Image::newFromTitle( $this->mTitle );
-			$url = $wgServer . $url->url; # php sucks
-			
+			$image = Image::newFromTitle( $this->mTitle );
+			$url = $wgServer . $image->getURL();
 			$extension=substr($name, $pos);
 		}					 
-		$control="
+		$control = <<<CONTROL
 [Process]
 Type=$type
 Engine=MediaWiki
@@ -59,7 +62,8 @@ Path={$wgScriptPath}
 
 [File]
 Extension=$extension
-URL=$url";
+URL=$url
+CONTROL;
 		echo $control;
 	}
 }
