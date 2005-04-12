@@ -43,8 +43,8 @@ Primary source files/objects:
 
   Article
     Encapsulates access to the "cur" table of the database. The
-    object represents a Wikipedia article, and maintains state
-    such as text (in Wikitext format), flags, etc.
+    object represents a an article, and maintains state such as
+    text (in Wikitext format), flags, etc.
 
   Skin
     Encapsulates a "look and feel" for the wiki. All of the

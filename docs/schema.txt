@@ -5,7 +5,7 @@ should always be "tables.sql" in the maintenance directory,
 which is called from the installation script. Here are a
 few highlights that may be out of date:
 
-user    (Wikipedia users)
+user    (MediaWiki users)
 
   user_id
     integer, primary key, autoincrement
@@ -31,7 +31,7 @@ user    (Wikipedia users)
 
 
 
-cur     (Wikipedia "current" articles)
+cur     (MediaWiki "current" articles)
 
   cur_id
     integer, primary key, autoincrement
