@@ -34,7 +34,8 @@ $hosts = array(
 	'207.142.131.244',
 	'207.142.131.249',
 	'207.142.131.250',
-
+	'207.142.131.216',
+	'10.0.%',
 );
 
 $databases = array(
@@ -43,6 +44,9 @@ $databases = array(
 	'%wikiquote',
 	'%wiktionary',
 	'%wikisource',
+	'%wikinews',
+	'%wikiversity',
+	'%wikimedia',
 );
 
 foreach( $hosts as $host ) {
