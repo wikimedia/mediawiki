@@ -2059,19 +2059,9 @@ class Language {
 	# want to output numbers using script-appropriate characters: override this
 	# function with a translator. See LanguageAr.php for an example.
 	function formatNum( $number ) {
-		return $this->commafy($number);
+		return $number;
 	}
-	
-	/**
-	 * Adds commas to a given number
-	 *
-	 * @param mixed $_
-	 * @return string
-	 */
-	function commafy($_) {
-		return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
-	}
-		
+
 	function listToText( $l ) {
 		$s = '';
 		$m = count($l) - 1;
