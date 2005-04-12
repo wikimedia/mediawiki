@@ -1070,6 +1070,19 @@ $wgImageLimits = array (
 	array(1280,1024),
 	array(10000,10000) );
 
+/**
+ * Adjust thumbnails on image pages according to a user setting. In order to
+ * reduce disk usage, the values can only be selected from a list. This is the
+ * list of settings the user can choose from:
+ */
+$wgThumbLimits = array(
+	120,
+	150,
+	180,
+	200,
+	250,
+	300
+);
 
 /** Navigation links for the user sidebar.
  * 'text' is the name of the MediaWiki message that contains the label of this link
