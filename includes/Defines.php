@@ -12,6 +12,7 @@ define( 'DBO_NOBUFFER', 2 );
 define( 'DBO_IGNORE', 4 );
 define( 'DBO_TRX', 8 );
 define( 'DBO_DEFAULT', 16 );
+define( 'DBO_PERSISTENT', 32 );
 /**#@-*/
 
 /**#@+
