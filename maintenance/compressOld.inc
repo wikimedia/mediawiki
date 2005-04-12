@@ -54,7 +54,8 @@ function compressPage( $row ) {
 define( 'LS_INDIVIDUAL', 0 );
 define( 'LS_CHUNKED', 1 );
 
-function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, $endDate )
+function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, 
+  $endDate, $beginTitle, $exclude_ns0, $queryExtra )
 {
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
@@ -62,7 +63,32 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$dbw =& wfGetDB( DB_MASTER );
 
 	# First get a list of all pages
-	$pageRes = $dbw->select( 'cur', array('cur_namespace', 'cur_title'), false, $fname );
+	
+	if ( $beginTitle ) {
+		$cond = "cur_title >= " . $dbw->addQuotes( $beginTitle );
+		print  "Starting from $beginTitle\n";
+		if ( $exclude_ns0 ) {
+			print "Excluding main namespace\n";
+			$cond .= ' AND cur_namespace<>0';
+		}
+
+	} else {
+		if ( $exclude_ns0 ) {
+			print "Excluding main namespace\n";
+			$cond = 'cur_namespace<>0';
+		} else {
+			$cond = false;
+		}
+	}
+
+	if ( $queryExtra ) {
+		if ( strlen($cond) > 0 ) $cond .= " AND ";
+                $cond .= $queryExtra;
+	}
+	
+	print "Starting article selection query $cond ...\n";
+	$pageRes = $dbw->select( 'cur', array('cur_namespace', 'cur_title'), 
+		$cond, $fname, array( 'ORDER BY' => 'cur_title' ) );
 
 	# For each of those, get a list of revisions which fit the criteria
 	# No recompression, use a condition on old_flags
@@ -84,6 +110,9 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$revLoadOptions = array();
 	}
 
+	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
+	$totalMatchingRevisions = 0;
+	$masterPos = false;
 	while ( $pageRow = $dbw->fetchObject( $pageRes ) ) {
 		# Display progress
 		$titleObj = Title::makeTitle( $pageRow->cur_namespace, $pageRow->cur_title );
@@ -100,19 +129,28 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			$revs[] = $revRow;
 		}
 		
-		if ( count( $revs ) < 2) {
+                $revCount = count( $revs );     #Jamesday: this may be slow when there are many and that is also a time-sensitive situation.
+		#print $revCount;
+		$totalMatchingRevisions = $totalMatchingRevisions + $revCount;
+		if ( $revCount < 2) {
 			# No revisions matching, no further processing
 			print "\n";
 			continue;
 		}
 
+		#JamesDay: for big retrivals, slaves can time out, ping them and also make sure they aren't lagged before we start.
+		if ( $revCount > 100 ) {
+			$masterPos = waitForSlaves( $masterPos );
+		}
+#		$oldReadsSinceLastSlaveWait = 0;
+
 		# For each chunk
 		$i = 0;
-		while ( $i < count( $revs ) ) {
-			if ( $i < count( $revs ) - $maxChunkSize ) {
+		while ( $i < $revCount ) {
+			if ( $i < $revCount - $maxChunkSize ) {
 				$thisChunkSize = $maxChunkSize;
 			} else {
-				$thisChunkSize = count( $revs ) - $i;
+				$thisChunkSize = $revCount - $i;
 			}
 
 			$chunk = new ConcatenatedGzipHistoryBlob();
@@ -189,9 +227,47 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			print "/";
 			$dbw->commit();
 			$i += $thisChunkSize;
+
+			#Jamesday: ping slaves periodically.
+			$oldReadsSinceLastSlaveWait += $thisChunkSize;
+			if ( $oldReadsSinceLastSlaveWait > 50 ) {
+				$masterPos = waitForSlaves( $masterPos );
+				$oldReadsSinceLastSlaveWait = 0;
+			}
 		}
 		print "\n";
+
+#		JamesDay next replaced by the periodic counted checks.
+#		# Wait for slaves to catch up to the position of the master (previous article for small numbers, last check for large)
+#		$masterPos = waitForSlaves( $masterPos );
 	}
+	print "total matching revisions = $totalMatchingRevisions\n";
 	return true;
 }
+
+function waitForSlaves( $pos = false ) {
+	global $wgDBservers;
+	$master = wfGetDB( 0 );
+	$slaves = $wgDBservers;
+	array_shift( $slaves );
+	if ( $pos == false ) {
+		$pos = $master->getMasterPos();
+	}
+	$first = true;
+
+	foreach ( $wgDBservers as $i => $record ) {
+		if ( $first ) {
+			print "Waiting for ";
+			$first = false;
+		}
+		print $record['host'] . " ";
+		$slave = wfGetDB( $i );
+		$slave->masterPosWait( $pos[0], $pos[1], 20 );
+	}
+	if ( !$first ) {
+		print "\n";
+	}
+	return $master->getMasterPos();
+}
+
 ?>
