@@ -83,7 +83,7 @@ function wfSpecialNewimages() {
 		$name = $s->img_name;
 		$ut = $s->img_user_text;
 
-		$nt = Title::newFromText( $name, NS_IMAGE );
+		$nt = Title::makeTitle( NS_IMAGE, $name );
 		$img = Image::newFromTitle( $nt );
 		$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
