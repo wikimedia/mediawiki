@@ -11,7 +11,7 @@
  */
 if( defined( "MEDIAWIKI" ) ) {
 
-# See skin.doc
+# See skin.txt
 require_once( 'Linker.php' );
 require_once( 'Image.php' );
 

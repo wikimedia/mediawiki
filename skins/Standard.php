@@ -1,6 +1,6 @@
 <?php
 /**
- * See skin.doc
+ * See skin.txt
  *
  * @todo document
  * @package MediaWiki

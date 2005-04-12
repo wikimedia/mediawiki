@@ -1,6 +1,6 @@
 <?php
 /**
- * Main wiki script; see docs/design.doc
+ * Main wiki script; see docs/design.txt
  * @package MediaWiki
  */
 

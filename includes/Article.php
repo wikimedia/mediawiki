@@ -16,7 +16,7 @@ $wgArticleOldContentFields = false;
 /**
  * Class representing a Wikipedia article and history.
  *
- * See design.doc for an overview.
+ * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and CacheManager classes.
  *

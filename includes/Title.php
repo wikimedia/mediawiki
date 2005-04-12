@@ -1,6 +1,6 @@
 <?php
 /**
- * See title.doc
+ * See title.txt
  * 
  * @package MediaWiki
  */

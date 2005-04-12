@@ -19,7 +19,7 @@
  *
  * @author <evan@wikitravel.org>
  * @package MediaWiki
- * @see hooks.doc
+ * @see hooks.txt
  */
 
 if (defined('MEDIAWIKI')) {

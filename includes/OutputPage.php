@@ -8,7 +8,7 @@
  */
 if( defined( 'MEDIAWIKI' ) ) {
 
-# See design.doc
+# See design.txt
 
 if($wgUseTeX) require_once( 'Math.php' );
 

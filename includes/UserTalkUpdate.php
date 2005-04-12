@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  * 
- * See deferred.doc
+ * See deferred.txt
  *
  * @package MediaWiki
  * @author <mail@tgries.de>

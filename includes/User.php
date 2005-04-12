@@ -1,6 +1,6 @@
 <?php
 /**
- * See user.doc
+ * See user.txt
  *
  * @package MediaWiki
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * See deferred.doc
+ * See deferred.txt
  *
  * @package MediaWiki
  */
