@@ -3,6 +3,7 @@
  * File for Parser and related classes
  *
  * @package MediaWiki
+ * @subpackage Parser
  */
 
 /** */

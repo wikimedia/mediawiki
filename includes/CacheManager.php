@@ -2,6 +2,7 @@
 /**
  * Contain the CacheManager class
  * @package MediaWiki
+ * @subpackage Cache
  */
 
 /**

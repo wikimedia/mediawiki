@@ -2,6 +2,7 @@
 /**
  *
  * @package MediaWiki
+ * @subpackage Cache
  */
 
 /**

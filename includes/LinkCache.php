@@ -2,6 +2,7 @@
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
  * @package MediaWiki
+ * @subpackage Cache
  */
 
 /**

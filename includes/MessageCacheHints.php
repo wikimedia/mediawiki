@@ -1,6 +1,7 @@
 <?
 /**
  * @package MediaWiki
+ * @subpackage Cache
  */ 
 
 /** 

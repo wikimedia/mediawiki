@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Cache
+ */
 
 if (!defined('MEDIAWIKI')) die( "Not a valid entry point");
 
