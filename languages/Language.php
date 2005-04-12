@@ -85,8 +85,9 @@ if(isset($wgExtraNamespaces)) {
 	'shownumberswatching' 	=> 1,
 	'rcusemodstyle' 	=> 1,
 	'showupdated'		=> 1,
-	'fancysig' => 0,
-	'externaleditor' => 0,
+	'fancysig' 		=> 0,
+	'externaleditor' 	=> 0,
+	'externaldiff' 		=> 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -161,7 +162,8 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'rcusemodstyle',
 	'showupdated',
 	'fancysig',
-	'externaleditor'
+	'externaleditor',
+	'externaldiff',
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -269,7 +271,7 @@ global $wgRightsText;
 'tog-hideminor' => 'Hide minor edits in recent changes',
 'tog-usenewrc' => 'Enhanced recent changes (not for all browsers)',
 'tog-numberheadings' => 'Auto-number headings',
-'tog-showtoolbar'		=> 'Show edit toolbar',
+'tog-showtoolbar'		=> 'Show edit toolbar (JavaScript)',
 'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
 'tog-editsection'		=> 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick'	=> 'Enable section editing by right clicking<br /> on section titles (JavaScript)',
@@ -290,6 +292,7 @@ global $wgRightsText;
 'tog-showupdated'		=> 'Show update marker ',
 'tog-fancysig' => 'Raw signatures (without automatic link)',
 'tog-externaleditor' => 'Use external editor by default',
+'tog-externaldiff' => 'Use external diff by default',
 
 # dates
 'sunday' => 'Sunday',
