@@ -14,7 +14,7 @@ $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;
 
 /**
- * Class representing a Wikipedia article and history.
+ * Class representing a MediaWiki article and history.
  *
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been

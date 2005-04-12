@@ -1,7 +1,7 @@
 
 USER.DOC
 
-Documenting the Wikipedia User object.
+Documenting the MediaWiki User object.
 
 (DISCLAIMER: The documentation is not guaranteed to be in sync with
 the code at all times. If in doubt, check the table definitions
