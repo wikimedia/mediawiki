@@ -310,6 +310,7 @@ class Title {
 	 * @access public
 	 */
 	/* static */ function legalChars() {
+		global $wgUseLatin1;
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
@@ -768,7 +769,6 @@ class Title {
 	function userCan($action) {
 		$fname = 'Title::userCanEdit';
 		wfProfileIn( $fname );
-		
 		global $wgUser;
 		if( NS_SPECIAL == $this->mNamespace ) {
 			wfProfileOut( $fname );
@@ -932,18 +932,22 @@ class Title {
 	 * @access public
 	 */
 	function getRestrictions($action) {
+		$fname = 'Title::getRestrictions';
+		wfProfileIn( $fname );
 		$id = $this->getArticleID();
-		if ( 0 == $id ) { return array(); }
-
-		if ( ! $this->mRestrictionsLoaded ) {
-			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
-			$this->loadRestrictions( $res );
+		$restrictions = array();
+		if ( 0 != $id ) { 
+			if ( ! $this->mRestrictionsLoaded ) {
+				$dbr =& wfGetDB( DB_SLAVE );
+				$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
+				$this->loadRestrictions( $res );
+			}
+			if( isset( $this->mRestrictions[$action] ) ) {
+				$restrictions = $this->mRestrictions[$action];
+			}
 		}
-		if( isset( $this->mRestrictions[$action] ) ) {
-			return $this->mRestrictions[$action];
-		}
-		return array();
+		wfProfileOut( $fname );
+		return $restrictions;
 	}
 	
 	/**
@@ -1009,6 +1013,10 @@ class Title {
 	 * @access public
 	 */
 	function invalidateCache() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+
 		$now = wfTimestampNow();
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'cur', 
