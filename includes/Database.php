@@ -148,6 +148,13 @@ class Database {
 				$this->mFlags |= DBO_TRX;
 			}
 		}
+
+		/*
+		// Faster read-only access
+		if ( wfReadOnly() ) {
+			$this->mFlags |= DBO_PERSISTENT;
+			$this->mFlags &= ~DBO_TRX;
+		}*/
 		
 		/** Get the default table prefix*/
 		if ( $tablePrefix == 'get from global' ) {
@@ -196,7 +203,12 @@ class Database {
 		
 		$success = false;
 		
-		@/**/$this->mConn = mysql_connect( $server, $user, $password );
+		if ( $this->mFlags & DBO_PERSISTENT ) {
+			@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
+		} else {
+			@/**/$this->mConn = mysql_connect( $server, $user, $password );
+		}
+
 		if ( $dbName != '' ) {
 			if ( $this->mConn !== false ) {
 				$success = @/**/mysql_select_db( $dbName, $this->mConn );
@@ -333,7 +345,7 @@ class Database {
 			wfDebug("SQL ERROR (ignored): " . $error . "\n");
 		} else {
 			$sql1line = str_replace( "\n", "\\n", $sql );
-			wfLogDBError("$fname\t$errno\t$error\t$sql1line\n");
+			wfLogDBError("$fname\t{$this->mServer}\t$errno\t$error\t$sql1line\n");
 			wfDebug("SQL ERROR: " . $error . "\n");
 			if ( $wgCommandLineMode || !$this->mOut || empty( $wgFullyInitialised ) ) {
 				$message = "A database error has occurred\n" .

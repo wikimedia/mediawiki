@@ -1060,6 +1060,25 @@ function wfGetSVGsize( $filename ) {
 		"width=\"$width\" height=\"$height\"" );
 }
 
+/**
+ * Is an image on the bad image list?
+ */
+function wfIsBadImage( $name ) {
+	global $wgLang;
+
+	$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
+	foreach ( $lines as $line ) {
+		if ( preg_match( '/^\*\s*\[\[:(' . $wgLang->getNsText( NS_IMAGE ) . ':[^\]]*)\]\]/', $line, $m ) ) {
+			$t = Title::newFromText( $m[1] );
+			if ( $t->getDBkey() == $name ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+	
+
 
 /**
  * Wrapper class for thumbnail images

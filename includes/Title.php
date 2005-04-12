@@ -823,7 +823,7 @@ class Title {
 	function userCan($action) {
 		$fname = 'Title::userCanEdit';
 		wfProfileIn( $fname );
-		
+
 		global $wgUser;
 		if( NS_SPECIAL == $this->mNamespace ) {
 			wfProfileOut( $fname );
@@ -1073,6 +1073,10 @@ class Title {
 	 * @access public
 	 */
 	function invalidateCache() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+
 		$now = wfTimestampNow();
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'page', 

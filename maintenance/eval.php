@@ -16,11 +16,14 @@
  * @subpackage Maintenance
  */
 
+$wgForceLoadBalancing = (getenv('MW_BALANCE') ? true : false);
+
 /** */
 require_once( "commandLine.inc" );
 
-do {
-	$line = readconsole( "> " );
+$line = readconsole( "> " );
+
+while ( $line !== false ) {
 	$val = eval( $line . ";" );
 	if( is_null( $val ) ) {
 		echo "\n";
@@ -32,6 +35,9 @@ do {
 	if ( function_exists( "readline_add_history" ) ) {
 		readline_add_history( $line );
 	}
-} while ( 1 );
+	$line = readconsole( "> " );
+}
+
+print "\n";
 
 ?>

@@ -123,20 +123,22 @@ class MathRenderer {
 			}
 			
 			# Now save it back to the DB:
-			$outmd5_sql = pack('H32', $this->hash);
-		
-			$md5_sql = pack('H32', $this->md5); # Binary packed, not hex
+			if ( !wfReadOnly() ) {
+				$outmd5_sql = pack('H32', $this->hash);
 			
-			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->replace( 'math', array( 'math_inputhash' ),
-			  array( 
-				'math_inputhash' => $md5_sql, 
-				'math_outputhash' => $outmd5_sql,
-				'math_html_conservativeness' => $this->conservativeness,
-				'math_html' => $this->html,
-				'math_mathml' => $this->mathml,
-			  ), $fname, array( 'IGNORE' ) 
-			);
+				$md5_sql = pack('H32', $this->md5); # Binary packed, not hex
+				
+				$dbw =& wfGetDB( DB_MASTER );
+				$dbw->replace( 'math', array( 'math_inputhash' ),
+				  array( 
+					'math_inputhash' => $md5_sql, 
+					'math_outputhash' => $outmd5_sql,
+					'math_html_conservativeness' => $this->conservativeness,
+					'math_html' => $this->html,
+					'math_mathml' => $this->mathml,
+				  ), $fname, array( 'IGNORE' ) 
+				);
+			}
 			
 		}
 		

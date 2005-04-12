@@ -1254,19 +1254,22 @@ class Parser
 				
 				if ( $ns == NS_IMAGE ) {
 					wfProfileIn( "$fname-image" );
-					
-					# recursively parse links inside the image caption
-					# actually, this will parse them in any other parameters, too,
-					# but it might be hard to fix that, and it doesn't matter ATM
-					$text = $this->replaceExternalLinks($text);
-					$text = $this->replaceInternalLinks($text);
-					
-					# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-					$s .= $prefix . str_replace('http://', 'http-noparse://', $sk->makeImageLinkObj( $nt, $text ) ) . $trail;
-					$wgLinkCache->addImageLinkObj( $nt );
-					
+					if ( !wfIsBadImage( $nt->getDBkey() ) ) {
+						# recursively parse links inside the image caption
+						# actually, this will parse them in any other parameters, too,
+						# but it might be hard to fix that, and it doesn't matter ATM
+						$text = $this->replaceExternalLinks($text);
+						$text = $this->replaceInternalLinks($text);
+						
+						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
+						$s .= $prefix . str_replace('http://', 'http-noparse://', $sk->makeImageLinkObj( $nt, $text ) ) . $trail;
+						$wgLinkCache->addImageLinkObj( $nt );
+						
+						wfProfileOut( "$fname-image" );
+						continue;
+					}
 					wfProfileOut( "$fname-image" );
-					continue;
+
 				}
 				
 				if ( $ns == NS_CATEGORY ) {
