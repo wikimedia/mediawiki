@@ -1,6 +1,6 @@
 <?php
 /**
- * See skin.doc
+ * See skin.txt
  *
  * @todo document
  * @package MediaWiki
@@ -15,7 +15,7 @@ require_once('includes/SkinPHPTal.php');
 if( class_exists( 'SkinPHPTal' ) ) {
 
 /**
- * See skin.doc
+ * See skin.txt
  *
  * @todo document
  * @package MediaWiki

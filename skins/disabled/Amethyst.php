@@ -5,7 +5,7 @@
  * <Amethyst> guild
  * Ported to MediaWiki by Ashar Voultoiz
  *
- * See skin.doc for documentation
+ * See skin.txt for documentation
  *
  * @todo document
  * @package MediaWiki
@@ -20,7 +20,7 @@ require_once('includes/SkinPHPTal.php');
 if( class_exists( 'SkinPHPTal' ) ) {
 
 /**
- * See skin.doc
+ * See skin.txt
  *
  * @todo document
  * @package MediaWiki
