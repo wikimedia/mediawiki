@@ -76,6 +76,7 @@ if(isset($wgExtraNamespaces)) {
  	'showtoolbar' 		=> 1,
 	'date' 			=> 0,
 	'imagesize' 		=> 2,
+	'thumbsize'		=> 2,
 	'rememberpassword' 	=> 0,
 	'enotifwatchlistpages' 	=> 1,
 	'enotifusertalkpages' 	=> 1,
@@ -853,7 +854,7 @@ See [[Project:User preferences help]] for help deciphering the options.",
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
 'math'			=> 'Math',
-'dateformat'	=> 'Date format',
+'dateformat'		=> 'Date format',
 'math_failure'		=> 'Failed to parse',
 'math_unknown_error'	=> 'unknown error',
 'math_unknown_function'	=> 'unknown function ',
@@ -891,6 +892,7 @@ from server time (UTC).',
 'emailflag'		=> 'Disable e-mail from other users',
 'defaultns'		=> 'Search in these namespaces by default:',
 'default'		=> 'default',
+'files'			=> 'Files',
 
 # User levels special page
 #
@@ -1776,6 +1778,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'nextdiff' => 'Next diff →',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
+'thumbsize'	=> 'Thumbnail size : ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'New images gallery',

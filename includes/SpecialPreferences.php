@@ -56,13 +56,14 @@ class PreferencesForm {
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mUserLanguage = $request->getVal( 'wpUserLanguage' );
-        $this->mUserVariant = $request->getVal( 'wpUserVariant' );
+		$this->mUserVariant = $request->getVal( 'wpUserVariant' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
 		$this->mRecent = $request->getVal( 'wpRecent' );
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
 		$this->mSearchLines = $request->getVal( 'wpSearchLines' );
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
 		$this->mImageSize = $request->getVal( 'wpImageSize' );
+		$this->mThumbSize = $request->getInt( 'wpThumbSize' );
 
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
@@ -218,6 +219,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'stubthreshold', $this->validateIntOrNull( $this->mStubs ) );
 		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
 		$wgUser->setOption( 'imagesize', $this->mImageSize );
+		$wgUser->setOption( 'thumbsize', $this->mThumbSize );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -304,6 +306,7 @@ class PreferencesForm {
 		$this->mSearchLines = $wgUser->getOption( 'contextlines' );
 		$this->mSearchChars = $wgUser->getOption( 'contextchars' );
 		$this->mImageSize = $wgUser->getOption( 'imagesize' );
+		$this->mThumbSize = $wgUser->getOption( 'thumbsize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
 
 		$togs = $wgLang->getUserToggles();
@@ -375,7 +378,7 @@ class PreferencesForm {
 	 */
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgValidSkinNames;
-		global $wgAllowRealName, $wgImageLimits;
+		global $wgAllowRealName, $wgImageLimits, $wgThumbLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
 		global $wgEmailNotificationForWatchlistPages, $wgEmailNotificationForUserTalkPages,$wgEmailNotificationForMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEmailNotificationRevealPageEditorAddress;
@@ -408,6 +411,7 @@ class PreferencesForm {
 		$cp = wfMsg( 'changepassword' );
 		$sk = wfMsg( 'skin' );
 		$math = wfMsg( 'math' );
+		$files = wfMsg( 'files' );
 		$dateFormat = wfMsg('dateformat');
 		$opw = wfMsg( 'oldpassword' );
 		$npw = wfMsg( 'newpassword' );
@@ -607,7 +611,28 @@ class PreferencesForm {
 	value=\"$i\"$checked /> ".wfMsg($mathopts[$i])."</label></div>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
-		
+
+		# Files
+		#
+		$wgOut->addHTML("<fieldset>
+			<legend>$files</legend>
+			<div><label>" . wfMsg('imagemaxsize') . "<select name=\"wpImageSize\">");
+			
+			$imageLimitOptions = null;
+			foreach ( $wgImageLimits as $index => $limits ) {
+				$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
+				$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
+			}
+			
+			$imageThumbOptions = null;
+			$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>
+				<div><label>" . wfMsg('thumbsize') . "<select name=\"wpThumbSize\">");
+			foreach ( $wgThumbLimits as $index => $size ) {
+				$selected = ($index == $this->mThumbSize) ? 'selected="selected"' : '';
+				$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}px</option>\n";
+			}
+			$wgOut->addHTML( "{$imageThumbOptions}</select></label></div></fieldset>\n\n");
+
                 # Date format
                 #
 		if ($dateopts) {
@@ -679,16 +704,6 @@ class PreferencesForm {
 		# Various checkbox options
 		#
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
-
-		$wgOut->addHTML( '<div><label>' . wfMsg('imagemaxsize') . "<select name=\"wpImageSize\">");
-
-		$imageLimitOptions='';
-		foreach ( $wgImageLimits as $index => $limits ) {
-			$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
-			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
-		}
-		$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>" );
-
 
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {

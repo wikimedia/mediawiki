@@ -415,6 +415,8 @@ class Linker {
 	/** @todo document */
 	function makeImageLinkObj( $nt, $alt = '' ) {
 		global $wgContLang, $wgUseImageResize;
+		global $wgUser, $wgThumbLimits;
+		
 		$img   = new Image( $nt );
 		$url   = $img->getViewURL();
 
@@ -495,13 +497,22 @@ class Linker {
 			# for right-to-left-languages ("Semitic languages")
 			#
 			# If  thumbnail width has not been provided, it is set
-			# here to 180 pixels
+			# to the default user option as specified in Language*.php
 			if ( $align == '' ) {
 				$align = $wgContLang->isRTL() ? 'left' : 'right';
 			}
+
+			
 			if ( ! isset($width) ) {
-				$width = 180;
+				$wopt = $wgUser->getOption( 'thumbsize' );
+
+				if( !isset( $wgThumbLimits[$wopt] ) ) {
+					 $wopt = User::getDefaultOption( 'thumbsize' );
+				}
+				
+				$width = $wgThumbLimits[$wopt];
 			}
+			
 			return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
 
 		} elseif ( isset($width) ) {
