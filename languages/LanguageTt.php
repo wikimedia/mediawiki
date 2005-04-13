@@ -218,8 +218,7 @@ class LanguageTt extends LanguageUtf8 {
 		return $wgDateFormatsTt;
 	}
 
-	# Inherit userAdjust()
-
+	
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -240,7 +239,7 @@ class LanguageTt extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
 
-	# Inherit rfc1123()
+		
 
 	function getValidSpecialPages() {
 		global $wgValidSpecialPagesTt;

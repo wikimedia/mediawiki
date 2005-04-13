@@ -264,8 +264,7 @@ class LanguageFo extends LanguageUtf8 {
 		return $wgDateFormatsFo;
 	}
 
-	# Inherit userAdjust()
-
+	
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 

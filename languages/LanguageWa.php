@@ -1186,8 +1186,7 @@ class LanguageWa extends LanguageUtf8 {
 		return $wgDateFormatsWa;
 	}
 	
-	# Inherit userAdjust()
-
+	
 	###
 	### Dates in Walloon are "1î d' <monthname>" for 1st of the month,
 	### "<day> di <monthname>" for months starting by a consoun, and
@@ -1233,7 +1232,7 @@ class LanguageWa extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " a " . $this->time( $ts, $adj );
 	}
 
-	# Inherit rfc1123()
+		
 
 	function getValidSpecialPages()
 	{

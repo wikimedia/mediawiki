@@ -877,8 +877,7 @@ class LanguageNl extends LanguageUtf8 {
 		return false;
 	}
 	
-	# Inherit specialPage()
-	
+		
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsNl;
 		return $wgQuickbarSettingsNl;
@@ -889,8 +888,7 @@ class LanguageNl extends LanguageUtf8 {
 		return $wgSkinNamesNl;
 	}
 	
-	# Inherit userAdjust()
-	
+		
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		
@@ -927,7 +925,7 @@ class LanguageNl extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-	
+
 	# Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
 	# since they are same as English/Latin1
 

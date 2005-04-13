@@ -1078,8 +1078,7 @@ class LanguageSv extends LanguageUtf8 {
 		return $wgSkinNamesSv;
 	}
 	
-	# Inherit userAdjust()
-	
+		
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		

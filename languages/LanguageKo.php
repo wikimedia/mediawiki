@@ -916,8 +916,7 @@ class LanguageKo extends LanguageUtf8 {
 		return $wgSkinNamesKo;
 	}
 
-	# Inherit default userAdjust()
- 
+	 
 	function date( $ts, $adj = false ) {
 		global $wgWeekdayAbbreviationsKo;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -964,12 +963,9 @@ class LanguageKo extends LanguageUtf8 {
 		else return $m;
 	}
 	
-	# Inherit default iconv()
+		
+		
 	
-	# Inherit ucfirst() and stripForSearch() from LanguageUtf8
-	
-	# Inherit default checkTitleEncoding()
-
 }
 
 ?>
