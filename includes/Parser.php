@@ -1312,8 +1312,8 @@ class Parser
 				# Interwikis
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
 					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
-					$tmp = $prefix . $trail ;
-					$s .= (trim($tmp) == '')? '': $tmp;
+					$s = rtrim($s . "\n");
+					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
 					continue;
 				}
 				
