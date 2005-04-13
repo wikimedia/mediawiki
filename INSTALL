@@ -28,6 +28,8 @@ configuration is not well tested. safe_mode and other
 non-standard PHP configurations may sometimes cause
 problems as well.
 
+If you want math support see the instructions in math/README
+
 Don't forget to check the RELEASE-NOTES file...
 
 ********************** WARNING **************************
