@@ -1340,6 +1340,7 @@ class Parser
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( "$fname-category" );
 					$t = $nt->getText();
+					$s = rtrim($s . "\n"); # bug 87
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 					$pPLC=$sk->postParseLinkColour();
@@ -1364,8 +1365,7 @@ class Parser
 					 * Strip the whitespace Category links produce, see bug 87
 					 * @todo We might want to use trim($tmp, "\n") here.
 					 */
-					$tmp = $prefix . $trail;
-					$s .= trim($tmp) == '' ? '': $tmp;
+					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
 					
 					wfProfileOut( "$fname-category" );
 					continue;
