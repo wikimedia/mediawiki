@@ -22,6 +22,8 @@ an Apache module you may experience problems, as this
 configuration is not well tested. safe_mode is also not
 tested and unlikely to work. 
 
+If you want math support see the instructions in math/README
+
 Don't forget to check the RELEASE-NOTES file...
 
 ********************** WARNING **************************
