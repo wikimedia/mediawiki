@@ -1017,7 +1017,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		$uts=$ts;
 	} else {
 		# Bogus value; fall back to the epoch...
-		wfDebug("wfTimestamp() given bogus time value.\n");
+		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
 		$uts = 0;
 	}
 
