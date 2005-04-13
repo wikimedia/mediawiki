@@ -1066,8 +1066,7 @@ class LanguageNo extends LanguageUtf8 {
 		return $wgSkinNamesNo;
 	}
 
-	# Inherit userAdjust()
-
+	
 	function date( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -1095,9 +1094,6 @@ class LanguageNo extends LanguageUtf8 {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
 	}
-	
-
-	# Inherit rfc1123()
 
 	function getValidSpecialPages()
 	{
@@ -1126,23 +1122,6 @@ class LanguageNo extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-
-	# Inherit ucfirst()
-	
-	# Inherit checkTitleEncoding()
-	
-	# Inherit stripForSearch()
-	
-	# Inherit setAltEncoding()
-	
-	# Inherit recodeForEdit()
-	
-	# Inherit recodeInput()
-	
-	# Inherit replaceDates()
-	
-	# Inherit isRTL()
-
 }
 
 ?>
