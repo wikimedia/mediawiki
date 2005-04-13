@@ -35,7 +35,7 @@
 	'cr' => 'Nehiyaw',		# Cree
 	'cs' => '&#268;esky',	# Czech
 	'csb' => 'Kasz&euml;bscziej',	# Cassubian, should possibly be Kasz&#235;bsczi
-	'cv' => '&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)',	# Chuvash
+	'cv' => '&#1063;&#1233;&#1074;&#1072;&#1096;',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German
