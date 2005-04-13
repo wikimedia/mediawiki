@@ -125,7 +125,6 @@ $wgValidationTypesEn = array (
 );
 
 # Whether to use user or default setting in Language::date()
-define( 'MW_DATE_USER_FORMAT', true );
 
 /* private */ $wgDateFormatsEn = array(
 	'Default',
@@ -269,7 +268,7 @@ global $wgRightsText;
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',
 'tog-hideminor' => 'Hide minor edits in recent changes',
-'tog-usenewrc' => 'Enhanced recent changes (not for all browsers)',
+'tog-usenewrc' => 'Enhanced recent changes (JavaScript)',
 'tog-numberheadings' => 'Auto-number headings',
 'tog-showtoolbar'		=> 'Show edit toolbar (JavaScript)',
 'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
@@ -1263,7 +1262,7 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'updatedmarker'		=> '<span class=\'updatedmarker\'>&nbsp;updated (since my last visit)&nbsp;</span>',
 
 'email_notification_mailer' 		=> '{{SITENAME}} Notification Mailer',
-'email_notification_infotext' 		=> "'''Email notification is on.'''
+'email_notification_infotext' 		=> "Email notification is on.
 You will be notified by email when someone changes a page which is listed in your watchlist.",
 'email_notification_reset'			=> 'Reset all notification flags (set their status to "visited")',
 'email_notification_newpagetext'=> 'This is a new page.',
@@ -2080,20 +2079,12 @@ class Language {
 	 */
 	function dateFormat( $format ) {
 		global $wgUser;
-		
-		if ( MW_DATE_USER_FORMAT === true) {
-			// Some files, such as Parser.php want us to return the
-			// default format no matter what, obey them!
-			if ($format === false) {
-				return false; // Pass it along..
-			} elseif ( $wgUser->isLoggedIn() )  {
-				return $wgUser->getOption( 'date' );
-			} else {
-				return '0';
-			}
-		} else {
+
+		if ( !$wgUser->isLoggedIn() || $format === false ) {
 			$options = $this->getDefaultUserOptions();
 			return $options['date'];
+		} else {
+			return $wgUser->getOption( 'date' );
 		}
 	}
 	
@@ -2120,7 +2111,7 @@ class Language {
 
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
-		$year = $this->formatNum( substr( $ts, 0, 4 ) );
+		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
 		
 		switch( $datePreference ) {
 			case '2': return "$day $month $year";
@@ -2181,10 +2172,6 @@ class Language {
 			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $datePreference, $timecorrection );
 		}
-	}
-
-	function rfc1123( $ts ) {
-		return date( 'D, d M Y H:i:s T', $ts );
 	}
 
 	function getValidSpecialPages() {
@@ -2388,9 +2375,11 @@ class Language {
 	 * @access public
 	 * @param mixed $number the string to be formatted, should be an integer or
 	 *        a floating point number. 
+	 * @param bool $year are we being passed a year? (turns off commafication)
+	 * @return mixed whatever we're fed if it's a year, a string otherwise.
 	 */
-	function formatNum( $number ) {
-		return $this->commafy($number);
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : $this->commafy($number);
 	}
 	
 	/**
@@ -2402,7 +2391,13 @@ class Language {
 	function commafy($_) {
 		return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
 	}
-		
+
+	/**
+	 * For the credit list in includes/Credits.php (action=credits)
+	 *
+	 * @param array $l
+	 * @return string
+	 */
 	function listToText( $l ) {
 		$s = '';
 		$m = count($l) - 1;
@@ -2441,18 +2436,35 @@ class Language {
 		}
 	}
 
-	# Grammatical transformations, needed for inflected languages
-	# Invoked by putting {{grammar:case|word}} in a message
+	/**
+	 * Grammatical transformations, needed for inflected languages
+	 * Invoked by putting {{grammar:case|word}} in a message
+	 *
+	 * @param string $word
+	 * @param string $case
+	 * @return string
+	 */
 	function convertGrammar( $word, $case ) {
 		return $word;
 	}
 
-	# languages like Chinese need to be segmented in order for the diff
-	# to be of any use
+	/**
+	 * languages like Chinese need to be segmented in order for the diff
+	 * to be of any use
+	 *
+	 * @param string $text
+	 * @return string
+	 */
 	function segmentForDiff( $text ) {
 		return $text;
 	}
-	# and unsegment to show the result
+	
+	/**
+	 * and unsegment to show the result
+	 *
+	 * @param string $text
+	 * @return string
+	 */
 	function unsegmentForDiff( $text ) {
 		return $text;
 	}
