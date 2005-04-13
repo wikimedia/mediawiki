@@ -4,7 +4,7 @@
  * @subpackage Cache
  */
 
-if (!defined('MEDIAWIKI')) die( "Not a valid entry point");
+if (!defined('MEDIAWIKI')) die( "Not a valid entry point\n");
 
 
 # FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
