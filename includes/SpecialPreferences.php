@@ -204,7 +204,7 @@ class PreferencesForm {
 		}
 		$wgUser->setRealName( $this->mRealName );
 		$wgUser->setOption( 'language', $this->mUserLanguage );
-        $wgUser->setOption( 'variant', $this->mUserVariant );
+		$wgUser->setOption( 'variant', $this->mUserVariant );
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
 		$wgUser->setOption( 'skin', $this->mSkin );
@@ -249,7 +249,7 @@ class PreferencesForm {
 				}
 				$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
 				$wgUser->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
-		$wgUser->saveSettings();
+				$wgUser->saveSettings();
 				if ($wgEmailAuthentication) {
 					# mail a temporary password to the dirty address
 					# on "save options", this user will be logged-out automatically
@@ -289,7 +289,7 @@ class PreferencesForm {
 			global $wgContLanguageCode;
 			$this->mUserLanguage = $wgContLanguageCode;
 		}
-        $this->mUserVariant = $wgUser->getOption( 'variant');
+		$this->mUserVariant = $wgUser->getOption( 'variant');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
 		$this->mNick = $wgUser->getOption( 'nickname' );
