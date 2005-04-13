@@ -941,8 +941,7 @@ class LanguageCa extends LanguageUtf8 {
 		return $wgSkinNamesCa;
 	}
 
-	# Inherit userAdjust()
-        
+	        
 	function shortdate( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }

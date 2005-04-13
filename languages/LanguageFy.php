@@ -1032,7 +1032,6 @@ class LanguageFy extends LanguageUtf8 {
 		return false;
 	}
 
-# Inherit specialPage()
 
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFy;
@@ -1049,8 +1048,7 @@ class LanguageFy extends LanguageUtf8 {
 		return $wgDateFormatsFy;
 	}
 
- # Inherit userAdjust()
- 
+  
 	function date( $ts, $adj = false ) {
 		global $wgUser;
 
@@ -1107,25 +1105,6 @@ class LanguageFy extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-	
-# Inherit iconv()
-
-# Inherit ucfirst()
-
-# Inherit checkTitleEncoding( )
-	
-# Inherit stripForSearch()
-
-# Inherit setAltEncoding()
-
-# Inherit recodeForEdit()
-
-# Inherit recodeInput() 
-
-# Inherit replaceDates()
-
-# Inherit isRTL()
-
 }
 
 ?>

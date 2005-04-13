@@ -973,8 +973,7 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgSkinNamesJa;
 	}
 
-	# Inherit default userAdjust()
-
+	
 	function date( $ts, $adj = false )
 	{
 		global $wgWeekdayAbbreviationsJa;
@@ -1004,7 +1003,7 @@ class LanguageJa extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
-	# Inherit default rfc1123()
+		
 
 	function getValidSpecialPages()
 	{
