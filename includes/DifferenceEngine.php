@@ -72,17 +72,19 @@ class DifferenceEngine {
 	 	# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
-		if($wgUseExternalEditor) {
-			global $wgInputEncoding,$wgServer,$wgScript;
+		if($wgUseExternalEditor && $wgUser->getOption('externaldiff')) {
+			global $wgInputEncoding,$wgServer,$wgScript,$wgLang;
 			$wgOut->disable();
 			header ( "Content-type: application/x-external-editor; charset=".$wgInputEncoding );
-			$url1=$wgTitle->getFullURL("action=raw&oldid=".$this->mOldid);
+			$url1=$wgTitle->getFullURL("action=raw&oldid=".$this->mOldid);			
 			$url2=$wgTitle->getFullURL("action=raw&oldid=".$this->mNewid);
+			$special=$wgLang->getNsText(NS_SPECIAL);
 			$control=<<<CONTROL
 [Process]
 Type=Diff text
 Engine=MediaWiki
 Script={$wgServer}{$wgScript}
+Special namespace={$special}
 
 [File]
 Extension=wiki
