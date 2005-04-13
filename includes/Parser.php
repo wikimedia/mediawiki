@@ -1256,7 +1256,7 @@ class Parser
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
 					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
 					$tmp = $prefix . $trail ;
-					$s .= (trim($tmp) == '')? '': $tmp;
+					$s .= (trim($tmp) == '') ? '': $tmp;
 					continue;
 				}
 				
@@ -1283,6 +1283,7 @@ class Parser
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( "$fname-category" );
 					$t = $nt->getText();
+					$s = rtrim($s . "\n"); # bug 87
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 					$pPLC=$sk->postParseLinkColour();
@@ -1307,8 +1308,7 @@ class Parser
 					 * Strip the whitespace Category links produce, see bug 87
 					 * @todo We might want to use trim($tmp, "\n") here.
 					 */
-					$tmp = $prefix . $trail;
-					$s .= trim($tmp) == '' ? '': $tmp;
+					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
 					
 					wfProfileOut( "$fname-category" );
 					continue;
@@ -1734,7 +1734,7 @@ class Parser
 			case MAG_CURRENTDAYNAME:
 				return $varCache[$index] = $wgContLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ) );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ), true );
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
 			case MAG_CURRENTWEEK:
