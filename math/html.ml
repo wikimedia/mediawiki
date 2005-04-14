@@ -19,10 +19,10 @@ let font_render lit = function
   | (_,     FONT_UF)  -> lit
   | (CTX_IT,FONT_RTI) -> raise Too_difficult_for_html
   | (_,     FONT_RTI) -> lit
-  | (CTX_IT,FONT_RM)  -> "<i>"^lit^"</i>"
+  | (CTX_IT,FONT_RM)  -> "<em>"^lit^"</em>"
   | (_,     FONT_RM)  -> lit
   | (CTX_RM,FONT_IT)  -> lit
-  | (_,     FONT_IT)  -> "<i>"^lit^"</i>"
+  | (_,     FONT_IT)  -> "<em>"^lit^"</em>"
 
 let rec html_render_flat ctx = function
     TEX_LITERAL (HTMLABLE (ft,_,sh))::r -> (html_liberal (); (font_render sh (ctx,ft))^html_render_flat ctx r)
