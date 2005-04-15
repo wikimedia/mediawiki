@@ -90,7 +90,7 @@
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut
 	'ja' => '日本語',	# Japanese
 	'jbo' => 'Lojban',		# Lojban
-	'jv' => 'Bahasa Jawa',	# Javanese
+	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => 'ქართული',	# Georgian
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
