@@ -3,248 +3,47 @@
   * @package MediaWiki
   * @subpackage Language
   */
+require_once( "LanguageConverter.php" );
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
 require_once( "LanguageZh_sg.php");
 require_once( "LanguageZh_hk.php");
 
-/*
-   hook to refresh the cache of conversion tables when 
-   MediaWiki:zhconversiontable* is updated
-*/
-function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $iswatch, $section) {
-	$titleobj = $article->getTitle();
-	if($titleobj->getNamespace() == NS_MEDIAWIKI) { 
-		global $wgContLang; // should be an LanguageZh.
-		if(get_class($wgContLang) != 'languagezh')	
-			return true;
-
-		$title = $titleobj->getDBkey();
-		$t = explode('/', $title, 3);
-		$c = count($t);
-		if( $c > 1 && $t[0] == 'Zhconversiontable' ) {
-			if(in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'))) {
-				$wgContLang->reloadTables();
-			}
-		}
-	}
-	return true;
-}
-
-$wgHooks['ArticleSaveComplete'][] = 'zhOnArticleSaveComplete';
-
-/* class that handles both Traditional and Simplified Chinese
-   right now it only distinguish zh_cn and zh_tw (actuall, zh_cn and
-   non-zh_cn), will add support for zh_sg, zh_hk, etc, later.
-*/
-class LanguageZh extends LanguageZh_cn {
-	
-	var $mZhLanguageCode=false;
-	var $mTables=false; //the mapping tables
-	var $mTablesLoaded = false;
-	var $mCacheKey;
-	var $mDoTitleConvert = true, $mDoContentConvert = true;
-	var $mTitleDisplay='';
-	function LanguageZh() {
-		global $wgDBname;
-		$this->mCacheKey = $wgDBname . ":zhtables";
-	}
-
-	// a write lock
-	function lockCache() {
-		global $wgMemc;
-		$success = false;
-		for($i=0; $i<30; $i++) {
-			if($success = $wgMemc->add($this->mCacheKey . "lock", 1, 10))
-				break;
-			sleep(1);
-		}
-		return $success;		
-	}
-
-	function unlockCache() {
-		global $wgMemc;
-		$wgMemc->delete($this->mCacheKey . "lock");
-	}
-
-	function updateTable($code, $table) {
-		global $wgMemc;
-		if(!$this->mTablesLoaded)
-			$this->loadTables();
-
-		$this->mTables[$code] = array_merge($this->mTables[$code], $table);
-		if($this->lockCache()) {
-			$wgMemc->delete($this->mCacheKey);
-			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
-			$this->unlockCache();
-		}
-	}
-
-	function reloadTables() {
-		if($this->mTables)
-			unset($this->mTables);
-		$this->mTablesLoaded = false;
-		$this->loadTables(false);
-	}
-
-	// load conversion tables either from the cache or the disk
-	function loadTables($fromcache=true) {
-		global $wgMemc;
-		if( $this->mTablesLoaded )
-			return;
-		$this->mTablesLoaded = true;
-		if($fromcache) {
-			$this->mTables = $wgMemc->get( $this->mCacheKey );
-			if( !empty( $this->mTables ) ) //all done
-				return;
-		}
-		// not in cache, or we need a fresh reload. 
-		// we will first load the tables from file
-		// then update them using things in MediaWiki:Zhconversiontable/*
-		global $wgMessageCache;
+class ZhConverter extends LanguageConverter {
+	function loadDefaultTables() {
 		require( "includes/ZhConversion.php" );
 		$this->mTables = array();
 		$this->mTables['zh-cn'] = $zh2CN;
 		$this->mTables['zh-tw'] = $zh2TW;
-		$this->mTables['zh-sg'] = $zh2SG;
-		$this->mTables['zh-hk'] = $zh2HK;
-
-		$cached = $this->parseCachedTable('zh-cn');
-		$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
-
-		$cached = $this->parseCachedTable('zh-tw');
-		$this->mTables['zh-tw'] = array_merge($this->mTables['zh-tw'], $cached);
-
-		$cached = $this->parseCachedTable('zh-sg');
-		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-cn'], $this->mTables['zh-sg'], $cached);
-
-		$cached = $this->parseCachedTable('zh-hk');
-		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk'], $cached);
-		if($this->lockCache()) {
-			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
-			$this->unlockCache();
-		}
+		$this->mTables['zh-sg'] = array_merge($zh2CN, $zh2SG);
+		$this->mTables['zh-hk'] = array_merge($zh2TW, $zh2HK);
+		$this->mTables['zh'] = array();
 	}
+
+	function postLoadTables() {
+		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-cn'], $this->mTables['zh-sg']);
+		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk']);
+    }
+}
+
+
+/* class that handles both Traditional and Simplified Chinese
+   right now it only distinguish zh_cn, zh_tw, zh_sg and zh_hk.
+*/
+class LanguageZh extends LanguageZh_cn {
 	
-
-	/*
-		parse the conversion table stored in the cache 
-
-		the tables should be in blocks of the following form:
-
-			-{
-				word => word ;
-				word => word ;
-				...
-			}-
-		
-		to make the tables more manageable, subpages are allowed
-		and will be parsed recursively if $recursive=true
-
-	*/
-	function parseCachedTable($code, $subpage='', $recursive=true) {
-		global $wgMessageCache;
-		static $parsed = array();
-
-		if(!is_object($wgMessageCache))
-			return array();
-
-		$key = 'zhconversiontable/'.$code;
-		if($subpage)
-			$key .= '/' . $subpage;
-
-		if(array_key_exists($key, $parsed))
-			return array();
-	
-
-		$txt = $wgMessageCache->get( $key, true, true, true );
-
-		// get all subpage links of the form
-		// [[MediaWiki:Zhconversiontable/zh-xx/...|...]]
-		$linkhead = $this->getNsText(NS_MEDIAWIKI) . ':Zhconversiontable';
-		$subs = explode('[[', $txt);
-		$sublinks = array();
-		foreach( $subs as $sub ) {
-			$link = explode(']]', $sub, 2);
-			if(count($link) != 2)
-				continue;
-			$b = explode('|', $link[0]);
-			$b = explode('/', trim($b[0]), 3);
-			if(count($b)==3)
-				$sublink = $b[2];
-			else	
-				$sublink = '';
-
-			if($b[0] == $linkhead && $b[1] == $code) {
-				$sublinks[] = $sublink;
-			}
-		}
-
-
-		// parse the mappings in this page
-		$blocks = explode('-{', $txt);
-		array_shift($blocks);
-		$ret = array();	
-		foreach($blocks as $block) {
-			$mappings = explode('}-', $block, 2);
-			$stripped = str_replace(array("'", '"', '*','#'), '', $mappings[0]);
-			$table = explode( ';', $stripped );
-			foreach( $table as $t ) {
-				$m = explode( '=>', $t );
-				if( count( $m ) != 2)
-					continue;
-				// trim any trailling comments starting with '//'
-				$tt = explode('//', $m[1], 2);
-				$ret[trim($m[0])] = trim($tt[0]);
-			}
-		}
-		$parsed[$key] = true;
-
-
-		// recursively parse the subpages
-		if($recursive) {
-			foreach($sublinks as $link) {
-				$s = $this->parseCachedTable($code, $link, $recursive);
-				$ret = array_merge($ret, $s);
-			}
-		}
-		return $ret;
+	function LanguageZh() {
+		global $wgHooks;
+		$this->mConverter = new ZhConverter($this, 'zh', 
+                                            array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'),
+											array('zh'=>'zh-cn',
+												  'zh-cn'=>'zh-sg',
+												  'zh-sg'=>'zh-cn',
+												  'zh-tw'=>'zh-hk',
+												  'zh-hk'=>'zh-tw'));	   
+		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
-	/* 
-		get preferred language variants.
-	*/
-	function getPreferredVariant() {
-		global $wgUser, $wgRequest;
-		
-		if($this->mZhLanguageCode)
-			return $this->mZhLanguageCode;
-
-		// see if the preference is set in the request
-		$zhreq = $wgRequest->getText( 'variant' );
-		if( in_array( $zhreq, $this->getVariants() ) ) {
-			$this->mZhLanguageCode = $zhreq;
-			return $zhreq;
-		}
-
-		// get language variant preference from logged in users 
-		if( $wgUser->isLoggedIn() ) {
-			$this->mZhLanguageCode = $wgUser->getOption('variant');
-		}
-
-		if( !$this->mZhLanguageCode ) {
-			// see if some zh- variant is set in the http header,
-			$this->mZhLanguageCode="zh";
-			if(array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
-				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
-				$zh = strstr($header, 'zh-');
-				if($zh) {
-					$this->mZhLanguageCode = substr($zh,0,5);
-				}
-			}
-		}
-		return $this->mZhLanguageCode;
-	}
 	
 	# this should give much better diff info
 	function segmentForDiff( $text ) {
@@ -257,204 +56,6 @@ class LanguageZh extends LanguageZh_cn {
 		return preg_replace(
 			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 			"\"$1\"", $text);
-	}
-
-	function autoConvert($text, $toVariant=false) {
-		$fname="LanguageZh::autoConvert";
-		wfProfileIn( $fname );
-
-		if(!$this->mTablesLoaded)
-			$this->loadTables();
-
-		if(!$toVariant) 
-			$toVariant = $this->getPreferredVariant();
-		$ret = '';
-		switch( $toVariant ) {
-			case 'zh-cn': $ret = strtr($text, $this->mTables['zh-cn']);break;
-			case 'zh-tw': $ret = strtr($text, $this->mTables['zh-tw']);break;
-			case 'zh-sg': $ret = strtr($text, $this->mTables['zh-sg']);break;
-			case 'zh-hk': $ret = strtr($text, $this->mTables['zh-hk']);break;
-			default: $ret = $text;
-		}
-		wfProfileOut( $fname );
-		return $ret;
-	}
-    
-	function autoConvertToAllVariants($text) {
-		$fname="LanguageZh::autoConvertToAllVariants";
-		wfProfileIn( $fname );
-		if( !$this->mTablesLoaded )
-			$this->loadTables();
-
-		$ret = array();
-		$ret['zh-cn'] = strtr($text, $this->mTables['zh-cn']);
-		$ret['zh-tw'] = strtr($text, $this->mTables['zh-tw']);
-		$ret['zh-sg'] = strtr(strtr($text, $this->mTables['zh-cn']), $this->mTables['zh-sg']);
-		$ret['zh-hk'] = strtr(strtr($text, $this->mTables['zh-tw']), $this->mTables['zh-hk']);
-		wfProfileOut( $fname );
-		return $ret;
-	}
-    
-	# convert text to different variants of a language. the automatic
-	# conversion is done in autoConvert(). here we parse the text 
-	# marked with -{}-, which specifies special conversions of the 
-	# text that can not be accomplished in autoConvert()
-	#
-	# syntax of the markup:
-	# -{code1:text1;code2:text2;...}-  or
-	# -{text}- in which case no conversion should take place for text
-	function convert( $text , $isTitle=false) {
-		global $wgDisableLangConversion;
-		if($wgDisableLangConversion)
-			return $text; 
-
-		$mw =& MagicWord::get( MAG_NOTITLECONVERT );
-		if( $mw->matchAndRemove( $text ) )
-			$this->mDoTitleConvert = false;
-
-		$mw =& MagicWord::get( MAG_NOCONTENTCONVERT );
-		if( $mw->matchAndRemove( $text ) ) {
-			$this->mDoContentConvert = false;
-		}
-
-		// no conversion if redirecting
-		$mw =& MagicWord::get( MAG_REDIRECT );
-		if( $mw->matchStart( $text ))
-			return $text;
-
-		if( $isTitle ) {
-			if( !$this->mDoTitleConvert ) {
-				$this->mTitleDisplay = $text;
-				return $text;
-			}
-			if( !empty($this->mTitleDisplay))
-				return $this->mTitleDisplay;
-
-			global $wgRequest;
-			$isredir = $wgRequest->getText( 'redirect', 'yes' );
-			$action = $wgRequest->getText( 'action' );
-			if ( $isredir == 'no' || $action == 'edit' ) {
-				return $text;
-			}
-			else {
-				$this->mTitleDisplay = $this->autoConvert($text);
-				return $this->mTitleDisplay;
-			}
-		}
-
-		if( !$this->mDoContentConvert )
-			return $text;
-
-		$plang = $this->getPreferredVariant();
-		$fallback = $this->getVariantFallback($plang);
-		$variants = $this->getVariants();
-
-		$tarray = explode("-{", $text);
-		$tfirst = array_shift($tarray);
-		$text = $this->autoConvert($tfirst);
-		foreach($tarray as $txt) {
-			$marked = explode("}-", $txt);
-		
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$marked[0] = str_replace('&nbsp;', '', $marked[0]);
-
-			/* see if this conversion has special meaning
-			   # for article title:
-				 -{T|zh-cn:foo;zh-tw:bar}-
-			   # convert all occurence of foo/bar in this article:
-				 -{A|zh-cn:foo;zh-tw:bar}-
-			*/
-			$flag = '';
-			$choice = false;
-			$tt = explode("|", $marked[0], 2);
-			if(sizeof($tt) == 2) {
-				$flag = trim($tt[0]);
-				$choice = explode(";", $tt[1]);
-			}
-
-			if(!$choice) {
-				$choice = explode(";", $marked[0]);
-			}
-			$disp = '';
-			$carray = array();
-			if(!array_key_exists(1, $choice)) {
-				/* a single choice */
-				$disp = $choice[0];
-
-				/* fill the carray if the conversion is for the whole article*/
-				if($flag == 'A') {
-					foreach($variants as $v)
-						$carray[$v] = $disp;
-				}
-			} 
-			else {
-				foreach($choice as $c) {
-					$v = explode(":", $c);
-					if(sizeof($v) != 2) // syntax error, skip
-						continue;
-					$carray[trim($v[0])] = trim($v[1]);
-				}
-				if(array_key_exists($plang, $carray))
-					$disp = $carray[$plang];
-				else if(array_key_exists($fallback, $carray))
-					$disp = $carray[$fallback];
-			}
-			if(empty($disp)) { // syntax error
-				$text .= $marked[0];
-			}
-			else {	
-				if($flag == 'T') // for title only
-					$this->mTitleDisplay = $disp;
-				else {
-					$text .= $disp;
-					if($flag == 'A') {
-						/* modify the conversion table for this session*/
-
-						/* fill in the missing variants, if any,
-						    with fallbacks */ 
-						foreach($variants as $v) {
-							if(!array_key_exists($v, $carray)) {
-								$vf = $this->getVariantFallback($v);
-								if(array_key_exists($vf, $carray))
-									$carray[$v] = $carray[$vf];
-							}
-						}
-						foreach($variants as $vfrom) {
-							if(!array_key_exists($vfrom, $carray))
-								continue;
-							foreach($variants as $vto) {
-								if($vfrom == $vto)
-									continue;
-								if(!array_key_exists($vto, $carray))
-									continue;
-								$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
-							}
-						}
-					}
-				}
-			}
-			if(array_key_exists(1, $marked))
-				$text .= $this->autoConvert($marked[1]);
-		}
-		
-		return $text;
-	}
-
-
-	function getVariants() {
-		return array("zh", "zh-cn", "zh-tw", "zh-sg", "zh-hk");
-	}
-
-	function getVariantFallback($v) {
-		switch ($v) {
-		case 'zh': return 'zh-cn'; break;
-		case 'zh-cn': return 'zh-sg'; break;
-		case 'zh-sg': return 'zh-cn'; break;
-		case 'zh-tw': return 'zh-hk'; break;
-		case 'zh-hk': return 'zh-tw'; break;
-		}
-		return false;
 	}
 
 	// word segmentation
@@ -473,7 +74,7 @@ class LanguageZh extends LanguageZh_cn {
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
 
-		$t = $this->autoConvert($t, 'zh-cn');
+		$t = $this->mConverter->autoConvert($t, 'zh-cn');
 		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
@@ -482,44 +83,10 @@ class LanguageZh extends LanguageZh_cn {
 
 	function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
-		$terms = implode( '|', $this->autoConvertToAllVariants( $terms ) );
+		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;
 	}
 
-	function findVariantLink( &$link, &$nt ) {
-		static $count=0; //used to limit this operation
-		static $cache=array();
-		global $wgDisableLangConversion;
-		$pref = $this->getPreferredVariant();
-		if( $count > 50 )
-			return;
-		$count++;
-		$variants = $this->autoConvertToAllVariants($link);
-		if($variants == false) //give up
-			return;
-		foreach( $variants as $v ) {
-			if(isset($cache[$v]))
-				continue;
-			$cache[$v] = 1;
-			$varnt = Title::newFromText( $v );
-			if( $varnt && $varnt->getArticleID() > 0 ) {
-				$nt = $varnt;
-				if( !$wgDisableLangConversion && $pref != 'zh' )
-					$link = $v;
-				break;
-			}
-		}
-	}
-
-	function getExtraHashOptions() {
-		global $wgUser;
-		$variant = $this->getPreferredVariant();
-		return '!' . $variant ;
-	}
-
-	function getParsedTitle() {
-		return $this->mTitleDisplay;
-	}
 }
 ?>
