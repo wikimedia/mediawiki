@@ -213,7 +213,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"it" => "Italiano",		# Italian
 	"iu" => "&#5123;&#5316;&#5251;&#5198;&#5200;&#5222;",	# Inuktitut
 	"ja" => "&#26085;&#26412;&#35486;",	# Japanese
-	"jv" => "Bahasa Jawa",	# Javanese
+	"jv" => "Basa Jawa",	# Javanese
 	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;",	# Georgian
 	"kk" => "&#1179;&#1072;&#1079;&#1072;&#1179;&#1096;&#1072;",	# Kazakh
 	"kl" => "Kalaallisut",	# Greenlandic
