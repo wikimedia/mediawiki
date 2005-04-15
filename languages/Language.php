@@ -1850,15 +1850,31 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'contributionsall' => 'all',
 );
 
+/* a fake language converter */
+class fakeConverter {
+	var $mLang;   
+	function fakeConverter($langobj) {$this->mLang = $langobj;}
+	function convert($t, $i) {return $t;}
+	function getVariants() { return array( strtolower( substr( get_class( $this->mLang ), 8 ) ) ); }
+	function getPreferredVariant() {return strtolower( substr( get_class( $this->mLang ), 8 ) );}
+	function findVariantLink(&$l, &$n) {}
+	function getExtraHashOptions() {return '';}
+	function getParsedTitle() {return '';}
+	function markNoConversion($text) {return $text;}
+}
+
 #--------------------------------------------------------------------------
 # Internationalisation code
 #--------------------------------------------------------------------------
 
 class Language {
+	var $mConverter;
 	function Language() {
+
 		# Copies any missing values in the specified arrays from En to the current language
 		$fillin = array( 'wgSysopSpecialPages', 'wgValidSpecialPages', 'wgDeveloperSpecialPages' );
 		$name = get_class( $this );
+
 		if( strpos( $name, 'language' ) == 0){
 			$lang = ucfirst( substr( $name, 8 ) );
 			foreach( $fillin as $arrname ){
@@ -1872,6 +1888,7 @@ class Language {
 				}
 			}
 		}
+		$this->mConverter = new fakeConverter($this);
 	}
 	
 	/**
@@ -2471,7 +2488,7 @@ class Language {
 
 	# convert text to different variants of a language.
 	function convert( $text , $isTitle=false) {
-		return $text;
+		return $this->mConverter->convert($text, $isTitle);
 	}
 
 	/**
@@ -2481,26 +2498,12 @@ class Language {
 	 * @return array an array of language codes
 	 */
 	function getVariants() {
-		$lang = strtolower( substr( get_class( $this ), 8 ) );
-		return array( $lang );
+		return $this->mConverter->getVariants();
 	}
 
-	/**
-	 * in case some variant is not defined in the markup, we need
-	 * to have some fallback. for example, in zh, normally people
-	 * will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
-	 * when zh-sg is preferred but not defined, we will pick zh-cn
-	 * in this case. right now this is only used by zh.
-	 *	
-	 * @param string $v the language code of the variant
-	 * @return string the code of the fallback language or false if there is no fallback
-	*/
-	function getVariantFallback( $v ) {
-		return false;
-	}
 
 	function getPreferredVariant() {
-		return strtolower( substr( get_class( $this ), 8 ) );
+		return $this->mConverter->getPreferredVariant();
 	}
 
 	/**
@@ -2514,7 +2517,7 @@ class Language {
 	 * @return null the input parameters may be modified upon return
 	 */
 	function findVariantLink( &$link, &$nt ) {
-		return;
+		$this->mConverter->findVariantLink($link, $nt);
 	}
 
 	/**
@@ -2525,9 +2528,31 @@ class Language {
 	 * @access public
 	 */
 	function getExtraHashOptions() {
-		return '';
+		return $this->mConverter->getExtraHashOptions();
+	}
+
+	/**
+	 * for languages that support multiple variants, the title of an
+	 * article may be displayed differently in different variants. this
+	 * function returns the apporiate title defined in the body of the article.
+	 * 
+	 * @return string
+	 */
+	function getParsedTitle() {
+		return $this->mConverter->getParsedTitle();
 	}
 	
+	/**
+	 * Enclose a string with the "no conversion" tag. This is used by
+	 * various functions in the Parser
+	 * 
+	 * @param string $text text to be tagged for no conversion
+	 * @return string the tagged text
+	*/
+	function markNoConversion( $text ) {
+		return $this->mConverter->markNoConversion( $text );
+	}
+
 	/**
 	 * A regular expression to match legal word-trailing characters
 	 * which should be merged onto a link of the form [[foo]]bar.
@@ -2545,16 +2570,6 @@ class Language {
 		return $this;
 	}
 
-	/**
-	 * for languages that support multiple variants, the title of an
-	 * article may be displayed differently in different variants. this
-	 * function returns the apporiate title defined in the body of the article.
-	 * 
-	 * @return string
-	 */
-	function getParsedTitle() {
-		return '';
-	}
 
 }
 
