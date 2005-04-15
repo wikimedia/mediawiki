@@ -891,8 +891,19 @@ $wgCategoryMagicGallery = true;
 # Contains a list of regexps : "/regexp/"  matching problematic browsers
 $wgBrowserBlackList = array(
 	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/",
-	# MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
-	"/Mozilla\/4.0 \(compatible; MSIE 5.0; Mac_PowerPC\)/"
+	/**
+	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
+	 *
+	 * Known useragents:
+	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
+	 * - Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)
+	 * - Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
+	 * - [...]
+	 *
+	 * @link http://en.wikipedia.org/w/index.php?title=User%3A%C6var_Arnfj%F6r%F0_Bjarmason%2Ftestme&diff=12356041&oldid=12355864
+	 * @link http://en.wikipedia.org/wiki/Template%3AOS9
+	 */
+	"/Mozilla\/4\.0 \(compatible; MSIE 5\.\d+; Mac_PowerPC\)/"
 );
 
 # Fake out the timezone that the server thinks it's in. This will be used
