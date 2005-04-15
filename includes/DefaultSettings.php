@@ -1128,9 +1128,10 @@ $wgCategoryMagicGallery = true;
  * Contains a list of regexps : "/regexp/"  matching problematic browsers
  */
 $wgBrowserBlackList = array(
-	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/"
-	// FIXME: Add some accurate, true things here
-	);
+	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/",
+	# MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
+	"/Mozilla\/4.0 \(compatible; MSIE 5.0; Mac_PowerPC\)/"
+);
 
 /**
  * Fake out the timezone that the server thinks it's in. This will be used for
