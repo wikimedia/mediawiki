@@ -241,6 +241,7 @@ class LanguageConverter {
 		foreach($tarray as $txt) {
 			$marked = explode($this->mMarkup['end'], $txt);
 		
+# FIXME: this may cause trouble...
 			//strip &nbsp; since it interferes with the parsing, plus,
 			//all spaces should be stripped in this tag anyway.
 			$marked[0] = str_replace('&nbsp;', '', $marked[0]);
@@ -581,6 +582,7 @@ class LanguageConverter {
 	*/
 	function markNoConversion($text) {
 		$ret = $this->mMarkup['begin'] . $text . $this->mMarkup['end'];
+		return $ret;
 	}
 
 	/**
