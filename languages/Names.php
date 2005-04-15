@@ -86,7 +86,7 @@
 	'iu' => '&#5123;&#5316;&#5251;&#5198;&#5200;&#5222;',	# Inuktitut
 	'ja' => '&#26085;&#26412;&#35486;',	# Japanese
 	'jbo' => 'Lojban',		# Lojban
-	'jv' => 'Bahasa Jawa',	# Javanese
+	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => '&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;',	# Georgian
 	'kg' => 'Kongo',		# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'G&#297;k&#361;y&#361;',	# Kikuyu, correctness not guaranteed
