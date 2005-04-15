@@ -993,6 +993,11 @@ $wgDisableHardRedirects = false;
  */
 $wgEnableSorbs = true;
 
+/**
+ * On Special:Unusedimages, consider images "used", if they are put
+ * into a category. Default (false) is not to count those as used.
+ */
+$wgCountCategorizedImagesAsUsed = false;
 
 } else {
 	die("MEDIAWIKI not defined, this is not a valid entry point\n");

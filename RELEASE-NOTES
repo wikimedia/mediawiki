@@ -473,6 +473,8 @@ pages for purposes of page relevancy ranking.
 * (bug 1860) Anchors of interwiki links did not get normalized
 * (bug 1847) accept lowercase x in ISBN, do not accept invalid A-W,Y,Z
 * Fix link conversion for URL request, hopefully without breaking the wiki
+* (bug 1849) New option allows to consider categorized images as used on
+  Special:Unusedimages
 
 === Caveats ===
 
