@@ -280,6 +280,8 @@ class OutputPage {
 	/**
 	 * @param $article
 	 * @param $user
+	 *
+	 * @return bool
 	 */
 	function tryParserCache( $article, $user ) {
 		global $wgParserCache;
@@ -737,7 +739,7 @@ class OutputPage {
 		global $wgUser, $wgContLang, $wgRequest;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
-			$ret = "<" . "?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
+			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
 		} else {
 			$ret = '';
 		}
@@ -820,9 +822,8 @@ class OutputPage {
 	function transformBuffer( $options = 0 ) {
 	}
 
-
 }
 
-}
+} // MediaWiki
 
 ?>
