@@ -1,14 +1,10 @@
 <?php
-/*
-	Copyright (C) 2005 by Zhengzhu Feng (zhengzhu@gmail.com)
-
-	This file is distributed under the terms of GPL
-
-*/
-
 /**
   * @package MediaWiki
   * @subpackage Language
+  *
+  * @author Zhengzhu Feng <zhengzhu@gmail.com>
+  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
   */
 
 class LanguageConverter {
