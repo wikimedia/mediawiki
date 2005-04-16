@@ -6,11 +6,20 @@
 
 /**
  * Constructor
+ *
+ * @param string $par the namespace to get a random page from (default NS_MAIN), 
+ *               used as e.g. Special:Randompage/Category
  */
-function wfSpecialRandompage() {
-	global $wgOut, $wgTitle, $wgArticle, $wgExtraRandompageSQL;
+function wfSpecialRandompage( $par = NS_MAIN ) {
+	global $wgOut, $wgTitle, $wgArticle, $wgExtraRandompageSQL, $wgContLang;
 	$fname = 'wfSpecialRandompage';
 
+	# Determine the namespace to get a random page from.
+	$namespace = $wgContLang->getNsIndex($par);
+	if ($namespace === false || $namespace < NS_MAIN) {
+		$namespace = NS_MAIN;
+	}
+	
 	# NOTE! We use a literal constant in the SQL instead of the RAND()
 	# function because RAND() will return a different value for every row
 	# in the table. That's both very slow and returns results heavily
@@ -34,7 +43,7 @@ function wfSpecialRandompage() {
 	}
 	$sqlget = "SELECT page_id,page_title
 		FROM $page $use_index
-		WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0 $extra
+		WHERE page_namespace=".$namespace." AND page_is_redirect=0 $extra
 		AND page_random>$randstr
 		ORDER BY page_random
 		LIMIT 1";
@@ -42,7 +51,7 @@ function wfSpecialRandompage() {
 	
 	$title = null;
 	if( $s = $db->fetchObject( $res ) ) {
-		$title =& Title::makeTitle( NS_MAIN, $s->page_title );
+		$title =& Title::makeTitle( $namespace, $s->page_title );
 	}	
 	if( is_null( $title ) ) {
 		# That's not supposed to happen :)
