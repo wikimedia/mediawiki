@@ -289,16 +289,7 @@ class ImagePage extends Article {
 				return;
 			}
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
-			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );
-						
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer . Image::imageUrl( $image )
-				);
-				wfPurgeSquidServers($urlArr);
-			}
-			
+			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );			
 
 			$urlArr = Array();
 			while ( $s = $dbw->fetchObject( $res ) ) {
@@ -306,7 +297,7 @@ class ImagePage extends Article {
 				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
 			}	
 			
-			# Squid purging, part II
+			# Defer purging of archived URLs
 			if ( $wgUseSquid ) {
 				/* this needs to be done after LinksUpdate */
 				$u = new SquidUpdate( $urlArr );
@@ -321,10 +312,9 @@ class ImagePage extends Article {
 			$article = new Article( $this->mTitle );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
-			/* refresh image metadata cache */
+			/* Delete thumbnails and refresh image metadata cache */
 			$imgObj = new Image( $this->mTitle );
-			$imgObj->loadFromFile();
-			$imgObj->saveToCache();
+			$imgObj->purgeCache();
 
 			$deleted = $image;
 		}
@@ -425,15 +415,6 @@ class ImagePage extends Article {
 		# Record upload and update metadata cache
 		$img = Image::newFromName( $name );
 		$img->recordUpload( $oldver, wfMsg( "reverted" ) );
-
-		# Squid purging
-		if ( $wgUseSquid ) {
-			$urlArr = Array(
-				$wgInternalServer.wfImageArchiveUrl( $name ),
-				$wgInternalServer . Image::imageUrl( $name ),
-			);
-			wfPurgeSquidServers($urlArr);
-		}
 
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );

@@ -5,10 +5,13 @@
  * If the file exists, we make do with abridged MediaWiki initialisation. 
  */
 
-unset( $IP );
 define( 'MEDIAWIKI', true );
+unset( $IP );
+$wgNoOutputBuffer = true;
+
 require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
+require_once( 'GlobalFunctions.php' );
 require_once( 'Image.php' );
 require_once( 'StreamFile.php' );
 
@@ -34,7 +37,7 @@ $thumbName = "{$width}px-$fileName";
 if ( preg_match( '/\.svg$/', $fileName ) ) {
 	$thumbName .= '.png';
 }
-$thumbPath = wfImageThumbDir( $thumbName ) . '/' . $thumbName;
+$thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
 
 if ( file_exists( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
 	wfStreamFile( $thumbPath );
@@ -44,18 +47,14 @@ if ( file_exists( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePa
 // OK, no valid thumbnail, time to get out the heavy machinery
 require_once( 'Setup.php' );
 
-// Force renderThumb() to actually do something
-$wgThumbnailScriptPath = false;
-$wgSharedThumbnailScriptPath = false;
-
 $img = Image::newFromName( $fileName );
 if ( $img ) {
-	$thumb = $img->renderThumb( $width );
+	$thumb = $img->renderThumb( $width, false );
 } else {
 	$thumb = false;
 }
 
-if ( $thumb ) {
+if ( $thumb && $thumb->path ) {
 	wfStreamFile( $thumb->path );
 } else {
 	$badtitle = wfMsg( 'badtitle' );

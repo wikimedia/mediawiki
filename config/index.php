@@ -181,7 +181,7 @@ class ConfigData {
 <?php
 $endl = "
 ";
-$wgConfiguring = true;
+$wgNoOutputBuffer = true;
 $conf = new ConfigData;
 
 install_version_checks();
