@@ -475,6 +475,8 @@ pages for purposes of page relevancy ranking.
 * Fix link conversion for URL request, hopefully without breaking the wiki
 * (bug 1849) New option allows to consider categorized images as used on
   Special:Unusedimages
+* Localized category namespace for ka (Georgian)
+
 
 === Caveats ===
 
