@@ -16,6 +16,7 @@ New exciting things! Need further work and testing...
 * New WikiSyntax: -- turns into &mdash; or &ndash; depending on context
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
+* (bug 510): Special:Randompage now works for other namespaces than NS_MAIN.
 * (bug 1015) support for the full wikisyntax in <gallery> captions.
 * (bug 1105) A "Destination filename" (save as) added to Special:Upload Upload.
 * (bug 1352) Images on description pages now get thumbnailed regardless of whether the thumbnail is larger than the original.
