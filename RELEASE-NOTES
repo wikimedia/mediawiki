@@ -18,6 +18,7 @@ New exciting things! Need further work and testing...
 * (bug 190) Hide your own edits on the watchlist
 * (bug 1015) support for the full wikisyntax in <gallery> captions.
 * (bug 1105) A "Destination filename" (save as) added to Special:Upload Upload.
+* (bug 1352) Images on description pages now get thumbnailed regardless of whether the thumbnail is larger than the original.
 * (bug 1662) A new magicword, {{CURRENTMONTHABBREV}} returns the abbreviation of the current month
 * (bug 1668) 'Date format' supported for other languages than English, see:
   http://mail.wikipedia.org/pipermail/wikitech-l/2005-March/028364.html
