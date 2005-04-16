@@ -25,7 +25,7 @@ if ( get_magic_quotes_gpc() ) {
 // Some basic input validation
 
 $width = intval( $width );
-$fileName = str_replace( '/', '_', $fileName );
+$fileName = strtr( $fileName, '\\/', '__' );
 
 // Work out paths, carefully avoiding constructing an Image object because that won't work yet
 
