@@ -237,6 +237,10 @@ class Image
 			$this->fileExists = true;
 			$this->loadFromRow( $row );
 			$this->imagePath = $this->getFullPath();
+			// Check for rows from a previous schema, quietly upgrade them
+			if ( $this->type == -1 ) {
+				$this->upgradeRow();
+			}
 		} elseif ( $wgUseSharedUploads && $wgSharedUploadDBname ) {
 			# In case we're on a wgCapitalLinks=false wiki, we 
 			# capitalize the first letter of the filename before 
@@ -252,6 +256,11 @@ class Image
 				$this->imagePath = $this->getFullPath(true);
 				$this->name = $name;
 				$this->loadFromRow( $row );
+				
+				// Check for rows from a previous schema, quietly upgrade them
+				if ( $this->type == -1 ) {
+					$this->upgradeRow();
+				}
 			}
 		}
 		
@@ -299,6 +308,38 @@ class Image
 		}
 	}
 
+	/** 
+	 * Metadata was loaded from the database, but the row had a marker indicating it needs to be 
+	 * upgraded from the 1.4 schema, which had no width, height, bits or type. Upgrade the row.
+	 */
+	function upgradeRow() {
+		global $wgDBname, $wgSharedUploadDBname;
+		$fname = 'Image::upgradeRow';
+		$this->loadFromFile();
+		$dbw =& wfGetDB( DB_MASTER );
+
+		if ( $this->fromSharedDirectory ) {
+			if ( !$wgSharedUploadDBname ) {
+				return;
+			}
+
+			// Write to the other DB using selectDB, not database selectors
+			// This avoids breaking replication in MySQL
+			$dbw->selectDB( $wgSharedUploadDBname );
+		}
+		$dbw->update( '`image`', 
+			array( 
+				'img_width' => $this->width,
+				'img_height' => $this->height,
+				'img_bits' => $this->bits,
+				'img_type' => $this->type,
+			), array( 'img_name' => $this->name ), $fname
+		);
+		if ( $this->fromSharedDirectory ) {
+			$dbw->selectDB( $wgDBname );
+		}
+	}
+				
 	/**
 	 * Return the name of this image
 	 * @access public

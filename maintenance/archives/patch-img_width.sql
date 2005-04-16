@@ -1,10 +1,10 @@
 -- Extra image metadata, added for 1.5
 
 ALTER TABLE /*$wgDBprefix*/image ADD (
-  img_width int(5) NOT NULL default '0',
-  img_height int(5) NOT NULL default '0',
-  img_bits int(5) NOT NULL default '0',
-  img_type int(5) NOT NULL default '0'
+  img_width int(5) NOT NULL default 0,
+  img_height int(5) NOT NULL default 0,
+  img_bits int(5) NOT NULL default 0,
+  img_type int(5) NOT NULL default -1
 );
 
 ALTER TABLE /*$wgDBprefix*/oldimage ADD (
