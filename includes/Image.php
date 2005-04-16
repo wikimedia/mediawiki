@@ -48,11 +48,11 @@ class Image
 	/** 
 	 * Obsolete factory function, use constructor
 	 */
-	function newFromTitle( &$title ) {
+	function newFromTitle( $title ) {
 		return new Image( $title );
 	}
 	
-	function Image( &$title ) {
+	function Image( $title ) {
 		$this->title =& $title;
 		$this->name = $title->getDBkey();
 
@@ -105,6 +105,7 @@ class Image
 						$this->height = $commonsCachedValues['height'];
 						$this->bits = $commonsCachedValues['bits'];
 						$this->type = $commonsCachedValues['type'];
+						$this->size = $commonsCachedValues['size'];
 						$this->fromSharedDirectory = true;
 						$this->dataLoaded = true;
 					}
@@ -118,6 +119,7 @@ class Image
 				$this->height = $cachedValues['height'];
 				$this->bits = $cachedValues['bits'];
 				$this->type = $cachedValues['type'];
+				$this->size = $cachedValues['size'];
 				$this->fromSharedDirectory = false;
 				$this->dataLoaded = true;
 			}
@@ -145,7 +147,8 @@ class Image
 								  'width' => $this->width,
 								  'height' => $this->height,
 								  'bits' => $this->bits,
-								  'type' => $this->type);
+								  'type' => $this->type,
+								  'size' => $this->size);
 
 			$wgMemc->set( $keys[0], $cachedValues );
 		}
@@ -155,23 +158,25 @@ class Image
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		global $wgUseSharedUploads, $wgSharedUploadDirectory;
+		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgLang;
 		$fname = 'Image::loadFromFile';
 		wfProfileIn( $fname );
 		$this->imagePath = $this->getFullPath();
 		$this->fileExists = file_exists( $this->imagePath );
 		$gis = false;
 
-		# If the file is not found, and a non-wiki shared upload directory is used, look for it there.
+		# If the file is not found, and a shared upload directory is used, look for it there.
 		if (!$this->fileExists && $wgUseSharedUploads && $wgSharedUploadDirectory) {			
 			# In case we're on a wgCapitalLinks=false wiki, we 
 			# capitalize the first letter of the filename before 
 			# looking it up in the shared repository.
-			$this->name = $wgLang->ucfirst($name);
-			
-			$this->imagePath = $this->getFullPath(true);
-			$this->fileExists = file_exists( $this->imagePath);
-			$this->fromSharedDirectory = true;
+			$sharedImage = Image::newFromName( $wgLang->ucfirst($this->name) );
+			$this->fileExists = file_exists( $sharedImage->getFullPath(true) );
+			if ( $this->fileExists ) {
+				$this->name = $sharedImage->name;
+				$this->imagePath = $this->getFulPath(true);
+				$this->fromSharedDirectory = true;
+			}
 		}
 
 		if ( $this->fileExists ) {
@@ -505,6 +510,7 @@ class Image
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
 		}
+		$this->load();
 		if ( $width < $this->width ) {
 			$thumbheight = $this->height * $width / $this->width;
 			$thumbwidth = $width;
@@ -534,7 +540,7 @@ class Image
 			$path = '/common/images/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if( file_exists( $filepath ) ) {
-				return new ThumbnailImage( $filepath, $wgStylePath . $path );
+				return new ThumbnailImage( $wgStylePath . $path, 120, 120 );
 			}
 		}
 		return null;
@@ -552,13 +558,15 @@ class Image
 	 * @return ThumbnailImage
 	 * @access private
 	 */
-	function /* private */ renderThumb( $width ) {
+	function /* private */ renderThumb( $width, $useScript = true ) {
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
-
+		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
+		
 		$width = IntVal( $width );
 
+		$this->load();
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
 		$thumbPath = wfImageThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).'/'.$thumbName;
 		$thumbUrl  = $this->thumbUrl( $width );
@@ -577,7 +585,30 @@ class Image
 
 		if( $width > $this->width && !$this->mustRender() ) {
 			# Don't make an image bigger than the source
-			return new ThumbnailImage( $this->getImagePath(), $this->getViewURL() );
+			return new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+		}
+		
+		$height = floor( $this->height * ( $width/$this->width ) );
+		
+		// Generate thumb.php URL if possible
+		$thumbScript = false;
+		$scriptUrl = false;
+
+		if ( $this->fromSharedDirectory ) {
+			if ( $wgSharedThumbnailScriptPath ) {
+				$thumbScript = $wgSharedThumbnailScriptPath;
+			}
+		} else {
+			if ( $wgThumbnailScriptPath ) {
+				$thumbScript = $wgThumbnailScriptPath;
+			}
+		}
+		if ( $thumbScript ) {
+			$scriptUrl = $thumbScript . '?f=' . urlencode( $this->name ) . '&w=' . urlencode( $width );
+			if ( $useScript ) {
+				// Use thumb.php to render the image
+				return new ThumbnailImage( , $width, $height );
+			}
 		}
 
 		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
@@ -635,7 +666,6 @@ class Image
 						return 'Image type not supported';
 						break;
 				}
-				$height = floor( $this->height * ( $width/$this->width ) );
 				if ( $truecolor ) {
 					$dst_image = imagecreatetruecolor( $width, $height );
 				} else {
@@ -683,10 +713,13 @@ class Image
 				$urlArr = Array(
 					$wgInternalServer.$thumbUrl
 				);
+				if ( $scriptUrl ) {
+					$urlArr[] = $scriptUrl;
+				}
 				wfPurgeSquidServers($urlArr);
 			}
 		}
-		return new ThumbnailImage( $thumbPath, $thumbUrl );
+		return new ThumbnailImage( $thumbUrl, $width, $height );
 	} // END OF function createThumb
 
 	/**
@@ -889,6 +922,8 @@ class Image
  * Returns the image directory of an image
  * If the directory does not exist, it is created.
  * The result is an absolute path.
+ *
+ * This function is called from thumb.php before Setup.php is included
  * 
  * @param string $fname		file name of the image file
  * @access public
@@ -913,6 +948,8 @@ function wfImageDir( $fname ) {
  * Returns the image directory of an image's thubnail
  * If the directory does not exist, it is created.
  * The result is an absolute path.
+ *
+ * This function is called from thumb.php before Setup.php is included
  * 
  * @param string $fname		file name of the thumbnail file, including file size prefix
  * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the thumbnail. Default is 'thumb'
@@ -927,6 +964,8 @@ function wfImageThumbDir( $fname , $subdir='thumb', $shared=false) {
  * Returns the image directory of an image's old version
  * If the directory does not exist, it is created.
  * The result is an absolute path.
+ *
+ * This function is called from thumb.php before Setup.php is included
  * 
  * @param string $fname		file name of the thumbnail file, including file size prefix
  * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the old version. Default is 'archive'
@@ -1090,17 +1129,10 @@ class ThumbnailImage {
 	 * @param string $url URL path to the thumb
 	 * @access private
 	 */
-	function ThumbnailImage( $path, $url ) {
+	function ThumbnailImage( $url, $width, $height ) {
 		$this->url = $url;
-		$this->path = $path;
-		$size = @getimagesize( $this->path );
-		if( $size ) {
-			$this->width = $size[0];
-			$this->height = $size[1];
-		} else {
-			$this->width = 0;
-			$this->height = 0;
-		}
+		$this->width = $width;
+		$this->height = $height;
 	}
 
 	/**
@@ -1136,18 +1168,5 @@ class ThumbnailImage {
 		return $html;
 	}
 
-    /**             
-     * Return the size of the thumbnail file, in bytes or false if the file
-     * can't be stat().
-     * @access public
-     */                     
-    function getSize() {         
-		$st = stat( $this->path );
-		if( $st ) {     
-			return $st['size']; 
-		} else {        
-			return false;
-		}                       
-	}
 }
 ?>

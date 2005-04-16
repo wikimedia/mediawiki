@@ -51,7 +51,7 @@ class ImageGallery
 
 
 	/**
-	 * isEmpty() returns false iff the gallery doesn't contain any images
+	 * isEmpty() returns true if the gallery contains no images
 	 */
 	function isEmpty() {
 		return empty( $this->mImages );
@@ -119,13 +119,13 @@ class ImageGallery
 				} else {
 					$nb = wfMsg( 'filemissing' );
 				}
-				$nb = htmlspecialchars( $nb ) . '<br />';
+				$nb = htmlspecialchars( $nb ) . "<br />\n";
 			} else {
 				$nb = '';
 			}
 				
 			$textlink = $this->mShowFilename ?
-				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . '<br />' :
+				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . "<br />\n" :
 				'' ;
 
 			$s .= ($i%4==0) ? '<tr>' : '';

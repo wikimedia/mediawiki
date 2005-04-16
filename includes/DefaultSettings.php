@@ -139,6 +139,18 @@ $wgSharedUploadDBname = false;
 /** Cache shared metadata in memcached. Don't do this if the commons wiki is in a different memcached domain */
 $wgCacheSharedUploads = true;
 
+/** 
+ * Give a path here to use thumb.php for thumbnail generation on client request, instead of 
+ * generating them on render and outputting a static URL. This is necessary if some of your 
+ * apache servers don't have read/write access to the thumbnail path.
+ * 
+ * Example: 
+ *   $wgThumnailScriptPath = "{$wgScriptPath}/thumb.php";
+ */
+$wgThumbnailScriptPath = false;
+$wgSharedThumbnailScriptPath = false;
+
+
 /**
  * Set the following to false especially if you have a set of files that need to
  * be accessible by all wikis, and you do not want to use the hash (path/a/aa/)

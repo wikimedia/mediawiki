@@ -88,9 +88,9 @@ function wfSpecialNewimages() {
 		$img = Image::newFromTitle( $nt );
 		$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 
-		$gallery->add( $img, $ul.'<br /><i>'.$wgLang->timeanddate( $s->img_timestamp, true ).'</i><br />' );
+		$gallery->add( $img, "$ul<br />\n<i>".$wgLang->timeanddate( $s->img_timestamp, true )."</i><br />\n" );
 		
-		$timestamp = wfTImestamp( TS_MW, $s->img_timestamp );
+		$timestamp = wfTimestamp( TS_MW, $s->img_timestamp );
 		if( empty( $firstTimestamp ) ) {
 			$firstTimestamp = $timestamp;
 		}
