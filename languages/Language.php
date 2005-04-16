@@ -1027,6 +1027,8 @@ created and by whom, and anything else you may know about it. If this is an imag
 'uploadedimage' => "uploaded \"[[$1]]\"",
 'uploaddisabled' => 'Sorry, uploading is disabled.',
 'uploadcorrupt' => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
+'sourcefilename' => 'Source filename',
+'destfilename' => 'Destination filename',
 
 # Image list
 #

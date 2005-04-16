@@ -184,8 +184,7 @@ class Image
 
 		if ( $this->fileExists ) {
 			# Get size in bytes
-			$s = stat( $this->imagePath );
-			$this->size = $s['size'];
+			$this->size = filesize( $this->imagePath );
 
 			# Height and width
 			# Don't try to get the width and height of sound and video files, that's bad for performance
@@ -823,6 +822,7 @@ class Image
 		global $wgInternalServer, $wgUseSquid;
 
 		// Refresh metadata cache
+		clearstatcache();
 		$this->loadFromFile();
 		$this->saveToCache();
 

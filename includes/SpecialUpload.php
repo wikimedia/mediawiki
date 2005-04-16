@@ -31,7 +31,7 @@ class UploadForm {
 	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
-	var $mOname, $mSessionKey, $mStashed;
+	var $mOname, $mSessionKey, $mStashed, $mDestFile;
 	/**#@-*/
 
 	/**
@@ -40,11 +40,13 @@ class UploadForm {
 	 * @param $request Data posted.
 	 */
 	function UploadForm( &$request ) {
+		$this->mDestFile          = $request->getText( 'wpDestFile' );
+		
 		if( !$request->wasPosted() ) {
-			# GET requests just give the main form; no data.
+			# GET requests just give the main form; no data except wpDestfile.
 			return;
 		}
-		
+
 		$this->mUploadAffirm      = $request->getCheck( 'wpUploadAffirm' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning');
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
@@ -132,7 +134,7 @@ class UploadForm {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
-		if( ( trim( $this->mOname ) == '' ) || empty( $this->mUploadSize ) ) {
+		if( trim( $this->mOname ) == '' || empty( $this->mUploadSize ) ) {
 			return $this->mainUploadForm('<li>'.wfMsg( 'emptyfile' ).'</li>');
 		}
 		
@@ -156,7 +158,11 @@ class UploadForm {
 		}
 
 		# Chop off any directories in the given filename
-		$basename = basename( $this->mOname );
+		if ( $this->mDestFile ) {
+			$basename = basename( $this->mDestFile );
+		} else {
+			$basename = basename( $this->mOname );
+		}
 
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
@@ -479,6 +485,7 @@ class UploadForm {
 		<input type='hidden' name='wpIgnoreWarning' value='1' />
 		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
 		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
+		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDestFile ) . "\" />
 	{$copyright}
 	<table border='0'>
 		<tr>
@@ -525,7 +532,10 @@ class UploadForm {
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$sk = $wgUser->getSkin();
 
-		$fn = wfMsg( 'filename' );
+
+		$sourcefilename = wfMsg( 'sourcefilename' );
+		$destfilename = wfMsg( 'destfilename' );
+		
 		$fd = wfMsg( 'filedesc' );
 		$ulb = wfMsg( 'uploadbtn' );
 
@@ -536,6 +546,8 @@ class UploadForm {
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
 		$action = $titleObj->escapeLocalURL();
+
+		$encDestFile = htmlspecialchars( $this->mDestFile );
 
 		$source = "
 	<td align='right'>
@@ -556,11 +568,17 @@ class UploadForm {
 		  }
 
 		$wgOut->addHTML( "
-	<form id='upload' method='post' enctype='multipart/form-data' action='$action'>
+	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 	<table border='0'><tr>
-	<td align='right'>{$fn}:</td><td align='left'>
-	<input tabindex='1' type='file' name='wpUploadFile' size='40' />
+
+	<td align='right'>{$sourcefilename}:</td><td align='left'>
+	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onchange='fillDestFilename()' size='40' />
 	</td></tr><tr>
+
+	<td align='right'>{$destfilename}:</td><td align='left'>
+	<input tabindex='1' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
+	</td></tr><tr>
+	
 	<td align='right'>{$fd}:</td><td align='left'>
 	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
