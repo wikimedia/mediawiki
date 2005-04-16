@@ -285,10 +285,13 @@ class Image
 	 * Load image metadata from cache or DB, unless already loaded
 	 */
 	function load() {
+		global $wgSharedUploadDBname, $wgUseSharedUploads;
 		if ( !$this->dataLoaded ) {
 			if ( !$this->loadFromCache() ) {
 				$this->loadFromDB();
-				if ( $this->fileExists ) {
+				if ( !$wgSharedUploadDBname && $wgUseSharedUploads ) {
+					$this->loadFromFile();
+				} elseif ( $this->fileExists ) {
 					$this->saveToCache();
 				}
 			}
@@ -1043,12 +1046,21 @@ function wfImageDir( $fname ) {
  * @access public
  */
 function wfImageThumbDir( $fname, $shared = false ) {
-	$dir = wfImageArchiveDir( $fname, 'thumb', $shared ) . "/$fname";
+	$base = wfImageArchiveDir( $fname, 'thumb', $shared );
+	$dir =  "$base/$fname";
+
+	if ( !is_dir( $base ) ) {
+		$oldumask = umask(0);
+		@mkdir( $base, 0777 ); 
+		umask( $oldumask );
+	}
+
 	if ( ! is_dir( $dir ) ) { 
 		$oldumask = umask(0);
 		@mkdir( $dir, 0777 ); 
 		umask( $oldumask );
 	}
+
 	return $dir;
 }
 
