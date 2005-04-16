@@ -13,6 +13,16 @@ does not.</p>
 		return;
 	}
 
+	header( "Cache-Control: s-maxage=$wgSquidMaxage, must-revalidate, max-age=0" );
+	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
+
+	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
+		$sinceTime = strtotime( $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
+		if ( $stat['mtime'] <= $sinceTime ) {
+			header( "HTTP/1.0 304 Not Modified" );
+			return;
+		}
+	}
 	
 	$type = wfGetType( $fname );
 	if ( $type ) {
@@ -20,10 +30,7 @@ does not.</p>
 	} else {
 		header('Content-type: application/x-wiki');
 	}
-	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) );
-	header( "Cache-Control: s-maxage=$wgSquidMaxage, must-revalidate, max-age=0" );
 	readfile( $fname );
-	exit;
 }
 
 function wfGetType( $filename ) {

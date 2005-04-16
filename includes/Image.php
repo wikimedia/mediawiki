@@ -607,7 +607,7 @@ class Image
 			$scriptUrl = $thumbScript . '?f=' . urlencode( $this->name ) . '&w=' . urlencode( $width );
 			if ( $useScript ) {
 				// Use thumb.php to render the image
-				return new ThumbnailImage( , $width, $height );
+				return new ThumbnailImage( $scriptUrl, $width, $height );
 			}
 		}
 
