@@ -108,6 +108,7 @@ class Image
 						$this->size = $commonsCachedValues['size'];
 						$this->fromSharedDirectory = true;
 						$this->dataLoaded = true;
+						$this->imagePath = $this->getFullPath(true);
 					}
 				}
 			}
@@ -122,6 +123,7 @@ class Image
 				$this->size = $cachedValues['size'];
 				$this->fromSharedDirectory = false;
 				$this->dataLoaded = true;
+				$this->imagePath = $this->getFullPath();
 			}
 		}
 
@@ -163,6 +165,7 @@ class Image
 		wfProfileIn( $fname );
 		$this->imagePath = $this->getFullPath();
 		$this->fileExists = file_exists( $this->imagePath );
+		$this->fromSharedDirectory = false;
 		$gis = false;
 
 		# If the file is not found, and a shared upload directory is used, look for it there.
@@ -174,7 +177,7 @@ class Image
 			$this->fileExists = file_exists( $sharedImage->getFullPath(true) );
 			if ( $this->fileExists ) {
 				$this->name = $sharedImage->name;
-				$this->imagePath = $this->getFulPath(true);
+				$this->imagePath = $this->getFullPath(true);
 				$this->fromSharedDirectory = true;
 			}
 		}
@@ -246,7 +249,7 @@ class Image
 			if ( $row ) {
 				$this->fromSharedDirectory = true;
 				$this->fileExists = true;
-				$this->imagePath = '';
+				$this->imagePath = $this->getFullPath(true);
 				$this->name = $name;
 				$this->loadFromRow( $row );
 			}
@@ -443,19 +446,39 @@ class Image
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath, $wgUploadBaseUrl,
-		       $wgSharedUploadPath,$wgSharedUploadDirectory;
-		$name = $this->thumbName( $width );		
-		if($this->fromSharedDirectory) {
-			$base = '';
-			$path = $wgSharedUploadPath;
+		       $wgSharedUploadPath,$wgSharedUploadDirectory,
+			   $wgSharedThumbnailScriptPath, $wgThumbnailScriptPath;
+
+		// Generate thumb.php URL if possible
+		$script = false;
+		$url = false;
+
+		if ( $this->fromSharedDirectory ) {
+			if ( $wgSharedThumbnailScriptPath ) {
+				$script = $wgSharedThumbnailScriptPath;
+			}
 		} else {
-			$base = $wgUploadBaseUrl;
-			$path = $wgUploadPath;
+			if ( $wgThumbnailScriptPath ) {
+				$script = $wgThumbnailScriptPath;
+			}
 		}
-		$url = "{$base}{$path}/{$subdir}" . 
-		wfGetHashPath($name, $this->fromSharedDirectory)
-		. "{$name}";
-		return wfUrlencode($url);
+		if ( $script ) {
+			$url = $script . '?f=' . urlencode( $this->name ) . '&w=' . urlencode( $width );
+		} else {  
+			$name = $this->thumbName( $width );		
+			if($this->fromSharedDirectory) {
+				$base = '';
+				$path = $wgSharedUploadPath;
+			} else {
+				$base = $wgUploadBaseUrl;
+				$path = $wgUploadPath;
+			}
+			$url = "{$base}{$path}/{$subdir}" . 
+			wfGetHashPath($this->name, $this->fromSharedDirectory)
+			. $this->name.'/'.$name;
+			$url = wfUrlencode( $url );
+		}
+		return array( $script !== false, $url );
 	}
 
 	/**
@@ -465,7 +488,7 @@ class Image
 	 * @param boolean $shared	Does the thumbnail come from the shared repository?
 	 * @access private
 	 */
-	function thumbName( $width, $shared=false ) {
+	function thumbName( $width ) {
 		$thumb = $width."px-".$this->name;
 		if( $this->extension == 'svg' ) {
 			# Rasterize SVG vector images to PNG
@@ -559,18 +582,12 @@ class Image
 	 * @access private
 	 */
 	function /* private */ renderThumb( $width, $useScript = true ) {
-		global $wgImageMagickConvertCommand;
-		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
 		
 		$width = IntVal( $width );
 
 		$this->load();
-		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
-		$thumbPath = wfImageThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).'/'.$thumbName;
-		$thumbUrl  = $this->thumbUrl( $width );
-		#wfDebug ( "Render name: $thumbName path: $thumbPath url: $thumbUrl\n");
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
@@ -590,137 +607,201 @@ class Image
 		
 		$height = floor( $this->height * ( $width/$this->width ) );
 		
-		// Generate thumb.php URL if possible
-		$thumbScript = false;
-		$scriptUrl = false;
-
-		if ( $this->fromSharedDirectory ) {
-			if ( $wgSharedThumbnailScriptPath ) {
-				$thumbScript = $wgSharedThumbnailScriptPath;
-			}
-		} else {
-			if ( $wgThumbnailScriptPath ) {
-				$thumbScript = $wgThumbnailScriptPath;
-			}
-		}
-		if ( $thumbScript ) {
-			$scriptUrl = $thumbScript . '?f=' . urlencode( $this->name ) . '&w=' . urlencode( $width );
-			if ( $useScript ) {
-				// Use thumb.php to render the image
-				return new ThumbnailImage( $scriptUrl, $width, $height );
-			}
+		list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
+		if ( $isScriptUrl && $useScript ) {
+			// Use thumb.php to render the image
+			return new ThumbnailImage( $url, $width, $height );
 		}
 
-		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
-			if( $this->extension == 'svg' ) {
-				global $wgSVGConverters, $wgSVGConverter;
-				if( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-					global $wgSVGConverterPath;
-					$cmd = str_replace(
-						array( '$path/', '$width', '$input', '$output' ),
-						array( $wgSVGConverterPath,
-							   $width,
-							   escapeshellarg( $this->imagePath ),
-							   escapeshellarg( $thumbPath ) ),
-						$wgSVGConverters[$wgSVGConverter] );
-					$conv = shell_exec( $cmd );
+		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
+		$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ).'/'.$thumbName;
+
+		if ( !file_exists( $thumbPath ) ) {
+			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
+				'/'.$thumbName;
+			$done = false;
+			if ( file_exists( $oldThumbPath ) ) {
+				if ( filemtime($oldThumbPath) >= filemtime($this->imagePath) ) {
+					rename( $oldThumbPath, $thumbPath );
+					$done = true;
 				} else {
-					$conv = false;
+					unlink( $oldThumbPath );
 				}
-			} elseif ( $wgUseImageMagick ) {
-				# use ImageMagick
-				# Specify white background color, will be used for transparent images
-				# in Internet Explorer/Windows instead of default black.
-				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 85 -background white -geometry {$width} ".
-					escapeshellarg($this->imagePath) . " " .
-					escapeshellarg($thumbPath);				
+			}
+			if ( !$done ) {
+				$this->reallyRenderThumb( $thumbPath, $width, $height );
+
+				# Purge squid
+				# This has to be done after the image is updated and present for all machines on NFS, 
+				# or else the old version might be stored into the squid again
+				if ( $wgUseSquid ) {
+					if ( substr( $url, 0, 4 ) == 'http' ) {
+						$urlArr = array( $url );
+					} else {
+						$urlArr = array( $wgInternalServer.$url );
+					}
+					wfPurgeSquidServers($urlArr);
+				}
+			}
+		}
+		return new ThumbnailImage( $url, $width, $height, $thumbPath );
+	} // END OF function renderThumb
+
+	/**
+	 * Really render a thumbnail
+	 *
+	 * @access private
+	 */
+	function /*private*/ reallyRenderThumb( $thumbPath, $width, $height ) {
+		global $wgSVGConverters, $wgSVGConverter,
+			$wgUseImageMagick, $wgImageMagickConvertCommand;
+		
+		$this->load();
+		
+		if( $this->extension == 'svg' ) {
+			global $wgSVGConverters, $wgSVGConverter;
+			if( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
+				global $wgSVGConverterPath;
+				$cmd = str_replace(
+					array( '$path/', '$width', '$input', '$output' ),
+					array( $wgSVGConverterPath,
+						   $width,
+						   escapeshellarg( $this->imagePath ),
+						   escapeshellarg( $thumbPath ) ),
+					$wgSVGConverters[$wgSVGConverter] );
 				$conv = shell_exec( $cmd );
 			} else {
-				# Use PHP's builtin GD library functions.
-				#
-				# First find out what kind of file this is, and select the correct
-				# input routine for this.
-
-				$truecolor = false;
-				
-				switch( $this->type ) {
-					case 1: # GIF
-						$src_image = imagecreatefromgif( $this->imagePath );
-						break;
-					case 2: # JPG
-						$src_image = imagecreatefromjpeg( $this->imagePath );
-						$truecolor = true;
-						break;
-					case 3: # PNG
-						$src_image = imagecreatefrompng( $this->imagePath );
-						$truecolor = ( $this->bits > 8 );
-						break;
-					case 15: # WBMP for WML
-						$src_image = imagecreatefromwbmp( $this->imagePath );
-						break;
-					case 16: # XBM
-						$src_image = imagecreatefromxbm( $this->imagePath );
-						break;
-					default:
-						return 'Image type not supported';
-						break;
-				}
-				if ( $truecolor ) {
-					$dst_image = imagecreatetruecolor( $width, $height );
-				} else {
-					$dst_image = imagecreate( $width, $height );
-				}
-				imagecopyresampled( $dst_image, $src_image, 
-							0,0,0,0,
-							$width, $height, $this->width, $this->height );
-				switch( $this->type ) {
-					case 1:  # GIF
-					case 3:  # PNG
-					case 15: # WBMP
-					case 16: # XBM
-						#$thumbUrl .= ".png";
-						#$thumbPath .= ".png";
-						imagepng( $dst_image, $thumbPath );
-						break;
-					case 2:  # JPEG
-						#$thumbUrl .= ".jpg";
-						#$thumbPath .= ".jpg";
-						imageinterlace( $dst_image );
-						imagejpeg( $dst_image, $thumbPath, 95 );
-						break;
-					default:
-						break;
-				}
-				imagedestroy( $dst_image );
-				imagedestroy( $src_image );
+				$conv = false;
 			}
+		} elseif ( $wgUseImageMagick ) {
+			# use ImageMagick
+			# Specify white background color, will be used for transparent images
+			# in Internet Explorer/Windows instead of default black.
+			$cmd  =  $wgImageMagickConvertCommand .
+				" -quality 85 -background white -geometry {$width} ".
+				escapeshellarg($this->imagePath) . " " .
+				escapeshellarg($thumbPath);				
+			$conv = shell_exec( $cmd );
+		} else {
+			# Use PHP's builtin GD library functions.
 			#
-			# Check for zero-sized thumbnails. Those can be generated when 
-			# no disk space is available or some other error occurs
-			#
-			if( file_exists( $thumbPath ) ) {
-				$thumbstat = stat( $thumbPath );
-				if( $thumbstat['size'] == 0 ) {
-					unlink( $thumbPath );
-				}
-			}
+			# First find out what kind of file this is, and select the correct
+			# input routine for this.
 
-			# Purge squid
-			# This has to be done after the image is updated and present for all machines on NFS, 
-			# or else the old version might be stored into the squid again
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer.$thumbUrl
-				);
-				if ( $scriptUrl ) {
-					$urlArr[] = $scriptUrl;
-				}
-				wfPurgeSquidServers($urlArr);
+			$truecolor = false;
+			
+			switch( $this->type ) {
+				case 1: # GIF
+					$src_image = imagecreatefromgif( $this->imagePath );
+					break;
+				case 2: # JPG
+					$src_image = imagecreatefromjpeg( $this->imagePath );
+					$truecolor = true;
+					break;
+				case 3: # PNG
+					$src_image = imagecreatefrompng( $this->imagePath );
+					$truecolor = ( $this->bits > 8 );
+					break;
+				case 15: # WBMP for WML
+					$src_image = imagecreatefromwbmp( $this->imagePath );
+					break;
+				case 16: # XBM
+					$src_image = imagecreatefromxbm( $this->imagePath );
+					break;
+				default:
+					return 'Image type not supported';
+					break;
+			}
+			if ( $truecolor ) {
+				$dst_image = imagecreatetruecolor( $width, $height );
+			} else {
+				$dst_image = imagecreate( $width, $height );
+			}
+			imagecopyresampled( $dst_image, $src_image, 
+						0,0,0,0,
+						$width, $height, $this->width, $this->height );
+			switch( $this->type ) {
+				case 1:  # GIF
+				case 3:  # PNG
+				case 15: # WBMP
+				case 16: # XBM
+					imagepng( $dst_image, $thumbPath );
+					break;
+				case 2:  # JPEG
+					imageinterlace( $dst_image );
+					imagejpeg( $dst_image, $thumbPath, 95 );
+					break;
+				default:
+					break;
+			}
+			imagedestroy( $dst_image );
+			imagedestroy( $src_image );
+		}
+		#
+		# Check for zero-sized thumbnails. Those can be generated when 
+		# no disk space is available or some other error occurs
+		#
+		if( file_exists( $thumbPath ) ) {
+			$thumbstat = stat( $thumbPath );
+			if( $thumbstat['size'] == 0 ) {
+				unlink( $thumbPath );
 			}
 		}
-		return new ThumbnailImage( $thumbUrl, $width, $height );
-	} // END OF function createThumb
+	}
+
+	/** 
+	 * Get all thumbnail names previously generated for this image
+	 */
+	function getThumbnails( $shared = false ) {
+		$this->load();
+		$files = array();
+		$dir = wfImageThumbDir( $this->name, $shared );
+
+		// This generates an error on failure, hence the @
+		$handle = @opendir( $dir );
+		
+		if ( $handle ) {
+			while ( false !== ( $file = readdir($handle) ) ) { 
+				if ( $file{0} != '.' ) {
+					$files[] = $file;
+				}
+			}
+			closedir( $handle );
+		}
+		
+		return $files;
+	}
+
+	/**
+	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
+	 */
+	function purgeCache( $archiveFiles = array(), $shared = false ) {
+		global $wgInternalServer, $wgUseSquid;
+
+		// Refresh metadata cache
+		$this->loadFromFile();
+		$this->saveToCache();
+
+		// Delete thumbnails
+		$files = $this->getThumbnails( $shared );
+		$dir = wfImageThumbDir( $this->name, $shared );
+		$urls = array();
+		foreach ( $files as $file ) {
+			if ( preg_match( '/^(\d+)px/', $file, $m ) ) {
+				$urls[] = $wgInternalServer . $this->thumbUrl( $m[1], $this->fromSharedDirectory );
+				@unlink( "$dir/$file" );
+			}
+		}
+
+		// Purge the squid
+		if ( $wgUseSquid ) {
+			$urls[] = $wgInternalServer . $this->getViewURL();
+			foreach ( $archiveFiles as $file ) {
+				$urls[] = $wgInternalServer . wfImageArchiveUrl( $file );
+			}
+			wfPurgeSquidServers( $urls );
+		}
+	}
 
 	/**
 	 * Return the image history of this image, line by line.
@@ -794,8 +875,14 @@ class Image
 		
 		$dir      = $fromSharedRepository ? $wgSharedUploadDirectory :
 		                                    $wgUploadDirectory;
-		$name     = $this->name;							
-		$fullpath = $dir . wfGetHashPath($name, $fromSharedRepository) . $name;		
+		
+		// $wgSharedUploadDirectory may be false, if thumb.php is used
+		if ( $dir ) {
+			$fullpath = $dir . wfGetHashPath($this->name, $fromSharedRepository) . $this->name;		
+		} else {
+			$fullpath = false;
+		}
+
 		return $fullpath;
 	}
 	
@@ -823,9 +910,8 @@ class Image
 			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 		}
 
-		// Fill metadata fields by querying the file
-		$this->loadFromFile();
-		$this->saveToCache();
+		// Delete thumbnails and refresh the cache
+		$this->purgeCache();
 
 		// Fail now if the image isn't there
 		if ( !$this->fileExists || $this->fromSharedDirectory ) {
@@ -951,13 +1037,26 @@ function wfImageDir( $fname ) {
  *
  * This function is called from thumb.php before Setup.php is included
  * 
- * @param string $fname		file name of the thumbnail file, including file size prefix
+ * @param string $fname		file name of the original image file
  * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the thumbnail. Default is 'thumb'
  * @param boolean $shared	(optional) use the shared upload directory
  * @access public
  */
-function wfImageThumbDir( $fname , $subdir='thumb', $shared=false) {
-	return wfImageArchiveDir( $fname, $subdir, $shared );
+function wfImageThumbDir( $fname, $shared = false ) {
+	$dir = wfImageArchiveDir( $fname, 'thumb', $shared ) . "/$fname";
+	if ( ! is_dir( $dir ) ) { 
+		$oldumask = umask(0);
+		@mkdir( $dir, 0777 ); 
+		umask( $oldumask );
+	}
+	return $dir;
+}
+
+/**
+ * Old thumbnail directory, kept for conversion
+ */
+function wfDeprecatedThumbDir( $thumbName , $subdir='thumb', $shared=false) {
+	return wfImageArchiveDir( $thumbName, $subdir, $shared );
 }
 
 /**
@@ -980,15 +1079,19 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
 	if (!$hashdir) { return $dir.'/'.$subdir; }
 	$hash = md5( $fname );
 	$oldumask = umask(0);
+	
 	# Suppress warning messages here; if the file itself can't
 	# be written we'll worry about it then.
+	wfSuppressWarnings();
+	
 	$archive = $dir.'/'.$subdir;
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
 	$archive .= '/' . $hash{0};
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
 	$archive .= '/' . substr( $hash, 0, 2 );
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
 
+	wfRestoreWarnings();
 	umask( $oldumask );
 	return $archive;
 }
@@ -1129,10 +1232,11 @@ class ThumbnailImage {
 	 * @param string $url URL path to the thumb
 	 * @access private
 	 */
-	function ThumbnailImage( $url, $width, $height ) {
+	function ThumbnailImage( $url, $width, $height, $path = false ) {
 		$this->url = $url;
 		$this->width = $width;
 		$this->height = $height;
+		$this->path = $path;
 	}
 
 	/**

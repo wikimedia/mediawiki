@@ -17,7 +17,8 @@ does not.</p>
 	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
 
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
-		$sinceTime = strtotime( $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
+		$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
+		$sinceTime = strtotime( $modsince );
 		if ( $stat['mtime'] <= $sinceTime ) {
 			header( "HTTP/1.0 304 Not Modified" );
 			return;
