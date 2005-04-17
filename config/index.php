@@ -108,13 +108,21 @@ header( "Content-type: text/html; charset=utf-8" );
 
 <?php
 
-$IP = ".."; # Just to suppress notices, not for anything useful
+# Relative includes seem to break if a parent directory is not readable;
+# this is common for public_html subdirs under user home directories.
+#
+# As a dirty hack, we'll try to set up the include path first.
+#
+$IP = dirname( dirname( __FILE__ ) );
+$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
+ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" );
+
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
-require_once( "../includes/Defines.php" );
-require_once( "../includes/DefaultSettings.php" );
-require_once( "../includes/MagicWord.php" );
-require_once( "../includes/Namespace.php" );
+require_once( "includes/Defines.php" );
+require_once( "includes/DefaultSettings.php" );
+require_once( "includes/MagicWord.php" );
+require_once( "includes/Namespace.php" );
 ?>
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
@@ -157,10 +165,10 @@ if( !is_writable( "." ) ) {
 }
 
 
-require_once( "../install-utils.inc" );
-require_once( "../maintenance/updaters.inc" );
-require_once( "../maintenance/convertLinks.inc" );
-require_once( "../maintenance/archives/moveCustomMessages.inc" );
+require_once( "install-utils.inc" );
+require_once( "maintenance/updaters.inc" );
+require_once( "maintenance/convertLinks.inc" );
+require_once( "maintenance/archives/moveCustomMessages.inc" );
 
 class ConfigData {
 	function getEncoded( $data ) {
@@ -435,7 +443,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "includes/Setup.php" );
 		chdir( "config" );
 
-		require_once( "../maintenance/InitialiseMessages.inc" );
+		require_once( "maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
@@ -1180,7 +1188,7 @@ function getLanguageList() {
 		$wgContLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
-		require_once( "../languages/Names.php" );
+		require_once( "languages/Names.php" );
 	}
 
 	$codes = array();
