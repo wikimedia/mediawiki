@@ -16,6 +16,12 @@ All new installations are highly recommended to use 1.4.1 instead of 1.3.x;
 for relevant bug fixes; see the changelog later in this file.
 
 
+If you have trouble, remember to read this whole file and the online FAQ page
+before asking for help:
+
+http://meta.wikimedia.org/wiki/MediaWiki_FAQ
+
+
 === READ THIS FIRST: Upgrading ===
 
 If upgrading from an older release, see the notes in the file UPGRADE.
@@ -494,6 +500,8 @@ pages for purposes of page relevancy ranking.
 * (bug 1849) New option allows to consider categorized images as used on
   Special:Unusedimages
 * Localized category namespace for ka (Georgian)
+* (bug 1107) Work around includes problem in installer when parent dir is not
+  readable by the web server
 
 
 === Caveats ===
