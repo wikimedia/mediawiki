@@ -4,13 +4,16 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4.0 ==
+== MediaWiki 1.4.1 ==
 
-MediaWiki 1.4.0 is the first official stable release in the 1.4 series.
-All new installations are highly recommended to use 1.4.0 instead of 1.3.x;
+(released 2005-04-17)
+
+MediaWiki 1.4.1 is a bug fix release for the 1.4 stable release series.
+All new installations are highly recommended to use 1.4.1 instead of 1.3.x;
 1.3.x users should consider upgrading for bug fixes and new features.
 
-1.4 beta or release candidate users should upgrade to this release.
+1.4.0 and 1.4 beta or release candidate users should upgrade to this release
+for relevant bug fixes; see the changelog later in this file.
 
 
 === READ THIS FIRST: Upgrading ===
@@ -20,7 +23,10 @@ There are a couple of minor database changes from the beta releases,
 and somewhat larger changes from 1.3.x.
 
 
-=== READ THIS FIRST, TOO: MySQL 4.1 ===
+==== READ THIS FIRST, TOO: MySQL 4.1 AND 5.0 ====
+
+MySQL 5.0 is a beta release, not yet ready for production use. If you
+are using it, the notes below about 4.1 apply to you too.
 
 If you have the choice of MySQL 4.0 or MySQL 4.1 and don't need 4.1 for
 some other application, you should consider sticking with 4.0 for the
@@ -40,6 +46,18 @@ for installation and it should work.
 The mysqldump backup generator now applies an automatic conversion to
 UTF-8, which may irretrivably corrupt your data. Pass the -charset option
 with the original default charset (eg 'latin1') to skip the conversion.
+
+
+==== READ THIS FIRST IF RUNNING ON A WINDOWS SERVER ====
+
+MediaWiki is tested and deployed primarily under the Apache web server
+on Linux Unix systems. There are known to be problems running on
+Microsoft's IIS which are not fully resolved. If you have a choice,
+try running under Apache on Windows, or on a Unix/Linux box instead.
+
+If you're having trouble with blank pages on IIS and can't switch,
+try the workaround suggested in this bug report:
+http://bugzilla.wikimedia.org/show_bug.cgi?id=1763
 
 
 === New features ===
