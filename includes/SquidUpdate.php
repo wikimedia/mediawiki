@@ -76,6 +76,13 @@ class SquidUpdate {
 		return new SquidUpdate( $blurlArr );
 	}
 
+	/* static */ function newFromTitles( &$titles, $urlArr = array() ) {
+		foreach ( $titles as $title ) {
+			$urlArr[] = $title->getInternalURL();
+		}
+		return new SquidUpdate( $urlArr );
+	}
+
 	/* static */ function newSimplePurge( &$title ) {
 		$urlArr = $title->getSquidURLs();
 		return new SquidUpdate( $blurlArr );

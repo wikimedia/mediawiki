@@ -1056,6 +1056,14 @@ this old version, (rev) = revert to this old version.
 'nolinkstoimage' => 'There are no pages that link to this image.',
 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki' => 'Please see the [$1 image description page] for further information.',
+'noimage'       => "No image by this name exists.
+
+<div class=\"editExternally\">
+'''[$1 Upload this image]'''
+</div><br clear=all />",
+'uploadnewversion' => "<div class=\"editExternally\">
+[$1 Upload a new version of this image]
+</div><br clear=all />",
 
 # Statistics
 #

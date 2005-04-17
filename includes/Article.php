@@ -1713,11 +1713,8 @@ class Article {
 				$this->mTitle->getInternalURL(),
 				$this->mTitle->getInternalURL( 'history' )
 			);
-			foreach ( $linksTo as $linkTo ) {
-				$urls[] = $linkTo->getInternalURL();
-			}
 
-			$u = new SquidUpdate( $urls );
+			$u = SquidUpdate::newFromTitles( $linksTo, $urls );
 			array_push( $wgPostCommitUpdateList, $u );
 
 		}

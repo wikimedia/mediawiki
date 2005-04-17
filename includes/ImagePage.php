@@ -17,28 +17,39 @@ require_once( 'Image.php' );
  */
 class ImagePage extends Article {
 
-	/* private */ var $img;  // Image object this page is shown for. Initialized in openShowImage, not
-				 // available in doDelete etc.
-
+	/* private */ var $img;  // Image object this page is shown for
+	
 	function view() {
-		global $wgUseExternalEditor;
-		if( $this->mTitle->getNamespace() == NS_IMAGE ) {
+		global $wgUseExternalEditor, $wgOut;
+
+		$this->img  = new Image( $this->mTitle );
+
+		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
 			$this->openShowImage();
-		}
-
-		Article::view();
-		if($wgUseExternalEditor) {
-			$this->externalEditorLink();
-		}
-		
-		# If the article we've just shown is in the "Image" namespace,
-		# follow it with the history list and link list for the image
-		# it describes.
-
-		if( $this->mTitle->getNamespace() == NS_IMAGE ) {
+			
+			# No need to display noarticletext, we use our own message, output in openShowImage()
+			if ( $this->getID() ) {
+				Article::view();
+			} else {
+				# Just need to set the right headers
+				$wgOut->setArticleFlag( true );
+				$wgOut->setRobotpolicy( 'index,follow' );
+				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+				$wgOut->addMetaTags();
+				$this->viewUpdates();
+			}
+			
+			if ( $this->img->exists() ) {
+				$this->uploadNewVersionLink();
+				if ( $wgUseExternalEditor && $this->img->exists() ) {
+					$this->externalEditorLink();
+				}
+			}
 			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
+		} else {
+			Article::view();
 		}
 	}
 
@@ -46,8 +57,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
 		       $wgUseImageResize, $wgRepositoryBaseUrl, 
-		       $wgUseExternalEditor;
-		$this->img  = new Image( $this->mTitle );
+		       $wgUseExternalEditor, $wgServer;
 		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
@@ -63,12 +73,9 @@ class ImagePage extends Article {
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
-
+		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-
-			$sk = $wgUser->getSkin();
-			
 			if ( $this->img->getType() != '' ) {
 				# image
 				$width = $this->img->getWidth();
@@ -112,9 +119,24 @@ class ImagePage extends Article {
 				$wgOut->addWikiText($sharedtext);
 			}
 			
+		} else {
+			# Image does not exist
+			$wgOut->addWikiText( wfMsg( 'noimage', $this->getUploadUrl() ) );
 		}
 	}
 	
+	function getUploadUrl() {
+		global $wgServer;
+		$uploadTitle = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		return $wgServer . $uploadTitle->getLocalUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
+	}
+
+
+	function uploadNewVersionLink() {
+		global $wgOut;
+		$wgOut->addWikiText( wfMsg( 'uploadnewversion', $this->getUploadUrl() ) );
+	}
+
 	function externalEditorLink()
 	{
 		global $wgUser,$wgOut;
@@ -220,6 +242,8 @@ class ImagePage extends Article {
 			return;
 		}
 		
+		$this->img  = new Image( $this->mTitle );
+		
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
@@ -243,7 +267,7 @@ class ImagePage extends Article {
 	function doDelete()
 	{
 		global $wgOut, $wgUser, $wgContLang, $wgRequest;
-		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
+		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList;
 		$fname = 'ImagePage::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );
@@ -291,17 +315,18 @@ class ImagePage extends Article {
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
 			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );			
 
+			# Purge archive URLs from the squid
 			$urlArr = Array();
 			while ( $s = $dbw->fetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
 				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
 			}	
-			
-			# Defer purging of archived URLs
+
+			# And also the HTML of all pages using this image
+			$linksTo = $this->img->getLinksTo();
 			if ( $wgUseSquid ) {
-				/* this needs to be done after LinksUpdate */
-				$u = new SquidUpdate( $urlArr );
-				array_push( $wgDeferredUpdateList, $u );
+				$u = SquidUpdate::newFromTitles( $linksTo, $urlArr );
+				array_push( $wgPostCommitUpdateList, $u );
 			}
 			
 			$dbw->delete( 'oldimage', array( 'oi_name' => $image ) );
@@ -312,9 +337,13 @@ class ImagePage extends Article {
 			$article = new Article( $this->mTitle );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
+			# Invalidate parser cache and client cache for pages using this image
+			# This is left until relatively late to reduce lock time
+			Title::touchArray( $linksTo );
+
 			/* Delete thumbnails and refresh image metadata cache */
-			$imgObj = new Image( $this->mTitle );
-			$imgObj->purgeCache();
+			$this->img->purgeCache();
+
 
 			$deleted = $image;
 		}

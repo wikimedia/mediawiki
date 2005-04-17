@@ -537,8 +537,8 @@ class Linker {
 
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
-			$s = wfMsg( 'missingimage', $img->getName() );
-			$s .= "<br />{$alt}<br />{$url}<br />\n";
+			$s = $this->makeBrokenImageLinkObj( $img->getTitle() );
+			//$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
 				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
@@ -617,7 +617,7 @@ class Linker {
 
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == '' ) {
-			$s .= wfMsg( 'missingimage', $img->getName() );
+			$s .= $this->makeBrokenImageLinkObj( $img->getTitle );
 			$zoomicon = '';
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
@@ -636,7 +636,45 @@ class Linker {
 		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div></div>";
 		return str_replace("\n", ' ', $s);
 	}
+	
+	/**
+	 * Pass a title object, not a title string
+	 */
+	function makeBrokenImageLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		# Fail gracefully
+		if ( ! isset($nt) ) {
+			# wfDebugDieBacktrace();
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+		}
 
+		$fname = 'Skin::makeBrokenImageLinkObj';
+		wfProfileIn( $fname );
+
+		$q = 'wpDestFile=' . urlencode( $nt->getDBkey() );
+		if ( '' != $query ) {
+			$q .= "&$query";
+		}
+		$uploadTitle = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$url = $uploadTitle->escapeLocalURL( $q );
+
+		if ( '' == $text ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
+
+		$inside = '';
+		if ( '' != $trail ) {
+			if ( preg_match( $this->linktrail, $trail, $m ) ) {
+				$inside = $m[1];
+				$trail = $m[2];
+			}
+		}
+		$s = "<a href=\"{$url}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
+
+		wfProfileOut( $fname );
+		return $s;
+	}
+	
 	/** @todo document */
 	function makeMediaLink( $name, $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
