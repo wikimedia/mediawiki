@@ -944,7 +944,7 @@ class Image
 	 */
 	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '' ) {
 		global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-		global $wgUseCopyrightUpload;
+		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
 		$fname = 'Image::recordUpload';
 		$dbw =& wfGetDB( DB_MASTER );
@@ -954,7 +954,7 @@ class Image
 			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 		}
 
-		// Delete thumbnails and refresh the cache
+		// Delete thumbnails and refresh the metadata cache
 		$this->purgeCache();
 
 		// Fail now if the image isn't there
@@ -970,7 +970,7 @@ class Image
 			$textdesc = $desc;
 		}
 
-		$now = wfTimestampNow();
+		$now = $dbw->timestamp();
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
@@ -983,13 +983,14 @@ class Image
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
 				'img_type' => $this->type,
-				'img_timestamp' => $dbw->timestamp($now),
+				'img_timestamp' => $now,
 				'img_description' => $desc,
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
 			), $fname, 'IGNORE' 
 		);
 		$descTitle = $this->getTitle();
+		$purgeURLs = array();
 
 		if ( $dbw->affectedRows() ) {
 			# Successfully inserted, this is a new image
@@ -1026,7 +1027,7 @@ class Image
 					'img_height' => $this->height,
 					'img_bits' => $this->bits,
 					'img_type' => $this->type,
-					'img_timestamp' => $dbw->timestamp(),
+					'img_timestamp' => $now,
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_description' => $desc,
@@ -1037,14 +1038,59 @@ class Image
 			
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
+			$purgeURLs[] = $descTitle->getInternalURL();
 		}
 
+		# Invalidate cache for all pages using this image
+		$linksTo = $this->getLinksTo();
+		
+		if ( $wgUseSquid ) {
+			$u = SquidUpdate::newFromTitles( $linksTo, $purgeURLs );
+			array_push( $wgPostCommitUpdateList, $u );
+		}
+		Title::touchArray( $linksTo );
+		
 		$log = new LogPage( 'upload' );
 		$log->addEntry( 'upload', $descTitle, $desc );
 
 		return true;
 	}
-	
+
+	/**
+	 * Get an array of Title objects which are articles which use this image
+	 * Also adds their IDs to the link cache
+	 * 
+	 * This is mostly copied from Title::getLinksTo()
+	 */
+	function getLinksTo( $options = '' ) {
+		global $wgLinkCache;
+		$fname = 'Image::getLinksTo';
+		wfProfileIn( $fname );
+		
+		if ( $options ) {
+			$db =& wfGetDB( DB_MASTER );
+		} else {
+			$db =& wfGetDB( DB_SLAVE );
+		}
+
+		extract( $db->tableNames( 'page', 'imagelinks' ) );
+		$encName = $db->addQuotes( $this->name );
+		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$imagelinks WHERE page_id=il_from AND il_to=$encName $options";
+		$res = $db->query( $sql, $fname );
+		
+		$retVal = array();
+		if ( $db->numRows( $res ) ) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
+					$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
+					$retVal[] = $titleObj;
+				}
+			}
+		}
+		$db->freeResult( $res );
+		return $retVal;
+	}
+
 } //class
 
 
