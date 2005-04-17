@@ -672,7 +672,7 @@ class Article {
 			}
 		}
 		# Should the parser cache be used?
-		if ( $wgEnableParserCache && intval($wgUser->getOption( 'stubthreshold' )) == 0 && empty( $oldid ) ) {
+		if ( $wgEnableParserCache && intval($wgUser->getOption( 'stubthreshold' )) == 0 && empty( $oldid ) && $this->getID() ) {
 			$pcache = true;
 		} else {
 			$pcache = false;
