@@ -52,27 +52,6 @@ default:
         "Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"
 );
 
-/* private */ $wgSkinNamesPl = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
-
-
-
-/* private */ $wgBookstoreListPl = array(
-        "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-        "PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-        "Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-        "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -1075,11 +1054,6 @@ class LanguagePl extends LanguageUtf8 {
 		return $wgQuickbarSettingsPl;
 	}
 
-	function getSkinNames() {
-		global $wgSkinNamesPl;
-		return $wgSkinNamesPl;
-	}
-
 	function getMonthNameGen( $key ) {
 		global $wgMonthNamesGenEn;
 		return wfMsg( $wgMonthNamesGenEn[$key-1] );
@@ -1114,7 +1088,7 @@ class LanguagePl extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesPl))
 			return $wgAllMessagesPl[$key];
 		else
-			return Language::getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	# Check for Latin-2 backwards-compatibility URLs
