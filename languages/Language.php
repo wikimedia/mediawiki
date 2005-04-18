@@ -983,7 +983,12 @@ this old version, (rev) = revert to this old version.
 'imagelinks'	=> 'Image links',
 'linkstoimage'	=> 'The following pages link to this image:',
 'nolinkstoimage' => 'There are no pages that link to this image.',
-'sharedupload' => 'This file is a shared upload and may be used by other projects.',
+'sharedupload' => "<br clear=both>
+{| align=center border=0 cellpadding=3 cellspacing=3 style=\"border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;\"
+|- 
+| [[Image:Commons without text.png|20px|Wikimedia Commons Logo]]
+|This is a file from the [[Commons:Main Page|Wikimedia Commons]]. Please see its '''[[Commons:Image:{{PAGENAME}}|description page]]''' there. 
+|}"
 
 # Statistics
 #
