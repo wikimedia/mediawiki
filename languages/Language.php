@@ -984,7 +984,7 @@ this old version, (rev) = revert to this old version.
 'linkstoimage'	=> 'The following pages link to this image:',
 'nolinkstoimage' => 'There are no pages that link to this image.',
 'sharedupload' => "This is a file from the [[Commons:Main Page|Wikimedia Commons]]. Please 
-see its '''[[Commons:Image:{{PAGENAME}}|description page]]''' there."
+see its '''[[Commons:Image:{{PAGENAME}}|description page]]''' there.",
 
 # Statistics
 #
