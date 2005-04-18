@@ -1278,6 +1278,18 @@ $wgEnableSorbs = true;
  */
 $wgCountCategorizedImagesAsUsed = false;
 
+/** 
+ * External stores allow including content 
+ * from non database sources following URL links
+ * 
+ * Short names of ExternalStore classes may be specified in an array here:
+ * $wgExternalStores = array("http","file","custom")...
+ * 
+ * CAUTION: Access to database might lead to code execution
+ */
+$wgExternalStores = false;
+
+
 } else {
 	die();
 }
