@@ -90,14 +90,14 @@ class UploadForm {
 	 */
 	function execute() {
 		global $wgUser, $wgOut;
-		global $wgEnableUploads;
+		global $wgEnableUploads, $wgUploadDirectory;
 
 		/** Show an error message if file upload is disabled */ 
 		if( ! $wgEnableUploads ) {
 			$wgOut->addWikiText( wfMsg( 'uploaddisabled' ) );
 			return;
 		}
-		
+
 		/** Various rights checks */
 		if( ( $wgUser->isAnon() )
 			 OR $wgUser->isBlocked() ) {
@@ -109,6 +109,12 @@ class UploadForm {
 			return;
 		}
 		
+		/** Check if the image directory is writeable, this is a common mistake */
+		if ( !is_writeable( $wgUploadDirectory ) ) {
+			$wgOut->addWikiText( wfMsg( 'upload_directory_read_only', $wgUploadDirectory ) );
+			return;
+		}
+
 		if( $this->mReUpload ) {
 			$this->unsaveUploadedFile();
 			$this->mainUploadForm();
