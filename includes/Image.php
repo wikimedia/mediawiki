@@ -516,10 +516,14 @@ class Image
 				$base = $wgUploadBaseUrl;
 				$path = $wgUploadPath;
 			}
-			$url = "{$base}{$path}/{$subdir}" . 
-			wfGetHashPath($this->name, $this->fromSharedDirectory)
-			. $this->name.'/'.$name;
-			$url = wfUrlencode( $url );
+			if ( Image::isHashed( $this->fromSharedDirectory ) ) {
+				$url = "{$base}{$path}/{$subdir}" . 
+				wfGetHashPath($this->name, $this->fromSharedDirectory)
+				. $this->name.'/'.$name;
+				$url = wfUrlencode( $url );
+			} else {
+				$url = "{$base}{$path}/{$subdir}/{$name}";
+			}
 		}
 		return array( $script !== false, $url );
 	}
@@ -796,20 +800,24 @@ class Image
 	 * Get all thumbnail names previously generated for this image
 	 */
 	function getThumbnails( $shared = false ) {
-		$this->load();
-		$files = array();
-		$dir = wfImageThumbDir( $this->name, $shared );
+		if ( Image::isHashed( $shared ) ) {
+			$this->load();
+			$files = array();
+			$dir = wfImageThumbDir( $this->name, $shared );
 
-		// This generates an error on failure, hence the @
-		$handle = @opendir( $dir );
-		
-		if ( $handle ) {
-			while ( false !== ( $file = readdir($handle) ) ) { 
-				if ( $file{0} != '.' ) {
-					$files[] = $file;
+			// This generates an error on failure, hence the @
+			$handle = @opendir( $dir );
+			
+			if ( $handle ) {
+				while ( false !== ( $file = readdir($handle) ) ) { 
+					if ( $file{0} != '.' ) {
+						$files[] = $file;
+					}
 				}
+				closedir( $handle );
 			}
-			closedir( $handle );
+		} else {
+			$files = array();
 		}
 		
 		return $files;
@@ -928,6 +936,15 @@ class Image
 		}
 
 		return $fullpath;
+	}
+
+	/**
+	 * @return bool
+	 * @static
+	 */
+	function isHashed( $shared ) {
+		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
+		return $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
 	}
 	
 	/**
@@ -1134,18 +1151,22 @@ function wfImageDir( $fname ) {
  */
 function wfImageThumbDir( $fname, $shared = false ) {
 	$base = wfImageArchiveDir( $fname, 'thumb', $shared );
-	$dir =  "$base/$fname";
+	if ( Image::isHashed( $shared ) ) {
+		$dir =  "$base/$fname";
 
-	if ( !is_dir( $base ) ) {
-		$oldumask = umask(0);
-		@mkdir( $base, 0777 ); 
-		umask( $oldumask );
-	}
+		if ( !is_dir( $base ) ) {
+			$oldumask = umask(0);
+			@mkdir( $base, 0777 ); 
+			umask( $oldumask );
+		}
 
-	if ( ! is_dir( $dir ) ) { 
-		$oldumask = umask(0);
-		@mkdir( $dir, 0777 ); 
-		umask( $oldumask );
+		if ( ! is_dir( $dir ) ) { 
+			$oldumask = umask(0);
+			@mkdir( $dir, 0777 ); 
+			umask( $oldumask );
+		}
+	} else {
+		$dir = $base;
 	}
 
 	return $dir;
@@ -1208,9 +1229,7 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 	global $wgHashedSharedUploadDirectory, $wgSharedUploadDirectory;
 	global $wgHashedUploadDirectory;
 	
-	$ishashed = $fromSharedDirectory ? $wgHashedSharedUploadDirectory :
-	                                   $wgHashedUploadDirectory;
-	if($ishashed) {
+	if( Image::isHashed( $fromSharedDirectory ) ) {
 		$hash = md5($dbkey);
 		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . '/';
 	} else {

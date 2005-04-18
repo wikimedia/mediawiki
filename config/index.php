@@ -141,11 +141,9 @@ if( file_exists( "../LocalSettings.php" ) ) {
 }
 
 if( file_exists( "./LocalSettings.php" ) ) {
-	dieout( "<h2>You're configured!</h2>
-
-	<p>Please move <tt>LocalSettings.php</tt> to the parent directory, then
-	<a href='../index.php'>try out your wiki</a>.
-	(You should remove this config directory for added security once you're done.)</p>" );
+	writeSuccessMessage();
+	
+	dieout( '' );
 }
 
 if( !is_writable( "." ) ) {
@@ -206,15 +204,6 @@ if( ini_get( "register_globals" ) ) {
 	<?php
 }
 
-if( ini_get( "safe_mode" ) ) {
-	?>
-	<li class='error'><strong>Warning: PHP's
-	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active!</strong>
-	You may have problems caused by this, particularly if using image uploads.
-	</li>
-	<?php
-}
-
 $fatal = false;
 
 if( ini_get( "magic_quotes_runtime" ) ) {
@@ -236,6 +225,19 @@ if( ini_get( "magic_quotes_sybase" ) ) {
 if( $fatal ) {
 	dieout( "</ul><p>Cannot install wiki.</p>" );
 }
+
+if( ini_get( "safe_mode" ) ) {
+	$conf->safeMode = true;
+	?>
+	<li><b class='error'>Warning:</b> <strong>PHP's
+	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active.</strong>
+	You may have problems caused by this, particularly if using image uploads.
+	</li>
+	<?php
+} else {
+	$conf->safeMode = false;
+}
+
 
 $sapi = php_sapi_name();
 $conf->prettyURLs = true;
@@ -446,16 +448,17 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
+		print "<li>Trying to connect to MySQL on $wgDBserver as root...\n";
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-		$wgDatabase->ignoreErrors(true);
 
-		@$myver = mysql_get_server_info( $wgDatabase->mConn );
-		if( $myver ) {
+		if( $wgDatabase->isOpen() ) {
+			$myver = mysql_get_server_info( $wgDatabase->mConn );
+			$wgDatabase->ignoreErrors(true);
 			$conf->Root = true;
-			print "<li>Connected as root (automatic)</li>\n";
+			print "<ul><li>Connected as root (automatic)</li></ul></li>\n";
 		} else {
-			print "<li>MySQL error " . ($err = mysql_errno() ) .
-				": " . htmlspecialchars( mysql_error() );
+			print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
+				": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
 			$ok = false;
 			switch( $err ) {
 			case 1045:
@@ -467,17 +470,19 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					/* Try the regular user... */
 					$wgDBadminuser = $wgDBuser;
 					$wgDBadminpassword = $wgDBpassword;
+					/* Wait one second for connection rate limiting, present on some systems */
+					sleep(1);
 					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-					$wgDatabase->isOpen();
-					$wgDatabase->ignoreErrors(true);
-					@$myver = mysql_get_server_info( $wgDatabase->mConn );
-					if( !$myver ) {
+					if( !$wgDatabase->isOpen() ) {
+						print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
+							": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
 						$errs["DBuser"] = "Check name/pass";
 						$errs["DBpassword"] = "or enter root";
 						$errs["DBpassword2"] = "password below";
 						$errs["RootPW"] = "Got root?";
-						print " need password.</li>\n";
 					} else {
+						$myver = mysql_get_server_info( $wgDatabase->mConn );
+						$wgDatabase->ignoreErrors(true);
 						$conf->Root = false;
 						$conf->RootPW = "";
 						print " ok.</li>\n";
@@ -502,7 +507,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			continue;
 		}
 
-		print "<li>Connected to database... $myver";
+		print "<li>Connected to $myver";
 		if( version_compare( $myver, "4.0.0" ) >= 0 ) {
 			print "; enabling MySQL 4 enhancements";
 			$conf->DBmysql4 = true;
@@ -514,6 +519,12 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		if( $sel ) {
 			print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
 		} else {
+			$err = mysql_errno();
+			if ( $err != 1049 ) {
+				print "<ul><li>Error selecting database $wgDBname: $err " . htmlspecialchars( mysql_error() ) .
+					"</li></ul>";
+				continue;
+			}
 			$res = $wgDatabase->query( "CREATE DATABASE `$wgDBname`" );
 			if( !$res ) {
 				print "<li>Couldn't create database <tt>" .
@@ -634,9 +645,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		if(fwrite( $f, $localSettings ) ) {
 			fclose( $f );
-
-			print "<p>Success! Move the config/LocalSettings.php file into the parent directory, then follow
-			<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
+			writeSuccessMessage();
 		} else {
 			fclose( $f );
 			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
@@ -937,6 +946,29 @@ if( count( $errs ) ) {
 }
 
 /* -------------------------------------------------------------------------------------- */
+function writeSuccessMessage() {
+	global $conf;
+	if ( ini_get( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
+		echo <<<EOT
+<p>Installation successful!</p>
+<p>To complete the installation, please do the following:
+<ol>
+	<li>Download config/LocalSettings.php with your FTP client or file manager</li>
+	<li>Upload it to the parent directory</li>
+	<li>Delete config/LocalSettings.php</li>
+	<li>Start using <a href='../index.php'>your wiki</a>!
+</ol>
+<p>If you are in a shared hosting environment, do <strong>not</strong> just move LocalSettings.php 
+remotely. LocalSettings.php is currently owned by the user your webserver is running under, 
+which means that anyone on the same server can read your database password! Downloading
+it and uploading it again will hopefully change the ownership to a user ID specific to you.</p>
+EOT;
+	} else {
+		echo "<p>Installation successful! Move the config/LocalSettings.php file into the parent directory, then follow
+			<a href='../index.php'>this link</a> to your wiki.</p>\n";
+	}
+}
+
 
 function escapePhpString( $string ) {
 	return strtr( $string,
@@ -960,6 +992,7 @@ function writeLocalSettings( $conf ) {
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
+	$hashedUploads = $conf->safeMode ? '' : '# ';
 	
 	switch ( $conf->Shm ) {
 		case 'memcached':
@@ -1037,7 +1070,7 @@ if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
 		die( \"This script must be run from the command line\\n\" );
 	}
-} elseif ( empty( \$wgConfiguring ) ) {
+} elseif ( empty( \$wgNoOutputBuffer ) ) {
 	## Compress output if the browser supports it
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) @ob_start( 'ob_gzhandler' );
 }
@@ -1093,6 +1126,12 @@ if ( \$wgCommandLineMode ) {
 \$wgUseImageResize		= {$conf->UseImageResize};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
+
+## If you want to use image uploads under safe mode, 
+## create the directories images/archive, images/thumb and 
+## images/temp, and make them all writable. Then uncomment 
+## this, if it's not already uncommented:
+{$hashedUploads}\$wgHashedUploadDirectory = false;
 
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:

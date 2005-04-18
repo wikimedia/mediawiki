@@ -962,6 +962,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'uploadnologin' => 'Not logged in',
 'uploadnologintext'	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
+'upload_directory_read_only' => 'The upload directory ($1) is not writable by the webserver.',
 'uploadfile'	=> 'Upload images, sounds, documents etc.',
 'uploaderror'	=> 'Upload error',
 'uploadtext'	=>
