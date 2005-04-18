@@ -239,7 +239,7 @@ function do_group_update() {
 		echo "...group definitions already in place.\n";
 		$res = $wgDatabase->safeQuery( "SELECT COUNT(*) AS n FROM !
 		                                 WHERE group_name IN ('Sysops','Bureaucrat')
-		                                   AND group_rights NOT LIKE 'sysop'",
+		                                   AND group_rights NOT LIKE '%sysop%'",
 		                               $wgDatabase->tableName( 'group' ) );
 		$row = $wgDatabase->fetchObject( $res );
 		$wgDatabase->freeResult( $res );
