@@ -1230,11 +1230,6 @@ class LanguageFi extends LanguageUtf8 {
     return $wgSkinNamesFi;
   }
 
-  function getMathNames() {
-    global $wgMathNamesFi;
-    return $wgMathNamesFi;
-  }
-
   function date( $ts, $adj = false )
   {
     if ( $adj ) { $ts = $this->userAdjust( $ts ); }

@@ -504,6 +504,11 @@ pages for purposes of page relevancy ranking.
   readable by the web server
 
 
+=== 1.4.2 fixes ===
+
+* Fix math options in Finnish localization
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
