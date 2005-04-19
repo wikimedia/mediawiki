@@ -50,7 +50,7 @@ class IPBlockForm {
 		global $wgRequest;
 
 		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
-		$wgOut->addWikiText( htmlspecialchars( wfMsg( 'blockiptext' ) ) );
+		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
 
 		if ( is_null( $this->BlockExpiry ) || $this->BlockExpiry === '' ) {
 			$this->BlockExpiry = $wgDefaultBlockExpiry;
