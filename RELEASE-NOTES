@@ -502,6 +502,7 @@ pages for purposes of page relevancy ranking.
 * Localized category namespace for ka (Georgian)
 * (bug 1107) Work around includes problem in installer when parent dir is not
   readable by the web server
+* (bug 1927) Incorrect escaping on wikitext message in Blockip
 
 
 === 1.4.2 fixes ===
