@@ -546,7 +546,7 @@ class Parser
 			fwrite($pipes[0], $wrappedtext);
 			fclose($pipes[0]);
 			while (!feof($pipes[1])) {
-				$cleansource .= fgets($pipes[1], 1024);
+				$cleansource .= fread($pipes[1], 65536);
 			}
 			fclose($pipes[1]);
 			$return_value = proc_close($process);
@@ -3130,7 +3130,7 @@ class Parser
 				continue;
 			}
 			$nt = Title::newFromURL( $matches[1] );
-			if( is_null( $nt ) ) {
+			if( is_null( $nt ) || wfIsBadImage( $nt->getDBkey() ) ) {
 				# Bogus title. Ignore these so we don't bomb out later.
 				continue;
 			}
