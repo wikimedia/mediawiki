@@ -50,7 +50,7 @@ class IPBlockForm {
 		global $wgRequest, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
-		$wgOut->addWikiText( htmlspecialchars( wfMsg( 'blockiptext' ) ) );
+		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
 
 		if($wgSysopUserBans) {
 			$mIpaddress = htmlspecialchars( wfMsg( 'ipadressorusername' ) );
