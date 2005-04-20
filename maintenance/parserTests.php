@@ -435,12 +435,20 @@ class ParserTest {
 	 * @access private
 	 */
 	function setupUploadDir() {
+		global $IP;
+		
 		$dir = "/tmp/mwParser-" . mt_rand() . "-images";
 		mkdir( $dir );
 		mkdir( $dir . '/3' );
 		mkdir( $dir . '/3/3a' );
+		
+		$img = "$IP/skins/monobook/headbg.jpg";
+		$h = fopen($img, 'r');
+		$c = fread($h, filesize($img));
+		fclose($h);
+		
 		$f = fopen( $dir . '/3/3a/Foobar.jpg', 'wb' );
-		fwrite( $f, 'Dummy file' );
+		fwrite( $f, $c );
 		fclose( $f );
 		return $dir;
 	}
@@ -469,7 +477,11 @@ class ParserTest {
 		unlink( "$dir/3/3a/Foobar.jpg" );
 		rmdir( "$dir/3/3a" );
 		rmdir( "$dir/3" );
-		@rmdir( "$dir/thumb/3/39" );
+
+		@unlink( "$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" );
+		@rmdir( "$dir/thumb/3/3a/Foobar.jpg" );
+		@rmdir( "$dir/thumb/3/3a" );
+		@rmdir( "$dir/thumb/3/39" ); # wtf?
 		@rmdir( "$dir/thumb/3" );
 		@rmdir( "$dir/thumb" );
 		rmdir( "$dir" );
