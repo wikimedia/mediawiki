@@ -72,6 +72,10 @@ require_once( 'HistoryBlob.php' );
 require_once( 'ProxyTools.php' );
 require_once( 'ObjectCache.php' );
 
+if ( $wgUseDynamicDates ) {
+	require_once( 'DateFormatter.php' );
+}
+
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 
@@ -260,14 +264,6 @@ wfProfileIn( $fname.'-OutputPage' );
 $wgOut = new OutputPage();
 
 wfProfileOut( $fname.'-OutputPage' );
-wfProfileIn( $fname.'-DateFormatter' );
-
-if ( $wgUseDynamicDates ) {
-	require_once( 'DateFormatter.php' );
-	$wgDateFormatter = new DateFormatter;
-}
-
-wfProfileOut( $fname.'-DateFormatter' );
 wfProfileIn( $fname.'-BlockCache' );
 
 $wgBlockCache = new BlockCache( true );
