@@ -2148,8 +2148,10 @@ class Parser
 			# Add a new element to the templace recursion path
 			$this->mTemplatePath[$part1] = 1;
 
-			$text = $this->strip( $text, $this->mStripState );
-			$text = Sanitizer::removeHTMLtags( $text );
+			if( $this->mOutputType == OT_HTML ) {
+				$text = $this->strip( $text, $this->mStripState );
+				$text = Sanitizer::removeHTMLtags( $text );
+			}
 			$text = $this->replaceVariables( $text, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
