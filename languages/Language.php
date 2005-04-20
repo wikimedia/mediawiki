@@ -785,7 +785,7 @@ Your internal ID number is $2.
 
 See [[Project:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
-'qbsettings'	=> 'Quickbar settings',
+'qbsettings'	=> 'Quickbar',
 'qbsettingsnote'	=> 'This preference only works in the \'Standard\' and the \'CologneBlue\' skin.',
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
