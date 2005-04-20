@@ -43,7 +43,7 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 		function wfProfileIn( $fn = '' ) {}
 		function wfProfileOut( $fn = '' ) {}
 	}
-	function wfGetProfilingOutput( $s, $e ) {}
+	function wfGetProfilingOutput() {}
 	function wfProfileClose() {}
 }
 
@@ -141,6 +141,13 @@ if( $wgUseMemCached ) {
 	class MemCachedClientforWiki extends memcached {
 		function _debugprint( $text ) {
 			wfDebug( "memcached: $text\n" );
+		}
+
+		function get( $key ) {
+			wfProfileIn( "memcached::get" );
+			$ret = memcached::get( $key );
+			wfProfileOut( "memcached::get" );
+			return $ret;
 		}
 	}
 
