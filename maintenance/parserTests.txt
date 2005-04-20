@@ -1465,6 +1465,22 @@ This template has <!-- a comment --> in it.
 !! end
 
 
+!! article
+Template:dangerous
+!!text
+<span onmouseover="alert('crap')">Oh no</span>
+!!endarticle
+
+!!test
+(confirming safety of fix for subst bug 1936)
+!! input
+{{Template:dangerous}}
+!! result
+<p><span>Oh no</span>
+</p>
+!! end
+
+
 ###
 ### Message transform tests
 ###
