@@ -1430,6 +1430,41 @@ pst
 This is a test template with parameter "something else"
 !! end
 
+
+!! article
+Template:nowikitest
+!! text
+<nowiki>'''not wiki'''</nowiki>
+!! endarticle
+
+!! test
+pre-save transform: nowiki in subst (bug 1188)
+!! options
+pst
+!! input
+{{subst:nowikitest}}
+!! result
+<nowiki>'''not wiki'''</nowiki>
+!! end
+
+
+!! article
+Template:commenttest
+!! text
+This template has <!-- a comment --> in it.
+!! endarticle
+
+!! test
+pre-save transform: comment in subst (bug 1936)
+!! options
+pst
+!! input
+{{subst:commenttest}}
+!! result
+This template has <!-- a comment --> in it.
+!! end
+
+
 ###
 ### Message transform tests
 ###
