@@ -510,6 +510,8 @@ pages for purposes of page relevancy ranking.
 * Fix math options in Finnish localization
 * Use in-process Tidy extension if available when $wgUseTidy is on
 * (bug 1933) Fix PATH_INFO usage under IIS with PHP ISAPI module
+* (bug 1188) <nowiki> in {{subst:}} includes fixed
+* (bug 1936) <!-- comments --> in {{subst:}} includes fixed
 
 
 === Caveats ===
