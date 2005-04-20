@@ -22,23 +22,29 @@ if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
 if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
-        require_once( 'Profiling.php' );
+	require_once( 'Profiling.php' );
 } else {
-        function wfProfileIn( $fn = '' ) {
-                global $hackwhere, $wgDBname;
-                $hackwhere[] = $fn;
-                if (function_exists("setproctitle"))
-                        setproctitle($fn . " [$wgDBname]");
-        }
-        function wfProfileOut( $fn = '' ) {
-                global $hackwhere, $wgDBname;
-                if (count($hackwhere))
-                        array_pop($hackwhere);
-                if (function_exists("setproctitle") && count($hackwhere))
-                        setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
-        }
-        function wfGetProfilingOutput( $s, $e ) {}
-        function wfProfileClose() {}
+	$wgFunctionStack = array();
+
+	if ( function_exists("setproctitle") ) {
+		function wfProfileIn( $fn = '' ) {
+			global $wgFunctionStack, $wgDBname;
+			$wgFunctionStack[] = $fn;
+			setproctitle($fn . " [$wgDBname]");
+		}
+		function wfProfileOut( $fn = '' ) {
+			global $wgFunctionStack, $wgDBname;
+			if (count($wgFunctionStack))
+				array_pop($wgFunctionStack);
+			if (count($wgFunctionStack))
+				setproctitle($wgFunctionStack[count($wgFunctionStack)-1] . " [$wgDBname]");
+		}
+	} else {
+		function wfProfileIn( $fn = '' ) {}
+		function wfProfileOut( $fn = '' ) {}
+	}
+	function wfGetProfilingOutput( $s, $e ) {}
+	function wfProfileClose() {}
 }
 
 if ( $wgUseData ) {
