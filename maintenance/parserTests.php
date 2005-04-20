@@ -410,6 +410,20 @@ class ParserTest {
 				'group_description' => 'Anonymous users',
 				'group_rights' => 'read' ) );
 			
+			# Hack: Insert an image to work with
+			$db->insert( 'image', array(
+				'img_name'        => 'Foobar.jpg',
+				'img_size'        => 12345,
+				'img_description' => 'Some lame file',
+				'img_user'        => 1,
+				'img_user_text'   => 'WikiSysop',
+				'img_timestamp'   => $db->timestamp( '20010115123500' ),
+				'img_width'       => 666,
+				'img_height'      => 444,
+				'img_bits'        => 24,
+				'img_type'        => 2, // 2 == JPEG
+				) );
+			
 			$setupDB = true;
 		}
 	}
