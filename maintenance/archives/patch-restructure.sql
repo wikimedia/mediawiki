@@ -35,7 +35,6 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_timestamp char(14) binary NOT NULL default '',
   rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
   rev_deleted tinyint(1) unsigned NOT NULL default '0',
-  rev_text_id int(8) unsigned NOT NULL,
 
   
   PRIMARY KEY rev_page_id (rev_page, rev_id),
