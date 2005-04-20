@@ -18,6 +18,7 @@ class LanguageConverter {
 	var $mCacheKey;
 	var $mLangObj;
 	var $mMarkup;
+	var $mFlags;
 	/**
      * Constructor
 	 *
@@ -25,22 +26,25 @@ class LanguageConverter {
      * @param array $variants the supported variants of this language
      * @param array $variantfallback the fallback language of each variant
      * @param array $markup array defining the markup used for manual conversion
+	 * @param array $flags array defining the custom strings that maps to the flags
      * @access public
      */
 	function LanguageConverter($langobj, $maincode, 
 								$variants=array(), 
 								$variantfallbacks=array(), 
-								$markup=array('begin'=>'-{',
-											  'codesep'=>':',
-											  'varsep'=>';',
-											  'end'=>'}-')) {
+								$markup=array(),
+								$flags = array()) {
 		global $wgDBname;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = $variants;		
 		$this->mVariantFallbacks = $variantfallbacks;
 		$this->mCacheKey = $wgDBname . ":conversiontables";
-		$this->mMarkup = $markup;
+		$m = array('begin'=>'-{', 'flagsep'=>'|', 'codesep'=>':',
+				   'varsep'=>';', 'end'=>'}-');
+		$this->mMarkup = array_merge($m, $markup);
+		$f = array('A'=>'A', 'T'=>'T');
+		$this->mFlags = array_merge($f, $flags);
 	}
 
 	/**
@@ -116,6 +120,7 @@ class LanguageConverter {
      */
 	function autoConvert($text, $toVariant=false) {
 		$fname="LanguageConverter::autoConvert";
+
 		wfProfileIn( $fname );
 
 		if(!$this->mTablesLoaded)
@@ -126,24 +131,19 @@ class LanguageConverter {
 		if(!in_array($toVariant, $this->mVariants))
 			return $text;
 
-		$ret = '';
 
-		$a = explode('<', $text);
-		$a0 = array_shift($a);
-		$ret .= strtr($a0, $this->mTables[$toVariant]);
-		foreach( $a as $aa ) {
-			$b = explode('>', $aa, 2);
-			$ret .= '<' . $b[0];
-			if(sizeof($b) == 2)
-				$ret .= '>' . strtr($b[1], $this->mTables[$toVariant]);
-		}
+		$reg = '/<[^>]+>|&[a-z#][a-z0-9]+;|'.UNIQ_PREFIX.'-[a-zA-Z0-9]+/';
+		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
-#		/* put back the marker if any */
-#		if(!empty($reg)) {
-#			$reg = '<'.$reg.'>';
-#			$ret = preg_replace('/'.$reg.'/', '${1}', $ret);
-#		}
-#
+
+		$m = array_shift($matches);
+		$ret = strtr($m[0], $this->mTables[$toVariant]);
+		$mstart = $m[1]+strlen($m[0]);
+		foreach($matches as $m) {
+			$ret .= substr($text, $mstart, $m[1]-$mstart);
+			$ret .= strtr($m[0], $this->mTables[$toVariant]);
+			$mstart = $m[1] + strlen($m[0]);
+		}		
 		wfProfileOut( $fname );
 		return $ret;
 	}
@@ -186,6 +186,7 @@ class LanguageConverter {
      */
 	function convert( $text , $isTitle=false) {
 		global $wgDisableLangConversion;
+
 		if($wgDisableLangConversion)
 			return $text; 
 
@@ -226,101 +227,76 @@ class LanguageConverter {
 		if( !$this->mDoContentConvert )
 			return $text;
 
-		$search = array('/('.UNIQ_PREFIX.'-[a-zA-Z0-9]+)/', //nowiki marker
-					'/(&[a-z#][a-z0-9]+;)/', //html entities
-                        );
-		$replace = $this->mMarkup['begin'].'${1}'.$this->mMarkup['end'];
-
-		$text = preg_replace($search, $replace, $text);
-
 		$plang = $this->getPreferredVariant();
 		$fallback = $this->mVariantFallbacks[$plang];
+
 		$tarray = explode($this->mMarkup['begin'], $text);
 		$tfirst = array_shift($tarray);
 		$text = $this->autoConvert($tfirst);
 		foreach($tarray as $txt) {
 			$marked = explode($this->mMarkup['end'], $txt);
-		
-# FIXME: this may cause trouble...
+			$flags = array();
+			$tt = explode($this->mMarkup['flagsep'], $marked[0], 2);
+
+			if(sizeof($tt) == 2) {
+				$f = explode($this->mMarkup['varsep'], $tt[0]);
+				foreach($f as $ff) {
+					$ff = trim($ff);
+					if(array_key_exists($ff, $this->mFlags) &&
+						!array_key_exists($this->mFlags[$ff], $flags))
+						$flags[] = $this->mFlags[$ff];
+				}
+				$rules = $tt[1];
+			}
+			else
+				$rules = $marked[0];
+
+#FIXME: may cause trouble here...
 			//strip &nbsp; since it interferes with the parsing, plus,
 			//all spaces should be stripped in this tag anyway.
-			$marked[0] = str_replace('&nbsp;', '', $marked[0]);
+			$rules = str_replace('&nbsp;', '', $rules);
 
-			/* see if this conversion has special meaning
-			   # for article title:
-				 -{T|zh-cn:foo;zh-tw:bar}-
-			   # convert all occurence of foo/bar in this article:
-				 -{A|zh-cn:foo;zh-tw:bar}-
-			*/
-			$flag = '';
-			$choice = false;
-			$tt = explode("|", $marked[0], 2);
-			if(sizeof($tt) == 2) {
-				$flag = trim($tt[0]);
-				$choice = explode(";", $tt[1]);
-			}
-
-			if(!$choice) {
-				$choice = explode($this->mMarkup['varsep'], $marked[0]);
-			}
+			$carray = $this->parseManualRule($rules, $flags);
 			$disp = '';
-			$carray = array();
-			if(!array_key_exists(1, $choice)) {
-				/* a single choice */
-				$disp = $choice[0];
-
-				/* fill the carray if the conversion is for the whole article*/
-				if($flag == 'A') {
-					foreach($this->mVariants as $v) {
-						$carray[$v] = $disp;
-					}
-				}
-			} 
-			else {
-				foreach($choice as $c) {
-					$v = explode($this->mMarkup['codesep'], $c);
-					if(sizeof($v) != 2) // syntax error, skip
-						continue;
-					$carray[trim($v[0])] = trim($v[1]);
-				}
-				if(array_key_exists($plang, $carray))
-					$disp = $carray[$plang];
-				else if(array_key_exists($fallback, $carray))
-					$disp = $carray[$fallback];
-			}
-			if(empty($disp)) { // syntax error
-				$text .= $marked[0];
-			}
-			else {	
-				if($flag == 'T') // for title only
+			if(array_key_exists($plang, $carray))
+				$disp = $carray[$plang];
+			else if(array_key_exists($fallback, $carray))
+				$disp = $carray[$fallback];
+			if($disp) {
+				if(in_array('T',  $flags))
 					$this->mTitleDisplay = $disp;
-				else {
+				else
 					$text .= $disp;
-					if($flag == 'A') {
-						/* modify the conversion table for this session*/
 
-						/* fill in the missing variants, if any,
-						    with fallbacks */ 
-						foreach($this->mVariants as $v) {
-							if(!array_key_exists($v, $carray)) {
-								$vf = $this->getVariantFallback($v);
-								if(array_key_exists($vf, $carray))
-									$carray[$v] = $carray[$vf];
-							}
+				if(in_array('A', $flags)) {
+					/* modify the conversion table for this session*/
+
+					/* fill in the missing variants, if any,
+					    with fallbacks */ 
+					foreach($this->mVariants as $v) {
+						if(!array_key_exists($v, $carray)) {
+							$vf = $this->getVariantFallback($v);
+							if(array_key_exists($vf, $carray))
+								$carray[$v] = $carray[$vf];
 						}
-						foreach($this->mVariants as $vfrom) {
-							if(!array_key_exists($vfrom, $carray))
+					}
+
+					foreach($this->mVariants as $vfrom) {
+						if(!array_key_exists($vfrom, $carray))
+							continue;
+						foreach($this->mVariants as $vto) {
+							if($vfrom == $vto)
 								continue;
-							foreach($this->mVariants as $vto) {
-								if($vfrom == $vto)
-									continue;
-								if(!array_key_exists($vto, $carray))
-									continue;
-								$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
-							}
+							if(!array_key_exists($vto, $carray))
+								continue;
+							$this->mTables[$vto][$carray[$vfrom]] = $carray[$vto];
+
 						}
 					}
 				}
+			}
+			else {
+				$text .= $marked[0];
 			}
 			if(array_key_exists(1, $marked))
 				$text .= $this->autoConvert($marked[1]);
@@ -329,6 +305,31 @@ class LanguageConverter {
 		return $text;
 	}
 
+	/**
+	 * parse the manually marked conversion rule
+	 * @param string $rule the text of the rule
+	 * @return array of the translation in each variant
+	 * @access private
+	 */
+	function parseManualRule($rules, $flags=array()) {
+
+		$choice = explode($this->mMarkup['varsep'], $rules);
+		$carray = array();
+		if(sizeof($choice) == 1) {
+			/* a single choice */
+			foreach($this->mVariants as $v)
+				$carray[$v] = $choice[0];
+		}
+		else {
+			foreach($choice as $c) {
+				$v = explode($this->mMarkup['codesep'], $c);
+				if(sizeof($v) != 2) // syntax error, skip
+					continue;
+				$carray[trim($v[0])] = trim($v[1]);
+			}
+		}
+		return $carray;
+	}
 
 	/**
 	 * if a language supports multiple variants, it is
@@ -544,11 +545,11 @@ class LanguageConverter {
 
 
 		// parse the mappings in this page
-		$blocks = explode('-{', $txt);
+		$blocks = explode($this->mMarkup['begin'], $txt);
 		array_shift($blocks);
 		$ret = array();	
 		foreach($blocks as $block) {
-			$mappings = explode('}-', $block, 2);
+			$mappings = explode($this->mMarkup['end'], $block, 2);
 			$stripped = str_replace(array("'", '"', '*','#'), '', $mappings[0]);
 			$table = explode( ';', $stripped );
 			foreach( $table as $t ) {
@@ -581,6 +582,11 @@ class LanguageConverter {
 	 * @return string the tagged text
 	*/
 	function markNoConversion($text) {
+		# don't mark if already marked
+		if(strpos($text, $this->mMarkup['begin']) ||
+ 		   strpos($text, $this->mMarkup['end']))
+			return $text;
+
 		$ret = $this->mMarkup['begin'] . $text . $this->mMarkup['end'];
 		return $ret;
 	}
