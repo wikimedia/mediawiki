@@ -20,10 +20,12 @@ CREATE TABLE /*$wgDBprefix*/page (
   page_random real unsigned NOT NULL,
   page_touched char(14) binary NOT NULL default '',
   page_latest int(8) unsigned NOT NULL,
+  page_len int(8) unsigned NOT NULL,
 
   PRIMARY KEY page_id (page_id),
   UNIQUE INDEX name_title (page_namespace,page_title),
-  INDEX (page_random)
+  INDEX (page_random),
+  INDEX (page_len)
 );
 
 CREATE TABLE /*$wgDBprefix*/revision (
