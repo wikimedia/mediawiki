@@ -90,8 +90,6 @@ require_once( "LanguageUtf8.php" );
 
 $wgAllMessagesLt = array(
 '1movedto2' => "Straipsnis '$1' pervadintas į '$2'",
-#'1movedto2_redir' => "$1 moved to $2 over redirect",
-#'Monobook.css' => "/* edit this file to customize the monobook skin for the entire site */",
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
 ta['pt-userpage'] = new Array('.','Mano vartotojo puslapis'); 
@@ -144,16 +142,9 @@ ta['ca-nstab-template'] = new Array('c','Rodyti šabloną');
 ta['ca-nstab-help'] = new Array('c','Rodyti pagalbos puslapį'); 
 ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 'about' => "Apie",
-'aboutpage' => "Wikipedia:About",
 'aboutsite'      => "Apie Wikipediją",
-#'accesskey-compareselectedversions' => "v",
-#'accesskey-minoredit' => "i",
-#'accesskey-preview' => "p",
-#'accesskey-save' => "s",
-#'accesskey-search' => "f",
 'accmailtext' => "Vartotojo '$1' slaptažodis nusiųstas į $2.",
 'accmailtitle' => "Slaptažodis išsiųstas.",
-#'acct_creation_throttle_hit' => "Sorry, you have already created $1 accounts. You can't make any more.",
 'actioncomplete' => "Veiksmas atliktas",
 'addedwatch' => "Pridėta prie Stebimų",
 'addedwatchtext' => "Straipsnis \"$1\" pridėtas į [[Special:Watchlist|stebimųjų sąrašą]].
@@ -161,7 +152,6 @@ Būsimi straipsnio bei atitinkamo diskusijų puslapio pakeitimai bus rodomi steb
 taip pat bus '''paryškinti''' [[Special:Recentchanges|naujausių keitimų sąraše]] kad išsiskirtų iš kitų straipsnių.
 
 <p>Jei bet kuriuo metu užsinorėtumėte nustoti stebėti straipsnį, spustelkite \"nebestebėti\" viršutiniame meniu.",
-#'addsection' => "+",
 'administrators' => "Wikipedia:Administrators",
 'affirmation' => "Aš patvirtinu, kad šio failo autorius ar teisių turėtojas
 sutinka jog failas bus viešinamas $1 licenzijos sąlygomis.",
@@ -175,96 +165,30 @@ sutinka jog failas bus viešinamas $1 licenzijos sąlygomis.",
 
 Paskutimas keitimas darytas vartotojo [[User:$3|$3]] ([[User talk:$3|Diskusijos]]).",
 'ancientpages' => "Seniausi straipsniai",
-#'and' => "and",
 'anontalk' => "Šio IP diskusijų puslapis",
-#'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
-#'anonymous' => "Anonymous user(s) of Wikipedia",
-#'article' => "Content page",
 'articleexists' => "Straipsnis tokiu pavadinimu jau egzistuoja
 arba pasirinktas vardas yra neteisingas.
 Pasirinkite kitą pavadinimą.",
 'articlepage' => "Rodyti straipsnį",
-#'asksql' => "SQL query",
-/*#'asksqltext' => "Use the form below to make a direct query of the
-database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",*/
 'autoblocker' => "Automatinis užblokavimas, nes dalinatės IP adresu su vartotoju \"$1\". Priežastis - \"$2\".",
-#'badarticleerror' => "This action cannot be performed on this page.",
-#'badfilename' => "Image name has been changed to \"$1\".",
 'badfiletype' => "\".$1\" yra nerekomenduojamas paveikslėlio bylos formatas.",
-#'badipaddress' => "Invalid IP address",
-#'badquery' => "Badly formed search query",
-/*#'badquerytext' => "We could not process your query.
-This is probably because you have attempted to search for a
-word fewer than three letters long, which is not yet supported.
-It could also be that you have mistyped the expression, for
-example \"fish and and scales\".
-Please try another query.",*/
 'badretype' => "Įvesti slaptažodžiai nesutampa.",
-#'badtitle' => "Bad title",
-/*#'badtitletext' => "The requested page title was invalid, empty, or
-an incorrectly linked inter-language or inter-wiki title.",*/
-#'blanknamespace' => "(Main)",
-'blockedtext' => "Your user name or IP address has been blocked by $1.
-The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
-[[Wikipedia:Administrators|administrators]] to discuss the block.
-
-Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
-
-Your IP address is $3. Please include this address in any queries you make.
-",
-#'blockedtitle' => "User is blocked",
 'blockip' => "Blokuoti vartotoją",
 'blockipsuccesssub' => "Užblokavimas pavyko",
-/*#'blockipsuccesstext' => "\"$1\" has been blocked.
-<br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
-'blockiptext' => "Use the form below to block write access
-from a specific IP address or username.
-This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|policy]].
-Fill in a specific reason below (for example, citing particular
-pages that were vandalized).",*/
 'blocklink' => "blokuoti",
-#'blocklistline' => "$1, $2 blocked $3 (expires $4)",
-#'blocklogentry' => "blocked \"$1\" with an expiry time of $2",
-#'blocklogpage' => "Block_log",
-'blocklogtext' => "This is a log of user blocking and unblocking actions. Automatically 
-blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
-the list of currently operational bans and blocks.",
 'bold_sample' => "Paryškintas tekstas",
 'bold_tip' => "Paryškinti tekstą",
 'booksources' => "Knygų paieška",
-'booksourcetext' => "Below is a list of links to other sites that
-sell new and used books, and may also have further information
-about books you are looking for.Wikipedia is not affiliated with any of these businesses, and
-this list should not be construed as an endorsement.",
 'brokenredirects' => "Peradresavimai į niekur",
 'brokenredirectstext' => "Žemiau išvardinti peradresavimo puslapiai rodo į neegzistuojančius straipsnius.",
 'bugreports' => "Pranešti apie klaidą",
-'bugreportspage' => "Wikipedia:Bug_reports",
-#'bureaucratlog' => "Bureaucrat_log",
-#'bureaucratlogentry' => "Rights for user \"$1\" set \"$2\"",
-/*#'bureaucrattext' => "The action you have requested can only be
-performed by sysops with  \"bureaucrat\" status.",*/
-#'bureaucrattitle' => "Bureaucrat access required",
-#'bydate' => "by date",
-#'byname' => "by name",
-#'bysize' => "by size",
-#'cachederror' => "The following is a cached copy of the requested page, and may not be up to date.",
 'cancel' => "Atšaukti",
 'cannotdelete' => "Nepavyko ištrinti nurodyto straipsnio ar paveikslėlio. (Gali būti, kad kažkas kitas ištrynė pirmas)",
-#'cantrollback' => "Cannot revert edit; last contributor is only author of this page.",
 'categories' => "Kategorijos",
 'category' => "kategorija",
 'category_header' => "Kategorijos \"$1\" straipsniai",
 'categoryarticlecount' => "Kategorijoje straipsnių - $1",
 'changepassword' => "Pakeisti slaptažodį",
-#'changes' => "changes",
-#'clearyourcache' => "'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
-#'columns' => "Columns",
-#'commentedit' => " (comment)",
 'compareselectedversions' => "Palyginti pasirinktas versijas",
 'confirm' => "Tvirtinu",
 'confirmcheck' => "Taip, aš tikrai noriu tai ištrinti.",
@@ -279,10 +203,7 @@ ir kad jūs tai darote nenusižengdamas
 'confirmprotecttext' => "Ar jūs tikrai norite užrakinti šį straipsnį?",
 'confirmunprotect' => "Atrakinimo patvirtinimas",
 'confirmunprotecttext' => "Ar tikrai norite atrakinti šį straipsnį?",
-#'contextchars' => "Characters of context per line",
-#'contextlines' => "Lines to show per hit",
 'contribslink' => "įnašas",
-#'contribsub' => "For $1",
 'contributions' => "Vartotojo indėlis",
 'copyright' => "Turinys pateikiamas su $1 licenzija.",
 'copyrightpage' => "Wikipedia:Copyrights",
@@ -292,41 +213,18 @@ ir kad jūs tai darote nenusižengdamas
 Jei nepageidaujate, kad jūsų įvestas turinys būtų negailestingai redaguojamas ir platinamas, nerašykite čia.<br />
 Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių.
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>",
-#'couldntremove' => "Couldn't remove item '$1'...",
 'createaccount' => "Sukurti vartotoją",
-#'createaccountmail' => "by email",
-#'creditspage' => "Page credits",
-#'cur' => "cur",
 'currentevents' => "-",
 'currentrev' => "Dabartinė versija",
-#'databaseerror' => "Database error",
 'dateformat' => "Datos formatas",
 'deadendpages' => "Straipsniai-aklavietės",
-#'debug' => "Debug",
 'defaultns' => "Pagal nutylėjimą ieškoti šiose vardų erdvėse:",
 'defemailsubject' => "Wikipedia e-mail",
 'delete' => "trinti",
 'deletecomment' => "Trynimo priežastis",
 'deletedarticle' => "ištrinta \"$1\"",
-/*#'deletedtext' => "\"$1\" has been deleted.
-See $2 for a record of recent deletions.",*/
-#'deleteimg' => "del",
-#'deletepage' => "Delete page",
 'deletesub' => "(Trinama \"$1\")",
 'deletethispage' => "Ištrinti straipsnį",
-#'deletionlog' => "deletion log",
-#'dellogpage' => "Deletion_log",
-/*#'dellogpagetext' => "Below is a list of the most recent deletions.
-All times shown are server time (UTC).
-<ul>
-</ul>
-",*/
-#'developerspheading' => "For developer use only",
-/*#'developertext' => "The action you have requested can only be
-performed by users with \"developer\" status.
-See $1.",*/
-#'developertitle' => "Developer access required",
-#'diff' => "diff",
 'difference' => "(Skirtumai tarp versijų)",
 'disambiguations' => "Nukreipiamieji puslapiai",
 'disambiguationspage' => "Wikipedia:Links_to_disambiguating_pages",
@@ -334,14 +232,8 @@ See $1.",*/
 'disclaimerpage' => "Wikipedia:General_disclaimer",
 'disclaimers' => "Jokių Garantijų",
 'doubleredirects' => "Dvigubi peradresavimai",
-/*#'doubleredirectstext' => "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />
-Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",*/
-'edit' => "Redaguoti",
-#'editcomment' => "The edit comment was: \"<i>$1</i>\".",
 'editconflict' => "Išpręskite konfliktą: $1",
-#'editcurrent' => "Edit the current version of this page",
 'edithelp' => "Kaip Redaguoti",
-'edithelppage' => "Help:Editing",
 'editing' => "Taisomas straipsnis - $1",
 'editingsection' => "Taisomas straipsnis - $1 (skyrius)",
 'editingcomment' => "Taisomas straipsnis - $1 (comment)",
@@ -349,67 +241,14 @@ Each row contains links to the first and second redirect, as well as the first l
 Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>",
 'editsection' => "taisyti",
 'editthispage' => "Taisyti straipsnį",
-#'emailflag' => "Disable e-mail from other users",
 'emailforlost' => "* Elektroninio pašto adresas nėra privalomas. Tačiau jei įvesite, kiti vartotojai galės siųsti jums laiškus nesužinodami adreso. Taip pat pašto adresas gelbsti pamiršus slaptažodį.",
-#'emailfrom' => "From",
-#'emailmessage' => "Message",
-#'emailpage' => "E-mail user",
-/*#'emailpagetext' => "If this user has entered a valid e-mail address in
-his or her user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear
-as the \"From\" address of the mail, so the recipient will be able
-to reply.",*/
-#'emailsend' => "Send",
-#'emailsent' => "E-mail sent",
-#'emailsenttext' => "Your e-mail message has been sent.",
-#'emailsubject' => "Subject",
-#'emailto' => "To",
 'emailuser' => "Rašyti laišką",
-#'emptyfile' => "The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.",
-/*#'enterlockreason' => "Enter a reason for the lock, including an estimate
-of when the lock will be released",*/
-#'error' => "Error",
-#'errorpagetitle' => "Error",
-#'exbeforeblank' => "content before blanking was:",
-#'exblank' => "page was empty",
 'excontent' => "buvęs turinys:",
-/*#'explainconflict' => "Someone else has changed this page since you
-started editing it.
-The upper text area contains the page text as it currently exists.
-Your changes are shown in the lower text area.
-You will have to merge your changes into the existing text.
-<b>Only</b> the text in the upper text area will be saved when you
-press \"Save page\".
-<p>",*/
 'export' => "Eksportuoti puslapius",
-#'exportcuronly' => "Include only the current revision, not the full history",
-/*#'exporttext' => "You can export the text and editing history of a particular
-page or set of pages wrapped in some XML; this can then be imported into another
-wiki running MediaWiki software, transformed, or just kept for your private
-amusement.",*/
 'extlink_sample' => "http://www.pavyzdys.lt Nuorodos pavadinimas",
 'extlink_tip' => "Išorinė nuoroda (nepamirškite http:// prefikso)",
-#'faq' => "FAQ",
-'faqpage' => "Wikipedia:FAQ",
-#'feedlinks' => "Feed:",
-#'filecopyerror' => "Could not copy file \"$1\" to \"$2\".",
-#'filedeleteerror' => "Could not delete file \"$1\".",
-#'filedesc' => "Summary",
-#'fileexists' => "A file with this name exists already, please check $1 if you are not sure if you want to change it.",
-#'filename' => "Filename",
-#'filenotfound' => "Could not find file \"$1\".",
-#'filerenameerror' => "Could not rename file \"$1\" to \"$2\".",
-#'filesource' => "Source",
-#'filestatus' => "Copyright status",
-'fileuploaded' => "File \"$1\" uploaded successfully.
-Please follow this link: $2 to the description page and fill
-in information about the file, such as where it came from, when it was
-created and by whom, and anything else you may know about it.",
-#'formerror' => "Error: could not submit form",
 'tagline'       => "<small>Straipsnis iš Wikipedijos, laisvosios enciklopedijos.</small>",
-#'getimagelist' => "fetching image list",
 'go' => "Rodyk",
-#'guesstimezone' => "Fill in from browser",
 'headline_sample' => "Skyriaus Pavadinimas",
 'headline_tip' => "Skyriaus pavadinimas (2-o lygio)",
 'help' => "Pagalba",
@@ -811,60 +650,21 @@ the text into a text file and save it for later.",*/
 'removedwatch' => "Išmesta iš stebimų",
 'removedwatchtext' => "Straipsnis \"$1\" išmestas iš jūsų stebimų straipsnių sąrašo.",
 'removingchecked' => "Pasirinkti straipsniai išmetami iš stebimų sąrašo...",
-#'resetprefs' => "Reset preferences",
-#'restorelink' => "$1 deleted edits",
-#'resultsperpage' => "Hits to show per page",
 'retrievedfrom' => "Rodomas puslapis \"$1\"",
 'returnto' => "Grįžti į $1.",
 'retypenew' => "Pakartokite naują slaptažodį",
-#'reupload' => "Re-upload",
-#'reuploaddesc' => "Return to the upload form.",
-#'reverted' => "Reverted to earlier revision",
-#'revertimg' => "rev",
 'revertpage' => "Atmestas $2 pakeitimas, grąžinta paskutinė versija (vartotojo $1 keitimas)",
-#'revhistory' => "Revision history",
 'revisionasof' => "$1 versija",
-#'revnotfound' => "Revision not found",
-/*#'revnotfoundtext' => "The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.
-",*/
-#'rfcurl' => "http://www.faqs.org/rfcs/rfc$1.html",
-#'rights' => "Rights:",
-#'rollback' => "Roll back edits",
 'rollback_short' => "Atmesti",
-#'rollbackfailed' => "Rollback failed",
 'rollbacklink' => "atmesti",
-#'rows' => "Rows",
 'savearticle' => "Išsaugoti",
-#'savedprefs' => "Your preferences have been saved.",
-#'savefile' => "Save file",
-#'saveprefs' => "Save preferences",
 'search' => "Paieška",
-#'searchdisabled' => "<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>",
-#'searchquery' => "For query \"$1\"",
-#'searchresults' => "Search results",
-#'searchresultshead' => "Search result settings",
-'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
-#'selectnewerversionfordiff' => "Select a newer version for comparison",
-#'selectolderversionfordiff' => "Select an older version for comparison",
-#'selectonly' => "Only read-only queries are allowed.",
-#'selflinks' => "Pages with Self Links",
-#'selflinkstext' => "The following pages contain a link to themselves, which they should not.",
-#'seriousxhtmlerrors' => "There were serious xhtml markup errors detected by tidy.",
-#'servertime' => "Server time is now",
-#'set_rights_fail' => "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
-#'set_user_rights' => "Set user rights",
-#'setbureaucratflag' => "Set bureaucrat flag",
 'shortpages' => "Trumpiausi straipsniai",
 'show' => "rodyti",
 'showhideminor' => "$1 smulkius pataisymus",
 'showingresults' => "Rodoma <b>$1</b> rezultatų pradedant #<b>$2</b>.",
-#'showingresultsnum' => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
-#'showlast' => "Show last $1 images sorted $2.",
 'showpreview' => "Kaip atrodys",
 'showtoc' => "rodyti",
-#'sig_tip' => "Your signature with timestamp",
-'sitenotice' => "-", #empty
 'sitestats' => "Tinklalapio statistika",
 'sitestatstext' => "Duomenų bazėje šiuo metu esančių puslapių - '''$1'''.
 Į šį skaičių įeina diskusijų puslapiai, pagalbiniai Wikipedijos puslapiai, peradresavimo puslapiai ir kiti, neskaičiuojami kaip straipsniai.
@@ -872,53 +672,17 @@ Be šių puslapių, tikrų straipsnių yra apie '''$2'''.
 
 Nuo wiki pradžios yra '''$3''' puslapių peržiūrų, ir '''$4''' puslapių redagavimų.
 Taigi vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, o žiūrėtas '''$6''' kartų.",
-#'sitesubtitle' => "The Free Encyclopedia",
 'sitesupport' => "Aukojimai",
 'sitetitle' => "Wikipedia",
-#'siteuser' => "Wikipedia user $1",
-#'siteusers' => "Wikipedia user(s) $1",
-#'skin' => "Skin",
-'spamprotectiontext' => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
-
-You might want to check the following regular expression for patterns that are currently blocked:",
-#'spamprotectiontitle' => "Spam protection filter",
 'specialpage' => "Specialusis Puslapis",
 'specialpages' => "Specialieji puslapiai",
 'spheading' => "Specialieji visiems vartotojams prieinami puslapiai",
-#'sqlislogged' => "Please note that all queries are logged.",
-#'sqlquery' => "Enter query",
 'statistics' => "Statistika",
-#'storedversion' => "Stored version",
-#'stubthreshold' => "Threshold for stub display",
-'subcategories' => "Subkategorijos",
 'subcategorycount' => "Kategorijoje esančių kategorijų - $1",
-#'subject' => "Subject/headline",
-#'subjectpage' => "View subject",
-#'successfulupload' => "Successful upload",
 'summary' => "Komentaras",
 'sysopspheading' => "Administratoriams skirti puslapiai",
-/*#'sysoptext' => "The action you have requested can only be
-performed by users with \"sysop\" status.
-See $1.",*/
-#'sysoptitle' => "Sysop access required",
-#'tableform' => "table",
 'talk' => "Diskusijos",
-/*#'talkexists' => "The page itself was moved successfully, but the
-talk page could not be moved because one already exists at the new
-title. Please merge them manually.",*/
 'talkpage' => "Aptarti straipsnį",
-#'talkpagemoved' => "The corresponding talk page was also moved.",
-#'talkpagenotmoved' => "The corresponding talk page was <strong>not</strong> moved.",
-#'talkpagetext' => "<!-- MediaWiki:talkpagetext -->",
-'textboxsize' => "Textbox dimensions",
-#'textmatches' => "Page text matches",
-#'thisisdeleted' => "View or restore $1?",
-#'thumbnail-more' => "Enlarge",
-#'timezonelegend' => "Time zone",
-#'timezoneoffset' => "Offset",
-/*#'timezonetext' => "Enter number of hours your local time differs
-from server time (UTC).",*/
-#'titlematches' => "Article title matches",
 'toc' => "Turinys",
 'toolbox' => "Įrankiai",
 'tooltip-compareselectedversions' => "Žiūrėti dviejų pasirinktų puslapio versijų skirtumus. [alt-v]",
@@ -1107,9 +871,9 @@ class LanguageLt extends LanguageUtf8  {
                 return $wgWeekdayNamesLt[$key-1];
         }
 
-    function fallback8bitEncoding() {
-            return "windows-1257";
-    }
+	function fallback8bitEncoding() {
+		return "windows-1257";
+	}
 
         function getMessage( $key )
         {
@@ -1118,7 +882,7 @@ class LanguageLt extends LanguageUtf8  {
                 if(array_key_exists($key, $wgAllMessagesLt))
                         return $wgAllMessagesLt[$key];
                 else
-                        return Language::getMessage($key);
+                        return parent::getMessage($key);
         }
 
         function getAllMessages()
@@ -1128,8 +892,7 @@ class LanguageLt extends LanguageUtf8  {
         }
 	
 	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+		return strtr($number, '.,', ',.' );
 	}
 
 }
