@@ -478,22 +478,50 @@ class Parser
 	}
 
 	/**
-	 * interface with html tidy, used if $wgUseTidy = true
+	 * Interface with html tidy, used if $wgUseTidy = true.
+	 * If tidy isn't able to correct the markup, the original will be
+	 * returned in all its glory with a warning comment appended.
 	 *
+	 * Either the external tidy program or the in-process tidy extension
+	 * will be used depending on availability. Override the default
+	 * $wgTidyInternal setting to disable the internal if it's not working.
+	 *
+	 * @param string $text Hideous HTML input
+	 * @return string Corrected HTML output
 	 * @access public
 	 * @static
 	 */
-	function tidy ( $text ) {
+	function tidy( $text ) {
+		global $wgTidyInternal;
+		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
+' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
+'<head><title>test</title></head><body>'.$text.'</body></html>';
+		if( $wgTidyInternal ) {
+			$correctedtext = Parser::internalTidy( $wrappedtext );
+		} else {
+			$correctedtext = Parser::externalTidy( $wrappedtext );
+		}
+		if( is_null( $correctedtext ) ) {
+			wfDebug( "Tidy error detected!\n" );
+			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
+		}
+		return $correctedtext;
+	}
+	
+	/**
+	 * Spawn an external HTML tidy process and get corrected markup back from it.
+	 *
+	 * @access private
+	 * @static
+	 */
+	function externalTidy( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
-		$fname = 'Parser::tidy';
+		$fname = 'Parser::externalTidy';
 		wfProfileIn( $fname );
 
 		$cleansource = '';
 		$opts = ' -utf8';
 
-		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
-' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
-'<head><title>test</title></head><body>'.$text.'</body></html>';
 		$descriptorspec = array(
 			0 => array('pipe', 'r'),
 			1 => array('pipe', 'w'),
@@ -501,7 +529,7 @@ class Parser
 		);
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
-			fwrite($pipes[0], $wrappedtext);
+			fwrite($pipes[0], $text);
 			fclose($pipes[0]);
 			while (!feof($pipes[1])) {
 				$cleansource .= fgets($pipes[1], 1024);
@@ -513,11 +541,42 @@ class Parser
 		wfProfileOut( $fname );
 
 		if( $cleansource == '' && $text != '') {
-			wfDebug( "Tidy error detected!\n" );
-			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
+			// Some kind of error happened, so we couldn't get the corrected text.
+			// Just give up; we'll use the source text and append a warning.
+			return null;
 		} else {
 			return $cleansource;
 		}
+	}
+
+	/**
+	 * Use the HTML tidy PECL extension to use the tidy library in-process,
+	 * saving the overhead of spawning a new process. Currently written to
+	 * the PHP 4.3.x version of the extension, may not work on PHP 5.
+	 *
+	 * 'pear install tidy' should be able to compile the extension module.
+	 *
+	 * @access private
+	 * @static
+	 */
+	function internalTidy( $text ) {
+		global $wgTidyConf;
+		$fname = 'Parser::internalTidy';
+		wfProfileIn( $fname );
+		
+		tidy_load_config( $wgTidyConf );
+		tidy_set_encoding( 'utf8' );
+		tidy_parse_string( $text );
+		tidy_clean_repair();
+		if( tidy_get_status() == 2 ) {
+			// 2 is magic number for fatal error
+			// http://www.php.net/manual/en/function.tidy-get-status.php
+			$cleansource = null;
+		} else {
+			$cleansource = tidy_get_output();
+		}
+		wfProfileOut( $fname );
+		return $cleansource;
 	}
 
 	/**

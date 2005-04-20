@@ -979,11 +979,18 @@ $wgRawHtml = false;
  * $wgTidyBin should be set to the path of the binary and
  * $wgTidyConf to the path of the configuration file.
  * $wgTidyOpts can include any number of parameters.
+ *
+ * $wgTidyInternal controls the use of the PECL extension to use an in-
+ *   process tidy library instead of spawning a separate program.
+ *   Normally you shouldn't need to override the setting except for
+ *   debugging. To install, use 'pear install tidy' and add a line
+ *   'extension=tidy.so' to php.ini.
  */
 $wgUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
 $wgTidyOpts = '';
+$wgTidyInternal = function_exists( 'tidy_load_config' );
 
 /** See list of skins and their symbolic names in languagel/Language.php */
 $wgDefaultSkin = 'monobook';
