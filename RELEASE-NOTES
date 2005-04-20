@@ -509,6 +509,7 @@ pages for purposes of page relevancy ranking.
 
 * Fix math options in Finnish localization
 * Use in-process Tidy extension if available when $wgUseTidy is on
+* (bug 1933) Fix PATH_INFO usage under IIS with PHP ISAPI module
 
 
 === Caveats ===
