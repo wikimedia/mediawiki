@@ -145,7 +145,7 @@ $wgCacheSharedUploads = true;
  * apache servers don't have read/write access to the thumbnail path.
  * 
  * Example: 
- *   $wgThumnailScriptPath = "{$wgScriptPath}/thumb.php";
+ *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
  */
 $wgThumbnailScriptPath = false;
 $wgSharedThumbnailScriptPath = false;
