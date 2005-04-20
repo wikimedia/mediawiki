@@ -38,7 +38,7 @@ class WebRequest {
 	function WebRequest() {
 		$this->checkMagicQuotes();
 		global $wgUsePathInfo;
-		if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
+		if( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') && $wgUsePathInfo ) {
 			# Stuff it!
 			$_GET['title'] = $_REQUEST['title'] =
 				substr( $_SERVER['PATH_INFO'], 1 );
