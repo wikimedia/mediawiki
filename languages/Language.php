@@ -852,7 +852,7 @@ Your internal ID number is $2.
 
 See [[Project:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
-'qbsettings'	=> 'Quickbar settings',
+'qbsettings'	=> 'Quickbar',
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
 'math'			=> 'Math',
