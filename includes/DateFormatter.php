@@ -112,6 +112,22 @@ class DateFormatter
 	}
 	
 	/**
+	 * @static
+	 */
+	function &getInstance() {
+		global $wgDBname, $wgMemc;
+		static $dateFormatter = false;
+		if ( !$dateFormatter ) {
+			$dateFormatter = $wgMemc->get( "$wgDBname:dateformatter" );
+			if ( !$dateFormatter ) {
+				$dateFormatter = new DateFormatter;
+				$wgMemc->set( "$wgDBname:dateformatter", $dateFormatter, 3600 );
+			}
+		}
+		return $dateFormatter;
+	}	
+	
+	/**
 	 * @param $preference
 	 * @param $text
 	 */
@@ -279,7 +295,8 @@ class DateFormatter
  * @todo document
  */
 function wfMainDateReplace( $matches ) {
-	global $wgDateFormatter;
-	return $wgDateFormatter->replace( $matches );
+	$df =& DateFormatter::getInstance();
+	return $df->replace( $matches );
 }
+
 ?>

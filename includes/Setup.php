@@ -79,6 +79,10 @@ require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
 require_once( 'ProxyTools.php' );
 
+if ( $wgUseDynamicDates ) {
+	require_once( 'DateFormatter.php' );
+}
+
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 global $wgUser, $wgLang, $wgContLang, $wgOut, $wgTitle;
@@ -335,15 +339,6 @@ $wgOut = new OutputPage();
 wfDebug( "\n\n" );
 
 wfProfileOut( $fname.'-OutputPage' );
-wfProfileIn( $fname.'-DateFormatter' );
-
-if ( $wgUseDynamicDates ) {
-	require_once( 'DateFormatter.php' );
-	global $wgDateFormatter;
-	$wgDateFormatter = new DateFormatter;
-}
-
-wfProfileOut( $fname.'-DateFormatter' );
 wfProfileIn( $fname.'-BlockCache' );
 
 $wgBlockCache = new BlockCache( true );

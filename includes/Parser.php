@@ -71,7 +71,7 @@ define( 'EXT_IMAGE_REGEX',
  *   performs brace substitution on MediaWiki messages
  *
  * Globals used:
- *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache
+ *    objects:   $wgLang, $wgLinkCache
  *
  * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
  *
@@ -757,8 +757,8 @@ class Parser
 			wfDebugDieBacktrace( "Error, parser options is undefined\n" );
 		}
 		if($this->mOptions->getUseDynamicDates()) {
-			global $wgDateFormatter;
-			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
+			$df =& DateFormatter::getInstance();
+			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceInternalLinks( $text );
@@ -3281,7 +3281,7 @@ class ParserOptions
 {
 	# All variables are private
 	var $mUseTeX;                    # Use texvc to expand <math> tags
-	var $mUseDynamicDates;           # Use $wgDateFormatter to format dates
+	var $mUseDynamicDates;           # Use DateFormatter to format dates
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
 	var $mSkin;                      # Reference to the preferred skin
