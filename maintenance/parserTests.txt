@@ -979,7 +979,7 @@ title=[[Main Page]]
 !! end
 
 ###
-### Interwiki links
+### Interwiki links (see maintenance/interwiki.sql)
 ###
 
 !! test
@@ -1116,6 +1116,15 @@ Magic links: ISBN
 ISBN 0-306-40615-2
 !! result
 <p><a href="/index.php?title=Special:Booksources&amp;isbn=0306406152" class="internal">ISBN 0-306-40615-2</a>
+</p>
+!! end
+
+!! test
+Magic links: PMID
+!! input
+PMID 1234
+!! result
+<p><a href='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234' class='external' title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=1234">PMID 1234</a>
 </p>
 !! end
 
