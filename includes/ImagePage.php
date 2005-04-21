@@ -11,6 +11,10 @@ if( !defined( 'MEDIAWIKI' ) )
 
 require_once( 'Image.php' );
 
+if ( $wgShowEXIF ) {
+	require_once ( 'exifReader.inc' ) ;
+	}
+
 /**
  * Special handling for image description pages
  * @package MediaWiki
@@ -20,11 +24,12 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object this page is shown for
 	
 	function view() {
-		global $wgUseExternalEditor, $wgOut;
+		global $wgUseExternalEditor, $wgOut ;
 
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
+			if ( $this->img->exists() ) $this->showEXIFdata();
 			$this->openShowImage();
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
@@ -52,6 +57,31 @@ class ImagePage extends Article {
 			Article::view();
 		}
 	}
+	
+	function showEXIFdata()
+		{
+		global $wgOut , $wgShowEXIF ;
+		if ( ! $wgShowEXIF ) return ;
+		$file = $this->img->getImagePath () ;
+		$per = new phpExifReader ( $file ) ;
+		$per->processFile () ;
+		
+		$r = "<table border='1' cellspacing='0' cellpadding='0' align='right'>" ;
+		$r .= "<caption>EXIF data</caption>" ;
+		$a = $per->getImageInfo() ;
+		if ( count ( $a ) == 0 ) return ; # No EXIF data
+		unset ( $a["FileName"] ) ;
+		unset ( $a["Thumbnail"] ) ;
+		foreach ( $a AS $k => $v ) {
+			$r .= "<tr>" ;
+			$v = str_replace ( "\0" , "" , $v ) ;
+			$r .= "<th><small>" . htmlspecialchars ( $k ) . "</small></th>" ;
+			$r .= "<td><small>" . htmlspecialchars ( $v ) . "</small></td>" ;
+			$r .= "</tr>" ;
+			}
+		$r .= "</table>" ;
+		$wgOut->addHTML ( $r ) ;
+		}
 
 	function openShowImage()
 	{
@@ -147,7 +177,7 @@ class ImagePage extends Article {
 			"action=edit&externaledit=true&mode=file" ) );
 		$wgOut->addWikiText( '<div class="editExternallyHelp">' .
 			wfMsg('edit-externally-help') . '</div>' );
-		$wgOut->addHTML( '</div><br clear="all" />' );
+		$wgOut->addHTML( '</div><br clear="both" />' );
 	}
 	
 	function closeShowImage()
