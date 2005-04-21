@@ -3,10 +3,6 @@
  * @package MediaWiki
  */
 
-if ( $wgShowEXIF ) {
-	require_once ( 'exifReader.inc' ) ;
-}
-
 /**
  * Class to represent an image
  * 
@@ -1127,29 +1123,30 @@ class Image
 	
 	function retrieveExifData () {
 		global $wgShowEXIF ;
-		if ( ! $wgShowEXIF ) return array () ;
+		if ( ! $wgShowEXIF ) return array ();
+		if ( $this->type !== '2' ) return array ();
 
-		$file = $this->imagePath ;
-		$per = new phpExifReader ( $file ) ;
-		$per->processFile () ;
-		$a = $per->getImageInfo() ;
-		unset ( $a["FileName"] ) ;
-		unset ( $a["Thumbnail"] ) ;
-		return $a ;
+		$exif = exif_read_data( $this->imagePath );
+		$exif = $this->stripExifData( $exif );
+		return $exif ;
 	}
 		
 	function getExifData () {
-		global $wgShowEXIF ;
-		if ( ! $wgShowEXIF ) return array () ;
+		global $wgRequest, $wgShowEXIF;
 		
-		$ret = unserialize ( $this->exif ) ;
-		if ( count ( $ret ) == 0 ) { # No EXIF data was stored for this image
+		if ( ! $wgShowEXIF ) return array ();
+
+		$action = $wgRequest->getVal( 'action' ); # Allow forced updates
+		
+		$ret = unserialize ( $this->exif );
+
+		if ( count( $ret) == 0 || $action == 'purge' ) { # No EXIF data was stored for this image
 			$this->updateExifData() ;
 			$ret = unserialize ( $this->exif ) ;
-			}
-
-		return $ret ;
 		}
+		
+		return $ret ;
+	}
 
 	function updateExifData () {
 		global $wgShowEXIF ;
@@ -1169,7 +1166,132 @@ class Image
 			array( 'img_name' => $this->name ),
 			$fname
 		);
+	}
+
+	/**
+	 * Strip out potentially nasty exif data such as raw binaries
+	 * (thumbnails), these values are from version 2.2 of the EXIF
+	 * specification, note that I've commented some of them out, this is
+	 * because their Type is "UNDEFINED", meaning that they potentially
+	 * contain binary data.
+	 *
+	 * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+	 * @link http://exif.org/specifications.html
+	 * @link http://exif.org/Exif2-2.PDF (see page 22 and 30)
+	 * 
+	 * @param array $exif
+	 * @return array
+	 */
+	function stripExifData( $exif = array() ) {
+		$whitelist = array(
+			# Other tags
+			'Make',				# Image input equipment manufacturer
+			'Model',			# Image input equipment model
+			'Software',			# Software used
+			'Artist',			# Person who created the image
+			'Copyright',			# Copyright holder
+			
+			# Tags relating to image structure
+			'ImageWidth',			# Image width
+			'ImageLength',			# Image height
+			'Orientation',			# Orientation of image
+			'SamplesPerPixel',		# Number of components
+			'PlanarConfiguration',		# Image data arrangement
+			'YCbCrSubSampling',		# Subsampling ratio of Y to C
+			'YCbCrPositioning',		# Y and C positioning
+			'XResolution',			# Image resolution in width direction
+			'YResolution',			# Image resolution in height direction
+			'ResolutionUnit',		# Unit of X and Y resolution
+
+			# Tags relating to recording offset
+			'StripOffsets',			# Image data location
+			'RowsPerStrip',			# Number of rows per strip
+			'StripByteCounts',		# Bytes per compressed strip
+			'JPEGInterchangeFormat',	# Offset to JPEG SOI
+			'JPEGInterchangeFormatLength',	# Bytes of JPEG data
+
+			# Tags relating to image data characteristics
+			'TransferFunction',		# Transfer function
+			'WhitePoint',			# White point chromaticity
+			'PrimaryChromaticities',	# Chromaticities of primarities
+			'YCbCrCoefficients',		# Color space transformation matrix coefficients
+			'ReferenceBlackWhite',		# Pair of black and white reference values
+
+			# Tags relating to version
+			#'ExifVersion',			# Exif version
+			#'FlashpixVersion',		# Supported Flashpix version
+
+			# Tags relating to Image Data Characteristics
+			'ColorSpace',			# Color space information
+			#'ComponentsConfiguration',	# Meaning of each component
+			'CompressedBitsPerPixel',	# Image compression mode
+			'PixelYDimension',		# Valid image width
+			'PixelXDimension',		# Valind image height
+			
+			# Tags relating to User Information
+			#'MakerNote',			# Manufacturer notes
+			#'UserComment',			# User commentss
+			
+			# Tag relating to related file information
+			#'RelatedSoundFile',		# Related audio file
+			
+			# Other tags
+			'ImageUniqueID',		# Unique image ID
+
+			# Tags relating to picture-taking conditions
+			'ExposureTime',			# Exposure time
+			'FNumber',			# F Number
+			'ExposureProgram',		# Exposure Program
+			'SpectralSensitivity',		# Spectral sensitivity
+			'ISOSpeedRatings',		# ISO speed rating
+			#'OECF',			# Optoelectronic conversion factor
+			'ShutterSpeedValue',		# Shutter speed
+			'ApertureValue',		# Aperture
+			'BrightnessValue',		# Brightness
+			'ExposureBiasValue',		# Exposure bias
+			'MaxApertureValue',		# Maximum land aperture
+			'SubjectDistance',		# Subject distance
+			'MeteringMode',			# Metering mode
+			'LightSource',			# Light source
+			'Flash',			# Flash
+			'FocalLength',			# Lens focal length
+			'SubjectArea',			# Subject area
+			'FlashEnergy',			# Flash energy
+			#'SpartialFrequencyResponse',	# Spartial frequency response
+			'FocalPlaneXRessolution',	# Focal plane X resolution
+			'FocalPlaneYRessolution',       # Focal plane Y resolution
+			'FocalPlaneResolutionUnit',	# Focal plane resolution unit
+			'SubjectLocation',		# Subject location
+			'ExposureIndex',		# Exposure index
+			'SensingMethod',		# Sensing method
+			#'FileSource',			# File source
+			#'SceneType',			# Scene type
+			#'CFAPattern',			# CFA pattern
+			'CustomRendered',		# Custom image processing
+			'ExposureMode',			# Exposure mode
+			'WhiteBalance',			# White Balance
+			'DigitalZoomRatio',		# Digital zoom ration
+			'FocalLengthIn35mmFilm',	# Focal length in 35 mm film
+			'SceneCaptureType',		# Scene capture type
+			'GainControl',			# Scene control
+			'Contrast',			# Contrast
+			'Saturation',			# Saturation
+			'Sharpness',			# Sharpness
+			#'DeviceSettingDescription',	# Desice settings description
+			'SubjectDistanceRange',		# Subject distance range
+			
+			# TODO: GPS attribute information on page 52 of the spec
+		);
+
+		$new = array();
+		foreach ($whitelist as $tag) {
+			if ( array_key_exists($tag, $exif) ) {
+				$new[$tag] = $exif[$tag];
+			}
 		}
+		unset($exif);
+		return $new;
+	}
 
 
 } //class
