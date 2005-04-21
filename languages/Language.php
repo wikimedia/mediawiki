@@ -1849,6 +1849,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
+# Exif data
+'exifdata' => 'Metadata',
+
 # external editor support
 'edit-externally' => 'Edit this file using an external application',
 'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
