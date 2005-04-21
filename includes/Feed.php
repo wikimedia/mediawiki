@@ -162,10 +162,7 @@ class ChannelFeed extends FeedItem {
 	 * @access private
 	 */
 	function contentType() {
-		global $wgRequest;
-		$ctype = $wgRequest->getVal('ctype','application/xml');
-		$allowedctypes = array('application/xml','text/xml','application/rss+xml','application/atom+xml');
-		return (in_array($ctype, $allowedctypes) ? $ctype : 'application/xml');
+		return 'application/xml';
 	}
 	
 	/**
