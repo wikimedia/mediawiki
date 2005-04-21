@@ -994,13 +994,13 @@ Inline interwiki link
 !! test
 Interwiki link encoding conversion (bug 1636)
 !! input
-* [[Wikipedia:ro:Olteni&#0355;a]]
-* [[Wikipedia:ro:Olteni&#355;a]]
+*[[Wikipedia:ro:Olteni&#0355;a]]
+*[[Wikipedia:ro:Olteni&#355;a]]
 !! result
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
-<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
-</ul>
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#0355;a</a>
+</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+</li></ul>
+
 !! end
 
 ##
@@ -1123,7 +1123,7 @@ RFC 822
 !! end
 
 !! test
-Magic links: ISBN
+Magic links: ISBN (bug 1937)
 !! input
 ISBN 0-306-40615-2
 !! result
