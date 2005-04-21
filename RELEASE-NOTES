@@ -522,6 +522,11 @@ pages for purposes of page relevancy ranking.
 * Fix a potential MSIE JavaScript injection vector in Tidy mode
 
 
+=== 1.4.3 fixes ===
+
+* (bug 1636) Refs like &#0355; were misinterpreted as octal in some places
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
