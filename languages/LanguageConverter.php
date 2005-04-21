@@ -186,6 +186,12 @@ class LanguageConverter {
      */
 	function convert( $text , $isTitle=false) {
 		global $wgDisableLangConversion;
+		global $wgTitle;
+
+		/* don't do anything if this is the conversion table */
+		if($wgTitle->getNamespace() == NS_MEDIAWIKI &&
+		   strpos($wgTitle->getText(), "Conversiontable")!==false)
+			return $text;
 
 		if($wgDisableLangConversion)
 			return $text; 
