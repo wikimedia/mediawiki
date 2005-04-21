@@ -67,8 +67,8 @@ function pages2xml( $pages, $curonly = false ) {
 	wfProfileIn( $fname );
 	
 	global $wgContLanguageCode, $wgInputEncoding, $wgContLang;
-	$xml = "<" . "?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n" .
-		"<mediawiki version=\"0.1\" xml:lang=\"$wgContLanguageCode\">\n";
+	$xml = '<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
+		'<mediawiki version="0.1" xml:lang="' . $wgContLanguageCode . '">' . "\n";
 	foreach( $pages as $page ) {
 		$xml .= page2xml( $page, $curonly );
 	}
