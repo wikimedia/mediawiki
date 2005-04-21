@@ -370,7 +370,7 @@ class CategoryFeed extends CategoryPage {
 			"/\[\[(".implode('|',$prefixes)."):[^\]]*\]\]/i" => "", # interwiki links, cat links
 			"/<br([^>]{1,60})>/i" => "\n", # break
 			"/{{([^}]+)}}/s" => "", # template
-			"/<table[^<]{0,60}>(.*)<\/table>/si" => "", # table
+			"/<table[^<]{0,660}>(.*)<\/table>/si" => "", # table
 			"/\n{\|(.+)\n\|}/s" => "", # table
 			"/\n===\s*(.*)\s*===\n/" => "\n* \$1\n", # h3
 			"/\n==\s*(.*)\s*==\n/" => "\n* \$1\n", # h2
@@ -378,7 +378,6 @@ class CategoryFeed extends CategoryPage {
 			"/'''(.*)'''/" => "\$1", # bold
 			"/''(.*)''/" => "\$1", # italic
 			"/<([^>]{1,1500})>/s" => "", # any html tags
-			"/__\w{1,60}__/i" => "", # __notoc__ etc
 			"/__\w{1,60}__/i" => "", # __notoc__ etc
 			"/\n+/" => "\n" # many newlines
 		);
