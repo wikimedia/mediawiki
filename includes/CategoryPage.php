@@ -365,9 +365,9 @@ class CategoryFeed extends CategoryPage {
 		$text = "\n".$row->cur_text;
 
 		$rules = array(
-			"/\[\[(".implode('|',$prefixes)."):[^]]*\]\]/i" => "", # interwiki links, cat links
-			"/\[\[([^]]+)\|([^]\|]*)\]\]/" => "\$2", # piped links
-			"/\[\[([^]]+)\]\]/" => "\$1", # links
+			"/\[\[([^\[\]]+)\|([^[\]\|]*)\]\]/" => "\$2", # piped links
+			"/\[\[([^\[\]]+)\]\]/" => "\$1", # links
+			"/\[\[(".implode('|',$prefixes)."):[^\]]*\]\]/i" => "", # interwiki links, cat links
 			"/<br([^>]{1,60})>/i" => "\n", # break
 			"/{{([^}]+)}}/s" => "", # template
 			"/<table[^<]{0,60}>(.*)<\/table>/si" => "", # table
@@ -377,7 +377,7 @@ class CategoryFeed extends CategoryPage {
 			"/\n=\s*(.*)\s*=\n/" => "\n* \$1\n", # h1
 			"/'''(.*)'''/" => "\$1", # bold
 			"/''(.*)''/" => "\$1", # italic
-			"/<([^>]{1,600})>/s" => "", # any html tags
+			"/<([^>]{1,1500})>/s" => "", # any html tags
 			"/__\w{1,60}__/i" => "", # __notoc__ etc
 			"/__\w{1,60}__/i" => "", # __notoc__ etc
 			"/\n+/" => "\n" # many newlines
