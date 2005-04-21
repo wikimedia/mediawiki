@@ -197,7 +197,6 @@ class Parser
 			'/<\\/center *>/i' => '</div>',
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		$text = Sanitizer::normalizeCharReferences( $text );
 		
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
@@ -207,6 +206,7 @@ class Parser
 		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		
+		$text = Sanitizer::normalizeCharReferences( $text );
 		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
