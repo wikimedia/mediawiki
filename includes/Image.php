@@ -33,6 +33,7 @@ class Image
 		$type,          #  |
 		$attr,          # /
 		$size,          # Size in bytes (loadFromXxx)
+		$exif,			# EXIF data
 		$dataLoaded;    # Whether or not all this has been loaded from the database (loadFromXxx)
 
 
@@ -59,6 +60,7 @@ class Image
 	function Image( $title ) {
 		$this->title =& $title;
 		$this->name = $title->getDBkey();
+		$this->exif = serialize ( array() ) ;
 
 		$n = strrpos( $this->name, '.' );
 		$this->extension = strtolower( $n ? substr( $this->name, $n + 1 ) : '' );
@@ -109,6 +111,7 @@ class Image
 						$this->height = $commonsCachedValues['height'];
 						$this->bits = $commonsCachedValues['bits'];
 						$this->type = $commonsCachedValues['type'];
+						$this->exif = $commonsCachedValues['exif'];
 						$this->size = $commonsCachedValues['size'];
 						$this->fromSharedDirectory = true;
 						$this->dataLoaded = true;
@@ -124,6 +127,7 @@ class Image
 				$this->height = $cachedValues['height'];
 				$this->bits = $cachedValues['bits'];
 				$this->type = $cachedValues['type'];
+				$this->exif = $cachedValues['exif'];
 				$this->size = $cachedValues['size'];
 				$this->fromSharedDirectory = false;
 				$this->dataLoaded = true;
@@ -154,6 +158,7 @@ class Image
 								  'height' => $this->height,
 								  'bits' => $this->bits,
 								  'type' => $this->type,
+								  'exif' => $this->exif,
 								  'size' => $this->size);
 
 			$wgMemc->set( $keys[0], $cachedValues );
@@ -209,10 +214,12 @@ class Image
 			$this->height = 0;
 			$this->bits = 0;
 			$this->type = 0;
+			$this->exif = serialize ( array() ) ;
 		} else {
 			$this->width = $gis[0];
 			$this->height = $gis[1];
 			$this->type = $gis[2];
+			$this->exif = serialize ( $this->retrieveExifData() ) ;
 			if ( isset( $gis['bits'] ) )  {
 				$this->bits = $gis['bits'];
 			} else {
@@ -233,7 +240,7 @@ class Image
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'image', 
-			array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' ),
+			array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' , 'img_exif' ),
 			array( 'img_name' => $this->name ), $fname );
 		if ( $row ) {
 			$this->fromSharedDirectory = false;
@@ -275,6 +282,7 @@ class Image
 			$this->type = 0;
 			$this->fileExists = false;
 			$this->fromSharedDirectory = false;
+			$this->exif = serialize ( array() ) ;
 		}
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
@@ -290,6 +298,8 @@ class Image
 		$this->height = $row->img_height;
 		$this->bits = $row->img_bits;
 		$this->type = $row->img_type;
+		$this->exif = $row->img_exif;
+		if ( $this->exif == "" ) $this->exif = serialize ( array() ) ;
 		$this->dataLoaded = true;
 	}
 
@@ -336,6 +346,7 @@ class Image
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
 				'img_type' => $this->type,
+				'img_exif' => $this->exif,
 			), array( 'img_name' => $this->name ), $fname
 		);
 		if ( $this->fromSharedDirectory ) {
@@ -1008,6 +1019,7 @@ class Image
 				'img_description' => $desc,
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
+				'img_exif' => $this->exif,
 			), $fname, 'IGNORE' 
 		);
 		$descTitle = $this->getTitle();
@@ -1052,6 +1064,7 @@ class Image
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_description' => $desc,
+					'img_exif' => $this->exif,
 				), array( /* WHERE */
 					'img_name' => $this->name
 				), $fname
@@ -1116,7 +1129,7 @@ class Image
 		global $wgShowEXIF ;
 		if ( ! $wgShowEXIF ) return array () ;
 
-		$file = $this->getImagePath () ;
+		$file = $this->imagePath ;
 		$per = new phpExifReader ( $file ) ;
 		$per->processFile () ;
 		$a = $per->getImageInfo() ;
@@ -1126,11 +1139,22 @@ class Image
 	}
 		
 	function getExifData () {
-		return $this->retrieveExifData () ;
-	}
-	
-	function storeExifData () {
-	}
+		global $wgShowEXIF ;
+		if ( ! $wgShowEXIF ) return array () ;
+
+		return unserialize ( $this->exif ) ;
+		#return $this->retrieveExifData () ;
+		}
+/*
+	function updateExifData () {
+		global $wgShowEXIF ;
+		if ( ! $wgShowEXIF ) return ;
+		
+		$exif = $this->retrieveExifData () ;
+		$exif = serialize ( $exif ) ;
+		
+		}
+*/
 
 } //class
 
