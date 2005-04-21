@@ -512,6 +512,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1933) Fix PATH_INFO usage under IIS with PHP ISAPI module
 * (bug 1188) <nowiki> in {{subst:}} includes fixed
 * (bug 1936) <!-- comments --> in {{subst:}} includes fixed
+* Fix a potential MSIE JavaScript injection vector in Tidy mode
 
 
 === Caveats ===

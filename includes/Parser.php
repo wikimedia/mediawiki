@@ -161,34 +161,24 @@ class Parser
 
 		$text = $this->internalParse( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
+		
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		if(!$wgUseTidy) {
-			$fixtags = array(
-				# french spaces, last one Guillemet-left
-				# only if there is something before the space
-				'/(.) (?=\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
-				# french spaces, Guillemet-right
-				"/(\\302\\253) /i"=>"\\1&nbsp;",
-				'/<hr *>/i' => '<hr />',
-				'/<br *>/i' => '<br />',
-				'/<center *>/i' => '<div class="center">',
-				'/<\\/center *>/i' => '</div>',
-				# Clean up spare ampersands; note that we probably ought to be
-				# more careful about named entities.
-				'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
-			);
-			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		} else {
-			$fixtags = array(
-				# french spaces, last one Guillemet-left
-				'/ (\\?|:|;|!|\\302\\273)/i' => '&nbsp;\\1',
-				# french spaces, Guillemet-right
-				'/(\\302\\253) /i' => '\\1&nbsp;',
-				'/<center *>/i' => '<div class="center">',
-				'/<\\/center *>/i' => '</div>'
-			);
-			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		}
+		$fixtags = array(
+			# french spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
+			# french spaces, Guillemet-right
+			"/(\\302\\253) /i"=>"\\1&nbsp;",
+			'/<hr *>/i' => '<hr />',
+			'/<br *>/i' => '<br />',
+			'/<center *>/i' => '<div class="center">',
+			'/<\\/center *>/i' => '</div>',
+			# Clean up spare ampersands; note that we probably ought to be
+			# more careful about named entities.
+			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
+		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+		
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
 
