@@ -1013,7 +1013,7 @@ class phpExifReader {
                         break;
                 case TAG_CUSTOM_RENDERED:
                         $tmp = $this->ConvertAnyFormat($ValuePtr, $Format);
-                        $this->ImageInfo['h']["customRendered"] = ($mp == 0) ? 'Normal Process' : ($mp == 1 ? 'Custom Process' : 'Reserved');
+                        $this->ImageInfo['h']["customRendered"] = ($tmp == 0) ? 'Normal Process' : ($tmp == 1 ? 'Custom Process' : 'Reserved');
                         break;
                 case TAG_EXPOSURE_MODE:
                         $tmp = $this->ConvertAnyFormat($ValuePtr, $Format);
