@@ -226,7 +226,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
-	$sql = "SELECT page_namespace, page_title FROM $page WHERE page_namespace" .
+	$sql = "SELECT page_namespace,page_title FROM $page WHERE page_namespace" .
 		($invert ? '!' : '') . "=$namespace" .
 		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
 		" ORDER BY page_title LIMIT " . $maxPlusOne;
@@ -241,12 +241,13 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	foreach($namespaces as $key => $ns) {
 		$namespaces[$key] = str_replace('_', ' ', $namespaces[$key]);
 	}
-	
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
-			$link = $sk->makeKnownLinkObj( $t, $t->getText(), false, false, $namespaces[$s->page_namespace] .
-				(($invert && $namespaces[$s->page_namespace] != NS_MAIN) ? ':' :'') ); 
+			$ns = $s->page_namespace;
+			$s = $invert && $namespaces[$ns] != $wgContLang->getNsText(NS_MAIN) ? ':' : '';
+			$n = $invert ? $namespaces[$ns] : '';
+			$link = $sk->makeKnownLinkObj( $t, $t->getText(), false, false, $n . $s ); 
 		} else {
 			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 		}
