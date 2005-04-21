@@ -991,6 +991,18 @@ Inline interwiki link
 </p>
 !! end
 
+!! test
+Interwiki link encoding conversion (bug 1636)
+!! input
+* [[Wikipedia:ro:Olteni&#0355;a]]
+* [[Wikipedia:ro:Olteni&#355;a]]
+!! result
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteniţa</a></li>
+</ul>
+!! end
+
 ##
 ## XHTML tidiness
 ###
