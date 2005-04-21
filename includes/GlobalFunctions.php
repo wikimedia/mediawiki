@@ -213,7 +213,7 @@ function wfUtf8Sequence( $codepoint ) {
 function wfMungeToUtf8( $string ) {
 	global $wgInputEncoding; # This is debatable
 	#$string = iconv($wgInputEncoding, "UTF-8", $string);
-	$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
+	$string = preg_replace ( '/&#0*([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
 	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
 	# Should also do named entities here
 	return $string;
