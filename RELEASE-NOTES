@@ -3,6 +3,21 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Version 1.3.12, 2005-02-20 ==
+
+MediaWiki 1.3.12 is a security maintenance release.
+
+A cross-site scripting injection vulnerability was discovered, which
+affects only MSIE clients and is only open if MediaWiki has been
+manually configured to run output through HTML Tidy ($wgUseTidy).
+
+The 1.3.x series is no longer maintained except for security fixes;
+new users and those seeking bug fixes should upgrade to 1.4.2.
+Existing 1.3.x installations using Tidy not willing to upgrade
+to the current stable relase should either turn off Tidy or update
+the installation to 1.3.12.
+
+
 == Version 1.3.11, 2005-02-20 ==
 
 MediaWiki 1.3.11 is a security release.
