@@ -5,7 +5,7 @@
 
 if ( $wgShowEXIF ) {
 	require_once ( 'exifReader.inc' ) ;
-	}
+}
 
 /**
  * Class to represent an image
@@ -1123,14 +1123,14 @@ class Image
 		unset ( $a["FileName"] ) ;
 		unset ( $a["Thumbnail"] ) ;
 		return $a ;
-		}
+	}
 		
 	function getExifData () {
 		return $this->retrieveExifData () ;
-		}
+	}
 	
 	function storeExifData () {
-		}
+	}
 
 } //class
 
