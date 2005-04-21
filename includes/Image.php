@@ -236,7 +236,7 @@ class Image
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'image', 
-			array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' , 'img_exif' ),
+			array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_type' , 'img_metadata' ),
 			array( 'img_name' => $this->name ), $fname );
 		if ( $row ) {
 			$this->fromSharedDirectory = false;
@@ -294,7 +294,7 @@ class Image
 		$this->height = $row->img_height;
 		$this->bits = $row->img_bits;
 		$this->type = $row->img_type;
-		$this->exif = $row->img_exif;
+		$this->exif = $row->img_metadata;
 		if ( $this->exif == "" ) $this->exif = serialize ( array() ) ;
 		$this->dataLoaded = true;
 	}
@@ -342,7 +342,7 @@ class Image
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
 				'img_type' => $this->type,
-				'img_exif' => $this->exif,
+				'img_metadata' => $this->exif,
 			), array( 'img_name' => $this->name ), $fname
 		);
 		if ( $this->fromSharedDirectory ) {
@@ -1015,7 +1015,7 @@ class Image
 				'img_description' => $desc,
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
-				'img_exif' => $this->exif,
+				'img_metadata' => $this->exif,
 			), $fname, 'IGNORE' 
 		);
 		$descTitle = $this->getTitle();
@@ -1060,7 +1060,7 @@ class Image
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_description' => $desc,
-					'img_exif' => $this->exif,
+					'img_metadata' => $this->exif,
 				), array( /* WHERE */
 					'img_name' => $this->name
 				), $fname
@@ -1162,7 +1162,7 @@ class Image
 		# Update EXIF data in database
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( '`image`', 
-			array( 'img_exif' => $this->exif ),
+			array( 'img_metadata' => $this->exif ),
 			array( 'img_name' => $this->name ),
 			$fname
 		);
