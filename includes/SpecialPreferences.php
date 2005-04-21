@@ -489,13 +489,14 @@ class PreferencesForm {
 		if( $wgEnableEmail ) {
 			$wgOut->addHTML("
 			<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>" );
-			if( $wgEnableUserEmail ) {
-				$wgOut->addHTML(
+			$wgOut->addHTML(
 				$emailauthenticated.
 				$enotifrevealaddr.
 				$enotifwatchlistpages.
 				$enotifusertalkpages.
-				$enotifminoredits.
+				$enotifminoredits );
+			if( $wgEnableUserEmail ) {
+				$wgOut->addHTML(
 				"<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf.$disabled</label></div>" );
 			}
 		}
