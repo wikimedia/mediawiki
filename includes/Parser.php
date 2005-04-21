@@ -183,33 +183,22 @@ class Parser
 		
 		
 		$text = $this->unstrip( $text, $this->mStripState );
+		
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		global $wgUseTidy;
-		if(!$wgUseTidy) {
-			$fixtags = array(
-				# french spaces, last one Guillemet-left
-				# only if there is something before the space
-				'/(.) (?=\\?|:|;|!|\\302\\273)/' => '\\1&nbsp;\\2',
-				# french spaces, Guillemet-right
-				'/(\\302\\253) /' => '\\1&nbsp;',
-				'/<hr *>/i' => '<hr />',
-				'/<br *>/i' => '<br />',
-				'/<center *>/i' => '<div class="center">',
-				'/<\\/center *>/i' => '</div>',
-			);
-			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-			$text = Sanitizer::normalizeCharReferences( $text );
-		} else {
-			$fixtags = array(
-				# french spaces, last one Guillemet-left
-				'/ (\\?|:|;|!|\\302\\273)/' => '&nbsp;\\1',
-				# french spaces, Guillemet-right
-				'/(\\302\\253) /' => '\\1&nbsp;',
-				'/<center *>/i' => '<div class="center">',
-				'/<\\/center *>/i' => '</div>'
-			);
-			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		}
+		$fixtags = array(
+			# french spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|\\302\\273)/' => '\\1&nbsp;\\2',
+			# french spaces, Guillemet-right
+			'/(\\302\\253) /' => '\\1&nbsp;',
+			'/<hr *>/i' => '<hr />',
+			'/<br *>/i' => '<br />',
+			'/<center *>/i' => '<div class="center">',
+			'/<\\/center *>/i' => '</div>',
+		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+		$text = Sanitizer::normalizeCharReferences( $text );
+		
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
 
@@ -217,6 +206,8 @@ class Parser
 		$text = $wgContLang->convert($text);
 		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		
+		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
 		}
