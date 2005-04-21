@@ -38,7 +38,7 @@ $wgNewFields = array(
  	array( 'page',          'page_len',         'patch-page_len.sql' ),
  	array( 'revision',      'rev_deleted',      'patch-rev_deleted.sql' ),
 	array( 'image',         'img_width',        'patch-img_width.sql' ),
-	array( 'image',         'img_exif',         'patch-img_exif.sql' ),
+	array( 'image',         'img_metadata',     'patch-img_metadata.sql' ),
 );
 
 function add_table( $name, $patch ) {
