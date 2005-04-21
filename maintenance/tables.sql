@@ -200,6 +200,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   img_size int(8) unsigned NOT NULL default '0',
   img_width int(5)  NOT NULL default '0',
   img_height int(5)  NOT NULL default '0',
+  img_metadata mediumblob NOT NULL,
   img_bits int(3)  NOT NULL default '0',
   img_type int(3)  NOT NULL default '0',
   img_description tinyblob NOT NULL default '',
