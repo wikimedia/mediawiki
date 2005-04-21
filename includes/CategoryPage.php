@@ -323,4 +323,147 @@ class CategoryPage extends Article {
 }
 
 
+class CategoryFeed extends CategoryPage {
+	/**
+	* Feed for recently-added members of a category based on cl_timestamp
+	* Uses bits of the recentchanges feeds (caching and formatting)
+	* @package MediaWiki
+	*/
+	function view() {
+		global $wgRequest;
+		require_once("Feed.php");
+		$this->mFeedFormat = $wgRequest->getVal( 'feed' );
+		$this->mMaxTimeStamp = 0;
+		$limit = 50;
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			array( 'cur', 'categorylinks' ),
+			array( 'cur_title', 'cur_namespace', 'cur_text', 'cur_user_text', 'cl_sortkey', 'cl_timestamp' ),
+			array( 'cl_from          =  cur_id',
+			       'cl_to'           => $this->mTitle->getDBKey(),
+			       'cur_is_redirect' => 0),
+			#+ $pageCondition,
+			$fname,
+			array( 'ORDER BY' => 'cl_timestamp DESC, cl_sortkey ASC',
+			       'LIMIT'    => $limit ));
+		$rows = array();
+		while( $row = $dbr->fetchObject ( $res ) ) {
+			$rows[] = $row;
+			if ( $row->cl_timestamp > $this->mMaxTimeStamp ) {
+				$this->mMaxTimeStamp = $row->cl_timestamp;
+			}
+		}
+		return $this->categoryOutputFeed( &$rows, $limit );
+	}
+
+	# strip images, links, tags
+	function formatSummary ( $row ) {
+		global $wgContLang;
+		$prefixes = array_keys($wgContLang->getLanguageNames());
+		$prefixes[] = $wgContLang->getNsText(NS_CATEGORY);
+		$prefixes[] = $wgContLang->getNsText(NS_IMAGE);
+		$text = "\n".$row->cur_text;
+
+		$rules = array(
+			"/\[\[(".implode('|',$prefixes)."):[^]]*\]\]/i" => "", # interwiki links, cat links
+			"/\[\[([^]]+)\|([^]\|]*)\]\]/" => "\$2", # piped links
+			"/\[\[([^]]+)\]\]/" => "\$1", # links
+			"/<br([^>]{1,60})>/i" => "\n", # break
+			"/{{([^}]+)}}/s" => "", # template
+			"/<table[^<]{0,60}>(.*)<\/table>/si" => "", # table
+			"/\n{\|(.+)\n\|}/s" => "", # table
+			"/\n===\s*(.*)\s*===\n/" => "\n* \$1\n", # h3
+			"/\n==\s*(.*)\s*==\n/" => "\n* \$1\n", # h2
+			"/\n=\s*(.*)\s*=\n/" => "\n* \$1\n", # h1
+			"/'''(.*)'''/" => "\$1", # bold
+			"/''(.*)''/" => "\$1", # italic
+			"/<([^>]{1,600})>/s" => "", # any html tags
+			"/__\w{1,60}__/i" => "", # __notoc__ etc
+			"/__\w{1,60}__/i" => "", # __notoc__ etc
+			"/\n+/" => "\n" # many newlines
+		);
+			
+		$text = preg_replace( array_keys($rules), array_values($rules), $text); 
+		$shorttext = substr($text,1,145); # only return the first few chars for now
+		return $shorttext.'...';
+	}
+	
+	function categoryOutputFeed( $rows, $limit ) {
+		global $messageMemc, $wgDBname, $wgFeedCacheTimeout;
+		global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
+		
+		if( !isset( $wgFeedClasses[$this->mFeedFormat] ) ) {
+			wfHttpError( 500, "Internal Server Error", "Unsupported feed type." );
+			return false;
+		}
+		
+		$timekey = "$wgDBname:catfeed:timestamp";
+		$key = "$wgDBname:catfeed:$this->mFeedFormat:limit:$limit";
+		
+		$feedTitle = $this->mTitle->getPrefixedText() . ' - ' . $wgSitename;
+			$feed = new $wgFeedClasses[$this->mFeedFormat](
+			$feedTitle,
+			htmlspecialchars( wfMsgForContent( 'catfeedsummary' ) ),
+			$wgTitle->getFullUrl() );
+
+		/**
+		 * Loading and parsing cur_text for all added pages is slow, so we cache it
+		 */
+		$cachedFeed = false;
+		if( $feedLastmod = $messageMemc->get( $timekey ) ) {
+			/**
+			 * If the cached feed was rendered very recently, we may
+			 * go ahead and use it even if there have been edits made
+			 * since it was rendered. This keeps a swarm of requests
+			 * from being too bad on a super-frequently edited wiki.
+			 */
+			if( time() - wfTimestamp( TS_UNIX, $feedLastmod )
+					< $wgFeedCacheTimeout
+				|| wfTimestamp( TS_UNIX, $feedLastmod )
+					> wfTimestamp( TS_UNIX, $this->mMaxTimeStamp ) ) {
+						wfDebug( "CatFeed: loading feed from cache ($key; $feedLastmod; $this->mMaxTimeStamp)...\n" );
+				$cachedFeed = $messageMemc->get( $key );
+			} else {
+				wfDebug( "CatFeed: cached feed timestamp check failed ($feedLastmod; $this->mMaxTimeStamp)\n" );
+			}
+		}
+		if( is_string( $cachedFeed ) ) {
+			wfDebug( "CatFeed: Outputting cached feed\n" );
+			$feed->httpHeaders();
+			echo $cachedFeed;
+		} else {
+			wfDebug( "CatFeed: rendering new feed and caching it\n" );
+			ob_start();
+			$this->catDoOutputFeed( $rows, $feed );
+			$cachedFeed = ob_get_contents();
+			ob_end_flush();
+			
+			$expire = 3600 * 24; # One day
+			$messageMemc->set( $key, $cachedFeed );
+			$messageMemc->set( $timekey, wfTimestamp( TS_MW ), $expire );
+		}
+		return true;
+	}
+
+	function catDoOutputFeed( $rows, &$feed ) {
+		global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
+		
+		$feed->outHeader();
+		foreach( $rows as $row ) {
+			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+			$item = new FeedItem(
+				$title->getPrefixedText(),
+				$this->formatSummary( &$row ),
+				$title->getFullURL(),
+				$row->lc_timestamp,
+				$row->cur_user_text,
+				'' #$talkpage->getFullURL()
+				);
+			$feed->outItem( $item );
+		}
+		$feed->outFooter();
+	}
+
+}
+
 ?>

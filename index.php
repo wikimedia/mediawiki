@@ -112,7 +112,12 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	case NS_CATEGORY:
 		if ( $wgUseCategoryMagic ) {
 			require_once( 'includes/CategoryPage.php' );
-			$wgArticle = new CategoryPage( $wgTitle );
+			if($wgRequest->getBool('feed',false)) {
+				#require_once( 'includes/CategoryFeed.php' );
+				$wgArticle = new CategoryFeed( $wgTitle );
+			} else {
+				$wgArticle = new CategoryPage( $wgTitle );
+			}
 			break;
 		}
 		# NO break if wgUseCategoryMagic is false, drop through to next (default).
