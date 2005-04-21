@@ -65,16 +65,13 @@ class ImagePage extends Article {
 		if ( count ( $exif ) == 1 && isset ( $exif["EXIF"] ) && $exif["EXIF"] == "NO" ) return ; # This image does not have EXIF data
 		
 		# Create the table
-		$r = "<table border='1' cellspacing='0' cellpadding='0' align='right'>" ;
-		$r .= "<caption>EXIF data</caption>" ;
+		$exifdata = wfMsg( 'exifdata' );
+		$r = "\n<table class='exif'>\n" ;
+		$r .= "<caption>$exifdata</caption>\n" ;
 		foreach ( $exif AS $k => $v ) {
-			$r .= "<tr>" ;
-			$v = str_replace ( "\0" , "" , $v ) ;
-			$r .= "<th><small>" . htmlspecialchars ( $k ) . "</small></th>" ;
-			$r .= "<td><small>" . htmlspecialchars ( $v ) . "</small></td>" ;
-			$r .= "</tr>" ;
-			}
-		$r .= "</table>" ;
+			$r .= '<tr><th>' . htmlspecialchars ( $k ) . '</th><td>' . htmlspecialchars ( $v ) . "</td></tr>\n";
+		}
+		$r .= '</table>';
 		$wgOut->addHTML ( $r ) ;
 		}
 
