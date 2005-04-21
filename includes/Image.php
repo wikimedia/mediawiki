@@ -1141,20 +1141,36 @@ class Image
 	function getExifData () {
 		global $wgShowEXIF ;
 		if ( ! $wgShowEXIF ) return array () ;
+		
+		$ret = unserialize ( $this->exif ) ;
+		if ( count ( $ret ) == 0 ) { # No EXIF data was stored for this image
+			$this->updateExifData() ;
+			$ret = unserialize ( $this->exif ) ;
+			}
 
-		return unserialize ( $this->exif ) ;
-		#return $this->retrieveExifData () ;
+		return $ret ;
 		}
-/*
+
 	function updateExifData () {
 		global $wgShowEXIF ;
 		if ( ! $wgShowEXIF ) return ;
+		if ( false === $this->getImagePath() ) return ; # Not a local image
 		
+		$fname = "Image:updateExifData" ;
+		
+		# Get EXIF data from image
 		$exif = $this->retrieveExifData () ;
-		$exif = serialize ( $exif ) ;
+		$this->exif = serialize ( $exif ) ;
 		
+		# Update EXIF data in database
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->update( '`image`', 
+			array( 'img_exif' => $this->exif ),
+			array( 'img_name' => $this->name ),
+			$fname
+		);
 		}
-*/
+
 
 } //class
 
