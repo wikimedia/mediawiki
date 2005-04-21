@@ -244,7 +244,7 @@ class Sanitizer {
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
-			if( $set[2] == '' ) {
+			if( !isset( $set[2] ) ) {
 				# In XHTML, attributes must have a value.
 				$value = $set[1];
 			} elseif( $set[3] != '' ) {
