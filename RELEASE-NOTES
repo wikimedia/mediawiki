@@ -526,6 +526,7 @@ pages for purposes of page relevancy ranking.
 
 * (bug 1636) Refs like &#0355; were misinterpreted as octal in some places
 * (bug 1163) Special:Undelete showed oldest revision instead of newest
+* (bug 1938) Fix escaping of illegal character references in link text
 
 
 === Caveats ===

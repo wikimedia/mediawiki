@@ -1904,6 +1904,17 @@ Namespaced link must have a title (bad fragment version)
 </p>
 !!end
 
+
+!! test
+Character reference normalization in link text (bug 1938)
+!! input
+[[Main Page|this&that]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">this&amp;that</a>
+</p>
+!!end
+
+
 TODO:
 more images
 more tables

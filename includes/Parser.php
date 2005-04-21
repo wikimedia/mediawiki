@@ -173,9 +173,6 @@ class Parser
 			'/<br *>/i' => '<br />',
 			'/<center *>/i' => '<div class="center">',
 			'/<\\/center *>/i' => '</div>',
-			# Clean up spare ampersands; note that we probably ought to be
-			# more careful about named entities.
-			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		
@@ -186,6 +183,11 @@ class Parser
 		$text = $wgContLang->convert($text);
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
+
+		# Clean up spare ampersands; note that we probably ought to be
+		# more careful about named entities.
+		$text = preg_replace( '/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/',
+			'&amp;', $text );
 		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
