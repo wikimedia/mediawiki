@@ -336,7 +336,7 @@ class Image
 			// This avoids breaking replication in MySQL
 			$dbw->selectDB( $wgSharedUploadDBname );
 		}
-		$dbw->update( '`image`', 
+		$dbw->update( 'image', 
 			array( 
 				'img_width' => $this->width,
 				'img_height' => $this->height,
@@ -1161,7 +1161,7 @@ class Image
 		
 		# Update EXIF data in database
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->update( '`image`', 
+		$dbw->update( 'image', 
 			array( 'img_metadata' => $this->exif ),
 			array( 'img_name' => $this->name ),
 			$fname
