@@ -997,7 +997,7 @@ Interwiki link encoding conversion (bug 1636)
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
 !! result
-<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#0355;a</a>
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
 </li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
 </li></ul>
 
@@ -1136,7 +1136,7 @@ Magic links: PMID
 !! input
 PMID 1234
 !! result
-<p><a href='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234' class='external' title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=1234">PMID 1234</a>
+<p><a href='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234' class='external' title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=pubmed&amp;dopt=Abstract&amp;list_uids=1234">PMID 1234</a>
 </p>
 !! end
 
@@ -2037,6 +2037,16 @@ Media link with nasty text
 <p><a href="/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">Safe Link<div style="display:none">" onmouseover="alert(document.cookie) onfoo="</div></a>
 </p>
 !! end
+
+
+!! test
+Character reference normalization in link text (bug 1938)
+!! input
+[[Main Page|this&that]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">this&amp;that</a>
+</p>
+!!end
 
 TODO:
 more images
