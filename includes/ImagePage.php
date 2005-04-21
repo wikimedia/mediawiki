@@ -11,10 +11,6 @@ if( !defined( 'MEDIAWIKI' ) )
 
 require_once( 'Image.php' );
 
-if ( $wgShowEXIF ) {
-	require_once ( 'exifReader.inc' ) ;
-	}
-
 /**
  * Special handling for image description pages
  * @package MediaWiki
@@ -62,17 +58,15 @@ class ImagePage extends Article {
 		{
 		global $wgOut , $wgShowEXIF ;
 		if ( ! $wgShowEXIF ) return ;
-		$file = $this->img->getImagePath () ;
-		$per = new phpExifReader ( $file ) ;
-		$per->processFile () ;
+
+		# Get the EXIF data
+		$exif = $this->img->getExifData () ;
+		if ( count ( $exif ) == 0 ) return ; # No EXIF data
 		
+		# Create the table
 		$r = "<table border='1' cellspacing='0' cellpadding='0' align='right'>" ;
 		$r .= "<caption>EXIF data</caption>" ;
-		$a = $per->getImageInfo() ;
-		if ( count ( $a ) == 0 ) return ; # No EXIF data
-		unset ( $a["FileName"] ) ;
-		unset ( $a["Thumbnail"] ) ;
-		foreach ( $a AS $k => $v ) {
+		foreach ( $exif AS $k => $v ) {
 			$r .= "<tr>" ;
 			$v = str_replace ( "\0" , "" , $v ) ;
 			$r .= "<th><small>" . htmlspecialchars ( $k ) . "</small></th>" ;

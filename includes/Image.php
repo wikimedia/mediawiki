@@ -3,6 +3,10 @@
  * @package MediaWiki
  */
 
+if ( $wgShowEXIF ) {
+	require_once ( 'exifReader.inc' ) ;
+	}
+
 /**
  * Class to represent an image
  * 
@@ -1107,6 +1111,26 @@ class Image
 		$db->freeResult( $res );
 		return $retVal;
 	}
+	
+	function retrieveExifData () {
+		global $wgShowEXIF ;
+		if ( ! $wgShowEXIF ) return array () ;
+
+		$file = $this->getImagePath () ;
+		$per = new phpExifReader ( $file ) ;
+		$per->processFile () ;
+		$a = $per->getImageInfo() ;
+		unset ( $a["FileName"] ) ;
+		unset ( $a["Thumbnail"] ) ;
+		return $a ;
+		}
+		
+	function getExifData () {
+		return $this->retrieveExifData () ;
+		}
+	
+	function storeExifData () {
+		}
 
 } //class
 
