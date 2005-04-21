@@ -25,8 +25,8 @@ class ImagePage extends Article {
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
-			if ( $this->img->exists() ) $this->showEXIFdata();
 			$this->openShowImage();
+			if ( $this->img->exists() ) $this->showEXIFdata();
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
 			if ( $this->getID() ) {
