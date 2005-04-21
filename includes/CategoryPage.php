@@ -397,7 +397,7 @@ class CategoryFeed extends CategoryPage {
 		}
 		
 		$timekey = "$wgDBname:catfeed:timestamp";
-		$key = "$wgDBname:catfeed:$this->mFeedFormat:limit:$limit";
+		$key = "$wgDBname:catfeed:$this->mTitle->getDBKey():$this->mFeedFormat:limit:$limit";
 		
 		$feedTitle = $this->mTitle->getPrefixedText() . ' - ' . $wgSitename;
 			$feed = new $wgFeedClasses[$this->mFeedFormat](
