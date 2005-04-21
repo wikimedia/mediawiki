@@ -94,7 +94,8 @@ class PageArchive {
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::getLastRevisionText',
-			'ORDER BY ar_timestamp DESC LIMIT 1' );
+			array( 'ORDER BY' => 'ar_timestamp DESC',
+			       'LIMIT' => '1' ) );
 		if( $row ) {
 			return Article::getRevisionText( $row, "ar_" );
 		} else {
