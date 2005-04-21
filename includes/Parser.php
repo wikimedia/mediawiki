@@ -165,14 +165,14 @@ class Parser
 		$this->mTitle =& $title;
 		$this->mOutputType = OT_HTML;
 
-		$stripState = NULL;
+		$this->mStripState = NULL;
 		global $fnord; $fnord = 1;
 		//$text = $this->strip( $text, $this->mStripState );
 		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
 		$x =& $this->mStripState;
 		$text = $this->strip( $text, $x );
 
-		$text = $this->internalParse( $text, $linestart );
+		$text = $this->internalParse( $text );
 
 		$dashReplace = array(
 			'/ - /' => "&nbsp;&ndash; ", # N dash
@@ -368,7 +368,7 @@ class Parser
 
 		# Extensions
 		foreach ( $this->mTagHooks as $tag => $callback ) {
-			$ext_contents[$tag] = array();
+			$ext_content[$tag] = array();
 			$text = Parser::extractTags( $tag, $text, $ext_content[$tag], $uniq_prefix );
 			foreach( $ext_content[$tag] as $marker => $content ) {
 				if ( $render ) {
@@ -518,6 +518,7 @@ class Parser
 			1 => array('pipe', 'w'),
 			2 => array('file', '/dev/null', 'a')
 		);
+		$pipes = array();
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
 			fwrite($pipes[0], $text);
@@ -526,7 +527,7 @@ class Parser
 				$cleansource .= fgets($pipes[1], 1024);
 			}
 			fclose($pipes[1]);
-			$return_value = proc_close($process);
+			proc_close($process);
 		}
 
 		wfProfileOut( $fname );
@@ -677,7 +678,6 @@ class Parser
 		}
 
 		$t = implode ( "\n" , $t ) ;
-		#		$t = Sanitizer::removeHTMLtags( $t );
 		wfProfileOut( $fname );
 		return $t ;
 	}
@@ -688,9 +688,10 @@ class Parser
 	 *
 	 * @access private
 	 */
-	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
+	function internalParse( $text ) {
 		global $wgContLang;
-
+		$args = array();
+		$isMain = true;
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
@@ -1119,8 +1120,7 @@ class Parser
 	 * @access private
 	 */
 	function replaceInternalLinks( $s ) {
-		global $wgLang, $wgContLang, $wgLinkCache;
-		global $wgDisableLangConversion;
+		global $wgContLang, $wgLinkCache;
 		static $fname = 'Parser::replaceInternalLinks' ;
 
 		wfProfileIn( $fname );
@@ -1135,8 +1135,6 @@ class Parser
 		# "Post-parse link colour check" works only on wiki text since it's now
 		# in Parser. Enable it, then disable it when we're done.
 		$saveParseColour = $sk->postParseLinkColour( !$wgUseOldExistenceCheck );
-
-		$redirect = MagicWord::get ( MAG_REDIRECT ) ;
 
 		#split the entire text string on occurences of [[
 		$a = explode( '[[', ' ' . $s );
@@ -1559,7 +1557,7 @@ class Parser
 		#
 		$textLines = explode( "\n", $text );
 
-		$lastPrefix = $output = $lastLine = '';
+		$lastPrefix = $output = '';
 		$this->mDTopen = $inBlockElem = false;
 		$prefixLength = 0;
 		$paragraphStack = false;
@@ -1598,6 +1596,7 @@ class Parser
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
 					# title and definition, without b0rking links.
+					$term = $t2 = '';
 					if ($this->findColonNoLinks($t, $term, $t2) !== false) {
 						$t = $t2;
 						$output .= $term . $this->nextItem( ':' );
@@ -1834,7 +1833,6 @@ class Parser
 	 * @access private
 	 */
 	function replaceVariables( $text, $args = array() ) {
-		global $wgLang, $wgScript, $wgArticlePath;
 
 		# Prevent too big inclusions
 		if( strlen( $text ) > MAX_INCLUDE_SIZE ) {
@@ -2417,7 +2415,7 @@ class Parser
 				'%' => '.'
 			);
 			$canonized_headline = str_replace(array_keys($replacearray),array_values($replacearray),$canonized_headline);
-			$refer[$headlineCount] = $canonized_headline;
+			$refers[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
 			@$refers[$canonized_headline]++;
@@ -2456,7 +2454,6 @@ class Parser
 		}
 
 		if( $doShowToc ) {
-			$toclines = $headlineCount;
 			$toc .= $sk->tocUnindent( $toclevel - 1 );
 			$toc = $sk->tocList( $toc );
 		}
@@ -2499,7 +2496,6 @@ class Parser
 	 * @access private
 	 */
 	function magicISBN( $text ) {
-		global $wgLang;
 		$fname = 'Parser::magicISBN';
 		wfProfileIn( $fname );
 
@@ -2553,7 +2549,6 @@ class Parser
 	 * @return string
 	 */
 	function magicRFC( $text, $keyword='RFC ', $urlmsg='rfcurl'  ) {
-		global $wgLang;
 		
 		$valid = '0123456789';
 		$internal = false;
@@ -2637,7 +2632,7 @@ class Parser
 		$stripState = false;
 		$pairs = array(
 			"\r\n" => "\n",
-			);
+		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
 		$text = $this->strip( $text, $stripState, false );
 		$text = $this->pstPass2( $text, $user );
@@ -2651,7 +2646,7 @@ class Parser
 	 * @access private
 	 */
 	function pstPass2( $text, &$user ) {
-		global $wgLang, $wgContLang, $wgLocaltimezone;
+		global $wgContLang, $wgLocaltimezone;
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
@@ -2675,7 +2670,7 @@ class Parser
 		$d = $wgContLang->timeanddate( wfTimestampNow(), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
-			putenv( 'TZ='.$oldtzs );
+			putenv( 'TZ='.$oldtz );
 		}
 
 		if( $user->getOption( 'fancysig' ) ) {
