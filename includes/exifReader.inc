@@ -1406,7 +1406,7 @@ class phpExifReader {
 
         $imgInfo = $this->ImageInfo["h"];
 
-		if ( !isset ( $imgInfo["Width"] ) ) return array () ;
+		if ( !isset ( $imgInfo["Width"] ) ) return array ( "EXIF" => "NO" ) ; # Dummy entry to distinguish von empty (=never generated) one
 
         $retArr = $imgInfo;
         $retArr["FileName"] = $imgInfo["FileName"];

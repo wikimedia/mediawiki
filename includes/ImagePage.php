@@ -61,7 +61,8 @@ class ImagePage extends Article {
 
 		# Get the EXIF data
 		$exif = $this->img->getExifData () ;
-		if ( count ( $exif ) == 0 ) return ; # No EXIF data
+		if ( count ( $exif ) == 0 ) return ; # No EXIF data available
+		if ( count ( $exif ) == 1 && isset ( $exif["EXIF"] ) && $exif["EXIF"] == "NO" ) return ; # This image does not have EXIF data
 		
 		# Create the table
 		$r = "<table border='1' cellspacing='0' cellpadding='0' align='right'>" ;
