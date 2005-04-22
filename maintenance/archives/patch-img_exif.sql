@@ -1,5 +1,3 @@
--- Extra image exif metadata, added for 1.5
+-- Extra image exif metadata, added for 1.5 but quickly removed.
 
-ALTER TABLE /*$wgDBprefix*/image ADD (
-  img_exif mediumblob NOT NULL
-);
+ALTER TABLE /*$wgDBprefix*/image DROP img_exif;
