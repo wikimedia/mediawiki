@@ -733,8 +733,12 @@ $wgDisableTextSearch = false;
 $wgDisableSearchUpdate = false;
 /** Uploads have to be specially set up to be secure */
 $wgEnableUploads = false;
-/** Show EXIF data, on by default */
-$wgShowEXIF = true ;
+/**
+ * Show EXIF data, on by default if available.
+ * Requires PHP's EXIF extension: http://www.php.net/manual/en/ref.exif.php
+ */
+$wgShowEXIF = function_exists( 'exif_read_data' );
+
 /**
  * Set to true to enable the upload _link_ while local uploads are disabled.
  * Assumes that the special page link will be bounced to another server where
