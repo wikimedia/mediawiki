@@ -264,7 +264,7 @@ class Linker {
 	/**
 	 * Pass a title object, not a title string
 	 */
-	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
+	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
 		global $wgOut, $wgTitle, $wgInputEncoding;
 
 		$fname = 'Skin::makeKnownLinkObj';
@@ -310,7 +310,7 @@ class Linker {
 	/**
 	 * Pass a title object, not a title string
 	 */
-	function makeBrokenLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# Fail gracefully
 		if ( ! isset($nt) ) {
 			# wfDebugDieBacktrace();
@@ -348,7 +348,7 @@ class Linker {
 	/**
  	 * Pass a title object, not a title string
 	 */
-	function makeStubLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$link = $nt->getPrefixedURL();
 
 		$u = $nt->escapeLocalURL( $query );
@@ -370,7 +370,7 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeSelfLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$u = $nt->escapeLocalURL( $query );
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
