@@ -1193,6 +1193,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 class LanguageFi extends LanguageUtf8 {
   function LanguageFi() {
     global $wgNamespaceNamesFi, $wgMetaNamespace;
+    LanguageUtf8::LanguageUtf8();
     $wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
   }
 
