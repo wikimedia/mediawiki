@@ -1111,25 +1111,16 @@ li span.deleted {
 
 /* Classes for EXIF data display */
 table.exif {
-	border: 1px solid gray;
-	background-color: #ffffff;
-	padding: 3px;
+	background-color: #f9f9f9;
 	margin-left: 0.5em;
 	float: right;
-	font-size: small;
-	text-align: center;
 }
 
-table.exif caption {
-	font-weight: bold;
-}
+table.exif caption { font-weight: bold; }
+table.exif th { font-weight: normal; }
+table.exif td { padding: 0.1em; }
 
-table.exif th {
-	font-size: small;
-	font-weight: bold;
-}
-
-table.exif td {
-	font-size: small;
-	font-style: italic;
+table.exif, table.exif td, table.exif th {
+	border: 1px solid #aaaaaa;
+	border-collapse: collapse;
 }
