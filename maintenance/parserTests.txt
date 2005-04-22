@@ -780,6 +780,22 @@ Nested table
 
 !! end
 
+!! test
+Invalid attributes in table cell (bug 1830)
+!! input
+{|
+|Cell:|broken
+|}
+!! result
+<table>
+<tr>
+<td>broken
+</td></tr></table>
+
+!! end
+
+
+
 ###
 ### Internal links
 ###
