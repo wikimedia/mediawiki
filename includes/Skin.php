@@ -1503,7 +1503,7 @@ class Skin {
 		wfProfileIn( $fname );
 
 		if ( !is_object( $nt ) ) {
-			wfProfileIn( $fname );
+			wfProfileOut( $fname );
 			return $text;
 		}
 		
