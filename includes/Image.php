@@ -3,6 +3,14 @@
  * @package MediaWiki
  */
 
+# NOTE FOR WINDOWS USERS:
+# To enable EXIF functions, add the folloing lines to the
+# "Windows extensions" section of php.ini:
+#
+# extension=extensions/php_mbstring.dll
+# extension=extensions/php_exif.dll
+
+
 /**
  * Class to represent an image
  * 
