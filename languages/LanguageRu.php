@@ -1678,6 +1678,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 
 class LanguageRu extends LanguageUtf8 {
         function LanguageRu() {
+			$this->Language();
                 global $wgNamespaceNamesRu, $wgMetaNamespace;
                 LanguageUtf8::LanguageUtf8();
                 $wgNamespaceNamesRu[NS_PROJECT_TALK] = 'Обсуждение_' . $this->convertGrammar( $wgMetaNamespace, 'genitive' );
