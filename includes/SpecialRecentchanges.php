@@ -215,7 +215,7 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 		return false;
 	}
 	
-	$timekey = "$wgDBname:rcfeed:timestamp";
+	$timekey = "$wgDBname:rcfeed:$feedFormat:timestamp";
 	$key = "$wgDBname:rcfeed:$feedFormat:limit:$limit:minor:$hideminor";
 	
 	$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchanges' ) .
