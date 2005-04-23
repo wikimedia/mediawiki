@@ -55,21 +55,36 @@ class RawPage {
 	function view() {
 		global $wgUser, $wgOut, $wgScript;
 
-		if( strcmp( $wgScript, $_SERVER['PHP_SELF'] ) ) {
+		if( isset( $_SERVER['SCRIPT_URL'] ) ) {
+			# Normally we use PHP_SELF to get the URL to the script
+			# as it was called, minus the query string.
+			#
+			# Some sites use Apache rewrite rules to handle subdomains,
+			# and have PHP set up in a weird way that causes PHP_SELF
+			# to contain the rewritten URL instead of the one that the
+			# outside world sees.
+			#
+			# If in this mode, use SCRIPT_URL instead, which mod_rewrite
+			# provides containing the "before" URL.
+			$url = $_SERVER['SCRIPT_URL'];
+		} else {
+			$url = $_SERVER['PHP_SELF'];
+		}
+		if( strcmp( $wgScript, $url ) ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
 			# all raw requests are done through the script node, which will
 			# have eg '.php' and should remain safe.
-			
-			$destUrl = $this->mTitle->getFullUrl(
-				'action=raw' .
-				'&ctype=' . urlencode( $this->mContentType ) .
-				'&smaxage=' . urlencode( $this->mSmaxage ) .
-				'&maxage=' . urlencode( $this->mMaxage ) .
-				'&gen=' . urlencode( $this->mGen ) .
-				'&oldid=' . urlencode( $this->mOldId ) );
-			header( 'Location: ' . $destUrl );
-			$wgOut->disable();
+			#
+			# We used to redirect to a canonical-form URL as a general
+			# backwards-compatibility / good-citizen nice thing. However
+			# a lot of servers are set up in buggy ways, resulting in
+			# redirect loops which hang the browser until the CSS load
+			# times out.
+			#
+			# Just return a 403 Forbidden and get it over with.
+			wfHttpError( 403, 'Forbidden',
+				'Raw pages must be accessed through the primary script entry point.' );
 			return;
 		}
 		
