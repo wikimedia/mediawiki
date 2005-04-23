@@ -47,9 +47,9 @@ function wfSingleQuery( $sql, $dbi, $fname = '' ) {
 /*
  * @todo document function
  */
-function &wfGetDB( $db = DB_LAST ) {
+function &wfGetDB( $db = DB_LAST, $groups = array() ) {
 	global $wgLoadBalancer;
-	return $wgLoadBalancer->getConnection( $db );
+	return $wgLoadBalancer->getConnection( $db, true, $groups );
 }
 	
 /**
