@@ -27,8 +27,6 @@
 	NS_CATEGORY_TALK	=> "Kategorie_diskuse",
 ) + $wgNamespaceNamesEn;
 
-# Zdědit apriorní preference: wgDefaultUserOptionsEn
-
 /* private */ $wgQuickbarSettingsCs = array(
 	"Žádný", "Leží vlevo", "Leží vpravo", "Visí vlevo"
 );

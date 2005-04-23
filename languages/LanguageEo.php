@@ -33,8 +33,6 @@ require_once("LanguageUtf8.php");
 
 ) + $wgNamespaceNamesEn;
 
-# Heredu apriorajn preferojn: wgDefaultUserOptionsEn
-
 /* private */ $wgQuickbarSettingsEo = array(
 	"Nenia", "Fiksiĝas maldekstre", "Fiksiĝas dekstre", "Ŝvebas maldekstre"
 );
