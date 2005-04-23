@@ -118,11 +118,17 @@ class User {
 
 	/**
 	 * does the string match roughly an email address ?
+	 *
+	 * @bug 959
+	 *
 	 * @param string $addr email address
 	 * @static
+	 * @return bool
 	 */
 	function isValidEmailAddr ( $addr ) {
-		return preg_match( '/^([a-z0-9_.-]+([a-z0-9_.-]+)*\@[a-z0-9_-]+([a-z0-9_.-]+)*([a-z.]{2,})+)$/', strtolower($addr));
+		# There used to be a regular expression here, it got removed because it
+		# rejected valid addresses.
+		return true;
 	}
 
 	/**
