@@ -274,18 +274,21 @@ $wgSharedDB = null;
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
 # Fields are: 
-#   host:      Host name
-#   dbname:    Default database name
-#   user:      DB user
-#   password:  DB password
-#   type:      "mysql" or "pgsql"
-#   load:      ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
-#   flags:     bit field
-#                 DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
-#                 DBO_DEBUG -- equivalent of $wgDebugDumpSql
-#                 DBO_TRX -- wrap entire request in a transaction
-#                 DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
-#                 DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+#   host:        Host name
+#   dbname:      Default database name
+#   user:        DB user
+#   password:    DB password
+#   type:        "mysql" or "pgsql"
+#   load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
+#   groupLoads:  array of load ratios, the key is the query group name. A query may belong 
+#                to several groups, the most specific group defined here is used.
+#                 
+#   flags:       bit field
+#                   DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
+#                   DBO_DEBUG -- equivalent of $wgDebugDumpSql
+#                   DBO_TRX -- wrap entire request in a transaction
+#                   DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
+#                   DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
 #
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 

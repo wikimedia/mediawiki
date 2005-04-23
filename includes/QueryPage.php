@@ -130,6 +130,7 @@ class QueryPage {
 				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
 
 				# Do query on the (possibly out of date) slave server
+				$slowDB =& wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage-recache', 'vslow' ) );
 				$maxstored = 1000;
 				$res = $dbr->query( $sql . $this->getOrder() . $dbr->limitResult( $maxstored,0 ), $fname );
 
