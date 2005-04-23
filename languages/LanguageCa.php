@@ -29,9 +29,6 @@
 	NS_CATEGORY_TALK	=> 'Categoria_Discussió'
 ) + $wgNamespaceNamesEn;
 
-/* Note that some default options can be customized -- see
-   '$wgDefaultUserOptionsEn' in Language.php */
-
 /* private */ $wgQuickbarSettingsCa = array(
 	"Cap", "Fixa a la dreta", "Fixa a l'esquerra", "Surant a l'esquerra"
 );
