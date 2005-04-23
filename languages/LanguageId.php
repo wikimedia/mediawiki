@@ -63,40 +63,7 @@ if($wgMetaNamespace === FALSE)
 	MW_MATH_MATHML => "MathML jika mungkin (percobaan)",
 );
 
-/* private */ $wgDefaultUserOptionsId = array(
-	"quickbar" => 1, "underline" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20, 
-	"contextlines" => 5, "contextchars" => 50, 
-	"skin" => $wgDefaultSkin, "math" => 1, "rcdays" => 7, "rclimit" => 50, 
-	"highlightbroken" => 1, "stubthreshold" => 0, 
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1, 
-	"showtoolbar" =>1, 
-	"date" => 0 
-);
-
-/* private */ $wgDateFormatsId = array(
-#	"Tiada pilihan",
-);
-
-/* private */ $wgUserTogglesId = array(
-	"underline" => "Garisbawahi pautan", #"Underline links",
-	"highlightbroken" => "Beri tanda pautan yang berpaut ke topik kosong <a href=\"\" class=\"new\">seperti ini</a> (alternatif: seperti ini<a href=\"\" class=\"internal\">?</a>)",
-	"justify"     => "Ratakan paragraf", #"Justify paragraphs",
-	"hideminor" => "Sembunyikan suntingan kecil dalam perubahan terkini", #"Hide minor edits in recent changes",
-	"usenewrc" => "Tampilkan perubahan terkini dalam tampilan baru (tidak untuk semua browser)",
-	"numberheadings" => "Beri nomor heading secara otomatis",
-	"showtoolbar"=>"Tampilkan batang alat penyuntingan",
-	"editondblclick" => "Sunting halaman dengan klik ganda (JavaScript)", #"Edit pages on double click (JavaScript)" 
-	"editsection"=>"Tampilkan pautan untuk menyunting bagian tertentu",
-	"editsectiononrightclick"=>"Sunting bagian dengan mengklik kanan judul bagian (JavaScript)", #"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-	"showtoc"=>"Tampilkan daftar isi untuk artikel yang mempunyai lebih dari 3 heading",# "Show table of contents for articles with more than 3 headings",
-	"rememberpassword" => "Ingat kata sandi pada setiap sesi", #"Remember password across sessions",
-	"editwidth" => "Kotak sunting memiliki lebar penuh", #"Edit box has full width",
-	"watchdefault" => "Tambahkan halaman yang Anda sunting ke daftar pengamatan",# "Add pages you edit to your watchlist",
-	"minordefault" => "Tandai semua suntingan kecil secara baku",# "Mark all edits minor by default" 
-	"previewontop" => "Tampilkan pratilik sebelum kotak sunting dan tidak sesudahnya", #Show preview before edit box and not after it",
-	"nocache" => "Matikan cache halaman" 
-);
+/* private */ $wgDateFormatsId = array();
 
 /* private */ $wgBookstoreListId = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -1350,11 +1317,6 @@ class LanguageId extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsId;
 		return $wgDateFormatsId;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesId;
-		return $wgUserTogglesId;
 	}
 
 	function getMonthName( $key )
