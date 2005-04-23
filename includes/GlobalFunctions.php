@@ -1001,7 +1001,9 @@ define('TS_RFC2822', 3 );
  * @todo document
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
-	if (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
+	if ($ts==0) { 
+		$uts=time(); 
+	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			    (int)$da[2],(int)$da[3],(int)$da[1]);
@@ -1018,7 +1020,6 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		$uts = 0;
 	}
 
-	if ($ts==0) { $uts=time(); }
 		
  	switch($outputtype) {
 		case TS_UNIX:
