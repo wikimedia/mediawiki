@@ -1168,8 +1168,8 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'deletedrevision'     => 'Poistettiin vanha versio $1.',
 
 # browsing diffs
-'previousdiff'        => '? Edellinen muutos',
-'nextdiff'            => 'Seuraava muutos ?',
+'previousdiff'        => '← Edellinen muutos',
+'nextdiff'            => 'Seuraava muutos →',
 
 'imagemaxsize'        => 'Rajoita kuvien kokoa kuvien kuvaussivuilla arvoon: ',
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
