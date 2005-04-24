@@ -15,6 +15,19 @@ class ChangesList {
 		$this->skin =& $skin;
 	}
 	
+	/**
+	 * Returns the appropiate flags for new page, minor change and patrolling
+	 */
+	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;' ) {
+		$f = $new ? '<span class="newpage">' . htmlspecialchars( wfMsg( 'newpageletter' ) ) . '</span>'
+				: $nothing;
+		$f .= $minor ? '<span class="minor">' . htmlspecialchars( wfMsg( 'minoreditletter' ) ) . '</span>'
+				: $nothing;
+		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
+		return $f;
+
+	}
+
 	/** 
 	 * Returns text for the start of the tabular part of RC
 	 */
@@ -58,25 +71,7 @@ class ChangesList {
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;';
 		} else {
-			# M, N and !
-			$M = wfMsg( 'minoreditletter' );
-			$N = wfMsg( 'newpageletter' );
-
-			if ( $rc_type == RC_NEW ) {
-				$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
-			} else {
-				$r .= '&nbsp;' ;
-			}
-			if ( $rc_minor ) {
-				$r .= '<span class="minor">' . htmlspecialchars( $M ) . '</span>';
-			} else {
-				$r .= '&nbsp;' ;
-			}
-			if ( $rcObj->unpatrolled ) {
-				$r .= '<span class="unpatrolled">!</span>';
-			} else {
-				$r .= '&nbsp;';
-			}
+			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled );
 		}
 
 		# Timestamp
@@ -123,9 +118,7 @@ class ChangesList {
 	function recentChangesBlockGroup ( $block ) {
 		global $wgStylePath, $wgContLang ;
 
-		$r = '' ;
-		$M = wfMsg( 'minoreditletter' );
-		$N = wfMsg( 'newpageletter' );
+		$r = '';
 
 		# Collate list of users
 		$isnew = false ;
@@ -168,19 +161,9 @@ class ChangesList {
 		$r .= $tl ;
 
 		# Main line
-		# M/N
+
 		$r .= '<tt>' ;
-		if ( $isnew ) {
-			$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
-		} else {
-			$r .= '&nbsp;';
-		}
-		$r .= '&nbsp;'; # Minor
-		if ( $unpatrolled ) {
-			$r .= '<span class="unpatrolled">!</span>';
-		} else {
-			$r .= '&nbsp;';
-		}
+		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled );
 
 		# Timestamp
 		$r .= ' '.$block[0]->timestamp.' ' ;
@@ -224,24 +207,7 @@ class ChangesList {
 
 			$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" />';
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;' ;
-			if ( $rc_new ) {
-				$r .= '<span class="newpage">' . htmlspecialchars( $N ) . '</span>';
-			} else {
-				$r .= '&nbsp;' ;
-			}
-
-			if ( $rc_minor ) {
-				$r .= '<span class="minoredit">' . htmlspecialchars( $M ) . '</span>';
-			} else {
-				$r .= '&nbsp;' ;
-			}
-
-			if ( $rcObj->unpatrolled ) {
-				$r .= '<span class="unpatrolled">!</span>';
-			} else {
-				$r .= '&nbsp;';
-			}
-
+			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled );
 			$r .= '&nbsp;</tt>' ;
 
 			$o = '' ;
@@ -376,9 +342,7 @@ class ChangesList {
 			$s .= ') . . ';
 
 			# M, N and ! (minor, new and unpatrolled)
-			if ( $rc_minor ) { $s .= ' <span class="minor">'.htmlspecialchars( $message["minoreditletter"] ).'</span>'; }
-			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.htmlspecialchars( $message["newpageletter"] ).'</span>'; }
-			if ( $unpatrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
+			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '' );
 
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
