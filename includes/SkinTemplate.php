@@ -741,7 +741,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
 		$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 		if( $wgEnableUploads ) {
-			if (isset($wgUploadNavigationUrl)) {
+			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );			
 			} else {			
 				$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
