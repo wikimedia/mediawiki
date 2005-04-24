@@ -14,7 +14,7 @@ function wfSpecialStatistics() {
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 	
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr =& wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow'));
 	extract( $dbr->tableNames( 'cur', 'site_stats', 'user', 'user_rights' ) );
 
 	$sql = "SELECT COUNT(cur_namespace) AS total FROM $cur";
