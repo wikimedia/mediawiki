@@ -1377,6 +1377,39 @@ class Title {
 		return $retVal;
 	}
 
+
+	/**
+	 * Get an array of Title objects referring to non-existent articles linked from this page
+	 *
+	 * @param string $options may be FOR UPDATE 
+	 * @return array the Title objects
+	 * @access public
+	 */
+	function getBrokenLinksFrom( $options = '' ) {
+		global $wgLinkCache;
+		
+		if ( $options ) {
+			$db =& wfGetDB( DB_MASTER );
+		} else {
+			$db =& wfGetDB( DB_SLAVE );
+		}
+		$page = $db->tableName( 'page' );
+		$brokenlinks = $db->tableName( 'brokenlinks' );
+		$id = $this->getArticleID();
+
+		$sql = "SELECT bl_to FROM $brokenlinks WHERE bl_from=$id $options";
+		$res = $db->query( $sql, "Title::getBrokenLinksFrom" );
+		$retVal = array();
+		if ( $db->numRows( $res ) ) {
+			while ( $row = $db->fetchObject( $res ) ) {
+				$retVal[] = Title::newFromText( $row->bl_to );
+			}
+		}
+		$db->freeResult( $res );
+		return $retVal;
+	}
+
+
 	/**
 	 * Get a list of URLs to purge from the Squid cache when this
 	 * page changes
