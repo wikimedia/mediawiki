@@ -838,11 +838,8 @@ if( count( $errs ) ) {
 		</ul>
 	</dd>
 	<dt>
-		<p><?php
-			$ccEnotif = htmlspecialchars( 'http://meta.wikipedia.org/Enotif' );
-			print "<a href=\"$ccEnotif\">E-mail notification</a>";
-		?>
-		 sends a notification e-mail to a user, when the user_talk page is changed
+		<p>
+		E-mail notification sends a notification e-mail to a user, when the user_talk page is changed
                 and/or when watch-listed pages are changed, depending on the above settings.
 		When testing this feature, be reminded, that obviously an e-mail address must be present in your preferences
 		and that your own changes never trigger notifications to be sent to yourself.</p>
@@ -863,11 +860,8 @@ if( count( $errs ) ) {
 		</ul>
 	</dd>
 	<dt>
-		<p><?php
-			$ccEauthent = htmlspecialchars( 'http://meta.wikipedia.org/Eauthent' );
-			print "<a href=\"$ccEnotif\">E-mail address authentication</a>";
-		?>
-		 uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or who changes his/her stored e-mail address
+		<p>
+		E-mail address authentication uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or who changes his/her stored e-mail address
 		gets a one-time temporary password mailed to that address. The user can use the original password as long as wanted, however, the stored e-mail address
 		is only authenticated at the moment when the user logs in with the one-time temporary password.<p>
 
