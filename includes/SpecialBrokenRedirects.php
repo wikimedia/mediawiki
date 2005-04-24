@@ -44,8 +44,6 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang ;
-		
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->bl_to ) ) {
 			$toObj = Title::newFromText( $result->bl_to );
