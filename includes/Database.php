@@ -306,7 +306,22 @@ class Database {
 		
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
+
+		# Try reconnecting if the connection was lost
+		if ( false === $ret && $this->lastErrno() == 2013 ) {
+			# Transaction is gone, like it or not
+			$this->mTrxLevel = 0;
+			wfDebug( "Connection lost, reconnecting...\n" );
+			if ( $this->ping() ) {
+				wfDebug( "Reconnected\n" );
+				$ret = $this->doQuery( $commentedSql );
+			} else {
+				wfDebug( "Failed\n" );
+			}
+		}
+
 		if ( false === $ret ) {
+			# Automatic reconnect
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
 				
@@ -1401,6 +1416,13 @@ class Database {
 	 */
 	function getServerVersion() {
 		return mysql_get_server_info();
+	}
+
+	/**
+	 * Ping the server and try to reconnect if it there is no connection
+	 */
+	function ping() {
+		return mysql_ping( $this->mConn );
 	}
 } 
 
