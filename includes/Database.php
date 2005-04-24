@@ -44,6 +44,7 @@ class Database {
 	var $mTablePrefix;
 	var $mFlags;
 	var $mTrxLevel = 0;
+	var $mErrorCount = 0;
 	/**#@-*/
 
 #------------------------------------------------------------------------------
@@ -103,6 +104,13 @@ class Database {
 	 */
 	function trxLevel( $level = NULL ) {
 		return wfSetVar( $this->mTrxLevel, $level );
+	}
+
+	/** 
+	 * Number of errors logged, only useful when errors are ignored
+	 */
+	function errorCount( $count = NULL ) {
+		return wfSetVar( $this->mErrorCount, $count );
 	}
 
 	/**#@+
@@ -308,7 +316,7 @@ class Database {
 		$ret = $this->doQuery( $commentedSql );
 
 		# Try reconnecting if the connection was lost
-		if ( false === $ret && $this->lastErrno() == 2013 ) {
+		if ( false === $ret && ( $this->lastErrno() == 2013 || $this->lastErrno() == 2006 ) ) {
 			# Transaction is gone, like it or not
 			$this->mTrxLevel = 0;
 			wfDebug( "Connection lost, reconnecting...\n" );
@@ -354,6 +362,7 @@ class Database {
 		global $wgCommandLineMode, $wgFullyInitialised;
 		# Ignore errors during error handling to avoid infinite recursion
 		$ignore = $this->ignoreErrors( true );
+		$this->mErrorCount ++;
 
 		if( $ignore || $tempIgnore ) {
 			wfDebug("SQL ERROR (ignored): " . $error . "\n");
@@ -1410,6 +1419,13 @@ class Database {
 	 */
 	function getServerVersion() {
 		return mysql_get_server_info();
+	}
+
+	/**
+	 * Ping the server and try to reconnect if it there is no connection
+	 */
+	function ping() {
+		return mysql_ping( $this->mConn );
 	}
 } 
 

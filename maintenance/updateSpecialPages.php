@@ -8,6 +8,7 @@ require_once( 'SpecialPage.php' );
 require_once( 'QueryPage.php' );
 
 $wgOut->disable();
+$dbw =& wfGetDB( DB_MASTER );
 
 foreach ( $wgQueryPages as $page ) {
 	list( $class, $special ) = $page;
@@ -27,22 +28,40 @@ foreach ( $wgQueryPages as $page ) {
 
 	if ( $queryPage->isExpensive() ) {
 		$t1 = explode( ' ', microtime() );
-		$num = $queryPage->doQuery( 0, 0, true );
+		# Do the query
+		$num = $queryPage->recache();
 		$t2 = explode( ' ', microtime() );
 
-		print "got $num rows in ";
+		if ( $num === false ) {
+			print "FAILED: database error\n";
+		} else {
+			print "got $num rows in ";
 
-		$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
-		$hours = intval( $elapsed / 3600 );
-		$minutes = intval( $elapsed % 3600 / 60 );
-		$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-		if ( $hours ) {
-			print $hours . 'h ';
+			$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
+			$hours = intval( $elapsed / 3600 );
+			$minutes = intval( $elapsed % 3600 / 60 );
+			$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+			if ( $hours ) {
+				print $hours . 'h ';
+			}
+			if ( $minutes ) {
+				print $minutes . 'm ';
+			}
+			printf( "%.2fs\n", $seconds );
 		}
-		if ( $minutes ) {
-			print $minutes . 'm ';
+
+		# Reopen any connections that have closed
+		if ( !$wgLoadBalancer->pingAll())  {
+			print "\n";
+			do {
+				print "Connection failed, reconnecting in 10 seconds...\n";
+				sleep(10);
+			} while ( !$wgLoadBalancer->pingAll() );
+			print "Reconnected\n\n";
+		} else {
+			# Commit the results
+			$dbw->immediateCommit();
 		}
-		printf( "%.2f s\n", $seconds );
 	} else {
 		print "cheap, skipped\n";
 	}
