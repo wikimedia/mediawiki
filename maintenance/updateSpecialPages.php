@@ -15,7 +15,7 @@ foreach ( $wgQueryPages as $page ) {
 	$specialObj = SpecialPage::getPage( $special );
 	if ( !$specialObj ) {
 		print "No such special page: $special\n";
-		exit;
+		continue;
 	}
 	$file = $specialObj->getFile();
 	if ( $file ) {
