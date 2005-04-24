@@ -1657,7 +1657,7 @@ class Article {
 				
 				$sk = $wgUser->getSkin();
 				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
-											   ':log/delete',
+											   ':Log/delete',
 											   wfMsg( 'deletionlog' ) );
 				
 				$text = wfMsg( 'deletedtext', $deleted, $loglink );
