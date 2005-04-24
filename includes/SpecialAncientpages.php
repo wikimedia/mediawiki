@@ -36,7 +36,7 @@ class AncientPagesPage extends QueryPage {
 			"SELECT 'Ancientpages' as type,
 					page_namespace as namespace,
 			        page_title as title,
-			        rev_timestamp as value
+			        UNIX_TIMESTAMP(rev_timestamp) as value
 			FROM $page, $revision
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
 			  AND page_latest=rev_id";
