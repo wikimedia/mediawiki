@@ -138,6 +138,12 @@ $wgSharedUploadDirectory = "/var/www/wiki3/images";
 $wgSharedUploadDBname = false;
 /** Cache shared metadata in memcached. Don't do this if the commons wiki is in a different memcached domain */
 $wgCacheSharedUploads = true;
+/**
+ * Point the upload navigation link to an external URL
+ * Useful if you want to use a shared repository by default
+ * without disabling local uploads
+*/
+# $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
 
 /** 
  * Give a path here to use thumb.php for thumbnail generation on client request, instead of 
@@ -149,7 +155,6 @@ $wgCacheSharedUploads = true;
  */
 $wgThumbnailScriptPath = false;
 $wgSharedThumbnailScriptPath = false;
-
 
 /**
  * Set the following to false especially if you have a set of files that need to
@@ -1304,7 +1309,6 @@ $wgCountCategorizedImagesAsUsed = false;
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
-
 
 } else {
 	die();
