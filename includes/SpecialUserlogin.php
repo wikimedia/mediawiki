@@ -35,7 +35,6 @@ class LoginForm {
 	 */
 	function LoginForm( &$request ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
-		global $wgEmailAuthentication;
 
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
