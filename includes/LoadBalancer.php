@@ -447,4 +447,18 @@ class LoadBalancer {
 	function getLaggedSlaveMode() {
 		return $this->mLaggedSlaveMode;
 	}
+
+	function pingAll() {
+		$success = true;
+		foreach ( $this->mConnections as $i => $conn ) {
+			if ( $this->isOpen( $i ) ) {
+				if ( !$this->mConnections[$i]->ping() ) {
+					$success = false;
+				}
+			}
+		}
+		return $success;
+	}
 }
+
+?>

@@ -128,13 +128,79 @@ class QueryPage {
 	}
 
 	/**
+	 * Clear the cache and save new results
+	 */
+	function recache( $ignoreErrors = true ) {
+		$fname = get_class($this) . '::recache';
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbr =& wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+		if ( !$dbw || !$dbr ) {
+			return false;
+		}
+
+		$querycache = $dbr->tableName( 'querycache' );
+		
+		if ( $ignoreErrors ) {
+			$ignoreW = $dbw->ignoreErrors( true );
+			$ignoreR = $dbr->ignoreErrors( true );
+		}
+
+		# Clear out any old cached data
+		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
+		# Do query
+		$res = $dbr->query( $this->getSQL() . $this->getOrder() . $dbr->limitResult( 1000,0 ), $fname );
+		$num = false;
+		if ( $res ) {
+			$num = $dbr->numRows( $res );
+			# Fetch results
+			$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
+			$first = true;
+			while ( $res && $row = $dbr->fetchObject( $res ) ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$insertSql .= ',';
+				}
+				if ( isset( $row->value ) ) {
+					$value = $row->value;
+				} else {
+					$value = '';
+				}
+
+				$insertSql .= '(' .
+					$dbw->addQuotes( $row->type ) . ',' .
+					$dbw->addQuotes( $row->namespace ) . ',' .
+					$dbw->addQuotes( $row->title ) . ',' .
+					$dbw->addQuotes( $value ) . ')';
+			}
+
+			# Save results into the querycache table on the master
+			if ( !$first ) {
+				if ( !$dbw->query( $insertSql, $fname ) ) {
+					// Set result to false to indicate error
+					$dbr->freeResult( $res );
+					$res = false;
+				}
+			}
+			if ( $res ) {
+				$dbr->freeResult( $res );
+			}
+			if ( $ignoreErrors ) {
+				$dbw->ignoreErrors( $ignoreW );
+				$dbr->ignoreErrors( $ignoreR );
+			}
+		}
+		return $num;
+	}
+
+	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
 	 *
 	 * @param $offset database query offset
 	 * @param $limit database query limit
 	 */
-	function doQuery( $offset, $limit, $recache = false ) {
+	function doQuery( $offset, $limit ) {
 		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
 		global $wgMiserMode;
 
@@ -150,54 +216,7 @@ class QueryPage {
 
 		if ( $this->isExpensive() ) {
 			// Disabled recache parameter due to retry problems -- TS
-			// $recache = $wgRequest->getBool( 'recache' );
-
-			if( $recache ) {
-				# Clear out any old cached data
-				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
-
-				# Do query on the (possibly out of date) slave server
-				$slowDB =& wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage-recache', 'vslow' ) );
-				$maxstored = 1000;
-				$res = $slowDB->query( $sql . $this->getOrder() . $dbr->limitResult( $maxstored,0 ), $fname );
-
-				# Fetch results
-				$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
-				$first = true;
-				while ( $row = $dbr->fetchObject( $res ) ) {
-					if ( $first ) {
-						$first = false;
-					} else {
-						$insertSql .= ',';
-					}
-					if ( isset( $row->value ) ) {
-						$value = $row->value;
-					} else {
-						$value = '';
-					}
-
-					$insertSql .= '(' .
-						$dbw->addQuotes( $row->type ) . ',' .
-						$dbw->addQuotes( $row->namespace ) . ',' .
-						$dbw->addQuotes( $row->title ) . ',' .
-						$dbw->addQuotes( $value ) . ')';
-				}
-
-				# Save results into the querycache table on the master
-				if ( !$first ) {
-					$dbw->query( $insertSql, $fname );
-				}
-
-				# Set result pointer to allow reading for display
-				$numRows = $dbr->numRows( $res );
-				if ( $numRows <= $offset ) {
-					$num = 0;
-				} else {
-					$dbr->dataSeek( $res, $offset );
-					$num = max( $limit, $numRows - $offset );
-				}
-			}
-			if( $wgMiserMode || $recache ) {
+			if( $wgMiserMode ) {
 				$type = $dbr->strencode( $sname );
 				$sql =
 					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
