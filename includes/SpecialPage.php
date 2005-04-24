@@ -15,6 +15,7 @@
  * @subpackage SpecialPage
  */
 
+
 /**
  *
  */
@@ -24,9 +25,9 @@ global $wgSpecialPages;
  * @access private
  */
 $wgSpecialPages = array(
-	'DoubleRedirects'	=> new UnlistedSpecialPage ( 'DoubleRedirects' ),
-	'BrokenRedirects'	=> new UnlistedSpecialPage ( 'BrokenRedirects' ),
-	'Disambiguations'	=> new UnlistedSpecialPage ( 'Disambiguations' ),
+	'DoubleRedirects'	=> new SpecialPage ( 'DoubleRedirects' ),
+	'BrokenRedirects'	=> new SpecialPage ( 'BrokenRedirects' ),
+	'Disambiguations'	=> new SpecialPage ( 'Disambiguations' ),
 
 	'Userlogin'         => new SpecialPage( 'Userlogin' ),
 	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
@@ -257,6 +258,7 @@ class SpecialPage
 	function getName() { return $this->mName; }
 	function getRestriction() { return $this->mRestriction; }
 	function isListed() { return $this->mListed; }
+	function getFile() { return $this->mFile; }
 
 	/**
 	 * Checks if the given user (identified by an object) can execute this
@@ -350,3 +352,4 @@ class UnlistedSpecialPage extends SpecialPage
 		SpecialPage::SpecialPage( $name, $restriction, false, $function, $file );
 	}
 }
+?>
