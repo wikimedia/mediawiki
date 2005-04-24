@@ -33,12 +33,16 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'cur', 'links' ) );
 
-		$sql = "SELECT ca.cur_namespace as ns_a, ca.cur_title as title_a," . 
-			   "  cb.cur_namespace as ns_b, cb.cur_title as title_b," .
-			   "  cb.cur_text AS rt " . 
-			   "FROM $links,$cur AS ca,$cur AS cb ". 
-			   "WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id " .
-			   "  AND l_from=ca.cur_id " ;
+		$sql = "SELECT 'DoubleRedirects' as type," .
+		         " ca.cur_namespace as namespace, ca.cur_title as title," .
+			     " cb.cur_namespace as nsb, cb.cur_title as tb," .
+				 " cc.cur_namespace as nsc, cc.cur_title as tc" .
+			   " FROM $links AS la, $links AS lb, $cur AS ca, $cur AS cb, $cur AS cc" .
+			   " WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1" .
+			     " AND la.l_from=ca.cur_id" .
+				 " AND la.l_to=cb.cur_id" .
+				 " AND lb.l_from=cb.cur_id" .
+				 " AND lb.l_to=cc.cur_id";
 		return $sql;
 	}
 
@@ -47,14 +51,43 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgContLang ;
-		$ns = $wgContLang->getNamespaces() ;
-		$from = $skin->makeKnownLink( $ns[$result->ns_a].':'.$result->title_a ,'', 'redirect=no' );
-		$edit = $skin->makeBrokenLink( $ns[$result->ns_a].':'.$result->title_a , "(".wfMsg("qbedit").")" , 'redirect=no');
-		$to   = $skin->makeKnownLink( $ns[$result->ns_b].':'.$result->title_b ,'');
-		$content = $result->rt;
+		$fname = 'DoubleRedirectsPage::formatResult';
+		$titleA = Title::makeTitle( $result->namespace, $result->title );
+
+		if ( $result && !isset( $result->nsb ) ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			extract( $dbr->tableNames( 'cur', 'links' ) );
+			$encTitle = $dbr->addQuotes( $result->title );
+
+			$sql = "SELECT ca.cur_namespace as namespace, ca.cur_title as title," .
+					 " cb.cur_namespace as nsb, cb.cur_title as tb," .
+					 " cc.cur_namespace as nsc, cc.cur_title as tc" .
+				   " FROM $links AS la, $links AS lb, $cur AS ca, $cur AS cb, $cur AS cc" .
+				   " WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1" .
+					 " AND la.l_from=ca.cur_id" .
+					 " AND la.l_to=cb.cur_id" .
+					 " AND lb.l_from=cb.cur_id" .
+					 " AND lb.l_to=cc.cur_id" .
+					 " AND ca.cur_namespace={$result->namespace}" .
+					 " AND ca.cur_title=$encTitle";
+			$res = $dbr->query( $sql, $fname );
+			if ( $res ) {
+				$result = $dbr->fetchObject( $res );
+			}
+		}
+		if ( !$result ) {
+			return '';
+		}
 		
-		return "$from $edit => $to ($content)";
+		$titleB = Title::makeTitle( $result->nsb, $result->tb );
+		$titleC = Title::makeTitle( $result->nsc, $result->tc );
+
+		$linkA = $skin->makeKnownLinkObj( $titleA,'', 'redirect=no' );
+		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
+		$linkC = $skin->makeKnownLinkObj( $titleC );
+		
+		return "$linkA $edit &rarr; $linkB &rarr; $linkC";
 	}
 }
 

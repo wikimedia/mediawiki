@@ -35,7 +35,7 @@ class AncientPagesPage extends QueryPage {
 			"SELECT 'Ancientpages' as type,
 					cur_namespace as namespace,
 			        cur_title as title,
-			        cur_timestamp as value
+			        UNIX_TIMESTAMP(cur_timestamp) as value
 			FROM $cur $use_index
 			WHERE cur_namespace=0 AND cur_is_redirect=0";
 	}

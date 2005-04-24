@@ -16,6 +16,7 @@ require_once('QueryPage.php');
  * @subpackage SpecialPage
  */
 class BrokenRedirectsPage extends PageQueryPage {
+	var $targets = array();
 
 	function getName() {
 		return 'BrokenRedirects';
@@ -25,7 +26,6 @@ class BrokenRedirectsPage extends PageQueryPage {
 	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
-		#FIXME : probably need to add a backlink to the maintenance page.
 		return '<p>'.wfMsg('brokenredirectstext')."</p><br />\n";
 	}
 
@@ -33,8 +33,9 @@ class BrokenRedirectsPage extends PageQueryPage {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'cur', 'brokenlinks' ) );
 
-		$sql = "SELECT bl_to,cur_title FROM $brokenlinks,$cur " .
-		       "WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id ";
+		$sql = "SELECT 'BrokenRedirects' as type, cur_namespace as namespace," .
+		       "cur_title as title,bl_to FROM $brokenlinks,$cur " .
+		       "WHERE cur_is_redirect=1 AND bl_from=cur_id ";
 		return $sql;
 	}
 
@@ -43,12 +44,26 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgContLang ;
-		
-		$ns = $wgContLang->getNamespaces() ; /* not used, why bother? */
-		$from = $skin->makeKnownLink( $result->cur_title ,'', 'redirect=no' );
-		$edit = $skin->makeBrokenLink( $result->cur_title , "(".wfMsg("qbedit").")" , 'redirect=no');
-		$to   = $skin->makeBrokenLink( $result->bl_to );
+		$fromObj = Title::makeTitle( $result->namespace, $result->title );
+		if ( isset( $result->bl_to ) ) {
+			$toObj = Title::newFromText( $result->bl_to );
+		} else {
+			$blinks = $fromObj->getBrokenLinksFrom();
+			if ( $blinks ) {
+				$toObj = $blinks[0];
+			} else {
+				$toObj = false;
+			}
+		}
+
+		// $toObj may very easily be false if the $result list is cached
+		if ( !is_object( $toObj ) || !is_object( $fromObj ) ) {
+			return '';
+		}
+
+		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
+		$edit = $skin->makeBrokenLinkObj( $fromObj , "(".wfMsg("qbedit").")" , 'redirect=no');
+		$to   = $skin->makeBrokenLinkObj( $toObj );
 				
 		return "$from $edit => $to";
 	}

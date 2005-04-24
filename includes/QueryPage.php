@@ -10,6 +10,31 @@
 require_once ( 'Feed.php' );
 
 /**
+ * List of query page classes and their associated special pages, for periodic update purposes
+ */
+$wgQueryPages = array(
+//         QueryPage subclass           Special page name
+//------------------------------------------------------------
+    array( 'AncientPagesPage',          'Ancientpages'      ),
+    array( 'BrokenRedirectsPage',       'BrokenRedirects'   ),
+    array( 'DeadendPagesPage',          'Deadendpages'      ),
+    array( 'DisambiguationsPage',       'Disambiguations'   ),
+    array( 'DoubleRedirectsPage',       'DoubleRedirects'   ),
+    array( 'ListUsersPage',             'Listusers'         ), 
+    array( 'LonelyPagesPage',           'Lonelypages'       ),
+    array( 'LongPagesPage',             'Longpages'         ),
+    array( 'NewPagesPage',              'Newpages'          ),
+    array( 'PopularPagesPage',          'Popularpages'      ),
+    array( 'ShortPagesPage',            'Shortpages'        ),
+    array( 'UncategorizedCategoriesPage','Uncategorizedcategories'),
+    array( 'UncategorizedPagesPage',    'Uncategorizedpages'),
+    array( 'UnusedimagesPage',          'Unusedimages'      ),
+    array( 'WantedPagesPage',           'Wantedpages'       ),
+);
+    
+
+
+/**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
@@ -98,7 +123,7 @@ class QueryPage {
 	 * @param $offset database query offset
 	 * @param $limit database query limit
 	 */
-	function doQuery( $offset, $limit ) {
+	function doQuery( $offset, $limit, $recache = false ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 		global $wgMiserMode;
 
@@ -113,7 +138,9 @@ class QueryPage {
 		$res = false;
 
 		if ( $this->isExpensive() ) {
-			$recache = $wgRequest->getBool( 'recache' );
+			// Disabled recache parameter due to retry problems -- TS
+			// $recache = $wgRequest->getBool( 'recache' );
+
 			if( $recache ) {
 				# Clear out any old cached data
 				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
@@ -132,15 +159,23 @@ class QueryPage {
 					} else {
 						$insertSql .= ',';
 					}
+					if ( isset( $row->value ) ) {
+						$value = $row->value;
+					} else {
+						$value = '';
+					}
+
 					$insertSql .= '(' .
 						$dbw->addQuotes( $row->type ) . ',' .
 						$dbw->addQuotes( $row->namespace ) . ',' .
 						$dbw->addQuotes( $row->title ) . ',' .
-						$dbw->addQuotes( $row->value ) . ')';
+						$dbw->addQuotes( $value ) . ')';
 				}
 
 				# Save results into the querycache table on the master
-				$dbw->query( $insertSql, $fname );
+				if ( !$first ) {
+					$dbw->query( $insertSql, $fname );
+				}
 
 				# Set result pointer to allow reading for display
 				$numRows = $dbr->numRows( $res );
@@ -166,7 +201,6 @@ class QueryPage {
 					    $dbr->limitResult( $limit,$offset ), $fname );
 			$num = $dbr->numRows($res);
 		}
-
 
 		$sk = $wgUser->getSkin( );
 
@@ -195,6 +229,7 @@ class QueryPage {
 			$wgOut->addHTML( $s );
 		}
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
+		return $num;
 	}
 
 	/**

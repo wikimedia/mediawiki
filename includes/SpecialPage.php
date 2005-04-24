@@ -257,6 +257,7 @@ class SpecialPage
 	function getName() { return $this->mName; }
 	function getRestriction() { return $this->mRestriction; }
 	function isListed() { return $this->mListed; }
+	function getFile() { return $this->mFile; }
 
 	/**
 	 * Checks if the given user (identified by an object) can execute this

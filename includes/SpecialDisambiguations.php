@@ -35,17 +35,19 @@ class DisambiguationsPage extends PageQueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'cur', 'links' ) );
-		
+
 		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
-		$dpid = $dp->getArticleID();
-			
-		$sql = "SELECT ca.cur_namespace AS ns_art, ca.cur_title AS title_art,"
-			.        " cb.cur_namespace AS ns_dis, cb.cur_title AS title_dis"
-		    . " FROM links as la, links as lb, cur as ca, cur as cb"
-		    . " WHERE la.l_to = '{$dpid}'"
-		    . " AND la.l_from = lb.l_to"
-		    . " AND ca.cur_id = lb.l_from"
-		    . " AND cb.cur_id = lb.l_to";
+		$dns = $dp->getNamespace();
+		$dtitle = $dbr->addQuotes( $dp->getDBkey() );
+
+		$sql = "SELECT 'Disambiguations' as type,"
+			.   " ca.cur_namespace AS namespace, ca.cur_title AS title"
+			. " FROM {$links} as la, {$links} as lb, {$cur} as ca, {$cur} as cb"
+			. " WHERE cb.cur_namespace = $dns"
+			. " AND cb.cur_title = $dtitle"
+			. " AND la.l_from = lb.l_to"
+			. " AND ca.cur_id = lb.l_from"
+			. " AND cb.cur_id = lb.l_to" ;
 
 		return $sql;
 	}
@@ -56,11 +58,12 @@ class DisambiguationsPage extends PageQueryPage {
 	
 	function formatResult( $skin, $result ) {
 		global $wgContLang ;
-		$ns = $wgContLang->getNamespaces() ;
+		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
+        $title = Title::makeTitle( $result->namespace, $result->title );
 
-		$from = $skin->makeKnownLink( $ns[$result->ns_art].':'.$result->title_art ,'');
-		$edit = $skin->makeBrokenLink( $ns[$result->ns_art].':'.$result->title_art , "(".wfMsg("qbedit").")" , 'redirect=no');
-		$to   = $skin->makeKnownLink( $ns[$result->ns_dis].':'.$result->title_dis ,'');
+		$from = $skin->makeKnownLinkObj( $title,'');
+		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$to   = $skin->makeKnownLinkObj( $dp,'');
 		
 		return "$from $edit => $to";
 	}
