@@ -202,6 +202,7 @@ class LogViewer {
 	 * @var LogReader $reader
 	 */
 	var $reader;
+	var $numResults = 0;
 	
 	/**
 	 * @param LogReader &$reader where to get our data from
@@ -219,20 +220,25 @@ class LogViewer {
 		global $wgOut;
 		$this->showHeader( $wgOut );
 		$this->showOptions( $wgOut );
+		$result = $this->getLogRows();
 		$this->showPrevNext( $wgOut );
-		$this->showList( $wgOut );
+		$this->showList( $wgOut, $result );
 		$this->showPrevNext( $wgOut );
 	}
-	
+
 	/**
-	 * Output just the list of entries given by the linked LogReader,
-	 * with extraneous UI elements. Use for displaying log fragments in
-	 * another page (eg at Special:Undelete)
-	 * @param OutputPage $out where to send output
+	 * Load the data from the linked LogReader
+	 * Preload the link cache
+	 * Initialise numResults
+	 * 
+	 * Must be called before calling showPrevNext
+	 *
+	 * @return object database result set
 	 */
-	function showList( &$out ) {
+	function getLogRows() {
 		global $wgLinkCache;
 		$result = $this->reader->getRows();
+		$this->numResults = 0;
 
 		// Fetch results and form a batch link existence query
 		$batch = new LinkBatch;
@@ -247,17 +253,32 @@ class LogViewer {
 				$title = Title::newFromText( $paramArray[0] );
 				$batch->addObj( $title );
 			}
+			$this->numResults++;
 		}
 		$batch->execute( $wgLinkCache );
 
+		return $result;
+	}
+
+	
+	/**
+	 * Output just the list of entries given by the linked LogReader,
+	 * with extraneous UI elements. Use for displaying log fragments in
+	 * another page (eg at Special:Undelete)
+	 * @param OutputPage $out where to send output
+	 */
+	function showList( &$out, $result ) {
 		// Rewind result pointer and go through it again, making the HTML
-		$result->seek( 0 );
-		$html = "\n<ul>\n";
-		while( $s = $result->fetchObject() ) {
-			$html .= $this->logLine( $s );
+		$html='';
+		if ($this->numResults > 0) {
+			$html = "\n<ul>\n";
+			$result->seek( 0 );
+			while( $s = $result->fetchObject() ) {
+				$html .= $this->logLine( $s );
+			}
+			$html .= "\n</ul>\n";
 		}
 		$result->free();
-		$html .= "\n</ul>\n";
 		$out->addHTML( $html );
 	}
 	
@@ -382,7 +403,7 @@ class LogViewer {
 		$html = wfViewPrevNext( $offset, $limit,
 			$wgContLang->specialpage( 'Log' ),
 			$bits,
-			false);
+			$this->numResults < $limit);
 		$out->addHTML( '<p>' . $html . '</p>' );
 	}
 }
