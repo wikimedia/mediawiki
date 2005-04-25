@@ -467,41 +467,62 @@ function wfErrorExit() {
 function wfDebugDieBacktrace( $msg = '' ) {
 	global $wgCommandLineMode;
 
-	if ( function_exists( 'debug_backtrace' ) ) {
+	$backtrace = wfBacktrace();
+	if ( $backtrace !== false ) {
 		if ( $wgCommandLineMode ) {
-			$msg .= "\nBacktrace:\n";
+			$msg .= "\nBacktrace:\n$backtrace";
 		} else {
-			$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
-		}
-		$backtrace = debug_backtrace();
-		foreach( $backtrace as $call ) {
-			if( isset( $call['file'] ) ) {
-				$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-				$file = $f[count($f)-1];
-			} else {
-				$file = '-';
-			}
-			if( isset( $call['line'] ) ) {
-				$line = $call['line'];
-			} else {
-				$line = '-';
-			}
-			if ( $wgCommandLineMode ) {
-				$msg .= "$file line $line calls ";
-			} else {
-				$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
-			}
-			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
-			$msg .= $call['function'] . '()';
-
-			if ( $wgCommandLineMode ) {
-				$msg .= "\n";
-			} else {
-				$msg .= "</li>\n";
-			}
+			$msg .= "\n<p>Backtrace:</p>\n$backtrace";
 		}
 	 }
 	 die( $msg );
+}
+
+function wfBacktrace() {
+	global $wgCommandLineMode;
+	if ( !function_exists( 'debug_backtrace' ) ) {
+		return false;
+	}
+	
+	if ( $wgCommandLineMode ) {
+		$msg = '';
+	} else {
+		$msg = "<ul>\n";
+	}
+	$backtrace = debug_backtrace();
+	foreach( $backtrace as $call ) {
+		if( isset( $call['file'] ) ) {
+			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
+			$file = $f[count($f)-1];
+		} else {
+			$file = '-';
+		}
+		if( isset( $call['line'] ) ) {
+			$line = $call['line'];
+		} else {
+			$line = '-';
+		}
+		if ( $wgCommandLineMode ) {
+			$msg .= "$file line $line calls ";
+		} else {
+			$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
+		}
+		if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
+		$msg .= $call['function'] . '()';
+
+		if ( $wgCommandLineMode ) {
+			$msg .= "\n";
+		} else {
+			$msg .= "</li>\n";
+		}
+	}
+	if ( $wgCommandLineMode ) {
+		$msg .= "\n";
+	} else {
+		$msg .= "</ul>\n";
+	}
+
+	return $msg;
 }
 
 
