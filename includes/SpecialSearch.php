@@ -27,7 +27,12 @@
 require_once( 'SearchEngine.php' );
 require_once( 'Revision.php' );
 
-function wfSpecialSearch( $par='' ) {
+/**
+ * Entry point
+ *
+ * @param string $par (default '')
+ */
+function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
 	
 	$search = $wgRequest->getText( 'search', $par );
@@ -108,8 +113,7 @@ class SpecialSearch {
 				$editurl = $t->escapeLocalURL( 'action=edit' );
 			}
 		}
-		# FIXME: HTML in wiki message
-		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl, htmlspecialchars( $term ) ) . "</p>\n" );
+		$wgOut->addWikiText( wfMsg('nogomatch', $term) );
 
 		return $this->showResults( $term );
 	}
