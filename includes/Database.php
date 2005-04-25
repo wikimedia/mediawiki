@@ -1438,11 +1438,15 @@ class Database {
 	 */
 	function getLag() {
 		$res = $this->query( 'SHOW PROCESSLIST' );
-		# Find slave SQL thread
+		# Find slave SQL thread. Assumed to be the second one running, which is a bit 
+		# dubious, but unfortunately there's no easy rigorous way
+		$slaveThreads = 0;
 		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->User == 'system user' && !is_null( $row->Info ) ) {
-				# This is it, return the time
-				return $row->Time;
+			if ( $row->User == 'system user' ) {
+				if ( ++$slaveThreads == 2 ) {
+					# This is it, return the time
+					return $row->Time;
+				}
 			}
 		}
 		return false;
