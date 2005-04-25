@@ -865,6 +865,12 @@ class Title {
 				return false;
 			}
 		}
+		
+		if( $action == 'move' && !$this->isMovable() ) {
+			wfProfileOut( $fname );
+			return false;
+		}
+		
 		wfProfileOut( $fname );
 		return true;
 	}
@@ -887,6 +893,17 @@ class Title {
 		return $this->userCan('move');
 	}
 
+	/**
+	 * Would anybody with sufficient privileges be able to mvoe this page?
+	 * Some pages just ain't movable.
+	 *
+	 * @return boolean
+	 * @access public
+	 */
+	function isMovable() {
+		return Namespace::isMovable( $this->getNamespace() );
+	}
+	
 	/**
 	 * Can $wgUser read this page?
 	 * @return boolean
