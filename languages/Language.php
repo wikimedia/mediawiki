@@ -625,8 +625,8 @@ Please re-login with that for authentication purposes.",
 'mailerror' => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated' 	=> 'Your email address was authenticated on $1.',
-'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.<br />
-To authenticate, please login in with the temporary password which has been mailed to you, or request a new one on the login page.',
+'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.',
+'emailconfirmlink' => 'Confirm your e-mail address',
 'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',
 'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
 'disablednoemail'	=> '<strong>(disabled; no email address)</strong>',
@@ -1864,6 +1864,34 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'watchlistall1' => 'all',
 'watchlistall2' => 'all',
 'contributionsall' => 'all',
+
+# E-mail address confirmation
+'confirmemail' => 'Confirm E-mail address',
+'confirmemail_text' => "This wiki requires that you validate your e-mail address
+before using e-mail features. Activate the button below to send a confirmation
+mail to your address. The mail will include a link containing a code; load the
+link in your browser to confirm that your e-mail address is valid.",
+'confirmemail_send' => 'Mail a confirmation code',
+'confirmemail_sent' => 'Confirmation e-mail sent.',
+'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.',
+'confirmemail_invalid' => 'Invalid confirmation code. The code may have expired.',
+'confirmemail_success' => 'Your e-mail address has been confirmed. You may now log in and enjoy the wiki.',
+'confirmemail_loggedin' => 'Your e-mail address has now been confirmed.',
+'confirmemail_error' => 'Something went wrong saving your confirmation.',
+
+'confirmemail_subject' => '{{SITENAME}} e-mail address confirmation',
+'confirmemail_body' => "Someone, probably you from IP address $1, has registered an
+account \"$2\" with this e-mail address on {{SITENAME}}.
+
+To confirm that this account really does belong to you and activate
+e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If this is *not* you, don't follow the link. This confirmation code
+will expire at $4.
+",
+
 );
 
 /* a fake language converter */

@@ -1057,6 +1057,21 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 }
 
 /**
+ * Return a formatted timestamp, or null if input is null.
+ * For dealing with nullable timestamp columns in the database.
+ * @param int $outputtype
+ * @param string $ts
+ * @return string
+ */
+function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
+	if( is_null( $ts ) ) {
+		return null;
+	} else {
+		return wfTimestamp( $outputtype, $ts );
+	}
+}
+
+/**
  * Check where as the operating system is Windows
  *
  * @return bool True if it's windows, False otherwise.

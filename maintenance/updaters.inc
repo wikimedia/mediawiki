@@ -31,6 +31,7 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
+	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
 	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
 	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
@@ -216,12 +217,11 @@ function do_copy_newtalk_to_watchlist() {
 function do_user_update() {
 	global $wgDatabase;
 	if( $wgDatabase->fieldExists( 'user', 'user_emailauthenticationtimestamp' ) ) {
-		echo "EAUTHENT: The user table is already set up for email authentication.\n";
-	} else {
-		echo "EAUTHENT: Adding user_emailauthenticationtimestamp field for email authentication management.";
-		/* ALTER TABLE user ADD (user_emailauthenticationtimestamp varchar(14) binary NOT NULL default '0'); */
+		echo "User table contains old email authentication field. Dropping... ";
 		dbsource( "maintenance/archives/patch-email-authentication.sql", $wgDatabase );
 		echo "ok\n";
+	} else {
+		echo "...user table does not contain old email authentication field.\n";
 	}
 }
 
