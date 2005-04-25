@@ -25,6 +25,8 @@
  * @package MediaWiki
  */
 
+require_once( 'WikiError.php' );
+
 /**
  * Provide mail capabilities
  * @param string $string ????
@@ -230,8 +232,7 @@ class EmailNotification {
 					if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
 						( $enotifusertalkpage && $watchingUser->getOption('enotifusertalkpages') )
 					&& (!$currentMinorEdit || ($wgEmailNotificationForMinorEdits && $watchingUser->getOption('enotifminoredits') ) )
-					&& ($watchingUser->getEmail() != '')
-					&& (!$wgEmailAuthentication || ($watchingUser->getEmailAuthenticationtimestamp() != 0 ) ) ) {
+					&& ($watchingUser->isEmailConfirmed() ) ) {
 						# ... adjust remaining text and page edit time placeholders
 						# which needs to be personalized for each user
 						$sent = $this->composeAndSendPersonalisedMail( $watchingUser, $mail, $article );

@@ -98,11 +98,7 @@ class UserloginTemplate extends QuickTemplate {
 				<p>
 					<?php $this->msgHtml( 'emailforlost' ) ?><br />
 					<input tabindex='10' type='submit' name="wpMailmypassword"
-						value="<?php if ( $this->data['useemailauthent'] ) {
-								$this->msg('mailmypasswordauthent') ?>" />
-							<?php } else {
-								$this->msg('mailmypassword') ?>" />
-							<?php } ?>
+						value="<?php $this->msg('mailmypassword') ?>" />
 				</p>
 			</td>
 		</tr>

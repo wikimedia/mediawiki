@@ -1397,6 +1397,17 @@ class Database {
 	}
 	
 	/**
+	 * Local database timestamp format or null
+	 */
+	function timestampOrNull( $ts = null ) {
+		if( is_null( $ts ) ) {
+			return null;
+		} else {
+			return $this->timestamp( $ts );
+		}
+	}
+	
+	/**
 	 * @todo document
 	 */
 	function &resultObject( &$result ) {

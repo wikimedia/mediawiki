@@ -66,6 +66,11 @@ if( !$wgDisableInternalSearch ) {
 	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
 }
 
+global $wgEmailAuthentication;
+if( $wgEmailAuthentication ) {
+	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
+}
+
 $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
 	'Shortpages'	=> new SpecialPage( 'Shortpages' ),

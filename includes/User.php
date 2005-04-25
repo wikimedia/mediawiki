@@ -23,7 +23,7 @@ class User {
 	 * @access private
 	 */
 	var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
-	var $mEmailAuthenticationtimestamp;
+	var $mEmailAuthenticated;
 	var $mRights, $mOptions;
 	var $mDataLoaded, $mNewpassword;
 	var $mSkin;
@@ -43,8 +43,9 @@ class User {
 
 	/**
 	 * Static factory method
-	 * @static
 	 * @param string $name Username, validated by Title:newFromText()
+	 * @return User
+	 * @static
 	 */
 	function newFromName( $name ) {
 		$u = new User();
@@ -58,6 +59,30 @@ class User {
 			$u->setName( $t->getText() );
 			$u->setId( $u->idFromName( $t->getText() ) );
 			return $u;
+		}
+	}
+	
+	/**
+	 * Factory method to fetch whichever use has a given email confirmation code.
+	 * This code is generated when an account is created or its e-mail address
+	 * has changed.
+	 *
+	 * If the code is invalid or has expired, returns NULL.
+	 *
+	 * @param string $code
+	 * @return User
+	 * @static
+	 */
+	function newFromConfirmationCode( $code ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$name = $dbr->selectField( 'user', 'user_name', array(
+			'user_email_token' => md5( $code ),
+			'user_email_token_expires > ' . $dbr->addQuotes( $dbr->timestamp() ),
+			) );
+		if( is_string( $name ) ) {
+			return User::newFromName( $name );
+		} else {
+			return null;
 		}
 	}
 
@@ -128,7 +153,8 @@ class User {
 	function isValidEmailAddr ( $addr ) {
 		# There used to be a regular expression here, it got removed because it
 		# rejected valid addresses.
-		return true;
+		return ( trim( $addr ) != '' ) &&
+			(false !== strpos( $addr, '@' ) );
 	}
 
 	/**
@@ -166,7 +192,7 @@ class User {
 		$this->mNewtalk = -1;
 		$this->mName = $wgIP;
 		$this->mRealName = $this->mEmail = '';
-		$this->mEmailAuthenticationtimestamp = 0;
+		$this->mEmailAuthenticated = null;
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$this->mGroups = array();
@@ -475,14 +501,14 @@ class User {
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
-		  'user_emailauthenticationtimestamp',
+		  'user_email_authenticated',
 		  'user_real_name','user_options','user_touched', 'user_token' ),
 		  array( 'user_id' => $this->mId ), $fname );
 		
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
-			$this->mEmailAuthenticationtimestamp = wfTimestamp(TS_MW,$s->user_emailauthenticationtimestamp);
+			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $s->user_email_authenticated );
 			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
@@ -667,9 +693,9 @@ class User {
 		return $this->mEmail;
 	}
 
-	function getEmailAuthenticationtimestamp() {
+	function getEmailAuthenticationTimestamp() {
 		$this->loadFromDatabase();
-		return $this->mEmailAuthenticationtimestamp;
+		return $this->mEmailAuthenticated;
 	}
 
 	function setEmail( $str ) {
@@ -1022,7 +1048,7 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
-		 		'user_emailauthenticationtimestamp' => $dbw->timestamp($this->mEmailAuthenticationtimestamp),
+		 		'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_options' => $this->encodeOptions(),
 				'user_touched' => $dbw->timestamp($this->mTouched),
 				'user_token' => $this->mToken
@@ -1082,7 +1108,7 @@ class User {
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
 				'user_email' => $this->mEmail,
-				'user_emailauthenticationtimestamp' => $dbw->timestamp($this->mEmailAuthenticationtimestamp),
+				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
 				'user_options' => $this->encodeOptions(),
 				'user_token' => $this->mToken
@@ -1253,8 +1279,13 @@ class User {
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
 			return true;
 		} elseif ( ($this->mNewpassword != '') && (0 == strcmp( $ep, $this->mNewpassword )) ) {
-			$this->mEmailAuthenticationtimestamp = wfTimestampNow();
-			$this->mNewpassword = ''; # use the temporary one-time password only once: clear it now !
+			# If e-mail confirmation hasn't been done already,
+			# we may as well confirm it here -- the user can only
+			# get this password via e-mail.
+			$this->mEmailAuthenticated = wfTimestampNow();
+			
+			# use the temporary one-time password only once: clear it now !
+			$this->mNewpassword = '';
 			$this->saveSettings();
 			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
@@ -1281,7 +1312,7 @@ class User {
 	 */
 	function editToken( $salt = '' ) {
 		if( !isset( $_SESSION['wsEditToken'] ) ) {
-			$token = dechex( mt_rand() ) . dechex( mt_rand() );
+			$token = $this->generateToken();
 			$_SESSION['wsEditToken'] = $token;
 		} else {
 			$token = $_SESSION['wsEditToken'];
@@ -1289,6 +1320,16 @@ class User {
 		if( is_array( $salt ) ) {
 			$salt = implode( '|', $salt );
 		}
+		return md5( $token . $salt );
+	}
+	
+	/**
+	 * Generate a hex-y looking random token for various uses.
+	 * Could be made more cryptographically sure if someone cares.
+	 * @return string
+	 */
+	function generateToken( $salt = '' ) {
+		$token = dechex( mt_rand() ) . dechex( mt_rand() );
 		return md5( $token . $salt );
 	}
 	
@@ -1305,6 +1346,138 @@ class User {
 	 */
 	function matchEditToken( $val, $salt = '' ) {
 		return ( $val == $this->editToken( $salt ) );
+	}
+	
+	/**
+	 * Generate a new e-mail confirmation token and send a confirmation
+	 * mail to the user's given address.
+	 *
+	 * @return mixed True on success, a WikiError object on failure.
+	 */
+	function sendConfirmationMail() {
+		global $wgIP, $wgContLang;
+		$url = $this->confirmationTokenUrl( $expiration );
+		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
+			wfMsg( 'confirmemail_body',
+				$wgIP,
+				$this->getName(),
+				$url,
+				$wgContLang->timeanddate( $expiration, false ) ) );
+	}
+	
+	/**
+	 * Send an e-mail to this user's account. Does not check for
+	 * confirmed status or validity.
+	 *
+	 * @param string $subject
+	 * @param string $body
+	 * @param strong $from Optional from address; default $wgPasswordSender will be used otherwise.
+	 * @return mixed True on success, a WikiError object on failure.
+	 */
+	function sendMail( $subject, $body, $from = null ) {
+		if( is_null( $from ) ) {
+			global $wgPasswordSender;
+			$from = $wgPasswordSender;
+		}
+		
+		require_once( 'UserMailer.php' );
+		$error = userMailer( $this->getEmail(), $from, $subject, $body );
+		
+		if( $error == '' ) {
+			return true;
+		} else {
+			return new WikiError( $error );
+		}
+	}
+	
+	/**
+	 * Generate, store, and return a new e-mail confirmation code.
+	 * A hash (unsalted since it's used as a key) is stored.
+	 * @param &$expiration mixed output: accepts the expiration time
+	 * @return string
+	 * @access private
+	 */
+	function confirmationToken( &$expiration ) {
+		$fname = 'User::confirmationToken';
+		
+		$now = time();
+		$expires = $now + 7 * 24 * 60 * 60;
+		$expiration = wfTimestamp( TS_MW, $expires );
+		
+		$token = $this->generateToken( $this->mId . $this->mEmail . $expires );
+		$hash = md5( $token );
+		
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->update( 'user',
+			array( 'user_email_token'         => $hash,
+			       'user_email_token_expires' => $dbw->timestamp( $expires ) ),
+			array( 'user_id'                  => $this->mId ),
+			$fname );
+		
+		return $token;
+	}
+	
+	/**
+	 * Generate and store a new e-mail confirmation token, and return
+	 * the URL the user can use to confirm.
+	 * @param &$expiration mixed output: accepts the expiration time
+	 * @return string
+	 * @access private
+	 */
+	function confirmationTokenUrl( &$expiration ) {
+		$token = $this->confirmationToken( $expiration );
+		$title = Title::makeTitle( NS_SPECIAL, 'Confirmemail/' . $token );
+		return $title->getFullUrl();
+	}
+	
+	/**
+	 * Mark the e-mail address confirmed and save.
+	 */
+	function confirmEmail() {
+		$this->loadFromDatabase();
+		$this->mEmailAuthenticated = wfTimestampNow();
+		$this->saveSettings();
+		return true;
+	}
+	
+	/**
+	 * Is this user allowed to send e-mails within limits of current
+	 * site configuration?
+	 * @return bool
+	 */
+	function canSendEmail() {
+		return $this->isEmailConfirmed();
+	}
+	
+	/**
+	 * Is this user allowed to receive e-mails within limits of current
+	 * site configuration?
+	 * @return bool
+	 */
+	function canReceiveEmail() {
+		return $this->canSendEmail() && !$this->getOption( 'disablemail' );
+	}
+	
+	/**
+	 * Is this user's e-mail address valid-looking and confirmed within
+	 * limits of the current site configuration?
+	 *
+	 * If $wgEmailAuthentication is on, this may require the user to have
+	 * confirmed their address by returning a code or using a password
+	 * sent to the address from the wiki.
+	 *
+	 * @return bool
+	 */
+	function isEmailConfirmed() {
+		global $wgEmailAuthentication;
+		$this->loadFromDatabase();
+		if( $this->isAnon() )
+			return false;
+		if( !$this->isValidEmailAddr( $this->mEmail ) )
+			return false;
+		if( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() )
+			return false;
+		return true;
 	}
 }
 
