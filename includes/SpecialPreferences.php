@@ -52,7 +52,7 @@ class PreferencesForm {
 		$this->mMath = $request->getVal( 'wpMath' );
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
-		$this->mRealName = ($wgAllowRealName) ? $request->getVal( 'wpRealName' ) : '';
+		$this->mRealName = $wgAllowRealName ? $request->getVal( 'wpRealName' ) : '';
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mUserLanguage = $request->getVal( 'wpUserLanguage' );
@@ -64,7 +64,6 @@ class PreferencesForm {
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
 		$this->mImageSize = $request->getVal( 'wpImageSize' );
 		$this->mThumbSize = $request->getInt( 'wpThumbSize' );
-
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
 		$this->mPosted = $request->wasPosted();
@@ -123,7 +122,7 @@ class PreferencesForm {
 		}
 	}
 
-	/**
+		/**
 	 * @access private
 	 */
 	function validateInt( &$val, $min=0, $max=0x7fffffff ) {
@@ -237,31 +236,32 @@ class PreferencesForm {
 		$wgUser->setCookies();
 		$wgUser->saveSettings();
 		
-		$error = wfMsg( 'savedprefs' );
 		if( $wgEnableEmail ) {
-			$newadr = $this->mUserEmail;
-			$oldadr = $wgUser->getEmail();
-			if( ($newadr != '') && ($newadr != $oldadr) ) {
-				# the user has supplied a new email address on the login page
-				if( $wgUser->isValidEmailAddr( $newadr ) ) {
-					$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
-					$wgUser->mEmailAuthenticated = null; # but flag as "dirty" = unauthenticated
-					$wgUser->saveSettings();
-					if ($wgEmailAuthentication) {
-						# Mail a temporary password to the dirty address.
-						# User can come back through the confirmation URL to re-enable email.
-						$result = $wgUser->sendConfirmationMail();
-						if( WikiError::isError( $result ) ) {
-							$error = wfMsg( 'mailerror', $result->getMessage() );
-						} else {
-							$error = wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() );
-						}
+			$newadr = strtolower( $this->mUserEmail );
+			$oldadr = strtolower($wgUser->getEmail());
+			if (($newadr <> '') && ($newadr <> $oldadr)) { # the user has supplied a new email address on the login page
+				# prepare for authentication and mail a temporary password to newadr
+				require_once( 'SpecialUserlogin.php' );
+				if ( !$wgUser->isValidEmailAddr( $newadr ) ) {
+					$this->mainPrefsForm( wfMsg( 'invalidemailaddress' ) );
+					return;
+				}
+				$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
+				$wgUser->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
+				$wgUser->saveSettings();
+				if ($wgEmailAuthentication) {
+					# mail a temporary password to the dirty address
+					# on "save options", this user will be logged-out automatically
+					$error = LoginForm::mailPasswordInternal( $wgUser, true, $dummy );
+					if ($error === '') {
+						return LoginForm::mainLoginForm( wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() ) );
+					} else {
+						return LoginForm::mainLoginForm( wfMsg( 'mailerror', $error ) );
 					}
-				} else {
-					$error = wfMsg( 'invalidemailaddress' );
+					# if user returns, that new email address gets authenticated in checkpassword()
 				}
 			} else {
-				$wgUser->setEmail( $this->mUserEmail );
+				$wgUser->setEmail( strtolower($this->mUserEmail) );
 				$wgUser->setCookies();
 				$wgUser->saveSettings();
 			}
@@ -269,7 +269,7 @@ class PreferencesForm {
 
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 		$po = ParserOptions::newFromUser( $wgUser );
-		$this->mainPrefsForm( $error );
+		$this->mainPrefsForm( wfMsg( 'savedprefs' ) );
 	}
 
 	/**
@@ -280,7 +280,7 @@ class PreferencesForm {
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
-		$this->mUserEmailAuthenticated = $wgUser->getEmailAuthenticationTimestamp();
+		$this->mUserEmailAuthenticationtimestamp = $wgUser->getEmailAuthenticationtimestamp();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
 		$this->mUserLanguage = $wgUser->getOption( 'language' );
 		if( empty( $this->mUserLanguage ) ) {
@@ -289,8 +289,7 @@ class PreferencesForm {
 			$this->mUserLanguage = $wgContLanguageCode;
 		}
 		$this->mUserVariant = $wgUser->getOption( 'variant');
-		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
-		else { $this->mEmailFlag = 0; }
+		$this->mEmailFlag = $wgUser->getOption( 'disablemail' ) == 1 ? 1 : 0;
 		$this->mNick = $wgUser->getOption( 'nickname' );
 
 		$this->mQuickbar = $wgUser->getOption( 'quickbar' );
@@ -362,14 +361,14 @@ class PreferencesForm {
 		$this->mUsedToggles[$tname] = true;
 		$ttext = $wgLang->getUserToggle( $tname );
 		
-		if ( 1 == $wgUser->getOption( $tname ) ) {
-			$checked = ' checked="checked"';
-		} else {
-			$checked = '';
-		}		
-		$trailer =($trailer) ? $trailer : '';
-		return "<div><input type='checkbox' value=\"1\" "
-		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label>$trailer</div>\n";
+		$checked = $wgUser->getOption( $tname ) == 1 ? ' checked="checked"' : '';
+		$trailer = $trailer ? $trailer : '';
+		return "<tr><td align='right'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked />" .
+			"</td><td align='left'><label for=\"$tname\">$ttext</label>$trailer</td></tr>";
+	}
+
+	function addRow($td1, $td2) {
+		return "<tr><td align='right'>$td1</td><td align='left'>$td2</td></tr>";
 	}
 
 	/**
@@ -406,61 +405,96 @@ class PreferencesForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
 
-		$qb = wfMsg( 'qbsettings' );
-		$cp = wfMsg( 'changepassword' );
-		$sk = wfMsg( 'skin' );
-		$math = wfMsg( 'math' );
-		$files = wfMsg( 'files' );
-		$dateFormat = wfMsg('dateformat');
-		$opw = wfMsg( 'oldpassword' );
-		$npw = wfMsg( 'newpassword' );
-		$rpw = wfMsg( 'retypenew' );
-		$svp = wfMsg( 'saveprefs' );
-		$rsp = wfMsg( 'resetprefs' );
-		$tbs = wfMsg( 'textboxsize' );
-		$tbr = wfMsg( 'rows' );
-		$tbc = wfMsg( 'columns' );
-		$ltz = wfMsg( 'localtime' );
-		$timezone = wfMsg( 'timezonelegend' );
-		$tzt = wfMsg( 'timezonetext' );
-		$tzo = wfMsg( 'timezoneoffset' );
-		$tzGuess = wfMsg( 'guesstimezone' );
-		$tzServerTime = wfMsg( 'servertime' );
-		$yem = wfMsg( 'youremail' );
-		$yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
-		$yl  = wfMsg( 'yourlanguage' );
-		$yv  = wfMsg( 'yourvariant' );
-		$emf = wfMsg( 'emailflag' );
-		$ynn = wfMsg( 'yournick' );
-		$stt = wfMsg ( 'stubthreshold' ) ;
-		$srh = wfMsg( 'searchresultshead' );
-		$rpp = wfMsg( 'resultsperpage' );
-		$scl = wfMsg( 'contextlines' );
-		$scc = wfMsg( 'contextchars' );
-		$rcc = wfMsg( 'recentchangescount' );
-		$dsn = wfMsg( 'defaultns' );
-
-		$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
-	method=\"post\">" );
+		$wgOut->addHTML( "<form id='preferences' name='preferences' action=\"$action\" method='post'>" );
 	
-		# First section: identity
-		# Email, etc.
+		# User data
 		#
+
+		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table>\n");
+
+		if (!empty($this->mRealName)) {
+			$wgOut->addHTML(
+				$this->addRow(
+					wfMsg('yourrealname'),
+					"<input type='text' name='wpRealName' value=\"{$this->mRealName}\" size='25' />"
+				) . 
+				$this->addRow(
+					wfMsg( 'youremail' ),
+					"<input type='text' name='wpUserEmail' value=\"{$this->mUserEmail}\" size='25' />"
+				)
+			);
+		}
+		
+		$wgOut->addHTML( $this->addRow( wfMsg( 'yournick' ), "<input type='text' name='wpNick' value=\"{$this->mNick}\" size='25' />") );
+		$wgOut->addHTML( $this->getToggle( 'fancysig' ) );
+
+		/**
+		 * If a bogus value is set, default to the content language.
+		 * Otherwise, no default is selected and the user ends up
+		 * with an Afrikaans interface since it's first in the list.
+		 */
+		$selectedLang = isset( $wgLanguageNames[$this->mUserLanguage] ) ? $this->mUserLanguage : $wgContLanguageCode;
+		$selbox = null;
+		foreach($wgLanguageNames as $code => $name) {
+			global $IP;
+			/* only add languages that have a file */
+			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
+			if(file_exists($langfile) || $code == $wgContLanguageCode) {
+				$sel = ($code == $selectedLang)? ' selected="selected"' : '';
+				$selbox .= "<option value=\"$code\"$sel>$code - $name</option>\n";
+			}
+		}
+		$wgOut->addHTML( $this->addRow( wfMsg('yourlanguage'), "<select name='wpUserLanguage'>$selbox</select>" ));
+
+		/* see if there are multiple language variants to choose from*/
+		if(!$wgDisableLangConversion) {
+			$variants = $wgContLang->getVariants();
+		
+			foreach($variants as $v) {
+				$v = str_replace( '_', '-', strtolower($v));
+				if($name = $wgLanguageNames[$v]) {
+					$variantArray[$v] = $name;
+				}
+			}
+			
+			$selbox = null;
+			foreach($variantArray as $code => $name) {
+				$sel = $code == $this->mUserVariant ? 'selected="selected"' : '';
+				$selbox .= "<option value=\"$code\" $sel>$code - $name</option>";
+			}
+			
+			if(count($variantArray) > 1) {
+				$wgOut->addHtml(
+					$this->addRow( wfMsg( 'yourvariant' ), "<select name='wpUserVariant'>$selbox</select>" )
+				);
+			}
+		}
+		$wgOut->addHTML('</table>');
+
+		# Password
+		$this->mOldpass = htmlspecialchars( $this->mOldpass );
+		$this->mNewpass = htmlspecialchars( $this->mNewpass );
+		$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
+
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table>');
+		$wgOut->addHTML(
+			$this->addRow( wfMsg( 'oldpassword' ), "<input type='password' name='wpOldpass' value=\"{$this->mOldpass}\" size='20' />" ) .
+			$this->addRow( wfMsg( 'newpassword' ), "<input type='password' name='wpNewpass' value=\"{$this->mNewpass}\" size='20' />" ) .
+			$this->addRow( wfMsg( 'retypenew' ), "<input type='password' name='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />" ) .
+			$this->getToggle( "rememberpassword" ) . "</table>\n</fieldset>\n\n" );
+
+		# Enotif
 		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
 		$this->mRealName = htmlspecialchars( $this->mRealName );
 		$this->mNick = htmlspecialchars( $this->mNick );
-		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
-		else { $emfc = ''; }
-
+		
 		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
-			if( $wgUser->getEmailAuthenticationTimestamp() ) {
-				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationTimestamp(), true ) ).'<br />';
+			if ($wgUser->getEmailAuthenticationtimestamp() != 0) {
+				$emailauthenticated = wfMsg('emailauthenticated',
+					$wgLang->timeanddate($wgUser->getEmailAuthenticationtimestamp(), true ) ).'<br />';
 				$disabled = '';
 			} else {
-				$skin = $wgUser->getSkin();
-				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
-					$skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Confirmemail' ),
-						wfMsg( 'emailconfirmlink' ) );
+				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />';
 				$disabled = ' '.wfMsg('disableduntilauthent');
 			}
 		} else {
@@ -473,24 +507,13 @@ class PreferencesForm {
 
 		$ps = $this->namespacesCheckboxes();
 
-		$enotifwatchlistpages = ($wgEmailNotificationForWatchlistPages) ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
-		$enotifusertalkpages = ($wgEmailNotificationForUserTalkPages) ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
-		$enotifminoredits = ($wgEmailNotificationForMinorEdits) ? $this->getToggle( 'enotifminoredits', $disabled) : '';
-		$enotifrevealaddr = ($wgEmailNotificationRevealPageEditorAddress) ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
+		$enotifwatchlistpages = $wgEmailNotificationForWatchlistPages ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
+		$enotifusertalkpages = $wgEmailNotificationForUserTalkPages ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
+		$enotifminoredits = $wgEmailNotificationForMinorEdits ? $this->getToggle( 'enotifminoredits', $disabled) : '';
+		$enotifrevealaddr = $wgEmailNotificationRevealPageEditorAddress ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
 		$prefs_help_email_enotif = ( $wgEmailNotificationForWatchlistPages || $wgEmailNotificationForUserTalkPages) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
-		$prefs_help_realname = '';
-
-		$wgOut->addHTML( "<fieldset>
-		<legend>".wfMsg('prefs-personal')."</legend>");
-
-			if ($wgAllowRealName) {
-			$wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
-			$prefs_help_realname = wfMsg('prefs-help-realname').'<br />';
-		}
-		
 		if( $wgEnableEmail ) {
-			$wgOut->addHTML("
-			<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>" );
+			$wgOut->addHTML( "<fieldset><legend>" . wfMsg('email') . "</legend>");
 			$wgOut->addHTML(
 				$emailauthenticated.
 				$enotifrevealaddr.
@@ -498,127 +521,65 @@ class PreferencesForm {
 				$enotifusertalkpages.
 				$enotifminoredits );
 			if( $wgEnableUserEmail ) {
+				$emfc = $this->mEmailFlag ? 'checked="checked"' : '';
 				$wgOut->addHTML(
-				"<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf.$disabled</label></div>" );
+				"<input type='checkbox' $emfc value='1' name='wpEmailFlag' />".  wfMsg( 'emailflag' ) . $disabled );
+				$prefs_help_realname = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
 			}
+			$wgOut->addHTML( '</fieldset>' );
 		}
 		
-		$fancysig = $this->getToggle( 'fancysig' );
-		$wgOut->addHTML("
-		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='25' /></label></div>
-		<div>$fancysig<br /></div>
-		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
-
-		/**
-		 * If a bogus value is set, default to the content language.
-		 * Otherwise, no default is selected and the user ends up
-		 * with an Afrikaans interface since it's first in the list.
-		 */
-		if( isset( $wgLanguageNames[$this->mUserLanguage] ) ) {
-			$selectedLang = $this->mUserLanguage;
-		} else {
-			$selectedLang = $wgContLanguageCode;
+		if ($wgAllowRealName || $wgEnableEmail) {
+			$wgOut->addHTML("<div class='prefsectiontip'>");
+			$rn = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
+			$em = $wgEnableEmail ? '<br />' .  wfMsg('prefs-help-email') : '';
+			$wgOut->addHTML( $rn . $em  . '</div>');
 		}
-		foreach($wgLanguageNames as $code => $name) {
-			global $IP;
-			/* only add languages that have a file */
-			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-			if(file_exists($langfile) || $code == $wgContLanguageCode) {
-				$sel = ($code == $selectedLang)? 'selected="selected"' : '';
-				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
-			}
-		}
-		$wgOut->addHtml("</select></label></div>\n" );
 
-		/* see if there are multiple language variants to choose from*/
-		if(!$wgDisableLangConversion) {
-			$variants = $wgContLang->getVariants();
-			$size=sizeof($variants);
-		
-			$variantArray=array();
-			foreach($variants as $v) {
-				$v = str_replace( '_', '-', strtolower($v));
-				if($name=$wgLanguageNames[$v]) {
-					$variantArray[$v] = $name;
-				}
-			}
-			$size=sizeof($variantArray);
-		
-			if(sizeof($variantArray) > 1) {
-			$wgOut->addHtml("
-				<div><label>$yv: <select name=\"wpUserVariant\">\n");
-				foreach($variantArray as $code => $name) {
-					$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
-					$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
-				}
-			}
-		}
-		# Fields for changing password
-		#
-		$this->mOldpass = htmlspecialchars( $this->mOldpass );
-		$this->mNewpass = htmlspecialchars( $this->mNewpass );
-		$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
-
-		$wgOut->addHTML( "<fieldset>
-	<legend>$cp</legend>
-	<div><label>$opw: <input type='password' name=\"wpOldpass\" value=\"{$this->mOldpass}\" size='20' /></label></div>
-	<div><label>$npw: <input type='password' name=\"wpNewpass\" value=\"{$this->mNewpass}\" size='20' /></label></div>
-	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
-	" . $this->getToggle( "rememberpassword" ) . "
-	</fieldset>
-	<div class='prefsectiontip'>".$prefs_help_realname.wfMsg('prefs-help-email').$prefs_help_email_enotif."</div>\n</fieldset>\n" );
-
-		# Quickbar setting
+		$wgOut->addHTML( '</fieldset>' );
+		 
+		# Quickbar
 		#
 		if ($this->mSkin == 'cologneblue' || $this->mSkin == 'standard') {
-			$wgOut->addHtml( "<fieldset>\n<legend>$qb</legend>\n" );
+			$wgOut->addHtml( "<fieldset>\n<legend>" . wfMsg( 'qbsettings' ) . "</legend>\n" );
 			for ( $i = 0; $i < count( $qbs ); ++$i ) {
 				if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
 				else { $checked = ""; }
-				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\" value=\"$i\"$checked />{$qbs[$i]}</label></div>\n" );
+				$wgOut->addHTML( "<div><label><input type='radio' name='wpQuickbar' value=\"$i\"$checked />{$qbs[$i]}</label></div>\n" );
 			}
 			$wgOut->addHtml( "</fieldset>\n\n" );
 		}
 
-		# Skin setting
+		# Skin
 		#
-		$wgOut->addHTML( "<fieldset>\n<legend>$sk</legend>\n" );
+		$wgOut->addHTML( "<fieldset>\n<legend>\n" . wfMsg('skin') . "</legend>\n" );
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
-			if ( $skinkey == $this->mSkin ) { 
-				$checked = ' checked="checked"'; 
-			} else { 
-				$checked = ''; 
-			}
-			if ( isset( $skinNames[$skinkey] ) ) {
-				$sn = $skinNames[$skinkey];
-			} else {
-				$sn = $skinname;
-			}
 			global $wgDefaultSkin;
-			if( $skinkey == $wgDefaultSkin ) {
+			
+			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
+			$sn = isset( $skinNames[$skinkey] ) ? $skinNames[$skinkey] : $skinname;
+			
+			if( $skinkey == $wgDefaultSkin )
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
-			}
-			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\" value=\"$skinkey\"$checked /> {$sn}</label></div>\n" );
+			$wgOut->addHTML( "<input type='radio' name='wpSkin' value=\"$skinkey\"$checked /> {$sn}<br/>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
-		# Math setting
+		# Math
 		#
-		$wgOut->addHTML( "<fieldset>\n<legend>$math</legend>\n" );
-		for ( $i = 0; $i < count( $mathopts ); ++$i ) {
-			if ( $i == $this->mMath ) { $checked = ' checked="checked"'; }
-			else { $checked = ""; }
-			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpMath\"
-	value=\"$i\"$checked /> ".wfMsg($mathopts[$i])."</label></div>\n" );
+		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('math') . '</legend>' );
+		foreach ( $mathopts as $k => $v ) {
+			$checked = $k == $this->mMath ? ' checked="checked"' : '';
+			$wgOut->addHTML( "<div><label><input type='radio' name='wpMath' value=\"$k\"$checked /> ".wfMsg($v)."</label></div>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
 		# Files
 		#
 		$wgOut->addHTML("<fieldset>
-			<legend>$files</legend>
+			<legend>" . wfMsg( 'files' ) . "</legend>
 			<div><label>" . wfMsg('imagemaxsize') . "<select name=\"wpImageSize\">");
 			
 			$imageLimitOptions = null;
@@ -639,7 +600,7 @@ class PreferencesForm {
                 # Date format
                 #
 		if ($dateopts) {
-			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat</legend>\n" );
+			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('dateformat') . "</legend>\n" );
 			foreach($dateopts as $key => $option) {
 				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
 				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
@@ -654,23 +615,26 @@ class PreferencesForm {
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
 		 
-		$wgOut->addHTML( "<fieldset>
-			<legend>$timezone</legend>
-			<div><b>$tzServerTime:</b>" .  $nowserver . "</div>
-			<div><b>$ltz:</b> $nowlocal</div>
-			<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' /></label></div>
-			<div><input type=\"button\" value=\"$tzGuess\" onclick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
-			<div class='prefsectiontip'>* {$tzt}</div>
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ) . '</legend><table>' .
+		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
+			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
+			$this->addRow(
+				wfMsg( 'timezoneoffset' ),
+				"<input type='text' name='wpHourDiff' value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' />"
+			) . "<tr><td colspan='2'>
+				<input type='button' value=\"" . wfMsg( 'guesstimezone' ) ."\"
+				onclick='javascript:guessTimezone()' id='guesstimezonebutton' style='display:none;' />
+				</td></tr></table>
+			<div class='prefsectiontip'>*" .  wfMsg( 'timezonetext' ) . "</div>
 		</fieldset>\n\n" );		
 		
 		# Editing
 		#
-		$wgOut->addHTML( "<fieldset>
-	<legend>$tbs</legend>\n
+		$wgOut->addHTML( "<fieldset><legend>" . wfMsg( 'textboxsize' ) . " </legend>\n
 		<div>
-			<label>$tbr: <input type='text' name=\"wpRows\" value=\"{$this->mRows}\" size='6' /></label>
-			<label>$tbc: <input type='text' name=\"wpCols\" value=\"{$this->mCols}\" size='6' /></label>
-		</div> " .
+			<label>" . wfMsg( 'rows' ) . ": <input type='text' name='wpRows' value=\"{$this->mRows}\" size='6' /></label>
+			<label>" . wfMsg( 'columns' ) . ": <input type='text' name='wpCols' value=\"{$this->mCols}\" size='6' /></label>
+		</div> <table>" .
 		$this->getToggle( "editsection" ) .
 		$this->getToggle( "editsectiononrightclick" ) .
 		$this->getToggle( "editondblclick" ) .
@@ -683,56 +647,49 @@ class PreferencesForm {
 		$this->getToggle( "externaleditor" ) .
 		$this->getToggle( "externaldiff" ) .
 		"
-	</fieldset>");
+	</table></fieldset>");
 	
 		$shownumberswatching = ($wgRCShowWatchingUsers) ? $this->getToggle('shownumberswatching') : '';
 
 		$wgOut->addHTML( "
-	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
-		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
+	<fieldset><legend>".htmlspecialchars(wfMsg('prefs-rc'))."</legend>
+		<div><label>" . wfMsg( 'recentchangescount' ) . ": <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
 		$this->getToggle( "hideminor" ) . $shownumberswatching .
 		$this->getToggle( "usenewrc" ) . 
 		$this->getToggle( "rcusemodstyle" ) .
 		$this->getToggle('showupdated', wfMsg('updatedmarker')) .
-		"<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
-	</fieldset>
+		"<div><label>". wfMsg ( 'stubthreshold' ) . ": <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+	</fieldset>");
 	
-	<fieldset>
-		<legend>$srh</legend>
-		<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"$this->mSearch\" size='6' /></label></div>
-		<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"$this->mSearchLines\" size='6' /></label></div>
-		<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"$this->mSearchChars\" size='6' /></label></div>
-
-		<fieldset>
-			<legend>$dsn</legend>
-			$ps
-		</fieldset>
-	</fieldset>
-		" );
+		$wgOut->addHTML( "<fieldset><legend>" . wfMsg( 'searchresultshead' ) . "</legend><table>" .
+		$this->addRow( wfMsg( 'resultsperpage' ), "<input type='text' name='wpSearch' value=\"$this->mSearch\" size='4' />" ) .
+		$this->addRow( wfMsg( 'contextlines' ), "<input type='text' name='wpSearchLines' value=\"$this->mSearchLines\" size='4' />") .
+		$this->addRow( wfMsg( 'contextchars' ), "<input type='text' name='wpSearchChars' value=\"$this->mSearchChars\" size='4' />") .
+		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
 	
-		# Various checkbox options
+		# Misc
 		#
-		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
+		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend><table>');
 
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}
 		}
-		$wgOut->addHTML( "</fieldset>\n\n" );
+		$wgOut->addHTML( '</table></fieldset>' );
 
-		$token = htmlspecialchars( $wgUser->editToken() );
+		$token = $wgUser->editToken();
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
 	<div>
-		<input type='submit' name=\"wpSaveprefs\" value=\"$svp\" accesskey=\"".
+		<input type='submit' name='wpSaveprefs' value=\"" . wfMsg( 'saveprefs' ) . "\" accesskey=\"".
 		wfMsg('accesskey-save')."\" title=\"[alt-".wfMsg('accesskey-save')."]\" />
-		<input type='submit' name=\"wpReset\" value=\"$rsp\" />
+		<input type='submit' name='wpReset' value=\"" . wfMsg( 'resetprefs' ) . "\" />
 	</div>
 	
 	</div>
 	
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
+	<input type='hidden' name='wpEditToken' value='{$token}' />
 	</form>\n" );
 	}
 }
