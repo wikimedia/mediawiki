@@ -595,6 +595,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$groups = $u->getGroups();
 					$groups[] = $wgSysopGroupId;
 					$groups[] = $wgBureaucratGroupId;
+					$groups[] = $wgStewardGroupId;
 					$u->setGroups( $groups );
 					$u->saveSettings();
 					
