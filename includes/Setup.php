@@ -48,7 +48,6 @@ $fname = 'Setup.php';
 wfProfileIn( $fname );
 wfProfileIn( $fname.'-includes' );
 
-
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
@@ -63,7 +62,6 @@ require_once( 'MagicWord.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
 require_once( 'BlockCache.php' );
-require_once( 'Parser.php' );
 require_once( 'Parser.php' );
 require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
