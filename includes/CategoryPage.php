@@ -19,6 +19,8 @@ if( $wgCategoryMagicGallery )
 class CategoryPage extends Article {
 
 	function view() {
+		if(!wfRunHooks('CategoryPageView', array(&$this))) return;
+
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->openShowCategory();
 		}
