@@ -156,7 +156,9 @@ class ImagePage extends Article {
 
 	function uploadNewVersionLink() {
 		global $wgOut;
+		$wgOut->addHTML("<div class='editExternally'>");
 		$wgOut->addWikiText( wfMsg( 'uploadnewversion', $this->getUploadUrl() ) );
+		$wgOut->addHTML("</div><br clear='both' />");
 	}
 
 	function externalEditorLink()
@@ -169,7 +171,7 @@ class ImagePage extends Article {
 			"action=edit&externaledit=true&mode=file" ) );
 		$wgOut->addWikiText( '<div class="editExternallyHelp">' .
 			wfMsg('edit-externally-help') . '</div>' );
-		$wgOut->addHTML( '</div><br clear="both" />' );
+		$wgOut->addHTML( '</div><br clear="all" />' );
 	}
 	
 	function closeShowImage()
