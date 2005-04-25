@@ -1427,8 +1427,10 @@ class Title {
 				return 'articleexists';
 			}
 			$this->moveOverExistingRedirect( $nt );
+			$pageCountChange = 0;
 		} else { # Target didn't exist, do normal move.
 			$this->moveToNewTitle( $nt, $newid );
+			$pageCountChange = 1;
 		}
 
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
@@ -1457,6 +1459,24 @@ class Title {
 		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
+		# Update site_stats
+		if ( $this->getNamespace() == NS_MAIN and $nt->getNamespace() != NS_MAIN ) {
+			# Moved out of main namespace
+			# not viewed, edited, removing
+			$u = new SiteStatsUpdate( 0, 1, -1, $pageCountChange); 
+		} elseif ( $this->getNamespace() != NS_MAIN and $nt->getNamespace() == NS_MAIN ) {
+			# Moved into main namespace
+			# not viewed, edited, adding
+			$u = new SiteStatsUpdate( 0, 1, +1, $pageCountChange ); 
+		} elseif ( $pageCountChange ) {
+			# Added redirect
+			$u = new SiteStatsUpdate( 0, 0, 0, 1 );
+		} else{
+			$u = false;
+		}
+		if ( $u ) {
+			$u->doUpdate();
+		}
 		wfRunHooks( 'TitleMoveComplete', array(&$this, &$nt, &$wgUser, $oldid, $newid) );
 		return true;
 	}

@@ -17,19 +17,46 @@ function wfSpecialStatistics() {
 	$dbr =& wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow'));
 	extract( $dbr->tableNames( 'cur', 'site_stats', 'user', 'user_rights' ) );
 
-	$sql = "SELECT COUNT(cur_namespace) AS total FROM $cur";
-	$res = $dbr->query( $sql, $fname );
-	$row = $dbr->fetchObject( $res );
-	$total = $row->total;
-
-	$sql = "SELECT ss_total_views, ss_total_edits, ss_good_articles " .
-	  "FROM $site_stats WHERE ss_row_id=1";
-	$res = $dbr->query( $sql, $fname );
-	$row = $dbr->fetchObject( $res );
+	$row = $dbr->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
 	$views = $row->ss_total_views;
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
 
+	# This code is somewhat schema-agnostic, because I'm changing it in a minor release -- TS
+	if ( isset( $row->ss_total_pages ) && $row->ss_total_pages == -1 ) {
+		# Update schema
+		$u = new SiteStatsUpdate( 0, 0, 0 );
+		$u->doUpdate();
+		$row = $dbr->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
+	}
+
+	if ( isset( $row->ss_total_pages ) ) {
+		$total = $row->ss_total_pages;
+	} else {
+		$sql = "SELECT COUNT(cur_namespace) AS total FROM $cur";
+		$res = $dbr->query( $sql, $fname );
+		$curRow = $dbr->fetchObject( $res );
+		$total = $curRow->total;
+	}
+
+	if ( isset( $row->ss_users ) ) {
+		$totalUsers = $row->ss_users;
+	} else {
+		$sql = "SELECT MAX(user_id) AS total FROM $user";
+		$res = $dbr->query( $sql, $fname );
+		$userRow = $dbr->fetchObject( $res );
+		$totalUsers = $userRow->total;
+	}
+
+	if ( isset( $row->ss_admins ) ) {
+		$admins = $row->ss_admins;
+	} else {
+		$sql = "SELECT COUNT(ur_user) AS total FROM $user_rights WHERE ur_rights LIKE '%sysop%'";
+		$res = $dbr->query( $sql, $fname );
+		$urRow = $dbr->fetchObject( $res );
+		$admins = $urRow->total;
+	}
+	
 	$text = wfMsg( "sitestatstext",
 		$wgLang->formatNum( $total ),
 		$wgLang->formatNum( $good ),
@@ -41,21 +68,11 @@ function wfSpecialStatistics() {
 	$wgOut->addWikiText( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
-	$sql = "SELECT COUNT(user_id) AS total FROM $user";
-	$res = $dbr->query( $sql, $fname );
-	$row = $dbr->fetchObject( $res );
-	$total = $row->total;
-
-	$sql = "SELECT COUNT(ur_user) AS total FROM $user_rights WHERE ur_rights LIKE '%sysop%'";
-	$res = $dbr->query( $sql, $fname );
-	$row = $dbr->fetchObject( $res );
-	$admins = $row->total;
-
 	$sk = $wgUser->getSkin();
 	$ap = "[[" . wfMsg( "administrators" ) . "]]";
 
 	$text = wfMsg( "userstatstext",
-		$wgLang->formatNum( $total ),
+		$wgLang->formatNum( $totalUsers ),
 		$wgLang->formatNum( $admins ), $ap );
 	$wgOut->addWikiText( $text );
 

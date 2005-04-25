@@ -214,6 +214,17 @@ class MakesysopForm {
 			}
 		}
 		
+		# Update site_stats
+		if ( isset( $row->ur_rights ) && strpos( $row->ur_rights, 'sysop' ) !== false ) {
+			$adminCount = -1;
+		} else {
+			$adminCount = 0;
+		}
+		if ( strpos( $newrights, 'sysop' ) !== false ) {
+			$adminCount++;
+		}
+		SiteStatsUpdate::updateAdminCount( $adminCount, $dbName );
+
 		if ( count( $rightsNotation ) == 0 ) {
 			$this->showFail();
 		} else {

@@ -27,7 +27,7 @@ class Article {
 	 */
 	var $mContent, $mContentLoaded;
 	var $mUser, $mTimestamp, $mUserText;
-	var $mCounter, $mComment, $mCountAdjustment;
+	var $mCounter, $mComment, $mGoodAdjustment, $mTotalAdjustment;
 	var $mMinorEdit, $mRedirectedFrom;
 	var $mTouched, $mFileCache, $mTitle;
 	var $mId, $mTable;
@@ -55,7 +55,7 @@ class Article {
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = $this->mUserText =
 		$this->mTimestamp = $this->mComment = $this->mFileCache = '';
-		$this->mCountAdjustment = 0;
+		$this->mGoodAdjustment = $this->mTotalAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
 	}
@@ -834,7 +834,8 @@ class Article {
 
 		$fname = 'Article::insertNewArticle';
 
-		$this->mCountAdjustment = $this->isCountable( $text );
+		$this->mGoodAdjustment = $this->isCountable( $text );
+		$this->mTotalAdjustment = 1;
 
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
@@ -1032,8 +1033,9 @@ class Article {
 		$oldtext = $this->getContent( true );
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
-			$this->mCountAdjustment = $this->isCountable( $text )
+			$this->mGoodAdjustment = $this->isCountable( $text )
 			  - $this->isCountable( $oldtext );
+			$this->mTotalAdjustment = 0;
 			$now = wfTimestampNow();
 			$won = wfInvertTimestamp( $now );
 
@@ -1692,7 +1694,7 @@ class Article {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, -$this->isCountable( $this->getContent( true ) ) );
+		$u = new SiteStatsUpdate( 0, 1, -$this->isCountable( $this->getContent( true ) ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
 		$linksTo = $this->mTitle->getLinksTo();
@@ -1947,12 +1949,10 @@ class Article {
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
 
-		$adj = $this->mCountAdjustment;
-
 		if ( 0 != $id ) {
 			$u = new LinksUpdate( $id, $title );
 			array_push( $wgDeferredUpdateList, $u );
-			$u = new SiteStatsUpdate( 0, 1, $adj );
+			$u = new SiteStatsUpdate( 0, 1, $this->mGoodAdjustment, $this->mTotalAdjustment );
 			array_push( $wgDeferredUpdateList, $u );
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );

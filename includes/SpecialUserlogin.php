@@ -199,6 +199,10 @@ class LoginForm {
 			}
 		}
 
+		# Update user count
+		$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+		$ssUpdate->doUpdate();
+
 		return $this->initUser( $u );
 	}
 	

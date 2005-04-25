@@ -32,6 +32,7 @@ $wgNewFields = array(
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user_rights',   'ur_user',          'patch-rename-user_rights.sql' ),
 	array( 'logging',       'log_params',       'patch-log_params.sql' ),
+	array( 'site_stats',    'ss_total_articles', 'patch-ss_total_articles.sql' ),
 );
 
 function add_table( $name, $patch ) {
