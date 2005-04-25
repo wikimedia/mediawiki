@@ -268,7 +268,7 @@ class User {
 			}
 
 			# DNSBL
-			if ( !$this->mBlockedby && $wgEnableSorbs && $this->isNewbie() ) {
+			if ( !$this->mBlockedby && $wgEnableSorbs && !$this->getID() ) {
 				if ( $this->inSorbsBlacklist( $wgIP ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );
@@ -420,6 +420,7 @@ class User {
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
 			return;
 		}
+		wfProfileIn( $fname );
 
 		# Paranoia
 		$this->mId = IntVal( $this->mId );
@@ -428,6 +429,7 @@ class User {
 		if(!$this->mId) {
 			$this->mRights = array();
 			$this->mDataLoaded = true;
+			wfProfileOut( $fname );
 			return;
 		} # the following stuff is for non-anonymous users only
 		
@@ -462,6 +464,7 @@ class User {
 		}
 
 		$this->mDataLoaded = true;
+		wfProfileOut( $fname );
 	}
 
 	function getID() { return $this->mId; }
@@ -686,8 +689,12 @@ class User {
 	 * @return boolean True: action is allowed, False: action should not be allowed
 	 */
 	function isAllowed($action='') {
+		$fname = 'User::isAllowed';
+		wfProfileIn( $fname );
+
 		$this->loadFromDatabase();
 		if( in_array( $action , $this->mRights ) ) {
+			wfProfileOut( $fname );
 			return true;
 		}
 		
@@ -707,17 +714,19 @@ class User {
 			'read'          => empty( $wgWhitelistRead ) ? '*' : 'user',
 			'createaccount' => '*' );
 		
+		$retVal = false;
 		if( array_key_exists( $action, $groupRights ) ) {
 			$group = $groupRights[$action];
 			if( $group == 'user' ) {
-				return ($this->getId() != 0 );
+				$retVal = ($this->getId() != 0 );
 			} elseif( $group == '*' ) {
-				return true;
+				$retVal = true;
 			} else {
-				return in_array( $group, $this->mRights );
+				$retVal = in_array( $group, $this->mRights );
 			}
 		}
-		return false;
+		wfProfileOut( $fname );
+		return $retVal;
 	}
 
 	/**

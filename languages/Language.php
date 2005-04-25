@@ -1311,7 +1311,7 @@ the list of currently operational bans and blocks.',
 'proxyblocksuccess'	=> "Done.\n",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL.',
-
+'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL. You cannot create an account',
 
 # Developer tools
 #
@@ -1678,6 +1678,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'specialloguserlabel' => 'User: ',
 'speciallogtitlelabel' => 'Title: ',
 
+# List of bad images
+'bad_image_list' => '',
 );
 
 #--------------------------------------------------------------------------
