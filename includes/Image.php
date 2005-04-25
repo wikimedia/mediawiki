@@ -1518,18 +1518,21 @@ function wfGetSVGsize( $filename ) {
  * Is an image on the bad image list?
  */
 function wfIsBadImage( $name ) {
-	global $wgLang;
+	global $wgContLang;
+	static $titleList = false;
+	if ( $titleList === false ) {
+		$titleList = array();
 
-	$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
-	foreach ( $lines as $line ) {
-		if ( preg_match( '/^\*\s*\[\[:(' . $wgLang->getNsText( NS_IMAGE ) . ':.*(?=]]))\]\]/', $line, $m ) ) {
-			$t = Title::newFromText( $m[1] );
-			if ( $t->getDBkey() == $name ) {
-				return true;
+		$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
+		foreach ( $lines as $line ) {
+			if ( preg_match( '/^\*\s*\[\[:(' . $wgContLang->getNsText( NS_IMAGE ) . ':[^\]]*)\]\]/', $line, $m ) ) {
+				$t = Title::newFromText( $m[1] );
+				$titleList[$t->getDBkey()] = 1;
 			}
 		}
 	}
-	return false;
+
+	return array_key_exists( $name, $titleList );
 }
 	
 
