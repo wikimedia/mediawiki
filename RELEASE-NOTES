@@ -530,6 +530,7 @@ pages for purposes of page relevancy ranking.
 * Fix for error on display of renamed items in Recentchanges on PHP5
 * (bug 1949) Profiling typo in rare error case
 * (bug 1963) Fix deletion log link when $wgCapitalLinks is off
+* (bug 1970) Don't show move tab for immobile pages
 
 
 === Caveats ===
