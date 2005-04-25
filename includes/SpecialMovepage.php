@@ -76,16 +76,16 @@ class MovePageForm {
 			# when the form is first opened.
 			$encNewTitle = $oldTitle;
 		} else {
-			$nt = Title::newFromURL( $this->newTitle );
-			if ( $nt ) {
-				// Check if it's valid
-				if ( !$nt->isValidMoveTarget( $ot ) ) {
-					$err = 'articleexists';
+			if( $err == '' ) {
+				$nt = Title::newFromURL( $this->newTitle );
+				if( $nt ) {
+					# If a title was supplied, probably from the move log revert
+					# link, check for validity. We can then show some diagnostic
+					# information and save a click.
+					$err = $ot->isValidMoveOperation( $nt );
 				}
-				$encNewTitle = htmlspecialchars( $this->newTitle );
-			} else {
-				$encNewTitle = $oldTitle;
 			}
+			$encNewTitle = htmlspecialchars( $this->newTitle );
 		}
 		$encReason = htmlspecialchars( $this->reason );
 

@@ -901,7 +901,8 @@ class Title {
 	 * @access public
 	 */
 	function isMovable() {
-		return Namespace::isMovable( $this->getNamespace() );
+		return Namespace::isMovable( $this->getNamespace() )
+			&& $this->getInterwiki() == '';
 	}
 	
 	/**
@@ -1451,17 +1452,25 @@ class Title {
 	}
 	
 	/**
-	 * Move a title to a new location
+	 * Check whether a given move operation would be valid.
+	 * Returns true if ok, or a message key string for an error message
+	 * if invalid. (Scarrrrry ugly interface this.)
 	 * @param Title &$nt the new title
 	 * @param bool $auth indicates whether $wgUser's permissions
 	 * 	should be checked
 	 * @return mixed true on success, message name on failure
 	 * @access public
 	 */
-	function moveTo( &$nt, $auth = true, $reason = '' ) {
+	function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
 		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
+		}
+		if( $this->equals( $nt ) ) {
+			return 'selfmove';
+		}
+		if( !$this->isMovable() || !$nt->isMovable() ) {
+			return 'immobile_namespace';
 		}
 
 		$fname = 'Title::move';
@@ -1471,13 +1480,9 @@ class Title {
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
 			return 'articleexists';
 		}
-		if ( ( ! Namespace::isMovable( $this->getNamespace() ) ) ||
-			 ( '' == $this->getDBkey() ) ||
-			 ( '' != $this->getInterwiki() ) ||
+		if ( ( '' == $this->getDBkey() ) ||
 			 ( !$oldid ) ||
-		     ( ! Namespace::isMovable( $nt->getNamespace() ) ) ||
-			 ( '' == $nt->getDBkey() ) ||
-			 ( '' != $nt->getInterwiki() ) ) {
+		     ( '' == $nt->getDBkey() ) ) {
 			return 'badarticleerror';
 		}
 
@@ -1495,6 +1500,24 @@ class Title {
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
 				return 'articleexists';
 			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Move a title to a new location
+	 * @param Title &$nt the new title
+	 * @param bool $auth indicates whether $wgUser's permissions
+	 * 	should be checked
+	 * @return mixed true on success, message name on failure
+	 * @access public
+	 */
+	function moveTo( &$nt, $auth = true, $reason = '' ) {
+		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
+		if( is_string( $err ) ) {
+			return $err;
+		}
+		if( $nt->exists() ) {
 			$this->moveOverExistingRedirect( $nt, $reason );
 		} else { # Target didn't exist, do normal move.
 			$this->moveToNewTitle( $nt, $newid, $reason );
@@ -1956,6 +1979,14 @@ class Title {
 		return $this->getInterwiki() == $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
 			&& $this->getDbkey() == $title->getDbkey();
+	}
+	
+	/**
+	 * Check if page exists
+	 * @return bool
+	 */
+	function exists() {
+		return $this->getArticleId() != 0;
 	}
 
 }
