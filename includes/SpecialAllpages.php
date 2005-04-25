@@ -135,10 +135,11 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
 		$limit = ( $i == $offset || $i == $stopat ) ? 1 : 2;
 		$sql = "SELECT page_title $fromwhere $order_str " . $dbr->limitResult ( $limit, $from );
 		$res = $dbr->query( $sql, $fname );
-		$s = $dbr->fetchObject( $res );
-		array_push ( $lines, $s->page_title );
 		if ( $s = $dbr->fetchObject( $res ) ) {
 			array_push ( $lines, $s->page_title );
+			if ( $s = $dbr->fetchObject( $res ) ) {
+				array_push ( $lines, $s->page_title );
+			}
 		}
 		$dbr->freeResult( $res );
 	}
