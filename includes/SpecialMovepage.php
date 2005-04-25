@@ -82,7 +82,10 @@ class MovePageForm {
 					# If a title was supplied, probably from the move log revert
 					# link, check for validity. We can then show some diagnostic
 					# information and save a click.
-					$err = $ot->isValidMoveOperation( $nt );
+					$newerr = $ot->isValidMoveOperation( $nt );
+					if( is_string( $newerr ) ) {
+						$err = $newerr;
+					}
 				}
 			}
 			$encNewTitle = htmlspecialchars( $this->newTitle );
