@@ -26,6 +26,7 @@ New exciting things! Need further work and testing...
 * (bug 1739) A new magicword, {{REVISIONID}} give you the article or diff database
   revision id, useful for proper citation.
 * It's now possible to invert the namespace selection at Special:Allpages and Special:Contributions
+* No longer using sorbs.net to check for open proxies by default.
 * ...and more!
 
 Need to merge:
