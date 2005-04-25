@@ -44,9 +44,6 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	extract( $dbr->tableNames( 'page', 'brokenlinks', 'links' ) );
 
 	if ( 0 == $id ) {
-		print $dbr->limitResult( $limit, $offset );
-		exit;
-
 		$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $brokenlinks,$page WHERE bl_to='" .
 		  $dbr->strencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=page_id " . 
 		  $dbr->limitResult( $limit, $offset );
