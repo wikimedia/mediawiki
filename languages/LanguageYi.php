@@ -1,18 +1,17 @@
 <?php
-/**
+/** Yiddish (ייִדיש)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
 
-# Stub for Yiddish
-
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 class LanguageYi extends LanguageUtf8 {
 
 	function getDefaultUserOptions() {
 		$opt = parent::getDefaultUserOptions();
-		$opt["quickbar"] = 2; # Right-to-left
+		$opt['quickbar'] = 2; # Right-to-left
 		return $opt;
 	}
 
