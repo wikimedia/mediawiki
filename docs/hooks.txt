@@ -336,3 +336,6 @@ $article: article object to be watched
 $user: user that watched
 $article: article object watched
 
+'CategoryPageView': before viewing a categorypage in CategoryPage::view
+$catpage: CategoryPage instance
+
