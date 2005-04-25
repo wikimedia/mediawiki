@@ -1431,6 +1431,22 @@ class Database {
 	function ping() {
 		return mysql_ping( $this->mConn );
 	}
+
+	/**
+	 * Get slave lag.
+	 * At the moment, this will only work if the DB user has the PROCESS privilege
+	 */
+	function getLag() {
+		$res = $this->query( 'SHOW PROCESSLIST' );
+		# Find slave SQL thread
+		while ( $row = $this->fetchObject( $res ) ) {
+			if ( $row->User == 'system user' && !is_null( $row->Info ) ) {
+				# This is it, return the time
+				return $row->Time;
+			}
+		}
+		return false;
+	}
 } 
 
 /**
