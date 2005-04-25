@@ -1515,7 +1515,10 @@ function wfGetSVGsize( $filename ) {
 }
 
 /**
- * Is an image on the bad image list?
+ * Determine if an image exists on the 'bad image list'
+ *
+ * @param string $name The image to check
+ * @return bool
  */
 function wfIsBadImage( $name ) {
 	global $wgContLang;
@@ -1525,7 +1528,7 @@ function wfIsBadImage( $name ) {
 
 		$lines = explode("\n", wfMsgForContent( 'bad_image_list' ));
 		foreach ( $lines as $line ) {
-			if ( preg_match( '/^\*\s*\[\[:(' . $wgContLang->getNsText( NS_IMAGE ) . ':[^\]]*)\]\]/', $line, $m ) ) {
+			if ( preg_match( '/^\*\s*\[{2}:(' . $wgContLang->getNsText( NS_IMAGE ) . ':.*?)\]{2}/', $line, $m ) ) {
 				$t = Title::newFromText( $m[1] );
 				$titleList[$t->getDBkey()] = 1;
 			}
