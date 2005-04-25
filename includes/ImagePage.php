@@ -54,26 +54,23 @@ class ImagePage extends Article {
 		}
 	}
 	
-	function showEXIFdata()
-		{
-		global $wgOut , $wgShowEXIF ;
-		if ( ! $wgShowEXIF ) return ;
+	function showEXIFdata() {
+		global $wgOut, $wgShowEXIF;
+		if ( ! $wgShowEXIF ) return;
 
 		# Get the EXIF data
-		$exif = $this->img->getExifData () ;
-		if ( count ( $exif ) == 0 ) return ; # No EXIF data available
-		if ( count ( $exif ) == 1 && isset ( $exif["EXIF"] ) && $exif["EXIF"] == "NO" ) return ; # This image does not have EXIF data
+		$exif = $this->img->getExifData();
+		if ( count ( $exif ) == 0 ) return; # No EXIF data available
 		
 		# Create the table
-		$exifdata = wfMsg( 'exifdata' );
-		$r = "\n<table class='exif'>\n" ;
-		$r .= "<caption>$exifdata</caption>\n" ;
-		foreach ( $exif AS $k => $v ) {
-			$r .= '<tr><th>' . htmlspecialchars ( $k ) . '</th><td>' . htmlspecialchars ( $v ) . "</td></tr>\n";
+		$r = "{| class=exif\n" ;
+		$r .= '|+ ' . wfMsg( 'exifdata' ) . "\n|-\n" ;
+		foreach ( $exif as $k => $v ) {
+			$r .= "! $k\n";
+			$r .= '| ' . htmlspecialchars($v) . "\n|-\n";
 		}
-		$r .= '</table>';
-		$wgOut->addHTML ( $r ) ;
-		}
+		$wgOut->addWikiText( substr($r, 0, -3) . '|}' );
+	}
 
 	function openShowImage()
 	{
