@@ -1199,6 +1199,7 @@ $wgAnonGroupId = 1;
 $wgLoggedInGroupId = 2;
 $wgSysopGroupId = 3;
 $wgBureaucratGroupId = 4;
+$wgStewardGroupId = 5;
 
 /**
  * When translating messages with wfMsg(), it is not always clear what should be
