@@ -701,11 +701,11 @@ class SkinTemplate extends Skin {
 			if ($text != '-') {
 				$dest = wfMsgForContent( $link['href'] );
 				wfProfileIn( "$fname-{$link['text']}2" );
-			    $result[] = array(
-								  'text' => $text,
-								  'href' => $this->makeInternalOrExternalUrl( $dest ),
-								  'id' => 'n-'.$link['text']
-								  );
+				$result[] = array(
+					'text' => $text,
+					'href' => $this->makeInternalOrExternalUrl( $dest ),
+					'id' => 'n-'.$link['text']
+				);
 				wfProfileOut( "$fname-{$link['text']}2" );
 			}
 			wfProfileOut( "$fname-{$link['text']}" );
