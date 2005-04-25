@@ -558,12 +558,7 @@ er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.<br />',
 'badquery'		  => 'Feil utforma førespurnad',
 'badquerytext'	          => 'Vi kunne ikkje svara på denne førespurnaden &#8212; Truleg fordi du prøvde å søkje etter eit ord med færre enn tre bokstavar, noko som ikkje er mogleg enno. Det kan òg vera du skreiv feil... Prøv om att.',
 'matchtotals'	          => 'Førespurnaden "$1" gav treff på $2 sidetitlar og på teksten i $3 sider.',
-'nogomatch'               => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Det vart ikkje funne noko side med dette namnet</span>
-
-<span style="display: block; margin: 1.5em 2em">
-Du kan <b><a href="$1" class="new">laga ei side med denne namnet</a></b>.
-
-<span style="display:block; font-size: 89%; margin-left:.2em">Du bør søke etter andre namnevariasjonar først, slik at du ikkje opprettar ei side som allereie eksisterar under eit anna namn.</span></span>',
+'nogomatch'               => 'Det vart ikkje funne noko side med [[$1|dette namnet]]',
 'titlematches'	          => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'          => 'Ingen sidetitlar hadde treff på førespurnaden',
 'textmatches'	          => 'Sider med treff på førespurnaden',
