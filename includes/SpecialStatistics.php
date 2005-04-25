@@ -27,7 +27,9 @@ function wfSpecialStatistics() {
 		# Update schema
 		$u = new SiteStatsUpdate( 0, 0, 0 );
 		$u->doUpdate();
-		$row = $dbr->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
+		$dbw =& wfGetDB( DB_MASTER );
+		$row = $dbw->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
+
 	}
 
 	if ( isset( $row->ss_total_pages ) ) {
