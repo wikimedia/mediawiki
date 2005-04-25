@@ -894,8 +894,8 @@ class Title {
 	}
 
 	/**
-	 * Would anybody with sufficient privileges be able to mvoe this page?
-	 * Some pages just ain't movable.
+	 * Would anybody with sufficient privileges be able to move this page?
+	 * Some pages just aren't movable.
 	 *
 	 * @return boolean
 	 * @access public
