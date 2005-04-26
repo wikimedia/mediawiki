@@ -92,5 +92,16 @@ Ensure that the temporary and math directories exist and can be written to by
 the user account the web server runs under; if you don't control the server,
 you may have to make them world-writable.
 
-...
+== Hacking ==
 
+Before you start hacking on the math package its good to know the workflow,
+which is basically:
+
+1. texvc gets called by includes/Math.php (check out the line begining with "$cmd")
+2. texvc does its magic, which is basically to check for invalid latex code.
+3. texvc takes the user input if valid and creates a latex file containing it, see
+   get_preface in texutil.ml
+4. latex(1) gets called to create a .dvi file, the a .ps file is created from the
+   .dvi file using dvips(1), and finally convert(1) creates a .png file from
+   the .ps file. See render.ml for this process (commenting out the removal of
+   the temporary file is useful for debugging).
