@@ -363,8 +363,24 @@ class PreferencesForm {
 		
 		$checked = $wgUser->getOption( $tname ) == 1 ? ' checked="checked"' : '';
 		$trailer = $trailer ? $trailer : '';
-		return "<tr><td align='right'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked />" .
-			"</td><td align='left'><label for=\"$tname\">$ttext</label>$trailer</td></tr>";
+		return "<div class='toggle'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked />" .
+			" <span class='toggletext'><label for=\"$tname\">$ttext</label>$trailer</span></div>";
+	}
+	
+	function getToggles( $items ) {
+		$out = "";
+		foreach( $items as $item ) {
+			if( $item === false )
+				continue;
+			if( is_array( $item ) ) {
+				list( $key, $trailer ) = $item;
+			} else {
+				$key = $item;
+				$trailer = false;
+			}
+			$out .= $this->getToggle( $key, $trailer );
+		}
+		return $out;
 	}
 
 	function addRow($td1, $td2) {
@@ -481,7 +497,8 @@ class PreferencesForm {
 			$this->addRow( wfMsg( 'oldpassword' ), "<input type='password' name='wpOldpass' value=\"{$this->mOldpass}\" size='20' />" ) .
 			$this->addRow( wfMsg( 'newpassword' ), "<input type='password' name='wpNewpass' value=\"{$this->mNewpass}\" size='20' />" ) .
 			$this->addRow( wfMsg( 'retypenew' ), "<input type='password' name='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />" ) .
-			$this->getToggle( "rememberpassword" ) . "</table>\n</fieldset>\n\n" );
+			"</table>\n" .
+			$this->getToggle( "rememberpassword" ) . "</fieldset>\n\n" );
 
 		# Enotif
 		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
@@ -523,7 +540,10 @@ class PreferencesForm {
 			if( $wgEnableUserEmail ) {
 				$emfc = $this->mEmailFlag ? 'checked="checked"' : '';
 				$wgOut->addHTML(
-				"<input type='checkbox' $emfc value='1' name='wpEmailFlag' />".  wfMsg( 'emailflag' ) . $disabled );
+				"<div class='toggle'><input type='checkbox' $emfc value='1' name='wpEmailFlag' id='wpEmailFlag' />".
+					" <span class='toggletext'><label for='wpEmailFlag'>" .
+					htmlspecialchars( wfMsg( 'emailflag' ) ) . $disabled .
+					"</label></span></div>\n" );
 				$prefs_help_realname = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
 			}
 			$wgOut->addHTML( '</fieldset>' );
@@ -634,30 +654,32 @@ class PreferencesForm {
 		<div>
 			<label>" . wfMsg( 'rows' ) . ": <input type='text' name='wpRows' value=\"{$this->mRows}\" size='6' /></label>
 			<label>" . wfMsg( 'columns' ) . ": <input type='text' name='wpCols' value=\"{$this->mCols}\" size='6' /></label>
-		</div> <table>" .
-		$this->getToggle( "editsection" ) .
-		$this->getToggle( "editsectiononrightclick" ) .
-		$this->getToggle( "editondblclick" ) .
-		$this->getToggle( "editwidth" ) .
-		$this->getToggle( "showtoolbar" ) .
-		$this->getToggle( "previewonfirst" ) .
-		$this->getToggle( "previewontop" ) .
-		$this->getToggle( "watchdefault" ) .
-		$this->getToggle( "minordefault" ) . 
-		$this->getToggle( "externaleditor" ) .
-		$this->getToggle( "externaldiff" ) .
+		</div>" .
+		$this->getToggles( array(
+			"editsection",
+			"editsectiononrightclick",
+			"editondblclick",
+			"editwidth",
+			"showtoolbar",
+			"previewonfirst",
+			"previewontop",
+			"watchdefault",
+			"minordefault", 
+			"externaleditor",
+			"externaldiff" ) ) .
 		"
-	</table></fieldset>");
+	</fieldset>");
 	
-		$shownumberswatching = ($wgRCShowWatchingUsers) ? $this->getToggle('shownumberswatching') : '';
-
 		$wgOut->addHTML( "
 	<fieldset><legend>".htmlspecialchars(wfMsg('prefs-rc'))."</legend>
 		<div><label>" . wfMsg( 'recentchangescount' ) . ": <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
-		$this->getToggle( "hideminor" ) . $shownumberswatching .
-		$this->getToggle( "usenewrc" ) . 
-		$this->getToggle( "rcusemodstyle" ) .
-		$this->getToggle('showupdated', wfMsg('updatedmarker')) .
+		$this->getToggles( array(
+			"hideminor",
+			($wgRCShowWatchingUsers) ? 'shownumberswatching' : false,
+			"usenewrc",
+			"rcusemodstyle",
+			array( 'showupdated', wfMsg('updatedmarker') )
+		) ) .
 		"<div><label>". wfMsg ( 'stubthreshold' ) . ": <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
 	</fieldset>");
 	
@@ -669,14 +691,14 @@ class PreferencesForm {
 	
 		# Misc
 		#
-		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend><table>');
+		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
 
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}
 		}
-		$wgOut->addHTML( '</table></fieldset>' );
+		$wgOut->addHTML( '</fieldset>' );
 
 		$token = $wgUser->editToken();
 		$wgOut->addHTML( "

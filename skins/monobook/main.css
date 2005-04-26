@@ -1124,3 +1124,9 @@ table.exif, table.exif td, table.exif th {
 	border: 1px solid #aaaaaa;
 	border-collapse: collapse;
 }
+
+.toggle {
+	margin-left: 2em;
+	text-indent: -2em;
+}
+
