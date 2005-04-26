@@ -428,12 +428,16 @@ class PreferencesForm {
 
 		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table>\n");
 
-		if (!empty($this->mRealName)) {
+		if ($wgAllowRealName) {
 			$wgOut->addHTML(
 				$this->addRow(
 					wfMsg('yourrealname'),
 					"<input type='text' name='wpRealName' value=\"{$this->mRealName}\" size='25' />"
-				) . 
+				)
+			);
+		}
+		if ($wgEnableEmail) {
+			$wgOut->addHTML(
 				$this->addRow(
 					wfMsg( 'youremail' ),
 					"<input type='text' name='wpUserEmail' value=\"{$this->mUserEmail}\" size='25' />"
