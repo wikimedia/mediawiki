@@ -56,15 +56,18 @@ define('NS_CATEGORY_TALK', 15);
 $wgFeedClasses = array(
 	'rss' => 'RSSFeed',
 	'atom' => 'AtomFeed',
-	);
+);
 
-/** Maths constants */
+/**#@+
+ * Maths constants
+ */
 define( 'MW_MATH_PNG',    0 );
 define( 'MW_MATH_SIMPLE', 1 );
 define( 'MW_MATH_HTML',   2 );
 define( 'MW_MATH_SOURCE', 3 );
 define( 'MW_MATH_MODERN', 4 );
 define( 'MW_MATH_MATHML', 5 );
+/**#@-*/
 
 /**
  * User rights management
@@ -76,7 +79,7 @@ $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
 'asksql', 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot', 'validate', 
 'import');
 
-/**
+/**#@+
  * Cache type
  */
 define( 'CACHE_ANYTHING', -1 );  // Use anything, as long as it works
@@ -84,5 +87,6 @@ define( 'CACHE_NONE', 0 );       // Do not cache
 define( 'CACHE_DB', 1 );         // Store cache objects in the DB
 define( 'CACHE_MEMCACHED', 2 );  // MemCached, must specify servers in $wgMemCacheServers
 define( 'CACHE_ACCEL', 3 );      // eAccelerator or Turck, whichever is available
+/**#@-*/
 
 ?>
