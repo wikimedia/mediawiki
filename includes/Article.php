@@ -957,6 +957,8 @@ class Article {
 	/**
 	 * Fetch and uncompress the text for a given revision.
 	 * Can ask by rev_id number or timestamp (set $field)
+	 * FIXME: This function is broken. Eliminate all uses and remove.
+	 * Use Revision class in place.
 	 */
 	function fetchRevisionText( $revId = null, $field = 'rev_id' ) {
 		$fname = 'Article::fetchRevisionText';
@@ -986,12 +988,15 @@ class Article {
 	
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {
 		$fname = 'Article::getTextOfLastEditWithSectionReplacedOrAdded';
-		if( is_null( $edittime ) ) {
-			$oldtext = $this->fetchRevisionText();
-		} else {
-			$oldtext = $this->fetchRevisionText( $edittime, 'rev_timestamp' );
-		}
 		if ($section != '') {
+			if( is_null( $edittime ) ) {
+				$rev = Revision::newFromTitle( $this->mTitle );
+			} else {
+				$dbw =& wfGetDB( DB_MASTER );
+				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+			}
+			$oldtext = $rev->getText();
+			
 			if($section=='new') {
 				if($summary) $subject="== {$summary} ==\n\n";
 				$text=$oldtext."\n\n".$subject.$text;
