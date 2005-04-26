@@ -1139,9 +1139,18 @@ class Article {
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '' ) {
 		global $wgOut, $wgUser, $wgLinkCache, $wgUseDumbLinkUpdate;
-		global $wgAntiLockFlags, $wgParser;
+		global $wgAntiLockFlags, $wgParser, $wgLinkHolders, $wgInterwikiLinkHolders;
 		
 		$wgLinkCache = new LinkCache;
+
+		$wgLinkHolders = array(
+			'namespaces' => array(),
+			'dbkeys' => array(),
+			'queries' => array(),
+			'texts' => array(),
+			'titles' => array()
+		);
+		$wgInterwikiLinkHolders = array();
 
 		if ( !$wgUseDumbLinkUpdate ) {
 			# Preload links to reduce lock time

@@ -3147,15 +3147,6 @@ class Parser
 			wfProfileOut( $fname.'-interwiki' );
 		}
 
-		# Clear link holders, no need to fetch these ones again in a subsequent invocation
-		$wgLinkHolders = array(
-			'namespaces' => array(),
-			'dbkeys' => array(),
-			'queries' => array(),
-			'texts' => array(),
-			'titles' => array()
-		);
-		$wgInterwikiLinkHolders = array();
 
 
 		wfProfileOut( $fname );
