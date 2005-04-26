@@ -269,7 +269,7 @@ if( $conf->xml ) {
 
 $memlimit = ini_get( "memory_limit" );
 $conf->raiseMemory = false;
-if( empty( $memlimit ) ) {
+if( empty( $memlimit ) || $memlimit == -1 ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
 } else {
 	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <strong>If this is too low, installation may fail!</strong> ";
