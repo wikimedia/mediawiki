@@ -202,8 +202,13 @@ class Parser
 		$text = $this->doBlockLevels( $text, $linestart );
 
 		$this->replaceLinkHolders( $text );
+
+		# the position of the convert() call should not be changed. it 
+		# assumes that the links are all replaces and the only thing left 
+		# is the <nowiki> mark.
 		$text = $wgContLang->convert($text);
 		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
+
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		
 		$text = Sanitizer::normalizeCharReferences( $text );
@@ -1014,6 +1019,8 @@ class Parser
 				}
 			}
 
+			$text = $wgContLang->markNoConversion($text);
+
 			# Replace &amp; from obsolete syntax with &.
 			# All HTML entities will be escaped by makeExternalLink()
 			# or maybeMakeImageLink()
@@ -1022,6 +1029,7 @@ class Parser
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
 			$trail = $this->replaceFreeExternalLinks( $trail );
+
 
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
@@ -1039,6 +1047,7 @@ class Parser
 	 * @access private
 	 */
 	function replaceFreeExternalLinks( $text ) {
+		global $wgContLang;
 		$fname = 'Parser::replaceFreeExternalLinks';
 		wfProfileIn( $fname );
 		
@@ -1087,7 +1096,7 @@ class Parser
 				$text = $this->maybeMakeImageLink( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
-					$text = $sk->makeExternalLink( $url, $url, true, 'free' );
+					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free' );
 				}
 				$s .= $text . $trail;
 			} else {
