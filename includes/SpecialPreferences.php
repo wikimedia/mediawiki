@@ -445,8 +445,18 @@ class PreferencesForm {
 			);
 		}
 		
-		$wgOut->addHTML( $this->addRow( wfMsg( 'yournick' ), "<input type='text' name='wpNick' value=\"{$this->mNick}\" size='25' />") );
-		$wgOut->addHTML( $this->getToggle( 'fancysig' ) );
+		$wgOut->addHTML(
+			$this->addRow(
+				wfMsg( 'yournick' ),
+				"<input type='text' name='wpNick' value=\"{$this->mNick}\" size='25' />"
+			) . 
+			# FIXME: The <input> part should be where the &nbsp; is, getToggle() needs
+			# to be changed to out return its output in two parts. -ævar
+			$this->addRow(
+				'&nbsp;',
+				$this->getToggle( 'fancysig' )
+			)
+		);
 
 		/**
 		 * If a bogus value is set, default to the content language.
