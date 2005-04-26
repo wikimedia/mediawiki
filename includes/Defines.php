@@ -51,15 +51,18 @@ define('NS_CATEGORY_TALK', 15);
 $wgFeedClasses = array(
 	'rss' => 'RSSFeed',
 	'atom' => 'AtomFeed',
-	);
+);
 
-/** Maths constants */
+/**#@+
+ * Maths constants
+ */
 define( 'MW_MATH_PNG',    0 );
 define( 'MW_MATH_SIMPLE', 1 );
 define( 'MW_MATH_HTML',   2 );
 define( 'MW_MATH_SOURCE', 3 );
 define( 'MW_MATH_MODERN', 4 );
 define( 'MW_MATH_MATHML', 5 );
+/**#@-*/
 
 /**
  * User rights management
