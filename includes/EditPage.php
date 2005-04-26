@@ -365,10 +365,12 @@ class EditPage {
 			$userid = $wgUser->getID();
 
 			if ( $isConflict) {
+				wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime'\n" );
 				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
 					$this->section, $this->textbox1, $this->summary, $this->edittime);
 			}
 			else {
+				wfDebug( "EditPage::editForm getting section '$this->section'\n" );
 				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
 					$this->section, $this->textbox1, $this->summary);
 			}

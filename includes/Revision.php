@@ -36,6 +36,7 @@ class Revision {
 	 * @param int $id
 	 * @return Revision
 	 * @access public
+	 * @static
 	 */
 	function &newFromTitle( &$title, $id = 0 ) {
 		if( $id ) {
@@ -72,6 +73,27 @@ class Revision {
 			array( "rev_id=$matchId",
 			       'rev_page' => IntVal( $pageid ),
 			       'page_id=rev_page' ) );
+	}
+	
+	/**
+	 * Load the revision for the given title with the given timestamp.
+	 * WARNING: Timestamps may in some circumstances not be unique,
+	 * so this isn't the best key to use.
+	 *
+	 * @param Database $db
+	 * @param Title $title
+	 * @param string $timestamp
+	 * @return Revision
+	 * @access public
+	 * @static
+	 */
+	function &loadFromTimestamp( &$db, &$title, $timestamp ) {
+		return Revision::loadFromConds(
+			$db,
+			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
+			       'page_id=rev_page',
+			       'page_namespace' => $title->getNamespace(),
+			       'page_title'     => $title->getDbkey() ) );
 	}
 	
 	/**
