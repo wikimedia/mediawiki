@@ -15,8 +15,13 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
   user_token char(32) binary NOT NULL default '',
+  user_email_authenticated CHAR(14) BINARY,
+  user_email_token CHAR(32) BINARY,
+  user_email_token_expires CHAR(14) BINARY,
+
   PRIMARY KEY user_id (user_id),
-  INDEX user_name (user_name(10))
+  INDEX user_name (user_name(10)),
+  INDEX (user_email_token)
 );
 
 -- TODO: de-blob this; it should be a property table
