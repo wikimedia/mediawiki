@@ -421,6 +421,45 @@ class PreferencesForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
 
+
+		# Enotif
+		# <FIXME>
+		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
+		$this->mRealName = htmlspecialchars( $this->mRealName );
+		$this->mNick = htmlspecialchars( $this->mNick );
+		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
+		else { $emfc = ''; }
+
+		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
+			if( $wgUser->getEmailAuthenticationTimestamp() ) {
+				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationTimestamp(), true ) ).'<br />';
+				$disabled = '';
+			} else {
+				$skin = $wgUser->getSkin();
+				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
+					$skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Confirmemail' ),
+						wfMsg( 'emailconfirmlink' ) );
+				$disabled = ' '.wfMsg('disableduntilauthent');
+			}
+		} else {
+			$emailauthenticated = '';
+		}
+
+		if ($this->mUserEmail == '') {
+			$disabled = ' '.wfMsg('disablednoemail');
+		}
+
+		$ps = $this->namespacesCheckboxes();
+
+		$enotifwatchlistpages = ($wgEmailNotificationForWatchlistPages) ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
+		$enotifusertalkpages = ($wgEmailNotificationForUserTalkPages) ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
+		$enotifminoredits = ($wgEmailNotificationForMinorEdits) ? $this->getToggle( 'enotifminoredits', $disabled) : '';
+		$enotifrevealaddr = ($wgEmailNotificationRevealPageEditorAddress) ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
+		$prefs_help_email_enotif = ( $wgEmailNotificationForWatchlistPages || $wgEmailNotificationForUserTalkPages) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
+		$prefs_help_realname = '';
+
+		# </FIXME>
+
 		$wgOut->addHTML( "<form id='preferences' name='preferences' action=\"$action\" method='post'>" );
 	
 		# User data
@@ -513,56 +552,27 @@ class PreferencesForm {
 			$this->addRow( wfMsg( 'retypenew' ), "<input type='password' name='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />" ) .
 			"</table>\n" .
 			$this->getToggle( "rememberpassword" ) . "</fieldset>\n\n" );
-
+		
+		# <FIXME>
 		# Enotif
-		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
-		$this->mRealName = htmlspecialchars( $this->mRealName );
-		$this->mNick = htmlspecialchars( $this->mNick );
-		
-		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
-			if ($wgUser->getEmailAuthenticationtimestamp() != 0) {
-				$emailauthenticated = wfMsg('emailauthenticated',
-					$wgLang->timeanddate($wgUser->getEmailAuthenticationtimestamp(), true ) ).'<br />';
-				$disabled = '';
-			} else {
-				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />';
-				$disabled = ' '.wfMsg('disableduntilauthent');
-			}
-		} else {
-			$emailauthenticated = '';
-		}
-
-		if ($this->mUserEmail == '') {
-			$disabled = ' '.wfMsg('disablednoemail');
-		}
-
-		$ps = $this->namespacesCheckboxes();
-
-		$enotifwatchlistpages = $wgEmailNotificationForWatchlistPages ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
-		$enotifusertalkpages = $wgEmailNotificationForUserTalkPages ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
-		$enotifminoredits = $wgEmailNotificationForMinorEdits ? $this->getToggle( 'enotifminoredits', $disabled) : '';
-		$enotifrevealaddr = $wgEmailNotificationRevealPageEditorAddress ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
-		$prefs_help_email_enotif = ( $wgEmailNotificationForWatchlistPages || $wgEmailNotificationForUserTalkPages) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
-		if( $wgEnableEmail ) {
-			$wgOut->addHTML( "<fieldset><legend>" . wfMsg('email') . "</legend>");
-			$wgOut->addHTML(
-				$emailauthenticated.
-				$enotifrevealaddr.
-				$enotifwatchlistpages.
-				$enotifusertalkpages.
-				$enotifminoredits );
-			if( $wgEnableUserEmail ) {
-				$emfc = $this->mEmailFlag ? 'checked="checked"' : '';
-				$wgOut->addHTML(
-				"<div class='toggle'><input type='checkbox' $emfc value='1' name='wpEmailFlag' id='wpEmailFlag' />".
-					" <span class='toggletext'><label for='wpEmailFlag'>" .
-					htmlspecialchars( wfMsg( 'emailflag' ) ) . $disabled .
-					"</label></span></div>\n" );
-				$prefs_help_realname = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
-			}
+                if ($wgEnableEmail) {
+			$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'email' ) . '</legend>' );
+                        $wgOut->addHTML(
+                                $emailauthenticated.
+                                $enotifrevealaddr.
+                                $enotifwatchlistpages.
+                                $enotifusertalkpages.
+                                $enotifminoredits );
+                        if ($wgEnableUserEmail) {
+				$emf = wfMsg( 'emailflag' );
+                                $wgOut->addHTML(
+                                "<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf.$disabled</label></div>" );
+                        }
+			
 			$wgOut->addHTML( '</fieldset>' );
-		}
-		
+                }
+		# </FIXME>
+
 		if ($wgAllowRealName || $wgEnableEmail) {
 			$wgOut->addHTML("<div class='prefsectiontip'>");
 			$rn = $wgAllowRealName ? wfMsg('prefs-help-realname') : '';
