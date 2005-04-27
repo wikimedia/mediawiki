@@ -296,7 +296,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Wikipedia:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="http://en.wikipedia.org/wiki/FAQ" class='extiw' title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="/index.php?title=Wikipedia:FAQ&amp;action=edit" class="new" title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -1148,7 +1148,7 @@ RFC 822
 !! end
 
 !! test
-Magic links: ISBN (bug 1937)
+Magic links: ISBN (bug 1937 unresolved)
 !! input
 ISBN 0-306-40615-2
 !! result
@@ -1157,7 +1157,7 @@ ISBN 0-306-40615-2
 !! end
 
 !! test
-Magic links: PMID
+Magic links: PMID incorrectly converts space to underscore
 !! input
 PMID 1234
 !! result
@@ -1320,7 +1320,7 @@ Template infinite loop
 !! input
 {{loop1}}
 !! result
-<p>{{loop2}}<!-- WARNING: template loop detected -->
+<p>{{loop1}}<!-- WARNING: template loop detected -->
 </p>
 !! end
 
@@ -1585,7 +1585,7 @@ Image with frame and link
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! result
-<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
+<div class="thumb tleft"><div style="width:668px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image Main Page"><img src="/images/3/3a/Foobar.jpg" alt="This is a test image Main Page" width="666" height="444" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
 
 !! end
 
@@ -1612,7 +1612,7 @@ Thumbnail image caption with a free URL
 !! input
 [[Image:foobar.jpg|thumb|http://example.com]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="http://example.com"><img src="/images/3/3a/Foobar.jpg" alt="http://example.com" width="180" height="180" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="http://example.com" class='external free' rel="nofollow">http://example.com</a></div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="http://example.com"><img src="/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="http://example.com" width="180" height="120" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a></div></div></div>
 
 !! end
 
@@ -1910,7 +1910,7 @@ Bug 1219 URL next to image (good)
 !! input
 http://example.com [[Image:foobar.jpg]]
 !! result
-<p><a href="http://example.com" class='external free' rel="nofollow">http://example.com</a> <a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
+<p><a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a> <a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
 </p>
 !!end
 
