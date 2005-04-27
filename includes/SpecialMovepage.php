@@ -240,6 +240,9 @@ class MovePageForm {
 			} else {
 				$talkmoved = $error;
 			}
+		} else {
+			# Stay silent on the subject of talk.
+			$talkmoved = '';
 		}
 		
 		# Give back result to user.
