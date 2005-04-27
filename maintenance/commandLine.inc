@@ -18,6 +18,7 @@ define("MEDIAWIKI",true);
 # $options becomes an array with keys set to the option names
 # $optionsWithArgs is an array of GNU-style options that take an argument. The arguments are returned
 # in the values of $options.
+# $args becomes a zero-based array containing the non-option arguments
 
 if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = array();
@@ -137,7 +138,10 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	require_once( "$IP/includes/Defines.php" );
 	require_once( $settingsFile );
 	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
-	require_once( "$IP/AdminSettings.php" );
+	
+	if ( is_readable( "$IP/AdminSettings.php" ) ) {
+		require_once( "$IP/AdminSettings.php" );
+	}
 }
 
 # Turn off output buffering again, it might have been turned on in the settings files
@@ -145,7 +149,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 # Same with these
 $wgCommandLineMode = true;
 
-if ( !$wgUseNormalUser ) {
+if ( !$wgUseNormalUser && isset( $wgDBadminuser ) ) {
 	$wgDBuser = $wgDBadminuser;
 	$wgDBpassword = $wgDBadminpassword;
 }
