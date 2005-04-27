@@ -531,6 +531,8 @@ pages for purposes of page relevancy ranking.
 * (bug 1949) Profiling typo in rare error case
 * (bug 1963) Fix deletion log link when $wgCapitalLinks is off
 * (bug 1970) Don't show move tab for immobile pages
+* Unspecified mysterious fixes to link handling
+* Unspecified other changes checked in without change log entries.
 
 
 === Caveats ===
