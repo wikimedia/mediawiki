@@ -971,6 +971,7 @@ class Parser
 	 * @access private
 	 */
 	function replaceExternalLinks( $text ) {
+		global $wgContLang;
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 
