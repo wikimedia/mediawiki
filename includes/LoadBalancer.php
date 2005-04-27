@@ -459,6 +459,23 @@ class LoadBalancer {
 		}
 		return $success;
 	}
+
+	/**
+	 * Get the hostname and lag time of the most-lagged slave
+	 * This is useful for maintenance scripts that need to throttle their updates
+	 */
+	function getMaxLag() {
+		$maxLag = -1;
+		$host = '';
+		foreach ( $this->mConnections as $i => $conn ) {
+			$lag = $this->mConnections[$i]->getLag();
+			if ( $lag > $maxLag ) {
+				$maxLag = $lag;
+				$host = $this->mServers[$i]['host'];
+			}
+		}
+		return array( $host, $maxLag );
+	}
 }
 
 ?>
