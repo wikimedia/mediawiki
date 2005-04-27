@@ -268,7 +268,7 @@ class PreferencesForm {
 
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 		$po = ParserOptions::newFromUser( $wgUser );
-		$this->mainPrefsForm( wfMsg( 'savedprefs' ) );
+		$this->mainPrefsForm( $error );
 	}
 
 	/**
