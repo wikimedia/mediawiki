@@ -418,8 +418,8 @@ class ParserTest {
 				'img_user'        => 1,
 				'img_user_text'   => 'WikiSysop',
 				'img_timestamp'   => $db->timestamp( '20010115123500' ),
-				'img_width'       => 666,
-				'img_height'      => 444,
+				'img_width'       => 1941,
+				'img_height'      => 220,
 				'img_bits'        => 24,
 				'img_type'        => 2, // 2 == JPEG
 				) );
