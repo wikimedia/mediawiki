@@ -40,7 +40,7 @@ require_once('QueryPage.php');
 class ListUsersPage extends QueryPage {
 	var $requestedGroup = '';
 	var $requestedUser = '';
-	var $previousResult = false;
+	var $previousResult = null;
 	var $concatGroups = '';
 	
 	function getName() {
@@ -150,17 +150,18 @@ class ListUsersPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 		$name = false;
-
-		if($this->previousResult->title != $result->title && $this->previousResult != false) {
+		
+		if( is_object( $this->previousResult ) &&
+			(is_null( $result ) || ( $this->previousResult->title != $result->title ) ) ) {
 			// Different username, give back name(group1,group2)
 			$name = $skin->makeLink( $wgContLang->getNsText($this->previousResult->namespace) . ':' . $this->previousResult->title, $this->previousResult->title );
 			$name .= $this->concatGroups ? '('.substr($this->concatGroups,0,-1).')' : '';
 			$this->clearGroups();
 		}
 
-		if($result->type != '') {
-		$this->appendGroups( $skin->makeLink( wfMsgForContent( 'administrators' ), $result->type ) );
-		}			
+		if( is_object( $result ) && $result->type != '') {
+			$this->appendGroups( $skin->makeLink( wfMsgForContent( 'administrators' ), $result->type ) );
+		}
 
 		$this->previousResult = $result;
 		return $name;
