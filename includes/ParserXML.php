@@ -144,7 +144,7 @@ class element {
 			# There's stuff missing here...
 			if ($nt->getNamespace() == NS_IMAGE) {
 				$options[] = $display_title;
-				return $skin->makeImageLinkObj($nt, implode('|', $options));
+				return $parser->makeImage($nt, implode('|', $options));
 			} else {
 				# Default
 				$title = $target;

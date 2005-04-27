@@ -302,6 +302,7 @@ class ParserTest {
 			'wgCapitalLinks' => true,
 			'wgDefaultUserOptions' => array(),
 			'wgNoFollowLinks' => true,
+			'wgThumbnailScriptPath' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
