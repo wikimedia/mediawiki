@@ -236,32 +236,31 @@ class PreferencesForm {
 		$wgUser->setCookies();
 		$wgUser->saveSettings();
 		
+		$error = wfMsg( 'savedprefs' );
 		if( $wgEnableEmail ) {
-			$newadr = strtolower( $this->mUserEmail );
-			$oldadr = strtolower($wgUser->getEmail());
-			if (($newadr <> '') && ($newadr <> $oldadr)) { # the user has supplied a new email address on the login page
-				# prepare for authentication and mail a temporary password to newadr
-				require_once( 'SpecialUserlogin.php' );
-				if ( !$wgUser->isValidEmailAddr( $newadr ) ) {
-					$this->mainPrefsForm( wfMsg( 'invalidemailaddress' ) );
-					return;
-				}
-				$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
-				$wgUser->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
-				$wgUser->saveSettings();
-				if ($wgEmailAuthentication) {
-					# mail a temporary password to the dirty address
-					# on "save options", this user will be logged-out automatically
-					$error = LoginForm::mailPasswordInternal( $wgUser, true, $dummy );
-					if ($error === '') {
-						return LoginForm::mainLoginForm( wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() ) );
-					} else {
-						return LoginForm::mainLoginForm( wfMsg( 'mailerror', $error ) );
+			$newadr = $this->mUserEmail;
+			$oldadr = $wgUser->getEmail();
+			if( ($newadr != '') && ($newadr != $oldadr) ) {
+				# the user has supplied a new email address on the login page
+				if( $wgUser->isValidEmailAddr( $newadr ) ) {
+					$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
+					$wgUser->mEmailAuthenticated = null; # but flag as "dirty" = unauthenticated
+					$wgUser->saveSettings();
+					if ($wgEmailAuthentication) {
+						# Mail a temporary password to the dirty address.
+						# User can come back through the confirmation URL to re-enable email.
+						$result = $wgUser->sendConfirmationMail();
+						if( WikiError::isError( $result ) ) {
+							$error = wfMsg( 'mailerror', $result->getMessage() );
+						} else {
+							$error = wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() );
+						}
 					}
-					# if user returns, that new email address gets authenticated in checkpassword()
+				} else {
+					$error = wfMsg( 'invalidemailaddress' );
 				}
 			} else {
-				$wgUser->setEmail( strtolower($this->mUserEmail) );
+				$wgUser->setEmail( $this->mUserEmail );
 				$wgUser->setCookies();
 				$wgUser->saveSettings();
 			}
