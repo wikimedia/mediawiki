@@ -54,10 +54,15 @@ require_once( 'WikiError.php' );
 function wfQuotedPrintable_name_and_emailaddr( $string ) {
 
 	/* do not quote printable for email address string <emailaddr>, but only for the (leading) string, usually the name */
-	preg_match( '/^([^<]*)?(<([A-z0-9_.-]+([A-z0-9_.-]+)*\@[A-z0-9_-]+([A-z0-9_.-]+)*([A-z.]{2,})+)>)?$/', $string, $part );
-	if ( !isset($part[1]) ) return $part[2];
-	if ( !isset($part[2]) ) return wfQuotedprintable($part[1]);
-	return wfQuotedprintable($part[1]) . $part[2] ;
+	if( preg_match( '/^([^<]*)?(<([A-z0-9_.-]+([A-z0-9_.-]+)*\@[A-z0-9_-]+([A-z0-9_.-]+)*([A-z.]{2,})+)>)?$/', $string, $part ) ) {
+		wfDebug( "wfQuotedPrintable_name_and_emailaddr: '$string' " . serialize( $part ) . "\n" );
+		if ( !isset($part[2]) ) return wfQuotedprintable($part[1]);
+		return wfQuotedprintable($part[1]) . $part[2] ;
+	} else {
+		# What have we been given??
+		wfDebug( "wfQuotedPrintable_name_and_emailaddr: got confused by '$string'\n" );
+		return wfQuotedprintable( $string );
+	}
 }
 
 /**
