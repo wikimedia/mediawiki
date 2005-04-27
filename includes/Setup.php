@@ -69,6 +69,7 @@ require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
 require_once( 'ProxyTools.php' );
 require_once( 'ObjectCache.php' );
+require_once( 'WikiError.php' );
 
 if ( $wgUseDynamicDates ) {
 	require_once( 'DateFormatter.php' );
