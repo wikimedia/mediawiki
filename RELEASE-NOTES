@@ -25,6 +25,7 @@ New exciting things! Need further work and testing...
   http://mail.wikipedia.org/pipermail/wikitech-l/2005-March/028364.html
 * (bug 1739) A new magicword, {{REVISIONID}} give you the article or diff database
   revision id, useful for proper citation.
+* (bug 1998) Updated the Russian translation.
 * It's now possible to invert the namespace selection at Special:Allpages and Special:Contributions
 * No longer using sorbs.net to check for open proxies by default.
 * What was $wgDisableUploads is now $wgEnableUploads, and should be set to true if one wishes to enable uploads.
