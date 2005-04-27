@@ -155,7 +155,7 @@ class ListUsersPage extends QueryPage {
 			(is_null( $result ) || ( $this->previousResult->title != $result->title ) ) ) {
 			// Different username, give back name(group1,group2)
 			$name = $skin->makeLink( $wgContLang->getNsText($this->previousResult->namespace) . ':' . $this->previousResult->title, $this->previousResult->title );
-			$name .= $this->concatGroups ? '('.substr($this->concatGroups,0,-1).')' : '';
+			$name .= $this->concatGroups ? ' ('.substr($this->concatGroups,0,-1).')' : '';
 			$this->clearGroups();
 		}
 
