@@ -101,6 +101,7 @@ class Parser
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
+	var $mInterwikiLinkHolders, $mLinkHolders;
 
 	# Temporary:
 	var $mOptions, $mTitle, $mOutputType,
@@ -117,6 +118,7 @@ class Parser
 	 * @access public
 	 */
 	function Parser() {
+		global $wgContLang;
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
@@ -138,6 +140,14 @@ class Parser
 		$this->mStripState = array();
 		$this->mArgStack = array();
 		$this->mInPre = false;
+		$this->mInterwikiLinkHolders = array();
+		$this->mLinkHolders = array(
+			'namespaces' => array(),
+			'dbkeys' => array(),
+			'queries' => array(),
+			'texts' => array(),
+			'titles' => array()
+		);
 	}
 
 	/**
@@ -166,7 +176,7 @@ class Parser
 		$this->mOutputType = OT_HTML;
 
 		$this->mStripState = NULL;
-		global $fnord; $fnord = 1;
+		
 		//$text = $this->strip( $text, $this->mStripState );
 		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
 		$x =& $this->mStripState;
@@ -965,8 +975,6 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		global $wgContLang;
-		$linktrail = $wgContLang->linkTrail();
 		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
@@ -989,7 +997,7 @@ class Parser
 
 			# If the link text is an image URL, replace it with an <img> tag
 			# This happened by accident in the original parser, but some people used it extensively
-			$img = $this->maybeMakeImageLink( $text );
+			$img = $this->maybeMakeExternalImage( $text );
 			if ( $img !== false ) {
 				$text = $img;
 			}
@@ -1013,17 +1021,14 @@ class Parser
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
 				# Check for trail
-				if ( preg_match( $linktrail, $trail, $m2 ) ) {
-					$dtrail = $m2[1];
-					$trail = $m2[2];
-				}
+				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
 			$text = $wgContLang->markNoConversion($text);
 
 			# Replace &amp; from obsolete syntax with &.
 			# All HTML entities will be escaped by makeExternalLink()
-			# or maybeMakeImageLink()
+			# or maybeMakeExternalImage()
 			$url = str_replace( '&amp;', '&', $url );
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
@@ -1089,11 +1094,11 @@ class Parser
 
 				# Replace &amp; from obsolete syntax with &.
 				# All HTML entities will be escaped by makeExternalLink()
-				# or maybeMakeImageLink()
+				# or maybeMakeExternalImage()
 				$url = str_replace( '&amp;', '&', $url );
 
 				# Is this an external image?
-				$text = $this->maybeMakeImageLink( $url );
+				$text = $this->maybeMakeExternalImage( $url );
 				if ( $text === false ) {
 					# Not an image, make a link
 					$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free' );
@@ -1111,13 +1116,13 @@ class Parser
 	 * make an image if it's allowed
 	 * @access private
 	 */
-	function maybeMakeImageLink( $url ) {
+	function maybeMakeExternalImage( $url ) {
 		$sk =& $this->mOptions->getSkin();
 		$text = false;
 		if ( $this->mOptions->getAllowExternalImages() ) {
 			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
-				$text = $sk->makeImage( htmlspecialchars( $url ) );
+				$text = $sk->makeExternalImage( htmlspecialchars( $url ) );
 			}
 		}
 		return $text;
@@ -1140,10 +1145,6 @@ class Parser
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
 		
 		$sk =& $this->mOptions->getSkin();
-		global $wgUseOldExistenceCheck;
-		# "Post-parse link colour check" works only on wiki text since it's now
-		# in Parser. Enable it, then disable it when we're done.
-		$saveParseColour = $sk->postParseLinkColour( !$wgUseOldExistenceCheck );
 
 		#split the entire text string on occurences of [[
 		$a = explode( '[[', ' ' . $s );
@@ -1327,7 +1328,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 						
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . str_replace('http://', 'http-noparse://', $sk->makeImageLinkObj( $nt, $text ) ) . $trail;
+						$s .= $prefix . str_replace('http://', 'http-noparse://', $this->makeImage( $nt, $text ) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 						
 						wfProfileOut( "$fname-image" );
@@ -1343,10 +1344,7 @@ class Parser
 					$s = rtrim($s . "\n"); # bug 87
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
-					$pPLC=$sk->postParseLinkColour();
-					$sk->postParseLinkColour( false );
 					$t = $sk->makeLinkObj( $nt, $t, '', '' , $prefix );
-					$sk->postParseLinkColour( $pPLC );
 					$wgLinkCache->resume();
 
 					if ( $wasblank ) {
@@ -1388,11 +1386,51 @@ class Parser
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
-			$s .= $sk->makeLinkObj( $nt, $text, '', $trail, $prefix );
+			if ( $nt->isAlwaysKnown() ) {
+				$s .= $sk->makeKnownLinkObj( $nt, $text, '', $trail, $prefix );
+			} else {
+				/**
+				 * Add a link placeholder
+				 * Later, this will be replaced by a real link, after the existence or 
+				 * non-existence of all the links is known
+				 */
+				$s .= $this->makeLinkHolder( $nt, $text, '', $trail, $prefix );
+			}
 		}
-		$sk->postParseLinkColour( $saveParseColour );
 		wfProfileOut( $fname );
 		return $s;
+	}
+
+	/**
+	 * Make a link placeholder. The text returned can be later resolved to a real link with
+	 * replaceLinkHolders(). This is done for two reasons: firstly to avoid further 
+	 * parsing of interwiki links, and secondly to allow all extistence checks and 
+	 * article length checks (for stub links) to be bundled into a single query.
+	 *
+	 */
+	function makeLinkHolder( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		if ( ! is_object($nt) ) {
+			# Fail gracefully
+			$retVal = "<!-- ERROR -->{$prefix}{$text}{$trail}";
+		} else {
+			# Separate the link trail from the rest of the link
+			list( $inside, $trail ) = Linker::splitTrail( $trail );
+			
+			if ( $nt->isExternal() ) {
+				$iwRecord = array( $nt->getPrefixedDBkey(), $prefix.$text.$inside );
+				$nr = array_push($this->mInterwikiLinkHolders, $iwRecord);
+				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			} else {
+				$nr = array_push( $this->mLinkHolders['namespaces'], $nt->getNamespace() );
+				$this->mLinkHolders['dbkeys'][] = $nt->getDBkey();
+				$this->mLinkHolders['queries'][] = $query;
+				$this->mLinkHolders['texts'][] = $prefix.$text.$inside;
+				$this->mLinkHolders['titles'][] =& $nt;
+
+				$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
+			}
+		}
+		return $retVal;
 	}
 
 	/**
@@ -2409,10 +2447,10 @@ class Parser
 			# turns into 
 			#     link text with suffix
 			$canonized_headline = preg_replace( '/<!--LINK ([0-9]*)-->/e',
-							    "\$wgLinkHolders['texts'][\$1]",
+							    "\$this->mLinkHolders['texts'][\$1]",
 							    $canonized_headline );
 			$canonized_headline = preg_replace( '/<!--IWLINK ([0-9]*)-->/e',
-							    "\$wgInterwikiLinkHolders[\$1]",
+							    "\$this->mInterwikiLinkHolders[\$1][1]",
 							    $canonized_headline );
 
 			# strip out HTML
@@ -2791,36 +2829,30 @@ class Parser
 	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
-		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
-		global $wgInterwikiLinkHolders;
-		global $outputReplace;
-		
-		if ( $wgUseOldExistenceCheck ) {
-			return array();
-		}
+		global $wgUser, $wgLinkCache;
+		global $wgOutputReplace;
 
 		$fname = 'Parser::replaceLinkHolders';
 		wfProfileIn( $fname );
 
 		$pdbks = array();
 		$colours = array();
+		$sk = $this->mOptions->getSkin();
 		
-		#if ( !empty( $tmpLinks[0] ) ) { #TODO
-		if ( !empty( $wgLinkHolders['namespaces'] ) ) {
+		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );
 			$dbr =& wfGetDB( DB_SLAVE );
 			$page = $dbr->tableName( 'page' );
-			$sk = $wgUser->getSkin();
 			$threshold = $wgUser->getOption('stubthreshold');
 			
 			# Sort by namespace
-			asort( $wgLinkHolders['namespaces'] );
+			asort( $this->mLinkHolders['namespaces'] );
 	
 			# Generate query
 			$query = false;
-			foreach ( $wgLinkHolders['namespaces'] as $key => $val ) {
+			foreach ( $this->mLinkHolders['namespaces'] as $key => $val ) {
 				# Make title object
-				$title = $wgLinkHolders['titles'][$key];
+				$title = $this->mLinkHolders['titles'][$key];
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
@@ -2850,7 +2882,7 @@ class Parser
 						$query .= ', ';
 					}
 				
-					$query .= $dbr->addQuotes( $wgLinkHolders['dbkeys'][$key] );
+					$query .= $dbr->addQuotes( $this->mLinkHolders['dbkeys'][$key] );
 				}
 			}
 			if ( $query ) {
@@ -2886,25 +2918,25 @@ class Parser
 			
 			# Construct search and replace arrays
 			wfProfileIn( $fname.'-construct' );
-			$outputReplace = array();
-			foreach ( $wgLinkHolders['namespaces'] as $key => $ns ) {
+			$wgOutputReplace = array();
+			foreach ( $this->mLinkHolders['namespaces'] as $key => $ns ) {
 				$pdbk = $pdbks[$key];
-				$searchkey = '<!--LINK '.$key.'-->';
-				$title = $wgLinkHolders['titles'][$key];
+				$searchkey = "<!--LINK $key-->";
+				$title = $this->mLinkHolders['titles'][$key];
 				if ( empty( $colours[$pdbk] ) ) {
 					$wgLinkCache->addBadLink( $pdbk );
 					$colours[$pdbk] = 0;
-					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
+					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
+									$this->mLinkHolders['texts'][$key],
+									$this->mLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 1 ) {
-					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
+					$wgOutputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
+									$this->mLinkHolders['texts'][$key],
+									$this->mLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 2 ) {
-					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
-									$wgLinkHolders['texts'][$key],
-									$wgLinkHolders['queries'][$key] );
+					$wgOutputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
+									$this->mLinkHolders['texts'][$key],
+									$this->mLinkHolders['queries'][$key] );
 				}
 			}
 			wfProfileOut( $fname.'-construct' );
@@ -2914,31 +2946,29 @@ class Parser
 			
 			$text = preg_replace_callback(
 				'/(<!--LINK .*?-->)/',
-				"outputReplaceMatches",
+				"wfOutputReplaceMatches",
 				$text);
+
 			wfProfileOut( $fname.'-replace' );
 		}
 
-		if ( !empty( $wgInterwikiLinkHolders ) ) {
+		# Now process interwiki link holders
+		# This is quite a bit simpler than internal links
+		if ( !empty( $this->mInterwikiLinkHolders ) ) {
 			wfProfileIn( $fname.'-interwiki' );
-			$outputReplace = $wgInterwikiLinkHolders;
+			# Make interwiki link HTML
+			$wgOutputReplace = array();
+			foreach( $this->mInterwikiLinkHolders as $i => $lh ) {
+				$s = $sk->makeLink( $lh[0], $lh[1] );
+				$wgOutputReplace[] = $s;
+			}
+			
 			$text = preg_replace_callback(
 				'/<!--IWLINK (.*?)-->/',
-				"outputReplaceMatches",
+				"wfOutputReplaceMatches",
 				$text );
 			wfProfileOut( $fname.'-interwiki' );
 		}
-
-		# Clear link holders, no need to fetch these ones again in a subsequent invocation
-		$wgLinkHolders = array(
-			'namespaces' => array(),
-			'dbkeys' => array(),
-			'queries' => array(),
-			'texts' => array(),
-			'titles' => array()
-		);
-		$wgInterwikiLinkHolders = array();
-
 
 		wfProfileOut( $fname );
 		return $colours;
@@ -2952,6 +2982,8 @@ class Parser
 	 * given as text will return the HTML of a gallery with two images,
 	 * labeled 'The number "1"' and
 	 * 'A tree'.
+	 *
+	 * @static
 	 */
 	function renderImageGallery( $text ) {
 		# Setup the parser
@@ -2990,6 +3022,84 @@ class Parser
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();
+	}
+
+	/**
+	 * Parse image options text and use it to make an image
+	 */
+	function makeImage( &$nt, $options ) {
+		global $wgContLang, $wgUseImageResize;
+		global $wgUser, $wgThumbLimits;
+		
+		$align = '';
+
+		# Check if the options text is of the form "options|alt text"
+		# Options are:
+		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
+		#  * left		no resizing, just left align. label is used for alt= only
+		#  * right		same, but right aligned
+		#  * none		same, but not aligned
+		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
+		#  * center		center the image
+		#  * framed		Keep original image size, no magnify-button.
+
+		$part = explode( '|', $options);
+
+		$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
+		$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
+		$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
+		$mwNone   =& MagicWord::get( MAG_IMG_NONE );
+		$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
+		$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
+		$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
+		$caption = '';
+
+		$width = $height = $framed = $thumb = false;
+		$manual_thumb = "" ;
+
+		foreach( $part as $key => $val ) {
+			$val_parts = explode ( "=" , $val , 2 ) ;
+			$left_part = array_shift ( $val_parts ) ;
+			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
+				$thumb=true;
+			} elseif ( $wgUseImageResize && count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
+				# use manually specified thumbnail
+				$thumb=true;
+				$manual_thumb = array_shift ( $val_parts ) ;
+			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'right';
+			} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'left';
+			} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'center';
+			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'none';
+			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+				# $match is the image width in pixels
+				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
+					$width = intval( $m[1] );
+					$height = intval( $m[2] );
+				} else {
+					$width = intval($match);
+				}
+			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
+				$framed=true;
+			} else {
+				$caption = $val;
+			}
+		}
+		# Strip bad stuff out of the alt text
+		$alt = $caption;
+		$this->replaceLinkHolders( $alt );
+		$alt = Sanitizer::stripAllTags( $alt );
+
+		# Linker does the rest
+		$sk =& $this->mOptions->getSkin();
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
 	}
 }
 
@@ -3131,9 +3241,9 @@ class ParserOptions
  * Callback function used by Parser::replaceLinkHolders()
  * to substitute link placeholders.
  */
-function &outputReplaceMatches( $matches ) {
-	global $outputReplace;
-	return $outputReplace[$matches[1]];
+function &wfOutputReplaceMatches( $matches ) {
+	global $wgOutputReplace;
+	return $wgOutputReplace[$matches[1]];
 }
 
 /**

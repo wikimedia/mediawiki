@@ -1658,7 +1658,7 @@ Image caption containing another image
 !! input
 [[Image:Foobar.jpg|thumb|This is a caption with another [[Image:icon.png|image]] inside it!]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Foobar.jpg</i>   <div class="thumbcaption" >This is a caption with another <a href="/wiki/Image:Icon.png" class="image" title="image"><img src="/images/9/96/Icon.png" alt="image" longdesc="/wiki/Image:Icon.png" /></a> inside it!</div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a caption with another Image:Icon.png inside it!"><img src="/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is a caption with another Image:Icon.png inside it!" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>This is a caption with another <a href="/index.php?title=Special:Upload&amp;wpDestFile=Icon.png" class="new" title="Image:Icon.png">Image:Icon.png</a> inside it!</div></div></div>
 
 !! end
 

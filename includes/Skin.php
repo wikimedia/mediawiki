@@ -34,17 +34,6 @@ unset($matches);
 
 require_once( 'RecentChange.php' );
 
-global $wgLinkHolders;
-$wgLinkHolders = array(
-	'namespaces' => array(),
-	'dbkeys' => array(),
-	'queries' => array(),
-	'texts' => array(),
-	'titles' => array()
-);
-global $wgInterwikiLinkHolders;
-$wgInterwikiLinkHolders = array();
-
 /**
  * @todo document
  * @package MediaWiki

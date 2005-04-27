@@ -16,20 +16,14 @@
  * @package MediaWiki
  */
 class Linker {
-	var $linktrail ; # linktrail regexp
-	var $postParseLinkColour = false;
 
-	/** @todo document */
-	function Linker() {
-		global $wgContLang;
-		$this->linktrail = $wgContLang->linkTrail();
-	}
-	
+	function Linker() {}
+
 	/**
-	 * Get/set accessor for delayed link colouring
+	 * OBSOLETE
 	 */
-	function postParseLinkColour( $setting = NULL ) {
-		return wfSetVar( $this->postParseLinkColour, $setting );
+	function postParseLinkColour( $s = NULL ) {
+		return NULL;
 	}
 
 	/** @todo document */
@@ -137,12 +131,12 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser, $wgLinkHolders, $wgInputEncoding;
+		global $wgOut, $wgUser, $wgInputEncoding;
 		$fname = 'Skin::makeLinkObj';
 		wfProfileIn( $fname );
 
 		# Fail gracefully
-		if ( ! isset($nt) ) {
+		if ( ! is_object($nt) ) {
 			# wfDebugDieBacktrace();
 			wfProfileOut( $fname );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
@@ -183,45 +177,10 @@ class Linker {
 
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
 				
-			if( $this->postParseLinkColour ) {
-				# There's no existence check, but this will prevent
-				# interwiki links from being parsed as external links.
-				global $wgInterwikiLinkHolders;
-				$nr = array_push($wgInterwikiLinkHolders, $t);
-				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
-			} else {
-				return $t;
-			}
-		} elseif ( 0 == $ns && "" == $dbkey ) {
-			# A self-link with a fragment; skip existence check.
+			return $t;
+		} elseif ( $nt->isAlwaysKnown() ) {
+			# Image links, special page links and self-links with fragements are always known.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-		} elseif ( ( NS_SPECIAL == $ns ) || ( NS_IMAGE == $ns ) ) {
-			# These are always shown as existing, currently.
-			# Special pages don't exist in the database; images may
-			# occasionally be present when there is no description
-			# page per se, so we always shown them.
-			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-		} elseif ( $this->postParseLinkColour ) {
-			wfProfileIn( $fname.'-postparse' );
-			# Insert a placeholder, and we'll work out the existence checks
-			# in a big lump later.
-			$inside = '';
-			if ( '' != $trail ) {
-				if ( preg_match( $this->linktrail, $trail, $m ) ) {
-					$inside = $m[1];
-					$trail = $m[2];
-				}
-			}
-
-			# These get picked up by Parser::replaceLinkHolders()
-			$nr = array_push( $wgLinkHolders['namespaces'], $nt->getNamespace() );
-			$wgLinkHolders['dbkeys'][] = $dbkey;
-			$wgLinkHolders['queries'][] = $query;
-			$wgLinkHolders['texts'][] = $prefix.$text.$inside;
-			$wgLinkHolders['titles'][] =& $nt;
-
-			$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
-			wfProfileOut( $fname.'-postparse' );
 		} else {
 			wfProfileIn( $fname.'-immediate' );
 			# Work out link colour immediately
@@ -294,14 +253,8 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text );
-
-		$inside = '';
-		if ( '' != $trail ) {
-			if ( preg_match( $this->linktrail, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
-		}
+		
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
 		wfProfileOut( $fname );
 		return $r;
@@ -331,14 +284,8 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
-
-		$inside = '';
-		if ( '' != $trail ) {
-			if ( preg_match( $this->linktrail, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
-		}
+		
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
 		wfProfileOut( $fname );
@@ -358,13 +305,7 @@ class Linker {
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'stub' );
 
-		$inside = '';
-		if ( '' != $trail ) {
-			if ( preg_match( $this->linktrail, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
-		}
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		return $s;
 	}
@@ -375,13 +316,7 @@ class Linker {
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
-		$inside = '';
-		if ( '' != $trail ) {
-			if ( preg_match( $this->linktrail, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
-		}
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		return "<strong>{$prefix}{$text}{$inside}</strong>{$trail}";
 	}
 
@@ -396,8 +331,13 @@ class Linker {
 		return htmlspecialchars( $basename );
 	}
 
-	/** @todo document */
+	/** Obsolete alias */
 	function makeImage( $url, $alt = '' ) {
+		return $this->makeExternalImage( $url, $alt );
+	}
+
+	/** @todo document */
+	function makeExternalImage( $url, $alt = '' ) {
 		global $wgOut;
 		if ( '' == $alt ) {
 			$alt = $this->fnamePart( $url );
@@ -407,81 +347,15 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeImageLink( $name, $url, $alt = '' ) {
-		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
-		return $this->makeImageLinkObj( $nt, $alt );
-	}
-
-	/** @todo document */
-	function makeImageLinkObj( $nt, $alt = '' ) {
-		global $wgContLang, $wgUseImageResize;
-		global $wgUser, $wgThumbLimits;
+	function makeImageLinkObj( &$nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false, 
+	  $thumb = false, $manual_thumb = '' ) 
+	{
+		global $wgContLang, $wgUser, $wgThumbLimits;
 		
 		$img   = new Image( $nt );
 		$url   = $img->getViewURL();
-
-		$align = '';
 		$prefix = $postfix = '';
-
-		# Check if the alt text is of the form "options|alt text"
-		# Options are:
-		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
-		#  * left		no resizing, just left align. label is used for alt= only
-		#  * right		same, but right aligned
-		#  * none		same, but not aligned
-		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
-		#  * center		center the image
-		#  * framed		Keep original image size, no magnify-button.
-
-		$part = explode( '|', $alt);
-
-		$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
-		$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
-		$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
-		$mwNone   =& MagicWord::get( MAG_IMG_NONE );
-		$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
-		$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
-		$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
-		$alt = '';
-
-		$height = $framed = $thumb = false;
-		$manual_thumb = "" ;
-
-		foreach( $part as $key => $val ) {
-			$val_parts = explode ( "=" , $val , 2 ) ;
-			$left_part = array_shift ( $val_parts ) ;
-			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
-				$thumb=true;
-			} elseif ( $wgUseImageResize && count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
-				# use manually specified thumbnail
-				$thumb=true;
-				$manual_thumb = array_shift ( $val_parts ) ;
-			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'right';
-			} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'left';
-			} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'center';
-			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'none';
-			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-				# $match is the image width in pixels
-				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
-					$width = intval( $m[1] );
-					$height = intval( $m[2] );
-				} else {
-					$width = intval($match);
-				}
-			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
-				$framed=true;
-			} else {
-				$alt = $val;
-			}
-		}
+		
 		if ( 'center' == $align )
 		{
 			$prefix  = '<div class="center">';
@@ -503,7 +377,7 @@ class Linker {
 			}
 
 			
-			if ( ! isset($width) ) {
+			if ( $width === false ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {
@@ -513,27 +387,20 @@ class Linker {
 				$width = $wgThumbLimits[$wopt];
 			}
 			
-			return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
+			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
 
-		} elseif ( isset($width) ) {
+		} elseif ( $width ) {
 
 			# Create a resized image, without the additional thumbnail
 			# features
 
-			if (    ( ! $height === false )
-			     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
+			if ( $height !== false && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
 				$width = $img->getWidth() * $height / $img->getHeight();
 			}
-			if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
+			if ( '' == $manual_thumb ) {
+				$url = $img->createThumb( $width );
+			}
 		}
-
-		# FIXME: This is a gross hack using a global.
-		# Replace link color holders in the caption text so the
-		# text portion can be placed int the alt/title attributes.
-		global $wgParser;
-		$wgParser->replaceLinkHolders( $alt );
-		
-		$alt = Sanitizer::stripAllTags( $alt );
 
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
@@ -553,13 +420,9 @@ class Linker {
 	 * Make HTML for a thumbnail including image, border and caption
 	 * $img is an Image object
 	 */
-	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
+	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgContLang;
-		# $image = Title::makeTitleSafe( NS_IMAGE, $name );
 		$url  = $img->getViewURL();
-
-		#$label = htmlspecialchars( $label );
-		$alt = Sanitizer::stripAllTags( $label );
 
 		$width = $height = 0;
 		if ( $img->exists() )
@@ -661,14 +524,7 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
-
-		$inside = '';
-		if ( '' != $trail ) {
-			if ( preg_match( $this->linktrail, $trail, $m ) ) {
-				$inside = $m[1];
-				$trail = $m[2];
-			}
-		}
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$url}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
 		wfProfileOut( $fname );
@@ -920,5 +776,28 @@ class Linker {
 		}
 		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
 	}
+
+	/** 
+	 * Split a link trail, return the "inside" portion and the remainder of the trail
+	 * as a two-element array
+	 * 
+	 * @static
+	 */
+	function splitTrail( $trail ) {
+		static $regex = false;
+		if ( $regex === false ) {
+			global $wgContLang;
+			$regex = $wgContLang->linkTrail();
+		}
+		$inside = '';
+		if ( '' != $trail ) {
+			if ( preg_match( $regex, $trail, $m ) ) {
+				$inside = $m[1];
+				$trail = $m[2];
+			}
+		}
+		return array( $inside, $trail );
+	}
+
 }
 ?>

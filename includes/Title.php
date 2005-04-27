@@ -1989,5 +1989,18 @@ class Title {
 		return $this->getArticleId() != 0;
 	}
 
+	/**
+	 * Should a link should be displayed as a known link, just based on its title?
+	 * 
+	 * Currently, a self-link with a fragment, special pages and image pages are in 
+	 * this category. Special pages never exist in the database. Some images do not
+	 * have description pages in the database, but the description page contains 
+	 * useful history information that the user may want to link to.
+	 * 
+	 */
+	function isAlwaysKnown() {
+		return ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
+		  || NS_SPECIAL == $this->mNamespace || NS_IMAGE == $this->mNamespace;
+	}
 }
 ?>
