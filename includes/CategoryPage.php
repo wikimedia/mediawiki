@@ -116,17 +116,19 @@ class CategoryPage extends Article {
 			
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				// Subcategory; strip the 'Category' namespace from the link text.
-				array_push( $children, $sk->makeKnownLinkObj( $title, $title->getText() ) );
+				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getText() ) ) );
 				
 				// If there's a link from Category:A to Category:B, the sortkey of the resulting
 				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 				// else use sortkey...
+				$sortkey='';
 				if( $title->getPrefixedText() == $x->cl_sortkey ) {
-					array_push( $children_start_char, $wgContLang->firstChar( $x->page_title ) );
+					$sortkey=$wgContLang->firstChar( $x->page_title );
 				} else {
-					array_push( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
+					$sortkey=$wgContLang->firstChar( $x->cl_sortkey );
 				}
+				array_push( $children_start_char, $wgContLang->convert( $sortkey ) ) ;
 			} elseif( $wgCategoryMagicGallery && $title->getNamespace() == NS_IMAGE ) {
 				// Show thumbnails of categorized images, in a separate chunk
 				if( $flip ) {
@@ -136,8 +138,8 @@ class CategoryPage extends Article {
 				}
 			} else {
 				// Page in this category
-				array_push( $articles, $sk->makeKnownLinkObj( $title ) ) ;
-				array_push( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
+				array_push( $articles, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getText() ) ) ) ;
+				array_push( $articles_start_char, $wgContLang->convert( $wgContLang->firstChar( $x->cl_sortkey ) ) );
 			}
 		}
 		$dbr->freeResult( $res );
