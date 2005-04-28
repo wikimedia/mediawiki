@@ -29,6 +29,7 @@ New exciting things! Need further work and testing...
 * It's now possible to invert the namespace selection at Special:Allpages and Special:Contributions
 * No longer using sorbs.net to check for open proxies by default.
 * What was $wgDisableUploads is now $wgEnableUploads, and should be set to true if one wishes to enable uploads.
+* Supplying a reason for a block is no longer mandatory
 * ...and more!
 
 Need to merge:

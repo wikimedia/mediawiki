@@ -165,12 +165,6 @@ class IPBlockForm {
 
 		}
 		
-
-		if ( $this->BlockReason == '') {
-			$this->showForm( wfMsg( 'noblockreason' ) );
-			return;
-		}
-		
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
 
