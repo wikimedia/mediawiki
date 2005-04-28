@@ -668,7 +668,7 @@ class PreferencesForm {
 				<input type='button' value=\"" . wfMsg( 'guesstimezone' ) ."\"
 				onclick='javascript:guessTimezone()' id='guesstimezonebutton' style='display:none;' />
 				</td></tr></table>
-			<div class='prefsectiontip'>*" .  wfMsg( 'timezonetext' ) . "</div>
+			<div class='prefsectiontip'>¹" .  wfMsg( 'timezonetext' ) . "</div>
 		</fieldset>\n\n" );		
 		
 		# Editing
