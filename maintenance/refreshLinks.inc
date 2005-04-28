@@ -6,10 +6,10 @@
  */
 
 /** */
-define( "REPORTING_INTERVAL", 50 );
+define( "REPORTING_INTERVAL", 100 );
 
 function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
-	global $wgUser, $wgLoadBalancer;
+	global $wgUser, $wgLoadBalancer, $wgParser, $wgUseImageResize;
 
 	$fname = 'refreshLinks';
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -18,6 +18,12 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 	
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
 	$wgUser->setOption("math", 3);
+
+	# Don't generate extension images (e.g. Timeline)
+	$wgParser->mTagHooks = array();
+
+	# Don't generate thumbnail images
+	$wgUseImageResize = false;
 
 	if ( $newOnly ) {
 		print "Refreshing links from ";
@@ -28,10 +34,10 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 		
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
-			if ( !( $i++ % REPORTING_INTERVAL ) ) {
+			if ( !( ++$i % REPORTING_INTERVAL ) ) {
 				print "$i\n";
+				waitForSlaves( $maxLag );
 			}
-			waitForSlaves( $maxLag );
 
 			fixLinksFromArticle( $row->cur_id );
 		}
@@ -44,9 +50,8 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 			
 			if ( !($id % REPORTING_INTERVAL) ) {
 				print "$id\n";
+				waitForSlaves( $maxLag );
 			}
-			waitForSlaves( $maxLag );
-
 			fixLinksFromArticle( $id );
 		}
 		
@@ -55,10 +60,16 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 }
 
 function waitForSlaves( $maxLag ) {
+	global $wgLoadBalancer;
 	if ( $maxLag ) {
 		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		$name = @gethostbyaddr( $host );
+		if ( $name !== false ) {
+			$host = $name;
+		}
 		while ( $lag > $maxLag ) {
 			print "Waiting for $host (lagged $lag seconds)...\n";
+			sleep($maxLag);
 			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
 		}
 	}
@@ -71,9 +82,9 @@ function fixLinksFromArticle( $id ) {
 	$dbw =& wfGetDB( DB_MASTER );
 	
 	if ( is_null( $wgTitle ) ) {
-		continue;
+		return;
 	}
-	$dbw->query("BEGIN");
+	$dbw->begin();
 
 	$wgArticle = new Article( $wgTitle );
 	$text = $wgArticle->getContent( true );
@@ -103,7 +114,7 @@ function fixLinksFromArticle( $id ) {
 	$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
 	$linksUpdate->doDumbUpdate();
 	$linksUpdate->fixBrokenLinks();
-	$dbw->query("COMMIT");
+	$dbw->immediateCommit();
 }
 
 function deleteLinksFromNonexistent() {

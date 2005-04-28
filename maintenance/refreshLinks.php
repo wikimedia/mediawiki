@@ -6,6 +6,8 @@
  */
 
 /** */
+
+$optionsWithArgs = array( 'm' );
 require_once( "commandLine.inc" );
 require_once( "refreshLinks.inc" );
 
