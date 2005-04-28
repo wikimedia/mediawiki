@@ -5,7 +5,11 @@
  * @subpackage SpecialPage
  */
 
-/** @todo document */
+/**
+ * Redirects a user to hir personal page, used by buildPersonalUrls() in
+ * SkinTemplate.php.
+ */
+   
 function wfSpecialMycontributions() {
 	global $wgUser, $wgOut;
 	$t = Title::makeTitle( NS_SPECIAL, 'Contributions' );
