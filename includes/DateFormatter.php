@@ -132,6 +132,7 @@ class DateFormatter
 	 * @param $text
 	 */
 	function reformat( $preference, $text ) {
+		if ($preference == 'ISO 8601') $preference = 4; # The ISO 8601 option used to be 4
 		for ( $i=1; $i<=DF_LAST; $i++ ) {
 			$this->mSource = $i;
 			if ( @$this->rules[$preference][$i] ) {
