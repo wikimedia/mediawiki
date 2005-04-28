@@ -692,7 +692,7 @@ END
 			 * we won't save the page, or render user JavaScript and
 			 * CSS previews.
 			 */
-			$token = $wgUser->editToken();
+			$token = htmlspecialchars( $wgUser->editToken() );
 			$wgOut->addHTML( "
 <input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
