@@ -80,7 +80,7 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	function getContent( $noredir ) {
-		global $wgRequest;
+		global $wgRequest, $wgUser;
 
 		# Get variables from query string :P
 		$action = $wgRequest->getText( 'action', 'view' );
@@ -100,7 +100,7 @@ class Article {
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
-			  preg_match('/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/',$this->mTitle->getText()) &&
+			  $wgUser->isIP($this->mTitle->getText()) &&
 			  $action=='view'
 			) {
 				wfProfileOut( $fname );
