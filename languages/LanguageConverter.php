@@ -353,7 +353,10 @@ class LanguageConverter {
 		static $cache=array();
 		global $wgDisableLangConversion;
 		$pref = $this->getPreferredVariant();
-		if( $count > 50 )
+		$ns=0;
+		if(is_object($nt))
+			$ns = $nt->getNamespace();
+		if( $count > 50 && $ns != NS_CATEGORY )
 			return;
 		$count++;
 		$variants = $this->autoConvertToAllVariants($link);
@@ -366,7 +369,7 @@ class LanguageConverter {
 			$varnt = Title::newFromText( $v );
 			if( $varnt && $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
-				if( !$wgDisableLangConversion && $pref != 'zh' )
+				if( !$wgDisableLangConversion )
 					$link = $v;
 				break;
 			}
@@ -597,6 +600,13 @@ class LanguageConverter {
 		return $ret;
 	}
 
+	/**
+	 * convert the sorting key for category links. this should make different 
+	 * keys that are variants of each other map to the same key
+	*/
+	function convertCategoryKey( $key ) {
+		return $key;
+	}
 	/**
      * hook to refresh the cache of conversion tables when 
      * MediaWiki:conversiontable* is updated
