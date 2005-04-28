@@ -1424,7 +1424,6 @@ pages that were vandalized).",
 'ipbreason'		=> 'Reason',
 'ipbsubmit'		=> 'Block this user',
 'badipaddress'	=> 'Invalid IP address',
-'noblockreason' => 'You must supply a reason for the block.',
 'blockipsuccesssub' => 'Block succeeded',
 'blockipsuccesstext' => "\"$1\" has been blocked.
 <br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
