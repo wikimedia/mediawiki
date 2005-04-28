@@ -36,7 +36,7 @@ function wfSpecialWatchlist() {
 	$days = $wgRequest->getVal( 'days' );
 	$action = $wgRequest->getVal( 'action' );
 	$remove = $wgRequest->getVal( 'remove' );
-	$hideOwn = $wgRequest->getVal( 'hideOwn' );		
+	$hideOwn = $wgRequest->getBool( 'hideOwn' );	
 	$id = $wgRequest->getArray( 'id' );
 
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
@@ -100,8 +100,8 @@ function wfSpecialWatchlist() {
 	$nitems = $s->n;
 
 	if($nitems == 0) {
-        $wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
-        return;
+        	$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
+        	return;
 	}
 	
 	if ( is_null( $days ) ) {
@@ -130,14 +130,10 @@ function wfSpecialWatchlist() {
 		$npages = $s->n;
 
 	}
-	if ( is_null( $hideOwn ) ) {
-		# default is false (don't hide own edits)
-		$hideOwn = 0;
-	}
-
-	if(isset($_REQUEST['magic'])) {
+	
+	if($wgRequest->getBool('magic')) {
 		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
-			'<p>' . wfMsg( 'watcheditlist' ) . "</p>\n" );
+			"\n\n" . wfMsg( 'watcheditlist' ) );
 
 		$wgOut->addHTML( '<form action=\'' .
 			$specialTitle->escapeLocalUrl( 'action=submit' ) .
@@ -193,11 +189,7 @@ function wfSpecialWatchlist() {
 		$z = 'wl_namespace=page_namespace';
 	}
 
-	if ( 0 == $hideOwn )
-		$andHideOwn = '';
-	else
-		$andHideOwn = "AND (rev_user <> $uid)";
-		
+	$andHideOwn = $hideOwn ? "AND (rev_user <> $uid)" : '';
 	
 	$wgOut->addHTML( '<i>' . wfMsg( 'watchdetails',
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
