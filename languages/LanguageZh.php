@@ -24,6 +24,13 @@ class ZhConverter extends LanguageConverter {
 		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-cn'], $this->mTables['zh-sg']);
 		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk']);
     }
+
+	/* there shouldn't be any latin text in Chinese conversion, so no need 
+	   to mark anything
+    */
+	function markNoConversion($text) {
+		return $text;
+	}
 }
 
 
