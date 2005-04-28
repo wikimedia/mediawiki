@@ -1902,6 +1902,8 @@ class fakeConverter {
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
 	function markNoConversion($text) {return $text;}
+	function convertCategoryKey( $key ) {return $key; }
+
 }
 
 #--------------------------------------------------------------------------
@@ -2530,6 +2532,10 @@ class Language {
 	# convert text to different variants of a language.
 	function convert( $text , $isTitle=false) {
 		return $this->mConverter->convert($text, $isTitle);
+	}
+
+	function convertCategoryKey( $key ) {
+		return $this->mConverter->convertCategoryKey( $key );
 	}
 
 	/**

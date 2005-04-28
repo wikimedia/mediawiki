@@ -31,6 +31,10 @@ class ZhConverter extends LanguageConverter {
 	function markNoConversion($text) {
 		return $text;
 	}
+
+	function convertCategoryKey( $key ) {
+		return $this->autoConvert( $key, 'zh-cn' ); 
+	}
 }
 
 
