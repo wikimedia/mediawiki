@@ -692,7 +692,7 @@ END
 			 * we won't save the page, or render user JavaScript and
 			 * CSS previews.
 			 */
-			$token = htmlspecialchars( $wgUser->editToken() );
+			$token = $wgUser->editToken();
 			$wgOut->addHTML( "
 <input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
@@ -717,9 +717,6 @@ END
 		if ( $formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
 			$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
 		}
-	}
-
-	function getDiffText() {
 	}
 
 	/**
@@ -987,35 +984,35 @@ END
 					'tip'	=>	wfMsg('image_tip'),
 					'key'	=>	'D'
 				),
-			array(	'image'	=>	'button_media.png',
+			array(	'image'	=>'button_media.png',
 					'open'	=>	'[['.$wgLang->getNsText(NS_MEDIA).':',
 					'close'	=>	']]',
 					'sample'=>	wfMsg('media_sample'),
 					'tip'	=>	wfMsg('media_tip'),
 					'key'	=>	'M'
 				),
-			array(	'image'	=>	'button_math.png',
+			array(	'image'	=>'button_math.png',
 					'open'	=>	"\\<math\\>",
 					'close'	=>	"\\</math\\>",
 					'sample'=>	wfMsg('math_sample'),
 					'tip'	=>	wfMsg('math_tip'),
 					'key'	=>	'C'
 				),
-			array(	'image'	=>	'button_nowiki.png',
+			array(	'image'	=>'button_nowiki.png',
 					'open'	=>	"\\<nowiki\\>",
 					'close'	=>	"\\</nowiki\\>",
 					'sample'=>	wfMsg('nowiki_sample'),
 					'tip'	=>	wfMsg('nowiki_tip'),
 					'key'	=>	'N'
 				),
-			array(	'image'	=>	'button_sig.png',
+			array(	'image'	=>'button_sig.png',
 					'open'	=>	'--~~~~',
 					'close'	=>	'',
 					'sample'=>	'',
 					'tip'	=>	wfMsg('sig_tip'),
 					'key'	=>	'Y'
 				),
-			array(	'image'	=>	'button_hr.png',
+			array(	'image'	=>'button_hr.png',
 					'open'	=>	"\\n----\\n",
 					'close'	=>	'',
 					'sample'=>	'',
