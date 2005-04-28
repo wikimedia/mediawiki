@@ -378,8 +378,7 @@ class User {
 	 */
 	function isBlocked( $bFromSlave = false ) {
 		$this->getBlockedStatus( $bFromSlave );
-		if ( 0 === $this->mBlockedby ) { return false; }
-		return true;
+		return $this->mBlockedby !== 0;
 	}
 	
 	/**
