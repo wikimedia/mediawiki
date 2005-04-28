@@ -376,8 +376,7 @@ class Title {
 		global $wgContLang;
 
 		$n = $wgContLang->getNsText( $ns );
-		if ( '' == $n ) { return $title; }
-		else { return $n.':'.$title; }
+		return $n == '' ? $title : "$n:$title";
 	}
 	
 	/**
