@@ -25,8 +25,10 @@ class ImagePage extends Article {
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
+			if ( $this->img->exists() ) {
+				$this->showTOC();
+			}
 			$this->openShowImage();
-			if ( $this->img->exists() ) $this->showEXIFdata();
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
 			if ( $this->getID() ) {
@@ -40,18 +42,29 @@ class ImagePage extends Article {
 				$this->viewUpdates();
 			}
 			
-			if ( $this->img->exists() ) {
-				$this->uploadNewVersionLink();
-				if ( $wgUseExternalEditor && $this->img->exists() ) {
-					$this->externalEditorLink();
-				}
-			}
 			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
+			if ( $this->img->exists() ) $this->showEXIFdata();
 		} else {
 			Article::view();
 		}
+	}
+
+	function showTOC() {
+		global $wgOut, $wgShowEXIF, $wgLang;
+		
+		$r= '<div class="imagepagetoc" style="float:right; margin-top:-4em;"><table id="toc" border="0"><tr><td valign="top"><b>'.wfMsg( 'toc' ).'</b><br />';
+		$r .= '<a href="#toc">'        . $wgLang->getNStext( NS_IMAGE ) . '</a href> - ';
+		$r .= '<a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a href> - ';
+		$r .= '<a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a href>';
+		if ( $wgShowEXIF ) {
+			$r .= ' - <a href="#showexif">' . wfMsg( 'exifdata' ) . '</a>';
+		}
+
+			
+		$wgOut->addHTML( $r . '</td></tr></table></div>' );
+
 	}
 	
 	function showEXIFdata() {
@@ -63,13 +76,27 @@ class ImagePage extends Article {
 		if ( count ( $exif ) == 0 ) return; # No EXIF data available
 		
 		# Create the table
-		$r = "{| class=exif\n" ;
-		$r .= '|+ ' . wfMsg( 'exifdata' ) . "\n|-\n" ;
+		$r = '<h2 id="exifdata">'. wfMsg( 'exifdata' ) . "</h2>\n";
+		$r .= "<table class=\"exif\">\n" ;
+		$n = 0;
 		foreach ( $exif as $k => $v ) {
-			$r .= "! $k\n";
-			$r .= '| ' . htmlspecialchars($v) . "\n|-\n";
+			if ( $n % 2 == 0 ) {
+				$r .= '<tr>';
+			}
+			$r .= "<th>$k</th>\n";
+			$r .= '<td>' . htmlspecialchars($v) . "</td>\n";
+			if ( $n % 2 == 1 ) {
+				$r .= "</tr>\n";
+			} else {
+				$r .= "<td style=\"background: white;\">&nbsp;&nbsp;</td>\n";
+			}
+			$n++;
 		}
-		$wgOut->addWikiText( substr($r, 0, -3) . '|}' );
+		if ( $n % 2 == 1 ) {
+			$r .= "<td></td><td></td></tr>\n";
+		}
+
+		$wgOut->addHTML( $r . "</table>\n" );
 	}
 
 	function openShowImage()
@@ -99,6 +126,7 @@ class ImagePage extends Article {
 				# image
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
+				# "Download high res version" link below the image
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth ) {
 					$height = floor( $height * $maxWidth / $width );
@@ -151,24 +179,30 @@ class ImagePage extends Article {
 	}
 
 
-	function uploadNewVersionLink() {
-		global $wgOut;
-		$wgOut->addHTML("<div class='editExternally'>");
-		$wgOut->addWikiText( wfMsg( 'uploadnewversion', $this->getUploadUrl() ) );
-		$wgOut->addHTML("</div><br clear='both' />");
-	}
-
-	function externalEditorLink()
+	function uploadLinksBox()
 	{
 		global $wgUser,$wgOut;
 		$sk = $wgUser->getSkin();
-		$wgOut->addHTML( '<div class="editExternally">' );
-		$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
-			wfMsg( 'edit-externally' ),
-			"action=edit&externaledit=true&mode=file" ) );
-		$wgOut->addWikiText( '<div class="editExternallyHelp">' .
-			wfMsg('edit-externally-help') . '</div>' );
-		$wgOut->addHTML( '</div><br clear="all" />' );
+		if (0) {
+			$wgOut->addHTML( '<table id="toc" border="0"><tr><td valign="top">' );
+			$wgOut->addWikiText( '<div class="editExternally">'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
+			$wgOut->addHTML( '</td><td><div class="editExternally">' );
+			$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
+				wfMsg( 'edit-externally' ),
+				"action=edit&externaledit=true&mode=file" ) );
+			$wgOut->addWikiText( '<div class="editExternallyHelp">' .
+				wfMsg('edit-externally-help') . '</div>' );
+			$wgOut->addHTML( '</div></td></tr></table><br clear="both">' );
+		} else if (0) {
+			$wgOut->addHTML( '<br /><ul><li>' );
+			$wgOut->addWikiText( '<div>'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
+			$wgOut->addHTML( '</li><li>' );
+			$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
+				wfMsg( 'edit-externally' ), "action=edit&externaledit=true&mode=file" ) );
+			$wgOut->addWikiText( '<div>' .  wfMsg('edit-externally-help') . '</div>' );
+			$wgOut->addHTML( '</li></ul>' );
+		} else {
+		}
 	}
 	
 	function closeShowImage()
@@ -183,7 +217,7 @@ class ImagePage extends Article {
 	 */
 	function imageHistory()
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgUseExternalEditor;
 
 		$sk = $wgUser->getSkin();
 
@@ -204,13 +238,18 @@ class ImagePage extends Article {
 			$s .= $list->endImageHistoryList();
 		} else { $s=''; }
 		$wgOut->addHTML( $s );
+
+		if ( $wgUseExternalEditor ) {
+			$this->uploadLinksBox();
+		}
+
 	}
 
 	function imageLinks()
 	{
 		global $wgUser, $wgOut;
 
-		$wgOut->addHTML( '<h2>' . wfMsg( 'imagelinks' ) . "</h2>\n" );
+		$wgOut->addHTML( '<h2 id="imagelinks">' . wfMsg( 'imagelinks' ) . "</h2>\n" );
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
@@ -485,7 +524,7 @@ class ImageHistoryList {
 	}
 	
 	function beginImageHistoryList() {
-		$s = "\n<h2>" . wfMsg( 'imghistory' ) . "</h2>\n" .
+		$s = "\n<h2 id=\"imghistory\">" . wfMsg( 'imghistory' ) . "</h2>\n" .
 		  "<p>" . wfMsg( 'imghistlegend' ) . "</p>\n".'<ul class="special">';
 		return $s;
 	}
