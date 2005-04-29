@@ -43,7 +43,11 @@ if( isset( $_SERVER['SERVER_NAME'] ) ) {
 $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
 $wgServer = $wgProto.'://' . $wgServerName;
-if( isset( $_SERVER['SERVER_PORT'] ) && $_SERVER['SERVER_PORT'] != 80 ) {
+# If the port is a non-standard one, add it to the URL
+if(    isset( $_SERVER['SERVER_PORT'] )
+    && (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
+         || ( $wgProto == 'https' && $_SERVER['SERVER_PORT'] != 443 ) ) ) {
+
 	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
 }
 unset($wgProto);
