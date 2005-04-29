@@ -54,7 +54,7 @@ class ImagePage extends Article {
 	function showTOC() {
 		global $wgOut, $wgShowEXIF, $wgLang;
 		
-		$r= '<div class="imagepagetoc" style="float:right; margin-top:-4em;"><table id="toc" border="0"><tr><td valign="top"><b>'.wfMsg( 'toc' ).'</b><br />';
+		$r= '<div class="imagepagetoc"><table id="toc" border="0"><tr><td valign="top"><b>'.wfMsg( 'toc' ).'</b><br />';
 		$r .= '<a href="#toc">'        . $wgLang->getNStext( NS_IMAGE ) . '</a href> - ';
 		$r .= '<a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a href> - ';
 		$r .= '<a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a href>';
