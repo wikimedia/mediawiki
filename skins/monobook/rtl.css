@@ -22,8 +22,7 @@ To test:
 * etc
 
 */
-body,
-body * {
+body {
     direction: rtl;
 /*    unicode-bidi: bidi-override;*/
     unicode-bidi: embed;
