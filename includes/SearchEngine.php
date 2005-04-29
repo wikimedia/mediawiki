@@ -2,6 +2,7 @@
 /**
  * Contain a class for special pages
  * @package MediaWiki
+ * @subpackage Search
  */
 
 /**
