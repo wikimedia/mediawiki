@@ -151,9 +151,13 @@ class SpecialSearch {
 			}
 			global $wgInputEncoding;
 			$wgOut->addHTML( wfMsg( 'searchdisabled' ) );
-			$wgOut->addHTML( wfMsg( 'googlesearch',
-				htmlspecialchars( $term ),
-				htmlspecialchars( $wgInputEncoding ) ) );
+			$wgOut->addHTML(
+				wfMsg( 'googlesearch',
+					htmlspecialchars( $term ),
+					htmlspecialchars( $wgInputEncoding ),
+					htmlspecialchars( wfMsg( 'search' ) )
+				)
+			);
 			wfProfileOut( $fname );
 			return;
 		}
