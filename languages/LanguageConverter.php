@@ -471,20 +471,6 @@ class LanguageConverter {
      */
 	function postLoadTables() {}
 
-	/* deprecated? */
-	function updateTablexxxx($code, $table) {
-		global $wgMemc;
-		if(!$this->mTablesLoaded)
-			$this->loadTables();
-
-		$this->mTables[$code] = array_merge($this->mTables[$code], $table);
-		if($this->lockCache()) {
-			$wgMemc->delete($this->mCacheKey);
-			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
-			$this->unlockCache();
-		}
-	}
-
     /**
      * Reload the conversion tables
      * 
