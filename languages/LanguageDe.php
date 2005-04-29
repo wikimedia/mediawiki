@@ -1167,6 +1167,82 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'speciallogtitlelabel' => 'Titel: ',
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
+'exif-make'	=> 'Hersteller',     # Image input equipment manufacturer
+'exif-model'	=> 'Modell',         # Image input equipment model
+'exif-software' => 'Software',       # Software used
+'exif-artist'   => 'Fotograf',       # Person who created the image
+'exif-copyright'=> 'Copyright',      # Copyright holder
+
+# Tags relating to image structure
+'exif-imagewidth'  => 'Breite',      # Image width
+'exif-imagelength' => 'Länge',      # Image height
+'exif-orientation' => 'Orientierung',# Orientation of image
+'exif-samplesperpixel' => 'Samples per Pixel',             # Number of components
+'exif-planarconfiguration' => 'Planar Configuration',      # Image data arrangement
+'exif-ycbcrsubsampling' => 'YCbCr Subsampling',            # Subsampling ratio of Y to C
+'exif-ycbcrpositioning' => 'YCbCr Positioning',            # Y and C positioning
+'exif-xresolution' => 'Horizontale Auflösung',            # Image resolution in width direction
+'exif-yresolution' => 'Vertikale Auflösung',              # Image resolution in height direction
+'exif-resolutionunit' => 'Masseinheit der Auflösung',     # Unit of X and Y resolution
+
+# Tags relating to recording offset
+'exif-stripoffsets' => 'Strip Offsets',                                  # Image data location
+'exif-rowsperstrip' => 'Rows per Strip',                                 # Number of rows per strip
+'exif-stripbytecounts' => 'Bytes per Strip',                             # Bytes per compressed strip
+'exif-jpeginterchangeformat' => 'JPEG Interchange Format',               # Offset to JPEG SOI
+'exif-jpeginterchangeformatlength' => 'JPEG Interchange Format Length',  # Bytes of JPEG data
+
+# Tags relating to image data characteristics
+'exif-transferfunction' => 'Transfer Function',                 # Transfer function
+'exif-whitepoint' => 'Whitepoint',                              # White point chromaticity
+'exif-primarychromaticities' => 'Primary Chromaticities',       # Chromaticities of primarities
+'exif-ycbcrcoefficients' => 'YCbCr-Koeffizienten',              # Color space transformation matrix coefficients
+'exif-referenceblackwhite' => 'Schwarz/Weiß-Referenzpunkte',  # Pair of black and white reference values
+
+# Tags relating to Image Data Characteristics
+'exif-colorspace' => 'Farbraum',                                # Color space information
+'exif-compressedbitsperpixel' => 'Compressed Bits per Pixel',   # Image compression mode
+'exif-pixelydimension' => 'Pixel Y Dimension',                  # Valid image width
+'exif-pixelxdimension' => 'Pixel X Dimension',                  # Valind image height
+'exif-imageuniqueid' => 'Eindeutige Bild-ID',                   # Unique image ID
+
+# Tags relating to picture-taking conditions
+'exif-exposuretime' => 'Belichtungsdauer',                 # Exposure time
+'exif-fnumber' => 'F-Wert',                      # F Number
+'exif-exposureprogram' => 'Belichtungsprogramm',              # Exposure Program
+'exif-spectralsensitivity' => 'Spectral Sensitivity',          # Spectral sensitivity
+'exif-isospeedratings' => 'Filmempfindlichkeit (ISO)',              # ISO speed rating
+'exif-shutterspeedvalue' => 'Shutter Speed Value',            # Shutter speed
+'exif-aperturevalue' => 'Blendenwert',                # Aperture
+'exif-brightnessvalue' => 'Brightness Value',              # Brightness
+'exif-exposurebiasvalue' => 'Belichtungsvorgabe',            # Exposure bias
+'exif-maxaperturevalue' => 'Größte Blende',             # Maximum land aperture
+'exif-subjectdistance' => 'Entfernung',              # Subject distance
+'exif-meteringmode' => 'Messverfahren',                 # Metering mode
+'exif-lightsource' => 'Lichtquelle',                  # Light source
+'exif-flash' => 'Blitz',                        # Flash
+'exif-focallength' => 'Brennweite',                  # Lens focal length
+'exif-subjectarea' => 'Subject Area',                  # Subject area
+'exif-flashenergy' => 'Blitzstärke',                  # Flash energy
+'exif-focalplanexressolution' => 'Focal Plane X-Resolution',       # Focal plane X resolution
+'exif-focalplaneyressolution' => 'Focal Plane Y-Resolution',       # Focal plane Y resolution
+'exif-focalplaneresolutionunit' => 'Focal Plane Resolution Unit',     # Focal plane resolution unit
+'exif-subjectlocation' => 'Subject Location',              # Subject location
+'exif-exposureindex' => 'Exposure Index',                # Exposure index
+'exif-sensingmethod' => 'Sensing Method',                # Sensing method
+'exif-customrendered' => 'Custom Rendered',               # Custom image processing
+'exif-exposuremode' => 'Belichtungsmodus',                 # Exposure mode
+'exif-whitebalance' => 'Weißabgleich',                 # White Balance
+'exif-digitalzoomratio' => 'Digital Zoom Ratio',             # Digital zoom ration
+'exif-focallengthin35mmfilm' => 'Brennweite (Kleinbildäquivalent)',        # Focal length in 35 mm film
+'exif-scenecapturetype' => 'Scene Capture Type',             # Scene capture type
+'exif-gaincontrol' => 'Gain Control',                  # Scene control
+'exif-contrast' => 'Kontrast',                     # Contrast
+'exif-saturation'=> 'Sättigung',                   # Saturation
+'exif-sharpness' => 'Schärfe',                    # Sharpness
+'exif-subjectdistancerange' => 'Subject Distance Range',         # Subject distance range
+
+
 );
 
 class LanguageDe extends LanguageUtf8 {
