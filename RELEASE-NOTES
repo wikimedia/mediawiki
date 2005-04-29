@@ -548,6 +548,11 @@ pages for purposes of page relevancy ranking.
   for expensive queries in Special:Statistics.
 
 
+=== 1.4.4 fixes ===
+
+* (bug 725) Let dir="ltr" attribute work again in MonoBook on RTL languages
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
