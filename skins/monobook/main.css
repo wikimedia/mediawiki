@@ -1113,7 +1113,6 @@ li span.deleted {
 table.exif {
 	background-color: #f9f9f9;
 	margin-left: 0.5em;
-	float: right;
 }
 
 table.exif caption { font-weight: bold; }
@@ -1130,3 +1129,7 @@ table.exif, table.exif td, table.exif th {
 	text-indent: -2em;
 }
 
+div.imagepagetoc {
+	float: right;
+	margin-top: -4em;
+}
