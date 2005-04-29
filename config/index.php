@@ -669,7 +669,7 @@ if( count( $errs ) ) {
 	}
 ?>
 
-<form name="config" method="post">
+<form action="index.php" name="config" method="post">
 
 
 <h2>Site config</h2>
