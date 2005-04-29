@@ -814,32 +814,22 @@ containing all of the search terms will appear in the result).",
 Search in namespaces :<br />
 $1<br />
 $2 List redirects &nbsp; Search for $3 $9",
-"searchdisabled" => '<p style="margin: 1.5em 2em 1em">{{SITENAME}} search is disabled for performance reasons. You can search via Google in the meantime.
-<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of {{SITENAME}} content may be out of date.</span></p>',
+"searchdisabled" => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
 
 'googlesearch' => '
-<div style="margin-left: 2em">
-
-<!-- Google search -->
-<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="padding:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
-
-<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-  <div>
+<form method="get" action="http://www.google.com/search" id="googlesearch">
     <input type="hidden" name="domains" value="{{SERVER}}" />
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
     
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="Google Search" />
-  </div>
-  <div style="font-size:90%">
+    <input type="submit" name="btnG" value="$3" />
+  <div>
     <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
     <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
-</form>
-
-</div>',
+</form>',
 'blanknamespace' => '(Main)',
 
 # Preferences page
