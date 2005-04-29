@@ -16,7 +16,7 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 
 	# Determine the namespace to get a random page from.
 	$namespace = $wgContLang->getNsIndex($par);
-	if ($namespace === false || $namespace < NS_MAIN) {
+	if (!$namespace || $namespace < NS_MAIN) {
 		$namespace = NS_MAIN;
 	}
 	
@@ -36,18 +36,14 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 	$use_index = $db->useIndexClause( 'page_random' );
 	$page = $db->tableName( 'page' );
 
-	if ( $wgExtraRandompageSQL ) {
-		$extra = "AND ($wgExtraRandompageSQL)";
-	} else {
-		$extra = '';
-	}
-	$sqlget = "SELECT page_id,page_title
+	$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : '';
+	$sql = "SELECT page_id,page_title
 		FROM $page $use_index
-		WHERE page_namespace=".$namespace." AND page_is_redirect=0 $extra
+		WHERE page_namespace=$namespace AND page_is_redirect=0 $extra
 		AND page_random>$randstr
 		ORDER BY page_random
 		LIMIT 1";
-	$res = $db->query( $sqlget, $fname );
+	$res = $db->query( $sql, $fname );
 	
 	$title = null;
 	if( $s = $db->fetchObject( $res ) ) {
