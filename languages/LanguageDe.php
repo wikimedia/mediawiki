@@ -1224,8 +1224,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'exif-focallength' => 'Brennweite',                  # Lens focal length
 'exif-subjectarea' => 'Subject Area',                  # Subject area
 'exif-flashenergy' => 'Blitzstärke',                  # Flash energy
-'exif-focalplanexressolution' => 'Focal Plane X-Resolution',       # Focal plane X resolution
-'exif-focalplaneyressolution' => 'Focal Plane Y-Resolution',       # Focal plane Y resolution
+'exif-focalplanexresolution' => 'Focal Plane X-Resolution',       # Focal plane X resolution
+'exif-focalplaneyresolution' => 'Focal Plane Y-Resolution',       # Focal plane Y resolution
 'exif-focalplaneresolutionunit' => 'Focal Plane Resolution Unit',     # Focal plane resolution unit
 'exif-subjectlocation' => 'Subject Location',              # Subject location
 'exif-exposureindex' => 'Exposure Index',                # Exposure index
@@ -1241,8 +1241,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'exif-saturation'=> 'Sättigung',                   # Saturation
 'exif-sharpness' => 'Schärfe',                    # Sharpness
 'exif-subjectdistancerange' => 'Subject Distance Range',         # Subject distance range
-
-
 );
 
 class LanguageDe extends LanguageUtf8 {
