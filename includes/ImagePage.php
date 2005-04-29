@@ -183,26 +183,13 @@ class ImagePage extends Article {
 	{
 		global $wgUser,$wgOut;
 		$sk = $wgUser->getSkin();
-		if (0) {
-			$wgOut->addHTML( '<table id="toc" border="0"><tr><td valign="top">' );
-			$wgOut->addWikiText( '<div class="editExternally">'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
-			$wgOut->addHTML( '</td><td><div class="editExternally">' );
-			$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
-				wfMsg( 'edit-externally' ),
-				"action=edit&externaledit=true&mode=file" ) );
-			$wgOut->addWikiText( '<div class="editExternallyHelp">' .
-				wfMsg('edit-externally-help') . '</div>' );
-			$wgOut->addHTML( '</div></td></tr></table><br clear="both">' );
-		} else if (0) {
-			$wgOut->addHTML( '<br /><ul><li>' );
-			$wgOut->addWikiText( '<div>'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
-			$wgOut->addHTML( '</li><li>' );
-			$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
-				wfMsg( 'edit-externally' ), "action=edit&externaledit=true&mode=file" ) );
-			$wgOut->addWikiText( '<div>' .  wfMsg('edit-externally-help') . '</div>' );
-			$wgOut->addHTML( '</li></ul>' );
-		} else {
-		}
+		$wgOut->addHTML( '<br /><ul><li>' );
+		$wgOut->addWikiText( '<div>'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
+		$wgOut->addHTML( '</li><li>' );
+		$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
+			wfMsg( 'edit-externally' ), "action=edit&externaledit=true&mode=file" ) );
+		$wgOut->addWikiText( '<div>' .  wfMsg('edit-externally-help') . '</div>' );
+		$wgOut->addHTML( '</li></ul>' );
 	}
 	
 	function closeShowImage()
