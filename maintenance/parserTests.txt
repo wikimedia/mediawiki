@@ -294,9 +294,9 @@ Definition list with bracketed URL link
 !! test
 Definition list with wikilink containing colon
 !! input
-; [[Wikipedia:FAQ]]: The least-read page on Wikipedia
+; [[Help:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Wikipedia:FAQ&amp;action=edit" class="new" title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="/index.php?title=Help:FAQ&amp;action=edit" class="new" title="Help:FAQ">Help:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -1809,8 +1809,7 @@ title=[[Parser test script]]
 Some text
 ===Another headline===
 !! result
-<div id='toc'>
-<div id='toctitle'><h2>Table of contents</h2></div>
+<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Table of contents</h2></div>
 <ul>
 <li class='toclevel-1'><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -1831,8 +1830,8 @@ Some text
 </ul>
 </li>
 </ul>
-</div>
-<script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide";  showTocToggle(); } </script><div class='visualClear'></div>
+</td></tr></table>
+<script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Subheadline_1"></a><h3> Subheadline 1 </h3>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Skipping_a_level"></a><h5> Skipping a level </h5>
