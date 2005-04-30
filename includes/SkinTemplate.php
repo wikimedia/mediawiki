@@ -420,14 +420,16 @@ class SkinTemplate extends Skin {
 		global $wgShowIPinHeader;
 		$personal_urls = array();
 		if ($this->loggedin) {
-			/* Logged in users personal toolbar */
 			$personal_urls['userpage'] = array(
-				'text' => wfMsg('mypage'),
-				'href' => $this->makeSpecialUrl('Mypage')
+				'text' => $this->username,
+				'href' => &$this->userpageUrlDetails['href'],
+				'class' => $this->userpageUrlDetails['exists']?false:'new'
 			);
+			$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 			$personal_urls['mytalk'] = array(
 				'text' => wfMsg('mytalk'),
-				'href' => $this->makeSpecialUrl('Mytalk')
+				'href' => &$usertalkUrlDetails['href'],
+				'class' => $usertalkUrlDetails['exists']?false:'new'
 			);
 			$personal_urls['preferences'] = array(
 				'text' => wfMsg('preferences'),
@@ -439,7 +441,7 @@ class SkinTemplate extends Skin {
 			);
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg('mycontris'),
-				'href' => $this->makeSpecialUrl('Mycontributions')
+				'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) )
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
@@ -447,22 +449,23 @@ class SkinTemplate extends Skin {
 			);
 		} else {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
-				/* Anonymous with session users personal toolbar */
 				$personal_urls['anonuserpage'] = array(
-					'text' => wfMsg('mypage'),
-					'href' => $this->makeSpecialUrl('Mypage')
+					'text' => $this->username,
+					'href' => &$this->userpageUrlDetails['href'],
+					'class' => $this->userpageUrlDetails['exists']?false:'new'
 				);
-				$personal_urls['mytalk'] = array(
-					'text' => wfMsg('mytalk'),
-					'href' => $this->makeSpecialUrl('Mytalk')
+				$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
+				$personal_urls['anontalk'] = array(
+					'text' => wfMsg('anontalk'),
+					'href' => &$usertalkUrlDetails['href'],
+					'class' => $usertalkUrlDetails['exists']?false:'new'
 				);
-
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )
 				);
 			} else {
-				/* Anonymous users personal toolbar */
+
 				$personal_urls['login'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )
@@ -486,6 +489,26 @@ class SkinTemplate extends Skin {
 			'class' => implode( ' ', $classes ),
 			'text' => wfMsg( $message ),
 			'href' => $title->getLocalUrl( $query ) );
+	}
+
+	function makeTalkUrlDetails( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title = $title->getTalkPage();
+		$this->checkTitle($title, $name);
+		return array(
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		);
+	}
+	
+	function makeArticleUrlDetails( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title= $title->getSubjectPage();
+		$this->checkTitle($title, $name);
+		return array(
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => $title->getArticleID() != 0?true:false
+		);
 	}
 	
 	/**
