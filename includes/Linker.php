@@ -719,13 +719,13 @@ class Linker {
 	/** @todo document */
 	function tocList($toc) {
 		return "<table id='toc' class='toc'><tr><td>" 
-			   . "<div id='toctitle'><h2>" . wfMsg('toc') . "</h2></div>\n"
+			   . "<div id='toctitle'><h2>" . wfMsgForContent('toc') . "</h2></div>\n"
 		     . $toc
 				 . "</ul>\n</td></tr></table>\n"
 				 . '<script type="text/javascript">'
 				 . ' if (window.showTocToggle) {'
-				 . ' var tocShowText = "' . addslashes( wfMsg('showtoc') ) . '";'
-				 . ' var tocHideText = "' . addslashes( wfMsg('hidetoc') ) . '"; '
+				 . ' var tocShowText = "' . wfEscapeJsString( wfMsgForContent('showtoc') ) . '";'
+				 . ' var tocHideText = "' . wfEscapeJsString( wfMsgForContent('hidetoc') ) . '";'
 				 . ' showTocToggle();'
 				 . ' } '
 				 . "</script>\n";

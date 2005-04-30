@@ -1028,7 +1028,7 @@ END
 			$image=$wgStylePath.'/common/images/'.$tool['image'];
 			$open=$tool['open'];
 			$close=$tool['close'];
-			$sample = addslashes( $tool['sample'] );
+			$sample = wfEscapeJsString( $tool['sample'] );
 
 			// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 			// Older browsers show a "speedtip" type message only for ALT.
@@ -1041,7 +1041,8 @@ END
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
+		$toolbar.="addInfobox('" . wfEscapeJsString( wfMsg( "infobox" ) ) .
+			"','" . wfEscapeJsString( wfMsg( "infobox_alert" ) ) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n";
 
 		$toolbar.="/*]]>*/\n</script>";

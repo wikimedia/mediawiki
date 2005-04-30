@@ -674,6 +674,30 @@ function wfQuotedPrintable( $string, $charset = '' ) {
 }
 
 /**
+ * Returns an escaped string suitable for inclusion in a string literal
+ * for JavaScript source code.
+ * Illegal control characters are assumed not to be present.
+ *
+ * @param string $string
+ * @return string
+ */
+function wfEscapeJsString( $string ) {
+	// See ECMA 262 section 7.8.4 for string literal format
+	$pairs = array(
+		"\\" => "\\\\",
+		"\"" => "\\\"",
+		"\'" => "\\\'",
+		"\n" => "\\n",
+		"\r" => "\\r",
+		
+		# To avoid closing the element or CDATA section
+		"<" => "\\x3c",
+		">" => "\\x3e",
+	);
+	return strtr( $string, $pairs );
+}
+
+/**
  * @todo document
  * @return float
  */
