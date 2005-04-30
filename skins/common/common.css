@@ -100,51 +100,38 @@ img { border: none; }
 img.tex { vertical-align: middle; }
 span.texhtml { font-family: serif; }
 
-/* IE/mac fixes */
-#toc {
-  display: inline-table;
-}
-#toc h2, #toc div, #toc ul, #toc li {
-  float: left;
-  clear: left;
-}
-@media all {
-  #toc {
-    display: block;
-    text-align: center;
-  }
-  #toc * {
-    float: none!important;
-  }
-}
-/* end IE/mac fixes */
 
-#toc {
-    border: 1px solid #88a;
-    background-color: #f7f8ff;
-    padding: 5px;
-    font-size: 95%;
-    float: left;
+#toc,
+.toc {
+	border: 1px solid #bba;
+	background-color: #f7f8ff;
+	padding: 5px;
+	font-size: 95%;
+	text-align: center;
 }
-#toc h2 {
-    display: inline;
-    border: none;
-    padding: 0;
-    font-size: 100%;
-    font-weight: bold;
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
 }
-#toc ul {
-    list-style-type: none;
-    list-style-image: none;
-    margin-left: 0;
-    padding-left: 0;
-    text-align: left;
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
 }
-#toc ul ul {
-    margin: 0 0 0 2em;
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
 }
-#toc .toctoggle {
-    font-size: 95%;
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
 }
 
 
@@ -323,4 +310,39 @@ li span.deleted {
 	text-decoration: line-through;
 	color: #888;
 	font-style: italic;
+}
+
+
+/* Classes for EXIF data display */
+table.exif {
+	margin-left: 0.5em;
+}
+
+table.exif caption { font-weight: bold; }
+table.exif th { font-weight: normal; }
+table.exif td { padding: 0.1em; }
+
+table.exif {
+	border: none;
+	border-collapse: collapse;
+}
+table.exif td, table.exif th {
+	border: 1px solid #aaaaaa;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+table.exif th {
+	background-color: #f9f9f9;
+}
+table.exif td {
+	background-color: #fcfcfc;
+}
+table.exif td.spacer {
+	background: inherit;
+	border-top: none;
+	border-bottom: none;
+}
+
+.visualClear {
+    clear: both;
 }
