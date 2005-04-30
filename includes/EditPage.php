@@ -1034,7 +1034,7 @@ END
 			// Older browsers show a "speedtip" type message only for ALT.
 			// Ideally these should be different, realistically they
 			// probably don't need to be.
-			$tip = addslashes( $tool['tip'] );
+			$tip = wfEscapeJsString( $tool['tip'] );
 
 			#$key = $tool["key"];
 
