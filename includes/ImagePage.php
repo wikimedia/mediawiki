@@ -25,10 +25,13 @@ class ImagePage extends Article {
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
-			if ( $this->img->exists() ) {
+			if ( $this->img->exists() )
 				$this->showTOC();
-			}
 			$this->openShowImage();
+			$this->closeShowImage();
+			if ( $this->img->exists() )
+				$this->showEXIFdata();
+			
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
 			if ( $this->getID() ) {
@@ -42,10 +45,12 @@ class ImagePage extends Article {
 				$this->viewUpdates();
 			}
 			
-			$this->closeShowImage();
 			$this->imageHistory();
+			# Exist check because we don't want to show this on pages where an image
+			# doesn't exist along with the noimage message, that would suck. -ævar
+			if ( $wgUseExternalEditor and $this->img->exists() )
+				$this->uploadLinksBox();
 			$this->imageLinks();
-			if ( $this->img->exists() ) $this->showEXIFdata();
 		} else {
 			Article::view();
 		}
@@ -54,16 +59,13 @@ class ImagePage extends Article {
 	function showTOC() {
 		global $wgOut, $wgShowEXIF, $wgLang;
 		
-		$r= '<div class="imagepagetoc"><table id="toc" border="0"><tr><td valign="top"><b>'.wfMsg( 'toc' ).'</b><br />';
-		$r .= '<a href="#toc">'        . $wgLang->getNStext( NS_IMAGE ) . '</a href> - ';
-		$r .= '<a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a href> - ';
-		$r .= '<a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a href>';
-		if ( $wgShowEXIF ) {
-			$r .= ' - <a href="#showexif">' . wfMsg( 'exifdata' ) . '</a>';
-		}
-
-			
-		$wgOut->addHTML( $r . '</td></tr></table></div>' );
+		$r = '<ul id="imagetoc">
+				<li><a href="#imagetoc">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
+				<li><a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a></li>
+				<li><a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a></li>' .
+				($wgShowEXIF ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') .
+		'</ul>';
+		$wgOut->addHTML( $r );
 
 	}
 	
@@ -73,30 +75,18 @@ class ImagePage extends Article {
 
 		# Get the EXIF data
 		$exif = $this->img->getExifData();
-		if ( count ( $exif ) == 0 ) return; # No EXIF data available
+		if ( !count($exif) )
+			return; # No EXIF data available
 		
 		# Create the table
-		$r = '<h2 id="exifdata">'. wfMsg( 'exifdata' ) . "</h2>\n";
-		$r .= "<table class=\"exif\">\n" ;
-		$n = 0;
+		$r = "<div id='metadata'>\n{| class=metadata\n"; # For those wondering whether the div is redundant, then no, it isn't -ævar
+		$r .= '|+ ' . wfMsg( 'metadata' ) . "\n|-\n" ;
 		foreach ( $exif as $k => $v ) {
-			if ( $n % 2 == 0 ) {
-				$r .= '<tr>';
-			}
-			$r .= "<th>$k</th>\n";
-			$r .= '<td>' . htmlspecialchars($v) . "</td>\n";
-			if ( $n % 2 == 1 ) {
-				$r .= "</tr>\n";
-			} else {
-				$r .= "<td style=\"background: white;\">&nbsp;&nbsp;</td>\n";
-			}
-			$n++;
+			$r .= '! ' . wfMsg( 'exif-' . strtolower($k) ) . "\n";
+			$r .= "| $v\n";
+			$r .= "|-\n";
 		}
-		if ( $n % 2 == 1 ) {
-			$r .= "<td></td><td></td></tr>\n";
-		}
-
-		$wgOut->addHTML( $r . "</table>\n" );
+		$wgOut->addWikiText( substr($r, 0, -3) . "|}\n</div>" );
 	}
 
 	function openShowImage()
@@ -183,7 +173,7 @@ class ImagePage extends Article {
 	{
 		global $wgUser,$wgOut;
 		$sk = $wgUser->getSkin();
-		$wgOut->addHTML( '<br /><ul><li>' );
+		$wgOut->addHTML( '<ul><li>' );
 		$wgOut->addWikiText( '<div>'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
 		$wgOut->addHTML( '</li><li>' );
 		$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
@@ -216,7 +206,6 @@ class ImagePage extends Article {
 				$list->imageHistoryLine( true, $line->img_timestamp,
 					$this->mTitle->getDBkey(),  $line->img_user,
 					$line->img_user_text, $line->img_size, $line->img_description );
-
 			while ( $line = $this->img->nextHistoryLine() ) {
 				$s .= $list->imageHistoryLine( false, $line->img_timestamp,
 			  	$line->oi_archive_name, $line->img_user,
@@ -225,11 +214,6 @@ class ImagePage extends Article {
 			$s .= $list->endImageHistoryList();
 		} else { $s=''; }
 		$wgOut->addHTML( $s );
-
-		if ( $wgUseExternalEditor ) {
-			$this->uploadLinksBox();
-		}
-
 	}
 
 	function imageLinks()
