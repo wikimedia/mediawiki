@@ -1047,12 +1047,8 @@ this old version, (rev) = revert to this old version.
 'nolinkstoimage' => 'There are no pages that link to this image.',
 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki' => 'Please see the [$1 image description page] for further information.',
-'noimage'       => "No image by this name exists.
-
-<div class=\"editExternally\">
-'''[$1 Upload this image]'''
-</div>",
-'uploadnewversion' => "[$1 Upload a new version of this image]",
+'noimage'       => 'No file by this name exists, you can [$1 upload it]',
+'uploadnewversion' => '[$1 Upload a new version of this file]',
 
 # Statistics
 #
@@ -1839,7 +1835,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
 # Exif data
-'exifdata' => 'Metadata',
+'metadata' => 'Metadata',
 # Exif tags
 'exif-imagewidth' =>'Image width',
 'exif-imagelength' =>'Image height',
