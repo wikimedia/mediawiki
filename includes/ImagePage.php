@@ -61,7 +61,7 @@ class ImagePage extends Article {
 		$r .= '<a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a href> - ';
 		$r .= '<a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a href>';
 		if ( $wgShowEXIF ) {
-			$r .= ' - <a href="#showexif">' . wfMsg( 'exifdata' ) . '</a>';
+			$r .= ' - <a href="#exifdata">' . wfMsg( 'exifdata' ) . '</a>';
 		}
 
 			
