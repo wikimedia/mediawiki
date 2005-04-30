@@ -1144,7 +1144,6 @@ table.exif td.spacer {
 	text-indent: -2em;
 }
 
-div.imagepagetoc {
-	float: right;
-	margin-top: -4em;
+div.imagepagetoc table {
+	margin-bottom: 1em;
 }
