@@ -264,7 +264,7 @@ function wfDebug( $text, $logonly = false ) {
 		$wgOut->debug( $text );
 	}
 	if ( '' != $wgDebugLogFile && !$wgProfileOnly ) {
-		error_log( $text, 3, $wgDebugLogFile );
+		@error_log( $text, 3, $wgDebugLogFile );
 	}
 }
 
