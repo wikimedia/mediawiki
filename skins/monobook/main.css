@@ -1109,53 +1109,27 @@ li span.deleted {
 	font-style: italic;
 }
 
+/* Classes for EXIF data display */
+table.exif {
+	background-color: #f9f9f9;
+	margin-left: 0.5em;
+}
+
+table.exif caption { font-weight: bold; }
+table.exif th { font-weight: normal; }
+table.exif td { padding: 0.1em; }
+
+table.exif, table.exif td, table.exif th {
+	border: 1px solid #aaaaaa;
+	border-collapse: collapse;
+}
+
 .toggle {
 	margin-left: 2em;
 	text-indent: -2em;
 }
 
-/* Classes for EXIF data display */
-/* <toc> */
-ul#imagetoc {
-	text-align: center;
-	border: 1px solid #aaaaaa;
-	background-color: #f9f9f9;
-	padding: 5px;
-	font-size: 95%;
-	margin-bottom: 0.5em;
-	margin-left: 0;
-	margin-right: 0;
-}
-
-#imagetoc li {
-	display: inline;
-	list-style-type: none;
-	padding-right: 2em;
-}
-/* </toc> */
-
-#metadata {
+div.imagepagetoc {
 	float: right;
-	max-width: 25%;
-}
-
-table.metadata {
-	background-color: #f9f9f9;
-	margin-left: 0.5em;
-	margin-bottom: 0.5em;
-	font-size:80%;
-	float: right;
-}
-
-table.metadata caption { font-weight: bold; }
-table.metadata th {
-	font-weight: normal;
-}
-table.metadata td {
-	/*padding: 0.1em;*/
-}
-
-table.metadata, table.metadata td, table.metadata th {
-	border: 1px solid #aaaaaa;
-	border-collapse: collapse;
+	margin-top: -4em;
 }
