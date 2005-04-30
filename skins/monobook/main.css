@@ -311,62 +311,38 @@ table.small {
 ** content styles
 */
 
-/* IE/mac fixes */
-#toc {
-  display: inline-table;
+#toc,
+.toc {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+	text-align: center;
 }
-#toc div, #toc h2, #toc ul, #toc li, #toc a {
-  float: left;
-  clear: left;
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
 }
-#toc .toctoggle * {
-  float: none;
-  clear: none;
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
 }
-#toc h2 {
-  margin-right: .3em;
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
 }
-@media all {
-  #toc {
-    display: block;
-    text-align: center;
-  }
-  #toc * {
-    float: none !important;
-  }
-  #toc h2 {
-    margin-right: 0;
-  }
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
 }
-/* end IE/mac fixes */
-
-#toc {
-    border: 1px solid #aaa;
-    background-color: #f9f9f9;
-    padding: 5px;
-    font-size: 95%;
-    float: left;
-}
-#toc h2 {
-    display: inline;
-    border: none;
-    padding: 0;
-    font-size: 100%;
-    font-weight: bold;
-}
-#toc ul {
-    list-style-type: none;
-    list-style-image: none;
-    margin-left: 0;
-    padding-left: 0;
-    text-align: left;
-}
-#toc ul ul {
-    margin: 0 0 0 2em;
-}
-#toc .toctoggle {
-     font-size: 94%;
- }
 
 
 /* images */
@@ -1144,6 +1120,6 @@ table.exif td.spacer {
 	text-indent: -2em;
 }
 
-div.imagepagetoc table {
+div.imagepagetoc table.toc {
 	margin-bottom: 1em;
 }

@@ -56,12 +56,12 @@ class ImagePage extends Article {
 	function showTOC() {
 		global $wgOut, $wgShowEXIF, $wgLang;
 		
-		$r= '<div class="imagepagetoc"><table id="toc" border="0"><tr><td valign="top"><b>'.wfMsg( 'toc' ).'</b><br />';
-		$r .= '<a href="#toc">'        . $wgLang->getNStext( NS_IMAGE ) . '</a href> - ';
-		$r .= '<a href="#imghistory">' . wfMsg( 'imghistory' ) . '</a href> - ';
-		$r .= '<a href="#imagelinks">' . wfMsg( 'imagelinks' ) . '</a href>';
+		$r= '<div class="imagepagetoc"><table class="toc"><tr><td><b>'.htmlspecialchars( wfMsg( 'toc' )) .'</b><br />';
+		$r .= '<a href="#toc">'        . htmlspecialchars( $wgLang->getNStext( NS_IMAGE ) ) . '</a> - ';
+		$r .= '<a href="#imghistory">' . htmlspecialchars( wfMsg( 'imghistory' ) ) . '</a> - ';
+		$r .= '<a href="#imagelinks">' . htmlspecialchars( wfMsg( 'imagelinks' ) ) . '</a>';
 		if ( $wgShowEXIF ) {
-			$r .= ' - <a href="#exifdata">' . wfMsg( 'exifdata' ) . '</a>';
+			$r .= ' - <a href="#exifdata">' . htmlspecialchars( wfMsg( 'exifdata' ) ) . '</a>';
 		}
 
 			
