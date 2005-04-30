@@ -1167,6 +1167,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'speciallogtitlelabel' => 'Titel: ',
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
+# external editor support
+'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
+'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
+
 # Metadata
 'exif-make'	=> 'Hersteller',     # Image input equipment manufacturer
 'exif-model'	=> 'Modell',         # Image input equipment model
