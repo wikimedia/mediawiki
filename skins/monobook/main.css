@@ -1124,6 +1124,8 @@ table.exif {
 }
 table.exif td, table.exif th {
 	border: 1px solid #aaaaaa;
+	padding-left: 4px;
+	padding-right: 4px;
 }
 table.exif th {
 	background-color: #f9f9f9;
