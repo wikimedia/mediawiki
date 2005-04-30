@@ -1111,7 +1111,6 @@ li span.deleted {
 
 /* Classes for EXIF data display */
 table.exif {
-	background-color: #f9f9f9;
 	margin-left: 0.5em;
 }
 
@@ -1119,9 +1118,23 @@ table.exif caption { font-weight: bold; }
 table.exif th { font-weight: normal; }
 table.exif td { padding: 0.1em; }
 
-table.exif, table.exif td, table.exif th {
-	border: 1px solid #aaaaaa;
+table.exif {
+	border: none;
 	border-collapse: collapse;
+}
+table.exif td, table.exif th {
+	border: 1px solid #aaaaaa;
+}
+table.exif th {
+	background-color: #f9f9f9;
+}
+table.exif td {
+	background-color: #fcfcfc;
+}
+table.exif td.spacer {
+	background: white;
+	border-top: none;
+	border-bottom: none;
 }
 
 .toggle {

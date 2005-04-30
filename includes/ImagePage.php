@@ -25,13 +25,13 @@ class ImagePage extends Article {
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
-			if ( $this->img->exists() ) {
+			if( $this->img->exists() ) {
 				$this->showTOC();
 			}
 			$this->openShowImage();
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
-			if ( $this->getID() ) {
+			if( $this->getID() ) {
 				Article::view();
 			} else {
 				# Just need to set the right headers
@@ -45,7 +45,9 @@ class ImagePage extends Article {
 			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
-			if ( $this->img->exists() ) $this->showEXIFdata();
+			if( $this->img->exists() ) {
+				$this->showEXIFdata();
+			}
 		} else {
 			Article::view();
 		}
@@ -69,31 +71,35 @@ class ImagePage extends Article {
 	
 	function showEXIFdata() {
 		global $wgOut, $wgShowEXIF;
-		if ( ! $wgShowEXIF ) return;
+		if( !$wgShowEXIF ) {
+			return;
+		}
 
 		# Get the EXIF data
 		$exif = $this->img->getExifData();
-		if ( count ( $exif ) == 0 ) return; # No EXIF data available
+		if( count ( $exif ) == 0 ) {
+			return; # No EXIF data available
+		}
 		
 		# Create the table
-		$r = '<h2 id="exifdata">'. wfMsg( 'exifdata' ) . "</h2>\n";
+		$r = '<h2 id="exifdata">'. htmlspecialchars( wfMsg( 'exifdata' ) ) . "</h2>\n";
 		$r .= "<table class=\"exif\">\n" ;
 		$n = 0;
-		foreach ( $exif as $k => $v ) {
-			if ( $n % 2 == 0 ) {
+		foreach( $exif as $k => $v ) {
+			if( $n % 2 == 0 ) {
 				$r .= '<tr>';
 			}
-			$r .= "<th>$k</th>\n";
-			$r .= '<td>' . htmlspecialchars($v) . "</td>\n";
+			$r .= '<th>' . wfMsg( 'exif-' . strtolower( $k ) ) . "</th>\n";
+			$r .= '<td>' . htmlspecialchars( $v ) . "</td>\n";
 			if ( $n % 2 == 1 ) {
 				$r .= "</tr>\n";
 			} else {
-				$r .= "<td style=\"background: white;\">&nbsp;&nbsp;</td>\n";
+				$r .= "<td class='spacer'>&nbsp;</td>\n";
 			}
 			$n++;
 		}
 		if ( $n % 2 == 1 ) {
-			$r .= "<td></td><td></td></tr>\n";
+			$r .= "<th></th><td></td></tr>\n";
 		}
 
 		$wgOut->addHTML( $r . "</table>\n" );
@@ -226,7 +232,9 @@ class ImagePage extends Article {
 		} else { $s=''; }
 		$wgOut->addHTML( $s );
 
-		if ( $wgUseExternalEditor ) {
+		# Exist check because we don't want to show this on pages where an image
+		# doesn't exist along with the noimage message, that would suck. -ævar
+		if( $wgUseExternalEditor && $this->img->exists() ) {
 			$this->uploadLinksBox();
 		}
 
