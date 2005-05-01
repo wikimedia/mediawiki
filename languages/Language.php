@@ -890,29 +890,29 @@ See [[Project:User preferences help]] for help deciphering the options.",
 #
 
 # switching pan
-'grouplevels-lookup-group' => 'Manage group rights',
-'grouplevels-group-edit' => 'Existing groups: ',
+'groups-lookup-group' => 'Manage group rights',
+'groups-group-edit' => 'Existing groups: ',
 'editgroup' => 'Edit Group',
 'addgroup' => 'Add Group',
 
-'userlevels-lookup-user' => 'Manage user groups',
-'userlevels-user-editname' => 'Enter a username: ',
+'userrights-lookup-user' => 'Manage user groups',
+'userrights-user-editname' => 'Enter a username: ',
 'editusergroup' => 'Edit User Groups',
 
 # group editing
-'grouplevels-editgroup' => 'Edit group',
-'grouplevels-addgroup' => 'Add group',
-'grouplevels-editgroup-name' => 'Group name: ',
-'grouplevels-editgroup-description' => 'Group description (max 255 characters):<br />',
+'groups-editgroup' => 'Edit group',
+'groups-addgroup' => 'Add group',
+'groups-editgroup-name' => 'Group name: ',
+'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
 'savegroup' => 'Save Group',
 
 # user groups editing
 #
-'userlevels-editusergroup' => 'Edit user groups',
+'userrights-editusergroup' => 'Edit user groups',
 'saveusergroups' => 'Save User Groups',
-'userlevels-groupsmember' => 'Member of:',
-'userlevels-groupsavailable' => 'Available groups:',
-'userlevels-groupshelp' => 'Select groups you want the user to be removed from or added to.
+'userrights-groupsmember' => 'Member of:',
+'userrights-groupsavailable' => 'Available groups:',
+'userrights-groupshelp' => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
 
 # Recent changes
@@ -1140,8 +1140,8 @@ in active use.</p>',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',
-'userlevels' => 'User rights management',
-'grouplevels' => 'User group management',
+'userrights' => 'User rights management',
+'groups' => 'User groups',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that

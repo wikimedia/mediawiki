@@ -13,11 +13,11 @@ require_once('HTMLForm.php');
 require_once('Group.php');
 
 /** Entry point */
-function wfSpecialUserlevels($par=null) {
+function wfSpecialUserrights($par=null) {
 	global $wgRequest;
 	# Debug statement
 	// print_r($_POST);
-	$form = new UserlevelsForm($wgRequest);
+	$form = new UserrightsForm($wgRequest);
 	$form->execute();
 }
 
@@ -26,18 +26,18 @@ function wfSpecialUserlevels($par=null) {
  * @package MediaWiki
  * @subpackage SpecialPage
  */
-class UserlevelsForm extends HTMLForm {
+class UserrightsForm extends HTMLForm {
 	var $mPosted, $mRequest, $mSaveprefs;
 	/** Escaped local url name*/
 	var $action;
 
 	/** Constructor*/
-	function UserlevelsForm ( &$request ) {
+	function UserrightsForm ( &$request ) {
 		$this->mPosted = $request->wasPosted();
 		$this->mRequest = $request;
-		$this->mName = 'userlevels';
+		$this->mName = 'userrights';
 		
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlevels' );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userrights' );
 		$this->action = $titleObj->escapeLocalURL();
 	}
 
@@ -150,10 +150,10 @@ class UserlevelsForm extends HTMLForm {
 			'</td><td>'.
 			HTMLSelectGroups($this->mName.'-groupsavailable', $groups,true,6,true).
 			'</td></tr></table>'."\n".
-			'<p>'.wfMsg('userlevels-groupshelp').'</p>'."\n".
+			'<p>'.wfMsg('userrights-groupshelp').'</p>'."\n".
 			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'" />'
 			));
 		$wgOut->addHTML( "</form>\n" );
 	}
-} // end class UserlevelsForm
+} // end class UserrightsForm
 ?>

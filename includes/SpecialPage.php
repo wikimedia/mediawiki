@@ -49,29 +49,7 @@ $wgSpecialPages = array(
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
-	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
-);
-
-global $wgUseValidation ;
-if ( $wgUseValidation )
-	$wgSpecialPages['Validate'] = new SpecialPage( 'Validate' );
-
-global $wgDisableCounters;
-if( !$wgDisableCounters ) {
-	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
-}
-
-global $wgDisableInternalSearch;
-if( !$wgDisableInternalSearch ) {
-	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
-}
-
-global $wgEmailAuthentication;
-if( $wgEmailAuthentication ) {
-	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
-}
-
-$wgSpecialPages = array_merge($wgSpecialPages, array (
+	'Unusedimages'      => new SpecialPage( 'Unusedimages' ),
 	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
 	'Shortpages'	=> new SpecialPage( 'Shortpages' ),
 	'Longpages'		=> new SpecialPage( 'Longpages' ),
@@ -99,9 +77,28 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 #	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
-	'Userlevels'	=> new SpecialPage( 'Userlevels', 'userrights' ),
-	'Grouplevels'	=> new SpecialPage( 'Grouplevels', 'grouprights' ),
-));
+	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
+	'Groups'		=> new SpecialPage( 'Groups', 'grouprights' ),
+);
+
+global $wgUseValidation ;
+if ( $wgUseValidation )
+	$wgSpecialPages['Validate'] = new SpecialPage( 'Validate' );
+
+global $wgDisableCounters;
+if( !$wgDisableCounters ) {
+	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
+}
+
+global $wgDisableInternalSearch;
+if( !$wgDisableInternalSearch ) {
+	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
+}
+
+global $wgEmailAuthentication;
+if( $wgEmailAuthentication ) {
+	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
+}
 
 /**
  * Parent special page class, also static functions for handling the special
