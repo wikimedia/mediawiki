@@ -541,6 +541,14 @@ $wgBlockExpiryOptions = "2 hours,1 day,3 days,1 week,2 weeks,1 month,3 months,6 
 
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 
+/**
+ * Static user groups serialized record
+ * To avoid database access, you can set this to a user groups record as returned 
+ * by Special:Groups with the magic parameter showrecord=1. This will however mean 
+ * that you won't be able to edit them at runtime.
+ */
+$wgStaticGroups = false;
+
 # Proxy scanner settings
 #
 

@@ -25,18 +25,41 @@ function wfSpecialGroups($par=null) {
  * @subpackage SpecialPage
  */
 class GroupsForm extends HTMLForm {
-	var $mPosted, $mRequest, $mSaveprefs;
+	var $mPosted, $mRequest, $mSaveprefs, $mChangeAllowed;
+	var $mNewName, $mDescription, $mOldName, $mRights, $mId;
+	var $mAdd, $mEdit;
+	
 	/** Escaped local url name*/
-	var $action;
+	var $action, $location;
 
 	/** Constructor*/
 	function GroupsForm ( &$request ) {
+		global $wgUser;
+		
 		$this->mPosted = $request->wasPosted();
 		$this->mRequest = $request;
 		$this->mName = 'groups';
-		
+
+		$this->mNewName = trim( $request->getText('editgroup-name') );
+		$this->mOldName = trim( $request->getText('editgroup-oldname' ) );
+		$this->mDescription = trim( $request->getText( 'editgroup-description' ) );
+		$this->mRights = $request->getArray( 'editgroup-getrights' );
+		$this->mId = $this->mRequest->getInt('id');
+		$this->mEdit = $request->getCheck('edit');
+		$this->mAdd = $request->getCheck('add');
+
+
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Groups' );
 		$this->action = $titleObj->escapeLocalURL();
+		if ( $this->mAdd ) {
+			$this->location = $titleObj->getLocalURL( "add=1&id={$this->mId}" );
+		} elseif ( $this->mEdit ) {
+			$this->location = $titleObj->getLocalURL( "edit=1&id={$this->mId}" );
+		} else {
+			$this->location = $this->action;
+		}
+
+		$this->mChangeAllowed = $wgUser->isAllowed( 'grouprights' ) && !Group::getStaticGroups();
 	}
 
 	/**
@@ -44,55 +67,99 @@ class GroupsForm extends HTMLForm {
 	 * Depending on the submit button used : Call a form or a saving function.
 	 */
 	function execute() {
-		// show the general form
-		$this->switchForm();
-		if ( $this->mPosted ) {
-			// show some more forms
-			if($this->mRequest->getCheck('seditgroup')) {
-				$this->editGroupForm( $this->mRequest->getVal($this->mName.'-group-edit') ); }
-			if($this->mRequest->getCheck('saddgroup')) {
-				$this->editGroupForm( ); }
+		global $wgOut;
 
+		if ( $this->mRequest->getBool( 'showrecord' ) ) {
+			$this->showRecord();
+		} elseif ( $this->mPosted && $this->mChangeAllowed && $this->mRequest->getCheck('savegroup') ) {
 			// save settings
-			if($this->mRequest->getCheck('savegroup')) {
-				$this->saveGroup($this->mRequest->getVal('editgroup-name'),
-				                 $this->mRequest->getVal('editgroup-oldname'),
-				                 $this->mRequest->getVal('editgroup-description'),
-								 $this->mRequest->getArray('editgroup-getrights'));
+			$this->saveGroup();
+		} elseif ( $this->mEdit ) {
+			if ( $this->mPosted ) {
+				$wgOut->redirect( $this->location );
+			} else {			
+				$this->switchForm();
+				$this->editGroupForm( $this->mId ); 
+			}
+		} elseif ( $this->mAdd ) {
+			if ( $this->mPosted ) {
+				$wgOut->redirect( $this->location );
+			} else {
+				$this->switchForm();
+				$this->editGroupForm( ); 
+			}
+		} else {
+			$this->showAllGroups();
+			if ( $this->mChangeAllowed ) {
+				$this->switchForm();
 			}
 		}
 	}
 
-// save things !!
 	/**
 	 * Save a group
-	 * @param string $newname Group name.
-	 * @param string $oldname Old (current) group name.
-	 * @param string $description Group description.
-	 *
-	 * @todo FIXME : doesnt validate anything. Log is incorrect.
+	 * @todo FIXME : Log is incorrect.
 	 */
-	function saveGroup($newname, $oldname, $description, $rights) {
-		$newame = trim($newname);
+	function saveGroup() {
+		global $wgOut;
+
+		$this->mNewName = trim($this->mNewName);
 	
-		if($oldname == '') {
-		// We create a new group
+		if ( $this->mNewName == '' ) {
+			$this->editGroupForm( $this->mGroupID, 'groups-noname' );
+			return false;
+		}
+
+		if($this->mOldName == '') {
+			// Check if the group already exists
+			$add = true;
+			$g = Group::newFromName( $this->mNewName );
+			if ( $g ) {
+				$this->editGroupForm( 0, 'groups-already-exists' );
+				return;
+			}
+
+			// Create a new group
 			$g = new group();
 			$g->addToDatabase();
 		} else {
-			$g = Group::newFromName($oldname);
+			$add = false;
+			$g = Group::newFromName($this->mOldName);
+			if ( !$g ) {
+				$this->editGroupForm( 0, 'groups-noname' );
+				return;
+			}
 		}
 		
 		// save stuff
-		$g->setName($newname);
-		$g->setDescription($description);
-		if(isset($rights)) { $g->setRights( implode(',',$rights) ); }
+		$g->setName($this->mNewName);
+		$g->setDescription($this->mDescription);
+		if( is_array( $this->mRights ) ) { 
+			$g->setRights( implode(',',$this->mRights) ); 
+		}
 		
 		$g->save();
-
+		
+		// Make the log entry
 		$log = new LogPage( 'rights' );
-		$log->addEntry( 'rights', Title::makeTitle( NS_SPECIAL, $g->getName()) , ' '.$g->getRights() );
+		$dummyTitle = Title::makeTitle( 0, '' );
+		if ( $add ) {
+			$log->addEntry( 'addgroup', $dummyTitle, '', array( $g->getNameForContent() ) );
+		} else {
+			if ( $this->mOldName != $this->mNewName ) {
+				// Abbreviated action name, must be less than 10 bytes
+				$log->addEntry( 'rngroup', $dummyTitle, '', array( Group::getMessageForContent( $this->mOldName ), 
+				$g->getNameForContent() ) );
+			} else {
+				$log->addEntry( 'chgroup', $dummyTitle, '', array( $g->getNameForContent() ) );
+			}
+		}
 
+		// Success, go back to all groups page
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Groups' );
+		$url = $titleObj->getLocalURL();
+
+		$wgOut->redirect( $url );
 	}
 
 	/**
@@ -105,9 +172,9 @@ class GroupsForm extends HTMLForm {
 		// group selection		
 		$wgOut->addHTML( "<form name=\"ulgroup\" action=\"$this->action\" method=\"post\">\n" );
 		$wgOut->addHTML( $this->fieldset( 'lookup-group',
-				HTMLSelectGroups($this->mName.'-group-edit', array(0 => $this->mRequest->getVal($this->mName.'-group-edit')) ) .
-				' <input type="submit" name="seditgroup" value="'.wfMsg('editgroup').'" />' .
-				'<br /><input type="submit" name="saddgroup" value="'.wfMsg('addgroup').'" />'
+				HTMLSelectGroups('id', $this->mName.'-group-edit', array(0 => $this->mRequest->getVal('id')) ) .
+				' <input type="submit" name="edit" value="'.wfMsg('editgroup').'" />' .
+				'<br /><input type="submit" name="add" value="'.wfMsg('addgroup').'" />'
 			));
 		$wgOut->addHTML( "</form>\n" );
 	}
@@ -115,11 +182,17 @@ class GroupsForm extends HTMLForm {
 	/**
 	 * Edit a group properties and rights.
 	 * @param string $groupname Name of a group to be edited.
+	 * @param string $error message name of the error to display
 	 */
-	function editGroupForm($groupID = 0) {
+	function editGroupForm($groupID = 0, $error = '') {
 		global $wgOut;
 
-		if($this->mRequest->getVal('seditgroup')) {
+		if ( $error ) {
+			$errText = wfMsg( $error );
+			$wgOut->addHTML( "<p class='error'>$errText</p>" );
+		}
+
+		if($this->mRequest->getVal('edit')) {
 		// fetch data if we edit a group
 			$g = Group::newFromID($groupID);
 			$fieldname = 'editgroup';
@@ -134,8 +207,10 @@ class GroupsForm extends HTMLForm {
 
 
 		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
-		                '<input type="hidden" name="editgroup-oldname" value="'.$gName.'" />');
+		                '<input type="hidden" name="editgroup-oldname" value="'.$gName."\" />\n" );
+
 		$wgOut->addHTML( $this->fieldset( $fieldname,
+			'<p>' . wfMsg( 'groups-editgroup-preamble' ) . "</p>\n" .
 			$this->textbox( 'editgroup-name', $gName ) .
 			$this->textareabox( 'editgroup-description', $gDescription ) .
 			'<br /><table border="0" align="center"><tr><td>'.
@@ -146,5 +221,45 @@ class GroupsForm extends HTMLForm {
 
 		$wgOut->addHTML( "</form>\n" );
 	}
+
+	function showAllGroups() {
+		global $wgOut;
+		$groups =& Group::getAllGroups();
+
+		$groupsExisting = wfMsg( 'groups-existing' );
+		$groupsHeader = wfMsg( 'groups-tableheader' );
+
+		$s = "{| border=1
+|+'''$groupsExisting'''
+|-
+!$groupsHeader
+";
+		foreach ( $groups as $group ) {
+			$s .= "|-\n| " . $group->getId() . ' || ' .
+				$group->getExpandedName() . ' || ' .
+				$group->getExpandedDescription() . ' || '. 
+				// Insert spaces to make it wrap
+				str_replace( ',', ', ', $group->getRights() ) . "\n";
+		}
+		$s .= "|}\n";
+		$wgOut->addWikiText( $s );
+	}
+		
+	function showRecord() {
+		global $wgOut;
+		
+		$groups =& Group::getAllGroups();
+		$rec = serialize( $groups );
+		// Escape it for PHP
+		$rec = str_replace( array( '\\', "'" ), array( '\\\\', "\\'" ), $rec );
+		// Escape it for HTML
+		$rec = htmlspecialchars( $rec );
+		$s = "<p>Copy the following into LocalSettings.php:</p>\n" .
+		  "<textarea readonly rows=20>\n" .
+		  "\$wgStaticGroups = '$rec';\n" .
+		  "</textarea>";
+		$wgOut->addHTML( $s );
+	}
+
 } // end class GroupsForm
 ?>

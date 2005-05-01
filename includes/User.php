@@ -806,10 +806,6 @@ class User {
 	 */
 	function isBot() {
 		$this->loadFromDatabase();
-
-		# Why was this here? I need a UID=0 conversion script [TS]
-		# if ( 0 == $this->mId ) { return false; }
-
 		return in_array( 'bot', $this->mRights );
 	}
 
