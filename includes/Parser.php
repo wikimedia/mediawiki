@@ -1341,7 +1341,7 @@ class Parser
 				
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( "$fname-category" );
-					$t = $nt->getText();
+					$t = $wgContLang->convert($nt->getText());
 					$s = rtrim($s . "\n"); # bug 87
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
