@@ -11,11 +11,11 @@ require_once('HTMLForm.php');
 require_once('Group.php');
 
 /** Entry point */
-function wfSpecialGrouplevels($par=null) {
+function wfSpecialGroups($par=null) {
 	global $wgRequest;
 	# Debug statement
 	// print_r($_POST);
-	$form = new GrouplevelsForm($wgRequest);
+	$form = new GroupsForm($wgRequest);
 	$form->execute();
 }
 
@@ -24,18 +24,18 @@ function wfSpecialGrouplevels($par=null) {
  * @package MediaWiki
  * @subpackage SpecialPage
  */
-class GrouplevelsForm extends HTMLForm {
+class GroupsForm extends HTMLForm {
 	var $mPosted, $mRequest, $mSaveprefs;
 	/** Escaped local url name*/
 	var $action;
 
 	/** Constructor*/
-	function GrouplevelsForm ( &$request ) {
+	function GroupsForm ( &$request ) {
 		$this->mPosted = $request->wasPosted();
 		$this->mRequest = $request;
-		$this->mName = 'grouplevels';
+		$this->mName = 'groups';
 		
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Grouplevels' );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Groups' );
 		$this->action = $titleObj->escapeLocalURL();
 	}
 
@@ -146,5 +146,5 @@ class GrouplevelsForm extends HTMLForm {
 
 		$wgOut->addHTML( "</form>\n" );
 	}
-} // end class GrouplevelsForm
+} // end class GroupsForm
 ?>
