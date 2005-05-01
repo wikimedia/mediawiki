@@ -56,8 +56,8 @@ class UserrightsForm extends HTMLForm {
 			// save settings
 			if($this->mRequest->getCheck('saveusergroups')) {
 				$this->saveUserGroups($this->mRequest->getVal('user-editname'),
-				                      $this->mRequest->getArray($this->mName.'-groupsmember'),
-				                      $this->mRequest->getArray($this->mName.'-groupsavailable'));
+				                      $this->mRequest->getArray('member'),
+				                      $this->mRequest->getArray('available'));
 			}
 		}
 	}
@@ -146,9 +146,9 @@ class UserrightsForm extends HTMLForm {
 		$wgOut->addHTML( $this->fieldset( 'editusergroup',
 			wfMsg('editing', $this->mRequest->getVal('user-editname')).".<br />\n" .
 			'<table border="0" align="center"><tr><td>'.
-			HTMLSelectGroups($this->mName.'-groupsmember', $groups,true,6).
+			HTMLSelectGroups('member', $this->mName.'-groupsmember', $groups,true,6).
 			'</td><td>'.
-			HTMLSelectGroups($this->mName.'-groupsavailable', $groups,true,6,true).
+			HTMLSelectGroups('available', $this->mName.'-groupsavailable', $groups,true,6,true).
 			'</td></tr></table>'."\n".
 			'<p>'.wfMsg('userrights-groupshelp').'</p>'."\n".
 			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'" />'

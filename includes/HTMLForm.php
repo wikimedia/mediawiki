@@ -95,34 +95,33 @@ class HTMLForm {
 } // end class
 
 
-/** Build a select with all existent groups
+// functions used by SpecialUserrights.php and SpecialGroups.php
+
+/** Build a select with all defined groups
  * @param string $selectname Name of this element. Name of form is automaticly prefixed.
  * @param array $selected Array of element selected when posted. Multiples will only show them.
  * @param boolean $multiple A multiple elements select.
  * @param integer $size Number of element to be shown ignored for non multiple (default 6).
  * @param boolean $reverse If true, multiple select will hide selected elements (default false).
 */
-function HTMLSelectGroups($selectname, $selected=array(), $multiple=false, $size=6, $reverse=false) {
-	$dbr =& wfGetDB( DB_SLAVE );
-	$group = $dbr->tableName( 'group' );
-	$sql = "SELECT group_id, group_name FROM $group";
-	$res = $dbr->query($sql,'wfSpecialAdmin');
+function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
+	$groups =& Group::getAllGroups();
 	
-	$out = wfMsg($selectname);
+	$out = wfMsg($selectmsg);
 	$out .= '<select name="'.$selectname;
 	if($multiple) {	$out.='[]" multiple="multiple" size="'.$size; }
 	$out.= "\">\n";
 	
-	while($g = $dbr->fetchObject( $res ) ) {
+	foreach ( $groups as $id => $g ) {
 		if($multiple) {
 			// for multiple will only show the things we want
-			if(in_array($g->group_id, $selected) xor $reverse) { 
-				$out .= '<option value="'.$g->group_id.'">'.$g->group_name."</option>\n";
+			if(in_array($id, $selected) xor $reverse) { 
+				$out .= '<option value="'.$id.'">'.$g->getExpandedName()."</option>\n";
 			}
 		} else {
 			$out .= '<option ';
-			if(in_array($g->group_id, $selected)) { $out .= 'selected="selected" '; }
-			$out .= 'value="'.$g->group_id.'">'.$g->group_name."</option>\n";
+			if(in_array($id, $selected)) { $out .= 'selected="selected" '; }
+			$out .= 'value="'.$id.'">'.$g->getExpandedName()."</option>\n";
 		}
 	}
 	$out .= "</select>\n";

@@ -900,11 +900,21 @@ See [[Project:User preferences help]] for help deciphering the options.",
 'editusergroup' => 'Edit User Groups',
 
 # group editing
-'groups-editgroup' => 'Edit group',
-'groups-addgroup' => 'Add group',
-'groups-editgroup-name' => 'Group name: ',
+'groups-editgroup'          => 'Edit group',
+'groups-addgroup'           => 'Add group',
+'groups-editgroup-preamble' => 'If the name or description starts with a colon, the 
+remainder will be treated as a message name, and hence the text will be localised 
+using the MediaWiki namespace',
+'groups-editgroup-name'     => 'Group name: ',
 'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
-'savegroup' => 'Save Group',
+'savegroup'                 => 'Save Group',
+'groups-tableheader'        => 'ID || Name || Description || Rights',
+'groups-existing'           => 'Existing groups',
+'groups-noname'             => 'Please specify a valid group name',
+'groups-already-exists'     => 'A group of that name already exists',
+'addgrouplogentry'          => 'Added group $2',
+'changegrouplogentry'       => 'Changed group $2',
+'renamegrouplogentry'       => 'Renamed group $2 to $3',
 
 # user groups editing
 #
@@ -914,6 +924,20 @@ See [[Project:User preferences help]] for help deciphering the options.",
 'userrights-groupsavailable' => 'Available groups:',
 'userrights-groupshelp' => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
+
+# Default group names and descriptions
+# 
+'group-anon-name'       => 'Anonymous',
+'group-anon-desc'       => 'Anonymous users',
+'group-loggedin-name'   => 'Logged in',
+'group-loggedin-desc'   => 'General logged in users',
+'group-admin-name'      => 'Administrator',
+'group-admin-desc'      => 'Trusted users able to block users and delete articles',
+'group-bureaucrat-name' => 'Bureaucrat',
+'group-bureaucrat-desc' => 'The bureaucrat group is able to make sysops',
+'group-steward-name'    => 'Steward',
+'group-steward-desc'    => 'Full access',
+
 
 # Recent changes
 #

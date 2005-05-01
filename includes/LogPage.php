@@ -149,6 +149,9 @@ class LogPage {
 			'protect/protect' => 'protectedarticle',
 			'protect/unprotect' => 'unprotectedarticle',
 			'rights/rights' => 'bureaucratlogentry',
+            'rights/addgroup' => 'addgrouplogentry',
+            'rights/rngroup' => 'renamegrouplogentry',
+            'rights/chgroup' => 'changegrouplogentry',
 			'delete/delete' => 'deletedarticle',
 			'delete/restore' => 'undeletedarticle',
 			'upload/upload' => 'uploadedimage',
@@ -200,8 +203,6 @@ class LogPage {
 	 * @param array $params Parameters passed later to wfMsg.* functions
 	 */
 	function addEntry( $action, &$target, $comment, $params = array() ) {
-		global $wgLang, $wgUser;
-		
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
