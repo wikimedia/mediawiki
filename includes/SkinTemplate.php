@@ -939,7 +939,14 @@ class SkinTemplate extends Skin {
 		$s = '/* generated javascript */';
 		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
 		$s .= '/* MediaWiki:'.ucfirst($this->skinname)." */\n";
-		$s .= wfMsg(ucfirst($this->skinname).'.js');
+
+		// avoid inclusion of non defined user JavaScript (with custom skins only)
+		// by checking for default message content
+		$msgKey = ucfirst($this->skinname).'.js';
+		$userJS = wfMsg($msgKey);
+		if ('&lt;'.$msgKey.'&gt;' != $userJS) {
+			$s .= $userJS;
+		}
 		
 		wfProfileOut( $fname );
 		return $s;
