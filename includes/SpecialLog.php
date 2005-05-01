@@ -222,7 +222,7 @@ class LogViewer {
 		$this->showOptions( $wgOut );
 		$result = $this->getLogRows();
 		$this->showPrevNext( $wgOut );
-		$this->showList( $wgOut, $result );
+		$this->doShowList( $wgOut, $result );
 		$this->showPrevNext( $wgOut );
 	}
 
@@ -267,7 +267,11 @@ class LogViewer {
 	 * another page (eg at Special:Undelete)
 	 * @param OutputPage $out where to send output
 	 */
-	function showList( &$out, $result ) {
+	function showList( &$out ) {
+		$this->doShowList( $out, $this->getLogRows() );
+	}
+	
+	function doShowList( &$out, $result ) {
 		// Rewind result pointer and go through it again, making the HTML
 		$html='';
 		if ($this->numResults > 0) {
