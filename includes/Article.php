@@ -1727,33 +1727,39 @@ class Article {
 		# Client and file cache invalidation
 		Title::touchArray( $linksTo );
 
-		# Move article and history to the "archive" table
 
-		$dbw->insertSelect( 'archive', array( 'page','revision', 'text' ),
+		// For now, shunt the revision data into the archive table.
+		// Text is *not* removed from the text table; bulk storage
+		// is left intact to avoid breaking block-compression or
+		// immutable storage schemes.
+		//
+		// For backwards compatibility, note that some older archive
+		// table entries will have ar_text and ar_flags fields still.
+		//
+		// In the future, we may keep revisions and mark them with
+		// the rev_deleted field, which is reserved for this purpose.
+		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),
 			array(
 				'ar_namespace'  => 'page_namespace',
 				'ar_title'      => 'page_title',
-				'ar_text'       => 'old_text',
 				'ar_comment'    => 'rev_comment',
 				'ar_user'       => 'rev_user',
 				'ar_user_text'  => 'rev_user_text',
 				'ar_timestamp'  => 'rev_timestamp',
 				'ar_minor_edit' => 'rev_minor_edit',
-				'ar_flags'      => 'old_flags',
 				'ar_rev_id'     => 'rev_id',
+				'ar_text_id'    => 'rev_text_id',
 			), array(
-				'page_namespace' => $ns,
-				'page_title' => $t,
-				'page_id = rev_page AND old_id = rev_id'
+				'page_id' => $id,
+				'page_id = rev_page'
 			), $fname
 		);
-
+		
 		# Now that it's safely backed up, delete it
-
-		$dbw->deleteJoin( 'text', 'revision', 'old_id', 'rev_id', array( "rev_page = {$id}" ), $fname );
 		$dbw->delete( 'revision', array( 'rev_page' => $id ), $fname );
 		$dbw->delete( 'page', array( 'page_id' => $id ), $fname);
- 
+		
+ 		# Clean up recentchanges entries...
 		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
 
 		# Finally, clean up the link tables

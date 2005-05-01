@@ -36,6 +36,7 @@ $wgNewFields = array(
 	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
+ 	array( 'archive',       'ar_text_id',       'patch-archive-text_id.sql' ),
  	array( 'page',          'page_len',         'patch-page_len.sql' ),
  	array( 'revision',      'rev_deleted',      'patch-rev_deleted.sql' ),
 	array( 'image',         'img_width',        'patch-img_width.sql' ),
