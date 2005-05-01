@@ -551,6 +551,7 @@ pages for purposes of page relevancy ranking.
 === 1.4.4 fixes ===
 
 * (bug 725) Let dir="ltr" attribute work again in MonoBook on RTL languages
+* (bug 2024) Skip JavaScript error for custom skins where .js message not set
 
 
 === Caveats ===
