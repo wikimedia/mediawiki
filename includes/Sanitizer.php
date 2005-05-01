@@ -216,7 +216,10 @@ class Sanitizer {
 			return '';
 		}
 		
-		$attrib = '[A-Za-z0-9]'; #FIXME
+		# Unquoted attribute
+		# Since we quote this later, this can be anything distinguishable 
+		# from the end of the attribute
+		$attrib = '[A-Za-z0-9]'; 
 		$space = '[\x09\x0a\x0d\x20]';
 		if( !preg_match_all(
 			"/(?:^|$space)($attrib+)
@@ -225,7 +228,7 @@ class Sanitizer {
 			     # The attribute value: quoted or alone
 			      \"([^<\"]*)\"
 			     | '([^<']*)'
-			     |  ([a-zA-Z0-9._:-]+)
+			     |  ([a-zA-Z0-9!#$%&()*,\\-.\\/:;<>?@[\\]^_`{|}~]+)
 			     |  (\#[0-9a-fA-F]+) # Technically wrong, but lots of
 			                         # colors are specified like this.
 			                         # We'll be normalizing it.
