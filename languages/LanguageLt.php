@@ -8,14 +8,14 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgQuickbarSettingsLt = array(
-        "Nerodyti", "Fiksuoti kair&#279;je", "Fiksuoti de&#353;in&#279;je", "Plaukiojantis kair&#279;je"
+        "Nerodyti", "Fiksuoti kairėje", "Fiksuoti dešinėje", "Plaukiojantis kairėje"
 );
 
 /* private */ $wgSkinNamesLt = array(
-        'standard' => "Standartin&#279;",
+        'standard' => "Standartinė",
         'nostalgia' => "Nostalgija",
-        'cologneblue' => "Kiolno M&#279;lyna",
-        'davinci' => "Da Vin&#269;i",
+        'cologneblue' => "Kiolno Mėlyna",
+        'davinci' => "Da Vinči",
         'mono' => "Mono",
         'monobook' => "MonoBook",
 	'myskin' => "MySkin"
@@ -28,27 +28,6 @@ require_once( "LanguageUtf8.php" );
         "Leave it as TeX (for text browsers)",
         "Recommended for modern browsers"
 );
-
-/* private */ $wgDateFormatsLt = array(
-#        "Nesvarbu",
-);
-
-/* private */ $wgWeekdayNamesLt = array(
-        "Sekmadienis", "Pirmadienis", "Antradienis", "Tre&#269;iadienis", "Ketvirtadienis",
-        "Penktadienis", "&#352;e&#353;tadienis"
-);
-
-/* private */ $wgMonthNamesLt = array(
-        "Sausio", "Vasario", "Kovo", "Baland&#382;io", "Gegu&#382&#279;s", "Bir&#382elio",
-        "Liepos", "Rugpj&#363;&#269;io", "Rugs&#279;jo", "Spalio", "Lapkri&#269io",
-        "Gruod&#382;io"
-);
-
-/* private */ $wgMonthAbbreviationsLt = array(
-        "Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp",
-        "Rgs", "Spa", "Lap", "Gru"
-);
-
 
 # Note to translators: 
 #   Please include the English words as synonyms.  This allows people 
@@ -89,6 +68,40 @@ require_once( "LanguageUtf8.php" );
 
 
 $wgAllMessagesLt = array(
+'january' => "Sausio", 
+'february' => "Vasario", 
+'march' => "Kovo", 
+'april' => "Balandžio", 
+'may_long' => "Gegužės", 
+'june' => "Birželio",
+'july' => "Liepos", 
+'august' => "Rugpjūčio", 
+'september' => "Rugsėjo",
+'october' => "Spalio",
+'november' => "Lapkričio",
+'december' => "Gruodžio",
+
+'jan' => "Sau", 
+'feb' => "Vas", 
+'mar' => "Kov", 
+'apr' => "Bal", 
+'may' => "Geg", 
+'jun' => "Bir", 
+'jul' => "Lie", 
+'aug' => "Rgp",
+'sep' => "Rgs", 
+'oct' => "Spa", 
+'nov' => "Lap", 
+'dec' => "Gru",
+
+'sunday' => "Sekmadienis", 
+'monday' => "Pirmadienis", 
+'tuesday' => "Antradienis", 
+'wednesday' => "Trečiadienis", 
+'thursday' => "Ketvirtadienis",
+'friday' => "Penktadienis", 
+'saturday' => "Šeštadienis",
+
 '1movedto2' => "Straipsnis '$1' pervadintas į '$2'",
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
@@ -440,24 +453,6 @@ class LanguageLt extends LanguageUtf8  {
         function getDateFormats() {
                 global $wgDateFormatsLt;
                 return $wgDateFormatsLt;
-        }
-
-        function getMonthName( $key )
-        {
-                global $wgMonthNamesLt;
-                return $wgMonthNamesLt[$key-1];
-        }
-
-        function getMonthAbbreviation( $key )
-        {
-                global $wgMonthAbbreviationsLt;
-                return $wgMonthAbbreviationsLt[$key-1];
-        }
-
-        function getWeekdayName( $key )
-        {
-                global $wgWeekdayNamesLt;
-                return $wgWeekdayNamesLt[$key-1];
         }
 
 	function fallback8bitEncoding() {
