@@ -73,13 +73,26 @@ class PageArchive {
 	 * @return string
 	 */
 	function getRevisionText( $timestamp ) {
+		$fname = 'PageArchive::getRevisionText';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
-			array( 'ar_text', 'ar_flags' ),
+			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
-			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ) );
-		return Revision::getRevisionText( $row, "ar_" );
+			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
+			$fname );
+		if( is_null( $row->ar_text_id ) ) {
+			// An old row from MediaWiki 1.4 or previous.
+			// Text is embedded in this row in classic compression format.
+			return Revision::getRevisionText( $row, "ar_" );
+		} else {
+			// New-style: keyed to the text storage backend.
+			$text = $dbr->selectRow( 'text',
+				array( 'old_text', 'old_flags' ),
+				array( 'old_id' => $row->ar_text_id ),
+				$fname );
+			return Revision::getRevisionText( $text );
+		}
 	}
 	
 	/**
@@ -189,7 +202,8 @@ class PageArchive {
 				'ar_user_text',
 				'ar_timestamp',
 				'ar_minor_edit',
-				'ar_flags' ),
+				'ar_flags',
+				'ar_text_id' ),
 			/* WHERE */ array(
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title'     => $this->title->getDBkey(),
@@ -209,6 +223,7 @@ class PageArchive {
 				'user_text'  => $row->ar_user_text,
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
+				'text_id'    => $row->ar_text_id,
 				) );
 			$revision->insertOn( $dbw );
 		}
