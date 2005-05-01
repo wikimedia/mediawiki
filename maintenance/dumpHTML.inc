@@ -12,20 +12,20 @@ function dumpHTML( $dest, $start ) {
 	$wgLogo = "$wgStylePath/common/images/wiki.png";
 	$wgArticlePath = '../../$1';
 	$dbr =& wfGetDB( DB_SLAVE );
-	$end = $dbr->selectField( 'cur', 'max(cur_id)', false );
+	$end = $dbr->selectField( 'page', 'max(page_id)', false );
 	
 	/*global $wgValidSkinNames;
 	var_dump( $wgValidSkinNames );
 	exit;*/
 
-	print("Creating static HTML dump. Starting from cur_id $start of $end.\n");
+	print("Creating static HTML dump. Starting from page_id $start of $end.\n");
 
 	$wgUser = new User;
 	$wgUser->setOption( 'skin', 'htmldump' );
 	$sk =& $wgUser->getSkin();
 	
 	if ( !is_dir( $dest ) ) {
-		if ( !mkdir( $dest, 0644 ) ) {
+		if ( !mkdir( $dest, 0755 ) ) {
 			print("Can't make directory $dir, exiting\n");
 			return;
 		}
@@ -78,15 +78,14 @@ function dumpHTML( $dest, $start ) {
 		$fullDir = "$dest/{$bits[0]}/{$bits[1]}";
 		$fullName = "$dest/$fname";
 
-		
 		if ( !is_dir( $parentDir ) ) {
-			if ( !mkdir( $parentDir, 0644 ) ) {
+			if ( !mkdir( $parentDir, 0744 ) ) {
 				print("Can't write to directory $parentDir\n");
 				return;
 			}
 		}
 		if ( !is_dir( $fullDir ) ) {
-			if ( !mkdir( $fullDir, 0644 ) ) {
+			if ( !mkdir( $fullDir, 0744 ) ) {
 				print("Can't write to directory $fullDir\n");
 				return;
 			}
