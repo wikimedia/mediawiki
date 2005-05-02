@@ -8,11 +8,18 @@
 -- Creating searchindex table...
 DROP TABLE IF EXISTS /*$wgDBprefix*/searchindex;
 CREATE TABLE /*$wgDBprefix*/searchindex (
+  -- Key to page_id
   si_page int(8) unsigned NOT NULL,
+  
+  -- Munged version of title
   si_title varchar(255) NOT NULL default '',
+  
+  -- Munged version of body text
   si_text mediumtext NOT NULL default '',
+  
   UNIQUE KEY (si_page)
-) TYPE=MyISAM PACK_KEYS=1;
+
+) TYPE=MyISAM;
 
 -- Copying data into new table...
 INSERT INTO /*$wgDBprefix*/searchindex

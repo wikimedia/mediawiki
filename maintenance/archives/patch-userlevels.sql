@@ -10,11 +10,13 @@ CREATE TABLE /*$wgDBprefix*/`group` (
   group_description varchar(255) NOT NULL default '',
   group_rights tinyblob,
   PRIMARY KEY  (group_id)
-);
+
+) TYPE=InnoDB;
 
 -- Relation table between user and groups
 CREATE TABLE /*$wgDBprefix*/user_groups (
 	ug_user int(5) unsigned NOT NULL default '0',
 	ug_group int(5) unsigned NOT NULL default '0',
 	PRIMARY KEY  (ug_user,ug_group)
-);
+
+) TYPE=InnoDB;

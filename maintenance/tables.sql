@@ -106,7 +106,8 @@ CREATE TABLE /*$wgDBprefix*/user (
   PRIMARY KEY user_id (user_id),
   INDEX user_name (user_name(10)),
   INDEX (user_email_token)
-);
+
+) TYPE=InnoDB;
 
 --
 -- User permissions have been broken out to a separate table;
@@ -123,7 +124,8 @@ CREATE TABLE /*$wgDBprefix*/user_rights (
   ur_rights tinyblob NOT NULL default '',
   
   UNIQUE KEY ur_user (ur_user)
-);
+
+) TYPE=InnoDB;
 
 -- The following table is no longer needed with Enotif >= 2.00
 -- Entries for newtalk on user_talk page are handled like in the watchlist table
@@ -192,7 +194,8 @@ CREATE TABLE /*$wgDBprefix*/page (
   -- Special-purpose indexes
   INDEX (page_random),
   INDEX (page_len)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Every edit of a page creates also a revision row.
@@ -239,7 +242,8 @@ CREATE TABLE /*$wgDBprefix*/revision (
   INDEX page_timestamp (rev_page,rev_timestamp),
   INDEX user_timestamp (rev_user,rev_timestamp),
   INDEX usertext_timestamp (rev_user_text,rev_timestamp)
-);
+
+) TYPE=InnoDB;
 
 
 --
@@ -272,7 +276,8 @@ CREATE TABLE /*$wgDBprefix*/text (
   old_flags tinyblob NOT NULL default '',
   
   PRIMARY KEY old_id (old_id)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Holding area for deleted articles, which may be viewed
@@ -322,7 +327,8 @@ CREATE TABLE /*$wgDBprefix*/archive (
   ar_text_id int(8) unsigned,
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Track links within the wiki that do exist.
@@ -342,7 +348,8 @@ CREATE TABLE /*$wgDBprefix*/links (
   
   UNIQUE KEY l_from(l_from,l_to),
   KEY (l_to)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Track links to pages that don't yet exist.
@@ -359,7 +366,8 @@ CREATE TABLE /*$wgDBprefix*/brokenlinks (
   bl_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY bl_from(bl_from,bl_to),
   KEY (bl_to)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Track links to images *used inline*
@@ -377,7 +385,8 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Track category inclusions *used inline*
@@ -411,7 +420,8 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   
   -- Not really used?
   KEY cl_timestamp(cl_to,cl_timestamp)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Stores (possibly gzipped) serialized objects with
@@ -421,7 +431,8 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
 CREATE TABLE /*$wgDBprefix*/linkscc (
   lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
   lcc_cacheobj MEDIUMBLOB NOT NULL
-);
+
+) TYPE=InnoDB;
 
 --
 -- Contains a single row with some aggregate info
@@ -444,7 +455,8 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   ss_good_articles bigint(20) unsigned default '0',
   
   UNIQUE KEY ss_row_id (ss_row_id)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Stores an ID for every time any article is visited;
@@ -493,7 +505,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   PRIMARY KEY ipb_id (ipb_id),
   INDEX ipb_address (ipb_address),
   INDEX ipb_user (ipb_user)
-);
+
+) TYPE=InnoDB;
 
 
 --
@@ -540,7 +553,8 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Previous revisions of uploaded files.
@@ -567,7 +581,8 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_timestamp char(14) binary NOT NULL default '',
 
   INDEX oi_name (oi_name(10))
-);
+
+) TYPE=InnoDB;
 
 
 --
@@ -631,7 +646,8 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX rc_cur_id (rc_cur_id),
   INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip)
-);
+
+) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/watchlist (
   -- Key to user_id
@@ -650,7 +666,8 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
-);
+
+) TYPE=InnoDB;
 
 
 --
@@ -675,7 +692,8 @@ CREATE TABLE /*$wgDBprefix*/math (
   math_mathml text,
   
   UNIQUE KEY math_inputhash (math_inputhash)
-);
+
+) TYPE=InnoDB;
 
 --
 -- When using the default MySQL search backend, page titles
@@ -718,7 +736,8 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   iw_local BOOL NOT NULL,
   
   UNIQUE KEY iw_prefix (iw_prefix)
-);
+
+) TYPE=InnoDB;
 
 --
 -- Used for caching expensive grouped queries
@@ -735,7 +754,8 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   qc_title char(255) binary NOT NULL default '',
   
   KEY (qc_type,qc_value)
-);
+
+) TYPE=InnoDB;
 
 --
 -- For a few generic cache operations if not using Memcached
@@ -746,7 +766,8 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   exptime datetime,
   unique key (keyname),
   key (exptime)
-);
+
+) TYPE=InnoDB;
 
 -- For article validation
 CREATE TABLE /*$wgDBprefix*/validate (
@@ -757,7 +778,7 @@ CREATE TABLE /*$wgDBprefix*/validate (
   `val_value` int(11) default '0',
   `val_comment` varchar(255) NOT NULL default '',
   KEY `val_user` (`val_user`,`val_revision`)
-) TYPE=MyISAM;
+) TYPE=InnoDB;
 
 
 CREATE TABLE /*$wgDBprefix*/logging (
@@ -787,7 +808,8 @@ CREATE TABLE /*$wgDBprefix*/logging (
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
-);
+
+) TYPE=InnoDB;
 
 
 
@@ -800,11 +822,13 @@ CREATE TABLE /*$wgDBprefix*/`group` (
   group_description varchar(255) NOT NULL default '',
   group_rights tinyblob,
   PRIMARY KEY  (group_id)
-);
+
+) TYPE=InnoDB;
 
 -- Relation table between user and groups
 CREATE TABLE /*$wgDBprefix*/user_groups (
 	ug_user int(5) unsigned NOT NULL default '0',
 	ug_group int(5) unsigned NOT NULL default '0',
 	PRIMARY KEY  (ug_user,ug_group)
-);
+
+) TYPE=InnoDB;
