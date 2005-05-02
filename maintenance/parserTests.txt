@@ -1882,6 +1882,65 @@ Some text
 
 !! end
 
+# perl -e 'print "="x$_," Level $_ heading","="x$_,"\n" for 1..10'
+!! test
+Handling of sections up to level 6 and beyond
+!! input 
+= Level 1 Heading=
+== Level 2 Heading==
+=== Level 3 Heading===
+==== Level 4 Heading====
+===== Level 5 Heading=====
+====== Level 6 Heading======
+======= Level 7 Heading=======
+======== Level 8 Heading========
+========= Level 9 Heading=========
+========== Level 10 Heading==========
+!! result
+<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Table of contents</h2></div>
+<ul>
+<li class='toclevel-1'><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
+<ul>
+<li class='toclevel-2'><a href="#Level_2_Heading"><span class="tocnumber">1.1</span> <span class="toctext">Level 2 Heading</span></a>
+<ul>
+<li class='toclevel-3'><a href="#Level_3_Heading"><span class="tocnumber">1.1.1</span> <span class="toctext">Level 3 Heading</span></a>
+<ul>
+<li class='toclevel-4'><a href="#Level_4_Heading"><span class="tocnumber">1.1.1.1</span> <span class="toctext">Level 4 Heading</span></a>
+<ul>
+<li class='toclevel-5'><a href="#Level_5_Heading"><span class="tocnumber">1.1.1.1.1</span> <span class="toctext">Level 5 Heading</span></a>
+<ul>
+<li class='toclevel-6'><a href="#Level_6_Heading"><span class="tocnumber">1.1.1.1.1.1</span> <span class="toctext">Level 6 Heading</span></a></li>
+<li class='toclevel-6'><a href="#.3D_Level_7_Heading.3D"><span class="tocnumber">1.1.1.1.1.2</span> <span class="toctext">= Level 7 Heading=</span></a></li>
+<li class='toclevel-6'><a href="#.3D.3D_Level_8_Heading.3D.3D"><span class="tocnumber">1.1.1.1.1.3</span> <span class="toctext">== Level 8 Heading==</span></a></li>
+<li class='toclevel-6'><a href="#.3D.3D.3D_Level_9_Heading.3D.3D.3D"><span class="tocnumber">1.1.1.1.1.4</span> <span class="toctext">=== Level 9 Heading===</span></a></li>
+<li class='toclevel-6'><a href="#.3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"><span class="tocnumber">1.1.1.1.1.5</span> <span class="toctext">==== Level 10 Heading====</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<p><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Parser test">edit</a>]</div><a name="Level_1_Heading"></a><h1> Level 1 Heading</h1>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Parser test">edit</a>]</div><a name="Level_2_Heading"></a><h2> Level 2 Heading</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Parser test">edit</a>]</div><a name="Level_3_Heading"></a><h3> Level 3 Heading</h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Parser test">edit</a>]</div><a name="Level_4_Heading"></a><h4> Level 4 Heading</h4>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Parser test">edit</a>]</div><a name="Level_5_Heading"></a><h5> Level 5 Heading</h5>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Parser test">edit</a>]</div><a name="Level_6_Heading"></a><h6> Level 6 Heading</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Parser test">edit</a>]</div><a name=".3D_Level_7_Heading.3D"></a><h6>= Level 7 Heading=</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Parser test">edit</a>]</div><a name=".3D.3D_Level_8_Heading.3D.3D"></a><h6>== Level 8 Heading==</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Parser test">edit</a>]</div><a name=".3D.3D.3D_Level_9_Heading.3D.3D.3D"></a><h6>=== Level 9 Heading===</h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Parser test">edit</a>]</div><a name=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"></a><h6>==== Level 10 Heading====</h6>
+
+!! end
+
 !! test
 Resolving duplicate section names
 !! options
