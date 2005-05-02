@@ -58,7 +58,7 @@ class UnusedimagesPage extends QueryPage {
 		# Link to username
 		. ' . . '.$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text)
 		# If there is a description, show it
-		. $skin->commentBlock( $result->img_description );
+		. $skin->commentBlock( $wgContLang->convert( $result->img_description ) );
 		
 		return $return;
 	}
