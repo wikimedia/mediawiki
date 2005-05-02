@@ -349,8 +349,12 @@ Non-bracketed: http://example.com
 External links: numbered
 !! input
 Numbered: [http://example.com]
+Numbered: [http://example.net]
+Numbered: [http://example.org]
 !! result
 <p>Numbered: <a href="http://example.com" class='external autonumber' title="http://example.com" rel="nofollow">[1]</a>
+Numbered: <a href="http://example.net" class='external autonumber' title="http://example.net" rel="nofollow">[2]</a>
+Numbered: <a href="http://example.org" class='external autonumber' title="http://example.org" rel="nofollow">[3]</a>
 </p>
 !!end
 
@@ -1039,6 +1043,41 @@ Interwiki link encoding conversion (bug 1636)
 !! result
 <p>1<br />2<br />3
 </p>
+!! end
+
+!! test
+Incorrecly removing closing slashes from correctly formed XHTML
+!! input
+<br style="clear:both;" />
+!! result
+<p><br style="clear:both;" />
+</p>
+!! end
+
+!! test 
+Failing to transform badly formed HTML into correct XHTML
+!! input
+<br clear=left>
+<br clear=right>
+<br clear=all>
+!! result
+<p><br style="clear:left;" />
+<br style="clear:right;" />
+<br style="clear:both;" />
+</p>
+!!end
+
+!! test 
+Horizontal ruler (should it add that extra space?)
+!! input 
+<hr>
+<hr >
+foo <hr
+> bar
+!! result 
+<hr />
+<hr />
+foo <hr /> bar
 !! end
 
 ###
