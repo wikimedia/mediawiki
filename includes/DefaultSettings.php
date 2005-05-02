@@ -16,7 +16,7 @@
 if( defined( 'MEDIAWIKI' ) ) {
 
 /** MediaWiki version number */
-$wgVersion			= '1.5pre-alpha';
+$wgVersion			= '1.5alpha1';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
