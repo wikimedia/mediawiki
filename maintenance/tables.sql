@@ -748,14 +748,6 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   key (exptime)
 );
 
--- For storing revision text
--- This isn't used...
-CREATE TABLE /*$wgDBprefix*/blobs (
-  blob_index char(255) binary NOT NULL default '',
-  blob_data longblob NOT NULL default '',
-  UNIQUE key blob_index (blob_index)
-);
-
 -- For article validation
 CREATE TABLE /*$wgDBprefix*/validate (
   `val_user` int(11) NOT NULL default '0',
