@@ -156,7 +156,7 @@ nowiki 3
 !! end
 
 ###
-### comment test cases
+### Comments
 ###
 !! test
 Comment test 1
@@ -239,7 +239,7 @@ And a <a href="/wiki/Main_Page" title="Main Page">link</a>
 !! end
 
 ###
-### Definition list
+### Definition lists
 ###
 !! test
 Simple definition
@@ -664,8 +664,35 @@ Normal text.
 ###
 ### Tables
 ###
-### content taken from http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
+### some content taken from http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
 ###
+
+# This should not produce <table></table> as <table><tr><td></td></tr></table>
+# is the bare minimun required by the spec, see:
+# http://www.w3.org/TR/xhtml-modularization/dtd_module_defs.html#a_module_Basic_Tables
+!! test
+A table with no data.
+!! input
+{||}
+!! result
+!! end
+
+# A table with nothing but a caption is invalid XHTML
+!! test
+A table with nothing but a caption
+!! input 
+{|
+|+ caption
+|}
+!! result
+<table>
+<caption> caption
+</caption>
+<tr>
+<td>
+</td></tr></table>
+!! end
+
 !! test
 Simple table
 !! input
@@ -757,7 +784,7 @@ Table rowspan
 </td><td> Cell 3, row 1
 </td></tr>
 <tr>
-<td> Cell 1, row 2
+bg<td> Cell 1, row 2
 </td><td> Cell 3, row 2
 </td></tr></table>
 
@@ -2131,6 +2158,10 @@ I always thought &xacute; was a cute letter.
 </p>
 !! end
 
+
+###
+### Media links
+###
 
 !! test
 Media link
