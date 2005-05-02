@@ -47,10 +47,11 @@ class WantedPagesPage extends QueryPage {
 		global $wgContLang;
 
 		$nt = Title::newFromDBkey( $result->title );
+		$text = $wgContLang->convert( $result->title );
 		if( is_null( $nt ) ) {
 			return "<!-- Bad title '" . htmlspecialchars( $result->title ) . "' -->";
 		}
-		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), "" );
+		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), $text );
 		$nl = wfMsg( "nlinks", $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( "Whatlinkshere" ), $nl,
 		  "target=" . $nt->getPrefixedURL() );
