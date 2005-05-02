@@ -43,6 +43,11 @@ function wfSpecialSpecialpages() {
 function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	global $wgLang, $wgOut, $wgSortSpecialPages;
 
+	if( count( $pages ) == 0 ) {
+		# Yeah, that was pointless. Thanks for coming.
+		return;
+	}
+	
 	/** Put them into a sortable array */
 	$sortedPages = array();
 	foreach ( $pages as $name => $page ) {
