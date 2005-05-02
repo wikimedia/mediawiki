@@ -60,7 +60,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
 	foreach ( $arr as $ns => $name ) {
 		if ( $ns < NS_MAIN ) continue;
 		$namespacename = str_replace ( '_', ' ', $name);
-		$n = ($ns == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
+		$n = ($ns == 0) ? wfMsg ( 'blanknamespace' ) : $namespacename;
 		$sel = ($ns == $namespace) ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='{$ns}'{$sel}>{$n}</option>";	
 	}

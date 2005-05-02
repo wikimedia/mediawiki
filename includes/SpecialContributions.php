@@ -227,7 +227,7 @@ function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
 			continue;
 		}
 		$namespacename = str_replace ( '_', ' ', $arr[$i] );
-		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
+		$n = ($i == 0) ? wfMsg ( 'blanknamespace' ) : $namespacename;
 		$sel = ($i === $namespace) ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
 	}
