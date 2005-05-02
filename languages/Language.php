@@ -1185,7 +1185,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
 'allpagesformtext' => '
-<table border="0">
+<table>
 	<tr>
 		<td align="right">Display pages starting at:</td>
 		<td align="left">$1</td>
@@ -1391,7 +1391,7 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
 'contributionsformtext' => '
-<table border="0">
+<table>
         <tr>
                 <td align="right">Namespace:</td>
                 <td align="left">$1 $2</td>
