@@ -2148,8 +2148,8 @@ class Article {
 				'GROUP BY hc_id');
 			$dbw->query("DELETE FROM $hitcounterTable");
 			$dbw->query('UNLOCK TABLES');
-			$dbw->query("UPDATE $curTable,$acchitsTable SET cur_counter=cur_counter + hc_n ".
-				'WHERE cur_id = hc_id');
+			$dbw->query("UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n ".
+				'WHERE page_id = hc_id');
 			$dbw->query("DROP TABLE $acchitsTable");
 
 			ignore_user_abort( $old_user_abort );
