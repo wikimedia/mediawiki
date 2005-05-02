@@ -1,11 +1,11 @@
 == The basic theory ==
 
-Generally, within a stable release series (eg 1.4.0, 1.4.1, etc) there
+Generally, within a stable release series (e.g. 1.4.0, 1.4.1, etc) there
 are no required database changes, and upgrading should require no more
 than copying the new source files over the old ones.
 
 If there are larger changes, such as upgrading from one release series
-to another (eg from 1.3.12 to 1.4.3), then you may need to update the
+to another (e.g. from 1.3.12 to 1.4.3), then you may need to update the
 database schema and configuration.
 
 Basically, to upgrade a wiki you:
