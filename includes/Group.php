@@ -47,21 +47,6 @@ class Group {
 			return;
 		}
 
-		// If we're using static groups, don't touch the database, use the 
-		// internal arrays
-		$staticGroups =& Group::getStaticGroups();
-		if ( $staticGroups ) {
-			if ( $this->id ) {
-				$this = $staticGroups[$this->id];
-			} else {
-				$this->id = Group::idFromName( $this->name );
-				$this = $staticGroups[$this->id];
-			}
-			return;
-		}
-
-		// Now go for the database
-
 		// be sure it's an integer
 		$this->id = IntVal($this->id);
 		
@@ -201,6 +186,17 @@ class Group {
 	/** @param string $name Group database name */
 	function newFromName($name) {
 		$fname = 'Group::newFromName';
+		
+		$staticGroups =& Group::getStaticGroups();
+		if ( $staticGroups ) {
+			$id = Group::idFromName( $name );
+			if ( array_key_exists( $id, $staticGroups ) ) {
+				return $staticGroups[$id];
+			} else {
+				return null;
+			}
+		}
+		
 		$g = new Group();
 		$g->name = $name;
 		$g->loadFromDatabase();
