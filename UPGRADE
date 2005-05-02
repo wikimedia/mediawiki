@@ -17,6 +17,27 @@ Basically, to upgrade a wiki you:
 * Run the installer to upgrade the database schema (if necessary).
 
 
+== IMPORTANT: Upgrading to 1.5 ==
+
+Major changes have been made to the schema from 1.4.x. The updater
+has not been fully tested for all conditions, and might well break.
+
+DO NOT ATTEMPT TO UPGRADE A LIVE, PUBLIC SITE TO 1.5 AT THIS TIME.
+NEVER EVER ATTEMPT TO PERFORM AN UPGRADE WITHOUT BACKING UP FIRST!
+
+On a large site, the schema update might take a long time. It might
+explode, or leave your database half-done or otherwise badly hurting.
+
+Among other changes, note that Latin-1 encoding (ISO-8859-1) is
+no longer supported. Latin-1 wikis will need to be upgraded to
+UTF-8, however the updater has not yet been updated to support
+this automatically.
+
+Message changes:
+* A number of additional UI messages have been chagned from HTML to
+  wikitext, and will need to be manually fixed if customized.
+
+
 === Web installer ===
 
 You can use the web-based installer wizard if you first remove the
@@ -67,6 +88,7 @@ http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
 
 
 == Caveats ==
+
 
 === Upgrading from 1.4.2 or earlier ===
 
