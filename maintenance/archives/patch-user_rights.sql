@@ -6,10 +6,15 @@
 -- database but keep user rights local to the wiki.
 
 CREATE TABLE /*$wgDBprefix*/user_rights (
-	ur_user int(5) unsigned NOT NULL,
-	ur_rights tinyblob NOT NULL default '',
-	UNIQUE KEY ur_user (ur_user)
-) PACK_KEYS=1;
+  -- Key to user_id
+  ur_user int(5) unsigned NOT NULL,
+  
+  -- Comma-separated list of permission keys
+  ur_rights tinyblob NOT NULL default '',
+  
+  UNIQUE KEY ur_user (ur_user)
+
+) TYPE=InnoDB;
 
 INSERT INTO /*$wgDBprefix*/user_rights SELECT user_id,user_rights FROM /*$wgDBprefix*/user;
 

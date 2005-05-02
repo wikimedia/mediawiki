@@ -342,7 +342,7 @@ function do_schema_restructuring() {
 		
 
 		echo "......Creating tables.\n";
-		$wgDatabase->query(" CREATE TABLE $page (
+		$wgDatabase->query("CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
   			page_namespace tinyint NOT NULL,
   			page_title varchar(255) binary NOT NULL,
@@ -359,7 +359,7 @@ function do_schema_restructuring() {
   			UNIQUE INDEX name_title (page_namespace,page_title),
   			INDEX (page_random),
   			INDEX (page_len)
-			)", $fname );
+			) TYPE=InnoDB", $fname );
 		$wgDatabase->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
@@ -376,7 +376,7 @@ function do_schema_restructuring() {
   			INDEX page_timestamp (rev_page,rev_timestamp),
   			INDEX user_timestamp (rev_user,rev_timestamp),
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
-			)", $fname );
+			) TYPE=InnoDB", $fname );
 
 		echo "......Locking tables.\n";
 		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
