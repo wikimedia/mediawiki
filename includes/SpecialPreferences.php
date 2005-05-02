@@ -328,28 +328,19 @@ class PreferencesForm {
 		
 		# Determine namespace checkboxes
 		$namespaces = $wgContLang->getNamespaces();
-		$r1 = '';
+		$r1 = null;
 
 		foreach ( $namespaces as $i => $name ) {
-			# Skip special or anything similar
-			if ( $i >= 0 ) {
-				$checked = '';
-				if ( $this->mSearchNs[$i] ) {
-					$checked = ' checked="checked"';
-				}
-				$name = str_replace( '_', ' ', $namespaces[$i] );
-				if ( '' == $name ) { 
-					$name = wfMsg( 'blanknamespace' ); 
-				}
+			if ($i < 0)
+				continue;
+			$checked = $this->mSearchNs[$i] ? "checked='checked'" : '';
+			$name = str_replace( '_', ' ', $namespaces[$i] );
+			
+			if ( empty($name) )
+				$name = wfMsg( 'blanknamespace' ); 
 
-				if ( 0 != $i ) { 
-					$r1 .= ' '; 
-				}
-				$r1 .= "<label><input type='checkbox' value=\"1\" name=\"" .
-				  "wpNs$i\"{$checked} />{$name}</label>\n";
-			}
+			$r1 .= "<label><input type='checkbox' value='1' name='wpNs$i' {$checked}/>{$name}</label>\n";
 		}
-		
 		return $r1;
 	}
 
@@ -673,43 +664,53 @@ class PreferencesForm {
 		
 		# Editing
 		#
-		$wgOut->addHTML( "<fieldset><legend>" . wfMsg( 'textboxsize' ) . " </legend>\n
-		<div>
-			<label>" . wfMsg( 'rows' ) . ": <input type='text' name='wpRows' value=\"{$this->mRows}\" size='6' /></label>
-			<label>" . wfMsg( 'columns' ) . ": <input type='text' name='wpCols' value=\"{$this->mCols}\" size='6' /></label>
-		</div>" .
-		$this->getToggles( array(
-			"editsection",
-			"editsectiononrightclick",
-			"editondblclick",
-			"editwidth",
-			"showtoolbar",
-			"previewonfirst",
-			"previewontop",
-			"watchdefault",
-			"minordefault", 
-			"externaleditor",
-			"externaldiff" ) ) .
-		"
-	</fieldset>");
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
+			<div>
+				<label>' . wfMsg( 'rows' ) . ": <input type='text' name='wpRows' value=\"{$this->mRows}\" size='6' /></label>
+				<label>" . wfMsg( 'columns' ) . ": <input type='text' name='wpCols' value=\"{$this->mCols}\" size='6' /></label>
+			</div>" .
+			$this->getToggles( array(
+				'editsection',
+				'editsectiononrightclick',
+				'editondblclick',
+				'editwidth',
+				'showtoolbar',
+				'previewonfirst',
+				'previewontop',
+				'watchdefault',
+				'minordefault', 
+				'externaleditor',
+				'externaldiff' )
+			) . '</fieldset>'
+		);
 	
-		$wgOut->addHTML( "
-	<fieldset><legend>".htmlspecialchars(wfMsg('prefs-rc'))."</legend>
-		<div><label>" . wfMsg( 'recentchangescount' ) . ": <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
-		$this->getToggles( array(
-			"hideminor",
-			($wgRCShowWatchingUsers) ? 'shownumberswatching' : false,
-			"usenewrc",
-			"rcusemodstyle",
-			array( 'showupdated', wfMsg('updatedmarker') )
-		) ) .
-		"<div><label>". wfMsg ( 'stubthreshold' ) . ": <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
-	</fieldset>");
+		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>
+				<table>' .
+					$this->addRow(
+						wfMsg ( 'stubthreshold' ),
+						"<input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' />"
+					) .
+					$this->addRow(
+						wfMsg( 'recentchangescount' ),
+						"<input type='text' name='wpRecent' value=\"$this->mRecent\" size='6' />"
+					) .
+				'</table>' .
+			$this->getToggles( array(
+				'hideminor',
+				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
+				'usenewrc',
+				'rcusemodstyle',
+				array(
+					'showupdated',
+					wfMsg('updatedmarker')
+				) )
+			) . '</fieldset>'
+		);
 	
-		$wgOut->addHTML( "<fieldset><legend>" . wfMsg( 'searchresultshead' ) . "</legend><table>" .
-		$this->addRow( wfMsg( 'resultsperpage' ), "<input type='text' name='wpSearch' value=\"$this->mSearch\" size='4' />" ) .
-		$this->addRow( wfMsg( 'contextlines' ), "<input type='text' name='wpSearchLines' value=\"$this->mSearchLines\" size='4' />") .
-		$this->addRow( wfMsg( 'contextchars' ), "<input type='text' name='wpSearchChars' value=\"$this->mSearchChars\" size='4' />") .
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
+			$this->addRow( wfMsg( 'resultsperpage' ), "<input type='text' name='wpSearch' value=\"$this->mSearch\" size='4' />" ) .
+			$this->addRow( wfMsg( 'contextlines' ), "<input type='text' name='wpSearchLines' value=\"$this->mSearchLines\" size='4' />" ) .
+			$this->addRow( wfMsg( 'contextchars' ), "<input type='text' name='wpSearchChars' value=\"$this->mSearchChars\" size='4' />" ) .
 		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
 	
 		# Misc
