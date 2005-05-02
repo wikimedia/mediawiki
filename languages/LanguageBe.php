@@ -118,7 +118,6 @@ require_once('LanguageUtf8.php');
 'anonymous' => 'Ананімныя ўдзельнікі і ўдзельніцы Вікіпэдыі',
 'apr' => '04',
 'april' => 'красавіка',
-'articlenamespace' => '(артыкулы)',
 'aug' => '08',
 'august' => 'жніўня',
 'badfilename' => 'Назва выявы была зьмененая на «$1».',

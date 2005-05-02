@@ -1022,7 +1022,6 @@ Cм. [[{{ns:project}}:Справка по настройкам]], чтобы р�
 
 # Special:Allpages
 'nextpage'          => 'Следующая страница ($1)',
-'articlenamespace'  => '(статьи)',
 'allpagesformtext' => '
 <table border="0">
    <tr>

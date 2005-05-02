@@ -845,7 +845,6 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 
 # Special:Allpages
 'nextpage'              => 'Neste side ($1)',
-'articlenamespace'      => '(innhaldssider)',
 'allarticles'           => 'Alle innhaldssider',
 'allpagesprev'          => 'Førre',
 'allpagesnext'          => 'Neste',

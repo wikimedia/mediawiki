@@ -1011,7 +1011,6 @@ Por favor, elige otro nombre.",
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
-'articlenamespace'  => '(artículos)',
 'allarticles'       => 'Todos los artículos',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Siguiente',
