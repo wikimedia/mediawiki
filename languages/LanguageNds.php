@@ -871,7 +871,6 @@ Du kannst de List kötter maken, wenn du den Logtyp, den Brukernaam oder de de S
 
 # Special:Allpages
 'nextpage'          => 'tokamen Siet ($1)',
-'articlenamespace'  => '(Artikels)',
 'allarticles'       => 'Alle Artikels',
 'allpagesprev'      => 'vörig',
 'allpagesnext'      => 'tokamen',

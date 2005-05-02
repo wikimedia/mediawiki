@@ -157,7 +157,6 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'articleexists' => "Annaðhvort er þegar til síða undir þessum titli, 
 eða sá titill sem þú hefur valið er ekki gildur. 
 Vinsamlegast veldu annan titil.",
-'articlenamespace' => "(greinar)",
 'asksql' => "Gagnagrunnsfyrirspurn",
 'aug' => "ágú",
 'august' => "ágúst",

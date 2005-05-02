@@ -1184,7 +1184,6 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
-'articlenamespace'  => '(articles)',
 'allpagesformtext' => '
 <table border="0">
 	<tr>
