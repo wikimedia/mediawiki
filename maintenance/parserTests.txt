@@ -1888,10 +1888,10 @@ Resolving duplicate section names
 title=[[Parser test script]]
 !! input
 == Foo bar ==
-==Foo bar==
+== Foo bar ==
 !! result
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Foo_bar"></a><h2> Foo bar </h2>
-<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Foo_bar_2"></a><h2>Foo bar</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Foo_bar_2"></a><h2> Foo bar </h2>
 
 !! end
 
