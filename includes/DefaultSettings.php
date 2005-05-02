@@ -97,7 +97,6 @@ $wgStylePath   = "{$wgScriptPath}/skins";
  */
 $wgStyleDirectory = "{$IP}/skins";
 $wgStyleSheetPath = &$wgStylePath;
-$wgStyleSheetDirectory = &$wgStyleDirectory;
 $wgArticlePath      = "{$wgScript}?title=$1";
 $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
@@ -168,9 +167,6 @@ $wgSharedThumbnailScriptPath = false;
  * directory layout.
  */
 $wgHashedSharedUploadDirectory = true;
-
-/** set true if the repository uses latin1 filenames */
-$wgSharedLatin1=false;
 
 /**
  * Base URL for a repository wiki. Leave this blank if uploads are just stored
@@ -322,7 +318,6 @@ $wgDBminWordLen     = 4;
 $wgDBtransactions	= false;
 /** Set to true to use enhanced fulltext search */
 $wgDBmysql4			= false;
-$wgSqlTimeout		= 30;
 
 /**
  * Other wikis on this site, can be administered from a single developer
@@ -1110,16 +1105,6 @@ $wgFeedDiffCutoff = 32768;
 #	      103 => "Discussion_Aide"
 #	      );
 $wgExtraNamespaces = NULL;
-
-/**
- * Enable SOAP interface. Off by default
- * SOAP is a protocoll for remote procedure calls (RPC) using http as
- * middleware. This interface can be used by bots or special clients to receive
- * articles from a wiki.
- * Most bots use the normal HTTP interface and don't use SOAP.
- * If unsure, set to false.
- */
-$wgEnableSOAP = false;
 
 /**
  * Limit images on image description pages to a user-selectable limit. In order
