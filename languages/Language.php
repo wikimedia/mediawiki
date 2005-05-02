@@ -929,7 +929,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 # 
 'group-anon-name'       => 'Anonymous',
 'group-anon-desc'       => 'Anonymous users',
-'group-loggedin-name'   => 'Logged in',
+'group-loggedin-name'   => 'User',
 'group-loggedin-desc'   => 'General logged in users',
 'group-admin-name'      => 'Administrator',
 'group-admin-desc'      => 'Trusted users able to block users and delete articles',
