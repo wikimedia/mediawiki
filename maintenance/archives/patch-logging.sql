@@ -16,7 +16,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
-  log_namespace tinyint unsigned NOT NULL default 0,
+  log_namespace int NOT NULL default 0,
   log_title varchar(255) binary NOT NULL default '',
   
   -- Freeform text. Interpreted as edit history comments.

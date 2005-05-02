@@ -344,7 +344,7 @@ function do_schema_restructuring() {
 		echo "......Creating tables.\n";
 		$wgDatabase->query("CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
-  			page_namespace tinyint NOT NULL,
+  			page_namespace int NOT NULL,
   			page_title varchar(255) binary NOT NULL,
   			page_restrictions tinyblob NOT NULL default '',
   			page_counter bigint(20) unsigned NOT NULL default '0',
@@ -437,6 +437,41 @@ function do_text_id() {
 	}
 }
 
+function do_namespace_size() {
+	$tables = array(
+		'page'          => 'page',
+		'archive'       => 'ar',
+		'recentchanges' => 'rc',
+		'watchlist'     => 'wl',
+		'querycache'    => 'qc',
+		'logging'       => 'log',
+	);
+	foreach( $tables as $table => $prefix ) {
+		do_namespace_size_on( $table, $prefix );
+		flush();
+	}
+}
+
+function do_namespace_size_on( $table, $prefix ) {
+	global $wgDatabase;
+	$field = $prefix . '_namespace';
+	
+	$tablename = $wgDatabase->tableName( $table );
+	$result = $wgDatabase->query( "SHOW COLUMNS FROM $tablename LIKE '$field'" );
+	$info = $wgDatabase->fetchObject( $result );
+	$wgDatabase->freeResult( $result );
+	
+	if( substr( $info->Type, 0, 3 ) == 'int' ) {
+		echo "...$field is already a full int ($info->Type).\n";
+	} else {
+		echo "Promoting $field from $info->Type to int... ";
+		
+		$sql = "ALTER TABLE $tablename MODIFY $field int NOT NULL";
+		$wgDatabase->query( $sql );
+		
+		echo "ok\n";
+	}
+}
 
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
@@ -470,6 +505,7 @@ function do_all_updates() {
 	do_schema_restructuring(); flush();
 	do_inverse_timestamp(); flush();
 	do_text_id(); flush();
+	do_namespace_size(); flush();
 
 	initialiseMessages(); flush();
 }
