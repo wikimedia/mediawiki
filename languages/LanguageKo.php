@@ -18,7 +18,7 @@ require_once('LanguageUtf8.php');
 	NS_USER	     => '사용자',
 	NS_USER_TALK	=> '사용자토론',
 	NS_PROJECT	  => $wgMetaNamespace,
-	NS_PROJECT_TALK     => "$wgMetaNamespace토론",
+	NS_PROJECT_TALK     => "${wgMetaNamespace}토론",
 	NS_IMAGE	    => '그림',
 	NS_IMAGE_TALK       => '그림토론',
 	NS_CATEGORY	 => '분류',
