@@ -31,6 +31,7 @@ New exciting things! Need further work and testing...
 * What was $wgDisableUploads is now $wgEnableUploads, and should be set to true if one wishes to enable uploads.
 * Supplying a reason for a block is no longer mandatory
 * Language conversion support for category pages
+* $wgStyleSheetDirectory is no longer an alias for $wgStyleDirectory;
 * ...and more!
 
 Need to merge:
