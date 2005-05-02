@@ -149,7 +149,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   -- A page name is broken into a namespace and a title.
   -- The namespace keys are UI-language-independent constants,
   -- defined in Namespace.php.
-  page_namespace tinyint NOT NULL,
+  page_namespace int NOT NULL,
   
   -- The rest of the title, as text.
   -- Spaces are transformed into underscores in title storage.
@@ -286,7 +286,7 @@ CREATE TABLE /*$wgDBprefix*/text (
 -- fields, with several caveats.
 --
 CREATE TABLE /*$wgDBprefix*/archive (
-  ar_namespace tinyint(2) unsigned NOT NULL default '0',
+  ar_namespace int NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
   
   -- Newly deleted pages will not store text in this table,
@@ -600,7 +600,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_user_text varchar(255) binary NOT NULL default '',
   
   -- When pages are renamed, their RC entries do _not_ change.
-  rc_namespace tinyint(3) NOT NULL default '0',
+  rc_namespace int NOT NULL default '0',
   rc_title varchar(255) binary NOT NULL default '',
   
   -- as in revision...
@@ -656,7 +656,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   -- Key to page_namespace/page_title
   -- Note that users may watch patches which do not exist yet,
   -- or existed in the past but have been deleted.
-  wl_namespace tinyint(2) unsigned NOT NULL default '0',
+  wl_namespace int NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
   
   -- Timestamp when user was last sent a notification e-mail;
@@ -750,7 +750,7 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   qc_value int(5) unsigned NOT NULL default '0',
   
   -- Target namespace+title
-  qc_namespace tinyint(2) unsigned NOT NULL default '0',
+  qc_namespace int NOT NULL default '0',
   qc_title char(255) binary NOT NULL default '',
   
   KEY (qc_type,qc_value)
@@ -796,7 +796,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
-  log_namespace tinyint unsigned NOT NULL default 0,
+  log_namespace int NOT NULL default 0,
   log_title varchar(255) binary NOT NULL default '',
   
   -- Freeform text. Interpreted as edit history comments.

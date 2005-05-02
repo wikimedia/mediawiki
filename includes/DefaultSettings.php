@@ -1095,8 +1095,8 @@ $wgFeedDiffCutoff = 32768;
  * no longer be accessible. If you rename it, then you can access them through
  * the new namespace name.
  * 
- * Custom namespaces should start at 100 and stop at 255 (hard limit set by
- * database).
+ * Custom namespaces should start at 100 to avoid conflicting with standard
+ * namespaces, and should always follow the even/odd main/talk pattern.
  */
 #$wgExtraNamespaces =
 #	array(100 => "Hilfe",
