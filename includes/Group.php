@@ -39,11 +39,10 @@ class Group {
 
 	/** Load group datas from database */
 	function loadFromDatabase() {
-		global $wgCommandLineMode;
 		$fname = 'Group::loadFromDatabase';
 
 		// See if it's already loaded
-		if ( $this->dataLoaded || $wgCommandLineMode ) {
+		if ( $this->dataLoaded || Group::getStaticGroups() ) {
 			return;
 		}
 
