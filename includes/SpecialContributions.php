@@ -18,7 +18,7 @@ function wfSpecialContributions( $par = '' ) {
 	// GET values
 	$target = $par ? $par : $wgRequest->getVal( 'target' );
 	$namespace = $wgRequest->getInt( 'namespace', '' );
-	$namespace = ($namespace == '') ? NULL : $namespace;
+	$namespace = $namespace === '' ? NULL : $namespace;
 	$invert = $wgRequest->getBool( 'invert' );
 	$hideminor = ($wgRequest->getBool( 'hideminor' ) ? true : false);
 	
