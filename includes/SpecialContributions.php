@@ -17,7 +17,7 @@ function wfSpecialContributions( $par = '' ) {
 
 	// GET values
 	$target = $par ? $par : $wgRequest->getVal( 'target' );
-	$namespace = $wgRequest->getInt( 'namespace', '' );
+	$namespace = $wgRequest->getVal( 'namespace', '' );
 	$namespace = $namespace === '' ? NULL : $namespace;
 	$invert = $wgRequest->getBool( 'invert' );
 	$hideminor = ($wgRequest->getBool( 'hideminor' ) ? true : false);
@@ -219,26 +219,36 @@ function ucListEdit( $sk, $row ) {
 function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
 	global $wgContLang, $wgScript;
 
-	$namespaceselect = '<select name="namespace">';
+	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
 	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'contributionsall' ).'</option>';
 	$arr = $wgContLang->getFormattedNamespaces();
 	foreach( $arr as $ns => $name ) {
 		if( $ns < NS_MAIN )
 			continue;
-		$n = $ns == 0 ? wfMsg ( 'blanknamespace' ) : $name;
+		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
 		$sel = $namespace === $ns ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
 
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
-	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
 	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
 	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
-	$out .= wfMsg ( 'contributionsformtext', $namespaceselect, $submitbutton, $invertbox );
+	$out .= "
+<table id='nsselect' class='contributions'>
+	<tr>
+		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
+		<td align='left'>$namespaceselect $submitbutton</td>
+	</tr>
+	<tr>
+		<td align='right'>$invertbox</td>
+		<td align='left'><label for='nsinvert'>" . wfMsg('invert') . "</label></td>
+	</tr>
+</table>";
 	$out .= '</form></div>';
 	return $out;
 }
