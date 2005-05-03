@@ -1097,7 +1097,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "thumbnail-more"	=> "vergrößern",
 "and"			=> "und",
 "rchide"		=> "in $4 form; $1 kleine Änderungen; $2 sekundäre Namensräume; $3 mehrfache Änderungen.",
-"showhideminor"		=> "kleine Änderungen $1",
+"showhideminor"		=> "kleine Änderungen $1 | $2 bots | $3 logged in users | $4 patrolled edits ",
 "rcliu"			=> "$1 Änderungen durch eingeloggte Benutzer",
 "uploaddisabled"	=> "Entschuldigung, das Hochladen ist deaktiviert.",
 "deadendpages"		=> "Sackgassenartikel",

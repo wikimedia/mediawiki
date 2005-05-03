@@ -1030,7 +1030,7 @@ Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[dr
 'setbureaucratflag' => "Acordă şi drepturi de birocrat",
 'shortpages' => "Pagini scurte",
 'show' => "arată",
-'showhideminor' => "$1 editări minore",
+'showhideminor' => "$1 editări minore | $2 bots | $3 logged in users | $4 patrolled edits",
 'showingresults' => "Mai jos apar <b>$1</b> rezultate începând cu numărul <b>$2</b>.",
 'showingresultsnum' => "Mai jos apar <b>$3</b> rezultate începând cu numărul <b>$2</b>.",
 'showlast' => "Arată ultimele $1 imagini ordonate $2.",

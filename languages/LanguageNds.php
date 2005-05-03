@@ -1184,7 +1184,7 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'thumbnail-more'               => 'vergröttern',
 'and'                                   => 'un',
 'rchide'                        => 'in $4 form; $1 lütte Ännern; $2 sekundäre Naamrüüm; $3 mehrfache Ännern.',
-'showhideminor'                 => 'lütte Ännern $1',
+'showhideminor'                 => 'lütte Ännern $1 | $2 bots | $3 logged in users | $4 patrolled edits',
 'rcliu'                               => '$1 Ännern dör inloggte Bruker',
 'uploaddisabled'               => 'Dat Hoochladen is deaktiveert.',
 'deadendpages'                  => 'Sackstraatsieten',
