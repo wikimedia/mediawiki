@@ -314,7 +314,7 @@ class PreferencesForm {
 
 		$namespaces = $wgContLang->getNamespaces();
 		foreach ( $namespaces as $i => $namespace ) {
-			if ( $i >= 0 ) {
+			if ( $i >= NS_MAIN ) {
 				$this->mSearchNs[$i] = $wgUser->getOption( 'searchNs'.$i );
 			}
 		}
