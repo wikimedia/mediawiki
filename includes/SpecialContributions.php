@@ -221,15 +221,13 @@ function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
 
 	$namespaceselect = '<select name="namespace">';
 	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'contributionsall' ).'</option>';
-	$arr = $wgContLang->getNamespaces();
-	foreach( array_keys( $arr ) as $i ) {
-		if( $i < 0 ) {
+	$arr = $wgContLang->getFormattedNamespaces();
+	foreach( $arr as $ns => $name ) {
+		if( $ns < NS_MAIN )
 			continue;
-		}
-		$namespacename = str_replace ( '_', ' ', $arr[$i] );
-		$n = ($i == 0) ? wfMsg ( 'blanknamespace' ) : $namespacename;
-		$sel = ($i === $namespace) ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
+		$n = $ns == 0 ? wfMsg ( 'blanknamespace' ) : $name;
+		$sel = $namespace === $ns ? ' selected="selected"' : '';
+		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
 
