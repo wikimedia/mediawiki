@@ -672,7 +672,7 @@ END
 <br />{$editsummary}
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
-" title=\"".wfMsg('tooltip-save')."\"/>&emsp;
+" title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <input tabindex='6' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
