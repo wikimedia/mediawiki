@@ -147,7 +147,6 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'allmessagesname' => "Titill",
 'allmessagestext' => "Listi yfir meldingar í „{{ns:8}}“ nafnarýminu.",
 'allpages' => "Allar síður",
-'allpagesformtext2' => "Nafnrými: $1 $2",
 'alphaindexline' => "$1 til $2",
 'alreadyloggedin' => "<font color=red><b>Notandinn $1 er þegar innskráður!</b></font><br/>",
 'ancientpages' => "Elstu síður",
