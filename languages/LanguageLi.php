@@ -1,14 +1,9 @@
 <?php
-/**
+/** Limburgish (Limburgs)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-# Limburgish file - Limburgse versie 2.2.a
-
 /**
  * @access private
  */
@@ -21,7 +16,7 @@ $wgNamespaceNamesLi = array(
 	NS_USER_TALK		=> 'Euverlik_gebroeker',
 	NS_PROJECT			=> $wgMetaNamespace,
 	NS_PROJECT_TALK		=> 'Euverlik_Wikipedia',
-	NS_IMAGE			=> 'Afbeelding',
+	NS_IMAGE			=> 'Aafbeilding',
 	NS_IMAGE_TALK		=> 'Euverlik_afbeelding',
 	NS_MEDIAWIKI		=> 'MediaWiki',
 	NS_MEDIAWIKI_TALK	=> 'Euverlik_MediaWiki',
