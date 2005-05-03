@@ -631,7 +631,7 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'rclistfrom'	=> "Afficher les nouvelles modifications depuis le $1.",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
-'showhideminor' => "$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés",
+'showhideminor' => "$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés | $4 patrolled edits",
 'rclinks'	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 'rchide'  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 'rcliu'	=> "; $1 modifications par des contributeurs connectés",
