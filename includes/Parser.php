@@ -184,13 +184,6 @@ class Parser
 
 		$text = $this->internalParse( $text );
 
-		$dashReplace = array(
-			'/ - /' => "&nbsp;&ndash; ", # N dash
-			'/(?<=[0-9])-(?=[0-9])/' => "&ndash;", # N dash between numbers
-			'/ -- /' => "&nbsp;&mdash; " # M dash
-		);
-		$text = preg_replace( array_keys($dashReplace), array_values($dashReplace), $text );
-		
 		
 		$text = $this->unstrip( $text, $this->mStripState );
 		
@@ -212,6 +205,13 @@ class Parser
 		$text = $this->doBlockLevels( $text, $linestart );
 
 		$this->replaceLinkHolders( $text );
+
+		$dashReplace = array(
+			'/ - /' => "&nbsp;&ndash; ", # N dash
+			'/(?<=[0-9])-(?=[0-9])/' => "&ndash;", # N dash between numbers
+			'/ -- /' => "&nbsp;&mdash; " # M dash
+		);
+		$text = preg_replace( array_keys($dashReplace), array_values($dashReplace), $text );
 
 		# the position of the convert() call should not be changed. it 
 		# assumes that the links are all replaces and the only thing left 
