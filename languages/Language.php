@@ -2089,7 +2089,23 @@ class Language {
 		global $wgNamespaceNamesEn;
 		return $wgNamespaceNamesEn;
 	}
-	
+
+	/**
+	 * A convenience function that returns the same thing as
+	 * getNamespaces() except with the array values changed to ' '
+	 * where it found '_', useful for producing output to be displayed
+	 * e.g. in <select> forms.
+	 *
+	 * @return array
+	 */
+	function getFormattedNamespaces() {
+		$ns = $this->getNamespaces();
+		foreach($ns as $k => $v) {
+			$ns[$k] = strtr($v, '_', ' ');
+		}
+		return $ns;
+	}
+
 	/**
 	 * Get a namespace value by key
 	 * <code>
@@ -2104,7 +2120,18 @@ class Language {
 		global $wgNamespaceNamesEn;
 		return $wgNamespaceNamesEn[$index];
 	}
-	
+	/**
+	 * A convenience function that returns the same thing as
+	 * getNsText() except with '_' changed to ' ', useful for
+	 * producing output.
+	 *
+	 * @return array
+	 */
+	function getFormattedNsText( $index ) {
+		$ns = $this->getNsText( $index );
+		return strtr($ns, '_', ' ');
+	}
+
 	/**
 	 * Get a namespace key by value
 	 *
@@ -2122,13 +2149,12 @@ class Language {
 
 	/**
 	 * short names for language variants used for language conversion links. 
-	 * so far only used by zh
 	 *
 	 * @param string $code
 	 * @return string
 	 */
 	function getVariantname( $code ) {
-		return wfMsg( 'variantname-' . $code );
+		return wfMsg( "variantname-$code" );
 	}
 
 	function specialPage( $name ) {
@@ -2166,7 +2192,7 @@ class Language {
 	}
 
 	function getUserToggle( $tog ) {
-		return wfMsg('tog-'.$tog);
+		return wfMsg( "tog-$tog" );
 	}
 
 	function getLanguageNames() {
@@ -2499,6 +2525,7 @@ class Language {
 
 	/**
 	 * For right-to-left language support
+	 *
 	 * @return bool
 	 */
 	function isRTL() { return false; }
@@ -2532,10 +2559,12 @@ class Language {
 	 * Italic is unsuitable for some languages
 	 *
 	 * @access public
+	 *
 	 * @param string $text The text to be emphasized.
+	 * @return string
 	 */
 	function emphasize( $text ) {
-		return '<em>'.$text.'</em>';
+		return "<em>$text</em>";
 	}
 
 	/**
@@ -2657,7 +2686,7 @@ class Language {
 	}
 
 	# convert text to different variants of a language.
-	function convert( $text , $isTitle=false) {
+	function convert( $text, $isTitle = false) {
 		return $this->mConverter->convert($text, $isTitle);
 	}
 
