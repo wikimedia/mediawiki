@@ -1184,21 +1184,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
-'allpagesformtext' => '
-<table>
-	<tr>
-		<td align="right">Display pages starting at:</td>
-		<td align="left">$1</td>
-	</tr>
-	<tr>
-		<td align="right">Namespace:</td>
-		<td align="left">$2 $3</td>
-	</tr>
-	<tr>
-		<td align="right">$4</td>
-		<td align="left">Invert</td>
-	</tr>
-</table>',
+'allpagesfrom'		=> 'Display pages starting at:',
 'allarticles'		=> 'All articles',
 'allnonarticles'	=> 'All non-articles',
 'allinnamespace'	=> 'All pages ($1 namespace)',
@@ -1385,22 +1371,15 @@ will not be automatically replaced.',
 'undeletedtext'   => "[[$1]] has been successfully restored.
 See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 
+# Namespace form on various pages
+'namespace' => 'Namespace:',
+'invert' => 'Invert',
+
 # Contributions
 #
 'contributions' => 'User contributions',
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
-'contributionsformtext' => '
-<table>
-        <tr>
-                <td align="right">Namespace:</td>
-                <td align="left">$1 $2</td>
-        </tr>
-	<tr>
-		<td align="right">$3</td>
-		<td>Invert</td>
-	</tr>
-</table>',
 'nocontribs'    => 'No changes were found matching these criteria.',
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
 'uclinks'       => "View the last $1 changes; view the last $2 days.",
