@@ -735,7 +735,6 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 
 # Special:Allpages
 'nextpage'            => 'Seuraava sivu ($1)',
-'allpagesformtext'    => 'Näytä sivuja alkaen sivusta: $1 Valitse nimiavaruus: $2 $3',
 'allarticles'         => 'Kaikki sivut',
 'allpagesprev'        => 'Edellinen',
 'allpagesnext'        => 'Seuraava',
