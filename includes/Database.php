@@ -638,12 +638,14 @@ class Database {
 	/**
 	 * Returns an optional USE INDEX clause to go after the table, and a
 	 * string to go at the end of the query
+	 *
+	 * @access private
+	 *
+	 * @param array $options an associative array of options to be turned into
+	 *              an SQL query, valid keys are listed in the function.
+	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
-		if ( !is_array( $options ) ) {
-			$options = array( $options );
-		}
-
 		$tailOpts = '';
 
 		if ( isset( $options['ORDER BY'] ) ) {
@@ -685,7 +687,7 @@ class Database {
 			$from = '';
 		}
 
-		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
+		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( (array)$options );
 		
 		if( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
@@ -1049,15 +1051,14 @@ class Database {
 	 */
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
-			$s = 'NULL';
+			return 'NULL';
 		} else {
 			# This will also quote numeric values. This should be harmless,
 			# and protects against weird problems that occur when they really
 			# _are_ strings such as article titles and string->number->string
 			# conversion is not 1:1.
-			$s = "'" . $this->strencode( $s ) . "'";
+			return "'" . $this->strencode( $s ) . "'";
 		} 
-		return $s;
 	}
 		
 	/**
@@ -1074,7 +1075,7 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		return 'USE INDEX ('.$index.')';
+		return "USE INDEX ($index)";
 	}
 
 	/**
@@ -1176,9 +1177,9 @@ class Database {
 			wfDebugDieBacktrace( 'Database::delete() called with no conditions' );
 		}
 		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table ";
+		$sql = "DELETE FROM $table";
 		if ( $conds != '*' ) {
-			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
+			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
 		return $this->query( $sql, $fname );
 	}
