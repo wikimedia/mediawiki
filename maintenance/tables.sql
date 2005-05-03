@@ -73,7 +73,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_newpassword tinyblob NOT NULL default '',
   
   -- Note: email should be restricted, not public info.
-  -- Same with passwords. ;)
+  -- Same with passwords.
   user_email tinytext NOT NULL default '',
   
   -- Newline-separated list of name=value pairs.
@@ -174,11 +174,10 @@ CREATE TABLE /*$wgDBprefix*/page (
   
   -- This timestamp is updated whenever the page changes in
   -- a way requiring it to be re-rendered, invalidating caches.
-  -- On top of editing this includes permission changes,
+  -- Aside from editing this includes permission changes,
   -- creation or deletion of linked pages, and alteration
   -- of contained templates.
   page_touched char(14) binary NOT NULL default '',
-  
 
   -- Handy key to revision.rev_id of the current revision.
   -- This may be 0 during page creation, but that shouldn't
@@ -452,6 +451,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   -- * in namespace 0
   -- * not a redirect
   -- * contains the text '[['
+  -- See isCountable() in includes/Article.php
   ss_good_articles bigint(20) unsigned default '0',
   
   UNIQUE KEY ss_row_id (ss_row_id)
