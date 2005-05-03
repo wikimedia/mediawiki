@@ -792,8 +792,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 # Special:Allpages
 'nextpage'          => 'Halaman berikutnya ($1)',
-'allpagesformtext1' => 'Tampilkan halaman dimulai dari: $1',
-'allpagesformtext2' => 'Pilih namespace: $1 $2',
 'allarticles'       => 'Semua artikel',
 'allpagesprev'      => 'Sebelumnya',
 'allpagesnext'      => 'Selanjutnya',
