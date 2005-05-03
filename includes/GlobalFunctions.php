@@ -84,10 +84,11 @@ if ( !function_exists( 'mb_substr' ) ) {
  * with no UTF-8 support.
  *
  * @param string $string String having html entities
- * @param $quote_style
- * @param string $charset Encoding set to use (default 'ISO-8859-1')
+ * @param $quote_style the quote style to pass as the second argument to
+ *        get_html_translation_table()
+ * @param string $charset Encoding set to use (default 'UTF-8')
  */
-function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
+function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='UTF-8' ) {
 	$fname = 'do_html_entity_decode';
 	wfProfileIn( $fname );
 	
@@ -183,29 +184,34 @@ function wfUrlencode ( $s ) {
 
 /**
  * Return the UTF-8 sequence for a given Unicode code point.
- * Currently doesn't work for values outside the Basic Multilingual Plane.
+ * Doesn't work for values outside the Basic Multilingual Plane.
  *
  * @param string $codepoint UTF-8 code point.
- * @return string HTML UTF-8 Entitie such as '&#1234;'.
+ * @return string An UTF-8 character if the codepoint is in the BMP and
+ *         &#$codepoint if it isn't;
  */
 function wfUtf8Sequence( $codepoint ) {
-	if($codepoint <		0x80) return chr($codepoint);
-	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
-									 chr($codepoint		  & 0x3f | 0x80);
-	if($codepoint <  0x10000) return chr($codepoint >> 12 & 0x0f | 0xe0) .
-									 chr($codepoint >>	6 & 0x3f | 0x80) .
-									 chr($codepoint		  & 0x3f | 0x80);
-	if($codepoint < 0x110000) return chr($codepoint >> 18 & 0x07 | 0xf0) .
-									 chr($codepoint >> 12 & 0x3f | 0x80) .
-									 chr($codepoint >>	6 & 0x3f | 0x80) .
-									 chr($codepoint		  & 0x3f | 0x80);
-
+	if($codepoint <	0x80)
+		return chr($codepoint);
+	if($codepoint < 0x800)
+		return chr($codepoint >> 6 & 0x3f | 0xc0) . chr($codepoint & 0x3f | 0x80);
+	if($codepoint < 0x10000)
+		return	chr($codepoint >> 12 & 0x0f | 0xe0) .
+			chr($codepoint >> 6 & 0x3f | 0x80) .
+			chr($codepoint & 0x3f | 0x80);
+	if($codepoint < 0x110000)
+		return	chr($codepoint >> 18 & 0x07 | 0xf0) .
+			chr($codepoint >> 12 & 0x3f | 0x80) .
+			chr($codepoint >> 6 & 0x3f | 0x80) .
+			chr($codepoint & 0x3f | 0x80);
 	# There should be no assigned code points outside this range, but...
 	return "&#$codepoint;";
 }
 
 /**
  * Converts numeric character entities to UTF-8
+ *
+ * @todo Do named entities
  *
  * @param string $string String to convert.
  * @return string Converted string.
@@ -215,7 +221,6 @@ function wfMungeToUtf8( $string ) {
 	#$string = iconv($wgInputEncoding, "UTF-8", $string);
 	$string = preg_replace ( '/&#0*([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
 	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
-	# Should also do named entities here
 	return $string;
 }
 
@@ -331,6 +336,8 @@ function wfReadOnly() {
 
 /**
  * Get a message from anywhere, for the UI elements
+ *
+ * @param string 
  */
 function wfMsg( $key ) {
 	$args = func_get_args();
