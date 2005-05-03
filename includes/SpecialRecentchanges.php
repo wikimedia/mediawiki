@@ -50,7 +50,7 @@ function wfSpecialRecentchanges( $par ) {
 		$hidebots = $wgRequest->getBool( 'hidebots', true );
 		$hideliu = $wgRequest->getBool( 'hideliu' );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled' );
-		$namespace = $wgRequest->getInt( 'namespace', '' );
+		$namespace = $wgRequest->getVal( 'namespace', '' );
 		$namespace = $namespace === '' ? NULL : $namespace;
 		$invert = $wgRequest->getBool( 'invert' );
 		
@@ -117,6 +117,8 @@ function wfSpecialRecentchanges( $par ) {
 		'days'		=> $days,
 		'limit'		=> $limit,
 		'from'          => $from,
+		'namespace'	=> $namespace,
+		'invert'	=> $invert,
 	);
 
 	$uid = $wgUser->getID();
@@ -429,7 +431,7 @@ function namespaceForm ( $namespace, $invert ) {
 		if( $ns < NS_MAIN )
 			continue;
 		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === $ns ? ' selected="selected"' : '';
+		$sel = $namespace === (string)$ns ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
