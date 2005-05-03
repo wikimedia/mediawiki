@@ -3,14 +3,135 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-** NOTE TO COMMITTERS: Before 1.5.0 release, rearrange these nicely
-** and move 1.4 stuff to HISTORY.
 
-== MediaWiki 1.5 ==
+== MediaWiki 1.5 alpha 1 ==
 
-New exciting things! Need further work and testing...
-* user groups/permissions scheme
-* e-mail change notifications
+May 3, 2005
+
+This is a testing preview release, being put out mainly to aid testers in
+finding installation bugs and other major problems. It is strongly recommended
+NOT to run a live production web site on this alpha release.
+
+**  WARNING: USE OF THIS ALPHA RELEASE MAY INFEST YOUR HOUSE WITH  **
+**  TERMITES, ROT YOUR TEETH,  GROW HAIR ON YOUR PALMS, AND PASTE  **
+**  INNUENDO  INTO  YOUR  C.V.  RIGHT  BEFORE  A  JOB  INTERVIEW!  **
+**  DON'T SAY WE DIDN'T WARN YOU, MAN. WE TOTALLY DID RIGHT HERE.  **
+
+
+=== Big changes ===
+
+Schema:
+  The core table schema has changed significantly. This should make better
+  use of the database's cache and disk I/O, and make significantly speed up
+  rename and delete operations on pages with very long edit histories.
+  
+  Unfortunately this does mean upgrading a wiki of size from 1.4 will require
+  some downtime for the schema restructuring, but future storage backend
+  changes should be able to integrate into the new system more easily.
+
+Permalinks:
+  The current revision of a page now has a permanent 'oldid' number assigned
+  immediately, and the id numbers are now preserved across deletion/undeletion.
+  A permanent reference to the current revision of a page is now just a matter
+  of going to the 'history' tab and copying the first link in the list.
+
+Page move log:
+  Renames of pages are now recorded in Special:Log and the page history.
+  A handy revert link is available from the log for sysops.
+
+Editing diff:
+  Ever lost track of what you'd done so far during an edit? A 'Show diff'
+  button on the edit page now makes it easy to remember.
+
+Uploads:
+  It's now possible to specify the final filename of an upload distinct
+  from the original filename on your disk.
+  
+  An image link for a missing file will now take you straight to the upload page.
+  
+  More metadata is pre-extracted from uploaded images, which will ease pressure
+  on disk or NFS volumes used to store images. EXIF metadata is displayed on
+  the image description page if PHP is configured with the necessary module.
+
+User accounts:
+  There are some changes to the user permissions system, with assignable
+  groups. This is still somewhat in flux; do not rely on the present system
+  that you see in this alpha to still be there.
+
+E-mail:
+  User-to-user e-mail can now be restricted to require a mail-back confirmation
+  first to reduce potential for abuse with false addresses.
+  
+  Updates to user talk pages and watchlist entries can optionally send e-mail
+  notifications.
+
+External hooks:
+  A somewhat experimental interface for hooking in an external editor
+  application is included. This may not be on by default in final release,
+  depending on support.
+
+And...
+  A bunch of stuff we forgot to mention.
+
+
+=== What's gone? ===
+
+Latin-1:
+  Wikis must now be encoded in Unicode UTF-8; this has been the default for
+  some time, but some languages could optionally be installed in Latin-1 mode.
+  This is no longer supported.
+
+MySQL 3.x:
+  Some optimization hacks for MySQL 3.x have been removed as part of the schema
+  clean-up (specifically, the inverse_timestamp fields). MediaWiki 1.5 should
+  still run, but wikis of significant size should very seriously consider
+  upgrading to a more modern release. MySQL 3.x support will probably be
+  entirely dropped in the next major release later this year.
+
+Special:Maintenance
+  These tools were, ironically enough, not really maintained. This special
+  page has been removed; insofar as some of its pieces were useful and haven't
+  already been supplanted by other special pages they should be rewritten in
+  an efficient and safe manner in the future.
+
+
+=== What's still waiting? ===
+
+These things should be fixed by the time 1.5.0 final is released:
+
+Upgrade:
+  Wikis in Latin-1 encoding are no longer supported; only Unicode UTF-8.
+  A new option $wgLegacyEncoding is provided to allow on-the-fly recoding of
+  old page text entries, but other metadata fields (titles, comments etc) need
+  to be pre-converted. The upgrade process does not yet fully automate this.
+  
+  In general the upgrade from 1.4 to 1.5 schema has not been tested for all
+  cases, and there may be problems.
+
+Backups:
+  The text entries of deleted pages are no longer removed from the main
+  text table on deletion. If you provide public backup dumps of your databases,
+  you will probably want to use the new XML-format dump generator... but
+  this hasn't been finished yet.
+
+PostgreSQL:
+  The table definitions for PostgreSQL install are out of date, and patches
+  to support PostgreSQL from the main installer are still pending.
+
+MySQL 4.1+:
+  Proper charset encoding / collation configuration for installs on MySQL 4.1
+  and higher still needs to be fiddled with. Some bits may fail on the UTF-8
+  setting due to some long field keys.
+
+Authentication plugin fixes:
+  The AuthPlugin interface needs some improvements to work better with LDAP,
+  HTTP basic auth, and other such environments. Some patches are pending.
+
+
+=== Smaller changes ===
+
+Various bugfixes, small features, and a few experimental things:
+
 * 'live preview' reduces preview reload burden on supported browsers
 * Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * New WikiSyntax: -- turns into &mdash; or &ndash; depending on context
@@ -34,147 +155,7 @@ New exciting things! Need further work and testing...
 * $wgStyleSheetDirectory is no longer an alias for $wgStyleDirectory;
 * ...and more!
 
-Need to merge:
-* stuff
 
-
-== Version Enotif+Eauthent EN+EA v2.00/CVS, 14.12.2004 ==
-written by Thomas Gries, Berlin and Markus Arndt, Munich
-
-Executive summary for the impatient reader:
-
-Enotif adds e-mail notification to MediaWiki and sends e-mails
-to watching users when a watch-listed page or user_talk page is changed
-http://bugzilla.wikipedia.org/show_bug.cgi?id=454
-Visit the complete documentation on http://meta.wikipedia.org/Enotif
-
-Eauthent is a mechanism to use a temporary one-time password cycle
-to check whether the email address a user has entered is a valid one.
-http://bugzilla.wikipedia.org/show_bug.cgi?id=866
-Visit the complete documentation on http://meta.wikipedia.org/Eauthent
-
-The current patch has only been checked for (see DefaultSettings.php):
-
-- php mail()
-  ( = not using PEAR:Mail() module --- I do not know anyone who uses that)
-  $wgSMTP = false;
-- MySQL database
-  ( = not using PostgreSQL --- I do not know anyone who uses that)
-  $wgDBtype = "mysql";
-  $wgSearchType = "MyISAM";
-
-- STILL TODO:
-  NEW (newpageletter) and CORR (minoreditletter) markers needs
-  corresponding "spacers"
-
-- table user_newtalk dropped; changes on usertalk pages and their
-  notifications are now fully handled via existing table watchlist
-  The user interface and behavious is unchanged to previous version.
-- updaters.inc for compatibility with older mediawiki tables:
-  the conversion script converts existing user_newtalk entries
-  watchlist table entries
-  (user_newtalk) id ==> (watchlist) NS_USER_TALK:namefromId(id) timestamp=1
-- minor bug fixes:
-  updated marker now correctly shown on watchlist page
-  watching users number display with enhanced RC view + RCUseModStyle
-- wfUrlencode() instead of rawurlencode() in enotif mails
-- duplicate enotif code moved from UserTalkUpdate.php and
-  merged into UserMailer.php and using usermailer() solely
-- fixed an enotif mail text error for user names with spaces
-- fixed missing part for suppressing watching user number
-
-v1.36:
-magic watchlist shows and counts now only the content page, notwithstanding
-the content and talk page are stored separately in watchlist.
-* bug fixed: rawurlencode for pagetitles in enotif mails
-* bug fixed: link to userpages of anonymous user are correct now
-
-* Enotif v1.34
- bugs fixed regarding missing $oldid parameter
-
-* v1.33
-* Details:
- Implements almost all enotif options as user preferences.
- These are only shown on the user preference page, if they are globally
- enabled by the corresponding admin option in DefaultSettings.php.
- Added admin feature to let enotifs appear to come from the page editor.
- This facilitates automatic mail sorting and anti-spam filtering; feature was
- originally proposed by Nick Triantos, thank you !
- Page editor's email address is however only shown, if this user enabled
- the option "reveal my email address" in user preferences. Otherwise,
- the enotifs appear to come from WikiAdmin as usual (tricky to program,
- but simply trust the algorithm. or look into UserMailer.php and
- UserTalkPage.php).
-
-* Changes from previous enotif versions
-* v1.31 is an improved version with many security and also cosmetic changes
- applied after two first reviews by Brion Vibber. v1.31 is basically the same as
- the older Enotif v1.30 and v1.22 versions.
-
- Added UseMod style for recent changes view so that only the most recent
- change of any page is listed. The (diff) and (hist) still allow to retrieve the
- older versions at users' discretion, but the RC view is much cleaner for
- trusted environments such as medium-size companies or family wikis.
-
-* Enotif v1.30 redesign after review by Brion Vibber 25.10.2003
-
-* v1.22 "updated (since my last visit)" also shown for users without stored
- email address in preferences, so that they can see, what watched pages
- have changed.
-* show "updated (since my last visit)" markers in RC, history and watchlist
-* Systemvariables to suppress updated marker in all views
-* show number of watching users in RC and on bottom of articles in
- classic skin and in monobook skin
-* Systemvariables in DefaultSettings.php to enable or disable features
-* v1.21 now suppresses displaying the marker "updated (since my last visit)"
- in recent changes view for the older (already visited) versions of watched
- pages - i.e. page versions before the enotif was sent do not bear that
- marker any longer.
-* enotif mails come with a link to the diff view between current and last
- visited version of the watching user.
-*database structure is changed automatically when installing via the
- recommended way (starting index.php and re-using the old database name).
-	run php /maintenance/update.php
- OR see /maintenance/archives/patch-email-notification.sql and apply the
- command
-	ALTER TABLE  watchlist
-	ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0');
- manually to your database, which does not harm the non notification versions
-
-*adding a page x to the watchlist does automatically add a watch
-  for the accompanying talk_page talk:x and vice versa;
-
-== MediaWiki 1.4 BETA ==
-
-[Not everything is 100% working in beta yet, the installer needs fixes still.]
-
-Major changes from 1.3.x:
-* Support for table prefixes for better sharing with other web apps
-* (?) PostgreSQL support
-* Optional article validation voting features
-* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed
-* Support for faster C++ diff module (WikiDiff extension)
-* More scary link caching modes
-* Old manually maintained log pages replaced with searchable Special:Log
-* Skins system more modular: templates and CSS are now in /skins/
-* New user preference for limitting the image size for images on image description
-  pages 
-* Error pages no more offer edit / talk / watch links (bug #502)
-* Allow user to preview article on first edit (bug #530)
-* New dark background skin named Amethyst (thanks Sorwena and Sorkhiri)
-* [[RFC 1234]] will now make an internal link (bug #479)
-* PhpTal skins shown bogus 'What links here' etc on special pages (bug #511)
-* Experimental code to manage user and group rights (Special:Userlevels)
-* UI language switching
-* Adding filter and username exact search match for Special:Listusers (bug #770)
-* Special:Listadmins outdated, use Special:Listusers instead (bug #857)
-* Traditional/Simplified Chinese conversion
-* New tag "<gallery>" to generate a table of image thumbnails
-* Installer die if it can not write LocalSettings.php (bug #733)
-* Various special pages no more show the rss/atom feed links (bug #705)
-* Support for external authentication plug-ins
-* (bug 114) use category backlinks in Special:Recentchangeslinked
-* ... and more!
 
 === Caveats ===
 
@@ -184,12 +165,8 @@ set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
-The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
-underlying PHPTAL library. It will be automatically disabled when running
-on PHP5; the older look and feel will be used instead.
 
-
-For notes on 1.3.x and older releases, see HISTORY.
+For notes on 1.4.x and older releases, see HISTORY.
 
 
 === Online documentation ===
@@ -207,6 +184,12 @@ A MediaWiki-l mailing list has been set up distinct from the Wikipedia
 wikitech-l list:
 
   http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
 
 
 === IRC help ===
