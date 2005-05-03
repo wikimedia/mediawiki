@@ -105,11 +105,10 @@ function getMPL ( $x ) {
 
 
 function getMaintenancePageBacklink( $subfunction ) {
-	global $wgUser , $wgContLang;
-	$sk = $wgUser->getSkin() ;
-	$ns = $wgContLang->getNamespaces() ;
+	global $wgUser, $wgContLang;
+	$sk = $wgUser->getSkin();
 	$r = $sk->makeKnownLink (
-		$ns[-1].':Maintenance',
+		$wgContLang->getNsText( NS_SPECIAL ) . ':Maintenance',
 		wfMsg( 'maintenancebacklink' ) ) ;
 	$t = wfMsg ( $subfunction ) ;
 	
