@@ -39,16 +39,21 @@ function wfSpecialRecentchanges( $par ) {
 		$hidebots = 1;
 		$hideliu = 0;
 		$hidepatrolled = 0;
+		$invert = 0;
+		$namespace = '';
 		global $wgFeedLimit;
 		if( $limit > $wgFeedLimit ) {
 			$limit = $wgFeedLimit;
 		}
 	} else {
 		$from = $wgRequest->getText( 'from' );
-		$hidebots = $wgRequest->getBool( 'hidebots', true ) ? 1 : 0;
-		$hideliu = $wgRequest->getBool( 'hideliu', false ) ? 1 : 0;
-		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', false ) ? 1 : 0;
-	
+		$hidebots = $wgRequest->getBool( 'hidebots', true );
+		$hideliu = $wgRequest->getBool( 'hideliu' );
+		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled' );
+		$namespace = $wgRequest->getInt( 'namespace', '' );
+		$namespace = $namespace === '' ? NULL : $namespace;
+		$invert = $wgRequest->getBool( 'invert' );
+		
 		# Get query parameters from path
 		if( $par ) {
 			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -85,37 +90,34 @@ function wfSpecialRecentchanges( $par ) {
 	$wgOut->addWikiText( $rctext );
 
 	
-	$now = wfTimestampNow();
 	$cutoff_unixtime = time() - ( $days * 86400 );
 	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
 	$cutoff = $dbr->timestamp( $cutoff_unixtime );
 	if(preg_match('/^[0-9]{14}$/', $from) and $from > wfTimestamp(TS_MW,$cutoff)) {
 		$cutoff = $dbr->timestamp($from);
 	} else {
-		unset($from);
+		$from = '';
 	}
 
 	$sk = $wgUser->getSkin();
 
 	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
 
-	$hidem  = ( $hideminor )    ? 'AND rc_minor=0' : '';
-	$hidem .= ( $hidebots )     ? ' AND rc_bot=0' : '';
-	$hidem .= ( $hideliu )      ? ' AND rc_user=0' : '';
-	$hidem .= ( $hidepatrolled )? ' AND rc_patrolled=0' : '';
+	$hidem  = $hideminor ? 'AND rc_minor=0' : '';
+	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
+	$hidem .= $hideliu ? ' AND rc_user=0' : '';
+	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
+	$hidem .= is_null($namespace) ? '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
-	$urlparams = array( 'hideminor' => $hideminor,  'hideliu'       => $hideliu,
-	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled );
-	$hideparams = wfArrayToCGI( $urlparams );
-
-	$minorLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-	  $showhide[1-$hideminor], wfArrayToCGI( array( 'hideminor' => 1-$hideminor ), $urlparams ) );
-	$botLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-	  $showhide[1-$hidebots], wfArrayToCGI( array( 'hidebots' => 1-$hidebots ), $urlparams ) );
-	$liuLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-	  $showhide[1-$hideliu], wfArrayToCGI( array( 'hideliu' => 1-$hideliu ), $urlparams ) );
-	$patrLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-	  $showhide[1-$hidepatrolled], wfArrayToCGI( array( 'hidepatrolled' => 1-$hidepatrolled ), $urlparams ) );
+	$options = array(
+		'hideminor'	=> $hideminor,
+		'hideliu'	=> $hideliu,
+		'hidebots'	=> $hidebots,
+		'hidepatrolled'	=> $hidepatrolled,
+		'days'		=> $days,
+		'limit'		=> $limit,
+		'from'          => $from,
+	);
 
 	$uid = $wgUser->getID();
 
@@ -145,26 +147,18 @@ function wfSpecialRecentchanges( $par ) {
 	// Run existence checks
 	$batch->execute( $wgLinkCache );
 
-	if(isset($from)) {
-		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $limit ),
-			$wgLang->timeanddate( $from, true ) );
-	} else {
-		$note = wfMsg( 'rcnote', $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
-	}
-	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
+	$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $options ) . '</div>' );
+	$wgOut->addHTML( namespaceForm( $namespace, $invert) );
+	foreach ( $options as $key => $value ) {
+	if ($value != 'namespace' && $value != 'invert')
+		$wgOut->addHTML( "<input type='hidden' name='$key' value='$value' />" );
+        }
 
-	$note = rcDayLimitLinks( $days, $limit, 'Recentchanges', $hideparams, false, $minorLink, $botLink, $liuLink, $patrLink );
-
-	$note .= "<br />\n" . wfMsg( 'rclistfrom',
-	  $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-	  $wgLang->timeanddate( $now, true ), $hideparams.'&from='.$now ) );
-
-	$wgOut->addHTML( $note."\n" );
 
 	if( $feedFormat ) {
 		rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod );
 	} else {
-		# Web output...
+# Web output...
 		$wgOut->setSyndicated( true );
 		$list =& new ChangesList( $sk );
 		$s = $list->beginRecentChangesList();
@@ -327,7 +321,7 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
 }
 
 /**
- * Used also by Recentchangeslinked
+ * Used by Recentchangeslinked
  */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
 	$botLink = '', $liuLink = '', $patrLink = '' ) {
@@ -347,6 +341,119 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	$note = wfMsg( 'rclinks', $cl, $dl, $shm );
 	return $note;
 }
+
+
+/**
+ * Makes change an option link which carries all the other options
+ */
+function makeOptionsLink( $title, $override, $options ) {
+	global $wgUser, $wgLang, $wgContLang;
+	$sk = $wgUser->getSkin();
+	return $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
+		$title, wfArrayToCGI( $override, $options ) );
+}
+
+/**
+ * Creates the options panel
+ */
+function rcOptionsPanel( $options ) {
+	global $wgLang;
+
+	if( $options['from'] )
+		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $options['limit'] ), $wgLang->timeanddate( $options['from'], true ) );
+	else
+		$note = wfMsg( 'rcnote', $wgLang->formatNum( $options['limit'] ), $wgLang->formatNum( $options['days'] ) );
+
+	// limit links
+	$cl = '';
+	$options_limit = array(50, 100, 250, 500);
+	$i = 0;
+	while ( $i+1 < count($options_limit) ) {
+		$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $options) . ' | ' ;
+		$i++;
+	}
+	$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $options) ;
+
+	// day links, reset 'from' to none
+	$dl = '';
+	$options_days = array(1, 3, 7, 14, 30);
+	$i = 0;
+	while ( $i+1 < count($options_days) ) {
+		$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $options) . ' | ' ;
+		$i++;
+	}
+	$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $options) ;
+
+	// show/hide links
+	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
+	$minorLink = makeOptionsLink( $showhide[1-$options['hideminor']],
+		array( 'hideminor' => 1-$options['hideminor'] ), $options);
+	$botLink = makeOptionsLink( $showhide[1-$options['hidebots']],
+		array( 'hidebots' => 1-$options['hidebots'] ), $options);
+	$liuLink   = makeOptionsLink( $showhide[1-$options['hideliu']],
+		array( 'hideliu' => 1-$options['hideliu'] ), $options);
+	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
+		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $options);
+
+	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
+	
+	// show from this onward link
+	$now = $wgLang->timeanddate( wfTimestampNow(), true );
+	$tl =  makeOptionsLink( $now, array( 'from' => $now), $options );
+	
+	$rclinks = wfMsg( 'rclinks', $cl, $dl, $hl );
+	$rclistfrom = wfMsg( 'rclistfrom', $tl );
+	return "$note<br />$rclinks<br />$rclistfrom";
+
+}
+
+/**<F2>
+ * Creates the choose namespace selection
+ *
+ * @access private
+ *
+ * @param mixed $namespace The key of the currently selected namespace, NULL
+ *              if there is none
+ * @param bool $invert Whether to invert the namespace selection
+ *
+ * @return string
+ */
+function namespaceForm ( $namespace, $invert ) {
+	global $wgContLang, $wgScript;
+	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+
+	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
+	$namespaceselect .= '<option value="" ' . (is_null($namespace) ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
+	$arr =  $wgContLang->getFormattedNamespaces();
+	foreach ( $arr as $ns => $name ) {
+		if( $ns < NS_MAIN )
+			continue;
+		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
+		$sel = $namespace === $ns ? ' selected="selected"' : '';
+		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
+	}
+	$namespaceselect .= '</select>';
+
+	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
+	
+	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
+	$out .= "
+<table id='nsselect' class='recentchanges'>
+	<tr>
+		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
+		<td align='left'>$namespaceselect $submitbutton</td>
+	</tr>
+	<tr>
+		<td align='right'>$invertbox</td>
+		<td align='left'><label for='nsinvert'>" . wfMsg('invert') . "</label></td>
+	</tr>
+</table>";
+	$out .= '</form></div>';
+	return $out;
+}
+
 
 /**
  * Format a diff for the newsfeed
