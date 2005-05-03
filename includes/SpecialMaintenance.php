@@ -9,9 +9,8 @@
  * shortcut to get the current language "special" namespace name
  */
 function sns() {
-	global $wgContLang ;
-	$ns = $wgContLang->getNamespaces() ;
-	return $ns[NS_SPECIAL] ;
+	global $wgContLang;
+	return $wgContLang->getNsText(NS_SPECIAL);
 }
 
 
@@ -53,7 +52,6 @@ function wfSpecialMaintenance( $par=NULL ) {
 	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
 
 	$sk = $wgUser->getSkin();
-	$ns = $wgContLang->getNamespaces() ;
 
 	# Generate page output
 	
