@@ -1,5 +1,6 @@
 let cmd_dvips tmpprefix = "dvips -R -E " ^ tmpprefix ^ ".dvi -f >" ^ tmpprefix ^ ".ps"
 let cmd_latex tmpprefix = "latex " ^ tmpprefix ^ ".tex >/dev/null"
+(* Putting -transparent white in converts arguments will sort-of give you transperancy *)
 let cmd_convert tmpprefix finalpath = "convert -quality 100 -density 120 " ^ tmpprefix ^ ".ps " ^ finalpath ^ " >/dev/null 2>/dev/null"
 
 exception ExternalCommandFailure of string
@@ -9,6 +10,7 @@ let render tmppath finalpath outtex md5 =
     let tmpprefix = (tmppath^"/"^tmpprefix0) in
     let unlink_all () =
       begin
+        (* Commenting this block out will aid in debugging *)
 	Sys.remove (tmpprefix ^ ".dvi");
 	Sys.remove (tmpprefix ^ ".aux");
 	Sys.remove (tmpprefix ^ ".log");
