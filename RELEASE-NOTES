@@ -554,6 +554,8 @@ pages for purposes of page relevancy ranking.
 * (bug 2024) Skip JavaScript error for custom skins where .js message not set
 * (bug 2025) Updated Indonesian localization
 * (bug 2039) Updated Lithuanian localization
+* Don't die on PHP <4.3.0 when calling mysql_ping()
+* Fix refreshLinks cleanup step on MySQL 3.x
 
 
 === Caveats ===

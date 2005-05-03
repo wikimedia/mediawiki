@@ -142,7 +142,29 @@ function deleteLinksFromNonexistent() {
 		}
 
 		$pTable = $dbw->tableName( $table );
-		$sql = "DELETE $pTable FROM $pTable LEFT JOIN $cur ON cur_id=$field WHERE cur_id IS NULL";
+		global $wgDBmysql4, $wgDBtype;
+		if( $wgDBmysql4 || $wgDBtype != 'mysql' ) {
+			$sql = "DELETE $pTable FROM $pTable LEFT JOIN $cur ON cur_id=$field WHERE cur_id IS NULL";
+		} else {
+			# Hack-around for MySQL 3.x, which lacks support
+			# for multi-table deletes.
+			
+			$sql = "SELECT DISTINCT $field AS id FROM $pTable LEFT JOIN $cur ON cur_id=$field WHERE cur_id IS NULL";
+			echo "Looking in $table from non-existent articles...";
+			$result = $dbw->query( $sql );
+			$ids = array();
+			while( $row = $dbw->fetchObject( $result ) ) {
+				$ids[] = $row->id;
+			}
+			$dbw->freeResult( $result );
+			
+			if( empty( $ids ) ) {
+				echo " none.\n";
+				continue;
+			}
+			echo " found.\n";
+			$sql = "DELETE FROM $pTable WHERE $field IN (" . implode( ",", $ids ) . ")";
+		}
 		
 		print "Deleting $table from non-existent articles...";
 		$dbw->query( $sql, $fname );
