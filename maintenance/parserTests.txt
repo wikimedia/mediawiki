@@ -370,9 +370,9 @@ Specified text: [http://example.com link]
 !! test
 External links: trail
 !! input
-Trail (not sure if this is meant to work): [http://example.com link]s
+Linktrails should not work for external links: [http://example.com link]s
 !! result
-<p>Trail (not sure if this is meant to work): <a href="http://example.com" class='external text' title="http://example.com" rel="nofollow">link</a>s
+<p>Linktrails should not work for external links: <a href="http://example.com" class='external text' title="http://example.com" rel="nofollow">link</a>s
 </p>
 !! end
 
@@ -677,7 +677,8 @@ A table with no data.
 !! result
 !! end
 
-# A table with nothing but a caption is invalid XHTML
+# A table with nothing but a caption is invalid XHTML, we might want to render
+# this as <p>caption</p>
 !! test
 A table with nothing but a caption
 !! input 
@@ -784,7 +785,7 @@ Table rowspan
 </td><td> Cell 3, row 1
 </td></tr>
 <tr>
-bg<td> Cell 1, row 2
+<td> Cell 1, row 2
 </td><td> Cell 3, row 2
 </td></tr></table>
 
@@ -833,7 +834,6 @@ Invalid attributes in table cell (bug 1830)
 </td></tr></table>
 
 !! end
-
 
 
 ###
@@ -908,6 +908,15 @@ Piped link with 3 brackets
 [[[main page|the main page]]]
 !! result
 <p>[[[main page|the main page]]]
+</p>
+!! end
+
+!! test
+Link with multiple pipes
+!! input
+[[Main Page|The|Main|Page]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">The|Main|Page</a>
 </p>
 !! end
 
