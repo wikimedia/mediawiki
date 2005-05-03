@@ -18,19 +18,19 @@ function wfSpecialAllpages( $par=NULL ) {
 	$namespace = $wgRequest->getInt( 'namespace' );
 	$invert = $wgRequest->getBool( 'invert' );
 	
-	$namespaces = array_keys($wgContLang->getNamespaces());
+	$namespaces = $wgContLang->getNamespaces();
 
-	if( !in_array($namespace, $namespaces) )
+	if( !in_array($namespace, array_keys($namespaces)) )
 		$namespace = 0;
 
 	if ($invert) {
 		$wgOut->setPagetitle( $namespace > 0 ?
-			wfMsg( 'allnotinnamespace', $names[$namespace] ) :
+			wfMsg( 'allnotinnamespace', $namespaces[$namespace] ) :
 			wfMsg( 'allnonarticles' )
 			);
 	} else {
 		$wgOut->setPagetitle( $namespace > 0 ?
-			wfMsg( 'allinnamespace', $names[$namespace] ) :
+			wfMsg( 'allinnamespace', $namespaces[$namespace] ) :
 			wfMsg( 'allarticles' )
 			);
 	}
@@ -54,7 +54,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
-	$namespaceselect = '<select name="namespace">';
+	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
 	$arr = $wgContLang->getFormattedNamespaces();
 	foreach ( $arr as $ns => $name ) {
 		if ($ns < NS_MAIN)
@@ -65,17 +65,32 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
 	}
 	$namespaceselect .= '</select>';
 
-	$frombox = '<input type="text" size="20" name="from" value="'
+	$frombox = "<input type='text' size='20' name='from' id='nsfrom' value=\""
 	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
 	
-	$invertbox = "<input type='checkbox' name='invert' value='1'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
-	$out .= wfMsg ( 'allpagesformtext', $frombox, $namespaceselect, $submitbutton, $invertbox );
+	$out .= "
+<table id='nsselect' class='allpages'>
+	<tr>
+		<td align='right'>" . wfMsg('allpagesfrom') . "</td>
+		<td align='left'><label for='nsfrom'>$frombox</label></td>
+	</tr>
+	<tr>    
+		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
+		<td align='left'>$namespaceselect $submitbutton</td>
+	</tr>   
+	<tr>    
+		<td align='right'>$invertbox</td>
+		<td align='left'><label for='nsinvert'>" . wfMsg('invert') . "</label></td>
+	</tr>
+</table>
+";
 	$out .= '</form></div>';
-	return $out;
+		return $out;
 }
 
 /**
