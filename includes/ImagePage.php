@@ -128,7 +128,7 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-			if ( $this->img->getType() != '' ) {
+			if ( $this->img->getType() ) {
 				# image
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
