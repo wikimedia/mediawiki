@@ -18,11 +18,10 @@ function wfSpecialAllpages( $par=NULL ) {
 	$namespace = $wgRequest->getInt( 'namespace' );
 	$invert = $wgRequest->getBool( 'invert' );
 	
-	$names = $wgContLang->getNamespaces();
+	$namespaces = array_keys($wgContLang->getNamespaces());
 
-	if( !isset( $names[$namespace] ) ) {
+	if( !in_array($namespace, $namespaces) )
 		$namespace = 0;
-	}
 
 	if ($invert) {
 		$wgOut->setPagetitle( $namespace > 0 ?
@@ -56,13 +55,13 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
 	$namespaceselect = '<select name="namespace">';
-	$arr = $wgContLang->getNamespaces();
+	$arr = $wgContLang->getFormattedNamespaces();
 	foreach ( $arr as $ns => $name ) {
-		if ( $ns < NS_MAIN ) continue;
-		$namespacename = str_replace ( '_', ' ', $name);
-		$n = ($ns == 0) ? wfMsg ( 'blanknamespace' ) : $namespacename;
-		$sel = ($ns == $namespace) ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='{$ns}'{$sel}>{$n}</option>";	
+		if ($ns < NS_MAIN)
+			continue;
+		$n = $ns == 0 ? wfMsg ( 'blanknamespace' ) : $name;
+		$sel = $ns == $namespace ? ' selected="selected"' : '';
+		$namespaceselect .= "<option value='$ns'$sel>$n</option>";	
 	}
 	$namespaceselect .= '</select>';
 
@@ -238,10 +237,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
 	
-	$namespaces = $wgContLang->getNamespaces();
-	foreach($namespaces as $key => $ns) {
-		$namespaces[$key] = str_replace('_', ' ', $namespaces[$key]);
-	}
+	$namespaces = $wgContLang->getFormattedNamespaces();
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
