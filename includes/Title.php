@@ -5,7 +5,6 @@
  * @package MediaWiki
  */
 
-/** */
 require_once( 'normal/UtfNormal.php' );
 
 $wgTitleInterwikiCache = array();
@@ -163,7 +162,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function newFromURL( $url ) {
+	function newFromURL( $url ) {
 		global $wgLang, $wgServer;
 		$t = new Title();
 		
@@ -182,13 +181,16 @@ class Title {
 	
 	/**
 	 * Create a new Title from an article ID
+	 *
 	 * @todo This is inefficiently implemented, the page row is requested
-	 * but not used for anything else
+	 *       but not used for anything else
+	 *
 	 * @param int $id the page_id corresponding to the Title to create
 	 * @return Title the new object, or NULL on an error
 	 * @access public
+	 * @static
 	 */
-	/* static */ function newFromID( $id ) {
+	function newFromID( $id ) {
 		$fname = 'Title::newFromID';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'page', array( 'page_namespace', 'page_title' ), 
@@ -214,7 +216,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function &makeTitle( $ns, $title ) {
+	function &makeTitle( $ns, $title ) {
 		$t =& new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
@@ -230,13 +232,14 @@ class Title {
 	 * Create a new Title frrom a namespace index and a DB key.
 	 * The parameters will be checked for validity, which is a bit slower
 	 * than makeTitle() but safer for user-provided data.
+	 *
 	 * @param int $ns the namespace of the article
 	 * @param string $title the database key form
 	 * @return Title the new object, or NULL on an error
 	 * @static
 	 * @access public
 	 */
-	/* static */ function makeTitleSafe( $ns, $title ) {
+	function makeTitleSafe( $ns, $title ) {
 		$t = new Title();
 		$t->mDbkeyform = Title::makeName( $ns, $title );
 		if( $t->secureAndSplit() ) {
@@ -248,11 +251,12 @@ class Title {
 
 	/**
 	 * Create a new Title for the Main Page
+	 *
 	 * @static
 	 * @return Title the new object
 	 * @access public
 	 */
-	/* static */ function newMainPage() {
+	function newMainPage() {
 		return Title::newFromText( wfMsgForContent( 'mainpage' ) );
 	}
 
@@ -264,7 +268,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function newFromRedirect( $text ) {
+	function newFromRedirect( $text ) {
 		global $wgMwRedir;
 		$rt = NULL;
 		if ( $wgMwRedir->matchStart( $text ) ) {
@@ -298,7 +302,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function nameOf( $id ) {
+	function nameOf( $id ) {
 		$fname = 'Title::nameOf';
 		$dbr =& wfGetDB( DB_SLAVE );
 		
@@ -461,7 +465,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function touchArray( $titles, $timestamp = '' ) {
+	function touchArray( $titles, $timestamp = '' ) {
 		if ( count( $titles ) == 0 ) {
 			return;
 		}
@@ -1326,7 +1330,7 @@ class Title {
 
 	/**
 	 * Get an array of Title objects linking to this Title
-	 * - Also stores the IDs in the link cache.
+	 * Also stores the IDs in the link cache.
 	 *
 	 * @param string $options may be FOR UPDATE 
 	 * @return array the Title objects linking here
@@ -1560,7 +1564,7 @@ class Title {
 	 * 	be a redirect
 	 * @access private
 	 */
-	/* private */ function moveOverExistingRedirect( &$nt, $reason = '' ) {
+	function moveOverExistingRedirect( &$nt, $reason = '' ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
@@ -1680,7 +1684,7 @@ class Title {
 	 * @param int &$newid set to be the new article ID
 	 * @access private
 	 */
-	/* private */ function moveToNewTitle( &$nt, &$newid, $reason = '' ) {
+	function moveToNewTitle( &$nt, &$newid, $reason = '' ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
