@@ -3,6 +3,16 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.4.4 ==
+
+(released 2005-05-04)
+
+MediaWiki 1.4.4 is a bugfix release for the 1.4 stable release series.
+
+Some bugs in the installer/updater and refreshLinks maintenance script
+were introduced in the last release and have been corrected.
+
+
 == MediaWiki 1.4.3 ==
 
 (released 2005-04-28)
