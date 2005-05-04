@@ -396,7 +396,6 @@ $wgTranslateNumerals = true;
 # Interface messages will be get from the database.
 $wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
-$wgPartialMessageCache = false;
 
 # Whether to enable language variant conversion. Currently only zh 
 # supports this function, to convert between Traditional and Simplified
