@@ -1370,7 +1370,7 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
-'invert' => 'Invert',
+'invert' => 'Invert selection',
 
 # Contributions
 #
