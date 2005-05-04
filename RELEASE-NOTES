@@ -156,6 +156,11 @@ Various bugfixes, small features, and a few experimental things:
 * ...and more!
 
 
+=== Changes since 1.5alpha1 ===
+
+* ...various...
+* (bug 2067) Fixed crash on empty quoted HTML attribute
+
 
 === Caveats ===
 
