@@ -272,7 +272,7 @@ class ChangesList {
 
 
 	function recentChangesLineOld( &$rc, $watched = false ) {
-		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol,
+		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol,
 			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
 		$fname = 'Skin::recentChangesLineOld';
@@ -294,7 +294,7 @@ class ChangesList {
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') ) && $rc_patrolled == 0;
 		
 		# Make date header if necessary
-		$date = $wgLang->date( $rc_timestamp, true);
+		$date = $wgLang->date( $rc_timestamp, true, true );
 		$s = '';
 		if ( $date != $this->lastdate ) {
 			if ( '' != $this->lastdate ) { $s .= "</ul>\n"; }
@@ -366,7 +366,7 @@ class ChangesList {
 
 		wfProfileIn( "$fname-rest" );
 		# Timestamp
-		$s .= '; ' . $wgLang->time( $rc_timestamp, true, $wgRCSeconds ) . ' . . ';
+		$s .= '; ' . $wgLang->time( $rc_timestamp, true, true ) . ' . . ';
 
 		# User link (or contributions for unregistered users)
 		if ( 0 == $rc_user ) {
@@ -419,7 +419,7 @@ class ChangesList {
 	}
 
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
-		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds,
+		global $wgTitle, $wgLang, $wgContLang, $wgUser,
 			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
 		
 		static $message;
@@ -472,7 +472,7 @@ class ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
 
-		$time = $wgContLang->time( $rc_timestamp, true, $wgRCSeconds );
+		$time = $wgContLang->time( $rc_timestamp, true, true );
 		$rc->watched = $watched ;
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
