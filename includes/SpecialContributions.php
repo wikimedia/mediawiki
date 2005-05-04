@@ -231,24 +231,18 @@ function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
 	}
 	$namespaceselect .= '</select>';
 
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
-	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
 	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
 	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
 	$out .= "
-<table id='nsselect' class='contributions'>
-	<tr>
-		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
-		<td align='left'>$namespaceselect $submitbutton</td>
-	</tr>
-	<tr>
-		<td align='right'>$invertbox</td>
-		<td align='left'><label for='nsinvert'>" . wfMsg('invert') . "</label></td>
-	</tr>
-</table>";
+<div id='nsselect' class='contributions'>
+	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
+	$namespaceselect
+	<input type='submit' value='" . wfMsg( 'allpagessubmit' ) . "' />
+	<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . " />
+	<label for='nsinvert'>" . wfMsg('invert') . "</label>
+</div>";
 	$out .= '</form></div>';
 	return $out;
 }
