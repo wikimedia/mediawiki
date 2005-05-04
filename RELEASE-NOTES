@@ -557,6 +557,7 @@ pages for purposes of page relevancy ranking.
 * Don't die on PHP <4.3.0 when calling mysql_ping()
 * Fix refreshLinks cleanup step on MySQL 3.x
 * Fix breakage on rerunning the site_stats update
+* Localized namespaces for csb
 
 
 === Caveats ===
