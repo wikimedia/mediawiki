@@ -900,9 +900,6 @@ if( !isset( $wgCommandLineMode ) ) {
 # Recent changes settings
 #
 
-/** Show seconds in Recent Changes */
-$wgRCSeconds = false;
-
 /** Log IP addresses in the recentchanges table */
 $wgPutIPinRC = false;
 
