@@ -208,7 +208,7 @@ class Parser
 
 		$dashReplace = array(
 			'/ - /' => "&nbsp;&ndash; ", # N dash
-			'/(?<=[0-9])-(?=[0-9])/' => "&ndash;", # N dash between numbers
+			'/(?<=[\d])-(?=[\d])/' => "&ndash;", # N dash between numbers
 			'/ -- /' => "&nbsp;&mdash; " # M dash
 		);
 		$text = preg_replace( array_keys($dashReplace), array_values($dashReplace), $text );
