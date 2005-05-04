@@ -335,7 +335,7 @@ function wfReadOnly() {
 
 
 /**
- * Get a message from anywhere, for the UI elements
+ * Get a message from anywhere, for the current user language
  *
  * @param string 
  */
@@ -346,7 +346,7 @@ function wfMsg( $key ) {
 }
 
 /**
- * Get a message from anywhere, for the content
+ * Get a message from anywhere, for the current global language
  */
 function wfMsgForContent( $key ) {
 	global $wgForceUIMsgAsContentMsg;
