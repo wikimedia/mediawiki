@@ -131,20 +131,10 @@ class MessageCache
 	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
-		global $wgPartialMessageCache;
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$conditions = array( 'page_is_redirect' => 0, 
 					'page_namespace' => NS_MEDIAWIKI);
-		if ($wgPartialMessageCache) {
-			wfDebugDieBacktrace( "Confused about how this works." );
-			if (is_array($wgPartialMessageCache)) {
-				$conditions['page_title']=$wgPartialMessageCache;
-			} else {
-				require_once("MessageCacheHints.php");
-				$conditions['page_title']=MessageCacheHints::get();
-			}
-		}
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
 			'page_is_redirect=0 AND page_namespace='.NS_MEDIAWIKI.' AND page_latest=rev_id AND rev_text_id=old_id',
