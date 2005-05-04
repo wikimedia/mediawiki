@@ -137,15 +137,18 @@ class MagicWord {
 	 * @private
 	 */
 	function initRegex() {
-		$variableClass = Title::legalChars();
+		#$variableClass = Title::legalChars();
+		# This was used for matching "$1" variables, but different uses of the feature will have
+		# different restrictions, which should be checked *after* the MagicWord has been matched,
+		# not here. - IMSoP
 		$escSyn = array_map( 'preg_quote', $this->mSynonyms );
 		$this->mBaseRegex = implode( '|', $escSyn );
 		$case = $this->mCaseSensitive ? '' : 'i';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
-		$this->mRegexStart = "/^({$this->mBaseRegex})/{$case}";
-		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*?)", $this->mRegex );
-		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([$variableClass]*?)", 
-			"/^({$this->mBaseRegex})$/{$case}" );
+		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
+		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
+		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)", 
+			"/^(?:{$this->mBaseRegex})$/{$case}" );
 	}
 	
 	/**
@@ -204,10 +207,13 @@ class MagicWord {
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
 			return NULL;
-		} elseif ( count($matches) == 2 ) {
+		} elseif ( count($matches) == 1 ) {
 			return $matches[0];
 		} else {
-			return $matches[2];
+			# multiple matched parts (variable match); some will be empty because of synonyms
+			# the variable will be the second non-empty one so remove any blank elements and re-sort the indices
+			$matches = array_values(array_filter($matches));
+			return $matches[1];
 		}
 	}
 
