@@ -263,11 +263,11 @@ text editing area as it will appear if you choose to save.',
 위쪽이 바뀐 현재 문서이고, 아래쪽이 당신이 고쳐쓴 내용입니다.
 당신이 고쳐쓴 내용을 현재 문서에 다시 집어 넣어야 할 것입니다.
 지금 \'저장\'을 눌러도, 
-<b>오직</b> 위쪽에 있는 내용만 저장됩니다.\n<p>',
+<strong>오직</b> 위쪽에 있는 내용만 저장됩니다.</strong><br />',
 'yourtext'	    => '당신이 고쳐쓴 것',
 'storedversion' => '바뀐 현재 문서',
 'editingold'  => '<strong>경고: 지금 옛날 버젼의 문서를 고치고 있습니다.
-만약, 지금 여기서 저장을 하면, 그 때 이후의 모든 버젼을 잃게 됩니다.</strong>\n',
+만약, 지금 여기서 저장을 하면, 그 때 이후의 모든 버젼을 잃게 됩니다.</strong>',
 'yourdiff'	    => '차이',
 'copyrightwarning' => '{{SITENAME}}에 당신이 기여한 것은 모두 GNU 자유 문서 사용허가서(GFDL)
 ($1참조)에 따라 배포됩니다.
