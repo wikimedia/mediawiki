@@ -682,6 +682,11 @@ $wgPutIPinRC = false;
 # entries older than this many seconds will go.
 $wgRCMaxAge = 7 * 24 * 3600; # our one week cutoff
 
+
+# Send RC updates via UDP
+$wgRC2UDPAddress = false;
+$wgRC2UDPPort = false;
+
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;

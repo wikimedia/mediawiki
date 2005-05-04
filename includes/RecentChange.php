@@ -16,7 +16,7 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
 
 /**
  * Utility class for creating new RC entries
- * mAttributes:
+ * mAttribs:
  * 	rc_id           id of the row in the recentchanges table
  * 	rc_timestamp    time the entry was made
  * 	rc_cur_time     timestamp on the cur row
@@ -96,7 +96,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgDBname;
 		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -147,13 +147,13 @@ class RecentChange
 				array( 'rc_cur_id' => $curId ), $fname );
 		}
 
-		# Notify external application
-		if ( $wgUseRCQueue ) {
-			$queue = msg_get_queue( $wgRCQueueID );
-			if (!msg_send( $queue, array_merge( $this->mAttribs, 1, $this->mExtra ),
-				true, false, $error ))
-			{
-				wfDebug( "Error sending message to RC queue, code $error\n" );
+		# Notify external application via UDP
+		if ( $wgRC2UDPAddress ) {
+			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+			if ( $conn ) {
+				$line = "#$wgDBname\t" . $this->getIRCLine();
+				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
+				socket_close( $conn );
 			}
 		}
 	}
@@ -392,6 +392,35 @@ class RecentChange
 			$trail = '';
 		}
 		return $trail;
+	}
+
+	function getIRCLine() {
+		extract($this->mAttribs);
+		
+		$titleObj =& $this->getTitle();
+		
+		$bad = array("\n", "\r");
+		$empty = array("", "");	
+		$title = $titleObj->getPrefixedText();
+		$title = str_replace($bad, $empty, $title);
+		
+		if ( $rc_new ) {
+			$url = $titleObj->getFullURL();
+		} else {
+			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid");
+		}
+
+
+		$comment = str_replace($bad, $empty, $rc_comment);
+		$user = str_replace($bad, $empty, $rc_user_text);
+		$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# no colour (\003) switches back to the term default
+		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
+		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
+		              "\00302$url\003 \0035*\003 \00303$user\003 \00310$comment\003\n";
+
+		return $fullString;
 	}
 }
 ?>
