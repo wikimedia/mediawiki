@@ -446,8 +446,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'copyrightwarning2' => "Perhatikan bahwa semua sumbangan terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin artikel anda disunting, jangan kirimkan artikel Anda ke sini.<br /> Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut).<strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>", 
 "longpagewarning" => "<strong>PERINGATAN: Halaman ini panjangnya adalah $1 kilobyte; beberapa browser mungkin mengalami masalah dalam menyunting halaman yang panjangnya 32 kB atau lebih. Pertimbangkan memecah halaman menjadi beberapa halaman kecil.</strong>",
 "readonlywarning" => "<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak akan dapat menyimpan hasil penyuntingan Anda. Anda mungkin perlu memindahkan hasil penyuntingan Anda ini ke tempat lain untuk disimpan belakangan.</strong>",
-"protectedpagewarning" => "<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pemakai dengan status sysop saja yang dapat menyuntingnya. Pastikan Anda mengikuti <a href='$wgScript/Project:Petunjuk_halaman_dilindungi'>aturan halaman yang dilindungi</a>.</strong>",
-'templatesused' => 'Templat yang digunakan di halaman ini:</strong>', 
+"protectedpagewarning" => "<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pemakai dengan status sysop saja yang dapat menyuntingnya. Pastikan Anda mengikuti [[Project:Petunjuk_halaman_dilindungi|aturan halaman yang dilindungi]].</strong>",
+'templatesused' => 'Templat yang digunakan di halaman ini:', 
 
 # History pages 
 # 
