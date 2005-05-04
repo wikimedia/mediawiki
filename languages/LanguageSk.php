@@ -343,12 +343,12 @@ The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
 <b>Only</b> the text in the upper text area will be saved when you
-press \"Save page\".\n<p>",
+press \"Save page\".<br />",
 "yourtext"		=> "Your text",
 "storedversion" => "Stored version",
 "editingold"	=> "<strong>WARNING: You are editing an out-of-date
 revision of this page.
-If you save it, any changes made since this revision will be lost.</strong>\n",
+If you save it, any changes made since this revision will be lost.</strong>",
 "yourdiff"		=> "Differences",
 "copyrightwarning" => "Please note that all contributions to Wikipedia are
 considered to be released under the GNU Free Documentation License

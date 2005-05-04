@@ -409,11 +409,11 @@ jo jo [[Wiki:Userlogin|oanmelde]], dat jo allinnich opmerkings foar josels krije
 It earste bewurkingsfjild is hoe't de tekst wilens wurde is. 
 Jo feroarings stean yn it twadde fjild.
 Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
-<b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde.\n<p>",
+<b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde.<br />",
 "yourtext"		=> "Jo tekst",
 "storedversion" => "Fêstleine ferzje",
 "editingold"	=> "<strong><font color=red>Waarskôging</font>: Jo binne dwaande mei in âldere ferzje fan dizze side.
-Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>\n",
+Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>",
 "yourdiff"		=> "Feroarings",
 # REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
 "copyrightwarning" => "Alle bydragen ta de $wgSitename wurde sjoen
@@ -424,15 +424,15 @@ dan is it baas, en set it net op de $wgSitename.<br />
 Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe út in
 publyk eigendom of in oare iepen boarne.
 <strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",
-"longpagewarning" => "<font color=red>Waarskôging</font>: Dizze side is $1 kilobyte lang; 
+"longpagewarning" => "<strong><font color=red>Waarskôging</font>: Dizze side is $1 kilobyte lang; 
 der binne blêdzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
-Besykje de side yn lytsere stikken te brekken.",
-"readonlywarning" => "<font color=red>Waarskôging</font>: De databank is ôfsletten foar
+Besykje de side yn lytsere stikken te brekken.</strong>",
+"readonlywarning" => "<strong><font color=red>Waarskôging</font>: De databank is ôfsletten foar
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
-It wie baas en nim de tekst foar letter oer yn in tekstbestân.",
-"protectedpagewarning" => "<font color=red>Waarskôging</font>: Dizze side is beskerme, dat
+It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>",
+"protectedpagewarning" => "<strong><font color=red>Waarskôging</font>: Dizze side is beskerme, dat
 gewoane brûkers dy net bewurkje kinne. Tink om de
-<a href='$wgScriptPath/$wgMetaNamespace:Beskerm-rie'>rie oer beskerme siden</a>.",
+[[Project:Beskerm-rie|rie oer beskerme siden]].</strong>",
 
 # History pages
 #

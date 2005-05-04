@@ -369,12 +369,12 @@ Le area de texto superior contine le texto del pagina tal como illo existe actua
 Tu modificationes es monstrate in le area de texto inferior.
 Tu debera incorporar tu modificationes al texto existente.
 <b>Solmente</b> le texto del area superior essera salvate
-quando tu premera \"Salvar pagina\".\n</p>",
+quando tu premera \"Salvar pagina\".<br />",
 "yourtext"		=> "Tu texto",
 "storedversion" => "Version immagazinate",
 "editingold"	=> "<strong>ADVERTIMENTO: In iste momento tu modifica
 un version obsolete de iste pagina.
-Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>\n",
+Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>",
 "yourdiff"		=> "Differentias",
 "copyrightwarning" => "Nota que tote le contributiones a Wikipedia es
 considerate public secundo le terminos del Licentia de Documentation Libere GNU

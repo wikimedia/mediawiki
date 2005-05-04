@@ -315,10 +315,10 @@ která popsala příčinu takto:<br /><p>Máte právo se spojit se správcem sys
 "editing"		=> "Redakce stránky $1",
 "editconflict"	=> "Redakční konflikt: ",
 "explainconflict" => "Někdo změnil stránku poté, co jste ji napsal(a). Výše vidíte aktuální text článku. Vaše změny jsou uvedeny dole. Musíte sloučit své změny se stávajícím článkem.
-<b>Poue</b> výše uvedený text zůstane uchováná po kliknutí na  \"Uložit\".\n<p>" , #FIXME - double-check that this makes sense
+<b>Poue</b> výše uvedený text zůstane uchováná po kliknutí na  \"Uložit\".<br />" , #FIXME - double-check that this makes sense
 "yourtext"		=> "Váš text",
 "storedversion" => "Registrovaná verze",
-"editingold"	=> "<strong>VAROVÁNÍ: nyní redigujete starou verzi tohoto článku. Když ji uložíte, všechny změny provedené po zmíněné revizi se ztratí.</strong>\n",
+"editingold"	=> "<strong>VAROVÁNÍ: nyní redigujete starou verzi tohoto článku. Když ji uložíte, všechny změny provedené po zmíněné revizi se ztratí.</strong>",
 "yourdiff"		=> "Rozdíly",
 "copyrightwarning" => "Pamatujte, že každý příspěvek pro Wikipedii je považován jako zveřejněný dle <i>GNU Free Documentation License</i> (viz ). Pokud chcete, aby váš příspěvek nebyl redigován a rozšiřován, ne klikejte na \"Uložit\". Zároveň tím přísaháte, že příspěvek je vaším dílem nebo jste ho opsal(a) ze zdroje, na který se nevztahuje copyright.. <strong>NE POUŹÍVEJTE BEZ DOVOLENÍ DÍLA VÁZANÁ COPYRIGHTem!</strong>",
 

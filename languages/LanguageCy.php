@@ -443,23 +443,23 @@ Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
 "editconflict" => "Croestynnu golygyddol: $1",
 "explainconflict" => "Mae rhywun arall wedi newid y tudalen hon ers i chi dechrau golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y tudalen fel y mae hi rwan. Mae eich newidiadau yn ddangos yn yr ardal testun isaf.
 Fydd rhaid i chi ymsoddi eich newidiadau i mewn i'r testun sydd mewn bod.
-<b>Dim ond</b> y testun yn yr ardal testun uchaf fydd yn cael eu cadw pan rydwch yn gwasgu \"Cadw tudalen\".\n<p>",
+<b>Dim ond</b> y testun yn yr ardal testun uchaf fydd yn cael eu cadw pan rydwch yn gwasgu \"Cadw tudalen\".<br />",
 "yourtext" => "Eich testun",
 "storedversion" => "Fersiwn wedi cadw",
-"editingold" => "<strong>RHYBUDD: Rydych yn golygu hen fersiwn y tudalen hon. Os cadwch hi, fydd unrhyw newidiadau hwyrach yn gael eu colli!.</strong>\n",
+"editingold" => "<strong>RHYBUDD: Rydych yn golygu hen fersiwn y tudalen hon. Os cadwch hi, fydd unrhyw newidiadau hwyrach yn gael eu colli!.</strong>",
 "yourdiff" => "Gwahaniaethau",
 "copyrightwarning" => "Sylwch mae pob cyfraniad i Wicipedia yn gael eu rhyddhau o dan termau'r Trwydded Dogfen Rhydd GNU (gwelwch $1 am manylion).
 Os nid ydych chi'n fodlon cael eich ysgrifeniad eu golygu heb trugaredd, a creu copïau dros y wê, peidiwch cyfranu'r ysgrifeniad yma.<br />
 Hefyd, rydych chi'n addo chi yw'r awdur y cyfraniad, neu rydych chi wedi copïo fe oddiwrth y parth cyhoeddus neu rhyw modd rhydd tebyg.
 <strong>PEIDIWCH CYFRANNU GWAITH O DAN HAWLFRAINT HEB CANIATÂD!</strong>",
-"longpagewarning" => "RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
-Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.",
-"readonlywarning" => "RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
+"longpagewarning" => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
+Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
+"readonlywarning" => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
-testun i mewn i ffeil testun, a cadw hi tan hwyrach.",
-"protectedpagewarning" => "RHYBUDD:  Mae tudalen hon wedi eu gloi -- dim ond defnyddwyr
+testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
+"protectedpagewarning" => "<strong>RHYBUDD:  Mae tudalen hon wedi eu gloi -- dim ond defnyddwyr
 gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
-<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>gwifrau tywys tudalen amddiffyn</a>.",
+[[Project:Protected_page_guidelines|gwifrau tywys tudalen amddiffyn]].</strong>",
 
 # History pages
 #

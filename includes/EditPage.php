@@ -446,7 +446,7 @@ class EditPage {
 		if ( $isConflict ) {
 			$s = wfMsg( 'editconflict', $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
-			$wgOut->addHTML( wfMsg( 'explainconflict' ) );
+			$wgOut->addWikiText( wfMsg( 'explainconflict' ) );
 
 			$this->textbox2 = $this->textbox1;
 			$this->textbox1 = $this->mArticle->getContent( true );
@@ -477,27 +477,22 @@ class EditPage {
 			}
 			if ( $this->oldid ) {
 				$this->mArticle->setOldSubtitle();
-				$wgOut->addHTML( wfMsg( 'editingold' ) );
+				$wgOut->addWikiText( wfMsg( 'editingold' ) );
 			}
 		}
 
 		if( wfReadOnly() ) {
-			$wgOut->addHTML( '<strong>' .
-			wfMsg( 'readonlywarning' ) .
-			"</strong>" );
+			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
 		} else if ( $isCssJsSubpage and 'preview' != $formtype) {
-			$wgOut->addHTML( wfMsg( 'usercssjsyoucanpreview' ));
+			$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ));
 		}
 		if( $this->mTitle->isProtected('edit') ) {
-			$wgOut->addHTML( '<strong>' . wfMsg( 'protectedpagewarning' ) .
-			  "</strong><br />\n" );
+			$wgOut->addWikiText( wfMsg( 'protectedpagewarning' ) );
 		}
 
 		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if( $kblength > 29 ) {
-			$wgOut->addHTML( '<strong>' .
-				wfMsg( 'longpagewarning', $wgLang->formatNum( $kblength ) )
-				. '</strong>' );
+			$wgOut->addWikiText( wfMsg( 'longpagewarning', $wgLang->formatNum( $kblength ) ) );
 		}
 
 		$rows = $wgUser->getOption( 'rows' );
@@ -700,12 +695,12 @@ END
 		
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
-			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
+			$wgOut->WikiText( '==' . wfMsg( "yourdiff" ) . '==' );
 			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
-			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+			$wgOut->WikiText( '==' . wfMsg( "yourtext" ) . '==' );
+			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox2 ) ) .
 "
 </textarea>" );

@@ -500,7 +500,7 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 'editingsection'          => 'Redigerer $1 (bolk)',
 'editingcomment'          => 'Redigerer $1 (kommentar)',
 'editconflict'	          => 'Redigeringskonflikt: $1',
-'explainconflict'         => 'Nokon annan har endra teksten sidan du byrja å redigere. Den øvste boksen inneheld den noverande teksten. Endringane dine er viste i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du trykkjer "Lagre".<p>',
+'explainconflict'         => 'Nokon annan har endra teksten sidan du byrja å redigere. Den øvste boksen inneheld den noverande teksten. Endringane dine er viste i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du trykkjer "Lagre".<br />',
 'yourtext'		  => 'Teksten din',
 'storedversion'           => 'Den lagra versjonen',
 'nonunicodebrowser'       => '<strong>ÅTVARING: Nettlesaren din støttar ikkje "Unicode&quot;. Dette kan føra til feil i teksten. Ver venleg å bytt nettlesar før du redigerer sida (prøv t.d. http://getfirefox.com).</strong>',
@@ -514,10 +514,10 @@ Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibe
 Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett (sjå $1 for detaljar).
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
-'longpagewarning'         => 'ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å redigere sider som nærmar seg eller 
-er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.<br />',
-'readonlywarning'         => 'ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.<br />',
-'protectedpagewarning'    => 'ÅTVARING: Denne sida er verna, slik at berre administratorar kan redigere ho.<br />',
+'longpagewarning'         => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å redigere sider som nærmar seg eller 
+er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
+'readonlywarning'         => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
+'protectedpagewarning'    => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan redigere ho.</strong><br />',
 'templatesused'	          => 'Malar brukte på denne sida:',
 
 # History pages

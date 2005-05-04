@@ -347,11 +347,11 @@ d'edició superior tal i com apareixerà si escolliu gravar.",
 L'ària de text superior conté el text de la pàgina com existeix actualment. Els vostres canvis es mostren a l'ària de text inferior.
 Haureu d'incorporar els vostres canvis en el text existent.
 <b>Sólo</b> el text a l'ària de text superior serà gravat quan premeu
- \"Desa pàgina\".\n<p>",
+ \"Desa pàgina\".<br />",
 "yourtext"		=> "El vostre text",
 "storedversion" => "Versió emmagatzemada",
 "editingold"	=> "<strong>ATENCIÓ:Esteu editant una versió antiga d'aquesta pàgina.
-Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>\n",
+Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>",
 "yourdiff"		=> "Diferències",
 "copyrightwarning" => "Noteu que totes les contribucions a la {{SITENAME}} 
 es consideren fetes públiques sota la llicència de documentació lliure GNU 

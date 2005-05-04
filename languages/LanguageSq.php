@@ -414,7 +414,7 @@ të shtypësh \"Ruaje faqen\".\n<p>",
 "yourtext"		=> "Teksti yt",
 "storedversion" => "Versioni i ruajtur",
 "editingold"	=> "<strong>KUJDES: Po redakton një version të vjetër të kësaj faqeje.
-Në qoftë se e ruan, çdo ndryshim i bërë deri tani do të humbet.</strong>\n",
+Në qoftë se e ruan, çdo ndryshim i bërë deri tani do të humbet.</strong>",
 "yourdiff"		=> "Ndryshimet",
 # REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
 "copyrightwarning" => "Të lutem vë re që të gjitha kontributet tek $wgSitename janë
@@ -425,16 +425,16 @@ kudo, atëherë mos i jep këtu.<br />
 Gjithashtu, ti po na premton që i ke shkruajtur vetë këto, ose i ke kopjuar nga një
 vënd public (public domain) ose diçka e ngjashme e lirë.
 <strong>MOS JEPNI PUNIME QE JANE NEN COPYRIGHT PA PASUR LEJE!</strong>",
-"longpagewarning" => "KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
+"longpagewarning" => "<strong>KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
 shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32kb.
-Konsidero ta ndash faqen në disa seksione më të vogla.",
-"readonlywarning" => "KUJDES: Rregjistri është bllokuar për mirëmbajtje,
+Konsidero ta ndash faqen në disa seksione më të vogla.</strong>",
+"readonlywarning" => "<strong>KUJDES: Rregjistri është bllokuar për mirëmbajtje,
 kështuqë nuk do kesh mundësi të ruash redaktimet e tua tani. Mund të kopjosh dhe ruash tekstin
-në një skedar për më vonë.",
-"protectedpagewarning" => "KUJDES:  Kjo faqe është bllokuar kështuqë vetëm përdorues me titullin
+në një skedar për më vonë.</strong>",
+"protectedpagewarning" => "<strong>KUJDES:  Kjo faqe është bllokuar kështuqë vetëm përdorues me titullin
 
 sysop mund ta redaktojnë. Ndiq rregullat e dhëna tek
-<a href='$wgScriptPath/$wgMetaNamespace:Rregullat_për_faqe_të_bllokuara'>faqet e bllokuara</a>.",
+[[Project:Rregullat_për_faqe_të_bllokuara|faqet e bllokuara]].</strong>",
 
 # History pages
 #

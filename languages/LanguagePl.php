@@ -406,11 +406,11 @@ Górne pole edycji zawiera tekst strony aktualnie zapisany w bazie danych.
 Twoje zmiany znajdują się w dolnym polu edycji.
 By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 <b>Tylko</b> tekst z górnego pola będzie zapisany w bazie gdy wciśniesz
-\"Zapisz\".\n<p>",
+\"Zapisz\".<br />",
 "yourtext" => "Twój tekst",
 "storedversion" => "Zapisana wersja",
 "editingold" => "<font color=\"red\"><strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony.
-Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong></font>\n",
+Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong></font>",
 "yourdiff" => "Różnice",
 "copyrightwarning" => "Proszę pamiętać o tym, że przyjmuje się, iż wszelki
 wkład do Wikipedii jest udostępniany na zasadach <i>GNU Free Documentation License</i>
@@ -418,18 +418,17 @@ wkład do Wikipedii jest udostępniany na zasadach <i>GNU Free Documentation Lic
 licencji <i>GNU Free Documentation License</i> lub kompatybilnej.
 <br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM
 AUTORSKIM!</strong>",
-"longpagewarning" => "UWAGA: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych
+"longpagewarning" => "<strong>UWAGA: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych
 przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty.
-Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.",
-"readonlywarning" => "UWAGA: Baza danych została chwilowo zablokowana do celów
+Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>",
+"readonlywarning" => "<strong>UWAGA: Baza danych została chwilowo zablokowana do celów
 administracyjnych. Nie można więc na razie zapisać nowej wersji
 artykułu. Proponujemy przenieść jej tekst do prywatnego pliku
-(wytnij/wklej) i zachować na później.",
-"protectedpagewarning" => "UWAGA: Modyfikacja tej strony została zablokowana.
+(wytnij/wklej) i zachować na później.</strong>",
+"protectedpagewarning" => "<strong>UWAGA: Modyfikacja tej strony została zablokowana.
 Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi.
 Upewnij się, że postępujesz zgodnie z
-<a href='/wiki/{{ns:4}}:Blokowanie_stron'>zasadami dotyczącymi
-zablokowanych stron</a>.",
+[[Project:Blokowanie_stron|zasadami dotyczącymi zablokowanych stron]].</strong>",
 
 
 # History pages

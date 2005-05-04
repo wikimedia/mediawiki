@@ -534,8 +534,7 @@ Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi
 'edithelp' => "Ajutor pentru editare",
 'edithelppage' => "Project:Cum_să_editezi_o_pagină",
 'editing' => "Editare $1",
-'editingold' => "<strong>ATENŢIE! Editezi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>
-",
+'editingold' => "<strong>ATENŢIE! Editezi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>",
 'editsection' => "editează",
 'editthispage' => "Editează pagina",
 'emailflag' => "Dezactivează serviciul de e-mail de la alţi utilizatori",
@@ -563,8 +562,7 @@ de origine a mesajului, astfel încât destinatarul să îţi poată răspunde d
 Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).
 Pagina cu modificările tale (aşa cum ai încercat să o salvezi) se află în caseta de jos.
 Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe care tocmai le-ai făcut în cea de jos.
-<b>Numai</b> textul din caseta de sus va fi salvat atunci când vei apăsa pe  \"Salvează pagina\".
-<p>",
+<b>Numai</b> textul din caseta de sus va fi salvat atunci când vei apăsa pe  \"Salvează pagina\".<br />",
 'export' => "Exportă pagini",
 'exportcuronly' => "Include numai versiunea curentă, nu şi toată istoria",
 'exporttext' => "Poţi exporta textul şi istoria unei pagini anume sau ale unui grup
@@ -701,8 +699,8 @@ Poţi continua să foloseşti {{SITENAME}} anonim, sau poţi să te reautentific
 'logouttitle' => "Sesiune închisă",
 'lonelypages' => "Pagini orfane",
 'longpages' => "Pagini lungi",
-'longpagewarning' => "ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la editarea paginilor în jur de 32 KB sau mai mari.
-Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.",
+'longpagewarning' => "<strong>ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la editarea paginilor în jur de 32 KB sau mai mari.
+Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.</strong>",
 'mailerror' => "Eroare la trimitere e-mail: $1",
 'mailmypassword' => "Trimite-mi parola pe e-mail!",
 'mailnologin' => "Nu există adresă de trimitere",
@@ -921,9 +919,9 @@ pentru a-ţi putea salva preferinţele.",
 'protectcomment' => "Motiv pentru protejare",
 'protectedarticle' => "protejat [[$1]]",
 'protectedpage' => "Pagină protejată",
-'protectedpagewarning' => "ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
+'protectedpagewarning' => "<strong>ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
 cu privilegii de administrator o pot edita. Te rugăm să urmezi sugestiile
-[[Project:Pagină_protejată|despre pagini protejate]] când editezi.",
+[[Project:Pagină_protejată|despre pagini protejate]] când editezi.</strong>",
 'protectedtext' => "Această pagină a fost protejată la editare;
 există mai multe motive posibile pentru aceasta, vezi
 [[Project:Pagină protejată]].
@@ -965,9 +963,9 @@ Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
 'readonlytext' => "Baza de date {{SITENAME}} este momentan blocată la scriere, probabil pentru o operaţiune de rutină, după care va fi deblocată şi se va reveni la starea normală.
 Administratorul care a blocat-o a oferit această explicaţie:
 <p>$1",
-'readonlywarning' => "ATENŢIE! Baza de date a fost blocată pentru întreţinere,
+'readonlywarning' => "<strong>ATENŢIE! Baza de date a fost blocată pentru întreţinere,
 deci nu vei putea să salvezi editările în acest moment. Poţi copia textul
-într-un fişier text local pentru a modifica conţinutul în {{SITENAME}} când va fi posibil.",
+într-un fişier text local pentru a modifica conţinutul în {{SITENAME}} când va fi posibil.</strong>",
 'recentchanges' => "Schimbări recente",
 'recentchangescount' => "Numărul de articole pentru schimbări recente",
 'recentchangeslinked' => "Modificări corelate",

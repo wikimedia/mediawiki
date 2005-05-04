@@ -320,11 +320,11 @@ La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi co
 "explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore. 
 Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra. 
-<b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone \"Salva\".\n<p>",
+<b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone \"Salva\".<br />",
 "yourtext"		=> "Il tuo testo",
 "storedversion" => "Versione in archivio",
 "editingold"	=> "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
-Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>\n",
+Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>",
 "yourdiff"		=> "Differenze",
 "copyrightwarning" => "Nota, per favore, che tutti i contributi a Wikipedia si considerano rilasciati sotto licenza di tipo GNU Free Documentation License
 (vedi $1 per maggiori dettagli).

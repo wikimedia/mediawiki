@@ -389,12 +389,12 @@ Bahagian atas teks mengandungi halaman teks yang terkini.
 Perubahan yang anda lakukan akan ditunjukkan pada bahagian bawah teks.
 Anda hanya perlu mencantumkan perubahan-perubahan dalam teks.
 <b>Hanya</b> teks pada bahagian atas akan hanya disimpan apabila anda
-menekan \"Simpan halaman\".\n<p>",
+menekan \"Simpan halaman\".<br />",
 "yourtext"		=> "Teks anda", #"Your text",
 "storedversion" => "Simpan versi", #"Stored version",
 "editingold"	=> "<strong>AMARAN: Anda mengemaskini halaman revisi yang ketinggalan tarikh.
 Jika anda menyimpannya,
-sebarang perubahan yang dibuat sejak revisi ini akan hilang.</strong>\n",
+sebarang perubahan yang dibuat sejak revisi ini akan hilang.</strong>",
 "yourdiff"		=> "Perbezaan", #"Differences",
 "copyrightwarning" => "Semua sumbangan terhadap Wikipedia adalah
 tertakluk di bawah GNU Free Documentation License
@@ -404,16 +404,15 @@ web percuma yang lain, jangan hantarnya ke sini.
 Anda juga perlu akui bahawa ini adalah hasil tulisan anda sendiri, atau anda
 menyalinnya daripada domain awam atau mana-mana sumber percuma yang sama.
 <p><strong><font color=\"red\">JANGAN HANTAR SEBARANG KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN.</font></strong></p> <p><strong><font color=\"red\">JANGAN SALIN DARIPADA HALAMAN WEB YANG LAIN.</font></strong></p> ",
-"longpagewarning" => "WARNING: This page is $1 kilobytes long; some
+"longpagewarning" => "<strong>WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
-Please consider breaking the page into smaller sections.",
-"readonlywarning" => "WARNING: The database has been locked for maintenance,
+Please consider breaking the page into smaller sections.</strong>",
+"readonlywarning" => "<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
-the text into a text file and save it for later.",
-"protectedpagewarning" => "WARNING:  This page has been locked so that only
+the text into a text file and save it for later.</strong>",
+"protectedpagewarning" => "<strong>WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>protected page
-guidelines</a>.",
+[[Project:Protected_page_guidelines|protected page guidelines]].</strong>",
 
 # History pages
 #

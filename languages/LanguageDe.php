@@ -450,25 +450,25 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 Das obere Textfeld enthält den aktuellen Artikel.
 Das untere Textfeld enthält Ihre Änderungen.
 Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
-<b>Nur</b> der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf \"Speichern\" klicken!\n<p>",
+<b>Nur</b> der Inhalt des oberen Textfeldes wird gespeichert, wenn Sie auf \"Speichern\" klicken!<br />",
 "yourtext"		=> "Ihr Text",
 "storedversion" => "Gespeicherte Version",
 "editingold"	=> "<strong>ACHTUNG: Sie bearbeiten eine alte Version dieses Artikels.
-Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
+Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "yourdiff"		=> "Unterschiede",
 "copyrightwarning" => "
 <b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <font size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <p><i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
-"longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
-Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
-"readonlywarning" => "WARNUNG: Die Datenbank wurde während dem Ändern der
+"longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
+Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>",
+"readonlywarning" => "<strong>WARNUNG: Die Datenbank wurde während dem Ändern der
 Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
-später einzuspielen.",
-"protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
+später einzuspielen.</strong>",
+"protectedpagewarning" => "<strong>WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
 Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
-<a href='$wgScriptPath/Project:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
+[[Project:Geschützte Seiten|Regeln für geschützte Seiten]].</strong>",
 
 # History pages
 #

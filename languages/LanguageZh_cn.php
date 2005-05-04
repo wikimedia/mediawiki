@@ -389,11 +389,11 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 上面的文字框内显示的是目前本页的内容。
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
-<b>只有</b>在上面文字框中的内容会在你点击\"保存页面\"后被保存。\n<p>",
+<b>只有</b>在上面文字框中的内容会在你点击\"保存页面\"后被保存。<br />",
 "yourtext"		=> "您的文字",
 "storedversion" => "已保存版本",
 "editingold"	=> "<strong>警告：你正在编辑的是本页的旧版本。
-如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>\n",
+如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>",
 "yourdiff"		=> "差别",
 "copyrightwarning" => "请注意对Wikipedia的任何贡献都将被认为是在GNU自由文档协议证书下发布。
 (细节请见$1).
@@ -401,11 +401,11 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 您同时也向我们保证你所提交的内容是你自己所作，或得自一个不受版权保护或相似自由的来源。
 <strong>不要在未获授权的情况下发表！</strong>",
 
-"longpagewarning" => "警告：本页长度达$1KB；一些浏览器将无法编辑长过32KB的文章。请考虑将本文切割成几个小段落。",
+"longpagewarning" => "<strong>警告：本页长度达$1KB；一些浏览器将无法编辑长过32KB的文章。请考虑将本文切割成几个小段落。</strong>",
 
-"readonlywarning" => "警告：数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本断文字复制并保存到文本文件，然后等一会儿再修改。",
-"protectedpagewarning" => "警告：本页已经被保护，只有拥有管理员权限的用户才可修改。请确认您遵守
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>保护页面守则</a>.",
+"readonlywarning" => "<strong>警告：数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本断文字复制并保存到文本文件，然后等一会儿再修改。</strong>",
+"protectedpagewarning" => "<strong>警告：本页已经被保护，只有拥有管理员权限的用户才可修改。请确认您遵守
+[[Project:Protected_page_guidelines|保护页面守则]].</strong>",
 
 # History pages
 #

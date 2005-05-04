@@ -409,22 +409,22 @@ Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu nav
 A área de texto acima mostra o texto original.
 Suas mudanças são mostradas na área a baixo.
 Você terá que mesclar suas modificações no texto existente.
-<b>SOMENTE</b> o texto na área acima será salvo quando você pressionar \"Salvar página\".\n<p>",
+<b>SOMENTE</b> o texto na área acima será salvo quando você pressionar \"Salvar página\".<br />",
 "yourtext"      => "Seu texto",
 "storedversion" => "Versão guardada",
 "editingold"    => "<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
-Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>\n",
+Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>",
 "yourdiff"      => "Diferenças",
 "copyrightwarning" => "Por favor note que todas as contribuições �  {{SITENAME}} são consideradas lançadas sobre a GNU Free Documentation License
 (veja $1 para detalhes).
 Se você não quer que seu texto esteja sobre estes termos, então não os envie.<br />
 Você também promete que está nos enviando um artigo escrito por você mesmo, ou extraindo de uma fonte de domínio público similar.
 <strong>NÃO ENVIE TRABALHO SOB COPYRIGHT SEM PERMISSÃO!</strong>",
-"longpagewarning" => "CUIDADO: Esta página tem $1 kilobytes ; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
-Por favor considere quebrar a página em sessões menores.",
-"readonlywarning" => "CUIDADO: O banco de dados está sendo bloqueado para manutenção,
-você não está habilitado a salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo mais tarde.",
-"protectedpagewarning" => "CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o <a href='$wgScriptPath/$wgMetaNamespace:Guia_de_páginas_protegidas'>guia de páginas protegidas</a>.",
+"longpagewarning" => "<strong>CUIDADO: Esta página tem $1 kilobytes ; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
+Por favor considere quebrar a página em sessões menores.</strong>",
+"readonlywarning" => "<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção,
+você não está habilitado a salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo mais tarde.</strong>",
+"protectedpagewarning" => "<strong>CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o [[Project:Guia_de_páginas_protegidas|guia de páginas protegidas]].</strong>",
 
 # History pages
 #

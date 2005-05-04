@@ -508,7 +508,7 @@ Dat Textfeld baven wiest de aktuelle Siet.
 Dat Textfeld nerrn wiest diene Ännern.
 Föög diene Ännern in dat Textfeld baven in.
 
-<b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<p>",
+<b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />",
 'yourtext'                      => 'Dien Text',
 'storedversion'          => 'Spiekerte Version',
 'nonunicodebrowser'      => '<strong>Wohrscho: Dien Browser ünnerstütt keen Unicode, wähl en annern Browser, wenn du en Siet ännern wullst.</strong>',
@@ -525,13 +525,13 @@ vun wegen dat he denkt, dat weer en Brook vun dat Oorheverrecht.
 
 <p><i>Denk doran, dat alle {{SITENAME}}-Bidreeg automatsch ünner de „GNU Fre'e Dokumentatschoonslizenz“ steiht.
 Wenn du nich wullst, dat dien Arbeid hier vun annern ännert un verbreed warrt, denn klick nich op Spiekern.</i>",
-'longpagewarning'        => 'Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
-Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.',
-'readonlywarning'        => 'Wohrscho: De Datenbank is wiel dat Ännern vun de
+'longpagewarning'        => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
+Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.</strong>',
+'readonlywarning'        => '<strong>Wohrscho: De Datenbank is wiel dat Ännern vun de
 Siet för Pleegarbeiden sparrt worrn, so dat du de Siet en Stoot nich
-spiekern kannst. Seker di den Text un versöök later weer de Ännern to spiekern.',
-'protectedpagewarning'   => 'Wohrscho: Disse Siet is sparrt worrn, so dat blots
-Bruker mit Sysop-Rechten doran arbeiden könnt. Kiek ok bi de [[{{ns:4}}:Schulte Sieten|Regeln för schulte Sieten]].',
+spiekern kannst. Seker di den Text un versöök later weer de Ännern to spiekern.</strong>',
+'protectedpagewarning'   => '<strong>Wohrscho: Disse Siet is sparrt worrn, so dat blots
+Bruker mit Sysop-Rechten doran arbeiden könnt. Kiek ok bi de [[Project:Schulte Sieten|Regeln för schulte Sieten]].</strong>',
 'copyrightwarning2'      => 'Dien Text, de du op {{SITENAME}} stellen wullst, könnt vun elkeen ännert oder wegmaakt warrn.
 Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
