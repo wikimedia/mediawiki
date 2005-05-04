@@ -714,13 +714,13 @@ The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
 <b>Only</b> the text in the upper text area will be saved when you
-press \"Save page\".\n<p>",
+press \"Save page\".<br />",
 'yourtext'		=> 'Your text',
 'storedversion' => 'Stored version',
 'nonunicodebrowser' => "<strong>WARNING: Your browser is not unicode compliant, please change it before editing an article.</strong>",
 'editingold'	=> "<strong>WARNING: You are editing an out-of-date
 revision of this page.
-If you save it, any changes made since this revision will be lost.</strong>\n",
+If you save it, any changes made since this revision will be lost.</strong>",
 'yourdiff'		=> 'Differences',
 'copyrightwarning' => "Please note that all contributions to {{SITENAME}} are
 considered to be released under the $2 (see $1 for details).
@@ -735,16 +735,13 @@ If you don't want your writing to be edited mercilessly, then don't submit it he
 You are also promising us that you wrote this yourself, or copied it from a
 public domain or similar free resource (see $1 for details).
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'longpagewarning' => "WARNING: This page is $1 kilobytes long; some
+'longpagewarning' => "<strong>WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
-Please consider breaking the page into smaller sections.",
-'readonlywarning' => 'WARNING: The database has been locked for maintenance,
+Please consider breaking the page into smaller sections.</strong>",
+'readonlywarning' => '<strong>WARNING: The database has been locked for maintenance,
 so you will not be able to save your edits right now. You may wish to cut-n-paste
-the text into a text file and save it for later.',
-'protectedpagewarning' => "WARNING:  This page has been locked so that only
-users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScript/Project:Protected_page_guidelines'>protected page
-guidelines</a>.",
+the text into a text file and save it for later.</strong>',
+'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[Project:Protected_page_guidelines|protected page guidelines]].</strong>",
 'templatesused'	=> 'Templates used on this page:',
 
 # History pages

@@ -359,20 +359,20 @@ Za izdelavo strani, začnite vnašati besedilo v spodnjo škatlo
 Zgodnji predel besedila vsebuje besedilo strani, ki trenutno obstaja.
 Vaše spremembe so prikazane v spodnjem predelu besedila.
 Morali boste spojiti vaše spremembe v obstoječe besedilo.
-<b>Samo</b> besedilo z zgornjem predelu besedila bo shranjeno, ko boste pritisnili \"Shrani stran\".\n<p>",
+<b>Samo</b> besedilo z zgornjem predelu besedila bo shranjeno, ko boste pritisnili \"Shrani stran\".<br />",
 "yourtext"		=> "Vaše besedilo",
 "storedversion"         => "Shranjena inačica",
 "editingold"	        => "<strong>OPOZORILO: Urejujete zastarelo inačico te strani.
-Če jo boste shranili, bodo vse spremembe, narejene od tedaj, izgubljene.</strong>\n",
+Če jo boste shranili, bodo vse spremembe, narejene od tedaj, izgubljene.</strong>",
 "yourdiff"		=> "Razlike",
 "copyrightwarning"      => "Prosimo upoštevajte, da se vsi doprinosi k Wikipediji smatrajo kot objave pod GNU licenco proste dokumentacije (glej $1 za podrobnosti).
 Če ne želite, da se vaša pisanja neusmiljeno urejujejo ali ponovno razdeljujejo prostovoljno, potem jih ne predlagajte tukaj.<br />
 Poleg tega nam obljubljate, da ste to napisali samo ali pa prepisali iz javno dostopnega ali podobnega prostega vira.
 <strong>NE PREDLAGAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA!</strong>",
-"longpagewarning" => "OPOZORILO: Ta stran je dolga $1 kilobitov; nekateri brskalniki s težavo urejujejo strani, ki so daljše kot 32 kB. Prosimo, da upoštevate delitev strani na manjše dele.",
-"readonlywarning" => "OPOZORILO: Baza je trenutno zaprta zaradi vzdrževanja
-in trenutno ne morete shranjevati sprememb. Skopirajte besedilo v urejevalnik in ga posnemite kasneje.",
-"protectedpagewarning" => "OPOZORILO: Ta stran je zaključena in jo lahko spreminjajo samo uporabniki, ki imajo vzdrževalne pravice. Prosimo poglejte <a href='/wiki/Wikipedija:Smernice_zaščitenih_strani'>smernice zaščitenih strani</a>.",
+"longpagewarning" => "<strong>OPOZORILO: Ta stran je dolga $1 kilobitov; nekateri brskalniki s težavo urejujejo strani, ki so daljše kot 32 kB. Prosimo, da upoštevate delitev strani na manjše dele.</strong>",
+"readonlywarning" => "<strong>OPOZORILO: Baza je trenutno zaprta zaradi vzdrževanja
+in trenutno ne morete shranjevati sprememb. Skopirajte besedilo v urejevalnik in ga posnemite kasneje.</strong>",
+"protectedpagewarning" => "<strong>OPOZORILO: Ta stran je zaključena in jo lahko spreminjajo samo uporabniki, ki imajo vzdrževalne pravice. Prosimo poglejte [[Project:Smernice_zaščitenih_strani|smernice zaščitenih strani]].</strong>",
 
 # History pages
 #

@@ -431,13 +431,13 @@ Den øverste tekstboks indeholder den nuværende tekst.
 Dine ændringer er vist i den nederste tekstboks.
 Du er nødt til at sammenflette dine ændringer med den eksisterende tekst.
 <b>Kun</b> teksten i den øverste tekstboks vil blive gemt når du
-trykker \"Gem side\".\n<p>",
+trykker \"Gem side\".<br />",
 "yourtext"		=> "Din tekst",
 "storedversion" => "Den gemte version",
 "editingold"	=> "<strong>ADVARSEL: Du redigerer en gammel version
 af denne side.
 Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive 
-overskrevet.</strong>\n",
+overskrevet.</strong>",
 "yourdiff"		=> "Forskelle",
 "copyrightwarning" => "Læg mærke til at alle bidrag til Wikipedia er
 at betragte som udgivet under GNU Free Documentation License
@@ -448,16 +448,13 @@ Du lover os også, at du skrev teksten selv, kopierede fra en
 public domain eller lignende fri ressource.
 <strong>LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN 
 DERES TILLADELSE!</strong>",
-"longpagewarning" => "ADVARSEL: Denne side er $1 kilobytes lang; nogle
+"longpagewarning" => "<strong>ADVARSEL: Denne side er $1 kilobytes lang; nogle
 browsere kan have problemer med at redigerer sider der nærmer sig eller 
-er længere end 32kb. Overvej om ikke siden kan deles op i mindre dele.",
-"readonlywarning" => "ADVARSEL: Databasen er låst på grund af vedligeholdelse,
+er længere end 32kb. Overvej om ikke siden kan deles op i mindre dele.</strong>",
+"readonlywarning" => "<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
-kopiere din tekst til en tekstfil, så du kan gemme den til senere.",
-"protectedpagewarning" => "ADVARSEL: Denne side er låst, så kun administratorer
-kan redigere den. Sørg for at du følger 
-<a href='$wgScriptPath/$wgMetaNamespace:Politik_for_beskyttede_sider'>politiken for 
-beskyttede sider</a>.",
+kopiere din tekst til en tekstfil, så du kan gemme den til senere.</strong>",
+"protectedpagewarning" => "<strong>ADVARSEL: Denne side er låst, så kun administratorer kan redigere den. Sørg for at du følger [[Project:Politik_for_beskyttede_sider|politiken for beskyttede sider]].</strong>",
 
 # History pages
 #

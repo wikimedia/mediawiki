@@ -654,22 +654,21 @@ Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
 Teie muudatused on alumises kastis.
 Teil tuleb need viimasesse versiooni üle viia.
 Kui Te klõpsate nupule
- \"Salvesta\", siis salvestub <b>ainult</b> ülemises toimetuskastis olev tekst.\n<p>",
+ \"Salvesta\", siis salvestub <b>ainult</b> ülemises toimetuskastis olev tekst.<br />",
 "yourtext"		=> "Teie tekst",
 "storedversion" => "Salvestatud redaktsioon",
 "editingold"	=> "<strong>ETTEVAATUST! Te redigeerite praegu selle lehekülje vana redaktsiooni.
-Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.</strong>\n",
+Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.</strong>",
 "yourdiff"		=> "Erinevused",
 "copyrightwarning" => "Pidage silmas, et kõik kaastööd loetakse avaldatuks vastavalt GNU Vaba Dokumentatsiooni Litsentsile
 (Üksikasjad on leheküljel $1).
 Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse ja omal äranägemisel kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast. 
 <strong>ÄRGE SAATKE AUTORIÕIGUSTEGA KAITSTUD MATERJALI ILMA LOATA!</strong>", # Vikipeedia võtsin välja, {{SITENAME}} paigutada kuidagi?
-"longpagewarning" => "HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.",
-"readonlywarning" => "HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.",
-"protectedpagewarning" => "HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
-<a href='$wgScriptPath/{{ns:4}}:Juhtnöörid_kaitstud_lehekülje_kohta'>
-</a>.",
+"longpagewarning" => "<strong>HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.</strong>",
+"readonlywarning" => "<strong>HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.</strong>",
+"protectedpagewarning" => "<strong>HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
+[[Project:Juhtnöörid_kaitstud_lehekülje_kohta]]</strong>.",
 
 /*
  </nowiki>

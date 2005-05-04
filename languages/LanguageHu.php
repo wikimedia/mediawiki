@@ -447,13 +447,13 @@ A felső szövegablak tartalmazza a szöveget, ahogy az jelenleg létezik.
 A módosításaid az alsó ablakban láthatóak.
 Át kell vezetned a módosításaidat a felső szövegbe.
 <b>Csak</b> a felső ablakban levő szöveg kerül elmentésre akkor, mikor
-a \"Lap mentését\" választod.\n<p>",
+a \"Lap mentését\" választod.<br />",
 "yourtext"		=> "A te szöveged",
 "storedversion" => "A tárolt változat",
 "editingold"	=> "<strong>VIGYÁZAT! A lap egy elavult 
 változatát szerkeszted.
 Ha elmented, akkor az ezen változat után végzett összes 
-módosítás elvész.</strong>\n",
+módosítás elvész.</strong>",
 "yourdiff"		=> "Eltérések",
 "copyrightwarning" => "Kérlek vedd figyelembe hogy minden
 $wgSitenameBA küldött anyag a GNU Szabad Dokumentum Licenc alatti
@@ -464,17 +464,16 @@ A beküldéssel együtt azt is garantálod hogy mindezt saját
 magad írtad, vagy másoltad be egy szabadon elérhető vagy 
 közkincs (public domain) forrásból.
 <strong>ENGEDÉLY NÉLKÜL NE KÜLDJ BE JOGVÉDETT ANYAGOKAT!</strong>",
-"longpagewarning" => "FIGYELEM: Ez a lap $1 kilobyte hosszú;
+"longpagewarning" => "<strong>FIGYELEM: Ez a lap $1 kilobyte hosszú;
 néhány böngészőnek problémái vannak a 32KB körüli vagy nagyobb lapok
 szerkesztésével.
-Fontold meg a lap kisebb szakaszokra bontását.",
-"readonlywarning" => "FIGYELEM: Az adatbázis karbantartás miatt le van zárva,
+Fontold meg a lap kisebb szakaszokra bontását.</strong>",
+"readonlywarning" => "<strong>FIGYELEM: Az adatbázis karbantartás miatt le van zárva,
 ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
-kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.",
-"protectedpagewarning" => "FIGYELEM: A lap lezárásra került és ilyenkor
+kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.</strong>",
+"protectedpagewarning" => "<strong>FIGYELEM: A lap lezárásra került és ilyenkor
 csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
-betartod a <a href='/wiki/{$wgMetaNamespace}:Zárt_lapok_irányelve'>zárt lapok 
-irányelvét</a>.",
+betartod a [[Project:Zárt_lapok_irányelve|zárt lapok irányelvét]].</strong>",
 
 # History pages
 #

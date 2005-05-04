@@ -468,20 +468,20 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'editingcomment'  => 'modification de $1 (commentaire)',
 'editconflict' => 'Conflit de modification : $1',
 'explainconflict' => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
+La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
 'yourtext'     => 'Votre texte',
 'storedversion' => 'Version enregistrée',
-"editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
+"editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>",
 "yourdiff"  => "Différences",
 "copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
-"longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
+"longpagewarning" => "<strong>AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
-Peut-être serait-il mieux que vous divisiez la page en sections plus petites.",
-"readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
-vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.",
-"protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
+Peut-être serait-il mieux que vous divisiez la page en sections plus petites.</strong>",
+"readonlywarning" => "<strong>AVERTISSEMENT : cette page a été bloquée pour maintenance,
+vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.</strong>",
+"protectedpagewarning" => "<strong>AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='$wgScript/{{ns:4}}:Page_protégée'>directives concernant les pages protégées</a>.",
+vous suivez les [[Project:Page_protégée|directives concernant les pages protégées]].<strong>",
 
 # History pages
 #

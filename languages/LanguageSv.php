@@ -421,11 +421,11 @@ så som det kommer att se ut om du väljer att spara.",
 Det översta text blocket innehåller den nuvarande texten.
 Dina ändringer syns i det nedersta blocket.
 Du måste infoga dina ändringar i den existerande texten.
-<b>Bara</b> texten i den översta textboxen sparas om du trycker \"Spara sida\".\n<p>",
+<b>Bara</b> texten i den översta textboxen sparas om du trycker \"Spara sida\".<br />",
 "yourtext"              => "Din text",
 "storedversion"         => "Din sparade version",
 "editingold"            => "<strong>VARNING: Du redigerar en gammal version
-av den här sidan. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>\n",
+av den här sidan. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>",
 "yourdiff"              => "Skillnader",
 "copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
 att betrakta som utgivna under GNU Free Documentation License
@@ -434,14 +434,14 @@ Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så 
 Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<br />
 <strong>LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!</strong>",
 
-"longpagewarning"       => "VARNING: Den här artikeln är $1 kilobytes lång; vissa äldre webbläsare
+"longpagewarning"       => "<strong>VARNING: Den här artikeln är $1 kilobytes lång; vissa äldre webbläsare
 kan ha problem med att redigera sidor som är omkring 32 kb eller större.
-Du kanske vill överväga att dela upp artikeln i mindre delar.",
-"readonlywarning"       => "VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara 
+Du kanske vill överväga att dela upp artikeln i mindre delar.</strong>",
+"readonlywarning"       => "<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara 
 dina ändringar just nu. För säkerhets skull kanske du vill överväga att kopiera över texten till din egen dator tills
-databasen är upplåst igen.",
-"protectedpagewarning"  => "VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
-Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/$wgMetaNamespace:Skyddade sidor'>skyddade sidor</a>",
+databasen är upplåst igen.</strong>",
+"protectedpagewarning"  => "<strong>VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
+Försäkra dig om att du följer rekommendationerna för [[Project:Skyddade sidor|skyddade sidor]]</strong>",
 
 // History pages
 //

@@ -346,7 +346,7 @@ text editing area as it will appear if you choose to save." */,
 あなたの加える変更の内容は下の文章エリアに示されています。
 変更内容を、上の文章エリアの内容に組み込んで下さい。
 <b>上の文章エリアの内容だけ</b>が、\"Save page\"をクリックした時に
-保存されることになります。\n<p>"
+保存されることになります。<br />"
 /* Someone else has changed this page since you
 started editing it.
 The upper text area contains the page text as it currently exists.

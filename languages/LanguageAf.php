@@ -328,11 +328,11 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 Die boonste invoerboks het die teks wat tans bestaan.
 Jou wysigings word in die onderste invoerboks gewys.
 Jy sal jou wysigings moet saamsmelt met die huidige teks.
-<strong>Slegs</strong> die teks in die boonste invoerboks sal gestoor word wanneer jy \"Stoor bladsy\" druk.\n<p>",
+<strong>Slegs</strong> die teks in die boonste invoerboks sal gestoor word wanneer jy \"Stoor bladsy\" druk.<br />",
 "yourtext"		=> "Jou teks",
 "storedversion" => "Gestoorde weergawe",
 "editingold"	=> "<strong>Waarskuwing: jy is besig om 'n ou weergawe van hierdie bladsy te wysig.
-As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</strong>\n",
+As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</strong>",
 "yourdiff"		=> "Wysigings",
 "copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder 
 die ''GNU Free Documentation License'' (lees $1 vir meer inligting).

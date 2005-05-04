@@ -455,12 +455,12 @@ Les diferinces sont håynêyes å mitan.
 Vos dvoz mete vos candjmints dins l'&nbsp;tecse d'&nbsp;asteure (å dzeur)
 si vos lez vloz co evoyî.
 <b>Seulmint</b> li tecse do dzeur serè candjî cwand vos clitchroz sol
-boton «Schaper l'nbsp;pådje».\n<p>",
+boton «Schaper l'nbsp;pådje».<br />",
 "yourtext"		=> "Li tecse da vosse",
 "storedversion" => "Modêye sol sierveu",
 "editingold"	=> "<strong>ASTEME: Vos estoz ki candje ene viye modêye
 del pådje. Si vos l'&nbsp;schapez, tos les candjmints k'&nbsp;ont stî
-fwaits dispoy adon si vont piede.</strong>\n",
+fwaits dispoy adon si vont piede.</strong>",
 "yourdiff"		=> "Diferinces",
 "copyrightwarning" => "Notez ki totes les contribucions fwaites po {{SITENAME}}
 dvèt esse dizo li licince di documintåcion libe di GNU
@@ -473,17 +473,17 @@ l'&nbsp;avoz copyî d'&nbsp;on sourdant libe (dominne publik ou on sourdant
 pareymint libe).
 <br />
 <strong>N'&nbsp;EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION&nbsp;!</strong>",
-"longpagewarning" => "ASTEME: Cisse pådje fwait $1 kilo-octets; des
+"longpagewarning" => "<strong>ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k'&nbsp;i gn a polèt aveut des rujhes po-z aspougnî
 des pådjes k'&nbsp;aprepièt ou di pus di 32&nbsp;Ko.
-Vos dvrîz tuzer a pårti l'&nbsp;pådje e pus ptits bokets.",
-"readonlywarning" => "ASTEME:  On-z overe sol båze di dnêyes pol moumint, ey elle a stî metowe e mode seulmint-lére.
-Do côp, vos n'&nbsp;såroz schaper vos candjmints asteure; motoit vos dvrîz copyî et aclaper l'&nbsp;tecse dins on fitchî da vosse pol poleur rimete sol {{SITENAME}} pus tård.",
-"protectedpagewarning" => "ASTEME: Cisse pådje chal a stî protedjeye siconte
+Vos dvrîz tuzer a pårti l'&nbsp;pådje e pus ptits bokets.</strong>",
+"readonlywarning" => "<strong>ASTEME:  On-z overe sol båze di dnêyes pol moumint, ey elle a stî metowe e mode seulmint-lére.
+Do côp, vos n'&nbsp;såroz schaper vos candjmints asteure; motoit vos dvrîz copyî et aclaper l'&nbsp;tecse dins on fitchî da vosse pol poleur rimete sol {{SITENAME}} pus tård.</strong>",
+"protectedpagewarning" => "<strong>ASTEME: Cisse pådje chal a stî protedjeye siconte
 des candjmints, seulmint les uzeus avou èn accès di manaedjeu el polèt candjî.
 Acertinez vs ki vos shuvoz les 
-<a href='/wiki/Wikipedia:Rîles_po_les_pådjes_protedjeyes'>rîles po les pådjes
-protedjeyes</a>.",
+[[Project:Rîles_po_les_pådjes_protedjeyes|rîles po les pådjes
+protedjeyes]].</strong>",
 
 # History pages
 #

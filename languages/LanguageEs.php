@@ -371,12 +371,12 @@ El área de texto superior contiene el texto de la página como existe
 actualmente. Tus cambios se muestran en el área de texto inferior.
 Vas a tener que incorporar tus cambios en el texto existente.
 <b>Sólo</b> el texto en el área de texto superior será grabado cuando presiones
- \"Grabar página\".\n<p>",
+ \"Grabar página\".<br />",
 "yourtext"		=> "Tu texto",
 "storedversion" => "Versión almacenada",
 "editingold"	=> "<strong>ADVERTENCIA: Estás editando una versión antigua
  de esta página.
-Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>\n",
+Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>",
 "yourdiff"		=> "Diferencias",
 "copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br /><br />Nota por favor que todas las contribuciones a $wgSitename 
 se consideran hechas públicas bajo la Licencia de Documentación Libre GNU 
@@ -387,13 +387,14 @@ También tú nos aseguras que escribiste esto tú mismo y
 eres dueño de los derechos de autor, o lo copiaste desde el dominio público 
 u otra fuente libre.
  <strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />",
-"longpagewarning" => "ADVERTENCIA: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
-Por favor considera la posibilidad de descomponer esta página en secciones más pequeñas.",
-"readonlywarning" => "ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
+"longpagewarning" => "<strong>ADVERTENCIA: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
+Por favor considera la posibilidad de descomponer esta página en secciones más pequeñas.</strong>",
+"readonlywarning" => "<strong>ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
 Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
-intentarlo después.",
-"protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueada de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
-<a href='/wiki/$wgMetaNamespace:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
+intentarlo después.</strong>",
+"protectedpagewarning" => "<strong>ADVERTENCIA: Esta página ha sido bloqueada de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
+[[Project:Guías_para_páginas_protegidas|guías para páginas protegidas]].</strong>",
+
 # History pages
 #
 "revhistory"	=> "Historial de revisiones",

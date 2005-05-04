@@ -390,13 +390,13 @@ Den øverste boksen inneholder den nåværende tekst.
 Dine endringer vises i den nederste boksen.
 Du er nødt til å flette dine endringer sammen med den nåværende teksten.
 <b>Kun</b> teksten i den øverste tekstboksen vil bli lagret når du
-trykker \"Lagre siden\".\n<p>",
+trykker \"Lagre siden\".<br />",
 "yourtext"		=> "Din tekst",
 "storedversion" => "Den lagrede versjonen",
 "editingold"	=> "<strong>ADVARSEL: Du redigerer en gammel versjon
 av denne siden.
 Hvis du lagrer den, vil alle endringer foretatt siden denne revisjonen bli 
-overskrevet.</strong>\n",
+overskrevet.</strong>",
 "yourdiff"		=> "Forskjeller",
 "copyrightwarning" => "Legg merke til at alle bidrag til Wikipedia er
 å betrakte som utgitt under GNU fri dokumentasjonslisens
@@ -408,16 +408,15 @@ ressurs som ikke er beskyttet av opphavsrett.
 
 <strong>LEGG ALDRI MATERIALE HER SOM ER BESKYTTET AV ANDRES OPPHAVSRETT UTEN 
 DERES TILLATELSE!</strong>",
-"longpagewarning" => "ADVARSEL: Denne siden er $1 kilobyte lang; noen
+"longpagewarning" => "<strong>ADVARSEL: Denne siden er $1 kilobyte lang; noen
 nettlesere kan ha problemer med å redigere sider som nærmer seg eller 
-er lengre enn 32kb. Overvei om ikke siden kan deles opp i mindre deler.",
-"readonlywarning" => "ADVARSEL: Databasen er låst på grunn av vedlikehold,
+er lengre enn 32kb. Overvei om ikke siden kan deles opp i mindre deler.</strong>",
+"readonlywarning" => "<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å 
-kopiere teksten din til en tekstfil, så du kan lagre den til senere.",
-"protectedpagewarning" => "ADVARSEL: Denne siden er låst, så kun administratorer
+kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>",
+"protectedpagewarning" => "<strong>ADVARSEL: Denne siden er låst, så kun administratorer
 kan redigere den. Sørg for at du følger 
-<a href='$wgScriptPath/$wgMetaNamespace:Retningslinjer_for_beskyttede_sider'>retningslinjer for 
-beskyttede sider</a>.",
+[[Project:Retningslinjer_for_beskyttede_sider|retningslinjer for beskyttede sider]].</strong>",
 
 # History pages
 #

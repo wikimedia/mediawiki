@@ -581,11 +581,11 @@ thuas mar a taispeáinfear é má sábháilfear é.",
 San bhosca seo thuas feiceann tú téacs an leathanaigh mar a bhfuil sé faoi láthair.
 Tá do chuid athruithe san bhosca thí­os.
 Caithfidh tú do chuid athruithe a chumasadh leis an eagrán reatha.
-Nuair a brúann tú ar an cnaipe \"Sábháil an leathanach\", ní­ sábhálfar <b>ach amháin</b> an téacs san bhosca thuas.\n<p>",
+Nuair a brúann tú ar an cnaipe \"Sábháil an leathanach\", ní­ sábhálfar <b>ach amháin</b> an téacs san bhosca thuas.<br />",
 "yourtext"      => "Do chuid téacs",
 "storedversion" => "Eagrán sábháilte",
 "editingold"    => "<strong>AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
-Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>\n",
+Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>",
 "yourdiff"      => "Difrí­ochtaí­",
 "copyrightwarning" => "Tabhair faoi deara go scaoilí­tear gach dréacht chuig an Vicipéid maidir lena tearmaí­ an <i>GNU Free Documentation License</i>
 (tuilleadh eolais ag $1).
@@ -594,14 +594,14 @@ ná tabhair isteach é anseo.<br />
 Ina theannta sin, geallann tú duinn go scrí­obh tusa féin an rud seo, nó go chóipeáil tú é as
 fhoinse atá gan chóipcheart.
 <strong>NÁ TABHAIR ISTEACH OBAIR ATÁ FAOI CHÓIPCHEART GAN CEAD!</strong>",
-"longpagewarning" => "AIRE: Tá an leathanach seo $1 cilibhearta i bhfad; ní­ féidir le roinnt lí­onléitheoirí­
+"longpagewarning" => "<strong>AIRE: Tá an leathanach seo $1 cilibhearta i bhfad; ní­ féidir le roinnt lí­onléitheoirí­
 leathanaigh atá breis agus nó ní­os fada ná 32kb a athrú.
-Más féidir, giotaigh an leathanach i gcodanna níos bige.",
-"readonlywarning" => "AIRE: Cuireadh glas ar an mbunachar sonraí­, agus mar sin
-ní­ féidir leat do chuid athruithe a shábháil dí­reach anois. B'fhéidir gur mhaith leat an téacs a ghearr is greamaigh i gcomhad téacs agus é a úsáid níos déanaí.",
-"protectedpagewarning" => "AIRE:  Cuireadh glas ar an leathanach seo, agus ní féidir le duine ar bith é a athrú
+Más féidir, giotaigh an leathanach i gcodanna níos bige.</strong>",
+"readonlywarning" => "<strong>AIRE: Cuireadh glas ar an mbunachar sonraí­, agus mar sin
+ní­ féidir leat do chuid athruithe a shábháil dí­reach anois. B'fhéidir gur mhaith leat an téacs a ghearr is greamaigh i gcomhad téacs agus é a úsáid níos déanaí.</strong>",
+"protectedpagewarning" => "<strong>AIRE:  Cuireadh glas ar an leathanach seo, agus ní féidir le duine ar bith é a athrú
 ach amhaín na húsáideoirí le pribhléidí­ ceannasaí­. Bí­ cinnte go leanann tú na
-<a href='$wgScriptPath/$wgMetaNamespace:Treoirlí­nte_do_leathanaigh_glasáilte'>treoirlí­nte do leathanaigh glasáilte</a>.",
+[[Project:Treoirlí­nte_do_leathanaigh_glasáilte|treoirlí­nte do leathanaigh glasáilte]]</strong>.",
 
 # History pages
 #
