@@ -68,7 +68,6 @@ class SiteSettingsForm extends HTMLForm {
 			$this->textbox( 'wgSiteSupportPage' ) .
 			$this->textbox( 'wgSiteNotice' ) .
 			$this->checkbox( 'wgDisableAnonTalk' ).
-			$this->checkbox( 'wgRCSeconds' ) .
 			$this->checkbox( 'wgCapitalLinks' ).
 			$this->checkbox( 'wgShowCreditsIfMax' ) .
 			$this->textbox( 'wgMaxCredits' ).
