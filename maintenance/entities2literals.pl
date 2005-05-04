@@ -9,7 +9,7 @@
 use encoding 'utf8';
 use strict;
 
-my $file = join /$\//, <>;
+my $file = join /\n/, <>;
 
 $file =~ s/&#(\d+);/chr $1/eg;
 $file =~ s/&#x([0-9a-fA-F]+);/chr hex $1/eg;
