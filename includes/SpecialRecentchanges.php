@@ -445,13 +445,9 @@ function namespaceForm ( $namespace, $invert ) {
 <table id='nsselect' class='recentchanges'>
 	<tr>
 		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
-		<td align='left'>$namespaceselect $submitbutton</td>
+		<td align='left'>$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsg('invert') . "</label></td>
 	</tr>
-	<tr>
-		<td align='right'>$invertbox</td>
-		<td align='left'><label for='nsinvert'>" . wfMsg('invert') . "</label></td>
-	</tr>
-</table>";
+	</table>";
 	$out .= '</form></div>';
 	return $out;
 }
