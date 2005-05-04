@@ -26,34 +26,54 @@ function wfSpecialRecentchanges( $par ) {
 	# Get query parameters
 	$feedFormat = $wgRequest->getVal( 'feed' );
 
-	$defaultDays = $wgUser->getOption( 'rcdays' );
-	if ( !$defaultDays ) { $defaultDays = 3; }
+	$defaults = array(
+	/* int  */ 'days' => $wgUser->getDefaultOption('rcdays'),
+	/* int  */ 'limit' => $wgUser->getDefaultOption('rclimit'),
+	/* bool */ 'hideminor' => false,
+	/* bool */ 'hidebots' => true,
+	/* bool */ 'hideliu' => false,
+	/* bool */ 'hidepatrolled' => false,
+	/* text */ 'from' => '',
+	/* text */ 'namespace' => '',
+	/* bool */ 'invert' => false,
+	);
 
-	$days = $wgRequest->getInt( 'days', $defaultDays );
-	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor' ) ) ? 1 : 0;
-	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
+	extract($defaults);
+	
+
+	$days = $wgUser->getOption( 'rcdays' );
+	if ( !$days ) { $days = $defaults['days']; }
+
+	$limit = $wgUser->getOption( 'rclimit' );
+	if ( !$limit ) { $limit = $defaults['limit']; }
+
+	
+	$days = $wgRequest->getInt( 'days', $defaults['days'] );
+
+	#	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
+	$limit = $wgRequest->getInt( 'limit', $defaults['limit'] );
+	if ( $limit < 0 || $limit > 5000 ) $limit = $defaults['limit'];
+
+	/* order of selection: url > preferences > default */
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );	
+
 	
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
-		$from = null;
-		$hidebots = 1;
-		$hideliu = 0;
-		$hidepatrolled = 0;
-		$invert = 0;
-		$namespace = '';
 		global $wgFeedLimit;
 		if( $limit > $wgFeedLimit ) {
-			$limit = $wgFeedLimit;
+			$options['limit'] = $wgFeedLimit;
 		}
+
 	} else {
-		$from = $wgRequest->getText( 'from' );
-		$hidebots = $wgRequest->getBool( 'hidebots', true );
-		$hideliu = $wgRequest->getBool( 'hideliu' );
-		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled' );
-		$namespace = $wgRequest->getVal( 'namespace', '' );
-		$namespace = $namespace === '' ? NULL : $namespace;
-		$invert = $wgRequest->getBool( 'invert' );
-		
+
+		$namespace = $wgRequest->getVal( 'namespace', $defaults['namespace'] );
+		$invert = $wgRequest->getBool( 'invert', $defaults['invert'] );
+		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
+		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
+		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
+		$from = $wgRequest->getVal( 'from', $defaults['from'] );	
+
 		# Get query parameters from path
 		if( $par ) {
 			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -72,6 +92,15 @@ function wfSpecialRecentchanges( $par ) {
 	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
 
 	
+	$cutoff_unixtime = time() - ( $days * 86400 );
+	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
+	$cutoff = $dbr->timestamp( $cutoff_unixtime );
+	if(preg_match('/^[0-9]{14}$/', $from) and $from > wfTimestamp(TS_MW,$cutoff)) {
+		$cutoff = $dbr->timestamp($from);
+	} else {
+		$from = $defaults['from'];
+	}
+		
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
 
@@ -85,46 +114,18 @@ function wfSpecialRecentchanges( $par ) {
 		}
 	}
 
-	# Output header
-	$rctext = wfMsgForContent( "recentchangestext" );
-	$wgOut->addWikiText( $rctext );
-
-	
-	$cutoff_unixtime = time() - ( $days * 86400 );
-	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
-	$cutoff = $dbr->timestamp( $cutoff_unixtime );
-	if(preg_match('/^[0-9]{14}$/', $from) and $from > wfTimestamp(TS_MW,$cutoff)) {
-		$cutoff = $dbr->timestamp($from);
-	} else {
-		$from = '';
-	}
-
-	$sk = $wgUser->getSkin();
-
-	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
-
 	$hidem  = $hideminor ? 'AND rc_minor=0' : '';
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
 	$hidem .= $hideliu ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= is_null($namespace) ? '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= $namespace === '' ?  ''	:' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
-	$options = array(
-		'hideminor'	=> $hideminor,
-		'hideliu'	=> $hideliu,
-		'hidebots'	=> $hidebots,
-		'hidepatrolled'	=> $hidepatrolled,
-		'days'		=> $days,
-		'limit'		=> $limit,
-		'from'          => $from,
-		'namespace'	=> $namespace,
-		'invert'	=> $invert,
-	);
+	// This is the big thing!
 
 	$uid = $wgUser->getID();
 
 	// Perform query
-	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	$sql2 = "SELECT *" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
@@ -149,18 +150,34 @@ function wfSpecialRecentchanges( $par ) {
 	// Run existence checks
 	$batch->execute( $wgLinkCache );
 
-	$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $options ) . '</div>' );
-	$wgOut->addHTML( namespaceForm( $namespace, $invert) );
-	foreach ( $options as $key => $value ) {
-	if ($value != 'namespace' && $value != 'invert')
-		$wgOut->addHTML( "<input type='hidden' name='$key' value='$value' />" );
-        }
-
-
 	if( $feedFormat ) {
 		rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod );
 	} else {
-# Web output...
+
+		# Web output...
+
+		// Output header
+		$wgOut->addWikiText( wfMsgForContent( "recentchangestext" ) );
+	
+		// Dump everything here
+		$nondefaults = array();
+	
+		appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
+		appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+	
+		// Add end of the texts
+		$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
+		$wgOut->addHTML( namespaceForm( $namespace, $invert, $nondefaults) . '</div>');
+
+		// And now for the content
+		$sk = $wgUser->getSkin();
 		$wgOut->setSyndicated( true );
 		$list =& new ChangesList( $sk );
 		$s = $list->beginRecentChangesList();
@@ -358,8 +375,10 @@ function makeOptionsLink( $title, $override, $options ) {
 /**
  * Creates the options panel
  */
-function rcOptionsPanel( $options ) {
+function rcOptionsPanel( $defaults, $nondefaults ) {
 	global $wgLang;
+
+	$options = $nondefaults + $defaults;
 
 	if( $options['from'] )
 		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $options['limit'] ), $wgLang->timeanddate( $options['from'], true ) );
@@ -371,37 +390,37 @@ function rcOptionsPanel( $options ) {
 	$options_limit = array(50, 100, 250, 500);
 	$i = 0;
 	while ( $i+1 < count($options_limit) ) {
-		$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $options) . ' | ' ;
+		$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $nondefaults) . ' | ' ;
 		$i++;
 	}
-	$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $options) ;
+	$cl .=  makeOptionsLink( $options_limit[$i], array( 'limit' => $options_limit[$i] ), $nondefaults) ;
 
 	// day links, reset 'from' to none
 	$dl = '';
 	$options_days = array(1, 3, 7, 14, 30);
 	$i = 0;
 	while ( $i+1 < count($options_days) ) {
-		$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $options) . ' | ' ;
+		$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $nondefaults) . ' | ' ;
 		$i++;
 	}
-	$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $options) ;
+	$dl .=  makeOptionsLink( $options_days[$i], array( 'days' => $options_days[$i], 'from' => '' ), $nondefaults) ;
 
 	// show/hide links
 	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
 	$minorLink = makeOptionsLink( $showhide[1-$options['hideminor']],
-		array( 'hideminor' => 1-$options['hideminor'] ), $options);
+		array( 'hideminor' => 1-$options['hideminor'] ), $nondefaults);
 	$botLink = makeOptionsLink( $showhide[1-$options['hidebots']],
-		array( 'hidebots' => 1-$options['hidebots'] ), $options);
+		array( 'hidebots' => 1-$options['hidebots'] ), $nondefaults);
 	$liuLink   = makeOptionsLink( $showhide[1-$options['hideliu']],
-		array( 'hideliu' => 1-$options['hideliu'] ), $options);
+		array( 'hideliu' => 1-$options['hideliu'] ), $nondefaults);
 	$patrLink  = makeOptionsLink( $showhide[1-$options['hidepatrolled']],
-		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $options);
+		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
 
 	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
 	
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
-	$tl =  makeOptionsLink( $now, array( 'from' => $now), $options );
+	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
 	
 	$rclinks = wfMsg( 'rclinks', $cl, $dl, $hl );
 	$rclistfrom = wfMsg( 'rclistfrom', $tl );
@@ -414,32 +433,40 @@ function rcOptionsPanel( $options ) {
  *
  * @access private
  *
- * @param mixed $namespace The key of the currently selected namespace, NULL
+ * @param mixed $namespace The key of the currently selected namespace, empty string
  *              if there is none
  * @param bool $invert Whether to invert the namespace selection
+ * @param array $nondefaults An array of non default options to be remembered
  *
  * @return string
  */
-function namespaceForm ( $namespace, $invert ) {
+function namespaceForm ( $namespace, $invert, $nondefaults ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
 	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" ' . (is_null($namespace) ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
+	$namespaceselect .= '<option value="" ' . ($namespace === '' ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
 	$arr =  $wgContLang->getFormattedNamespaces();
 	foreach ( $arr as $ns => $name ) {
 		if( $ns < NS_MAIN )
 			continue;
 		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === (string)$ns ? ' selected="selected"' : '';
+		$sel = $namespace === (string) $ns ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
 
+	$out = '';
+	$out .= "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	foreach ( $nondefaults as $key => $value ) {
+		if ($key != 'namespace' && $key != 'invert')
+			$out .= "<input type='hidden' name='$key' value='$value' />";
+	}
+
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
 	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 	
-	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <table id='nsselect' class='recentchanges'>
@@ -522,6 +549,20 @@ function rcFormatDiff( $row ) {
 	
 	wfProfileOut( $fname );
 	return $comment;	
+}
+
+
+/**
+ * Appends to second array if $value differs from that in $default
+ */
+function appendToArrayIfNotDefault( $key, $value, $default, &$changed )
+{
+	if ( is_null( $changed ) ) {
+		die();
+	}
+	if ( $default[$key] !== $value ) {
+		$changed[$key] = $value;
+	}
 }
 
 ?>
