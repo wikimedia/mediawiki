@@ -2210,6 +2210,61 @@ Character reference normalization in link text (bug 1938)
 </p>
 !!end
 
+!! test
+Empty attribute crash test (bug 2067)
+!! input
+<font color="">foo</font>
+!! result
+<p><font color="">foo</font>
+</p>
+!! end
+
+!! test
+Empty attribute crash test single-quotes (bug 2067)
+!! input
+<font color=''>foo</font>
+!! result
+<p><font color="">foo</font>
+</p>
+!! end
+
+!! test
+Attribute test: equals, then nothing
+!! input
+<font color=>foo</font>
+!! result
+<p><font>foo</font>
+</p>
+!! end
+
+!! test
+Attribute test: unquoted value
+!! input
+<font color=x>foo</font>
+!! result
+<p><font color="x">foo</font>
+</p>
+!! end
+
+!! test
+Attribute test: unquoted but illegal value (hash)
+!! input
+<font color=#x>foo</font>
+!! result
+<p><font color="#x">foo</font>
+</p>
+!! end
+
+!! test
+Attribute test: no value
+!! input
+<font color>foo</font>
+!! result
+<p><font color="color">foo</font>
+</p>
+!! end
+
+
 TODO:
 more images
 more tables

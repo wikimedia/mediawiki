@@ -246,25 +246,24 @@ class Sanitizer {
 			$attribute = strtolower( $set[1] );
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
-			}
-			if( !isset( $set[2] ) ) {
-				# In XHTML, attributes must have a value.
-				$value = $set[1];
-			} elseif( $set[3] != '' ) {
-				# Double-quoted
-				$value = Sanitizer::normalizeAttributeValue( $set[3] );
-			} elseif( $set[4] != '' ) {
+			} elseif( isset( $set[6] ) ) {
+				# Illegal #XXXXXX color with no quotes.
+				$value = Sanitizer::normalizeAttributeValue( $set[6] );
+			} elseif( isset( $set[5] ) ) {
+				# No quotes.
+				$value = Sanitizer::normalizeAttributeValue( $set[5] );
+			} elseif( isset( $set[4] ) ) {
 				# Single-quoted
 				$value = str_replace( '"', '&quot;',
 					Sanitizer::normalizeAttributeValue( $set[4] ) );
-			} elseif( $set[5] != '' ) {
-				# No quotes.
-				$value = Sanitizer::normalizeAttributeValue( $set[5] );
-			} elseif( $set[6] != '' ) {
-				# Illegal #XXXXXX color with no quotes.
-				$value = Sanitizer::normalizeAttributeValue( $set[6] );
+			} elseif( isset( $set[3] ) ) {
+				# Double-quoted
+				$value = Sanitizer::normalizeAttributeValue( $set[3] );
+			} elseif( !isset( $set[2] ) ) {
+				# In XHTML, attributes must have a value.
+				$value = $set[1];
 			} else {
-				wfDebugDieBacktrace( "Tag conditions not met. Something's very odd." );
+				wfDebugDieBacktrace( "Tag conditions not met. This should never happen and is a bug." );
 			}
 			
 			# Strip javascript "expression" from stylesheets.
