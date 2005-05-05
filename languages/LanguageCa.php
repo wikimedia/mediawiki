@@ -497,7 +497,6 @@ Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió re
 "uploadnologin" => "No heu iniciat una sessió",
 "uploadnologintext"	=> "Deveu haver [[Especial:Userlogin|entrat]]
 per carregar arxius.",
-"uploadfile"	=> "Carrega arxiu",
 "uploaderror"	=> "S'ha produït un error en l'intent de carregar",
 "uploadtext"	=> "Per veure o cercar imatges que s'hagin carregat
 previament, aneu al [[Especial:Imagelist|llistat d'imatges carregades]].

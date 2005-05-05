@@ -528,7 +528,6 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pa
 "uploadnologin" => "Non connecté(e)",
 "uploadnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
-"uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
 prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de Wikipédia et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.

@@ -575,7 +575,6 @@ Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrze
 "uploadnologin" => "Brak logowania",
 "uploadnologintext" => "Musisz się [[Specjalna:Userlogin|zalogować]]
 przed przesłaniem pików.",
-"uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
 "uploadtext" => "'''STOP!''' Zanim prześlesz plik,
 przeczytaj [[Project:Zasady_dołączania_plików|zasady dołączania plików]]

@@ -601,7 +601,6 @@ from server time (UTC).",
 "uploadnologin" => "Not logged in",
 "uploadnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
-"uploadfile"	=> "Upload images, sounds, documents etc.",
 "uploaderror"	=> "Upload error",
 
 "uploadlog"		=> "upload log",

@@ -474,7 +474,6 @@ Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente
 "uploadnologin" => "Devi fare il login per eseguire questa operazione.",
 "uploadnologintext"	=> "Devi eseguire [[Special:Userlogin|il login]]
 per fare lo upload di files.",
-"uploadfile"	=> "Upload",
 "uploaderror"	=> "Errore di Upload",
 "uploadtext"	=> "'''FERMA!''' Prima di effettuare un upload su Wikipedia, accertati di avere ben letto e soprattutto compreso
 [[Project:Image_use_policy|le regole di Wikipedia sull'uso delle immagini]].

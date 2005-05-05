@@ -406,7 +406,6 @@ text editing area as it will appear if you choose to save.',
 'uploadnologintext'   => '{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때에만
 # special:userlogin 특수기능:들어가기
 파일을 올릴 수 있습니다.',
-'uploadfile'  => '파일 올리기',
 'uploaderror' => '올리기 오류',
 'uploadtext'  => "'''잠깐!''' 여기 그림을 올리기 전에,
 {{SITENAME}}의 [[Project:Image_use_policy|그림 사용 정책]]읽고 따라 주세요.

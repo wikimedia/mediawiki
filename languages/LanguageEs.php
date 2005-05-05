@@ -564,7 +564,6 @@ Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión rec
 "uploadnologin" => "No has iniciado sesión",
 "uploadnologintext"	=> "Tú debes [[Especial:Userlogin|iniciar sesión]]
 para subir archivos.",
-"uploadfile"	=> "Subir archivo",
 "uploaderror"	=> "Error tratando de subir",
 "uploadtext"	=> "Para ver o buscar imágenes que se hayan subido
 previamente, ve a la [[Especial:Imagelist|lista de imágenes subidas]].

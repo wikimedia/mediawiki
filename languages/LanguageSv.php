@@ -563,7 +563,6 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel f�
 "uploadnologin"         => "Inte inloggad",
 "uploadnologintext"     => "Du måste vara [[Special:Userlogin|inloggad]]
 för att kunna ladda upp filer.",
-"uploadfile"            => "Ladda upp fil",
 "uploaderror"           => "Uppladdnings fel",
 "uploadtext"            => "'''STOPP!''' Innan du laddar upp här,
 så måste du ha läst och följa Wikipedias

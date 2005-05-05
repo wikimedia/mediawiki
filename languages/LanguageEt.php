@@ -831,7 +831,6 @@ Teie sisemine ID-number on $2.",
 "reuploaddesc"	=> "Tagasi üleslaadimise vormi juurde.",
 "uploadnologin" => "sisse logimata",
 "uploadnologintext"	=> "Kui Te soovite faile üles laadida, peate [[Special:Userlogin|sisse logima]].",
-"uploadfile"	=> "Faili üleslaadimine",
 "uploaderror"	=> "Viga üleslaadimisel",
 "uploadtext"	=> "<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,
 peaksid tagama, et see järgib siinset [[{{ns:4}}:Image_use_policy|piltide kasutamise korda]].

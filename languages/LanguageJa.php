@@ -520,7 +520,6 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 
 You must be [[Special:Userlogin|logged in]]
 to upload files.",
-"uploadfile"	=> "ファイルのアップロード  Upload file",
 "uploaderror"	=> "アップロード エラー  Upload error",
 "uploadtext"	=> "'''ご注意！'''
 ここにファイルをアップロードする前に、ウィキペディアの[[Project:画像利用の方針|画像利用の方針]]を

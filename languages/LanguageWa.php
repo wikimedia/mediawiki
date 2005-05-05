@@ -648,7 +648,6 @@ dzo Wikipedia.",
 "uploadnologin" => "Nén elodjî",
 "uploadnologintext"	=> "I vs fåt esse [[Sipeciås:Userlogin|elodjî]] por
 vos pleur eberweter des fitchîs.",
-"uploadfile"	=> "Eberweter des imådjes, des sons, evnd.",
 "uploaderror"	=> "Aroke d'&nbsp;eberwetaedje",
 "uploadtext"	=> "'''ASTEME!''' Divant d'&nbsp;eberweter on
 fitchî chal, léjhoz et s'&nbsp;vos asseurer di bén shure 

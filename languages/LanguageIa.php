@@ -532,7 +532,6 @@ In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recent
 "uploadnologin" => "Session non aperte",
 "uploadnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro poter cargar files.",
-"uploadfile"	=> "Cargar file",
 "uploaderror"	=> "Error de carga",
 "uploadtext"	=> "'''STOP!''' Ante cargar files al servitor,
 prende cognoscentia del

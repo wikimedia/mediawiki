@@ -631,7 +631,6 @@ Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 "uploadnologintext"	=> "Ahhoz hogy file-okat tudj
 felküldeni [[Speciális:Belépés|logged in]]
 to upload files.",
-"uploadfile"	=> "File felküldés",
 "uploaderror"	=> "Felküldési hiba",
 "uploadtext"	=> "'''ÁLLJ!''' Mielőtt bármit felküldesz ide
 győződj meg róla hogy elolvastad és követed a

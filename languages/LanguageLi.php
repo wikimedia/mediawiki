@@ -420,7 +420,6 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 "uploadnologin" => "Niet aangemeld",
 "uploadnologintext" => "U dient [[Special:Userlogin|aangemeld te zijn]]
 om bestanden te uploaden.",
-"uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
 wees zeker dat het in overeenkomst is met het Wikipedia

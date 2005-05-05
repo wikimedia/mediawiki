@@ -559,7 +559,6 @@ alt=\"Google\" align=\"middle\"></a>
 "uploadnologin" => "未登录",
 "uploadnologintext"	=> "您必须先[[Special:Userlogin|登录]]
 才能上载文件。",
-"uploadfile"	=> "上载文件",
 "uploaderror"	=> "上载错误",
 "uploadtext"	=> "'''停止！'''在您上载之前，请先阅读并遵守Wikipedia
 [[Project:Image use policy|图像使用守则]]。

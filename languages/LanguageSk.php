@@ -502,7 +502,6 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "uploadnologin" => "Not logged in",
 "uploadnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
-"uploadfile"	=> "Upload file",
 "uploaderror"	=> "Upload error",
 "uploadlog"		=> "upload log",
 "uploadlogpage" => "Upload_log",

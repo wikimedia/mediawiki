@@ -562,7 +562,6 @@ jadi sila patuhi amaran ini.",
 "uploadnologin" => "Tidak mendaftar masuk", #"Not logged in",
 "uploadnologintext"	=> "Anda mesti [[Istimewa:Userlogin|pengguna]]
 untuk muatnaik fail.",
-"uploadfile"	=> "Muatnaik fail", #"Upload file",
 "uploaderror"	=> "Muatnaik ralat", #"Upload error",
 "uploadlog"		=> "muatnaik log", #"upload log",
 "uploadlogpage" => "Muatnaik_log", #"Upload_log",
