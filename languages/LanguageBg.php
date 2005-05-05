@@ -768,7 +768,6 @@ border='0' alt='Google'/></a>
 'reuploaddesc'  => 'Връщане към формуляра за качване.',
 'uploadnologin' => 'Не сте влезли',
 'uploadnologintext'  => "Необходимо е да [[Special:Userlogin|влезете]], за да качвате файлове.",
-'uploadfile'  => 'Качване на картинки, музикални файлове, документи и др.',
 'uploaderror'  => 'Грешка при качване',
 # TODO $wgMetaNamespace - Project or NS_PROJECT
 'uploadtext'  => "'''ВНИМАНИЕ!''' Преди да качите нещо,

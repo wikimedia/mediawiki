@@ -560,7 +560,6 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 "reuploaddesc"	=> "Revenu al la alŝuta formularo.",
 "uploadnologin" => "Ne ensalutinta",
 "uploadnologintext"	=> "Se vi volas alŝuti dosierojn, vi devas [[Special:Userlogin|ensaluti]].",
-"uploadfile"	=> "Alŝutu dosieron",
 "uploaderror"	=> "Eraro okazis dum alŝuto",
 "uploadtext"	=> "Por okulumi aŭ serĉi jam alŝutitajn dosierojn,
 aliru la [[Special:Imagelist|liston de alŝutaĵoj]].

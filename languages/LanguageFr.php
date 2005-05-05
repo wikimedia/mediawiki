@@ -656,7 +656,6 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'uploadnologin' => 'Non connecté(e)',
 "uploadnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
-'uploadfile'   => "Copier un fichier",
 'uploaderror'  => "Erreur",
 'uploadtext'   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
 prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de {{SITENAME}} et assurez-vous que vous les respectez.<br />

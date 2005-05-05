@@ -688,7 +688,6 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'reuploaddesc'	        => 'Attende til opplastingsskjemaet.',
 'uploadnologin'         => 'Ikkje innlogga',
 'uploadnologintext'	=> 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna laste opp filer.',
-'uploadfile'	        => 'Last opp bilete, rekneark, dokument, osb.',
 'uploaderror'	        => 'Feil under opplasting av fil',
 'uploadtext'	        => 'Denne sida kan brukast til å laste opp filer.
 

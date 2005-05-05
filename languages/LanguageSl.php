@@ -511,7 +511,6 @@ Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta 
 "uploadnologin"         => "Niste vpisani",
 "uploadnologintext"	=> "Za nalaganje datotek morate biti [[Special:Userlogin|vpisani]]
 .",
-"uploadfile"	        => "Naložite datoteko",
 "uploaderror"	        => "Naložite napako",
 "uploadtext"	=> "'''USTAVITE SE!''' Preden tukaj naložite,
 se prepričajte, da ste prebrali in sledili Wikipedijini

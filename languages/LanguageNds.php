@@ -679,7 +679,6 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'reuploaddesc'          => 'Trüch to de Hoochladen-Siet.',
 'uploadnologin'     => 'Nich anmellt',
 'uploadnologintext'     => 'Du muttst [[Spezial:Userlogin|anmellt ween]] üm Datein hoochladen to könen.',
-'uploadfile'            => 'Datei hoochladen',
 'uploaderror'         => 'Fehler bi dat Hoochladen',
 'uploadtext'           => "
 Üm hoochladene Biller to söken un antokieken,

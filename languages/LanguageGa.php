@@ -755,7 +755,6 @@ den am an innill friothála­ (UTC).",
 "uploadnologin" => "Nil tú logáilte isteach",
 "uploadnologintext" => "Caithfifh tú bheith [[Speisialta:Userlogin|logáilte isteach]]
 chun comhaid a uaslódáil.",
-"uploadfile"    => "Uaslódáil í­omhánna, fuaimeanna, doiciméid srl.",
 "uploaderror"   => "Earráid uaslódála",
 "uploadtext"    => "'''STOP!''' Roimh a uaslódálaíonn tú rud ar bith anseo,
 bí­ cinnte leigh agus géill don

@@ -567,7 +567,6 @@ alt=\"Google\" align=\"middle\"></a>
 "uploadnologin" => "未登錄",
 "uploadnologintext"	=> "您必須先[[Special:Userlogin|登錄]]
 才能上載文件。",
-"uploadfile"	=> "上載文件",
 "uploaderror"	=> "上載錯誤",
 "uploadtext"	=> "<strong>停止！</strong>在您上載之前，請先閱讀並遵守維基百科<a href=\"" .
 "{{localurle:Wikipedia:Image use policy}}\">圖像使用守則</a>。

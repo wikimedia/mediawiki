@@ -581,7 +581,6 @@ nga ajo e shërbyesit (UTC).",
 "uploadnologin" => "Nuk ke hyrë brënda",
 "uploadnologintext"	=> "Duhet të kesh [[Speciale:Userlogin|hyrë brënda]]
 për të dhënë skedarë.",
-"uploadfile"	=> "Jep figura, zë, dokumente etj.",
 "uploaderror"	=> "Gabim dhënie",
 "uploadtext"	=> "'''NDALO!''' Përpara se të japësh këtu,
 lexo dhe ndiq {{SITENAME}}'s

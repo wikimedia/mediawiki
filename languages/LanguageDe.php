@@ -615,7 +615,6 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "uploadnologin" => "Nicht angemeldet",
 "uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]]
 um Dateien hochladen zu können.",
-"uploadfile"	=> "Datei hochladen",
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
 Um hochgeladene Bilder zu suchen und anzusehen,

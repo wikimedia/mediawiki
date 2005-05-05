@@ -588,7 +588,6 @@ $2 yw eich rhif hunaniaith mewnol.",
 "uploadnologin" => "Nid wedi mewngofnodi",
 "uploadnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i lwytho ffeiliau i fynu.",
-"uploadfile" => "Llwytho ffeil i fynu",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
 "uploadtext" => "'''STOPIWCH!''' Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]] Wicipedia os gwelwch yn dda.
 

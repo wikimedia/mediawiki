@@ -531,9 +531,6 @@ class UploadForm {
 			$sub = wfMsg( 'uploaderror' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
 			  "<h4 class='error'>{$msg}</h4>\n" );
-		} else {
-			$sub = wfMsg( 'uploadfile' );
-			$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
 		}
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$sk = $wgUser->getSkin();

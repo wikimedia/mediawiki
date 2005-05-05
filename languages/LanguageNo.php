@@ -560,7 +560,6 @@ siste <strong>$2</strong> dagene.",
 "uploadnologin" => "Ikke logget inn",
 "uploadnologintext"	=> "Du må være [[Spesial:Userlogin|logget inn]]
 for å kunne laste opp filer.",
-"uploadfile"	=> "Last opp filer",
 "uploaderror"	=> "Feil under opplasting av fil",
 "uploadtext"	=> "'''STOPP!''' Før du laster opp filer her,
 vær sikker på du har lest og følger Wikipedias

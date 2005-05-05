@@ -476,7 +476,6 @@ Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabe
 "uploadnologin" => "Nie ingeteken nie",
 "uploadnologintext"	=> "Teken eers in [[Special:Userlogin|logged in]]
 om lêers te laai.",
-"uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
 "uploadtext"	=> "'''STOP!''' Voor jy hier laai, lees en volg {{SITENAME}} se
 [[Project:Image_use_policy|beleid oor prentgebruik]].

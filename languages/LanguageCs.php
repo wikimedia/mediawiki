@@ -443,7 +443,6 @@ Také se podívejte na
 "uploadnologin" => "Nepřihlášený",
 "uploadnologintext"	=> "Musíte mít účet a [[Speciala:Userlogin|přihlaste se]]
 pro načtení souboru.",
-"uploadfile"	=> "Načti soubor",
 "uploaderror"	=> "Při načítání došlo k chybě",
 "uploadtext"	=> "Pro prohlížení a hledání již načtených souborů, jděte na
 [[Special:Imagelist|seznam načteného]].

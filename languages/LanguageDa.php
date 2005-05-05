@@ -601,7 +601,6 @@ sidste <strong>$2</strong> dage.",
 "uploadnologin" => "Ikke logget på",
 "uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
 for at kunne lægge filer op.",
-"uploadfile"	=> "Læg filen op",
 "uploaderror"	=> "Fejl under oplægning af fil",
 "uploadtext"	=> "'''STOP!''' Før du lægger filer op her,
 så vær sikker på du har læst og følger Wikipedias

@@ -584,7 +584,6 @@ $2 Luettelo uudelleenohjauksista<br />Etsi $3 $9',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
 'uploadnologin'       => 'Et ole kirjaunut sisään',
 'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.', // TODO NO WIKIMARKUP
-'uploadfile'          => 'Tallenna tiedosto',
 'uploaderror'         => 'Tallennusvirhe',
 'uploadtext'          => '\'\'\'SEIS!\'\'\' Ennen kuin tallennat tiedostoja {{GRAMMAR:illative|{{SITENAME}}}}, tutustu [[Project:Kuvien_käyttösäännöt|kuvien käyttösääntöihin]] ja noudata niitä.
 *\'\'Kirjoita kuvan tietoihin tarkka tieto kuvan lähteestä.\'\' Jos teit kuvan itse, sano se. Jos löysit kuvan Internetistä, laita mukaan linkki kyseiselle sivulle.

@@ -573,7 +573,6 @@ Jo Wiki-nûmer is $2.
 "uploadnologin" 	=> "Net oanmelde",
 "uploadnologintext" => "Jo moatte [[Wiki:Userlogin|oanmeld]] wêze om in bestân oanbieden te kinnen.",
 
-"uploadfile"	=> "Bied ôfbylden, lûden, dokuminten ensfh. oan.",
 "uploaderror"	=> "Oanbied-fout",
 "uploadtext"	=> "'''STOP!''' Lês ear't jo eat oanbiede
 de [[Project:Ofbyld-rie|regels foar ôfbyldbrûk]] foar de {{SITENAME}}.

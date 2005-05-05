@@ -569,7 +569,6 @@ Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "uploadnologin" => "Não autenticado",
 "uploadnologintext" => "Você deve estar [[Special:Userlogin|autenticado]]
 para carregar arquivos.",
-"uploadfile"    => "Carregar imagens, sons, documentos etc.",
 "uploaderror"   => "Erro ao Carregar",
 "uploadtext"    => "'''PARE!''' Antes de você carregar arquivos aqui,
 tenha certeza de ter lido e estar em acordo com a

@@ -522,7 +522,6 @@ Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voeg
 "uploadnologin" => "Niet aangemeld",
 "uploadnologintext" => "U dient [[Speciaal:Userlogin|aangemeld te zijn]]
 om bestanden te uploaden.",
-"uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "'''STOP!''' Voor u iets hier upload,
 wees zeker dat het in overeenkomst is met het {{SITENAME}} NL
