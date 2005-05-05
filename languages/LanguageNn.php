@@ -733,7 +733,6 @@ For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som
 'imagelist'		=> 'Filliste',
 'imagelisttext'	        => 'Her er ei liste med $1 filer sorterte $2.',
 'getimagelist'	        => 'hentar filliste',
-'ilshowmatch'	        => 'Vis alle treff på filer med namn',
 'ilsubmit'		=> 'Søk',
 'showlast'		=> 'Vis dei siste $1 filene sorterte $2.',
 'byname'		=> 'etter namn',

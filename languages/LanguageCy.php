@@ -647,7 +647,6 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "imagelist" => "Rhestr delweddau",
 "imagelisttext"	=> "Isod mae rhestr o $1 delweddau wedi trefnu $2.",
 "getimagelist" => "yn nôl rhestr delweddau",
-"ilshowmatch" => "Dangos pob delwedd gyda enwau yn cyfateb",
 "ilsubmit" => "Chwilio",
 "showlast" => "Dangos y $1 delweddau olaf wedi trefnu $2.",
 "byname" => "gan enw",

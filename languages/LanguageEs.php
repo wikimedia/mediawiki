@@ -628,7 +628,6 @@ creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 "imagelist"		=> "Lista de imágenes",
 "imagelisttext"	=> "Abajo hay una lista de $1 imágenes ordenadas $2.",
 "getimagelist"	=> " obteniendo la lista de imágenes",
-"ilshowmatch"	=> "Muestra todas las imágenes con nombres que coincidan con",
 
 "ilsubmit"		=> "Búsqueda",
 "showlast"		=> "Mostrar las últimas $1 imágenes ordenadas  $2.",

@@ -621,7 +621,6 @@ alt=\"Google\" align=\"middle\"></a>
 "imagelist"		=> "圖像列表",
 "imagelisttext"	=> "以下是按$2排列的$1幅圖像列表。",
 "getimagelist"	=> "正在獲取圖像列表",
-"ilshowmatch"	=> "顯示所有匹對的圖像",
 "ilsubmit"		=> "搜索",
 "showlast"		=> "顯示按$2排列的最後$1幅圖像。",
 "byname"		=> "名字",

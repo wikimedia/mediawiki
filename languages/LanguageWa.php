@@ -732,7 +732,6 @@ saveur å dfait do fitchî.",
 "imagelist"		=> "Djivêye des imådjes",
 "imagelisttext"	=> "Chal pa dzo c'&nbsp;est ene djivêye di $1 imådjes relîtes $2.",
 "getimagelist"	=> "fetching image list", # co a fé
-"ilshowmatch"	=> "Mostrer totes les imådjes avou des nos ki corespondèt a",
 "ilsubmit"		=> "Cweri",
 "showlast"		=> "Mostrer les $1 dierinnès imådjes relîtes $2.",
 "byname"		=> "påzès nos",

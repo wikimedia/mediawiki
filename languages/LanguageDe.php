@@ -676,7 +676,6 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
 "imagelist"		=> "Bilderliste",
 "imagelisttext"	=> "Hier ist eine Liste von $1 Bildern, sortiert $2.",
 "getimagelist"	=> "Lade Bilderliste",
-"ilshowmatch"	=> "Zeige alle Bilder mit Namen",
 "ilsubmit"		=> "Suche",
 "showlast"		=> "Zeige die letzten $1 Bilder, sortiert nach $2.",
 "byname"		=> "nach Name",

@@ -629,7 +629,6 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'imagelist'           => 'Luettelo kuvista',
 'imagelisttext'       => 'Alla on $1 kuvan luettelo lajiteltuna $2.',
 'getimagelist'        => 'noudetaan kuvaluettelo',
-'ilshowmatch'         => 'Haku kuvista',
 'ilsubmit'            => 'Hae',
 'showlast'            => 'Näytä viimeiset $1 kuvaa lajiteltuna $2.',
 'byname'              => 'nimen mukaan',

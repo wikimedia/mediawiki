@@ -902,7 +902,6 @@ ja kelle poolt ta loodi, jne.",
 "imagelist"		=> "Piltide loend",
 "imagelisttext"	=> "Piltide arv järgnevas loendis: $1. Sorteeritud $2.", # $2 -- nt. "kuupäeva järgi".
 "getimagelist"	=> "hangin piltide nimekirja",
-"ilshowmatch"	=> "Näita kõiki pilte, mille nimi klapib",
 "ilsubmit"		=> "Otsi",
 "showlast"		=> "Näita viimast $1 pilti sorteerituna $2.", # $2 nt. "nime järgi"
 "byname"		=> "nime järgi",
