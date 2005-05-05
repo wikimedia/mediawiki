@@ -976,36 +976,21 @@ to upload files.",
 'upload_directory_read_only' => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'	=> 'Upload error',
 'uploadtext'	=>
-"'''STOP!''' Before you upload here,
-make sure to read and follow the [[Project:Image use policy|image use policy]].
+"
+Use the form below to upload new files, 
+to view or search previously uploaded images
+go to the [[Special:Imagelist|list of uploaded files]], 
+uploads and deletions are also logged in the [[Special:Log|project log]].
 
-To view or search previously uploaded images,
-go to the [[Special:Imagelist|list of uploaded images]].
-Uploads and deletions are logged on the
-[[Project:Upload log|upload log]].
-
-Use the form below to upload new image files for use in
-illustrating your pages.
-On most browsers, you will see a \"Browse...\" button, which will
-bring up your operating system's standard file open dialog.
-Choosing a file will fill the name of that file into the text
-field next to the button.
 You must also check the box affirming that you are not
 violating any copyrights by uploading the file.
 Press the \"Upload\" button to finish the upload.
-This may take some time if you have a slow internet connection.
 
-The preferred formats are JPEG for photographic images, PNG
-for drawings and other iconic images, and OGG for sounds.
-Please name your files descriptively to avoid confusion.
 To include the image in a page, use a link in the form
-'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''' or
+'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''', 
 '''<nowiki>[[{{ns:6}}:file.png|alt text]]</nowiki>''' or
-'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for sounds.
-
-Please note that as with wiki pages, others may edit or
-delete your uploads if they think it serves the project, and
-you may be blocked from uploading if you abuse the system.",
+'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for directly linking to the file.
+",
 
 'uploadlog'		=> 'upload log',
 'uploadlogpage' => 'Upload_log',
