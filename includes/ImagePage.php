@@ -55,18 +55,13 @@ class ImagePage extends Article {
 
 	function showTOC() {
 		global $wgOut, $wgShowEXIF, $wgLang;
-		
-		$r= '<div class="imagepagetoc"><table class="toc"><tr><td><b>'.htmlspecialchars( wfMsg( 'toc' )) .'</b><br />';
-		$r .= '<a href="#toc">'        . htmlspecialchars( $wgLang->getNStext( NS_IMAGE ) ) . '</a> - ';
-		$r .= '<a href="#imghistory">' . htmlspecialchars( wfMsg( 'imghistory' ) ) . '</a> - ';
-		$r .= '<a href="#imagelinks">' . htmlspecialchars( wfMsg( 'imagelinks' ) ) . '</a>';
-		if ( $wgShowEXIF ) {
-			$r .= ' - <a href="#exifdata">' . htmlspecialchars( wfMsg( 'exifdata' ) ) . '</a>';
-		}
-
-			
-		$wgOut->addHTML( $r . '</td></tr></table></div>' );
-
+		$r = '<ul id="filetoc">
+			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
+			<li><a href="#filehistory">' . wfMsg( 'imghistory' ) . '</a></li>
+			<li><a href="#filelinks">' . wfMsg( 'imagelinks' ) . '</a></li>' .
+			($wgShowEXIF ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') .
+		'</ul>';
+		$wgOut->addHTML( $r );
 	}
 	
 	function showEXIFdata() {
@@ -82,8 +77,8 @@ class ImagePage extends Article {
 		}
 		
 		# Create the table
-		$r = '<h2 id="exifdata">'. htmlspecialchars( wfMsg( 'exifdata' ) ) . "</h2>\n";
-		$r .= "<table class=\"exif\">\n" ;
+		$r = '<h2 id="metadata">'. htmlspecialchars( wfMsg( 'metadata' ) ) . "</h2>\n";
+		$r .= "<table class='metadata'>\n" ;
 		$n = 0;
 		foreach( $exif as $k => $v ) {
 			if( $n % 2 == 0 ) {
@@ -156,7 +151,7 @@ class ImagePage extends Article {
 				} else {
 					$url = $full_url;
 				}
-				$s = '<div class="fullImageLink">' . $anchoropen .
+				$s = '<div class="fullImageLink" id="file">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
 				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>';
 			} else {
@@ -244,7 +239,7 @@ class ImagePage extends Article {
 	{
 		global $wgUser, $wgOut;
 
-		$wgOut->addHTML( '<h2 id="imagelinks">' . wfMsg( 'imagelinks' ) . "</h2>\n" );
+		$wgOut->addHTML( '<h2 id="filelinks">' . wfMsg( 'imagelinks' ) . "</h2>\n" );
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
@@ -519,7 +514,7 @@ class ImageHistoryList {
 	}
 	
 	function beginImageHistoryList() {
-		$s = "\n<h2 id=\"imghistory\">" . wfMsg( 'imghistory' ) . "</h2>\n" .
+		$s = "\n<h2 id=\"filehistory\">" . wfMsg( 'imghistory' ) . "</h2>\n" .
 		  "<p>" . wfMsg( 'imghistlegend' ) . "</p>\n".'<ul class="special">';
 		return $s;
 	}
