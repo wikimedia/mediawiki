@@ -571,7 +571,6 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "imagelist"  => "Lijst van afbeeldingen",
 "imagelisttext" => "Hier volgt een lijst met $1 afbeeldingen geordend $2.",
 "getimagelist" => "Lijst van afbeeldingen ophalen",
-"ilshowmatch" => "Toon alle afbeeldingen waarvan de naam voldoet aan",
 "ilsubmit"  => "Zoek",
 "showlast"  => "Toon de laatste $1 afbeeldingen geordend $2.",
 "byname"  => "op naam",

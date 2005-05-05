@@ -584,7 +584,6 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "imagelist"  => "Liste des images",
 "imagelisttext" => "Voici une liste de $1 images classées $2.",
 "getimagelist" => "Récupération de la liste des images",
-"ilshowmatch" => "Afficher toutes les images dont le nom contient ",
 "ilsubmit"  => "Chercher",
 "showlast"  => "Afficher les $1 dernières images classées $2.",
 "byname"  => "par nom",

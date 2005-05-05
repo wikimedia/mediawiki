@@ -492,7 +492,6 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "imagelist"		=> "Seznam načtených souborů ",
 "imagelisttext"	=> "Seznam souborů, seřazených dle .",
 "getimagelist"	=> "získává seznam souborů ",
-"ilshowmatch"	=> "Ukaž soubory, jejich jména vyhovují",
 "ilsubmit"		=> "Hledej",
 "showlast"		=> "Ukaž poslední soubor dle .",
 "byname"		=> "jméno",

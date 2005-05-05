@@ -737,7 +737,6 @@ Disse ($2) Link föhrt to de Bildsiet. Dor kann indregen warrn, woneem dat Bild 
 'imagelist'               => 'Billerlist',
 'imagelisttext'       => 'Hier is en List vun $1 Biller, sorteert $2.',
 'getimagelist'          => 'Billerlist laden',
-'ilshowmatch'           => 'Wies alle Biller mit Naam',
 'ilsubmit'                        => 'Söök',
 'showlast'                      => 'Wies de letzten $1 Biller, sorteert $2.',
 'byname'                        => 'no Naam',

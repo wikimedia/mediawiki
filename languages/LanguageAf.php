@@ -531,7 +531,6 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "imagelist"		=> "Prentelys",
 "imagelisttext"	=> "Hier onder is a lys van $1 prente gesorteer $2.",
 "getimagelist"	=> "Besig om prentelys te haal",
-"ilshowmatch"	=> "Wys alle prente met name wat pas",
 "ilsubmit"		=> "Soek",
 "showlast"		=> "Wys laaste $1 prente gesorteer $2.",
 "byname"		=> "volgens naam",

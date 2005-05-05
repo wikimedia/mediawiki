@@ -465,7 +465,6 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 "imagelist"  => "liest van afbeeldingen",
 "imagelisttext" => "Hier volgt een liest met $1 afbeeldingen geordend $2.",
 "getimagelist" => "liest van afbeeldingen ophalen",
-"ilshowmatch" => "Toon alle afbeeldingen waarvan de naam voldoet aan",
 "ilsubmit"  => "Zoek",
 "showlast"  => "Toon de laatste $1 afbeeldingen geordend $2.",
 "byname"  => "op naam",

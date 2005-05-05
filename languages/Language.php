@@ -1047,7 +1047,6 @@ created and by whom, and anything else you may know about it. If this is an imag
 'imagelist'		=> 'File list',
 'imagelisttext'	=> "Below is a list of $1 files sorted $2.",
 'getimagelist'	=> 'fetching file list',
-'ilshowmatch'	=> 'Show all images with names matching',
 'ilsubmit'		=> 'Search',
 'showlast'		=> "Show last $1 images sorted $2.",
 'byname'		=> 'by name',

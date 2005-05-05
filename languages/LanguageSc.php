@@ -512,7 +512,6 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "imagelist"		=> "Lista delle immagini",
 "imagelisttext"	=> "Qui di seguito una lista di $1 immagini, ordinate per $2.",
 "getimagelist"	=> "ricerca nella lista delle immagini ",
-"ilshowmatch"	=> "Mostra tutte le immagini con nomi di file corrispondenti alla ricerca",
 "ilsubmit"		=> "Cerca",
 "showlast"		=> "Mostra le ultime $1 immagini ordinate per $2.",
 "byname"		=> "nome",
