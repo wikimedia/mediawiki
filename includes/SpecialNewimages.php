@@ -103,14 +103,13 @@ function wfSpecialNewimages() {
 		"<strong>{$lt}</strong>", "<strong>{$bydate}</strong>" );
 	$wgOut->addHTML( "<p>{$text}\n</p>" );
 
-	$cap = wfMsg( 'ilshowmatch' );
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
 	$action = $titleObj->escapeLocalURL(  "limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
-	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
+	  "<input type='text' size='20' name=\"wpIlMatch\" value=\"" .
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$here = $wgContLang->specialPage( 'Newimages' );
