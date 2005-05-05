@@ -901,7 +901,7 @@ Isto pode frequentemente sobrecarregar o servidor , sendo assim, por favor use e
 "movepage"      => "Mover página",
 "movepagetext"  => "Usando o formulário a seguir você poderá renomear uma página , movendo todo o histórico para o novo nome.
 O título antigo será transformado num redirecionamento para o novo título.
-Links para as páginas antigas não serão mudados; certifique-se de [[Especial:Maintenance| checar]] redirecionamentos  quebrados ou artigos duplos.
+Links para as páginas antigas não serão mudados; certifique-se de checar redirecionamentos  quebrados ou artigos duplos.
 Você é responsável por certificar-se que os links continuam apontando para onde eles deveriam apontar.
 
 Note que a página '''não''' será movida se já existe uma página com o novo título, a não ser que ele esteja vazio ou seja um redirecionamento e não tenha histórico de edições. Isto significa que você pode renomear uma págna de volta para o nome que era antigamente se você cometer algum enganoe você não pode sobrescrever uma página.

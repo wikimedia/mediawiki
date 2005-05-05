@@ -768,7 +768,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 o pagină, mutându-i toată istoria sub noul nume.
 Pagina veche va deveni o pagină de redirijare către pagina nouă.
 Legăturile către pagina veche nu vor fi redirijate către cea nouă;
-nu uita să [[Special:Maintenance|verifici]] dacă nu există redirijări duble sau invalide.
+nu uita să verifici dacă nu există redirijări duble sau invalide.
 
 Te rugăm să reţi că tu eşti responsabil(ă) pentru a face legăturile vechi să rămână valide.
 

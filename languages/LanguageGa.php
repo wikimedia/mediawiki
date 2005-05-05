@@ -1234,7 +1234,7 @@ cumaisc líonfar na roghanna eile de réir na roghanna a raibh agat roimhe ré.'
 stair go léir chuig an ainm nua.
 Déanfar leathanach athsheolaidh den sean-ainm chuig an ainm nua.
 Ní­ athreofar naisc chuig sean-ainmneacha an leathanaigh. Bí cinnte go ndéanfá
-[[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste.
+cuardach ar athsheolaidh dubáilte nó briste.
 Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
 
 Tabhair faoi deara '''nach''' athainmneofar an leathanach má bhfuil leathanach

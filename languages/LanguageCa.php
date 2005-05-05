@@ -849,7 +849,7 @@ als desenvolupadors de la {{SITENAME}}.",
 "movepagetext"	=> "Emprant el següent formulari reanomenareu una pàgina,
 movent tota la seva història al nou nom.
 El títol anterior es convertirà en un redireccionament al nou títol.
-Els enllaços a l'antic títol de la pàgina no es canviaran. Assegureu-vos-en de [[Especial:Maintenance|verificar]] que no deixeu redireccions 
+Els enllaços a l'antic títol de la pàgina no es canviaran. Assegureu-vos-en de verificar que no deixeu redireccions 
 
 dobles o trencades.
 Sou el responsable de fer que els enllaços segueixin apuntant on se suposa que ho facin. 

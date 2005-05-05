@@ -392,7 +392,7 @@ Legend: (nú) = núverandi útgáfa,
 verða færð á nýja nafnið og núverandi staðsetning mun
 breytast í tilvísun sem vísa mun á nýju staðsetninguna,
 tenglar í núverandi nafn munu hinsvegar ekki breytast,
-[[Kerfissíða:Maintenance|athugaðu]] að þetta búi ekki til margfaldar
+athugaðu að þetta búi ekki til margfaldar
 tilvísanir, það er á þína ábyrgð að tryggja það að tenglar haldi áfram
 að vísa á rétta síðu.
 

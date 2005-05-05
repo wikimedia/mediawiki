@@ -1014,7 +1014,7 @@ Wikipediaudviklere.",
 side og flyttet hele sidens historie til det nye navn.
 Den gamle titel vil blive en omdirigeringsside til den nye titel.
 Henvisninger til den gamle titel vil ikke blive ændret. Sørg for at 
-[[Speciel:Maintenance|tjekke]] for dobbelte eller dårlige omdirigeringer. 
+tjekke for dobbelte eller dårlige omdirigeringer. 
 Du er ansvarlig for, at alle henvisninger stadig peger derhen, hvor det er 
 meningen de skal pege.
 

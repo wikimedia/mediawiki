@@ -1078,7 +1078,7 @@ this function sparingly.", # co a fé
 dj'&nbsp;ô bén displaecî l'&nbsp;pådje, eyet si istwere, viè l'&nbsp;novea no.
 Li vî tite divénrè-st ene pådje di redjiblaedje viè l'&nbsp;novele/
 Les loyéns viè l'&nbsp;viye pådje èn seront nén candjîs; acertinez vs di
-[[Sipeciås:Maintenance|verifyî]] s'&nbsp;i n'&nbsp;a nén des dobes
+verifyî s'&nbsp;i n'&nbsp;a nén des dobes
 ou crons redjiblaedjes.
 Vos estoz responsåve di fé çou k'&nbsp;i fåt po k'&nbsp;les loyéns
 continouwexhe di moenner la k'&nbsp;i fåt.

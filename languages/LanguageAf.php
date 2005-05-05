@@ -775,7 +775,7 @@ Dit kan dikwels 'n groot lading op die bediener plaas, so gebruik hierdie funksi
 "movepagetext"	=> "Met die vorm hier onder kan jy 'n bladsy hernoem en so al sy geskiedenis na die nuwe naam skuif.
 Die ou titel sal 'n aanstuurbladsy na die nuwe titel word.
 Skakels na die ou bladsytitel sal nie verander nie; maak seker dat jy 
-[[Special:Maintenance|check]] vir dubbele of gebrekte aansture.
+check vir dubbele of gebrekte aansture.
 Dis jou verantwoordelikheid om seker te maak dat skakels steeds wys waarheen hulle moet.
 
 Let op dat 'n bladsy '''nie''' geskuif sal word as daar reeds 'n bladsy met so 'n titel bestaan nie, tensy dit leeg is off 'n aanstuurbladsy is, en dit het geen veranderingsgeskiedenis nie. Dit beteken dat jy 'n bladsy kan hernoem na sy ou titel as jy 'n fout gemaak het, en jy kan nie oor 'n bestaande bladsy skryf nie.

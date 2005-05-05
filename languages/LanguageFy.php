@@ -956,7 +956,7 @@ $wgSitename ûntwiklers.",
 "movepagetext"	=> "Dit werneamt in side, mei alle sideskiednis.
 De âlde titel wurdt in trochferwizing nei de nije.
 Keppelings mei de âlde side wurde net feroare; 
-[[Wiki:Maintenance|gean sels nei]] of't der dûbele of misse ferwizings binne.
+gean sels nei of't der dûbele of misse ferwizings binne.
 It hinget fan jo ôf of't de siden noch keppelen binne sa't it mient wie.
 
 De side wurdt '''net''' werneamt as der al in side mei dy namme is, útsein as it in side
