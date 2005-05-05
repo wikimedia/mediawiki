@@ -1220,7 +1220,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 
 # Patrolling
 'markaspatrolleddiff'   => "Tandai telah diperiksa",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Tandai artikel ini telah diperiksa",
 'markedaspatrolled'     => "Telah ditandai telah diperiksa",
 'markedaspatrolledtext' => "Revisi yang dipilih telah ditandai sebagai telah diperiksa",

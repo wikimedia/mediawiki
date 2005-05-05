@@ -1211,7 +1211,7 @@ Skriv "0" som første bokstav for å slå av den nye kategoriutsjånaden.',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Merk som patruljert',
-'markaspatrolledlink'   => '<div class=\'patrollink\'>[$1]</div>',
+'markaspatrolledlink'   => '[$1]',
 'markaspatrolledtext'   => 'Merk denne innhaldssida som patruljert',
 'markedaspatrolled'     => 'Merk som patruljert',
 'markedaspatrolledtext' => 'Den valde versjonen er vorten merkt som patruljert.',

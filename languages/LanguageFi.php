@@ -1099,7 +1099,7 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi [[Juna
 // HOX
 # Patrolling
 'markaspatrolleddiff'   => 'Merkitse tarkastetuksi',
-'markaspatrolledlink'   => '<div class="patrollink">[$1]</div>',
+'markaspatrolledlink'   => '[$1]',
 'markaspatrolledtext'   => 'Merkitse sivu tarkastetuksi',
 'markedaspatrolled'     => 'Tarkastettu',
 'markedaspatrolledtext' => 'Valittu versio on tarkastettu.',
