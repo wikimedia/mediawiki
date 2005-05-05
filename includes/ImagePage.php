@@ -20,14 +20,22 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object this page is shown for
 	
 	function view() {
-		global $wgUseExternalEditor, $wgOut ;
+		global $wgUseExternalEditor, $wgOut, $wgShowEXIF;
 
 		$this->img  = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
-			if( $this->img->exists() ) {
-				$this->showTOC();
+			if ($wgShowEXIF && $this->img->exists()) {
+				$exif = $this->img->getExifData();
+				$showmeta = count($exif) ? true : false;
+			} else {
+				$exif = false;
+				$showmeta = false;
 			}
+
+			if ($this->img->exists())
+				$wgOut->addHTML($this->showTOC($showmeta));
+
 			$this->openShowImage();
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
@@ -44,38 +52,42 @@ class ImagePage extends Article {
 			
 			$this->closeShowImage();
 			$this->imageHistory();
+			if ($exif)
+				$wgOut->addHTML($this->makeMetadataTable($exif));
 			$this->imageLinks();
-			if( $this->img->exists() ) {
-				$this->showEXIFdata();
-			}
 		} else {
 			Article::view();
 		}
 	}
 
-	function showTOC() {
-		global $wgOut, $wgShowEXIF, $wgLang;
+	/**
+	 * Create the TOC
+	 *
+	 * @access private
+	 *
+	 * @param bool $metadata Whether or not to show the metadata link
+	 * @return string
+	 */
+	function showTOC( $metadata ) {
+		global $wgLang;
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
 			<li><a href="#filehistory">' . wfMsg( 'imghistory' ) . '</a></li>
 			<li><a href="#filelinks">' . wfMsg( 'imagelinks' ) . '</a></li>' .
-			($wgShowEXIF ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') .
+			($metadata ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') .
 		'</ul>';
-		$wgOut->addHTML( $r );
+		return $r;
 	}
-	
-	function showEXIFdata() {
-		global $wgOut, $wgShowEXIF;
-		if( !$wgShowEXIF ) {
-			return;
-		}
 
-		# Get the EXIF data
-		$exif = $this->img->getExifData();
-		if( count ( $exif ) == 0 ) {
-			return; # No EXIF data available
-		}
-		
+	/**
+	 * Make a table with metadata to be shown in the output page.
+	 *
+	 * @access private
+	 * 
+	 * @param array $exif The array containing the EXIF data
+	 * @return string
+	 */
+	function makeMetadataTable( $exif ) {
 		# Create the table
 		$r = '<h2 id="metadata">'. htmlspecialchars( wfMsg( 'metadata' ) ) . "</h2>\n";
 		$r .= "<table class='metadata'>\n" ;
@@ -97,7 +109,7 @@ class ImagePage extends Article {
 			$r .= "<th></th><td></td></tr>\n";
 		}
 
-		$wgOut->addHTML( $r . "</table>\n" );
+		return "$r</table>\n";
 	}
 
 	function openShowImage()
