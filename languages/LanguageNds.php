@@ -1450,7 +1450,7 @@ Gruppen, de nich wählt warrn, warrn nich ännert. Du kannst de Utwahl vun en Gr
 
 # Patrolleern
 'markaspatrolleddiff'       => 'As patrolleert markeern',
-'markaspatrolledlink'       => '<div class=\'patrollink\'>[$1]</div>',
+'markaspatrolledlink'       => '[$1]',
 'markaspatrolledtext'       => 'Disse Siet as patrolleert markeern',
 'markedaspatrolled'         => 'As patrolleert markeert',
 'markedaspatrolledtext'     => 'Disse Revision is as patrolleert markeert.',

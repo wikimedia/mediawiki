@@ -1018,7 +1018,7 @@ Por favor, elige otro nombre.",
 
 # Patrolling
 'markaspatrolleddiff'   => "Marcar como revisado",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Marcar este artículo como revisado",
 'markedaspatrolled'     => "Marcar como revisado",
 'markedaspatrolledtext' => "La versión seleccionada ha sido marcada como revisada.",

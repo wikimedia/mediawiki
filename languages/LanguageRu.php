@@ -1517,7 +1517,7 @@ The wiki server can\'t provide data in a format your client can read.',
 
 # Patrolling
 'markaspatrolleddiff'   => "Пометить как проверенную",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Пометить эту статью как проверенную",
 'markedaspatrolled'     => "Помечена как проверенная",
 'markedaspatrolledtext' => "Выбранная версия помечена как проверенная.",

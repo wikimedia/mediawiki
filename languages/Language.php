@@ -1689,7 +1689,7 @@ article [[Train]].
 
 # Patrolling
 'markaspatrolleddiff'   => "Mark as patrolled",
-'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledlink'   => "[$1]",
 'markaspatrolledtext'   => "Mark this article as patrolled",
 'markedaspatrolled'     => "Marked as patrolled",
 'markedaspatrolledtext' => "The selected revision has been marked as patrolled.",
