@@ -1044,9 +1044,9 @@ created and by whom, and anything else you may know about it. If this is an imag
 
 # Image list
 #
-'imagelist'		=> 'Image list',
-'imagelisttext'	=> "Below is a list of $1 images sorted $2.",
-'getimagelist'	=> 'fetching image list',
+'imagelist'		=> 'File list',
+'imagelisttext'	=> "Below is a list of $1 files sorted $2.",
+'getimagelist'	=> 'fetching file list',
 'ilshowmatch'	=> 'Show all images with names matching',
 'ilsubmit'		=> 'Search',
 'showlast'		=> "Show last $1 images sorted $2.",
@@ -1056,18 +1056,18 @@ created and by whom, and anything else you may know about it. If this is an imag
 'imgdelete'		=> 'del',
 'imgdesc'		=> 'desc',
 'imglegend'		=> 'Legend: (desc) = show/edit image description.',
-'imghistory'	=> 'Image history',
+'imghistory'	=> 'History',
 'revertimg'		=> 'rev',
 'deleteimg'		=> 'del',
 'deleteimgcompletely'		=> 'Delete all revisions',
-'imghistlegend' => 'Legend: (cur) = this is the current image, (del) = delete
+'imghistlegend' => 'Legend: (cur) = this is the current file, (del) = delete
 this old version, (rev) = revert to this old version.
-<br /><i>Click on date to see image uploaded on that date</i>.',
-'imagelinks'	=> 'Image links',
-'linkstoimage'	=> 'The following pages link to this image:',
-'nolinkstoimage' => 'There are no pages that link to this image.',
+<br /><i>Click on date to see the file uploaded on that date</i>.',
+'imagelinks'	=> 'Links',
+'linkstoimage'	=> 'The following pages link to this file:',
+'nolinkstoimage' => 'There are no pages that link to this file.',
 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
-'shareduploadwiki' => 'Please see the [$1 image description page] for further information.',
+'shareduploadwiki' => 'Please see the [$1 file description page] for further information.',
 'noimage'       => 'No file by this name exists, you can [$1 upload it]',
 'uploadnewversion' => '[$1 Upload a new version of this file]',
 
