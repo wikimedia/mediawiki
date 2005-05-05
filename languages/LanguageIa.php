@@ -892,7 +892,7 @@ disveloppatores de Wikipedia.",
 movente tote su chronologia al nove nomine.
 Le titulo anterior devenira un pagina de redirection al nove titulo.
 Le ligamines al pagina anterior non essera modificate;
-assecura te de [[Special:Maintenance|verificar]] le apparition de redirectiones duple o van.
+assecura te de verificar le apparition de redirectiones duple o van.
 Tu es responsabile pro assecurar que le ligamines continua a punctar a ubi illos deberea.
 
 Nota que le pagina '''non''' essera movite si ja existe un pagina

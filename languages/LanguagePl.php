@@ -981,7 +981,7 @@ użytkowników o statusie Programisty.",
 przenosząc jednocześnie jej historę.
 Pod starym tytułem zostanie umieszczona strona przekierowująca.
 Linki do starego tytułu pozostaną niezmienione.
-[[Specjalna:Maintenance|Upewnij się]], że uwzględniasz podwójne
+Upewnij się, że uwzględniasz podwójne
 lub zerwane przekierowania. Odpowiadasz za to, żeby linki odnosiły
 się do właściwych artykułów!
 

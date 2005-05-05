@@ -923,7 +923,7 @@ a $wgSitename developers.",
 "movepagetext"	=> "Usando el formulario que sigue renombrará una página,
 moviendo todo su historial al nombre nuevo.
 El título anterior se convertirá en un redireccionamiento al nuevo título.
-Enlaces al antiguo título de la página no se cambiarán. Asegúrate de [[Especial:Maintenance|verificar]] no dejar redirecciones dobles o rotas.
+Enlaces al antiguo título de la página no se cambiarán. Asegúrate de verificar no dejar redirecciones dobles o rotas.
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que lo deberían hacer. 
 
 Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historial. 

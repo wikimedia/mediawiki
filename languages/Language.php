@@ -1527,7 +1527,7 @@ merging will fill in the other options with your previous settings.',
 of its history to the new name.
 The old title will become a redirect page to the new title.
 Links to the old page title will not be changed; be sure to
-[[Special:Maintenance|check]] for double or broken redirects.
+check for double or broken redirects.
 You are responsible for making sure that links continue to
 point where they are supposed to go.
 

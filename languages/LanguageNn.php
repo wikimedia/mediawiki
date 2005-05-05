@@ -1090,7 +1090,7 @@ Dette kan ofte belaste nettenaren kraftig, så bruk denne funksjonen med varsemd
 # Move page
 #
 'movepage'		=> 'Flytt side',
-'movepagetext'	        => 'Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å [[Spesial:Maintenance|sjekke]] for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+'movepagetext'	        => 'Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
 
 Merk at sida \'\'\'ikkje\'\'\' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytta frå dersom du gjer ein feil, så lenge den sida du flyttar tilbake til ikkje har vorte endra sidan flyttinga.
 

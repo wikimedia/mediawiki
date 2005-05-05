@@ -966,7 +966,7 @@ $wgSitename zhvillues.",
 duke zhvendosur gjithë historinë përkatëse tek titulli i ri.
 Titulli i vjetër do të bëhet një faqe ridrejtuese tek titulli i ri.
 Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrollosh
-[[Speciale:Maintenance|mirëmbajtjen]] për ridrejtime të dyfishta ose të prishura.
+mirëmbajtjen për ridrejtime të dyfishta ose të prishura.
 Ti ke përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
 
 Vë re se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe

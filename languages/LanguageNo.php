@@ -977,7 +977,7 @@ Wikipedia-utviklere.",
 side og flyttet hele historikken til det nye navnet.
 Den gamle tittelen vil bli en omdirigeringsside til den nye tittelen.
 Lenker til den gamle tittelen vil ikke bli endret. Sørg for å 
-[[Spesial:Maintenance|sjekke]] for dobbelte eller dårlige omdirigeringer. 
+sjekke for dobbelte eller dårlige omdirigeringer. 
 Du er ansvarlig for at alle lenker stadig peker dit det er 
 meningen de skal peke.
 

@@ -924,7 +924,7 @@ Tio povas ege ŝarĝi la servilon, do bonvolu uzi tiun eblon ŝpare kaj singarde
 ĝian historion de redaktoj je la nova nomo.
 La antaŭa titolo fariĝos alidirektilo al la nova titolo.
 Ligiloj al la antaŭa titolo <i>ne</i> estos ŝanĝitaj; uzu
-la [[Special:Maintenance|riparilojn kaj zorgilojn]] por certigi,
+la riparilojn kaj zorgilojn por certigi,
 ke ne restos duoblaj aŭ fuŝitaj alidirektiloj.
 Kiel movanto, vi respondecas pri ĝustigado de fuŝitaj ligiloj.
 
