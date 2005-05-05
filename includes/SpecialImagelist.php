@@ -56,14 +56,13 @@ function wfSpecialImagelist() {
 	$wgOut->addHTML( "<p>{$text}\n</p>" );
 
 	$sk = $wgUser->getSkin();
-	$cap = wfMsg( "ilshowmatch" );
 	$sub = wfMsg( "ilsubmit" );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
 	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
-	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
+	  "<input type='text' size='20' name=\"wpIlMatch\" value=\"" .
 	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
