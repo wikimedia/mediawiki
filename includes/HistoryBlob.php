@@ -190,11 +190,24 @@ class HistoryBlobStub {
 	function getText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
-		if ( !$row || $row->old_flags != 'object' ) {
+		if( !$row ) {
 			return false;
 		}
-		$obj = unserialize( $row->old_text );
-		if ( !is_object( $obj ) ) {
+		$flags = explode( ',', $row->old_flags );
+		if( !in_array( 'object', $flags ) ) {
+			return false;
+		}
+		
+		if( in_array( 'gzip', $flags ) ) {
+			// This shouldn't happen, but a bug in the compress script
+			// may at times gzip-compress a HistoryBlob object row.
+			$obj = unserialize( gzinflate( $row->old_text ) );
+		} else {
+			$obj = unserialize( $row->old_text );
+		}
+		
+		if( !is_object( $obj ) ) {
+			// Correct for old double-serialization bug.
 			$obj = unserialize( $obj );
 		}
 		return $obj->getItem( $this->mHash );
