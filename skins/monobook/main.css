@@ -1085,41 +1085,55 @@ li span.deleted {
 	font-style: italic;
 }
 
-/* Classes for EXIF data display */
-table.exif {
-	margin-left: 0.5em;
-}
-
-table.exif caption { font-weight: bold; }
-table.exif th { font-weight: normal; }
-table.exif td { padding: 0.1em; }
-
-table.exif {
-	border: none;
-	border-collapse: collapse;
-}
-table.exif td, table.exif th {
-	border: 1px solid #aaaaaa;
-	padding-left: 4px;
-	padding-right: 4px;
-}
-table.exif th {
-	background-color: #f9f9f9;
-}
-table.exif td {
-	background-color: #fcfcfc;
-}
-table.exif td.spacer {
-	background: white;
-	border-top: none;
-	border-bottom: none;
-}
-
 .toggle {
 	margin-left: 2em;
 	text-indent: -2em;
 }
 
-div.imagepagetoc table.toc {
-	margin-bottom: 1em;
+/* Classes for EXIF data display */
+table.metadata {
+	margin-left: 0.5em;
+}
+
+table.metadata caption { font-weight: bold; }
+table.metadata th { font-weight: normal; }
+table.metadata td { padding: 0.1em; }
+
+table.metadata {
+	border: none;
+	border-collapse: collapse;
+}
+table.metadata td, table.metadata th {
+	border: 1px solid #aaaaaa;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+table.metadata th {
+	background-color: #f9f9f9;
+}
+table.metadata td {
+	background-color: #fcfcfc;
+}
+table.metadata td.spacer {
+	background: white;
+	border-top: none;
+	border-bottom: none;
+}
+
+/* filetoc */
+ul#filetoc {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#filetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
 }
