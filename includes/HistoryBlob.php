@@ -164,10 +164,15 @@ class HistoryBlobStub
 	function getText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'old', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
-		if ( !$row || $row->old_flags != 'object' ) {
+		$flags = explode( ',', $row->old_flags );
+		if ( !$row || !in_array( 'object', $flags ) ) {
 			return false;
 		}
-		$obj = unserialize( $row->old_text );
+		if( in_array( 'gzip', $flags ) ) {
+			$obj = unserialize( gzinflate( $row->old_text ) );
+		} else {
+			$obj = unserialize( $row->old_text );
+		}
 		if ( !is_object( $obj ) ) {
 			$obj = unserialize( $obj );
 		}
