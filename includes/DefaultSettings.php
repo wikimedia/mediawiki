@@ -374,6 +374,7 @@ $wgEditEncoding		= '';
 $wgLegacyEncoding   = false;
 
 $wgMimeType			= 'text/html';
+$wgJsMimeType			= 'text/javascript';
 $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 

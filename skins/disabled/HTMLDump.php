@@ -105,10 +105,10 @@ class HTMLDumpTemplate extends QuickTemplate {
     <!--[if lt IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE50Fixes.css";</style><![endif]-->
     <!--[if IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE55Fixes.css";</style><![endif]-->
     <!--[if IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
-    <!--[if IE]><script type="text/javascript" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
+    <!--[if IE]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <?php if($this->data['jsvarurl'  ]) { ?><script type="text/javascript" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
-    <script type="text/javascript" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js"></script>
+    <?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
+    <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js"></script>
   </head>
   <body 
     <?php if($this->data['nsclass'        ]) { ?>class="<?php      $this->text('nsclass')         ?>"<?php } ?>>
@@ -148,7 +148,7 @@ class HTMLDumpTemplate extends QuickTemplate {
 	    href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
-	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portlet" id="p-nav">
 	  <h5><?php $this->msg('navigation') ?></h5>
 	  <div class="pBody">

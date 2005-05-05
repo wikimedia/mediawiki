@@ -145,7 +145,7 @@ class SkinTemplate extends Skin {
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
-		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
+		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
@@ -218,6 +218,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'feeds', false );
 		}
 		$tpl->setRef( 'mimetype', $wgMimeType );
+		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
 		$tpl->setRef( 'wgScript', $wgScript );
@@ -898,7 +899,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserJs';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgAllowUserJs;
+		global $wgRequest, $wgAllowUserJs, $wgJsMimeType;
 		$action = $wgRequest->getText('action');
 
 		if( $wgAllowUserJs && $this->loggedin ) {
@@ -906,7 +907,7 @@ class SkinTemplate extends Skin {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText('wpTextbox1') . ' /*]]>*/';
 			} else {
-				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript&dontcountme=s');
+				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype='.$wgJsMimeType.'&dontcountme=s');
 			}
 		}
 		wfProfileOut( $fname );

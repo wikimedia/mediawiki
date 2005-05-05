@@ -21,11 +21,11 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function getHeadScripts() {
-		global $wgStylePath;
+		global $wgStylePath, $wgJsMimeType;
 
 		$s = parent::getHeadScripts();
 		if ( 3 == $this->qbSetting() ) { # Floating left
-			$s .= "<script language='javascript' type='text/javascript' " .
+			$s .= "<script language='javascript' type='$wgJsMimeType' " .
 			  "src='{$wgStylePath}/common/sticky.js'></script>\n";
 		}
 		return $s;
