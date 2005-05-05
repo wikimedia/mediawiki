@@ -628,7 +628,8 @@ class EditPage {
 		 * it will fall through to the normal form submission method.
 		 */
 		if( $wgLivePreview ) {
-			$wgOut->addHTML( '<script type="text/javascript" src="' .
+			global $wgJsMimeType;
+			$wgOut->addHTML( '<script type="'.$wgJsMimeType.'" src="' .
 				htmlspecialchars( $wgStylePath . '/common/preview.js' ) .
 				'"></script>' . "\n" );
 			$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
@@ -923,7 +924,7 @@ END
 	 * The necessary JavaScript code can be found in style/wikibits.js.
 	 */
 	function getEditToolbar() {
-		global $wgStylePath, $wgLang, $wgMimeType;
+		global $wgStylePath, $wgLang, $wgMimeType, $wgJsMimeType;
 
 		/**
 		 * toolarray an array of arrays which each include the filename of
@@ -1015,7 +1016,7 @@ END
 					'key'	=>	'R'
 				)
 		);
-		$toolbar ="<script type='text/javascript'>\n/*<![CDATA[*/\n";
+		$toolbar ="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {

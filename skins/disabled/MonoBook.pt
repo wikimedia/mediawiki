@@ -9,13 +9,13 @@
     <!--[if lt IE 5.5000]><style type="text/css"> @import "${stylepath}/${stylename}/IE50Fixes.css"; </style><![endif]-->
     <!--[if IE 5.5000]><style type="text/css"> @import "${stylepath}/${stylename}/IE55Fixes.css"; </style><![endif]-->
     <!--[if IE 6]><style type="text/css"> @import "${stylepath}/${stylename}/IE60Fixes.css"; </style><![endif]-->
-    <!--[if IE]><script type="text/javascript" src="${stylepath}/common/IEFixes.js"></script>
+    <!--[if IE]><script type="${jsmimetype}" src="${stylepath}/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <script tal:condition="jsvarurl" type="text/javascript" tal:attributes="src jsvarurl"></script>
-    <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
+    <script tal:condition="jsvarurl" type="${jsmimetype}" tal:attributes="src jsvarurl"></script>
+    <script type="${jsmimetype}" src="${stylepath}/common/wikibits.js"></script>
     <style tal:condition="usercss" tal:content="structure usercss" type="text/css"></style>
-    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
-      tal:condition="userjsprev" tal:content="structure userjsprev" type="text/javascript"></script>
+    <script tal:condition="userjs" type="${jsmimetype}" tal:attributes="src userjs"></script><script 
+      tal:condition="userjsprev" tal:content="structure userjsprev" type="${jsmimetype}"></script>
   </head>
   <body tal:attributes="ondblclick body_ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
@@ -61,7 +61,7 @@
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(${logopath});" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
 	</div>
-	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<script type="${jsmimetype}"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portlet" id="p-nav">
 	  <h5 i18n:translate="string:navigation">Navigation</h5>
 	  <div class="pBody">

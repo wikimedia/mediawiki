@@ -172,14 +172,14 @@ class Skin extends Linker {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgContLang, $wgAllowUserJs;
-		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
+		global $wgStylePath, $wgUser, $wgContLang, $wgAllowUserJs, $wgJsMimeType;
+		$r = "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( $this->makeUrl(
 				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
-				'action=raw&ctype=text/javascript'));
-			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
+				'action=raw&ctype='.$wgJsMimeType));
+			$r .= '<script type="'.$wgJsMimeType.'" src="'.$userjs."\"></script>\n";
 		}
 		return $r;
 	}

@@ -7,13 +7,13 @@
     <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "${stylepath}/${stylename}/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/common/commonPrint.css" />
     <!--[if IE]><style type="text/css" media="all">@import "${stylepath}/${stylename}/common/IEFixes.css";</style>
-    <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
+    <script type="${jsmimetype}" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <script tal:condition="jsvarurl" type="text/javascript" tal:attributes="src jsvarurl"></script>
-    <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
+    <script tal:condition="jsvarurl" type="${jsmimetype}" tal:attributes="src jsvarurl"></script>
+    <script type="${jsmimetype}" src="${stylepath}/common/wikibits.js"></script>
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
-    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
-      tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
+    <script tal:condition="userjs" type="${jsmimetype}" tal:attributes="src userjs"></script><script 
+      tal:condition="userjsprev" type="${jsmimetype}">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
   <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
@@ -59,7 +59,7 @@
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(${logopath});" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
 	</div>
-	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<script type="${jsmimetype}"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portlet" id="p-nav">
 	  <h5 i18n:translate="string:navigation">Navigation</h5>
 	  <div class="pBody">

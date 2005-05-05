@@ -20,8 +20,8 @@ require_once( 'Revision.php' );
 class RawPage {
 
 	function RawPage( $article ) {
-		global $wgRequest, $wgInputEncoding, $wgSquidMaxage;
-		$allowedCTypes = array('text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit');
+		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
+		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 			
@@ -38,7 +38,7 @@ class RawPage {
 		} else if ($gen == 'js') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
-			if($ctype == '') $ctype = 'text/javascript';
+			if($ctype == '') $ctype = $wgJsMimeType;
 		} else {
 			$this->mGen = false;
 		}
