@@ -21,9 +21,9 @@ function wfSpecialAllpages( $par=NULL ) {
 	$wgOut->setPagetitle ( $namespace > 0 ? wfMsg ( 'allpagesnamespace', $names[$namespace] )
 	                                      : wfMsg ( 'allarticles' ) );
 
-	if ( $par ) {
+	if ( isset($par) ) {
 		indexShowChunk( $par, $namespace );
-	} elseif ( $from ) {
+	} elseif ( isset($from) ) {
 		indexShowChunk( $from, $namespace );
 	} else {
 		indexShowToplevel ( $namespace );
