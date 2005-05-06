@@ -45,7 +45,7 @@ class LoadBalancer {
 	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$lb = new LoadBalancer;
-		$lb->initialise( $servers, $failFunction = false );
+		$lb->initialise( $servers, $failFunction, $waitTimeout );
 		return $lb;
 	}
 
@@ -467,11 +467,13 @@ class LoadBalancer {
 	function getMaxLag() {
 		$maxLag = -1;
 		$host = '';
-		foreach ( $this->mConnections as $i => $conn ) {
-			$lag = $this->mConnections[$i]->getLag();
-			if ( $lag > $maxLag ) {
-				$maxLag = $lag;
-				$host = $this->mServers[$i]['host'];
+		foreach ( $this->mServers as $i => $conn ) {
+			if ( $this->openConnection( $i ) ) {
+				$lag = $this->mConnections[$i]->getLag();
+				if ( $lag > $maxLag ) {
+					$maxLag = $lag;
+					$host = $this->mServers[$i]['host'];
+				}
 			}
 		}
 		return array( $host, $maxLag );
