@@ -119,8 +119,6 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesFy = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline"		=> "Keppelings ûnderstreekje",

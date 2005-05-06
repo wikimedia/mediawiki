@@ -83,8 +83,6 @@ require_once( 'LanguageUtf8.php' );
 );
 
 /* private */ $wgAllMessagesAf = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Onderstreep skakels.",

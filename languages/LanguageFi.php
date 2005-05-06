@@ -76,8 +76,6 @@ require_once( 'LanguageUtf8.php' );
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 /* private */ $wgAllMessagesFi = array(
-'special_version_prefix'  => ' ',
-'special_version_postfix' => ' ',
 # User preference toggles
 'tog-underline'       => 'Alleviivaa linkit',
 'tog-highlightbroken' => 'Näytä linkit puuttuville sivuille <a href="" class="new">näin </a> (vaihtoehtoisesti näin: <a href="" class="internal">?</a>).',

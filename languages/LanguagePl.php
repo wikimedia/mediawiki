@@ -105,8 +105,6 @@ default:
 );
 
 /* private */ $wgAllMessagesPl = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Podkreślenie linków",

@@ -144,8 +144,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 );
 
 /* private */ $wgAllMessagesHu = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # User Toggles
 #

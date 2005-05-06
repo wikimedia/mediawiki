@@ -155,8 +155,6 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesNds = array(
-'special_version_prefix'      => '',
-'special_version_postfix'     => '',
 # Schalter för de Brukers
 'tog-underline'               => 'Verwies ünnerstrieken',
 'tog-highlightbroken'         => 'Verwies op leddige Sieten hervörheven',

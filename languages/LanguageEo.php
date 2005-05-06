@@ -109,8 +109,6 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesEo = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User toggles
 "tog-underline" => "Substreku ligilojn",
 "tog-highlightbroken" => "Ruĝigu ligilojn al neekzistantaj paĝoj",

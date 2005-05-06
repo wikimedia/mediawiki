@@ -110,8 +110,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesWa = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Sorlignî les loyéns",

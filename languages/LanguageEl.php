@@ -8,8 +8,6 @@
 require_once( "LanguageUtf8.php" );
 
 /* private */ $wgAllMessagesEl = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 'sunday' => "Κυριακή",
 'monday' => "Δευτέρα",

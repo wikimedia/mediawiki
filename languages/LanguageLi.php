@@ -102,8 +102,6 @@ $wgNamespaceNamesLi = array(
 );
 
 /* private */ $wgAllMessagesLi = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 'sunday' => 'zondig',
 'monday' => 'moandig',

@@ -30,8 +30,6 @@ require_once('LanguageUtf8.php');
 
 
 /* private */ $wgAllMessagesAr = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # Dates
 'sunday' => 'الأحد',
 'monday' => 'الإثنين',

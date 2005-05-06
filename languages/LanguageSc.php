@@ -95,8 +95,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSc = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Sottolinea links",

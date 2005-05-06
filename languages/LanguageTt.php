@@ -125,8 +125,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 # set "portal" => ""
 
 /* private */ $wgAllMessagesTt = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # week days, months
 'sunday' => "Yäkşämbe",

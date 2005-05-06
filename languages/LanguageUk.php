@@ -58,8 +58,6 @@ require_once( 'LanguageUtf8.php' );
 
 
 /* private */ $wgAllMessagesUk = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Підкреслювати зв'язки",
