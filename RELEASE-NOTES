@@ -6,8 +6,13 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 == MediaWiki 1.4.5 ==
 * (bug 2084) Fixed a regular expression in includes/Title.php that was
   accepting invalid syntax like #REDIRECT [[foo] in redirects
-* (bug 2087) Fixed a bug that made it impossible to pass "0" to any special
-  page with the Special:Page/0 syntax.
+* (bug 2087) Fixed a bug in Specialpage handling which which stopped "0" from
+  being passed to them with the Special:Page/0 syntax.
+* Special:Allpages, Special:Contributions, Special:Whatlinkshere
+  Special:Recentchangeslinked and Special:Emailuser all mishandled being passed
+  "0" with the Special:Page/0 syntax (unrelated to bug 2087), this either
+  required a workaround in the form of passing "0" as a GET value or blocked
+  the user from passing that value at all.
 
 == MediaWiki 1.4.4 ==
 

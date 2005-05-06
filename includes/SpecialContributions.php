@@ -12,15 +12,12 @@
  * @return	none
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
-function wfSpecialContributions( $par = '' ) {
+function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	$fname = 'wfSpecialContributions';
 
-	if( $par )
-		$target = $par;
-	else
-		$target = $wgRequest->getVal( 'target' );
-
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
+	
 	if ( '' == $target ) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
