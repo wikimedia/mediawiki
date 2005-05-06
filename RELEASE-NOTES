@@ -148,6 +148,7 @@ Various bugfixes, small features, and a few experimental things:
   revision id, useful for proper citation.
 * (bug 1998) Updated the Russian translation.
 * (bug 2064) Configurable JavaScript mimetype with $wgJsMimeType
+* (bug 2084) Fixed a regular expression in includes/Title.php that was accepting invalid syntax like #REDIRECT [[foo] in redirects
 * It's now possible to invert the namespace selection at Special:Allpages and Special:Contributions
 * No longer using sorbs.net to check for open proxies by default.
 * What was $wgDisableUploads is now $wgEnableUploads, and should be set to true if one wishes to enable uploads.
