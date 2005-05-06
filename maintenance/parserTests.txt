@@ -1189,6 +1189,20 @@ Mixed list
 
 !! end
 
+!! test
+List items are not parsed correctly following a <pre> block (bug 785)
+!! input
+* <pre>foo</pre>
+* <pre>bar</pre>
+* zar
+!! result
+<ul><li> <pre>foo</pre>
+</li><li> <pre>bar</pre>
+</li><li> zar
+</li></ul>
+
+!! end
+
 ###
 ### Magic variables
 ###
