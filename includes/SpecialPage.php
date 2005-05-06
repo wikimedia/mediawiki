@@ -202,7 +202,7 @@ class SpecialPage
 
 		$bits = split( "/", $title->getDBkey(), 2 );
 		$name = $bits[0];
-		if( empty( $bits[1] ) ) {
+		if( !isset( $bits[1] ) ) { // bug 2087
 			$par = NULL;
 		} else {
 			$par = $bits[1];
