@@ -35,9 +35,9 @@ function wfSpecialAllpages( $par=NULL ) {
 			);
 	}
 	
-	if ( $par ) {
+	if ( isset($par) ) {
 		indexShowChunk( $namespace, $par, $invert );
-	} elseif ( $from ) {
+	} elseif ( isset($from) ) {
 		indexShowChunk( $namespace, $from, $invert );
 	} else {
 		indexShowToplevel ( $namespace, $invert );
