@@ -11,10 +11,9 @@ require_once('HTMLForm.php');
 require_once('Group.php');
 
 /** Entry point */
-function wfSpecialGroups($par=null) {
+function wfSpecialGroups() {
 	global $wgRequest;
-	# Debug statement
-	// print_r($_POST);
+	
 	$form = new GroupsForm($wgRequest);
 	$form->execute();
 }

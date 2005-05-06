@@ -13,10 +13,8 @@ require_once('HTMLForm.php');
 require_once('Group.php');
 
 /** Entry point */
-function wfSpecialUserrights($par=null) {
+function wfSpecialUserrights() {
 	global $wgRequest;
-	# Debug statement
-	// print_r($_POST);
 	$form = new UserrightsForm($wgRequest);
 	$form->execute();
 }
