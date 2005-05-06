@@ -25,11 +25,7 @@ function wfSpecialEmailuser( $par ) {
 	}
 	
 	$action = $wgRequest->getVal( 'action' );
-	if( empty( $par ) ) {
-		$target = $wgRequest->getVal( 'target' );
-	} else {
-		$target = $par;
-	}
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	if ( "" == $target ) {
 		wfDebug( "Target is empty.\n" );
 		$wgOut->errorpage( "notargettitle", "notargettext" );
