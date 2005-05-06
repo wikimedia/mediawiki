@@ -6,19 +6,23 @@
   */
 
 /* private */ $wgNamespaceNamesLa = array(
-	NS_SPECIAL		=> 'Specialis',
-	NS_MAIN			=> '',
-	NS_TALK			=> 'Disputatio',
-	NS_USER			=> 'Usor',
-	NS_USER_TALK		=> 'Disputatio_Usoris',
-	NS_PROJECT		=> 'Wikipedia',
-	NS_PROJECT_TALK		=> 'Disputatio_Wikipedia',
-	NS_IMAGE		=> 'Imago',
-	NS_IMAGE_TALK		=> 'Disputatio_Imaginis',
-	NS_MEDIAWIKI		=> 'MediaWiki',
-	NS_MEDIAWIKI_TALK	=> 'Disputatio_MediaWiki',
-	NS_TEMPLATE		=> 'Template',
-	NS_TEMPLATE_TALK	=> 'Template_talk'
+	NS_SPECIAL        => 'Specialis',
+	NS_MAIN           => '',
+	NS_TALK           => 'Disputatio',
+	NS_USER           => 'Usor',
+	NS_USER_TALK      => 'Disputatio_Usoris',
+	NS_PROJECT        => $wgMetaNamespace,
+	NS_PROJECT_TALK   => FALSE,  # Set in constructor
+	NS_IMAGE          => 'Imago',
+	NS_IMAGE_TALK     => 'Disputatio_Imaginis',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Disputatio_MediaWiki',
+	NS_TEMPLATE       => 'Formula',
+	NS_TEMPLATE_TALK  => 'Disputatio_Formulae',
+	NS_HELP           => 'Auxilium',
+	NS_HELP_TALK      => 'Disputatio_Auxilii',
+	NS_CATEGORY       => 'Categoria',
+	NS_CATEGORY_TALK  => 'Disputatio_Categoriae',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsLa = array(
@@ -163,6 +167,12 @@ $wgAllMessagesLa = array(
 require_once( "LanguageUtf8.php" );
 
 class LanguageLa extends LanguageUtf8 {
+	function LanguageLa() {
+		global $wgNamespaceNamesLa, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesLa[NS_PROJECT_TALK] = 'Disputatio_' .
+			$this->convertGrammar( $wgMetaNamespace, 'genitive' );
+	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesLa;
@@ -176,9 +186,16 @@ class LanguageLa extends LanguageUtf8 {
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesLa;
+		global $wgMetaNamespace;
 
 		foreach ( $wgNamespaceNamesLa as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		
+		# Backwards compatibility hacks
+		if( $wgMetaNamespace == 'Vicipaedia' || $wgMetaNamespace == 'Victionarium' ) {
+			if( 0 == strcasecmp( 'Wikipedia', $text ) ) return NS_PROJECT;
+			if( 0 == strcasecmp( 'Disputatio_Wikipedia', $text ) ) return NS_PROJECT_TALK;
 		}
 		return false;
 	}
@@ -226,13 +243,30 @@ class LanguageLa extends LanguageUtf8 {
 		return $wgDeveloperSpecialPagesLa;
 	}
 
-	function getMessage( $key )
-	{
-		global $wgAllMessagesLa, $wgAllMessagesEn;
-		$m = $wgAllMessagesLa[$key];
+	function getMessage( $key ) {
+		global $wgAllMessagesLa;
+		if( isset( $wgAllMessagesLa[$key] ) ) {
+			return $wgAllMessagesLa[$key];
+		}
+		return parent::getMessage( $key );
+	}
 
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
+	/**
+	 * Convert from the nominative form of a noun to some other case
+	 *
+	 * Just used in a couple places for sitenames; special-case as necessary.
+	 * Rules are far from complete.
+	 */
+	function convertGrammar( $word, $case ) {
+		switch ( $case ) {
+		case 'genitive':
+			// 1st and 2nd declension singular only.
+			$in  = array( '/a$/', '/u[ms]$/' );
+			$out = array( 'ae',   'i'        );
+			return preg_replace( $in, $out, $word );
+		default:
+			return $word;
+		}
 	}
 
 }
