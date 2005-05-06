@@ -218,4 +218,43 @@ class HistoryBlobStub {
 		return $this->mHash;
 	}
 }
+
+
+/**
+ * To speed up conversion from 1.4 to 1.5 schema, text rows can refer to the
+ * leftover cur table as the backend. This avoids expensively copying hundreds
+ * of megabytes of data during the conversion downtime.
+ *
+ * Serialized HistoryBlobCurStub objects will be inserted into the text table
+ * on conversion if $wgFastSchemaUpgrades is set to true.
+ *
+ * @package MediaWiki
+ */
+class HistoryBlobCurStub {
+	var $mCurId;
+
+	/** @todo document */
+	function HistoryBlobCurStub( $curid = 0 ) {
+		$this->mCurId = $curid;
+	}
+	
+	/**
+	 * Sets the location (cur_id) of the main object to which this object
+	 * points
+	 */
+	function setLocation( $id ) {
+		$this->mCurId = $id;
+	}
+
+	/** @todo document */
+	function getText() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mCurId ) );
+		if( !$row ) {
+			return false;
+		}
+		return $row->cur_text;
+	}
+}
+
 ?>

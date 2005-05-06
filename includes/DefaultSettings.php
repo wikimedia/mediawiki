@@ -373,6 +373,23 @@ $wgEditEncoding		= '';
 # en masse in the database before continuing as a UTF-8 wiki.
 $wgLegacyEncoding   = false;
 
+/**
+ * If set to true, the MediaWiki 1.4 to 1.5 schema conversion will
+ * create stub reference rows in the text table instead of copying
+ * the full text of all current entries from 'cur' to 'text'.
+ *
+ * This will speed up the conversion step for large sites, but
+ * requires that the cur table be kept around for those revisions
+ * to remain viewable.
+ *
+ * maintenance/migrateCurStubs.php can be used to complete the
+ * migration in the background once the wiki is back online.
+ *
+ * This option affects the updaters *only*. Any present cur stub
+ * revisions will be readable at runtime regardless of this setting.
+ */
+$wgLegacySchemaConversion = false;
+
 $wgMimeType			= 'text/html';
 $wgJsMimeType			= 'text/javascript';
 $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
