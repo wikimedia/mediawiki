@@ -166,7 +166,11 @@ Various bugfixes, small features, and a few experimental things:
 * Fix for reading incorrectly re-gzipped HistoryBlob entries
 * (bug 1906) Generalize project namespace for Latin localization, update namespaces
 * (bug 2075) Corrected namespace definitions in Tamil localization
-
+* Add $wgLegacySchemaConversion update-time option to reduce amount of
+  copying during the schema upgrade: creates HistoryBlobCurStub reference
+  records in text instead of copying all the cur_text fields. Requires
+  that the cur table be left in place until/unless such fields are migrated
+  into the main text store.
 
 === Caveats ===
 

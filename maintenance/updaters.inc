@@ -282,6 +282,7 @@ function do_schema_restructuring() {
 		echo "...page table already exists.\n";
 	} else {
 		echo "...converting from cur/old to page/revision/text DB structure.\n"; flush();
+		echo wfTimestamp();
 		echo "......checking for duplicate entries.\n"; flush();
 		
 		extract( $wgDatabase->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
@@ -290,6 +291,7 @@ function do_schema_restructuring() {
 				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", $fname );
 
 		if ( $wgDatabase->numRows( $rows ) > 0 ) {
+			echo wfTimestamp();
 			echo "......<b>Found duplicate entries</b>\n";
 			echo ( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
 			while ( $row = $wgDatabase->fetchObject( $rows ) ) {
@@ -337,10 +339,12 @@ function do_schema_restructuring() {
 			}
 			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
 			$rows = $wgDatabase->query( $sql, $fname );
+			echo wfTimestamp();
 			echo "......<b>Deleted</b> ".$wgDatabase->affectedRows()." records.\n";
 		}
 		
 
+		echo wfTimestamp();
 		echo "......Creating tables.\n";
 		$wgDatabase->query("CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
@@ -378,18 +382,35 @@ function do_schema_restructuring() {
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 			) TYPE=InnoDB", $fname );
 
+		echo wfTimestamp();
 		echo "......Locking tables.\n";
 		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
 
 		$maxold = $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname );
+		echo wfTimestamp();
 		echo "......maxold is {$maxold}\n";
 
-		echo "......Moving text from cur.\n";
+		echo wfTimestamp();
+		global $wgLegacySchemaConversion;
+		if( $wgLegacySchemaConversion ) {
+			// Create HistoryBlobCurStub entries.
+			// Text will be pulled from the leftover 'cur' table at runtime.
+			echo "......Moving metadata from cur; using blob references to text in cur table.\n";
+			$cur_text = "concat('O:18:\"historyblobcurstub\":1:{s:6:\"mCurId\";i:',cur_id,';}')";
+			$cur_flags = "'object'";
+		} else {
+			// Copy all cur text in immediately: this may take longer but avoids
+			// having to keep an extra table around.
+			echo "......Moving text from cur.\n";
+			$cur_text = 'cur_text';
+			$cur_flags = "''";
+		}
 		$wgDatabase->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
     				old_timestamp, old_minor_edit, old_flags)
-  			SELECT cur_namespace, cur_title, cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit,''
+  			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
   			FROM $cur", $fname );
 
+		echo wfTimestamp();
 		echo "......Setting up revision table.\n";
 		$wgDatabase->query( "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
     				rev_minor_edit)
@@ -397,6 +418,7 @@ function do_schema_restructuring() {
     				old_timestamp, old_minor_edit
 			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
 
+		echo wfTimestamp();
 		echo "......Setting up page table.\n";
 		$wgDatabase->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
     				page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
@@ -405,11 +427,15 @@ function do_schema_restructuring() {
   			FROM $cur,$revision
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
 
+		echo wfTimestamp();
 		echo "......Unlocking tables.\n";
 		$wgDatabase->query( "UNLOCK TABLES", $fname );
 
+		echo wfTimestamp();
 		echo "......Renaming old.\n";
 		$wgDatabase->query( "ALTER TABLE $old RENAME TO $text", $fname );
+		
+		echo wfTimestamp();
 		echo "...done.\n";
 	}
 }

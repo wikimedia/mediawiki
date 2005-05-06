@@ -3081,6 +3081,7 @@ class Parser
 				# remember to set an alignment, don't render immediately
 				$align = 'none';
 			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+				wfDebug( "MAG_IMG_WIDTH match: $match\n" );
 				# $match is the image width in pixels
 				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
 					$width = intval( $m[1] );
