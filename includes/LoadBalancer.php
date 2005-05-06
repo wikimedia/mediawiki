@@ -45,7 +45,7 @@ class LoadBalancer {
 	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$lb = new LoadBalancer;
-		$lb->initialise( $servers, $failFunction = false );
+		$lb->initialise( $servers, $failFunction, $waitTimeout );
 		return $lb;
 	}
 
