@@ -11,12 +11,12 @@
  * @return	none
  * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
-function wfSpecialContributions( $par = '' ) {
+function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
 	$fname = 'wfSpecialContributions';
 
 	// GET values
-	$target = $par ? $par : $wgRequest->getVal( 'target' );
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	$namespace = $wgRequest->getVal( 'namespace', '' );
 	$namespace = $namespace === '' ? NULL : $namespace;
 	$invert = $wgRequest->getBool( 'invert' );

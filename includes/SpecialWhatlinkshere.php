@@ -13,12 +13,10 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	global $wgUser, $wgOut, $wgRequest;
 	$fname = 'wfSpecialWhatlinkshere';
 
-	$target = $wgRequest->getVal( 'target' );
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	list( $limit, $offset ) = $wgRequest->getLimitOffset();	
 
-	if(!empty($par)) {
-		$target = $par;
-	} else if ( is_null( $target ) ) {
+	if (is_null($target)) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}

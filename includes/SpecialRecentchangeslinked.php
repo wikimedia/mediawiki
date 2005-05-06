@@ -19,16 +19,13 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
-	$target = $wgRequest->getText( 'target' );
+	$target = isset($par) ? $par : $wgRequest->getText( 'target' );
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
 	
 	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
 	$sk = $wgUser->getSkin();
 
-	if( $par ) {
-		$target = $par;
-	}
-	if ( $target == '') {
+	if (is_null($target)) {
 		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
