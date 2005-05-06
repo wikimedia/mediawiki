@@ -261,8 +261,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 global $wgRightsText;
 
 /* private */ $wgAllMessagesEn = array(
-'special_version_prefix' => '&nbsp;',
-'special_version_postfix' => '&nbsp;',
 # User preference toggles
 'tog-underline' => 'Underline links',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',

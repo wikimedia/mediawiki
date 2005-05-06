@@ -63,8 +63,6 @@ require_once('LanguageUtf8.php');
 # both Korean and English. And he can later koreanize this part.
 
 /* private */ $wgAllMessagesKo = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # User Toggles
 

@@ -118,8 +118,6 @@
 );
 
 /* private */ $wgAllMessagesPt = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 "tog-underline" => "Sublinha links",
 "tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",

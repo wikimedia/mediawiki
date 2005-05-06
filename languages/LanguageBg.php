@@ -167,8 +167,6 @@
 # въведете 'portal' => ''
 
 /* private */ $wgAllMessagesBg = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User toggles
 'tog-underline'      => 'Подчертаване на препратките',
 'tog-highlightbroken' => 'Показване на невалидните препратки <a href="" class="new">така</a> (алтернативно: така<a href="" class="internal">?</a>)',

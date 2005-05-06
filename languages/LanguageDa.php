@@ -129,8 +129,6 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgAllMessagesDa = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 "tog-underline" => "Understreg henvisninger",
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",

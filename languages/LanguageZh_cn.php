@@ -123,8 +123,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesZh_cn = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "下划链接", /* "Underline links", */

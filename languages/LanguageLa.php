@@ -103,8 +103,6 @@
 );
 
 $wgAllMessagesLa = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # User Toggles
 

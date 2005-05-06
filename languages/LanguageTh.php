@@ -109,8 +109,6 @@
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesTh = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # User Toggles
 #

@@ -84,8 +84,6 @@ $wgValidationTypesId = array (
 ) + $wgBookstoreListEn;
 
 /* private */ $wgAllMessagesId = array(
-'special_version_prefix' => '&nbsp;',
-'special_version_postfix' => '&nbsp;',
 # User preference toggles
 'tog-hover' => 'Tampilkan hoverbox di atas pautan wiki',
 'tog-underline' => 'Garisbawahi pautan',

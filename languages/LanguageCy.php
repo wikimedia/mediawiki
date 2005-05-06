@@ -133,8 +133,6 @@
 );
 
 /* private */ $wgAllMessagesCy = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User Toggles
 
 "tog-underline" => "Tanllinellu cysylltiadau",

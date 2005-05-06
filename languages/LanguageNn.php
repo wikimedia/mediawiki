@@ -133,8 +133,6 @@ $wgValidationTypesNn = array (
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesNn = array(
-'special_version_prefix'  => '&nbsp;',
-'special_version_postfix' => '&nbsp;',
 
 # User preference toggles
 'tog-hover'               => 'Vis svevetekst over wikilenkjer',

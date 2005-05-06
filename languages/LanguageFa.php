@@ -120,8 +120,6 @@ require_once("LanguageUtf8.php");
 #-------------------------------------------------------------------
 
 /* private */ $wgAllMessagesFa = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 # User toggles
 
 "tog-underline" => "زیر پیوندها خط کشیده شود",

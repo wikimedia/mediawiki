@@ -160,8 +160,6 @@ if(isset($wgExtraNamespaces)) {
 );
 
 /* private */ $wgAllMessagesRu = array(
-'special_version_prefix' => '',
-'special_version_postfix' => '',
 
 # User preference toggles 
 'tog-underline' => 'Подчёркивать ссылки',
