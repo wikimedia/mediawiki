@@ -1293,7 +1293,7 @@ consequences, and that you are doing this in accordance with
 'actioncomplete' => 'Action complete',
 'deletedtext'	=> "\"$1\" has been deleted.
 See $2 for a record of recent deletions.",
-'deletedarticle' => "deleted \"$1\"",
+'deletedarticle' => "deleted \"[[$1]]\"",
 'dellogpage'	=> 'Deletion_log',
 'dellogpagetext' => 'Below is a list of the most recent deletions.',
 'deletionlog'	=> 'deletion log',
@@ -1344,7 +1344,7 @@ revisions will appear in the prior history, and the current revision of the live
 will not be automatically replaced.',
 'undeleterevision' => "Deleted revision as of $1",
 'undeletebtn' => 'Restore!',
-'undeletedarticle' => "restored \"$1\"",
+'undeletedarticle' => "restored \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisions restored",
 'undeletedtext'   => "[[$1]] has been successfully restored.
 See [[Special:Log/delete]] for a record of recent deletions and restorations.",
