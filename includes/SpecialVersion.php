@@ -1,5 +1,6 @@
 <?php
 /**
+ * Give information about the version MediaWiki, PHP, and the database
  *
  * @package MediaWiki
  * @subpackage SpecialPage
@@ -9,9 +10,10 @@
  * constructor
  */
 function wfSpecialVersion() {
-	global $wgUser, $wgOut, $wgVersion, $wgScriptPath;
-	$fname = 'wfSpecialVersion';
-
+	global $wgOut, $wgVersion, $wgScriptPath;
+	
+	$dbr =& wfGetDB( DB_SLAVE );
+	
 	$wgOut->addWikiText( "
 This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',  
 copyright (C) 2001-2005 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
@@ -30,20 +32,11 @@ GNU General Public License for more details.
 You should have received [{{SERVER}}$wgScriptPath/COPYING a copy of the GNU General Public License]
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-or [http://www.gnu.org/copyleft/gpl.html read it online]");
-	$versions = array(
-		"[http://wikipedia.sf.net/ MediaWiki]" => $wgVersion,
-		"[http://www.php.net/ PHP]" => phpversion() . " (" . php_sapi_name() . ")"
- 	);
- 	
- 	$dbr =& wfGetDB( DB_SLAVE );
- 	$dblink = $dbr->getSoftwareLink();
- 	$versions[$dblink] = $dbr->getServerVersion();
-	
-	$out = '';
-	foreach( $versions as $module => $ver ) {
-		$out .= "*$module: $ver\n";
-	}
-	$wgOut->addWikiText( $out );
+or [http://www.gnu.org/copyleft/gpl.html read it online]
+
+* [http://www.mediawiki.org/ MediaWiki]: $wgVersion
+* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
+* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion()
+	);
 }
 ?>
