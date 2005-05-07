@@ -173,6 +173,8 @@ Various bugfixes, small features, and a few experimental things:
   records in text instead of copying all the cur_text fields. Requires
   that the cur table be left in place until/unless such fields are migrated
   into the main text store.
+* (bug 1692) Fix margin on unwatch tab
+
 
 === Caveats ===
 
