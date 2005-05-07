@@ -325,9 +325,6 @@ $2",
 'uncategorizedpages' => "ವರ್ಗ ಗೊತ್ತು ಮಾಡದ ಪುಟಗಳು",
 'unprotect' => "ಸಂರಕ್ಷಣೆ ತೆಗೆ",
 'unusedimages' => "ಉಪಯೋಗಿಸದ ಚಿತ್ರಗಳು",
-'unusedimagestext' => "<p>Please note that other web sites may link to an image with
-a direct URL, and so may still be listed here despite being
-in active use.",
 'unwatch' => "ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ",
 'upload' => "ಫೈಲ್ ಅಪ್ಲೋಡ್",
 'userlogin' => "ಲಾಗ್ ಇನ್",

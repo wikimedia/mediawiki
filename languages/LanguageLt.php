@@ -21,14 +21,6 @@ require_once( "LanguageUtf8.php" );
 	'myskin' => "MySkin"
 );
 
-/* private */ $wgMathNamesLt = array(
-        "Always render PNG",
-        "HTML if very simple or else PNG",
-        "HTML if possible or else PNG",
-        "Leave it as TeX (for text browsers)",
-        "Recommended for modern browsers"
-);
-
 # Note to translators: 
 #   Please include the English words as synonyms.  This allows people 
 #   from other wikis to contribute more easily.
@@ -445,11 +437,6 @@ class LanguageLt extends LanguageUtf8  {
                 return $wgSkinNamesLt;
         }
 
-        function getMathNames() {
-                global $wgMathNamesLt;
-                return $wgMathNamesLt;
-        }
-        
         function getDateFormats() {
                 global $wgDateFormatsLt;
                 return $wgDateFormatsLt;
