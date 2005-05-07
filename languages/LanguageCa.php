@@ -50,16 +50,6 @@
 );
 
 
-/* Please customize this with some Catalan-language bookshops
-   and/or reference sites that can look up by ISBN number */
-/* private */ $wgBookstoreListCa = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -897,13 +887,6 @@ Incorporeu-les manualment, si us plau.",
 
 require_once( "LanguageUtf8.php" );
 class LanguageCa extends LanguageUtf8 {
-
-	# Inherent default user options unless customization is desired
-
-    function getBookstoreList () {
-		global $wgBookstoreListCa ;
-		return $wgBookstoreListCa ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesCa;

@@ -35,25 +35,9 @@
 );
 
 /* private */ $wgSkinNamesIa = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgia",
 	'cologneblue' => "Blau Colonia",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) + $wgSkinNamesEn;
 
-
-
-/* private */ $wgBookstoreListIa = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
 
 
 # All special pages have to be listed here: a description of ""
@@ -942,11 +926,6 @@ nove titulo. Per favor fusiona los manualmente.",
 require_once( "LanguageUtf8.php" );
 
 class LanguageIa extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListIa ;
-		return $wgBookstoreListIa ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesIa;

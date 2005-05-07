@@ -69,16 +69,6 @@ DISCUSSION!
 #    "Is cuma liom",
 );
 
-# If possible, find Irish language book services on the Internet, searchable by ISBN
-# $wgBookstoreListGa = ..
-
-/* private */ $wgBookstoreListGa = array(
-    "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-    "PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-    "Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-    "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
 # The following exist for the purpose of being translated:
 
 /* private */ $wgMagicWordsGa = array(
@@ -1417,11 +1407,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach ranga\');'
 require_once( "LanguageUtf8.php" );
 
 class LanguageGa extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListGa;
-		return $wgBookstoreListGa;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesGa;

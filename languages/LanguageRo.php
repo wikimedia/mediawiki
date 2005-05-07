@@ -56,16 +56,6 @@ require_once("LanguageUtf8.php");
 #	"Nici o preferinţă",
 );
 
-/* private */ $wgBookstoreListRo = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-
-
-
 /* private */ $wgMagicWordsRo = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"                                       ),
@@ -1273,11 +1263,6 @@ Query: $2
 );
 
 class LanguageRo extends LanguageUtf8 {
-
-	function getBookstoreList () {
-		global $wgBookstoreListRo ;
-		return $wgBookstoreListRo ;
-	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesRo;

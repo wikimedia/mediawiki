@@ -55,9 +55,6 @@ require_once("LanguageUtf8.php");
 );
 
 
-/* Please customize this list... */
-
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).

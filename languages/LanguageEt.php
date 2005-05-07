@@ -3,22 +3,7 @@
   * @package MediaWiki
   * @subpackage Language
   */
-/*                                                                                                                                                                                                                                 
-===Fail algab...===
- <nowiki>
-*/
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-/*
- </nowiki>
-===Nimeruumid===
- <nowiki>
-*/
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 $wgNamespaceNamesEt = array(
         NS_MEDIA            => 'Meedia',
         NS_SPECIAL          => 'Eri',
@@ -39,11 +24,7 @@ $wgNamespaceNamesEt = array(
         NS_CATEGORY         => 'Kategooria',
         NS_CATEGORY_TALK    => 'Kategooria_arutelu'
 ) + $wgNamespaceNamesEn;
-/*
- </nowiki>
-===Nahad===
- <nowiki>
-*/
+
 /* private */ $wgSkinNamesEt = array(
 	'standard' => "Standard",
 	'nostalgia' => "Nostalgia",
@@ -55,21 +36,11 @@ $wgNamespaceNamesEt = array(
 	'monobook' => "MonoBook",
 	 "myskin" => "Mu oma nahk" 
 );
-/*
- </nowiki>
 
-===Kiirriba===
-
- <nowiki>
-*/
 /* private */ $wgQuickbarSettingsEt = array(
 	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
 );
-/*
- </nowiki>
-===Raamatupoodide nimekiri===
- <nowiki>
-*/
+
 #Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
 
 
@@ -84,20 +55,6 @@ $wgNamespaceNamesEt = array(
 );
 
 
-/*
- </nowiki>
-===Võtmesõnad===
- <nowiki>
-*/
-#Jätsin tõlkimata -- minu elu see ei muuda kui need ka ainult inglise keeles on. 
-#Aga mis mul selle vastu võiks olla, kui eestikeelsed sünonüümid olemas.
-
-
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
-#
 /* private */ $wgMagicWordsEt = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
@@ -138,21 +95,6 @@ $wgNamespaceNamesEt = array(
 );
 
 
-/*
-
- </nowiki>
-===Erileheküljed===
- <nowiki>
-*/
-#Language.php seda jada (enam?) ei sisalda, alltoodud võtmesõnad määratakse
-#ainult jadas $wgAllMessages. Vajab veel selgitamist, kas vaadeldavat jada on tarvis.
-
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-
 /* private */ $wgValidSpecialPagesEt = array(
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
@@ -187,40 +129,19 @@ $wgNamespaceNamesEt = array(
 	"Export"		=> "Eksport XML-vormingusse",
 	"Version"		=> "Versioon",
 );
-/*
- </nowiki>
-===Administraatori erilehed===
- <nowiki> 
-*/
+
 /* private */ $wgSysopSpecialPagesEt = array(
 	"Blockip"		=> "Blokeeri IP-aadress",
 	"Asksql"		=> "Otsi andmebaasist",
 	"Undelete"		=> "Taasta kustutatud leheküljed"
 );
 
-/*
- </nowiki>
-===Arendaja erilehed===
- <nowiki>
-*/
 /* private */ $wgDeveloperSpecialPagesEt = array(
 	"Lockdb"		=> "Võta andmebaas kirjutuskaitse alla",
 	"Unlockdb"		=> "Taasta andmebaasi kirjutuspääs",
 );
 
-/*
- </nowiki>
-===Süsteemi teated===
- <nowiki>
-*/
 /* private */ $wgAllMessagesEt = array(
-
-
-/*
- </nowiki>
-====Linkimisseaded====
- <nowiki>
-*/
 "tog-underline" => "Lingid alla kriipsutada",
 "tog-highlightbroken" => "Vorminda lingirikked<a href=\"\" class=\"new\">nii</a> (alternatiiv: nii<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify" => "Lõikude rööpjoondus",
@@ -234,14 +155,6 @@ $wgNamespaceNamesEt = array(
 "tog-watchdefault" => "Jälgi uusi ja muudetud artikleid",
 "tog-minordefault" => "Märgi kõik parandused vaikimisi pisiparandusteks",
 "tog-previewontop" => "Näita eelvaadet redaktoriboksi ees, mitte järel",
-
-
-
-/*
- </nowiki>
-====Kuud, päevad====
- <nowiki>
-*/
 
 # Dates
 'sunday' => 'pühapäev',
@@ -276,15 +189,6 @@ $wgNamespaceNamesEt = array(
 'nov' => 'nov',
 'dec' => 'dets',
 
-
-
-
-
-/*
- </nowiki>
-====Bits of text used by many pages====
- <nowiki>
-*/
 # Bits of text used by many pages:
 #
 'categories' => 'Kategooriad',
@@ -402,11 +306,6 @@ Vaata $1.",
 'feedlinks' => 'Sööde:', # See sõna ei meeldi, aga paremat ei tea.
 'sitenotice'    => '', # the equivalent to wgSiteNotice
 
-/*
- </nowiki>
-====Short words for each namespace...====
- <nowiki>
-*/
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Artikkel',
@@ -420,11 +319,6 @@ Vaata $1.",
 'nstab-help' => 'Juhend',
 'nstab-category' => 'Kategooria',
 
-/*
- </nowiki>
-====Main script and global functions====
- <nowiki>
-*/
 # Main script and global functions
 #
 "nosuchaction"	=> "Sellist toimingut pole.",
@@ -432,11 +326,6 @@ Vaata $1.",
 "nosuchspecialpage" => "Sellist erilehekülge pole.",
 "nospecialpagetext" => "Wiki ei tunne sellist erilehekülge.",
 
-/*
- </nowiki>
-====General errors====
- <nowiki>
-*/
 
 # General errors
 #
@@ -494,11 +383,6 @@ Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti -- ",
 
 
 
-/*
- </nowiki>
-====Login and logout pages====
- <nowiki>
-*/
 
 # Login and logout pages
 #
@@ -560,11 +444,6 @@ Pärast parooli saamist logige palun sisse.",
 'mailerror' => "Viga kirja saatmisel: $1",
 'acct_creation_throttle_hit' => 'Vabandame, aga te olete loonud juba $1 kontot. Rohkem te ei saa.',
 
-/*
- </nowiki>
-====Edit page toolbar====
- <nowiki>
-*/
 
 # Edit page toolbar
 'bold_sample'=>'Rasvane kiri',
@@ -592,11 +471,6 @@ Pärast parooli saamist logige palun sisse.",
 'infobox_alert'=>"Sisesta palun tekst, mida tahad formaatida.\\n See ilmub kopeerimiseks ja kleepimiseks
 infokasti.\\nNäide:\\n$1\\nmuutub selliseks:\\n$2",
 
-/*
- </nowiki>
-====Edit pages====
- <nowiki>
-*/
 
 # Edit pages
 #
@@ -668,11 +542,6 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 "protectedpagewarning" => "<strong>HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
 [[Project:Juhtnöörid_kaitstud_lehekülje_kohta]]</strong>.",
 
-/*
- </nowiki>
-====History pages====
- <nowiki>
-*/
 # History pages
 #
 "revhistory"	=> "Redigeerimislugu",
@@ -691,11 +560,6 @@ Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.\n",
 Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 (eel) = erinevused võrreldes eelmise redaktsiooniga, P = pisimuudatus",
 'history_copyright'    => '-',
-/*
- </nowiki>
-====Diffs====
- <nowiki>
-*/
 # Diffs
 #
 "difference"	=> "(Erinevused redaktsioonide vahel)",
@@ -705,11 +569,6 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'selectnewerversionfordiff' => 'Vali võrdlemiseks uuem versioon',
 'selectolderversionfordiff' => 'Vali võrdlemiseks vanem versioon',
 'compareselectedversions' => 'Võrdle valitud versioone',
-/*
- </nowiki>
-====Search results====
- <nowiki>
-*/
 # Search results
 #
 "searchresults" => "Otsingu tulemid",
@@ -743,11 +602,6 @@ Otsing nimeruumidest :<br />
 $1<br />
 $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 
-/*
- </nowiki>
-====Preferences page====
- <nowiki>
-*/
 
 # Preferences page
 #
@@ -787,11 +641,6 @@ Teie sisemine ID-number on $2.",
 "timezoneoffset" => "Ajavahe",
 "emailflag"		=> "Blokeeri e-kirjad teistelt kasutajatelt",
 
-/*
- </nowiki>
-====Recent changes====
- <nowiki>
-*/
 
 # Recent changes
 #
@@ -815,11 +664,6 @@ Teie sisemine ID-number on $2.",
 "minoreditletter" => "P",
 "newpageletter" => "U",
 
-/*
- </nowiki>
-====Upload====
- <nowiki>
-*/
 # Upload
 #
 "upload"		=> "Faili üleslaadimine",
@@ -889,11 +733,6 @@ ja kelle poolt ta loodi, jne.",
 "savefile"		=> "Salvesta fail",
 "uploadedimage" => "laadisin üles \"[[$1]]\"",
 
-/*
- </nowiki>
-====Image list====
- <nowiki>
-*/
 # Image list
 #
 "imagelist"		=> "Piltide loend",
@@ -918,11 +757,6 @@ see vana versioon, (taas) = taasta see vana versioon.
 "linkstoimage"	=> "Sellele pildile viitavad järgmised leheküljed:",
 "nolinkstoimage" => "Selle pildile ei viita ükski lehekülg.",
 
-/*
- </nowiki>
-====Statistics====
- <nowiki>
-*/
 # Statistics
 #
 "statistics"	=> "Statistika",
@@ -938,11 +772,6 @@ Alates uuele programmile üleminekust 18. detsembril 2003 on lehekülgi vaadatud
   # Võiks veel ainsust silmas pidades ühtteist ümber sõnastada, aga see esineb tõesti üliharva.
 "userstatstext" => "Registreeritud kasutajate arv: <b>$1</b>.
 Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
-/*
- </nowiki>
-====Maintenance Page====
- <nowiki>
-*/
 # Maintenance Page
 #
 "maintenance"		=> "Hoolduslehekülg",
@@ -964,11 +793,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 "missinglanguagelinksbutton"    => "Find missing language links for",
 "missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
 
-/*
- </nowiki>
-====Miscellaneous special pages====
- <nowiki>
-*/
 # Miscellaneous special pages
 #
 "orphans"		=> "Üksildased artiklid",
@@ -1010,11 +834,6 @@ omada lisainfot otsitavate raamatute kohta.
 ei tohiks konstrueerida reklaami tegemiseks.",
 "alphaindexline" => "$1 to $2",
 
-/*
- </nowiki>
-====Email this user====
- <nowiki>
-*/
 # Email this user
 #
 "mailnologin"	=> "No send address",
@@ -1039,11 +858,6 @@ or has chosen not to receive e-mail from other users.",
 "emailsent"		=> "E-post saadetud",
 "emailsenttext" => "Teie sõnum on saadetud.",
 
-/*
- </nowiki>
-====Watchlist====
- <nowiki>
-*/
 # Watchlist
 #
 "watchlist"		=> "Minu jälgimisloend",
@@ -1064,11 +878,6 @@ ning [[Special:Recentchanges||viimaste muudatuste lehel]] tuuakse ta esile
 "unwatchthispage" => "Lõpeta jälgimine",
 "notanarticle"	=> "Pole artikkel",
 
-/*
- </nowiki>
-====Delete/protect/revert====
- <nowiki>
-*/
 # Delete/protect/revert
 #
 "deletepage"	=> "Kustuta lehekülg",
@@ -1098,11 +907,6 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).
 "cantrollback"	=> "Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.",
 "revertpage"	=> "Pöörduti tagasi viimasele muudatusele, mille tegi $1",
 
-/*
- </nowiki>
-====Undelete====
- <nowiki>
-*/
 # Undelete
 "undelete" => "Taasta kustutatud lehekülg",
 "undeletepage" => "Kustutatud lehekülgede vaatamine ja taastamine",
@@ -1119,11 +923,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 "undeletedtext"   => "Artikkel [[$1]] on taastatud.
 Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatud_leheküljed]].",
 
-/*
- </nowiki>
-====Contributions====
- <nowiki>
-*/
 # Contributions
 #
 "contributions"	=> "Kasutaja kaastööd",
@@ -1134,11 +933,6 @@ Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatu
 "uclinks"		=> "Näita viimast $1 muudatust; viimase $2 päeva jooksul.",
 "uctop"		=> " (üles)" ,
 
-/*
- </nowiki>
-====What links here====
- <nowiki>
-*/
 # What links here
 #
 "whatlinkshere"	=> "Viidad siia",
@@ -1149,11 +943,6 @@ Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatu
 "nolinkshere"	=> "Siia ei viita ükski lehekülg.",
 "isredirect"	=> "ümbersuunamislehekülg",
 
-/*
- </nowiki>
-====Block/unblock IP====
- <nowiki>
-*/
 # Block/unblock IP
 #
 "blockip"		=> "Blokeeri IP-aadress",
@@ -1182,11 +971,6 @@ to a previously blocked IP address.",
 "unblocklink"	=> "unblock",
 "contribslink"	=> "contribs",
 
-/*
- </nowiki>
-====Developer tools====
- <nowiki>
-*/
 # Developer tools
 #
 "lockdb"		=> "Lukusta andmebaas",
@@ -1211,11 +995,6 @@ Please confirm that this is what you intend to do.",
 <br />Kui Teie hooldustöö on läbi, ärge unustage kirjutuspääsu taastada!",
 "unlockdbsuccesstext" => "Andmebaasi kirjutuspääs on taastatud.",
 
-/*
- </nowiki>
-====SQL query====
- <nowiki>
-*/
 # SQL query
 #
 "asksql"		=> "SQL query",
@@ -1230,11 +1009,6 @@ this function sparingly.",
 Wikipedia developers.",
 "querysuccessful" => "Query successful",
 
-/*
- </nowiki>
-====Move page====
- <nowiki>
-*/
 # Move page
 #
 "movepage"		=> "Teisalda artikkel",
@@ -1275,11 +1049,6 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]",
 "movetalk"		=> "Teisalda ka \"arutelu\", kui saab.",
 "talkpagemoved" => "Ka vastav arutelulehekülg on teisaldatud.",
 "talkpagenotmoved" => "Vastav arutelulehekülg jäi teisaldamata.",
-/*
- </nowiki>
-====Matemaatilise teksti seadete valikud====
-  <nowiki>
-*/
  #Math
    'mw_math_png' => "Alati PNG",
    'mw_math_simple' => "Kui väga lihtne, siis HTML, muidu PNG",
@@ -1289,14 +1058,6 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]",
    'mw_math_mathml' => 'MathML',
 
 );
-
-/*
- </nowiki>
-
-===Ja pisut programmikoodi===
-Eesti keele jaoks vaja kohaldada funktsioon ''date()''.
- <nowiki>
-*/
 
 require_once( "LanguageUtf8.php" );
 
@@ -1365,7 +1126,4 @@ class LanguageEt extends LanguageUtf8 {
 	}
 
 }
-/*
- </nowiki>
-*/
 ?>

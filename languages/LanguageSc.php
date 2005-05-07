@@ -33,19 +33,6 @@ require_once( "LanguageUtf8.php" );
 	"Standard", "Nostalgia", "Cologne Blue"
 );
 
-
-/* These should be localized... any Italian online bookstores take ISBN searches? */
-/* private */ $wgBookstoreListSc = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-/* Just inherit the (mostly) native-language plus latinized formed */
-/* private */ $wgLanguageNamesSc = $wgLanguageNamesEn;
-
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -788,11 +775,6 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 
 class LanguageSc extends LanguageUtf8 {
 
-	function getBookstoreList () {
-		global $wgBookstoreListSc;
-		return $wgBookstoreListSc;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesSc;
 		return $wgNamespaceNamesSc;
@@ -820,19 +802,6 @@ class LanguageSc extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSc;
 		return $wgSkinNamesSc;
-	}
-
-	function getLanguageNames() {
-		global $wgLanguageNamesSc;
-		return $wgLanguageNamesSc;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesSc;
-		if ( ! array_key_exists( $code, $wgLanguageNamesSc ) ) {
-			return "";
-		}
-		return $wgLanguageNamesSc[$code];
 	}
 
 	function date( $ts, $adj = false )
