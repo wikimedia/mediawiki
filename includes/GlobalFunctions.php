@@ -1040,17 +1040,41 @@ function wfRestoreWarnings() {
 
 # Autodetect, convert and provide timestamps of various types
 
-/** Standard unix timestamp (number of seconds since 1 Jan 1970) */
-define('TS_UNIX',0);
-/** MediaWiki concatenated string timestamp (yyyymmddhhmmss) */
-define('TS_MW',1);	
-/** Standard database timestamp (yyyy-mm-dd hh:mm:ss) */
-define('TS_DB',2);
-/** For HTTP and e-mail headers -- output only */
-define('TS_RFC2822', 3 );
+/** 
+ * Unix time - the number of seconds since 1970-01-01 00:00:00 UTC
+ */
+define('TS_UNIX', 0);
 
 /**
- * @todo document
+ * MediaWiki concatenated string timestamp (YYYYMMDDHHMMSS)
+ */
+define('TS_MW', 1);
+
+/**
+ * MySQL DATETIME (YYYY-MM-DD HH:MM:SS)
+ */
+define('TS_DB', 2);
+
+/**
+ * RFC 2822 format, for E-mail and HTTP headers
+ */
+define('TS_RFC2822', 3);
+
+/**
+ * An Exif timestamp (YYYY:MM:DD HH:MM:SS)
+ *
+ * @link http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
+ *       DateTime tag and page 36 for the DateTimeOriginal and
+ *       DateTimeDigitized tags.
+ */
+define('TS_EXIF', 4);
+
+
+/**
+ * @param mixed $outputtype A timestamp in one of the supported formats, the
+ *                          function will autodetect which format is supplied
+                            and act accordingly.
+ * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	if ($ts==0) { 
@@ -1059,6 +1083,9 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
 			    (int)$da[2],(int)$da[3],(int)$da[1]);
+	} elseif (preg_match("/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
+		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
+			(int)$da[2],(int)$da[3],(int)$da[1]);
 	} elseif (preg_match("/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/",$ts,$da)) {
 		# TS_MW
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
@@ -1080,6 +1107,9 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 			return gmdate( 'YmdHis', $uts );
 		case TS_DB:
 			return gmdate( 'Y-m-d H:i:s', $uts );
+		// This shouldn't ever be used, but is included for completeness
+		case TS_EXIF:
+			return gmdate(  'Y:m:d H:i:s', $uts );
 		case TS_RFC2822:
 			return gmdate( 'D, d M Y H:i:s', $uts ) . ' GMT';
 		default:
