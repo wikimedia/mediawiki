@@ -257,9 +257,9 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
 			$ns = $s->page_namespace;
-			$s = $invert && $namespaces[$ns] != $wgContLang->getNsText(NS_MAIN) ? ':' : '';
-			$n = $invert ? $namespaces[$ns] : '';
-			$link = $sk->makeKnownLinkObj( $t, $t->getText(), false, false, $n . $s ); 
+			$prefix = $invert ? $namespaces[$ns] : '';
+			$prefix .= $invert && $namespaces[$ns] != $wgContLang->getNsText(NS_MAIN) ? ':' : '';
+			$link = $sk->makeKnownLinkObj( $t, $t->getText(), false, false, $prefix ); 
 		} else {
 			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 		}
