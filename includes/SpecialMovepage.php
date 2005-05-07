@@ -140,7 +140,7 @@ class MovePageForm {
 		<tr>
 			<td align='right'>{$movereason}:</td>
 			<td align='left'>
-				<input type='text' size=40 name=\"wpReason\" value=\"{$encReason}\" />
+				<input type='text' size='40' name=\"wpReason\" value=\"{$encReason}\" />
 			</td>
 		</tr>" );
 
