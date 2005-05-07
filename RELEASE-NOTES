@@ -155,6 +155,8 @@ Various bugfixes, small features, and a few experimental things:
 * Supplying a reason for a block is no longer mandatory
 * Language conversion support for category pages
 * $wgStyleSheetDirectory is no longer an alias for $wgStyleDirectory;
+* Special:Movepage can now take paramaters like Special:Movepage/Page_to_move
+  (used to just be able to take paramaters via a GET request like index.php?title=Special:Movepage&target=Page_to_move)
 * ...and more!
 
 

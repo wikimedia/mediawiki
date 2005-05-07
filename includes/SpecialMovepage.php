@@ -13,7 +13,7 @@ require_once( "LinksUpdate.php" );
 /**
  * Constructor
  */
-function wfSpecialMovepage() {
+function wfSpecialMovepage( $par = null ) {
 	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
 	# check rights. We don't want newbies to move pages to prevents possible attack
@@ -27,7 +27,7 @@ function wfSpecialMovepage() {
 		return;
 	}
 
-	$f = new MovePageForm();
+	$f = new MovePageForm( $par );
 
 	if ( 'success' == $action ) {
 		$f->showSuccess();
@@ -48,9 +48,10 @@ class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
 	var $moveTalk, $deleteAndMove;
 		
-	function MovePageForm() {
+	function MovePageForm( $par ) {
 		global $wgRequest;
-		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $wgRequest->getVal( 'target' ) );
+		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
+		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $target );
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 		$this->reason = $wgRequest->getText( 'wpReason' );
 		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
