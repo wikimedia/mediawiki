@@ -442,7 +442,7 @@ class SkinTemplate extends Skin {
 			);
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg('mycontris'),
-				'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) )
+				'href' => $this->makeSpecialUrl("Contributions/$this->username")
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
@@ -609,7 +609,7 @@ class SkinTemplate extends Skin {
 						$content_actions['move'] = array(
 							'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
 							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl('Movepage', 'target='. urlencode( $this->thispage ) )
+							'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
 						);
 					}
 				}
@@ -620,7 +620,7 @@ class SkinTemplate extends Skin {
 						$content_actions['undelete'] = array(
 							'class' => false,
 							'text' => ($n == 1) ? wfMsg( 'undelete_short1' ) : wfMsg('undelete_short', $n ),
-							'href' => $this->makeSpecialUrl('Undelete/'.$this->thispage)
+							'href' => $this->makeSpecialUrl("Undelete/$this->thispage")
 						);
 					}
 				}
@@ -776,8 +776,12 @@ class SkinTemplate extends Skin {
 		$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL) {
-			$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage)));
-			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage)));
+			$nav_urls['whatlinkshere'] = array(
+				'href' => $this->makeSpecialUrl("Whatlinkshere/$this->thispage")
+			);
+			$nav_urls['recentchangeslinked'] = array(
+				'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
+			);
 		}
 
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
@@ -790,7 +794,7 @@ class SkinTemplate extends Skin {
 
 		if($id || $ip) { # both anons and non-anons have contri list
 			$nav_urls['contributions'] = array(
-				'href' => $this->makeSpecialUrl('Contributions', "target=" . $this->mTitle->getPartialURL() )
+				'href' => $this->makeSpecialUrl('Contributions/' . $this->mTitle->getText() )
 			);
 		} else {
 			$nav_urls['contributions'] = false;
@@ -798,7 +802,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['emailuser'] = false;
 		if( $this->showEmailUser( $id ) ) {
 			$nav_urls['emailuser'] = array(
-				'href' => $this->makeSpecialUrl('Emailuser', "target=" . $this->mTitle->getPartialURL() )
+				'href' => $this->makeSpecialUrl('Emailuser/' . $this->mTitle->getText() )
 			);
 		}
 		wfProfileOut( $fname );
