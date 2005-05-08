@@ -22,7 +22,7 @@ class ImagePage extends Article {
 	function view() {
 		global $wgUseExternalEditor, $wgOut, $wgShowEXIF;
 
-		$this->img  = new Image( $this->mTitle );
+		$this->img = new Image( $this->mTitle );
 
 		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
 			if ($wgShowEXIF && $this->img->exists()) {
@@ -37,6 +37,8 @@ class ImagePage extends Article {
 				$wgOut->addHTML($this->showTOC($showmeta));
 
 			$this->openShowImage();
+			if ($exif)
+				$wgOut->addWikiText($this->makeMetadataTable($exif));
 			
 			# No need to display noarticletext, we use our own message, output in openShowImage()
 			if( $this->getID() ) {
@@ -52,8 +54,6 @@ class ImagePage extends Article {
 			
 			$this->closeShowImage();
 			$this->imageHistory();
-			if ($exif)
-				$wgOut->addHTML($this->makeMetadataTable($exif));
 			$this->imageLinks();
 		} else {
 			Article::view();
@@ -88,28 +88,14 @@ class ImagePage extends Article {
 	 * @return string
 	 */
 	function makeMetadataTable( $exif ) {
-		# Create the table
-		$r = '<h2 id="metadata">'. htmlspecialchars( wfMsg( 'metadata' ) ) . "</h2>\n";
-		$r .= "<table class='metadata'>\n" ;
-		$n = 0;
+		$r = "{| class=metadata align=right width=250px\n";
+		$r .= '|+ id=metadata | '. htmlspecialchars( wfMsg( 'metadata' ) ) . "\n";
 		foreach( $exif as $k => $v ) {
-			if( $n % 2 == 0 ) {
-				$r .= '<tr>';
-			}
-			$r .= '<th>' . wfMsg( 'exif-' . strtolower( $k ) ) . "</th>\n";
-			$r .= '<td>' . htmlspecialchars( $v ) . "</td>\n";
-			if ( $n % 2 == 1 ) {
-				$r .= "</tr>\n";
-			} else {
-				$r .= "<td class='spacer'>&nbsp;</td>\n";
-			}
-			$n++;
+			$r .= '!' . wfMsg( 'exif-' . strtolower( $k ) ) . "\n";
+			$r .= '|' . htmlspecialchars( $v ) . "\n";
+			$r .= "|-\n";
 		}
-		if ( $n % 2 == 1 ) {
-			$r .= "<th></th><td></td></tr>\n";
-		}
-
-		return "$r</table>\n";
+		return substr($r, 0, -3) . '|}';
 	}
 
 	function openShowImage()
