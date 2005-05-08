@@ -310,5 +310,84 @@ class Exif {
 	function version() {
 		return 1; // We don't need no bloddy constants!
 	}
+
+	/**#@+
+	 * Validates if a tag value is of the type it should be according to the Exif spec
+	 * 
+	 * @param mixed $in The input value to check
+	 * @return bool
+	 */
+	function isByte( $in ) {
+		return is_numeric($in) && $in >= 0 && $in <= 255;
+	}
+	
+	function isASCII( $in ) {
+		return true; // TODO: FIXME
+	}
+
+	function isShort( $in ) {
+		return is_numeric($in) && $in >= 0 && $in <= 65536;
+	}
+
+	function isLong( $in ) {
+		return is_numeric($in) && $in >= 0 && $in <= 4294967296;
+
+	}
+	
+	function isRational( $in ) {
+		$in = explode( '/', $in, 2 );
+		return $this->isLong($in[0]) && $this->isLong($in[1]);
+	}
+
+	function isUndefined( $in ) {
+		return true;
+	}
+
+	function isSlong( $in ) {
+		return $this->isLong( abs( $in ) );
+	}
+
+	function isSrational( $in ) {
+		$in = explode( '/', $in, 2 );
+		return $this->isSlong($in[0]) && $this->isSlong($in[1]);
+	}
+	/**#@-*/
+
+	/**
+	 * Validates if a tag has a legal value according to the Exif spec, presumes
+	 * that the given tag is valid ( has been checked in advance with
+	 * $this->mValidExif )
+	 *
+	 * @param string $tag The tag to check
+	 * @param mixed  $val The value of the tag
+	 * @return bool
+	 */
+	function validate( $tag, $val ) {
+		switch($this->mFlatExif[$tag]) {
+			case BYTE:
+				return $this->isByte( $val );
+				break;
+			case ASCII:
+				return $this->isASCII( $val );
+				break;
+			case SHORT:
+				return $this->isShort( $val );
+				break;
+			case LONG:
+				return $this->isLong( $val );
+			case RATIONAL:
+				return $this->isRational( $val );
+			case UNDEFINED:
+				return $this->isUndefined( $val );
+			case SLONG:
+				return $this->isSlong( $val );
+			case SRATIONAL:
+				return $this->isSrational( $val );
+			default:
+				wfDebug( "Exif: The tag \"$tag\" had an invalid value: \"$val\"\n" );
+				return false;
+				break;
+		}
+	}
 }
 } // MEDIAWIKI
