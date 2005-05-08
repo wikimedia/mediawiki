@@ -1782,8 +1782,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
-# Exif data
+# Metadata
 'metadata' => 'Metadata',
+
 # Exif tags
 'exif-imagewidth' =>'Image width',
 'exif-imagelength' =>'Image height',
@@ -1902,6 +1903,171 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-gpsareainformation' =>'Name of GPS area',
 'exif-gpsdatestamp' =>'GPS date',
 'exif-gpsdifferential' =>'GPS differential correction',
+
+# Make & model, can be wikified in order to link to the camera and model name
+
+'exif-make-value' => '$1',
+'exif-model-value' =>'$1',
+
+# Exif attributes
+
+'exif-compression-1' => 'Uncompressed',
+'exif-compression-6' => 'JPEG',
+
+'exif-photometricinterpretation-1' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Mirrored',
+'exif-orientation-3' => 'Mirrored & flipped', // may be wrong
+'exif-orientation-4' => 'Flipped', // may be wrong
+'exif-orientation-5' => '',
+'exif-orientation-6' => '',
+'exif-orientation-7' => '',
+'exif-orientation-8' => '',
+
+'exif-planarconfiguration-1' => 'chunky format',
+'exif-planarconfiguration-2' => 'planar format',
+
+'exif-resolutionunit-2' => 'inches',
+'exif-resolutionunit-3' => 'centimetres',
+
+'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => 'does not exist',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
+'exif-exposureprogram-0' => 'Not defined',
+'exif-exposureprogram-1' => 'Manual',
+'exif-exposureprogram-2' => 'Normal program',
+'exif-exposureprogram-3' => 'Aperture priority',
+'exif-exposureprogram-4' => 'Shutter priority',
+'exif-exposureprogram-5' => 'Creative program (biased toward depth of field)',
+'exif-exposureprogram-6' => 'Action program (biased toward fast shutter speed)',
+'exif-exposureprogram-7' => 'Portrait mode (for closeup photos with the background out of focus)',
+'exif-exposureprogram-8' => 'Landscape mode (for landscape photos with the background in focus)',
+
+'exif-meteringmode-0' => 'Unknown',
+'exif-meteringmode-1' => 'Average',
+'exif-meteringmode-2' => 'CenterWeightedAverage',
+'exif-meteringmode-3' => 'Spot',
+'exif-meteringmode-4' => 'MultiSpot',
+'exif-meteringmode-5' => 'Pattern',
+'exif-meteringmode-6' => 'Partial',
+'exif-meteringmode-255' => 'Other',
+
+'exif-lightsource-0' => 'Unknown',
+'exif-lightsource-1' => 'Daylight',
+'exif-lightsource-2' => 'Fluorescent',
+'exif-lightsource-3' => 'Tungsten (incandescent light)',
+'exif-lightsource-4' => 'Flash',
+'exif-lightsource-9' => 'Fine weather',
+'exif-lightsource-10' => 'Clody weather',
+'exif-lightsource-11' => 'Shade',
+'exif-lightsource-12' => 'Daylight fluorescent (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Day white fluorescent (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Cool white fluorescent (W 3900 – 4500K)',
+'exif-lightsource-15' => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standard light A',
+'exif-lightsource-18' => 'Standard light B',
+'exif-lightsource-19' => 'Standard light C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
+'exif-lightsource-24' => 'ISO studio tungsten',
+'exif-lightsource-255' => 'Other light source',
+
+'exif-sensingmethod-1' => 'Undefined',
+'exif-sensingmethod-2' => 'One-chip color area sensor',
+'exif-sensingmethod-3' => 'Two-chip color area sensor',
+'exif-sensingmethod-4' => 'Three-chip color area sensor',
+'exif-sensingmethod-5' => 'Color sequential area sensor',
+'exif-sensingmethod-7' => 'Trilinear sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor',
+
+'exif-filesource-3' => 'DSC',
+
+'exif-scenetype-1' => 'A directly photographed image',
+
+'exif-customrendered-0' => 'Normal process',
+'exif-customrendered-1' => 'Custom process',
+
+'exif-exposuremode-0' => 'Auto exposure',
+'exif-exposuremode-1' => 'Manual exposure',
+'exif-exposuremode-2' => 'Auto bracket',
+
+'exif-whitebalance-0' => 'Auto white balance',
+'exif-whitebalance-1' => 'Manual white balance',
+
+'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Landscape',
+'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Night scene',
+
+'exif-gaincontrol-0' => 'None',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Soft',
+'exif-contrast-2' => 'Hard',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Low saturation',
+'exif-saturation-2' => 'High saturation',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Soft',
+'exif-sharpness-2' => 'Hard',
+
+'exif-sharpness-0' => 'Unknown',
+'exif-sharpness-1' => 'Macro',
+'exif-sharpness-2' => 'Close view',
+'exif-sharpness-3' => 'Distant view',
+
+'exif-gpslatituderef-n' => 'North latitude',
+'exif-gpslatituderef-s' => 'South latitude',
+
+'exif-gpslongituderef-e' => 'East longitude',
+'exif-gpslongituderef-w' => 'West longitude',
+
+'exif-gpsstatus-a' => 'Measurement in progress',
+'exif-gpsstatus-v' => 'Measurement interoperability',
+
+'exif-gpsmeasuremode-2' => '2-dimensional measurement',
+'exif-gpsmeasuremode-3' => '3-dimensional measurement',
+
+'exif-gpsspeedref-k' => 'Kilometres per hour',
+'exif-gpsspeedref-m' => 'Miles per hour',
+'exif-gpsspeedref-n' => 'Knots',
+
+'exif-gpstrackref-t' => 'True direction',
+'exif-gpstrackref-m' => 'Magnetic direction',
+
+'exif-gpsimgdirectionref-t' => 'True direction',
+'exif-gpsimgdirectionref-m' => 'Magnetic direction',
+
+'exif-gpsdestlatituderef-n' => 'North latitude',
+'exif-gpsdestlatituderef-s' => 'South latitude',
+
+'exif-gpsdestlongituderef-e' => 'East longitude',
+'exif-gpsdestlongituderef-w' => 'West longitude',
+
+'exif-gpsdestbearingref-t' => 'True direction',
+'exif-gpsdestbearingref-m' => 'Magnetic direction',
+
+'exif-gpsdestdistanceref-k' => 'Kilometres per hour',
+'exif-gpsdestdistanceref-m' => 'Miles per hour',
+'exif-gpsdestdistanceref-n' => 'Knots',
 
 # external editor support
 'edit-externally' => 'Edit this file using an external application',
@@ -2238,7 +2404,7 @@ class Language {
 	 *               validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function date( $ts, $adj = false, $format = false, $timecorrection = false ) {
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
 		
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
