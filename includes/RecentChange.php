@@ -424,7 +424,7 @@ class RecentChange
 				$szdiff = "\002$szdiff\002";
 			else if ($szdiff >= 0)
 				$szdiff = "+$szdiff";
-			$szdiff = "\0035*\003 ($szdiff)";
+			$szdiff = "($szdiff)";
 		} else {
 			$szdiff = '';
 		}
@@ -436,7 +436,7 @@ class RecentChange
 		# no colour (\003) switches back to the term default
 		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
 		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
-		              "\00302$url\003 \0035*\003 \00303$user\003 $szdiff \00310$comment\003\n";
+		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
 
 		return $fullString;
 	}
