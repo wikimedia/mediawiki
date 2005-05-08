@@ -1208,4 +1208,21 @@ function wfElement( $element, $attribs = array(), $contents = '') {
 	return $out;
 }
 
+/**
+ * Format an XML element as with wfElement(), but run text through the
+ * UtfNormal::cleanUp() validator first to ensure that no invalid UTF-8
+ * is passed.
+ *
+ * @param string $element
+ * @param array $attribs Name=>value pairs. Values will be escaped.
+ * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @return string
+ */
+function wfElementClean( $element, $attribs = array(), $contents = '') {
+	if( $attribs ) {
+		$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
+	}
+	return wfElement( $element, $attribs, UtfNormal::cleanUp( $contents ) );
+}
+
 ?>

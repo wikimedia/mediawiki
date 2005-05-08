@@ -174,6 +174,12 @@ Various bugfixes, small features, and a few experimental things:
   that the cur table be left in place until/unless such fields are migrated
   into the main text store.
 * (bug 1692) Fix margin on unwatch tab
+* HistoryBlobStub: the last-used HistoryBlob is kept open to speed up
+  multiple-revision pulls
+* Special:Export now includes page, revision, and user id numbers by
+  default (previously this was disabled for no particular reason)
+* dumpBackup.php can dump the full database to Export XML, with current
+  revisions only or complete histories.
 
 
 === Caveats ===
