@@ -1092,32 +1092,41 @@ li span.deleted {
 
 /* Classes for EXIF data display */
 table.metadata {
+	font-size: 0.8em;
 	margin-left: 0.5em;
+	margin-bottom: 0.5em;
 }
 
-table.metadata caption { font-weight: bold; }
-table.metadata th { font-weight: normal; }
-table.metadata td { padding: 0.1em; }
+table.metadata caption {
+	font-weight: bold;
+}
+
+table.metadata th {
+	font-weight: normal;
+}
+
+table.metadata td {
+	padding: 0.1em;
+}
 
 table.metadata {
 	border: none;
 	border-collapse: collapse;
 }
+
 table.metadata td, table.metadata th {
+	text-align: center;
 	border: 1px solid #aaaaaa;
-	padding-left: 4px;
-	padding-right: 4px;
+	padding-left: 0.1em;
+	padding-right: 0.1em;
 }
+
 table.metadata th {
 	background-color: #f9f9f9;
 }
+
 table.metadata td {
 	background-color: #fcfcfc;
-}
-table.metadata td.spacer {
-	background: white;
-	border-top: none;
-	border-bottom: none;
 }
 
 /* filetoc */
