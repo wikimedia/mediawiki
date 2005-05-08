@@ -1142,7 +1142,7 @@ class Image
 		$obj = new Exif;
 		$valid = $obj->mValidExif;
 		foreach($exif as $k => $v) {
-			if ( ! in_array($k, $valid) )
+			if ( !in_array($k, $valid) || !$obj->validate($k, $v) )
 				unset($exif[$k]);
 		}
 		return $exif;
