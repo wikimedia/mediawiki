@@ -279,19 +279,22 @@ class Exif {
 	 */
 	function makeFlatExifTags() {
 		$exif = $this->getExif();
-		array_walk($exif, array(&$this, 'callback')); // note the reference
+		$this->extractTags( $exif );
 	}
 	
 	/**
-	 * A callback function used by makeFlatExifTags()
+	 * A recursing extractor function used by makeFlatExifTags()
 	 */
-	function callback($val, $key) {
-		if (gettype($val) === 'array')
-			array_walk($val, array(&$this, 'callback'));
-		else
-			$this->mFlatExif[$key] = $val;
+	function extractTags( $tagset ) {
+		foreach( $tagset as $key => $val ) {
+			if( is_array( $val ) ) {
+				$this->extractTags( $val );
+			} else {
+				$this->mFlatExif[$key] = $val;
+			}
+		}
 	}
-
+	
 	/**
 	 * Produce a list of all Exif tags appropriate for user output
 	 *
