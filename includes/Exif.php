@@ -8,6 +8,21 @@ if (defined('MEDIAWIKI')) {
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or 
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @link http://exif.org/Exif2-2.PDF The Exif 2.2 specification
  * @bug 1555, 1947
  */
@@ -75,7 +90,7 @@ class Exif {
 					'BitsPerSample' => SHORT,		# Number of bits per component
 					# "When a primary image is JPEG compressed, this designation is not"
 					# "necessary and is omitted." (p23)
-					'Compression' => SHORT,			# Compression scheme 
+					'Compression' => SHORT,			# Compression scheme #p23
 					'PhotometricInterpretation' => SHORT,	# Pixel composition #p23
 					'Orientation' => SHORT,			# Orientation of image #p24
 					'SamplesPerPixel' => SHORT,		# Number of components
@@ -276,7 +291,7 @@ class Exif {
 		else
 			$this->mFlatExif[$key] = $val;
 	}
-			
+
 	/**
 	 * Produce a list of all Exif tags appropriate for user output
 	 *
@@ -363,31 +378,249 @@ class Exif {
 	 * @return bool
 	 */
 	function validate( $tag, $val ) {
-		switch($this->mFlatExif[$tag]) {
-			case BYTE:
+		// Fucks up if not typecast 
+		switch((string)$this->mFlatExif[$tag]) {
+			case (string)BYTE:
 				return $this->isByte( $val );
-				break;
-			case ASCII:
+			case (string)ASCII:
 				return $this->isASCII( $val );
-				break;
-			case SHORT:
+			case (string)SHORT:
 				return $this->isShort( $val );
-				break;
-			case LONG:
+			case (string)LONG:
 				return $this->isLong( $val );
-			case RATIONAL:
+			case (string)RATIONAL:
 				return $this->isRational( $val );
-			case UNDEFINED:
+			case (string)UNDEFINED:
 				return $this->isUndefined( $val );
-			case SLONG:
+			case (string)SLONG:
 				return $this->isSlong( $val );
-			case SRATIONAL:
+			case (string)SRATIONAL:
 				return $this->isSrational( $val );
+			case (string)SHORT.','.LONG:
+				return $this->isShort( $val ) || $this->isLong( $val );
 			default:
 				wfDebug( "Exif: The tag \"$tag\" had an invalid value: \"$val\"\n" );
 				return false;
-				break;
 		}
+	}
+
+	/**
+	 * Numbers given by Exif user agents are often magical, that is they
+	 * should be replaced by a detailed explanation depending on their
+	 * value which most of the time are plain integers. This function
+	 * formats Exif values into human readable form.
+	 *
+	 * @param string $tag The tag to be formatted
+	 * @param mixed  $val The value of the tag
+	 * @return string
+	 */
+	function format( $tag, $val ) {
+		global $wgLang;
+		
+		switch ($tag) {
+			case 'Compression':
+				switch ($val) {
+					case 1: case 6:
+						return $this->msg( $tag, $val );
+				}
+			
+			case 'PhotometricInterpretation':
+				switch ($val) {
+					case 2: case 6:
+						return $this->msg( $tag, $val );
+				}
+			
+			case 'Orientation':
+				switch ($val) {
+					case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+						return $this->msg( $tag, $val );
+				}
+			
+			// TODO: If this field does not exist use 1
+			case 'PlanarConfiguration':
+				switch ($val) {
+					case 1: case 2:
+						return $this->msg( $tag, $val );
+				}
+			
+			// TODO: YCbCrSubSampling
+			// TODO: YCbCrPositioning
+			// TODO: If this field does not exists use 2
+			case 'ResolutionUnit': #p26
+				switch ($val) {
+					case 2: case 3:
+						return $this->msg( $tag, $val );
+				}
+			
+			// TODO: YCbCrCoefficients  #p27 (see annex E)
+			case 'ExifVersion': case 'FlashpixVersion':
+				return "$val"/100;
+			
+			case 'ColorSpace':
+				switch ($val) {
+					case 1: case 'FFFF.H':
+						return $this->msg( $tag, $val );
+				}
+			
+			case 'ComponentsConfiguration':
+				switch ($val) {
+					case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+						return $this->msg( $tag, $val );
+				}
+			
+			case 'DateTimeOriginal':
+			case 'DateTimeDigitized':
+				return $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
+			case 'ExposureProgram':
+				switch ($val) {
+					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+						return $this->msg( $tag, $val );
+				}
+			case 'MeteringMode':
+				switch ($val) {
+					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
+						return $this->msg( $tag, $val );
+				}
+			case 'LightSource':
+				switch ($val) {
+					case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
+					case 12: case 13: case 14: case 15: case 17: case 18: case 19: case 20:
+					case 21: case 22: case 23: case 24: case 255:
+						return $this->msg( $tag, $val );
+				}
+			// TODO: Flash
+			case 'SensingMethod':
+				switch ($val) {
+					case 1: case 2: case 3: case 4: case 5: case 7: case 8:
+						return $this->msg( $tag, $val );
+				}
+			case 'FileSource':
+				switch ($val) {
+					case 3:
+						return $this->msg( $tag, $val );
+				}
+			case 'SceneType':
+				switch ($val) {
+					case 1:
+						return $this->msg( $tag, $val );
+				}
+			case 'CustomRendered':
+				switch ($val) {
+					case 0: case 1:
+						return $this->msg( $tag, $val );
+				}
+			case 'ExposureMode':
+				switch ($val) {
+					case 0: case 1: case 2:
+						return $this->msg( $tag, $val );
+				}
+			case 'WhiteBalance':
+				switch ($val) {
+					case 0: case 1:
+						return $this->msg( $tag, $val );
+				}
+			case 'SceneCaptureType':
+				switch ($val) {
+					case 0: case 1: case 2: case 3:
+						return $this->msg( $tag, $val );
+				}
+			case 'GainControl':
+				switch ($val) {
+					case 0: case 1: case 2: case 3: case 4:
+						return $this->msg( $tag, $val );
+				}
+			case 'Contrast':
+				switch ($val) {
+					case 0: case 1: case 2:
+						return $this->msg( $tag, $val );
+				}
+			case 'Saturation':
+				switch ($val) {
+					case 0: case 1: case 2:
+						return $this->msg( $tag, $val );
+				}
+			case 'Sharpness':
+				switch ($val) {
+					case 0: case 1: case 2:
+						return $this->msg( $tag, $val );
+				}
+			case 'SubjectDistanceRange':
+				switch ($val) {
+					case 0: case 1: case 2: case 3:
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSLatitudeRef':
+				switch ($val) {
+					case 'N': case 'S':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSLongitudeRef':
+				switch ($val) {
+					case 'E': case 'W':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSStatus':
+				switch ($val) {
+					case 'A': case 'V':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSMeasureMode':
+				switch ($val) {
+					case 2: case 3:
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSSpeedRef':
+				switch ($val) {
+					case 'K': case 'M': case 'N':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSTrackRef':
+				switch ($val) {
+					case 'T': case 'M':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSImgDirectionRef':
+				switch ($val) {
+					case 'T': case 'M':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSDestLatitudeRef':
+				switch ($val) {
+					case 'N': case 'S':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSDestLongitudeRef':
+				switch ($val) {
+					case 'E': case 'W':
+						return $this->msg( $tag, $val );
+				}
+			case 'GPSDestBearingRef':
+				switch ($val) {
+					case 'T': case 'M':
+						return $this->msg( $tag, $val );					
+				}
+			case 'GPSDateStamp':
+				return $wgLang->date( substr($val, 0, 4) . substr($val, 5, 2) . substr($val, 8, 2) . 000000 );
+
+			// This is not in the Exif standard, just a special
+			// case for our purposes which enables wikis to wikify
+			// the make and model to write articles about them.
+			case 'Make': case 'Model':
+				return wfMsg( strtolower( "exif-$tag-value" ), $val );
+			default:
+				return $val;
+		}
+	}
+
+	/**
+	 * Conviniance function for format()
+	 *
+	 * @param string $tag The tag name to pass on
+	 * @param string $val The value of the tag
+	 * @return string A wfMsg of "exif-$tag-$val" in lower case
+	 */
+	function msg( $tag, $val ) {
+		return wfMsg( strtolower("exif-$tag-$val") );
 	}
 }
 } // MEDIAWIKI
