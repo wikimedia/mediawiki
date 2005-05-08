@@ -650,7 +650,7 @@ class Image
 	 * @return ThumbnailImage
 	 * @access private
 	 */
-	function /* private */ renderThumb( $width, $useScript = true ) {
+	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
 		
@@ -721,7 +721,7 @@ class Image
 	 *
 	 * @access private
 	 */
-	function /*private*/ reallyRenderThumb( $thumbPath, $width, $height ) {
+	function reallyRenderThumb( $thumbPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter,
 			$wgUseImageMagick, $wgImageMagickConvertCommand;
 		
