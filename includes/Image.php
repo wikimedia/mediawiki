@@ -40,7 +40,8 @@ class Image
 		$type,          #  |
 		$attr,          # /
 		$size,          # Size in bytes (loadFromXxx)
-		$exif,			# EXIF data
+		$metadata,	# Metadata
+		$exif,		# The Exif class
 		$dataLoaded;    # Whether or not all this has been loaded from the database (loadFromXxx)
 
 
@@ -65,15 +66,20 @@ class Image
 	}
 	
 	function Image( $title ) {
+		global $wgShowEXIF;
+		
 		$this->title =& $title;
 		$this->name = $title->getDBkey();
-		$this->exif = serialize ( array() ) ;
+		$this->metadata = serialize ( array() ) ;
 
 		$n = strrpos( $this->name, '.' );
 		$this->extension = strtolower( $n ? substr( $this->name, $n + 1 ) : '' );
 		$this->historyLine = 0;
 
 		$this->dataLoaded = false;
+		
+		if ($wgShowEXIF)
+			$this->exif = new Exif;
 	}
 
 	/**
@@ -118,7 +124,7 @@ class Image
 						$this->height = $commonsCachedValues['height'];
 						$this->bits = $commonsCachedValues['bits'];
 						$this->type = $commonsCachedValues['type'];
-						$this->exif = $commonsCachedValues['exif'];
+						$this->metadata = $commonsCachedValues['metadata'];
 						$this->size = $commonsCachedValues['size'];
 						$this->fromSharedDirectory = true;
 						$this->dataLoaded = true;
@@ -134,7 +140,7 @@ class Image
 				$this->height = $cachedValues['height'];
 				$this->bits = $cachedValues['bits'];
 				$this->type = $cachedValues['type'];
-				$this->exif = $cachedValues['exif'];
+				$this->metadata = $cachedValues['metadata'];
 				$this->size = $cachedValues['size'];
 				$this->fromSharedDirectory = false;
 				$this->dataLoaded = true;
@@ -165,7 +171,7 @@ class Image
 								  'height' => $this->height,
 								  'bits' => $this->bits,
 								  'type' => $this->type,
-								  'exif' => $this->exif,
+								  'metadata' => $this->metadata,
 								  'size' => $this->size);
 
 			$wgMemc->set( $keys[0], $cachedValues );
@@ -221,12 +227,12 @@ class Image
 			$this->height = 0;
 			$this->bits = 0;
 			$this->type = 0;
-			$this->exif = serialize ( array() ) ;
+			$this->metadata = serialize ( array() ) ;
 		} else {
 			$this->width = $gis[0];
 			$this->height = $gis[1];
 			$this->type = $gis[2];
-			$this->exif = serialize ( $this->retrieveExifData() ) ;
+			$this->metadata = serialize ( $this->retrieveExifData() ) ;
 			if ( isset( $gis['bits'] ) )  {
 				$this->bits = $gis['bits'];
 			} else {
@@ -289,7 +295,7 @@ class Image
 			$this->type = 0;
 			$this->fileExists = false;
 			$this->fromSharedDirectory = false;
-			$this->exif = serialize ( array() ) ;
+			$this->metadata = serialize ( array() ) ;
 		}
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
@@ -305,8 +311,8 @@ class Image
 		$this->height = $row->img_height;
 		$this->bits = $row->img_bits;
 		$this->type = $row->img_type;
-		$this->exif = $row->img_metadata;
-		if ( $this->exif == "" ) $this->exif = serialize ( array() ) ;
+		$this->metadata = $row->img_metadata;
+		if ( $this->metadata == "" ) $this->metadata = serialize ( array() ) ;
 		$this->dataLoaded = true;
 	}
 
@@ -353,7 +359,7 @@ class Image
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
 				'img_type' => $this->type,
-				'img_metadata' => $this->exif,
+				'img_metadata' => $this->metadata,
 			), array( 'img_name' => $this->name ), $fname
 		);
 		if ( $this->fromSharedDirectory ) {
@@ -1026,7 +1032,7 @@ class Image
 				'img_description' => $desc,
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
-				'img_metadata' => $this->exif,
+				'img_metadata' => $this->metadata,
 			), $fname, 'IGNORE' 
 		);
 		$descTitle = $this->getTitle();
@@ -1071,7 +1077,7 @@ class Image
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_description' => $desc,
-					'img_metadata' => $this->exif,
+					'img_metadata' => $this->metadata,
 				), array( /* WHERE */
 					'img_name' => $this->name
 				), $fname
@@ -1139,11 +1145,11 @@ class Image
 
 		$exif = exif_read_data( $this->imagePath );
 
-		$obj = new Exif;
 		// Some of the type checks in validate will spew warnings on invalid data
+		#$obj = new Exif;
 		wfSuppressWarnings();
 		foreach($exif as $k => $v) {
-			if ( !in_array($k, $obj->mValidExif) || !$obj->validate($k, $v) )
+			if ( !in_array($k, $this->exif->mValidExif) || !$this->exif->validate($k, $v) )
 				unset($exif[$k]);
 		}
 		wfRestoreWarnings();
@@ -1154,14 +1160,17 @@ class Image
 	function getExifData () {
 		global $wgRequest;
 		
-		$ret = unserialize ( $this->exif );
+		$ret = unserialize ( $this->metadata );
 
 		if ( count( $ret) == 0 || $wgRequest->getVal( 'action' ) == 'purge' ) { # No EXIF data was stored for this image
 			$this->updateExifData() ;
-			$ret = unserialize ( $this->exif ) ;
+			$ret = unserialize ( $this->metadata ) ;
 		}
 		
-		return $ret ;
+		foreach($ret as $k => $v) {
+			$ret[$k] = $this->exif->format($k, $v);
+		}
+		return $ret;
 	}
 
 	function updateExifData () {
@@ -1173,12 +1182,12 @@ class Image
 		
 		# Get EXIF data from image
 		$exif = $this->retrieveExifData () ;
-		$this->exif = serialize ( $exif ) ;
+		$this->metadata = serialize ( $exif );
 		
 		# Update EXIF data in database
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'image', 
-			array( 'img_metadata' => $this->exif ),
+			array( 'img_metadata' => $this->metadata ),
 			array( 'img_name' => $this->name ),
 			$fname
 		);
