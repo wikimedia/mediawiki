@@ -214,7 +214,8 @@ class Database {
 		if ( $this->mFlags & DBO_PERSISTENT ) {
 			@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
 		} else {
-			@/**/$this->mConn = mysql_connect( $server, $user, $password );
+			# Create a new connection...
+			@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
 		}
 
 		if ( $dbName != '' ) {

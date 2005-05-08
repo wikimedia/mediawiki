@@ -167,6 +167,17 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 }
 
+
+/**
+ * One-step cache variable to hold base blobs; operations that
+ * pull multiple revisions may often pull multiple times from
+ * the same blob. By keeping the last-used one open, we avoid
+ * redundant unserialization and decompression overhead.
+ */
+global $wgBlobCache;
+$wgBlobCache = array();
+
+
 /**
  * @package MediaWiki
  */
@@ -188,27 +199,37 @@ class HistoryBlobStub {
 
 	/** @todo document */
 	function getText() {
-		$dbr =& wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
-		if( !$row ) {
-			return false;
-		}
-		$flags = explode( ',', $row->old_flags );
-		if( !in_array( 'object', $flags ) ) {
-			return false;
-		}
-		
-		if( in_array( 'gzip', $flags ) ) {
-			// This shouldn't happen, but a bug in the compress script
-			// may at times gzip-compress a HistoryBlob object row.
-			$obj = unserialize( gzinflate( $row->old_text ) );
+		global $wgBlobCache;
+		if( isset( $wgBlobCache[$this->mOldId] ) ) {
+			$obj = $wgBlobCache[$this->mOldId];
 		} else {
-			$obj = unserialize( $row->old_text );
-		}
-		
-		if( !is_object( $obj ) ) {
-			// Correct for old double-serialization bug.
-			$obj = unserialize( $obj );
+			$dbr =& wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
+			if( !$row ) {
+				return false;
+			}
+			$flags = explode( ',', $row->old_flags );
+			if( !in_array( 'object', $flags ) ) {
+				return false;
+			}
+			
+			if( in_array( 'gzip', $flags ) ) {
+				// This shouldn't happen, but a bug in the compress script
+				// may at times gzip-compress a HistoryBlob object row.
+				$obj = unserialize( gzinflate( $row->old_text ) );
+			} else {
+				$obj = unserialize( $row->old_text );
+			}
+			
+			if( !is_object( $obj ) ) {
+				// Correct for old double-serialization bug.
+				$obj = unserialize( $obj );
+			}
+			
+			// Save this item for reference; if pulling many
+			// items in a row we'll likely use it again.
+			$obj->uncompress();
+			$wgBlobCache = array( $this->mOldId => $obj );
 		}
 		return $obj->getItem( $this->mHash );
 	}
@@ -256,5 +277,6 @@ class HistoryBlobCurStub {
 		return $row->cur_text;
 	}
 }
+
 
 ?>

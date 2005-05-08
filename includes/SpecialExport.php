@@ -43,8 +43,13 @@ function wfSpecialExport( $page = '' ) {
 		$wgOut->disable();
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
-		$xml = pages2xml( $pages, $curonly );
-		echo $xml;
+		
+		$db =& wfGetDB( DB_SLAVE );
+		$history = $curonly ? MW_EXPORT_CURRENT : MW_EXPORT_FULL;
+		$exporter = new WikiExporter( $db, $history );
+		$exporter->openStream();
+		$exporter->pagesByName( $pages );
+		$exporter->closeStream();
 		return;
 	}
 	
@@ -62,114 +67,276 @@ function wfSpecialExport( $page = '' ) {
 " );
 }
 
-function pages2xml( $pages, $curonly = false ) {
-	$fname = 'pages2xml';
-	wfProfileIn( $fname );
+define( 'MW_EXPORT_FULL',     0 );
+define( 'MW_EXPORT_CURRENT',  1 );
+
+define( 'MW_EXPORT_BUFFER',   0 );
+define( 'MW_EXPORT_STREAM',   1 );
+
+class WikiExporter {
+	var $pageCallback = null;
+	var $revCallback = null;
 	
-	global $wgContLanguageCode, $wgInputEncoding, $wgContLang;
-	$xml = '<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-		'<mediawiki version="0.1" xml:lang="' . $wgContLanguageCode . '">' . "\n";
-	foreach( $pages as $page ) {
-		$xml .= page2xml( $page, $curonly );
+	/**
+	 * If using MW_EXPORT_STREAM to stream a large amount of data,
+	 * provide a database connection which is not managed by
+	 * LoadBalancer to read from: some history blob types will
+	 * make additional queries to pull source data while the
+	 * main query is still running.
+	 *
+	 * @param Database $db
+	 * @param int $history one of MW_EXPORT_FULL or MW_EXPORT_CURRENT
+	 * @param int $buffer one of MW_EXPORT_BUFFER or MW_EXPORT_STREAM
+	 */
+	function WikiExporter( &$db, $history = MW_EXPORT_CURRENT,
+			$buffer = MW_EXPORT_BUFFER ) {
+		$this->db =& $db;
+		$this->history = $history;
+		$this->buffer  = $buffer;
 	}
-	$xml .= "</mediawiki>\n";
-	if($wgInputEncoding != "utf-8")
-		$xml = $wgContLang->iconv( $wgInputEncoding, "utf-8", $xml );
 	
-	wfProfileOut( $fname );
-	return $xml;
-}
-
-function page2xml( $page, $curonly, $full = false ) {
-	global $wgLang;
-	$fname = 'page2xml';
-	wfProfileIn( $fname );
-	
-	$title = Title::NewFromText( $page );
-	if( !$title ) {
-		wfProfileOut( $fname );
-		return "";
+	/**
+	 * Set a callback to be called after each page in the output
+	 * stream is closed. The callback will be passed a database row
+	 * object with the last revision output.
+	 *
+	 * A set callback can be removed by passing null here.
+	 *
+	 * @param mixed $callback
+	 */
+	function setPageCallback( $callback ) {
+		$this->pageCallback = $callback;
 	}
-
-	$dbr =& wfGetDB( DB_SLAVE );
-	$s = $dbr->selectRow( 'page',
-		array( 'page_id', 'page_restrictions' ),
-		array( 'page_namespace' => $title->getNamespace(),
-			   'page_title'     => $title->getDbkey() ) );
-	if( $s ) {
-		$tl = xmlsafe( $title->getPrefixedText() );
-		$xml = "  <page>\n";
-		$xml .= "    <title>$tl</title>\n";
-		
-		if( $full ) {
-			$xml .= "    <id>$s->page_id</id>\n";
-		}
-		if( $s->page_restrictions ) {
-			$xml .= "    <restrictions>" . xmlsafe( $s->page_restrictions ) . "</restrictions>\n";
-		}
-
-		if( $curonly ) {
-			$res = Revision::fetchRevision( $title );
+	
+	/**
+	 * Set a callback to be called after each revision in the output
+	 * stream is closed. The callback will be passed a database row
+	 * object with the revision data.
+	 *
+	 * A set callback can be removed by passing null here.
+	 *
+	 * @param mixed $callback
+	 */
+	function setRevCallback( $callback ) {
+		$this->revCallback = $callback;
+	}
+	
+	/**
+	 * Opens the XML output stream's root <mediawiki> element.
+	 * This does not include an xml directive, so is safe to include
+	 * as a subelement in a larger XML stream. Namespace and XML Schema
+	 * references are included.
+	 *
+	 * To capture the stream to a string, use PHP's output buffering
+	 * functions. Output will be encoded in UTF-8.
+	 */
+	function openStream() {
+		global $wgContLanguageCode;
+		print wfElement( 'mediawiki', array(
+			'xmlns'              => 'http://www.mediawiki.org/xml/export-0.1/',
+			'xmlns:xsi'          => 'http://www.w3.org/2001/XMLSchema-instance',
+			'xsi:schemaLocation' => 'http://www.mediawiki.org/xml/export-0.1/ ' .
+			                        'http://www.mediawiki.org/xml/export-0.1.xsd',
+			'version'            => '0.1',
+			'xml:lang'           => $wgContLanguageCode ),
+			null ) . "\n";
+	}
+	
+	/**
+	 * Closes the output stream with the closing root element.
+	 * Call when finished dumping things.
+	 */
+	function closeStream() {
+		print "</mediawiki>\n";
+	}
+	
+	/**
+	 * Dumps a series of page and revision records for all pages
+	 * in the database, either including complete history or only
+	 * the most recent version.
+	 *
+	 *
+	 * @param Database $db
+	 */
+	function allPages() {
+		return $this->dumpFrom( '' );
+	}
+	
+	/**
+	 * @param Title $title
+	 */
+	function pageByTitle( $title ) {
+		return $this->dumpFrom(
+			'page_namespace=' . $title->getNamespace() .
+			' AND page_title=' . $this->db->addQuotes( $title->getDbKey() ) );
+	}
+	
+	function pageByName( $name ) {
+		$title = Title::newFromText( $name );
+		if( is_null( $title ) ) {
+			return WikiError( "Can't export invalid title" );
 		} else {
-			$res = Revision::fetchAllRevisions( $title );
+			return $this->pageByTitle( $title );
 		}
-		if( $res ) {
-			while( $s = $res->fetchObject() ) {
-				$rev = new Revision( $s );
-				$xml .= revision2xml( $rev, $full, false );
-			}
-			$res->free();
+	}
+	
+	function pagesByName( $names ) {
+		foreach( $names as $name ) {
+			$this->pageByName( $name );
+		}
+	}
+
+	
+	// -------------------- private implementation below --------------------
+	
+	function dumpFrom( $cond = '' ) {
+		$fname = 'WikiExporter::dumpFrom';
+		wfProfileIn( $fname );
+		
+		$page     = $this->db->tableName( 'page' );
+		$revision = $this->db->tableName( 'revision' );
+		$text     = $this->db->tableName( 'text' );
+		
+		if( $this->history == MW_EXPORT_FULL ) {
+			$join = 'page_id=rev_page';
+		} elseif( $this->history == MW_EXPORT_CURRENT ) {
+			$join = 'page_id=rev_page AND page_latest=rev_id';
+		} else {
+			wfProfileOut( $fname );
+			return new WikiError( "$fname given invalid history dump type." );
+		}
+		$where = ( $cond == '' ) ? '' : "$cond AND";
+		
+		if( $this->buffer == MW_EXPORT_STREAM ) {
+			$prev = $this->db->bufferResults( false );
+		}
+		$result = $this->db->query(
+			"SELECT * FROM
+				$page FORCE INDEX (PRIMARY),
+				$revision FORCE INDEX(page_timestamp),
+				$text
+				WHERE $where $join AND rev_text_id=old_id
+				ORDER BY page_id", $fname );
+		$wrapper = $this->db->resultObject( $result );
+		$this->outputStream( $wrapper );
+		
+		if( $this->buffer == MW_EXPORT_STREAM ) {
+			$this->db->bufferResults( $prev );
 		}
 		
-		$xml .= "  </page>\n";
 		wfProfileOut( $fname );
-		return $xml;
-	} else {
+	}
+	
+	/**
+	 * Runs through a query result set dumping page and revision records.
+	 * The result set should be sorted/grouped by page to avoid duplicate
+	 * page records in the output.
+	 *
+	 * The result set will be freed once complete. Should be safe for
+	 * streaming (non-buffered) queries, as long as it was made on a
+	 * separate database connection not managed by LoadBalancer; some
+	 * blob storage types will make queries to pull source data.
+	 *
+	 * @param ResultWrapper $resultset
+	 * @access private
+	 */
+	function outputStream( $resultset ) {
+		$last = null;
+		while( $row = $resultset->fetchObject() ) {
+			if( is_null( $last ) ||
+				$last->page_namespace != $row->page_namespace ||
+				$last->page_title     != $row->page_title ) {
+				if( isset( $last ) ) {
+					$this->closePage( $last );
+				}
+				$this->openPage( $row );
+				$last = $row;
+			}
+			$this->dumpRev( $row );
+		}
+		if( isset( $last ) ) {
+			$this->closePage( $last );
+		}
+		$resultset->free();
+	}
+	
+	/**
+	 * Opens a <page> section on the output stream, with data
+	 * from the given database row.
+	 *
+	 * @param object $row
+	 * @access private
+	 */
+	function openPage( $row ) {
+		print "<page>\n";
+		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		print '  ' . wfElementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
+		print '  ' . wfElement( 'id', array(), $row->page_id ) . "\n";
+		if( '' != $row->page_restrictions ) {
+			print '  ' . wfElement( 'restrictions', array(),
+				$row->page_restrictions ) . "\n";
+		}
+	}
+	
+	/**
+	 * Closes a <page> section on the output stream.
+	 * If a per-page callback has been set, it will be called
+	 * and passed the last database row used for this page.
+	 *
+	 * @param object $row
+	 * @access private
+	 */
+	function closePage( $row ) {
+		print "</page>\n";
+		if( isset( $this->pageCallback ) ) {
+			call_user_func( $this->pageCallback, $row );
+		}
+	}
+	
+	/**
+	 * Dumps a <revision> section on the output stream, with
+	 * data filled in from the given database row.
+	 *
+	 * @param object $row
+	 * @access private
+	 */
+	function dumpRev( $row ) {
+		$fname = 'WikiExporter::dumpRev';
+		wfProfileIn( $fname );
+		
+		print "    <revision>\n";
+		print "      " . wfElement( 'id', null, $row->rev_id ) . "\n";
+		
+		$ts = wfTimestamp2ISO8601( $row->rev_timestamp );
+		print "      " . wfElement( 'timestamp', null, $ts ) . "\n";
+		
+		print "      <contributor>";
+		if( $row->rev_user ) {
+			print wfElementClean( 'username', null, $row->rev_user_text );
+			print wfElement( 'id', null, $row->rev_user );
+		} else {
+			print wfElementClean( 'ip', null, $row->rev_user_text );
+		}
+		print "</contributor>\n";
+		
+		if( $row->rev_minor_edit ) {
+			print  "      <minor/>\n";
+		}
+		if( $row->rev_comment != '' ) {
+			print "      " . wfElementClean( 'comment', null, $row->rev_comment ) . "\n";
+		}
+	
+		$text = Revision::getRevisionText( $row );
+		print "      " . wfElementClean( 'text', array(), $text ) . "\n";
+		print "    </revision>\n";
+		
 		wfProfileOut( $fname );
-		return "";
-	}
-}
-
-/**
- * @return string
- * @param Revision $rev
- * @param bool $full
- * @access private
- */
-function revision2xml( $rev, $full ) {
-	$fname = 'revision2xml';
-	wfProfileIn( $fname );
-	
-	$xml = "    <revision>\n";
-	if( $full )
-		$xml .= "    <id>" . $rev->getId() . "</id>\n";
-	
-	$ts = wfTimestamp2ISO8601( $rev->getTimestamp() );
-	$xml .= "      <timestamp>$ts</timestamp>\n";
-	
-	if( $rev->getUser() ) {
-		$u = "<username>" . xmlsafe( $rev->getUserText() ) . "</username>";
-		if( $full )
-			$u .= "<id>" . $rev->getUser() . "</id>";
-	} else {
-		$u = "<ip>" . xmlsafe( $rev->getUserText() ) . "</ip>";
-	}
-	$xml .= "      <contributor>$u</contributor>\n";
-	
-	if( $rev->isMinor() ) {
-		$xml .= "      <minor/>\n";
-	}
-	if($rev->getComment() != "") {
-		$c = xmlsafe( $rev->getComment() );
-		$xml .= "      <comment>$c</comment>\n";
+		
+		if( isset( $this->revCallback ) ) {
+			call_user_func( $this->revCallback, $row );
+		}
 	}
 
-	$t = xmlsafe( $rev->getText() );
-
-	$xml .= "      <text>$t</text>\n";
-	$xml .= "    </revision>\n";
-	wfProfileOut( $fname );
-	return $xml;
 }
 
 function wfTimestamp2ISO8601( $ts ) {
@@ -192,4 +359,5 @@ function xmlsafe( $string ) {
 	wfProfileOut( $fname );
 	return $string;
 }
+
 ?>
