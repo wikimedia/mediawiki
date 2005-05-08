@@ -1145,15 +1145,10 @@ class Image
 
 		$exif = exif_read_data( $this->imagePath );
 
-		// Some of the type checks in validate will spew warnings on invalid data
-		#$obj = new Exif;
-		wfSuppressWarnings();
 		foreach($exif as $k => $v) {
 			if ( !in_array($k, $this->exif->mValidExif) || !$this->exif->validate($k, $v) )
 				unset($exif[$k]);
 		}
-		wfRestoreWarnings();
-		
 		return $exif;
 	}
 		
