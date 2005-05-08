@@ -2266,12 +2266,12 @@ class Language {
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
 	* @param mixed  $format what format to return, if it's false output the
-	*               default one.
+	*               default one (default true)
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
-	function time( $ts, $adj = false, $format = false, $timecorrection = false ) {
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		global $wgUser, $wgAmericanDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
