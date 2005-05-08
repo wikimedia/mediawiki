@@ -468,6 +468,7 @@ class Exif {
 						return $this->msg( $tag, $val );
 				}
 			
+			case 'DateTime':
 			case 'DateTimeOriginal':
 			case 'DateTimeDigitized':
 				return $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
