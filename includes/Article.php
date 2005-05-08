@@ -876,7 +876,8 @@ class Article {
 		$this->mTitle->resetArticleID( $newid );
 
 		Article::onArticleCreate( $this->mTitle );
-		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
+		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, '', 
+		  'default', strlen( $text) );
 
 		if ($watchthis) {
 			if(!$this->mTitle->userIsWatching()) $this->watch();
@@ -1031,6 +1032,8 @@ class Article {
 		}
 
 		$oldtext = $this->getContent( true );
+		$oldsize = strlen( $oldtext );
+		$newsize = strlen( $text );
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
 			$this->mGoodAdjustment = $this->isCountable( $text )
@@ -1087,7 +1090,7 @@ class Article {
 
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary,
-					$oldid, $this->getTimestamp(), $bot );
+					$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize );
 				Article::onArticleEdit( $this->mTitle );
 			}
 		}

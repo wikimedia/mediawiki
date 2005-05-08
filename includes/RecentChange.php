@@ -39,6 +39,8 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	prefixedDBkey   prefixed db key, used by external app via msg queue
  * 	lastTimestamp   timestamp of previous entry, used in WHERE clause during update
  * 	lang            the interwiki prefix, automatically set in save()
+ *  oldSize         text size before the change
+ *  newSize         text size after the change
  * 
  * @todo document functions and variables
  * @package MediaWiki
@@ -176,7 +178,7 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to an edit
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
-		$oldId, $lastTimestamp, $bot = "default", $ip = '' )
+		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0 )
 	{
 		if ( $bot == 'default ' ) {
 			$bot = $user->isBot();
@@ -211,14 +213,17 @@ class RecentChange
 
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => $lastTimestamp
+			'lastTimestamp' => $lastTimestamp,
+			'oldSize'       => $oldSize,
+			'newSize'       => $newSize,
 		);
 		$rc->save();
 	}
 
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", $ip='' )
+	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", 
+	  $ip='', $size = 0 )
 	{
 		if ( !$ip ) {
 			global $wgIP;
@@ -252,7 +257,9 @@ class RecentChange
 
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => 0
+			'lastTimestamp' => 0,
+			'oldSize' => 0,
+			'newSize' => $size
 		);
 		$rc->save();
 	}
@@ -289,7 +296,7 @@ class RecentChange
 		$rc->mExtra = array(
 			'prefixedDBkey'	=> $oldTitle->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
-			'prefixedMoveTo'	=> $newTitle->getPrefixedDBkey()
+			'prefixedMoveTo'	=> $newTitle->getPrefixedDBkey(),
 		);
 		$rc->save();
 	}
@@ -333,7 +340,7 @@ class RecentChange
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => 0
+			'lastTimestamp' => 0,
 		);
 		$rc->save();
 	}
@@ -396,7 +403,8 @@ class RecentChange
 
 	function getIRCLine() {
 		extract($this->mAttribs);
-		
+		extract($this->mExtra);
+
 		$titleObj =& $this->getTitle();
 		
 		$bad = array("\n", "\r");
@@ -410,6 +418,16 @@ class RecentChange
 			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid");
 		}
 
+		if ( isset( $oldSize ) && isset( $newSize ) ) {
+			$szdiff = $newSize - $oldSize;
+			if ($szdiff < -500)
+				$szdiff = "\002$szdiff\002";
+			else if ($szdiff >= 0)
+				$szdiff = "+$szdiff";
+			$szdiff = "\0035*\003 ($szdiff)";
+		} else {
+			$szdiff = '';
+		}
 
 		$comment = str_replace($bad, $empty, $rc_comment);
 		$user = str_replace($bad, $empty, $rc_user_text);
@@ -418,7 +436,7 @@ class RecentChange
 		# no colour (\003) switches back to the term default
 		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
 		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
-		              "\00302$url\003 \0035*\003 \00303$user\003 \00310$comment\003\n";
+		              "\00302$url\003 \0035*\003 \00303$user\003 $szdiff \00310$comment\003\n";
 
 		return $fullString;
 	}
