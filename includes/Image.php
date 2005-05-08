@@ -118,6 +118,7 @@ class Image
 					$sharedname=utf8_encode($sharedname);
 					$sharedtitle=utf8_encode($sharedtitle);					
 				}
+				$sharedhashedName = md5($sharedname);
 			
 				if($wgHashedSharedUploadDirectory) {				
 					$hash = md5( $sharedtitle );
@@ -141,7 +142,7 @@ class Image
 
 			if ($wgUseSharedUploads && $this->fromSharedDirectory) {
 				$cachedValues['fromShared'] = false;
-				$wgMemc->set( "$wgSharedUploadDBname:image:".$hashedName, $cachedValues, 7*86400 );
+				$wgMemc->set( "$wgSharedUploadDBname:image:".$sharedhashedName, $cachedValues, 7*86400 );
 			}
 		}
 		
