@@ -2460,12 +2460,12 @@ class Language {
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
 	* @param mixed  $format what format to return, if it's false output the
-	*               default one.
+	*               default one (default true)
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
-	function timeanddate( $ts, $adj = false, $format = false, $timecorrection = false) {
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		global $wgUser, $wgAmericanDates;
 		
 		$datePreference = $this->dateFormat($format);
