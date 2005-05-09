@@ -876,8 +876,8 @@ class Article {
 		$this->mTitle->resetArticleID( $newid );
 
 		Article::onArticleCreate( $this->mTitle );
-		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, '', 
-		  'default', strlen( $text) );
+		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default', 
+		  '', strlen( $text) );
 
 		if ($watchthis) {
 			if(!$this->mTitle->userIsWatching()) $this->watch();
