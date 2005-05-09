@@ -91,8 +91,9 @@ class ImagePage extends Article {
 		$r = "{| class=metadata align=right width=250px\n";
 		$r .= '|+ id=metadata | '. htmlspecialchars( wfMsg( 'metadata' ) ) . "\n";
 		foreach( $exif as $k => $v ) {
-			$r .= '!' . wfMsg( 'exif-' . strtolower( $k ) ) . "\n";
-			$r .= '|' . htmlspecialchars( $v ) . "\n";
+			$tag = strtolower( $k );
+			$r .= "! class=$tag |" . wfMsg( "exif-$tag" ) . "\n";
+			$r .= "| class=$tag |" . htmlspecialchars( $v ) . "\n";
 			$r .= "|-\n";
 		}
 		return substr($r, 0, -3) . '|}';
