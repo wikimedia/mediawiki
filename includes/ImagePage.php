@@ -71,11 +71,11 @@ class ImagePage extends Article {
 	function showTOC( $metadata ) {
 		global $wgLang;
 		$r = '<ul id="filetoc">
-			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
+			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>' .
+			($metadata ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') . '
 			<li><a href="#filehistory">' . wfMsg( 'imghistory' ) . '</a></li>
-			<li><a href="#filelinks">' . wfMsg( 'imagelinks' ) . '</a></li>' .
-			($metadata ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') .
-		'</ul>';
+			<li><a href="#filelinks">' . wfMsg( 'imagelinks' ) . '</a></li>
+		</ul>';
 		return $r;
 	}
 
