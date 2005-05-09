@@ -1146,8 +1146,17 @@ class Image
 		$exif = exif_read_data( $this->imagePath );
 
 		foreach($exif as $k => $v) {
-			if ( !in_array($k, $this->exif->mValidExif) || !$this->exif->validate($k, $v) )
+			if ( !in_array($k, $this->exif->mValidExif) ) {
+				wfDebug( "Image::retrieveExifData: '$k' was not a valid Exif tag (contents: '$v')\n");
 				unset($exif[$k]);
+			}
+		}
+
+		foreach($exif as $k => $v) {
+			if ( !$this->exif->validate($k, $v) ) {
+				wfDebug( "Image::retrieveExifData: '$k' did not contain valid contents (contents: '$v')\n");
+				unset($exif[$k]);
+			}
 		}
 		return $exif;
 	}
