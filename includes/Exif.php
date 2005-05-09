@@ -341,8 +341,14 @@ class Exif {
 	 * @return bool
 	 */
 	function isByte( $in ) {
-		wfDebug("Exif::isByte: input was '$in'\n");
-		return is_numeric( $in ) && $in >= 0 && $in <= 255;
+		$fname = 'isByte';
+		if ( is_numeric( $in ) && $in >= 0 && $in <= 255 ) {
+			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 	
 	function isASCII( $in ) {
@@ -351,35 +357,66 @@ class Exif {
 	}
 
 	function isShort( $in ) {
-		wfDebug("Exif::isShort: input was '$in'\n");
-		return is_numeric( $in ) && $in >= 0 && $in <= 65536;
+		$fname = 'isShort';
+		if ( is_numeric( $in ) && $in >= 0 && $in <= 65536 ) {
+			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 
 	function isLong( $in ) {
-		wfDebug("Exif::isLong: input was '$in'\n");
-		return is_numeric( $in ) && $in >= 0 && $in <= 4294967296;
+		$fname = 'isLong';
+		if ( is_numeric( $in ) && $in >= 0 && $in <= 4294967296 ) {
+			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 	
 	function isRational( $in ) {
-		wfDebug("Exif::isRational: input was '$in'\n");
-		$in = explode( '/', $in, 2 );
-		return $this->isLong( $in[0] ) && $this->isLong( $in[1] );
+		$fname = 'isRational';
+		$a = explode( '/', $in, 2 );
+		if ( $this->isLong( $a[0] ) && $this->isLong( $a[1] ) ) {
+			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 
 	function isUndefined( $in ) {
-		wfDebug("Exif::isUndefined: input was '$in'\n");
+		$fname = 'isUndefined';
+		wfDebug("Exif::$fname: input was '$in'\n");
 		return true;
 	}
 
 	function isSlong( $in ) {
-		wfDebug("Exif::isSlong: input was '$in'\n");
-		return $this->isLong( abs( $in ) );
+		$fname = 'isSlong';
+		if ( $this->isLong( abs( $in ) ) ) {
+			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 
 	function isSrational( $in ) {
-		wfDebug("Exif::isSrational: input was '$in'\n");
-		$in = explode( '/', $in, 2 );
-		return $this->isSlong( $in[0] ) && $this->isSlong( $in[1] );
+		$fname = 'isSrational';
+		$a = explode( '/', $in, 2 );
+		if ( $this->isSlong( $a[0] ) && $this->isSlong( $a[1] ) ) {
+			 wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			 return true;
+		} else {
+			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			return false;
+		}
 	}
 	/**#@-*/
 
