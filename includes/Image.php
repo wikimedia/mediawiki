@@ -1137,7 +1137,14 @@ class Image
 		$db->freeResult( $res );
 		return $retVal;
 	}
-	
+	/**
+	 * Retrive Exif data from the database
+	 *
+	 * Retrive Exif data from the database and prune unrecognized tags
+	 * and/or tags with invalid contents
+	 *
+	 * @return array
+	 */
 	function retrieveExifData () {
 		global $wgShowEXIF ;
 		if ( ! $wgShowEXIF ) return array ();
@@ -1147,14 +1154,14 @@ class Image
 
 		foreach($exif as $k => $v) {
 			if ( !in_array($k, $this->exif->mValidExif) ) {
-				wfDebug( "Image::retrieveExifData: '$k' was not a valid Exif tag (contents: '$v')\n");
+				wfDebug( "Image::retrieveExifData: '$k' is not a valid Exif tag (type: '" . gettype($v) . "'; data: '$v')\n");
 				unset($exif[$k]);
 			}
 		}
 
 		foreach($exif as $k => $v) {
 			if ( !$this->exif->validate($k, $v) ) {
-				wfDebug( "Image::retrieveExifData: '$k' did not contain valid contents (contents: '$v')\n");
+				wfDebug( "Image::retrieveExifData: '$k' contained invalid data (type: '" . gettype($v) . "'; data: '$v')\n");
 				unset($exif[$k]);
 			}
 		}
@@ -1164,29 +1171,39 @@ class Image
 	function getExifData () {
 		global $wgRequest;
 		
+		$purge = $wgRequest->getVal( 'action' ) == 'purge';
 		$ret = unserialize ( $this->metadata );
 
-		if ( count( $ret) == 0 || $wgRequest->getVal( 'action' ) == 'purge' ) { # No EXIF data was stored for this image
-			$this->updateExifData() ;
-			$ret = unserialize ( $this->metadata ) ;
+		$oldver = isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) ? $ret['MEDIAWIKI_EXIF_VERSION'] : 0;
+		$newver = $this->exif->version();
+		
+		if ( !count( $ret ) || $purge || $oldver != $newver ) {
+			echo "old: $oldver; new: $newver\n";
+			echo "updating\n";
+			$this->updateExifData( $newver );
+			$ret = unserialize( $this->metadata );
 		}
+		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
+			unset( $ret['MEDIAWIKI_EXIF_VERSION'] );
 		
 		foreach($ret as $k => $v) {
 			$ret[$k] = $this->exif->format($k, $v);
 		}
+		
 		return $ret;
 	}
 
-	function updateExifData () {
-		global $wgShowEXIF ;
-		if ( ! $wgShowEXIF ) return ;
-		if ( false === $this->getImagePath() ) return ; # Not a local image
+	function updateExifData( $version ) {
+		global $wgShowEXIF;
+		$fname = 'Image:updateExifData';
 		
-		$fname = "Image:updateExifData" ;
+		if ( ! $wgShowEXIF || $this->getImagePath() === false ) # Not a local image
+			return;
 		
 		# Get EXIF data from image
-		$exif = $this->retrieveExifData () ;
-		$this->metadata = serialize ( $exif );
+		$exif = $this->retrieveExifData();
+		$exif['MEDIAWIKI_EXIF_VERSION'] = $version;
+		$this->metadata = serialize( $exif );
 		
 		# Update EXIF data in database
 		$dbw =& wfGetDB( DB_MASTER );
