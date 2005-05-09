@@ -92,7 +92,7 @@ function page2xml( $page, $curonly, $full = false ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	$s = $dbr->selectRow( 'cur', array( 'cur_id as id','cur_timestamp as timestamp','cur_user as user',
 		'cur_user_text as user_text', 'cur_restrictions as restrictions','cur_comment as comment',
-		'cur_text as text' ), $title->curCond(), $fname );
+		'cur_minor_edit as minor_edit', 'cur_text as text' ), $title->curCond(), $fname );
 	if( $s !== false ) {
 		$tl = xmlsafe( $title->getPrefixedText() );
 		$xml = "  <page>\n";
@@ -106,7 +106,7 @@ function page2xml( $page, $curonly, $full = false ) {
 		if( !$curonly ) {
 			$res = $dbr->select( 'old', array( 'old_id as id','old_timestamp as timestamp', 
 				'old_user as user', 'old_user_text as user_text', 'old_comment as comment', 
-				'old_text as text', 'old_flags as flags' ), $title->oldCond(), 
+				'old_minor_edit as minor_edit', 'old_text as text', 'old_flags as flags' ), $title->oldCond(), 
 				$fname, array( 'ORDER BY' => 'old_timestamp' )
 			);
 
@@ -141,7 +141,7 @@ function revision2xml( $s, $full, $cur ) {
 		$u = "<ip>" . xmlsafe( $s->user_text ) . "</ip>";
 	}
 	$xml .= "      <contributor>$u</contributor>\n";
-	if( !empty( $s->minor ) ) {
+	if( $s->minor_edit ) {
 		$xml .= "      <minor/>\n";
 	}
 	if($s->comment != "") {
