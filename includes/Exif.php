@@ -307,9 +307,10 @@ class Exif {
 	 *       stuff, but we strip it for now.
 	 */
 	function makeValidExifTags() {
-		foreach($this->mFlatExif as $key => $val) {
-			if (strpos( $val, (string)MW_EXIF_UNDEFINED ) !== false)
+		foreach( $this->mFlatExif as $key => $val ) {
+			if( strpos( $val, (string)MW_EXIF_UNDEFINED ) !== false ) {
 				continue;
+			}
 			$this->mValidExif[] = $key;
 		}
 	}
@@ -337,7 +338,7 @@ class Exif {
 	 * @return bool
 	 */
 	function isByte( $in ) {
-		return is_numeric($in) && $in >= 0 && $in <= 255;
+		return is_numeric( $in ) && $in >= 0 && $in <= 255;
 	}
 	
 	function isASCII( $in ) {
@@ -345,17 +346,17 @@ class Exif {
 	}
 
 	function isShort( $in ) {
-		return is_numeric($in) && $in >= 0 && $in <= 65536;
+		return is_numeric( $in ) && $in >= 0 && $in <= 65536;
 	}
 
 	function isLong( $in ) {
-		return is_numeric($in) && $in >= 0 && $in <= 4294967296;
+		return is_numeric( $in ) && $in >= 0 && $in <= 4294967296;
 
 	}
 	
 	function isRational( $in ) {
 		$in = explode( '/', $in, 2 );
-		return $this->isLong($in[0]) && $this->isLong($in[1]);
+		return $this->isLong( $in[0] ) && $this->isLong( $in[1] );
 	}
 
 	function isUndefined( $in ) {
@@ -368,7 +369,7 @@ class Exif {
 
 	function isSrational( $in ) {
 		$in = explode( '/', $in, 2 );
-		return $this->isSlong($in[0]) && $this->isSlong($in[1]);
+		return $this->isSlong( $in[0] ) && $this->isSlong( $in[1] );
 	}
 	/**#@-*/
 
@@ -383,7 +384,7 @@ class Exif {
 	 */
 	function validate( $tag, $val ) {
 		// Fucks up if not typecast 
-		switch((string)$this->mFlatExif[$tag]) {
+		switch( (string)$this->mFlatExif[$tag] ) {
 			case (string)MW_EXIF_BYTE:
 				return $this->isByte( $val );
 			case (string)MW_EXIF_ASCII:
@@ -421,199 +422,200 @@ class Exif {
 	function format( $tag, $val ) {
 		global $wgLang;
 		
-		switch ($tag) {
-			case 'Compression':
-				switch ($val) {
-					case 1: case 6:
-						return $this->msg( $tag, $val );
-				}
-			
-			case 'PhotometricInterpretation':
-				switch ($val) {
-					case 2: case 6:
-						return $this->msg( $tag, $val );
-				}
-			
-			case 'Orientation':
-				switch ($val) {
-					case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-						return $this->msg( $tag, $val );
-				}
-			
-			// TODO: If this field does not exist use 1
-			case 'PlanarConfiguration':
-				switch ($val) {
-					case 1: case 2:
-						return $this->msg( $tag, $val );
-				}
-			
-			// TODO: YCbCrSubSampling
-			// TODO: YCbCrPositioning
-			// TODO: If this field does not exists use 2
-			case 'ResolutionUnit': #p26
-				switch ($val) {
-					case 2: case 3:
-						return $this->msg( $tag, $val );
-				}
-			
-			// TODO: YCbCrCoefficients  #p27 (see annex E)
-			case 'ExifVersion': case 'FlashpixVersion':
-				return "$val"/100;
-			
-			case 'ColorSpace':
-				switch ($val) {
-					case 1: case 'FFFF.H':
-						return $this->msg( $tag, $val );
-				}
-			
-			case 'ComponentsConfiguration':
-				switch ($val) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6:
-						return $this->msg( $tag, $val );
-				}
-			
-			case 'DateTime':
-			case 'DateTimeOriginal':
-			case 'DateTimeDigitized':
-				return $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
-			case 'ExposureProgram':
-				switch ($val) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-						return $this->msg( $tag, $val );
-				}
-			case 'MeteringMode':
-				switch ($val) {
-					case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
-						return $this->msg( $tag, $val );
-				}
-			case 'LightSource':
-				switch ($val) {
-					case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
-					case 12: case 13: case 14: case 15: case 17: case 18: case 19: case 20:
-					case 21: case 22: case 23: case 24: case 255:
-						return $this->msg( $tag, $val );
-				}
-			// TODO: Flash
-			case 'SensingMethod':
-				switch ($val) {
-					case 1: case 2: case 3: case 4: case 5: case 7: case 8:
-						return $this->msg( $tag, $val );
-				}
-			case 'FileSource':
-				switch ($val) {
-					case 3:
-						return $this->msg( $tag, $val );
-				}
-			case 'SceneType':
-				switch ($val) {
-					case 1:
-						return $this->msg( $tag, $val );
-				}
-			case 'CustomRendered':
-				switch ($val) {
-					case 0: case 1:
-						return $this->msg( $tag, $val );
-				}
-			case 'ExposureMode':
-				switch ($val) {
-					case 0: case 1: case 2:
-						return $this->msg( $tag, $val );
-				}
-			case 'WhiteBalance':
-				switch ($val) {
-					case 0: case 1:
-						return $this->msg( $tag, $val );
-				}
-			case 'SceneCaptureType':
-				switch ($val) {
-					case 0: case 1: case 2: case 3:
-						return $this->msg( $tag, $val );
-				}
-			case 'GainControl':
-				switch ($val) {
-					case 0: case 1: case 2: case 3: case 4:
-						return $this->msg( $tag, $val );
-				}
-			case 'Contrast':
-				switch ($val) {
-					case 0: case 1: case 2:
-						return $this->msg( $tag, $val );
-				}
-			case 'Saturation':
-				switch ($val) {
-					case 0: case 1: case 2:
-						return $this->msg( $tag, $val );
-				}
-			case 'Sharpness':
-				switch ($val) {
-					case 0: case 1: case 2:
-						return $this->msg( $tag, $val );
-				}
-			case 'SubjectDistanceRange':
-				switch ($val) {
-					case 0: case 1: case 2: case 3:
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSLatitudeRef':
-				switch ($val) {
-					case 'N': case 'S':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSLongitudeRef':
-				switch ($val) {
-					case 'E': case 'W':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSStatus':
-				switch ($val) {
-					case 'A': case 'V':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSMeasureMode':
-				switch ($val) {
-					case 2: case 3:
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSSpeedRef':
-				switch ($val) {
-					case 'K': case 'M': case 'N':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSTrackRef':
-				switch ($val) {
-					case 'T': case 'M':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSImgDirectionRef':
-				switch ($val) {
-					case 'T': case 'M':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSDestLatitudeRef':
-				switch ($val) {
-					case 'N': case 'S':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSDestLongitudeRef':
-				switch ($val) {
-					case 'E': case 'W':
-						return $this->msg( $tag, $val );
-				}
-			case 'GPSDestBearingRef':
-				switch ($val) {
-					case 'T': case 'M':
-						return $this->msg( $tag, $val );					
-				}
-			case 'GPSDateStamp':
-				return $wgLang->date( substr($val, 0, 4) . substr($val, 5, 2) . substr($val, 8, 2) . 000000 );
+		switch( $tag ) {
+		case 'Compression':
+			switch( $val ) {
+			case 1: case 6:
+				return $this->msg( $tag, $val );
+			}
+		
+		case 'PhotometricInterpretation':
+			switch( $val ) {
+			case 2: case 6:
+				return $this->msg( $tag, $val );
+			}
+		
+		case 'Orientation':
+			switch( $val ) {
+			case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+				return $this->msg( $tag, $val );
+			}
+		
+		// TODO: If this field does not exist use 1
+		case 'PlanarConfiguration':
+			switch( $val ) {
+			case 1: case 2:
+				return $this->msg( $tag, $val );
+			}
+		
+		// TODO: YCbCrSubSampling
+		// TODO: YCbCrPositioning
+		// TODO: If this field does not exists use 2
+		case 'ResolutionUnit': #p26
+			switch( $val ) {
+			case 2: case 3:
+				return $this->msg( $tag, $val );
+			}
+		
+		// TODO: YCbCrCoefficients  #p27 (see annex E)
+		case 'ExifVersion': case 'FlashpixVersion':
+			return "$val"/100;
+		
+		case 'ColorSpace':
+			switch( $val ) {
+			case 1: case 'FFFF.H':
+				return $this->msg( $tag, $val );
+			}
+		
+		case 'ComponentsConfiguration':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3: case 4: case 5: case 6:
+				return $this->msg( $tag, $val );
+			}
+		
+		case 'DateTime':
+		case 'DateTimeOriginal':
+		case 'DateTimeDigitized':
+			return $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
+		
+		case 'ExposureProgram':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+				return $this->msg( $tag, $val );
+			}
+		case 'MeteringMode':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 255:
+				return $this->msg( $tag, $val );
+			}
+		case 'LightSource':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3: case 4: case 9: case 10: case 11:
+			case 12: case 13: case 14: case 15: case 17: case 18: case 19: case 20:
+			case 21: case 22: case 23: case 24: case 255:
+				return $this->msg( $tag, $val );
+			}
+		// TODO: Flash
+		case 'SensingMethod':
+			switch( $val ) {
+			case 1: case 2: case 3: case 4: case 5: case 7: case 8:
+				return $this->msg( $tag, $val );
+			}
+		case 'FileSource':
+			switch( $val ) {
+			case 3:
+				return $this->msg( $tag, $val );
+			}
+		case 'SceneType':
+			switch( $val ) {
+			case 1:
+				return $this->msg( $tag, $val );
+			}
+		case 'CustomRendered':
+			switch( $val ) {
+			case 0: case 1:
+				return $this->msg( $tag, $val );
+			}
+		case 'ExposureMode':
+			switch( $val ) {
+			case 0: case 1: case 2:
+				return $this->msg( $tag, $val );
+			}
+		case 'WhiteBalance':
+			switch( $val ) {
+			case 0: case 1:
+				return $this->msg( $tag, $val );
+			}
+		case 'SceneCaptureType':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3:
+				return $this->msg( $tag, $val );
+			}
+		case 'GainControl':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3: case 4:
+				return $this->msg( $tag, $val );
+			}
+		case 'Contrast':
+			switch( $val ) {
+			case 0: case 1: case 2:
+				return $this->msg( $tag, $val );
+			}
+		case 'Saturation':
+			switch( $val ) {
+			case 0: case 1: case 2:
+				return $this->msg( $tag, $val );
+			}
+		case 'Sharpness':
+			switch( $val ) {
+			case 0: case 1: case 2:
+				return $this->msg( $tag, $val );
+			}
+		case 'SubjectDistanceRange':
+			switch( $val ) {
+			case 0: case 1: case 2: case 3:
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSLatitudeRef':
+			switch( $val ) {
+			case 'N': case 'S':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSLongitudeRef':
+			switch( $val ) {
+			case 'E': case 'W':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSStatus':
+			switch( $val ) {
+			case 'A': case 'V':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSMeasureMode':
+			switch( $val ) {
+			case 2: case 3:
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSSpeedRef':
+			switch( $val ) {
+			case 'K': case 'M': case 'N':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSTrackRef':
+			switch( $val ) {
+			case 'T': case 'M':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSImgDirectionRef':
+			switch( $val ) {
+			case 'T': case 'M':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSDestLatitudeRef':
+			switch( $val ) {
+			case 'N': case 'S':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSDestLongitudeRef':
+			switch( $val ) {
+			case 'E': case 'W':
+				return $this->msg( $tag, $val );
+			}
+		case 'GPSDestBearingRef':
+			switch( $val ) {
+			case 'T': case 'M':
+				return $this->msg( $tag, $val );					
+			}
+		case 'GPSDateStamp':
+			return $wgLang->date( substr( $val, 0, 4 ) . substr( $val, 5, 2 ) . substr( $val, 8, 2 ) . '000000' );
 
-			// This is not in the Exif standard, just a special
-			// case for our purposes which enables wikis to wikify
-			// the make and model to write articles about them.
-			case 'Make': case 'Model':
-				return wfMsg( strtolower( "exif-$tag-value" ), $val );
-			default:
-				return $val;
+		// This is not in the Exif standard, just a special
+		// case for our purposes which enables wikis to wikify
+		// the make and model to write articles about them.
+		case 'Make': case 'Model':
+			return wfMsg( strtolower( "exif-$tag-value" ), $val );
+		default:
+			return $val;
 		}
 	}
 
@@ -628,4 +630,5 @@ class Exif {
 		return wfMsg( strtolower("exif-$tag-$val") );
 	}
 }
+
 } // MEDIAWIKI
