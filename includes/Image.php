@@ -1146,8 +1146,6 @@ class Image
 	 * @return array
 	 */
 	function retrieveExifData () {
-		global $wgShowEXIF ;
-		if ( ! $wgShowEXIF ) return array ();
 		if ( $this->type !== '2' ) return array ();
 
 		$exif = exif_read_data( $this->imagePath );
@@ -1191,10 +1189,9 @@ class Image
 	}
 
 	function updateExifData( $version ) {
-		global $wgShowEXIF;
 		$fname = 'Image:updateExifData';
 		
-		if ( ! $wgShowEXIF || $this->getImagePath() === false ) # Not a local image
+		if ( $this->getImagePath() === false ) # Not a local image
 			return;
 		
 		# Get EXIF data from image
