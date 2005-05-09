@@ -64,12 +64,6 @@ class Exif {
 	 */
 	var $mFlatExif;
 	
-	/**
-	 * A one dimentional array of all Exif tags that we'd want to save in
-	 * the database or present on a page.
-	 */
-	var $mValidExif;
-
 	/**#@-*/
 
 	/**
@@ -88,19 +82,19 @@ class Exif {
 				'structure' => array(
 					'ImageWidth' => MW_EXIF_SHORT.','.MW_EXIF_LONG,		# Image width
 					'ImageLength' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Image height
-					'BitsPerSample' => MW_EXIF_SHORT,		# Number of bits per component
+					'BitsPerSample' => MW_EXIF_SHORT,			# Number of bits per component
 					# "When a primary image is JPEG compressed, this designation is not"
 					# "necessary and is omitted." (p23)
-					'Compression' => MW_EXIF_SHORT,			# Compression scheme #p23
-					'PhotometricInterpretation' => MW_EXIF_SHORT,	# Pixel composition #p23
-					'Orientation' => MW_EXIF_SHORT,			# Orientation of image #p24
-					'SamplesPerPixel' => MW_EXIF_SHORT,		# Number of components
-					'PlanarConfiguration' => MW_EXIF_SHORT,		# Image data arrangement #p24
-					'YCbCrSubSampling' => MW_EXIF_SHORT,		# Subsampling ratio of Y to C #p24
-					'YCbCrPositioning' => MW_EXIF_SHORT,		# Y and C positioning #p24-25
-					'XResolution' => MW_EXIF_RATIONAL,		# Image resolution in width direction
-					'YResolution' => MW_EXIF_RATIONAL,		# Image resolution in height direction
-					'ResolutionUnit' => MW_EXIF_SHORT,		# Unit of X and Y resolution #(p26)
+					'Compression' => MW_EXIF_SHORT,				# Compression scheme #p23
+					'PhotometricInterpretation' => MW_EXIF_SHORT,		# Pixel composition #p23
+					'Orientation' => MW_EXIF_SHORT,				# Orientation of image #p24
+					'SamplesPerPixel' => MW_EXIF_SHORT,			# Number of components
+					'PlanarConfiguration' => MW_EXIF_SHORT,			# Image data arrangement #p24
+					'YCbCrSubSampling' => MW_EXIF_SHORT,			# Subsampling ratio of Y to C #p24
+					'YCbCrPositioning' => MW_EXIF_SHORT,			# Y and C positioning #p24-25
+					'XResolution' => MW_EXIF_RATIONAL,			# Image resolution in width direction
+					'YResolution' => MW_EXIF_RATIONAL,			# Image resolution in height direction
+					'ResolutionUnit' => MW_EXIF_SHORT,			# Unit of X and Y resolution #(p26)
 				),
 				
 				# Tags relating to recording offset
@@ -152,8 +146,8 @@ class Exif {
 				'configuration' => array(
 					'ComponentsConfiguration' => MW_EXIF_UNDEFINED,		# Meaning of each component #p33
 					'CompressedBitsPerPixel' => MW_EXIF_RATIONAL,		# Image compression mode
-					'PixelYDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,		# Valid image width
-					'PixelXDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,		# Valind image height
+					'PixelYDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Valid image width
+					'PixelXDimension' => MW_EXIF_SHORT.','.MW_EXIF_LONG,	# Valind image height
 				),
 				
 				# Tags relating to related user information
@@ -262,25 +256,13 @@ class Exif {
 		);
 
 		$this->makeFlatExifTags();
-		$this->makeValidExifTags();
-	}
-
-	/**
-	 * Get the raw list of exiftags
-	 *
-	 * @access private
-	 * @return array
-	*/
-	function getExif() {
-		return $this->mExif;
 	}
 
 	/**
 	 * Generate a flat list of the exif tags
 	 */
 	function makeFlatExifTags() {
-		$exif = $this->getExif();
-		$this->extractTags( $exif );
+		$this->extractTags( $this->mExif );
 	}
 	
 	/**
@@ -299,25 +281,6 @@ class Exif {
 		}
 	}
 	
-	/**
-	 * Produce a list of all Exif tags appropriate for user output
-	 *
-	 * Produce a list of all tags that we want to show in output, in order not to 
-	 * output binary gibberish such as raw thumbnails we strip all tags
-	 * with the datatype of UNDEFINED.
-	 *
-	 * @todo We might actually want to display some of the UNDEFINED
-	 *       stuff, but we strip it for now.
-	 */
-	function makeValidExifTags() {
-		foreach( $this->mFlatExif as $key => $val ) {
-			if( strpos( $val, (string)MW_EXIF_UNDEFINED ) !== false ) {
-				continue;
-			}
-			$this->mValidExif[] = $key;
-		}
-	}
-
 	 /**
 	  * The version of the output format
 	  *
@@ -390,10 +353,17 @@ class Exif {
 		}
 	}
 
+	/**
+	 * In order not to output binary gibberish such as raw thumbnails we
+	 * return false here
+	 *
+	 * @todo We might actually want to display some of the UNDEFINED
+	 *       stuff, but we strip it for now.
+	 */
 	function isUndefined( $in ) {
 		$fname = 'isUndefined';
 		wfDebug("Exif::$fname: input was '$in'\n");
-		return true;
+		return false;
 	}
 
 	function isSlong( $in ) {
@@ -421,9 +391,7 @@ class Exif {
 	/**#@-*/
 
 	/**
-	 * Validates if a tag has a legal value according to the Exif spec, presumes
-	 * that the given tag is valid ( has been checked in advance with
-	 * $this->mValidExif )
+	 * Validates if a tag has a legal value according to the Exif spec
 	 *
 	 * @param string $tag The tag to check
 	 * @param mixed  $val The value of the tag
