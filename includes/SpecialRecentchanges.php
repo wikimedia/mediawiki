@@ -43,15 +43,13 @@ function wfSpecialRecentchanges( $par ) {
 
 	$days = $wgUser->getOption( 'rcdays' );
 	if ( !$days ) { $days = $defaults['days']; }
+	$days = $wgRequest->getInt( 'days', $days );
 
 	$limit = $wgUser->getOption( 'rclimit' );
 	if ( !$limit ) { $limit = $defaults['limit']; }
 
-	
-	$days = $wgRequest->getInt( 'days', $defaults['days'] );
-
 	#	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
-	$limit = $wgRequest->getInt( 'limit', $defaults['limit'] );
+	$limit = $wgRequest->getInt( 'limit', $limit );
 	if ( $limit < 0 || $limit > 5000 ) $limit = $defaults['limit'];
 
 	/* order of selection: url > preferences > default */
