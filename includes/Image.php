@@ -1177,8 +1177,6 @@ class Image
 		$newver = $this->exif->version();
 		
 		if ( !count( $ret ) || $purge || $oldver != $newver ) {
-			echo "old: $oldver; new: $newver\n";
-			echo "updating\n";
 			$this->updateExifData( $newver );
 			$ret = unserialize( $this->metadata );
 		}
