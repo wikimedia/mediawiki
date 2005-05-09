@@ -1151,9 +1151,8 @@ class Image
 		if ( $this->type !== '2' ) return array ();
 
 		$exif = exif_read_data( $this->imagePath );
-
 		foreach($exif as $k => $v) {
-			if ( !in_array($k, $this->exif->mValidExif) ) {
+			if ( !in_array($k, array_keys($this->exif->mFlatExif)) ) {
 				wfDebug( "Image::retrieveExifData: '$k' is not a valid Exif tag (type: '" . gettype($v) . "'; data: '$v')\n");
 				unset($exif[$k]);
 			}
