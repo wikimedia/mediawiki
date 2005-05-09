@@ -305,7 +305,7 @@ class Exif {
 	 */
 	function isByte( $in ) {
 		$fname = 'isByte';
-		if ( is_numeric( $in ) && $in >= 0 && $in <= 255 ) {
+		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 255 ) {
 			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
 			return true;
 		} else {
@@ -321,7 +321,7 @@ class Exif {
 
 	function isShort( $in ) {
 		$fname = 'isShort';
-		if ( is_numeric( $in ) && $in >= 0 && $in <= 65536 ) {
+		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 65536 ) {
 			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
 			return true;
 		} else {
@@ -332,7 +332,7 @@ class Exif {
 
 	function isLong( $in ) {
 		$fname = 'isLong';
-		if ( is_numeric( $in ) && $in >= 0 && $in <= 4294967296 ) {
+		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 4294967296 ) {
 			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
 			return true;
 		} else {
