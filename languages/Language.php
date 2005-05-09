@@ -1908,6 +1908,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
 'exif-make-value' => '$1',
 'exif-model-value' =>'$1',
+'exif-software-value' => '$1',
 
 # Exif attributes
 
