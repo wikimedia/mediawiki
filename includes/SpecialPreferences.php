@@ -433,6 +433,7 @@ class PreferencesForm {
 			}
 		} else {
 			$emailauthenticated = '';
+			$disabled = false; // If it hasn't been set already the wiki will spew errors
 		}
 
 		if ($this->mUserEmail == '') {
