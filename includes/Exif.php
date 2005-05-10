@@ -316,7 +316,10 @@ class Exif {
 	
 	function isASCII( $in ) {
 		wfDebug("Exif::isASCII: input was '$in'\n");
-		return true; // TODO: FIXME
+		if ( preg_match( "/^\s*$/", $in ) ) {
+			return false;
+		}
+		return true;
 	}
 
 	function isShort( $in ) {
@@ -343,13 +346,18 @@ class Exif {
 	
 	function isRational( $in ) {
 		$fname = 'isRational';
-		$a = explode( '/', $in, 2 );
-		if ( $this->isLong( $a[0] ) && $this->isLong( $a[1] ) ) {
-			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
-			return true;
-		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+		if ( strpos( $in, '/' ) === false ) {
+			wfDebug("Exif::$fname: fed a non-fraction value: (type: " . gettype( $in ) . "; data: '$in')\n");
 			return false;
+		} else {
+			$a = explode( '/', $in, 2 );
+			if ( $this->isLong( $a[0] ) && $this->isLong( $a[1] ) ) {
+				wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+				return true;
+			} else {
+				wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+				return false;
+			}
 		}
 	}
 
@@ -363,7 +371,11 @@ class Exif {
 	function isUndefined( $in ) {
 		$fname = 'isUndefined';
 		wfDebug("Exif::$fname: input was '$in'\n");
-		return false;
+		if ( preg_match( "/^\d{4}$/", $in ) ) { // Allow ExifVersion and FlashpixVersion
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	function isSlong( $in ) {
@@ -379,13 +391,18 @@ class Exif {
 
 	function isSrational( $in ) {
 		$fname = 'isSrational';
-		$a = explode( '/', $in, 2 );
-		if ( $this->isSlong( $a[0] ) && $this->isSlong( $a[1] ) ) {
-			 wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
-			 return true;
+		if ( strpos( $in, '/' ) === false ) {
+			 wfDebug("Exif::$fname: fed a non-fraction value: (type: " . gettype( $in ) . "; data: '$in')\n");
+			 return false;
 		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
-			return false;
+			$a = explode( '/', $in, 2 );
+			if ( $this->isSlong( $a[0] ) && $this->isSlong( $a[1] ) ) {
+				 wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+				 return true;
+			} else {
+				wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+				return false;
+			}
 		}
 	}
 	/**#@-*/
@@ -720,6 +737,9 @@ class Exif {
 		case 'Software':
 			return wfMsg( strtolower( "exif-$tag-value" ), $val );
 		default:
+			if ( preg_match( '/^(\d+)\/(\d+)$/', $val, $m ) ) {
+				return $m[2] != 0 ? $m[1]/$m[2] : $val;
+			}
 			return $val;
 		}
 	}
