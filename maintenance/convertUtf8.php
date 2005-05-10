@@ -19,6 +19,11 @@ die("This file is not complete; it's checked in so I don't forget it.");
  * 6. Go through the list, fixing up old revisions. Remove pages from the
  * convertlist.
  */
+
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class UtfUpdater {
 	/** Constructor, set the database */
 	function UtfUpdater() {

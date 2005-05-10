@@ -34,6 +34,8 @@ define('DF_LAST', 8);
 
 /**
  * @todo preferences, OutputPage
+ * @package MediaWiki
+ * @subpackage Parser
  */
 class DateFormatter
 {
