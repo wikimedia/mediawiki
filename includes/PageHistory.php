@@ -6,13 +6,13 @@
  * @package MediaWiki
  */
 
+include_once ( "SpecialValidate.php" );
+
 /**
  * @todo document
  * @package MediaWiki
  */
 
-include_once ( "SpecialValidate.php" ) ;
- 
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
 	var $lastdate;

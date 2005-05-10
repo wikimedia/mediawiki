@@ -73,6 +73,10 @@ define( 'MW_EXPORT_CURRENT',  1 );
 define( 'MW_EXPORT_BUFFER',   0 );
 define( 'MW_EXPORT_STREAM',   1 );
 
+/**
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ */
 class WikiExporter {
 	var $pageCallback = null;
 	var $revCallback = null;
