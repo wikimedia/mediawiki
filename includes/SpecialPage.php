@@ -19,7 +19,7 @@
 /**
  *
  */
-global $wgSpecialPages, $wgSpecialPageRedirects;
+global $wgSpecialPages, $wgSpecialPageRedirects, $wgUser;
 
 /**
  * @access private
@@ -33,10 +33,6 @@ $wgSpecialPages = array(
 	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
 	'Preferences'       => new SpecialPage( 'Preferences' ),
 	'Watchlist'         => new SpecialPage( 'Watchlist' ),
-	
-	'Mytalk'			=> new UnlistedSpecialPage( 'Mytalk'),
-	'Mycontributions'	=> new UnlistedSpecialPage( 'Mycontributions'),
-	'Mypage'			=> new UnlistedSpecialPage( 'Mypage'),
 	
 	'Recentchanges'     => new SpecialPage( 'Recentchanges' ),
 	'Upload'            => new SpecialPage( 'Upload' ),
@@ -80,14 +76,18 @@ $wgSpecialPages = array(
 );
 
 /**
- * Sometimes the functionality of a specialpage is merged into the
- * functionality of another or its simply renamed, this allows us to redirect
- * the request to the proper place.
+ * Redirect Special:$key to somewhere else.
  *
  * @access private
  */
 $wgSpecialPageRedirects = array(
-	'Listadmins' => 'Listusers'
+	# My*
+	'Mypage' => Title::makeTitle( NS_USER, $wgUser->getName() ),
+	'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
+	'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
+
+	# Deprecated specialpages
+	'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers' ),
 );
 
 global $wgUseValidation ;
@@ -179,10 +179,9 @@ class SpecialPage
 	}
 	
 	/**
-	 * 
 	 * @static
-	 * @param string $nam
-	 * @return mixed string if the redirect exists, otherwise NULL
+	 * @param string $name
+	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
 	function &getRedirect( $name ) {
 		global $wgSpecialPageRedirects;
@@ -236,8 +235,7 @@ class SpecialPage
 		if ( is_null( $page ) ) {
 			$redir =& SpecialPage::getRedirect( $name );
 			if ( isset( $redir ) ) {
-				$t = Title::makeTitle( NS_SPECIAL, "Listusers" );
-				$wgOut->redirect ($t->getFullURL());
+				$wgOut->redirect ($redir->getFullURL());
 			} else {
 				$wgOut->setArticleRelated( false );
 				$wgOut->setRobotpolicy( "noindex,follow" );
