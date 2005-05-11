@@ -19,7 +19,7 @@
 /**
  *
  */
-global $wgSpecialPages;
+global $wgSpecialPages, $wgSpecialPageRedirects;
 
 /**
  * @access private
@@ -43,7 +43,6 @@ $wgSpecialPages = array(
 	'Imagelist'         => new SpecialPage( 'Imagelist' ),
 	'Newimages'         => new SpecialPage( 'Newimages' ),
 	'Listusers'         => new SpecialPage( 'Listusers' ),
-	'Listadmins'        => new UnlistedSpecialPage( 'Listadmins' ),
 	'Statistics'        => new SpecialPage( 'Statistics' ),
 	'Randompage'        => new SpecialPage( 'Randompage' ),
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
@@ -78,6 +77,17 @@ $wgSpecialPages = array(
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'Groups'		=> new SpecialPage( 'Groups' ),
+);
+
+/**
+ * Sometimes the functionality of a specialpage is merged into the
+ * functionality of another or its simply renamed, this allows us to redirect
+ * the request to the proper place.
+ *
+ * @access private
+ */
+$wgSpecialPageRedirects = array(
+	'Listadmins' => 'Listusers'
 );
 
 global $wgUseValidation ;
@@ -167,6 +177,21 @@ class SpecialPage
 			return NULL;
 		}
 	}
+	
+	/**
+	 * 
+	 * @static
+	 * @param string $nam
+	 * @return mixed string if the redirect exists, otherwise NULL
+	 */
+	function &getRedirect( $name ) {
+		global $wgSpecialPageRedirects;
+		if ( array_key_exists( $name, $wgSpecialPageRedirects ) ) {
+			return $wgSpecialPageRedirects[$name];
+		} else {
+			return NULL;
+		}
+	}
 
 	/**
 	 * Return categorised listable special pages
@@ -209,9 +234,15 @@ class SpecialPage
 
 		$page =& SpecialPage::getPage( $name );
 		if ( is_null( $page ) ) {
-			$wgOut->setArticleRelated( false );
-			$wgOut->setRobotpolicy( "noindex,follow" );
-			$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+			$redir =& SpecialPage::getRedirect( $name );
+			if ( isset( $redir ) ) {
+				$t = Title::makeTitle( NS_SPECIAL, "Listusers" );
+				$wgOut->redirect ($t->getFullURL());
+			} else {
+				$wgOut->setArticleRelated( false );
+				$wgOut->setRobotpolicy( "noindex,follow" );
+				$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+			}
 		} else {
 			if($par !== NULL) {
 				$wgTitle = Title::makeTitle( NS_SPECIAL, $name );
