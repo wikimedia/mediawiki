@@ -12,8 +12,6 @@ function wfSpecialStatistics() {
 	global $wgUser, $wgOut, $wgLang;
 	$fname = 'wfSpecialStatistics';
 
-	$wgOut->addHTML( '<h2>' . wfMsg( 'sitestats' ) . "</h2>\n" );
-	
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_rights' ) );
 
@@ -30,7 +28,8 @@ function wfSpecialStatistics() {
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
 
-	$text = wfMsg( 'sitestatstext',
+	$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
+	$text .= wfMsg( 'sitestatstext',
 		$wgLang->formatNum( $total ),
 		$wgLang->formatNum( $good ),
 		$wgLang->formatNum( $views ),
@@ -38,8 +37,7 @@ function wfSpecialStatistics() {
 		$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
 		$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
 
-	$wgOut->addWikiText( $text );
-	$wgOut->addHTML( '<h2>' . wfMsg( 'userstats' ) . "</h2>\n" );
+	$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
 
 	$sql = "SELECT COUNT(user_id) AS total FROM $user";
 	$res = $dbr->query( $sql, $fname );
@@ -54,7 +52,7 @@ function wfSpecialStatistics() {
 	$sk = $wgUser->getSkin();
 	$ap = '[[' . wfMsg( 'administrators' ) . ']]';
 
-	$text = wfMsg( 'userstatstext',
+	$text .= wfMsg( 'userstatstext',
 		$wgLang->formatNum( $total ),
 		$wgLang->formatNum( $admins ), $ap );
 	$wgOut->addWikiText( $text );
