@@ -600,7 +600,7 @@ class EditPage {
 				$editsummary = '';
 			} else {
 				$commentsubject = '';
-				$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+				$editsummary="{$summary}: <input tabindex='2' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 			}
 
 		if( !$this->preview && !$this->diff ) {
@@ -671,7 +671,7 @@ END
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
-<input tabindex='6' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
+<input tabindex='7' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
 " title=\"".wfMsg('tooltip-diff')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}" );
 		$wgOut->addWikiText( $copywarn );
