@@ -181,6 +181,7 @@ Various bugfixes, small features, and a few experimental things:
 * dumpBackup.php can dump the full database to Export XML, with current
   revisions only or complete histories.
 * (bug 2150) Fix tab indexes on edit form
+* (bug 2152) Add missing bgcolor to attribute whitelist for <td> and <th>
 
 
 === Caveats ===
