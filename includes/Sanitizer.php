@@ -683,8 +683,9 @@ class Sanitizer {
 		                    'rowspan',
 		                    'colspan',
 		                    'nowrap', # deprecated
-		                    'width', # deprecated
-		                    'height' # deprecated
+		                    'width',  # deprecated
+		                    'height', # deprecated
+		                    'bgcolor' # deprecated
 		                    );
 		
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
