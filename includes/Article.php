@@ -1502,34 +1502,20 @@ class Article {
 			return;
 		}
 
-		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
-
-		# Temporary hack:
-		# Fail if any of the old rows have old_flags=object
-		$row = $dbr->selectRow( 'old', 
-			array( 'old_flags' ),
-			array(
-				'old_namespace' => $ns,
-				'old_title' => $title,
-				"old_flags LIKE '%object%'",
-			), $fname, $this->getSelectOptions()
-		);
-		if ( $row ) {
-			$wgOut->fatalError( wfMsg( 'block_compress_delete' ) );
-			return;
-		}
 
 		if ( $confirm ) {
 			$this->doDelete( $reason );
 			return;
 		}
 
-		# determine whether this page has earlier revisions
-		# and insert a warning if it does
-		# we select the text because it might be useful below
-		$old = $dbr->selectRow( 'old',
+		# Determine whether this page has earlier revisions, and insert a warning if it does. 
+		# We select the text because it might be useful below. Select from the master due to 
+		# problems with people accidentally deleting large pages when move page vandalism 
+		# causes the slaves to lag
+		$dbw =& wfGetDB( DB_MASTER );
+		$old = $dbw->selectRow( 'old',
 			array( 'old_text', 'old_flags' ),
 			array(
 				'old_namespace' => $ns,
@@ -1544,7 +1530,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$s = $dbr->selectRow( 'cur',
+		$s = $dbw->selectRow( 'cur',
 			array( 'cur_text' ),
 			array(
 				'cur_namespace' => $ns,
@@ -1737,6 +1723,7 @@ class Article {
 		$linksTable = $dbw->tableName( 'links' );
 		$brokenlinksTable = $dbw->tableName( 'brokenlinks' );
 
+		# Archive cur row
 		$dbw->insertSelect( 'archive', 'cur',
 			array(
 				'ar_namespace' => 'cur_namespace',
@@ -1754,23 +1741,36 @@ class Article {
 			), $fname
 		);
 
-		$dbw->insertSelect( 'archive', 'old',
-			array(
-				'ar_namespace' => 'old_namespace',
-				'ar_title' => 'old_title',
-				'ar_text' => 'old_text',
-				'ar_comment' => 'old_comment',
-				'ar_user' => 'old_user',
-				'ar_user_text' => 'old_user_text',
-				'ar_timestamp' => 'old_timestamp',
-				'ar_minor_edit' => 'old_minor_edit',
-				'ar_flags' => 'old_flags'
-			), array(
-				'old_namespace' => $ns,
-				'old_title' => $t,
-			), $fname
-		);
+		# Archive old rows
+		$res = $dbw->select( 'old', array( 'old_namespace', 'old_title', 'old_text', 'old_comment',
+			'old_user', 'old_user_text', 'old_timestamp', 'old_minor_edit', 'old_flags' ), 
+			array( 'old_namespace' => $ns, 'old_title' => $t ), $fname );
 
+		while ( $row = $dbw->fetchObject( $res ) ) {
+			# Recompress block-compressed revisions
+			if ( $row->old_flags == 'object' ) {
+				$text = Article::getRevisionText( $row );
+				$flags = Article::compressRevisionText( $text );
+			} else {
+				$text = $row->old_text;
+				$flags = $row->old_flags;
+			}
+
+			$dbw->insert( 'archive', 
+				array(
+					'ar_namespace' => $ns,
+					'ar_title' => $t,
+					'ar_text' => $text,
+					'ar_comment' => $row->old_comment,
+					'ar_user' => $row->old_user,
+					'ar_user_text' => $row->old_user_text,
+					'ar_timestamp' => $row->old_timestamp,
+					'ar_minor_edit' => $row->old_minor_edit,
+					'ar_flags' => $flags
+				), $fname
+			);
+		}
+		
 		# Now that it's safely backed up, delete it
 
 		$dbw->delete( 'cur', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
