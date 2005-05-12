@@ -493,7 +493,7 @@ class EditPage {
 				$editsummary = '';
 			} else {
 				$commentsubject = '';
-				$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+				$editsummary="{$summary}: <input tabindex='2' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 			}
 
 		if( !$this->preview ) {
