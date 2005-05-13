@@ -40,7 +40,7 @@ $wgSpecialPages = array(
 	'Newimages'         => new SpecialPage( 'Newimages' ),
 	'Listusers'         => new SpecialPage( 'Listusers' ),
 	'Statistics'        => new SpecialPage( 'Statistics' ),
-	'Randompage'        => new SpecialPage( 'Randompage' ),
+	'Random'        => new SpecialPage( 'Randompage' ),
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
@@ -88,6 +88,9 @@ $wgSpecialPageRedirects = array(
 
 	# Deprecated specialpages
 	'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers' ),
+
+	# Redirects
+	'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' ),
 );
 
 global $wgUseValidation ;
@@ -235,7 +238,10 @@ class SpecialPage
 		if ( is_null( $page ) ) {
 			$redir =& SpecialPage::getRedirect( $name );
 			if ( isset( $redir ) ) {
-				$wgOut->redirect ($redir->getFullURL());
+				if ( isset( $par ) ) 
+					$wgOut->redirect( $redir->getFullURL() . '/' . $par );
+				else
+					$wgOut->redirect( $redir->getFullURL() );
 			} else {
 				$wgOut->setArticleRelated( false );
 				$wgOut->setRobotpolicy( "noindex,follow" );
