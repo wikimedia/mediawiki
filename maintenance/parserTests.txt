@@ -614,8 +614,12 @@ External links: invalid character
 BUG 787: Links with one slash after the url protocol are invalid
 !! input
 http:/example.com
+
+[http:/example.com title]
 !! result
 <p>http:/example.com
+</p><p>
+[http:/example.com title]
 </p>
 !! end
 
