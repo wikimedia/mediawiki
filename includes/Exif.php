@@ -304,73 +304,65 @@ class Exif {
 	 * @return bool
 	 */
 	function isByte( $in ) {
-		$fname = 'isByte';
 		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 255 ) {
-			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, false );
 			return false;
 		}
 	}
 	
 	function isASCII( $in ) {
-		wfDebug("Exif::isASCII: input was '$in'\n");
-		if ( preg_match( "/^\s*$/", $in ) ) {
+		if ( preg_match( "/[^\x0a\x20-\x7e]/", $in ) ) {
+			$this->debug( $in, __FUNCTION__, 'found a character not in our whitelist' );
 			return false;
 		}
+		
+		if ( preg_match( "/^\s*$/", $in ) ) {
+			$this->debug( $in, __FUNCTION__, 'input consisted solely of whitespace' );
+			return false;
+		}
+		
+		if ( strlen($in) > 1024 ) {
+			$this->debug( $in, __FUNCTION__, 'input was too long' );
+			return false;
+		}
+		
 		return true;
 	}
 
 	function isShort( $in ) {
-		$fname = 'isShort';
 		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 65536 ) {
-			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, true );
 			return false;
 		}
 	}
 
 	function isLong( $in ) {
-		$fname = 'isLong';
 		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 4294967296 ) {
-			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, false );
 			return false;
 		}
 	}
 	
 	function isRational( $in ) {
-		$fname = 'isRational';
-		if ( strpos( $in, '/' ) === false ) {
-			wfDebug("Exif::$fname: fed a non-fraction value: (type: " . gettype( $in ) . "; data: '$in')\n");
-			return false;
+		if ( preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
+			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
 		} else {
-			$a = explode( '/', $in, 2 );
-			if ( $this->isLong( $a[0] ) && $this->isLong( $a[1] ) ) {
-				wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
-				return true;
-			} else {
-				wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
-				return false;
-			}
+			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+			return false;
 		}
 	}
 
-	/**
-	 * In order not to output binary gibberish such as raw thumbnails we
-	 * return false here
-	 *
-	 * @todo We might actually want to display some of the UNDEFINED
-	 *       stuff, but we strip it for now.
-	 */
 	function isUndefined( $in ) {
-		$fname = 'isUndefined';
-		wfDebug("Exif::$fname: input was '$in'\n");
+		$this->debug( $in, __FUNCTION__ );
 		if ( preg_match( "/^\d{4}$/", $in ) ) { // Allow ExifVersion and FlashpixVersion
 			return true;
 		} else {
@@ -379,30 +371,21 @@ class Exif {
 	}
 
 	function isSlong( $in ) {
-		$fname = 'isSlong';
 		if ( $this->isLong( abs( $in ) ) ) {
-			wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
-			wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
+			$this->debug( $in, __FUNCTION__, false );
 			return false;
 		}
 	}
 
 	function isSrational( $in ) {
-		$fname = 'isSrational';
-		if ( strpos( $in, '/' ) === false ) {
-			 wfDebug("Exif::$fname: fed a non-fraction value: (type: " . gettype( $in ) . "; data: '$in')\n");
-			 return false;
+		if ( preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
+			return $this->isSlong( $m[0] ) && $this->isSlong( $m[1] );
 		} else {
-			$a = explode( '/', $in, 2 );
-			if ( $this->isSlong( $a[0] ) && $this->isSlong( $a[1] ) ) {
-				 wfDebug("Exif::$fname: accepted: '$in' (type: " . gettype( $in ) . ")\n");
-				 return true;
-			} else {
-				wfDebug("Exif::$fname: rejected: '$in' (type: " . gettype( $in ) . ")\n");
-				return false;
-			}
+			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+			return false;
 		}
 	}
 	/**#@-*/
@@ -436,7 +419,8 @@ class Exif {
 			case (string)MW_EXIF_SHORT.','.MW_EXIF_LONG:
 				return $this->isShort( $val ) || $this->isLong( $val );
 			default:
-				wfDebug( "Exif::validate: The tag \"$tag\" in unrecognized (type: " . gettype( $val ) . "; contents: $val)\n" );
+				wfDebug( ucfirst( __CLASS__ ) . '::' . __FUNCTION__ .
+					": The tag '$tag' in unknown (type: " . gettype( $val ) . "; content: '$val')\n" );
 				return false;
 		}
 	}
@@ -754,6 +738,29 @@ class Exif {
 	function msg( $tag, $val ) {
 		return wfMsg( strtolower("exif-$tag-$val") );
 	}
+
+	/**
+	 * Conviniance function for debugging output
+	 *
+	 * @param mixed $in 
+	 * @param string $fname
+	 * @param mixed $action
+	 */
+	 function debug( $in, $fname, $action = null ) {
+	 	$type = gettype( $in );
+		$class = ucfirst( __CLASS__ );
+		if ( $type === 'array' )
+			$in = print_r( $in, true );
+	 	
+		if ( $action === true )
+			wfDebug( "$class::$fname: accepted: '$in' (type: $type)\n");
+		elseif ( $action === false )
+			wfDebug( "$class::$fname: rejected: '$in' (type: $type)\n");
+		elseif ( $action === null )
+			wfDebug( "$class::$fname: input was: '$in' (type: $type)\n");
+		else
+			wfDebug( "$class::$fname: $action (type: $type; content: '$in')\n");
+	 }
 }
 
 } // MEDIAWIKI
