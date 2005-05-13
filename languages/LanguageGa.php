@@ -85,7 +85,6 @@ DISCUSSION!
     MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMREATHA"            ),
     MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "MÉIDAILT"       ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ), #FIXME - what is this?
-    MAG_MSG                  => array( 1,    "MSG:", "TCHT"                   ),
     MAG_SUBST                => array( 1,    "SUBST:"                 ),
     MAG_MSGNW                => array( 1,    "MSGNW:"                 ),
 	MAG_END                  => array( 0,    "__END__", "__DEIREADH__"             ),

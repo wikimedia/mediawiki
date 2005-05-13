@@ -89,7 +89,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
         MAG_CURRENTMONTHNAMEGEN  => array( 1,    'AĞIMDAĞI_AY_İSEME_GEN'  ),
         MAG_PAGENAME             => array( 1,    'BİTİSEME'               ),
         MAG_NAMESPACE            => array( 1,    'İSEMARA'                ),
-        MAG_MSG                  => array( 0,    'STR:'                   ),
         MAG_SUBST                => array( 0,    'TÖPÇEK:'                ),
         MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
         MAG_END                  => array( 0,    '__AZAQ__'               ),

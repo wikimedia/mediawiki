@@ -66,7 +66,6 @@
     MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
     MAG_NUMBEROFARTICLES    => array( 1, "NUMBEROFARTICLES","NIFEROERTHYGLAU"       ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
-    MAG_MSG                  => array( 1,    "MSG:"                                       ),
     MAG_SUBST                => array( 1,    "SUBST:"                                     ),
     MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
     MAG_END                 => array( 0, "DIWEDD"                                   ),

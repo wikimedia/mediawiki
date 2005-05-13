@@ -101,7 +101,6 @@ $wgValidationTypesNn = array (
     MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
     MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
     MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
-    MAG_MSG                  => array( 0,    'MSG:'                                                                 ),
     MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
     MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
     MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),

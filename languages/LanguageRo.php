@@ -70,7 +70,6 @@ require_once("LanguageUtf8.php");
     MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "{{ORACURENTA}}"                   ),
     MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "{{NUMARDEARTICOLE}}"         ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "{{NUMELUNACURENTAGEN}}"   ),
-	MAG_MSG                  => array( 0,    "MSG:", "MSJ:"                                    ),
 	MAG_SUBST                => array( 0,    "SUBST:"                                          ),
     MAG_MSGNW                => array( 0,    "MSGNW:", "MSJNOU:"                               ),
 	MAG_END                  => array( 0,    "__END__", "__FINAL__"                            ),

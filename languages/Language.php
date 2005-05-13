@@ -225,7 +225,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE'              ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
-	MAG_MSG                  => array( 0,    'MSG:'                   ),
 	MAG_SUBST                => array( 0,    'SUBST:'                 ),
 	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
 	MAG_END                  => array( 0,    '__END__'                ),
