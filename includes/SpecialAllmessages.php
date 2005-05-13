@@ -23,9 +23,8 @@ function wfSpecialAllmessages() {
 	
 	wfProfileIn( "$fname-setup");
 	$ot = $wgRequest->getText( 'ot' );
-	$mwMsg =& MagicWord::get( MAG_MSG );
 	
-	$navText = wfMsg( 'allmessagestext', $mwMsg->getSynonym( 0 ) );
+	$navText = wfMsg( 'allmessagestext' );
 
 
 	$first = true;
@@ -78,7 +77,7 @@ function makePhp($messages) {
 		} else {
 			$comment = '';
 		}
-		$txt .= "'".$key."' => \"".str_replace('"','\"',$m['msg'])."\",$comment\n";
+		$txt .= "'$key' => '" . preg_replace( "/(?<!\\\\)'/", "\'", $m['msg']) . "',$comment\n";
 	}
 	$txt .= ');';
 	return $txt;
