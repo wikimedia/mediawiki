@@ -756,7 +756,7 @@ class SkinTemplate extends Skin {
 		
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
-		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
+		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Random'));
 		$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
 		$nav_urls['currentevents'] = (wfMsgForContent('currentevents') != '-') ? array('href' => $this->makeI18nUrl('currentevents')) : false;
 		$nav_urls['portal'] =  (wfMsgForContent('portal') != '-') ? array('href' => $this->makeI18nUrl('portal-url')) : false;
