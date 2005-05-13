@@ -67,7 +67,6 @@ require_once('LanguageUtf8.php');
 	MAG_PAGENAME		=> array( 1,	'PAGENAME', 'НАЗВА_СТАРОНКІ' ),
 	MAG_PAGENAMEE		=> array( 1,	'PAGENAMEE', 'НАЗВА_СТАРОНКІ_2' ),
 	MAG_NAMESPACE		=> array( 1,	'NAMESPACE', 'ПРАСТОРА_НАЗВАЎ'),
-	MAG_MSG			=> array( 0,	'MSG:', 'ПАВЕДАМЛЕНЬНЕ:' ),
 	MAG_SUBST		=> array( 0,	'SUBST:', 'ПАДСТАНОЎКА:'),
 	MAG_MSGNW		=> array( 0,	'MSGNW:', 'ПАВЕДАМЛЕНЬНЕ_БЯЗЬ_ВІКІ:' ),
 	MAG_END			=> array( 0,	'__END__', '__КАНЕЦ__'   ),

@@ -65,7 +65,6 @@ if($wgMetaNamespace === FALSE)
         MAG_PAGENAME             => array( 1,    'PAGENAME',                    'SIETNAAM'               ),
         MAG_PAGENAMEE            => array( 1,    'PAGENAMEE',                   'SIETNAAME'              ),
         MAG_NAMESPACE            => array( 1,    'NAMESPACE',                   'NAAMRUUM'               ),
-        MAG_MSG                  => array( 0,    'MSG:'                                                  ),
         MAG_SUBST                => array( 0,    'SUBST:'                                                ),
         MAG_MSGNW                => array( 0,    'MSGNW:'                                                ),
         MAG_END                  => array( 0,    '__END__',                     '__ENN__'                ),

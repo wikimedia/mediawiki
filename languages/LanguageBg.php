@@ -73,7 +73,6 @@
 	MAG_CURRENTMONTHNAMEGEN  => array( 1, 'CURRENTMONTHNAMEGEN' ),
 	MAG_PAGENAME             => array( 1, 'PAGENAME', 'СТРАНИЦА'               ),
 	MAG_NAMESPACE            => array( 1, 'NAMESPACE', 'ИМЕНПРОСТРАНСТВО'              ),
-	MAG_MSG                  => array( 0, 'MSG:', 'СЪОБЩ:'                 ),
 	MAG_SUBST                => array( 0, 'SUBST:', 'ЗАМЕСТ:'              ),
 	MAG_MSGNW                => array( 0, 'MSGNW:', 'СЪОБЩNW:'             ),
 	MAG_END                  => array( 0, '__END__', '__КРАЙ__'            ),

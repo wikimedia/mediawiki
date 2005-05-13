@@ -40,7 +40,6 @@ require_once( "LanguageUtf8.php" );
     MAG_CURRENTTIME          => array( 1,    "CURRENTTIME"            ),
     MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES"       ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ),
-        MAG_MSG                  => array( 0,    "MSG:"                   ),
         MAG_SUBST                => array( 0,    "SUBST:"                 ),
     MAG_MSGNW                => array( 0,    "MSGNW:"                 ),
         MAG_END                  => array( 0,    "__END__"                ),

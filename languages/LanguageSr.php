@@ -56,7 +56,6 @@ require_once( "LanguageUtf8.php" );
     MAG_CURRENTTIME          => array( 1,    "{{ТРЕНУТНОВРЕМЕ}}"        ),
     MAG_NUMBEROFARTICLES     => array( 1,    "{{БРОЈЧЛАНАКА}}"   ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{ГЕНЕРИСАНОИМЕТРЕНУТНОГМЕСЕЦА}}"),
- MAG_MSG                  => array( 1,    "{{ПОР:$1}}"             ),
  MAG_SUBST                => array( 1,    "{{ПОДСТ:$1}}"           ),
     MAG_MSGNW                => array( 1,    "{{НВПОР:$1}}"           )
 );

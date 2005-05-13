@@ -2032,10 +2032,6 @@ class Parser
 			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
 			if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
 				$nowiki = true;
-			} else {
-				# Remove obsolete MSG:
-				$mwMsg =& MagicWord::get( MAG_MSG );
-				$mwMsg->matchStartAndRemove( $part1 );
 			}
 
 			# Check if it is an internal message
