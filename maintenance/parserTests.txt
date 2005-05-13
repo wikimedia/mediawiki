@@ -610,6 +610,15 @@ External links: invalid character
 </p>
 !! end
 
+!! test
+BUG 787: Links with one slash after the url protocol are invalid
+!! input
+http:/example.com
+!! result
+<p>http:/example.com
+</p>
+!! end
+
 ###
 ### Quotes
 ###
