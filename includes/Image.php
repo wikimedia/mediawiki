@@ -1167,6 +1167,8 @@ class Image
 		
 	function getExifData () {
 		global $wgRequest;
+		if ( $this->metadata === '0' )
+			return array();
 		
 		$purge = $wgRequest->getVal( 'action' ) == 'purge';
 		$ret = unserialize ( $this->metadata );
@@ -1176,7 +1178,6 @@ class Image
 		
 		if ( !count( $ret ) || $purge || $oldver != $newver ) {
 			$this->updateExifData( $newver );
-			$ret = unserialize( $this->metadata );
 		}
 		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
 			unset( $ret['MEDIAWIKI_EXIF_VERSION'] );
@@ -1196,8 +1197,12 @@ class Image
 		
 		# Get EXIF data from image
 		$exif = $this->retrieveExifData();
-		$exif['MEDIAWIKI_EXIF_VERSION'] = $version;
-		$this->metadata = serialize( $exif );
+		if ( count( $exif ) ) {
+			$exif['MEDIAWIKI_EXIF_VERSION'] = $version;
+			$this->metadata = serialize( $exif );
+		} else {
+			$this->metadata = '0';
+		}
 		
 		# Update EXIF data in database
 		$dbw =& wfGetDB( DB_MASTER );
