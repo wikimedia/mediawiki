@@ -13,7 +13,9 @@
  */
 
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
-if( defined( 'MEDIAWIKI' ) ) {
+if( !defined( 'MEDIAWIKI' ) ) {
+	die( "This file is part of MediaWiki and is not a valid entry point\n" );
+}
 
 /** MediaWiki version number */
 $wgVersion			= '1.5alpha1';
@@ -1323,8 +1325,4 @@ $wgCountCategorizedImagesAsUsed = false;
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
-
-} else {
-	die();
-}
 ?>
