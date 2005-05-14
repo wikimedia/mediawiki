@@ -93,7 +93,7 @@ class MonoBookTemplate extends QuickTemplate {
       </div>
       <div id="column-one">
 	<div id="p-cactions" class="portlet">
-	  <h5>Views</h5>
+	  <h5><?php $this->msg('views') ?></h5>
 	  <ul>
 	    <?php foreach($this->data['content_actions'] as $key => $action) {
 	       ?><li id="ca-<?php echo htmlspecialchars($key) ?>"

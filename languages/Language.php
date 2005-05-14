@@ -416,6 +416,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'articlepage'	=> 'View content page',
 'subjectpage'	=> 'View subject', # For compatibility
 'talk' => 'Discussion',
+'views' => 'Views',
 'toolbox' => 'Toolbox',
 'userpage' => 'View user page',
 'wikipediapage' => 'View project page',

@@ -164,6 +164,7 @@ Various bugfixes, small features, and a few experimental things:
 === Changes since 1.5alpha1 ===
 
 * ...various...
+* (bug 498) The Views heading in MonoBook.php is now localizable
 * (bug 2067) Fixed crash on empty quoted HTML attribute
 * (bug 2079) Removed links to Special:Maintenance from movepagetext messages
 * Fix for reading incorrectly re-gzipped HistoryBlob entries
