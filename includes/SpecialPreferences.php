@@ -251,9 +251,9 @@ class PreferencesForm {
 						# User can come back through the confirmation URL to re-enable email.
 						$result = $wgUser->sendConfirmationMail();
 						if( WikiError::isError( $result ) ) {
-							$error = wfMsg( 'mailerror', $result->getMessage() );
+							$error = wfMsg( 'mailerror', $result->toString() );
 						} else {
-							$error = wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() );
+							$error = wfMsg( 'eauthentsent', $wgUser->getName() );
 						}
 					}
 				} else {
@@ -384,8 +384,8 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits, $wgThumbLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
-		global $wgEmailNotificationForWatchlistPages, $wgEmailNotificationForUserTalkPages,$wgEmailNotificationForMinorEdits;
-		global $wgRCShowWatchingUsers, $wgEmailNotificationRevealPageEditorAddress;
+		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
+		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode;
 
@@ -423,30 +423,27 @@ class PreferencesForm {
 		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
 			if( $wgUser->getEmailAuthenticationTimestamp() ) {
 				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationTimestamp(), true ) ).'<br />';
-				$disabled = '';
 			} else {
 				$skin = $wgUser->getSkin();
 				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
 					$skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Confirmemail' ),
 						wfMsg( 'emailconfirmlink' ) );
-				$disabled = ' '.wfMsg('disableduntilauthent');
 			}
 		} else {
 			$emailauthenticated = '';
-			$disabled = false; // If it hasn't been set already the wiki will spew errors
 		}
 
 		if ($this->mUserEmail == '') {
-			$disabled = ' '.wfMsg('disablednoemail');
+			$emailauthenticated = wfMsg( 'noemailprefs' );
 		}
 
 		$ps = $this->namespacesCheckboxes();
 
-		$enotifwatchlistpages = ($wgEmailNotificationForWatchlistPages) ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
-		$enotifusertalkpages = ($wgEmailNotificationForUserTalkPages) ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
-		$enotifminoredits = ($wgEmailNotificationForMinorEdits) ? $this->getToggle( 'enotifminoredits', $disabled) : '';
-		$enotifrevealaddr = ($wgEmailNotificationRevealPageEditorAddress) ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
-		$prefs_help_email_enotif = ( $wgEmailNotificationForWatchlistPages || $wgEmailNotificationForUserTalkPages) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
+		$enotifwatchlistpages = ($wgEnotifWatchlist) ? $this->getToggle( 'enotifwatchlistpages' ) : '';
+		$enotifusertalkpages = ($wgEnotifUserTalk) ? $this->getToggle( 'enotifusertalkpages' ) : '';
+		$enotifminoredits = ($wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits' ) : '';
+		$enotifrevealaddr = ($wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr' ) : '';
+		$prefs_help_email_enotif = ( $wgEnotifWatchlist || $wgEnotifUserTalk) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
 		$prefs_help_realname = '';
 
 		# </FIXME>
@@ -557,7 +554,7 @@ class PreferencesForm {
                         if ($wgEnableUserEmail) {
 				$emf = wfMsg( 'emailflag' );
                                 $wgOut->addHTML(
-                                "<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf.$disabled</label></div>" );
+                                "<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>" );
                         }
 			
 			$wgOut->addHTML( '</fieldset>' );

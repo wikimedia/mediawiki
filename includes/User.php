@@ -917,20 +917,41 @@ class User {
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
 	 */
-	function clearNotification( $title ) {
-		$userid = $this->getId();
+	function clearNotification( &$title ) {
+		global $wgUser;
+
+		$userid = $this->getID();
 		if ($userid==0)
 			return;
-		$dbw =& wfGetDB( DB_MASTER );
-		$success = $dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => 0
-				), array( /* WHERE */
-					'wl_title' => $title->getDBkey(),
-					'wl_namespace' => $title->getNamespace(),
-					'wl_user' => $this->getId()
-				), 'User::clearLastVisited'
-		);
+		
+		// Only update the timestamp if the page is being watched. 
+		// The query to find out if it is watched is cached both in memcached and per-invocation,
+		// and when it does have to be executed, it can be on a slave
+		// If this is the user's newtalk page, we always update the timestamp
+		if ($title->getNamespace() == NS_USER_TALK &&
+			$title->getText() == $wgUser->getName()) 
+		{
+			$watched = true;
+		} elseif ( $this->getID() == $wgUser->getID() ) {
+			$watched = $title->userIsWatching();
+		} else {
+			$watched = true;
+		}
+		
+		// If the page is watched by the user (or may be watched), update the timestamp on any 
+		// any matching rows
+		if ( $watched ) {
+			$dbw =& wfGetDB( DB_MASTER );
+			$success = $dbw->update( 'watchlist',
+					array( /* SET */
+						'wl_notificationtimestamp' => 0
+					), array( /* WHERE */
+						'wl_title' => $title->getDBkey(),
+						'wl_namespace' => $title->getNamespace(),
+						'wl_user' => $this->getID()
+					), 'User::clearLastVisited'
+			);
+		}
 	}
 	
 	/**#@-*/

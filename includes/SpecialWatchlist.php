@@ -39,19 +39,6 @@ function wfSpecialWatchlist() {
 	$hideOwn = $wgRequest->getBool( 'hideOwn' );	
 	$id = $wgRequest->getArray( 'id' );
 
-	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
-		$wgOut->addHTML( "<div class='enotifinfo'>\n" );
-		
-		$wgOut->addWikiText( wfMsg( 'email_notification_infotext' ) );
-
-		$wgOut->addHTML( '<form action="' .
-			$specialTitle->escapeLocalUrl( 'action=submit&magic=yes' ) .
-			'" method="post"><input type="submit" name="dummy" value="' .
-			htmlspecialchars( wfMsg( 'email_notification_reset' ) ) .
-			'" /><input type="hidden" name="reset" value="all" /></form>' .
-			"</div>\n\n" );
-	}
-
 	$uid = $wgUser->getID();
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );
@@ -100,10 +87,10 @@ function wfSpecialWatchlist() {
 	$nitems = $s->n;
 
 	if($nitems == 0) {
-        	$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
-        	return;
+		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
+		return;
 	}
-	
+
 	if ( is_null( $days ) ) {
 		$big = 1000;
 		if($nitems > $big) {
@@ -130,8 +117,8 @@ function wfSpecialWatchlist() {
 		$npages = $s->n;
 
 	}
-	
-	if($wgRequest->getBool('magic')) {
+
+	if($wgRequest->getBool('edit')) {
 		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
 			"\n\n" . wfMsg( 'watcheditlist' ) );
 
@@ -190,10 +177,25 @@ function wfSpecialWatchlist() {
 	}
 
 	$andHideOwn = $hideOwn ? "AND (rev_user <> $uid)" : '';
+
+	# Show watchlist header
+	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
+		$wgOut->addHTML( "<div class='enotifinfo'>\n" );
+		
+		$wgOut->addWikiText( wfMsg( 'enotif_infotext' ) );
+
+		$wgOut->addHTML( '<form action="' .
+			$specialTitle->escapeLocalUrl( 'action=submit&edit=yes' ) .
+			'" method="post"><input type="submit" name="dummy" value="' .
+			htmlspecialchars( wfMsg( 'enotif_reset' ) ) .
+			'" /><input type="hidden" name="reset" value="all" /></form>' .
+			"</div>\n\n" );
+	}
+	
 	
 	$wgOut->addHTML( '<i>' . wfMsg( 'watchdetails',
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
-		$specialTitle->escapeLocalUrl( 'magic=yes' ) ) . "</i><br />\n" );
+		$specialTitle->escapeLocalUrl( 'edit=yes' ) ) . "</i><br />\n" );
 
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
@@ -245,9 +247,9 @@ function wfSpecialWatchlist() {
 		$rc->counter = $counter++;
 
 		if ($wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' )) {
-			$rc->notificationtimestamp = $obj->wl_notificationtimestamp;
+			$updated = $obj->wl_notificationtimestamp;
 		} else {
-			$rc->notificationtimestamp = false;
+			$updated = false;
 		}
 
 		if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
@@ -259,7 +261,7 @@ function wfSpecialWatchlist() {
 			$rc->numberofWatchingusers = 0;
 		}
 
-		$s .= $list->recentChangesLine( $rc, true);
+		$s .= $list->recentChangesLine( $rc, $updated );
 	}
 	$s .= $list->endRecentChangesList();
 

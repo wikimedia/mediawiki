@@ -83,10 +83,6 @@ class ChangesList {
 		if ( $rcObj->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
 
-		if ($rcObj->notificationtimestamp) {
-			$r .= wfMsg( 'updatedmarker' );
-		}
-
 		# Diff
 		$r .= ' (' ;
 		$r .= $rcObj->difflink ;
@@ -173,10 +169,6 @@ class ChangesList {
 		$link = $block[0]->link ;
 		if ( $block[0]->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
-
-		if ($block[0]->notificationtimestamp) {
-			$r .= wfMsg( 'updatedmarker' );
-		}
 
 		$curIdEq = 'curid=' . $block[0]->mAttribs['rc_cur_id'];
 		if ( $block[0]->mAttribs['rc_type'] != RC_LOG ) {
@@ -356,10 +348,6 @@ class ChangesList {
 				$articleLink = '<strong>'.$articleLink.'</strong>';
 			}
 
-			if ($rc->notificationtimestamp) {
-				$articleLink .= wfMsg( 'updatedmarker' );
-			}
-
 			$s .= ' '.$articleLink;
 			wfProfileOut("$fname-page");
 		}
@@ -476,7 +464,6 @@ class ChangesList {
 		$rc->watched = $watched ;
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
-		$rc->notificationtimestamp = $baseRC->notificationtimestamp;
 		$rc->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
 		# Make "cur" and "diff" links

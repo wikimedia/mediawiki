@@ -78,7 +78,7 @@ if(isset($wgExtraNamespaces)) {
 	'imagesize' 		=> 2,
 	'thumbsize'		=> 2,
 	'rememberpassword' 	=> 0,
-	'enotifwatchlistpages' 	=> 1,
+	'enotifwatchlistpages' 	=> 0,
 	'enotifusertalkpages' 	=> 1,
 	'enotifminoredits' 	=> 0,
 	'enotifrevealaddr' 	=> 0,
@@ -279,11 +279,11 @@ global $wgRightsText;
 'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
-'tog-enotifwatchlistpages' 	=> 'Send me an email on page changes (remark: existing notification flags need to be cleared manually in the watchlist)',
-'tog-enotifusertalkpages' 	=> 'Send me an email when my user talk page is changed (remark: existing notification flags need to be cleared manually in the watchlist)',
-'tog-enotifminoredits' 		=> 'Send me an email also for minor edits of pages (which usually do not trigger notification mails)',
-'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails (when I change a page, it allows watching users to reply quickly to me)',
-'tog-shownumberswatching' 	=> 'Show the number of watching users (in recent changes view, watchlist and article page footers)',
+'tog-enotifwatchlistpages' 	=> 'Send me an email on page changes',
+'tog-enotifusertalkpages' 	=> 'Send me an email when my user talk page is changed',
+'tog-enotifminoredits' 		=> 'Send me an email also for minor edits of pages',
+'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails',
+'tog-shownumberswatching' 	=> 'Show the number of watching users',
 'tog-rcusemodstyle' 		=> 'Show recent changes in UseMod style: only the most recent change of any page is listed.',
 'tog-showupdated'		=> 'Show update marker ',
 'tog-fancysig' => 'Raw signatures (without automatic link)',
@@ -612,23 +612,23 @@ You can now log in with this temporary password, which is valid for only one log
 You may wish to keep using your old password if you remember it or to set a new one.
 
 {{SERVER}}{{localurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}",
-'noemail'		=> "There is no e-mail address recorded for user \"$1\".",
-'passwordsent'		=> "A temporary password has been sent to the e-mail address
-registered for \"$1\".
+'noemail'		            => "There is no e-mail address recorded for user \"$1\".",
+'passwordsent'		        => "A temporary password has been sent to the e-mail address registered for \"$1\".
 Please log in again after you receive it.",
-'passwordsentforemailauthentication'
-			=>  "A temporary password has been sent to the e-mail address newly
-registered for \"$1\".
-Please re-login with that for authentication purposes.",
-'loginend'		=> '&nbsp;',
-'mailerror' => "Error sending mail: $1",
+'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address. 
+Before any other mail is sent to the account, you will have to follow the instructions in the email, 
+to confirm that the account is actually yours.",
+'loginend'		            => '&nbsp;',
+'mailerror'                 => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
-'emailauthenticated' 	=> 'Your email address was authenticated on $1.',
-'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.',
+'emailauthenticated'        => 'Your email address was authenticated on $1.',
+'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email 
+will be sent for any of the following features.',
+'noemailprefs'              => '<strong>No email address has been specified</strong>, the following 
+features will not work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
-'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',
-'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
-'disablednoemail'	=> '<strong>(disabled; no email address)</strong>',
+'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid 
+format. Please enter a well-formatted address or empty that field.',
 
 # Edit page toolbar
 'bold_sample'=>'Bold text',
@@ -1242,19 +1242,17 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'wlshow'		=> 'Show',
 'wlhide'		=> 'Hide',
 
-'updatedmarker'		=> '<span class=\'updatedmarker\'>&nbsp;updated (since my last visit)&nbsp;</span>',
-
-'email_notification_mailer' 		=> '{{SITENAME}} Notification Mailer',
-'email_notification_infotext' 		=> "Email notification is on.
-You will be notified by email when someone changes a page which is listed in your watchlist.",
-'email_notification_reset'			=> 'Reset all notification flags (set their status to "visited")',
-'email_notification_newpagetext'=> 'This is a new page.',
-'email_notification_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
+'enotif_mailer' 		=> '{{SITENAME}} Notification Mailer',
+'enotif_infotext' 		=> "* Email notification is enabled
+* Pages which have been changed since you last visited them are shown in '''bold'''",
+'enotif_reset'			=> 'Mark all pages visited',
+'enotif_newpagetext'=> 'This is a new page.',
+'enotif_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'changed'			=> 'changed',
 'created'			=> 'created',
-'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
-'email_notification_lastvisitedrevisiontext' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
-'email_notification_body' => 'Dear $WATCHINGUSERNAME,
+'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
+'enotif_lastvisited' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
+'enotif_body' => 'Dear $WATCHINGUSERNAME,
 
 the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR,
 see {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for the current version.
@@ -1274,10 +1272,10 @@ You could also reset the notification flags for all your watched pages on your w
 
 --
 To change your watchlist settings, visit
-{{SERVER}}{{localurl:Special:Watchlist|magic=yes}}
+{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
 
 Feedback and further assistance:
-{{SERVER}}{{localurl:WikiHelpdesk}}',
+{{SERVER}}{{localurl:Help:Contents}}',
 
 # Delete/protect/revert
 #
