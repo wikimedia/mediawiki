@@ -176,6 +176,7 @@ Various bugfixes, small features, and a few experimental things:
   that the cur table be left in place until/unless such fields are migrated
   into the main text store.
 * (bug 1692) Fix margin on unwatch tab
+* (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs"
 * HistoryBlobStub: the last-used HistoryBlob is kept open to speed up
   multiple-revision pulls
 * Special:Export now includes page, revision, and user id numbers by
