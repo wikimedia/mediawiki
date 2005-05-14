@@ -525,13 +525,16 @@ class User {
 
 			// Get groups id
 			$res = $dbr->select( 'user_groups', array( 'ug_group' ), array( 'ug_user' => $this->mId ) );
+			
+			// add the default group for logged in user
+			$this->mGroups = array( $wgLoggedInGroupId );
 
 			while($group = $dbr->fetchRow($res)) {
-				$this->mGroups[] = $group[0];
+				if ( $group[0] != $wgLoggedInGroupId ) {
+					$this->mGroups[] = $group[0];
+				}
 			}
 
-			// add the default group for logged in user
-			$this->mGroups[] = $wgLoggedInGroupId;
 
 			$this->mRights = array();
 			// now we merge groups rights to get this user rights
@@ -1260,7 +1263,7 @@ class User {
 	 * @return bool True if it is a newbie.
 	 */
 	function isNewbie() {
-		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
+		return $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot() || $this->getID() == 0;
 	}
 
 	/**
