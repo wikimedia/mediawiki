@@ -518,7 +518,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang, $wgUseValidation;
+		global $wgContLang, $wgUseValidation, $wgDBprefix;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
@@ -649,7 +649,7 @@ class SkinTemplate extends Skin {
 						{# Trying to get the current article revision through this weird stunt
 						$tid = $this->mTitle->getArticleID();
 						$tns = $this->mTitle->getNamespace();
-						$sql = "SELECT page_latest FROM page WHERE page_id={$tid} AND page_namespace={$tns}" ;
+						$sql = "SELECT page_latest FROM {$wgDBprefix}page WHERE page_id={$tid} AND page_namespace={$tns}" ;
 						$res = wfQuery( $sql, DB_READ );
 						if( $s = wfFetchObject( $res ) )
 							$oid = $s->page_latest ;
