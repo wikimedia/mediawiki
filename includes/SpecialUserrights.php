@@ -32,7 +32,7 @@ class UserrightsForm extends HTMLForm {
 	/** Constructor*/
 	function UserrightsForm ( &$request ) {
 		$this->mPosted = $request->wasPosted();
-		$this->mRequest = $request;
+		$this->mRequest =& $request;
 		$this->mName = 'userrights';
 		
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userrights' );
@@ -40,8 +40,8 @@ class UserrightsForm extends HTMLForm {
 	}
 
 	/**
-	 * Manage forms to be shown according to posted datas.
-	 * Depending on the submit button used : Call a form or a saving function.
+	 * Manage forms to be shown according to posted data.
+	 * Depending on the submit button used, call a form or a save function.
 	 */
 	function execute() {
 		// show the general form
@@ -60,7 +60,6 @@ class UserrightsForm extends HTMLForm {
 		}
 	}
 
-// save things !!
 	/**
 	 * Save user groups changes in the database.
 	 * Datas comes from the editUserGroupsForm() form function
@@ -69,7 +68,6 @@ class UserrightsForm extends HTMLForm {
 	 * @param array $removegroup id of groups to be removed.
 	 * @param array $addgroup id of groups to be added.
 	 *
-	 * @todo Log groupname instead of group id.
 	 */
 	function saveUserGroups($username,$removegroup,$addgroup) {
 		$u = User::NewFromName($username);
@@ -84,23 +82,37 @@ class UserrightsForm extends HTMLForm {
 			return;
 		}		
 
-		$groups = $u->getGroups();
+		$oldGroups = $u->getGroups();
+		$newGroups = $oldGroups;
 		$logcomment = ' ';
 		// remove then add groups		
 		if(isset($removegroup)) {
-			$groups = array_diff($groups, $removegroup);
-			$logcomment .= implode( ' -', $removegroup);
-			}
+			$newGroups = array_diff($newGroups, $removegroup);
+		}
 		if(isset($addgroup)) {
-			$groups = array_merge($groups, $addgroup);
-			$logcomment .= implode( ' +', $addgroup );
-			}
+			$newGroups = array_merge($newGroups, $addgroup);
+		}
+		$newGroups = array_unique( $newGroups );
+
 		// save groups in user object and database
-		$u->setGroups($groups);
+		$u->setGroups($newGroups);
 		$u->saveSettings();
 
 		$log = new LogPage( 'rights' );
-		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $logcomment );
+		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), '', array( $this->makeGroupNameList( $oldGroups ),
+			$this->makeGroupNameList( $newGroups ) ) );
+	}
+
+	function makeGroupNameList( $ids ) {
+		$s = '';
+		foreach( $ids as $id ) {
+			if ( $s != '' ) {
+				$s .= ', ';
+			}
+			$groupObj = Group::newFromId( $id );
+			$s .= $groupObj->getExpandedName();
+		}
+		return $s;
 	}
 
 	/**
@@ -127,20 +139,21 @@ class UserrightsForm extends HTMLForm {
 		global $wgOut;
 		
 		$user = User::newFromName($username);
+		$encUser = htmlspecialchars( $username );
 		if(is_null($user)) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
+			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort', $encUser).'</p>');
 			return;
 		}
 
 		if($user->getID() == 0) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
+			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort', $encUser).'</p>');
 			return;
 		}		
 		
 		$groups = $user->getGroups();
 
 		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
-						 '<input type="hidden" name="user-editname" value="'.$username.'" />');
+						 '<input type="hidden" name="user-editname" value="'.$encUser.'" />');
 		$wgOut->addHTML( $this->fieldset( 'editusergroup',
 			wfMsg('editing', $this->mRequest->getVal('user-editname')).".<br />\n" .
 			'<table border="0" align="center"><tr><td>'.
