@@ -17,7 +17,7 @@ class Group {
 	var $id;
 	/** string $description Description of the group */
 	var $description;
-	/** boolean $dataLoaded Whereas we grabbed datas from the database */
+	/** boolean $dataLoaded Whether data has been loaded from the database */
 	var $dataLoaded;
 	/** string $rights Contain rights values : "foo,bar,bla" */
 	var $rights;
@@ -37,7 +37,7 @@ class Group {
 		$this->rights = false;
 	}
 
-	/** Load group datas from database */
+	/** Load group data from database */
 	function loadFromDatabase() {
 		$fname = 'Group::loadFromDatabase';
 
