@@ -863,6 +863,10 @@ class Title {
 		}
 
 		foreach( $this->getRestrictions($action) as $right ) {
+			// Backwards compatibility, rewrite sysop -> protect
+			if ( $right == 'sysop' ) {
+				$right = 'protect';
+			}
 			if( '' != $right && !$wgUser->isAllowed( $right ) ) {
 				wfProfileOut( $fname );
 				return false;
