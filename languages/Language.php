@@ -935,7 +935,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 a direct URL, and so may still be listed here despite being
 in active use.',
 'booksources'	=> 'Book sources',
-'categoriespagetext' => 'The following categories exists in the wiki.',
+'categoriespagetext' => 'The following categories exist in the wiki.',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
