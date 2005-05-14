@@ -62,7 +62,7 @@ class UserrightsForm extends HTMLForm {
 
 	/**
 	 * Save user groups changes in the database.
-	 * Datas comes from the editUserGroupsForm() form function
+	 * Data comes from the editUserGroupsForm() form function
 	 *
 	 * @param string $username Username to apply changes to.
 	 * @param array $removegroup id of groups to be removed.
@@ -70,7 +70,7 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 */
 	function saveUserGroups($username,$removegroup,$addgroup) {
-		$u = User::NewFromName($username);
+		$u = User::newFromName($username);
 
 		if(is_null($u)) {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
