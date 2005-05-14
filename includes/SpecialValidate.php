@@ -36,9 +36,10 @@ class Validation {
 
 	# Reads all revision information of the specified article
 	function prepareRevisions ( $id ) {
+		global $wgDBprefix ;
 		$this->rev2date = array () ;
 		$this->date2rev = array () ;
-		$sql = "SELECT * FROM revision WHERE rev_page='{$id}'" ;
+		$sql = "SELECT * FROM {$wgDBprefix}revision WHERE rev_page='{$id}'" ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			$this->rev2date[$x->rev_id] = $x ;
@@ -56,8 +57,9 @@ class Validation {
 
 	# Returns an array containing all topics you can vote on
 	function getTopicList () {
+		global $wgDBprefix ;
 		$ret = array () ;
-		$sql = "SELECT * FROM validate WHERE val_user=0" ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_user=0" ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			$ret[$x->val_type] = $x ;
@@ -126,12 +128,12 @@ class Validation {
 	
 	# Sets a specific revision to both cache and database
 	function setRevision ( &$article , $revision , &$data ) {
-		global $wgUser ;
+		global $wgUser , $wgDBprefix ;
 		$this->deleteRevision ( $article , $revision ) ;
 		$this->voteCache[$this->getTimestamp($revision)] = $data ;
 		foreach ( $data AS $x => $y ) {
 			if ( $y->value > 0 ) {
-				$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES ('" ;
+				$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES ('" ;
 				$sql .= $wgUser->getID() . "','" ;
 				$sql .= $article->getID() . "','" ;
 				$sql .= $revision . "','" ;
@@ -145,10 +147,10 @@ class Validation {
 	
 	# Deletes a specific vote set in both cache and database
 	function deleteRevision ( &$article , $revision ) {
-		global $wgUser ;
+		global $wgUser , $wgDBprefix ;
 		$ts = $this->getTimestamp ( $revision ) ;
 		if ( !isset ( $this->voteCache[$ts] ) ) return ; # Nothing to do
-		$sql = "DELETE FROM validate WHERE val_user='" . $wgUser->GetID() . "' AND " ;
+		$sql = "DELETE FROM {$wgDBprefix}validate WHERE val_user='" . $wgUser->GetID() . "' AND " ;
 		$sql .= " val_page='" . $article->getID() . "' AND val_revision='{$revision}'" ;
 		$res = wfQuery( $sql, DB_WRITE );
 		unset ( $this->voteCache[$ts] ) ;
@@ -156,9 +158,9 @@ class Validation {
 	
 	# Reads the entire vote list for this user for the given article
 	function getVoteList ( $id ) {
-		global $wgUser ;
+		global $wgUser , $wgDBprefix ;
 		$r = array () ; # Revisions
-		$sql = "SELECT * FROM validate WHERE val_page=" . $id . " AND val_user=" . $wgUser->getID() ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page=" . $id . " AND val_user=" . $wgUser->getID() ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			#$y = $x->val_revision ;
@@ -173,9 +175,10 @@ class Validation {
 	
 	# This functions adds a topic to the database
 	function addTopic ( $topic , $limit ) {
+		global $wgDBprefix ;
 		$a = 1 ;
 		while ( isset ( $this->topicList[$a] ) ) $a++ ;
-		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
+		$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
 		$sql .= "'0','0','0','{$a}','{$limit}','" ;
 		$sql .= Database::strencode ( $topic ) . "')" ;
 		$res = wfQuery( $sql, DB_WRITE );
@@ -189,7 +192,8 @@ class Validation {
 
 	# This functions adds a topic to the database
 	function deleteTopic ( $id ) {
-		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
+		global $wgDBprefix ;
+		$sql = "DELETE FROM {$wgDBprefix}validate WHERE val_type='{$id}'" ;
 		$res = wfQuery( $sql, DB_WRITE );
 		unset ( $this->topicList[$id] ) ;
 	}
@@ -393,12 +397,13 @@ class Validation {
 	}
 	
 	function showList ( &$article ) {
+		global $wgDBprefix ;
 		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 		
 		# Collecting statistic data
 		$id = $article->getID() ;
-		$sql = "SELECT * FROM validate WHERE val_page='{$id}'" ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page='{$id}'" ;
 		$res = wfQuery( $sql, DB_READ );
 		$data = array () ;
 		while( $x = wfFetchObject( $res ) ) {
