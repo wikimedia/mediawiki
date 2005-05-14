@@ -109,7 +109,7 @@
 	'la' => 'Latina',		# Latin
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lg' => 'Luganda',		# Ganda
-	'li' => 'Lèmburgs',	# Limburgian
+	'li' => 'Limburgs',	# Limburgian
 	'ln' => 'Lingala',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
