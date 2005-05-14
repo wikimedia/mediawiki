@@ -170,9 +170,7 @@ class LinksUpdate {
 			// delete any removed categorylinks
 			if(count($del) > 0) {
 				// delete old ones
-				$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}' AND cl_to IN('";
-				$sql .= implode("','", $del) . "')";
-				$dbw->query( $sql, $fname );
+				$dbw->delete('categorylinks', array('cl_from'=>$this->mId, 'cl_to'=>$del));
 				foreach($del as $cname){
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
 					$nt->invalidateCache();
