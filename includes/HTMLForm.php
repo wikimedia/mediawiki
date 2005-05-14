@@ -13,7 +13,11 @@
  */
 class HTMLForm {
 	/** name of our form. Used as prefix for labels */
-	var $mName;
+	var $mName, $mRequest;
+
+	function HTMLForm( &$request ) {
+		$this->mRequest = $request;
+	}
 
 	/**
 	 * @access private
@@ -32,7 +36,9 @@ class HTMLForm {
 	 * @param boolean $checked Set true to check the box (default False).
 	 */
 	function checkbox( $varname, $checked=false ) {
-		$checked = isset( $_POST[$varname] ) && $_POST[$varname] ;
+		if ( $this->mRequest->wasPosted() && !is_null( $this->mRequest->getVal( $varname ) ) ) {
+			$checked = $this->mRequest->getCheck( $varname );
+		}
 		return "<div><input type='checkbox' value=\"1\" id=\"{$varname}\" name=\"wpOp{$varname}\"" .
 			( $checked ? ' checked="checked"' : '' ) .
 			" /><label for=\"{$varname}\">". wfMsg( $this->mName.'-'.$varname ) .
@@ -46,7 +52,10 @@ class HTMLForm {
 	 * @param integer $size Optional size of the textbox (default 20)
 	 */
 	function textbox( $varname, $value='', $size=20 ) {
-		$value = isset( $_POST[$varname] ) ? $_POST[$varname] : $value;
+		if ( $this->mRequest->wasPosted() ) {
+			$value = $this->mRequest->getText( $varname, $value );
+		}
+		$value = htmlspecialchars( $value );
 		return "<div><label>". wfMsg( $this->mName.'-'.$varname ) .
 			"<input type='text' name=\"{$varname}\" value=\"{$value}\" size=\"{$size}\" /></label></div>\n";
 	}
@@ -72,7 +81,10 @@ class HTMLForm {
 	 * @param integer $size Optional size of the textarea (default 20)
 	 */
 	function textareabox ( $varname, $value='', $size=20 ) {
-		$value = isset( $_POST[$varname] ) ? $_POST[$varname] : $value;
+		if ( $this->mRequest->wasPosted() ) {
+			$value = $this->mRequest->getText( $varname, $value );
+		}	
+		$value = htmlspecialchars( $value );
 		return '<div><label>'.wfMsg( $this->mName.'-'.$varname ).
 		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea></label></div>\n";
 	}
@@ -84,9 +96,12 @@ class HTMLForm {
 	 */
 	function arraybox( $varname , $size=20 ) {
 		$s = '';
-		if ( isset( $_POST[$varname] ) && is_array( $_POST[$varname] ) ) {
-			foreach ( $_POST[$varname] as $index=>$element ) {
-				$s .= $element."\n";
+		if ( $this->mRequest->wasPosted() ) {
+			$arr = $this->mRequest->getArray( $varname );
+			if ( is_array( $arr ) ) {
+				foreach ( $_POST[$varname] as $index=>$element ) {
+					$s .= htmlspecialchars( $element )."\n";
+				}
 			}
 		}
 		return "<div><label>".wfMsg( $this->mName.'-'.$varname ).
@@ -99,12 +114,13 @@ class HTMLForm {
 
 /** Build a select with all defined groups
  * @param string $selectname Name of this element. Name of form is automaticly prefixed.
- * @param array $selected Array of element selected when posted. Multiples will only show them.
+ * @param array $selected Array of element selected when posted. Only multiples will show them.
  * @param boolean $multiple A multiple elements select.
- * @param integer $size Number of element to be shown ignored for non multiple (default 6).
+ * @param integer $size Number of elements to be shown ignored for non-multiple (default 6).
  * @param boolean $reverse If true, multiple select will hide selected elements (default false).
 */
 function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
+	global $wgOut;
 	$groups =& Group::getAllGroups();
 	
 	$out = wfMsg($selectmsg);
@@ -116,12 +132,12 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 		if($multiple) {
 			// for multiple will only show the things we want
 			if(in_array($id, $selected) xor $reverse) { 
-				$out .= '<option value="'.$id.'">'.$g->getExpandedName()."</option>\n";
+				$out .= '<option value="'.$id.'">'.$wgOut->parse( $g->getExpandedName() )."</option>\n";
 			}
 		} else {
 			$out .= '<option ';
 			if(in_array($id, $selected)) { $out .= 'selected="selected" '; }
-			$out .= 'value="'.$id.'">'.$g->getExpandedName()."</option>\n";
+			$out .= 'value="'.$id.'">'.$wgOut->parse( $g->getExpandedName() )."</option>\n";
 		}
 	}
 	$out .= "</select>\n";

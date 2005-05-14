@@ -918,6 +918,7 @@ using the MediaWiki namespace',
 'userrights-groupsavailable' => 'Available groups:',
 'userrights-groupshelp' => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
+'userrights-logcomment' => 'Changed group membership from $1 to $2',
 
 # Default group names and descriptions
 # 
@@ -1248,16 +1249,19 @@ You will be notified by email when someone changes a page which is listed in you
 'email_notification_reset'			=> 'Reset all notification flags (set their status to "visited")',
 'email_notification_newpagetext'=> 'This is a new page.',
 'email_notification_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
-'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE has been changed by $PAGEEDITOR',
+'changed'			=> 'changed',
+'created'			=> 'created',
+'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'email_notification_lastvisitedrevisiontext' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
 'email_notification_body' => 'Dear $WATCHINGUSERNAME,
 
-the {{SITENAME}} page $PAGETITLE has been changed on $PAGEEDITDATE by $PAGEEDITOR,
+the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR,
 see {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for the current version.
 
 $NEWPAGE
 
 Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+
 Contact the editor:
 mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
 wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
@@ -1468,7 +1472,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'setbureaucratflag' => 'Set bureaucrat flag',
 'bureaucratlog'		=> 'Bureaucrat_log',
 'rightslogtext'		=> 'This is a log of changes to user rights.',
-'bureaucratlogentry'	=> "Rights for user \"$1\" set \"$2\"",
+'bureaucratlogentry'	=> "Changed group membership for $1 from $2 to $3",
 'rights'			=> 'Rights:',
 'set_user_rights'	=> 'Set user rights',
 'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
