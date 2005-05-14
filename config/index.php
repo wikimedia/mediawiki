@@ -1098,8 +1098,8 @@ if ( \$wgCommandLineMode ) {
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php
 ## UPO means: this is also a user preference option
-\$wgEmailNotificationForUserTalkPages = $enotifusertalk; # UPO
-\$wgEmailNotificationForWatchlistPages = $enotifwatchlist; # UPO
+\$wgEnotifUserTalk = $enotifusertalk; # UPO
+\$wgEnotifWatchlist = $enotifwatchlist; # UPO
 \$wgEmailAuthentication = $eauthent;
 
 \$wgDBserver         = \"{$slconf['DBserver']}\";

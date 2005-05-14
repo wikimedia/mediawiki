@@ -47,6 +47,7 @@ class Title {
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
                               # Zero except in {{transclusion}} tags
+	var $mWatched;            # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
 	/**#@-*/
 	
 
@@ -64,6 +65,7 @@ class Title {
 		# Dont change the following, NS_MAIN is hardcoded in several place
 		# See bug #696
 		$this->mDefaultNamespace = NS_MAIN;
+		$this->mWatched = NULL;
 	}
 
 	/**
@@ -811,10 +813,14 @@ class Title {
 	function userIsWatching() {
 		global $wgUser;
 
-		if ( -1 == $this->mNamespace ) { return false; }
-		if ( 0 == $wgUser->getID() ) { return false; }
-
-		return $wgUser->isWatched( $this );
+		if ( is_null( $this->mWatched ) ) {
+			if ( -1 == $this->mNamespace || 0 == $wgUser->getID()) {
+				$this->mWatched = false;
+			} else {
+				$this->mWatched = $wgUser->isWatched( $this );
+			}
+		}
+		return $this->mWatched;
 	}
 
  	/**

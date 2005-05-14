@@ -65,6 +65,7 @@ class WatchedItem {
 	 */
 	function addWatch() {
 		$fname = 'WatchedItem::addWatch';
+		wfProfileIn( $fname );
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
 		$dbw =& wfGetDB( DB_MASTER );
@@ -89,12 +90,15 @@ class WatchedItem {
 
 		global $wgMemc;
 		$wgMemc->set( $this->watchkey(), 1 );
+		wfProfileOut( $fname );
 		return true;
 	}
 
 	function removeWatch() {
+		global $wgMemc;
 		$fname = 'WatchedItem::removeWatch';
 
+		$success = false;
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist', 
 			array( 
@@ -103,6 +107,9 @@ class WatchedItem {
 				'wl_title' => $this->ti
 			), $fname
 		);
+		if ( $dbw->affectedRows() ) {
+			$success = true;
+		}
 
 		# the following code compensates the new behaviour, introduced by the
 		# enotif patch, that every single watched page needs now to be listed
@@ -117,12 +124,12 @@ class WatchedItem {
 		);
 		
 		if ( $dbw->affectedRows() ) {
-			global $wgMemc;
-			$wgMemc->set( $this->watchkey(), 0 );
-			return true;
-		} else {
-			return false;
+			$success = true;
 		}
+		if ( $success ) {
+			$wgMemc->set( $this->watchkey(), 0 );
+		}
+		return $success;
 	}
 
 	/**

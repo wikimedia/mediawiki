@@ -1223,7 +1223,7 @@ class Article {
 
 		include_once( "UserMailer.php" );
 		$wgEnotif = new EmailNotification ();
-		$wgEnotif->NotifyOnPageChange( $wgUser->getID(), $this->mTitle->getDBkey(), $this->mTitle->getNamespace(),$now, $summary, $me2, $oldid );
+		$wgEnotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
 	}
 
 	/**
@@ -1926,7 +1926,8 @@ class Article {
 
 		global $wgUser;
 		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-			$this->mTitle->getText() == $wgUser->getName()) {
+			$this->mTitle->getText() == $wgUser->getName()) 
+		{
 			require_once( 'UserTalkUpdate.php' );
 			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
 		} else {

@@ -696,11 +696,11 @@ END
 		
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
-			$wgOut->WikiText( '==' . wfMsg( "yourdiff" ) . '==' );
+			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
 			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
-			$wgOut->WikiText( '==' . wfMsg( "yourtext" ) . '==' );
+			$wgOut->addWikiText( '==' . wfMsg( "yourtext" ) . '==' );
 			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox2 ) ) .
 "

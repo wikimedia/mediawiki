@@ -629,30 +629,22 @@ $wgUseGzip = false;
 # Email notification settings
 #
 
-/** 
- * Program to run when the email is actually sent out. You might want to make
- * your server beep for example. Usermailer.php will make a system() call with
- * exactly that string as parameter.
- */
-# $wgEmailNotificationSystembeep = '/usr/bin/beep -f 4000 -l 20 &';
-$wgEmailNotificationSystembeep	= '';
-
 /** For email notification on page changes */
 $wgPasswordSender = $wgEmergencyContact;
 
-# true: from PageEditor if s/he opted-in
+# true: from page editor if s/he opted-in
 # false: Enotif mails appear to come from $wgEmergencyContact
-$wgEmailNotificationMailsSentFromPageEditor	= false; 
+$wgEnotifFromEditor	= false; 
 
 // TODO move UPO to preferences probably ?
 # If set to true, users get a corresponding option in their preferences and can choose to enable or disable at their discretion
 # If set to false, the corresponding input form on the user preference page is suppressed
 # It call this to be a "user-preferences-option (UPO)"
 $wgEmailAuthentication				= true; # UPO (if this is set to false, texts referring to authentication are suppressed)
-$wgEmailNotificationForWatchlistPages		= false; # UPO
-$wgEmailNotificationForUserTalkPages		= false;	# UPO
-$wgEmailNotificationRevealPageEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
-$wgEmailNotificationForMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
+$wgEnotifWatchlist		= false; # UPO
+$wgEnotifUserTalk		= false;	# UPO
+$wgEnotifRevealEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
+$wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
 
 

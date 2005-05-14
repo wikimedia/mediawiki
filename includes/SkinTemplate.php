@@ -158,7 +158,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( "$fname-init" );
 		$this->initPage( $out );
 
-		$this->mTitle = $wgTitle;
+		$this->mTitle =& $wgTitle;
 		$this->mUser =& $wgUser;
 
 		$tpl =& $this->setupTemplate( $this->template, 'skins' );
