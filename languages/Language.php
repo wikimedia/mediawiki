@@ -477,8 +477,7 @@ performed by sysops with  \"bureaucrat\" status.",
 'nosuchactiontext' => 'The action specified by the URL is not
 recognized by the wiki',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => 'You have requested a special page that is not
-recognized by the wiki.',
+'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[{{ns:special}}:Specialpages]].',
 
 # General errors
 #
