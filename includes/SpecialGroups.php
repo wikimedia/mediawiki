@@ -1,7 +1,6 @@
 <?php
 /**
  * Provide an administration interface
- * DO NOT USE: INSECURE.
  * @package MediaWiki
  * @subpackage SpecialPage
  */
@@ -36,7 +35,7 @@ class GroupsForm extends HTMLForm {
 		global $wgUser;
 		
 		$this->mPosted = $request->wasPosted();
-		$this->mRequest = $request;
+		$this->mRequest =& $request;
 		$this->mName = 'groups';
 
 		$this->mNewName = trim( $request->getText('editgroup-name') );
@@ -62,8 +61,8 @@ class GroupsForm extends HTMLForm {
 	}
 
 	/**
-	 * Manage forms to be shown according to posted datas.
-	 * Depending on the submit button used : Call a form or a saving function.
+	 * Manage forms to be shown according to posted data
+	 * Depending on the submit button used, call a form or a saving function.
 	 */
 	function execute() {
 		global $wgOut;
@@ -97,7 +96,6 @@ class GroupsForm extends HTMLForm {
 
 	/**
 	 * Save a group
-	 * @todo FIXME : Log is incorrect.
 	 */
 	function saveGroup() {
 		global $wgOut;
@@ -119,7 +117,7 @@ class GroupsForm extends HTMLForm {
 			}
 
 			// Create a new group
-			$g = new group();
+			$g = new Group();
 			$g->addToDatabase();
 		} else {
 			$add = false;
@@ -196,16 +194,16 @@ class GroupsForm extends HTMLForm {
 			$g = Group::newFromID($groupID);
 			$fieldname = 'editgroup';
 		} else {
-		// default datas when we add a group
-			$g = new group();
+		// default data when we add a group
+			$g = new Group();
 			$fieldname = 'addgroup';
 		}
 
-		$gName = $g->getName();
-		$gDescription = $g->getDescription();
+		$gName = htmlspecialchars( $g->getName() );
+		$gDescription = htmlspecialchars( $g->getDescription() );
 
 
-		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
+		$wgOut->addHTML( "<form name=\"editGroup\" action=\"{$this->action}\" method=\"post\">\n".
 		                '<input type="hidden" name="editgroup-oldname" value="'.$gName."\" />\n" );
 
 		$wgOut->addHTML( $this->fieldset( $fieldname,
