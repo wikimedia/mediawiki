@@ -59,9 +59,7 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$sql = "DELETE FROM $links WHERE l_from={$this->mId} AND l_to IN(".
-					implode( ',', $del ) . ')';
-				$dbw->query( $sql, $fname );
+				$dbw->delete('links', array ( 'l_from' => $this->mId, 'l_to' => $del ));
 			}
 		} else {
 			# Delete everything
@@ -90,18 +88,7 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_BAD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId} AND bl_to IN(";
-				$first = true;
-				foreach( $del as $badTitle ) {
-					if ( $first ) {
-						$first = false;
-					} else {
-						$sql .= ',';
-					}
-					$sql .= $dbw->addQuotes( $badTitle );
-				}
-				$sql .= ')';
-				$dbw->query( $sql, $fname );
+				$dbw->delete('brokenlinks', array('bl_from'=>$this->mId, 'bl_to'=>$del));
 			}
 		} else {
 			# Delete all
@@ -125,8 +112,7 @@ class LinksUpdate {
 
 		#------------------------------------------------------------------------------
 		# Image links
-		$sql = "DELETE FROM $imagelinks WHERE il_from='{$this->mId}'";
-		$dbw->query( $sql, $fname );
+		$dbw->delete('imagelinks',array('il_from'=>$this->mId));
 		
 		# Get addition list
 		$add = $wgLinkCache->getImageLinks();
@@ -232,8 +218,7 @@ class LinksUpdate {
 		$imagelinks = $dbw->tableName( 'imagelinks' );
 		$categorylinks = $dbw->tableName( 'categorylinks' );
 		
-		$sql = "DELETE FROM $links WHERE l_from={$this->mId}";
-		$dbw->query( $sql, $fname );
+		$dbw->delete('links',array('l_from'=>$this->mId));
 
 		$a = $wgLinkCache->getGoodLinks();
 		if ( 0 != count( $a ) ) {
@@ -246,8 +231,7 @@ class LinksUpdate {
 			$dbw->insert( 'links', $arr, $fname, array( 'IGNORE' ) );
 		}
 
-		$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId}";
-		$dbw->query( $sql, $fname );
+		$dbw->delete('brokenlinks',array('bl_from'=>$this->mId));
 
 		$a = $wgLinkCache->getBadLinks();
 		if ( 0 != count ( $a ) ) {
@@ -260,8 +244,7 @@ class LinksUpdate {
 			$dbw->insert( 'brokenlinks', $arr, $fname, array( 'IGNORE' ) );
 		}
 		
-		$sql = "DELETE FROM $imagelinks WHERE il_from={$this->mId}";
-		$dbw->query( $sql, $fname );
+		$dbw->delete('imagelinks',array('il_from'=>$this->mId));
 
 		$a = $wgLinkCache->getImageLinks();
 		$sql = '';
@@ -275,8 +258,7 @@ class LinksUpdate {
 		}
 
 		if( $wgUseCategoryMagic ) {
-			$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}'";
-			$dbw->query( $sql, $fname );
+			$dbw->delete('categorylinks',array('cl_from'=>$this->mId));
 			
 			# Get addition list
 			$add = $wgLinkCache->getCategoryLinks();
