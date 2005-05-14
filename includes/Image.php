@@ -110,7 +110,9 @@ class Image
 		$cachedValues = $wgMemc->get( $keys[0] );
 
 		// Check if the key existed and belongs to this version of MediaWiki
-		if (!empty($cachedValues) && is_array($cachedValues) && isset($cachedValues['width']) && $cachedValues['fileExists']) {
+		if (!empty($cachedValues) && is_array($cachedValues) && isset($cachedValues['width']) 
+		  && $cachedValues['fileExists'] && isset( $cachedValues['metadata'] ) ) 
+		{
 			if ( $wgUseSharedUploads && $cachedValues['fromShared']) {
 				# if this is shared file, we need to check if image
 				# in shared repository has not changed
