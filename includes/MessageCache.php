@@ -234,7 +234,7 @@ class MessageCache
 		}
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if( !$this->mInitialised ) {
-			return "&lt;$key&gt;";
+			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
 		# If cache initialization was deferred, start it now.
 		if( $this->mDeferred ) {
@@ -277,7 +277,7 @@ class MessageCache
 		
 		# Final fallback
 		if( !$message ) {
-			$message = "&lt;$key&gt;";
+			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
 
 		# Replace brace tags
