@@ -247,13 +247,26 @@ class GroupsForm extends HTMLForm {
 		
 		$groups =& Group::getAllGroups();
 		$rec = serialize( $groups );
-		// Escape it for PHP
-		$rec = str_replace( array( '\\', "'" ), array( '\\\\', "\\'" ), $rec );
-		// Escape it for HTML
-		$rec = htmlspecialchars( $rec );
+		// Split it into lines
+		$rec = explode( "\r\n", chunk_split( $rec ) );
+		$s = '';
+		foreach ( $rec as $index => $line ) {
+			if ( trim( $line ) != '' ) {
+				if ( $s ) {
+					$s .= "' .\n\t'";
+				}
+				// Escape it for PHP
+				$line = str_replace( array( '\\', "'" ), array( '\\\\', "\\'" ), $line );
+				// Escape it for HTML
+				$line = htmlspecialchars( $line );
+				// Add it to the string
+				$s .= $line;
+			}
+		}
+		$s .= "';";
 		$s = "<p>Copy the following into LocalSettings.php:</p>\n" .
 		  "<textarea readonly rows=20>\n" .
-		  "\$wgStaticGroups = '$rec';\n" .
+		  "\$wgStaticGroups = \n\t'$s\n" .
 		  "</textarea>";
 		$wgOut->addHTML( $s );
 	}
