@@ -167,7 +167,7 @@ class LinksUpdate {
 					$nt->invalidateCache();
 					// update the timestamp which indicates when the last article
 					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.$nt->getDBkey().':adddeltimestamp';
+					$key = $wgDBname.':Category:'.md5( $nt->getDBkey() ).':adddeltimestamp';
 					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
 					#wfDebug( "Linksupdate:Cats:del: ".serialize($nt)." $key \n" );
 				}
@@ -181,7 +181,7 @@ class LinksUpdate {
 					$nt->invalidateCache();
 					// update the timestamp which indicates when the last article
 					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.$nt->getDBkey().':adddeltimestamp';
+					$key = $wgDBname.':Category:'.md5( $nt->getDBkey() ).':adddeltimestamp';
 					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
 					#wfDebug( "Linksupdate:Cats:add: ".serialize($nt)." $key\n" );
 					#wfDebug( "LU-get: ".$messageMemc->get( $key)."\n");
