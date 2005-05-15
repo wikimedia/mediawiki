@@ -200,14 +200,9 @@ class Validation {
 	
 	# This function returns a link text to the page validation statistics
 	function link2statistics ( &$article ) {
-		$ret = wfMsg ( 'val_rev_stats_link' ) ;
-		$nt = $article->getTitle() ;
-		$ret = str_replace ( "$1" , $nt->getPrefixedText() , $ret ) ;
-
-		$url = $nt->getLocalURL ( "action=validate&mode=list" ) ;
-		$ret = str_replace ( "$2" , $url , $ret ) ;
-
-		return $ret ;
+		$nt = $article->getTitle();
+		$url = htmlspecialchars( $nt->getLocalURL( 'action=validate&mode=list' ) );
+		return wfMsg ( 'val_rev_stats_link', $nt->getPrefixedText(), $url );
 	}
 
 	# Returns the timestamp of a revision based on the revision number
