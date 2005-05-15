@@ -724,8 +724,8 @@ class OutputPage {
 		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
 		$a = implode ( ',' , $a ) ;
 		$strip = array(
-			"/<.*?" . ">/" => '',
-			"/[_]/" => ' '
+			"/<.*?>/" => '',
+			"/_/" => ' '
 		);
 		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
 
