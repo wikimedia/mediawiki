@@ -51,6 +51,7 @@ define('MAG_NOCONTENTCONVERT',		36);
 define('MAG_CURRENTWEEK',		37);
 define('MAG_CURRENTDOW',		38);
 define('MAG_REVISIONID',		39);
+define('MAG_LCFIRST',			40);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
