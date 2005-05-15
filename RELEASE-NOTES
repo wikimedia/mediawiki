@@ -187,6 +187,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2152) Add missing bgcolor to attribute whitelist for <td> and <th>
 * Group table renamed.....?
 * (bug 2178) Use temp dir from environment in parser tests
+* (bug 2176) Section edit 'show changes' button works correctly now
 
 
 === Caveats ===

@@ -574,21 +574,9 @@ class EditPage {
 		}
 		$wgOut->addHTML( '</div>' );
 		if ( 'diff' == $formtype ) {
-			$wgOut->addHTML( '<div id="wikiDiff">' );
-			require_once( 'DifferenceEngine.php' );
-			$oldtext = $this->mArticle->getContent( true );
-			$newtext = $this->textbox1;
-			$oldtitle = wfMsg( 'currentrev' );
-			$newtitle = wfMsg( 'yourtext' );
- 				
-			if ( $oldtext != wfMsg( 'noarticletext' ) || $newtext != '' ) {
-				$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
-			}
 			if ( $wgUser->getOption('previewontop' ) ) {
-				$wgOut->addHTML( $difftext );
-				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
+				$wgOut->addHTML( $this->getDiff() );
 			}
-			$wgOut->addHTML( '</div>' );
 		}
 
 
@@ -711,7 +699,8 @@ END
 			$wgOut->addHTML( '<div id="wikiPreview">' . $previewOutput . '</div>' );
 		}
 		if ( $formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
-			$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
+			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
+			$wgOut->addHTML( $this->getDiff() );
 		}
 	}
 
@@ -1064,6 +1053,30 @@ END
 		header( 'Cache-control: no-cache' );
 		# FIXME
 		echo $this->getPreviewText( false, false );
+	}
+
+
+	/**
+	 * Get a diff between the current contents of the edit box and the
+	 * version of the page we're editing from.
+	 *
+	 * If this is a section edit, we'll replace the section as for final
+	 * save and then make a comparison.
+	 *
+	 * @return string HTML
+	 */
+	function getDiff() {
+		require_once( 'DifferenceEngine.php' );
+		$oldtext = $this->mArticle->getContent( true );
+		$newtext = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+			$this->section, $this->textbox1, $this->summary, $this->edittime );
+		$oldtitle = wfMsg( 'currentrev' );
+		$newtitle = wfMsg( 'yourtext' );
+		if ( $oldtext != wfMsg( 'noarticletext' ) || $newtext != '' ) {
+			$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
+		}
+		
+		return '<div id="wikiDiff">' . $difftext . '</div>';
 	}
 
 }
