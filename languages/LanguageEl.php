@@ -81,7 +81,7 @@ class LanguageEl extends LanguageUtf8 {
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEl;
 
-		foreach ( $wgNamespaceNamesIs as $i => $n ) {
+		foreach ( $wgNamespaceNamesEl as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		return false;
