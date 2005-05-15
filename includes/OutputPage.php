@@ -794,8 +794,8 @@ class OutputPage {
 
 		if ( count( $this->mKeywords ) > 0 ) {
 			$strip = array(
-				"/<.*?" . ">/" => '',
-				"/[_]/" => ' '
+				"/<.*?>/" => '',
+				"/_/" => ' '
 			);
 			$ret .= "<meta name=\"keywords\" content=\"" .
 			  htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ))) . "\" />\n";
