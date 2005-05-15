@@ -185,6 +185,8 @@ Various bugfixes, small features, and a few experimental things:
   revisions only or complete histories.
 * (bug 2150) Fix tab indexes on edit form
 * (bug 2152) Add missing bgcolor to attribute whitelist for <td> and <th>
+* Group table renamed.....?
+* (bug 2178) Use temp dir from environment in parser tests
 
 
 === Caveats ===

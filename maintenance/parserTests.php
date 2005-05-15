@@ -294,7 +294,6 @@ class ParserTest {
 			'wgDBprefix' => 'parsertest',
 			'wgDefaultUserOptions' => array(),
 			
-			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
 			'wgContLang' => new LanguageUtf8(),
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
@@ -344,6 +343,8 @@ class ParserTest {
 
 		# Make sure we don't mess with the live DB
 		if (!$setupDB && $wgDBprefix === 'parsertest') {
+			# oh teh horror
+			$GLOBALS['wgLoadBalancer'] = LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] );
 			$db =& wfGetDB( DB_MASTER );
 
 			$tables = $this->listTables();
@@ -438,7 +439,7 @@ class ParserTest {
 	function setupUploadDir() {
 		global $IP;
 		
-		$dir = "/tmp/mwParser-" . mt_rand() . "-images";
+		$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
 		mkdir( $dir );
 		mkdir( $dir . '/3' );
 		mkdir( $dir . '/3/3a' );
@@ -546,7 +547,7 @@ class ParserTest {
 	 * @access private
 	 */
 	function quickDiff( $input, $output ) {
-		$prefix = "/tmp/mwParser-" . mt_rand();
+		$prefix = wfTempDir() . "/mwParser-" . mt_rand();
 		
 		$infile = "$prefix-expected";
 		$this->dumpToFile( $input, $infile );

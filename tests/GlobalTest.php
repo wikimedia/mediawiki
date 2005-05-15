@@ -18,7 +18,7 @@ class GlobalTest extends PHPUnit_TestCase {
 				$this->save[$var] = $GLOBALS[$var];
 			}
 		}
-		$GLOBALS['wgReadOnlyFile'] = '/tmp/testReadOnly-' . mt_rand();
+		$GLOBALS['wgReadOnlyFile'] = wfTempDir() . '/testReadOnly-' . mt_rand();
 	}
 	
 	function tearDown() {
