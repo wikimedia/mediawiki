@@ -284,14 +284,12 @@ class OutputPage {
 	 * @return bool
 	 */
 	function tryParserCache( $article, $user ) {
-		global $wgParserCache, $wgTitle;
+		global $wgParserCache;
 		$parserOutput = $wgParserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 			$this->addHTML( $parserOutput->getText() );
-			if( $parserOutput->getLcfirstTitle() )
-				$wgTitle->lcfirst();
 			$t = $parserOutput->getTitleText();
 			if( !empty( $t ) ) {
 				$this->setPageTitle( $t );

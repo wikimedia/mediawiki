@@ -2015,16 +2015,5 @@ class Title {
 		return ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
 		  || NS_SPECIAL == $this->mNamespace || NS_IMAGE == $this->mNamespace;
 	}
-	
-	/**
-	 * Changes the title to lowercase - used, when __LCFIRST__ occurs
-	 */
-	function lcfirst() {
-		global $wgContLang;
-		$this->mTextform = $wgContLang->lcfirst($this->mTextform);
-		// reset mPrefixedText, so that it's recalculated when already created
-		// with uppercase title
-		unset($this->mPrefixedText);
-	}
 }
 ?>
