@@ -15,7 +15,7 @@ INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_
 	);
 INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_rights)
 	VALUES (
-		3,':group-admin-name',':group-loggedin-desc',
+		3,':group-admin-name',':group-admin-desc',
 		'read,edit,move,upload,validate,createaccount,delete,undelete,protect,block,upload,asksql,rollback,patrol,editinterface,import'
 	);
 INSERT INTO /*$wgDBprefix*/`group` (group_id,group_name,group_description,group_rights)
