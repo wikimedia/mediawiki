@@ -247,6 +247,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),    
+	MAG_LCFIRST              => array( 0,    '__LCFIRST__'            ),
 );
 
 #-------------------------------------------------------------------

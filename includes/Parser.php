@@ -163,7 +163,7 @@ class Parser
 	 * @return ParserOutput a ParserOutput
 	 */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
-		global $wgUseTidy, $wgContLang;
+		global $wgUseTidy, $wgContLang, $wgCapitalLinks;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
 
@@ -173,6 +173,7 @@ class Parser
 
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
+		$this->mOutput->mLcfirstTitle = false;
 		$this->mOutputType = OT_HTML;
 
 		$this->mStripState = NULL;
@@ -184,7 +185,14 @@ class Parser
 
 		$text = $this->internalParse( $text );
 
-		
+		// if the string __LCFIRST__ (make the first character of the title
+		// lower case) occurs in the HTML, set the mLcfirstTitle to true
+		$mw =& MagicWord::get( MAG_LCFIRST );
+		if( $mw->matchAndRemove( $text ) && $wgCapitalLinks ) {
+			$title->lcfirst();
+			$this->mOutput->mLcfirstTitle = true;
+		}
+
 		$text = $this->unstrip( $text, $this->mStripState );
 		
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -3112,6 +3120,7 @@ class ParserOutput
 	var $mCacheTime; # Used in ParserCache
 	var $mVersion;   # Compatibility check
 	var $mTitleText; # title text of the chosen language variant
+	var $mLcfirstTitle; # This is true if the first letter in the title has to be lowercase
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -3130,6 +3139,7 @@ class ParserOutput
 	function getCategoryLinks()          { return array_keys( $this->mCategoryLinks ); }
 	function getCacheTime()              { return $this->mCacheTime; }
 	function getTitleText()              { return $this->mTitleText; }
+	function getLcfirstTitle()             { return $this->mLcfirstTitle; }
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
