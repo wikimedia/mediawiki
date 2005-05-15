@@ -822,7 +822,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	}
 
 	# Make temporary files
-	$td = '/tmp/';
+	$td = wfTempDir();
 	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
 	$mytextFile = fopen( $mytextName = tempnam( $td, 'merge-mine-' ), 'w' );
 	$yourtextFile = fopen( $yourtextName = tempnam( $td, 'merge-your-' ), 'w' );
@@ -1227,6 +1227,27 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 		$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
 	}
 	return wfElement( $element, $attribs, UtfNormal::cleanUp( $contents ) );
+}
+
+/**
+ * Tries to get the system directory for temporary files.
+ * The TMPDIR, TMP, and TEMP environment variables are checked in sequence,
+ * and if none are set /tmp is returned as the generic Unix default.
+ *
+ * NOTE: When possible, use the tempfile() function to create temporary
+ * files to avoid race conditions on file creation, etc.
+ *
+ * @return string
+ */
+function wfTempDir() {
+	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
+		$tmp = getenv( 'TMPDIR' );
+		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
+			return $tmp;
+		}
+	}
+	# Hope this is Unix of some kind!
+	return '/tmp';
 }
 
 ?>

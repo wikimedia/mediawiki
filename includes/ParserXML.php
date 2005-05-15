@@ -585,7 +585,7 @@ class ParserXML extends Parser {
 		$html2xml = implode('/', $a);
 		$a = array ();
 
-		$tmpfname = tempnam('/tmp', 'FOO');
+		$tmpfname = tempnam( wfTempDir(), 'FOO' );
 		$handle = fopen($tmpfname, 'w');
 		fwrite($handle, utf8_encode($text));
 		fclose($handle);
@@ -600,7 +600,7 @@ class ParserXML extends Parser {
 
 		$this->html2xml($text);
 
-		$tmpfname = tempnam('/tmp', 'FOO');
+		$tmpfname = tempnam( wfTempDir(), 'FOO');
 		$handle = fopen($tmpfname, 'w');
 		fwrite($handle, $text);
 		fclose($handle);
