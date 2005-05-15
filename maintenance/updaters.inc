@@ -9,6 +9,11 @@
 require_once 'convertLinks.inc';
 require_once 'InitialiseMessages.inc';
 
+$wgRenamedTables = array(
+#           from             to                  patch file
+	array( 'group',         'groups',           'patch-rename-group.sql' ),
+);
+
 $wgNewTables = array(
 #            table          patch file (in maintenance/archives)
 	array( 'linkscc',       'patch-linkscc.sql' ),
@@ -18,7 +23,7 @@ $wgNewTables = array(
 	array( 'categorylinks', 'patch-categorylinks.sql' ),
 	array( 'logging',       'patch-logging.sql' ),
 	array( 'user_rights',   'patch-user_rights.sql' ),
-	array( 'group',   'patch-userlevels.sql' ),
+	array( 'groups',        'patch-userlevels.sql' ),
 );
 
 $wgNewFields = array(
@@ -33,7 +38,7 @@ $wgNewFields = array(
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
 	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
-	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
+	array( 'groups',        'gr_rights',        'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
  	array( 'archive',       'ar_text_id',       'patch-archive-text_id.sql' ),
@@ -42,6 +47,23 @@ $wgNewFields = array(
 	array( 'image',         'img_width',        'patch-img_width.sql' ),
 	array( 'image',         'img_metadata',     'patch-img_metadata.sql' ),
 );
+
+function rename_table( $from, $to, $patch ) {
+	global $wgDatabase;
+	if ( $wgDatabase->tableExists( $from ) ) {
+		if ( $wgDatabase->tableExists( $to ) ) {
+			echo "...can't move table $from to $to, $to already exists.\n";
+		} else {
+			echo "Moving table $from to $to...";
+			dbsource( "maintenance/archives/$patch", $wgDatabase );
+			echo "ok\n";
+		}
+	} else {
+		// Source table does not exist
+		// Renames are done before creations, so this is typical for a new installation
+		// Ignore silently
+	}
+}
 
 function add_table( $name, $patch ) {
 	global $wgDatabase;
@@ -226,32 +248,17 @@ function do_user_update() {
 	}
 }
 
-# Assumes that the group table has been added.
+# Assumes that the groups table has been added.
 function do_group_update() {
 	global $wgDatabase;
 	$res = $wgDatabase->safeQuery( 'SELECT COUNT(*) AS c FROM !',
-		$wgDatabase->tableName( 'group' ) );
+		$wgDatabase->tableName( 'groups' ) );
 	$row = $wgDatabase->fetchObject( $res );
 	$wgDatabase->freeResult( $res );
 	if( $row->c == 0 ) {
 		echo "Adding default group definitions... ";
 		dbsource( "maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
 		echo "ok\n";
-	} else {
-		echo "...group definitions already in place.\n";
-		$res = $wgDatabase->safeQuery( "SELECT COUNT(*) AS n FROM !
-		                                 WHERE group_name IN ('Sysops','Bureaucrat')
-		                                   AND group_rights NOT LIKE '%sysop%'",
-		                               $wgDatabase->tableName( 'group' ) );
-		$row = $wgDatabase->fetchObject( $res );
-		$wgDatabase->freeResult( $res );
-		if( $row->n ) {
-			echo "Fixing sysops group permissions and add group editing right... ";
-			dbsource( "maintenance/archives/patch-group-sysopfix.sql", $wgDatabase );
-			echo "ok\n";
-		} else {
-			echo "...sysop group permissions look ok.\n";
-		}
 	}
 }
 
@@ -500,8 +507,13 @@ function do_namespace_size_on( $table, $prefix ) {
 }
 
 function do_all_updates() {
-	global $wgNewTables, $wgNewFields;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 	
+	# Rename tables
+	foreach ( $wgRenamedTables as $tableRecord ) {
+		rename_table( $tableRecord[0], $tableRecord[1], $tableRecord[2] );
+	}
+
 	# Add missing tables
 	foreach ( $wgNewTables as $tableRecord ) {
 		add_table( $tableRecord[0], $tableRecord[1] );

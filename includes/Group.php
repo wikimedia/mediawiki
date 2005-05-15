@@ -52,9 +52,9 @@ class Group {
 		if($this->id) {
 			// By ID
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('group',
-				array('group_id', 'group_name', 'group_description', 'group_rights'),
-				array( 'group_id' => $this->id ),
+			$r = $dbr->selectRow('groups',
+				array('gr_id', 'gr_name', 'gr_description', 'gr_rights'),
+				array( 'gr_id' => $this->id ),
 				$fname );
 			if ( $r ) {
 				$this->loadFromRow( $r );
@@ -65,9 +65,9 @@ class Group {
 		} else {
 			// By name
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('group',
-				array('group_id', 'group_name', 'group_description', 'group_rights'),
-				array( 'group_name' => $this->name ),
+			$r = $dbr->selectRow('groups',
+				array('gr_id', 'gr_name', 'gr_description', 'gr_rights'),
+				array( 'gr_name' => $this->name ),
 				$fname );
 			if ( $r ) {
 				$this->loadFromRow( $r );
@@ -80,10 +80,10 @@ class Group {
 
 	/** Initialise from a result row */
 	function loadFromRow( &$row ) {
-		$this->id = $row->group_id;
-		$this->name = $row->group_name;
-		$this->description = $row->group_description;
-		$this->rights = $row->group_rights;
+		$this->id = $row->gr_id;
+		$this->name = $row->gr_name;
+		$this->description = $row->gr_description;
+		$this->rights = $row->gr_rights;
 		$this->dataLoaded = true;
 	}		
 	
@@ -95,18 +95,20 @@ class Group {
 
 		$fname = 'Group::addToDatabase';
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->insert( 'group',
+		$dbw->insert( 'groups',
 			array(
-				'group_name' => $this->name,
-				'group_description' => $this->description,
-				'group_rights' => $this->rights
+				'gr_name' => $this->name,
+				'gr_description' => $this->description,
+				'gr_rights' => $this->rights
 			), $fname
 		);
 		$this->id = $dbw->insertId();
 	}
 
-	/** Save the group datas into database */
+	/** Save the group data into database */
 	function save() {
+		global $wgMemc;
+
 		if ( Group::getStaticGroups() ) {
 			wfDebugDieBacktrace( "Can't modify groups in static mode" );
 		}
@@ -115,19 +117,24 @@ class Group {
 		$fname = 'Group::save';
 		$dbw =& wfGetDB( DB_MASTER );
 		
-		$dbw->update( 'group',
+		$dbw->update( 'groups',
 			array( /* SET */
-				'group_name' => $this->name,
-				'group_description' => $this->description,
-				'group_rights' => $this->rights
+				'gr_name' => $this->name,
+				'gr_description' => $this->description,
+				'gr_rights' => $this->rights
 			), array( /* WHERE */
-				'group_id' => $this->id
+				'gr_id' => $this->id
 			), $fname
-		);		
+		);
+	
+		$wgMemc->set( Group::getCacheKey( $this->id ), $this, 3600 );
 	}
+
 
 	/** Delete a group */
 	function delete() {
+		global $wgMemc;
+
 		if ( Group::getStaticGroups() ) {
 			wfDebugDieBacktrace( "Can't modify groups in static mode" );
 		}
@@ -140,9 +147,20 @@ class Group {
 		$dbw->delete( 'user_group', array( 'ug_group' => $this->id ), $fname );
 
 		// Now delete the group
-		$dbw->delete( 'group', array( 'group_id' => $this->id ), $fname );
+		$dbw->delete( 'groups', array( 'gr_id' => $this->id ), $fname );
+
+		$wgMemc->delete( Group::getCacheKey( $this->id ) );
 	}
 	
+	/** 
+	 * Get memcached key 
+	 * @static
+	 */
+	function getCacheKey( $id ) {
+		global $wgDBname;
+		return "$wgDBname:groups:id:$id";
+	}
+
 // Factories
 	/**
 	 * Uses Memcached if available.
@@ -161,7 +179,8 @@ class Group {
 			}
 		}
 
-		$key = "$wgDBname:groups:id:$id";
+		$key = Group::getCacheKey( $id );
+
 		if( $group = $wgMemc->get( $key ) ) {
 			wfDebug( "$fname loaded group $id from cache\n" );
 			return $group;
@@ -222,8 +241,8 @@ class Group {
 		wfProfileIn( $fname );
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		$groupTable = $dbr->tableName( 'group' );
-		$sql = "SELECT group_id, group_name, group_description, group_rights FROM $groupTable";
+		$groupTable = $dbr->tableName( 'groups' );
+		$sql = "SELECT gr_id, gr_name, gr_description, gr_rights FROM $groupTable";
 		$res = $dbr->query($sql, $fname);
 
 		$groups = array();
@@ -231,7 +250,7 @@ class Group {
 		while($row = $dbr->fetchObject( $res ) ) {
 			$group = new Group;
 			$group->loadFromRow( $row );
-			$groups[$row->group_id] = $group;
+			$groups[$row->gr_id] = $group;
 		}
 
 		wfProfileOut( $fname );
@@ -282,7 +301,7 @@ class Group {
 		if ( $staticGroups ) {
 			foreach( $staticGroups as $id => $group ) {
 				if ( $group->getName() === $name ) {
-					return $group->getID();
+					return $group->getId();
 				}
 			}
 			return 0;
@@ -290,12 +309,12 @@ class Group {
 
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		$r = $dbr->selectRow( 'group', array( 'group_id' ), array( 'group_name' => $name ), $fname );
+		$r = $dbr->selectRow( 'groups', array( 'gr_id' ), array( 'gr_name' => $name ), $fname );
 
 		if($r === false) {
 			return 0;
 		} else {
-			return $r->group_id;
+			return $r->gr_id;
 		}
 	}
 
