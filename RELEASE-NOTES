@@ -191,10 +191,6 @@ Various bugfixes, small features, and a few experimental things:
 * New fileicons for c, cpp, deb, dvi, exe, h, html, iso, java, mid, mov, o,
   ogg, pdf, ps, rm, rpm, tar, tex, ttf and txt files based on the KDE
   crystalsvg theme.
-* (bug 2118) Added a __LCFIRST__ magic word for forcing the first character of
-  a pages heading to render in its lower case form on output, however the page
-  is still saved under its upper case name in the database so this is purely an
-  aesthetic change (unlike setting $wgCapitalLinks to false).
 
 
 === Caveats ===

@@ -443,12 +443,6 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		# Calculate preview html - must be here, because for the next things you
-		# have to know, if the title changes because of __LCFIRST__
-		if ( 'preview' == $formtype) {
-			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
-		}
-
 		if ( $isConflict ) {
 			$s = wfMsg( 'editconflict', $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
@@ -572,6 +566,7 @@ class EditPage {
 
 		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if ( 'preview' == $formtype) {
+			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
 			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $previewOutput );
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
