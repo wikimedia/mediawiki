@@ -188,8 +188,9 @@ Various bugfixes, small features, and a few experimental things:
 * Group table renamed.....?
 * (bug 2178) Use temp dir from environment in parser tests
 * (bug 2176) Section edit 'show changes' button works correctly now
-* New fileicons for c, cpp, deb, dvi, h, html, iso, java, mid, mov, o, ogg,
-  pdf, ps, rm, rpm, tex and txt files based on the KDE crystalsvg theme.
+* New fileicons for c, cpp, deb, dvi, exe, h, html, iso, java, mid, mov, o,
+  ogg, pdf, ps, rm, rpm, tar, tex, ttf and txt files based on the KDE
+  crystalsvg theme.
 
 
 === Caveats ===
