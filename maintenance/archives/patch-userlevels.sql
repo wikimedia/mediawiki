@@ -4,12 +4,12 @@
 -- This is under development to provide a showcase in HEAD :o)
 
 -- Hold group name and description
-CREATE TABLE /*$wgDBprefix*/`group` (
-  group_id int(5) unsigned NOT NULL auto_increment,
-  group_name varchar(50) NOT NULL default '',
-  group_description varchar(255) NOT NULL default '',
-  group_rights tinyblob,
-  PRIMARY KEY  (group_id)
+CREATE TABLE /*$wgDBprefix*/groups (
+  gr_id int(5) unsigned NOT NULL auto_increment,
+  gr_name varchar(50) NOT NULL default '',
+  gr_description varchar(255) NOT NULL default '',
+  gr_rights tinyblob,
+  PRIMARY KEY  (gr_id)
 
 ) TYPE=InnoDB;
 

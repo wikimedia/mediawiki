@@ -327,7 +327,7 @@ class ParserTest {
 			'recentchanges',
 			'watchlist', 'math', 'searchindex',
 			'interwiki', 'querycache',
-			'objectcache', 'group'
+			'objectcache', 'groups'
 		);
 	}
 	
@@ -405,11 +405,11 @@ class ParserTest {
 				) );
 
 			# Hack: initialize a group
-			$db->insert( 'group', array(
-				'group_id' => 1,
-				'group_name' => 'Anonymous',
-				'group_description' => 'Anonymous users',
-				'group_rights' => 'read' ) );
+			$db->insert( 'groups', array(
+				'gr_id' => 1,
+				'gr_name' => 'Anonymous',
+				'gr_description' => 'Anonymous users',
+				'gr_rights' => 'read' ) );
 			
 			# Hack: Insert an image to work with
 			$db->insert( 'image', array(
