@@ -637,7 +637,7 @@ class Image
 		
 		$try = array( 'fileicon-' . $this->extension . '.png', 'fileicon.png' );
 		foreach( $try as $icon ) {
-			$path = '/common/images/' . $icon;
+			$path = '/common/images/icons/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if( file_exists( $filepath ) ) {
 				return new ThumbnailImage( $wgStylePath . $path, 120, 120 );
