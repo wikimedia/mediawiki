@@ -467,7 +467,7 @@ function namespaceForm ( $namespace, $invert, $nondefaults ) {
 	
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
-<div id='nsselect' class='contributions'>
+<div id='nsselect' class='recentchanges''>
 	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
 	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsg('invert') . "</label>
 </div>";
