@@ -17,7 +17,7 @@
  *
  * Wikimedia
  * php compressOld.php <database> [-t <type>] [-c <chunk-size>] [-b <begin-date>] [-e <end-date>] [-s <start-id>]
- *     [-f <max-factor>] [-h <factor-threshold>] [--exclude-ns0] [-q <query condition>]
+ *     [-f <max-factor>] [-h <factor-threshold>] [-a <first-article>] [--exclude-ns0] [-q <query condition>]
  *
  * <type> is either:
  *   gzip: compress revisions independently
