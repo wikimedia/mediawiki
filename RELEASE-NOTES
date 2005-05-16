@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.4.5 ==
 * (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs"
+* (bug 2019) Wrapped the output of Special:Version in <div dir='ltr'> in order
+  to preserve the correct flow of text on RTL wikis.
 * (bug 2084) Fixed a regular expression in includes/Title.php that was
   accepting invalid syntax like #REDIRECT [[foo] in redirects
 * (bug 2087) Fixed a bug in special page handling which which stopped "0" from
