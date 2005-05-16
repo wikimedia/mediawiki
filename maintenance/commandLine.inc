@@ -152,6 +152,11 @@ $wgCommandLineMode = true;
 if ( !$wgUseNormalUser && isset( $wgDBadminuser ) ) {
 	$wgDBuser = $wgDBadminuser;
 	$wgDBpassword = $wgDBadminpassword;
+
+	foreach ( $wgDBservers as $i => $server ) {
+		$wgDBservers[$i]['user'] = $wgDBuser;
+		$wgDBservers[$i]['password'] = $wgDBpassword;
+	}
 }
 
 ini_set( 'memory_limit', -1 );
@@ -160,5 +165,28 @@ require_once( "Setup.php" );
 require_once( "install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );
 set_time_limit(0);
+
+
+// --------------------------------------------------------------------
+// Functions
+// --------------------------------------------------------------------
+
+function wfWaitForSlaves( $maxLag ) {
+	global $wgLoadBalancer;
+	if ( $maxLag ) {
+		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		$name = @gethostbyaddr( $host );
+		if ( $name !== false ) {
+			$host = $name;
+		}
+		while ( $lag > $maxLag ) {
+			print "Waiting for $host (lagged $lag seconds)...\n";
+			sleep($maxLag);
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		}
+	}
+}
+
+
 
 ?>
