@@ -15,6 +15,7 @@ function wfSpecialVersion() {
 	$dbr =& wfGetDB( DB_SLAVE );
 	
 	$wgOut->addWikiText( "
+<div dir='ltr'>
 This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',  
 copyright (C) 2001-2005 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 Tim Starling, Erik Möller, and others.
@@ -36,7 +37,7 @@ or [http://www.gnu.org/copyleft/gpl.html read it online]
 
 * [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 * [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
-* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion()
-	);
+* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
+</div>" );
 }
 ?>
