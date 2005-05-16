@@ -10,22 +10,22 @@ function compressOldPages( $start = 0 ) {
 
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbr =& wfGetDB( DB_SLAVE );
 	$old = $dbw->tableName( 'old' );
 	do {
 		$end = $start + $chunksize;
-		$res = $dbw->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
+		$res = $dbr->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
 			"old_id>=$start", $fname, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
-		if( $dbw->numRows( $res ) == 0 ) {
+		if( $dbr->numRows( $res ) == 0 ) {
 			break;
 		}
 		$last = $start;
-		while( $row = $dbw->fetchObject( $res ) ) {
+		while( $row = $dbr->fetchObject( $res ) ) {
 			# print "  {$row->old_id} - {$row->old_namespace}:{$row->old_title}\n";
 			compressPage( $row );
 			$last = $row->old_id;
 		}
-		$dbw->freeResult( $res );
+		$dbr->freeResult( $res );
 		$start = $last + 1; # Deletion may leave long empty stretches
 		print "$start...\n";
 	} while( true );
@@ -57,15 +57,17 @@ define( 'LS_CHUNKED', 1 );
 function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, 
   $endDate, $beginTitle, $exclude_ns0, $queryExtra )
 {
+	global $wgLoadBalancer, $wgDBservers;
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
 	
 	$dbw =& wfGetDB( DB_MASTER );
+	$dbr =& wfGetDB( DB_SLAVE ); 
 
 	# First get a list of all pages
 	
 	if ( $beginTitle ) {
-		$cond = "cur_title >= " . $dbw->addQuotes( $beginTitle );
+		$cond = "cur_title >= " . $dbr->addQuotes( $beginTitle );
 		print  "Starting from $beginTitle\n";
 		if ( $exclude_ns0 ) {
 			print "Excluding main namespace\n";
@@ -87,8 +89,10 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	}
 	
 	print "Starting article selection query $cond ...\n";
-	$pageRes = $dbw->select( 'cur', array('cur_namespace', 'cur_title'), 
+	$pageRes = $dbr->select( 'cur', array('cur_namespace', 'cur_title'), 
 		$cond, $fname, array( 'ORDER BY' => 'cur_title' ) );
+	
+	print "Found " . $dbr->numRows( $pageRes ) . "\n";
 
 	# For each of those, get a list of revisions which fit the criteria
 	# No recompression, use a condition on old_flags
@@ -113,7 +117,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
 	$totalMatchingRevisions = 0;
 	$masterPos = false;
-	while ( $pageRow = $dbw->fetchObject( $pageRes ) ) {
+	while ( $pageRow = $dbr->fetchObject( $pageRes ) ) {
 		# Display progress
 		$titleObj = Title::makeTitle( $pageRow->cur_namespace, $pageRow->cur_title );
 		print $titleObj->getPrefixedDBkey() . " ";
@@ -138,9 +142,17 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			continue;
 		}
 
-		#JamesDay: for big retrivals, slaves can time out, ping them and also make sure they aren't lagged before we start.
+		#for big retrivals, slaves can time out, ping them and also make sure they aren't lagged before we start.
+		if ( !$wgLoadBalancer->pingAll() ) {
+			while (!$wgLoadBalancer->pingAll()) {
+				print "Disconnected, reconnecting...\n";
+				sleep(10);
+			}
+			
+		}
 		if ( $revCount > 100 ) {
-			$masterPos = waitForSlaves( $masterPos );
+			// From commandLine.inc
+			wfWaitForSlaves( 5 );
 		}
 #		$oldReadsSinceLastSlaveWait = 0;
 
@@ -231,7 +243,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			#Jamesday: ping slaves periodically.
 			$oldReadsSinceLastSlaveWait += $thisChunkSize;
 			if ( $oldReadsSinceLastSlaveWait > 50 ) {
-				$masterPos = waitForSlaves( $masterPos );
+				wfWaitForSlaves(5);
 				$oldReadsSinceLastSlaveWait = 0;
 			}
 		}
