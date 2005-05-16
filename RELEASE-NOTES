@@ -191,6 +191,7 @@ Various bugfixes, small features, and a few experimental things:
 * New fileicons for c, cpp, deb, dvi, exe, h, html, iso, java, mid, mov, o,
   ogg, pdf, ps, rm, rpm, tar, tex, ttf and txt files based on the KDE
   crystalsvg theme.
+* Fixed a bug in Special:Newimages that made it impossible to search for '0'
 
 
 === Caveats ===

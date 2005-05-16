@@ -29,7 +29,7 @@ function wfSpecialNewimages() {
 	$limit = 48;
 	
 	$where = array();
-	if ( !empty( $wpIlMatch ) ) {
+	if ( $wpIlMatch != '' ) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if($nt ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
