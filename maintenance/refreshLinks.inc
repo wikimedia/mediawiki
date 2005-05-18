@@ -105,7 +105,7 @@ function fixLinksFromArticle( $id ) {
 	$wgOut->addWikiText( $text );
 	
 	# Look up the links in the DB and add them to the link cache
-	$wgOut->transformBuffer( RLH_FOR_UPDATE );
+	$wgOut->transformBuffer();
 	$wgOut->clearHTML();
 
 	if ( $wgEnablePersistentLC ) {
