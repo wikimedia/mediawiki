@@ -2291,6 +2291,14 @@ Attribute test: no value
 </p>
 !! end
 
+!! test
+Bug 2095: link with three closing brackets
+!! input
+[[a link]]]
+!! result
+<p><a href="/index.php?title=A_link&amp;action=edit" class="new" title="A link">a link</a>]
+</p>
+!! end
 
 TODO:
 more images
