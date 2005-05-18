@@ -194,6 +194,7 @@ Various bugfixes, small features, and a few experimental things:
   ogg, pdf, ps, rm, rpm, tar, tex, ttf and txt files based on the KDE
   crystalsvg theme.
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
+* (bug 2095) Triple-closing-bracket thing partly fixed
 
 
 === Caveats ===
