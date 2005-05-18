@@ -1214,7 +1214,11 @@ class Parser
 				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
 				# the real problem is with the $e1 regex
 				# See bug 1300.
-				if (preg_match( "/^\](.*)/s", $m[3], $n ) ) {
+				#
+				# Still some problems for cases where the ] is meant to be outside punctuation,
+				# and no image is in sight. See bug 2095.
+				#
+				if( $text !== '' && preg_match( "/^\](.*)/s", $m[3], $n ) ) {
 					$text .= ']'; # so that replaceExternalLinks($text) works later
 					$m[3] = $n[1];
 				}
