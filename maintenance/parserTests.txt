@@ -2294,9 +2294,18 @@ Attribute test: no value
 !! test
 Bug 2095: link with three closing brackets
 !! input
-[[a link]]]
+[[Main Page]]]
 !! result
-<p><a href="/index.php?title=A_link&amp;action=edit" class="new" title="A link">a link</a>]
++<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>]
+</p>
+!! end
+
+!! test
+Bug 2095: link with pipe and three closing brackets
+!! input
+[[Main Page|link]]]
+!! result
++<p><a href="/wiki/Main_Page" title="Main Page">link</a>]
 </p>
 !! end
 
