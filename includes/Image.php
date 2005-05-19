@@ -869,6 +869,15 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 
 	$log = new LogPage( 'upload' );
 	$log->addEntry( 'upload', $descTitle, $desc );
+	
+	# Run page save hooks
+	$article = new Article( $descTitle );
+	if( wfRunHooks( 'ArticleSave', array(
+			&$article, &$wgUser, $textdesc, $desc, false, false, null ) ) ) {
+		wfRunHooks( 'ArticleSaveComplete', array(
+			&$article, &$wgUser, $textdesc, $desc, false, false, null ) );
+	}
+	
 }
 
 /**

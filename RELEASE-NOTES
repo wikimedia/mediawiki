@@ -594,6 +594,7 @@ pages for purposes of page relevancy ranking.
 * Avoid overwriting shared image metadata cache with bogus encoding conversions
 * Fix reporting of minor edits in Special:Export output
 * (bug 2150) Fix tab indexes on edit form
+* Run ArticleSave hooks on image upload.
 
 
 === Caveats ===
