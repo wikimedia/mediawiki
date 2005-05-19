@@ -19,6 +19,7 @@ class LanguageConverter {
 	var $mLangObj;
 	var $mMarkup;
 	var $mFlags;
+	var $mUcfirst = false;
 	/**
      * Constructor
 	 *
@@ -564,6 +565,12 @@ class LanguageConverter {
 			foreach($sublinks as $link) {
 				$s = $this->parseCachedTable($code, $link, $recursive);
 				$ret = array_merge($ret, $s);
+			}
+		}
+		
+		if ($this->mUcfirst) {
+			foreach ($ret as $k => $v) {
+				$ret[LanguageUtf8::ucfirst($k)] = LanguageUtf8::ucfirst($v);
 			}
 		}
 		return $ret;
