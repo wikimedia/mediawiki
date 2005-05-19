@@ -728,14 +728,39 @@ Query: $2",
 'yourpasswordagain' => "Lykilorð (aftur)",
 'yourrealname' => "Fullt nafn þitt*",
 'yourtext' => "Þinn texti",
+
+'variantname-is' => 'Íslenska',
+'variantname-iz' => 'Íslenzka',
+'yourvariant' => 'Ritkerfi'
 );
 
 #--------------------------------------------------------------------------
 # Internationalisation code
 #--------------------------------------------------------------------------
 
-class LanguageIs extends LanguageUtf8 {
+require_once( 'LanguageConverter.php' );
+class IsConverter extends LanguageConverter {
+	function loadDefaultTables() {
+		$this->mTables = array();
+		$this->mTables['iz'] = array();
+		$this->mTables['is'] = array();
+		$this->mUcfirst = true;
+	}
+}
 
+class LanguageIs extends LanguageUtf8 {
+	function LanguageIs() {
+		global $wgHooks;
+		$this->mConverter = new IsConverter($this, 'is',
+			array('is', 'iz'),
+			array(
+				'is' => 'iz',
+				'iz' => 'is'
+			)
+		);
+		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+	}
+	
 	function getNamespaces() {
 		global $wgNamespaceNamesIs;
 		return $wgNamespaceNamesIs;
@@ -849,5 +874,7 @@ class LanguageIs extends LanguageUtf8 {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 }
+
+class LanguageIz extends LanguageIs {}
 
 ?>
