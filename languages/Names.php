@@ -86,6 +86,7 @@
 	'ik' => 'Iñupiak',	# Inupiak
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
+	'iz' => 'Íslenzka',	# Icelandic
 	'it' => 'Italiano',		# Italian
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut
 	'ja' => '日本語',	# Japanese
