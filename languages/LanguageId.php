@@ -1294,24 +1294,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');
 
 'sitesettings'                  => 'Pengaturan Situs',
 
-# short names for language variants used for language conversion links. 
-# to disable showing a particular link, set it to 'disable', e.g.
-# 'variantname-zh-sg' => 'disable',
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh' => 'zh',
-
-# Chinese conversion table
-'zhconversiontable' => '-{}-',
-
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Pengguna: ',
 'speciallogtitlelabel' => 'Judul: ',
 
-# List of bad images
-'bad_image_list' => '',
 );
 
 class LanguageId extends LanguageUtf8 {
