@@ -1,17 +1,11 @@
 <?php
-/**
+/** Faroese (Føroyskt)
+  *
   * @package MediaWiki
   * @subpackage Language
   */
 require_once( 'LanguageUtf8.php');
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesFo = array(
 	NS_MEDIA            => "Miðil",
 	NS_SPECIAL          => "Serstakur",
@@ -31,7 +25,7 @@ require_once( 'LanguageUtf8.php');
 	NS_HELP_TALK        => "Hjálp_kjak",
 	NS_CATEGORY         => "Bólkur",
 	NS_CATEGORY_TALK    => "Bólkur_kjak"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFo = array(
 	"Eingin", "Fast vinstru", "Fast høgru", "Flótandi vinstru"
@@ -57,48 +51,6 @@ require_once( 'LanguageUtf8.php');
 /* private */ $wgBookstoreListFo = array(
 	"Bokasolan.fo" => "http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1",
 ) + $wgBookstoreListEn;
-
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
-/* private */ $wgMagicWordsFo = array(
-#   ID				       CASE  SYNONYMS
-	MAG_REDIRECT		 => array( 0,	 '#redirect'		  ),
-	MAG_NOTOC		 => array( 0,	 '__NOTOC__'		  ),
-	MAG_FORCETOC		 => array( 0,	 '__FORCETOC__'		  ),
-	MAG_TOC			 => array( 0,	 '__TOC__'		  ),
-	MAG_NOEDITSECTION	 => array( 0,	 '__NOEDITSECTION__'	  ),
-	MAG_START		 => array( 0,	 '__START__'		  ),
-	MAG_CURRENTMONTH	 => array( 1,	 'CURRENTMONTH'		  ),
-	MAG_CURRENTMONTHNAME	 => array( 1,	 'CURRENTMONTHNAME'	  ),
-	MAG_CURRENTDAY		 => array( 1,	 'CURRENTDAY'		  ),
-	MAG_CURRENTDAYNAME	 => array( 1,	 'CURRENTDAYNAME'	  ),
-	MAG_CURRENTYEAR		 => array( 1,	 'CURRENTYEAR'		  ),
-	MAG_CURRENTTIME		 => array( 1,	 'CURRENTTIME'		  ),
-	MAG_NUMBEROFARTICLES	 => array( 1,	 'NUMBEROFARTICLES'	  ),
-	MAG_CURRENTMONTHNAMEGEN  => array( 1,	 'CURRENTMONTHNAMEGEN'	  ),
-	MAG_PAGENAME		 => array( 1,	 'PAGENAME'		  ),
-	MAG_PAGENAMEE		 => array( 1,	 'PAGENAMEE'		  ),
-	MAG_NAMESPACE		 => array( 1,	 'NAMESPACE'		  ),
-	MAG_SUBST		 => array( 0,	 'SUBST:'		  ),
-	MAG_MSGNW		 => array( 0,	 'MSGNW:'		  ),
-	MAG_END			 => array( 0,	 '__END__'		  ),
-	MAG_IMG_THUMBNAIL	 => array( 1,	 'thumbnail', 'thumb'	  ),
-	MAG_IMG_RIGHT		 => array( 1,	 'right'		  ),
-	MAG_IMG_LEFT		 => array( 1,	 'left'			  ),
-	MAG_IMG_NONE		 => array( 1,	 'none'			  ),
-	MAG_IMG_WIDTH		 => array( 1,	 '$1px'			  ),
-	MAG_IMG_CENTER		 => array( 1,	 'center', 'centre'	  ),
-	MAG_IMG_FRAMED		 => array( 1,	 'framed', 'enframed', 'frame' ),
-	MAG_INT			 => array( 0,	 'INT:'			  ),
-	MAG_SITENAME		 => array( 1,	 'SITENAME'		  ),
-	MAG_NS			 => array( 0,	 'NS:'			  ),
-	MAG_LOCALURL		 => array( 0,	 'LOCALURL:'		  ),
-	MAG_LOCALURLE		 => array( 0,	 'LOCALURLE:'		  ),
-	MAG_SERVER		 => array( 0,	 'SERVER'		  ),
-	MAG_GRAMMAR		 => array( 0,	 'GRAMMAR:'		  )
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
