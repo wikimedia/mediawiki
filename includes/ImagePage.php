@@ -99,6 +99,20 @@ class ImagePage extends Article {
 		return substr($r, 0, -3) . '|}';
 	}
 
+	/**
+	 * Overloading Article's getContent method.
+	 * Omit noarticletext if sharedupload 
+	 *
+	 * @param $noredir If true, do not follow redirects
+	 */
+	function getContent( $noredir )
+	{
+		if ( $this->img && $this->img->fromSharedDirectory && 0 == $this->getID() ) {
+			return '';
+		}
+		return Article::getContent( $noredir );
+	}
+
 	function openShowImage()
 	{
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
