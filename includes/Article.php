@@ -1562,28 +1562,21 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$s = $dbr->selectRow( array( 'page', 'text' ),
-			array( 'old_text' ),
-			array(
-				'page_namespace' => $ns,
-				'page_title' => $title,
-				'page_latest = old_id'
-			), $fname, $this->getSelectOptions()
-		);
-
-		if( $s !== false ) {
+		$rev =& Revision::newFromTitle( $this->mTitle );
+		
+		if( !is_null( $rev ) ) {
 			# if this is a mini-text, we can paste part of it into the deletion reason
+			$text = $rev->getText();
 
 			#if this is empty, an earlier revision may contain "useful" text
 			$blanked = false;
-			if($s->old_text != '') {
-				$text=$s->old_text;
-			} else {
-				if($old) { # TODO
-					$text = Revision::getRevisionText( $old );
+			if($text == '') {
+				$prevId = $this->mTitle->getPreviousRevisionID( $rev->getId() );
+				$rev = Revision::newFromId( $prevId );
+				if ( $rev ) { 
+					$text = $rev->getText();
 					$blanked = true;
 				}
-
 			}
 
 			$length=strlen($text);
