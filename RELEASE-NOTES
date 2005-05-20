@@ -195,6 +195,7 @@ Various bugfixes, small features, and a few experimental things:
   crystalsvg theme.
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
 * (bug 2095) Triple-closing-bracket thing partly fixed
+* (bug 2110) "noarticletext" should not display on Image page for "sharedupload" media
 
 
 === Caveats ===
