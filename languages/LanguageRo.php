@@ -544,9 +544,9 @@ de origine a mesajului, astfel încât destinatarul să îţi poată răspunde d
 'enterlockreason' => "Introdu motivul pentru blocare, incluzând o estimare a termenului de deblocare a bazei de date",
 'error' => "Eroare",
 'errorpagetitle' => "Eroare",
-'exbeforeblank' => "conţinutul înainte de golire era:",
+'exbeforeblank' => "conţinutul înainte de golire era: '$1'",
 'exblank' => "pagina era goală",
-'excontent' => "conţinutul era:",
+'excontent' => "conţinutul era: '$1'",
 'explainconflict' => "Altcineva a modificat această pagină de când ai început să o editezi.
 Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).
 Pagina cu modificările tale (aşa cum ai încercat să o salvezi) se află în caseta de jos.

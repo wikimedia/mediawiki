@@ -1280,8 +1280,9 @@ Feedback and further assistance:
 #
 'deletepage'	=> 'Delete page',
 'confirm'		=> 'Confirm',
-'excontent' => 'content was:',
-'exbeforeblank' => 'content before blanking was:',
+'excontent' => "content was: '$1'",
+'excontentauthor' => "content was: '$1' (and the only contributor was '$2')",
+'exbeforeblank' => "content before blanking was: '$1'",
 'exblank' => 'page was empty',
 'confirmdelete' => 'Confirm delete',
 'deletesub'		=> "(Deleting \"$1\")",

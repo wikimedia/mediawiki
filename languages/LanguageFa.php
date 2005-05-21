@@ -882,8 +882,8 @@ $3...
 #
 "deletepage"	=> "حذف صفحه",
 "confirm"		=> "تأیید",
-"excontent" => "content was:",
-"exbeforeblank" => "content before blanking was:",
+"excontent" => "content was: '$1'",
+"exbeforeblank" => "content before blanking was: '$1'",
 "exblank" => "صفحه خالی بود",
 "confirmdelete" => "تأیید حذف",
 "deletesub"		=> "(در حال حذف «$1»)",

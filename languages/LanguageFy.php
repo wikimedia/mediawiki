@@ -810,8 +810,8 @@ Jou oan hokfoar siden jo net mear folgje wolle, en befêstigje dat ûnderoan de 
 #
 "deletepage"	=> "Wisk side",
 "confirm"		=> "Befêstigje",
-"excontent"		=> "inhâld wie:",
-"exbeforeblank" 	=> "foar de tekst wiske wie, wie dat:",
+"excontent"		=> "inhâld wie: '$1'",
+"exbeforeblank" 	=> "foar de tekst wiske wie, wie dat: '$1'",
 "exblank"		=> "side wie leech",
 "confirmdelete"	=> "Befestigje wiskjen",
 "deletesub"		=> "(Wiskje \"$1\")",

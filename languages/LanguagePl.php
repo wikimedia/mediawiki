@@ -825,8 +825,8 @@ Zaznacz, które z nich mamy usunąć z listy i kliknij przycisk
 #
 "deletepage" => "Usuń stronę",
 "confirm" => "Potwierdź",
-"excontent" => "Zawartość strony",
-"exbeforeblank" => "Poprzednia zawartość pustej strony",
+"excontent" => "Zawartość strony '$1'",
+"exbeforeblank" => "Poprzednia zawartość pustej strony '$1'",
 "exblank" => "Strona była pusta",
 "confirmdelete" => "Potwierdź usunięcie",
 "deletesub" => "(Usuwanie \"$1\")",

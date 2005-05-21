@@ -749,8 +749,8 @@ och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
 //
 "deletepage"            => "Ta bort sida",
 "confirm"               => "Bekräfta",
-"excontent"             => "före radering:",
-"exbeforeblank"         => "före tömning:",
+"excontent"             => "före radering: '$1'",
+"exbeforeblank"         => "före tömning: '$1'",
 "exblank"               => "sidan var tom",
 "confirmdelete"         => "Bekräfta borttagning",
 "deletesub"             => "(Tar bort \"$1\")",

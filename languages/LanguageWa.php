@@ -911,8 +911,8 @@ at the bottom of the screen.", # co a fé
 #
 "deletepage"	=> "Disfacer l'&nbsp;pådje",
 "confirm"		=> "Acertiner",
-"excontent" => "li contnou esteut:",
-"exbeforeblank" => "li contnou dvant l'&nbsp;disfaçaedje esteut:",
+"excontent" => "li contnou esteut: '$1'",
+"exbeforeblank" => "li contnou dvant l'&nbsp;disfaçaedje esteut: '$1'",
 "exblank" => "li pådje esteut vude",
 "confirmdelete" => "Acertinaedje do disfaçaedje",
 "deletesub"		=> "(Djisfaçaedje di «$1»)",

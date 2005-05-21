@@ -245,7 +245,7 @@ Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>"
 'editthispage' => "Taisyti straipsnį",
 'emailforlost' => "* Elektroninio pašto adresas nėra privalomas. Tačiau jei įvesite, kiti vartotojai galės siųsti jums laiškus nesužinodami adreso. Taip pat pašto adresas gelbsti pamiršus slaptažodį.",
 'emailuser' => "Rašyti laišką",
-'excontent' => "buvęs turinys:",
+'excontent' => "buvęs turinys: '$1'",
 'export' => "Eksportuoti puslapius",
 'extlink_sample' => "http://www.pavyzdys.lt Nuorodos pavadinimas",
 'extlink_tip' => "Išorinė nuoroda (nepamirškite http:// prefikso)",

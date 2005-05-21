@@ -1547,7 +1547,7 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$revisions = $dbr->select( array( 'page', 'revision' ),
-			array( 'rev_id' ),
+			array( 'rev_id', 'rev_user_text' ),
 			array(
 				'page_namespace' => $ns,
 				'page_title' => $title,
@@ -1563,6 +1563,17 @@ class Article {
 
 		# Fetch cur_text
 		$rev =& Revision::newFromTitle( $this->mTitle );
+		
+		# Fetch name(s) of contributors
+		$rev_name = '';
+		$all_same_user = true;
+		while ( $row = $dbr->fetchObject( $revisions ) ) {
+			if ( $rev_name != '' && $rev_name != $row->rev_user_text ) {
+				$all_same_user = false;
+			} else {
+				$rev_name = $row->rev_user_text;
+			}
+		}
 		
 		if( !is_null( $rev ) ) {
 			# if this is a mini-text, we can paste part of it into the deletion reason
@@ -1597,13 +1608,18 @@ class Article {
 				$text=preg_replace('/\</','&lt;',$text);
 				$text=preg_replace('/\>/','&gt;',$text);
 				$text=preg_replace("/[\n\r]/",'',$text);
+				
+				if( $length > 150 ) { $text .= '...'; } # we've only pasted part of the text
+				
 				if(!$blanked) {
-					$reason=wfMsg('excontent'). " '".$text;
+					if(!$all_same_user) {
+						$reason = wfMsg ( 'excontent', $text );
+					} else {
+						$reason = wfMsg ( 'excontentauthor', $text, $rev_name );
+					}
 				} else {
-					$reason=wfMsg('exbeforeblank') . " '".$text;
+					$reason = wfMsg ( 'exbeforeblank', $text );
 				}
-				if($length>150) { $reason .= '...'; } # we've only pasted part of the text
-				$reason.="'";
 			}
 		}
 
