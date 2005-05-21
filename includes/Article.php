@@ -1213,7 +1213,7 @@ class Article {
 		# than the currently displayed one (e.g. image pages
 		# craeted on file uploads); otherwise, link updates will 
 		# go wrong.
-		$wgOut->addWikiText( $text, true, $this->mTitle );
+		$wgOut->addWikiTextWithTitle( $text, true, $this->mTitle );
 
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );
