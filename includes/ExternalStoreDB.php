@@ -15,8 +15,8 @@ class ExternalStoreDB {
 	function fetchFromURL($url) {
 		global $wgExternalServers;
 		#
-		# URLs have the form db://cluster/id, e.g.
-		# mysql://cluster1/3298247
+		# URLs have the form DB://cluster/id, e.g.
+		# DB://cluster1/3298247
 		#
 		$path = explode( '/', $url );
 		$cluster  = $path[2];
