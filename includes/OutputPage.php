@@ -227,16 +227,27 @@ class OutputPage {
 
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
+	 * Default assumes that the current page title will
+	 * be used.
 	 */
-	function addWikiText( $text, $linestart = true, &$titleObj=false ) {
-		global $wgParser, $wgTitle, $wgUseTidy;
-		$title = $titleObj ? $titleObj : $wgTitle;
+	function addWikiText( $text, $linestart = true ) {
+		global $wgTitle;
+		$this->addWikiTextTitle($text, $linestart, $wgTitle);
+	}
+
+	function addWikiTextWithTitle($text, $linestart = true, &$title) {
+		$this->addWikiTextTitle($text, $linestart, $title);
+	}
+	
+	function addWikiTextTitle($text, $linestart, &$title) {
+		global $wgParser, $wgUseTidy;
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $parserOutput->getText() );
-	}
-
+	
+	}	
+		
 	/**
 	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
 	 * Saves the text into the parser cache if possible
