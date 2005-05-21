@@ -764,8 +764,8 @@ $3...
 #
 "deletepage"    => "Deletar página",
 "confirm"       => "Confirmar",
-"excontent" => "conteúdo era:",
-"exbeforeblank" => "conteúdo antes de apagar era:",
+"excontent" => "conteúdo era: '$1'",
+"exbeforeblank" => "conteúdo antes de apagar era: '$1'",
 "exblank" => "página estava vazia",
 "confirmdelete" => "Confirmar deleção",
 "deletesub"     => "(Apagando \"$1\")",

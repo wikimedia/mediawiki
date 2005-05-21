@@ -790,8 +790,8 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 #
 'deletepage'          => 'Poista sivu',
 'confirm'             => 'Vahvista',
-'excontent'           => 'sisälsi:',
-'exbeforeblank'       => 'ennen tyhjentämistä sisälsi:',
+'excontent'           => "sisälsi: '$1'",
+'exbeforeblank'       => "ennen tyhjentämistä sisälsi: '$1'",
 'exblank'             => 'oli tyhjä',
 'confirmdelete'       => 'Vahvista poisto',
 'deletesub'           => 'Sivun $1 poisto',

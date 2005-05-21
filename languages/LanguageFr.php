@@ -886,8 +886,8 @@ Les prochaines modifications de cette page et de la page discussion associée se
 #
 'deletepage'	=> 'Supprimer une page',
 'confirm'	=> 'Confirmer',
-'excontent'	=> 'contenant',
-'exbeforeblank' => 'le contenu avant effacement était :',
+'excontent'	=> "contenant '$1'",
+'exbeforeblank' => "le contenu avant effacement était : '$1'",
 'exblank'	=> 'page vide',
 'confirmdelete' => 'Confirmer la suppression',
 "deletesub"	=> "(Suppression de \"$1\")",

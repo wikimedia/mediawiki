@@ -744,8 +744,8 @@ akan disenaraikan di sini, dan halaman itu akan muncul <b>bolded</b> dalam <a hr
 #
 "deletepage"	=> "Keluarkan halaman", #"Delete page",
 "confirm"		=> "Sah", #"Confirm",
-"excontent" => "Kandungan dahulu:",
-"exbeforeblank" => "kandungan sebelum dikosongankan adalah:",
+"excontent" => "Kandungan dahulu: '$1'",
+"exbeforeblank" => "kandungan sebelum dikosongankan adalah: '$1'",
 "exblank" => "laman kosong",
 "confirmdelete" => "Sah keluarkan", #"Confirm delete",
 "deletesub"		=> "(Keluarkan \"$1\")", #"(Deleting \"$1\")",

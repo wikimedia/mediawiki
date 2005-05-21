@@ -682,8 +682,8 @@ Morebitne spremembe te strani in njena pripadajoča pogovorna stran bosta navede
 #
 "deletepage"	=> "Zbriši stran",
 "confirm"	=> "Potrdi",
-"excontent"     => "vsebina je bila:",
-"exbeforeblank" => "vsebina pred brisanjem je bila:",
+"excontent"     => "vsebina je bila: '$1'",
+"exbeforeblank" => "vsebina pred brisanjem je bila: '$1'",
 "exblank"       => "stran je bila prazna",
 "confirmdelete" => "Potrdi brisanje",
 "deletesub"	=> "(Brišem \"$1\")",

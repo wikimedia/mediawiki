@@ -271,7 +271,7 @@ the list of currently operational bans and blocks.",
 of when the lock will be released", */
 'error' => "Villa",
 'errorpagetitle' => "Villa",
-'excontent' => "innihaldið var:",
+'excontent' => "innihaldið var: '$1'",
 'explainconflict' => "Síðunni hefur verið breytt síðan þú byrjaðir að gera breytingar á henni, textinn í efri reitnum inniheldur núverandi útgáfu úr gagnagrunni og sá neðri inniheldur þína útgáfu, þú þarft hér að færa breytingar sem þú vilt halda úr neðri reitnum í þann efri og vista síðuna. <strong>Aðeins</strong> texti úr efri reitnum mun vera vistaður þegar þú vistar.",
 'export' => "XML útgáfa síðu",
 'exportcuronly' => "Aðeins núverandi útgáfu án breytingarskrá",

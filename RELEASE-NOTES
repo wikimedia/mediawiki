@@ -158,6 +158,7 @@ Various bugfixes, small features, and a few experimental things:
 * Special:Movepage can now take paramaters like Special:Movepage/Page_to_move
   (used to just be able to take paramaters via a GET request like index.php?title=Special:Movepage&target=Page_to_move)
 * Deprecated the {{msg:template}} syntax for referring to templates
+* (bug 2151) The delete summary now includes editor name, if only one has edited the article.
 * ...and more!
 
 
