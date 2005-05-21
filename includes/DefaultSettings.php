@@ -110,6 +110,112 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgUploadBaseUrl    = "";
 /**#@-*/
 
+/** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.
+ * Set this to NULL to disable virus scanning. If not null, every file uploaded will be scanned for viruses.
+ * @global string $wgAntivirus
+ */
+$wgAntivirus= NULL;
+
+/** Configuration for different virus scanners. This an associative array of associative arrays:
+ * it contains on setup array per known scanner type. The entry is selected by $wgAntivirus, i.e.
+ * valid values for $wgAntivirus are the keys defined in this array.
+ *
+ * The configuration array for each scanner contains the following keys: "command", "codemap", "messagepattern";
+ *
+ * "command" is the full command to call the virus scanner - %f will be replaced with the name of the 
+ * file to scan. If not present, the filename will be appended to the command. Note that this must be 
+ * overwritten if the scanner is not in the system path; in that case, plase set
+ * $wgAntivirusSetup[$wgAntivirus]['command'] to the desired command with full path.
+ *
+ * "codemap" is a mapping of exit code to return codes of the detectVirus function in SpecialUpload.
+ * An exit code mapped to AV_SCAN_FAILED causes the function to consider the scan to be failed. This will pass
+ * the file if $wgAntivirusRequired is not set.
+ * An exit code mapped to AV_SCAN_ABORTED causes the function to consider the file to have an usupported format,
+ * which is probably imune to virusses. This causes the file to pass.
+ * An exit code mapped to AV_NO_VIRUS will cause the file to pass, meaning no virus was found.
+ * All other codes (like AV_VIRUS_FOUND) will cause the function to report a virus.
+ * You may use "*" as a key in the array to catch all exit codes not mapped otherwise.
+ *
+ * "messagepattern" is a perl regular expression to extract the meaningful part of the scanners
+ * output. The relevant part should be matched as group one (\1).
+ * If not defined or the pattern does not match, the full message is shown to the user. 
+ *
+ * @global array $wgAntivirusSetup
+ */
+$wgAntivirusSetup= array(
+
+	#setup for clamav
+	'clamav' => array (
+		'command' => "clamscan --no-summary ",
+		
+		'codemap'=> array (
+			"0"=>  AV_NO_VIRUS, #no virus
+			"1"=>  AV_VIRUS_FOUND, #virus found
+			"52"=> AV_SCAN_ABORTED, #unsupported file format (probably imune)
+			"*"=>  AV_SCAN_FAILED, #else scan failed
+		),
+		
+		'messagepattern'=> '/.*?:(.*)/sim',
+	),
+	
+	#setup for f-prot
+	'f-prot' => array (
+		'command' => "f-prot ",
+		
+		'codemap'=> array (
+			"0"=> AV_NO_VIRUS, #no virus
+			"3"=> AV_VIRUS_FOUND, #virus found
+			"6"=> AV_VIRUS_FOUND, #virus found
+			"*"=> AV_SCAN_FAILED, #else scan failed
+		),
+		
+		'messagepattern'=> '/.*?Infection:(.*)$/m',
+	),
+);
+
+
+/** Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected.
+ * @global boolean $wgAntivirusRequired
+*/
+$wgAntivirusRequired= true;
+
+/** Determines if the mime type of uploaded files should be checked 
+ * @global boolean $wgVerifyMimeType
+*/
+$wgVerifyMimeType= true;
+
+/** Sets the mime type definition file to use by MimeMagic.php.
+* @global string $wgMimeTypeFile
+*/
+#$wgMimeTypeFile= "/etc/mime.types";
+$wgMimeTypeFile= "includes/mime.types";
+#$wgMimeTypeFile= NULL; #use build in defaults only.
+
+/** Sets the mime type info file to use by MimeMagic.php.
+* @global string $wgMimeInfoFile
+*/
+$wgMimeInfoFile= "includes/mime.info";
+#$wgMimeInfoFile= NULL; #use build in defaults only.
+
+/** Switch for loading the FileInfo extension by PECL at runtime.
+* This should be used only if fileinfo is installed as a shared object / dynamic libary
+* @global string $wgLoadFileinfoExtension
+*/
+$wgLoadFileinfoExtension= false;
+
+/** Sets an external mime detector program. The command must print only the mime type to standard output.
+* the name of the file to process will be appended to the command given here.
+* If not set or NULL, mime_content_type will be used if available.
+* @global string $wgMimeTypeFile
+*/
+$wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
+#$wgMimeDetectorCommand= "file -bi" #use external mime detector (linux)
+
+/** Switch for trivial mime detection. Used by thumb.php to disable all fance things,
+* because only a few types of images are needed and file extensions can be trusted.
+*/
+$wgTrivialMimeDetection= false;
+
 /**
  * Produce hashed HTML article paths. Used internally, do not set.
  */ 
@@ -795,13 +901,25 @@ $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 /** Files with these extensions will never be allowed as uploads. */
 $wgFileBlacklist = array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'html', 'htm',
+	'html', 'htm', 'js', 'jsb',
 	# PHP scripts may execute arbitrary code on the server
 	'php', 'phtml', 'php3', 'php4', 'phps',
 	# Other types that may be interpreted by some servers
 	'shtml', 'jhtml', 'pl', 'py', 'cgi',
 	# May contain harmful executables for Windows victims
 	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' );
+	
+/** Files with these mime types will never be allowed as uploads
+ * if $wgVerifyMimeType is enabled.
+ */
+$wgMimeTypeBlacklist= array(
+	# HTML may contain cookie-stealing JavaScript and web bugs
+	'text/html', 'text/javascript', 'text/x-javascript',  'application/x-shellscript',
+	# PHP scripts may execute arbitrary code on the server
+	'application/x-php', 'text/x-php', 
+	# Other types that may be interpreted by some servers
+	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh'  
+);
 
 /** This is a flag to determine whether or not to check file extensions on upload. */
 $wgCheckFileExtensions = true;
@@ -1314,4 +1432,24 @@ $wgCountCategorizedImagesAsUsed = false;
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
+
+/**
+* list of trusted media-types and mime types. 
+* Use the MEDIATYPE_xxx constants to represent media types.
+* This list is used by Image::isSafeFile
+*
+* Types not listed here will have a warning about unsafe content
+* displayed on the images description page. It would also be possible
+* to use this for further restrictions, like disabling direct 
+* [[media:...]] links for non-trusted formats.
+*/
+$wgTrustedMediaFormats= array(
+	MEDIATYPE_BITMAP, //all bitmap formats
+	MEDIATYPE_AUDIO,  //all audio formats
+	MEDIATYPE_VIDEO,  //all plain video formats
+	"image/svg",  //svg (only needed if inline rendering of svg is not supported)
+	"application/pdf",  //PDF files
+	#"application/x-shockwafe-flash", //flash/shockwave movie 
+);
+
 ?>

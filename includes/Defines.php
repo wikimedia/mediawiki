@@ -89,4 +89,34 @@ define( 'CACHE_MEMCACHED', 2 );  // MemCached, must specify servers in $wgMemCac
 define( 'CACHE_ACCEL', 3 );      // eAccelerator or Turck, whichever is available
 /**#@-*/
 
+
+
+/**#@+
+ * Media types. 
+ * This defines constants for the value returned by Image::getMediaType()
+ */
+
+define( 'MEDIATYPE_UNKNOWN',    'UNKNOWN' );     // unknown format
+define( 'MEDIATYPE_BITMAP',     'BITMAP' );      // some bitmap image or image source (like psd, etc). Can't scale up.
+define( 'MEDIATYPE_DRAWING',    'DRAWING' );     // some vector drawing (SVG, WMF, PS, ...) or image source (oo-draw, etc). Can scale up.
+define( 'MEDIATYPE_AUDIO',      'AUDIO' );       // simple audio file (ogg, mp3, wav, midi, whatever)
+define( 'MEDIATYPE_VIDEO',      'VIDEO' );       // simple video file (ogg, mpg, etc; no not include formats here that may contain executable sections or scripts!)
+define( 'MEDIATYPE_MULTIMEDIA', 'MULTIMEDIA' );  // Scriptable Multimedia (flash, advanced video container formats, etc)
+define( 'MEDIATYPE_OFFICE',     'OFFICE' );      // Office Documents, Spreadsheets (office formats possibly containing apples, scripts, etc)
+define( 'MEDIATYPE_TEXT',       'TEXT' );        // Plain text (possibly containing program code or scripts)
+define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );  // binary executable
+define( 'MEDIATYPE_ARCHIVE',    'ARCHIVE' );     // archive file (zip, tar, etc)
+/**#@-*/
+
+/**#@+
+ * Antivirus result codes, for use in $wgAntivirusSetup. 
+ */
+
+define( 'AV_NO_VIRUS', 0 );  #scan ok, no virus found
+define( 'AV_VIRUS_FOUND', 1 );  #virus found!
+define( 'AV_SCAN_ABORTED', -1 );  #scan aborted, the file is probably imune
+define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in scanner)
+
+/**#@-*/
+
 ?>

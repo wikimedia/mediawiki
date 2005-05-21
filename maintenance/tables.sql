@@ -531,9 +531,18 @@ CREATE TABLE /*$wgDBprefix*/image (
   -- For images, bits per pixel if known.
   img_bits int(3)  NOT NULL default '0',
   
-  -- File type key returned by getimagesize().
-  -- See http://www.php.net/getimagesize for possible values.
-  img_type int(3)  NOT NULL default '0',
+  -- Media type as defined by the MEDIATYPE_xxx constants
+  img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+  
+  -- major part of a MIME media type as defined by IANA
+  -- see http://www.iana.org/assignments/media-types/
+  img_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
+  
+  -- minor part of a MIME media type as defined by IANA
+  -- the minor parts are not required to adher to any standard
+  -- but should be consistent throughout the database
+  -- see http://www.iana.org/assignments/media-types/
+  img_minor_mime varchar(32) NOT NULL default "unknown",
   
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
@@ -574,7 +583,6 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_width int(5) NOT NULL default 0,
   oi_height int(5) NOT NULL default 0,
   oi_bits int(3) NOT NULL default 0,
-  oi_type int(3) NOT NULL default 0,
   oi_description tinyblob NOT NULL default '',
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL default '',

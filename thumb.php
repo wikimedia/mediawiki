@@ -12,6 +12,9 @@ $wgNoOutputBuffer = true;
 require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
 require_once( 'GlobalFunctions.php' );
+
+$wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
+
 require_once( 'Image.php' );
 require_once( 'StreamFile.php' );
 
@@ -25,6 +28,8 @@ if ( get_magic_quotes_gpc() ) {
 	$width = $_REQUEST['w'];
 }
 
+$pre_render= isset($_REQUEST['r']) && $_REQUEST['r']!="0";
+
 // Some basic input validation
 
 $width = intval( $width );
@@ -34,7 +39,7 @@ $fileName = strtr( $fileName, '\\/', '__' );
 
 $imagePath = wfImageDir( $fileName ) . '/' . $fileName;
 $thumbName = "{$width}px-$fileName";
-if ( preg_match( '/\.svg$/', $fileName ) ) {
+if ( $pre_render ) {
 	$thumbName .= '.png';
 }
 $thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
