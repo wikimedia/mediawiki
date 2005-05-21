@@ -173,6 +173,22 @@ class Validation {
 		return $r ;
 	}
 	
+	# Reads the entire vote list for this user for all articles
+	function getAllVoteLists ( $user ) {
+		global $wgDBprefix ;
+		$r = array () ; # Revisions
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_user=" . $user ;
+		$res = wfQuery( $sql, DB_READ );
+		while( $x = wfFetchObject( $res ) ) {
+			$a = $x->val_page ;
+			$y = $x->val_revision ;
+			if ( !isset ( $r[$a] ) ) $r[$a] = array () ;
+			if ( !isset($r[$a][$y]) ) $r[$a][$y] = array () ;
+			$r[$a][$y][$x->val_type] = $x ;
+		}		
+		return $r ;
+	}
+	
 	# This functions adds a topic to the database
 	function addTopic ( $topic , $limit ) {
 		global $wgDBprefix ;
@@ -210,6 +226,13 @@ class Validation {
 		$nt = $article->getTitle();
 		$url = htmlspecialchars( $nt->getLocalURL( "action=validate&mode=details&revision={$revision}" ) );
 		return wfMsg ( 'val_revision_stats_link', $url );
+	}
+
+	# This function returns a link text to the user rating statistics page
+	function link2userratings ( $user , $text ) {
+		$nt = Title::newFromText ( "Special:Validate" ) ;
+		$url = htmlspecialchars( $nt->getLocalURL( "mode=userstats&user={$user}" ) );
+		return "<a href=\"{$url}\">{$text}</a>" ;
 	}
 
 	# Returns the timestamp of a revision based on the revision number
@@ -313,7 +336,7 @@ class Validation {
 
 	# Generates the page from the validation tab
 	function validatePageForm ( &$article , $revision ) {
-		global $wgOut, $wgRequest ;
+		global $wgOut, $wgRequest, $wgUser ;
 		
 		$ret = "" ;
 		$this->prepareRevisions ( $article->getID() ) ;
@@ -351,6 +374,7 @@ class Validation {
 			$ret .= "<br/>\n" ;
 			}
 		$ret .= $this->link2statistics ( $article ) ;
+		$ret .= "<p>" . $this->link2userratings ( $wgUser->GetID() , wfMsg('val_show_my_ratings') ) . "</p>" ;
 		return $ret ;	
 	}
 	
@@ -400,7 +424,7 @@ class Validation {
 	}
 
 	function showDetails ( &$article , $revision ) {
-		global $wgDBprefix , $wgOut ;
+		global $wgDBprefix , $wgOut, $wgUser ;
 		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 
@@ -456,6 +480,7 @@ class Validation {
 			}
 		$ret .= "</table>" ;
 		$ret .= "<p>" . $this->link2statistics ( $article ) . "</p>" ;
+		$ret .= "<p>" . $this->link2userratings ( $wgUser->GetID() , wfMsg('val_show_my_ratings') ) . "</p>" ;
 		
 		return $ret ;
 		}
@@ -509,8 +534,53 @@ class Validation {
 			$ret .= "</tr>\n" ;
 		}
 		$ret .= "</table>\n" ;
+		$ret .= "<p>" . $this->link2userratings ( $wgUser->GetID() , wfMsg('val_show_my_ratings') ) . "</p>" ;
 		return $ret ;
 	}
+	
+	function getRatingText ( $value , $max ) {
+		if ( $max == 2 && $value == 1 ) $ret = wfMsg ( "val_no" ) . " " ;
+		else if ( $max == 2 && $value == 2 ) $ret = wfMsg ( "val_yes" ) ;
+		else if ( $value != 0 ) $ret = wfMsg ( "val_of" , $value , $max ) . " " ;
+		else $ret = "" ;
+		return $ret ;
+	}
+
+	function showUserStats ( $user ) {
+		global $wgDBprefix , $wgOut, $wgUser ;
+		$this->topicList = $this->getTopicList() ;
+		$data = $this->getAllVoteLists ( $user ) ;
+		
+		if ( $user == $wgUser->getID() ) $wgOut->setPageTitle ( wfMsg ( 'val_my_stats_title' ) ) ;
+		else $wgOut->setPageTitle ( wfMsg ( 'val_user_stats_title' , $user ) ) ;
+		
+		$ret = "" ;
+		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
+		
+		foreach ( $data AS $articleid => $revisions ) {
+			$title = Title::newFromID ( $articleid ) ;
+			$ret .= "<tr><th align='left' colspan='4'><a href=\"" . $title->getLocalURL() . "\">" . $title->getPrefixedText() . "</a></th></tr>" ;
+			krsort ( $revisions ) ;
+			foreach ( $revisions AS $revid => $revision ) {
+				$url = $title->getLocalURL ( "oldid={$revid}" ) ;
+				$ret .= "<tr><th align='left'><a href=\"{$url}\">" . wfMsg ( 'val_revision_number' , $revid ) . "</a></th>" ;
+				ksort ( $revision ) ;
+				$initial = true ;
+				foreach ( $revision AS $topic => $rating ) {
+					if ( !$initial ) $ret .= "<tr><td/>" ;
+					$initial = false ;
+					$ret .= "<td>" . $this->topicList[$topic]->val_comment . "</td>" ;
+					$ret .= "<td>" . $this->getRatingText ( $rating->val_value , $this->topicList[$topic]->val_value ) . "</td>" ;
+					$ret .= "<td>" . htmlentities ( $rating->val_comment ) . "</td>" ;
+					$ret .= "</tr>" ;
+				}
+			}
+			$ret .= "</tr>" ;
+		}
+		$ret .= "</table>" ;
+		
+		return $ret ;
+		}
 
 }
 
@@ -540,9 +610,11 @@ function wfSpecialValidate( $page = '' ) {
 	if ( $mode == "manage" ) {
 		$v = new Validation ;
 		$html = $v->manageTopics () ;
-#	} else if ( $mode == "list" ) {
-#		$v = new Validation ;
-#		$html = $v->showList ( $wgRequest->getVal ( "id" ) ) ;
+	} else if ( $mode == "userstats" ) {
+		$v = new Validation ;
+		$user = $wgUser->GetID() ;
+		#$user = $wgRequest->getVal ( "user" ) ; # Uncomment this to allow all user statistics to be public
+		$html = $v->showUserStats ( $user ) ;
 	} else {
 		$html = "$mode" ;
 		$html .= "<ul>\n" ;
