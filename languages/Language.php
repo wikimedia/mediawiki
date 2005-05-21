@@ -1020,7 +1020,9 @@ created and by whom, and anything else you may know about it. If this is an imag
 'savefile'		=> 'Save file',
 'uploadedimage' => "uploaded \"[[$1]]\"",
 'uploaddisabled' => 'Sorry, uploading is disabled.',
+'uploadscripted' => 'This file contains HTML or script code that my be erronously be interpretet by a web browser.',
 'uploadcorrupt' => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
+'uploadvirus' => 'The file contains a virus! Details: $1',
 'sourcefilename' => 'Source filename',
 'destfilename' => 'Destination filename',
 
@@ -1785,6 +1787,12 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'speciallogtitlelabel' => 'Title: ',
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
+
+# Media Warning
+'mediawarning' => '\'\'\'Warning\'\'\': This file may contain malicious code, by executing it your system may be compromised.
+<hr>',
+
+'fileinfo' => '$1KB, MIME type: <code>$2</code>',
 
 # Metadata
 'metadata' => 'Metadata',
