@@ -166,6 +166,8 @@ Various bugfixes, small features, and a few experimental things:
 
 * ...various...
 * (bug 498) The Views heading in MonoBook.php is now localizable
+* (bug 898) The wiki can now do advanced sanity check on uploaded files
+  including virus checks using external programs.
 * (bug 2067) Fixed crash on empty quoted HTML attribute
 * (bug 2079) Removed links to Special:Maintenance from movepagetext messages
 * Fix for reading incorrectly re-gzipped HistoryBlob entries

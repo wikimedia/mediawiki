@@ -136,10 +136,14 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-			if ( $this->img->getType() ) {
+			# image
+			$width = $this->img->getWidth();
+			$height = $this->img->getHeight();
+			$showLink = false;
+			
+			if ( $this->img->allowInlineDisplay() and $width and $height) { 
 				# image
-				$width = $this->img->getWidth();
-				$height = $this->img->getHeight();
+				
 				# "Download high res version" link below the image
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth ) {
@@ -150,7 +154,8 @@ class ImagePage extends Article {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
 				}
-				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
+				if ( !$this->img->mustRender() 
+				   && ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) ) {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
 						$url = $thumbnail->getUrl();
@@ -163,14 +168,57 @@ class ImagePage extends Article {
 					$anchorclose = "</a><br />\n$anchoropen{$msg}</a>";
 				} else {
 					$url = $full_url;
+					$showLink = $this->img->mustRender();
 				}
-				$s = '<div class="fullImageLink" id="file">' . $anchoropen .
+				$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>';
+				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>' );
 			} else {
-				$s = "<div class=\"fullMedia\">" . $sk->makeMediaLink( $this->img->getName(),'' ) . '</div>';
+				#if direct link is allowed but it's not a renderable image, show an icon.
+				if ($this->img->isSafeFile()) {
+					$icon= $this->img->iconThumb();
+	
+					$wgOut->addHTML( '<div class="fullImageLink" id="file"><a href="' . $full_url . '">' .
+					$icon->toHtml() .
+					'</a></div>' );
+				}
+			
+				$showLink = true;
 			}
-			$wgOut->addHTML( $s );
+			
+			
+			if ($showLink) {
+				$s= $sk->makeMediaLink( $this->img->getName(), '', '', true );
+				$info= wfMsg( 'fileinfo', ceil($this->img->getSize()/1024.0), $this->img->getMimeType() );
+			
+				if (!$this->img->isSafeFile()) {
+					$wgOut->addHTML("<div class=\"fullMedia\">");
+					$wgOut->addHTML("<span class=\"dangerousLink\">");
+					$wgOut->addHTML($s);
+					$wgOut->addHTML("</span>");
+					
+					$wgOut->addHTML("<span class=\"fileInfo\"> (");
+					$wgOut->addWikiText( $info, false );
+					$wgOut->addHTML(")</span>");
+					$wgOut->addHTML("</div>");
+					
+					#this should be formated a little nicer. Is CSS sufficient?
+					$wgOut->addHTML("<div class=\"mediaWarning\">");
+					$wgOut->addWikiText( wfMsg( 'mediawarning' ) );
+					$wgOut->addHTML('</div>');
+					 
+				} else {
+					$wgOut->addHTML("<div class=\"fullMedia\">");
+					$wgOut->addHTML($s);
+					
+					$wgOut->addHTML("<span class=\"fileInfo\"> (");
+					$wgOut->addWikiText( $info, false );
+					$wgOut->addHTML(")</span>");
+					
+					$wgOut->addHTML("</div>");
+				}
+			}
+			
 			if($this->img->fromSharedDirectory) {
 				$sharedtext="<div class=\"sharedUploadNotice\">" . wfMsg("sharedupload");
 				if($wgRepositoryBaseUrl) {

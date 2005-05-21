@@ -423,7 +423,9 @@ class ParserTest {
 				'img_width'       => 1941,
 				'img_height'      => 220,
 				'img_bits'        => 24,
-				'img_type'        => 2, // 2 == JPEG
+				'img_media_type'  => MEDIATYPE_BITMAP, 
+				'img_major_mime'  => "image", 
+				'img_minor_mime'  => "jpeg", 
 				) );
 			
 			$setupDB = true;

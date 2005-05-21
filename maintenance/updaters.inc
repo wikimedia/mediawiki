@@ -46,6 +46,7 @@ $wgNewFields = array(
  	array( 'revision',      'rev_deleted',      'patch-rev_deleted.sql' ),
 	array( 'image',         'img_width',        'patch-img_width.sql' ),
 	array( 'image',         'img_metadata',     'patch-img_metadata.sql' ),
+	array( 'image',         'img_media_type',   'patch-img_media_type.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
