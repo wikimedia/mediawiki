@@ -201,8 +201,15 @@ class Validation {
 	# This function returns a link text to the page validation statistics
 	function link2statistics ( &$article ) {
 		$nt = $article->getTitle();
-		$url = htmlspecialchars( $nt->getLocalURL( 'action=validate&mode=list' ) );
+		$url = htmlspecialchars( $nt->getLocalURL( "action=validate&mode=list" ) );
 		return wfMsg ( 'val_rev_stats_link', $nt->getPrefixedText(), $url );
+	}
+
+	# This function returns a link text to the page validation statistics of a single revision
+	function link2revisionstatistics ( &$article , $revision ) {
+		$nt = $article->getTitle();
+		$url = htmlspecialchars( $nt->getLocalURL( "action=validate&mode=details&revision={$revision}" ) );
+		return wfMsg ( 'val_revision_stats_link', $url );
 	}
 
 	# Returns the timestamp of a revision based on the revision number
@@ -308,6 +315,7 @@ class Validation {
 	function validatePageForm ( &$article , $revision ) {
 		global $wgOut, $wgRequest ;
 		
+		$ret = "" ;
 		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 		$this->voteCache = $this->getVoteList ( $article->getID() ) ;
@@ -323,6 +331,7 @@ class Validation {
 			$this->updateRevision ( $article , $id ) ;
 			if ( $mergeOldRev ) $this->mergeOldRevisions ( $article , $id ) ;
 			if ( $clearOldRev ) $this->clearOldRevisions ( $article , $id ) ;
+			$ret .= "<p><font color='red'>" . wfMsg ( 'val_revision_changes_ok' ) . "</font></p>" ;
 			}
 		
 		# Make sure the requested revision exists
@@ -333,7 +342,6 @@ class Validation {
 		krsort ( $this->voteCache ) ;
 		
 		# Output
-		$ret = "" ;
 		$title = $article->getTitle();
 		$title = $title->getPrefixedText() ;
 		$wgOut->setPageTitle ( wfMsg ( 'val_rev_for' ) . $title ) ;
@@ -390,11 +398,75 @@ class Validation {
 		$r .= "</form>\n" ;
 		return $r ;
 	}
-	
-	function showList ( &$article ) {
-		global $wgDBprefix ;
+
+	function showDetails ( &$article , $revision ) {
+		global $wgDBprefix , $wgOut ;
 		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
+
+		$title = $article->getTitle() ;
+		$wgOut->setPageTitle ( str_replace ( '$1' , $title->getPrefixedText() , wfMsg ( 'val_validation_of' ) ) ) ;
+		
+		# Collecting statistic data
+		$id = $article->getID() ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page='{$id}' AND val_revision='{$revision}'" ;
+		$res = wfQuery( $sql, DB_READ );
+		$data = array () ;
+		$users = array () ;
+		$topics = array () ;
+		while( $x = wfFetchObject( $res ) ) {
+			$data[$x->val_user][$x->val_type] = $x ;
+			$users[$x->val_user] = true ;
+			$topics[$x->val_type] = true ;
+		}
+		
+		# Sorting lists of topics and users
+		ksort ( $users ) ;
+		ksort ( $topics ) ;
+		
+		$ts = $this->getTimestamp ( $revision ) ;
+		$url = $this->getVersionLink ( $article , $revision , wfTimestamp ( TS_DB , $ts ) ) ;
+
+		# Table headers
+		$ret = "" ;			
+		$ret .= "<p><b>" . str_replace ( '$1' , $url , wfMsg ( 'val_revision_of' ) ) . "</b></p>\n" ;
+		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
+		$ret .= "<tr><th/>" ;
+		
+		foreach ( $topics AS $t => $dummy ) {
+			$ret .= "<th>" . $this->topicList[$t]->val_comment . "</th>" ;
+			}
+		$ret .= "</tr>\n" ;
+
+		# Table data
+		foreach ( $users AS $u => $dummy ) { # Every row a user
+			$ret .= "<tr>" ;
+			$ret .= "<th>" . str_replace ( "$1" , $u , wfMsg ( 'val_details_th_user') ) . "</th>" ;
+			foreach ( $topics AS $t => $dummy ) { # Every column a topic
+				if ( !isset ( $data[$u][$t] ) ) $ret .= "<td/>" ;
+				else {
+					$ret .= "<td valign='center'>" ;
+					$ret .= $data[$u][$t]->val_value ;
+					if ( $data[$u][$t]->val_comment != "" )
+						$ret .= " <small>(" . $data[$u][$t]->val_comment . ")</small>" ;
+					$ret .= "</td>" ;
+				}
+			}
+			$ret .= "</tr>" ;
+			}
+		$ret .= "</table>" ;
+		$ret .= "<p>" . $this->link2statistics ( $article ) . "</p>" ;
+		
+		return $ret ;
+		}
+	
+	function showList ( &$article ) {
+		global $wgDBprefix , $wgOut;
+		$this->prepareRevisions ( $article->getID() ) ;
+		$this->topicList = $this->getTopicList() ;
+
+		$title = $article->getTitle() ;
+		$wgOut->setPageTitle ( str_replace ( '$1' , $title->getPrefixedText() , wfMsg ( 'val_validation_of' ) ) ) ;
 		
 		# Collecting statistic data
 		$id = $article->getID() ;
@@ -402,7 +474,6 @@ class Validation {
 		$res = wfQuery( $sql, DB_READ );
 		$data = array () ;
 		while( $x = wfFetchObject( $res ) ) {
-			#$idx = $x->val_revision ;
 			$idx = $this->getTimestamp ( $x->val_revision ) ;
 			if ( !isset ( $data[$idx] ) )
 				$data[$idx] = array () ;
@@ -419,16 +490,14 @@ class Validation {
 		$ret = "" ;
 		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
 		$ret .= "<tr><th>" . wfMsg("val_revision") . "</th>" ;
-#		$ret .= "<th>" . wfMsg("val_time") . "</th>" ;
 		foreach ( $this->topicList AS $x => $y )
 			$ret .= "<th>{$y->val_comment}</th>" ;
 		$ret .= "</tr>\n" ;
 		foreach ( $data AS $ts => $y ) {
 			$revision = $this->getRevisionNumber ( $ts ) ;
-#			$url = $this->getVersionLink ( $article , $revision , $revision ) ;
 			$url = $this->getVersionLink ( $article , $revision , wfTimestamp ( TS_DB , $ts ) ) ;
-			$ret .= "<tr><th>{$url}</th>" ;
-#			$ret .= "<td nowrap>" . wfTimestamp ( TS_DB , $ts ) . "</td>" ;
+			$detailsurl = $this->link2revisionstatistics ( $article , $revision ) ;
+			$ret .= "<tr><td>{$url} {$detailsurl}</td>" ;
 			foreach ( $this->topicList AS $topicID => $dummy ) {
 				if ( isset ( $y[$topicID] ) ) {
 					$z = $y[$topicID] ;

@@ -105,16 +105,6 @@ if(isset($wgExtraNamespaces)) {
 	'chick' => 'Chick'
 );
 
-# Validation types
-$wgValidationTypesEn = array (
-	'0' => "Style|Awful|Awesome|5",
-	'1' => "Legal|Illegal|Legal|5",
-	'2' => "Completeness|Stub|Extensive|5",
-	'3' => "Facts|Wild guesses|Solid as a rock|5",
-	'4' => "Suitable for 1.0 (paper)|No|Yes|2",
-	'5' => "Suitable for 1.0 (CD)|No|Yes|2"
-);
-
 /* private */ $wgMathNamesEn = array(
 	MW_MATH_PNG => 'mw_math_png',
 	MW_MATH_SIMPLE => 'mw_math_simple',
@@ -1494,7 +1484,12 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_del' => 'Delete',
 'val_warning' => '<b>Never, <i>ever</i>, change something here without <i>explicit</i> community consensus!</b>',
 'val_rev_for' => 'Revisions for ',
+'val_details_th_user' => 'User #$1',
+'val_validation_of' => 'Validation of "$1"',
+'val_revision_of' => 'Revision of $1',
+'val_revision_changes_ok' => 'Your ratings have been stored!',
 'val_rev_stats_link' => 'See the validation statistics for "$1" <a href="$2">here</a>',
+'val_revision_stats_link' => '(<a href="$1">details</a>)',
 'val_iamsure' => 'Check this box if you really mean it!',
 'val_clear_old' => 'Clear my older validation data',
 'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
