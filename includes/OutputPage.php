@@ -228,10 +228,10 @@ class OutputPage {
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
 	 */
-	function addWikiText( $text, $linestart = true ) {
+	function addWikiText( $text, $linestart = true, &$titleObj=false ) {
 		global $wgParser, $wgTitle, $wgUseTidy;
-
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
+		$title = $titleObj ? $titleObj : $wgTitle;
+		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $parserOutput->getText() );
