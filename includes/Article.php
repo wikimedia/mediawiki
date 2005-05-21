@@ -1207,7 +1207,13 @@ class Article {
 
 		# Parse the text and replace links with placeholders
 		$wgOut = new OutputPage();
-		$wgOut->addWikiText( $text );
+		
+		# Pass the current title along (use linestart default)
+		# in case we're creating a wiki page which is different
+		# than the currently displayed one (e.g. image pages
+		# craeted on file uploads); otherwise, link updates will 
+		# go wrong.
+		$wgOut->addWikiText( $text, true, $this->mTitle );
 
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );
@@ -1972,7 +1978,6 @@ class Article {
 		$shortTitle = $this->mTitle->getDBkey();
 
 		$adj = $this->mCountAdjustment;
-
 		if ( 0 != $id ) {
 			$u = new LinksUpdate( $id, $title );
 			array_push( $wgDeferredUpdateList, $u );
