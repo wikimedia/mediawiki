@@ -1284,6 +1284,8 @@ class Article {
 		$v = new Validation ;
 		if ( $wgRequest->getVal ( "mode" , "" ) == "list" )
 			$t = $v->showList ( $this ) ;
+		else if ( $wgRequest->getVal ( "mode" , "" ) == "details" )
+			$t = $v->showDetails ( $this , $wgRequest->getVal( 'revision' ) ) ;
 		else
 			$t = $v->validatePageForm ( $this , $revision ) ;
 		
