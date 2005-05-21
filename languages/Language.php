@@ -2042,10 +2042,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-sharpness-1' => 'Soft',
 'exif-sharpness-2' => 'Hard',
 
-'exif-sharpness-0' => 'Unknown',
-'exif-sharpness-1' => 'Macro',
-'exif-sharpness-2' => 'Close view',
-'exif-sharpness-3' => 'Distant view',
+'exif-subjectdistancerange-0' => 'Unknown',
+'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-2' => 'Close view',
+'exif-subjectdistancerange-3' => 'Distant view',
 
 'exif-gpslatituderef-n' => 'North latitude',
 'exif-gpslatituderef-s' => 'South latitude',
