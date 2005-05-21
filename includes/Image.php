@@ -188,7 +188,8 @@ class Image
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgLang;
+		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgLang,
+		       $wgShowEXIF;
 		$fname = 'Image::loadFromFile';
 		wfProfileIn( $fname );
 		$this->imagePath = $this->getFullPath();
@@ -267,7 +268,7 @@ class Image
 		$this->dataLoaded = true;
 		
 		
-		if ($this->fileExists) $this->metadata = serialize ( $this->retrieveExifData() ) ;
+		if ($this->fileExists && $wgShowEXIF) $this->metadata = serialize ( $this->retrieveExifData() ) ;
 		else $this->metadata = serialize ( array() ) ;
 		
 		if ( isset( $gis['bits'] ) )  $this->bits = $gis['bits'];
