@@ -1208,12 +1208,11 @@ class Article {
 		# Parse the text and replace links with placeholders
 		$wgOut = new OutputPage();
 		
-		# Pass the current title along (use linestart default)
-		# in case we're creating a wiki page which is different
-		# than the currently displayed one (e.g. image pages
-		# craeted on file uploads); otherwise, link updates will 
+		# Pass the current title along in case we're creating a wiki page
+		# which is different than the currently displayed one (e.g. image
+		# pages created on file uploads); otherwise, link updates will 
 		# go wrong.
-		$wgOut->addWikiTextWithTitle( $text, true, $this->mTitle );
+		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
 
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );

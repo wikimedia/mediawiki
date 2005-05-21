@@ -232,20 +232,19 @@ class OutputPage {
 	 */
 	function addWikiText( $text, $linestart = true ) {
 		global $wgTitle;
-		$this->addWikiTextTitle($text, $linestart, $wgTitle);
+		$this->addWikiTextTitle($text, $wgTitle, $linestart);
 	}
 
-	function addWikiTextWithTitle($text, $linestart = true, &$title) {
-		$this->addWikiTextTitle($text, $linestart, $title);
+	function addWikiTextWithTitle($text, &$title, $linestart = true) {
+		$this->addWikiTextTitle($text, $title, $linestart);
 	}
 	
-	function addWikiTextTitle($text, $linestart, &$title) {
+	function addWikiTextTitle($text, &$title, $linestart) {
 		global $wgParser, $wgUseTidy;
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $parserOutput->getText() );
-	
 	}	
 		
 	/**
