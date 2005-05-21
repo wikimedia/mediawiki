@@ -656,6 +656,10 @@ Alle Zeiten sind UTC.
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
+"uploadedimage" => "\"[[$1]]\" hochgeladen",
+'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
+'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
+'uploadcorrupt' => 'Die Datei ist beschädigt oder hat einen falschen Namen. Bitte überprüfen Sie die Datei und laden Sie sie erneut hoch.',
 "successfulupload" => "Erfolgreich hochgeladen",
 "fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen.
 Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die Informationen über die Datei
@@ -1162,6 +1166,22 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'specialloguserlabel' => 'Benutzer: ',
 'speciallogtitlelabel' => 'Titel: ',
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
+
+# Media Warning
+'mediawarning' => '
+===Warnung!===
+Diese Art von Datei kann böswilligen Programmcode enthalten.
+Durch das Herunterladen oder Öffnen der Datei kann der Computer beschädigt werden.
+Bereits das Anklicken des Links kann dazu führen dass der Browser die Datei öffnet
+und unbekannter Programmcode zur Ausführung kommt.
+
+Die Betreiber dieses Wikis können keine Verantwortung für den Inhalte
+dieser Datei übernehmen. Sollte diese Datei tatsächlich böswilligen Programmcode enthalten,
+sollte umgehend ein Administrator informiert werden!
+
+',
+
+'fileinfo' => '$1KB, [http://de.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions $2]',
 
 # external editor support
 'edit-externally' => 'Diese Datei mit einem externen Programm bearbeiten',
