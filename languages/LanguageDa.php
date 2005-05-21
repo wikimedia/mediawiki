@@ -662,6 +662,9 @@ og af hvem, og andre ting du ved om filen.",
 "savefile"		=> "Gem fil",
 "uploadedimage" => "Lagde \"[[$1]]\" op",
 "uploaddisabled" => "Desværre er funktionen til at lægge billeder op afbrudt på denne server.",
+'uploadscripted' => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
+'uploadcorrupt' => 'Denne fil er beskadiget eller forsynet med en forkert endelse. Kontroller venligst filen og prøv at lægge den op igen.',
+'uploadvirus' => 'Denne fil indeholder en virus! Virusnavn: $1',
 
 # Image list
 #
@@ -1059,6 +1062,8 @@ med den nye titel. Du er nødt til at flette dem sammen manuelt.",
         'mw_math_modern' => "Anbefalet til moderne browsere",
 	'mw_math_mathml' => "MathML hvis muligt",
 
+# Media Warning
+'mediawarning' => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udf�rer den.",
 );
 
 class LanguageDa extends LanguageUtf8 {
