@@ -1168,7 +1168,7 @@ class Article {
 		# The existence test queries need to be FOR UPDATE
 		#$oldUpdate = $wgParser->forUpdate( true );
 		$wgOut = new OutputPage();
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
 		#$wgParser->forUpdate( $oldUpdate );
 
 		if ( !$wgUseDumbLinkUpdate ) {
