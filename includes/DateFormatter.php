@@ -286,7 +286,7 @@ class DateFormatter
 	 */
 	function makeNormalYear( $iso ) {
 		if ( $iso{0} == '-' ) {
-			$text = (IntVal( substr( $iso, 1 ) ) - 1) . ' BC';
+			$text = (IntVal( substr( $iso, 1 ) ) + 1) . ' BC';
 		} else {
 			$text = IntVal( $iso );
 		}

@@ -162,6 +162,7 @@ Various bugfixes, small features, and a few experimental things:
 * Deprecated the {{msg:template}} syntax for referring to templates
 * (bug 2151) The delete summary now includes editor name, if only one has edited the article.
 * (bug 2105) Fixed from argument to the PHP mail() function. A missing space could prevent sending mail with some versions of sendmail.
+* (bug 2217) Negative ISO years were incorrectly converted to BC notation.
 * ...and more!
 
 
