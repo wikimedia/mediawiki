@@ -100,6 +100,7 @@ function wfSpecialWatchlist() {
 		// Excessively expensive query removed and replace with an estimate that's roughly the same on en.wikipedia.org
 		// Query below was more expensive than the real watchlist queries
 		/*
+		$docutoff = "AND cur_timestamp > '$cutoff'";
 		$sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
 		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
@@ -145,46 +146,32 @@ function wfSpecialWatchlist() {
 	# through the time-sorted page list checking for watched items.
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
-	if( $cutoff && ( $days <= 7 ) ) {
-		$docutoff = "AND rc_timestamp > '$cutoff'";
-		$sql = "SELECT 
-			rc_namespace cur_namespace, rc_title cur_title, rc_comment cur_comment, 
-			rc_cur_id cur_id, rc_user cur_user, 
-			rc_user_text cur_user_text, rc_timestamp cur_timestamp, 
-			rc_minor cur_minor_edit, rc_new cur_is_new 
-			FROM watchlist,recentchanges
-			WHERE wl_user=$uid AND wl_namespace=rc_namespace AND wl_title=rc_title AND rc_this_oldid=0
-			$docutoff
-		UNION SELECT 
-			rc_namespace cur_namespace, rc_title cur_title, rc_comment cur_comment, 
-			rc_cur_id cur_id, rc_user cur_user, 
-			rc_user_text cur_user_text, rc_timestamp cur_timestamp, 
-			rc_minor cur_minor_edit, rc_new cur_is_new 
-			FROM watchlist,recentchanges
-			WHERE wl_user=$uid AND wl_namespace+1=rc_namespace AND wl_title=rc_title AND rc_this_oldid=0
-			$docutoff
-		ORDER BY cur_timestamp DESC
-		";
+	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
+		$x = "cur_timestamp";
+		$y = wfMsg( "watchmethod-recent" );
+		$z = "wl_namespace=cur_namespace&65534";
 	} else {
-		$use_index=$dbr->useIndexClause("name_title_timestamp");
-		$docutoff = "AND cur_timestamp > '$cutoff'";
-		$sql = "SELECT
-  cur_namespace,cur_title,cur_comment, cur_id,
-  cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
-  FROM $watchlist,$cur $use_index
-  WHERE wl_user=$uid
-  AND (wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)
-  AND wl_title=cur_title
-  $docutoff
-  ORDER BY cur_timestamp DESC";
+		$x = "name_title_timestamp";
+		$y = wfMsg( "watchmethod-list" );
+		$z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
 	}
 
 
 	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
-		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), wfMsg( "watchmethod-list" ),
+		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 
 	$use_index = $dbr->useIndexClause( $x );
+	$sql = "SELECT
+  cur_namespace,cur_title,cur_comment, cur_id,
+  cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
+  FROM $watchlist,$cur $use_index
+  WHERE wl_user=$uid
+  AND $z
+  AND wl_title=cur_title
+  $docutoff
+  ORDER BY cur_timestamp DESC";
+
 
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
