@@ -17,7 +17,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   required a workaround in the form of passing "0" as a GET value or blocked
   the user from passing that value at all.
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
-
+* (bug 2217) Negative ISO years were incorrectly converted to BC notation.
 == MediaWiki 1.4.4 ==
 
 (released 2005-05-04)
