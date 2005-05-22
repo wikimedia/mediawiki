@@ -21,7 +21,7 @@ require_once( "LanguageUtf8.php" );
  2 => "Корисник",
  3 => "Разговор_са_корисником",
  4 => $wgMetaNamespace,
- 5 => "Разговор_о_".$wgMetaNamespace,
+ 5 => ($wgMetaNamespaceTalk ? $wgMetaNamespaceTalk : "Разговор_о_".$wgMetaNamespace ),
  6 => "Слика",
  7 => "Разговор_о_слици",
  8 => "МедијаВики",
