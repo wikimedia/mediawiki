@@ -167,45 +167,45 @@ Various bugfixes, small features, and a few experimental things:
 
 === Changes since 1.5alpha1 ===
 
-* ...various...
 * (bug 73) Category sort key is set to file name when adding category to
   file description from upload page (previously it would be set to
   "Special:Upload", causing problems with category paging)
 * (bug 498) The Views heading in MonoBook.php is now localizable
 * (bug 898) The wiki can now do advanced sanity check on uploaded files
   including virus checks using external programs.
-* (bug 2067) Fixed crash on empty quoted HTML attribute
-* (bug 2079) Removed links to Special:Maintenance from movepagetext messages
-* Fix for reading incorrectly re-gzipped HistoryBlob entries
+* (bug 1692) Fix margin on unwatch tab
 * (bug 1906) Generalize project namespace for Latin localization, update namespaces
+* (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs
+* (bug 2019) Wrapped the output of Special:Version in <div dir='ltr'> in order
+  to preserve the correct flow of text on RTL wikis.
+* (bug 2067) Fixed crash on empty quoted HTML attribute
 * (bug 2075) Corrected namespace definitions in Tamil localization
+* (bug 2079) Removed links to Special:Maintenance from movepagetext message
+* (bug 2095) Triple-closing-bracket thing partly fixed
+* (bug 2110) "noarticletext" should not display on Image page for "sharedupload" media
+* (bug 2150) Fix tab indexes on edit form
+* (bug 2152) Add missing bgcolor to attribute whitelist for <td> and <th>
+* (bug 2176) Section edit 'show changes' button works correctly now
+* (bug 2178) Use temp dir from environment in parser tests
+* (bug 2217) Negative ISO years were incorrectly converted to BC notation
+* Fix for reading incorrectly re-gzipped HistoryBlob entries
+* HistoryBlobStub: the last-used HistoryBlob is kept open to speed up
+  multiple-revision pulls
 * Add $wgLegacySchemaConversion update-time option to reduce amount of
   copying during the schema upgrade: creates HistoryBlobCurStub reference
   records in text instead of copying all the cur_text fields. Requires
   that the cur table be left in place until/unless such fields are migrated
   into the main text store.
-* (bug 1692) Fix margin on unwatch tab
-* (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs"
-* HistoryBlobStub: the last-used HistoryBlob is kept open to speed up
-  multiple-revision pulls
 * Special:Export now includes page, revision, and user id numbers by
   default (previously this was disabled for no particular reason)
 * dumpBackup.php can dump the full database to Export XML, with current
   revisions only or complete histories.
-* (bug 2019) Wrapped the output of Special:Version in <div dir='ltr'> in order
-  to preserve the correct flow of text on RTL wikis.
-* (bug 2150) Fix tab indexes on edit form
-* (bug 2152) Add missing bgcolor to attribute whitelist for <td> and <th>
-* Group table renamed.....?
-* (bug 2178) Use temp dir from environment in parser tests
-* (bug 2176) Section edit 'show changes' button works correctly now
+* The group table was renamed to groups because "group" is a reserved word in
+  SQL which caused some inconveniances.
 * New fileicons for c, cpp, deb, dvi, exe, h, html, iso, java, mid, mov, o,
   ogg, pdf, ps, rm, rpm, tar, tex, ttf and txt files based on the KDE
   crystalsvg theme.
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
-* (bug 2095) Triple-closing-bracket thing partly fixed
-* (bug 2110) "noarticletext" should not display on Image page for "sharedupload" media
-* (bug 2217) Negative ISO years were incorrectly converted to BC notation.
 
 === Caveats ===
 
