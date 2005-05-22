@@ -161,6 +161,7 @@ Various bugfixes, small features, and a few experimental things:
   (used to just be able to take paramaters via a GET request like index.php?title=Special:Movepage&target=Page_to_move)
 * Deprecated the {{msg:template}} syntax for referring to templates
 * (bug 2151) The delete summary now includes editor name, if only one has edited the article.
+* (bug 2105) Fixed from argument to the PHP mail() function. A missing space could prevent sending mail with some versions of sendmail.
 * ...and more!
 
 
