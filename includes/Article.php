@@ -89,6 +89,17 @@ class Article {
 			return false;
 		}
 
+		if( in_array('external', $flags ) ) {
+			$url=$text;
+			@list($proto,$path)=explode('://',$url,2);
+			if ($path=="") {
+				wfProfileOut( $fname );
+				return false;
+			}
+			require_once('ExternalStore.php');
+			$text=ExternalStore::fetchFromUrl($url);
+		}
+
 		if( in_array( 'gzip', $flags ) ) {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
