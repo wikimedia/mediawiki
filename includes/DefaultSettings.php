@@ -369,9 +369,17 @@ $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
 
+/** Normally you can ignore this and it will be something 
+    like $wgMetaNamespace . "_talk". In some languages, you 
+    may want to set this manually for grammatical reasons. 
+    It is currently only respected by those languages
+    where it might be relevant and where no automatic
+    grammar converter exists.
+*/
+$wgMetaNamespaceTalk = false;
+
 # Miscellaneous configuration settings
 #
-
 $wgLocalInterwiki   = 'w';
 $wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
 
