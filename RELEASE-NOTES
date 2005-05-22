@@ -133,6 +133,8 @@ Authentication plugin fixes:
 Various bugfixes, small features, and a few experimental things:
 
 * 'live preview' reduces preview reload burden on supported browsers
+* support for external editors for files and wiki pages:
+  http://meta.wikimedia.org/wiki/Help:External_editors
 * Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
 * New WikiSyntax: -- turns into &mdash; or &ndash; depending on context
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
@@ -165,6 +167,9 @@ Various bugfixes, small features, and a few experimental things:
 === Changes since 1.5alpha1 ===
 
 * ...various...
+* (bug 73) Category sort key is set to file name when adding category to
+  file description from upload page (previously it would be set to
+  "Special:Upload", causing problems with category paging)
 * (bug 498) The Views heading in MonoBook.php is now localizable
 * (bug 898) The wiki can now do advanced sanity check on uploaded files
   including virus checks using external programs.
