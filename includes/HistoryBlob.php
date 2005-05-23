@@ -168,6 +168,17 @@ class HistoryBlobStub
 		if ( !$row || !in_array( 'object', $flags ) ) {
 			return false;
 		}
+		if( in_array( 'external', $flags ) ) {
+                        $url=$row->old_text;
+                        @list($proto,$path)=explode('://',$url,2);
+                        if ($path=="") {
+                                wfProfileOut( $fname );
+                                return false;
+                        }
+                        require_once('ExternalStore.php');
+                        $row->old_text=ExternalStore::fetchFromUrl($url);
+	
+		}
 		if( in_array( 'gzip', $flags ) ) {
 			$obj = unserialize( gzinflate( $row->old_text ) );
 		} else {
