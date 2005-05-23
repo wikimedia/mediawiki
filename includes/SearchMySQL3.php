@@ -93,12 +93,12 @@ class SearchMySQL3 extends SearchEngine {
 
 	function update( $id, $title, $text ) {
 		$dbw=& wfGetDB(DB_MASTER);
-                $dbw->replace( 'searchindex', array(array('si_page')),
-                        array(
-                                'si_page' => $id,
-                                'si_title' => $title,
-                                'si_text' => $text
-                        ), 'SearchMySQL3::update' );
+		$dbw->replace( 'searchindex', array(array('si_page')),
+			array(
+				'si_page' => $id,
+				'si_title' => $title,
+				'si_text' => $text
+			), 'SearchMySQL3::update' );
 	}
 
 	function updateTitle($id,$title) {
@@ -107,8 +107,8 @@ class SearchMySQL3 extends SearchEngine {
 		$searchindex = $dbw->tableName( 'searchindex' );
 
 		$sql = "UPDATE $lowpri $searchindex SET si_title='" .
-                          $dbw->strencode( $title ) .
-                          "' WHERE si_page={$id}";
+			$dbw->strencode( $title ) .
+			"' WHERE si_page={$id}";
 
 		$dbw->query( $sql, "SearchMySQL3::updateTitle" );
 	}
