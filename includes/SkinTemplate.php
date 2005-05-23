@@ -703,11 +703,9 @@ class SkinTemplate extends Skin {
 	}
 	
 	function getNavigationLinks() {
-		global $wgParser, $wgTitle;
-		$text = wfMsgForContent( 'navbar' );
-		$options = ParserOptions::newFromUser( $temp = NULL );
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $options, true );
-		return $parserOutput->getText();
+		global $wgOut;
+		
+		return $wgOut->parse( wfMsgForContent( 'navbar' ) );
 	}
 
 	/**
