@@ -139,6 +139,8 @@ Various bugfixes, small features, and a few experimental things:
 * New WikiSyntax: -- turns into &mdash; or &ndash; depending on context
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
+* (bug 419) The contents of the navigation toolbar are now editable through
+  the MediaWiki namespace on the  MediaWiki:navbar page.
 * (bug 510): Special:Randompage now works for other namespaces than NS_MAIN.
 * (bug 1015) support for the full wikisyntax in <gallery> captions.
 * (bug 1105) A "Destination filename" (save as) added to Special:Upload Upload.
