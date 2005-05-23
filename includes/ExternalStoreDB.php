@@ -25,7 +25,7 @@ class ExternalStoreDB {
 		$lb = LoadBalancer::NewFromParams( $wgExternalServers[$cluster] );
 		$db = $lb->getConnection( DB_SLAVE );
 
-		$ret = $db->selectField( 'text', 'text_text', array( 'text_id' => $id ) ); 
+		$ret = $db->selectField( 'blobs', 'blob_text', array( 'blob_id' => $id ) ); 
 		
 		return $ret;
 	}
