@@ -17,26 +17,28 @@ class SearchEngine {
 	
 	/**
 	 * Perform a full text search query and return a result set.
+	 * If title searches are not supported or disabled, return null.
 	 *
 	 * @param string $term - Raw search term
-	 * @param array $namespaces - List of namespaces to search
-	 * @return ResultWrapper
+	 * @return SearchResultSet
 	 * @access public
+	 * @abstract
 	 */
 	function searchText( $term ) {
-		return $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
+		return null;
 	}
 
 	/**
 	 * Perform a title-only search query and return a result set.
+	 * If title searches are not supported or disabled, return null.
 	 *
 	 * @param string $term - Raw search term
-	 * @param array $namespaces - List of namespaces to search
-	 * @return ResultWrapper
+	 * @return SearchResultSet
 	 * @access public
+	 * @abstract
 	 */
 	function searchTitle( $term ) {
-		return $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
+		return null;
 	}
 	
 	/**
@@ -143,17 +145,6 @@ class SearchEngine {
 	}
 	
 	/**
-	 * Fetch an array of regular expression fragments for matching
-	 * the search terms as parsed by this engine in a text extract.
-	 *
-	 * @return array
-	 * @access public
-	 */
-	function termMatches() {
-		return $this->searchTerms;
-	}
-	
-	/**
 	 * Return a 'cleaned up' search string
 	 *
 	 * @return string
@@ -163,67 +154,6 @@ class SearchEngine {
 		$lc = $this->legalSearchChars();
 		return trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 	}
-	
-	/**
-	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return string
-	 * @access private
-	 */
-	function queryRedirect() {
-		if( $this->showRedirects ) {
-			return 'AND cur_is_redirect=0';
-		} else {
-			return '';
-		}
-	}
-	
-	/**
-	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return string
-	 * @access private
-	 */
-	function queryNamespaces() {
-		$namespaces = implode( ',', $this->namespaces );
-		if ($namespaces == '') {
-			$namespaces = '0';
-		}
-		return 'AND page_namespace IN (' . $namespaces . ')';
-	}
-	
-	/**
-	 * Return a LIMIT clause to limit results on the query.
-	 * @return string
-	 * @access private
-	 */
-	function queryLimit() {
-		return $this->db->limitResult( $this->limit, $this->offset );
-	}
-
-	/**
-	 * Does not do anything for generic search engine
-	 * subclasses may define this though
-	 * @return string
-	 * @access private
-	 */
-	function queryRanking($filteredTerm,$fulltext) {
-		return "";
-	}
-	
-	/**
-	 * Construct the full SQL query to do the search.
-	 * The guts shoulds be constructed in queryMain()
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @access private
-	 */
-	function getQuery( $filteredTerm, $fulltext ) {
-		return $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
-			$this->queryRedirect() . ' ' .
-			$this->queryNamespaces() . ' ' .
-			$this->queryRanking($filteredTerm, $fulltext) . ' ' .
-			$this->queryLimit();
-	}
-
 	/**
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
@@ -233,7 +163,9 @@ class SearchEngine {
 	 */
 	function create() {
 		global $wgDBtype, $wgDBmysql4, $wgSearchType;
-		if( $wgDBtype == 'mysql' ) {
+		if( $wgSearchType ) {
+			$class = $wgSearchType;
+		} elseif( $wgDBtype == 'mysql' ) {
 			if( $wgDBmysql4 ) {
 				$class = 'SearchMySQL4';
 				require_once( 'SearchMySQL4.php' );
@@ -252,6 +184,125 @@ class SearchEngine {
 		return $search;
 	}
 	
+	/**
+	 * Create or update the search index record for the given page.
+	 * Title and text should be pre-processed.
+	 *
+	 * @param int $id
+	 * @param string $title
+	 * @param string $text
+	 * @abstract
+	 */
+	function update( $id, $title, $text ) {
+		// no-op
+	}
+
+	/**
+	 * Update a search index record's title only.
+	 * Title should be pre-processed.
+	 *
+	 * @param int $id
+	 * @param string $title
+	 * @abstract
+	 */
+    function updateTitle( $id, $title ) {
+		// no-op
+    }
+}
+
+class SearchResultSet {
+	/**
+	 * Fetch an array of regular expression fragments for matching
+	 * the search terms as parsed by this engine in a text extract.
+	 *
+	 * @return array
+	 * @access public
+	 * @abstract
+	 */
+	function termMatches() {
+		return array();
+	}
+	
+	function numRows() {
+		return 0;
+	}
+	
+	/**
+	 * Return true if results are included in this result set.
+	 * @return bool
+	 * @abstract
+	 */
+	function hasResults() {
+		return false;
+	}
+	
+	/**
+	 * Some search modes return a total hit count for the query
+	 * in the entire article database. This may include pages
+	 * in namespaces that would not be matched on the given
+	 * settings.
+	 *
+	 * Return null if no total hits number is supported.
+	 *
+	 * @return int
+	 * @access public
+	 */
+	function getTotalHits() {
+		return null;
+	}
+	
+	/**
+	 * Some search modes return a suggested alternate term if there are
+	 * no exact hits. Returns true if there is one on this set.
+	 *
+	 * @return bool
+	 * @access public
+	 */
+	function hasSuggestion() {
+		return false;
+	}
+	
+	/**
+	 * Some search modes return a suggested alternate term if there are
+	 * no exact hits. Check hasSuggestion() first.
+	 *
+	 * @return string
+	 * @access public
+	 */
+	function getSuggestion() {
+		return '';
+	}
+	
+	/**
+	 * Fetches next search result, or false.
+	 * @return SearchResult
+	 * @access public
+	 * @abstract
+	 */
+	function next() {
+		return false;
+	}
+}
+
+class SearchResult {
+	function SearchResult( $row ) {
+		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+	}
+	
+	/**
+	 * @return Title
+	 * @access public
+	 */
+	function getTitle() {
+		return $this->mTitle;
+	}
+	
+	/**
+	 * @return double or null if not supported
+	 */
+	function getScore() {
+		return null;
+	}
 }
 
 /**

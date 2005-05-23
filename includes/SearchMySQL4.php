@@ -23,24 +23,18 @@
  * @subpackage Search
  */
 
-/** */
-require_once( 'SearchEngine.php' );
+require_once( 'SearchMySQL.php' );
 
 /**
  * @package MediaWiki
  * @subpackage Search
  */
-class SearchMySQL4 extends SearchEngine {
+class SearchMySQL4 extends SearchMySQL {
 	var $strictMatching = true;
 	
 	/** @todo document */
 	function SearchMySQL4( &$db ) {
 		$this->db =& $db;
-	}
-
-	/** @todo document */
-	function getIndexField( $fulltext ) {
-		return $fulltext ? 'si_text' : 'si_title';
 	}
 
 	/** @todo document */
@@ -76,42 +70,6 @@ class SearchMySQL4 extends SearchEngine {
 		$searchon = $this->db->strencode( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
-	}
-
-	/** @todo document */
-	function queryMain( $filteredTerm, $fulltext ) {
-		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
-		$revision    = $this->db->tableName( 'revision' );
-		$text        = $this->db->tableName( 'text' );
-		$searchindex = $this->db->tableName( 'searchindex' );
-		return 'SELECT page_id, page_namespace, page_title, old_flags, old_text ' .
-			"FROM $page,$revision,$text,$searchindex " .
-			'WHERE page_id=si_page AND page_latest=rev_id AND rev_text_id=old_id AND ' . $match;
-	}
-
-	/** @todo document */
-	function update( $id, $title, $text ) {
-		$dbw=& wfGetDB(DB_MASTER);
-		$dbw->replace( 'searchindex', array(array('si_page')),
-			array(
-				'si_page' => $id,
-				'si_title' => $title,
-				'si_text' => $text
-		), 'SearchMySQL4::update' );
-	}
-
-	/** @todo document */
-    function updateTitle($id,$title) {
-		$dbw =& wfGetDB(DB_MASTER);
-		$lowpri = $dbw->lowPriorityOption();
-		$searchindex = $dbw->tableName( 'searchindex' );
-
-		$sql = "UPDATE $lowpri $searchindex SET si_title='" .
-			$dbw->strencode( $title ) .
-			"' WHERE si_page={$id}";
-
-		$dbw->query( $sql, "SearchMySQL4::updateTitle" );
 	}
 }
 ?>
