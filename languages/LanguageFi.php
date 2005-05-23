@@ -1266,8 +1266,7 @@ class LanguageFi extends LanguageUtf8 {
   );
   
   function formatNum( $number ) {
-    global $wgTranslateNumerals;
-    return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
+    return strtr($number, $this->digitTransTable );
   }
 
   # Convert from the nominative form of a noun to some other case
