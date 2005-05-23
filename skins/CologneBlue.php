@@ -171,7 +171,7 @@ class SkinCologneBlue extends Skin {
 	 */
 	function quickBar()
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgContLang, $wgEnableUploads, $wgNavigationLinks;
+		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgContLang, $wgEnableUploads;
 
 		$tns=$wgTitle->getNamespace();
 
@@ -182,15 +182,6 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->searchForm();
 
 		$s .= $this->menuHead( "qbbrowse" );
-
-		foreach ( $wgNavigationLinks as $link ) {
-			$msg = wfMsgForContent( $link['href'] );
-			$text = wfMsg( $link['text'] );
-			if ( $msg != '-' && $text != '-' ) {
-				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
-					htmlspecialchars( $text ) . '</a>' . $sep;
-			}
-		}
 
 		if ( $wgOut->isArticle() ) {
 			$s .= $this->menuHead( "qbedit" );
