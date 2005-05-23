@@ -518,7 +518,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang, $wgUseValidation, $wgDBprefix;
+		global $wgContLang, $wgUseValidation, $wgDBprefix, $wgValidationForAnons;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
@@ -641,7 +641,9 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=unwatch' )
 					);
 				}
+			}
 
+			if( $wgUser->isLoggedIn() || $wgValidationForAnons ) { # and $action != 'submit' ) {
 				# Validate tab. TODO: add validation to logged-in user rights 
 				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
 					if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid

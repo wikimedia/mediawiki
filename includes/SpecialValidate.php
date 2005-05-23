@@ -59,7 +59,7 @@ class Validation {
 	function getTopicList () {
 		global $wgDBprefix ;
 		$ret = array () ;
-		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_user=0" ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page=0" ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			$ret[$x->val_type] = $x ;
@@ -133,34 +133,48 @@ class Validation {
 		$this->voteCache[$this->getTimestamp($revision)] = $data ;
 		foreach ( $data AS $x => $y ) {
 			if ( $y->value > 0 ) {
-				$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES ('" ;
+				$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment,val_ip) VALUES ('" ;
 				$sql .= $wgUser->getID() . "','" ;
 				$sql .= $article->getID() . "','" ;
 				$sql .= $revision . "','" ;
 				$sql .= $x . "','" ;
 				$sql .= $y->value . "','" ;
-				$sql .= Database::strencode ( $y->comment ) . "')" ;
+				$sql .= Database::strencode ( $y->comment ) . "','" ;
+				if ( $wgUser->isAnon() ) $sql .= $wgUser->getName() ;
+				$sql .= "')" ;
 				$res = wfQuery( $sql, DB_WRITE );
 			}
 		}
 	}
+	
+	# This function returns a MySQL statement to identify the current user
+	function identifyMe ( $user = "" ) {
+		global $wgUser ;
+		if ( $user == "" ) $user = $wgUser->GetID() ;
+		if ( User::isIP ( $user ) ) {
+			return "(val_user='0' AND val_ip='{$user}')" ;
+		} else {
+			return "(val_user='{$user}')" ;
+		}
+		}
 	
 	# Deletes a specific vote set in both cache and database
 	function deleteRevision ( &$article , $revision ) {
 		global $wgUser , $wgDBprefix ;
 		$ts = $this->getTimestamp ( $revision ) ;
 		if ( !isset ( $this->voteCache[$ts] ) ) return ; # Nothing to do
-		$sql = "DELETE FROM {$wgDBprefix}validate WHERE val_user='" . $wgUser->GetID() . "' AND " ;
+		$sql = "DELETE FROM {$wgDBprefix}validate WHERE" . $this->identifyMe() . " AND " ;
 		$sql .= " val_page='" . $article->getID() . "' AND val_revision='{$revision}'" ;
 		$res = wfQuery( $sql, DB_WRITE );
 		unset ( $this->voteCache[$ts] ) ;
 	}
 	
 	# Reads the entire vote list for this user for the given article
-	function getVoteList ( $id ) {
+	function getVoteList ( $id , $user = "" ) {
 		global $wgUser , $wgDBprefix ;
+		if ( $user == "" ) $user = $wgUser->GetID() ;
 		$r = array () ; # Revisions
-		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page=" . $id . " AND val_user=" . $wgUser->getID() ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_page=" . $id . " AND " . $this->identifyMe($user) ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			#$y = $x->val_revision ;
@@ -177,7 +191,7 @@ class Validation {
 	function getAllVoteLists ( $user ) {
 		global $wgDBprefix ;
 		$r = array () ; # Revisions
-		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE val_user=" . $user ;
+		$sql = "SELECT * FROM {$wgDBprefix}validate WHERE " . $this->identifyMe ( $user ) ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $x = wfFetchObject( $res ) ) {
 			$a = $x->val_page ;
@@ -194,14 +208,15 @@ class Validation {
 		global $wgDBprefix ;
 		$a = 1 ;
 		while ( isset ( $this->topicList[$a] ) ) $a++ ;
-		$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
+		$sql = "INSERT INTO {$wgDBprefix}validate (val_user,val_page,val_revision,val_type,val_value,val_comment,val_ip) VALUES (" ;
 		$sql .= "'0','0','0','{$a}','{$limit}','" ;
-		$sql .= Database::strencode ( $topic ) . "')" ;
+		$sql .= Database::strencode ( $topic ) . "','')" ;
 		$res = wfQuery( $sql, DB_WRITE );
 		$x->val_user = $x->val_page = $x->val_revision = 0 ;
 		$x->val_type = $a ;
 		$x->val_value = $limit ;
 		$x->val_comment = $topic ;
+		$x->val_ip = "" ;
 		$this->topicList[$a] = $x ;
 		ksort ( $this->topicList ) ;
 	}
@@ -230,6 +245,8 @@ class Validation {
 
 	# This function returns a link text to the user rating statistics page
 	function link2userratings ( $user , $text ) {
+		global $wgUser ;
+		if ( $user == 0 ) $user = $wgUser->GetName() ;
 		$nt = Title::newFromText ( "Special:Validate" ) ;
 		$url = htmlspecialchars( $nt->getLocalURL( "mode=userstats&user={$user}" ) );
 		return "<a href=\"{$url}\">{$text}</a>" ;
@@ -422,6 +439,12 @@ class Validation {
 		$r .= "</form>\n" ;
 		return $r ;
 	}
+	
+	# Generates a user ID for both logged-in users and anons; $x is an object from an SQL query
+	function make_user_id ( &$x ) {
+		if ( $x->val_user == 0 ) return $x->val_ip ;
+		else return $x->val_user ;
+		}
 
 	function showDetails ( &$article , $revision ) {
 		global $wgDBprefix , $wgOut, $wgUser ;
@@ -439,8 +462,8 @@ class Validation {
 		$users = array () ;
 		$topics = array () ;
 		while( $x = wfFetchObject( $res ) ) {
-			$data[$x->val_user][$x->val_type] = $x ;
-			$users[$x->val_user] = true ;
+			$data[$this->make_user_id($x)][$x->val_type] = $x ;
+			$users[$this->make_user_id($x)] = true ;
 			$topics[$x->val_type] = true ;
 		}
 		
@@ -465,7 +488,13 @@ class Validation {
 		# Table data
 		foreach ( $users AS $u => $dummy ) { # Every row a user
 			$ret .= "<tr>" ;
-			$ret .= "<th>" . str_replace ( "$1" , $u , wfMsg ( 'val_details_th_user') ) . "</th>" ;
+			$ret .= "<th align='left'>" ;
+			if ( !User::IsIP ( $u ) ) { # Logged-in user rating
+				$ret .= $this->link2userratings ( $u , User::whoIs ( $u ) ) ;
+			} else { # Anon rating
+				$ret .= $this->link2userratings ( $u , $u ) ;
+			}
+			$ret .= "</th>" ;
 			foreach ( $topics AS $t => $dummy ) { # Every column a topic
 				if ( !isset ( $data[$u][$t] ) ) $ret .= "<td/>" ;
 				else {
@@ -486,7 +515,7 @@ class Validation {
 		}
 	
 	function showList ( &$article ) {
-		global $wgDBprefix , $wgOut;
+		global $wgDBprefix , $wgOut, $wgUser;
 		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 
@@ -552,6 +581,7 @@ class Validation {
 		$data = $this->getAllVoteLists ( $user ) ;
 		
 		if ( $user == $wgUser->getID() ) $wgOut->setPageTitle ( wfMsg ( 'val_my_stats_title' ) ) ;
+		elseif ( ! User::IsIP ( $user ) ) $wgOut->setPageTitle ( wfMsg ( 'val_user_stats_title' , User::whoIs ( $user ) ) ) ;
 		else $wgOut->setPageTitle ( wfMsg ( 'val_user_stats_title' , $user ) ) ;
 		
 		$ret = "" ;
@@ -612,8 +642,7 @@ function wfSpecialValidate( $page = '' ) {
 		$html = $v->manageTopics () ;
 	} else if ( $mode == "userstats" ) {
 		$v = new Validation ;
-		$user = $wgUser->GetID() ;
-		#$user = $wgRequest->getVal ( "user" ) ; # Uncomment this to allow all user statistics to be public
+		$user = $wgRequest->getVal ( "user" ) ;
 		$html = $v->showUserStats ( $user ) ;
 	} else {
 		$html = "$mode" ;
