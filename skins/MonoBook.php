@@ -126,12 +126,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<div class="portlet" id="p-nav">
 	  <h5><?php $this->msg('navigation') ?></h5>
 	  <div class="pBody">
-	    <ul>
-	      <?php foreach($this->data['navigation_urls'] as $navlink) { ?>
-	      <li id="<?php echo htmlspecialchars($navlink['id'])
-	        ?>"><a href="<?php echo htmlspecialchars($navlink['href']) ?>"><?php 
-	        echo htmlspecialchars($navlink['text']) ?></a></li><?php } ?>
-	    </ul>
+	    <?php echo $this->data['navigation_urls']; ?>
 	  </div>
 	</div>
 	<div id="p-search" class="portlet">
