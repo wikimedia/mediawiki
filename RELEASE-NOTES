@@ -161,7 +161,6 @@ Various bugfixes, small features, and a few experimental things:
 * $wgStyleSheetDirectory is no longer an alias for $wgStyleDirectory;
 * Special:Movepage can now take paramaters like Special:Movepage/Page_to_move
   (used to just be able to take paramaters via a GET request like index.php?title=Special:Movepage&target=Page_to_move)
-* Deprecated the {{msg:template}} syntax for referring to templates
 * (bug 2151) The delete summary now includes editor name, if only one has edited the article.
 * (bug 2105) Fixed from argument to the PHP mail() function. A missing space could prevent sending mail with some versions of sendmail.
 * (bug 2228) Updated the Slovak translation
@@ -191,6 +190,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2176) Section edit 'show changes' button works correctly now
 * (bug 2178) Use temp dir from environment in parser tests
 * (bug 2217) Negative ISO years were incorrectly converted to BC notation
+* Deprecated the {{msg:template}} syntax for referring to templates, {{msg: is
+  now the wikisyntax representation of wfMsgForContent()
 * Fix for reading incorrectly re-gzipped HistoryBlob entries
 * HistoryBlobStub: the last-used HistoryBlob is kept open to speed up
   multiple-revision pulls
