@@ -530,6 +530,7 @@ $wgDisableLangConversion = false;
 
 # Use article validation feature; turned off by default
 $wgUseValidation = false;
+$wgValidationForAnons = true ;
 
 # Whether to use zhdaemon to perform Chinese text processing
 # zhdaemon is under developement, so normally you don't want to
