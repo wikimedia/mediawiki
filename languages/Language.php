@@ -215,6 +215,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE'              ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
+	MAG_MSG                  => array( 0,    'MSG:'                   ),
 	MAG_SUBST                => array( 0,    'SUBST:'                 ),
 	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
 	MAG_END                  => array( 0,    '__END__'                ),
@@ -253,14 +254,14 @@ global $wgRightsText;
 
 # The navigation toolbar, int: is used here to make sure that the appropriate
 # messages are automatically pulled from the user-selected language file.
-'navbar' =>
-'* [[{{int:mainpage}}]]
-* [[{{int:portal-url}}|{{int:portal}}]]
-* [[{{int:currentevents-url}}|{{int:currentevents}}]]
-* [[{{int:recentchanges-url}}|{{int:recentchanges}}]]
-* [[{{int:randompage-url}}|{{int:randompage}}]]
-* [[{{int:helppage}}|{{int:help}}]]
-* [[{{int:sitesupport-url}}|{{int:sitesupport}}]]',
+'navbar' =>'
+* [[{{int:mainpage}}]]
+* [[{{msg:portal-url}}|{{int:portal}}]]
+* [[{{msg:currentevents-url}}|{{int:currentevents}}]]
+* [[{{msg:recentchanges-url}}|{{int:recentchanges}}]]
+* [[{{msg:randompage-url}}|{{int:randompage}}]]
+* [[{{msg:helppage}}|{{int:help}}]]
+* [[{{msg:sitesupport-url}}|{{int:sitesupport}}]]',
 
 # User preference toggles
 'tog-underline' => 'Underline links',
@@ -337,9 +338,6 @@ global $wgRightsText;
 'mainpagetext'	=> 'Wiki software successfully installed.',
 "mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
 and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => "-"
 
 'portal'		=> 'Community portal',
 'portal-url'		=> 'Project:Community Portal',
