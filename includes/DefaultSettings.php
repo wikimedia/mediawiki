@@ -364,10 +364,11 @@ $wgDBuser           = 'wikiuser';
  */
 $wgDBtype           = "mysql";
 /** Search type
- * "MyISAM" for MySQL native full text search, "Tsearch2" for PostgreSQL
- * based search engine
+ * Leave as null to select the default search engine for the
+ * selected database type (eg SearchMySQL4), or set to a class
+ * name to override to a custom search engine.
  */
-$wgSearchType	    = "MyISAM";
+$wgSearchType	    = null;
 /** Table name prefix */
 $wgDBprefix         = ''; 
 /** Database schema

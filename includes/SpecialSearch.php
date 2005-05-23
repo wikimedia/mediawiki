@@ -168,7 +168,8 @@ class SpecialSearch {
 		$titleMatches = $search->searchTitle( $term );
 		$textMatches = $search->searchText( $term );
 		
-		$num = $titleMatches->numRows() + $textMatches->numRows();
+		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
+			+ ( $textMatches ? $textMatches->numRows() : 0);
 		if ( $num >= $this->limit ) {
 			$top = wfShowingResults( $this->offset, $this->limit );
 		} else {
@@ -185,23 +186,23 @@ class SpecialSearch {
 			$wgOut->addHTML( "<br />{$prevnext}\n" );
 		}
 
-		global $wgContLang;
-		$tm = $wgContLang->convertForSearchResult( $search->termMatches() );
-		$terms = implode( '|', $tm );
-		
-		if( $titleMatches->numRows() ) {
-			$wgOut->addWikiText( '==' . wfMsg( 'titlematches' ) . "==\n" );
-			$wgOut->addHTML( $this->showMatches( $titleMatches, $terms ) );
-		} else {
-			$wgOut->addWikiText( '==' . wfMsg( 'notitlematches' ) . "==\n" );
+		if( $titleMatches ) {
+			if( $titleMatches->numRows() ) {
+				$wgOut->addWikiText( '==' . wfMsg( 'titlematches' ) . "==\n" );
+				$wgOut->addHTML( $this->showMatches( $titleMatches ) );
+			} else {
+				$wgOut->addWikiText( '==' . wfMsg( 'notitlematches' ) . "==\n" );
+			}
 		}
 		
-		if( $textMatches->numRows() ) {
-			$wgOut->addWikiText( '==' . wfMsg( 'textmatches' ) . "==\n" );
-			$wgOut->addHTML( $this->showMatches( $textMatches, $terms ) );
-		} elseif( $num == 0 ) {
-			# Don't show the 'no text matches' if we received title matches
-			$wgOut->addWikiText( '==' . wfMsg( 'notextmatches' ) . "==\n" );
+		if( $textMatches ) {
+			if( $textMatches->numRows() ) {
+				$wgOut->addWikiText( '==' . wfMsg( 'textmatches' ) . "==\n" );
+				$wgOut->addHTML( $this->showMatches( $textMatches ) );
+			} elseif( $num == 0 ) {
+				# Don't show the 'no text matches' if we received title matches
+				$wgOut->addWikiText( '==' . wfMsg( 'notextmatches' ) . "==\n" );
+			}
 		}
 		
 		if ( $num == 0 ) {
@@ -280,19 +281,23 @@ class SpecialSearch {
 	}
 	
 	/**
-	 * @param ResultWrapper $matches
+	 * @param SearchResultSet $matches
 	 * @param string $terms partial regexp for highlighting terms
 	 */
-	function showMatches( &$matches, $terms ) {
+	function showMatches( &$matches ) {
 		$fname = 'SpecialSearch::showMatches';
 		wfProfileIn( $fname );
+		
+		global $wgContLang;
+		$tm = $wgContLang->convertForSearchResult( $matches->termMatches() );
+		$terms = implode( '|', $tm );
 		
 		global $wgOut;
 		$off = $this->offset + 1;
 		$out = "<ol start='{$off}'>\n";
 
-		while( $row = $matches->fetchObject() ) {
-			$out .= $this->showHit( $row, $terms );
+		while( $result = $matches->next() ) {
+			$out .= $this->showHit( $result, $terms );
 		}
 		$out .= "</ol>\n";
 
@@ -305,15 +310,15 @@ class SpecialSearch {
 	
 	/**
 	 * Format a single hit result
-	 * @param object $row
+	 * @param SearchResult $result
 	 * @param string $terms partial regexp for highlighting terms
 	 */
-	function showHit( $row, $terms ) {
+	function showHit( $result, $terms ) {
 		$fname = 'SpecialSearch::showHit';
 		wfProfileIn( $fname );
 		global $wgUser, $wgContLang;
 
-		$t = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$t = $result->getTitle();
 		if( is_null( $t ) ) {
 			wfProfileOut( $fname );
 			return "<!-- Broken link in search result -->\n";
@@ -325,8 +330,9 @@ class SpecialSearch {
 		$contextchars = $wgUser->getOption( 'contextchars' );
 		if ( '' == $contextchars ) { $contextchars = 50; }
 
-		$link = $sk->makeKnownLinkObj( $t, '' );
-		$text = Revision::getRevisionText( $row );
+		$link = $sk->makeKnownLinkObj( $t );
+		$revision = Revision::newFromTitle( $t );
+		$text = $revision->getText();
 		$size = wfMsg( 'nbytes', strlen( $text ) );
 
 		$lines = explode( "\n", $text );
