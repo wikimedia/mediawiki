@@ -250,6 +250,18 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 global $wgRightsText;
 
 /* private */ $wgAllMessagesEn = array(
+
+# The navigation toolbar, int: is used here to make sure that the appropriate
+# messages are automatically pulled from the user-selected language file.
+'navbar' =>
+'* [[{{int:mainpage}}]]
+* [[{{int:portal-url}}|{{int:portal}}]]
+* [[{{int:currentevents-url}}|{{int:currentevents}}]]
+* [[{{int:recentchanges-url}}|{{int:recentchanges}}]]
+* [[{{int:randompage-url}}|{{int:randompage}}]]
+* [[{{int:helppage}}|{{int:help}}]]
+* [[{{int:sitesupport-url}}|{{int:sitesupport}}]]',
+
 # User preference toggles
 'tog-underline' => 'Underline links',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
@@ -340,7 +352,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'	=> 'Bug reports',
 'bugreportspage' => 'Project:Bug_reports',
-'sitesupport'   => '-', # To enable, something like 'Donations', 
+'sitesupport'   => 'Donations',
 'sitesupport-url' => 'Project:Site support',
 'faq'			=> 'FAQ',
 'faqpage'		=> 'Project:FAQ',
