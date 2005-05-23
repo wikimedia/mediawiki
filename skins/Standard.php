@@ -132,7 +132,7 @@ class SkinStandard extends Skin {
 
 	function quickBar() {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgContLang;
-		global $wgEnableUploads, $wgRemoteUploads, $wgNavigationLinks;
+		global $wgEnableUploads, $wgRemoteUploads;
 
 		$fname =  'Skin::quickBar';
 		wfProfileIn( $fname );
@@ -145,16 +145,6 @@ class SkinStandard extends Skin {
 		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
 
 		$sep = "\n<br />";
-
-		foreach ( $wgNavigationLinks as $link ) {
-			$msg = wfMsgForContent( $link['href'] );
-			$text = wfMsg( $link['text'] );
-			if ( $msg != '-' && $text != '-' ) {
-				$s .= '<a href="' . $this->makeInternalOrExternalUrl( $msg ) . '">' .
-					htmlspecialchars( $text ) . '</a>' . $sep;
-			}
-		}
-
 
 		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
