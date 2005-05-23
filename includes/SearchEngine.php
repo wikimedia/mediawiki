@@ -51,28 +51,28 @@ class SearchEngine {
 	function getNearMatch( $term ) {
 		# Exact match? No need to look further.
 		$title = Title::newFromText( $term );
-		if ( $title->getNamespace() == NS_SPECIAL || 0 != $title->getArticleID() ) {
+		if ( $title->getNamespace() == NS_SPECIAL || $title->exists() ) {
 			return $title;
 		}
 
 		# Now try all lower case (i.e. first letter capitalized)
 		#
 		$title = Title::newFromText( strtolower( $term ) );
-		if ( 0 != $title->getArticleID() ) {
+		if ( $title->exists() ) {
 			return $title;
 		}
 
 		# Now try capitalized string
 		#
 		$title = Title::newFromText( ucwords( strtolower( $term ) ) );
-		if ( 0 != $title->getArticleID() ) {
+		if ( $title->exists() ) {
 			return $title;
 		}
 
 		# Now try all upper case
 		#
 		$title = Title::newFromText( strtoupper( $term ) );
-		if ( 0 != $title->getArticleID() ) {
+		if ( $title->exists() ) {
 			return $title;
 		}
 
@@ -226,32 +226,31 @@ class SearchEngine {
 
 	/**
 	 * Load up the appropriate search engine class for the currently
-	   * active database backend, and return a configured instance.
-	   *
-	   * @return SearchEngine
-	   * @access private
-	*/
+	 * active database backend, and return a configured instance.
+	 *
+	 * @return SearchEngine
+	 * @access private
+	 */
 	function create() {
-                global $wgDBtype, $wgDBmysql4, $wgSearchType;
-                if( $wgDBtype == 'mysql' ) {
-                        if( $wgDBmysql4 ) {
-                                $class = 'SearchMySQL4';
-                                require_once( 'SearchMySQL4.php' );
-                        } else {
-                                $class = 'SearchMysql3';
-                                require_once( 'SearchMySQL3.php' );
-                        }
-                } else if ( $wgDBtype == 'PostgreSQL' ) {
-                        $class = 'SearchTsearch2';
-                        require_once( 'SearchTsearch2.php' );
-                } else {
-                        $class = 'SearchEngineDummy';
-                }
-                $search = new $class( wfGetDB( DB_SLAVE ) );
-                $search->setLimitOffset(0,0);
-                return $search;
+		global $wgDBtype, $wgDBmysql4, $wgSearchType;
+		if( $wgDBtype == 'mysql' ) {
+			if( $wgDBmysql4 ) {
+				$class = 'SearchMySQL4';
+				require_once( 'SearchMySQL4.php' );
+			} else {
+				$class = 'SearchMysql3';
+				require_once( 'SearchMySQL3.php' );
+			}
+		} else if ( $wgDBtype == 'PostgreSQL' ) {
+			$class = 'SearchTsearch2';
+			require_once( 'SearchTsearch2.php' );
+		} else {
+			$class = 'SearchEngineDummy';
+		}
+		$search = new $class( wfGetDB( DB_SLAVE ) );
+		$search->setLimitOffset(0,0);
+		return $search;
 	}
-
 	
 }
 

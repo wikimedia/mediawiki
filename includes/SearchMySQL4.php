@@ -91,27 +91,27 @@ class SearchMySQL4 extends SearchEngine {
 	}
 
 	/** @todo document */
-    function update( $id, $title, $text ) {
-            $dbw=& wfGetDB(DB_MASTER);
-            $dbw->replace( 'searchindex', array(array('si_page')),
-                    array(
-                            'si_page' => $id,
-                            'si_title' => $title,
-                            'si_text' => $text
-                    ), 'SearchMySQL4::update' );
-    }
+	function update( $id, $title, $text ) {
+		$dbw=& wfGetDB(DB_MASTER);
+		$dbw->replace( 'searchindex', array(array('si_page')),
+			array(
+				'si_page' => $id,
+				'si_title' => $title,
+				'si_text' => $text
+		), 'SearchMySQL4::update' );
+	}
 
 	/** @todo document */
     function updateTitle($id,$title) {
-            $dbw=& wfGetDB(DB_MASTER);
-            $lowpri=$dbw->lowPriorityOption();
-            $searchindex = $dbw->tableName( 'searchindex' );
+		$dbw =& wfGetDB(DB_MASTER);
+		$lowpri = $dbw->lowPriorityOption();
+		$searchindex = $dbw->tableName( 'searchindex' );
 
-            $sql = "UPDATE $lowpri $searchindex SET si_title='" .
-                      $dbw->strencode( $title ) .
-                      "' WHERE si_page={$id}";
+		$sql = "UPDATE $lowpri $searchindex SET si_title='" .
+			$dbw->strencode( $title ) .
+			"' WHERE si_page={$id}";
 
-            $dbw->query( $sql, "SearchMySQL4::updateTitle" );
-    }
+		$dbw->query( $sql, "SearchMySQL4::updateTitle" );
+	}
 }
 ?>
