@@ -173,8 +173,8 @@ class ChannelFeed extends FeedItem {
 		global $wgServer, $wgStylePath;
 		
 		$this->httpHeaders();
-		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
-		print '<' . '?xml-stylesheet type="text/css" href="' .
+		echo '<?xml version="1.0" encoding="utf-8"?' . ">\n";
+		echo '<?xml-stylesheet type="text/css" href="' .
 			htmlspecialchars( "$wgServer$wgStylePath/common/feed.css" ) . '"?' . ">\n";
 	}
 }
