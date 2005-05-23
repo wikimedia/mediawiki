@@ -1312,7 +1312,10 @@ class User {
 			$this->mEmailAuthenticated = wfTimestampNow();
 			
 			# use the temporary one-time password only once: clear it now !
-			$this->mNewpassword = '';
+
+			# Emergency measure. Uncomment blanking of one-time password
+			# reported in bug 2126
+			# $this->mNewpassword = '';
 			$this->saveSettings();
 			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
