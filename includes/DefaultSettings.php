@@ -1267,22 +1267,6 @@ $wgThumbLimits = array(
 	300
 );
 
-/** Navigation links for the user sidebar.
- * 'text' is the name of the MediaWiki message that contains the label of this link
- * 'href' is the name of the MediaWiki message that contains the link target of this link.
- *        Link targets starting with http are considered remote links. Ones not starting with
- *        http are considered as names of local wiki pages.
- */
-$wgNavigationLinks = array (
-	array( 'text'=>'mainpage',	'href'=>'mainpage' ),
-	array( 'text'=>'portal',	'href'=>'portal-url' ),
-	array( 'text'=>'currentevents', 'href'=>'currentevents-url' ),
-	array( 'text'=>'recentchanges', 'href'=>'recentchanges-url' ),
-	array( 'text'=>'randompage',	'href'=>'randompage-url' ),
-	array( 'text'=>'help', 		'href'=>'helppage' ),
-	array( 'text'=>'sitesupport',	'href'=>'sitesupport-url' ),
-);
-
 /**
  *  On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.

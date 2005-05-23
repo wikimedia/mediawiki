@@ -383,7 +383,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'body_onload', false );
 		}
-		$tpl->set( 'navigation_urls', $this->buildNavigationUrls() );
+		$tpl->set( 'navigation_urls', $this->getNavigationLinks() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// execute template
@@ -703,39 +703,11 @@ class SkinTemplate extends Skin {
 	}
 	
 	function getNavigationLinks() {
-		global $wgNavigationLinks;
-		return $wgNavigationLinks;
-	}
-
-	/**
-	 * build array of global navigation links
-	 * @return array
-	 * @access private
-	 */ 
-	function buildNavigationUrls () {
-		$fname = 'SkinTemplate::buildNavigationUrls';
-		wfProfileIn( $fname );
-		
-		$links = $this->getNavigationLinks();
-		
-		$result = array();
-		foreach ( $links as $link ) {
-			$text = wfMsg( $link['text'] );
-			wfProfileIn( "$fname-{$link['text']}" );
-			if ($text != '-') {
-				$dest = wfMsgForContent( $link['href'] );
-				wfProfileIn( "$fname-{$link['text']}2" );
-				$result[] = array(
-					'text' => $text,
-					'href' => $this->makeInternalOrExternalUrl( $dest ),
-					'id' => 'n-'.$link['text']
-				);
-				wfProfileOut( "$fname-{$link['text']}2" );
-			}
-			wfProfileOut( "$fname-{$link['text']}" );
-		}
-		wfProfileOut( $fname );
-		return $result;
+		global $wgParser, $wgTitle;
+		$text = wfMsgForContent( 'navbar' );
+		$options = ParserOptions::newFromUser( $temp = NULL );
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $options, true );
+		return $parserOutput->getText();
 	}
 
 	/**
