@@ -149,7 +149,7 @@ class HTMLDumpTemplate extends QuickTemplate {
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
-	<div class="portlet" id="p-nav">
+	<div class="portlet" id="p-navigation">
 	  <h5><?php $this->msg('navigation') ?></h5>
 	  <div class="pBody">
 	    <ul>

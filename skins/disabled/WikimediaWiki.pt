@@ -60,7 +60,7 @@
 	  <a style="background-image: url(${logopath});" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
 	</div>
 	<script type="${jsmimetype}"> if (window.isMSIE55) fixalpha(); </script>
-	<div class="portlet" id="p-nav">
+	<div class="portlet" id="p-navigation">
 	  <h5 i18n:translate="string:navigation">Navigation</h5>
 	  <div class="pBody">
 	    <ul>
