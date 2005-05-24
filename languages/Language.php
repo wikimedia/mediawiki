@@ -255,7 +255,7 @@ global $wgRightsText;
 # The navigation toolbar, int: is used here to make sure that the appropriate
 # messages are automatically pulled from the user-selected language file.
 'navbar' =>'
-* [[{{int:mainpage}}]]
+* [[{{msg:mainpage}}|{{int:mainpage}}]]
 * [[{{msg:portal-url}}|{{int:portal}}]]
 * [[{{msg:currentevents-url}}|{{int:currentevents}}]]
 * [[{{msg:recentchanges-url}}|{{int:recentchanges}}]]
