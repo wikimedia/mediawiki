@@ -129,10 +129,10 @@ class MonoBookTemplate extends QuickTemplate {
 	  <div class='pBody'>
 	    <ul>
 	    <?php foreach($cont as $key => $val) { ?>
-	      <li id="<?php echo htmlspecialchars($val['href'])
-		 ?>"><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php
-		 echo htmlspecialchars($val['text'])?></a></li><?php
-	      } ?>
+	      <li id="<?php echo htmlspecialchars($val['id']) ?>">
+	        <a href="<?php echo htmlspecialchars($val['href']) ?>"><?php echo htmlspecialchars($val['text'])?></a>
+	      </li>
+	     <?php } ?>
 	    </ul>
 	  </div>
 	</div>
