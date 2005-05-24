@@ -301,7 +301,7 @@ class LanguageLatin1 {
 	}
 	
 	function linkTrail() {
-		return $this->lang->linkTrail();
+		return utf8_decode( $this->lang->linkTrail() );
 	}
 
 	function getLangObj() {
