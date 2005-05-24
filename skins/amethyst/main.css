@@ -98,9 +98,9 @@ a:active { color: #ffa500; }
 a:hover { text-decoration: underline;}
 a.stub { color: #772233; }
 a.new,
-#p-nav a.new { color:#C033C0; }
+#p-navigation a.new { color:#C033C0; }
 a.new:visited,
-#p-nav a.new:visited { color:#C033C0; }
+#p-navigation a.new:visited { color:#C033C0; }
 
 img {
     border: none;
@@ -723,7 +723,7 @@ input.searchButton {
 ** the personal toolbar
 */
 
-#p-nav {
+#p-navigation {
     width:100%;
     white-space:nowrap;
     padding:0 0 0 0;
@@ -738,11 +738,11 @@ input.searchButton {
     line-height: 1.2em;
 }
 
-#p-nav h5 {
+#p-navigation h5 {
     display:none;
 }
-#p-nav .portlet,
-#p-nav .pBody {
+#p-navigation .portlet,
+#p-navigation .pBody {
     padding:0;
     margin:0;
     border: none;
@@ -752,7 +752,7 @@ input.searchButton {
 }
 
 /* this is the ul contained in the portlet */
-#p-nav ul {
+#p-navigation ul {
     border: none;
     line-height: 1.4em;
     color: #2f6fab;
@@ -764,7 +764,7 @@ input.searchButton {
     z-index:0;
     background: none;
 }
-#p-nav li {
+#p-navigation li {
     z-index:0;
     border:none;
     padding:0;
@@ -774,13 +774,13 @@ input.searchButton {
     line-height: 1.2em;
     background: none;
 }
-#p-nav li a {
+#p-navigation li a {
     text-decoration: none;
     color: white;
     padding-bottom: 0.2em;
     background: none;
 }
-#p-nav li a:hover {
+#p-navigation li a:hover {
     padding-bottom: 0.2em;
     text-decoration: none;
 }

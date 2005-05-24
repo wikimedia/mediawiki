@@ -671,7 +671,7 @@ special external link styling */
 ** the navigation portlet
 */
 
-#p-nav {
+#p-navigation {
     position: relative;
     z-index: 3;
 }
