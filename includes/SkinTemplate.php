@@ -383,7 +383,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'body_onload', false );
 		}
-		$tpl->set( 'navigation_urls', $this->getNavigationLinks() );
+		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// execute template
@@ -704,15 +704,37 @@ class SkinTemplate extends Skin {
 		return $content_actions;
 	}
 	
-	function getNavigationLinks() {
-		global $wgOut;
-		$fname = 'SkinTemplate::getNavigationLinks';
+	/**
+	 * Build an array that represents the sidebar(s), the navigation bar among them
+	 *
+	 * @return array
+	 * @access private
+	 */ 
+	function buildSidebar() {
+		$fname = 'SkinTemplate::buildSidebar';
 		wfProfileIn( $fname );
 		
-		$parsed = $wgOut->parse( wfMsgForContent( 'navbar' ) );
+		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
+		foreach ($lines as $line) {
+			if (strpos($line, '*') !== 0)
+				continue;
+			if (strpos($line, '**') !== 0) {
+				$line = trim($line, '* ');
+				$heading = $line;
+			} else {
+				if (strpos($line, '|') !== false) { // sanity check
+					$line = explode( '|' , trim($line, '* '), 2 );
+					$bar[$heading][] = array(
+						'text' => wfMsg( $line[1] ),
+						'href' => $this->makeInternalOrExternalUrl( wfMsgForContent( $line[0] ) ),
+						'id' => 'n-' . $line[1],
+					);
+				} else { continue; }
+			}
+		}
 		
 		wfProfileOut( $fname );
-		return $parsed;
+		return $bar;
 	}
 
 	/**
