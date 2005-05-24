@@ -77,6 +77,7 @@ require_once( 'LanguageUtf8.php' );
 	MAG_PAGENAME => array( 1, 'PAGENAME', 'MENOSTRÁNKY' ),
 	MAG_PAGENAMEE => array( 1, 'PAGENAMEE' ),
 	MAG_NAMESPACE => array( 1, 'NAMESPACE', 'MENNÝPRIESTOR' ),
+	MAG_MSG => array( 0, 'MSG:', 'SPRÁVA:' ),
 	MAG_SUBST => array( 0, 'SUBST:' ),
 	MAG_MSGNW => array( 0, 'MSGNW:' ),
 	MAG_END => array( 0, '__END__', '__KONIEC__' ),
@@ -177,9 +178,6 @@ require_once( 'LanguageUtf8.php' );
 'mainpagetext'	=> 'Wiki sofvér úspešne nainštalovaný.',
 "mainpagedocfooter" => "Prosím prečítajte si [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentáciu ako upraviť rozhranie]
 a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú príručku], ktorá Vám pomôže pri nastavení a používaní.",
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => "-"
 
 'portal'		=> 'Portál komunity',
 'portal-url'		=> 'Project:Portál_komunity',
@@ -1335,7 +1333,7 @@ Do poľa napíšte meno redaktora a potvrďte zmenu redaktora na administrátora
 'val_of' => '$1 of $2',
 'val_revision' => 'verzie',
 'val_time' => 'čas',
-'val_user_stats_title' => 'Prehľad overení redaktora #$1',
+'val_user_stats_title' => 'Prehľad overení redaktora $1',
 'val_my_stats_title' => 'Môj prehľad overení',
 'val_list_header' => '<th>#</th><th>Téma</th><th>Rozsah</th><th>Akcia</th>',
 'val_add' => 'Pridaj',
@@ -1344,7 +1342,7 @@ Do poľa napíšte meno redaktora a potvrďte zmenu redaktora na administrátora
 'val_revision_number' => 'Verzie #$1',
 'val_warning' => "'''Už ''nikdy'' tu nič nemeň bez ''explicitného'' konsenzu komunity!'''",
 'val_rev_for' => 'verzie pre ',
-'val_details_th_user' => 'Redaktor #$1',
+'val_details_th_user' => 'Redaktor $1',
 'val_validation_of' => 'Overenie "$1"',
 'val_revision_of' => 'Verzie $1',
 'val_revision_changes_ok' => 'Vaše hodnotenie bolo zaznamenané!',
