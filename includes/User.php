@@ -1306,17 +1306,6 @@ class User {
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
 			return true;
 		} elseif ( ($this->mNewpassword != '') && (0 == strcmp( $ep, $this->mNewpassword )) ) {
-			# If e-mail confirmation hasn't been done already,
-			# we may as well confirm it here -- the user can only
-			# get this password via e-mail.
-			$this->mEmailAuthenticated = wfTimestampNow();
-			
-			# use the temporary one-time password only once: clear it now !
-
-			# Emergency measure. Uncomment blanking of one-time password
-			# reported in bug 2126
-			# $this->mNewpassword = '';
-			$this->saveSettings();
 			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
