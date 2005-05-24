@@ -107,7 +107,7 @@ class MonoBookTemplate extends QuickTemplate {
 	  <h5><?php $this->msg('personaltools') ?></h5>
 	  <div class="pBody">
 	    <ul>
-	    <?php foreach($this->data['personal_urls'] as $key => $item) {
+	    <?php foreach($this->data['personal_urls'] as $bar => $item) {
 	       ?><li id="pt-<?php echo htmlspecialchars($key) ?>"><a href="<?php
 	       echo htmlspecialchars($item['href']) ?>"<?php
 	       if(!empty($item['class'])) { ?> class="<?php
@@ -123,12 +123,20 @@ class MonoBookTemplate extends QuickTemplate {
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
-	<div class="portlet" id="p-nav">
-	  <h5><?php $this->msg('navigation') ?></h5>
-	  <div class="pBody">
-	    <?php echo $this->data['navigation_urls']; ?>
+	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
+	<div class='portlet' id='p-<?php echo htmlspecialchars($bat) ?>'>
+	  <h5><?php $this->msg( $bar ) ?></h5>
+	  <div class='pBody'>
+	    <ul>
+	    <?php foreach($cont as $key => $val) { ?>
+	      <li id="<?php echo htmlspecialchars($val['href'])
+		 ?>"><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php
+		 echo htmlspecialchars($val['text'])?></a></li><?php
+	      } ?>
+	    </ul>
 	  </div>
 	</div>
+	<?php } ?>
 	<div id="p-search" class="portlet">
 	  <h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 	  <div class="pBody">

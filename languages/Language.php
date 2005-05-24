@@ -254,14 +254,22 @@ global $wgRightsText;
 
 # The navigation toolbar, int: is used here to make sure that the appropriate
 # messages are automatically pulled from the user-selected language file.
-'navbar' =>'
-* [[{{msg:mainpage}}|{{int:mainpage}}]]
-* [[{{msg:portal-url}}|{{int:portal}}]]
-* [[{{msg:currentevents-url}}|{{int:currentevents}}]]
-* [[{{msg:recentchanges-url}}|{{int:recentchanges}}]]
-* [[{{msg:randompage-url}}|{{int:randompage}}]]
-* [[{{msg:helppage}}|{{int:help}}]]
-* [[{{msg:sitesupport-url}}|{{int:sitesupport}}]]',
+
+'sidebar' => "
+This is the markup that's parsed when the sidebar(s) are generated, lines that
+do not begin with * or ** are automatically discarded.
+
+Only put [a-z-] in the level one headings since it will be used as an XHMTL id.
+
+* navigation
+** mainpage|mainpage
+** portal-url|portal
+** currentevents-url|currentevents
+** recentchanges-url|recentchanges
+** randompage-url|randompage
+** helppage|help
+** sitesupport-url|sitesupport
+",
 
 # User preference toggles
 'tog-underline' => 'Underline links',
