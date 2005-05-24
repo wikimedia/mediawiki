@@ -172,7 +172,7 @@ class SearchMySQL extends SearchEngine {
     function updateTitle( $id, $title ) {
 		$dbw =& wfGetDB( DB_MASTER );
 		
-		$dbw->update( array( 'searchindex' ),
+		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
 			array( 'si_page'  => $id ),
 			'SearchMySQL4::updateTitle',
