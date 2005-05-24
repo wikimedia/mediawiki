@@ -256,7 +256,7 @@ a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú pr�
 'articlepage'	=> 'Zobraz článok',
 'subjectpage'	=> 'Zobraz tému', # For compatibility
 'talk' => 'Diskusia',
-'views' => 'Views',
+'views' => 'Zobrazení',
 'toolbox' => 'Nástroje',
 'userpage' => 'Zobraz stránku redaktora',
 'wikipediapage' => 'Zobraz stránku projektu',
@@ -426,7 +426,6 @@ Vaše skutočné meno, ak sa rozhodnete ho uverejniť, bude priradené k vašej 
 'prefs-help-realname' 	=> '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.',
 'loginerror'	=> 'Chyba pri prihlasovaní',
 'prefs-help-email' => '² E-mail (nepovinné): Uloženie e-mailovej adresy umožní iným ľuďom kontaktovať Vás priamo pomocou web stránky, bez uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
-'prefs-help-userdata' => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.<br /> ² E-mail (nepovinné): Uloženie e-mailovej adresy umožní iným ľuďom kontaktovať Vás priamo pomocou web stránky, bez uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.', #OBSOLETE?
 'nocookiesnew'	=> "Redaktorské konto bolo vytvorené, ale nie ste prihlásený. {{SITENAME}} používa koláčiky (cookies) na prihlásenie. Vy máte koláčiky (cookies) vypnuté. Zapnite ich a potom sa prihláste s vaším novým redaktorským menom a heslom.",
 'nocookieslogin'	=> "{{SITENAME}} používa koláčiky (cookies) na prihlásenie. Vy máte koláčiky (cookies) vypnuté. Zapnite ich a skúste znovu.",
 'noname'		=> 'Nezadali ste platné redaktorské meno.',
@@ -770,7 +769,7 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 Pozrite aj [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].',
 'rcloaderr'		=> 'Nahrávam posledné úpravy',
 'rcnote'		=> "Tu je posledných <strong>$1</strong> úprav počas posledných <strong>$2</strong> dní.",
-'rcnotefrom'	=> "rc poznámka od",
+'rcnotefrom'	=> "Tu sú posledné zmeny od '''$2''' (zobrazených '''$1''' záznamov).",
 'rclistfrom'	=> "Zobraz nové úpravy počnúc od $1",
 'showhideminor' => "$1 drobné úpravy | $2 robotov | $3 prihlásených redaktorov ",
 'rclinks'		=> "Zobraz posledných $1 úprav v posledných $2 dňoch<br />$3",
@@ -823,9 +822,9 @@ Ak máte pomalé internetové pripojenie, môže to trvať istý čas.
 <p>Uprednostňované formáty sú JPEG pre fotografické obrázky , PNG
 pre kresby a iné symboly a OGG pre zvuky.
 Prosíme Vás, aby ste svojim súborom dali opisný názov, aby sa zamedzilo zámenám.
-Na začlenenie obrázku v článku použite odkaz v tvare '''[[Obrázok:súbor.jpg]]'''
-alebo '''[[Obrázok:súbor.png|alt text]]'''
-alebo '''[[Média:súbor.ogg]]''' pre zvuky.
+Na začlenenie obrázku v článku použite odkaz v tvare '''<nowiki>[[{{ns:6}}:súbor.jpg]]</nowiki>'''
+alebo '''<nowiki>[[{{ns:6}}:súbor.png|alt text]]</nowiki>'''
+alebo ''<nowiki>'[[{{ns:-2}}:súbor.ogg]]</nowiki>''' pre zvuky.
 <p>Nezabudnite, že tak ako pri stránkach {{GRAMMAR:genitív|{{SITENAME}}}}, môžu iní upravovať alebo zmazať vaše nahrané súbory, ak si myslia, že to je prospešné encyklopédii, a
 nahrávanie vám môže byť znemožnené (zablokované), ak budete zneužívať systém",
 
