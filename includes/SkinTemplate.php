@@ -706,8 +706,13 @@ class SkinTemplate extends Skin {
 	
 	function getNavigationLinks() {
 		global $wgOut;
+		$fname = 'SkinTemplate::getNavigationLinks';
+		wfProfileIn( $fname );
 		
-		return $wgOut->parse( wfMsgForContent( 'navbar' ) );
+		$parsed = $wgOut->parse( wfMsgForContent( 'navbar' ) );
+		
+		wfProfileOut( $fname );
+		return $parsed;
 	}
 
 	/**
