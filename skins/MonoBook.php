@@ -107,7 +107,7 @@ class MonoBookTemplate extends QuickTemplate {
 	  <h5><?php $this->msg('personaltools') ?></h5>
 	  <div class="pBody">
 	    <ul>
-	    <?php foreach($this->data['personal_urls'] as $bar => $item) {
+	    <?php foreach($this->data['personal_urls'] as $key => $item) {
 	       ?><li id="pt-<?php echo htmlspecialchars($key) ?>"><a href="<?php
 	       echo htmlspecialchars($item['href']) ?>"<?php
 	       if(!empty($item['class'])) { ?> class="<?php
