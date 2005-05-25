@@ -218,7 +218,7 @@ if( !$wgUser->mDataLoaded ) {
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');
 # Validate $wgLanguageCode, which will soon be sent to an eval()
-if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z\-]*$/', $wgLanguageCode ) ) {
+if( empty( $wgLanguageCode ) || preg_match( '/^[^a-z-]*$/', $wgLanguageCode ) ) {
 	$wgLanguageCode = $wgContLanguageCode;
 }
 
