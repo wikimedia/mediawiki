@@ -59,7 +59,9 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$dbw->delete('links', array ( 'l_from' => $this->mId, 'l_to' => $del ));
+				$sql = "DELETE FROM $links WHERE l_from={$this->mId} AND l_to IN(".
+					implode( ',', $del ) . ')';
+				$dbw->query( $sql, $fname );
 			}
 		} else {
 			# Delete everything
@@ -88,7 +90,18 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_BAD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$dbw->delete('brokenlinks', array('bl_from'=>$this->mId, 'bl_to'=>$del));
+				$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId} AND bl_to IN(";
+				$first = true;
+				foreach( $del as $badTitle ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$sql .= ',';
+					}
+					$sql .= $dbw->addQuotes( $badTitle );
+				}
+				$sql .= ')';
+				$dbw->query( $sql, $fname );
 			}
 		} else {
 			# Delete all
@@ -112,7 +125,8 @@ class LinksUpdate {
 
 		#------------------------------------------------------------------------------
 		# Image links
-		$dbw->delete('imagelinks',array('il_from'=>$this->mId));
+		$sql = "DELETE FROM $imagelinks WHERE il_from='{$this->mId}'";
+		$dbw->query( $sql, $fname );
 		
 		# Get addition list
 		$add = $wgLinkCache->getImageLinks();
@@ -136,61 +150,25 @@ class LinksUpdate {
 		#------------------------------------------------------------------------------
 		# Category links
 		if( $wgUseCategoryMagic ) {
-			global $messageMemc, $wgDBname;
+			$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}'";
+			$dbw->query( $sql, $fname );
 			
 			# Get addition list
 			$add = $wgLinkCache->getCategoryLinks();
 			
-			# select existing catlinks for this page
-			$res = $dbw->select( $categorylinks, array( 'cl_to' ), array( 'cl_from' => $this->mId ), 
-			$fname, 'FOR UPDATE' );
-
-			$del = array();
-			if(0 != $dbw->numRows( $res )) {
-				while ( $row = $dbw->fetchObject( $res ) ) {
-					if(!isset($add[$row->cl_to])) {
-						// in the db, but no longer in the page -> delete
-						$del[] = $row->cl_to;
-					} else {
-						// remove already existing category memberships
-						// from the add array
-						unset($add[$row->cl_to]);
-					}
-				}
-			}
-			// delete any removed categorylinks
-			if(count($del) > 0) {
-				// delete old ones
-				$dbw->delete('categorylinks', array('cl_from'=>$this->mId, 'cl_to'=>$del));
-				foreach($del as $cname){
-					$nt = Title::makeTitle( NS_CATEGORY, $cname );
-					$nt->invalidateCache();
-					// update the timestamp which indicates when the last article
-					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.md5( $nt->getDBkey() ).':adddeltimestamp';
-					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
-					#wfDebug( "Linksupdate:Cats:del: ".serialize($nt)." $key \n" );
-				}
-			}
-			// add any new category memberships
-			if (count($add) > 0) {
+			# Do the insertion
+			$sql = '';
+			if ( 0 != count ( $add ) ) {
 				$arr = array();
 				foreach( $add as $cname => $sortkey ) {
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
 					if( !$nt ) continue;
 					$nt->invalidateCache();
-					// update the timestamp which indicates when the last article
-					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.md5( $nt->getDBkey() ).':adddeltimestamp';
-					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
-					#wfDebug( "Linksupdate:Cats:add: ".serialize($nt)." $key\n" );
-					#wfDebug( "LU-get: ".$messageMemc->get( $key)."\n");
 					array_push( $arr, array(
 						'cl_from'    => $this->mId,
 						'cl_to'      => $cname,
 						'cl_sortkey' => $sortkey ) );
 				}
-				// do the actual sql insertion
 				$dbw->insert( 'categorylinks', $arr, $fname, array( 'IGNORE' ) );
 			}
 		}
@@ -218,7 +196,8 @@ class LinksUpdate {
 		$imagelinks = $dbw->tableName( 'imagelinks' );
 		$categorylinks = $dbw->tableName( 'categorylinks' );
 		
-		$dbw->delete('links',array('l_from'=>$this->mId));
+		$sql = "DELETE FROM $links WHERE l_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
 		if ( 0 != count( $a ) ) {
@@ -231,7 +210,8 @@ class LinksUpdate {
 			$dbw->insert( 'links', $arr, $fname, array( 'IGNORE' ) );
 		}
 
-		$dbw->delete('brokenlinks',array('bl_from'=>$this->mId));
+		$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getBadLinks();
 		if ( 0 != count ( $a ) ) {
@@ -244,7 +224,8 @@ class LinksUpdate {
 			$dbw->insert( 'brokenlinks', $arr, $fname, array( 'IGNORE' ) );
 		}
 		
-		$dbw->delete('imagelinks',array('il_from'=>$this->mId));
+		$sql = "DELETE FROM $imagelinks WHERE il_from={$this->mId}";
+		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
 		$sql = '';
@@ -258,7 +239,8 @@ class LinksUpdate {
 		}
 
 		if( $wgUseCategoryMagic ) {
-			$dbw->delete('categorylinks',array('cl_from'=>$this->mId));
+			$sql = "DELETE FROM $categorylinks WHERE cl_from='{$this->mId}'";
+			$dbw->query( $sql, $fname );
 			
 			# Get addition list
 			$add = $wgLinkCache->getCategoryLinks();
