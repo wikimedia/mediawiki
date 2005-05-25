@@ -212,6 +212,8 @@ Various bugfixes, small features, and a few experimental things:
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
 * Added language variant support for Icelandic, now supports "Íslenzka"
 * The #p-nav id in MonoBook is now #p-navigation
+* Putting $4 in msg:userstatstext will now give the percentage of
+  admnistrators out of normal users.
 
 === Caveats ===
 
