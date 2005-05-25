@@ -8,9 +8,6 @@
 if( !defined( 'MEDIAWIKI' ) )
 	die();
 
-/** to get a list of languages in setting user's language preference */
-require_once('languages/Names.php');
-
 /**
  * Entry point that create the "Preferences" object
  */
@@ -383,7 +380,7 @@ class PreferencesForm {
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits, $wgThumbLimits;
-		global $wgLanguageNames, $wgDisableLangConversion;
+		global $wgDisableLangConversion;
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
@@ -490,9 +487,10 @@ class PreferencesForm {
 		 * Otherwise, no default is selected and the user ends up
 		 * with an Afrikaans interface since it's first in the list.
 		 */
-		$selectedLang = isset( $wgLanguageNames[$this->mUserLanguage] ) ? $this->mUserLanguage : $wgContLanguageCode;
+		$languages = $wgLang->getLanguageNames();
+		$selectedLang = isset( $languages[$this->mUserLanguage] ) ? $this->mUserLanguage : $wgContLanguageCode;
 		$selbox = null;
-		foreach($wgLanguageNames as $code => $name) {
+		foreach($languages as $code => $name) {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
@@ -509,7 +507,7 @@ class PreferencesForm {
 		
 			foreach($variants as $v) {
 				$v = str_replace( '_', '-', strtolower($v));
-				if($name = $wgLanguageNames[$v]) {
+				if($name = $languages[$v]) {
 					$variantArray[$v] = $name;
 				}
 			}
