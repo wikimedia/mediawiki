@@ -134,8 +134,6 @@ class QueryPage {
 			$ignoreR = $dbr->ignoreErrors( true );
 		}
 
-		# Clear out any old cached data
-		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 		# Do query
 		$res = $dbr->query( $this->getSQL() . $this->getOrder() . $dbr->limitResult( 1000,0 ), $fname );
 		$num = false;
@@ -163,12 +161,26 @@ class QueryPage {
 					$dbw->addQuotes( $value ) . ')';
 			}
 
+			# Clear out any old cached data
+			$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 			# Save results into the querycache table on the master
 			if ( !$first ) {
 				if ( !$dbw->query( $insertSql, $fname ) ) {
-					// Set result to false to indicate error
-					$dbr->freeResult( $res );
-					$res = false;
+					// Try reconnecting
+					for ( $i=0; $i<10 && !$dbw->ping(); $i++)  {
+						sleep(10);
+					}
+					if ( $i<10 ) {
+						$dbw->immediateCommit();
+						if ( !$dbw->query( $insertSql, $fname ) ) {
+							// Set $num to false to indicate error
+							$num = false;
+						}
+						$dbr->freeResult( $res );
+					} else {
+						$num = false;
+					}
+
 				}
 			}
 			if ( $res ) {
