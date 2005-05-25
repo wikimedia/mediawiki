@@ -13,9 +13,9 @@ require_once( "commandLine.inc" );
 print "This is an example command-line maintenance script.\n";
 
 $dbr =& wfGetDB( DB_SLAVE );
-$cur = $dbr->tableName( 'cur' );
-$res = $dbr->query( "SELECT MAX(cur_id) as m FROM $cur" );
+$page = $dbr->tableName( 'page' );
+$res = $dbr->query( "SELECT MAX(page_id) as m FROM $page" );
 $row = $dbr->fetchObject( $res );
-print "Max cur_id: {$row->m}\n";
+print "Max page_id: {$row->m}\n";
 
 ?>
