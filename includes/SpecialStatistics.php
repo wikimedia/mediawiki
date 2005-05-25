@@ -49,12 +49,13 @@ function wfSpecialStatistics() {
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
 
-	$sk = $wgUser->getSkin();
-	$ap = '[[' . wfMsg( 'administrators' ) . ']]';
-
 	$text .= wfMsg( 'userstatstext',
 		$wgLang->formatNum( $total ),
-		$wgLang->formatNum( $admins ), $ap );
+		$wgLang->formatNum( $admins ),
+		'[[' . wfMsg( 'administrators' ) . ']]',
+		// should logically be after #admins, danm backwards compatability!
+		$wgLang->formatNum( round( $admins / $total * 100, 2 ) )
+	);
 	$wgOut->addWikiText( $text );
 }
 ?>
