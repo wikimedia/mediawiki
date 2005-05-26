@@ -430,7 +430,7 @@ class Database {
 	 * Prepare & execute an SQL statement, quoting and inserting arguments
 	 * in the appropriate places.
 	 * @param string $query
-	 * @param string $args (default null)
+	 * @param string $args ...
 	 */
 	function safeQuery( $query, $args = null ) {
 		$prepared = $this->prepare( $query, 'Database::safeQuery' );

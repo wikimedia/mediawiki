@@ -300,9 +300,9 @@ class LogViewer {
 		// Enter the existence or non-existence of this page into the link cache,
 		// for faster makeLinkObj() in LogPage::actionText()
 		if( $s->page_id ) {
-			$wgLinkCache->addGoodLink( $s->page_id, $title->getPrefixedText() );
+			$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
 		} else {
-			$wgLinkCache->addBadLink( $title->getPrefixedText() );
+			$wgLinkCache->addBadLinkObj( $title );
 		}
 		
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );

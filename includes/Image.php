@@ -1369,7 +1369,7 @@ class Image
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
+					$wgLinkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}

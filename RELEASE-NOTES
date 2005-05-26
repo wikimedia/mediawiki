@@ -214,6 +214,9 @@ Various bugfixes, small features, and a few experimental things:
 * The #p-nav id in MonoBook is now #p-navigation
 * Putting $4 in msg:userstatstext will now give the percentage of
   admnistrators out of normal users.
+* links and brokenlinks tables merged to pagelinks; this will reduce pain
+  dealing with moves and deletes of widely-linked pages.
+
 
 === Caveats ===
 

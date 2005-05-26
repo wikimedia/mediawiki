@@ -156,7 +156,7 @@ class UtfUpdater {
 		$this->convertTable( 'recentchanges', 'rc_id',
 			array( 'rc_user_text', 'rc_title', 'rc_comment' ) );
 		
-		$this->convertTable( 'brokenlinks', 'bl_to' );
+		$this->convertTable( 'pagelinks', 'pl_title' );
 		$this->convertTable( 'categorylinks', 'cl_to' );
 		$this->convertTable( 'imagelinks', 'il_to' );
 		$this->convertTable( 'watchlist', 'wl_title' );

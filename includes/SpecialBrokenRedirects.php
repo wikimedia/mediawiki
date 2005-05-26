@@ -31,11 +31,19 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'brokenlinks' ) );
+		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
 
-		$sql = "SELECT 'BrokenRedirects' as type, page_namespace as namespace," .
-			   "page_title as title, bl_to FROM $brokenlinks,$page " .
-		       'WHERE page_is_redirect=1 AND bl_from=page_id ';
+		$sql = "SELECT 'BrokenRedirects'  AS type,
+		                p1.page_namespace AS namespace,
+		                p1.page_title     AS title,
+		                pl_namespace,
+		                pl_title
+		           FROM $pagelinks, $page AS p1
+		      LEFT JOIN $page AS p2
+		             ON pl_namespace=p2.page_namespace AND pl_title=p2.page_title
+		          WHERE p1.page_is_redirect=1
+		            AND pl_from=p1.page_id
+		            AND p2.page_namespace IS NULL";
 		return $sql;
 	}
 
@@ -45,8 +53,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 	function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
-		if ( isset( $result->bl_to ) ) {
-			$toObj = Title::newFromText( $result->bl_to );
+		if ( isset( $result->pl_title ) ) {
+			$toObj = Title::makeTitle( $result->pl_namespace, $result->pl_title );
 		} else {
 			$blinks = $fromObj->getBrokenLinksFrom();
 			if ( $blinks ) {
