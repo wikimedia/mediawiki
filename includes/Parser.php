@@ -2911,7 +2911,7 @@ class Parser
 				while ( $s = $dbr->fetchObject($res) ) {
 					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
-					$wgLinkCache->addGoodLink( $s->page_id, $pdbk );
+					$wgLinkCache->addGoodLinkObj( $s->page_id, $title );
 					
 					if ( $threshold >  0 ) {
 						$size = $s->page_len;
@@ -2935,7 +2935,7 @@ class Parser
 				$searchkey = "<!--LINK $key-->";
 				$title = $this->mLinkHolders['titles'][$key];
 				if ( empty( $colours[$pdbk] ) ) {
-					$wgLinkCache->addBadLink( $pdbk );
+					$wgLinkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 0;
 					$wgOutputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$this->mLinkHolders['texts'][$key],

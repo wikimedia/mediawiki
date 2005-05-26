@@ -62,22 +62,43 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rev_minor_edit=0';
 	} else { $cmq = ''; }
 
-	extract( $dbr->tableNames( 'categorylinks', 'links', 'revision', 'page' ) );
+	extract( $dbr->tableNames( 'categorylinks', 'pagelinks', 'revision', 'page' ) );
 	
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
-		$sql = "SELECT page_id,page_namespace,page_title,rev_user,rev_comment," .
-		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $categorylinks, $revision, $page " .
-		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND cl_from=page_id AND cl_to=$catkey " .
-			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
-		  "rev_timestamp,rev_minor_edit,page_is_new ORDER BY rev_timestamp DESC LIMIT {$limit}";
+		$sql =
+ "SELECT page_id,page_namespace,page_title,rev_user,rev_comment,
+         rev_user_text,rev_timestamp,rev_minor_edit,
+         page_is_new
+    FROM $categorylinks, $revision, $page
+   WHERE rev_timestamp > '{$cutoff}'
+         {$cmq}
+     AND rev_page=page_id
+     AND cl_from=page_id
+     AND cl_to=$catkey
+GROUP BY page_id,page_namespace,page_title,
+         rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
+         page_is_new
+ORDER BY rev_timestamp DESC
+   LIMIT {$limit}";
 	} else {
-		$sql = "SELECT page_id,page_namespace,page_title,rev_user,rev_comment," .
-		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $links, $revision, $page " .
-		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND l_to=page_id AND l_from=$id " .
-			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
-		  "rev_timestamp,rev_minor_edit,page_is_new ORDER BY rev_timestamp DESC LIMIT {$limit}";
+		$sql =
+ "SELECT page_id,page_namespace,page_title,
+         rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
+         page_is_new
+    FROM $pagelinks, $revision, $page
+   WHERE rev_timestamp > '{$cutoff}'
+         {$cmq}
+     AND rev_page=page_id
+     AND pl_namespace=page_namespace
+     AND pl_title=page_title
+     AND pl_from=$id
+GROUP BY page_id,page_namespace,page_title,
+         rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
+         page_is_new
+ORDER BY rev_timestamp DESC
+   LIMIT {$limit}";
 	}
 	$res = $dbr->query( $sql, $fname );
 

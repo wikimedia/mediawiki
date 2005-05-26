@@ -507,6 +507,46 @@ function do_namespace_size_on( $table, $prefix ) {
 	}
 }
 
+function do_pagelinks_update() {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( 'pagelinks' ) ) {
+		echo "...already have pagelinks table.\n";
+	} else {
+		echo "Converting links and brokenlinks tables to pagelinks... ";
+		dbsource( "maintenance/archives/patch-pagelinks.sql", $wgDatabase );
+		echo "ok\n";
+		flush();
+		
+		global $wgCanonicalNamespaceNames;
+		foreach( $wgCanonicalNamespaceNames as $ns => $name ) {
+			if( $ns != 0 ) {
+				do_pagelinks_namespace( $ns );
+			}
+		}
+	}
+}
+
+function do_pagelinks_namespace( $namespace ) {
+	global $wgDatabase, $wgContLang;
+	
+	$ns = IntVal( $namespace );
+	echo "Cleaning up broken links for namespace $ns... ";
+	
+	$pagelinks = $wgDatabase->tableName( 'pagelinks' );
+	$name = $wgContLang->getNsText( $ns );
+	$prefix = $wgDatabase->strencode( $name );
+	$likeprefix = str_replace( '_', '\\_', $prefix);
+	
+	$sql = "UPDATE $pagelinks
+	           SET pl_namespace=$ns,
+	               pl_title=TRIM(LEADING '$prefix:' FROM pl_title)
+	         WHERE pl_namespace=0
+	           AND pl_title LIKE '$likeprefix:%'";
+	
+	$wgDatabase->query( $sql, 'do_pagelinks_namespace' );
+	echo "ok\n";
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 	
@@ -545,6 +585,8 @@ function do_all_updates() {
 	do_inverse_timestamp(); flush();
 	do_text_id(); flush();
 	do_namespace_size(); flush();
+	
+	do_pagelinks_update(); flush();
 
 	initialiseMessages(); flush();
 }

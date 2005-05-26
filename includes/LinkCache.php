@@ -12,6 +12,7 @@
 define ('LINKCACHE_GOOD', 0);
 define ('LINKCACHE_BAD', 1);
 define ('LINKCACHE_IMAGE', 2);
+define ('LINKCACHE_PAGE', 3);
 
 /**
  * @package MediaWiki
@@ -20,8 +21,9 @@ define ('LINKCACHE_IMAGE', 2);
 class LinkCache {	
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
-	/* private */ var $mClassVer = 2;
+	/* private */ var $mClassVer = 3;
 
+	/* private */ var $mPageLinks;
 	/* private */ var $mGoodLinks, $mBadLinks, $mActive;
 	/* private */ var $mImageLinks, $mCategoryLinks;
 	/* private */ var $mPreFilled, $mOldGoodLinks, $mOldBadLinks;
@@ -36,6 +38,7 @@ class LinkCache {
 		$this->mActive = true;
 		$this->mPreFilled = false;
 		$this->mForUpdate = false;
+		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
@@ -63,15 +66,19 @@ class LinkCache {
 		return array_key_exists( $title, $this->mBadLinks ); 
 	}
 
-	function addGoodLink( $id, $title ) {
+	function addGoodLinkObj( $id, $title ) {
 		if ( $this->mActive ) {
-			$this->mGoodLinks[$title] = $id;
+			$dbkey = $title->getPrefixedDbKey();
+			$this->mGoodLinks[$dbkey] = $id;
+			$this->mPageLinks[$dbkey] = $title;
 		}
 	}
 
-	function addBadLink( $title ) {
-		if ( $this->mActive && ( ! $this->isBadLink( $title ) ) ) {
-			$this->mBadLinks[$title] = 1;
+	function addBadLinkObj( $title ) {
+		$dbkey = $title->getPrefixedDbKey();
+		if ( $this->mActive && ( ! $this->isBadLink( $dbkey ) ) ) {
+			$this->mBadLinks[$dbkey] = 1;
+			$this->mPageLinks[$dbkey] = $title;
 		}
 	}
 
@@ -104,6 +111,7 @@ class LinkCache {
 
 	function suspend() { $this->mActive = false; }
 	function resume() { $this->mActive = true; }
+	function getPageLinks() { return $this->mPageLinks; }
 	function getGoodLinks() { return $this->mGoodLinks; }
 	function getBadLinks() { return array_keys( $this->mBadLinks ); }
 	function getImageLinks() { return $this->mImageLinks; }
@@ -156,18 +164,24 @@ class LinkCache {
 				$wgMemc->add( $key, $id, 3600*24 );
 		}
 		
-		if ( 0 == $id ) { $this->addBadLink( $title ); }
-		else { $this->addGoodLink( $id, $title ); }
+		if( 0 == $id ) {
+			$this->addBadLinkObj( $nt );
+		} else {
+			$this->addGoodLinkObj( $id, $nt );
+		}
 		wfProfileOut( $fname );
 		return $id;
 	}
 
+	/**
+	 * Bulk-check the pagelinks and page arrays for existence info.
+	 * @param Title $fromtitle
+	 */
 	function preFill( &$fromtitle ) {
 		global $wgEnablePersistentLC;
 
 		$fname = 'LinkCache::preFill';
 		wfProfileIn( $fname );
-		# Note -- $fromtitle is a Title *object*
 
 		$this->suspend();
 		$id = $fromtitle->getArticleID();
@@ -194,24 +208,24 @@ class LinkCache {
 		}
 
 		$page = $db->tableName( 'page' );
-		$links = $db->tableName( 'links' );
+		$pagelinks = $db->tableName( 'pagelinks' );
 
-		$sql = "SELECT page_id,page_namespace,page_title
-			FROM $page,$links
-			WHERE page_id=l_to AND l_from=$id $options";
+		$sql = "SELECT page_id,pl_namespace,pl_title
+			FROM $pagelinks
+			LEFT JOIN $page
+			ON pl_namespace=page_namespace AND pl_title=page_title
+			WHERE pl_from=$id $options";
 		$res = $db->query( $sql, $fname );
 		while( $s = $db->fetchObject( $res ) ) {
-			$this->addGoodLink( $s->page_id,
-				Title::makeName( $s->page_namespace, $s->page_title )
-				);
+			$title = Title::makeTitle( $s->pl_namespace, $s->pl_title );
+			if( $s->page_id ) {
+				$this->addGoodLinkObj( $s->page_id, $title );
+			} else {
+				$this->addBadLinkObj( $title );
+			}
 		}
-		
-		$res = $db->select( 'brokenlinks', array( 'bl_to' ), array( 'bl_from' => $id ), $fname, array( $options ) );
-		while( $s = $db->fetchObject( $res ) ) {
-			$this->addBadLink( $s->bl_to );
-		}
-		
-		$this->mOldBadLinks = $this->mBadLinks;
+		$this->mOldPageLinks = $this->mPageLinks;
+		$this->mOldBadLinks  = $this->mBadLinks;
 		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
 
@@ -246,6 +260,24 @@ class LinkCache {
 	function getImageDeletions() {
 		return array_diff_assoc( $this->mOldImageLinks, $this->mImageLinks );
 	}
+	
+	function getPageAdditions() {
+		$set = array_diff( array_keys( $this->mPageLinks ), array_keys( $this->mOldPageLinks ) );
+		$out = array();
+		foreach( $set as $key ) {
+			$out[$key] = $this->mPageLinks[$key];
+		}
+		return $out;
+	}
+	
+	function getPageDeletions() {
+		$set = array_diff( array_keys( $this->mOldPageLinks ), array_keys( $this->mPageLinks ) );
+		$out = array();
+		foreach( $set as $key ) {
+			$out[$key] = $this->mOldPageLinks[$key];
+		}
+		return $out;
+	}
 
 	/**
 	 * Parameters:
@@ -275,6 +307,12 @@ class LinkCache {
 				$del = $this->getBadDeletions();
 				$add = $this->getBadAdditions();
 				break;
+			case LINKCACHE_PAGE:
+				$old =& $this->mOldPageLinks;
+				$cur =& $this->mPageLinks;
+				$del = $this->getPageDeletions();
+				$add = $this->getPageAdditions();
+				break;
 			default: # LINKCACHE_IMAGE
 				return false;		
 		}
@@ -286,6 +324,7 @@ class LinkCache {
 	 * Clears cache but leaves old preFill copies alone
 	 */
 	function clear() {
+		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
@@ -319,6 +358,7 @@ class LinkCache {
 		}
 		$cc = @unserialize( $cacheobj );
 		if( isset( $cc->mClassVer ) and ($cc->mClassVer == $this->mClassVer ) ){
+			$this->mOldPageLinks = $this->mPageLinks = $cc->mPageLinks;
 			$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
 			$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
 			$this->mPreFilled = true;
@@ -345,36 +385,25 @@ class LinkCache {
 
 	/**
 	 * Delete linkscc rows which link to here
-	 * @param $pid is a page id
+	 * @param $title The page linked to
 	 * @static
 	 */
-	function linksccClearLinksTo( $pid ){
+	function linksccClearLinksTo( $title ){
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			$fname = 'LinkCache::linksccClearLinksTo';
 			$pid = intval( $pid );
 			$dbw =& wfGetDB( DB_MASTER );
 			# Delete linkscc rows which link to here
-			$dbw->deleteJoin( 'linkscc', 'links', 'lcc_pageid', 'l_from', array( 'l_to' => $pid ), $fname );
+			$dbw->deleteJoin( 'linkscc', 'pagelinks', 'lcc_pageid', 'pl_from',
+				array(
+					'pl_namespace' => $title->getNamespace(),
+					'pl-title'     => $title->getDbKey() ),
+				$fname );
 			# Delete linkscc row representing this page
 			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ), $fname);
 		}
 
-	}
-
-	/**
-	 * Delete linkscc rows with broken links to here
-	 * @param $title is a prefixed db title for example like Title->getPrefixedDBkey() returns.
-	 * @static
-	 */
-	function linksccClearBrokenLinksTo( $title ){
-		global $wgEnablePersistentLC;
-		$fname = 'LinkCache::linksccClearBrokenLinksTo';
-
-		if ( $wgEnablePersistentLC ) {
-			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->deleteJoin( 'linkscc', 'brokenlinks', 'lcc_pageid', 'bl_from', array( 'bl_to' => $title ), $fname );
-		}
 	}
 
 	/**
@@ -404,6 +433,12 @@ class LinkBatch {
 	 */
 	var $data = array();
 
+	function LinkBatch( $arr = array() ) {
+		foreach( $arr as $item ) {
+			$this->addObj( $item );
+		}
+	}
+	
 	function addObj( $title ) {
 		$this->add( $title->getNamespace(), $title->getDBkey() );
 	}
@@ -433,33 +468,8 @@ class LinkBatch {
 		// This is very similar to Parser::replaceLinkHolders
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
-		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE ";
-		$first = true;
-		
-		foreach ( $this->data as $ns => $dbkeys ) {
-			if ( !count( $dbkeys ) ) {
-				continue;
-			}
-
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ' OR ';
-			}
-			$sql .= "(page_namespace=$ns AND page_title IN (";
-
-			$firstTitle = true;
-			foreach( $dbkeys as $dbkey => $nothing ) {
-				if ( $firstTitle ) {
-					$firstTitle = false;
-				} else {
-					$sql .= ',';
-				}
-				$sql .= $dbr->addQuotes( $dbkey );
-			}
-
-			$sql .= '))';
-		}
+		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE "
+			. $this->constructSet( 'page', $dbr );
 		
 		// Do query
 		$res = $dbr->query( $sql, $fname );
@@ -470,7 +480,7 @@ class LinkBatch {
 		$remaining = $this->data;
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$cache->addGoodLink( $row->page_id, $title->getPrefixedDBkey() );
+			$cache->addGoodLinkObj( $row->page_id, $title );
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
 		$dbr->freeResult( $res );
@@ -479,11 +489,49 @@ class LinkBatch {
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $nothing ) {
 				$title = Title::makeTitle( $ns, $dbkey );
-				$cache->addBadLink( $title->getPrefixedText() );
+				$cache->addBadLinkObj( $title );
 			}
 		}
 
 		wfProfileOut( $fname );
+	}
+	
+	/**
+	 * Construct a WHERE clause which will match all the given titles.
+	 * Give the appropriate table's field name prefix ('page', 'pl', etc).
+	 *
+	 * @param string $prefix
+	 * @return string
+	 * @access public
+	 */
+	function constructSet( $prefix, $db ) {
+		$first = true;
+		$sql = '';
+		foreach ( $this->data as $ns => $dbkeys ) {
+			if ( !count( $dbkeys ) ) {
+				continue;
+			}
+
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ' OR ';
+			}
+			$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
+
+			$firstTitle = true;
+			foreach( $dbkeys as $dbkey => $nothing ) {
+				if ( $firstTitle ) {
+					$firstTitle = false;
+				} else {
+					$sql .= ',';
+				}
+				$sql .= $db->addQuotes( $dbkey );
+			}
+
+			$sql .= '))';
+		}
+		return $sql;
 	}
 }
 

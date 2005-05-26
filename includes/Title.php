@@ -1355,16 +1355,21 @@ class Title {
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 		}
-		$page = $db->tableName( 'page' );
-		$links = $db->tableName( 'links' );
-
-		$sql = "SELECT page_namespace,page_title,page_id FROM $page,$links WHERE l_from=page_id AND l_to={$id} $options";
-		$res = $db->query( $sql, 'Title::getLinksTo' );
+		
+		$res = $db->select( array( 'page', 'pagelinks' ),
+			array( 'page_namespace', 'page_title', 'page_id' ),
+			array(
+				'pl_from=page_id',
+				'pl_namespace' => $this->getNamespace(),
+				'pl_title'     => $this->getDbKey() ),
+			'Title::getLinksTo',
+			$options );
+		
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-					$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
+					$wgLinkCache->addGoodLinkObj( $row->page_id, $titleObj );
 					$retVal[] = $titleObj;
 				}
 			}
@@ -1372,42 +1377,6 @@ class Title {
 		$db->freeResult( $res );
 		return $retVal;
 	}
-
-	/**
-	 * Get an array of Title objects linking to this non-existent title.
-	 * - Also stores the IDs in the link cache.
-	 *
-	 * @param string $options may be FOR UPDATE 
-	 * @return array the Title objects linking here
-	 * @access public
-	 */
-	function getBrokenLinksTo( $options = '' ) {
-		global $wgLinkCache;
-		
-		if ( $options ) {
-			$db =& wfGetDB( DB_MASTER );
-		} else {
-			$db =& wfGetDB( DB_SLAVE );
-		}
-		$page = $db->tableName( 'page' );
-		$brokenlinks = $db->tableName( 'brokenlinks' );
-		$encTitle = $db->strencode( $this->getPrefixedDBkey() );
-
-		$sql = "SELECT page_namespace,page_title,page_id FROM $brokenlinks,$page " .
-		  "WHERE bl_from=page_id AND bl_to='$encTitle' $options";
-		$res = $db->query( $sql, "Title::getBrokenLinksTo" );
-		$retVal = array();
-		if ( $db->numRows( $res ) ) {
-			while ( $row = $db->fetchObject( $res ) ) {
-				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$wgLinkCache->addGoodLink( $row->page_id, $titleObj->getPrefixedDBkey() );
-				$retVal[] = $titleObj;
-			}
-		}
-		$db->freeResult( $res );
-		return $retVal;
-	}
-
 
 	/**
 	 * Get an array of Title objects referring to non-existent articles linked from this page
@@ -1424,16 +1393,25 @@ class Title {
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 		}
-		$page = $db->tableName( 'page' );
-		$brokenlinks = $db->tableName( 'brokenlinks' );
-		$id = $this->getArticleID();
-
-		$sql = "SELECT bl_to FROM $brokenlinks WHERE bl_from=$id $options";
-		$res = $db->query( $sql, "Title::getBrokenLinksFrom" );
+		
+		$res = $db->safeQuery(
+			  "SELECT pl_namespace, pl_title
+			     FROM !
+			LEFT JOIN !
+			       ON pl_namespace=page_namespace
+			      AND pl_title=page_title
+			    WHERE pl_from=?
+			      AND page_namespace IS NULL
+			          !",
+			$db->tableName( 'pagelinks' ),
+			$db->tableName( 'page' ),
+			$this->getArticleId(),
+			$options );
+		
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
-				$retVal[] = Title::newFromText( $row->bl_to );
+				$retVal[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
 			}
 		}
 		$db->freeResult( $res );
@@ -1631,54 +1609,19 @@ class Title {
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText() ) );
 		
-		# Swap links
-		
-		# Load titles and IDs
-		$linksToOld = $this->getLinksTo( 'FOR UPDATE' );
-		$linksToNew = $nt->getLinksTo( 'FOR UPDATE' );
-		
-		# Delete them all
-		$sql = "DELETE FROM $links WHERE l_to=$oldid OR l_to=$newid";
-		$dbw->query( $sql, $fname );
-
-		# Reinsert
-		if ( count( $linksToOld ) || count( $linksToNew )) {
-			$sql = "INSERT INTO $links (l_from,l_to) VALUES ";
-			$first = true;
-
-			# Insert links to old title
-			foreach ( $linksToOld as $linkTitle ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= ',';
-				}
-				$id = $linkTitle->getArticleID();
-				$sql .= "($id,$newid)";
-			}
-
-			# Insert links to new title
-			foreach ( $linksToNew as $linkTitle ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= ',';
-				}
-				$id = $linkTitle->getArticleID();
-				$sql .= "($id, $oldid)";
-			}
-
-			$dbw->query( $sql, $fname );
-		}
-
 		# Now, we record the link from the redirect to the new title.
 		# It should have no other outgoing links...
-		$dbw->delete( 'links', array( 'l_from' => $newid ) );
-		$dbw->insert( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ) );
+		$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), $fname );
+		$dbw->insert( 'pagelinks',
+			array(
+				'pl_from'      => $newid,
+				'pl_namespace' => $this->getNamespace(),
+				'pl_title'     => $this->getDbKey() ),
+			$fname );
 		
 		# Clear linkscc
-		LinkCache::linksccClearLinksTo( $oldid );
-		LinkCache::linksccClearLinksTo( $newid );
+		LinkCache::linksccClearLinksTo( $this );
+		LinkCache::linksccClearLinksTo( $nt );
 		
 		# Purge squid
 		if ( $wgUseSquid ) {
@@ -1749,17 +1692,17 @@ class Title {
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
 
-		# Any text links to the old title must be reassigned to the redirect
-		$dbw->update( 'links', array( 'l_to' => $newid ), array( 'l_to' => $oldid ), $fname );
-		LinkCache::linksccClearLinksTo( $oldid );
-
 		# Record the just-created redirect's linking to the page
-		$dbw->insert( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ), $fname );
+		$dbw->insert( 'pagelinks',
+			array(
+				'pl_from'      => $newid,
+				'pl_namespace' => $this->getNamespace(),
+				'pl_title'     => $this->getTitle() ),
+			$fname );
 
 		# Non-existent target may have had broken links to it; these must
-		# now be removed and made into good links.
-		$update = new LinksUpdate( $oldid, $nt->getPrefixedDBkey() );
-		$update->fixBrokenLinks();
+		# now be touched to update link coloring.
+		$nt->touchLinks();
 
 		# Purge old title from squid
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
@@ -1849,21 +1792,13 @@ class Title {
 		$article->updateRevisionOn( $dbw, $revision, 0 );
 		
 		# Link table
-		if ( $dest->getArticleID() ) {
-			$dbw->insert( 'links', 
-				array(
-					'l_to' => $dest->getArticleID(),
-					'l_from' => $newid
-				), $fname 
-			);
-		} else {
-			$dbw->insert( 'brokenlinks', 
-				array( 
-					'bl_to' => $dest->getPrefixedDBkey(),
-					'bl_from' => $newid
-				), $fname
-			);
-		}
+		$dbw->insert( 'pagelinks', 
+			array(
+				'pl_from'      => $newid,
+				'pl_namespace' => $dest->getNamespace(),
+				'pl_title'     => $dest->getDbKey()
+			), $fname 
+		);
 
 		Article::onArticleCreate( $this );
 		return true;
@@ -2014,6 +1949,36 @@ class Title {
 	function isAlwaysKnown() {
 		return ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
 		  || NS_SPECIAL == $this->mNamespace || NS_IMAGE == $this->mNamespace;
+	}
+
+	/**
+	 * Update page_touched timestamps on pages linking to this title.
+	 * In principal, this could be backgrounded and could also do squid
+	 * purging.
+	 */
+	function touchLinks() {
+		$fname = 'Title::touchLinks';
+
+		$dbw =& wfGetDB( DB_MASTER );
+		
+		$res = $dbw->select( 'pagelinks',
+			array( 'pl_from' ),
+			array(
+				'pl_namespace' => $this->getNamespace(),
+				'pl_title'     => $this->getDbKey() ), 
+			$fname );
+		if ( 0 == $dbw->numRows( $res ) ) {
+			return;
+		}
+
+		$arr = array();
+		$toucharr = array();
+		while( $row = $dbw->fetchObject( $res ) ) {
+			$toucharr[] = $row->pl_from;
+		}
+		
+		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ), 
+							/* WHERE */ array( 'page_id' => $toucharr ),$fname);
 	}
 }
 ?>

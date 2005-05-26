@@ -44,10 +44,10 @@ class DeadendPagesPage extends PageQueryPage {
 	 */
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'links' ) );
+		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
 		return "SELECT 'Deadendpages' as type, page_namespace AS namespace, page_title as title, page_title AS value " . 
-	"FROM $page LEFT JOIN $links ON page_id = l_from " .
-	"WHERE l_from IS NULL " .
+	"FROM $page LEFT JOIN $pagelinks ON page_id = pl_from " .
+	"WHERE pl_from IS NULL " .
 	"AND page_namespace = 0 " .
 	"AND page_is_redirect = 0";
     }

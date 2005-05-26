@@ -1789,20 +1789,9 @@ class Article {
 
 		Article::onArticleDelete( $this->mTitle );
 
-		# Insert broken links
-		$brokenLinks = array();
-		foreach ( $linksTo as $titleObj ) {
-			# Get article ID. Efficient because it was loaded into the cache by getLinksTo().
-			$linkID = $titleObj->getArticleID();
-			$brokenLinks[] = array( 'bl_from' => $linkID, 'bl_to' => $t );
-		}
-		$dbw->insert( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
-
-		# Delete live links
-		$dbw->delete( 'links', array( 'l_to' => $id ) );
-		$dbw->delete( 'links', array( 'l_from' => $id ) );
+		# Delete outgoing links
+		$dbw->delete( 'pagelinks', array( 'pl_from' => $id ) );
 		$dbw->delete( 'imagelinks', array( 'il_from' => $id ) );
-		$dbw->delete( 'brokenlinks', array( 'bl_from' => $id ) );
 		$dbw->delete( 'categorylinks', array( 'cl_from' => $id ) );
 
 		# Log the deletion
@@ -2195,7 +2184,8 @@ class Article {
 	function onArticleCreate($title_obj) {
 		global $wgUseSquid, $wgPostCommitUpdateList;
 
-		$titles = $title_obj->getBrokenLinksTo();
+		$title_obj->touchLinks();
+		$titles = $title_obj->getLinksTo();
 
 		# Purge squid
 		if ( $wgUseSquid ) {
@@ -2208,11 +2198,12 @@ class Article {
 		}
 
 		# Clear persistent link cache
-		LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
+		LinkCache::linksccClearLinksTo( $title_obj );
 	}
 
 	function onArticleDelete($title_obj) {
-		LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
+		$title_obj->touchLinks();
+		LinkCache::linksccClearLinksTo( $title_obj );
 	}
 	function onArticleEdit($title_obj) {
 		LinkCache::linksccClearPage( $title_obj->getArticleID() );
@@ -2319,15 +2310,16 @@ class Article {
 		$id = $this->mTitle->getArticleID();
 
 		$db =& wfGetDB( DB_SLAVE );
-		$page = $db->tableName( 'page' );
-		$links = $db->tableName( 'links' );
-		$sql = "SELECT page_title ".
-			"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
-		$res = $db->query( $sql, "Article:getUsedTemplates" );
+		$res = $db->select( array( 'pagelinks' ),
+			array( 'pl_title' ),
+			array(
+				'pl_from' => $id,
+				'pl_namespace' => NS_TEMPLATE ),
+			'Article:getUsedTemplates' );
 		if ( false !== $res ) {
 			if ( $db->numRows( $res ) ) {
 				while ( $row = $db->fetchObject( $res ) ) {
-					$result[] = $row->page_title;
+					$result[] = $row->pl_title;
 				}
 			}
 		}

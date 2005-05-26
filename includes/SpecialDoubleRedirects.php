@@ -31,18 +31,20 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'page', 'links' ) );
+		extract( $dbr->tableNames( 'page', 'pagelinks' ) );
 
 		$sql = "SELECT 'DoubleRedirects' as type," .
 		         " pa.page_namespace as namespace, pa.page_title as title," .
 			     " pb.page_namespace as nsb, pb.page_title as tb," .
 				 " pc.page_namespace as nsc, pc.page_title as tc" .
-			   " FROM $links AS la, $links AS lb, $page AS pa, $page AS pb, $page AS pc" .
+			   " FROM $pagelinks AS la, $pagelinks AS lb, $page AS pa, $page AS pb, $page AS pc" .
 			   " WHERE pa.page_is_redirect=1 AND pb.page_is_redirect=1" .
-			     " AND la.l_from=pa.page_id" .
-				 " AND la.l_to=pb.page_id" .
-				 " AND lb.l_from=pb.page_id" .
-				 " AND lb.l_to=pc.page_id";
+			     " AND la.pl_from=pa.page_id" .
+				 " AND la.pl_namespace=pb.page_namespace" .
+				 " AND la.pl_title=pb.page_title" .
+				 " AND lb.pl_from=pb.page_id" .
+				 " AND lb.pl_namespace=pc.page_namespace" .
+				 " AND lb.pl_title=pc.page_title";
 		return $sql;
 	}
 
@@ -56,18 +58,20 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 		if ( $result && !isset( $result->nsb ) ) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			extract( $dbr->tableNames( 'page', 'links' ) );
+			extract( $dbr->tableNames( 'page', 'pagelinks' ) );
 			$encTitle = $dbr->addQuotes( $result->title );
 
 			$sql = "SELECT pa.page_namespace as namespace, pa.page_title as title," .
 					 " pb.page_namespace as nsb, pb.page_title as tb," .
 					 " pc.page_namespace as nsc, pc.page_title as tc" .
-				   " FROM $links AS la, $links AS lb, $page AS pa, $page AS pb, $page AS pc" .
+				   " FROM $pagelinks AS la, $pagelinks AS lb, $page AS pa, $page AS pb, $page AS pc" .
 				   " WHERE pa.page_is_redirect=1 AND pb.page_is_redirect=1" .
-					 " AND la.l_from=pa.page_id" .
-					 " AND la.l_to=pb.page_id" .
-					 " AND lb.l_from=pb.page_id" .
-					 " AND lb.l_to=pc.page_id" .
+					 " AND la.pl_from=pa.page_id" .
+					 " AND la.pl_namespace=pb.page_namespace" .
+					 " AND la.pl_title=pb.page_title" .
+					 " AND lb.pl_from=pb.page_id" .
+					 " AND lb.pl_namespace=pc.page_namespace" .
+					 " AND lb.pl_title=pc.page_title" .
 					 " AND pa.page_namespace={$result->namespace}" .
 					 " AND pa.page_title=$encTitle";
 			$res = $dbr->query( $sql, $fname );

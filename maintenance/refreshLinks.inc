@@ -14,9 +14,9 @@ function refreshLinks( $start ) {
 
 	$dbw =& wfGetDB( DB_MASTER );
 	
-	$end = $dbw->selectField( 'cur', 'max(cur_id)', false );
+	$end = $dbw->selectField( 'page', 'max(page_id)', false );
 
-	print("Refreshing link table. Starting from cur_id $start of $end.\n");
+	print("Refreshing link table. Starting from page_id $start of $end.\n");
 
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
 	$wgUser->setOption("math", 3);
@@ -65,7 +65,6 @@ function refreshLinks( $start ) {
 
 		$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
 		$linksUpdate->doDumbUpdate();
-		$linksUpdate->fixBrokenLinks();
 		$dbw->query("COMMIT");
 	}
 }
