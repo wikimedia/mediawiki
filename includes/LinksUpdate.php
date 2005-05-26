@@ -137,49 +137,55 @@ class LinksUpdate {
 			$add = $wgLinkCache->getCategoryLinks();
 			
 			# select existing catlinks for this page
-			$res = $dbw->select( $categorylinks, array( 'cl_to' ), array( 'cl_from' => $this->mId ), 
-			$fname, 'FOR UPDATE' );
+			$res = $dbw->select( 'categorylinks',
+				array( 'cl_to', 'cl_sortkey' ),
+				array( 'cl_from' => $this->mId ), 
+				$fname,
+				'FOR UPDATE' );
 
 			$del = array();
-			if(0 != $dbw->numRows( $res )) {
-				while ( $row = $dbw->fetchObject( $res ) ) {
-					if(!isset($add[$row->cl_to])) {
-						// in the db, but no longer in the page -> delete
+			if( 0 != $dbw->numRows( $res ) ) {
+				while( $row = $dbw->fetchObject( $res ) ) {
+					if( !isset( $add[$row->cl_to] ) || $add[$row->cl_to] != $row->cl_sortkey ) {
+						// in the db, but no longer in the page
+						// or sortkey has changed -> delete
 						$del[] = $row->cl_to;
 					} else {
 						// remove already existing category memberships
 						// from the add array
-						unset($add[$row->cl_to]);
+						unset( $add[$row->cl_to] );
 					}
 				}
 			}
+			
 			// delete any removed categorylinks
-			if(count($del) > 0) {
+			if( count( $del ) > 0) {
 				// delete old ones
-				$dbw->delete('categorylinks', array('cl_from'=>$this->mId, 'cl_to'=>$del),$fname);
-				foreach($del as $cname){
+				$dbw->delete( 'categorylinks',
+					array(
+						'cl_from' => $this->mId,
+						'cl_to'   => $del ),
+					$fname );
+				foreach( $del as $cname ){
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
 					$nt->invalidateCache();
 					// update the timestamp which indicates when the last article
 					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.$nt->getDBkey().':adddeltimestamp';
+					$key = $wgDBname . ':Category:' . md5( $nt->getDBkey() ) . ':adddeltimestamp';
 					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
-					#wfDebug( "Linksupdate:Cats:del: ".serialize($nt)." $key \n" );
 				}
 			}
+			
 			// add any new category memberships
-			if (count($add) > 0) {
+			if( count( $add ) > 0 ) {
 				$arr = array();
 				foreach( $add as $cname => $sortkey ) {
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
-					if( !$nt ) continue;
 					$nt->invalidateCache();
 					// update the timestamp which indicates when the last article
 					// was added or removed to/from this article
-					$key = $wgDBname.':Category:'.$nt->getDBkey().':adddeltimestamp';
+					$key = $wgDBname . ':Category:' . md5( $nt->getDBkey() ) . ':adddeltimestamp';
 					$messageMemc->set( $key , wfTimestamp( TS_MW ), 24*3600 );
-					#wfDebug( "Linksupdate:Cats:add: ".serialize($nt)." $key\n" );
-					#wfDebug( "LU-get: ".$messageMemc->get( $key)."\n");
 					array_push( $arr, array(
 						'cl_from'    => $this->mId,
 						'cl_to'      => $cname,
