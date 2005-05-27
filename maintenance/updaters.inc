@@ -24,6 +24,7 @@ $wgNewTables = array(
 	array( 'logging',       'patch-logging.sql' ),
 	array( 'user_rights',   'patch-user_rights.sql' ),
 	array( 'groups',        'patch-userlevels.sql' ),
+	array( 'validate',      'patch-validate.sql' ),
 );
 
 $wgNewFields = array(
@@ -47,6 +48,7 @@ $wgNewFields = array(
 	array( 'image',         'img_width',        'patch-img_width.sql' ),
 	array( 'image',         'img_metadata',     'patch-img_metadata.sql' ),
 	array( 'image',         'img_media_type',   'patch-img_media_type.sql' ),
+	array( 'validate',      'val_ip',           'patch-val_ip.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {

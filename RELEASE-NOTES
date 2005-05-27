@@ -216,6 +216,7 @@ Various bugfixes, small features, and a few experimental things:
   admnistrators out of normal users.
 * links and brokenlinks tables merged to pagelinks; this will reduce pain
   dealing with moves and deletes of widely-linked pages.
+* Add validate table and val_ip column through the updater.
 
 
 === Caveats ===
