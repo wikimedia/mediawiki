@@ -1413,6 +1413,44 @@ $wgDisabledActions = array();
 $wgEnableSorbs = false;
 
 /**
+ * Use opm.blitzed.org to check for open proxies.
+ * Not yet actually used.
+ */
+$wgEnableOpm = false;
+
+/**
+ * Simple rate limiter options to brake edit floods.
+ * Maximum number actions allowed in the given number of seconds;
+ * after that the violating client receives HTTP 500 error pages
+ * until the period elapses.
+ *
+ * array( 4, 60 ) for a maximum of 4 hits in 60 seconds.
+ *
+ * This option set is experimental and likely to change.
+ * Requires memcached.
+ */
+$wgRateLimits = array(
+	'edit' => array(
+		'anon'   => null, // for any and all anonymous edits (aggregate)
+		'user'   => null, // for each logged-in user
+		'newbie' => null, // for each recent account; overrides 'user'
+		'ip'     => null, // for each anon and recent account
+		'subnet' => null, // ... with final octet removed
+		),
+	'move' => array(
+		'user'   => null,
+		'newbie' => null,
+		'ip'     => null,
+		'subnet' => null,
+		),
+	);
+
+/**
+ * Set to a filename to log rate limiter hits.
+ */
+$wgRateLimitLog = null;
+
+/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */

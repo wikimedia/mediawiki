@@ -832,6 +832,21 @@ class OutputPage {
 	function transformBuffer( $options = 0 ) {
 	}
 
+	
+	/**
+	 * Turn off regular page output and return an error reponse
+	 * for when rate limiting has triggered.
+	 * @todo: i18n
+	 * @access public
+	 */
+	function rateLimited() {
+		global $wgOut;
+		$wgOut->disable();
+		wfHttpError( 500, 'Internal Server Error',
+			'Sorry, the server has encountered an internal error. ' .
+			'Please wait a moment and hit "refresh" to submit the request again.' );
+	}
+
 }
 
 } // MediaWiki

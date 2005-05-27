@@ -331,6 +331,10 @@ class EditPage {
 				$wgOut->readOnlyPage();
 				return;
 			}
+			if ( $wgUser->pingLimiter() ) {
+				$wgOut->rateLimited();
+				return;
+			}
 
 			# If article is new, insert it.
 			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
