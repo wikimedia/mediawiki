@@ -173,6 +173,11 @@ class MovePageForm {
 		global  $wgUseSquid, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
 		
+		if ( $wgUser->pingLimiter( 'move' ) ) {
+			$wgOut->rateLimited();
+			return;
+		}
+		
 		# Variables beginning with 'o' for old article 'n' for new article
 
 		$ot = Title::newFromText( $this->oldTitle );

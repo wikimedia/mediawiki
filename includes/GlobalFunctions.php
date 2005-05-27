@@ -885,8 +885,14 @@ function wfHttpError( $code, $label, $desc ) {
 	header( "Status: $code $label" );
 	$wgOut->sendCacheControl();
 
-	header( 'Content-type: text/plain' );
-	print $desc."\n";
+	header( 'Content-type: text/html' );
+	print "<html><head><title>" .
+		htmlspecialchars( $label ) . 
+		"</title></head><body><h1>" . 
+		htmlspecialchars( $label ) .
+		"</h1><p>" .
+		htmlspecialchars( $desc ) .
+		"</p></body></html>\n";
 }
 
 /**

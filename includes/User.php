@@ -344,7 +344,19 @@ class User {
 	}
 
 	function inSorbsBlacklist( $ip ) {
-		$fname = 'User::inSorbsBlacklist';
+		global $wgEnableSorbs;
+		return $wgEnableSorbs &&
+			$this->inDnsBlacklist( $ip, 'http.dnsbl.sorbs.net.' );
+	}
+	
+	function inOpmBlacklist( $ip ) {
+		global $wgEnableOpm;
+		return $wgEnableOpm &&
+			$this->inDnsBlacklist( $ip, 'opm.blitzed.org.' );
+	}
+	
+	function inDnsBlacklist( $ip, $base ) {
+		$fname = 'User::inDnsBlacklist';
 		wfProfileIn( $fname );
 		
 		$found = false;
@@ -355,21 +367,92 @@ class User {
 			for ( $i=4; $i>=1; $i-- ) {
 				$host .= $m[$i] . '.';
 			}
-			$host .= 'http.dnsbl.sorbs.net.';
+			$host .= $base;
 
 			# Send query
 			$ipList = gethostbynamel( $host );
 			
 			if ( $ipList ) {
-				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy!\n" );
+				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 				$found = true;
 			} else {
-				wfDebug( "Requested $host, not found.\n" );
+				wfDebug( "Requested $host, not found in $base.\n" );
 			}
 		}
 
 		wfProfileOut( $fname );
 		return $found;
+	}
+	
+	/**
+	 * Primitive rate limits: enforce maximum actions per time period
+	 * to put a brake on flooding.
+	 *
+	 * Note: when using a shared cache like memcached, IP-address
+	 * last-hit counters will be shared across wikis.
+	 *
+	 * @return bool true if a rate limiter was tripped
+	 * @access public
+	 */
+	function pingLimiter( $action='edit' ) {
+		global $wgRateLimits;
+		if( !isset( $wgRateLimits[$action] ) ) {
+			return false;
+		}
+		if( $this->isAllowed( 'delete' ) ) {
+			// goddam cabal
+			return false;
+		}
+		
+		global $wgMemc, $wgIP, $wgDBname, $wgRateLimitLog;
+		$fname = 'User::pingLimiter';
+		$limits = $wgRateLimits[$action];
+		$keys = array();
+		$id = $this->getId();
+		
+		if( isset( $limits['anon'] ) && $id == 0 ) {
+			$keys["$wgDBname:limiter:$action:anon"] = $limits['anon'];
+		}
+		
+		if( isset( $limits['user'] ) && $id != 0 ) {
+			$keys["$wgDBname:limiter:$action:user:$id"] = $limits['user'];
+		}
+		if( $this->isNewbie() ) {
+			if( isset( $limits['newbie'] ) && $id != 0 ) {
+				$keys["$wgDBname:limiter:$action:user:$id"] = $limits['newbie'];
+			}
+			if( isset( $limits['ip'] ) ) {
+				$keys["mediawiki:limiter:$action:ip:$wgIP"] = $limits['ip'];
+			}
+			if( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $wgIP, $matches ) ) {
+				$subnet = $matches[1];
+				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+			}
+		}
+		
+		$triggered = false;
+		foreach( $keys as $key => $limit ) {
+			list( $max, $period ) = $limit;
+			$summary = "(limit $max in {$period}s)";
+			$count = $wgMemc->get( $key );
+			if( $count ) {
+				if( $count > $max ) {
+					wfDebug( "$fname: tripped! $key at $count $summary\n" );
+					if( $wgRateLimitLog ) {
+						@error_log( $this->getName() . ": tripped $key at $count $summary\n", 3, $wgRateLimitLog );
+					}
+					$triggered = true;
+				} else {
+					wfDebug( "$fname: ok. $key at $count $summary\n" );
+				}
+			} else {
+				wfDebug( "$fname: adding record for $key $summary\n" );
+				$wgMemc->add( $key, 1, IntVal( $period ) );
+			}
+			$wgMemc->incr( $key );
+		}
+		
+		return $triggered;
 	}
 	
 	/**
@@ -1284,7 +1367,7 @@ class User {
 	 * @return bool True if it is a newbie.
 	 */
 	function isNewbie() {
-		return $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot() || $this->getID() == 0;
+		return $this->isAnon() || $this->mId > User::getMaxID() * 0.99 && !$this->isAllowed( 'delete' ) && !$this->isBot();
 	}
 
 	/**
