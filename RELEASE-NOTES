@@ -596,6 +596,7 @@ pages for purposes of page relevancy ranking.
 * (bug 2150) Fix tab indexes on edit form
 * Run ArticleSave hooks on image upload.
 * (bug 2239) Fix non-ASCII chars in linktrail for Latin-1 mode
+* (bug 1454) Backport edit/move rate limiter from CVS HEAD (experimental)
 
 
 === Caveats ===

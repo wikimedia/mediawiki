@@ -891,11 +891,14 @@ function wfHttpError( $code, $label, $desc ) {
 	header( "Status: $code $label" );
 	$wgOut->sendCacheControl();
 
-	# Don't send content if it's a HEAD request.
-	if( $_SERVER['REQUEST_METHOD'] == 'HEAD' ) {
-		header( 'Content-type: text/plain' );
-		print "$desc\n";
-	}
+	header( 'Content-type: text/html' );
+	print "<html><head><title>" .
+		htmlspecialchars( $label ) . 
+		"</title></head><body><h1>" . 
+		htmlspecialchars( $label ) .
+		"</h1><p>" .
+		htmlspecialchars( $desc ) .
+		"</p></body></html>\n";
 }
 
 /**
