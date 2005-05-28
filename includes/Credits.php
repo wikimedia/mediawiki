@@ -49,7 +49,8 @@ function showCreditsPage($article) {
 }
 
 function getCredits($article, $cnt, $showIfMax=true) {
-
+	$fname = 'getCredits';
+	wfProfileIn( $fname );
     $s = '';
 
     if (isset($cnt) && $cnt != 0) {
@@ -59,6 +60,7 @@ function getCredits($article, $cnt, $showIfMax=true) {
 		}
     }
 
+	wfProfileOut( $fname );
     return $s;
 }
 
