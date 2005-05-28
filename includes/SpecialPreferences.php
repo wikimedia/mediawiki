@@ -438,8 +438,8 @@ class PreferencesForm {
 
 		$enotifwatchlistpages = ($wgEnotifWatchlist) ? $this->getToggle( 'enotifwatchlistpages' ) : '';
 		$enotifusertalkpages = ($wgEnotifUserTalk) ? $this->getToggle( 'enotifusertalkpages' ) : '';
-		$enotifminoredits = ($wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits' ) : '';
-		$enotifrevealaddr = ($wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr' ) : '';
+		$enotifminoredits = ($wgEnotifWatchlist && $wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits' ) : '';
+		$enotifrevealaddr = (($wgEnotifWatchlist || $wgEnotifUserTalk) && $wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr' ) : '';
 		$prefs_help_email_enotif = ( $wgEnotifWatchlist || $wgEnotifUserTalk) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
 		$prefs_help_realname = '';
 
