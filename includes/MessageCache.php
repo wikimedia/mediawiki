@@ -67,7 +67,11 @@ class MessageCache
 		global $wgAllMessagesEn;
 
 		if ( $this->mDisable ) {
-			wfDebug( "MessageCache::load(): disabled\n" );
+			static $shownDisabled = false;
+			if ( !$shownDisabled ) {
+				wfDebug( "MessageCache::load(): disabled\n" );
+				$shownDisabled = true;
+			}
 			return true;
 		}
 		$fname = 'MessageCache::load';
