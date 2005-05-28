@@ -103,7 +103,7 @@ function wfSpecialContributions( $par = null ) {
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
 
-	$wgOut->addHTML( namespaceForm( $target, $hideminor, $namespace, $invert ) );
+	$wgOut->addHTML( ucNamespaceForm( $target, $hideminor, $namespace, $invert ) );
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
@@ -216,7 +216,7 @@ function ucListEdit( $sk, $row ) {
  * @param	string	$namespace currently selected namespace, NULL for show all
  * @param	bool    $invert  inverts the namespace selection on true (default null)
  */
-function namespaceForm ( $target, $hideminor, $namespace, $invert ) {
+function ucNamespaceForm ( $target, $hideminor, $namespace, $invert ) {
 	global $wgContLang, $wgScript;
 
 	$namespaceselect = "<select name='namespace' id='nsselectbox'>";

@@ -219,6 +219,7 @@ class OutputPage {
 
 	function addHTML( $text ) { $this->mBodytext .= $text; }
 	function clearHTML() { $this->mBodytext = ''; }
+	function getHTML() { return $this->mBodytext; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
 	function setParserOptions( $options ) {
@@ -244,6 +245,9 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+		if ( $parserOutput->getCacheTime() == -1 ) {
+			$this->enableClientCache( false );
+		}
 		$this->addHTML( $parserOutput->getText() );
 	}	
 		
@@ -258,12 +262,15 @@ class OutputPage {
 
 		$text = $parserOutput->getText();
 		
-		if ( $cacheArticle ) {
+		if ( $cacheArticle && $parserOutput->getCacheTime() != -1 ) {
 			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
 
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+		if ( $parserOutput->getCacheTime() == -1 ) {
+			$this->enableClientCache( false );
+		}
 		$this->addHTML( $text );
 	}
 
@@ -467,35 +474,6 @@ class OutputPage {
 			$wgOutputEncoding = strtolower( $wgOutputEncoding );
 			return;
 		}
-
-		/*
-		# This code is unused anyway!
-		# Commenting out. --bv 2003-11-15
-
-		$a = explode( ",", $_SERVER['HTTP_ACCEPT_CHARSET'] );
-		$best = 0.0;
-		$bestset = "*";
-
-		foreach ( $a as $s ) {
-			if ( preg_match( "/(.*);q=(.*)/", $s, $m ) ) {
-				$set = $m[1];
-				$q = (float)($m[2]);
-			} else {
-				$set = $s;
-				$q = 1.0;
-			}
-			if ( $q > $best ) {
-				$bestset = $set;
-				$best = $q;
-			}
-		}
-		#if ( "*" == $bestset ) { $bestset = "iso-8859-1"; }
-		if ( "*" == $bestset ) { $bestset = $wgOutputEncoding; }
-		$wgOutputEncoding = strtolower( $bestset );
-
-# Disable for now
-#
-		*/
 		$wgOutputEncoding = $wgInputEncoding;
 	}
 

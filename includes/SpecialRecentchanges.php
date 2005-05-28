@@ -15,7 +15,7 @@ require_once( 'Revision.php' );
 /**
  * Constructor
  */
-function wfSpecialRecentchanges( $par ) {
+function wfSpecialRecentchanges( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
 	global $wgFeedClasses, $wgUseRCPatrol;
@@ -50,7 +50,6 @@ function wfSpecialRecentchanges( $par ) {
 
 	#	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
 	$limit = $wgRequest->getInt( 'limit', $limit );
-	if ( $limit < 0 || $limit > 5000 ) $limit = $defaults['limit'];
 
 	/* order of selection: url > preferences > default */
 	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );	
@@ -75,14 +74,30 @@ function wfSpecialRecentchanges( $par ) {
 		# Get query parameters from path
 		if( $par ) {
 			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
-			if( in_array( 'hidebots', $bits ) ) $hidebots = 1;
-			if( in_array( 'bots', $bits ) ) $hidebots = 0;
-			if( in_array( 'hideminor', $bits ) ) $hideminor = 1;
-			if( in_array( 'minor', $bits ) ) $hideminor = 0;
-			if( in_array( 'hideliu', $bits) ) $hideliu = 1;
-			if( in_array( 'hidepatrolled', $bits) ) $hidepatrolled = 1;
+			foreach ( $bits as $bit ) {
+				if ( 'hidebots' == $bit ) $hidebots = 1;
+				if ( 'bots' == $bit ) $hidebots = 0;
+				if ( 'hideminor' == $bit ) $hideminor = 1;
+				if ( 'minor' == $bit ) $hideminor = 0;
+				if ( 'hideliu' == $bit ) $hideliu = 1;
+				if ( 'hidepatrolled' == $bit ) $hidepatrolled = 1;
+
+				if ( is_numeric( $bit ) ) {
+					$limit = $bit;
+				}
+
+				if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
+					$limit = $m[1];
+				}
+
+				if ( preg_match( '/^days=(\d+)$/', $bit, $m ) ) {
+					$days = $m[1];
+				}
+			}
 		}
 	}
+
+	if ( $limit < 0 || $limit > 5000 ) $limit = $defaults['limit'];
 
 
 	# Database connection and caching
@@ -155,24 +170,26 @@ function wfSpecialRecentchanges( $par ) {
 		# Web output...
 
 		// Output header
-		$wgOut->addWikiText( wfMsgForContent( "recentchangestext" ) );
-	
-		// Dump everything here
-		$nondefaults = array();
-	
-		appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
-		appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
-	
-		// Add end of the texts
-		$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
-		$wgOut->addHTML( namespaceForm( $namespace, $invert, $nondefaults) . '</div>');
+		if ( !$specialPage->including() ) {
+			$wgOut->addWikiText( wfMsgForContent( "recentchangestext" ) );
+		
+			// Dump everything here
+			$nondefaults = array();
+		
+			appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
+			appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+
+			// Add end of the texts
+			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
+			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults) . '</div>');
+		}
 
 		// And now for the content
 		$sk = $wgUser->getSkin();
@@ -438,7 +455,7 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
  *
  * @return string
  */
-function namespaceForm ( $namespace, $invert, $nondefaults ) {
+function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
