@@ -863,7 +863,7 @@ END
 	function mergeChangesInto( &$text ){
 		$yourtext = $this->mArticle->fetchRevisionText();
 		
-		$db =& wfGetDB( DB_SLAVE );
+		$db =& wfGetDB( DB_MASTER );
 		$oldText = $this->mArticle->fetchRevisionText(
 			$db->timestamp( $this->edittime ),
 			'rev_timestamp' );
