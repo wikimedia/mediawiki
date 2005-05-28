@@ -244,7 +244,6 @@ class EmailNotification {
 		# named variables when composing your notification emails while
 		# simply editing the Meta pages
 		
-		$to      = wfMsgForContent( 'enotif_to' );
 		$subject = wfMsgForContent( 'enotif_subject' );
 		$body    = wfMsgForContent( 'enotif_body' );
 		$from    = ''; /* fail safe */
@@ -273,7 +272,6 @@ class EmailNotification {
 		$keys['%24PAGETITLE']        = $pagetitle; # needed for the {{localurl:$PAGETITLE}} in the messagetext, "$" appears here as "%24"
 		$keys['$PAGETITLE']          = $pagetitle;
 		$keys['$PAGETIMESTAMP']      = $article->mTimestamp;	# this is the raw internal timestamp - can be useful, too
-		$keys['$PAGEEDITDATEUTC']    = $wgLang->timeanddate( $article->mTimestamp, false, false, false );
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
 	
@@ -294,11 +292,9 @@ class EmailNotification {
 				$from    = $adminAddress;
 				$replyto = $editorAddress;
 			}
-			$keys['$PAGEEDITORNAMEANDEMAILADDR'] = $editorAddress;
 		} else {
 			$from    = $adminAddress;
 			$replyto = $wgNoReplyAddress;
-			$keys['$PAGEEDITORNAMEANDEMAILADDR'] = $replyto;
 		}
 	
 		if( $wgUser->isIP( $name ) ) {
@@ -310,20 +306,17 @@ class EmailNotification {
 			$keys['$PAGEEDITOR_RAWURL']   = $anonUrl;
 			$keys['%24PAGEEDITOR_RAWURL'] = $anonUrl;
 			$keys['%24PAGEEDITORE']       = $anon;
-			$keys['$PAGEEDITORE']         = $anon;
 			$keys['$PAGEEDITOR']          = 'anonymous user ' . $name;
 		} else {
 			$subject = str_replace('$PAGEEDITOR', $name, $subject);
 			$keys['$PAGEEDITOR_RAWURL']   = wfUrlencode( $name );
 			$keys['%24PAGEEDITOR_RAWURL'] = wfUrlencode( $name );
 			$keys['%24PAGEEDITORE']       = $wgUser->getTitleKey();
-			$keys['$PAGEEDITORE']         = $wgUser->getTitleKey();
 			$keys['$PAGEEDITOR']          = $name;
 		}
 		$body = strtr( $body, $keys );
 	
 		# now save this as the constant user-independent part of the message
-		$this->to      = $to;
 		$this->from    = $from;
 		$this->replyto = $replyto;
 		$this->subject = $subject;
@@ -349,7 +342,6 @@ class EmailNotification {
 		//     The mail command will not parse this properly while talking with the MTA.
 		$to = $watchingUser->getEmail();
 		$body = str_replace( '$WATCHINGUSERNAME', $watchingUser->getName() , $this->body );
-		$body = str_replace( '$WATCHINGUSEREMAILADDR', $watchingUser->getEmail(), $body );
 	
 		$timecorrection = $watchingUser->getOption( 'timecorrection' );
 		if( !$timecorrection ) {

@@ -1104,7 +1104,6 @@ $3…
 * Страницы, изменившиеся с момента вашего последнего посещения показаны '''жирным шрифтом''' ",
 'enotif_reset'              => 'Отметить все страницы как просмотренные',
 'enotif_newpagetext'        => 'Это новая страница.',
-'enotif_to'                 => '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'changed'                       => 'изменена',
 'created'                       => 'создана',
 'enotif_subject'    => 'Страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR',
