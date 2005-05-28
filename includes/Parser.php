@@ -3213,6 +3213,11 @@ class ParserOptions
 
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 
+	function ParserOptions() {
+		global $wgUser;
+		$this->initialiseFromUser( $wgUser );
+	}
+
 	/**
 	 * Get parser options
 	 * @static
