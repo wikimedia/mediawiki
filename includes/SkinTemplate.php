@@ -146,7 +146,7 @@ class SkinTemplate extends Skin {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
+		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 
@@ -310,7 +310,6 @@ class SkinTemplate extends Skin {
 				$tpl->set('numberofwatchingusers', false);
 			}
 
-			$tpl->set('lastmod', $this->lastModified());
 			$tpl->set('copyright',$this->getCopyright());
 
 			$this->credits = false;
@@ -318,6 +317,8 @@ class SkinTemplate extends Skin {
 			if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
 				require_once("Credits.php");
 				$this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+			} else {
+				$tpl->set('lastmod', $this->lastModified());
 			}
 
 			$tpl->setRef( 'credits', $this->credits );
@@ -353,11 +354,14 @@ class SkinTemplate extends Skin {
 
 		# Language links
 		$language_urls = array();
-		foreach( $wgOut->getLanguageLinks() as $l ) {
-			$nt = Title::newFromText( $l );
-			$language_urls[] = array('href' => $nt->getFullURL(),
-			'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-			'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
+		
+		if ( !$wgHideInterlanguageLinks ) {
+			foreach( $wgOut->getLanguageLinks() as $l ) {
+				$nt = Title::newFromText( $l );
+				$language_urls[] = array('href' => $nt->getFullURL(),
+				'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+				'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
+			}
 		}
 		if(count($language_urls)) {
 			$tpl->setRef( 'language_urls', $language_urls);

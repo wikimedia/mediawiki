@@ -465,6 +465,10 @@ $wgLanguageCode     = 'en';
 /** Treat language links as magic connectors, not inline links */
 $wgInterwikiMagic	= true;
 
+/** Hide interlanguage links from the sidebar */
+$wgHideInterlanguageLinks = false;
+
+
 /** We speak UTF-8 all the time now, unless some oddities happen */
 $wgInputEncoding	= 'UTF-8';
 $wgOutputEncoding	= 'UTF-8'; 
