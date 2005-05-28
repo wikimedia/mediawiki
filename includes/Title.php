@@ -704,7 +704,7 @@ class Title {
 		if ( $lowerCase != $friendlyName  ) {
 			$friendlyName .= '_' . substr(md5( $dbkey ), 0, 4);
 		}
-		# Handle colon specially because by replacing it with tilde
+		# Handle colon specially by replacing it with tilde
 		# Thus we reduce the number of paths with hashes appended
 		$friendlyName = str_replace( ':', '~', $friendlyName );
 		return "$dir/$friendlyName.html";	
