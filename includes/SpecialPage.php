@@ -19,7 +19,7 @@
 /**
  *
  */
-global $wgSpecialPages, $wgSpecialPageRedirects, $wgUser;
+global $wgSpecialPages, $wgUser;
 
 /**
  * @access private
@@ -73,24 +73,6 @@ $wgSpecialPages = array(
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'Groups'		=> new SpecialPage( 'Groups' ),
-);
-
-/**
- * Redirect Special:$key to somewhere else.
- *
- * @access private
- */
-$wgSpecialPageRedirects = array(
-	# My*
-	'Mypage' => Title::makeTitle( NS_USER, $wgUser->getName() ),
-	'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
-	'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
-
-	# Deprecated specialpages
-	'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers' ),
-
-	# Redirects
-	'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' ),
 );
 
 global $wgUseValidation ;
@@ -198,11 +180,19 @@ class SpecialPage
 	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
 	function &getRedirect( $name ) {
-		global $wgSpecialPageRedirects;
-		if ( array_key_exists( $name, $wgSpecialPageRedirects ) ) {
-			return $wgSpecialPageRedirects[$name];
-		} else {
-			return NULL;
+		switch ( $name ) {
+			case 'Mypage':
+				return Title::makeTitle( NS_USER, $wgUser->getName() );
+			case 'Mytalk':
+				return Title::makeTitle( NS_USER_TALK, $wgUser->getName() );
+			case 'Mycontributions':
+				return Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() );
+			case 'Listadmins':
+				return Title::makeTitle( NS_SPECIAL, 'Listusers' );
+			case 'Randompage':
+				return Title::makeTitle( NS_SPECIAL, 'Random' );
+			default:
+				return NULL;
 		}
 	}
 
@@ -251,18 +241,22 @@ class SpecialPage
 
 		$page =& SpecialPage::getPage( $name );
 		if ( is_null( $page ) ) {
-			$redir =& SpecialPage::getRedirect( $name );
-			if ( isset( $redir ) ) {
-				if ( isset( $par ) ) 
-					$wgOut->redirect( $redir->getFullURL() . '/' . $par );
-				else
-					$wgOut->redirect( $redir->getFullURL() );
-				$retVal = $redir;
+			if ( $including ) {
+				return false;
 			} else {
-				$wgOut->setArticleRelated( false );
-				$wgOut->setRobotpolicy( "noindex,follow" );
-				$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
-				$retVal = false;
+				$redir =& SpecialPage::getRedirect( $name );
+				if ( isset( $redir ) ) {
+					if ( isset( $par ) ) 
+						$wgOut->redirect( $redir->getFullURL() . '/' . $par );
+					else
+						$wgOut->redirect( $redir->getFullURL() );
+					$retVal = $redir;
+				} else {
+					$wgOut->setArticleRelated( false );
+					$wgOut->setRobotpolicy( "noindex,follow" );
+					$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+					$retVal = false;
+				}
 			}
 		} else {
 			if ( $including && !$page->includable() ) {
