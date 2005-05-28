@@ -1119,7 +1119,11 @@ END;
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgContLang, $wgTitle;
+		global $wgOut, $wgContLang, $wgTitle, $wgHideInterlanguageLinks;
+
+		if ( $wgHideInterlanguageLinks ) {
+			return '';
+		}
 
 		$a = $wgOut->getLanguageLinks();
 		if ( 0 == count( $a ) ) {
