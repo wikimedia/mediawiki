@@ -15,6 +15,3 @@ ALTER TABLE /*$wgDBprefix*/image ADD (
   -- see http://www.iana.org/assignments/media-types/
   img_minor_mime varchar(32) NOT NULL default "unknown"
 );
-
--- img_type is no longer used, delete it
-ALTER TABLE /*$wgDBprefix*/image DROP COLUMN img_type;
