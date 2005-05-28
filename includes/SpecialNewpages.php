@@ -101,15 +101,34 @@ class NewPagesPage extends QueryPage {
 /**
  * constructor
  */
-function wfSpecialNewpages()
+function wfSpecialNewpages($par, $specialPage)
 {
 	global $wgRequest;
-    list( $limit, $offset ) = wfCheckLimits();
+	list( $limit, $offset ) = wfCheckLimits();
+	if( $par ) {
+		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+		foreach ( $bits as $bit ) {
+			if ( 'shownav' == $bit ) $shownavigation = 1;
+			if ( is_numeric( $bit ) ) {
+				$limit = $bit;
+			}
 
-    $npp = new NewPagesPage();
+			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
+				$limit = intval($m[1]);
+			}
+			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) ) {
+				$offset = intval($m[1]);
+			}
+		}
+	}
+	if(!isset($shownavigation)) {
+		$shownavigation=!$specialPage->including();
+	}
 
-    if( !$npp->doFeed( $wgRequest->getVal( 'feed' ) ) ) {
-	    $npp->doQuery( $offset, $limit );
+	$npp = new NewPagesPage();
+
+	if( !$npp->doFeed( $wgRequest->getVal( 'feed' ) ) ) {
+		$npp->doQuery( $offset, $limit, $shownavigation );
 	}
 }
 
