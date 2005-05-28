@@ -621,50 +621,64 @@ class Title {
 	 * @access public
 	 */
 	function getFullURL( $query = '' ) {
-		global $wgContLang, $wgServer, $wgScript;
+		global $wgContLang, $wgServer, $wgScript, $wgMakeDumpLinks, $wgArticlePath;
 
 		if ( '' == $this->mInterwiki ) {
 			return $wgServer . $this->getLocalUrl( $query );
-		} else {
+		} elseif ( $wgMakeDumpLinks && $wgContLang->getLanguageName( $this->mInterwiki ) ) {
+			$baseUrl = str_replace( '$1', "../../{$this->mInterwiki}/$1", $wgArticlePath );
+			$baseUrl = str_replace( '$1', $this->getHashedDirectory() . '/$1', $baseUrl );
+		} else {	
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
-			$namespace = $wgContLang->getNsText( $this->mNamespace );
-			if ( '' != $namespace ) {
-				# Can this actually happen? Interwikis shouldn't be parsed.
-				$namepace .= ':';
-			}
-			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
-			if( $query != '' ) {
-				if( false === strpos( $url, '?' ) ) {
-					$url .= '?';
-				} else {
-					$url .= '&';
-				}
-				$url .= $query;
-			}
-			if ( '' != $this->mFragment ) {
-				$url .= '#' . $this->mFragment;
-			}
-			return $url;
 		}
+		
+		$namespace = $wgContLang->getNsText( $this->mNamespace );
+		if ( '' != $namespace ) {
+			# Can this actually happen? Interwikis shouldn't be parsed.
+			$namepace .= ':';
+		}
+		$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
+		if( $query != '' ) {
+			if( false === strpos( $url, '?' ) ) {
+				$url .= '?';
+			} else {
+				$url .= '&';
+			}
+			$url .= $query;
+		}
+		if ( '' != $this->mFragment ) {
+			$url .= '#' . $this->mFragment;
+		}
+		return $url;
 	}
 
 	/** 
 	 * Get a relative directory for putting an HTML version of this article into
 	 */
 	function getHashedDirectory() {
-		$dbkey = $this->getPrefixedDBkey();
-		if ( strlen( $dbkey ) < 2 ) {
-			$dbkey = sprintf( "%2s", $dbkey );
+		global $wgMakeDumpLinks, $wgInputEncoding;
+		$dbkey = $this->getDBkey();
+
+		# Split into characters
+		if ( $wgInputEncoding == 'UTF-8' ) {
+			preg_match_all( '/./us', $dbkey, $m );
+		} else {
+			preg_match_all( '/./s', $dbkey, $m );
 		}
+		$chars = $m[0];
+		$length = count( $chars );		
 		$dir = '';
-		for ( $i=0; $i<=1; $i++ ) {
+
+		for ( $i = 0; $i < $wgMakeDumpLinks; $i++ ) {
 			if ( $i ) {
 				$dir .= '/';
 			}
-			if ( ord( $dbkey{$i} ) < 128 && ord( $dbkey{$i} ) > 32 ) {
-				$dir .= strtolower( $dbkey{$i} );
+			if ( $i >= $length ) { 
+				$dir .= '_';
+			} elseif ( ord( $chars[$i] ) > 32 ) {
+				$dir .= strtolower( $chars[$i] );
 			} else {
-				$dir .= sprintf( "%02X", ord( $dbkey{$i} ) );
+				$dir .= sprintf( "%02X", ord( $chars[$i] ) );
 			}
 		}
 		return $dir;
@@ -672,8 +686,27 @@ class Title {
 	
 	function getHashedFilename() {
 		$dbkey = $this->getPrefixedDBkey();
+		$mainPage = Title::newMainPage();
+		if ( $mainPage->getPrefixedDBkey() == $dbkey ) {
+			return 'index.html';
+		}
+
 		$dir = $this->getHashedDirectory();
-		$friendlyName = strtr( $dbkey, '/\\:*?"<>|', '_________' );
+
+		# Replace illegal charcters for Windows paths with underscores
+		$friendlyName = strtr( $dbkey, '/\\*?"<>|~', '_________' );
+
+		# Work out lower case form. We assume we're on a system with case-insensitive
+		# filenames, so unless the case is of a special form, we have to disambiguate
+		$lowerCase = $this->prefix( ucfirst( strtolower( $this->getDBkey() ) ) );
+
+		# Make it mostly unique
+		if ( $lowerCase != $friendlyName  ) {
+			$friendlyName .= '_' . substr(md5( $dbkey ), 0, 4);
+		}
+		# Handle colon specially because by replacing it with tilde
+		# Thus we reduce the number of paths with hashes appended
+		$friendlyName = str_replace( ':', '~', $friendlyName );
 		return "$dir/$friendlyName.html";	
 	}
 	
@@ -941,12 +974,12 @@ class Title {
 
 			/** some pages are explicitly allowed */
 			$name = $this->getPrefixedText();
-			if( in_array( $name, $wgWhitelistRead ) ) {
+			if( $wgWhitelistRead && in_array( $name, $wgWhitelistRead ) ) {
 				return true;
 			}
 			
 			# Compatibility with old settings
-			if( $this->getNamespace() == NS_MAIN ) {
+			if( $wgWhitelistRead && $this->getNamespace() == NS_MAIN ) {
 				if( in_array( ':' . $name, $wgWhitelistRead ) ) {
 					return true;
 				}
