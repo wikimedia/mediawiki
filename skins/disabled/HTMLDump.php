@@ -8,7 +8,7 @@ if( !defined( 'MEDIAWIKI' ) )
 	die();
 
 /** */
-require_once('includes/SkinTemplate.php');
+require_once( 'includes/SkinTemplate.php' );
 
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
@@ -58,6 +58,10 @@ class SkinHTMLDump extends SkinTemplate {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 		
+		if ( $nt->getNamespace() == NS_CATEGORY ) {
+			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+		}
+		
 		if ( $text == '' ) {
 			$text = $nt->getPrefixedText();
 		}
@@ -94,6 +98,7 @@ class HTMLDumpTemplate extends QuickTemplate {
 	}
 	
 	function reallyExecute() {
+		wfSuppressWarnings();
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
   <head>
@@ -181,7 +186,6 @@ class HTMLDumpTemplate extends QuickTemplate {
 	<?php if($this->data['copyrightico']) { ?><div id="f-copyrightico"><?php $this->html('copyrightico') ?></div><?php } ?>
 	<ul id="f-list">
 	  <?php if($this->data['lastmod'   ]) { ?><li id="f-lastmod"><?php    $this->html('lastmod')    ?></li><?php } ?>
-	  <?php if($this->data['viewcount' ]) { ?><li id="f-viewcount"><?php  $this->html('viewcount')  ?></li><?php } ?>
 	  <?php if($this->data['numberofwatchingusers' ]) { ?><li id="f-numberofwatchingusers"><?php  $this->html('numberofwatchingusers') ?></li><?php } ?>
 	  <?php if($this->data['credits'   ]) { ?><li id="f-credits"><?php    $this->html('credits')    ?></li><?php } ?>
 	  <?php if($this->data['copyright' ]) { ?><li id="f-copyright"><?php  $this->html('copyright')  ?></li><?php } ?>
@@ -195,6 +199,7 @@ class HTMLDumpTemplate extends QuickTemplate {
   </body>
 </html>
 <?php
+		wfRestoreWarnings();
 	}
 }
 ?>
