@@ -195,7 +195,8 @@ class Revision {
 			       'rev_timestamp',
 			       'rev_deleted' ),
 			$conditions,
-			'Revision::fetchRow' );
+			'Revision::fetchRow',
+			array( 'LIMIT' => 1 ) );
 		return $db->resultObject( $res );
 	}
 	
