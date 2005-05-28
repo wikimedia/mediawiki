@@ -134,7 +134,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( NS_SPECIAL == $wgTitle->getNamespace() ) {
 	# actions that need to be made when we have a special pages
-	require_once( 'includes/SpecialPage.php' );
 	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( NS_MEDIA == $wgTitle->getNamespace() ) {
