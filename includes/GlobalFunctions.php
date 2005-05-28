@@ -1287,4 +1287,22 @@ function wfTempDir() {
 	return '/tmp';
 }
 
+/**
+ * Make directory, and make all parent directories if they don't exist
+ */
+function wfMkdirParents( $fullDir, $mode ) {
+	$parts = explode( '/', $fullDir );
+	$path = '';
+	$success = false;
+	foreach ( $parts as $dir ) {
+		$path .= $dir . '/';
+		if ( !is_dir( $path ) ) {
+			if ( !mkdir( $path, $mode ) ) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 ?>
