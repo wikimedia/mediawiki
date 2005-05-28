@@ -119,7 +119,7 @@ class Image
 				# in shared repository has not changed
 				if ( isset( $keys[1] ) ) {
 					$commonsCachedValues = $wgMemc->get( $keys[1] );
-					if (!empty($commonsCachedValues) && is_array($commonsCachedValues) && isset($commonsCachedValues['width'])) {
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues) && isset($commonsCachedValues['mime'])) {
 						$this->name = $commonsCachedValues['name'];
 						$this->imagePath = $commonsCachedValues['imagePath'];
 						$this->fileExists = $commonsCachedValues['fileExists'];
@@ -309,7 +309,9 @@ class Image
 			$name = $wgLang->ucfirst($this->name);
 
 			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.image", 
-				array( 'img_size', 'img_width', 'img_height', 'img_bits', 'img_media_type', 'img_major_mime', 'img_minor_mime' ),
+				array( 
+					'img_size', 'img_width', 'img_height', 'img_bits', 
+					'img_media_type', 'img_major_mime', 'img_minor_mime', 'img_metadata' ),
 				array( 'img_name' => $name ), $fname );
 			if ( $row ) {
 				$this->fromSharedDirectory = true;
@@ -338,6 +340,7 @@ class Image
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
+		wfProfileOut( $fname );
 	}
 
 	/*
@@ -390,11 +393,14 @@ class Image
 	function upgradeRow() {
 		global $wgDBname, $wgSharedUploadDBname;
 		$fname = 'Image::upgradeRow';
+		wfProfileIn( $fname );
+
 		$this->loadFromFile();
 		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( $this->fromSharedDirectory ) {
 			if ( !$wgSharedUploadDBname ) {
+				wfProfileOut( $fname );
 				return;
 			}
 
@@ -429,6 +435,7 @@ class Image
 		if ( $this->fromSharedDirectory ) {
 			$dbw->selectDB( $wgDBname );
 		}
+		wfProfileOut( $fname );
 	}
 				
 	/**
@@ -1125,7 +1132,7 @@ class Image
 		  || !$db->fieldExists( 'image', 'img_metadata' )
 		  || !$db->fieldExists( 'image', 'img_width' ) ) {
 		  
-			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/updater.php' );
+			wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/update.php' );
 		}
 	}
 
