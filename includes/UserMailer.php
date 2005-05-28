@@ -162,6 +162,9 @@ class EmailNotification {
 		global $wgEnotifFromEditor;
 		global $wgEmailAuthentication;
 
+		$fname = 'UserMailer::notifyOnPageChange';
+		wfProfileIn( $fname );
+		
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
@@ -170,16 +173,16 @@ class EmailNotification {
 		$enotifusertalkpage = ($isUserTalkPage && $wgEnotifUserTalk);
 		$enotifwatchlistpage = (!$isUserTalkPage && $wgEnotifWatchlist);	
 
-		if ( ($enotifusertalkpage || $enotifwatchlistpage)
-			&& (!$minorEdit || $wgEnotifMinorEdits) ) {
-	
+		if ( ($enotifusertalkpage || $enotifwatchlistpage) && (!$minorEdit || $wgEnotifMinorEdits) ) {
 			$dbr =& wfGetDB( DB_MASTER );
 			extract( $dbr->tableNames( 'watchlist' ) );
-			$sql = "SELECT wl_user FROM $watchlist
-				WHERE wl_title='" . $dbr->strencode($title->getDBkey()).
-				"'  AND wl_namespace = " . $title->getNamespace() .
-				" AND wl_user <>" . $wgUser->getID() . " AND wl_notificationtimestamp <= 1";
-			$res = $dbr->query( $sql,'UserMailer::NotifyOnChange');
+			$res = $dbr->select( 'watchlist', array( 'wl_user' ), 
+				array(
+					'wl_title' => $title->getDBkey(),
+					'wl_namespace' => $title->getNamespace(),
+					'wl_user <> ' . $wgUser->getID(),
+					'wl_notificationtimestamp <= 1',
+				), $fname );
 
 			# if anyone is watching ... set up the email message text which is
 			# common for all receipients ...
@@ -208,20 +211,19 @@ class EmailNotification {
 						$this->composeAndSendPersonalisedMail( $watchingUser );
 
 					} # if the watching user has an email address in the preferences
-					# mark the changed watch-listed page with a timestamp, so that the page is listed with an "updated since your last visit" icon in the watch list, ...
-					# ... no matter, if the watching user has or has not indicated an email address in his/her preferences.
-					# We memorise the event of sending out a notification and use this as a flag to suppress further mails for changes on the same page for that watching user
-					$dbw =& wfGetDB( DB_MASTER );
-					$succes = $dbw->update( 'watchlist',
-						array( /* SET */
-							'wl_notificationtimestamp' => $timestamp
-						), array( /* WHERE */
-							'wl_title' => $title->getDBkey(),
-							'wl_namespace' => $title->getNamespace(),
-							'wl_user' => $wuser->wl_user
-						), 'UserMailer::NotifyOnChange'
-					);
-				} # for every watching user
+				}
+				
+				# mark the changed watch-listed page with a timestamp, so that the page is 
+				# listed with an "updated since your last visit" icon in the watch list, ...
+				$dbw =& wfGetDB( DB_MASTER );
+				$success = $dbw->update( 'watchlist',
+					array( /* SET */
+						'wl_notificationtimestamp' => $timestamp
+					), array( /* WHERE */
+						'wl_title' => $title->getDBkey(),
+						'wl_namespace' => $title->getNamespace(),
+					), 'UserMailer::NotifyOnChange'
+				);
 			} # if anyone is watching
 		} # if $wgEnotifWatchlist = true
 	} # function NotifyOnChange
