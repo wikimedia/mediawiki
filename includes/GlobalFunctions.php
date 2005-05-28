@@ -421,6 +421,10 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
 	}
+	
+	# Fix windows line-endings
+	# Some messages are split with explode("\n", $msg)
+	$message = str_replace( "\r", '', $message );
 
 	# Replace arguments
 	if( count( $args ) ) {
