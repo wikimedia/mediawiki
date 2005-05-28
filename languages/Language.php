@@ -1256,7 +1256,6 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 * Pages which have been changed since you last visited them are shown in '''bold'''",
 'enotif_reset'			=> 'Mark all pages visited',
 'enotif_newpagetext'=> 'This is a new page.',
-'enotif_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'changed'			=> 'changed',
 'created'			=> 'created',
 'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
