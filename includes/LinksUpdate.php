@@ -55,8 +55,10 @@ class LinksUpdate {
 			if ( count( $del ) ) {
 				$batch = new LinkBatch( $del );
 				$set = $batch->constructSet( 'pl', $dbw );
-				$sql = "DELETE FROM $pagelinks WHERE pl_from={$this->mId} AND ($set)";
-				$dbw->query( $sql, $fname );
+				if ( $set ) {
+					$sql = "DELETE FROM $pagelinks WHERE pl_from={$this->mId} AND ($set)";
+					$dbw->query( $sql, $fname );
+				}
 			}
 		} else {
 			# Delete everything
