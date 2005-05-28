@@ -180,6 +180,7 @@ class SpecialPage
 	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
 	function &getRedirect( $name ) {
+		global $wgUser;
 		switch ( $name ) {
 			case 'Mypage':
 				return Title::makeTitle( NS_USER, $wgUser->getName() );
