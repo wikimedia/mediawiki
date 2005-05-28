@@ -83,7 +83,7 @@ define( 'EXT_IMAGE_REGEX',
  * settings:
  *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
  *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
- *  $wgLocaltimezone
+ *  $wgLocaltimezone, $wgAllowSpecialInclusion*
  *
  *  * only within ParserOptions
  * </pre>
@@ -2132,7 +2132,8 @@ class Parser
 		}
 
 		# Load from database
-		$itcamefromthedatabase = false;
+		$replaceHeadings = false;
+		$isHTML = false;
 		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
 			$ns = NS_TEMPLATE;
@@ -2145,13 +2146,23 @@ class Parser
 				# Check for excessive inclusion
 				$dbk = $title->getPrefixedDBkey();
 				if ( $this->incrementIncludeCount( $dbk ) ) {
-					# This should never be reached.
-					$article = new Article( $title );
-					$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
-					if ( $articleContent !== false ) {
-						$found = true;
-						$text = $linestart . $articleContent;
-						$itcamefromthedatabase = true;
+					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() ) {
+						# Capture special page output
+						$text = SpecialPage::capturePath( $title );
+						if ( $text && !is_object( $text ) ) {
+							$found = true;
+							$noparse = true;
+							$isHTML = true;
+							$this->mOutput->setCacheTime( -1 );
+						}
+					} else {
+						$article = new Article( $title );
+						$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
+						if ( $articleContent !== false ) {
+							$found = true;
+							$text = $linestart . $articleContent;
+							$replaceHeadings = true;
+						}
 					}
 				}
 
@@ -2219,33 +2230,41 @@ class Parser
 			wfProfileOut( $fname );
 			return $matches[0];
 		} else {
-			# replace ==section headers==
-			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI && $itcamefromthedatabase ) {
-				if( !is_null( $title ) )
-					$encodedname = base64_encode($title->getPrefixedDBkey());
-				else
-					$encodedname = base64_encode("");
-				$m = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
-					PREG_SPLIT_DELIM_CAPTURE);
-				$text = '';
-				$nsec = 0;
-				for( $i = 0; $i < count($m); $i += 2 ) {
-					$text .= $m[$i];
-					if (!isset($m[$i + 1]) || $m[$i + 1] == "") continue;
-					$hl = $m[$i + 1];
-					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
-						$text .= $hl;
-						continue;
+			if ( $isHTML ) {
+				# Replace raw HTML by a placeholder
+				# Add a blank line preceding, to prevent it from mucking up 
+				# immediately preceding headings
+				$text = "\n\n" . $this->insertStripItem( $text, $this->mStripState );
+			} else {
+				# replace ==section headers==
+				# XXX this needs to go away once we have a better parser.
+				if ( $this->mOutputType != OT_WIKI && $replaceHeadings ) {
+					if( !is_null( $title ) )
+						$encodedname = base64_encode($title->getPrefixedDBkey());
+					else
+						$encodedname = base64_encode("");
+					$m = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
+						PREG_SPLIT_DELIM_CAPTURE);
+					$text = '';
+					$nsec = 0;
+					for( $i = 0; $i < count($m); $i += 2 ) {
+						$text .= $m[$i];
+						if (!isset($m[$i + 1]) || $m[$i + 1] == "") continue;
+						$hl = $m[$i + 1];
+						if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
+							$text .= $hl;
+							continue;
+						}
+						preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
+						$text .= $m2[1] . $m2[2] . "<!--MWTEMPLATESECTION="
+							. $encodedname . "&" . base64_encode("$nsec") . "-->" . $m2[3];
+						
+						$nsec++;
 					}
-					preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
-					$text .= $m2[1] . $m2[2] . "<!--MWTEMPLATESECTION="
-						. $encodedname . "&" . base64_encode("$nsec") . "-->" . $m2[3];
-					
-					$nsec++;
 				}
 			}
 		}
+		
 		# Prune lower levels off the recursion check path
 		$this->mTemplatePath = $lastPathLevel;
 		
@@ -3122,7 +3141,7 @@ class Parser
 class ParserOutput
 {
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
-	var $mCacheTime; # Used in ParserCache
+	var $mCacheTime; # Timestamp on this article, or -1 for uncacheable. Used in ParserCache.
 	var $mVersion;   # Compatibility check
 	var $mTitleText; # title text of the chosen language variant
 
@@ -3170,7 +3189,8 @@ class ParserOutput
 	 */
 	function expired( $touched ) {
 		global $wgCacheEpoch;
-		return $this->getCacheTime() <= $touched ||
+		return $this->getCacheTime() == -1 || // parser says it's uncacheable
+		       $this->getCacheTime() <= $touched ||
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
@@ -3193,6 +3213,7 @@ class ParserOptions
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
 	var $mNumberHeadings;            # Automatically number headings
+	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -3202,6 +3223,8 @@ class ParserOptions
 	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
+	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
+
 
 	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -3210,6 +3233,7 @@ class ParserOptions
 	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
+	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
 
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 
@@ -3230,7 +3254,8 @@ class ParserOptions
 
 	/** Get user options */
 	function initialiseFromUser( &$userInput ) {
-		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
+		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages, 
+		       $wgAllowSpecialInclusion;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -3250,6 +3275,7 @@ class ParserOptions
 		$this->mDateFormat = $user->getOption( 'date' );
 		$this->mEditSection = $user->getOption( 'editsection' );
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
+		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		wfProfileOut( $fname );
 	}
 }

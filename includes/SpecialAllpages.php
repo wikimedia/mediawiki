@@ -8,7 +8,7 @@
  * Entry point : initialise variables and call subfunctions.
  * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default NULL)
  */
-function wfSpecialAllpages( $par=NULL ) {
+function wfSpecialAllpages( $par=NULL, $specialPage ) {
 	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
 	# Config
 	$indexMaxperpage = 480;
@@ -36,11 +36,11 @@ function wfSpecialAllpages( $par=NULL ) {
 	}
 	
 	if ( isset($par) ) {
-		indexShowChunk( $namespace, $par, $invert );
+		indexShowChunk( $namespace, $par, $invert, $specialPage->including() );
 	} elseif ( isset($from) ) {
-		indexShowChunk( $namespace, $from, $invert );
+		indexShowChunk( $namespace, $from, $invert, $specialPage->including() );
 	} else {
-		indexShowToplevel ( $namespace, $invert );
+		indexShowToplevel ( $namespace, $invert, $specialPage->including() );
 	}
 }
 
@@ -50,7 +50,7 @@ function wfSpecialAllpages( $par=NULL ) {
  * @param string $from Article name we are starting listing at.
  * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
+function indexNamespaceForm ( $namespace = NS_MAIN, $from = '', $invert = false ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
@@ -97,7 +97,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
  * @param integer $namespace (default NS_MAIN)
  * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
+function indexShowToplevel ( $namespace = NS_MAIN, $invert = false,  $including = false ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
@@ -120,7 +120,7 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
 	if ( $sections < 3 ) {
 		# If there are only two or less sections, don't even display them.
 		# Instead, display the first section directly.
-		indexShowChunk( $namespace, '', $invert );
+		indexShowChunk( $namespace, '', $invert, $including );
 		return;
 	}
 
@@ -167,33 +167,37 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
 	}
 	$out .= '</table>';
 	
-	$nsForm = namespaceForm ( $namespace, '', $invert );
-
+	$nsForm = indexNamespaceForm ( $namespace, '', $invert );
+	
 	# Is there more?
-	$morelinks = '';
-	if ( $offset > 0 ) {
-		$morelinks = $sk->makeKnownLink (
-			$wgContLang->specialPage ( 'Allpages' ),
-			wfMsg ( 'allpagesprev' ),
-			( $offset > $toplevelMaxperpage ) ? 'offset='.($offset-$toplevelMaxperpage) : ''
-		);
-	}
-	if ( $stopat < $sections-1 ) {
-		if ( $morelinks != '' ) { $morelinks .= " | "; }
-		$morelinks .= $sk->makeKnownLink (
-			$wgContLang->specialPage ( 'Allpages' ),
-			wfMsg ( 'allpagesnext' ),
-			'offset=' . ($offset + $toplevelMaxperpage)
-		);
-	}
-
-	if ( $morelinks != '' ) {
-		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
-		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
-		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">';
-		$out2 .= $morelinks . '</td></tr></table><hr />';
+	if ( $including ) {
+		$out2 = '';
 	} else {
-		$out2 = $nsForm . '<hr />';
+		$morelinks = '';
+		if ( $offset > 0 ) {
+			$morelinks = $sk->makeKnownLink (
+				$wgContLang->specialPage ( 'Allpages' ),
+				wfMsg ( 'allpagesprev' ),
+				( $offset > $toplevelMaxperpage ) ? 'offset='.($offset-$toplevelMaxperpage) : ''
+			);
+		}
+		if ( $stopat < $sections-1 ) {
+			if ( $morelinks != '' ) { $morelinks .= " | "; }
+			$morelinks .= $sk->makeKnownLink (
+				$wgContLang->specialPage ( 'Allpages' ),
+				wfMsg ( 'allpagesnext' ),
+				'offset=' . ($offset + $toplevelMaxperpage)
+			);
+		}
+
+		if ( $morelinks != '' ) {
+			$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
+			$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
+			$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">';
+			$out2 .= $morelinks . '</td></tr></table><hr />';
+		} else {
+			$out2 = $nsForm . '<hr />';
+		}
 	}
 
 	$wgOut->addHtml( $out2 . $out );
@@ -229,7 +233,7 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN, $invert ) {
  * @param string $from list all pages from this name (default FALSE)
  * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
+function indexShowChunk( $namespace = NS_MAIN, $from, $invert = false, $including = false ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;
@@ -277,21 +281,25 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	}
 	$out .= '</table>';
 	
-	$nsForm = namespaceForm ( $namespace, $from, $invert );
-	$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
-	$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
-	$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
-			$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
-				wfMsg ( 'allpages' ) );
-	if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
-		$namespaceparam = $namespace ? "&namespace=$namespace" : "";
-		$invertparam = $invert ? "&invert=$invert" : '';
-		$out2 .= " | " . $sk->makeKnownLink(
-			$wgContLang->specialPage( "Allpages" ),
-			wfMsg ( 'nextpage', $s->page_title ),
-			"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam . $invertparam );
+	if ( $including ) {
+		$out2 = '';
+	} else {
+		$nsForm = indexNamespaceForm ( $namespace, $from, $invert );
+		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
+		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
+		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
+				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
+					wfMsg ( 'allpages' ) );
+		if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
+			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
+			$invertparam = $invert ? "&invert=$invert" : '';
+			$out2 .= " | " . $sk->makeKnownLink(
+				$wgContLang->specialPage( "Allpages" ),
+				wfMsg ( 'nextpage', $s->page_title ),
+				"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam . $invertparam );
+		}
+		$out2 .= "</td></tr></table><hr />";
 	}
-	$out2 .= "</td></tr></table><hr />";
 
 	$wgOut->addHtml( $out2 . $out );
 }

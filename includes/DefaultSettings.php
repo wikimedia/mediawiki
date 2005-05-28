@@ -1490,4 +1490,10 @@ $wgTrustedMediaFormats= array(
 	#"application/x-shockwafe-flash", //flash/shockwave movie 
 );
 
+/**
+ * Allow special page inclusions such as {{Special:Allpages}}
+ */
+$wgAllowSpecialInclusion = true;
+
+
 ?>

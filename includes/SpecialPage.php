@@ -34,7 +34,7 @@ $wgSpecialPages = array(
 	'Preferences'       => new SpecialPage( 'Preferences' ),
 	'Watchlist'         => new SpecialPage( 'Watchlist' ),
 	
-	'Recentchanges'     => new SpecialPage( 'Recentchanges' ),
+	'Recentchanges'     => new IncludableSpecialPage( 'Recentchanges' ),
 	'Upload'            => new SpecialPage( 'Upload' ),
 	'Imagelist'         => new SpecialPage( 'Imagelist' ),
 	'Newimages'         => new SpecialPage( 'Newimages' ),
@@ -51,7 +51,7 @@ $wgSpecialPages = array(
 	'Newpages'		=> new SpecialPage( 'Newpages' ),
 	'Ancientpages'	=> new SpecialPage( 'Ancientpages' ),
 	'Deadendpages'  => new SpecialPage( 'Deadendpages' ),
-	'Allpages'		=> new SpecialPage( 'Allpages' ),
+	'Allpages'		=> new IncludableSpecialPage( 'Allpages' ),
 	'Ipblocklist'	=> new SpecialPage( 'Ipblocklist' ),
 	'Specialpages'  => new UnlistedSpecialPage( 'Specialpages' ),
 	'Contributions' => new UnlistedSpecialPage( 'Contributions' ),
@@ -144,8 +144,19 @@ class SpecialPage
 	 * File which needs to be included before the function above can be called
 	 */
 	var $mFile;
+	/**
+	 * Whether or not this special page is being included from an article
+	 */
+	var $mIncluding;
+	/**
+	 * Whether the special page can be included in an article
+	 */
+	var $mIncludable;
+	
+
 	/**#@-*/
 
+	
 	/**
 	 * Add a page to the list of valid special pages
 	 * $obj->execute() must send HTML to $wgOut then return
@@ -221,9 +232,13 @@ class SpecialPage
 	 * The path	may contain parameters, e.g. Special:Name/Params
 	 * Extracts the special page name and call the execute method, passing the parameters
 	 *
-	 * @param $title should be a title object
+	 * Returns a title object if the page is redirected, false if there was no such special 
+	 * page, and true if it was successful.
+	 *
+	 * @param $title          a title object
+	 * @param $including      output is being captured for use in {{special:whatever}}
 	 */
-	function executePath( &$title ) {
+	function executePath( &$title, $including = false ) {
 		global $wgSpecialPages, $wgOut, $wgTitle;
 
 		$bits = split( "/", $title->getDBkey(), 2 );
@@ -242,20 +257,50 @@ class SpecialPage
 					$wgOut->redirect( $redir->getFullURL() . '/' . $par );
 				else
 					$wgOut->redirect( $redir->getFullURL() );
+				$retVal = $redir;
 			} else {
 				$wgOut->setArticleRelated( false );
 				$wgOut->setRobotpolicy( "noindex,follow" );
 				$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+				$retVal = false;
 			}
 		} else {
+			if ( $including && !$page->includable() ) {
+				return false;
+			}
 			if($par !== NULL) {
 				$wgTitle = Title::makeTitle( NS_SPECIAL, $name );
 			} else {
 				$wgTitle = $title;
 			}
+			$page->including( $including );
 
 			$page->execute( $par );
+			$retVal = true;
 		}
+		return $retVal;
+	}
+
+	/**
+	 * Just like executePath() except it returns the HTML instead of outputting it
+	 * Returns false if there was no such special page, or a title object if it was
+	 * a redirect.
+	 * @static
+	 */
+	function capturePath( &$title ) {
+		global $wgOut, $wgTitle;
+
+		$oldTitle = $wgTitle;
+		$oldOut = $wgOut;
+		$wgOut = new OutputPage;
+		
+		$ret = SpecialPage::executePath( $title, true );
+		if ( $ret === true ) {
+			$ret = $wgOut->getHTML();
+		}
+		$wgTitle = $oldTitle;
+		$wgOut = $oldOut;
+		return $ret;
 	}
 
 	/**
@@ -274,10 +319,11 @@ class SpecialPage
 	 * @param string $function Function called by execute(). By default it is constructed from $name
 	 * @param string $file File which is included by execute(). It is also constructed from $name by default
 	 */
-	function SpecialPage( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default' ) {
+	function SpecialPage( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default', $includable = false ) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
+		$this->mIncludable = $includable;
 		if ( $function == false ) {
 			$this->mFunction = 'wfSpecial'.$name;
 		} else {
@@ -295,6 +341,8 @@ class SpecialPage
 	function getRestriction() { return $this->mRestriction; }
 	function isListed() { return $this->mListed; }
 	function getFile() { return $this->mFile; }
+	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
+	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); } 
 
 	/**
 	 * Checks if the given user (identified by an object) can execute this
@@ -348,7 +396,7 @@ class SpecialPage
 				require_once( $this->mFile );
 			}
 			$func = $this->mFunction;
-			$func( $par );
+			$func( $par, $this );
 		} else {
 			$this->displayRestrictionError();
 		}
@@ -376,6 +424,7 @@ class SpecialPage
 	function setListed( $listed ) {
 		return wfSetVar( $this->mListed, $listed );
 	}
+
 }
 
 /**
@@ -386,6 +435,16 @@ class UnlistedSpecialPage extends SpecialPage
 {
 	function UnlistedSpecialPage( $name, $restriction = '', $function = false, $file = 'default' ) {
 		SpecialPage::SpecialPage( $name, $restriction, false, $function, $file );
+	}
+}
+
+/**
+ * Shortcut to construct an includable special  page
+ */
+class IncludableSpecialPage extends SpecialPage
+{
+	function IncludableSpecialPage( $name, $restriction = '', $listed = true, $function = false, $file = 'default' ) {
+		SpecialPage::SpecialPage( $name, $restriction, $listed, $function, $file, true );
 	}
 }
 ?>
