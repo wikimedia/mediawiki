@@ -81,16 +81,16 @@ class Linker {
 	 * otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfProfileIn( 'Skin::makeLink' );
+		wfProfileIn( 'Linker::makeLink' );
 	 	$nt = Title::newFromText( $title );
 		if ($nt) {
 			$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
-			wfDebug( 'Invalid title passed to Skin::makeLink(): "'.$title."\"\n" );
+			wfDebug( 'Invalid title passed to Linker::makeLink(): "'.$title."\"\n" );
 			$result = $text == "" ? $title : $text;
 		}
 
-		wfProfileOut( 'Skin::makeLink' );
+		wfProfileOut( 'Linker::makeLink' );
 		return $result;
 	}
 
@@ -100,7 +100,7 @@ class Linker {
 		if ($nt) {
 			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail, $prefix , $aprops );
 		} else {
-			wfDebug( 'Invalid title passed to Skin::makeKnownLink(): "'.$title."\"\n" );
+			wfDebug( 'Invalid title passed to Linker::makeKnownLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
 		}
 	}
@@ -111,7 +111,7 @@ class Linker {
 		if ($nt) {
 			return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
-			wfDebug( 'Invalid title passed to Skin::makeBrokenLink(): "'.$title."\"\n" );
+			wfDebug( 'Invalid title passed to Linker::makeBrokenLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
 		}
 	}
@@ -122,7 +122,7 @@ class Linker {
 		if ($nt) {
 			return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
-			wfDebug( 'Invalid title passed to Skin::makeStubLink(): "'.$title."\"\n" );
+			wfDebug( 'Invalid title passed to Linker::makeStubLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
 		}
 	}
@@ -132,7 +132,7 @@ class Linker {
 	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser, $wgInputEncoding;
-		$fname = 'Skin::makeLinkObj';
+		$fname = 'Linker::makeLinkObj';
 		wfProfileIn( $fname );
 
 		# Fail gracefully
@@ -177,6 +177,7 @@ class Linker {
 
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
 				
+			wfProfileOut( $fname );
 			return $t;
 		} elseif ( $nt->isAlwaysKnown() ) {
 			# Image links, special page links and self-links with fragements are always known.
@@ -226,7 +227,7 @@ class Linker {
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
 		global $wgOut, $wgTitle, $wgInputEncoding;
 
-		$fname = 'Skin::makeKnownLinkObj';
+		$fname = 'Linker::makeKnownLinkObj';
 		wfProfileIn( $fname );
 
 		if ( !is_object( $nt ) ) {
@@ -270,7 +271,7 @@ class Linker {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
-		$fname = 'Skin::makeBrokenLinkObj';
+		$fname = 'Linker::makeBrokenLinkObj';
 		wfProfileIn( $fname );
 
 		if ( '' == $query ) {
@@ -510,7 +511,7 @@ class Linker {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
-		$fname = 'Skin::makeBrokenImageLinkObj';
+		$fname = 'Linker::makeBrokenImageLinkObj';
 		wfProfileIn( $fname );
 
 		$q = 'wpDestFile=' . urlencode( $nt->getDBkey() );
@@ -608,7 +609,7 @@ class Linker {
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 */
 	function formatComment($comment, $title = NULL) {
-		$fname = 'Skin::formatComment';
+		$fname = 'Linker::formatComment';
 		wfProfileIn( $fname );
 		
 		global $wgContLang;
