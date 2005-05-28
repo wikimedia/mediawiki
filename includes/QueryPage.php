@@ -199,8 +199,9 @@ class QueryPage {
 	 *
 	 * @param $offset database query offset
 	 * @param $limit database query limit
+	 * @param $shownavigation show navigation like "next 200"?
 	 */
-	function doQuery( $offset, $limit ) {
+	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
 		global $wgMiserMode;
 
@@ -234,17 +235,17 @@ class QueryPage {
 
 		$sk = $wgUser->getSkin( );
 
-		$wgOut->addHTML( $this->getPageHeader() );
-
-		$top = wfShowingResults( $offset, $num);
-		$wgOut->addHTML( "<p>{$top}\n" );
-
-		# often disable 'next' link when we reach the end
-		if($num < $limit) { $atend = true; } else { $atend = false; }
-
-		$sl = wfViewPrevNext( $offset, $limit , $wgContLang->specialPage( $sname ), "" ,$atend );
-		$wgOut->addHTML( "<br />{$sl}</p>\n" );
-
+		if($shownavigation) {
+			$wgOut->addHTML( $this->getPageHeader() );
+			$top = wfShowingResults( $offset, $num);
+			$wgOut->addHTML( "<p>{$top}\n" );
+	
+			# often disable 'next' link when we reach the end
+			if($num < $limit) { $atend = true; } else { $atend = false; }
+			
+			$sl = wfViewPrevNext( $offset, $limit , $wgContLang->specialPage( $sname ), "" ,$atend );
+			$wgOut->addHTML( "<br />{$sl}</p>\n" );
+		}
 		if ( $num > 0 ) {
 			$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
 
@@ -273,7 +274,9 @@ class QueryPage {
 			$s .= '</ol>';
 			$wgOut->addHTML( $s );
 		}
-		$wgOut->addHTML( "<p>{$sl}</p>\n" );
+		if($shownavigation) {
+			$wgOut->addHTML( "<p>{$sl}</p>\n" );
+		}
 		return $num;
 	}
 
