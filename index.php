@@ -141,20 +141,14 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$wgTitle = Title::makeTitle( NS_IMAGE, $wgTitle->getDBkey() );
 	}
 
-	switch( $wgTitle->getNamespace() ) {
-	case NS_IMAGE:
+	$ns = $wgTitle->getNamespace();
+	if ( $ns == NS_IMAGE ) {
 		require_once( 'includes/ImagePage.php' );
 		$wgArticle = new ImagePage( $wgTitle );
-		break;
-	case NS_CATEGORY:
-		if ( $wgUseCategoryMagic ) {
-			require_once( 'includes/CategoryPage.php' );
-			$wgArticle = new CategoryPage( $wgTitle );
-			break;
-		}
-		# NO break if wgUseCategoryMagic is false, drop through to next (default).
-		# Don't insert other cases between NS_CATEGORY and default.
-	default:
+	} elseif ( $wgUseCategoryMagic && $ns == NS_CATEGORY ) {
+		require_once( 'includes/CategoryPage.php' );
+		$wgArticle = new CategoryPage( $wgTitle );
+	} else {
 		$wgArticle = new Article( $wgTitle );
 	}
 
