@@ -549,6 +549,18 @@ function do_pagelinks_namespace( $namespace ) {
 	echo "ok\n";
 }
 
+function do_drop_img_type() {
+	 global $wgDatabase;
+	 
+	 if ($wgDatabase->fieldExists('image', 'img_type')) {
+		echo "Dropping unused img_type field in image table... ";
+		dbsource( "maintenance/archives/patch-drop_img_type.sql", $wgDatabase );
+		echo "ok\n";
+	} else {
+		echo "No img_type field in image table; Good.\n";
+        }
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 	
@@ -589,7 +601,9 @@ function do_all_updates() {
 	do_namespace_size(); flush();
 	
 	do_pagelinks_update(); flush();
-
+	
+	do_drop_img_type(); flush();
+	
 	initialiseMessages(); flush();
 }
 
