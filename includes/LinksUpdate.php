@@ -33,8 +33,13 @@ class LinksUpdate {
 	 */
 	
 	function doUpdate() {
-		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
+		global $wgUseDumbLinkUpdate, $wgLinkCache, $wgDBtransactions;
 		global $wgEnablePersistentLC, $wgUseCategoryMagic;
+
+		if ( $wgUseDumbLinkUpdate ) {
+			$this->doDumbUpdate();
+			return;
+		}
 
 		$fname = 'LinksUpdate::doUpdate';
 		wfProfileIn( $fname );
@@ -203,7 +208,7 @@ class LinksUpdate {
 				array_push( $arr, array(
 					'pl_from'      => $this->mId,
 					'pl_namespace' => $target->getNamespace(),
-					'pl_title'     => $target->getTitle() ) );
+					'pl_title'     => $target->getDBkey() ) );
 			}
 			$dbw->insert( 'pagelinks', $arr, $fname, array( 'IGNORE' ) );
 		}
