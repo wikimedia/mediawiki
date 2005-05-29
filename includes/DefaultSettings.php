@@ -1423,6 +1423,12 @@ $wgEnableSorbs = false;
 $wgEnableOpm = false;
 
 /**
+ * Proxy whitelist, list of addresses that are assumed to be non-proxy despite what the other
+ * methods might say
+ */
+$wgProxyWhitelist = array();
+
+/**
  * Simple rate limiter options to brake edit floods.
  * Maximum number actions allowed in the given number of seconds;
  * after that the violating client receives HTTP 500 error pages
