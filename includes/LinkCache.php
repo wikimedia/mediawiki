@@ -45,6 +45,7 @@ class LinkCache {
 		$this->mCategoryLinks = array();
 		$this->mOldGoodLinks = array();
 		$this->mOldBadLinks = array();
+		$this->mOldPageLinks = array();
 	}
 
 	/**
@@ -226,9 +227,6 @@ class LinkCache {
 				$this->addBadLinkObj( $title );
 			}
 		}
-		$this->mOldPageLinks = $this->mPageLinks;
-		$this->mOldBadLinks  = $this->mBadLinks;
-		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
 
 		if ( $wgEnablePersistentLC ) {
@@ -323,13 +321,17 @@ class LinkCache {
 	}
 
 	/**
-	 * Clears cache but leaves old preFill copies alone
+	 * Clears cache 
 	 */
 	function clear() {
 		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
+		$this->mCategoryLinks = array();
+		$this->mOldGoodLinks = array();
+		$this->mOldBadLinks = array();
+		$this->mOldPageLinks = array();
 	}
 
 	/**
@@ -419,6 +421,15 @@ class LinkCache {
 			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ) );
 		}
+	}
+
+	/**
+	 * Swaps old and current link registers
+	 */
+	function swapRegisters() {
+		swap( $this->mGoodLinks, $this->mOldGoodLinks );
+		swap( $this->mBadLinks, $this->mOldBadLinks );
+		swap( $this->mImageLinks, $this->mOldImageLinks );
 	}
 }
 
