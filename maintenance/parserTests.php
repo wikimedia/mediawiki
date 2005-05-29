@@ -319,8 +319,8 @@ class ParserTest {
 	# List of temporary tables to create, without prefix
 	# Some of these probably aren't necessary
 	function listTables() {
-		return array('user', 'page', 'revision', 'text', 'links',
-			'brokenlinks', 'imagelinks', 'categorylinks',
+		return array('user', 'page', 'revision', 'text',
+			'pagelinks', 'imagelinks', 'categorylinks',
 			'linkscc', 'site_stats', 'hitcounter',
 			'ipblocks', 'image', 'oldimage',
 			'recentchanges',
