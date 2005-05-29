@@ -116,6 +116,10 @@ if (!$wgUseOldExistenceCheck) {
 	$wgEnablePersistentLC = false;
 }
 
+if ( $wgSkipSkin ) {
+	$wgSkipSkins[] = $wgSkipSkin;
+}
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
