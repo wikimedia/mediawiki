@@ -439,7 +439,7 @@ class User {
 				if( $count > $max ) {
 					wfDebug( "$fname: tripped! $key at $count $summary\n" );
 					if( $wgRateLimitLog ) {
-						@error_log( $this->getName() . ": tripped $key at $count $summary\n", 3, $wgRateLimitLog );
+						@error_log( wfTimestamp( TS_MW ) . ' ' . $wgDBname . ': ' . $this->getName() . " tripped $key at $count $summary\n", 3, $wgRateLimitLog );
 					}
 					$triggered = true;
 				} else {
