@@ -47,11 +47,6 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	function wfProfileClose() {}
 }
 
-if ( $wgUseData ) {
-	$wgExtraNamespaces[20] = 'Data' ;
-	$wgExtraNamespaces[21] = 'Data_talk' ;
-}
-
 $fname = 'Setup.php';
 wfProfileIn( $fname );
 global $wgUseDynamicDates;
