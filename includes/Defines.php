@@ -79,5 +79,5 @@ $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
  */
 define( 'ALF_PRELOAD_LINKS', 1 );
 define( 'ALF_PRELOAD_EXISTENCE', 2 );
-
+define( 'ALF_NO_LINK_LOCK', 4 );
 ?>
