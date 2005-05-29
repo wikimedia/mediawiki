@@ -589,16 +589,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$u->addRight( "bureaucrat" );
 					$u->saveSettings();
 					
-					# Set up the new user in the sysop group
-					# This is a bit of an ugly hack
-					global $wgSysopGroupId, $wgBureaucratGroupId;
-					$groups = $u->getGroups();
-					$groups[] = $wgSysopGroupId;
-					$groups[] = $wgBureaucratGroupId;
-					$groups[] = $wgStewardGroupId;
-					$u->setGroups( $groups );
-					$u->saveSettings();
-					
 					print "<li>Created sysop account <tt>" .
 						htmlspecialchars( $conf->SysopName ) . "</tt>.</li>\n";
 				} else {
