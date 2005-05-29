@@ -695,11 +695,7 @@ class PreferencesForm {
 				'hideminor',
 				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
 				'usenewrc',
-				'rcusemodstyle',
-				array(
-					'showupdated',
-					wfMsg('updatedmarker')
-				) )
+				'rcusemodstyle' )
 			) . '</fieldset>'
 		);
 	

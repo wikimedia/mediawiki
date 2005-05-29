@@ -161,6 +161,7 @@ class EmailNotification {
 		global $wgEnotifRevealEditorAddress;
 		global $wgEnotifFromEditor;
 		global $wgEmailAuthentication;
+		global $wgShowUpdatedMarker;
 
 		$fname = 'UserMailer::notifyOnPageChange';
 		wfProfileIn( $fname );
@@ -172,6 +173,7 @@ class EmailNotification {
 		$isUserTalkPage = ($title->getNamespace() == NS_USER_TALK);
 		$enotifusertalkpage = ($isUserTalkPage && $wgEnotifUserTalk);
 		$enotifwatchlistpage = (!$isUserTalkPage && $wgEnotifWatchlist);	
+
 
 		if ( ($enotifusertalkpage || $enotifwatchlistpage) && (!$minorEdit || $wgEnotifMinorEdits) ) {
 			$dbr =& wfGetDB( DB_MASTER );
@@ -212,20 +214,23 @@ class EmailNotification {
 
 					} # if the watching user has an email address in the preferences
 				}
-				
-				# mark the changed watch-listed page with a timestamp, so that the page is 
-				# listed with an "updated since your last visit" icon in the watch list, ...
-				$dbw =& wfGetDB( DB_MASTER );
-				$success = $dbw->update( 'watchlist',
-					array( /* SET */
-						'wl_notificationtimestamp' => $timestamp
-					), array( /* WHERE */
-						'wl_title' => $title->getDBkey(),
-						'wl_namespace' => $title->getNamespace(),
-					), 'UserMailer::NotifyOnChange'
-				);
 			} # if anyone is watching
 		} # if $wgEnotifWatchlist = true
+
+		if ( $wgShowUpdatedMarker || $wgEnotifWatchlist ) {
+			# mark the changed watch-listed page with a timestamp, so that the page is 
+			# listed with an "updated since your last visit" icon in the watch list, ...
+			$dbw =& wfGetDB( DB_MASTER );
+			$success = $dbw->update( 'watchlist',
+				array( /* SET */
+					'wl_notificationtimestamp' => $timestamp
+				), array( /* WHERE */
+					'wl_title' => $title->getDBkey(),
+					'wl_namespace' => $title->getNamespace(),
+				), 'UserMailer::NotifyOnChange'
+			);
+		}
+
 	} # function NotifyOnChange
 	
 	/**

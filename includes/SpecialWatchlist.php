@@ -14,10 +14,10 @@ require_once( 'WatchedItem.php' );
 /**
  * constructor
  */
-function wfSpecialWatchlist() {
+function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest, $wgContLang;;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
-	global $wgEnotif, $wgShowUpdatedMarker, $wgRCShowWatchingUsers;
+	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	$fname = 'wfSpecialWatchlist';
 
 	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
@@ -40,7 +40,7 @@ function wfSpecialWatchlist() {
 	$id = $wgRequest->getArray( 'id' );
 
 	$uid = $wgUser->getID();
-	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
+	if( $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
@@ -118,7 +118,7 @@ function wfSpecialWatchlist() {
 
 	}
 
-	if($wgRequest->getBool('edit')) {
+	if($wgRequest->getBool('edit') || $par == 'edit' ) {
 		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
 			"\n\n" . wfMsg( 'watcheditlist' ) );
 
@@ -179,23 +179,27 @@ function wfSpecialWatchlist() {
 	$andHideOwn = $hideOwn ? "AND (rev_user <> $uid)" : '';
 
 	# Show watchlist header
-	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
-		$wgOut->addHTML( "<div class='enotifinfo'>\n" );
-		
-		$wgOut->addWikiText( wfMsg( 'enotif_infotext' ) );
+	$header = '';
+	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
+		$header .= wfMsg( 'wlheader-enotif' ) . "\n";
+	}
+	if ( $wgShowUpdatedMarker ) {
+		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
+	}
 
+	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ), 
+		$wgLang->formatNum( $npages ), $y,
+		$specialTitle->getFullUrl( 'edit=yes' ) );
+	$wgOut->addWikiText( $header );
+	
+	if ( $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .
-			$specialTitle->escapeLocalUrl( 'action=submit&edit=yes' ) .
+			$specialTitle->escapeLocalUrl() .
 			'" method="post"><input type="submit" name="dummy" value="' .
 			htmlspecialchars( wfMsg( 'enotif_reset' ) ) .
 			'" /><input type="hidden" name="reset" value="all" /></form>' .
-			"</div>\n\n" );
+			"\n\n" );
 	}
-	
-	
-	$wgOut->addHTML( '<i>' . wfMsg( 'watchdetails',
-		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
-		$specialTitle->escapeLocalUrl( 'edit=yes' ) ) . "</i><br />\n" );
 
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
@@ -246,10 +250,11 @@ function wfSpecialWatchlist() {
 		$rc = RecentChange::newFromCurRow( $obj );
 		$rc->counter = $counter++;
 
-		if ($wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' )) {
+		if ( $wgShowUpdatedMarker ) {
 			$updated = $obj->wl_notificationtimestamp;
 		} else {
-			$updated = false;
+			// Same visual appearance as MW 1.4
+			$updated = true;
 		}
 
 		if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {

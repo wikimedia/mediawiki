@@ -62,7 +62,7 @@ class PageHistory {
 		$title = $this->mTitle->getText();
 		$uid = $wgUser->getID();
 		$db =& wfGetDB( DB_SLAVE );
-		if ($uid && $wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' ))
+		if ($uid && $wgShowUpdatedMarker )
 			$notificationtimestamp = $db->selectField( 'watchlist',
 				'wl_notificationtimestamp',
 				array( 'wl_namespace' => $namespace, 'wl_title' => $this->mTitle->getDBkey(), 'wl_user' => $uid ),

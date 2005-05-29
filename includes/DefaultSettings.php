@@ -774,7 +774,7 @@ $wgPageShowWatchingUsers 			= false;
 /**
  * Show "Updated (since my last visit)" marker in RC view, watchlist and history
  * view for watched pages with new changes */
-$wgShowUpdatedMarker 				= true; # UPO
+$wgShowUpdatedMarker 				= true; 
 
 $wgCookieExpiration = 2592000;
 
