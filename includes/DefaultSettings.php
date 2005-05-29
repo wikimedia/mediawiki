@@ -1424,6 +1424,8 @@ $wgSortSpecialPages = true;
  * from the .../skins/ directory
  */
 $wgSkipSkin = '';
+$wgSkipSkins = array(); # More of the same
+
 /**
  * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
  */
