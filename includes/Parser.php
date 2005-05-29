@@ -2175,7 +2175,7 @@ class Parser
 				# Template cache array insertion
 				if( $found ) {
 					$this->mTemplates[$part1] = $text;
-					$text = $linestart . $text
+					$text = $linestart . $text;
 				}
 			}
 		}
