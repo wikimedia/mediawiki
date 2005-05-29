@@ -1195,9 +1195,24 @@ class Article {
 	 * the link tables and redirect to the new page.
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
-		global $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
+		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
 
 		$wgLinkCache = new LinkCache();
+		
+		if ( !$wgUseDumbLinkUpdate ) {
+			# Preload links to reduce lock time
+			if ( $wgAntiLockFlags & ALF_PRELOAD_LINKS ) {
+				$wgLinkCache->preFill( $this->mTitle );
+				$wgLinkCache->clear();
+			}
+		}
+		# Parse the text and replace links with placeholders
+		# Do this outside the locks on the links table
+		# The existence test queries need to be FOR UPDATE
+		#$oldUpdate = $wgParser->forUpdate( true );
+		$wgOut = new OutputPage();
+		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
+
 		# Select for update
 		$wgLinkCache->forUpdate( true );
 
@@ -1214,9 +1229,19 @@ class Article {
 		# go wrong.
 		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
 
-		# Look up the links in the DB and add them to the link cache
-		$wgOut->transformBuffer( RLH_FOR_UPDATE );
+		if ( !$wgUseDumbLinkUpdate ) {
+			# Move the current links back to the second register
+			$wgLinkCache->swapRegisters();
 
+			# Get old version of link table to allow incremental link updates
+			# Lock this data now since it is needed for an update
+			$wgLinkCache->forUpdate( true );
+			$wgLinkCache->preFill( $this->mTitle );
+
+			# Swap this old version back into its rightful place
+			$wgLinkCache->swapRegisters();
+		}
+		
 		if( $this->isRedirect( $text ) )
 			$r = 'redirect=no';
 		else

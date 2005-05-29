@@ -116,7 +116,15 @@ define( 'AV_NO_VIRUS', 0 );  #scan ok, no virus found
 define( 'AV_VIRUS_FOUND', 1 );  #virus found!
 define( 'AV_SCAN_ABORTED', -1 );  #scan aborted, the file is probably imune
 define( 'AV_SCAN_FAILED', false );  #scan failed (scanner not found or error in scanner)
+/**#@-*/
 
+/**#@+
+ * Anti-lock flags
+ * See DefaultSettings.php for a description
+ */
+define( 'ALF_PRELOAD_LINKS', 1 );
+define( 'ALF_PRELOAD_EXISTENCE', 2 );
+define( 'ALF_NO_LINK_LOCK', 4 );
 /**#@-*/
 
 ?>

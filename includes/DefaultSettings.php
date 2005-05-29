@@ -899,6 +899,15 @@ $wgDisableAnonTalk = false;
 $wgUseDumbLinkUpdate = false; 
 
 /**
+ * Anti-lock flags - bitfield
+ *   ALF_PRELOAD_LINKS
+ *       Preload links during link update for save
+ *   ALF_PRELOAD_EXISTENCE
+ *       Preload cur_id during replaceLinkHolders
+ */
+$wgAntiLockFlags = 0;
+
+/**
  * Path to the GNU diff3 utility. If the file doesn't exist, edit conflicts will
  * fall back to the old behaviour (no merging).
  */
