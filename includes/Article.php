@@ -246,7 +246,7 @@ class Article {
 	 * Load the revision (including cur_text) into this object
 	 */
 	function loadContent( $noredir = false ) {
-		global $wgOut, $wgRequest, $wgDisableHardRedirects;
+		global $wgOut, $wgRequest;
 
 		if ( $this->mContentLoaded ) return;
 		
@@ -386,6 +386,7 @@ class Article {
 				# Gotta hand redirects to special pages differently:
 				# Fill the HTTP response "Location" header and ignore
 				# the rest of the page we're on.
+				global $wgDisableHardRedirects;
 				if( $globalTitle && !$wgDisableHardRedirects ) {
 					global $wgOut;
 					if ( $rt->getInterwiki() != '' && $rt->isLocal() ) {
