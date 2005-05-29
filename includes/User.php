@@ -291,8 +291,8 @@ class User {
 	 * just slightly outta sync and soon corrected - safer to block slightly more that less.
 	 * And it's cheaper to check slave first, then master if needed, than master always.
 	 */
-	function getBlockedStatus() {
-		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $bFromSlave;
+	function getBlockedStatus( $bFromSlave = true ) {
+		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 
@@ -326,21 +326,22 @@ class User {
 		}
 
 		# Proxy blocking
-		if ( !$this->mBlockedby ) {
+		if ( !$this->isSysop() && !in_array( $wgIP, $wgProxyWhitelist ) ) {
+		
+			# Local list
 			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
-		}
 
-		# DNSBL
-		if ( !$this->mBlockedby && $wgEnableSorbs ) {
-			if ( $this->inSorbsBlacklist( $wgIP ) ) {
-				$this->mBlockedby = wfMsg( 'sorbs' );
-				$this->mBlockreason = wfMsg( 'sorbsreason' );
+			# DNSBL
+			if ( !$this->mBlockedby && $wgEnableSorbs ) {
+				if ( $this->inSorbsBlacklist( $wgIP ) ) {
+					$this->mBlockedby = wfMsg( 'sorbs' );
+					$this->mBlockreason = wfMsg( 'sorbsreason' );
+				}
 			}
 		}
-			
 	}
 
 	function inSorbsBlacklist( $ip ) {
