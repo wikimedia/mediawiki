@@ -1424,12 +1424,15 @@ $wgSortSpecialPages = true;
  * from the .../skins/ directory
  */
 $wgSkipSkin = '';
-$wgSkipSkins = array(); # More of the same
-
 /**
  * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
  */
 $wgDisabledActions = array();
+
+/**
+ * Disable redirects to special pages and interwiki redirects, which use a 302 and have no "redirected from" link
+ */
+$wgDisableHardRedirects = false;
 
 /**
  * Use http.dnsbl.sorbs.net to check for open proxies
