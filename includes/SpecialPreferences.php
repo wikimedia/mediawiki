@@ -204,7 +204,10 @@ class PreferencesForm {
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
 		$wgUser->setOption( 'skin', $this->mSkin );
-		$wgUser->setOption( 'math', $this->mMath );
+		global $wgUseTeX;
+		if( $wgUseTeX ) {
+			$wgUser->setOption( 'math', $this->mMath );
+		}
 		$wgUser->setOption( 'date', $this->mDate );
 		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
@@ -600,12 +603,15 @@ class PreferencesForm {
 
 		# Math
 		#
-		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('math') . '</legend>' );
-		foreach ( $mathopts as $k => $v ) {
-			$checked = $k == $this->mMath ? ' checked="checked"' : '';
-			$wgOut->addHTML( "<div><label><input type='radio' name='wpMath' value=\"$k\"$checked /> ".wfMsg($v)."</label></div>\n" );
+		global $wgUseTeX;
+		if( $wgUseTeX ) {
+			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('math') . '</legend>' );
+			foreach ( $mathopts as $k => $v ) {
+				$checked = $k == $this->mMath ? ' checked="checked"' : '';
+				$wgOut->addHTML( "<div><label><input type='radio' name='wpMath' value=\"$k\"$checked /> ".wfMsg($v)."</label></div>\n" );
+			}
+			$wgOut->addHTML( "</fieldset>\n\n" );
 		}
-		$wgOut->addHTML( "</fieldset>\n\n" );
 
 		# Files
 		#
