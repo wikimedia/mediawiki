@@ -1046,7 +1046,7 @@ $wgSVGConverter = 'ImageMagick';
 /** If not in the executable PATH, specify */
 $wgSVGConverterPath = '';
 
-/** @todo FIXME what does it do here ?? [ashar] */
+/** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
@@ -1330,9 +1330,7 @@ $wgLocaltimezone = null;
  */
 $wgAnonGroupId = 1;
 $wgLoggedInGroupId = 2;
-$wgSysopGroupId = 3;
-$wgBureaucratGroupId = 4;
-$wgStewardGroupId = 5;
+
 
 /**
  * When translating messages with wfMsg(), it is not always clear what should be
@@ -1418,6 +1416,15 @@ $wgUseExternalEditor = true;
 /** Whether or not to sort special pages in Special:Specialpages */
 
 $wgSortSpecialPages = true;
+
+/**
+ * Specify the name of a skin that should not be presented in the
+ * list of available skins.
+ * Use for blacklisting a skin which you do not want to remove
+ * from the .../skins/ directory
+ */
+$wgSkipSkin = '';
+$wgSkipSkins = array(); # More of the same
 
 /**
  * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.

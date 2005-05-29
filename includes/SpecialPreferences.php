@@ -384,7 +384,7 @@ class PreferencesForm {
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
-		global $wgContLanguageCode;
+		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -586,8 +586,9 @@ class PreferencesForm {
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
-			global $wgDefaultSkin;
-			
+			if ( in_array( $skinkey, $wgSkipSkins ) ) {
+				continue;
+			}	
 			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 			$sn = isset( $skinNames[$skinkey] ) ? $skinNames[$skinkey] : $skinname;
 			
