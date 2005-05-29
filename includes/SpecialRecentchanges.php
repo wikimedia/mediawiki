@@ -208,7 +208,6 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 				$rc->counter = $counter++;
 
 				if ($wgShowUpdatedMarker
-					&& $wgUser->getOption( 'showupdated' )
 					&& !empty( $obj->wl_notificationtimestamp )
 					&& ($obj->rc_timestamp >= $obj->wl_notificationtimestamp)) {
 						$rc->notificationtimestamp = true;
