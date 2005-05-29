@@ -2125,20 +2125,21 @@ class Parser
 					$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
 					if ( $articleContent !== false ) {
 						$found = true;
-						$text = $linestart . $articleContent;
+						$text = $articleContent;
 						$itcamefromthedatabase = true;
 					}
 				}
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
-					$text = $linestart . '[['.$title->getPrefixedText().']]';
+					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
 				}
 
 				# Template cache array insertion
 				if( $found ) {
 					$this->mTemplates[$part1] = $text;
+					$text = $linestart . $text;
 				}
 			}
 		}
