@@ -183,6 +183,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2067) Fixed crash on empty quoted HTML attribute
 * (bug 2075) Corrected namespace definitions in Tamil localization
 * (bug 2079) Removed links to Special:Maintenance from movepagetext message
+* (bug 2094) Multiple use of a template produced wrong results in some cases
 * (bug 2095) Triple-closing-bracket thing partly fixed
 * (bug 2110) "noarticletext" should not display on Image page for "sharedupload" media
 * (bug 2150) Fix tab indexes on edit form
@@ -190,6 +191,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2176) Section edit 'show changes' button works correctly now
 * (bug 2178) Use temp dir from environment in parser tests
 * (bug 2217) Negative ISO years were incorrectly converted to BC notation
+* (bug 2234) allow special chars in database passwords during install
 * Deprecated the {{msg:template}} syntax for referring to templates, {{msg: is
   now the wikisyntax representation of wfMsgForContent()
 * Fix for reading incorrectly re-gzipped HistoryBlob entries
@@ -219,7 +221,6 @@ Various bugfixes, small features, and a few experimental things:
 * Add validate table and val_ip column through the updater.
 * Simple rate limiter for edits and page moves; set $wgRateLimits
   (somewhat experimental; currently needs memcached)
-* (bug 2234) allow special chars in database passwords during install
 
 
 === Caveats ===
