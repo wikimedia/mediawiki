@@ -893,6 +893,10 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
  */
 $wgRemoteUploads = false; 
 $wgDisableAnonTalk = false;
+/**
+ * Do DELETE/INSERT for link updates instead of incremental
+ */
+$wgUseDumbLinkUpdate = false; 
 
 /**
  * Path to the GNU diff3 utility. If the file doesn't exist, edit conflicts will
