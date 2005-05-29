@@ -233,7 +233,7 @@ class User {
 	 * @access private
 	 */
 	function getBlockedStatus() {
-		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs;
+		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 
@@ -258,7 +258,7 @@ class User {
 			}
 		}
 
-		if ( !$this->isSysop() ) {
+		if ( !$this->isSysop() && !in_array( $wgIP, $wgProxyWhitelist ) ) {
 			# Proxy blocking
 			if ( !$this->mBlockedby ) {
 				if ( array_key_exists( $wgIP, $wgProxyList ) ) {

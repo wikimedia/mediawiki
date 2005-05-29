@@ -694,6 +694,7 @@ $wgRCMaxAge = 7 * 24 * 3600; # our one week cutoff
 # Send RC updates via UDP
 $wgRC2UDPAddress = false;
 $wgRC2UDPPort = false;
+$wgRC2UDPPrefix = '';
 
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
@@ -1032,6 +1033,12 @@ $wgEnableSorbs = true;
  * Not yet actually used.
  */
 $wgEnableOpm = false;
+
+/**
+ * Proxy whitelist, list of addresses that are assumed to be non-proxy despite what the other
+ * methods might say
+ */
+$wgProxyWhitelist = array();
 
 /**
  * Simple rate limiter options to brake edit floods.
