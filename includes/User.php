@@ -874,17 +874,17 @@ class User {
 	 * @deprecated
 	 */
 	function isSysop() {
-		wfDebugDieBacktrace("User::isSysop() is deprecated. Use User::isAllowed() instead");
+		return $this->isAllowed( 'protect' );
 	}
 
 	/** @deprecated */
 	function isDeveloper() {
-		wfDebugDieBacktrace("User::isDeveloper() is deprecated. Use User::isAllowed() instead");
+		return $this->isAllowed( 'siteadmin' );
 	}
 
 	/** @deprecated */
 	function isBureaucrat() {
-		wfDebugDieBacktrace("User::isBureaucrat() is deprecated. Use User::isAllowed() instead");
+		return $this->isAllowed( 'makesysop' );
 	}
 
 	/**
