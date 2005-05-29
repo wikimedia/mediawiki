@@ -76,10 +76,12 @@ function replacevars( $ins ) {
 	);
 
 	foreach ( $varnames as $var ) {
-		global $$var;
-		$ins = str_replace( '{$' . $var . '}', $$var, $ins );
-		$ins = str_replace( '/*$' . $var . '*/`', '`' . $$var, $ins );
-		$ins = str_replace( '/*$' . $var . '*/', $$var, $ins );
+		if( isset( $GLOBALS[$var] ) ) {
+			$val = addslashes( $GLOBALS[$var] );
+			$ins = str_replace( '{$' . $var . '}', $val, $ins );
+			$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
+			$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
+		}
 	}
 	return $ins;
 }

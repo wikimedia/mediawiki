@@ -219,6 +219,8 @@ Various bugfixes, small features, and a few experimental things:
 * Add validate table and val_ip column through the updater.
 * Simple rate limiter for edits and page moves; set $wgRateLimits
   (somewhat experimental; currently needs memcached)
+* (bug 2234) allow special chars in database passwords during install
+
 
 === Caveats ===
 
