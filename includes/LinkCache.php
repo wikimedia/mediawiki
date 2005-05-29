@@ -127,7 +127,7 @@ class LinkCache {
 	}
 	
 	function addLinkObj( &$nt ) {
-		global $wgMemc, $wgLinkCacheMemcached;
+		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }		
 		$id = $this->getGoodLinkID( $title );
@@ -150,7 +150,9 @@ class LinkCache {
 		if( ! is_integer( $id ) ) {
 			if ( $this->mForUpdate ) {
 				$db =& wfGetDB( DB_MASTER );
-				$options = array( 'FOR UPDATE' );
+				if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
+					$options = array( 'FOR UPDATE' );
+				}
 			} else {
 				$db =& wfGetDB( DB_SLAVE );
 				$options = array();
