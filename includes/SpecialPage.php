@@ -50,11 +50,6 @@ if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }
 
-global $wgUseData ;
-if ( $wgUseData ) {
-	$wgSpecialPages['Data'] = new SpecialPage( 'Data' );
-}
-
 global $wgDisableInternalSearch;
 if ( !$wgDisableInternalSearch ) {
 	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
