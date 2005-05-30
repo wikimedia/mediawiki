@@ -1716,13 +1716,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-lightsource-10' => 'Облачная погода',
 'exif-lightsource-11' => 'Тень',
 
-'exif-gpsspeedref-k' => 'км/час',
-'exif-gpsspeedref-m' => 'миль/час',
-'exif-gpsspeedref-n' => 'узлов',
-
-'exif-gpsdestdistanceref-k' => 'км/час',
-'exif-gpsdestdistanceref-m' => 'миль/час',
-'exif-gpsdestdistanceref-n' => 'узлов',
+'exif-gpsspeed-k' => 'км/час',
+'exif-gpsspeed-m' => 'миль/час',
+'exif-gpsspeed-n' => 'узлов',
 
 # external editor support
 'edit-externally' => 'Редактировать этот файл используя внешнюю программу',
