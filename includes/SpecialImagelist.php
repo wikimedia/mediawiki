@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialImagelist() {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgMiserMode;
 	
 	$sort = $wgRequest->getVal( 'sort' );
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
@@ -22,7 +22,7 @@ function wfSpecialImagelist() {
 	$bydate = wfMsg( "bydate" );
 	$bysize = wfMsg( "bysize" );
 
-	if ( !empty( $wpIlMatch ) ) {
+	if ( !$wgMiserMode && !empty( $wpIlMatch ) ) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if($nt ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
@@ -61,11 +61,13 @@ function wfSpecialImagelist() {
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
 	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
-	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
-	  "{$action}\">" .
-	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
-	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
-	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
+	if ( !$wgMiserMode ) {
+		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
+		  "{$action}\">" .
+		  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
+		  htmlspecialchars( $wpIlMatch ) . "\" /> " .
+		  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
+	}
 	$nums = array( 50, 100, 250, 500 );
 	$here = $wgContLang->specialPage( "Imagelist" );
 

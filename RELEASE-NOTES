@@ -606,6 +606,7 @@ pages for purposes of page relevancy ranking.
 * Fixed a bug in Special:Newimages that made it impossible to search for '0'
 * (bug 2217) Negative ISO years were incorrectly converted to BC notation.
 * (bug 2267) Don't generate thumbnail at the same size as the source image.
+* Disable fulltext image name search in Special:Imagelist during MiserMode.
 
 
 === Caveats ===
