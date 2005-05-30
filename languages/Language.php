@@ -2061,11 +2061,13 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-subjectdistancerange-2' => 'Close view',
 'exif-subjectdistancerange-3' => 'Distant view',
 
-'exif-gpslatituderef-n' => 'North latitude',
-'exif-gpslatituderef-s' => 'South latitude',
+// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'North latitude',
+'exif-gpslatitude-s' => 'South latitude',
 
-'exif-gpslongituderef-e' => 'East longitude',
-'exif-gpslongituderef-w' => 'West longitude',
+// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'East longitude',
+'exif-gpslongitude-w' => 'West longitude',
 
 'exif-gpsstatus-a' => 'Measurement in progress',
 'exif-gpsstatus-v' => 'Measurement interoperability',
@@ -2073,28 +2075,14 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-gpsmeasuremode-2' => '2-dimensional measurement',
 'exif-gpsmeasuremode-3' => '3-dimensional measurement',
 
-'exif-gpsspeedref-k' => 'Kilometres per hour',
-'exif-gpsspeedref-m' => 'Miles per hour',
-'exif-gpsspeedref-n' => 'Knots',
+// Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometres per hour',
+'exif-gpsspeed-m' => 'Miles per hour',
+'exif-gpsspeed-n' => 'Knots',
 
-'exif-gpstrackref-t' => 'True direction',
-'exif-gpstrackref-m' => 'Magnetic direction',
-
-'exif-gpsimgdirectionref-t' => 'True direction',
-'exif-gpsimgdirectionref-m' => 'Magnetic direction',
-
-'exif-gpsdestlatituderef-n' => 'North latitude',
-'exif-gpsdestlatituderef-s' => 'South latitude',
-
-'exif-gpsdestlongituderef-e' => 'East longitude',
-'exif-gpsdestlongituderef-w' => 'West longitude',
-
-'exif-gpsdestbearingref-t' => 'True direction',
-'exif-gpsdestbearingref-m' => 'Magnetic direction',
-
-'exif-gpsdestdistanceref-k' => 'Kilometres per hour',
-'exif-gpsdestdistanceref-m' => 'Miles per hour',
-'exif-gpsdestdistanceref-n' => 'Knots',
+// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'True direction',
+'exif-gpsdirection-m' => 'Magnetic direction',
 
 # external editor support
 'edit-externally' => 'Edit this file using an external application',

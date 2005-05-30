@@ -631,17 +631,19 @@ class Exif {
 			}
 			
 		case 'GPSLatitudeRef':
+		case 'GPSDestLatitudeRef':
 			switch( $val ) {
 			case 'N': case 'S':
-				return $this->msg( $tag, $val );
+				return $this->msg( 'GPSLatitude', $val );
 			default:
 				return $val;
 			}
 			
 		case 'GPSLongitudeRef':
+		case 'GPSDestLongitudeRef':
 			switch( $val ) {
 			case 'E': case 'W':
-				return $this->msg( $tag, $val );
+				return $this->msg( 'GPSLongitude', $val );
 			default:
 				return $val;
 			}
@@ -663,49 +665,20 @@ class Exif {
 			}
 			
 		case 'GPSSpeedRef':
+		case 'GPSDestDistanceRef':
 			switch( $val ) {
 			case 'K': case 'M': case 'N':
-				return $this->msg( $tag, $val );
+				return $this->msg( 'GPSSpeed', $val );
 			default:
 				return $val;
 			}
 			
 		case 'GPSTrackRef':
-			switch( $val ) {
-			case 'T': case 'M':
-				return $this->msg( $tag, $val );
-			default:
-				return $val;
-			}
-			
 		case 'GPSImgDirectionRef':
-			switch( $val ) {
-			case 'T': case 'M':
-				return $this->msg( $tag, $val );
-			default:
-				return $val;
-			}
-			
-		case 'GPSDestLatitudeRef':
-			switch( $val ) {
-			case 'N': case 'S':
-				return $this->msg( $tag, $val );
-			default:
-				return $val;
-			}
-			
-		case 'GPSDestLongitudeRef':
-			switch( $val ) {
-			case 'E': case 'W':
-				return $this->msg( $tag, $val );
-			default:
-				return $val;
-			}
-			
 		case 'GPSDestBearingRef':
 			switch( $val ) {
 			case 'T': case 'M':
-				return $this->msg( $tag, $val );
+				return $this->msg( 'GPSDirection', $val );
 			default:
 				return $val;
 			}
