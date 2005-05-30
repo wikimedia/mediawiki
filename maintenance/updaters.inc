@@ -550,15 +550,24 @@ function do_pagelinks_namespace( $namespace ) {
 }
 
 function do_drop_img_type() {
-	 global $wgDatabase;
-	 
-	 if ($wgDatabase->fieldExists('image', 'img_type')) {
+	global $wgDatabase;
+	
+	if( $wgDatabase->fieldExists( 'image', 'img_type' ) ) {
 		echo "Dropping unused img_type field in image table... ";
 		dbsource( "maintenance/archives/patch-drop_img_type.sql", $wgDatabase );
 		echo "ok\n";
 	} else {
 		echo "No img_type field in image table; Good.\n";
-        }
+	}
+}
+
+function do_old_links_update() {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( 'pagelinks' ) ) {
+		echo "Already have pagelinks; skipping old links table updates.\n";
+	} else {
+		convertLinks(); flush();
+	}
 }
 
 function do_all_updates() {
@@ -588,7 +597,7 @@ function do_all_updates() {
 	do_interwiki_update(); flush();
 	do_index_update(); flush();
 	do_linkscc_1_3_update(); flush();
-	convertLinks(); flush();
+	do_old_links_update(); flush();
 	do_image_name_unique_update(); flush();
 	do_watchlist_update(); flush();
 	do_user_update(); flush();
