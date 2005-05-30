@@ -329,45 +329,6 @@ CREATE TABLE /*$wgDBprefix*/archive (
 
 ) TYPE=InnoDB;
 
---
--- Track links within the wiki that do exist.
--- These rows must be removed when the target page is
--- deleted, and replaced with brokenlinks entries.
--- They must also be updated if a target page is renamed.
---
-CREATE TABLE /*$wgDBprefix*/links (
-  -- Key to the page_id of the page containing the link.
-  l_from int(8) unsigned NOT NULL default '0',
-  
-  -- Key to the page_id of the link target.
-  -- An unfortunate consequence of this is that rename
-  -- operations require changing the links entries for
-  -- all links to the moved page.
-  l_to int(8) unsigned NOT NULL default '0',
-  
-  UNIQUE KEY l_from(l_from,l_to),
-  KEY (l_to)
-
-) TYPE=InnoDB;
-
---
--- Track links to pages that don't yet exist.
--- These rows must be removed when the target page
--- is created, and replaced with links table entries.
---
-CREATE TABLE /*$wgDBprefix*/brokenlinks (
-  -- Key to the page_id of the page containing the link.
-  bl_from int(8) unsigned NOT NULL default '0',
-  
-  -- Text of the target page title ("namesapce:title").
-  -- Unfortunately this doesn't split the namespace index
-  -- key and therefore can't easily be joined to anything.
-  bl_to varchar(255) binary NOT NULL default '',
-  UNIQUE KEY bl_from(bl_from,bl_to),
-  KEY (bl_to)
-
-) TYPE=InnoDB;
-
 
 --
 -- Track page-to-page hyperlinks within the wiki.
