@@ -4,21 +4,12 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.4.5 ==
-* (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs"
-* (bug 2019) Wrapped the output of Special:Version in <div dir='ltr'> in order
-  to preserve the correct flow of text on RTL wikis.
-* (bug 2084) Fixed a regular expression in includes/Title.php that was
-  accepting invalid syntax like #REDIRECT [[foo] in redirects
-* (bug 2087) Fixed a bug in special page handling which which stopped "0" from
-* (bug 2094) Multiple use of a template produced wrong results in some cases
-  being passed to all special pages Special:Page/0 syntax.
-* Fixed a bug in Special:Allpages, Special:Contributions, Special:Whatlinkshere
-  Special:Recentchangeslinked and Special:Emailuser, they all mishandled being
-  passed "0" with the Special:Page/0 syntax (unrelated to bug 2087), this either
-  required a workaround in the form of passing "0" as a GET value or blocked
-  the user from passing that value at all.
-* Fixed a bug in Special:Newimages that made it impossible to search for '0'
-* (bug 2217) Negative ISO years were incorrectly converted to BC notation.
+
+(to be released)
+
+Various minor bug fixes, some backports.
+
+
 == MediaWiki 1.4.4 ==
 
 (released 2005-05-04)
@@ -599,6 +590,22 @@ pages for purposes of page relevancy ranking.
 * (bug 2239) Fix non-ASCII chars in linktrail for Latin-1 mode
 * (bug 1454) Backport edit/move rate limiter from CVS HEAD (experimental)
 * (bug 1929) Fix documentation comment for $wgWhitelistRead
+* (bug 1975) The name for Limburgish (li) changed from "Lèmburgs" to "Limburgs"
+* (bug 2019) Wrapped the output of Special:Version in <div dir='ltr'> in order
+  to preserve the correct flow of text on RTL wikis.
+* (bug 2084) Fixed a regular expression in includes/Title.php that was
+  accepting invalid syntax like #REDIRECT [[foo] in redirects
+* (bug 2087) Fixed a bug in special page handling which which stopped "0" from
+* (bug 2094) Multiple use of a template produced wrong results in some cases
+  being passed to all special pages Special:Page/0 syntax.
+* Fixed a bug in Special:Allpages, Special:Contributions, Special:Whatlinkshere
+  Special:Recentchangeslinked and Special:Emailuser, they all mishandled being
+  passed "0" with the Special:Page/0 syntax (unrelated to bug 2087), this either
+  required a workaround in the form of passing "0" as a GET value or blocked
+  the user from passing that value at all.
+* Fixed a bug in Special:Newimages that made it impossible to search for '0'
+* (bug 2217) Negative ISO years were incorrectly converted to BC notation.
+* (bug 2267) Don't generate thumbnail at the same size as the source image.
 
 
 === Caveats ===

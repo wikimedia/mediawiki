@@ -532,7 +532,7 @@ class Image
 			return null;
 		}
 
-		if( $width > $this->width && !$this->mustRender() ) {
+		if( $width >= $this->width && !$this->mustRender() ) {
 			# Don't make an image bigger than the source
 			return new ThumbnailImage( $this->getImagePath(), $this->getViewURL() );
 		}
