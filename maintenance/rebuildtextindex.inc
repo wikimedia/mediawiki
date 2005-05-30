@@ -35,9 +35,9 @@ function createTextIndex( &$database )
 
 function rebuildTextIndex( &$database )
 {
-	extract( $database->tableNames( 'cur', 'searchindex' ) );
+	extract( $database->tableNames( 'page', 'revision', 'text', 'searchindex' ) );
 
-	$sql = "SELECT MAX(cur_id) AS count FROM $cur";
+	$sql = "SELECT MAX(page_id) AS count FROM $page";
 	$res = $database->query($sql, "rebuildTextIndex" );
 	$s = $database->fetchObject($res);
 	$count = $s->count;
@@ -47,11 +47,16 @@ function rebuildTextIndex( &$database )
 	while ( $n < $count ) {
 		print "$n\n";
 		$end = $n + RTI_CHUNK_SIZE - 1;
-		$sql = "SELECT cur_id, cur_namespace, cur_title, cur_text FROM $cur WHERE cur_id BETWEEN $n AND $end";
+		$sql = "SELECT page_id, page_namespace, page_title, old_flags, old_text
+		          FROM $page, $revision, $text
+		         WHERE page_id BETWEEN $n AND $end
+		           AND page_latest=rev_id
+		           AND rev_text_id=old_id";
 		$res = $database->query($sql, "rebuildTextIndex" );
 
 		while( $s = $database->fetchObject($res) ) {
-			$u = new SearchUpdate( $s->cur_id, $s->cur_title, $s->cur_text );
+			$revtext = Revision::getRevisionText( $s );
+			$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
 			$u->doUpdate();
 		}
 		$database->freeResult( $res );

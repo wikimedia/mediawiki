@@ -223,6 +223,7 @@ Various bugfixes, small features, and a few experimental things:
   (somewhat experimental; currently needs memcached)
 * (bug 2262) Hide math preferences when TeX is not enabled
 * (bug 2267) Don't generate thumbnail at the same size as the source image.
+* Fix rebuildtextindex.inc for new schema
 
 
 === Caveats ===
