@@ -641,7 +641,7 @@ $wgNamespacesWithSubpages = array( -1 => 0, 0 => 0, 1 => 1,
   2 => 1, 3 => 1, 4 => 0, 5 => 1, 6 => 0, 7 => 1, 8 => 0, 9 => 1, 10 => 0, 11 => 1);
 
 $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
-  2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 1, 10 => 0, 11 => 1 );
+  2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0 );
 
 # If set, a bold ugly notice will show up at the top of every page.
 $wgSiteNotice = "";
