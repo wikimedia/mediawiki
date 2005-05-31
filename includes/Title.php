@@ -720,8 +720,9 @@ class Title {
 		} elseif ( $query == '' ) {
 			$url = str_replace( '$1', $dbkey, $wgArticlePath );
 		} else {
-			if( preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) ) {
-				global $wgActionPaths;
+			global $wgActionPaths;
+			if( !empty( $wgActionPaths ) &&
+				preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) ) {
 				$action = urldecode( $matches[2] );
 				if( isset( $wgActionPaths[$action] ) ) {
 					$query = $matches[1];
