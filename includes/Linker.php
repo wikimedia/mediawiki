@@ -131,7 +131,7 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser, $wgInputEncoding;
+		global $wgOut, $wgUser;
 		$fname = 'Linker::makeLinkObj';
 		wfProfileIn( $fname );
 
@@ -162,9 +162,7 @@ class Linker {
 
 			$parts = explode( '#', $u, 2 );
 			if ( count( $parts ) == 2 ) {
-				$anchor = urlencode( do_html_entity_decode( str_replace(' ', '_', $parts[1] ),
-									ENT_COMPAT,
-									$wgInputEncoding ) );
+				$anchor = urlencode( Sanitizer::decodeCharReferences( str_replace(' ', '_', $parts[1] ) ) );
 				$replacearray = array(
 					'%3A' => ':',
 					'%' => '.'
@@ -225,7 +223,7 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
-		global $wgOut, $wgTitle, $wgInputEncoding;
+		global $wgOut, $wgTitle;
 
 		$fname = 'Linker::makeKnownLinkObj';
 		wfProfileIn( $fname );
@@ -243,7 +241,7 @@ class Linker {
 					$text = htmlspecialchars( $nt->getFragment() );
 				}
 			}
-			$anchor = urlencode( do_html_entity_decode( str_replace(' ', '_', $nt->getFragment()), ENT_COMPAT, $wgInputEncoding ) );
+			$anchor = urlencode( Sanitizer::decodeCharReferences( str_replace( ' ', '_', $nt->getFragment() ) ) );
 			$replacearray = array(
 				'%3A' => ':',
 				'%' => '.'

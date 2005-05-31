@@ -122,19 +122,9 @@ class Title {
 		}
 
 		/**
-		 * Convert things like &eacute; into real text...
+		 * Convert things like &eacute; &#257; or &#x3017; into real text...
 		 */
-		global $wgInputEncoding;
-		$filteredText = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
-
-		/**
-		 * Convert things like &#257; or &#x3017; into real text...
-		 * WARNING: Not friendly to internal links on a latin-1 wiki.
-		 */
-		$filteredText = wfMungeToUtf8( $filteredText );
-		
-		# What was this for? TS 2004-03-03
-		# $text = urldecode( $text );
+		$filteredText = Sanitizer::decodeCharReferences( $text );
 
 		$t =& new Title();
 		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );

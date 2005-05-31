@@ -80,56 +80,6 @@ if ( !function_exists( 'mb_substr' ) ) {
 }
 
 /**
- * html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
- * with no UTF-8 support.
- *
- * @param string $string String having html entities
- * @param $quote_style the quote style to pass as the second argument to
- *        get_html_translation_table()
- * @param string $charset Encoding set to use (default 'UTF-8')
- */
-function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='UTF-8' ) {
-	$fname = 'do_html_entity_decode';
-	wfProfileIn( $fname );
-	
-	static $trans;
-	static $savedCharset;
-	static $regexp;
-	if( !isset( $trans ) || $savedCharset != $charset ) {
-		$trans = array_flip( get_html_translation_table( HTML_ENTITIES, $quote_style ) );
-		$savedCharset = $charset;
-		
-		# Note - mixing latin1 named entities and unicode numbered
-		# ones will result in a bad link.
-		if( strcasecmp( 'utf-8', $charset ) == 0 ) {
-			$trans = array_map( 'utf8_encode', $trans );
-		}
-		
-		/**
-		 * Most links will _not_ contain these fun guys,
-		 * and on long pages with many links we can get
-		 * called a lot.
-		 *
-		 * A regular expression search is faster than
-		 * a strtr or str_replace with a hundred-ish
-		 * entries, though it may be slower to actually
-		 * replace things.
-		 *
-		 * They all look like '&xxxx;'...
-		 */
-		foreach( $trans as $key => $val ) {
-			$snip[] = substr( $key, 1, -1 );
-		}
-		$regexp = '/(&(?:' . implode( '|', $snip ) . ');)/e';
-	}
-
-	$out = preg_replace( $regexp, '$trans["$1"]', $string );
-	wfProfileOut( $fname );
-	return $out;
-}
-
-
-/**
  * Where as we got a random seed
  * @var bool $wgTotalViews
  */
@@ -180,68 +130,6 @@ function wfUrlencode ( $s ) {
 	$s = preg_replace( '/%2[Ff]/', '/', $s );
 
 	return $s;
-}
-
-/**
- * Return the UTF-8 sequence for a given Unicode code point.
- * Doesn't work for values outside the Basic Multilingual Plane.
- *
- * @param string $codepoint UTF-8 code point.
- * @return string An UTF-8 character if the codepoint is in the BMP and
- *         &#$codepoint if it isn't;
- */
-function wfUtf8Sequence( $codepoint ) {
-	if($codepoint <	0x80)
-		return chr($codepoint);
-	if($codepoint < 0x800)
-		return chr($codepoint >> 6 & 0x3f | 0xc0) . chr($codepoint & 0x3f | 0x80);
-	if($codepoint < 0x10000)
-		return	chr($codepoint >> 12 & 0x0f | 0xe0) .
-			chr($codepoint >> 6 & 0x3f | 0x80) .
-			chr($codepoint & 0x3f | 0x80);
-	if($codepoint < 0x110000)
-		return	chr($codepoint >> 18 & 0x07 | 0xf0) .
-			chr($codepoint >> 12 & 0x3f | 0x80) .
-			chr($codepoint >> 6 & 0x3f | 0x80) .
-			chr($codepoint & 0x3f | 0x80);
-	# There should be no assigned code points outside this range, but...
-	return "&#$codepoint;";
-}
-
-/**
- * Converts numeric character entities to UTF-8
- *
- * @todo Do named entities
- *
- * @param string $string String to convert.
- * @return string Converted string.
- */
-function wfMungeToUtf8( $string ) {
-	global $wgInputEncoding; # This is debatable
-	#$string = iconv($wgInputEncoding, "UTF-8", $string);
-	$string = preg_replace ( '/&#0*([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
-	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
-	return $string;
-}
-
-/**
- * Converts a single UTF-8 character into the corresponding HTML character
- * entity (for use with preg_replace_callback)
- *
- * @param array $matches
- *
- */
-function wfUtf8Entity( $matches ) {
-	$codepoint = utf8ToCodepoint( $matches[0] );
-	return "&#$codepoint;";
-}
-
-/**
- * Converts all multi-byte characters in a UTF-8 string into the appropriate
- * character entity
- */
-function wfUtf8ToHTML($string) {
-	return preg_replace_callback( '/[\\xc0-\\xfd][\\x80-\\xbf]*/', 'wfUtf8Entity', $string );
 }
 
 /**

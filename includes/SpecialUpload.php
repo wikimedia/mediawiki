@@ -811,7 +811,7 @@ class UploadForm {
 		*/
 		
 		#resolve entity-refs to look at attributes. may be harsh on big files... cache result?
-		$chunk= wfMungeToUtf8($chunk); #this should actually use do_html_decode_entites, once this also deals with numeric entities.
+		$chunk = Sanitizer::decodeCharReferences( $chunk );
 		
 		#look for script-types
 		if (preg_match("!type\s*=\s*['\"]?\s*(\w*/)?(ecma|java)!sim",$chunk)) return true;

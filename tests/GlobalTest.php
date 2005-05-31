@@ -27,18 +27,6 @@ class GlobalTest extends PHPUnit_TestCase {
 		}
 	}
 	
-	function testDecodeLatin() {
-		$this->assertEquals(
-			"\xe9cole",
-			do_html_entity_decode( '&eacute;cole', ENT_COMPAT, 'iso-8859-1' ) );
-	}
-
-	function testDecodeUnicode() {
-		$this->assertEquals(
-			"\xc3\xa9cole",
-			do_html_entity_decode( '&eacute;cole', ENT_COMPAT, 'utf-8' ) );
-	}
-
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
@@ -49,42 +37,6 @@ class GlobalTest extends PHPUnit_TestCase {
 		$this->assertEquals(
 			"%E7%89%B9%E5%88%A5:Contributions/Foobar",
 			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
-	}
-	
-	function testUtf8Sequence1() {
-		$this->assertEquals(
-			'A',
-			wfUtf8Sequence( 65 ) );
-	}
-	
-	function testUtf8Sequence2() {
-		$this->assertEquals(
-			"\xc4\x88",
-			wfUtf8Sequence( 0x108 ) );
-	}
-
-	function testUtf8Sequence3() {
-		$this->assertEquals(
-			"\xe3\x81\x8b",
-			wfUtf8Sequence( 0x304b ) );
-	}
-
-	function testUtf8Sequence4() {
-		$this->assertEquals(
-			"\xf0\x90\x91\x90",
-			wfUtf8Sequence( 0x10450 ) );
-	}
-	
-	function testMungeToUtf8() {
-		$this->assertEquals(
-			"\xc4\x88io bonas dans l'\xc3\xa9cole!",
-			wfMungeToUtf8( "&#x108;io bonas dans l'&#233;cole!" ) );
-	}
-	
-	function testUtf8ToHTML() {
-		$this->assertEquals(
-			"&#264;io bonas dans l'&#233;cole!",
-			wfUtf8ToHTML( "\xc4\x88io bonas dans l'\xc3\xa9cole!" ) );
 	}
 	
 	function testReadOnlyEmpty() {

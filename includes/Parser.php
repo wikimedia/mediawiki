@@ -2324,7 +2324,7 @@ class Parser
 	 * @access private
 	 */
 	function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
+		global $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = true;
@@ -2487,7 +2487,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
 			$tocline = trim( $canonized_headline );
-			$canonized_headline = urlencode( do_html_entity_decode( str_replace(' ', '_', $tocline), ENT_COMPAT, $wgInputEncoding ) );
+			$canonized_headline = urlencode( Sanitizer::decodeCharReferences( str_replace(' ', '_', $tocline) ) );
 			$replacearray = array(
 				'%3A' => ':',
 				'%' => '.'

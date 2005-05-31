@@ -380,7 +380,7 @@ class WebRequest {
 		
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
-		$name = wfMungeToUtf8( $name );
+		$name = Sanitizer::decodeCharReferences( $name );
 		$name = UtfNormal::cleanUp( $name );
 		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
 		return $name;
