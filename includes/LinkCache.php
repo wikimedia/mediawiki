@@ -181,8 +181,6 @@ class LinkCache {
 	 * @param Title $fromtitle
 	 */
 	function preFill( &$fromtitle ) {
-		global $wgEnablePersistentLC;
-
 		$fname = 'LinkCache::preFill';
 		wfProfileIn( $fname );
 
@@ -196,12 +194,6 @@ class LinkCache {
 			return;
 		}
 		
-		if ( $wgEnablePersistentLC ) {
-			if( $this->fillFromLinkscc( $id ) ){
-				wfProfileOut( $fname );
-				return;
-			}
-		}
 		if ( $this->mForUpdate ) {
 			$db =& wfGetDB( DB_MASTER );
 			$options = 'FOR UPDATE';
@@ -229,9 +221,6 @@ class LinkCache {
 		}
 		$this->mPreFilled = true;
 
-		if ( $wgEnablePersistentLC ) {
-			$this->saveToLinkscc( $id );
-		}
 		wfProfileOut( $fname );
 	}
 
@@ -332,95 +321,6 @@ class LinkCache {
 		$this->mOldGoodLinks = array();
 		$this->mOldBadLinks = array();
 		$this->mOldPageLinks = array();
-	}
-
-	/**
-	 * @access private
-	 */
-	function fillFromLinkscc( $id ){ 
-		$fname = 'LinkCache::fillFromLinkscc';
-
-		$id = IntVal( $id );
-		if ( $this->mForUpdate ) {
-			$db =& wfGetDB( DB_MASTER );
-			$options = 'FOR UPDATE';
-		} else {
-			$db =& wfGetDB( DB_SLAVE );
-			$options = '';
-		}
-		$raw = $db->selectField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ), $fname, $options );
-		if ( $raw === false ) {
-			return false;
-		}
-		
-		$cacheobj = false;
-		if( function_exists( 'gzuncompress' ) )
-			$cacheobj = @gzuncompress( $raw );
-
-		if($cacheobj == FALSE){
-			$cacheobj = $raw;
-		}
-		$cc = @unserialize( $cacheobj );
-		if( isset( $cc->mClassVer ) and ($cc->mClassVer == $this->mClassVer ) ){
-			$this->mOldPageLinks = $this->mPageLinks = $cc->mPageLinks;
-			$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
-			$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
-			$this->mPreFilled = true;
-			return TRUE;
-		} else {
-			return FALSE;
-		}
-
-	}
-
-	/**
-	 * @access private
-	 */
-	function saveToLinkscc( $pid ){
-		global $wgCompressedPersistentLC;
-		if( $wgCompressedPersistentLC and function_exists( 'gzcompress' ) ) {
-			$ser = gzcompress( serialize( $this ), 3 );
-		} else {
-			$ser = serialize( $this );
-		}
-		$db =& wfGetDB( DB_MASTER );
-		$db->replace( 'linkscc', array( 'lcc_pageid' ), array( 'lcc_pageid' => $pid, 'lcc_cacheobj' => $ser ) );
-	}
-
-	/**
-	 * Delete linkscc rows which link to here
-	 * @param $title The page linked to
-	 * @static
-	 */
-	function linksccClearLinksTo( $title ){
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			$fname = 'LinkCache::linksccClearLinksTo';
-			$pid = intval( $pid );
-			$dbw =& wfGetDB( DB_MASTER );
-			# Delete linkscc rows which link to here
-			$dbw->deleteJoin( 'linkscc', 'pagelinks', 'lcc_pageid', 'pl_from',
-				array(
-					'pl_namespace' => $title->getNamespace(),
-					'pl-title'     => $title->getDbKey() ),
-				$fname );
-			# Delete linkscc row representing this page
-			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ), $fname);
-		}
-
-	}
-
-	/**
-	 * @param $pid is a page id
-	 * @static
-	 */
-	function linksccClearPage( $pid ){
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			$pid = intval( $pid );
-			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ) );
-		}
 	}
 
 	/**

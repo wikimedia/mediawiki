@@ -1099,7 +1099,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 
 # If you're on MySQL 3.x, this next line must be FALSE:
-\$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
+\$wgDBmysql4 = {$conf->DBmysql4};
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;

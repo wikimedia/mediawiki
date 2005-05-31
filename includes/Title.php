@@ -1652,10 +1652,6 @@ class Title {
 				'pl_title'     => $this->getDbKey() ),
 			$fname );
 		
-		# Clear linkscc
-		LinkCache::linksccClearLinksTo( $this );
-		LinkCache::linksccClearLinksTo( $nt );
-		
 		# Purge squid
 		if ( $wgUseSquid ) {
 			$urls = array_merge( $nt->getSquidURLs(), $this->getSquidURLs() );
@@ -1722,7 +1718,7 @@ class Title {
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move', $this, $reason, array( 1 => $nt->getPrefixedText()) );
 
-		# Purge squid and linkscc as per article creation
+		# Purge caches as per article creation
 		Article::onArticleCreate( $nt );
 
 		# Record the just-created redirect's linking to the page

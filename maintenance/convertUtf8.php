@@ -130,13 +130,12 @@ class UtfUpdater {
 	 */	
 	function updateAll() {
 		$this->lockTables( array(
-			'linkscc', 'objectcache', 'searchindex', 'querycache',
+			'objectcache', 'searchindex', 'querycache',
 			'ipblocks', 'user', 'page', 'revision', 'recentchanges',
 			'brokenlinks', 'categorylinks', 'imagelinks', 'watchlist',
 			'image', 'oldimage', 'archive' ) );
 		
 		# These are safe to clear out:
-		$this->clearTable( 'linkscc' );
 		$this->clearTable( 'objectcache' );
 
 		# These need to be rebuild if used:

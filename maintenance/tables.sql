@@ -405,17 +405,6 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
 ) TYPE=InnoDB;
 
 --
--- Stores (possibly gzipped) serialized objects with
--- cache arrays to reduce database load slurping up
--- from links and brokenlinks.
---
-CREATE TABLE /*$wgDBprefix*/linkscc (
-  lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
-  lcc_cacheobj MEDIUMBLOB NOT NULL
-
-) TYPE=InnoDB;
-
---
 -- Contains a single row with some aggregate info
 -- on the state of the site.
 --
