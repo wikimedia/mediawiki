@@ -30,6 +30,7 @@ $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
 require_once( "$IP/includes/ObjectCache.php" );
+require_once( "$IP/includes/BagOStuff.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
 
 /**
@@ -321,7 +322,7 @@ class ParserTest {
 	function listTables() {
 		return array('user', 'page', 'revision', 'text',
 			'pagelinks', 'imagelinks', 'categorylinks',
-			'linkscc', 'site_stats', 'hitcounter',
+			'site_stats', 'hitcounter',
 			'ipblocks', 'image', 'oldimage',
 			'recentchanges',
 			'watchlist', 'math', 'searchindex',

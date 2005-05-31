@@ -616,10 +616,6 @@ $wgUseCategoryMagic		= true;
  */
 $wgUseCategoryBrowser   = false;
 
-$wgEnablePersistentLC	= false;	# Obsolete, do not use
-$wgCompressedPersistentLC = true; # use gzcompressed blobs
-$wgUseOldExistenceCheck = false;  # use old prefill link method, for debugging only
-
 /**
  * Keep parsed pages in a cache (objectcache table, turck, or memcached)
  * to speed up output of the same page viewed by another user with the

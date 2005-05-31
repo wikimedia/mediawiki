@@ -34,7 +34,7 @@ class LinksUpdate {
 	
 	function doUpdate() {
 		global $wgUseDumbLinkUpdate, $wgLinkCache, $wgDBtransactions;
-		global $wgEnablePersistentLC, $wgUseCategoryMagic;
+		global $wgUseCategoryMagic;
 
 		if ( $wgUseDumbLinkUpdate ) {
 			$this->doDumbUpdate();

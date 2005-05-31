@@ -2222,18 +2222,17 @@ class Article {
 			$u = new SquidUpdate( $urls );
 			array_push( $wgPostCommitUpdateList, $u );
 		}
-
-		# Clear persistent link cache
-		LinkCache::linksccClearLinksTo( $title_obj );
 	}
 
 	function onArticleDelete($title_obj) {
 		$title_obj->touchLinks();
-		LinkCache::linksccClearLinksTo( $title_obj );
 	}
+	
 	function onArticleEdit($title_obj) {
-		LinkCache::linksccClearPage( $title_obj->getArticleID() );
+		// This would be an appropriate place to purge caches.
+		// Why's this not in here now?
 	}
+	
 	/**#@-*/
 
 	/**

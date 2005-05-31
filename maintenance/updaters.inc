@@ -16,7 +16,6 @@ $wgRenamedTables = array(
 
 $wgNewTables = array(
 #            table          patch file (in maintenance/archives)
-	array( 'linkscc',       'patch-linkscc.sql' ),
 	array( 'hitcounter',    'patch-hitcounter.sql' ),
 	array( 'querycache',    'patch-querycache.sql' ),
 	array( 'objectcache',   'patch-objectcache.sql' ),
@@ -154,19 +153,6 @@ function do_index_update() {
 	}
 	echo "...indexes seem up to 20031107 standards\n";
 	return false;
-}
-
-function do_linkscc_1_3_update() {
-	// Update linkscc table to 1.3 schema if necessary
-	global $wgDatabase, $wgVersion;
-	if( $wgDatabase->tableExists( "linkscc" )
-		&& $wgDatabase->fieldExists( "linkscc", "lcc_title" ) ) {
-		echo "Altering lcc_title field from linkscc table... ";
-		dbsource( "maintenance/archives/patch-linkscc-1.3.sql", $wgDatabase );
-		echo "ok\n";
-	} else {
-		echo "...linkscc is up to date, or does not exist. Good.\n";
-	}
 }
 
 function do_image_name_unique_update() {
@@ -596,7 +582,6 @@ function do_all_updates() {
 	# Do schema updates which require special handling
 	do_interwiki_update(); flush();
 	do_index_update(); flush();
-	do_linkscc_1_3_update(); flush();
 	do_old_links_update(); flush();
 	do_image_name_unique_update(); flush();
 	do_watchlist_update(); flush();

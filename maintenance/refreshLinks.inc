@@ -10,7 +10,7 @@ define( "REPORTING_INTERVAL", 50 );
 define( "PAUSE_INTERVAL", 50 );
 
 function refreshLinks( $start ) {
-	global $wgUser, $wgTitle, $wgArticle, $wgEnablePersistentLC, $wgLinkCache, $wgOut;
+	global $wgUser, $wgTitle, $wgArticle, $wgLinkCache, $wgOut;
 
 	$dbw =& wfGetDB( DB_MASTER );
 	
@@ -58,10 +58,6 @@ function refreshLinks( $start ) {
 		# Look up the links in the DB and add them to the link cache
 		$wgOut->transformBuffer( RLH_FOR_UPDATE );
 		$wgOut->clearHTML();
-
-		if ( $wgEnablePersistentLC ) {
-			$wgLinkCache->saveToLinkscc( $id, $dbw->strencode( $wgTitle->getPrefixedDBkey() ) );
-		}
 
 		$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
 		$linksUpdate->doDumbUpdate();

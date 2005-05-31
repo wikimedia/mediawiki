@@ -97,11 +97,6 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 }
 
-# Disable linkscc except if the old existence check method is enabled
-if (!$wgUseOldExistenceCheck) {
-	$wgEnablePersistentLC = false;
-}
-
 if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
