@@ -1872,9 +1872,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-gpsmeasuremode-2' => 'Измерение 2-х координат',
 'exif-gpsmeasuremode-3' => 'Измерение 3-х координат ',
 
-'exif-gpsspeedref-k' => 'км/час',
-'exif-gpsspeedref-m' => 'миль/час',
-'exif-gpsspeedref-n' => 'узлов',
+'exif-gpsspeed-k' => 'км/час',
+'exif-gpsspeed-m' => 'миль/час',
+'exif-gpsspeed-n' => 'узлов',
 
 'exif-gpstrackref-t' => 'истинный',
 'exif-gpstrackref-m' => 'магнитный',
@@ -1890,10 +1890,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 
 'exif-gpsdestbearingref-t' => 'истинный',
 'exif-gpsdestbearingref-m' => 'магнитный',
-
-'exif-gpsdestdistanceref-k' => 'км/час',
-'exif-gpsdestdistanceref-m' => 'миль/час',
-'exif-gpsdestdistanceref-n' => 'узлов',
 
 # external editor support
 'edit-externally' => 'Редактировать этот файл используя внешнюю программу',
