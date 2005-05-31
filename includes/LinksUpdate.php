@@ -70,7 +70,7 @@ class LinksUpdate {
 			$dbw->delete( 'pagelinks', array( 'pl_from' => $this->mId ), $fname );
 						
 			# Get the addition list
-			$add = $wgLinkCache->getGoodLinks();
+			$add = $wgLinkCache->getPageLinks();
 		}
 
 		# Do the insertion
