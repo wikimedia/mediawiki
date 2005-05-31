@@ -1729,6 +1729,33 @@ BUG 648: Frameless image caption with a link
 !! end
 
 !! test
+BUG 648: Frameless image caption with a link (suffix)
+!! input
+[[Image:foobar.jpg|text with a [[link]]foo in it]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="text with a linkfoo in it"><img src="/images/3/3a/Foobar.jpg" alt="text with a linkfoo in it" longdesc="/wiki/Image:Foobar.jpg" /></a>
+</p>
+!! end
+
+!! test
+BUG 648: Frameless image caption with an interwiki link
+!! input
+[[Image:foobar.jpg|text with a [[MeatBall:Link]] in it]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="text with a MeatBall:Link in it"><img src="/images/3/3a/Foobar.jpg" alt="text with a MeatBall:Link in it" longdesc="/wiki/Image:Foobar.jpg" /></a>
+</p>
+!! end
+
+!! test
+BUG 648: Frameless image caption with a piped interwiki link
+!! input
+[[Image:foobar.jpg|text with a [[MeatBall:Link|link]] in it]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="text with a link in it"><img src="/images/3/3a/Foobar.jpg" alt="text with a link in it" longdesc="/wiki/Image:Foobar.jpg" /></a>
+</p>
+!! end
+
+!! test
 Escape HTML special chars in image alt text
 !! input
 [[Image:foobar.jpg|& < > "]]

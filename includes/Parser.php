@@ -3000,9 +3000,51 @@ class Parser
 				$text );
 			wfProfileOut( $fname.'-interwiki' );
 		}
-
+		
 		wfProfileOut( $fname );
 		return $colours;
+	}
+	
+	/**
+	 * Replace <!--LINK--> link placeholders with plain text of links
+	 * (not HTML-formatted).
+	 * @param string $text
+	 * @return string
+	 */
+	function replaceLinkHoldersText( $text ) {
+		global $wgUser, $wgLinkCache;
+		global $wgOutputReplace;
+
+		$fname = 'Parser::replaceLinkHoldersText';
+		wfProfileIn( $fname );
+
+		$text = preg_replace_callback(
+			'/<!--(LINK|IWLINK) (.*?)-->/',
+			array( &$this, 'replaceLinkHoldersTextCallback' ),
+			$text );
+		
+		wfProfileOut( $fname );
+		return $text;
+	}
+	
+	/**
+	 * @param array $matches
+	 * @return string
+	 * @access private
+	 */
+	function replaceLinkHoldersTextCallback( $matches ) {
+		$type = $matches[1];
+		$key  = $matches[2];
+		if( $type == 'LINK' ) {
+			if( isset( $this->mLinkHolders['texts'][$key] ) ) {
+				return $this->mLinkHolders['texts'][$key];
+			}
+		} elseif( $type == 'IWLINK' ) {
+			if( isset( $this->mInterwikiLinkHolders[$key][1] ) ) {
+				return $this->mInterwikiLinkHolders[$key][1];
+			}
+		}
+		return $matches[0];
 	}
 
 	/**
@@ -3125,8 +3167,7 @@ class Parser
 			}
 		}
 		# Strip bad stuff out of the alt text
-		$alt = $caption;
-		$this->replaceLinkHolders( $alt );
+		$alt = $this->replaceLinkHoldersText( $caption );
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
