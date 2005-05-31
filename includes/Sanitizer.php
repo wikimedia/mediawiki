@@ -663,7 +663,10 @@ class Sanitizer {
 	 * @return array
 	 */
 	function attributeWhitelist( $element ) {
-		$list = Sanitizer::setupAttributeWhitelist();
+		static $list;
+		if( !isset( $list ) ) {
+			$list = Sanitizer::setupAttributeWhitelist();
+		}
 		return isset( $list[$element] )
 			? $list[$element]
 			: array();

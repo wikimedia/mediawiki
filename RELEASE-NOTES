@@ -227,6 +227,8 @@ Various bugfixes, small features, and a few experimental things:
 * Remove linkscc table code, no longer used.
 * (bug 2271) Use faster text-only link replacement in image alt text
   instead of rerunning expensive link lookup and HTML generation.
+* Only build the HTML attribute whitelist tree once.
+
 
 === Caveats ===
 
