@@ -895,8 +895,7 @@ END
 	 * @access private
 	 */
 	function sectionAnchor( $text ) {
-		global $wgInputEncoding;
-		$headline = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
+		$headline = Sanitizer::decodeCharReferences( $text );
 		# strip out HTML 
 		$headline = preg_replace( '/<.*?' . '>/', '', $headline );
 		$headline = trim( $headline );

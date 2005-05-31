@@ -37,6 +37,7 @@ $tests = array(
 	'SearchMySQL3Test',
 	'SearchMySQL4Test',
 	'ArticleTest',
+	'SanitizerTest',
 	);
 foreach( $tests as $test ) {
 	require_once( $test . '.php' );

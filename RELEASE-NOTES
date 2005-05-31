@@ -228,6 +228,9 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2271) Use faster text-only link replacement in image alt text
   instead of rerunning expensive link lookup and HTML generation.
 * Only build the HTML attribute whitelist tree once.
+* Replace wfMungeToUtf8 and do_html_entity_decode with a single function
+  that does both numeric and named chars: Sanitizer::decodeCharReferences
+* Removed some obsolete UTF-8 converter functions
 
 
 === Caveats ===
