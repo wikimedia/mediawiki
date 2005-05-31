@@ -1726,7 +1726,7 @@ class Title {
 			array(
 				'pl_from'      => $newid,
 				'pl_namespace' => $this->getNamespace(),
-				'pl_title'     => $this->getTitle() ),
+				'pl_title'     => $this->getDBkey() ),
 			$fname );
 
 		# Non-existent target may have had broken links to it; these must
