@@ -225,7 +225,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2267) Don't generate thumbnail at the same size as the source image.
 * Fix rebuildtextindex.inc for new schema
 * Remove linkscc table code, no longer used.
-
+* (bug 2271) Use faster text-only link replacement in image alt text
+  instead of rerunning expensive link lookup and HTML generation.
 
 === Caveats ===
 
