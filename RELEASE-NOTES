@@ -233,6 +233,8 @@ Various bugfixes, small features, and a few experimental things:
 * Removed some obsolete UTF-8 converter functions
 * Fix function comment in debug dump of SQL statements
 * (bug 2275) Update search index more or less right on page move
+* (bug 2053) Move comment whitespace trimming from edit page to save;
+  leaves the whitespace from the section comment there on preview.
 
 
 === Caveats ===

@@ -197,7 +197,7 @@ class EditPage {
 			$this->textbox1  = rtrim( $request->getText( 'wpTextbox1' ) );
 			$this->textbox2  = rtrim( $request->getText( 'wpTextbox2' ) );
 			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
-			$this->summary   =  trim( $request->getText( 'wpSummary'  ) );
+			$this->summary   =        $request->getText( 'wpSummary'  );
 	
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			if( is_null( $this->edittime ) ) {
