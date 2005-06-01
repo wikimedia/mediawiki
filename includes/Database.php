@@ -309,8 +309,8 @@ class Database {
 		}
 
 		if ( $this->debug() ) {
-			$sqlx = substr( $sql, 0, 500 );
-			$sqlx = strtr($sqlx,"\t\n",'  ');
+			$sqlx = substr( $commentedSql, 0, 500 );
+			$sqlx = strtr( $sqlx, "\t\n", '  ' );
 			wfDebug( "SQL: $sqlx\n" );
 		}
 		
