@@ -1532,18 +1532,20 @@ class Title {
 		if( is_string( $err ) ) {
 			return $err;
 		}
+		
+		$pageid = $this->getArticleID();
 		if( $nt->exists() ) {
 			$this->moveOverExistingRedirect( $nt, $reason );
 		} else { # Target didn't exist, do normal move.
 			$this->moveToNewTitle( $nt, $newid, $reason );
 		}
+		$redirid = $this->getArticleID();
 
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
-		
 		$dbw =& wfGetDB( DB_MASTER );
 		$categorylinks = $dbw->tableName( 'categorylinks' );
 		$sql = "UPDATE $categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
-			" WHERE cl_from=" . $dbw->addQuotes( $this->getArticleID() ) .
+			" WHERE cl_from=" . $dbw->addQuotes( $pageid ) .
 			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
 		$dbw->query( $sql, 'SpecialMovepage::doSubmit' );
 
@@ -1559,12 +1561,12 @@ class Title {
 		}
 
 		# Update search engine
-		$u = new SearchUpdate( $oldid, $nt->getPrefixedDBkey() );
+		$u = new SearchUpdate( $pageid, $nt->getPrefixedDBkey() );
 		$u->doUpdate();
-		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), '' );
+		$u = new SearchUpdate( $redirid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
-		wfRunHooks( 'TitleMoveComplete', array(&$this, &$nt, &$wgUser, $oldid, $newid) );
+		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
 	}
 	
