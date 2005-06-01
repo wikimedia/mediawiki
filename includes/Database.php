@@ -1456,6 +1456,18 @@ class Database {
 		}
 		return false;
 	}
+
+	/**
+	 * Get status information from SHOW STATUS in an associative array
+	 */
+	function getStatus() {
+		$res = $this->query( 'SHOW STATUS' );
+		$status = array();
+		while ( $row = $this->fetchObject( $res ) ) {
+			$status[$row->Variable_name] = $row->Value;
+		}
+		return $status;
+	}
 } 
 
 /**
