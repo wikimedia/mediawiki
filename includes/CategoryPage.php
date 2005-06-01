@@ -91,7 +91,7 @@ class CategoryPage extends Article {
 		$limit = 200;
 		$res = $dbr->select(
 			array( 'page', 'categorylinks' ),
-			array( 'page_title', 'page_namespace', 'cl_sortkey' ),
+			array( 'page_title', 'page_namespace', 'page_len', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  page_id',
 			       'cl_to'           => $this->mTitle->getDBKey()),
@@ -139,7 +139,7 @@ class CategoryPage extends Article {
 				}
 			} else {
 				// Page in this category
-				array_push( $articles, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getText() ) ) ) ;
+				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getText() ) ) ) ;
 				array_push( $articles_start_char, $wgContLang->convert( $wgContLang->firstChar( $x->cl_sortkey ) ) );
 			}
 		}
