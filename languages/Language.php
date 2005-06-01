@@ -520,6 +520,7 @@ page that has been deleted.
 
 <p>If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.",
+'readonly_lag' => "The database has been automatically locked while the slave database servers catch up to the master",
 'internalerror' => 'Internal error',
 'filecopyerror' => "Could not copy file \"$1\" to \"$2\".",
 'filerenameerror' => "Could not rename file \"$1\" to \"$2\".",

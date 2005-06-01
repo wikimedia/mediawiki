@@ -611,7 +611,7 @@ class OutputPage {
 	}
 
 	function readOnlyPage( $source = null, $protected = false ) {
-		global $wgUser, $wgReadOnlyFile;
+		global $wgUser, $wgReadOnlyFile, $wgReadOnly;
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
@@ -621,7 +621,11 @@ class OutputPage {
 			$this->addWikiText( wfMsg( 'protectedtext' ) );
 		} else {
 			$this->setPageTitle( wfMsg( 'readonly' ) );
-			$reason = file_get_contents( $wgReadOnlyFile );
+			if ( $wgReadOnly ) {
+				$reason = $wgReadOnly;
+			} else {
+				$reason = file_get_contents( $wgReadOnlyFile );
+			}
 			$this->addWikiText( wfMsg( 'readonlytext', $reason ) );
 		}
 
