@@ -41,7 +41,7 @@ class SearchUpdate {
 		$search =& SearchEngine::create();
 		$lc = $search->legalSearchChars() . '&#;';
 		
-		if( $this->mText == false ) {
+		if( $this->mText === false ) {
 			$search->updateTitle($this->mId,
 				Title::indexTitle( $this->mNamespace, $this->mTitle ));
 			wfProfileOut( $fname );

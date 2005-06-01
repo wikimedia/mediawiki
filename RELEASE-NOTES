@@ -232,6 +232,7 @@ Various bugfixes, small features, and a few experimental things:
   that does both numeric and named chars: Sanitizer::decodeCharReferences
 * Removed some obsolete UTF-8 converter functions
 * Fix function comment in debug dump of SQL statements
+* (bug 2275) Update search index more or less right on page move
 
 
 === Caveats ===

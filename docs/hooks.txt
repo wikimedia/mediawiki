@@ -303,8 +303,8 @@ $text: text of the mail
 $old: old title
 $nt: new title
 $user: user who did the move
-$oldid: old article database ID
-$newid: new article database ID
+$pageid: database ID of the page that's been moved
+$redirid: database ID of the created redirect
 
 'UnknownAction': An unknown "action" has occured (useful for defining
 		 your own actions)
