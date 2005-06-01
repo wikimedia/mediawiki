@@ -216,8 +216,11 @@ function logProfilingData() {
  * @return bool
  */
 function wfReadOnly() {
-	global $wgReadOnlyFile;
+	global $wgReadOnlyFile, $wgReadOnly;
 
+	if ( $wgReadOnly ) {
+		return true;
+	}
 	if ( '' == $wgReadOnlyFile ) {
 		return false;
 	}

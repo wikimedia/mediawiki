@@ -1447,6 +1447,38 @@ class Database {
 	function ping() {
 		return mysql_ping( $this->mConn );
 	}
+	
+	/**
+	 * Get slave lag.
+	 * At the moment, this will only work if the DB user has the PROCESS privilege
+	 */
+	function getLag() {
+		$res = $this->query( 'SHOW PROCESSLIST' );
+		# Find slave SQL thread. Assumed to be the second one running, which is a bit 
+		# dubious, but unfortunately there's no easy rigorous way
+		$slaveThreads = 0;
+		while ( $row = $this->fetchObject( $res ) ) {
+			if ( $row->User == 'system user' ) {
+				if ( ++$slaveThreads == 2 ) {
+					# This is it, return the time
+					return $row->Time;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get status information from SHOW STATUS in an associative array
+	 */
+	function getStatus() {
+		$res = $this->query( 'SHOW STATUS' );
+		$status = array();
+		while ( $row = $this->fetchObject( $res ) ) {
+			$status[$row->Variable_name] = $row->Value;
+		}
+		return $status;
+	}
 } 
 
 /**

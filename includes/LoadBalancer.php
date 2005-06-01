@@ -91,6 +91,14 @@ class LoadBalancer {
 		foreach ( $weights as $w ) {
 			$sum += $w;
 		}
+
+		if ( $sum == 0 ) {
+			# No loads on any of them
+			# Just pick one at random
+			foreach ( $weights as $i => $w ) {
+				$weights[$i] = 1;
+			}
+		}
 		$max = mt_getrandmax();
 		$rand = mt_rand(0, $max) / $max * $sum;
 		
@@ -104,8 +112,44 @@ class LoadBalancer {
 		return $i;
 	}
 
+	function getRandomNonLagged( $loads ) {
+		# Unset excessively lagged servers
+		$lags = $this->getLagTimes();
+		foreach ( $lags as $i => $lag ) {
+			if ( isset( $this->mServers[$i]['max lag'] ) && $lag > $this->mServers[$i]['max lag'] ) {
+				unset( $loads[$i] );
+			}
+		}
+
+
+		# Find out if all the slaves with non-zero load are lagged
+		$sum = 0;
+		foreach ( $loads as $load ) {
+			$sum += $load;
+		}
+		if ( $sum == 0 ) {
+			# No appropriate DB servers except maybe the master and some slaves with zero load
+			# Do NOT use the master
+			# Instead, this function will return false, triggering read-only mode, 
+			# and a lagged slave will be used instead.
+			unset ( $loads[0] );
+		}
+
+		if ( count( $loads ) == 0 ) {
+			return false;
+		}
+
+		wfDebug( var_export( $loads, true ) );
+
+		# Return a random representative of the remainder
+		return $this->pickRandom( $loads );
+	}
+
+
 	function getReaderIndex()
 	{
+		global $wgMaxLag, $wgReadOnly;
+
 		$fname = 'LoadBalancer::getReaderIndex';
 		wfProfileIn( $fname );
 
@@ -119,8 +163,19 @@ class LoadBalancer {
 				# $loads is $this->mLoads except with elements knocked out if they
 				# don't work
 				$loads = $this->mLoads;
+				$done = false;
+				$totalElapsed = 0;
 				do {
-					$i = $this->pickRandom( $loads );
+					if ( $wgReadOnly ) {
+						$i = $this->pickRandom( $loads );
+					} else {
+						$i = $this->getRandomNonLagged( $loads );
+						if ( $i === false && count( $loads ) != 0 )  {
+							# All slaves lagged. Switch to read-only mode
+							$wgReadOnly = wfMsgNoDB( 'readonly_lag' );
+							$i = $this->pickRandom( $loads );
+						}
+					}
 					if ( $i !== false ) {
 						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 						$this->openConnection( $i );
@@ -128,16 +183,32 @@ class LoadBalancer {
 						if ( !$this->isOpen( $i ) ) {
 							wfDebug( "Failed\n" );
 							unset( $loads[$i] );
-						} elseif ( isset( $this->mServers[$i]['slave pos'] ) ) {
-							wfDebug( "Lagged slave\n" );
-							$this->mLaggedSlaveMode = true;
+							$sleepTime = 0;
 						} else {
-							wfDebug( "OK\n" );
-						}
-					}
-				} while ( $i !== false && !$this->isOpen( $i ) );
+							$status = $this->mConnections[$i]->getStatus();
+							if ( isset( $this->mServers[$i]['max threads'] ) && 
+							  $status['Threads_running'] > $this->mServers[$i]['max threads'] ) 
+							{
+								# Slave is lagged, wait for a while
+								$sleepTime = 5000 * $status['Threads_connected'];
 
-				if ( $this->isOpen( $i ) ) {
+								# If we reach the timeout and exit the loop, don't use it
+								$i = false;
+							} else {
+								$done = true;
+								$sleepTime = 0;
+							}
+						}
+					} else {
+						$sleepTime = 500000;
+					}
+					if ( $sleepTime ) {
+							$totalElapsed += $sleepTime;
+							usleep( $sleepTime );
+					}
+				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $this->mWaitTimeout );
+
+				if ( $i !== false && $this->isOpen( $i ) ) {
 					$this->mReadIndex = $i;
 				} else {
 					$i = false;
@@ -167,6 +238,7 @@ class LoadBalancer {
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
 	 */
 	function waitFor( $file, $pos ) {
+		/*
 		$fname = 'LoadBalancer::waitFor';
 		wfProfileIn( $fname );
 
@@ -187,12 +259,15 @@ class LoadBalancer {
 			} 
 		}
 		wfProfileOut( $fname );
+		*/
 	}
 
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
 	 */
 	function doWait( $index ) {
+		return true;
+		/*
 		global $wgMemc;
 		
 		$retVal = false;
@@ -228,7 +303,7 @@ class LoadBalancer {
 				wfDebug( "Done\n" );
 			}
 		}
-		return $retVal;
+		return $retVal;*/
 	}		
 
 	/**
@@ -458,6 +533,63 @@ class LoadBalancer {
 			}
 		}
 		return $success;
+	}
+
+	/**
+	 * Get the hostname and lag time of the most-lagged slave
+	 * This is useful for maintenance scripts that need to throttle their updates
+	 */
+	function getMaxLag() {
+		$maxLag = -1;
+		$host = '';
+		foreach ( $this->mServers as $i => $conn ) {
+			if ( $this->openConnection( $i ) ) {
+				$lag = $this->mConnections[$i]->getLag();
+				if ( $lag > $maxLag ) {
+					$maxLag = $lag;
+					$host = $this->mServers[$i]['host'];
+				}
+			}
+		}
+		return array( $host, $maxLag );
+	}
+	
+	/**
+	 * Get lag time for each DB
+	 * Results are cached for a short time in memcached
+	 */
+	function getLagTimes() {
+		$expiry = 5;
+		$requestRate = 10;
+
+		global $wgMemc;
+		$times = $wgMemc->get( 'lag_times' );
+		if ( $times ) {
+			# Randomly recache with probability rising over $expiry
+			$elapsed = time() - $times['timestamp'];
+			$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
+			if ( mt_rand( 0, $chance ) != 0 ) {
+				unset( $times['timestamp'] );
+				return $times;
+			}
+		}
+
+		# Cache key missing or expired
+
+		$times = array();
+		foreach ( $this->mServers as $i => $conn ) {
+			if ( $this->openConnection( $i ) ) {
+				$times[$i] = $this->mConnections[$i]->getLag();
+			}
+		}
+
+		# Add a timestamp key so we know when it was cached
+		$times['timestamp'] = time();
+		$wgMemc->set( 'lag_times', $times, $expiry );
+
+		# But don't give the timestamp to the caller
+		unset($times['timestamp']);
+		return $times;
 	}
 }
 
