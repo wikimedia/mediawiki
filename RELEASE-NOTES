@@ -607,6 +607,7 @@ pages for purposes of page relevancy ranking.
 * (bug 2217) Negative ISO years were incorrectly converted to BC notation.
 * (bug 2267) Don't generate thumbnail at the same size as the source image.
 * Disable fulltext image name search in Special:Imagelist during MiserMode.
+* Fix sorting of profiling output in debug log: largest last for easy tailing
 
 
 === Caveats ===
