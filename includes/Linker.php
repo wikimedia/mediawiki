@@ -309,6 +309,28 @@ class Linker {
 		return $s;
 	}
 
+	/**
+	 * Generate either a normal exists-style link or a stub link, depending
+	 * on the given page size.
+	 *
+ 	 * @param int $size
+ 	 * @param Title $nt
+ 	 * @param string $text
+ 	 * @param string $query
+ 	 * @param string $trail
+ 	 * @param string $prefix
+ 	 * @return string HTML of link
+	 */
+	function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		global $wgUser;
+		$threshold = IntVal( $wgUser->getOption( 'stubthreshold' ) );
+		if( $size < $threshold ) {
+			return $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
+		} else {
+			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+		}
+	}
+
 	/** @todo document */
 	function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$u = $nt->escapeLocalURL( $query );
