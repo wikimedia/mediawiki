@@ -231,6 +231,7 @@ Various bugfixes, small features, and a few experimental things:
 * Replace wfMungeToUtf8 and do_html_entity_decode with a single function
   that does both numeric and named chars: Sanitizer::decodeCharReferences
 * Removed some obsolete UTF-8 converter functions
+* Fix function comment in debug dump of SQL statements
 
 
 === Caveats ===
