@@ -232,13 +232,15 @@ class Revision {
 			$this->mId        = isset( $row['id']         ) ? IntVal( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? IntVal( $row['page']       ) : null;
 			$this->mTextId    = isset( $row['text_id']    ) ? IntVal( $row['text_id']    ) : null;
-			$this->mComment   = isset( $row['comment']    ) ? StrVal( $row['comment']    ) : null;
 			$this->mUserText  = isset( $row['user_text']  ) ? StrVal( $row['user_text']  ) : $wgUser->getName();
 			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? IntVal( $row['deleted']    ) : 0;
-			$this->mText      = isset( $row['text']       ) ? StrVal( $row['text']       ) : null;
+			
+			// Enforce spacing trimming on supplied text
+			$this->mComment   = isset( $row['comment']    ) ?  trim( StrVal( $row['comment'] ) ) : null;
+			$this->mText      = isset( $row['text']       ) ? rtrim( StrVal( $row['text']    ) ) : null;
 			
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
