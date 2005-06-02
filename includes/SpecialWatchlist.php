@@ -50,7 +50,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->addHTML( '<p>' );
 		foreach($id as $one) {
 			$t = Title::newFromURL( $one );
-			if($t->getDBkey() != '') {
+			if( !is_null( $t ) ) {
 				$wl = WatchedItem::fromUserTitle( $wgUser, $t );
 				if( $wl->removeWatch() === false ) {
 					$wgOut->addHTML( "<br />\n" . wfMsg( 'couldntremove', htmlspecialchars($one) ) );

@@ -235,6 +235,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2275) Update search index more or less right on page move
 * (bug 2053) Move comment whitespace trimming from edit page to save;
   leaves the whitespace from the section comment there on preview.
+* (bug 2274) Respect stub threshold in category page list
+* (bug 2173) Fatal error when removing an article with an empty title from the watchlist
 
 
 === Caveats ===
