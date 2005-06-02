@@ -93,8 +93,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
-		# added -f parameter, see PHP manual for the fifth parameter when using the mail function
-		mail( $to, $subject, $body, $headers, " -f {$wgEmergencyContact}\n");
+		mail( $to, $subject, $body, $headers );
 		restore_error_handler();
 
 		if ( $wgErrorString ) {
