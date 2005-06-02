@@ -1081,6 +1081,15 @@ Interwiki link encoding conversion (bug 1636)
 
 !! end
 
+!! test
+Interwiki link with fragment (bug 2130)
+!! input
+[[MeatBall:SoftSecurity#foo]]
+!! result
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class='extiw' title="MeatBall:SoftSecurity">MeatBall:SoftSecurity#foo</a>
+</p>
+!! end
+
 ##
 ## XHTML tidiness
 ###
