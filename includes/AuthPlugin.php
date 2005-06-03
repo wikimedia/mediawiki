@@ -68,6 +68,56 @@ class AuthPlugin {
 	}
 	
 	/**
+	 * Modify options in the login template.
+	 *
+	 * @param UserLoginTemplate $template
+	 * @access public
+	 */
+	function modifyUITemplate( &$template ) {
+		# Override this!
+		$template->set( 'usedomain', false );
+	}
+
+	/**
+	 * Set the domain this plugin is supposed to use when authenticating.
+	 *
+	 * @param string $domain
+	 * @access public
+	 */
+	function setDomain( $domain ) {
+		$this->domain = $domain;
+	}
+
+	/**
+	 * Check to see if the specific domain is a valid domain.
+	 *
+	 * @param string $domain
+	 * @return bool
+	 * @access public
+	 */
+	function validDomain( $domain ) {
+		# Override this!
+		return true;
+	}
+
+	/**
+	 * When a user logs in, optionally fill in preferences and such.
+	 * For instance, you might pull the email address or real name from the
+	 * external user database.
+	 *
+	 * The User object is passed by reference so it can be modified; don't
+	 * forget the & on your function declaration.
+	 *
+	 * @param User $user
+	 * @access public
+	 */
+	function updateUser( &$user ) {
+		# Override this and do something
+		return true;
+	}
+
+
+	/**
 	 * Return true if the wiki should create a new local account automatically
 	 * when asked to login a user who doesn't exist locally but does in the
 	 * external auth database.
@@ -85,6 +135,54 @@ class AuthPlugin {
 		return false;
 	}
 	
+	/**
+	 * Set the given password in the authentication database.
+	 * Return true if successful.
+	 *
+	 * @param string $password
+	 * @return bool
+	 * @access public
+	 */
+	function setPassword( $password ) {
+		return true;
+	}
+
+	/**
+	 * Update user information in the external authentication database.
+	 * Return true if successful.
+	 *
+	 * @param User $user
+	 * @return bool
+	 * @access public
+	 */
+	function updateExternalDB( $user ) {
+		return true;
+	}
+
+	/**
+	 * Check to see if external accounts can be created.
+	 * Return true if external accounts can be created.
+	 * @return bool
+	 * @access public
+	 */
+	function canCreateAccounts() {
+		return false;
+	}
+
+	/**
+	 * Add a user to the external authentication database.
+	 * Return true if successful.
+	 *
+	 * @param User $user
+	 * @param string $password
+	 * @return bool
+	 * @access public
+	 */
+	function addUser( $user, $password ) {
+		return true;
+	}
+
+
 	/**
 	 * Return true to prevent logins that don't authenticate here from being
 	 * checked against the local database's password fields.
