@@ -2345,6 +2345,93 @@ Bug 2095: link with pipe and three closing brackets
 </p>
 !! end
 
+
+###
+### Safety
+###
+
+!! test
+Bug 2304: HTML attribute safety (template)
+!! input
+<div title="{{test}}"></div>
+!! result
+<div title="&#123;&#123;test}}"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (link)
+!! input
+<div title="[[Main Page]]"></div>
+!! result
+<div title="&#91;&#91;Main Page]]"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (italics)
+!! input
+<div title="''foobar''"></div>
+!! result
+<div title="&#39;&#39;foobar&#39;&#39;"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (bold)
+!! input
+<div title="'''foobar'''"></div>
+!! result
+<div title="&#39;&#39;'foobar&#39;&#39;'"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (ISBN)
+!! input
+<div title="ISBN 1234567890"></div>
+!! result
+<div title="&#73;SBN 1234567890"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (RFC)
+!! input
+<div title="RFC 1234"></div>
+!! result
+<div title="&#82;FC 1234"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (PMID)
+!! input
+<div title="PMID 1234567890"></div>
+!! result
+<div title="&#80;MID 1234567890"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (web link)
+!! input
+<div title="http://example.com/"></div>
+!! result
+<div title="http&#58;//example.com/"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (named web link)
+!! input
+<div title="[http://example.com/ link]"></div>
+!! result
+<div title="&#91;http&#58;//example.com/ link]"></div>
+
+!! end
+
+
 TODO:
 more images
 more tables
