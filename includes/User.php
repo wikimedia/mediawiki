@@ -1377,8 +1377,17 @@ class User {
 	 * @return bool True if the given password is correct otherwise False.
 	 */
 	function checkPassword( $password ) {
-		global $wgAuth;
+		global $wgAuth, $wgMinimalPasswordLength;
 		$this->loadFromDatabase();
+
+		// Even though we stop people from creating passwords that
+		// are shorter than this, doesn't mean people wont be able
+		// to. Certain authentication plugins do NOT want to save
+		// domain passwords in a mysql database, so we should
+		// check this (incase $wgAuth->strict() is false).
+		if( strlen( $password ) < $wgMinimalPasswordLength ) {
+			return false;
+		}
 		
 		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;

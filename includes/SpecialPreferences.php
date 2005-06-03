@@ -180,6 +180,8 @@ class PreferencesForm {
 		global $wgUser, $wgLang, $wgOut;
 		global $wgEnableUserEmail, $wgEnableEmail;
 		global $wgEmailAuthentication, $wgMinimalPasswordLength;
+		global $wgAuth;
+
 
 		if ( '' != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
@@ -194,6 +196,10 @@ class PreferencesForm {
 
 			if (!$wgUser->checkPassword( $this->mOldpass )) {
 				$this->mainPrefsForm( wfMsg( 'wrongpassword' ) );
+				return;
+			}
+			if (!$wgAuth->setPassword( $wgUser, $this->mNewpass )) {
+				$this->mainPrefsForm( wfMsg( 'externaldberror' ) );
 				return;
 			}
 			$wgUser->setPassword( $this->mNewpass );
@@ -232,6 +238,10 @@ class PreferencesForm {
 		# Set user toggles
 		foreach ( $this->mToggles as $tname => $tvalue ) {
 			$wgUser->setOption( $tname, $tvalue );
+		}
+		if (!$wgAuth->updateExternalDB($wgUser)) {
+			$this->mainPrefsForm( wfMsg( 'externaldberror' ) );
+			return;
 		}
 		$wgUser->setCookies();
 		$wgUser->saveSettings();

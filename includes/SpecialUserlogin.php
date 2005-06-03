@@ -27,7 +27,7 @@ function wfSpecialUserlogin() {
 class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnto, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
-	var $mLoginattempt, $mRemember, $mEmail;
+	var $mLoginattempt, $mRemember, $mEmail, $mDomain;
 	
 	/**
 	 * Constructor
@@ -35,10 +35,12 @@ class LoginForm {
 	 */
 	function LoginForm( &$request ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
+		global $wgAuth;
 
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
 		$this->mRetype = $request->getText( 'wpRetype' );
+		$this->mDomain = $request->getText( 'wpDomain' );
 		$this->mReturnto = $request->getVal( 'returnto' );
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
@@ -61,7 +63,12 @@ class LoginForm {
 		} else {
 		    $this->mRealName = '';
 		}
-	    
+		
+		if( !$wgAuth->validDomain( $this->mDomain ) ) {
+			$this->mDomain = 'invaliddomain';
+		}
+		$wgAuth->setDomain( $this->mDomain );
+ 
 		# When switching accounts, it sucks to get automatically logged out
 		if( $this->mReturnto == $wgLang->specialPage( 'Userlogout' ) ) {
 			$this->mReturnto = '';
@@ -155,6 +162,28 @@ class LoginForm {
 		global $wgMaxNameChars;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
 		global $wgMinimalPasswordLength;
+		global $wgAuth;
+
+		// If the user passes an invalid domain, something is fishy
+		if( !$wgAuth->validDomain( $this->mDomain ) ) {
+			$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
+			return false;
+		}
+
+		// If we are not allowing users to login locally, we should
+		// be checking to see if the user is actually able to
+		// authenticate to the authentication server before they
+		// create an account (otherwise, they can create a local account
+		// and login as any domain user). We only need to check this for
+		// domains that aren't local.
+		if( 'local' != $this->mDomain && '' != $this->mDomain ) {
+			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mName ) || !$wgAuth->authenticate( $this->mName, $this->mPassword ) ) ) {
+				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
+				return false;
+			}
+		}
+
+
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
@@ -205,6 +234,11 @@ class LoginForm {
 			}
 		}
 
+		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
+			$this->mainLoginForm( wfMsg( 'externaldberror' ) );
+			return false;
+		}
+
 		return $this->initUser( $u );
 	}
 	
@@ -238,6 +272,7 @@ class LoginForm {
 	 */
 	function processLogin() {
 		global $wgUser;
+		global $wgAuth;
 
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
@@ -283,6 +318,8 @@ class LoginForm {
 			$r = 0;
 		}
 		$u->setOption( 'rememberpassword', $r );
+
+		$wgAuth->updateUser( $u );
 
 		$wgUser = $u;
 		$wgUser->setCookies();
@@ -395,6 +432,7 @@ class LoginForm {
 	function mainLoginForm( $err ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDBname, $wgAllowRealName, $wgEnableEmail;
+		global $wgAuth;
 
 		if ( '' == $this->mName ) {
 			if ( $wgUser->isLoggedIn() ) {
@@ -418,6 +456,7 @@ class LoginForm {
 		$template->set( 'retype', $this->mRetype );
 		$template->set( 'email', $this->mEmail );
 		$template->set( 'realname', $this->mRealName );
+		$template->set( 'domain', $this->mDomain );
 
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'error', $err );
@@ -426,6 +465,7 @@ class LoginForm {
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
+		$wgAuth->modifyUITemplate( $template );
 		
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
