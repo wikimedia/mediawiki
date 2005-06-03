@@ -43,6 +43,8 @@ define( "OT_MSG", 3 );
 # may want to use in wikisyntax
 define( "STRIP_COMMENTS", "HTMLCommentStrip" );
 
+define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
+
 # prefix for escaping, used in two functions at least
 define( "UNIQ_PREFIX", "NaodW29");
 
@@ -627,6 +629,20 @@ cl_sortkey" ;
 		{
 			$t='';
 		}
+		
+		# Templates and links may be expanded in later parsing,
+		# creating invalid or dangerous output. Suppress this.
+		$t = strtr( $t, array(
+			'{'    => '&#123;',
+			'['    => '&#91;',
+			"''"   => '&#39;&#39;',
+			'ISBN' => '&#73;SBN',
+			'RFC'  => '&#82;FC',
+			'PMID' => '&#80;MID',
+		) );
+		$t = preg_replace(
+			'/(' . URL_PROTOCOLS . '):/',
+			'\\1&#58;', $t );
 
 		return trim ( $t ) ;
 	}
