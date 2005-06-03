@@ -258,38 +258,73 @@ class Parser
 	 * @access private
 	 * @static
 	 */
-	function extractTags($tag, $text, &$content, $uniq_prefix = ''){
+	function extractTagsAndParams($tag, $text, &$content, &$tags, &$params, $uniq_prefix = ''){
 		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
 		if ( !$content ) {
 			$content = array( );
 		}
 		$n = 1;
 		$stripped = '';
+	
+		if ( !$tags ) {
+			$tags = array( );
+		}
+		
+		if ( !$params ) {
+			$params = array( );
+		}
+
+		if( $tag == STRIP_COMMENTS ) {
+			$start = '/<!--()/';
+			$end   = '/-->/';
+		} else {
+			$start = "/<$tag([^>]*)>/i";
+			$end   = "/<\\/$tag\\s*>/i";
+		}
 
 		while ( '' != $text ) {
-			if($tag==STRIP_COMMENTS) {
-				$p = preg_split( '/<!--/', $text, 2 );
-			} else {
-				$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
-			}
+			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( '' == $p[1] ) ) {
-				$text = '';
+			if( count( $p ) < 3 ) {
+				break;
+			}
+			$attributes = $p[1];
+			$inside     = $p[2];
+			
+			$marker = $rnd . sprintf('%08X', $n++);
+			$stripped .= $marker;
+			
+			$tags[$marker] = "<$tag$attributes>";
+			$params[$marker] = Sanitizer::decodeTagAttributes( $attributes );
+			
+			$q = preg_split( $end, $inside, 2 );
+			$content[$marker] = $q[0];
+			if( count( $q ) < 1 ) {
+				# No end tag -- let it run out to the end of the text.
+				break;
 			} else {
-				if($tag==STRIP_COMMENTS) {
-					$q = preg_split( '/-->/i', $p[1], 2 );
-				} else {
-					$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
-				}
-				$marker = $rnd . sprintf('%08X', $n++);
-				$content[$marker] = $q[0];
-				$stripped .= $marker;
 				$text = $q[1];
 			}
 		}
 		return $stripped;
 	}
 
+	/**
+	 * Wrapper function for extractTagsAndParams
+	 * for cases where $tags and $params isn't needed
+	 * i.e. where tags will never have params, like <nowiki>
+	 *
+	 * @access private
+	 * @static
+	 */
+	function extractTags( $tag, $text, &$content, $uniq_prefix = '' ) {
+		$dummy_tags = array();
+		$dummy_params = array();
+		
+		return Parser::extractTagsAndParams( $tag, $text, $content,
+			$dummy_tags, $dummy_params, $uniq_prefix );
+	}
+	
 	/**
 	 * Strips and renders nowiki, pre, math, hiero
 	 * If $render is set, performs necessary rendering operations on plugins
@@ -311,6 +346,8 @@ class Parser
 		$pre_content = array();
 		$comment_content = array();
 		$ext_content = array();
+		$ext_tags = array();
+		$ext_params = array();
 		$gallery_content = array();
 
 		# Replace any instances of the placeholders
@@ -387,12 +424,15 @@ class Parser
 		# Extensions
 		foreach ( $this->mTagHooks as $tag => $callback ) {
 			$ext_content[$tag] = array();
-			$text = Parser::extractTags( $tag, $text, $ext_content[$tag], $uniq_prefix );
+			$text = Parser::extractTagsAndParams( $tag, $text, $ext_content[$tag],
+				$ext_tags[$tag], $ext_params[$tag], $uniq_prefix );
 			foreach( $ext_content[$tag] as $marker => $content ) {
+				$full_tag = $ext_tags[$tag][$marker];
+				$params = $ext_params[$tag][$marker];
 				if ( $render ) {
-					$ext_content[$tag][$marker] = $callback( $content );
+					$ext_content[$tag][$marker] = $callback( $content, $params );
 				} else {
-					$ext_content[$tag][$marker] = "<$tag>$content</$tag>";
+					$ext_content[$tag][$marker] = "$full_tag$content</$tag>";
 				}
 			}
 		}

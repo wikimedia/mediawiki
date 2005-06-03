@@ -37,6 +37,27 @@ define( 'MW_CHAR_REFS_REGEX',
 	 |(&)/x' );
 
 /**
+ * Regular expression to match HTML/XML attribute pairs within a tag.
+ * Allows some... latitude.
+ * Used in Sanitizer::fixTagAttributes and Sanitizer::decodeTagAttributes
+ */
+$attrib = '[A-Za-z0-9]'; 
+$space = '[\x09\x0a\x0d\x20]';
+define( 'MW_ATTRIBS_REGEX',
+	"/(?:^|$space)($attrib+)
+	  ($space*=$space*
+		(?:
+		 # The attribute value: quoted or alone
+		  \"([^<\"]*)\"
+		 | '([^<']*)'
+		 |  ([a-zA-Z0-9!#$%&()*,\\-.\\/:;<>?@[\\]^_`{|}~]+)
+		 |  (\#[0-9a-fA-F]+) # Technically wrong, but lots of
+							 # colors are specified like this.
+							 # We'll be normalizing it.
+		)
+	   )?(?=$space|\$)/sx" );
+
+/**
  * List of all named character entities defined in HTML 4.01
  * http://www.w3.org/TR/html4/sgml/entities.html
  * @access private
@@ -490,21 +511,8 @@ class Sanitizer {
 		# Unquoted attribute
 		# Since we quote this later, this can be anything distinguishable 
 		# from the end of the attribute
-		$attrib = '[A-Za-z0-9]'; 
-		$space = '[\x09\x0a\x0d\x20]';
 		if( !preg_match_all(
-			"/(?:^|$space)($attrib+)
-			  ($space*=$space*
-			    (?:
-			     # The attribute value: quoted or alone
-			      \"([^<\"]*)\"
-			     | '([^<']*)'
-			     |  ([a-zA-Z0-9!#$%&()*,\\-.\\/:;<>?@[\\]^_`{|}~]+)
-			     |  (\#[0-9a-fA-F]+) # Technically wrong, but lots of
-			                         # colors are specified like this.
-			                         # We'll be normalizing it.
-			    )
-			   )?(?=$space|\$)/sx",
+			MW_ATTRIBS_REGEX,
 			$text,
 			$pairs,
 			PREG_SET_ORDER ) ) {
@@ -517,25 +525,10 @@ class Sanitizer {
 			$attribute = strtolower( $set[1] );
 			if( !isset( $whitelist[$attribute] ) ) {
 				continue;
-			} elseif( isset( $set[6] ) ) {
-				# Illegal #XXXXXX color with no quotes.
-				$value = Sanitizer::normalizeAttributeValue( $set[6] );
-			} elseif( isset( $set[5] ) ) {
-				# No quotes.
-				$value = Sanitizer::normalizeAttributeValue( $set[5] );
-			} elseif( isset( $set[4] ) ) {
-				# Single-quoted
-				$value = str_replace( '"', '&quot;',
-					Sanitizer::normalizeAttributeValue( $set[4] ) );
-			} elseif( isset( $set[3] ) ) {
-				# Double-quoted
-				$value = Sanitizer::normalizeAttributeValue( $set[3] );
-			} elseif( !isset( $set[2] ) ) {
-				# In XHTML, attributes must have a value.
-				$value = $set[1];
-			} else {
-				wfDebugDieBacktrace( "Tag conditions not met. This should never happen and is a bug." );
 			}
+			
+			$raw   = Sanitizer::getTagAttributeCallback( $set );
+			$value = Sanitizer::normalizeAttributeValue( $raw );
 			
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
@@ -558,6 +551,67 @@ class Sanitizer {
 	}
 	
 	/**
+	 * Return an associative array of attribute names and values from
+	 * a partial tag string. Attribute names are forces to lowercase,
+	 * character references are decoded to UTF-8 text.
+	 *
+	 * @param string
+	 * @return array
+	 */
+	function decodeTagAttributes( $text ) {
+		$attribs = array();
+		
+		if( trim( $text ) == '' ) {
+			return $attribs;
+		}
+		
+		if( !preg_match_all(
+			MW_ATTRIBS_REGEX,
+			$text,
+			$pairs,
+			PREG_SET_ORDER ) ) {
+			return $attribs;
+		}
+
+		foreach( $pairs as $set ) {
+			$attribute = strtolower( $set[1] );
+			$value = Sanitizer::getTagAttributeCallback( $set );
+			$attribs[$attribute] = Sanitizer::decodeCharReferences( $value );
+		}
+		return $attribs;
+	}
+	
+	/**
+	 * Pick the appropriate attribute value from a match set from the
+	 * MW_ATTRIBS_REGEX matches.
+	 *
+	 * @param array $set
+	 * @return string
+	 * @access private
+	 */
+	function getTagAttributeCallback( $set ) {
+		if( isset( $set[6] ) ) {
+			# Illegal #XXXXXX color with no quotes.
+			return $set[6];
+		} elseif( isset( $set[5] ) ) {
+			# No quotes.
+			return $set[5];
+		} elseif( isset( $set[4] ) ) {
+			# Single-quoted
+			return $set[4];
+		} elseif( isset( $set[3] ) ) {
+			# Double-quoted
+			return $set[3];
+		} elseif( !isset( $set[2] ) ) {
+			# In XHTML, attributes must have a value.
+			# For 'reduced' form, return explicitly the attribute name here.
+			return $set[1];
+		} else {
+			wfDebugDieBacktrace( "Tag conditions not met. This should never happen and is a bug." );
+		}
+	}
+	
+	/**
 	 * Normalize whitespace and character references in an XML source-
 	 * encoded text for an attribute value.
 	 *
@@ -570,10 +624,11 @@ class Sanitizer {
 	 * @access private
 	 */
 	function normalizeAttributeValue( $text ) {
-		return preg_replace(
-			'/\r\n|[\x20\x0d\x0a\x09]/',
-			' ',
-			Sanitizer::normalizeCharReferences( $text ) );
+		return str_replace( '"', '&quot;',
+			preg_replace(
+				'/\r\n|[\x20\x0d\x0a\x09]/',
+				' ',
+				Sanitizer::normalizeCharReferences( $text ) ) );
 	}
 	
 	/**
