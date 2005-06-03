@@ -496,6 +496,20 @@ class Parser
 		{
 			$t='';
 		}
+		
+		# Templates and links may be expanded in later parsing,
+		# creating invalid or dangerous output. Suppress this.
+		$t = strtr( $t, array(
+			'{'    => '&#123;',
+			'['    => '&#91;',
+			"''"   => '&#39;&#39;',
+			'ISBN' => '&#73;SBN',
+			'RFC'  => '&#82;FC',
+			'PMID' => '&#80;MID',
+		) );
+		$t = preg_replace(
+			'/(' . URL_PROTOCOLS . '):/',
+			'\\1&#58;', $t );
 
 		return trim ( $t ) ;
 	}
