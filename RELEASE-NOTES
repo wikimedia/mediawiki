@@ -238,6 +238,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2274) Respect stub threshold in category page list
 * (bug 2173) Fatal error when removing an article with an empty title from the watchlist
 * Removed -f parameter from mail() usage, likely to cause failures and bounces.
+* (bug 2130) Fixed interwiki links with fragments
 
 
 === Caveats ===

@@ -140,7 +140,10 @@ class Parser
 		$this->mStripState = array();
 		$this->mArgStack = array();
 		$this->mInPre = false;
-		$this->mInterwikiLinkHolders = array();
+		$this->mInterwikiLinkHolders = array(
+			'texts' => array(),
+			'titles' => array()
+		);
 		$this->mLinkHolders = array(
 			'namespaces' => array(),
 			'dbkeys' => array(),
@@ -1423,8 +1426,8 @@ class Parser
 			list( $inside, $trail ) = Linker::splitTrail( $trail );
 			
 			if ( $nt->isExternal() ) {
-				$iwRecord = array( $nt->getPrefixedDBkey(), $prefix.$text.$inside );
-				$nr = array_push($this->mInterwikiLinkHolders, $iwRecord);
+				$nr = array_push( $this->mInterwikiLinkHolders['texts'], $prefix.$text.$inside );
+				$this->mInterwikiLinkHolders['titles'][] =& $nt;
 				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
 			} else {
 				$nr = array_push( $this->mLinkHolders['namespaces'], $nt->getNamespace() );
@@ -2481,7 +2484,7 @@ class Parser
 							    "\$this->mLinkHolders['texts'][\$1]",
 							    $canonized_headline );
 			$canonized_headline = preg_replace( '/<!--IWLINK ([0-9]*)-->/e',
-							    "\$this->mInterwikiLinkHolders[\$1][1]",
+							    "\$this->mInterwikiLinkHolders['texts'][\$1]",
 							    $canonized_headline );
 
 			# strip out HTML
@@ -2985,13 +2988,13 @@ class Parser
 
 		# Now process interwiki link holders
 		# This is quite a bit simpler than internal links
-		if ( !empty( $this->mInterwikiLinkHolders ) ) {
+		if ( !empty( $this->mInterwikiLinkHolders['texts'] ) ) {
 			wfProfileIn( $fname.'-interwiki' );
 			# Make interwiki link HTML
 			$wgOutputReplace = array();
-			foreach( $this->mInterwikiLinkHolders as $i => $lh ) {
-				$s = $sk->makeLink( $lh[0], $lh[1] );
-				$wgOutputReplace[] = $s;
+			foreach( $this->mInterwikiLinkHolders['texts'] as $key => $link ) {
+				$title = $this->mInterwikiLinkHolders['titles'][$key];
+				$wgOutputReplace[$key] = $sk->makeLinkObj( $title, $link );
 			}
 			
 			$text = preg_replace_callback(
@@ -3040,8 +3043,8 @@ class Parser
 				return $this->mLinkHolders['texts'][$key];
 			}
 		} elseif( $type == 'IWLINK' ) {
-			if( isset( $this->mInterwikiLinkHolders[$key][1] ) ) {
-				return $this->mInterwikiLinkHolders[$key][1];
+			if( isset( $this->mInterwikiLinkHolders['texts'][$key] ) ) {
+				return $this->mInterwikiLinkHolders['texts'][$key];
 			}
 		}
 		return $matches[0];
