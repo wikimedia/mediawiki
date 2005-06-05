@@ -78,8 +78,8 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 
 	$dbr =& wfGetDB( DB_READ );
 	extract( $dbr->tableNames( 'links','cur' ) );
-
-	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM $links,$cur WHERE l_to={$lid} AND l_from=cur_id LIMIT $limit";
+        $useindex = $dbr->useIndexClause ('id_title_ns_red');
+        $sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM $links,$cur $useindex WHERE l_to={$lid} AND l_from=cur_id LIMIT $limit";
 	$res = $dbr->query( $sql, $fname );
 
 	if ( 0 == $dbr->numRows( $res ) ) {
