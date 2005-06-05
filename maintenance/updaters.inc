@@ -8,6 +8,7 @@
 
 require_once 'convertLinks.inc';
 require_once 'InitialiseMessages.inc';
+require_once 'userDupes.inc';
 
 $wgRenamedTables = array(
 #           from             to                  patch file
@@ -556,6 +557,21 @@ function do_old_links_update() {
 	}
 }
 
+function do_user_unique_update() {
+	global $wgDatabase;
+	$duper = new UserDupes( $wgDatabase );
+	if( $duper->hasUniqueIndex() ) {
+		echo "Already have unique user_name index.\n";
+	} else {
+		if( !$duper->clearDupes() ) {
+			echo "WARNING: This next step will probably fail due to unfixed duplicates...\n";
+		}
+		echo "Adding unique index on user_name... ";
+		dbsource( 'maintenance/archives/patch-user_nameindex.sql', $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 	
@@ -597,6 +613,8 @@ function do_all_updates() {
 	do_pagelinks_update(); flush();
 	
 	do_drop_img_type(); flush();
+	
+	do_user_unique_update(); flush();
 	
 	initialiseMessages(); flush();
 }

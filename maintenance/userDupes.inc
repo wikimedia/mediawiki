@@ -25,6 +25,30 @@ class UserDupes {
 	var $unresolvable;
 	var $trimmed;
 	
+	function UserDupes( &$database ) {
+		$this->db =& $database;
+	}
+	
+	/**
+	 * Check if this database's user table has already had a unique
+	 * user_name index applied.
+	 * @return bool
+	 */
+	function hasUniqueIndex() {
+		$fname = 'UserDupes::hasUniqueIndex';
+		#if( $wgDatabase->indexExists( 'image', 'PRIMARY' ) ) {
+		$info = $this->db->indexInfo( 'user', 'user_name', $fname );
+		if( !$info ) {
+			echo "WARNING: doesn't seem to have user_name index at all!\n";
+			return false;
+		}
+		
+		# Confusingly, 'Non_unique' is 0 for *unique* indexes,
+		# and 1 for *non-unique* indexes. Pass the crack, MySQL,
+		# it's obviously some good stuff!
+		return ( $info->Non_unique == 0 );
+	}
+	
 	/**
 	 * Checks the database for duplicate user account records
 	 * and remove them in preparation for application of a unique
@@ -56,7 +80,11 @@ class UserDupes {
 	function checkDupes( $doDelete=false ) {
 		global $wgDBname;
 		
-		$this->db =& wfGetDB( DB_MASTER );
+		if( $this->hasUniqueIndex() ) {
+			echo "$wgDBname already has a unique index on its user table.\n";
+			return true;
+		}
+		
 		$this->lock();
 		
 		echo "Checking for duplicate accounts...\n";

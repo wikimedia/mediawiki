@@ -266,6 +266,7 @@ Various bugfixes, small features, and a few experimental things:
 
 * (bug 2319) Fix parse hook tag matching
 * (bug 2329) Fix title formatting in several special pages
+* (bug 2223) Add unique index on user_name field to prevent duplicate accounts
 
 
 === Caveats ===

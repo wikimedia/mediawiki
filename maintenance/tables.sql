@@ -104,7 +104,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_email_token_expires CHAR(14) BINARY,
 
   PRIMARY KEY user_id (user_id),
-  INDEX user_name (user_name(10)),
+  UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)
 
 ) TYPE=InnoDB;
