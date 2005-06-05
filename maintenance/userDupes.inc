@@ -104,10 +104,10 @@ class UserDupes {
 	function lock() {
 		$fname = 'UserDupes::lock';
 		global $wgVersion;
-		if( version_compare( $wgVersion, '1.5', 'gte' ) ) {
-			$set = array( 'user', 'cur', 'old' );
-		} else {
+		if( version_compare( $wgVersion, '1.5alpha', 'ge' ) ) {
 			$set = array( 'user', 'revision' );
+		} else {
+			$set = array( 'user', 'cur', 'old' );
 		}
 		$names = array_map( array( $this, 'lockTable' ), $set );
 		$tables = implode( ',', $names );
