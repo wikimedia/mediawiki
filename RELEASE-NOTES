@@ -261,7 +261,11 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 814) Integrate AuthPlugin changes to support Ryan Lane's external
   LDAP authentication plugin
 * (bug 2034) Armor HTML attributes against template inclusion and links munging
+
+=== Changes since 1.5alpha2 ===
+
 * (bug 2319) Fix parse hook tag matching
+* (bug 2329) Fix title formatting in several special pages
 
 
 === Caveats ===
