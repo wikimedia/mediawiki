@@ -145,6 +145,17 @@ function do_image_name_unique_update() {
 	}
 }
 
+function do_cur_covering_index_update() {
+	global $wgDatabase;
+	if ( $wgDatabase->indexExists( 'cur', 'id_title_ns_red' )) {
+		echo "...cur_id covering index already exists.\n";
+	} else {
+		echo "Creating covering cur_id index on cur... ";
+		dbsource ( "maintenance/archives/patch-curid-covering.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 # Arbitrary script execution vulnerability white knight repair
 function do_vulnerability_patch_update() {
 	global $wgDatabase;
@@ -201,6 +212,8 @@ function do_all_updates() {
 	do_image_name_unique_update(); flush();
 
 	do_logging_encoding(); flush();
+
+	do_cur_covering_index_update(); flush();
 
 	initialiseMessages(); flush();
 }
