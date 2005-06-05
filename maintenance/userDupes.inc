@@ -22,8 +22,9 @@
  */
 class UserDupes {
 	var $db;
-	var $unresolvable;
+	var $reassigned;
 	var $trimmed;
+	var $failed;
 	
 	function UserDupes( &$database ) {
 		$this->db =& $database;
@@ -36,7 +37,6 @@ class UserDupes {
 	 */
 	function hasUniqueIndex() {
 		$fname = 'UserDupes::hasUniqueIndex';
-		#if( $wgDatabase->indexExists( 'image', 'PRIMARY' ) ) {
 		$info = $this->db->indexInfo( 'user', 'user_name', $fname );
 		if( !$info ) {
 			echo "WARNING: doesn't seem to have user_name index at all!\n";
@@ -70,14 +70,15 @@ class UserDupes {
 	 * user_name field. Returns true if the table is clean or
 	 * if duplicates can be resolved automatically.
 	 *
-	 * May return false if there are unresolvable problems.
+	 * Returns false if there are duplicates and resolution was
+	 * not requested. (If doing resolution, edits may be reassigned.)
 	 * Status information will be echo'd to stdout.
 	 *
 	 * @param bool $doDelete pass true to actually remove things
 	 *                       from the database; false to just check.
 	 * @return bool
 	 */
-	function checkDupes( $doDelete=false ) {
+	function checkDupes( $doDelete = false ) {
 		global $wgDBname;
 		
 		if( $this->hasUniqueIndex() ) {
@@ -92,36 +93,44 @@ class UserDupes {
 		$count = count( $dupes );
 		
 		echo "Found $count accounts with duplicate records on $wgDBname.\n";
-		$this->trimmed      = 0;
-		$this->unresolvable = 0;
+		$this->trimmed    = 0;
+		$this->reassigned = 0;
+		$this->failed     = 0;
 		foreach( $dupes as $name ) {
 			$this->examine( $name, $doDelete );
 		}
 		
 		$this->unlock();
 		
-		if( $this->trimmed > 0 ) {
-			echo "\n";
+		echo "\n";
+		
+		if( $this->reassigned > 0 ) {
 			if( $doDelete ) {
-				echo "$this->trimmed duplicate user records were deleted from $wgDBname.\n";
-				if( $this->unresolvable == 0 ) {
-					echo "It is now safe to apply the unique index on user_name.\n";
-				}
+				echo "$this->reassigned duplicate accounts had edits reassigned to a canonical record id.\n";
 			} else {
-				echo "$this->trimmed duplicate user accounts were found on $wgDBname which can be removed safely.\n";
-				echo "Run this script again with the --fix option to automatically delete them.\n";
+				echo "$this->reassigned duplicate accounts need to have edits reassigned.\n";
 			}
 		}
 		
-		if( $this->unresolvable > 0 ) {
-			echo "\n";
-			echo "There were $this->unresolvable unresolvable accounts on $wgDBname.\n";
-			echo "These accounts have edits credited to duplicate records,\n";
-			echo "and need to be cleaned up manually before the unique index\n";
-			echo "for user_name can be applied.\n";
+		if( $this->trimmed > 0 ) {
+			if( $doDelete ) {
+				echo "$this->trimmed duplicate user records were deleted from $wgDBname.\n";
+			} else {
+				echo "$this->trimmed duplicate user accounts were found on $wgDBname which can be removed safely.\n";
+			}
+		}
+		
+		if( $this->failed > 0 ) {
+			echo "Something terribly awry; $this->failed duplicate accounts were not removed.\n";
 			return false;
-		} else {
+		}
+		
+		if( $this->trimmed == 0 || $doDelete ) {
+			echo "It is now safe to apply the unique index on user_name.\n";
 			return true;
+		} else {
+			echo "Run this script again with the --fix option to automatically delete them.\n";
+			return false;
 		}
 	}
 	
@@ -131,8 +140,7 @@ class UserDupes {
 	 */
 	function lock() {
 		$fname = 'UserDupes::lock';
-		global $wgVersion;
-		if( version_compare( $wgVersion, '1.5alpha', 'ge' ) ) {
+		if( $this->newSchema() ) {
 			$set = array( 'user', 'revision' );
 		} else {
 			$set = array( 'user', 'cur', 'old' );
@@ -145,6 +153,15 @@ class UserDupes {
 	
 	function lockTable( $table ) {
 		return $this->db->tableName( $table ) . ' WRITE';
+	}
+	
+	/**
+	 * @return bool
+	 * @access private
+	 */
+	function newSchema() {
+		global $wgVersion;
+		return version_compare( $wgVersion, '1.5alpha', 'ge' );
 	}
 	
 	/**
@@ -202,17 +219,29 @@ class UserDupes {
 			echo "... dupe id $dupeId: ";
 			$edits = $this->editCount( $dupeId );
 			if( $edits > 0 ) {
-				$this->unresolvable++;
-				echo "has $edits edits! MANUAL INTERVENTION REQUIRED.\n";
-				continue;
-			} else {
-				$this->trimmed++;
-				echo "ok, no edits. ";
+				$this->reassigned++;
+				echo "has $edits edits! ";
 				if( $doDelete ) {
-					$this->trimAccount( $dupeId );
+					$this->reassignEdits( $dupeId, $firstId );
+					$newEdits = $this->editCount( $dupeId );
+					if( $newEdits == 0 ) {
+						echo "confirmed cleaned. ";
+					} else {
+						$this->failed++;
+						echo "WARNING! $newEdits remaining edits for $dupeId; NOT deleting user.\n";
+						continue;
+					}
+				} else {
+					echo "(will need to reassign edits on fix)";
 				}
-				echo "\n";
+			} else {
+				echo "ok, no edits. ";
 			}
+			$this->trimmed++;
+			if( $doDelete ) {
+				$this->trimAccount( $dupeId );
+			}
+			echo "\n";
 		}
 		$this->db->freeResult( $result );
 	}
@@ -226,8 +255,7 @@ class UserDupes {
 	 * @access private
 	 */
 	function editCount( $userid ) {
-		global $wgVersion;
-		if( version_compare( $wgVersion, '1.5alpha', 'ge' ) ) {
+		if( $this->newSchema() ) {
 			return $this->editCountOn( 'revision', 'rev_user', $userid );
 		} else {
 			return $this->editCountOn( 'cur', 'cur_user', $userid ) +
@@ -250,6 +278,37 @@ class UserDupes {
 			'COUNT(*)',
 			array( $field => $userid ),
 			$fname ) );
+	}
+	
+	/**
+	 * @param int $from
+	 * @param int $to
+	 * @access private
+	 */
+	function reassignEdits( $from, $to ) {
+		$set = $this->newSchema()
+			? array( 'revision' => 'rev_user' )
+			: array( 'cur' => 'cur_user', 'old' => 'old_user' );
+		foreach( $set as $table => $field ) {
+			$this->reassignEditsOn( $table, $field, $from, $to );
+		}
+	}
+	
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param int $from
+	 * @param int $to
+	 * @access private
+	 */
+	function reassignEditsOn( $table, $field, $from, $to ) {
+		$fname = 'UserDupes::reassignEditsOn';
+		echo "reassigning on $table... ";
+		$result = $this->db->update( $table,
+			array( $field => $to ),
+			array( $field => $from ),
+			$fname );
+		echo "ok. ";
 	}
 	
 	/**
