@@ -276,7 +276,7 @@ class Parser
 			$start = '/<!--()/';
 			$end   = '/-->/';
 		} else {
-			$start = "/<$tag([^>]*)>/i";
+			$start = "/<$tag(\\s+[^>]*|\\s*)>/i";
 			$end   = "/<\\/$tag\\s*>/i";
 		}
 
