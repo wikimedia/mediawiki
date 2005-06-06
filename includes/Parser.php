@@ -480,26 +480,41 @@ class Parser
 		$htmlattrs = $this->getHTMLattrs() ;
 
 		# Strip non-approved attributes from the tag
-		$t = preg_replace(
-			'/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e',
-			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
-			$t);
-
-		$t = str_replace ( '<></>' , '' , $t ) ; # This should fix bug 980557
+		if( !preg_match_all(
+			'/(\\w+)(\\s*=\\s*([^\\s\"\'>]+|\"[^\">]*\"|\'[^\'>]*\'))?(?=\\s|$)/',
+			$t, $matches, PREG_SET_ORDER ) ) {
+			// No matching attributes.
+			return '';
+		}
+		
+		$out = '';
+		foreach( $matches as $set ) {
+			if( in_array( strtolower( $set[1] ), $htmlattrs ) ) {
+				$out .= ' ' . $set[1];
+				if( isset( $set[3] ) ) {
+					if( $set[3] == "''" ) {
+						// special-case quick hack
+						$out .= '=""';
+					} else {
+						$out .= '=' . $set[3];
+					}
+				}
+			}
+		}
 
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
 		if( preg_match(
 			'/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is',
-			wfMungeToUtf8( $t ) ) )
+			wfMungeToUtf8( $out ) ) )
 		{
-			$t='';
+			$out = '';
 		}
 		
 		# Templates and links may be expanded in later parsing,
 		# creating invalid or dangerous output. Suppress this.
-		$t = strtr( $t, array(
+		$out = strtr( $out, array(
 			'{'    => '&#123;',
 			'['    => '&#91;',
 			"''"   => '&#39;&#39;',
@@ -507,11 +522,11 @@ class Parser
 			'RFC'  => '&#82;FC',
 			'PMID' => '&#80;MID',
 		) );
-		$t = preg_replace(
+		$out = preg_replace(
 			'/(' . URL_PROTOCOLS . '):/',
-			'\\1&#58;', $t );
-
-		return trim ( $t ) ;
+			'\\1&#58;', $out );
+		
+		return trim( $out );
 	}
 
 	/**
@@ -754,7 +769,7 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		$text = $this->removeHTMLtags( $text );
+		$text = $this->removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -2187,7 +2202,7 @@ class Parser
 
 			if( $this->mOutputType == OT_HTML ) {
 				$text = $this->strip( $text, $this->mStripState );
-				$text = $this->removeHTMLtags( $text );
+				$text = $this->removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
 			$text = $this->replaceVariables( $text, $assocArgs );
 
@@ -2284,8 +2299,12 @@ class Parser
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
 	 * @access private
+	 * @param string $text
+	 * @param callback $processCallback to do any variable or parameter replacements in HTML attribute values
+	 * @param array $args for the processing callback
+	 * @return string
 	 */
-	function removeHTMLtags( $text ) {
+	function removeHTMLtags( $text, $processCallback = null, $args = array() ) {
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
@@ -2329,7 +2348,7 @@ class Parser
 			$tagstack = array(); $tablestack = array();
 			foreach ( $bits as $x ) {
 				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
+				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				error_reporting( $prev );
@@ -2364,6 +2383,13 @@ class Parser
 							}
 							array_push( $tagstack, $t );
 						}
+
+						# Replace any variables or template parameters with
+						# plaintext results.
+						if( is_callable( $processCallback ) ) {
+							call_user_func_array( $processCallback, array( &$params, $args ) );
+						}
+
 						# Strip non-approved attributes from the tag
 						$newparams = $this->fixTagAttributes($params);
 
@@ -2384,10 +2410,13 @@ class Parser
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
+				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+					if( is_callable( $processCallback ) ) {
+						call_user_func_array( $processCallback, array( &$params, $args ) );
+					}
 					$newparams = $this->fixTagAttributes($params);
 					$rest = str_replace( '>', '&gt;', $rest );
 					$text .= "<$slash$t $newparams$brace$rest";
