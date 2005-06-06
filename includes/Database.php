@@ -1009,7 +1009,7 @@ class Database {
 			if ( $this->mTablePrefix !== '' &&  strpos( '.', $name ) === false ) {
 				$name = "{$this->mTablePrefix}$name";
 			}
-			if ( isset( $wgSharedDB ) && 'user' == $name ) {
+			if ( isset( $wgSharedDB ) && "{$this->mTablePrefix}user" == $name ) {
 				$name = "`$wgSharedDB`.`$name`";
 			} else {
 				# Standard quoting
