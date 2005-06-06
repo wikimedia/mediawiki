@@ -323,9 +323,11 @@ class Sanitizer {
 	 * removes HTML comments
 	 * @access private
 	 * @param string $text
+	 * @param callback $processCallback to do any variable or parameter replacements in HTML attribute values
+	 * @param array $args for the processing callback
 	 * @return string
 	 */
-	function removeHTMLtags( $text ) {
+	function removeHTMLtags( $text, $processCallback = null, $args = array() ) {
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
@@ -402,6 +404,13 @@ class Sanitizer {
 							}
 							array_push( $tagstack, $t );
 						}
+
+						# Replace any variables or template parameters with
+						# plaintext results.
+						if( is_callable( $processCallback ) ) {
+							call_user_func_array( $processCallback, array( &$params, $args ) );
+						}
+
 						# Strip non-approved attributes from the tag
 						$newparams = Sanitizer::fixTagAttributes( $params, $t );
 					}
@@ -425,6 +434,9 @@ class Sanitizer {
 				$x, $regs );
 				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+					if( is_callable( $processCallback ) ) {
+						call_user_func_array( $processCallback, array( &$params, $args ) );
+					}
 					$newparams = Sanitizer::fixTagAttributes( $params, $t );
 					$rest = str_replace( '>', '&gt;', $rest );
 					$text .= "<$slash$t$newparams$brace$rest";

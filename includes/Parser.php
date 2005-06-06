@@ -278,7 +278,7 @@ class Parser
 			$start = '/<!--()/';
 			$end   = '/-->/';
 		} else {
-			$start = "/<$tag(\\s+[^>]*|\\s*)>/i";
+			$start = "/<$tag([^>]*)>/i";
 			$end   = "/<\\/$tag\\s*>/i";
 		}
 
@@ -753,7 +753,7 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		$text = Sanitizer::removeHTMLtags( $text );
+		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -2252,7 +2252,7 @@ class Parser
 
 			if( $this->mOutputType == OT_HTML ) {
 				$text = $this->strip( $text, $this->mStripState );
-				$text = Sanitizer::removeHTMLtags( $text );
+				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
 			$text = $this->replaceVariables( $text, $assocArgs );
 
