@@ -268,6 +268,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2329) Fix title formatting in several special pages
 * (bug 2223) Add unique index on user_name field to prevent duplicate accounts
 * (bug 1976) fix shared user database with a table prefix set
+* (bug 2334) Accept null for attribs in wfElement without PHP warning
 
 
 === Caveats ===

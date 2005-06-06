@@ -1094,10 +1094,12 @@ function wfGetSiteNotice() {
  * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
-function wfElement( $element, $attribs = array(), $contents = '') {
+function wfElement( $element, $attribs = null, $contents = '') {
 	$out = '<' . $element;
-	foreach( $attribs as $name => $val ) {
-		$out .= ' ' . $name . '="' . htmlspecialchars( $val ) . '"';
+	if( !is_null( $attribs ) ) {
+		foreach( $attribs as $name => $val ) {
+			$out .= ' ' . $name . '="' . htmlspecialchars( $val ) . '"';
+		}
 	}
 	if( is_null( $contents ) ) {
 		$out .= '>';
@@ -1127,7 +1129,10 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 	if( $attribs ) {
 		$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
 	}
-	return wfElement( $element, $attribs, UtfNormal::cleanUp( $contents ) );
+	if( $contents ) {
+		$contents = UtfNormal::cleanUp( $contents );
+	}
+	return wfElement( $element, $attribs, $contents );
 }
 
 /** Global singleton instance of MimeMagic. This is initialized on demand,
