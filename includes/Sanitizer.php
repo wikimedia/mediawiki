@@ -343,6 +343,9 @@ class Sanitizer {
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
+			$htmlsingleonly = array( # Elements that cannot have close tags
+				'br', 'hr'
+			);
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
@@ -369,7 +372,7 @@ class Sanitizer {
 			$tagstack = array(); $tablestack = array();
 			foreach ( $bits as $x ) {
 				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
+				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				error_reporting( $prev );
@@ -379,7 +382,9 @@ class Sanitizer {
 					# Check our stack
 					if ( $slash ) {
 						# Closing a tag...
-						if ( ! in_array( $t, $htmlsingle ) &&
+						if( in_array( $t, $htmlsingleonly ) ) {
+							$badtag = 1;
+						} elseif( !in_array( $t, $htmlsingle ) &&
 						( $ot = @array_pop( $tagstack ) ) != $t ) {
 							@array_push( $tagstack, $ot );
 							$badtag = 1;
@@ -397,6 +402,9 @@ class Sanitizer {
 						} else if ( in_array( $t, $tagstack ) &&
 						! in_array ( $t , $htmlnest ) ) {
 							$badtag = 1 ;
+						} elseif( in_array( $t, $htmlsingleonly ) ) {
+							# Hack to force empty tag for uncloseable elements
+							$brace = '/>';
 						} else if ( ! in_array( $t, $htmlsingle ) ) {
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
@@ -416,7 +424,8 @@ class Sanitizer {
 					}
 					if ( ! $badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
-						$text .= "<$slash$t$newparams$brace$rest";
+						$close = ( $brace == '/>' ) ? ' /' : '';
+						$text .= "<$slash$t$newparams$close>$rest";
 						continue;
 					}
 				}
@@ -430,7 +439,7 @@ class Sanitizer {
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match( '/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/',
+				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
