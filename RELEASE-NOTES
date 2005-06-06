@@ -269,6 +269,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2223) Add unique index on user_name field to prevent duplicate accounts
 * (bug 1976) fix shared user database with a table prefix set
 * (bug 2334) Accept null for attribs in wfElement without PHP warning
+* (bug 2309) Allow templates and template parameters in HTML attribute zone,
+  with proper validation checks. (regression from fix for 2304)
 
 
 === Caveats ===

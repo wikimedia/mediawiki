@@ -2350,12 +2350,76 @@ Bug 2095: link with pipe and three closing brackets
 ### Safety
 ###
 
+!! article
+Template:Dangerous attribute
+!! text
+" onmouseover="alert(document.cookie)
+!! endarticle
+
+!! article
+Template:Dangerous style attribute
+!! text
+border-size: expression(alert(document.cookie))
+!! endarticle
+
+!! article
+Template:Div style
+!! text
+<div style="float: right; {{{1}}}">Magic div</div>
+!! endarticle
+
 !! test
-Bug 2304: HTML attribute safety (template)
+Bug 2304: HTML attribute safety (safe template; regression bug 2309)
 !! input
 <div title="{{test}}"></div>
 !! result
-<div title="&#123;&#123;test}}"></div>
+<div title="This is a test template"></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (dangerous template; 2309)
+!! input
+<div title="{{dangerous attribute}}"></div>
+!! result
+<div title=""></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (dangerous style template; 2309)
+!! input
+<div style="{{dangerous style attribute}}"></div>
+!! result
+<div></div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (safe parameter; 2309)
+!! input
+{{div style|width: 200px}}
+!! result
+<div style="float: right; width: 200px">Magic div</div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (unsafe parameter; 2309)
+!! input
+{{div style|width: expression(alert(document.cookie))}}
+!! result
+<div>Magic div</div>
+
+!! end
+
+
+!! test
+Bug 2304: HTML attribute safety (unsafe breakout parameter; 2309)
+!! input
+{{div style|"><script>alert(document.cookie)</script>}}
+!! result
+<div>Magic div</div>
 
 !! end
 
