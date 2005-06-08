@@ -2413,13 +2413,21 @@ Bug 2304: HTML attribute safety (unsafe parameter; 2309)
 
 !! end
 
-
 !! test
 Bug 2304: HTML attribute safety (unsafe breakout parameter; 2309)
 !! input
 {{div style|"><script>alert(document.cookie)</script>}}
 !! result
 <div>Magic div</div>
+
+!! end
+
+!! test
+Bug 2304: HTML attribute safety (unsafe breakout parameter 2; 2309)
+!! input
+{{div style|" ><script>alert(document.cookie)</script>}}
+!! result
+<div style="float: right; ">Magic div</div>
 
 !! end
 
