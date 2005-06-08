@@ -17,7 +17,7 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-$options = array( 'fix' );
+$options = array( 'fix', 'suffix' );
 
 /** */
 require_once( 'commandLine.inc' );
@@ -28,21 +28,21 @@ class NamespaceConflictChecker {
 		$this->db =& $db;
 	}
 	
-	function checkAll( $fix ) {
+	function checkAll( $fix, $suffix = '' ) {
 		global $wgContLang;
 		$spaces = $wgContLang->getNamespaces();
 		$ok = true;
 		foreach( $spaces as $ns => $name ) {
-			$ok = $this->checkNamespace( $ns, $name, $fix ) && $ok;
+			$ok = $this->checkNamespace( $ns, $name, $fix, $suffix ) && $ok;
 		}
 		return $ok;
 	}
 	
-	function checkNamespace( $ns, $name, $fix ) {
+	function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
 		echo "Checking namespace $ns: \"$name\"\n";
 		if( $name == '' ) {
 			echo "... skipping article namespace\n";
-			return;
+			return true;
 		}
 		
 		$conflicts = $this->getConflicts( $ns, $name );
@@ -55,10 +55,10 @@ class NamespaceConflictChecker {
 		echo "... $count conflicts detected:\n";
 		$ok = true;
 		foreach( $conflicts as $row ) {
-			$resolvable = $this->reportConflict( $row );
+			$resolvable = $this->reportConflict( $row, $suffix );
 			$ok = $ok && $resolvable;
-			if( $fix && $resolvable ) {
-				$ok = $this->resolveConflict( $row ) && $ok;
+			if( $fix && ( $resolvable || $suffix != '' ) ) {
+				$ok = $this->resolveConflict( $row, $resolvable, $suffix ) && $ok;
 			}
 		}
 		return $ok;
@@ -90,7 +90,7 @@ class NamespaceConflictChecker {
 		return $set;
 	}
 	
-	function reportConflict( $row ) {
+	function reportConflict( $row, $suffix ) {
 		$newTitle = Title::makeTitle( $row->namespace, $row->title );
 		printf( "... %d (0,\"%s\") -> (%d,\"%s\") [[%s]]\n",
 			$row->id,
@@ -108,7 +108,12 @@ class NamespaceConflictChecker {
 		}
 	}
 	
-	function resolveConflict( $row ) {
+	function resolveConflict( $row, $resolvable, $suffix ) {
+		if( !$resolvable ) {
+			$row->title .= $suffix;
+			$title = Title::makeTitle( $row->namespace, $row->title );
+			echo "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n";
+		}
 		$tables = $this->newSchema() 
 			? array( 'page' )
 			: array( 'cur', 'old' );
@@ -131,20 +136,13 @@ class NamespaceConflictChecker {
 				"{$table}_title"     => $row->oldtitle,
 			),
 			$fname );
+		echo "ok.\n";
 		return true;
 	}
 	
 	function newSchema() {
 		global $wgVersion;
 		return version_compare( $wgVersion, '1.5alpha', 'ge' );
-	}
-	
-	function pageTable() {
-		if( $this->newSchema() ) {
-			return 'page';
-		} else {
-			return 'cur';
-		}
 	}
 }
 
@@ -154,9 +152,10 @@ class NamespaceConflictChecker {
 $wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 
 $fix = isset( $options['fix'] );
+$suffix = isset( $options['suffix'] ) ? $options['suffix'] : '';
 $dbw =& wfGetDB( DB_MASTER );
 $duper = new NamespaceConflictChecker( $dbw );
-$retval = $duper->checkAll( $fix );
+$retval = $duper->checkAll( $fix, $suffix );
 
 if( $retval ) {
 	echo "\nLooks good!\n";
