@@ -13,7 +13,7 @@ function wfSpecialStatistics() {
 	$fname = 'wfSpecialStatistics';
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_rights' ) );
+	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_groups' ) );
 
 	$sql = "SELECT COUNT(page_namespace) AS total FROM $page";
 	$res = $dbr->query( $sql, $fname );
@@ -44,7 +44,7 @@ function wfSpecialStatistics() {
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
 
-	$sql = "SELECT COUNT(ur_user) AS total FROM $user_rights WHERE ur_rights LIKE '%sysop%'";
+	$sql = "SELECT COUNT(*) AS total FROM $user_groups WHERE ug_group='sysop'";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;

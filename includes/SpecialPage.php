@@ -72,7 +72,7 @@ $wgSpecialPages = array(
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
-	'Groups'		=> new SpecialPage( 'Groups' ),
+	// 'Groups'		=> new SpecialPage( 'Groups' ), # currently borken
 );
 
 global $wgUseValidation ;

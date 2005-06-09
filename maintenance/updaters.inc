@@ -12,7 +12,7 @@ require_once 'userDupes.inc';
 
 $wgRenamedTables = array(
 #           from             to                  patch file
-	array( 'group',         'groups',           'patch-rename-group.sql' ),
+#	array( 'group',         'groups',           'patch-rename-group.sql' ),
 );
 
 $wgNewTables = array(
@@ -22,8 +22,6 @@ $wgNewTables = array(
 	array( 'objectcache',   'patch-objectcache.sql' ),
 	array( 'categorylinks', 'patch-categorylinks.sql' ),
 	array( 'logging',       'patch-logging.sql' ),
-	array( 'user_rights',   'patch-user_rights.sql' ),
-	array( 'groups',        'patch-userlevels.sql' ),
 	array( 'validate',      'patch-validate.sql' ),
 );
 
@@ -38,8 +36,6 @@ $wgNewFields = array(
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
-	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
-	array( 'groups',        'gr_rights',        'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
  	array( 'archive',       'ar_text_id',       'patch-archive-text_id.sql' ),
@@ -235,20 +231,6 @@ function do_user_update() {
 		echo "ok\n";
 	} else {
 		echo "...user table does not contain old email authentication field.\n";
-	}
-}
-
-# Assumes that the groups table has been added.
-function do_group_update() {
-	global $wgDatabase;
-	$res = $wgDatabase->safeQuery( 'SELECT COUNT(*) AS c FROM !',
-		$wgDatabase->tableName( 'groups' ) );
-	$row = $wgDatabase->fetchObject( $res );
-	$wgDatabase->freeResult( $res );
-	if( $row->c == 0 ) {
-		echo "Adding default group definitions... ";
-		dbsource( "maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
-		echo "ok\n";
 	}
 }
 
@@ -572,6 +554,81 @@ function do_user_unique_update() {
 	}
 }
 
+function do_user_groups_update() {
+	$fname = 'do_user_groups_update';
+	global $wgDatabase;
+	
+	if( $wgDatabase->tableExists( 'user_groups' ) ) {
+		echo "...user_groups table already exists.\n";
+		return do_user_groups_reformat();
+	}
+	
+	echo "Adding user_groups table... ";
+	dbsource( 'maintenance/archives/patch-user_groups.sql', $wgDatabase );
+	echo "ok\n";
+	
+	if( !$wgDatabase->tableExists( 'user_rights' ) ) {
+		if( $wgDatabase->fieldExists( 'user', 'user_rights' ) ) {
+			echo "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion...";
+			dbsource( 'maintenance/archives/patch-user_rights.sql', $wgDatabase );
+			echo "ok\n";
+		} else {
+			echo "*** WARNING: couldn't locate user_rights table or field for upgrade.\n";
+			echo "*** You may need to manually configure some sysops by manipulating\n";
+			echo "*** the user_groups table.\n";
+			return;
+		}
+	}
+	
+	echo "Converting user_rights table to user_groups... ";
+	$result = $wgDatabase->select( 'user_rights',
+		array( 'ur_user', 'ur_rights' ),
+		array( "ur_rights != ''" ),
+		$fname );
+	
+	while( $row = $wgDatabase->fetchObject( $result ) ) {
+		$groups = array_unique(
+			array_map( 'trim',
+				explode( ',', $row->ur_rights ) ) );
+		
+		foreach( $groups as $group ) {
+			$wgDatabase->insert( 'user_groups',
+				array(
+					'ug_user'  => $row->ur_user,
+					'ug_group' => $group ),
+				$fname );
+		}
+	}
+	$wgDatabase->freeResult( $result );
+	echo "ok\n";
+}
+
+function do_user_groups_reformat() {
+	# Check for bogus formats from previous 1.5 alpha code.
+	global $wgDatabase;
+	$info = $wgDatabase->fieldInfo( 'user_groups', 'ug_group' );
+	
+	if( $info->type == 'int' ) {
+		$oldug = $wgDatabase->tableName( 'user_groups' );
+		$newug = $wgDatabase->tableName( 'user_groups_bogus' );
+		echo "user_groups is in bogus intermediate format. Renaming to $newug... ";
+		$wgDatabase->query( "ALTER TABLE $oldug RENAME TO $newug" );
+		echo "ok\n";
+		
+		echo "Re-adding fresh user_groups table... ";
+		dbsource( 'maintenance/archives/patch-user_groups.sql', $wgDatabase );
+		echo "ok\n";
+		
+		echo "***\n";
+		echo "*** WARNING: You will need to manually fix up user permissions in the user_groups\n";
+		echo "*** table. Old 1.5 alpha versions did some pretty funky stuff...\n";
+		echo "***\n";
+	} else {
+		echo "...user_groups is in current format.\n";
+	}
+	
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 	
@@ -592,9 +649,6 @@ function do_all_updates() {
 		flush();
 	}
 	
-	# Add default group data
-	do_group_update(); flush();
-
 	# Do schema updates which require special handling
 	do_interwiki_update(); flush();
 	do_index_update(); flush();
@@ -615,6 +669,7 @@ function do_all_updates() {
 	do_drop_img_type(); flush();
 	
 	do_user_unique_update(); flush();
+	do_user_groups_update(); flush();
 	
 	initialiseMessages(); flush();
 }

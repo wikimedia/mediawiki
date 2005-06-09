@@ -671,12 +671,25 @@ $wgBlockExpiryOptions = "2 hours,1 day,3 days,1 week,2 weeks,1 month,3 months,6 
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 
 /**
- * Static user groups serialized record
- * To avoid database access, you can set this to a user groups record as returned 
- * by Special:Groups with the magic parameter showrecord=1. This will however mean 
- * that you won't be able to edit them at runtime.
+ * Permission keys given to users in each group.
+ * All users are implicitly in the '*' group including anonymous visitors;
+ * logged-in users are all implicitly in the 'user' group. These will be
+ * combined with the permissions of all groups that a given user is listed
+ * in in the user_groups table.
  */
-$wgStaticGroups = false;
+$wgGroupPermissions = array(
+	'*'          => array( 'read', 'createaccount' ),
+	'user'       => array( 'read', 'move' ),
+	
+	'bot'        => array( 'bot' ),
+	'sysop'      => array( 'createaccount', 'patrol', 'protect', 'delete',
+	                       'rollback', 'block', 'editinterface' ),
+	'bureaucrat' => array( 'userrights' ),
+	'steward'    => array( 'makesysop' ), # technically this is for an extension...
+	'developer'  => array( 'siteadmin' ),
+);
+
+
 
 # Proxy scanner settings
 #
@@ -1318,14 +1331,6 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
 $wgLocaltimezone = null;
-
-/**
- * User level management
- * The number is the database id of a group you want users to be attached by
- * default. A better interface should be coded [av]
- */
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
 
 
 /**

@@ -958,7 +958,7 @@ class Title {
 			/** If anon users can create an account,
 			    they need to reach the login page first! */
 			if( $wgUser->isAllowed( 'createaccount' )
-			    && $this->mId == NS_SPECIAL
+			    && $this->getNamespace() == NS_SPECIAL
 			    && $this->getText() == 'Userlogin' ) {
 				return true;
 			}

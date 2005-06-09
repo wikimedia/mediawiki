@@ -565,7 +565,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>Creating tables...";
 			dbsource( "../maintenance/tables.sql", $wgDatabase );
 			dbsource( "../maintenance/interwiki.sql", $wgDatabase );
-			dbsource( "../maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
 			print " done.</li>\n";
 
 			print "<li>Initializing data...";
@@ -585,9 +584,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				if ( 0 == $u->idForName() ) {
 					$u->addToDatabase();
 					$u->setPassword( $conf->getSysopPass() );
-					$u->addRight( "sysop" );
-					$u->addRight( "bureaucrat" );
 					$u->saveSettings();
+
+					$u->addGroup( "sysop" );
+					$u->addGroup( "bureaucrat" );
 					
 					print "<li>Created sysop account <tt>" .
 						htmlspecialchars( $conf->SysopName ) . "</tt>.</li>\n";
