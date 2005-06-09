@@ -685,7 +685,6 @@ $wgGroupPermissions = array(
 	'sysop'      => array( 'createaccount', 'patrol', 'protect', 'delete',
 	                       'rollback', 'block', 'editinterface' ),
 	'bureaucrat' => array( 'userrights' ),
-	'steward'    => array( 'makesysop' ), # technically this is for an extension...
 	'developer'  => array( 'siteadmin' ),
 );
 
