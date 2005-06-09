@@ -120,26 +120,34 @@ class HTMLForm {
  * @param boolean $reverse If true, multiple select will hide selected elements (default false).
 */
 function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
-	global $wgOut;
-	$groups =& Group::getAllGroups();
+	$groups = User::getAllGroups();
+	$out = htmlspecialchars( wfMsg( $selectmsg ) );
 	
-	$out = wfMsg($selectmsg);
-	$out .= '<select name="'.$selectname;
-	if($multiple) {	$out.='[]" multiple="multiple" size="'.$size; }
-	$out.= "\">\n";
+	if( $multiple ) {
+		$attribs = array(
+			'name'    => $selectname . '[]',
+			'multiple'=> 'multiple',
+			'size'    => $size );
+	} else {
+		$attribs = array( 'name' => $selectname );
+	}
+	$out .= wfElement( 'select', $attribs, null );
 	
-	foreach ( $groups as $id => $g ) {
-		if($multiple) {
+	foreach( $groups as $group ) {
+		$attribs = array( 'value' => $group );
+		if( $multiple ) {
 			// for multiple will only show the things we want
-			if(in_array($id, $selected) xor $reverse) { 
-				$out .= '<option value="'.$id.'">'.$wgOut->parse( $g->getExpandedName() )."</option>\n";
+			if( !in_array( $group, $selected ) xor $reverse ) {
+				continue;
 			}
 		} else {
-			$out .= '<option ';
-			if(in_array($id, $selected)) { $out .= 'selected="selected" '; }
-			$out .= 'value="'.$id.'">'.$wgOut->parse( $g->getExpandedName() )."</option>\n";
+			if( in_array( $group, $selected ) ) {
+				$attribs['selected'] = 'selected';
+			}
 		}
+		$out .= wfElement( 'option', $attribs, User::getGroupName( $group ) ) . "\n";
 	}
+
 	$out .= "</select>\n";
 	return $out;
 }

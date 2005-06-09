@@ -114,17 +114,25 @@ CREATE TABLE /*$wgDBprefix*/user (
 -- this allows sites with a shared user table to have different
 -- permissions assigned to a user in each project.
 --
--- TODO: de-blob this; it should be a property table
+-- This table replaces the old user_rights field which used a
+-- comma-separated blob.
 --
-CREATE TABLE /*$wgDBprefix*/user_rights (
+CREATE TABLE /*$wgDBprefix*/user_groups (
   -- Key to user_id
-  ur_user int(5) unsigned NOT NULL,
+  ug_user int(5) unsigned NOT NULL default '0',
   
-  -- Comma-separated list of permission keys
-  ur_rights tinyblob NOT NULL default '',
+  -- Group names are short symbolic string keys.
+  -- The set of group names is open-ended, though in practice
+  -- only some predefined ones are likely to be used.
+  --
+  -- At runtime $wgGroupPermissions will associate group keys
+  -- with particular permissions. A user will have the combined
+  -- permissions of any group they're explicitly in, plus
+  -- the implicit '*' and 'user' groups.
+  ug_group char(16) NOT NULL default '',
   
-  UNIQUE KEY ur_user (ur_user)
-
+  PRIMARY KEY (ug_user,ug_group),
+  KEY (ug_group)
 ) TYPE=InnoDB;
 
 -- The following table is no longer needed with Enotif >= 2.00
@@ -795,19 +803,11 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
 
 -- Hold group name and description
-CREATE TABLE /*$wgDBprefix*/groups (
-  gr_id int(5) unsigned NOT NULL auto_increment,
-  gr_name varchar(50) NOT NULL default '',
-  gr_description varchar(255) NOT NULL default '',
-  gr_rights tinyblob,
-  PRIMARY KEY  (gr_id)
-
-) TYPE=InnoDB;
-
--- Relation table between user and groups
-CREATE TABLE /*$wgDBprefix*/user_groups (
-	ug_user int(5) unsigned NOT NULL default '0',
-	ug_group int(5) unsigned NOT NULL default '0',
-	PRIMARY KEY  (ug_user,ug_group)
-
-) TYPE=InnoDB;
+--CREATE TABLE /*$wgDBprefix*/groups (
+--  gr_id int(5) unsigned NOT NULL auto_increment,
+--  gr_name varchar(50) NOT NULL default '',
+--  gr_description varchar(255) NOT NULL default '',
+--  gr_rights tinyblob,
+--  PRIMARY KEY  (gr_id)
+--
+--) TYPE=InnoDB;

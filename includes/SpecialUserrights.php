@@ -10,7 +10,6 @@
 
 /** */
 require_once('HTMLForm.php');
-require_once('Group.php');
 
 /** Entry point */
 function wfSpecialUserrights() {
@@ -73,12 +72,12 @@ class UserrightsForm extends HTMLForm {
 		$u = User::newFromName($username);
 
 		if(is_null($u)) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
 			return;
 		}
 
 		if($u->getID() == 0) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', htmlspecialchars( $username ) ) );
 			return;
 		}		
 
@@ -93,10 +92,17 @@ class UserrightsForm extends HTMLForm {
 			$newGroups = array_merge($newGroups, $addgroup);
 		}
 		$newGroups = array_unique( $newGroups );
+		
+		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
+		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
 
 		// save groups in user object and database
-		$u->setGroups($newGroups);
-		$u->saveSettings();
+		foreach( $removegroup as $group ) {
+			$u->removeGroup( $group );
+		}
+		foreach( $addgroup as $group ) {
+			$u->addGroup( $group );
+		}
 
 		$log = new LogPage( 'rights' );
 		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), '', array( $this->makeGroupNameList( $oldGroups ),
@@ -104,15 +110,7 @@ class UserrightsForm extends HTMLForm {
 	}
 
 	function makeGroupNameList( $ids ) {
-		$s = '';
-		foreach( $ids as $id ) {
-			if ( $s != '' ) {
-				$s .= ', ';
-			}
-			$groupObj = Group::newFromId( $id );
-			$s .= $groupObj->getExpandedName();
-		}
-		return $s;
+		return implode( ', ', $ids );
 	}
 
 	/**
@@ -126,7 +124,10 @@ class UserrightsForm extends HTMLForm {
 		$wgOut->addHTML( "<form name=\"uluser\" action=\"$this->action\" method=\"post\">\n" );
 		$wgOut->addHTML( $this->fieldset( 'lookup-user',
 				$this->textbox( 'user-editname' ) .
-				'<input type="submit" name="ssearchuser" value="'.wfMsg('editusergroup').'" />'
+				wfElement( 'input', array(
+					'type'  => 'submit',
+					'name'  => 'ssearchuser',
+					'value' => wfMsg( 'editusergroup' ) ) )
 		));
 		$wgOut->addHTML( "</form>\n" );
 	}
@@ -139,30 +140,30 @@ class UserrightsForm extends HTMLForm {
 		global $wgOut;
 		
 		$user = User::newFromName($username);
-		$encUser = htmlspecialchars( $username );
-		if(is_null($user)) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort', $encUser).'</p>');
+		if( is_null( $user ) || $user->getID() == 0 ) {
+			$wgOut->addWikiText( wfMsg( 'nosuchusershort', wfEscapeWikiText( $username ) ) );
 			return;
 		}
-
-		if($user->getID() == 0) {
-			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort', $encUser).'</p>');
-			return;
-		}		
 		
 		$groups = $user->getGroups();
 
 		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
-						 '<input type="hidden" name="user-editname" value="'.$encUser.'" />');
-		$wgOut->addHTML( $this->fieldset( 'editusergroup',
-			wfMsg('editing', $this->mRequest->getVal('user-editname')).".<br />\n" .
+			wfElement( 'input', array(
+				'type'  => 'hidden',
+				'name'  => 'user-editname',
+				'value' => $username ) ) .
+			$this->fieldset( 'editusergroup',
+			$wgOut->parse( wfMsg('editing', $username ) ) .
 			'<table border="0" align="center"><tr><td>'.
 			HTMLSelectGroups('member', $this->mName.'-groupsmember', $groups,true,6).
 			'</td><td>'.
 			HTMLSelectGroups('available', $this->mName.'-groupsavailable', $groups,true,6,true).
 			'</td></tr></table>'."\n".
-			'<p>'.wfMsg('userrights-groupshelp').'</p>'."\n".
-			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'" />'
+			$wgOut->parse( wfMsg('userrights-groupshelp') ) .
+			wfElement( 'input', array(
+				'type'  => 'submit',
+				'name'  => 'saveusergroups',
+				'value' => wfMsg( 'saveusergroups' ) ) )
 			));
 		$wgOut->addHTML( "</form>\n" );
 	}

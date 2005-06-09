@@ -64,18 +64,22 @@ class ListUsersPage extends QueryPage {
 		// form header
 		$out = '<form method="get" action="'.$action.'">' .
 				'<input type="hidden" name="title" value="'.$special.'" />' .
-				wfMsg( 'grouplevels-editgroup-name' ) . '<select name="group">';
+				wfMsg( 'groups-editgroup-name' ) . '<select name="group">';
 
 		// get all group names and IDs
-		$groups =& Group::getAllGroups();
+		$groups = User::getAllGroups();
 		
 		// we want a default empty group
 		$out.= '<option value=""></option>';
 		
 		// build the dropdown list menu using datas from the database
 		foreach ( $groups as $group ) {
-			$selected = ($group->getId() == $this->requestedGroup) ? ' selected ' : '' ;
-			$out.= '<option value="'.$group->getId().'" '.$selected.'>'.$group->getExpandedName().'</option>';
+			$selected = ($group == $this->requestedGroup);
+			$out .= wfElement( 'option',
+				array_merge(
+					array( 'value' => $group ),
+					$selected ? array( 'selected' => 'selected' ) : array() ),
+				User::getGroupName( $group ) );
 		}
 		$out .= '</select> ';
 
@@ -89,24 +93,16 @@ class ListUsersPage extends QueryPage {
 	
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-	/* system showing possible actions for users
-		$user = $dbr->tableName( 'user' );
-		$user_rights = $dbr->tableName( 'user_rights' );
-		$userspace = Namespace::getUser();
-		return "SELECT ur_rights as type, $userspace as namespace, user_name as title, " .
-			"user_name as value FROM $user LEFT JOIN $user_rights ON user_id = ur_user";
-	*/
-	/** Show groups instead */
 		$user = $dbr->tableName( 'user' );
 		$user_groups = $dbr->tableName( 'user_groups' );
 		
 		$userspace = NS_USER;
-		$sql = "SELECT CONCAT('Listusers ', ug_group) as type, $userspace AS namespace, user_name AS title, user_name as value " .
+		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, ug_group as value " .
 			"FROM $user ".
 			"LEFT JOIN $user_groups ON user_id =ug_user ";
 
 		if($this->requestedGroup != '') {
-			$sql .=  "WHERE ug_group = '" . IntVal( $this->requestedGroup ) . "' ";
+			$sql .=  'WHERE ug_group = ' . $dbr->addQuotes( $this->requestedGroup ) . ' ';
 			if($this->requestedUser != '') {
 				$sql .= "AND user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
 			}
@@ -138,10 +134,7 @@ class ListUsersPage extends QueryPage {
 	function clearGroups() {
 		$this->concatGroups = '';	
 	}
-/*
-	var $previousResult = false;
-	var $concatGroups = '';
-*/
+	
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 		$name = false;
@@ -155,9 +148,9 @@ class ListUsersPage extends QueryPage {
 		}
 
 		if( is_object( $result ) && $result->type != '') {
-			$group = Group::newFromId( intval( strstr( $result->type, ' ' ) ) );
+			$group = $result->value;
 			if ( $group ) {
-				$groupName = $group->getExpandedName();
+				$groupName = User::getGroupName( $group );
 				$this->appendGroups( $skin->makeLink( wfMsgForContent( 'administrators' ), $groupName ) );
 			}
 		}

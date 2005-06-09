@@ -9,7 +9,6 @@
  *
  */
 require_once( 'WatchedItem.php' );
-require_once( 'Group.php' );
 
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
@@ -32,9 +31,7 @@ class User {
 	var $mToken;
 	var $mRealName;
 	var $mHash;
-	/** Array of group id the user belong to */
 	var $mGroups;
-	/**#@-*/
 
 	/** Construct using User:loadDefaults() */
 	function User()	{
@@ -563,7 +560,7 @@ class User {
 	 * Load a user from the database
 	 */
 	function loadFromDatabase() {
-		global $wgCommandLineMode, $wgAnonGroupId, $wgLoggedInGroupId;
+		global $wgCommandLineMode;
 		$fname = "User::loadFromDatabase";
 		
 		# Counter-intuitive, breaks various things, use User::setLoaded() if you want to suppress 
@@ -577,15 +574,9 @@ class User {
 		$this->mId = IntVal( $this->mId );
 
 		/** Anonymous user */
-		if(!$this->mId) {
+		if( !$this->mId ) {
 			/** Get rights */
-			$anong = Group::newFromId($wgAnonGroupId);
-			if (!$anong) 
-				wfDebugDieBacktrace("Please update your database schema "
-					."and populate initial group data from "
-					."maintenance/archives patches");
-			$anong->loadFromDatabase();
-			$this->mRights = explode(',', $anong->getRights());
+			$this->mRights = $this->getGroupPermissions( array( '*' ) );
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
@@ -607,31 +598,16 @@ class User {
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
 
-			// Get groups id
-			$res = $dbr->select( 'user_groups', array( 'ug_group' ), array( 'ug_user' => $this->mId ) );
-			
-			// add the default group for logged in user
-			$this->mGroups = array( $wgLoggedInGroupId );
-
-			while($group = $dbr->fetchRow($res)) {
-				if ( $group[0] != $wgLoggedInGroupId ) {
-					$this->mGroups[] = $group[0];
-				}
+			$res = $dbr->select( 'user_groups',
+				array( 'ug_group' ),
+				array( 'ug_user' => $this->mId ),
+				$fname );
+			$this->mGroups = array();
+			while( $row = $dbr->fetchObject( $res ) ) {
+				$this->mGroups[] = $row->ug_group;
 			}
-
-
-			$this->mRights = array();
-			// now we merge groups rights to get this user rights
-			foreach($this->mGroups as $aGroupId) {
-				$g = Group::newFromId($aGroupId);
-				$g->loadFromDatabase();
-				$this->mRights = array_merge($this->mRights, explode(',', $g->getRights()));
-			}
-			
-			// array merge duplicate rights which are part of several groups
-			$this->mRights = array_unique($this->mRights);
-			
-			$dbr->freeResult($res);
+			$effectiveGroups = array_merge( array( '*', 'user' ), $this->mGroups );
+			$this->mRights = $this->getGroupPermissions( $effectiveGroups );
 		}
 
 		$this->mDataLoaded = true;
@@ -830,23 +806,74 @@ class User {
 		$this->loadFromDatabase();
 		return $this->mRights;
 	}
-	
-	function addRight( $rname )	{
-		$this->loadFromDatabase();
-		array_push( $this->mRights, $rname );
-		$this->invalidateCache();
-	}
 
+	/**
+	 * Get the list of explicit group memberships this user has.
+	 * The implicit * and user groups are not included.
+	 * @return array of strings
+	 */
 	function getGroups() {
 		$this->loadFromDatabase();
 		return $this->mGroups;
 	}
 
-	function setGroups($groups) {
-		$this->loadFromDatabase();
-		$this->mGroups = $groups;
-		$this->invalidateCache();
+	/**
+	 * Get the list of implicit group memberships this user has.
+	 * This includes all explicit groups, plus 'user' if logged in
+	 * and '*' for all accounts.
+	 * @return array of strings
+	 */
+	function getEffectiveGroups() {
+		$base = array( '*' );
+		if( $this->isLoggedIn() ) {
+			$base[] = 'user';
+		}
+		return array_merge( $base, $this->getGroups() );
 	}
+	
+	/**
+	 * Remove the user from the given group.
+	 * This takes immediate effect.
+	 * @string $group
+	 */
+	function addGroup( $group ) {
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->insert( 'user_groups',
+			array(
+				'ug_user'  => $this->getID(),
+				'ug_group' => $group,
+			),
+			'User::addGroup',
+			array( 'IGNORE' ) );
+		
+		$this->mGroups = array_merge( $this->mGroups, array( $group ) );
+		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
+		
+		$this->invalidateCache();
+		$this->saveSettings();
+	}
+	
+	/**
+	 * Remove the user from the given group.
+	 * This takes immediate effect.
+	 * @string $group
+	 */
+	function removeGroup( $group ) {
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_groups',
+			array(
+				'ug_user'  => $this->getID(),
+				'ug_group' => $group,
+			),
+			'User::removeGroup' );
+		
+		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
+		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
+		
+		$this->invalidateCache();
+		$this->saveSettings();
+	}
+
 
 	/**
 	 * A more legible check for non-anonymousness.
@@ -1167,23 +1194,7 @@ class User {
 				'user_id' => $this->mId
 			), $fname
 		);
-		$dbw->set( 'user_rights', 'ur_rights', implode( ',', $this->mRights ),
-			'ur_user='. $this->mId, $fname ); 
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
-		
-		// delete old groups
-		$dbw->delete( 'user_groups', array( 'ug_user' => $this->mId), $fname);
-		
-		// save new ones
-		foreach ($this->mGroups as $group) {
-			$dbw->replace( 'user_groups',
-				array(array('ug_user','ug_group')),
-				array(
-					'ug_user' => $this->mId,
-					'ug_group' => $group
-				), $fname
-			);
-		}
 	}
 
 	
@@ -1226,21 +1237,6 @@ class User {
 			), $fname
 		);
 		$this->mId = $dbw->insertId();
-		$dbw->insert( 'user_rights',
-			array(
-				'ur_user' => $this->mId,
-				'ur_rights' => implode( ',', $this->mRights )
-			), $fname
-		);
-		
-		foreach ($this->mGroups as $group) {
-			$dbw->insert( 'user_groups',
-				array(
-					'ug_user' => $this->mId,
-					'ug_group' => $group
-				), $fname
-			);
-		}
 	}
 
 	function spreadBlock() {
@@ -1591,6 +1587,51 @@ class User {
 			return false;
 		return true;
 	}
+	
+	/**
+	 * @param array $groups list of groups
+	 * @return array list of permission key names for given groups combined
+	 * @static
+	 */
+	function getGroupPermissions( $groups ) {
+		global $wgGroupPermissions;
+		$rights = array();
+		foreach( $groups as $group ) {
+			if( isset( $wgGroupPermissions[$group] ) ) {
+				$rights = array_merge( $rights, $wgGroupPermissions[$group] );
+			}
+		}
+		return $rights;
+	}
+
+	/**
+	 * @param string $group key name
+	 * @return string localized descriptive name, if provided
+	 * @static
+	 */
+	function getGroupName( $group ) {
+		$key = "group-$group-name";
+		$name = wfMsg( $key );
+		if( $name == '' || $name == "&lt;$key&gt;" ) {
+			return $group;
+		} else {
+			return $name;
+		}
+	}
+	
+	/**
+	 * Return the set of defined explicit groups.
+	 * The * and 'user' groups are not included.
+	 * @return array
+	 * @static
+	 */
+	function getAllGroups() {
+		global $wgGroupPermissions;
+		return array_diff(
+			array_keys( $wgGroupPermissions ),
+			array( '*', 'user' ) );
+	}
+
 }
 
 ?>
