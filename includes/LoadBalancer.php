@@ -139,7 +139,7 @@ class LoadBalancer {
 			return false;
 		}
 
-		wfDebug( var_export( $loads, true ) );
+		#wfDebug( var_export( $loads, true ) );
 
 		# Return a random representative of the remainder
 		return $this->pickRandom( $loads );
