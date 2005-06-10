@@ -648,6 +648,7 @@ pages for purposes of page relevancy ranking.
 * New covering index was added on cur for query speedups.
 * (bug 2228) Updated the Slovak translation
 * (bug 2355) Use content language in image blacklist check
+* (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
 
 
 === Caveats ===
