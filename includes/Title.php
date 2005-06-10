@@ -1641,8 +1641,8 @@ class Title {
 		$dbw->insert( 'pagelinks',
 			array(
 				'pl_from'      => $newid,
-				'pl_namespace' => $this->getNamespace(),
-				'pl_title'     => $this->getDbKey() ),
+				'pl_namespace' => $nt->getNamespace(),
+				'pl_title'     => $nt->getDbKey() ),
 			$fname );
 		
 		# Purge squid
@@ -1718,8 +1718,8 @@ class Title {
 		$dbw->insert( 'pagelinks',
 			array(
 				'pl_from'      => $newid,
-				'pl_namespace' => $this->getNamespace(),
-				'pl_title'     => $this->getDBkey() ),
+				'pl_namespace' => $nt->getNamespace(),
+				'pl_title'     => $nt->getDBkey() ),
 			$fname );
 
 		# Non-existent target may have had broken links to it; these must
