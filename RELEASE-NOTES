@@ -274,6 +274,7 @@ Various bugfixes, small features, and a few experimental things:
 * Disallow close tags and enforce empty tags for <hr> and <br>
 * Changed user_groups format quite a bit.
 * (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
+* (bug 2367) Insert correct redirect link record on page move
 
 
 === Caveats ===
