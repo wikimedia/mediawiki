@@ -273,6 +273,7 @@ Various bugfixes, small features, and a few experimental things:
   with proper validation checks. (regression from fix for 2304)
 * Disallow close tags and enforce empty tags for <hr> and <br>
 * Changed user_groups format quite a bit.
+* (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
 
 
 === Caveats ===
