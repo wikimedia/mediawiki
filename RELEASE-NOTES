@@ -276,6 +276,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
 * (bug 2367) Insert correct redirect link record on page move
 * (bug 2372) Fix rendering of empty-title inline interwiki links
+* (bug 2384) Fix typo in regex for IP address checking
 
 
 === Caveats ===
