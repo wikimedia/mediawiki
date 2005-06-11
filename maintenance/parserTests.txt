@@ -1070,6 +1070,15 @@ Inline interwiki link
 !! end
 
 !! test
+Inline interwiki link with empty title (bug 2372)
+!! input
+[[MeatBall:]]
+!! result
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?" class='extiw' title="MeatBall:">MeatBall:</a>
+</p>
+!! end
+
+!! test
 Interwiki link encoding conversion (bug 1636)
 !! input
 *[[Wikipedia:ro:Olteni&#0355;a]]

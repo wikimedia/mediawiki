@@ -1969,7 +1969,7 @@ class Title {
 	 * 
 	 */
 	function isAlwaysKnown() {
-		return ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
+		return $this->isExternal() || ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
 		  || NS_SPECIAL == $this->mNamespace || NS_IMAGE == $this->mNamespace;
 	}
 
