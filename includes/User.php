@@ -112,7 +112,7 @@ class User {
 	 * @static
 	 */
 	function isIP( $name ) {
-		return preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$name);
+		return preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/",$name);
 	}
 
 	/**

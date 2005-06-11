@@ -638,17 +638,18 @@ pages for purposes of page relevancy ranking.
 * Regression fix: watchlist day cutoff
 * (bug 2173) Fatal error when removing an article with an empty title from the watchlist
 * (bug 2034) Armor HTML attributes against template inclusion and links munging
-* (bug 1976) fix shared user database with a table prefix set
-* (bug 2309) Allow templates and template parameters in HTML attribute zone,
-  with proper validation checks. (regression from fix for 2304)
 
 
 === 1.4.6 changes ===
 
 * New covering index was added on cur for query speedups.
 * (bug 2228) Updated the Slovak translation
+* (bug 1976) fix shared user database with a table prefix set
+* (bug 2309) Allow templates and template parameters in HTML attribute zone,
+  with proper validation checks. (regression from fix for 2304)
 * (bug 2355) Use content language in image blacklist check
 * (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
+* (bug 2384) Fix typo in regex for IP address checking
 
 
 === Caveats ===
