@@ -188,7 +188,7 @@ class Article {
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
-			  preg_match('/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/',$this->mTitle->getText()) &&
+			  preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/',$this->mTitle->getText()) &&
 			  $action=='view'
 			) {
 				wfProfileOut( $fname );
