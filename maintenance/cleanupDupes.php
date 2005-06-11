@@ -35,7 +35,8 @@ checkDupes( isset( $options['fix'] ) );
 function fixDupes( $fixthem = false) {
 	$dbw =& wfGetDB( DB_MASTER );
 	$cur = $dbw->tableName( 'cur' );
-	$dbw->query( "LOCK TABLES $cur WRITE" );
+	$old = $dbw->tableName( 'old' );
+	$dbw->query( "LOCK TABLES $cur WRITE, $old WRITE" );
 	echo "Checking for duplicate cur table entries... (this may take a while on a large wiki)\n";
 	$res = $dbw->query( <<<END
 SELECT cur_namespace,cur_title,count(*) as c,min(cur_id) as id
@@ -55,15 +56,56 @@ END
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$ns = IntVal( $row->cur_namespace );
 			$title = $dbw->addQuotes( $row->cur_title );
-			$id = IntVal( $row->id );
+			
+			# Get the first responding ID; that'll be the one we keep.
+			$id = $dbw->selectField( 'cur', 'cur_id', array(
+				'cur_namespace' => $row->cur_namespace,
+				'cur_title'     => $row->cur_title ) );
+			
 			echo "$ns:$row->cur_title (canonical ID $id)\n";
+			if( $id != $row->id ) {
+				echo "  ** minimum ID $row->id; ";
+				$timeMin = $dbw->selectField( 'cur', 'cur_timestamp', array(
+					'cur_id' => $row->id ) );
+				$timeFirst = $dbw->selectField( 'cur', 'cur_timestamp', array(
+					'cur_id' => $id ) );
+				if( $timeMin == $timeFirst ) {
+					echo "timestamps match at $timeFirst; ok\n";
+				} else {
+					echo "timestamps don't match! min: $timeMin, first: $timeFirst; ";
+					if( $timeMin > $timeFirst ) {
+						$id = $row->id;
+						echo "keeping minimum: $id\n";
+					} else {
+						echo "keeping first: $id\n";
+					}
+				}
+			}
+			
 			if( $fixthem ) {
+				$dbw->query( <<<END
+INSERT
+  INTO $old
+      (old_namespace, old_title,      old_text,
+       old_comment,   old_user,       old_user_text,
+       old_timestamp, old_minor_edit, old_flags,
+       inverse_timestamp)
+SELECT cur_namespace, cur_title,      cur_text,
+       cur_comment,   cur_user,       cur_user_text,
+       cur_timestamp, cur_minor_edit, '',
+       inverse_timestamp
+  FROM $cur
+ WHERE cur_namespace=$ns
+   AND cur_title=$title
+   AND cur_id != $id
+END
+				);
 				$dbw->query( <<<END
 DELETE
   FROM $cur
  WHERE cur_namespace=$ns
    AND cur_title=$title
-   AND cur_id>$id
+   AND cur_id != $id
 END
 				);
 			}

@@ -650,6 +650,8 @@ pages for purposes of page relevancy ranking.
 * (bug 2355) Use content language in image blacklist check
 * (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
 * (bug 2384) Fix typo in regex for IP address checking
+* Enhance cleanupDupes.php to save the pruned revisions to old for safety, and
+  to try to pick the same one that would be read by the wiki
 
 
 === Caveats ===
