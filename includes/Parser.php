@@ -1433,7 +1433,13 @@ class Parser
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
-			if ( $nt->isAlwaysKnown() ) {
+			if( $nt->isLocal() && $nt->isAlwaysKnown() ) {
+				/**
+				 * Skip lookups for special pages and self-links.
+				 * External interwiki links are not included here because
+				 * the HTTP urls would break output in the next parse step;
+				 * they will have placeholders kept.
+				 */
 				$s .= $sk->makeKnownLinkObj( $nt, $text, '', $trail, $prefix );
 			} else {
 				/**

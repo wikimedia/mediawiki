@@ -275,6 +275,7 @@ Various bugfixes, small features, and a few experimental things:
 * Changed user_groups format quite a bit.
 * (bug 2368) Avoid fatally breaking PHP 4.1.2 in a debug line
 * (bug 2367) Insert correct redirect link record on page move
+* (bug 2372) Fix rendering of empty-title inline interwiki links
 
 
 === Caveats ===
