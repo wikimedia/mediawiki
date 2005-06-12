@@ -786,6 +786,13 @@ $wgShowUpdatedMarker 				= true;
 
 $wgCookieExpiration = 2592000;
 
+/** Clock skew or the one-second resolution of time() can occasionally cause cache 
+ * problems when the user requests two pages within a short period of time. This
+ * variable adds a given number of seconds to vulnerable timestamps, thereby giving
+ * a grace period.
+ */
+$wgClockSkewFudge = 5;
+
 # Squid-related settings
 #
 
