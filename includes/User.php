@@ -608,8 +608,9 @@ class User {
 	}
 
 	function invalidateCache() {
+		global $wgClockSkewFudge;
 		$this->loadFromDatabase();
-		$this->mTouched = wfTimestampNow();
+		$this->mTouched = wfTimestamp(TS_MW, time() + $wgClockSkewFudge );
 		# Don't forget to save the options after this or
 		# it won't take effect!
 	}
@@ -1025,12 +1026,23 @@ class User {
 		$res = $dbr->selectField('user_newtalk', $field,
 								 array($field => $value), $fname);
 
+		$changed = true;
 		if ($res !== false && $this->mNewtalk == 0) {
 			$dbw->delete('user_newtalk', array($field => $value), $fname);
 			$wgMemc->delete($key);
 		} else if ($res === false && $this->mNewtalk == 1) {
 			$dbw->insert('user_newtalk', array($field => $value), $fname);
 			$wgMemc->delete($key);			
+		} else {
+			$changed = false;
+		}
+
+		# Update user_touched, so that newtalk notifications in the client cache are invalidated
+		if ( $changed && $this->getID() ) {
+			$dbw->update('user', 
+				/*SET*/ array( 'user_touched' => $this->mTouched ),
+				/*WHERE*/ array( 'user_id' => $this->getID() ),
+				$fname);
 		}
 	}
 	
