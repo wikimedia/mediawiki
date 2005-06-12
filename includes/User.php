@@ -61,6 +61,17 @@ class User {
 	}
 
 	/**
+	 * Serialze sleep function, for better cache efficiency and avoidance of 
+	 * silly "incomplete type" errors when skins are cached
+	 */
+	function __sleep() {
+		return array( 'mId', 'mName', 'mPassword', 'mEmail', 'mNewtalk',
+			'mRights', 'mOptions', 'mDataLoaded', 'mNewpassword', 'mBlockedby',
+			'mBlockreason', 'mTouched', 'mToken', 'RealName', 'mHash' );
+	}
+
+	
+	/**
 	 * Get username given an id.
 	 * @param integer $id Database user id
 	 * @return string Nickname of a user
@@ -997,7 +1008,10 @@ class User {
 		);
 		$dbw->set( 'user_rights', 'ur_rights', implode( ',', $this->mRights ),
 			'ur_user='. $this->mId, $fname ); 
-		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
+		
+		if ( $wgMemc->set( "$wgDBname:user:id:{$this->mId}", $this, 86400 ) ) {
+			wfDebug( "Saved user settings into cache\n" );
+		}
 	}
 
 	/**
@@ -1013,7 +1027,7 @@ class User {
 		if ($this->getID() != 0) {
 			$field = 'user_id';
 			$value = $this->getID();
-			$key = "$wgDBname:user:id:$this->mId";
+			$key = false;
 		} else {
 			$field = 'user_ip';
 			$value = $this->mName;
@@ -1029,10 +1043,14 @@ class User {
 		$changed = true;
 		if ($res !== false && $this->mNewtalk == 0) {
 			$dbw->delete('user_newtalk', array($field => $value), $fname);
-			$wgMemc->delete($key);
+			if ( $key ) {
+				$wgMemc->set( $key, 0 );
+			}
 		} else if ($res === false && $this->mNewtalk == 1) {
 			$dbw->insert('user_newtalk', array($field => $value), $fname);
-			$wgMemc->delete($key);			
+			if ( $key ) {
+				$wgMemc->set( $key, 1 );
+			}
 		} else {
 			$changed = false;
 		}
@@ -1043,6 +1061,7 @@ class User {
 				/*SET*/ array( 'user_touched' => $this->mTouched ),
 				/*WHERE*/ array( 'user_id' => $this->getID() ),
 				$fname);
+			$wgMemc->set( "$wgDBname:user:id:{$this->mId}", $this, 86400 );
 		}
 	}
 	
