@@ -320,6 +320,16 @@ class Validation {
 		$metadata .= " : <small>\"" . htmlspecialchars( $x->rev_comment ) . "\"</small>";
 		return $metadata;
 	}
+	
+	# Generates a link to the topic description
+	function linkTopic ( $s ) {
+		$t = Title::newFromText ( wfMsg ( 'val_topic_desc_page' ) ) ;
+		$r = "<a href=\"" ;
+		$r .= $t->getLocalURL () ;
+		$r .= "#" . urlencode ( $s ) ;
+		$r .= "\">{$s}</a>" ;
+		return $r ;
+		}
 
 	# Generates a form for a single revision
 	function getRevisionForm( &$article, $idx, &$data, $focus = false ) {
@@ -352,7 +362,7 @@ class Validation {
 			$idx = "_{$revision}[{$x}]";
 			$ret .= "<tr bgcolor='{$col}'>\n";
 			$ret .= "<th nowrap>";
-			$ret .= $this->topicList[$x]->val_comment;
+			$ret .= $this->linkTopic ( $this->topicList[$x]->val_comment ) ;
 			$ret .= "</th>\n";
 			
 			$tlx = $this->topicList[$x];
@@ -408,7 +418,7 @@ class Validation {
 		
 		# Check for POST data
 		$re = $wgRequest->getArray( 're_submit' );
-		if( isset( $re ) ) {
+		if ( isset( $re ) ) {
 			$id = array_keys( $re );
 			$id = $id[0] ; # $id is now the revision number the user clicked "OK" for
 			$clearOldRev = $wgRequest->getVal( "re_clear_{$id}", 0 );
@@ -422,6 +432,7 @@ class Validation {
 			}
 			$ret .= "<p><font color='red'>" . htmlspecialchars( wfMsg( 'val_revision_changes_ok' ) ) . "</font></p>";
 		}
+		else $ret .= wfMsg ( 'val_votepage_intro' ) ;
 		
 		# Make sure the requested revision exists
 		$ts = $this->rev2date[$revision]->rev_timestamp;
@@ -476,7 +487,7 @@ class Validation {
 		foreach( $this->topicList as $x => $y ) {
 			$r .= "<tr>\n";
 			$r .= "<th>" . htmlspecialchars( $y->val_type ) . "</th>\n";
-			$r .= "<td>" . htmlspecialchars( $y->val_comment ) . "</td>\n";
+			$r .= "<td>" . $this->linkTopic ( $y->val_comment ) . "</td>\n";
 			$r .= "<td>1 .. <b>" . intval( $y->val_value ) . "</b></td>\n";
 			$r .= "<td><input type='submit' name='m_del[" . intval( $x ) . "]' value='" . htmlspecialchars( wfMsg( 'val_del' ) ) . "'/></td>\n";
 			$r .= "</tr>\n";
@@ -537,7 +548,7 @@ class Validation {
 		$ret .= "<tr><th/>";
 		
 		foreach( $topics as $t => $dummy ) {
-			$ret .= "<th>" . htmlspecialchars( $this->topicList[$t]->val_comment ) . "</th>";
+			$ret .= "<th>" . $this->linkTopic ( $this->topicList[$t]->val_comment ) . "</th>";
 		}
 		$ret .= "</tr>\n";
 
@@ -604,7 +615,7 @@ class Validation {
 		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
 		$ret .= "<tr><th>" . htmlspecialchars( wfMsg( "val_revision" ) ) . "</th>";
 		foreach( $this->topicList as $x => $y ) {
-			$ret .= "<th>" . htmlspecialchars( $y->val_comment ) . "</th>";
+			$ret .= "<th>" . $this->linkTopic ( $y->val_comment ) . "</th>";
 		}
 		$ret .= "</tr>\n";
 		foreach( $data as $ts => $y ) {
@@ -674,7 +685,7 @@ class Validation {
 						$ret .= "<tr><td/>";
 					}
 					$initial = false;
-					$ret .= "<td>" . htmlspecialchars( $this->topicList[$topic]->val_comment ) . "</td>";
+					$ret .= "<td>" . $this->linkTopic ( $this->topicList[$topic]->val_comment ) . "</td>";
 					$ret .= "<td>" . $this->getRatingText( $rating->val_value, $this->topicList[$topic]->val_value ) . "</td>";
 					$ret .= "<td>" . htmlspecialchars( $rating->val_comment ) . "</td>";
 					$ret .= "</tr>";
