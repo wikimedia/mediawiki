@@ -395,7 +395,12 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- to determine sort order. Sorting is by binary order, which
   -- isn't always ideal, but collations seem to be an exciting
   -- and dangerous new world in MySQL...
-  cl_sortkey varchar(255) binary NOT NULL default '',
+  --
+  -- For MySQL 4.1+ with charset set to utf8, the sort key *index*
+  -- needs cut to be smaller than 1024 bytes (at 3 bytes per char).
+  -- To sort properly on the shorter key, this field needs to be
+  -- the same shortness.
+  cl_sortkey varchar(86) binary NOT NULL default '',
   
   -- This isn't really used at present. Provided for an optional
   -- sorting method by approximate addition time.
@@ -403,9 +408,8 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   
   UNIQUE KEY cl_from(cl_from,cl_to),
   
-  -- This key is trouble. It's incomplete, AND it's too big
-  -- when collation is set to UTF-8. Bleeeacch!
-  KEY cl_sortkey(cl_to,cl_sortkey(128)),
+  -- We always sort within a given category...
+  KEY cl_sortkey(cl_to,cl_sortkey),
   
   -- Not really used?
   KEY cl_timestamp(cl_to,cl_timestamp)

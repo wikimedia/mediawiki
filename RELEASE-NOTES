@@ -280,6 +280,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 650) Prominently link MySQL 4.1 help page in installer if a possible
   version conflict is detected
 * (bug 2394) Undo incompatible breakage to {{msg:}} compatiblity includes
+* (bug 650) Use a shorter cl_sortkey field to avoid breaking on MySQL 4.1
+  when the default charset is set to utf8
 
 
 === Caveats ===
