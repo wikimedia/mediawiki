@@ -1,18 +1,20 @@
-2004-08-12
+2005-06-12
 
 MediaWiki
 ---------
 
 MediaWiki is the software used for Wikipedia (http://www.wikipedia.org) and the
 other Wikimedia Foundation websites. Compared to other wikis, it has an
-excellent range of features and support for high-traffic websites (Wikipedia
-peaks at 380 requests per second as of August 2004). However, it is generally
-harder to install. Be sure to follow the INSTALL document closely.
+excellent range of features and support for high-traffic websites using
+multiple servers (Wikipedia peaks in the 1000+ requests per second range
+as of June 2005).
 
-Installation on a Microsoft Windows system is not recommended, however it is
-possible. Documentation for installation on Windows may be found at:
+While quite usable on smaller sites, you may find you have to "roll your own"
+local documentation, and some aspects of configuration may seem overcomplicated
+because MediaWiki is primarily targeted as an in-house tool.
 
-  http://meta.wikipedia.org/wiki/Running_MediaWiki_on_Windows
+See the files RELEASE-NOTES, INSTALL, and UPGRADE for details on system
+requirements and installation procedure.
 
 
 The MediaWiki software was written by:
@@ -46,48 +48,30 @@ under the GPL for use of the whole code or other sections thereof.
 
 Many thanks to the Wikipedia regulars for testing and suggestions.
 
-The code is currently maintained at Sourceforge under the project "wikipedia",
+The code is currently maintained at SourceForge under the project "wikipedia",
 module name "phase3". You can view the code in CVS there:
 
-  http://wikipedia.sourceforge.net
+  http://www.mediawiki.org/
 
-Please report bugs and make feature requests in our BugZilla system:
+Please report bugs and make feature requests in our Bugzilla system:
 
-  http://bugzilla.wikipedia.org
+  http://bugzilla.wikimedia.org
 
 Documentation and discussion on new features may be found at:
 
+  http://meta.wikimedia.org/wiki/MediaWiki_FAQ
   http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide
-  http://meta.wikipedia.org/wiki/MediaWiki_development
+  http://meta.wikimedia.org/wiki/MediaWiki_development
   
-Documentation about the E-Mail notification can be found on:
-
-  http://meta.wikipedia.org/Enotif
 
 If you are setting up your own wiki based on this software, it is highly
-recommended that you subscribe to mediawiki-l:
+recommended that you subscribe to mediawiki-announce:
 
-  http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
 
 The mailing list is very low volume, and is intended primarily for
 announcements of new versions, bug fixes, and security issues.
 
 
-PHP
-
-The code is written in PHP. Version 4.3.2 or higher is recommended. There are
-known issues with early 4.2.x releases. Also, the Monobook skin currently does
-not work under the new PHP 5 (but you can use one of the older skins).
-
-MySQL
-
-MediaWiki requires MySQL 3.23 or later, and PHP-MySQL. Version 4.0 or later is
-strongly recommended.
-
-Operating system
-
-The code was written on and for Linux, and no attempt has been made to make it
-portable to other OSs. The math support in particular has run-time dependencies
-on things like TeTeX and GhostScript that are generally found in Linux but not
-other OSs. However, we have had reports of successful installation on Windows,
-albeit without TeX support.
+For installation and upgrade details, see the files RELEASE-NOTES, INSTALL,
+and UPGRADE.
