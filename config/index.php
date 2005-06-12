@@ -448,6 +448,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
+		$mysqlOldClient = version_compare( mysql_get_client_info(), "4.1.0", "lt" );
+		if( $mysqlOldClient ) {
+			print "<li><b>PHP is linked with old MySQL client libraries. If you are 
+				using a MySQL 4.1 server and have problems connecting to the database,
+				see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
+			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
+		}
 		print "<li>Trying to connect to MySQL on $wgDBserver as root...\n";
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
 
@@ -513,6 +520,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$conf->DBmysql4 = true;
 			$local = writeLocalSettings( $conf );
 		}
+		$mysqlNewAuth   = version_compare( $myver, "4.1.0", "ge" );
+		if( $mysqlNewAuth && $mysqlOldClient ) {
+			print "; <b class='error'>You are using MySQL 4.1 server, but PHP is linked
+			 	to old client libraries; if you have trouble with authentication, see
+			 	<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
+			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+		}
 		print "</li>\n";
 
 		@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
@@ -548,7 +562,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					print "<li>DB user account ok</li>\n";
 					$conn->close();
 				} else {
-					print "<li>Granting user permissions...</li>\n";
+					print "<li>Granting user permissions...";
+					if( $mysqlOldClient && $mysqlNewAuth ) {
+						print " <b class='error'>If the next step fails, see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+					}
+					print "</li>\n";
 					dbsource( "../maintenance/users.sql", $wgDatabase );
 				}
 			}

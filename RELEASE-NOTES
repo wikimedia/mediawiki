@@ -277,6 +277,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2367) Insert correct redirect link record on page move
 * (bug 2372) Fix rendering of empty-title inline interwiki links
 * (bug 2384) Fix typo in regex for IP address checking
+* (bug 650) Prominently link MySQL 4.1 help page in installer if a possible
+  version conflict is detected
 
 
 === Caveats ===
