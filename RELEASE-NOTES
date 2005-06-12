@@ -279,6 +279,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2384) Fix typo in regex for IP address checking
 * (bug 650) Prominently link MySQL 4.1 help page in installer if a possible
   version conflict is detected
+* (bug 2394) Undo incompatible breakage to {{msg:}} compatiblity includes
 
 
 === Caveats ===

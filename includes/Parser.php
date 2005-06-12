@@ -2083,23 +2083,18 @@ class Parser
 			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
 			if ( $mwMsgnw->matchStartAndRemove( $part1 ) ) {
 				$nowiki = true;
+			} else {
+				# Remove obsolete MSG:
+				$mwMsg =& MagicWord::get( MAG_MSG );
+				$mwMsg->matchStartAndRemove( $part1 );
 			}
 
-			# int: is the wikitext equivalent of wfMsg()
+			# Check if it is an internal message
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
 				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
 					$text = $linestart . wfMsgReal( $part1, $args, true );
 					$found = true;
-				}
-			}
-
-			# msg: is the wikitext equivalent of wfMsgForContent()
-			$mwMsg =& MagicWord::get( MAG_MSG );
-			if ( $mwMsg->matchStartAndRemove( $part1 ) ) {
-				if ( $this->incrementIncludeCount( 'msg:'.$part1 ) ) {
-					 $text = $linestart . wfMsgReal( $part1, $args, true, true );
-					 $found = true;
 				}
 			}
 		}
