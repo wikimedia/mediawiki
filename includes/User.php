@@ -687,8 +687,9 @@ class User {
 	}
 
 	function invalidateCache() {
+		global $wgClockSkewFudge;
 		$this->loadFromDatabase();
-		$this->mTouched = wfTimestampNow();
+		$this->mTouched = wfTimestamp(TS_MW, time() + $wgClockSkewFudge );
 		# Don't forget to save the options after this or
 		# it won't take effect!
 	}
@@ -1197,7 +1198,6 @@ class User {
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
-	
 	/**
 	 * Checks if a user with the given name exists, returns the ID
 	 */
