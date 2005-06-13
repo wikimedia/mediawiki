@@ -131,7 +131,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function addNewAccount() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgEmailAuthentication;
 
 		$u = $this->addNewAccountInternal();
 
@@ -143,7 +143,7 @@ class LoginForm {
 		$wgUser->setCookies();
 
 		$wgUser->saveSettings();
-		if( $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
+		if( $ wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
 			$wgUser->sendConfirmationMail();
 		}
 
