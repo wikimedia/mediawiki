@@ -652,6 +652,7 @@ pages for purposes of page relevancy ranking.
 * (bug 2384) Fix typo in regex for IP address checking
 * Enhance cleanupDupes.php to save the pruned revisions to old for safety, and
   to try to pick the same one that would be read by the wiki
+* (bug 2292) Catch 'null' return values for images that can not be  thumbnailed.
 
 
 === Caveats ===
