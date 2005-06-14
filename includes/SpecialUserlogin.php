@@ -143,7 +143,7 @@ class LoginForm {
 		$wgUser->setCookies();
 
 		$wgUser->saveSettings();
-		if( $ wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
+		if( $wgEmailAuthentication && $wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) {
 			$wgUser->sendConfirmationMail();
 		}
 
