@@ -848,7 +848,7 @@ class Article {
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
-				'page_is_new'      => ($lastRevision === 0) ? 0 : 1,
+				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
 				'page_is_redirect' => Article::isRedirect( $text ),
 				'page_len'         => strlen( $text ),
 			),
