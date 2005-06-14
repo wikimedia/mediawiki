@@ -286,6 +286,7 @@ Various bugfixes, small features, and a few experimental things:
   $wgEmailAuthentication is false.
 * (bug 2172) Fix problem with nowiki beeing replaced by marker strings
   when a template with a gallery was used.
+* Guard Special:Userrights against form submission forgery
 
 === Caveats ===
 

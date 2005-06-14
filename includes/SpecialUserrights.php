@@ -45,16 +45,21 @@ class UserrightsForm extends HTMLForm {
 	function execute() {
 		// show the general form
 		$this->switchForm();
-		if ( $this->mPosted ) {
+		if( $this->mPosted ) {
 			// show some more forms
-			if($this->mRequest->getCheck('ssearchuser')) {
-				$this->editUserGroupsForm( $this->mRequest->getVal('user-editname')); }
+			if( $this->mRequest->getCheck( 'ssearchuser' ) ) {
+				$this->editUserGroupsForm( $this->mRequest->getVal( 'user-editname' ) );
+			}
 
 			// save settings
-			if($this->mRequest->getCheck('saveusergroups')) {
-				$this->saveUserGroups($this->mRequest->getVal('user-editname'),
-				                      $this->mRequest->getArray('member'),
-				                      $this->mRequest->getArray('available'));
+			if( $this->mRequest->getCheck( 'saveusergroups' ) ) {
+				global $wgUser;
+				$username = $this->mRequest->getVal( 'user-editname' );
+				if( $wgUser->matchEditToken( $this->mRequest->getVal( 'wpEditToken' ), $username ) ) {
+					$this->saveUserGroups( $username,
+						$this->mRequest->getArray( 'member' ),
+						$this->mRequest->getArray( 'available' ) );
+				}
 			}
 		}
 	}
@@ -68,7 +73,7 @@ class UserrightsForm extends HTMLForm {
 	 * @param array $addgroup id of groups to be added.
 	 *
 	 */
-	function saveUserGroups($username,$removegroup,$addgroup) {
+	function saveUserGroups( $username, $removegroup, $addgroup) {
 		$u = User::newFromName($username);
 
 		if(is_null($u)) {
@@ -87,22 +92,20 @@ class UserrightsForm extends HTMLForm {
 		// remove then add groups		
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);
+			foreach( $removegroup as $group ) {
+				$u->removeGroup( $group );
+			}
 		}
 		if(isset($addgroup)) {
 			$newGroups = array_merge($newGroups, $addgroup);
+			foreach( $addgroup as $group ) {
+				$u->addGroup( $group );
+			}
 		}
 		$newGroups = array_unique( $newGroups );
 		
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
-
-		// save groups in user object and database
-		foreach( $removegroup as $group ) {
-			$u->removeGroup( $group );
-		}
-		foreach( $addgroup as $group ) {
-			$u->addGroup( $group );
-		}
 
 		$log = new LogPage( 'rights' );
 		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), '', array( $this->makeGroupNameList( $oldGroups ),
@@ -137,7 +140,7 @@ class UserrightsForm extends HTMLForm {
 	 * @param string $username Name of the user.
 	 */
 	function editUserGroupsForm($username) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		
 		$user = User::newFromName($username);
 		if( is_null( $user ) || $user->getID() == 0 ) {
@@ -152,6 +155,10 @@ class UserrightsForm extends HTMLForm {
 				'type'  => 'hidden',
 				'name'  => 'user-editname',
 				'value' => $username ) ) .
+			wfElement( 'input', array(
+				'type'  => 'hidden',
+				'name'  => 'wpEditToken',
+				'value' => $wgUser->editToken( $username ) ) ) .
 			$this->fieldset( 'editusergroup',
 			$wgOut->parse( wfMsg('editing', $username ) ) .
 			'<table border="0" align="center"><tr><td>'.
