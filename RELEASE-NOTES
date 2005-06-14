@@ -284,7 +284,8 @@ Various bugfixes, small features, and a few experimental things:
   when the default charset is set to utf8
 * (bug 2400) don't send confirmation mail on account creation if 
   $wgEmailAuthentication is false.
-
+* (bug 2172) Fix problem with nowiki beeing replaced by marker strings
+  when a template with a gallery was used.
 
 === Caveats ===
 
