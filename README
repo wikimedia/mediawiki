@@ -6,7 +6,7 @@ MediaWiki
 MediaWiki is the software used for Wikipedia (http://www.wikipedia.org) and the
 other Wikimedia Foundation websites. Compared to other wikis, it has an
 excellent range of features and support for high-traffic websites (Wikipedia
-peaks at 380 requests per second as of August 2004). However, it is generally
+peaks at 2500+ requests per second as of June 2005). However, it is generally
 harder to install. Be sure to follow the INSTALL document closely.
 
 Installation on a Microsoft Windows system is not recommended, however it is
