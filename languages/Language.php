@@ -254,10 +254,16 @@ global $wgRightsText;
 # messages are automatically pulled from the user-selected language file.
 
 'sidebar' => "
-This is the markup that's parsed when the sidebar(s) are generated, lines that
-do not begin with * or ** are automatically discarded.
+The sidebar for MonoBook is generated from this message, lines that do not
+begin with * or ** are discarded, furthermore lines that do begin with ** and
+do not contain | are also discarded, but don't depend on this behaviour for
+future releases. Also note that since each list value is wrapped in a unique
+XHTML id it should only appear once and include characters that are legal
+XHTML id names.
 
-Only put [a-z-] in the level one headings since it will be used as an XHMTL id.
+Note to translators: Do not include this message in the language files you
+submit for inclusion in MediaWiki, it should always be inherited from the
+parent class in order maintain consistency across languages.
 
 * navigation
 ** mainpage|mainpage
