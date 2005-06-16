@@ -288,6 +288,7 @@ Various bugfixes, small features, and a few experimental things:
   when a template with a gallery was used.
 * Guard Special:Userrights against form submission forgery
 * (bug 2408) page_is_new was inverted (whoops!)
+* Added wfMsgHtml() function for escaping messages and leaving params intact
 
 
 === Caveats ===
