@@ -364,11 +364,11 @@ class LanguageFur extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesFur, $wgAllMessagesEn;
+		global $wgAllMessagesFur;
 		if( isset( $wgAllMessagesFur[$key] ) ) {
 			return $wgAllMessagesFur[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 	
