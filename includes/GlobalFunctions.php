@@ -281,14 +281,28 @@ function wfMsgNoDBForContent( $key ) {
  * Really get a message
  */
 function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
-	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
+	$fname = 'wfMsgReal';
+	wfProfileIn( $fname );
+	
+	$message = wfMsgGetKey( $key, $useDB, $forContent );
+	$message = wfMsgReplaceArgs( $message, $args );
+	wfProfileOut( $fname );
+	return $message;
+}
+
+/**
+ * Fetch a message string value, but don't replace any keys yet.
+ * @param string $key
+ * @param bool $useDB
+ * @param bool $forContent
+ * @return string
+ * @access private
+ */
+function wfMsgGetKey( $key, $useDB, $forContent = false ) {
 	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
 	global $wgMessageCache, $wgLang;
 	
-	$fname = 'wfMsgReal';
-	wfProfileIn( $fname );
-
 	if( is_object( $wgMessageCache ) ) {
 		$message = $wgMessageCache->get( $key, $useDB, $forContent );
 	} else {
@@ -312,6 +326,19 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
 	}
+	return $message;
+}
+
+/**
+ * Replace message parameter keys on the given formatted output.
+ *
+ * @param string $message
+ * @param array $args
+ * @return string
+ * @access private
+ */
+function wfMsgReplaceArgs( $message, $args ) {
+	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 	
 	# Fix windows line-endings
 	# Some messages are split with explode("\n", $msg)
@@ -321,11 +348,27 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	if( count( $args ) ) {
 		$message = str_replace( $replacementKeys, $args, $message );
 	}
-	wfProfileOut( $fname );
 	return $message;
 }
 
-
+/**
+ * Return an HTML-escaped version of a message.
+ * Parameter replacements, if any, are done *after* the HTML-escaping,
+ * so parameters may contain HTML (eg links or form controls). Be sure
+ * to pre-escape them if you really do want plaintext, or just wrap
+ * the whole thing in htmlspecialchars().
+ *
+ * @param string $key
+ * @param string ... parameters
+ * @return string
+ */
+function wfMsgHtml( $key ) {
+	$args = func_get_args();
+	array_shift( $args );
+	return wfMsgReplaceArgs(
+		htmlspecialchars( wfMsgGetKey( $key, $args, true ) ),
+		$args );
+}
 
 /**
  * Just like exit() but makes a note of it.
