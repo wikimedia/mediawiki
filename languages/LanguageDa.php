@@ -1140,7 +1140,7 @@ class LanguageDa extends LanguageUtf8 {
 		if( isset( $wgAllMessagesDa[$key] ) ) {
 			return $wgAllMessagesDa[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 

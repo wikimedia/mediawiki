@@ -918,7 +918,7 @@ class LanguageNl extends LanguageUtf8 {
 		if( isset( $wgAllMessagesNl[$key] ) ) {
 			return $wgAllMessagesNl[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 

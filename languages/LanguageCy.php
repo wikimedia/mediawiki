@@ -1078,7 +1078,7 @@ class LanguageCy extends LanguageUtf8 {
 		if( isset( $wgAllMessagesCy[$key] ) ) {
 			return $wgAllMessagesCy[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 	

@@ -1041,7 +1041,7 @@ class LanguageEo extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesEo))
 			return $wgAllMessagesEo[$key];
 		else
-			return Language::getMessage($key);
+			return parent:getMessage($key);
 	}
 
 	function iconv( $in, $out, $string ) {

@@ -1108,7 +1108,7 @@ class LanguageSr extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesSr))
 			return $wgAllMessagesSr[$key];
 		else
-			return Language::getMessage($key);
+			return parent:getMessage($key);
  }
  
 }

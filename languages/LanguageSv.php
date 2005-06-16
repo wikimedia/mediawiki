@@ -1100,7 +1100,7 @@ class LanguageSv extends LanguageUtf8 {
 		if( isset( $wgAllMessagesSv[$key] ) ) {
 			return $wgAllMessagesSv[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 	

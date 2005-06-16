@@ -334,7 +334,7 @@ class LanguageTh extends LanguageUtf8 {
 		if( isset( $wgAllMessagesTh[$key] ) ) {
 			return $wgAllMessagesTh[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 

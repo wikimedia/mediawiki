@@ -839,7 +839,7 @@ class LanguageIt extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesIt))
 			return $wgAllMessagesIt[$key];
 		else
-			return Language::getMessage($key);
+			return parent:getMessage($key);
 	}
 
 }

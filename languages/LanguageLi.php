@@ -769,7 +769,7 @@ class LanguageLi extends LanguageUtf8 {
 		if( isset( $wgAllMessagesLi[$key] ) ) {
 			return $wgAllMessagesLi[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 }
