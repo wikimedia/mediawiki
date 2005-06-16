@@ -150,34 +150,6 @@ wfProfileIn( $fname.'-language1' );
 
 require_once( "$IP/languages/Language.php" );
 
-wfProfileOut( $fname.'-language1' );
-wfProfileIn( $fname.'-User' );
-
-# Skin setup functions
-# Entries can be added to this variable during the inclusion 
-# of the extension file. Skins can then perform any necessary initialisation.
-foreach ( $wgSkinExtensionFunctions as $func ) {
-	$func();
-}
-
-if( !is_object( $wgAuth ) ) {
-	require_once( 'AuthPlugin.php' );
-	$wgAuth = new AuthPlugin();
-}
-
-if( $wgCommandLineMode ) {
-	# Used for some maintenance scripts; user session cookies can screw things up
-	# when the database is in an in-between state.
-	$wgUser = new User();
-	# Prevent loading User settings from the DB.
-	$wgUser->setLoaded( true );
-} else {
-	$wgUser = User::loadFromSession();
-}
-
-wfProfileOut( $fname.'-User' );
-wfProfileIn( $fname.'-language2' );
-
 function setupLangObj(&$langclass) {
 	global $IP;
 
@@ -210,10 +182,33 @@ $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageC
 $wgContLang = setupLangObj( $wgContLangClass );
 $wgContLang->initEncoding();
 
-// set default user option from content language
-if( !$wgUser->mDataLoaded ) {
-	$wgUser->loadDefaultFromLanguage();
+wfProfileOut( $fname.'-language1' );
+wfProfileIn( $fname.'-User' );
+
+# Skin setup functions
+# Entries can be added to this variable during the inclusion 
+# of the extension file. Skins can then perform any necessary initialisation.
+foreach ( $wgSkinExtensionFunctions as $func ) {
+	$func();
 }
+
+if( !is_object( $wgAuth ) ) {
+	require_once( 'AuthPlugin.php' );
+	$wgAuth = new AuthPlugin();
+}
+
+if( $wgCommandLineMode ) {
+	# Used for some maintenance scripts; user session cookies can screw things up
+	# when the database is in an in-between state.
+	$wgUser = new User();
+	# Prevent loading User settings from the DB.
+	$wgUser->setLoaded( true );
+} else {
+	$wgUser = User::loadFromSession();
+}
+
+wfProfileOut( $fname.'-User' );
+wfProfileIn( $fname.'-language2' );
 
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');

@@ -201,10 +201,7 @@ class User {
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$this->mGroups = array();
-		// Getting user defaults only if we have an available language
-		if( isset( $wgContLang ) ) {
-			$this->loadDefaultFromLanguage();
-		}
+		$this->mOptions = User::getDefaultOptions();
 		
 		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
@@ -223,15 +220,6 @@ class User {
 		}
 
 		wfProfileOut( $fname );
-	}
-
-	/**
-	 * Used to load user options from a language.
-	 * This is not in loadDefault() cause we sometime create user before having
-	 * a language object.
-	 */	
-	function loadDefaultFromLanguage(){
-		$this->mOptions = User::getDefaultOptions();
 	}
 	
 	/**
