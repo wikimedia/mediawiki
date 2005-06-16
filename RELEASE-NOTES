@@ -294,6 +294,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 1702) Display a handy upload link instead of a useless blank link
   for [[media:]] links to nonexistent files.
 * (bug 873) Fix usage of createaccount permission; replaces $wgWhitelistAccount
+* (bug 1805) Initialise $wgContLang before $wgUser
+
 
 === Caveats ===
 
