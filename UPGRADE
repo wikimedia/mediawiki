@@ -38,6 +38,21 @@ Message changes:
   wikitext, and will need to be manually fixed if customized.
 
 
+=== Configuration changes from 1.4.x: ===
+
+$wgDisableUploads has been replaced with $wgEnableUploads.
+
+$wgWhitelistAccount has been replaced by the 'createaccount' permission
+key in $wgGroupPermissions. To emulate the old effect of setting:
+  $wgWhitelistAccount['user'] = 0;
+set:
+  $wgGroupPermissions['*'] = array( 'read' ); // without createaccount
+
+If $wgWhitelistRead is set, things need to be funked around. This needs work.
+
+bla bla bla
+
+
 === Web installer ===
 
 You can use the web-based installer wizard if you first remove the
