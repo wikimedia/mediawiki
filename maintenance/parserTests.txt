@@ -2272,6 +2272,16 @@ Media link with nasty text
 </p>
 !! end
 
+!! test
+Media link to nonexistent file (bug 1702)
+!! input
+[[Media:No such.jpg]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class='new' title="No such.jpg">Media:No such.jpg</a>
+</p>
+!! end
+
+
 
 !! test
 Character reference normalization in link text (bug 1938)

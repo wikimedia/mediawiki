@@ -291,7 +291,8 @@ Various bugfixes, small features, and a few experimental things:
 * Added wfMsgHtml() function for escaping messages and leaving params intact
 * Fix ordering of Special:Listusers; fix groups list so it shows all groups
   when searching for a specific group and can't be split across pages
-
+* (bug 1702) Display a handy upload link instead of a useless blank link
+  for [[media:]] links to nonexistent files.
 
 === Caveats ===
 

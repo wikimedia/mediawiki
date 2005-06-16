@@ -577,16 +577,23 @@ class Linker {
 		} else {
 			$name = $title->getDBKey();	
 			$img  = new Image( $title );
-			$url  = $img->getURL();
-			if( $nourl ) {
-				$url = str_replace( "http://", "http-noparse://", $url );
+			if( $img->exists() ) {
+				$url  = $img->getURL();
+				if( $nourl ) {
+					$url = str_replace( "http://", "http-noparse://", $url );
+				}
+				$class = 'internal';
+			} else {
+				$upload = Title::makeTitle( NS_SPECIAL, 'Upload' );
+				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $img->getName() ) );
+				$class = 'new';
 			}
 			$alt = htmlspecialchars( $title->getText() );
 			if( $text == '' ) {
 				$text = $alt;
 			}
 			$u = htmlspecialchars( $url );
-			return "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$text}</a>";			
+			return "<a href=\"{$u}\" class='$class' title=\"{$alt}\">{$text}</a>";			
 		}
 	}
 
