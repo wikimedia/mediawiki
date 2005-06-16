@@ -983,43 +983,19 @@ $wgPasswordSalt = true;
  * See Language.php for a list of namespaces.
  */
 $wgNamespacesWithSubpages = array(
-	NS_SPECIAL => 0,
-	NS_MAIN => 0,
-	NS_TALK => 1,
- 	NS_USER => 1,
- 	NS_USER_TALK => 1,
- 	NS_PROJECT => 0,
- 	NS_PROJECT_TALK => 1,
- 	NS_IMAGE => 0,
- 	NS_IMAGE_TALK => 1,
- 	NS_MEDIAWIKI => 0,
- 	NS_MEDIAWIKI_TALK => 1,
- 	NS_TEMPLATE => 0,
- 	NS_TEMPLATE_TALK => 1,
- 	NS_HELP => 0,
- 	NS_HELP_TALK => 1,
- 	NS_CATEGORY => 0,
- 	NS_CATEGORY_TALK => 1
+	NS_TALK           => true,
+ 	NS_USER           => true,
+ 	NS_USER_TALK      => true,
+ 	NS_PROJECT_TALK   => true,
+ 	NS_IMAGE_TALK     => true,
+ 	NS_MEDIAWIKI_TALK => true,
+ 	NS_TEMPLATE_TALK  => true,
+ 	NS_HELP_TALK      => true,
+ 	NS_CATEGORY_TALK  => true
  );
 
 $wgNamespacesToBeSearchedDefault = array(
-	NS_SPECIAL => 0,
-	NS_MAIN => 1,
-	NS_TALK => 0,
-	NS_USER => 0,
-	NS_USER_TALK => 0,
-	NS_PROJECT => 0,
-	NS_PROJECT_TALK => 0,
-	NS_IMAGE => 0,
-	NS_IMAGE_TALK => 0,
-	NS_MEDIAWIKI => 0,
-	NS_MEDIAWIKI_TALK => 0,
-	NS_TEMPLATE => 0,
-	NS_TEMPLATE_TALK => 0,
-	NS_HELP => 0,
-	NS_HELP_TALK => 0,
-	NS_CATEGORY => 0,
-	NS_CATEGORY_TALK => 0
+	NS_MAIN           => true,
 );
 
 /** If set, a bold ugly notice will show up at the top of every page. */
