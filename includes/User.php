@@ -1309,15 +1309,7 @@ class User {
 	}
 
 	function isAllowedToCreateAccount() {
-		global $wgWhitelistAccount;
-		$allowed = false;
-
-		if (!$wgWhitelistAccount) { return 1; }; // default behaviour
-		foreach ($wgWhitelistAccount as $right => $ok) {
-			$userHasRight = (!strcmp($right, 'user') || in_array($right, $this->getRights()));
-			$allowed |= ($ok && $userHasRight);
-		}
-		return $allowed;
+		return $this->isAllowed( 'createaccount' );
 	}
 
 	/**

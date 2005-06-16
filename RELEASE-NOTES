@@ -293,6 +293,7 @@ Various bugfixes, small features, and a few experimental things:
   when searching for a specific group and can't be split across pages
 * (bug 1702) Display a handy upload link instead of a useless blank link
   for [[media:]] links to nonexistent files.
+* (bug 873) Fix usage of createaccount permission; replaces $wgWhitelistAccount
 
 === Caveats ===
 

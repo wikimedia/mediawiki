@@ -656,7 +656,6 @@ $wgHitcounterUpdateFreq = 1;
 
 $wgWhitelistEdit = false;   # true = user must login to edit.
 $wgWhitelistRead = false;	# Pages anonymous user may see, like: = array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
-$wgWhitelistAccount = array ( 'user' => 1, 'sysop' => 1, 'developer' => 1 );
 
 $wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'minor'
 
