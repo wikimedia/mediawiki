@@ -289,6 +289,8 @@ Various bugfixes, small features, and a few experimental things:
 * Guard Special:Userrights against form submission forgery
 * (bug 2408) page_is_new was inverted (whoops!)
 * Added wfMsgHtml() function for escaping messages and leaving params intact
+* Fix ordering of Special:Listusers; fix groups list so it shows all groups
+  when searching for a specific group and can't be split across pages
 
 
 === Caveats ===

@@ -64,7 +64,7 @@ class ListUsersPage extends QueryPage {
 		// form header
 		$out = '<form method="get" action="'.$action.'">' .
 				'<input type="hidden" name="title" value="'.$special.'" />' .
-				wfMsg( 'groups-editgroup-name' ) . '<select name="group">';
+				wfMsgHtml( 'groups-editgroup-name' ) . '<select name="group">';
 
 		// get all group names and IDs
 		$groups = User::getAllGroups();
@@ -83,7 +83,7 @@ class ListUsersPage extends QueryPage {
 		}
 		$out .= '</select> ';
 
-		$out .= wfMsg( 'specialloguserlabel' ) . '<input type="text" name="username" /> ';
+		$out .= wfMsgHtml( 'specialloguserlabel' ) . '<input type="text" name="username" /> ';
 
 		// OK button, end of form.
 		$out .= '<input type="submit" /></form>';
@@ -96,10 +96,22 @@ class ListUsersPage extends QueryPage {
 		$user = $dbr->tableName( 'user' );
 		$user_groups = $dbr->tableName( 'user_groups' );
 		
+		// We need to get an 'atomic' list of users, so that we
+		// don't break the list half-way through a user's group set
+		// and so that lists by group will show all group memberships.
+		//
+		// On MySQL 4.1 we could use GROUP_CONCAT to grab group
+		// assignments together with users pretty easily. On other
+		// versions, it's not so easy to do it consistently.
+		// For now we'll just grab the number of memberships, so
+		// we can then do targetted checks on those who are in
+		// non-default groups as we go down the list.
+		
 		$userspace = NS_USER;
-		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, ug_group as value " .
+		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, " .
+			"user_name as value, user_id, COUNT(ug_group) as numgroups " .
 			"FROM $user ".
-			"LEFT JOIN $user_groups ON user_id =ug_user ";
+			"LEFT JOIN $user_groups ON user_id=ug_user ";
 
 		if($this->requestedGroup != '') {
 			$sql .=  'WHERE ug_group = ' . $dbr->addQuotes( $this->requestedGroup ) . ' ';
@@ -111,51 +123,41 @@ class ListUsersPage extends QueryPage {
 				$sql .= "WHERE user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
 			}	
 		}
+		$sql .= "GROUP BY user_name";
 		
 		return $sql;
-	}
-	
-	/**
-	 * When calling formatResult we output the previous result instead of the
-	 * current one. We need an additional step to flush out the last result.
-	 */
-	function tryLastResult( ) {
-		return true;
 	}
 	
 	function sortDescending() {
 		return false;
 	}
 
-	function appendGroups($group) {
-		$this->concatGroups	.= $group.' ';	
-	}
-
-	function clearGroups() {
-		$this->concatGroups = '';	
-	}
-	
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
-		$name = false;
 		
-		if( is_object( $this->previousResult ) &&
-			(is_null( $result ) || ( $this->previousResult->title != $result->title ) ) ) {
-			// Different username, give back name(group1,group2)
-			$name = $skin->makeLink( $wgContLang->getNsText($this->previousResult->namespace) . ':' . $this->previousResult->title, $this->previousResult->title );
-			$name .= $this->concatGroups ? ' ('.substr($this->concatGroups,0,-1).')' : '';
-			$this->clearGroups();
-		}
-
-		if( is_object( $result ) && $result->type != '') {
-			$group = $result->value;
-			if ( $group ) {
-				$groupName = User::getGroupName( $group );
-				$this->appendGroups( $skin->makeLink( wfMsgForContent( 'administrators' ), $groupName ) );
+		$userPage = Title::makeTitle( $result->namespace, $result->title );
+		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
+		
+		if( !isset( $result->numgroups ) || $result->numgroups > 0 ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$result = $dbr->select( 'user_groups',
+				array( 'ug_group' ),
+				array( 'ug_user' => $result->user_id ),
+				'ListUsersPage::formatResult' );
+			$groups = array();
+			while( $row = $dbr->fetchObject( $result ) ) {
+				$groups[] = User::getGroupName( $row->ug_group );
+			}
+			$dbr->freeResult( $result );
+			
+			if( count( $groups ) > 0 ) {
+				$name .= ' (' .
+					$skin->makeLink( wfMsgForContent( 'administrators' ),
+						htmlspecialchars( implode( ', ', $groups ) ) ) .
+					')';
 			}
 		}
 
-		$this->previousResult = $result;
 		return $name;
 	}
 }
