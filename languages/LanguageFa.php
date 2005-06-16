@@ -1175,7 +1175,7 @@ class LanguageFa extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesFa))
 			return $wgAllMessagesFa[$key];
 		else
-			return Language::getMessage($key);
+			return parent:getMessage($key);
 	}
 
 	# For right-to-left language support

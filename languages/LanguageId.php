@@ -1356,7 +1356,7 @@ class LanguageId extends LanguageUtf8 {
 		if( isset( $wgAllMessagesId[$key] ) ) {
 			return $wgAllMessagesId[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 	

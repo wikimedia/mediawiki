@@ -1114,7 +1114,7 @@ class LanguageNo extends LanguageUtf8 {
 		if( isset( $wgAllMessagesNo[$key] ) ) {
 			return $wgAllMessagesNo[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 }

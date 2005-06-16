@@ -1462,7 +1462,7 @@ class LanguageGa extends LanguageUtf8 {
 		if( isset( $wgAllMessagesGa[$key] ) ) {
 			return $wgAllMessagesGa[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 

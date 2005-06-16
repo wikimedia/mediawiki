@@ -997,7 +997,7 @@ class LanguagePt extends LanguageUtf8 {
 		if( isset( $wgAllMessagesPt[$key] ) ) {
 			return $wgAllMessagesPt[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
     }
 }

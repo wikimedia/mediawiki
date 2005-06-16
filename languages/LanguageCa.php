@@ -973,7 +973,7 @@ class LanguageCa extends LanguageUtf8 {
 		if( isset( $wgAllMessagesCa[$key] ) ) {
 			return $wgAllMessagesCa[$key];
 		} else {
-			return Language::getMessage( $key );
+			return parent:getMessage( $key );
 		}
 	}
 }
