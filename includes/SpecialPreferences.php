@@ -261,7 +261,7 @@ class PreferencesForm {
 						# User can come back through the confirmation URL to re-enable email.
 						$result = $wgUser->sendConfirmationMail();
 						if( WikiError::isError( $result ) ) {
-							$error = wfMsg( 'mailerror', $result->toString() );
+							$error = wfMsg( 'mailerror', $result->getMessage() );
 						} else {
 							$error = wfMsg( 'eauthentsent', $wgUser->getName() );
 						}

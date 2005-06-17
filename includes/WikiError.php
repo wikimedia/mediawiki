@@ -37,8 +37,17 @@ class WikiError {
 	/**
 	 * @return string Plaintext error message to display
 	 */
-	function toString() {
+	function getMessage() {
 		return $this->mMessage;
+	}
+	
+	/**
+	 * In following PEAR_Error model this could be formatted differently,
+	 * but so far it's not.
+	 * @return string
+	 */
+	function toString() {
+		return $this->getMessage();
 	}
 	
 	/**
@@ -83,7 +92,7 @@ class WikiXmlError extends WikiError {
 		xml_parser_free( $parser );
 	}
 	
-	function toString() {
+	function getMessage() {
 		return $this->mMessage . ': ' . xml_error_string( $this->mXmlError );
 	}
 }
