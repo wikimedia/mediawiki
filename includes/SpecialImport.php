@@ -54,13 +54,13 @@ function wfSpecialImport( $page = '' ) {
 		}
 		
 		if( WikiError::isError( $result ) ) {
-			$wgOut->addWikiText( htmlspecialchars( $result->toString() ) );
+			$wgOut->addWikiText( wfEscapeWikiText( $result->getMessage() ) );
 		} else {
 			$importer->setRevisionHandler( "wfImportOldRevision" );
 			$result = $importer->doImport();
 			if( WikiError::isError( $result ) ) {
 				$wgOut->addHTML( "<p>" . wfMsg( "importfailed",
-					htmlspecialchars( $result->toString() ) ) . "</p>" );
+					htmlspecialchars( $result->getMessage() ) ) . "</p>" );
 			} else {
 				# Success!
 				$wgOut->addHTML( "<p>" . wfMsg( "importsuccess" ) . "</p>" );
