@@ -2231,12 +2231,13 @@ class Language {
 	 * </code>
 	 *
 	 * @param int $index the array key of the namespace to return
-	 * @return string
+	 * @return mixed, string if the namespace value exists, otherwise false
 	 */
 	function getNsText( $index ) {
-		global $wgNamespaceNamesEn;
-		return $wgNamespaceNamesEn[$index];
+		$ns = $this->getNamespaces();
+		return isset( $ns[$index] ) ? $ns[$index] : false;
 	}
+	
 	/**
 	 * A convenience function that returns the same thing as
 	 * getNsText() except with '_' changed to ' ', useful for
@@ -2250,16 +2251,17 @@ class Language {
 	}
 
 	/**
-	 * Get a namespace key by value
+	 * Get a namespace key by value, case insensetive.
 	 *
 	 * @param string $text
 	 * @return mixed An integer if $text is a valid value otherwise false
 	 */
 	function getNsIndex( $text ) {
-		global $wgNamespaceNamesEn;
-
-		foreach ( $wgNamespaceNamesEn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		$ns = $this->getNamespaces();
+		
+		foreach ( $ns as $i => $n ) {
+			if ( strcasecmp( $n, $text ) == 0)
+				return $i;
 		}
 		return false;
 	}
