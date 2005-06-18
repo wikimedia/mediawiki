@@ -272,6 +272,9 @@ class Parser
 			$params = array( );
 		}
 
+		// Hack to support short XML style tags
+		$text = preg_replace( "/<$tag(\\s+[^>]*|\\s*)\\/>/i", "<$tag\\1></$tag>", $text );
+		
 		if( $tag == STRIP_COMMENTS ) {
 			$start = '/<!--()/';
 			$end   = '/-->/';
