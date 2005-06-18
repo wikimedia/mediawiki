@@ -738,7 +738,9 @@ class SkinTemplate extends Skin {
 		}
 		
 		wfProfileOut( $fname );
-		return $bar;
+		// Warnings off in case $bar wasn't created above (bogus input, or maybe
+		// they just don't want a sidebar)
+		return @$bar;
 	}
 
 	/**
