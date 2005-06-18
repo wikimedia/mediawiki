@@ -276,9 +276,6 @@ class Parser
 			$start = '/<!--()/';
 			$end   = '/-->/';
 		} else {
-			// Hack to support short XML style tags
-			$text = preg_replace( "/<$tag(\\s+[^>]*|\\s*)\\/>/i", "<$tag\\1></$tag>", $text );
-			
 			$start = "/<$tag(\\s+[^>]*|\\s*)>/i";
 			$end   = "/<\\/$tag\\s*>/i";
 		}
