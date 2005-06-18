@@ -1635,7 +1635,7 @@ class Article {
 
 				# comment field=255, let's grep the first 150 to have some user
 				# space left
-				$text=substr($text,0,150);
+				$text=mb_substr($text,0,150);
 				# let's strip out newlines and HTML tags
 				$text=preg_replace('/\"/',"'",$text);
 				$text=preg_replace('/\</','&lt;',$text);
