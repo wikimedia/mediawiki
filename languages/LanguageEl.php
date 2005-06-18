@@ -73,10 +73,6 @@ class LanguageEl extends LanguageUtf8 {
 		return $wgNamespaceNamesEl;
 	}
 	
-	function getNsText( $index ) {
-		global $wgNamespaceNamesEl;
-		return $wgNamespaceNamesEl[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEl;

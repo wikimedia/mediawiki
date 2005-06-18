@@ -1073,10 +1073,6 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgNamespaceNamesEt;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesEt;
-		return $wgNamespaceNamesEt[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEt;

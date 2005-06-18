@@ -90,10 +90,6 @@ class LanguageAr extends LanguageUtf8 {
 		return $wgNamespaceNamesAr;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesAr;
-		return $wgNamespaceNamesAr[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesAr;

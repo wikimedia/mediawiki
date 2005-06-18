@@ -1037,10 +1037,6 @@ class LanguageNo extends LanguageUtf8 {
 		return $wgNamespaceNamesNo;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesNo;
-		return $wgNamespaceNamesNo[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesNo;

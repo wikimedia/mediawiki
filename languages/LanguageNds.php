@@ -1443,10 +1443,6 @@ class LanguageNds extends LanguageUtf8 {
                 return $wgNamespaceNamesNds;
         }
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesNds;
-                return $wgNamespaceNamesNds[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesNds;

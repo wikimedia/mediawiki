@@ -38,10 +38,6 @@ class LanguageKu extends LanguageUtf8
                 return $wgNamespaceNamesKu;
         }
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesKu;
-                return $wgNamespaceNamesKu[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesKu;

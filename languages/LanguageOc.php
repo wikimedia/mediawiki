@@ -925,10 +925,6 @@ class LanguageOc extends LanguageUtf8{
 	}
 
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesOc;
-		return $wgNamespaceNamesOc[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesOc;

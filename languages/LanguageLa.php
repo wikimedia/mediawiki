@@ -168,10 +168,6 @@ class LanguageLa extends LanguageUtf8 {
 		return $wgNamespaceNamesLa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesLa;
-		return $wgNamespaceNamesLa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesLa;

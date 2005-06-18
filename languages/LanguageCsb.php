@@ -32,10 +32,6 @@ class LanguageCsb extends LanguageUtf8 {
 		return $wgNamespaceNamesCsb;
 	}
 	
-	function getNsText( $index ) {
-		global $wgNamespaceNamesCsb;
-		return $wgNamespaceNamesCsb[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesCsb;

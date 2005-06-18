@@ -186,10 +186,6 @@ class LanguageTt extends LanguageUtf8 {
 		return $wgNamespaceNamesTt;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesTt;
-		return $wgNamespaceNamesTt[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesTt;

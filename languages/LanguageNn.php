@@ -1331,10 +1331,6 @@ class LanguageNn extends LanguageUtf8 {
 		return $wgMagicWordsNn;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesNn;
-		return $wgNamespaceNamesNn[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesNn;

@@ -955,10 +955,6 @@ class LanguageMs extends LanguageUtf8 {
 		return $wgNamespaceNamesMs;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesMs;
-		return $wgNamespaceNamesMs[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesMs;

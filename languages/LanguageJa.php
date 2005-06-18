@@ -945,10 +945,6 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgNamespaceNamesJa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesJa;
-		return $wgNamespaceNamesJa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesJa;

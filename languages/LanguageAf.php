@@ -820,10 +820,6 @@ class LanguageAf extends LanguageUtf8 {
 		return $wgNamespaceNamesAf;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesAf;
-		return $wgNamespaceNamesAf[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesAf;

@@ -646,10 +646,6 @@ class LanguageKo extends LanguageUtf8 {
 		return $wgNamespaceNamesKo;
 	}
 
-	function getNsText($index) {
-		global $wgNamespaceNamesKo;
-		return $wgNamespaceNamesKo[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesKo;

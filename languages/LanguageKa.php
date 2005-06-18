@@ -34,10 +34,6 @@ class LanguageKa extends LanguageUtf8 {
 		return $wgNamespaceNamesKa;
 	}
 	
-	function getNsText( $index ) {
-		global $wgNamespaceNamesKa;
-		return $wgNamespaceNamesKa[$index];
-	}
 	
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesKa;

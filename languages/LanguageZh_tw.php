@@ -1011,10 +1011,6 @@ class LanguageZh_tw extends LanguageZh_cn {
 		return $wgNamespaceNamesZh_tw;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesZh_tw;
-		return $wgNamespaceNamesZh_tw[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesZh_tw;

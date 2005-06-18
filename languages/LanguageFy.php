@@ -1011,10 +1011,6 @@ class LanguageFy extends LanguageUtf8 {
 		return $wgNamespaceNamesFy;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesFy;
-		return $wgNamespaceNamesFy[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFy;

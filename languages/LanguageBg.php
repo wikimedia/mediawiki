@@ -1380,10 +1380,6 @@ class LanguageBg extends LanguageUtf8 {
 		return $wgNamespaceNamesBg;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesBg;
-		return $wgNamespaceNamesBg[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesBg, $wgNamespaceNamesEn;

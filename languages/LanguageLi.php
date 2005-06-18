@@ -712,10 +712,6 @@ class LanguageLi extends LanguageUtf8 {
 		return $wgNamespaceNamesLi;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesLi;
-		return $wgNamespaceNamesLi[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesLi;

@@ -1131,10 +1131,6 @@ class LanguageFa extends LanguageUtf8 {
 		return $wgNamespaceNamesFa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesFa;
-		return $wgNamespaceNamesFa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFa;

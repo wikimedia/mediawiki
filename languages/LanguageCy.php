@@ -1024,10 +1024,6 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgNamespaceNamesCy;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesCy;
-		return $wgNamespaceNamesCy[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesCy;
