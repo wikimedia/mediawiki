@@ -1143,10 +1143,6 @@ class LanguageEs extends LanguageUtf8 {
 		return $wgNamespaceNamesEs;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesEs;
-		return $wgNamespaceNamesEs[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEs;

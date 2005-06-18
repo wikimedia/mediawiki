@@ -888,10 +888,6 @@ class LanguageTa extends LanguageUtf8 {
                 return $wgNamespaceNamesTa;
         }
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesTa;
-                return $wgNamespaceNamesTa[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesTa;

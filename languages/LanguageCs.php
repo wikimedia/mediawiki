@@ -752,10 +752,6 @@ class LanguageCs extends LanguageUtf8 {
 		return $wgNamespaceNamesCs;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesCs;
-		return $wgNamespaceNamesCs[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesCs;

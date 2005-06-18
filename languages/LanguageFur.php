@@ -298,10 +298,6 @@ class LanguageFur extends LanguageUtf8 {
 		return $wgNamespaceNamesFur;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesFur;
-		return $wgNamespaceNamesFur[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFur, $wgSitename;

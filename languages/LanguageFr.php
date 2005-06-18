@@ -1295,10 +1295,6 @@ class LanguageFr extends LanguageUtf8 {
 		return $wgNamespaceNamesFr;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesFr;
-		return $wgNamespaceNamesFr[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFr, $wgSitename;

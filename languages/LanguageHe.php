@@ -831,10 +831,6 @@ class LanguageHe extends LanguageUtf8 {
 		return $wgNamespaceNamesHe;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesHe;
-		return $wgNamespaceNamesHe[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesHe;

@@ -1015,10 +1015,6 @@ class LanguageSq extends LanguageUtf8 {
 		return $wgNamespaceNamesSq;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesSq;
-		return $wgNamespaceNamesSq[$index];
-	}
 
 
 	function getNsIndex( $text ) {

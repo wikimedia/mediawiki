@@ -1201,11 +1201,6 @@ class LanguageFi extends LanguageUtf8 {
     return $wgNamespaceNamesFi;
   }
 
-  function getNsText( $index ) {
-    global $wgNamespaceNamesFi;
-    return $wgNamespaceNamesFi[$index];
-  }
-
   function getNsIndex( $text ) {
     global $wgNamespaceNamesFi;
 

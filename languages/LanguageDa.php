@@ -1078,10 +1078,6 @@ class LanguageDa extends LanguageUtf8 {
 		return $wgNamespaceNamesDa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesDa;
-		return $wgNamespaceNamesDa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesDa;

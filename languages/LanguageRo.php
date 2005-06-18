@@ -1268,10 +1268,6 @@ class LanguageRo extends LanguageUtf8 {
 		return $wgNamespaceNamesRo;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesRo;
-		return $wgNamespaceNamesRo[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesRo;

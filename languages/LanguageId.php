@@ -1312,10 +1312,6 @@ class LanguageId extends LanguageUtf8 {
 		return $wgNamespaceNamesId;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesId;
-		return $wgNamespaceNamesId[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesId, $wgNamespaceAlternatesId;

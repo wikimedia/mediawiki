@@ -475,10 +475,6 @@ class LanguagePa extends LanguageUtf8 {
 		return $wgSkinNamesPa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesPa;
-		return $wgNamespaceNamesPa[$index];
-	}
 	
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesPa;

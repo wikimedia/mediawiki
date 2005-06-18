@@ -1970,10 +1970,6 @@ class LanguageRu extends LanguageUtf8 {
         }
 
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesRu;
-                return $wgNamespaceNamesRu[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesRu;

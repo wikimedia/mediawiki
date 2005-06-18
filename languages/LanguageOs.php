@@ -244,10 +244,6 @@ class LanguageOs extends LanguageRu {
         }
 
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesOs;
-                return $wgNamespaceNamesOs[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesOs;

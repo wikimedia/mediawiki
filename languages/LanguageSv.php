@@ -1028,10 +1028,6 @@ class LanguageSv extends LanguageUtf8 {
 		return $wgNamespaceNamesSv;
 	}
 	
-	function getNsText( $index ) {
-		global $wgNamespaceNamesSv;
-		return $wgNamespaceNamesSv[$index];
-	}
 	
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesSv;

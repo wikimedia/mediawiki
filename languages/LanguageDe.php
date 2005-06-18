@@ -1246,10 +1246,6 @@ class LanguageDe extends LanguageUtf8 {
 		return $wgNamespaceNamesDe;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesDe;
-		return $wgNamespaceNamesDe[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesDe;

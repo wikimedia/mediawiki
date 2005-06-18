@@ -1030,10 +1030,6 @@ class LanguagePl extends LanguageUtf8 {
 		return $wgNamespaceNamesPl;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesPl;
-		return $wgNamespaceNamesPl[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesPl;

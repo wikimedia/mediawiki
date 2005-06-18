@@ -1052,11 +1052,6 @@ class LanguageSr extends LanguageUtf8 {
   return $wgNamespaceNamesSr;
  }
 
- function getNsText( $index ) {
-  global $wgNamespaceNamesSr;
-  return $wgNamespaceNamesSr[$index];
- }
-
  function getNsIndex( $text ) {
   global $wgNamespaceNamesSr;
 

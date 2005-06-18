@@ -1698,10 +1698,6 @@ class LanguageSk extends LanguageUtf8 {
 		return $wgNamespaceNamesSk;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesSk;
-		return $wgNamespaceNamesSk[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesSk;

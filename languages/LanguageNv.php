@@ -176,10 +176,6 @@ class LanguageNv extends LanguageUtf8 {
 		return $wgNamespaceNamesNv;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesNv;
-		return $wgNamespaceNamesNv[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesNv;

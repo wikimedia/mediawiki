@@ -1094,11 +1094,6 @@ class LanguageHu extends LanguageUtf8 {
 		return $wgNamespaceNamesHu;
 	}
 	
-	function getNsText( $index ) {
-		global $wgNamespaceNamesHu;
-		return $wgNamespaceNamesHu[$index];
-	}
-	
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesHu;
 		

@@ -893,10 +893,6 @@ class LanguageCa extends LanguageUtf8 {
 		return $wgNamespaceNamesCa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesCa;
-		return $wgNamespaceNamesCa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesCa;

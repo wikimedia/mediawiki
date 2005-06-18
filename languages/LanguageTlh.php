@@ -39,10 +39,6 @@ class LanguageTlh extends LanguageUtf8
                 return $wgNamespaceNamesTlh;
         }
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesTlh;
-                return $wgNamespaceNamesTlh[$index];
-        }
 
         function getNsIndex( $text ) {
                 global $wgNamespaceNamesTlh;

@@ -932,10 +932,6 @@ class LanguageIa extends LanguageUtf8 {
 		return $wgNamespaceNamesIa;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesIa;
-		return $wgNamespaceNamesIa[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesIa;

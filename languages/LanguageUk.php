@@ -935,10 +935,6 @@ class LanguageUk extends LanguageUtf8 {
 		return $wgNamespaceNamesUk;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesUk;
-		return $wgNamespaceNamesUk[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesUk, $wgNamespaceNamesEn;

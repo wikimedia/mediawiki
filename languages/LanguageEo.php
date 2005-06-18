@@ -984,10 +984,6 @@ class LanguageEo extends LanguageUtf8 {
 		return $wgNamespaceNamesEo;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesEo;
-		return $wgNamespaceNamesEo[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEo;

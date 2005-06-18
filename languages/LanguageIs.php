@@ -766,20 +766,6 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgNamespaceNamesIs;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesIs;
-		return $wgNamespaceNamesIs[$index];
-	}
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesIs;
-
-		foreach ( $wgNamespaceNamesIs as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsIs;
 		return $wgQuickbarSettingsIs;

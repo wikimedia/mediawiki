@@ -1008,10 +1008,6 @@ class LanguageZh_cn extends LanguageUtf8 {
 		return $wgNamespaceNamesZh_cn;
 	}
 
-	function getNsText( $index ) {
-		global $wgNamespaceNamesZh_cn;
-		return $wgNamespaceNamesZh_cn[$index];
-	}
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesZh_cn;
