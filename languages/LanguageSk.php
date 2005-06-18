@@ -1746,7 +1746,7 @@ class LanguageSk extends LanguageUtf8 {
 		global $wgAllMessagesSk;
 		if($wgAllMessagesSk[$key])
 			return $wgAllMessagesSk[$key];
-		return parent:getMessage( $key );
+		return parent::getMessage( $key );
 	}
 
 	var $digitTransTable = array(

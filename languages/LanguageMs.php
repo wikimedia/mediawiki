@@ -1013,7 +1013,7 @@ class LanguageMs extends LanguageUtf8 {
 		if( isset( $wgAllMessagesMs[$key] ) ) {
 			return $wgAllMessagesMs[$key];
 		} else {
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 }

@@ -910,7 +910,7 @@ class LanguageSl extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesSl))
 			return $wgAllMessagesSl[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 	
 	function fallback8bitEncoding() {

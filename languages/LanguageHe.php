@@ -875,7 +875,7 @@ class LanguageHe extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesHe))
 			return $wgAllMessagesHe[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	function isRTL() { return true; }

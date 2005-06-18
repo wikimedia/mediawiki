@@ -833,7 +833,7 @@ class LanguageCs extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesCs))
 			return $wgAllMessagesCs[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	# Heredu iconv(), ucfirst(), ktp

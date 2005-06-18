@@ -1300,7 +1300,7 @@ class LanguageDe extends LanguageUtf8 {
 		if( isset( $wgAllMessagesDe[$key] ) ) {
 			return $wgAllMessagesDe[$key];
 		} else {
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 

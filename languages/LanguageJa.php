@@ -1025,7 +1025,7 @@ class LanguageJa extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesJa))
 			return $wgAllMessagesJa[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	function stripForSearch( $string ) {

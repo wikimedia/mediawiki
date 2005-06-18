@@ -1147,7 +1147,7 @@ class LanguageHu extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesHu))
 			return $wgAllMessagesHu[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 	
 	function fallback8bitEncoding() {

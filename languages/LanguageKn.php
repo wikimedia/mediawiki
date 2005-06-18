@@ -367,7 +367,7 @@ class LanguageKn extends LanguageUtf8 {
 		if( array_key_exists( $key, $wgAllMessagesKn ) )
 			return $wgAllMessagesKn[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	function formatNum( $number ) {
