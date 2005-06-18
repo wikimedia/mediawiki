@@ -718,6 +718,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::buildSidebar';
 		wfProfileIn( $fname );
 		
+		$bar = array();
 		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
 		foreach ($lines as $line) {
 			if (strpos($line, '*') !== 0)
@@ -738,9 +739,7 @@ class SkinTemplate extends Skin {
 		}
 		
 		wfProfileOut( $fname );
-		// Warnings off in case $bar wasn't created above (bogus input, or maybe
-		// they just don't want a sidebar)
-		return @$bar;
+		return $bar;
 	}
 
 	/**
