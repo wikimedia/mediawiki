@@ -1,7 +1,7 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Language.php 1.560
+  * Based on Language.php 1.564
   *
   * @bug 1998
   *
@@ -160,24 +160,6 @@ if(isset($wgExtraNamespaces)) {
 );
 
 /* private */ $wgAllMessagesRu = array(
-
-# The navigation toolbar, int: is used here to make sure that the appropriate
-# messages are automatically pulled from the user-selected language file.
-'sidebar' => "
-This is the markup that's parsed when the sidebar(s) are generated, lines that
-do not begin with * or ** are automatically discarded.
-
-Only put [a-z-] in the level one headings since it will be used as an XHMTL id.
-
-* navigation
-** mainpage|mainpage
-** portal-url|portal
-** currentevents-url|currentevents
-** recentchanges-url|recentchanges
-** randompage-url|randompage
-** helppage|help
-** sitesupport-url|sitesupport
-",
 
 # User preference toggles 
 'tog-underline' => 'Подчёркивать ссылки',
@@ -478,6 +460,8 @@ $1',
 'yourpasswordagain' => 'Повторный набор пароля',
 'newusersonly'  => ' (только для новых участников)',
 'remembermypassword' => 'Запоминать ваш пароль между сеансами.',
+'yourdomainname'       => 'Ваш домен',
+'externaldberror'      => 'Произошла ошибка при аутентификации с помощью внешней базы данных, или у вас недостаточно прав для внесения изменений в свою внешнюю учётную запись.',
 'loginproblem'  => '<span style=\"color:red\">Участник неопознан.</span>',
 'alreadyloggedin' => "<font color=red><strong>Участник $1, вы уже представились системе!</strong></font><br />",
 
@@ -1360,12 +1344,12 @@ SQL-запросы к БД часто создают ощутимую нагру
 'val_of' => '$1 из $2',
 'val_revision' => 'Версия',
 'val_time' => 'Время',
-'val_user_stats_title' => 'Краткий обзор проверки участника $1', #FIXME
-'val_my_stats_title' => 'Мой краткий обзор проверки', #FIXME
+'val_user_stats_title' => 'Краткий обзор оценок участника $1', 
+'val_my_stats_title' => 'Краткий обзор моих оценок', 
 'val_list_header' => '<th>#</th><th>Тема</th><th>Диапазон</th><th>Действие</th>',
 'val_add' => 'Добавить',
 'val_del' => 'Удалить',
-'val_show_my_ratings' => 'Показать мои проверки',
+'val_show_my_ratings' => 'Показать мои оценки',
 'val_revision_number' => 'Версия №$1',
 'val_warning' => '<b>Никогда не изменяйте что-либо здесь без <i>явного</i> согласия сообщества!</b>',
 'val_rev_for' => 'Версии для ',
@@ -1376,16 +1360,18 @@ SQL-запросы к БД часто создают ощутимую нагру
 'val_rev_stats_link' => 'См. статистику проверок для «$1» <a href="$2">здесь</a>',
 'val_revision_stats_link' => '(<a href="$1">подробнее</a>)',
 'val_iamsure' => 'Подтвердите, что вы действительно хотите сделать это!',
-'val_clear_old' => 'Очистить мои ранние проверки',
+'val_clear_old' => 'Очистить мои старые оценки',
 'val_merge_old' => 'Использовать мою предыдущую оценку там где выбрано «Нет мнения»',
 'val_form_note' => '<strong>Посказка:</strong> Слияние ваших данных означает что для версии 
-статьи которую вы выбрали, все пции где вы выбрали <em>нет мнения</em>
-будут установлено значение и комментарий для самой последней версии для которой вы
-выразили мнение. Например, если вы хотите изменить какое-то конкретное мнение
+статьи, которую вы выбрали, все опции где вы выбрали пункт <em>нет мнения</em>
+будут заполнены значениями и комментариями самой последней версии для которой вы
+выразили мнение. Например, если вы хотите изменить мнение по какой-то опции
 для новой версии, но при этом сохранить ваши другие установки для этой статьи в этой версии,
 просто выберите какую опцию вы хотели бы <em>изменить</em>, и
 слияние заполнит другие опции вашими предыдущими установками.',
 'val_noop' => 'Нет мнения',
+'val_topic_desc_page' => '{{ns:project}}:Оценки',
+'val_votepage_intro' => '<p>Измените этот текст <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro|edit=yes}}">здесь</a>!</p>',
 'val_percent' => '<strong>$1%</strong><br />($2 из $3 баллов<br />$4 участников)',
 'val_percent_single' => '<strong>$1%</strong><br />($2 из $3 баллов<br />для одного участника)',
 'val_total' => 'Всего',
@@ -1969,14 +1955,14 @@ class LanguageRu extends LanguageUtf8 {
                 return $wgNamespaceNamesRu;
         }
 
-
-
         function getNsIndex( $text ) {
-                global $wgNamespaceNamesRu;
+                $ns = $this->getNamespaces();
 
-                foreach ( $wgNamespaceNamesRu as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
+		foreach ( $ns as $i => $n ) {
+			if ( strcasecmp( $n, $text ) == 0)
+				return $i;
+		}
+
                 return false;
         }
 
