@@ -57,16 +57,23 @@ class MathRenderer {
 				return $this->_error( 'math_bad_tmpdir' );
 			}
 			
-			if( !is_executable( $wgTexvc ) ) {
+			if( function_exists( 'is_executable' ) && !is_executable( $wgTexvc ) ) {
 				return $this->_error( 'math_notexvc' );
 			}
-			$cmd = $wgTexvc.' '.
-				wfEscapeShellArg($wgTmpDirectory).' '.
-				wfEscapeShellArg($wgMathDirectory).' '.
-				wfEscapeShellArg($this->tex).' '.
-				wfEscapeShellArg($wgInputEncoding);
-			wfDebug( 'TeX: '.$cmd );
+			$cmd = $wgTexvc . ' ' . 
+					escapeshellarg( $wgTmpDirectory ).' '.
+					escapeshellarg( $wgMathDirectory ).' '.
+					escapeshellarg( $this->tex ).' '.
+					escapeshellarg( $wgInputEncoding );
+					
+			if ( wfIsWindows() ) {
+				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
+				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
+			} 
+
+			wfDebug( "TeX: $cmd\n" );
 			$contents = `$cmd`;
+			wfDebug( "TeX output:\n $contents\n---\n" );
 		
 			if (strlen($contents) == 0) {
 				return $this->_error( 'math_unknown_error' );
