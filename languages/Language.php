@@ -1529,8 +1529,8 @@ for a newer revision, but also keep your other settings for this article in
 this revision, just select which option you intend to <i>change</i>, and
 merging will fill in the other options with your previous settings.',
 'val_noop' => 'No opinion',
-'val_topic_desc_page' => 'Wikipedia:Validation topics',
-'val_votepage_intro' => '<p>Change this text <a href="./index.php?title=MediaWiki:Val_votepage_intro">here</a>!</p>',
+'val_topic_desc_page' => 'Project:Validation topics',
+'val_votepage_intro' => '<p>Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!</p>',
 'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
 'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
 'val_total' => 'Total',
