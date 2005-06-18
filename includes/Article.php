@@ -1551,24 +1551,23 @@ class Article {
 		# This code desperately needs to be totally rewritten
 
 		# Check permissions
-		if ( ( ! $wgUser->isAllowed('delete') ) ) {
+		if( ( !$wgUser->isAllowed( 'delete' ) ) ) {
 			$wgOut->sysopRequired();
 			return;
 		}
-		if ( wfReadOnly() ) {
+		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
 
 		# Better double-check that it hasn't been deleted yet!
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
-		if ( ( '' == trim( $this->mTitle->getText() ) )
-		  or ( $this->mTitle->getArticleId() == 0 ) ) {
+		if( !$this->mTitle->exists() ) {
 			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
 
-		if ( $confirm ) {
+		if( $confirm ) {
 			$this->doDelete( $reason );
 			return;
 		}
@@ -1600,8 +1599,8 @@ class Article {
 		# Fetch name(s) of contributors
 		$rev_name = '';
 		$all_same_user = true;
-		while ( $row = $dbr->fetchObject( $revisions ) ) {
-			if ( $rev_name != '' && $rev_name != $row->rev_user_text ) {
+		while( $row = $dbr->fetchObject( $revisions ) ) {
+			if( $rev_name != '' && $rev_name != $row->rev_user_text ) {
 				$all_same_user = false;
 			} else {
 				$rev_name = $row->rev_user_text;
@@ -1614,44 +1613,39 @@ class Article {
 
 			#if this is empty, an earlier revision may contain "useful" text
 			$blanked = false;
-			if($text == '') {
-				$prevId = $this->mTitle->getPreviousRevisionID( $rev->getId() );
-				$rev = Revision::newFromId( $prevId );
-				if ( $rev ) { 
-					$text = $rev->getText();
+			if( $text == '' ) {
+				$prev = $rev->getPrevious();
+				if( $prev ) { 
+					$text = $prev->getText();
 					$blanked = true;
 				}
 			}
 
-			$length=strlen($text);
+			$length = strlen( $text );
 
 			# this should not happen, since it is not possible to store an empty, new
 			# page. Let's insert a standard text in case it does, though
-			if($length == 0 && $reason === '') {
-				$reason = wfMsg('exblank');
+			if( $length == 0 && $reason === '' ) {
+				$reason = wfMsg( 'exblank' );
 			}
 
-			if($length < 500 && $reason === '') {
-
+			if( $length < 500 && $reason === '' ) {
 				# comment field=255, let's grep the first 150 to have some user
 				# space left
 				global $wgContLang;
 				$text = $wgContLang->truncate( $text, 150, '...' );
 				
-				# let's strip out newlines and HTML tags
-				$text=preg_replace('/\"/',"'",$text);
-				$text=preg_replace('/\</','&lt;',$text);
-				$text=preg_replace('/\>/','&gt;',$text);
-				$text=preg_replace("/[\n\r]/",'',$text);
+				# let's strip out newlines
+				$text = preg_replace( "/[\n\r]/", '', $text );
 				
-				if(!$blanked) {
-					if(!$all_same_user) {
-						$reason = wfMsg ( 'excontent', $text );
+				if( !$blanked ) {
+					if( !$all_same_user ) {
+						$reason = wfMsg( 'excontent', $text );
 					} else {
-						$reason = wfMsg ( 'excontentauthor', $text, $rev_name );
+						$reason = wfMsg( 'excontentauthor', $text, $rev_name );
 					}
 				} else {
-					$reason = wfMsg ( 'exbeforeblank', $text );
+					$reason = wfMsg( 'exbeforeblank', $text );
 				}
 			}
 		}

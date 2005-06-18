@@ -296,6 +296,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 873) Fix usage of createaccount permission; replaces $wgWhitelistAccount
 * (bug 1805) Initialise $wgContLang before $wgUser
 * (bug 2277) Added Friulian language file
+* Less gratuitous munging of content sample in delete summary
 
 
 === Caveats ===
