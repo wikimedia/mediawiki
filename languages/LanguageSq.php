@@ -1096,7 +1096,7 @@ class LanguageSq extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesSq))
 			return $wgAllMessagesSq[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 	
 	function formatNum( $number ) {

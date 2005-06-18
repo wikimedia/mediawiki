@@ -1120,7 +1120,7 @@ class LanguageEt extends LanguageUtf8 {
 		if( isset( $wgAllMessagesEt[$key] ) ) {
 			return $wgAllMessagesEt[$key];
 		} else {
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 

@@ -1370,7 +1370,7 @@ class LanguageFr extends LanguageUtf8 {
 		if( isset( $wgAllMessagesFr[$key] ) ) {
 			return $wgAllMessagesFr[$key];
 		} else {
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 	

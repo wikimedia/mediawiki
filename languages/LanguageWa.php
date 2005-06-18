@@ -1255,7 +1255,7 @@ class LanguageWa extends LanguageUtf8 {
 		if(array_key_exists($key, $wgAllMessagesWa))
 			return $wgAllMessagesWa[$key];
 		else
-			return parent:getMessage($key);
+			return parent::getMessage($key);
 	}
 
 	function getAllMessages()

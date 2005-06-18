@@ -1085,7 +1085,7 @@ class LanguageZh_cn extends LanguageUtf8 {
 		if( isset( $wgAllMessagesZh_cn[$key] ) )
 			return $wgAllMessagesZh_cn[$key];
 		else
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 	}
 
 	# inherit default iconv(), ucfirst(), checkTitleEncoding()

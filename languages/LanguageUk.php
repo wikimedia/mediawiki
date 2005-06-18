@@ -979,7 +979,7 @@ class LanguageUk extends LanguageUtf8 {
 		if( isset( $wgAllMessagesUk[$key] ) ) {
 			return $wgAllMessagesUk[$key];
 		} else {
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 		}
 	}
 

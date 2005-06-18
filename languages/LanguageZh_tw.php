@@ -1074,7 +1074,7 @@ class LanguageZh_tw extends LanguageZh_cn {
 		if(array_key_exists($key, $wgAllMessagesZh_tw))
 			return $wgAllMessagesZh_tw[$key];
 		else
-			return parent:getMessage( $key );
+			return parent::getMessage( $key );
 	}
 
 }
