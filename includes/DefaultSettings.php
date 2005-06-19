@@ -416,6 +416,9 @@ $wgMasterWaitTimeout = 10;
 /** File to log MySQL errors to */
 $wgDBerrorLog		= false;
 
+/** When to give an error message */
+$wgDBClusterTimeout = 10;
+
 /**
  * wgDBminWordLen :
  * MySQL 3.x : used to discard words that MySQL will not return any results for
