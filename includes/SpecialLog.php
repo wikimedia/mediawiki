@@ -396,9 +396,9 @@ class LogViewer {
 	function showPrevNext( &$out ) {
 		global $wgContLang,$wgRequest;
 		$pieces = array();
-		$pieces[] = 'type=' . htmlspecialchars( $this->reader->queryType() );
-		$pieces[] = 'user=' . htmlspecialchars( $this->reader->queryUser() );
-		$pieces[] = 'page=' . htmlspecialchars( $this->reader->queryTitle() );
+		$pieces[] = 'type=' . urlencode( $this->reader->queryType() );
+		$pieces[] = 'user=' . urlencode( $this->reader->queryUser() );
+		$pieces[] = 'page=' . urlencode( $this->reader->queryTitle() );
 		$bits = implode( '&', $pieces );
 		list( $limit, $offset ) = $wgRequest->getLimitOffset();
 		
