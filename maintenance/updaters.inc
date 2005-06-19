@@ -45,6 +45,7 @@ $wgNewFields = array(
 	array( 'image',         'img_metadata',     'patch-img_metadata.sql' ),
 	array( 'image',         'img_media_type',   'patch-img_media_type.sql' ),
 	array( 'validate',      'val_ip',           'patch-val_ip.sql' ),
+	array( 'site_stats',    'ss_total_articles', 'patch-ss_total_articles.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {

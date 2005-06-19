@@ -921,7 +921,9 @@ class Database {
 	function update( $table, $values, $conds, $fname = 'Database::update' ) {
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
-		$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+		if ( $conds != '*' ) {
+			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+		}
 		$this->query( $sql, $fname );
 	}
 	

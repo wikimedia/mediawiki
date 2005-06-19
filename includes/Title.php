@@ -1536,8 +1536,10 @@ class Title {
 		$pageid = $this->getArticleID();
 		if( $nt->exists() ) {
 			$this->moveOverExistingRedirect( $nt, $reason );
+			$pageCountChange = 0;
 		} else { # Target didn't exist, do normal move.
 			$this->moveToNewTitle( $nt, $newid, $reason );
+			$pageCountChange = 1;
 		}
 		$redirid = $this->getArticleID();
 
@@ -1565,6 +1567,25 @@ class Title {
 		$u->doUpdate();
 		$u = new SearchUpdate( $redirid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
+		
+		# Update site_stats
+		if ( $this->getNamespace() == NS_MAIN and $nt->getNamespace() != NS_MAIN ) {
+			# Moved out of main namespace
+			# not viewed, edited, removing
+			$u = new SiteStatsUpdate( 0, 1, -1, $pageCountChange); 
+		} elseif ( $this->getNamespace() != NS_MAIN and $nt->getNamespace() == NS_MAIN ) {
+			# Moved into main namespace
+			# not viewed, edited, adding
+			$u = new SiteStatsUpdate( 0, 1, +1, $pageCountChange ); 
+		} elseif ( $pageCountChange ) {
+			# Added redirect
+			$u = new SiteStatsUpdate( 0, 0, 0, 1 );
+		} else{
+			$u = false;
+		}
+		if ( $u ) {
+			$u->doUpdate();
+		}
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;

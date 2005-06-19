@@ -201,26 +201,6 @@ class MovePageForm {
 			$this->showForm( $error );
 			return;
 		}
-
-		# Update counters if the article got moved into or out of NS_MAIN namespace
-		$ons = $ot->getNamespace();
-		$nns = $nt->getNamespace();
-		
-		# moved out of article namespace?
-		if ( $ons == NS_MAIN and $nns != NS_MAIN ) {
-			$u = new SiteStatsUpdate( 0, 1, -1); # not viewed, edited, removing
-		}
-		# moved into article namespace?
-		elseif ( $ons != NS_MAIN and $nns == NS_MAIN ) {
-			$u = new SiteStatsUpdate( 0, 1, +1 ); # not viewed, edited, adding
-		} else {
-			$u = false;
-		}
-		if ( $u !== false ) {
-			# save it for later update
-			array_push( $wgDeferredUpdateList, $u );
-			unset($u);
-		}
 		
 		# Move talk page if
 		# (1) the checkbox says to,
