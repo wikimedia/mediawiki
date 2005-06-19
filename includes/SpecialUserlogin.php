@@ -151,7 +151,7 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgMaxNameChars, $wgUseLatin1, $wgEnableSorbs;
+		global $wgMaxNameChars, $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
@@ -159,7 +159,9 @@ class LoginForm {
 			return;
 		}
 
-		if ( $wgEnableSorbs && $wgUser->inSorbsBlacklist( $wgIP ) ) {
+		if ( $wgEnableSorbs && !in_array( $wgIP, $wgProxyWhitelist ) && 
+		  $wgUser->inSorbsBlacklist( $wgIP ) ) 
+		{
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) );
 			return;
 		}
