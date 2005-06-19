@@ -58,12 +58,15 @@ class Profiler {
 		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
 			wfDebug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
-		$this->mWorkStack[] = array ($functionname, count($this->mWorkStack), microtime(), memory_get_usage());
+		$this->mWorkStack[] = array($functionname, count($this->mWorkStack), microtime(), memory_get_usage());
+		#$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getUserTime(), memory_get_usage());
 	}
 
 	function profileOut($functionname) {
 		$memory = memory_get_usage();
 		$time = microtime();
+		#$time = $this->getUserTime();
+
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
@@ -158,6 +161,7 @@ class Profiler {
 
 		# The ugly double sprintf is to work around a PHP bug,
 		# which has been fixed in recent releases.
+<<<<<<< Profiling.php
 		return sprintf("%10s %s %s\n", trim(sprintf("%7.3f", $delta * 1000.0)), $space, $fname);
 	}
 
@@ -174,6 +178,33 @@ class Profiler {
 		$width = 125;
 		$format = "%-". ($width -34)."s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f) [%d]\n";
 		$titleFormat = "%-". ($width -34)."s %9s %9s %9s %9s %6s\n";
+=======
+		return sprintf( "%10s %s %s\n",
+			trim( sprintf( "%7.3f", $delta * 1000.0 ) ),
+			$space, $fname );
+	}
+	
+	function micro2Float( $micro ) {
+		list( $whole, $fractional ) = explode( ' ', $micro );
+		return (float)$whole + (float)$fractional;
+	}
+	
+	function microDelta( $start, $end ) {
+		return $this->micro2Float( $end ) -
+		       $this->micro2Float( $start );
+	}
+
+	function getUserTime() {
+		$ru = getrusage();
+		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
+	}
+
+	function getFunctionReport() {		
+		$width = 140;
+		$nameWidth = $width - 65;
+		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
+		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %9s %14s   %14s %9s\n";
+>>>>>>> 1.29.2.6
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf($titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem');
 		$this->mCollated = array ();
