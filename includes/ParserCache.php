@@ -47,21 +47,21 @@ class ParserCache {
 			$touched = $article->mTouched;
 			if ( !$canCache || $value->expired( $touched ) ) {
 				if ( !$canCache ) {
-					$this->incrStats( "pcache_miss_invalid" );
+					wfIncrStats( "pcache_miss_invalid" );
 					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				} else {
-					$this->incrStats( "pcache_miss_expired" );
+					wfIncrStats( "pcache_miss_expired" );
 					wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				}
 				$this->mMemc->delete( $key );
 				$value = false;
 
 			} else {
-				$this->incrStats( "pcache_hit" );
+				wfIncrStats( "pcache_hit" );
 			}
 		} else {
 			wfDebug( "Parser cache miss.\n" );
-			$this->incrStats( "pcache_miss_absent" );
+			wfIncrStats( "pcache_miss_absent" );
 			$value = false;
 		}
 
@@ -82,14 +82,6 @@ class ParserCache {
 			$expire = 86400; # 1 day
 		}
 		$this->mMemc->set( $key, $parserOutput, $expire );
-	}
-
-	function incrStats( $key ) {
-		global $wgDBname, $wgMemc;
-		$key = "$wgDBname:stats:$key";
-		if ( is_null( $wgMemc->incr( $key ) ) ) {
-			$wgMemc->add( $key, 1 );
-		}
 	}
 }
 
