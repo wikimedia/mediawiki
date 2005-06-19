@@ -296,6 +296,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 873) Fix usage of createaccount permission; replaces $wgWhitelistAccount
 * (bug 1805) Initialise $wgContLang before $wgUser
 * (bug 2277) Added Friulian language file
+* (bug 2457) The "Special page" href now links to the current special page
+  rather than to "".
 * Less gratuitous munging of content sample in delete summary
 * badaccess/badaccesstext to supercede sysop*, developer* messages
 * Changed $wgGroupPermissions to more cut-n-paste-friendly format
