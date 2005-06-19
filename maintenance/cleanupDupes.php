@@ -25,12 +25,12 @@
  * @subpackage Maintenance
  */
 
-$options = array( 'fix' );
+$options = array( 'fix', 'index' );
 
 require_once( "commandLine.inc" );
 $wgTitle = Title::newFromText( "Dupe cur entry cleanup script" );
 
-checkDupes( isset( $options['fix'] ) );
+checkDupes( isset( $options['fix'] ), isset( $options['index'] ) );
 
 function fixDupes( $fixthem = false) {
 	$dbw =& wfGetDB( DB_MASTER );
@@ -119,14 +119,19 @@ END
 	}
 }
 
-function checkDupes( $fixthem = false ) {
+function checkDupes( $fixthem = false, $indexonly = false ) {
+	global $wgDBname;
 	$dbw =& wfGetDB( DB_MASTER );
 	if( $dbw->indexExists( 'cur', 'name_title' ) &&
 	    $dbw->indexUnique( 'cur', 'name_title' ) ) {
-		echo "Your cur table has the current unique index; no duplicate entries.\n";
+		echo "$wgDBname: cur table has the current unique index; no duplicate entries.\n";
+	} elseif( $dbw->indexExists( 'cur', 'name_title_dup_prevention' ) ) {
+		echo "$wgDBname: cur table has a temporary name_title_dup_prevention unique index; no duplicate entries.\n";
 	} else {
-		echo "Your cur table has the old non-unique index and may have duplicate entries.\n";
-		fixDupes( $fixthem );
+		echo "$wgDBname: cur table has the old non-unique index and may have duplicate entries.\n";
+		if( !$indexonly ) {
+			fixDupes( $fixthem );
+		}
 	}
 }
 
