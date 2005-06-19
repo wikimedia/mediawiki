@@ -656,6 +656,7 @@ pages for purposes of page relevancy ranking.
   to try to pick the same one that would be read by the wiki
 * (bug 2292) Catch 'null' return values for images that can not be  thumbnailed.
 * (bug 2277) Added Friulian language file
+* (bug 2459) Correct escaping in Special:Log prev/next links
 
 
 === Caveats ===
