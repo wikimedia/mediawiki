@@ -144,28 +144,27 @@ class LogPage {
 	 */
 	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
 		static $actions = array(
-			'block/block' => 'blocklogentry',
-			'block/unblock' => 'unblocklogentry',
-			'protect/protect' => 'protectedarticle',
+			'block/block'       => 'blocklogentry',
+			'block/unblock'     => 'unblocklogentry',
+			'protect/protect'   => 'protectedarticle',
 			'protect/unprotect' => 'unprotectedarticle',
-			'rights/rights' => 'bureaucratlogentry',
-            'rights/addgroup' => 'addgrouplogentry',
-            'rights/rngroup' => 'renamegrouplogentry',
-            'rights/chgroup' => 'changegrouplogentry',
-			'delete/delete' => 'deletedarticle',
-			'delete/restore' => 'undeletedarticle',
-			'upload/upload' => 'uploadedimage',
-			'upload/revert' => 'uploadedimage',
-			'move/move' => '1movedto2',
-			'move/move_redir' => '1movedto2_redir'
+			'rights/rights'     => 'bureaucratlogentry',
+			'rights/addgroup'   => 'addgrouplogentry',
+			'rights/rngroup'    => 'renamegrouplogentry',
+			'rights/chgroup'    => 'changegrouplogentry',
+			'delete/delete'     => 'deletedarticle',
+			'delete/restore'    => 'undeletedarticle',
+			'upload/upload'     => 'uploadedimage',
+			'upload/revert'     => 'uploadedimage',
+			'move/move'         => '1movedto2',
+			'move/move_redir'   => '1movedto2_redir'
 		);
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
 			if( is_null( $title ) ) {
 				$rv=wfMsgForContent( $actions[$key] );
-			} 
-			else {
-				if ( $skin ) {
+			} else {
+				if( $skin ) {
 					if ( $type == 'move' ) {
 						$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
 						// Change $param[0] into a link to the title specified in $param[0]
@@ -177,20 +176,20 @@ class LogPage {
 				} else {
 					$titleLink = $title->getPrefixedText();
 				}
-				if ( count( $params ) == 0 ) {
-					$rv=wfMsgForContent( $actions[$key], $titleLink );
+				if( count( $params ) == 0 ) {
+					$rv = wfMsgForContent( $actions[$key], $titleLink );
 				} else {
 					array_unshift( $params, $titleLink );
-					$rv=wfMsgReal( $actions[$key], $params, true, true );
+					$rv = wfMsgReal( $actions[$key], $params, true, true );
 				}
 			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
-			$rv="$action $titleLink";
+			$rv = "$action $titleLink";
 		}
-		if($filterWikilinks) {
-			$rv=str_replace("[[","",$rv);
-			$rv=str_replace("]]","",$rv);
+		if( $filterWikilinks ) {
+			$rv = str_replace( "[[", "", $rv );
+			$rv = str_replace( "]]", "", $rv );
 		}
 		return $rv;
 	}
@@ -222,8 +221,7 @@ class LogPage {
 	 * Create a blob from a parameter array
 	 * @static
 	 */
-	function makeParamBlob( $params )
-	{
+	function makeParamBlob( $params ) {
 		return implode( "\n", $params );
 	}
 
@@ -231,8 +229,7 @@ class LogPage {
 	 * Extract a parameter array from a blob
 	 * @static
 	 */
-	function extractParams( $blob )
-	{
+	function extractParams( $blob ) {
 		if ( $blob === '' ) {
 			return array();
 		} else {
