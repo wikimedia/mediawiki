@@ -320,7 +320,7 @@ class User {
 			}
 
 			# DNSBL
-			if ( !$this->mBlockedby && $wgEnableSorbs ) {
+			if ( !$this->mBlockedby && $wgEnableSorbs && !$this->getID() ) {
 				if ( $this->inSorbsBlacklist( $wgIP ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );

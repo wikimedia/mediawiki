@@ -159,7 +159,7 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgMaxNameChars;
+		global $wgMaxNameChars, $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
 		global $wgMinimalPasswordLength;
 		global $wgAuth;
@@ -189,6 +189,14 @@ class LoginForm {
 			$this->userNotPrivilegedMessage();
 			return false;
 		}
+
+		if ( $wgEnableSorbs && !in_array( $wgIP, $wgProxyWhitelist ) && 
+		  $wgUser->inSorbsBlacklist( $wgIP ) ) 
+		{
+			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) );
+			return;
+		}
+
 
 		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
 			$this->mainLoginForm( wfMsg( 'badretype' ) );
