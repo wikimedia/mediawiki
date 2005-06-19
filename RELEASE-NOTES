@@ -306,7 +306,7 @@ Various bugfixes, small features, and a few experimental things:
 * 'developer' group deprecated by default
 * Special:Upload now uses 'upload' permission instead of hardcoding login check
 * Add 'importupload' permission to disable direct uploads to Special:Import
-
+* (bug 2459) Correct escaping in Special:Log prev/next links
 
 === Caveats ===
 
