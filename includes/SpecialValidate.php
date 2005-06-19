@@ -51,7 +51,7 @@ class Validation {
 	function getVersionLink( &$article, $revision, $text = "" ) {
 		$t = $article->getTitle();
 		if( $text == "" ) $text = wfMsg("val_view_version");
-		$ret = "<a href=\"" . $t->getLocalURL( "oldid={$revision}" ) . "\">" . $text . "</a>";
+		$ret = "<a href=\"" . htmlspecialchars($t->getLocalURL( "oldid={$revision}" )) . "\">" . $text . "</a>";
 		return $ret;
 	}
 
