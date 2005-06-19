@@ -1851,7 +1851,7 @@ class Parser
 	 * @access private
 	 */
 	function getVariableValue( $index ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgArticle;
+		global $wgContLang, $wgSitename, $wgServer, $wgArticle, $wgScriptPath;
 		
 		/**
 		 * Some of these require message or data lookups and can be
@@ -1896,6 +1896,8 @@ class Parser
 				return $wgSitename;
 			case MAG_SERVER:
 				return $wgServer;
+			case MAG_PATH:
+				return $wgScriptPath;
 			default:
 				return NULL;
 		}
