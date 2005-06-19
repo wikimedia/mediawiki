@@ -686,6 +686,7 @@ $wgGroupPermissions['*'    ]['read']            = true;
 
 $wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['user' ]['read']            = true;
+$wgGroupPermissions['user' ]['upload']          = true;
 
 $wgGroupPermissions['bot'  ]['bot']             = true;
 
@@ -694,10 +695,12 @@ $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['import']          = true;
-$wgGroupPermissions['sysop']['importraw']       = true;
+$wgGroupPermissions['sysop']['importupload']    = true;
+$wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['sysop']['patrol']          = true;
 $wgGroupPermissions['sysop']['protect']         = true;
 $wgGroupPermissions['sysop']['rollback']        = true;
+$wgGroupPermissions['user' ]['upload']          = true;
 
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
@@ -1130,8 +1133,11 @@ $wgCapitalLinks = true;
 
 /**
  * List of interwiki prefixes for wikis we'll accept as sources for
- * Special:Import (for sysops). Since complete page history# can be imported,
+ * Special:Import (for sysops). Since complete page history can be imported,
  * these should be 'trusted'.
+ *
+ * If a user has the 'import' permission but not the 'importupload' permission,
+ * they will only be able to run imports through this transwiki interface.
  */
 $wgImportSources = array();
 
