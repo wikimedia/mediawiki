@@ -59,12 +59,15 @@ class Profiler
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
 			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering '.$functionname."\n" );
 		}
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() );
+		$this->mWorkStack[] = array($functionname, count($this->mWorkStack), microtime(), memory_get_usage());
+		#$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getUserTime(), memory_get_usage());
 	}
 
 	function profileOut( $functionname ) {
 		$memory = memory_get_usage();
 		$time = microtime();
+		#$time = $this->getUserTime();
+
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
@@ -175,7 +178,12 @@ class Profiler
 		return $this->micro2Float( $end ) -
 		       $this->micro2Float( $start );
 	}
-	
+
+	function getUserTime() {
+		$ru = getrusage();
+		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
+	}
+
 	function getFunctionReport() {		
 		$width = 140;
 		$nameWidth = $width - 65;
