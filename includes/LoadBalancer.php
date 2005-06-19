@@ -148,7 +148,7 @@ class LoadBalancer {
 
 	function getReaderIndex()
 	{
-		global $wgMaxLag, $wgReadOnly;
+		global $wgMaxLag, $wgReadOnly, $wgDBClusterTimeout;
 
 		$fname = 'LoadBalancer::getReaderIndex';
 		wfProfileIn( $fname );
@@ -206,10 +206,18 @@ class LoadBalancer {
 							$totalElapsed += $sleepTime;
 							usleep( $sleepTime );
 					}
-				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $this->mWaitTimeout );
+				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $wgDBClusterTimeout );
 
 				if ( $i !== false && $this->isOpen( $i ) ) {
-					$this->mReadIndex = $i;
+					# Wait for the session master pos for a short time
+					if ( $this->mWaitForFile ) {
+						if ( !$this->doWait( $i ) ) {
+							$this->mServers[$i]['slave pos'] = $this->mConnections[$i]->getSlavePos();
+						}
+					}
+					if ( $i != false ) {
+						$this->mReadIndex = $i;
+					}
 				} else {
 					$i = false;
 				}
@@ -238,7 +246,6 @@ class LoadBalancer {
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
 	 */
 	function waitFor( $file, $pos ) {
-		/*
 		$fname = 'LoadBalancer::waitFor';
 		wfProfileIn( $fname );
 
@@ -259,15 +266,12 @@ class LoadBalancer {
 			} 
 		}
 		wfProfileOut( $fname );
-		*/
 	}
 
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
 	 */
 	function doWait( $index ) {
-		return true;
-		/*
 		global $wgMemc;
 		
 		$retVal = false;
@@ -303,7 +307,7 @@ class LoadBalancer {
 				wfDebug( "Done\n" );
 			}
 		}
-		return $retVal;*/
+		return $retVal;
 	}		
 
 	/**
@@ -358,13 +362,6 @@ class LoadBalancer {
 
 		if ( !$this->isOpen( $i ) ) {
 			$this->mConnections[$i] = $this->reallyOpenConnection( $this->mServers[$i] );
-
-			if ( $this->isOpen( $i ) && $i != 0 && $this->mWaitForFile ) {
-				if ( !$this->doWait( $i ) ) {
-					$this->mServers[$i]['slave pos'] = $this->mConnections[$i]->getSlavePos();
-					$success = false;
-				}
-			}
 		}
 		if ( !$this->isOpen( $i ) ) {
 			wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
