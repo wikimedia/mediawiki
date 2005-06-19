@@ -442,6 +442,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'printsubtitle' => "(From {{SERVER}})",
 'protectedpage' => 'Protected page',
 'administrators' => "Project:Administrators",
+
 'sysoptitle'	=> 'Sysop access required',
 'sysoptext'		=> "The action you have requested can only be
 performed by users with \"sysop\" status.
@@ -453,6 +454,12 @@ See $1.",
 'bureaucrattitle'	=> 'Bureaucrat access required',
 "bureaucrattext"	=> "The action you have requested can only be
 performed by sysops with  \"bureaucrat\" status.",
+
+'badaccess'     => 'Permission error',
+'badaccesstext' => 'The action you have requested is limited
+to users with the "$2" permission assigned.
+See $1.',
+
 'nbytes'		=> '$1 bytes',
 'ok'			=> 'OK',
 'sitetitle'		=> "{{SITENAME}}",
