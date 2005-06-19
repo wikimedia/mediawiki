@@ -1248,4 +1248,13 @@ function wfMkdirParents( $fullDir, $mode ) {
 	return true;
 }
 
+
+function wfIncrStats( $key ) {
+	global $wgDBname, $wgMemc;
+	$key = "$wgDBname:stats:$key";
+	if ( is_null( $wgMemc->incr( $key ) ) ) {
+		$wgMemc->add( $key, 1 );
+	}
+}
+
 ?>

@@ -152,6 +152,11 @@ class Image
 				$this->imagePath = $this->getFullPath();
 			}
 		}
+		if ( $this->dataLoaded ) {
+			wfIncrStats( 'image_cache_hit' );
+		} else {
+			wfIncrStats( 'image_cache_miss' );
+		}
 
 		wfProfileOut( $fname );
 		return $this->dataLoaded;
