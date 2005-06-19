@@ -98,7 +98,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgDBname;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
 		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -153,7 +153,7 @@ class RecentChange
 		if ( $wgRC2UDPAddress ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if ( $conn ) {
-				$line = "#$wgDBname\t" . $this->getIRCLine();
+				$line = $wgRC2UDPPrefix . $this->getIRCLine();
 				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
 				socket_close( $conn );
 			}
