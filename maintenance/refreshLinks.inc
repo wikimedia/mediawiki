@@ -59,22 +59,6 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 	}
 }
 
-function waitForSlaves( $maxLag ) {
-	global $wgLoadBalancer;
-	if ( $maxLag ) {
-		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		$name = @gethostbyaddr( $host );
-		if ( $name !== false ) {
-			$host = $name;
-		}
-		while ( $lag > $maxLag ) {
-			print "Waiting for $host (lagged $lag seconds)...\n";
-			sleep($maxLag);
-			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
-		}
-	}
-}
-
 function fixLinksFromArticle( $id ) {
 	global $wgUser, $wgTitle, $wgArticle, $wgEnablePersistentLC, $wgLinkCache, $wgOut;
 	
@@ -117,9 +101,11 @@ function fixLinksFromArticle( $id ) {
 	$dbw->immediateCommit();
 }
 
-function deleteLinksFromNonexistent() {
+function deleteLinksFromNonexistent( $maxLag = 0 ) {
 	$fname = 'deleteLinksFromNonexistent';
 	
+	wfWaitForSlaves( $maxLag );
+
 	$dbw =& wfGetDB( DB_WRITE );
 	
 	$linksTables = array( 
@@ -130,6 +116,7 @@ function deleteLinksFromNonexistent() {
 	);
 
 	$cur = $dbw->tableName( 'cur' );
+
 
 	foreach ( $linksTables as $table => $field ) {
 		if ( !$dbw->ping() ) {

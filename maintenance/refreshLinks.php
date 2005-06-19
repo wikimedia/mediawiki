@@ -22,6 +22,6 @@ if ( !$options['dfn-only'] ) {
 
 	refreshLinks( $start, $options['new-only'], $options['m'] );
 }
-deleteLinksFromNonexistent();
+deleteLinksFromNonexistent( $options['m'] );
 
 ?>
