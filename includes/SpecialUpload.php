@@ -99,8 +99,7 @@ class UploadForm {
 		}
 
 		/** Various rights checks */
-		if( ( $wgUser->isAnon() )
-			 OR $wgUser->isBlocked() ) {
+		if( !$wgUser->isAllowed( 'upload' ) || $wgUser->isBlocked() ) {
 			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}

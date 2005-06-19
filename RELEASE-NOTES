@@ -300,6 +300,8 @@ Various bugfixes, small features, and a few experimental things:
 * badaccess/badaccesstext to supercede sysop*, developer* messages
 * Changed $wgGroupPermissions to more cut-n-paste-friendly format
 * 'developer' group deprecated by default
+* Special:Upload now uses 'upload' permission instead of hardcoding login check
+* Add 'importupload' permission to disable direct uploads to Special:Import
 
 
 === Caveats ===

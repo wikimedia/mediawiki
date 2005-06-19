@@ -1656,6 +1656,7 @@ article [[Train]].
 'importnotext'	=> 'Empty or no text',
 'importsuccess'	=> 'Import succeeded!',
 'importhistoryconflict' => 'Conflicting history revision exists (may have imported this page before)',
+'importnosources' => 'No transwiki import sources have been defined and direct history uploads are disabled.',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',

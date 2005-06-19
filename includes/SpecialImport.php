@@ -29,7 +29,7 @@ require_once( 'WikiError.php' );
  * Constructor
  */
 function wfSpecialImport( $page = '' ) {
-	global $wgOut, $wgLang, $wgRequest, $wgTitle;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgTitle;
 	global $wgImportSources;
 	
 	###
@@ -42,7 +42,11 @@ function wfSpecialImport( $page = '' ) {
 		
 		switch( $wgRequest->getVal( "source" ) ) {
 		case "upload":
-			$result = $importer->setupFromUpload( "xmlimport" );
+			if( $wgUser->isAllowed( 'importupload' ) ) {
+				$result = $importer->setupFromUpload( "xmlimport" );
+			} else {
+				return $wgOut->permissionRequired( 'importupload' );
+			}
 			break;
 		case "interwiki":
 			$result = $importer->setupFromInterwiki(
@@ -68,9 +72,11 @@ function wfSpecialImport( $page = '' ) {
 		}
 	}
 	
-	$wgOut->addWikiText( "<p>" . wfMsg( "importtext" ) . "</p>" );
 	$action = $wgTitle->escapeLocalUrl( 'action=submit' );
-	$wgOut->addHTML( "
+	
+	if( $wgUser->isAllowed( 'importupload' ) ) {
+		$wgOut->addWikiText( "<p>" . wfMsg( "importtext" ) . "</p>" );
+		$wgOut->addHTML( "
 <fieldset>
 	<legend>Upload XML</legend>
 	<form enctype='multipart/form-data' method='post' action=\"$action\">
@@ -82,7 +88,12 @@ function wfSpecialImport( $page = '' ) {
 	</form>
 </fieldset>
 " );
-
+	} else {
+		if( empty( $wgImportSources ) ) {
+			$wgOut->addWikiText( wfMsg( 'importnosources' ) );
+		}
+	}
+	
 	if( !empty( $wgImportSources ) ) {
 		$wgOut->addHTML( "
 <fieldset>
