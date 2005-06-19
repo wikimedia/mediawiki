@@ -72,13 +72,13 @@ class Image
 		if ( !$recache ) {
 			$cachedValues = $wgMemc->get( $cacheKey );
 
-			if (!empty($cachedValues) && is_array($cachedValues)) {
+			if (!empty($cachedValues) && is_array($cachedValues) && $cachedValues['fileExists']) {
 				wfIncrStats( "image_cache_hit" );
 				if ($wgUseSharedUploads && $cachedValues['fromShared']) {
 					# if this is shared file, we need to check if image
 					# in shared repository has not changed
 					$commonsCachedValues = $wgMemc->get( "$wgSharedUploadDBname:image:".$hashedName );
-					if (!empty($commonsCachedValues) && is_array($commonsCachedValues)) {
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues) && $commonsCachedValues['fileExists']) {
 						$this->name = $commonsCachedValues['name'];
 						$this->imagePath = $commonsCachedValues['imagePath'];
 						$this->fileExists = $commonsCachedValues['fileExists'];
