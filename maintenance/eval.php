@@ -17,6 +17,7 @@
  */
 
 $wgForceLoadBalancing = (getenv('MW_BALANCE') ? true : false);
+$wgUseNormalUser = (getenv('MW_WIKIUSER') ? true : false);
 
 /** */
 require_once( "commandLine.inc" );
