@@ -5,7 +5,7 @@
  */
 
 /** */
-require_once( 'includes/Revision.php' );
+require_once( 'Revision.php' );
 
 /** @todo document */
 function compressOldPages( $start = 0 ) {
@@ -64,21 +64,30 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
 	
+	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 
-	# First get a list of all pages
-	$pageRes = $dbw->select( 'page', 'page_id', false, $fname );
+	# Get all articles by page_id
+	$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', $fname );
+	$pageConds = array();
 
-	# For each of those, get a list of revisions which fit the criteria
-	$conds = array();
+	if ( $exclude_ns0 ) {
+		print "Excluding main namespace\n";
+		$pageConds[] = 'page_namespace<>0';
+	}
+	if ( $queryExtra ) {
+                $pageConds[] = $queryExtra;
+	}
+
+	# For each article, get a list of revisions which fit the criteria
+	# No recompression, use a condition on old_flags
+	$conds = array("old_flags NOT LIKE '%object%'");
+	
 	if ( $beginDate ) {
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
 	} 
 	if ( $endDate )  {
 		$conds[] = "rev_timestamp<'" . $endDate . "'";
-	}
-	if ( $startId ) {
-		$conds[] = 'rev_id>=' . $startId;
 	}
 	if ( $loadStyle == LS_CHUNKED ) {
 		$tables = array( 'revision', 'text' );
@@ -91,10 +100,20 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$revLoadOptions = array();
 	}
 
-	while ( $pageRow = $dbw->fetchObject( $pageRes ) ) {
+	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
+	$totalMatchingRevisions = 0;
+	$masterPos = false;
+	for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
+		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'), 
+			$pageConds + array('page_id' => $pageId), $fname );
+		if ( $dbr->numRows( $pageRes ) == 0 ) {
+			continue;
+		}
+		$pageRow = $dbr->fetchObject( $pageRes );
+
 		# Display progress
-		$titleObj = Title::makeTitle( $pageRow->cur_namespace, $pageRow->cur_title );
-		print $titleObj->getPrefixedDBkey() . " ";
+		$titleObj = Title::makeTitle( $pageRow->page_namespace, $pageRow->page_title );
+		print "$pageId\t" . $titleObj->getPrefixedDBkey() . " ";
 
 		# Load revisions
 		$revRes = $dbw->select( $tables, $fields,
@@ -193,7 +212,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 								'old_text' => $stubs[$j],
 								'old_flags' => 'object',
 							), array( /* WHERE */
-								'old_id' => $revs[$i + $j]->old_id
+								'old_id' => $revs[$i + $j]->rev_text_id
 							)
 						);
 					}
