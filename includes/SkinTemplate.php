@@ -623,7 +623,7 @@ class SkinTemplate extends Skin {
 			$content_actions['article'] = array(
 				'class' => 'selected',
 				'text' => wfMsg('specialpage'),
-				'href' => false
+				'href' => $wgTitle->getLocalUrl(), // @bug 2457
 			);
 		}
 
