@@ -62,6 +62,15 @@ foreach ( $wgQueryPages as $page ) {
 			# Commit the results
 			$dbw->immediateCommit();
 		}
+
+		# Wait for the slave to catch up
+		$slaveDB =& wfGetDB( DB_SLAVE, array('QueryPage::recache', 'vslow' ) );
+		while( $slaveDB->getLag() > 600 ) {
+			print "Slave lagged, waiting...\n";
+			sleep(30);
+
+		}
+
 	} else {
 		print "cheap, skipped\n";
 	}
