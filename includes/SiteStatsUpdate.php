@@ -11,39 +11,73 @@
  */
 class SiteStatsUpdate {
 
-	var $mViews, $mEdits, $mGood;
+	var $mViews, $mEdits, $mGood, $mPages, $mUsers;
 
-	function SiteStatsUpdate( $views, $edits, $good ) {
+	function SiteStatsUpdate( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->mViews = $views;
 		$this->mEdits = $edits;
 		$this->mGood = $good;
+		$this->mPages = $pages;
+		$this->mUsers = $users;
 	}
 
+	function appendUpdate( &$sql, $field, $delta ) {
+		if ( $delta ) {
+			if ( $sql ) {
+				$sql .= ',';
+			}
+			if ( $delta < 0 ) {
+				$sql .= "$field=$field-1";
+			} else {
+				$sql .= "$field=$field+1";
+			}
+		}
+	}
+	
 	function doUpdate() {
-		$a = array();
+		global $wgDBname;
+		$fname = 'SiteStatsUpdate::doUpdate';
+		$dbw =& wfGetDB( DB_MASTER );
 
-		if ( $this->mViews < 0 ) { $m = '-1'; }
-		else if ( $this->mViews > 0 ) { $m = '+1'; }
-		else $m = '';
-		array_push( $a, "ss_total_views=(ss_total_views$m)" );
+		# First retrieve the row just to find out which schema we're in
+		$row = $dbw->selectRow( 'site_stats', '*', false, $fname );
 
-		if ( $this->mEdits < 0 ) { $m = '-1'; }
-		else if ( $this->mEdits > 0 ) { $m = '+1'; }
-		else $m = '';
-		array_push( $a, "ss_total_edits=(ss_total_edits$m)" );
+		$updates = '';
+		
+		$this->appendUpdate( $updates, 'ss_total_views', $this->mViews );
+		$this->appendUpdate( $updates, 'ss_total_edits', $this->mEdits );
+		$this->appendUpdate( $updates, 'ss_good_articles', $this->mGood );
 
-		if ( $this->mGood < 0 ) { $m = '-1'; }
-		else if ( $this->mGood > 0 ) { $m = '+1'; }
-		else $m = '';
-		array_push( $a, "ss_good_articles=(ss_good_articles$m)" );
+		if ( isset( $row->ss_total_pages ) ) {
+			# Update schema if required
+			if ( $row->ss_total_pages == -1 && !$this->mViews ) {
+				$dbr =& wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
+				extract( $dbr->tableNames( 'page', 'user' ) );
 
-		$db =& wfGetDB( DB_MASTER );
-		$site_stats = $db->tableName( 'site_stats' );
-		$lowpri = $db->lowPriorityOption();
+				$sql = "SELECT COUNT(page_namespace) AS total FROM $page";
+				$res = $dbr->query( $sql, $fname );
+				$pageRow = $dbr->fetchObject( $res );
+				$pages = $pageRow->total + $this->mPages;
 
-		$sql = "UPDATE $lowpri $site_stats SET " . implode ( ',', $a ) .
-		  ' WHERE ss_row_id=1';
-		$db->query( $sql, 'SiteStatsUpdate::doUpdate' );
+				$sql = "SELECT COUNT(user_id) AS total FROM $user";
+				$res = $dbr->query( $sql, $fname );
+				$userRow = $dbr->fetchObject( $res );
+				$users = $userRow->total + $this->mUsers;
+				
+				if ( $updates ) {
+					$updates .= ',';
+				}
+				$updates .= "ss_total_pages=$pages, ss_users=$users";
+			} else {	
+				$this->appendUpdate( $updates, 'ss_total_pages', $this->mPages );
+				$this->appendUpdate( $updates, 'ss_users', $this->mUsers );
+			}
+		}
+		if ( $updates ) {
+			$site_stats = $dbw->tableName( 'site_stats' );
+			$sql = "UPDATE $site_stats SET $updates LIMIT 1";
+			$dbw->query( $sql, $fname );
+		}
 	}
 }
 ?>
