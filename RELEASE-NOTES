@@ -298,6 +298,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2277) Added Friulian language file
 * Less gratuitous munging of content sample in delete summary
 * badaccess/badaccesstext to supercede sysop*, developer* messages
+* Changed $wgGroupPermissions to more cut-n-paste-friendly format
+* 'developer' group deprecated by default
 
 
 === Caveats ===

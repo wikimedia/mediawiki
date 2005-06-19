@@ -46,7 +46,7 @@ $wgWhitelistAccount has been replaced by the 'createaccount' permission
 key in $wgGroupPermissions. To emulate the old effect of setting:
   $wgWhitelistAccount['user'] = 0;
 set:
-  $wgGroupPermissions['*'] = array( 'read' ); // without createaccount
+  $wgGroupPermissions['*']['createaccount'] = false;
 
 If $wgWhitelistRead is set, things need to be funked around. This needs work.
 

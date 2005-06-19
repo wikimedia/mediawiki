@@ -679,16 +679,35 @@ $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
  * combined with the permissions of all groups that a given user is listed
  * in in the user_groups table.
  */
-$wgGroupPermissions = array(
-	'*'          => array( 'read', 'createaccount' ),
-	'user'       => array( 'read', 'move' ),
-	
-	'bot'        => array( 'bot' ),
-	'sysop'      => array( 'createaccount', 'patrol', 'protect', 'delete',
-	                       'rollback', 'block', 'editinterface' ),
-	'bureaucrat' => array( 'userrights' ),
-	'developer'  => array( 'siteadmin' ),
-);
+$wgGroupPermissions = array();
+
+$wgGroupPermissions['*'    ]['createaccount']   = true;
+$wgGroupPermissions['*'    ]['read']            = true;
+
+$wgGroupPermissions['user' ]['move']            = true;
+$wgGroupPermissions['user' ]['read']            = true;
+
+$wgGroupPermissions['bot'  ]['bot']             = true;
+
+$wgGroupPermissions['sysop']['block']           = true;
+$wgGroupPermissions['sysop']['createaccount']   = true;
+$wgGroupPermissions['sysop']['delete']          = true;
+$wgGroupPermissions['sysop']['editinterface']   = true;
+$wgGroupPermissions['sysop']['import']          = true;
+$wgGroupPermissions['sysop']['importraw']       = true;
+$wgGroupPermissions['sysop']['patrol']          = true;
+$wgGroupPermissions['sysop']['protect']         = true;
+$wgGroupPermissions['sysop']['rollback']        = true;
+
+$wgGroupPermissions['bureaucrat']['userrights'] = true;
+
+/**
+ * The developer group is deprecated, but can be activated if need be
+ * to use the 'lockdb' and 'unlockdb' special pages. Those require
+ * that a lock file be defined and creatable/removable by the web
+ * server.
+ */
+# $wgGroupPermissions['developer']['siteadmin'] = true;
 
 
 

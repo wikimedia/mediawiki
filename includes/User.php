@@ -1578,7 +1578,8 @@ class User {
 		$rights = array();
 		foreach( $groups as $group ) {
 			if( isset( $wgGroupPermissions[$group] ) ) {
-				$rights = array_merge( $rights, $wgGroupPermissions[$group] );
+				$rights = array_merge( $rights,
+					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
 			}
 		}
 		return $rights;
