@@ -72,7 +72,6 @@ $wgSpecialPages = array(
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
-	// 'Groups'		=> new SpecialPage( 'Groups' ), # currently borken
 );
 
 global $wgUseValidation ;
@@ -360,11 +359,7 @@ class SpecialPage
 	 */
 	function displayRestrictionError() {
 		global $wgOut;
-		if ( $this->mRestriction == "developer" ) {
-			$wgOut->developerRequired();
-		} else {
-			$wgOut->sysopRequired();
-		}
+		$wgOut->permissionRequired( $this->mRestriction );
 	}
 
 	/**

@@ -531,6 +531,29 @@ class OutputPage {
 		wfErrorExit();
 	}
 
+	/**
+	 * Display an error page noting that a given permission bit is required.
+	 * This should generally replace the sysopRequired, developerRequired etc.
+	 * @param string $permission key required
+	 */
+	function permissionRequired( $permission ) {
+		global $wgUser;
+
+		$this->setPageTitle( wfMsg( 'badaccess' ) );
+		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
+		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+		$this->mBodytext = '';
+
+		$sk = $wgUser->getSkin();
+		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ) );
+		$this->addHTML( wfMsgHtml( 'badaccesstext', $ap, $permission ) );
+		$this->returnToMain();
+	}
+	
+	/**
+	 * @deprecated
+	 */
 	function sysopRequired() {
 		global $wgUser;
 
@@ -542,10 +565,13 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
-		$this->addHTML( wfMsg( 'sysoptext', $ap ) );
+		$this->addHTML( wfMsgHtml( 'sysoptext', $ap ) );
 		$this->returnToMain();
 	}
 
+	/**
+	 * @deprecated
+	 */
 	function developerRequired() {
 		global $wgUser;
 
@@ -557,7 +583,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
-		$this->addHTML( wfMsg( 'developertext', $ap ) );
+		$this->addHTML( wfMsgHtml( 'developertext', $ap ) );
 		$this->returnToMain();
 	}
 
