@@ -437,7 +437,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   -- See isCountable() in includes/Article.php
   ss_good_articles bigint(20) unsigned default '0',
   
-  -- Total pages, theoretically equal to SELECT COUNT(*) FROM cur; except faster
+  -- Total pages, theoretically equal to SELECT COUNT(*) FROM page; except faster
   ss_total_pages bigint(20) default -1,
 
   -- Number of users, theoretically equal to SELECT COUNT(*) FROM user;
@@ -453,8 +453,8 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 --
 -- Stores an ID for every time any article is visited;
 -- depending on $wgHitcounterUpdateFreq, it is
--- periodically cleared and the cur_counter column
--- in the cur table updated for the all articles
+-- periodically cleared and the page_counter column
+-- in the page table updated for the all articles
 -- that have been visited.)
 --
 CREATE TABLE /*$wgDBprefix*/hitcounter (
