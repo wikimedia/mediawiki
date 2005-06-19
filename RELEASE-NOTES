@@ -298,6 +298,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2277) Added Friulian language file
 * (bug 2457) The "Special page" href now links to the current special page
   rather than to "".
+* Special:Imagelist displays titles with " " instead of "_"
 * Less gratuitous munging of content sample in delete summary
 * badaccess/badaccesstext to supercede sysop*, developer* messages
 * Changed $wgGroupPermissions to more cut-n-paste-friendly format
