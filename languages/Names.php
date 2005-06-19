@@ -136,7 +136,7 @@
 	'ng' => 'Oshiwambo',		# Ndonga
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => 'Norsk (nynorsk)'	,	# Norwegian (Nynorsk)
-	'no' => 'Norsk',		# Norwegian
+	'no' => 'Norsk (bokmål)',		# Norwegian
 	'non' => 'Norrǿna',		# Old Norse
 	'nv' => 'Diné bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
