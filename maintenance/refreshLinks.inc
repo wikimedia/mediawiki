@@ -36,7 +36,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
 				print "$i\n";
-				waitForSlaves( $maxLag );
+				wfWaitForSlaves( $maxLag );
 			}
 
 			fixLinksFromArticle( $row->cur_id );
@@ -50,7 +50,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 			
 			if ( !($id % REPORTING_INTERVAL) ) {
 				print "$id\n";
-				waitForSlaves( $maxLag );
+				wfWaitForSlaves( $maxLag );
 			}
 			fixLinksFromArticle( $id );
 		}
