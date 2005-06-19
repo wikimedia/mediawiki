@@ -64,37 +64,20 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$dbw =& wfGetDB( DB_MASTER );
 	$dbr =& wfGetDB( DB_SLAVE ); 
 
-	# First get a list of all pages
-	
-	if ( $beginTitle ) {
-		$cond = "cur_title >= " . $dbr->addQuotes( $beginTitle );
-		print  "Starting from $beginTitle\n";
-		if ( $exclude_ns0 ) {
-			print "Excluding main namespace\n";
-			$cond .= ' AND cur_namespace<>0';
-		}
+	# Get all articles by cur_id
+	$maxCurId = $dbr->selectField( 'cur', 'max(cur_id)', '', $fname );
+	$curConds = array();
 
-	} else {
-		if ( $exclude_ns0 ) {
-			print "Excluding main namespace\n";
-			$cond = 'cur_namespace<>0';
-		} else {
-			$cond = false;
-		}
+	if ( $exclude_ns0 ) {
+		print "Excluding main namespace\n";
+		$curConds[] = 'cur_namespace<>0';
 	}
-
 	if ( $queryExtra ) {
-		if ( strlen($cond) > 0 ) $cond .= " AND ";
-                $cond .= $queryExtra;
+                $curConds[] = $queryExtra;
 	}
-	
-	print "Starting article selection query $cond ...\n";
-	$pageRes = $dbr->select( 'cur', array('cur_namespace', 'cur_title'), 
-		$cond, $fname, array( 'ORDER BY' => 'cur_title' ) );
-	
-	print "Found " . $dbr->numRows( $pageRes ) . "\n";
 
-	# For each of those, get a list of revisions which fit the criteria
+
+	# For each article, get a list of revisions which fit the criteria
 	# No recompression, use a condition on old_flags
 	$conds = array("old_flags NOT LIKE '%object%'");
 	if ( $beginDate ) {
@@ -102,9 +85,6 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	} 
 	if ( $endDate )  {
 		$conds[] = "old_timestamp<'" . $endDate . "'";
-	}
-	if ( $startId ) {
-		$conds[] = 'old_id>=' . $startId;
 	}
 	if ( $loadStyle == LS_CHUNKED ) {
 		$fields = array( 'old_id', 'old_flags', 'old_text' );
@@ -117,10 +97,17 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
 	$totalMatchingRevisions = 0;
 	$masterPos = false;
-	while ( $pageRow = $dbr->fetchObject( $pageRes ) ) {
+	for ( $curId = $startId; $curId <= $maxCurId; $curId++ ) {
+		$pageRes = $dbr->select( 'cur', array('cur_namespace', 'cur_title'), 
+			$curConds + array('cur_id' => $curId), $fname );
+		if ( $dbr->numRows( $pageRes ) == 0 ) {
+			continue;
+		}
+		$pageRow = $dbr->fetchObject( $pageRes );
+
 		# Display progress
 		$titleObj = Title::makeTitle( $pageRow->cur_namespace, $pageRow->cur_title );
-		print $titleObj->getPrefixedDBkey() . " ";
+		print "$curId\t" . $titleObj->getPrefixedDBkey() . " ";
 
 		# Load revisions
 		$revRes = $dbw->select( 'old', $fields,
