@@ -18,6 +18,7 @@ define("MEDIAWIKI",true);
 # $options becomes an array with keys set to the option names
 # $optionsWithArgs is an array of GNU-style options that take an argument. The arguments are returned
 # in the values of $options.
+# $args becomes a zero-based array containing the non-option arguments
 
 if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = array();
@@ -129,7 +130,10 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	require_once( "$IP/includes/Defines.php" );
 	require_once( $settingsFile );
 	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
-	require_once( "$IP/AdminSettings.php" );
+	
+	if ( is_readable( "$IP/AdminSettings.php" ) ) {
+		require_once( "$IP/AdminSettings.php" );
+	}
 }
 
 # Turn off output buffering again, it might have been turned on in the settings files
@@ -139,9 +143,43 @@ $wgCommandLineMode = true;
 $wgDBuser = $wgDBadminuser;
 $wgDBpassword = $wgDBadminpassword;
 
+if ( !empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
+	$wgDBuser = $wgDBadminuser;
+	$wgDBpassword = $wgDBadminpassword;
+
+	foreach ( $wgDBservers as $i => $server ) {
+		$wgDBservers[$i]['user'] = $wgDBuser;
+		$wgDBservers[$i]['password'] = $wgDBpassword;
+	}
+}
+
+ini_set( 'memory_limit', -1 );
 
 require_once( "Setup.php" );
 require_once( "install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );
 set_time_limit(0);
+
+// --------------------------------------------------------------------
+// Functions
+// --------------------------------------------------------------------
+
+function wfWaitForSlaves( $maxLag ) {
+	global $wgLoadBalancer;
+	if ( $maxLag ) {
+		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		while ( $lag > $maxLag ) {
+			$name = @gethostbyaddr( $host );
+			if ( $name !== false ) {
+				$host = $name;
+			}
+			print "Waiting for $host (lagged $lag seconds)...\n";
+			sleep($maxLag);
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		}
+	}
+}
+
+
+
 ?>

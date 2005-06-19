@@ -1447,7 +1447,12 @@ class Database {
 	 * Ping the server and try to reconnect if it there is no connection
 	 */
 	function ping() {
-		return mysql_ping( $this->mConn );
+		if( function_exists( 'mysql_ping' ) ) {
+			return mysql_ping( $this->mConn );
+		} else {
+			wfDebug( "Tried to call mysql_ping but this is ancient PHP version. Faking it!\n" );
+			return true;
+		}
 	}
 	
 	/**
