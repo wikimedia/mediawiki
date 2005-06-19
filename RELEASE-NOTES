@@ -11,6 +11,8 @@ New covering index was added on cur for query speedups.
 At the moment this WILL BREAK THINGS if you upgrade the code without
 running database updates. That's bad.
 
+* (bug 2457) The "Special page" href now links to the current special page
+  rather than to ""
 
 == MediaWiki 1.4.5 ==
 
