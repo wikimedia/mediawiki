@@ -309,6 +309,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2459) Correct escaping in Special:Log prev/next links
 * (bug 2462 etc) Taking out the experimental dash conversion; it broke too many
   things for the current parser to handle cleanly
+* (bug 2467) Added a Turkish language file
 
 
 === Caveats ===
