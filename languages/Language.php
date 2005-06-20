@@ -254,7 +254,7 @@ global $wgRightsText;
 # The navigation toolbar, int: is used here to make sure that the appropriate
 # messages are automatically pulled from the user-selected language file.
 
-'sidebar' => "
+/* 
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
 do not contain | are also discarded, but don't depend on this behaviour for
@@ -265,7 +265,8 @@ XHTML id names.
 Note to translators: Do not include this message in the language files you
 submit for inclusion in MediaWiki, it should always be inherited from the
 parent class in order maintain consistency across languages.
-
+*/
+'sidebar' => '
 * navigation
 ** mainpage|mainpage
 ** portal-url|portal
@@ -274,7 +275,7 @@ parent class in order maintain consistency across languages.
 ** randompage-url|randompage
 ** helppage|help
 ** sitesupport-url|sitesupport
-",
+',
 
 # User preference toggles
 'tog-underline' => 'Underline links',
