@@ -134,7 +134,6 @@ $wgValidationTypesNn = array (
 /* private */ $wgAllMessagesNn = array(
 
 # User preference toggles
-'tog-hover'               => 'Vis svevetekst over wikilenkjer',
 'tog-underline'           => 'Understrek lenkjer',
 'tog-highlightbroken'     => 'Formatér lenkjer til tomme sider <a href="" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
 'tog-justify'	          => 'Blokkjusterte avsnitt',
@@ -358,7 +357,6 @@ Sletta oppføringar kan vanlegvis attopprettast.
 'formerror'		  => 'Feil: Kunne ikkje sende skjema',	
 'badarticleerror'         => 'Handlinga kan ikkje utførast på denne sida.',
 'cannotdelete'	          => 'Kunne ikkje slette fila. (Ho kan vera sletta av andre.)',
-'block_compress_delete'   => 'Sida kan ikkje slettast fordi den har blokk-komprimerte versjonar. Dette er ein mellombels situasjon som utviklarane er klar over, og burde vera ordna innan ein månad eller to. Du kan merka sida for sletting og venta på at utviklarane fiksar feilen.',
 'badtitle'	 	  => 'Feil i tittel',
 'badtitletext'	          => 'Den ønska tittelen var ulovleg, tom, eller er feil lenka frå ei anna wiki.',
 'perfdisabled'            => 'Beklagar! Denne funksjonen er mellombels deaktivert for å spare tenarkapasitet.',
@@ -403,8 +401,6 @@ Brukarkontoen din har blitt oppretta. Det er tilrådd at du ser gjennom brukarin
 'yourvariant'             => 'Språkvariant',
 'yournick'		  => 'Kallenamn (for signaturar)',
 'emailforlost'	          => 'Felt merkte med ei stjerne (*) er valfrie. E-postadressa gjer det mogleg for andre brukarar å ta kontakt med deg utan at du offentleggjer ho. Ho kan òg brukast til å sende deg nytt passord. Ditt verkelege namn, dersom du vel å fylle ut dette feltet, vil bli brukt til å godskrive arbeid du har gjort.<br /><br />',
-'prefs-help-userdata'     => '* <strong>Verkeleg namn</strong> (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.<br />
-* <strong>E-post</strong> (valfritt): Gjer det mogleg for andre brukarar å ta kontakt med deg utan at du offentleggjer adressa. Ho kan òg brukast til å sende deg nytt passord.',
 'loginerror'	          => 'Innloggingsfeil',
 'nocookiesnew'	          => 'Brukarkontoen vart oppretta, men du er ikkje innlogga. {{SITENAME}} bruker informasjonskapslar for å logge inn brukarar,
 nettlesaren din er innstilt for ikkje å godta desse. Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskapslar, kan du logge inn med det nye brukarnamnet og passordet ditt.',
@@ -417,8 +413,6 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'nosuchusershort'         => 'Det er ingen brukar med "$1" som brukarnamn. Sjekk at du har skrive rett.',
 'wrongpassword'	          => 'Du har gjeve eit ugyldig passord. Prøv om att.',
 'mailmypassword'          => 'Send meg nytt passord',
-'passwordremindertitle'   => 'Nytt passord til {{SITENAME}}',
-'passwordremindertext'    => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}}. Passordet for brukaren "$2" er no "$3". Du bør logge inn og endre passordet så snart som råd.',
 'noemail'	       	  => 'Det er ikkje registrert noka e-postadresse for brukaren "$1".',
 'passwordsent'	          => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren "$1". Du bør logge inn og endre passordet så snart som råd.',
 'loginend'		  => '&nbsp;',
@@ -581,7 +575,6 @@ er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><b
 Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstillingane.',
 'prefsreset'	        => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'	        => 'Snøggmeny',
-'qbsettingsnote'	=> 'Denne innstillinga har berre effekt på "Klassisk" og "Kölnerblå" draktene.',
 'changepassword'        => 'Skift passord',
 'skin'			=> 'Drakt',
 'math'			=> 'Matematiske formlar',
@@ -627,28 +620,16 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 #
 
 # switching pan
-'userlevels-lookup-group' => 'Administrer gruppetilgang',
-'userlevels-group-edit' => 'Eksisterande grupper: ',
 'editgroup'             => 'Redigér gruppe',
 'addgroup'              => 'Legg til gruppe',
 
-'userlevels-lookup-user' => 'Administrer brukargrupper',
-'userlevels-user-editname' => 'Skriv inn brukarnamn: ',
 'editusergroup'         => 'Redigér brukargrupper',
 
 # group editing
-'userlevels-editgroup'  => 'Redigér gruppe',
-'userlevels-addgroup'   => 'Legg til gruppe',
-'userlevels-editgroup-name' => 'Gruppenamn: ',
-'userlevels-editgroup-description' => 'Gruppebeskriving (maks 255 teikn):<br />',
 'savegroup'             => 'Lagre gruppe',
 
 # user groups editing
-'userlevels-editusergroup' => 'Redigér brukargrupper',
 'saveusergroups'        => 'Lagre brukargrupper',
-'userlevels-groupsmember' => 'Medlem av:',
-'userlevels-groupsavailable' => 'Tilgjengelege grupper:',
-'userlevels-groupshelp' => 'Velj grupper du vil at brukaren skal fjernast frå eller leggjast til. Grupper som ikkje er valde vil ikkje bli endra. Du kan velje vekk ei gruppe med "CTRL + venstreklikk"',
 
 # Recent changes
 #
@@ -674,7 +655,6 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'minoreditletter'       => 'u',
 'newpageletter'         => 'n',
 'sectionlink'           => '&rarr;',
-'undo'                  => 'attende',
 
 # Upload
 #
@@ -828,7 +808,6 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 'booksources'	        => 'Bokkjelder',
 'categoriespagetext'    => 'Wikien har følgjande kategoriar.',
 'data'                  => 'Data',
-'userlevels'            => 'Administrering av brukartilgang',
 'booksourcetext'        => 'Her er ei liste over lenkjer til internettsider som låner ut og/eller sel nye og/eller brukte bøker, og som kanskje har meir informasjon om bøker du leitar etter. {{SITENAME}} er ikkje nødvendigvis assosiert med nokon av desse sidene, og lista er <b>ikkje</b> å rekne som ei spesifikk tilråding om å bruke dei.',
 'isbn'	                => 'ISBN',
 'rfcurl'                => 'http://www.ifi.uio.no/doc/rfc/rfc$1.txt',
@@ -990,7 +969,6 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [[Help:B
 'ipbreason'		=> 'Grunngjeving',
 'ipbsubmit'		=> 'Blokkér denne brukaren',
 'badipaddress'	        => 'IP-adressa var ugyldig eller brukarblokkering er deaktivert på tenaren.',
-'noblockreason'         => 'Du må gje ein grunn for blokkeringa.',
 'blockipsuccesssub'     => 'Blokkering utført',
 'blockipsuccesstext'    => '"$1" er blokkert.<br />Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
 'unblockip'		=> 'Opphev blokkering',
@@ -1329,16 +1307,6 @@ class LanguageNn extends LanguageUtf8 {
 	{
 		global $wgMagicWordsNn;
 		return $wgMagicWordsNn;
-	}
-
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesNn;
-
-		foreach ( $wgNamespaceNamesNn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
 	}
 
 	function date( $ts, $adj = false )
