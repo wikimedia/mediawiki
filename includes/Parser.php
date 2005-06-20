@@ -1889,7 +1889,7 @@ class Parser
 				return $wgSitename;
 			case MAG_SERVER:
 				return $wgServer;
-			case MAG_PATH:
+			case MAG_SCRIPTPATH:
 				return $wgScriptPath;
 			default:
 				return NULL;
