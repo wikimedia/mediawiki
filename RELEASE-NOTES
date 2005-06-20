@@ -16,6 +16,7 @@ running database updates. That's bad.
   tag on a page that included a gallery through a template (backported from HEAD)
 * (bug 2457) The "Special page" href now links to the current special page
   rather than to ""
+* (bug 2467) Added a Turkish language file
 
 == MediaWiki 1.4.5 ==
 
