@@ -3208,9 +3208,10 @@ class Parser
 	 */
 	function renderImageGallery( $text ) {
 		# Setup the parser
-		global $wgUser, $wgParser, $wgTitle;
+		global $wgUser, $wgTitle;
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
-	
+		$localParser = new Parser();
+	        
 		global $wgLinkCache;
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
@@ -3236,7 +3237,7 @@ class Parser
 				$label = '';
 			}
 			
-			$html = $wgParser->parse( $label , $wgTitle, $parserOptions );
+			$html = $localParser->parse( $label , $wgTitle, $parserOptions );
 			$html = $html->mText;
 			
 			$ig->add( Image::newFromTitle( $nt ), $html );

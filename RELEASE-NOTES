@@ -12,6 +12,8 @@ At the moment this WILL BREAK THINGS if you upgrade the code without
 running database updates. That's bad.
 
 * (bug 1120) Updated the Czech translation
+* (bug 2172) Solved a parsing error that would happen when there was a <nowiki>
+  tag on a page that included a gallery through a template (backported from HEAD)
 * (bug 2457) The "Special page" href now links to the current special page
   rather than to ""
 
