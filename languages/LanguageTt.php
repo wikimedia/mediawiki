@@ -186,16 +186,6 @@ class LanguageTt extends LanguageUtf8 {
 		return $wgNamespaceNamesTt;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesTt;
-
-		foreach ( $wgNamespaceNamesTt as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsTt;
 		return $wgQuickbarSettingsTt;

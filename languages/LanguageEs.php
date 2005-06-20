@@ -1143,16 +1143,6 @@ class LanguageEs extends LanguageUtf8 {
 		return $wgNamespaceNamesEs;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesEs;
-
-		foreach ( $wgNamespaceNamesEs as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsEs;
 		return $wgQuickbarSettingsEs;

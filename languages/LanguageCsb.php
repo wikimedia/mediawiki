@@ -31,17 +31,6 @@ class LanguageCsb extends LanguageUtf8 {
 		global $wgNamespaceNamesCsb;
 		return $wgNamespaceNamesCsb;
 	}
-	
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesCsb;
-
-		foreach ( $wgNamespaceNamesCsb as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 }
 
 ?>

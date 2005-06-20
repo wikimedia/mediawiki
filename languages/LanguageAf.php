@@ -820,16 +820,6 @@ class LanguageAf extends LanguageUtf8 {
 		return $wgNamespaceNamesAf;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesAf;
-
-		foreach ( $wgNamespaceNamesAf as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsAf;
 		return $wgQuickbarSettingsAf;

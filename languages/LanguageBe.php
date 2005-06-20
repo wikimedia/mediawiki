@@ -558,16 +558,6 @@ class LanguageBe extends LanguageUtf8 {
 		return $wgNamespaceNamesBe;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesBe;
-
-		foreach ( $wgNamespaceNamesBe as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	// Quickbar
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsBe;

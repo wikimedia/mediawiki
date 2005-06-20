@@ -780,16 +780,6 @@ class LanguageSc extends LanguageUtf8 {
 		return $wgNamespaceNamesSc;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesSc;
-
-		foreach ( $wgNamespaceNamesSc as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsSc;
 		return $wgQuickbarSettingsSc;

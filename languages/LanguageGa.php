@@ -1412,17 +1412,6 @@ class LanguageGa extends LanguageUtf8 {
 		return $wgNamespaceNamesGa;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesGa;
-
-		foreach ( $wgNamespaceNamesGa as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		/* Fallback to English names for compatibility */
-		return Language::getNsIndex( $text );
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsGa;
 		return $wgQuickbarSettingsGa;

@@ -90,16 +90,6 @@ class LanguageAr extends LanguageUtf8 {
 		return $wgNamespaceNamesAr;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesAr;
-
-		foreach ( $wgNamespaceNamesAr as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return LanguageUtf8::getNsIndex( $text );
-	}
-
 	function getMonthAbbreviation( $key ) {
 		/* No abbreviations in Arabic */
 		return $this->getMonthName( $key );

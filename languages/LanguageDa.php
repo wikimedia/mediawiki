@@ -1078,16 +1078,6 @@ class LanguageDa extends LanguageUtf8 {
 		return $wgNamespaceNamesDa;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesDa;
-
-		foreach ( $wgNamespaceNamesDa as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsDa;
 		return $wgQuickbarSettingsDa;

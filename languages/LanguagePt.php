@@ -939,16 +939,6 @@ class LanguagePt extends LanguageUtf8 {
         return $wgNamespaceNamesPt;
     }
 
-
-    function getNsIndex( $text ) {
-        global $wgNamespaceNamesPt;
-
-        foreach ( $wgNamespaceNamesPt as $i => $n ) {
-            if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-        }
-        return false;
-    }
-
     function getQuickbarSettings() {
         global $wgQuickbarSettingsPt;
         return $wgQuickbarSettingsPt;

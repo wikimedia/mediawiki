@@ -243,17 +243,6 @@ class LanguageOs extends LanguageRu {
                 return $wgNamespaceNamesOs;
         }
 
-
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesOs;
-
-                foreach ( $wgNamespaceNamesOs as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
-
         function getQuickbarSettings() {
                 global $wgQuickbarSettingsOs;
                 return $wgQuickbarSettingsOs;

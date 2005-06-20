@@ -1380,16 +1380,6 @@ class LanguageBg extends LanguageUtf8 {
 		return $wgNamespaceNamesBg;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesBg, $wgNamespaceNamesEn;
-
-		foreach ( $wgNamespaceNamesBg as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsBg;
 		return $wgQuickbarSettingsBg;

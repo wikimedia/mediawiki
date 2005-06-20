@@ -955,21 +955,6 @@ class LanguageMs extends LanguageUtf8 {
 		return $wgNamespaceNamesMs;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesMs;
-
-		foreach ( $wgNamespaceNamesMs as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		# For backwards compatibility
-		global $wgNamespaceNamesEn;
-		foreach ( $wgNamespaceNamesEn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsMs;
 		return $wgQuickbarSettingsMs;

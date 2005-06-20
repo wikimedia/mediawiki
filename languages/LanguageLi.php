@@ -712,16 +712,6 @@ class LanguageLi extends LanguageUtf8 {
 		return $wgNamespaceNamesLi;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesLi;
-
-		foreach ( $wgNamespaceNamesLi as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsLi;
 		return $wgQuickbarSettingsLi;

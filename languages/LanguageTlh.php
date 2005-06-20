@@ -38,16 +38,6 @@ class LanguageTlh extends LanguageUtf8
                 global $wgNamespaceNamesTlh;
                 return $wgNamespaceNamesTlh;
         }
-
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesTlh;
-
-                foreach ( $wgNamespaceNamesTlh as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
 }
 
 ?>

@@ -1037,16 +1037,6 @@ class LanguageNo extends LanguageUtf8 {
 		return $wgNamespaceNamesNo;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesNo;
-
-		foreach ( $wgNamespaceNamesNo as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsNo;
 		return $wgQuickbarSettingsNo;

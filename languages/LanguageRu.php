@@ -1955,17 +1955,6 @@ class LanguageRu extends LanguageUtf8 {
                 return $wgNamespaceNamesRu;
         }
 
-        function getNsIndex( $text ) {
-                $ns = $this->getNamespaces();
-
-		foreach ( $ns as $i => $n ) {
-			if ( strcasecmp( $n, $text ) == 0)
-				return $i;
-		}
-
-                return false;
-        }
-
         function getQuickbarSettings() {
                 global $wgQuickbarSettingsRu;
                 return $wgQuickbarSettingsRu;

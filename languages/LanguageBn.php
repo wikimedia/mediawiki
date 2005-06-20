@@ -134,16 +134,6 @@ class LanguageBn extends LanguageUtf8 {
 		return $wgNamespaceNamesBn;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesBn;
-
-		foreach ( $wgNamespaceNamesBn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return parent::getNsIndex( $text );
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesBn;
 		if(array_key_exists($key, $wgAllMessagesBn)) {

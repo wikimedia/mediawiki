@@ -932,16 +932,6 @@ class LanguageIa extends LanguageUtf8 {
 		return $wgNamespaceNamesIa;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesIa;
-
-		foreach ( $wgNamespaceNamesIa as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsIa;
 		return $wgQuickbarSettingsIa;

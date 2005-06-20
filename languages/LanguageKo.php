@@ -646,16 +646,6 @@ class LanguageKo extends LanguageUtf8 {
 		return $wgNamespaceNamesKo;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesKo;
-
-		foreach ( $wgNamespaceNamesKo as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsKo;
 		return $wgQuickbarSettingsKo;

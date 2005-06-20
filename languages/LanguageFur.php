@@ -297,17 +297,7 @@ class LanguageFur extends LanguageUtf8 {
 		global $wgNamespaceNamesFur;
 		return $wgNamespaceNamesFur;
 	}
-
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesFur, $wgSitename;
-
-		foreach ( $wgNamespaceNamesFur as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
+	
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFur;
 		return $wgQuickbarSettingsFur;
