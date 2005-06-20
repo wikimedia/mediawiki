@@ -317,7 +317,7 @@ Malformed definition list with colon
 !! input
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! result
-<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' title="news:alt.wikipedia.rox" rel="nofollow">news:alt.wikipedia.rox</a>&nbsp;&mdash; don't crash or enter an infinite loop
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free' title="news:alt.wikipedia.rox" rel="nofollow">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
 </dt></dl>
 
 !! end
