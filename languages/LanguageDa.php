@@ -1131,8 +1131,7 @@ class LanguageDa extends LanguageUtf8 {
 	}
 
 	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+		return strtr($number, '.,', ',.' );
 	}
 
 }
