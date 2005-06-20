@@ -73,7 +73,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 		$edit = $skin->makeBrokenLinkObj( $fromObj , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeBrokenLinkObj( $toObj );
 				
-		return "$from $edit → $to";
+		return "$from $edit &rarr; $to";
 	}
 }
 
