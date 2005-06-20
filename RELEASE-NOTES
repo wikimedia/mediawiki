@@ -154,7 +154,6 @@ Various bugfixes, small features, and a few experimental things:
 * support for external editors for files and wiki pages:
   http://meta.wikimedia.org/wiki/Help:External_editors
 * Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
-* New WikiSyntax: -- turns into &mdash; or &ndash; depending on context
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
 * (bug 510): Special:Randompage now works for other namespaces than NS_MAIN.
@@ -307,6 +306,9 @@ Various bugfixes, small features, and a few experimental things:
 * Special:Upload now uses 'upload' permission instead of hardcoding login check
 * Add 'importupload' permission to disable direct uploads to Special:Import
 * (bug 2459) Correct escaping in Special:Log prev/next links
+* (bug 2462 etc) Taking out the experimental dash conversion; it broke too many
+  things for the current parser to handle cleanly
+
 
 === Caveats ===
 

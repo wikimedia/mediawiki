@@ -207,13 +207,6 @@ class Parser
 
 		$this->replaceLinkHolders( $text );
 
-		$dashReplace = array(
-			'/ - /' => "&nbsp;&ndash; ", # N dash
-			'/(?<=[\d])-(?=[\d])/' => "&ndash;", # N dash between numbers
-			'/ -- /' => "&nbsp;&mdash; " # M dash
-		);
-		$text = preg_replace( array_keys($dashReplace), array_values($dashReplace), $text );
-
 		# the position of the convert() call should not be changed. it 
 		# assumes that the links are all replaces and the only thing left 
 		# is the <nowiki> mark.
