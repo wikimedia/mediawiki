@@ -297,6 +297,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2277) Added Friulian language file
 * (bug 2457) The "Special page" href now links to the current special page
   rather than to "".
+* (bug 1120) Updated the Czech translation
 * A new magic word, {{SCRIPTPATH}}, returns $wgScriptPath
 * Special:Imagelist displays titles with " " instead of "_"
 * Less gratuitous munging of content sample in delete summary
