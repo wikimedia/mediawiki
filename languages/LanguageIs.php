@@ -473,8 +473,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 $1<br/>
 $2 Sýna tilvísarnir &nbsp; Leita að $3 $9",
 'preferences' => "Stillingar",
-'prefs-help-userdata' => "* <strong>Nafn</strong> (valfrjálst): Veljir þú að gefa upp nafn þitt verður það notað til að geta heimilda um skrifað efni.<br/>
-* <strong>Tölvupóstfang</strong> (valfrjálst): Gerir öðrum notendum kleyft að hafa samband við þig í gegnum {{SITENAME}} án þess að þú þurfir að gefa upp póstfang þitt, auk þess að vera notað til að senda þér nýtt lykilorð skyldir þú gleyma því gamla.",
 'prefs-misc' => "Aðrar stillingar",
 'prefs-personal' => "Notendaupplýsingar",
 'prefs-rc' => "Nýlegar breytingar og stubbar",
@@ -613,7 +611,6 @@ You might want to check the following regular expression for patterns that are c
 'tog-editwidth' => "Innsláttarsvæði hefur fulla breidd",
 'tog-hideminor' => "Fela minniháttar breytingar",
 'tog-highlightbroken' => "Sýna brotna hlekki <a href=\"\" class=\"new\">svona</a> (annars: svona<a href=\"\" class=\"internal\">?</a>).",
-'tog-hover' => "Sýna hjálpartexta á wiki hlekkjum",
 'tog-justify' => "Jafna málsgreinar",
 'tog-minordefault' => "Láta breytingar vera sjálfgefnar sem minniháttar",
 'tog-nocache' => "Slökkva á flýtivistun síðna",
