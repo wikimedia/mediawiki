@@ -1246,16 +1246,6 @@ class LanguageDe extends LanguageUtf8 {
 		return $wgNamespaceNamesDe;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesDe;
-
-		foreach ( $wgNamespaceNamesDe as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsDe;
 		return $wgQuickbarSettingsDe;

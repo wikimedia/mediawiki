@@ -177,20 +177,6 @@ class LanguageHi extends LanguageUtf8 {
 		return $wgNamespaceNamesHi;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesHi, $wgNamespaceNamesEn;
-
-		foreach ( $wgNamespaceNamesHi as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		# fallback
-		foreach ( $wgNamespaceNamesEn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getMessage( $key )
 	{
 		global $wgAllMessagesHi;

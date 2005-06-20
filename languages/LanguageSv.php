@@ -1028,21 +1028,6 @@ class LanguageSv extends LanguageUtf8 {
 		return $wgNamespaceNamesSv;
 	}
 	
-	
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesSv;
-		
-		foreach ( $wgNamespaceNamesSv as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		
-		// Consider Special: and Speciel: equal... which is preferred?
-		if ( 0 == strcasecmp( "speciel", $text ) ) { return -1; }
-		return false;
-	}
-	
-	// inherit specialPage()
-	
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsSv;
 		return $wgQuickbarSettingsSv;

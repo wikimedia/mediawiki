@@ -291,16 +291,6 @@ class LanguageTh extends LanguageUtf8 {
 		return $wgNamespaceNamesTh;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesTh;
-
-		foreach ( $wgNamespaceNamesTh as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsTh;
 		return $wgQuickbarSettingsTh;

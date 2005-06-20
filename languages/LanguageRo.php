@@ -1268,16 +1268,6 @@ class LanguageRo extends LanguageUtf8 {
 		return $wgNamespaceNamesRo;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesRo;
-
-		foreach ( $wgNamespaceNamesRo as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsRo;
 

@@ -176,16 +176,6 @@ class LanguageNv extends LanguageUtf8 {
 		return $wgNamespaceNamesNv;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesNv;
-
-		foreach ( $wgNamespaceNamesNv as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsNv;
 		return $wgQuickbarSettingsNv;

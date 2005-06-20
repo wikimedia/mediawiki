@@ -1201,15 +1201,6 @@ class LanguageFi extends LanguageUtf8 {
     return $wgNamespaceNamesFi;
   }
 
-  function getNsIndex( $text ) {
-    global $wgNamespaceNamesFi;
-
-    foreach ( $wgNamespaceNamesFi as $i => $n ) {
-      if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-    }
-    return false;
-  }
-
   function getQuickbarSettings() {
     global $wgQuickbarSettingsFi;
     return $wgQuickbarSettingsFi;

@@ -37,16 +37,6 @@ class LanguageKu extends LanguageUtf8
                 global $wgNamespaceNamesKu;
                 return $wgNamespaceNamesKu;
         }
-
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesKu;
-
-                foreach ( $wgNamespaceNamesKu as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
 }
 
 ?>

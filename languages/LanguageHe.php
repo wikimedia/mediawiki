@@ -831,16 +831,6 @@ class LanguageHe extends LanguageUtf8 {
 		return $wgNamespaceNamesHe;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesHe;
-
-		foreach ( $wgNamespaceNamesHe as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsHe;
 		return $wgQuickbarSettingsHe;

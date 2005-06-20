@@ -924,20 +924,6 @@ class LanguageOc extends LanguageUtf8{
 		return $wgNamespaceNamesOc;
 	}
 
-
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesOc;
-
-		foreach ( $wgNamespaceNamesOc as $i => $n ) 
-		{
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		if( 0 == strcasecmp( "Wikipedia", $text ) ) return 4;
-		if( 0 == strcasecmp( "Discussion_Wikipedia", $text ) ) return 5;
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsOc;
 		return $wgQuickbarSettingsOc;

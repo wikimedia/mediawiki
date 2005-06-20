@@ -935,20 +935,6 @@ class LanguageUk extends LanguageUtf8 {
 		return $wgNamespaceNamesUk;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesUk, $wgNamespaceNamesEn;
-
-		foreach ( $wgNamespaceNamesUk as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		/* Fallback to English names used earlier on the uk.wikipedia */
-		foreach ( $wgNamespaceNamesEn as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsUk;
 		return $wgQuickbarSettingsUk;

@@ -1443,16 +1443,6 @@ class LanguageNds extends LanguageUtf8 {
                 return $wgNamespaceNamesNds;
         }
 
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesNds;
-
-                foreach ( $wgNamespaceNamesNds as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
-
         function getQuickbarSettings() {
                 global $wgQuickbarSettingsNds;
                 return $wgQuickbarSettingsNds;

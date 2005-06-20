@@ -893,16 +893,6 @@ class LanguageCa extends LanguageUtf8 {
 		return $wgNamespaceNamesCa;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesCa;
-
-		foreach ( $wgNamespaceNamesCa as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsCa;
 		return $wgQuickbarSettingsCa;

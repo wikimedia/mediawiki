@@ -1024,17 +1024,6 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgNamespaceNamesCy;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesCy;
-
-		foreach ( $wgNamespaceNamesCy as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		# Fallback to English names for compatibility
-		return Language::getNsIndex( $text );
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsCy;
 		return $wgQuickbarSettingsCy;

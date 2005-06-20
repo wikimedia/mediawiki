@@ -182,16 +182,6 @@ class LanguageFo extends LanguageUtf8 {
 		return $wgNamespaceNamesFo;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesFo;
-
-		foreach ( $wgNamespaceNamesFo as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFo;
 		return $wgQuickbarSettingsFo;

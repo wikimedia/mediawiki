@@ -1073,16 +1073,6 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgNamespaceNamesEt;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesEt;
-
-		foreach ( $wgNamespaceNamesEt as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsEt;
 		return $wgQuickbarSettingsEt;

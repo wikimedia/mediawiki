@@ -888,18 +888,6 @@ class LanguageTa extends LanguageUtf8 {
                 return $wgNamespaceNamesTa;
         }
 
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesTa;
-
-                foreach ( $wgNamespaceNamesTa as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-		
-                if ( 0 == strcasecmp( "special", $text ) ) { return -1; }
-                return false;
-        }
-
         function getQuickbarSettings() {
                 global $wgQuickbarSettingsTa;
                 return $wgQuickbarSettingsTa;

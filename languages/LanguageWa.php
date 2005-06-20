@@ -1153,16 +1153,6 @@ class LanguageWa extends LanguageUtf8 {
 		return $wgNamespaceNamesWa;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesWa;
-
-		foreach ( $wgNamespaceNamesWa as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsWa;
 		return $wgQuickbarSettingsWa;

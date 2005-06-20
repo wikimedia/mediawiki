@@ -1030,16 +1030,6 @@ class LanguagePl extends LanguageUtf8 {
 		return $wgNamespaceNamesPl;
 	}
 
-
-	function getNsIndex( $text ) {
-		global $wgNamespaceNamesPl;
-
-		foreach ( $wgNamespaceNamesPl as $i => $n ) {
-			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-		}
-		return false;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsPl;
 		return $wgQuickbarSettingsPl;
