@@ -1400,7 +1400,10 @@ class Image
 	function retrieveExifData () {
 		if ( $this->getMimeType() !== "image/jpeg" ) return array ();
 
+		wfSuppressWarnings();
 		$exif = exif_read_data( $this->imagePath );
+		wfRestoreWarnings();
+
 		foreach($exif as $k => $v) {
 			if ( !in_array($k, array_keys($this->exif->mFlatExif)) ) {
 				wfDebug( "Image::retrieveExifData: '$k' is not a valid Exif tag (type: '" . gettype($v) . "'; data: '$v')\n");
