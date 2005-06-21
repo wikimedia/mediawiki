@@ -226,7 +226,7 @@ function ucNamespaceForm ( $target, $hideminor, $namespace, $invert ) {
 		if( $ns < NS_MAIN )
 			continue;
 		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === $ns ? ' selected="selected"' : '';
+		$sel = $namespace == $ns ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
