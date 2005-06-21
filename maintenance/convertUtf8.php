@@ -59,9 +59,10 @@ class UtfUpdater {
 	 * @param string $key Primary key, to identify fields in the UPDATE. If NULL, all fields will be used to match.
 	 * @param array $fields List of all fields to grab and convert. If null, will assume you want the $key, and will ask for DISTINCT.
 	 * @param array $timestamp A field which should be updated to the current timestamp on changed records.
+	 * @param callable $callback
 	 * @access private
 	 */
-	function convertTable( $table, $key, $fields = null, $timestamp = null ) {
+	function convertTable( $table, $key, $fields = null, $timestamp = null, $callback = null ) {
 		$fname = 'UtfUpdater::convertTable';
 		if( $fields ) {
 			$distinct = '';
@@ -106,9 +107,61 @@ class UtfUpdater {
 				$keyCond,
 				$fname );
 			if( ++$n % 100 == 0 ) echo "$n\n";
+			
+			if( is_callable( $callback ) ) {
+				call_user_func( $callback, $s );
+			}
 		}
 		echo "$n done.\n";
 		$this->db->freeResult( $res );
+	}
+	
+	/**
+	 * @param object $row
+	 * @access private
+	 */
+	function imageRenameCallback( $row ) {
+		$this->renameFile( $row->img_name, 'wfImageDir' );
+	}
+	
+	/**
+	 * @param object $row
+	 * @access private
+	 */
+	function oldimageRenameCallback( $row ) {
+		$this->renameFile( $row->oi_archive_name, 'wfImageThumbDir' );
+	}
+	
+	/**
+	 * Rename a given image or archived image file to the converted filename,
+	 * leaving a symlink for URL compatibility.
+	 *
+	 * @param string $oldname pre-conversion filename
+	 * @param callable $subdirCallback a function to generate hashed directories
+	 * @access private
+	 */
+	function renameFile( $oldname, $subdirCallback ) {
+		$newname = $this->toUtf8( $oldname );
+		if( $newname == $oldname ) {
+			// No need to rename; another field triggered this row.
+			return;
+		}
+		
+		$oldpath = call_user_func( $subdirCallback, $oldname ) . '/' . $oldname;
+		$newpath = call_user_func( $subdirCallback, $newname ) . '/' . $newname;
+		
+		echo "Renaming $oldpath to $newpath... ";
+		if( rename( $oldpath, $newpath ) ) {
+			echo "ok\n";
+			echo "Creating compatibility symlink from $newpath to $oldpath... ";
+			if( symlink( $newpath, $oldpath ) ) {
+				echo "ok\n";
+			} else {
+				echo " symlink failed!\n";
+			}
+		} else {
+			echo " rename failed!\n";
+		}
 	}
 	
 	/**
@@ -162,9 +215,13 @@ class UtfUpdater {
 		
 		# FIXME: We'll also need to change the files.
 		$this->convertTable( 'image', 'img_name',
-			array( 'img_name', 'img_description', 'img_user_text' ) );
+			array( 'img_name', 'img_description', 'img_user_text' ),
+			null,
+			array( &$this, 'imageRenameCallback' ) );
 		$this->convertTable( 'oldimage', 'archive_name',
-			array( 'oi_name', 'oi_archive_name', 'oi_description', 'oi_user_text' ) );
+			array( 'oi_name', 'oi_archive_name', 'oi_description', 'oi_user_text' ),
+			null,
+			array( &$this, 'oldimageRenameCallback' ) );
 		
 		# Don't change the ar_text entries; use $wgLegacyEncoding to read them at runtime
 		$this->convertTable( 'archive', null,
