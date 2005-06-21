@@ -1148,6 +1148,6 @@ ul#filetoc {
 }
 
 /* @bug 1714 */
-#wpSave {
-	margin-right: 1em;
+input#wpSave, input#wpDiff {
+	margin-right: 0.33em;
 }
