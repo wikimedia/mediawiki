@@ -1514,26 +1514,20 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_show_my_ratings' => 'Show my validations',
 'val_revision_number' => 'Revision #$1',
 'val_warning' => '<b>Never, <i>ever</i>, change something here without <i>explicit</i> community consensus!</b>',
-'val_rev_for' => 'Revisions for ',
+'val_rev_for' => 'Revisions for $1',
 'val_details_th_user' => 'User $1',
 'val_validation_of' => 'Validation of "$1"',
 'val_revision_of' => 'Revision of $1',
 'val_revision_changes_ok' => 'Your ratings have been stored!',
 'val_rev_stats_link' => 'See the validation statistics for "$1" <a href="$2">here</a>',
-'val_revision_stats_link' => '(<a href="$1">details</a>)',
+'val_revision_stats_link' => 'details',
 'val_iamsure' => 'Check this box if you really mean it!',
 'val_clear_old' => 'Clear my older validation data',
 'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
-'val_form_note' => '<b>Hint:</b> Merging your data means that for the article
-revision you select, all options where you have specified <i>no opinion</i>
-will be set to the value and comment of the most recent revision for which you
-have expressed an opinion. For example, if you want to change a single option
-for a newer revision, but also keep your other settings for this article in
-this revision, just select which option you intend to <i>change</i>, and
-merging will fill in the other options with your previous settings.',
+'val_form_note' => "'''Hint:''' Merging your data means that for the article revision you select, all options where you have specified ''no opinion'' will be set to the value and comment of the most recent revision for which you have expressed an opinion. For example, if you want to change a single option for a newer revision, but also keep your other settings for this article in this revision, just select which option you intend to ''change'', and merging will fill in the other options with your previous settings.",
 'val_noop' => 'No opinion',
 'val_topic_desc_page' => 'Project:Validation topics',
-'val_votepage_intro' => '<p>Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!</p>',
+'val_votepage_intro' => 'Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!',
 'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
 'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
 'val_total' => 'Total',

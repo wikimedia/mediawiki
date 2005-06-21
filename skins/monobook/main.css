@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** MediaWiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://wikidev.net/
 ** License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -1150,4 +1150,29 @@ ul#filetoc {
 /* @bug 1714 */
 input#wpSave, input#wpDiff {
 	margin-right: 0.33em;
+}
+
+
+/* Classes for article validation */
+
+table.revisionform_default {
+	border: 1px solid #000000;
+}
+
+table.revisionform_focus {
+	border: 1px solid #000000;
+	background-color:#00BBFF;
+}
+
+tr.revision_tr_default {
+	background-color:#EEEEEE;
+}
+
+tr.revision_tr_first {
+	background-color:#DDDDDD;
+}
+
+p.revision_saved {
+	color: green;
+	font-weight:bold;
 }
