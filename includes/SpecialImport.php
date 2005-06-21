@@ -75,10 +75,10 @@ function wfSpecialImport( $page = '' ) {
 	$action = $wgTitle->escapeLocalUrl( 'action=submit' );
 	
 	if( $wgUser->isAllowed( 'importupload' ) ) {
-		$wgOut->addWikiText( "<p>" . wfMsg( "importtext" ) . "</p>" );
+		$wgOut->addWikiText( wfMsg( "importtext" ) );
 		$wgOut->addHTML( "
 <fieldset>
-	<legend>Upload XML</legend>
+	<legend>" . wfMsg('upload') . "</legend>
 	<form enctype='multipart/form-data' method='post' action=\"$action\">
 		<input type='hidden' name='action' value='submit' />
 		<input type='hidden' name='source' value='upload' />
@@ -97,7 +97,7 @@ function wfSpecialImport( $page = '' ) {
 	if( !empty( $wgImportSources ) ) {
 		$wgOut->addHTML( "
 <fieldset>
-	<legend>Interwiki import</legend>
+	<legend>" . wfMsg('importinterwiki') . "</legend>
 	<form method='post' action=\"$action\">
 		<input type='hidden' name='action' value='submit' />
 		<input type='hidden' name='source' value='interwiki' />
