@@ -16,7 +16,6 @@ if ( 'en' == $wgLanguageCode ) {
 $count = $total = 0;
 $msgarray = 'wgAllMessages' . ucfirst( $wgLanguageCode );
 
-$redundant = array();
 foreach ( $$msgarray as $code => $msg ) {
 	++$total;
 	if ( ! array_key_exists( $code, $wgAllMessagesEn ) ) {
