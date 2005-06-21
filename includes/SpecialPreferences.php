@@ -711,8 +711,7 @@ class PreferencesForm {
 			$this->getToggles( array(
 				'hideminor',
 				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
-				'usenewrc',
-				'rcusemodstyle' )
+				'usenewrc' )
 			) . '</fieldset>'
 		);
 	
