@@ -1268,7 +1268,7 @@ RFC 822
 !! end
 
 !! test
-Magic links: ISBN (bug 1937 unresolved)
+Magic links: ISBN (bug 1937)
 !! input
 ISBN 0-306-40615-2
 !! result
@@ -1734,6 +1734,22 @@ Thumbnail image caption with a free URL
 !! result
 <div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="http://example.com"><img src="/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="http://example.com" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="http://example.com" class='external free' title="http://example.com" rel="nofollow">http://example.com</a></div></div></div>
 
+!! end
+
+!! test
+BUG 1887: A ISBN with a thumbnail
+!! input
+[[Image:foobar.jpg|thumb|ISBN 12354]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="ISBN 12354"><img src="/images/3/3a/Foobar.jpg" alt="ISBN 12354" longdesc="/wiki/Image:Foobar.jpg" height="180" width="180"></a>  <div class="thumbcaption"><div class="magnify" style="float:right;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge"></a></div><a href="index.php?title=Special:Booksources&amp;isbn=12354" class="internal">ISBN 12354</a></div></div></div>
+!! end
+
+!! test
+BUG 1887: A <math> with a thumbnail
+!! input
+[[Image:foobar.jpg|thumb|<math>2+2</math>]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="2+2"><img src="/images/3/3a/Foobar.jpg" alt="2+2" longdesc="/wiki/Image:Foobar.jpg" height="180" width="180"></a>  <div class="thumbcaption"><div class="magnify" style="float:right;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge"></a></div>&lt;math&gt;2+2&lt;math&gt;</div></div></div>
 !! end
 
 # Pending resolution to bug 368
