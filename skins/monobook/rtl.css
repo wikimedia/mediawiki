@@ -211,3 +211,9 @@ fieldset.operaprefsection {
 #toc ul ul {
     margin: 0 2em 0 0;
 }
+
+input#wpSave, input#wpDiff {
+	margin-right: 0;
+	margin-left: 0.33em;
+}
+
