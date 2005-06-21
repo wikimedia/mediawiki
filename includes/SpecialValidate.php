@@ -52,7 +52,7 @@ class Validation {
 	function getVersionLink( &$article, $revision, $text = "" ) {
 		$t = $article->getTitle();
 		if( $text == "" ) $text = wfMsg("val_view_version");
-		$ret = "<a href=\"" . $t->getLocalURL( htmlspecialchars("oldid={$revision}" )) . "\">" . $this->getParsedWiki($text) . "</a>";
+		$ret = "<a href=\"" . $t->escapeLocalURL( "oldid={$revision}" ) . "\">" . $this->getParsedWiki($text) . "</a>";
 		return $ret;
 	}
 
@@ -281,7 +281,7 @@ class Validation {
 			$user = $wgUser->GetName();
 		}
 		$nt = Title::newFromText( "Special:Validate" );
-		$url = $nt->getLocalURL( "mode=userstats&user=" . htmlspecialchars ( $user ) );
+		$url = $nt->escapeLocalURL( "mode=userstats&user=" . urlencode( $user ) );
 		return "<a href=\"{$url}\">{$text}</a>";
 	}
 
@@ -315,29 +315,32 @@ class Validation {
 			$u->setId( $x->rev_user );
 			$u->setName( $x->rev_user_text );
 			$nt = $u->getUserPage();
-			$url = "<a href='" . $nt->getLocalUrl() . "'>" . $nt->getText() . "</a>";
+			# FIXME: Why doesn't this use standard linking code?
+			$url = "<a href='" . $nt->escapeLocalUrl() . "'>" . htmlspecialchars( $nt->getText() ) . "</a>";
 			$metadata .= $url;
 		}
+		# FIXME: Why doesn't this use standard comment formatting?
 		$metadata .= " : <small>\"" . $this->getParsedWiki( $x->rev_comment ) . "\"</small>";
 		return $metadata;
 	}
 	
 	# Generates a link to the topic description
 	function linkTopic ( $s ) {
+		# FIXME: Why doesn't this use standard linking code?
 		$t = Title::newFromText ( wfMsg ( 'val_topic_desc_page' ) ) ;
 		$r = "<a href=\"" ;
-		$r .= $t->getLocalURL () ;
+		$r .= $t->escapeLocalURL () ;
 		$r .= "#" . urlencode ( $s ) ;
 		$r .= "\">{$s}</a>" ;
 		return $r ;
-		}
+	}
 		
 	# Generates HTML from a wiki text, e.g., a wfMsg
 	function getParsedWiki ( $text ) {
 		global $wgOut , $wgTitle, $wgParser ;
 		$parserOutput = $wgParser->parse( $text , $wgTitle, $wgOut->mParserOptions,false);
 		return $parserOutput->getText() ;
-		}
+	}
 
 	# Generates a form for a single revision
 	function getRevisionForm( &$article, $idx, &$data, $focus = false ) {
@@ -381,9 +384,9 @@ class Validation {
 				}
 				$vote .= "<input type='radio' name='re_v{$idx}' value='{$a}'";
 				if( $a == $y->value ) {
-					$vote .= " checked";
+					$vote .= " checked='checked'";
 				}
-				$vote .= "/>";
+				$vote .= " />";
 				if( $max == 2 && $a == 1 ) {
 					$vote .= wfMsg( "val_no" ) . " ";
 				} elseif( $max == 2 && $a == 2 ) {
@@ -402,9 +405,9 @@ class Validation {
 		}
 		$checked = $focus ? " checked='checked'" : "";
 		$ret .= "<tr><td colspan='3' valign='center'>\n";
-		$ret .= "<input type='checkbox' name='re_merge_{$revision}' value='1'{$checked}/>" . $this->getParsedWiki( wfMsg( 'val_merge_old' ) ) . " \n";
-		$ret .= "<input type='checkbox' name='re_clear_{$revision}' value='1'{$checked}/>" . $this->getParsedWiki( wfMsg( 'val_clear_old' ) ) . " \n";
-		$ret .= "<input type='submit' name='re_submit[{$revision}]' value='" . $this->getParsedWiki( wfMsg("ok") ) . "'/>\n";
+		$ret .= "<input type='checkbox' name='re_merge_{$revision}' value='1'{$checked} />" . $this->getParsedWiki( wfMsg( 'val_merge_old' ) ) . " \n";
+		$ret .= "<input type='checkbox' name='re_clear_{$revision}' value='1'{$checked} />" . $this->getParsedWiki( wfMsg( 'val_clear_old' ) ) . " \n";
+		$ret .= "<input type='submit' name='re_submit[{$revision}]' value=\"" . wfMsgHtml( "ok" ) . "\" />\n";
 		
 		if( $focus ) {
 			$ret .= "<br/>\n<small>" . $this->getParsedWiki ( wfMsg( "val_form_note" ) ) . "</small>";
@@ -440,7 +443,7 @@ class Validation {
 			}
 			$ret .= "<p class='revision_saved'>" . $this->getParsedWiki( wfMsg( 'val_revision_changes_ok' ) ) . "</p>";
 		}
-		else $ret .= wfMsg ( 'val_votepage_intro' ) ;
+		else $ret .= wfMsgHtml ( 'val_votepage_intro' ) ;
 		
 		# Make sure the requested revision exists
 		$ts = $this->rev2date[$revision]->rev_timestamp;
@@ -454,7 +457,7 @@ class Validation {
 		# Output
 		$title = $article->getTitle();
 		$title = $title->getPrefixedText();
-		$wgOut->setPageTitle( str_replace ( '$1' , $title , wfMsg( 'val_rev_for' ) ) );
+		$wgOut->setPageTitle( wfMsg( 'val_rev_for', $title ) );
 		foreach( $this->voteCache as $x => $y ) {
 			$ret .= $this->getRevisionForm( $article, $x, $y, $x == $ts );
 			$ret .= "<br/>\n";
