@@ -28,6 +28,7 @@
  * @package MediaWiki
  * @subpackage SpecialPage
  */
+
 class Validation {
 	var $topicList;
 	var $voteCache;
@@ -51,7 +52,7 @@ class Validation {
 	function getVersionLink( &$article, $revision, $text = "" ) {
 		$t = $article->getTitle();
 		if( $text == "" ) $text = wfMsg("val_view_version");
-		$ret = "<a href=\"" . htmlspecialchars($t->getLocalURL( "oldid={$revision}" )) . "\">" . $text . "</a>";
+		$ret = "<a href=\"" . $t->getLocalURL( htmlspecialchars("oldid={$revision}" )) . "\">" . $this->getParsedWiki($text) . "</a>";
 		return $ret;
 	}
 
@@ -270,7 +271,7 @@ class Validation {
 	function link2revisionstatistics( &$article, $revision ) {
 		$nt = $article->getTitle();
 		$url = $nt->escapeLocalURL( "action=validate&mode=details&revision={$revision}" );
-		return wfMsg( 'val_revision_stats_link', $url );
+		return '(<a href="{$url}">' . $this->getParsedWiki( 'val_revision_stats_link') . '</a>)' ;
 	}
 
 	# This function returns a link text to the user rating statistics page
@@ -280,7 +281,7 @@ class Validation {
 			$user = $wgUser->GetName();
 		}
 		$nt = Title::newFromText( "Special:Validate" );
-		$url = htmlspecialchars( $nt->getLocalURL( "mode=userstats&user={$user}" ) );
+		$url = $nt->getLocalURL( "mode=userstats&user=" . htmlspecialchars ( $user ) );
 		return "<a href=\"{$url}\">{$text}</a>";
 	}
 
@@ -317,7 +318,7 @@ class Validation {
 			$url = "<a href='" . $nt->getLocalUrl() . "'>" . $nt->getText() . "</a>";
 			$metadata .= $url;
 		}
-		$metadata .= " : <small>\"" . htmlspecialchars( $x->rev_comment ) . "\"</small>";
+		$metadata .= " : <small>\"" . $this->getParsedWiki( $x->rev_comment ) . "\"</small>";
 		return $metadata;
 	}
 	
@@ -329,6 +330,13 @@ class Validation {
 		$r .= "#" . urlencode ( $s ) ;
 		$r .= "\">{$s}</a>" ;
 		return $r ;
+		}
+		
+	# Generates HTML from a wiki text, e.g., a wfMsg
+	function getParsedWiki ( $text ) {
+		global $wgOut , $wgTitle, $wgParser ;
+		$parserOutput = $wgParser->parse( $text , $wgTitle, $wgOut->mParserOptions,false);
+		return $parserOutput->getText() ;
 		}
 
 	# Generates a form for a single revision
@@ -346,11 +354,10 @@ class Validation {
 	
 		# Generate form
 		$ret = "<form method='post'>";
-		$ret .= "<table border='1' cellspacing='0' cellpadding='2'";
-		if( $focus ) {
-			$ret .= " style='background-color:#00BBFF'";
-		}
-		$ret .= ">\n";
+		$ret .= "<table cellspacing='0' cellpadding='2' class='";
+		if( $focus ) $ret .= "revisionform_focus" ;
+		else $ret .= "revisionform_default" ;
+		$ret .= "'>\n";
 		$head = "Revision #" . $revision;
 		$link = " " . $this->getVersionLink( $article, $revision );
 		$metadata = $this->getMetadata( $revision );
@@ -358,9 +365,9 @@ class Validation {
 		$line = 0;
 		foreach( $data as $x => $y ) {
 			$line = 1 - $line;
-			$col = $line == 1 ? "#DDDDDD" : "#EEEEEE";
+			$trclass = $line == 1 ? "revision_tr_first" : "revision_tr_default";
 			$idx = "_{$revision}[{$x}]";
-			$ret .= "<tr bgcolor='{$col}'>\n";
+			$ret .= "<tr class='{$trclass}'>\n";
 			$ret .= "<th nowrap>";
 			$ret .= $this->linkTopic ( $this->topicList[$x]->val_comment ) ;
 			$ret .= "</th>\n";
@@ -395,11 +402,12 @@ class Validation {
 		}
 		$checked = $focus ? " checked='checked'" : "";
 		$ret .= "<tr><td colspan='3' valign='center'>\n";
-		$ret .= "<input type='checkbox' name='re_merge_{$revision}' value='1'{$checked}/>" . htmlspecialchars( wfMsg( 'val_merge_old' ) ) . " \n";
-		$ret .= "<input type='checkbox' name='re_clear_{$revision}' value='1'{$checked}/>" . htmlspecialchars( wfMsg( 'val_clear_old' ) ) . " \n";
-		$ret .= "<input type='submit' name='re_submit[{$revision}]' value='" . htmlspecialchars( wfMsg("ok") ) . "'/>\n";
+		$ret .= "<input type='checkbox' name='re_merge_{$revision}' value='1'{$checked}/>" . $this->getParsedWiki( wfMsg( 'val_merge_old' ) ) . " \n";
+		$ret .= "<input type='checkbox' name='re_clear_{$revision}' value='1'{$checked}/>" . $this->getParsedWiki( wfMsg( 'val_clear_old' ) ) . " \n";
+		$ret .= "<input type='submit' name='re_submit[{$revision}]' value='" . $this->getParsedWiki( wfMsg("ok") ) . "'/>\n";
+		
 		if( $focus ) {
-			$ret .= "<br/>\n<small>" . htmlspecialchars( wfMsg( "val_form_note" ) ) . "</small>";
+			$ret .= "<br/>\n<small>" . $this->getParsedWiki ( wfMsg( "val_form_note" ) ) . "</small>";
 		}
 		$ret .= "</td></tr>\n";
 		$ret .= "</table>\n</form>\n\n";
@@ -430,7 +438,7 @@ class Validation {
 			if( $clearOldRev ) {
 				$this->clearOldRevisions( $article, $id );
 			}
-			$ret .= "<p><font color='red'>" . htmlspecialchars( wfMsg( 'val_revision_changes_ok' ) ) . "</font></p>";
+			$ret .= "<p class='revision_saved'>" . $this->getParsedWiki( wfMsg( 'val_revision_changes_ok' ) ) . "</p>";
 		}
 		else $ret .= wfMsg ( 'val_votepage_intro' ) ;
 		
@@ -446,7 +454,7 @@ class Validation {
 		# Output
 		$title = $article->getTitle();
 		$title = $title->getPrefixedText();
-		$wgOut->setPageTitle( wfMsg( 'val_rev_for' ) . $title );
+		$wgOut->setPageTitle( str_replace ( '$1' , $title , wfMsg( 'val_rev_for' ) ) );
 		foreach( $this->voteCache as $x => $y ) {
 			$ret .= $this->getRevisionForm( $article, $x, $y, $x == $ts );
 			$ret .= "<br/>\n";
@@ -479,14 +487,14 @@ class Validation {
 		}
 		
 		# FIXME: Wikitext this
-		$r = "<p>" . htmlspecialchars( wfMsg( 'val_warning' ) ) . "</p>\n";
+		$r = "<p>" . $this->getParsedWiki( wfMsg( 'val_warning' ) ) . "</p>\n";
 		
 		$r .= "<form method='post'>\n";
 		$r .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
 		$r .= "<tr>" . wfMsg( 'val_list_header' ) . "</tr>\n";
 		foreach( $this->topicList as $x => $y ) {
 			$r .= "<tr>\n";
-			$r .= "<th>" . htmlspecialchars( $y->val_type ) . "</th>\n";
+			$r .= "<th>" . $this->getParsedWiki( $y->val_type ) . "</th>\n";
 			$r .= "<td>" . $this->linkTopic ( $y->val_comment ) . "</td>\n";
 			$r .= "<td>1 .. <b>" . intval( $y->val_value ) . "</b></td>\n";
 			$r .= "<td><input type='submit' name='m_del[" . intval( $x ) . "]' value='" . htmlspecialchars( wfMsg( 'val_del' ) ) . "'/></td>\n";
@@ -499,7 +507,7 @@ class Validation {
 		$r .= "<td><input type='submit' name='m_add' value='" . htmlspecialchars( wfMsg( 'val_add' ) ) . "'/></td>\n";
 		$r .= "</tr>\n";
 		$r .= "</table>\n";
-		$r .= "<input type='checkbox' name='iamsure' value='1'/>" . htmlspecialchars( wfMsg( 'val_iamsure' ) ) . "\n";
+		$r .= "<input type='checkbox' name='iamsure' value='1'/>" . $this->getParsedWiki( wfMsg( 'val_iamsure' ) ) . "\n";
 		$r .= "</form>\n";
 		return $r;
 	}
@@ -569,7 +577,7 @@ class Validation {
 					$ret .= "<td valign='center'>";
 					$ret .= $data[$u][$t]->val_value;
 					if( $data[$u][$t]->val_comment != "" ) {
-						$ret .= " <small>(" . htmlspecialchars( $data[$u][$t]->val_comment ) . ")</small>";
+						$ret .= " <small>(" . $this->getParsedWiki( $data[$u][$t]->val_comment ) . ")</small>";
 					}
 					$ret .= "</td>";
 				}
@@ -613,7 +621,7 @@ class Validation {
 		
 		$ret = "";
 		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
-		$ret .= "<tr><th>" . htmlspecialchars( wfMsg( "val_revision" ) ) . "</th>";
+		$ret .= "<tr><th>" . $this->getParsedWiki( wfMsg( "val_revision" ) ) . "</th>";
 		foreach( $this->topicList as $x => $y ) {
 			$ret .= "<th>" . $this->linkTopic ( $y->val_comment ) . "</th>";
 		}
@@ -687,7 +695,7 @@ class Validation {
 					$initial = false;
 					$ret .= "<td>" . $this->linkTopic ( $this->topicList[$topic]->val_comment ) . "</td>";
 					$ret .= "<td>" . $this->getRatingText( $rating->val_value, $this->topicList[$topic]->val_value ) . "</td>";
-					$ret .= "<td>" . htmlspecialchars( $rating->val_comment ) . "</td>";
+					$ret .= "<td>" . $this->getParsedWiki( $rating->val_comment ) . "</td>";
 					$ret .= "</tr>";
 				}
 			}
