@@ -312,6 +312,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2467) Added a Turkish language file
 * Fixed a bug in Special:Contributions that caused the namespace selection to
   be forgotten between submits
+* Special:Watchlist/edit now has namespace subheadings
 
 === Caveats ===
 

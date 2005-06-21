@@ -124,8 +124,7 @@ function wfSpecialWatchlist( $par ) {
 
 		$wgOut->addHTML( '<form action=\'' .
 			$specialTitle->escapeLocalUrl( 'action=submit' ) .
-			"' method='post'>\n" .
-			"<ul>\n" );
+			"' method='post'>\n" );
 
 #		Patch A2
 #		The following was proposed by KTurner 07.11.2004 to T.Gries
@@ -134,21 +133,40 @@ function wfSpecialWatchlist( $par ) {
 
 		$res = $dbr->query( $sql, $fname );
 		$sk = $wgUser->getSkin();
+
+		$list = array();
 		while( $s = $dbr->fetchObject( $res ) ) {
-			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
-			if( is_null( $t ) ) {
-				$wgOut->addHTML( '<!-- bad title "' . htmlspecialchars( $s->wl_title ) . '" in namespace ' . IntVal( $s->wl_namespace ) . " -->\n" );
-			} else {
-				$t = $t->getPrefixedText();
-				$wgOut->addHTML( '<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' .
-					$sk->makeLink( $t, $t ) .
-					"</li>\n" );
-			}
+			$list[$s->wl_namespace][] = $s->wl_title;
 		}
-		$wgOut->addHTML( "</ul>\n" .
+		
+		// TODO: Display a t TOC
+		foreach($list as $ns => $titles) {
+			if ($ns != NS_MAIN) 
+				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
+			$wgOut->addHTML( '<ul>' );
+			foreach($titles as $title) {
+				$t = Title::makeTitle( $ns, $title );
+				if( is_null( $t ) ) {
+					$wgOut->addHTML(
+						'<!-- bad title "' .
+						htmlspecialchars( $s->wl_title ) . '" in namespace ' . $s->wl_namespace . " -->\n"
+					);
+				} else {
+					$t = $t->getPrefixedText();
+					$wgOut->addHTML(
+						'<li><input type="checkbox" name="id[]" value="' . htmlspecialchars($t) . '" />' .
+						$sk->makeLink( $t, $t ) .
+						"</li>\n"
+					);
+				}
+			}
+			$wgOut->addHTML( '</ul>' );
+		}
+		$wgOut->addHTML(
 			"<input type='submit' name='remove' value=\"" .
 			htmlspecialchars( wfMsg( "removechecked" ) ) . "\" />\n" .
-			"</form>\n" );
+			"</form>\n"
+		);
 
 		return;
 	}
