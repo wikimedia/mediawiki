@@ -1146,3 +1146,8 @@ ul#filetoc {
 	list-style-type: none;
 	padding-right: 2em;
 }
+
+/* @bug 1714 */
+#wpSave {
+	margin-right: 1em;
+}
