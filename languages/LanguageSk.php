@@ -126,7 +126,6 @@ require_once( 'LanguageUtf8.php' );
 #'tog-enotifminoredits' => 'Send me an email also for minor edits of pages',
 #'tog-enotifrevealaddr' => 'Reveal my email address in notification mails',
 #'tog-shownumberswatching' => 'Show the number of watching users',
-#'tog-rcusemodstyle' => 'Show recent changes in UseMod style: only the most recent change of any page is listed.',
 'tog-numberheadings' => "Automaticky čísluj odstavce",
 'tog-previewonfirst' => "Zobraz náhľad pri prvom upravovaní",
 'tog-previewontop' => "Zobrazuj ukážku pred oknom na úpravy, a nie až za ním",
