@@ -129,7 +129,7 @@ class UtfUpdater {
 	 * @access private
 	 */
 	function oldimageRenameCallback( $row ) {
-		$this->renameFile( $row->oi_archive_name, 'wfImageThumbDir' );
+		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir' );
 	}
 	
 	/**
@@ -213,7 +213,7 @@ class UtfUpdater {
 		$this->convertTable( 'imagelinks', 'il_to' );
 		$this->convertTable( 'watchlist', 'wl_title' );
 		
-		# FIXME: We'll also need to change the files.
+		# We'll also need to change the files.
 		$this->convertTable( 'image', 'img_name',
 			array( 'img_name', 'img_description', 'img_user_text' ),
 			null,
