@@ -119,11 +119,12 @@ class LanguageAr extends LanguageUtf8 {
 	}
 
 	function getMessage( $key ) {
-		global $wgAllMessagesAr, $wgAllMessagesEn;
-		$m = $wgAllMessagesAr[$key];
-
-		if ( '' == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
+		global $wgAllMessagesAr;
+		if( isset( $wgAllMessagesAr[$key] ) ) {
+			return $wgAllMessagesAr[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
 	}
 
 	function formatNum( $number ) {

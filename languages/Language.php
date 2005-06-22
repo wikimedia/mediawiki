@@ -2877,11 +2877,7 @@ class Language {
 	 * @access public
 	 */
 	function linkTrail() {
-		wfSuppressWarnings(); // In case there is no trail for the content language (like for Arabic)
-		$trail = $this->getMessage( 'linktrail' );
-		wfRestoreWarnings();
-		if( empty( $trail ) ) $trail = Language::linkTrail();
-		return $trail;
+		return $this->getMessage( 'linktrail' );
 	}
 
 	function getLangObj() {
