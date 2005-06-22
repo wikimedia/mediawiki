@@ -446,16 +446,6 @@ adresu může být zasláno nové heslo v případě, že své heslo zapomenete.
 'wrongpassword' => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
 'mailmypassword' => 'Poslat e-mailem dočasné heslo',
 'mailmypasswordauthent'	=> 'Poslat e-mailem dočasné heslo',
-'passwordremindermailsubject' => 'Ověření e-mailu a dočasné heslo pro přihlášení do {{grammar:2sg|{{SITENAME}}}}',
-'passwordremindermailbody' => 'Někdo (patrně vy, z IP adresy $1) žádal, abychom vám poslali dočasné jednorázové heslo pro přihlášení do {{grammar:2sg|{{SITENAME}}}}.
-
-Tento e-mail slouží také jako autentizace vaší e-mailové adresy.
-Heslo pro uživatele  "$2" je nyní "$4".
-
-Tímto dočasným heslem se můžete přihlásit pouze jednou. Pokud si pamatujete
-původní heslo, můžete ho používat dál, jinak si můžete své heslo změnit.
-
-{{SERVER}}{{localurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}',
 'noemail'		=> 'Uživatel „$1“ nemá zaregistrovanou e-mailovou adresu.',
 'passwordsent'	=> 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlašte se, prosím, znovu, jakmile ho obdržíte.',
 'eauthentsent'             =>  'Potvrzovací e-mail byl zaslán na zadanou adresu.

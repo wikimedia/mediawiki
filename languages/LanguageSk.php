@@ -443,14 +443,6 @@ Vaše skutočné meno, ak sa rozhodnete ho uverejniť, bude priradené k vašej 
 'wrongpassword' => 'Zadané heslo je nesprávne. Skúste to znovu.',
 'mailmypassword' => 'Pošlite mi e-mailom dočasné heslo',
 'mailmypasswordauthent' => 'Pošlite mi e-mailom dočasné heslo',
-'passwordremindermailsubject' => "Oznámenie o hesle z {{GRAMMAR:genitív|{{SITENAME}}}}",
-'passwordremindermailbody' => "Niekto (pravdepodobne vy, z IP adresy $1)
-požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}}.
-Heslo pre redaktora \"$2\" je teraz \"$4\".
-Teraz by ste sa mali prihlásiť a zmeniť vaše heslo, ktoré je platné iba pre jedno prihlásenie.
-Môžete používať svoje staré heslo, ak si naňho spomeniete alebo si zvoľte nové.
-
-{{SERVER}}{{localurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}",
 'noemail' => "Redaktor \"$1\" nezadal e-mailovú adresu.",
 'passwordsent' => "Nové heslo bolo zaslané na e-mailovú adresu
 redaktora \"$1\".

@@ -399,9 +399,9 @@ class LoginForm {
 		$ip = $wgIP;
 		if ( '' == $ip ) { $ip = '(Unknown)'; }
 
-		$m = wfMsg( 'passwordremindermailbody', $ip, $u->getName(), wfUrlencode($u->getName()), $np );
-		$result = $u->sendMail( wfMsg( 'passwordremindermailsubject' ), $m );
-		
+		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np );
+
+		$result = $u->sendMail( wfMsg( 'passwordremindertitle' ), $m );
 		return $result;
 	}
 
