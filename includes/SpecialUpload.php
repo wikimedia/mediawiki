@@ -133,7 +133,7 @@ class UploadForm {
 	 */
 	function processUpload() {
 		global $wgUser, $wgOut, $wgLang, $wgContLang;
-		global $wgUploadDirectory;
+		global $wgUploadDirectory, $wgCopyrightAffirmation;
 		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
 
 		/**
@@ -142,7 +142,9 @@ class UploadForm {
 		if( trim( $this->mOname ) == '' || empty( $this->mUploadSize ) ) {
 			return $this->mainUploadForm('<li>'.wfMsg( 'emptyfile' ).'</li>');
 		}
-		
+
+		if ( !$wgCopyrightAffirmation )
+			$this->mUploadAffirm = true;
 		/**
 		 * When using detailed copyright, if user filled field, assume he
 		 * confirmed the upload
@@ -531,7 +533,7 @@ class UploadForm {
 	 */
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
-		global $wgUseCopyrightUpload;
+		global $wgUseCopyrightUpload, $wgCopyrightAffirmation;
 		
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
@@ -562,12 +564,15 @@ class UploadForm {
 		$action = $titleObj->escapeLocalURL();
 
 		$encDestFile = htmlspecialchars( $this->mDestFile );
+		$source = null;
 
+		if ( $wgCopyrightAffirmation ) {
 		$source = "
 	<td align='right'>
 	<input tabindex='3' type='checkbox' name='wpUploadAffirm' value='1' id='wpUploadAffirm' />
 	</td><td align='left'><label for='wpUploadAffirm'>{$ca}</label></td>
 	" ;
+		}
 		if ( $wgUseCopyrightUpload )
 		  {
 			$source = "

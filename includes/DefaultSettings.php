@@ -1098,6 +1098,10 @@ $wgRightsIcon = NULL;
 /** Set this to some HTML to override the rights icon with an arbitrary logo */
 $wgCopyrightIcon = NULL;
 
+/* Set this to false if you want to get rid of the copyright confirmation
+ *  checkbox at Special:Upload */
+$wgCopyrightAffirmation = true;
+
 /** Set this to true if you want detailed copyright information forms on Upload. */
 $wgUseCopyrightUpload = false;
 
