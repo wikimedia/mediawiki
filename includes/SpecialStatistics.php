@@ -9,8 +9,10 @@
 * constructor
 */
 function wfSpecialStatistics() {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = 'wfSpecialStatistics';
+
+	$action = $wgRequest->getVal( 'action' );
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_groups' ) );
@@ -38,38 +40,45 @@ function wfSpecialStatistics() {
 	}
 
 	if ( isset( $row->ss_users ) ) {
-		$totalUsers = $row->ss_users;
+		$users = $row->ss_users;
 	} else {
 		$sql = "SELECT MAX(user_id) AS total FROM $user";
 		$res = $dbr->query( $sql, $fname );
 		$userRow = $dbr->fetchObject( $res );
-		$totalUsers = $userRow->total;
+		$users = $userRow->total;
 	} 	
-
-
-	$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
-	$text .= wfMsg( 'sitestatstext',
-		$wgLang->formatNum( $total ),
-		$wgLang->formatNum( $good ),
-		$wgLang->formatNum( $views ),
-		$wgLang->formatNum( $edits ),
-		$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
-		$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
-
-	$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
 
 	$sql = "SELECT COUNT(*) AS total FROM $user_groups WHERE ug_group='sysop'";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
-
-	$text .= wfMsg( 'userstatstext',
-		$wgLang->formatNum( $totalUsers ),
-		$wgLang->formatNum( $admins ),
-		'[[' . wfMsg( 'administrators' ) . ']]',
-		// should logically be after #admins, danm backwards compatability!
-		$wgLang->formatNum( round( $admins / $total * 100, 2 ) )
-	);
-	$wgOut->addWikiText( $text );
+	
+	if ($action == 'raw') {
+		$wgOut->disable();
+		header( 'Pragma: nocache' );
+		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins\n";
+		return;
+	} else {
+		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
+		$text .= wfMsg( 'sitestatstext',
+			$wgLang->formatNum( $total ),
+			$wgLang->formatNum( $good ),
+			$wgLang->formatNum( $views ),
+			$wgLang->formatNum( $edits ),
+			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
+			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
+	
+		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
+	
+		$text .= wfMsg( 'userstatstext',
+			$wgLang->formatNum( $users ),
+			$wgLang->formatNum( $admins ),
+			'[[' . wfMsg( 'administrators' ) . ']]',
+			// should logically be after #admins, danm backwards compatability!
+			$wgLang->formatNum( round( $admins / $total * 100, 2 ) )
+		);
+		
+		$wgOut->addWikiText( $text );
+	}
 }
 ?>

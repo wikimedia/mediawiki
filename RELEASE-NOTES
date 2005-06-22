@@ -315,6 +315,8 @@ Various bugfixes, small features, and a few experimental things:
 * Special:Watchlist/edit now has namespace subheadings
 * (bug 1714) the "Save page" button now has right margin to seperate it from
   "Show preview" and "Show changes"
+* Special:Statistics now supports action=raw, useful for bots designed to
+  harwest e.g. article counts from multiple wikis.
 
 === Caveats ===
 
