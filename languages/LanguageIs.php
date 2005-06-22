@@ -681,6 +681,7 @@ to upload files.",
 'viewtalkpage' => "Skoða umræðu",
 'wantedpages' => "Eftirsóttar síður",
 'watch' => "Vakta",
+'val_tab' => 'Votta',
 'watchdetails' => "Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að 
 <a href='$4'>sýna heildarlistann og breyta honum</a>.",
 'watcheditlist' => "Þetta er listi yfir þínar vöktuðu síður raðað í
