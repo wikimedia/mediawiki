@@ -27,6 +27,7 @@
 	'bs' => 'Bosanski',		# Bosnian
 	'ca' => 'Catal&agrave;',	# Catalan
 	'ce' => '&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;',	# Chechen
+	'ceb' => 'Cebuano',     # Cebuano
 	'ch' => 'Chamoru',		# Chamorro
 	'cho' => 'Choctaw',		# Choctaw
 	'chr' => '&#5091;&#5043;&#5033;', # Cherokee
@@ -52,6 +53,7 @@
 	'fa' => '&#1601;&#1575;&#1585;&#1587;&#1740;',	# Persian
 	'ff' => 'Fulfulde',		# Fulah
 	'fi' => 'Suomi',		# Finnish
+	'fiu-vro' => 'V&otilde;ro', # Võro
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'F&oslash;royskt',	# Faroese
 	'fr' => 'Fran&ccedil;ais',	# French
@@ -140,6 +142,7 @@
 	'or' => '&#2835;&#2908;&#2879;&#2822;',		# Oriya
 	'os' => '&#1048;&#1088;&#1086;&#1085;&#1072;&#1091;', # Ossetic
 	'pa' => '&#2602;&#2672;&#2588;&#2622;&#2604;&#2624;', # Punjabi
+	'pam' => 'Pampangan',   # Pampanga
 	'pi' => '&#2346;&#2366;&#2367;&#2356;',	# Pali
 	'pl' => 'Polski',		# Polish
 	'ps' => '&#1662;&#1690;&#1578;&#1608;',	# Pashto
@@ -154,6 +157,7 @@
 	'sa' => '&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340;',	# Sanskrit
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
+	'sco' => 'Scots',       # Scots
 	'sd' => '&#2360;&#2367;&#2344;&#2343;&#2367;',	# Sindhi
 	'se' => 'S&aacute;megiella',	# Northern Sami
 	'sg' => 'S&#228;ng&#246;',		# Sango, possible alternative is Sangho
