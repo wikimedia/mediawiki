@@ -319,6 +319,8 @@ Various bugfixes, small features, and a few experimental things:
   harwest e.g. article counts from multiple wikis.
 * The copyright confirmation box at Special:Upload is now turned off by default
   and can be turned back on by setting $wgCopyrightAffirmation to a true value.
+* Restored prior text for password reminder button and e-mail, replacing
+  the factually inaccurate text that was there.
 
 === Caveats ===
 
