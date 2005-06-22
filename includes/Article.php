@@ -1714,14 +1714,10 @@ class Article {
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
 				
-				$sk = $wgUser->getSkin();
-				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
-											   ':Log/delete',
-											   wfMsg( 'deletionlog' ) );
-				
+				$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
 				$text = wfMsg( 'deletedtext', $deleted, $loglink );
 				
-				$wgOut->addHTML( '<p>' . $text . "</p>\n" );
+				$wgOut->addWikiText( $text );
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
 			} else {
