@@ -224,6 +224,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->setRef( 'stylename', $this->stylename );
+		$tpl->set( 'printable', $wgRequest->getBool( 'printable' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set('nsclass', 'ns-'.$this->mTitle->getNamespace());
 		$tpl->set('notspecialpage', $this->mTitle->getNamespace() != NS_SPECIAL);
@@ -702,7 +703,16 @@ class SkinTemplate extends Skin {
 					);
 				$vcount ++;
 			}
-		} 		
+		}
+		
+		// A print stylesheet is attached to all pages, but nobody ever
+		// figures that out. :)  Add a link...
+		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
+			$content_actions['print'] = array(
+				'class' => false,
+				'text' => wfMsg( 'printableversion' ),
+				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
+		}
 
 		wfProfileOut( $fname );
 		return $content_actions;
