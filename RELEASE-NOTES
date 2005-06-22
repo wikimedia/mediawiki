@@ -661,6 +661,7 @@ pages for purposes of page relevancy ranking.
 * (bug 2292) Catch 'null' return values for images that can not be  thumbnailed.
 * (bug 2277) Added Friulian language file
 * (bug 2459) Correct escaping in Special:Log prev/next links
+* (bug 750) Keep line endings consistent in LocalSettings.php
 
 
 === Caveats ===
