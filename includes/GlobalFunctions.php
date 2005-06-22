@@ -1221,7 +1221,7 @@ function &wfGetMimeMagic() {
  */
 function wfTempDir() {
 	foreach( array( 'TMPDIR', 'TMP', 'TEMP' ) as $var ) {
-		$tmp = getenv( 'TMPDIR' );
+		$tmp = getenv( $var );
 		if( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
