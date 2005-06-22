@@ -525,14 +525,11 @@ $wgTranslateNumerals = true;
 
 # Translation using MediaWiki: namespace
 # This will increase load times by 25-60% unless memcached is installed
-# Interface messages will be get from the database.
+# Interface messages will be loaded from the database.
 $wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
 
-# Whether to enable language variant conversion. Currently only zh 
-# supports this function, to convert between Traditional and Simplified
-# Chinese. This flag is meant to isolate the (untested) conversion 
-# code, so that if it breaks, only zh will be affected
+# Whether to enable language variant conversion.
 $wgDisableLangConversion = false;
 
 # Use article validation feature; turned off by default
