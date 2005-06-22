@@ -466,14 +466,11 @@ class ImagePage extends Article {
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLinkObj(
-			Title::makeTitle( NS_SPECIAL, 'Log/delete' ),
-			wfMsg( 'deletionlog' ) );
-
+		$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
+		
+		$wgOut->addWikiText( $text );
 
-		$wgOut->addHTML( '<p>' . $text . "</p>\n" );
 		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
 	}
 
