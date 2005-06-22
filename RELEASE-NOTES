@@ -317,8 +317,8 @@ Various bugfixes, small features, and a few experimental things:
   "Show preview" and "Show changes"
 * Special:Statistics now supports action=raw, useful for bots designed to
   harwest e.g. article counts from multiple wikis.
-* The copyright confirmation box at Special:Upload can now be turned off by setting
-  $wgCopyrightAffirmation to a false value in LocalSettings.php
+* The copyright confirmation box at Special:Upload is now turned off by default
+  and can be turned back on by setting $wgCopyrightAffirmation to a true value.
 
 === Caveats ===
 
