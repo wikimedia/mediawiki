@@ -271,7 +271,7 @@ class Validation {
 	function link2revisionstatistics( &$article, $revision ) {
 		$nt = $article->getTitle();
 		$url = $nt->escapeLocalURL( "action=validate&mode=details&revision={$revision}" );
-		return '(<a href="{$url}">' . $this->getParsedWiki( 'val_revision_stats_link') . '</a>)' ;
+		return "(<a href=\"{$url}\">" . $this->getParsedWiki( wfMsg('val_revision_stats_link') ) . '</a>)' ;
 	}
 
 	# This function returns a link text to the user rating statistics page
@@ -556,7 +556,7 @@ class Validation {
 		$ret = "" ;			
 		$ret .= "<p><b>" . str_replace( '$1', $url, wfMsg( 'val_revision_of' ) ) . "</b></p>\n";
 		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
-		$ret .= "<tr><th/>";
+		$ret .= "<tr><th>" . $this->getParsedWiki ( wfMsg('val_details_th') ) . "</th>" ;
 		
 		foreach( $topics as $t => $dummy ) {
 			$ret .= "<th>" . $this->linkTopic ( $this->topicList[$t]->val_comment ) . "</th>";

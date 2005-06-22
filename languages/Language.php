@@ -1499,6 +1499,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_rev_stats_link' => 'See the validation statistics for "$1" <a href="$2">here</a>',
 'val_revision_stats_link' => 'details',
 'val_iamsure' => 'Check this box if you really mean it!',
+'val_details_th' => '<sub>User</sub> \\ <sup>Topic</sup>',
 'val_clear_old' => 'Clear my older validation data',
 'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
 'val_form_note' => "'''Hint:''' Merging your data means that for the article revision you select, all options where you have specified ''no opinion'' will be set to the value and comment of the most recent revision for which you have expressed an opinion. For example, if you want to change a single option for a newer revision, but also keep your other settings for this article in this revision, just select which option you intend to ''change'', and merging will fill in the other options with your previous settings.",
