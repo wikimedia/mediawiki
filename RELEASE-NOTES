@@ -321,6 +321,8 @@ Various bugfixes, small features, and a few experimental things:
   and can be turned back on by setting $wgCopyrightAffirmation to a true value.
 * Restored prior text for password reminder button and e-mail, replacing
   the factually inaccurate text that was there.
+* (bug 2178) Fix temp dir check again
+
 
 === Caveats ===
 
