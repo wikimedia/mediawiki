@@ -31,6 +31,7 @@
 	'bs' => 'Bosanski',		# Bosnian
 	'ca' => 'Català',	# Catalan
 	'ce' => 'Нохчийн',	# Chechen
+	'ceb' => 'Cebuano',     # Cebuano
 	'ch' => 'Chamoru',		# Chamorro
 	'cho' => 'Choctaw',		# Choctaw
 	'chr' => 'ᏣᎳᎩ', # Cherokee
@@ -56,6 +57,7 @@
 	'fa' => 'فارسی',	# Persian
 	'ff' => 'Fulfulde',		# Fulah
 	'fi' => 'Suomi',		# Finnish
+	'fiu-vro' => 'Võro',    # Võro
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'Føroyskt',	# Faroese
 	'fr' => 'Français',	# French
@@ -145,6 +147,7 @@
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
 	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
+	'pam' => 'Pampangan',   # Pampanga
 	'pi' => 'पािऴ',	# Pali
 	'pl' => 'Polski',		# Polish
 	'ps' => 'پښتو',	# Pashto
@@ -159,6 +162,7 @@
 	'sa' => 'संस्कृत',	# Sanskrit
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
+	'sco' => 'Scots',       # Scots	
 	'sd' => 'सिनधि',	# Sindhi
 	'se' => 'Sámegiella',	# Northern Sami
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
