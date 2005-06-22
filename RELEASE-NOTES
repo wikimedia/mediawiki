@@ -323,6 +323,7 @@ Various bugfixes, small features, and a few experimental things:
   the factually inaccurate text that was there.
 * (bug 2178) Fix temp dir check again
 * (bug 2488) Format 'deletedtext' message as wikitext
+* (bug 750) Keep line endings consistent in LocalSettings.php
 
 
 === Caveats ===
