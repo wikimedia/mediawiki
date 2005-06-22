@@ -23,7 +23,7 @@ default:
 }
 
 /* private */ $wgNamespaceNamesCs = array(
-        NS_MEDIA              => 'Soubor',
+        NS_MEDIA              => 'Média',
         NS_SPECIAL            => 'Speciální',
         NS_MAIN               => '',
         NS_TALK               => 'Diskuse',
@@ -507,7 +507,7 @@ Pro ověření se přihlašte dočasným heslem, které vám bylo posláno e-mai
 'hr_tip'=>'Vodorovná čára (používejte střídmě)',
 'infobox'=>'Stiskněte tlačítko pro zobrazení příkladu',
 # alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'=>"Prosím vložte text, který chcete naformátovat.\n Ukáže se v informačním rámečku, aby ho šlo zkopírovat.\nPříklad:\n$1\nse stane:\n$2",
+'infobox_alert'=>'Prosím vložte text, který chcete naformátovat.\n Ukáže se v informačním rámečku, aby ho šlo zkopírovat.\nPříklad:\n$1\nse stane:\n$2',
 
 # Edit pages
 #
