@@ -1455,20 +1455,6 @@ Please confirm that this is what you intend to do.',
 <br />Remember to remove the lock after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 
-# SQL query
-#
-'asksql'		=> 'SQL query',
-'asksqltext'	=> "Use the form below to make a direct query of the
-database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",
-'sqlislogged'	=> 'Please note that all queries are logged.',
-'sqlquery'		=> 'Enter query',
-'querybtn'		=> 'Submit query',
-'selectonly'	=> 'Only read-only queries are allowed.',
-'querysuccessful' => 'Query successful',
-
 # Make sysop
 'makesysoptitle'	=> 'Make a user into a sysop',
 'makesysoptext'		=> 'This form is used by bureaucrats to turn ordinary users into administrators.
