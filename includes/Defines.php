@@ -73,11 +73,12 @@ define( 'MW_MATH_MATHML', 5 );
  * User rights management
  * a big array of string defining a right, that's how they are saved in the
  * database.
+ * @todo Is this necessary?
  */
 $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
-'protect', 'block', 'userrights', 'grouprights', 'createaccount', 'upload',
-'asksql', 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot', 'validate', 
-'import');
+'protect', 'block', 'userrights', 'createaccount', 'upload',
+'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot', 'validate', 
+'import', 'importupload' );
 
 /**#@+
  * Cache type
