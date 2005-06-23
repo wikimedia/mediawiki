@@ -693,11 +693,11 @@ $wgGroupPermissions['sysop']['delete']          = true;
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['import']          = true;
 $wgGroupPermissions['sysop']['importupload']    = true;
-$wgGroupPermissions['user' ]['move']            = true;
+$wgGroupPermissions['sysop']['move']            = true;
 $wgGroupPermissions['sysop']['patrol']          = true;
 $wgGroupPermissions['sysop']['protect']         = true;
 $wgGroupPermissions['sysop']['rollback']        = true;
-$wgGroupPermissions['user' ]['upload']          = true;
+$wgGroupPermissions['sysop']['upload']          = true;
 
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
