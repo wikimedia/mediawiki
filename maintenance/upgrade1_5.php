@@ -8,6 +8,7 @@
 // other services.
 
 require_once( 'commandLine.inc' );
+require_once( 'cleanupDupes.inc' );
 
 $upgrade = new FiveUpgrade();
 $upgrade->upgrade();
@@ -170,7 +171,7 @@ class FiveUpgrade {
 			$portion = $completed / $this->chunkFinal;
 			
 			$estimatedTotalTime = $delta / $portion;
-			$eta = $now + $estimatedTotalTime;
+			$eta = $this->chunkStartTime + $estimatedTotalTime;
 			
 			printf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec\n",
 				wfTimestamp( TS_DB, intval( $now ) ),
@@ -216,6 +217,10 @@ class FiveUpgrade {
 		$fname = "FiveUpgrade::upgradePage";
 		$chunksize = 500;
 		
+
+		$this->log( "Checking cur table for unique title index and applying if necessary" );
+		checkDupes( true );
+
 		$this->log( "...converting from cur/old to page/revision/text DB structure." );
 		
 		extract( $this->dbw->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
@@ -311,15 +316,17 @@ class FiveUpgrade {
 		 * Copy revision metadata from old into revision.
 		 * We'll also do UTF-8 conversion of usernames and comments.
 		 */
-		$newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
-		$this->setChunkScale( $chunksize, $newmaxold );
+		#$newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
+		#$this->setChunkScale( $chunksize, $newmaxold );
+		$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
+		$this->setChunkScale( $chunksize, $countold );
 		
 		$this->log( "......Setting up revision table." );
 		$result = $this->dbr->query(
 			"SELECT old_id, cur_id, old_comment, old_user, old_user_text,
 			old_timestamp, old_minor_edit
-			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title
-			ORDER BY old_id", $fname );
+			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title",
+			$fname );
 
 		$add = array();
 		while( $row = $this->dbr->fetchObject( $result ) ) {
@@ -331,7 +338,7 @@ class FiveUpgrade {
 				'rev_user_text'  => $this->conv( $row->old_user_text ),
 				'rev_timestamp'  =>              $row->old_timestamp,
 				'rev_minor_edit' =>              $row->old_minor_edit );
-			$this->addChunk( 'revision', $add, $fname, $row->old_id );
+			$this->addChunk( 'revision', $add, $fname );
 		}
 		$this->lastChunk( 'revision', $add, $fname );
 		$this->dbr->freeResult( $result );
