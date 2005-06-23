@@ -326,6 +326,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 750) Keep line endings consistent in LocalSettings.php
 * (bug 1577) Add 'printable version' tab in MonoBook for people who don't
   realize you can just hit print to get a nicely formatted printable page.
+* Trim whitespace from option values to weather line-ending corruption problems
 
 
 === Caveats ===
