@@ -23,6 +23,7 @@ class FiveUpgrade {
 	
 	function upgrade() {
 		$this->upgradePage();
+		$this->upgradeLinks();
 	}
 	
 	
@@ -137,6 +138,7 @@ class FiveUpgrade {
 		$this->chunkFinal = $final;
 		$this->chunkCount = 0;
 		$this->chunkStartTime = wfTime();
+		$this->chunkOptions = array();
 	}
 	
 	/**
@@ -170,7 +172,7 @@ class FiveUpgrade {
 			$estimatedTotalTime = $delta / $portion;
 			$eta = $now + $estimatedTotalTime;
 			
-			printf( "%s: %3.2f%% done on %s; ETA %s [%d/%d] %.2f/sec\n",
+			printf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec\n",
 				wfTimestamp( TS_DB, intval( $now ) ),
 				$portion * 100.0,
 				$table,
@@ -196,7 +198,7 @@ class FiveUpgrade {
 		if( $n > 0 ) {
 			$this->insertChunk( $table, $chunk, $fname );
 		}
-		$this->log( "100% done on $table (last chunk $n rows)." );
+		$this->log( "100.00% done on $table (last chunk $n rows)." );
 	}
 	
 	/**
@@ -207,7 +209,7 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function insertChunk( $table, &$chunk, $fname ) {
-		$this->dbw->insert( $table, $chunk, $fname );
+		$this->dbw->insert( $table, $chunk, $fname, $this->chunkOptions );
 	}
 	
 	function upgradePage() {
@@ -370,6 +372,80 @@ class FiveUpgrade {
 		$this->dbw->query( "ALTER TABLE $old RENAME TO $text", $fname );
 		
 		$this->log( "...done." );
+	}
+	
+	function upgradeLinks() {
+		$fname = 'FiveUpgrade::upgradeLinks';
+		$chunksize = 1000;
+		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'page' ) );
+		
+		$this->log( 'Creating pagelinks table...' );
+		$this->dbw->query( "
+CREATE TABLE $pagelinks (
+  -- Key to the page_id of the page containing the link.
+  pl_from int(8) unsigned NOT NULL default '0',
+  
+  -- Key to page_namespace/page_title of the target page.
+  -- The target page may or may not exist, and due to renames
+  -- and deletions may refer to different page records as time
+  -- goes by.
+  pl_namespace int NOT NULL default '0',
+  pl_title varchar(255) binary NOT NULL default '',
+  
+  UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
+  KEY (pl_namespace,pl_title)
+
+) TYPE=InnoDB" );
+
+		$this->log( 'Importing live links -> pagelinks' );
+		$nlinks = $this->dbw->selectField( 'links', 'count(*)', '', $fname );
+		if( $nlinks ) {
+			$this->setChunkScale( $chunksize, $nlinks );
+			$result = $this->dbr->query( "
+			  SELECT l_from,page_namespace,page_title
+				FROM $links, $page
+				WHERE l_to=page_id", $fname );
+			$add = array();
+			while( $row = $this->dbr->fetchObject( $result ) ) {
+				$add[] = array(
+					'pl_from'      => $row->l_from,
+					'pl_namespace' => $row->page_namespace,
+					'pl_title'     => $row->page_title );
+				$this->addChunk( 'pagelinks', $add, $fname );
+			}
+			$this->lastChunk( 'pagelinks', $add, $fname );
+		} else {
+			$this->log( 'no links!' );
+		}
+		
+		$this->log( 'Importing brokenlinks -> pagelinks' );
+		$nbrokenlinks = $this->dbw->selectField( 'brokenlinks', 'count(*)', '', $fname );
+		if( $nbrokenlinks ) {
+			$this->setChunkScale( $chunksize, $nbrokenlinks );
+			$this->chunkOptions = array( 'IGNORE' );
+			$result = $this->dbr->query(
+				"SELECT bl_from, bl_to FROM $brokenlinks",
+				$fname );
+			$add = array();
+			while( $row = $this->dbr->fetchObject( $result ) ) {
+				$pagename = $this->conv( $row->bl_to );
+				$title = Title::newFromText( $pagename );
+				if( is_null( $title ) ) {
+					$this->log( "** invalid brokenlink: $row->bl_from -> '$pagename' (converted from '$row->bl_to')" );
+				} else {
+					$add[] = array(
+						'pl_from'      => $row->bl_from,
+						'pl_namespace' => $title->getNamespace(),
+						'pl_title'     => $title->getDBkey() );
+					$this->addChunk( 'pagelinks', $add, $fname );
+				}
+			}
+			$this->lastChunk( 'pagelinks', $add, $fname );
+		} else {
+			$this->log( 'no brokenlinks!' );
+		}
+		
+		$this->log( 'Done with links.' );
 	}
 }
 
