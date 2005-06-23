@@ -775,7 +775,7 @@ class User {
 	function getOption( $oname ) {
 		$this->loadFromDatabase();
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
-			return $this->mOptions[$oname];
+			return trim( $this->mOptions[$oname] );
 		} else {
 			return '';
 		}
