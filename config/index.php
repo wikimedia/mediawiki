@@ -79,9 +79,9 @@ header( "Content-type: text/html; charset=utf-8" );
   </a>
  </center>
 
- <strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is
- Copyright (C) 2001-<?=date('Y')?> by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- Tim Starling, Erik M&ouml;ller, Gabriel Wicke, Thomas Gries and others.</p>
+ <p><strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is
+ Copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+ Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
 
  <ul>
   <li><a href="../README">Readme</a></li>
@@ -156,10 +156,10 @@ if( !is_writable( "." ) ) {
 
 	<p>To make the directory writable on a Unix/Linux system:</p>
 
-	<blockquote>
-	<tt>cd /path/to/wiki</tt><br>
-	<tt>chmod a+w config</tt>
-	</blockquote>" );
+	<pre>
+	cd <i>/path/to/wiki</i>
+	chmod a+w config
+	</pre>" );
 }
 
 
