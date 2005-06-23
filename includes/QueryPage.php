@@ -213,7 +213,6 @@ class QueryPage {
 		$querycache = $dbr->tableName( 'querycache' );
 
 		$wgOut->setSyndicated( $this->isSyndicated() );
-		$res = false;
 
 		if ( $this->isExpensive() ) {
 			// Disabled recache parameter due to retry problems -- TS
@@ -222,17 +221,14 @@ class QueryPage {
 				$sql =
 					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
 					 FROM $querycache WHERE qc_type='$type'";
-			}
-			if( $wgMiserMode ) {
 				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
 			}
 		}
-		if ( $res === false ) {
-			$res = $dbr->query( $sql . $this->getOrder() .
-					    $dbr->limitResult( $limit,$offset ), $fname );
-			$num = $dbr->numRows($res);
-		}
-
+		
+		$res = $dbr->query( $sql . $this->getOrder() .
+				    $dbr->limitResult( $limit,$offset ), $fname );
+		$num = $dbr->numRows($res);
+		
 		$sk = $wgUser->getSkin( );
 
 		if($shownavigation) {
