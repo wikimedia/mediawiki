@@ -662,6 +662,7 @@ pages for purposes of page relevancy ranking.
 * (bug 2457) The "Special page" href now links to the current special page
   rather than to ""
 * Latin: auto-grammar for -tio, -tionis endings in meta talk namespace
+* Fixed a typo in the Romanian language file (NS_MESIA => NS_MEDIA)
 
 
 === Caveats ===
