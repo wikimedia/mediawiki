@@ -1260,7 +1260,7 @@ $wgFeedDiffCutoff = 32768;
 
 /**
  * Additional namespaces. If the namespaces defined in Language.php and
- * Namespace.php are insufficient,# you can create new ones here, for example,
+ * Namespace.php are insufficient, you can create new ones here, for example,
  * to import Help files in other languages.
  * PLEASE  NOTE: Once you delete a namespace, the pages in that namespace will
  * no longer be accessible. If you rename it, then you can access them through
