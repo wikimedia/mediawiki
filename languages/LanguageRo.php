@@ -14,7 +14,7 @@ require_once("LanguageUtf8.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesRo = array(
-	NS_MESIA			=> 'Media',
+	NS_MEDIA			=> 'Media',
 	NS_SPECIAL			=> 'Special',
 	NS_MAIN				=> '',
 	NS_TALK				=> 'Discuţie',
