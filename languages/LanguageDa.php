@@ -38,14 +38,13 @@ require_once( "LanguageUtf8.php" );
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsDa = array(
-	"Ingen", "Fast venstre", "Fast højre", "Flydende venstre"
+	'Ingen', 'Fast venstre', 'Fast højre', 'Flydende venstre'
 );
 
 /* private */ $wgSkinNamesDa = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgi",
-	'cologneblue' => "Cologne-blå",
-	'smarty' => "Paddington",
+	'standard' => 'Klassisk',
+	'nostalgia' => 'Nostalgi',
+	'cologneblue' => 'Cologne-blå',
 ) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsDa = array();
@@ -111,6 +110,7 @@ require_once( "LanguageUtf8.php" );
 	"Unlockdb"		=> "Gendan skriveadgangen til databasen",
 );
 
+
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
@@ -118,18 +118,8 @@ require_once( "LanguageUtf8.php" );
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => ""
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => ""
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => ""
-
-
 /* private */ $wgAllMessagesDa = array(
-# User Toggles
+# User preference toggles
 "tog-underline" => "Understreg henvisninger",
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
 "tog-justify"	=> "Justér afsnit",
@@ -146,10 +136,18 @@ require_once( "LanguageUtf8.php" );
 "tog-watchdefault" => "Overvåg nye og ændrede artikler",
 "tog-minordefault" => "Markér som standard alle ændringer som mindre",
 "tog-previewontop" => "Vis forhåndsvisning før redigeringsboksen",
+'tog-previewonfirst' => 'Vis forhåndsvisning når du starter med at redigere',
 "tog-nocache" => "Husk ikke siderne til næste besøg",
+'tog-enotifwatchlistpages' 	=> 'Send mig en e-mail med sideændringer (bemærk: eksisterende beskedmarkeringer skal fjernes manuelt i overvågningslisten)',
+'tog-enotifusertalkpages' 	=> 'Send mig en e-mail når min brugerdiskussionsside ændres (bemærk: eksisterende beskedmarkeringer skal fjernes manuelt i overvågningslisten)',
+'tog-enotifminoredits' 		=> 'Send mig også en e-mail for mindre ændringer af sider (der normalt ikke udløser mails med besked om ændringer)',
+'tog-enotifrevealaddr' 		=> 'Offentliggør min e-mail-adresse i mails med besked om ændringer (når jeg ændrer en side kan brugere, der overvåger siden, hurtigt komme i kontakt med mig)',
+'tog-shownumberswatching' 	=> 'Vis antal brugere, der overvåger (i seneste ændringer-visning, overvågningslisten og i bunden af artikelsider)',
+'tog-fancysig' => 'Signaturer uden automatisk link',
+'tog-externaleditor' => 'Brug ekstern editor automatisk',
+'tog-externaldiff' => 'Brug ekstern forskelsvisning automatisk',
 
-# Dates
-
+# dates
 'sunday' => 'søndag',
 'monday' => 'mandag',
 'tuesday' => 'tirsdag',
@@ -182,31 +180,40 @@ require_once( "LanguageUtf8.php" );
 'nov' => 'nov',
 'dec' => 'dec',
 
-
 # Bits of text used by many pages:
 #
-"categories" => "Sidekategorier",
+"categories" => "Kategorier ",
 "category" => "kategori",
-"category_header" => "Artikler i kategorien \"$1\"",
+"category_header" => 'Artikler i kategorien "$1"',
 "subcategories" => "Underkategorier",
 
-"linktrail"		=> "/^((?:[a-z]|æ|ø|å)+)(.*)\$/sD",
+"linktrail"		=> '/^((?:æ|ø|å|[a-z])+)(.*)$/sD',
 "mainpage"		=> "Forside",
-"mainpagetext"	=> "Wiki-software er nu installeret.",
+"mainpagetext"	=> "MediaWiki er nu installeret.",
+"mainpagedocfooter" => "Se vores engelsksprogede [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentation om tilpasning af brugergrænsefladen] 
+og [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.",
+
+# NOTE: To turn off "Community portal" in the title links,
+# set "portal" => "-"
+
+'portal'		=> 'Forside for skribenter',
+'portal-url'		=> '{{ns:4}}:Forside',
 "about"			=> "Om",
-"aboutsite"      => "Om Wikipedia",
-"aboutpage"		=> "Wikipedia:Om",
+"aboutsite"      => "Om {{SITENAME}}",
+"aboutpage"		=> "{{ns:4}}:Om",
+'article' => 'Artikel',
 "help"			=> "Hjælp",
-"helppage"		=> "Wikipedia:Hjælp",
-"wikititlesuffix" => "Wikipedia",
+"helppage"		=> "{{ns:4}}:Hjælp",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Fejlrapporter",
-"bugreportspage" => "Wikipedia:Fejlrapporter",
+"bugreportspage" => "{{ns:4}}:Fejlrapporter",
 "sitesupport"   => "Donation",
-"sitesupportpage" => "Wikipedia:Donation", # If not set, won't appear. Can be wiki page or URL
+'sitesupport-url' => '{{ns:4}}:Donation', # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "OSS",
-"faqpage"		=> "Wikipedia:OSS",
+"faqpage"		=> "{{ns:4}}:OSS",
 "edithelp"		=> "Hjælp til redigering",
-"edithelppage"	=> "Wikipedia:Hvordan_redigerer_jeg_en_side",
+"newwindow"		=> "(åbner i et nyt vindue)",
+"edithelppage"	=> "{{ns:4}}:Hvordan redigerer jeg en side",
 "cancel"		=> "Afbryd",
 "qbfind"		=> "Find",
 "qbbrowse"		=> "Gennemse",
@@ -214,49 +221,92 @@ require_once( "LanguageUtf8.php" );
 "qbpageoptions" => "Indstillinger for side",
 "qbpageinfo"	=> "Information om side",
 "qbmyoptions"	=> "Mine indstillinger",
+'qbspecialpages'	=> 'Specielle sider',
+'moredotdotdot'	=> 'Mere...',
 "mypage"		=> "Min side",
 "mytalk"		=> "Min diskussion",
+'anontalk'		=> 'Diskussionsside for denne IP-adresse',
+'navigation' => 'Navigation',
+
+# Metadata in edit box
+'metadata' => '<b>Metadata</b> (for en foklaring se <a href="$1">her</a>)',
+'metadata_page' => '{{ns:4}}:Metadata',
+
+# NOTE: To turn off "Current Events" in the sidebar,
+# set "currentevents" => "-"
+
 "currentevents" => "Aktuelle begivenheder",
+'currentevents-url' => 'Aktuelle begivenheder',
+
+# NOTE: To turn off "Disclaimers" in the title links,
+# set "disclaimers" => "-"
+
+'disclaimers' => 'Forbehold',
+"disclaimerpage" => "{{ns:4}}:Generelle forbehold",
 "errorpagetitle" => "Fejl",
 "returnto"		=> "Tilbage til $1.",
-"tagline"      	=> "Fra Wikipedia, den frie encyklopædi",
-"whatlinkshere"	=> "Sider med en henvisning hertil",
+"tagline"      	=> "Fra {{SITENAME}}, den frie encyklopædi",
+"whatlinkshere"	=> "Hvad henviser hertil",
 "help"			=> "Hjælp",
 "search"		=> "Søg",
-"go"		=> "Udfør",
-"history"		=> "Historie",
-"printableversion" => "Printervenlig version",
+"go"		=> "Gå til",
+"history"		=> "Historik",
+'history_short' => 'Historik',
+'info_short'	=> 'Information',
+"printableversion" => "Udskriftsvenlig udgave",
+'edit' => 'Redigér',
 "editthispage"	=> "Redigér side",
+'delete' => 'Slet',
 "deletethispage" => "Slet side",
+'undelete_short1' => 'Fortryd sletning af en version',
+"undelete_short" => "Fortryd sletning af $1 versioner",
+'protect' => 'Beskyt',
 "protectthispage" => "Beskyt side",
+'unprotect' => 'Fjern beskyttelse',
 "unprotectthispage" => "Fjern beskyttelse af side",
 "newpage" => "Ny side",
 "talkpage"		=> "Diskussionssiden",
+'specialpage' => 'Speciel side',
+'personaltools' => 'Personlige værktøjer',
 "postcomment"   => "Tilføj en kommentar",
+'addsection'   => '+',
 "articlepage"	=> "Se artiklen",
 "subjectpage"	=> "Se emnesiden",
+'talk' => 'Diskussion',
+'toolbox' => 'Værktøjer ',
 "userpage" => "Se brugersiden",
 "wikipediapage" => "Se metasiden",
 "imagepage" => 	"Se billedsiden",
 "viewtalkpage" => "Se diskussion",
 "otherlanguages" => "Andre sprog",
 "redirectedfrom" => "(Omdirigeret fra $1)",
-"lastmodified"	=> "Sidst ændret den $1.",
+"lastmodified"	=> "Denne side blev senest ændret den $1.",
 "viewcount"		=> "Siden er vist i alt $1 gange.",
-"gnunote" => "Denne side er udgivet under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle" => "(Fra http://da.wikipedia.org)",
+'copyright'	=> 'Indholdet&nbsp;er&nbsp;udgivet&nbsp;under&nbsp;$1.',
+'poweredby'	=> "{{SITENAME}} kører på [http://www.mediawiki.org/ MediaWiki], en open source wiki engine.",
+"printsubtitle" => "(Fra {{SERVER}})",
 "protectedpage" => "Beskyttet side",
-"administrators" => "Wikipedia:Administratorer",
+"administrators" => "{{ns:4}}:Administratorer",
 "sysoptitle"	=> "Sysop-adgang påkrævet",
 "sysoptext"		=> "Den funktion du har bedt om kan kun
 udføres af brugere med \"sysop\"-status. Se $1.",
 "developertitle" => "Developer-adgang påkrævet",
 "developertext"	=> "Den funktion du har bedt om, kan kun
 udføres af brugere med \"developer\"-status. Se $1.",
-"nbytes"		=> "$1 bytes",
-"go"			=> "Udfør",
+'bureaucrattitle'	=> 'Bureaucratadgang påkrævet ',
+"bureaucrattext"	=> "Den handling du har bedt om kan kun
+udføres af brugere med \"bureaucrat\"-status.",
+
+'badaccess'     => 'Permission error',
+'badaccesstext' => 'The action you have requested is limited
+to users with the "$2" permission assigned.
+See $1.',
+
+'nbytes'		=> '$1 bytes',
+"go"			=> "Gå til",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
+"sitetitle"		=> "{{SITENAME}}",
+'pagetitle'		=> "$1 - {{SITENAME}}",
 "sitesubtitle"	=> "Den frie encyklopædi",
 "retrievedfrom" => "Hentet fra \"$1\"",
 "newmessages" => "Du har $1.",
@@ -267,39 +317,59 @@ udføres af brugere med \"developer\"-status. Se $1.",
 "hidetoc" => "skjul",
 "thisisdeleted" => "Se eller gendan $1?",
 "restorelink" => "$1 slettede ændringer",
+'feedlinks' => 'Feed:',
+'sitenotice'	=> '-', # the equivalent to wgSiteNotice
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main' => 'Artikel',
+'nstab-user' => 'Brugerside',
+'nstab-media' => 'Medie',
+'nstab-special' => 'Speciel',
+'nstab-wp' => 'Om',
+'nstab-image' => 'Billede',
+'nstab-mediawiki' => 'Besked',
+'nstab-template' => 'Skabelon',
+'nstab-help' => 'Hjælp',
+'nstab-category' => 'Kategori',
 
 # Main script and global functions
 #
 "nosuchaction"	=> "Funktionen findes ikke",
-"nosuchactiontext" => "Funktion specificeret i URL'en kan ikke
-genkendes af Wikipediasoftwaren",
+"nosuchactiontext" => "Funktion angivet i URL'en kan ikke
+genkendes af MediaWiki-softwaren",
 "nosuchspecialpage" => "En sådan specialside findes ikke",
-"nospecialpagetext" => "Du har bedt om en specialside, der ikke
-kan genkendes af Wikipediasoftwaren.",
+"nospecialpagetext" => "Du har bedt om en specialside, der ikke kan
+genkendes af MediaWiki-softwaren.",
 
 # General errors
 #
 "error"			=> "Fejl",
 "databaseerror" => "Databasefejl",
-"dberrortext"	=> "Der er sket en syntaksfejl i en databaseforespørgsel.
-Den sidst forsøgte databaseforespørgsel var:
+"dberrortext"	=> "Der er opstået en syntaksfejl i en databaseforespørgsel.
+Dette kan være på grund af en ugyldig forespørgsel (se $5),
+eller det kan betyde en fejl i softwaren.
+Den seneste forsøgte databaseforespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
 fra funktionen \"<tt>$2</tt>\".
 MySQL returnerede fejlen \"<tt>$3: $4</tt>\".",
-"dberrortextcl" => "Der er sket en syntaksfejl i en databaseforespørgsel.
-Den sidst forsøgte databaseforespørgsel var:
+"dberrortextcl" => "Der er opstået en syntaksfejl i en databaseforespørgsel.
+Den seneste forsøgte databaseforespørgsel var:
 \"$1\"
 fra funktionen \"$2\".
 MySQL returnerede fejlen \"$3: $4\".\n",
-"noconnect"		=> "Kunne ikke forbinde til databasen på $1",
+'noconnect'		=> 'Der er problemer med {{SITENAME}}s database, vi kan desværre ikke komme i kontakt med den for øjeblikket. Prøv igen senere. <br />
+$1',
 "nodb"			=> "Kunne ikke vælge databasen $1",
 "cachederror"	=> "Det følgende er en gemt kopi af den ønskede side, og er måske ikke helt opdateret.",
+'laggedslave'   => 'Advarsel: Siden kan mangle de seneste opdateringer.',
 "readonly"		=> "Databasen er skrivebeskyttet",
-"enterlockreason" => "Skriv en begrundelse for skrivebeskyttelsen, inklusive 
-et estimat på hvornår skrivebeskyttelsen vil blive ophævet igen",
-"readonlytext"	=> "Wikipediadatabasen er for øjeblikket skrivebeskyttet for 
-nye sider og andre modifikationer, sandsynligvis på grund af rutinemæssig databasevedligeholdelse, hvorefter den vil returnere til normaldrift.
-Den administrator der skrivebeskyttede den har denne forklaring:
+"enterlockreason" => "Skriv en begrundelse for skrivebeskyttelsen, også indeholdende et estimat
+på hvornår skrivebeskyttelsen vil blive ophævet igen",
+"readonlytext"	=> "{{SITENAME}}databasen er for øjeblikket skrivebeskyttet,
+hvilket forhindrer oprettelse af nye sider og andre ændringer,
+sandsynligvis på grund af rutinemæssig databasevedligeholdelse,
+hvorefter den vil returnere til normaldrift. Administratoren der
+skrivebeskyttede databasen har denne forklaring:
 <p>$1",
 "missingarticle" => "Databasen fandt ikke teksten på en side,
 som den skulle have fundet, med navnet \"$1\".
@@ -308,34 +378,48 @@ som den skulle have fundet, med navnet \"$1\".
 
 <p>Send venligst en rapport om dette til en administrator, 
 hvor du også nævner URL'en.",
+'readonly_lag' => "Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen",
 "internalerror" => "Intern fejl",
 "filecopyerror" => "Kunne ikke kopiere filen \"$1\" til \"$2\".",
 "filerenameerror" => "Kunne ikke omdøbe filen \"$1\" til \"$2\".",
 "filedeleteerror" => "Kunne ikke slette filen \"$1\".",
 "filenotfound"	=> "Kunne ikke finde filen \"$1\".",
 "unexpected"	=> "Uventet værdi: \"$1\"=\"$2\".",
-"formerror"		=> "Fejl: kunne ikke afsende form",
+"formerror"		=> "Fejl: Kunne ikke afsende formular",
 "badarticleerror" => "Denne funktion kan ikke udføres på denne side.",
-"cannotdelete"	=> "Kunne ikke slette siden eller filen der blev 
-specificeret.",
+"cannotdelete"	=> "Kunne ikke slette siden eller filen der blev angivet.",
 "badtitle"		=> "Forkert titel",
 "badtitletext"	=> "Den ønskede sides titel var ikke tilladt, tom eller siden
-er forkert henvist fra en Wikipedia på et andet sprog.",
-"perfdisabled" => "Desværre! Denne funktion er midlertidigt afbrudt, 
-fordi den belaster databasen meget hårdt og i en sådan grad, at siden 
-bliver meget langsom. Funktionen bliver forhåbentlig omskrevet i den 
-nærmeste fremtid (måske af dig, det er jo open source!!).",
+er forkert henvist fra en {{SITENAME}} på et andet sprog.",
+"perfdisabled" => "Denne funktion er desværre midlertidigt afbrudt,
+fordi den belaster databasen meget hårdt og i en sådan grad,
+at siden bliver meget langsom. Funktionen bliver forhåbentlig
+omskrevet i den nærmeste fremtid (måske af dig, det er jo open source!).",
 "perfdisabledsub" => "Her er en gemt kopi fra $1:",
+'perfcached' => 'Følgende data er gemt i cachen, det er muligvis ikke helt opdateret:',
+'wrong_wfQuery_params' => "Ugyldig parameter til wfQuery()<br />
+Funktion: $1<br />
+Forespørgsel: $2
+",
+'viewsource' => 'Vis kilden',
+'protectedtext' => "Denne side er skrivebeskyttet for at forhindre ændringer;
+der kan være flere årsager til at det er sket,
+se [[{{ns:4}}:Liste over beskyttede sider|listen over beskyttede sider]].
+
+Du kan sé og kopiere sidens indhold:",
+'seriousxhtmlerrors' => 'Programmet tidy har opdaget alvorlige xhtml-fejl.',
+'sqlhidden' => '(SQL forespørgsel gemt)',
 
 # Login and logout pages
 #
 "logouttitle"	=> "Bruger-log-af",
 "logouttext"	=> "Du er nu logget af.
-Du kan fortsætte med at bruge Wikipedia anonymt, eller du kan logge på
+Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan logge på
 igen som den samme eller en anden bruger.\n",
 
-"welcomecreation" => "<h2>Velkommen, $1!</h2><p>Din konto er blevet 
-oprettet. Glem ikke at personliggøre dine Wikipedia-indstillinger.",
+"welcomecreation" => "== Velkommen, $1! ==
+
+Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-indstillinger.",
 
 "loginpagetitle" => "Bruger log på",
 "yourname"		=> "Dit brugernavn",
@@ -343,77 +427,142 @@ oprettet. Glem ikke at personliggøre dine Wikipedia-indstillinger.",
 "yourpasswordagain" => "Gentag adgangskode",
 "newusersonly"	=> " (kun nye brugere)",
 "remembermypassword" => "Husk min adgangskode til næste gang.",
-"loginproblem"	=> "<b>Der har været et problem med at få dig logget  
-på.</b><br />Prøv igen!",
-"alreadyloggedin" => "<font color=red><b>Bruger $1, du er allerede logget 
-på!</b></font><br />\n",
+'yourdomainname'       => 'Your domain',
+'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
+"loginproblem"	=> "<b>Der har været et problem med at få dig logget på.</b><br />Prøv igen!",
+"alreadyloggedin" => "<font color=red><b>Bruger $1, du er allerede logget på!</b></font><br />\n",
 
 "login"			=> "Log på",
-"userlogin"		=> "Log på",
+'loginprompt'   => "Du skal have cookies slået til for at kunne logge på {{SITENAME}}.",
+"userlogin"		=> "Opret en konto eller log på",
 "logout"		=> "Log af",
 "userlogout"	=> "Log af",
 "notloggedin"	=> "Ikke logget på",
 "createaccount"	=> "Opret en ny konto",
+'createaccountmail'	=> 'via e-mail',
 "badretype"		=> "De indtastede adgangskoder er ikke ens.",
 "userexists"	=> "Det brugernavn du har valgt er allerede i brug. Vælg 
 venligst et andet brugernavn.",
-"youremail"		=> "Din e-mailadresse *",
+"youremail"		=> "Din e-mail-adresse *",
+'yourrealname'		=> 'Dit rigtige navn*',
+'yourlanguage'	=> 'Grænsefladesprog',
+'yourvariant'  => 'Sprogvariant',
 "yournick"		=> "Dit kaldenavn (til signaturer)",
-"emailforlost"	=> "* Det er valgfrit om du vil oplyse din e-mailadresse. 
-Men det gør andre brugere i stand til at sende dig en e-mail, uden at 
-du behøver offentliggøre din e-mailadresse. Samtidig gør det muligt, at du kan få en 
-ny adgangskode sendt til din e-mailadresse.",
+"emailforlost"	=> "&nbsp;",
+'prefs-help-email' 	=> '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, uden du behøver at afsløre din e-mail-adresse. Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
+'prefs-help-email-enotif' => 'Denne e-mail-adresse bruges også til at sende beskeder til dig via e-mail, hvis du har aktiveret funktionerne.',
+'prefs-help-realname' 	=> '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
+'prefs-help-userdata' => '* <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, uden du behøver at afsløre din e-mail-adresse. Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
 "loginerror"	=> "Fejl med at logge på",
+'nocookiesnew'	=> "Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.",
+"nocookieslogin"	=> "{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.",
 "noname"		=> "Du har ikke angivet et gyldigt brugernavn.",
 "loginsuccesstitle" => "Logget på med succes",
-"loginsuccess"	=> "Du er nu logget på Wikipedia som \"$1\".",
+"loginsuccess"	=> "Du er nu logget på {{SITENAME}} som \"$1\".",
 "nosuchuser"	=> "Der er ingen bruger med navnet \"$1\".
 Kontrollér stavemåden igen, eller brug formularen herunder til at oprette en ny brugerkonto.",
+'nosuchusershort'	=> "Der er ingen bruger ved navn \"$1\". Tjek din stavning.",
 "wrongpassword"	=> "Den indtastede adgangskode var forkert. Prøv igen.",
-"mailmypassword" => "Send mig en ny adgangskode til min e-mailadresse",
-"passwordremindertitle" => "Ny adgangskode fra Wikipedia",
+"mailmypassword" => "Send en ny adgangskode til min e-mail-adresse",
+'mailmypasswordauthent'	=> 'Send mig en midlertidig adgangskode
+fordi jeg har glemt min adgangskode eller
+for at godkende min e-mail-adresse',
+"passwordremindertitle" => "Ny adgangskode fra {{SITENAME}}",
 "passwordremindertext" => "Nogen (sandsynligvis dig, fra IP-adressen $1)
-har bedt om at vi sender dig en ny adgangskode til at logge på Wikipedia.
+har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}}.
 Den nye adgangskode for bruger \"$2\" er nu \"$3\".
 Du bør logge på nu og ændre din adgangskode.",
-"noemail"		=> "Der er ikke oplyst nogen e-mailadresse for bruger \"$1\".",
-"passwordsent"	=> "En ny adgangskode er sendt til e-mailadressen,
+"noemail"		=> "Der er ikke oplyst en e-mail-adresse for bruger \"$1\".",
+"passwordsent"	=> "En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for \"$1\".
-Du bør logge på og ændre din adgangskode straks efter, du har modtaget den.",
+Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail'en.",
+'passwordsentforemailauthentication'
+			=>  "En midlertidig adgangskode er blevet sendt til e-mail-adressen der netop er
+registreret for \"$1\".
+Log venligst ind med den for at bekræfte.",
+'loginend'		=> "'''For at oprette en konto skal du vælge et brugernavn og en adgangskode og trykke på \"Opret en ny konto\"'''
+
+* Brugernavnet skal starte med stort bogstav og det må gerne indeholde mellemrum.
+
+'''Hvis du allerede har en konto, skal du kun udfylde brugernavn og adgangskode og trykke \"Log på\"'''
+
+* Du skal have cookies slået til for at kunne logge på.
+
+<nowiki>*</nowiki> Det er valgfrit om du vil oplyse din e-mail-adresse. Men det gør andre brugere i stand til at sende dig en e-mail, uden at du behøver at offentliggøre din e-mail-adresse. Samtidig giver det mulighed for at få sendt en ny adgangskode til din e-mail-adresse. '''Vi videregiver aldrig din e-mail-adresse til nogen som helst.'''
+",
+'mailerror' => "Fejl ved afsendelse af e-mail: $1",
+'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
+'emailauthenticated' 	=> 'Din e-mail-adresse blev bekræftet på $1.',
+'emailnotauthenticated'	=> 'Din e-mail-adresse er <strong>endnu ikke bekræftet</strong> og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted <strong>(d.u.a.)</strong>.<br />
+Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
+'invalidemailaddress'	=> 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
+'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
+'disablednoemail'	=> '<strong>(slået fra; ingen e-mail-adresse)</strong>',
+
+# Edit page toolbar
+'bold_sample'=>'Fed tekst',
+'bold_tip'=>'Fed tekst',
+'italic_sample'=>'Kursiv tekst',
+'italic_tip'=>'Kursiv tekst',
+'link_sample'=>'Henvisning',
+'link_tip'=>'Intern henvisning',
+'extlink_sample'=>'http://www.eksempel.dk Titel på henvisning',
+'extlink_tip'=>'Ekstern henvisning (husk http:// præfiks)',
+'headline_sample'=>'Tekst til overskrift',
+'headline_tip'=>'Type 2 overskrift',
+'math_sample'=>'Indsæt formel her (LaTeX)',
+'math_tip'=>'Matematisk formel (LaTeX)',
+'nowiki_sample'=>'Indsæt tekst her som ikke skal wikiformateres',
+'nowiki_tip'=>'Ignorer wikiformatering',
+'image_sample'=>'Eksempel.jpg',
+'image_tip'=>'Indlejret billede',
+'media_sample'=>'Eksempel.mp3',
+'media_tip'=>'Henvisning til multimediefil',
+'sig_tip'=>'Din signatur med tidsstempel',
+'hr_tip'=>'Horisontal linje (brug den sparsomt)',
+'infobox'=>'Tryk på en knap for at få et teksteksempel',
+# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
+'infobox_alert'=>"Indtast teksten du ønsker formatteret.\\n Den vil blive vist i infoboksen så den kan klippe-klistres.\\nEksempel:\\n$1\\nbliver:\\n$2",
 
 # Edit pages
 #
-"summary"		=> "Beskrivelse",
+"summary"		=> "<a href=\"{{SERVER}}/wiki/{{ns:4}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring\">Beskrivelse</a>",
 "subject"		=> "Emne/overskrift",
 "minoredit"		=> "Dette er en mindre ændring.",
 "watchthis"		=> "Overvåg denne artikel",
 "savearticle"	=> "Gem side",
 "preview"		=> "Forhåndsvisning",
 "showpreview"	=> "Forhåndsvisning",
+'showdiff'	=> 'Vis ændringer',
 "blockedtitle"	=> "Brugeren er blokeret",
 "blockedtext"	=> "Dit brugernavn eller din IP-adresse er blevet blokeret af 
 $1. Begrundelsen er denne:<br />$2<p>Du kan kontakte $1
-eller en af de andre [[Wikipedia:Administratorer|administratorer]] for at diskutere blokeringen.
+eller en af de andre [[{{SITENAME}}:Administratorer|administratorer]] for at diskutere blokeringen.
 
 Din IP-adresse er $3.
-Sørg venligst for at inkludere dette nummer i alle henvendelser til en administrator.
+Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en administrator.
 ",
+'whitelistedittitle' => 'Log på for at redigere',
+'whitelistedittext' => 'Du skal [[Special:Userlogin|logge på]] for at kunne rette artikler.',
+'whitelistreadtitle' => 'Log på for at læse',
+'whitelistreadtext' => 'Du skal [[Special:Userlogin|logge på]] for at læse artikler.',
+'whitelistacctitle' => 'Du har ikke lov til at oprette en konto',
+'whitelistacctext' => 'For at få lov til at lave en konto på denne wiki skal du [[Speciel:Userlogin|logge på]] og have passende rettigheder.',
+'loginreqtitle'	=> 'Log på nødvendigt',
+'loginreqtext'	=> 'Du skal [[speciel:Userlogin|logge på]] for at se andre sider.',
+'accmailtitle' => 'Adgangskode sendt.',
+'accmailtext' => "Adgangskoden for '$1' er sendt til $2.",
 "newarticle"	=> "(Ny)",
-"newarticletext" => "Der er på nuværende tidspunkt ingen tekst på denne side.<br />
-Du kan begynde en artikel ved at skrive i boksen herunder. 
-(se [[Wikipedia:Hjælp|hjælpen]] for yderligere information).<br />
-Hvis det ikke var din mening, så tryk på '''Tilbage''' eller '''Back''' knappen.",
-"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger der 
-ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at 
-bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende.
-En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger 
-og syntes, at du har fået irrelevante kommentarer på sådan en side, så vær 
-venlig, at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige 
-forvekslinger med andre anonyme brugere.'' ",
-"noarticletext" => "(Der er på nuværende tidspunkt ingen tekst på denne 
-side)",
+"newarticletext" => "<div style=\"font-size:small;color:\#003333;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:3px\">'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{ns:4}}:Hjælp|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[{{ns:-1}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen. '''Dit bidrag til {{SITENAME}} vil fremkomme omgående''', så hvis du bare vil teste tingene, så brug venligst [[{{ns:4}}:Sandkassen|sandkassen]]!</div>",
+'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
+"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.'' ",
+"noarticletext" => "<div style=\"border: 1px solid \#ccc; padding: 7px; background-color: \#fff; color: \#000\">'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan se om {{PAGENAME}} findes i [[Wiktionary:{{NAMESPACE}}:{{PAGENAME}}|wikiordbogen]] eller på '''[[:no:{{PAGENAME}}|norsk]]''', '''[[:nn:{{PAGENAME}}|nynorsk]]''', eller '''[[:sv:{{PAGENAME}}|svensk]]'''. * Du kan '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[{{ns:special}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen. </div>",
+'clearyourcache' => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla/Safari/Konqueror''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'', '''Internet Explorer''': ''ctrl-f5'', '''Opera''': ''f5''.",
+'usercssjsyoucanpreview' => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
+'usercsspreview' => "'''Husk at du kun tester/forhåndsviser dit eget css, den er ikke gemt endnu!'''",
+'userjspreview' => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
 "updated"		=> "(Opdateret)",
-"note"			=> "<strong>Note:</strong> ",
+'note'			=> '<strong>Bemærk:</strong> ',
 "previewnote"	=> "Husk at dette er kun en forhåndsvisning, siden er ikke 
 gemt endnu!",
 "previewconflict" => "Denne forhåndsvisning er resultatet af den 
@@ -432,27 +581,21 @@ Du er nødt til at sammenflette dine ændringer med den eksisterende tekst.
 trykker \"Gem side\".<br />",
 "yourtext"		=> "Din tekst",
 "storedversion" => "Den gemte version",
+'nonunicodebrowser' => "<strong>Advarsel: Din browser er ikke unicode-kompatibel, skift eller opdater din browser før du redigerer en artikel.</strong>",
 "editingold"	=> "<strong>ADVARSEL: Du redigerer en gammel version
 af denne side.
 Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive 
 overskrevet.</strong>",
 "yourdiff"		=> "Forskelle",
-"copyrightwarning" => "Læg mærke til at alle bidrag til Wikipedia er
-at betragte som udgivet under GNU Free Documentation License
-(se $1 for detaljer).
-Hvis du ikke vil have din tekst redigeret uden nåde og kopieret efter
-forgodtbefindene, så skal du ikke lægge det her.<br />
-Du lover os også, at du skrev teksten selv, kopierede fra en
-public domain eller lignende fri ressource.
-<strong>LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN 
-DERES TILLADELSE!</strong>",
-"longpagewarning" => "<strong>ADVARSEL: Denne side er $1 kilobytes lang; nogle
-browsere kan have problemer med at redigerer sider der nærmer sig eller 
-er længere end 32kb. Overvej om ikke siden kan deles op i mindre dele.</strong>",
+"copyrightwarning" => "<div id=\"editpage-specialchars\" class=\"plainlinks\" style=\"margin-top:15px;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:2px;\"> <small> Indsæt: <charinsert> Á á É é Í í Ó ó Ú ú </charinsert> &nbsp; <charinsert> À à È è Ì ì Ò ò Ù ù </charinsert> &nbsp; <charinsert> Â â Ê ê Î î Ô ô Û û </charinsert> &nbsp; <charinsert> Ä ä Ë ë Ï ï Ö ö Ü ü </charinsert> &nbsp; <charinsert> ß </charinsert> &nbsp; <charinsert> Ã ã Ñ ñ Õ õ </charinsert> &nbsp; <charinsert> Ç ç &\#290; &\#291; &\#310; &\#311; &\#315; &\#316; &\#325; &\#326; &\#342; &\#343; &\#350; &\#351; &\#354; &\#355; </charinsert> &nbsp; <charinsert> &\#262; &\#263; &\#313; &\#314; &\#323; &\#324; &\#340; &\#341; &\#346; &\#347; Ý ý &\#377; &\#378; </charinsert> &nbsp; <charinsert> Ð ð Þ þ </charinsert> &nbsp; <charinsert> Œ œ </charinsert> &nbsp; <charinsert> Æ æ Ø ø Å å </charinsert> &nbsp; <charinsert> &ndash; &mdash; &hellip; </charinsert> &nbsp; <charinsert> [+] [[+]] {{+}} </charinsert> &nbsp; <charinsert> ~ | ° </charinsert> &nbsp; <charinsert> ± &minus; × ² ³ </charinsert> &nbsp; <charinsert> &euro; </charinsert> &nbsp; </small> </div> *Bemærk at alle bidrag til {{SITENAME}} er at betragte som udgivet under GNU Free Documentation License (se $1 for flere oplysninger). *Hvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her. *Du lover os også, at du selv har forfattet teksten, kopieret den fra en public domain-kilde eller tilsvarende fri kilde. <div style=\"font-weight: bold; font-size: 120%;\">LÆG ALDRIG MATERIALE HER SOM ER BESKYTTET AF ANDRES OPHAVSRET UDEN DERES TILLADELSE!</div>",
+"longpagewarning" => "<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb. Overvej om siden kan opdeles i mindre dele.</strong>",
 "readonlywarning" => "<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
 kopiere din tekst til en tekstfil, så du kan gemme den til senere.</strong>",
-"protectedpagewarning" => "<strong>ADVARSEL: Denne side er låst, så kun administratorer kan redigere den. Sørg for at du følger [[Project:Politik_for_beskyttede_sider|politiken for beskyttede sider]].</strong>",
+"protectedpagewarning" => "<strong>ADVARSEL: Denne side er låst, så kun administratorer
+kan redigere den. Sørg for at du følger 
+[[Project:Politik_for_beskyttede_sider|politiken for beskyttede sider]].</strong>",
+'templatesused'	=> 'Skabeloner der er brugt på denne side:',
 
 # History pages
 #
@@ -464,12 +607,18 @@ ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.\n",
 "loadhist"		=> "Indlæser sidens historik",
 "currentrev"	=> "Nuværende version",
 "revisionasof"	=> "Versionen fra $1",
+'revisionasofwithlink'  => Revision pr. $1; $2<br />$3 | $4',
+'previousrevision'	=> '&larr;Ældre version',
+'nextrevision'		=> 'Nyere version&rarr;',
+'currentrevisionlink'   => 'se nuværende version',
 "cur"			=> "nuværende",
 "next"			=> "næste",
 "last"			=> "forrige",
 "orig"			=> "originale",
 "histlegend"	=> "Forklaring: (nuværende) = forskel til den nuværende 
 version, (forrige) = forskel til den forrige version, M = mindre ændring",
+'history_copyright'    => '-',
+'deletedrev' => '[slettet]',
 
 # Diffs
 #
@@ -477,12 +626,15 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 "loadingrev"	=> "indlæser version for at se forskelle",
 "lineno"		=> "Linje $1:",
 "editcurrent"	=> "Redigér den nuværende version af denne side",
+'selectnewerversionfordiff' => 'Vælg en nyere version til sammenligning',
+'selectolderversionfordiff' => 'Vælg en ældre version til sammenligning',
+'compareselectedversions' => 'Sammenlign valgte versioner',
 
 # Search results
 #
 "searchresults" => "Søgeresultater",
 "searchresulttext" => "For mere information om søgning på {{SITENAME}}, se [[Project:Søgning|Søgning på {{SITENAME}}]].",
-"searchquery"	=> "For forespørgsel \"$1\"",
+"searchquery"	=> "<big><div class=\"plainlinks\">Du søgte efter \"$1\": <a href=\"/wiki/$1\">Gå til</a> | <b><a href=\"/w/wiki.phtml?title=$1&action=edit\">Redigér</a></b> | <a href=\"/w/wiki.phtml?title=$1&action=history\">Historik</a> | <a href=\"/w/wiki.phtml?title=Speciel:Whatlinkshere&target=$1\">Hvad henviser hertil</a> | <a href=\"http://da.wiktionary.org/wiki/Special:Search?search=$1&go=G%E5+til\">Søg Wiktionary</a></div></big>",
 "badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
 Det er sandsynligvis fordi du har forsøgt at søge efter et ord med
@@ -490,70 +642,78 @@ færre end tre bogstaver, hvilket ikke understøttes endnu.
 Det kan også være du har skrevet forkert, for
 eksempel \"fisk og og skaldyr\".
 Prøv en anden forespørgsel.",
-"matchtotals"	=> "Forespørgslen \"$1\" matchede $2 artikeltitler
+"matchtotals"	=> "Forespørgslen \"$1\" opfyldte $2 artikeltitler
 og teksten i $3 artikler.",
-"nogomatch" => "Ingen sider med præcis denne titel eksisterer, prøver 
-fuldtekstsøgning i stedet for. ",
-"titlematches"	=> "Artikeltitler der matchede forespørgslen",
-"notitlematches" => "Ingen artikeltitler matchede forespørgslen",
-"textmatches"	=> "Artikeltekster der matchede forespørgslen",
-"notextmatches"	=> "Ingen artikeltekster matchede forespørgslen",
+"nogomatch" => "<span style=\"font-size: 135%; font-weight: bold; margin-left: .6em\">{{SITENAME}} har ingen artikel med dette navn</span> <span style=\"display: block; margin: 1.5em 2em\"> Du kan <strong><a href=\"$1\" class=\"new\">oprette en artikel med dette navn</a></strong> eller <a href=\"/wiki/{{ns:4}}:Efterspurgte_artikler\">efterspørge den</a>. <span style=\"display:block; font-size: 89%; margin-left:.2em\">For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.</span> </span>",
+"titlematches"	=> "Artikeltitler der opfyldte forespørgslen",
+"notitlematches" => "Ingen artikeltitler opfyldte forespørgslen",
+"textmatches"	=> "Artikeltekster der opfyldte forespørgslen",
+"notextmatches"	=> "Ingen artikeltekster opfyldte forespørgslen",
 "prevn"			=> "forrige $1",
 "nextn"			=> "næste $1",
 "viewprevnext"	=> "Vis ($1) ($2) ($3).",
 "showingresults" => "Nedenfor vises <b>$1</b> resultater startende med 
 nummer <b>$2</b>.",
 "showingresultsnum" => "Herunder vises <b>$3</b> resultater startende med nummer <b>$2</b>.",
-"nonefound"		=> "<strong>Note</strong>: søgning uden resultat skyldes, 
-at man søger efter almindelige ord som \"har\" og \"fra\",
-der ikke er indekseret, eller ved at specificere mere end et søgeord (da kun 
-sider der indeholder alle søgeordene vil blive fundet).",
+"nonefound"		=> "<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som \"har\" og \"fra\", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).",
 "powersearch" => "Søg",
 "powersearchtext" => "
-Søg i navnerum :<br />
+Søg i navnerum:<br />
 $1<br />
 $2 List omdirigeringer &nbsp; Søg efter $3 $9",
-"searchdisabled" => "<p>Søgefunktionen er midlertidigt afbrudt på grund af
-for stort pres på serveren; vi håber vi kan sætte den på igen når vi har
-opgraderet softwaren. I mellemtiden kan du søge via google:</p>",
-"blanknamespace" => "(Hoved)",
+"searchdisabled" => "<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>
+                                                                                                                                                        
+",
+"googlesearch" => "<p> <table border=\"0\" bgcolor=\"#FFFFFF\"> <!-- SiteSearch Google --> <tr> <td valign=\"top\" align=\"center\"> <a href=\"http://www.google.com/\"> <img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\" title=\"Google\"> </a> </td> <td width=\"100%\"> <form method=\"get\" action=\"http://www.google.com/search\"> <input type=\"text\" name=\"q\" size=31 maxlength=255 value=\"$1\"> <input type=\"submit\" name=\"btnG\" value=\"Google-søgning\"> <input type=\"hidden\" name=\"domains\" value=\"{{SERVER}}\"> <input type=\"hidden\" name=\"ie\" value=\"$2\"> <input type=\"hidden\" name=\"oe\" value=\"$2\"> <br /> 
+<font size=-1> <input type=\"radio\" name=\"sitesearch\" value=\"\">WWW <input type=\"radio\" name=\"sitesearch\" value=\"{{SERVER}}\" checked>{{SERVER}} </font> </form> </td> </tr> <!-- SiteSearch Google --> <!-- Spacing --> <tr> <td colspan=2>&nbsp;</td> </tr> <!-- Spacing --> <!-- Yahoo search --> <tr> <td valign=\"top\" align=\"center\"> <a href=\"http://search.yahoo.com/\"> <img src=\"http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif\" border=\"0\" alt=\"Yahoo!\"vspace=\"5\"> </a> </td> <td width=\"100%\"> <form method=get action=\"http://search.yahoo.com/search\"> <input type=\"hidden\" name=\"x\" value=\"op\"> <input type=\"hidden\" name=\"va_vt\" value=\"any\"> <input type=\"text\" name=\"va\" size=\"31\" value=\"$1\"> <input type=\"submit\" value=\"Yahoo!-søgning\"> <br /> <font size=-1> <input type=\"radio\" name=\"vs\" value=\"\">WWW <input type=\"radio\" name=\"vs\" value=\"da.wikipedia.org\" checked>{{SERVER}}</font> </form> </td> </table> </p> <p>Du kan anvende følgende link til at forfatte en artikel om dette emne: <a href=\"/w/wiki.phtml?title=$1&action=edit\">$1</a></p> <p><b>Bemærk</b>: Vi anbefaler at du gennemsøger {{SITENAME}}, før du opretter en ny artikel, dette er for at undgå flere artikler om samme emne, som kan være oprettet under et andet navn eller stavemåde.</p> 
+",
+"blanknamespace" => "(Artikler)",
 
 # Preferences page
 #
 "preferences"	=> "Indstillinger",
 "prefsnologin" => "Ikke logget på",
-"prefsnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
+"prefsnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] 
 for at ændre brugerindstillinger.",
-"prefslogintext" => "Du logget på som \"$1\".
+"prefslogintext" => "Du logget på som \"[[Bruger:$1|$1]]\" ([[Bruger_diskussion:$1|Diskussion]], [[Speciel:Contributions/$1|bidrag]]).
 Dit interne ID-nummer er $2.
 
-Se [[Wikipedia:Hvordan sætter jeg mine indstillinger]] for en forklaring på de forskellige indstillinger.",
+Se [[Project:Hvordan sætter jeg mine indstillinger]] for en forklaring på de forskellige indstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
-"qbsettings"	=> "Indstillinger for hurtigmenu",
+"qbsettings"	=> "Hurtigmenu",
+'qbsettingsnote'	=> 'This Denne indstilling virker kun i \'Standard\' og \'Cologne Blå\' udseende.',
 "changepassword" => "Skift adgangskode",
 "skin"			=> "Udseende",
-"math"			=> "Vis matematiske formler",
+"math"			=> "Matematiske formler",
 "dateformat"	=> "Datoformat",
 "math_failure"		=> "Fejl i matematikken",
 "math_unknown_error"	=> "ukendt fejl",
 "math_unknown_function"	=> "ukendt funktion ",
 "math_lexing_error"	=> "lexerfejl",
-"math_syntax_error"	=> "syntaxfejl",
+"math_syntax_error"	=> "syntaksfejl",
+'math_image_error'	=> PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
+'math_bad_tmpdir'	=> 'Kan ikke skrive til eller oprette temp-mappe til math',
+'math_bad_output'	=> 'Kan ikke skrive til eller oprette uddata-mappe til math',
+'math_notexvc'	=> 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
+'prefs-personal' => 'Brugerdata',
+'prefs-rc' => 'Seneste ændringer og artikelstumper',
+'prefs-misc' => 'Forskelligt',
 "saveprefs"		=> "Gem indstillinger",
 "resetprefs"	=> "Gendan indstillinger",
 "oldpassword"	=> "Gammel adgangskode",
 "newpassword"	=> "Ny adgangskode",
 "retypenew"		=> "Gentag ny adgangskode",
-"textboxsize"	=> "Tekstboks-størrelse",
+"textboxsize"	=> "Redigering",
 "rows"			=> "Rækker",
 "columns"		=> "Kolonner",
-"searchresultshead" => "Indstillinger for søgeresultater",
+"searchresultshead" => "Søgeresultater",
 "resultsperpage" => "Resultater pr. side",
 "contextlines"	=> "Linjer pr. resultat",
 "contextchars"	=> "Tegn pr. linje i resultatet",
-"stubthreshold" => "Grænse for visning af stubs",
+"stubthreshold" => "Grænse for visning af artikelstumper",
 "recentchangescount" => "Antallet af titler på siden \"seneste ændringer\"",
 "savedprefs"	=> "Dine indstillinger er blevet gemt.",
+'timezonelegend' => 'Tidszone',
 "timezonetext"	=> "Indtast antal timer din lokale tid er forskellig
 fra serverens tid (UTC). Der bliver automatisk tilpasset til dansk tid, 
 ellers skulle man for eksempel for dansk vintertid, indtaste \"1\" 
@@ -564,19 +724,79 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 "guesstimezone" => "Hent tidszone fra browseren",
 "emailflag"	=> "Fravælg muligheden for at få e-mail fra andre brugere",
 "defaultns"		=> "Søg som standard i disse navnerum:",
+'default'		=> 'standard',
+'files'			=> 'Filer',
+
+# User levels special page
+#
+
+# switching pan
+'groups-lookup-group' => 'Administrér grupperettigheder',
+'groups-group-edit' => 'Eksisterende grupper: ',
+'editgroup' => 'Redigér gruppe',
+'addgroup' => 'Tilføj gruppe',
+
+'userrights-lookup-user' => 'Administrér brugergrupper',
+'userrights-user-editname' => 'Skriv et brugernavn: ',
+'editusergroup' => 'Redigér brugergrupper',
+
+# group editing
+'groups-editgroup' => 'Redigér gruppe',
+'groups-addgroup' => 'Tilføj gruppe',
+'groups-editgroup-preamble' => 'Hvis navn eller beskrivelse starter med et kolon, så vil 
+resten blive behandlet som et navn på en besked, og derfor vil teksten blive behandlet som
+en besked i MediaWiki navnerummet',
+'groups-editgroup-name' => 'Gruppenavn: ',
+'groups-editgroup-description' => 'Gruppebeskrivelse (max 255 tegn):<br />',
+'savegroup' => 'Gem gruppe',
+'groups-tableheader'        => 'ID || Navn || Beskrivelse || Rettigheder',
+'groups-existing'           => 'Eksisterende grupper',
+'groups-noname'             => 'Angiv venligst et lovligt gruppenavn',
+'groups-already-exists'     => 'En gruppe ved et navn eksisterer allerede',
+'addgrouplogentry'          => 'Tilføjet gruppe $2',
+'changegrouplogentry'       => 'Ændret gruppe $2',
+'renamegrouplogentry'       => 'Omdøbt gruppe $2 to $3',
+
+# user groups editing
+#
+'userrights-editusergroup' => 'Redigér brugergrupper',
+'saveusergroups' => 'Gem brugergrupper',
+'userrights-groupsmember' => 'Medlem af:',
+'userrights-groupsavailable' => 'Tilgængelige grupper:',
+'userrights-groupshelp' => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til. 
+Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
+'userrights-logcomment' => 'Ændret gruppemedlemskab fra $1 til $2',
+
+# Default group names and descriptions
+# 
+'group-anon-name'       => 'Anonym',
+'group-anon-desc'       => 'Anonyme brugere',
+'group-loggedin-name'   => 'Bruger',
+'group-loggedin-desc'   => 'Generel bruger der er logget på',
+'group-admin-name'      => 'Administrator',
+'group-admin-desc'      => 'En bruger der kan blokere andre brugere og slette sider',
+'group-bureaucrat-name' => 'Bureaukrat',
+'group-bureaucrat-desc' => 'Bureaukrater kan udnævne administratorer',
+'group-steward-name'    => 'Steward',
+'group-steward-desc'    => 'Fuld adgang',
+
 
 # Recent changes
 #
 "changes" => "ændringer",
 "recentchanges" => "Seneste ændringer",
-# This is the default text, and can be overriden by editing [[Wikipedia::Recentchanges]]
-"recentchangestext" => "Se de senest ændrede sider i Wikipedia på denne side.",
+'recentchanges-url' => 'Speciel:Recentchanges',
+"recentchangestext" => "{|border=\"0\" class=\"plainlinks\" |-valign=\"top\" |align=\"right\"|<small>Seneste&nbsp;ændringer&nbsp;for:&nbsp;</small> 
+|align=\"left\"|<small>[http://da.wiktionary.org/wiki/Speciel:Recentchanges Wikiordbog] - [http://da.wikiquote.org/wiki/Speciel:Recentchanges Wikiquote] - [http://da.wikibooks.org/wiki/Speciel:Recentchanges Wikibooks] - [http://wikisource.org/wiki/Special:Recentchanges Wikisource] - [http://meta.wikipedia.org/wiki/Special%3ARecentchanges Meta] - [http://commons.wikimedia.org/wiki/Special:Recentchanges Commons] - ([[Project:Hvordan bruger jeg seneste ændringer siden|hjælp]] | [http://da.wikipedia.org/w/wiki.phtml?title=MediaWiki:Recentchangestext&action=edit rediger])</small> 
+|-valign=\"top\" |align=\"right\"|<small>[[Project:Om|Om {{SITENAME}}]]:'''&nbsp;</small> 
+|align=\"left\"|<small>[[Project:Velkommen nybegynder|Velkommen nybegynder]] - [[Project:OSS|Ofte stillede spørgsmål]] - [[Project:Bekendtgørelser|Bekendtgørelser]] - [[Project:Landsbybrønden|Landsbybrønden]] - [[Project:Stilmanual|Stilmanual]] - [[Project:Navngivning|Navngivning]]</small> |}",
 "rcloaderr"		=> "Indlæser seneste ændrede sider",
 "rcnote"		=> "Nedenfor er de seneste <strong>$1</strong> ændringer i de 
 sidste <strong>$2</strong> dage.",
 "rcnotefrom"	=> "Nedenfor er ændringerne fra <b>$2</b> indtil <b>$1</b> vist.",
 "rclistfrom"	=> "Vis nye ændringer startende fra $1",
-"rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage; $3 mindre ændringer.",
+'showhideminor' => "$1 mindre ændringer | $2 robotter | $3 brugere der er logget på | $4 patruljerede ændringer ",
+"rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage<br />$3",
 "rchide"		=> "i $4 form; $1 mindre ændringer; $2 andre navnerum; $3 mere end en redigering.",
 "rcliu"			=> "; $1 redigeringer fra brugere der er logget på",
 "diff"			=> "forskel",
@@ -586,8 +806,11 @@ sidste <strong>$2</strong> dage.",
 "tableform"		=> "tabel",
 "listform"		=> "liste",
 "nchanges"		=> "$1 ændringer",
-"minoreditletter" => "M",
+"minoreditletter" => "m",
 "newpageletter" => "N",
+'sectionlink' => '&rarr;',
+'number_of_watching_users_RCview' 	=> '[$1]',
+'number_of_watching_users_pageview' 	=> '[$1 overvågende bruger/e]',
 
 # Upload
 #
@@ -597,65 +820,77 @@ sidste <strong>$2</strong> dage.",
 "reupload"		=> "Læg en fil op igen",
 "reuploaddesc"	=> "Tilbage til formularen til at lægge filer op.",
 "uploadnologin" => "Ikke logget på",
-"uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
-for at kunne lægge filer op.",
+"uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne lægge filer op.",
+"uploadfile"	=> "Læg filen op",
 "uploaderror"	=> "Fejl under oplægning af fil",
-"uploadtext"	=> "'''STOP!''' Før du lægger filer op her,
-så vær sikker på du har læst og følger Wikipedias
-[[Project:Politik om brug af billeder|politik om brug af billeder]].
+"uploadtext"	=> "[[Billede:Commons_without_text-35px.png|thumb|right|35px|Wiki-C]] Hvis du har billeder som kan være til nytte både her og på andre Wiki'er, 
+anbefales det at lægge det op på '''[[Commons:Forside|Wikimedia Commons]]''' der er en fælles base for frie billeder og andre filer til alle Wikimedia-projekterne. 
+For at lægge en fil op på Commons skal man oprette en brugerkonto der, på samme måde som på den danske {{SITENAME}}. 
+Der er en oversat [[Commons:Commons:Første skridt|vejledning]], og en dansksproget [[Commons:Forside|forside]]. 
+Når du skal bruge et billede fra Commons skal du bare udskifte ''image:fexxx.jpg'' med ''billede:fexxx.jpg'' i koden. 
+Logoet ovenfor til højre er hentet fra Commons, og sat ind her med denne kode: :<nowiki>[[Billede:Commons_without_text-35px.png|thumb|right|35px|Wiki-C]]</nowiki>
 
-For at se eller søge i billeder, som tidligere er lagt op,
-gå til [[Speciel:Imagelist|listen over billeder]].
-Oplægning og sletninger er registreret i
-[[Project:Upload_log|log over oplagte filer]].
+<div style=\"border: 1px solid grey; background: \#ddf; padding: 7px; margin: 0 auto;\">
+<strong>STOP!</strong> Før du lægger filer op her, 
+så vær sikker på du har læst og følger {{SITENAME}}s 
+[[{{NS:4}}:Politik om brug af billeder|politik om brug af billeder]].
 
-Brug formularen herunder til at lægge nye billeder op, der kan bruges
-som illustration i dine artikler.
+Følg venligst disse retningslinjer:
+<ul>
+<li>Angiv tydeligt hvor filen stammer fra</li>
+<li>Angiv tydeligt hvilken licens filen er omfattet af, ved at tilføje en af skabelonerne <tt>&#123;{GFDL}}</tt> eller <tt>&#123;{PD}}</tt> eller en af de andre du kan finde på [[{{NS:4}}:Skabeloner#Ophavsret|skabelonsiden]].</li>
+<li>Brug et beskrivende filnavn, så det er til at se hvad filen indeholder</li>
+<li>Tjek i [[Speciel:Imagelist|listen over filer]] om filen allerede er lagt op</li>
+</ul>
+</div>
+<p>Brug formularen herunder til at lægge nye filer op, som kan bruges i dine artikler. 
 På de fleste browsere vil du se en \"Browse...\" knap eller en 
-\"Gennemse...\" knap, som vil
-bringe dig til dit styresystemets standard-dialog til åbning af filer.
-Når du vælger en fil, vil navnet på filen dukke op i tekstfeltet
-ved siden af knappen.
-Du skal også verificere, at du ikke er ved at bryde nogens ophavsret.
-Det gør du ved at sætte et mærke i checkboksen.
-Tryk på \"Læg op\"-knappen for at lægge filen op.
-Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse.
+\"Gennemse...\" knap, som vil 
+bringe dig til dit styresystems standard-dialog til åbning af filer. 
+Når du vælger en fil, vil navnet på filen dukke op i tekstfeltet 
+ved siden af knappen. 
+Du skal også bekræfte, at du ikke er ved at bryde nogens ophavsret. 
+Det gør du ved at sætte et mærke i tjekboksen. 
+Vælg \"Læg en fil op\"-knappen for at lægge filen op. 
+Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse. 
 
-De foretrukne formater er JPEG til fotografiske billeder, PNG
-til tegninger og andre små billeder, og OGG til lyd.
-Sørg for at navngive din fil med et beskrivende navn for at undgå 
-forvirring om indholdet.
-For at bruge billedet i en artikel, så brug et link af denne slags
-'''<nowiki>[[billede:fil.jpg]]</nowiki>''' eller
-'''<nowiki>[[billede:fil.png|alternativ tekst]]</nowiki>''' eller
-'''<nowiki>[[media:fil.ogg]]</nowiki>''' for lyd.
+<p>De foretrukne formater er JPEG til fotografiske billeder, PNG 
+til tegninger og andre små billeder, og OGG til lyd. 
+For at bruge et billede i en artikel, så brug et link af denne type 
+'''<nowiki>[[billede:fil.jpg]]</nowiki>''' eller 
+'''<nowiki>[[billede:fil.png|alternativ tekst]]</nowiki>''' eller 
+'''<nowiki>[[media:fil.ogg]]</nowiki>''' for lyd. 
 
-Læg mærke til at præcis som med Wikipedia-sider, så kan og må andre gerne 
-redigere eller
-slette de filer, du har lagt op, hvis de mener det hjælper encyklopædien, og
+<p>Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
+redigere eller 
+slette de filer, du har lagt op, hvis de mener det hjælper {{SITENAME}}, og 
 du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
 "uploadlog"		=> "oplægningslog",
-"uploadlogpage" => "Upload_log",
-"uploadlogpagetext" => "Herunder er der en liste med de filer, som er lagt 
-op senest. Alle de viste tider er serverens tid (UTC).
+"uploadlogpage" => "Oplægningslog",
+"uploadlogpagetext" => "Herunder en liste over de senest oplagte filer. Alle de viste tider er serverens tid (UTC).
 ",
 "filename"		=> "Filnavn",
 "filedesc"		=> "Beskrivelse",
+'filestatus' => 'Status på ophavsret',
+'filesource' => 'Kilde',
 "affirmation"	=> "Jeg bekræfter, at ophavsretshaveren til denne fil
 er enig i, at filen udgives under betingelserne for $1.",
-"copyrightpage" => "Wikipedia:Ophavsret",
-"copyrightpagename" => "Wikipedia ophavsret",
+"copyrightpage" => "{{SITENAME}}:Ophavsret",
+"copyrightpagename" => "{{SITENAME}} ophavsret",
 "uploadedfiles"	=> "Filer som er lagt op",
 "noaffirmation" => "Du skal bekræfte, at du ikke bryder nogens ophavsret
 ved at lægge denne fil op.",
 "ignorewarning"	=> "Ignorér advarslen og gem filen alligevel.",
 "minlength"		=> "Navnet på filen skal være på mindst tre bogstaver.",
+'illegalfilename'	=> 'Filnavnet "$1" indeholder tegn, der ikke er tilladte i sidetitler. Omdøb filen og prøv at lægge den op igen.',
 "badfilename"	=> "Navnet på filen er blevet ændret til \"$1\".",
 "badfiletype"	=> "\".$1\" er ikke et af de anbefalede filformater.",
 "largefile"		=> "Det anbefales, at filer ikke fylder mere end 100kb.",
-"successfulupload" => "Oplægning er gennemført med success",
-"fileuploaded"	=> "Filen \"$1\" er lagt op med success.
-Følg dette link: ($2) til siden med beskrivelse og udfyld
+'emptyfile'		=> 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
+'fileexists'		=> 'En fil med det navn findes allerede, tjek venligst $1 om du er sikker på du vil ændre den.',
+"successfulupload" => "Oplægning er gennemført med succes",
+"fileuploaded"	=> "Filen \"$1\" er lagt op med succes.
+Følg dette link: ($2) til siden med beskrivelse, og udfyld
 information omkring filen, såsom hvor den kom fra, hvornår den er lavet
 og af hvem, og andre ting du ved om filen.",
 "uploadwarning" => "Oplægningsadvarsel",
@@ -668,11 +903,13 @@ og af hvem, og andre ting du ved om filen.",
 
 # Image list
 #
-"imagelist"		=> "Billedliste",
+"imagelist"		=> "Liste over billeder",
 "imagelisttext"	=> "Herunder er en liste med $1 billeder sorteret $2.",
 "getimagelist"	=> "henter billedliste",
+"ilshowmatch"	=> "Vis alle billeder med navne der matcher",
 "ilsubmit"		=> "Søg",
 "showlast"		=> "Vis de sidste $1 billeder sorteret $2.",
+"all"			=> "alle",
 "byname"		=> "efter navn",
 "bydate"		=> "efter dato",
 "bysize"		=> "efter størrelse",
@@ -682,42 +919,47 @@ og af hvem, og andre ting du ved om filen.",
 "imghistory"	=> "Billedhistorik",
 "revertimg"		=> "gendan",
 "deleteimg"		=> "slet",
-"deleteimgcompletely"		=> "slet",
+"deleteimgcompletely"		=> "Slet alle revisioner af dette billede",
 "imghistlegend" => "Forklaring: (nuværende) = dette er det nuværende billede, 
 (slet) = slet denne gamle version, (gendan) = gendan en gammel version.
 <br /><i>Klik på en dato for at se billedet, som er lagt op den dag</i>.",
 "imagelinks"	=> "Billedehenvisninger",
 "linkstoimage"	=> "De følgende sider henviser til dette billede:",
 "nolinkstoimage" => "Der er ingen sider der henviser til dette billede.",
+'sharedupload' => '<br clear=all> {| border="0" cellpadding="5" style="font-weight:normal; float:center; border:solid #008 1px;margin-left:5px;margin-bottom:5px" |- |[[Billede:CommonsLogo.png|50px|none|Commons|<nowiki></nowiki>]] |Denne fil er fra [[Commons:Forside|Wikimedia Commons]], en samling af [[åbent indhold]] som [[Wikimedia Foundation]] er vært for.<br />Se venligst siden med [[Commons:Image:{{PAGENAME}}|beskrivelse af billedet]] for information om ophavsret. |} <br clear=all>.',
+'shareduploadwiki' => 'Se venligst [$1 siden med billedbeskrivelsen] for yderligere information.',
+'noimage'       => 'Der eksisterer ingen fil med dette navn, du kan [$1 lægge den op]',
+'uploadnewversion' => '[$1 Læg en ny version af denne fil op]',
 
 # Statistics
 #
 "statistics"	=> "Statistik",
-"sitestats"		=> "Side-statistik",
-"userstats"		=> "Bruger-statistik",
-"sitestatstext" => "Der er i alt <b>$1</b> sider i databasen.
-Dette er inklusiv \"diskussion\"-sider, sider om Wikipedia, 
-omdirigeringssider, og andre der sikkert ikke kan 
-kvalificeres som artikler.
-Hvis man ekskludere disse, så er der <b>$2</b> sider som sandsynligvis er 
-rigtige artikler.<p>
-Der har ialt været <b>$3</b> viste sider, og <b>$4</b> redigeringer af sider
-siden softwaren blev opdateret (25. september 2002).
-Det vil sige, der har været <b>$5</b> gennemsnitlige redigeringer pr. side, 
-og <b>$6</b> visninger pr. redigering.",
-"userstatstext" => "Der er  <b>$1</b> registrerede brugere.
-<b>$2</b> af disse er administratorer (se $3).",
+"sitestats"		=> "Statistiske oplysninger om {{SITENAME}}",
+"userstats"		=> "Statistik om brugere på {{SITENAME}}",
+"sitestatstext" => "Der er i alt '''$1''' sider i databasen. 
+Dette tal indeholder "diskussion"-sider, sider om {{SITENAME}}, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler. 
+Hvis man udelader disse, så er der '''$2''' sider som sandsynligvis er rigtige artikler. 
+Der har i alt været '''$4''' sideredigeringer siden programmellet blev opdateret den 25. september 2002. 
+Det vil sige, at der har været '''$5''' gennemsnitlige redigeringer pr. side. 
+For mere udførlige statistikker se: 
+*[http://www.wikipedia.org/wikistats/DA/Sitemap.htm Omfattende Wikipedia-statistik] 
+*[http://wikimedia.org/stats/da.wikipedia.org Antal besøgende på Wikipedia] 
+*[http://wikimedia.org/stats/live Aktuelle grafer over servertrafikken] 
+*[[{{ns:4}}:Statistik|Statistik over væksten]] .",
+"userstatstext" => "Der er '''$1''' registrerede brugere. 
+'''$2''' (eller '''$4%''') af disse er administratorer (se $3). 
+* [http://www.wikipedia.org/wikistats/DA/TablesWikipediaDA.htm#wikipedians Aktive brugere].",
 
 # Maintenance Page
 #
 "maintenance"		=> "Vedligeholdelsesside",
 "maintnancepagetext"	=> "På denne side er der forskellige smarte 
-værktøjer til at vedligeholde Wikipedia. Nogle af disse funktioner er ret 
+værktøjer til at vedligeholde {{SITENAME}}. Nogle af disse funktioner er ret 
 hårde for databasen (de tager lang tid), så lad være med at opdatere siden 
 hver gang du har rettet en enkelt ting ;-)",
 "maintenancebacklink"	=> "Tilbage til vedligeholdelsessiden",
 "disambiguations"	=> "Artikler med flertydige titler",
-"disambiguationspage"	=> "Wikipedia:Henvisninger til artikler med flertydige titler",
+"disambiguationspage"	=> "Project:Henvisninger til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler henviser til 
 <i>artikler med flertydige titler</i>. De skulle henvise til en ikke-flertydig 
 titel i stedet for.<br />En artikel bliver behandlet som flertydig, hvis den er
@@ -739,7 +981,7 @@ men det burde de ikke.",
 "mispeelingstext"               => "De følgende sider indeholder en af de 
 almindelig stavefejl, som er listet på $1. Den korrekte stavemåde kan 
 angives i paranteser efter den fejlagtige stavemåde (sådan her).",
-"mispeelingspage"       => "Liste af almindelige stavefejl",
+"mispeelingspage"       => "Liste over almindelige stavefejl",
 "missinglanguagelinks"  => "Manglende sproghenvisninger",
 "missinglanguagelinksbutton"    => "Find manglende sproghenvisninger for",
 "missinglanguagelinkstext"      => "Disse artikler har <i>ikke</i> nogen 
@@ -750,7 +992,11 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 # Miscellaneous special pages
 #
 "orphans"		=> "Forældreløse artikler",
+'geo'		=> 'GEO-koordinater',
+'validate'		=> 'Validér side',
 "lonelypages"	=> "Forældreløse artikler",
+'uncategorizedpages'	=> 'Ukategoriserede sider',
+'uncategorizedcategories'	=> 'Ukategoriserede kategorier',
 "unusedimages"	=> "Ubrugte billeder",
 "popularpages"	=> "Populære artikler",
 "nviews"		=> "$1 visninger",
@@ -758,13 +1004,27 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "nlinks"		=> "$1 henvisninger",
 "allpages"		=> "Alle artikler",
 "randompage"	=> "Tilfældig artikel",
+'randompage-url'=> 'Speciel:Randompage',
 "shortpages"	=> "Korte artikler",
 "longpages"		=> "Lange artikler",
-"listusers"		=> "Brugerliste",
+'deadendpages'  => 'Blindgydesider',
+"listusers"		=> "Liste over brugere",
+'listadmins'	=> 'Liste over administratorer',
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
+'restrictedpheading'	=> 'Specielle sider med begrænset adgang',
+'asksqlpheading' => 'Asksql-niveau',
+'blockpheading' => 'Blokeringsniveau',
+'createaccountpheading' => 'Opret konto-niveau',
+'deletepheading' => 'Sletteniveau',
+'userrightspheading' => 'Brugerrettighedsniveau',
+'grouprightspheading' => 'Grupperettighedsniveau',
+'siteadminpheading' => 'Webstedsadministratorniveau',
+
+/** obsoletes
 "sysopspheading" => "Specielle sider til sysop-brug",
 "developerspheading" => "Specielle sider til developer-brug",
+*/
 "protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider henvist fra \"$1\")",
@@ -774,32 +1034,56 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "intl"		=> "Sproghenvisninger",
 "movethispage"	=> "Flyt side",
 "unusedimagestext" => "<p>Læg mærke til, at andre websider
-såsom de andre internationale Wikipediaer måske henviser til et billede med
+såsom de andre internationale {{SITENAME}}er måske henviser til et billede med
 en direkte URL, så det kan stadig være listet her, selvom det er
-i aktivt brug.</p>",
+i aktivt brug.",
 "booksources"	=> "Bogkilder",
+'categoriespagetext' => 'De følgende kategorier eksisterer på {{SITENAME}}.',
+'data'	=> 'Data',
+'userlevels' => 'Administration af brugerniveauer',
+'grouplevels' => 'Administration af gruppeniveauer',
+
+# FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 "booksourcetext" => "Herunder er en liste af henvisninger til steder der
 udlåner og/eller sælger nye og brugte bøger, og som måske også har 
-yderligere information om bøger du leder efter.
-Wikipedia er ikke associeret med nogen af disse steder,
+yderligere oplysninger om bøger du leder efter.
+{{SITENAME}} er ikke associeret med nogen af disse steder,
 og denne liste skal ikke ses som en anbefaling af disse.",
+'isbn'	=> 'ISBN',
+'rfcurl' =>  'http://www.faqs.org/rfcs/rfc$1.html',
+'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 "alphaindexline" => "$1 til $2",
+'version'		=> 'Information om MediaWiki',
+'log'		=> 'Logs',
+'alllogstext'	=> 'Samlet visning af oplægningslog, sletningslog, blokeringslog, bureaukratlog og listen over beskyttede sider. 
+Du kan sortere i visningen ved at vælge type, brugernavn og/eller en udvalgt side.',
+
+# Special:Allpages
+'nextpage'          => 'Næste side ($1)',
+'allpagesfrom'		=> 'Vis sider startende fra: $1',
+'allarticles'       => 'Alle artikler',
+'allnonarticles'	=> 'Alle ikke-artikler',
+'allinnamespace'	=> 'Alle sider (i $1 navnerummet)',
+'allnotinnamespace'	=> 'Alle sider (ikke i $1 navnerummet)',
+'allpagesprev'      => 'Forrige',
+'allpagesnext'      => 'Næste',
+'allpagessubmit'    => 'Vis',
 
 # Email this user
 #
 "mailnologin"	=> "Ingen afsenderadresse",
-"mailnologintext" => "Du skal være [[Speciel:Userlogin|logget på]]
-og have en gyldig e-mailadresse sat i dine [[Speciel:Preferences|indstillinger]]
-for at sende e-mail til andre brugere.",
+"mailnologintext" => "Du skal være [[Speciel:Userlogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Speciel:Preferences|indstillinger]] for at sende e-mail til andre brugere.",
 "emailuser"		=> "E-mail til denne bruger",
 "emailpage"		=> "E-mail bruger",
-"emailpagetext"	=> "Hvis denne bruger har sat en gyldig e-mailadresse i
+"emailpagetext"	=> "Hvis denne bruger har sat en gyldig e-mail-adresse i
 sine brugerindstillinger, så vil formularen herunder sende en enkelt 
 besked.
 Den e-mailadresse, du har sat i dine brugerindstillinger, vil dukke op
 i \"Fra\" feltet på denne mail, så modtageren er i stand til at svare.",
-"noemailtitle"	=> "Ingen e-mailadresse",
-"noemailtext"	=> "Denne bruger har ikke angivet en gyldig e-mailadresse,
+'usermailererror' => 'E-mail-modulet returnerede en fejl: ',
+'defemailsubject'  => "{{SITENAME}} e-mail",
+"noemailtitle"	=> "Ingen e-mail-adresse",
+"noemailtext"	=> "Denne bruger har ikke angivet en gyldig e-mail-adresse,
 eller har valgt ikke at modtage e-mail fra andre brugere.",
 "emailfrom"		=> "Fra",
 "emailto"		=> "Til",
@@ -807,7 +1091,7 @@ eller har valgt ikke at modtage e-mail fra andre brugere.",
 "emailmessage"	=> "Besked",
 "emailsend"		=> "Send",
 "emailsent"		=> "E-mail sendt",
-"emailsenttext" => "Din e-mailbesked er blevet sendt.",
+"emailsenttext" => "Din e-mail er blevet sendt.",
 
 # Watchlist
 #
@@ -815,31 +1099,26 @@ eller har valgt ikke at modtage e-mail fra andre brugere.",
 "watchlistsub"	=> "(for bruger \"$1\")",
 "nowatchlist"	=> "Du har ingenting i din overvågningsliste.",
 "watchnologin"	=> "Ikke logget på",
-"watchnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
-for at kunne ændre din overvågningsliste.",
+"watchnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne ændre din overvågningsliste.",
 "addedwatch"	=> "Tilføjet til din overvågningsliste",
-"addedwatchtext" => "Siden \"$1\" er blevet tilføjet til din <a href=\"" .
-  "{{localurle:Speciel:Watchlist}}\">overvågningsliste</a>.
-Fremtidige ændringer til denne side og den tilhørende diskussionsside vil 
-blive listet her, og siden vil fremstå <b>fremhævet</b> i <a href=\"" .
-  "{{localurle:Speciel:Recentchanges}}\">listen med de seneste 
-ændringer</a> for at gøre det lettere at finde den.</p>
-
-<p>Hvis du senere vil fjerne siden fra din overvågningsliste, så klik 
-\"Fjern overvågning\" ude i siden.",
+"addedwatchtext" => "Siden \"$1\" er blevet tilføjet til din [[Speciel:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Speciel:Recentchanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
 "removedwatch"	=> "Fjernet fra overvågningsliste",
 "removedwatchtext" => "Siden \"$1\" er blevet fjernet fra din 
 overvågningsliste.",
+'watch' => 'Overvåg',
 "watchthispage"	=> "Overvåg side",
+'unwatch' => 'Fjern overvågning',
 "unwatchthispage" => "Fjern overvågning",
 "notanarticle"	=> "Ikke en artikel",
 "watchnochange" => "Ingen af siderne i din overvågningsliste er ændret i den valgte periode.",
-"watchdetails" => "($1 sider i din overvågningsliste, fratrukket alle diskussionssiderne;
-$2 totalt antal sider ændret i den valgte periode;
-$3...
-<a href='$4'>vis og redigér den komplette liste</a>.)",
-"watchmethod-recent" => "tjekker seneste ændringer for sider i din overvågningsliste",
-"watchmethod-list" => "tjekker seneste ændringer for sider i din overvågningsliste",
+"watchdetails" => "* Du har $1 sider på din overvågningsliste (fratrukket alle diskussionssider).
+* I tidsintervallet valgt herunder, har brugerne foretaget $2 redigeringer i {{SITENAME}}.
+* $3
+* Du kan [[Special:Watchlist/edit|vise og redigere den komplette liste]].",
+'wlheader-enotif' 		=> "* E-mail underretning er slået til.",
+'wlheader-showupdated'   => "* Sider der er ændret siden dit sidste besøg er '''fremhævet'''",
+"watchmethod-recent" => "Tjekker seneste ændringer for sider i din overvågningsliste",
+"watchmethod-list" => "Tjekker seneste ændringer for sider i din overvågningsliste",
 "removechecked" => "Fjern valgte sider fra min overvågningsliste",
 "watchlistcontains" => "Din overvågningsliste indeholder $1 sider.",
 "watcheditlist" => "Her er en alfabetisk liste over siderne i din overvågningsliste.
@@ -850,14 +1129,47 @@ i bunden af skærmen.",
 "couldntremove" => "Kunne ikke fjerne '$1'...",
 "iteminvalidname" => "Problem med '$1', ugyldigt navn...",
 "wlnote" => "Nedenfor er de seneste $1 ændringer i de sidste <b>$2</b> timer.",
+'wlshowlast' 		=> "Vis de seneste $1 timer $2 dage $3",
+'wlsaved'			=> 'Dette er en gemt version af din overvågningsliste.',
+'wlshow'		=> 'Vis',
+'wlhide'		=> 'Gem',
 
+'enotif_mailer' 		=> '{{SITENAME}} informationsmail',
+'enotif_reset'			=> 'Marker alle sider som besøgt',
+'enotif_newpagetext'=> 'Dette er en ny side.',
+'changed'			=> 'ændret',
+'created'			=> 'oprettet',
+'enotif_subject' 	=> '{{SITENAME}}-siden $PAGETITLE_QP er blevet ændret af $PAGEEDITOR_QP',
+'enotif_lastvisited' => 'Se {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for alle ændringer siden dit sidste besøg.',
+'enotif_body' => 'Kære $WATCHINGUSERNAME,
+
+{{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATE af $PAGEEDITOR,
+se {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for den nyeste version.
+
+$NEWPAGE
+
+Bidragyderens beskrivelse: $PAGESUMMARY $PAGEMINOREDIT
+Kontakt bidragyderen:
+mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+
+Du vil ikke modtage flere beskeder om yderligere ændringer af denne side med mindre du besøger den.
+På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
+
+             Med venlig hilsen {{SITENAME}}s informationssystem
+
+--
+Besøg {{SERVER}}{{localurl:Special:Watchlist|magic=yes}} for at ændre indstillingerne for din overvågningsliste
+
+Tilbagemelding og yderligere hjælp:
+{{SERVER}}{{localurl:Landsbybrønden}}',
 
 # Delete/protect/revert
 #
 "deletepage"	=> "Slet side",
 "confirm"		=> "Bekræft",
 "excontent" => "indholdet var: '$1'",
-"excontentauthor" => "'$2' -- indholdet var: '$1'",
+"excontentauthor" => "indholdet var: '$1' (og den eneste forfatter var '$2')",
 "exbeforeblank" => "indholdet før siden blev tømt var: '$1'",
 "exblank" => "siden var tom",
 "confirmdelete" => "Bekræft sletning",
@@ -867,38 +1179,49 @@ i bunden af skærmen.",
 eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
 konsekvenserne, og at du gør dette i overensstemmelse med
-[[Wikipedia:Politik]].",
+[[Project:Politik]].",
+"confirmcheck"	=> "Ja, jeg vil virkelig slette den.",
 "actioncomplete" => "Gennemført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en fortegnelse over de nyeste sletninger.",
-"deletedarticle" => "slettet \"$1\"",
+"deletedarticle" => "slettede \"$1\"",
 "dellogpage"	=> "Sletningslog",
-"dellogpagetext" => "Herunder er en liste over de nyeste sletninger.
+"dellogpagetext" => "Herunder er en liste over de nyeste sletninger. 
 Alle tider er serverens tid (UTC).
 ",
 "deletionlog"	=> "sletningslog",
 "reverted"		=> "Gendannet en tidligere version",
 "deletecomment"	=> "Begrundelse for sletning",
 "imagereverted" => "Gendannelse af en tidligere version gennemført med 
-success.",
+succes.",
 "rollback"		=> "Fjern redigeringer",
+'rollback_short' => 'Fjern redigering',
 "rollbacklink"	=> "fjern redigering",
 "rollbackfailed" => "Kunne ikke fjerne redigeringen",
 "cantrollback"	=> "Kan ikke fjerne redigering; 
 den sidste bruger er den eneste forfatter.",
-"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]]
-foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); 
-en anden har allerede redigeret siden eller fjernet redigeringen. 
-
-Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]). ",
+"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]). ",
 #   only shown if there is an edit comment
 "editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".", 
-"revertpage"	=> "Gendannet siden til tidligere version redigeret af $1",
+"revertpage"	=> "Gendannelse til seneste version ved $1, fjerner ændringer fra $2",
+'sessionfailure' => 'There seems to be a problem with your login session;
+this action has been canceled as a precaution against session hijacking.
+Please hit "back" and reload the page you came from, then try again.',
 "protectlogpage" => "Liste_over_beskyttede_sider",
 "protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
-Se [[Wikipedia:Beskyttet side]] for mere information.",
-"protectedarticle" => "beskyttet [[$1]]",
-"unprotectedarticle" => "fjernet beskyttelse [[$1]]",
+Se [[Project:Beskyttet side]] for mere information.",
+"protectedarticle" => "[[$1]] beskyttet",
+"unprotectedarticle" => "fjernet beskyttelse af [[$1]]",
+'protectsub' =>"(Beskytter \"$1\")",
+'confirmprotecttext' => 'Vil du virkelig beskytte denne side?',
+'confirmprotect' => 'Bekræft beskyttelse',
+'protectmoveonly' => 'Beskyt kun fra at blive flyttet',
+'protectcomment' => 'Begrundelse for beskyttelse',
+'unprotectsub' =>"(Fjern beskyttelse af \"$1\")",
+'confirmunprotecttext' => 'Vil du virkelig fjerne beskyttelsen fra denne side?',
+'confirmunprotect' => 'Bekræft fjernelse af beskyttelse',
+'unprotectcomment' => 'Begrundelse for fjernet beskyttelse',
+'protectreason' => '(giv en begrundelse)',
 
 # Undelete
 "undelete" => "Gendan en slettet side",
@@ -914,28 +1237,33 @@ dukke op i den tidligere historie, og den nyeste revision vil forblive
 på siden.",
 "undeleterevision" => "Slettet version fra $1",
 "undeletebtn" => "Gendan!",
-"undeletedarticle" => "gendannet \"$1\"",
+"undeletedarticle" => "gendannede \"$1\"",
+'undeletedrevisions' => "$1 versioner gendannet",
 "undeletedtext"   => "Artiklen [[$1]] er blevet gendannet med succes.
-Se [[Wikipedia:Sletningslog]] for en fortegnelse over nylige 
+Se [[{{SITENAME}}:Sletningslog]] for en fortegnelse over nylige 
 sletninger og gendannelser.",
+
+# Namespace form on various pages
+'namespace' => 'Namvnerum:',
+'invert' => 'Invert selection',
 
 # Contributions
 #
 "contributions"	=> "Brugerbidrag",
 "mycontris" => "Mine bidrag",
 "contribsub"	=> "For $1",
-"nocontribs"	=> "Ingen ændringer er fundet som matcher disse kriterier.",
+"nocontribs"	=> "Ingen ændringer er fundet som opfylder disse kriterier.",
 "ucnote"	=> "Herunder er denne brugers sidste <b>$1</b> ændringer i de 
 sidste <b>$2</b> dage.",
 "uclinks"	=> "Vis de sidste $1 ændringer; vis de sidste $2 dage.",
 "uctop"		=> " (top)" ,
+'newbies'       => 'nybegyndere',
 
 # What links here
 #
 "whatlinkshere"	=> "Hvad henviser hertil",
 "notargettitle" => "Intet mål",
-"notargettext"	=> "Du har ikke specificeret en målside eller bruger
-at udføre denne funktion på.",
+"notargettext"	=> "Du har ikke angivet en målside eller bruger at udføre denne funktion på.",
 "linklistsub"	=> "(Liste over henvisninger)",
 "linkshere"	=> "De følgende sider henviser her til:",
 "nolinkshere"	=> "Ingen sider henviser her til.",
@@ -944,18 +1272,14 @@ at udføre denne funktion på.",
 # Block/unblock IP
 #
 "blockip"		=> "Bloker bruger",
-"blockiptext"	=> "Brug formularen herunder til at blokere for skriveadgangen
-fra en specifik IP-adresse eller et brugernavn.
-Dette må kun gøres for at forhindre vandalisme, og i
-overensstemmelse med [[Wikipedia:Politik|Wikipedia politik]].
-Udfyld en speciel begrundelse herunder (for eksempel med et citat fra
-sider der har været udsat for vandalisme).",
-"ipaddress"		=> "IP-Adresse/brugernavn",
+"blockiptext"	=> "Brug formularen herunder til at blokere for skriveadgangen fra en specifik IP-adresse eller et brugernavn. Dette må kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{ns:4}}:Politik|{{SITENAME}}s politik]]. Angiv en specifik begrundelse herunder (for eksempel med angivelse af sider der har været udsat for vandalisme). Udløbet (expiry) angives i GNUs standardformat, som er beskrevet i [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html vejledningen til tar] (på engelsk), fx \"1 hour\", \"2 days\", \"next Wednesday\", \"1 January 2017\". Alternativt kan en blokering gøres uendelig (skriv \"indefinite\" eller \"infinite\"). For oplysninger om blokering af IP-adresseblokke, se [[meta:Range blocks|IP-adresseblokke]] (på engelsk). For at ophæve en blokering, se [[Speciel:Ipblocklist|listen over blokerede IP-adresser og brugernavne]].",
+"ipaddress"		=> "IP-adresse/brugernavn",
+'ipbexpiry'		=> 'Udløb',
 "ipbreason"		=> "Begrundelse",
 "ipbsubmit"		=> "Bloker denne bruger",
 "badipaddress"	=> "IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.",
 "noblockreason" => "Du skal angive en begrundelse for denne blokering.",
-"blockipsuccesssub" => "Blokering udført med success",
+"blockipsuccesssub" => "Blokering udført med succes",
 "blockipsuccesstext" => "\"$1\" er blevet blokeret.
 <br />Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
 "unblockip"		=> "Ophæv blokering af bruger",
@@ -963,22 +1287,28 @@ sider der har været udsat for vandalisme).",
 for en tidligere blokeret IP-adresse eller bruger.",
 "ipusubmit"		=> "Ophæv blokeringen af denne adresse",
 "ipusuccess"	=> "\"$1\" har fået ophævet blokeringen",
-"ipblocklist"	=> "Liste af blokerede IP-adresser og brugernavne",
-"blocklistline"	=> "$1, $2 blokerede $3",
+"ipblocklist"	=> "Liste over blokerede IP-adresser og brugernavne",
+"blocklistline"	=> "$1, $2 blokerede $3 (udløber $4)",
 "blocklink"		=> "bloker",
 "unblocklink"	=> "ophæv blokering",
 "contribslink"	=> "bidrag",
 "autoblocker"	=> "Automatisk blokeret fordi du deler IP-adresse med \"$1\". Begrundelse \"$2\".",
+'blocklogpage'	=> 'Blokeringslog',
+'blocklogentry'	=> 'blokerede "$1" med $2 som udløbstid',
+'blocklogtext'	=> 'Dette er en liste over blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Speciel:Ipblocklist|blokeringslisten]] for den nuværende liste over blokerede brugere.',
+'unblocklogentry'	=> 'ophævede blokering af "$1"',
+'range_block_disabled'	=> 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
+'ipb_expiry_invalid'	=> 'Udløbstiden er ugyldig.',
+'ip_range_invalid'	=> "Ugyldigt IP-interval.\n",
+'proxyblocker'	=> 'Proxy-blokering',
+'proxyblockreason'	=> 'Din IP-adresse er blevet blokeret fordi den er en såkaldt \'\'åben proxy\'\'. Kontakt din Internet-udbyder eller tekniske hotline og oplyse dem om dette alvorlige sikkerhedsproblem.',
+'proxyblocksuccess'	=> "Færdig.\n",
 
 # Developer tools
 #
 "lockdb"		=> "Lås database",
 "unlockdb"		=> "Lås database op",
-"lockdbtext"	=> "At låse databasen vil afbryde alle brugere fra at kunne
-redigere sider, ændre deres indstillinger, redigere deres 
-overvågningsliste, og andre ting der kræver ændringer i databasen.
-Bekræft venligst at du har til hensigt at gøre dette, og at du vil
-låse databasen op, når din vedligeholdelse er overstået.",
+"lockdbtext"	=> "At låse databasen vil forhindre alle brugere i at kunne redigere sider, ændre indstillinger, redigere overvågningslister og andre ting der kræver ændringer i databasen. Bekræft venligst at du har til hensigt at gøre dette, og at du vil låse databasen op, når din vedligeholdelse er overstået.",
 "unlockdbtext"	=> "At låse databasen op vil gøre, at alle brugere igen 
 kan redigere sider, ændre deres indstillinger, redigere deres 
 overvågningsliste, og andre ting der kræver ændringer i databasen.
@@ -990,24 +1320,91 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "locknoconfirm" => "Du har ikke bekræftet handlingen.",
 "lockdbsuccesssub" => "Databasen er nu låst",
 "unlockdbsuccesssub" => "Databasen er nu låst op",
-"lockdbsuccesstext" => "Wikipediadatabasen er låst.
-<br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
-"unlockdbsuccesstext" => "Wikipediadatabasen er låst op.",
+"lockdbsuccesstext" => "MediaWikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
+"unlockdbsuccesstext" => "MediaWikidatabasen er låst op.",
 
 # SQL query
 #
 "asksql"		=> "SQL-forespørgsel",
 "asksqltext"	=> "Brug formularen herunder til at lave direkte forespørgsler 
-i Wikipediadatabasen.
+i MediaWikidatabasen.
 Brug enkelte anførselstegn ('sådan her') for at adskille strenge.
 Dette kan ofte belaste serveren kraftigt, så brug venligst denne funktion
 med omtanke.",
 "sqlislogged"	=> "Vær opmærksom på at alle SQL-forespørgsler gemmes i en logfil.",
 "sqlquery"		=> "Indtast forespørgsel",
 "querybtn"		=> "Afsend forespørgsel",
-"selectonly"	=> "Forespørgsler andre end \"SELECT\" er forbeholdt 
-Wikipediaudviklere.",
-"querysuccessful" => "Forespørgsel gennemført med success",
+"selectonly"	=> "Forespørgsler andre end \"SELECT\" er forbeholdt dem med developer adgang.",
+"querysuccessful" => "Forespørgsel gennemført med succes",
+
+# Make sysop
+'makesysoptitle'	=> 'Gør en bruger til administrator - sysop ',
+'makesysoptext'		=> 'Denne formular bruges af bureaukrater til at gøre almindelige brugere til administratorer og/eller tildele andre rettigheder til en bruger.
+Indsæt navnet på brugeren i tekstboksen og tryk på knappen for at ændre rettighederne (i.e. gøre brugeren til administrator',
+'makesysopname'		=> 'Brugerens navn:',
+'makesysopsubmit'	=> 'Gør denne bruger til administrator',
+'makesysopok'		=> "<b>Bruger \"$1\" er nu administrator</b>",
+'makesysopfail'		=> "<b>Bruger \"$1\" kunne ikke gøres til administrator. (Har du stavet navnet rigtigt?)</b>",
+'setbureaucratflag' => 'Sæt bureaukratflag',
+'setstewardflag'    => 'Sæt steward flag',
+'bureaucratlog'		=> 'Bureaukratlog',
+'rightslogtext'		=> 'Dette er en log over ændringer i brugeres rettigheder.',
+'bureaucratlogentry'	=> "Rettigheder for bruger \"$1\" sat til \"$2\"",
+'rights'			=> 'Rettigheder:',
+'set_user_rights'	=> 'Tildel brugerrettigheder',
+'user_rights_set'	=> "<b>Rettigheder for bruger \"$1\" er opdateret</b>",
+'set_rights_fail'	=> "<b>Der kunne ikke tildeles brugerrettigheder til \"$1\". (Er navnet korrekt?)</b>",
+'makesysop'         => 'Tildel brugerrettigheder',
+'already_sysop'     => 'Denne bruger er allerede administrator',
+'already_bureaucrat' => 'Denne bruger er allerede bureaucrat',
+'already_steward'   => 'Denne bruger er allerede steward',
+
+# Validation
+'val_yes' => 'Ja',
+'val_no' => 'Nej',
+'val_of' => '$1 af $2',
+'val_revision' => 'Version',
+'val_time' => 'Tidspunkt',
+'val_user_stats_title' => 'Oversigt over valideringer for bruger $1',
+'val_my_stats_title' => 'Oversigt over mine valideringer',
+'val_list_header' => '<th>#</th><th>Topic</th><th>Range</th><th>Action</th>',
+'val_add' => 'Tilføj',
+'val_del' => 'Slet',
+'val_show_my_ratings' => 'Show my validations',
+'val_revision_number' => 'Version #$1',
+'val_warning' => '<b>Never, <i>ever</i>, change something here without <i>explicit</i> community consensus!</b>',
+'val_rev_for' => 'Revisions for $1',
+'val_details_th_user' => 'Bruger $1',
+'val_validation_of' => 'Validation of "$1"',
+'val_revision_of' => 'Version af $1',
+'val_revision_changes_ok' => 'Your ratings have been stored!',
+'val_rev_stats_link' => 'See the validation statistics for "$1" <a href="$2">here</a>',
+'val_revision_stats_link' => 'detaljer',
+'val_iamsure' => 'Check this box if you really mean it!',
+'val_details_th' => '<sub>Bruger</sub> \\ <sup>Emne</sup>',
+'val_clear_old' => 'Tøm mine andre valideringsdata for $1',
+'val_merge_old' => 'Anvend min tidligere vurdering hvor \'Ingen stillingtagen\' er valgt',
+'val_form_note' => '<b>Tip:</b> Kombinering af dine data betyder, at for den artikelrevision du vælger, vil alle valg hvor du har angivet <i>ingen stillingtagen</i> bliv sat til værdien og kommentaren fra den seneste revision du vurderede. Ønsker du for eksempel at ændre et enkelt valg for en nyere revision, men også at bevare dine øvrige valg for den pågældende artikel i denne revision, så angiv blot hvilket valg du ønsker at <i>ændre</i>, hvorefter kombineringen automatisk vil anvende dine tidligere valg ved de resterede valgmuligheder.',
+'val_noop' => 'Ingen stillingtagen',
+'val_topic_desc_page' => 'Project:Validation topics',
+'val_votepage_intro' => 'Change this text <a href="{{SERVER}}{{localurl:MediaWiki:Val_votepage_intro}}">here</a>!',
+'val_percent' => '<b>$1%</b><br />($2 af $3 point<br />pr. $4 brugere)',
+'val_percent_single' => '<b>$1%</b><br />($2 af $3 point<br />for én bruger)',
+'val_total' => 'Total',
+'val_version' => 'Version',
+'val_tab' => 'Validér',
+'val_this_is_current_version' => 'dette er den seneste version',
+'val_version_of' => "Version af $1" ,
+'val_table_header' => "<tr><th>Klasse</th>$1<th colspan=4>Vurdering</th>$1<th>Kommentar</th></tr>\n",
+'val_stat_link_text' => 'Valideringsstatistik for denne artikel',
+'val_view_version' => 'Se denne version',
+'val_validate_version' => 'Validér denne version',
+'val_user_validations' => 'Denne bruger har valideret $1 sider.',
+'val_no_anon_validation' => 'Du skal være logget på for at kunne validere artikler.',
+'val_validate_article_namespace_only' => 'Kun artikler kan valideres. Denne side er <i>ikke</i> i artikel-navnerummet.',
+'val_validated' => 'Validering afsluttet.',
+'val_article_lists' => 'Liste over validerede artikler',
+'val_page_validation_statistics' => 'Sidevalideringsstatistik for $1',
 
 # Move page
 #
@@ -1050,20 +1447,221 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.",
 diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en 
 med den nye titel. Du er nødt til at flette dem sammen manuelt.",
 "movedto"		=> "flyttet til",
-"movetalk"		=> "Flyt også \"diskussion\"ssiden, hvis den eksisterer.",
+"movetalk"		=> "Flyt også \"diskussionssiden\", hvis den eksisterer.",
 "talkpagemoved" => "Den tilhørende diskussionsside blev også flyttet.",
 "talkpagenotmoved" => "Den tilhørende diskussionsside blev 
 <strong>ikke</strong> flyttet.",
-# Math
-	'mw_math_png' => "Vis altid som PNG",
-	'mw_math_simple' => "HTML hvis meget simpel ellers PNG",
-	'mw_math_html' => "HTML hvis muligt ellers PNG",
-	'mw_math_source' => "Lad være som TeX (for tekstbrowsere)",
-        'mw_math_modern' => "Anbefalet til moderne browsere",
-	'mw_math_mathml' => "MathML hvis muligt",
+'1movedto2'		=> "$1 flyttet til $2",
+'1movedto2_redir' => '$1 flyttet til $2 over en omdirigering',
+'movelogpage' => 'Flyttelog',
+'movelogpagetext' => 'Nedenfor er en liste over flyttede sider.',
+'movereason'	=> 'Begrundelse',
+'revertmove'	=> 'gendan',
+'delete_and_move' => 'Slet og flyt',
+'delete_and_move_text'	=> 
+'==Sletning nødvendig==
+
+Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads til flytningen?',
+'delete_and_move_reason' => 'Slet for at lave plads til flyningen',
+'selfmove' => "Begge sider har samme navn. Man kan ikke flytte en side oven i sig selv.",
+'immobile_namespace' => "Måltitlen er en speciel type; man kan ikke flytte sider ind i det navnerum.",
+
+# Export
+
+'export'		=> 'Eksportér sider',
+'exporttext'	=> 'Du kan eksportere teksten og historikken fra en eller flere sider i et simpelt XML format. Dette kan bruges til at indsætte siderne i en anden wiki der bruger MediaWiki softwaren, eller du kan beholde den for din egen fornøjelses skyld',
+'exportcuronly'	=> 'Eksportér kun den nuværende version, ikke hele historikken',
+
+# Namespace 8 related
+
+'allmessages'	=> 'Alle beskeder',
+'allmessagesname' => 'Navn',
+'allmessagesdefault' => 'Standard tekst',
+'allmessagescurrent' => 'Nuværende tekst',
+'allmessagestext'	=> 'Dette er en liste over alle beskeder i MediaWiki: navnerummet.',
+'allmessagesnotsupportedUI' => 'Dit aktuelle grænsefladesprog <b>$1</b> er ikke understøttet af Special:AllMessages på dette websted. ',
+'allmessagesnotsupportedDB' => 'Special:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
+
+# Thumbnails
+
+'thumbnail-more'	=> 'Forstør ',
+'missingimage'		=> "<b>Mangler billede</b><br /><i>$1</i>\n",
+'filemissing'		=> 'Filen mangler',
+
+# Special:Import
+'import'	=> 'Importere sider',
+'importinterwiki' => 'Transwiki import',
+'importtext'	=> 'Eksportér filen fra kilde-wiki\'en ved hjælp af værktøjet Special:Export, gem den på din harddisk og læg den op her.',
+'importfailed'	=> "Importering fejlede: $1",
+'importnotext'	=> 'Tom eller ingen tekst',
+'importsuccess'	=> 'Importen lykkedes!',
+'importhistoryconflict' => 'Der er en konflikt i versionhistorikken (siden kan have været importeret før)',
+'importnosources' => 'No transwiki import sources have been defined and direct history uploads are disabled.',
+
+# Keyboard access keys for power users
+'accesskey-search' => 'f',
+'accesskey-minoredit' => 'i',
+'accesskey-save' => 's',
+'accesskey-preview' => 'p',
+'accesskey-diff' => 'd',
+'accesskey-compareselectedversions' => 'v',
+
+# tooltip help for some actions, most are in Monobook.js
+'tooltip-search' => 'Søg i {{SITENAME}} [alt-f]',
+'tooltip-minoredit' => 'Marker dette som en mindre ændring [alt-i]',
+'tooltip-save' => 'Gem dine ændringer [alt-s]',
+'tooltip-preview' => 'Forhåndsvis dine ændringer, brug venligst denne funktion inden du gemmer! [alt-p]',
+'tooltip-diff' => 'Vis hvilke ændringer du har lavet i teksten. [alt-d]',
+'tooltip-compareselectedversions' => 'Se forskellene imellem de to valgte versioner af denne side. [alt-v]',
+'tooltip-watch' => 'Tilføj denne side til din overvågningsliste [alt-w]',
+
+# stylesheets
+'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'Monobook.js' => '/* redigér denne fil for at ændre js-indstillinger i monobook-udseendet */',
+
+# Metadata
+'nodublincore' => 'Dublin Core RDF-metadata er slået fra på denne server.',
+'nocreativecommons' => 'Creative Commons RDF-metadata er slået fra på denne server.',
+'notacceptable' => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',
+
+# Attribution
+
+'anonymous' => "Anonym(e) bruger(e) af $wgSitename",
+'siteuser' => "$wgSitename bruger $1",
+'lastmodifiedby' => "Denne side blev senest ændret $1 af $2.",
+'and' => 'og',
+'othercontribs' => "Baseret på arbejde af $1.",
+'others' => 'andre',
+'siteusers' => "$wgSitename bruger(e) $1",
+'creditspage' => 'Sidens forfattere',
+'nocredits' => 'Der er ingen forfatteroplysninger om denne side.',
+
+# Spam protection
+
+'spamprotectiontitle' => 'Spambeskyttelsesfilter',
+'spamprotectiontext' => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis et link til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
+'spamprotectionmatch' => 'Følgende tekst udløste vores spamfilter: $1',
+'subcategorycount' => "Der er $1 underkategorier i denne kategori.",
+'subcategorycount1' => "Der er $1 underkategori i denne kategori.",
+'categoryarticlecount' => "Der er $1 artikler i denne kategori.",
+'categoryarticlecount1' => "Der er $1 artikel i denne kategori.",
+'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
+'listingcontinuesabbrev' => " forts.",
+
+# Info page
+"infosubtitle" => "Information om siden",
+"numedits" => "Antal redigeringer (artikel): $1",
+"numtalkedits" => "Antal redigeringer (diskussionsside): $1",
+"numwatchers" => "Antal overvågere: $1",
+"numauthors" => "Antal forskellige forfattere (artikel): $1",
+"numtalkauthors" => "Antal forskellige forfattere (diskussionsside): $1",
+
+# Math options
+'mw_math_png' => "Vis altid som PNG",
+'mw_math_simple' => "HTML hvis meget simpel ellers PNG",
+'mw_math_html' => "HTML hvis muligt ellers PNG",
+'mw_math_source' => "Lad være som TeX (for tekstbrowsere)",
+'mw_math_modern' => "Anbefalet til moderne browsere",
+'mw_math_mathml' => "MathML hvis muligt",
+
+# Patrolling
+'markaspatrolleddiff'   => "Markér som patruljeret",
+'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledtext'   => "Markér denne artikel som patruljeret",
+'markedaspatrolled'     => "Markeret som patruljeret",
+'markedaspatrolledtext' => "Den valgte revision er nu markeret som patruljeret.",
+'rcpatroldisabled'      => "Seneste ændringer-patruljeringen er slået fra",
+'rcpatroldisabledtext'  => "Funktionen til seneste ændringer-patruljeringen er pt. slået fra.",
+
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'Min brugerside\');
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Brugersiden for den ip-adresse du redigerer som\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Min diskussionsside\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskussion om redigeringer fra denne ip-adresse\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Mine indstillinger\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Listen over sider du overvåger for ændringer.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Listen over dine bidrag\');
+ta[\'pt-login\'] = new Array(\'o\',\'Du opfordres til at logge på, men det er ikke obligatorisk.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Du opfordres til at logge på, men det er ikke obligatorisk\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Log af\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Diskussion om indholdet på siden\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Du kan redigere denne side. Brug venligst forhåndsvisning før du gemmer.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Tilføj en kommentar til denne diskussion.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Denne side er beskyttet. Du kan kigge på kildekoden.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Tidligere versioner af denne side.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Beskyt denne side\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Slet denne side\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Gendan de redigeringer der blev lavet på denne side før den blev slettet\');
+ta[\'ca-move\'] = new Array(\'m\',\'Flyt denne side\');
+ta[\'ca-nomove\'] = new Array(\'\',\'Du har ikke tilladelse til at flytte denne side\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Sæt denne side på din overvågningsliste\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Fjern denne side fra din overvågningsliste\');
+ta[\'search\'] = new Array(\'f\',\'Søg på denne wiki\');
+ta[\'p-logo\'] = new Array(\'\',\'Forsiden\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Besøg forsiden\');
+ta[\'n-portal\'] = new Array(\'\',\'Om projektet, hvad du kan gøre, hvor tingene findes\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Find baggrundsinformation om aktuelle begivenheder\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Listen over de seneste ændringer i wikien.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Gå til en tilfældig artikel\');
+ta[\'n-help\'] = new Array(\'\',\'Hvordan gør jeg ...\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Støt os\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Liste med alle sider som henviser hertil\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Seneste ændringer i sider som denne side henviser til\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS-feed for denne side\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom-feed for denne side\');
+ta[\'t-contributions\'] = new Array(\'\',\'Se denne brugers bidrag\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Send en e-mail til denne bruger\');
+ta[\'t-upload\'] = new Array(\'u\',\'Upload et billede eller anden mediafil\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Liste med alle specielle sider\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Se indholdet\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Se brugersiden\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Se mediasiden\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Dette er en speciel side; man kan ikke redigere sådanne sider.\');
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'Se Wikipediasiden\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Se billedsiden\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Se systembeskeden\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Se skabelonen\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Se hjælpesiden\');
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');
+',
+
+# image deletion
+'deletedrevision' => 'Slettede gammel version $1.',
+
+# browsing diffs
+'previousdiff' => '&larr; Gå til forrige forskel',
+'nextdiff' => 'Gå til næste forskel &rarr;',
+
+'imagemaxsize' => 'Begræns størrelsen af billeder på billedsiderne til: ',
+'thumbsize'	=> 'Thumbnail størrelse : ',
+'showbigimage' => 'Download en version i høj opløsning ($1x$2, $3 KB)',
+
+'newimages' => 'Galleri med de nyeste billeder',
+'noimages'  => 'Ingenting at se.',
+
+
+# labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'Bruger: ',
+'speciallogtitlelabel' => 'Titel: ',
+
+'passwordtooshort' => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
 
 # Media Warning
-'mediawarning' => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udf�rer den.",
+'mediawarning' => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.
+<hr>",
+# external editor support
+'edit-externally' => 'Rediger denne fil med en ekstern editor',
+'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors setup instruktionerne] for mere information.',
+
+# 'all' in various places, this might be different for inflicted languages
+'recentchangesall' => 'alle',
+'imagelistall' => 'alle',
+'watchlistall1' => 'alle',
+'watchlistall2' => 'alle',
+'contributionsall' => 'alle',
+
 );
 
 class LanguageDa extends LanguageUtf8 {
