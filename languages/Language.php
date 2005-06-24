@@ -228,6 +228,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
 	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
 	MAG_SERVER               => array( 0,    'SERVER'                 ),
+	MAG_SERVERNAME           => array( 0,    'SERVERNAME'             ),
 	MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH'             ),
 	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               ),
 	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'),
