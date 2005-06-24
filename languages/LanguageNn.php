@@ -568,7 +568,7 @@ er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><b
 #
 'searchresults'           => 'Søkjeresultat',
 'searchresulttext'        => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[Help:Søk|Hjelp]].',
-'searchquery'	          => 'Du søkte etter «<a href="/wiki/$1">$1</a>» <a href="/wiki/Special:Allpages/$1">[Indeks]</a>',
+'searchquery'	          => 'Du søkte etter «[[$1]]» [[Special:Allpages/$1|[Indeks]]]',
 'badquery'		  => 'Feil utforma førespurnad',
 'badquerytext'	          => 'Vi kunne ikkje svara på denne førespurnaden &mdash; Truleg fordi du prøvde å søkje etter eit ord med færre enn tre bokstavar, noko som ikkje er mogleg enno. Det kan òg vera du skreiv feil... Prøv om att.',
 'matchtotals'	          => 'Førespurnaden «$1» gav treff på $2 sidetitlar og på teksten på $3 sider.',
