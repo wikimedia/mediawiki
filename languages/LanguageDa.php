@@ -361,7 +361,6 @@ MySQL returnerede fejlen \"$3: $4\".\n",
 $1',
 "nodb"			=> "Kunne ikke vælge databasen $1",
 "cachederror"	=> "Det følgende er en gemt kopi af den ønskede side, og er måske ikke helt opdateret.",
-'laggedslave'   => 'Advarsel: Siden kan mangle de seneste opdateringer.',
 "readonly"		=> "Databasen er skrivebeskyttet",
 "enterlockreason" => "Skriv en begrundelse for skrivebeskyttelsen, også indeholdende et estimat
 på hvornår skrivebeskyttelsen vil blive ophævet igen",
@@ -452,7 +451,6 @@ venligst et andet brugernavn.",
 'prefs-help-email' 	=> '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, uden du behøver at afsløre din e-mail-adresse. Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
 'prefs-help-email-enotif' => 'Denne e-mail-adresse bruges også til at sende beskeder til dig via e-mail, hvis du har aktiveret funktionerne.',
 'prefs-help-realname' 	=> '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
-'prefs-help-userdata' => '* <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, uden du behøver at afsløre din e-mail-adresse. Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
 "loginerror"	=> "Fejl med at logge på",
 'nocookiesnew'	=> "Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.",
 "nocookieslogin"	=> "{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.",
@@ -464,9 +462,6 @@ Kontrollér stavemåden igen, eller brug formularen herunder til at oprette en n
 'nosuchusershort'	=> "Der er ingen bruger ved navn \"$1\". Tjek din stavning.",
 "wrongpassword"	=> "Den indtastede adgangskode var forkert. Prøv igen.",
 "mailmypassword" => "Send en ny adgangskode til min e-mail-adresse",
-'mailmypasswordauthent'	=> 'Send mig en midlertidig adgangskode
-fordi jeg har glemt min adgangskode eller
-for at godkende min e-mail-adresse',
 "passwordremindertitle" => "Ny adgangskode fra {{SITENAME}}",
 "passwordremindertext" => "Nogen (sandsynligvis dig, fra IP-adressen $1)
 har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}}.
@@ -476,10 +471,6 @@ Du bør logge på nu og ændre din adgangskode.",
 "passwordsent"	=> "En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for \"$1\".
 Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail'en.",
-'passwordsentforemailauthentication'
-			=>  "En midlertidig adgangskode er blevet sendt til e-mail-adressen der netop er
-registreret for \"$1\".
-Log venligst ind med den for at bekræfte.",
 'loginend'		=> "'''For at oprette en konto skal du vælge et brugernavn og en adgangskode og trykke på \"Opret en ny konto\"'''
 
 * Brugernavnet skal starte med stort bogstav og det må gerne indeholde mellemrum.
@@ -496,8 +487,6 @@ Log venligst ind med den for at bekræfte.",
 'emailnotauthenticated'	=> 'Din e-mail-adresse er <strong>endnu ikke bekræftet</strong> og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted <strong>(d.u.a.)</strong>.<br />
 Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
 'invalidemailaddress'	=> 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
-'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
-'disablednoemail'	=> '<strong>(slået fra; ingen e-mail-adresse)</strong>',
 
 # Edit page toolbar
 'bold_sample'=>'Fed tekst',
@@ -681,7 +670,6 @@ Dit interne ID-nummer er $2.
 Se [[Project:Hvordan sætter jeg mine indstillinger]] for en forklaring på de forskellige indstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
 "qbsettings"	=> "Hurtigmenu",
-'qbsettingsnote'	=> 'This Denne indstilling virker kun i \'Standard\' og \'Cologne Blå\' udseende.',
 "changepassword" => "Skift adgangskode",
 "skin"			=> "Udseende",
 "math"			=> "Matematiske formler",
@@ -821,7 +809,6 @@ sidste <strong>$2</strong> dage.",
 "reuploaddesc"	=> "Tilbage til formularen til at lægge filer op.",
 "uploadnologin" => "Ikke logget på",
 "uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne lægge filer op.",
-"uploadfile"	=> "Læg filen op",
 "uploaderror"	=> "Fejl under oplægning af fil",
 "uploadtext"	=> "[[Billede:Commons_without_text-35px.png|thumb|right|35px|Wiki-C]] Hvis du har billeder som kan være til nytte både her og på andre Wiki'er, 
 anbefales det at lægge det op på '''[[Commons:Forside|Wikimedia Commons]]''' der er en fælles base for frie billeder og andre filer til alle Wikimedia-projekterne. 
@@ -906,10 +893,8 @@ og af hvem, og andre ting du ved om filen.",
 "imagelist"		=> "Liste over billeder",
 "imagelisttext"	=> "Herunder er en liste med $1 billeder sorteret $2.",
 "getimagelist"	=> "henter billedliste",
-"ilshowmatch"	=> "Vis alle billeder med navne der matcher",
 "ilsubmit"		=> "Søg",
 "showlast"		=> "Vis de sidste $1 billeder sorteret $2.",
-"all"			=> "alle",
 "byname"		=> "efter navn",
 "bydate"		=> "efter dato",
 "bysize"		=> "efter størrelse",
@@ -1013,7 +998,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
 'restrictedpheading'	=> 'Specielle sider med begrænset adgang',
-'asksqlpheading' => 'Asksql-niveau',
 'blockpheading' => 'Blokeringsniveau',
 'createaccountpheading' => 'Opret konto-niveau',
 'deletepheading' => 'Sletteniveau',
@@ -1040,8 +1024,6 @@ i aktivt brug.",
 "booksources"	=> "Bogkilder",
 'categoriespagetext' => 'De følgende kategorier eksisterer på {{SITENAME}}.',
 'data'	=> 'Data',
-'userlevels' => 'Administration af brugerniveauer',
-'grouplevels' => 'Administration af gruppeniveauer',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 "booksourcetext" => "Herunder er en liste af henvisninger til steder der
@@ -1180,7 +1162,6 @@ eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
 konsekvenserne, og at du gør dette i overensstemmelse med
 [[Project:Politik]].",
-"confirmcheck"	=> "Ja, jeg vil virkelig slette den.",
 "actioncomplete" => "Gennemført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en fortegnelse over de nyeste sletninger.",
@@ -1278,7 +1259,6 @@ sidste <b>$2</b> dage.",
 "ipbreason"		=> "Begrundelse",
 "ipbsubmit"		=> "Bloker denne bruger",
 "badipaddress"	=> "IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.",
-"noblockreason" => "Du skal angive en begrundelse for denne blokering.",
 "blockipsuccesssub" => "Blokering udført med succes",
 "blockipsuccesstext" => "\"$1\" er blevet blokeret.
 <br />Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
@@ -1322,20 +1302,6 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "unlockdbsuccesssub" => "Databasen er nu låst op",
 "lockdbsuccesstext" => "MediaWikidatabasen er låst. <br />Husk at fjerne låsen når du er færdig med din vedligeholdelse.",
 "unlockdbsuccesstext" => "MediaWikidatabasen er låst op.",
-
-# SQL query
-#
-"asksql"		=> "SQL-forespørgsel",
-"asksqltext"	=> "Brug formularen herunder til at lave direkte forespørgsler 
-i MediaWikidatabasen.
-Brug enkelte anførselstegn ('sådan her') for at adskille strenge.
-Dette kan ofte belaste serveren kraftigt, så brug venligst denne funktion
-med omtanke.",
-"sqlislogged"	=> "Vær opmærksom på at alle SQL-forespørgsler gemmes i en logfil.",
-"sqlquery"		=> "Indtast forespørgsel",
-"querybtn"		=> "Afsend forespørgsel",
-"selectonly"	=> "Forespørgsler andre end \"SELECT\" er forbeholdt dem med developer adgang.",
-"querysuccessful" => "Forespørgsel gennemført med succes",
 
 # Make sysop
 'makesysoptitle'	=> 'Gør en bruger til administrator - sysop ',
