@@ -1112,7 +1112,7 @@ $wgCheckCopyrightUpload = true;
 /**
  * Set this to the number of authors that you want to be credited below an
  * article text. Set it to zero to hide the attribution block, and a negative
- * number (like -1) to show all authors. Note that this will# require 2-3 extra
+ * number (like -1) to show all authors. Note that this will require 2-3 extra
  * database hits, which can have a not insignificant impact on performance for
  * large wikis.
  */
