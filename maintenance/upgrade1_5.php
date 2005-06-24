@@ -6,9 +6,16 @@
 // with other updates on the replication stream so
 // that large wikis can be upgraded without disrupting
 // other services.
+//
+// Note: this script DOES NOT apply every update, nor
+// will it probably handle much older versions, etc.
+// Run this, FOLLOWED BY update.php, for upgrading
+// from 1.4.5 release to 1.5.
 
 require_once( 'commandLine.inc' );
 require_once( 'cleanupDupes.inc' );
+require_once( 'userDupes.inc' );
+require_once( 'updaters.inc' );
 
 $upgrade = new FiveUpgrade();
 $upgrade->upgrade();
@@ -25,6 +32,7 @@ class FiveUpgrade {
 	function upgrade() {
 		$this->upgradePage();
 		$this->upgradeLinks();
+		$this->upgradeUser();
 	}
 	
 	
@@ -132,31 +140,33 @@ class FiveUpgrade {
 	 * @param int $chunksize Number of rows to insert at once
 	 * @param int $final Total expected number of rows / id of last row,
 	 *                   used for progress reports.
+	 * @param string $table to insert on
+	 * @param string $fname function name to report in SQL
 	 * @access private
 	 */
-	function setChunkScale( $chunksize, $final ) {
+	function setChunkScale( $chunksize, $final, $table, $fname ) {
 		$this->chunkSize  = $chunksize;
 		$this->chunkFinal = $final;
 		$this->chunkCount = 0;
 		$this->chunkStartTime = wfTime();
 		$this->chunkOptions = array();
+		$this->chunkTable = $table;
+		$this->chunkFunction = $fname;
 	}
 	
 	/**
 	 * Chunked inserts: perform an insert if we've reached the chunk limit.
 	 * Prints a progress report with estimated completion time.
-	 * @param string $table
 	 * @param array &$chunk -- This will be emptied if an insert is done.
-	 * @param string $fname function name to report in SQL
 	 * @param int $key A key identifier to use in progress estimation in
 	 *                 place of the number of rows inserted. Use this if
 	 *                 you provided a max key number instead of a count
 	 *                 as the final chunk number in setChunkScale()
 	 * @access private
 	 */
-	function addChunk( $table, &$chunk, $fname, $key = null ) {
+	function addChunk( &$chunk, $key = null ) {
 		if( count( $chunk ) >= $this->chunkSize ) {
-			$this->insertChunk( $table, $chunk, $fname );
+			$this->insertChunk( $chunk );
 		
 			$this->chunkCount += count( $chunk );
 			$now = wfTime();
@@ -176,7 +186,7 @@ class FiveUpgrade {
 			printf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec\n",
 				wfTimestamp( TS_DB, intval( $now ) ),
 				$portion * 100.0,
-				$table,
+				$this->chunkTable,
 				wfTimestamp( TS_DB, intval( $eta ) ),
 				$completed,
 				$this->chunkFinal,
@@ -189,33 +199,30 @@ class FiveUpgrade {
 	
 	/**
 	 * Chunked inserts: perform an insert unconditionally, at the end, and log.
-	 * @param string $table
 	 * @param array &$chunk -- This will be emptied if an insert is done.
-	 * @param string $fname function name to report in SQL
 	 * @access private
 	 */
-	function lastChunk( $table, &$chunk, $fname ) {
+	function lastChunk( &$chunk ) {
 		$n = count( $chunk );
 		if( $n > 0 ) {
-			$this->insertChunk( $table, $chunk, $fname );
+			$this->insertChunk( $chunk );
 		}
-		$this->log( "100.00% done on $table (last chunk $n rows)." );
+		$this->log( "100.00% done on $this->chunkTable (last chunk $n rows)." );
 	}
 	
 	/**
 	 * Chunked inserts: perform an insert.
-	 * @param string $table
 	 * @param array &$chunk -- This will be emptied if an insert is done.
-	 * @param string $fname function name to report in SQL
 	 * @access private
 	 */
-	function insertChunk( $table, &$chunk, $fname ) {
-		$this->dbw->insert( $table, $chunk, $fname, $this->chunkOptions );
+	function insertChunk( &$chunk ) {
+		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
+	
 	
 	function upgradePage() {
 		$fname = "FiveUpgrade::upgradePage";
-		$chunksize = 500;
+		$chunksize = 100;
 		
 
 		$this->log( "Checking cur table for unique title index and applying if necessary" );
@@ -289,7 +296,7 @@ class FiveUpgrade {
 		 * based on the flags (and may be originally binary!) while the meta
 		 * fields will be converted in the old -> rev and cur -> page steps.
 		 */
-		$this->setChunkScale( $chunksize, $maxcur );
+		$this->setChunkScale( $chunksize, $maxcur, 'old', $fname );
 		$result = $this->dbr->query(
 			"SELECT cur_id, cur_namespace, cur_title, $cur_text AS text, cur_comment,
 			cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags AS flags
@@ -307,9 +314,9 @@ class FiveUpgrade {
 				'old_timestamp'  => $row->cur_timestamp,
 				'old_minor_edit' => $row->cur_minor_edit,
 				'old_flags'      => $row->flags );
-			$this->addChunk( 'old', $add, $fname, $row->cur_id );
+			$this->addChunk( $add, $row->cur_id );
 		}
-		$this->lastChunk( 'old', $add, $fname );
+		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
 		
 		/**
@@ -317,9 +324,9 @@ class FiveUpgrade {
 		 * We'll also do UTF-8 conversion of usernames and comments.
 		 */
 		#$newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
-		#$this->setChunkScale( $chunksize, $newmaxold );
+		#$this->setChunkScale( $chunksize, $newmaxold, 'revision', $fname );
 		$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
-		$this->setChunkScale( $chunksize, $countold );
+		$this->setChunkScale( $chunksize, $countold, 'revision', $fname );
 		
 		$this->log( "......Setting up revision table." );
 		$result = $this->dbr->query(
@@ -338,18 +345,18 @@ class FiveUpgrade {
 				'rev_user_text'  => $this->conv( $row->old_user_text ),
 				'rev_timestamp'  =>              $row->old_timestamp,
 				'rev_minor_edit' =>              $row->old_minor_edit );
-			$this->addChunk( 'revision', $add, $fname );
+			$this->addChunk( $add );
 		}
-		$this->lastChunk( 'revision', $add, $fname );
+		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
 		
 
 		/**
-		 * Copy revision metadata from cur into page.
+		 * Copy page metadata from cur into page.
 		 * We'll also do UTF-8 conversion of titles.
 		 */
 		$this->log( "......Setting up page table." );
-		$this->setChunkScale( $chunksize, $maxcur );
+		$this->setChunkScale( $chunksize, $maxcur, 'page', $fname );
 		$result = $this->dbr->query( "
 			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
     				cur_random, cur_touched, rev_id, LENGTH(cur_text) AS len
@@ -370,9 +377,9 @@ class FiveUpgrade {
 				'page_touched'      =>              $this->dbw->timestamp(),
 				'page_latest'       =>              $row->rev_id,
 				'page_len'          =>              $row->len );
-			$this->addChunk( 'page', $add, $fname, $row->cur_id );
+			$this->addChunk( $add, $row->cur_id );
 		}
-		$this->lastChunk( 'page', $add, $fname );
+		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
 
 		$this->log( "......Renaming old." );
@@ -383,7 +390,7 @@ class FiveUpgrade {
 	
 	function upgradeLinks() {
 		$fname = 'FiveUpgrade::upgradeLinks';
-		$chunksize = 1000;
+		$chunksize = 200;
 		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'page' ) );
 		
 		$this->log( 'Creating pagelinks table...' );
@@ -407,7 +414,7 @@ CREATE TABLE $pagelinks (
 		$this->log( 'Importing live links -> pagelinks' );
 		$nlinks = $this->dbw->selectField( 'links', 'count(*)', '', $fname );
 		if( $nlinks ) {
-			$this->setChunkScale( $chunksize, $nlinks );
+			$this->setChunkScale( $chunksize, $nlinks, 'pagelinks', $fname );
 			$result = $this->dbr->query( "
 			  SELECT l_from,page_namespace,page_title
 				FROM $links, $page
@@ -418,9 +425,9 @@ CREATE TABLE $pagelinks (
 					'pl_from'      => $row->l_from,
 					'pl_namespace' => $row->page_namespace,
 					'pl_title'     => $row->page_title );
-				$this->addChunk( 'pagelinks', $add, $fname );
+				$this->addChunk( $add );
 			}
-			$this->lastChunk( 'pagelinks', $add, $fname );
+			$this->lastChunk( $add );
 		} else {
 			$this->log( 'no links!' );
 		}
@@ -428,7 +435,7 @@ CREATE TABLE $pagelinks (
 		$this->log( 'Importing brokenlinks -> pagelinks' );
 		$nbrokenlinks = $this->dbw->selectField( 'brokenlinks', 'count(*)', '', $fname );
 		if( $nbrokenlinks ) {
-			$this->setChunkScale( $chunksize, $nbrokenlinks );
+			$this->setChunkScale( $chunksize, $nbrokenlinks, 'pagelinks', $fname );
 			$this->chunkOptions = array( 'IGNORE' );
 			$result = $this->dbr->query(
 				"SELECT bl_from, bl_to FROM $brokenlinks",
@@ -444,16 +451,221 @@ CREATE TABLE $pagelinks (
 						'pl_from'      => $row->bl_from,
 						'pl_namespace' => $title->getNamespace(),
 						'pl_title'     => $title->getDBkey() );
-					$this->addChunk( 'pagelinks', $add, $fname );
+					$this->addChunk( $add );
 				}
 			}
-			$this->lastChunk( 'pagelinks', $add, $fname );
+			$this->lastChunk( $add );
 		} else {
 			$this->log( 'no brokenlinks!' );
 		}
 		
 		$this->log( 'Done with links.' );
 	}
+	
+	function upgradeUser() {
+		$fname = 'FiveUpgrade::upgradeUser';
+		$chunksize = 100;
+		$preauth = 0;
+		
+		// Apply unique index, if necessary:
+		$duper = new UserDupes( $this->dbw );
+		if( $duper->hasUniqueIndex() ) {
+			$this->log( "Already have unique user_name index." );
+		} else {
+			$this->log( "Clearing user duplicates..." );
+			if( !$duper->clearDupes() ) {
+				$this->log( "WARNING: Duplicate user accounts, may explode!" );
+			}
+		}
+		
+		/** Convert encoding on options, etc */
+		extract( $this->dbw->tableNames( 'user', 'user_temp', 'user_old' ) );
+		
+		$this->log( 'Migrating user table to user_temp...' );
+		$this->dbw->query( "CREATE TABLE $user_temp (
+  user_id int(5) unsigned NOT NULL auto_increment,
+  user_name varchar(255) binary NOT NULL default '',
+  user_real_name varchar(255) binary NOT NULL default '',
+  user_password tinyblob NOT NULL default '',
+  user_newpassword tinyblob NOT NULL default '',
+  user_email tinytext NOT NULL default '',
+  user_options blob NOT NULL default '',
+  user_touched char(14) binary NOT NULL default '',
+  user_token char(32) binary NOT NULL default '',
+  user_email_authenticated CHAR(14) BINARY,
+  user_email_token CHAR(32) BINARY,
+  user_email_token_expires CHAR(14) BINARY,
+
+  PRIMARY KEY user_id (user_id),
+  UNIQUE INDEX user_name (user_name),
+  INDEX (user_email_token)
+
+) TYPE=InnoDB", $fname );
+
+		// Fix encoding for Latin-1 upgrades, and add some fields.
+		$numusers = $this->dbw->selectField( 'user', 'count(*)', '', $fname );
+		$this->setChunkScale( $chunksize, $numusers, 'user_temp', $fname );
+		$result = $this->dbr->select( 'user',
+			array(
+				'user_id',
+				'user_name',
+				'user_real_name',
+				'user_password',
+				'user_newpassword',
+				'user_email',
+				'user_options',
+				'user_touched',
+				'user_token' ),
+			'',
+			$fname );
+		$add = array();
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			$now = $this->dbw->timestamp();
+			$add[] = array(
+				'user_id'                  =>              $row->user_id,
+				'user_name'                => $this->conv( $row->user_name ),
+				'user_real_name'           => $this->conv( $row->user_real_name ),
+				'user_password'            =>              $row->user_password,
+				'user_newpassword'         =>              $row->user_newpassword,
+				'user_email'               => $this->conv( $row->user_email ),
+				'user_options'             => $this->conv( $row->user_options ),
+				'user_touched'             =>              $now,
+				'user_token'               =>              $row->user_token,
+				'user_email_authenticated' =>              $preauth ? $now : null,
+				'user_email_token'         =>              null,
+				'user_email_token_expires' =>              null );
+			$this->addChunk( $add );
+		}
+		$this->lastChunk( $add );
+		$this->dbr->freeResult( $result );
+		
+		$this->log( 'Renaming user to user_old and user_temp to user...' );
+		$this->dbw->query( "ALTER TABLE $user RENAME TO $user_old" );
+		$this->dbw->query( "ALTER TABLE $user_temp RENAME TO $user" );
+	}
+	
+
+	/**
+	 * Truncate a table.
+	 * @param string $table The table name to be truncated
+	 */
+	function clearTable( $table ) {
+		print "Clearing $table...\n";
+		$tableName = $this->db->tableName( $table );
+		$this->db->query( 'TRUNCATE $tableName' );
+	}
+	
+	/**
+	 * @param string $table Table to be converted
+	 * @param string $key Primary key, to identify fields in the UPDATE. If NULL, all fields will be used to match.
+	 * @param array $fields List of all fields to grab and convert. If null, will assume you want the $key, and will ask for DISTINCT.
+	 * @param array $timestamp A field which should be updated to the current timestamp on changed records.
+	 * @param callable $callback
+	 * @access private
+	 */
+	function convertTable( $table, $key, $fields = null, $timestamp = null, $callback = null ) {
+		$fname = 'FiveUpgrade::convertTable';
+		if( $fields ) {
+			$distinct = '';
+		} else {
+			# If working on one key only, there will be multiple rows.
+			# Use DISTINCT to return only one and save us some trouble.
+			$fields = array( $key );
+			$distinct = 'DISTINCT';
+		}
+		$condition = '';
+		foreach( $fields as $field ) {
+			if( $condition ) $condition .= ' OR ';
+			$condition .= "$field RLIKE '[\x80-\xff]'";
+		}
+		$res = $this->dbw->selectArray(
+			$table,
+			array_merge( $fields, array( $key ) ),
+			$condition,
+			$fname,
+			$distinct );
+		print "Converting " . $this->dbw->numResults( $res ) . " rows from $table:\n";
+		$n = 0;
+		while( $s = $this->dbw->fetchObject( $res ) ) {
+			$set = array();
+			foreach( $fields as $field ) {
+				$set[] = $this->toUtf8( $s->$field );
+			}
+			if( $timestamp ) {
+				$set[$timestamp] = $this->db->timestamp();
+			}
+			if( $key ) {
+				$keyCond = array( $key, $s->$key );
+			} else {
+				$keyCond = array();
+				foreach( $fields as $field ) {
+					$keyCond[$field] = $s->$field;
+				}
+			}
+			$this->dbw->updateArray(
+				$table,
+				$set,
+				$keyCond,
+				$fname );
+			if( ++$n % 100 == 0 ) echo "$n\n";
+			
+			if( is_callable( $callback ) ) {
+				call_user_func( $callback, $s );
+			}
+		}
+		echo "$n done.\n";
+		$this->dbw->freeResult( $res );
+	}
+	
+	/**
+	 * @param object $row
+	 * @access private
+	 */
+	function imageRenameCallback( $row ) {
+		$this->renameFile( $row->img_name, 'wfImageDir' );
+	}
+	
+	/**
+	 * @param object $row
+	 * @access private
+	 */
+	function oldimageRenameCallback( $row ) {
+		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir' );
+	}
+	
+	/**
+	 * Rename a given image or archived image file to the converted filename,
+	 * leaving a symlink for URL compatibility.
+	 *
+	 * @param string $oldname pre-conversion filename
+	 * @param callable $subdirCallback a function to generate hashed directories
+	 * @access private
+	 */
+	function renameFile( $oldname, $subdirCallback ) {
+		$newname = $this->toUtf8( $oldname );
+		if( $newname == $oldname ) {
+			// No need to rename; another field triggered this row.
+			return;
+		}
+		
+		$oldpath = call_user_func( $subdirCallback, $oldname ) . '/' . $oldname;
+		$newpath = call_user_func( $subdirCallback, $newname ) . '/' . $newname;
+		
+		echo "Renaming $oldpath to $newpath... ";
+		if( rename( $oldpath, $newpath ) ) {
+			echo "ok\n";
+			echo "Creating compatibility symlink from $newpath to $oldpath... ";
+			if( symlink( $newpath, $oldpath ) ) {
+				echo "ok\n";
+			} else {
+				echo " symlink failed!\n";
+			}
+		} else {
+			echo " rename failed!\n";
+		}
+	}
+	
+
 }
 
 ?>
