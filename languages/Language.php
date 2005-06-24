@@ -445,9 +445,6 @@ See $1.",
 'developertext'	=> "The action you have requested can only be
 performed by users with \"developer\" status.
 See $1.",
-'bureaucrattitle'	=> 'Bureaucrat access required',
-"bureaucrattext"	=> "The action you have requested can only be
-performed by sysops with  \"bureaucrat\" status.",
 
 'badaccess'     => 'Permission error',
 'badaccesstext' => 'The action you have requested is limited
@@ -555,7 +552,6 @@ a number of reasons why this may be so, please see
 [[Project:Protected page]].
 
 You can view and copy the source of this page:",
-'seriousxhtmlerrors' => 'There were serious xhtml markup errors detected by tidy.',
 'sqlhidden' => '(SQL query hidden)',
 
 # Login and logout pages
