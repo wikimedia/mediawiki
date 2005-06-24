@@ -502,7 +502,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a $wgSitenameban]] szolgál.",
+"searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a {{SITENAME}}]] szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
 "badquery"		=> "Hibás formájú keresés",
 "badquerytext"	=> "Nem tudjuk a kérésedet végrehajtani.
@@ -586,7 +586,7 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 
 "changes" 		=> "változtatás",
 "recentchanges" => "Friss változtatások",
-"recentchangestext" => "Ezen a lapon követheted a $wgSitenamen történt legutóbbi 
+"recentchangestext" => "Ezen a lapon követheted a {{SITENAME}} történt legutóbbi 
 változtatásokat. [[{$wgMetaNamespace}:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
 Légy szíves ismerkedj meg az alábbi lapokkal: [[{$wgMetaNamespace}:GyIK|$wgSitename GyIK]],
 [[{$wgMetaNamespace}:Irányelvek]] (különösen az [[{$wgMetaNamespace}:Elnevezési szokások|elnevezési szokásokat]],
