@@ -9,10 +9,6 @@
  */
 
 /** */
-$oldCwd = getcwd();
-
-$optionsWithArgs = array( "o" );
-include_once( "commandLine.inc" );
 
 /**
  * @todo document
@@ -41,7 +37,8 @@ function getRebuildInterwikiSQL() {
 		'wiki' => new Site( 'wiki', 'w', 'wikipedia.org' ),
 		'wiktionary' => new Site( 'wiktionary', 'wikt', 'wiktionary.org' ),
 		'wikiquote' => new Site( 'wikiquote', 'q', 'wikiquote.org' ),
-		'wikibooks' => new Site( 'wikibooks', 'b', 'wikibooks.org' )
+		'wikibooks' => new Site( 'wikibooks', 'b', 'wikibooks.org' ),
+		'wikinews' => new Site( 'wikinews', 'n', 'wikinews.org' ),
 	);
 	$langlist = array_map( "trim", file( "/home/wikipedia/common/langlist" ) );
 	$dblist = array_map( "trim", file( "/home/wikipedia/common/all.dblist" ) );
@@ -64,6 +61,7 @@ function getRebuildInterwikiSQL() {
 		'zh-cn' => 'zh',
 		'zh-tw' => 'zh',
 		'dk' => 'da',
+		'nb' => 'no',
 	);
 
 	# Construct a list of reserved prefixes
@@ -79,8 +77,8 @@ function getRebuildInterwikiSQL() {
 	}
 
 	# Extract the intermap from meta
-	$dbr =& wfGetDB( DB_WRITE );
-	$row = $dbr->selectRow( "metawiki.cur", array( "cur_text" ), 
+	$dbr =& wfGetDB( DB_SLAVE );
+	$row = $dbr->selectRow( "`metawiki`.cur", array( "cur_text" ), 
 		array( "cur_namespace" => 0, "cur_title" => "Interwiki_map" ) );
 
 	if ( !$row ) {
@@ -101,7 +99,7 @@ function getRebuildInterwikiSQL() {
 			}
 			
 			if ( empty( $reserved[$prefix] ) ) {
-				$iwArray[] = array( "iw_prefix" => $prefix, "iw_url" => $url, "iw_local" => $local );
+				$iwArray[$prefix] = array( "iw_prefix" => $prefix, "iw_url" => $url, "iw_local" => $local );
 			}
 		}
 	}
@@ -229,7 +227,8 @@ function makeLink( $entry, &$first ) {
 	} else {
 		$sql .= ",\n";
 	}
-	$sql .= "(" . Database::makeList( $entry ) . ")";
+	$dbr =& wfGetDB( DB_SLAVE );
+	$sql .= "(" . $dbr->makeList( $entry ) . ")";
 	return $sql;
 }
 
