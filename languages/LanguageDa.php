@@ -526,7 +526,7 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 
 # Edit pages
 #
-"summary"		=> "<a href=\"{{SERVER}}/wiki/{{ns:4}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring\">Beskrivelse</a>",
+"summary"		=> '<a href=\"{{SERVER}}/wiki/{{ns:4}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring\">Beskrivelse</a>',
 "subject"		=> "Emne/overskrift",
 "minoredit"		=> "Dette er en mindre ændring.",
 "watchthis"		=> "Overvåg denne artikel",
@@ -607,7 +607,7 @@ ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.\n",
 "loadhist"		=> "Indlæser sidens historik",
 "currentrev"	=> "Nuværende version",
 "revisionasof"	=> "Versionen fra $1",
-'revisionasofwithlink'  => Revision pr. $1; $2<br />$3 | $4',
+'revisionasofwithlink'  => 'Revision pr. $1; $2<br />$3 | $4',
 'previousrevision'	=> '&larr;Ældre version',
 'nextrevision'		=> 'Nyere version&rarr;',
 'currentrevisionlink'   => 'se nuværende version',
@@ -691,7 +691,7 @@ Se [[Project:Hvordan sætter jeg mine indstillinger]] for en forklaring på de f
 "math_unknown_function"	=> "ukendt funktion ",
 "math_lexing_error"	=> "lexerfejl",
 "math_syntax_error"	=> "syntaksfejl",
-'math_image_error'	=> PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
+'math_image_error'	=> 'PNG-konvertering mislykkedes; undersøg om latex, dvips, gs og convert er installeret korrekt',
 'math_bad_tmpdir'	=> 'Kan ikke skrive til eller oprette temp-mappe til math',
 'math_bad_output'	=> 'Kan ikke skrive til eller oprette uddata-mappe til math',
 'math_notexvc'	=> 'Manglende eksekvérbar texvc; se math/README for opsætningsoplysninger.',
@@ -937,7 +937,7 @@ og af hvem, og andre ting du ved om filen.",
 "sitestats"		=> "Statistiske oplysninger om {{SITENAME}}",
 "userstats"		=> "Statistik om brugere på {{SITENAME}}",
 "sitestatstext" => "Der er i alt '''$1''' sider i databasen. 
-Dette tal indeholder "diskussion"-sider, sider om {{SITENAME}}, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler. 
+Dette tal indeholder \"diskussion\"-sider, sider om {{SITENAME}}, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler. 
 Hvis man udelader disse, så er der '''$2''' sider som sandsynligvis er rigtige artikler. 
 Der har i alt været '''$4''' sideredigeringer siden programmellet blev opdateret den 25. september 2002. 
 Det vil sige, at der har været '''$5''' gennemsnitlige redigeringer pr. side. 
