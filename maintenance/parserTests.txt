@@ -1250,7 +1250,7 @@ Magic variables
 ### Magic links
 ###
 !! test
-Magic links: internal link to RFC
+Magic links: internal link to RFC (bug 479)
 !! input
 [[RFC 123]]
 !! result
@@ -1259,7 +1259,7 @@ Magic links: internal link to RFC
 !! end
 
 !! test
-Magic links: RFC
+Magic links: RFC (bug 479)
 !! input
 RFC 822
 !! result
