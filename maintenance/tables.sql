@@ -60,7 +60,8 @@ CREATE TABLE /*$wgDBprefix*/cur (
   INDEX name_title_timestamp (cur_namespace,cur_title,inverse_timestamp),
   INDEX user_timestamp (cur_user,inverse_timestamp),
   INDEX usertext_timestamp (cur_user_text,inverse_timestamp),
-  INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp)
+  INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp),
+  INDEX id_title_ns_red (cur_id,cur_title,cur_namespace,Cur_is_redirect)
 );
 
 CREATE TABLE /*$wgDBprefix*/old (
@@ -159,7 +160,7 @@ CREATE TABLE /*$wgDBprefix*/linkscc (
 );
 
 CREATE TABLE /*$wgDBprefix*/site_stats (
-  ss_row_id int(8) unsigned NOT NULL,
+  ss_row_id int(8) unsigned NOT NULL default '1',
   ss_total_views bigint(20) unsigned default '0',
   ss_total_edits bigint(20) unsigned default '0',
   ss_good_articles bigint(20) unsigned default '0',
