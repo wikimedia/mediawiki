@@ -34,7 +34,9 @@ class FiveUpgrade {
 		$this->upgradeLinks();
 		$this->upgradeUser();
 		$this->upgradeImage();
-		#$this->upgradeOldImage();
+		$this->upgradeOldImage();
+		
+		$this->upgradeCleanup();
 	}
 	
 	
@@ -383,11 +385,8 @@ class FiveUpgrade {
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-
-		$this->log( "......Renaming old." );
-		$this->dbw->query( "ALTER TABLE $old RENAME TO $text", $fname );
 		
-		$this->log( "...done." );
+		$this->log( "...done with cur/old -> page/revision." );
 	}
 	
 	function upgradeLinks() {
@@ -540,10 +539,6 @@ CREATE TABLE $pagelinks (
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
-		
-		$this->log( 'Renaming user to user_old and user_temp to user...' );
-		$this->dbw->query( "ALTER TABLE $user RENAME TO $user_old" );
-		$this->dbw->query( "ALTER TABLE $user_temp RENAME TO $user" );
 	}
 	
 	function upgradeImage() {
@@ -613,15 +608,13 @@ END
 		}
 		$this->lastChunk( $add );
 		
-		$this->log( 'Renaming image to image_old and image_temp to image...' );
-		$this->dbw->query( "ALTER TABLE $image RENAME TO $image_old" );
-		$this->dbw->query( "ALTER TABLE $image_temp RENAME TO $image" );
-		
 		$this->log( 'done with image table.' );
 	}
 	
-	function imageInfo( $name ) {
-		$filename = wfImageDir( $name ) . '/' . $name;
+	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
+		if( is_null( $basename ) ) $basename = $name;
+		$dir = call_user_func( $subdirCallback, $basename );
+		$filename = $dir . '/' . $name;
 		$info = array(
 			'width'  => 0,
 			'height' => 0,
@@ -672,18 +665,20 @@ END
 	 * leaving a symlink for URL compatibility.
 	 *
 	 * @param string $oldname pre-conversion filename
-	 * @param callable $subdirCallback a function to generate hashed directories
+	 * @param string $basename pre-conversion base filename for dir hashing, if an archive
 	 * @access private
 	 */
-	function renameFile( $oldname, $subdirCallback ) {
+	function renameFile( $oldname, $subdirCallback='wfImageDir', $basename=null ) {
 		$newname = $this->conv( $oldname );
 		if( $newname == $oldname ) {
 			// No need to rename; another field triggered this row.
 			return;
 		}
 		
-		$oldpath = call_user_func( $subdirCallback, $oldname ) . '/' . $oldname;
-		$newpath = call_user_func( $subdirCallback, $newname ) . '/' . $newname;
+		if( is_null( $basename ) ) $basename = $oldname;
+		$ubasename = $this->conv( $basename );
+		$oldpath = call_user_func( $subdirCallback, $basename ) . '/' . $oldname;
+		$newpath = call_user_func( $subdirCallback, $ubasename ) . '/' . $newname;
 		
 		$this->log( "$oldpath -> $newpath" );
 		if( rename( $oldpath, $newpath ) ) {
@@ -728,7 +723,98 @@ END
 		return implode( '/', $pieces );
 	}
 	
+	function upgradeOldImage() {
+		$fname = 'FiveUpgrade::upgradeOldImage';
+		$chunksize = 100;
+		
+		extract( $this->dbw->tableNames( 'oldimage', 'oldimage_temp', 'oldimage_old' ) );
+		$this->log( 'Creating temporary oldimage_temp to merge into...' );
+		$this->dbw->query( <<<END
+CREATE TABLE $oldimage_temp (
+  -- Base filename: key to image.img_name
+  oi_name varchar(255) binary NOT NULL default '',
+  
+  -- Filename of the archived file.
+  -- This is generally a timestamp and '!' prepended to the base name.
+  oi_archive_name varchar(255) binary NOT NULL default '',
+  
+  -- Other fields as in image...
+  oi_size int(8) unsigned NOT NULL default 0,
+  oi_width int(5) NOT NULL default 0,
+  oi_height int(5) NOT NULL default 0,
+  oi_bits int(3) NOT NULL default 0,
+  oi_description tinyblob NOT NULL default '',
+  oi_user int(5) unsigned NOT NULL default '0',
+  oi_user_text varchar(255) binary NOT NULL default '',
+  oi_timestamp char(14) binary NOT NULL default '',
 
+  INDEX oi_name (oi_name(10))
+
+) TYPE=InnoDB;
+END
+		, $fname);
+		
+		$numimages = $this->dbw->selectField( 'oldimage', 'count(*)', '', $fname );
+		$result = $this->dbr->select( 'oldimage',
+			array(
+				'oi_name',
+				'oi_archive_name',
+				'oi_size',
+				'oi_description',
+				'oi_user',
+				'oi_user_text',
+				'oi_timestamp' ),
+			'',
+			$fname );
+		$add = array();
+		$this->setChunkScale( $chunksize, $numimages, 'oldimage_temp', $fname );
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			// Fill in the new image info fields
+			$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
+			
+			// Update and convert encoding
+			$add[] = array(
+				'oi_name'         => $this->conv( $row->oi_name ),
+				'oi_archive_name' => $this->conv( $row->oi_archive_name ),
+				'oi_size'         =>              $row->oi_size,
+				'oi_width'        =>              $info['width'],
+				'oi_height'       =>              $info['height'],
+				'oi_bits'         =>              $info['bits'],
+				'oi_description'  => $this->conv( $row->oi_description ),
+				'oi_user'         =>              $row->oi_user,
+				'oi_user_text'    => $this->conv( $row->oi_user_text ),
+				'oi_timestamp'    =>              $row->oi_timestamp );
+			
+			// If doing UTF8 conversion the file must be renamed
+			$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
+		}
+		$this->lastChunk( $add );
+		
+		$this->log( 'done with oldimage table.' );
+	}
+	
+	/**
+	 * Rename all our temporary tables into final place.
+	 * We've left things in place so a read-only wiki can continue running
+	 * on the old code during all this.
+	 */
+	function upgradeCleanup() {
+		$this->log( "Renaming old to text..." );
+		$this->dbw->query( "ALTER TABLE $old RENAME TO $text", $fname );
+		
+		$this->log( 'Renaming user to user_old and user_temp to user...' );
+		$this->dbw->query( "ALTER TABLE $user RENAME TO $user_old" );
+		$this->dbw->query( "ALTER TABLE $user_temp RENAME TO $user" );
+		
+		$this->log( 'Renaming image to image_old and image_temp to image...' );
+		$this->dbw->query( "ALTER TABLE $image RENAME TO $image_old" );
+		$this->dbw->query( "ALTER TABLE $image_temp RENAME TO $image" );
+		
+		$this->log( 'Renaming oldimage to oldimage_old and oldimage_temp to oldimage...' );
+		$this->dbw->query( "ALTER TABLE $oldimage RENAME TO $oldimage_old" );
+		$this->dbw->query( "ALTER TABLE $oldimage_temp RENAME TO $oldimage" );
+	}
+	
 }
 
 ?>
