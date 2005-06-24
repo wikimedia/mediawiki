@@ -33,6 +33,8 @@ class FiveUpgrade {
 		$this->upgradePage();
 		$this->upgradeLinks();
 		$this->upgradeUser();
+		$this->upgradeImage();
+		#$this->upgradeOldImage();
 	}
 	
 	
@@ -544,6 +546,116 @@ CREATE TABLE $pagelinks (
 		$this->dbw->query( "ALTER TABLE $user_temp RENAME TO $user" );
 	}
 	
+	function upgradeImage() {
+		$fname = 'FiveUpgrade::upgradeImage';
+		$chunksize = 100;
+		
+		extract( $this->dbw->tableNames( 'image', 'image_temp', 'image_old' ) );
+		$this->log( 'Creating temporary image_temp to merge into...' );
+		$this->dbw->query( <<<END
+CREATE TABLE $image_temp (
+  img_name varchar(255) binary NOT NULL default '',
+  img_size int(8) unsigned NOT NULL default '0',
+  img_width int(5)  NOT NULL default '0',
+  img_height int(5)  NOT NULL default '0',
+  img_metadata mediumblob NOT NULL,
+  img_bits int(3)  NOT NULL default '0',
+  img_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+  img_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
+  img_minor_mime varchar(32) NOT NULL default "unknown",
+  img_description tinyblob NOT NULL default '',
+  img_user int(5) unsigned NOT NULL default '0',
+  img_user_text varchar(255) binary NOT NULL default '',
+  img_timestamp char(14) binary NOT NULL default '',
+  
+  PRIMARY KEY img_name (img_name),
+  INDEX img_size (img_size),
+  INDEX img_timestamp (img_timestamp)
+) TYPE=InnoDB
+END
+		, $fname);
+		
+		$numimages = $this->dbw->selectField( 'image', 'count(*)', '', $fname );
+		$result = $this->dbr->select( 'image',
+			array(
+				'img_name',
+				'img_size',
+				'img_description',
+				'img_user',
+				'img_user_text',
+				'img_timestamp' ),
+			'',
+			$fname );
+		$add = array();
+		$this->setChunkScale( $chunksize, $numimages, 'image_temp', $fname );
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			// Fill in the new image info fields
+			$info = $this->imageInfo( $row->img_name );
+			
+			// Update and convert encoding
+			$add[] = array(
+				'img_name'        => $this->conv( $row->img_name ),
+				'img_size'        =>              $row->img_size,
+				'img_width'       =>              $info['width'],
+				'img_height'      =>              $info['height'],
+				'img_metadata'    =>              "", // loaded on-demand
+				'img_bits'        =>              $info['bits'],
+				'img_media_type'  =>              $info['media'],
+				'img_major_mime'  =>              $info['major'],
+				'img_minor_mime'  =>              $info['minor'],
+				'img_description' => $this->conv( $row->img_description ),
+				'img_user'        =>              $row->img_user,
+				'img_user_text'   => $this->conv( $row->img_user_text ),
+				'img_timestamp'   =>              $row->img_timestamp );
+			
+			// If doing UTF8 conversion the file must be renamed
+			$this->renameFile( $row->img_name, 'wfImageDir' );
+		}
+		$this->lastChunk( $add );
+		
+		$this->log( 'Renaming image to image_old and image_temp to image...' );
+		$this->dbw->query( "ALTER TABLE $image RENAME TO $image_old" );
+		$this->dbw->query( "ALTER TABLE $image_temp RENAME TO $image" );
+		
+		$this->log( 'done with image table.' );
+	}
+	
+	function imageInfo( $name ) {
+		$filename = wfImageDir( $name ) . '/' . $name;
+		$info = array(
+			'width'  => 0,
+			'height' => 0,
+			'bits'   => 0,
+			'media'  => '',
+			'major'  => '',
+			'minor'  => '' );
+		
+		$magic =& wfGetMimeMagic();
+		$mime = $magic->guessMimeType( $filename, true );
+		list( $info['major'], $info['minor'] ) = explode( '/', $mime );
+		
+		$info['media'] = $magic->getMediaType( $filename, $mime );
+		
+		# Height and width
+		$gis = false;
+		if( $mime == 'image/svg' ) {
+			$gis = wfGetSVGsize( $this->imagePath );
+		} elseif( $magic->isPHPImageType( $mime ) ) {
+			$gis = getimagesize( $filename );
+		} else {
+			$this->log( "Surprising mime type: $mime" );
+		}
+		if( $gis ) {
+			$info['width' ] = $gis[0];
+			$info['height'] = $gis[1];
+		}
+		if( isset( $gis['bits'] ) ) {
+			$info['bits'] = $gis['bits'];
+		}
+		
+		return $info;
+	}
+	
 
 	/**
 	 * Truncate a table.
@@ -556,84 +668,6 @@ CREATE TABLE $pagelinks (
 	}
 	
 	/**
-	 * @param string $table Table to be converted
-	 * @param string $key Primary key, to identify fields in the UPDATE. If NULL, all fields will be used to match.
-	 * @param array $fields List of all fields to grab and convert. If null, will assume you want the $key, and will ask for DISTINCT.
-	 * @param array $timestamp A field which should be updated to the current timestamp on changed records.
-	 * @param callable $callback
-	 * @access private
-	 */
-	function convertTable( $table, $key, $fields = null, $timestamp = null, $callback = null ) {
-		$fname = 'FiveUpgrade::convertTable';
-		if( $fields ) {
-			$distinct = '';
-		} else {
-			# If working on one key only, there will be multiple rows.
-			# Use DISTINCT to return only one and save us some trouble.
-			$fields = array( $key );
-			$distinct = 'DISTINCT';
-		}
-		$condition = '';
-		foreach( $fields as $field ) {
-			if( $condition ) $condition .= ' OR ';
-			$condition .= "$field RLIKE '[\x80-\xff]'";
-		}
-		$res = $this->dbw->selectArray(
-			$table,
-			array_merge( $fields, array( $key ) ),
-			$condition,
-			$fname,
-			$distinct );
-		print "Converting " . $this->dbw->numResults( $res ) . " rows from $table:\n";
-		$n = 0;
-		while( $s = $this->dbw->fetchObject( $res ) ) {
-			$set = array();
-			foreach( $fields as $field ) {
-				$set[] = $this->toUtf8( $s->$field );
-			}
-			if( $timestamp ) {
-				$set[$timestamp] = $this->db->timestamp();
-			}
-			if( $key ) {
-				$keyCond = array( $key, $s->$key );
-			} else {
-				$keyCond = array();
-				foreach( $fields as $field ) {
-					$keyCond[$field] = $s->$field;
-				}
-			}
-			$this->dbw->updateArray(
-				$table,
-				$set,
-				$keyCond,
-				$fname );
-			if( ++$n % 100 == 0 ) echo "$n\n";
-			
-			if( is_callable( $callback ) ) {
-				call_user_func( $callback, $s );
-			}
-		}
-		echo "$n done.\n";
-		$this->dbw->freeResult( $res );
-	}
-	
-	/**
-	 * @param object $row
-	 * @access private
-	 */
-	function imageRenameCallback( $row ) {
-		$this->renameFile( $row->img_name, 'wfImageDir' );
-	}
-	
-	/**
-	 * @param object $row
-	 * @access private
-	 */
-	function oldimageRenameCallback( $row ) {
-		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir' );
-	}
-	
-	/**
 	 * Rename a given image or archived image file to the converted filename,
 	 * leaving a symlink for URL compatibility.
 	 *
@@ -642,7 +676,7 @@ CREATE TABLE $pagelinks (
 	 * @access private
 	 */
 	function renameFile( $oldname, $subdirCallback ) {
-		$newname = $this->toUtf8( $oldname );
+		$newname = $this->conv( $oldname );
 		if( $newname == $oldname ) {
 			// No need to rename; another field triggered this row.
 			return;
@@ -651,18 +685,47 @@ CREATE TABLE $pagelinks (
 		$oldpath = call_user_func( $subdirCallback, $oldname ) . '/' . $oldname;
 		$newpath = call_user_func( $subdirCallback, $newname ) . '/' . $newname;
 		
-		echo "Renaming $oldpath to $newpath... ";
+		$this->log( "$oldpath -> $newpath" );
 		if( rename( $oldpath, $newpath ) ) {
-			echo "ok\n";
-			echo "Creating compatibility symlink from $newpath to $oldpath... ";
-			if( symlink( $newpath, $oldpath ) ) {
-				echo "ok\n";
-			} else {
-				echo " symlink failed!\n";
+			$relpath = $this->relativize( $newpath, dirname( $oldpath ) );
+			if( !symlink( $relpath, $oldpath ) ) {
+				$this->log( "... symlink failed!" );
 			}
 		} else {
-			echo " rename failed!\n";
+			$this->log( "... rename failed!" );
 		}
+	}
+	
+	/**
+	 * Generate a relative path name to the given file.
+	 * Assumes Unix-style paths, separators, and semantics.
+	 *
+	 * @param string $path Absolute destination path including target filename
+	 * @param string $from Absolute source path, directory only
+	 * @return string
+	 * @access private
+	 * @static
+	 */
+	function relativize( $path, $from ) {
+		$pieces  = explode( '/', dirname( $path ) );
+		$against = explode( '/', $from );
+		
+		// Trim off common prefix
+		while( count( $pieces ) && count( $against )
+			&& $pieces[0] == $against[0] ) {
+			array_shift( $pieces );
+			array_shift( $against );
+		}
+		
+		// relative dots to bump us to the parent
+		while( count( $against ) ) {
+			array_unshift( $pieces, '..' );
+			array_shift( $against );
+		}
+		
+		array_push( $pieces, basename( $path ) );
+		
+		return implode( '/', $pieces );
 	}
 	
 
