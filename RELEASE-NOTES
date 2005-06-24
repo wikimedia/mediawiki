@@ -331,6 +331,7 @@ Various bugfixes, small features, and a few experimental things:
 * Fixed a typo in the Romanian language file (NS_MESIA => NS_MEDIA)
 * (bug 2504) Updated the Finnish translation
 * (bug 2506) Updated the Nynorsk translation
+* Everything given to setSubtitle() is now parsed for the full wikisyntax
 
 === Caveats ===
 

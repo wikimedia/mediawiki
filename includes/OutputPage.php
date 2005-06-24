@@ -170,7 +170,7 @@ class OutputPage {
 	}
 	function getHTMLTitle() { return $this->mHTMLtitle; }
 	function getPageTitle() { return $this->mPagetitle; }
-	function setSubtitle( $str ) { $this->mSubtitle = $str; }
+	function setSubtitle( $str ) { $this->mSubtitle = $this->parse($str); }
 	function getSubtitle() { return $this->mSubtitle; }
 	function isArticle() { return $this->mIsarticle; }
 	function setPrintable() { $this->mPrintable = true; }
