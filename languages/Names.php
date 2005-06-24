@@ -161,7 +161,7 @@
 	'sd' => '&#2360;&#2367;&#2344;&#2343;&#2367;',	# Sindhi
 	'se' => 'S&aacute;megiella',	# Northern Sami
 	'sg' => 'S&#228;ng&#246;',		# Sango, possible alternative is Sangho
-#	'sh'	=> '&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)', ## Serbocroatian -- Obsolete
+	'sh' => '&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)', # Serbocroatian
 	'si' => '&#3523;&#3538;&#3458;&#3524;&#3517;',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Sloven&#269;ina',	# Slovak
