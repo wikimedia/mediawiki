@@ -224,7 +224,7 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
-		$wgOut->setSubtitle( wfMsg( 'searchquery', htmlspecialchars( $term ) ) );
+		$wgOut->setSubtitle( wfMsg( 'searchquery', $term ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}
