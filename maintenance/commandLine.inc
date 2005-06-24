@@ -84,22 +84,27 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	# Get $conf
 	require( "$IP/InitialiseSettings.php" );
 
-	# Check if we were passed a db name
-	$db = array_shift( $args );
-	list( $site, $lang ) = $conf->siteFromDB( $db );
+	if ( empty( $wgNoDBParam ) ) {
+		# Check if we were passed a db name
+		$db = array_shift( $args );
+		list( $site, $lang ) = $conf->siteFromDB( $db );
 
-	# If not, work out the language and site the old way
-	if ( is_null( $site ) || is_null( $lang ) ) {
-		if ( !$db ) {	
-			$lang = "aa";
-		} else {
-			$lang = $db;
+		# If not, work out the language and site the old way
+		if ( is_null( $site ) || is_null( $lang ) ) {
+			if ( !$db ) {	
+				$lang = "aa";
+			} else {
+				$lang = $db;
+			}
+			if ( isset( $args[0] ) ) {
+				$site = array_shift( $args );
+			} else {
+				$site = "wikipedia";
+			}
 		}
-		if ( isset( $args[0] ) ) {
-			$site = array_shift( $args );
-		} else {
-			$site = "wikipedia";
-		}
+	} else {
+		$lang = "aa";
+		$site = "wikipedia";
 	}
 
 	# This is for the IRC scripts, which now run as the apache user
