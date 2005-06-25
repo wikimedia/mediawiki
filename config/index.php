@@ -165,8 +165,6 @@ if( !is_writable( "." ) ) {
 
 require_once( "install-utils.inc" );
 require_once( "maintenance/updaters.inc" );
-require_once( "maintenance/convertLinks.inc" );
-require_once( "maintenance/archives/moveCustomMessages.inc" );
 
 class ConfigData {
 	function getEncoded( $data ) {
