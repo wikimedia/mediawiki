@@ -678,7 +678,7 @@ class SkinTemplate extends Skin {
 			$content_actions['article'] = array(
 				'class' => 'selected',
 				'text' => wfMsg('specialpage'),
-				'href' => $this->mTitle->getLocalUrl(), // @bug 2457
+				'href' => $wgRequest->getRequestURL(), // @bug 2457, 2510
 			);
 		}
 
