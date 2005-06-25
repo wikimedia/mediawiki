@@ -224,7 +224,15 @@ function wfReadOnly() {
 	if ( '' == $wgReadOnlyFile ) {
 		return false;
 	}
-	return is_file( $wgReadOnlyFile );
+	
+	// Set $wgReadOnly and unset $wgReadOnlyFile, for faster access next time
+	if ( is_file( $wgReadOnlyFile ) ) {
+		$wgReadOnly = true;
+	} else {
+		$wgReadOnly = false;
+	}
+	$wgReadOnlyFile = '';
+	return $wgReadOnly;
 }
 
 
