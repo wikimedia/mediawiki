@@ -53,6 +53,8 @@ class FiveUpgrade {
 			$this->upgradeWatchlist();
 		if( $this->doing( 'logging' ) )
 			$this->upgradeLogging();
+		if( $this->doing( 'archive' ) )
+			$this->upgradeArchive();
 		
 		if( $this->doing( 'cleanup' ) )
 			$this->upgradeCleanup();
@@ -960,6 +962,100 @@ END
 		
 		$this->log( 'Done converting logging.' );
 		$this->cleanupSwaps[] = 'logging';
+	}
+
+	function upgradeArchive() {
+		$fname = 'FiveUpgrade::upgradeArchive';
+		$chunksize = 100;
+		
+		extract( $this->dbw->tableNames( 'archive', 'archive_temp' ) );
+		
+		$this->log( 'Migrating archive table to archive_temp...' );
+		$this->dbw->query(
+"CREATE TABLE $archive_temp (
+  ar_namespace int NOT NULL default '0',
+  ar_title varchar(255) binary NOT NULL default '',
+  
+  -- Newly deleted pages will not store text in this table,
+  -- but will reference the separately existing text rows.
+  -- This field is retained for backwards compatibility,
+  -- so old archived pages will remain accessible after
+  -- upgrading from 1.4 to 1.5.
+  ar_text mediumblob NOT NULL default '',
+  
+  -- Basic revision stuff...
+  ar_comment tinyblob NOT NULL default '',
+  ar_user int(5) unsigned NOT NULL default '0',
+  ar_user_text varchar(255) binary NOT NULL,
+  ar_timestamp char(14) binary NOT NULL default '',
+  ar_minor_edit tinyint(1) NOT NULL default '0',
+  
+  -- See ar_text note.
+  ar_flags tinyblob NOT NULL default '',
+  
+  -- When revisions are deleted, their unique rev_id is stored
+  -- here so it can be retained after undeletion. This is necessary
+  -- to retain permalinks to given revisions after accidental delete
+  -- cycles or messy operations like history merges.
+  -- 
+  -- Old entries from 1.4 will be NULL here, and a new rev_id will
+  -- be created on undeletion for those revisions.
+  ar_rev_id int(8) unsigned,
+  
+  -- For newly deleted revisions, this is the text.old_id key to the
+  -- actual stored text. To avoid breaking the block-compression scheme
+  -- and otherwise making storage changes harder, the actual text is
+  -- *not* deleted from the text table, merely hidden by removal of the
+  -- page and revision entries.
+  --
+  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
+  -- ar_text and ar_flags fields will be used to create a new text
+  -- row upon undeletion.
+  ar_text_id int(8) unsigned,
+  
+  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
+
+) TYPE=InnoDB", $fname );
+
+		$numarchived = $this->dbw->selectField( 'archive', 'count(*)', '', $fname );
+		$this->setChunkScale( $chunksize, $numarchived, 'archive_temp', $fname );
+		
+		$result = $this->dbr->select( 'archive',
+			array(
+				'ar_namespace',
+				'ar_title',
+				'ar_text',
+				'ar_comment',
+				'ar_user',
+				'ar_user_text',
+				'ar_timestamp',
+				'ar_minor_edit',
+				'ar_flags' ),
+			'',
+			$fname );
+		
+		$add = array();
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			$now = $this->dbw->timestamp();
+			$add[] = array(
+				'ar_namespace'  =>              $row->ar_namespace,
+				'ar_title'      => $this->conv( $row->ar_title ),
+				'ar_text'       =>              $row->ar_text,
+				'ar_comment'    => $this->conv( $row->ar_comment ),
+				'ar_user'       =>              $row->ar_user,
+				'ar_user_text'  => $this->conv( $row->ar_user_text ),
+				'ar_timestamp'  =>              $row->ar_user_text,
+				'ar_minor_edit' =>              $row->ar_minor_edit,
+				'ar_flags'      =>              $row->ar_flags,
+				'ar_rev_id'     => null,
+				'ar_text_id'    => null );
+			$this->addChunk( $add );
+		}
+		$this->lastChunk( $add );
+		$this->dbr->freeResult( $result );
+		
+		$this->log( 'Done converting archive.' );
+		$this->cleanupSwaps[] = 'archive';
 	}
 
 	/**
