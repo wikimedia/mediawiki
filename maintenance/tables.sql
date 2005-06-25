@@ -269,7 +269,7 @@ CREATE TABLE /*$wgDBprefix*/text (
   
   -- Depending on the contents of the old_flags field, the text
   -- may be convenient plain text, or it may be funkily encoded.
-  old_text mediumtext NOT NULL default '',
+  old_text mediumblob NOT NULL default '',
   
   -- Comma-separated list of flags:
   -- gzip: text is compressed with PHP's gzdeflate() function.
@@ -301,7 +301,8 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- This field is retained for backwards compatibility,
   -- so old archived pages will remain accessible after
   -- upgrading from 1.4 to 1.5.
-  ar_text mediumtext NOT NULL default '',
+  -- Text may be gzipped or otherwise funky.
+  ar_text mediumblob NOT NULL default '',
   
   -- Basic revision stuff...
   ar_comment tinyblob NOT NULL default '',
