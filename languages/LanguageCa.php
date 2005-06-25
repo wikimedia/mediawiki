@@ -37,13 +37,7 @@
 	'standard' => "Estàndard",
 	'nostalgia' => "Nostàlgia",
 	'cologneblue' => "Colònia blava",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsCa = array(
 #	"No preference",
