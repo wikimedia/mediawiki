@@ -30,8 +30,9 @@ explode, or leave your database half-done or otherwise badly hurting.
 
 Among other changes, note that Latin-1 encoding (ISO-8859-1) is
 no longer supported. Latin-1 wikis will need to be upgraded to
-UTF-8, however the updater has not yet been updated to support
-this automatically.
+UTF-8; an experimental command-line upgrade helper script,
+'upgrade1_5.php', can do this -- run it prior to 'update.php' or
+the web upgrader.
 
 Message changes:
 * A number of additional UI messages have been chagned from HTML to
