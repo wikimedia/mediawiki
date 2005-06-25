@@ -338,7 +338,7 @@ class LinkCache {
  * Class representing a list of titles
  * The execute() method checks them all for existence and adds them to a LinkCache object
  +
- * @package MediaWikki
+ * @package MediaWiki
  * @subpackage Cache
  */
 class LinkBatch {
