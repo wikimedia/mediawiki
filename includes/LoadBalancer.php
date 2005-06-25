@@ -145,7 +145,13 @@ class LoadBalancer {
 		return $this->pickRandom( $loads );
 	}
 
-
+	/**
+	 * Get the index of the reader connection, which may be a slave
+	 * This takes into account load ratios and lag times. It should 
+	 * always return a consistent index during a given invocation
+	 *
+	 * Side effect: opens connections to databases
+	 */
 	function getReaderIndex()
 	{
 		global $wgMaxLag, $wgReadOnly, $wgDBClusterTimeout;
@@ -215,7 +221,7 @@ class LoadBalancer {
 							$this->mServers[$i]['slave pos'] = $this->mConnections[$i]->getSlavePos();
 						}
 					}
-					if ( $i != false ) {
+					if ( $i !== false ) {
 						$this->mReadIndex = $i;
 					}
 				} else {
