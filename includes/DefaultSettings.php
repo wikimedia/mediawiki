@@ -1540,9 +1540,5 @@ $wgTrustedMediaFormats= array(
  */
 $wgAllowSpecialInclusion = true;
 
-/**
- * Allow Special:Export to search/return a list of articles changed since XXX
- */
-$wgAllowArticleList = false ;
 
 ?>
