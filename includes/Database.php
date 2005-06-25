@@ -286,6 +286,17 @@ class Database {
 	function query( $sql, $fname = '', $tempIgnore = false ) {
 		global $wgProfiling, $wgCommandLineMode;
 		
+		if ( wfReadOnly() ) {
+			# This is a quick check for the most common kinds of write query used 
+			# in MediaWiki, to provide extra safety in addition to UI-level checks. 
+			# It is not intended to prevent every conceivable write query, or even 
+			# to handle such queries gracefully.
+			if ( preg_match( '/^(update|insert|replace|delete)/i', $sql ) ) {
+				wfDebug( "Write query from $fname blocked\n" );
+				return false;
+			}
+		}
+
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
