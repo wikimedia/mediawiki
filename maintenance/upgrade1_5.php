@@ -352,6 +352,7 @@ class FiveUpgrade {
 		$this->dbw->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
+  			rev_text_id int(8) unsigned NOT NULL,
   			rev_comment tinyblob NOT NULL default '',
   			rev_user int(5) unsigned NOT NULL default '0',
   			rev_user_text varchar(255) binary NOT NULL default '',
@@ -438,6 +439,7 @@ class FiveUpgrade {
 			$add[] = array(
 				'rev_id'         =>              $row->old_id,
 				'rev_page'       =>              $row->cur_id,
+				'rev_text_id'    =>              $row->old_id,
 				'rev_comment'    => $this->conv( $row->old_comment ),
 				'rev_user'       =>              $row->old_user,
 				'rev_user_text'  => $this->conv( $row->old_user_text ),
@@ -943,7 +945,7 @@ END;
 			'log_title'     => MW_UPGRADE_ENCODE,
 			'log_comment'   => MW_UPGRADE_ENCODE,
 			'log_params'    => MW_UPGRADE_ENCODE );
-		$this->copyTable( 'archive', $tabledef, $fields );
+		$this->copyTable( 'logging', $tabledef, $fields );
 	}
 
 	function upgradeArchive() {
@@ -1143,7 +1145,7 @@ END;
 	}
 	
 	function renameTable( $from, $to ) {
-		$this->log( 'Renaming $from to $to...' );
+		$this->log( "Renaming $from to $to..." );
 
 		$fromtable = $this->dbw->tableName( $from );
 		$totable   = $this->dbw->tableName( $to );
