@@ -1072,9 +1072,13 @@ class Title {
 	 */
 	function isDeleted() {
 		$fname = 'Title::isDeleted';
-		$dbr =& wfGetDB( DB_SLAVE );
-		$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
-			'ar_title' => $this->getDBkey() ), $fname );
+		if ( $this->getNamespace() < 0 ) {
+			$n = 0;
+		} else {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
+				'ar_title' => $this->getDBkey() ), $fname );
+		}
 		return (int)$n;
 	}
 
