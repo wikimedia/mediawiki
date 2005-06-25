@@ -30,6 +30,7 @@ class FiveUpgrade {
 		$this->dbw =& $this->newConnection();
 		$this->dbr =& $this->newConnection();
 		$this->dbr->bufferResults( false );
+		$this->cleanupSwaps = array();
 	}
 	
 	function doing( $step ) {
@@ -50,6 +51,8 @@ class FiveUpgrade {
 			$this->upgradeOldImage();
 		if( $this->doing( 'watchlist' ) )
 			$this->upgradeWatchlist();
+		if( $this->doing( 'logging' ) )
+			$this->upgradeLogging();
 		
 		if( $this->doing( 'cleanup' ) )
 			$this->upgradeCleanup();
@@ -132,11 +135,11 @@ class FiveUpgrade {
 	 */
 	function conv( $text ) {
 		global $wgUseLatin1;
-		if( $wgUseLatin1 ) {
-			return strtr( $text, $this->conversionTables );
-		} else {
-			return $text;
-		}
+		return is_null( $text )
+			? null
+			: ( $wgUseLatin1
+				? strtr( $text, $this->conversionTables )
+				: $text );
 	}
 	
 	/**
@@ -555,6 +558,7 @@ CREATE TABLE $pagelinks (
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
+		$this->cleanupSwaps[] = 'user';
 	}
 	
 	function upgradeImage() {
@@ -625,6 +629,7 @@ END
 		$this->lastChunk( $add );
 		
 		$this->log( 'done with image table.' );
+		$this->cleanupSwaps[] = 'image';
 	}
 	
 	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
@@ -807,6 +812,7 @@ END
 		$this->lastChunk( $add );
 		
 		$this->log( 'done with oldimage table.' );
+		$this->cleanupSwaps[] = 'oldimage';
 	}
 	
 
@@ -872,8 +878,89 @@ END
 		$this->dbr->freeResult( $result );
 		
 		$this->log( 'Done converting watchlist.' );
+		$this->cleanupSwaps[] = 'watchlist';
 	}
 
+	function upgradeLogging() {
+		global $wgUseLatin1;
+		if( !$wgUseLatin1 ) {
+			$this->log( 'Not latin1; no change to logging table.' );
+			return;
+		}
+		
+		$fname = 'FiveUpgrade::upgradeLogging';
+		$chunksize = 100;
+		
+		extract( $this->dbw->tableNames( 'logging', 'logging_temp' ) );
+		
+		$this->log( 'Migrating logging table to logging_temp...' );
+		$this->dbw->query(
+"CREATE TABLE $logging_temp (
+  -- Symbolic keys for the general log type and the action type
+  -- within the log. The output format will be controlled by the
+  -- action field, but only the type controls categorization.
+  log_type char(10) NOT NULL default '',
+  log_action char(10) NOT NULL default '',
+  
+  -- Timestamp. Duh.
+  log_timestamp char(14) NOT NULL default '19700101000000',
+  
+  -- The user who performed this action; key to user_id
+  log_user int unsigned NOT NULL default 0,
+  
+  -- Key to the page affected. Where a user is the target,
+  -- this will point to the user page.
+  log_namespace int NOT NULL default 0,
+  log_title varchar(255) binary NOT NULL default '',
+  
+  -- Freeform text. Interpreted as edit history comments.
+  log_comment varchar(255) NOT NULL default '',
+  
+  -- LF separated list of miscellaneous parameters
+  log_params blob NOT NULL default '',
+
+  KEY type_time (log_type, log_timestamp),
+  KEY user_time (log_user, log_timestamp),
+  KEY page_time (log_namespace, log_title, log_timestamp)
+
+) TYPE=InnoDB", $fname );
+
+		$numlogged = $this->dbw->selectField( 'logging', 'count(*)', '', $fname );
+		$this->setChunkScale( $chunksize, $numlogged, 'logging_temp', $fname );
+		
+		$result = $this->dbr->select( 'logging',
+			array(
+				'log_type',
+				'log_action',
+				'log_timestamp',
+				'log_user',
+				'log_namespace',
+				'log_title',
+				'log_comment',
+				'log_params' ),
+			'',
+			$fname );
+		
+		$add = array();
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			$now = $this->dbw->timestamp();
+			$add[] = array(
+				'log_type'      =>              $row->log_type,
+				'log_action'    =>              $row->log_type,
+				'log_timestamp' =>              $row->log_timestamp,
+				'log_user'      =>              $row->log_user,
+				'log_namespace' =>              $row->log_namespace,
+				'log_title'     => $this->conv( $row->log_title ),
+				'log_comment'   => $this->conv( $row->log_comment ),
+				'log_params'    => $this->conv( $row->log_params ) );
+			$this->addChunk( $add );
+		}
+		$this->lastChunk( $add );
+		$this->dbr->freeResult( $result );
+		
+		$this->log( 'Done converting logging.' );
+		$this->cleanupSwaps[] = 'logging';
+	}
 
 	/**
 	 * Rename all our temporary tables into final place.
@@ -883,10 +970,9 @@ END
 	function upgradeCleanup() {
 		$this->renameTable( 'old', 'text' );
 		
-		$this->swap( 'user' );
-		$this->swap( 'image' );
-		$this->swap( 'oldimage' );
-		$this->swap( 'watchlist' );
+		foreach( $this->cleanupSwaps as $table ) {
+			$this->swap( $table );
+		}
 	}
 	
 	function renameTable( $from, $to ) {
