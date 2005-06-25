@@ -82,6 +82,17 @@ class User {
 			return null;
 		}
 	}
+	
+	/**
+	 * Serialze sleep function, for better cache efficiency and avoidance of 
+	 * silly "incomplete type" errors when skins are cached
+	 */
+	function __sleep() {
+		return array( 'mId', 'mName', 'mPassword', 'mEmail', 'mNewtalk',
+			'mEmailAuthenticated', 'mRights', 'mOptions', 'mDataLoaded', 
+			'mNewpassword', 'mBlockedby', 'mBlockreason', 'mTouched', 
+			'mToken', 'mRealName', 'mHash', 'mGroups' );
+	}
 
 	/**
 	 * Get username given an id.
@@ -628,6 +639,7 @@ class User {
 	}
 	
 	function getNewtalk() {
+		global $wgUseEnotif;
 		$fname = 'User::getNewtalk';
 		$this->loadFromDatabase();
 		
@@ -645,20 +657,33 @@ class User {
 					$this->mNewtalk = $newtalk ? 1 : 0;
 					return (bool)$this->mNewtalk;
 				}
-			}
+			} 
 			
 			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'watchlist',
-				array( 'wl_user' ),
-				array( 'wl_title'     => $this->getTitleKey(),
-					   'wl_namespace' => NS_USER_TALK,
-					   'wl_user'      => $this->mId,
-					   'wl_notificationtimestamp != 0' ),
-				'User::getNewtalk' );
-			if( $dbr->numRows($res) > 0 ) {
-				$this->mNewtalk = 1;
+			if ( $wgUseEnotif ) {
+				$res = $dbr->select( 'watchlist',
+					array( 'wl_user' ),
+					array( 'wl_title'     => $this->getTitleKey(),
+						   'wl_namespace' => NS_USER_TALK,
+						   'wl_user'      => $this->mId,
+						   'wl_notificationtimestamp != 0' ),
+					'User::getNewtalk' );
+				if( $dbr->numRows($res) > 0 ) {
+					$this->mNewtalk = 1;
+				}
+				$dbr->freeResult( $res );
+			} elseif ( $this->mId ) {
+				$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
+
+				if ( $dbr->numRows($res)>0 ) {
+					$this->mNewtalk= 1;
+				}
+				$dbr->freeResult( $res );
+			} else {
+				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
+				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
+				$dbr->freeResult( $res );
 			}
-			$dbr->freeResult( $res );
 			
 			if( !$this->mId ) {
 				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
@@ -730,7 +755,7 @@ class User {
 			} else {
 				$key = microtime();
 			}
-			$this->mToken = md5( $wgSecretKey . mt_rand( 0, 0x7fffffff ) . $wgDBname . $this->mId );
+			$this->mToken = md5( $key . mt_rand( 0, 0x7fffffff ) . $wgDBname . $this->mId );
 		} else {
 			$this->mToken = $token;
 		}
@@ -1018,11 +1043,16 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 */
 	function clearNotification( &$title ) {
-		global $wgUser;
+		global $wgUser, $wgUseEnotif;
+
+		if ( !$wgUseEnotif ) {
+			return;
+		}
 
 		$userid = $this->getID();
-		if ($userid==0)
+		if ($userid==0) {
 			return;
+		}
 		
 		// Only update the timestamp if the page is being watched. 
 		// The query to find out if it is watched is cached both in memcached and per-invocation,
@@ -1065,6 +1095,10 @@ class User {
 	 * @access public
 	 */
 	function clearAllNotifications( $currentUser ) {
+		global $wgUseEnotif;
+		if ( !$wgUseEnotif ) {
+			return;
+		}
 		if( $currentUser != 0 )  {
 	
 			$dbw =& wfGetDB( DB_MASTER );
@@ -1148,26 +1182,14 @@ class User {
 	 * Save object settings into database
 	 */
 	function saveSettings() {
-		global $wgMemc, $wgDBname;
+		global $wgMemc, $wgDBname, $wgUseEnotif;
 		$fname = 'User::saveSettings';
 
-		$dbw =& wfGetDB( DB_MASTER );
-		if ( ! $this->getNewtalk() ) {
-			# Delete the watchlist entry for user_talk page X watched by user X
-			$dbw->delete( 'watchlist',
-				array( 'wl_user'      => $this->mId,
-					   'wl_title'     => $this->getTitleKey(),
-					   'wl_namespace' => NS_USER_TALK ),
-				$fname );
-			if( !$this->mId ) {
-				# Anon users have a separate memcache space for newtalk
-				# since they don't store their own info. Trim...
-				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
-			}
-		}
-
+		if ( wfReadOnly() ) { return; }
+		$this->saveNewtalk();
 		if ( 0 == $this->mId ) { return; }
 		
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
@@ -1184,6 +1206,77 @@ class User {
 			), $fname
 		);
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
+	}
+	
+	/**
+	 * Save value of new talk flag.
+	 */
+	function saveNewtalk() {
+		global $wgDBname, $wgMemc, $wgUseEnotif;
+		
+		$fname = 'User::saveNewtalk';
+
+		if ( wfReadOnly() ) { return ; }
+		$dbr =& wfGetDB( DB_SLAVE );
+		$dbw =& wfGetDB( DB_MASTER );
+		if ( $wgUseEnotif ) {
+			if ( ! $this->getNewtalk() ) {
+				# Delete the watchlist entry for user_talk page X watched by user X
+				$dbw->delete( 'watchlist',
+					array( 'wl_user'      => $this->mId,
+						   'wl_title'     => $this->getTitleKey(),
+						   'wl_namespace' => NS_USER_TALK ),
+					$fname );
+				if ( $dbw->affectedRows() ) {
+					$changed = true;
+				}
+				if( !$this->mId ) {
+					# Anon users have a separate memcache space for newtalk
+					# since they don't store their own info. Trim...
+					$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
+				}
+			}
+		} else {
+			if ($this->getID() != 0) {
+				$field = 'user_id';
+				$value = $this->getID();
+				$key = false;
+			} else {
+				$field = 'user_ip';
+				$value = $this->mName;
+				$key = "$wgDBname:newtalk:ip:$this->mName";
+			}
+			
+			$dbr =& wfGetDB( DB_SLAVE );
+			$dbw =& wfGetDB( DB_MASTER );
+
+			$res = $dbr->selectField('user_newtalk', $field,
+									 array($field => $value), $fname);
+
+			$changed = true;
+			if ($res !== false && $this->mNewtalk == 0) {
+				$dbw->delete('user_newtalk', array($field => $value), $fname);
+				if ( $key ) {
+					$wgMemc->set( $key, 0 );
+				}
+			} else if ($res === false && $this->mNewtalk == 1) {
+				$dbw->insert('user_newtalk', array($field => $value), $fname);
+				if ( $key ) {
+					$wgMemc->set( $key, 1 );
+				}
+			} else {
+				$changed = false;
+			}
+		}
+
+		# Update user_touched, so that newtalk notifications in the client cache are invalidated
+		if ( $changed && $this->getID() ) {
+			$dbw->update('user', 
+				/*SET*/ array( 'user_touched' => $this->mTouched ),
+				/*WHERE*/ array( 'user_id' => $this->getID() ),
+				$fname);
+			$wgMemc->set( "$wgDBname:user:id:{$this->mId}", $this, 86400 );
+		}
 	}
 
 	/**
