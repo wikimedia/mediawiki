@@ -12,13 +12,16 @@
 // Run this, FOLLOWED BY update.php, for upgrading
 // from 1.4.5 release to 1.5.
 
+$options = array( 'step' );
+
 require_once( 'commandLine.inc' );
 require_once( 'cleanupDupes.inc' );
 require_once( 'userDupes.inc' );
 require_once( 'updaters.inc' );
 
 $upgrade = new FiveUpgrade();
-$upgrade->upgrade();
+$step = isset( $options['step'] ) ? $options['step'] : null;
+$upgrade->upgrade( $step );
 
 class FiveUpgrade {
 	function FiveUpgrade() {
@@ -29,14 +32,27 @@ class FiveUpgrade {
 		$this->dbr->bufferResults( false );
 	}
 	
-	function upgrade() {
-		$this->upgradePage();
-		$this->upgradeLinks();
-		$this->upgradeUser();
-		$this->upgradeImage();
-		$this->upgradeOldImage();
+	function doing( $step ) {
+		return is_null( $this->step ) || $step == $this->step;
+	}
+	
+	function upgrade( $step ) {
+		$this->step = $step;
+		if( $this->doing( 'page' ) )
+			$this->upgradePage();
+		if( $this->doing( 'links' ) )
+			$this->upgradeLinks();
+		if( $this->doing( 'user' ) )
+			$this->upgradeUser();
+		if( $this->doing( 'image' ) )
+			$this->upgradeImage();
+		if( $this->doing( 'oldimage' ) )
+			$this->upgradeOldImage();
+		if( $this->doing( 'watchlist' ) )
+			$this->upgradeWatchlist();
 		
-		$this->upgradeCleanup();
+		if( $this->doing( 'cleanup' ) )
+			$this->upgradeCleanup();
 	}
 	
 	
@@ -793,26 +809,97 @@ END
 		$this->log( 'done with oldimage table.' );
 	}
 	
+
+	function upgradeWatchlist() {
+		$fname = 'FiveUpgrade::upgradeWatchlist';
+		$chunksize = 100;
+		
+		extract( $this->dbw->tableNames( 'watchlist', 'watchlist_temp' ) );
+		
+		$this->log( 'Migrating watchlist table to watchlist_temp...' );
+		$this->dbw->query(
+"CREATE TABLE $watchlist_temp (
+  -- Key to user_id
+  wl_user int(5) unsigned NOT NULL,
+  
+  -- Key to page_namespace/page_title
+  -- Note that users may watch patches which do not exist yet,
+  -- or existed in the past but have been deleted.
+  wl_namespace int NOT NULL default '0',
+  wl_title varchar(255) binary NOT NULL default '',
+  
+  -- Timestamp when user was last sent a notification e-mail;
+  -- cleared when the user visits the page.
+  -- FIXME: add proper null support etc
+  wl_notificationtimestamp varchar(14) binary NOT NULL default '0',
+  
+  UNIQUE KEY (wl_user, wl_namespace, wl_title),
+  KEY namespace_title (wl_namespace,wl_title)
+
+) TYPE=InnoDB;", $fname );
+
+		// Fix encoding for Latin-1 upgrades, add some fields,
+		// and double article to article+talk pairs
+		$numwatched = $this->dbw->selectField( 'watchlist', 'count(*)', '', $fname );
+		
+		$this->setChunkScale( $chunksize, $numwatched * 2, 'watchlist_temp', $fname );
+		$result = $this->dbr->select( 'watchlist',
+			array(
+				'wl_user',
+				'wl_namespace',
+				'wl_title' ),
+			'',
+			$fname );
+		
+		$add = array();
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			$now = $this->dbw->timestamp();
+			$add[] = array(
+				'wl_user'      =>                        $row->wl_user,
+				'wl_namespace' => Namespace::getSubject( $row->wl_namespace ),
+				'wl_title'     =>           $this->conv( $row->wl_title ),
+				'wl_notificationtimestamp' =>            '0' );
+			$this->addChunk( $add );
+			
+			$add[] = array(
+				'wl_user'      =>                        $row->wl_user,
+				'wl_namespace' =>    Namespace::getTalk( $row->wl_namespace ),
+				'wl_title'     =>           $this->conv( $row->wl_title ),
+				'wl_notificationtimestamp' =>            '0' );
+			$this->addChunk( $add );
+		}
+		$this->lastChunk( $add );
+		$this->dbr->freeResult( $result );
+		
+		$this->log( 'Done converting watchlist.' );
+	}
+
+
 	/**
 	 * Rename all our temporary tables into final place.
 	 * We've left things in place so a read-only wiki can continue running
 	 * on the old code during all this.
 	 */
 	function upgradeCleanup() {
-		$this->log( "Renaming old to text..." );
-		$this->dbw->query( "ALTER TABLE $old RENAME TO $text", $fname );
+		$this->renameTable( 'old', 'text' );
 		
-		$this->log( 'Renaming user to user_old and user_temp to user...' );
-		$this->dbw->query( "ALTER TABLE $user RENAME TO $user_old" );
-		$this->dbw->query( "ALTER TABLE $user_temp RENAME TO $user" );
-		
-		$this->log( 'Renaming image to image_old and image_temp to image...' );
-		$this->dbw->query( "ALTER TABLE $image RENAME TO $image_old" );
-		$this->dbw->query( "ALTER TABLE $image_temp RENAME TO $image" );
-		
-		$this->log( 'Renaming oldimage to oldimage_old and oldimage_temp to oldimage...' );
-		$this->dbw->query( "ALTER TABLE $oldimage RENAME TO $oldimage_old" );
-		$this->dbw->query( "ALTER TABLE $oldimage_temp RENAME TO $oldimage" );
+		$this->swap( 'user' );
+		$this->swap( 'image' );
+		$this->swap( 'oldimage' );
+		$this->swap( 'watchlist' );
+	}
+	
+	function renameTable( $from, $to ) {
+		$this->log( 'Renaming $from to $to...' );
+
+		$fromtable = $this->dbw->tableName( $from );
+		$totable   = $this->dbw->tableName( $to );
+		$this->dbw->query( "ALTER TABLE $fromtable RENAME TO $totable" );
+	}
+	
+	function swap( $base ) {
+		$this->renameTable( $base, "{$base}_old" );
+		$this->renameTable( "{$base}_temp", $base );
 	}
 	
 }
