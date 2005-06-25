@@ -184,7 +184,7 @@ $wgNamespaceNamesLi = array(
 "lastmodified" => "Deze pagina werd het laatst gewijzigd op $1.",
 "viewcount"  => "Deze pagina werd $1 maal bekeken.",
 "gnunote" => "Deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
-"printsubtitle" => "(Uit http://li.wikipedia.org)",
+"printsubtitle" => "(Uit {{SERVER}})",
 "protectedpage" => "Beveiligde pagina",
 "administrators" => "Wikipedia:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",

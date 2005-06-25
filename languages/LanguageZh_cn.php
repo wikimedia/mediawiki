@@ -234,7 +234,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	=> "最后更改$1.",
 "viewcount"		=> "本页面已经被浏览$1次。",
 "gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文档协议证书 </a>下发布",
-"printsubtitle" => "(来自 http://zh.wikipedia.org)",
+"printsubtitle" => "(来自 {{SERVER}})",
 "protectedpage" => "被保护页",
 "administrators" => "Wikipedia:管理员",
 "sysoptitle"	=> "需要管理员权限",

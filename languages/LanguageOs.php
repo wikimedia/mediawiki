@@ -161,7 +161,7 @@ if(isset($wgExtraNamespaces)) {
 'portal' => "Архайджыты æхсæнад",
 'prevn' => "$1 фæстæмæ",
 'printableversion' => "Мыхурмæ верси",
-'printsubtitle' => "(Æрмæг ист æрцыд мæнæ ацы сайтæй: http://os.wikipedia.org)",
+'printsubtitle' => "(Æрмæг ист æрцыд мæнæ ацы сайтæй: {{SERVER}})",
 'qbfind' => "Агур",
 'qbspecialpages' => "Сæрмагонд фæрстæ",
 'randompage' => "Æнæбары æвзæрст фарс",

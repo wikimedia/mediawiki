@@ -210,7 +210,7 @@
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
 "gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(From http://www.wikipedia.org)",
+"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Protected page",
 "administrators" => "$wgMetaNamespace:Administrators",
 "sysoptitle"	=> "Sysop access required",

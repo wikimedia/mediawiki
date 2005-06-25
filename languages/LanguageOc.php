@@ -221,7 +221,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
 "gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='$wgScriptPath/GFDL'>Licence de documentation libre GNU</a>.",
-"printsubtitle" => "(de http://www.wikipedia.org)",
+"printsubtitle" => "(de {{SERVER}})",
 "protectedpage" => "Page protégée",
 "administrators" => "Wikipédia:Administrateurs",
 "sysoptitle"    => "Accès administrateur requis",

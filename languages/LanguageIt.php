@@ -190,7 +190,7 @@
 "lastmodified"	=> "Ultima modifica il $1.",
 "viewcount"		=> "Questo articolo è stato letto $1 volte.",
 "gnunote" => "Questa pagina è disponibile con licenza <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle" => "(Articolo di http://www.wikipedia.org)",
+"printsubtitle" => "(Articolo di {{SERVER}})",
 "protectedpage" => "Pagina protetta",
 "administrators" => "Wikipedia:Amministratori",
 "sysoptitle"	=> "Riservato Sysop",
@@ -419,7 +419,7 @@ Leggi anche queste pagine: [[wikipedia:FAQ|Wikipedia FAQ]],
 e [[wikipedia:Most common Wikipedia faux pas|facili errori nell'uso di Wikipedia]].
 
 Se tieni al successo di questo progetto, è molto importante che eviti di immettere materiale coperto da diritti di autore ([[wikipedia:Copyrights|copyrights]]).
-Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente, perciò controlla bene che quanto scrivi sia di [[pubblico dominio]], o prova ad ottenere le relative autorizzazioni, che in genere vengono concesse molto facilmente. Vedi anche [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
+Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente, perciò controlla bene che quanto scrivi sia di [[pubblico dominio]], o prova ad ottenere le relative autorizzazioni, che in genere vengono concesse molto facilmente.",
 "rcloaderr"		=> "Caricamento modifiche recenti ",
 "rcnote"		=> "Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.",
 "rcnotefrom"	=> " Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).",

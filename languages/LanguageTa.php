@@ -239,7 +239,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	=> "இப்பக்கம் கடைசியாகத் திருத்த்ப்பட்டது $1.",
 "viewcount"		=> "இப்பக்கம் $1 முறை அணுகப்பட்டது .",
 "gnunote" => "<a class=internal href='/wiki/GNU_FDL'>GNU விடுதலை மனப்பாங்கொடு உருவானஆவணப்படுத்தல் அனுமதி வரைமுறையின் கீழ் எல்லா எழுத்தாக்கங்களும் கிடைக்கும்</a>.",
-"printsubtitle" => "(http://www.wikipedia.org இலிருந்து)",
+"printsubtitle" => "({{SERVER}} இலிருந்து)",
 "protectedpage" => "பாதுகாக்கப்பட்ட பக்கம்",
 "administrators" => "விக்கிபீடியா:நிர்வாகிகள்",
 "sysoptitle"	=> "முறைமைச் செயற்படுத்துனர்(Sysop) அணுக்கம் வேண்டும்",

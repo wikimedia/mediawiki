@@ -161,7 +161,7 @@ require_once('LanguageUtf8.php');
 'lastmodified'	=> '이 문서는 최근 $1에 바뀌었습니다.',
 
 'viewcount'	   => '이 문서는 총 $1번 읽혔습니다.',
-'printsubtitle' => '(http://www.wikipedia.org에서)',
+'printsubtitle' => '({{SERVER}}에서)',
 'protectedpage' => '보호되는 문서',
 'administrators' => '{{ns:4}}:관리자',
 'sysoptitle'  => 'Sysop 권한 필요',

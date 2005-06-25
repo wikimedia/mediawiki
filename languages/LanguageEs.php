@@ -206,7 +206,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	=> "Esta página fue modificada por última vez el $1.",
 "viewcount"		=> "Esta página ha sido visitada $1 veces.",
 "gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='/wiki/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
-"printsubtitle" => "(De http://es.wikipedia.org)",
+"printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Página protegida",
 "administrators" => "$wgMetaNamespace:Administradores",
 "sysoptitle"	=> "Acceso de Administrador requerido",
@@ -532,9 +532,7 @@ Por favor, lee estas páginas: [[$wgMetaNamespace:FAQ|$wgSitename FAQ]],
 [[$wgMetaNamespace:Punto de vista neutral|punto de vista neutral]]).
 
 Si quieres que $wgSitename tenga éxito, es muy importante que no agregues
-material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]]. La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.
-
-Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión reciente en Meta (multilingüe)].",
+material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]]. La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.",
 "rcloaderr"		=> "cargando cambios recientes",
 "rcnote"		=> "Abajo están los últimos <b>$1</b> cambios en los últimos <b>$2</b> días.",
 "rclistfrom"	=> "Mostrar cambios nuevos desde $1",

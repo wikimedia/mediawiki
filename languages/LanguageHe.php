@@ -228,7 +228,7 @@ $wgExtraNamespaces = array(
 "lastmodified"	=> "שונה לאחרונה ב $1.",
 "viewcount"		=> "דף זה נצפה $1 פעמים.",
 "gnunote" => "מוגש תחת הרשיון לשימוש חופשי <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle" => "(מ - http://he.wikipedia.org)",
+"printsubtitle" => "(מ - {{SERVER}})",
 "protectedpage" => "דף מוגן",
 "administrators" => "ויקיפדיה:מפעיל_מערכת",
 "sysoptitle"	=> "דרושה הרשאת מפעיל מערכת",

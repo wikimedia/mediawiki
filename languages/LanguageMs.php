@@ -222,7 +222,7 @@
 "lastmodified"	        => "Halaman ini diubah kali terakhir pada $1.", #"The page was last modified $1.",
 "viewcount"		=> "Halaman ini telah diakses sebanyak $1 kali.", #"This page has been accessed $1 times.",
 "gnunote"		=> "Halaman ini tertakluk di bawah istilah <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.", #"This page is released under the terms of the $1.",
-"printsubtitle"         => "(From http://www.aposc.org)",
+"printsubtitle"         => "(From {{SERVER}})",
 "protectedpage"         => "Halaman yang dilindungi", #"Protected page",
 "administrators"        => "Istimewa:Listadministrators", #"Special:Listadministrators",
 "sysoptitle"	        => "Kemasukan sysop diperlukan", #"Sysop access required",

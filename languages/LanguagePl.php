@@ -230,7 +230,7 @@ default:
 "lastmodified" => "Tę stronę ostatnio zmodyfikowano o $1;",
 "viewcount" => "Tę stronę obejrzano $1 razy;",
 "gnunote" => "udostępniana jest w oparciu o licencję <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>; możesz ją samodzielnie uzupełnić lub poprawić.",
-"printsubtitle" => "(z http://pl.wikipedia.org)",
+"printsubtitle" => "(z {{SERVER}})",
 "protectedpage" => "Strona zabezpieczona",
 "administrators" => "{{ns:4}}:Administratorzy",
 "sysoptitle" => "Wymagane prawa dostępu administratora",

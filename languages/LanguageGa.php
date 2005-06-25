@@ -307,7 +307,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'copyright'	=> "Tá an t-ábhar le fáil faoin $1.",
 'poweredby'	=> "Cumhachtaítear an Vicipéid le [http://www.mediawiki.org/ MediaWiki], inneall mearshuímh shaor-fhoinse.",
 "gnunote"       => "Tá an téacs ar fad le fáil faoi na téarmaí­ an <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(Ó http://ga.wikipedia.org)",
+"printsubtitle" => "(Ó {{SERVER}})",
 "protectedpage" => "Lch faoi ghlas",
 "administrators"    => "Vicipéid:Riarthóirí­",
 "sysoptitle"    => "Tá cuntas ceannasaí­ riachtanach",

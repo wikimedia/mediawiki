@@ -218,7 +218,7 @@ require_once("LanguageUtf8.php");
 "lastmodified"	=> "Kjo faqe është ndryshuar për herë te fundit më $1.",
 "viewcount"		=> "Kjo faqe është parë $1 herë.",
 "gnunote" => "I gjithë teksti është publikuar sipas kushteve të <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(Nga http://sq.wikipedia.org)",
+"printsubtitle" => "(Nga {{SERVER}})",
 "protectedpage" => "Faqe e mbrojtur",
 "administrators" => "$wgMetaNamespace:Administruesit",
 "sysoptitle"	=> "Nevojitet titulli sysop",

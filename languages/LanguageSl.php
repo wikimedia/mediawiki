@@ -202,7 +202,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	        => "Zadnja sprememba $1.",
 "viewcount"		=> "To stran so pogledali $1 krat.",
 "gnunote" => "Vse besedilo je na razpolago pod pogoji <a class=internal href='/wiki/GNU_FDL'>GNU licence proste dokumentacije</a>.",
-"printsubtitle"         => "(Iz http://sl.wikipedia.org)",
+"printsubtitle"         => "(Iz {{SERVER}})",
 "protectedpage"         => "Zaščitena stran",
 "administrators"        => "Wikipedija:Administratorji",
 "sysoptitle"	        => "Zahtevan dostop sistemskega operaterja",

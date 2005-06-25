@@ -238,7 +238,7 @@ require_once("LanguageUtf8.php");
 "lastmodified"	=> "این صفحه آخرین بار در $1 تغییر کرده است.",
 "viewcount"		=> "این صفحه $1 بار دیده شده است.",
 "gnunote" => "کلیه‌ی متون تحت شرایط <a class=internal href='http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License'>اجازه‌نامه‌ی مستندات آزاد گنو</a> در دسترسند.",
-"printsubtitle" => "(از http://fa.wikipedia.org)",
+"printsubtitle" => "(از {{SERVER}})",
 "protectedpage" => "صفحه‌ی محافظت‌شده",
 "administrators" => "ویکی‌پدیا:مدیران",
 "sysoptitle"	=> "دسترسی اپراتور سیستم لازم است",

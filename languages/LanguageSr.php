@@ -228,7 +228,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified" => "Ова страница је последњи пут измењена $1.",
 "viewcount"  => "Овој страници је приступљено $1 пута.",
 "gnunote" => "Сав текст је доступан под условима <a class=internal href='/wiki/GNU_FDL'>ГНУ лиценце за слободну документацију</a>.",
-"printsubtitle" => "(Са http://sr.wikipedia.org)",
+"printsubtitle" => "(Са {{SERVER}})",
 "protectedpage" => "Заштићена страница",
 "administrators" => "{{ns:4}}:Администратори",
 "sysoptitle" => "Неопходан је сисопски приступ",

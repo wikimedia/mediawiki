@@ -449,9 +449,7 @@ Mireu aquestes pàgines, si us plau: [[{{ns:4}}:PMF|PMF de la {{SITENAME}}]],
 
 Si voleu que la {{SITENAME}} tingui èxit, és molt important que no hi afegiu
 material restringit per [[{{ns:4}}:Copyrights|drets d'autor]].
-La responsabilitat legal podria realment malmetre un projecte com aquest, així que si us plau, no ho feu.
-
-Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió recent en Meta (multilingüe)].",
+La responsabilitat legal podria realment malmetre un projecte com aquest, així que si us plau, no ho feu.",
 "rcloaderr"		=> "s'està carregant els canvis recents",
 "rcnote"		=> "A sota hi ha els últims <b>$1</b> canvis en els últims <b>$2</b> dies.",
 "rclistfrom"	=> "Mostra els canvis nous des de $1",

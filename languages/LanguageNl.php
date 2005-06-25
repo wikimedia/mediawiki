@@ -223,7 +223,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified" => "De laatste wijziging op deze pagina vond plaats op $1.",
 "viewcount"  => "Deze pagina werd $1 maal bekeken. ",
 "gnunote" => "Alle tekst op deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
-"printsubtitle" => "(Uit http://nl.wikipedia.org)",
+"printsubtitle" => "(Uit {{SERVER}})",
 "protectedpage" => "Beveiligde pagina",
 "administrators" => "{{ns:4}}:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",

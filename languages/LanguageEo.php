@@ -229,7 +229,7 @@ require_once("LanguageUtf8.php");
 "lastmodified"	=> "Laste redaktita je $1.",
 "viewcount"		=> "Montrita $1-foje.",
 "gnunote"		=> "La enhavo de {{SITENAME}} disponeblas laŭ permesilo <a class='internal' href='$wgScript/GFDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(El http://eo.wikipedia.org)",
+"printsubtitle" => "(El {{SERVER}})",
 "protectedpage" => "Protektita paĝo", #FIXME: ĉu "gardita" ktp?
 "administrators" => "{{ns:4}}:Administrantoj", # FIXME?
 "sysoptitle"	=> "Konto de administranto bezonatas",

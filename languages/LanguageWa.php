@@ -225,7 +225,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	=> "Cisse pådje a stî candjeye pol dierin côp li $1.",
 "viewcount"		=> "Cisse pådje la a stî léjhowe $1 côps.",
 "gnunote" => "Tos les tecses chal sont dizo l'&nbsp;libe licince <a class=internal href='/wiki/GFDL'>GFDL (licince di documintåcion libe di GNU)</a>.",
-"printsubtitle" => "(di http://wikipedia.walon.org)",
+"printsubtitle" => "(di {{SERVER}})",
 "protectedpage" => "Pådje protedjeye",
 "administrators" => "Wikipedia:Manaedjeus",
 "sysoptitle"	=> "I vs fåt esse manaedjeu",

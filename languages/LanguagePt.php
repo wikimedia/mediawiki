@@ -222,7 +222,7 @@
 "lastmodified"  => "Está página foi modificada pela última vez em $1.",
 "viewcount"     => "Esta página foi acessada $1 vezes.",
 "gnunote" => "Todo o texto é disponível sob os termos da <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(De http://www.wikipedia.org/pt)",
+"printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Página protegida",
 "administrators" => "{{ns:4}}:Administradores",
 "sysoptitle"    => "Acesso de OpSys necessário",

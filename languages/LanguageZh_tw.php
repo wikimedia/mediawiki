@@ -207,7 +207,7 @@ require_once( "LanguageZh_cn.php" );
 "lastmodified"	=> "最後更改$1.",
 "viewcount"		=> "本頁面已經被瀏覽$1次。",
 "gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文檔協議證書 </a>下發佈",
-"printsubtitle" => "(來自 http://zh-tw.wikipedia.org)",
+"printsubtitle" => "(來自 {{SERVER}})",
 "protectedpage" => "被保護頁",
 "administrators" => "維基百科:管理員",
 "sysoptitle"	=> "需要管理員權限",
