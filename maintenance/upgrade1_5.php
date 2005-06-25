@@ -19,9 +19,10 @@ require_once( 'cleanupDupes.inc' );
 require_once( 'userDupes.inc' );
 require_once( 'updaters.inc' );
 
-$upgrade = new FiveUpgrade();
-$step = isset( $options['step'] ) ? $options['step'] : null;
-$upgrade->upgrade( $step );
+define( 'MW_UPGRADE_COPY',     false );
+define( 'MW_UPGRADE_ENCODE',   true  );
+define( 'MW_UPGRADE_NULL',     null  );
+define( 'MW_UPGRADE_CALLBACK', null  ); // for self-documentation only
 
 class FiveUpgrade {
 	function FiveUpgrade() {
@@ -31,6 +32,8 @@ class FiveUpgrade {
 		$this->dbr =& $this->newConnection();
 		$this->dbr->bufferResults( false );
 		$this->cleanupSwaps = array();
+		
+		$this->emailAuth = false; # don't preauthenticate emails
 	}
 	
 	function doing( $step ) {
@@ -55,6 +58,10 @@ class FiveUpgrade {
 			$this->upgradeLogging();
 		if( $this->doing( 'archive' ) )
 			$this->upgradeArchive();
+		if( $this->doing( 'imagelinks' ) )
+			$this->upgradeImagelinks();
+		if( $this->doing( 'categorylinks' ) )
+			$this->upgradeCategorylinks();
 		
 		if( $this->doing( 'cleanup' ) )
 			$this->upgradeCleanup();
@@ -244,6 +251,71 @@ class FiveUpgrade {
 		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
 	
+	
+	/**
+	 * Copy and transcode a table to table_temp.
+	 * @param string $name Base name of the source table
+	 * @param string $tabledef CREATE TABLE definition, w/ $1 for the name
+	 * @param array $fields set of destination fields to these constants:
+	 *              MW_UPGRADE_COPY   - straight copy
+	 *              MW_UPGRADE_ENCODE - for old Latin1 wikis, conv to UTF-8
+	 *              MW_UPGRADE_NULL   - just put NULL
+	 * @param callable $callback An optional callback to modify the data
+	 *                           or perform other processing. Func should be
+	 *                           ( object $row, array $copy ) and return $copy
+	 * @access private
+	 */
+	function copyTable( $name, $tabledef, $fields, $callback = null ) {
+		$fname = 'FiveUpgrade::copyTable';
+		
+		$name_temp = $name . '_temp';
+		$this->log( "Migrating $name table to $name_temp..." );
+
+		$table      = $this->dbw->tableName( $name );
+		$table_temp = $this->dbw->tableName( $name_temp );
+		
+		// Create temporary table; we're going to copy everything in there,
+		// then at the end rename the final tables into place.
+		$def = str_replace( '$1', $table_temp, $tabledef );
+		$this->dbw->query( $def, $fname );
+		
+		$numRecords = $this->dbw->selectField( $name, 'COUNT(*)', '', $fname );
+		$this->setChunkScale( 100, $numRecords, $name_temp, $fname );
+		
+		// Pull all records from the second, streaming database connection.
+		$sourceFields = array_keys( array_filter( $fields,
+			create_function( '$x', 'return $x !== MW_UPGRADE_NULL;' ) ) );
+		$result = $this->dbr->select( $name,
+			$sourceFields,
+			'',
+			$fname );
+		
+		$add = array();
+		while( $row = $this->dbr->fetchObject( $result ) ) {
+			$copy = array();
+			foreach( $fields as $field => $source ) {
+				if( $source === MW_UPGRADE_COPY ) {
+					$copy[$field] = $row->$field;
+				} elseif( $source === MW_UPGRADE_ENCODE ) {
+					$copy[$field] = $this->conv( $row->$field );
+				} elseif( $source === MW_UPGRADE_NULL ) {
+					$copy[$field] = null;
+				} else {
+					$this->log( "Unknown field copy type: $field => $source" );
+				}
+			}
+			if( is_callable( $callback ) ) {
+				$copy = call_user_func( $callback, $row, $copy );
+			}
+			$add[] = $copy;
+			$this->addChunk( $add );
+		}
+		$this->lastChunk( $add );
+		$this->dbr->freeResult( $result );
+		
+		$this->log( "Done converting $name." );
+		$this->cleanupSwaps[] = $name;
+	}
 	
 	function upgradePage() {
 		$fname = "FiveUpgrade::upgradePage";
@@ -485,10 +557,6 @@ CREATE TABLE $pagelinks (
 	}
 	
 	function upgradeUser() {
-		$fname = 'FiveUpgrade::upgradeUser';
-		$chunksize = 100;
-		$preauth = 0;
-		
 		// Apply unique index, if necessary:
 		$duper = new UserDupes( $this->dbw );
 		if( $duper->hasUniqueIndex() ) {
@@ -500,11 +568,8 @@ CREATE TABLE $pagelinks (
 			}
 		}
 		
-		/** Convert encoding on options, etc */
-		extract( $this->dbw->tableNames( 'user', 'user_temp', 'user_old' ) );
-		
-		$this->log( 'Migrating user table to user_temp...' );
-		$this->dbw->query( "CREATE TABLE $user_temp (
+		$tabledef = <<<END
+CREATE TABLE $1 (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
   user_real_name varchar(255) binary NOT NULL default '',
@@ -522,55 +587,35 @@ CREATE TABLE $pagelinks (
   UNIQUE INDEX user_name (user_name),
   INDEX (user_email_token)
 
-) TYPE=InnoDB", $fname );
-
-		// Fix encoding for Latin-1 upgrades, and add some fields.
-		$numusers = $this->dbw->selectField( 'user', 'count(*)', '', $fname );
-		$this->setChunkScale( $chunksize, $numusers, 'user_temp', $fname );
-		$result = $this->dbr->select( 'user',
-			array(
-				'user_id',
-				'user_name',
-				'user_real_name',
-				'user_password',
-				'user_newpassword',
-				'user_email',
-				'user_options',
-				'user_touched',
-				'user_token' ),
-			'',
-			$fname );
-		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$now = $this->dbw->timestamp();
-			$add[] = array(
-				'user_id'                  =>              $row->user_id,
-				'user_name'                => $this->conv( $row->user_name ),
-				'user_real_name'           => $this->conv( $row->user_real_name ),
-				'user_password'            =>              $row->user_password,
-				'user_newpassword'         =>              $row->user_newpassword,
-				'user_email'               => $this->conv( $row->user_email ),
-				'user_options'             => $this->conv( $row->user_options ),
-				'user_touched'             =>              $now,
-				'user_token'               =>              $row->user_token,
-				'user_email_authenticated' =>              $preauth ? $now : null,
-				'user_email_token'         =>              null,
-				'user_email_token_expires' =>              null );
-			$this->addChunk( $add );
-		}
-		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
-		$this->cleanupSwaps[] = 'user';
+) TYPE=InnoDB
+END;
+		$fields = array(
+			'user_id'                  => MW_UPGRADE_COPY,
+			'user_name'                => MW_UPGRADE_ENCODE,
+			'user_real_name'           => MW_UPGRADE_ENCODE,
+			'user_password'            => MW_UPGRADE_COPY,
+			'user_newpassword'         => MW_UPGRADE_COPY,
+			'user_email'               => MW_UPGRADE_ENCODE,
+			'user_options'             => MW_UPGRADE_ENCODE,
+			'user_touched'             => MW_UPGRADE_CALLBACK,
+			'user_token'               => MW_UPGRADE_COPY,
+			'user_email_authenticated' => MW_UPGRADE_CALLBACK,
+			'user_email_token'         => MW_UPGRADE_NULL,
+			'user_email_token_expires' => MW_UPGRADE_NULL );
+		$this->copyTable( 'user', $tabledef, $fields,
+			array( &$this, 'userCallback' ) );
+	}
+	
+	function userCallback( $row, $copy ) {
+		$now = $this->dbw->timestamp();
+		$copy['user_touched'] = $now;
+		$copy['user_email_authenticated'] = $this->emailAuth ? $now : null;
+		return $copy;
 	}
 	
 	function upgradeImage() {
-		$fname = 'FiveUpgrade::upgradeImage';
-		$chunksize = 100;
-		
-		extract( $this->dbw->tableNames( 'image', 'image_temp', 'image_old' ) );
-		$this->log( 'Creating temporary image_temp to merge into...' );
-		$this->dbw->query( <<<END
-CREATE TABLE $image_temp (
+		$tabledef = <<<END
+CREATE TABLE $1 (
   img_name varchar(255) binary NOT NULL default '',
   img_size int(8) unsigned NOT NULL default '0',
   img_width int(5)  NOT NULL default '0',
@@ -589,49 +634,41 @@ CREATE TABLE $image_temp (
   INDEX img_size (img_size),
   INDEX img_timestamp (img_timestamp)
 ) TYPE=InnoDB
-END
-		, $fname);
+END;
+		$fields = array(
+			'img_name'        => MW_UPGRADE_ENCODE,
+			'img_size'        => MW_UPGRADE_COPY,
+			'img_width'       => MW_UPGRADE_CALLBACK,
+			'img_height'      => MW_UPGRADE_CALLBACK,
+			'img_metadata'    => MW_UPGRADE_CALLBACK,
+			'img_bits'        => MW_UPGRADE_CALLBACK,
+			'img_media_type'  => MW_UPGRADE_CALLBACK,
+			'img_major_mime'  => MW_UPGRADE_CALLBACK,
+			'img_minor_mime'  => MW_UPGRADE_CALLBACK,
+			'img_description' => MW_UPGRADE_ENCODE,
+			'img_user'        => MW_UPGRADE_COPY,
+			'img_user_text'   => MW_UPGRADE_ENCODE,
+			'img_timestamp'   => MW_UPGRADE_COPY );
+		$this->copyTable( 'image', $tabledef, $fields,
+			array( &$this, 'imageCallback' ) );
+	}
+	
+	function imageCallback( $row, $copy ) {
+		// Fill in the new image info fields
+		$info = $this->imageInfo( $row->img_name );
 		
-		$numimages = $this->dbw->selectField( 'image', 'count(*)', '', $fname );
-		$result = $this->dbr->select( 'image',
-			array(
-				'img_name',
-				'img_size',
-				'img_description',
-				'img_user',
-				'img_user_text',
-				'img_timestamp' ),
-			'',
-			$fname );
-		$add = array();
-		$this->setChunkScale( $chunksize, $numimages, 'image_temp', $fname );
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			// Fill in the new image info fields
-			$info = $this->imageInfo( $row->img_name );
-			
-			// Update and convert encoding
-			$add[] = array(
-				'img_name'        => $this->conv( $row->img_name ),
-				'img_size'        =>              $row->img_size,
-				'img_width'       =>              $info['width'],
-				'img_height'      =>              $info['height'],
-				'img_metadata'    =>              "", // loaded on-demand
-				'img_bits'        =>              $info['bits'],
-				'img_media_type'  =>              $info['media'],
-				'img_major_mime'  =>              $info['major'],
-				'img_minor_mime'  =>              $info['minor'],
-				'img_description' => $this->conv( $row->img_description ),
-				'img_user'        =>              $row->img_user,
-				'img_user_text'   => $this->conv( $row->img_user_text ),
-				'img_timestamp'   =>              $row->img_timestamp );
-			
-			// If doing UTF8 conversion the file must be renamed
-			$this->renameFile( $row->img_name, 'wfImageDir' );
-		}
-		$this->lastChunk( $add );
+		$copy['img_width'     ] = $info['width'];
+		$copy['img_height'    ] = $info['height'];
+		$copy['img_metadata'  ] = ""; // loaded on-demand
+		$copy['img_bits'      ] = $info['bits'];
+		$copy['img_media_type'] = $info['media'];
+		$copy['img_major_mime'] = $info['major'];
+		$copy['img_minor_mime'] = $info['minor'];
 		
-		$this->log( 'done with image table.' );
-		$this->cleanupSwaps[] = 'image';
+		// If doing UTF8 conversion the file must be renamed
+		$this->renameFile( $row->img_name, 'wfImageDir' );
+		
+		return $copy;
 	}
 	
 	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
@@ -747,13 +784,8 @@ END
 	}
 	
 	function upgradeOldImage() {
-		$fname = 'FiveUpgrade::upgradeOldImage';
-		$chunksize = 100;
-		
-		extract( $this->dbw->tableNames( 'oldimage', 'oldimage_temp', 'oldimage_old' ) );
-		$this->log( 'Creating temporary oldimage_temp to merge into...' );
-		$this->dbw->query( <<<END
-CREATE TABLE $oldimage_temp (
+		$tabledef = <<<END
+CREATE TABLE $1 (
   -- Base filename: key to image.img_name
   oi_name varchar(255) binary NOT NULL default '',
   
@@ -774,47 +806,33 @@ CREATE TABLE $oldimage_temp (
   INDEX oi_name (oi_name(10))
 
 ) TYPE=InnoDB;
-END
-		, $fname);
+END;
+		$fields = array(
+			'oi_name'         => MW_UPGRADE_ENCODE,
+			'oi_archive_name' => MW_UPGRADE_ENCODE,
+			'oi_size'         => MW_UPGRADE_COPY,
+			'oi_width'        => MW_UPGRADE_CALLBACK,
+			'oi_height'       => MW_UPGRADE_CALLBACK,
+			'oi_bits'         => MW_UPGRADE_CALLBACK,
+			'oi_description'  => MW_UPGRADE_ENCODE,
+			'oi_user'         => MW_UPGRADE_COPY,
+			'oi_user_text'    => MW_UPGRADE_ENCODE,
+			'oi_timestamp'    => MW_UPGRADE_COPY );
+		$this->copyTable( 'oldimage', $tabledef, $fields,
+			array( &$this, 'oldimageCallback' ) );
+	}
+	
+	function oldimageCallback( $row, $copy ) {
+		// Fill in the new image info fields
+		$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
+		$copy['oi_width' ] = $info['width' ];
+		$copy['oi_height'] = $info['height'];
+		$copy['oi_bits'  ] = $info['bits'  ];
 		
-		$numimages = $this->dbw->selectField( 'oldimage', 'count(*)', '', $fname );
-		$result = $this->dbr->select( 'oldimage',
-			array(
-				'oi_name',
-				'oi_archive_name',
-				'oi_size',
-				'oi_description',
-				'oi_user',
-				'oi_user_text',
-				'oi_timestamp' ),
-			'',
-			$fname );
-		$add = array();
-		$this->setChunkScale( $chunksize, $numimages, 'oldimage_temp', $fname );
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			// Fill in the new image info fields
-			$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
-			
-			// Update and convert encoding
-			$add[] = array(
-				'oi_name'         => $this->conv( $row->oi_name ),
-				'oi_archive_name' => $this->conv( $row->oi_archive_name ),
-				'oi_size'         =>              $row->oi_size,
-				'oi_width'        =>              $info['width'],
-				'oi_height'       =>              $info['height'],
-				'oi_bits'         =>              $info['bits'],
-				'oi_description'  => $this->conv( $row->oi_description ),
-				'oi_user'         =>              $row->oi_user,
-				'oi_user_text'    => $this->conv( $row->oi_user_text ),
-				'oi_timestamp'    =>              $row->oi_timestamp );
-			
-			// If doing UTF8 conversion the file must be renamed
-			$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
-		}
-		$this->lastChunk( $add );
+		// If doing UTF8 conversion the file must be renamed
+		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
 		
-		$this->log( 'done with oldimage table.' );
-		$this->cleanupSwaps[] = 'oldimage';
+		return $copy;
 	}
 	
 
@@ -884,20 +902,8 @@ END
 	}
 
 	function upgradeLogging() {
-		global $wgUseLatin1;
-		if( !$wgUseLatin1 ) {
-			$this->log( 'Not latin1; no change to logging table.' );
-			return;
-		}
-		
-		$fname = 'FiveUpgrade::upgradeLogging';
-		$chunksize = 100;
-		
-		extract( $this->dbw->tableNames( 'logging', 'logging_temp' ) );
-		
-		$this->log( 'Migrating logging table to logging_temp...' );
-		$this->dbw->query(
-"CREATE TABLE $logging_temp (
+		$tabledef = <<<END
+CREATE TABLE $1 (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.
@@ -925,139 +931,106 @@ END
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
 
-) TYPE=InnoDB", $fname );
-
-		$numlogged = $this->dbw->selectField( 'logging', 'count(*)', '', $fname );
-		$this->setChunkScale( $chunksize, $numlogged, 'logging_temp', $fname );
-		
-		$result = $this->dbr->select( 'logging',
-			array(
-				'log_type',
-				'log_action',
-				'log_timestamp',
-				'log_user',
-				'log_namespace',
-				'log_title',
-				'log_comment',
-				'log_params' ),
-			'',
-			$fname );
-		
-		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$now = $this->dbw->timestamp();
-			$add[] = array(
-				'log_type'      =>              $row->log_type,
-				'log_action'    =>              $row->log_type,
-				'log_timestamp' =>              $row->log_timestamp,
-				'log_user'      =>              $row->log_user,
-				'log_namespace' =>              $row->log_namespace,
-				'log_title'     => $this->conv( $row->log_title ),
-				'log_comment'   => $this->conv( $row->log_comment ),
-				'log_params'    => $this->conv( $row->log_params ) );
-			$this->addChunk( $add );
-		}
-		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
-		
-		$this->log( 'Done converting logging.' );
-		$this->cleanupSwaps[] = 'logging';
+) TYPE=InnoDB
+END;
+		$fields = array(
+			'log_type'      => MW_UPGRADE_COPY,
+			'log_action'    => MW_UPGRADE_COPY,
+			'log_timestamp' => MW_UPGRADE_COPY,
+			'log_user'      => MW_UPGRADE_COPY,
+			'log_namespace' => MW_UPGRADE_COPY,
+			'log_title'     => MW_UPGRADE_ENCODE,
+			'log_comment'   => MW_UPGRADE_ENCODE,
+			'log_params'    => MW_UPGRADE_ENCODE );
+		$this->copyTable( 'archive', $tabledef, $fields );
 	}
 
 	function upgradeArchive() {
-		$fname = 'FiveUpgrade::upgradeArchive';
-		$chunksize = 100;
-		
-		extract( $this->dbw->tableNames( 'archive', 'archive_temp' ) );
-		
-		$this->log( 'Migrating archive table to archive_temp...' );
-		$this->dbw->query(
-"CREATE TABLE $archive_temp (
+		$tabledef = <<<END
+CREATE TABLE $1 (
   ar_namespace int NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
-  
-  -- Newly deleted pages will not store text in this table,
-  -- but will reference the separately existing text rows.
-  -- This field is retained for backwards compatibility,
-  -- so old archived pages will remain accessible after
-  -- upgrading from 1.4 to 1.5.
   ar_text mediumblob NOT NULL default '',
   
-  -- Basic revision stuff...
   ar_comment tinyblob NOT NULL default '',
   ar_user int(5) unsigned NOT NULL default '0',
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
   
-  -- See ar_text note.
   ar_flags tinyblob NOT NULL default '',
-  
-  -- When revisions are deleted, their unique rev_id is stored
-  -- here so it can be retained after undeletion. This is necessary
-  -- to retain permalinks to given revisions after accidental delete
-  -- cycles or messy operations like history merges.
-  -- 
-  -- Old entries from 1.4 will be NULL here, and a new rev_id will
-  -- be created on undeletion for those revisions.
+
   ar_rev_id int(8) unsigned,
-  
-  -- For newly deleted revisions, this is the text.old_id key to the
-  -- actual stored text. To avoid breaking the block-compression scheme
-  -- and otherwise making storage changes harder, the actual text is
-  -- *not* deleted from the text table, merely hidden by removal of the
-  -- page and revision entries.
-  --
-  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
-  -- ar_text and ar_flags fields will be used to create a new text
-  -- row upon undeletion.
   ar_text_id int(8) unsigned,
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
-) TYPE=InnoDB", $fname );
+) TYPE=InnoDB
+END;
+		$fields = array(
+			'ar_namespace'  => MW_UPGRADE_COPY,
+			'ar_title'      => MW_UPGRADE_ENCODE,
+			'ar_text'       => MW_UPGRADE_COPY,
+			'ar_comment'    => MW_UPGRADE_ENCODE,
+			'ar_user'       => MW_UPGRADE_COPY,
+			'ar_user_text'  => MW_UPGRADE_ENCODE,
+			'ar_timestamp'  => MW_UPGRADE_COPY,
+			'ar_minor_edit' => MW_UPGRADE_COPY,
+			'ar_flags'      => MW_UPGRADE_COPY,
+			'ar_rev_id'     => MW_UPGRADE_NULL,
+			'ar_text_id'    => MW_UPGRADE_NULL );
+		$this->copyTable( 'archive', $tabledef, $fields );
+	}
+	
+	function upgradeImagelinks() {
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
+			$tabledef = <<<END
+CREATE TABLE $1 (
+  -- Key to page_id of the page containing the image / media link.
+  il_from int(8) unsigned NOT NULL default '0',
+  
+  -- Filename of target image.
+  -- This is also the page_title of the file's description page;
+  -- all such pages are in namespace 6 (NS_IMAGE).
+  il_to varchar(255) binary NOT NULL default '',
+  
+  UNIQUE KEY il_from(il_from,il_to),
+  KEY (il_to)
 
-		$numarchived = $this->dbw->selectField( 'archive', 'count(*)', '', $fname );
-		$this->setChunkScale( $chunksize, $numarchived, 'archive_temp', $fname );
-		
-		$result = $this->dbr->select( 'archive',
-			array(
-				'ar_namespace',
-				'ar_title',
-				'ar_text',
-				'ar_comment',
-				'ar_user',
-				'ar_user_text',
-				'ar_timestamp',
-				'ar_minor_edit',
-				'ar_flags' ),
-			'',
-			$fname );
-		
-		$add = array();
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$now = $this->dbw->timestamp();
-			$add[] = array(
-				'ar_namespace'  =>              $row->ar_namespace,
-				'ar_title'      => $this->conv( $row->ar_title ),
-				'ar_text'       =>              $row->ar_text,
-				'ar_comment'    => $this->conv( $row->ar_comment ),
-				'ar_user'       =>              $row->ar_user,
-				'ar_user_text'  => $this->conv( $row->ar_user_text ),
-				'ar_timestamp'  =>              $row->ar_user_text,
-				'ar_minor_edit' =>              $row->ar_minor_edit,
-				'ar_flags'      =>              $row->ar_flags,
-				'ar_rev_id'     => null,
-				'ar_text_id'    => null );
-			$this->addChunk( $add );
+) TYPE=InnoDB
+END;
+			$fields = array(
+				'il_from' => MW_UPGRADE_COPY,
+				'il_to'   => MW_UPGRADE_ENCODE );
+			$this->copyTable( 'imagelinks', $tabledef, $fields );
 		}
-		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
-		
-		$this->log( 'Done converting archive.' );
-		$this->cleanupSwaps[] = 'archive';
 	}
 
+	function upgradeCategorylinks() {
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
+			$tabledef = <<<END
+CREATE TABLE $1 (
+  cl_from int(8) unsigned NOT NULL default '0',
+  cl_to varchar(255) binary NOT NULL default '',
+  cl_sortkey varchar(86) binary NOT NULL default '',
+  cl_timestamp timestamp NOT NULL,
+  
+  UNIQUE KEY cl_from(cl_from,cl_to),
+  KEY cl_sortkey(cl_to,cl_sortkey),
+  KEY cl_timestamp(cl_to,cl_timestamp)
+) TYPE=InnoDB
+END;
+			$fields = array(
+				'cl_from'      => MW_UPGRADE_COPY,
+				'cl_to'        => MW_UPGRADE_ENCODE,
+				'cl_sortkey'   => MW_UPGRADE_ENCODE,
+				'cl_timestamp' => MW_UPGRADE_COPY );
+			$this->copyTable( 'categorylinks', $tabledef, $fields );
+		}
+	}
+	
 	/**
 	 * Rename all our temporary tables into final place.
 	 * We've left things in place so a read-only wiki can continue running
@@ -1085,5 +1058,9 @@ END
 	}
 	
 }
+
+$upgrade = new FiveUpgrade();
+$step = isset( $options['step'] ) ? $options['step'] : null;
+$upgrade->upgrade( $step );
 
 ?>
