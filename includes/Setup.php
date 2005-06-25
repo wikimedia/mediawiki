@@ -101,6 +101,8 @@ if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
+$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 

@@ -1199,6 +1199,7 @@ class Article {
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
 		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
+		global $wgUseEnotif;
 
 		$wgLinkCache = new LinkCache();
 		
@@ -1251,12 +1252,12 @@ class Article {
 			$r = '';
 		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
 
-		# this call would better fit into RecentChange::notifyEdit and RecentChange::notifyNew .
-		# this will be improved later (to-do)
-
-		include_once( "UserMailer.php" );
-		$wgEnotif = new EmailNotification ();
-		$wgEnotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
+		if ( $wgUseEnotif  ) {
+			# this would be better as an extension hook
+			include_once( "UserMailer.php" );
+			$wgEnotif = new EmailNotification ();
+			$wgEnotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
+		}
 	}
 
 	/**
@@ -1933,7 +1934,7 @@ class Article {
 	 * @private
 	 */
 	function viewUpdates() {
-		global $wgDeferredUpdateList;
+		global $wgDeferredUpdateList, $wgUseEnotif;
 		
 		if ( 0 != $this->getID() ) {
 			global $wgDisableCounters;
@@ -1951,9 +1952,14 @@ class Article {
 		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
 			$this->mTitle->getText() == $wgUser->getName()) 
 		{
-			require_once( 'UserTalkUpdate.php' );
-			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
-		} else {
+			if ( $wgUseEnotif ) {
+				require_once( 'UserTalkUpdate.php' );
+				$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
+			} else {
+				$wgUser->setNewtalk(0);
+				$wgUser->saveNewtalk();
+			}
+		} elseif ( $wgUseEnotif ) {
 			$wgUser->clearNotification( $this->mTitle );
 		}
 
@@ -1967,7 +1973,7 @@ class Article {
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange) {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
-		global $wgMessageCache, $wgUser;
+		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
@@ -1991,13 +1997,18 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			# If this is another user's talk page,
-			# create a watchlist entry for this page
+			# If this is another user's talk page, update newtalk
 			
-			if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-				$shortTitle != $wgUser->getName()) {
-				require_once( 'UserTalkUpdate.php' );
-				$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle, $summary, $minoredit, $timestamp_of_pagechange);
+			if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
+				if ( $wgUseEnotif ) {
+					require_once( 'UserTalkUpdate.php' );
+					$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle, $summary, 
+					  $minoredit, $timestamp_of_pagechange);
+				} else {
+					$other = User::newFromName($shortTitle);
+					$other->setNewtalk(1);
+					$other->saveNewtalk();
+				}
 			}
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
