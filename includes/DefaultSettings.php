@@ -654,7 +654,6 @@ $wgHitcounterUpdateFreq = 1;
 #  It's not 100% safe, there could be security hole using that one. Use at your
 # own risks.
 
-$wgWhitelistEdit = false;   # true = user must login to edit.
 $wgWhitelistRead = false;	# Pages anonymous user may see, like: = array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
 
 $wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'minor'
@@ -675,14 +674,18 @@ $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
  * logged-in users are all implicitly in the 'user' group. These will be
  * combined with the permissions of all groups that a given user is listed
  * in in the user_groups table.
+ *
+ * This replaces wgWhitelistAccount and wgWhitelistEdit
  */
 $wgGroupPermissions = array();
 
 $wgGroupPermissions['*'    ]['createaccount']   = true;
 $wgGroupPermissions['*'    ]['read']            = true;
+$wgGroupPermissions['*'    ]['edit']            = true;
 
 $wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['user' ]['read']            = true;
+$wgGroupPermissions['user' ]['edit']            = true;
 $wgGroupPermissions['user' ]['upload']          = true;
 
 $wgGroupPermissions['bot'  ]['bot']             = true;
@@ -1160,8 +1163,8 @@ $wgGoToEdit = false;
 $wgUserHtml = true;
 
 /** Allow raw, unchecked HTML in <html>...</html> sections.
- * THIS IS VERY DANGEROUS on a publically editable site, so you can't enable it
- * unless you've restricted editing to trusted users only with $wgWhitelistEdit.
+ * THIS IS VERY DANGEROUS on a publically editable site, so USE wgGroupPermissions
+ * TO RESTRICT EDITING to only those that you trust
  */
 $wgRawHtml = false;
 

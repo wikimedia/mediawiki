@@ -135,7 +135,7 @@ class EditPage {
 	 * This is the function that gets called for "action=edit".
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgWhitelistEdit, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest;
 		// this is not an article
 		$wgOut->setArticleFlag(false);
 
@@ -156,9 +156,14 @@ class EditPage {
 			$this->blockedIPpage();
 			return;
 		}
-		if ( $wgUser->isAnon() && $wgWhitelistEdit ) {
-			$this->userNotLoggedInPage();
-			return;
+		if ( !$wgUser->isAllowed('edit') ) {
+			if ( $wgUser->isAnon() ) {
+				$this->userNotLoggedInPage();
+				return;
+			} else {
+				$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
+				return;
+			}
 		}
 		if ( wfReadOnly() ) {
 			if( $this->save || $this->preview ) {
@@ -282,7 +287,6 @@ class EditPage {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgContLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
-		global $wgWhitelistEdit;
 		global $wgSpamRegex, $wgFilterCallback;
 
 		$sk = $wgUser->getSkin();
@@ -323,10 +327,18 @@ class EditPage {
 				$this->blockedIPpage();
 				return;
 			}
-			if ( $wgUser->isAnon() && $wgWhitelistEdit ) {
+
+			if ( !$wgUser->isAllowed('edit') ) {
+				if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
 				return;
 			}
+				else {
+					$wgOut->readOnlyPage();
+					return;
+				}
+			}
+
 			if ( wfReadOnly() ) {
 				$wgOut->readOnlyPage();
 				return;
