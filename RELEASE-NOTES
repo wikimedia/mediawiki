@@ -333,6 +333,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2506) Updated the Nynorsk translation
 * (bug 996) Replace $wgWhitelistEdit with 'edit' permission; fixup UPGRADE
   documentation about edit and read whitelists.
+* (bug 2515) Fix incremental link table update
 
 === Caveats ===
 

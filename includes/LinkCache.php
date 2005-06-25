@@ -330,6 +330,7 @@ class LinkCache {
 		swap( $this->mGoodLinks, $this->mOldGoodLinks );
 		swap( $this->mBadLinks, $this->mOldBadLinks );
 		swap( $this->mImageLinks, $this->mOldImageLinks );
+		swap( $this->mPageLinks, $this->mOldPageLinks );
 	}
 }
 
