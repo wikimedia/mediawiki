@@ -28,12 +28,15 @@ class FiveUpgrade {
 	function FiveUpgrade() {
 		global $wgDatabase;
 		$this->conversionTables = $this->prepareWindows1252();
+		
 		$this->dbw =& $this->newConnection();
 		$this->dbr =& $this->newConnection();
 		$this->dbr->bufferResults( false );
-		$this->cleanupSwaps = array();
+		$this->slave =& wfGetDB( DB_SLAVE );
 		
+		$this->cleanupSwaps = array();
 		$this->emailAuth = false; # don't preauthenticate emails
+		$this->maxLag    = 10; # if slaves are lagged more than 10 secs, wait
 	}
 	
 	function doing( $step ) {
@@ -250,6 +253,8 @@ class FiveUpgrade {
 	 * @access private
 	 */
 	function insertChunk( &$chunk ) {
+		// Give slaves a chance to catch up
+		wfWaitForSlaves( $this->maxLag );
 		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
 	
@@ -323,7 +328,11 @@ class FiveUpgrade {
 		$fname = "FiveUpgrade::upgradePage";
 		$chunksize = 100;
 		
-
+		if( $this->dbw->tableExists( 'page' ) ) {
+			$this->log( 'Page table already exists; aborting.' );
+			die( -1 );
+		}
+		
 		$this->log( "Checking cur table for unique title index and applying if necessary" );
 		checkDupes( true );
 
