@@ -115,7 +115,7 @@ if(isset($wgExtraNamespaces)) {
 # Whether to use user or default setting in Language::date()
 
 /* private */ $wgDateFormatsEn = array(
-	'Default',
+	'No preference',
 	'16:12, January 15, 2001',
 	'16:12, 15 January 2001',
 	'16:12, 2001 January 15',
