@@ -215,7 +215,7 @@ class LoadBalancer {
 							$this->mServers[$i]['slave pos'] = $this->mConnections[$i]->getSlavePos();
 						}
 					}
-					if ( $i != false ) {
+					if ( $i !== false ) {
 						$this->mReadIndex = $i;
 					}
 				} else {
@@ -361,6 +361,7 @@ class LoadBalancer {
 		$success = true;
 
 		if ( !$this->isOpen( $i ) ) {
+			wfDebug( "Opening connection to database $i\n" );
 			$this->mConnections[$i] = $this->reallyOpenConnection( $this->mServers[$i] );
 		}
 		if ( !$this->isOpen( $i ) ) {
