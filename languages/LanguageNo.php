@@ -227,7 +227,7 @@
 "lastmodified"	=> "Sist endret $1.",
 "viewcount"		=> "Denne siden er vist $1 ganger.",
 "gnunote" => "Artikkelen er utgitt under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU fri dokumentasjonslisens</a>.",
-"printsubtitle" => "(fra http://no.wikipedia.org)",
+"printsubtitle" => "(fra {{SERVER}})",
 "protectedpage" => "Beskyttet side",
 "administrators" => "Wikipedia:Administratorer",
 "sysoptitle"	=> "Sysop-rettigheter kreves",

@@ -260,7 +260,7 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "lastmodified"	=> "A lap utolsó módosítása $1.",
 "viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
 "gnunote" 		=> "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
-"printsubtitle" => "(From http://www.wikipedia.org/)",
+"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Védett lap",
 "administrators" => "{$wgMetaNamespace}:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
@@ -596,8 +596,7 @@ Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy
 soha ne add hozzá mások [[{$wgMetaNamespace}:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
-ilyet.
-Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
+ilyet.",
 "rcloaderr"		=> "Friss változtatások betöltése",
 "rcnote"		=> "Lentebb az utolsó <strong>$2</strong> nap <strong>$1</strong> változtatása látható.",
 "rcnotefrom"	=> "Lentebb láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).",

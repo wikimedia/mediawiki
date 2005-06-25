@@ -250,7 +250,7 @@
 "lastmodified" => "Pryd cafodd ei newid diwethaf $1.",
 "viewcount" => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
 "gnunote" => "Mae pob testun ar gael o dan term<a class=internal href='$wgScriptPath/GNU_FDL'>Goddefiad dogfennau rhad GNU</a>.",
-"printsubtitle" => "(Oddiwrth http://www.wikipedia.org/)",
+"printsubtitle" => "(Oddiwrth {{SERVER}})",
 "protectedpage" => "Tudalen amddiffyniol",
 "administrators" => "$wgMetaNamespace:Gweinyddwyr",
 "sysoptitle" => "Mynediad Sysop yn unig",

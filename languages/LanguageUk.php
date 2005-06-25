@@ -177,7 +177,7 @@ require_once( 'LanguageUtf8.php' );
 "lastmodified"	=> "Остання зміна $1.",
 "viewcount"		=> "Цю статтю переглядали $1 разів.",
 "gnunote" => "Всі тексти доступні на умовах ліцензії <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> версії 1.2 або пізнішої версії, опублікованої Free Software Foundation; без Незмінюваних розділів, без Текстів, розміщуваних на обкладинці; неприпустимо добавляти подібні секції. All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts; no such sections allowed to be added.",
-"printsubtitle" => "(Матеріал з http://uk.wikipedia.org)",
+"printsubtitle" => "(Матеріал з {{SERVER}})",
 "protectedpage" => "Захищена стаття",
 "administrators" => "$wgMetaNamespace:Адміністратори",
 "sysoptitle"	=> "Необхідний рівень доступу Оператор",

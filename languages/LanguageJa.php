@@ -207,7 +207,7 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom" => "($1 から転送)",
 "lastmodified"	=> "最終更新 $1。",
 "viewcount"		=> "このページは $1 回アクセスされました。",
-"printsubtitle" => "(From http://www.wikipedia.org)",
+"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "保護されたページ",
 "administrators" => "{{ns:4}}:Administrators",
 "sysoptitle"	=> "シスオペによるアクセスが必要",

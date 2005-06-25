@@ -179,7 +179,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	=> "Ultima modifica il $1.",
 "viewcount"		=> "Questo articolo è stato letto $1 volte.",
 "gnunote" => "Questa pagina è disponibile in licenza <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle" => "(Articolo di http://www.wikipedia.org)",
+"printsubtitle" => "(Articolo di {{SERVER}})",
 "protectedpage" => "Pagina protetta",
 "administrators" => "Wikipedia:Amministratori",
 "sysoptitle"	=> "Riservato Sysop",

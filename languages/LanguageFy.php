@@ -227,7 +227,7 @@ if($wgMetaNamespace === FALSE)
 "lastmodified"	=> "Lêste kear bewurke op $1.",
 "viewcount"		=> "Disse side is $1 kear iepenslein.",
 "gnunote" 		=> "Alle tekst is beskiber ûnder de betingsten fan de <a class=internal href='$wgScriptPath/GNU_Vrije_Documentatie_Licentie'>GNU Iepen Dokumentaasje Lisinsje</a>.",
-"printsubtitle" 	=> "(Fan http://$wgServer)",
+"printsubtitle" 	=> "(Fan {{SERVER}})",
 "protectedpage" 	=> "Beskerme side",
 "administrators" 	=> "$wgMetaNamespace:Behear",
 "sysoptitle"	=> "Allinnich foar behearders",

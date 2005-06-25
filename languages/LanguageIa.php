@@ -198,7 +198,7 @@
 "lastmodified"	=> "Ultime modification: $1.",
 "viewcount"		=> "Iste pagina esseva accessate $1 vices.",
 "gnunote" => "Tote le texto es disponibile sub le terminos del <a class=internal href='$wgScriptPath/GNU_FDL'>Licentia de documentation libere GNU</a>.",
-"printsubtitle" => "(De http://ia.wikipedia.org)",
+"printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Pagina protegite",
 "administrators" => "Wikipedia:Administratores",
 "sysoptitle"	=> "Reservate a Sysops",
@@ -485,8 +485,7 @@ e [[wikipedia:Le passos false plus commun|le passos false plus commun]].
 Si tu vole que Wikipedia habe successo, es multo importante que tu non
 include material protegite per [[wikipedia:Copyright|derectos de autor]].
 Le aspectos legal connexe poterea prejudicar gravemente le projecto,
-alora per favor non lo face.
-In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recente discussion] in meta.Wikipedia.",
+alora per favor non lo face.",
 "rcloaderr"		=> "Carga del modificationes recente",
 "rcnote"		=> "Infra es le <strong>$1</strong> ultime modificationes in le <strong>$2</strong> ultime dies.",
 "rcnotefrom"	=> "infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).",

@@ -445,8 +445,7 @@ en [[{{ns:4}}:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
 
 As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie 
 materiaal byvoeg wat deur [[{{ns:4}}:kopiereg|kopiereg]] beperk word nie.
-Die wetlike onderhewigheid kan die projek skade aandoen.
-Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabesprekings].", #fixMeContinue
+Die wetlike onderhewigheid kan die projek skade aandoen.", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
 "rcnote"		=> "Hier onder is die laaste <strong>$1</strong> wysigings gedurende die laaste <strong>$2</strong> dae.",
 "rcnotefrom"	=> "Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).",

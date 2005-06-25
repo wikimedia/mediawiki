@@ -121,7 +121,7 @@ require_once( "LanguageUtf8.php" );
 "lastmodified"	        => "अन्तिम परिवर्तन $1.",
 "viewcount"		=> "यह पृष्ठ $1 बार देखा गया है",
 "gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle"         => "(From http://www.wikipedia.org)",
+"printsubtitle"         => "(From {{SERVER}})",
 "protectedpage"         => "सुरक्षित पृष्ठ",
 "administrators"        => "विकिपीडिया:प्रबन्धक",
 "sysoptitle"	        => "sysop आवश्यक है",
