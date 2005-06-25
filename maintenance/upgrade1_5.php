@@ -42,29 +42,30 @@ class FiveUpgrade {
 	
 	function upgrade( $step ) {
 		$this->step = $step;
-		if( $this->doing( 'page' ) )
-			$this->upgradePage();
-		if( $this->doing( 'links' ) )
-			$this->upgradeLinks();
-		if( $this->doing( 'user' ) )
-			$this->upgradeUser();
-		if( $this->doing( 'image' ) )
-			$this->upgradeImage();
-		if( $this->doing( 'oldimage' ) )
-			$this->upgradeOldImage();
-		if( $this->doing( 'watchlist' ) )
-			$this->upgradeWatchlist();
-		if( $this->doing( 'logging' ) )
-			$this->upgradeLogging();
-		if( $this->doing( 'archive' ) )
-			$this->upgradeArchive();
-		if( $this->doing( 'imagelinks' ) )
-			$this->upgradeImagelinks();
-		if( $this->doing( 'categorylinks' ) )
-			$this->upgradeCategorylinks();
 		
-		if( $this->doing( 'cleanup' ) )
+		$tables = array(
+			'page',
+			'links',
+			'user',
+			'image',
+			'oldimage',
+			'watchlist',
+			'logging',
+			'archive',
+			'imagelinks',
+			'categorylinks',
+			'ipblocks',
+			'recentchanges' );
+		foreach( $tables as $table ) {
+			if( $this->doing( $table ) ) {
+				$method = 'upgrade' . ucfirst( $table );
+				$this->$method();
+			}
+		}
+		
+		if( $this->doing( 'cleanup' ) ) {
 			$this->upgradeCleanup();
+		}
 	}
 	
 	
@@ -1029,6 +1030,103 @@ END;
 				'cl_timestamp' => MW_UPGRADE_COPY );
 			$this->copyTable( 'categorylinks', $tabledef, $fields );
 		}
+	}
+	
+	function upgradeIpblocks() {
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
+			$tabledef = <<<END
+CREATE TABLE $1 (
+  ipb_id int(8) NOT NULL auto_increment,
+  ipb_address varchar(40) binary NOT NULL default '',
+  ipb_user int(8) unsigned NOT NULL default '0',
+  ipb_by int(8) unsigned NOT NULL default '0',
+  ipb_reason tinyblob NOT NULL default '',
+  ipb_timestamp char(14) binary NOT NULL default '',
+  ipb_auto tinyint(1) NOT NULL default '0',
+  ipb_expiry char(14) binary NOT NULL default '',
+
+  PRIMARY KEY ipb_id (ipb_id),
+  INDEX ipb_address (ipb_address),
+  INDEX ipb_user (ipb_user)
+
+) TYPE=InnoDB
+END;
+			$fields = array(
+				'ipb_id'        => MW_UPGRADE_COPY,
+				'ipb_address'   => MW_UPGRADE_COPY,
+				'ipb_user'      => MW_UPGRADE_COPY,
+				'ipb_by'        => MW_UPGRADE_COPY,
+				'ipb_reason'    => MW_UPGRADE_ENCODE,
+				'ipb_timestamp' => MW_UPGRADE_COPY,
+				'ipb_auto'      => MW_UPGRADE_COPY,
+				'ipb_expiry'    => MW_UPGRADE_COPY );
+			$this->copyTable( 'ipblocks', $tabledef, $fields );
+		}
+	}
+	
+	function upgradeRecentchanges() {
+		// There's a format change in the namespace field
+		$tabledef = <<<END
+CREATE TABLE $1 (
+  rc_id int(8) NOT NULL auto_increment,
+  rc_timestamp varchar(14) binary NOT NULL default '',
+  rc_cur_time varchar(14) binary NOT NULL default '',
+  
+  rc_user int(10) unsigned NOT NULL default '0',
+  rc_user_text varchar(255) binary NOT NULL default '',
+  
+  rc_namespace int NOT NULL default '0',
+  rc_title varchar(255) binary NOT NULL default '',
+  
+  rc_comment varchar(255) binary NOT NULL default '',
+  rc_minor tinyint(3) unsigned NOT NULL default '0',
+  
+  rc_bot tinyint(3) unsigned NOT NULL default '0',
+  rc_new tinyint(3) unsigned NOT NULL default '0',
+  
+  rc_cur_id int(10) unsigned NOT NULL default '0',
+  rc_this_oldid int(10) unsigned NOT NULL default '0',
+  rc_last_oldid int(10) unsigned NOT NULL default '0',
+  
+  rc_type tinyint(3) unsigned NOT NULL default '0',
+  rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
+  rc_moved_to_title varchar(255) binary NOT NULL default '',
+  
+  rc_patrolled tinyint(3) unsigned NOT NULL default '0',
+  
+  rc_ip char(15) NOT NULL default '',
+  
+  PRIMARY KEY rc_id (rc_id),
+  INDEX rc_timestamp (rc_timestamp),
+  INDEX rc_namespace_title (rc_namespace, rc_title),
+  INDEX rc_cur_id (rc_cur_id),
+  INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
+  INDEX rc_ip (rc_ip)
+
+) TYPE=InnoDB
+END;
+		$fields = array(
+			'rc_id'             => MW_UPGRADE_COPY,
+			'rc_timestamp'      => MW_UPGRADE_COPY,
+			'rc_cur_time'       => MW_UPGRADE_COPY,
+			'rc_user'           => MW_UPGRADE_COPY,
+			'rc_user_text'      => MW_UPGRADE_ENCODE,
+			'rc_namespace'      => MW_UPGRADE_COPY,
+			'rc_title'          => MW_UPGRADE_ENCODE,
+			'rc_comment'        => MW_UPGRADE_ENCODE,
+			'rc_minor'          => MW_UPGRADE_COPY,
+			'rc_bot'            => MW_UPGRADE_COPY,
+			'rc_new'            => MW_UPGRADE_COPY,
+			'rc_cur_id'         => MW_UPGRADE_COPY,
+			'rc_this_oldid'     => MW_UPGRADE_COPY,
+			'rc_last_oldid'     => MW_UPGRADE_COPY,
+			'rc_type'           => MW_UPGRADE_COPY,
+			'rc_moved_to_ns'    => MW_UPGRADE_COPY,
+			'rc_moved_to_title' => MW_UPGRADE_ENCODE,
+			'rc_patrolled'      => MW_UPGRADE_COPY,
+			'rc_ip'             => MW_UPGRADE_COPY );
+		$this->copyTable( 'recentchanges', $tabledef, $fields );
 	}
 	
 	/**
