@@ -335,6 +335,7 @@ Various bugfixes, small features, and a few experimental things:
   documentation about edit and read whitelists.
 * (bug 2515) Fix incremental link table update
 * Removed some wikipedia-specifica from LanguageXx.php's
+* (bug 2496) Allow MediaWiki:edithelppage to point to external page
 
 === Caveats ===
 
