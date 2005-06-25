@@ -29,9 +29,13 @@ require_once( 'Revision.php' );
  *
  */
 function wfSpecialExport( $page = '' ) {
-	global $wgOut, $wgLang, $wgRequest;
+	global $wgOut, $wgLang, $wgRequest, $wgAllowArticleList;
 	
-	if( $wgRequest->getVal( 'action' ) == 'submit') {
+	if( $wgAllowArticleList AND $wgRequest->getVal( 'action' ) == 'list') { # Return list of articles changed since XXX
+		$since = $wgRequest->getText( 'since' ) ;
+		print getListOfChangedArticlesSince ( $since ) ;
+		exit ( 0 ) ;
+	} else if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );
 	} else {
@@ -65,6 +69,53 @@ function wfSpecialExport( $page = '' ) {
 <input type='submit' />
 </form>
 " );
+}
+
+/**
+ * This function returns a XML list with all article titles and namespaces changed since {$since}
+ * Using WikiExporter for this seems overkill, as the SQL query is pretty simple
+*/
+function getListOfChangedArticlesSince ( $since ) {
+	if ( TRUE != preg_match ( "/^[0-9]{14,14}$/" , $since ) ) return "INVALID DATE!" ;
+	
+	global $wgLang ;
+	$fname = "getListOfChangedArticlesSince" ;
+	wfProfileIn( $fname );
+
+	$ret = "" ;
+	$dbr =& wfGetDB( DB_SLAVE );
+	$sql = "SELECT page_namespace,page_title FROM page WHERE page_touched >= \"{$since}\"" ;
+	$res = $dbr->query ( $sql , $fname ) ;
+	
+	header( "Content-type: application/xml; charset=utf-8" );
+	$ret .= "<mediawiki version=\"0.1\">" ;
+	$ret .= "<articlelist>" ;
+	
+	while( $obj = $dbr->fetchObject( $res ) ) {
+		$t = Title::newFromText ( $obj->page_title , $obj->page_namespace ) ;
+		$ret .= "<article prefixed_title=\"" ;
+		$ret .= fixTitle4XML ( $t->getPrefixedDBkey() ) ;
+		$ret .= "\" title=\"" ;
+		$ret .= fixTitle4XML ( $t->getDBkey() ) ;
+		$ret .= "\" namespace_id=\"" ;
+		$ret .= $obj->page_namespace ;
+		$ret .= "\" namespace_name=\"" ;
+		$ret .= fixTitle4XML ( $wgLang->getNsText ( $obj->page_namespace ) ) ;
+		$ret .= "\"/>" ;
+	}
+	
+	$ret .= "</articlelist>" ;
+	$ret .= "</mediawiki>" ;
+
+	wfProfileOut( $fname );
+	return $ret ;
+}
+
+function fixTitle4XML ( $t ) {
+	$t = str_replace ( "&" , "&amp" , $t ) ;
+	$t = str_replace ( ">" , "&gt;" , $t ) ;
+	$t = str_replace ( "<" , "&lt;" , $t ) ;
+	return $t ;
 }
 
 define( 'MW_EXPORT_FULL',     0 );
