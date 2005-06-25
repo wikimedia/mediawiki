@@ -135,14 +135,14 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   KEY (ug_group)
 ) TYPE=InnoDB;
 
--- The following table is no longer needed with Enotif >= 2.00
--- Entries for newtalk on user_talk page are handled like in the watchlist table
--- CREATE TABLE /*$wgDBprefix*/user_newtalk (
---  user_id int(5) NOT NULL default '0',
---  user_ip varchar(40) NOT NULL default '',
---  INDEX user_id (user_id),
---  INDEX user_ip (user_ip)
--- );
+-- Stores notifications of user talk page changes, for the display
+-- of the "you have new messages" box
+CREATE TABLE /*$wgDBprefix*/user_newtalk (
+ user_id int(5) NOT NULL default '0',
+ user_ip varchar(40) NOT NULL default '',
+ INDEX user_id (user_id),
+ INDEX user_ip (user_ip)
+);
 
 
 --
