@@ -532,7 +532,7 @@ class EditPage {
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsg('cancel') );
-		$edithelpurl = $sk->makeUrl( wfMsg( 'edithelppage' ));
+		$edithelpurl = $sk->makeInternalOrExternalUrl( wfMsg( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
 			htmlspecialchars( wfMsg( 'newwindow' ) );
