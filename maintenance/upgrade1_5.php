@@ -55,7 +55,8 @@ class FiveUpgrade {
 			'imagelinks',
 			'categorylinks',
 			'ipblocks',
-			'recentchanges' );
+			'recentchanges',
+			'querycache' );
 		foreach( $tables as $table ) {
 			if( $this->doing( $table ) ) {
 				$method = 'upgrade' . ucfirst( $table );
@@ -1129,6 +1130,32 @@ END;
 			'rc_patrolled'      => MW_UPGRADE_COPY,
 			'rc_ip'             => MW_UPGRADE_COPY );
 		$this->copyTable( 'recentchanges', $tabledef, $fields );
+	}
+	
+	function upgradeQuerycache() {
+		// There's a format change in the namespace field
+		$tabledef = <<<END
+CREATE TABLE $1 (
+  -- A key name, generally the base name of of the special page.
+  qc_type char(32) NOT NULL,
+  
+  -- Some sort of stored value. Sizes, counts...
+  qc_value int(5) unsigned NOT NULL default '0',
+  
+  -- Target namespace+title
+  qc_namespace int NOT NULL default '0',
+  qc_title char(255) binary NOT NULL default '',
+  
+  KEY (qc_type,qc_value)
+
+) TYPE=InnoDB
+END;
+		$fields = array(
+			'qc_type'      => MW_UPGRADE_COPY,
+			'qc_value'     => MW_UPGRADE_COPY,
+			'qc_namespace' => MW_UPGRADE_COPY,
+			'qc_title'     => MW_UPGRADE_ENCODE );
+		$this->copyTable( 'querycache', $tabledef, $fields );
 	}
 	
 	/**
