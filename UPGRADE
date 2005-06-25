@@ -48,9 +48,20 @@ key in $wgGroupPermissions. To emulate the old effect of setting:
 set:
   $wgGroupPermissions['*']['createaccount'] = false;
 
-If $wgWhitelistRead is set, things need to be funked around. This needs work.
+$wgWhitelistEdit has been replaced by the 'edit' permission key.
+To emulate the old effect of setting:
+  $wgWhitelistEdit = true;
+set:
+  $wgGroupPermissions['*']['edit'] = false;
 
-bla bla bla
+If $wgWhitelistRead is set, you must also disable the 'read' permission
+for it to take affect on anonymous users:
+  $wgWhitelistRead = array( "Main Page", "Special:Userlogin" );
+  $wgGroupPermissions['*']['read'] = false;
+
+Note that you can disable/enable several other permissions by modifying
+this configuration array in your LocalSettings.php; see DefaultSettings.php
+for the complete default permission set.
 
 
 === Web installer ===

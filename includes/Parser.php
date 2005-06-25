@@ -346,8 +346,8 @@ class Parser
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
 		# html
-		global $wgRawHtml, $wgWhitelistEdit;
-		if( $wgRawHtml && $wgWhitelistEdit ) {
+		global $wgRawHtml;
+		if( $wgRawHtml ) {
 			$text = Parser::extractTags('html', $text, $html_content, $uniq_prefix);
 			foreach( $html_content as $marker => $content ) {
 				if ($render ) {

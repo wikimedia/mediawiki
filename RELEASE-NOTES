@@ -332,6 +332,9 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2504) Updated the Finnish translation
 * (bug 2506) Updated the Nynorsk translation
 * Everything given to setSubtitle() is now parsed for the full wikisyntax
+* (bug 996) Replace $wgWhitelistEdit with 'edit' permission; fixup UPGRADE
+  documentation about edit and read whitelists.
+
 
 === Caveats ===
 
