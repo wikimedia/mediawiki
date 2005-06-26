@@ -311,7 +311,7 @@ class Article {
 	 * @access private
 	 */
 	function loadPageData( $data ) {
-		$this->mTitle->mRestrictions = explode( ',', trim( $data->page_restrictions ) );
+		$this->mTitle->loadRestrictions( $data->page_restrictions );
 		$this->mTitle->mRestrictionsLoaded = true;
 		
 		$this->mCounter    = $data->page_counter;
