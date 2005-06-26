@@ -452,6 +452,9 @@ See $1.",
 to users with the "$2" permission assigned.
 See $1.',
 
+'versionrequired' => 'Version $1 of MediaWiki required',
+'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
+
 'nbytes'		=> '$1 bytes',
 'ok'			=> 'OK',
 'sitetitle'		=> "{{SITENAME}}",

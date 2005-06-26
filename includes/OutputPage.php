@@ -532,6 +532,26 @@ class OutputPage {
 	}
 
 	/**
+	 * Display an error page indicating that a given version of MediaWiki is
+	 * required to use it
+	 *
+	 * @param mixed $version The version of MediaWiki needed to use the page
+	 */
+	function versionRequired( $version ) {
+		global $wgUser;
+
+		$this->setPageTitle( wfMsg( 'versionrequired', $version ) );
+		$this->setHTMLTitle( wfMsg( 'versionrequired', $version ) );
+		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+		$this->mBodytext = '';
+
+		$sk = $wgUser->getSkin();
+		$this->addWikiText( wfMsg( 'versionrequiredtext', $version ) );
+		$this->returnToMain();
+	}
+	
+	/**
 	 * Display an error page noting that a given permission bit is required.
 	 * This should generally replace the sysopRequired, developerRequired etc.
 	 * @param string $permission key required
