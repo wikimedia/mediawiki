@@ -1256,7 +1256,9 @@ function wfMkdirParents( $fullDir, $mode ) {
 	return true;
 }
 
-
+/**
+ * Increment a statistics counter
+ */
 function wfIncrStats( $key ) {
 	global $wgDBname, $wgMemc;
 	$key = "$wgDBname:stats:$key";
