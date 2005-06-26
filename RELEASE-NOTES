@@ -344,6 +344,7 @@ Various bugfixes, small features, and a few experimental things:
 * Fix for interwiki link regression
 * Printable link shorter in monobook
 * Experimental Latin-1-and-replication-friendly upgrader script
+* (bug 2520) Don't show enotif options when disabled
 
 
 === Caveats ===

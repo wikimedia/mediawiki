@@ -420,7 +420,14 @@ class PreferencesForm {
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
-
+		
+		# Pre-expire some toggles so they won't show if disabled
+		$this->mUsedToggles[ 'shownumberswatching' ] = true;
+		$this->mUsedToggles[ 'showupdated' ] = true;
+		$this->mUsedToggles[ 'enotifwatchlistpages' ] = true;
+		$this->mUsedToggles[ 'enotifusertalkpages' ] = true;
+		$this->mUsedToggles[ 'enotifminoredits' ] = true;
+		$this->mUsedToggles[ 'enotifrevealaddr' ] = true;
 
 		# Enotif
 		# <FIXME>
