@@ -218,11 +218,11 @@ require_once( 'LanguageUtf8.php' );
 'navigation'	=> 'Navigation',
 'currentevents' => 'Actualités',
 'disclaimers'	=> 'Avertissements',
-"disclaimerpage" => "{{ns:4}}:Avertissements généraux",
-"errorpagetitle" => "Erreur",
-"returnto"      => "Revenir à la page $1.",
-"tagline"       => "Un article de {{SITENAME}}, l'encyclopédie libre.",
-"whatlinkshere" => "Références à cette page",
+'disclaimerpage' => '{{ns:4}}:Avertissements généraux',
+'errorpagetitle' => 'Erreur',
+'returnto'      => 'Revenir à la page $1.',
+'tagline'       => 'Un article de {{SITENAME}}, l\'encyclopédie libre.',
+'whatlinkshere' => 'Références à cette page',
 'help'          => 'Aide',
 'search'        => 'Rechercher',
 'history'       => 'Historique',
@@ -256,16 +256,16 @@ require_once( 'LanguageUtf8.php' );
 'lastmodified'  => 'Dernière modification de cette page : $1.',
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
+'gnunote'       => 'Tous les textes sont disponibles sous les termes de la <a href="/wiki/GFDL">Licence de documentation libre GNU</a>.',
 'printsubtitle' => '(de {{SERVER}})',
 'protectedpage' => 'Page protégée',
 'administrators' => '{{ns:4}}:Administrateurs',
 'sysoptitle'    => 'Accès administrateur requis',
-"sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
-Voir $1.",
-"developertitle" => "Accès développeur requis",
-"developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
-Voir $1.",
+'sysoptext'     => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d\'"administrateur".
+Voir $1.',
+'developertitle' => 'Accès développeur requis',
+'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de "développeur".
+Voir $1.',
 'bureaucrattitle'	=> "Un accès de 'Bureaucrate' est requis",
 'bureaucrattext'	=> "Cette action ne peut être réalisée que par des administrateurs ayant le statut de 'Bureaucrate'.",
 'nbytes'        => '$1 octets',
@@ -275,17 +275,17 @@ Voir $1.",
 'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
-'sitetitle'     => "{{SITENAME}}",
-'sitesubtitle'  => "L'encyclopédie libre",
-'retrievedfrom' => "Récupérée de \"$1\"",
-'newmessages'   => "Vous avez des $1.",
+'sitetitle'     => '{{SITENAME}}',
+'sitesubtitle'  => 'L\'encyclopédie libre',
+'retrievedfrom' => 'Récupérée de "$1"',
+'newmessages'   => 'Vous avez des $1.',
 'newmessageslink' => 'nouveaux messages',
 'editsection'	=> 'modifier',
 'toc'		=> 'Sommaire',
 'showtoc'	=> 'montrer',
 'hidetoc'	=> 'cacher',
-'thisisdeleted' => "Afficher ou restaurer $1?",
-'restorelink'	=> "$1 modifications effacées",
+'thisisdeleted' => 'Afficher ou restaurer $1 ?',
+'restorelink'	=> '1 modifications effacées',
 'feedlinks'	=> 'Flux:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
@@ -303,31 +303,39 @@ Voir $1.",
 
 # Main script and global functions
 #
-'nosuchaction'	=> "Action inconnue",
+'nosuchaction'	=> 'Action inconnue',
 'nosuchactiontext' => "L'action spécifiée dans l'Url n'est pas reconnue par le wiki.",
-'nosuchspecialpage' => "Page spéciale inexistante",
-'nospecialpagetext' => "Vous avez demandé une page spéciale qui n'est pas reconnue par le wiki.",
+'nosuchspecialpage' => 'Page spéciale inexistante',
+'nospecialpagetext' => 'Vous avez demandé une page spéciale qui n\'est pas reconnue par le wiki.',
 
 # General errors
 #
 'error'		=> 'Erreur',
+'badaccess' => 'Erreur de permission',
+'badaccesstext' => 'L\'action entreprise est limitée aux utilisateurs possédant le droit "$2".
+Voir $1',
 'databaseerror' => 'Erreur base de données',
 'dberrortext'	=> "Erreur de syntaxe dans la base de données. La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
+'dberrortextcl' => 'Une requête à la base de donnée comporte une erreur de syntaxe. La dernière requête envoyée était:
+"$1"
+effectuée par la fonction "$2"
+MySQL a retourné l\'erreur "$3 : $4".',
 'noconnect'	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
-'nodb'		=> "Sélection impossible de la base de données $1",
-'cachederror'	=> "Ceci est une copie de la page demandée et peut ne pas être à jour",
-'readonly'	=> "Mises à jour bloquées sur la base de données",
-'enterlockreason' => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
+'nodb'		=> 'Sélection impossible de la base de données $1',
+'cachederror'	=> 'Ceci est une copie de la page demandée et peut ne pas être à jour',
+'readonly'	=> 'Mises à jour bloquées sur la base de données',
+'enterlockreason' => 'Indiquez la raison du blocage, ainsi qu\'une estimation de la durée de blocage ',
 'readonlytext'	=> "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
 'missingarticle' => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
 Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse de la page fautive.",
-"internalerror" => "Erreur interne",
+'internalerror' => 'Erreur interne',
 'filecopyerror' => "Impossible de copier \"$1\" vers \"$2\".",
+'fileinfo' => '$1Ko, type MIME: <tt>$2</tt>',
 'filerenameerror' => "Impossible de renommer \"$1\" en \"$2\".",
 'filedeleteerror' => 'Impossible de supprimer "$1".',
 'filenotfound'	=> 'Fichier "$1" introuvable.',
@@ -336,7 +344,9 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
 'cannotdelete'	=> "Impossible de supprimer la page ou l'image indiquée.",
 'badtitle'	=> 'Mauvais titre',
-'badtitletext'	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide",
+'badtitletext'	=> 'Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide',
+'laggedslavemode' => 'Attention : la page n\'intègre peut être pas les dernières éditions',
+'readonly_lag' => 'La base de donnée a été automatiquement bloquée pendant que les serveurs secondaires rattrapent leur retard avec le serveur principal',
 'perfdisabled' => "Désolé! Cette fonctionnalité est temporairement désactivée
 car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.",
@@ -349,6 +359,9 @@ ne peut utiliser le wiki.",
 'wrong_wfQuery_params' => "Paramètres incorrects sur la commande wfQuery()<br />
 Fonction : $1<br />
 Requête : $2",
+'versionrequired' => 'Version $1 de MediaWiki nécessaire',
+'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Voyez [[Special:Version]]',
+
 
 # Login and logout pages
 #
@@ -652,7 +665,7 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'reuploaddesc' => 'Retour au formulaire.',
 
 'uploadnologin' => 'Non connecté(e)',
-"uploadnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
+'uploadnologintext' => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
 'uploaderror'  => "Erreur",
 'uploadtext'   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
@@ -744,35 +757,35 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 'statistics' => 'Statistiques',
 'sitestats'  => 'Statistiques du site',
 'userstats'  => 'Statistiques utilisateur',
-"sitestatstext" => "La base de données contient actuellement <b>$1</b> pages.
+'sitestatstext' => 'La base de données contient actuellement <b>$1</b> pages.
 
-Ce chiffre inclut les pages \"discussion\", les pages relatives à {{SITENAME}}, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
-Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
+Ce chiffre inclut les pages "discussion", les pages relatives à {{SITENAME}}, les pages minimales ("bouchons"),  les pages de redirection, ainsi que d\'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
+Si l\'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
 <b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées
 
 depuis la mise à jour du logiciel (31 octobre 2002).
 Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.",
 "userstatstext" => "Il y a <b>$1</b> utilisateurs enregistrés.
-Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
+Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 
 
 # Maintenance Page
 #
 'maintenance'		=> 'Page de maintenance',
 'maintnancepagetext'	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
-'maintenancebacklink'	=> "Retour à la page de maintenance",
+'maintenancebacklink'	=> 'Retour à la page de maintenance',
 'disambiguations'	=> 'Pages d\'homonymie',
 'disambiguationspage'	=> "{{ns:4}}:Liens_aux_pages_d'homonymie",
 'disambiguationstext'	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 'doubleredirects'	=> "Double redirection",
 'doubleredirectstext'	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
-'brokenredirects'	=> "Redirections cassées", 
-'brokenredirectstext'	=> "Ces redirections mènent a une page qui n'existe pas.",
-'selflinks'		=> "Page avec un lien circulaire",
-'selflinkstext'		=> "Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n'est pas permis.",
-'mispeelings'           => "Pages avec fautes d'orthographe",
-'mispeelingstext'               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
-'mispeelingspage'       => "Liste de fautes d'orthographe courantes",
+'brokenredirects'	=> 'Redirections cassées', 
+'brokenredirectstext'	=> 'Ces redirections mènent a une page qui n\'existe pas.',
+'selflinks'		=> 'Page avec un lien circulaire',
+'selflinkstext'		=> 'Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n\'est pas permis.',
+'mispeelings'           => 'Pages avec fautes d\'orthographe',
+'mispeelingstext'               => 'Les pages suivantes contiennent une faute d\'orthographe courante (la liste de celles-ci est sur $1). L\'orthographe correcte est peut-être (ceci).',
+'mispeelingspage'       => 'Liste de fautes d\'orthographe courantes',
 
 # les 3 messages suivants ne sont plus utilisés (plus de page Special:Intl)
 'missinglanguagelinks'  => 'Liens inter-langues manquants',
@@ -829,15 +842,15 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 # Email this user
 #
 'mailnologin' => 'Pas d\'adresse',
-"mailnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
+'mailnologintext' => 'Vous devez être [[Special:Userlogin|connecté]]
 et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
-pour pouvoir envoyer un message à un autre utilisateur.",
+pour pouvoir envoyer un message à un autre utilisateur.',
 'emailuser'  => 'Envoyer un message à cet utilisateur',
 'emailpage'  => 'Email user',
-"emailpagetext" => "Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
+'emailpagetext' => "Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
 L'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ \"Expéditeur\" de votre message, afin que le destinataire puisse vous répondre.",
-"noemailtitle" => "Pas d'adresse électronique",
-"noemailtext" => "Cet utilisateur n'a pas spécifié d'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.",
+'noemailtitle' => 'Pas d\'adresse électronique',
+'noemailtext' => "Cet utilisateur n'a pas spécifié d'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.",
 
 'emailfrom'  => 'Expéditeur',
 'emailto'  => 'Destinataire',
@@ -892,14 +905,14 @@ Les prochaines modifications de cette page et de la page discussion associée se
 'exbeforeblank' => "le contenu avant effacement était : '$1'",
 'exblank'	=> 'page vide',
 'confirmdelete' => 'Confirmer la suppression',
-"deletesub"	=> "(Suppression de \"$1\")",
-"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
-"confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
+'deletesub'	=> '(Suppression de "$1")',
+'historywarning' => 'Attention: La page que vous êtes sur le point de supprimer à un historique: ',
+'confirmdeletetext' => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
 Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:4}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
-"actioncomplete" => "Suppression effectuée",
-"deletedtext"	=> "\"$1\" a été supprimé.
-Voir $2 pour une liste des suppressions récentes.",
+'actioncomplete' => 'Suppression effectuée',
+'deletedtext'	=> '"$1" a été supprimé.
+Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle' => 'effacement de "$1"',
 'dellogpage'	=> 'Historique des effacements',
 'dellogpagetext' => 'Voici la liste des suppressions récentes.
@@ -915,14 +928,14 @@ L\'heure indiquée est celle du serveur (UTC).
 'rollback_short' => 'Révoquer',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
-"cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
-"alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[$1]]
+'cantrollback'	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
+'alreadyrolled'	=> "Impossible de révoquer la dernière modification de [[$1]]
 par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article. 
 
 La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
 #   only shown if there is an edit comment
-"editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
-"revertpage"	=> 'restitution de la dernière modification de $1',
+'editcomment' => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
+'revertpage'	=> 'restitution de la dernière modification de $1',
 'protectlogpage' => 'Log_de_protection',
 'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
 'protectedarticle' => 'a protégée [[$1]]',
@@ -989,8 +1002,8 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 
 # Block/unblock IP
 #
-"blockip"	=> "Bloquer une adresse IP",
-"blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
+'blockip'	=> 'Bloquer une adresse IP',
+'blockiptext'	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
 'ipaddress'	=> 'Adresse IP',
@@ -1001,13 +1014,13 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => "L'adresse IP \"$1\" a été bloquée.
 <br />Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
-"unblockip"	=> "Débloquer une adresse IP",
-"unblockiptext" => "Utilisez le formulaire ci-dessous pour rétablir l'accès en écriture
-à partir d'une adresse IP précédemment bloquée.",
-"ipusubmit"	=> "Débloquer cette adresse",
-"ipusuccess"	=> "Adresse IP \"$1\" débloquée",
-"ipblocklist"	=> "Liste des adresses IP bloquées",
-"blocklistline" => "$1, $2 a bloqué $3",
+'unblockip'	=> "Débloquer une adresse IP",
+'unblockiptext' => 'Utilisez le formulaire ci-dessous pour rétablir l\'accès en écriture
+à partir d\'une adresse IP précédemment bloquée.',
+'ipusubmit'	=> 'Débloquer cette adresse',
+'ipusuccess'	=> 'Adresse IP "$1" débloquée',
+'ipblocklist'	=> 'Liste des adresses IP bloquées',
+'blocklistline' => '$1, $2 a bloqué $3',
 'blocklink'	=> 'bloquer',
 'unblocklink'	=> 'débloquer',
 'contribslink'	=> 'contribs',
@@ -1042,7 +1055,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 "lockdbsuccesstext" => "La base de données de {{SITENAME}} est verrouillée.
 
 <br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
-"unlockdbsuccesstext" => "La base de données de {{SITENAME}} est déverrouillée.",
+'unlockdbsuccesstext' => 'La base de données de {{SITENAME}} est déverrouillée.',
 
 # Special:AskSQL
 #
@@ -1165,10 +1178,10 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 # Special:Import
 'import'	=> 'Importer des pages',
 'importfailed'	=> 'L\'import a échoué: $1',
-"importhistoryconflict" => "Des révisions dans l'historique existent et sont en conflits (cette page à peut être déjà été importée avant)",
-"importnotext"	=> "Vide ou sans texte",
-"importsuccess"	=> "L'import à réussi!",
-"importtext"	=> "Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.",
+'importhistoryconflict' => 'Des révisions dans l\'historique existent et sont en conflits (cette page à peut être déjà été importée avant)',
+'importnotext'	=> 'Vide ou sans texte',
+'importsuccess'	=> 'L\'import à réussi!',
+'importtext'	=> 'Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.',
 
 # Keyboard access keys for power users
 'accesskey-anontalk'		=> 'n',
@@ -1302,6 +1315,36 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'usercsspreview' => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille css et qu'elle n'a pas encore été enregistrée !'''",
 'userjspreview' => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
 'validate' => "Valider la page",
+
+# EXIF
+'exif-imagewidth' => 'Largeur',
+'exif-imagelength' => 'Hauteur',
+'exif-bitpersample' => 'bit par échantillon',
+'exif-compression' => 'Type de compression',
+'exif-samplesperpixel' => 'Nombre d\'échantillons',
+'exif-xresolution' => 'Résolution de l\'image en largeur',
+'exif-yresolution' => 'Résolution de l\'image en hauter',
+'exif-jpeginterchangeformat' => 'Position du SOI JPEG',
+'exif-jpeginterchangeformatlength' => 'Taille en octet des données JPEG',
+'exif-transferfunction' => 'Fonction de transfert',
+'exif-datetime' => 'Date et heure de changement du fichier',
+'exif-imagedescription' => 'Titre de l\image',
+'exif-make' => 'Fabricant de l\'appareil',
+'exif-model' => 'Modèle de l\'appareil',
+'exif-software' => 'Logiciel utilisé',
+'exif-artist' => 'Auteur',
+'exif-copyright' => 'Détenteur du copyright',
+'exif-exifversion' => 'Version exif',
+'exif-makernote' => 'Notes du fabricant',
+'exif-relatedsoundfile' => 'Fichier audio lié',
+'exif-flash' => 'Flash',
+'exif-whitebalance' => 'Balance des blancs',
+'exif-contrast' => 'Contraste',
+'exif-saturation' => 'Saturation',
+'exif-compression-1' => 'Sans compression',
+
+
+// exifgps:
 
 );
 
