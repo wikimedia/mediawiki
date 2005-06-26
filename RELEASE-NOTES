@@ -300,6 +300,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 1120) Updated the Czech translation
 * A new magic word, {{SCRIPTPATH}}, returns $wgScriptPath
 * A new magic word, {{SERVERNAME}}, returns $wgServerName
+* A new magic word, {{NUMBEROFFILES}}, returns the number of rows in the image table
 * Special:Imagelist displays titles with " " instead of "_"
 * Less gratuitous munging of content sample in delete summary
 * badaccess/badaccesstext to supercede sysop*, developer* messages

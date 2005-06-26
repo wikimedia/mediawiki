@@ -1885,6 +1885,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
+			case MAG_NUMBEROFFILES:
+				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfFiles() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -3379,6 +3381,20 @@ function wfNumberOfArticles() {
 
 	wfLoadSiteStats();
 	return $wgNumberOfArticles;
+}
+
+/**
+ * Return the number of files
+ */
+function wfNumberOfFiles() {
+	$fname = 'Parser::wfNumberOfFiles';
+	
+	wfProfileIn( $fname );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$res = $dbr->selectField('image', 'COUNT(*)', array(), $fname );
+	wfProfileOut( $fname );
+	
+	return $res;
 }
 
 /**
