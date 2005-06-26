@@ -13,6 +13,9 @@ require_once( 'WatchedItem.php' );
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
 
+# Serialized record version
+define( 'MW_USER_VERSION', 2 );
+
 /**
  *
  * @package MediaWiki
@@ -32,10 +35,12 @@ class User {
 	var $mRealName;
 	var $mHash;
 	var $mGroups;
+	var $mVersion; // serialized version
 
 	/** Construct using User:loadDefaults() */
 	function User()	{
 		$this->loadDefaults();
+		$this->mVersion = MW_USER_VERSION;
 	}
 
 	/**
@@ -526,6 +531,7 @@ class User {
 
 		$passwordCorrect = FALSE;
 		$user = $wgMemc->get( $key = "$wgDBname:user:id:$sId" );
+		if( $user->mVersion < MW_USER_VERSION ) $user = false;
 		if($makenew = !$user) {
 			wfDebug( "User::loadFromSession() unable to load from memcached\n" );
 			$user = new User();
