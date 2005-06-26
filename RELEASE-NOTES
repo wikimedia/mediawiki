@@ -337,6 +337,9 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2515) Fix incremental link table update
 * Removed some wikipedia-specifica from LanguageXx.php's
 * (bug 2496) Allow MediaWiki:edithelppage to point to external page
+* Added a versionRequired() function to OutputPage, useful for extension
+  writers that want to control what version of MediaWiki their extension
+  can be used with.
 
 === Caveats ===
 
