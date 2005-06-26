@@ -106,7 +106,12 @@ class Revision {
 	 */
 	function &newFromConds( $conditions ) {
 		$db =& wfGetDB( DB_SLAVE );
-		return Revision::loadFromConds( $db, $conditions );
+		$row = Revision::loadFromConds( $db, $conditions );
+		if( is_null( $row ) ) {
+			$dbw =& wfGetDB( DB_MASTER );
+			$row = Revision::loadFromConds( $dbw, $conditions );
+		}
+		return $row;
 	}
 	
 	/**
