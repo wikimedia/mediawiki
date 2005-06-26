@@ -371,6 +371,7 @@ Various bugfixes, small features, and a few experimental things:
 * Try reading revisions from master if no result on slave
 * (bug 2538) Suppress notice on user serialized checks
 * Fix paging on Special:Contributions
+* (bug 2541) Fix unprotect tab
 
 
 === Caveats ===
