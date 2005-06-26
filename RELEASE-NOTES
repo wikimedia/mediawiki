@@ -363,6 +363,9 @@ Various bugfixes, small features, and a few experimental things:
 * Experimental Latin-1-and-replication-friendly upgrader script
 * (bug 2520) Don't show enotif options when disabled
 
+== Changes since 1.5beta1 ==
+* (bug 2531) Changed the interwiki name for sh (Serbocroatian) to
+  Srpskohrvatski/Српскохрватски (was Српскохрватски (Srbskohrvatski))
 
 === Caveats ===
 
