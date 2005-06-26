@@ -431,7 +431,8 @@ function wfDebugDieBacktrace( $msg = '' ) {
 			$msg .= "\n<p>Backtrace:</p>\n$backtrace";
 		}
 	 }
-	 die( $msg );
+	 echo $msg;
+	 die( -1 );
 }
 
 function wfBacktrace() {
