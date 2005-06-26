@@ -531,7 +531,10 @@ class User {
 
 		$passwordCorrect = FALSE;
 		$user = $wgMemc->get( $key = "$wgDBname:user:id:$sId" );
-		if( $user->mVersion < MW_USER_VERSION ) $user = false;
+		if( !is_object( $user ) || $user->mVersion < MW_USER_VERSION ) {
+			# Expire old serialized objects; they may be corrupt.
+			$user = false;
+		}
 		if($makenew = !$user) {
 			wfDebug( "User::loadFromSession() unable to load from memcached\n" );
 			$user = new User();

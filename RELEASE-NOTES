@@ -366,6 +366,11 @@ Various bugfixes, small features, and a few experimental things:
 == Changes since 1.5beta1 ==
 * (bug 2531) Changed the interwiki name for sh (Serbocroatian) to
   Srpskohrvatski/Српскохрватски (was Српскохрватски (Srbskohrvatski))
+* Nonzero return code for command-line scripts on wfDebugDieBacktrace()
+* Conversion fix for empty old table in upgrade1_5.php
+* Try reading revisions from master if no result on slave
+* (bug 2538) Suppress notice on user serialized checks
+
 
 === Caveats ===
 
