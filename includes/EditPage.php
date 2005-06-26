@@ -40,12 +40,11 @@ class EditPage {
 	 * To turn the feature on, set $wgUseMetadataEdit = true ; in LocalSettings
 	 *  and set $wgMetadataWhitelist to the *full* title of the template whitelist
 	 */
-	function extractMetaDataFromArticle ()
-	{
+	function extractMetaDataFromArticle () {
 		global $wgUseMetadataEdit , $wgMetadataWhitelist , $wgLang ;
 		$this->mMetaData = '' ;
 		if ( !$wgUseMetadataEdit ) return ;
-		if ( $wgMetadataWhitelist == "" ) return ;
+		if ( $wgMetadataWhitelist == '' ) return ;
 		$s = '' ;
 		$t = $this->mArticle->getContent ( true ) ;
 
@@ -58,11 +57,11 @@ class EditPage {
 		foreach ( $t AS $key => $x )
 		{
 			$y = trim ( strtolower ( $x ) ) ;
-			while ( substr ( $y , 0 , 2 ) == "[[" )
+			while ( substr ( $y , 0 , 2 ) == '[[' )
 			{
-				$y = explode ( "]]" , trim ( $x ) ) ;
+				$y = explode ( ']]' , trim ( $x ) ) ;
 				$first = array_shift ( $y ) ;
-				$first = explode ( ":" , $first ) ;
+				$first = explode ( ':' , $first ) ;
 				$ns = array_shift ( $first ) ;
 				$ns = trim ( str_replace ( '[' , '' , $ns ) ) ;
 				if ( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
