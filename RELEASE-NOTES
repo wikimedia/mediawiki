@@ -663,7 +663,8 @@ pages for purposes of page relevancy ranking.
   rather than to ""
 * Latin: auto-grammar for -tio, -tionis endings in meta talk namespace
 * Fixed a typo in the Romanian language file (NS_MESIA => NS_MEDIA)
-
+* (bug 2531) Changed the interwiki name for sh (Serbocroatian) to
+  Srpskohrvatski/Српскохрватски (was Српскохрватски (Srbskohrvatski))
 
 === Caveats ===
 
