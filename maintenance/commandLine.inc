@@ -25,6 +25,7 @@ if ( !isset( $optionsWithArgs ) ) {
 }
 
 $self = array_shift( $argv );
+$self = __FILE__;
 $IP = realpath( dirname( $self ) . "/.." );
 chdir( $IP );
 
@@ -77,7 +78,11 @@ $wgCommandLineMode = true;
 @ob_end_flush();
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 
-if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
+if (!isset( $wgUseNormalUser ) ) {
+	$wgUseNormalUser = false;
+}
+
+if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$wgWikiFarm = true;
 	require_once( "$IP/includes/SiteConfiguration.php" );
 
@@ -109,7 +114,11 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 
 	# This is for the IRC scripts, which now run as the apache user
 	# The apache user doesn't have access to the wikiadmin_pass command
-	if ( $_ENV['USER'] != "apache" ) {
+	if ( $_ENV['USER'] == "apache" ) {
+		$wgUseNormalUser = true;
+	}
+
+	if ( !$wgUseNormalUser ) {
 		$wgDBuser = $wgDBadminuser = "wikiadmin";
 		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
 	}
@@ -120,7 +129,7 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	ini_set( "include_path", ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
 	require_once( "$IP/includes/Defines.php" );
-	require_once( "/home/wikipedia/common/php-1.4/CommonSettings.php" );
+	require_once( "$IP/CommonSettings.php" );
 } else {
 	$wgWikiFarm = false;
 	$settingsFile = "$IP/LocalSettings.php";
@@ -145,8 +154,6 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 @ob_end_flush();
 # Same with these
 $wgCommandLineMode = true;
-$wgDBuser = $wgDBadminuser;
-$wgDBpassword = $wgDBadminpassword;
 
 if ( !empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
 	$wgDBuser = $wgDBadminuser;
