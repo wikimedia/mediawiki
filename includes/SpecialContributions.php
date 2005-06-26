@@ -29,8 +29,7 @@ function wfSpecialContributions( $par = null ) {
 
 	# FIXME: Change from numeric offsets to date offsets
 	list( $limit, $offset ) = wfCheckLimits( 50, '' );
-	$offlimit = $limit + $offset;
-	$querylimit = $offlimit + 1;
+	$querylimit = $limit + 1;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 	$userCond = "";
@@ -99,7 +98,7 @@ function wfSpecialContributions( $par = null ) {
 		rev_deleted
 		FROM $page,$revision $use_index
 		WHERE page_id=rev_page AND $condition $minorQuery " .
-	  "ORDER BY rev_timestamp DESC LIMIT {$querylimit}";
+	  "ORDER BY rev_timestamp DESC " . $dbr->limitResult( $querylimit, $offset );
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
 
@@ -111,7 +110,7 @@ function wfSpecialContributions( $par = null ) {
 	$sl = wfViewPrevNext( $offset, $limit,
 	  $wgContLang->specialpage( "Contributions" ),
 	  "hideminor={$hideminor}&namespace={$namespace}&target=" . wfUrlEncode( $target ),
-	  ($numRows) <= $offlimit);
+	  ($numRows) <= $limit);
 
 	$shm = wfMsg( "showhideminor", $mlink );
 	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
@@ -123,9 +122,15 @@ function wfSpecialContributions( $par = null ) {
 	}
 
 	$wgOut->addHTML( "<ul>\n" );
+	$n = 0;
 	while( $obj = $dbr->fetchObject( $res ) ) {
+		if( ++$n > $limit ) {
+			// Extra row for determining 'next'ability, don't display
+			break;
+		}
 		$wgOut->addHTML( ucListEdit( $sk, $obj ) );
 	}
+	$dbr->freeResult( $res );
 	$wgOut->addHTML( "</ul>\n" );
 
 	$wgOut->addHTML( "<br />{$sl} ($shm)\n");
