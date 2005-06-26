@@ -370,6 +370,7 @@ Various bugfixes, small features, and a few experimental things:
 * Conversion fix for empty old table in upgrade1_5.php
 * Try reading revisions from master if no result on slave
 * (bug 2538) Suppress notice on user serialized checks
+* Fix paging on Special:Contributions
 
 
 === Caveats ===
