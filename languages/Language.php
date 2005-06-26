@@ -403,6 +403,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'history_short' => 'History',
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
+'print' => 'Print',
 'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',

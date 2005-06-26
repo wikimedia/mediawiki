@@ -710,7 +710,7 @@ class SkinTemplate extends Skin {
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
 			$content_actions['print'] = array(
 				'class' => false,
-				'text' => wfMsg( 'printableversion' ),
+				'text' => wfMsg( 'print' ),
 				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
 		}
 
