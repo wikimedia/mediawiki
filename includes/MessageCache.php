@@ -183,7 +183,7 @@ class MessageCache
 	}
 
 	/**
-	 * Obsolete
+	 * @deprecated
 	 */
 	function isCacheable( $key ) {
 		return true;
@@ -336,10 +336,21 @@ class MessageCache
 	function disableTransform() { $this->mDisableTransform = true; }
 	function enableTransform() { $this->mDisableTransform = false; }
 
+	/**
+	 * Add a message to the cache
+	 *
+	 * @param mixed $key
+	 * @param mixed $value
+	 */
 	function addMessage( $key, $value ) {
 		$this->mExtensionMessages[$key] = $value;
 	}
 
+	/**
+	 * Add an associative array of message to the cache
+	 *
+	 * @param array $messages An associative array of key => values to be added
+	 */
 	function addMessages( $messages ) {
 		foreach ( $messages as $key => $value ) {
 			$this->mExtensionMessages[$key] = $value;
