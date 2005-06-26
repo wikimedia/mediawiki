@@ -118,11 +118,6 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 		$wgUseNormalUser = true;
 	}
 
-	if ( !$wgUseNormalUser ) {
-		$wgDBuser = $wgDBadminuser = "wikiadmin";
-		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
-	}
-
 	putenv( "wikilang=$lang");
 
 	$DP = $IP;
@@ -130,6 +125,11 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 
 	require_once( "$IP/includes/Defines.php" );
 	require_once( "$IP/CommonSettings.php" );
+
+	if ( !$wgUseNormalUser ) {
+		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
+	}
 } else {
 	$wgWikiFarm = false;
 	$settingsFile = "$IP/LocalSettings.php";
@@ -155,7 +155,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 # Same with these
 $wgCommandLineMode = true;
 
-if ( !empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
+if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
 	$wgDBuser = $wgDBadminuser;
 	$wgDBpassword = $wgDBadminpassword;
 
