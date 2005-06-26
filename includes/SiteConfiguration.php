@@ -1,8 +1,6 @@
 <?php
 /**
- *This file is used to configure the live Wikimedia wikis. The file that
- * includes it contains passwords and other sensitive data, and there's
- * currently no public equivalent.
+ * This is a class used to hold configuration settings, particularly for multi-wiki sites. 
  *
  * @package MediaWiki
  */
@@ -21,8 +19,11 @@ if (!defined('SITE_CONFIGURATION')) {
 define('SITE_CONFIGURATION', 1);
 
 class SiteConfiguration {
-	var $suffixes, $wikis, $settings;
-	var $localDatabases;
+	var $suffixes = array();
+	var $wikis = array();
+	var $settings = array();
+	var $localDatabases = array();
+	var $localVHosts = array();
 	
 	function get( $setting, $wiki, $suffix, $params = array() ) {
 		if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
@@ -91,6 +92,10 @@ class SiteConfiguration {
 			}
 		}
 		return array( $site, $lang );
+	}
+
+	function isLocalVHost( $vhost ) {
+		return in_array( $vhost, $this->localVHosts );
 	}
 }
 }

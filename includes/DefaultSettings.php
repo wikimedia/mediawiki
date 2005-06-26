@@ -17,6 +17,13 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki and is not a valid entry point\n" );
 }
 
+/** 
+ * Create a site configuration object
+ * Not used for much in a default install
+ */ 
+require_once( 'includes/SiteConfiguration.php' );
+$wgConf = new SiteConfiguration;
+
 /** MediaWiki version number */
 $wgVersion			= '1.5beta1';
 
@@ -1540,5 +1547,9 @@ $wgTrustedMediaFormats= array(
  */
 $wgAllowSpecialInclusion = true;
 
+/**
+ * Timeout for HTTP requests done via CURL
+ */
+$wgHTTPTimeout = 3;
 
 ?>
