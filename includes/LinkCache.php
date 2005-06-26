@@ -181,6 +181,7 @@ class LinkCache {
 	 * @param Title $fromtitle
 	 */
 	function preFill( &$fromtitle ) {
+		global $wgAntiLockFlags;
 		$fname = 'LinkCache::preFill';
 		wfProfileIn( $fname );
 
@@ -196,7 +197,11 @@ class LinkCache {
 		
 		if ( $this->mForUpdate ) {
 			$db =& wfGetDB( DB_MASTER );
-			$options = 'FOR UPDATE';
+			if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
+				$options = 'FOR UPDATE';
+			} else {
+				$options = '';
+			}
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
