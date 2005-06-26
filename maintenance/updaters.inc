@@ -649,7 +649,7 @@ function do_all_updates() {
 	do_image_name_unique_update(); flush();
 	do_watchlist_update(); flush();
 	do_user_update(); flush();
-	do_copy_newtalk_to_watchlist(); flush();
+######	do_copy_newtalk_to_watchlist(); flush();
 	do_logging_encoding(); flush();
 	
 	do_schema_restructuring(); flush();
