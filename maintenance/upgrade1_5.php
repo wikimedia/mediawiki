@@ -30,9 +30,7 @@ class FiveUpgrade {
 		$this->conversionTables = $this->prepareWindows1252();
 		
 		$this->dbw =& $this->newConnection();
-		$this->dbr =& $this->newConnection();
-		$this->dbr->bufferResults( false );
-		$this->slave =& wfGetDB( DB_SLAVE );
+		$this->dbr =& $this->streamConnection();
 		
 		$this->cleanupSwaps = array();
 		$this->emailAuth = false; # don't preauthenticate emails
@@ -74,9 +72,7 @@ class FiveUpgrade {
 	
 	
 	/**
-	 * Open a second connection to the master server, with buffering off.
-	 * This will let us stream large datasets in and write in chunks on the
-	 * other end.
+	 * Open a connection to the master server with the admin rights.
 	 * @return Database
 	 * @access private
 	 */
@@ -84,6 +80,22 @@ class FiveUpgrade {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBserver, $wgDBname;
 		$db =& new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		return $db;
+	}
+	
+	/**
+	 * Open a second connection to the master server, with buffering off.
+	 * This will let us stream large datasets in and write in chunks on the
+	 * other end.
+	 * @return Database
+	 * @access private
+	 */
+	function &streamConnection() {
+		$timeout = 3600 * 24;
+		$db =& $this->newConnection();
+		$db->bufferResults( false );
+		$db->query( "SET net_read_timeout=$timeout" );
+		$db->query( "SET net_write_timeout=$timeout" );
 		return $db;
 	}
 	
