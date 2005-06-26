@@ -20,9 +20,10 @@ function wfGetHTTP( $url, $timeout = 'default' ) {
 		}
 		curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
 		ob_start();
-		curl_exec();
+		curl_exec( $c );
 		$text = ob_get_contents();
 		ob_end_clean();
+		curl_close( $c );
 	} else {
 		# Otherwise use file_get_contents, or its compatibility function from GlobalFunctions.php
 		# This may take 3 minutes to time out, and doesn't have local fetch capabilities
