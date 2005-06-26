@@ -822,7 +822,9 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 'allpagesnext' => "Suivant",
 'allpagesprev' => "Précédent",
 'allpagessubmit' => "Valider",
-
+'allpagesformtext1' => 'Montrer les pages à partir de : $1',
+'allpagesformtext2' => 'Choisissez l\'espace : $1 $2',
+'allpagesnamespace' => '(articles)',
 
 # Email this user
 #
@@ -1266,6 +1268,26 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'contributions' => 'Basé sur le travail de $1.',
 'siteusers'	=> 'Utilisateur(s) $1 de {{SITENAME}}',
 'creditspage' => 'Page crédits',
+
+# confirmemail
+'confirmemail' => 'Confirmer email',
+'confirmemail_text' => 'Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L\'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.',
+'confirmemail_send' => 'Envoyer un code de confirmation',
+'confirmemail_sent' => 'Email de confirmation envoyé',
+'confirmemail_sendfailed' => 'Impossible d\'envoyer l\'email de confirmation. Vérifiez votre adresse.',
+'confirmemail_invalid' => 'Code de confirmation incorrect. Le code a peut être expiré',
+'confirmemail_success' => 'Votre email est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
+'confirmemail_loggedin' => 'Votre adresse est maintenant confirmée',
+'confirmemail_error' => 'Un problème est survenu en voulant enregistrer votre confirmation',
+'confirmemail_subject' => '{{SITENAME}} email address confirmation',
+'confirmemail_body' => 'Quelqu\'un, probablement vous avec l\'adresse email $1, a enregistré un compte "$2" avec cette email sur le site {{SITENAME}}.
+
+Pour confirmer que ce compte vous appartiens vraiment et activer les fonctionalités de messagerie sur {{SITENAME}}, veuillez ouvrir le lien ci dessous dans votre navigateur :
+
+$3
+
+Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation expirera le $4.',
+
 
 # Math
 'mw_math_png' => "Toujours produire une image PNG",  
