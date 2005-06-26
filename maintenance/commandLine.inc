@@ -92,7 +92,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	if ( empty( $wgNoDBParam ) ) {
 		# Check if we were passed a db name
 		$db = array_shift( $args );
-		list( $site, $lang ) = $conf->siteFromDB( $db );
+		list( $site, $lang ) = $wgConf->siteFromDB( $db );
 
 		# If not, work out the language and site the old way
 		if ( is_null( $site ) || is_null( $lang ) ) {
