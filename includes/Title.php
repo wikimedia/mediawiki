@@ -1992,9 +1992,12 @@ class Title {
 	 * have description pages in the database, but the description page contains 
 	 * useful history information that the user may want to link to.
 	 * 
+	 * Interwiki links are not in this category because of icky pass-interaction 
+	 * issues. Anything containing http:// gets mangled later. Local URLs use
+	 * relative paths.
 	 */
 	function isAlwaysKnown() {
-		return $this->isExternal() || ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
+		return  ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) 
 		  || NS_SPECIAL == $this->mNamespace || NS_IMAGE == $this->mNamespace;
 	}
 
