@@ -1426,7 +1426,7 @@ class Parser
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
-			if( $nt->isLocal() && $nt->isAlwaysKnown() ) {
+			if( !$nt->isExternal() && $nt->isAlwaysKnown() ) {
 				/**
 				 * Skip lookups for special pages and self-links.
 				 * External interwiki links are not included here because
@@ -1464,14 +1464,14 @@ class Parser
 			
 			if ( $nt->isExternal() ) {
 				$nr = array_push( $this->mInterwikiLinkHolders['texts'], $prefix.$text.$inside );
-				$this->mInterwikiLinkHolders['titles'][] =& $nt;
+				$this->mInterwikiLinkHolders['titles'][] = $nt;
 				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
 			} else {
 				$nr = array_push( $this->mLinkHolders['namespaces'], $nt->getNamespace() );
 				$this->mLinkHolders['dbkeys'][] = $nt->getDBkey();
 				$this->mLinkHolders['queries'][] = $query;
 				$this->mLinkHolders['texts'][] = $prefix.$text.$inside;
-				$this->mLinkHolders['titles'][] =& $nt;
+				$this->mLinkHolders['titles'][] = $nt;
 
 				$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
 			}
