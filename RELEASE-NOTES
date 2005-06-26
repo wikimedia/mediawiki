@@ -330,7 +330,7 @@ Various bugfixes, small features, and a few experimental things:
 * Trim whitespace from option values to weather line-ending corruption problems
 * Fixed a typo in the Romanian language file (NS_MESIA => NS_MEDIA)
 * (bug 2504) Updated the Finnish translation
-* (bug 2506) Updated the Nynorsk translation
+* (bug 2506, 2512) Updated the Nynorsk translation
 * (bug 996) Replace $wgWhitelistEdit with 'edit' permission; fixup UPGRADE
   documentation about edit and read whitelists.
 * (bug 2515) Fix incremental link table update

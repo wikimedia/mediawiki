@@ -656,7 +656,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 # group editing
 'groups-editgroup'      => 'Endre gruppe',
 'groups-addgroup'       => 'Legg til gruppe',
-'groups-editgroup-preamble' => 'Dersom namnet eller skildringa byrjar med ein kolon så vil resten tolkast som eit systemmeldingsnamn og dermed bli omsett gjennom MediaWiki-namnerommet.',
+'groups-editgroup-preamble' => 'Dersom namnet eller skildringa byrjar med ein kolon så vil resten bli tolka som eit systemmeldingsnamn og dermed bli omsett gjennom MediaWiki-namnerommet.',
 'groups-editgroup-name' => 'Gruppenamn: ',
 'groups-editgroup-description' => 'Gruppeskildring (maks 255 teikn):<br />',
 'savegroup'             => 'Lagre gruppe',
@@ -735,7 +735,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 
 Sjå [[Help:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet verkar og korleis ein bruker filer på wikisider.
 
-For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen som opnar ein standarddialog for val av fil. Når du vel ei fil, vil namnet på denne fila dukke opp i tekstfeltet ved sida av knappen. Skriv inn \'\'\'all\'\'\' nødvendig informasjon i \'\'Samandrag\'\' feltet, kryss av at du ikkje bryt nokon sin opphavsrett, og klikk til slutt på \'\'Last opp fil\'\'.',
+For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen som opnar ein standarddialog for val av fil. Når du vel ei fil, vil namnet på denne fila dukke opp i tekstfeltet ved sida av knappen. Skriv inn \'\'\'all\'\'\' nødvendig informasjon i \'\'Samandrag\'\'-feltet, kryss av at du ikkje bryt nokon sin opphavsrett, og klikk til slutt på \'\'Last opp fil\'\'.',
 'uploadlog'             => 'opplastingslogg',
 'uploadlogpage'         => 'Opplastingslogg',
 'uploadlogpagetext'     => 'Dette er ei liste over filer som nyleg er lasta opp.',
@@ -1113,9 +1113,9 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 'lockdb'		=> 'Skrivevern (lock) database',
 'unlockdb'		=> 'Opphev skrivevern (unlock) av databasen',
 'lockdbtext'	        => 'Å skriveverne databasen vil gjere det umogleg for alle brukarar å endre sider, brukarinnstillingar, overvakingslister og andre ting som krev endringar i databasen. Stadfest at du ønskjer å gjera dette, og at du vil låse opp databasen att når vedlikehaldet er ferdig.',
-'unlockdbtext'	        => 'Å oppheve skrivevernet på databasen fører til at alle brukarar kan endre sider, brukarinnstillingar, overvakingslister og andre ting som krev endringar i databasen att. Stadfest at du ønskjer å gjera dette.',
+'unlockdbtext'	        => 'Å oppheva skrivevernet på databasen fører til at alle brukarar kan endre sider, brukarinnstillingar, overvakingslister og andre ting som krev endringar i databasen att. Stadfest at du ønskjer å gjera dette.',
 'lockconfirm'	        => 'Ja, eg vil verkeleg skriveverne databasen.',
-'unlockconfirm'	        => 'Ja, eg vil verkeleg oppheve skrivevernet på databasen.',
+'unlockconfirm'	        => 'Ja, eg vil verkeleg oppheva skrivevernet på databasen.',
 'lockbtn'		=> 'Skrivevern databasen',
 'unlockbtn'		=> 'Opphev skrivevern på databasen',
 'locknoconfirm'         => 'Du har ikkje stadfest handlinga.',
@@ -1156,7 +1156,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 'val_list_header'       => '<th>nr.</th><th>Emne</th><th>Målestokk</th><th>Handling</th>',
 'val_add'               => 'Legg til',
 'val_del'               => 'Slett',
-'val_show_my_ratings'   => 'Vis mine vurderingar',
+'val_show_my_ratings'   => 'Vis vurderingane mine',
 'val_revision_number'   => 'Versjons-ID $1',
 'val_warning'           => 'Endringar må berre skje i samsvar med konsensus i brukarsamfunnet!',
 'val_rev_for'           => 'Versjonar for $1',
@@ -1195,9 +1195,9 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 # Move page
 #
 'movepage'		=> 'Flytt side',
-'movepagetext'	        => 'Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+'movepagetext'	        => 'Ved å bruke skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet. Den gamle tittelen vil bli ei omdirigeringsside til den nye tittelen. Lenkjer til den gamle tittelen vil ikkje bli endra. Pass på å sjekke for doble eller dårlege omdirigeringar. Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
 
-Merk at sida \'\'\'ikkje\'\'\' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytta frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
+Merk at sida \'\'\'ikkje\'\'\' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
 
 <b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.',
 'movepagetalktext'      => 'Den tilhøyrande diskusjonssida, om ho finst, vil automatisk bli flytt med sida \'\'\'med mindre:\'\'\'
@@ -1222,20 +1222,20 @@ I desse falla lyt du flytte eller flette saman sida manuelt. Om det ikkje er mog
 '1movedto2'		        => '«[[$1]]» flytt til «[[$2]]»',
 '1movedto2_redir'       => '«[[$1]]» flytt over omdirigering til «[[$2]]»',
 'movelogpage'           => 'Flyttelogg',
-'movelogpagetext'       => 'Under er ei liste over sider som er flytta.',
+'movelogpagetext'       => 'Under er ei liste over sider som er flytte.',
 'movereason'            => 'Grunngjeving',
 'revertmove'            => 'attende',
 'delete_and_move'       => 'Slett og flytt',
 'delete_and_move_text'  => '== Sletting påkrevd ==
 
-Målsida «[[$1]]» finns allereie. Vil du sletta ho for å gjera rom for flytting?',
-'delete_and_move_reason' => 'Sletta for å gjera rom for flytting',
-'selfmove'              => 'Kjelde- og måltitlane er like; kan ikkje flytta sida over seg sjølv.',
+Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
+'delete_and_move_reason' => 'Sletta for å gje rom for flytting',
+'selfmove'              => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
 'immobile_namespace'    => 'Måltittelen høyrer til eit namnerom som gjer at sida ikkje kan flyttast dit.',
 
 # Export
 'export'		=> 'Eksporter sider',
-'exporttext'	        => 'Du kan eksportere teksten og redigeringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er ikkje støtte for dette i denne versjonen av MediaWiki.
+'exporttext'	        => 'Du kan eksportere teksten og redigeringshistorikken til ei side eller ein serie sider, pakka inn i litt XML. I framtida kan det hende at dette att kan bli importert til ei anna wiki som brukar MediaWiki-programvaren, men det er det ikkje støtte for dette i denne versjonen av MediaWiki.
 
 For å eksportere sider, skriv tittelen i tekstboksen nedanfor, ein tittel per line, og vel om du vil ha med alle versjonane eller berre siste versjon.
 
@@ -1258,7 +1258,7 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 
 # Special:Import
 'import'	            => 'Importer sider',
-'importinterwiki'       => 'Transwiki import',
+'importinterwiki'       => 'Transwikiimport',
 'importtext'	        => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
 For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
 'importfailed'	        => 'Importeringa var mislukka: $1',
@@ -1349,7 +1349,7 @@ ta[\'pt-anonuserpage\']         = new Array(\'.\',\'Brukarsida for ip-adressa du
 ta[\'pt-mytalk\']               = new Array(\'n\',\'Diskusjonssida mi\'); 
 ta[\'pt-anontalk\']             = new Array(\'n\',\'Diskusjon om endringar gjorde av denne ip-adressa\'); 
 ta[\'pt-preferences\']          = new Array(\'\',\'Innstillingane mine\'); 
-ta[\'pt-watchlist\']            = new Array(\'l\',\'Lista over sidene du overvakar.\'); 
+ta[\'pt-watchlist\']            = new Array(\'l\',\'Liste over sidene du overvakar.\'); 
 ta[\'pt-mycontris\']            = new Array(\'y\',\'Liste over bidraga mine\'); 
 ta[\'pt-login\']                = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\'); 
 ta[\'pt-anonlogin\']            = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\'); 
@@ -1416,7 +1416,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'passwordtooshort'     => 'Passordet er for kort. Det må vera minst $1 teikn langt.',
 
 # Media Warning
-'mediawarning'         => '\'\'\'Åtvaring\'\'\': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt verte skadelidande.
+'mediawarning'         => '\'\'\'Åtvaring\'\'\': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.
 <hr>',
 
 'fileinfo'             => '$1KB, MIME-type: <code>$2</code>',
@@ -1436,9 +1436,9 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'exif-ycbcrpositioning' => 'Y- og C-posisjon',
 'exif-xresolution'     => 'Oppløysing i breidda',
 'exif-yresolution'     => 'Oppløysing i høgda',
-'exif-resolutionunit'  => 'Eining for X og Y oppløysing',
+'exif-resolutionunit'  => 'Eining for X- og Y-oppløysing',
 'exif-jpeginterchangeformatlength' => 'Byte JPEG-data',
-'exif-referenceblackwhite' => 'Svart og kvit referanseverdipar',
+'exif-referenceblackwhite' => 'Svart og kvitt referanseverdipar',
 'exif-datetime'        => 'Dato og tid endra',
 'exif-imagedescription' => 'Tittel',
 'exif-make'            => 'Kameraprodusent',
@@ -1586,7 +1586,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'exif-exposuremode-0'   => 'Autoeksponert',
 'exif-exposuremode-1'   => 'Manuelt eksponert',
 
-'exif-whitebalance-0'   => 'Auto kvitbalanse',
+'exif-whitebalance-0'   => 'Automatisk kvitbalanse',
 'exif-whitebalance-1'   => 'Manuell kvitbalanse',
 
 'exif-scenecapturetype-0' => 'Standard',
