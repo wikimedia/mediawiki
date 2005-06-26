@@ -64,6 +64,11 @@ Note that you can disable/enable several other permissions by modifying
 this configuration array in your LocalSettings.php; see DefaultSettings.php
 for the complete default permission set.
 
+If using Memcached, you must enabled it differently now:
+  $wgUseMemCached = true;
+should be replaced with:
+  $wgMainCacheType = CACHE_MEMCACHED;
+
 
 === Web installer ===
 
