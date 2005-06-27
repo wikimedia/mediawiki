@@ -396,7 +396,7 @@ class Parser
 		# gallery
 		$text = Parser::extractTags('gallery', $text, $gallery_content, $uniq_prefix);
 		foreach( $gallery_content as $marker => $content ) {
-			require_once( 'ImageGallery.php' );
+			require_once( 'ImageGallery.php' ); // FIXME require in a foreach ?
 			if ( $render ) {
 				$gallery_content[$marker] = Parser::renderImageGallery( $content );
 			} else {
@@ -3170,10 +3170,10 @@ class Parser
 		$caption = '';
 
 		$width = $height = $framed = $thumb = false;
-		$manual_thumb = "" ;
+		$manual_thumb = '' ;
 
 		foreach( $part as $key => $val ) {
-			$val_parts = explode ( "=" , $val , 2 ) ;
+			$val_parts = explode ( '=' , $val , 2 ) ;
 			$left_part = array_shift ( $val_parts ) ;
 			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
 				$thumb=true;
