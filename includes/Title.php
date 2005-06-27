@@ -1627,7 +1627,7 @@ class Title {
 		
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
-			wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
+			wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
 			true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
@@ -1702,7 +1702,7 @@ class Title {
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
-			wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
+			wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
 			true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
