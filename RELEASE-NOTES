@@ -381,6 +381,14 @@ Various bugfixes, small features, and a few experimental things:
 * Try reading revision _text_ from master if no result on slave
 * Use content-language message cache for raw view of message pages
 * (bug 2530) Not displaying talk pages on Special:Watchlist/edit
+* Fixed a bug that would occour if $wgCapitalLinks was set to false, a user
+  agent could create a username that began with a lower case letter that was
+  not in the ASCII character set ( now user $wgContLang->ucfirst() instead of
+  PHP ucfirst() )
+* Moved the user name / password validity checking from
+  LoginForm::addNewAccountInternal() to two new functions,
+  User::isValidUserName() and User::isValidPassword(), extensions can now do
+  these checks without rewriting code.
 
 
 === Caveats ===

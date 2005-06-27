@@ -163,8 +163,44 @@ class User {
 	}
 
 	/**
+	 * Is the input a valid username?
+	 *
+	 * Checks if the input is a valid username, we don't want an empty string,
+	 * an IP address, anything that containins slashes (would mess up subpages),
+	 * is longer than the maximum allowed username size or doesn't begin with
+	 * a capital letter.
+	 *
+	 * @param string $name
+	 * @return bool
+	 */
+	function isValidUserName( $name ) {
+		global $wgContLang, $wgMaxNameChars;
+		
+		if ( $name == ''
+		|| $this->isIP( $name )
+		|| strpos( $name, '/' ) !== false
+		|| strlen( $name ) > $wgMaxNameChars
+		|| $name != $wgContLang->ucfirst( $name ) )
+			return false;
+		else
+			return true;
+	}
+
+	/**
+	 * Is the input a valid password?
+	 *
+	 * @param string $password
+	 * @return bool
+	 */
+	function isValidPassword( $password ) {
+		global $wgMinimalPasswordLength;
+		return strlen( $password ) >= $wgMinimalPasswordLength;
+	}
+
+	/**     
 	 * does the string match roughly an email address ?
 	 *
+	 * @todo Check for RFC 2822 compilance
 	 * @bug 959
 	 *
 	 * @param string $addr email address
