@@ -380,6 +380,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2273) deletion log comment used user interface langage
 * Try reading revision _text_ from master if no result on slave
 * Use content-language message cache for raw view of message pages
+* (bug 2530) Not displaying talk pages on Special:Watchlist/edit
 
 
 === Caveats ===
