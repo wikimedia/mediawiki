@@ -396,7 +396,7 @@ class Parser
 		# gallery
 		$text = Parser::extractTags('gallery', $text, $gallery_content, $uniq_prefix);
 		foreach( $gallery_content as $marker => $content ) {
-			require_once( 'ImageGallery.php' ); // FIXME require in a foreach ?
+			require_once( 'ImageGallery.php' );
 			if ( $render ) {
 				$gallery_content[$marker] = Parser::renderImageGallery( $content );
 			} else {
