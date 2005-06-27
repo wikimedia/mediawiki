@@ -490,6 +490,7 @@ class SkinTemplate extends Skin {
 		}
 		if( $checkEdit && $title->getArticleId() == 0 ) {
 			$classes[] = 'new';
+			$query = 'action=edit';
 		}
 		return array(
 			'class' => implode( ' ', $classes ),
