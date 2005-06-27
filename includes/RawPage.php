@@ -112,7 +112,7 @@ class RawPage {
 		if( $this->mTitle ) {
 			# Special case for MediaWiki: messages; we can hit the message cache.
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
-				$rawtext = wfMsg( $this->mTitle->getDbkey() );
+				$rawtext = wfMsgForContent( $this->mTitle->getDbkey() );
 				return $rawtext;
 			}
 			
