@@ -1117,19 +1117,18 @@ function wfGetSiteNotice() {
 	wfProfileIn( $fname );
 
 	$notice = wfMsg( 'sitenotice' );
-	if($notice == '&lt;sitenotice&gt;') $notice = '';
-	# Allow individual wikis to turn it off
-	if ( $notice == '-' ) {
+	if( $notice == '&lt;sitenotice&gt;' || $notice == '-' ) {
 		$notice = '';
-	} else {
-		if ($notice == '') {
-			$notice = $wgSiteNotice;
-		}
-		if($notice != '-' && $notice != '') {
-			$specialparser = new Parser();
-			$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
-			$notice = $parserOutput->getText();
-		}
+	}
+	if( $notice == '' ) {
+		# We may also need to override a message with eg downtime info
+		# FIXME: make this work!
+		$notice = $wgSiteNotice;
+	}
+	if($notice != '-' && $notice != '') {
+		$specialparser = new Parser();
+		$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
+		$notice = $parserOutput->getText();
 	}
 	wfProfileOut( $fname );
 	return $notice;
