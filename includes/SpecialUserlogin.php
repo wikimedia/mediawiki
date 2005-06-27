@@ -159,9 +159,8 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgMaxNameChars, $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
-		global $wgMinimalPasswordLength;
 		global $wgAuth;
 
 		// If the user passes an invalid domain, something is fishy
@@ -183,8 +182,6 @@ class LoginForm {
 			}
 		}
 
-
-
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return false;
@@ -205,16 +202,11 @@ class LoginForm {
 		
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
-		if ( is_null( $u ) ||
-		  ( '' == $name ) ||
-		  $wgUser->isIP( $name ) ||
-		  (strpos( $name, '/' ) !== false) ||
-		  (strlen( $name ) > $wgMaxNameChars) ||
-		  ucFirst($name) != $u->getName() ) 
-		{
+		if ( is_null( $u ) || !$wgUser->isValidUserName( $name ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}
+		
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return false;
@@ -225,7 +217,7 @@ class LoginForm {
 			return false;
 		}
 
-		if ( strlen( $this->mPassword ) < $wgMinimalPasswordLength ) {
+		if ( !$wgUser->isValidPassword( $this->mPassword ) ) {
 			$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
 			return false;
 		}
