@@ -181,7 +181,8 @@ class EditPage {
 		} else if ( $this->diff ) {
 			$this->editForm( 'diff' );
 		} else { # First time through
-			if( $wgUser->getOption('previewonfirst') ) {
+			if( $wgUser->getOption('previewonfirst') 
+				or $this->mTitle->getNamespace() == NS_CATEGORY ) {
 				$this->editForm( 'preview', true );
 			} else {
 				$this->extractMetaDataFromArticle () ;
@@ -584,6 +585,9 @@ class EditPage {
 			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
 			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $previewOutput );
+				if($this->mTitle->getNamespace() == NS_CATEGORY) {
+					$this->mArticle->closeShowCategory();
+				}				
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
@@ -759,7 +763,7 @@ END
 					$wgTitle, $parserOptions );		
 			
 			$previewHTML = $parserOutput->mText;
-
+			
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
 			return $previewhead . $previewHTML;
