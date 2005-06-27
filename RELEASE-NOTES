@@ -389,7 +389,7 @@ Various bugfixes, small features, and a few experimental things:
   LoginForm::addNewAccountInternal() to two new functions,
   User::isValidUserName() and User::isValidPassword(), extensions can now do
   these checks without rewriting code.
-
+* Fix $wgSiteNotice when MediaWiki:Sitenotice is set to default '-'
 
 === Caveats ===
 
