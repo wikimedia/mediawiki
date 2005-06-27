@@ -2298,7 +2298,7 @@ class Language {
 	function getLanguageName( $code ) {
 		global $wgLanguageNamesEn;
 		if ( ! array_key_exists( $code, $wgLanguageNamesEn ) ) {
-			return "";
+			return '';
 		}
 		return $wgLanguageNamesEn[$code];
 	}
