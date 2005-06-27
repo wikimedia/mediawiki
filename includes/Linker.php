@@ -419,7 +419,9 @@ class Linker {
 				$width = $img->getWidth() * $height / $img->getHeight();
 			}
 			if ( '' == $manual_thumb ) {
-				$url = $img->createThumb( $width );
+				$thumb = $img->getThumbnail( $width );
+				$height = $thumb->height;
+				$url = $thumb->getUrl( );
 			}
 		}
 
@@ -429,7 +431,9 @@ class Linker {
 			//$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
-				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
+				 '<img src="'.$url.'" alt="'.$alt.'" ' .
+				 'width="'.$width.'" height="'.$height.'" ' .
+				 'longdesc="'.$u.'" /></a>';
 		}
 		if ( '' != $align ) {
 			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";

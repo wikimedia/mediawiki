@@ -376,6 +376,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 1242) category list now show on edit page
 * Skip sidebar entries where link text is '-'
 * Convert non-UTF-8 URL parameters even if referer is local
+* (bug 2460) <img> width & height properly filled when resizing image
 
 
 === Caveats ===
