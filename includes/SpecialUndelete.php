@@ -269,9 +269,9 @@ class PageArchive {
 		# Touch the log!
 		$log = new LogPage( 'delete' );
 		if( $restoreAll ) {
-			$reason = "";
+			$reason = '';
 		} else {
-			$reason = wfMsg( 'undeletedrevisions', $restoreRevisions );
+			$reason = wfMsgForContent( 'undeletedrevisions', $restoreRevisions );
 		}
 		$log->addEntry( 'restore', $this->title, $reason );
 
