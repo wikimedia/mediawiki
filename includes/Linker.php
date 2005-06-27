@@ -420,8 +420,10 @@ class Linker {
 			}
 			if ( '' == $manual_thumb ) {
 				$thumb = $img->getThumbnail( $width );
-				$height = $thumb->height;
-				$url = $thumb->getUrl( );
+				if ( $thumb ) {
+					$height = $thumb->height;
+					$url = $thumb->getUrl( );
+				}
 			}
 		}
 
