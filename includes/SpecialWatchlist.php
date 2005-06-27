@@ -139,8 +139,10 @@ function wfSpecialWatchlist( $par ) {
 			$list[$s->wl_namespace][] = $s->wl_title;
 		}
 		
-		// TODO: Display a t TOC
+		// TODO: Display a TOC
 		foreach($list as $ns => $titles) {
+			if (Namespace::isTalk($ns))
+				continue;
 			if ($ns != NS_MAIN) 
 				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
 			$wgOut->addHTML( '<ul>' );
