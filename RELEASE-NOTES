@@ -364,6 +364,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2520) Don't show enotif options when disabled
 
 == Changes since 1.5beta1 ==
+
 * (bug 2531) Changed the interwiki name for sh (Serbocroatian) to
   Srpskohrvatski/Српскохрватски (was Српскохрватски (Srbskohrvatski))
 * Nonzero return code for command-line scripts on wfDebugDieBacktrace()
@@ -374,6 +375,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2541) Fix unprotect tab
 * (bug 1242) category list now show on edit page
 * Skip sidebar entries where link text is '-'
+* Convert non-UTF-8 URL parameters even if referer is local
 
 
 === Caveats ===
