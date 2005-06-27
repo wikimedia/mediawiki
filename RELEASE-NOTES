@@ -372,7 +372,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2538) Suppress notice on user serialized checks
 * Fix paging on Special:Contributions
 * (bug 2541) Fix unprotect tab
-
+* (bug 1242) category list now show on edit page
 
 === Caveats ===
 
