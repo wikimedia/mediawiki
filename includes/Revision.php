@@ -548,6 +548,14 @@ class Revision {
 			array( 'old_id' => $this->getTextId() ),
 			$fname);
 		
+		if( !$row ) {
+			$dbw =& wfGetDB( DB_MASTER );
+			$row = $dbw->selectRow( 'text',
+				array( 'old_text', 'old_flags' ),
+				array( 'old_id' => $this->getTextId() ),
+				$fname);
+		}
+		
 		$text = Revision::getRevisionText( $row );
 		wfProfileOut( $fname );
 		

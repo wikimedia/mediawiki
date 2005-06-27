@@ -378,6 +378,9 @@ Various bugfixes, small features, and a few experimental things:
 * Convert non-UTF-8 URL parameters even if referer is local
 * (bug 2460) <img> width & height properly filled when resizing image
 * (bug 2273) deletion log comment used user interface langage
+* Try reading revision _text_ from master if no result on slave
+* Use content-language message cache for raw view of message pages
+
 
 === Caveats ===
 
