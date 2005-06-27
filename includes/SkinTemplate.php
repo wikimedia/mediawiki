@@ -739,9 +739,13 @@ class SkinTemplate extends Skin {
 			} else {
 				if (strpos($line, '|') !== false) { // sanity check
 					$line = explode( '|' , trim($line, '* '), 2 );
+					$link = wfMsgForContent( $line[0] );
+					if( $link == '-' ) {
+						continue;
+					}
 					$bar[$heading][] = array(
 						'text' => wfMsg( $line[1] ),
-						'href' => $this->makeInternalOrExternalUrl( wfMsgForContent( $line[0] ) ),
+						'href' => $this->makeInternalOrExternalUrl( $link ),
 						'id' => 'n-' . $line[1],
 					);
 				} else { continue; }
