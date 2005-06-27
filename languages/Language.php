@@ -520,14 +520,14 @@ of when the lock will be released',
 entries and other modifications, probably for routine database maintenance,
 after which it will be back to normal.
 The administrator who locked it offered this explanation:
-<p>$1",
+$1",
 'missingarticle' => "The database did not find the text of a page
 that it should have found, named \"$1\".
 
-<p>This is usually caused by following an outdated diff or history link to a
+This is usually caused by following an outdated diff or history link to a
 page that has been deleted.
 
-<p>If this is not the case, you may have found a bug in the software.
+If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.",
 'readonly_lag' => "The database has been automatically locked while the slave database servers catch up to the master",
 'internalerror' => 'Internal error',
