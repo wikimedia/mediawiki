@@ -111,12 +111,8 @@ class WebRequest {
 		if( isset( $arr[$name] ) ) {
 			global $wgServer, $wgContLang;
 			$data = $arr[$name];
-			if( isset( $_GET[$name] ) &&
-				!is_array( $data ) &&
-				( empty( $_SERVER['HTTP_REFERER'] ) ||
-				strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) ) {
-				# For links that came from outside, check for alternate/legacy
-				# character encoding.
+			if( isset( $_GET[$name] ) && !is_array( $data ) ) {
+				# Check for alternate/legacy character encoding.
 				if( isset( $wgContLang ) ) {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
