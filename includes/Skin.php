@@ -1308,9 +1308,8 @@ END;
 				if (strpos($line, '|') !== false) { // sanity check
 					$line = explode( '|' , trim($line, '* '), 2 );
 					$link = wfMsgForContent( $line[0] );
-					if( $link == '-' ) {
+					if ($link == '-')
 						continue;
-					}
 					$bar[$heading][] = array(
 						'text' => wfMsg( $line[1] ),
 						'href' => $this->makeInternalOrExternalUrl( $link ),
