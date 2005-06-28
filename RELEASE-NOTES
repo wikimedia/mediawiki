@@ -406,6 +406,7 @@ Various bugfixes, small features, and a few experimental things:
   status between next/previous buttons.
 * Move MonoBook printable link from tab to sidebar
 * (bug 2567) Fix HTML escaping on category titles in list
+* (bug 2562) Show rollback link for current revisions on diff pages
 
 
 === Caveats ===
