@@ -1210,20 +1210,7 @@ class Article {
 				$wgLinkCache->clear();
 			}
 		}
-		# Parse the text and replace links with placeholders
-		# Do this outside the locks on the links table
-		# The existence test queries need to be FOR UPDATE
-		#$oldUpdate = $wgParser->forUpdate( true );
-		$wgOut = new OutputPage();
-		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
-
-		# Select for update
-		$wgLinkCache->forUpdate( true );
-
-		# Get old version of link table to allow incremental link updates
-		$wgLinkCache->preFill( $this->mTitle );
-		$wgLinkCache->clear();
-
+		
 		# Parse the text and replace links with placeholders
 		$wgOut = new OutputPage();
 		
