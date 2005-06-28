@@ -22,7 +22,7 @@ class AncientPagesPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return parent::isExpensive() ;
+		return true;
 	}
 	
 	function isSyndicated() { return false; }
