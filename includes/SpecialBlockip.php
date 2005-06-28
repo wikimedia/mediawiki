@@ -42,8 +42,8 @@ class IPBlockForm {
 		global $wgRequest;
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip' ) );
 		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
-		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry' );
-		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther' );
+		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
+		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
 	}
 	
 	function showForm( $err ) {
@@ -74,8 +74,12 @@ class IPBlockForm {
 		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
-		$scBlockOtherTime = htmlspecialchars( $this->BlockOtherTime );
+		$scBlockOtherTime = htmlspecialchars( $this->BlockOther );
 		$scBlockExpiryOptions = htmlspecialchars( wfMsg( 'ipboptions' ) );
+
+		$showblockoptions = $scBlockExpiryOptions != '-';
+		if (!$showblockoptions)
+			$mIpbother = $mIpbexpiry;
 
 		$blockExpiryFormOptions = "<option value=\"other\">$mIpbothertime</option>";
 		foreach (explode(',', $scBlockExpiryOptions) as $option) {
@@ -96,13 +100,18 @@ class IPBlockForm {
 				<input tabindex='1' type='text' size='20' name=\"wpBlockAddress\" value=\"{$scBlockAddress}\" />
 			</td>
 		</tr>
-		<tr>
+		<tr>");
+		if ($showblockoptions) {
+			$wgOut->addHTML("
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
 				<select tabindex='2' name=\"wpBlockExpiry\">
 					$blockExpiryFormOptions
 				</select>
 			</td>
+			");
+		}
+		$wgOut->addHTML("
 		</tr>
 		<tr>
 			<td align=\"right\">{$mIpbother}:</td>
@@ -166,8 +175,13 @@ class IPBlockForm {
 		}
 
 		$expirestr = $this->BlockExpiry;
-		if (strlen($expirestr) == 0 || $expirestr == wfMsg('ipbotheroption'))
+		if ($expirestr == wfMsg('ipbotheroption'))
 			$expirestr = $this->BlockOther;
+
+		if (strlen($expirestr) == 0) {
+			$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
+			return;
+		}
 
 		if ( $expirestr == 'infinite' || $expirestr == 'indefinite' ) {
 			$expiry = '';
