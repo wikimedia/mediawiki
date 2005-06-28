@@ -434,7 +434,9 @@ class Linker {
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
 				 '<img src="'.$url.'" alt="'.$alt.'" ' .
-				 'width="'.$width.'" height="'.$height.'" ' .
+				 ( $width
+				 	? ( 'width="'.$width.'" height="'.$height.'" ' )
+				 	: '' ) .
 				 'longdesc="'.$u.'" /></a>';
 		}
 		if ( '' != $align ) {
