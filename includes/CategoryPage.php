@@ -117,7 +117,7 @@ class CategoryPage extends Article {
 			
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				// Subcategory; strip the 'Category' namespace from the link text.
-				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getText() ) ) );
+				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getPrefixedText() ) ) );
 				
 				// If there's a link from Category:A to Category:B, the sortkey of the resulting
 				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
@@ -139,7 +139,7 @@ class CategoryPage extends Article {
 				}
 			} else {
 				// Page in this category
-				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getText() ) ) ) ;
+				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getPrefixedText() ) ) ) ;
 				array_push( $articles_start_char, $wgContLang->convert( $wgContLang->firstChar( $x->cl_sortkey ) ) );
 			}
 		}
