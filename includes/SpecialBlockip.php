@@ -75,7 +75,7 @@ class IPBlockForm {
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 		$scBlockOtherTime = htmlspecialchars( $this->BlockOther );
-		$scBlockExpiryOptions = htmlspecialchars( wfMsg( 'ipboptions' ) );
+		$scBlockExpiryOptions = htmlspecialchars( wfMsgForContent( 'ipboptions' ) );
 
 		$showblockoptions = $scBlockExpiryOptions != '-';
 		if (!$showblockoptions)
