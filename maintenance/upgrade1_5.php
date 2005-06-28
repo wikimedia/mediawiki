@@ -12,7 +12,7 @@
 // Run this, FOLLOWED BY update.php, for upgrading
 // from 1.4.5 release to 1.5.
 
-$options = array( 'step' );
+$options = array( 'step', 'noimages' );
 
 require_once( 'commandLine.inc' );
 require_once( 'cleanupDupes.inc' );
@@ -198,7 +198,7 @@ class FiveUpgrade {
 		$this->chunkFinal = $final;
 		$this->chunkCount = 0;
 		$this->chunkStartTime = wfTime();
-		$this->chunkOptions = array();
+		$this->chunkOptions = array( 'IGNORE' );
 		$this->chunkTable = $table;
 		$this->chunkFunction = $fname;
 	}
@@ -510,7 +510,7 @@ class FiveUpgrade {
 	function upgradeLinks() {
 		$fname = 'FiveUpgrade::upgradeLinks';
 		$chunksize = 200;
-		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'page' ) );
+		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'cur' ) );
 		
 		$this->log( 'Creating pagelinks table...' );
 		$this->dbw->query( "
@@ -535,15 +535,15 @@ CREATE TABLE $pagelinks (
 		if( $nlinks ) {
 			$this->setChunkScale( $chunksize, $nlinks, 'pagelinks', $fname );
 			$result = $this->dbr->query( "
-			  SELECT l_from,page_namespace,page_title
-				FROM $links, $page
-				WHERE l_to=page_id", $fname );
+			  SELECT l_from,cur_namespace,cur_title
+				FROM $links, $cur
+				WHERE l_to=cur_id", $fname );
 			$add = array();
 			while( $row = $this->dbr->fetchObject( $result ) ) {
 				$add[] = array(
 					'pl_from'      => $row->l_from,
-					'pl_namespace' => $row->page_namespace,
-					'pl_title'     => $row->page_title );
+					'pl_namespace' => $row->cur_namespace,
+					'pl_title'     => $row->cur_title );
 				$this->addChunk( $add );
 			}
 			$this->lastChunk( $add );
@@ -555,7 +555,6 @@ CREATE TABLE $pagelinks (
 		$nbrokenlinks = $this->dbw->selectField( 'brokenlinks', 'count(*)', '', $fname );
 		if( $nbrokenlinks ) {
 			$this->setChunkScale( $chunksize, $nbrokenlinks, 'pagelinks', $fname );
-			$this->chunkOptions = array( 'IGNORE' );
 			$result = $this->dbr->query(
 				"SELECT bl_from, bl_to FROM $brokenlinks",
 				$fname );
@@ -679,16 +678,19 @@ END;
 	}
 	
 	function imageCallback( $row, $copy ) {
-		// Fill in the new image info fields
-		$info = $this->imageInfo( $row->img_name );
-		
-		$copy['img_width'     ] = $info['width'];
-		$copy['img_height'    ] = $info['height'];
-		$copy['img_metadata'  ] = ""; // loaded on-demand
-		$copy['img_bits'      ] = $info['bits'];
-		$copy['img_media_type'] = $info['media'];
-		$copy['img_major_mime'] = $info['major'];
-		$copy['img_minor_mime'] = $info['minor'];
+		global $options;
+		if( !isset( $options['noimage'] ) ) {
+			// Fill in the new image info fields
+			$info = $this->imageInfo( $row->img_name );
+			
+			$copy['img_width'     ] = $info['width'];
+			$copy['img_height'    ] = $info['height'];
+			$copy['img_metadata'  ] = ""; // loaded on-demand
+			$copy['img_bits'      ] = $info['bits'];
+			$copy['img_media_type'] = $info['media'];
+			$copy['img_major_mime'] = $info['major'];
+			$copy['img_minor_mime'] = $info['minor'];
+		}
 		
 		// If doing UTF8 conversion the file must be renamed
 		$this->renameFile( $row->img_name, 'wfImageDir' );
@@ -848,11 +850,14 @@ END;
 	}
 	
 	function oldimageCallback( $row, $copy ) {
-		// Fill in the new image info fields
-		$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
-		$copy['oi_width' ] = $info['width' ];
-		$copy['oi_height'] = $info['height'];
-		$copy['oi_bits'  ] = $info['bits'  ];
+		global $options;
+		if( !isset( $options['noimage'] ) ) {
+			// Fill in the new image info fields
+			$info = $this->imageInfo( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
+			$copy['oi_width' ] = $info['width' ];
+			$copy['oi_height'] = $info['height'];
+			$copy['oi_bits'  ] = $info['bits'  ];
+		}
 		
 		// If doing UTF8 conversion the file must be renamed
 		$this->renameFile( $row->oi_archive_name, 'wfImageArchiveDir', $row->oi_name );
