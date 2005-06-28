@@ -50,7 +50,12 @@ class ExternalEdit {
 		} elseif($this->mMode=="file") {
 			$type="Edit file"; 
 			$image = Image::newFromTitle( $this->mTitle );
-			$url = $wgServer . $image->getURL();
+			$img_url = $image->getURL();
+			if(strpos($img_url,"://")) {
+				$url = $img_url;
+			} else {
+				$url = $wgServer . $img_url;
+			}
 			$extension=substr($name, $pos);
 		}
 		$special=$wgLang->getNsText(NS_SPECIAL);		 
