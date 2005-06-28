@@ -183,6 +183,17 @@ class SkinCologneBlue extends Skin {
 
 		$s .= $this->menuHead( "qbbrowse" );
 
+		# Use the first heading from the Monobook sidebar as the "browse" section
+		$bar = $this->buildSidebar();
+		$browseLinks = reset( $bar );
+
+		foreach ( $browseLinks as $link ) {
+			if ( $link['text'] != '-' ) {
+				$s .= "<a href=\"{$link['href']}\">" .
+					htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+			}
+		}
+		
 		if ( $wgOut->isArticle() ) {
 			$s .= $this->menuHead( "qbedit" );
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
