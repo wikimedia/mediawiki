@@ -524,7 +524,7 @@ class Article {
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
 			$this->loadContent();
-			$titleObj = Title::newFromRedirect( $this->fetchRevisionText() );
+			$titleObj = Title::newFromRedirect( $this->fetchContent( false, true ) );
 		} else {
 			$titleObj = Title::newFromRedirect( $text );
 		}
@@ -960,38 +960,6 @@ class Article {
 
 		$oldid = 0; # new article
 		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
-	}
-
-	/**
-	 * Fetch and uncompress the text for a given revision.
-	 * Can ask by rev_id number or timestamp (set $field)
-	 * FIXME: This function is broken. Eliminate all uses and remove.
-	 * Use Revision class in place.
-	 */
-	function fetchRevisionText( $revId = null, $field = 'rev_id' ) {
-		$fname = 'Article::fetchRevisionText';
-		$dbw =& wfGetDB( DB_MASTER );
-		if( $revId ) {
-			$rev = $dbw->addQuotes( $revId );
-		} else {
-			$rev = 'page_latest';
-		}
-		$result = $dbw->query(
-			sprintf( "SELECT old_text, old_flags
-				FROM %s,%s,%s
-				WHERE old_id=rev_id AND rev_page=page_id AND page_id=%d
-				AND %s=%s",
-				$dbw->tableName( 'page' ),
-				$dbw->tableName( 'revision' ),
-				$dbw->tableName( 'text' ),
-				IntVal( $this->mTitle->getArticleId() ),
-				$field,
-				$rev ),
-			$fname );
-		$obj = $dbw->fetchObject( $result );
-		$dbw->freeResult( $result );
-		$oldtext = Revision::getRevisionText( $obj );
-		return $oldtext;
 	}
 	
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {

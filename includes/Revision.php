@@ -76,6 +76,31 @@ class Revision {
 	}
 	
 	/**
+	 * Load either the current, or a specified, revision
+	 * that's attached to a given page. If not attached
+	 * to that page, will return null.
+	 *
+	 * @param Database $db
+	 * @param Title $title
+	 * @param int $id
+	 * @return Revision
+	 * @access public
+	 */
+	function &loadFromTitle( &$db, $title, $id = 0 ) {
+		if( $id ) {
+			$matchId = IntVal( $id );
+		} else {
+			$matchId = 'page_latest';
+		}
+		return Revision::loadFromConds(
+			$db,
+			array( "rev_id=$matchId",
+			       'page_id=rev_page',
+			       'page_namespace' => $title->getNamespace(),
+			       'page_title'     => $title->getDbkey() ) );
+	}
+	
+	/**
 	 * Load the revision for the given title with the given timestamp.
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
