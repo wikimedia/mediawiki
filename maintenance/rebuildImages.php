@@ -1,58 +1,51 @@
 <?php
+/*
+ * Script to update image metadata records
+ *
+ * Usage: php rebuildImages.php [--missing] [--dry-run]
+ * Options:
+ *   --missing  Crawl the uploads dir for images without records, and
+ *              add them only.
+ * 
+ * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * http://www.mediawiki.org/
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or 
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @author Brion Vibber <brion at pobox.com>
+ * @package MediaWiki
+ * @subpackage maintenance
+ */
+
+$options = array( 'missing', 'dry-run' );
 
 require_once( 'commandLine.inc' );
+require_once( 'FiveUpgrade.inc' );
 
-class ImageBuilder {
-	function ImageBuilder() {
-		global $wgDatabase;
+class ImageBuilder extends FiveUpgrade {
+	function ImageBuilder( $dryrun = false ) {
+		parent::FiveUpgrade();
 		
-		$this->dbw =& $this->newConnection();
-		$this->dbr =& $this->streamConnection();
-		
-		$this->maxLag    = 10; # if slaves are lagged more than 10 secs, wait
+		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
+		$this->dryrun = $dryrun;
 	}
 	
 	function build() {
 		$this->buildImage();
 		$this->buildOldImage();
-	}
-	
-	/**
-	 * Open a connection to the master server with the admin rights.
-	 * @return Database
-	 * @access private
-	 */
-	function &newConnection() {
-		global $wgDBadminuser, $wgDBadminpassword;
-		global $wgDBserver, $wgDBname;
-		$db =& new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
-		return $db;
-	}
-	
-	/**
-	 * Open a second connection to the master server, with buffering off.
-	 * This will let us stream large datasets in and write in chunks on the
-	 * other end.
-	 * @return Database
-	 * @access private
-	 */
-	function &streamConnection() {
-		$timeout = 3600 * 24;
-		$db =& $this->newConnection();
-		$db->bufferResults( false );
-		$db->query( "SET net_read_timeout=$timeout" );
-		$db->query( "SET net_write_timeout=$timeout" );
-		return $db;
-	}
-	
-	/**
-	 * Dump timestamp and message to output
-	 * @param string $message
-	 * @access private
-	 */
-	function log( $message ) {
-		echo wfTimestamp( TS_DB ) . ': ' . $message . "\n";
-		flush();
 	}
 	
 	function init( $count, $table ) {
@@ -103,10 +96,12 @@ class ImageBuilder {
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$update = call_user_func( $callback, $row );
 			if( is_array( $update ) ) {
-				$this->dbw->update( $table,
-					$update,
-					array( $key => $row->$key ),
-					$fname );
+				if( !$this->dryrun ) {
+					$this->dbw->update( $table,
+						$update,
+						array( $key => $row->$key ),
+						$fname );
+				}
 				$this->progress( 1 );
 			} else {
 				$this->progress( 0 );
@@ -157,47 +152,114 @@ class ImageBuilder {
 			'oi_bits'   => $info['bits'  ] );
 	}
 	
-	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
-		if( is_null( $basename ) ) $basename = $name;
-		$dir = call_user_func( $subdirCallback, $basename );
-		$filename = $dir . '/' . $name;
-		$info = array(
-			'width'  => 0,
-			'height' => 0,
-			'bits'   => 0,
-			'media'  => '',
-			'major'  => '',
-			'minor'  => '' );
-		
-		$magic =& wfGetMimeMagic();
-		$mime = $magic->guessMimeType( $filename, true );
-		list( $info['major'], $info['minor'] ) = explode( '/', $mime );
-		
-		$info['media'] = $magic->getMediaType( $filename, $mime );
-		
-		# Height and width
-		$gis = false;
-		if( $mime == 'image/svg' ) {
-			$gis = wfGetSVGsize( $this->imagePath );
-		} elseif( $magic->isPHPImageType( $mime ) ) {
-			$gis = getimagesize( $filename );
+	function crawlMissing() {
+		global $wgUploadDirectory, $wgHashedUploadDirectory;
+		if( $wgHashedUploadDirectory ) {
+			for( $i = 0; $i < 16; $i++ ) {
+				for( $j = 0; $j < 16; $j++ ) {
+					$dir = sprintf( '%s%s%01x%s%02x',
+						$wgUploadDirectory,
+						DIRECTORY_SEPARATOR,
+						$i,
+						DIRECTORY_SEPARATOR,
+						$i * 16 + $j );
+					$this->crawlDirectory( $dir );
+				}
+			}
 		} else {
-			$this->log( "Surprising mime type: $mime" );
+			$this->crawlDirectory( $wgUploadDirectory );
 		}
-		if( $gis ) {
-			$info['width' ] = $gis[0];
-			$info['height'] = $gis[1];
-		}
-		if( isset( $gis['bits'] ) ) {
-			$info['bits'] = $gis['bits'];
-		}
-		
-		return $info;
 	}
 	
+	function crawlDirectory( $dir ) {
+		if( !file_exists( $dir ) ) {
+			return $this->log( "no directory, skipping $dir" );
+		}
+		if( !is_dir( $dir ) ) {
+			return $this->log( "not a directory?! skipping $dir" );
+		}
+		if( !is_readable( $dir ) ) {
+			return $this->log( "dir not readable, skipping $dir" );
+		}
+		$source = opendir( $dir );
+		if( $source === false ) {
+			return $this->log( "couldn't open dir, skipping $dir" );
+		}
+		
+		$this->log( "crawling $dir" );
+		while( false !== ( $filename = readdir( $source ) ) ) {
+			$fullpath = $dir . DIRECTORY_SEPARATOR . $filename;
+			if( is_dir( $fullpath ) ) {
+				continue;
+			}
+			if( is_link( $fullpath ) ) {
+				$this->log( "skipping symlink at $fullpath" );
+				continue;
+			}
+			$this->checkMissingImage( $filename, $fullpath );
+		}
+		closedir( $source );
+	}
+	
+	function checkMissingImage( $filename, $fullpath ) {
+		$fname = 'ImageBuilder::checkMissingImage';
+		$row = $this->dbw->selectRow( 'image',
+			array( 'img_name' ),
+			array( 'img_name' => $filename ),
+			$fname );
+		
+		if( $row ) {
+			// already known, move on
+			return;
+		} else {
+			$this->addMissingImage( $filename, $fullpath );
+		}
+	}
+	
+	function addMissingImage( $filename, $fullpath ) {
+		$fname = 'ImageBuilder::addMissingImage';
+		
+		$size = filesize( $fullpath );
+		$info = $this->imageInfo( $filename );
+		$timestamp = $this->dbw->timestamp( filemtime( $fullpath ) );
+		
+		global $wgContLang;
+		$altname = $wgContLang->checkTitleEncoding( $filename );
+		if( $altname != $filename ) {
+			if( $this->dryrun ) {
+				$filename = $altname;
+				$this->log( "Estimating transcoding... $altname" );
+			} else {
+				$filename = $this->renameFile( $filename );
+			}
+		}
+		
+		$fields = array(
+			'img_name'       => $filename,
+			'img_size'       => $size,
+			'img_width'      => $info['width'],
+			'img_height'     => $info['height'],
+			'img_metadata'   => '', // filled in on-demand
+			'img_bits'       => $info['bits'],
+			'img_media_type' => $info['media'],
+			'img_major_mime' => $info['major'],
+			'img_minor_mime' => $info['minor'],
+			'img_description' => '(recovered file, missing upload log entry)',
+			'img_user'        => 0,
+			'img_user_text'   => 'Conversion script',
+			'img_timestamp'   => $timestamp );
+		if( !$this->dryrun ) {
+			$this->dbw->insert( 'image', $fields, $fname );
+		}
+		$this->log( $fullpath );
+	}
 }
 
-$builder = new ImageBuilder();
-$builder->build();
+$builder = new ImageBuilder( isset( $options['dry-run'] ) );
+if( isset( $options['missing'] ) ) {
+	$builder->crawlMissing();
+} else {
+	$builder->build();
+}
 
 ?>

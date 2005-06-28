@@ -395,6 +395,7 @@ Various bugfixes, small features, and a few experimental things:
 * upgrade1_5.php uses insert ignore, allows to skip image info initialization
 * Fix namespaces in category list.
 * Add rebuildImages.php to update image metadata fields
+* Special:Ancientpages is expensive in new schema for now
 * (bug 2568) Fixed a logic error in the Special:Statistics code which caused
   the displayed percentage of admins to be totally off.
 * (bug 2560) Don't show blank width/height attributes for missing size
@@ -407,6 +408,8 @@ Various bugfixes, small features, and a few experimental things:
 * Move MonoBook printable link from tab to sidebar
 * (bug 2567) Fix HTML escaping on category titles in list
 * (bug 2562) Show rollback link for current revisions on diff pages
+* (bug 2583) Add --missinig option on rebuildImages.php to add db entries
+  for uploaded files that don't have them
 
 
 === Caveats ===
