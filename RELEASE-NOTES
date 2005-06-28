@@ -401,7 +401,7 @@ Various bugfixes, small features, and a few experimental things:
 * Don't show bogus messages about watchlist notifications when disabled
 * Don't show old debug messages in watchlist
 * (bug 2576) Fix recording of transclusion links
-
+* (bug 2577) Allow sysops to enter non-standard block times
 
 === Caveats ===
 
