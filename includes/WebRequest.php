@@ -65,7 +65,7 @@ class WebRequest {
 	
 	/**
 	 * If magic_quotes_gpc option is on, run the global arrays
-	 * through fix_magic_quotes to strip out the stupid dlashes.
+	 * through fix_magic_quotes to strip out the stupid slashes.
 	 * WARNING: This should only be done once! Running a second
 	 * time could damage the values.
 	 * @private
