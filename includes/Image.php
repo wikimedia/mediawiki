@@ -1273,8 +1273,8 @@ class Image
 			array(
 				'img_name' => $this->name,
 				'img_size'=> $this->size,
-				'img_width' => $this->width,
-				'img_height' => $this->height,
+				'img_width' => IntVal( $this->width ),
+				'img_height' => IntVal( $this->height ),
 				'img_bits' => $this->bits,
 				'img_media_type' => $this->type,
 				'img_major_mime' => $major,
@@ -1319,8 +1319,8 @@ class Image
 			$dbw->update( 'image',
 				array( /* SET */
 					'img_size' => $this->size,
-					'img_width' => $this->width,
-					'img_height' => $this->height,
+					'img_width' => intval( $this->width ),
+					'img_height' => intval( $this->height ),
 					'img_bits' => $this->bits,
 					'img_media_type' => $this->type,
 					'img_major_mime' => $major,
