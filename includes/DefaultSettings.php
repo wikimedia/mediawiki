@@ -668,11 +668,6 @@ $wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'mino
 $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgSysopRangeBans		= true; # Allow sysops to ban IP ranges
 
-/** Comma-separated list of options to show on the IP block form. 
-  * Use strtotime() format, or "infinite" for an infinite block 
-  */
-$wgBlockExpiryOptions = "2 hours,1 day,3 days,1 week,2 weeks,1 month,3 months,6 months,1 year,infinite";
-
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 
 /**

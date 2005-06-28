@@ -47,7 +47,7 @@ class IPBlockForm {
 	}
 	
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgLang, $wgBlockExpiryOptions;
+		global $wgOut, $wgUser, $wgLang;
 		global $wgRequest, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
