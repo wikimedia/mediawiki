@@ -1231,8 +1231,7 @@ make it easier to pick out.
 'unwatchthispage' 	=> 'Stop watching',
 'notanarticle'		=> 'Not a content page',
 'watchnochange' 	=> 'None of your watched items were edited in the time period displayed.',
-'watchdetails'		=> "* $1 pages watched not counting talk pages, $2 total pages edited in the specified period
-* Query method: $3
+'watchdetails'		=> "* $1 pages watched not counting talk pages
 * [[Special:Watchlist/edit|Show and edit complete watchlist]]
 ",
 'wlheader-enotif' 		=> "* Email notification is enabled.",

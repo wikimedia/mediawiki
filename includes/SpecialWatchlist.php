@@ -18,6 +18,7 @@ function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest, $wgContLang;;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
+	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
 
 	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
@@ -40,7 +41,7 @@ function wfSpecialWatchlist( $par ) {
 	$id = $wgRequest->getArray( 'id' );
 
 	$uid = $wgUser->getID();
-	if( $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
+	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
@@ -203,7 +204,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
 		$header .= wfMsg( 'wlheader-enotif' ) . "\n";
 	}
-	if ( $wgShowUpdatedMarker ) {
+	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
@@ -212,7 +213,7 @@ function wfSpecialWatchlist( $par ) {
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
 	
-	if ( $wgShowUpdatedMarker ) {
+	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .
 			$specialTitle->escapeLocalUrl() .
 			'" method="post"><input type="submit" name="dummy" value="' .
