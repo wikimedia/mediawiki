@@ -394,6 +394,7 @@ Various bugfixes, small features, and a few experimental things:
   factor of two.
 * upgrade1_5.php uses insert ignore, allows to skip image info initialization
 * Fix namespaces in category list.
+* Add rebuildImages.php to update image metadata fields
 
 
 === Caveats ===
