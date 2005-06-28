@@ -170,6 +170,11 @@ class MonoBookTemplate extends QuickTemplate {
 	        echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
 	        ?>"><?php $this->msg($special) ?></a></li><?php } ?>
 	      <?php } ?>
+	      <?php if(!empty($this->data['nav_urls']['print']['href'])) { ?>
+	      <li id="t-print"><a href="<?php
+		    echo htmlspecialchars($this->data['nav_urls']['print']['href']) 
+		    ?>"><?php echo $this->msg('printableversion') ?></a></li>
+	      <?php } ?>
 	    </ul>
 	  </div>
 	</div>

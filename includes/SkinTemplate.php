@@ -705,15 +705,6 @@ class SkinTemplate extends Skin {
 				$vcount ++;
 			}
 		}
-		
-		// A print stylesheet is attached to all pages, but nobody ever
-		// figures that out. :)  Add a link...
-		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
-			$content_actions['print'] = array(
-				'class' => false,
-				'text' => wfMsg( 'print' ),
-				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
-		}
 
 		wfProfileOut( $fname );
 		return $content_actions;
@@ -758,6 +749,15 @@ class SkinTemplate extends Skin {
 		}
 		$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
 
+		
+		// A print stylesheet is attached to all pages, but nobody ever
+		// figures that out. :)  Add a link...
+		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
+			$nav_urls['print'] = array(
+				'text' => wfMsg( 'printableversion' ),
+				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
+		}
+		
 		if( $this->mTitle->getNamespace() != NS_SPECIAL) {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => $this->makeSpecialUrl("Whatlinkshere/$this->thispage")
