@@ -109,7 +109,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$sl = wfViewPrevNext( $offset, $limit,
 	  $wgContLang->specialpage( "Contributions" ),
-	  "hideminor={$hideminor}&namespace={$namespace}&target=" . wfUrlEncode( $target ),
+	  "hideminor=$hideminor&namespace=$namespace&invert=$invert&target=" . wfUrlEncode( $target ),
 	  ($numRows) <= $limit);
 
 	$shm = wfMsg( "showhideminor", $mlink );

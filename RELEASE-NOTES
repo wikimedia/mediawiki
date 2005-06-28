@@ -402,6 +402,8 @@ Various bugfixes, small features, and a few experimental things:
 * Don't show old debug messages in watchlist
 * (bug 2576) Fix recording of transclusion links
 * (bug 2577) Allow sysops to enter non-standard block times
+* Fixed a bug where Special:Contributions wouldn't remember the 'invert'
+  status between next/previous buttons.
 
 === Caveats ===
 
