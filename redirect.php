@@ -4,6 +4,7 @@ unset( $IP );
 $wgCommandLineMode = false;
 define( 'MEDIAWIKI', true );
 
+require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
 global $wgArticlePath;
 
