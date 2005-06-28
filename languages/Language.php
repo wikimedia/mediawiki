@@ -2786,6 +2786,17 @@ class Language {
 	function convert( $text, $isTitle = false) {
 		return $this->mConverter->convert($text, $isTitle);
 	}
+	
+	/**
+	 * Perform output conversion on a string, and encode for safe HTML output.
+	 * @param string $text
+	 * @param bool $isTitle -- wtf?
+	 * @return string
+	 * @todo this should get integrated somewhere sane
+	 */
+	function convertHtml( $text, $isTitle = false ) {
+		return htmlspecialchars( $this->convert( $text, $isTitle ) );
+	}
 
 	function convertCategoryKey( $key ) {
 		return $this->mConverter->convertCategoryKey( $key );
