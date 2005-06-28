@@ -598,6 +598,10 @@ class PreferencesForm {
 				$wgOut->addHTML( "<div><label><input type='radio' name='wpQuickbar' value=\"$i\"$checked />{$qbs[$i]}</label></div>\n" );
 			}
 			$wgOut->addHtml( "</fieldset>\n\n" );
+		} else {
+			# Need to output a hidden option even if the relevant skin is not in use, 
+			# otherwise the preference will get reset to 0 on submit
+			$wgOut->addHTML( "<input type='hidden' name='wpQuickbar' value='{$this->mQuickbar}' />" );
 		}
 
 		# Skin
