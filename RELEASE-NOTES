@@ -404,6 +404,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2577) Allow sysops to enter non-standard block times
 * Fixed a bug where Special:Contributions wouldn't remember the 'invert'
   status between next/previous buttons.
+* Move MonoBook printable link from tab to sidebar
+
 
 === Caveats ===
 
