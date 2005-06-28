@@ -397,6 +397,8 @@ Various bugfixes, small features, and a few experimental things:
 * Add rebuildImages.php to update image metadata fields
 * (bug 2568) Fixed a logic error in the Special:Statistics code which caused
   the displayed percentage of admins to be totally off.
+* (bug 2560) Don't show blank width/height attributes for missing size
+
 
 === Caveats ===
 
