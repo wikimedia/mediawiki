@@ -53,6 +53,9 @@ class SearchEngine {
 	function getNearMatch( $term ) {
 		# Exact match? No need to look further.
 		$title = Title::newFromText( $term );
+		if (is_null($title))
+			return NULL;
+
 		if ( $title->getNamespace() == NS_SPECIAL || $title->exists() ) {
 			return $title;
 		}
