@@ -405,6 +405,7 @@ Various bugfixes, small features, and a few experimental things:
 * Fixed a bug where Special:Contributions wouldn't remember the 'invert'
   status between next/previous buttons.
 * Move MonoBook printable link from tab to sidebar
+* (bug 2567) Fix HTML escaping on category titles in list
 
 
 === Caveats ===
