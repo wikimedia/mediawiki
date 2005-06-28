@@ -390,6 +390,8 @@ Various bugfixes, small features, and a few experimental things:
   User::isValidUserName() and User::isValidPassword(), extensions can now do
   these checks without rewriting code.
 * Fix $wgSiteNotice when MediaWiki:Sitenotice is set to default '-'
+* Fixed a bug where the watchlist count without talk pages would be off by a
+  factor of two.
 
 === Caveats ===
 
