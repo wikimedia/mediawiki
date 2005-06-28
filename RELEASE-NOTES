@@ -392,6 +392,8 @@ Various bugfixes, small features, and a few experimental things:
 * Fix $wgSiteNotice when MediaWiki:Sitenotice is set to default '-'
 * Fixed a bug where the watchlist count without talk pages would be off by a
   factor of two.
+* upgrade1_5.php uses insert ignore, allows to skip image info initialization
+
 
 === Caveats ===
 
