@@ -1286,6 +1286,43 @@ END;
 		}
 	}
 
+	/**
+	 * Build an array that represents the sidebar(s), the navigation bar among them
+	 *
+	 * @return array
+	 * @access private
+	 */ 
+	function buildSidebar() {
+		$fname = 'SkinTemplate::buildSidebar';
+		wfProfileIn( $fname );
+		
+		$bar = array();
+		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
+		foreach ($lines as $line) {
+			if (strpos($line, '*') !== 0)
+				continue;
+			if (strpos($line, '**') !== 0) {
+				$line = trim($line, '* ');
+				$heading = $line;
+			} else {
+				if (strpos($line, '|') !== false) { // sanity check
+					$line = explode( '|' , trim($line, '* '), 2 );
+					$link = wfMsgForContent( $line[0] );
+					if( $link == '-' ) {
+						continue;
+					}
+					$bar[$heading][] = array(
+						'text' => wfMsg( $line[1] ),
+						'href' => $this->makeInternalOrExternalUrl( $link ),
+						'id' => 'n-' . $line[1],
+					);
+				} else { continue; }
+			}
+		}
+		
+		wfProfileOut( $fname );
+		return $bar;
+	}
 }
 
 }

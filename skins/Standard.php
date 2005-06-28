@@ -145,6 +145,17 @@ class SkinStandard extends Skin {
 		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
 
 		$sep = "\n<br />";
+		
+		# Use the first heading from the Monobook sidebar as the "browse" section
+		$bar = $this->buildSidebar();
+		$browseLinks = reset( $bar );
+
+		foreach ( $browseLinks as $link ) {
+			if ( $link['text'] != '-' ) {
+				$s .= "<a href=\"{$link['href']}\">" .
+					htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+			}
+		}
 
 		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
