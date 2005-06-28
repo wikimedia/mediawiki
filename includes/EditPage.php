@@ -381,7 +381,8 @@ class EditPage {
 			$userid = $wgUser->getID();
 
 			if ( $isConflict) {
-				wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime'\n" );
+				wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
+					$this->mArticle->getTimestamp() . "'\n" );
 				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
 					$this->section, $this->textbox1, $this->summary, $this->edittime);
 			}
@@ -393,6 +394,7 @@ class EditPage {
 			# Suppress edit conflict with self
 
 			if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
+				wfDebug( "Suppressing edit conflict, same user.\n" );
 				$isConflict = false;
 			} else {
 				# switch from section editing to normal editing in edit conflict
@@ -401,9 +403,11 @@ class EditPage {
 					if( $this->mergeChangesInto( $text ) ){
 						// Successful merge! Maybe we should tell the user the good news?
 						$isConflict = false;
+						wfDebug( "Suppressing edit conflict, successful merge.\n" );
 					} else {
 						$this->section = '';
 						$this->textbox1 = $text;
+						wfDebug( "Keeping edit conflict, failed merge.\n" );
 					}
 				}
 			}
@@ -875,16 +879,27 @@ END
 	 * @access private
 	 * @todo document
 	 */
-	function mergeChangesInto( &$text ){
-		$yourtext = $this->mArticle->fetchRevisionText();
-		
+	function mergeChangesInto( &$editText ){
 		$db =& wfGetDB( DB_MASTER );
-		$oldText = $this->mArticle->fetchRevisionText(
-			$db->timestamp( $this->edittime ),
-			'rev_timestamp' );
 		
-		if(wfMerge($oldText, $text, $yourtext, $result)){
-			$text = $result;
+		// This is the revision the editor started from
+		$baseRevision = Revision::loadFromTimestamp(
+			$db, $this->mArticle->mTitle, $this->edittime );
+		if( is_null( $baseRevision ) ) {
+			return false;
+		}
+		$baseText = $baseRevision->getText();
+
+		// The current state, we want to merge updates into it
+		$currentRevision =  Revision::loadFromTitle(
+			$db, $this->mArticle->mTitle );
+		if( is_null( $currentRevision ) ) {
+			return false;
+		}
+		$currentText = $currentRevision->getText();
+		
+		if( wfMerge( $baseText, $editText, $currentText, $result ) ){
+			$editText = $result;
 			return true;
 		} else {
 			return false;

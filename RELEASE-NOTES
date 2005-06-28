@@ -410,6 +410,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2562) Show rollback link for current revisions on diff pages
 * (bug 2583) Add --missinig option on rebuildImages.php to add db entries
   for uploaded files that don't have them
+* (bug 2572) Fix edit conflict handling
 
 
 === Caveats ===
