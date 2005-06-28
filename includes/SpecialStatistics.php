@@ -75,7 +75,7 @@ function wfSpecialStatistics() {
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsg( 'administrators' ) . ']]',
 			// should logically be after #admins, danm backwards compatability!
-			$wgLang->formatNum( round( $admins / $total * 100, 2 ) )
+			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) )
 		);
 		
 		$wgOut->addWikiText( $text );
