@@ -225,7 +225,7 @@ function wfSpecialWatchlist( $par ) {
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
   page_namespace,page_title,rev_comment, page_id,
-  rev_user,rev_user_text,rev_timestamp,rev_minor_edit,page_is_new,wl_notificationtimestamp
+  rev_user,rev_user_text,rev_timestamp,rev_minor_edit,rev_id,page_is_new,wl_notificationtimestamp
   FROM $watchlist,$page,$revision  $use_index
   WHERE wl_user=$uid
   $andHideOwn

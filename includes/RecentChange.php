@@ -365,7 +365,7 @@ class RecentChange
 			'rc_minor' => !!$row->rev_minor_edit,
 			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 			'rc_cur_id' => $row->page_id,
-			'rc_this_oldid'	=> 0,
+			'rc_this_oldid'	=> (int)$row->rev_id,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
