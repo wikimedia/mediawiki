@@ -35,6 +35,7 @@ class Article {
 	var $mForUpdate;
 	var $mOldId;
 	var $mRevIdFetched;
+	var $mRevision;
 	/**#@-*/
 
 	/**
@@ -431,6 +432,7 @@ class Article {
 		
 		$this->mRevIdFetched = $revision->getID();
 		$this->mContentLoaded = true;
+		$this->mRevision =& $revision;
 		
 		return $this->mContent;
 	}
