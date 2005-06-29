@@ -1100,7 +1100,7 @@ END
 	 */
 	function getDiff() {
 		require_once( 'DifferenceEngine.php' );
-		$oldtext = $this->mArticle->getContent( true );
+		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 		$oldtitle = wfMsg( 'currentrev' );

@@ -325,11 +325,11 @@ class Article {
 	/**
 	 * Get text of an article from database
 	 * @param int $oldid 0 for whatever the latest revision is
-	 * @param bool $noredir Set to true to avoid following redirects
+	 * @param bool $noredir Set to false to follow redirects
 	 * @param bool $globalTitle Set to true to change the global $wgTitle object when following redirects or other unexpected title changes
 	 * @return string
 	 */
-	function fetchContent( $oldid = 0, $noredir = false, $globalTitle = false ) {
+	function fetchContent( $oldid = 0, $noredir = true, $globalTitle = false ) {
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
@@ -524,7 +524,7 @@ class Article {
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
 			$this->loadContent();
-			$titleObj = Title::newFromRedirect( $this->fetchContent( false, true ) );
+			$titleObj = Title::newFromRedirect( $this->fetchContent() );
 		} else {
 			$titleObj = Title::newFromRedirect( $text );
 		}
