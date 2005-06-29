@@ -16,7 +16,7 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
 
 /**
  * Utility class for creating new RC entries
- * mAttributes:
+ * mAttribs:
  * 	rc_id           id of the row in the recentchanges table
  * 	rc_timestamp    time the entry was made
  * 	rc_cur_time     timestamp on the cur row
@@ -39,6 +39,8 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	prefixedDBkey   prefixed db key, used by external app via msg queue
  * 	lastTimestamp   timestamp of previous entry, used in WHERE clause during update
  * 	lang            the interwiki prefix, automatically set in save()
+ *  oldSize         text size before the change
+ *  newSize         text size after the change
  * 
  * temporary:		not stored in the database
  *      notificationtimestamp
@@ -102,7 +104,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
 		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -153,13 +155,13 @@ class RecentChange
 				array( 'rc_cur_id' => $curId ), $fname );
 		}
 
-		# Notify external application
-		if ( $wgUseRCQueue ) {
-			$queue = msg_get_queue( $wgRCQueueID );
-			if (!msg_send( $queue, array_merge( $this->mAttribs, 1, $this->mExtra ),
-				true, false, $error ))
-			{
-				wfDebug( "Error sending message to RC queue, code $error\n" );
+		# Notify external application via UDP
+		if ( $wgRC2UDPAddress ) {
+			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+			if ( $conn ) {
+				$line = $wgRC2UDPPrefix . $this->getIRCLine();
+				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
+				socket_close( $conn );
 			}
 		}
 	}
@@ -182,7 +184,7 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to an edit
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
-		$oldId, $lastTimestamp, $bot = "default", $ip = '' )
+		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0 )
 	{
 		if ( $bot == 'default ' ) {
 			$bot = $user->isBot();
@@ -217,14 +219,17 @@ class RecentChange
 
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => $lastTimestamp
+			'lastTimestamp' => $lastTimestamp,
+			'oldSize'       => $oldSize,
+			'newSize'       => $newSize,
 		);
 		$rc->save();
 	}
 
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", $ip='' )
+	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", 
+	  $ip='', $size = 0 )
 	{
 		if ( !$ip ) {
 			global $wgIP;
@@ -258,7 +263,9 @@ class RecentChange
 
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
-			'lastTimestamp' => 0
+			'lastTimestamp' => 0,
+			'oldSize' => 0,
+			'newSize' => $size
 		);
 		$rc->save();
 	}
@@ -398,6 +405,46 @@ class RecentChange
 			$trail = '';
 		}
 		return $trail;
+	}
+
+	function getIRCLine() {
+		extract($this->mAttribs);
+		extract($this->mExtra);
+
+		$titleObj =& $this->getTitle();
+		
+		$bad = array("\n", "\r");
+		$empty = array("", "");	
+		$title = $titleObj->getPrefixedText();
+		$title = str_replace($bad, $empty, $title);
+		
+		if ( $rc_new ) {
+			$url = $titleObj->getFullURL();
+		} else {
+			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid");
+		}
+
+		if ( isset( $oldSize ) && isset( $newSize ) ) {
+			$szdiff = $newSize - $oldSize;
+			if ($szdiff < -500)
+				$szdiff = "\002$szdiff\002";
+			else if ($szdiff >= 0)
+				$szdiff = "+$szdiff";
+			$szdiff = "($szdiff)";
+		} else {
+			$szdiff = '';
+		}
+
+		$comment = str_replace($bad, $empty, $rc_comment);
+		$user = str_replace($bad, $empty, $rc_user_text);
+		$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# no colour (\003) switches back to the term default
+		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
+		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
+		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
+
+		return $fullString;
 	}
 }
 ?>

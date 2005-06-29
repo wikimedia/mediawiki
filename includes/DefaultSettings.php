@@ -1086,6 +1086,11 @@ $wgPutIPinRC = false;
 $wgRCMaxAge = 7 * 24 * 3600;
 
 
+# Send RC updates via UDP
+$wgRC2UDPAddress = false;
+$wgRC2UDPPort = false;
+$wgRC2UDPPrefix = '';
+
 #
 # Copyright and credits settings
 #
