@@ -423,6 +423,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2548) Keep summary on 'show changes' of section edit
 * Move center on toc to title part to avoid breaking .toc style usage
 * HTML sanitizer: correct multiple attributes by keeping last, not first
+* (bug 2614) Fix section edit links on diff-to-current with oldid set
+  Also fix navigation links on current-with-oldid view.
 
 
 === Caveats ===

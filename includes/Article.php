@@ -490,6 +490,14 @@ class Article {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Returns true if this article exists in the database.
+	 * @return bool
+	 */
+	function exists() {
+		return $this->getId() != 0;
+	}
 
 	/**
 	 * Get the view count for this article
@@ -533,6 +541,17 @@ class Article {
 		return $titleObj !== NULL;
 	}
 
+	/**
+	 * Returns true if the currently-referenced revision is the current edit
+	 * to this page (and it exists).
+	 * @return bool
+	 */
+	function isCurrent() {
+		return $this->exists() &&
+			isset( $this->mRevision ) &&
+			$this->mRevision->isCurrent();
+	}
+	
 	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
@@ -675,11 +694,11 @@ class Article {
 			}
 		}
 		# Should the parser cache be used?
-		if ( $wgEnableParserCache && intval($wgUser->getOption( 'stubthreshold' )) == 0 && empty( $oldid ) && $this->getID() ) {
-			$pcache = true;
-		} else {
-			$pcache = false;
-		}
+		$pcache = $wgEnableParserCache &&
+			intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
+			$this->exists() &&
+			empty( $oldid );
+		wfDebug( 'Article::view using parser cache: ' . ($pcache ? 'yes' : 'no' ) . "\n" );
 
 		$outputDone = false;
 		if ( $pcache ) {
@@ -750,7 +769,16 @@ class Article {
 				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
+				
+				# Don't show section-edit links on old revisions... this way lies madness.
+				if( !$this->isCurrent() ) {
+					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
+				}
 				$wgOut->addWikiText( $text );
+				
+				if( !$this->isCurrent() ) {
+					$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
+				}
 			}
 		}
 		/* title may have been set from the cache */
@@ -1985,11 +2013,16 @@ class Article {
 	function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
 
+		$current = ( $oldid == $this->mLatest );
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
-		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+		$lnk = $current
+			? wfMsg( 'currentrevisionlink' )
+			: $lnk = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
 		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid );
-		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
+		$nextlink = $current
+			? wfMsg( 'nextrevision' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
 		$r = wfMsg( 'revisionasofwithlink', $td, $lnk, $prevlink, $nextlink );
 		$wgOut->setSubtitle( $r );
 	}

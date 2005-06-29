@@ -170,7 +170,7 @@ CONTROL;
 		}
 
 		$prevlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'previousdiff' ), 'diff=prev&oldid='.$this->mOldid );
-		if ( $this->mNewid == 0 ) {
+		if ( $this->newRev->isCurrent() ) {
 			$nextlink = '';
 		} else {
 			$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid );
@@ -186,7 +186,14 @@ CONTROL;
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
 		  $oldHeader, $newHeader );
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
+
+		if( !$this->newRev->isCurrent() ) {
+			$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
+		}
 		$wgOut->addWikiText( $this->mNewtext );
+		if( !$this->newRev->isCurrent() ) {
+			$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
+		}
 
 		wfProfileOut( $fname );
 	}

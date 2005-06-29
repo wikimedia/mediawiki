@@ -790,15 +790,7 @@ class Linker {
 
 	/** @todo document */
 	function editSectionLink( $nt, $section ) {
-		global $wgRequest;
 		global $wgContLang;
-
-		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
-			# Section edit links would be out of sync on an old page.
-			# But, if we're diffing to the current page, they'll be
-			# correct.
-			return '';
-		}
 
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLink($nt->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
