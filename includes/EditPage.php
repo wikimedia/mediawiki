@@ -479,7 +479,7 @@ class EditPage {
 				} else {
 					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
 				}
-				if(!$this->preview) {
+				if( !$this->preview && !$this->diff ) {
 					preg_match( "/^(=+)(.+)\\1/mi",
 						$this->textbox1,
 						$matches );
