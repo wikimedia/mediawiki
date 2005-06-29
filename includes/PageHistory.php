@@ -99,7 +99,7 @@ class PageHistory {
 		if (($gowhere = $wgRequest->getText("go")) !== NULL) {
 			switch ($gowhere) {
 			case "first":
-				if (($lastid = $this->getLastOffset($id, $limit)) === NULL)
+				if (($lastid = $this->getLastOffsetForPaging($id, $limit)) === NULL)
 					break;
 				$gourl = $wgTitle->getLocalURL("action=history&limit={$limit}&offset={$lastid}");
 				break;
@@ -338,11 +338,27 @@ class PageHistory {
 		}
 	}
 
-	function getLastOffset($id, $step = 50) {
+	function getFirstOffset($id) {
+		$db =& wfGetDB(DB_SLAVE);
+		$sql = "SELECT MAX(rev_timestamp) AS lowest FROM revision WHERE rev_page = $id";
+		$res = $db->query($sql, "getFirstOffset");
+		$obj = $db->fetchObject($res);
+		return $obj->lowest;
+	}
+
+	function getLastOffset($id) {
+		$db =& wfGetDB(DB_SLAVE);
+		$sql = "SELECT MIN(rev_timestamp) AS lowest FROM revision WHERE rev_page = $id";
+		$res = $db->query($sql, "getLastOffset");
+		$obj = $db->fetchObject($res);
+		return $obj->lowest;
+	}
+
+	function getLastOffsetForPaging($id, $step = 50) {
 		$db =& wfGetDB(DB_SLAVE);
 		$sql = "SELECT rev_timestamp FROM revision WHERE rev_page = $id " .
 			"ORDER BY rev_timestamp ASC LIMIT $step";
-		$res = $db->query($sql, "getLastOffset");
+		$res = $db->query($sql, "getLastOffsetForPaging");
 		$n = $db->numRows($res);
 
 		if ($n == 0)
@@ -433,13 +449,10 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 	function makeNavbar($revisions, $offset, $limit, $direction) {
 		global $wgTitle, $wgLang;
 
-		/*
-		 * lowts is the timestamp of the first revision on this page.
-		 * hights is the timestamp of the last revision.
-		 */
-		$atend = !(count($revisions) > $limit);
-wfDebug("offset=$offset limit=$limit dir=$direction count=".count($revisions)."\n");
 		$revisions = array_slice($revisions, 0, $limit);
+
+		$abslowts = $this->getLastOffset($this->mTitle->getArticleID());
+		$abshights = $this->getFirstOffset($this->mTitle->getArticleID());
 
 		/*
 		 * When we're displaying previous revisions, we need to reverse
@@ -447,6 +460,11 @@ wfDebug("offset=$offset limit=$limit dir=$direction count=".count($revisions)."\
 		 */
 		if ($direction == DIR_PREV)
 			$revisions = array_reverse($revisions);
+
+		/*
+		 * lowts is the timestamp of the first revision on this page.
+		 * hights is the timestamp of the last revision.
+		 */
 
 		$lowts = $hights = 0;
 
@@ -468,13 +486,14 @@ wfDebug("offset=$offset limit=$limit dir=$direction count=".count($revisions)."\
 			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
+wfDebug("lowts=$lowts abslowts=$abslowts\n");
 		$bits = implode($urls, ' | ');
-		if (($direction == DIR_NEXT && $offset) || ($direction == DIR_PREV && !$atend)) {
+		if ($lowts < $abslowts) {
 			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
 			$lasttext = "<a href=\"$lasturl\">$lasttext</a>";
 		} else	$prevtext = wfMsg("prevn", $limit);
 
-		if (!$atend || $direction == DIR_PREV) {
+		if ($hights < $abshights) {
 			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
 			$firsttext = "<a href=\"$firsturl\">$firsttext</a>";
 		} else	$nexttext = wfMsg("nextn", $limit);
