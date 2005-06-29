@@ -68,7 +68,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
 		$sql =
- "SELECT page_id,page_namespace,page_title,rev_user,rev_comment,
+ "SELECT page_id,page_namespace,page_title,rev_id,rev_user,rev_comment,
          rev_user_text,rev_timestamp,rev_minor_edit,
          page_is_new
     FROM $categorylinks, $revision, $page
@@ -85,7 +85,7 @@ ORDER BY rev_timestamp DESC
 	} else {
 		$sql =
  "SELECT page_id,page_namespace,page_title,
-         rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
+         rev_user,rev_comment,rev_user_text,rev_id,rev_timestamp,rev_minor_edit,
          page_is_new
     FROM $pagelinks, $revision, $page
    WHERE rev_timestamp > '{$cutoff}'

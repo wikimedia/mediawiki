@@ -95,12 +95,12 @@ class MovePageForm {
 
 		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
 			$wgOut->addWikiText( wfMsg( 'delete_and_move_text', $encNewTitle ) );
-			$movepagebtn = wfMsg( 'delete_and_move' );
+			$movepagebtn = wfMsgHtml( 'delete_and_move' );
 			$submitVar = 'wpDeleteAndMove';
 			$err = '';
 		} else {
 			$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
-			$movepagebtn = wfMsg( 'movepagebtn' );
+			$movepagebtn = wfMsgHtml( 'movepagebtn' );
 			$submitVar = 'wpMove';
 		}
 
@@ -108,10 +108,10 @@ class MovePageForm {
 			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
-		$movearticle = wfMsg( 'movearticle' );
-		$newtitle = wfMsg( 'newtitle' );
-		$movetalk = wfMsg( 'movetalk' );
-		$movereason = wfMsg( 'movereason' );
+		$movearticle = wfMsgHtml( 'movearticle' );
+		$newtitle = wfMsgHtml( 'newtitle' );
+		$movetalk = wfMsgHtml( 'movetalk' );
+		$movereason = wfMsgHtml( 'movereason' );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
@@ -119,7 +119,7 @@ class MovePageForm {
 
 		if ( $err != '' ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$wgOut->addHTML( '<p class="error">' . wfMsg($err) . "</p>\n" );
+			$wgOut->addWikiText( '<p class="error">' . wfMsg($err) . "</p>\n" );
 		}
 
 		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
@@ -259,13 +259,13 @@ class MovePageForm {
 		$wgRawHtml = $marchingantofdoom;
 
 		if ( $talkmoved == 1 ) {
-			$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagemoved' ) . "</p>\n" );
+			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );
 		} elseif( 'articleexists' == $talkmoved ) {
-			$wgOut->addHTML( "\n<p><strong>" . wfMsg( 'talkexists' ) . "</strong></p>\n" );
+			$wgOut->addWikiText( wfMsg( 'talkexists' ) );
 		} else {
 			$ot = Title::newFromURL( $oldtitle );
 			if ( ! $ot->isTalkPage() ) {
-				$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) . "</p>\n" );
+				$wgOut->addWikiText( wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) );
 			}
 		}
 	}

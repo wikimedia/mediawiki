@@ -77,7 +77,7 @@ class PageHistory {
 		 */
 		$id = $this->mTitle->getArticleID();
 		if( $id == 0 ) {
-			$wgOut->addHTML( wfMsg( 'nohistory' ) );
+			$wgOut->addWikiText( 'nohistory' );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -338,35 +338,36 @@ class PageHistory {
 		}
 	}
 
-	function getFirstOffset($id) {
-		$db =& wfGetDB(DB_SLAVE);
-		$sql = "SELECT MAX(rev_timestamp) AS lowest FROM revision WHERE rev_page = $id";
-		$res = $db->query($sql, "getFirstOffset");
-		$obj = $db->fetchObject($res);
-		return $obj->lowest;
+	function getLatestOffset($id) {
+		return $this->getExtremeOffset( $id, 'max' );
+	}
+	
+	function getEarliestOffset($id) {
+		return $this->getExtremeOffset( $id, 'min' );
 	}
 
-	function getLastOffset($id) {
+	function getExtremeOffset( $id, $func ) {
 		$db =& wfGetDB(DB_SLAVE);
-		$sql = "SELECT MIN(rev_timestamp) AS lowest FROM revision WHERE rev_page = $id";
-		$res = $db->query($sql, "getLastOffset");
-		$obj = $db->fetchObject($res);
-		return $obj->lowest;
+		return $db->selectField( 'revision',
+			"$func(rev_timestamp)",
+			array( 'rev_page' => $id ),
+			'PageHistory::getExtremeOffset' );
 	}
 
-	function getLastOffsetForPaging($id, $step = 50) {
+	function getLastOffsetForPaging( $id, $step = 50 ) {
 		$db =& wfGetDB(DB_SLAVE);
-		$sql = "SELECT rev_timestamp FROM revision WHERE rev_page = $id " .
+		$revision = $db->tableName( 'revision' );
+		$sql = "SELECT rev_timestamp FROM $revision WHERE rev_page = $id " .
 			"ORDER BY rev_timestamp ASC LIMIT $step";
-		$res = $db->query($sql, "getLastOffsetForPaging");
-		$n = $db->numRows($res);
+		$res = $db->query( $sql, "PageHistory::getLastOffsetForPaging" );
+		$n = $db->numRows( $res );
 
-		if ($n == 0)
-			return NULL;
-
-		while ($n--)
-			$obj = $db->fetchObject($res);
-		return $obj->rev_timestamp;
+		$last = null;
+		while( $obj = $db->fetchObject( $res ) ) {
+			$last = $obj->rev_timestamp;
+		}
+		$db->freeResult( $res );
+		return $last;
 	}
 
 	function getDirection() {
@@ -451,8 +452,9 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 
 		$revisions = array_slice($revisions, 0, $limit);
 
-		$abslowts = $this->getLastOffset($this->mTitle->getArticleID());
-		$abshights = $this->getFirstOffset($this->mTitle->getArticleID());
+		$pageid = $this->mTitle->getArticleID();
+		$latestTimestamp = $this->getLatestOffset( $pageid );
+		$earliestTimestamp = $this->getEarliestOffset( $pageid );
 
 		/*
 		 * When we're displaying previous revisions, we need to reverse
@@ -468,9 +470,9 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 
 		$lowts = $hights = 0;
 
-		if (count($revisions)) {
-			$lowts = $revisions[0]->rev_timestamp;
-			$hights = $revisions[count($revisions) - 1]->rev_timestamp;
+		if( count( $revisions ) ) {
+			$latestShown = $revisions[0]->rev_timestamp;
+			$earliestShown = $revisions[count($revisions) - 1]->rev_timestamp;
 		}
 
 		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
@@ -478,29 +480,36 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 		$firsttext = wfMsg("histfirst");
 		$lasttext = wfMsg("histlast");
 
-		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$lowts}&limit={$limit}");
-		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$hights}&limit={$limit}");
+		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$latestShown}&limit={$limit}");
+		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$earliestShown}&limit={$limit}");
 
 		$urls = array();
 		foreach (array(20, 50, 100, 250, 500) as $num) {
 			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
-wfDebug("lowts=$lowts abslowts=$abslowts\n");
+		
 		$bits = implode($urls, ' | ');
-		if ($lowts < $abslowts) {
-			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
+		
+		wfDebug("latestShown=$latestShown latestTimestamp=$latestTimestamp\n");
+		if( $latestShown < $latestTimestamp ) {
+			$prevtext = "<a href=\"$prevurl\">".wfMsgHtml("prevn", $limit)."</a>";
 			$lasttext = "<a href=\"$lasturl\">$lasttext</a>";
-		} else	$prevtext = wfMsg("prevn", $limit);
+		} else {
+			$prevtext = wfMsgHtml("prevn", $limit);
+		}
 
-		if ($hights < $abshights) {
-			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
+		wfDebug("earliestShown=$earliestShown earliestTimestamp=$earliestTimestamp\n");
+		if( $earliestShown > $earliestTimestamp ) {
+			$nexttext = "<a href=\"$nexturl\">".wfMsgHtml("nextn", $limit)."</a>";
 			$firsttext = "<a href=\"$firsturl\">$firsttext</a>";
-		} else	$nexttext = wfMsg("nextn", $limit);
+		} else {
+			$nexttext = wfMsgHtml("nextn", $limit);
+		}
 
-		$firstlast = "($firsttext | $lasttext)";
+		$firstlast = "($lasttext | $firsttext)";
 
-		return "$firstlast " . wfMsg("viewprevnext", $prevtext, $nexttext, $bits);
+		return "$firstlast " . wfMsgHtml("viewprevnext", $prevtext, $nexttext, $bits);
 	}
 }
 
