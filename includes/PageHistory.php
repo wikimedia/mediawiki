@@ -53,7 +53,7 @@ class PageHistory {
 		$limit = $wgRequest->getInt('limit');
 		if (!$limit) $limit = 50;
 		$offset = $wgRequest->getText('offset');
-		if (!isset($offset) || !preg_match("/^[0-9]+$/", $offset)) $offset = 0;
+		if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset)) $offset = 0;
 
 		if (($gowhere = $wgRequest->getText("go")) !== NULL) {
 			switch ($gowhere) {
@@ -151,10 +151,14 @@ class PageHistory {
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
 		$bits = implode($urls, ' | ');
-		$numbar = "$firstlast " . wfMsg("viewprevnext", 
-				"<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>", 
-				"<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>", 
-				$bits);
+		if ($offset)
+			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
+		else	$prevtext = wfMsg("prevn", $limit);
+		if ($revs >= $limitplus)
+			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
+		else	$nexttext = wfMsg("nextn", $limit);
+
+		$numbar = "$firstlast " . wfMsg("viewprevnext", $prevtext, $nexttext, $bits);
 
 		$s = $numbar;
 		$s .= $this->beginHistoryList();
