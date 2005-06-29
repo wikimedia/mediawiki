@@ -2214,7 +2214,31 @@ div with illegal double attributes
 !! input
 <div align="center" align="right">HTML rocks</div>
 !! result
-<div align="center">HTML rocks</div>
+<div align="right">HTML rocks</div>
+
+!!end
+
+!! test
+HTML multiple attributes correction
+!! input
+<p class="error" class="awesome">Awesome!</p>
+!! result
+<p class="awesome">Awesome!</p>
+
+!!end
+
+!! test
+Table multiple attributes correction
+!! input
+{|
+!+ class="error" class="awesome"| status
+|}
+!! result
+<table>
+<tr>
+<th class="awesome">status</th>
+</tr>
+</table>
 
 !!end
 
