@@ -938,7 +938,8 @@ class Article {
 
 		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
-			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
+			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default', 
+			  '', strlen( $text ) );
 		}
 
 		if ($watchthis) {
@@ -1088,6 +1089,8 @@ class Article {
 		}
 
 		$oldtext = $this->getContent( true );
+		$oldsize = strlen( $oldtext );
+		$newsize = strlen( $text );
 		$lastRevision = 0;
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
@@ -1117,7 +1120,7 @@ class Article {
 				# Update recentchanges and purge cache and whatnot
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
-					$lastRevision, $this->getTimestamp(), $bot );
+					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize );
 				Article::onArticleEdit( $this->mTitle );
 			}
 		}
