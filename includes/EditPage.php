@@ -496,7 +496,7 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}
 			if ( isset( $this->mArticle )
-			     && isset( $this->mArticle->mRevision
+			     && isset( $this->mArticle->mRevision )
 			     && !$this->mArticle->mRevision->isCurrent() ) {
 				$this->mArticle->setOldSubtitle();
 				$wgOut->addWikiText( wfMsg( 'editingold' ) );
