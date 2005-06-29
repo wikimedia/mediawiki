@@ -117,7 +117,7 @@ class CategoryPage extends Article {
 			
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				// Subcategory; strip the 'Category' namespace from the link text.
-				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convert( $title->getPrefixedText() ) ) );
+				array_push( $children, $sk->makeKnownLinkObj( $title, $wgContLang->convertHtml( $title->getText() ) ) );
 				
 				// If there's a link from Category:A to Category:B, the sortkey of the resulting
 				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
