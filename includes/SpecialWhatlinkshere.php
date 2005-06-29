@@ -34,11 +34,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
 
 	$wgOut->addHTML('&lt; '.$sk->makeKnownLinkObj($nt, '', 'redirect=no' )."<br />\n");
 
-	$specialTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
-	$wgOut->addHTML( wfViewPrevNext( $offset, $limit, $specialTitle, 'target=' . urlencode( $target ) ) );
-
 	wfShowIndirectLinks( 0, $nt, $limit, $offset );
-	$wgOut->addHTML( wfViewPrevNext( $offset, $limit, $specialTitle, 'target=' . urlencode( $target ) ) );
 }
 
 /**
@@ -54,11 +50,11 @@ function wfShowIndirectLinks( $level, $target, $limit, $offset = 0 ) {
 
 	$dbr =& wfGetDB( DB_READ );
 	
-	if ( $level == 0 ) {
-		$limitSql = $dbr->limitResult( $limit, $offset );
-	} else {
-		$limitSql = "LIMIT $limit";
-	}
+	// Read one extra row as an at-end check
+	$queryLimit = $limit + 1; 
+	$limitSql = ( $level == 0 )
+		? "$offset,$queryLimit"
+		: $queryLimit;
 
 	$res = $dbr->select( array( 'pagelinks', 'page' ),
 		array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ),
@@ -67,22 +63,41 @@ function wfShowIndirectLinks( $level, $target, $limit, $offset = 0 ) {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title'     => $target->getDbKey() ),
 		$fname,
-		$limitSql );
+		array( 'LIMIT' => $limitSql ) );
 
 	if ( 0 == $dbr->numRows( $res ) ) {
 		if ( 0 == $level ) {
-			$wgOut->addHTML( wfMsg( 'nolinkshere' ) );
+			$wgOut->addWikiText( wfMsg( 'nolinkshere' ) );
 		}
 		return;
 	}
 	if ( 0 == $level ) {
-		$wgOut->addHTML( wfMsg( 'linkshere' ) );
+		$wgOut->addWikiText( wfMsg( 'linkshere' ) );
 	}
 	$sk = $wgUser->getSkin();
 	$isredir = ' (' . wfMsg( 'isredirect' ) . ")\n";
 
+	if( $dbr->numRows( $res ) == 0 ) {
+		return;
+	}
+	$atend = ( $dbr->numRows( $res ) <= $limit );
+	
+	if( $level == 0 ) {
+		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' );
+		$prevnext = wfViewPrevNext( $offset, $limit, $specialTitle,
+			'target=' . urlencode( $target->getPrefixedDbKey() ),
+			$atend );
+		$wgOut->addHTML( $prevnext );
+	}
+	
 	$wgOut->addHTML( '<ul>' );
+	$linksShown = 0;
 	while ( $row = $dbr->fetchObject( $res ) ) {
+		if( ++$linksShown > $limit ) {
+			// Last row is for checks only; don't display it.
+			break;
+		}
+		
 		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 
 		if ( $row->page_is_redirect ) {
@@ -103,6 +118,10 @@ function wfShowIndirectLinks( $level, $target, $limit, $offset = 0 ) {
 		$wgOut->addHTML( "</li>\n" );
 	}
 	$wgOut->addHTML( "</ul>\n" );
+	
+	if( $level == 0 ) {
+		$wgOut->addHTML( $prevnext );
+	}
 }
 
 ?>
