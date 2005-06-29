@@ -774,6 +774,8 @@ Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
 'deletedrev' => '[deleted]',
+'histfirst' => 'Earliest',
+'histlast' => 'Latest',
 
 # Diffs
 #
