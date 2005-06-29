@@ -451,7 +451,7 @@ class UndeleteForm {
 
 				if (NS_IMAGE == $this->mTargetObj->getNamespace()) {
 					/* refresh image metadata cache */
-					new Image( $this->mTargetObj->getText(), true );
+					new Image( $this->mTargetObj );
 				}
 
 				return true;
