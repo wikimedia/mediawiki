@@ -574,9 +574,9 @@ class Sanitizer {
 				'/(' . URL_PROTOCOLS . '):/',
 				'\\1&#58;', $value );
 			
-			if( !isset( $attribs[$attribute] ) ) {
-				$attribs[$attribute] = "$attribute=\"$value\"";
-			}
+			// If this attribute was previously set, override it.
+			// Output should only have one attribute of each name.
+			$attribs[$attribute] = "$attribute=\"$value\"";
 		}
 		if( empty( $attribs ) ) {
 			return '';
