@@ -416,6 +416,7 @@ Various bugfixes, small features, and a few experimental things:
 * Don't show empty-page text in 'Show changes' on new page
 * (bug 2591) Check for end, fix limits on Whatlinkshere
 * (bug 2584) Fix output of subcategory list
+* (bug 2597) Don't crash when undeleting an image description page
 
 
 === Caveats ===
