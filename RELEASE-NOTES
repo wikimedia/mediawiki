@@ -413,6 +413,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2572) Fix edit conflict handling
 * (bug 2595) Show "Earlier" and "Latest" links on history go to the first/last
   page in the article history pager.
+* Don't show empty-page text in 'Show changes' on new page
 
 
 === Caveats ===
