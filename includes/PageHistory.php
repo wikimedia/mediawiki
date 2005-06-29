@@ -37,7 +37,7 @@ class PageHistory {
 		$fname = 'PageHistory::history';
 		wfProfileIn( $fname );
 
-		$wgOut->setPageTitle( $this->mTitle->getPRefixedText() );
+		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'revhistory' ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
@@ -54,6 +54,30 @@ class PageHistory {
 		if (!$limit) $limit = 50;
 		$offset = $wgRequest->getText('offset');
 		if (!isset($offset) || !preg_match("/^[0-9]+$/", $offset)) $offset = 0;
+
+		if (($gowhere = $wgRequest->getText("go")) !== NULL) {
+			switch ($gowhere) {
+			case "first":
+				if (($lastid = $this->getLastOffset($id, $limit)) === NULL)
+					break;
+				$gourl = $wgTitle->getLocalURL("action=history&limit={$limit}&offset={$lastid}");
+				break;
+			default:
+				$gourl = NULL;
+			}
+
+			if (!is_null($gourl)) {
+				$wgOut->redirect($gourl);
+				return;
+			}
+		}
+
+		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
+		$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
+		$firsttext = wfMsg("histfirst");
+		$lasttext = wfMsg("histlast");
+
+		$firstlast = "(<a href=\"$firsturl\">$firsttext</a> | <a href=\"$lasturl\">$lasttext</a>)";
 
 		/* Check one extra row to see whether we need to show 'next' and diff links */
 		$limitplus = $limit + 1;
@@ -127,7 +151,7 @@ class PageHistory {
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
 		$bits = implode($urls, ' | ');
-		$numbar = wfMsg("viewprevnext", 
+		$numbar = "$firstlast " . wfMsg("viewprevnext", 
 				"<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>", 
 				"<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>", 
 				$bits);
@@ -321,6 +345,19 @@ class PageHistory {
 		}
 	}
 	
+	function getLastOffset($id, $step = 50) {
+		$db =& wfGetDB(DB_SLAVE);
+		$sql = "SELECT rev_timestamp FROM revision WHERE rev_page = $id ORDER BY rev_timestamp ASC LIMIT $step";
+		$res = $db->query($sql, "getLastOffset");
+		$n = $db->numRows($res);
+
+		if ($n == 0)
+			return NULL;
+
+		while ($n--)
+			$obj = $db->fetchObject($res);
+		return $obj->rev_timestamp;
+	}
 }
 
 ?>

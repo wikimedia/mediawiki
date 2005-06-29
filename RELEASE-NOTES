@@ -411,6 +411,8 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2583) Add --missinig option on rebuildImages.php to add db entries
   for uploaded files that don't have them
 * (bug 2572) Fix edit conflict handling
+* (bug 2595) Show "Earlier" and "Latest" links on history go to the first/last
+  page in the article history pager.
 
 
 === Caveats ===
