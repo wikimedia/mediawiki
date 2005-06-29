@@ -77,8 +77,6 @@ class PageHistory {
 		$firsttext = wfMsg("histfirst");
 		$lasttext = wfMsg("histlast");
 
-		$firstlast = "(<a href=\"$firsturl\">$firsttext</a> | <a href=\"$lasturl\">$lasttext</a>)";
-
 		/* Check one extra row to see whether we need to show 'next' and diff links */
 		$limitplus = $limit + 1;
 
@@ -151,12 +149,17 @@ class PageHistory {
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
 		$bits = implode($urls, ' | ');
-		if ($offset)
+		if ($offset) {
 			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
-		else	$prevtext = wfMsg("prevn", $limit);
-		if ($revs >= $limitplus)
+			$lasttext = "<a href=\"$lasturl\">$lasttext</a>";
+		} else	$prevtext = wfMsg("prevn", $limit);
+
+		if ($revs >= $limitplus) {
 			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
-		else	$nexttext = wfMsg("nextn", $limit);
+			$firsttext = "<a href=\"$firsturl\">$firsttext</a>";
+		} else	$nexttext = wfMsg("nextn", $limit);
+
+		$firstlast = "($firsttext | $lasttext)";
 
 		$numbar = "$firstlast " . wfMsg("viewprevnext", $prevtext, $nexttext, $bits);
 
