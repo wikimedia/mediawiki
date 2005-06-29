@@ -477,8 +477,8 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 
 		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
 		$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
-		$firsttext = wfMsg("histfirst");
-		$lasttext = wfMsg("histlast");
+		$firsttext = wfMsgHtml("histfirst");
+		$lasttext = wfMsgHtml("histlast");
 
 		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$latestShown}&limit={$limit}");
 		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$earliestShown}&limit={$limit}");
