@@ -176,6 +176,20 @@ class WebRequest {
 	}
 	
 	/**
+	 * Fetch an integer value from the input or return null if empty.
+	 * Guaranteed to return an integer or null; non-numeric input will
+	 * typically return null.
+	 * @param string $name
+	 * @return int
+	 */
+	function getIntOrNull( $name ) {
+		$val = $this->getVal( $name );
+		return is_numeric( $val )
+			? IntVal( $val )
+			: null;
+	}
+	
+	/**
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
 	 * boolean interpretation of strings.

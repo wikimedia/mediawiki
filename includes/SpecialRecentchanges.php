@@ -34,7 +34,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	/* bool */ 'hideliu' => false,
 	/* bool */ 'hidepatrolled' => false,
 	/* text */ 'from' => '',
-	/* text */ 'namespace' => '',
+	/* text */ 'namespace' => null,
 	/* bool */ 'invert' => false,
 	);
 
@@ -64,7 +64,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	} else {
 
-		$namespace = $wgRequest->getVal( 'namespace', $defaults['namespace'] );
+		$namespace = $wgRequest->getIntOrNull( 'namespace' );
 		$invert = $wgRequest->getBool( 'invert', $defaults['invert'] );
 		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
@@ -131,7 +131,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
 	$hidem .= $hideliu ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= $namespace === '' ?  ''	:' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= is_null( $namespace ) ?  ''	: ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
 

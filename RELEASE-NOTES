@@ -418,6 +418,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2584) Fix output of subcategory list
 * (bug 2597) Don't crash when undeleting an image description page
 * (bug 2564) Don't show "editingold" warning for recent revision
+* Various code cleanup and HTML escaping fixlets
 
 
 === Caveats ===

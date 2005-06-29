@@ -17,8 +17,7 @@ function wfSpecialContributions( $par = null ) {
 
 	// GET values
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
-	$namespace = $wgRequest->getVal( 'namespace', '' );
-	$namespace = $namespace === '' ? NULL : $namespace;
+	$namespace = $wgRequest->getIntOrNull( 'namespace' );
 	$invert = $wgRequest->getBool( 'invert' );
 	$hideminor = ($wgRequest->getBool( 'hideminor' ) ? true : false);
 	
@@ -63,20 +62,19 @@ function wfSpecialContributions( $par = null ) {
 		$id = 0;
 	}
 
-	$wgOut->setSubtitle( wfMsg( 'contribsub', $ul ) );
+	$wgOut->setSubtitle( wfMsgHtml( 'contribsub', $ul ) );
 
-	if ( $hideminor ) {
-		$minorQuery = "AND rev_minor_edit=0";
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
-	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&offset={$offset}&limit={$limit}&hideminor=0&namespace={$namespace}" );
-	} else {
-		$minorQuery = "";
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
-	  	  WfMsg( 'hide' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&offset={$offset}&limit={$limit}&hideminor=1&namespace={$namespace}" );
-	}
+	$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+	$mlink = $sk->makeKnownLinkObj( $contribsPage,
+		$hideminor ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' ),
+		wfArrayToCGI( array(
+			'target' => $nt->getPrefixedDbKey(),
+			'offset' => $offset,
+			'limit' => $limit,
+			'hideminor' => $hideminor ? 0 : 1,
+			'namespace' => $namespace ) ) );
 	
+	$minorQuery = $hideminor ? "AND rev_minor_edit=0" : "";
 	if( !is_null($namespace) ) {
 		$minorQuery .= ' AND page_namespace ' . ($invert ? '!' : '') . "= {$namespace}";
 	}
@@ -112,12 +110,12 @@ function wfSpecialContributions( $par = null ) {
 	  "hideminor=$hideminor&namespace=$namespace&invert=$invert&target=" . wfUrlEncode( $target ),
 	  ($numRows) <= $limit);
 
-	$shm = wfMsg( "showhideminor", $mlink );
+	$shm = wfMsgHtml( "showhideminor", $mlink );
 	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
 
 
 	if ( 0 == $numRows ) {
-		$wgOut->addHTML( "\n<p>" . wfMsg( "nocontribs" ) . "</p>\n" );
+		$wgOut->addWikiText( wfMsg( "nocontribs" ) );
 		return;
 	}
 
@@ -225,28 +223,29 @@ function ucNamespaceForm ( $target, $hideminor, $namespace, $invert ) {
 	global $wgContLang, $wgScript;
 
 	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'contributionsall' ).'</option>';
+	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsgHtml( 'contributionsall' ).'</option>';
 	$arr = $wgContLang->getFormattedNamespaces();
 	foreach( $arr as $ns => $name ) {
 		if( $ns < NS_MAIN )
 			continue;
-		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
+		$n = $ns === NS_MAIN ? wfMsgHtml( 'blanknamespace' ) : htmlspecialchars( $name );
 		$sel = $namespace == $ns ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
 	}
 	$namespaceselect .= '</select>';
 
-	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
-	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
-	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
-	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
+	$action = htmlspecialchars( $wgScript );
+	$out = "<div class='namespaceselector'><form method='get' action=\"$action\">";
+	$out .= '<input type="hidden" name="title" value="' . htmlspecialchars( $wgContLang->specialpage( 'Contributions' ) ) . '" />';
+	$out .= '<input type="hidden" name="target" value="' . htmlspecialchars( $target ) . '" />';
+	$out .= '<input type="hidden" name="hideminor" value="' . ( $hideminor ? 1 : 0 ) .'" />';	
 	$out .= "
 <div id='nsselect' class='contributions'>
-	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
+	<label for='nsselectbox'>" . wfMsgHtml('namespace') . "</label>
 	$namespaceselect
-	<input type='submit' value='" . wfMsg( 'allpagessubmit' ) . "' />
+	<input type='submit' value=\"" . wfMsgHtml( 'allpagessubmit' ) . "\" />
 	<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . " />
-	<label for='nsinvert'>" . wfMsg('invert') . "</label>
+	<label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
 </div>";
 	$out .= '</form></div>';
 	return $out;
