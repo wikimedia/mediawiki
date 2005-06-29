@@ -1,15 +1,24 @@
 <?php
 /**
  * Page history
- * 
+ *
  * Split off from Article.php and Skin.php, 2003-12-22
  * @package MediaWiki
  */
 
 include_once ( "SpecialValidate.php" );
 
+define("DIR_PREV", 0);
+define("DIR_NEXT", 1);
+
 /**
- * @todo document
+ * This class handles printing the history page for an article.  In order to
+ * be efficient, it uses timestamps rather than offsets for paging, to avoid
+ * costly LIMIT,offset queries.
+ *
+ * Construct it by passing in an Article, and call $h->history() to print the
+ * history.
+ *
  * @package MediaWiki
  */
 
@@ -17,32 +26,55 @@ class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
 	var $lastdate;
 	var $linesonpage;
-	function PageHistory( $article ) {
+	var $mNotificationTimestamp;
+
+	/**
+	 * Construct a new PageHistory.
+	 *
+	 * @param Article $article
+	 * @returns nothing
+	 */
+	function PageHistory($article) {
+		global $wgUser;
+
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
+		$this->mNotificationTimestamp = NULL;
+		$this->mSkin = $wgUser->getSkin();
 	}
 
-	# This shares a lot of issues (and code) with Recent Changes
-
+	/**
+	 * Print the history page for an article.
+	 *
+	 * @returns nothing
+	 */
 	function history() {
 		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker, $wgRequest,
-			$wgTitle, $wgUseValidation ;
+			$wgTitle, $wgUseValidation;
 
-		# If page hasn't changed, client can cache this
+		/*
+		 * Allow client caching.
+		 */
 
-		if( $wgOut->checkLastModified( $this->mArticle->getTimestamp() ) ){
-			# Client cache fresh and headers sent, nothing more to do.
+		if( $wgOut->checkLastModified( $this->mArticle->getTimestamp() ) )
+			/* Client cache fresh and headers sent, nothing more to do. */
 			return;
-		}
+
 		$fname = 'PageHistory::history';
 		wfProfileIn( $fname );
 
+		/*
+		 * Setup page variables.
+		 */
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'revhistory' ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
+		/*
+		 * Fail if article doesn't exist.
+		 */
 		$id = $this->mTitle->getArticleID();
 		if( $id == 0 ) {
 			$wgOut->addHTML( wfMsg( 'nohistory' ) );
@@ -50,11 +82,20 @@ class PageHistory {
 			return;
 		}
 
-		$limit = $wgRequest->getInt('limit');
-		if (!$limit) $limit = 50;
+		/*
+		 * Extract limit, the number of revisions to show, and
+		 * offset, the timestamp to begin at, from the URL.
+		 */
+		$limit = $wgRequest->getInt('limit', 50);
 		$offset = $wgRequest->getText('offset');
-		if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset)) $offset = 0;
 
+		/* Offset must be an integral. */
+		if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
+			$offset = 0;
+
+		/*
+		 * "go=last" means to jump to the last history page.
+		 */
 		if (($gowhere = $wgRequest->getText("go")) !== NULL) {
 			switch ($gowhere) {
 			case "first":
@@ -72,114 +113,60 @@ class PageHistory {
 			}
 		}
 
-		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
-		$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
-		$firsttext = wfMsg("histfirst");
-		$lasttext = wfMsg("histlast");
+		/*
+		 * Fetch revisions.
+		 *
+		 * If the user clicked "previous", we retrieve the revisions backwards,
+		 * then reverse them.  This is to avoid needing to know the timestamp of
+		 * previous revisions when generating the URL.
+		 */
+		$direction = $this->getDirection();
+		$revisions = $this->fetchRevisions($limit, $offset, $direction);
+		$navbar = $this->makeNavbar($revisions, $offset, $limit, $direction);
 
-		/* Check one extra row to see whether we need to show 'next' and diff links */
-		$limitplus = $limit + 1;
-
-		$namespace = $this->mTitle->getNamespace();
-		$title = $this->mTitle->getText();
-		$uid = $wgUser->getID();
-		$db =& wfGetDB( DB_SLAVE );
-		if ($uid && $wgShowUpdatedMarker )
-			$notificationtimestamp = $db->selectField( 'watchlist',
-				'wl_notificationtimestamp',
-				array( 'wl_namespace' => $namespace, 'wl_title' => $this->mTitle->getDBkey(), 'wl_user' => $uid ),
-				$fname );
-		else $notificationtimestamp = false;
-
-		$use_index = $db->useIndexClause( 'page_timestamp' );
-		$revision = $db->tableName( 'revision' );
-
-		$limits = $offsets = "";
-		$dir = 0;
-		if ($wgRequest->getText("dir") == "prev")
-			$dir = 1;
-
-		list($dirs, $oper) = array("DESC", "<");
-		if ($dir) {
-			list($dirs, $oper) = array("ASC", ">");
-		}
-
-		if ($offset)
-			$offsets .= " AND rev_timestamp $oper '$offset' ";
-		if ($limit)
-			$limits .= " LIMIT $limitplus ";
-
-		$sql = "SELECT rev_id,rev_user," .
-		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,rev_deleted ".
-		  "FROM $revision $use_index " .
-		  "WHERE rev_page=$id " .
-		  $offsets .
-		  "ORDER BY rev_timestamp $dirs " .
-		  $limits;
-		$res = $db->query( $sql, $fname );
-
-		$revs = $db->numRows( $res );
-
-		if( $revs < $limitplus ) // the sql above tries to fetch one extra
-			$this->linesonpage = $revs;
+		/*
+		 * We fetch one more revision than needed to get the timestamp of the
+		 * one after this page (and to know if it exists).
+		 *
+		 * linesonpage stores the actual number of lines.
+		 */
+		if (count($revisions) < $limit + 1)
+			$this->linesonpage = count($revisions);
 		else
-			$this->linesonpage = $revs - 1;
+			$this->linesonpage = count($revisions) - 1;
 
-		$atend = ($revs < $limitplus);
+		/* Un-reverse revisions */
+		if ($direction == DIR_PREV)
+			$revisions = array_reverse($revisions);
 
-		$this->mSkin = $wgUser->getSkin();
-
-		$pages = array();
-		$lowts = 0;
-		while ($line = $db->fetchObject($res)) {
-			$pages[] = $line;
-		}
-		if ($dir) $pages = array_reverse($pages);
-		if (count($pages) > 1)
-			$lowts = $pages[count($pages) - 2]->rev_timestamp;
-		else
-			$lowts = $pages[count($pages) - 1]->rev_timestamp;
-
-
-		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$offset}&limit={$limit}");
-		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$lowts}&limit={$limit}");
-		$urls = array();
-		foreach (array(20, 50, 100, 250, 500) as $num) {
-			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
-				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
-		}
-		$bits = implode($urls, ' | ');
-		if ($offset) {
-			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
-			$lasttext = "<a href=\"$lasturl\">$lasttext</a>";
-		} else	$prevtext = wfMsg("prevn", $limit);
-
-		if ($revs >= $limitplus) {
-			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
-			$firsttext = "<a href=\"$firsturl\">$firsttext</a>";
-		} else	$nexttext = wfMsg("nextn", $limit);
-
-		$firstlast = "($firsttext | $lasttext)";
-
-		$numbar = "$firstlast " . wfMsg("viewprevnext", $prevtext, $nexttext, $bits);
-
-		$s = $numbar;
+		/*
+		 * Print the top navbar.
+		 */
+		$s = $navbar;
 		$s .= $this->beginHistoryList();
 		$counter = 1;
-		foreach($pages as $i => $line) {
-			$first = ($counter == 1 && $offset == 0);
-			$next = isset( $pages[$i + 1] ) ? $pages[$i + 1 ] : null;
-			$s .= $this->historyLine( $line, $next, $counter, $notificationtimestamp, $first );
-			$counter++;
+
+		/*
+		 * Print each revision, excluding the one-past-the-end, if any.
+		 */
+		foreach (array_slice($revisions, 0, $limit) as $i => $line) {
+			$first = !$i && $offset == 0;
+			$next = isset( $revisions[$i + 1] ) ? $revisions[$i + 1 ] : null;
+			$s .= $this->historyLine($line, $next, $counter, $this->getNotificationTimestamp(), $first);
 		}
-		$s .= $this->endHistoryList( !$atend );
-		$s .= $numbar;
-		
-		# Validation line
-		if ( isset ( $wgUseValidation ) && $wgUseValidation ) {
+
+		/*
+		 * End navbar.
+		*/
+		$s .= $this->endHistoryList();
+		$s .= $navbar;
+
+		/*
+		 * Article validation line.
+		 */
+		if ($wgUseValidation)
 			$s .= "<p>" . Validation::link2statistics ( $this->mArticle ) . "</p>" ;
-			}
-		
+
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );
 	}
@@ -204,7 +191,7 @@ class PageHistory {
 		$s .= '</form>';
 		return $s;
 	}
-	
+
 	function submitButton( $bits = array() ) {
 		return ( $this->linesonpage > 0 )
 			? wfElement( 'input', array_merge( $bits,
@@ -227,7 +214,7 @@ class PageHistory {
 				$message[$msg] = wfMsg( $msg );
 			}
 		}
-		
+
 		$link = $this->revLink( $row );
 
 		if ( 0 == $row->rev_user ) {
@@ -253,9 +240,8 @@ class PageHistory {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), $message['minoreditletter'] );
 		}
 
-
 		$s .= $this->mSkin->commentBlock( $row->rev_comment, $this->mTitle );
-		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
+		if ($this->getNotificationTimestamp() && ($row->rev_timestamp >= $this->getNotificationTimestamp())) {
 			$s .= wfMsg( 'updatedmarker' );
 		}
 		if( $row->rev_deleted ) {
@@ -278,7 +264,7 @@ class PageHistory {
 				'oldid='.$row->rev_id );
 		}
 	}
-	
+
 	function curLink( $row, $latest ) {
 		global $wgUser;
 		$cur = htmlspecialchars( wfMsg( 'cur' ) );
@@ -292,7 +278,7 @@ class PageHistory {
 				'diff=0&oldid=' . $row->rev_id );
 		}
 	}
-	
+
 	function lastLink( $row, $next, $counter ) {
 		global $wgUser;
 		$last = htmlspecialchars( wfMsg( 'last' ) );
@@ -309,7 +295,7 @@ class PageHistory {
 			  ' tabindex="'.$counter.'"' );
 		}
 	}
-	
+
 	function diffButtons( $row, $latest, $counter ) {
 		global $wgUser;
 		if( $this->linesonpage > 1) {
@@ -321,7 +307,7 @@ class PageHistory {
 			if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
 				$radio['disabled'] = 'disabled';
 			}
-			
+
 			# XXX: move title texts to javascript
 			if ( $latest ) {
 				$first = wfElement( 'input', array_merge(
@@ -351,10 +337,11 @@ class PageHistory {
 			return '';
 		}
 	}
-	
+
 	function getLastOffset($id, $step = 50) {
 		$db =& wfGetDB(DB_SLAVE);
-		$sql = "SELECT rev_timestamp FROM revision WHERE rev_page = $id ORDER BY rev_timestamp ASC LIMIT $step";
+		$sql = "SELECT rev_timestamp FROM revision WHERE rev_page = $id " .
+			"ORDER BY rev_timestamp ASC LIMIT $step";
 		$res = $db->query($sql, "getLastOffset");
 		$n = $db->numRows($res);
 
@@ -364,6 +351,137 @@ class PageHistory {
 		while ($n--)
 			$obj = $db->fetchObject($res);
 		return $obj->rev_timestamp;
+	}
+
+	function getDirection() {
+		global $wgRequest;
+
+		if ($wgRequest->getText("dir") == "prev")
+			return DIR_PREV;
+		else
+			return DIR_NEXT;
+	}
+
+	function fetchRevisions($limit, $offset, $direction) {
+		global $wgUser, $wgShowUpdatedMarker;
+
+		/* Check one extra row to see whether we need to show 'next' and diff links */
+		$limitplus = $limit + 1;
+
+		$namespace = $this->mTitle->getNamespace();
+		$title = $this->mTitle->getText();
+		$uid = $wgUser->getID();
+		$db =& wfGetDB( DB_SLAVE );
+
+		$use_index = $db->useIndexClause( 'page_timestamp' );
+		$revision = $db->tableName( 'revision' );
+
+		$limits = $offsets = "";
+
+		if ($direction == DIR_PREV)
+			list($dirs, $oper) = array("ASC", ">=");
+		else	/* $direction = DIR_NEXT */
+			list($dirs, $oper) = array("DESC", "<=");
+
+		if ($offset)
+			$offsets .= " AND rev_timestamp $oper '$offset' ";
+
+		if ($limit)
+			$limits .= " LIMIT $limitplus ";
+		$page_id = $this->mTitle->getArticleID();
+
+		$sql = "SELECT rev_id,rev_user," .
+		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,rev_deleted ".
+		  "FROM $revision $use_index " .
+		  "WHERE rev_page=$page_id " .
+		  $offsets .
+		  "ORDER BY rev_timestamp $dirs " .
+		  $limits;
+		$res = $db->query($sql, "PageHistory::fetchRevisions");
+
+		$result = array();
+		while (($obj = $db->fetchObject($res)) != NULL)
+			$result[] = $obj;
+wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
+
+		return $result;
+	}
+
+	function getNotificationTimestamp() {
+		global $wgUser, $wgShowUpdatedMarker;
+
+		if ($this->mNotificationTimestamp !== NULL)
+			return $this->mNotificationTimestamp;
+
+		if ($wgUser->getID() == 0 || !$wgShowUpdatedMarker)
+			return $this->mNotificationTimestamp = false;
+
+		$db =& wfGetDB(DB_SLAVE);
+
+		$this->mNotificationTimestamp =	$db->selectField(
+			'watchlist',
+			'wl_notificationtimestamp',
+			array(	'wl_namespace' => $this->mTitle->getNamespace(),
+				'wl_title' => $this->mTitle->getDBkey(),
+				'wl_user' => $wgUser->getID()
+			),
+			"PageHistory::getNotficationTimestamp");
+
+		return $this->mNotificationTimestamp;
+	}
+
+	function makeNavbar($revisions, $offset, $limit, $direction) {
+		global $wgTitle, $wgLang;
+
+		/*
+		 * lowts is the timestamp of the first revision on this page.
+		 * hights is the timestamp of the last revision.
+		 */
+		$atend = !(count($revisions) > $limit);
+wfDebug("offset=$offset limit=$limit dir=$direction count=".count($revisions)."\n");
+		$revisions = array_slice($revisions, 0, $limit);
+
+		/*
+		 * When we're displaying previous revisions, we need to reverse
+		 * the array, because it's queried in reverse order.
+		 */
+		if ($direction == DIR_PREV)
+			$revisions = array_reverse($revisions);
+
+		$lowts = $hights = 0;
+
+		if (count($revisions)) {
+			$lowts = $revisions[0]->rev_timestamp;
+			$hights = $revisions[count($revisions) - 1]->rev_timestamp;
+		}
+
+		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
+		$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
+		$firsttext = wfMsg("histfirst");
+		$lasttext = wfMsg("histlast");
+
+		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$lowts}&limit={$limit}");
+		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$hights}&limit={$limit}");
+
+		$urls = array();
+		foreach (array(20, 50, 100, 250, 500) as $num) {
+			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
+				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
+		}
+		$bits = implode($urls, ' | ');
+		if (($direction == DIR_NEXT && $offset) || ($direction == DIR_PREV && !$atend)) {
+			$prevtext = "<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>";
+			$lasttext = "<a href=\"$lasturl\">$lasttext</a>";
+		} else	$prevtext = wfMsg("prevn", $limit);
+
+		if (!$atend || $direction == DIR_PREV) {
+			$nexttext = "<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>";
+			$firsttext = "<a href=\"$firsturl\">$firsttext</a>";
+		} else	$nexttext = wfMsg("nextn", $limit);
+
+		$firstlast = "($firsttext | $lasttext)";
+
+		return "$firstlast " . wfMsg("viewprevnext", $prevtext, $nexttext, $bits);
 	}
 }
 
