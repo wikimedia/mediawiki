@@ -421,6 +421,7 @@ Various bugfixes, small features, and a few experimental things:
 * Various code cleanup and HTML escaping fixlets
 * Copy IRC-over-UDP update option from REL1_4
 * (bug 2548) Keep summary on 'show changes' of section edit
+* Move center on toc to title part to avoid breaking .toc style usage
 
 
 === Caveats ===
