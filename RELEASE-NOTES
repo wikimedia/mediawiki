@@ -434,6 +434,8 @@ Various bugfixes, small features, and a few experimental things:
 * Copy fix for old search URLs with Lucene search plugin from REL1_4
 * (bug 619) Don't use incompatible diff3 executable on non-Linux systems.
 * (bug 2631) Fix Hebrew namespaces.
+* (bug 2630) Indicate no-longer-valid cached entries in BrokenRedirects list
+
 
 === Caveats ===
 
