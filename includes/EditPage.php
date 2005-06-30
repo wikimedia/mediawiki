@@ -181,14 +181,26 @@ class EditPage {
 		} else if ( $this->diff ) {
 			$this->editForm( 'diff' );
 		} else { # First time through
-			if( $wgUser->getOption('previewonfirst') 
-				or $this->mTitle->getNamespace() == NS_CATEGORY ) {
+			if( $this->previewOnOpen() ) {
 				$this->editForm( 'preview', true );
 			} else {
 				$this->extractMetaDataFromArticle () ;
 				$this->editForm( 'initial', true );
 			}
 		}
+	}
+	
+	/**
+	 * Return true if this page should be previewed when the edit form
+	 * is initially opened.
+	 * @return bool
+	 * @access private
+	 */
+	function previewOnOpen() {
+		global $wgUser;
+		return $wgUser->getOption( 'previewonfirst' ) ||
+			( $this->mTitle->getNamespace() == NS_CATEGORY &&
+				!$this->mTitle->exists() );
 	}
 
 	/**
