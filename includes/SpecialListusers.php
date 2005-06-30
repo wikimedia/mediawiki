@@ -111,21 +111,40 @@ class ListUsersPage extends QueryPage {
 		$sql = "SELECT 'Listusers' as type, $userspace AS namespace, user_name AS title, " .
 			"user_name as value, user_id, COUNT(ug_group) as numgroups " .
 			"FROM $user ".
-			"LEFT JOIN $user_groups ON user_id=ug_user ";
-
-		if($this->requestedGroup != '') {
-			$sql .=  'WHERE ug_group = ' . $dbr->addQuotes( $this->requestedGroup ) . ' ';
-			if($this->requestedUser != '') {
-				$sql .= "AND user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
-			}
-		} else {
-			if($this->requestedUser !='') {
-				$sql .= "WHERE user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
-			}	
-		}
-		$sql .= "GROUP BY user_name";
+			"LEFT JOIN $user_groups ON user_id=ug_user " .
+			$this->userQueryWhere( $dbr ) .
+			" GROUP BY user_name";
 		
 		return $sql;
+	}
+	
+	function userQueryWhere( &$dbr ) {
+		$conds = $this->userQueryConditions();
+		return empty( $conds )
+			? ""
+			: "WHERE " . $dbr->makeList( $conds, LIST_AND );
+	}
+	
+	function userQueryConditions() {
+		$conds = array();
+		if( $this->requestedGroup != '' ) {
+			$conds['ug_group'] = $this->requestedGroup;
+		}
+		if( $this->requestedUser != '' ) {
+			$conds['user_name'] = $this->requestedUser;
+		}
+		return $conds;
+	}
+	
+	function linkParameters() {
+		$conds = array();
+		if( $this->requestedGroup != '' ) {
+			$conds['group'] = $this->requestedGroup;
+		}
+		if( $this->requestedUser != '' ) {
+			$conds['username'] = $this->requestedUser;
+		}
+		return $conds;
 	}
 	
 	function sortDescending() {
@@ -159,7 +178,7 @@ class ListUsersPage extends QueryPage {
 		}
 
 		return $name;
-	}
+	}	
 }
 
 /**

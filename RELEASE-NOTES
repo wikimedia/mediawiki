@@ -429,6 +429,7 @@ Various bugfixes, small features, and a few experimental things:
   subpage parent links) on current-diff view.
 * (bug 2618) Fix regression from another fix; show initial preview for
   categories only if the page does not exist.
+* (bug 2625) Keep group & user settings when paging in Listusers
 
 
 === Caveats ===

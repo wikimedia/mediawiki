@@ -112,9 +112,19 @@ class QueryPage {
 
 	/**
 	 * The content returned by this function will be output before any result
-	*/
+	 */
 	function getPageHeader( ) {
 		return '';
+	}
+	
+	/**
+	 * If using extra form wheely-dealies, return a set of parameters here
+	 * as an associative array. They will be encoded and added to the paging
+	 * links (prev/next/lengths).
+	 * @return array
+	 */
+	function linkParameters() {
+		return array();
 	}
 	
 	/**
@@ -239,7 +249,9 @@ class QueryPage {
 			# often disable 'next' link when we reach the end
 			if($num < $limit) { $atend = true; } else { $atend = false; }
 			
-			$sl = wfViewPrevNext( $offset, $limit , $wgContLang->specialPage( $sname ), "" ,$atend );
+			$sl = wfViewPrevNext( $offset, $limit ,
+				$wgContLang->specialPage( $sname ),
+				wfArrayToCGI( $this->linkParameters() ), $atend );
 			$wgOut->addHTML( "<br />{$sl}</p>\n" );
 		}
 		if ( $num > 0 ) {
