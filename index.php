@@ -103,8 +103,11 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 }
 
 wfProfileIn( 'main-action' );
-
 $search = $wgRequest->getText( 'search' );
+if( $wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
+	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
+}
+
 if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	require_once( 'includes/SpecialSearch.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
