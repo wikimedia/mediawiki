@@ -308,6 +308,32 @@ if (!$conf->turck && !$conf->eaccel) {
 	  "can't use object caching functions</li>\n";
 }
 
+$conf->diff3 = false;
+$diff3locations = array("/usr/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode(":", getenv("PATH"));
+$diff3names = array("gdiff3", "diff3");
+
+function check_location($loc) {
+	global $diff3names;
+
+	foreach ($diff3names as $name) {
+		if (file_exists("$loc/$name") && (strstr(`$loc/$name --version 2>&1`, "diff3 (GNU diffutils)") !== false))
+			return "$loc/$name";
+	}
+	return false;
+}
+
+foreach ($diff3locations as $loc) {
+	if (($ok = check_location($loc)) !== false) {
+		$conf->diff3 = $ok;
+		break;
+	}
+}
+
+if ($conf->diff3)
+	print "<li>Found GNU diff3: <tt>$conf->diff3</tt>.</li>";
+else
+	print "<li>GNU diff3 not found.</li>";
+
 $conf->ImageMagick = false;
 $imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
 foreach( $imcheck as $dir ) {
@@ -1160,6 +1186,8 @@ if ( \$wgCommandLineMode ) {
 \$wgRightsText = \"{$slconf['RightsText']}\";
 \$wgRightsIcon = \"{$slconf['RightsIcon']}\";
 # \$wgRightsCode = \"{$slconf['RightsCode']}\"; # Not yet used
+
+\$wgDiff3 = \"{$slconf['diff3']}\";
 ";
 	// Keep things in Unix line endings internally;
 	// the system will write out as local text type.
