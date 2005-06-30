@@ -425,6 +425,8 @@ Various bugfixes, small features, and a few experimental things:
 * HTML sanitizer: correct multiple attributes by keeping last, not first
 * (bug 2614) Fix section edit links on diff-to-current with oldid set
   Also fix navigation links on current-with-oldid view.
+* (bug 2620) Return to prior behavior for some more things (such as
+  subpage parent links) on current-diff view.
 
 
 === Caveats ===
