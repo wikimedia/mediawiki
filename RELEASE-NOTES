@@ -431,6 +431,7 @@ Various bugfixes, small features, and a few experimental things:
   categories only if the page does not exist.
 * (bug 2625) Keep group & user settings when paging in Listusers
 * (bug 2627) Fix regression: diff radio button initial selection
+* Copy fix for old search URLs with Lucene search plugin from REL1_4
 
 
 === Caveats ===
