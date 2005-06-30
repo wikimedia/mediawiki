@@ -318,6 +318,7 @@ CONTROL;
 		}
 		
 		if( $this->newRev->isCurrent() ) {
+			$wgOut->setArticleFlag( true );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$this->mNewPage = $wgTitle;
 			$newLink = $this->mNewPage->escapeLocalUrl();
