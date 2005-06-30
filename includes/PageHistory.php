@@ -153,6 +153,7 @@ class PageHistory {
 			$first = !$i && $offset == 0;
 			$next = isset( $revisions[$i + 1] ) ? $revisions[$i + 1 ] : null;
 			$s .= $this->historyLine($line, $next, $counter, $this->getNotificationTimestamp(), $first);
+			$counter++;
 		}
 
 		/*

@@ -430,6 +430,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2618) Fix regression from another fix; show initial preview for
   categories only if the page does not exist.
 * (bug 2625) Keep group & user settings when paging in Listusers
+* (bug 2627) Fix regression: diff radio button initial selection
 
 
 === Caveats ===
