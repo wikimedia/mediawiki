@@ -19,7 +19,7 @@ class ParserCache {
 	function ParserCache( &$memCached ) {
 		$this->mMemc =& $memCached;
 	}
-	
+
 	function getKey( &$article, &$user ) {
 		global $wgDBname;
 		$hash = $user->getPageRenderingHash();
@@ -27,7 +27,11 @@ class ParserCache {
 		$key = "$wgDBname:pcache:idhash:$pageid-$hash";
 		return $key;
 	}
-	
+
+	function getETag( &$article, &$user ) {
+		return 'W/"' . $this->getKey($article, $user) . "--" . $article->mTouched. '"';
+	}
+
 	function get( &$article, &$user ) {
 		global $wgCacheEpoch;
 		$fname = 'ParserCache::get';
@@ -68,7 +72,7 @@ class ParserCache {
 		wfProfileOut( $fname );
 		return $value;
 	}
-	
+
 	function save( $parserOutput, &$article, &$user ){
 		$key = $this->getKey( $article, $user );
 		$now = wfTimestampNow();

@@ -489,7 +489,7 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
-		
+
 		$bits = implode($urls, ' | ');
 		
 		wfDebug("latestShown=$latestShown latestTimestamp=$latestTimestamp\n");

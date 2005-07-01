@@ -21,9 +21,9 @@ class OutputPage {
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect;
-	var $mLastModified, $mCategoryLinks;
+	var $mLastModified, $mETag, $mCategoryLinks;
 	var $mScripts, $mLinkColours;
-	
+
 	var $mSuppressQuickbar;
 	var $mOnloadHandler;
 	var $mDoNothing;
@@ -53,6 +53,7 @@ class OutputPage {
 		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
 		$this->mSquidMaxage = 0;
 		$this->mScripts = '';
+		$this->mETag = false;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
@@ -64,6 +65,8 @@ class OutputPage {
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= $script; }
 	function getScript() { return $this->mScripts; }
+
+	function setETag($tag) { $this->mETag = $tag; }
 
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
@@ -239,7 +242,7 @@ class OutputPage {
 	function addWikiTextWithTitle($text, &$title, $linestart = true) {
 		$this->addWikiTextTitle($text, $title, $linestart);
 	}
-	
+
 	function addWikiTextTitle($text, &$title, $linestart) {
 		global $wgParser, $wgUseTidy;
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
@@ -249,8 +252,8 @@ class OutputPage {
 			$this->enableClientCache( false );
 		}
 		$this->addHTML( $parserOutput->getText() );
-	}	
-		
+	}
+
 	/**
 	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
 	 * Saves the text into the parser cache if possible
@@ -261,7 +264,7 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, true );
 
 		$text = $parserOutput->getText();
-		
+
 		if ( $cacheArticle && $parserOutput->getCacheTime() != -1 ) {
 			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
@@ -293,7 +296,7 @@ class OutputPage {
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
 		return $parserOutput->getText();
 	}
-	
+
 	/**
 	 * @param $article
 	 * @param $user
@@ -335,6 +338,10 @@ class OutputPage {
 
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI;
+
+		if ($this->mETag)
+			header("ETag: $this->mETag");
+
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
 		header( 'Vary: Accept-Encoding, Cookie' );
@@ -428,7 +435,7 @@ class OutputPage {
 		ob_start();
 
 		$this->transformBuffer();
-		
+
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
 
@@ -443,7 +450,7 @@ class OutputPage {
 		wfProfileIn( 'Output-skin' );
 		$sk->outputPage( $this );
 		wfProfileOut( 'Output-skin' );
-		
+
 		$this->sendCacheControl();
 		ob_end_flush();
 	}
@@ -550,7 +557,7 @@ class OutputPage {
 		$this->addWikiText( wfMsg( 'versionrequiredtext', $version ) );
 		$this->returnToMain();
 	}
-	
+
 	/**
 	 * Display an error page noting that a given permission bit is required.
 	 * This should generally replace the sysopRequired, developerRequired etc.
@@ -570,7 +577,7 @@ class OutputPage {
 		$this->addHTML( wfMsgHtml( 'badaccesstext', $ap, $permission ) );
 		$this->returnToMain();
 	}
-	
+
 	/**
 	 * @deprecated
 	 */
@@ -853,14 +860,14 @@ class OutputPage {
 
 		return $ret;
 	}
-	
+
 	/**
 	 * Run any necessary pre-output transformations on the buffer text
 	 */
 	function transformBuffer( $options = 0 ) {
 	}
 
-	
+
 	/**
 	 * Turn off regular page output and return an error reponse
 	 * for when rate limiting has triggered.
