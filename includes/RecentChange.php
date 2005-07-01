@@ -137,18 +137,18 @@ class RecentChange
 			# been purged, it just locks up the indexes needlessly.
 			global $wgRCMaxAge;
 			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
-			if( $age < $wgRCMaxAge ) {
-				# Update rc_this_oldid for the entries which were current
-				$dbw->update( 'recentchanges',
-					array( /* SET */
-						'rc_this_oldid' => $oldid
-					), array( /* WHERE */
-						'rc_namespace' => $ns,
-						'rc_title' => $title,
-						'rc_timestamp' => $dbw->timestamp( $lastTime )
-					), $fname
-				);
-			}
+#			if( $age < $wgRCMaxAge ) {
+#				# Update rc_this_oldid for the entries which were current
+#				$dbw->update( 'recentchanges',
+#					array( /* SET */
+#						'rc_this_oldid' => $oldid
+#					), array( /* WHERE */
+#						'rc_namespace' => $ns,
+#						'rc_title' => $title,
+#						'rc_timestamp' => $dbw->timestamp( $lastTime )
+#					), $fname
+#				);
+#			}
 
 			# Update rc_cur_time
 			$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
@@ -184,7 +184,8 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to an edit
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
-		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0 )
+		$oldId, $lastTimestamp, $bot = "default", $ip = '', $oldSize = 0, $newSize = 0,
+		$newId = 0)
 	{
 		if ( $bot == 'default ' ) {
 			$bot = $user->isBot();
@@ -207,7 +208,7 @@ class RecentChange
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $comment,
-			'rc_this_oldid'	=> $title->getLatestRevID(),
+			'rc_this_oldid'	=> $newId,
 			'rc_last_oldid'	=> $oldId,
 			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
@@ -229,7 +230,7 @@ class RecentChange
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
 	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default",
-	  $ip='', $size = 0 )
+	  $ip='', $size = 0, $newId = 0 )
 	{
 		if ( !$ip ) {
 			global $wgIP;
@@ -251,7 +252,7 @@ class RecentChange
 			'rc_user'           => $user->getID(),
 			'rc_user_text'      => $user->getName(),
 			'rc_comment'        => $comment,
-			'rc_this_oldid'     => 0,
+			'rc_this_oldid'     => $newId,
 			'rc_last_oldid'     => 0,
 			'rc_bot'            => $bot ? 1 : 0,
 			'rc_moved_to_ns'    => 0,

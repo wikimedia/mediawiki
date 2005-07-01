@@ -490,7 +490,7 @@ class Article {
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Returns true if this article exists in the database.
 	 * @return bool
@@ -551,7 +551,7 @@ class Article {
 			isset( $this->mRevision ) &&
 			$this->mRevision->isCurrent();
 	}
-	
+
 	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
@@ -771,13 +771,13 @@ class Article {
 				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
-				
+
 				# Don't show section-edit links on old revisions... this way lies madness.
 				if( !$this->isCurrent() ) {
 					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
 				}
 				$wgOut->addWikiText( $text );
-				
+
 				if( !$this->isCurrent() ) {
 					$wgOut->mParserOptions->setEditSection( $oldEditSectionSetting );
 				}
@@ -968,8 +968,8 @@ class Article {
 
 		Article::onArticleCreate( $this->mTitle );
 		if(!$suppressRC) {
-			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default', 
-			  '', strlen( $text ) );
+			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, 'default',
+			  '', strlen( $text ), $revisionId );
 		}
 
 		if ($watchthis) {
@@ -1150,7 +1150,8 @@ class Article {
 				# Update recentchanges and purge cache and whatnot
 				$bot = (int)($wgUser->isBot() || $forceBot);
 				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
-					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize );
+					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+					$revisionId );
 				Article::onArticleEdit( $this->mTitle );
 			}
 		}
