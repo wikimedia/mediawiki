@@ -437,6 +437,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2630) Indicate no-longer-valid cached entries in BrokenRedirects list
 * (bug 2644, 2645) "cur" diff links in page history, watchlist and
   recentchanges should specify current ID explicitly.
+* (bug 2609) Fix text justification preferenced with MonoBook skin.
 
 === Caveats ===
 

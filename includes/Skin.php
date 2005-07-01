@@ -286,7 +286,7 @@ a.stub:after, #quickbar a.stub:after {
 END;
 		}
 		if( $wgUser->getOption( 'justify' ) ) {
-			$s .= "#article { text-align: justify; }\n";
+			$s .= "#article, #bodyContent { text-align: justify; }\n";
 		}
 		if( !$wgUser->getOption( 'showtoc' ) ) {
 			$s .= "#toc { display: none; }\n";
