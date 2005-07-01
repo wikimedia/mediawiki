@@ -232,7 +232,7 @@ class Database {
 			}
 		} else {
 			# Delay USE query
-			$success = !!$this->mConn;
+			$success = (bool)$this->mConn;
 		}
 		
 		if ( !$success ) {
@@ -620,7 +620,7 @@ class Database {
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET $var = '" .
 		  $this->strencode( $value ) . "' WHERE ($cond)";
-		return !!$this->query( $sql, DB_MASTER, $fname );
+		return (bool)$this->query( $sql, DB_MASTER, $fname );
 	}
 	
 	/**
@@ -923,7 +923,7 @@ class Database {
 		} else {
 			$sql .= '(' . $this->makeList( $a ) . ')';
 		}
-		return !!$this->query( $sql, $fname );
+		return (bool)$this->query( $sql, $fname );
 	}
 
 	/**
