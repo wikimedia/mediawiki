@@ -438,6 +438,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2644, 2645) "cur" diff links in page history, watchlist and
   recentchanges should specify current ID explicitly.
 * (bug 2609) Fix text justification preferenced with MonoBook skin.
+* (bug 2594) Display article tab as red for non-existent articles.
 
 === Caveats ===
 

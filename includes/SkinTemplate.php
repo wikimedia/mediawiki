@@ -541,7 +541,8 @@ class SkinTemplate extends Skin {
 			$content_actions[$nskey] = $this->tabAction(
 				$this->mTitle->getSubjectPage(),
 				$nskey,
-				!$this->mTitle->isTalkPage() );
+				!$this->mTitle->isTalkPage(),
+				'', true);
 			
 			$content_actions['talk'] = $this->tabAction(
 				$this->mTitle->getTalkPage(),
