@@ -276,7 +276,8 @@ class PageHistory {
 			return $this->mSkin->makeKnownLinkObj(
 				$this->mTitle,
 				$cur,
-				'diff=0&oldid=' . $row->rev_id );
+				'diff=' . $this->getLatestID($this->mTitle->getArticleID())
+				. '&oldid=' . $row->rev_id );
 		}
 	}
 
@@ -342,7 +343,7 @@ class PageHistory {
 	function getLatestOffset($id) {
 		return $this->getExtremeOffset( $id, 'max' );
 	}
-	
+
 	function getEarliestOffset($id) {
 		return $this->getExtremeOffset( $id, 'min' );
 	}
@@ -353,6 +354,14 @@ class PageHistory {
 			"$func(rev_timestamp)",
 			array( 'rev_page' => $id ),
 			'PageHistory::getExtremeOffset' );
+	}
+
+	function getLatestID( $id ) {
+		$db =& wfGetDB(DB_SLAVE);
+		return $db->selectField( 'revision',
+			"max(rev_id)",
+			array( 'rev_page' => $id ),
+			'PageHistory::getLatestID' );
 	}
 
 	function getLastOffsetForPaging( $id, $step = 50 ) {
@@ -420,7 +429,6 @@ class PageHistory {
 		$result = array();
 		while (($obj = $db->fetchObject($res)) != NULL)
 			$result[] = $obj;
-wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 
 		return $result;
 	}
@@ -491,7 +499,7 @@ wfdebug("limits=$limits offset=$offsets got=".count($result)."\n");
 		}
 
 		$bits = implode($urls, ' | ');
-		
+
 		wfDebug("latestShown=$latestShown latestTimestamp=$latestTimestamp\n");
 		if( $latestShown < $latestTimestamp ) {
 			$prevtext = "<a href=\"$prevurl\">".wfMsgHtml("prevn", $limit)."</a>";
