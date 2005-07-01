@@ -31,22 +31,71 @@ class contribs_finder {
 	}
 
 	function get_edit_limits() {
+		list($index, $usercond) = $this->get_user_cond();
+
+		$use_index = $this->dbr->useIndexClause($index);
 		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
-			"FROM revision " .
-			"WHERE rev_user_text = " . $this->dbr->addQuotes($this->username);
+			"FROM page, revision $use_index WHERE page_id = rev_page " .
+			"AND ";
+
+		$sql .= $usercond;
+		$sql .= $this->get_namespace_cond();
+		$sql .= $this->get_minor_cond();
 		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limits");
-		$row = $this->dbr->fetchObject($res);
-		if (!$row)
-			return array(null, null);
-		$this->dbr->freeResult($res);
+		$rows = array();
+		while ($o = $this->dbr->fetchObject($res))
+			$rows[] = $o;
+		$row = $rows[count($rows) - 1];
 		return array($row->earliest, $row->latest);
 	}
 
+	function get_user_cond() {
+		$condition = "";
+
+		if ($this->username == 'newbies') {
+			$max = $this->dbr->selectField('user', 'max(user_id)', false, "make_sql");
+			$condition = '>' . ($max - $max / 100);
+		}
+
+		if ($condition == "") {
+			$condition = " rev_user_text=" . $this->dbr->addQuotes($this->username);
+			$index = 'usertext_timestamp';
+		} else {
+			$condition = " rev_user {$condition}";
+			$index = 'user_timestamp';
+		}
+
+		return array($index, $condition);
+	}
+
+	function get_minor_cond() {
+		if ($this->hide_minor)
+			return ' AND rev_minor_edit=0';
+		return '';
+	}
+
+	function get_namespace_cond() {
+		$nsQuery = $nsinvert = "";
+
+		if ($this->invert)
+			$nsinvert = "!";
+
+		if (!is_null($this->namespace))
+			$nsQuery .= "AND page_namespace {$nsinvert}= {$this->namespace}";
+
+		return $nsQuery;
+	}
+
 	function get_previous_offset_for_paging() {
-		$sql =	"SELECT rev_timestamp FROM revision " .
-			"WHERE rev_timestamp > " . $this->offset . " AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
-			" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
+		list($index, $usercond) = $this->get_user_cond();
+		$use_index = $this->dbr->useIndexClause($index);
+
+		$sql =	"SELECT rev_timestamp FROM page, revision $use_index " .
+			"WHERE page_id = rev_page AND rev_timestamp > " . $this->offset . " AND " .
+			"rev_user_text = " . $this->dbr->addQuotes($this->username);
+		$sql .= $this->get_namespace_cond();
+		$sql .= $this->get_minor_cond();
+		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
@@ -59,29 +108,11 @@ class contribs_finder {
 		$userCond = $condition = $index = $minorQuery = $nsQuery
 			= $offsetQuery = $limitQuery = $nsinvert = "";
 
-		if ($this->username == 'newbies') {
-			$max = $this->dbr->selectField('user', 'max(user_id)', false, "make_sql");
-			$userCond = '>' . ($max - $max / 100);
-			$id = 0;
-		}
-
-		if ($this->hide_minor)
-			$minorQuery = 'AND rev_minor_edit=0';
-
-		if ($this->invert)
-			$nsinvert = "!";
-
-		if (!is_null($this->namespace))
-			$nsQuery .= "AND page_namespace {$nsinvert}= {$this->namespace}";
+		$minorQuery = $this->get_minor_cond();
+		$nsQuery = $this->get_namespace_cond();
 
 		extract($this->dbr->tableNames('page', 'revision'));
-		if ($userCond == "") {
-			$condition = "rev_user_text=" . $this->dbr->addQuotes($this->username);
-			$index = 'usertext_timestamp';
-		} else {
-			$condition = "rev_user {$userCond}";
-			$index = 'user_timestamp';
-		}
+		list($index, $userCond) = $this->get_user_cond();
 
 		$limitQuery = "LIMIT {$this->limit}";
 		if ($this->offset)
@@ -93,7 +124,7 @@ class contribs_finder {
 			rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text,
 			rev_deleted
 			FROM $page,$revision $use_index
-			WHERE page_id=rev_page AND $condition $minorQuery $nsQuery $offsetQuery
+			WHERE page_id=rev_page AND $userCond $minorQuery $nsQuery $offsetQuery
 		 	ORDER BY rev_timestamp DESC $limitQuery";
 		return $sql;
 	}
@@ -136,12 +167,12 @@ function wfSpecialContributions( $par = null ) {
 	$invert = $wgRequest->getBool('invert');
 	$hideminor = $wgRequest->getBool('hideminor');
 	$limit = min($wgRequest->getInt('limit', 50), 500);
-	$offset = $wgRequest->getText('offset');
+	$offset = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
 	if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
 		$offset = 0;
 
-	$title = Title::newFromText($wgContLang->specialpage("Contributions"));
+	$title = Title::makeTitle(NS_SPECIAL, "Contributions");
 	$urlbits = "hideminor=$hideminor&namespace=$namespace&invert=$invert&target=" . wfUrlEncode($target);
 	$myurl = $title->escapeLocalURL($urlbits);
 
@@ -208,13 +239,13 @@ wfdebug("early=$early late=$late lastts=$lastts\n");
 	if ($atstart)
 		$prevlink = $prevtext;
 	else
-		$prevlink = "<a href=\"$myurl&offset=$offset&limit=$limit&go=prev\">$prevtext</a>";
+		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit&amp;go=prev\">$prevtext</a>";
 
 	$nexttext = wfMsg("nextn", $limit);
 	if ($atend)
 		$nextlink = $nexttext;
 	else
-		$nextlink = "<a href=\"$myurl&offset=$lastts&limit=$limit\">$nexttext</a>";
+		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit\">$nexttext</a>";
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
