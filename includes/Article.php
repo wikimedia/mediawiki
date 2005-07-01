@@ -1997,8 +1997,10 @@ class Article {
 					  $minoredit, $timestamp_of_pagechange);
 				} else {
 					$other = User::newFromName($shortTitle);
-					$other->setNewtalk(1);
-					$other->saveNewtalk();
+					if ($other) {
+						$other->setNewtalk(1);
+						$other->saveNewtalk();
+					}
 				}
 			}
 
