@@ -1261,6 +1261,8 @@ class User {
 		
 		$fname = 'User::saveNewtalk';
 
+		$changed = false;
+
 		if ( wfReadOnly() ) { return ; }
 		$dbr =& wfGetDB( DB_SLAVE );
 		$dbw =& wfGetDB( DB_MASTER );
