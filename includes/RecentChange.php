@@ -34,14 +34,14 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	rc_ip           IP address of the user in dotted quad notation
  * 	rc_new          obsolete, use rc_type==RC_NEW
  * 	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
- * 
+ *
  * mExtra:
  * 	prefixedDBkey   prefixed db key, used by external app via msg queue
  * 	lastTimestamp   timestamp of previous entry, used in WHERE clause during update
  * 	lang            the interwiki prefix, automatically set in save()
  *  oldSize         text size before the change
  *  newSize         text size after the change
- * 
+ *
  * temporary:		not stored in the database
  *      notificationtimestamp
  *      numberofWatchingusers
@@ -207,7 +207,7 @@ class RecentChange
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $comment,
-			'rc_this_oldid'	=> 0,
+			'rc_this_oldid'	=> $title->getLatestRevID(),
 			'rc_last_oldid'	=> $oldId,
 			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
@@ -228,7 +228,7 @@ class RecentChange
 
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", 
+	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default",
 	  $ip='', $size = 0 )
 	{
 		if ( !$ip ) {
@@ -388,7 +388,7 @@ class RecentChange
 
 
 	/**
-	 * Gets the end part of the diff URL assoicated with this object
+	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
 	 */
 	function diffLinkTrail( $forceCur )
@@ -412,12 +412,12 @@ class RecentChange
 		extract($this->mExtra);
 
 		$titleObj =& $this->getTitle();
-		
+
 		$bad = array("\n", "\r");
-		$empty = array("", "");	
+		$empty = array("", "");
 		$title = $titleObj->getPrefixedText();
 		$title = str_replace($bad, $empty, $title);
-		
+
 		if ( $rc_new ) {
 			$url = $titleObj->getFullURL();
 		} else {
@@ -438,7 +438,7 @@ class RecentChange
 		$comment = str_replace($bad, $empty, $rc_comment);
 		$user = str_replace($bad, $empty, $rc_user_text);
 		$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
-		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
 		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
 		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
