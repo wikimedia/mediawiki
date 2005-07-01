@@ -1266,6 +1266,7 @@ class User {
 		if ( wfReadOnly() ) { return ; }
 		$dbr =& wfGetDB( DB_SLAVE );
 		$dbw =& wfGetDB( DB_MASTER );
+		$changed = false;
 		if ( $wgUseEnotif ) {
 			if ( ! $this->getNewtalk() ) {
 				# Delete the watchlist entry for user_talk page X watched by user X
