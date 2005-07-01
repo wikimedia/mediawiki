@@ -142,7 +142,7 @@ if( file_exists( "../LocalSettings.php" ) ) {
 
 if( file_exists( "./LocalSettings.php" ) ) {
 	writeSuccessMessage();
-	
+
 	dieout( '' );
 }
 
@@ -312,19 +312,11 @@ $conf->diff3 = false;
 $diff3locations = array("/usr/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode(":", getenv("PATH"));
 $diff3names = array("gdiff3", "diff3");
 
-function check_location($loc) {
-	global $diff3names;
-
-	foreach ($diff3names as $name) {
-		if (file_exists("$loc/$name") && (strstr(`$loc/$name --version 2>&1`, "diff3 (GNU diffutils)") !== false))
-			return "$loc/$name";
-	}
-	return false;
-}
-
+$diff3versioninfo = array('$1 --version 2>&1', 'diff3 (GNU diffutils)');
 foreach ($diff3locations as $loc) {
-	if (($ok = check_location($loc)) !== false) {
-		$conf->diff3 = $ok;
+	$exe = locate_executable($loc, $diff3names, $diff3versioninfo);
+	if ($exe !== false) {
+		$conf->diff3 = $exe;
 		break;
 	}
 }
@@ -474,7 +466,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgTitle = Title::newFromText( "Installation script" );
 		$mysqlOldClient = version_compare( mysql_get_client_info(), "4.1.0", "lt" );
 		if( $mysqlOldClient ) {
-			print "<li><b>PHP is linked with old MySQL client libraries. If you are 
+			print "<li><b>PHP is linked with old MySQL client libraries. If you are
 				using a MySQL 4.1 server and have problems connecting to the database,
 				see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
 			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
@@ -578,7 +570,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
-			
+
 			# Create user if required
 			if ( $conf->Root ) {
 				$conn = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
@@ -630,7 +622,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 					$u->addGroup( "sysop" );
 					$u->addGroup( "bureaucrat" );
-					
+
 					print "<li>Created sysop account <tt>" .
 						htmlspecialchars( $conf->SysopName ) . "</tt>.</li>\n";
 				} else {
@@ -652,7 +644,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				) );
 			$revid = $revision->insertOn( $wgDatabase );
 			$article->updateRevisionOn( $wgDatabase, $revision );
-			
+
 			print "<li><pre>";
 			initialiseMessages();
 			print "</pre></li>\n";
@@ -682,7 +674,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		} else {
 			fclose( $f );
 			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
-			 
+
 		}
 
 	} while( false );
@@ -807,14 +799,14 @@ if( count( $errs ) ) {
 
 		<ul class="plain">
 		<li><?php aField( $conf, "Shm", "no caching", "radio", "none" ); ?></li>
-		<?php 
+		<?php
 			if ( $conf->turck ) {
 				echo "<li>";
 				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
 				echo "</li>";
 			}
 		?>
-		<?php 
+		<?php
 			if ( $conf->eaccel ) {
 				echo "<li>";
 				aField( $conf, "Shm", "eAccelerator", "radio", "eaccel" );
@@ -827,8 +819,8 @@ if( count( $errs ) ) {
 	</dd>
 	<dt>
 		Using a shared memory system such as Turck MMCache, eAccelerator, or Memcached will speed
-		up MediaWiki significantly. Memcached is the best solution but needs to be 
-		installed. Specify the server addresses and ports in a comma-separted list. Only 
+		up MediaWiki significantly. Memcached is the best solution but needs to be
+		installed. Specify the server addresses and ports in a comma-separted list. Only
 		use Turck shared memory if the wiki will be running on a single Apache server.
 	</dl>
 
@@ -943,7 +935,7 @@ if( count( $errs ) ) {
 		<p>If you need to share one database between multiple wikis, or
 		MediaWiki and another web application, you may choose to
 		add a prefix to all the table names to avoid conflicts.</p>
-		
+
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</dt>
 
@@ -985,8 +977,8 @@ function writeSuccessMessage() {
 	<li>Delete config/LocalSettings.php</li>
 	<li>Start using <a href='../index.php'>your wiki</a>!
 </ol>
-<p>If you are in a shared hosting environment, do <strong>not</strong> just move LocalSettings.php 
-remotely. LocalSettings.php is currently owned by the user your webserver is running under, 
+<p>If you are in a shared hosting environment, do <strong>not</strong> just move LocalSettings.php
+remotely. LocalSettings.php is currently owned by the user your webserver is running under,
 which means that anyone on the same server can read your database password! Downloading
 it and uploading it again will hopefully change the ownership to a user ID specific to you.</p>
 EOT;
@@ -1020,7 +1012,7 @@ function writeLocalSettings( $conf ) {
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
-	
+
 	switch ( $conf->Shm ) {
 		case 'memcached':
 			$cacheType = 'CACHE_MEMCACHED';
@@ -1154,9 +1146,9 @@ if ( \$wgCommandLineMode ) {
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
 
-## If you want to use image uploads under safe mode, 
-## create the directories images/archive, images/thumb and 
-## images/temp, and make them all writable. Then uncomment 
+## If you want to use image uploads under safe mode,
+## create the directories images/archive, images/thumb and
+## images/temp, and make them all writable. Then uncomment
 ## this, if it's not already uncommented:
 {$hashedUploads}\$wgHashedUploadDirectory = false;
 
@@ -1279,6 +1271,27 @@ function getLanguageList() {
 	closedir( $d );
 	ksort( $codes );
 	return $codes;
+}
+
+#Check for location of an executable
+# @param string $loc single location to check
+# @param array $names filenames to check for.
+# @param mixed $versioninfo array of details to use when checking version, use false for no version checking
+function locate_executable($loc, $names, $versioninfo = false) {
+	if (!is_array($names))
+		$names = array($names);
+
+	foreach ($names as $name) {
+		if (file_exists("$loc/$name")) {
+			if (!$versioninfo)
+				return "$loc/$name";
+
+			$file = str_replace('$1', "$loc/$name", $versioninfo[0]);
+			if (strstr(`$file`, $versioninfo[1]) !== false)
+				return "$loc/$name";
+		}
+	}
+	return false;
 }
 
 # Test a memcached server
