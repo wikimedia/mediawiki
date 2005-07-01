@@ -360,7 +360,7 @@ class RecentChange
 	}
 
 	# Makes a pseudo-RC entry from a cur row, for watchlists and things
-	function loadFromCurRow( $row )
+	function loadFromCurRow( $row, $rc_last_oldid = 0 )
 	{
 		$this->mAttribs = array(
 			'rc_timestamp' => $row->rev_timestamp,
@@ -374,7 +374,7 @@ class RecentChange
 			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 			'rc_cur_id' => $row->page_id,
 			'rc_this_oldid'	=> (int)$row->rev_id,
-			'rc_last_oldid'	=> 0,
+			'rc_last_oldid'	=> (int)$rc_last_oldid,
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
