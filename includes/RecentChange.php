@@ -369,7 +369,7 @@ class RecentChange
 			'rc_namespace' => $row->page_namespace,
 			'rc_title' => $row->page_title,
 			'rc_comment' => $row->rev_comment,
-			'rc_minor' => !!$row->rev_minor_edit,
+			'rc_minor' => $row->rev_minor_edit ? 1 : 0,
 			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 			'rc_cur_id' => $row->page_id,
 			'rc_this_oldid'	=> (int)$row->rev_id,
