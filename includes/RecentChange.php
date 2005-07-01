@@ -137,18 +137,19 @@ class RecentChange
 			# been purged, it just locks up the indexes needlessly.
 			global $wgRCMaxAge;
 			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
-#			if( $age < $wgRCMaxAge ) {
-#				# Update rc_this_oldid for the entries which were current
-#				$dbw->update( 'recentchanges',
-#					array( /* SET */
-#						'rc_this_oldid' => $oldid
-#					), array( /* WHERE */
-#						'rc_namespace' => $ns,
-#						'rc_title' => $title,
-#						'rc_timestamp' => $dbw->timestamp( $lastTime )
-#					), $fname
-#				);
-#			}
+			if( $age < $wgRCMaxAge ) {
+                                # live hack, will commit once tested - kate
+				# Update rc_this_oldid for the entries which were current
+				#$dbw->update( 'recentchanges',
+				#	array( /* SET */
+				#		'rc_this_oldid' => $oldid
+				#	), array( /* WHERE */
+				#		'rc_namespace' => $ns,
+				#		'rc_title' => $title,
+				#		'rc_timestamp' => $dbw->timestamp( $lastTime )
+				#	), $fname
+				#);
+			}
 
 			# Update rc_cur_time
 			$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
@@ -360,7 +361,7 @@ class RecentChange
 	}
 
 	# Makes a pseudo-RC entry from a cur row, for watchlists and things
-	function loadFromCurRow( $row, $rc_last_oldid = 0 )
+	function loadFromCurRow( $row )
 	{
 		$this->mAttribs = array(
 			'rc_timestamp' => $row->rev_timestamp,
@@ -373,8 +374,8 @@ class RecentChange
 			'rc_minor' => $row->rev_minor_edit ? 1 : 0,
 			'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 			'rc_cur_id' => $row->page_id,
-			'rc_this_oldid'	=> (int)$row->rev_id,
-			'rc_last_oldid'	=> (int)$rc_last_oldid,
+			'rc_this_oldid'	=> $row->rev_id,
+			'rc_last_oldid'	=> isset($row->rc_last_oldid) ? $row->rc_last_oldid : 0,
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',

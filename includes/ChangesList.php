@@ -122,6 +122,7 @@ class ChangesList {
 		$userlinks = array () ;
 		foreach ( $block AS $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
+                        $newid = $rcObj->mAttribs['rc_this_oldid'];
 			if ( $rcObj->mAttribs['rc_new'] ) {
 				$isnew = true ;
 			}
@@ -176,7 +177,7 @@ class ChangesList {
 			$r .= ' ('.count($block).' ' ;
 			if ( $isnew ) $r .= wfMsg('changes');
 			else $r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle() , wfMsg('changes') ,
-				$curIdEq.'&diff=0&oldid='.$oldid ) ;
+				$curIdEq."&diff=$oldid&oldid=$newid" ) ;
 			$r .= '; ' ;
 
 			# History
@@ -477,7 +478,8 @@ class ChangesList {
 			$curLink = $message['cur'];
 			$diffLink = $message['diff'];
 		} else {
-			$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
+		#	$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
+			$query = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid";
 			$aprops = ' tabindex="'.$baseRC->counter.'"';
 			$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $query, '' ,'' , $aprops );
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['diff'], $query . $rcIdQuery, '' ,'' , $aprops );
