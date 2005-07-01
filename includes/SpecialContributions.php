@@ -104,6 +104,24 @@ class contribs_finder {
 		return $rows[count($rows) - 1]->rev_timestamp;
 	}
 
+	function get_first_offset_for_paging() {
+		list($index, $usercond) = $this->get_user_cond();
+		$use_index = $this->dbr->useIndexClause($index);
+
+		$sql =	"SELECT rev_timestamp FROM page, revision $use_index " .
+			"WHERE page_id = rev_page AND " .
+			"rev_user_text = " . $this->dbr->addQuotes($this->username);
+		$sql .= $this->get_namespace_cond();
+		$sql .= $this->get_minor_cond();
+		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit + 1);
+		$res = $this->dbr->query($sql);
+		$rows = array();
+		while ($obj = $this->dbr->fetchObject($res))
+			$rows[] = $obj;
+		$this->dbr->freeResult($res);
+		return $rows[count($rows) - 1]->rev_timestamp;
+	}
+
 	/* private */ function make_sql() {
 		$userCond = $condition = $index = $minorQuery = $nsQuery
 			= $offsetQuery = $limitQuery = $nsinvert = "";
@@ -190,6 +208,13 @@ function wfSpecialContributions( $par = null ) {
 		return;
 	}
 
+	if ($wgRequest->getText('go') == "first") {
+		$prevts = $finder->get_first_offset_for_paging();
+		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit");
+		$wgOut->redirect($prevurl);
+		return;
+	}
+
 	$sk = $wgUser->getSkin();
 
 	$id = User::idFromName($nt->getText());
@@ -235,24 +260,36 @@ function wfSpecialContributions( $par = null ) {
 wfdebug("early=$early late=$late lastts=$lastts\n");
 	$wgOut->addHTML(ucNamespaceForm($target, $hideminor, $namespace, $invert));
 
+	$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
+
+	$firsttext = wfMsgHtml("histfirst");
+	$lasttext = wfMsgHtml("histlast");
+
 	$prevtext = wfMsg("prevn", $limit);
-	if ($atstart)
+	if ($atstart) {
+		$lastlink = $lasttext;
 		$prevlink = $prevtext;
-	else
+	} else {
+		$lastlink = "<a href=\"$myurl&amp;limit=$limit\">$lasttext</a>";
 		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit&amp;go=prev\">$prevtext</a>";
+	}
 
 	$nexttext = wfMsg("nextn", $limit);
-	if ($atend)
+	if ($atend) {
+		$firstlink = $firsttext;
 		$nextlink = $nexttext;
-	else
+	} else {
+		$firstlink = "<a href=\"$myurl&amp;limit=$limit&;go=first\">$firsttext</a>";
 		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit\">$nexttext</a>";
+	}
+	$firstlast = "($lastlink | $firstlink)";
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
 		$urls[] = "<a href=\"$myurl&offset=$offset&limit={$num}\">".$wgLang->formatNum($num)."</a>";
 	$bits = implode($urls, ' | ');
 
-	$prevnextbits = wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
+	$prevnextbits = "$firstlast " . wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
 
 	$shm = wfMsgHtml( "contribs-showhideminor", $mlink );
 	$wgOut->addHTML( "<br />{$prevnextbits} ($shm)</p>\n");
