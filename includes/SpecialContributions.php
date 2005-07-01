@@ -254,7 +254,7 @@ wfdebug("early=$early late=$late lastts=$lastts\n");
 
 	$prevnextbits = wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
 
-	$shm = wfMsgHtml( "showhideminor", $mlink );
+	$shm = wfMsgHtml( "contribs-showhideminor", $mlink );
 	$wgOut->addHTML( "<br />{$prevnextbits} ($shm)</p>\n");
 
 	$wgOut->addHTML( "<ul>\n" );
