@@ -14,7 +14,7 @@ class ChangesList {
 	function ChangesList( &$skin ) {
 		$this->skin =& $skin;
 	}
-	
+
 	/**
 	 * Returns the appropiate flags for new page, minor change and patrolling
 	 */
@@ -28,7 +28,7 @@ class ChangesList {
 
 	}
 
-	/** 
+	/**
 	 * Returns text for the start of the tabular part of RC
 	 */
 	function beginRecentChangesList() {
@@ -276,15 +276,15 @@ class ChangesList {
 				$message[$msg] = wfMsg( $msg );
 			}
 		}
-		
+
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $wgUseRCPatrol && $wgUser->isLoggedIn() && 
+		$unpatrolled = $wgUseRCPatrol && $wgUser->isLoggedIn() &&
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') ) && $rc_patrolled == 0;
-		
+
 		# Make date header if necessary
 		$date = $wgLang->date( $rc_timestamp, true, true );
 		$s = '';
@@ -409,14 +409,14 @@ class ChangesList {
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser,
 			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
-		
+
 		static $message;
 		if( !isset( $message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last blocklink' ) as $msg ) {
 				$message[$msg] = wfMsg( $msg );
 			}
 		}
-		
+
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
 
@@ -434,15 +434,15 @@ class ChangesList {
 			$ret .= "<h4>{$date}</h4>\n";
 			$this->lastdate = $date;
 		}
-		
+
 		# Should patrol-related stuff be shown?
-		if ( $wgUseRCPatrol && $wgUser->isLoggedIn() && 
+		if ( $wgUseRCPatrol && $wgUser->isLoggedIn() &&
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') )) {
 		  	$rc->unpatrolled = !$rc_patrolled;
 		} else {
 			$rc->unpatrolled = false;
 		}
-		
+
 		# Make article link
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
