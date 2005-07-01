@@ -91,7 +91,7 @@ class contribs_finder {
 		$use_index = $this->dbr->useIndexClause($index);
 
 		$sql =	"SELECT rev_timestamp FROM page, revision $use_index " .
-			"WHERE page_id = rev_page AND rev_timestamp > " . $this->offset . " AND " .
+			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
 		$sql .= $this->get_namespace_cond();
 		$sql .= $this->get_minor_cond();
@@ -134,7 +134,7 @@ class contribs_finder {
 
 		$limitQuery = "LIMIT {$this->limit}";
 		if ($this->offset)
-			$offsetQuery = "AND rev_timestamp < {$this->offset}";
+			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
 
 		$use_index = $this->dbr->useIndexClause($index);
 		$sql = "SELECT
