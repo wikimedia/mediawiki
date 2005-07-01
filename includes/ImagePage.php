@@ -344,6 +344,9 @@ class ImagePage extends Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
+		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
@@ -526,6 +529,9 @@ class ImagePage extends Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
+		}
 		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
 			$wgOut->errorpage( 'internalerror', 'sessionfailure' );
 			return;
@@ -564,6 +570,13 @@ class ImagePage extends Article {
 		$descTitle = $img->getTitle();
 		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
 	}
+	
+	function blockedIPpage() {
+		require_once( 'EditPage.php' );
+		$edit = new EditPage( $this );
+		return $edit->blockedIPpage();
+	}
+
 }
 
 /**

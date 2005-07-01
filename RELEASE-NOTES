@@ -439,6 +439,7 @@ Various bugfixes, small features, and a few experimental things:
   recentchanges should specify current ID explicitly.
 * (bug 2609) Fix text justification preferenced with MonoBook skin.
 * (bug 2594) Display article tab as red for non-existent articles.
+* (bug 2656) Fix regression: prevent blocked users from reverting images
 
 === Caveats ===
 
