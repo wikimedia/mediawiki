@@ -440,6 +440,9 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2609) Fix text justification preferenced with MonoBook skin.
 * (bug 2594) Display article tab as red for non-existent articles.
 * (bug 2656) Fix regression: prevent blocked users from reverting images
+* (bug 2629) Automatically capitalize usernames again instead of
+  rejecting lowercase with a useless error message
+
 
 === Caveats ===
 

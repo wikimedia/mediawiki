@@ -202,7 +202,7 @@ class LoginForm {
 		
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name );
-		if ( is_null( $u ) || !$wgUser->isValidUserName( $name ) ) {
+		if ( is_null( $u ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return false;
 		}

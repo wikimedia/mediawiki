@@ -52,16 +52,25 @@ class User {
 	function newFromName( $name ) {
 		$u = new User();
 
+		# Force usernames to capital
+		global $wgContLang;
+		$name = $wgContLang->ucfirst( $name );
+		
 		# Clean up name according to title rules
-
 		$t = Title::newFromText( $name );
 		if( is_null( $t ) ) {
-			return NULL;
-		} else {
-			$u->setName( $t->getText() );
-			$u->setId( $u->idFromName( $t->getText() ) );
-			return $u;
+			return null;
 		}
+		
+		# Reject various classes of invalid names
+		$canonicalName = $t->getText();
+		if( !User::isValidUserName( $canonicalName ) ) {
+			return null;
+		}
+		
+		$u->setName( $canonicalName );
+		$u->setId( $u->idFromName( $t->getText() ) );
+		return $u;
 	}
 	
 	/**
@@ -172,12 +181,13 @@ class User {
 	 *
 	 * @param string $name
 	 * @return bool
+	 * @static
 	 */
 	function isValidUserName( $name ) {
 		global $wgContLang, $wgMaxNameChars;
 		
 		if ( $name == ''
-		|| $this->isIP( $name )
+		|| User::isIP( $name )
 		|| strpos( $name, '/' ) !== false
 		|| strlen( $name ) > $wgMaxNameChars
 		|| $name != $wgContLang->ucfirst( $name ) )
@@ -191,6 +201,7 @@ class User {
 	 *
 	 * @param string $password
 	 * @return bool
+	 * @static
 	 */
 	function isValidPassword( $password ) {
 		global $wgMinimalPasswordLength;
