@@ -86,16 +86,34 @@ class Article {
 		# Get variables from query string :P
 		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
+		$preload = $wgRequest->getText( 'preload' );
+		$newpagetext = $wgRequest->getText('newpagetext');
 
 		$fname =  'Article::getContent';
 		wfProfileIn( $fname );
 
 		if ( 0 == $this->getID() ) {
 			if ( 'edit' == $action ) {
-				wfProfileOut( $fname );
-				return ''; # was "newarticletext", now moved above the box)
+				wfProfileOut( $fname );				
+				# Should we put something in the textarea?
+				# if &preload=Pagename is set, we try to get
+				# the revision text and put it in.
+				if($preload) {
+					$preloadTitle=Title::newFromText($preload);
+					if($preloadTitle->userCanRead()) {
+						$rev=Revision::newFromTitle($preloadTitle);
+						if($rev) {
+						return $rev->getText();
+						}
+					}
+				}
+				# Don't preload anything.
+				# We used to put MediaWiki:Newarticletext here.
+				# This is now shown above the edit box instead.
+				return ''; 
 			}
 			wfProfileOut( $fname );
+			
 			return wfMsg( 'noarticletext' );
 		} else {
 			$this->loadContent( $noredir );
