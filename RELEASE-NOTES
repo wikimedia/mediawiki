@@ -442,6 +442,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2656) Fix regression: prevent blocked users from reverting images
 * (bug 2629) Automatically capitalize usernames again instead of
   rejecting lowercase with a useless error message
+* (bug 2661) Fix link generation in contribs
 
 
 === Caveats ===
