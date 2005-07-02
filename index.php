@@ -240,7 +240,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 				$wgArticle->view();
 				break;
 			default:
-				if (wfRunHooks('UnknownAction', $action, $wgArticle)) {
+				if (wfRunHooks('UnknownAction', array($action, $wgArticle))) {
 					$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
