@@ -1083,20 +1083,17 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgSkinNamesEt;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesEt;
 		return $wgValidSpecialPagesEt;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesEt;
 		return $wgSysopSpecialPagesEt;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesEt;
 		return $wgDeveloperSpecialPagesEt;
 	}
@@ -1107,6 +1104,25 @@ class LanguageEt extends LanguageUtf8 {
 			return $wgAllMessagesEt[$key];
 		} else {
 			return parent::getMessage( $key );
+		}
+	}
+
+	/**
+	 * Estonian numeric formatting is 123 456,78.
+	 * Notice that the space is non-breaking.
+	 */
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ", " );
+	}
+
+	/**
+	 * Avoid grouping whole numbers between 0 to 9999
+	 */
+	function commafy($_) {
+		if (!preg_match('/^\d{1,4}$/',$_)) {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		} else {
+			return $_;
 		}
 	}
 
