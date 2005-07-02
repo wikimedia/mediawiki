@@ -5,7 +5,7 @@
  */
 
 class contribs_finder {
-	var $username, $offset, $limit, $namespace, $invert;
+	var $username, $offset, $limit;
 	var $dbr;
 
 	function contribs_finder($username) {
@@ -21,28 +21,11 @@ class contribs_finder {
 		$this->offset = $offset;
 	}
 
-	function set_namespace($namespace, $invert = false) {
-		$this->namespace = $namespace;
-		$this->invert = $invert;
-	}
-
-	function set_hide_minor($hm) {
-		$this->hide_minor = $hm;
-	}
-
 	function get_edit_limits() {
 		list($index, $usercond) = $this->get_user_cond();
 
 		$use_index = $this->dbr->useIndexClause($index);
-		extract($this->dbr->tableNames('page', 'revision'));
-		
-		#$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
-		#	"FROM page, revision $use_index WHERE page_id = rev_page " .
-		#	"AND ";
-
-		#$sql .= $usercond;
-		#$sql .= $this->get_namespace_cond();
-		#$sql .= $this->get_minor_cond();
+		extract($this->dbr->tableNames('revision'));
 		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
 			"FROM $revision $use_index WHERE " . $usercond;
 
@@ -73,24 +56,6 @@ class contribs_finder {
 		return array($index, $condition);
 	}
 
-	function get_minor_cond() {
-		if ($this->hide_minor)
-			return ' AND rev_minor_edit=0';
-		return '';
-	}
-
-	function get_namespace_cond() {
-		$nsQuery = $nsinvert = "";
-
-		if ($this->invert)
-			$nsinvert = "!";
-
-		if (!is_null($this->namespace))
-			$nsQuery .= "AND page_namespace {$nsinvert}= {$this->namespace}";
-
-		return $nsQuery;
-	}
-
 	function get_previous_offset_for_paging() {
 		list($index, $usercond) = $this->get_user_cond();
 		$use_index = $this->dbr->useIndexClause($index);
@@ -99,8 +64,6 @@ class contribs_finder {
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
-		$sql .= $this->get_namespace_cond();
-		$sql .= $this->get_minor_cond();
 		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
 		$res = $this->dbr->query($sql);
 		$rows = array();
@@ -118,8 +81,6 @@ class contribs_finder {
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
-		$sql .= $this->get_namespace_cond();
-		$sql .= $this->get_minor_cond();
 		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit + 1);
 		$res = $this->dbr->query($sql);
 		$rows = array();
@@ -130,11 +91,7 @@ class contribs_finder {
 	}
 
 	/* private */ function make_sql() {
-		$userCond = $condition = $index = $minorQuery = $nsQuery
-			= $offsetQuery = $limitQuery = $nsinvert = "";
-
-		$minorQuery = $this->get_minor_cond();
-		$nsQuery = $this->get_namespace_cond();
+		$userCond = $condition = $index = $offsetQuery = $limitQuery = "";
 
 		extract($this->dbr->tableNames('page', 'revision'));
 		list($index, $userCond) = $this->get_user_cond();
@@ -149,7 +106,7 @@ class contribs_finder {
 			rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text,
 			rev_deleted
 			FROM $page,$revision $use_index
-			WHERE page_id=rev_page AND $userCond $minorQuery $nsQuery $offsetQuery
+			WHERE page_id=rev_page AND $userCond $offsetQuery
 		 	ORDER BY rev_timestamp DESC $limitQuery";
 		return $sql;
 	}
@@ -188,9 +145,6 @@ function wfSpecialContributions( $par = null ) {
 	}
 	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
 
-	$namespace = $wgRequest->getIntOrNull('namespace');
-	$invert = $wgRequest->getBool('invert');
-	$hideminor = $wgRequest->getBool('hideminor');
 	$limit = min($wgRequest->getInt('limit', 50), 500);
 	$offset = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
@@ -198,13 +152,11 @@ function wfSpecialContributions( $par = null ) {
 		$offset = 0;
 
 	$title = Title::makeTitle(NS_SPECIAL, "Contributions");
-	$urlbits = "hideminor=$hideminor&namespace=$namespace&invert=$invert&target=" . wfUrlEncode($target);
+	$urlbits = "target=" . wfUrlEncode($target);
 	$myurl = $title->escapeLocalURL($urlbits);
 
 	$finder = new contribs_finder($nt->getText());
 
-	$finder->set_namespace($namespace, $invert);
-	$finder->set_hide_minor($hideminor);
 	$finder->set_limit($limit);
 	$finder->set_offset($offset);
 
@@ -244,15 +196,6 @@ function wfSpecialContributions( $par = null ) {
 	$wgOut->setSubtitle( wfMsgHtml( 'contribsub', $ul ) );
 
 	$contribsPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
-	$mlink = $sk->makeKnownLinkObj( $contribsPage,
-		$hideminor ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' ),
-		wfArrayToCGI( array(
-			'target' => $nt->getPrefixedDbKey(),
-			'offset' => $offset,
-			'limit' => $limit,
-			'hideminor' => $hideminor ? 0 : 1,
-			'namespace' => $namespace ) ) );
-
 	$contribs = $finder->find();
 
 	if (count($contribs) == 0) {
@@ -264,8 +207,6 @@ function wfSpecialContributions( $par = null ) {
 	$lastts = count($contribs) ? $contribs[count($contribs) - 1]->rev_timestamp : 0;
 	$atstart = (!count($contribs) || $late == $contribs[0]->rev_timestamp);
 	$atend = (!count($contribs) || $early == $lastts);
-wfdebug("early=$early late=$late lastts=$lastts\n");
-	$wgOut->addHTML(ucNamespaceForm($target, $hideminor, $namespace, $invert));
 
 	$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
 
@@ -298,8 +239,7 @@ wfdebug("early=$early late=$late lastts=$lastts\n");
 
 	$prevnextbits = "$firstlast " . wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
 
-	$shm = wfMsgHtml( "contribs-showhideminor", $mlink );
-	$wgOut->addHTML( "<br />{$prevnextbits} ($shm)</p>\n");
+	$wgOut->addHTML( "<br />{$prevnextbits}</p>\n");
 
 	$wgOut->addHTML( "<ul>\n" );
 
@@ -307,7 +247,7 @@ wfdebug("early=$early late=$late lastts=$lastts\n");
 		$wgOut->addHTML(ucListEdit($sk, $contrib));
 
 	$wgOut->addHTML( "</ul>\n" );
-	$wgOut->addHTML( "<br />{$prevnextbits} ($shm)\n");
+	$wgOut->addHTML( "<br />{$prevnextbits}\n");
 }
 
 
@@ -385,45 +325,4 @@ function ucListEdit( $sk, $row ) {
 	return $ret;
 }
 
-/**
- * Generates a form used to restrict display of contributions
- * to a specific namespace
- *
- * @return	none
- * @param	string	$target	target user to show contributions for
- * @param	string	$hideminor whether minor contributions are hidden
- * @param	string	$namespace currently selected namespace, NULL for show all
- * @param	bool    $invert  inverts the namespace selection on true (default null)
- */
-function ucNamespaceForm ( $target, $hideminor, $namespace, $invert ) {
-	global $wgContLang, $wgScript;
-
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsgHtml( 'contributionsall' ).'</option>';
-	$arr = $wgContLang->getFormattedNamespaces();
-	foreach( $arr as $ns => $name ) {
-		if( $ns < NS_MAIN )
-			continue;
-		$n = $ns === NS_MAIN ? wfMsgHtml( 'blanknamespace' ) : htmlspecialchars( $name );
-		$sel = $namespace == $ns ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
-	}
-	$namespaceselect .= '</select>';
-
-	$action = htmlspecialchars( $wgScript );
-	$out = "<div class='namespaceselector'><form method='get' action=\"$action\">";
-	$out .= '<input type="hidden" name="title" value="' . htmlspecialchars( $wgContLang->specialpage( 'Contributions' ) ) . '" />';
-	$out .= '<input type="hidden" name="target" value="' . htmlspecialchars( $target ) . '" />';
-	$out .= '<input type="hidden" name="hideminor" value="' . ( $hideminor ? 1 : 0 ) .'" />';
-	$out .= "
-<div id='nsselect' class='contributions'>
-	<label for='nsselectbox'>" . wfMsgHtml('namespace') . "</label>
-	$namespaceselect
-	<input type='submit' value=\"" . wfMsgHtml( 'allpagessubmit' ) . "\" />
-	<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . " />
-	<label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
-</div>";
-	$out .= '</form></div>';
-	return $out;
-}
 ?>
