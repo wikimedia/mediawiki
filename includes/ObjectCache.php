@@ -50,9 +50,11 @@ function &wfGetCache( $inputType ) {
 		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){ 
 			require_once( 'memcached-client.php' );
 			
-			class MemCachedClientforWiki extends memcached {
-				function _debugprint( $text ) {
-					wfDebug( "memcached: $text\n" );
+			if (!class_exists("MemcachedClientforWiki")) {
+				class MemCachedClientforWiki extends memcached {
+					function _debugprint( $text ) {
+						wfDebug( "memcached: $text\n" );
+					}
 				}
 			}
 
