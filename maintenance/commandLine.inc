@@ -155,7 +155,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 # Same with these
 $wgCommandLineMode = true;
 
-if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
+if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) && $wgDBservers ) {
 	$wgDBuser = $wgDBadminuser;
 	$wgDBpassword = $wgDBadminpassword;
 
