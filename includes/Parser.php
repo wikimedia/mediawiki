@@ -183,11 +183,13 @@ class Parser
 		//$text = $this->strip( $text, $this->mStripState );
 		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
 		$x =& $this->mStripState;
+		
+		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$x ) );
 		$text = $this->strip( $text, $x );
+		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
 
 		$text = $this->internalParse( $text );
 
-		
 		$text = $this->unstrip( $text, $this->mStripState );
 		
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -214,12 +216,16 @@ class Parser
 		$this->mOutput->setTitleText($wgContLang->getParsedTitle());
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
+
+		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 		
 		$text = Sanitizer::normalizeCharReferences( $text );
 		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
 		}
+
+		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
 
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
@@ -510,7 +516,9 @@ class Parser
 			  'html' => array(),
 			  'nowiki' => array(),
 			  'math' => array(),
-			  'pre' => array()
+			  'pre' => array(),
+			  'comment' => array(),
+			  'gallery' => array(),
 			);
 		}
 		$state['item'][$rnd] = $text;
