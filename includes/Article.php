@@ -99,7 +99,7 @@ class Article {
 				# the revision text and put it in.
 				if($preload) {
 					$preloadTitle=Title::newFromText($preload);
-					if($preloadTitle->userCanRead()) {
+					if(isset($preloadTitle) && $preloadTitle->userCanRead()) {
 						$rev=Revision::newFromTitle($preloadTitle);
 						if($rev) {
 						return $rev->getText();
@@ -114,7 +114,7 @@ class Article {
 			wfProfileOut( $fname );
 			
 			return wfMsg( 'noarticletext' );
-		} else {
+		} else {			
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&

@@ -312,7 +312,7 @@ class EditPage {
 			$addstandardintro=true;
 			if($editintro) {
 				$introtitle=Title::newFromText($editintro);
-				if($introtitle->userCanRead()) {
+				if(isset($introtitle) && $introtitle->userCanRead()) {
 					$rev=Revision::newFromTitle($introtitle);
 					if($rev) {
 						$wgOut->addWikiText($rev->getText());	
