@@ -249,7 +249,7 @@ Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>"
 'export' => "Eksportuoti puslapius",
 'extlink_sample' => "http://www.pavyzdys.lt Nuorodos pavadinimas",
 'extlink_tip' => "Išorinė nuoroda (nepamirškite http:// prefikso)",
-'tagline'       => "<small>Straipsnis iš Wikipedijos, laisvosios enciklopedijos.</small>",
+'tagline'       => "Straipsnis iš Wikipedijos, laisvosios enciklopedijos",
 'go' => "Rodyk",
 'headline_sample' => "Skyriaus Pavadinimas",
 'headline_tip' => "Skyriaus pavadinimas (2-o lygio)",
