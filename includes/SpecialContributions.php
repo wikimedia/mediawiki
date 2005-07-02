@@ -34,13 +34,16 @@ class contribs_finder {
 		list($index, $usercond) = $this->get_user_cond();
 
 		$use_index = $this->dbr->useIndexClause($index);
-		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
-			"FROM page, revision $use_index WHERE page_id = rev_page " .
-			"AND ";
+		#$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
+		#	"FROM page, revision $use_index WHERE page_id = rev_page " .
+		#	"AND ";
 
-		$sql .= $usercond;
-		$sql .= $this->get_namespace_cond();
-		$sql .= $this->get_minor_cond();
+		#$sql .= $usercond;
+		#$sql .= $this->get_namespace_cond();
+		#$sql .= $this->get_minor_cond();
+		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
+			"FROM revision $use_index WHERE " . $usercond;
+
 		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limits");
 		$rows = array();
 		while ($o = $this->dbr->fetchObject($res))
