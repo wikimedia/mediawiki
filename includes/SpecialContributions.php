@@ -34,6 +34,8 @@ class contribs_finder {
 		list($index, $usercond) = $this->get_user_cond();
 
 		$use_index = $this->dbr->useIndexClause($index);
+		extract($this->dbr->tableNames('page', 'revision'));
+		
 		#$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
 		#	"FROM page, revision $use_index WHERE page_id = rev_page " .
 		#	"AND ";
@@ -42,7 +44,7 @@ class contribs_finder {
 		#$sql .= $this->get_namespace_cond();
 		#$sql .= $this->get_minor_cond();
 		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
-			"FROM revision $use_index WHERE " . $usercond;
+			"FROM $revision $use_index WHERE " . $usercond;
 
 		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limits");
 		$rows = array();
@@ -92,8 +94,9 @@ class contribs_finder {
 	function get_previous_offset_for_paging() {
 		list($index, $usercond) = $this->get_user_cond();
 		$use_index = $this->dbr->useIndexClause($index);
+		extract($this->dbr->tableNames('page', 'revision'));
 
-		$sql =	"SELECT rev_timestamp FROM page, revision $use_index " .
+		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
 		$sql .= $this->get_namespace_cond();
@@ -110,8 +113,9 @@ class contribs_finder {
 	function get_first_offset_for_paging() {
 		list($index, $usercond) = $this->get_user_cond();
 		$use_index = $this->dbr->useIndexClause($index);
+		extract($this->dbr->tableNames('page', 'revision'));
 
-		$sql =	"SELECT rev_timestamp FROM page, revision $use_index " .
+		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
 		$sql .= $this->get_namespace_cond();
