@@ -282,7 +282,7 @@ wfdebug("early=$early late=$late lastts=$lastts\n");
 		$firstlink = $firsttext;
 		$nextlink = $nexttext;
 	} else {
-		$firstlink = "<a href=\"$myurl&amp;limit=$limit&;go=first\">$firsttext</a>";
+		$firstlink = "<a href=\"$myurl&amp;limit=$limit&amp;go=first\">$firsttext</a>";
 		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit\">$nexttext</a>";
 	}
 	$firstlast = "($lastlink | $firstlink)";
