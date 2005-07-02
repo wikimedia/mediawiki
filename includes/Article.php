@@ -87,7 +87,6 @@ class Article {
 		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
 		$preload = $wgRequest->getText( 'preload' );
-		$newpagetext = $wgRequest->getText('newpagetext');
 
 		$fname =  'Article::getContent';
 		wfProfileIn( $fname );
