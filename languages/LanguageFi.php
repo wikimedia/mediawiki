@@ -1324,8 +1324,7 @@ class LanguageFi extends LanguageUtf8 {
     return $wgSkinNamesFi;
   }
 
-  function date( $ts, $adj = false )
-  {
+  function date( $ts, $adj = false ) {
     if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
     $d = (0 + substr( $ts, 6, 2 )) . '. ' .
@@ -1333,8 +1332,7 @@ class LanguageFi extends LanguageUtf8 {
     return $d;
   }
 
-  function time( $ts, $adj = false, $seconds = true )
-  {
+  function time( $ts, $adj = false, $seconds = true ) {
     if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
     $t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
@@ -1344,13 +1342,11 @@ class LanguageFi extends LanguageUtf8 {
     return $t;
   }
 
-  function timeanddate( $ts, $adj = false )
-  {
+  function timeanddate( $ts, $adj = false ) {
     return $this->date( $ts, $adj ) . ' kello ' . $this->time( $ts, $adj );
   }
 
-  function getMessage( $key )
-  {
+  function getMessage( $key ) {
     global $wgAllMessagesFi;
     if( isset( $wgAllMessagesFi[$key] ) ) {
       return $wgAllMessagesFi[$key];
@@ -1359,13 +1355,23 @@ class LanguageFi extends LanguageUtf8 {
     }
   }
 
-  var $digitTransTable = array(
-    ',' => '&nbsp;',
-    '.' => ','
-  );
+  /**
+   * Finnish numeric formatting is 123 456,78.
+   * Notice that the space is non-breaking.
+   */
+  function formatNum( $number, $year = false ) {
+    return $year ? $number : strtr($this->commafy($number), '.,', ", " );
+  }
 
-  function formatNum( $number ) {
-    return strtr($number, $this->digitTransTable );
+  /**
+   * Avoid grouping whole numbers between 0 to 9999
+   */
+  function commafy($_) {
+    if (!preg_match('/^\d{1,4}$/',$_)) {
+      return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+    } else {
+      return $_;
+    }
   }
 
   # Convert from the nominative form of a noun to some other case

@@ -954,38 +954,41 @@ class LanguagePt extends LanguageUtf8 {
         return $wgDateFormatsPt;
     }
 
-    function timeanddate( $ts, $adj = false )
-    {
+    function timeanddate( $ts, $adj = false ) {
         return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
     }
 
-    function getValidSpecialPages()
-    {
+    function getValidSpecialPages() {
         global $wgValidSpecialPagesPt;
         return $wgValidSpecialPagesPt;
     }
 
-    function getSysopSpecialPages()
-    {
+    function getSysopSpecialPages() {
         global $wgSysopSpecialPagesPt;
         return $wgSysopSpecialPagesPt;
     }
 
-    function getDeveloperSpecialPages()
-    {
+    function getDeveloperSpecialPages() {
         global $wgDeveloperSpecialPagesPt;
         return $wgDeveloperSpecialPagesPt;
     }
 
-    function getMessage( $key )
-    {
-        global $wgAllMessagesPt;
-		if( isset( $wgAllMessagesPt[$key] ) ) {
-			return $wgAllMessagesPt[$key];
-		} else {
-			return parent::getMessage( $key );
-		}
+    function getMessage( $key ) {
+         global $wgAllMessagesPt;
+         if( isset( $wgAllMessagesPt[$key] ) ) {
+             return $wgAllMessagesPt[$key];
+         } else {
+             return parent::getMessage( $key );
+        }
     }
+
+    /**
+     * Portuguese numeric format is 123.456,78
+     */
+    function formatNum( $number, $year = false ) {
+        return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+    }
+
 }
 
 ?>
