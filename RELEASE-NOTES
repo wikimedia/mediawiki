@@ -443,6 +443,9 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2629) Automatically capitalize usernames again instead of
   rejecting lowercase with a useless error message
 * (bug 2661) Fix link generation in contribs
+* Add support for &preload=Page_name (load text of an existing page into
+edit area) and &editintro=Page_name (load text of an existing page instead
+of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bugs 2633, 2672) Fix Estonian, Portuguese and Finnish numeric formatting
 
 === Caveats ===
