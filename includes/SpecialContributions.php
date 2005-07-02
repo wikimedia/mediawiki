@@ -239,7 +239,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$prevnextbits = "$firstlast " . wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
 
-	$wgOut->addHTML( "<br />{$prevnextbits}</p>\n");
+	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
 
 	$wgOut->addHTML( "<ul>\n" );
 
@@ -247,7 +247,7 @@ function wfSpecialContributions( $par = null ) {
 		$wgOut->addHTML(ucListEdit($sk, $contrib));
 
 	$wgOut->addHTML( "</ul>\n" );
-	$wgOut->addHTML( "<br />{$prevnextbits}\n");
+	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
 }
 
 
