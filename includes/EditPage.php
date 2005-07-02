@@ -298,7 +298,7 @@ class EditPage {
 	function editForm( $formtype, $firsttime = false ) {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgContLang, $wgParser, $wgTitle;
-		global $wgAllowAnonymousMinor;
+		global $wgAllowAnonymousMinor, $wgRequest;
 		global $wgSpamRegex, $wgFilterCallback;
 
 		$sk = $wgUser->getSkin();
@@ -308,7 +308,21 @@ class EditPage {
 		
 
 		if(!$this->mTitle->getArticleID()) { # new article
-			$wgOut->addWikiText(wfmsg('newarticletext'));
+			$editintro = $wgRequest->getText( 'editintro' );
+			$addstandardintro=true;
+			if($editintro) {
+				$introtitle=Title::newFromText($editintro);
+				if($introtitle->userCanRead()) {
+					$rev=Revision::newFromTitle($introtitle);
+					if($rev) {
+						$wgOut->addWikiText($rev->getText());	
+						$addstandardintro=false;
+					}
+				}
+			}
+			if($addstandardintro) {
+				$wgOut->addWikiText(wfmsg('newarticletext'));
+			}
 		}
 
 		if( $this->mTitle->isTalkPage() ) {
