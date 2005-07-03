@@ -243,7 +243,7 @@ class ImagePage extends Article {
 
 		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
 		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsg("sharedupload");
-		if ($wgRepositoryBaseUrl) {
+		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
 			$sharedtext .= " " . wfMsg("shareduploadwiki", $url);
 		}
 		$sharedtext .= "</div>";
