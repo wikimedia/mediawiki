@@ -122,7 +122,7 @@ class ChangesList {
 		$userlinks = array () ;
 		foreach ( $block AS $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
-                        $newid = $rcObj->mAttribs['rc_this_oldid'];
+			$newid = $rcObj->mAttribs['rc_this_oldid'];
 			if ( $rcObj->mAttribs['rc_new'] ) {
 				$isnew = true ;
 			}
@@ -172,12 +172,13 @@ class ChangesList {
 		$r .= $link ;
 
 		$curIdEq = 'curid=' . $block[0]->mAttribs['rc_cur_id'];
+		$currentRevision = $block[0]->mAttribs['rc_this_oldid'];
 		if ( $block[0]->mAttribs['rc_type'] != RC_LOG ) {
 			# Changes
 			$r .= ' ('.count($block).' ' ;
 			if ( $isnew ) $r .= wfMsg('changes');
 			else $r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle() , wfMsg('changes') ,
-				$curIdEq."&diff=$newid&oldid=$oldid" ) ;
+				$curIdEq."&diff=$currentRevision&oldid=$oldid" ) ;
 			$r .= '; ' ;
 
 			# History
