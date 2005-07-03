@@ -187,7 +187,7 @@ require_once( "LanguageUtf8.php" );
 "category_header" => 'Artikler i kategorien "$1"',
 "subcategories" => "Underkategorier",
 
-"linktrail"		=> '/^([a-zæøåÆØÅ]+)(.*)$/sD',
+"linktrail"		=> '/^([a-zæøå]+)(.*)$/sDu',
 "mainpage"		=> "Forside",
 "mainpagetext"	=> "MediaWiki er nu installeret.",
 "mainpagedocfooter" => "Se vores engelsksprogede [http://meta.wikipedia.org/wiki/MediaWiki_i18n dokumentation om tilpasning af brugergrænsefladen] 
