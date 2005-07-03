@@ -19,6 +19,12 @@ class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for
 
+	function render() {
+		global $wgOut;
+		$wgOut->setArticleBodyOnly(true);
+		$wgOut->addWikitext($this->getContent(true));
+	}
+
 	function view() {
 		global $wgUseExternalEditor, $wgOut, $wgShowEXIF;
 
@@ -251,7 +257,7 @@ class ImagePage extends Article {
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
 			$ur = ini_set('allow_url_fopen', true);
-			$text = @file($url);
+			$text = @file_get_contents($url);
 			ini_set('allow_url_fopen', $ur);
 			if ($text)
 				$wgOut->addHTML($text);
