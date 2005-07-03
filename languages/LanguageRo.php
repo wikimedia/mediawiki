@@ -1310,7 +1310,7 @@ class LanguageRo extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesRo;
-		if($wgAllMessagesRo[$key])
+		if( isset( $wgAllMessagesRo[$key] ) )
 			return $wgAllMessagesRo[$key];
 		else
 			return parent::getMessage( $key );
