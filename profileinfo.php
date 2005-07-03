@@ -196,6 +196,8 @@ function makeurl($_filter = false, $_sort = false, $_expand = false) {
 }
 
 $points = array();
+$queries = array();
+$sqltotal = 0.0;
 
 $last = false;
 while (($o = mysql_fetch_object($res)) !== false) {
@@ -208,8 +210,18 @@ while (($o = mysql_fetch_object($res)) !== false) {
 		}
 	}
 	$last = $next;
-	$points[] = $next;
+	if (preg_match("/^query: /", $next->name())) {
+		$sqltotal += $next->time();
+		$queries[] = $next;
+	} else {
+		$points[] = $next;
+	}
 }
+
+$s = new profile_point("SQL Queries", 0, $sqltotal);
+foreach ($queries as $q)
+	$s->add_child($q);
+$points[] = $s;
 
 usort($points, "compare_point");
 
