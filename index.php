@@ -25,7 +25,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 	<head>
 		<title>MediaWiki <?php echo $wgVersion ?></title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		
+
 		<style type='text/css' media='screen, projection'>
 			html, body {
 				color: #000;
@@ -41,7 +41,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 	</head>
 	<body>
 		<img src='skins/common/images/mediawiki.png' alt='The MediaWiki logo' />
-		
+
 		<h1>MediaWiki <?php echo $wgVersion ?></h1>
 		<div class='error'>
 		<?php
@@ -81,12 +81,12 @@ if ( '' == $title && 'delete' != $action ) {
 	$wgTitle = Title::newFromID( $curid );
 } else {
 	$wgTitle = Title::newFromURL( $title );
-	/* check variant links so that interwiki links don't have to worry about 
+	/* check variant links so that interwiki links don't have to worry about
 	   the possible different language variants
 	*/
 	if( !is_null($wgTitle) && $wgTitle->getArticleID() == 0 )
 		$wgContLang->findVariantLink( $title, $wgTitle );
-	
+
 }
 wfProfileOut( 'main-misc-setup' );
 
@@ -172,6 +172,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 			case 'info':
 			case 'markpatrolled':
 			case 'validate':
+			case 'render':
 				$wgArticle->$action();
 				break;
 			case 'print':
@@ -203,20 +204,20 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 					User::SetupSession();
 				}
 				# Continue...
-			case 'edit':			
+			case 'edit':
 				$internal = $wgRequest->getVal( 'internaledit' );
 				$external = $wgRequest->getVal( 'externaledit' );
 				$section = $wgRequest->getVal( 'section' );
-				$oldid = $wgRequest->getVal( 'oldid' );						
-				if(!$wgUseExternalEditor || $action=='submit' || $internal || 
+				$oldid = $wgRequest->getVal( 'oldid' );
+				if(!$wgUseExternalEditor || $action=='submit' || $internal ||
 				   $section || $oldid || (!$wgUser->getOption('externaleditor') && !$external)) {
 					require_once( 'includes/EditPage.php' );
 					$editor = new EditPage( $wgArticle );
-					$editor->submit();				
+					$editor->submit();
 				} elseif($wgUseExternalEditor && ($external || $wgUser->getOption('externaleditor'))) {
 					require_once( 'includes/ExternalEdit.php' );
 					$mode = $wgRequest->getVal( 'mode' );
-					$extedit = new ExternalEdit( $wgArticle, $mode );				
+					$extedit = new ExternalEdit( $wgArticle, $mode );
 					$extedit->edit();
 				}
 				break;

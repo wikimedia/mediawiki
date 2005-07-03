@@ -32,6 +32,7 @@ class OutputPage {
 	var $mParserOptions;
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
+	var $mArticleBodyOnly = false;
 
 	/**
 	 * Constructor
@@ -67,6 +68,7 @@ class OutputPage {
 	function getScript() { return $this->mScripts; }
 
 	function setETag($tag) { $this->mETag = $tag; }
+	function setArticleBodyOnly($only) { $this->mArticleBodyOnly = $only; }
 
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
@@ -447,9 +449,13 @@ class OutputPage {
 			setcookie( $name, $val, $exp, '/' );
 		}
 
-		wfProfileIn( 'Output-skin' );
-		$sk->outputPage( $this );
-		wfProfileOut( 'Output-skin' );
+		if ($this->mArticleBodyOnly) {
+			$this->out($this->mBodytext);
+		} else {
+			wfProfileIn( 'Output-skin' );
+			$sk->outputPage( $this );
+			wfProfileOut( 'Output-skin' );
+		}
 
 		$this->sendCacheControl();
 		ob_end_flush();

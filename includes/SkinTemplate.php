@@ -23,7 +23,7 @@
  * Todo: Needs some serious refactoring into functions that correspond
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
- * 
+ *
  * PHPTAL support has been moved to a subclass in SkinPHPTal.php,
  * and is optional. You'll need to install PHPTAL manually to use
  * skins that depend on it.
@@ -57,10 +57,10 @@ class MediaWiki_I18N {
 	function translate($value) {
 		$fname = 'SkinTemplate-translate';
 		wfProfileIn( $fname );
-		
+
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
-		
+
 		$value = wfMsg( $value );
 		// interpolate variables
 		while (preg_match('/\$([0-9]*?)/sm', $value, $m)) {
@@ -135,7 +135,7 @@ class SkinTemplate extends Skin {
 	function &setupTemplate( $classname, $repository=false, $cache_dir=false ) {
 		return new $classname();
 	}
-	
+
 	/**
 	 * initialize various variables and generate the template
 	 *
@@ -152,7 +152,7 @@ class SkinTemplate extends Skin {
 
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
-		
+
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 		wfProfileIn( "$fname-init" );
@@ -355,7 +355,7 @@ class SkinTemplate extends Skin {
 
 		# Language links
 		$language_urls = array();
-		
+
 		if ( !$wgHideInterlanguageLinks ) {
 			foreach( $wgOut->getLanguageLinks() as $l ) {
 				$nt = Title::newFromText( $l );
@@ -395,12 +395,12 @@ class SkinTemplate extends Skin {
 		wfProfileIn( "$fname-execute" );
 		$res = $tpl->execute();
 		wfProfileOut( "$fname-execute" );
-		
+
 		// result may be an error
 		$this->printOrError( $res );
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Output the string, or print error message if it's
 	 * an error object of the appropriate type.
@@ -421,7 +421,7 @@ class SkinTemplate extends Skin {
 	function buildPersonalUrls() {
 		$fname = 'SkinTemplate::buildPersonalUrls';
 		wfProfileIn( $fname );
-		
+
 		/* set up the default links for the personal toolbar */
 		global $wgShowIPinHeader;
 		$personal_urls = array();
@@ -507,7 +507,7 @@ class SkinTemplate extends Skin {
 			'exists' => $title->getArticleID() != 0?true:false
 		);
 	}
-	
+
 	function makeArticleUrlDetails( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
 		$title= $title->getSubjectPage();
@@ -517,7 +517,7 @@ class SkinTemplate extends Skin {
 			'exists' => $title->getArticleID() != 0?true:false
 		);
 	}
-	
+
 	/**
 	 * an array of edit links by default used for the tabs
 	 * @return array
@@ -527,7 +527,7 @@ class SkinTemplate extends Skin {
 		global $wgContLang, $wgUseValidation, $wgDBprefix, $wgValidationForAnons;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
-		
+
 		global $wgUser, $wgRequest;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
@@ -543,14 +543,14 @@ class SkinTemplate extends Skin {
 				$nskey,
 				!$this->mTitle->isTalkPage(),
 				'', true);
-			
+
 			$content_actions['talk'] = $this->tabAction(
 				$this->mTitle->getTalkPage(),
 				'talk',
 				$this->mTitle->isTalkPage(),
 				'',
 				true);
-			
+
 			wfProfileIn( "$fname-edit" );
 			if ( $this->mTitle->userCanEdit() ) {
 				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.IntVal( $oldid ) : false;
@@ -651,7 +651,7 @@ class SkinTemplate extends Skin {
 			}
 
 			if( $wgUser->isLoggedIn() || $wgValidationForAnons ) { # and $action != 'submit' ) {
-				# Validate tab. TODO: add validation to logged-in user rights 
+				# Validate tab. TODO: add validation to logged-in user rights
 				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
 					if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid
 					else
@@ -710,7 +710,7 @@ class SkinTemplate extends Skin {
 		wfProfileOut( $fname );
 		return $content_actions;
 	}
-	
+
 
 
 	/**
@@ -721,14 +721,14 @@ class SkinTemplate extends Skin {
 	function buildNavUrls () {
 		$fname = 'SkinTemplate::buildNavUrls';
 		wfProfileIn( $fname );
-		
+
 		global $wgUser, $wgRequest;
 		global $wgSiteSupportPage, $wgEnableUploads, $wgUploadNavigationUrl;
 
 		$action = $wgRequest->getText( 'action' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
-		
+
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
 		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Random'));
@@ -741,8 +741,8 @@ class SkinTemplate extends Skin {
 		$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 		if( $wgEnableUploads ) {
 			if ($wgUploadNavigationUrl) {
-				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );			
-			} else {			
+				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );
+			} else {
 				$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 			}
 		} else {
@@ -750,7 +750,7 @@ class SkinTemplate extends Skin {
 		}
 		$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
 
-		
+
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
@@ -758,7 +758,7 @@ class SkinTemplate extends Skin {
 				'text' => wfMsg( 'printableversion' ),
 				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
 		}
-		
+
 		if( $this->mTitle->getNamespace() != NS_SPECIAL) {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => $this->makeSpecialUrl("Whatlinkshere/$this->thispage")
@@ -832,14 +832,14 @@ class SkinTemplate extends Skin {
 				return 'nstab-main';
 		}
 	}
-	
+
 	/**
 	 * @access private
 	 */
 	function setupUserCss() {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
-		
+
 		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
 		$sitecss = '';
@@ -847,10 +847,10 @@ class SkinTemplate extends Skin {
 		$siteargs = '&maxage=' . $wgSquidMaxage;
 
 		# Add user-specific code if this is a user and we allow that kind of thing
-		
+
 		if ( $wgAllowUserCss && $this->loggedin ) {
 			$action = $wgRequest->getText('action');
-			
+
 			# if we're previewing the CSS page, use it
 			if( $this->mTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
 				$siteargs = "&smaxage=0&maxage=0";
@@ -865,15 +865,15 @@ class SkinTemplate extends Skin {
 		}
 
 		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
-		
+
 		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
 			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
 		}
-		
+
 		# If we use any dynamic CSS, make a little CDATA block out of it.
-		
+
 		if ( !empty($sitecss) || !empty($usercss) ) {
 			$this->usercss = "/*<![CDATA[*/\n" . $sitecss . $usercss . '/*]]>*/';
 		}
@@ -886,7 +886,7 @@ class SkinTemplate extends Skin {
 	function setupUserJs() {
 		$fname = 'SkinTemplate::setupUserJs';
 		wfProfileIn( $fname );
-		
+
 		global $wgRequest, $wgAllowUserJs, $wgJsMimeType;
 		$action = $wgRequest->getText('action');
 
@@ -900,7 +900,7 @@ class SkinTemplate extends Skin {
 		}
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * returns css with user-specific options
 	 * @access public
@@ -909,21 +909,21 @@ class SkinTemplate extends Skin {
 	function getUserStylesheet() {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
-		
+
 		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
 		$s .= $this->reallyDoGetUserStyles();
 		wfProfileOut( $fname );
 		return $s;
 	}
-	
+
 	/**
 	 * @access public
 	 */
 	function getUserJs() {
 		$fname = 'SkinTemplate::getUserJs';
 		wfProfileIn( $fname );
-		
+
 		global $wgStylePath;
 		$s = '/* generated javascript */';
 		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
@@ -936,7 +936,7 @@ class SkinTemplate extends Skin {
 		if ('&lt;'.$msgKey.'&gt;' != $userJS) {
 			$s .= $userJS;
 		}
-		
+
 		wfProfileOut( $fname );
 		return $s;
 	}
@@ -956,28 +956,28 @@ class QuickTemplate {
 		$this->data = array();
 		$this->translator = new MediaWiki_I18N();
 	}
-	
+
 	/**
 	 * @access public
 	 */
 	function set( $name, $value ) {
 		$this->data[$name] = $value;
 	}
-	
+
 	/**
 	 * @access public
 	 */
 	function setRef($name, &$value) {
 		$this->data[$name] =& $value;
 	}
-	
+
 	/**
 	 * @access public
 	 */
 	function setTranslator( &$t ) {
 		$this->translator = &$t;
 	}
-	
+
 	/**
 	 * @access public
 	 */
@@ -992,28 +992,28 @@ class QuickTemplate {
 	function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
 	}
-	
+
 	/**
 	 * @access private
 	 */
 	function html( $str ) {
 		echo $this->data[$str];
 	}
-	
+
 	/**
 	 * @access private
 	 */
 	function msg( $str ) {
 		echo htmlspecialchars( $this->translator->translate( $str ) );
 	}
-	
+
 	/**
 	 * @access private
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
 	}
-	
+
 	/**
 	 * An ugly, ugly hack.
 	 * @access private
@@ -1026,14 +1026,14 @@ class QuickTemplate {
 			$wgOut->mParserOptions, true );
 		echo $parserOutput->getText();
 	}
-	
+
 	/**
 	 * @access private
 	 */
 	function haveData( $str ) {
 		return $this->data[$str];
 	}
-	
+
 	/**
 	 * @access private
 	 */
@@ -1043,5 +1043,5 @@ class QuickTemplate {
 	}
 }
 
-} // end of if( defined( 'MEDIAWIKI' ) ) 
+} // end of if( defined( 'MEDIAWIKI' ) )
 ?>

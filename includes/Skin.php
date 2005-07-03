@@ -147,6 +147,7 @@ class Skin extends Linker {
 
 		wfProfileIn( 'Skin::outputPage' );
 		$this->initPage( $out );
+
 		$out->out( $out->headElement() );
 
 		$out->out( "\n<body" );
@@ -159,6 +160,7 @@ class Skin extends Linker {
 			$out->out( "<!-- Wiki debugging output:\n" .
 			  $out->mDebugtext . "-->\n" );
 		}
+
 		$out->out( $this->beforeContent() );
 
 		$out->out( $out->mBodytext . "\n" );
@@ -197,17 +199,17 @@ class Skin extends Linker {
 	 */
 	function userCanPreview( $action ) {
 		global $wgTitle, $wgRequest, $wgUser;
-		
+
 		if( $action != 'submit' )
 			return false;
 		if( !$wgRequest->wasPosted() )
 			return false;
-		if( !$wgTitle->userCanEditCssJsSubpage() ) 
+		if( !$wgTitle->userCanEditCssJsSubpage() )
 			return false;
 		return $wgUser->matchEditToken(
 			$wgRequest->getVal( 'wpEditToken' ) );
 	}
-	
+
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
 		global $wgOut, $wgStylePath, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
@@ -258,7 +260,7 @@ class Skin extends Linker {
 
 		return $s . $this->reallyDoGetUserStyles();
 	}
-	
+
 	function reallyDoGetUserStyles() {
 		global $wgUser;
 		$s = '';
@@ -406,7 +408,7 @@ END;
 		return $s;
 	}
 
-	
+
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgParser;
 		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
@@ -926,7 +928,7 @@ END;
 				}
 			}
 		}
-		
+
 		$go = wfMsg( 'go' );
 		$sp = wfMsg( 'specialpages' );
 		$spp = $wgContLang->specialPage( 'Specialpages' );
@@ -936,7 +938,7 @@ END;
 		$s .= "<select name=\"wpDropdown\">\n";
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
 
-		
+
 		foreach ( $a as $name => $desc ) {
 			$p = $wgContLang->specialPage( $name );
 			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
@@ -1097,7 +1099,7 @@ END;
 #		       0 != $id->getEmailauthenticationtimestamp() && # .. which is authenticated
 #		       1 != $wgUser->getOption('disablemail'); # and not disabled
 	}
-	
+
 	function emailUserLink() {
 		global $wgTitle;
 
@@ -1235,13 +1237,13 @@ END;
 		$title = Title::makeTitle( NS_SPECIAL, $name );
 		return $title->getLocalURL( $urlaction );
 	}
-	
+
 	/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( wfMsgForContent($name) );
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
-	
+
 	/*static*/ function makeUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
 		$this->checkTitle($title, $name);
@@ -1290,11 +1292,11 @@ END;
 	 *
 	 * @return array
 	 * @access private
-	 */ 
+	 */
 	function buildSidebar() {
 		$fname = 'SkinTemplate::buildSidebar';
 		wfProfileIn( $fname );
-		
+
 		$bar = array();
 		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
 		foreach ($lines as $line) {
@@ -1317,7 +1319,7 @@ END;
 				} else { continue; }
 			}
 		}
-		
+
 		wfProfileOut( $fname );
 		return $bar;
 	}
