@@ -306,7 +306,7 @@ function addInfobox(infoText,text_alert) {
 
 function escapeQuotes(text) {
 	var re=new RegExp("'","g");
-	text=text.replace(re,"\\'");
+	text=text.replace(re,"&#39;");
 	re=new RegExp('"',"g");
 	text=text.replace(re,'&quot;');
 	re=new RegExp("\\n","g");

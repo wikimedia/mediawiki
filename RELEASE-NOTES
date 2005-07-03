@@ -458,6 +458,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2648) Rename namespaces in Afrikaanse
 * Special:Booksources checks if custom list page exists before using it
 * (bug 1170) Fixed linktrail for da: and ru:
+* (bug 2683) Really fix apostrophe escaping for toolbox tips
+
 
 === Caveats ===
 
