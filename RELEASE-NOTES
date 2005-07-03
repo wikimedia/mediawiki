@@ -452,6 +452,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   image description pages when viewed on local wikis.
 * Restore compatibility namespace aliases for French Wikipedia
 * Fix diff order on Enhanced RC 'changes' link
+* (bug 2650) Fix national date type display on wikis that don't support
+  dynamic date conversion.
 
 
 === Caveats ===
