@@ -791,8 +791,7 @@ class LanguageIt extends LanguageUtf8 {
 		return $wgQuickbarSettingsIt;
 	}
 	
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
@@ -801,31 +800,34 @@ class LanguageIt extends LanguageUtf8 {
 		return $d;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesIt;
 		return $wgValidSpecialPagesIt;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesIt;
 		return $wgSysopSpecialPagesIt;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesIt;
 		return $wgDeveloperSpecialPagesIt;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesIt;
 		if(array_key_exists($key, $wgAllMessagesIt))
 			return $wgAllMessagesIt[$key];
 		else
 			return parent::getMessage($key);
+	}
+
+	/**
+	 * Italian numeric format is 201.511,17
+	 */
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 
 }
