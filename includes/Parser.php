@@ -2357,6 +2357,8 @@ class Parser
 
 		$articlename = "Template:" . $title->getDBkey();
 		$url = str_replace('$1', urlencode($articlename), $interwiki);
+		if (strlen($url) > 255)
+			return wfMsg('scarytranscludetoolong');
 		$text = $this->fetchScaryTemplateMaybeFromCache($url);
 		$this->mIWTransData[] = $text;
 		return "<!--IW_TRANSCLUDE ".(count($this->mIWTransData) - 1)."-->";

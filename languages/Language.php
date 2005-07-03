@@ -2122,6 +2122,7 @@ will expire at $4.
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
 'scarytranscludefailed' => '[Template fetch failed; sorry]',
+'scarytranscludetoolong' => '[URL is too long; sorry]',
 
 );
 
