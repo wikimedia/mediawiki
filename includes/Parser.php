@@ -2794,7 +2794,7 @@ class Parser
 		 * everyone the same signiture and use the default one rather
 		 * than the one selected in each users preferences.
 		 */
-		$d = $wgContLang->timeanddate( wfTimestampNow(), false, false) .
+		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
 			putenv( 'TZ='.$oldtz );
