@@ -243,7 +243,7 @@ if(isset($wgExtraNamespaces)) {
 'subcategories' => 'Подкатегории',
 
 
-'linktrail'             => '/^([a-z\x80-\xff]+)(.*)\$/sD', 
+'linktrail'             => '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я)+)(.*)$/sD', 
 'mainpage'              => 'Заглавная страница',
 'mainpagetext'  => 'Програмное обеспечение вики-проекта успешно установлено.',
 "mainpagedocfooter" => "См. [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
