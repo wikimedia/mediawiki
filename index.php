@@ -194,6 +194,8 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 				$wgTitle->invalidateCache();
 				$wgArticle->view();
 				break;
+			case 'render':
+				die("rendering is not supported in this version of MediaWiki.");
 			default:
 				if (wfRunHooks('UnknownAction', $action, $wgArticle)) {
 					$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
