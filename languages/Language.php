@@ -236,7 +236,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
-	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),    
+	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
 );
 
 #-------------------------------------------------------------------
@@ -254,7 +254,7 @@ global $wgRightsText;
 # The navigation toolbar, int: is used here to make sure that the appropriate
 # messages are automatically pulled from the user-selected language file.
 
-/* 
+/*
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
 do not contain | are also discarded, but don't depend on this behaviour for
@@ -624,19 +624,19 @@ You should log in and change your password now.",
 'passwordsent'	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
-'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address. 
-Before any other mail is sent to the account, you will have to follow the instructions in the email, 
+'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address.
+Before any other mail is sent to the account, you will have to follow the instructions in the email,
 to confirm that the account is actually yours.",
 'loginend'		            => '&nbsp;',
 'mailerror'                 => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated'        => 'Your email address was authenticated on $1.',
-'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email 
+'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>No email address has been specified</strong>, the following 
+'noemailprefs'              => '<strong>No email address has been specified</strong>, the following
 features will not work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
-'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid 
+'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
 
 # Edit page toolbar
@@ -828,7 +828,7 @@ $2 List redirects &nbsp; Search for $3 $9",
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
-    
+
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
     <input type="submit" name="btnG" value="$3" />
   <div>
@@ -908,8 +908,8 @@ See [[Project:User preferences help]] for help deciphering the options.",
 # group editing
 'groups-editgroup'          => 'Edit group',
 'groups-addgroup'           => 'Add group',
-'groups-editgroup-preamble' => 'If the name or description starts with a colon, the 
-remainder will be treated as a message name, and hence the text will be localised 
+'groups-editgroup-preamble' => 'If the name or description starts with a colon, the
+remainder will be treated as a message name, and hence the text will be localised
 using the MediaWiki namespace',
 'groups-editgroup-name'     => 'Group name: ',
 'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
@@ -933,7 +933,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-logcomment' => 'Changed group membership from $1 to $2',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anonymous',
 'group-anon-desc'       => 'Anonymous users',
 'group-loggedin-name'   => 'User',
@@ -987,9 +987,9 @@ to upload files.",
 'uploaderror'	=> 'Upload error',
 'uploadtext'	=>
 "
-Use the form below to upload new files, 
+Use the form below to upload new files,
 to view or search previously uploaded images
-go to the [[Special:Imagelist|list of uploaded files]], 
+go to the [[Special:Imagelist|list of uploaded files]],
 uploads and deletions are also logged in the [[Special:Log|project log]].
 
 You must also check the box affirming that you are not
@@ -997,7 +997,7 @@ violating any copyrights by uploading the file.
 Press the \"Upload\" button to finish the upload.
 
 To include the image in a page, use a link in the form
-'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''', 
+'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''',
 '''<nowiki>[[{{ns:6}}:file.png|alt text]]</nowiki>''' or
 '''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for directly linking to the file.
 ",
@@ -1582,7 +1582,7 @@ title. Please merge them manually.'''",
 'movereason'	=> 'Reason',
 'revertmove'	=> 'revert',
 'delete_and_move' => 'Delete and move',
-'delete_and_move_text'	=> 
+'delete_and_move_text'	=>
 '==Deletion required==
 
 The destination article "[[$1]]" already exists. Do you want to delete it to make way for the move?',
@@ -1776,7 +1776,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'newimages' => 'New images gallery',
 'noimages'  => 'Nothing to see.',
 
-# short names for language variants used for language conversion links. 
+# short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
 # 'variantname-zh-sg' => 'disable',
 'variantname-zh-cn' => 'cn',
@@ -2119,11 +2119,15 @@ will expire at $4.
 'searchfulltext' => 'Search full text',
 'createarticle' => 'Create article',
 
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
+'scarytranscludefailed' => '[Template fetch failed; sorry]',
+
 );
 
 /* a fake language converter */
 class fakeConverter {
-	var $mLang;   
+	var $mLang;
 	function fakeConverter($langobj) {$this->mLang = $langobj;}
 	function convert($t, $i) {return $t;}
 	function getVariants() { return array( strtolower( substr( get_class( $this->mLang ), 8 ) ) ); }
@@ -2163,19 +2167,19 @@ class Language {
 		}
 		$this->mConverter = new fakeConverter($this);
 	}
-	
+
 	/**
 	 * Exports the default user options as defined in
 	 * $wgDefaultUserOptionsEn, user preferences can override some of these
 	 * depending on what's in (Local|Default)Settings.php and some defines.
-	 * 
+	 *
 	 * @return array
 	 */
 	function getDefaultUserOptions() {
 		global $wgDefaultUserOptionsEn ;
 		return $wgDefaultUserOptionsEn ;
 	}
-	
+
 	/**
 	 * Exports $wgBookstoreListEn
 	 * @return array
@@ -2184,7 +2188,7 @@ class Language {
 		global $wgBookstoreListEn ;
 		return $wgBookstoreListEn ;
 	}
-	
+
 	/**
 	 * @return array
 	 */
@@ -2223,7 +2227,7 @@ class Language {
 		$ns = $this->getNamespaces();
 		return isset( $ns[$index] ) ? $ns[$index] : false;
 	}
-	
+
 	/**
 	 * A convenience function that returns the same thing as
 	 * getNsText() except with '_' changed to ' ', useful for
@@ -2244,7 +2248,7 @@ class Language {
 	 */
 	function getNsIndex( $text ) {
 		$ns = $this->getNamespaces();
-		
+
 		foreach ( $ns as $i => $n ) {
 			if ( strcasecmp( $n, $text ) == 0)
 				return $i;
@@ -2253,7 +2257,7 @@ class Language {
 	}
 
 	/**
-	 * short names for language variants used for language conversion links. 
+	 * short names for language variants used for language conversion links.
 	 *
 	 * @param string $code
 	 * @return string
@@ -2380,7 +2384,7 @@ class Language {
 		  (int)substr( $ts, 0, 4 ) ); #Year
 		return date( 'YmdHis', $t );
 	}
-	
+
 	/**
 	 * This is meant to be used by time(), date(), and timeanddate() to get
 	 * the date preference they're supposed to use, it should be used in
@@ -2405,7 +2409,7 @@ class Language {
 			return $wgUser->getOption( 'date' );
 		}
 	}
-	
+
 	/**
 	 * @access public
 	 * @param mixed  $ts the time format which needs to be turned into a
@@ -2420,17 +2424,17 @@ class Language {
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
-		
+
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
-		
+
 		$datePreference = $this->dateFormat($format);
-		
+
 		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
 
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
-		
+
 		switch( $datePreference ) {
 			case '2': return "$day $month $year";
 			case '3': return "$year $month $day";
@@ -2456,17 +2460,17 @@ class Language {
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		$datePreference = $this->dateFormat($format);
-		
+
 		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		
+
 		if ( $datePreference === 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
 	}
-	
+
 	/**
 	* @access public
 	* @param mixed  $ts the time format which needs to be turned into a
@@ -2481,9 +2485,9 @@ class Language {
 	*/
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		global $wgUser, $wgAmericanDates;
-		
+
 		$datePreference = $this->dateFormat($format);
-		
+
 		switch ( $datePreference ) {
 			case 'ISO 8601': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' ' .
 				$this->time( $ts, $adj, $datePreference, $timecorrection );
@@ -2550,7 +2554,7 @@ class Language {
 		# it with one to detect and convert another legacy encoding.
 		return $s;
 	}
-	
+
 	/**
 	 * Some languages have special punctuation to strip out
 	 * or characters which need to be converted for MySQL's
@@ -2567,7 +2571,7 @@ class Language {
 		# some languages, e.g. Chinese, need to do a conversion
 		# in order for search results to be displayed correctly
 		return $termsArray;
-	}	
+	}
 
 	/**
 	 * Get the first character of a string. In ASCII, return
@@ -2659,8 +2663,8 @@ class Language {
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
-	
-	/** 
+
+	/**
 	 * Italic is unsuitable for some languages
 	 *
 	 * @access public
@@ -2675,34 +2679,34 @@ class Language {
 	/**
 	 * This function enables formatting of numbers, it should only come
 	 * into effect when the $wgTranslateNumerals variable is TRUE.
-	 * 
+	 *
 	 * Normally we output all numbers in plain en_US style, that is
 	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
 	 * point twohundredthirtyfive. However this is not sutable for all
 	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
 	 * Icelandic just want to use commas instead of dots, and dots instead
 	 * of commas like "293.291,235".
-	 * 
+	 *
 	 * An example of this function being called:
 	 * <code>
 	 * wfMsg( 'message', $wgLang->formatNum( $num ) )
 	 * </code>
-	 * 
+	 *
 	 * See LanguageGu.php for the Gujarati implementation and
 	 * LanguageIs.php for the , => . and . => , implementation.
-	 * 
+	 *
 	 * @todo check if it's viable to use localeconv() for the decimal
 	 *       seperator thing.
 	 * @access public
 	 * @param mixed $number the string to be formatted, should be an integer or
-	 *        a floating point number. 
+	 *        a floating point number.
 	 * @param bool $year are we being passed a year? (turns off commafication)
 	 * @return mixed whatever we're fed if it's a year, a string otherwise.
 	 */
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : $this->commafy($number);
 	}
-	
+
 	/**
 	 * Adds commas to a given number
 	 *
@@ -2779,7 +2783,7 @@ class Language {
 	function segmentForDiff( $text ) {
 		return $text;
 	}
-	
+
 	/**
 	 * and unsegment to show the result
 	 *
@@ -2794,7 +2798,7 @@ class Language {
 	function convert( $text, $isTitle = false) {
 		return $this->mConverter->convert($text, $isTitle);
 	}
-	
+
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
 	 * @param string $text
@@ -2828,7 +2832,7 @@ class Language {
 	/**
 	 * if a language supports multiple variants, it is
 	 * possible that non-existing link in one variant
-	 * actually exists in another variant. this function 
+	 * actually exists in another variant. this function
 	 * tries to find it. See e.g. LanguageZh.php
 	 *
 	 * @param string $link the name of the link
@@ -2854,17 +2858,17 @@ class Language {
 	 * for languages that support multiple variants, the title of an
 	 * article may be displayed differently in different variants. this
 	 * function returns the apporiate title defined in the body of the article.
-	 * 
+	 *
 	 * @return string
 	 */
 	function getParsedTitle() {
 		return $this->mConverter->getParsedTitle();
 	}
-	
+
 	/**
 	 * Enclose a string with the "no conversion" tag. This is used by
 	 * various functions in the Parser
-	 * 
+	 *
 	 * @param string $text text to be tagged for no conversion
 	 * @return string the tagged text
 	*/

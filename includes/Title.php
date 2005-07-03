@@ -385,7 +385,7 @@ class Title {
 	 * @static (arguably)
 	 * @access public
 	 */
-	function getInterwikiLink( $key ) {
+	function getInterwikiLink( $key, $transludeonly = false ) {
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
@@ -407,7 +407,7 @@ class Title {
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki',
-			array( 'iw_url', 'iw_local' ),
+			array( 'iw_url', 'iw_local', 'iw_trans' ),
 			array( 'iw_prefix' => $key ), $fname );
 		if( !$res ) {
 			wfProfileOut( $fname );
@@ -420,6 +420,7 @@ class Title {
 			$s = (object)false;
 			$s->iw_url = '';
 			$s->iw_local = 0;
+			$s->iw_trans = 0;
 		}
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
 		$wgTitleInterwikiCache[$k] = $s;
@@ -447,6 +448,24 @@ class Title {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Determine whether the object refers to a page within
+	 * this project and is transcludable.
+	 *
+	 * @return bool TRUE if this is transcludable
+	 * @access public
+	 */
+	function isTrans() {
+		global $wgTitleInterwikiCache, $wgDBname;
+
+		if ($this->mInterwiki == '' || !$this->isLocal())
+			return false;
+		# Make sure key is loaded into cache
+		$this->getInterwikiLink( $this->mInterwiki );
+		$k = $wgDBname.':interwiki:' . $this->mInterwiki;
+		return (bool)($wgTitleInterwikiCache[$k]->iw_trans);
 	}
 
 	/**
