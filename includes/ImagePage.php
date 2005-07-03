@@ -238,7 +238,7 @@ class ImagePage extends Article {
 		}
 	}
 
-	function getSharedImageText() {
+	function printSharedImageText() {
 		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut;
 
 		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
@@ -252,7 +252,7 @@ class ImagePage extends Article {
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
 			$ur = ini_set('allow_url_fopen', true);
 			$text = @file($url);
-			ini_set('allow_url_fopen', false);
+			ini_set('allow_url_fopen', $ur);
 			if ($text)
 				$wgOut->addHTML($text);
 		}
