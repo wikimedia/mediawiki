@@ -6,7 +6,7 @@
  * if $timeout is 'default', $wgHTTPTimeout is used
  */
 function wfGetHTTP( $url, $timeout = 'default' ) {
-	global $wgServer, $wgHTTPTimeout;
+	global $wgServer, $wgHTTPTimeout, $wgHTTPProxy;
 	
 
 	# Use curl if available
@@ -14,7 +14,9 @@ function wfGetHTTP( $url, $timeout = 'default' ) {
 		$c = curl_init( $url );
 		if ( wfIsLocalURL( $url ) ) {
 			curl_setopt( $c, CURLOPT_PROXY, 'localhost:80' );
-		}
+		} else if ($wgHTTPProxy)
+			curl_setopt($c, CURLOPT_PROXY, $wgHTTPProxy);
+
 		if ( $timeout == 'default' ) {
 			$timeout = $wgHTTPTimeout;
 		}

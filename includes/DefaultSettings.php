@@ -1556,4 +1556,14 @@ $wgAllowSpecialInclusion = true;
  */
 $wgHTTPTimeout = 3;
 
+/**
+ * Proxy to use for CURL requests.
+ */
+$wgHTTPProxy = false;
+
+/**
+ * Enable interwiki transcluding.  Only when iw_trans=1.
+ */
+$wgEnableScaryTransclude = false;
+
 ?>
