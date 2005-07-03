@@ -45,7 +45,7 @@
 <body>
 <?php
 
-$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = false;
+$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfileInfo = false;
 
 define("MEDIAWIKI", 1);
 
