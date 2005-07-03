@@ -2428,8 +2428,9 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$datePreference = $this->dateFormat($format);
-
-		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
+		
+		if ($datePreference == '0'
+		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
 
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
