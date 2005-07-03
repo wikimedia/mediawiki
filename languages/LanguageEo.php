@@ -760,7 +760,7 @@ Se vi poste volos eksigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\"
 "watchnochange" => "Neniu artikolo en via atentaro redaktiĝis dum la prispektita tempoperiodo.",
 "watchdetails" => "(Vi priatentas $1 paĝojn [krom diskutopaĝoj];
 laste $2 paĝoj entute redaktiĝis en la vikio; $3...
-<a href='$4'>redaktu vian atentaron</a>.)",
+[$4 redaktu vian atentaron].)",
 "watchmethod-recent" => "traserĉas lastajn redaktojn",
 "watchmethod-list" => "traserĉas priatentitajn",
 "removechecked" => "Forprenu elektitajn el la listo",

@@ -1056,7 +1056,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'unwatchthispage' => 'Nesledovat tuto stránku',
 'notanarticle'  => 'Toto není článek',
 'watchnochange'         => 'Žádná ze sledovaných položek nebyla editována v době, která je zobrazena.',
-'watchdetails'          => 'Počet sledovaných stránek nepočítaje diskusní: $1; můžete si nechat <a href="$4">ukázat a editovat kompletní seznam</a>. V období vybraném níže bylo provedeno $2 editací. $3…',
+'watchdetails'          => 'Počet sledovaných stránek nepočítaje diskusní: $1; můžete si nechat [$4 ukázat a editovat kompletní seznam]. V období vybraném níže bylo provedeno $2 editací. $3…',
 'wlheader-enotif' 		=> '* Upozorňování e-mailem je zapnuto.',
 'wlheader-showupdated'   => "* Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny '''tučně'''",
 'watchmethod-recent'=> 'hledají se sledované stránky mezi posledními změnami',

@@ -748,7 +748,7 @@ possa pegá-lo com maior facilidade.</p>
 "watchdetails" => "($1 páginas monitoradas excluindo-se as páginas talk;
 $2 páginas editadas desde data limite;
 $3...
-<a href='$4'>mostrar e editar a lista completa</a>.)",
+[$4 mostrar e editar a lista completa].)",
 "watchmethod-recent" => "checando edições recentes para os artigos monitorados",
 "watchmethod-list" => "checando páginas monitoradas de edições recentes",
 "removechecked" => "Remover itens selecionados",

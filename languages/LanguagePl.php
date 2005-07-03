@@ -808,7 +808,7 @@ a nazwa samej strony zostanie <b>wytłuszczona</b> na <a href=\"" .
 "watchdetails" => "(Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji;
 liczba stron edytowanych od ostatniej cezury: $2;
 $3...
-<a href='$4'>pokaż i edytuj pełną listę</a>.)",
+[$4 pokaż i edytuj pełną listę].)",
 "watchmethod-recent" => "poszukiwanie ostatnich zmian wśród obserwowanych stron",
 "watchmethod-list" => "poszukiwanie obserwowanych stron wśród ostatnich zmian",
 "removechecked" => "Usuń zaznaczone pozycje z listy obserwowanych",

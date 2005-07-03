@@ -847,7 +847,7 @@ oldalmenü \"Figyelés vége\" pontjával teheted meg.",
 "watchdetails" => "($1 lap figyelése a vitalapokon kívül, 
 $2 lap változott az adott határokon belül, 
 $3...
-<a href='$4'>teljes lista áttekintés és szerkesztés</a>.)",
+[$4 teljes lista áttekintés és szerkesztés].)",
 "watchmethod-recent" => "a figyelt lapokon belüli legfrissebb szerkesztések",
 "watchmethod-list" => "a legfrissebb szerkesztésekben található figyelt lapok",
 "removechecked" => "A kijelölt lapok eltávolítása a figyelésből",

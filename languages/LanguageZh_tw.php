@@ -759,7 +759,7 @@ alt=\"Google\" align=\"middle\"></a>
  	 "watchdetails" => "($1個頁面（不含對話頁）被監視；
  	 總共$2個頁面被編輯；
  	 $3...
- 	 <a href='$4'>顯示並編輯完整列表</a>.)",
+ 	 [$4 顯示並編輯完整列表].)",
  	 "watchmethod-recent" => "檢查被監視頁面的最近編輯",
  	 "watchmethod-list" => "checking watched pages for recent edits",
  	 "removechecked" => "將被選頁面從監視列表中移除",
