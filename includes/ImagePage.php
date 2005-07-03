@@ -267,7 +267,11 @@ class ImagePage extends Article {
 
 	function uploadLinksBox()
 	{
-		global $wgUser,$wgOut;
+		global $wgUser, $wgOut;
+
+		if ($this->img->fromSharedDirectory)
+			return;
+
 		$sk = $wgUser->getSkin();
 		$wgOut->addHTML( '<br /><ul><li>' );
 		$wgOut->addWikiText( '<div>'. wfMsg( 'uploadnewversion', $this->getUploadUrl() ) .'</div>' );
