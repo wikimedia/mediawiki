@@ -23,4 +23,9 @@
 $wgDBadminuser      = 'wikiadmin';
 $wgDBadminpassword  = 'adminpass';
 
+/*
+ * Whether to enable the profileinfo.php script.
+ */
+$wgEnableProfileInfo = false;
+
 ?>
