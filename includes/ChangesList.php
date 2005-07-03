@@ -177,7 +177,7 @@ class ChangesList {
 			$r .= ' ('.count($block).' ' ;
 			if ( $isnew ) $r .= wfMsg('changes');
 			else $r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle() , wfMsg('changes') ,
-				$curIdEq."&diff=$oldid&oldid=$newid" ) ;
+				$curIdEq."&diff=$newid&oldid=$oldid" ) ;
 			$r .= '; ' ;
 
 			# History
