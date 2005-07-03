@@ -455,6 +455,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2650) Fix national date type display on wikis that don't support
   dynamic date conversion.
 * FiveUpgrade: large table hacks, install iw_trans update before links
+* (bug 2648) Rename namespaces in Afrikaanse
 
 
 === Caveats ===
