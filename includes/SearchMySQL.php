@@ -95,7 +95,7 @@ class SearchMySQL extends SearchEngine {
 	 * @access private
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
-		return "";
+		return '';
 	}
 	
 	/**
