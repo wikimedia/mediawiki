@@ -11,15 +11,21 @@ require_once( 'LanguageUtf8.php' );
 	NS_MEDIA		=> "Media",
 	NS_SPECIAL		=> "Spesiaal",
 	NS_MAIN			=> "",
-	NS_TALK			=> "BronnemateriaalEnBespreking",
+	NS_TALK			=> "Bespreking",
 	NS_USER			=> "Gebruiker",
-	NS_USER_TALK		=> "GebruikerBespreking",
+	NS_USER_TALK		=> "Gebruikerbespreking",
 	NS_PROJECT		=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> $wgMetaNamespace."Bespreking",
+	NS_PROJECT_TALK		=> $wgMetaNamespace."bespreking",
 	NS_IMAGE		=> "Beeld",
-	NS_IMAGE_TALK		=> "BeeldBespreking",
+	NS_IMAGE_TALK		=> "Beeldbespreking",
 	NS_MEDIAWIKI		=> "MediaWiki",
-	NS_MEDIAWIKI_TALK	=> "MediaWikiBespreking",
+	NS_MEDIAWIKI_TALK	=> "MediaWikibespreking",
+	NS_TEMPLATE		=> 'Sjablon',
+	NS_TEMPLATE_TALK	=> 'Sjablonbespreking',
+	NS_HELP			=> 'Hulp',
+	NS_HELP_TALK		=> 'Hulpbespreking',
+	NS_CATEGORY		=> 'Kategorie',
+	NS_CATEGORY_TALK	=> 'Kategoriebespreking'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsAf = array(
