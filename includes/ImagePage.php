@@ -142,12 +142,6 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-			if($this->img->fromSharedDirectory
-			   && $wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
-				$this->printSharedImageText();
-				return;
-			}
-
 			# image
 			$width = $this->img->getWidth();
 			$height = $this->img->getHeight();
@@ -257,7 +251,7 @@ class ImagePage extends Article {
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
 			$ur = ini_set('allow_url_fopen', true);
-			$text = @file_get_contents($url);
+			$text = @file_get_contents($url . '?action=render');
 			ini_set('allow_url_fopen', $ur);
 			if ($text)
 				$wgOut->addHTML($text);
