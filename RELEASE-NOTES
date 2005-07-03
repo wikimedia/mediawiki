@@ -450,6 +450,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2658) Fix signature time, localtime to match timezone offset again
 * Files from shared repositories (e.g. commons) now display with their
   image description pages when viewed on local wikis.
+* Restore compatibility namespace aliases for French Wikipedia
+
 
 === Caveats ===
 
