@@ -635,16 +635,16 @@ class Image
 	 * This is currently synonymous to canRender(), but this could be 
 	 * extended to also allow inline display of other media,
 	 * like flash animations or videos. If you do so, please keep in mind that 
-	 * that could be a scurity risc.
+	 * that could be a security risk.
 	 */
 	function allowInlineDisplay() {
 		return $this->canRender();
 	}
 	
 	/**
-	 * Determines if this media file is in a format that is unlikely to contain viruses 
-	 * or malicious content. It uses the global $wgTrustedMediaFormats list to determine
-	 * if the file is safe.
+	 * Determines if this media file is in a format that is unlikely to
+	 * contain viruses or malicious content. It uses the global
+	 * $wgTrustedMediaFormats list to determine if the file is safe.
 	 * 
 	 * This is used to show a warning on the description page of non-safe files.
 	 * It may also be used to disallow direct [[media:...]] links to such files.
@@ -671,13 +671,15 @@ class Image
 		return false;
 	}
 	
-	/** Returns true if the file is flagegd as trusted. Files flagged that way can be 
-	* linked to directly, even if that is not allowed for this type of file normally.
+	/** Returns true if the file is flagegd as trusted. Files flagged that way
+	* can be linked to directly, even if that is not allowed for this type of
+	* file normally.
 	*
-	* This is a dummy function right now and always returns false. It could be implemented
-	* to extract a flag from the database. The trusted flag could be set on upload, if the 
-	* user has sufficient privileges, to bypass script- and html-filters. It may even be 
-	* coupeled with cryptographics signatures or such.
+	* This is a dummy function right now and always returns false. It could be
+	* implemented to extract a flag from the database. The trusted flag could be
+	* set on upload, if the user has sufficient privileges, to bypass script-
+	* and html-filters. It may even be coupeled with cryptographics signatures
+	* or such.
 	*/
 	function isTrustedFile() {
 		#this could be implemented to check a flag in the databas,
@@ -708,6 +710,7 @@ class Image
 	 *
 	 * @param string $name	Name of the image, without the leading "Image:"
 	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?	 
+	 * @return string URL of $name image
 	 * @access public
 	 * @static
 	 */
@@ -726,7 +729,7 @@ class Image
 
 	/**
 	 * Returns true if the image file exists on disk.
-	 *
+	 * @return boolean Whether image file exist on disk.
 	 * @access public
 	 */
 	function exists() {
@@ -735,7 +738,7 @@ class Image
 	}
 
 	/**
-	 *
+	 * @todo document
 	 * @access private
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
