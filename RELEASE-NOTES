@@ -461,6 +461,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2683) Really fix apostrophe escaping for toolbox tips
 * (bug 923) Fix title and subtitle for rclinked special page
 * (bug 2642) watchdetails message in several languages used  <a></a> instead of [ ]
+* (bug 2181) basic CSB language localisation by Tomasz G. Sienicki (thanks for the patch)
 
 === Caveats ===
 
