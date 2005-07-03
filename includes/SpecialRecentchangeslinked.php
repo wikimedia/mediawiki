@@ -22,7 +22,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$target = isset($par) ? $par : $wgRequest->getText( 'target' );
 	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
 	
-	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
+	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
 	$sk = $wgUser->getSkin();
 
 	if (is_null($target)) {
