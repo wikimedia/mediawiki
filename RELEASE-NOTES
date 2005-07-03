@@ -447,6 +447,8 @@ Various bugfixes, small features, and a few experimental things:
 edit area) and &editintro=Page_name (load text of an existing page instead
 of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bugs 2633, 2672) Fix Estonian, Portuguese and Finnish numeric formatting
+* (bug 2658) Fix signature time, localtime to match timezone offset again
+
 
 === Caveats ===
 
