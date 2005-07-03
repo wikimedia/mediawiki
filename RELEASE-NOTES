@@ -451,6 +451,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Files from shared repositories (e.g. commons) now display with their
   image description pages when viewed on local wikis.
 * Restore compatibility namespace aliases for French Wikipedia
+* Fix diff order on Enhanced RC 'changes' link
 
 
 === Caveats ===
