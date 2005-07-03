@@ -2203,10 +2203,12 @@ class Parser
 			}
 			$title = Title::newFromText( $part1, $ns );
 
-			$interwiki = Title::getInterwikiLink($title->getInterwiki());
-			if ($interwiki != '' && $title->isTrans()) {
-				return $this->scarytransclude($title, $interwiki);
-			}
+                        if ($title) {
+                            $interwiki = Title::getInterwikiLink($title->getInterwiki());
+                            if ($interwiki != '' && $title->isTrans()) {
+                                    return $this->scarytransclude($title, $interwiki);
+                            }
+                        }
 
 			if ( !is_null( $title ) && !$title->isExternal() ) {
 				# Check for excessive inclusion
