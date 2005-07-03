@@ -643,7 +643,7 @@ function wfEscapeJsString( $string ) {
 	$pairs = array(
 		"\\" => "\\\\",
 		"\"" => "\\\"",
-		"\'" => "\\\'",
+		'\'' => '\\\'',
 		"\n" => "\\n",
 		"\r" => "\\r",
 		
