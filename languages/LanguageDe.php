@@ -109,12 +109,13 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgAllMessagesDe = array(
 # User toggles
+'tog-hover'		=> 'Tooltips anzeigen',
 "tog-underline"               => "Verweise unterstreichen",
 "tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
 "tog-hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
 "tog-usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
-"tog-numberheadings"          => "Überschriften automatisch numerieren",
+"tog-numberheadings"          => "Überschriften automatisch nummerieren",
 "tog-showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
 "tog-editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
 "tog-editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
@@ -125,7 +126,16 @@ if($wgMetaNamespace === FALSE)
 "tog-watchdefault"            => "Neue und geänderte Seiten beobachten",
 "tog-minordefault"            => "Alle Änderungen als geringfügig markieren",
 "tog-previewontop"            => "Vorschau vor dem Editierfenster anzeigen",
+'tog-previewonfirst' 		=> 'Vorschau beim ersten Editieren anzeigen',
 "tog-nocache"                 => "Seitencache deaktivieren",
+'tog-enotifwatchlistpages' 	=> 'Benachrichtigungsmails für Änderungen an Wiki-Seiten',
+'tog-enotifusertalkpages' 	=> 'Benachrichtigungsmails für Änderungen an Ihren Benutzerseiten',
+'tog-enotifminoredits' 		=> 'Benachrichtigungsmails auch für kleine Seitenänderungen',
+'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
+'tog-shownumberswatching' 	=> 'Zeige die Anzahl seitenbeobachtender Benutzer (in Letzte Änderungen, Beobachtungsliste und Artikelseiten)',
+'tog-rccurrevonly' 		=> 'Zeige nur die letzte Seitenversion in Letzte Änderungen.',
+'tog-showupdated'		=> 'Zeige bei beobachteten Seiten mit ungesehenen Änderungen die Markierung ',
+'tog-fancysig'			=> 'Einfache Unterschrift (Spitzname ohne Link)',
 # Dates
 'sunday' => "Sonntag",
 'monday' => "Montag",
@@ -259,6 +269,10 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'retrievedfrom' => 'Von "$1"',
 "newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
+'newmsg' => 'Sie haben neue Nachrichten auf Ihrer $1.',
+'newmsg_user' => 'Benutzerseite',
+'newmsg_usertalk' => 'Diskussionsseite',
+'newmsg_and' => 'und',
 "editsection" => "bearbeiten",
 "toc" => "Inhaltsverzeichnis",
 "showtoc" => "Anzeigen",
@@ -364,13 +378,15 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "yourpassword"	=> "Ihr Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
 "newusersonly"	=> " (nur für neue Mitglieder)",
-"remembermypassword" => "Dauerhaftes einloggen",
+"remembermypassword" => "Dauerhaftes Einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
 "alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br />\n",
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
 "userlogin"		=> "Anmelden",
+'disabled_on_this_wiki'	=> '<div class=\"error\"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
+Durch die automatische Anmeldung beim Benutzerkonto sind eigene Benutzer-Anmeldung oder -Abmeldung nicht erforderlich.</b></div>',
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",
 "notloggedin" => "Nicht angemeldet",
@@ -378,28 +394,54 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "createaccountmail" => "über eMail",
 "badretype"		=> "Die beiden Passwörter stimmen nicht überein.",
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
-"youremail"		=> "Ihre E-Mail",
+"youremail"		=> "Ihre E-Mail-Adresse**",
 "yournick"		=> "Ihr \"Spitzname\" (zum \"Unterschreiben\")",
-"yourrealname"		=> "Ihr echter Name (keine Pflicht)",
+"yourrealname"		=> "Ihr echter Name (keine Pflichtangabe)*",
 "emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
+'prefs-help-email' 	=> '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt andern, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
+Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporäres Einmal-Passwort gesendet werden.',
+'prefs-help-email-enotif' => 'An diese Adresse werden auch die Benachrichtigungsmails geschickt, sofern Sie das eingeschaltet haben.',
+'prefs-help-realname' 	=> '* <strong>Echter Name</strong> (optional): für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
+'prefs-help-userdata' => '* <strong>Echter Name</strong> (optional): für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.<br />
+* <strong>E-Mail</strong> (optional): Erlaubt andern, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
+Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein neues, temporäres gesendet werden.',
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",
 "loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {{SITENAME}} angemeldet.",
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
-"wrongpassword"	=> "Das Passwort ist falsch. Bitte versuchen Sie es erneut.",
-"mailmypassword" => "Ein neues Passwort schicken",
-"passwordremindertitle" => "{{SITENAME}} Passwort",
-"passwordremindertext" => "Jemand (IP-Adresse $1)
-hat um ein neues Passwort für die Anmeldung bei {{SITENAME}} gebeten.
+"wrongpassword"	=> "Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.",
+"mailmypassword" => "Ein neues (temporäres) Passwort schicken",
+'mailmypasswordauthent'	=> 'Ein neues (temporäres) Passwort schicken, auch für Authentifizierung der E-Mailadresse',
+'passwordremindermailsubject' => "E-Mail-Adressenauthentifizierung und temporäres Passwort für {{SITENAME}}",
+'passwordremindermailbody' 	=> "Jemand, vielleicht Sie, hat von IP-Adresse $1
+um ein temporäres Einmal-Passwort für die Anmeldung bei {{SITENAME}} gebeten.
+
 Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
-Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
+
+Bitte melden Sie sich nun mit diesem temporären Passwort an, das gleichzeitig der Authentifizierung
+Ihrer E-Mail-Adresse dient. Für weitere Anmeldungen verwenden Sie bitte wieder Ihr altes Passwort.
+Alternativ können Sie auch ein neues eintragen, zum Beispiel, wenn Sie das alte vergessen haben.,
+
+{{SERVER}}{{localurl:Special:Userlogin|wpName=$2&wpPassword=$3&returnto=Special:Preferences}}",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
-"passwordsent"	=> "Ein neues Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
-Bitte melden Sie sich an, sobald Sie es erhalten.",
+"passwordsent"	=> "Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
+Bitte melden Sie sich damit an, sobald Sie es erhalten.",
+'passwordsentforemailauthentication'
+	=> "Ein temporäres Passwort wurde an die gerade neu eingetragene E-Mail-Adresse des Benutzers \"$1\" gesendet.
+Bitte melden Sie sich damit an, um die Adressauthentifizierung durchzuführen.",
 "loginend"		=> "&nbsp;",
 "mailerror" => "Fehler beim Senden von Mail: $1",
+'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
+'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
+'emailconfirmed' 	=> 'Ihre E-Mail-Adresse $1 wurde am $2 authentifiziert.',
+'emailnotconfirmed'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong> und die erweiterten E-Mailfunktionen sind bis zur Authentifizierung ohne Funktion <strong>(aus)</strong>.<br />
+Für die Authentifizierung melden Sie sich bitte mit dem per E-Mail geschickten temporären Passwort an, oder fordern Sie auf der Anmeldeseite ein neues an.',
+'invalidemailaddress'	=> 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein, oder leeren Sie das Feld.',
+'disableduntilconfirmation'	=> '<strong>(aus)</strong>',
+'noemailprefs'	=> '<strong>Sie haben keine E-Mail-Adresse angegeben</strong>, die folgenden
+Funktionen sind zur Zeit deshalb nicht m�glich.',
 
 # Edit pages
 #
@@ -435,6 +477,7 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-Javascript. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",
@@ -481,8 +524,10 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 'nextrevision'		=> '&larr;Nächstjüngere Version',
 'previousrevision'	=> 'Nächstältere Version&rarr;',
 "cur"			=> "Aktuell",
+'cur_tooltiptext'	=> 'Zeige Differenz zwischen dieser und aktueller Version von ',
 "next"			=> "Nächste",
-"last"			=> "Letzte",
+"last"			=> "Vorherige",
+'last_tooltiptext'	=> 'Zeige Differenz zwischen dieser und vorheriger Version von ',
 "orig"			=> "Original",
 "histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
 Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br />
@@ -515,8 +560,8 @@ Möglicherweise haben Sie auch die Anfrage falsch formuliert, z.B.
 Bitte versuchen Sie eine anders formulierte Anfrage.",
 "matchtotals"	=> "Die Anfrage \"$1\" stimmt mit $2 Artikelüberschriften
 und dem Text von $3 Artikeln überein.",
-"nogomatch" => "Es existiert kein Artikel mit diesem Namen. Bitte versuchen
-Sie die Volltextsuche oder legen Sie den Artikel <a href=\"$1\">neu</a> an. ",
+"nogomatch" => "Es existiert kein Artikel [[$1|$1]]. Bitte versuchen
+Sie die Volltextsuche oder [[$1|legen Sie den Artikel neu an]]. ",
 "titlematches"	=> "Übereinstimmungen mit Überschriften",
 "notitlematches" => "Keine Übereinstimmungen",
 "textmatches"	=> "Übereinstimmungen mit Texten",
@@ -540,11 +585,10 @@ $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 #
 "preferences"	=> "Einstellungen",
 "prefsnologin" => "Nicht angemeldet",
-"prefsnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet]]
-sein, um Ihre Einstellungen zu ändern.",
+"prefsnologintext"	=> "Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen zu ändern.",
 "prefslogintext" => "Sie sind angemeldet als \"$1\".
 Ihre interne ID-Nummer ist $2.",
-"prefsreset"	=> "Einstellungen wuden auf Standard zurückgesetzt.",
+"prefsreset"	=> "Einstellungen wurden auf Standard zurückgesetzt.",
 "qbsettings"	=> "Seitenleiste",
 "changepassword" => "Passwort ändern",
 "skin"			=> "Skin",
@@ -560,7 +604,7 @@ Ihre interne ID-Nummer ist $2.",
 "oldpassword"	=> "Altes Passwort",
 "newpassword"	=> "Neues Passwort",
 "retypenew"		=> "Neues Passwort (nochmal)",
-"textboxsize"	=> "Textfeld-Grösse",
+"textboxsize"	=> "Textfeld-Größe",
 "rows"			=> "Zeilen",
 "columns"		=> "Spalten",
 "searchresultshead" => "Suchergebnisse",
@@ -577,6 +621,7 @@ Ihre interne ID-Nummer ist $2.",
 "servertime" => "Aktuelle Zeit auf dem Server",
 "guesstimezone" => "Einfügen aus dem Browser",
 "emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
+'enotifnewpages'	=> 'Sende mir eine Benachrichtigungsmail, wenn jemand eine neue Seite anlegt.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
 
 # Recent changes
@@ -593,7 +638,13 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "rclistfrom"	=> "Zeige neue Änderungen seit $1",
 "rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
 "diff"			=> "Unterschied",
+'diff_tooltiptext'	=> 'Zeige Differenz zwischen dieser und der vorherigen Version von ',
+'diff-to-lvr'		=> 'Diff.z.zuletzt gesehenen',
+'diff-to-lvr_tooltiptext' => 'Zeige Differenz zwischen dieser und der zuletzt gesehenen Version von ',
+'lvr'			=> '<span class=\'updatedmarker\'>zuletzt gesehen</span>',
+'lvr_tooltiptext'  	=> 'Das ist die zuletzt gesehene Version von ',
 "hist"			=> "Versionen",
+"hist_tooltiptext"      => "Zeige ältere Versionen von ",
 "hide"			=> "Ausblenden",
 "show"			=> "Einblenden",
 "tableform"		=> "Tabelle",
@@ -601,6 +652,7 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "nchanges"		=> "$1 Änderungen",
 "minoreditletter" => "M",
 "newpageletter" => "N",
+'number_of_watching_users_pageview' 	=> '[$1 Benutzer beobachten diese Seite]',
 
 
 # Upload
@@ -611,8 +663,8 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "reupload"		=> "Erneut hochladen",
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
-"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]]
-um Dateien hochladen zu können.",
+"uploadnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet sein]],
+ um Dateien hochladen zu können.",
 "uploaderror"	=> "Fehler beim Hochladen",
 "uploadtext"	=> "
 Um hochgeladene Bilder zu suchen und anzusehen,
@@ -787,15 +839,12 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 "watchlistsub"	=> "(für Benutzer \"$1\")",
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
 "watchnologin"	=> "Sie sind nicht angemeldet",
-"watchnologintext"	=> "Sie müssen [[Spezial:Userlogin|angemeldet]]
+"watchnologintext"	=> "Sie müssen [[Special:Userlogin|angemeldet]]
 sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
-"addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer <a href=\"" .
-"{{localurle:Spezial:Watchlist}}\">Beobachtungsliste</a> hinzugefügt.
+"addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 Spätere Änderungen an diesem Artikel und der zugehörigen Diskussions-Seite
-werden dort gelistet und der Artikel wird in der <a href=\"" .
-"{{localurle:Spezial:Recentchanges}}\">Liste der letzten Änderungen</a>
-<b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
+werden dort gelistet und der Artikel wird in der [[Special:Recentchanges|Liste der letzten Änderungen]] <b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
 Beobachtungsliste entfernen wollen, klicken Sie auf \"Nicht mehr beobachten\"
 am Ende des Artikels.",
 "removedwatch"	=> "Von der Beobachtungsliste entfernt",
@@ -804,17 +853,20 @@ am Ende des Artikels.",
 "unwatchthispage" => "Nicht mehr beobachten",
 "notanarticle"	=> "Kein Artikel",
 "watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
-"watchdetails" => "($1 Artikel werden beobachtet (ohne Diskussionsseiten);
-$2 Artikel im eingestellten Zeitraum bearbeitet;
-$3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
-"watchmethod-recent" => "überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
-"watchmethod-list" => "überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
+"watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Artikel (Diskussionsseiten wurden hier nicht mitgezählt).
+* [[Special:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.
+",
+'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
+'wlheader-showupdated'   => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
+"watchmethod-recent" => "Überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
+"watchmethod-list" => "Überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
 "watchlistcontains" => "Ihre Beobachtungsliste enthält $1 Seiten.",
-"watcheditlist" => "Hier ist eine alphabetische Liste der von Ihnen beobachteten Seiten. Markieren Sie die Seiten die Sie von der Beobachtungsliste löschen wollen und betätigen Sie den 'markierte Einträge löschen' Knopf am Ende der Seite.",
+"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br>
+Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu löschen.",
 "removingchecked" => "Wunschgemäß werden die Einträge aus der Beobachtungsliste entfernt...",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
-"iteminvalidname" => "Ploblem mit dem Eintrag '$1', ungültiger Name...",
+"iteminvalidname" => "Problem mit dem Eintrag '$1', ungültiger Name...",
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
 'wlshowlast' => 'Zeige die letzen $1 Stunden $2 Tage $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
@@ -822,6 +874,36 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 'wlshow'         => 'Zeige ',
 'wlhide'         => 'Verstecke ',
 
+'updatedmarker'			=> '<span class=\'updatedmarker\'>&nbsp;(geändert)&nbsp;</span>',
+'updatedmarker_tooltiptext' 	=> 'Zeige Differenz zwischen aktueller und zuletzt gesehener Version von ',
+'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
+'enotif_reset'			=> 'Alle Benachrichtigungsmarker zurücksetzen (alle Seiten als "gesehen" markieren)',
+'enotif_newpagetext'		=> 'Dies ist eine neue Seite.',
+'changed' 			=> 'geändert',
+'created' 			=> 'neu angelegt',
+'enotif_subject' 		=> 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited' => '{{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} zeigt alle Änderungen auf einen Blick.',
+'enotif_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
+'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
+
+die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
+die aktuelle Version ist {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}.
+
+$NEWPAGE
+
+Zusammenfassung des Editors: $PAGESUMMARY $PAGEMINOREDIT
+Kontakt zum Editor:
+Mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+Wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+
+Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besuchen.
+Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
+
+             Ihr freundliches {{SITENAME}} Benachrichtigungssystem
+
+---
+Ihre Beobachtungsliste {{SERVER}}{{localurl:Special:Watchlist|magic=yes}}
+Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 
 # Delete/protect/revert
 #
@@ -1232,6 +1314,35 @@ sollte umgehend ein Administrator informiert werden!
 'exif-contrast' => 'Kontrast',                     # Contrast
 'exif-saturation'=> 'Sättigung',                   # Saturation
 'exif-sharpness' => 'Schärfe',                    # Sharpness
+
+# E-mail address confirmation
+'confirmemail' => 'E-Mail-Adressenbestätigung (Authentifizierung)',
+'confirmemail_text' => "Diese Wiki erfordert, dass Sie Ihre E-Mailadresse bestätigen (authentifizieren),
+bevor Sie die erweiterten Mailfunktionen benutzen können. Ein Klick auf die Schaltfläche unten sendet eine E-Mail zu Ihnen.
+Diese Mail enthält einen Link mit einem Kode; durch Klicken auf diesen Link bestätigen Sie, dass Ihre Adresse gültig ist.",
+'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
+'confirmemail_sent' => 'Es wurde Ihnen eine Mail zur Adressenbestätigung gesendet.',
+'confirmemail_sendfailed' => 'Could not send confirmation mail due to misconfigured server or invalid characters in e-mail address.',
+'confirmemail_invalid' => 'Ungültiger Bestätigungskode. Die Gültigkeitsdauer des Kodes ist eventuell abgelaufen.',
+'confirmemail_success' => 'Ihre E-Mailadresse wurde bestätigt. Sie können sich jetzt einloggen.',
+'confirmemail_loggedin' => 'Ihre E-Mailadresse ist nun bestätigt.',
+'confirmemail_error' => 'Es gab einen Fehler bei der Bestätigung Ihrer E-Mailadresse.',
+
+'confirmemail_subject' => '{{SITENAME}} E-Mail-Adressenbestätigung (Authentifizierung)',
+'confirmemail_body' 	=> "Jemand, vielleicht Sie, hat von IP-Adresse $1
+ein Benutzerkonto \"$2\" mit dieser E-Mailadresse bei {{SITENAME}} angemeldet.
+
+Zur Bestätigung, dass dieses Konto wirklich Ihnen gehört, und um die erweiterten
+E-Mailfunktionen für Sie bei {{SITENAME}} einzuschalten, öffnen Sie bitte den folgenden Link
+in Ihrem Browser:
+
+$3
+
+Wenn Sie *nicht* $2 sind, folgen Sie dem Link bitte nicht.
+
+Der Bestätigungskode läuft am $4 ab.
+"
+
 );
 
 class LanguageDe extends LanguageUtf8 {
