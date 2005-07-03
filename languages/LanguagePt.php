@@ -983,10 +983,10 @@ class LanguagePt extends LanguageUtf8 {
     }
 
     /**
-     * Portuguese numeric format is 123.456,78
+     * Portuguese numeric format is 123 456,78
      */
     function formatNum( $number, $year = false ) {
-        return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+        return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
     }
 
 }
