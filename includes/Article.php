@@ -93,7 +93,7 @@ class Article {
 
 		if ( 0 == $this->getID() ) {
 			if ( 'edit' == $action ) {
-				wfProfileOut( $fname );				
+				wfProfileOut( $fname );
 				# Should we put something in the textarea?
 				# if &preload=Pagename is set, we try to get
 				# the revision text and put it in.
@@ -109,12 +109,12 @@ class Article {
 				# Don't preload anything.
 				# We used to put MediaWiki:Newarticletext here.
 				# This is now shown above the edit box instead.
-				return ''; 
+				return '';
 			}
 			wfProfileOut( $fname );
-			
+
 			return wfMsg( 'noarticletext' );
-		} else {			
+		} else {
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
@@ -831,6 +831,13 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
+	}
+
+	function render() {
+		global $wgOut;
+
+		$wgOut->setArticleBodyOnly(true);
+		$this->view();
 	}
 
 	/**

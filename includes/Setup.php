@@ -51,7 +51,7 @@ wfProfileIn( $fname.'-includes' );
 require_once( 'GlobalFunctions.php' );
 require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
-require_once( 'RecentChange.php' ); 
+require_once( 'RecentChange.php' );
 require_once( 'User.php' );
 require_once( 'Skin.php' );
 require_once( 'OutputPage.php' );
@@ -110,8 +110,8 @@ $wgMemc =& wfGetMainCache();
 $messageMemc =& wfGetMessageCacheStorage();
 $parserMemc =& wfGetParserCacheStorage();
 
-wfDebug( 'Main cache: ' . get_class( $wgMemc ) . 
-       "\nMessage cache: " . get_class( $messageMemc ) . 
+wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
+       "\nMessage cache: " . get_class( $messageMemc ) .
 	   "\nParser cache: " . get_class( $parserMemc ) . "\n" );
 
 wfProfileOut( $fname.'-memcached' );
@@ -134,7 +134,7 @@ wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-database' );
 
 if ( !$wgDBservers ) {
-	$wgDBservers = array(array( 
+	$wgDBservers = array(array(
 		'host' => $wgDBserver,
 		'user' => $wgDBuser,
 		'password' => $wgDBpassword,
@@ -188,7 +188,7 @@ wfProfileOut( $fname.'-language1' );
 wfProfileIn( $fname.'-User' );
 
 # Skin setup functions
-# Entries can be added to this variable during the inclusion 
+# Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
 foreach ( $wgSkinExtensionFunctions as $func ) {
 	$func();
@@ -246,14 +246,14 @@ wfProfileOut( $fname.'-MessageCache' );
 # SEARCH INDEX UPDATES, AND MANY MANY THINGS.
 # DO NOT USE THIS MODE EXCEPT FOR TESTING RIGHT NOW.
 #
-# To disable it, the easiest thing could be to uncomment the 
+# To disable it, the easiest thing could be to uncomment the
 # following; they should effectively disable the UI switch functionality
 #
 # $wgLangClass = $wgContLangClass;
 # $wgLanguageCode = $wgContLanguageCode;
 # $wgLang = $wgContLang;
 #
-# TODO: Need to change reference to $wgLang to $wgContLang at proper 
+# TODO: Need to change reference to $wgLang to $wgContLang at proper
 #       places, including namespaces, dates in signatures, magic words,
 #       and links
 #
@@ -299,8 +299,8 @@ wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
 # Extension setup functions for extensions other than skins
-# Entries should be added to this variable during the inclusion 
-# of the extension file. This allows the extension to perform 
+# Entries should be added to this variable during the inclusion
+# of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
 	$func();

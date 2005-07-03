@@ -9,6 +9,7 @@
 
 /** */
 require_once( "commandLine.inc" );
+require_once("memcached-client.php");
 
 $mcc = new memcached( array('persistant' => true) );
 $mcc->set_servers( $wgMemCachedServers );
