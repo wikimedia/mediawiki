@@ -21,10 +21,11 @@ class ParserCache {
 	}
 
 	function getKey( &$article, &$user ) {
-		global $wgDBname;
+		global $wgDBname, $action;
 		$hash = $user->getPageRenderingHash();
 		$pageid = intval( $article->getID() );
-		$key = "$wgDBname:pcache:idhash:$pageid-$hash";
+		$renderkey = (int)($action == 'render');
+		$key = "$wgDBname:pcache:idhash:$pageid-$renderkey!$hash";
 		return $key;
 	}
 
