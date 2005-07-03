@@ -431,7 +431,8 @@ class FiveUpgrade {
 		 */
 		#$newmaxold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
 		#$this->setChunkScale( $chunksize, $newmaxold, 'revision', $fname );
-		$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
+		#$countold = $this->dbw->selectField( 'old', 'count(old_id)', '', $fname );
+		$countold = $this->dbw->selectField( 'old', 'max(old_id)', '', $fname );
 		$this->setChunkScale( $chunksize, $countold, 'revision', $fname );
 		
 		$this->log( "......Setting up revision table." );
@@ -484,7 +485,8 @@ class FiveUpgrade {
 				'page_touched'      =>              $this->dbw->timestamp(),
 				'page_latest'       =>              $row->rev_id,
 				'page_len'          =>              $row->len );
-			$this->addChunk( $add, $row->cur_id );
+			#$this->addChunk( $add, $row->cur_id );
+			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
 		$this->dbr->freeResult( $result );
@@ -496,6 +498,15 @@ class FiveUpgrade {
 		$fname = 'FiveUpgrade::upgradeLinks';
 		$chunksize = 200;
 		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'cur' ) );
+		
+		$this->log( 'Checking for interwiki table change in case of bogus items...' );
+		if( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
+			$this->log( 'interwiki has iw_trans.' );
+		} else {
+			$this->log( 'adding iw_trans...' );
+			dbsource( 'maintenance/archives/patch-interwiki-trans.sql', $this->dbw );
+			$this->log( 'added iw_trans.' );
+		}
 		
 		$this->log( 'Creating pagelinks table...' );
 		$this->dbw->query( "
