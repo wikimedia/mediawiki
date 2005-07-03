@@ -459,7 +459,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Special:Booksources checks if custom list page exists before using it
 * (bug 1170) Fixed linktrail for da: and ru:
 * (bug 2683) Really fix apostrophe escaping for toolbox tips
-
+* (bug 923) Fix title and subtitle for rclinked special page
 
 === Caveats ===
 
