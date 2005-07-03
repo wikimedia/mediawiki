@@ -399,7 +399,7 @@ class Title {
 
 		$s = $wgMemc->get( $k );
 		# Ignore old keys with no iw_local
-		if( $s && isset( $s->iw_local ) ) {
+		if( $s && isset( $s->iw_local ) && isset($s->iw_trans)) {
 			$wgTitleInterwikiCache[$k] = $s;
 			wfProfileOut( $fname );
 			return $s->iw_url;
