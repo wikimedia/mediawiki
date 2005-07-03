@@ -1564,6 +1564,6 @@ $wgHTTPProxy = false;
 /**
  * Enable interwiki transcluding.  Only when iw_trans=1.
  */
-$wgEnableScaryTransclude = false;
+$wgEnableScaryTranscluding = false;
 
 ?>
