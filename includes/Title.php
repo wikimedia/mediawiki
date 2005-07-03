@@ -731,7 +731,7 @@ class Title {
 	function getLocalURL( $query = '' ) {
 		global $wgLang, $wgArticlePath, $wgScript, $wgMakeDumpLinks, $action;
 
-		if ( $this->isExternal() || $action == 'render' ) {
+		if ( $this->isExternal() ) {
 			return $this->getFullURL();
 		}
 
@@ -758,7 +758,11 @@ class Title {
 			}
 			$url = "{$wgScript}?title={$dbkey}&{$query}";
 		}
-		return $url;
+
+		if ($action == 'render')
+			return $wgServer . $url;
+		else
+			return $url;
 	}
 
 	/**
