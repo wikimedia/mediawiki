@@ -18,7 +18,7 @@ require_once( 'Image.php' );
 class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for
-	
+
 	function view() {
 		global $wgUseExternalEditor, $wgOut, $wgShowEXIF;
 
@@ -39,7 +39,7 @@ class ImagePage extends Article {
 			$this->openShowImage();
 			if ($exif)
 				$wgOut->addWikiText($this->makeMetadataTable($exif));
-			
+
 			# No need to display noarticletext, we use our own message, output in openShowImage()
 			if( $this->getID() ) {
 				Article::view();
@@ -51,7 +51,7 @@ class ImagePage extends Article {
 				$wgOut->addMetaTags();
 				$this->viewUpdates();
 			}
-			
+
 			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
@@ -83,7 +83,7 @@ class ImagePage extends Article {
 	 * Make a table with metadata to be shown in the output page.
 	 *
 	 * @access private
-	 * 
+	 *
 	 * @param array $exif The array containing the EXIF data
 	 * @return string
 	 */
@@ -101,7 +101,7 @@ class ImagePage extends Article {
 
 	/**
 	 * Overloading Article's getContent method.
-	 * Omit noarticletext if sharedupload 
+	 * Omit noarticletext if sharedupload
 	 *
 	 * @param $noredir If true, do not follow redirects
 	 */
@@ -115,9 +115,9 @@ class ImagePage extends Article {
 
 	function openShowImage()
 	{
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
-		       $wgUseImageResize, $wgRepositoryBaseUrl, 
-		       $wgUseExternalEditor, $wgServer;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,
+		       $wgUseImageResize, $wgRepositoryBaseUrl,
+		       $wgUseExternalEditor, $wgServer, $wgFetchCommonsDescriptions;
 		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
@@ -136,25 +136,31 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
+			if($this->img->fromSharedDirectory
+			   && $wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
+				$this->printSharedImageText();
+				return;
+			}
+
 			# image
 			$width = $this->img->getWidth();
 			$height = $this->img->getHeight();
 			$showLink = false;
-			
-			if ( $this->img->allowInlineDisplay() and $width and $height) { 
+
+			if ( $this->img->allowInlineDisplay() and $width and $height) {
 				# image
-				
+
 				# "Download high res version" link below the image
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth ) {
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
-				} 
+				}
 				if ( $height > $maxHeight ) {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
 				}
-				if ( !$this->img->mustRender() 
+				if ( !$this->img->mustRender()
 				   && ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) ) {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
@@ -181,63 +187,77 @@ class ImagePage extends Article {
 				#if direct link is allowed but it's not a renderable image, show an icon.
 				if ($this->img->isSafeFile()) {
 					$icon= $this->img->iconThumb();
-	
+
 					$wgOut->addHTML( '<div class="fullImageLink" id="file"><a href="' . $full_url . '">' .
 					$icon->toHtml() .
 					'</a></div>' );
 				}
-			
+
 				$showLink = true;
 			}
-			
-			
+
+
 			if ($showLink) {
 				$s= $sk->makeMediaLink( $this->img->getName(), '', '', true );
 				$info= wfMsg( 'fileinfo', ceil($this->img->getSize()/1024.0), $this->img->getMimeType() );
-			
+
 				if (!$this->img->isSafeFile()) {
 					$wgOut->addHTML("<div class=\"fullMedia\">");
 					$wgOut->addHTML("<span class=\"dangerousLink\">");
 					$wgOut->addHTML($s);
 					$wgOut->addHTML("</span>");
-					
+
 					$wgOut->addHTML("<span class=\"fileInfo\"> (");
 					$wgOut->addWikiText( $info, false );
 					$wgOut->addHTML(")</span>");
 					$wgOut->addHTML("</div>");
-					
+
 					#this should be formated a little nicer. Is CSS sufficient?
 					$wgOut->addHTML("<div class=\"mediaWarning\">");
 					$wgOut->addWikiText( wfMsg( 'mediawarning' ) );
 					$wgOut->addHTML('</div>');
-					 
+
 				} else {
 					$wgOut->addHTML("<div class=\"fullMedia\">");
 					$wgOut->addHTML($s);
-					
+
 					$wgOut->addHTML("<span class=\"fileInfo\"> (");
 					$wgOut->addWikiText( $info, false );
 					$wgOut->addHTML(")</span>");
-					
+
 					$wgOut->addHTML("</div>");
 				}
 			}
-			
+
 			if($this->img->fromSharedDirectory) {
-				$sharedtext="<div class=\"sharedUploadNotice\">" . wfMsg("sharedupload");
-				if($wgRepositoryBaseUrl) {
-					$sharedtext .= " ". wfMsg("shareduploadwiki",$wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey()));
-				}
-				$sharedtext.="</div>";
-				$wgOut->addWikiText($sharedtext);
+				$this->printSharedImageText();
 			}
-			
 		} else {
 			# Image does not exist
 			$wgOut->addWikiText( wfMsg( 'noimage', $this->getUploadUrl() ) );
 		}
 	}
-	
+
+	function getSharedImageText() {
+		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut;
+
+		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
+		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsg("sharedupload");
+		if ($wgRepositoryBaseUrl) {
+			$sharedtext .= " " . wfMsg("shareduploadwiki", $url);
+		}
+		$sharedtext .= "</div>";
+		$wgOut->addWikiText($sharedtext);
+
+		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
+			$ur = ini_set('allow_url_fopen', true);
+			$text = @file($url);
+			ini_set('allow_url_fopen', false);
+			if ($text)
+				$wgOut->addHTML($text);
+		}
+	}
+
 	function getUploadUrl() {
 		global $wgServer;
 		$uploadTitle = Title::makeTitle( NS_SPECIAL, 'Upload' );
@@ -257,11 +277,11 @@ class ImagePage extends Article {
 		$wgOut->addWikiText( '<div>' .  wfMsg('edit-externally-help') . '</div>' );
 		$wgOut->addHTML( '</li></ul>' );
 	}
-	
+
 	function closeShowImage()
 	{
 		# For overloading
-			
+
 	}
 
 	/**
@@ -309,7 +329,7 @@ class ImagePage extends Article {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
-		
+
 		$sql = "SELECT page_namespace,page_title FROM $imagelinks,$page WHERE il_to=" .
 		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id"
 		  . " LIMIT 500"; # quickie emergency brake
@@ -337,8 +357,8 @@ class ImagePage extends Article {
 		$confirm = $wgRequest->getBool( 'wpConfirmB' );
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
-		
-		# Only sysops can delete images. Previously ordinary users could delete 
+
+		# Only sysops can delete images. Previously ordinary users could delete
 		# old revisions, but this is no longer the case.
 		if ( !$wgUser->isAllowed('delete') ) {
 			$wgOut->sysopRequired();
@@ -359,9 +379,9 @@ class ImagePage extends Article {
 			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
-		
+
 		$this->img  = new Image( $this->mTitle );
-		
+
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
@@ -371,7 +391,7 @@ class ImagePage extends Article {
 			}
 			return;
 		}
-		
+
 		if ( !is_null( $image ) ) {
 			$q = '&image=' . urlencode( $image );
 		} else if ( !is_null( $oldimage ) ) {
@@ -390,7 +410,7 @@ class ImagePage extends Article {
 
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
-		
+
 		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( !is_null( $oldimage ) ) {
@@ -402,7 +422,7 @@ class ImagePage extends Article {
 				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
-			
+
 			# Invalidate description page cache
 			$this->mTitle->invalidateCache();
 
@@ -421,7 +441,7 @@ class ImagePage extends Article {
 			$image = $this->mTitle->getDBkey();
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
-			
+
 			# Delete the image file if it exists; due to sync problems
 			# or manual trimming sometimes the file will be missing.
 			$targetFile = "{$dest}/{$image}";
@@ -431,14 +451,14 @@ class ImagePage extends Article {
 				return;
 			}
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
-			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );			
+			$res = $dbw->select( 'oldimage', array( 'oi_archive_name' ), array( 'oi_name' => $image ) );
 
 			# Purge archive URLs from the squid
 			$urlArr = Array();
 			while ( $s = $dbw->fetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
 				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
-			}	
+			}
 
 			# And also the HTML of all pages using this image
 			$linksTo = $this->img->getLinksTo();
@@ -446,7 +466,7 @@ class ImagePage extends Article {
 				$u = SquidUpdate::newFromTitles( $linksTo, $urlArr );
 				array_push( $wgPostCommitUpdateList, $u );
 			}
-			
+
 			$dbw->delete( 'oldimage', array( 'oi_name' => $image ) );
 
 			# Image itself is now gone, and database is cleaned.
@@ -471,7 +491,7 @@ class ImagePage extends Article {
 
 		$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
-		
+
 		$wgOut->addWikiText( $text );
 
 		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
@@ -483,7 +503,7 @@ class ImagePage extends Article {
 
 		$name = substr( $oldimage, 15 );
 		$archive = wfImageArchiveDir( $name );
-		
+
 		# Delete the image if it exists. Sometimes the file will be missing
 		# due to manual intervention or weird sync problems; treat that
 		# condition gracefully and continue to delete the database entry.
@@ -535,7 +555,7 @@ class ImagePage extends Article {
 		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
 			$wgOut->errorpage( 'internalerror', 'sessionfailure' );
 			return;
-		}		
+		}
 		$name = substr( $oldimage, 15 );
 
 		$dest = wfImageDir( $name );
@@ -547,7 +567,7 @@ class ImagePage extends Article {
 			return;
 		}
 		$oldver = wfTimestampNow() . "!{$name}";
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		$size = $dbr->selectField( 'oldimage', 'oi_size', array( 'oi_archive_name' => $oldimage )  );
 
@@ -570,7 +590,7 @@ class ImagePage extends Article {
 		$descTitle = $img->getTitle();
 		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
 	}
-	
+
 	function blockedIPpage() {
 		require_once( 'EditPage.php' );
 		$edit = new EditPage( $this );
@@ -587,7 +607,7 @@ class ImageHistoryList {
 	function ImageHistoryList( &$skin ) {
 		$this->skin =& $skin;
 	}
-	
+
 	function beginImageHistoryList() {
 		$s = "\n<h2 id=\"filehistory\">" . wfMsg( 'imghistory' ) . "</h2>\n" .
 		  "<p>" . wfMsg( 'imghistlegend' ) . "</p>\n".'<ul class="special">';

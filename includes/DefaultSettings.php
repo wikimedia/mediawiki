@@ -17,10 +17,10 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki and is not a valid entry point\n" );
 }
 
-/** 
+/**
  * Create a site configuration object
  * Not used for much in a default install
- */ 
+ */
 require_once( 'includes/SiteConfiguration.php' );
 $wgConf = new SiteConfiguration;
 
@@ -82,7 +82,7 @@ $wgUsePathInfo		= ( strpos( php_sapi_name(), 'cgi' ) === false );
  * make sure that LocalSettings.php is correctly set!
  * @deprecated
  */
-/** 
+/**
  *	@global string $wgScript
  */
 $wgScript           = "{$wgScriptPath}/index.php";
@@ -130,8 +130,8 @@ $wgAntivirus= NULL;
  *
  * The configuration array for each scanner contains the following keys: "command", "codemap", "messagepattern";
  *
- * "command" is the full command to call the virus scanner - %f will be replaced with the name of the 
- * file to scan. If not present, the filename will be appended to the command. Note that this must be 
+ * "command" is the full command to call the virus scanner - %f will be replaced with the name of the
+ * file to scan. If not present, the filename will be appended to the command. Note that this must be
  * overwritten if the scanner is not in the system path; in that case, plase set
  * $wgAntivirusSetup[$wgAntivirus]['command'] to the desired command with full path.
  *
@@ -146,7 +146,7 @@ $wgAntivirus= NULL;
  *
  * "messagepattern" is a perl regular expression to extract the meaningful part of the scanners
  * output. The relevant part should be matched as group one (\1).
- * If not defined or the pattern does not match, the full message is shown to the user. 
+ * If not defined or the pattern does not match, the full message is shown to the user.
  *
  * @global array $wgAntivirusSetup
  */
@@ -155,28 +155,28 @@ $wgAntivirusSetup= array(
 	#setup for clamav
 	'clamav' => array (
 		'command' => "clamscan --no-summary ",
-		
+
 		'codemap'=> array (
 			"0"=>  AV_NO_VIRUS, #no virus
 			"1"=>  AV_VIRUS_FOUND, #virus found
 			"52"=> AV_SCAN_ABORTED, #unsupported file format (probably imune)
 			"*"=>  AV_SCAN_FAILED, #else scan failed
 		),
-		
+
 		'messagepattern'=> '/.*?:(.*)/sim',
 	),
-	
+
 	#setup for f-prot
 	'f-prot' => array (
 		'command' => "f-prot ",
-		
+
 		'codemap'=> array (
 			"0"=> AV_NO_VIRUS, #no virus
 			"3"=> AV_VIRUS_FOUND, #virus found
 			"6"=> AV_VIRUS_FOUND, #virus found
 			"*"=> AV_SCAN_FAILED, #else scan failed
 		),
-		
+
 		'messagepattern'=> '/.*?Infection:(.*)$/m',
 	),
 );
@@ -187,7 +187,7 @@ $wgAntivirusSetup= array(
 */
 $wgAntivirusRequired= true;
 
-/** Determines if the mime type of uploaded files should be checked 
+/** Determines if the mime type of uploaded files should be checked
  * @global boolean $wgVerifyMimeType
 */
 $wgVerifyMimeType= true;
@@ -226,7 +226,7 @@ $wgTrivialMimeDetection= false;
 
 /**
  * Produce hashed HTML article paths. Used internally, do not set.
- */ 
+ */
 $wgMakeDumpLinks = false;
 
 /**
@@ -251,6 +251,8 @@ $wgActionPaths = array();
 $wgUseSharedUploads = false;
 /** Full path on the web server where shared uploads can be found */
 $wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
+/** Fetch commons image description pages and display them on the local wiki? */
+$wgFetchCommonsDescriptions = false;
 /** Path on the file system where shared uploads can be found. */
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
 /** DB name with metadata about shared directory. Set this to false if the uploads do not come from a wiki. */
@@ -266,12 +268,12 @@ $wgCacheSharedUploads = true;
 */
 $wgUploadNavigationUrl = false;
 
-/** 
- * Give a path here to use thumb.php for thumbnail generation on client request, instead of 
- * generating them on render and outputting a static URL. This is necessary if some of your 
+/**
+ * Give a path here to use thumb.php for thumbnail generation on client request, instead of
+ * generating them on render and outputting a static URL. This is necessary if some of your
  * apache servers don't have read/write access to the thumbnail path.
- * 
- * Example: 
+ *
+ * Example:
  *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
  */
 $wgThumbnailScriptPath = false;
@@ -339,7 +341,7 @@ $wgEnableUserEmail = true;
 
 /**
  * SMTP Mode
- * For using a direct (authenticated) SMTP server connection. 
+ * For using a direct (authenticated) SMTP server connection.
  * Default to false or fill an array :
  * <code>
  * "host" => 'SMTP domain',
@@ -377,9 +379,9 @@ $wgDBtype           = "mysql";
  */
 $wgSearchType	    = null;
 /** Table name prefix */
-$wgDBprefix         = ''; 
+$wgDBprefix         = '';
 /** Database schema
- * on some databases this allows separate 
+ * on some databases this allows separate
  * logical namespace for application data
  */
 $wgDBschema	    = 'mediawiki';
@@ -397,16 +399,16 @@ $wgSharedDB = null;
 
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
-# Fields are: 
+# Fields are:
 #   host:        Host name
 #   dbname:      Default database name
 #   user:        DB user
 #   password:    DB password
 #   type:        "mysql" or "pgsql"
 #   load:        ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
-#   groupLoads:  array of load ratios, the key is the query group name. A query may belong 
+#   groupLoads:  array of load ratios, the key is the query group name. A query may belong
 #                to several groups, the most specific group defined here is used.
-#                 
+#
 #   flags:       bit field
 #                   DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
 #                   DBO_DEBUG -- equivalent of $wgDebugDumpSql
@@ -415,9 +417,9 @@ $wgSharedDB = null;
 #                   DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
 #
 # Leave at false to use the single-server variables above
-$wgDBservers		= false; 
+$wgDBservers		= false;
 
-/** How long to wait for a slave to catch up to the master */ 
+/** How long to wait for a slave to catch up to the master */
 $wgMasterWaitTimeout = 10;
 
 /** File to log MySQL errors to */
@@ -443,7 +445,7 @@ $wgDBmysql4			= false;
  * Other wikis on this site, can be administered from a single developer
  * account.
  * Array, interwiki prefix => database name
- */ 
+ */
 $wgLocalDatabases   = array();
 
 /**
@@ -481,7 +483,7 @@ $wgHideInterlanguageLinks = false;
 
 /** We speak UTF-8 all the time now, unless some oddities happen */
 $wgInputEncoding	= 'UTF-8';
-$wgOutputEncoding	= 'UTF-8'; 
+$wgOutputEncoding	= 'UTF-8';
 $wgEditEncoding		= '';
 
 # Set this to eg 'ISO-8859-1' to perform character set
@@ -518,11 +520,11 @@ $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 
 /** Enable to allow rewriting dates in page text.
  * DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES */
-$wgUseDynamicDates  = false; 
+$wgUseDynamicDates  = false;
 /** Enable dates like 'May 12' instead of '12 May', this only takes effect if
  * the interface is set to English
  */
-$wgAmericanDates    = false; 
+$wgAmericanDates    = false;
 /**
  * For Hindi and Arabic use local numerals instead of Western style (0-9)
  * numerals in interface.
@@ -550,9 +552,9 @@ $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
 
-/** Normally you can ignore this and it will be something 
-    like $wgMetaNamespace . "_talk". In some languages, you 
-    may want to set this manually for grammatical reasons. 
+/** Normally you can ignore this and it will be something
+    like $wgMetaNamespace . "_talk". In some languages, you
+    may want to set this manually for grammatical reasons.
     It is currently only respected by those languages
     where it might be relevant and where no automatic
     grammar converter exists.
@@ -724,10 +726,10 @@ $wgGroupPermissions['bureaucrat']['renameuser'] = true;
 /**
  * If you enable this, every editor's IP address will be scanned for open HTTP
  * proxies.
- * 
+ *
  * Don't enable this. Many sysops will report "hostile TCP port scans" to your
  * ISP and ask for your server to be shut down.
- * 
+ *
  * You have been warned.
  */
 $wgBlockOpenProxies = false;
@@ -766,7 +768,7 @@ $wgCacheEpoch = '20030516000000';
  * This will cache static pages for non-logged-in users to reduce
  * database traffic on public sites.
  * Must set $wgShowIPinHeader = false
- */  
+ */
 $wgUseFileCache = false;
 /** Directory where the cached page will be saved */
 $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
@@ -776,7 +778,7 @@ $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
  * space. Pages will then also be served compressed to clients that support it.
  * THIS IS NOT COMPATIBLE with ob_gzhandler which is now enabled if supported in
  * the default LocalSettings.php! If you enable this, remove that setting first.
- * 
+ *
  * Requires zlib support enabled in PHP.
  */
 $wgUseGzip = false;
@@ -789,7 +791,7 @@ $wgPasswordSender = $wgEmergencyContact;
 
 # true: from page editor if s/he opted-in
 # false: Enotif mails appear to come from $wgEmergencyContact
-$wgEnotifFromEditor	= false; 
+$wgEnotifFromEditor	= false;
 
 // TODO move UPO to preferences probably ?
 # If set to true, users get a corresponding option in their preferences and can choose to enable or disable at their discretion
@@ -810,11 +812,11 @@ $wgPageShowWatchingUsers 			= false;
 /**
  * Show "Updated (since my last visit)" marker in RC view, watchlist and history
  * view for watched pages with new changes */
-$wgShowUpdatedMarker 				= true; 
+$wgShowUpdatedMarker 				= true;
 
 $wgCookieExpiration = 2592000;
 
-/** Clock skew or the one-second resolution of time() can occasionally cause cache 
+/** Clock skew or the one-second resolution of time() can occasionally cause cache
  * problems when the user requests two pages within a short period of time. This
  * variable adds a given number of seconds to vulnerable timestamps, thereby giving
  * a grace period.
@@ -826,14 +828,14 @@ $wgClockSkewFudge = 5;
 
 /** Enable/disable Squid */
 $wgUseSquid = false;
- 
+
 /** If you run Squid3 with ESI support, enable this (default:false): */
 $wgUseESI = false;
- 
+
 /** Internal server name as known to Squid, if different */
 # $wgInternalServer = 'http://yourinternal.tld:8000';
 $wgInternalServer = $wgServer;
- 
+
 /**
  * Cache timeout for the squid, will be sent as s-maxage (without ESI) or
  * Surrogate-Control (with ESI). Without ESI, you should strip out s-maxage in
@@ -841,7 +843,7 @@ $wgInternalServer = $wgServer;
  * days
  */
 $wgSquidMaxage = 18000;
- 
+
 /**
  * A list of proxy servers (ips if possible) to purge on changes don't specify
  * ports here (80 is default)
@@ -895,17 +897,17 @@ $wgTexvc = './math/texvc';
 #
 
 /** Enable for more detailed by-function times in debug log */
-$wgProfiling = false; 
+$wgProfiling = false;
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
 /** Don't put non-profiling info into log file */
-$wgProfileOnly = false; 
+$wgProfileOnly = false;
 /** Log sums from profiling into "profiling" table in db. */
 $wgProfileToDatabase = false;
 /** Only profile every n requests when profiling is turned on */
 $wgProfileSampleRate = 1;
 /** If true, print a raw call tree instead of per-function report */
-$wgProfileCallTree = false; 
+$wgProfileCallTree = false;
 
 /** Detects non-matching wfProfileIn/wfProfileOut calls */
 $wgDebugProfiling = false;
@@ -934,12 +936,12 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
  * Assumes that the special page link will be bounced to another server where
  * uploads do work.
  */
-$wgRemoteUploads = false; 
+$wgRemoteUploads = false;
 $wgDisableAnonTalk = false;
 /**
  * Do DELETE/INSERT for link updates instead of incremental
  */
-$wgUseDumbLinkUpdate = false; 
+$wgUseDumbLinkUpdate = false;
 
 /**
  * Anti-lock flags - bitfield
@@ -956,7 +958,7 @@ $wgAntiLockFlags = 0;
  */
 $wgDiff3 = '/usr/bin/diff3';
 
-/** 
+/**
  * We can also compress text in the old revisions table. If this is set on, old
  * revisions will be compressed on page save if zlib support is available. Any
  * compressed revisions will be decompressed on load regardless of this setting
@@ -980,7 +982,7 @@ $wgFileBlacklist = array(
 	'shtml', 'jhtml', 'pl', 'py', 'cgi',
 	# May contain harmful executables for Windows victims
 	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' );
-	
+
 /** Files with these mime types will never be allowed as uploads
  * if $wgVerifyMimeType is enabled.
  */
@@ -988,9 +990,9 @@ $wgMimeTypeBlacklist= array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
 	'text/html', 'text/javascript', 'text/x-javascript',  'application/x-shellscript',
 	# PHP scripts may execute arbitrary code on the server
-	'application/x-php', 'text/x-php', 
+	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers
-	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh'  
+	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh'
 );
 
 /** This is a flag to determine whether or not to check file extensions on upload. */
@@ -1006,7 +1008,7 @@ $wgStrictFileExtensions = true;
 $wgUploadSizeWarning = 150 * 1024;
 
 /** For compatibility with old installations set to false */
-$wgPasswordSalt = true; 
+$wgPasswordSalt = true;
 
 /** Which namespaces should support subpages?
  * See Language.php for a list of namespaces.
@@ -1042,7 +1044,7 @@ $wgUseImageResize		= false;
  * Resizing can be done using PHP's internal image libraries or using
  * ImageMagick. The later supports more file formats than PHP, which only
  * supports PNG, GIF, JPG, XBM and WBMP.
- * 
+ *
  * Use Image Magick instead of PHP builtin functions.
  */
 $wgUseImageMagick		= false;
@@ -1158,7 +1160,7 @@ $wgImportSources = array();
 
 /** Text matching this regular expression will be recognised as spam
  * See http://en.wikipedia.org/wiki/Regular_expression */
-$wgSpamRegex = false; 
+$wgSpamRegex = false;
 /** Similarly if this function returns true */
 $wgFilterCallback = false;
 
@@ -1194,7 +1196,7 @@ $wgRawHtml = false;
  */
 $wgUseTidy = false;
 $wgTidyBin = 'tidy';
-$wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
+$wgTidyConf = $IP.'/extensions/tidy/tidy.conf';
 $wgTidyOpts = '';
 $wgTidyInternal = function_exists( 'tidy_load_config' );
 
@@ -1207,7 +1209,7 @@ $wgDefaultSkin = 'monobook';
  * and sample values in languages/Language.php)
  * For instance, to disable section editing links:
  *  $wgDefaultUserOptions ['editsection'] = 0;
- * 
+ *
  */
 $wgDefaultUserOptions = array();
 
@@ -1240,7 +1242,7 @@ $wgUseSiteJs = true;
 
 /** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
-	
+
 /** Filter for Special:Randompage. Part of a WHERE clause */
 $wgExtraRandompageSQL = false;
 
@@ -1277,7 +1279,7 @@ $wgFeedDiffCutoff = 32768;
  * PLEASE  NOTE: Once you delete a namespace, the pages in that namespace will
  * no longer be accessible. If you rename it, then you can access them through
  * the new namespace name.
- * 
+ *
  * Custom namespaces should start at 100 to avoid conflicting with standard
  * namespaces, and should always follow the even/odd main/talk pattern.
  */
@@ -1386,7 +1388,7 @@ $wgAuth = null;
  *     $wgHooks['event_name'][] = array($function, $data);
  * or:
  *     $wgHooks['event_name'][] = array($object, 'method');
- */	
+ */
 $wgHooks = array();
 
 /**
@@ -1407,7 +1409,7 @@ $wgDisableInternalSearch = false;
  * Set this to a URL to forward search requests to some external location.
  * If the URL includes '$1', this will be replaced with the URL-encoded
  * search term.
- * 
+ *
  * For example, to forward to Google you'd have something like:
  * $wgSearchForwardUrl = 'http://www.google.com/search?q=$1' .
  *                       '&domains=http://example.com' .
@@ -1514,25 +1516,25 @@ $wgRateLimitLog = null;
  */
 $wgCountCategorizedImagesAsUsed = false;
 
-/** 
- * External stores allow including content 
+/**
+ * External stores allow including content
  * from non database sources following URL links
- * 
+ *
  * Short names of ExternalStore classes may be specified in an array here:
  * $wgExternalStores = array("http","file","custom")...
- * 
+ *
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
 
 /**
-* list of trusted media-types and mime types. 
+* list of trusted media-types and mime types.
 * Use the MEDIATYPE_xxx constants to represent media types.
 * This list is used by Image::isSafeFile
 *
 * Types not listed here will have a warning about unsafe content
 * displayed on the images description page. It would also be possible
-* to use this for further restrictions, like disabling direct 
+* to use this for further restrictions, like disabling direct
 * [[media:...]] links for non-trusted formats.
 */
 $wgTrustedMediaFormats= array(
@@ -1541,7 +1543,7 @@ $wgTrustedMediaFormats= array(
 	MEDIATYPE_VIDEO,  //all plain video formats
 	"image/svg",  //svg (only needed if inline rendering of svg is not supported)
 	"application/pdf",  //PDF files
-	#"application/x-shockwafe-flash", //flash/shockwave movie 
+	#"application/x-shockwafe-flash", //flash/shockwave movie
 );
 
 /**
