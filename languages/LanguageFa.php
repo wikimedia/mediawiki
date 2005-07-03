@@ -862,7 +862,7 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 "watchdetails"		=> "($1 pages watched not counting talk pages;
 $2 total pages edited since cutoff;
 $3...
-<a href='$4'>نمایش و ویرایش فهرست کامل</a>.)",
+[$4 نمایش و ویرایش فهرست کامل].)",
 "watchmethod-recent"=> "بررسی ویرایش‌های اخیر برای صفحات در حال تعقیب",
 "watchmethod-list"	=> "بررسی صفحات در حال تعقیب برای ویرایش‌های اخیر",
 "removechecked" 	=> "برداشتن موارد تیک‌خورده از فهرست تعقیبات",

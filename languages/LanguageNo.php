@@ -795,7 +795,7 @@ overvåkningslisten.",
 "watchdetails" => "($1 sider i overvåkningslisten, fratrukket alle diskusjonssidene;
 $2 totalt antall sider endret i den valgte perioden;
 $3...
-<a href='$4'>vis og rediger den komplette listen</a>.)",
+[$4 vis og rediger den komplette listen].)",
 "watchmethod-recent" => "sjekker siste endringer for sider i overvåkningslisten",
 "watchmethod-list" => "sjekker siste endringer for sider i overvåkningslisten",
 "removechecked" => "Fjern valgte sider fra overvåkningslisten",

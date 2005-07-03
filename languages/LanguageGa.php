@@ -981,7 +981,7 @@ bhfeicfeá iad go héasca.</p>
 "watchdetails" => "(Tá tú ag faire ar $1 leathanaigh chomh maith leis na leathanaigh phlé;
 le déanach athraí­odh $2 leathanaigh in iomlán;
 $3...
-<a href='$4'>athraigh do liosta</a>.)",
+[$4 athraigh do liosta].)",
 "watchmethod-recent" => "ag seiceáil na athruithe deireanacha do leathanaigh faire",
 "watchmethod-list" => "ag seiceáil na leathanaigh faire do athruithe deireanacha",
 "removechecked" => "Bain mí­reanna marcálaithe amach as do liosta faire",

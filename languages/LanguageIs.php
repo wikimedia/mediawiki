@@ -683,7 +683,7 @@ to upload files.",
 'watch' => "Vakta",
 'val_tab' => 'Votta',
 'watchdetails' => "Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að 
-<a href='$4'>sýna heildarlistann og breyta honum</a>.",
+[$4 sýna heildarlistann og breyta honum].",
 'watcheditlist' => "Þetta er listi yfir þínar vöktuðu síður raðað í
 stafrófsröð. Merktu við þær síður sem þú vilt fjarlægja
 af vaktlistanum og ýttu á 'fjarlægja merktar' takkan

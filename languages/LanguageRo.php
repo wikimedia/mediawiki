@@ -1217,7 +1217,7 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 'watchdetails' => "($1 pagini urmărite în afară de paginile de discuţie;
 $2 pagini editate în total;
 $3...
-<a href='$4'>lista completă</a>.)",
+[$4 lista completă].)",
 'watcheditlist' => "Aceasta este lista alfabetică a tuturor paginilor pe care le urmăreşti.
 Bifează căsuţele corespunzătoare paginilor pe care doreşti să le elimini din lista de
 pagini urmărite şi apasă pe butonul corespunzător din partea de jos a paginii.",

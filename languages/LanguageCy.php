@@ -773,7 +773,7 @@ Pan fydd y tudalen hon, a'i tudalen Sgwrs, yn newid, fyddynt yn dangos  <b>yn cr
 "watchdetails" => "(Yn gwylio $1 tudalennau, nid yn cyfri tudalennau sgwrs;
 wedi olygu $2 tudalennau ers y toriad;
 $3...
-<a href='$4'>dangos ac olygu y rhestr cyfan</a>.)",
+[$4 dangos ac olygu y rhestr cyfan].)",
 "watchmethod-recent"=> "gwiriwch golygiadau diweddar am tudalennau gwyliad",
 "watchmethod-list" => "yn gwirio tudalennau gwyliad am olygiadau diweddar",
 "removechecked" => "Dileuwch eitemau sydd gyda tic o'ch rhestr gwylio",

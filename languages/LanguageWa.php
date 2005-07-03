@@ -891,7 +891,7 @@ clitchîz so «Èn pus shuve li pådje» dins l'&nbsp;bår di menu sol costé.",
 "watchdetails" => "($1 pådjes shuvowes, sins conter les pådjes di copene;
 $2 total pages edited since cutoff;
 $3...
-<a href='$4'>mostrer eyet candjî l'&bsp;djivêye etire</a>.)", # co a fé
+[$4 mostrer eyet candjî l'&bsp;djivêye etire].)", # co a fé
 "watchmethod-recent" => "checking recent edits for watched pages", # co a fé
 "watchmethod-list" => "checking watched pages for recent edits", # co a fé
 "removechecked" => "Bodjî les cayets tchoezis foû del djivêye des pådjes a shuve",

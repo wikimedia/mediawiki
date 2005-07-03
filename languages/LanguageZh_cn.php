@@ -755,7 +755,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
  	 "watchdetails" => "($1个页面（不含对话页）被监视；
  	 总共$2个页面被编辑；
  	 $3...
- 	 <a href='$4'>显示并编辑完整列表</a>.)",
+ 	 [$4 显示并编辑完整列表].)",
  	 "watchmethod-recent" => "检查被监视页面的最近编辑",
  	 "watchmethod-list" => "checking watched pages for recent edits",
  	 "removechecked" => "将被选页面从监视列表中移除",

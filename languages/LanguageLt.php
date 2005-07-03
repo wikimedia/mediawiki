@@ -396,7 +396,7 @@ Iš jų administratoriaus teises turi - '''$2''' (žr. $3).",
 'watchdetails' => "(stebimų straipsnių - $1, neskaitant diskusijų puslapių;
 šiuo metu pasirinkote žiūrėti $2 pakeitimus;
 $3...
-<a href='$4'>parodyti ir redaguoti pilną sąrašą</a>.)",
+[$4 parodyti ir redaguoti pilną sąrašą].)",
 'watcheditlist' => "Žemiau pateiktame stebimų straipsnių sąraše
 pažymėkite varneles prie straipsnių,
 kurių nebenorite stebėti ir spauskite apačioje

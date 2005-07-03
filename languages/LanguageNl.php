@@ -690,7 +690,7 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "watchnochange" => "Geen van de pagina's op uw volglijst is in deze periode gewijzigd",
 "watchdetails" => "Er staan $1 pagina's op uw volglijst (overlegpagina's niet meegeteld.
 In de aangegeven periode zijn $2 pagina's gewijzigd.
-$3. (<a href='$4'>Toon mijn volledige volglijst</a>.)",
+$3. ([$4 Toon mijn volledige volglijst].)",
 "watchmethod-recent" => "Bij de recent gewijzigde pagina's gezocht naar gevolgde pagina's",
 "watchmethod-list" => "Bij de gevolgde pagina's naar wijzigingen bekeken",
 "removechecked" => "Verwijderen",

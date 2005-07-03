@@ -761,7 +761,7 @@ Cambios futuros en esta página y su página de discusión asociada se indicará
 "watchdetails" => "($1 páginas en tu lista de seguimiento, sin contar las de discusión;
 $2 páginas editadas en total desde el cutoff;
 $3...
-<a href='$4'>mostrar y editar la lista completa</a>.)",
+[$4 mostrar y editar la lista completa].)",
 "watchmethod-recent" => "chequeando ediciones recientes en la lista de seguimiento",
 
 "watchmethod-list" => "buscando ediciones recientes en la lista de seguimiento",

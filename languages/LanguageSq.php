@@ -791,7 +791,7 @@ dalluar më kollaj.</p>
 "watchdetails" => "($1 faqe nën mbikqyrje duke mos numëruar faqet e diskutimit;
 $2 faqe(t) brënda kufirit janë redaktuar;
 $3...
-<a href='$4'>trego dhe redakto tërë listën</a>.)",
+[$4 trego dhe redakto tërë listën].)",
 "watchmethod-recent" => "duke parë ndryshimet e fundit për faqe nën mbikqyrje",
 "watchmethod-list" => "duke parë faqet nën mbikqyrje për ndryshime të fundit",
 "removechecked" => "Hiq të zgjedhurat",

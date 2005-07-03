@@ -791,7 +791,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href=\"" .
 "watchnochange" 	=> "Fan de siden dy't jo folgje is der yn dizze perioade net ien feroare.",
 "watchdetails"	=> "Jo folchlist hat $1 siden (oerlissiden net meiteld).
 In dizze perioade binne der $2 siden feroare.
-$3. (<a href='$4'>Gâns myn folchlist</a>.)",
+$3. ([$4 Gâns myn folchlist].)",
 
 "watchmethod-recent" => "Koarts feroare ...",
 "watchmethod-list" => "Folge ...",
