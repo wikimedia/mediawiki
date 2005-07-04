@@ -64,10 +64,6 @@ require_once( "LanguageUtf8.php" );
 	MW_MATH_MATHML => "MathML om det är möjligt (experimentellt)",
 );
 
-/* private */ $wgDateFormatsSv = array(
-#	"Ingen inställning",
-);
-
 // All special pages have to be listed here: a description of ""
 // will make them not show up on the "Special Pages" page, which
 // is the right thing for some of them (such as the "targeted" ones).
@@ -1084,7 +1080,15 @@ class LanguageSv extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
+
+	var $digitTransTable = array(
+		',' => '&nbsp;',
+		'.' => ','
+	);
 	
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable);
+	}
 }
 
 ?>
