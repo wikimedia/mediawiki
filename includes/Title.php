@@ -722,7 +722,8 @@ class Title {
 	}
 
 	/**
-	 * Get a URL with no fragment or server name
+	 * Get a URL with no fragment or server name.  If this page is generated
+	 * with action=render, $wgServer is prepended.
 	 * @param string $query an optional query string; if not specified,
 	 * 	$wgArticlePath will be used.
 	 * @return string the URL
