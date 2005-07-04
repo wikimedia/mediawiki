@@ -18,6 +18,7 @@ require_once( 'Image.php' );
 class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for
+	var $mExtraDescription = false;
 
 	function render() {
 		global $wgOut;
@@ -57,6 +58,9 @@ class ImagePage extends Article {
 				$wgOut->addMetaTags();
 				$this->viewUpdates();
 			}
+
+			if ($this->mExtraDescription)
+				$wgOut->addWikiText($this->mExtraDescription);
 
 			$this->closeShowImage();
 			$this->imageHistory();
@@ -251,10 +255,10 @@ class ImagePage extends Article {
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
 			$ur = ini_set('allow_url_fopen', true);
-			$text = @file_get_contents($url . '?action=render');
+			$text = wfGetHTTP($url . '?action=render');
 			ini_set('allow_url_fopen', $ur);
 			if ($text)
-				$wgOut->addHTML($text);
+				$this->mExtraDescription = $text;
 		}
 	}
 
