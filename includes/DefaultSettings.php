@@ -9,6 +9,9 @@
  * like $wgScriptPath, you must also localize everything that
  * depends on it.
  *
+ * Documentation is in the source and on:
+ * http://meta.wikimedia.org/wiki/Help:Configuration_settings_index
+ *
  * @package MediaWiki
  */
 
