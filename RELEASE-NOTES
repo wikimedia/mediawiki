@@ -466,7 +466,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2181) basic CSB language localisation by Tomasz G. Sienicki (thanks for the patch)
 * Fix correct use of escaping in edit toolbar bits
 * Removed language conversion support from Icelandic
-* (bug 2632) Fix proportional image scaling, giving correct height
+* (bug 2616) Fix proportional image scaling, giving correct height
 * (bug 2640) Include width and height attributes on unscaled images
 
 
