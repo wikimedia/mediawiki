@@ -462,6 +462,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 923) Fix title and subtitle for rclinked special page
 * (bug 2642) watchdetails message in several languages used  <a></a> instead of [ ]
 * (bug 2181) basic CSB language localisation by Tomasz G. Sienicki (thanks for the patch)
+* (bug 2632) also adjust height when zooming an image by giving only width
+
 
 === Caveats ===
 
