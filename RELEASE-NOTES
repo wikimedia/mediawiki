@@ -469,6 +469,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2616) Fix proportional image scaling, giving correct height
 * (bug 2640) Include width and height attributes on unscaled images
 * Workaround for mysterious problem with bogus epoch If-Last-Modified reqs
+* (bug 1109) Suppress compressed output on 304 responses
 
 
 === Caveats ===
