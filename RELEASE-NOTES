@@ -464,6 +464,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2181) basic CSB language localisation by Tomasz G. Sienicki (thanks for the patch)
 * (bug 2632) also adjust height when zooming an image by giving only width
 * Fix correct use of escaping in edit toolbar bits
+* Removed language conversion support from Icelandic
 
 
 === Caveats ===
