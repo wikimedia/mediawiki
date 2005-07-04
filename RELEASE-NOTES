@@ -665,6 +665,8 @@ pages for purposes of page relevancy ranking.
 * Fixed a typo in the Romanian language file (NS_MESIA => NS_MEDIA)
 * (bug 2531) Changed the interwiki name for sh (Serbocroatian) to
   Srpskohrvatski/Српскохрватски (was Српскохрватски (Srbskohrvatski))
+* Workaround for mysterious problem with bogus epoch If-Last-Modified reqs
+
 
 === Caveats ===
 
