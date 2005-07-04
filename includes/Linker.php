@@ -377,6 +377,8 @@ class Linker {
 		$url   = $img->getViewURL();
 		$prefix = $postfix = '';
 		
+		wfDebug( "makeImageLinkObj: '$width'x'$height'\n" );
+		
 		if ( 'center' == $align )
 		{
 			$prefix  = '<div class="center">';
@@ -421,13 +423,24 @@ class Linker {
 			if ( $manual_thumb == '') {
 				$thumb = $img->getThumbnail( $width );
 				if ( $thumb ) {
-					// $height = $thumb->height;
-					$height = floor($thumb->height * $width / $img->width);
-					$url = $thumb->getUrl( );
+					if( $width > $thumb->width ) {
+						// Requested a display size larger than the actual image;
+						// fake it up!
+						$height = floor($thumb->height * $width / $thumb->width);
+						wfDebug( "makeImageLinkObj: client-size height set to '$height'\n" );
+					} else {
+						$height = $thumb->height;
+						wfDebug( "makeImageLinkObj: thumb height set to '$height'\n" );
+					}
+					$url = $thumb->getUrl();
 				}
 			}
+		} else {
+			$width = $img->width;
+			$height = $img->height;
 		}
 
+		wfDebug( "makeImageLinkObj2: '$width'x'$height'\n" );
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
 			$s = $this->makeBrokenImageLinkObj( $img->getTitle() );
