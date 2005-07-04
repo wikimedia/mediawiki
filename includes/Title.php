@@ -729,7 +729,7 @@ class Title {
 	 * @access public
 	 */
 	function getLocalURL( $query = '' ) {
-		global $wgLang, $wgArticlePath, $wgScript, $wgMakeDumpLinks, $action;
+		global $wgLang, $wgArticlePath, $wgScript, $wgMakeDumpLinks, $wgServer, $action;
 
 		if ( $this->isExternal() ) {
 			return $this->getFullURL();
