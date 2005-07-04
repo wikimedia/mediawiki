@@ -418,10 +418,11 @@ class Linker {
 			if ( $height !== false && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
 				$width = $img->getWidth() * $height / $img->getHeight();
 			}
-			if ( '' == $manual_thumb ) {
+			if ( $manual_thumb == '') {
 				$thumb = $img->getThumbnail( $width );
 				if ( $thumb ) {
-					$height = $thumb->height;
+					// $height = $thumb->height;
+					$height = floor($thumb->height * $width / $img->width);
 					$url = $thumb->getUrl( );
 				}
 			}
