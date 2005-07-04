@@ -623,6 +623,15 @@ http:/example.com
 </p>
 !! end
 
+!! test
+Bug 2702: Mismatched <i> and <a> tags are invalid
+!! input
+''[http://example.com text'']
+!! result
+<p><i><a href="http://example.com" class='external text' title="http://example.com" rel="nofollow">text</a></i>
+</p>
+!! end
+
 ###
 ### Quotes
 ###
