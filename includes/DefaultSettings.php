@@ -586,7 +586,7 @@ $wgRedirectSources = false;
 
 
 $wgShowIPinHeader	= true; # For non-logged in users
-$wgMaxNameChars     = 32; # Maximum number of bytes in username
+$wgMaxNameChars		= 255;  # Maximum number of bytes in username
 
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
