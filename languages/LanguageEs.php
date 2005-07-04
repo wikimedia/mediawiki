@@ -1202,5 +1202,9 @@ class LanguageEs extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
+	
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	}
 }
 ?>
