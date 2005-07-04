@@ -1063,6 +1063,7 @@ this old version, (rev) = revert to this old version.
 'nolinkstoimage' => 'There are no pages that link to this file.',
 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki' => 'Please see the [$1 file description page] for further information.',
+'shareddescriptionfollows' => '-',
 'noimage'       => 'No file by this name exists, you can [$1 upload it]',
 'uploadnewversion' => '[$1 Upload a new version of this file]',
 
@@ -2121,7 +2122,7 @@ will expire at $4.
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed' => '[Template fetch failed; sorry]',
+'scarytranscludefailed' => '[Template fetch failed for $1; sorry]',
 'scarytranscludetoolong' => '[URL is too long; sorry]',
 
 );
@@ -2429,7 +2430,7 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$datePreference = $this->dateFormat($format);
-		
+
 		if ($datePreference == '0'
 		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
 

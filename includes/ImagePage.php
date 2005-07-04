@@ -59,8 +59,12 @@ class ImagePage extends Article {
 				$this->viewUpdates();
 			}
 
-			if ($this->mExtraDescription)
-				$wgOut->addWikiText($this->mExtraDescription);
+			if ($this->mExtraDescription) {
+				$fol = wfMsg('shareddescriptionfollows');
+				if ($fol != '-')
+					$wgOut->addWikiText(wfMsg('shareddescriptionfollows'));
+				$wgOut->addHTML($this->mExtraDescription);
+			}
 
 			$this->closeShowImage();
 			$this->imageHistory();
