@@ -1923,7 +1923,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 $3
 
 Если вы не отправляли подобного запроса - просто проигнорируйте данное письмо.",
-);
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Строгий поиск',
@@ -1934,6 +1933,8 @@ $3
 'scarytranscludedisabled' => '[«Interwiki transcluding» отключён]',
 'scarytranscludefailed' => '[К сожалению, обращение к шаблону не удалось]',
 'scarytranscludetoolong' => '[К сожалению, URL слишком длинный]',
+
+);
 
 /* Please, see Language.php for general function comments */
 class LanguageRu extends LanguageUtf8 {
