@@ -468,6 +468,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Removed language conversion support from Icelandic
 * (bug 2616) Fix proportional image scaling, giving correct height
 * (bug 2640) Include width and height attributes on unscaled images
+* Workaround for mysterious problem with bogus epoch If-Last-Modified reqs
 
 
 === Caveats ===
