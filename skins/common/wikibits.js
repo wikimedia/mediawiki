@@ -261,7 +261,8 @@ function toggleToc() {
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 
-	speedTip=escapeQuotes(speedTip);
+	imageFile=escapeQuotesHTML(imageFile);
+	speedTip=escapeQuotesHTML(speedTip);
 	tagOpen=escapeQuotes(tagOpen);
 	tagClose=escapeQuotes(tagClose);
 	sampleText=escapeQuotes(sampleText);
@@ -280,7 +281,7 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	document.write("<a href=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
 
-        document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" alt=\""+speedTip+"\" title=\""+speedTip+"\""+mouseOver+">");
+	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" alt=\""+speedTip+"\" title=\""+speedTip+"\""+mouseOver+">");
 	document.write("</a>");
 	return;
 }
@@ -306,17 +307,21 @@ function addInfobox(infoText,text_alert) {
 
 function escapeQuotes(text) {
 	var re=new RegExp("'","g");
-	text=text.replace(re,"&#39;");
-	re=new RegExp('"',"g");
-	text=text.replace(re,'&quot;');
+	text=text.replace(re,"\\'");
 	re=new RegExp("\\n","g");
 	text=text.replace(re,"\\n");
-	return text;
+	return escapeQuotesHTML(text);
 }
 
 function escapeQuotesHTML(text) {
+	var re=new RegExp('&',"g");
+	text=text.replace(re,"&amp;");
 	var re=new RegExp('"',"g");
 	text=text.replace(re,"&quot;");
+	var re=new RegExp('<',"g");
+	text=text.replace(re,"&lt;");
+	var re=new RegExp('>',"g");
+	text=text.replace(re,"&gt;");
 	return text;
 }
 
