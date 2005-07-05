@@ -121,7 +121,7 @@ class WikiExporter {
 	 *
 	 * @param mixed $callback
 	 */
-	function setRevCallback( $callback ) {
+	function setRevisionCallback( $callback ) {
 		$this->revCallback = $callback;
 	}
 	
