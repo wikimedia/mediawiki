@@ -2378,7 +2378,7 @@ class Parser
 
 		$text = wfGetHTTP($url . '?action=render');
 		if (!$text)
-			return wfMsg('scarytranscludefailed');
+			return wfMsg('scarytranscludefailed', $url);
 
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->replace('transcache', array(), array(

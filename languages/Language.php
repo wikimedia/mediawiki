@@ -89,7 +89,7 @@ if(isset($wgExtraNamespaces)) {
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
-	'None', 'Fixed left', 'Fixed right', 'Floating left'
+	'None', 'Fixed left', 'Fixed right', 'Floating left', 'Floating right'
 );
 
 /* private */ $wgSkinNamesEn = array(
