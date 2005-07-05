@@ -435,13 +435,13 @@ Bitte melden Sie sich damit an, um die Adressauthentifizierung durchzuführen.",
 "mailerror" => "Fehler beim Senden von Mail: $1",
 'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten und können jetzt keine weiteren mehr anlegen.',
 'emailconfirmlink' 	=> 'E-Mail-Adresse bestätigen (authentifizieren).',
-'emailconfirmed' 	=> 'Ihre E-Mail-Adresse $1 wurde am $2 authentifiziert.',
-'emailnotconfirmed'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong> und die erweiterten E-Mailfunktionen sind bis zur Authentifizierung ohne Funktion <strong>(aus)</strong>.<br />
+'emailauthenticated' 	=> 'Ihre E-Mail-Adresse wurde am $1 authentifiziert.',
+'emailnotauthenticated'	=> 'Ihre E-Mail-Adresse ist <strong>noch nicht authentifiziert</strong> und die erweiterten E-Mailfunktionen sind bis zur Authentifizierung ohne Funktion <strong>(aus)</strong>.<br />
 Für die Authentifizierung melden Sie sich bitte mit dem per E-Mail geschickten temporären Passwort an, oder fordern Sie auf der Anmeldeseite ein neues an.',
 'invalidemailaddress'	=> 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein, oder leeren Sie das Feld.',
 'disableduntilconfirmation'	=> '<strong>(aus)</strong>',
 'noemailprefs'	=> '<strong>Sie haben keine E-Mail-Adresse angegeben</strong>, die folgenden
-Funktionen sind zur Zeit deshalb nicht m�glich.',
+Funktionen sind zur Zeit deshalb nicht möglich.',
 
 # Edit pages
 #
