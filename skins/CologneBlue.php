@@ -109,11 +109,16 @@ class SkinCologneBlue extends Skin {
 		} else if ( 1 == $qb ) {
 			$s .= "#quickbar { position: absolute; left: 4px; }\n" .
 			  "#article { margin-left: 148px; margin-right: 4px; }\n";
-		} else if ( 3 == $qb ) { # Floating
+		} else if ( 3 == $qb ) { # Floating left
 			$s .= "#quickbar { position:absolute; left:4px } \n" .
 			  "#topbar { margin-left: 148px }\n" .
 			  "#article { margin-left:148px; margin-right: 4px; } \n" .
 			  "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
+		} else if ( 4 == $qb ) { # Floating right
+			$s .= "#quickbar { position: fixed; right: 4px; } \n" .
+			  "#topbar { margin-right: 148px }\n" .
+			  "#article { margin-right: 148px; margin-left: 4px; } \n" .
+			  "body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;} \n"; # Hides from IE
 		}
 		return $s;
 	}
