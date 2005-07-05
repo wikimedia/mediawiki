@@ -736,6 +736,9 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   -- (used, for example, to detect redirect loops)
   iw_local BOOL NOT NULL,
   
+  -- Boolean value indicating whether interwiki transclusions are allowed.
+  iw_trans TINYINT(1) NOT NULL DEFAULT 0,
+  
   UNIQUE KEY iw_prefix (iw_prefix)
 
 ) TYPE=InnoDB;
