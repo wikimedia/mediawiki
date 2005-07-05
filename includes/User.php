@@ -1435,7 +1435,6 @@ class User {
 
 		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getOption( 'stubthreshold' );
-		$confstr .= '!' . $this->getOption( 'editsection' );
 		$confstr .= '!' . $this->getOption( 'date' );
 		$confstr .= '!' . $this->getOption( 'numberheadings' );
 		$confstr .= '!' . $this->getOption( 'language' );
