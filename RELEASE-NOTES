@@ -470,6 +470,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2640) Include width and height attributes on unscaled images
 * Workaround for mysterious problem with bogus epoch If-Last-Modified reqs
 * (bug 1109) Suppress compressed output on 304 responses
+* (bug 2674) Include some site configuration info in export data:
+  namespaces definitions, case-sensitivity, site name, version.
+* Use xml:space="preserve" hint on export <text> elements
 
 
 === Caveats ===

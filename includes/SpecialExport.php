@@ -126,6 +126,14 @@ class WikiExporter {
 	}
 	
 	/**
+	 * Returns the export schema version.
+	 * @return string
+	 */
+	function schemaVersion() {
+		return "0.3";
+	}
+	
+	/**
 	 * Opens the XML output stream's root <mediawiki> element.
 	 * This does not include an xml directive, so is safe to include
 	 * as a subelement in a larger XML stream. Namespace and XML Schema
@@ -136,14 +144,64 @@ class WikiExporter {
 	 */
 	function openStream() {
 		global $wgContLanguageCode;
+		$ver = $this->schemaVersion();
 		print wfElement( 'mediawiki', array(
-			'xmlns'              => 'http://www.mediawiki.org/xml/export-0.1/',
-			'xmlns:xsi'          => 'http://www.w3.org/2001/XMLSchema-instance',
-			'xsi:schemaLocation' => 'http://www.mediawiki.org/xml/export-0.1/ ' .
-			                        'http://www.mediawiki.org/xml/export-0.1.xsd',
-			'version'            => '0.1',
+			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
+			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
+			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
+			                        "http://www.mediawiki.org/xml/export-$ver.xsd",
+			'version'            => $ver,
 			'xml:lang'           => $wgContLanguageCode ),
 			null ) . "\n";
+		$this->siteInfo();
+	}
+	
+	function siteInfo() {
+		$info = array(
+			$this->sitename(),
+			$this->homelink(),
+			$this->generator(),
+			$this->caseSetting(),
+			$this->namespaces() );
+		print "<siteinfo>\n";
+		foreach( $info as $item ) {
+			print "  $item\n";
+		}
+		print "</siteinfo>\n";
+	}
+	
+	function sitename() {
+		global $wgSitename;
+		return wfElement( 'sitename', array(), $wgSitename );
+	}
+	
+	function generator() {
+		global $wgVersion;
+		return wfElement( 'generator', array(), "MediaWiki $wgVersion" );
+	}
+	
+	function homelink() {
+		$page = Title::newFromText( wfMsgForContent( 'mainpage' ) );
+		return wfElement( 'base', array(), $page->getFullUrl() );
+	}
+	
+	function caseSetting() {
+		global $wgCapitalLinks;
+		// "case-insensitive" option is reserved for future
+		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
+		return wfElement( 'case', array(), $sensitivity );
+	}
+	
+	function namespaces() {
+		global $wgContLang;
+		$spaces = "<namespaces>\n";
+		foreach( $wgContLang->getNamespaces() as $ns => $title ) {
+			$spaces .= '    ' . wfElement( 'namespace',
+				array( 'key' => $ns ),
+				str_replace( '_', ' ', $title ) ) . "\n";
+		}
+		$spaces .= "  </namespaces>";
+		return $spaces;
 	}
 	
 	/**
@@ -331,7 +389,9 @@ class WikiExporter {
 		}
 	
 		$text = Revision::getRevisionText( $row );
-		print "      " . wfElementClean( 'text', array(), $text ) . "\n";
+		print "      " . wfElementClean( 'text',
+			array( 'xml:space' => 'preserve' ), $text ) . "\n";
+		
 		print "    </revision>\n";
 		
 		wfProfileOut( $fname );
