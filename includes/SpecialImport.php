@@ -23,6 +23,7 @@
  * @subpackage SpecialPage
  */
 
+/** */
 require_once( 'WikiError.php' );
 
 /**
@@ -533,6 +534,7 @@ class WikiImporter {
 
 }
 
+/** @package MediaWiki */
 class ImportStringSource {
 	function ImportStringSource( $string ) {
 		$this->mString = $string;
@@ -553,6 +555,7 @@ class ImportStringSource {
 	}
 }
 
+/** @package MediaWiki */
 class ImportStreamSource {
 	function ImportStreamSource( $handle ) {
 		$this->mHandle = $handle;

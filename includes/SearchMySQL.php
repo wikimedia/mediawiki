@@ -27,6 +27,7 @@
 /** */
 require_once( 'SearchEngine.php' );
 
+/** @package MediaWiki */
 class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
@@ -180,6 +181,7 @@ class SearchMySQL extends SearchEngine {
 	}
 }
 
+/** @package MediaWiki */
 class MySQLSearchResultSet extends SearchResultSet {
 	function MySQLSearchResultSet( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;

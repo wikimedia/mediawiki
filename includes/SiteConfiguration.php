@@ -6,11 +6,6 @@
  */
 
 /**
- *
- * @package MediaWiki
- */
-
-/**
  * The include paths change after this file is included from commandLine.inc, 
  * meaning that require_once() fails to detect that it is including the same
  * file again. We use DIY C-style protection as a workaround.
@@ -18,13 +13,15 @@
 if (!defined('SITE_CONFIGURATION')) {
 define('SITE_CONFIGURATION', 1);
 
+/** @package MediaWiki */
 class SiteConfiguration {
 	var $suffixes = array();
 	var $wikis = array();
 	var $settings = array();
 	var $localDatabases = array();
 	var $localVHosts = array();
-	
+
+	/** */	
 	function get( $setting, $wiki, $suffix, $params = array() ) {
 		if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
 			$retval = $this->settings[$setting][$wiki];
@@ -43,27 +40,32 @@ class SiteConfiguration {
 		return $retval;
 	}
 
+	/** */
 	function getBool( $setting, $wiki, $suffix ) {
 		return (bool)($this->get( $setting, $wiki, $suffix ));
 	}
 
+	/** */
 	function &getLocalDatabases() {
 		return $this->localDatabases;
 	}
-	
+
+	/** */
 	function initialise() {
 		foreach ( $this->wikis as $db ) {
 			$this->localDatabases[$db] = $db;
 		}
 	}
 
+	/** */
 	function extractVar( $setting, $wiki, $suffix, &$var, $params ) {
 		$value = $this->get( $setting, $wiki, $suffix, $params );
 		if ( !is_null( $value ) ) {
 			$var = $value;
 		}
 	}
-	
+
+	/** */
 	function extractGlobal( $setting, $wiki, $suffix, $params ) {
 		$value = $this->get( $setting, $wiki, $suffix, $params );
 		if ( !is_null( $value ) ) {
@@ -71,6 +73,7 @@ class SiteConfiguration {
 		}
 	}
 
+	/** */
 	function extractAllGlobals( $wiki, $suffix, $params ) {
 		foreach ( $this->settings as $varName => $setting ) {
 			$this->extractGlobal( $varName, $wiki, $suffix, $params );
@@ -94,6 +97,7 @@ class SiteConfiguration {
 		return array( $site, $lang );
 	}
 
+	/** */
 	function isLocalVHost( $vhost ) {
 		return in_array( $vhost, $this->localVHosts );
 	}

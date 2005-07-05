@@ -1366,8 +1366,13 @@ $3...
   'mw_math_mathml' => 'MathML по възможност (експериментално)'
 );
 
+/** This is an UTF-8 language */
 require_once( 'LanguageUtf8.php' );
 
+/**
+ * @package MediaWiki
+ * @subpackage Language
+ */
 class LanguageBg extends LanguageUtf8 {
 
 	function getBookstoreList () {

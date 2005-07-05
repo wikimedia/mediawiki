@@ -877,7 +877,10 @@ Incorporeu-les manualment, si us plau.",
 
 );
 
-require_once( "LanguageUtf8.php" );
+/** This is an UTF8 language */
+require_once( 'LanguageUtf8.php' );
+
+/** @package MediaWiki */
 class LanguageCa extends LanguageUtf8 {
 
 	function getNamespaces() {

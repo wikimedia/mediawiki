@@ -9,9 +9,12 @@
 require_once( 'LoadBalancer.php' ); 
 
 
-
+/** @package MediaWiki */
 class ExternalStoreDB {
-	/* Fetch data from given URL */
+	/**
+	 * Fetch data from given URL
+	 * @param string $url An url
+	 */
 	function fetchFromURL($url) {
 		global $wgExternalServers;
 		#
@@ -30,7 +33,7 @@ class ExternalStoreDB {
 		return $ret;
 	}
 
-	/* XXX: may require other methods, for store, delete, 
+	/* @fixme XXX: may require other methods, for store, delete, 
 	 * whatever, for initial ext storage  
 	 */
 }

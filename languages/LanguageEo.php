@@ -3,6 +3,8 @@
   * @package MediaWiki
   * @subpackage Language
   */
+
+/** */
 require_once("LanguageUtf8.php");
 
 # See language.txt
@@ -970,7 +972,7 @@ Bonvolu permane kunigi ilin.",
 
 );
 
-
+/** @package MediaWiki */
 class LanguageEo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {

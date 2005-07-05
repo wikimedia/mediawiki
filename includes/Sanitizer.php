@@ -1,5 +1,4 @@
 <?php
-
 /**
  * (X)HTML sanitizer for MediaWiki
  *
@@ -317,6 +316,7 @@ $wgHtmlEntities = array(
 	'zwj'      => 8205,
 	'zwnj'     => 8204 );
 
+/** @package MediaWiki */
 class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and

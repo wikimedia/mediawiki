@@ -5,6 +5,7 @@
   * @subpackage Language
   */
 
+/** */
 require_once( "LanguageUtf8.php" );
 
 #--------------------------------------------------------------------------
@@ -1630,6 +1631,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');
 
 );
 
+/** @package MediaWiki */
 class LanguageDa extends LanguageUtf8 {
 
 	function getBookstoreList () {

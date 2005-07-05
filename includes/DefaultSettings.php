@@ -217,7 +217,6 @@ $wgLoadFileinfoExtension= false;
 /** Sets an external mime detector program. The command must print only the mime type to standard output.
 * the name of the file to process will be appended to the command given here.
 * If not set or NULL, mime_content_type will be used if available.
-* @global string $wgMimeTypeFile
 */
 $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
 #$wgMimeDetectorCommand= "file -bi" #use external mime detector (linux)

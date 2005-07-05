@@ -25,6 +25,7 @@
 /**
  * Since PHP4 doesn't have exceptions, here's some error objects
  * loosely modeled on the standard PEAR_Error model...
+ * @package MediaWiki
  */
 class WikiError {
 	/**
@@ -65,6 +66,7 @@ class WikiError {
 
 /**
  * Localized error message object
+ * @package MediaWiki
  */
 class WikiErrorMsg extends WikiError {
 	/**
@@ -79,7 +81,8 @@ class WikiErrorMsg extends WikiError {
 }
 
 /**
- * 
+ * @package MediaWiki
+ * @todo document
  */
 class WikiXmlError extends WikiError {
 	/**
@@ -91,7 +94,8 @@ class WikiXmlError extends WikiError {
 		$this->mMessage = $message;
 		xml_parser_free( $parser );
 	}
-	
+
+	/** @return string */	
 	function getMessage() {
 		return $this->mMessage . ': ' . xml_error_string( $this->mXmlError );
 	}

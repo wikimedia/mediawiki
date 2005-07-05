@@ -5,6 +5,7 @@
   * @subpackage Language
   */
 
+/** This is an UTF-8 language  */
 require_once('LanguageUtf8.php');
 
 /* private */ $wgNamespaceNamesAr = array(

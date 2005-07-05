@@ -159,6 +159,7 @@ if(isset($wgExtraNamespaces)) {
 
 # Read language names
 global $wgLanguageNames;
+/** */
 require_once( 'Names.php' );
 
 $wgLanguageNamesEn =& $wgLanguageNames;

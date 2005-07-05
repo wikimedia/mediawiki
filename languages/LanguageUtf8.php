@@ -31,7 +31,10 @@ if( function_exists( 'mb_strtoupper' ) ) {
 	}
 }
 
-# Base stuff useful to all UTF-8 based language files
+/**
+ * Base stuff useful to all UTF-8 based language files
+ * @package MediaWiki
+ */
 class LanguageUtf8 extends Language {
 
 	# These two functions use mbstring library, if it is loaded
