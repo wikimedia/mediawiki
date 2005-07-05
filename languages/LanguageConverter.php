@@ -92,23 +92,26 @@ class LanguageConverter {
 		// get language variant preference from logged in users 
 		if(is_object($wgUser) && $wgUser->isLoggedIn() )  {
 			$this->mPreferredVariant = $wgUser->getOption('variant');
+			return $this->mPreferredVariant;
 		}
 
 		# FIXME rewrite code for parsing http header. The current code
 		# is written specific for detecting zh- variants
 		if( !$this->mPreferredVariant ) {
-			// see if some zh- variant is set in the http header,
-			$this->mPreferredVariant=$this->mMainLanguageCode;
+			// see if some supported language variant is set in the
+			// http header, but we don't set the mPreferredVariant
+			// variable in case this is called before the user's
+			// preference is loaded
+			$pv=$this->mMainLanguageCode;
 			if(array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
 				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 				$zh = strstr($header, 'zh-');
 				if($zh) {
-					$this->mPreferredVariant = substr($zh,0,5);
+					$pv = substr($zh,0,5);
 				}
 			}
+			return $pv;
 		}
-
-		return $this->mPreferredVariant;
 	}
 
 	/**

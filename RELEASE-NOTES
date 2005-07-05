@@ -473,6 +473,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2674) Include some site configuration info in export data:
   namespaces definitions, case-sensitivity, site name, version.
 * Use xml:space="preserve" hint on export <text> elements
+* Make language variant selection work again for zh
 
 
 === Caveats ===
