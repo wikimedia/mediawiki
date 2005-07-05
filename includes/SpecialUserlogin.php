@@ -482,7 +482,7 @@ class LoginForm {
 	 */
 	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
-		return ( $wgDisableCookieCheck ) ? true : ( '' != $_COOKIE[session_name()] );
+		return ( $wgDisableCookieCheck ) ? true : ( isset( $_COOKIE[session_name()] ) );
 	}
 	  
 	/**
