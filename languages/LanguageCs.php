@@ -243,13 +243,9 @@ default:
 
 'navigation' => 'Navigace',
 
-# POZNÁMKA: Pro odstranění „aktualit“ z postranního panelu nastavte
-# "currentevents" => "-"
 'currentevents' => 'Aktuality',
 'currentevents-url' => 'Aktuality',
 
-# POZNÁMKA: Pro odstranění „Vyloučení odpovědnosti“ nastavte
-# "disclaimers" => "-"
 'disclaimers' => 'Vyloučení odpovědnosti',
 'disclaimerpage' => '{{ns:4}}:Vyloučení_odpovědnosti',
 'errorpagetitle' => 'Chyba',
