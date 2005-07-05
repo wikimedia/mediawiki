@@ -3,6 +3,32 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5 beta 2 ==
+
+July 5, 2005
+
+MediaWiki 1.5 beta 2 is a preview release of the new 1.5 release series.
+While most exciting new bugs should have been ironed out at this point,
+third-party wiki operators should probably not run this beta release
+on a public site without closely following additional development.
+
+Anyone who _has_ been running beta 1 is very very strongly advised to
+upgrade to beta 2, as it fixes many bugs from the previous beta including
+a couple of HTML and SQL injections.
+
+This release should be followed by one or two release candidates and
+a 1.5.0 final within the next few weeks.
+
+Beta upgraders, note there are some minor database changes. For upgrades
+from 1.4, see the file UPGRADE for details on significant database and
+configuration file changes.
+
+Beta 2 includes a preliminary command-line XML wiki dump importer tool,
+maintenance/importDump.php, paired with maintenance/dumpBackup.php.
+These use the same format as Special:Export and Special:Import, able
+to package a wiki's entire page set independent of the backend database
+and compression format.
+
 
 == MediaWiki 1.5 beta 1 ==
 
