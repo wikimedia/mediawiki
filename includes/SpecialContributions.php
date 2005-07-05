@@ -234,7 +234,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
-		$urls[] = "<a href=\"$myurl&offset=$offset&limit={$num}\">".$wgLang->formatNum($num)."</a>";
+		$urls[] = "<a href=\"$myurl&amp;offset=$offset&amp;limit={$num}\">".$wgLang->formatNum($num)."</a>";
 	$bits = implode($urls, ' | ');
 
 	$prevnextbits = "$firstlast " . wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);

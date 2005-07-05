@@ -501,6 +501,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Use xml:space="preserve" hint on export <text> elements
 * Make language variant selection work again for zh
 
+== Changes since 1.5beta2 ==
+* Escaped & correctly in Special:Contributions
 
 === Caveats ===
 
