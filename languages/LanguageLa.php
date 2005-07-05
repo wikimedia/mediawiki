@@ -246,8 +246,8 @@ class LanguageLa extends LanguageUtf8 {
 		switch ( $case ) {
 		case 'genitive':
 			// 1st and 2nd declension singular only.
-			$in  = array( '/a$/', '/u[ms]$/' );
-			$out = array( 'ae',   'i'        );
+			$in  = array( '/a$/', '/u[ms]$/', '/tio$/' );
+			$out = array( 'ae',   'i',        'tionis' );
 			return preg_replace( $in, $out, $word );
 		default:
 			return $word;
