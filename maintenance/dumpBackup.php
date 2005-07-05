@@ -50,7 +50,7 @@ class BackupDumper {
 		$db =& $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM );
 		$exporter->setPageCallback( array( &$this, 'reportPage' ) );
-		$exporter->setRevCallback( array( &$this, 'revCount' ) );
+		$exporter->setRevisionCallback( array( &$this, 'revCount' ) );
 		
 		$exporter->openStream();
 		$exporter->allPages();
