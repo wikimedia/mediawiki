@@ -3427,7 +3427,7 @@ class ParserOptions
 		$this->mSkin =& $user->getSkin();
 		wfProfileOut( $fname.'-skin' );
 		$this->mDateFormat = $user->getOption( 'date' );
-		$this->mEditSection = $user->getOption( 'editsection' );
+		$this->mEditSection = true;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
 		wfProfileOut( $fname );

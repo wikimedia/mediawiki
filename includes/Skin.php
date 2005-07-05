@@ -293,6 +293,9 @@ END;
 		if( !$wgUser->getOption( 'showtoc' ) ) {
 			$s .= "#toc { display: none; }\n";
 		}
+		if( !$wgUser->getOption( 'editsection' ) ) {
+			$s .= ".editsection { display: none; }\n";
+		}
 		return $s;
 	}
 
@@ -495,7 +498,7 @@ END;
 	function doAfterContent() { }
 
 	function pageTitleLinks() {
-		global $wgOut, $wgTitle, $wgUser, $wgContLang, $wgUseApproval, $wgRequest;
+		global $wgOut, $wgTitle, $wgUser, $wgContLang, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		$action = $wgRequest->getText( 'action' );
@@ -515,16 +518,6 @@ END;
 					$style = $this->getInternalLinkAttributes( $link, $name );
 					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 				}
-			}
-			# This will show the "Approve" link if $wgUseApproval=true;
-			if ( isset ( $wgUseApproval ) && $wgUseApproval )
-			{
-				$t = $wgTitle->getDBkey();
-				$name = 'Approve this article' ;
-				$link = "http://test.wikipedia.org/w/magnus/wiki.phtml?title={$t}&action=submit&doit=1" ;
-				#htmlspecialchars( wfImageUrl( $name ) );
-				$style = $this->getExternalLinkAttributes( $link, $name );
-				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
 			}
 		}
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
