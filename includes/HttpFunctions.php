@@ -1,4 +1,7 @@
 <?php
+/**
+ * Various HTTP related functions
+ */
 
 /**
  * Get the contents of a file by HTTP

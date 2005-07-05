@@ -6,10 +6,11 @@
  * @package MediaWiki
  */
 
-include_once ( "SpecialValidate.php" );
+/** */
+include_once ( 'SpecialValidate.php' );
 
-define("DIR_PREV", 0);
-define("DIR_NEXT", 1);
+define('DIR_PREV', 0);
+define('DIR_NEXT', 1);
 
 /**
  * This class handles printing the history page for an article.  In order to
@@ -166,12 +167,13 @@ class PageHistory {
 		 * Article validation line.
 		 */
 		if ($wgUseValidation)
-			$s .= "<p>" . Validation::link2statistics ( $this->mArticle ) . "</p>" ;
+			$s .= '<p>' . Validation::link2statistics ( $this->mArticle ) . '</p>' ;
 
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );
 	}
 
+	/** @todo document */
 	function beginHistoryList() {
 		global $wgTitle;
 		$this->lastdate = '';
@@ -184,6 +186,7 @@ class PageHistory {
 		return $s;
 	}
 
+	/** @todo document */
 	function endHistoryList() {
 		$last = wfMsg( 'last' );
 
@@ -193,6 +196,7 @@ class PageHistory {
 		return $s;
 	}
 
+	/** @todo document */
 	function submitButton( $bits = array() ) {
 		return ( $this->linesonpage > 0 )
 			? wfElement( 'input', array_merge( $bits,
@@ -206,6 +210,7 @@ class PageHistory {
 			: '';
 	}
 
+	/** @todo document */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false ) {
 		global $wgLang, $wgContLang;
 
@@ -253,6 +258,7 @@ class PageHistory {
 		return $s;
 	}
 
+	/** @todo document */
 	function revLink( $row ) {
 		global $wgUser, $wgLang;
 		$date = $wgLang->timeanddate( $row->rev_timestamp, true );
@@ -266,6 +272,7 @@ class PageHistory {
 		}
 	}
 
+	/** @todo document */
 	function curLink( $row, $latest ) {
 		global $wgUser;
 		$cur = htmlspecialchars( wfMsg( 'cur' ) );
@@ -281,6 +288,7 @@ class PageHistory {
 		}
 	}
 
+	/** @todo document */
 	function lastLink( $row, $next, $counter ) {
 		global $wgUser;
 		$last = htmlspecialchars( wfMsg( 'last' ) );
@@ -298,6 +306,7 @@ class PageHistory {
 		}
 	}
 
+	/** @todo document */
 	function diffButtons( $row, $latest, $counter ) {
 		global $wgUser;
 		if( $this->linesonpage > 1) {
@@ -340,14 +349,17 @@ class PageHistory {
 		}
 	}
 
+	/** @todo document */
 	function getLatestOffset($id) {
 		return $this->getExtremeOffset( $id, 'max' );
 	}
 
+	/** @todo document */
 	function getEarliestOffset($id) {
 		return $this->getExtremeOffset( $id, 'min' );
 	}
 
+	/** @todo document */
 	function getExtremeOffset( $id, $func ) {
 		$db =& wfGetDB(DB_SLAVE);
 		return $db->selectField( 'revision',
@@ -356,6 +368,7 @@ class PageHistory {
 			'PageHistory::getExtremeOffset' );
 	}
 
+	/** @todo document */
 	function getLatestID( $id ) {
 		$db =& wfGetDB(DB_SLAVE);
 		return $db->selectField( 'revision',
@@ -364,6 +377,7 @@ class PageHistory {
 			'PageHistory::getLatestID' );
 	}
 
+	/** @todo document */
 	function getLastOffsetForPaging( $id, $step = 50 ) {
 		$db =& wfGetDB(DB_SLAVE);
 		$revision = $db->tableName( 'revision' );
@@ -380,6 +394,7 @@ class PageHistory {
 		return $last;
 	}
 
+	/** @todo document */
 	function getDirection() {
 		global $wgRequest;
 
@@ -389,6 +404,7 @@ class PageHistory {
 			return DIR_NEXT;
 	}
 
+	/** @todo document */
 	function fetchRevisions($limit, $offset, $direction) {
 		global $wgUser, $wgShowUpdatedMarker;
 
@@ -433,6 +449,7 @@ class PageHistory {
 		return $result;
 	}
 
+	/** @todo document */
 	function getNotificationTimestamp() {
 		global $wgUser, $wgShowUpdatedMarker;
 
@@ -456,6 +473,7 @@ class PageHistory {
 		return $this->mNotificationTimestamp;
 	}
 
+	/** @todo document */
 	function makeNavbar($revisions, $offset, $limit, $direction) {
 		global $wgTitle, $wgLang;
 
@@ -486,8 +504,8 @@ class PageHistory {
 
 		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
 		$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
-		$firsttext = wfMsgHtml("histfirst");
-		$lasttext = wfMsgHtml("histlast");
+		$firsttext = wfMsgHtml('histfirst');
+		$lasttext = wfMsgHtml('histlast');
 
 		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$latestShown}&limit={$limit}");
 		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$earliestShown}&limit={$limit}");

@@ -430,6 +430,7 @@ class UnlistedSpecialPage extends SpecialPage
 
 /**
  * Shortcut to construct an includable special  page
+ * @package MediaWiki
  */
 class IncludableSpecialPage extends SpecialPage
 {

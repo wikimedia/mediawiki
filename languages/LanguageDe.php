@@ -5,6 +5,7 @@
   * @subpackage Language
   */
 
+/** */
 require_once( 'LanguageUtf8.php' );
 
 # See Language.php for notes.
@@ -1345,6 +1346,7 @@ Der Bestätigungskode läuft am $4 ab.
 
 );
 
+/** @package MediaWiki */
 class LanguageDe extends LanguageUtf8 {
 
 	function getBookstoreList() {

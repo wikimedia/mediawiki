@@ -4,6 +4,7 @@
  * @subpackage SpecialPage
  */
 
+/** @package MediaWiki */
 class contribs_finder {
 	var $username, $offset, $limit;
 	var $dbr;

@@ -1,19 +1,15 @@
 <?php
+/**
+ * Functions for dealing with proxies
+ * @package MediaWiki
+ */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die();
 }
 
-/**
- * Functions for dealing with proxies
- */
-
-
-/**
- * Work out the IP address based on various globals
- */
-function wfGetIP()
-{
+/** Work out the IP address based on various globals */
+function wfGetIP() {
 	global $wgSquidServers, $wgSquidServersNoPurge;
 
 	/* collect the originating ips */
@@ -52,8 +48,8 @@ function wfGetIP()
 	return $ip;
 }
 
-function wfIP2Unsigned( $ip )
-{
+/** */
+function wfIP2Unsigned( $ip ) {
 	$n = ip2long( $ip );
 	if ( $n == -1 ) {
 		$n = false;
@@ -67,8 +63,7 @@ function wfIP2Unsigned( $ip )
  * Determine if an IP address really is an IP address, and if it is public, 
  * i.e. not RFC 1918 or similar
  */
-function wfIsIPPublic( $ip )
-{
+function wfIsIPPublic( $ip ) {
 	$n = wfIP2Unsigned( $ip );
 	if ( !$n ) {
 		return false;

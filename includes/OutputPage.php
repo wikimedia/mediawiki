@@ -880,7 +880,7 @@ class OutputPage {
 	/**
 	 * Turn off regular page output and return an error reponse
 	 * for when rate limiting has triggered.
-	 * @todo: i18n
+	 * @todo i18n
 	 * @access public
 	 */
 	function rateLimited() {

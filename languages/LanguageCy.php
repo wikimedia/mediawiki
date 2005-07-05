@@ -1010,8 +1010,10 @@ amusement.",
 );
 
 
-require_once( "LanguageUtf8.php" );
+/** */
+require_once( 'LanguageUtf8.php' );
 
+/** @package MediaWiki */
 class LanguageCy extends LanguageUtf8 {
 
 	function getBookstoreList () {

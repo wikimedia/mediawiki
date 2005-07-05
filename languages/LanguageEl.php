@@ -5,6 +5,7 @@
   * @subpackage Language
   */
 
+/** */
 require_once( 'LanguageUtf8.php' );
 
 $wgNamespaceNamesEl = array(
@@ -65,7 +66,7 @@ $wgAllMessagesEl = array(
 'dec' => 'Δεκ',
 );
 
-
+/** @package MediaWiki */
 class LanguageEl extends LanguageUtf8 {
 
 	function getNamespaces() {

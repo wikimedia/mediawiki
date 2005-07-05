@@ -4,13 +4,18 @@
  * @subpackage Cache
  */
 
+/** */
 if (!defined('MEDIAWIKI')) die( "Not a valid entry point\n");
 
 
-# FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
-# It acts as a memcached server with no RAM, that is, all objects are
-# cleared the moment they are set. All set operations succeed and all
-# get operations return null.
+/**
+ * FakeMemCachedClient imitates the API of memcached-client v. 0.1.2.
+ * It acts as a memcached server with no RAM, that is, all objects are
+ * cleared the moment they are set. All set operations succeed and all
+ * get operations return null.
+ * @package MediaWiki
+ * @subpackage Cache
+ */
 class FakeMemCachedClient {
 	function add ($key, $val, $exp = 0) { return true; }
 	function decr ($key, $amt=1) { return null; }
@@ -32,6 +37,7 @@ class FakeMemCachedClient {
 global $wgCaches;
 $wgCaches = array();
 
+/** @todo document */
 function &wfGetCache( $inputType ) {
 	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug;
 	$cache = false;

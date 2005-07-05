@@ -1,5 +1,7 @@
 <?php
+/** */
 
+/** */
 function wfStreamFile( $fname ) {
 	global $wgSquidMaxage;
 	$stat = stat( $fname );
@@ -37,6 +39,7 @@ does not.</p>
 	readfile( $fname );
 }
 
+/** */
 function wfGetType( $filename ) {
 	global $wgTrivialMimeDetection;
 
@@ -46,13 +49,13 @@ function wfGetType( $filename ) {
 		$ext= strtolower(strrchr($filename, '.'));
 		
 		switch ($ext) {
-			case '.gif': return "image/gif";
-			case '.png': return "image/png";
-			case '.jpg': return "image/jpeg";
-			case '.jpeg': return "image/jpeg";
+			case '.gif': return 'image/gif';
+			case '.png': return 'image/png';
+			case '.jpg': return 'image/jpeg';
+			case '.jpeg': return 'image/jpeg';
 		}
 		
-		return "unknown/unknown";
+		return 'unknown/unknown';
 	}
 	else {
 		$magic=& wfGetMimeMagic();

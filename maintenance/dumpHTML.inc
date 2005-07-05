@@ -35,7 +35,7 @@ class DumpHTML {
 		
 		for ($id = $start; $id <= $end; $id++) {
 			if ( !($id % REPORTING_INTERVAL) ) {
-				print("$id\n");
+				print "Processing ID: $id".chr(13);
 			}
 			$title = Title::newFromID( $id );
 			if ( $title ) {

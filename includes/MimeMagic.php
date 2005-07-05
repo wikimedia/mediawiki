@@ -73,6 +73,7 @@ if ($wgLoadFileinfoExtension) {
 *
 * Instances of this class are stateles, there only needs to be one global instance
 * of MimeMagic. Please use wfGetMimeMagic to get that instance. 
+* @package MediaWiki
 */
 class MimeMagic {
 	

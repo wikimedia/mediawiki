@@ -1409,6 +1409,9 @@ class LanguageFr extends LanguageUtf8 {
 		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
 	}
 
+	function isRTL() {
+		return false;
+	}
 
 	function getValidSpecialPages() {
 		global $wgValidSpecialPagesFr;

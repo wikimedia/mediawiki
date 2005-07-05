@@ -5,6 +5,7 @@
  * @package MediaWiki
  */
 
+/** */
 require_once( 'normal/UtfNormal.php' );
 
 $wgTitleInterwikiCache = array();

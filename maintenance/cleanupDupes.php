@@ -27,9 +27,10 @@
 
 $options = array( 'fix', 'index' );
 
-require_once( "commandLine.inc" );
+/** */
+require_once( 'commandLine.inc' );
 require_once( 'cleanupDupes.inc' );
-$wgTitle = Title::newFromText( "Dupe cur entry cleanup script" );
+$wgTitle = Title::newFromText( 'Dupe cur entry cleanup script' );
 
 checkDupes( isset( $options['fix'] ), isset( $options['index'] ) );
 

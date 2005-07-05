@@ -6,6 +6,7 @@
  * @subpackage Parser
  */
 
+/** */
 define('DF_ALL', -1);
 define('DF_NONE', 0);
 define('DF_MDY', 1);

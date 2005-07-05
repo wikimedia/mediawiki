@@ -8,12 +8,15 @@
  * @subpackage SpecialPage
  */
 
+/** @todo document */
 function wfSpecialConfirmemail( $code ) {
 	$form = new ConfirmationForm();
 	$form->show( $code );
 }
 
+/** @package MediaWiki */
 class ConfirmationForm {
+	/** */
 	function show( $code ) {
 		if( empty( $code ) ) {
 			$this->showEmpty( $this->checkAndSend() );
@@ -21,7 +24,8 @@ class ConfirmationForm {
 			$this->showCode( $code );
 		}
 	}
-	
+
+	/** */
 	function showCode( $code ) {
 		$user = User::newFromConfirmationCode( $code );
 		if( is_null( $user ) ) {
@@ -30,8 +34,8 @@ class ConfirmationForm {
 			$this->confirmAndShow( $user );
 		}
 	}
-	
-	
+
+	/** */	
 	function confirmAndShow( $user ) {
 		if( $user->confirmEmail() ) {
 			$this->showSuccess();
@@ -39,7 +43,8 @@ class ConfirmationForm {
 			$this->showError();
 		}
 	}
-	
+
+	/** */
 	function checkAndSend() {
 		global $wgUser, $wgRequest;
 		if( $wgRequest->wasPosted() &&
@@ -56,7 +61,8 @@ class ConfirmationForm {
 			return '';
 		}
 	}
-	
+
+	/** */
 	function showEmpty( $err ) {
 		require_once( 'templates/Confirmemail.php' );
 		global $wgOut, $wgUser;
@@ -71,17 +77,20 @@ class ConfirmationForm {
 		
 		$wgOut->addTemplate( $tpl );
 	}
-	
+
+	/** */
 	function showInvalidCode() {
 		global $wgOut;
 		$wgOut->addWikiText( wfMsg( 'confirmemail_invalid' ) );
 	}
-	
+
+	/** */
 	function showError() {
 		global $wgOut;
 		$wgOut->addWikiText( wfMsg( 'confirmemail_error' ) );
 	}
-	
+
+	/** */
 	function showSuccess() {
 		global $wgOut, $wgRequest, $wgUser;
 		
