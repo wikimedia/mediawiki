@@ -111,8 +111,16 @@
 			<element name="contributor" type="mw:ContributorType"/>
 			<element name="minor" minOccurs="0" />
 			<element name="comment" type="string" minOccurs="0"/>
-			<element name="text" type="string"/>
+			<element name="text" type="mw:TextType" />
 		</sequence>
+	</complexType>
+	
+	<complexType name="TextType">
+		<simpleContent>
+			<extension base="string">
+				<attribute ref="xml:space" use="optional" default="preserve" />
+			</extension>
+		</simpleContent>
 	</complexType>
 	
 	<complexType name="ContributorType">

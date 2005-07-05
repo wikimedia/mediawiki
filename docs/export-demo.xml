@@ -69,14 +69,14 @@
     <contributor><username>Foobar</username><id>42</id></contributor>
     <minor />
     <comment>I have just one thing to say!</comment>
-    <text>A bunch of [[text]] here.</text>
+    <text xml:space="preserve">A bunch of [[text]] here.</text>
   </revision>
   
   <revision>
     <timestamp>2001-01-15T13:10:27Z</timestamp>
     <contributor><ip>10.0.0.2</ip></contributor>
     <comment>new!</comment>
-    <text>An earlier [[revision]].</text>
+    <text xml:space="preserve">An earlier [[revision]].</text>
   </revision>
 </page>
 
@@ -88,7 +88,7 @@
     <timestamp>2001-01-15T14:03:00Z</timestamp>
     <contributor><ip>10.0.0.2</ip></contributor>
     <comment>hey</comment>
-    <text>WHYD YOU LOCK PAGE??!!! i was editing that jerk</text>
+    <text xml:space="preserve">WHYD YOU LOCK PAGE??!!! i was editing that jerk</text>
   </revision>
 </page>
 
@@ -100,7 +100,7 @@
     <timestamp>2001-01-15T20:34:12Z</timestamp>
     <contributor><username>Foobar</username><id>42</id></contributor>
     <comment>My awesomeest image!</comment>
-    <text>This is an awesome little imgae. I lurves it. {{PD}}</text>
+    <text xml:space="preserve">This is an awesome little imgae. I lurves it. {{PD}}</text>
   </revision>
   <upload>
     <timestamp>2001-01-15T20:34:12Z</timestamp>
