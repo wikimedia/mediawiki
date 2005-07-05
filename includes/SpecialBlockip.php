@@ -83,10 +83,13 @@ class IPBlockForm {
 
 		$blockExpiryFormOptions = "<option value=\"other\">$mIpbothertime</option>";
 		foreach (explode(',', $scBlockExpiryOptions) as $option) {
+			list($show, $value) = explode(":", $option);
+			$show = htmlspecialchars($show);
+			$value = htmlspecialchars($value);
 			$selected = "";
-			if ($this->BlockExpiry === $option)
+			if ($this->BlockExpiry === $value)
 				$selected = ' selected="selected"';
-			$blockExpiryFormOptions .= "<option$selected>$option</option>";
+			$blockExpiryFormOptions .= "<option value=\"$value\"$selected>$show</option>";
 		}
 
 		$token = htmlspecialchars( $wgUser->editToken() );
