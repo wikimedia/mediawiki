@@ -848,12 +848,6 @@ te zijn om een pagina te verplaatsen.",
 
 class LanguageNl extends LanguageUtf8 {
 	
-	function getDefaultUserOptions () {
-		$opt = Language::getDefaultUserOptions();
-		$opt["date"]=2;
-		return $opt;
-	}
-	
 	function getNamespaces() {
 		global $wgNamespaceNamesNl;
 		return $wgNamespaceNamesNl;
@@ -906,10 +900,10 @@ class LanguageNl extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-
-	# Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
-	# since they are same as English/Latin1
-
+	
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr( $this->commafy( $number ), '.,', ',.' );
+	}
 }
 
 ?>
