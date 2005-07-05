@@ -264,8 +264,10 @@ class Skin extends Linker {
 	function reallyDoGetUserStyles() {
 		global $wgUser;
 		$s = '';
-		$underline = $wgUser->getOption( "underline" ) ? 'underline' : 'none';
-		$s .= "a { text-decoration: $underline; }\n";
+		if (($undopt = $wgUser->getOption("underline")) != 2) {
+			$underline = $undopt ? 'underline' : 'none';
+			$s .= "a { text-decoration: $underline; }\n";
+		}
 		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
 		} else {

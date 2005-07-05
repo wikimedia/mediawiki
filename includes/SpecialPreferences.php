@@ -30,6 +30,7 @@ class PreferencesForm {
 	var $mUserLanguage, $mUserVariant;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
+	var $mUnderline;
 
 	/**
 	 * Constructor
@@ -61,9 +62,11 @@ class PreferencesForm {
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
 		$this->mImageSize = $request->getVal( 'wpImageSize' );
 		$this->mThumbSize = $request->getInt( 'wpThumbSize' );
+		$this->mUnderline = $request->getInt( 'wpOpunderline' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
 		$this->mPosted = $request->wasPosted();
+
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
 			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
@@ -225,6 +228,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
 		$wgUser->setOption( 'imagesize', $this->mImageSize );
 		$wgUser->setOption( 'thumbsize', $this->mThumbSize );
+		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -315,6 +319,7 @@ class PreferencesForm {
 		$this->mImageSize = $wgUser->getOption( 'imagesize' );
 		$this->mThumbSize = $wgUser->getOption( 'thumbsize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
+		$this->mUnderline = $wgUser->getOption( 'underline' );
 
 		$togs = $wgLang->getUserToggles();
 		foreach ( $togs as $tname ) {
@@ -736,6 +741,23 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
 
+		$msgUnderline = htmlspecialchars(wfMsg("tog-underline"));
+		$msgUnderlinenever = htmlspecialchars(wfMsg("underline-never"));
+		$msgUnderlinealways = htmlspecialchars(wfMsg("underline-always"));
+		$msgUnderlinedefault = htmlspecialchars(wfMsg("underline-default"));
+		$uopt = $wgUser->getOption("underline");
+		$s0 = $uopt == 0 ? " selected=\"selected\"" : "";
+		$s1 = $uopt == 1 ? " selected=\"selected\"" : "";
+		$s2 = $uopt == 2 ? " selected=\"selected\"" : "";
+		$wgOut->addHTML("
+<div class='toggle'>$msgUnderline 
+<select name=\"wpOpunderline\">
+<option value=\"0\"$s0>$msgUnderlinenever</option>
+<option value=\"1\"$s1>$msgUnderlinealways</option>
+<option value=\"2\"$s2>$msgUnderlinedefault</option>
+</select>
+</div>
+");
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );

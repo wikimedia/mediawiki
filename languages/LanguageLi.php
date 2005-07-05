@@ -46,7 +46,6 @@ $wgNamespaceNamesLi = array(
 );
 
 /* private */ $wgUserTogglesLi = array(
- "underline" => "Links ongerstjreipe",
  "highlightbroken" => "Links noa lege pagina's loate oplichte",
  "justify" => "Paragrafen oetvullen",
  "hideminor" => "Kleine wiezigingen verbergen in recente wijzigingen",

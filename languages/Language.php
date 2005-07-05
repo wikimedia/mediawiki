@@ -57,7 +57,7 @@ if(isset($wgExtraNamespaces)) {
 
 /* private */ $wgDefaultUserOptionsEn = array(
 	'quickbar' 		=> 1,
-	'underline' 		=> 1,
+	'underline' 		=> 2,
 	'cols'			=> 80,
 	'rows' 			=> 25,
 	'searchlimit' 		=> 20,
@@ -123,7 +123,6 @@ if(isset($wgExtraNamespaces)) {
 );
 
 /* private */ $wgUserTogglesEn = array(
-	'underline',
 	'highlightbroken',
 	'justify',
 	'hideminor',
@@ -278,7 +277,7 @@ parent class in order maintain consistency across languages.
 ',
 
 # User preference toggles
-'tog-underline' => 'Underline links',
+'tog-underline' => 'Underline links:',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',
 'tog-hideminor' => 'Hide minor edits in recent changes',
@@ -304,6 +303,10 @@ parent class in order maintain consistency across languages.
 'tog-fancysig' => 'Raw signatures (without automatic link)',
 'tog-externaleditor' => 'Use external editor by default',
 'tog-externaldiff' => 'Use external diff by default',
+
+'underline-always' => 'Always',
+'underline-never' => 'Never',
+'underline-default' => 'Browser default',
 
 # dates
 'sunday' => 'Sunday',

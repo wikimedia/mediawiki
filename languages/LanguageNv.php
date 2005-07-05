@@ -61,7 +61,6 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgUserTogglesNv = array(
-	'underline' => 'Biyaadi iissoh',
 	'highlightbroken' => 'Format broken links <a href="" class="new">like
 this</a> (alternative: like this<a href="" class="internal">?</a>).',
 	'justify'	=> 'Justify paragraphs',
