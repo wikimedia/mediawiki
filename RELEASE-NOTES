@@ -506,6 +506,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2534) Hide edit sections with CSS to make right click to edit section work 
 * (bug 2708) Avoid undefined notice on cookieless login attempt
 * (bug 2188) Correct template namespace for Greek localization
+* Fixed number formatting for Dutch
 
 
 === Caveats ===
