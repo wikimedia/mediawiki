@@ -8,8 +8,7 @@
 /**
  * Constructor
  */
-function wfSpecialLockdb()
-{
+function wfSpecialLockdb() {
 	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isAllowed('siteadmin') ) {
@@ -19,13 +18,13 @@ function wfSpecialLockdb()
 	$action = $wgRequest->getVal( 'action' );
 	$f = new DBLockForm();
 
-	if ( "success" == $action ) {
+	if ( 'success' == $action ) {
 		$f->showSuccess();
-	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+	} else if ( 'submit' == $action && $wgRequest->wasPosted() &&
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$f->doSubmit();
 	} else {
-		$f->showForm( "" );
+		$f->showForm( '' );
 	}
 }
 
@@ -46,18 +45,18 @@ class DBLockForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 
-		$wgOut->setPagetitle( wfMsg( "lockdb" ) );
-		$wgOut->addWikiText( wfMsg( "lockdbtext" ) );
+		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
+		$wgOut->addWikiText( wfMsg( 'lockdbtext' ) );
 
 		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
+			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
 			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}
-		$lc = htmlspecialchars( wfMsg( "lockconfirm" ) );
-		$lb = htmlspecialchars( wfMsg( "lockbtn" ) );
-		$elr = htmlspecialchars( wfMsg( "enterlockreason" ) );
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$lc = htmlspecialchars( wfMsg( 'lockconfirm' ) );
+		$lb = htmlspecialchars( wfMsg( 'lockbtn' ) );
+		$elr = htmlspecialchars( wfMsg( 'enterlockreason' ) );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Lockdb' );
+		$action = $titleObj->escapeLocalURL( 'action=submit' );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( <<<END
@@ -90,10 +89,10 @@ END
 		global $wgReadOnlyFile;
 
 		if ( ! $wgRequest->getCheck( 'wpLockConfirm' ) ) {
-			$this->showForm( wfMsg( "locknoconfirm" ) );
+			$this->showForm( wfMsg( 'locknoconfirm' ) );
 			return;
 		}
-		$fp = fopen( $wgReadOnlyFile, "w" );
+		$fp = fopen( $wgReadOnlyFile, 'w' );
 
 		if ( false === $fp ) {
 			$wgOut->fileNotFoundError( $wgReadOnlyFile );
@@ -104,16 +103,16 @@ END
 		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
 		fclose( $fp );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
-		$wgOut->redirect( $titleObj->getFullURL( "action=success" ) );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Lockdb' );
+		$wgOut->redirect( $titleObj->getFullURL( 'action=success' ) );
 	}
 
 	function showSuccess() {
 		global $wgOut, $wgUser;
 
-		$wgOut->setPagetitle( wfMsg( "lockdb" ) );
-		$wgOut->setSubtitle( wfMsg( "lockdbsuccesssub" ) );
-		$wgOut->addWikiText( wfMsg( "lockdbsuccesstext" ) );
+		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
+		$wgOut->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
+		$wgOut->addWikiText( wfMsg( 'lockdbsuccesstext' ) );
 	}
 }
 
