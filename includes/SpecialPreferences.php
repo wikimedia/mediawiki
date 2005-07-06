@@ -750,13 +750,13 @@ class PreferencesForm {
 		$s1 = $uopt == 1 ? " selected=\"selected\"" : "";
 		$s2 = $uopt == 2 ? " selected=\"selected\"" : "";
 		$wgOut->addHTML("
-<div class='toggle'>$msgUnderline 
+<div class='toggle'><label>$msgUnderline 
 <select name=\"wpOpunderline\">
 <option value=\"0\"$s0>$msgUnderlinenever</option>
 <option value=\"1\"$s1>$msgUnderlinealways</option>
 <option value=\"2\"$s2>$msgUnderlinedefault</option>
 </select>
-</div>
+</label></div>
 ");
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
