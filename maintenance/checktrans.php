@@ -5,10 +5,13 @@
  * Check to see if all messages have been translated into the selected language.
  * To run this script, you must have a working installation, and it checks the
  * selected language of that installation.
+ * 
+ * Output is posted from time to time on:
+ * http://meta.wikimedia.org/wiki/Localization_statistics
  */
 
 /** */
-require_once("commandLine.inc");
+require_once('commandLine.inc');
 
 if ( 'en' == $wgLanguageCode ) {
 	print "Current selected language is English. Cannot check translations.\n";
