@@ -373,9 +373,7 @@ function wfMsgReplaceArgs( $message, $args ) {
 function wfMsgHtml( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReplaceArgs(
-		htmlspecialchars( wfMsgGetKey( $key, $args, true ) ),
-		$args );
+	return wfMsgReplaceArgs( htmlspecialchars( wfMsgGetKey( $key, true ) ), $args );
 }
 
 /**
