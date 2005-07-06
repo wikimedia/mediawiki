@@ -212,7 +212,6 @@ if($wgMetaNamespace === FALSE)
 "editthispage"	=> "Side bewurkje",
 "deletethispage" 	=> "Side wiskje",
 "protectthispage" => "Side beskermje",
-"unprotectthisside" => "Side frij jaan",
 "newpage" 		=> "Nije side",
 "talkpage"		=> "Sideoerlis",
 "postcomment"   	=> "Skrieuw in opmerking",
@@ -985,7 +984,6 @@ net mear keppele om't der foar de nije namme el al in oerlisside wie.
 Gearfoegje de oerlissiden hânmjittig.",
 
 "movedto"		=> "werenamd as",
-"moveoerlis"	=> "De oerlisside, as dy der is, moat oan de side keppele bliuwe.",
 "talkpagemoved"	=> "De oerlisside is al noch keppele.",
 "talkpagenotmoved" => "De oerlisside is <strong>net</strong> mear keppele.",
 # Math

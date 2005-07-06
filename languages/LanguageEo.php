@@ -527,7 +527,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'localtime'	=> 'Loka horzono',
 'timezoneoffset' => 'Malsamo', #FIXME (?)
 'servertime'	=> 'Norma tempo aktuale',
-'guesstime'		=> 'Petu al foliumilo',
+'guesstimezone'	=> 'Petu al foliumilo',
 'emailflag'     => 'Malakceptu retmesaĝojn de aliaj vikipediistoj',
 'defaultns'		=> 'Serĉu la jenajn sekciojn:',
 

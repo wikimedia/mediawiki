@@ -584,13 +584,11 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 #
 
 # switching pan
-'userlevels-lookup-group' => 'Atur hak kelompok',
 'userlevels-group-edit' => 'Kelompok yang telah ada: ',
 'editgroup' => 'Sunting Kelompok',
 'addgroup' => 'Tambah Kelompok',
 
 'userlevels-lookup-user' => 'Atur kelompok pengguna',
-'userlevels-user-editname' => 'Masukkan nama pengguna: ',
 'editusergroup' => 'Sunting Kelompok Pengguna',
 
 # group editing
@@ -603,9 +601,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 # user groups editing
 'userlevels-editusergroup' => 'Sunting kelompok pengguna',
 'saveusergroups' => 'Simpan Kelompok Pengguna',
-'userlevels-groupsmember' => 'Anggota dari:',
 'userlevels-groupsavailable' => 'Kelompok yang tersedia:',
-'userlevels-groupshelp' => 'Pilih kelompok yang akan dimasuki/dikeluarkan pengguna. Kelompok yang tidak dipilih tidak akan diubah. Anda dapat membatalkan pilihan dengan menggunakan CTRL + Klik Kiri',
 
 # Recent changes
 # 
@@ -633,7 +629,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "minoreditletter" => "m",
 "newpageletter" => "B",
 'sectionlink' => '&rarr;',
-'undo' => 'undo', 
 
 # Upload 
 # 
