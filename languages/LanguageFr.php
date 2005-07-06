@@ -49,10 +49,10 @@ require_once( 'LanguageUtf8.php' );
 
 
 /* private */ $wgBookstoreListFr = array(
-	'Amazon.fr'		=> "http://www.amazon.fr/exec/obidos/ISBN=$1",
-	'alapage.fr'	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
-	'fnac.com'		=> "http://www3.fnac.com/advanced/book.do?isbn=$1",
-	'chapitre.com'	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
+	'Amazon.fr'		=> 'http://www.amazon.fr/exec/obidos/ISBN=$1',
+	'alapage.fr'	=> 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
+	'fnac.com'		=> 'http://www3.fnac.com/advanced/book.do?isbn=$1',
+	'chapitre.com'	=> 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
 );
 
 
@@ -119,18 +119,18 @@ require_once( 'LanguageUtf8.php' );
 'tog-editondblclick' => 'Double cliquer pour éditer une page (JavaScript)',
 'tog-editsection'	=> 'Éditer une section via les liens [éditer]',
 'tog-editsectiononrightclick'	=> 'Éditer une section en cliquant à droite<br /> sur le titre de la section',
-'tog-fancysig' => "Signatures brutes (sans lien automatique)",
+'tog-fancysig' => 'Signatures brutes (sans lien automatique)',
 'tog-hideminor' => 'Cacher les <i>Modifications récentes</i> mineures',
 'tog-highlightbroken' => 'Liens vers les sujets non existants en rouge',
 'tog-justify' => 'Paragraphes justifiés',
 'tog-minordefault' => 'Mes modifications sont considérées<br /> comme mineures par défaut',
 'tog-nocache' => 'Désactiver le cache des pages',
 'tog-numberheadings' => 'Numérotation automatique des titres',
-'tog-previewonfirst' => "Montrer la prévisualisation lors de la première édition",
+'tog-previewonfirst' => 'Montrer la prévisualisation lors de la première édition',
 'tog-previewontop' => 'La prévisualisation s\'affiche au<br /> dessus de la boite de rédaction',
 'tog-rememberpassword' => 'Se souvenir de mon mot de passe (cookie)',
 'tog-showtoc'	=> 'Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)',
-'tog-showtoolbar' => "Montrer la barre de menu d'édition",
+'tog-showtoolbar' => 'Montrer la barre de menu d\'édition',
 'tog-usenewrc' => 'Modifications récentes améliorées<br /> (certains navigateurs seulement)',
 'tog-underline' => 'Liens soulignés',
 'tog-watchdefault' => 'Suivre les articles que je crée ou modifie',
@@ -266,8 +266,8 @@ Voir $1.',
 'developertitle' => 'Accès développeur requis',
 'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de "développeur".
 Voir $1.',
-'bureaucrattitle'	=> "Un accès de 'Bureaucrate' est requis",
-'bureaucrattext'	=> "Cette action ne peut être réalisée que par des administrateurs ayant le statut de 'Bureaucrate'.",
+'bureaucrattitle'	=> 'Un accès de "Bureaucrate" est requis',
+'bureaucrattext'	=> 'Cette action ne peut être réalisée que par des administrateurs ayant le statut de "Bureaucrate".',
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
 'ok'            => 'OK',
@@ -304,7 +304,7 @@ Voir $1.',
 # Main script and global functions
 #
 'nosuchaction'	=> 'Action inconnue',
-'nosuchactiontext' => "L'action spécifiée dans l'Url n'est pas reconnue par le wiki.",
+'nosuchactiontext' => 'L\'action spécifiée dans l\'Url n\'est pas reconnue par le wiki.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
 'nospecialpagetext' => 'Vous avez demandé une page spéciale qui n\'est pas reconnue par le wiki.',
 
@@ -330,16 +330,16 @@ MySQL a retourné l\'erreur "$3 : $4".',
 'enterlockreason' => 'Indiquez la raison du blocage, ainsi qu\'une estimation de la durée de blocage ',
 'readonlytext'	=> "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
-'missingarticle' => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
-Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
-Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse de la page fautive.",
+'missingarticle' => 'La base de données n\'a pas pu trouver le texte d\'une page existante, dont le titre est "$1".
+Ce n\'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
+Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adresse de la page fautive.',
 'internalerror' => 'Erreur interne',
-'filecopyerror' => "Impossible de copier \"$1\" vers \"$2\".",
+'filecopyerror' => 'Impossible de copier "$1" vers "$2".',
 'fileinfo' => '$1Ko, type MIME: <tt>$2</tt>',
-'filerenameerror' => "Impossible de renommer \"$1\" en \"$2\".",
+'filerenameerror' => 'Impossible de renommer "$1" en "$2".',
 'filedeleteerror' => 'Impossible de supprimer "$1".',
 'filenotfound'	=> 'Fichier "$1" introuvable.',
-'unexpected' => "Valeur inattendue : \"$1\"=\"$2\".",
+'unexpected' => 'Valeur inattendue : "$1"="$2".',
 'formerror'	=> 'Erreur: Impossible de soumettre le formulaire',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
 'cannotdelete'	=> "Impossible de supprimer la page ou l'image indiquée.",
@@ -347,18 +347,18 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse
 'badtitletext'	=> 'Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide',
 'laggedslavemode' => 'Attention : la page n\'intègre peut être pas les dernières éditions',
 'readonly_lag' => 'La base de donnée a été automatiquement bloquée pendant que les serveurs secondaires rattrapent leur retard avec le serveur principal',
-'perfdisabled' => "Désolé! Cette fonctionnalité est temporairement désactivée
+'perfdisabled' => 'Désolé! Cette fonctionnalité est temporairement désactivée
 car elle ralentit la base de données à un point tel que plus personne
-ne peut utiliser le wiki.",
+ne peut utiliser le wiki.',
 'perfdisabledsub' => 'Ceci est une copie de sauvegarde de $1:',
 'viewsource'	=> 'Voir le texte source',
-'protectedtext'	=> "Cette page a été bloquée pour empêcher sa modification. Consulter [[{{ns:4}}:Page protégée]] pour voir les différentes raisons possibles.",
-'allmessagesnotsupportedDB' => "Special:AllMessages n'est pas disponible parce que wgUseDatabaseMessages est désactivé.",
-'allmessagesnotsupportedUI' => "Special:AllMessages n'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.",
+'protectedtext'	=> 'Cette page a été bloquée pour empêcher sa modification. Consulter [[{{ns:4}}:Page protégée]] pour voir les différentes raisons possibles.',
+'allmessagesnotsupportedDB' => 'Special:AllMessages n\'est pas disponible parce que wgUseDatabaseMessages est désactivé.',
+'allmessagesnotsupportedUI' => 'Special:AllMessages n\'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',
 'seriousxhtmlerrors' => 'Tidy a détecté de sérieuses erreurs xhtml.',
-'wrong_wfQuery_params' => "Paramètres incorrects sur la commande wfQuery()<br />
+'wrong_wfQuery_params' => 'Paramètres incorrects sur la commande wfQuery()<br />
 Fonction : $1<br />
-Requête : $2",
+Requête : $2',
 'versionrequired' => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Voyez [[Special:Version]]',
 
@@ -379,7 +379,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'newusersonly'       => ' (nouveaux utilisateurs uniquement)',
 'remembermypassword' => 'Se souvenir de mon mot de passe (cookie)',
 'loginproblem'       => '<b>Problème d\'identification.</b><br />Essayez à nouveau !',
-'alreadyloggedin'    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br />\n",
+'alreadyloggedin'    => '<font color=red>\'\'\'Utilisateur $1, vous êtes déjà identifié!\'\'\'</font><br />',
 
 'login'         => 'Identification',
 'loginprompt'	=> 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',
@@ -394,10 +394,10 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'youremail'     => 'Mon adresse électronique',
 'yournick'      => 'Mon surnom (pour les signatures)',
 'yourrealname'	=> 'Votre nom réél*',
-'emailforlost'  => "Si vous égarez votre mot de passe, vous pouvez demander à ce qu'un nouveau vous soit envoyé à votre adresse électronique.",
-'prefs-help-userdata' => "* <strong>Votre nom</strong> (facultatif): si vous le spécifiez, il sera utilisé pour l'attribution de vos contributions.<br />
-* <strong>Adresse électronique</strong> (facultatif): permet de vous contacter depuis le site sans dévoiler votre adresse, et utilisée pour vous envoyer un nouveau mot de passe si vous l'oubliez.",
-'loginerror'    => "Problème d'identification",
+'emailforlost'  => 'Si vous égarez votre mot de passe, vous pouvez demander à ce qu\'un nouveau vous soit envoyé à votre adresse électronique.',
+'prefs-help-realname' => '* <strong>Votre nom</strong> (facultatif): si vous le spécifiez, il sera utilisé pour l\'attribution de vos contributions.',
+'prefs-help-email' => '* <strong>Adresse électronique</strong> (facultatif): permet de vous contacter depuis le site sans dévoiler votre adresse, et utilisée pour vous envoyer un nouveau mot de passe si vous l\'oubliez.',
+'loginerror'    => 'Problème d\'identification',
 'nocookiesnew'	=> "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 'nocookieslogin' => "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 'noname'        => "Vous n'avez pas saisi de nom d'utilisateur.",
