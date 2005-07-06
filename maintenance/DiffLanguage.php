@@ -40,7 +40,10 @@
  */
 
 /** This script run from the commandline */
+require_once( 'parserTests.inc' );
 require_once( 'commandLine.inc' );
+
+if( isset($options['help']) ) { usage(); die(); }
 
 $wgLanguageCode = ucfirstlcrest($wgLanguageCode);
 /** Language messages we will use as reference. By default 'en' */
@@ -56,7 +59,7 @@ $externalRef = false;
 # FUNCTIONS
 /** @todo more informations !! */
 function usage() {
-	echo "php DiffLanguage.php [lang [file]]\n";	
+echo 'php DiffLanguage.php [lang [file]] [--color=(yes|no|light)]'."\n";
 }
 
 /** Return a given string with first letter upper case, the rest lowercase */
@@ -80,6 +83,7 @@ function getMediawikiMessages($languageCode = 'En') {
 		$langFile = $IP.'/languages/Language'.$languageCode.'.php';
 		if (file_exists( $langFile ) ) {
 			print "Including $langFile\n";
+			global $wgNamespaceNamesEn;
 			include($langFile);
 		} else die("ERROR: The file $langFile does not exist !\n");
 	}
@@ -123,23 +127,33 @@ if ( isset($args[0]) ) {
 	die();
 }
 
+/** parsertest is used to do differences */
+$myParserTest =& new ParserTest();
 
 # Get all references messages and check if they exist in the tested language
 $i = 0;
 
-$msg = "$testLanguage MediaWiki file against ";
+$msg = "MW Language{$testLanguage}.php against ";
 if($externalRef) { $msg .= 'external file '; }
 else { $msg .= 'internal file '; }
 $msg .= $referenceFilename.' ('.$referenceLanguage."):\n----\n";
-
 echo $msg;
-foreach($referenceMessages as $index => $localized)
+
+echo "$lang $referenceLanguage";
+// process messages
+foreach($referenceMessages as $index => $ref)
 {
+	// message is not localized
 	if(!(isset($testMessages[$index]))) {
 		$i++;
-		print "'$index' => \"$localized\",\n";
+		print "'$index' => \"$ref\",\n";
+	// Messages in the same language differs
+	} elseif( ($lang == $referenceLanguage) AND ($testMessages[$index] != $ref)) {
+		print "$index differs:\n";
+		print $myParserTest->quickDiff($testMessages[$index],$ref,'tested','reference');
 	}
 }
+
 echo "\n----\n".$msg;
 echo "$referenceLanguage language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
