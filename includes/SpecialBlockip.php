@@ -83,6 +83,7 @@ class IPBlockForm {
 
 		$blockExpiryFormOptions = "<option value=\"other\">$mIpbothertime</option>";
 		foreach (explode(',', $scBlockExpiryOptions) as $option) {
+			if (strstr($option, ":")) $option = "$option:$option";
 			list($show, $value) = explode(":", $option);
 			$show = htmlspecialchars($show);
 			$value = htmlspecialchars($value);
@@ -108,7 +109,7 @@ class IPBlockForm {
 			$wgOut->addHTML("
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
-				<select tabindex='2' name=\"wpBlockExpiry\">
+				<select tabindex='2' id='wpBlockExpiry' name=\"wpBlockExpiry\" onchange=\"considerChangingExpiryFocus()\">
 					$blockExpiryFormOptions
 				</select>
 			</td>
@@ -116,7 +117,7 @@ class IPBlockForm {
 		}
 		$wgOut->addHTML("
 		</tr>
-		<tr>
+		<tr id='wpBlockOther'>
 			<td align=\"right\">{$mIpbother}:</td>
 			<td align=\"left\">
 				<input tabindex='3' type='text' size='40' name=\"wpBlockOther\" value=\"{$scBlockOtherTime}\" />
