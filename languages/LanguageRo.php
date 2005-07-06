@@ -886,8 +886,8 @@ Caută în secţiunile:<br>
 $1<br>
 $2 Redirijări&nbsp; Căutări după $3 $9",
 'preferences' => "Preferinţe",
-'prefs-help-userdata' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br/>
-* <strong>Adresa de e-mail</strong> (opţional): Permite altor utilizatori să te contacteze folosind {{SITENAME}}, fără a fi necesar să le pui la dispoziţie adresa reală de mail. În plus, aici ţi se poate trimite o nouă parolă în caz că o pierzi pe cea existentă.",
+'prefs-help-realname' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br/>",
+'prefs-help-email' => "* <strong>Adresa de e-mail</strong> (opţional): Permite altor utilizatori să te contacteze folosind {{SITENAME}}, fără a fi necesar să le pui la dispoziţie adresa reală de mail. În plus, aici ţi se poate trimite o nouă parolă în caz că o pierzi pe cea existentă.",
 'prefs-misc' => "Diverse reglări",
 'prefs-personal' => "Date de utilizator",
 #'prefs-rc' => "Schimbări recente şi afişare cioturi",

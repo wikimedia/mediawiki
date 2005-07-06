@@ -966,7 +966,8 @@ alt=\"Google\" align=\"middle\"></a>
 'nstab-user' => "用戶頁面", //"User page",
 'nstab-wp' => "關於", //"About",
 'portal' => "社區",//"Community portal",
-'prefs-help-userdata' => "*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />*<strong>點子郵件</strong>（可選）：讓他人通過網站在不知道您的電子郵件地址的情況下通過電子郵件與您聯絡，以及通過電子郵件取得遺忘的密碼。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
+'prefs-help-realname' => "*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />",
+'prefs-help-email' => "*<strong>點子郵件</strong>（可選）：讓他人通過網站在不知道您的電子郵件地址的情況下通過電子郵件與您聯絡，以及通過電子郵件取得遺忘的密碼。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.", */
 'prefs-misc' => "雜項", //"Misc settings",
