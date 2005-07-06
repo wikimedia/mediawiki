@@ -969,7 +969,8 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 'nstab-user' => "用户页面", //"User page",
 'nstab-wp' => "关于", //"About",
 'portal' => "社区",//"Community portal",
-'prefs-help-userdata' => "*<strong>真实姓名</strong>（可选）：用以对您的贡献署名。<br />*<strong>点子邮件</strong>（可选）：让他人通过网站在不知道您的电子邮件地址的情况下通过电子邮件与您联络，以及通过电子邮件取得遗忘的密码。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
+'prefs-help-realname' => "*<strong>真实姓名</strong>（可选）：用以对您的贡献署名。<br />",
+'prefs-help-email' => "*<strong>点子邮件</strong>（可选）：让他人通过网站在不知道您的电子邮件地址的情况下通过电子邮件与您联络，以及通过电子邮件取得遗忘的密码。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.", */
 'prefs-misc' => "杂项", //"Misc settings",

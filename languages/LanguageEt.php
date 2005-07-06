@@ -417,8 +417,8 @@ E-posti aadress ei ole kohustuslik; kui Te kaotate oma parooli, võite lasta sel
 "youremail"		=> "Teie e-posti aadress*",
 "yournick"		=> "Teie hüüdnimi (allakirjutamiseks)",
 "emailforlost"	=> "* Meiliaadressi sisestamine ei ole kohustuslik. Kuid see aitab inimestel Teiega veebisaidi kaudu ühendust võtta, ilma et Te peaksite neile oma meiliaadressi avaldama, ning samuti on sellest kasu, kui unustate parooli. <br /><br />Teie päris nime, kui otsustate selle avaldada, kasutatakse Teie tööpanuse seostamiseks Teiega.",
-'prefs-help-userdata' => '* <strong>Tegelik nimi</strong> (pole kohustuslik): kui otsustate selle avaldada, kasutatakse seda Teie tööpanuse seostamiseks Teiega.<br />
-* <strong>E-post</strong> (pole kohustuslik): Võimaldab inimestel Teiega veebisaidi kaudu ühendust võtta, ilma et Te peaksite neile oma meiliaadressi avaldama, samuti on sellest kasu, kui unustate parooli.',
+'prefs-help-realname' => '* <strong>Tegelik nimi</strong> (pole kohustuslik): kui otsustate selle avaldada, kasutatakse seda Teie tööpanuse seostamiseks Teiega.<br />',
+'prefs-help-email' => '* <strong>E-post</strong> (pole kohustuslik): Võimaldab inimestel Teiega veebisaidi kaudu ühendust võtta, ilma et Te peaksite neile oma meiliaadressi avaldama, samuti on sellest kasu, kui unustate parooli.',
 
 "loginerror"	=> "Viga sisselogimisel",
 'nocookiesnew'  => "Kasutajakonto loodi, aga sa ei ole sisse logitud, sest {{SITENAME}} kasutab kasutajate tuvastamisel küpsiseid. Sinu brauseris on küpsised keelatud. Palun sea küpsised lubatuks ja logi siis oma vastse kasutajanime ning parooliga sisse.",

@@ -403,9 +403,6 @@ Durch die automatische Anmeldung beim Benutzerkonto sind eigene Benutzer-Anmeldu
 Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein temporäres Einmal-Passwort gesendet werden.',
 'prefs-help-email-enotif' => 'An diese Adresse werden auch die Benachrichtigungsmails geschickt, sofern Sie das eingeschaltet haben.',
 'prefs-help-realname' 	=> '* <strong>Echter Name</strong> (optional): für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
-'prefs-help-userdata' => '* <strong>Echter Name</strong> (optional): für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.<br />
-* <strong>E-Mail</strong> (optional): Erlaubt andern, Sie über Ihre Benutzerseiten zu kontaktieren, ohne dass Sie Ihre E-Mail-Adresse offenbaren müssen.
-Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen so ein neues, temporäres gesendet werden.',
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",

@@ -457,9 +457,8 @@ go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br />\n",
 "emailforlost"  => "* Níl na boscaí le réalt (*) ach roghnach.  Le seoladh ríomhphoist i dtaisce, ba féidir le daoine teagmhail a dhéanamh leat
 trí­d an suí­omh gan do sheoladh rí­omhphoist a nochtaigh dóibh. Ina theannta sin,
 is cabhair é má dheanfá dearmad ar d'fhocal faire.<br /><br />Má toghaíonn tú d'ainm ceart a chur isteach, úsáidfear é chun do chuid dreachtaí a chur i leith tusa",
-'prefs-help-userdata' => '* <strong>Ainm ceart</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun do chuid dreachtaí a chur i leith tusa.<br />
-* <strong>Ríomhphost</strong> (roghnach): Ba féidir le daoine teagmháil a dhéanamh leat gan do sheoladh ríomhphoist
-a thaispeáint dóibh, agus ba féidir focal faire nua a sheol chugat má dhéanfá dearmad air.',
+'prefs-help-realname' => '* <strong>Ainm ceart</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun do chuid dreachtaí a chur i leith tusa.<br />',
+'prefs-help-email' => '* <strong>Ríomhphost</strong> (roghnach): Ba féidir le daoine teagmháil a dhéanamh leat gan do sheoladh ríomhphoist a thaispeáint dóibh, agus ba féidir focal faire nua a sheol chugat má dhéanfá dearmad air.',
 "loginerror"    => "Earráid leis an logáil isteach",
 'nocookiesnew'	=> "Chruthaíodh an cuntas úsáideora, ach níl tú logáilte isteach. Úsáideann an {{SITENAME}} comhaid aithintáin (<i>cookies</i>) chun úsáideoirí a logáil isteach. Tá comhaid aithintáin míchumasaithe agat. Cumasaigh iad le do thoil, agus ansin logáil isteach le d'ainm úsáideora agus d'fhocal faire úrnua.",
 "nocookieslogin"	=> "Úsáideann an {{SITENAME}} comhaid aithintáin (<i>cookies</i>) chun úsáideoirí a logáil isteach. Tá comhaid aithintáin míchumasaithe agat. Cumasaigh iad agus déan athiarracht, le do thoil.",

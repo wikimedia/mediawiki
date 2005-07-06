@@ -428,10 +428,6 @@ Tento počítač může být používán k prohlížení a editaci {{grammar:2sg
 'prefs-help-email-enotif' => 'Na tuto adresu vám budou zasílány informace o změně stránek, pokud o ně požádáte.',
 'prefs-help-realname' 	=> '**) Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.<br />',
 'prefs-help-email'      => '*) E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
-'prefs-help-userdata' 	=> '
-*) E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto 
-adresu může být zasláno nové heslo v případě, že své heslo zapomenete.<br />
-**) Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.<br />',
 'loginerror'    => 'Chyba při přihlašování',
 'nocookiesnew'  => 'Uživatelský účet byl vytvřen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'      => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
