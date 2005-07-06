@@ -6,5 +6,8 @@ help:
 test:
 	php parserTests.php
 
+test-light:
+	php parserTests.php --color=light
+
 doc:
 	php mwdocgen.php --all
