@@ -508,6 +508,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2188) Correct template namespace for Greek localization
 * Fixed number formatting for Dutch
 * (bug 1355) add class noprint to commonPrint.css
+* (bug 2350) Massive update for Limburgish (li) language using Wikipédia
+
 
 === Caveats ===
 
