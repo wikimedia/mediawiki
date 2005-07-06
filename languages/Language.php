@@ -278,7 +278,7 @@ parent class in order maintain consistency across languages.
 ',
 
 # User preference toggles
-'tog-underline' => 'Underline links:',
+'tog-underline' => 'Underline links',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',
 'tog-hideminor' => 'Hide minor edits in recent changes',
@@ -288,7 +288,7 @@ parent class in order maintain consistency across languages.
 'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
 'tog-editsection'		=> 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick'	=> 'Enable section editing by right clicking<br /> on section titles (JavaScript)',
-'tog-showtoc'			=> 'Show table of contents<br />(for pages with more than 3 headings)',
+'tog-showtoc'			=> 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword' => 'Remember across sessions',
 'tog-editwidth' => 'Edit box has full width',
 'tog-watchdefault' => 'Add pages you edit to your watchlist',
@@ -356,11 +356,11 @@ parent class in order maintain consistency across languages.
 and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
 
 'portal'		=> 'Community portal',
-'portal-url'		=> 'Project:Community Portal',
+'portal-url'	=> 'Project:Community Portal',
 'about'			=> 'About',
-'aboutsite'      => 'About {{SITENAME}}',
+'aboutsite'		=> 'About {{SITENAME}}',
 'aboutpage'		=> 'Project:About',
-'article' => 'Content page',
+'article'		=> 'Content page',
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
 'wikititlesuffix' => '{{SITENAME}}',
@@ -408,7 +408,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'print' => 'Print',
-'edit' => 'Edit',
+'edit' => 'Edit this page',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 'deletethispage' => 'Delete this page',
@@ -416,7 +416,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'undelete_short' => 'Undelete $1 edits',
 'protect' => 'Protect',
 'protectthispage' => 'Protect this page',
-'unprotect' => 'Unprotect',
+'unprotect' => 'unprotect',
 'unprotectthispage' => 'Unprotect this page',
 'newpage' => 'New page',
 'talkpage'		=> 'Discuss this page',
@@ -433,7 +433,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'wikipediapage' => 'View project page',
 'imagepage' => 	'View image page',
 'viewtalkpage' => 'View discussion',
-'otherlanguages' => 'Other languages',
+'otherlanguages' => 'In other languages',
 'redirectedfrom' => '(Redirected from $1)',
 'lastmodified'	=> 'This page was last modified $1.',
 'viewcount'		=> 'This page has been accessed $1 times.',
@@ -445,11 +445,11 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 
 'sysoptitle'	=> 'Sysop access required',
 'sysoptext'		=> "The action you have requested can only be
-performed by users with \"sysop\" status.
+performed by users with \"sysop\" capability.
 See $1.",
 'developertitle' => 'Developer access required',
 'developertext'	=> "The action you have requested can only be
-performed by users with \"developer\" status.
+performed by users with \"developer\" capability.
 See $1.",
 
 'badaccess'     => 'Permission error',
@@ -469,7 +469,7 @@ See $1.',
 'newmessages' => "You have $1.",
 'newmessageslink' => 'new messages',
 'editsection'=>'edit',
-'toc' => 'Table of contents',
+'toc' => 'Contents',
 'showtoc' => 'show',
 'hidetoc' => 'hide',
 'thisisdeleted' => "View or restore $1?",
@@ -480,9 +480,9 @@ See $1.',
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
 'nstab-user' => 'User page',
-'nstab-media' => 'Media',
+'nstab-media' => 'Media page',
 'nstab-special' => 'Special',
-'nstab-wp' => 'About',
+'nstab-wp' => 'Project page',
 'nstab-image' => 'File',
 'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Template',
@@ -577,11 +577,11 @@ your browser cache.\n",
 Your account has been created. Don't forget to change your {{SITENAME}} preferences.",
 
 'loginpagetitle' => 'User login',
-'yourname'		=> 'User name',
+'yourname'		=> 'Username',
 'yourpassword'	=> 'Password',
 'yourpasswordagain' => 'Retype password',
 'newusersonly'	=> ' (new users only)',
-'remembermypassword' => 'Remember my password across sessions.',
+'remembermypassword' => 'Remember me',
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
@@ -637,10 +637,10 @@ to confirm that the account is actually yours.",
 'emailauthenticated'        => 'Your email address was authenticated on $1.',
 'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>No email address has been specified</strong>, the following
+'noemailprefs'              => '<strong>No email address has been specified</strong>, the following 
 features will not work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
-'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid
+'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid 
 format. Please enter a well-formatted address or empty that field.',
 
 # Edit page toolbar
@@ -672,7 +672,7 @@ format. Please enter a well-formatted address or empty that field.',
 #
 'summary'		=> 'Summary',
 'subject'		=> 'Subject/headline',
-'minoredit'		=> 'This is a minor edit.',
+'minoredit'		=> 'This is a minor edit',
 'watchthis'		=> 'Watch this page',
 'savearticle'	=> 'Save page',
 'preview'		=> 'Preview',
@@ -696,7 +696,7 @@ Your IP address is $3. Please include this address in any queries you make.
 'loginreqtitle'	=> 'Login Required',
 'loginreqtext'	=> 'You must [[special:Userlogin|login]] to view other pages.',
 'accmailtitle' => 'Password sent.',
-'accmailtext' => "The Password for '$1' has been sent to $2.",
+'accmailtext' => "The password for '$1' has been sent to $2.",
 'newarticle'	=> '(New)',
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
@@ -846,8 +846,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 #
 'preferences'	=> 'Preferences',
 'prefsnologin' => 'Not logged in',
-'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]]
-to set user preferences.",
+'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]] to set user preferences.",
 'prefslogintext' => "You are logged in as \"$1\".
 Your internal ID number is $2.
 
@@ -874,7 +873,7 @@ See [[Project:User preferences help]] for help deciphering the options.",
 'resetprefs'	=> 'Reset',
 'oldpassword'	=> 'Old password',
 'newpassword'	=> 'New password',
-'retypenew'		=> 'Again',
+'retypenew'		=> 'Retype new password',
 'textboxsize'	=> 'Editing',
 'rows'			=> 'Rows',
 'columns'		=> 'Columns',
@@ -901,7 +900,7 @@ See [[Project:User preferences help]] for help deciphering the options.",
 
 # switching pan
 'groups-lookup-group' => 'Manage group rights',
-'groups-group-edit' => 'Existing groups: ',
+'groups-group-edit' => 'Existing groups:',
 'editgroup' => 'Edit Group',
 'addgroup' => 'Add Group',
 
@@ -915,7 +914,7 @@ See [[Project:User preferences help]] for help deciphering the options.",
 'groups-editgroup-preamble' => 'If the name or description starts with a colon, the
 remainder will be treated as a message name, and hence the text will be localised
 using the MediaWiki namespace',
-'groups-editgroup-name'     => 'Group name: ',
+'groups-editgroup-name'     => 'Group name:',
 'groups-editgroup-description' => 'Group description (max 255 characters):<br />',
 'savegroup'                 => 'Save Group',
 'groups-tableheader'        => 'ID || Name || Description || Rights',
@@ -966,7 +965,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rcliu'			=> "; $1 edits from logged in users",
 'diff'			=> 'diff',
 'hist'			=> 'hist',
-'hide'			=> 'hide',
+'hide'			=> 'Hide',
 'show'			=> 'show',
 'tableform'		=> 'table',
 'listform'		=> 'list',
@@ -1020,9 +1019,9 @@ agrees to license it under the terms of the $1.",
 'uploadedfiles'	=> 'Uploaded files',
 'noaffirmation' => 'You must affirm that your upload does not violate any copyrights.',
 'ignorewarning'	=> 'Ignore warning and save file anyway.',
-'minlength'		=> 'Image names must be at least three letters.',
+'minlength'		=> 'File names must be at least three letters.',
 'illegalfilename'	=> 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
-'badfilename'	=> "Image name has been changed to \"$1\".",
+'badfilename'	=> 'File name has been changed to "$1".',
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
 'largefile'		=> 'It is recommended that images not exceed $1 bytes in size, this file is $2 bytes',
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
@@ -1054,11 +1053,11 @@ created and by whom, and anything else you may know about it. If this is an imag
 'bysize'		=> 'by size',
 'imgdelete'		=> 'del',
 'imgdesc'		=> 'desc',
-'imglegend'		=> 'Legend: (desc) = show/edit image description.',
-'imghistory'	=> 'History',
+'imglegend'		=> 'Legend: (desc) = show/edit file description.',
+'imghistory'	=> 'File history',
 'revertimg'		=> 'rev',
 'deleteimg'		=> 'del',
-'deleteimgcompletely'		=> 'Delete all revisions',
+'deleteimgcompletely'		=> 'Delete all revisions of this file',
 'imghistlegend' => 'Legend: (cur) = this is the current file, (del) = delete
 this old version, (rev) = revert to this old version.
 <br /><i>Click on date to see the file uploaded on that date</i>.',
@@ -1074,7 +1073,7 @@ this old version, (rev) = revert to this old version.
 # Statistics
 #
 'statistics'	=> 'Statistics',
-'sitestats'		=> 'Site statistics',
+'sitestats'		=> '{{SITENAME}} statistics',
 'userstats'		=> 'User statistics',
 'sitestatstext' => "There are '''$1''' total pages in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
@@ -1096,7 +1095,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'disambiguations'	=> 'Disambiguation pages',
 'disambiguationspage'	=> "Project:Links_to_disambiguating_pages",
 'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as disambiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
-'doubleredirects'	=> 'Double Redirects',
+'doubleredirects'	=> 'Double redirects',
 'doubleredirectstext'	=> "Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
 'brokenredirects'	=> 'Broken Redirects',
 'brokenredirectstext'	=> 'The following redirects link to a non-existing pages.',
@@ -1170,7 +1169,7 @@ about books you are looking for.
 {{SITENAME}} is not affiliated with any of these businesses, and
 this list should not be construed as an endorsement.",
 'isbn'	=> 'ISBN',
-'rfcurl' =>  'http://www.faqs.org/rfcs/rfc$1.html',
+'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
@@ -1221,8 +1220,7 @@ or has chosen not to receive e-mail from other users.',
 'watchlistsub'		=> "(for user \"$1\")",
 'nowatchlist'		=> 'You have no items on your watchlist.',
 'watchnologin'		=> 'Not logged in',
-'watchnologintext'	=> "You must be [[Special:Userlogin|logged in]]
-to modify your watchlist.",
+'watchnologintext'	=> 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'		=> 'Added to watchlist',
 'addedwatchtext'	=> "The page \"$1\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated Talk page will be listed there,
@@ -1237,7 +1235,7 @@ make it easier to pick out.
 'unwatch' => 'Unwatch',
 'unwatchthispage' 	=> 'Stop watching',
 'notanarticle'		=> 'Not a content page',
-'watchnochange' 	=> 'None of your watched items were edited in the time period displayed.',
+'watchnochange' 	=> 'None of your watched items was edited in the time period displayed.',
 'watchdetails'		=> "* $1 pages watched not counting talk pages
 * [[Special:Watchlist/edit|Show and edit complete watchlist]]
 ",
@@ -1336,9 +1334,9 @@ Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
 See [[Project:Protected page]] for more information.",
-'protectedarticle' => "protected \"[[$1]]\"",
-'unprotectedarticle' => "unprotected \"[[$1]]\"",
-'protectsub' =>"(Protecting \"$1\")",
+'protectedarticle' => 'protected "[[$1]]"',
+'unprotectedarticle' => 'unprotected "[[$1]]"',
+'protectsub' => '(Protecting "$1")',
 'confirmprotecttext' => 'Do you really want to protect this page?',
 'confirmprotect' => 'Confirm protection',
 'protectmoveonly' => 'Protect from moves only',
@@ -1413,8 +1411,8 @@ pages that were vandalized).",
 'ipbotheroption'	=> 'other',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
-'blockipsuccesstext' => "\"$1\" has been blocked.
-<br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
+'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1" has been blocked.
+<br />See[[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
 'unblockip'		=> 'Unblock user',
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
@@ -1425,13 +1423,13 @@ to a previously blocked IP address or username.',
 'blocklink'		=> 'block',
 'unblocklink'	=> 'unblock',
 'contribslink'	=> 'contribs',
-'autoblocker'	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+'autoblocker'	=> 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "\'\'\'$2\'\'\'"',
 'blocklogpage'	=> 'Block_log',
 'blocklogentry'	=> 'blocked "[[$1]]" with an expiry time of $2',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
-'unblocklogentry'	=> 'unblocked "$1"',
+'unblocklogentry'	=> 'unblocked $1',
 'range_block_disabled'	=> 'The sysop ability to create range blocks is disabled.',
 'ipb_expiry_invalid'	=> 'Expiry time invalid.',
 'ip_range_invalid'	=> "Invalid IP range.\n",
@@ -1580,8 +1578,8 @@ title. Please merge them manually.'''",
 'movetalk'		=> 'Move "talk" page as well, if applicable.',
 'talkpagemoved' => 'The corresponding talk page was also moved.',
 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
-'1movedto2'		=> "[[$1]] moved to [[$2]]",
-'1movedto2_redir' => '[[$1]] moved to [[$2]] over redirect',
+'1movedto2'		=> '$1 moved to $2',
+'1movedto2_redir' => '$1 moved to $2 over redirect',
 'movelogpage' => 'Move log',
 'movelogpagetext' => 'Below is a list of page moved.',
 'movereason'	=> 'Reason',
@@ -1614,11 +1612,11 @@ article [[Train]].
 
 # Namespace 8 related
 
-'allmessages'	=> 'All system messages',
+'allmessages'	=> 'System messages',
 'allmessagesname' => 'Name',
 'allmessagesdefault' => 'Default text',
 'allmessagescurrent' => 'Current text',
-'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
+'allmessagestext'	=> 'This is a list of system messages available in the MediaWiki: namespace.',
 'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
@@ -1647,7 +1645,7 @@ article [[Train]].
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-search' => 'Search this wiki [alt-f]',
+'tooltip-search' => 'Search {{SITENAME}} [alt-f]',
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
@@ -1666,13 +1664,13 @@ article [[Train]].
 
 # Attribution
 
-'anonymous' => "Anonymous user(s) of $wgSitename",
-'siteuser' => "$wgSitename user $1",
-'lastmodifiedby' => "This page was last modified $1 by $2.",
+'anonymous' => 'Anonymous user(s) of {{SITENAME}}',
+'siteuser' => '{{SITENAME}} user $1',
+'lastmodifiedby' => 'This page was last modified $1 by $2.',
 'and' => 'and',
-'othercontribs' => "Based on work by $1.",
+'othercontribs' => 'Based on work by $1.',
 'others' => 'others',
-'siteusers' => "$wgSitename user(s) $1",
+'siteusers' => '{{SITENAME}} user(s) $1',
 'creditspage' => 'Page credits',
 'nocredits' => 'There is no credits info available for this page.',
 
@@ -1771,14 +1769,14 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'deletedrevision' => 'Deleted old revision $1.',
 
 # browsing diffs
-'previousdiff' => '← Previous diff',
-'nextdiff' => 'Next diff →',
+'previousdiff' => '&larr; Previous diff',
+'nextdiff' => 'Next diff &rarr;',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
-'thumbsize'	=> 'Thumbnail size : ',
+'thumbsize'	=> 'Thumbnail size :',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
-'newimages' => 'New images gallery',
+'newimages' => 'Gallery of new files',
 'noimages'  => 'Nothing to see.',
 
 # short names for language variants used for language conversion links.
