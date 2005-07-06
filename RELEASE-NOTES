@@ -510,6 +510,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 1355) add class noprint to commonPrint.css
 * (bug 2350) Massive update for Limburgish (li) language using Wikipédia
 * Massive update for Arab (ar) language using Wikipédia
+* (bug 1560) Massive update for Kurdish (ku) language using Wikipédia
 
 === Caveats ===
 
