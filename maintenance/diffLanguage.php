@@ -139,7 +139,6 @@ else { $msg .= 'internal file '; }
 $msg .= $referenceFilename.' ('.$referenceLanguage."):\n----\n";
 echo $msg;
 
-echo "$lang $referenceLanguage";
 // process messages
 foreach($referenceMessages as $index => $ref)
 {
