@@ -509,7 +509,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fixed number formatting for Dutch
 * (bug 1355) add class noprint to commonPrint.css
 * (bug 2350) Massive update for Limburgish (li) language using Wikipédia
-
+* Massive update for Arab (ar) language using Wikipédia
 
 === Caveats ===
 
