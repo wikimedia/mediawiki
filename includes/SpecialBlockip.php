@@ -83,7 +83,7 @@ class IPBlockForm {
 
 		$blockExpiryFormOptions = "<option value=\"other\">$mIpbothertime</option>";
 		foreach (explode(',', $scBlockExpiryOptions) as $option) {
-			if (strstr($option, ":")) $option = "$option:$option";
+			if ( strpos($option, ":") === false ) $option = "$option:$option";
 			list($show, $value) = explode(":", $option);
 			$show = htmlspecialchars($show);
 			$value = htmlspecialchars($value);
