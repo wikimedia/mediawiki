@@ -129,7 +129,7 @@
 "tog-watchdefault" => "Overvåk nye og endrede artikler",
 "tog-minordefault" => "Marker i utgangspunktet alle redigeringer som mindre",
 "tog-previewontop" => "Vis forhåndsvisningen foran redigeringsboksen, og ikke etter den",
-"nocache" => "Ikke husk sidene ved neste besøk",
+"tog-nocache" => "Ikke husk sidene ved neste besøk",
 
 # Dates
 #

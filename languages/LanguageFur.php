@@ -104,7 +104,6 @@ $wgAllMessagesFur = array(
 'articlenamespace' => "(articui)",
 'aug' => "Avo",
 'august' => "Avost",
-'bad_image_list' => "", #empty
 'blocklink' => "bloche",
 'cancel' => "Scancele",
 'categories' => "Categoriis",
