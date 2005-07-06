@@ -5,10 +5,16 @@
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @bug 2499
+ *
+ * Output is posted from time to time on:
+ * http://meta.wikimedia.org/wiki/Localization_statistics
  */
 
+/** */
+require_once('commandLine.inc');
+
 $langs = array();
-$dir = opendir('languages');
+$dir = opendir("$IP/languages");
 while ($file = readdir($dir)) {
 	if (preg_match("/Language(.*?)\.php$/", $file, $m)) {
 		$langs[] = $m[1];
@@ -23,7 +29,6 @@ foreach($langs as $key => $lang) {
 		unset($langs[$key]);
 }
 
-require_once('commandLine.inc');
 
 $msgs = array();
 foreach($langs as $lang) {
@@ -43,6 +48,7 @@ foreach($langs as $lang) {
 	}
 }
 
+// wiki syntax header
 $out = "{| border=2 cellpadding=4 cellspacing=0 style=\"background: #f9f9f9; border: 1px #aaa solid; border-collapse: collapse;\" width=100%\n";
 $out .= beginul();
 $out .= li('Language', true);
@@ -53,6 +59,8 @@ $out .= li('%', true);
 $out .= li('Redundant', true);
 $out .= li('%', true);
 $out .= endul();
+
+// generate table rows using wikisyntax
 foreach($msgs as $lang => $stats) {
 	$out .= beginul();
 	$out .= li($wgContLang->getLanguageName(strtr($lang, '_', '-')) . " ($lang)"); // Language
