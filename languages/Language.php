@@ -2133,8 +2133,8 @@ class fakeConverter {
 	var $mLang;
 	function fakeConverter($langobj) {$this->mLang = $langobj;}
 	function convert($t, $i) {return $t;}
-	function getVariants() { return array( strtolower( substr( get_class( $this->mLang ), 8 ) ) ); }
-	function getPreferredVariant() {return strtolower( substr( get_class( $this->mLang ), 8 ) );}
+	function getVariants() { return array( $this->mLang->getCode() ); }
+	function getPreferredVariant() {return $this->mLang->getCode(); }
 	function findVariantLink(&$l, &$n) {}
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
@@ -2893,6 +2893,13 @@ class Language {
 
 	function getLangObj() {
 		return $this;
+	}
+
+	/**
+	 * Get the RFC 3066 code for this language object
+	 */
+	function getCode() {
+		return str_replace( '_', '-', strtolower( substr( get_class( $this ), 8 ) ) );
 	}
 
 
