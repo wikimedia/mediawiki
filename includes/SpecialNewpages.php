@@ -8,7 +8,7 @@
 /**
  *
  */
-require_once( "QueryPage.php" );
+require_once( 'QueryPage.php' );
 
 /**
  *
@@ -18,7 +18,7 @@ require_once( "QueryPage.php" );
 class NewPagesPage extends QueryPage {
 
 	function getName() {
-		return "Newpages";
+		return 'Newpages';
 	}
 
 	function isExpensive() {
@@ -59,7 +59,7 @@ class NewPagesPage extends QueryPage {
 		$u = $result->user;
 		$ut = $result->user_text;
 
-		$length = wfMsg( "nbytes", $wgLang->formatNum( $result->length ) );
+		$length = wfMsg( 'nbytes', $wgLang->formatNum( $result->length ) );
 
 		if ( $u == 0 ) { # not by a logged-in user
 			$ul = $ut;
