@@ -206,7 +206,7 @@ require_once( 'LanguageUtf8.php' );
 'cancel'        => 'Annuler',
 'qbfind'        => 'Rechercher',
 'qbbrowse'      => 'Défiler',
-'qbedit'        => 'Éditer',
+'qbedit'        => 'Modifier',
 'qbpageoptions' => 'Page d\'option',
 'qbpageinfo'    => 'Page d\'information',
 'qbmyoptions'   => 'Mes options',
@@ -227,9 +227,9 @@ require_once( 'LanguageUtf8.php' );
 'search'        => 'Rechercher',
 'history'       => 'Historique',
 'printableversion' => 'Version imprimable',
-'edit'		=> 'éditer',
+'edit'		=> 'Modifier',
 'editthispage'  => 'Modifier cette page',
-'delete'	=> 'supprimer',
+'delete'	=> 'Supprimer',
 'deletethispage' => 'Supprimer cette page',
 'undelete_short' => 'Restaurer',
 'undelete_short1' => 'Restaurer',
@@ -277,13 +277,13 @@ Voir $1.',
 'history_short' => 'Historique',
 'sitetitle'     => '{{SITENAME}}',
 'sitesubtitle'  => 'L\'encyclopédie libre',
-'retrievedfrom' => 'Récupérée de "$1"',
+'retrievedfrom' => 'Récupérée de « $1 »',
 'newmessages'   => 'Vous avez des $1.',
 'newmessageslink' => 'nouveaux messages',
 'editsection'	=> 'modifier',
 'toc'		=> 'Sommaire',
-'showtoc'	=> 'montrer',
-'hidetoc'	=> 'cacher',
+'showtoc'	=> 'afficher',
+'hidetoc'	=> 'masquer',
 'thisisdeleted' => 'Afficher ou restaurer $1 ?',
 'restorelink'	=> '1 modifications effacées',
 'feedlinks'	=> 'Flux:',
@@ -334,10 +334,10 @@ MySQL a retourné l\'erreur "$3 : $4".',
 Ce n\'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adresse de la page fautive.',
 'internalerror' => 'Erreur interne',
-'filecopyerror' => 'Impossible de copier "$1" vers "$2".',
+'filecopyerror' => 'Impossible de copier « $1 » vers « $2 ».',
 'fileinfo' => '$1Ko, type MIME: <tt>$2</tt>',
-'filerenameerror' => 'Impossible de renommer "$1" en "$2".',
-'filedeleteerror' => 'Impossible de supprimer "$1".',
+'filerenameerror' => 'Impossible de renommer « $1 » en « $2 ».',
+'filedeleteerror' => 'Impossible de supprimer « $1 ».',
 'filenotfound'	=> 'Fichier "$1" introuvable.',
 'unexpected' => 'Valeur inattendue : "$1"="$2".',
 'formerror'	=> 'Erreur: Impossible de soumettre le formulaire',
@@ -383,7 +383,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 
 'login'         => 'Identification',
 'loginprompt'	=> 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',
-'userlogin'     => 'Identification',
+'userlogin'     => 'Créer un compte ou se connecter',
 'logout'        => 'Déconnexion',
 'userlogout'    => 'Déconnexion',
 'notloggedin'	=> 'Non connecté',
@@ -392,7 +392,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'badretype'     => 'Les deux mots de passe que vous avez saisis ne sont pas identiques.',
 'userexists'    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
 'youremail'     => 'Mon adresse électronique',
-'yournick'      => 'Mon surnom (pour les signatures)',
+'yournick'      => 'Signature pour les discussions (avec <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
 'yourrealname'	=> 'Votre nom réél*',
 'emailforlost'  => 'Si vous égarez votre mot de passe, vous pouvez demander à ce qu\'un nouveau vous soit envoyé à votre adresse électronique.',
 'prefs-help-realname' => '* <strong>Votre nom</strong> (facultatif): si vous le spécifiez, il sera utilisé pour l\'attribution de vos contributions.',
@@ -416,7 +416,7 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
 Veuillez vous identifier dès que vous l'aurez reçu.",
 'loginend'	=> '&nbsp;',
-'mailerror'	=> 'Erreur lors de l\'envoi du mail: $1',
+'mailerror'	=> 'Erreur en envoyant le courriel : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 compte(s). Vous ne pouvez pas en créer de nouveaux.',
 
 # Edit page toolbar
@@ -445,7 +445,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 
 # Edit pages
 #
-'summary'      => 'Résumé',
+'summary'      => 'Résumé&nbsp;',
 'subject'	   => 'Sujet/titre',
 'minoredit'    => 'Modification mineure.',
 'watchthis'    => 'Suivre cet article',
@@ -594,20 +594,20 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'math_image_error'	=> "La conversion en PNG a échouée, vérifiez l'installation de Latex, dvips, gs et convert",
 'math_bad_tmpdir'	=> "Ne peux pas crééer ou écrire dans le répertoire temporaire",
 'math_bad_output'	=> "Ne peux pas crééer ou écrire dans le répertoire de sortie",
-'math_notexvc'		=> "L'éxécutable 'texvc' est in trouvable. Lisez math/README pour le configurer.",
+'math_notexvc'		=> "L'éxécutable 'texvc' est introuvable. Lisez math/README pour le configurer.",
 'prefs-personal'    => 'Informations personnelles',
 'prefs-rc'          => 'Modifications récentes et affichage des ébauches',
 'prefs-misc'        => 'Préférences diverses',
 'saveprefs'         => 'Enregistrer les préférences',
 'resetprefs'        => 'Rétablir les préférences',
 'oldpassword'       => 'Ancien mot de passe',
-'newpassword'       => 'Nouveau mot de passe',
+'newpassword'       => 'Nouveau mot de passe&nbsp;',
 'retypenew'         => 'Confirmer le nouveau mot de passe',
 'textboxsize'       => 'Taille de la fenêtre d\'édition',
-'rows'              => 'Rangées',
+'rows'              => 'Rangées&nbsp;',
 'columns'           => 'Colonnes',
 'searchresultshead' => 'Affichage des résultats de recherche',
-'resultsperpage'    => 'Nombre de réponses par page',
+'resultsperpage'    => 'Nombre de réponses par page&nbsp;',
 'contextlines'      => 'Nombre de lignes par réponse',
 'contextchars'      => 'Nombre de caractères de contexte par ligne',
 'stubthreshold'     => 'Taille minimale des articles courts',
@@ -699,8 +699,8 @@ L'heure indiquée est celle du serveur (UTC).
 <ul>
 </ul>
 ",
-'filename'	=> 'Nom',
-'filedesc'	=> 'Description',
+'filename'	=> 'Nom&nbsp;',
+'filedesc'	=> 'Description&nbsp;',
 'filestatus'	=> 'Statut du copyright',
 'filesource'	=> 'Source',	
 'affirmation'	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
@@ -710,17 +710,17 @@ L'heure indiquée est celle du serveur (UTC).
 'noaffirmation' => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
 'ignorewarning' => "Ignorer l'avertissement et copier le fichier quand même.",
 'minlength'	=> "Les noms des images doivent comporter au moins trois lettres.",
-'illegalfilename'	=> 'Le fichier "$1" contient des caractères qui ne sont pas autorisés dans le titre d\'une page. Veuillez renommer le fichier et le réenvoyer.',
-'badfilename' => "L'image a été renommée \"$1\".",
-'badfiletype' => "\".$1\" n'est pas un format recommandé pour les fichiers images.",
-'largefile'  => "La taille maximale conseillée pour les images est de 100Ko.",
+'illegalfilename'	=> 'Le fichier « $1 » contient des caractères qui ne sont pas autorisés dans le titre d\'une page. Veuillez renommer le fichier et le réenvoyer.',
+'badfilename' => 'L\'image a été renommée « $1 ».',
+'badfiletype' => '« .$1 » n\'est pas un format recommandé pour les fichiers images.',
+'largefile'  => 'La taille maximale conseillée pour les images est de 100Ko.',
 'successfulupload' => 'Copie réussie',
 'fileuploaded' => "Le fichier \"$1\" a été copié sur le serveur.
 Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.",
 'uploadwarning' => 'Attention !',
 'savefile'  => 'Sauvegarder le fichier',
-'uploadedimage' => " \"[[$1]]\" copié sur le serveur",
-'uploaddisabled' => "Désolé, l'envoi de fichier est désactivé.",
+'uploadedimage' => '« [[$1]] » copié sur le serveur',
+'uploaddisabled' => 'Désolé, l\'envoi de fichier est désactivé.',
 'uploadcorrupt' => "Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.",
 'fileexists' => "Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?",
@@ -820,8 +820,8 @@ Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 'debug'         => 'Déboguer',
 'newpages'      => 'Nouvelles pages',
 'ancientpages'	=> 'Articles les plus anciens',
-'move'		=> 'déplacer',
-'movethispage'  => 'Déplacer la page',
+'move'		=> 'renommer',
+'movethispage'  => 'Renommer la page',
 'unusedimagestext' => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 'booksources'   => "Ouvrages de référence",
 'booksourcetext' => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
@@ -859,13 +859,13 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 'emailsend'  => 'Envoyer',
 'emailsent'  => 'Message envoyé',
 'emailsenttext' => 'Votre message a été envoyé.',
-'usermailererror' => 'L\'objet Mail a renvoyé une erreur: ',
-'defemailsubject' => 'e-mail envoyé depuis {{SITENAME}}',
+'usermailererror' => 'Erreur de mail :',
+'defemailsubject' => 'courriel envoyé depuis {{SITENAME}}',
 
 # Watchlist
 #
 'watchlist'	=> 'Liste de suivi',
-'watchlistsub'	=> "(pour l'utilisateur \"$1\")",
+'watchlistsub'	=> '(pour l\'utilisateur « $1 »)',
 'nowatchlist'	=> "Votre liste de suivi ne contient aucun article.",
 'watchnologin'	=> "Non connecté",
 'watchnologintext' => "Vous devez être [[Special:Userlogin|connecté]]
@@ -876,7 +876,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 
 <p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.</p>",
 'removedwatch'	=> "Supprimée de la liste de suivi",
-'removedwatchtext' => "La page \"$1\" a été supprimée de votre liste de suivi.",
+'removedwatchtext' => "La page « $1 » a été supprimée de votre liste de suivi.",
 'watch'		=> 'Suivre',
 'watchthispage'	=> 'Suivre cette page',
 'unwatch'	=> 'ne plus suivre',
@@ -890,8 +890,8 @@ Les prochaines modifications de cette page et de la page discussion associée se
 'watchlistcontains' => "Votre liste de suivi contient $1 pages",
 'watcheditlist' => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.",
 'removingchecked' => "Les articles sélectionnés sont retirés de votre liste de suivi...",
-'couldntremove' => "Impossible de retirer l'article '$1'...",
-'iteminvalidname' => "Problème avec l'article '$1': le nom est invalide...",
+'couldntremove' => "Impossible de retirer l'article « $1 »...",
+'iteminvalidname' => "Problème avec l'article « $1 » : le nom est invalide...",
 'wlnote' => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
 'wlshowlast' => "Montrer les dernières $1 heures $2 jours $3",
 'wlsaved' => "La liste de suivi n'est remise à jour qu'une fois par heure pour alléger la charge sur le serveur.",
@@ -937,16 +937,16 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 'revertpage'	=> 'restitution de la dernière modification de $1',
 'protectlogpage' => 'Log_de_protection',
 'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
-'protectedarticle' => 'a protégée [[$1]]',
+'protectedarticle' => 'a protégé [[$1]]',
 'unprotectedarticle' => 'a déprotégé [[$1]]',
 
 'protectsub' => '(Bloque "$1")',
 'confirmprotect' => 'Confimer le bloquage',
-'confirmprotecttext' => 'Voulez vous vraiment bloquer cette page ?',
+'confirmprotecttext' => 'Voulez vous vraiment protéger cette page ?',
 'protectcomment' => 'Raison du bloquage',
 
 'unprotectsub' => '(Débloque "$1")',
-'confirmunprotecttext' => 'Vous les vous vraiment débloquer cette page ?',
+'confirmunprotecttext' => 'Voulez-vous réellement déprotéger cette page ?',
 'confirmunprotect' => 'Raison du débloquage',
 'unprotectcomment' => 'Raison du débloquage',
 'protectreason' => '(indiquez une raison)',
@@ -1006,7 +1006,7 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
 'ipaddress'	=> 'Adresse IP',
-'ipbreason'	=> 'Motif',
+'ipbreason'	=> 'Motif du blocage',
 'ipbsubmit'	=> 'Bloquer cette adresse',
 'badipaddress'	=> 'L\'adresse IP n\'est pas correcte.',
 'noblockreason' => 'Vous devez indiquer le motif du blocage.',
@@ -1017,7 +1017,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblockiptext' => 'Utilisez le formulaire ci-dessous pour rétablir l\'accès en écriture
 à partir d\'une adresse IP précédemment bloquée.',
 'ipusubmit'	=> 'Débloquer cette adresse',
-'ipusuccess'	=> 'Adresse IP "$1" débloquée',
+'ipusuccess'	=> 'Adresse IP « $1 » débloquée',
 'ipblocklist'	=> 'Liste des adresses IP bloquées',
 'blocklistline' => '$1, $2 a bloqué $3',
 'blocklink'	=> 'bloquer',
@@ -1025,7 +1025,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'contribslink'	=> 'contribs',
 'autoblocker'	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
 'blocklogpage'	=> 'Log de blocage',
-'blocklogentry'	=> 'blocage de "$1"',
+'blocklogentry'	=> 'blocage de « $1 »',
 'blocklogtext'	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
 'unblocklogentry'	=> 'déblocage de "$1"',
 'ipb_expiry_invalid' => 'temps d\'expiration invalide.',
@@ -1072,10 +1072,10 @@ avec modération.",
 
 # Special:Makesysop
 'bureaucratlog'		=> 'Log_bureaucrate',
-"bureaucratlogentry"	=> "Droits de l'utilisateur \"$1\" passés à \"$2\"",
-"makesysoptitle"	=> "Donne les droits d'adminitrateur.",
-"makesysoptext"		=> "Ce formulaire est utilisé par les bureaucrates pour donner les droits d'adminitrateur.
-Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner les droits.",
+'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » passés à « $2 »',
+'makesysoptitle'	=> 'Donne les droits d\'adminitrateur.',
+'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
+Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
 'makesysopname'		=> 'Nom de l\'utilisateur:',
 'makesysopsubmit'	=> 'Donner les droits d\'adminitrateur à cet utilisateur',
 'makesysopok'		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
@@ -1088,26 +1088,33 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 'makesysop'         => 'Donner les droits d\'adminitrateur à un utilisateur',
 
 # Special:Validate
+'val_article_lists' => 'Liste d\'articles validés',
 'val_clear_old' => 'Supprimer mes données de validation pour $1',
+'val_details_th_user' => 'Utilisateur $1',
 'val_merge_old' => 'Utiliser mes précédents choix pour les choix marqués \'Sans opinion\'',
+'val_no_anon_validation' => 'Vous devez être identifié pour valider un article.',
+'val_no' => 'Non',
 'val_noop' => 'Sans opinion',
+'val_page_validation_statistics' => 'Statistiques de validation pour $1',
 'val_percent' => '<b>$1%</b><br />($2 sur $3 points<br />par $4 utilisateurs)',
 'val_percent_single' => '<b>$1%</b><br />($2 sur $3 points<br />par un utilisateur)',
-'val_total' => 'Total',
-'val_version' => 'Version',
+'val_rev_for' => 'Correction pour $1',
+'val_revision' => 'Révision',
+'val_show_my_ratings' => 'Voir mes validations',
+'val_stat_link_text' => 'Statistiques de validation pour cet article',
+'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>\n",
 'val_tab' => 'Valider',
 'val_this_is_current_version' => 'ceci est la dernière version',
-'val_version_of' => "Version de $1" ,
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>\n",
-'val_stat_link_text' => 'Statistiques de validation pour cet article',
-'val_view_version' => 'Voir cette version',
-'val_validate_version' => 'Valider cette version',
+'val_total' => 'Total',
 'val_user_validations' => 'Cet utilisateur a validé $1 pages.',
-'val_no_anon_validation' => 'Vous devez être identifié pour valider un article.',
 'val_validate_article_namespace_only' => 'Seul les articles peuvent être validés. Cette page n\'est <i>pas</i> un article.',
 'val_validated' => 'Validation effectuée.',
-'val_article_lists' => 'List d\'articles validés',
-'val_page_validation_statistics' => 'Statistiques de validation pour $1',
+'val_validate_version' => 'Valider cette version',
+'val_version_of' => "Version de $1" ,
+'val_version' => 'Version',
+'val_view_version' => 'Voir cette version',
+'val_yes' => 'Oui',
+
 
 # Spam
 #
@@ -1125,7 +1132,7 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 
 # Move page
 #
-"movepage"  => "Déplacer un article",
+'movepage'  => 'Renommer un article',
 "movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
 Le titre précédent deviendra une page de redirection vers le nouveau titre.
 Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.
@@ -1133,18 +1140,18 @@ Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si 
 '''ATTENTION!'''
 Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté;
 assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
-"movepagetalktext" => "La page de discussion associé, si présente, sera automatiquement déplacée avec '''sauf si:'''
-*Vous déplacez une page vers un autre espace,
+"movepagetalktext" => "La page de discussion associée, si présente, sera automatiquement renommée avec '''sauf si:'''
+*Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou
 *Vous avez désélectionné le bouton ci-dessous.
 
-Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le désirez.",
+Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.",
 
 'movearticle'	=> 'Déplacer l\'article',
 'movenologin'	=> 'Non connecté',
-'movenologintext' => "Pour pouvoir déplacer un article, vous devez être [[Special:Userlogin|connecté]] en tant qu'utilisateur enregistré.",
+'movenologintext' => "Pour pouvoir renommer un article, vous devez être [[Special:Userlogin|connecté]] en tant qu'utilisateur enregistré.",
 'newtitle'	=> "Nouveau titre",
-'movepagebtn'	=> "Déplacer l'article",
+'movepagebtn'	=> "Renommer l'article",
 'pagemovedsub' => "Déplacement réussi",
 'pagemovedtext' => "L'article \"[[$1]]\" a été déplacé vers \"[[$2]]\".",
 'articleexists' => "Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n'est pas valide.
@@ -1153,11 +1160,13 @@ Veuillez en choisir un autre.",
 la page de discussion n'a pas pu être déplacée car il en existait déjà une
 sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 '1movedto2_redir' => "$1 déplacé vers $2 (redirect)",
-'movedto'  => 'déplacé vers',
-'movetalk'  => 'Déplacer aussi la page "discussion", s\'il y a lieu.',
+'movedto'  => 'renommé en',
+'movetalk'  => 'Renommer aussi la page "discussion", s\'il y a lieu.',
 'talkpagemoved' => 'La page discussion correspondante a également été déplacée.',
 'talkpagenotmoved' => 'La page discussion correspondante n\'a <strong>pas</strong> été déplacée.',
 '1movedto2' => '$1 déplacé vers $2',
+'movereason' => 'Raison du déplacement',
+
 
 # Export page
 'export'	=> 'Exporter des pages',
@@ -1341,6 +1350,18 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'exif-contrast' => 'Contraste',
 'exif-saturation' => 'Saturation',
 'exif-compression-1' => 'Sans compression',
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Inversée horizontalement',
+'exif-orientation-3' => 'Tournée de 180°',
+'exif-orientation-4' => 'Inversée verticalement',
+'exif-orientation-5' => 'Tournée de 90° à gauche et inversée verticalement',
+'exif-orientation-6' => 'Tournée de 90° à droite',
+'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement',
+'exif-orientation-8' => 'Tournée de 90° à gauche',
+'exif-resolutionunit-2' => 'pouces',
+'exif-resolutionunit-3' => 'centimètres',
+'exif-componentsconfiguration-0' => 'n\'existe pas',
+
 
 
 // exifgps:
