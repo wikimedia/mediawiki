@@ -673,6 +673,7 @@ $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgSysopRangeBans		= true; # Allow sysops to ban IP ranges
 
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
+$wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user talk page
 
 /**
  * Permission keys given to users in each group.

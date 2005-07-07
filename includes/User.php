@@ -512,6 +512,20 @@ class User {
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlockedby !== 0;
 	}
+
+	/**
+	 * Check if user is blocked from editing a particular article
+	 */
+	function isBlockedFrom( $title, $bFromSlave = false ) {
+		global $wgBlockAllowsUTEdit;
+		if ( $wgBlockAllowsUTEdit && $title->getText() === $this->getName() && 
+		  $title->getNamespace() == NS_USER_TALK )
+		{
+			return false;
+		} else {
+			return $this->isBlocked( $bFromSlave );
+		}
+	}
 	
 	/**
 	 * Get name of blocker
