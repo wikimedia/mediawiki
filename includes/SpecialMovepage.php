@@ -206,17 +206,11 @@ class MovePageForm {
 		# (2) the namespaces are not themselves talk namespaces, and of course
 		# (3) it exists.
 		if ( ( $wgRequest->getVal('wpMovetalk') == 1 ) &&
-		     ( ! Namespace::isTalk( $ons ) ) &&
-		     ( ! Namespace::isTalk( $nns ) ) ) {
+		     !$ot->isTalkPage() &&
+		     !$nt->isTalkPage() ) {
 			
-			# get old talk page namespace
-			$ons = Namespace::getTalk( $ons );
-			# get new talk page namespace
-			$nns = Namespace::getTalk( $nns );
-			
-			# make talk page title objects
-			$ott = Title::makeTitle( $ons, $ot->getDBkey() );
-			$ntt = Title::makeTitle( $nns, $nt->getDBkey() );
+			$ott = $ot->getTalkPage();
+			$ntt = $nt->getTalkPage();
 
 			# Attempt the move
 			$error = $ott->moveTo( $ntt, true, $this->reason );
