@@ -555,7 +555,7 @@ class Validation {
 
 		# Collecting statistic data
 		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( 'validate', '*', array( 'val_page' => $this->page_id, val_revision => $revision ), 'SpecialValidate::showDetails' );
+		$res = $db->select( 'validate', '*', array( 'val_page' => $this->page_id, 'val_revision' => $revision ), 'SpecialValidate::showDetails' );
 		while( $x = $db->fetchObject($res) ) {
 			$data[$this->make_user_id($x)][$x->val_type] = $x;
 			$users[$this->make_user_id($x)] = true;
@@ -623,11 +623,14 @@ class Validation {
 		
 		# Collecting statistic data
 		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( 'validate', '*', array( val_page => $this->page_id ), 'SpecialValidate::showList' );
+		$res = $db->select( 'validate', '*', array( "val_page" => $this->page_id ), 'SpecialValidate::showList' );
 
 		$statistics = array();
 		while( $vote = $db->fetchObject($res) ) {
 			$ts = $this->getRevisionTimestamp($vote->val_revision);
+			if ( !isset ( $statistics[$ts] ) ) $statistics[$ts] = array () ;
+			if ( !isset ( $statistics[$ts][$vote->val_type]->count ) ) $statistics[$ts][$vote->val_type]->count = 0 ;
+			if ( !isset ( $statistics[$ts][$vote->val_type]->sum ) ) $statistics[$ts][$vote->val_type]->sum = 0 ;
 			$statistics[$ts][$vote->val_type]->count++;
 			$statistics[$ts][$vote->val_type]->sum += $vote->val_value;
 		}
