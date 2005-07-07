@@ -324,7 +324,7 @@ class LanguageFur extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => '&nbsp;',
+		',' => "\xa0", // @bug 2749
 		'.' => ','
 	);
 	

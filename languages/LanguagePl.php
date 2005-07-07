@@ -7,9 +7,6 @@ require_once("LanguageUtf8.php");
 
 # FIXME: Lots of hardcoded Wikipedia-related text needs to be cleaned up.
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -1078,7 +1075,7 @@ class LanguagePl extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => '&nbsp;',
+		',' => "\xa0", // @bug 2749
 		'.' => ','
 	);
 
