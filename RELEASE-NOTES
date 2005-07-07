@@ -539,6 +539,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix escaping in page move template.
 
 
+== Changes since 1.5beta3 ==
+
+* Fix talk page move handling
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
