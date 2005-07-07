@@ -512,6 +512,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Massive update for Arab (ar) language using Wikipédia
 * (bug 1560) Massive update for Kurdish (ku) language using Wikipédia
 * (bug 2709) Some messages were not read from database
+* (bug 2416) Don't allow search engine robots to index or follow nonexisting articles
 
 
 === Caveats ===
