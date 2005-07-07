@@ -1505,7 +1505,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_validation_of' => 'Validation of "$1"',
 'val_revision_of' => 'Revision of $1',
 'val_revision_changes_ok' => 'Your ratings have been stored!',
-'val_rev_stats_link' => 'See the validation statistics for "$1" <a href="$2">here</a>',
+'val_rev_stats' => 'See the validation statistics for "$1" <a href="$2">here</a>',
 'val_revision_stats_link' => 'details',
 'val_iamsure' => 'Check this box if you really mean it!',
 'val_details_th' => '<sub>User</sub> \\ <sup>Topic</sup>',
