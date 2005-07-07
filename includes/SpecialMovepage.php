@@ -63,19 +63,18 @@ class MovePageForm {
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
-		if ( $this->oldTitle == '' ) {
+		$ot = Title::newFromURL( $this->oldTitle );
+		if( is_null( $ot ) ) {
 			$wgOut->errorpage( 'notargettitle', 'notargettext' );
 			return;
 		}
-
-		$ot = Title::newFromURL( $this->oldTitle );
 		$oldTitle = $ot->getPrefixedText();
 		
-		$encOldTitle = htmlspecialchars( $this->oldTitle );
+		$encOldTitle = htmlspecialchars( $oldTitle );
 		if( $this->newTitle == '' ) {
 			# Show the current title as a default
 			# when the form is first opened.
-			$encNewTitle = $oldTitle;
+			$encNewTitle = $encOldTitle;
 		} else {
 			if( $err == '' ) {
 				$nt = Title::newFromURL( $this->newTitle );
