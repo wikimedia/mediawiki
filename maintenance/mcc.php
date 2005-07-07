@@ -19,6 +19,7 @@ do {
 	$bad = false;
 	$quit = false;
 	$line = readconsole( "> " );
+	if ($line === false) exit;
 	$args = explode( " ", $line );
 	$command = array_shift( $args );
 	switch ( $command ) {
