@@ -35,8 +35,13 @@ class LogPage {
 	/* private */ var $type, $action, $comment, $params, $target;
 	var $updateRecentChanges = true;
 
+	/**
+	  * Constructor
+	  *
+	  * @param string $type One of 'block', 'protect', 'rights', 'delete',
+	  *               'upload', 'move'
+	  */
 	function LogPage( $type ) {
-		# Type is one of 'block', 'protect', 'rights', 'delete', 'upload', 'move'
 		$this->type = $type;
 	}
 
@@ -185,7 +190,7 @@ class LogPage {
 			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
-			$rv = "$action $titleLink";
+			$rv = "$action";
 		}
 		if( $filterWikilinks ) {
 			$rv = str_replace( "[[", "", $rv );
@@ -211,8 +216,7 @@ class LogPage {
 		$this->comment = $comment;
 		$this->params = LogPage::makeParamBlob( $params );
 		
-		$this->actionText = LogPage::actionText( $this->type, $action, 
-		  $target, NULL, $params );
+		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
 
 		return $this->saveContent();
 	}
