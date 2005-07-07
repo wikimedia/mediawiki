@@ -542,7 +542,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 == Changes since 1.5beta3 ==
 
 * Fix talk page move handling
-
+* (bug 2721) New language file for Vietnamese with the Vietnamese number notation
 
 === Caveats ===
 
