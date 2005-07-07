@@ -38,7 +38,7 @@ class LogPage {
 	/**
 	  * Constructor
 	  *
-	  * @param string $type One of 'block', 'protect', 'rights', 'delete',
+	  * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	  *               'upload', 'move'
 	  */
 	function LogPage( $type ) {
@@ -73,7 +73,10 @@ class LogPage {
 			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
 			$rcComment = $this->actionText;
 			if( '' != $this->comment ) {
-				$rcComment .= ': ' . $this->comment;
+				if ($rcComment == '')
+					$rcComment = $this->comment;
+				else
+					$rcComment .= ': ' . $this->comment;
 			}
 			
 			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment );
@@ -201,7 +204,7 @@ class LogPage {
 
 	/**
 	 * Add a log entry
-	 * @param string $action one of 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
+	 * @param string $action one of '', 'block', 'protect', 'rights', 'delete', 'upload', 'move', 'move_redir'
 	 * @param object &$target A title object.
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMsg.* functions
