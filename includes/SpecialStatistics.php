@@ -17,7 +17,7 @@ function wfSpecialStatistics() {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'site_stats', 'user', 'user_groups' ) );
 
-	$row = $dbr->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
+	$row = $dbr->selectRow( 'site_stats', '*', false, $fname );
 	$views = $row->ss_total_views;
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
@@ -27,7 +27,7 @@ function wfSpecialStatistics() {
 		# Update schema
 		$u = new SiteStatsUpdate( 0, 0, 0 );
 		$u->doUpdate();
-		$row = $dbr->selectRow( 'site_stats', '*', false, 'wfSpecialStatistics' );
+		$row = $dbr->selectRow( 'site_stats', '*', false, $fname );
 	}
 
 	if ( isset( $row->ss_total_pages ) ) {
