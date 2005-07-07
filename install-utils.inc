@@ -62,7 +62,9 @@ function readconsole( $prompt = '' ) {
 	} else {
 		print $prompt;
 		$fp = fopen( 'php://stdin', 'r' );
-		$resp = trim( fgets( $fp, 1024 ) );
+		$st = fgets($fp, 1024);
+		if ($st === false) return false;
+		$resp = trim( $st ) );
 		fclose( $fp );
 		return $resp;
 	}
