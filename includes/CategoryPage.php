@@ -89,7 +89,7 @@ class CategoryPage extends Article {
 		}
 		$limit = 200;
 		$res = $dbr->select(
-			array( 'categorylinks','cur' ),
+			array( 'cur', 'categorylinks' ),
 			array( 'cur_title', 'cur_namespace', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  cur_id',
@@ -98,9 +98,7 @@ class CategoryPage extends Article {
 			#+ $pageCondition,
 			$fname,
 			array( 'ORDER BY' => $flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-			       'LIMIT'    => $limit + 1,
-                               'USE INDEX' => 'id_title_ns_red'
-                               ) );
+			       'LIMIT'    => $limit + 1 ) );
 		
 		$sk =& $wgUser->getSkin();
 		$r = "<br style=\"clear:both;\"/>\n";
