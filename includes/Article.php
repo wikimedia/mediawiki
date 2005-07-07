@@ -81,7 +81,7 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	function getContent( $noredir ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgOut;
 
 		# Get variables from query string :P
 		$action = $wgRequest->getText( 'action', 'view' );
@@ -112,7 +112,7 @@ class Article {
 				return '';
 			}
 			wfProfileOut( $fname );
-
+			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 			return wfMsg( 'noarticletext' );
 		} else {
 			$this->loadContent( $noredir );
