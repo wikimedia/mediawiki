@@ -54,7 +54,7 @@ class MessageCache
 		# can return a cache hit, this saves
 		# some extra milliseconds
 		$this->mDeferred = true;
-		
+
 		wfProfileOut( $fname );
 	}
 
@@ -88,7 +88,7 @@ class MessageCache
 				wfDebug( "MessageCache::load(): loading all messages\n" );
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$success = $this->mMemc->add( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
+				$success = $this->mMemc->add( $this->mMemcKey.'-status', "loading", MSG_LOAD_TIMEOUT );
 				if ( $success ) {
 					wfProfileIn( $fname.'-load' );
 					$this->loadFromDB();
@@ -96,12 +96,14 @@ class MessageCache
 					# Save in memcached
 					# Keep trying if it fails, this is kind of important
 					wfProfileIn( $fname.'-save' );
-					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
+					for ($i=0; $i<20 &&
+					           !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
+					     $i++ ) {
 						usleep(mt_rand(500000,1500000));
 					}
 					wfProfileOut( $fname.'-save' );
 					if ( $i == 20 ) {
-						$this->mMemc->set( $this->mMemcKey, 'error', 60*5 );
+						$this->mMemc->set( $this->mMemcKey.'-status', 'error', 60*5 );
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 					}
 				}
@@ -137,7 +139,7 @@ class MessageCache
 	function loadFromDB() {
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$conditions = array( 'page_is_redirect' => 0, 
+		$conditions = array( 'page_is_redirect' => 0,
 					'page_namespace' => NS_MEDIAWIKI);
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
@@ -278,7 +280,7 @@ class MessageCache
 			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 			$message = $this->getFromCache( $lang->ucfirst( $key ) );
 		}
-		
+
 		# Final fallback
 		if( !$message ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
@@ -288,10 +290,10 @@ class MessageCache
 		$message = $this->transform( $message );
 		return $message;
 	}
-	
+
 	function getFromCache( $title ) {
 		$message = false;
-		
+
 		# Try the cache
 		if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
 			$message = $this->mCache[$title];
@@ -311,14 +313,14 @@ class MessageCache
 				$message = $revision->getText();
 				if ($this->mUseCache) {
 					$this->mCache[$title]=$message;
-					/* individual messages may be often 
-					   recached until proper purge code exists 
+					/* individual messages may be often
+					   recached until proper purge code exists
 					*/
 					$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
 				}
 			}
 		}
-		
+
 		return $message;
 	}
 
