@@ -28,7 +28,7 @@ require_once( 'includes/SiteConfiguration.php' );
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */
-$wgVersion			= '1.5beta2';
+$wgVersion			= '1.5beta3';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
