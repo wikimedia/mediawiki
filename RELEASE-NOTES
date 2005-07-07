@@ -3,6 +3,28 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5 beta 3 ==
+
+July 7, 2005
+
+MediaWiki 1.5 beta 3 is a preview release of the new 1.5 release
+series, with a security update over beta 2.
+
+Incorrect escaping of a parameter in the page move template could
+be used to inject JavaScript code by getting a victim to visit a
+maliciously constructed URL. Users of vulnerable releases are
+recommended to upgrade to this release.
+
+Vulnerable versions:
+* 1.5 preview series: n <= 1.5beta2 vulnerable, fixed in 1.5beta3
+* 1.4 stable series: 1.4beta6 <= n <= 1.4.5 vulnerable, fixed in 1.4.6
+* 1.3 legacy series: not vulnerable
+
+This release also includes several bug fixes and localization updates.
+See the changelog at the end of this file for a detailed list.
+
+
+
 == MediaWiki 1.5 beta 2 ==
 
 July 5, 2005
@@ -502,6 +524,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Make language variant selection work again for zh
 
 == Changes since 1.5beta2 ==
+
 * Escaped & correctly in Special:Contributions
 * (bug 2534) Hide edit sections with CSS to make right click to edit section work 
 * (bug 2708) Avoid undefined notice on cookieless login attempt
@@ -513,6 +536,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 1560) Massive update for Kurdish (ku) language using Wikipédia
 * (bug 2709) Some messages were not read from database
 * (bug 2416) Don't allow search engine robots to index or follow nonexisting articles
+* Fix escaping in page move template.
 
 
 === Caveats ===
