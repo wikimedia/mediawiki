@@ -543,6 +543,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * Fix talk page move handling
 * (bug 2721) New language file for Vietnamese with the Vietnamese number notation
+* (bug 2749) &nbsp; would appear as a literal in image galleries for Cs, Fr, Fur, Pl and Sv
 
 === Caveats ===
 
