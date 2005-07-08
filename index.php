@@ -69,7 +69,6 @@ OutputPage::setEncodings(); # Not really used yet
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
 
-$action = rtrim( $action );
 if ($wgRequest->getVal( 'printable' ) == 'yes') {
 	$wgOut->setPrintable();
 }
