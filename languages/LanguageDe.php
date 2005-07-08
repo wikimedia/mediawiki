@@ -885,7 +885,7 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
 
 die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
-die aktuelle Version ist {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}.
+die aktuelle Version ist: {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}
 
 $NEWPAGE
 
