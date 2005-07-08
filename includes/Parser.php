@@ -1064,7 +1064,7 @@ class Parser
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
 				# Autonumber if allowed
-				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) {
+				if ( strpos( HTTP_PROTOCOLS, str_replace('/','\/', $protocol) ) !== false ) {
 					$text = '[' . ++$this->mAutonumber . ']';
 					$linktype = 'autonumber';
 				} else {
