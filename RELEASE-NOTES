@@ -545,6 +545,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2721) New language file for Vietnamese with the Vietnamese number notation
 * (bug 2749) &nbsp; would appear as a literal in image galleries for Cs, Fr, Fur, Pl and Sv
 * (bug 787) external links being rendered when they only have one slash
+* Fixed a missing typecast in Language::dateFormat() that would cause some
+  interesting errors with signitures.
 
 === Caveats ===
 

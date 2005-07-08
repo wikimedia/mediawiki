@@ -2405,7 +2405,7 @@ class Language {
 
 		if ( !$wgUser->isLoggedIn() || $format === false ) {
 			$options = $this->getDefaultUserOptions();
-			return $options['date'];
+			return (string)$options['date'];
 		} else {
 			return $wgUser->getOption( 'date' );
 		}
