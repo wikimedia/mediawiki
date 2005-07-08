@@ -47,17 +47,17 @@ define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 define( 'UNIQ_PREFIX', 'NaodW29');
 
 # Constants needed for external link processing
-define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
-define( 'HTTP_PROTOCOLS', 'http|https' );
+define( 'URL_PROTOCOLS', 'http:\/\/|https:\/\/|ftp:\/\/|irc:\/\/|gopher:\/\/|news:|mailto:' );
+define( 'HTTP_PROTOCOLS', 'http:\/\/|https:\/\/' );
 # Everything except bracket, space, or control characters
 define( 'EXT_LINK_URL_CLASS', '[^]<>"\\x00-\\x20\\x7F]' );
 # Including space
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
 define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
-define( 'EXT_LINK_BRACKETED',  '/\[(\b('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
+define( 'EXT_LINK_BRACKETED',  '/\[(\b('.URL_PROTOCOLS.')'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
 define( 'EXT_IMAGE_REGEX',
-	'/^('.HTTP_PROTOCOLS.':)'.  # Protocol
+	'/^('.HTTP_PROTOCOLS.')'.  # Protocol
 	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
 );
@@ -1110,7 +1110,7 @@ class Parser
 		$fname = 'Parser::replaceFreeExternalLinks';
 		wfProfileIn( $fname );
 
-		$bits = preg_split( '/(\b(?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$bits = preg_split( '/(\b(?:'.URL_PROTOCOLS.'))/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
 		$i = 0;
 
@@ -1291,7 +1291,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/^(\b(?:'.URL_PROTOCOLS.'):)/', $m[1])) {
+			if (preg_match('/^(\b(?:'.URL_PROTOCOLS.'))/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
