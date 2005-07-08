@@ -1737,7 +1737,7 @@ class LanguageSk extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => "\xa0",
+		',' => "\xc2\xa0",
 		'.' => ','
 	);
  
