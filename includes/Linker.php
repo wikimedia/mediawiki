@@ -489,7 +489,7 @@ class Linker {
 			$boxheight = $height;
 			$thumbUrl  = $url;
 		} else {
-			$h  = intval( $height/($width/$boxwidth) );
+			$h  = round( $height/($width/$boxwidth) );
 			$oboxwidth = $boxwidth + 2;
 			if ( ( ! $boxheight === false ) &&  ( $h > $boxheight ) )
 			{

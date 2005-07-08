@@ -537,7 +537,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2709) Some messages were not read from database
 * (bug 2416) Don't allow search engine robots to index or follow nonexisting articles
 * Fix escaping in page move template.
-
+* (bug 153) Discrepancy between thumbnail size and <img> height attribute
 
 == Changes since 1.5beta3 ==
 
