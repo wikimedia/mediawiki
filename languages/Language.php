@@ -1941,8 +1941,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-orientation-3' => 'Rotated 180°', // 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Flipped vertically', // 0th row: bottom; 0th column: left
 'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically', // 0th row: left; 0th column: top
-'exif-orientation-6' => 'Roatated 90° CW', // 0th row: right; 0th column: top
-'exif-orientation-7' => 'Roateted 90° CW and flipped vertically', // 0th row: right; 0th column: bottom
+'exif-orientation-6' => 'Rotated 90° CW', // 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotated 90° CW and flipped vertically', // 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Rotated 90° CCW', // 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'chunky format',
