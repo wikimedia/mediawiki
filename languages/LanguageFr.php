@@ -1419,7 +1419,7 @@ class LanguageFr extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => "\xa0", // @bug 2749
+		',' => "\xc2\xa0", // @bug 2749
 		'.' => ','
 	);
 	
