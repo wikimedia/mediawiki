@@ -1272,7 +1272,7 @@ Magic links: RFC (bug 479)
 !! input
 RFC 822
 !! result
-<p><a href='http://www.faqs.org/rfcs/rfc822.html' class='external' title="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>
+<p><a href='http://www.ietf.org/rfc/rfc822.txt' class='external' title="http://www.ietf.org/rfc/rfc822.txt">RFC 822</a>
 </p>
 !! end
 
@@ -1981,7 +1981,7 @@ title=[[Parser test script]]
 Some text
 ===Another headline===
 !! result
-<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Table of contents</h2></div>
+<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Contents</h2></div>
 <ul>
 <li class='toclevel-1'><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -2030,7 +2030,7 @@ Handling of sections up to level 6 and beyond
 ========= Level 9 Heading=========
 ========== Level 10 Heading==========
 !! result
-<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Table of contents</h2></div>
+<table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Contents</h2></div>
 <ul>
 <li class='toclevel-1'><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
