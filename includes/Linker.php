@@ -20,7 +20,7 @@ class Linker {
 	function Linker() {}
 
 	/**
-	 * OBSOLETE
+	 * @deprecated
 	 */
 	function postParseLinkColour( $s = NULL ) {
 		return NULL;
