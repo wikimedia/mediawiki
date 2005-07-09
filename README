@@ -1,4 +1,4 @@
-2004-08-12
+2005-07-09
 
 MediaWiki
 ---------
@@ -71,8 +71,7 @@ announcements of new versions, bug fixes, and security issues.
 PHP
 
 The code is written in PHP. Version 4.3.2 or higher is recommended. There are
-known issues with early 4.2.x releases. Also, the Monobook skin currently does
-not work under the new PHP 5 (but you can use one of the older skins).
+known issues with early 4.2.x releases.
 
 MySQL
 
