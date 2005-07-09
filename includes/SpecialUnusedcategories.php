@@ -27,7 +27,7 @@ class UnusedCategoriesPage extends QueryPage {
 		$NScat = NS_CATEGORY;
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'categorylinks','page' ));
-		return "SELECT DISTINCT 'Unusedcategories' as type,
+		return "SELECT 'Unusedcategories' as type,
 				{$NScat} as namespace, page_title as title, 1 as value
 				FROM $page
 				LEFT JOIN $categorylinks ON page_title=cl_to
