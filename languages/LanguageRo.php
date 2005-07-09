@@ -645,7 +645,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'linkshere' => "Următoarele pagini conţin legături către aceasta:",
 'linkstoimage' => "Următoarele pagini leagă la această imagine:",
 #'linktrail' => "/^([a-z]+)(.*)$/sD",
-#'listadmins' => "Lista de administraţi",
 'listform' => "listă",
 'listusers' => "Lista de utilizatori",
 'loadhist' => "Încarc istoria versiunilor",

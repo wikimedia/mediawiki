@@ -865,7 +865,6 @@ format. Please enter a well-formatted address or empty that field.', */
 'linkshere' => 'Di van rûpelên de lînkek ji vê re heye:',
 'linkstoimage' => 'Di van rûpelên de lînkek ji vê wêneyê re heye:',
 #'linktrail' => '/^([a-z]+)(.*)$/sD',
-'listadmins' => 'Lîsteya koordînatoran',
 'listform' => 'lîste',
 'listingcontinuesabbrev' => ' dewam',
 'listusers' => 'Lîsteya bikarhêneran',

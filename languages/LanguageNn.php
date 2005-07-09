@@ -846,7 +846,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'longpages'		=> 'Lange sider',
 'deadendpages'          => 'Blindvegsider',
 'listusers'		=> 'Brukarliste',
-'listadmins'	        => 'Administratorliste',
 'specialpages'	        => 'Spesialsider',
 'spheading'		=> 'Spesialsider for alle brukarar',
 'restrictedpheading'    => 'Spesialsider med avgrensa tilgang',

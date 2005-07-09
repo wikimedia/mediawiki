@@ -826,7 +826,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 'booksourcetext' => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
 'alphaindexline' => '$1 à $2',
 'version' => 'Version',
-'listadmins' => "Liste des administrateurs",
 
 # All pages
 #

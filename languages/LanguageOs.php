@@ -113,7 +113,6 @@ if(isset($wgExtraNamespaces)) {
 'lineno' => "Рæнхъ $1:",
 'linklistsub' => "(Æрвитæнты номхыгъд)",
 'linkstoimage' => "Ацы нывæй чи пайда кæны, ахæм статьятæ:",
-'listadmins' => "Админты номхыгъд",
 'listform' => "номхыгъд",
 'listusers' => "Архайджыты номхыгъд",
 'localtime' => "Бынатон рæстæг",
