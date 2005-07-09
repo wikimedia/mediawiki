@@ -17,6 +17,7 @@ require_once( "WatchedItem.php" );
 function wfSpecialWatchlist() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
+        global $wgRCMaxAge;
 	$fname = "wfSpecialWatchlist";
 
 	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
@@ -146,14 +147,14 @@ function wfSpecialWatchlist() {
 	# through the time-sorted page list checking for watched items.
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
-	if( $cutoff && ( $days <= 28 ) ) {
+	if( $cutoff && ( $days <= ( $wgRCMaxAge / 86400 ) ) ) {
 		$docutoff = "AND rc_timestamp > '$cutoff'";
 		$sql = "SELECT 
 			rc_namespace cur_namespace, rc_title cur_title, rc_comment cur_comment, 
 			rc_cur_id cur_id, rc_user cur_user, 
 			rc_user_text cur_user_text, rc_timestamp cur_timestamp, 
 			rc_minor cur_minor_edit, rc_new cur_is_new 
-			FROM watchlist,recentchanges
+			FROM $watchlist,$recentchanges
 			WHERE wl_user=$uid AND wl_namespace=rc_namespace AND wl_title=rc_title AND rc_this_oldid=0
 			$docutoff
 		UNION SELECT 
@@ -161,7 +162,7 @@ function wfSpecialWatchlist() {
 			rc_cur_id cur_id, rc_user cur_user, 
 			rc_user_text cur_user_text, rc_timestamp cur_timestamp, 
 			rc_minor cur_minor_edit, rc_new cur_is_new 
-			FROM watchlist,recentchanges
+			FROM $watchlist,$recentchanges
 			WHERE wl_user=$uid AND wl_namespace+1=rc_namespace AND wl_title=rc_title AND rc_this_oldid=0
 			$docutoff
 		ORDER BY cur_timestamp DESC
