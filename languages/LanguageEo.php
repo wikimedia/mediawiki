@@ -993,8 +993,6 @@ class LanguageEo extends LanguageUtf8 {
 		foreach ( $wgNamespaceNamesEo as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
-		if( 0 == strcasecmp( 'Special', $text ) ) return -1;
-		if( 0 == strcasecmp( 'Wikipedia', $text ) ) return 4;
 		return false;
 	}
 
