@@ -548,6 +548,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fixed a missing typecast in Language::dateFormat() that would cause some
   interesting errors with signitures.
 * (bug 2764) Number format for Nds
+* (bug 1553) Stop forcing lowercase in Monobook skin for German language.
   
 === Caveats ===
 
