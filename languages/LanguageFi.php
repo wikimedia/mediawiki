@@ -90,6 +90,10 @@ require_once( 'LanguageUtf8.php' );
 'tog-externaleditor'  => 'Käytä ulkoista tekstieditoria oletuksena',
 'tog-externaldiff'    => 'Käytä ulkoista diff-ohjelmaa oletuksena',
 
+'underline-always'    => 'Aina',
+'underline-never'     => 'Ei koskaan',
+'underline-default'   => 'Selaimen oletustapa',
+
 # dates
 'sunday'      => 'sunnuntai',
 'monday'      => 'maanantai',
@@ -218,11 +222,12 @@ require_once( 'LanguageUtf8.php' );
 'sysoptext'           => 'Tämän toiminnon voi suorittaa vain käyttäjä, jolla on ylläpitäjäoikeudet. Katso $1.',
 'developertitle'      => 'Ohjelmiston kehittäjän oikeuksia vaaditaan',
 'developertext'       => 'Yrittämäsi toiminnon voi suorittaa vain henkilö, jolla on ohjelmistokehittäjänoikeudet. Katso $1.',
-'bureaucrattitle'     => 'Tämän toiminnon suorittamiseen tarvitaan byrokraattioikeudet',
-'bureaucrattext'      => 'Tämän toiminnon voivat suorittaa vain ylläpitäjät, joilla on byrokraattioikeudet.',
 
 'badaccess'           => 'Lupa evätty',
 'badaccesstext'       => 'Toiminto, jonka halusit suorittaa on rajoitettu käyttäjille, joilla on oikeus "$2". Katso $1.',
+
+'versionrequired'     => 'Mediawikistä tarvitaan vähintään versio $1',
+'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
 'nbytes'              => '$1 tavua',
 'go'                  => 'Siirry',
@@ -296,7 +301,6 @@ require_once( 'LanguageUtf8.php' );
 * [[Talk:{{PAGENAME}}|Keskustele tästä sivusta]] muiden kanssa
 ----
 Sivun lähdekoodi:',
-'seriousxhtmlerrors'  => 'XHTML-merkkauskielessä havaittiin vakavia virheitä.',
 'sqlhidden'           => '(SQL-kysely piilotettu)',
 
 # Login and logout pages
@@ -425,7 +429,7 @@ Sivun lähdekoodi:',
 'talkpagetext'        => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext'    => '----\'\'Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:Userlogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.\'\'',
 'noarticletext'       => '<big>\'\'\'{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.\'\'\'</big>
-* Voit kirjoittaa uuden sivun \'\'\'[http:{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}].\'\'\'
+* Voit kirjoittaa uuden sivun \'\'\'<span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.\'\'\'
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].',
 'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Konqueror ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai  \'\'\'Opera:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => '\'\'\'Vinkki:\'\'\' Käytä esikatselupainiketta testataksesi uutta CSS:ää tai JavaScriptiä ennen tallennusta.',
@@ -471,6 +475,8 @@ Sivun lähdekoodi:',
 'orig'                => 'alkup.',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <b>p</b> = pieni muutos', // TODO NO WIKIMARKUP
 'history_copyright'   => '-',
+'histfirst'           => 'Ensimmäiset',
+'histlast'            => 'Viimeisimmät',
 
 # Diffs
 #
@@ -628,7 +634,7 @@ Sivun lähdekoodi:',
 'reupload'            => 'Uusi tallennus',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
 'uploadnologin'       => 'Et ole kirjaunut sisään',
-'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.', // TODO NO WIKIMARKUP
+'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
 'upload_directory_read_only' => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon "$1".',
 'uploaderror'         => 'Tallennusvirhe',
 'uploadtext'          => '\'\'\'SEIS!\'\'\' Ennen kuin tallennat tiedostoja {{GRAMMAR:illative|{{SITENAME}}}}, tutustu [[Project:Tiedostojen tallennus|sääntöihin]] ja noudata niitä.
@@ -665,7 +671,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'fileuploaded'        => 'Tiedosto \'\'\'$1\'\'\' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: \'\'\'<nowiki>[[Kuva:$1|thumb|Kuvaus]]</nowiki>\'\'\'',
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
-'uploadedimage'       => 'tallensi tiedoston [[$1]]', // TODO CHECK ME
+'uploadedimage'       => 'tallensi tiedoston [[$1]]',
 'uploaddisabled'      => 'Tiedostojen lähettäminen on poissa käytöstä.',
 'uploadscripted'      => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'       => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
@@ -887,7 +893,7 @@ Palaute ja lisäapu osoitteessa:
 'historywarning'      => 'Varoitus: Sivulla, jonka aiot poistaa on muokkaushistoria: ',
 'confirmdeletetext'   => 'Olet tuhomassa sivun tai tiedoston ja kaiken sen historian tietokannasta. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} käytännön mukaisesti.',
 'actioncomplete'      => 'Toiminto suoritettu',
-'deletedtext'         => '<b>$1</b> on poistettu. Katso $2 nähdäksesi tallenteen viimeaikaisista poistoista.', // TODO NO WIKIMARKUP
+'deletedtext'         => '\'\'\'$1\'\'\' on poistettu. Katso $2 nähdäksesi tallenteen viimeaikaisista poistoista.',
 'deletedarticle'      => 'poisti sivun $1',
 'dellogpage'          => 'Poistoloki',
 'dellogpagetext'      => 'Alla on loki viimeisimmistä poistoista.',
@@ -967,6 +973,9 @@ Palaute ja lisäapu osoitteessa:
 'ipbexpiry'           => 'Umpeutuu',
 'ipbreason'           => 'Syy',
 'ipbsubmit'           => 'Estä tämä osoite',
+'ipbother'            => 'Vapaamuotoinen kesto',
+'ipboptions'          => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuisesti:infinite',
+'ipbotheroption'      => 'Muu kesto',
 'badipaddress'        => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'   => 'Esto onnistui',
 'blockipsuccesstext'  => 'Käyttäjä tai IP-osoite \'\'\'$1\'\'\' on estetty.<br />Nykyiset estot löytyvät [[Special:Ipblocklist|estolistalta]].',
@@ -1038,7 +1047,7 @@ Palaute ja lisäapu osoitteessa:
 'movepage'            => 'Siirrä sivu',
 'movepagetext'        => 'Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudellenohjausten varalta. Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.
 
-Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassaolevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listadmins|ylläpitäjään]].
+Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassaolevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers|ylläpitäjään]].
 
 \'\'\'HUOMIO!\'\'\'
 Saatat olla tekemässä huomattavaa ja odottamatonta muutosta suositulle sivulle. Ole varma, että ymmärrät seuraukset ennen kuin jatkat.',
@@ -1060,7 +1069,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'movedto'             => 'Siirretty uudelle otsikolle',
 'movetalk'            => 'Siirrä myös keskustelusivu, jos mahdollista.',
 'talkpagemoved'       => 'Myös sivun keskustelusivu siirrettiin.',
-'talkpagenotmoved'    => 'Sivun keskustelusivua <b>ei</b> siirretty.', // TODO: NO WIKIMARKUP
+'talkpagenotmoved'    => 'Sivun keskustelusivua \'\'\'ei\'\'\' siirretty.',
 '1movedto2'           => 'siirsi sivun $1 uudelle nimelle $2',
 '1movedto2_redir'     => 'siirsi sivun $1 uudelleenohjauksen $2 päälle',
 'movelogpage'         => 'Siirtoloki',
