@@ -109,6 +109,14 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesDe = array(
+'Monobook.css' =>
+'/** Do not force \'lowercase\' */
+.portlet h5,
+.portlet h6,
+#p-personal ul,
+#p-cactions li a {
+	text-transform: none;
+}',
 # User toggles
 'tog-hover'		=> 'Tooltips anzeigen',
 "tog-underline"               => "Verweise unterstreichen",
