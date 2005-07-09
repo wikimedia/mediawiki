@@ -20,7 +20,7 @@ class UnusedCategoriesPage extends QueryPage {
 	}
 
 	function getPageHeader() {
-		return '<p>'.wfMsg('unusedcategoriestext')."</p><br />\n";
+		return '<p>' . wfMsg('unusedcategoriestext') . '</p>';
 	}
 
 	function getSQL() {
