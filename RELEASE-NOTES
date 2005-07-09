@@ -547,7 +547,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 787) external links being rendered when they only have one slash
 * Fixed a missing typecast in Language::dateFormat() that would cause some
   interesting errors with signitures.
-
+* (bug 2764) Number format for Nds
+  
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
