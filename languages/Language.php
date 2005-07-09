@@ -1157,7 +1157,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'unusedimagestext' => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
 in active use.</p>',
-'unusedcategoriestext' => '<p>The following category pages exist although no other article or category make use of them.</p>',
+'unusedcategoriestext' => 'The following category pages exist although no other article or category make use of them.',
 
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exist in the wiki.',
