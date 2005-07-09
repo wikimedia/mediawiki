@@ -1117,6 +1117,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
 'uncategorizedcategories'	=> 'Uncategorized categories',
+'unusedcategories' => 'Unused categories',
 'unusedimages'	=> 'Unused files',
 'popularpages'	=> 'Popular pages',
 'nviews'		=> '$1 views',
@@ -1156,6 +1157,8 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'unusedimagestext' => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
 in active use.</p>',
+'unusedcategoriestext' => '<p>The following categorie pages exist although no other article or category make use of them.</p>',
+
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',

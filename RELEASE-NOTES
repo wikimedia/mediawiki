@@ -549,6 +549,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   interesting errors with signitures.
 * (bug 2764) Number format for Nds
 * (bug 1553) Stop forcing lowercase in Monobook skin for German language.
+* (bug 1064) Implements Special:Unusedcategories
+
   
 === Caveats ===
 
