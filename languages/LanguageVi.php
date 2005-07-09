@@ -12,3 +12,4 @@ class LanguageVi extends LanguageUtf8 {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 }
+?>
