@@ -171,7 +171,6 @@ $wgAllMessagesFur = array(
 'lastmodified' => "Modificât par l'ultime volte il $1",
 'lastmodifiedby' => "Modificât par l'ultime volte il $1 di",
 'link_sample' => "Titul dal leam",
-'listadmins' => "Liste dai aministradôrs",
 'listform' => "liste",
 'listusers' => "Liste dai utents",
 'login' => "Jentre",

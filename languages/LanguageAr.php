@@ -264,7 +264,6 @@ require_once('LanguageUtf8.php');
 'link_sample' => 'عنوان وصلة',
 'linkshere' => 'الصفحات التالية تحتوي على وصلة إلى هنا:',
 'linkstoimage' => 'الصفحات التالية تحتوي على وصلة لهذه الصورة:',
-'listadmins' => 'قائمة المدراء',
 'listform' => 'قائمة',
 'listusers' => 'قائمة الأعضاء',
 'loadhist' => 'تحميل تاريخ الصفحة',

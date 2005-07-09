@@ -785,7 +785,6 @@ global $wgRightsText;
 	"longpages"			=>	"Долги страници",
 	"deadendpages"			=>	"Ќорсокак страници",
 	"listusers"			=>	"Листа на корисници",
-	'listadmins'			=>	'Листа на администратори',
 	"specialpages"			=>	"Специјални страници",
 	"spheading"			=>	"Специјални страници за сите корисници",
 	'restrictedpheading'		=>	'Специјални страници со ограничен пристап',

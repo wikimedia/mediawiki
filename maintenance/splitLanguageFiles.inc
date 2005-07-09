@@ -964,7 +964,6 @@ $commonMsg = array (
 'longpages',
 'deadendpages',
 'listusers',
-'listadmins',
 'specialpages',
 'spheading',
 'restrictedpheading',

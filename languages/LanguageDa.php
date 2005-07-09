@@ -995,7 +995,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "longpages"		=> "Lange artikler",
 'deadendpages'  => 'Blindgydesider',
 "listusers"		=> "Liste over brugere",
-'listadmins'	=> 'Liste over administratorer',
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
 'restrictedpheading'	=> 'Specielle sider med begrænset adgang',

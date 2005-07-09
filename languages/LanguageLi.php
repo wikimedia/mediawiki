@@ -802,7 +802,6 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'lastmodifiedby' => "Dees pazjena is 't litst verangert op $1 doer $2.",
 'link_sample' => "Link titel",
 'link_tip' => "Interne link",
-'listadmins' => "Liest van admins",
 'loginreqtext' => "De mos [[special:Userlogin|inglogge]] om anger pazjenas te bekieke.",
 'longpagewarning' => "WAARSJUWING: Dees pazjena is $1 kilobytes lang; 'n aantal browsers kint probleme höbbe mit 't verangere van pazjena's in de buurt van of grotter as 32 kB. Kiek of se sjtukke van de pazjena mesjiens kins verplaatsje nao 'n nuui pazjena.",
 'mailerror' => "Fout bie 't versjture van mail: $1",
