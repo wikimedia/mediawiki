@@ -226,6 +226,23 @@ class User {
 	}
 
 	/**
+	 * Count the number of edits of a user 
+	 *
+	 * @param int $uid The user ID to check
+	 * @return int
+	 */
+	function edits( $uid ) {
+		$fname = 'User::editCount';
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->selectField(
+			'revision', 'count(*)',
+			array( 'rev_user' => $uid ),
+			$fname
+		);
+	}
+
+	/**
 	 * probably return a random password
 	 * @return string probably a random password
 	 * @static
