@@ -42,7 +42,7 @@ class DisambiguationsPage extends PageQueryPage {
         $dtitle = $dbr->addQuotes( $dp->getDBkey() );
 
 		$sql = "SELECT 'Disambiguations' as type,"
-			. "la.pl_namespace AS namespace, la.pl_title AS title, la.pl_from AS link_from"
+			. "la.pl_namespace AS namespace, la.pl_title AS title, la.pl_from AS value"
 		    . " FROM {$pagelinks} AS la, {$pagelinks} AS lb,"
 			.      " {$page} AS pa, {$page} AS pb"
 		    . " WHERE pb.page_namespace = $dns"
@@ -59,7 +59,7 @@ class DisambiguationsPage extends PageQueryPage {
 	
 	function formatResult( $skin, $result ) {
 		global $wgContLang ;
-		$title = Title::newFromId( $result->link_from );
+		$title = Title::newFromId( $result->value );
         $dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->makeKnownLinkObj( $title,'');
