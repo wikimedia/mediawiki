@@ -1122,26 +1122,24 @@ i bunden af skærmen.",
 'changed'			=> 'ændret',
 'created'			=> 'oprettet',
 'enotif_subject' 	=> '{{SITENAME}}-siden $PAGETITLE_QP er blevet ændret af $PAGEEDITOR_QP',
-'enotif_lastvisited' => 'Se {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for alle ændringer siden dit sidste besøg.',
+'enotif_lastvisited' => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_body' => 'Kære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATE af $PAGEEDITOR,
-se {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for den nyeste version.
+{{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den nyeste version.
 
 $NEWPAGE
 
 Bidragyderens beskrivelse: $PAGESUMMARY $PAGEMINOREDIT
 Kontakt bidragyderen:
-mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+mail $PAGEEDITOR_EMAIL
+wiki $PAGEEDITOR_WIKI
 
-Du vil ikke modtage flere beskeder om yderligere ændringer af denne side med mindre du besøger den.
-På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
+Du vil ikke modtage flere beskeder om yderligere ændringer af denne side med mindre du besøger den. På din overvågningsliste kan du også nulstille alle markeringer på de sider, du overvåger.
 
              Med venlig hilsen {{SITENAME}}s informationssystem
 
 --
-Besøg {{SERVER}}{{localurl:Special:Watchlist|magic=yes}} for at ændre indstillingerne for din overvågningsliste
+Besøg {{SERVER}}{{localurl:Special:Watchlist/edit}} for at ændre indstillingerne for din overvågningsliste
 
 Tilbagemelding og yderligere hjælp:
 {{SERVER}}{{localurl:Landsbybrønden}}',

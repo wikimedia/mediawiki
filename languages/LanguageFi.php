@@ -853,28 +853,26 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'changed'             => 'muuttanut sivua',
 'created'             => 'luonut sivun',
 'enotif_subject'      => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
-'enotif_lastvisited'  => 'Osoitteessa {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} on kaikki muutokset viimeisen käyntisi jälkeen.',
+'enotif_lastvisited'  => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
 'enotif_body'         => 'Käyttäjä $WATCHINGUSERNAME,
 
-{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE.
-Nykyinen versio on osoitteessa {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} .
+{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
 
 $NEWPAGE
 
 Muokkaajan yhteenveto: $PAGESUMMARY $PAGEMINOREDIT
 
 Ota yhteyttä muokkaajaan:
-sähköposti: {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki: {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+sähköposti: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
-Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla.
-Voit myös nollata ilmoitukset kaikille tarkkailemillesi sivuille tarkkailulistallasi.
+Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös nollata ilmoitukset kaikille tarkkailemillesi sivuille tarkkailulistallasi.
 
              {{GRAMMAR:genitive|{{SITENAME}}}} ilmoitusjärjestelmä
 
 --
 Tarkkailulistan asetuksia voit muuttaa osoitteessa:
-{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+{{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 Palaute ja lisäapu osoitteessa:
 {{SERVER}}{{localurl:Help:Sähköposti-ilmoitus}}',

@@ -1072,27 +1072,25 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'changed' 	=> 'změněno',
 'created' 	=> 'vytvořeno',
 'enotif_subject' 	=> '$PAGEEDITOR upravil stránku $PAGETITLE na {{grammar:6sg|{{SITENAME}}}}.',
-'enotif_lastvisited' => 'Vizte {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} pro seznam všech změn od minulé návštěvy.',
+'enotif_lastvisited' => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_body' => 'Vážený uživateli $WATCHINGUSERNAME,
 
-$PAGEEDITDATE upravil $PAGEEDITOR stránku $PAGETITLE,
-vizte {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} pro aktuální verzi.
+$PAGEEDITDATE upravil $PAGEEDITOR stránku $PAGETITLE, vizte $PAGETITLE_URL pro aktuální verzi.
 
 $NEWPAGE
 
 Shrnutí editace: $PAGESUMMARY $PAGEMINOREDIT
 Uživatele, který změnu provedl, můžete kontaktovat:
-e-mailem: {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-na wiki: {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+e-mailem: $PAGEEDITOR_EMAIL
+na wiki: $PAGEEDITOR_WIKI
 
-Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky,
-případně do doby, než vynulujete příznaky ve svém seznamu sledovaných stránek.
+Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky, případně do doby, než vynulujete příznaky ve svém seznamu sledovaných stránek.
 
 	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
 --
 Pro změnu nastavení navštivte
-{{SERVER}}{{localurl:Special:Watchlist|magic=yes}}
+{{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 Rady a kontakt:
 {{SERVER}}{{localurl:Project:Potřebuji pomoc}}',

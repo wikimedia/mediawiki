@@ -958,27 +958,26 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk «Fjern overvaking» 
 'changed'               => 'endra',
 'created'               => 'oppretta',
 'enotif_subject'        => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
-'enotif_lastvisited'    => 'Sjå {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for alle endringane sidan siste vitjing.',
+'enotif_lastvisited'    => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_body'           => 'Hei $WATCHINGUSERNAME,
 
-{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for den gjeldande versjonen.
+{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
 
 $NEWPAGE
 
 Bidragytaren sitt endringssamandrag: $PAGESUMMARY $PAGEMINOREDIT
 
 Du kan kontakte bidragsytaren gjennom:
-e-post: {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}, eller
-wiki: {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+e-post: $PAGEEDITOR_EMAIL , eller
+wiki: $PAGEEDITOR_WIKI
 
-Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt.
-Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
+Du får ikkje fleire endringsmeldingar om denne sida før du har vitja henne på nytt. Du kan også tilbakestille endringsmeldingsstatus for alle sidene på overvakingslista di.
 
              Helsing din overvakande {{SITENAME}}-endringsmeldingssystemven
 
 --
 For å endre innstillingane for overvakingslista di, gå til
-{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+{{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 For hjelp og meir informasjon:
 {{SERVER}}{{localurl:Hjelp:Overvaking}}',
