@@ -78,7 +78,7 @@ class PageHistory {
 		 */
 		$id = $this->mTitle->getArticleID();
 		if( $id == 0 ) {
-			$wgOut->addWikiText( wfMsg('nohistory') );
+			$wgOut->addWikiText( wfMsg( 'nohistory' ) );
 			wfProfileOut( $fname );
 			return;
 		}

@@ -551,8 +551,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 1553) Stop forcing lowercase in Monobook skin for German language.
 * (bug 1064) Implements Special:Unusedcategories
 * (bug 2311) New language file for Macedonian
+* Fix nohistory message on empty page history
 
-  
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
