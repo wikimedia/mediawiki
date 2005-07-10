@@ -554,7 +554,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix nohistory message on empty page history
 * Fix fatal error in history when validation on
 * Cleaned up email notification message formatting
-
+* Finally fixed Special:Disambiguations that was broke since SCHEMA_WORK
 
 === Caveats ===
 

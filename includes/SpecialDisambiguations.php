@@ -42,12 +42,14 @@ class DisambiguationsPage extends PageQueryPage {
         $dtitle = $dbr->addQuotes( $dp->getDBkey() );
 
 		$sql = "SELECT 'Disambiguations' as type,"
-            .        " pl_namespace AS namespace, pl_title AS title"
-		    . " FROM {$pagelinks}, {$page}"
-		    . " WHERE page_namespace = $dns"
-            . " AND page_title = $dtitle"
-		    . " AND pl_from=page_id";
-
+			. "la.pl_namespace AS namespace, la.pl_title AS title, la.pl_from AS link_from"
+		    . " FROM {$pagelinks} AS la, {$pagelinks} AS lb,"
+			.      " {$page} AS pa, {$page} AS pb"
+		    . " WHERE pb.page_namespace = $dns"
+            . " AND pb.page_title = $dtitle"      # disambiguation pages
+			. " AND lb.pl_title = pb.page_title"  # title of pages that are disamb
+			. " AND pa.page_id = lb.pl_from"      # id of page poiting to a disamb
+			. " AND la.pl_title = pa.page_title"; # title of those
 		return $sql;
 	}
 
@@ -57,8 +59,8 @@ class DisambiguationsPage extends PageQueryPage {
 	
 	function formatResult( $skin, $result ) {
 		global $wgContLang ;
-		$dp = Title::newFromText(wfMsgForContent("disambiguationspage"));
-        $title = Title::makeTitle( $result->namespace, $result->title );
+		$title = Title::newFromId( $result->link_from );
+        $dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->makeKnownLinkObj( $title,'');
 		$edit = $skin->makeBrokenLinkObj( $title, "(".wfMsg("qbedit").")" , 'redirect=no');
@@ -77,6 +79,5 @@ function wfSpecialDisambiguations() {
 	$sd = new DisambiguationsPage();
 	
 	return $sd->doQuery( $offset, $limit );
-
 }
 ?>
