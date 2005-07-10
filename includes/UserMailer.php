@@ -68,7 +68,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 	
 		// Create the mail object using the Mail::factory method
 		$mail_object =& Mail::factory('smtp', $wgSMTP);
-	
+		wfDebug( "Sending mail via PEAR::Mail\n" );
 		$mailResult =& $mail_object->send($to, $headers, $body);
 		
 		# Based on the result return an error string, 
@@ -93,6 +93,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
+		wfDebug( "Sending mail via internal mail() function\n" );
 		mail( $to, $subject, $body, $headers );
 		restore_error_handler();
 
@@ -258,7 +259,8 @@ class EmailNotification {
 		# http://bugzilla.wikipeda.org/show_bug.cgi?id=603 "Delete + undelete cycle doesn't preserve old_id"
 		# However, in the case of a new page which is already watched, we have no previous version to compare
 		if( $this->oldid ) {
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited' );
+			$difflink = $this->title->getFullUrl( 'diff=0&oldid=' . $this->oldid );
+			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited', $difflink );
 			$keys['$OLDID']   = $this->oldid;
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'changed' );
 		} else {
@@ -271,10 +273,9 @@ class EmailNotification {
 		$body = strtr( $body, $keys ); 
 		$pagetitle = $this->title->getPrefixedText();
 		
-		$keys['%24PAGETITLE_RAWURL'] = wfUrlencode( $pagetitle );
-		$keys['$PAGETITLE_RAWURL']   = wfUrlencode( $pagetitle );
-		$keys['%24PAGETITLE']        = $pagetitle; # needed for the {{localurl:$PAGETITLE}} in the messagetext, "$" appears here as "%24"
 		$keys['$PAGETITLE']          = $pagetitle;
+		$keys['$PAGETITLE_URL']      = $this->title->getFullUrl();
+		
 		$keys['$PAGETIMESTAMP']      = $article->mTimestamp;	# this is the raw internal timestamp - can be useful, too
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
@@ -307,19 +308,20 @@ class EmailNotification {
 			$anonUrl = wfUrlencode( $name ) . ' (anonymous user)';
 			$subject = str_replace('$PAGEEDITOR', 'anonymous user '. $name, $subject);
 			
-			$keys['$PAGEEDITOR_RAWURL']   = $anonUrl;
-			$keys['%24PAGEEDITOR_RAWURL'] = $anonUrl;
-			$keys['%24PAGEEDITORE']       = $anon;
-			$keys['$PAGEEDITOR']          = 'anonymous user ' . $name;
+			$keys['$PAGEEDITOR']       = 'anonymous user ' . $name;
+			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
 		} else {
 			$subject = str_replace('$PAGEEDITOR', $name, $subject);
-			$keys['$PAGEEDITOR_RAWURL']   = wfUrlencode( $name );
-			$keys['%24PAGEEDITOR_RAWURL'] = wfUrlencode( $name );
-			$keys['%24PAGEEDITORE']       = $wgUser->getTitleKey();
 			$keys['$PAGEEDITOR']          = $name;
+			$emailPage = Title::makeTitle( NS_SPECIAL, 'Emailuser/' . $name );
+			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getFullUrl();
 		}
+		$userPage = $wgUser->getUserPage();
+		$keys['$PAGEEDITOR_WIKI'] = $userPage->getFullUrl();
 		$body = strtr( $body, $keys );
-	
+		
+		$body = wordwrap( $body, 72 );
+
 		# now save this as the constant user-independent part of the message
 		$this->from    = $from;
 		$this->replyto = $replyto;

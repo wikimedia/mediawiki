@@ -1266,28 +1266,26 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'changed'			=> 'changed',
 'created'			=> 'created',
 'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
-'enotif_lastvisited' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
+'enotif_lastvisited' => 'See $1 for all changes since your last visit.',
 'enotif_body' => 'Dear $WATCHINGUSERNAME,
 
-the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR,
-see {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for the current version.
+the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
 $NEWPAGE
 
 Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
 
 Contact the editor:
-mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
+There will be no other notifications in case of further changes unless you visit this page. You could also reset the notification flags for all your watched pages on your watchlist.
 
              Your friendly {{SITENAME}} notification system
 
 --
 To change your watchlist settings, visit
-{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+{{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 Feedback and further assistance:
 {{SERVER}}{{localurl:Help:Contents}}',
