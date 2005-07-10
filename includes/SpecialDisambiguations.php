@@ -18,7 +18,7 @@ require_once('QueryPage.php');
 class DisambiguationsPage extends PageQueryPage {
 
 	function getName() {
-		return 'disambiguations';
+		return 'Disambiguations';
 	}
 	
 	function isExpensive( ) { return true; }
