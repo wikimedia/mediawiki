@@ -1309,7 +1309,7 @@ END;
 					$bar[$heading][] = array(
 						'text' => wfMsg( $line[1] ),
 						'href' => $this->makeInternalOrExternalUrl( $link ),
-						'id' => 'n-' . $line[1],
+						'id' => 'n-' . strtr($line[1], ' ', '-'),
 					);
 				} else { continue; }
 			}
