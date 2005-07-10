@@ -31,5 +31,13 @@ class LanguageTr extends LanguageUtf8 {
         function formatNum( $number, $year = false ) {
                 return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
         }
+        
+        function ucfirst ( $string ) {
+        	if ( $string[0] == 'i' ) {
+        		return 'İ' . substr( $string, 1 );
+        	} else {
+        		return parent::ucfirst( $string );
+        	}
+        }
 }
 ?>
