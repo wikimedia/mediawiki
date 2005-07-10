@@ -173,11 +173,11 @@ class Image
 	function saveToCache() {
 		global $wgMemc;
 		$this->load();
-		// We can't cache metadata for non-existent files, because if the file later appears 
-		// in commons, the local keys won't be purged.
+		$keys = $this->getCacheKeys();
 		if ( $this->fileExists ) {
-			$keys = $this->getCacheKeys();
-		
+			// We can't cache negative metadata for non-existent files,
+			// because if the file later appears in commons, the local
+			// keys won't be purged.
 			$cachedValues = array('name' => $this->name,
 								  'imagePath' => $this->imagePath,
 								  'fileExists' => $this->fileExists,
@@ -191,6 +191,10 @@ class Image
 								  'size' => $this->size);
 
 			$wgMemc->set( $keys[0], $cachedValues );
+		} else {
+			// However we should clear them, so they aren't leftover
+			// if we've deleted the file.
+			$wgMemc->delete( $keys[0] );
 		}
 	}
 	
