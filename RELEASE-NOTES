@@ -552,6 +552,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 1064) Implements Special:Unusedcategories
 * (bug 2311) New language file for Macedonian
 * Fix nohistory message on empty page history
+* Fix fatal error in history when validation on
 
 
 === Caveats ===

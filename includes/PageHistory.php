@@ -167,7 +167,7 @@ class PageHistory {
 		 * Article validation line.
 		 */
 		if ($wgUseValidation)
-			$s .= '<p>' . Validation::link2statistics ( $this->mArticle ) . '</p>' ;
+			$s .= '<p>' . Validation::getStatisticsLink( $this->mArticle ) . '</p>' ;
 
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );
