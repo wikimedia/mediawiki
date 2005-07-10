@@ -553,6 +553,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2311) New language file for Macedonian
 * Fix nohistory message on empty page history
 * Fix fatal error in history when validation on
+* Cleaned up email notification message formatting
 
 
 === Caveats ===
