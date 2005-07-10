@@ -1096,27 +1096,25 @@ na spodnej časti obrazovky.",
 'changed' => 'zmene',
 'created' => 'vytvorení',
 'enotif_subject' => '{{SITENAME}} - stránka $PAGETITLE bola $CHANGEDORCREATED $PAGEEDITOR',
-'enotif_lastvisited' => 'Pozrite {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} pre všetky zmeny od vašej poslednej návštevy.',
+'enotif_lastvisited' => 'Pozrite $1 pre všetky zmeny od vašej poslednej návštevy.',
 'enotif_body' => 'Drahý $WATCHINGUSERNAME,
 
-na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATE k $CHANGEDORCREATED stránky $PAGETITLE redaktorom $PAGEEDITOR,
-pozrite si aktuálnu verziu {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}.
+na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATE k $CHANGEDORCREATED stránky $PAGETITLE redaktorom $PAGEEDITOR, pozrite si aktuálnu verziu $PAGETITLE_URL .
 
 $NEWPAGE
 
 Zhrnutie: $PAGESUMMARY $PAGEMINOREDIT
 Kontaktujte redaktora:
-mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+mail $PAGEEDITOR_EMAIL
+wiki $PAGEEDITOR_WIKI
 
-Nedostanete ďalšie upozornenia, aj ak bude článok znovu upravovaný, kým nenavštivíte tento článok.
-Možete tiež vynulovať upozornenia pre všetky vaše sledované stránky.
+Nedostanete ďalšie upozornenia, aj ak bude článok znovu upravovaný, kým nenavštivíte tento článok. Možete tiež vynulovať upozornenia pre všetky vaše sledované stránky.
 
  Váš upozorňovací systém {{GRAMMAR:genitív|{{SITENAME}}}}
 
 --
 Pre zmenu nastavenia vašich sledovaných článkov navštívte
-{{SERVER}}{{localurl:Special:Watchlist|edit=yes}}
+{{SERVER}}{{localurl:Special:Watchlist/edit}}
 
 Návrhy a ďalšia pomoc:
 {{SERVER}}{{localurl:Pomoc:Obsah}}',

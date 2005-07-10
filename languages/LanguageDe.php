@@ -888,27 +888,26 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'changed' 			=> 'geändert',
 'created' 			=> 'neu angelegt',
 'enotif_subject' 		=> 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => '{{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} zeigt alle Änderungen auf einen Blick.',
+'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
 'enotif_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'enotif_body' => 'Liebe/r $WATCHINGUSERNAME,
 
 die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
-die aktuelle Version ist: {{SERVER}}{{localurl:$PAGETITLE_RAWURL}}
+die aktuelle Version ist: $PAGETITLE_URL
 
 $NEWPAGE
 
 Zusammenfassung des Editors: $PAGESUMMARY $PAGEMINOREDIT
 Kontakt zum Editor:
-Mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-Wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+Mail $PAGEEDITOR_EMAIL
+Wiki $PAGEEDITOR_WIKI
 
-Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besuchen.
-Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
+Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besuchen. Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
 
              Ihr freundliches {{SITENAME}} Benachrichtigungssystem
 
 ---
-Ihre Beobachtungsliste {{SERVER}}{{localurl:Special:Watchlist|magic=yes}}
+Ihre Beobachtungsliste {{SERVER}}{{localurl:Special:Watchlist/edit}}
 Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 
 # Delete/protect/revert
