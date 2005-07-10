@@ -46,10 +46,11 @@ class DisambiguationsPage extends PageQueryPage {
 		    . " FROM {$pagelinks} AS la, {$pagelinks} AS lb,"
 			.      " {$page} AS pa, {$page} AS pb"
 		    . " WHERE pb.page_namespace = $dns"
-            . " AND pb.page_title = $dtitle"      # disambiguation pages
-			. " AND lb.pl_title = pb.page_title"  # title of pages that are disamb
-			. " AND pa.page_id = lb.pl_from"      # id of page poiting to a disamb
-			. " AND la.pl_title = pa.page_title"; # title of those
+			. " AND pb.page_title = $dtitle"       # disambiguation pages
+			. " AND lb.pl_title = pb.page_title"   # title of pages that are disamb
+			. " AND pa.page_id = lb.pl_from"       # id of page pointing to a disamb
+			. " AND la.pl_title != $dtitle"        # exclude the link 
+			. " AND la.pl_title = pa.page_title "; # title of those
 		return $sql;
 	}
 
