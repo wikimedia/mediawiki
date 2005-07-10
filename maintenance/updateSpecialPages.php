@@ -1,11 +1,19 @@
 <?php
 
 # Run this script periodically if you have miser mode enabled, to refresh the caches
+$options = array('only','help');
 
 require_once( 'commandLine.inc' );
 
 require_once( 'SpecialPage.php' );
 require_once( 'QueryPage.php' );
+
+if($options['help']) {
+	print "usage:updateSpecialPages.php [--help] [--only=page]\n";
+	print "  --help      : this help message\n";
+	print "  --only=page : only update 'page'. Ex: --only=BrokenRedirects\n";
+	die();
+}
 
 $wgOut->disable();
 $dbw =& wfGetDB( DB_MASTER );
@@ -24,6 +32,7 @@ foreach ( $wgQueryPages as $page ) {
 	}
 	$queryPage = new $class;
 
+	if( !(isset($options['only'])) or ($options['only'] == $queryPage->getName()) ) {
 	printf( '%-30s',  $special );
 
 	if ( $queryPage->isExpensive() ) {
@@ -73,6 +82,7 @@ foreach ( $wgQueryPages as $page ) {
 
 	} else {
 		print "cheap, skipped\n";
+	}
 	}
 }
 
