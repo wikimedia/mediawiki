@@ -556,6 +556,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Cleaned up email notification message formatting
 * Finally fixed Special:Disambiguations that was broke since SCHEMA_WORK
 * (bug 2761) fix capitalization of "i" in Turkish
+* (bug 2789) memcached image metadata now cleared after deletion
+
 
 === Caveats ===
 
