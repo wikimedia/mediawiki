@@ -1028,30 +1028,34 @@ class Image
 			# First find out what kind of file this is, and select the correct
 			# input routine for this.
 
-			$truecolor = false;
-			
-			switch( $this->type ) {
-				case 1: # GIF
-					$src_image = imagecreatefromgif( $this->imagePath );
-					break;
-				case 2: # JPG
-					$src_image = imagecreatefromjpeg( $this->imagePath );
-					$truecolor = true;
-					break;
-				case 3: # PNG
-					$src_image = imagecreatefrompng( $this->imagePath );
-					$truecolor = ( $this->bits > 8 );
-					break;
-				case 15: # WBMP for WML
-					$src_image = imagecreatefromwbmp( $this->imagePath );
-					break;
-				case 16: # XBM
-					$src_image = imagecreatefromxbm( $this->imagePath );
-					break;
-				default:
-					return 'Image type not supported';
-					break;
+			$typemap = array(
+				'image/gif'          => array( 'imagecreatefromgif',  'palette',   'imagegif'  ),
+				'image/jpeg'         => array( 'imagecreatefromjpeg', 'truecolor', array( &$this, 'imageJpegWrapper' ) ),
+				'image/png'          => array( 'imagecreatefrompng',  'bits',      'imagepng'  ),
+				'image/vnd.wap.wmbp' => array( 'imagecreatefromwbmp', 'palette',   'imagewbmp'  ),
+				'image/xbm'          => array( 'imagecreatefromxbm',  'palette',   'imagexbm'  ),
+			);
+			if( !isset( $typemap[$this->mime] ) ) {
+				$err = 'Image type not supported';
+				wfDebug( "$err\n" );
+				return $err;
 			}
+			list( $loader, $colorStyle, $saveType ) = $typemap[$this->mime];
+			
+			if( !function_exists( $loader ) ) {
+				$err = "Incomplete GD library configuration: missing function $loader";
+				wfDebug( "$err\n" );
+				return $err;
+			}
+			if( $colorStyle == 'palette' ) {
+				$truecolor = false;
+			} elseif( $colorStyle == 'truecolor' ) {
+				$truecolor = true;
+			} elseif( $colorStyle == 'bits' ) {
+				$truecolor = ( $this->bits > 8 );
+			}
+			
+			$src_image = call_user_func( $loader, $this->imagePath );
 			if ( $truecolor ) {
 				$dst_image = imagecreatetruecolor( $width, $height );
 			} else {
@@ -1060,20 +1064,7 @@ class Image
 			imagecopyresampled( $dst_image, $src_image, 
 						0,0,0,0,
 						$width, $height, $this->width, $this->height );
-			switch( $this->type ) {
-				case 1:  # GIF
-				case 3:  # PNG
-				case 15: # WBMP
-				case 16: # XBM
-					imagepng( $dst_image, $thumbPath );
-					break;
-				case 2:  # JPEG
-					imageinterlace( $dst_image );
-					imagejpeg( $dst_image, $thumbPath, 95 );
-					break;
-				default:
-					break;
-			}
+			call_user_func( $saveType, $dst_image, $thumbPath );
 			imagedestroy( $dst_image );
 			imagedestroy( $src_image );
 		}
@@ -1090,6 +1081,11 @@ class Image
 		}
 	}
 
+	function imageJpegWrapper( $dst_image, $thumbPath ) {
+		imageinterlace( $dst_image );
+		imagejpeg( $dst_image, $thumbPath, 95 );
+	}
+		
 	/** 
 	 * Get all thumbnail names previously generated for this image
 	 */
