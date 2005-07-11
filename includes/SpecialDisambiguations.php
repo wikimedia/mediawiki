@@ -41,16 +41,13 @@ class DisambiguationsPage extends PageQueryPage {
         $dns = $dp->getNamespace();
         $dtitle = $dbr->addQuotes( $dp->getDBkey() );
 
-		$sql = "SELECT 'Disambiguations' as type,"
-			. "la.pl_namespace AS namespace, la.pl_title AS title, la.pl_from AS value"
-		    . " FROM {$pagelinks} AS la, {$pagelinks} AS lb,"
-			.      " {$page} AS pa, {$page} AS pb"
-		    . " WHERE pb.page_namespace = $dns"
-			. " AND pb.page_title = $dtitle"       # disambiguation pages
-			. " AND lb.pl_title = pb.page_title"   # title of pages that are disamb
-			. " AND pa.page_id = lb.pl_from"       # id of page pointing to a disamb
-			. " AND la.pl_title != $dtitle"        # exclude the link 
-			. " AND la.pl_title = pa.page_title "; # title of those
+		$sql = "SELECT 'Disambiguations' AS type, pa.page_namespace AS namespace,"
+			 ." pa.page_title AS title, la.pl_from AS value"
+			 ." FROM {$pagelinks} AS lb, {$page} AS pa, {$pagelinks} AS la"
+			 ." WHERE lb.pl_namespace = $dns AND lb.pl_title = $dtitle" # disambiguation template
+			 ." AND pa.page_id = lb.pl_from"        
+			 ." AND pa.page_namespace = la.pl_namespace"
+			 ." AND pa.page_title = la.pl_title";
 		return $sql;
 	}
 
