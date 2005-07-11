@@ -94,6 +94,7 @@ class SiteConfiguration {
 				break;
 			}
 		}
+		$lang = str_replace( '_', '-', $lang );
 		return array( $site, $lang );
 	}
 
