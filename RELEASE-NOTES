@@ -558,8 +558,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2761) fix capitalization of "i" in Turkish
 * (bug 2789) memcached image metadata now cleared after deletion
 * Add serialized version number to image metadata cache records
-* (bug 2769) Use '-' form for language consistently on command-line
-* Fixlets to rebuildImages.php: clear memcached, indicate missing
+* (bug 2780) Fix thumbnail generation with GD for new image schema
 
 
 === Caveats ===
