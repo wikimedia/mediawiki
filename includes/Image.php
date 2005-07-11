@@ -15,6 +15,10 @@
 if ($wgShowEXIF)
 	require_once('Exif.php');
 
+/**
+ * Bump this number when serialized cache records may be incompatible.
+ */
+define( 'MW_IMAGE_VERSION', 1 );
 
 /**
  * Class to represent an image
@@ -116,7 +120,8 @@ class Image
 		$cachedValues = $wgMemc->get( $keys[0] );
 
 		// Check if the key existed and belongs to this version of MediaWiki
-		if (!empty($cachedValues) && is_array($cachedValues) && isset($cachedValues['width']) 
+		if (!empty($cachedValues) && is_array($cachedValues)
+		  && isset($cachedValues['version']) && ( $cachedValues['version'] == MW_IMAGE_VERSION )
 		  && $cachedValues['fileExists'] && isset( $cachedValues['mime'] ) && isset( $cachedValues['metadata'] ) ) 
 		{
 			if ( $wgUseSharedUploads && $cachedValues['fromShared']) {
@@ -124,7 +129,11 @@ class Image
 				# in shared repository has not changed
 				if ( isset( $keys[1] ) ) {
 					$commonsCachedValues = $wgMemc->get( $keys[1] );
-					if (!empty($commonsCachedValues) && is_array($commonsCachedValues) && isset($commonsCachedValues['mime'])) {
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues)
+					  && isset($commonsCachedValues['version'])
+					  && ( $commonsCachedValues['version'] == MW_IMAGE_VERSION )
+					  && isset($commonsCachedValues['mime'])) {
+						wfDebug( "Pulling image metadata from shared repository cache\n" );
 						$this->name = $commonsCachedValues['name'];
 						$this->imagePath = $commonsCachedValues['imagePath'];
 						$this->fileExists = $commonsCachedValues['fileExists'];
@@ -140,8 +149,8 @@ class Image
 						$this->imagePath = $this->getFullPath(true);
 					}
 				}
-			}
-			else {
+			} else {
+				wfDebug( "Pulling image metadata from local cache\n" );
 				$this->name = $cachedValues['name'];
 				$this->imagePath = $cachedValues['imagePath'];
 				$this->fileExists = $cachedValues['fileExists'];
@@ -178,17 +187,19 @@ class Image
 			// We can't cache negative metadata for non-existent files,
 			// because if the file later appears in commons, the local
 			// keys won't be purged.
-			$cachedValues = array('name' => $this->name,
-								  'imagePath' => $this->imagePath,
-								  'fileExists' => $this->fileExists,
-								  'fromShared' => $this->fromSharedDirectory,
-								  'width' => $this->width,
-								  'height' => $this->height,
-								  'bits' => $this->bits,
-								  'type' => $this->type,
-								  'mime' => $this->mime,
-								  'metadata' => $this->metadata,
-								  'size' => $this->size);
+			$cachedValues = array(
+				'version'    => MW_IMAGE_VERSION,
+				'name'       => $this->name,
+				'imagePath'  => $this->imagePath,
+				'fileExists' => $this->fileExists,
+				'fromShared' => $this->fromSharedDirectory,
+				'width'      => $this->width,
+				'height'     => $this->height,
+				'bits'       => $this->bits,
+				'type'       => $this->type,
+				'mime'       => $this->mime,
+				'metadata'   => $this->metadata,
+				'size'       => $this->size );
 
 			$wgMemc->set( $keys[0], $cachedValues );
 		} else {
