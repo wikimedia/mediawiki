@@ -39,7 +39,7 @@
 	'co' => 'Corsu',		# Corsican
 	'cr' => 'Nehiyaw',		# Cree
 	'cs' => 'Česky',	# Czech
-	'csb' => 'Kaszëbscziej',	# Cassubian, should possibly be Kaszëbsczi
+	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cv' => 'Чӑваш',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
