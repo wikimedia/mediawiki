@@ -10,11 +10,11 @@
  * constructor
  */
 function wfSpecialVersion() {
-	global $wgOut, $wgVersion;
+	global $wgOut, $wgVersion, $wgExtensionCredits;
 	
 	$dbr =& wfGetDB( DB_SLAVE );
 	
-	$wgOut->addWikiText( "
+	$out = "
 <div dir='ltr'>
 This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',  
 copyright (C) 2001-2005 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
@@ -38,6 +38,27 @@ or [http://www.gnu.org/copyleft/gpl.html read it online]
 * [http://www.mediawiki.org/ MediaWiki]: $wgVersion
 * [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 * " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion() . "
-</div>" );
+</div>
+";
+	if ( count( $wgExtensionCredits ) > 0 ) {
+		$extensionTypes = array(
+			'specialpage' => 'Special pages',
+			'parserhook' => 'Parser hooks',
+			'other' => 'Other'
+		);
+		
+		$out .= "== Extensions ==\n";
+		
+		foreach ( $extensionTypes as $type => $text ) {
+			if ( count( @$wgExtensionCredits[$type] ) > 0 ) {
+				$out .= "=== $text ===\n";
+				foreach ( $wgExtensionCredits[$type] as $extension ) {
+					$out .= '* [' . $extension['url'] . ' ' . $extension['name'] . '] by ' . $extension['author'] . "\n";
+				}
+			}
+
+		}
+	}
+	$wgOut->addWikiText( $out );
 }
 ?>

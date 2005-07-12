@@ -563,8 +563,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 655) Provide empty search form when searching for nothing
 * (bug 2802) Display more than one character of the sort key
 * Nynorsk numeric format fix
+* Added a new array for extensions to use, $wgExtensionCredits, see
+  documentation in DefaultSettings.php
 * (bug 2825) Fix regression in newtalk notifications for anons w/ enotif off
-
 
 === Caveats ===
 

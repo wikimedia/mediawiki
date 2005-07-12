@@ -1225,6 +1225,20 @@ $wgUseXMLparser = false ;
 /** Extensions */
 $wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
+/**
+ * An array of extension types, their authors, url and name, add to it from
+ * an extension like:
+ *
+ * <code>
+ * $wgExtensionCredits[$type][] = array(
+ * 	'name' => 'Example extension',
+ *	'author' => 'Foo Barstein',
+ *	'url' => 'http://wwww.example.com/Example%20Extension/',
+ * );
+ * </code>
+ * Where $type is 'specialpage', 'parserhook', or 'other'.
+ */
+$wgExtensionCredits = array();
 
 /**
  * Allow user Javascript page?
