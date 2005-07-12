@@ -1756,7 +1756,7 @@ class LanguageNn extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => '&nbsp;',
+		',' => "\xc2\xa0",
 		'.' => ','
 	);
 	

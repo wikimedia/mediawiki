@@ -562,7 +562,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2791) Slovene numeric format
 * (bug 655) Provide empty search form when searching for nothing
 * (bug 2802) Display more than one character of the sort key
-
+* Nynorsk numeric format fix
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
