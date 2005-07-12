@@ -560,6 +560,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Add serialized version number to image metadata cache records
 * (bug 2780) Fix thumbnail generation with GD for new image schema
 * (bug 2791) Slovene numeric format
+* (bug 655) Provide empty search form when searching for nothing
 
 === Caveats ===
 

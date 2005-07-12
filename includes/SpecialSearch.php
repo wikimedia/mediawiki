@@ -134,9 +134,8 @@ class SpecialSearch {
 		
 		#if ( !$this->parseQuery() ) {
 		if( '' === trim( $term ) ) {
-			$wgOut->addWikiText(
-				'==' . wfMsg( 'badquery' ) . "==\n" .
-				wfMsg( 'badquerytext' ) );
+			$wgOut->setSubtitle( '' );
+			$wgOut->addHTML( $this->powerSearchBox( $term ) );
 			wfProfileOut( $fname );
 			return;
 		}
