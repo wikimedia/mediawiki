@@ -140,9 +140,25 @@ class CategoryPage extends Article {
 			} else {
 				// Page in this category
 				array_push( $articles, $sk->makeSizeLinkObj( $x->page_len, $title, $wgContLang->convert( $title->getPrefixedText() ) ) ) ;
-				array_push( $articles_start_char, $wgContLang->convert( $wgContLang->firstChar( $x->cl_sortkey ) ) );
+ 				array_push( $articles_start_char,$wgContLang->convert( $x->cl_sortkey) );
 			}
 		}
+
+		$root_length = 0;
+		
+		for ($i = 0 ; $i < count($articles) - 1; ++$i){
+			if ($articles_start_char[$i][$root_length] != $articles_start_char[$i + 1][$root_length] ) {
+				break;
+			} elseif (count($articles) - 2 == $i) {
+				$root_length = $root_length + 1;
+				$i = -1;
+			}
+		}
+		
+		for ($i = 0 ; $i < count($articles) ; ++$i) {
+			$articles_start_char[$i] = $wgContLang->truncate($articles_start_char[$i], $root_length + 1);
+		}
+
 		$dbr->freeResult( $res );
 
 		if( $flip ) {
