@@ -765,14 +765,15 @@ class OutputPage {
 	}
 
 	/**
-	 * This function takes the existing and broken links for the page
+	 * This function takes the title (first item of mGoodLinks), categories, existing and broken links for the page
 	 * and uses the first 10 of them for META keywords
 	 */
 	function addMetaTags () {
 		global $wgLinkCache , $wgOut ;
+		$categories = array_keys ( $wgLinkCache->mCategoryLinks ) ;
 		$good = array_keys ( $wgLinkCache->mGoodLinks ) ;
 		$bad = array_keys ( $wgLinkCache->mBadLinks ) ;
-		$a = array_merge ( $good , $bad ) ;
+		$a = array_merge ( array_slice ( $good , 0 , 1 ), $categories, array_slice ( $good , 1 , 9 ) , $bad ) ;
 		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
 		$a = implode ( ',' , $a ) ;
 		$strip = array(
