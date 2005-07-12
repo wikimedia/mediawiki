@@ -2020,11 +2020,14 @@ class Article {
 					$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle, $summary,
 					  $minoredit, $timestamp_of_pagechange);
 				} else {
-					$other = User::newFromName($shortTitle);
-					if ($other) {
-						$other->setNewtalk(1);
-						$other->saveNewtalk();
+					$other = User::newFromName( $shortTitle );
+					if( is_null( $other ) && User::isIP( $shortTitle ) ) {
+						// An anonymous user
+						$other = new User();
+						$other->setName( $shortTitle );
 					}
+					$other->setNewtalk(1);
+					$other->saveNewtalk();
 				}
 			}
 
