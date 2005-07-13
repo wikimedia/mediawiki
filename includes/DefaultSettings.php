@@ -1226,8 +1226,8 @@ $wgUseXMLparser = false ;
 $wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
 /**
- * An array of extension types, their authors, url and name, add to it from
- * an extension like:
+ * An array of extension names, their authors, and optionally, urls
+ * add to it from an extension like:
  *
  * <code>
  * $wgExtensionCredits[$type][] = array(
