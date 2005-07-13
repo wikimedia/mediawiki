@@ -22,7 +22,7 @@
  * @subpackage SpecialPage
  */
 
-$options = array( 'full', 'current' );
+$options = array( 'full', 'current', 'server' );
 
 require_once( 'commandLine.inc' );
 require_once( 'SpecialExport.php' );
@@ -32,6 +32,7 @@ class BackupDumper {
 	var $reporting = true;
 	var $pageCount = 0;
 	var $revCount  = 0;
+	var $server    = null; // use default
 	
 	function BackupDumper() {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -61,9 +62,16 @@ class BackupDumper {
 	
 	function &backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
-		global $wgDBserver, $wgDBname;
-		$db =& new Database( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		global $wgDBname;
+		$db =& new Database( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		return $db;
+	}
+	
+	function backupServer() {
+		global $wgDBserver;
+		return $this->server
+			? $this->server
+			: $wgDBserver;
 	}
 
 	function reportPage( $page ) {
@@ -91,7 +99,8 @@ class BackupDumper {
 				$rate = '-';
 				$revrate = '-';
 			}
-			$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
+			global $wgDBname;
+			$this->progress( "$wgDBname $this->pageCount ($rate pages/sec $revrate revs/sec)" );
 		}
 	}
 	
@@ -106,6 +115,9 @@ if( isset( $options['quiet'] ) ) {
 }
 if( isset( $options['report'] ) ) {
 	$dumper->reportingInterval = IntVal( $options['report'] );
+}
+if( isset( $options['server'] ) ) {
+	$dumper->server = $options['server'];
 }
 if( isset( $options['full'] ) ) {
 	$dumper->dump( MW_EXPORT_FULL );
