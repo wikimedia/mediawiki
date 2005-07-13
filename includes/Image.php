@@ -306,7 +306,7 @@ class Image
 	 * Load image metadata from the DB
 	 */
 	function loadFromDB() {
-		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgLang;
+		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgSharedUploadDBprefix, $wgLang;
 		$fname = 'Image::loadFromDB';
 		wfProfileIn( $fname );
 		
@@ -333,7 +333,7 @@ class Image
 			# looking it up in the shared repository.
 			$name = $wgLang->ucfirst($this->name);
 
-			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.image", 
+			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.{$wgSharedUploadDBprefix}image",
 				array( 
 					'img_size', 'img_width', 'img_height', 'img_bits', 
 					'img_media_type', 'img_major_mime', 'img_minor_mime', 'img_metadata' ),

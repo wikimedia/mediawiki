@@ -258,6 +258,7 @@ class ImagePage extends Article {
 		$wgOut->addWikiText($sharedtext);
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
+			require_once("HttpFunctions.php");
 			$ur = ini_set('allow_url_fopen', true);
 			$text = wfGetHTTP($url . '?action=render');
 			ini_set('allow_url_fopen', $ur);
