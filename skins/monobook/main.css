@@ -1181,3 +1181,13 @@ p.revision_saved {
 	color: green;
 	font-weight:bold;
 }
+
+/* for OpenId */
+input#wpName {
+	/* FIXME : icon is not transparent */
+	background: url(openid-inputicon.gif) no-repeat;
+	background-position: 0 50%;
+	background-color : #FFFFFF;
+	color : #000000;
+	padding-left: 18px;
+}

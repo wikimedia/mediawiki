@@ -153,6 +153,10 @@ External hooks:
   application is included. This may not be on by default in final release,
   depending on support.
 
+Sortable tables:
+  Since beta4 you can have a client-side sortable table. To make a table
+  sortable use class="sortable" and give it a uniq id ( id="foo" ).
+
 And...
   A bunch of stuff we forgot to mention.
 
@@ -575,6 +579,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * show comment subject in preview when using section=new
 * use comment form when creating a new talk page
 * (bug 460) Properly handle <center> tags as a block.
+* (bug 2001) Implement client-side sorting of table fields with JavaScript
 
 === Caveats ===
 
