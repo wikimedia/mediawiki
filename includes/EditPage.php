@@ -306,6 +306,11 @@ class EditPage {
 		// css / js subpages of user pages get a special treatment
 		$isCssJsSubpage = $wgTitle->isCssJsSubpage();
 		
+		# If we're creating a discussion page, use the standard comment
+		# form.
+		if(!$wgTitle->exists() && $wgTitle->isTalkPage()) {
+			$this->section='new';
+		}		
 
 		if(!$this->mTitle->getArticleID()) { # new article
 			$editintro = $wgRequest->getText( 'editintro' );
@@ -321,7 +326,7 @@ class EditPage {
 				}
 			}
 			if($addstandardintro) {
-				$wgOut->addWikiText(wfmsg('newarticletext'));
+				$wgOut->addWikiText(wfmsg('newarticletext'));				
 			}
 		}
 
@@ -385,9 +390,11 @@ class EditPage {
 				}
 				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
 							   &$this->summary, &$this->minoredit, &$this->watchthis, NULL)))
-				{
+				{					
+					
+					$isComment=($this->section=='new');
 					$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-													   $this->minoredit, $this->watchthis );
+													   $this->minoredit, $this->watchthis, false, $isComment);
 					wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $this->textbox1,
 															$this->summary, $this->minoredit,
 															$this->watchthis, NULL));
@@ -788,7 +795,14 @@ END
 				$this->textbox1 = $this->mArticle->getContent(true);
 			}
 
-			$toparse = $this->textbox1 ;
+			$toparse = $this->textbox1;
+			
+			# If we're adding a comment, we need to show the
+			# summary as the headline
+			if($this->section=="new" && $this->summary!="") {
+				$toparse="== {$this->summary} ==\n\n".$toparse;
+			}
+			
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
 			
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
