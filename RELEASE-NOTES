@@ -566,7 +566,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2825) Fix regression in newtalk notifications for anons w/ enotif off
 * (bug 2833) Fix bug in previous fix
 * With $wgCapitalLinks off, accept off-by-first-letter-case in 'go' match
-
+* Optional parameters for [[Special:Listusers]]
+* (bug 2832) [[Special:Listadmins]] redirects to [[Special:Listusers/sysop]]
 
 === Caveats ===
 
