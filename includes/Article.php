@@ -94,22 +94,14 @@ class Article {
 		if ( 0 == $this->getID() ) {
 			if ( 'edit' == $action ) {
 				wfProfileOut( $fname );
-				# Should we put something in the textarea?
-				# if &preload=Pagename is set, we try to get
-				# the revision text and put it in.
-				if($preload) {
-					$preloadTitle=Title::newFromText($preload);
-					if(isset($preloadTitle) && $preloadTitle->userCanRead()) {
-						$rev=Revision::newFromTitle($preloadTitle);
-						if($rev) {
-						return $rev->getText();
-						}
-					}
-				}
-				# Don't preload anything.
-				# We used to put MediaWiki:Newarticletext here.
+				
+				# If requested, preload some text.
+				$text=$this->getPreloadedText($preload);
+				
+				# We used to put MediaWiki:Newarticletext here if
+				# $text was empty at this point.
 				# This is now shown above the edit box instead.
-				return '';
+				return $text;
 			}
 			wfProfileOut( $fname );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -128,7 +120,8 @@ class Article {
 					if($section!='') {
 						if($section=='new') {
 							wfProfileOut( $fname );
-							return '';
+							$text=$this->getPreloadedText($preload);
+							return $text;
 						}
 
 						# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
@@ -144,6 +137,24 @@ class Article {
 		}
 	}
 
+	/**
+		This function accepts a title string as parameter
+		($preload). If this string is non-empty, it attempts
+		to fetch the current revision text.
+	*/
+	function getPreloadedText($preload) {
+		if($preload) {
+			$preloadTitle=Title::newFromText($preload);
+			if(isset($preloadTitle) && $preloadTitle->userCanRead()) {
+			$rev=Revision::newFromTitle($preloadTitle);
+			if($rev) {
+				return $rev->getText();
+				}
+			}
+		}
+		return '';
+	}
+	
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
 	 * A section is text under a heading like == Heading == or <h1>Heading</h1>, or
@@ -956,7 +967,7 @@ class Article {
 	 * errors at some point.
 	 * @private
 	 */
-	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false ) {
+	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
 		global $wgOut, $wgUser;
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
@@ -967,6 +978,11 @@ class Article {
 
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
+		
+		# If this is a comment, add the summary as headline
+		if($comment && $summary!="") {
+			$text="== {$summary} ==\n\n".$text;
+		}
 		$text = $this->preSaveTransform( $text );
 		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
 		$now = wfTimestampNow();
