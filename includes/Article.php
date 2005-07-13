@@ -2026,8 +2026,10 @@ class Article {
 						$other = new User();
 						$other->setName( $shortTitle );
 					}
-					$other->setNewtalk(1);
-					$other->saveNewtalk();
+					if( $other ) {
+						$other->setNewtalk(1);
+						$other->saveNewtalk();
+					}
 				}
 			}
 
