@@ -272,10 +272,18 @@ class WikiExporter {
 		if( $this->buffer == MW_EXPORT_STREAM ) {
 			$prev = $this->db->bufferResults( false );
 		}
+		if( $cond == '' ) {
+			// Optimization hack for full-database dump
+			$pageindex = 'FORCE INDEX (PRIMARY)';
+			$revindex = 'FORCE INDEX(page_timestamp)';
+		} else {
+			$pageindex = '';
+			$revindex = '';
+		}
 		$result = $this->db->query(
 			"SELECT * FROM
-				$page FORCE INDEX (PRIMARY),
-				$revision FORCE INDEX(page_timestamp),
+				$page $pageindex,
+				$revision $revindex,
 				$text
 				WHERE $where $join AND rev_text_id=old_id
 				ORDER BY page_id", $fname );
