@@ -565,6 +565,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Nynorsk numeric format fix
 * (bug 2825) Fix regression in newtalk notifications for anons w/ enotif off
 * (bug 2833) Fix bug in previous fix
+* Accept --server option for database to read main query from on backup
 
 
 === Caveats ===
