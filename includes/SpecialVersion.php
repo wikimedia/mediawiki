@@ -53,7 +53,13 @@ or [http://www.gnu.org/copyleft/gpl.html read it online]
 			if ( count( @$wgExtensionCredits[$type] ) > 0 ) {
 				$out .= "=== $text ===\n";
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					$out .= '* [' . $extension['url'] . ' ' . $extension['name'] . '] by ' . $extension['author'] . "\n";
+					if ( isset( $extension['url'] ) ) {
+						$out .= '* [' . $extension['url'] . ' ' . $extension['name'] . ']';
+					} else {
+						$out .= '* ' . $extension['name'];
+					}
+					$out .= ' by ' . $extension['author'] . "\n";
+						
 				}
 			}
 
