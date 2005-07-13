@@ -1753,9 +1753,6 @@ class Parser
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
-					if($preOpenMatch and !$preCloseMatch) {
-						$this->mInPre = true;
-					}
 					if ( $closematch ) {
 						$inBlockElem = false;
 					} else {
@@ -1799,6 +1796,10 @@ class Parser
 					}
 				}
 				wfProfileOut( "$fname-paragraph" );
+			}
+			// somewhere above we forget to get out of pre block (bug 785)
+			if($preCloseMatch && $this->mInPre) {
+				$this->mInPre = false;
 			}
 			if ($paragraphStack === false) {
 				$output .= $t."\n";
