@@ -259,6 +259,8 @@ $wgFetchCommonsDescriptions = false;
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
 /** DB name with metadata about shared directory. Set this to false if the uploads do not come from a wiki. */
 $wgSharedUploadDBname = false;
+/** Optional table prefix used in database. */
+$wgSharedUploadDBprefix = '';
 /** Cache shared metadata in memcached. Don't do this if the commons wiki is in a different memcached domain */
 $wgCacheSharedUploads = true;
 
