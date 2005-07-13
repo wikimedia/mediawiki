@@ -80,6 +80,19 @@ class SearchEngine {
 		if ( $title->exists() ) {
 			return $title;
 		}
+		
+		global $wgCapitalLinks, $wgContLang;
+		if( !$wgCapitalLinks ) {
+			// Catch differs-by-first-letter-case-only
+			$title = Title::newFromText( $wgContLang->ucfirst( $term ) );
+			if ( $title->exists() ) {
+				return $title;
+			}
+			$title = Title::newFromText( $wgContLang->lcfirst( $term ) );
+			if ( $title->exists() ) {
+				return $title;
+			}
+		}
 
 		$title = Title::newFromText( $term );
 
