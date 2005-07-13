@@ -570,6 +570,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2832) [[Special:Listadmins]] redirects to [[Special:Listusers/sysop]]
 * (bug 785) Parser did not get out of <pre> with list elements
 * Some shared upload fixes
+* (bug 460) Properly handle <center> tags as a block.
 
 === Caveats ===
 

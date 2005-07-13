@@ -202,8 +202,7 @@ class Parser
 			'/(.) (?=\\?|:|;|!|\\302\\273)/' => '\\1&nbsp;\\2',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&nbsp;',
-			'/<center *>/i' => '<div class="center">',
-			'/<\\/center *>/i' => '</div>',
+			'/<center *>(.*)<\\/center *>/i' => '<div class="center">\\1</div>',
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
