@@ -565,7 +565,6 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2780) Fix thumbnail generation with GD for new image schema
 * (bug 2791) Slovene numeric format
 * (bug 655) Provide empty search form when searching for nothing
-* (bug 2802) Display more than one character of the sort key
 * Nynorsk numeric format fix
 * (bug 2825) Fix regression in newtalk notifications for anons w/ enotif off
 * (bug 2833) Fix bug in previous fix
@@ -581,6 +580,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 460) Properly handle <center> tags as a block.
 * (bug 2001) Implement client-side sorting of table fields with JavaScript
 * Undo inconsistent editing behavior change
+* (bug 2835) Back out fix for bug 2802, caused regressions in category sort
 
 
 === Caveats ===
