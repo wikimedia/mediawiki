@@ -243,6 +243,36 @@ class User {
 	}
 
 	/**
+	 * Count the number of edits of a user by namespace
+	 *
+	 * @param int $uid The user ID to check
+	 * @return array
+	 */
+	function editsByNs( $uid ) {
+		$fname = 'User::editsByNs';
+		$nscount = array();
+
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			array( 'user', 'revision', 'page' ),
+			array( 'page_namespace', 'COUNT(*) as count' ),
+			array(
+				'user_id' => $uid,
+				'rev_user' => array( false, 'user_id' ),
+				'rev_page' => array( false, 'page_id' )
+			),
+			$fname,
+			array( 'GROUP BY' => 'page_namespace' )
+		);
+		
+		while( $row = $dbr->fetchObject( $res ) ) {
+			$nscount[$row->page_namespace] = $row->count;
+		}
+		return $nscount;
+
+	}
+
+	/**
 	 * probably return a random password
 	 * @return string probably a random password
 	 * @static
