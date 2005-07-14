@@ -53,18 +53,25 @@ or [http://www.gnu.org/copyleft/gpl.html read it online]
 			if ( count( @$wgExtensionCredits[$type] ) > 0 ) {
 				$out .= "=== $text ===\n";
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					if ( isset( $extension['url'] ) ) {
-						$out .= '* [' . $extension['url'] . ' ' . $extension['name'] . ']';
-					} else {
-						$out .= '* ' . $extension['name'];
-					}
-					$out .= ' by ' . $extension['author'] . "\n";
-						
+					$out .= formatExtensionCredits( $extension['name'], $extension['author'], @$extension['url'], @$extension['version'] ); 
 				}
 			}
 
 		}
 	}
 	$wgOut->addWikiText( $out );
+}
+
+function formatExtensionCredits( $name, $author, $url = null, $version = null ) {
+	$ret = '* ';
+	if ( isset( $url ) )
+		$ret .= "[$url ";
+	$ret .= $name;
+	if ( isset( $url ) )
+		$ret .= ']';
+	if ( isset( $version ) )
+		$ret .= " $version";
+	$ret .= " by $author";
+	return $ret;
 }
 ?>
