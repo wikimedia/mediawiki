@@ -71,7 +71,7 @@ function formatExtensionCredits( $name, $author, $url = null, $version = null ) 
 		$ret .= ']';
 	if ( isset( $version ) )
 		$ret .= " $version";
-	$ret .= " by $author";
+	$ret .= " by $author\n";
 	return $ret;
 }
 ?>
