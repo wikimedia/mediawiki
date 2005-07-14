@@ -660,6 +660,9 @@ class Database {
 	function makeSelectOptions( $options ) {
 		$tailOpts = '';
 
+		if ( isset( $options['GROUP BY'] ) ) {
+			$tailOpts .= " GROUP BY {$options['GROUP BY']}";
+		}
 		if ( isset( $options['ORDER BY'] ) ) {
 			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
 		} 
