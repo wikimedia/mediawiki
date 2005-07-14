@@ -306,12 +306,6 @@ class EditPage {
 		// css / js subpages of user pages get a special treatment
 		$isCssJsSubpage = $wgTitle->isCssJsSubpage();
 		
-		# If we're creating a discussion page, use the standard comment
-		# form.
-		if(!$wgTitle->exists() && $wgTitle->isTalkPage()) {
-			$this->section='new';
-		}		
-
 		if(!$this->mTitle->getArticleID()) { # new article
 			$editintro = $wgRequest->getText( 'editintro' );
 			$addstandardintro=true;
