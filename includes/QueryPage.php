@@ -24,7 +24,6 @@ $wgQueryPages = array(
     array( 'LonelyPagesPage',           'Lonelypages'       ),
     array( 'LongPagesPage',             'Longpages'         ),
     array( 'NewPagesPage',              'Newpages'          ),
-    array( 'PopularPagesPage',          'Popularpages'      ),
     array( 'ShortPagesPage',            'Shortpages'        ),
     array( 'UncategorizedCategoriesPage','Uncategorizedcategories'),
     array( 'UncategorizedPagesPage',    'Uncategorizedpages'),
@@ -32,7 +31,10 @@ $wgQueryPages = array(
     array( 'WantedPagesPage',           'Wantedpages'       ),
 );
     
-
+global $wgDisableCounters;
+if( !$wgDisableCounters ) {
+	$wgQueryPages[] = array( 'PopularPagesPage',          'Popularpages'      );
+}
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
