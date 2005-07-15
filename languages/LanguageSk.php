@@ -1567,7 +1567,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Zamkni tento článok\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Vymaž tento článok\'); 
 ta[\'ca-undelete\'] = new Array(\'d\',\'Obnov úpravy tohto článku až po dobu jeho vymazania\'); 
 ta[\'ca-move\'] = new Array(\'m\',\'Presuň tento článok\'); 
-ta[\'ca-nomove\'] = new Array(\'\',\'Nemáte oprávnenia na presun tohto článku\'); 
 ta[\'ca-watch\'] = new Array(\'w\',\'Pridať tento článok do sledovaných článkov\'); 
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Odstrániť tento článok zo sledovaných článkov\'); 
 ta[\'search\'] = new Array(\'f\',\'Prehľadávanie tejto wiki\'); 

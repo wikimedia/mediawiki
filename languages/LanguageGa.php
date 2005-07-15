@@ -1368,7 +1368,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Cuir glas ar an leathanach seo\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Scrios an leathanach seo\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Cuir ar ais na hathruithe a raibh déanta don leathanach seo roimh a scriosadh é\');
 ta[\'ca-move\'] = new Array(\'m\',\'Athainmnigh an leathanach\');
-ta[\'ca-nomove\'] = new Array(\'\',\'Níl an cead riachtanach agat chun an leathanach a athainmniú\');
 ta[\'ca-watch\'] = new Array(\'w\',\'Cuir an leathanach seo ar do liosta faire\');
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Bain an leathanach seo as do liosta faire\');
 ta[\'search\'] = new Array(\'f\',\'Cuardaigh san vicí seo\');

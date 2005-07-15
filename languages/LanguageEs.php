@@ -1092,7 +1092,6 @@ ta['ca-protect'] = new Array('=','Proteger esta página');
 ta['ca-delete'] = new Array('d','Borrar esta página'); 
 ta['ca-undelete'] = new Array('d','Restaurar las ediciones hechas a esta página antes de que fuese borrada'); 
 ta['ca-move'] = new Array('m','Trasladar (renombrar) esta página'); 
-ta['ca-nomove'] = new Array('','No tienes los permisos necesarios para trasladar esta página'); 
 ta['ca-watch'] = new Array('w','Añadir esta página a tu lista de seguimiento'); 
 ta['ca-unwatch'] = new Array('w','Borrar esta página de tu lista de seguimiento'); 
 ta['search'] = new Array('f','Buscar en este wiki'); 

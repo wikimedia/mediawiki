@@ -1089,7 +1089,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'tooltip-delete' => 'Diese Seite löschen [alt-d]',
 'tooltip-undelete' => "$1 Versionen diese Artikels wieder herstellen. [alt-d]",
 'tooltip-move' => 'Diese Seite verschieben. [alt-m]',
-'tooltip-nomove' => 'Sie können diese Seite nicht verschieben',
 'tooltip-watch' => 'Diese Seite beobachten. [alt-w]',
 'tooltip-unwatch' => 'Diese Seite nicht mehr beobachten. [alt-w]',
 'tooltip-watchlist' => 'Die Liste der Artikel, die Sie auf Änderungen beobachten. [alt-l]',

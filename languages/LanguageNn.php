@@ -1361,7 +1361,6 @@ ta[\'ca-protect\']              = new Array(\'=\',\'Vern denne sida\');
 ta[\'ca-delete\']               = new Array(\'d\',\'Slett denne sida\'); 
 ta[\'ca-undelete\']             = new Array(\'d\',\'Attopprett denne sida\'); 
 ta[\'ca-move\']                 = new Array(\'m\',\'Flytt denne sida\'); 
-ta[\'ca-nomove\']               = new Array(\'\',\'Du har ikkje tilgang til å flytte denne sida\'); 
 ta[\'ca-watch\']                = new Array(\'w\',\'Legg denne sida til i overvakingslista di\'); 
 ta[\'ca-unwatch\']              = new Array(\'w\',\'Fjern denne sida frå overvakingslista di\'); 
 ta[\'search\']                  = new Array(\'f\',\'Søk gjennom denne wikien\'); 

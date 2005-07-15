@@ -1490,7 +1490,6 @@ ta['ca-protect'] = new Array('=','Zamknout tuto stránku.');
 ta['ca-delete'] = new Array('d','Smazat tuto stránku.');
 ta['ca-undelete'] = new Array('d','Obnovit editace této stránky provedené před jejím smazáním.');
 ta['ca-move'] = new Array('m','Přesunout tuto stránku');
-ta['ca-nomove'] = new Array('','Nemáte oprávnění přesunout tuto stránku');
 ta['ca-watch'] = new Array('w','Přidat tuto stránku mezi sledované');
 ta['ca-unwatch'] = new Array('w','Vyjmout tuto stránku ze sledovaných');
 ta['search'] = new Array('f','Hledat na této wiki');

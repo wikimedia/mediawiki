@@ -115,7 +115,6 @@ ta['ca-protect'] = new Array('=','Uždrausti šį puslapį');
 ta['ca-delete'] = new Array('d','Ištrinti šį puslapį'); 
 ta['ca-undelete'] = new Array('d','Atstatyti puslapį su visais darytais keitimais'); 
 ta['ca-move'] = new Array('m','Pervadinti straipsnį'); 
-ta['ca-nomove'] = new Array('','Neturite teisių pervadinti šį straipsnį'); 
 ta['ca-watch'] = new Array('w','Pridėti straipsnį į stebimųjų sąrašą'); 
 ta['ca-unwatch'] = new Array('w','Išimti straipsnį iš stebimųjų sąrašo'); 
 ta['search'] = new Array('f','Ieškoti lietuviškoje Wikipedijoje'); 

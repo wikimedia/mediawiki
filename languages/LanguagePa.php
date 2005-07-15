@@ -424,7 +424,6 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
 'tooltip-delete'	=> 'ਇਹ ਪੰਨਾ ਹਟਾ ਦਿਓ [alt-d]',
 'tooltip-undelete'	=> 'Restore $1 deleted edits to this page [alt-d]',
 'tooltip-move'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਕਿਤੇ ਹੋਰ ਲਿਜਾਓ [alt-m]',
-'tooltip-nomove'	=> 'ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਪੰਨੇ ਨੂੰ ਕਿਤੇ ਹੋਰ ਲਿਜਾਉਣ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ',
 'tooltip-watch'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਵਿੱਚ ਜਮਾਂ ਕਰੋ[alt-w]',
 'tooltip-unwatch'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਤੋਂ ਹਟਾ ਦਿਓ[alt-w]',
 'tooltip-watchlist'	=> 'ਉਹਨਾਂ ਪੰਨਿਆਂ ਦੀ ਸੂਚੀ, ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਬਦਲਾਵ ਲਈ ਨਿਗਰਾਨੀ ਰੱਖ ਰਹੇ ਹੋ। [alt-l]',

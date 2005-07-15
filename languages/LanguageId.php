@@ -1242,7 +1242,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Lindungi halaman ini\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Hapus halaman ini\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Kembalikan suntingan ke halaman ini sebelum halaman ini dihapus\');
 ta[\'ca-move\'] = new Array(\'m\',\'Pindahkan halaman ini\');
-ta[\'ca-nomove\'] = new Array(\'\',\'Anda tidak mempunyai izin untuk memindahkan halaman ini\');
 ta[\'ca-watch\'] = new Array(\'w\',\'Tambahkan halaman ini ke daftar pemantauan Anda\');
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Hapus halaman ini dari daftar pemantauan Anda\');
 ta[\'search\'] = new Array(\'f\',\'Cari dalam wiki ini\');

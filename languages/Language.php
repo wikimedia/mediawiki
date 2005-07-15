@@ -1733,7 +1733,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\');
 ta[\'ca-move\'] = new Array(\'m\',\'Move this page\');
-ta[\'ca-nomove\'] = new Array(\'\',\'You don\\\'t have the permissions to move this page\');
 ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\');
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\');
 ta[\'search\'] = new Array(\'f\',\'Search this wiki\');
