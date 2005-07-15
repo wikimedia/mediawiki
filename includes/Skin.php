@@ -455,11 +455,10 @@ END;
 				$return .= '<br />';
 			} else {
 				# grab the others elements
-				$return .= Skin::drawCategoryBrowser($parent, $skin);
+				$return .= Skin::drawCategoryBrowser($parent, $skin) . ' &gt; ';
 			}
 			# add our current element to the list
 			$eltitle = Title::NewFromText($element);
-			if (!empty($parent)) $return .= ' &gt; ';
 			$return .=  $skin->makeLinkObj( $eltitle, $eltitle->getText() ) ;
 		}
 		return $return;
