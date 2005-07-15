@@ -1559,7 +1559,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Beskyt denne side\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Slet denne side\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Gendan de redigeringer der blev lavet på denne side før den blev slettet\');
 ta[\'ca-move\'] = new Array(\'m\',\'Flyt denne side\');
-ta[\'ca-nomove\'] = new Array(\'\',\'Du har ikke tilladelse til at flytte denne side\');
 ta[\'ca-watch\'] = new Array(\'w\',\'Sæt denne side på din overvågningsliste\');
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Fjern denne side fra din overvågningsliste\');
 ta[\'search\'] = new Array(\'f\',\'Søg på denne wiki\');

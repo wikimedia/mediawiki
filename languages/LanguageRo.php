@@ -294,7 +294,6 @@ ta['ca-protect'] = new Array('=','Protejează acest document.');
 ta['ca-delete'] = new Array('d','Şterge acest document.');
 ta['ca-undelete'] = new Array('d','Restaureaza editările făcute acestui document, înainte să fi fost şters.');
 ta['ca-move'] = new Array('m','Mută acest document.');
-ta['ca-nomove'] = new Array('','Nu aveţi permisiunea să mutaţi acest document.');
 ta['ca-watch'] = new Array('w','Adaugă acest document în lista ta de monitorizare.');
 ta['ca-unwatch'] = new Array('w','Şterge acest document din lista ta de monitorizare.');
 ta['search'] = new Array('f','Caută în acest Wiki');

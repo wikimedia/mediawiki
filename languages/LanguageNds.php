@@ -1084,7 +1084,6 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'tooltip-delete'        => 'Disse Siet löschen [alt-d]',
 'tooltip-undelete'      => '$1 Versionen vun disse Siet weerholen. [alt-d]',
 'tooltip-move'          => 'Disse Siet schuven. [alt-m]',
-'tooltip-nomove'        => 'Du kannst disse Siet nich schuven',
 'tooltip-watch'         => 'Op disse Siet oppassen. [alt-w]',
 'tooltip-unwatch'       => 'Op disse Siet nich mehr oppassen. [alt-w]',
 'tooltip-watchlist'     => 'De List vun de Sieten, op de du oppasst. [alt-l]',
@@ -1291,7 +1290,6 @@ ta[\'ca-protect\'] = new Array(\'=\',\'Disse Siet schulen\');
 ta[\'ca-delete\'] = new Array(\'d\',\'Disse Siet löschen\');
 ta[\'ca-undelete\'] = new Array(\'d\',\'Weerholen vun de Siet, so as se vör dat löschen ween is\');
 ta[\'ca-move\'] = new Array(\'m\',\'Disse Siet schuven\');
-ta[\'ca-nomove\'] = new Array(\'\',\'Du hest nich de Rechten disse Siet to schuven\');
 ta[\'ca-watch\'] = new Array(\'w\',\'Disse Siet to de Oppasslist hentofögen\');
 ta[\'ca-unwatch\'] = new Array(\'w\',\'Disse Siet vun de Oppasslist löschen\');
 ta[\'search\'] = new Array(\'f\',\'In dissen Wiki söken\');

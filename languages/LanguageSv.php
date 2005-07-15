@@ -968,7 +968,6 @@ wiki som kör MediaWiki-programvara, konverterad, eller bara sparad som syns sku
 'tooltip-delete' => 'Ta bort den här sidan [alt-d]',
 'tooltip-undelete' => 'Återställ $1 borttagna ändringar till den här sidan [alt-d]',
 'tooltip-move' => 'Flytta den här sidan [alt-m]',
-'tooltip-nomove' => 'Du har inte rättighet att flytta den här sidan',
 'tooltip-watch' => 'Lägg till den här sidan till din bevakningslista [alt-w]',
 'tooltip-unwatch' => 'Ta bort den här sidan från din bevakningslista [alt-w]',
 'tooltip-watchlist' => 'Lista över sidor som du bevakar [alt-l]',

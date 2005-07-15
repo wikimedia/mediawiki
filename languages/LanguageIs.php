@@ -99,7 +99,6 @@ ta['ca-protect'] = new Array('=','Vernda þessa síðu');
 ta['ca-delete'] = new Array('d','Eyða þessari síðu'); 
 ta['ca-undelete'] = new Array('d','Endurvekja breytingar á síðu þessari fyrir en henni var tortímt'); 
 ta['ca-move'] = new Array('m','Færa þessa síðu'); 
-ta['ca-nomove'] = new Array('','Þér er óheimild að færa þessa síðu'); 
 ta['ca-watch'] = new Array('w','Bæta þessari síðu við á vaktlistann'); 
 ta['ca-unwatch'] = new Array('w','Fjarlægja þessa síðu af vaktlistanum'); 
 ta['search'] = new Array('f','Leit'); 
