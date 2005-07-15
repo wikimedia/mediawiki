@@ -59,12 +59,16 @@ require_once( 'LanguageUtf8.php' );
 	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
+$wgMagicWordsIs = array(
+	MAG_REDIRECT             => array( 0,    '#redirect', '#tilvísun', '#TILVÍSUN' ), // MagicWord::initRegex() sucks
+) + $wgMagicWordsEn;
+
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
 
 $wgAllMessagesIs = array(
-'linktrail' => '/^([áðéíóúýþæöa-z]+)(.*)$/sDu',
+'linktrail' => '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu',
 
 '1movedto2' => "$1 færð á $2",
 '1movedto2_redir' => "$1 færð á $2 yfir tilvísun",
