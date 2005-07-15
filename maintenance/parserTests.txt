@@ -618,8 +618,7 @@ http:/example.com
 [http:/example.com title]
 !! result
 <p>http:/example.com
-</p><p>
-[http:/example.com title]
+</p><p>[http:/example.com title]
 </p>
 !! end
 
