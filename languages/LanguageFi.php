@@ -743,6 +743,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'lonelypages'         => 'Yksinäiset sivut',
 'uncategorizedpages'  => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
+'unusedcategories'    => 'Käyttämättömät luokat',
 'unusedimages'        => 'Käyttämättömät tiedostot',
 'popularpages'        => 'Suositut sivut',
 'nviews'              => '$1 latausta',
@@ -767,6 +768,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'move'                => 'Siirrä',
 'movethispage'        => 'Siirrä tämä sivu',
 'unusedimagestext'    => 'Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla, jolloin tiedosto saattaa olla tässä listassa, vaikka sitä käytetäänkin.',
+'unusedcategoriestext'=> 'Nämä luokat ovat olemassa, mutta niitä ei käytetä.',
 'booksources'         => 'Kirjalähteet',
 'categoriespagetext'  => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
 'data'                => 'Data', // TODO: CHECK ME
@@ -1203,16 +1205,15 @@ ta['pt-mycontris'] = new Array('y','Lista omista muokkauksista');
 ta['pt-login'] = new Array('o','Kirjaudu sisään tai luo tunnus');
 ta['pt-anonlogin'] = new Array('o','Kirjaudu sisään tai luo tunnus');
 ta['pt-logout'] = new Array('o','Kirjaudu ulos');
-ta['ca-talk'] = new Array('t','Keskustelua sisällöstä');
+ta['ca-talk'] = new Array('t','Keskustele sisällöstä');
 ta['ca-edit'] = new Array('e','Muokkaa tätä sivua');
 ta['ca-addsection'] = new Array('+','Lisää kommentti tälle sivulle');
 ta['ca-viewsource'] = new Array('e','Näytä sivun lähdekoodi');
-ta['ca-history'] = new Array('h','Aikaisemmat versiot tästä sivusta');
+ta['ca-history'] = new Array('h','Sivun aikaisemmat versiot');
 ta['ca-protect'] = new Array('=','Suojaa tämä sivu');
 ta['ca-delete'] = new Array('d','Poista tämä sivu');
 ta['ca-undelete'] = new Array('d','Palauta tämä sivu');
 ta['ca-move'] = new Array('m','Siirrä tämä sivu');
-ta['ca-nomove'] = new Array('','Sinulla ei ole oikeuksia siirtää tätä sivua');
 ta['ca-watch'] = new Array('w','Lisää tämä sivu tarkkailulistallesi');
 ta['ca-unwatch'] = new Array('w','Poista tämä sivu tarkkailulistaltasi');
 ta['search'] = new Array('f','Etsi sivu');
@@ -1236,7 +1237,7 @@ ta['ca-nstab-main'] = new Array('c','Näytä sisältösivu');
 ta['ca-nstab-user'] = new Array('c','Näytä käyttäjäsivu');
 ta['ca-nstab-media'] = new Array('c','Näytä mediasivu');
 ta['ca-nstab-special'] = new Array('','Tämä on toimintosivu');
-ta['ca-nstab-wp'] = new Array('a','Näytä projektisivu');
+ta['ca-nstab-wp'] = new Array('c','Näytä projektisivu');
 ta['ca-nstab-image'] = new Array('c','Näytä tiedostosivu');
 ta['ca-nstab-mediawiki'] = new Array('c','Näytä järjestelmäviesti');
 ta['ca-nstab-template'] = new Array('c','Näytä malline');
@@ -1296,6 +1297,12 @@ $3
 
 Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $4.
 ',
+
+
+# Inputbox extension, may be useful in other contexts as well
+'tryexact'            => 'Koita tarkkaa osumaa',
+'searchfulltext'      => 'Etsi koko tekstiä',
+'createarticle'       => 'Luo sivu',
 
 );
 
