@@ -79,6 +79,17 @@ if ( !function_exists( 'mb_substr' ) ) {
 	}
 }
 
+if( !function_exists( 'floatval' ) ) {
+	/**
+	 * First defined in PHP 4.2.0
+	 * @param mixed $var;
+	 * @return float
+	 */
+	function floatval( $var ) {
+		return (float)$var;
+	}
+}
+
 /**
  * html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
  * with no UTF-8 support.

@@ -687,6 +687,7 @@ pages for purposes of page relevancy ranking.
 * Remove forced covering index usage to allow stable release upgrade.
 * Fix escaping in page move template.
 * (bug 1109) Suppress compressed output on 304 responses
+* PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
 
 
 === Caveats ===
