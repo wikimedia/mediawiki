@@ -1276,4 +1276,14 @@ function wfIncrStats( $key ) {
 	}
 }
 
+/**
+ * @param mixed $nr The number to format
+ * @param int $acc The number of digits after the decimal point, default 2
+ * @param bool $round Whether or not to round the value, default true
+ * @return float
+ */
+function percent( $nr, $acc = 2, $round = true ) {
+	$ret = sprintf( "%.${acc}f", $nr );
+	return $round ? round( $ret, $acc ) . '%' : "$ret%";
+}
 ?>
