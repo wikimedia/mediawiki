@@ -578,6 +578,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Undo inconsistent editing behavior change
 * (bug 2835) Back out fix for bug 2802, caused regressions in category sort
 * (bug 2866) Revert experimental, non-cross-platform sortable table hack
+* PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
 
 
 === Caveats ===
