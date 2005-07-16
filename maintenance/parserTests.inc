@@ -188,8 +188,8 @@ class ParserTest {
 			}
 		}
 		if( $total > 0 ) {
-			$ratio = sprintf( "%.2f", 100 * $success / $total );
-			print $this->termColor( 1 ) . "\nPassed $success of $total tests ($ratio%) ";
+			$ratio = percent( 100 * $success / $total );
+			print $this->termColor( 1 ) . "\nPassed $success of $total tests ($ratio) ";
 			if( $success == $total ) {
 				print $this->termColor( 32 ) . "PASSED!";
 			} else {
