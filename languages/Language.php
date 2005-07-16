@@ -1161,12 +1161,9 @@ in active use.</p>',
 'userrights' => 'User rights management',
 'groups' => 'User groups',
 
-# FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
 sell new and used books, and may also have further information
-about books you are looking for.
-{{SITENAME}} is not affiliated with any of these businesses, and
-this list should not be construed as an endorsement.",
+about books you are looking for.",
 'isbn'	=> 'ISBN',
 'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
