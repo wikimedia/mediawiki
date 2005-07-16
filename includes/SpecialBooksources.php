@@ -39,7 +39,7 @@ class BookSourceList {
 		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsg( "booksources" ) );
-		if( empty( $this->mIsbn ) ) {
+		if( $this->mIsbn == '' ) {
 			$this->askForm();
 		} else {
 			$this->showList();
