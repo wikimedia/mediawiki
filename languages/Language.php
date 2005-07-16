@@ -1012,12 +1012,9 @@ To include the image in a page, use a link in the form
 'filedesc'		=> 'Summary',
 'filestatus' => 'Copyright status',
 'filesource' => 'Source',
-'affirmation'	=> "I affirm that the copyright holder of this file
-agrees to license it under the terms of the $1.",
 'copyrightpage' => "Project:Copyrights",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles'	=> 'Uploaded files',
-'noaffirmation' => 'You must affirm that your upload does not violate any copyrights.',
 'ignorewarning'	=> 'Ignore warning and save file anyway.',
 'minlength'		=> 'File names must be at least three letters.',
 'illegalfilename'	=> 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',

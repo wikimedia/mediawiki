@@ -1117,10 +1117,6 @@ $wgRightsIcon = NULL;
 /** Set this to some HTML to override the rights icon with an arbitrary logo */
 $wgCopyrightIcon = NULL;
 
-/* Set this to true if you want the annoying copyright confirmation
- *  checkbox at Special:Upload */
-$wgCopyrightAffirmation = false;
-
 /** Set this to true if you want detailed copyright information forms on Upload. */
 $wgUseCopyrightUpload = false;
 

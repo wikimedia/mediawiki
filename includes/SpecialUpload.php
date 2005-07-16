@@ -28,7 +28,7 @@ class UploadForm {
 	/**#@+
 	 * @access private
 	 */
-	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;
+	var $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey, $mStashed, $mDestFile;
@@ -47,7 +47,6 @@ class UploadForm {
 			return;
 		}
 
-		$this->mUploadAffirm      = $request->getCheck( 'wpUploadAffirm' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning');
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 		$this->mUpload            = $request->getCheck( 'wpUpload' );
@@ -133,7 +132,7 @@ class UploadForm {
 	 */
 	function processUpload() {
 		global $wgUser, $wgOut, $wgLang, $wgContLang;
-		global $wgUploadDirectory, $wgCopyrightAffirmation;
+		global $wgUploadDirectory;
 		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
 
 		/**
@@ -141,27 +140,6 @@ class UploadForm {
 		 */
 		if( trim( $this->mOname ) == '' || empty( $this->mUploadSize ) ) {
 			return $this->mainUploadForm('<li>'.wfMsg( 'emptyfile' ).'</li>');
-		}
-
-		if ( !$wgCopyrightAffirmation )
-			$this->mUploadAffirm = true;
-		/**
-		 * When using detailed copyright, if user filled field, assume he
-		 * confirmed the upload
-		 */
-		if ( $wgUseCopyrightUpload ) {
-			$this->mUploadAffirm = true;
-			if( $wgCheckCopyrightUpload && 
-			    ( trim( $this->mUploadCopyStatus ) == '' ||
-			      trim( $this->mUploadSource     ) == '' ) ) {
-				$this->mUploadAffirm = false;
-			}
-		}
-
-		/** User need to confirm his upload */
-		if( !$this->mUploadAffirm ) {
-			$this->mainUploadForm( wfMsg( 'noaffirmation' ) );
-			return;
 		}
 
 		# Chop off any directories in the given filename
@@ -500,7 +478,6 @@ class UploadForm {
 
 		$wgOut->addHTML( "
 	<form id='uploadwarning' method='post' enctype='multipart/form-data' action='$action'>
-		<input type='hidden' name='wpUploadAffirm' value='1' />
 		<input type='hidden' name='wpIgnoreWarning' value='1' />
 		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
 		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
@@ -533,7 +510,7 @@ class UploadForm {
 	 */
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
-		global $wgUseCopyrightUpload, $wgCopyrightAffirmation;
+		global $wgUseCopyrightUpload;
 		
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
@@ -555,9 +532,6 @@ class UploadForm {
 		$fd = wfMsg( 'filedesc' );
 		$ulb = wfMsg( 'uploadbtn' );
 
-		$clink = $sk->makeKnownLink( wfMsgForContent( 'copyrightpage' ),
-		  wfMsg( 'copyrightpagename' ) );
-		$ca = wfMsg( 'affirmation', $clink );
 		$iw = wfMsg( 'ignorewarning' );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
@@ -566,13 +540,6 @@ class UploadForm {
 		$encDestFile = htmlspecialchars( $this->mDestFile );
 		$source = null;
 
-		if ( $wgCopyrightAffirmation ) {
-		$source = "
-	<td align='right'>
-	<input tabindex='3' type='checkbox' name='wpUploadAffirm' value='1' id='wpUploadAffirm' />
-	</td><td align='left'><label for='wpUploadAffirm'>{$ca}</label></td>
-	" ;
-		}
 		if ( $wgUseCopyrightUpload )
 		  {
 			$source = "
