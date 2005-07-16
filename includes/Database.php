@@ -967,15 +967,13 @@ class Database {
 			}
 			if ( $mode == LIST_AND && is_numeric( $field ) ) {
 				$list .= "($value)";
-			} elseif ( $mode == LIST_AND && is_array ($value) && $value[0] !== false ) {
+			} elseif ( $mode == LIST_AND && is_array ($value) ) {
 				$list .= $field." IN (".$this->makeList($value).") ";
-			} elseif ( $mode == LIST_AND && is_array ($value) && $value[0] === false ) {
-				$list .= "$field = {$value[1]}";
 			} else {
 				if ( $mode == LIST_AND || $mode == LIST_SET ) {
 					$list .= $field.'=';
 				}
-				$list .= ($mode == LIST_NAMES ? $value : $this->addQuotes( $value ));
+				$list .= ($mode==LIST_NAMES?$value:$this->addQuotes( $value ));
 			}
 		}
 		return $list;
