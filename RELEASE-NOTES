@@ -3,10 +3,28 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== Changes since MediaWiki 1.4.6 ==
+== MediaWiki 1.4.7 ==
 
-* Table name correction fixes bug 2755.
-* $wgRCMaxAge now affects watchlist operation mode
+(released 2005-07-16)
+
+MediaWiki 1.4.7 is a bug fix release. Those affected by the following
+problems in 1.4.6 should upgrade:
+
+* Watchlist breakage on MySQL 3.23.x and with table prefix enabled
+* Possible breakage in watchlist, some image resizing modes on PHP 4.1.2
+
+1.4.6 included a fix for a cross-site scripting vulnerability, so anyone
+running older 1.4 releases is very strongly encouraged to upgrade as well.
+
+Note to upgraders: this version of MediaWiki is known to produce a large
+number of notice-level warnings under the newly released PHP 4.4.0.
+These appear however to be harmless; if you encounter them add this to
+your LocalSettings.php to suppress the notices:
+
+  error_reporting( E_ALL & ~E_NOTICE );
+
+PHP 5.1.0beta3 is known to be incompatible at this time.
+
 
 == MediaWiki 1.4.6 ==
 
@@ -688,10 +706,12 @@ pages for purposes of page relevancy ranking.
 * Fix escaping in page move template.
 * (bug 1109) Suppress compressed output on 304 responses
 
+
 === 1.4.7 changes ===
 
+* (bug 2755, bug 2747) MySQL 3.23.x and table prefix compatibility fix:
+  restore old watchlist code
 * PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
-* MySQL 3.23.x compatibility fix: restore old watchlist code
 
 
 === Caveats ===
