@@ -277,6 +277,8 @@ parent class in order maintain consistency across languages.
 ** sitesupport-url|sitesupport
 ',
 
+'lowertoolbar'	=> 'ha-ha',
+
 # User preference toggles
 'tog-underline' => 'Underline links',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
