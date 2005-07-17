@@ -189,7 +189,7 @@ class SpecialPage
 			case 'Mycontributions':
 				return Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() );
 			case 'Listadmins':
-				return Title::makeTitle( NS_SPECIAL, 'Listusers/'.'sysop' ); # bug 2832
+				return Title::makeTitle( NS_SPECIAL, 'Listusers/sysop' ); # @bug 2832
 			case 'Randompage':
 				return Title::makeTitle( NS_SPECIAL, 'Random' );
 			default:
