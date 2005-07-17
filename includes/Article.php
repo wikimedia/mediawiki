@@ -1127,7 +1127,7 @@ class Article {
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		global $wgOut, $wgUser;
 		global $wgDBtransactions, $wgMwRedir;
-		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList;
+		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList, $wgUseFileCache;
 
 		$fname = 'Article::updateArticle';
 		$good = true;
@@ -1230,6 +1230,12 @@ class Article {
 				$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
 				$u = new SquidUpdate( $urls );
 				array_push( $wgPostCommitUpdateList, $u );
+			}
+
+			# File cache	
+			if ( $wgUseFileCache ) {
+				$cm = new CacheManager($this->mTitle);
+				@unlink($cm->fileCacheName());
 			}
 
 			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
