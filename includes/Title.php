@@ -480,6 +480,8 @@ class Title {
 	 * @access public
 	 */
 	function touchArray( $titles, $timestamp = '' ) {
+		global $wgUseFileCache;
+
 		if ( count( $titles ) == 0 ) {
 			return;
 		}
@@ -492,6 +494,11 @@ class Title {
 		$first = true;
 
 		foreach ( $titles as $title ) {
+			if ( $wgUseFileCache ) {
+				$cm = new CacheManager($title);
+				@unlink($cm->fileCacheName());
+			}
+
 			if ( ! $first ) {
 				$sql .= ',';
 			}
