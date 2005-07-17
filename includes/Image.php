@@ -48,7 +48,6 @@ class Image
 		$mime,          # MIME type, determined by MimeMagic::guessMimeType
 		$size,          # Size in bytes (loadFromXxx)
 		$metadata,	# Metadata
-		$exif,		# The Exif class
 		$dataLoaded;    # Whether or not all this has been loaded from the database (loadFromXxx)
 
 
@@ -87,9 +86,6 @@ class Image
 		$this->historyLine = 0;
 
 		$this->dataLoaded = false;
-		
-		if ($wgShowEXIF)
-			$this->exif = new Exif;
 	}
 
 	/**
@@ -1419,24 +1415,8 @@ class Image
 	function retrieveExifData () {
 		if ( $this->getMimeType() !== "image/jpeg" ) return array ();
 
-		wfSuppressWarnings();
-		$exif = exif_read_data( $this->imagePath );
-		wfRestoreWarnings();
-
-		foreach($exif as $k => $v) {
-			if ( !in_array($k, array_keys($this->exif->mFlatExif)) ) {
-				wfDebug( "Image::retrieveExifData: '$k' is not a valid Exif tag (type: '" . gettype($v) . "'; data: '$v')\n");
-				unset($exif[$k]);
-			}
-		}
-
-		foreach($exif as $k => $v) {
-			if ( !$this->exif->validate($k, $v) ) {
-				wfDebug( "Image::retrieveExifData: '$k' contained invalid data (type: '" . gettype($v) . "'; data: '$v')\n");
-				unset($exif[$k]);
-			}
-		}
-		return $exif;
+		$exif = new Exif( $this->imagePath );
+		return $exif->getFilteredData();
 	}
 		
 	function getExifData () {
@@ -1448,19 +1428,15 @@ class Image
 		$ret = unserialize ( $this->metadata );
 
 		$oldver = isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) ? $ret['MEDIAWIKI_EXIF_VERSION'] : 0;
-		$newver = $this->exif->version();
+		$newver = Exif::version();
 		
 		if ( !count( $ret ) || $purge || $oldver != $newver ) {
 			$this->updateExifData( $newver );
 		}
 		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
 			unset( $ret['MEDIAWIKI_EXIF_VERSION'] );
-		
-		foreach($ret as $k => $v) {
-			$ret[$k] = $this->exif->format($k, $v);
-		}
-		
-		return $ret;
+		$format = new FormatExif( $ret );
+		return $format->getFormattedData();
 	}
 
 	function updateExifData( $version ) {
