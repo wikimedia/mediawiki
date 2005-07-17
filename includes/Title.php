@@ -314,7 +314,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function legalChars() {
+	function legalChars() {
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
