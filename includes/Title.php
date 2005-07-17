@@ -1170,6 +1170,8 @@ class Title {
 	 * @access public
 	 */
 	function invalidateCache() {
+		global $wgUseFileCache;
+
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -1184,6 +1186,12 @@ class Title {
 				'page_title' => $this->getDBkey()
 			), 'Title::invalidateCache'
 		);
+
+		if ($wgUseFileCache) {
+			$cache = new CacheManager($this);
+			@unlink($cache->fileCacheName());
+		}
+
 		return $success;
 	}
 
