@@ -2217,7 +2217,7 @@ class Parser
 					if ( $title->getNamespace() == NS_SPECIAL && $this->mOptions->getAllowSpecialInclusion() ) {
 						# Capture special page output
 						$text = SpecialPage::capturePath( $title );
-						if ( $text && !is_object( $text ) ) {
+						if ( is_string( $text ) ) {
 							$found = true;
 							$noparse = true;
 							$isHTML = true;
