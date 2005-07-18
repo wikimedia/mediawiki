@@ -580,6 +580,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2866) Revert experimental, non-cross-platform sortable table hack
 * PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
 * (bug 2901) Number format for Catalan
+* Special:Allpages performance hacks: index memcached caching, removed
+  inverse checkbox, use friendlier relative offsets in index build
+
 
 === Caveats ===
 
