@@ -939,7 +939,7 @@ class Database {
 	function makeUpdateOptions( $options ) {
 		$opts = array();
 		if ( in_array( 'LOW_PRIORITY', $options ) )
-			$opts[] = 'LOW_PRIORITY';
+			$opts[] = $this->lowPriorityOption();
 		if ( in_array( 'IGNORE', $options ) ) 
 			$opts[] = 'IGNORE';
 		return implode(' ', $opts);
