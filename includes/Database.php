@@ -930,11 +930,36 @@ class Database {
 	}
 
 	/**
-	 * UPDATE wrapper, takes a condition array and a SET array
+	 * Make UPDATE options for the Database::update function
+	 *
+	 * @access private
+	 * @param array $options The options passed to Database::update
+	 * @return string
 	 */
-	function update( $table, $values, $conds, $fname = 'Database::update' ) {
+	function makeUpdateOptions( $options ) {
+		$opts = array();
+		if ( in_array( 'LOW_PRIORITY', $options ) )
+			$opts[] = 'LOW_PRIORITY';
+		if ( in_array( 'IGNORE', $options ) ) 
+			$opts[] = 'IGNORE';
+		return implode(' ', $opts);
+	}
+	
+	/**
+	 * UPDATE wrapper, takes a condition array and a SET array
+	 *
+	 * @param string $table  The table to UPDATE
+	 * @param array  $values An array of values to SET
+	 * @param array  $conds  An array of conditions (WHERE)
+	 * @param string $fname  The Class::Function calling this function
+	 *                       (for the log)
+	 * @param array  $options An array of UPDATE options, can be one or
+	 *                        more of IGNORE, LOW_PRIORITY
+	 */
+	function update( $table, $values, $conds, $fname = 'Database::update', $options = array() ) {
 		$table = $this->tableName( $table );
-		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
+		$opts = $this->makeUpdateOptions( $options );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
 		if ( $conds != '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
