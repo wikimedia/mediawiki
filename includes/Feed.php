@@ -42,7 +42,7 @@ class FeedItem {
 	var $Author = '';
 	/**#@-*/
 	
-	/**
+	/**#@+
 	 * @todo document
 	 */
 	function FeedItem( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
@@ -56,7 +56,6 @@ class FeedItem {
 	
 	/**
 	 * @static
-	 * @todo document
 	 */
 	function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
@@ -64,37 +63,17 @@ class FeedItem {
 		return htmlspecialchars( $string );
 	}
 	
-	/**
-	 * @todo document
-	 */
 	function getTitle() { return $this->xmlEncode( $this->Title ); }
-	/**
-	 * @todo document
-	 */
 	function getUrl() { return $this->xmlEncode( $this->Url ); }
-	/**
-	 * @todo document
-	 */
 	function getDescription() { return $this->xmlEncode( $this->Description ); }
-	/**
-	 * @todo document
-	 */
 	function getLanguage() {
 		global $wgContLanguageCode;
 		return $wgContLanguageCode;
 	}
-	/**
-	 * @todo document
-	 */
 	function getDate() { return $this->Date; }
-	/**
-	 * @todo document
-	 */
 	function getAuthor() { return $this->xmlEncode( $this->Author ); }
-	/**
-	 * @todo document
-	 */
 	function getComments() { return $this->xmlEncode( $this->Comments ); }
+	/**#@-*/
 }
 
 /**
