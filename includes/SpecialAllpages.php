@@ -221,7 +221,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	
 	$dbr =& wfGetDB( DB_SLAVE );
 	$res = $dbr->select( 'page',
-		array( 'page_namespace', 'page_title' ),
+		array( 'page_namespace', 'page_title', 'page_is_redirect' ),
 		array(
 			'page_namespace' => $namespace,
 			'page_title >= ' . $dbr->addQuotes( $fromKey )
@@ -242,7 +242,9 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
-			$link = $sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ); 
+			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) . 
+				$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
+				($s->page_is_redirect ? '</div>' : '' );
 		} else {
 			$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 		}
