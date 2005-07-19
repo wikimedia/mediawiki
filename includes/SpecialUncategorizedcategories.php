@@ -16,6 +16,10 @@ require_once( "SpecialUncategorizedpages.php" );
  * @subpackage SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
+	function UncategorizedCategoriesPage() {
+		$this->requestedNamespace = NS_CATEGORY;
+	}
+
 	function getName() {
 		return "Uncategorizedcategories";
 	}
@@ -28,7 +32,6 @@ function wfSpecialUncategorizedcategories() {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$lpp = new UncategorizedCategoriesPage();
-	$lpp->requestedNamespace = NS_CATEGORY;
 
 	return $lpp->doQuery( $offset, $limit );
 }

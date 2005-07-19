@@ -34,8 +34,9 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'page', 'categorylinks' ) );
+		$name = $dbr->addQuotes( $this->getName() );
 
-		return "SELECT 'Uncategorizedpages' as type, page_namespace AS namespace, page_title AS title, page_title AS value " .
+		return "SELECT $name as type, page_namespace AS namespace, page_title AS title, page_title AS value " .
 			"FROM $page LEFT JOIN $categorylinks ON page_id=cl_from ".
 			"WHERE cl_from IS NULL AND page_namespace=$this->requestedNamespace AND page_is_redirect=0";
 	}
