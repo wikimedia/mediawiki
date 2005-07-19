@@ -211,21 +211,27 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
  */
 function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
-	$sk = $wgUser->getSkin();
-	$maxPlusOne = $indexMaxperpage + 1;
 
-	$out = '';
-	$dbr =& wfGetDB( DB_SLAVE );
-	$page = $dbr->tableName( 'page' );
+	$fname = 'indexShowChunk';
 	
+	$sk = $wgUser->getSkin();
+
 	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
-	$sql = "SELECT page_namespace,page_title FROM $page" .
-		" WHERE page_namespace=$namespace" .
-		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
-		" ORDER BY page_title LIMIT " . $maxPlusOne;
-	$res = $dbr->query( $sql, 'indexShowChunk' );
+	$dbr =& wfGetDB( DB_SLAVE );
+	$res = $dbr->select( 'page',
+		array( 'page_namespace', 'page_title' ),
+		array(
+			'page_namespace' => $namespace,
+			'page_title >= ' . $dbr->addQuotes( $fromKey )
+		),
+		$fname,
+		array(
+			'ORDER BY' => 'page_title',
+			'LIMIT' => $indexMaxperpage + 1
+		)
+	);
 
 	### FIXME: side link to previous
 
