@@ -582,7 +582,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2901) Number format for Catalan
 * Special:Allpages performance hacks: index memcached caching, removed
   inverse checkbox, use friendlier relative offsets in index build
-
+* Bring back "Chick" skin for mobile devices. It needs testing.
 
 === Caveats ===
 
