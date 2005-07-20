@@ -497,8 +497,7 @@ class Exif {
 			case (string)MW_EXIF_SHORT.','.MW_EXIF_LONG:
 				return $this->isShort( $val ) || $this->isLong( $val );
 			default:
-				wfDebug( ucfirst( __CLASS__ ) . '::' . __FUNCTION__ .
-					": The tag '$tag' in unknown (type: " . gettype( $val ) . "; content: '$val')\n" );
+				$this->debug( $val, __FUNCTION__, "The tag '$tag' is unknown" );
 				return false;
 		}
 	}
