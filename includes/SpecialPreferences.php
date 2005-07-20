@@ -146,7 +146,7 @@ class PreferencesForm {
 	/**
 	 * @access private
 	 */
-	function validateDate( &$val, $min = 0, $max = 0, $max=0x7fffffff ) {
+	function validateDate( &$val, $min = 0, $max=0x7fffffff ) {
 		if ( ( sprintf('%d', $val) === $val && $val >= $min && $val <= $max ) || $val == 'ISO 8601' )
 			return $val;
 		else
