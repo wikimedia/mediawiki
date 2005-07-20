@@ -121,8 +121,7 @@ class PreferencesForm {
 			$this->mainPrefsForm( '' );
 		}
 	}
-
-		/**
+	/**
 	 * @access private
 	 */
 	function validateInt( &$val, $min=0, $max=0x7fffffff ) {
@@ -142,6 +141,16 @@ class PreferencesForm {
 		} else {
 			return $this->validateInt( $val, $min, $max );
 		}
+	}
+
+	/**
+	 * @access private
+	 */
+	function validateDate( &$val, $min = 0, $max = 0, $max=0x7fffffff ) {
+		if ( ( sprintf('%d', $val) === $val && $val >= $min && $val <= $max ) || $val == 'ISO 8601' )
+			return $val;
+		else
+			return 0;
 	}
 
 	/**
@@ -217,7 +226,7 @@ class PreferencesForm {
 		if( $wgUseTeX ) {
 			$wgUser->setOption( 'math', $this->mMath );
 		}
-		$wgUser->setOption( 'date', $this->validateInt( $this->mDate, 0, 10 ) );
+		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 10 ) );
 		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
