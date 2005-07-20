@@ -34,9 +34,8 @@ class CacheManager {
 	function fileCacheName() {
 		global $wgFileCacheDirectory, $wgContLang;
 		if( !$this->mFileCache ) {
-			$hash = md5( $key = $this->mTitle->getDbkey() );
-			if( $this->mTitle->getNamespace() )
-				$key = $wgContLang->getNsText( $this->mTitle->getNamespace() ) . ":" . $key;
+			$key = $this->mTitle->getPrefixedDbkey();
+			$hash = md5( $key );
 			$key = str_replace( '.', '%2E', urlencode( $key ) );
 			
 			$hash1 = substr( $hash, 0, 1 );
