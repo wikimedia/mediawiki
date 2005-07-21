@@ -228,8 +228,9 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		),
 		$fname,
 		array(
-			'ORDER BY' => 'page_title',
-			'LIMIT' => $indexMaxperpage + 1
+			'ORDER BY'  => 'page_title',
+			'LIMIT'     => $indexMaxperpage + 1,
+			'USE INDEX' => 'name_title',
 		)
 	);
 
