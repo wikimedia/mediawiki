@@ -458,21 +458,28 @@ class EditPage {
 					}
 				}
 				
+				// Save errors may fall down to the edit form, but we've now
+				// merged the section into full text. Clear the section field
+				// so that later submission of conflict forms won't try to
+				// replace that into a duplicated mess.
+				$this->textbox1 = $text;
+				$this->section = '';
+				
 				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
 													&$this->summary, &$this->minoredit,
 													&$this->watchthis, &$sectionanchor)))
 				{
 					# update the article here
-					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
+					if( false && $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 													   $this->watchthis, '', $sectionanchor ))
 					{
 						wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $text,
 																$this->summary, $this->minoredit,
 																$this->watchthis, $sectionanchor));
 						return;
+					} else {
+						$isConflict = true;
 					}
-					else
-					  $isConflict = true;
 				}
 			}
 		}

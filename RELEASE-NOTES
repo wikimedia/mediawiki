@@ -586,6 +586,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix spelling of $wgForwardSearchUrl in DefaultSettings.php
 * Specify USE INDEX on Allpages chunk queries, sometimes gets lost
   due to bogus optimization
+* (bug 275) Section duplication fix
+
 
 === Caveats ===
 
