@@ -988,12 +988,12 @@ $wgDisableInternalSearch = false;
  * search term.
  * 
  * For example, to forward to Google you'd have something like:
- * $wgSearchForwardUrl = 'http://www.google.com/search?q=$1' .
+ * $wgForwardSearchUrl = 'http://www.google.com/search?q=$1' .
  *                       '&domains=http://example.com' .
  *                       '&sitesearch=http://example.com' .
  *                       '&ie=utf-8&oe=utf-8';
  */
-$wgSearchForwardUrl = null;
+$wgForwardSearchUrl = null;
 
 /**
  * If true, external URL links in wiki text will be given the

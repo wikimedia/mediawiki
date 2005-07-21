@@ -714,6 +714,11 @@ pages for purposes of page relevancy ranking.
 * PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
 
 
+=== 1.4.8 changes ===
+
+* Fix spelling of $wgForwardSearchUrl in DefaultSettings.php
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
