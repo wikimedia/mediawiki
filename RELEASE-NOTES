@@ -584,7 +584,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   inverse checkbox, use friendlier relative offsets in index build
 * Bring back "Chick" skin for mobile devices. It needs testing.
 * Fix spelling of $wgForwardSearchUrl in DefaultSettings.php
-
+* Specify USE INDEX on Allpages chunk queries, sometimes gets lost
+  due to bogus optimization
 
 === Caveats ===
 
