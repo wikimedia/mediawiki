@@ -1965,6 +1965,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-exposureprogram-7' => 'Portrait mode (for closeup photos with the background out of focus)',
 'exif-exposureprogram-8' => 'Landscape mode (for landscape photos with the background in focus)',
 
+'exif-subjectdistance-value' => '$1 metres',
+
 'exif-meteringmode-0' => 'Unknown',
 'exif-meteringmode-1' => 'Average',
 'exif-meteringmode-2' => 'CenterWeightedAverage',
@@ -1995,6 +1997,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-lightsource-23' => 'D50',
 'exif-lightsource-24' => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Other light source',
+
+'exif-focalplaneresolutionunit-2' => 'inches',
 
 'exif-sensingmethod-1' => 'Undefined',
 'exif-sensingmethod-2' => 'One-chip color area sensor',
