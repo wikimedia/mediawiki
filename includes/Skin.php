@@ -1247,7 +1247,7 @@ END;
 	# If url string starts with http, consider as external URL, else
 	# internal
 	/*static*/ function makeInternalOrExternalUrl( $name ) {
-		if ( strncmp( $name, 'http', 4 ) == 0 ) {
+		if ( preg_match( '/^(?:' . URL_PROTOCOLS . ')/', $name ) ) {
 			return $name;
 		} else {
 			return $this->makeUrl( $name );
