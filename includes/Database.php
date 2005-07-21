@@ -996,9 +996,9 @@ class Database {
 				$list .= $field." IN (".$this->makeList($value).") ";
 			} else {
 				if ( $mode == LIST_AND || $mode == LIST_SET ) {
-					$list .= $field.'=';
+					$list .= "$field = ";
 				}
-				$list .= ($mode==LIST_NAMES?$value:$this->addQuotes( $value ));
+				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
 			}
 		}
 		return $list;
