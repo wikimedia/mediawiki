@@ -84,6 +84,8 @@ class Exif {
 
 	/**
 	 * Constructor
+	 *
+	 * @param string $file
 	 */
 	function Exif( $file ) {
 		/**
@@ -305,8 +307,6 @@ class Exif {
 		}
 	}
 	
-	/**#@-*/
-	
 	/**
 	 * Make $this->mFilteredExifData
 	 */
@@ -377,7 +377,9 @@ class Exif {
 
 	/**#@+
 	 * Validates if a tag value is of the type it should be according to the Exif spec
-	 * 
+	 *
+	 * @access private
+	 *
 	 * @param mixed $in The input value to check
 	 * @return bool
 	 */
@@ -472,6 +474,8 @@ class Exif {
 	/**
 	 * Validates if a tag has a legal value according to the Exif spec
 	 *
+	 * @access private
+	 *
 	 * @param string $tag The tag to check
 	 * @param mixed  $val The value of the tag
 	 * @return bool
@@ -515,6 +519,8 @@ class Exif {
 
 	/**
 	 * Conviniance function for debugging output
+	 *
+	 * @access private
 	 *
 	 * @param mixed $in 
 	 * @param string $fname
@@ -945,6 +951,8 @@ class FormatExif {
 	/**
 	 * Conviniance function for getFormattedData()
 	 *
+	 * @access private
+	 *
 	 * @param string $tag The tag name to pass on
 	 * @param string $val The value of the tag
 	 * @param string $arg An argument to pass ($1)
@@ -957,6 +965,11 @@ class FormatExif {
 	}
 
 	/**
+	 * Format a number, convert numbers from fractions into floating point
+	 * numbers
+	 *
+	 * @access private
+	 *
 	 * @param mixed $num The value to format
 	 * @return mixed A floating point number or whatever we were fed
 	 */
