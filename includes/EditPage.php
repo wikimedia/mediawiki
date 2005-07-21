@@ -470,7 +470,7 @@ class EditPage {
 													&$this->watchthis, &$sectionanchor)))
 				{
 					# update the article here
-					if( false && $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
+					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 													   $this->watchthis, '', $sectionanchor ))
 					{
 						wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $text,
