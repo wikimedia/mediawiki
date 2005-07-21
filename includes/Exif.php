@@ -209,7 +209,7 @@ class Exif {
 					'SpatialFrequencyResponse' => MW_EXIF_UNDEFINED,	# Spatial frequency response
 					'FocalPlaneXResolution' => MW_EXIF_RATIONAL,		# Focal plane X resolution
 					'FocalPlaneYResolution' => MW_EXIF_RATIONAL,		# Focal plane Y resolution
-					'FocalPlaneResolutionUnit' => MW_EXIF_SHORT,		# Focal plane resolution unit
+					'FocalPlaneResolutionUnit' => MW_EXIF_SHORT,		# Focal plane resolution unit #p46
 					'SubjectLocation' => MW_EXIF_SHORT,			# Subject location
 					'ExposureIndex' => MW_EXIF_RATIONAL,			# Exposure index
 					'SensingMethod' => MW_EXIF_SHORT,			# Sensing method #p46
@@ -382,7 +382,7 @@ class Exif {
 	 * @return bool
 	 */
 	function isByte( $in ) {
-		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 255 ) {
+		if ( sprintf('%d', $in) == $in && $in >= 0 && $in <= 255 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
@@ -411,17 +411,17 @@ class Exif {
 	}
 
 	function isShort( $in ) {
-		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 65536 ) {
+		if ( sprintf('%d', $in) == $in && $in >= 0 && $in <= 65536 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
-			$this->debug( $in, __FUNCTION__, true );
+			$this->debug( $in, __FUNCTION__, false );
 			return false;
 		}
 	}
 
 	function isLong( $in ) {
-		if ( sprintf('%d', $in) === $in && $in >= 0 && $in <= 4294967296 ) {
+		if ( sprintf('%d', $in) == $in && $in >= 0 && $in <= 4294967296 ) {
 			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
@@ -431,7 +431,7 @@ class Exif {
 	}
 	
 	function isRational( $in ) {
-		if ( preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
+		if ( @preg_match( "/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/", $in, $m ) ) { # Avoid division by zero
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
 		} else {
 			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
@@ -440,10 +440,11 @@ class Exif {
 	}
 
 	function isUndefined( $in ) {
-		$this->debug( $in, __FUNCTION__ );
 		if ( preg_match( "/^\d{4}$/", $in ) ) { // Allow ExifVersion and FlashpixVersion
+			$this->debug( $in, __FUNCTION__, true );
 			return true;
 		} else {
+			$this->debug( $in, __FUNCTION__, false );
 			return false;
 		}
 	}
@@ -476,25 +477,35 @@ class Exif {
 	 * @return bool
 	 */
 	function validate( $tag, $val ) {
+		$debug = "tag is '$tag'";
 		// Fucks up if not typecast 
 		switch( (string)$this->mFlatExifTags[$tag] ) {
 			case (string)MW_EXIF_BYTE:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isByte( $val );
 			case (string)MW_EXIF_ASCII:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isASCII( $val );
 			case (string)MW_EXIF_SHORT:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isShort( $val );
 			case (string)MW_EXIF_LONG:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isLong( $val );
 			case (string)MW_EXIF_RATIONAL:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isRational( $val );
 			case (string)MW_EXIF_UNDEFINED:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isUndefined( $val );
 			case (string)MW_EXIF_SLONG:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isSlong( $val );
 			case (string)MW_EXIF_SRATIONAL:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isSrational( $val );
 			case (string)MW_EXIF_SHORT.','.MW_EXIF_LONG:
+				$this->debug( $val, __FUNCTION__, $debug );
 				return $this->isShort( $val ) || $this->isLong( $val );
 			default:
 				$this->debug( $val, __FUNCTION__, "The tag '$tag' is unknown" );
@@ -539,7 +550,7 @@ class FormatExif {
 	 * @access private
 	 */
 	var $mExif;
-
+	
 	/**
 	 * Constructor
 	 *
@@ -574,6 +585,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'PhotometricInterpretation':
 				switch( $val ) {
@@ -584,6 +596,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			case 'Orientation':
 				switch( $val ) {
@@ -594,6 +607,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			case 'PlanarConfiguration':
 				switch( $val ) {
@@ -604,6 +618,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			// TODO: YCbCrSubSampling
 			// TODO: YCbCrPositioning
@@ -617,6 +632,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			// TODO: YCbCrCoefficients  #p27 (see annex E)
 			case 'ExifVersion': case 'FlashpixVersion':
@@ -632,6 +648,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			case 'ComponentsConfiguration':
 				switch( $val ) {
@@ -642,6 +659,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 			
 			case 'DateTime':
 			case 'DateTimeOriginal':
@@ -658,6 +676,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'MeteringMode':
 				switch( $val ) {
@@ -668,6 +687,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'LightSource':
 				switch( $val ) {
@@ -680,8 +700,20 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			// TODO: Flash
+			case 'FocalPlaneResolutionUnit':
+				switch( $val ) {
+				case 2:
+					$tags[$tag] = $this->msg( $tag, $val );
+					break;
+				default:
+					$tags[$tag] = $val;
+					break;
+				}
+				break;
+						
 			case 'SensingMethod':
 				switch( $val ) {
 				case 1: case 2: case 3: case 4: case 5: case 7: case 8:
@@ -691,6 +723,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'FileSource':
 				switch( $val ) {
@@ -701,6 +734,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'SceneType':
 				switch( $val ) {
@@ -711,6 +745,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'CustomRendered':
 				switch( $val ) {
@@ -721,6 +756,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'ExposureMode':
 				switch( $val ) {
@@ -731,6 +767,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'WhiteBalance':
 				switch( $val ) {
@@ -741,6 +778,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'SceneCaptureType':
 				switch( $val ) {
@@ -751,6 +789,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 	
 			case 'GainControl':
 				switch( $val ) {
@@ -761,6 +800,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'Contrast':
 				switch( $val ) {
@@ -771,6 +811,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'Saturation':
 				switch( $val ) {
@@ -781,6 +822,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'Sharpness':
 				switch( $val ) {
@@ -791,6 +833,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'SubjectDistanceRange':
 				switch( $val ) {
@@ -801,6 +844,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSLatitudeRef':
 			case 'GPSDestLatitudeRef':
@@ -812,6 +856,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSLongitudeRef':
 			case 'GPSDestLongitudeRef':
@@ -823,6 +868,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSStatus':
 				switch( $val ) {
@@ -833,6 +879,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSMeasureMode':
 				switch( $val ) {
@@ -843,6 +890,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSSpeedRef':
 			case 'GPSDestDistanceRef':
@@ -854,6 +902,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSTrackRef':
 			case 'GPSImgDirectionRef':
@@ -866,6 +915,7 @@ class FormatExif {
 					$tags[$tag] = $val;
 					break;
 				}
+				break;
 				
 			case 'GPSDateStamp':
 				$tags[$tag] = $wgLang->date( substr( $val, 0, 4 ) . substr( $val, 5, 2 ) . substr( $val, 8, 2 ) . '000000' );
