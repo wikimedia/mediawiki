@@ -525,6 +525,7 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	function fixTagAttributes( $text, $element ) {
+		global $wgUrlProtcols;
 		if( trim( $text ) == '' ) {
 			return '';
 		}
@@ -571,7 +572,7 @@ class Sanitizer {
 				'PMID' => '&#80;MID',
 			) );
 			$value = preg_replace(
-				'/(' . URL_PROTOCOLS . '):/',
+				'/(' . $wgUrlProtcols . '):/',
 				'\\1&#58;', $value );
 			
 			// If this attribute was previously set, override it.
