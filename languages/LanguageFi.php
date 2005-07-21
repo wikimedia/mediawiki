@@ -343,7 +343,7 @@ Sivun lähdekoodi:',
 'nocookiesnew'        => 'Käyttäjä luotiin, mutta et ole kirjautunut sisään. {{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeistä. Kytke ne päälle, ja sitten kirjaudu sisään juuri luomallasi käyttäjänimellä ja salasanalla.',
 'nocookieslogin'      => '{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.',
 'noname'              => 'Et ole määritellyt kelvollista käyttäjänimeä.',
-'loginsuccesstitle'   => 'Sisäänkirjoittautuminen onnistui',
+'loginsuccesstitle'   => 'Sisäänkirjautuminen onnistui',
 'loginsuccess'        => 'Olet kirjautunut käyttäjänä $1.',
 'nosuchuser'          => 'Käyttäjää <strong>$1</strong> ei ole olemassa. Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.', // TODO NOWIKIMARKUP
 'nosuchusershort'     => 'Käyttäjää nimellä <b>$1</b> ei ole. Kirjoititko nimen oikein?', // TODO NO WIKIMARKUP
@@ -654,11 +654,9 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'filedesc'            => 'Yhteenveto',
 'filestatus'          => 'Tiedoston tekijänoikeudet',
 'filesource'          => 'Lähde',
-'affirmation'         => 'Lupaan, että tämän tiedoston tekijänoikeuksien haltija sallii sen käytön {{GRAMMAR:inessive|{{SITENAME}}}}.', // TODO: has $1
 'copyrightpage'       => 'Project:Tekijänoikeudet',
 'copyrightpagename'   => '{{SITENAME}} ja tekijänoikeudet',
 'uploadedfiles'       => 'Tallennetut tiedostot',
-'noaffirmation'       => 'Vahvista, ettei lähettämäsi tiedosto riko tekijänoikeuksia.',
 'ignorewarning'       => 'Jätä tämä varoitus huomiotta, ja tallenna tiedosto.',
 'minlength'           => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
@@ -1256,7 +1254,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'thumbsize'           => 'Pikkukuvien koko : ',
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
 
-'newimages'           => 'Galleria uusista kuvista',
+'newimages'           => 'Uudet kuvat',
 'noimages'            => 'Ei uusia kuvia.',
 
 # labels for User: and Title: on Special:Log pages
