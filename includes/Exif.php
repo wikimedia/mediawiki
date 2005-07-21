@@ -951,7 +951,7 @@ class FormatExif {
 	 * @return string A wfMsg of "exif-$tag-$val" in lower case
 	 */
 	function msg( $tag, $val, $arg = null ) {
-		if ($val == '')
+		if ($val === '')
 			$val = 'value';
 		return wfMsg( strtolower( "exif-$tag-$val" ), $arg );
 	}
