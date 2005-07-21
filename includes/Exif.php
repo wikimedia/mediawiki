@@ -677,6 +677,10 @@ class FormatExif {
 					break;
 				}
 				break;
+
+			case 'SubjectDistance':
+				$tags[$tag] = $this->msg( $tag, '', $this->formatNum( $val ) );
+				break;
 	
 			case 'MeteringMode':
 				switch( $val ) {
@@ -927,14 +931,10 @@ class FormatExif {
 			case 'Make':
 			case 'Model':
 			case 'Software':
-				$tags[$tag] = wfMsg( strtolower( "exif-$tag-value" ), $val );
+				$tags[$tag] = $this->msg( $tag, '', $val );
 				break;
 			default:
-				if ( preg_match( '/^(\d+)\/(\d+)$/', $val, $m ) ) {
-					$tags[$tag] = $m[2] != 0 ? $m[1]/$m[2] : $val;
-					break;
-				}
-				$tags[$tag] = $val;
+				$tags[$tag] = $this->formatNum( $val );
 				break;
 			}
 		}
@@ -943,13 +943,27 @@ class FormatExif {
 	}
 
 	/**
-	 * Conviniance function for format()
+	 * Conviniance function for getFormattedData()
 	 *
 	 * @param string $tag The tag name to pass on
 	 * @param string $val The value of the tag
+	 * @param string $arg An argument to pass ($1)
 	 * @return string A wfMsg of "exif-$tag-$val" in lower case
 	 */
-	function msg( $tag, $val ) {
-		return wfMsg( strtolower("exif-$tag-$val") );
+	function msg( $tag, $val, $arg = null ) {
+		if ($val == '')
+			$val = 'value';
+		return wfMsg( strtolower( "exif-$tag-$val" ), $arg );
+	}
+
+	/**
+	 * @param mixed $num The value to format
+	 * @return mixed A floating point number or whatever we were fed
+	 */
+	function formatNum( $num ) {
+		if ( preg_match( '/^(\d+)\/(\d+)$/', $num, $m ) )
+			return $m[2] != 0 ? $m[1] / $m[2] : $num;
+		else
+			return $num;
 	}
 }
