@@ -89,6 +89,7 @@ class LogPage {
 	 */
 	function validTypes() {
 		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
+		wfRunHooks( 'LogPageValidTypes', array( &$types) );
 		return $types;
 	}
 	
@@ -128,6 +129,8 @@ class LogPage {
 			'upload'  => 'uploadlogpage',
 			'move'    => 'movelogpage'
 		);
+		wfRunHooks( 'LogPageLogName', array( &$typeText) );
+		
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
 	
@@ -144,6 +147,8 @@ class LogPage {
 			'upload'  => 'uploadlogpagetext',
 			'move'    => 'movelogpagetext'
 		);
+		wfRunHooks( 'LogPageLogHeader', array( &$headerText ) );
+		
 		return wfMsg( $headerText[$type] );
 	}
 	
