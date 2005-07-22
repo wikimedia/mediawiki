@@ -422,7 +422,7 @@ class UploadForm {
 
 		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );
 		$text = wfMsg( 'fileuploaded', $ilink, $dlink );
-		$wgOut->addHTML( '<p>'.$text."\n" );
+		$wgOut->addHTML( $text );
 		$wgOut->returnToMain( false );
 	}
 
