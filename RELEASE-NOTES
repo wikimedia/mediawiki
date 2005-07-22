@@ -594,6 +594,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2774) Add three new $wgHooks to LogPage which enable extensions to add
   their own logtypes, see extensions/Renameuser/SpecialRenameuser.php for an
   example of this.
+* (bug 740) Messages from extensions now appear in Special:Allmessages
 
 
 === Caveats ===
