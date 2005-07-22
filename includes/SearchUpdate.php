@@ -38,7 +38,7 @@ class SearchUpdate {
 		wfProfileIn( $fname );
 
 		require_once( 'SearchEngine.php' );
-		$search =& SearchEngine::create();
+		$search = SearchEngine::create();
 		$lc = $search->legalSearchChars() . '&#;';
 		
 		if( $this->mText === false ) {

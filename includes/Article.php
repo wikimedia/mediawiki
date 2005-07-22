@@ -487,10 +487,11 @@ class Article {
 	 */
 	function &getDB() {
 		#if ( $this->mForUpdate ) {
-			return wfGetDB( DB_MASTER );
+			$ret =& wfGetDB( DB_MASTER );
 		#} else {
-		#	return wfGetDB( DB_SLAVE );
+		#	$ret =& wfGetDB( DB_SLAVE );
 		#}
+		return $ret;
 	}
 
 	/**

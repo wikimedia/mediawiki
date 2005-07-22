@@ -130,7 +130,7 @@ class Linker {
 	/**
 	 * Pass a title object, not a title string
 	 */
-	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
+	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 		$fname = 'Linker::makeLinkObj';
 		wfProfileIn( $fname );
@@ -368,7 +368,7 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeImageLinkObj( &$nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false, 
+	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false, 
 	  $thumb = false, $manual_thumb = '' ) 
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits;
@@ -546,7 +546,7 @@ class Linker {
 	/**
 	 * Pass a title object, not a title string
 	 */
-	function makeBrokenImageLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeBrokenImageLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# Fail gracefully
 		if ( ! isset($nt) ) {
 			# wfDebugDieBacktrace();

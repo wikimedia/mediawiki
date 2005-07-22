@@ -132,7 +132,7 @@ class SkinTemplate extends Skin {
 	 * @return object
 	 * @access private
 	 */
-	function &setupTemplate( $classname, $repository=false, $cache_dir=false ) {
+	function setupTemplate( $classname, $repository=false, $cache_dir=false ) {
 		return new $classname();
 	}
 
@@ -161,7 +161,7 @@ class SkinTemplate extends Skin {
 		$this->mTitle =& $wgTitle;
 		$this->mUser =& $wgUser;
 
-		$tpl =& $this->setupTemplate( $this->template, 'skins' );
+		$tpl = $this->setupTemplate( $this->template, 'skins' );
 
 		#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 		$tpl->setTranslator(new MediaWiki_I18N());
@@ -483,7 +483,7 @@ class SkinTemplate extends Skin {
 	}
 
 
-	function tabAction( &$title, $message, $selected, $query='', $checkEdit=false ) {
+	function tabAction( $title, $message, $selected, $query='', $checkEdit=false ) {
 		$classes = array();
 		if( $selected ) {
 			$classes[] = 'selected';

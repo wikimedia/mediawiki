@@ -309,9 +309,9 @@ CONTROL;
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		if( $this->mNewid ) {
-			$this->newRev =& Revision::newFromId( $this->mNewid );
+			$this->newRev = Revision::newFromId( $this->mNewid );
 		} else {
-			$this->newRev =& Revision::newFromTitle( $wgTitle );
+			$this->newRev = Revision::newFromTitle( $wgTitle );
 		}
 		if( is_null( $this->newRev ) ) {
 			return false;
@@ -332,9 +332,9 @@ CONTROL;
 		}
 		
 		if( $this->mOldid ) {
-			$this->oldRev =& Revision::newFromId( $this->mOldid );
+			$this->oldRev = Revision::newFromId( $this->mOldid );
 		} else {
-			$this->oldRev =& $this->newRev->getPrevious();
+			$this->oldRev = $this->newRev->getPrevious();
 			$this->mOldid = $this->oldRev->getId();
 		}
 		if( is_null( $this->oldRev ) ) {
