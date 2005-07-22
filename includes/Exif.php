@@ -404,11 +404,6 @@ class Exif {
 			return false;
 		}
 		
-		if ( strlen($in) > 1024 ) { // TODO: This might not be according to the spec
-			$this->debug( $in, __FUNCTION__, 'input was too long' );
-			return false;
-		}
-		
 		return true;
 	}
 
