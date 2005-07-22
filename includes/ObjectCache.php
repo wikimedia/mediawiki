@@ -107,17 +107,20 @@ function &wfGetCache( $inputType ) {
 
 function &wfGetMainCache() {
 	global $wgMainCacheType;
-	return wfGetCache( $wgMainCacheType );
+	$ret =& wfGetCache( $wgMainCacheType );
+	return $ret;
 }
 
 function &wfGetMessageCacheStorage() {
 	global $wgMessageCacheType;
-	return wfGetCache( $wgMessageCacheType );
+	$ret =& wfGetCache( $wgMessageCacheType );
+	return $ret;
 }
 
-function wfGetParserCacheStorage() {
+function &wfGetParserCacheStorage() {
 	global $wgParserCacheType;
-	return wfGetCache( $wgParserCacheType );
+	$ret =& wfGetCache( $wgParserCacheType );
+	return $ret;
 }
 
 ?>

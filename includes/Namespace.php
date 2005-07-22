@@ -100,7 +100,7 @@ class Namespace {
 	/**
 	 * Returns the canonical (English Wikipedia) name for a given index
 	 */
-	function &getCanonicalName( $index ) {
+	function getCanonicalName( $index ) {
 		global $wgCanonicalNamespaceNames;
 		return $wgCanonicalNamespaceNames[$index];
 	}
@@ -109,7 +109,7 @@ class Namespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 */
-	function &getCanonicalIndex( $name ) {
+	function getCanonicalIndex( $name ) {
 		global $wgCanonicalNamespaceNames;
 		static $xNamespaces = false;
 		if ( $xNamespaces === false ) {

@@ -3373,7 +3373,7 @@ class ParserOptions
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
-	function getSkin()                          { return $this->mSkin; }
+	function &getSkin()                         { return $this->mSkin; }
 	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }

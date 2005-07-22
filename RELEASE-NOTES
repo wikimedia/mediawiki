@@ -587,6 +587,10 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Specify USE INDEX on Allpages chunk queries, sometimes gets lost
   due to bogus optimization
 * (bug 275) Section duplication fix
+* Remove unused use of undefined variable in UserMailer
+* Fix notice on search index update due to non-array
+* (bug 2885) Fix fatal errors and notices in PHP 5.1.0beta3
+* (bug 2931) Fix additional notices on reference use in PHP 4.4.0
 
 
 === Caveats ===

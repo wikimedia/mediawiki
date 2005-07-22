@@ -21,7 +21,7 @@ class Revision {
 	 * @static
 	 * @access public
 	 */
-	function &newFromId( $id ) {
+	function newFromId( $id ) {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
 			       'rev_id' => IntVal( $id ) ) );
@@ -38,7 +38,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	function &newFromTitle( &$title, $id = 0 ) {
+	function newFromTitle( &$title, $id = 0 ) {
 		if( $id ) {
 			$matchId = IntVal( $id );
 		} else {
@@ -62,7 +62,7 @@ class Revision {
 	 * @return Revision
 	 * @access public
 	 */
-	function &loadFromPageId( &$db, $pageid, $id = 0 ) {
+	function loadFromPageId( &$db, $pageid, $id = 0 ) {
 		if( $id ) {
 			$matchId = IntVal( $id );
 		} else {
@@ -86,7 +86,7 @@ class Revision {
 	 * @return Revision
 	 * @access public
 	 */
-	function &loadFromTitle( &$db, $title, $id = 0 ) {
+	function loadFromTitle( &$db, $title, $id = 0 ) {
 		if( $id ) {
 			$matchId = IntVal( $id );
 		} else {
@@ -112,7 +112,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	function &loadFromTimestamp( &$db, &$title, $timestamp ) {
+	function loadFromTimestamp( &$db, &$title, $timestamp ) {
 		return Revision::loadFromConds(
 			$db,
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
@@ -129,7 +129,7 @@ class Revision {
 	 * @static
 	 * @access private
 	 */
-	function &newFromConds( $conditions ) {
+	function newFromConds( $conditions ) {
 		$db =& wfGetDB( DB_SLAVE );
 		$row = Revision::loadFromConds( $db, $conditions );
 		if( is_null( $row ) ) {
@@ -149,8 +149,8 @@ class Revision {
 	 * @static
 	 * @access private
 	 */
-	function &loadFromConds( &$db, $conditions ) {
-		$res =& Revision::fetchFromConds( $db, $conditions );
+	function loadFromConds( &$db, $conditions ) {
+		$res = Revision::fetchFromConds( $db, $conditions );
 		if( $res ) {
 			$row = $res->fetchObject();
 			$res->free();
@@ -171,7 +171,7 @@ class Revision {
 	 * @static
 	 * @access public
 	 */
-	function &fetchAllRevisions( &$title ) {
+	function fetchAllRevisions( &$title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
@@ -189,7 +189,7 @@ class Revision {
 	 * @static
 	 * @access public
 	 */
-	function &fetchRevision( &$title ) {
+	function fetchRevision( &$title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
@@ -209,7 +209,7 @@ class Revision {
 	 * @static
 	 * @access private
 	 */
-	function &fetchFromConds( &$db, $conditions ) {
+	function fetchFromConds( &$db, $conditions ) {
 		$res = $db->select(
 			array( 'page', 'revision' ),
 			array( 'page_namespace',
@@ -301,7 +301,7 @@ class Revision {
 	 * Returns the title of the page associated with this entry.
 	 * @return Title
 	 */
-	function &getTitle() {
+	function getTitle() {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
@@ -313,7 +313,7 @@ class Revision {
 			       'rev_id' => $this->mId ),
 			'Revision::getTItle' );
 		if( $row ) {
-			$this->mTitle =& Title::makeTitle( $row->page_namespace,
+			$this->mTitle = Title::makeTitle( $row->page_namespace,
 			                                   $row->page_title );
 		}
 		return $this->mTitle;
@@ -389,7 +389,7 @@ class Revision {
 	/**
 	 * @return Revision
 	 */
-	function &getPrevious() {
+	function getPrevious() {
 		$prev = $this->mTitle->getPreviousRevisionID( $this->mId );
 		return Revision::newFromTitle( $this->mTitle, $prev );
 	}
@@ -397,7 +397,7 @@ class Revision {
 	/**
 	 * @return Revision
 	 */
-	function &getNext() {
+	function getNext() {
 		$next = $this->mTitle->getNextRevisionID( $this->mId );
 		return Revision::newFromTitle( $this->mTitle, $next );
 	}
@@ -601,7 +601,7 @@ class Revision {
 	 * @param bool     $minor
 	 * @return Revision
 	 */
-	function &newNullRevision( &$dbw, $pageId, $summary, $minor ) {
+	function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
 		$fname = 'Revision::newNullRevision';
 		wfProfileIn( $fname );
 		

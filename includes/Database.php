@@ -937,6 +937,9 @@ class Database {
 	 * @return string
 	 */
 	function makeUpdateOptions( $options ) {
+		if( !is_array( $options ) ) {
+			wfDebugDieBacktrace( 'makeUpdateOptions given non-array' );
+		}
 		$opts = array();
 		if ( in_array( 'LOW_PRIORITY', $options ) )
 			$opts[] = $this->lowPriorityOption();
@@ -1453,7 +1456,7 @@ class Database {
 	/**
 	 * @todo document
 	 */
-	function &resultObject( &$result ) {
+	function resultObject( &$result ) {
 		if( empty( $result ) ) {
 			return NULL;
 		} else {
@@ -1565,7 +1568,7 @@ class ResultWrapper {
 	/**
 	 * @todo document
 	 */
-	function &fetchObject() {
+	function fetchObject() {
 		return $this->db->fetchObject( $this->result );
 	}
 	

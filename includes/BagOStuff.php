@@ -359,7 +359,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @param string $serial
 	 * @return mixed
 	 */
-	function &_unserialize( $serial ) {
+	function _unserialize( $serial ) {
 		if( function_exists( 'gzinflate' ) ) {
 			$decomp = @gzinflate( $serial );
 			if( false !== $decomp ) {
