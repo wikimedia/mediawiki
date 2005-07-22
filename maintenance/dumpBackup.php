@@ -22,7 +22,7 @@
  * @subpackage SpecialPage
  */
 
-$options = array( 'full', 'current', 'server' );
+$optionsWithArgs = array( 'server', 'pagelist' );
 
 require_once( 'commandLine.inc' );
 require_once( 'SpecialExport.php' );
@@ -33,6 +33,7 @@ class BackupDumper {
 	var $pageCount = 0;
 	var $revCount  = 0;
 	var $server    = null; // use default
+	var $pages     = null; // all pages
 	
 	function BackupDumper() {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -48,13 +49,23 @@ class BackupDumper {
 		
 		$this->startTime = wfTime();
 		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$this->maxCount = $dbr->selectField( 'page', 'MAX(page_id)', '', 'BackupDumper::dump' );
+		$this->startTime = wfTime();
+		
 		$db =& $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM );
 		$exporter->setPageCallback( array( &$this, 'reportPage' ) );
 		$exporter->setRevisionCallback( array( &$this, 'revCount' ) );
 		
 		$exporter->openStream();
-		$exporter->allPages();
+
+		if ( is_null( $this->pages ) ) {
+			$exporter->allPages();
+		} else {
+			$exporter->pagesByName( $this->pages );
+		}
+
 		$exporter->closeStream();
 		
 		$this->report( true );
@@ -64,6 +75,9 @@ class BackupDumper {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBname;
 		$db =& new Database( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		$timeout = 3600 * 24;
+		$db->query( "SET net_read_timeout=$timeout" );
+		$db->query( "SET net_write_timeout=$timeout" );
 		return $db;
 	}
 	
@@ -92,15 +106,20 @@ class BackupDumper {
 	function showReport() {
 		if( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
+			$now = wfTimestamp( TS_DB );
 			if( $delta ) {
 				$rate = $this->pageCount / $delta;
 				$revrate = $this->revCount / $delta;
+				$portion = $this->pageCount / $this->maxCount;
+				$eta = $this->startTime + $delta / $portion;
+				$etats = wfTimestamp( TS_DB, intval( $eta ) );
 			} else {
 				$rate = '-';
 				$revrate = '-';
+				$etats = '-';
 			}
 			global $wgDBname;
-			$this->progress( "$wgDBname $this->pageCount ($rate pages/sec $revrate revs/sec)" );
+			$this->progress( "$now: $wgDBname $this->pageCount, ETA $etats ($rate pages/sec $revrate revs/sec)" );
 		}
 	}
 	
@@ -119,6 +138,20 @@ if( isset( $options['report'] ) ) {
 if( isset( $options['server'] ) ) {
 	$dumper->server = $options['server'];
 }
+
+if ( isset( $options['pagelist'] ) ) {
+	$olddir = getcwd();
+	chdir( 'maintenance' );
+	$pages = file( $options['pagelist'] );
+	chdir( $olddir );
+	if ( $pages === false ) {
+		print "Unable to open file {$options['pagelist']}\n";
+		exit;
+	}
+	$pages = array_map( 'trim', $pages );
+	$dumper->pages = array_filter( $pages, create_function( '$x', 'return $x !== "";' ) );
+}
+
 if( isset( $options['full'] ) ) {
 	$dumper->dump( MW_EXPORT_FULL );
 } elseif( isset( $options['current'] ) ) {
