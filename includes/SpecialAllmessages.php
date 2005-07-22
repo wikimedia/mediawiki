@@ -28,7 +28,7 @@ function wfSpecialAllmessages() {
 
 
 	$first = true;
-	$sortedArray = $wgAllMessagesEn;
+	$sortedArray = array_merge( $wgAllMessagesEn, $wgMessageCache->mExtensionMessages );
 	ksort( $sortedArray );
 	$messages = array();
 	$wgMessageCache->disableTransform();
