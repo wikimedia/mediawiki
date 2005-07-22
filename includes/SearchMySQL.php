@@ -177,7 +177,7 @@ class SearchMySQL extends SearchEngine {
 			array( 'si_title' => $title ),
 			array( 'si_page'  => $id ),
 			'SearchMySQL4::updateTitle',
-			$dbw->lowPriorityOption() );
+			array( $dbw->lowPriorityOption() ) );
 	}
 }
 
