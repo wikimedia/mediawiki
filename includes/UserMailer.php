@@ -276,7 +276,6 @@ class EmailNotification {
 		$keys['$PAGETITLE']          = $pagetitle;
 		$keys['$PAGETITLE_URL']      = $this->title->getFullUrl();
 		
-		$keys['$PAGETIMESTAMP']      = $article->mTimestamp;	# this is the raw internal timestamp - can be useful, too
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
 	
