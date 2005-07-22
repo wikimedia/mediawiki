@@ -300,7 +300,7 @@ class Database {
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
-			$profName = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
+			$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
 			wfProfileIn( 'Database::query' );
 			wfProfileIn( $profName );
 		}
@@ -1120,7 +1120,7 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		return "USE INDEX ($index)";
+		return "FORCE INDEX ($index)";
 	}
 
 	/**
