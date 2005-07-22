@@ -579,6 +579,9 @@ class FormatExif {
 		global $wgLang;
 		
 		$tags =& $this->mExif;
+
+		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
+		unset( $tags['ResolutionUnit'] );
 		
 		foreach( $tags as $tag => $val ) {
 			switch( $tag ) {
@@ -628,18 +631,22 @@ class FormatExif {
 			
 			// TODO: YCbCrSubSampling
 			// TODO: YCbCrPositioning
-			// TODO: If this field does not exists use 2
-			case 'ResolutionUnit': #p26
-				switch( $val ) {
-				case 2: case 3:
-					$tags[$tag] = $this->msg( $tag, $val );
-					break;
-				default:
-					$tags[$tag] = $val;
-					break;
+			
+			case 'XResolution':
+			case 'YResolution':
+				switch( $resolutionunit ) {
+					case 2:
+						$tags[$tag] = $this->msg( 'XYResolution', 'i', $this->formatNum( $val ) );
+						break;
+					case 3:
+						$this->msg( 'XYResolution', 'c', $this->formatNum( $val ) );
+						break;
+					default:
+						$tags[$tag] = $val;
+						break;
 				}
 				break;
-			
+				
 			// TODO: YCbCrCoefficients  #p27 (see annex E)
 			case 'ExifVersion': case 'FlashpixVersion':
 				$tags[$tag] = "$val"/100;
