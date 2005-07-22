@@ -1807,8 +1807,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-planarconfiguration' =>'Data arrangement',
 'exif-ycbcrsubsampling' =>'Subsampling ratio of Y to C',
 'exif-ycbcrpositioning' =>'Y and C positioning',
-'exif-xresolution' =>'Image resolution in width direction',
-'exif-yresolution' =>'Image resolution in height direction',
+'exif-xresolution' =>'Horizontal resolution',
+'exif-yresolution' =>'Vertical resolution',
 'exif-resolutionunit' =>'Unit of X and Y resolution',
 'exif-stripoffsets' =>'Image data location',
 'exif-rowsperstrip' =>'Number of rows per strip',
@@ -1941,8 +1941,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
-'exif-resolutionunit-2' => 'inches',
-'exif-resolutionunit-3' => 'centimetres',
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
 
 'exif-colorspace-1' => 'sRGB',
 'exif-colorspace-ffff.h' => 'FFFF.H',
