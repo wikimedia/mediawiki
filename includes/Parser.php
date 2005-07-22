@@ -1752,6 +1752,9 @@ class Parser
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
+					if ( $preOpenMatch and !$preCloseMatch ) {
+						$this->mInPre = true;
+					}
 					if ( $closematch ) {
 						$inBlockElem = false;
 					} else {

@@ -574,10 +574,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * show comment subject in preview when using section=new
 * use comment form when creating a new talk page
 * (bug 460) Properly handle <center> tags as a block.
-* (bug 2001) Implement client-side sorting of table fields with JavaScript
 * Undo inconsistent editing behavior change
 * (bug 2835) Back out fix for bug 2802, caused regressions in category sort
-* (bug 2866) Revert experimental, non-cross-platform sortable table hack
 * PHP 4.1.2 compatibility fix: define floatval() equivalent if missing
 * (bug 2901) Number format for Catalan
 * Special:Allpages performance hacks: index memcached caching, removed
@@ -595,6 +593,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   their own logtypes, see extensions/Renameuser/SpecialRenameuser.php for an
   example of this.
 * (bug 740) Messages from extensions now appear in Special:Allmessages
+* (bug 2857) fixed parsing of lists in <pre> sections
 
 
 === Caveats ===
