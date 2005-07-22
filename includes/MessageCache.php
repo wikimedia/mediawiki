@@ -355,7 +355,7 @@ class MessageCache
 	 */
 	function addMessages( $messages ) {
 		foreach ( $messages as $key => $value ) {
-			$this->mExtensionMessages[$key] = $value;
+			$this->addMessage( $key, $value );
 		}
 	}
 
