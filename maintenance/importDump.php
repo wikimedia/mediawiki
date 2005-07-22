@@ -22,7 +22,7 @@
  * @subpackage Maintenance
  */
 
-$options = array( 'full', 'verbose', 'dry-run', 'preserve' );
+$optionsWithArgs = array( 'report' );
 
 require_once( 'commandLine.inc' );
 require_once( 'SpecialImport.php' );
