@@ -591,6 +591,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix notice on search index update due to non-array
 * (bug 2885) Fix fatal errors and notices in PHP 5.1.0beta3
 * (bug 2931) Fix additional notices on reference use in PHP 4.4.0
+* (bug 2774) Add three new $wgHooks to LogPage which enable extensions to add
+  their own logtypes, see extensions/Renameuser/SpecialRenameuser.php for an
+  example of this.
 
 
 === Caveats ===
