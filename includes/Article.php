@@ -1800,7 +1800,8 @@ class Article {
 	 */
 	function doDeleteArticle( $reason ) {
 		global $wgUser;
-		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer, $wgPostCommitUpdateList;
+		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer, $wgPostCommitUpdateList;
+		global $wgUseTrackbacks;
 
 		$fname = 'Article::doDeleteArticle';
 		wfDebug( $fname."\n" );
@@ -1865,6 +1866,9 @@ class Article {
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'revision', array( 'rev_page' => $id ), $fname );
 		$dbw->delete( 'page', array( 'page_id' => $id ), $fname);
+
+		if ($wgUseTrackbacks)
+			$dbw->delete( 'trackbacks', array( 'tb_id' => $id ), $fname );
 
  		# Clean up recentchanges entries...
 		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
