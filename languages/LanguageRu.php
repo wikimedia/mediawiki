@@ -1,7 +1,7 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Language.php 1.621
+  * Based on Language.php 1.625
   *
   * @package MediaWiki
   * @subpackage Language
@@ -1631,8 +1631,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-planarconfiguration' =>'Принцип организации данных',
 'exif-ycbcrsubsampling' =>'Отношение размеров компонент Y и C',
 'exif-ycbcrpositioning' =>'Порядок размещения компонент Y и C ',
-'exif-xresolution' =>'Разрешение по ширине (оси X)',
-'exif-yresolution' =>'Разрешение по высоте (оси Y)',
+'exif-xresolution' =>'Горизонтальное разрешение',
+'exif-yresolution' =>'Вертикальное разрешение',
 'exif-resolutionunit' =>'Единица измерения разрешения',
 'exif-stripoffsets' =>'Положение блока данных',
 'exif-rowsperstrip' =>'Количество строк в 1 блоке',
@@ -1760,8 +1760,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
-'exif-resolutionunit-2' => 'Дюймы',
-'exif-resolutionunit-3' => 'Сантиметры',
+'exif-resolutionunit-2' => '$1 точек на дюйм',
+'exif-resolutionunit-3' => '$1 точек на см',
 
 'exif-colorspace-1' => 'sRGB',
 'exif-colorspace-ffff.h' => 'FFFF.H',
@@ -1783,6 +1783,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-exposureprogram-6' => 'Спортивный режим (с минимальной выдержкой)',
 'exif-exposureprogram-7' => 'Портретный режим (для снимков на близком расстоянии, с фоном не в фокусе)',
 'exif-exposureprogram-8' => 'Пейзажный режим (для пейзажных снимков, с фоном в фокусе)',
+
+'exif-subjectdistance-value' => '$1 метров',
 
 'exif-meteringmode-0' => 'Неизвестно',
 'exif-meteringmode-1' => 'Средний',
@@ -1814,6 +1816,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-lightsource-23' => 'D50',
 'exif-lightsource-24' => 'Студийная лампа стандарта ISO',
 'exif-lightsource-255' => 'Другой источник света',
+
+'exif-focalplaneresolutionunit-2' => 'дюймов',
 
 'exif-sensingmethod-1' => 'Неопределённый',
 'exif-sensingmethod-2' => 'Однокристальный матричный цветной сенсор',
