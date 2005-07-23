@@ -791,7 +791,7 @@ class OutputPage {
 	 */
 	function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgUser, $wgContLang, $wgRequest;
+		global $wgUser, $wgContLang, $wgRequest, $wgUseTrackbacks, $wgTitle;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
@@ -824,6 +824,9 @@ class OutputPage {
 		$ret .= $sk->getHeadScripts();
 		$ret .= $this->mScripts;
 		$ret .= $sk->getUserStyles();
+
+		if ($wgUseTrackbacks && $this->isArticleRelated())
+			$ret .= $wgTitle->trackbackRDF();
 
 		$ret .= "</head>\n";
 		return $ret;

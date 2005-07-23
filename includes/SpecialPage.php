@@ -33,7 +33,7 @@ $wgSpecialPages = array(
 	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
 	'Preferences'       => new SpecialPage( 'Preferences' ),
 	'Watchlist'         => new SpecialPage( 'Watchlist' ),
-	
+
 	'Recentchanges'     => new IncludableSpecialPage( 'Recentchanges' ),
 	'Upload'            => new SpecialPage( 'Upload' ),
 	'Imagelist'         => new SpecialPage( 'Imagelist' ),
@@ -134,11 +134,11 @@ class SpecialPage
 	 * Whether the special page can be included in an article
 	 */
 	var $mIncludable;
-	
+
 
 	/**#@-*/
 
-	
+
 	/**
 	 * Add a page to the list of valid special pages
 	 * $obj->execute() must send HTML to $wgOut then return
@@ -173,7 +173,7 @@ class SpecialPage
 			return NULL;
 		}
 	}
-	
+
 	/**
 	 * @static
 	 * @param string $name
@@ -223,7 +223,7 @@ class SpecialPage
 	 * The path	may contain parameters, e.g. Special:Name/Params
 	 * Extracts the special page name and call the execute method, passing the parameters
 	 *
-	 * Returns a title object if the page is redirected, false if there was no such special 
+	 * Returns a title object if the page is redirected, false if there was no such special
 	 * page, and true if it was successful.
 	 *
 	 * @param $title          a title object
@@ -247,7 +247,7 @@ class SpecialPage
 			} else {
 				$redir =& SpecialPage::getRedirect( $name );
 				if ( isset( $redir ) ) {
-					if ( isset( $par ) ) 
+					if ( isset( $par ) )
 						$wgOut->redirect( $redir->getFullURL() . '/' . $par );
 					else
 						$wgOut->redirect( $redir->getFullURL() );
@@ -288,7 +288,7 @@ class SpecialPage
 		$oldTitle = $wgTitle;
 		$oldOut = $wgOut;
 		$wgOut = new OutputPage;
-		
+
 		$ret = SpecialPage::executePath( $title, true );
 		if ( $ret === true ) {
 			$ret = $wgOut->getHTML();
@@ -337,7 +337,7 @@ class SpecialPage
 	function isListed() { return $this->mListed; }
 	function getFile() { return $this->mFile; }
 	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
-	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); } 
+	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); }
 
 	/**
 	 * Checks if the given user (identified by an object) can execute this

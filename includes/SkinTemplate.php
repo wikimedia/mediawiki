@@ -149,6 +149,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
+		global $wgUseTrackbacks;
 
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
@@ -217,6 +218,9 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'feeds', false );
 		}
+		if ($wgUseTrackbacks && $out->isArticleRelated())
+			$tpl->set( 'trackbackhtml', $wgTitle->trackbackRDF());
+
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
@@ -721,6 +725,8 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildNavUrls () {
+		global $wgUseTrackbacks, $wgTitle;
+
 		$fname = 'SkinTemplate::buildNavUrls';
 		wfProfileIn( $fname );
 
@@ -768,6 +774,10 @@ class SkinTemplate extends Skin {
 			$nav_urls['recentchangeslinked'] = array(
 				'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
 			);
+			if ($wgUseTrackbacks)
+				$nav_urls['trackbacklink'] = array(
+					'href' => $wgTitle->trackbackURL()
+				);
 		}
 
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {

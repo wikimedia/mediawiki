@@ -595,6 +595,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 740) Messages from extensions now appear in Special:Allmessages
 * (bug 2857) fixed parsing of lists in <pre> sections
 * Now sorting interwiki links by iw_prefix and avoiding duplicates
+* (bug 796) Trackback support
 
 === Caveats ===
 

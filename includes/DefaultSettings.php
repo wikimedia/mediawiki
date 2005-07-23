@@ -1588,4 +1588,10 @@ $wgHTTPProxy = false;
  */
 $wgEnableScaryTranscluding = false;
 
+/**
+ * Support blog-style "trackbacks" for articles.  See
+ * http://www.sixapart.com/pronet/docs/trackback_spec for details.
+ */
+$wgUseTrackbacks = false;
+
 ?>

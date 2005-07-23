@@ -68,6 +68,7 @@ class MonoBookTemplate extends QuickTemplate {
     <?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php              $this->html('usercss'   ) ?></style><?php    } ?>
     <?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
     <?php if($this->data['userjsprev']) { ?><script type="<?php $this->text('jsmimetype') ?>"><?php      $this->html('userjsprev') ?></script><?php   } ?>
+    <?php if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
   </head>
   <body <?php if($this->data['body_ondblclick']) { ?>ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
         <?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
@@ -158,9 +159,14 @@ class MonoBookTemplate extends QuickTemplate {
 	    <ul>
 		  <?php if($this->data['notspecialpage']) { foreach( array( 'whatlinkshere', 'recentchangeslinked' ) as $special ) { ?>
 		  <li id="t-<?php echo $special?>"><a href="<?php
-		    echo htmlspecialchars($this->data['nav_urls'][$special]['href']) 
+		    echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
 		    ?>"><?php echo $this->msg($special) ?></a></li>
 		  <?php } } ?>
+              <?php if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
+		  <li id="t-trackbacklink"><a href="<?php
+		    echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
+		    ?>"><?php echo $this->msg('trackbacklink') ?></a></li>
+	      <?php } ?>
 	      <?php if($this->data['feeds']) { ?><li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
 	        ?><span id="feed-<?php echo htmlspecialchars($key) ?>"><a href="<?php
 	        echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
@@ -172,7 +178,7 @@ class MonoBookTemplate extends QuickTemplate {
 	      <?php } ?>
 	      <?php if(!empty($this->data['nav_urls']['print']['href'])) { ?>
 	      <li id="t-print"><a href="<?php
-		    echo htmlspecialchars($this->data['nav_urls']['print']['href']) 
+		    echo htmlspecialchars($this->data['nav_urls']['print']['href'])
 		    ?>"><?php echo $this->msg('printableversion') ?></a></li>
 	      <?php } ?>
 	    </ul>
