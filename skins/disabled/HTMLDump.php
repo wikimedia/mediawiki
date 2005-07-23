@@ -21,19 +21,22 @@ class SkinHTMLDump extends SkinTemplate {
 	function initPage( &$out ) {
 		SkinTemplate::initPage( $out );
 		$this->template  = 'HTMLDumpTemplate';
-    }
+	}
 
 	function buildSidebar() {
 		$sections = parent::buildSidebar();
-        foreach ( $sections as $heading => $section ) {
-            foreach ( $section as $index => $link ) {
-                if ( $link['href'] == $this->makeInternalOrExternalUrl( 'recentchanges-url' ) ) {
-                    unset( $sections[$heading][$index] );
-                }
-                if ( $link['href'] == $this->makeInternalOrExternalUrl( 'randompage-url' ) ) {
-                    unset( $sections[$heading][$index] );
-                }
-            }
+		$badMessages = array( 'recentchanges-url', 'randompage-url' );
+		$badUrls = array();
+		foreach ( $badMessages as $msg ) {
+			$badUrls[] = $this->makeInternalOrExternalUrl( wfMsgForContent( $msg ) );
+		}
+
+		foreach ( $sections as $heading => $section ) {
+			foreach ( $section as $index => $link ) {
+				if ( in_array( $link['href'], $badUrls ) ) {
+					unset( $sections[$heading][$index] );
+				}
+			}
 		}
 		return $sections;
 	}
