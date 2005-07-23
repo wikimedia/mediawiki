@@ -850,13 +850,13 @@ class Article {
 	}
 
 	function addTrackbacks() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$dbr = wfGetDB(DB_SLAVE);
 		$tbs = $dbr->select(
 				/* FROM   */ 'trackbacks',
-				/* SELECT */ array('tb_title', 'tb_url', 'tb_ex', 'tb_name'),
-				/* WHERE  */ array('tb_id' => $this->getID())
+				/* SELECT */ array('tb_id', 'tb_title', 'tb_url', 'tb_ex', 'tb_name'),
+				/* WHERE  */ array('tb_page' => $this->getID())
 		);
 
 		if (!$dbr->numrows($tbs))
@@ -864,13 +864,44 @@ class Article {
 
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
+			$rmvtext = "";
+			if ($wgUser->isSysop()) {
+				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
+						. $o->tb_id . "&token=" . $wgUser->editToken());
+				$rmvtxt = wfMsg('trackbackremove', $delurl);
+			}
 			$tbtext .= wfMsg(strlen($o->tb_ex) ? 'trackbackexcerpt' : 'trackback',
 					$o->tb_title,
 					$o->tb_url,
 					$o->tb_ex,
-					$o->tb_name);
+					$o->tb_name,
+					$rmvtxt);
 		}
 		$wgOut->addWikitext(wfMsg('trackbackbox', $tbtext));
+	}
+
+	function deletetrackback() {
+		global $wgUser, $wgRequest, $wgOut, $wgTitle;
+
+		if (!$wgUser->matchEditToken($wgRequest->getVal('token'))) {
+			$wgOut->addWikitext(wfMsg('sessionfailure'));
+			return;
+		}
+
+		if ((!$wgUser->isAllowed('delete'))) {
+			$wgOut->sysopRequired();
+			return;
+		}
+
+		if (wfReadOnly()) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+
+		$db = wfGetDB(DB_MASTER);
+		$db->delete('trackbacks', array('tb_id' => $wgRequest->getInt('tbid')));
+		$wgTitle->invalidateCache();
+		$wgOut->addWikiText(wfMsg('trackbackdeleteok'));
 	}
 
 	function render() {
@@ -1868,7 +1899,7 @@ class Article {
 		$dbw->delete( 'page', array( 'page_id' => $id ), $fname);
 
 		if ($wgUseTrackbacks)
-			$dbw->delete( 'trackbacks', array( 'tb_id' => $id ), $fname );
+			$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), $fname );
 
  		# Clean up recentchanges entries...
 		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
