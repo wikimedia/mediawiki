@@ -1,4 +1,4 @@
-/* 
+/*
  * common.css
  * This file contains CSS settings common to Wikistandard, Nostalgia and CologneBlue
  */
@@ -38,7 +38,7 @@ div.thumb div {
     text-align: center;
     overflow: hidden;
 }
-div.thumb div * { 
+div.thumb div * {
     border: none;
     background: none;
 }
@@ -68,13 +68,13 @@ div.tleft {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: #4b4b4b; }
-#pagehistory span.user { 
+#pagehistory span.user {
     margin-left: 1.4em;
     margin-right: 0.4em;
 }
 #pagehistory span.minor { font-weight: bold; }
 #pagehistory li { border: 1px solid White; }
-#pagehistory li.selected { 
+#pagehistory li.selected {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
@@ -82,11 +82,11 @@ div.tleft {
 table.diff { background:white; }
 td.diff-otitle { background:#cccccc; }
 td.diff-ntitle { background:#cccccc; }
-td.diff-addedline { 
+td.diff-addedline {
     background:#ccffcc;
     font-size: 94%;
 }
-td.diff-deletedline { 
+td.diff-deletedline {
     background:#ffffaa;
     font-size: 94%;
 }
@@ -141,13 +141,13 @@ span.texhtml { font-family: serif; }
 }
 
 /* preference page with js-genrated toc */
-#preftoc { 
+#preftoc {
     float: left;
     margin: 1em 1em 1em 1em;
     width: 13em;
 }
 #preftoc li { border: 1px solid White; }
-#preftoc li.selected { 
+#preftoc li.selected {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
@@ -156,12 +156,12 @@ span.texhtml { font-family: serif; }
     display: block;
     color: #005189;
 }
-#prefcontrol { 
+#prefcontrol {
     clear: left;
     float: left;
     margin-top: 1em;
 }
-div.prefsectiontip { 
+div.prefsectiontip {
     font-size: 94%;
     margin-top: 1em;
 }
@@ -194,7 +194,7 @@ div.townBox {
 }
 div.townBox dl {
     padding: 0;
-    margin: 0 0 0.3em 0; 
+    margin: 0 0 0.3em 0;
     font-size: 96%;
 }
 div.townBox dl dt {
@@ -206,7 +206,7 @@ div.townBox dl dd {
     background-color: #f3f3f3;
 }
 /* use this instead of #toc for page content */
-.toccolours { 
+.toccolours {
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding:5px;
@@ -254,7 +254,7 @@ table.gallery {
         background-color:#ffffff;
 }
 
-table.gallery tr { 
+table.gallery tr {
         vertical-align:top;
 }
 
@@ -273,12 +273,12 @@ div.gallerybox div.thumb {
         text-align: center;
         border: 1px solid #cccccc;
         margin: 2px;
-}       
+}
 
 div.gallerytext {
         font-size: 94%;
         padding: 2px 4px;
-}       
+}
 
 span.comment {
 	font-style: italic;
@@ -347,4 +347,10 @@ table.exif td.spacer {
 
 .visualClear {
     clear: both;
+}
+
+#mw_trackbacks {
+	border: solid 1px #bbbbff;
+	background-color: #eeeeff;
+	padding: 0.2em;
 }

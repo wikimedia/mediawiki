@@ -637,10 +637,10 @@ to confirm that the account is actually yours.",
 'emailauthenticated'        => 'Your email address was authenticated on $1.',
 'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>No email address has been specified</strong>, the following 
+'noemailprefs'              => '<strong>No email address has been specified</strong>, the following
 features will not work.',
 'emailconfirmlink' => 'Confirm your e-mail address',
-'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid 
+'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
 
 # Edit page toolbar
@@ -2121,6 +2121,15 @@ will expire at $4.
 'scarytranscludefailed' => '[Template fetch failed for $1; sorry]',
 'scarytranscludetoolong' => '[URL is too long; sorry]',
 
+# Trackbacks
+'trackbackbox' => "<div id='mw_trackbacks'>
+Trackbacks for this article:<br/>
+$1
+</div>
+",
+'trackback' => "; $4 : [$2 $1]</li>\n",
+'trackbackexcerpt' => "; $4 : [$2 $1]: <nowiki>$3</nowiki></li>\n",
+'trackbacklink' => 'Trackback',
 );
 
 /* a fake language converter */

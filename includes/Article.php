@@ -94,10 +94,10 @@ class Article {
 		if ( 0 == $this->getID() ) {
 			if ( 'edit' == $action ) {
 				wfProfileOut( $fname );
-				
+
 				# If requested, preload some text.
 				$text=$this->getPreloadedText($preload);
-				
+
 				# We used to put MediaWiki:Newarticletext here if
 				# $text was empty at this point.
 				# This is now shown above the edit box instead.
@@ -154,7 +154,7 @@ class Article {
 		}
 		return '';
 	}
-	
+
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
 	 * A section is text under a heading like == Heading == or <h1>Heading</h1>, or
@@ -678,7 +678,7 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
-		global $wgEnotif, $wgParser, $wgParserCache;
+		global $wgEnotif, $wgParser, $wgParserCache, $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
@@ -835,6 +835,10 @@ class Article {
 			 );
 		}
 
+		# Trackbacks
+		if ($wgUseTrackbacks)
+			$this->addTrackbacks();
+
 		# Put link titles into the link cache
 		$wgOut->transformBuffer();
 
@@ -843,6 +847,30 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
+	}
+
+	function addTrackbacks() {
+		global $wgOut;
+
+		$dbr = wfGetDB(DB_SLAVE);
+		$tbs = $dbr->select(
+				/* FROM   */ 'trackbacks',
+				/* SELECT */ array('tb_title', 'tb_url', 'tb_ex', 'tb_name'),
+				/* WHERE  */ array('tb_id' => $this->getID())
+		);
+
+		if (!$dbr->numrows($tbs))
+			return;
+
+		$tbtext = "";
+		while ($o = $dbr->fetchObject($tbs)) {
+			$tbtext .= wfMsg(strlen($o->tb_ex) ? 'trackbackexcerpt' : 'trackback',
+					$o->tb_title,
+					$o->tb_url,
+					$o->tb_ex,
+					$o->tb_name);
+		}
+		$wgOut->addWikitext(wfMsg('trackbackbox', $tbtext));
 	}
 
 	function render() {
@@ -979,7 +1007,7 @@ class Article {
 
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
-		
+
 		# If this is a comment, add the summary as headline
 		if($comment && $summary!="") {
 			$text="== {$summary} ==\n\n".$text;
@@ -1233,7 +1261,7 @@ class Article {
 				array_push( $wgPostCommitUpdateList, $u );
 			}
 
-			# File cache	
+			# File cache
 			if ( $wgUseFileCache ) {
 				$cm = new CacheManager($this->mTitle);
 				@unlink($cm->fileCacheName());
@@ -2403,9 +2431,6 @@ class Article {
 		$db->freeResult( $res );
 		return $result;
 	}
-
-
 }
-
 
 ?>

@@ -2079,5 +2079,29 @@ class Title {
 		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ),
 							/* WHERE */ array( 'page_id' => $toucharr ),$fname);
 	}
+
+	function trackbackURL() {
+		global $wgTitle, $wgScriptPath, $wgServer;
+
+		return "$wgServer$wgScriptPath/trackback.php?article="
+			. htmlspecialchars(urlencode($wgTitle->getPrefixedDBkey()));
+	}
+
+	function trackbackRDF() {
+		$url = htmlspecialchars($this->getFullURL());
+		$title = htmlspecialchars($this->getText());
+		$tburl = $this->trackbackURL();
+
+		return "
+<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
+         xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
+         xmlns:trackback=\"http://madskills.com/public/xml/rss/module/trackback/\">
+<rdf:Description
+   rdf:about=\"$url\"
+   dc:identifier=\"$url\"
+   dc:title=\"$title\"
+   trackback:ping=\"$tburl\" />
+</rdf:RDF>";
+	}
 }
 ?>

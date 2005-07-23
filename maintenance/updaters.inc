@@ -25,6 +25,7 @@ $wgNewTables = array(
 	array( 'validate',      'patch-validate.sql' ),
 	array( 'user_newtalk',  'patch-usernewtalk2.sql' ),
 	array( 'transcache',	'patch-transcache.sql' ),
+	array( 'trackbacks',	'patch-trackbacks.sql' ),
 );
 
 $wgNewFields = array(

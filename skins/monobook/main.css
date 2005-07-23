@@ -219,7 +219,7 @@ pre {
 */
 
 #siteSub {
-    display: none; 
+    display: none;
 }
 #contentSub {
     font-size: 84%;
@@ -1078,7 +1078,7 @@ span.changedby {
 	float: left;
 	font-size: small;
 	text-align: center;
-}    
+}
 .editExternallyHelp {
 	font-style: italic;
 	color: gray;
@@ -1180,4 +1180,10 @@ tr.revision_tr_first {
 p.revision_saved {
 	color: green;
 	font-weight:bold;
+}
+
+#mw_trackbacks {
+	border: solid 1px #bbbbff;
+	background-color: #eeeeff;
+	padding: 0.2em;
 }

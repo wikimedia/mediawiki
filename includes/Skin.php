@@ -108,7 +108,7 @@ class Skin extends Linker {
 
 	function addMetadataLinks( &$out ) {
 		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf, $wgRdfMimeType, $action;
-		global $wgRightsPage, $wgRightsUrl;
+		global $wgRightsPage, $wgRightsUrl, $wgUseTrackbacks;
 
 		if( $out->isArticleRelated() ) {
 			# note: buggy CC software only reads first "meta" link
@@ -732,7 +732,7 @@ END;
 	}
 
 	function bottomLinks() {
-		global $wgOut, $wgUser, $wgTitle;
+		global $wgOut, $wgUser, $wgTitle, $wgUseTrackbacks;
 		$sep = " |\n";
 
 		$s = '';
@@ -745,6 +745,9 @@ END;
 			  . $sep . $this->historyLink()
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
+
+			if ($wgUseTrackbacks)
+				$s .= $sep . $this->trackbackLink();
 
 			if ( $wgTitle->getNamespace() == NS_USER
 			    || $wgTitle->getNamespace() == NS_USER_TALK )
@@ -1111,6 +1114,13 @@ END;
 			  'Recentchangeslinked' ), wfMsg( 'recentchangeslinked' ),
 			  'target=' . $wgTitle->getPrefixedURL() );
 		}
+	}
+
+	function trackbackLink() {
+		global $wgTitle;
+
+		return "<a href=\"" . $wgTitle->trackbackURL() . "\">"
+			. wfMsg('trackbacklink') . "</a>";
 	}
 
 	function otherLanguages() {
