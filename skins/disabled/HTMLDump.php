@@ -21,19 +21,21 @@ class SkinHTMLDump extends SkinTemplate {
 	function initPage( &$out ) {
 		SkinTemplate::initPage( $out );
 		$this->template  = 'HTMLDumpTemplate';
-	}
+    }
 
-	function getNavigationLinks() {
-		$links = parent::getNavigationLinks();
-		foreach ( $links as $index => $link ) {
-			if ( $link['href'] == 'recentchanges-url' ) {
-				unset( $links[$index] );
-			}
-			if ( $link['href'] == 'randompage-url' ) {
-				unset( $links[$index] );
-			}
+	function buildSidebar() {
+		$sections = parent::buildSidebar();
+        foreach ( $sections as $heading => $section ) {
+            foreach ( $section as $index => $link ) {
+                if ( $link['href'] == $this->makeInternalOrExternalUrl( 'recentchanges-url' ) ) {
+                    unset( $sections[$heading][$index] );
+                }
+                if ( $link['href'] == $this->makeInternalOrExternalUrl( 'randompage-url' ) ) {
+                    unset( $sections[$heading][$index] );
+                }
+            }
 		}
-		return $links;
+		return $sections;
 	}
 
 	function buildContentActionUrls() {
@@ -154,17 +156,18 @@ class HTMLDumpTemplate extends QuickTemplate {
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
-	<div class="portlet" id="p-navigation">
-	  <h5><?php $this->msg('navigation') ?></h5>
-	  <div class="pBody">
+	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
+	<div class='portlet' id='p-<?php echo htmlspecialchars($bar) ?>'>
+	  <h5><?php $this->msg( $bar ) ?></h5>
+	  <div class='pBody'>
 	    <ul>
-	      <?php foreach($this->data['navigation_urls'] as $navlink) { ?>
-	      <li id="<?php echo htmlspecialchars($navlink['id'])
-	        ?>"><a href="<?php echo htmlspecialchars($navlink['href']) ?>"><?php 
-	        echo htmlspecialchars($navlink['text']) ?></a></li><?php } ?>
+	    <?php foreach($cont as $key => $val) { ?>
+	      <li id="<?php echo htmlspecialchars($val['id']) ?>"><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php echo htmlspecialchars($val['text'])?></a></li>
+	     <?php } ?>
 	    </ul>
 	  </div>
 	</div>
+	<?php } ?>
 	<?php if( $this->data['language_urls'] ) { ?><div id="p-lang" class="portlet">
 	  <h5><?php $this->msg('otherlanguages') ?></h5>
 	  <div class="pBody">
