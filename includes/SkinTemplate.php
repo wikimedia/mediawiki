@@ -357,7 +357,9 @@ class SkinTemplate extends Skin {
 		$language_urls = array();
 
 		if ( !$wgHideInterlanguageLinks ) {
-			foreach( $wgOut->getLanguageLinks() as $l ) {
+			$iwlinks = $wgOut->getLanguageLinks();
+			$iwlinks = $this->sortInterwikiLinks( $iwlinks );
+			foreach( $iwlinks as $l ) {
 				$nt = Title::newFromText( $l );
 				$language_urls[] = array('href' => $nt->getFullURL(),
 				'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
