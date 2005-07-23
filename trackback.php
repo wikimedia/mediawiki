@@ -64,11 +64,11 @@ if (!$title->exists())
 	XMLerror("Specified article does not exist.");
 
 $dbw->insert('trackbacks', array(
-	'tb_id'	=> $title->getArticleID(),
-	'tb_title' => $tbtitle,
-	'tb_url' => $tburl,
-	'tb_ex' => $tbex,
-	'tb_name' => $tbname
+	'tb_page'	=> $title->getArticleID(),
+	'tb_title'	=> $tbtitle,
+	'tb_url'	=> $tburl,
+	'tb_ex'		=> $tbex,
+	'tb_name'	=> $tbname
 ));
 
 XMLsuccess();

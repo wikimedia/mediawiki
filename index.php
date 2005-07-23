@@ -172,6 +172,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 			case 'markpatrolled':
 			case 'validate':
 			case 'render':
+			case 'deletetrackback':
 				$wgArticle->$action();
 				break;
 			case 'print':

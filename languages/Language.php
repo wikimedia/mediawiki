@@ -2127,9 +2127,11 @@ Trackbacks for this article:<br/>
 $1
 </div>
 ",
-'trackback' => "; $4 : [$2 $1]</li>\n",
-'trackbackexcerpt' => "; $4 : [$2 $1]: <nowiki>$3</nowiki></li>\n",
+'trackback' => "; $4$5 : [$2 $1]\n",
+'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
+'trackbackremove' => ' ([$1 Delete])',
 'trackbacklink' => 'Trackback',
+'trackbackdeleteok' => 'The trackback was successfully deleted.',
 );
 
 /* a fake language converter */
