@@ -603,6 +603,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Skins can now be previewed in preferences
 * (bug 2943) AuthPlugin::getCanonicalName() name canonicalization hook,
   patch from robla
+* Wrap revision insert & page update in a transaction, rollback on late
+  edit conflict.
 
 
 === Caveats ===
