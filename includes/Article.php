@@ -1238,6 +1238,8 @@ class Article {
 				'minor_edit' => $isminor,
 				'text'       => $text
 				) );
+			
+			$dbw->begin();
 			$revisionId = $revision->insertOn( $dbw );
 
 			# Update page
@@ -1246,6 +1248,7 @@ class Article {
 			if( !$ok ) {
 				/* Belated edit conflict! Run away!! */
 				$good = false;
+				$dbw->rollback();
 			} else {
 				# Update recentchanges and purge cache and whatnot
 				$bot = (int)($wgUser->isBot() || $forceBot);
@@ -1253,6 +1256,7 @@ class Article {
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 					$revisionId );
 				Article::onArticleEdit( $this->mTitle );
+				$dbw->commit();
 			}
 		}
 
