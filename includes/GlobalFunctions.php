@@ -1282,7 +1282,7 @@ function wfIncrStats( $key ) {
  * @param bool $round Whether or not to round the value, default true
  * @return float
  */
-function percent( $nr, $acc = 2, $round = true ) {
+function wfPercent( $nr, $acc = 2, $round = true ) {
 	$ret = sprintf( "%.${acc}f", $nr );
 	return $round ? round( $ret, $acc ) . '%' : "$ret%";
 }
