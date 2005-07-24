@@ -601,6 +601,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * "uselang" and "useskin" URL parameters can now be used in the URL when
   viewing a page, to change the language and skin of a page respectively.
 * Skins can now be previewed in preferences
+* (bug 2943) AuthPlugin::getCanonicalName() name canonicalization hook,
+  patch from robla
+
 
 === Caveats ===
 

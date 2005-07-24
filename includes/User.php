@@ -64,12 +64,15 @@ class User {
 
 		# Reject various classes of invalid names
 		$canonicalName = $t->getText();
+		global $wgAuth;
+		$canonicalName = $wgAuth->getCanonicalName( $t->getText() );
+
 		if( !User::isValidUserName( $canonicalName ) ) {
 			return null;
 		}
 
 		$u->setName( $canonicalName );
-		$u->setId( $u->idFromName( $t->getText() ) );
+		$u->setId( $u->idFromName( $canonicalName ) );
 		return $u;
 	}
 
