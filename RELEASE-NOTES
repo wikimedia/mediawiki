@@ -598,7 +598,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 796) Trackback support
 * Fix 1.5 regression: weird, backwards diff links on new pages in enhanced RC
   are now suppressed as before.
-
+* New skin: Simple
+* "uselang" and "useskin" URL parameters can now be used in the URL when
+  viewing a page, to change the language and skin of a page respectively.
 
 === Caveats ===
 
