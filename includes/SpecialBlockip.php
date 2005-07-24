@@ -179,7 +179,7 @@ class IPBlockForm {
 		}
 
 		$expirestr = $this->BlockExpiry;
-		if ($expirestr == wfMsg('ipbotheroption'))
+		if( $expirestr == 'other' )
 			$expirestr = $this->BlockOther;
 
 		if (strlen($expirestr) == 0) {
