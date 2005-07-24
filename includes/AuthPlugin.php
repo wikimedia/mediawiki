@@ -210,6 +210,14 @@ class AuthPlugin {
 	function initUser( &$user ) {
 		# Override this to do something.
 	}
+	
+	/**
+	 * If you want to munge the case of an account name before the final
+	 * check, now is your chance.
+	 */
+	function getCanonicalName( $username ) {
+		return $username;
+	}
 }
 
 ?>
