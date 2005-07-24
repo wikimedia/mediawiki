@@ -1131,7 +1131,6 @@ END;
 		}
 
 		$a = $wgOut->getLanguageLinks();
-		$a = $this->sortInterwikiLinks( $a );
 		if ( 0 == count( $a ) ) {
 			return '';
 		}
@@ -1328,23 +1327,6 @@ END;
 
 		wfProfileOut( $fname );
 		return $bar;
-	}
-
-	function sortInterwikiLinks( $links ) {
-		$nlinks = $nnlinks = array();
-		
-		foreach($links as $link) {
-			list($iso, $url) = explode( ':', $link, 2 );
-			$nlinks[$iso] = $url;
-		}
-		
-		ksort( $nlinks );
-
-		foreach($nlinks as $k => $v) {
-			$nnlinks[] = implode( ':', array($k, $v) );
-		}
-
-		return $nnlinks;
 	}
 }
 
