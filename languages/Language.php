@@ -309,6 +309,8 @@ parent class in order maintain consistency across languages.
 'underline-never' => 'Never',
 'underline-default' => 'Browser default',
 
+'skinpreview' => '(Preview)',
+
 # dates
 'sunday' => 'Sunday',
 'monday' => 'Monday',
