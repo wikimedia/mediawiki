@@ -5,7 +5,20 @@
  * @subpackage Maintenance
  */
 
-/** */
+/**
+ * Usage:
+ * php dumpHTML.php [options...]
+ *
+ * -d <dest>      destination directory
+ * -s <start>     start ID
+ * -e <end>       end ID
+ * --images       only do image description pages
+ * --categories   only do category pages
+ * --special      only do miscellaneous stuff
+ * --force-copy   copy commons instead of symlink, needed for Wikimedia
+ * --interlang    allow interlanguage links
+ */
+
 
 $optionsWithArgs = array( 's', 'd', 'e' );
 
@@ -34,7 +47,13 @@ if ( !empty( $options['d'] ) ) {
 	$dest = 'static';
 }
 
-$d = new DumpHTML( $dest, true, 3 );
+$d = new DumpHTML( array( 
+	'dest' => $dest, 
+	'forceCopy' => $options['force-copy'],
+	'alternateScriptPath' => $options['interlang'],
+	'interwiki' => $options['interlang'],
+));
+
 
 if ( $options['special'] ) {
 	$d->doSpecials();
@@ -43,17 +62,27 @@ if ( $options['special'] ) {
 } elseif ( $options['categories'] ) {
 	$d->doCategories();
 } else {
+	print("Creating static HTML dump in directory $dest. \n".
+		"Starting from page_id $start of $end.\n");
+	$d->doArticles( $start, $end );
+	$d->doImageDescriptions();
+	$d->doCategories();
+	$d->doSpecials();
+	
+	/*
 	if ( $end - $start > CHUNK_SIZE * 2 ) {
 		// Split the problem into smaller chunks, run them in different PHP instances
 		// This is a memory/resource leak workaround
-		print("Creating static HTML dump. Starting from page_id $start of $end.\n");
+		print("Creating static HTML dump in directory $dest. \n".
+			"Starting from page_id $start of $end.\n");
+
 		chdir( "maintenance" );
 		for ( $chunkStart = $start; $chunkStart < $end; $chunkStart += CHUNK_SIZE ) {
 			$chunkEnd = $chunkStart + CHUNK_SIZE - 1;
 			if ( $chunkEnd > $end ) {
 				$chunkEnd = $end;
 			}
-			passthru( "php dumpHTML.php -s $chunkStart -e $chunkEnd" );
+			passthru( "php dumpHTML.php -d " . wfEscapeShellArg( $dest ) . " -s $chunkStart -e $chunkEnd" );
 		}
 		chdir( ".." );
 		$d->doImageDescriptions();
@@ -62,6 +91,7 @@ if ( $options['special'] ) {
 	} else {
 		$d->doArticles( $start, $end );
 	}
+	*/
 }
 
 exit();

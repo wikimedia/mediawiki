@@ -10,12 +10,32 @@ require_once( 'includes/ImagePage.php' );
 require_once( 'includes/CategoryPage.php' );
 
 class DumpHTML {
-	var $dest, $interwiki, $depth, $sharedStaticPath;
+	# Destination directory
+	var $dest;
 
-	function DumpHTML( $dest, $interwiki = true, $depth = 3 ) {
-		$this->dest = $dest;
-		$this->interwiki = $interwiki;
-		$this->depth = $depth;
+	# Show interlanguage links?
+	var $interwiki = true;
+	
+	# Depth of HTML directory tree
+	var $depth = 3;
+
+	# Directory that commons images are copied into
+	var $sharedStaticPath;
+	
+	# Relative path to image directory
+	var $imageRel = 'upload';
+
+	# Copy commons images instead of symlinking
+	var $forceCopy = false;
+
+	# Make links assuming the script path is in the same directory as 
+	# the destination
+	var $alternateScriptPath = false;
+
+	function DumpHTML( $settings ) {
+		foreach ( $settings as $var => $value ) {
+			$this->$var = $value;
+		}
 	}
 
 	/** 
@@ -35,16 +55,17 @@ class DumpHTML {
 		
 		for ($id = $start; $id <= $end; $id++) {
 			if ( !($id % REPORTING_INTERVAL) ) {
-				print "Processing ID: $id".chr(13);
+				print "Processing ID: $id\r";
 			}
 			$title = Title::newFromID( $id );
 			if ( $title ) {
 				$ns = $title->getNamespace() ;
-				if ( $ns != NS_CATEGORY && $ns != NS_IMAGE ) { 
+				if ( $ns != NS_CATEGORY ) { 
 					$this->doArticle( $title );
 				}
 			}
 		}
+		print "\n";
 	}	
 
 	function doSpecials() {
@@ -96,10 +117,11 @@ class DumpHTML {
 		$res = $dbr->select( 'image', array( 'img_name' ), false, $fname );
 
 		$i = 0;
-		print "Writing " . $dbr->numRows( $res ) . " image description pages for local images\n";
+		print "Writing image description pages for local images\n";
+		$num = $dbr->numRows( $res );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
-				print "$i\t{$row->img_name}\n";
+				print "Done $i of $num\r";
 			}
 			$title = Title::makeTitle( NS_IMAGE, $row->img_name );
 			if ( $title->getArticleID() ) { 
@@ -108,6 +130,8 @@ class DumpHTML {
 			}
 			$this->doArticle( $title );
 		}
+		print "\n";
+
 		/**
 		 * Dump images which only have a real description page on commons
 		 */
@@ -121,13 +145,14 @@ class DumpHTML {
 			foreach ( $paths as $path ) {
 				$file = basename( $path );
 				if ( !(++$i % REPORTING_INTERVAL ) ) {
-					print "$i\t$file\n";
+					print "$i\r";
 				}
 
 				$title = Title::makeTitle( NS_IMAGE, $file );
 				$this->doArticle( $title );
 			}
 		}
+		print "\n";
 	}
 
 	function doCategories() {
@@ -144,11 +169,12 @@ class DumpHTML {
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( !(++$i % REPORTING_INTERVAL ) ) {
-				print "$i\t{$row->cl_to}\n";
+				print "$i\r";
 			}
 			$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			$this->doArticle( $title );
 		}
+		print "\n";
 	}
 
 
@@ -177,7 +203,7 @@ class DumpHTML {
 		$fullDir = dirname( $fullName );
 
 		wfMkdirParents( $fullDir, 0755 );
-		
+
 		$file = fopen( $fullName, 'w' );
 		if ( !$file ) {
 			print("Can't open file $fullName for writing\n");
@@ -194,6 +220,8 @@ class DumpHTML {
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache;
+
+		static $oldLogo = NULL;
 		
 		if ( is_null( $depth ) ) {
 			$wgMakeDumpLinks = $this->depth;
@@ -201,12 +229,38 @@ class DumpHTML {
 			$wgMakeDumpLinks = $depth;
 		}
 		
-		$wgScriptPath = '..' . str_repeat( '/..', $wgMakeDumpLinks );
+		if ( $this->alternateScriptPath ) {
+			if ( $wgMakeDumpLinks == 0 ) {
+				$wgScriptPath = '.';
+			} else {
+				$wgScriptPath = '..' . str_repeat( '/..', $wgMakeDumpLinks - 1 );
+			}
+		} else {
+			$wgScriptPath = '..' . str_repeat( '/..', $wgMakeDumpLinks );
+		}
+
 		$wgArticlePath = str_repeat( '../', $wgMakeDumpLinks ) . '$1';
+
+		# Logo image
+		# Allow for repeated setup
+		if ( !is_null( $oldLogo ) ) {
+			$wgLogo = $oldLogo;
+		} else {
+			$oldLogo = $wgLogo;
+		}
+
+		if ( strpos( $wgLogo, $wgUploadPath ) === 0 ) {
+			# If it's in the upload directory, rewrite it to the new upload directory
+			$wgLogo = "$wgScriptPath/{$this->imageRel}/" . substr( $wgLogo, strlen( $wgUploadPath ) + 1 );
+		} elseif ( $wgLogo{0} == '/' ) {
+			# This is basically heuristic
+			# Rewrite an absolute logo path to one relative to the the script path
+			$wgLogo = $wgScriptPath . $wgLogo;
+		}
+
 		$wgStylePath = "$wgScriptPath/skins";
-		$wgUploadPath = "$wgScriptPath/images";
+		$wgUploadPath = "$wgScriptPath/{$this->imageRel}";
 		$wgSharedUploadPath = "$wgUploadPath/shared";
-		$wgLogo = "$wgStylePath/common/images/wiki.png";
 		$wgMaxCredits = -1;
 		$wgHideInterlangageLinks = !$this->interwiki;
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
@@ -227,7 +281,7 @@ class DumpHTML {
 		$wgOut = new OutputPage;
 		$wgOut->setParserOptions( new ParserOptions );
 		
-		$wgTitle =& $title;
+		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
 			return false;
 		}
@@ -289,8 +343,8 @@ class DumpHTML {
 				# Copy to static directory
 				if ( !file_exists( $staticLoc ) ) {
 					wfMkdirParents( dirname( $staticLoc ), 0755 );
-					if ( function_exists( 'symlink' ) ) {
-						symlink( $staticLoc, $sourceLoc );
+					if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
+						symlink( $sourceLoc, $staticLoc );
 					} else {
 						copy( $sourceLoc, $staticLoc );
 					}
@@ -306,8 +360,8 @@ class DumpHTML {
 					#print "Copying $sourceLoc to $staticLoc\n";
 					if ( !file_exists( $staticLoc ) ) {
 						wfMkdirParents( dirname( $staticLoc ), 0755 );
-						if ( function_exists( 'symlink' ) ) {
-							symlink( $staticLoc, $sourceLoc );
+						if ( function_exists( 'symlink' ) && !$this->forceCopy ) {
+							symlink( $sourceLoc, $staticLoc );
 						} else {
 							copy( $sourceLoc, $staticLoc );
 						}
