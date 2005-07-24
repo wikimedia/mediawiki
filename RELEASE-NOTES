@@ -596,6 +596,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2857) fixed parsing of lists in <pre> sections
 * Now sorting interwiki links by iw_prefix and avoiding duplicates
 * (bug 796) Trackback support
+* Fix 1.5 regression: weird, backwards diff links on new pages in enhanced RC
+  are now suppressed as before.
+
 
 === Caveats ===
 
