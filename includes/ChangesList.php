@@ -475,14 +475,15 @@ class ChangesList {
 		} else {
 			$rcIdQuery = '';
 		}
-		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$curLink = $message['cur'];
+		$query = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid";
+		$aprops = ' tabindex="'.$baseRC->counter.'"';
+		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $query, '' ,'' , $aprops );
+		if( $rc_type == RC_NEW || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+			if( $rc_type != RC_NEW ) {
+				$curLink = $message['cur'];
+			}
 			$diffLink = $message['diff'];
 		} else {
-		#	$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
-			$query = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid";
-			$aprops = ' tabindex="'.$baseRC->counter.'"';
-			$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $query, '' ,'' , $aprops );
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['diff'], $query . $rcIdQuery, '' ,'' , $aprops );
 		}
 
