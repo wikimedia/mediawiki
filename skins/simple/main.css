@@ -323,13 +323,14 @@ div.tleft {
     border-width: 0.5em 1.4em 0.8em 0;
 }
 
-#p-cactions .new a { color:#ba0000; }
 a.stub { color: #772233; }
 a.new,
-#p-personal a.new { color:#ba0000; }
-a.new:visited,
-#p-personal a.new:visited { color:#a55858; }
-
+#p-personal a.new {
+	text-decoration: line-through;
+}
+li.new {
+	text-decoration: line-through;
+}
 p.catlinks {
   text-align: center;
   width: 80%;
@@ -392,3 +393,9 @@ div.prefsectiontip {
     font-size: 95%;
     margin-top: 1em;
 }
+
+#mw_trackbacks {
+	border-style: groove;
+	padding: 0.2em;
+}
+
