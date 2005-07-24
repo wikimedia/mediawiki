@@ -341,6 +341,12 @@ class OutputPage {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
 
+	function uncacheableBecauseRequestvars() {
+		global $wgRequest;
+		return	$wgRequest->getText('useskin', false) === false
+			&& $wgRequest->getText('uselang', false) === false;
+	}
+
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI;
 
@@ -350,7 +356,7 @@ class OutputPage {
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
 		header( 'Vary: Accept-Encoding, Cookie' );
-		if( $this->mEnableClientCache ) {
+		if( !$this->uncacheableBecauseRequestvars() && $this->mEnableClientCache ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( 'session.name') ] ) &&
 			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
 			{

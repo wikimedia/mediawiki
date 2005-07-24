@@ -55,24 +55,24 @@ class User {
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
-		
+
 		# Clean up name according to title rules
 		$t = Title::newFromText( $name );
 		if( is_null( $t ) ) {
 			return null;
 		}
-		
+
 		# Reject various classes of invalid names
 		$canonicalName = $t->getText();
 		if( !User::isValidUserName( $canonicalName ) ) {
 			return null;
 		}
-		
+
 		$u->setName( $canonicalName );
 		$u->setId( $u->idFromName( $t->getText() ) );
 		return $u;
 	}
-	
+
 	/**
 	 * Factory method to fetch whichever use has a given email confirmation code.
 	 * This code is generated when an account is created or its e-mail address
@@ -96,15 +96,15 @@ class User {
 			return null;
 		}
 	}
-	
+
 	/**
-	 * Serialze sleep function, for better cache efficiency and avoidance of 
+	 * Serialze sleep function, for better cache efficiency and avoidance of
 	 * silly "incomplete type" errors when skins are cached
 	 */
 	function __sleep() {
 		return array( 'mId', 'mName', 'mPassword', 'mEmail', 'mNewtalk',
-			'mEmailAuthenticated', 'mRights', 'mOptions', 'mDataLoaded', 
-			'mNewpassword', 'mBlockedby', 'mBlockreason', 'mTouched', 
+			'mEmailAuthenticated', 'mRights', 'mOptions', 'mDataLoaded',
+			'mNewpassword', 'mBlockedby', 'mBlockreason', 'mTouched',
 			'mToken', 'mRealName', 'mHash', 'mGroups' );
 	}
 
@@ -185,7 +185,7 @@ class User {
 	 */
 	function isValidUserName( $name ) {
 		global $wgContLang, $wgMaxNameChars;
-		
+
 		if ( $name == ''
 		|| User::isIP( $name )
 		|| strpos( $name, '/' ) !== false
@@ -208,7 +208,7 @@ class User {
 		return strlen( $password ) >= $wgMinimalPasswordLength;
 	}
 
-	/**     
+	/**
 	 * does the string match roughly an email address ?
 	 *
 	 * @todo Check for RFC 2822 compilance
@@ -226,14 +226,14 @@ class User {
 	}
 
 	/**
-	 * Count the number of edits of a user 
+	 * Count the number of edits of a user
 	 *
 	 * @param int $uid The user ID to check
 	 * @return int
 	 */
 	function edits( $uid ) {
 		$fname = 'User::editCount';
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField(
 			'revision', 'count(*)',
@@ -269,7 +269,7 @@ class User {
 		$n++;
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
-		
+
 		global $wgContLang, $wgIP, $wgDBname;
 		global $wgNamespacesToBeSearchedDefault;
 
@@ -282,7 +282,7 @@ class User {
 		$this->mRights = array();
 		$this->mGroups = array();
 		$this->mOptions = User::getDefaultOptions();
-		
+
 		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
 		}
@@ -301,7 +301,7 @@ class User {
 
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
@@ -316,17 +316,17 @@ class User {
 		 */
 		global $wgContLang, $wgDefaultUserOptions;
 		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptions();
-		
+
 		/**
 		 * default language setting
 		 */
 		$variant = $wgContLang->getPreferredVariant();
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
-		
+
 		return $defOpt;
 	}
-	
+
 	/**
 	 * Get a given default option value.
 	 *
@@ -392,7 +392,7 @@ class User {
 
 		# Proxy blocking
 		if ( !$this->isSysop() && !in_array( $wgIP, $wgProxyWhitelist ) ) {
-		
+
 			# Local list
 			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
@@ -414,20 +414,20 @@ class User {
 		return $wgEnableSorbs &&
 			$this->inDnsBlacklist( $ip, 'http.dnsbl.sorbs.net.' );
 	}
-	
+
 	function inOpmBlacklist( $ip ) {
 		global $wgEnableOpm;
 		return $wgEnableOpm &&
 			$this->inDnsBlacklist( $ip, 'opm.blitzed.org.' );
 	}
-	
+
 	function inDnsBlacklist( $ip, $base ) {
 		$fname = 'User::inDnsBlacklist';
 		wfProfileIn( $fname );
-		
+
 		$found = false;
 		$host = '';
-		
+
 		if ( preg_match( '/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m ) ) {
 			# Make hostname
 			for ( $i=4; $i>=1; $i-- ) {
@@ -437,7 +437,7 @@ class User {
 
 			# Send query
 			$ipList = gethostbynamel( $host );
-			
+
 			if ( $ipList ) {
 				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 				$found = true;
@@ -449,7 +449,7 @@ class User {
 		wfProfileOut( $fname );
 		return $found;
 	}
-	
+
 	/**
 	 * Primitive rate limits: enforce maximum actions per time period
 	 * to put a brake on flooding.
@@ -469,17 +469,17 @@ class User {
 			// goddam cabal
 			return false;
 		}
-		
+
 		global $wgMemc, $wgIP, $wgDBname, $wgRateLimitLog;
 		$fname = 'User::pingLimiter';
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
-		
+
 		if( isset( $limits['anon'] ) && $id == 0 ) {
 			$keys["$wgDBname:limiter:$action:anon"] = $limits['anon'];
 		}
-		
+
 		if( isset( $limits['user'] ) && $id != 0 ) {
 			$keys["$wgDBname:limiter:$action:user:$id"] = $limits['user'];
 		}
@@ -495,7 +495,7 @@ class User {
 				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 			}
 		}
-		
+
 		$triggered = false;
 		foreach( $keys as $key => $limit ) {
 			list( $max, $period ) = $limit;
@@ -517,10 +517,10 @@ class User {
 			}
 			$wgMemc->incr( $key );
 		}
-		
+
 		return $triggered;
 	}
-	
+
 	/**
 	 * Check if user is blocked
 	 * @return bool True if blocked, false otherwise
@@ -535,7 +535,7 @@ class User {
 	 */
 	function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
-		if ( $wgBlockAllowsUTEdit && $title->getText() === $this->getName() && 
+		if ( $wgBlockAllowsUTEdit && $title->getText() === $this->getName() &&
 		  $title->getNamespace() == NS_USER_TALK )
 		{
 			return false;
@@ -543,7 +543,7 @@ class User {
 			return $this->isBlocked( $bFromSlave );
 		}
 	}
-	
+
 	/**
 	 * Get name of blocker
 	 * @return string name of blocker
@@ -552,7 +552,7 @@ class User {
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
-	
+
 	/**
 	 * Get blocking reason
 	 * @return string Blocking reason
@@ -648,8 +648,8 @@ class User {
 	function loadFromDatabase() {
 		global $wgCommandLineMode;
 		$fname = "User::loadFromDatabase";
-		
-		# Counter-intuitive, breaks various things, use User::setLoaded() if you want to suppress 
+
+		# Counter-intuitive, breaks various things, use User::setLoaded() if you want to suppress
 		# loading in a command line script, don't assume all command line scripts need it like this
 		#if ( $this->mDataLoaded || $wgCommandLineMode ) {
 		if ( $this->mDataLoaded ) {
@@ -666,13 +666,13 @@ class User {
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
 		  'user_email_authenticated',
 		  'user_real_name','user_options','user_touched', 'user_token' ),
 		  array( 'user_id' => $this->mId ), $fname );
-		
+
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
@@ -715,7 +715,7 @@ class User {
 		$this->mName = $str;
 	}
 
-	
+
 	/**
 	 * Return the title dbkey form of the name, for eg user pages.
 	 * @return string
@@ -724,12 +724,12 @@ class User {
 	function getTitleKey() {
 		return str_replace( ' ', '_', $this->getName() );
 	}
-	
+
 	function getNewtalk() {
 		global $wgUseEnotif;
 		$fname = 'User::getNewtalk';
 		$this->loadFromDatabase();
-		
+
 		# Load the newtalk status if it is unloaded (mNewtalk=-1)
 		if( $this->mNewtalk == -1 ) {
 			$this->mNewtalk = 0; # reset talk page status
@@ -744,8 +744,8 @@ class User {
 					$this->mNewtalk = $newtalk ? 1 : 0;
 					return (bool)$this->mNewtalk;
 				}
-			} 
-			
+			}
+
 			$dbr =& wfGetDB( DB_SLAVE );
 			if ( $wgUseEnotif ) {
 				$res = $dbr->select( 'watchlist',
@@ -771,7 +771,7 @@ class User {
 				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
 				$dbr->freeResult( $res );
 			}
-			
+
 			if( !$this->mId ) {
 				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
 			}
@@ -848,7 +848,7 @@ class User {
 		}
 	}
 
-			
+
 	function setCookiePassword( $str ) {
 		$this->loadFromDatabase();
 		$this->mCookiePassword = md5( $str );
@@ -931,7 +931,7 @@ class User {
 		}
 		return array_merge( $base, $this->getGroups() );
 	}
-	
+
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
@@ -946,14 +946,14 @@ class User {
 			),
 			'User::addGroup',
 			array( 'IGNORE' ) );
-		
+
 		$this->mGroups = array_merge( $this->mGroups, array( $group ) );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
-		
+
 		$this->invalidateCache();
 		$this->saveSettings();
 	}
-	
+
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
@@ -967,10 +967,10 @@ class User {
 				'ug_group' => $group,
 			),
 			'User::removeGroup' );
-		
+
 		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups() );
-		
+
 		$this->invalidateCache();
 		$this->saveSettings();
 	}
@@ -985,7 +985,7 @@ class User {
 	function isLoggedIn() {
 		return( $this->getID() != 0 );
 	}
-	
+
 	/**
 	 * A more legible check for anonymousness.
 	 * Returns true if the user is an anonymous visitor.
@@ -995,7 +995,7 @@ class User {
 	function isAnon() {
 		return !$this->isLoggedIn();
 	}
-	
+
 	/**
 	 * Check if a user is sysop
 	 * Die with backtrace. Use User:isAllowed() instead.
@@ -1039,16 +1039,17 @@ class User {
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
 	function &getSkin() {
-		global $IP;
+		global $IP, $wgRequest;
 		if ( ! isset( $this->mSkin ) ) {
 			$fname = 'User::getSkin';
 			wfProfileIn( $fname );
-			
+
 			# get all skin names available
 			$skinNames = Skin::getSkinNames();
-			
+
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
+			$userSkin = $wgRequest->getText('useskin', $userSkin);
 			if ( $userSkin == '' ) { $userSkin = 'standard'; }
 
 			if ( !isset( $skinNames[$userSkin] ) ) {
@@ -1076,7 +1077,7 @@ class User {
 			# Grab the skin class and initialise it. Each skin checks for PHPTal
 			# and will not load if it's not enabled.
 			require_once( $IP.'/skins/'.$sn.'.php' );
-			
+
 			# Check if we got if not failback to default skin
 			$className = 'Skin'.$sn;
 			if( !class_exists( $className ) ) {
@@ -1096,7 +1097,7 @@ class User {
 	/**#@+
 	 * @param string $title Article title to look at
 	 */
-	
+
 	/**
 	 * Check watched status of an article
 	 * @return bool True if article is watched
@@ -1140,13 +1141,13 @@ class User {
 		if ($userid==0) {
 			return;
 		}
-		
-		// Only update the timestamp if the page is being watched. 
+
+		// Only update the timestamp if the page is being watched.
 		// The query to find out if it is watched is cached both in memcached and per-invocation,
 		// and when it does have to be executed, it can be on a slave
 		// If this is the user's newtalk page, we always update the timestamp
 		if ($title->getNamespace() == NS_USER_TALK &&
-			$title->getText() == $wgUser->getName()) 
+			$title->getText() == $wgUser->getName())
 		{
 			$watched = true;
 		} elseif ( $this->getID() == $wgUser->getID() ) {
@@ -1154,8 +1155,8 @@ class User {
 		} else {
 			$watched = true;
 		}
-		
-		// If the page is watched by the user (or may be watched), update the timestamp on any 
+
+		// If the page is watched by the user (or may be watched), update the timestamp on any
 		// any matching rows
 		if ( $watched ) {
 			$dbw =& wfGetDB( DB_MASTER );
@@ -1170,7 +1171,7 @@ class User {
 			);
 		}
 	}
-	
+
 	/**#@-*/
 
 	/**
@@ -1187,7 +1188,7 @@ class User {
 			return;
 		}
 		if( $currentUser != 0 )  {
-	
+
 			$dbw =& wfGetDB( DB_MASTER );
 			$success = $dbw->update( 'watchlist',
 				array( /* SET */
@@ -1275,7 +1276,7 @@ class User {
 		if ( wfReadOnly() ) { return; }
 		$this->saveNewtalk();
 		if ( 0 == $this->mId ) { return; }
-		
+
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
@@ -1294,13 +1295,13 @@ class User {
 		);
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
-	
+
 	/**
 	 * Save value of new talk flag.
 	 */
 	function saveNewtalk() {
 		global $wgDBname, $wgMemc, $wgUseEnotif;
-		
+
 		$fname = 'User::saveNewtalk';
 
 		$changed = false;
@@ -1336,7 +1337,7 @@ class User {
 				$value = $this->mName;
 				$key = "$wgDBname:newtalk:ip:$this->mName";
 			}
-			
+
 			$dbr =& wfGetDB( DB_SLAVE );
 			$dbw =& wfGetDB( DB_MASTER );
 
@@ -1361,7 +1362,7 @@ class User {
 
 		# Update user_touched, so that newtalk notifications in the client cache are invalidated
 		if ( $changed && $this->getID() ) {
-			$dbw->update('user', 
+			$dbw->update('user',
 				/*SET*/ array( 'user_touched' => $this->mTouched ),
 				/*WHERE*/ array( 'user_id' => $this->getID() ),
 				$fname);
@@ -1499,7 +1500,7 @@ class User {
 	function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->mName );
 	}
-	
+
 	/**
 	 * Get this user's talk page title.
 	 *
@@ -1546,7 +1547,7 @@ class User {
 		if( strlen( $password ) < $wgMinimalPasswordLength ) {
 			return false;
 		}
-		
+
 		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
 		} elseif( $wgAuth->strict() ) {
@@ -1568,7 +1569,7 @@ class User {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Initialize (if necessary) and return a session token value
 	 * which can be used in edit forms to show that the user's
@@ -1592,7 +1593,7 @@ class User {
 		}
 		return md5( $token . $salt );
 	}
-	
+
 	/**
 	 * Generate a hex-y looking random token for various uses.
 	 * Could be made more cryptographically sure if someone cares.
@@ -1602,7 +1603,7 @@ class User {
 		$token = dechex( mt_rand() ) . dechex( mt_rand() );
 		return md5( $token . $salt );
 	}
-	
+
 	/**
 	 * Check given value against the token value stored in the session.
 	 * A match should confirm that the form was submitted from the
@@ -1617,7 +1618,7 @@ class User {
 	function matchEditToken( $val, $salt = '' ) {
 		return ( $val == $this->editToken( $salt ) );
 	}
-	
+
 	/**
 	 * Generate a new e-mail confirmation token and send a confirmation
 	 * mail to the user's given address.
@@ -1634,7 +1635,7 @@ class User {
 				$url,
 				$wgContLang->timeanddate( $expiration, false ) ) );
 	}
-	
+
 	/**
 	 * Send an e-mail to this user's account. Does not check for
 	 * confirmed status or validity.
@@ -1649,17 +1650,17 @@ class User {
 			global $wgPasswordSender;
 			$from = $wgPasswordSender;
 		}
-		
+
 		require_once( 'UserMailer.php' );
 		$error = userMailer( $this->getEmail(), $from, $subject, $body );
-		
+
 		if( $error == '' ) {
 			return true;
 		} else {
 			return new WikiError( $error );
 		}
 	}
-	
+
 	/**
 	 * Generate, store, and return a new e-mail confirmation code.
 	 * A hash (unsalted since it's used as a key) is stored.
@@ -1669,24 +1670,24 @@ class User {
 	 */
 	function confirmationToken( &$expiration ) {
 		$fname = 'User::confirmationToken';
-		
+
 		$now = time();
 		$expires = $now + 7 * 24 * 60 * 60;
 		$expiration = wfTimestamp( TS_MW, $expires );
-		
+
 		$token = $this->generateToken( $this->mId . $this->mEmail . $expires );
 		$hash = md5( $token );
-		
+
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( 'user_email_token'         => $hash,
 			       'user_email_token_expires' => $dbw->timestamp( $expires ) ),
 			array( 'user_id'                  => $this->mId ),
 			$fname );
-		
+
 		return $token;
 	}
-	
+
 	/**
 	 * Generate and store a new e-mail confirmation token, and return
 	 * the URL the user can use to confirm.
@@ -1699,7 +1700,7 @@ class User {
 		$title = Title::makeTitle( NS_SPECIAL, 'Confirmemail/' . $token );
 		return $title->getFullUrl();
 	}
-	
+
 	/**
 	 * Mark the e-mail address confirmed and save.
 	 */
@@ -1709,7 +1710,7 @@ class User {
 		$this->saveSettings();
 		return true;
 	}
-	
+
 	/**
 	 * Is this user allowed to send e-mails within limits of current
 	 * site configuration?
@@ -1718,7 +1719,7 @@ class User {
 	function canSendEmail() {
 		return $this->isEmailConfirmed();
 	}
-	
+
 	/**
 	 * Is this user allowed to receive e-mails within limits of current
 	 * site configuration?
@@ -1727,7 +1728,7 @@ class User {
 	function canReceiveEmail() {
 		return $this->canSendEmail() && !$this->getOption( 'disablemail' );
 	}
-	
+
 	/**
 	 * Is this user's e-mail address valid-looking and confirmed within
 	 * limits of the current site configuration?
@@ -1749,7 +1750,7 @@ class User {
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * @param array $groups list of groups
 	 * @return array list of permission key names for given groups combined
@@ -1781,7 +1782,7 @@ class User {
 			return $name;
 		}
 	}
-	
+
 	/**
 	 * Return the set of defined explicit groups.
 	 * The * and 'user' groups are not included.
