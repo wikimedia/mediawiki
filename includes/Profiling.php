@@ -58,14 +58,12 @@ class Profiler {
 		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
 			wfDebug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
-		$this->mWorkStack[] = array($functionname, count($this->mWorkStack), microtime(), memory_get_usage());
-		#$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getUserTime(), memory_get_usage());
+		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getTime(), memory_get_usage());
 	}
 
 	function profileOut($functionname) {
 		$memory = memory_get_usage();
-		$time = microtime();
-		#$time = $this->getUserTime();
+		$time = $this->getTime();
 
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
@@ -78,14 +76,18 @@ class Profiler {
 		if (!$bit) {
 			wfDebug("Profiling error, !\$bit: $functionname\n");
 		} else {
-			if ($wgDebugProfiling) {
+			//if ($wgDebugProfiling) {
 				if ($functionname == 'close') {
-					wfDebug("Profile section ended by close(): {$bit[0]}\n");
+					$message = "Profile section ended by close(): {$bit[0]}\n";
+					wfDebug( $message );
+					$this->mStack[] = array( $message, 0, 0, 0 );
 				}
 				elseif ($bit[0] != $functionname) {
-					wfDebug("Profiling error: in({$bit[0]}), out($functionname)\n");
+					$message = "Profiling error: in({$bit[0]}), out($functionname)\n";
+					wfDebug( $message );
+					$this->mStack[] = array( $message, 0, 0, 0 );
 				}
-			}
+			//}
 			$bit[] = $time;
 			$bit[] = $memory;
 			$this->mStack[] = $bit;
@@ -174,6 +176,11 @@ class Profiler {
 	function microDelta( $start, $end ) {
 		return $this->micro2Float( $end ) -
 		       $this->micro2Float( $start );
+	}
+
+	function getTime() {
+		return microtime();
+		#return $this->getUserTime();
 	}
 
 	function getUserTime() {

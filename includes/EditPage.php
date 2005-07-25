@@ -923,12 +923,16 @@ END
 	 * @todo document
 	 */
 	function mergeChangesInto( &$editText ){
+		$fname = 'EditPage::mergeChangesInto';
+		wfProfileIn( $fname );
+
 		$db =& wfGetDB( DB_MASTER );
 		
 		// This is the revision the editor started from
 		$baseRevision = Revision::loadFromTimestamp(
 			$db, $this->mArticle->mTitle, $this->edittime );
 		if( is_null( $baseRevision ) ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		$baseText = $baseRevision->getText();
@@ -937,14 +941,17 @@ END
 		$currentRevision =  Revision::loadFromTitle(
 			$db, $this->mArticle->mTitle );
 		if( is_null( $currentRevision ) ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		$currentText = $currentRevision->getText();
 		
 		if( wfMerge( $baseText, $editText, $currentText, $result ) ){
 			$editText = $result;
+			wfProfileOut( $fname );
 			return true;
 		} else {
+			wfProfileOut( $fname );
 			return false;
 		}
 	}
