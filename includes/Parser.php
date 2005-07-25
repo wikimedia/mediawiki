@@ -1161,7 +1161,7 @@ class Parser
 				$s .= $protocol . $remainder;
 			}
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $s;
 	}
 

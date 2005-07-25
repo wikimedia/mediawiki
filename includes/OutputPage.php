@@ -438,6 +438,7 @@ class OutputPage {
 				header( 'Location: '.$this->mRedirect );
 			}
 			if ( isset( $wgProfiler ) ) { wfDebug( $wgProfiler->getOutput() ); }
+			wfProfileOut( $fname );
 			return;
 		}
 
@@ -468,6 +469,7 @@ class OutputPage {
 
 		$this->sendCacheControl();
 		ob_end_flush();
+		wfProfileOut( $fname );
 	}
 
 	function out( $ins ) {
