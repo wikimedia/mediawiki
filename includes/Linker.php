@@ -523,7 +523,7 @@ class Linker {
 
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == '' ) {
-			$s .= $this->makeBrokenImageLinkObj( $img->getTitle );
+			$s .= $this->makeBrokenImageLinkObj( $img->getTitle() );
 			$zoomicon = '';
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
