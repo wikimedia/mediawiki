@@ -30,8 +30,6 @@ a:hover {
     padding: 0em 1em 1.5em 1em;
     border-left: 1px solid #959595;
     line-height: 1.5em;
-    position: relative;
-    z-index: 2;
 }
 
 #column-one {
@@ -39,8 +37,8 @@ a:hover {
   top: 0px; left: 0px;
 }
 
-#footer, #siteSub {
-  display: none;
+#footer {
+	display: none;
 }
 
 body {
@@ -58,7 +56,6 @@ body {
 
 img {
     border: none;
-    vertical-align: middle;
 }
 p {
     margin: 0.4em 0em 0.5em 0em;
@@ -294,8 +291,7 @@ div.thumb div {
     text-align: center;
     overflow: hidden;
 }
-div.thumb div a img {
-}
+
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
