@@ -490,6 +490,7 @@ class Title {
 			$timestamp = $dbw->timestamp();
 		}
 		$page = $dbw->tableName( 'page' );
+		/*
 		$sql = "UPDATE $page SET page_touched='{$timestamp}' WHERE page_id IN (";
 		$first = true;
 
@@ -508,6 +509,18 @@ class Title {
 		$sql .= ')';
 		if ( ! $first ) {
 			$dbw->query( $sql, 'Title::touchArray' );
+		}
+		*/
+		// hack hack hack -- brion 2005-07-11. this was unfriendly to db.
+		// do them in small chunks:
+		$fname = 'Title::touchArray';
+		foreach( $titles as $title ) {
+			$dbw->update( 'page',
+				array( 'page_touched' => $timestamp ),
+				array(
+					'page_namespace' => $title->getNamespace(),
+					'page_title'     => $title->getDBkey() ),
+				$fname );
 		}
 	}
 
