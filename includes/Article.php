@@ -1739,7 +1739,7 @@ class Article {
 			# this should not happen, since it is not possible to store an empty, new
 			# page. Let's insert a standard text in case it does, though
 			if( $length == 0 && $reason === '' ) {
-				$reason = wfMsg( 'exblank' );
+				$reason = wfMsgForContent( 'exblank' );
 			}
 
 			if( $length < 500 && $reason === '' ) {
@@ -1753,12 +1753,12 @@ class Article {
 
 				if( !$blanked ) {
 					if( !$all_same_user ) {
-						$reason = wfMsg( 'excontent', $text );
+						$reason = wfMsgForContent( 'excontent', $text );
 					} else {
-						$reason = wfMsg( 'excontentauthor', $text, $rev_name );
+						$reason = wfMsgForContent( 'excontentauthor', $text, $rev_name );
 					}
 				} else {
-					$reason = wfMsg( 'exbeforeblank', $text );
+					$reason = wfMsgForContent( 'exbeforeblank', $text );
 				}
 			}
 		}
@@ -2029,7 +2029,7 @@ class Article {
 
 		# Save it!
 		$target = Revision::newFromId( $s->rev_id );
-		$newcomment = wfMsg( 'revertpage', $target->getUserText(), $from );
+		$newcomment = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
 
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );

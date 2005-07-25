@@ -606,6 +606,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Wrap revision insert & page update in a transaction, rollback on late
   edit conflict.
 * (bug 2953) 'other' didn't work in Special:Blockip when localized
+* (bug 2958) Rollback and delete auto-summary should be in the project's
+  content language
 
 
 === Caveats ===
