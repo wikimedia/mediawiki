@@ -273,10 +273,6 @@ span.subpages {
     margin-top: 1em;
     clear: both;
 }
-#catlinks-top {
-    display: none;
-}
-
 /* currently unused, intended to be used by a metadata box
 in the bottom-right corner of the content area */
 .documentDescription {
