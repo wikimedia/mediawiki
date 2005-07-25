@@ -1047,7 +1047,6 @@ Féach ar [[$wgMetaNamespace:Leathanach faoi ghlas]] chun a thuilleadh eolais a 
 'confirmunprotecttext' => 'Ar mhaith leat go fírinneach an glas a bhaint den leathanach seo?',
 'confirmunprotect' => 'Cinntigh baint an glais',
 'unprotectcomment' => 'Cúis do baint an glais',
-'protectreason' => '(tabhair cúis)',
 
 
 # Undelete

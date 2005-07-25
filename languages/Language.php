@@ -1341,7 +1341,6 @@ See [[Project:Protected page]] for more information.",
 'confirmunprotecttext' => 'Do you really want to unprotect this page?',
 'confirmunprotect' => 'Confirm unprotection',
 'unprotectcomment' => 'Reason for unprotecting',
-'protectreason' => '(give a reason)',
 
 # Undelete
 'undelete' => 'Restore deleted page',

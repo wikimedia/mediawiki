@@ -1209,7 +1209,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "confirmunprotecttext"	=> "Wollen Sie wirklich die Sperrung dieser Seite aufheben?",
 "confirmunprotect"	=> "Aufhebung der Sperrung bestätigen",
 "unprotectcomment"	=> "Grund für das Aufheben der Sperrung",
-"protectreason"		=> "(Bitte Grund der Sperrung angeben)",
 "proxyblocker"  	=> "Proxyblocker",
 "proxyblockreason"      => "Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.",
 "proxyblocksuccess"     => "Fertig.\n",

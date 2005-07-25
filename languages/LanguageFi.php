@@ -881,7 +881,7 @@ Palaute ja lisäapu osoitteessa:
 # Delete/protect/revert
 #
 'deletepage'          => 'Poista sivu',
-'confirm'             => 'Vahvista',
+'confirm'             => 'Toteuta',
 'excontent'           => 'sisälsi: \'$1 \'',
 'excontentauthor'     => 'sisälsi: \'$1\' (ainoa muokkaaja oli $2)',
 'exbeforeblank'       => 'ennen tyhjentämistä sisälsi: \'$1\'',
@@ -922,7 +922,6 @@ Palaute ja lisäapu osoitteessa:
 'confirmunprotecttext'=> 'Haluatko varmasti poistaa tämän sivun suojauksen?',
 'confirmunprotect'    => 'Vahvista suojauksen poisto',
 'unprotectcomment'    => 'Syy suojauksen poistoon',
-'protectreason'       => 'Anna syy',
 
 # Undelete
 'undelete'            => 'Palauta poistettu sivu',

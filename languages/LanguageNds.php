@@ -1205,7 +1205,6 @@ Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.
 'confirmunprotecttext'  => 'Schall de Sparr vun disse Siet redig beennt warrn?',
 'confirmunprotect'           => 'De Sparr beennen',
 'unprotectcomment'           => 'Grund för dat Beennen vun de Sparr',
-'protectreason'                => '(Grund för dat Beennen vun de Sparr angeven)',
 'proxyblocker'          => 'Proxyblocker',
 'proxyblockreason'      => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',

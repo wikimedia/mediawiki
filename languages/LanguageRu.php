@@ -1191,7 +1191,6 @@ $NEWPAGE
 'confirmunprotecttext' => 'Вы действительно хотите снять защиту этой страницы?',
 'confirmunprotect' => 'Подтвердите снятие защиты страницы',
 'unprotectcomment' => 'Причина снятия защиты',
-'protectreason' => '(укажите причину)',
 
 # Undelete
 'undelete' => 'Восстановить стёртую страницу',
