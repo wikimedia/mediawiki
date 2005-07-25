@@ -609,6 +609,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2958) Rollback and delete auto-summary should be in the project's
   content language
 * Removed useless protectreason message
+* Spelling fix: $wgUrlProtcols -> $wgUrlProtocols
 
 
 === Caveats ===
