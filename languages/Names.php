@@ -123,7 +123,7 @@
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
 	'mn' => 'Монгол',	# Mongoloian
-	'mo' => 'Moldoveana',	# Moldovan
+	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'bil-Malti',	# Maltese
