@@ -1144,7 +1144,6 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'confirmunprotecttext' => 'Opravdu chcete odemknout tuto stránku?',
 'confirmunprotect' => 'Potvrdit odemčení',
 'unprotectcomment' => 'Důvod odemčení',
-'protectreason' => '(udejte důvod)',
 
 # Undelete
 'undelete' => 'Obnovit smazanou stránku',

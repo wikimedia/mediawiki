@@ -860,7 +860,6 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 
 De kins de brontèks van dees pazjena bekieke en kopiëre:",
 'protectmoveonly' => "Besjerm allein taege verplaatsje",
-'protectreason' => "(gaef 'n rede)",
 'protectsub' => "(Besjerme van \"$1\")",
 'proxyblockreason' => "Dien IP adres is geblokkierd omdat 't 'n ôpe proxy is. Contactier estebleef diene internet service provider of technische ongersjteuning en informeer ze van dit sirrieuze veiligheidsprebleim.",
 'proxyblocksuccess' => "Klaor.",

@@ -47,7 +47,6 @@ $ActionMsg = array (
 	'protectcomment',
 	'protectmoveonly',
 	'protectpage',
-	'protectreason',
 	'protectsub',
 	'protectthispage',
 	'unprotect',

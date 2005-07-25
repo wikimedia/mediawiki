@@ -1173,7 +1173,6 @@ Pre dodatočné informácie pozrite [[Project:Zamknutá stránka]].",
 'confirmunprotecttext' => 'Skutočne chcete odomknúť túto stránku?',
 'confirmunprotect' => 'Potvrďte odomknutie',
 'unprotectcomment' => 'Dôvod odomknutia',
-'protectreason' => '(udajte dôvod)',
 
 # Undelete
 'undelete' => 'Obnov zmazaný článok',

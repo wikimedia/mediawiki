@@ -233,7 +233,6 @@ $wgAllMessagesFur = array(
 'protectedpage' => "Pagjine protezude",
 'protectmoveonly' => "Protêç dome dai spostaments",
 'protectpage' => "Protêç pagjine",
-'protectreason' => "(inseris une reson)",
 'protectsub' => "(Protezint \"$1\")",
 'protectthispage' => "Protêç cheste pagjine",
 'qbbrowse' => "Sgarfe",

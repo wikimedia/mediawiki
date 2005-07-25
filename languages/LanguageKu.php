@@ -1169,7 +1169,6 @@ You can view and copy the source of this page:', */
 See [[Project:Protected page]] for more information.', */
 #'protectmoveonly' => 'Protect from moves only',
 'protectpage' => 'Rûpelê biparêze',
-'protectreason' => '(sedem diyar bike)',
 #'protectsub' => '(Protecting "$1")',
 'protectthispage' => 'Vê rûpelê biparêze',
 #'proxyblocker' => 'Proxy blocker',

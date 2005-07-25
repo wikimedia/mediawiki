@@ -1200,7 +1200,6 @@ Se [[Project:Beskyttet side]] for mere information.",
 'confirmunprotecttext' => 'Vil du virkelig fjerne beskyttelsen fra denne side?',
 'confirmunprotect' => 'Bekræft fjernelse af beskyttelse',
 'unprotectcomment' => 'Begrundelse for fjernet beskyttelse',
-'protectreason' => '(giv en begrundelse)',
 
 # Undelete
 "undelete" => "Gendan en slettet side",

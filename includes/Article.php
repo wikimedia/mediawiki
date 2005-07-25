@@ -1570,8 +1570,7 @@ class Article {
 			}
 			return;
 		} else {
-			$reason = htmlspecialchars( wfMsg( 'protectreason' ) );
-			return $this->confirmProtect( '', $reason, $limit );
+			return $this->confirmProtect( '', '', $limit );
 		}
 	}
 

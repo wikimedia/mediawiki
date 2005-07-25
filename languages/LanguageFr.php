@@ -947,7 +947,6 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 'confirmunprotecttext' => 'Voulez-vous réellement déprotéger cette page ?',
 'confirmunprotect' => 'Raison du débloquage',
 'unprotectcomment' => 'Raison du débloquage',
-'protectreason' => '(indiquez une raison)',
 'protectmoveonly' => 'Protéger uniquement les déplacements',
 
 

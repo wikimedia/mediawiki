@@ -1028,7 +1028,6 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 'confirmunprotecttext'  => 'Er du sikker på at du vil fjerne vernet av denne sida?',
 'confirmunprotect'      => 'Stadfest fjerning av vern',
 'unprotectcomment'      => 'Grunn til fjerning av vern',
-'protectreason'         => '(gje ein grunn)',
 
 # Undelete
 'undelete'              => 'Attopprett ei sletta side',

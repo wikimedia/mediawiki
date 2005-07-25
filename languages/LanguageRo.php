@@ -917,7 +917,6 @@ Poţi vedea şi copia sursa acestei pagini:",
 'protectlogtext' => "Dedesubt găseşti lista de blocări/deblocări ale paginilor.
 Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
 'protectpage' => "Protejează pagina",
-'protectreason' => "(dă un motiv)",
 'protectsub' => "(Protejând \"$1\")",
 'protectthispage' => "Protejează pagina",
 'proxyblocker' => "Blocaj de proxy",

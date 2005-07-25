@@ -885,7 +885,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "confirmunprotecttext" => "Apakah Anda benar-benar ingin menghilangkan perlindungan terhadap halaman ini?",
 "confirmunprotect" => "Konfirmasi Penghilangan Perlindungan",
 "unprotectcomment" => "Alasan penghilangan perlindungan",
-"protectreason" => "(berikan sebuah alasan)",
 
 # Undelete 
 "undelete" => "Kembalikan Halaman yang Telah Dihapus",
