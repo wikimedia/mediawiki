@@ -63,7 +63,7 @@ class Block
 	 */
 	function load( $address = '', $user = 0, $killExpired = true ) 
 	{
-		global $wgDBmysql4 ;
+		global $wgDBmysql4, $wgAntiLockFlags;
 		$fname = 'Block::load';
 		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
@@ -71,7 +71,11 @@ class Block
 		$killed = false;
 		if ( $this->forUpdate() ) {
 			$db =& wfGetDB( DB_MASTER );
-			$options = 'FOR UPDATE';
+			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
+				$options = '';
+			} else {
+				$options = 'FOR UPDATE';
+			}
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
@@ -169,10 +173,16 @@ class Block
 	 */
 	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) 
 	{
+		global $wgAntiLockFlags;
+
 		$block = new Block();
 		if ( $flags & EB_FOR_UPDATE ) {
 			$db =& wfGetDB( DB_MASTER );
-			$options = 'FOR UPDATE';
+			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
+				$options = '';
+			} else {
+				$options = 'FOR UPDATE';
+			}
 			$block->forUpdate( true );
 		} else {
 			$db =& wfGetDB( DB_SLAVE );
