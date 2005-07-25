@@ -29,12 +29,11 @@ class SkinSimple extends SkinTemplate {
 	function reallyDoGetUserStyles() {
 		global $wgUser;
 		$s = '';
-		$s .= "/* highlightbroken: " . $wgUser->getOption('highlightbroken') . " */\n";
 		if (($undopt = $wgUser->getOption("underline")) != 2) {
 			$underline = $undopt ? 'underline' : 'none';
 			$s .= "a { text-decoration: $underline; }\n";
 		}
-		if (!$wgUser->getOption('highlightbroken')) {
+		if ($wgUser->getOption('highlightbroken')) {
 			$s .= "a.new, #quickbar a.new { text-decoration: line-through; }\n";
 		} else {
 			$s .= <<<END
