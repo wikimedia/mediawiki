@@ -528,7 +528,7 @@ class User {
 	 * Check if user is blocked
 	 * @return bool True if blocked, false otherwise
 	 */
-	function isBlocked( $bFromSlave = false ) {
+	function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlockedby !== 0;
 	}
@@ -1619,6 +1619,23 @@ class User {
 	 * @access public
 	 */
 	function matchEditToken( $val, $salt = '' ) {
+		global $wgMemc;
+
+/*
+		if ( !isset( $_SESSION['wsEditToken'] ) ) {
+			$logfile = '/home/wikipedia/logs/session_debug/session.log';
+			$mckey = memsess_key( session_id() );
+			$uname = @posix_uname();
+			$msg = "wsEditToken not set!\n" .
+			'apache server=' . $uname['nodename'] . "\n" .
+			'session_id = ' . session_id() . "\n" .
+			'$_SESSION=' . var_export( $_SESSION, true ) . "\n" .
+			'$_COOKIE=' . var_export( $_COOKIE, true ) . "\n" .
+			"mc get($mckey) = " . var_export( $wgMemc->get( $mckey ), true ) . "\n\n\n";
+
+			@error_log( $msg, 3, $logfile );
+		}
+*/
 		return ( $val == $this->editToken( $salt ) );
 	}
 
