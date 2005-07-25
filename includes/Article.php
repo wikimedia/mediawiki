@@ -1032,6 +1032,7 @@ class Article {
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = 'Article::insertNewArticle';
+		wfProfileIn( $fname );
 
 		$this->mGoodAdjustment = $this->isCountable( $text );
 		$this->mTotalAdjustment = 1;
@@ -1093,6 +1094,7 @@ class Article {
 
 		$oldid = 0; # new article
 		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
+		wfProfileOut( $fname );
 	}
 
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {
@@ -1190,6 +1192,7 @@ class Article {
 		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList, $wgUseFileCache;
 
 		$fname = 'Article::updateArticle';
+		wfProfileIn( $fname );
 		$good = true;
 
 		$isminor = ( $minor && $wgUser->isLoggedIn() );
@@ -1239,6 +1242,7 @@ class Article {
 				'text'       => $text
 				) );
 			
+			$dbw->immediateCommit();
 			$dbw->begin();
 			$revisionId = $revision->insertOn( $dbw );
 
@@ -1304,6 +1308,7 @@ class Article {
 
 			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
 		}
+		wfProfileOut( $fname );
 		return $good;
 	}
 
@@ -1314,6 +1319,9 @@ class Article {
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
 		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
 		global $wgUseEnotif;
+
+		$fname = 'Article::showArticle';
+		wfProfileIn( $fname );
 
 		$wgLinkCache = new LinkCache();
 
@@ -1359,6 +1367,7 @@ class Article {
 			$wgEnotif = new EmailNotification ();
 			$wgEnotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
 		}
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -2088,6 +2097,9 @@ class Article {
 			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 			$recentchanges = $dbw->tableName( 'recentchanges' );
 			$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
+			//$dbw->query( $sql ); // HACK: disabled for now, slowness
+
+			// re-enabled for commit of unrelated live changes -- TS
 			$dbw->query( $sql );
 		}
 		$id = $this->getID();
