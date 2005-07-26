@@ -297,7 +297,7 @@ class Parser
 
 			$q = preg_split( $end, $inside, 2 );
 			$content[$marker] = $q[0];
-			if( count( $q ) < 1 ) {
+			if( count( $q ) < 2 ) {
 				# No end tag -- let it run out to the end of the text.
 				break;
 			} else {
