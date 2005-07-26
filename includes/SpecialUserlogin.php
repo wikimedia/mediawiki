@@ -11,7 +11,7 @@
 function wfSpecialUserlogin() {
 	global $wgCommandLineMode;
 	global $wgRequest;
-	if( !$wgCommandLineMode && !isset( $_COOKIE[ini_get('session.name')] )  ) {
+	if( !$wgCommandLineMode && !isset( $_COOKIE[session_name()] )  ) {
 		User::SetupSession();
 	}
 	
@@ -190,7 +190,7 @@ class LoginForm {
 		if ( $wgEnableSorbs && !in_array( $wgIP, $wgProxyWhitelist ) && 
 		  $wgUser->inSorbsBlacklist( $wgIP ) ) 
 		{
-			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) );
+			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $wgIP ) . ')' );
 			return;
 		}
 
