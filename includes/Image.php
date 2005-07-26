@@ -1245,7 +1245,7 @@ class Image
 	 * Record an image upload in the upload log and the image table
 	 */
 	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '' ) {
-		global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
+		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
 		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
 		$fname = 'Image::recordUpload';
