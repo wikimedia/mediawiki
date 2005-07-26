@@ -131,7 +131,7 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser;
+		global $wgUser;
 		$fname = 'Linker::makeLinkObj';
 		wfProfileIn( $fname );
 
@@ -223,7 +223,7 @@ class Linker {
 	 * Pass a title object, not a title string
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
-		global $wgOut, $wgTitle;
+		global $wgTitle;
 
 		$fname = 'Linker::makeKnownLinkObj';
 		wfProfileIn( $fname );
@@ -359,7 +359,6 @@ class Linker {
 
 	/** @todo document */
 	function makeExternalImage( $url, $alt = '' ) {
-		global $wgOut;
 		if ( '' == $alt ) {
 			$alt = $this->fnamePart( $url );
 		}
