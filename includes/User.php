@@ -803,27 +803,13 @@ class User {
 	}
 
 	/**
-	 * Salt a password.
-	 * Will only be salted if $wgPasswordSalt is true
-	 * @param string Password.
-	 * @return string Salted password or clear password.
-	 */
-	function addSalt( $p ) {
-		global $wgPasswordSalt;
-		if($wgPasswordSalt)
-			return md5( "{$this->mId}-{$p}" );
-		else
-			return $p;
-	}
-
-	/**
 	 * Encrypt a password.
 	 * It can eventuall salt a password @see User::addSalt()
 	 * @param string $p clear Password.
-	 * @param string Encrypted password.
+	 * @return string Encrypted password.
 	 */
 	function encryptPassword( $p ) {
-		return $this->addSalt( md5( $p ) );
+		return wfEncryptPassword( $this->mId, $p );
 	}
 
 	# Set the password and reset the random token
