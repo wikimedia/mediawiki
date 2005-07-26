@@ -1433,6 +1433,7 @@ the list of currently operational bans and blocks.',
 'proxyblocksuccess'	=> "Done.\n",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL.',
+'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL. You cannot create an account',
 
 
 # Developer tools
