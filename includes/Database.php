@@ -1356,8 +1356,10 @@ class Database {
 		$res = $this->doQuery( $sql );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			$this->freeResult( $res );
+			wfProfileOut( $fname );
 			return $row[0];
 		} else {
+			wfProfileOut( $fname );
 			return false;
 		}
 	}
