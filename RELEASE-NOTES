@@ -612,6 +612,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Spelling fix: $wgUrlProtcols -> $wgUrlProtocols
 * Switch Moldovan local name to cyrillic
 * Fix typo in undefined array index access prevention
+* (bug 2947) Update namespaces for sr localization
 
 
 === Caveats ===

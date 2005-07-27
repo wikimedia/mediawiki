@@ -14,18 +14,24 @@ require_once( "LanguageUtf8.php" );
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesSr = array(
-	-2	=> "Media",
- -1 => "Посебно",
- 0 => "",
- 1 => "Разговор",
- 2 => "Корисник",
- 3 => "Разговор_са_корисником",
- 4 => $wgMetaNamespace,
- 5 => ($wgMetaNamespaceTalk ? $wgMetaNamespaceTalk : "Разговор_о_".$wgMetaNamespace ),
- 6 => "Слика",
- 7 => "Разговор_о_слици",
- 8 => "МедијаВики",
- 9 => "Разговор_о_МедијаВикију"
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Посебно",
+	NS_MAIN             => "",
+	NS_TALK             => "Разговор",
+	NS_USER             => "Корисник",
+	NS_USER_TALK        => "Разговор_са_корисником",
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => ($wgMetaNamespaceTalk ? $wgMetaNamespaceTalk : "Разговор_о_".$wgMetaNamespace ),
+	NS_IMAGE            => "Слика",
+	NS_IMAGE_TALK       => "Разговор_о_слици",
+	NS_MEDIAWIKI        => "МедијаВики",
+	NS_MEDIAWIKI_TALK   => "Разговор_о_МедијаВикију",
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Разговор_о_шаблону',
+	NS_HELP             => 'Помоћ',
+	NS_HELP_TALK        => 'Разговор_о_помоћи',
+	NS_CATEGORY         => 'Категорија',
+	NS_CATEGORY_TALK    => 'Разговор_о_категорији',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSr = array(
