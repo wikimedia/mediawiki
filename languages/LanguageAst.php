@@ -22,7 +22,7 @@ if($wgMetaNamespace === FALSE)
         NS_USER             => 'Usuariu',
         NS_USER_TALK        => 'Usuariu_discusión',
         NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => $wgMetaNamespace . 'discusión',
+        NS_PROJECT_TALK     => $wgMetaNamespace ._ 'discusión',
         NS_IMAGE            => 'Imaxen',
         NS_IMAGE_TALK       => 'Imaxen_discusión',
         NS_MEDIAWIKI        => 'MediaWiki',
