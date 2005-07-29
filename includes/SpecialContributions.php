@@ -22,20 +22,27 @@ class contribs_finder {
 		$this->offset = $offset;
 	}
 
-	function get_edit_limits() {
+	function get_edit_limit($dir) {
 		list($index, $usercond) = $this->get_user_cond();
 
 		$use_index = $this->dbr->useIndexClause($index);
 		extract($this->dbr->tableNames('revision'));
-		$sql =	"SELECT MIN(rev_timestamp) as earliest, MAX(rev_timestamp) as latest " .
-			"FROM $revision $use_index WHERE " . $usercond;
+		$sql =	"SELECT rev_timestamp " .
+			" FROM $revision $use_index " .
+			" WHERE " . $usercond .
+			" ORDER BY rev_timestamp $dir LIMIT 1";
 
-		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limits");
-		$rows = array();
+		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limit");
 		while ($o = $this->dbr->fetchObject($res))
-			$rows[] = $o;
-		$row = $rows[count($rows) - 1];
-		return array($row->earliest, $row->latest);
+			$row = $o;
+		return $row->rev_timestamp;
+	}
+
+	function get_edit_limits() {
+		return array(
+			$this->get_edit_limit("ASC"),
+			$this->get_edit_limit("DESC")
+		);
 	}
 
 	function get_user_cond() {
@@ -65,7 +72,7 @@ class contribs_finder {
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username);
-		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
+		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit+1);
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
@@ -99,7 +106,7 @@ class contribs_finder {
 
 		$limitQuery = "LIMIT {$this->limit}";
 		if ($this->offset)
-			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
+			$offsetQuery = "AND rev_timestamp <= '{$this->offset}'";
 
 		$use_index = $this->dbr->useIndexClause($index);
 		$sql = "SELECT
