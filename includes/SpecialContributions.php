@@ -28,7 +28,7 @@ class contribs_finder {
 		$use_index = $this->dbr->useIndexClause($index);
 		extract($this->dbr->tableNames('revision', 'page'));
 		$sql =	"SELECT rev_timestamp " .
-			" FROM $page,$revision $use_index " .
+			" FROM $revision $use_index " .
 			" WHERE " . $usercond .
 			" ORDER BY rev_timestamp $dir LIMIT 1";
 
