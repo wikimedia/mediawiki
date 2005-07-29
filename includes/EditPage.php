@@ -211,8 +211,8 @@ class EditPage {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
 			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1  = rtrim( $request->getText( 'wpTextbox1' ) );
-			$this->textbox2  = rtrim( $request->getText( 'wpTextbox2' ) );
+			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
+			$this->textbox2 = $this->safeUnicodeInput( $request, 'wpTextbox2' );
 			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
 			$this->summary   =        $request->getText( 'wpSummary'  );
 	
@@ -699,6 +699,9 @@ class EditPage {
 		}
 		else $metadata = "" ;
 
+		$safemodehtml = $this->checkUnicodeCompliantBrowser()
+			? ""
+			: "<input type='hidden' name=\"safemode\" value='1' />\n";
 
 		$wgOut->addHTML( <<<END
 {$toolbar}
@@ -708,12 +711,13 @@ enctype="multipart/form-data">
 <textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew}>
 END
-. htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
+. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
 "
 </textarea>
 {$metadata}
 <br />{$editsummary}
 {$checkboxhtml}
+{$safemodehtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
@@ -749,7 +753,7 @@ END
 
 			$wgOut->addWikiText( '==' . wfMsg( "yourtext" ) . '==' );
 			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
-. htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox2 ) ) .
+. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) .
 "
 </textarea>" );
 		}
@@ -1161,6 +1165,122 @@ END
 		
 		return '<div id="wikiDiff">' . $difftext . '</div>';
 	}
+
+	/**
+	 * Filter an input field through a Unicode de-armoring process if it
+	 * came from an old browser with known broken Unicode editing issues.
+	 *
+	 * @param WebRequest $request
+	 * @param string $field
+	 * @return string
+	 * @access private
+	 */
+	function safeUnicodeInput( $request, $field ) {
+		$text = rtrim( $request->getText( $field ) );
+		return $request->getBool( 'safemode' )
+			? $this->unmakesafe( $text )
+			: $text;
+	}
+	
+	/**
+	 * Filter an output field through a Unicode de-armoring process if it
+	 * came from an old browser with known broken Unicode editing issues.
+	 *
+	 * @param string $text
+	 * @return string
+	 * @access private
+	 */
+	function safeUnicodeOutput( $text ) {
+		global $wgContLang;
+		$codedText = $wgContLang->recodeForEdit( $text );
+		return $this->checkUnicodeCompliantBrowser()
+			? $codedText
+			: $this->makesafe( $codedText );
+	}
+	
+	/**
+	 * A number of web browsers are known to corrupt non-ASCII characters
+	 * in a UTF-8 text editing environment. To protect against this,
+	 * detected browsers will be served an armored version of the text,
+	 * with non-ASCII chars converted to numeric HTML character references.
+	 *
+	 * Preexisting such character references will have a 0 added to them
+	 * to ensure that round-trips do not alter the original data.
+	 *
+	 * @param string $invalue
+	 * @return string
+	 * @access private
+	 */
+	function makesafe( $invalue ) {
+		// Armor existing references for reversability.
+		$invalue = strtr( $invalue, array( "&#x" => "&#x0" ) );
+		
+		$bytesleft = 0;
+		$result = "";
+		$working = 0;
+		for( $i = 0; $i < strlen( $invalue ); $i++ ) {
+			$bytevalue = ord( $invalue{$i} );
+			if( $bytevalue <= 0x7F ) { //0xxx xxxx
+				$result .= chr( $bytevalue );
+				$bytesleft = 0;
+			} elseif( $bytevalue <= 0xBF ) { //10xx xxxx
+				$working = $working << 6;
+				$working += ($bytevalue & 0x3F);
+				$bytesleft--;
+				if( $bytesleft <= 0 ) {
+					$result .= "&#x" . strtoupper( dechex( $working ) ) . ";";
+				}
+			} elseif( $bytevalue <= 0xDF ) { //110x xxxx
+				$working = $bytevalue & 0x1F;
+				$bytesleft = 1;
+			} elseif( $bytevalue <= 0xEF ) { //1110 xxxx
+				$working = $bytevalue & 0x0F;
+				$bytesleft = 2;
+			} else { //1111 0xxx
+				$working = $bytevalue & 0x07;
+				$bytesleft = 3;
+			}
+		}
+		return $result;
+	}
+	
+	/**
+	 * Reverse the previously applied transliteration of non-ASCII characters
+	 * back to UTF-8. Used to protect data from corruption by broken web browsers
+	 * as listed in $wgBrowserBlackList.
+	 *
+	 * @param string $invalue
+	 * @return string
+	 * @access private
+	 */
+	function unmakesafe( $invalue ) {
+		$result = "";
+		for( $i = 0; $i < strlen( $invalue ); $i++ ) {
+			if( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue{$i+3} != '0' ) ) {
+				$i += 3;
+				$hexstring = "";
+				do {
+					$hexstring .= $invalue{$i};
+					$i++;
+				} while( ctype_xdigit( $invalue{$i} ) && ( $i < strlen( $invalue ) ) );
+				
+				// Do some sanity checks. These aren't needed for reversability,
+				// but should help keep the breakage down if the editor 
+				// breaks one of the entities whilst editing.
+				if ((substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6)) { 
+					$codepoint = hexdec($hexstring);
+					$result .= codepointToUtf8( $codepoint );
+				} else {
+					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
+				}
+			} else {
+				$result .= substr( $invalue, $i, 1 );
+			}
+		}
+		// reverse the transform that we made for reversability reasons.
+		return strtr( $result, array( "&#x0" => "&#x" ) );
+	}
+	
 
 }
 
