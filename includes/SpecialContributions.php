@@ -6,12 +6,17 @@
 
 /** @package MediaWiki */
 class contribs_finder {
-	var $username, $offset, $limit;
+	var $username, $offset, $limit, $namespace;
 	var $dbr;
 
 	function contribs_finder($username) {
 		$this->username = $username;
+		$this->namespace = false;
 		$this->dbr =& wfGetDB(DB_SLAVE);
+	}
+
+	function set_namespace($ns) {
+		$this->namespace = $ns;
 	}
 
 	function set_limit($limit) {
@@ -24,12 +29,12 @@ class contribs_finder {
 
 	function get_edit_limit($dir) {
 		list($index, $usercond) = $this->get_user_cond();
-
+		$nscond = $this->get_namespace_cond();
 		$use_index = $this->dbr->useIndexClause($index);
 		extract($this->dbr->tableNames('revision', 'page'));
 		$sql =	"SELECT rev_timestamp " .
-			" FROM $revision $use_index " .
-			" WHERE " . $usercond .
+			" FROM $page,$revision $use_index " .
+			" WHERE rev_page=page_id AND $usercond $nscond" .
 			" ORDER BY rev_timestamp $dir LIMIT 1";
 
 		$res = $this->dbr->query($sql, "contribs_finder::get_edit_limit");
@@ -63,14 +68,23 @@ class contribs_finder {
 		return array($index, $condition);
 	}
 
+	function get_namespace_cond() {
+		if ($this->namespace !== false)
+			return " AND page_namespace = " . (int)$this->namespace;
+		return "";
+	}
+
 	function get_previous_offset_for_paging() {
 		list($index, $usercond) = $this->get_user_cond();
+		$nscond = $this->get_namespace_cond();
+
 		$use_index = $this->dbr->useIndexClause($index);
 		extract($this->dbr->tableNames('page', 'revision'));
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username);
+			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
+			$nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit+1);
 		$res = $this->dbr->query($sql);
 		$rows = array();
@@ -84,10 +98,11 @@ class contribs_finder {
 		list($index, $usercond) = $this->get_user_cond();
 		$use_index = $this->dbr->useIndexClause($index);
 		extract($this->dbr->tableNames('page', 'revision'));
-
+		$nscond = $this->get_namespace_cond();
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username);
+			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
+			$nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit + 1);
 		$res = $this->dbr->query($sql);
 		$rows = array();
@@ -107,13 +122,14 @@ class contribs_finder {
 		if ($this->offset)
 			$offsetQuery = "AND rev_timestamp <= '{$this->offset}'";
 
+		$nscond = $this->get_namespace_cond();
 		$use_index = $this->dbr->useIndexClause($index);
 		$sql = "SELECT
 			page_namespace,page_title,page_is_new,page_latest,
 			rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text,
 			rev_deleted
 			FROM $page,$revision $use_index
-			WHERE page_id=rev_page AND $userCond $offsetQuery
+			WHERE page_id=rev_page AND $userCond $nscond $offsetQuery
 		 	ORDER BY rev_timestamp DESC $limitQuery";
 		return $sql;
 	}
@@ -166,6 +182,9 @@ function wfSpecialContributions( $par = null ) {
 
 	$finder->set_limit($limit);
 	$finder->set_offset($offset);
+
+	if (($ns = $wgRequest->getVal('namespace', null)) !== null)
+		$finder->set_namespace($ns);
 
 	if ($wgRequest->getText('go') == "prev") {
 		$prevts = $finder->get_previous_offset_for_paging();
