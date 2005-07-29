@@ -103,7 +103,7 @@ class contribs_finder {
 			"WHERE page_id = rev_page AND " .
 			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
 			$nscond;
-		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit + 1);
+		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
