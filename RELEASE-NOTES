@@ -614,6 +614,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix typo in undefined array index access prevention
 * (bug 2947) Update namespaces for sr localization
 * (bug 2952) Added Asturian language file with translated namespaces
+* (bug 2676) Apply a protective transformation on editing input/output
+  for browsers that hit the Unicode blacklist. Patch by plugwash.
 
 
 === Caveats ===
