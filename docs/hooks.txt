@@ -299,6 +299,15 @@ $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
+'LogPageValidTypes': action being logged.
+$type: array of strings
+
+'LogPageLogName': name of the logging page(s).
+$typeText: array of strings
+
+'LogPageLogHeader': strings used by wfMsg as a header.
+$headerText: array of strings
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
@@ -339,3 +348,5 @@ $article: article object watched
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
+
+More hooks might not be available but undocumented.
