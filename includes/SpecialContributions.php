@@ -26,9 +26,9 @@ class contribs_finder {
 		list($index, $usercond) = $this->get_user_cond();
 
 		$use_index = $this->dbr->useIndexClause($index);
-		extract($this->dbr->tableNames('revision'));
+		extract($this->dbr->tableNames('revision', 'page'));
 		$sql =	"SELECT rev_timestamp " .
-			" FROM $revision $use_index " .
+			" FROM $page,$revision $use_index " .
 			" WHERE " . $usercond .
 			" ORDER BY rev_timestamp $dir LIMIT 1";
 
@@ -50,7 +50,7 @@ class contribs_finder {
 
 		if ($this->username == 'newbies') {
 			$max = $this->dbr->selectField('user', 'max(user_id)', false, "make_sql");
-			$condition = '>' . ($max - $max / 100);
+			$condition = '>' . (int)($max - $max / 100);
 		}
 
 		if ($condition == "") {
@@ -60,7 +60,6 @@ class contribs_finder {
 			$condition = " rev_user {$condition}";
 			$index = 'user_timestamp';
 		}
-
 		return array($index, $condition);
 	}
 
@@ -163,7 +162,7 @@ function wfSpecialContributions( $par = null ) {
 	$urlbits = "target=" . wfUrlEncode($target);
 	$myurl = $title->escapeLocalURL($urlbits);
 
-	$finder = new contribs_finder($nt->getText());
+	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
 
 	$finder->set_limit($limit);
 	$finder->set_offset($offset);
