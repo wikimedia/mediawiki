@@ -537,9 +537,9 @@ CREATE TABLE $pagelinks (
 			$add = array();
 			while( $row = $this->dbr->fetchObject( $result ) ) {
 				$add[] = array(
-					'pl_from'      => $row->l_from,
-					'pl_namespace' => $row->cur_namespace,
-					'pl_title'     => $row->cur_title );
+					'pl_from'      =>              $row->l_from,
+					'pl_namespace' =>              $row->cur_namespace,
+					'pl_title'     => $this->conv( $row->cur_title ) );
 				$this->addChunk( $add );
 			}
 			$this->lastChunk( $add );

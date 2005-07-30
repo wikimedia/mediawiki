@@ -616,6 +616,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2952) Added Asturian language file with translated namespaces
 * (bug 2676) Apply a protective transformation on editing input/output
   for browsers that hit the Unicode blacklist. Patch by plugwash.
+* (bug 2999) Fix encoding conversion of pl_title in upgrade1_5.php
 
 
 === Caveats ===
