@@ -3,6 +3,14 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5 beta 4 ==
+
+July 30, 2005
+
+MediaWiki 1.5 beta 4 is a preview release of the new 1.5 release series.
+A number of bugs have been fixed since beta 3; see the full changelist below.
+
+
 == MediaWiki 1.5 beta 3 ==
 
 July 7, 2005
@@ -617,6 +625,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2676) Apply a protective transformation on editing input/output
   for browsers that hit the Unicode blacklist. Patch by plugwash.
 * (bug 2999) Fix encoding conversion of pl_title in upgrade1_5.php
+* compressOld.php disabled, as it's known to be broken.
 
 
 === Caveats ===

@@ -32,7 +32,9 @@
  *    <factor-threshold> is a minimum number of KB, where <max-factor> cuts in
  *
  */
- 
+
+die( 'compressOld is known to be broken at the moment.' );
+
 $optionsWithArgs = array( 't', 'c', 's', 'f', 'h' );
 require_once( "commandLine.inc" );
 require_once( "compressOld.inc" );
