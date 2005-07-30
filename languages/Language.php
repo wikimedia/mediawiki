@@ -2666,7 +2666,7 @@ class Language {
 
 	# Fill a MagicWord object with data from here
 	function getMagic( &$mw ) {
-		$raw =& $this->getMagicWords();
+		$raw = $this->getMagicWords();
 		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
 			$raw =& Language::getMagicWords();
