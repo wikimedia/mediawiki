@@ -69,6 +69,7 @@ $wgMagicWordsIs = array(
 
 $wgAllMessagesIs = array(
 'linktrail' => '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu',
+'linkprefix'=> '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 
 '1movedto2' => "$1 færð á $2",
 '1movedto2_redir' => "$1 færð á $2 yfir tilvísun",
@@ -832,6 +833,10 @@ class LanguageIs extends LanguageUtf8 {
 	 */
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	}
+
+	function linkPrefixExtension() {
+		return true;
 	}
 }
 
