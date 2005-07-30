@@ -1183,8 +1183,8 @@ END
 	}
 	
 	/**
-	 * Filter an output field through a Unicode de-armoring process if it
-	 * came from an old browser with known broken Unicode editing issues.
+	 * Filter an output field through a Unicode armoring process if it is
+	 * going to an old browser with known broken Unicode editing issues.
 	 *
 	 * @param string $text
 	 * @return string
