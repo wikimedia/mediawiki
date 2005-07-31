@@ -628,6 +628,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * compressOld.php disabled, as it's known to be broken.
 
 
+=== Changes since 1.5beta4 ===
+
+* Fix Special:Allmessages under PHP 5
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
