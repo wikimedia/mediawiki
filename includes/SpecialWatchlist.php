@@ -271,12 +271,12 @@ function wfSpecialWatchlist( $par ) {
 	$s = $sk->makeKnownLink(
 		$wgContLang->specialPage( 'Watchlist' ),
 		(0 == $hideOwn) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
-		wfArrayToCGI( array('hideOwn' => $wgLang->formatNum( 1-$hideOwn )), $nondefaults ) );
+		wfArrayToCGI( array('hideOwn' => 1-$hideOwn ), $nondefaults ) );
 
 	$wgOut->addHTML( wfMsgHtml( "wlhideshowown", $s ) );
 	
 	if ( $numRows == 0 ) {
-		$wgOut->addWikitext( "<br />\n" . wfMsg( 'watchnochange' ), false );
+		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
 		$wgOut->addHTML( "</p>\n" );
 		return;
 	}
@@ -342,8 +342,7 @@ function wlDaysLink( $d, $page, $options = array() ) {
 	return $s;
 }
 
-function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() )
-{
+function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
 	$cl = '';
