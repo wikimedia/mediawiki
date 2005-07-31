@@ -131,7 +131,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
 	$hidem .= $hideliu ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= is_null( $namespace ) ?  ''	: ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
 
@@ -176,15 +176,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			// Dump everything here
 			$nondefaults = array();
 		
-			appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
@@ -561,20 +561,6 @@ function rcFormatDiff( $row ) {
 	
 	wfProfileOut( $fname );
 	return $comment;	
-}
-
-
-/**
- * Appends to second array if $value differs from that in $default
- */
-function appendToArrayIfNotDefault( $key, $value, $default, &$changed )
-{
-	if ( is_null( $changed ) ) {
-		die();
-	}
-	if ( $default[$key] !== $value ) {
-		$changed[$key] = $value;
-	}
 }
 
 ?>

@@ -33,11 +33,20 @@ function wfSpecialWatchlist( $par ) {
 		return;
 	}
 
+	$defaults = array(
+	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
+	/* bool  */ 'hideOwn' => false,
+	);
+
+	extract($defaults);
+
 	# Get query variables
 	$days = $wgRequest->getVal( 'days' );
+	$hideOwn = $wgRequest->getBool( 'hideOwn' );
+
+	# Watchlist editing
 	$action = $wgRequest->getVal( 'action' );
 	$remove = $wgRequest->getVal( 'remove' );
-	$hideOwn = $wgRequest->getBool( 'hideOwn' );	
 	$id = $wgRequest->getArray( 'id' );
 
 	$uid = $wgUser->getID();
@@ -45,7 +54,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
-
+  # Deleting items from watchlist
 	if(($action == 'submit') && isset($remove) && is_array($id)) {
 		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
 		$wgOut->addHTML( '<p>' );
@@ -92,17 +101,23 @@ function wfSpecialWatchlist( $par ) {
 		return;
 	}
 
-	if ( is_null( $days ) ) {
-		$big = 1000;
+	if( is_null($days) || !is_numeric($days) ) {
+		$big = 1000; /* The magical big */
 		if($nitems > $big) {
 			# Set default cutoff shorter
-			$days = (12.0 / 24.0); # 12 hours...
+			$days = $defaults['days'] = (12.0 / 24.0); # 12 hours...
 		} else {
-			$days = 3; # longer cutoff for shortlisters
+			$days = $defaults['days']; # default cutoff for shortlisters
 		}
 	} else {
 		$days = floatval($days);
 	}
+
+	// Dump everything here
+	$nondefaults = array();
+
+	wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideOwn', $hideOwn, $defaults, $nondefaults);
 
 	if ( $days <= 0 ) {
 		$docutoff = '';
@@ -119,6 +134,7 @@ function wfSpecialWatchlist( $par ) {
 
 	}
 
+	/* Edit watchlist form */
 	if($wgRequest->getBool('edit') || $par == 'edit' ) {
 		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
 			"\n\n" . wfMsg( 'watcheditlist' ) );
@@ -139,12 +155,12 @@ function wfSpecialWatchlist( $par ) {
 		while( $s = $dbr->fetchObject( $res ) ) {
 			$list[$s->wl_namespace][] = $s->wl_title;
 		}
-		
+
 		// TODO: Display a TOC
 		foreach($list as $ns => $titles) {
 			if (Namespace::isTalk($ns))
 				continue;
-			if ($ns != NS_MAIN) 
+			if ($ns != NS_MAIN)
 				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
 			$wgOut->addHTML( '<ul>' );
 			foreach($titles as $title) {
@@ -208,7 +224,7 @@ function wfSpecialWatchlist( $par ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
-	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems / 2 ), 
+	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems / 2 ),
 		$wgLang->formatNum( $npages ), $y,
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
@@ -238,29 +254,35 @@ function wfSpecialWatchlist( $par ) {
 
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
+
+	/* Start bottom header */
+	$wgOut->addHTML( "<hr />\n<p>" );
+
 	if($days >= 1)
-		$note = wfMsg( 'rcnote', $wgLang->formatNum( $numRows ), $wgLang->formatNum( $days ) );
+		$wgOut->addWikiText( wfMsg( 'rcnote', $wgLang->formatNum( $numRows ),
+			$wgLang->formatNum( $days ) ) . '<br />' , false );
 	elseif($days > 0)
-		$note = wfMsg( 'wlnote', $wgLang->formatNum( $numRows ), $wgLang->formatNum( round($days*24) ) );
-	else
-		$note = '';
-	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
-	$note = wlCutoffLinks( $days );
-	$wgOut->addHTML( "{$note}\n" );
+		$wgOut->addWikiText( wfMsg( 'wlnote', $wgLang->formatNum( $numRows ),
+			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
+
+	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
 	
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 		$wgContLang->specialPage( 'Watchlist' ),
-		(0 == $hideOwn) ? wfMsg( 'wlhide' ) : wfMsg( 'wlshow' ),	
-	  	'hideOwn=' . $wgLang->formatNum( 1-$hideOwn ) );
-	  	
-	$note = wfMsg( "wlhideshowown", $s );
-	$wgOut->addHTML( "\n<br />{$note}\n<br />" );
+		(0 == $hideOwn) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
+		wfArrayToCGI( array('hideOwn' => $wgLang->formatNum( 1-$hideOwn )), $nondefaults ) );
+
+	$wgOut->addHTML( wfMsgHtml( "wlhideshowown", $s ) );
 	
 	if ( $numRows == 0 ) {
-		$wgOut->addHTML( '<p><i>' . wfMsg( 'watchnochange' ) . '</i></p>' );
+		$wgOut->addWikitext( "<br />\n" . wfMsg( 'watchnochange' ), false );
+		$wgOut->addHTML( "</p>\n" );
 		return;
 	}
+
+	$wgOut->addHTML( "</p>\n" );
+	/* End bottom header */
 
 	$sk = $wgUser->getSkin();
 	$list =& new ChangesList( $sk );
@@ -300,44 +322,43 @@ function wfSpecialWatchlist( $par ) {
 
 }
 
-
-function wlHoursLink( $h, $page ) {
+function wlHoursLink( $h, $page, $options = array() ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgContLang->specialPage( $page ),
 	  $wgLang->formatNum( $h ),
-	  'days=' . ($h / 24.0) );
+	  wfArrayToCGI( array('days' => ($h / 24.0)), $options ) );
 	return $s;
 }
 
-
-function wlDaysLink( $d, $page ) {
+function wlDaysLink( $d, $page, $options = array() ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgContLang->specialPage( $page ),
-	  ($d ? $wgLang->formatNum( $d ) : wfMsg( 'watchlistall2' ) ), "days=$d" );
+	  ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) ),
+	  wfArrayToCGI( array('days' => $d), $options ) );
 	return $s;
 }
 
-function wlCutoffLinks( $days, $page = 'Watchlist' )
+function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() )
 {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
 	$cl = '';
 	$i = 0;
 	foreach( $hours as $h ) {
-		$hours[$i++] = wlHoursLink( $h, $page );
+		$hours[$i++] = wlHoursLink( $h, $page, $options );
 	}
 	$i = 0;
 	foreach( $days as $d ) {
-		$days[$i++] = wlDaysLink( $d, $page );
+		$days[$i++] = wlDaysLink( $d, $page, $options );
 	}
 	return wfMsg ('wlshowlast',
 		implode(' | ', $hours),
 		implode(' | ', $days),
-		wlDaysLink( 0, $page ) );
+		wlDaysLink( 0, $page, $options ) );
 }
 
 ?>
