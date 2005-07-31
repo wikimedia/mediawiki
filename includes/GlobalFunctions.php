@@ -1304,4 +1304,16 @@ function wfEncryptPassword( $userid, $password ) {
 		return $p;
 }
 
+/**
+ * Appends to second array if $value differs from that in $default
+ */
+function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
+	if ( is_null( $changed ) ) {
+		wfDebugDieBacktrace('GlobalFunctions::wfAppendToArrayIfNotDefault got null');
+	}
+	if ( $default[$key] !== $value ) {
+		$changed[$key] = $value;
+	}
+}
+
 ?>
