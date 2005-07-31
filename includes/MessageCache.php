@@ -25,7 +25,7 @@ class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
-	var $mExtensionMessages;
+	var $mExtensionMessages = array();
 	var $mInitialised = false;
 	var $mDeferred = true;
 
