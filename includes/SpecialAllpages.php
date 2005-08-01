@@ -54,26 +54,26 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	foreach ( $arr as $ns => $name ) {
 		if ($ns < NS_MAIN)
 			continue;
-		$n = $ns == 0 ? wfMsg ( 'blanknamespace' ) : $name;
+		$n = $ns == 0 ? wfMsgHtml ( 'blanknamespace' ) : $name;
 		$sel = $ns == $namespace ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";	
+		$namespaceselect .= "<option value='$ns'$sel>$n</option>\n";
 	}
 	$namespaceselect .= '</select>';
 
 	$frombox = "<input type='text' size='20' name='from' id='nsfrom' value=\""
 	            . htmlspecialchars ( $from ) . '"/>';
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
 	
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <table id='nsselect' class='allpages'>
 	<tr>
-		<td align='right'>" . wfMsg('allpagesfrom') . "</td>
+		<td align='right'>" . wfMsgHtml('allpagesfrom') . "</td>
 		<td align='left'><label for='nsfrom'>$frombox</label></td>
 	</tr>
 	<tr>    
-		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
+		<td align='right'><label for='nsselectbox'>" . wfMsgHtml('namespace') . "</label></td>
 		<td align='left'>
 			$namespaceselect $submitbutton
 		</td>
