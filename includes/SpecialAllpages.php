@@ -49,16 +49,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$arr = $wgContLang->getFormattedNamespaces();
-	foreach ( $arr as $ns => $name ) {
-		if ($ns < NS_MAIN)
-			continue;
-		$n = $ns == 0 ? wfMsgHtml ( 'blanknamespace' ) : $name;
-		$sel = $ns == $namespace ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>\n";
-	}
-	$namespaceselect .= '</select>';
+	$namespaceselect = HTMLnamespaceselector($namespace, null);
 
 	$frombox = "<input type='text' size='20' name='from' id='nsfrom' value=\""
 	            . htmlspecialchars ( $from ) . '"/>';
@@ -220,6 +211,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	
 	$sk = $wgUser->getSkin();
 
+	$fromTitle = null;
 	if ($from!="") {
 		$fromTitle = Title::newFromURL( $from );
 		$fromNS = $fromTitle->getNamespace();
