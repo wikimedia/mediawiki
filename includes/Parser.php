@@ -1308,7 +1308,7 @@ class Parser
 				$link = substr($link, 1);
 			}
 
-			$nt =& Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
+			$nt = Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
