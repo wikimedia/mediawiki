@@ -221,6 +221,9 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	$sk = $wgUser->getSkin();
 
 	$fromTitle = Title::newFromURL( $from );
+	$fromNS = $fromTitle->getNamespace();
+	if ($namespace == NS_MAIN)
+		$namespace = $fromNS;
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
 	$dbr =& wfGetDB( DB_SLAVE );
