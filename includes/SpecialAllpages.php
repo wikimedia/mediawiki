@@ -9,15 +9,15 @@
  * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default NULL)
  */
 function wfSpecialAllpages( $par=NULL, $specialPage ) {
-	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
-	# Config
-	$indexMaxperpage = 960;
-	$toplevelMaxperpage = 50;
+	global $wgRequest, $wgOut, $wgContLang;
+
 	# GET values
 	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
 	
 	$namespaces = $wgContLang->getNamespaces();
+
+	$indexPage = new SpecialAllpages();
 
 	if( !in_array($namespace, array_keys($namespaces)) )
 		$namespace = 0;
@@ -28,20 +28,24 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 		);
 	
 	if ( isset($par) ) {
-		indexShowChunk( $namespace, $par, $specialPage->including() );
+		$indexPage->showChunk( $namespace, $par, $specialPage->including() );
 	} elseif ( isset($from) ) {
-		indexShowChunk( $namespace, $from, $specialPage->including() );
+		$indexPage->showChunk( $namespace, $from, $specialPage->including() );
 	} else {
-		indexShowToplevel ( $namespace, $specialPage->including() );
+		$indexPage->showToplevel ( $namespace, $specialPage->including() );
 	}
 }
+
+class SpecialAllpages {
+	var $maxPerPage=960;
+	var $topLevelMax=50;
 
 /**
  * HTML for the top form
  * @param integer $namespace A namespace constant (default NS_MAIN).
  * @param string $from Article name we are starting listing at.
  */
-function indexNamespaceForm ( $namespace = NS_MAIN, $from = '' ) {
+function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
@@ -83,8 +87,8 @@ function indexNamespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 /**
  * @param integer $namespace (default NS_MAIN)
  */
-function indexShowToplevel ( $namespace = NS_MAIN, $including = false ) {
-	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
+function showToplevel ( $namespace = NS_MAIN, $including = false ) {
+	global $wgOut, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
 
@@ -118,7 +122,7 @@ function indexShowToplevel ( $namespace = NS_MAIN, $including = false ) {
 				? '1=1'
 				: 'page_title >= ' . $dbr->addQuotes( $lastTitle );
 			$sql = "SELECT page_title $fromwhere AND $chunk $order_str " .
-				$dbr->limitResult( 2, $indexMaxperpage - 1 );
+				$dbr->limitResult( 2, $this->topLevelMax - 1 );
 			$res = $dbr->query( $sql, $fname );
 			if ( $s = $dbr->fetchObject( $res ) ) {
 				array_push( $lines, $s->page_title );
@@ -148,7 +152,7 @@ function indexShowToplevel ( $namespace = NS_MAIN, $including = false ) {
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
-		indexShowChunk( $namespace, '', false, $including );
+		$this->showChunk( $namespace, '', false, $including );
 		return;
 	}
 
@@ -157,11 +161,11 @@ function indexShowToplevel ( $namespace = NS_MAIN, $including = false ) {
 	while ( count ( $lines ) > 0 ) {
 		$inpoint = array_shift ( $lines );
 		$outpoint = array_shift ( $lines );
-		$out .= indexShowline ( $inpoint, $outpoint, $namespace, false );
+		$out .= $this->showline ( $inpoint, $outpoint, $namespace, false );
 	}
 	$out .= '</table>';
 	
-	$nsForm = indexNamespaceForm ( $namespace, '', false );
+	$nsForm = $this->namespaceForm ( $namespace, '', false );
 	
 	# Is there more?
 	if ( $including ) {
@@ -186,7 +190,7 @@ function indexShowToplevel ( $namespace = NS_MAIN, $including = false ) {
  * @param string $from 
  * @param integer $namespace (Default NS_MAIN)
  */
-function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
+function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	global $wgOut, $wgLang, $wgUser;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -209,8 +213,8 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
  * @param integer $namespace (Default NS_MAIN)
  * @param string $from list all pages from this name (default FALSE)
  */
-function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
-	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
+function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
+	global $wgOut, $wgUser, $wgContLang;
 
 	$fname = 'indexShowChunk';
 	
@@ -229,7 +233,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$fname,
 		array(
 			'ORDER BY'  => 'page_title',
-			'LIMIT'     => $indexMaxperpage + 1,
+			'LIMIT'     => $this->maxPerPage + 1,
 			'USE INDEX' => 'name_title',
 		)
 	);
@@ -240,7 +244,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	$out = '<table style="background: inherit;" border="0" width="100%">';
 	
 	$namespaces = $wgContLang->getFormattedNamespaces();
-	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
+	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
 			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) . 
@@ -266,13 +270,13 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	if ( $including ) {
 		$out2 = '';
 	} else {
-		$nsForm = indexNamespaceForm ( $namespace, $from );
+		$nsForm = $this->namespaceForm ( $namespace, $from );
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
 					wfMsg ( 'allpages' ) );
-		if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
+		if ( ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( "Allpages" ),
@@ -283,6 +287,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	}
 
 	$wgOut->addHtml( $out2 . $out );
+}
 }
 
 ?>
