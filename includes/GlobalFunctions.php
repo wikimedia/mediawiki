@@ -1151,7 +1151,7 @@ function wfGetSiteNotice() {
  *
  * @param string $element
  * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElement( $element, $attribs = null, $contents = '') {
@@ -1182,7 +1182,7 @@ function wfElement( $element, $attribs = null, $contents = '') {
  *
  * @param string $element
  * @param array $attribs Name=>value pairs. Values will be escaped.
- * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @param string $contents NULL to make an open tag only; '' for a contentless closed tag (default)
  * @return string
  */
 function wfElementClean( $element, $attribs = array(), $contents = '') {
@@ -1193,6 +1193,38 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 		$contents = UtfNormal::cleanUp( $contents );
 	}
 	return wfElement( $element, $attribs, $contents );
+}
+
+/**
+ * Create a namespace selector
+ *
+ * @param mixed $selected The namespace which should be selected, default ''
+ * @param string $allnamespaces Value of a special item denoting all namespaces. Null to not include (default)
+ * @return Html string containing the namespace selector
+ */
+function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
+	global $wgContLang;
+	$s = "<select name='namespace' class='namespaceselector'>\n";
+	$arr = $wgContLang->getFormattedNamespaces();
+	if( !is_null($allnamespaces) ) {
+		/* TODO: rename contributionsall to something meaningfull */
+		$arr = array($allnamespaces => wfMsgHtml('contributionsall')) + $arr;
+	}
+	foreach ($arr as $index => $name) {
+		if ($index < NS_MAIN) continue;
+
+		$name = $index !== 0 ? $name : wfMsgHtml('blanknamespace');
+
+		if ($index === $selected) {
+			$s .= wfElement("option",
+					array("value" => $index, "selected" => "selected"),
+					$name);
+		} else {
+			$s .= wfElement("option", array("value" => $index), $name);
+		}
+	}
+	$s .= "</select>\n";
+	return $s;
 }
 
 /** Global singleton instance of MimeMagic. This is initialized on demand,

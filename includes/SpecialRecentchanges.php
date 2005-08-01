@@ -187,7 +187,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
 
 			// Add end of the texts
-			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
+			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) . "\n" );
 			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults) . '</div>');
 		}
 
@@ -458,34 +458,22 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" ' . ($namespace === '' ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
-	$arr =  $wgContLang->getFormattedNamespaces();
-	foreach ( $arr as $ns => $name ) {
-		if( $ns < NS_MAIN )
-			continue;
-		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === (string) $ns ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
-	}
-	$namespaceselect .= '</select>';
+	$namespaceselect = HTMLnamespaceselector($namespace, '');
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
-	$out = '';
-	$out .= "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
+
 	foreach ( $nondefaults as $key => $value ) {
 		if ($key != 'namespace' && $key != 'invert')
-			$out .= "<input type='hidden' name='$key' value='$value' />";
+			$out .= wfElement('input', array( 'type' => 'hidden', 'name' => $key, 'value' => $value));
 	}
-
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
-	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-	
 	
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <div id='nsselect' class='recentchanges'>
-	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
-	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsg('invert') . "</label>
+	<label for='namespace'>" . wfMsgHtml('namespace') . "</label>
+	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
 </div>";
 	$out .= '</form></div>';
 	return $out;
