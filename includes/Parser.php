@@ -428,7 +428,7 @@ class Parser
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
 				if ( $render ) {
-					$ext_content[$tag][$marker] = $callback( $content, $params );
+					$ext_content[$tag][$marker] = $callback( $content, $params, $this );
 				} else {
 					$ext_content[$tag][$marker] = "$full_tag$content</$tag>";
 				}
