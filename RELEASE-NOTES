@@ -631,7 +631,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5beta4 ===
 
 * Fix Special:Allmessages under PHP 5
-* (bug ????) Special:Watchlist allowed only one type of limit at a time
+* (bug 2911) Special:Watchlist allowed only one type of limit at a time
 
 
 === Caveats ===
