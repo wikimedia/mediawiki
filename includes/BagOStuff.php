@@ -406,6 +406,10 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	function getTableName() {
 		if ( !$this->tableInitialised ) {
 			$dbw =& wfGetDB( DB_MASTER );
+			/* This is actually a hack, we should be able 
+			   to use Language classes here... or not */
+			if (!$dbw)
+				die("Could not connect to database");
 			$this->table = $dbw->tableName( $this->table );
 			$this->tableInitialised = true;
 		}
