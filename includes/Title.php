@@ -102,7 +102,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	function &newFromText( $text, $defaultNamespace = NS_MAIN ) {
+	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 

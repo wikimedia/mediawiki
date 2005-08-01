@@ -51,7 +51,7 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 	}	
 	if( is_null( $title ) ) {
 		# That's not supposed to happen :)
-		$title =& Title::newFromText( wfMsg( 'mainpage' ) );
+		$title = Title::newFromText( wfMsg( 'mainpage' ) );
 	}
 	$wgOut->reportTime(); # for logfile
 	$wgOut->redirect( $title->getFullUrl() );
