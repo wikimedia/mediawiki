@@ -110,11 +110,15 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 		for( $i = 0; !$done; ++$i ) {
 			// Fetch the last title of this chunk and the first of the next
 			$chunk = is_null( $lastTitle )
-				? '1=1'
+				? ''
 				: 'page_title >= ' . $dbr->addQuotes( $lastTitle );
-			$sql = "SELECT page_title $fromwhere AND $chunk $order_str " .
-				$dbr->limitResult( 2, $this->topLevelMax - 1 );
-			$res = $dbr->query( $sql, $fname );
+			$res = $dbr->select(
+				'page', /* FROM */
+				'page_title', /* WHAT */
+				$where + array( $chunk),
+				$fname,
+				array ('LIMIT' => 2, 'OFFSET' => $this->maxPerPage - 1, 'ORDER BY' => 'page_title') );
+
 			if ( $s = $dbr->fetchObject( $res ) ) {
 				array_push( $lines, $s->page_title );
 			} else {
