@@ -729,7 +729,7 @@ class Database {
 			$sql = "SELECT $vars $from $useIndex $tailOpts";
 		}
 		if (isset($options['LIMIT'])) {
-			$sql = $this->limitResult($sql, $options['LIMIT'], false);
+			$sql = $this->limitResult($sql, $options['LIMIT'], isset($options['OFFSET']) ? $options['OFFSET'] : false);
 		}
 		return $this->query( $sql, $fname );
 	}
