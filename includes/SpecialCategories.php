@@ -28,7 +28,7 @@ class CategoriesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getPageHeader() {
-		return '<p>'.wfMsg('categoriespagetext')."</p><br />\n";
+		return '<p>'.wfMsgHtml('categoriespagetext')."</p><br />\n";
 	}
 	function getSQL() {
 		$NScat = NS_CATEGORY;
