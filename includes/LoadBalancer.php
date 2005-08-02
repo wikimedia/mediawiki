@@ -74,9 +74,9 @@ class LoadBalancer {
 					$this->mGroupLoads[$group][$i] = $ratio;
 				}
 			}
-		}	
+		}
 	}
-	
+
 	/**
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
@@ -101,7 +101,7 @@ class LoadBalancer {
 		}
 		$max = mt_getrandmax();
 		$rand = mt_rand(0, $max) / $max * $sum;
-		
+
 		$sum = 0;
 		foreach ( $weights as $i => $w ) {
 			$sum += $w;
@@ -130,7 +130,7 @@ class LoadBalancer {
 		if ( $sum == 0 ) {
 			# No appropriate DB servers except maybe the master and some slaves with zero load
 			# Do NOT use the master
-			# Instead, this function will return false, triggering read-only mode, 
+			# Instead, this function will return false, triggering read-only mode,
 			# and a lagged slave will be used instead.
 			unset ( $loads[0] );
 		}
@@ -147,7 +147,7 @@ class LoadBalancer {
 
 	/**
 	 * Get the index of the reader connection, which may be a slave
-	 * This takes into account load ratios and lag times. It should 
+	 * This takes into account load ratios and lag times. It should
 	 * always return a consistent index during a given invocation
 	 *
 	 * Side effect: opens connections to databases
@@ -185,15 +185,15 @@ class LoadBalancer {
 					if ( $i !== false ) {
 						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 						$this->openConnection( $i );
-						
+
 						if ( !$this->isOpen( $i ) ) {
 							wfDebug( "Failed\n" );
 							unset( $loads[$i] );
 							$sleepTime = 0;
 						} else {
 							$status = $this->mConnections[$i]->getStatus();
-							if ( isset( $this->mServers[$i]['max threads'] ) && 
-							  $status['Threads_running'] > $this->mServers[$i]['max threads'] ) 
+							if ( isset( $this->mServers[$i]['max threads'] ) &&
+							  $status['Threads_running'] > $this->mServers[$i]['max threads'] )
 							{
 								# Slave is lagged, wait for a while
 								$sleepTime = 5000 * $status['Threads_connected'];
@@ -232,7 +232,7 @@ class LoadBalancer {
 		wfProfileOut( $fname );
 		return $i;
 	}
-	
+
 	/**
 	 * Get a random server to use in a query group
 	 */
@@ -245,7 +245,7 @@ class LoadBalancer {
 		wfDebug( "Query group $group => $i\n" );
 		return $i;
 	}
-	
+
 	/**
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
@@ -269,7 +269,7 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $this->mConnections[$i]->getSlavePos();
 					$this->mLaggedSlaveMode = true;
 				}
-			} 
+			}
 		}
 		wfProfileOut( $fname );
 	}
@@ -279,7 +279,7 @@ class LoadBalancer {
 	 */
 	function doWait( $index ) {
 		global $wgMemc;
-		
+
 		$retVal = false;
 
 		# Debugging hacks
@@ -314,7 +314,7 @@ class LoadBalancer {
 			}
 		}
 		return $retVal;
-	}		
+	}
 
 	/**
 	 * Get a connection by index
@@ -323,7 +323,7 @@ class LoadBalancer {
 	{
 		$fname = 'LoadBalancer::getConnection';
 		wfProfileIn( $fname );
-		
+
 		# Query groups
 		$groupIndex = false;
 		foreach ( $groups as $group ) {
@@ -333,9 +333,9 @@ class LoadBalancer {
 				break;
 			}
 		}
-		
+
 		# Operation-based index
-		if ( $i == DB_SLAVE ) {	
+		if ( $i == DB_SLAVE ) {
 			$i = $this->getReaderIndex();
 		} elseif ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
@@ -350,7 +350,7 @@ class LoadBalancer {
 		}
 		# Now we have an explicit index into the servers array
 		$this->openConnection( $i, $fail );
-		
+
 		wfProfileOut( $fname );
 		return $this->mConnections[$i];
 	}
@@ -369,6 +369,7 @@ class LoadBalancer {
 		if ( !$this->isOpen( $i ) ) {
 			$this->mConnections[$i] = $this->reallyOpenConnection( $this->mServers[$i] );
 		}
+
 		if ( !$this->isOpen( $i ) ) {
 			wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
 			if ( $fail ) {
@@ -390,15 +391,15 @@ class LoadBalancer {
 		if( !is_integer( $index ) ) {
 			return false;
 		}
-		if ( array_key_exists( $index, $this->mConnections ) && is_object( $this->mConnections[$index] ) && 
-		  $this->mConnections[$index]->isOpen() ) 
+		if ( array_key_exists( $index, $this->mConnections ) && is_object( $this->mConnections[$index] ) &&
+		  $this->mConnections[$index]->isOpen() )
 		{
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Really opens a connection
 	 * @private
@@ -407,7 +408,7 @@ class LoadBalancer {
 		if( !is_array( $server ) ) {
 			wfDebugDieBacktrace( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
 		}
-		
+
 		extract( $server );
 		# Get class for this database type
 		$class = 'Database' . ucfirst( $type );
@@ -418,13 +419,13 @@ class LoadBalancer {
 		# Create object
 		return new $class( $host, $user, $password, $dbname, 1, $flags );
 	}
-	
+
 	function reportConnectionError( &$conn )
 	{
 		$fname = 'LoadBalancer::reportConnectionError';
 		wfProfileIn( $fname );
 		# Prevent infinite recursion
-		
+
 		static $reporting = false;
 		if ( !$reporting ) {
 			$reporting = true;
@@ -441,7 +442,7 @@ class LoadBalancer {
 		}
 		wfProfileOut( $fname );
 	}
-	
+
 	function getWriterIndex()
 	{
 		return 0;
@@ -470,7 +471,7 @@ class LoadBalancer {
 	function saveMasterPos() {
 		global $wgSessionStarted;
 		if ( $wgSessionStarted && count( $this->mServers ) > 1 ) {
-			# If this entire request was served from a slave without opening a connection to the 
+			# If this entire request was served from a slave without opening a connection to the
 			# master (however unlikely that may be), then we can fetch the position from the slave.
 			if ( empty( $this->mConnections[0] ) ) {
 				$conn =& $this->getConnection( DB_SLAVE );
@@ -556,7 +557,7 @@ class LoadBalancer {
 		}
 		return array( $host, $maxLag );
 	}
-	
+
 	/**
 	 * Get lag time for each DB
 	 * Results are cached for a short time in memcached

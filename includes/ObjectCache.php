@@ -53,9 +53,9 @@ function &wfGetCache( $inputType ) {
 	}
 
 	if ( $type == CACHE_MEMCACHED ) {
-		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){ 
+		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){
 			require_once( 'memcached-client.php' );
-			
+
 			if (!class_exists("MemcachedClientforWiki")) {
 				class MemCachedClientforWiki extends memcached {
 					function _debugprint( $text ) {
@@ -64,7 +64,7 @@ function &wfGetCache( $inputType ) {
 				}
 			}
 
-			$wgCaches[CACHE_DB] = new MemCachedClientforWiki( 
+			$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
 				array('persistant' => false, 'compress_threshold' => 1500 ) );
 			$cache =& $wgCaches[CACHE_DB];
 			$cache->set_servers( $wgMemCachedServers );
@@ -94,7 +94,7 @@ function &wfGetCache( $inputType ) {
 		}
 		$cache =& $wgCaches[CACHE_DB];
 	}
-	
+
 	if ( $cache === false ) {
 		if ( !array_key_exists( CACHE_NONE, $wgCaches ) ) {
 			$wgCaches[CACHE_NONE] = new FakeMemCachedClient;

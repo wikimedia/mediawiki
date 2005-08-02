@@ -39,7 +39,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	);
 
 	extract($defaults);
-	
+
 
 	$days = $wgUser->getOption( 'rcdays' );
 	if ( !$days ) { $days = $defaults['days']; }
@@ -52,9 +52,9 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$limit = $wgRequest->getInt( 'limit', $limit );
 
 	/* order of selection: url > preferences > default */
-	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );	
+	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor') ? true : $defaults['hideminor'] );
 
-	
+
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
 		global $wgFeedLimit;
@@ -69,7 +69,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$hidebots = $wgRequest->getBool( 'hidebots', $defaults['hidebots'] );
 		$hideliu = $wgRequest->getBool( 'hideliu', $defaults['hideliu'] );
 		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', $defaults['hidepatrolled'] );
-		$from = $wgRequest->getVal( 'from', $defaults['from'] );	
+		$from = $wgRequest->getVal( 'from', $defaults['from'] );
 
 		# Get query parameters from path
 		if( $par ) {
@@ -104,7 +104,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
 
-	
+
 	$cutoff_unixtime = time() - ( $days * 86400 );
 	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
 	$cutoff = $dbr->timestamp( $cutoff_unixtime );
@@ -113,7 +113,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	} else {
 		$from = $defaults['from'];
 	}
-		
+
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
 
@@ -138,10 +138,11 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$uid = $wgUser->getID();
 
 	// Perform query
-	$sql2 = "SELECT *" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	$sql2 = "SELECT * FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
-	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
+	  "ORDER BY rc_timestamp DESC";
+	$sql2 = $dbr->limitResult($sql2, $limit, 0);
 	$res = $dbr->query( $sql2, $fname );
 
 	// Fetch results, prepare a batch link existence check query
@@ -172,7 +173,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		// Output header
 		if ( !$specialPage->including() ) {
 			$wgOut->addWikiText( wfMsgForContent( "recentchangestext" ) );
-		
+
 			// Dump everything here
 			$nondefaults = array();
 		
@@ -235,15 +236,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 	global $messageMemc, $wgDBname, $wgFeedCacheTimeout;
 	global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
-	
+
 	if( !isset( $wgFeedClasses[$feedFormat] ) ) {
 		wfHttpError( 500, "Internal Server Error", "Unsupported feed type." );
 		return false;
 	}
-	
+
 	$timekey = "$wgDBname:rcfeed:$feedFormat:timestamp";
 	$key = "$wgDBname:rcfeed:$feedFormat:limit:$limit:minor:$hideminor";
-	
+
 	$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchanges' ) .
 		' [' . $wgContLanguageCode . ']';
 	$feed = new $wgFeedClasses[$feedFormat](
@@ -284,7 +285,7 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 		rcDoOutputFeed( $rows, $feed );
 		$cachedFeed = ob_get_contents();
 		ob_end_flush();
-		
+
 		$expire = 3600 * 24; # One day
 		$messageMemc->set( $key, $cachedFeed );
 		$messageMemc->set( $timekey, wfTimestamp( TS_MW ), $expire );
@@ -294,9 +295,9 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 
 function rcDoOutputFeed( $rows, &$feed ) {
 	global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
-	
+
 	$feed->outHeader();
-	
+
 	# Merge adjacent edits by one user
 	$sorted = array();
 	$n = 0;
@@ -312,7 +313,7 @@ function rcDoOutputFeed( $rows, &$feed ) {
 		}
 		$first = false;
 	}
-	
+
 	foreach( $sorted as $obj ) {
 		$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
 		$talkpage = $title->getTalkPage();
@@ -431,11 +432,11 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 		array( 'hidepatrolled' => 1-$options['hidepatrolled'] ), $nondefaults);
 
 	$hl = wfMsg( 'showhideminor', $minorLink, $botLink, $liuLink, $patrLink );
-	
+
 	// show from this onward link
 	$now = $wgLang->timeanddate( wfTimestampNow(), true );
 	$tl =  makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
-	
+
 	$rclinks = wfMsg( 'rclinks', $cl, $dl, $hl );
 	$rclistfrom = wfMsg( 'rclistfrom', $tl );
 	return "$note<br />$rclinks<br />$rclistfrom";
@@ -486,16 +487,16 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 function rcFormatDiff( $row ) {
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
-	
+
 	require_once( 'DifferenceEngine.php' );
 	$comment = "<p>" . htmlspecialchars( $row->rc_comment ) . "</p>\n";
-	
+
 	if( $row->rc_namespace >= 0 ) {
 		global $wgContLang;
-		
+
 		#$diff =& new DifferenceEngine( $row->rc_this_oldid, $row->rc_last_oldid, $row->rc_id );
 		#$diff->showDiffPage();
-		
+
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$dbr =& wfGetDB( DB_SLAVE );
 		$newrev =& Revision::newFromTitle( $titleObj, $row->rc_this_oldid );
@@ -516,11 +517,11 @@ function rcFormatDiff( $row ) {
 				return $comment . $diffText;
 			}
 			$oldtext = $oldrev->getText();
-				
+
 			# Old entries may contain illegal characters
 			# which will damage output
 			$oldtext = UtfNormal::cleanUp( $oldtext );
-			
+
 			global $wgFeedDiffCutoff;
 			if( strlen( $newtext ) > $wgFeedDiffCutoff ||
 				strlen( $oldtext ) > $wgFeedDiffCutoff ) {
@@ -539,16 +540,16 @@ function rcFormatDiff( $row ) {
 			}
 			wfProfileOut( "$fname-dodiff" );
 		} else {
-			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' . 
+			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
 				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
 		}
-		
+
 		wfProfileOut( $fname );
 		return $comment . $diffText;
 	}
-	
+
 	wfProfileOut( $fname );
-	return $comment;	
+	return $comment;
 }
 
 ?>

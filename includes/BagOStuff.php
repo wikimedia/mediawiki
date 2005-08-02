@@ -2,17 +2,17 @@
 #
 # Copyright (C) 2003-2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -21,7 +21,7 @@
  *
  * @package MediaWiki
  */
- 
+
 /**
  * Simple generic object store
  *
@@ -37,18 +37,18 @@
  */
 class BagOStuff {
 	var $debugmode;
-	
+
 	function BagOStuff() {
 		$this->set_debug( false );
 	}
-	
+
 	function set_debug($bool) {
 		$this->debugmode = $bool;
 	}
-	
+
 	/* *** THE GUTS OF THE OPERATION *** */
 	/* Override these with functional things in subclasses */
-	
+
 	function get($key) {
 		/* stub */
 		return false;
@@ -58,12 +58,12 @@ class BagOStuff {
 		/* stub */
 		return false;
 	}
-	
+
 	function delete($key, $time=0) {
 		/* stub */
 		return false;
 	}
-	
+
 	function lock($key, $timeout = 0) {
 		/* stub */
 		return true;
@@ -73,7 +73,7 @@ class BagOStuff {
 		/* stub */
 		return true;
 	}
-	
+
 	/* *** Emulated functions *** */
 	/* Better performance can likely be got with custom written versions */
 	function get_multi($keys) {
@@ -82,19 +82,19 @@ class BagOStuff {
 			$out[$key] = $this->get($key);
 		return $out;
 	}
-	
+
 	function set_multi($hash, $exptime=0) {
 		foreach($hash as $key => $value)
 			$this->set($key, $value, $exptime);
 	}
-	
+
 	function add($key, $value, $exptime=0) {
 		if( $this->get($key) == false ) {
 			$this->set($key, $value, $exptime);
 			return true;
 		}
 	}
-	
+
 	function add_multi($hash, $exptime=0) {
 		foreach($hash as $key => $value)
 			$this->add($key, $value, $exptime);
@@ -104,12 +104,12 @@ class BagOStuff {
 		foreach($keys as $key)
 			$this->delete($key, $time);
 	}
-	
+
 	function replace($key, $value, $exptime=0) {
 		if( $this->get($key) !== false )
 			$this->set($key, $value, $exptime);
 	}
-	
+
 	function incr($key, $value=1) {
 		if ( !$this->lock($key) ) {
 			return false;
@@ -125,7 +125,7 @@ class BagOStuff {
 		$this->unlock($key);
 		return $n;
 	}
-	
+
 	function decr($key, $value=1) {
 		if ( !$this->lock($key) ) {
 			return false;
@@ -142,7 +142,7 @@ class BagOStuff {
 		$this->unlock($key);
 		return $m;
 	}
-	
+
 	function _debug($text) {
 		if($this->debugmode)
 			wfDebug("BagOStuff debug: $text\n");
@@ -162,11 +162,11 @@ class HashBagOStuff extends BagOStuff {
 	   persist between program runs.
 	*/
 	var $bag;
-	
+
 	function HashBagOStuff() {
 		$this->bag = array();
 	}
-	
+
 	function _expire($key) {
 		$et = $this->bag[$key][1];
 		if(($et == 0) || ($et > time()))
@@ -174,7 +174,7 @@ class HashBagOStuff extends BagOStuff {
 		$this->delete($key);
 		return true;
 	}
-	
+
 	function get($key) {
 		if(!$this->bag[$key])
 			return false;
@@ -182,13 +182,13 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		return $this->bag[$key][0];
 	}
-	
+
 	function set($key,$value,$exptime=0) {
 		if(($exptime != 0) && ($exptime < 3600*24*30))
 			$exptime = time() + $exptime;
 		$this->bag[$key] = array( $value, $exptime );
 	}
-	
+
 	function delete($key,$time=0) {
 		if(!$this->bag[$key])
 			return false;
@@ -219,11 +219,11 @@ class SqlBagOStuff extends BagOStuff {
 	function SqlBagOStuff($tablename = 'objectcache') {
 		$this->table = $tablename;
 	}
-	
+
 	function get($key) {
 		/* expire old entries if any */
 		$this->garbageCollect();
-		
+
 		$res = $this->_query(
 			"SELECT value,exptime FROM $0 WHERE keyname='$1'", $key);
 		if(!$res) {
@@ -238,7 +238,7 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		return false;
 	}
-	
+
 	function set($key,$value,$exptime=0) {
 		$exptime = intval($exptime);
 		if($exptime < 0) $exptime = 0;
@@ -250,22 +250,24 @@ class SqlBagOStuff extends BagOStuff {
 			$exp = $this->_fromunixtime($exptime);
 		}
 		$this->delete( $key );
-		$this->_query(
-			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2','$exp')",
-			$key, $this->_serialize($value));
+		$this->_doinsert($this->getTableName(), array(
+					'keyname' => $key,
+					'value' => $this->_blobencode($this->_serialize($value)),
+					'exptime' => $exp
+				));
 		return true; /* ? */
 	}
-	
+
 	function delete($key,$time=0) {
 		$this->_query(
 			"DELETE FROM $0 WHERE keyname='$1'", $key );
 		return true; /* ? */
 	}
-	
+
 	function getTableName() {
 		return $this->table;
 	}
-	
+
 	function _query($sql) {
 		$reps = func_get_args();
 		$reps[0] = $this->getTableName();
@@ -273,7 +275,7 @@ class SqlBagOStuff extends BagOStuff {
 		for($i=0;$i<count($reps);$i++) {
 			$sql = str_replace(
 				'$' . $i,
-				$this->_strencode($reps[$i]),
+				$i > 0 ? $this->_strencode($reps[$i]) : $reps[$i],
 				$sql);
 		}
 		$res = $this->_doquery($sql);
@@ -282,38 +284,43 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		return $res;
 	}
-	
+
 	function _strencode($str) {
 		/* Protect strings in SQL */
 		return str_replace( "'", "''", $str );
 	}
-	
+	function _blobencode($str) {
+		return $str;
+	}
+	function _doinsert($table, $vals) {
+		die( 'abstract function SqlBagOStuff::_doinsert() must be defined' );
+	}
 	function _doquery($sql) {
 		die( 'abstract function SqlBagOStuff::_doquery() must be defined' );
 	}
-	
+
 	function _fetchrow($res) {
 		die( 'abstract function SqlBagOStuff::_fetchrow() must be defined' );
 	}
-	
+
 	function _freeresult($result) {
 		/* stub */
 		return false;
 	}
-	
+
 	function _dberror($result) {
 		/* stub */
 		return 'unknown error';
 	}
-	
+
 	function _maxdatetime() {
 		die( 'abstract function SqlBagOStuff::_maxdatetime() must be defined' );
 	}
-	
+
 	function _fromunixtime() {
 		die( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
 	}
-	
+
 	function garbageCollect() {
 		/* Ignore 99% of requests */
 		if ( !mt_rand( 0, 100 ) ) {
@@ -325,18 +332,18 @@ class SqlBagOStuff extends BagOStuff {
 			}
 		}
 	}
-	
+
 	function expireall() {
 		/* Remove any items that have expired */
 		$now = $this->_fromunixtime( time() );
-		$this->_query( "DELETE FROM $0 WHERE exptime<'$now'" );
+		$this->_query( "DELETE FROM $0 WHERE exptime < '$now'" );
 	}
-	
+
 	function deleteall() {
 		/* Clear *all* items from cache table */
 		$this->_query( "DELETE FROM $0" );
 	}
-	
+
 	/**
 	 * Serialize an object and, if possible, compress the representation.
 	 * On typical message and page data, this can provide a 3X decrease
@@ -353,7 +360,7 @@ class SqlBagOStuff extends BagOStuff {
 			return $serial;
 		}
 	}
-	
+
 	/**
 	 * Unserialize and, if necessary, decompress an object.
 	 * @param string $serial
@@ -366,7 +373,9 @@ class SqlBagOStuff extends BagOStuff {
 				$serial = $decomp;
 			}
 		}
-		return unserialize( $serial );
+		wfdebug("serial: [$serial]\n");
+		$ret = unserialize( $serial );
+		return $ret;
 	}
 }
 
@@ -379,7 +388,11 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 
 	function _doquery($sql) {
 		$dbw =& wfGetDB( DB_MASTER );
-		return $dbw->query($sql, 'MediaWikiBagOStuff:_doquery');
+		return $dbw->query($sql, 'MediaWikiBagOStuff::_doquery');
+	}
+	function _doinsert($t, $v) {
+		$dbw =& wfGetDB( DB_MASTER );
+		return $dbw->insert($t, $v, 'MediaWikiBagOStuff::_doinsert');
 	}
 	function _fetchobject($result) {
 		$dbw =& wfGetDB( DB_MASTER );
@@ -394,14 +407,20 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 		return $dbw->lastError();
 	}
 	function _maxdatetime() {
-		return '9999-12-31 12:59:59';
+		$dbw =& wfGetDB(DB_MASTER);
+		return $dbw->timestamp('9999-12-31 12:59:59');
 	}
 	function _fromunixtime($ts) {
-		return gmdate( 'Y-m-d H:i:s', $ts );
+		$dbw =& wfGetDB(DB_MASTER);
+		return $dbw->timestamp($ts);
 	}
 	function _strencode($s) {
 		$dbw =& wfGetDB( DB_MASTER );
 		return $dbw->strencode($s);
+	}
+	function _blobencode($s) {
+		$dbw =& wfGetDB( DB_MASTER );
+		return $dbw->encodeBlob($s);
 	}
 	function getTableName() {
 		if ( !$this->tableInitialised ) {
@@ -418,16 +437,16 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 }
 
 /**
- * This is a wrapper for Turck MMCache's shared memory functions. 
- * 
- * You can store objects with mmcache_put() and mmcache_get(), but Turck seems 
- * to use a weird custom serializer that randomly segfaults. So we wrap calls 
+ * This is a wrapper for Turck MMCache's shared memory functions.
+ *
+ * You can store objects with mmcache_put() and mmcache_get(), but Turck seems
+ * to use a weird custom serializer that randomly segfaults. So we wrap calls
  * with serialize()/unserialize().
- * 
+ *
  * The thing I noticed about the Turck serialized data was that unlike ordinary
- * serialize(), it contained the names of methods, and judging by the amount of 
- * binary data, perhaps even the bytecode of the methods themselves. It may be 
- * that Turck's serializer is faster, so a possible future extension would be 
+ * serialize(), it contained the names of methods, and judging by the amount of
+ * binary data, perhaps even the bytecode of the methods themselves. It may be
+ * that Turck's serializer is faster, so a possible future extension would be
  * to use it for arrays but not for objects.
  *
  * @package MediaWiki
@@ -445,7 +464,7 @@ class TurckBagOStuff extends BagOStuff {
 		mmcache_put( $key, serialize( $value ), $exptime );
 		return true;
 	}
-	
+
 	function delete($key, $time=0) {
 		mmcache_rm( $key );
 		return true;
@@ -460,11 +479,11 @@ class TurckBagOStuff extends BagOStuff {
 		mmcache_unlock( $key );
 		return true;
 	}
-}	
+}
 
 /**
- * This is a wrapper for eAccelerator's shared memory functions. 
- * 
+ * This is a wrapper for eAccelerator's shared memory functions.
+ *
  * This is basically identical to the Turck MMCache version,
  * mostly because eAccelerator is based on Turck MMCache.
  *
@@ -483,7 +502,7 @@ class eAccelBagOStuff extends BagOStuff {
 		eaccelerator_put( $key, serialize( $value ), $exptime );
 		return true;
 	}
-	
+
 	function delete($key, $time=0) {
 		eaccelerator_rm( $key );
 		return true;
@@ -498,5 +517,5 @@ class eAccelBagOStuff extends BagOStuff {
 		eaccelerator_unlock( $key );
 		return true;
 	}
-}	
+}
 ?>

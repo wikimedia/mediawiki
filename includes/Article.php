@@ -486,6 +486,8 @@ class Article {
 	 * Get the database which should be used for reads
 	 */
 	function &getDB() {
+		$ret = wfGetDB( DB_MASTER );
+		return $ret;
 		#if ( $this->mForUpdate ) {
 			$ret =& wfGetDB( DB_MASTER );
 		#} else {
@@ -608,7 +610,7 @@ class Article {
 
 	function getTimestamp() {
 		$this->loadLastEdit();
-		return $this->mTimestamp;
+		return wfTimestamp(TS_MW, $this->mTimestamp);
 	}
 
 	function getUser() {
@@ -864,7 +866,7 @@ class Article {
 
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
-			$rmvtext = "";
+			$rmvtxt = "";
 			if ($wgUser->isSysop()) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
 						. $o->tb_id . "&token=" . $wgUser->editToken());
@@ -970,13 +972,14 @@ class Article {
 			# An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
+
 		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
-				'page_is_redirect' => Article::isRedirect( $text ),
+				'page_is_redirect' => Article::isRedirect( $text ) ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
@@ -1005,7 +1008,7 @@ class Article {
 				'page_latest=rev_id' ),
 			$fname );
 		if( $row ) {
-			if( $row->rev_timestamp >= $revision->getTimestamp() ) {
+			if( wfTimestamp(TS_MW, $row->rev_timestamp) >= $revision->getTimestamp() ) {
 				wfProfileOut( $fname );
 				return false;
 			}

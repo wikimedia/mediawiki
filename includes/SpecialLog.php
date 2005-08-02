@@ -1,17 +1,17 @@
 <?php
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -44,7 +44,7 @@ function wfSpecialLog( $par = '' ) {
 class LogReader {
 	var $db, $joinClauses, $whereClauses;
 	var $type = '', $user = '', $title = null;
-	
+
 	/**
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
@@ -52,7 +52,7 @@ class LogReader {
 		$this->db =& wfGetDB( DB_SLAVE );
 		$this->setupQuery( $request );
 	}
-	
+
 	/**
 	 * Basic setup and applies the limiting factors from the WebRequest object.
 	 * @param WebRequest $request
@@ -63,16 +63,16 @@ class LogReader {
 		$user = $this->db->tableName( 'user' );
 		$this->joinClauses = array( "LEFT OUTER JOIN $page ON log_namespace=page_namespace AND log_title=page_title" );
 		$this->whereClauses = array( 'user_id=log_user' );
-		
+
 		$this->limitType( $request->getVal( 'type' ) );
 		$this->limitUser( $request->getText( 'user' ) );
 		$this->limitTitle( $request->getText( 'page' ) );
 		$this->limitTime( $request->getVal( 'from' ), '>=' );
 		$this->limitTime( $request->getVal( 'until' ), '<=' );
-		
+
 		list( $this->limit, $this->offset ) = $request->getLimitOffset();
 	}
-	
+
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * @param string $type A log type ('upload', 'delete', etc)
@@ -86,7 +86,7 @@ class LogReader {
 		$safetype = $this->db->strencode( $type );
 		$this->whereClauses[] = "log_type='$safetype'";
 	}
-	
+
 	/**
 	 * Set the log reader to return only entries by the given user.
 	 * @param string $name Valid user name
@@ -102,7 +102,7 @@ class LogReader {
 		$user = $this->db->tableName( 'user' );
 		$this->whereClauses[] = "user_name='$safename'";
 	}
-	
+
 	/**
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
@@ -119,7 +119,7 @@ class LogReader {
 		$ns = $title->getNamespace();
 		$this->whereClauses[] = "log_namespace=$ns AND log_title='$safetitle'";
 	}
-	
+
 	/**
 	 * Set the log reader to return only entries in a given time range.
 	 * @param string $time Timestamp of one endpoint
@@ -134,7 +134,7 @@ class LogReader {
 		$safetime = $this->db->strencode( wfTimestamp( TS_MW, $time ) );
 		$this->whereClauses[] = "log_timestamp $direction '$safetime'";
 	}
-	
+
 	/**
 	 * Build an SQL query from all the set parameters.
 	 * @return string the SQL query
@@ -154,32 +154,33 @@ class LogReader {
 			$sql .= " WHERE " . implode( ' AND ', $this->whereClauses );
 		}
 		$sql .= " ORDER BY log_timestamp DESC ";
-		$sql .= $this->db->limitResult( $this->limit, $this->offset );
+		$sql = $this->db->limitResult( $sql, $this->limit, $this->offset );
 		return $sql;
 	}
-	
+
 	/**
 	 * Execute the query and start returning results.
 	 * @return ResultWrapper result object to return the relevant rows
 	 */
 	function getRows() {
-		return $this->db->resultObject( $this->db->query( $this->getQuery() ) );
+		$res = $this->db->query( $this->getQuery() );
+		return $this->db->resultObject( $res );
 	}
-	
+
 	/**
 	 * @return string The query type that this LogReader has been limited to.
 	 */
 	function queryType() {
 		return $this->type;
 	}
-	
+
 	/**
 	 * @return string The username type that this LogReader has been limited to, if any.
 	 */
 	function queryUser() {
 		return $this->user;
 	}
-	
+
 	/**
 	 * @return string The text of the title that this LogReader has been limited to.
 	 */
@@ -203,7 +204,7 @@ class LogViewer {
 	 */
 	var $reader;
 	var $numResults = 0;
-	
+
 	/**
 	 * @param LogReader &$reader where to get our data from
 	 */
@@ -212,7 +213,7 @@ class LogViewer {
 		$this->skin =& $wgUser->getSkin();
 		$this->reader =& $reader;
 	}
-	
+
 	/**
 	 * Take over the whole output page in $wgOut with the log display.
 	 */
@@ -230,7 +231,7 @@ class LogViewer {
 	 * Load the data from the linked LogReader
 	 * Preload the link cache
 	 * Initialise numResults
-	 * 
+	 *
 	 * Must be called before calling showPrevNext
 	 *
 	 * @return object database result set
@@ -260,7 +261,7 @@ class LogViewer {
 		return $result;
 	}
 
-	
+
 	/**
 	 * Output just the list of entries given by the linked LogReader,
 	 * with extraneous UI elements. Use for displaying log fragments in
@@ -270,7 +271,7 @@ class LogViewer {
 	function showList( &$out ) {
 		$this->doShowList( $out, $this->getLogRows() );
 	}
-	
+
 	function doShowList( &$out, $result ) {
 		// Rewind result pointer and go through it again, making the HTML
 		$html='';
@@ -285,7 +286,7 @@ class LogViewer {
 		$result->free();
 		$out->addHTML( $html );
 	}
-	
+
 	/**
 	 * @param Object $s a single row from the result set
 	 * @return string Formatted HTML list item
@@ -295,7 +296,7 @@ class LogViewer {
 		global $wgLang, $wgLinkCache;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
-		$time = $wgLang->timeanddate( $s->log_timestamp, true );
+		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
 
 		// Enter the existence or non-existence of this page into the link cache,
 		// for faster makeLinkObj() in LogPage::actionText()
@@ -304,7 +305,7 @@ class LogViewer {
 		} else {
 			$wgLinkCache->addBadLinkObj( $title );
 		}
-		
+
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
@@ -314,7 +315,7 @@ class LogViewer {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
-					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) . 
+					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
 					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
 					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
 					'&wpMovetalk=0' ) . ')';
@@ -325,7 +326,7 @@ class LogViewer {
 		$out = "<li>$time $userLink $action $comment $revert</li>\n";
 		return $out;
 	}
-	
+
 	/**
 	 * @param OutputPage &$out where to send output
 	 * @private
@@ -337,7 +338,7 @@ class LogViewer {
 			$out->addWikiText( LogPage::logHeader( $type ) );
 		}
 	}
-	
+
 	/**
 	 * @param OutputPage &$out where to send output
 	 * @private
@@ -355,7 +356,7 @@ class LogViewer {
 			"<input type='submit' value=\"" . wfMsg( 'allpagessubmit' ) . "\" />" .
 			"</form>" );
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 * @private
@@ -370,7 +371,7 @@ class LogViewer {
 		$out .= "</select>\n";
 		return $out;
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 * @private
@@ -379,7 +380,7 @@ class LogViewer {
 		$user = htmlspecialchars( $this->reader->queryUser() );
 		return wfMsg('specialloguserlabel') . "<input type='text' name='user' size='12' value=\"$user\" />\n";
 	}
-	
+
 	/**
 	 * @return string Formatted HTML
 	 * @private
@@ -388,7 +389,7 @@ class LogViewer {
 		$title = htmlspecialchars( $this->reader->queryTitle() );
 		return wfMsg('speciallogtitlelabel') . "<input type='text' name='page' size='20' value=\"$title\" />\n";
 	}
-	
+
 	/**
 	 * @param OutputPage &$out where to send output
 	 * @private
@@ -401,7 +402,7 @@ class LogViewer {
 		$pieces[] = 'page=' . urlencode( $this->reader->queryTitle() );
 		$bits = implode( '&', $pieces );
 		list( $limit, $offset ) = $wgRequest->getLimitOffset();
-		
+
 		# TODO: use timestamps instead of offsets to make it more natural
 		# to go huge distances in time
 		$html = wfViewPrevNext( $offset, $limit,

@@ -312,7 +312,7 @@ class ImagePage extends Article {
 		if ( $line ) {
 			$list =& new ImageHistoryList( $sk );
 			$s = $list->beginImageHistoryList() .
-				$list->imageHistoryLine( true, $line->img_timestamp,
+				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
 					$this->mTitle->getDBkey(),  $line->img_user,
 					$line->img_user_text, $line->img_size, $line->img_description );
 
@@ -344,8 +344,8 @@ class ImagePage extends Article {
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 
 		$sql = "SELECT page_namespace,page_title FROM $imagelinks,$page WHERE il_to=" .
-		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id"
-		  . " LIMIT 500"; # quickie emergency brake
+		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id";
+		$sql = $dbr->limitResult($sql, 500, 0);
 		$res = $dbr->query( $sql, "ImagePage::imageLinks" );
 
 		if ( 0 == $dbr->numRows( $res ) ) {

@@ -108,9 +108,6 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$timestamp = wfTimestampNow();
 
 	#$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM $cur WHERE cur_namespace=$ns AND cur_title IN(";
-	$sql = "SELECT page_title,page_is_new,rev_user_text FROM $page, $revision WHERE
-		page_namespace=$ns AND rev_page=page_id AND page_title IN(";
-
 	# Get keys from $wgAllMessagesEn, which is more complete than the local language
 	$first = true;
 	if ( $messageArray ) {
@@ -123,34 +120,49 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 
 	# SELECT all existing messages
 	# Can't afford to be locking all rows for update, this script can take quite a long time to complete
-	foreach ( $sortedArray as $key => $enMsg ) {
-		if ( $key == '' ) {
-			continue; // Skip odd members
-		}
-		if ( $first ) {
-			$first = false;
-		} else {
-			$sql .= ',';
-		}
-		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ) );
-		$enctitle = $dbr->strencode($titleObj->getDBkey());
-		$sql .= "'$enctitle'";
-	}
-	$sql .= ')';
-	$res = $dbr->query( $sql );
-	$row = $dbr->fetchObject( $res );
+	$rows = array();
+	$nitems = count($sortedArray);
+	$maxitems = $dbr->maxListLen();
+	$pos = 0;
+	if ($maxitems)
+		$chunks = array_chunk($sortedArray, $maxitems);
+	else
+		$chucks = array($sortedArray);
 
+	foreach ($chunks as $chunk) {
+		$first = true;
+		$sql = "SELECT page_title,page_is_new,rev_user_text FROM $page, $revision WHERE
+			page_namespace=$ns AND rev_page=page_id AND page_title IN(";
+
+		foreach ( $chunk as $key => $enMsg ) {
+			if ( $key == '' ) {
+				continue; // Skip odd members
+			}
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ',';
+			}
+			$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ) );
+			$enctitle = $dbr->strencode($titleObj->getDBkey());
+			$sql .= "'$enctitle'";
+		}
+
+		$sql .= ')';
+		$res = $dbr->query( $sql );
+		while ($row = $dbr->fetchObject($res))
+			$rows[] = $row;
+	}
+	
 	# Read the results into an array
 	# Decide whether or not each one needs to be overwritten
 	$existingTitles = array();
-	while ( $row ) {
+	foreach ($rows as $row) {
 		if ( $row->rev_user_text != $username  && $row->rev_user_text != 'Template namespace initialisation script' ) {
 			$existingTitles[$row->page_title] = 'keep';
 		} else {
 			$existingTitles[$row->page_title] = 'chuck';
 		}
-
-		$row = $dbr->fetchObject( $res );
 	}
 
 	# Insert queries are done in one multi-row insert

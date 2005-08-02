@@ -25,8 +25,9 @@ class Revision {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
 			       'rev_id' => IntVal( $id ) ) );
+		return $ret;
 	}
-	
+
 	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given title. If not attached
@@ -50,7 +51,7 @@ class Revision {
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey() ) );
 	}
-	
+
 	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
@@ -68,13 +69,14 @@ class Revision {
 		} else {
 			$matchId = 'page_latest';
 		}
-		return Revision::loadFromConds(
+		$ret = Revision::loadFromConds(
 			$db,
 			array( "rev_id=$matchId",
 			       'rev_page' => IntVal( $pageid ),
 			       'page_id=rev_page' ) );
+		return $ret;
 	}
-	
+
 	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
@@ -99,7 +101,7 @@ class Revision {
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey() ) );
 	}
-	
+
 	/**
 	 * Load the revision for the given title with the given timestamp.
 	 * WARNING: Timestamps may in some circumstances not be unique,
@@ -120,7 +122,7 @@ class Revision {
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey() ) );
 	}
-	
+
 	/**
 	 * Given a set of conditions, fetch a revision.
 	 *
@@ -138,7 +140,7 @@ class Revision {
 		}
 		return $row;
 	}
-	
+
 	/**
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
@@ -155,12 +157,14 @@ class Revision {
 			$row = $res->fetchObject();
 			$res->free();
 			if( $row ) {
-				return new Revision( $row );
+				$ret = new Revision( $row );
+				return $ret;
 			}
 		}
-		return null;
+		$ret = null;
+		return $ret;
 	}
-	
+
 	/**
 	 * Return a wrapper for a series of database rows to
 	 * fetch all of a given page's revisions in turn.
@@ -176,9 +180,9 @@ class Revision {
 			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey(),
-			       'page_id=rev_page' ) );		
+			       'page_id=rev_page' ) );
 	}
-	
+
 	/**
 	 * Return a wrapper for a series of database rows to
 	 * fetch all of a given page's revisions in turn.
@@ -195,9 +199,9 @@ class Revision {
 			array( 'rev_id=page_latest',
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey(),
-			       'page_id=rev_page' ) );		
+			       'page_id=rev_page' ) );
 	}
-	
+
 	/**
 	 * Given a set of conditions, return a ResultWrapper
 	 * which will return matching database rows with the
@@ -227,9 +231,10 @@ class Revision {
 			$conditions,
 			'Revision::fetchRow',
 			array( 'LIMIT' => 1 ) );
-		return $db->resultObject( $res );
+		$ret = $db->resultObject( $res );
+		return $ret;
 	}
-	
+
 	/**
 	 * @param object $row
 	 * @access private
@@ -245,11 +250,11 @@ class Revision {
 			$this->mMinorEdit = IntVal( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = IntVal( $row->rev_deleted );
-		
+
 			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
 			$this->mTitle     = Title::makeTitle( $row->page_namespace,
 			                                      $row->page_title );
-			
+
 			if( isset( $row->old_text ) ) {
 				$this->mText  = $this->getRevisionText( $row );
 			} else {
@@ -258,7 +263,7 @@ class Revision {
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
 			global $wgUser;
-			
+
 			$this->mId        = isset( $row['id']         ) ? IntVal( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? IntVal( $row['page']       ) : null;
 			$this->mTextId    = isset( $row['text_id']    ) ? IntVal( $row['text_id']    ) : null;
@@ -267,36 +272,36 @@ class Revision {
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? IntVal( $row['deleted']    ) : 0;
-			
+
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( StrVal( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( StrVal( $row['text']    ) ) : null;
-			
+
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
 		} else {
 			wfDebugDieBacktrace( 'Revision constructor passed invalid row format.' );
 		}
 	}
-	
+
 	/**#@+
 	 * @access public
 	 */
-	
+
 	/**
 	 * @return int
 	 */
 	function getId() {
 		return $this->mId;
 	}
-	
+
 	/**
 	 * @return int
 	 */
 	function getTextId() {
 		return $this->mTextId;
 	}
-	
+
 	/**
 	 * Returns the title of the page associated with this entry.
 	 * @return Title
@@ -318,49 +323,49 @@ class Revision {
 		}
 		return $this->mTitle;
 	}
-	
+
 	/**
 	 * @return int
 	 */
 	function getPage() {
 		return $this->mPage;
 	}
-	
+
 	/**
 	 * @return int
 	 */
 	function getUser() {
 		return $this->mUser;
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	function getUserText() {
 		return $this->mUserText;
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	function getComment() {
 		return $this->mComment;
 	}
-	
+
 	/**
 	 * @return bool
 	 */
 	function isMinor() {
 		return (bool)$this->mMinorEdit;
 	}
-	
+
 	/**
 	 * @return bool
 	 */
 	function isDeleted() {
 		return (bool)$this->mDeleted;
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -371,21 +376,21 @@ class Revision {
 		}
 		return $this->mText;
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	function getTimestamp() {
-		return $this->mTimestamp;
+		return wfTimestamp(TS_MW, $this->mTimestamp);
 	}
-	
+
 	/**
 	 * @return bool
 	 */
 	function isCurrent() {
 		return $this->mCurrent;
 	}
-	
+
 	/**
 	 * @return Revision
 	 */
@@ -415,7 +420,7 @@ class Revision {
 	function getRevisionText( $row, $prefix = 'old_' ) {
 		$fname = 'Revision::getRevisionText';
 		wfProfileIn( $fname );
-		
+
 		# Get data
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
@@ -451,7 +456,7 @@ class Revision {
 			# as pages are saved if $wgCompressRevisions is set.
 			$text = gzinflate( $text );
 		}
-			
+
 		if( in_array( 'object', $flags ) ) {
 			# Generic compressed storage
 			$obj = unserialize( $text );
@@ -463,7 +468,7 @@ class Revision {
 
 			$text = $obj->getText();
 		}
-	
+
 		global $wgLegacyEncoding;
 		if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
 			# Old revisions kept around in a legacy encoding?
@@ -489,11 +494,11 @@ class Revision {
 	function compressRevisionText( &$text ) {
 		global $wgCompressRevisions;
 		$flags = array();
-		
+
 		# Revisions not marked this way will be converted
 		# on load if $wgLegacyCharset is set in the future.
 		$flags[] = 'utf-8';
-		
+
 		if( $wgCompressRevisions ) {
 			if( function_exists( 'gzdeflate' ) ) {
 				$text = gzdeflate( $text );
@@ -504,7 +509,7 @@ class Revision {
 		}
 		return implode( ',', $flags );
 	}
-	
+
 	/**
 	 * Insert a new revision into the database, returning the new revision ID
 	 * number on success and dies horribly on failure.
@@ -515,10 +520,10 @@ class Revision {
 	function insertOn( &$dbw ) {
 		$fname = 'Revision::insertOn';
 		wfProfileIn( $fname );
-		
+
 		$mungedText = $this->mText;
 		$flags = Revision::compressRevisionText( $mungedText );
-		
+
 		# Record the text to the text table
 		if( !isset( $this->mTextId ) ) {
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_val' );
@@ -531,7 +536,7 @@ class Revision {
 			);
 			$this->mTextId = $dbw->insertId();
 		}
-		
+
 		# Record the edit in revisions
 		$rev_id = isset( $this->mId )
 			? $this->mId
@@ -549,13 +554,13 @@ class Revision {
 				'rev_deleted'    => $this->mDeleted,
 			), $fname
 		);
-		
-		$this->mId = $dbw->insertId();
-		
+
+		$this->mId = !is_null($rev_id) ? $rev_id : $dbw->insertId();
+
 		wfProfileOut( $fname );
 		return $this->mId;
 	}
-	
+
 	/**
 	 * Lazy-load the revision's text.
 	 * Currently hardcoded to the 'text' table storage engine.
@@ -566,13 +571,13 @@ class Revision {
 	function loadText() {
 		$fname = 'Revision::loadText';
 		wfProfileIn( $fname );
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
 			array( 'old_id' => $this->getTextId() ),
 			$fname);
-		
+
 		if( !$row ) {
 			$dbw =& wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
@@ -580,10 +585,10 @@ class Revision {
 				array( 'old_id' => $this->getTextId() ),
 				$fname);
 		}
-		
+
 		$text = Revision::getRevisionText( $row );
 		wfProfileOut( $fname );
-		
+
 		return $text;
 	}
 
@@ -604,7 +609,7 @@ class Revision {
 	function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
 		$fname = 'Revision::newNullRevision';
 		wfProfileIn( $fname );
-		
+
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
 			array( 'page_latest', 'rev_text_id' ),
@@ -613,7 +618,7 @@ class Revision {
 				'page_latest=rev_id',
 				),
 			$fname );
-		
+
 		if( $current ) {
 			$revision = new Revision( array(
 				'page'       => $pageId,
@@ -624,10 +629,10 @@ class Revision {
 		} else {
 			$revision = null;
 		}
-		
+
 		wfProfileOut( $fname );
 		return $revision;
 	}
-	
+
 }
 ?>

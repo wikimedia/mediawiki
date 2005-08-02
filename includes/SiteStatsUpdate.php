@@ -33,7 +33,7 @@ class SiteStatsUpdate {
 			}
 		}
 	}
-	
+
 	function doUpdate() {
 		global $wgDBname;
 		$fname = 'SiteStatsUpdate::doUpdate';
@@ -43,7 +43,7 @@ class SiteStatsUpdate {
 		$row = $dbw->selectRow( 'site_stats', '*', false, $fname );
 
 		$updates = '';
-		
+
 		$this->appendUpdate( $updates, 'ss_total_views', $this->mViews );
 		$this->appendUpdate( $updates, 'ss_total_edits', $this->mEdits );
 		$this->appendUpdate( $updates, 'ss_good_articles', $this->mGood );
@@ -63,19 +63,19 @@ class SiteStatsUpdate {
 				$res = $dbr->query( $sql, $fname );
 				$userRow = $dbr->fetchObject( $res );
 				$users = $userRow->total + $this->mUsers;
-				
+
 				if ( $updates ) {
 					$updates .= ',';
 				}
 				$updates .= "ss_total_pages=$pages, ss_users=$users";
-			} else {	
+			} else {
 				$this->appendUpdate( $updates, 'ss_total_pages', $this->mPages );
 				$this->appendUpdate( $updates, 'ss_users', $this->mUsers );
 			}
 		}
 		if ( $updates ) {
 			$site_stats = $dbw->tableName( 'site_stats' );
-			$sql = "UPDATE $site_stats SET $updates LIMIT 1";
+			$sql = $dbw->limitResultForUpdate("UPDATE $site_stats SET $updates", 1);
 			$dbw->query( $sql, $fname );
 		}
 	}

@@ -83,9 +83,10 @@ class contribs_finder {
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
-			$nscond;
-		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . ($this->limit+1);
+			"rev_user_text = " . $this->dbr->addQuotes($this->username)
+			. $nscond
+		$sql .=	" ORDER BY rev_timestamp ASC";
+		$sql = $this->dbr->limitResult($sql, $this->limit, 0);
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
@@ -101,9 +102,10 @@ class contribs_finder {
 		$nscond = $this->get_namespace_cond();
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
 			"WHERE page_id = rev_page AND " .
-			"rev_user_text = " . $this->dbr->addQuotes($this->username) .
-			$nscond;
-		$sql .=	" ORDER BY rev_timestamp ASC LIMIT " . $this->limit;
+			"rev_user_text = " . $this->dbr->addQuotes($this->username)
+			. $nscond
+		$sql .=	" ORDER BY rev_timestamp ASC";
+		$sql = $this->dbr->limitResult($sql, $this->limit + 1, 0);
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
@@ -130,7 +132,8 @@ class contribs_finder {
 			rev_deleted
 			FROM $page,$revision $use_index
 			WHERE page_id=rev_page AND $userCond $nscond $offsetQuery
-		 	ORDER BY rev_timestamp DESC $limitQuery";
+		 	ORDER BY rev_timestamp DESC";
+		$sql = $this->dbr->limitResult($sql, $this->limit, 0);
 		return $sql;
 	}
 
@@ -369,7 +372,7 @@ function ucListEdit( $sk, $row ) {
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
 	$comment = $sk->commentBlock( $row->rev_comment, $page );
-	$d = $wgLang->timeanddate( $row->rev_timestamp, true );
+	$d = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
 
 	if( $row->rev_minor_edit ) {
 		$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';

@@ -756,7 +756,7 @@ class User {
 					array( 'wl_title'     => $this->getTitleKey(),
 						   'wl_namespace' => NS_USER_TALK,
 						   'wl_user'      => $this->mId,
-						   'wl_notificationtimestamp != 0' ),
+						   'wl_notificationtimestamp ' . $dbr->notNullTimestamp() ),
 					'User::getNewtalk' );
 				if( $dbr->numRows($res) > 0 ) {
 					$this->mNewtalk = 1;
@@ -1151,7 +1151,7 @@ class User {
 			$dbw =& wfGetDB( DB_MASTER );
 			$success = $dbw->update( 'watchlist',
 					array( /* SET */
-						'wl_notificationtimestamp' => 0
+						'wl_notificationtimestamp' => NULL
 					), array( /* WHERE */
 						'wl_title' => $title->getDBkey(),
 						'wl_namespace' => $title->getNamespace(),

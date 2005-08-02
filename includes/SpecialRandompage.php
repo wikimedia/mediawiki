@@ -7,7 +7,7 @@
 /**
  * Constructor
  *
- * @param string $par the namespace to get a random page from (default NS_MAIN), 
+ * @param string $par the namespace to get a random page from (default NS_MAIN),
  *               used as e.g. Special:Randompage/Category
  */
 function wfSpecialRandompage( $par = NS_MAIN ) {
@@ -19,7 +19,7 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 	if ($namespace === false || $namespace < NS_MAIN) {
 		$namespace = NS_MAIN;
 	}
-	
+
 	# NOTE! We use a literal constant in the SQL instead of the RAND()
 	# function because RAND() will return a different value for every row
 	# in the table. That's both very slow and returns results heavily
@@ -28,10 +28,10 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 	#
 	# Using a literal constant means the whole thing gets optimized on
 	# the index, and the comparison is both fast and fair.
-	
+
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
 	$randstr = wfRandom();
-	
+
 	$db =& wfGetDB( DB_SLAVE );
 	$use_index = $db->useIndexClause( 'page_random' );
 	$page = $db->tableName( 'page' );
@@ -41,14 +41,14 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 		FROM $page $use_index
 		WHERE page_namespace=$namespace AND page_is_redirect=0 $extra
 		AND page_random>$randstr
-		ORDER BY page_random
-		LIMIT 1";
+		ORDER BY page_random";
+	$sql = $db->limitResult($sql, 1, 0);
 	$res = $db->query( $sql, $fname );
-	
+
 	$title = null;
 	if( $s = $db->fetchObject( $res ) ) {
 		$title =& Title::makeTitle( $namespace, $s->page_title );
-	}	
+	}
 	if( is_null( $title ) ) {
 		# That's not supposed to happen :)
 		$title = Title::newFromText( wfMsg( 'mainpage' ) );
