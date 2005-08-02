@@ -169,11 +169,13 @@ CONTROL;
 			$patrol = '';
 		}
 
-		$prevlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'previousdiff' ), 'diff=prev&oldid='.$this->mOldid );
+		$prevlink = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'previousdiff' ),
+			'diff=prev&oldid='.$this->mOldid, '', '', 'id="differences-prevlink"' );
 		if ( $this->newRev->isCurrent() ) {
 			$nextlink = '';
 		} else {
-			$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid );
+			$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'nextdiff' ),
+				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		}
 
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />$oldUserLink " .
@@ -240,7 +242,7 @@ CONTROL;
 		$userLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
 		$contribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ),
 			'target=' . urlencode($this->mOldUser) );
-		$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid );
+    $nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />$userLink " .
 			"($uTLink | $contribs)<br />" . $this->mOldComment .
 			'<br />' . $nextlink. "</div>\n";
