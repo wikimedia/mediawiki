@@ -55,7 +55,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
 	
-	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
+	$out = "<div class='namespaceoptions'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <table id='nsselect' class='allpages'>
@@ -64,7 +64,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 		<td align='left'><label for='nsfrom'>$frombox</label></td>
 	</tr>
 	<tr>    
-		<td align='right'><label for='nsselectbox'>" . wfMsgHtml('namespace') . "</label></td>
+		<td align='right'><label for='namespace'>" . wfMsgHtml('namespace') . "</label></td>
 		<td align='left'>
 			$namespaceselect $submitbutton
 		</td>
@@ -191,7 +191,7 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
 
-	$out = wfMsg(
+	$out = wfMsgHtml(
 		'alphaindexline',
 		"<a href=\"$link\">$inpointf</a></td><td><a href=\"$link\">",
 		"</a></td><td align=\"left\"><a href=\"$link\">$outpointf</a>"
@@ -243,7 +243,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
-			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) . 
+			$link = ($s->page_is_redirect ? '<div class="allpagesredirect">' : '' ) .
 				$sk->makeKnownLinkObj( $t, htmlspecialchars( $t->getText() ), false, false ) .
 				($s->page_is_redirect ? '</div>' : '' );
 		} else {
@@ -271,12 +271,12 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">' .
 				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
-					wfMsg ( 'allpages' ) );
+					wfMsgHtml ( 'allpages' ) );
 		if ( ($n == $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 			$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 			$out2 .= " | " . $sk->makeKnownLink(
 				$wgContLang->specialPage( "Allpages" ),
-				wfMsg ( 'nextpage', $s->page_title ),
+				wfMsgHtml ( 'nextpage', $s->page_title ),
 				"from=" . wfUrlEncode ( $s->page_title ) . $namespaceparam );
 		}
 		$out2 .= "</td></tr></table><hr />";

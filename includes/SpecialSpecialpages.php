@@ -12,7 +12,7 @@ function wfSpecialSpecialpages() {
 	global $wgLang, $wgOut, $wgUser, $wgAvailableRights;
 	
 	$wgOut->setRobotpolicy( 'index,nofollow' );
-	$sk = $wgUser->getSkin();	
+	$sk = $wgUser->getSkin();
 	
 	# Get listable pages, in a 2-d array with the first dimension being user right
 	$pages = SpecialPage::getPages();
