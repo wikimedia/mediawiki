@@ -2,17 +2,17 @@
 #
 # Copyright (C) 2002, 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -67,7 +67,7 @@ class LogPage {
 				'log_params' => $this->params
 			), $fname
 		);
-		
+
 		# And update recentchanges
 		if ( $this->updateRecentChanges ) {
 			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
@@ -78,7 +78,7 @@ class LogPage {
 				else
 					$rcComment .= ': ' . $this->comment;
 			}
-			
+
 			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment );
 		}
 		return true;
@@ -92,7 +92,7 @@ class LogPage {
 		wfRunHooks( 'LogPageValidTypes', array( &$types) );
 		return $types;
 	}
-	
+
 	/**
 	 * @static
 	 */
@@ -108,14 +108,14 @@ class LogPage {
 		);
 		return $actions[$type];
 	}
-	
+
 	/**
 	 * @static
 	 */
 	function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
-	
+
 	/**
 	 * @static
 	 */
@@ -133,7 +133,7 @@ class LogPage {
 		
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
-	
+
 	/**
 	 * @static
 	 */
@@ -151,7 +151,7 @@ class LogPage {
 		
 		return wfMsg( $headerText[$type] );
 	}
-	
+
 	/**
 	 * @static
 	 */
@@ -175,7 +175,7 @@ class LogPage {
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
 			if( is_null( $title ) ) {
-				$rv=wfMsgForContent( $actions[$key] );
+				$rv=wfMsg( $actions[$key] );
 			} else {
 				if( $skin ) {
 					if ( $type == 'move' ) {
@@ -190,10 +190,10 @@ class LogPage {
 					$titleLink = $title->getPrefixedText();
 				}
 				if( count( $params ) == 0 ) {
-					$rv = wfMsgForContent( $actions[$key], $titleLink );
+					$rv = wfMsg( $actions[$key], $titleLink );
 				} else {
 					array_unshift( $params, $titleLink );
-					$rv = wfMsgReal( $actions[$key], $params, true, true );
+					$rv = wfMsgReal( $actions[$key], $params, true, false );
 				}
 			}
 		} else {
@@ -218,18 +218,18 @@ class LogPage {
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
-		
+
 		$this->action = $action;
 		$this->target =& $target;
 		$this->comment = $comment;
 		$this->params = LogPage::makeParamBlob( $params );
-		
+
 		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
 
 		return $this->saveContent();
 	}
 
-	/** 
+	/**
 	 * Create a blob from a parameter array
 	 * @static
 	 */

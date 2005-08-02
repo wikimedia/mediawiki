@@ -64,6 +64,8 @@ class PageHistory {
 		$fname = 'PageHistory::history';
 		wfProfileIn( $fname );
 
+		$dbr = wfGetDB(DB_SLAVE);
+
 		/*
 		 * Setup page variables.
 		 */
@@ -93,7 +95,9 @@ class PageHistory {
 		/* Offset must be an integral. */
 		if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
 			$offset = 0;
-
+#		$offset = $dbr->timestamp($offset);
+		$dboffset = $dbr->timestamp($offset);
+wfdebug("offset=[$offset] dboffset=[$dboffset]\n");
 		/*
 		 * "go=last" means to jump to the last history page.
 		 */
@@ -102,7 +106,8 @@ class PageHistory {
 			case "first":
 				if (($lastid = $this->getLastOffsetForPaging($id, $limit)) === NULL)
 					break;
-				$gourl = $wgTitle->getLocalURL("action=history&limit={$limit}&offset={$lastid}");
+				$gourl = $wgTitle->getLocalURL("action=history&limit={$limit}&offset=".
+						wfTimestamp(TS_MW, $lastid));
 				break;
 			default:
 				$gourl = NULL;
@@ -122,7 +127,7 @@ class PageHistory {
 		 * previous revisions when generating the URL.
 		 */
 		$direction = $this->getDirection();
-		$revisions = $this->fetchRevisions($limit, $offset, $direction);
+		$revisions = $this->fetchRevisions($limit, $dboffset, $direction);
 		$navbar = $this->makeNavbar($revisions, $offset, $limit, $direction);
 
 		/*
@@ -261,7 +266,7 @@ class PageHistory {
 	/** @todo document */
 	function revLink( $row ) {
 		global $wgUser, $wgLang;
-		$date = $wgLang->timeanddate( $row->rev_timestamp, true );
+		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
 		if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
 			return $date;
 		} else {
@@ -382,7 +387,8 @@ class PageHistory {
 		$db =& wfGetDB(DB_SLAVE);
 		$revision = $db->tableName( 'revision' );
 		$sql = "SELECT rev_timestamp FROM $revision WHERE rev_page = $id " .
-			"ORDER BY rev_timestamp ASC LIMIT $step";
+			"ORDER BY rev_timestamp ASC";
+		$sql = $db->limitResult($sql, $step, 0);
 		$res = $db->query( $sql, "PageHistory::getLastOffsetForPaging" );
 		$n = $db->numRows( $res );
 
@@ -429,8 +435,6 @@ class PageHistory {
 		if ($offset)
 			$offsets .= " AND rev_timestamp $oper '$offset' ";
 
-		if ($limit)
-			$limits .= " LIMIT $limitplus ";
 		$page_id = $this->mTitle->getArticleID();
 
 		$sql = "SELECT rev_id,rev_user," .
@@ -438,8 +442,9 @@ class PageHistory {
 		  "FROM $revision $use_index " .
 		  "WHERE rev_page=$page_id " .
 		  $offsets .
-		  "ORDER BY rev_timestamp $dirs " .
-		  $limits;
+		  "ORDER BY rev_timestamp $dirs ";
+		if ($limit)
+			$sql = $db->limitResult($sql, $limitplus, 0);
 		$res = $db->query($sql, "PageHistory::fetchRevisions");
 
 		$result = array();
@@ -480,8 +485,8 @@ class PageHistory {
 		$revisions = array_slice($revisions, 0, $limit);
 
 		$pageid = $this->mTitle->getArticleID();
-		$latestTimestamp = $this->getLatestOffset( $pageid );
-		$earliestTimestamp = $this->getEarliestOffset( $pageid );
+		$latestTimestamp = wfTimestamp(TS_MW, $this->getLatestOffset( $pageid ));
+		$earliestTimestamp = wfTimestamp(TS_MW, $this->getEarliestOffset( $pageid ));
 
 		/*
 		 * When we're displaying previous revisions, we need to reverse
@@ -498,8 +503,8 @@ class PageHistory {
 		$lowts = $hights = 0;
 
 		if( count( $revisions ) ) {
-			$latestShown = $revisions[0]->rev_timestamp;
-			$earliestShown = $revisions[count($revisions) - 1]->rev_timestamp;
+			$latestShown = wfTimestamp(TS_MW, $revisions[0]->rev_timestamp);
+			$earliestShown = wfTimestamp(TS_MW, $revisions[count($revisions) - 1]->rev_timestamp);
 		}
 
 		$firsturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}&go=first");
@@ -507,13 +512,14 @@ class PageHistory {
 		$firsttext = wfMsgHtml('histfirst');
 		$lasttext = wfMsgHtml('histlast');
 
-		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$latestShown}&limit={$limit}");
-		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$earliestShown}&limit={$limit}");
+		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset=$latestShown&limit={$limit}");
+		$nexturl = $wgTitle->escapeLocalURL("action=history&offset=$earliestShown&limit={$limit}");
 
 		$urls = array();
 		foreach (array(20, 50, 100, 250, 500) as $num) {
 			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
-				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
+				"action=history&offset=" . wfTimestamp(TS_MW, $offset) .
+				 "&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
 
 		$bits = implode($urls, ' | ');

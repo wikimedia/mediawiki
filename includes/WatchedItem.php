@@ -38,7 +38,7 @@ class WatchedItem {
 		global $wgDBname;
 		return "$wgDBname:watchlist:user:$this->id:page:$this->ns:$this->ti";
 	}
-	
+
 	/**
 	 * Is mTitle being watched by mUser?
 	 */
@@ -51,9 +51,9 @@ class WatchedItem {
 		$key = $this->watchKey();
 		$iswatched = $wgMemc->get( $key );
 		if( is_integer( $iswatched ) ) return $iswatched;
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 
+		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns,
 			'wl_title' => $this->ti ), $fname );
 		$iswatched = ($dbr->numRows( $res ) > 0) ? 1 : 0;
 		$wgMemc->set( $key, $iswatched );
@@ -70,11 +70,11 @@ class WatchedItem {
 		# accidentally reloads a watch-add operation.
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
-		  array( 
+		  array(
 		    'wl_user' => $this->id,
 			'wl_namespace' => ($this->ns & ~1),
 			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => '0'
+			'wl_notificationtimestamp' => NULL
 		  ), $fname );
 
 		# the following code compensates the new behaviour, introduced by the enotif patch,
@@ -85,7 +85,7 @@ class WatchedItem {
 			'wl_user' => $this->id,
 			'wl_namespace' => ($this->ns | 1 ),
 			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => '0'
+			'wl_notificationtimestamp' => NULL
 		  ), $fname );
 
 		global $wgMemc;
@@ -100,9 +100,9 @@ class WatchedItem {
 
 		$success = false;
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->delete( 'watchlist', 
-			array( 
-				'wl_user' => $this->id, 
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $this->id,
 				'wl_namespace' => ($this->ns & ~1),
 				'wl_title' => $this->ti
 			), $fname
@@ -122,7 +122,7 @@ class WatchedItem {
 				'wl_title' => $this->ti
 			), $fname
 		);
-		
+
 		if ( $dbw->affectedRows() ) {
 			$success = true;
 		}
@@ -145,8 +145,8 @@ class WatchedItem {
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$watchlist = $dbw->tableName( 'watchlist' );
-		
-		$res = $dbw->select( 'watchlist', 'wl_user', 
+
+		$res = $dbw->select( 'watchlist', 'wl_user',
 			array( 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ),
 			$fname, 'FOR UPDATE'
 		);

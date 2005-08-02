@@ -155,7 +155,6 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 		$out .= $this->showline ( $inpoint, $outpoint, $namespace, false );
 	}
 	$out .= '</table>';
-	
 	$nsForm = $this->namespaceForm ( $namespace, '', false );
 	
 	# Is there more?
@@ -178,7 +177,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 
 /**
  * @todo Document
- * @param string $from 
+ * @param string $from
  * @param integer $namespace (Default NS_MAIN)
  */
 function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
@@ -191,7 +190,7 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$queryparams = ($namespace ? "namespace=$namespace" : '');
 	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
-	
+
 	$out = wfMsg(
 		'alphaindexline',
 		"<a href=\"$link\">$inpointf</a></td><td><a href=\"$link\">",
@@ -239,7 +238,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
-	
+
 	$namespaces = $wgContLang->getFormattedNamespaces();
 	while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
 		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
@@ -263,7 +262,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$out .= '</tr>';
 	}
 	$out .= '</table>';
-	
+
 	if ( $including ) {
 		$out2 = '';
 	} else {

@@ -4,7 +4,7 @@ function install_version_checks() {
 	# We dare not turn output buffer _off_ since this will break completely
 	# if PHP is globally configured to run through a gzip filter.
 	@ob_implicit_flush( true );
-	
+
 	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
 		die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
@@ -12,7 +12,7 @@ function install_version_checks() {
 	if( version_compare( phpversion(), '4.3.2' ) < 0 ) {
 		echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
 	}
-	
+
 	if (!extension_loaded('mysql')) {
 		if (!dl('mysql.so')) {
 			print 'Could not load MySQL driver! Please compile '.
@@ -20,7 +20,7 @@ function install_version_checks() {
 		exit;
 		}
 	}
-	
+
 	global $wgCommandLineMode;
 	$wgCommandLineMode = true;
 	umask( 000 );
@@ -108,18 +108,19 @@ function dbsource( $fname, $database = false ) {
 		if ( $sl < 0 ) { continue; }
 		if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
 
-		if ( ';' == $line{$sl} ) {
+		if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
 			$done = true;
 			$line = substr( $line, 0, $sl );
 		}
 
 		if ( '' != $cmd ) { $cmd .= ' '; }
-		$cmd .= $line;
+		$cmd .= "$line\n";
 
 		if ( $done ) {
+			$cmd = str_replace(';;', ";", $cmd);
 			$cmd = replacevars( $cmd );
 			if( $database )
-				$res = $database->query( $cmd );
+				$res = $database->query( $cmd, 'dbsource', true );
 			else
 				$res = mysql_query( $cmd );
 
@@ -142,7 +143,7 @@ function field_exists( $table, $field ) {
 	$db =& wfGetDB( DB_SLAVE );
 	$res = $db->query( "DESCRIBE $table", $fname );
 	$found = false;
-	
+
 	while ( $row = $db->fetchObject( $res ) ) {
 		if ( $row->Field == $field ) {
 			$found = true;

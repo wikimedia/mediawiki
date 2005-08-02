@@ -145,7 +145,8 @@ class Title {
 			return $t;
 		} else {
 			wfProfileOut( $fname );
-			return NULL;
+			$ret = NULL;
+			return $ret;
 		}
 	}
 
@@ -1139,7 +1140,6 @@ class Title {
 	 */
 	function getArticleID( $flags = 0 ) {
 		global $wgLinkCache;
-
 		if ( $flags & GAID_FOR_UPDATE ) {
 			$oldUpdate = $wgLinkCache->forUpdate( true );
 			$this->mArticleID = $wgLinkCache->addLinkObj( $this );
@@ -1149,6 +1149,7 @@ class Title {
 				$this->mArticleID = $wgLinkCache->addLinkObj( $this );
 			}
 		}
+wfdebug("title: articleid = ".$this->mArticleID."\n");
 		return $this->mArticleID;
 	}
 
@@ -2088,7 +2089,8 @@ class Title {
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$toucharr[] = $row->pl_from;
 		}
-
+		if (!count($toucharr))
+			return;
 		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ),
 							/* WHERE */ array( 'page_id' => $toucharr ),$fname);
 	}

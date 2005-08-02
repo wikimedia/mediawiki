@@ -17,14 +17,14 @@ class EditPage {
 	var $mArticle;
 	var $mTitle;
 	var $mMetaData = '';
-	
+
 	# Form values
 	var $save = false, $preview = false, $diff = false;
 	var $minoredit = false, $watchthis = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '';
 	var $edittime = '', $section = '';
 	var $oldid = 0;
-	
+
 	/**
 	 * @todo document
 	 * @param $article
@@ -97,7 +97,7 @@ class EditPage {
 			{
 				$sat[] = strtolower ( $x ) ;
 			}
-			   
+
 		}
 
 		# Templates, but only some
@@ -139,7 +139,7 @@ class EditPage {
 		$wgOut->setArticleFlag(false);
 
 		$this->importFormData( $wgRequest );
-		
+
 		if( $this->live ) {
 			$this->livePreview();
 			return;
@@ -189,7 +189,7 @@ class EditPage {
 			}
 		}
 	}
-	
+
 	/**
 	 * Return true if this page should be previewed when the edit form
 	 * is initially opened.
@@ -215,7 +215,7 @@ class EditPage {
 			$this->textbox2 = $this->safeUnicodeInput( $request, 'wpTextbox2' );
 			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
 			$this->summary   =        $request->getText( 'wpSummary'  );
-	
+
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			if( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
@@ -238,7 +238,7 @@ class EditPage {
 			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
 				$this->edittime = null;
 			}
-	
+
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 		} else {
@@ -259,7 +259,7 @@ class EditPage {
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
-		
+
 		$this->live = $request->getCheck( 'live' );
 	}
 
@@ -280,7 +280,7 @@ class EditPage {
 			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		}
 	}
-	
+
 	function submit() {
 		$this->edit();
 	}
@@ -314,7 +314,7 @@ class EditPage {
 				if(isset($introtitle) && $introtitle->userCanRead()) {
 					$rev=Revision::newFromTitle($introtitle);
 					if($rev) {
-						$wgOut->addWikiText($rev->getText());	
+						$wgOut->addWikiText($rev->getText());
 						$addstandardintro=false;
 					}
 				}
@@ -401,6 +401,7 @@ class EditPage {
 			$this->mArticle->clear(); # Force reload of dates, etc.
 			$this->mArticle->forUpdate( true ); # Lock the article
 
+wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArticle->getTimestamp()."\n");
 			if( ( $this->section != 'new' ) &&
 				($this->mArticle->getTimestamp() != $this->edittime ) ) {
 				$isConflict = true;
@@ -450,7 +451,7 @@ class EditPage {
 					# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
 					# for duplicate heading checking and maybe parsing
 					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
-					# we can't deal with anchors, includes, html etc in the header for now, 
+					# we can't deal with anchors, includes, html etc in the header for now,
 					# headline would need to be parsed to improve this
 					#if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
 					if($hasmatch and strlen($matches[2]) > 0) {
@@ -466,16 +467,17 @@ class EditPage {
 				$this->section = '';
 				
 				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
-													&$this->summary, &$this->minoredit,
-													&$this->watchthis, &$sectionanchor)))
+								&$this->summary, &$this->minoredit,
+								&$this->watchthis, &$sectionanchor)))
 				{
 					# update the article here
 					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-													   $this->watchthis, '', $sectionanchor ))
+									   $this->watchthis, '', $sectionanchor ))
 					{
-						wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $text,
-																$this->summary, $this->minoredit,
-																$this->watchthis, $sectionanchor));
+						wfRunHooks('ArticleSaveComplete',
+							array(&$this->mArticle, &$wgUser, $text,
+								$this->summary, $this->minoredit,
+								$this->watchthis, $sectionanchor));
 						return;
 					} else {
 						$isConflict = true;
@@ -613,9 +615,11 @@ class EditPage {
 		$watchhtml = '';
 
 		if ( $wgUser->isLoggedIn() ) {
-			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked='checked'":"").
-				" accesskey='".wfMsg('accesskey-watch')."' id='wpWatchthis'  />".
-				"<label for='wpWatchthis' title='".wfMsg('tooltip-watch')."'>{$watchthis}</label>";
+			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".
+				($this->watchthis?" checked='checked'":"").
+				" accesskey=\"".htmlspecialchars(wfMsg('accesskey-watch'))."\" id='wpWatchthis'  />".
+				"<label for='wpWatchthis' title=\"" .
+					htmlspecialchars(wfMsg('tooltip-watch'))."\">{$watchthis}</label>";
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml . '<br />';
@@ -627,7 +631,7 @@ class EditPage {
 				$wgOut->addHTML( $previewOutput );
 				if($this->mTitle->getNamespace() == NS_CATEGORY) {
 					$this->mArticle->closeShowCategory();
-				}				
+				}
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
@@ -666,7 +670,7 @@ class EditPage {
 			}
 			$templates .= '</ul>';
 		}
-		
+
 		global $wgLivePreview, $wgStylePath;
 		/**
 		 * Live Preview lets us fetch rendered preview page content and
@@ -687,7 +691,7 @@ class EditPage {
 		} else {
 			$liveOnclick = '';
 		}
-		
+
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit )
 		{
@@ -743,8 +747,8 @@ END
 			$wgOut->addHTML( "
 <input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
-		
-		
+
+
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
@@ -809,18 +813,18 @@ END
 			}
 			
 			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
-			
+
 			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
-					$wgTitle, $parserOptions );		
-			
+					$wgTitle, $parserOptions );
+
 			$previewHTML = $parserOutput->mText;
-			
+
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
 			return $previewhead . $previewHTML;
 		}
 	}
-	
+
 	/**
 	 * @todo document
 	 */
@@ -834,7 +838,7 @@ END
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
 		$ip = $wgIP;
-		
+
 		if ( is_numeric( $id ) ) {
 			$name = User::whoIs( $id );
 		} else {
@@ -885,11 +889,11 @@ END
 	function proxyCheck() {
 		global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
 		global $wgIP, $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
-		
+
 		if ( !$wgBlockOpenProxies ) {
 			return;
 		}
-		
+
 		# Get MemCached key
 		$skip = false;
 		if ( $wgUseMemCached ) {
@@ -931,7 +935,7 @@ END
 		wfProfileIn( $fname );
 
 		$db =& wfGetDB( DB_MASTER );
-		
+
 		// This is the revision the editor started from
 		$baseRevision = Revision::loadFromTimestamp(
 			$db, $this->mArticle->mTitle, $this->edittime );
@@ -949,7 +953,7 @@ END
 			return false;
 		}
 		$currentText = $currentRevision->getText();
-		
+
 		if( wfMerge( $baseText, $editText, $currentText, $result ) ){
 			$editText = $result;
 			wfProfileOut( $fname );
@@ -980,7 +984,7 @@ END
 	 */
 	function sectionAnchor( $text ) {
 		$headline = Sanitizer::decodeCharReferences( $text );
-		# strip out HTML 
+		# strip out HTML
 		$headline = preg_replace( '/<.*?' . '>/', '', $headline );
 		$headline = trim( $headline );
 		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
@@ -1120,7 +1124,7 @@ END
 		$toolbar.="/*]]>*/\n</script>";
 		return $toolbar;
 	}
-	
+
 	/**
 	 * Output preview text only. This can be sucked into the edit page
 	 * via JavaScript, and saves the server time rendering the skin as
@@ -1162,7 +1166,7 @@ END
 		if ( $oldtext != wfMsg( 'noarticletext' ) || $newtext != '' ) {
 			$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
 		}
-		
+
 		return '<div id="wikiDiff">' . $difftext . '</div>';
 	}
 

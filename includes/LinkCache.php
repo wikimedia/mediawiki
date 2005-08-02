@@ -18,7 +18,7 @@ define ('LINKCACHE_PAGE', 3);
  * @package MediaWiki
  * @subpackage Cache
  */
-class LinkCache {	
+class LinkCache {
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
 	/* private */ var $mClassVer = 3;
@@ -33,7 +33,7 @@ class LinkCache {
 		global $wgDBname;
 		return $wgDBname.':lc:title:'.$title;
 	}
-	
+
 	function LinkCache() {
 		$this->mActive = true;
 		$this->mPreFilled = false;
@@ -51,10 +51,10 @@ class LinkCache {
 	/**
 	 * General accessor to get/set whether SELECT FOR UPDATE should be used
 	 */
-	function forUpdate( $update = NULL ) { 
+	function forUpdate( $update = NULL ) {
 		return wfSetVar( $this->mForUpdate, $update );
 	}
-	
+
 	function getGoodLinkID( $title ) {
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
 			return $this->mGoodLinks[$title];
@@ -64,7 +64,7 @@ class LinkCache {
 	}
 
 	function isBadLink( $title ) {
-		return array_key_exists( $title, $this->mBadLinks ); 
+		return array_key_exists( $title, $this->mBadLinks );
 	}
 
 	function addGoodLinkObj( $id, $title ) {
@@ -90,11 +90,11 @@ class LinkCache {
 	function addImageLinkObj( $nt ) {
 		if ( $this->mActive ) { $this->mImageLinks[$nt->getDBkey()] = 1; }
 	}
-	
+
 	function addCategoryLink( $title, $sortkey ) {
 		if ( $this->mActive ) { $this->mCategoryLinks[$title] = $sortkey; }
 	}
-	
+
 	function addCategoryLinkObj( &$nt, $sortkey ) {
 		$this->addCategoryLink( $nt->getDBkey(), $sortkey );
 	}
@@ -103,7 +103,7 @@ class LinkCache {
 		unset( $this->mBadLinks[$title] );
 		$this->clearLink( $title );
 	}
-	
+
 	function clearLink( $title ) {
 		global $wgMemc, $wgLinkCacheMemcached;
 		if( $wgLinkCacheMemcached )
@@ -126,11 +126,11 @@ class LinkCache {
 			return 0;
 		}
 	}
-	
+
 	function addLinkObj( &$nt ) {
 		global $wgMemc, $wgLinkCacheMemcached, $wgAntiLockFlags;
 		$title = $nt->getPrefixedDBkey();
-		if ( $this->isBadLink( $title ) ) { return 0; }		
+		if ( $this->isBadLink( $title ) ) { return 0; }
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
@@ -140,11 +140,11 @@ class LinkCache {
 		$ns = $nt->getNamespace();
 		$t = $nt->getDBkey();
 
-		if ( '' == $title ) { 
+		if ( '' == $title ) {
 			wfProfileOut( $fname );
-			return 0; 
+			return 0;
 		}
-		
+
 		$id = NULL;
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
@@ -159,14 +159,17 @@ class LinkCache {
 				$options = array();
 			}
 
-			$id = $db->selectField( 'page', 'page_id', array( 'page_namespace' => $ns, 'page_title' => $t ), $fname, $options );
+			$id = $db->selectField( 'page', 'page_id',
+					array( 'page_namespace' => $ns, 'page_title' => $t ),
+					$fname, $options );
+wfdebug("link cache: id=$id\n");
 			if ( !$id ) {
 				$id = 0;
 			}
 			if( $wgLinkCacheMemcached )
 				$wgMemc->add( $key, $id, 3600*24 );
 		}
-		
+
 		if( 0 == $id ) {
 			$this->addBadLinkObj( $nt );
 		} else {
@@ -188,13 +191,13 @@ class LinkCache {
 		$this->suspend();
 		$id = $fromtitle->getArticleID();
 		$this->resume();
-		
+
 		if( $id == 0 ) {
 			wfDebug( "$fname - got id 0 for title '" . $fromtitle->getPrefixedDBkey() . "'\n" );
 			wfProfileOut( $fname );
 			return;
 		}
-		
+
 		if ( $this->mForUpdate ) {
 			$db =& wfGetDB( DB_MASTER );
 			if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
@@ -254,7 +257,7 @@ class LinkCache {
 	function getImageDeletions() {
 		return array_diff_assoc( $this->mOldImageLinks, $this->mImageLinks );
 	}
-	
+
 	function getPageAdditions() {
 		$set = array_diff( array_keys( $this->mPageLinks ), array_keys( $this->mOldPageLinks ) );
 		$out = array();
@@ -263,7 +266,7 @@ class LinkCache {
 		}
 		return $out;
 	}
-	
+
 	function getPageDeletions() {
 		$set = array_diff( array_keys( $this->mOldPageLinks ), array_keys( $this->mPageLinks ) );
 		$out = array();
@@ -308,14 +311,14 @@ class LinkCache {
 				$add = $this->getPageAdditions();
 				break;
 			default: # LINKCACHE_IMAGE
-				return false;		
+				return false;
 		}
-		
+
 		return true;
 	}
 
 	/**
-	 * Clears cache 
+	 * Clears cache
 	 */
 	function clear() {
 		$this->mPageLinks = array();
@@ -347,7 +350,7 @@ class LinkCache {
  * @subpackage Cache
  */
 class LinkBatch {
-	/** 
+	/**
 	 * 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	var $data = array();
@@ -357,7 +360,7 @@ class LinkBatch {
 			$this->addObj( $item );
 		}
 	}
-	
+
 	function addObj( $title ) {
 		$this->add( $title->getNamespace(), $title->getDBkey() );
 	}
@@ -389,7 +392,7 @@ class LinkBatch {
 		$page = $dbr->tableName( 'page' );
 		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE "
 			. $this->constructSet( 'page', $dbr );
-		
+
 		// Do query
 		$res = $dbr->query( $sql, $fname );
 
@@ -414,7 +417,7 @@ class LinkBatch {
 
 		wfProfileOut( $fname );
 	}
-	
+
 	/**
 	 * Construct a WHERE clause which will match all the given titles.
 	 * Give the appropriate table's field name prefix ('page', 'pl', etc).

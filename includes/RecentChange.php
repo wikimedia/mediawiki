@@ -118,8 +118,9 @@ class RecentChange
 		}
 
 		# Fixup database timestamps
-		$this->mAttribs['rc_timestamp']=$dbw->timestamp($this->mAttribs['rc_timestamp']);
-		$this->mAttribs['rc_cur_time']=$dbw->timestamp($this->mAttribs['rc_cur_time']);
+		$this->mAttribs['rc_timestamp'] = $dbw->timestamp($this->mAttribs['rc_timestamp']);
+		$this->mAttribs['rc_cur_time'] = $dbw->timestamp($this->mAttribs['rc_cur_time']);
+		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'rc_rc_id_seq' );
 
 		# Insert new row
 		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
@@ -357,6 +358,7 @@ class RecentChange
 	function loadFromRow( $row )
 	{
 		$this->mAttribs = get_object_vars( $row );
+		$this->mAttribs["rc_timestamp"] = wfTimestamp(TS_MW, $this->mAttribs["rc_timestamp"]);
 		$this->mExtra = array();
 	}
 
@@ -364,7 +366,7 @@ class RecentChange
 	function loadFromCurRow( $row )
 	{
 		$this->mAttribs = array(
-			'rc_timestamp' => $row->rev_timestamp,
+			'rc_timestamp' => wfTimestamp(TS_MW, $row->rev_timestamp),
 			'rc_cur_time' => $row->rev_timestamp,
 			'rc_user' => $row->rev_user,
 			'rc_user_text' => $row->rev_user_text,

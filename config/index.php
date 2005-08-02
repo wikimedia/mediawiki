@@ -367,6 +367,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 		? 'root@localhost'
 		: $_SERVER["SERVER_ADMIN"];
 	$conf->EmergencyContact = importPost( "EmergencyContact", $defaultEmail );
+	$conf->DBtype = importPost( "DBtype", "mysql" );
 	$conf->DBserver = importPost( "DBserver", "localhost" );
 	$conf->DBname = importPost( "DBname", "wikidb" );
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
@@ -453,6 +454,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgCommandLineMode = false;
 		chdir( ".." );
 		eval($local);
+		if (!in_array($conf->DBtype, array("mysql", "oracle"))) {
+			$errs["DBtype"] = "Unknown database type.";
+			continue;
+		}
+		print "<li>Database type: {$conf->DBtype}</li>\n";
+		$dbclass = 'Database'.ucfirst($conf->DBtype);
+		require_once("$dbclass.php");
+		$wgDBtype = $conf->DBtype;
 		$wgDBadminuser = "root";
 		$wgDBadminpassword = $conf->RootPW;
 		$wgDBprefix = $conf->DBprefix;
@@ -471,58 +480,70 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
 			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
 		}
-		print "<li>Trying to connect to MySQL on $wgDBserver as root...\n";
-		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
+		$dbc = new $dbclass;
+		if ($conf->DBtype == 'mysql') {
+			print "<li>Trying to connect to database server on $wgDBserver as root...\n";
+			$wgDatabase = $dbc->newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
 
-		if( $wgDatabase->isOpen() ) {
-			$myver = mysql_get_server_info( $wgDatabase->mConn );
-			$wgDatabase->ignoreErrors(true);
-			$conf->Root = true;
-			print "<ul><li>Connected as root (automatic)</li></ul></li>\n";
-		} else {
-			print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-				": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
-			$ok = false;
-			switch( $err ) {
-			case 1045:
-			case 2000:
-				if( $conf->Root ) {
-					$errs["RootPW"] = "Check password";
-				} else {
-					print "<li>Trying regular user...\n";
-					/* Try the regular user... */
-					$wgDBadminuser = $wgDBuser;
-					$wgDBadminpassword = $wgDBpassword;
-					/* Wait one second for connection rate limiting, present on some systems */
-					sleep(1);
-					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
-					if( !$wgDatabase->isOpen() ) {
-						print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
-							": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
-						$errs["DBuser"] = "Check name/pass";
-						$errs["DBpassword"] = "or enter root";
-						$errs["DBpassword2"] = "password below";
-						$errs["RootPW"] = "Got root?";
+			if( $wgDatabase->isOpen() ) {
+				$myver = get_db_version();
+				$wgDatabase->ignoreErrors(true);
+				$conf->Root = true;
+				print "<ul><li>Connected as root (automatic)</li></ul></li>\n";
+			} else {
+				print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
+					": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
+				$ok = false;
+				switch( $err ) {
+				case 1045:
+				case 2000:
+					if( $conf->Root ) {
+						$errs["RootPW"] = "Check password";
 					} else {
-						$myver = mysql_get_server_info( $wgDatabase->mConn );
-						$wgDatabase->ignoreErrors(true);
-						$conf->Root = false;
-						$conf->RootPW = "";
-						print " ok.</li>\n";
-						# And keep going...
-						$ok = true;
+						print "<li>Trying regular user...\n";
+						/* Try the regular user... */
+						$wgDBadminuser = $wgDBuser;
+						$wgDBadminpassword = $wgDBpassword;
+						/* Wait one second for connection rate limiting, present on some systems */
+						sleep(1);
+						$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
+						if( !$wgDatabase->isOpen() ) {
+							print "<ul><li>MySQL error " . ($err = mysql_errno() ) .
+								": " . htmlspecialchars( mysql_error() ) . "</li></ul></li>";
+							$errs["DBuser"] = "Check name/pass";
+							$errs["DBpassword"] = "or enter root";
+							$errs["DBpassword2"] = "password below";
+							$errs["RootPW"] = "Got root?";
+						} else {
+							$myver = mysql_get_server_info( $wgDatabase->mConn );
+							$wgDatabase->ignoreErrors(true);
+							$conf->Root = false;
+							$conf->RootPW = "";
+							print " ok.</li>\n";
+							# And keep going...
+							$ok = true;
+						}
+						break;
 					}
+				case 2002:
+				case 2003:
+					$errs["DBserver"] = "Connection failed";
+					break;
+				default:
+					$errs["DBserver"] = "Couldn't connect to database";
 					break;
 				}
-			case 2002:
-			case 2003:
-				$errs["DBserver"] = "Connection failed";
-				break;
-			default:
-				$errs["DBserver"] = "Couldn't connect to database";
-				break;
+				if( !$ok ) continue;
 			}
-			if( !$ok ) continue;
+		} else /* not mysql */ {
+			print "<li>Connecting to SQL server...";
+			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
+			if (!$wgDatabase->isOpen()) {
+				print " error: " . $wgDatabase->lastError() . "</li>\n";
+			} else {
+				$wgDatabase->ignoreErrors(true);
+				$myver = get_db_version();
+			}
 		}
 
 		if ( !$wgDatabase->isOpen() ) {
@@ -545,28 +566,30 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		print "</li>\n";
 
-		@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
-		if( $sel ) {
-			print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
-		} else {
-			$err = mysql_errno();
-			if ( $err != 1049 ) {
-				print "<ul><li>Error selecting database $wgDBname: $err " . htmlspecialchars( mysql_error() ) .
-					"</li></ul>";
-				continue;
+		if ($conf->DBtype == 'mysql') {
+			@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
+			if( $sel ) {
+				print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
+			} else {
+				$err = mysql_errno();
+				if ( $err != 1049 ) {
+					print "<ul><li>Error selecting database $wgDBname: $err " .
+						htmlspecialchars( mysql_error() ) . "</li></ul>";
+					continue;
+				}
+				$res = $wgDatabase->query( "CREATE DATABASE `$wgDBname`" );
+				if( !$res ) {
+					print "<li>Couldn't create database <tt>" .
+						htmlspecialchars( $wgDBname ) .
+						"</tt>; try with root access or check your username/pass.</li>\n";
+					$errs["RootPW"] = "&lt;- Enter";
+					continue;
+				}
+				print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
 			}
-			$res = $wgDatabase->query( "CREATE DATABASE `$wgDBname`" );
-			if( !$res ) {
-				print "<li>Couldn't create database <tt>" .
-					htmlspecialchars( $wgDBname ) .
-					"</tt>; try with root access or check your username/pass.</li>\n";
-				$errs["RootPW"] = "&lt;- Enter";
-				continue;
-			}
-			print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
+			$wgDatabase->selectDB( $wgDBname );
 		}
 
-		$wgDatabase->selectDB( $wgDBname );
 
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
@@ -597,8 +620,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		} else {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
-			dbsource( "../maintenance/tables.sql", $wgDatabase );
-			dbsource( "../maintenance/interwiki.sql", $wgDatabase );
+			if ($conf->DBtype == 'mysql') {
+				dbsource( "../maintenance/tables.sql", $wgDatabase );
+				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
+			} else {
+				dbsource( "../maintenance/oracle/tables.sql", $wgDatabase );
+				dbsource( "../maintenance/oracle/interwiki.sql", $wgDatabase );
+			}
+
 			print " done.</li>\n";
 
 			print "<li>Initializing data...";
@@ -902,17 +931,31 @@ if( count( $errs ) ) {
 <h2>Database config</h2>
 
 <dl class="setup">
+	<dd>
+		<label class='column'>Database type</label>
+		<div>Select the database server software:</div>
+		<ul class='plain'>
+		<?php
+			aField( $conf, "DBtype", "MySQL", "radio", "mysql");
+			aField( $conf, "DBtype", "Oracle", "radio", "oracle" );
+		?>
+		</ul>
+	</dd>
+
 	<dd><?php
-		aField( $conf, "DBserver", "MySQL server" );
+		aField( $conf, "DBserver", "SQL server host" );
 	?></dd>
 	<dt>
 		If your database server isn't on your web server, enter the name
-		or IP address here.
+		or IP address here.  MySQL only.
 	</dt>
 
 	<dd><?php
 		aField( $conf, "DBname", "Database name" );
 	?></dd>
+	<dt>
+		If using Oracle, set this to your connection identifier.
+	</dt>
 	<dd><?php
 		aField( $conf, "DBuser", "DB username" );
 	?></dd>
@@ -1131,6 +1174,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
+\$wgDBtype           = \"{$slconf['DBtype']}\";
 
 # If you're on MySQL 3.x, this next line must be FALSE:
 \$wgDBmysql4 = {$conf->DBmysql4};
@@ -1292,6 +1336,14 @@ function locate_executable($loc, $names, $versioninfo = false) {
 		}
 	}
 	return false;
+}
+
+function get_db_version() {
+	global $wgDatabase, $conf;
+	if ($conf->DBtype == 'mysql')
+		return mysql_get_server_info( $wgDatabase->mConn );
+	else if ($conf->DBtype == 'oracle')
+		return oci_server_version($wgDatabase->mConn);
 }
 
 # Test a memcached server

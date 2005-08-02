@@ -20,7 +20,7 @@ $wgQueryPages = array(
     array( 'DeadendPagesPage',          'Deadendpages'      ),
     array( 'DisambiguationsPage',       'Disambiguations'   ),
     array( 'DoubleRedirectsPage',       'DoubleRedirects'   ),
-    array( 'ListUsersPage',             'Listusers'         ), 
+    array( 'ListUsersPage',             'Listusers'         ),
     array( 'LonelyPagesPage',           'Lonelypages'       ),
     array( 'LongPagesPage',             'Longpages'         ),
     array( 'NewPagesPage',              'Newpages'          ),
@@ -118,7 +118,7 @@ class QueryPage {
 	function getPageHeader( ) {
 		return '';
 	}
-	
+
 	/**
 	 * If using extra form wheely-dealies, return a set of parameters here
 	 * as an associative array. They will be encoded and added to the paging
@@ -128,7 +128,7 @@ class QueryPage {
 	function linkParameters() {
 		return array();
 	}
-	
+
 	/**
 	 * Some special pages (for example SpecialListusers) might not return the
 	 * current object formatted, but return the previous one instead.
@@ -151,7 +151,7 @@ class QueryPage {
 		}
 
 		$querycache = $dbr->tableName( 'querycache' );
-		
+
 		if ( $ignoreErrors ) {
 			$ignoreW = $dbw->ignoreErrors( true );
 			$ignoreR = $dbr->ignoreErrors( true );
@@ -236,21 +236,21 @@ class QueryPage {
 				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
 			}
 		}
-		
-		$res = $dbr->query( $sql . $this->getOrder() .
-				    $dbr->limitResult( $limit,$offset ), $fname );
+
+		$sql = $dbr->limitResult($sql . $this->getOrder(), $limit, $offset);
+		$res = $dbr->query( $sql );
 		$num = $dbr->numRows($res);
-		
+
 		$sk = $wgUser->getSkin( );
 
 		if($shownavigation) {
 			$wgOut->addHTML( $this->getPageHeader() );
 			$top = wfShowingResults( $offset, $num);
 			$wgOut->addHTML( "<p>{$top}\n" );
-	
+
 			# often disable 'next' link when we reach the end
 			if($num < $limit) { $atend = true; } else { $atend = false; }
-			
+
 			$sl = wfViewPrevNext( $offset, $limit ,
 				$wgContLang->specialPage( $sname ),
 				wfArrayToCGI( $this->linkParameters() ), $atend );
@@ -279,7 +279,7 @@ class QueryPage {
 					$s .= "<li{$attr}>{$format}</li>\n";
 				}
 			}
-			
+
 			$dbr->freeResult( $res );
 			$s .= '</ol>';
 			$wgOut->addHTML( $s );
