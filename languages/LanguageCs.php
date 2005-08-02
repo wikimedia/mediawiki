@@ -1855,7 +1855,7 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'imagelistall' => 'všechny',
 'watchlistall1' => 'všechny',
 'watchlistall2' => 'všechny',
-'contributionsall' => 'všechny',
+'namespacesall' => 'všechny',
 
 # E-mail address confirmation
 'confirmemail' => 'Potvrzení e-mailové adresy',

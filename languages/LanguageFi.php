@@ -181,7 +181,7 @@ require_once( 'LanguageUtf8.php' );
 'help'                => 'Ohje',
 'search'              => 'Etsi',
 'go'                  => 'Siirry',
-'history'             => 'Vanhemmat versiot',
+'history'             => 'Historia',
 'history_short'       => 'Historia',
 'info_short'          => 'Tiedostus',
 'printableversion'    => 'Tulostettava versio',
@@ -828,7 +828,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'unwatch'             => 'Lopeta tarkkailu',
 'unwatchthispage'     => 'Lopeta tarkkailu',
 'notanarticle'        => 'Ei ole sivu',
-'watchnochange'       => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu. ',
+'watchnochange'       => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
 'watchdetails'        => 'Keskustelusivuja mukaan laskematta tarkkailun alla on $1 sivua, joista $2 on muokattu määritellyllä aikavälillä. <span class="plainlinks"> [$4 Muokkaa listaa]</span>.',
 'wlheader-enotif'     => '* Sähköposti-ilmoitukset ovat käytössä.',
 'wlheader-showupdated'=> '* Sivut, joita on muokattu viimeisen käyntisi jälkeen on merkitty \'\'\'paksummalla\'\'\'',
@@ -841,7 +841,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'couldntremove'       => 'Sivua $1 ei voitu poistaa tarkkailulistalta',
 'iteminvalidname'     => 'Sivun $1 kanssa oli ongelmia! Sivun nimessä on vikaa.',
 'wlnote'              => 'Alla on <b>$1</b> muutosta viimeisen <b>$2</b> tunnin ajalta.', // TODO NOWIKIMARKUP
-'wlshowlast'          => 'Näytä viimeiset $1 tuntia $2 päivää$3',
+'wlshowlast'          => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
 'wlsaved'             => 'Tämä on tallennettu versio tarkkailulistastasi.',
 'wlhideshowown'       => '$1 omat muokkaukset.',
 'wlshow'              => 'Näytä',
@@ -1272,8 +1272,9 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'edit-externally'     => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
 'edit-externally-help'=> 'Katso [http://meta.wikimedia.org/wiki/Help:External_editors ohjeet], jos haluat lisätietoja.',
 
+'watchlistall1'       => 'kaikkia',
 'watchlistall2'       => ', koko historia',
-'contributionsall'    => 'kaikki',
+'namespacesall'       => 'kaikki',
 
 # E-mail address confirmation
 'confirmemail'        => 'Varmenna sähköpostiosoite',

@@ -226,7 +226,6 @@ link in your browser to confirm that your e-mail address is valid.', */
 'contribslink' => 'tevkarî',
 'contribsub' => 'Ji bo $1',
 'contributions' => 'Tevkariyên vê bikarhêner',
-#'contributionsall' => 'all',
 'copyright' => 'Naverok bin $1 (Lîsansa Belgekirina Azada GNU) tê weşandin.',
 'copyrightpage' => 'Wîkîpediya:Mafên nivîsanê',
 'copyrightpagename' => 'Mafên nivîsanê',

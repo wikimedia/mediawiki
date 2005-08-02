@@ -1207,8 +1207,7 @@ function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 	$s = "<select name='namespace' class='namespaceselector'>\n";
 	$arr = $wgContLang->getFormattedNamespaces();
 	if( !is_null($allnamespaces) ) {
-		/* TODO: rename contributionsall to something meaningfull */
-		$arr = array($allnamespaces => wfMsgHtml('contributionsall')) + $arr;
+		$arr = array($allnamespaces => wfMsgHtml('namespacesall')) + $arr;
 	}
 	foreach ($arr as $index => $name) {
 		if ($index < NS_MAIN) continue;

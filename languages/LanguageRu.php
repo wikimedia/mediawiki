@@ -1902,7 +1902,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'imagelistall' => 'все',
 'watchlistall1' => 'все',
 'watchlistall2' => 'все',
-'contributionsall' => 'все',
+'namespacesall' => 'все',
 
 # E-mail address confirmation
 'confirmemail' => 'Подтверждение адреса электронной почты',
