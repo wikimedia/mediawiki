@@ -60,7 +60,6 @@ body {
 
 table {
     font-size: 100%;
-    background: white;
     color: black;
 }
 a {
@@ -164,7 +163,6 @@ fieldset {
     line-height: 1.5em;
 }
 legend {
-    background: white;
     padding: .5em;
     font-size: 95%;
 }
@@ -1187,3 +1185,23 @@ p.revision_saved {
 	background-color: #eeeeff;
 	padding: 0.2em;
 }
+
+
+/* Allmessages table */
+
+#allmessagestable th {
+	background-color: #b2b2ff;
+}
+
+#allmessagestable tr.orig {
+	background-color: #ffe2e2;
+}
+
+#allmessagestable tr.new {
+	background-color: #e2ffe2;
+}
+
+#allmessagestable tr.def {
+	background-color: #f0f0ff;
+}
+
