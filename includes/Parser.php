@@ -111,6 +111,7 @@ class Parser
 		                // in this path. Used for loop detection.
 
 	var $mIWTransData = array();
+	var $mAssocArgs = array();
 
 	/**#@-*/
 
@@ -469,6 +470,10 @@ class Parser
 	 * @access private
 	 */
 	function unstrip( $text, &$state ) {
+		if ( !is_array( $state ) ) {
+			return $text;
+		}
+		
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
 		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
@@ -488,6 +493,10 @@ class Parser
 	 * @access private
 	 */
 	function unstripNoWiki( $text, &$state ) {
+		if ( !is_array( $state ) ) {
+			return $text;
+		}
+
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
 			$text = str_replace( key( $state['nowiki'] ), $content, $text );
@@ -2257,12 +2266,12 @@ class Parser
 			$text = wfEscapeWikiText( $text );
 		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found && !$noparse) {
 			# Clean up argument array
-			$assocArgs = array();
+			$this->mAssocArgs = array();
 			$index = 1;
 			foreach( $args as $arg ) {
 				$eqpos = strpos( $arg, '=' );
 				if ( $eqpos === false ) {
-					$assocArgs[$index++] = $arg;
+					$this->mAssocArgs[$index++] = $arg;
 				} else {
 					$name = trim( substr( $arg, 0, $eqpos ) );
 					$value = trim( substr( $arg, $eqpos+1 ) );
@@ -2270,7 +2279,7 @@ class Parser
 						$value = '';
 					}
 					if ( $name !== false ) {
-						$assocArgs[$name] = $value;
+						$this->mAssocArgs[$name] = $value;
 					}
 				}
 			}
@@ -2280,9 +2289,9 @@ class Parser
 
 			if( $this->mOutputType == OT_HTML ) {
 				$text = $this->strip( $text, $this->mStripState );
-				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
+				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $this->mAssocArgs );
 			}
-			$text = $this->replaceVariables( $text, $assocArgs );
+			$text = $this->replaceVariables( $text, $this->mAssocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( $this->mOutputType == OT_HTML && !is_null( $title ) ) {
