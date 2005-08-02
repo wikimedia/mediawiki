@@ -651,12 +651,7 @@ nummer <b>$2</b>.",
 Søg i navnerum:<br />
 $1<br />
 $2 List omdirigeringer &nbsp; Søg efter $3 $9",
-"searchdisabled" => "<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>
-                                                                                                                                                        
-",
-"googlesearch" => "<p> <table border=\"0\" bgcolor=\"#FFFFFF\"> <!-- SiteSearch Google --> <tr> <td valign=\"top\" align=\"center\"> <a href=\"http://www.google.com/\"> <img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\" title=\"Google\"> </a> </td> <td width=\"100%\"> <form method=\"get\" action=\"http://www.google.com/search\"> <input type=\"text\" name=\"q\" size=31 maxlength=255 value=\"$1\"> <input type=\"submit\" name=\"btnG\" value=\"Google-søgning\"> <input type=\"hidden\" name=\"domains\" value=\"{{SERVER}}\"> <input type=\"hidden\" name=\"ie\" value=\"$2\"> <input type=\"hidden\" name=\"oe\" value=\"$2\"> <br /> 
-<font size=-1> <input type=\"radio\" name=\"sitesearch\" value=\"\">WWW <input type=\"radio\" name=\"sitesearch\" value=\"{{SERVER}}\" checked>{{SERVER}} </font> </form> </td> </tr> <!-- SiteSearch Google --> <!-- Spacing --> <tr> <td colspan=2>&nbsp;</td> </tr> <!-- Spacing --> <!-- Yahoo search --> <tr> <td valign=\"top\" align=\"center\"> <a href=\"http://search.yahoo.com/\"> <img src=\"http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif\" border=\"0\" alt=\"Yahoo!\"vspace=\"5\"> </a> </td> <td width=\"100%\"> <form method=get action=\"http://search.yahoo.com/search\"> <input type=\"hidden\" name=\"x\" value=\"op\"> <input type=\"hidden\" name=\"va_vt\" value=\"any\"> <input type=\"text\" name=\"va\" size=\"31\" value=\"$1\"> <input type=\"submit\" value=\"Yahoo!-søgning\"> <br /> <font size=-1> <input type=\"radio\" name=\"vs\" value=\"\">WWW <input type=\"radio\" name=\"vs\" value=\"da.wikipedia.org\" checked>{{SERVER}}</font> </form> </td> </table> </p> <p>Du kan anvende følgende link til at forfatte en artikel om dette emne: <a href=\"/w/wiki.phtml?title=$1&action=edit\">$1</a></p> <p><b>Bemærk</b>: Vi anbefaler at du gennemsøger {{SITENAME}}, før du opretter en ny artikel, dette er for at undgå flere artikler om samme emne, som kan være oprettet under et andet navn eller stavemåde.</p> 
-",
+"searchdisabled" => "<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>",
 "blanknamespace" => "(Artikler)",
 
 # Preferences page
@@ -1622,7 +1617,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisiden\');
 'imagelistall' => 'alle',
 'watchlistall1' => 'alle',
 'watchlistall2' => 'alle',
-'contributionsall' => 'alle',
+'namespacesall' => 'alle',
 
 );
 

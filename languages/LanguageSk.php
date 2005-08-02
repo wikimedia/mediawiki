@@ -1636,7 +1636,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriam
 'imagelistall' => 'všetky',
 'watchlistall1' => 'všetky',
 'watchlistall2' => 'všetky',
-'contributionsall' => 'všetky',
+'namespacesall' => 'všetky',
 
 # E-mail address confirmation
 'confirmemail' => 'Potvrdiť e-mailovú adresu',

@@ -1640,7 +1640,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'imagelistall'            => 'alle',
 'watchlistall1'           => 'alle',
 'watchlistall2'           => 'alle',
-'contributionsall'        => 'alle',
+'namespacesall'        => 'alle',
 
 # E-mail address confirmation
 'confirmemail'            => 'Stadfest e-postadresse',

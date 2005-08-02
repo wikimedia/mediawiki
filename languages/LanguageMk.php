@@ -1240,7 +1240,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Видете ја страница
 	'imagelistall'				=>	'сите',
 	'watchlistall1'				=>	'сите',
 	'watchlistall2'				=>	'сите',
-	'contributionsall'			=>	'сите',
+	'namespacesall'			=>	'сите',
 );
 
 
