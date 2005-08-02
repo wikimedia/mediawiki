@@ -499,7 +499,7 @@ function rcFormatDiff( $row ) {
 
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$dbr =& wfGetDB( DB_SLAVE );
-		$newrev =& Revision::newFromTitle( $titleObj, $row->rc_this_oldid );
+		$newrev = Revision::newFromTitle( $titleObj, $row->rc_this_oldid );
 		if( $newrev ) {
 			$newtext = $newrev->getText();
 		} else {

@@ -1709,7 +1709,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$rev =& Revision::newFromTitle( $this->mTitle );
+		$rev = Revision::newFromTitle( $this->mTitle );
 
 		# Fetch name(s) of contributors
 		$rev_name = '';
