@@ -808,10 +808,6 @@ Administraatori staatuses kasutajaid: <b>$2</b> (vt $3).",
 "listusers"		=> "Kasutajad",
 "specialpages"	=> "Erileheküljed",
 "spheading"		=> "Erileheküljed",
-/* aegunud
-"sysopspheading" => "Administraatori erileheküljed",
-"developerspheading" => "Arendaja erileheküljed",
-*/
 "protectpage"	=> "Kaitse lehekülge",
 "recentchangeslinked" => "Seotud muudatused",
 "rclsub"		=> "(lehekülgedel, millele \"$1\" viitab)", #

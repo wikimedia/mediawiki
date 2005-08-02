@@ -690,8 +690,6 @@ alt=\"Google\" align=\"middle\"></a>
 "listusers"		=> "用户列表",
 "specialpages"	=> "特殊页面",
 "spheading"		=> "特殊页面",
-"sysopspheading" => "管理员特殊页面",
-"developerspheading" => "发展者特殊页面",
 "protectpage"	=> "保护页面",
 "recentchangeslinked" => "链出更改",
 "rclsub"		=> "（从 \"$1\"链出的页面）",

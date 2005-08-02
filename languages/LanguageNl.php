@@ -631,8 +631,6 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "listusers"  => "Lijst van gebruikers",
 "specialpages" => "Speciale pagina's",
 "spheading"  => "",
-"sysopspheading" => "Alleen voor systeembeheerders",
-"developerspheading" => "Alleen voor systeemontwikkelaars",
 "protectpage" => "Beveilig pagina",
 "recentchangeslinked" => "Volg links",
 "rclsub"  => "(van pagina's waarnaar \"$1\" verwijst)",

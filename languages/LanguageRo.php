@@ -501,7 +501,6 @@ Vezi $2 pentru o listă a elementelor şterse recent.",
 <ul>
 </ul>
 ",
-'developerspheading' => "Pagini speciale pentru dezvoltatori",
 'developertext' => "Acţiunea pe care ai încercat-o necesită drepturi de dezvoltator.
 Vezi $1.",
 'developertitle' => "Ai nevoie de acces ca dezvoltator",
@@ -1074,7 +1073,6 @@ de la ultima actualizare a programului (July 20, 2002).
 </div>
 
 Sumar",
-'sysopspheading' => "Pagini speciale pentru operatori",
 'sysoptext' => "Acţiunea pe care ai încercat-o necesită drepturi de operator.
 Vezi $1.",
 'sysoptitle' => "Ai nevoie de acces ca operator",

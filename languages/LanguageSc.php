@@ -565,8 +565,6 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "listusers"		=> "Elenco degli Utenti",
 "specialpages"	=> "Pagine speciali",
 "spheading"		=> "Pagine speciali",
-"sysopspheading" => "Pagine speciali riservate ai sysop",
-"developerspheading" => " Pagine speciali riservate ai developer",
 "protectpage"	=> "Proteggi questa pagina ",
 "recentchangeslinked" => "Modifiche correlate",
 "rclsub"		=> "(alle pagine linkate da \"$1\")",

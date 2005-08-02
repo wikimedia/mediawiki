@@ -731,8 +731,6 @@ odpowiednika w tym języku. Na tej liście <i>pominięto</i> podstrony oraz prze
 "listusers" => "Lista użytkowników",
 "specialpages" => "Strony specjalne",
 "spheading" => "Strony specjalne",
-"sysopspheading" => "Strony specjalne tylko dla użytkowników z prawami Administratora",
-"developerspheading" => "Strony specjalne tylko dla użytkowników z prawami Programisty",
 "protectpage" => "Zabezpiecz stronę",
 "recentchangeslinked" => "Zmiany w dolinkowanych",
 "rclsub" => "(dla stron dolinkowanych do \"$1\")",

@@ -775,8 +775,6 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "listusers"		=> "Felhasználók",
 "specialpages"	=> "Speciális lapok",
 "spheading"		=> "Speciális lapok",
-"sysopspheading" => "Special pages for sysop use",
-"developerspheading" => "Special pages for developer use",
 "protectpage"	=> "Protect page",
 "recentchangeslinked" => "Kapcsolódó változtatások",
 # FIXME: possible context?

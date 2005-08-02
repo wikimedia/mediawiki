@@ -712,8 +712,6 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "listusers" => "Rhestr defnyddwyr",
 "specialpages" => "Erthyglau arbennig",
 "spheading" => "Erthyglau arbennig",
-"sysopspheading" => "Erthyglau arbennig am defnyddiad y sysop",
-"developerspheading" => "Erthyglau arbennig am defnyddiad y datblygydd",
 "protectpage" => "Sicrhau erthygl",
 "recentchangeslinked" => "Newidiadau perthnasol",
 "rclsub" => "(i erthyglau cysyllt oddiwrth \"$1\")",

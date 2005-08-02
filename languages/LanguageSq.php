@@ -720,8 +720,6 @@ duke dhënë dhe  artikullin e \"vërtetë\", me të cilin ridrejtimi i parë du
 "listusers"		=> "Lista e përdoruesve",
 "specialpages"	=> "Faqe speciale",
 "spheading"		=> "Faqe speciale për të gjithë përdoruesit",
-"sysopspheading" => "Vetëm për ato me titull sysop",
-"developerspheading" => "Vetëm për zhvilluesit",
 "protectpage"	=> "Mbroje faqen",
 "recentchangeslinked" => "Ndryshime të përafërta",
 "rclsub"		=> "(për faqet e lidhura nga \"$1\")",

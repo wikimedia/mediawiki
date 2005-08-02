@@ -696,8 +696,6 @@ Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu rip
 'listusers'		=> 'Uzularo',
 'specialpages'	=> 'Specialaj paĝoj',
 'spheading'		=> 'Specialaj paĝoj',
-'sysopspheading' => 'Specialaj paĝoj por uzado de administrantoj',
-'developerspheading' => 'Specialaj paĝoj nur por uzado de programistoj',
 'protectpage'	=> 'Protektu paĝon',
 'recentchangeslinked' => 'Rilataj paĝoj',
 'rclsub'		=> '(al paĝoj ligitaj de "$1")',

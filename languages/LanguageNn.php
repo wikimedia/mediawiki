@@ -849,18 +849,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'specialpages'	        => 'Spesialsider',
 'spheading'		=> 'Spesialsider for alle brukarar',
 'restrictedpheading'    => 'Spesialsider med avgrensa tilgang',
-'blockpheading'         => 'Blokkering',
-'createaccountpheading' => 'Lag konto',
-'deletepheading'        => 'Slett',
-'userrightspheading'    => 'Brukartilgang',
-'grouprightspheading'   => 'gruppetilgangsnivå',
-'siteadminpheading'     => 'Administrasjon av wikinettstaden',
-
-/** obsoletes
-'sysopspheading'        => 'Berre for administrator-bruk',
-'developerspheading'    => 'Berre for utviklar-bruk',
-*/
-
 'protectpage'	        => 'Vern side',
 'recentchangeslinked'   => 'Relaterte endringar',
 'rclsub'		=> '(til sider med lenkje frå «$1»)',

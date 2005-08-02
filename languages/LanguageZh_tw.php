@@ -694,8 +694,6 @@ alt=\"Google\" align=\"middle\"></a>
 "listusers"		=> "用戶列表",
 "specialpages"	=> "特殊頁面",
 "spheading"		=> "特殊頁面",
-"sysopspheading" => "管理員特殊頁面",
-"developerspheading" => "發展者特殊頁面",
 "protectpage"	=> "保護頁面",
 "recentchangeslinked" => "鏈出更改",
 "rclsub"		=> "（從 \"$1\"鏈出的頁面）",

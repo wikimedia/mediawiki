@@ -993,17 +993,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
 'restrictedpheading'	=> 'Specielle sider med begrænset adgang',
-'blockpheading' => 'Blokeringsniveau',
-'createaccountpheading' => 'Opret konto-niveau',
-'deletepheading' => 'Sletteniveau',
-'userrightspheading' => 'Brugerrettighedsniveau',
-'grouprightspheading' => 'Grupperettighedsniveau',
-'siteadminpheading' => 'Webstedsadministratorniveau',
-
-/** obsoletes
-"sysopspheading" => "Specielle sider til sysop-brug",
-"developerspheading" => "Specielle sider til developer-brug",
-*/
 "protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider henvist fra \"$1\")",
