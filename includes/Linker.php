@@ -221,6 +221,13 @@ class Linker {
 
 	/**
 	 * Pass a title object, not a title string
+	 * @param object Title of target page
+	 * @param string Text to replace the title
+	 * @param string Link target
+	 * @param string Text after link
+	 * @param string Text before link text
+	 * @param string Extra attributes to the a-element
+	 * @return the a-element
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
 		global $wgTitle;
@@ -252,6 +259,8 @@ class Linker {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text );
+
+		if ( $aprops !== '' ) $aprops = ' ' . $aprops;
 		
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
