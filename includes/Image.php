@@ -854,7 +854,7 @@ class Image
 	 * @return ThumbnailImage
 	 * @access public
 	 */
-	function &getThumbnail( $width, $height=-1 ) {
+	function getThumbnail( $width, $height=-1 ) {
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
 		}
