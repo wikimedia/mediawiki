@@ -793,8 +793,6 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 "listusers"		=> "فهرست کاربران",
 "specialpages"	=> "صفحات ویژه",
 "spheading"		=> "صفحات ویژه‌ی همه‌ی کاربران",
-"sysopspheading" => "فقط برای استفاده‌ی اپراتور سیستم",
-"developerspheading" => "فقط برای استفاده‌ی برنامه‌نویس",
 "protectpage"	=> "محافظت از صفحه",
 "recentchangeslinked" => "تغییرات مرتبط",
 "rclsub"		=> "(به صفحات پیونددار از «$1»)",

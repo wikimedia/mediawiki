@@ -747,17 +747,6 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "listusers" => "Daftar Pengguna",
 "specialpages" => "Halaman Istimewa",
 "spheading" => "Halaman Istimewa untuk Semua Pengguna",
-'asksqlpheading' => 'Tingkat asksql', 
-'blockpheading' => 'Tingkat block', 
-'createaccountpheading' => 'Tingkat createaccount', 
-'deletepheading' => 'Tingkat delete', 
-'userrightspheading' => 'Tingkat userrights', 
-'siteadminpheading' => 'Tingkat siteadmin', 
-
-/** obsoletes
-"sysopspheading" => "Hanya untuk Sysop",
-"developerspheading" => "Hanya untuk Pengembang",
-*/
 "protectpage" => "Lindungi halaman",
 "recentchangeslinked" => "Perubahan terkait",
 "rclsub" => "(untuk halaman yang berpaut dari \"$1\")",

@@ -818,8 +818,6 @@ flotche, di cenes metowes so $1. Li scrijhaedje corek pout esse mostré inte
 "listusers"		=> "Djivêye des uzeus",
 "specialpages"	=> "Pådjes sipeciåles",
 "spheading"		=> "Pådjes sipeciåles po tos ls uzeus",
-"sysopspheading" => "Pådjes sipeciåles po les manaedjeus",
-"developerspheading" => "Pådjes sipeciåles po les diswalpeus",
 "protectpage"	=> "Protedjî l'&nbsp;pådje",
 "recentchangeslinked" => "Candjmints aloyîs",
 "rclsub"		=> "(ezès pådjes ki «$1» a-st on loyén dzeu)",

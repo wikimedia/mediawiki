@@ -669,8 +669,6 @@ Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan ya
 "listusers"		=> "Senarai Pengguna",
 "specialpages"	=> "Halaman Istimewa",
 "spheading"		=> "Halaman Istimewa", #"Special pages",
-"sysopspheading" => "Halaman Istimewa Admin",
-"developerspheading" => "",
 "protectpage"	=> "Halaman dilindungi",
 "recentchangeslinked" => "Pautan pilihan",
 "rclsub"		=> "(Untuk halaman yang berpaut dari \"$1\")",   #"(to pages linked from \"$1\")",

@@ -151,7 +151,6 @@ pages that were vandalized).', */
 /* 'blocklogtext' => 'This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.', */
-#'blockpheading' => 'block level',
 'bold_sample' => 'Nivîsa qalind',
 'bold_tip' => 'Nivîsa qalind',
 'booksources' => 'Çavkaniyên pirtûkan',
@@ -267,7 +266,6 @@ public domain or similar free resource (see $1 for details).
 #'couldntremove' => 'Couldn\'t remove item \'$1\'...',
 'createaccount' => 'Hesabê nû çêke',
 'createaccountmail' => 'bi e-name',
-#'createaccountpheading' => 'createaccount level',
 #'createarticle' => 'Create article',
 #'created' => 'created',
 #'creditspage' => 'Page credits',
@@ -312,7 +310,6 @@ The destination article "[[$1]]" already exists. Do you want to delete it to mak
 'deleteimg' => 'jêbibe',
 #'deleteimgcompletely' => 'Delete all revisions',
 'deletepage' => 'Rûpelê jê bibe',
-#'deletepheading' => 'delete level',
 #'deletesub' => '(Deleting "$1")',
 'deletethispage' => 'Vê rûpelê jê bibe',
 #'deletionlog' => 'deletion log',
@@ -729,7 +726,6 @@ Bi vê grêdanê tu dikarî vê gotarê çêkî an biguherînî: <a href="/w/wik
 #'group-loggedin-name' => 'User',
 #'group-steward-desc' => 'Full access',
 #'group-steward-name' => 'Steward',
-#'grouprightspheading' => 'grouprights level',
 #'groups' => 'User groups',
 #'groups-addgroup' => 'Add group',
 #'groups-already-exists' => 'A group of that name already exists',
@@ -1300,7 +1296,6 @@ the text into a text file and save it for later.</strong>', */
 #'renamegrouplogentry' => 'Renamed group $2 to $3',
 #'resetprefs' => 'Reset',
 #'restorelink' => '$1 deleted edits',
-#'restrictedpheading' => 'Restricted special pages',
 #'resultsperpage' => 'Hits per page',
 'retrievedfrom' => 'Ji "$1" hatiye standin.',
 'returnto' => 'Bizivire $1.',
@@ -1373,18 +1368,7 @@ Please hit "back" and reload the page you came from, then try again.', */
 'showlast' => '$1 wêneyên dawî bi rêz kirî $2 nîşan bide.',
 'showpreview' => 'Pêşdîtin',
 'showtoc' => 'nîşan bide',
-'sidebar' => '
-* navigation
-** mainpage|mainpage
-** portal-url|portal
-** currentevents-url|currentevents
-** recentchanges-url|recentchanges
-** randompage-url|randompage
-** helppage|help
-** sitesupport-url|sitesupport',
 'sig_tip' => 'Îmze û demxeya wext ya te',
-#'siteadminpheading' => 'siteadmin level',
-#'sitenotice' => '-',
 'sitestats' => 'Statîstîkên sîteyê',
 'sitestatstext' => 'Di \'\'database\'\' de <b>$1</b> rûpel hene. Tê de rûpelên nîqaşê, rûpelên der barê Wîkîpediyayê, rûpelên pir kurt (stub), rûpelên ragihandinê (redirect) û rûpelên din ku qey ne gotar in hene.
 
@@ -1582,7 +1566,6 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 #'userrights-logcomment' => 'Changed group membership from $1 to $2',
 #'userrights-lookup-user' => 'Manage user groups',
 'userrights-user-editname' => 'Enter a username:',
-#'userrightspheading' => 'userrights level',
 'userstats' => 'Statistîkên bikarhêneran',
 'userstatstext' => '<b>$1</b> bikarhênerên qeydkirî hene. Ji wan <b>$2</b> administrator/koordînator in. (Binêre $3).
 <br><br>

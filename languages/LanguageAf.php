@@ -603,8 +603,6 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "listusers"		=> "Gebruikerslys",
 "specialpages"	=> "Spesiale bladsye",
 "spheading"		=> "Spesiale bladsye",
-"sysopspheading" => "Spesiale bladsye vir die sisop se gebruik",
-"developerspheading" => "Spesiale bladsye vir programmeerders se gebruik",
 "protectpage"	=> "Beskerm bladsy",
 "recentchangeslinked" => "Verwante veranderings",
 "rclsub"		=> "(na bladsye waarna \"$1\" skakel)",

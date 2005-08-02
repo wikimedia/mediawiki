@@ -966,13 +966,6 @@ $commonMsg = array (
 'specialpages',
 'spheading',
 'restrictedpheading',
-'asksqlpheading',
-'blockpheading',
-'createaccountpheading',
-'deletepheading',
-'userrightspheading',
-'grouprightspheading',
-'siteadminpheading',
 'recentchangeslinked',
 
 
@@ -1171,4 +1164,5 @@ $commonMsg = array (
 'variantname-zh',
 'zhconversiontable',
 'passwordtooshort', // sp preferences / userlogin
+);
 ?>

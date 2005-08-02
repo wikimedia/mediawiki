@@ -740,8 +740,6 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 "listusers"  => "Листа корисника",
 "specialpages" => "Посебне странице",
 "spheading"  => "Посебне странице за све кориснике",
-"sysopspheading" => "Само за сисопе",
-"developerspheading" => "Само за девелопере",
 "protectpage" => "Заштити страницу",
 "recentchangeslinked" => "Сродне промене",
 "rclsub"  => "(на странице повезане од \"$1\")",

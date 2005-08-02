@@ -907,8 +907,6 @@ border='0' alt='Google'/></a>
 'listusers'    => 'Списък на потребителите',
 'specialpages'  => 'Специални страници',
 'spheading'    => 'За всички потребители',
-'sysopspheading' => 'Само за администратори',
-'developerspheading' => 'Само за разработчици',
 'protectpage'  => 'Защитена страница',
 'recentchangeslinked' => 'Сродни промени',
 'rclsub'    => "(на страници, сочени от \"$1\")",

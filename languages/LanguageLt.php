@@ -367,7 +367,6 @@ Taigi vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, o žiūrėtas '
 'statistics' => "Statistika",
 'subcategorycount' => "Kategorijoje esančių kategorijų - $1",
 'summary' => "Komentaras",
-'sysopspheading' => "Administratoriams skirti puslapiai",
 'talk' => "Diskusijos",
 'talkpage' => "Aptarti straipsnį",
 'toc' => "Turinys",

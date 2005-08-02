@@ -721,8 +721,6 @@ lenker til den samme artikkel i $1. Omdirigeringer og underartikler er
 "listusers"		=> "Brukerliste",
 "specialpages"	=> "Spesialsider",
 "spheading"		=> "Spesialsider for alle brukere",
-"sysopspheading" => "Kun for sysop-bruk",
-"developerspheading" => "Kun for utvikler-bruk",
 "protectpage"	=> "Beskytt side",
 "recentchangeslinked" => "Relaterte endringer",
 "rclsub"		=> "(til sider med lenke fra \"$1\")",
