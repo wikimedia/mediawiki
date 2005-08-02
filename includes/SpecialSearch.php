@@ -161,7 +161,7 @@ class SpecialSearch {
 			return;
 		}
 
-		$search =& SearchEngine::create();
+		$search = SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$titleMatches = $search->searchTitle( $term );

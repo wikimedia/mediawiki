@@ -86,7 +86,7 @@ class SearchMySQL extends SearchEngine {
 	 * @access private
 	 */
 	function queryLimit() {
-		return $this->db->limitResult( $this->limit, $this->offset );
+		return $this->db->limitResult('', $this->limit, $this->offset );
 	}
 
 	/**
