@@ -632,7 +632,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * Fix Special:Allmessages under PHP 5
 * (bug 2911) Special:Watchlist allowed only one type of limit at a time
-
+* (bug 693) Special:Allmessages is excessively wide and redundant
 
 === Caveats ===
 
