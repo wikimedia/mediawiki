@@ -393,28 +393,35 @@ function insertTags(tagOpen, tagClose, sampleText) {
 function akeytt() {
     if(typeof ta == "undefined" || !ta) return;
     pref = 'alt-';
-    if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1 ) pref = 'control-';
+	if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1
+           || navigator.userAgent.toLowerCase().indexOf( 'konqueror' ) + 1 ) pref = 'control-';
     if(is_opera) pref = 'shift-esc-';
+
     for(id in ta) {
         n = document.getElementById(id);
         if(n){
+			// Are we putting accesskey in it
+			if(ta[id][0].length > 0) {
+				// Is this object a object? If not assume it's the next child.
+
+				if ( n.nodeName.toLowerCase() == "a" ) {
+					a = n;
+				} else {
             a = n.childNodes[0];
+				}
+
             if(a){
-                if(ta[id][0].length > 0) {
                     a.accessKey = ta[id][0];
                     ak = ' ['+pref+ta[id][0]+']';
+                }
                 } else {
+				// We don't care what type the object is when assigning tooltip
+				a = n;
                     ak = '';
                 }
-                a.title = ta[id][1]+ak;
-            } else {
-                if(ta[id][0].length > 0) {
-                    n.accessKey = ta[id][0];
-                    ak = ' ['+pref+ta[id][0]+']';
-                } else {
-                    ak = '';
-                }
-                n.title = ta[id][1]+ak;
+
+			if (a) {
+				a.title = ta[id][1]+ak;
             }
         }
     }
