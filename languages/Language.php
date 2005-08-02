@@ -2085,7 +2085,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'imagelistall' => 'all',
 'watchlistall1' => 'all',
 'watchlistall2' => 'all',
-'contributionsall' => 'all',
+'namespacesall' => 'all',
 
 # E-mail address confirmation
 'confirmemail' => 'Confirm E-mail address',
