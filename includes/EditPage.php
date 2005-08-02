@@ -20,9 +20,9 @@ class EditPage {
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
-	var $minoredit = false, $watchthis = false;
+	var $minoredit = false, $watchthis = false, $recreate = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '';
-	var $edittime = '', $section = '';
+	var $edittime = '', $section = '', $starttime = '';
 	var $oldid = 0;
 
 	/**
@@ -217,6 +217,7 @@ class EditPage {
 			$this->summary   =        $request->getText( 'wpSummary'  );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
+			$this->starttime = $request->getVal( 'wpStarttime' );
 			if( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
 				$this->preview  = true;
@@ -239,6 +240,12 @@ class EditPage {
 				$this->edittime = null;
 			}
 
+			if( !preg_match( '/^\d{14}$/', $this->starttime )) {
+				$this->starttime = null;
+			}
+	
+			$this->recreate  = $request->getCheck( 'wpRecreate' );
+
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 		} else {
@@ -248,11 +255,13 @@ class EditPage {
 			$this->mMetaData = '';
 			$this->summary   = '';
 			$this->edittime  = '';
+			$this->starttime = wfTimestampNow();
 			$this->preview   = false;
 			$this->save      = false;
 			$this->diff	 = false;
 			$this->minoredit = false;
 			$this->watchthis = false;
+			$this->recreate  = false;
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
@@ -306,7 +315,32 @@ class EditPage {
 		// css / js subpages of user pages get a special treatment
 		$isCssJsSubpage = $wgTitle->isCssJsSubpage();
 		
-		if(!$this->mTitle->getArticleID()) { # new article
+
+		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
+		 * no matter it's current state
+		 */
+		$deletetime = 0;
+		$confirmdelete = false;
+		if ( $this->edittime != '' ) {
+			/* Note that we rely on logging table, which hasn't been always there,
+			 * but that doesn't matter, because this only applies to brand new
+			 * deletes. This is done on every preview and save request. Move it further down
+			 * to only perform it on saves
+			 */
+			if ( $this->mTitle->isDeleted() ) {
+				$query = $this->getLastDelete();
+				if ( !is_null($query) ) {
+					$deletetime = $query->log_timestamp;
+					if ( ($deletetime - $this->starttime) > 0 ) {
+						$confirmdelete = true;
+					}
+				}
+			}
+		}
+		
+
+
+		if(!$this->mTitle->getArticleID() && ('initial' == $formtype || $firsttime )) { # new article
 			$editintro = $wgRequest->getText( 'editintro' );
 			$addstandardintro=true;
 			if($editintro) {
@@ -372,6 +406,11 @@ class EditPage {
 				$wgOut->rateLimited();
 				return;
 			}
+
+			# If the article has been deleted while editing, don't save it without
+			# confirmation
+			if ( !$confirmdelete || $this->recreate ) {
+				
 
 			# If article is new, insert it.
 			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
@@ -484,6 +523,7 @@ wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArti
 					}
 				}
 			}
+		}
 		}
 		# First time through: get contents, set time for conflict
 		# checking, etc.
@@ -703,6 +743,23 @@ wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArti
 		}
 		else $metadata = "" ;
 
+		$hidden = '';
+		$recreate = '';
+		if ($confirmdelete) {
+			if ( 'save' != $formtype ) {
+				$wgOut->addWikiText( wfMsg('bw_deletedwhileediting'));
+			} else {
+				// Hide the toolbar and edit area, use can click preview to get it back
+				// Add an confirmation checkbox and explanation.
+				$toolbar = '';
+				$hidden = 'type="hidden" style="display:none;"';
+				$recreate = $wgOut->parse( wfMsg( 'bw_confirmrecreate',  $query->user_name , $query->log_comment ));
+				$recreate .=
+					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
+					"<label for='wpRecreate' title='".wfMsg('bw_tooltip-recreate')."'>". wfMsg('bw_recreate')."</label>";
+			}
+		}
+
 		$safemodehtml = $this->checkUnicodeCompliantBrowser()
 			? ""
 			: "<input type='hidden' name=\"safemode\" value='1' />\n";
@@ -711,9 +768,10 @@ wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArti
 {$toolbar}
 <form id="editform" name="editform" method="post" action="$action"
 enctype="multipart/form-data">
+$recreate
 {$commentsubject}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
-cols='{$cols}'{$ew}>
+cols='{$cols}'{$ew} $hidden>
 END
 . htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
 "
@@ -732,6 +790,7 @@ END
 		$wgOut->addWikiText( $copywarn );
 		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
+<input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
 		if ( $wgUser->isLoggedIn() ) {
@@ -769,6 +828,38 @@ END
 			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
 			$wgOut->addHTML( $this->getDiff() );
 		}
+	}
+
+	function getLastDelete() {
+		$dbr =& wfGetDB( DB_SLAVE );
+
+		$res = $dbr->select(
+			array( 'logging', 'user' ),
+			array( 'log_type',
+			       'log_action',
+			       'log_timestamp',
+			       'log_user',
+			       'log_namespace',
+			       'log_title',
+			       'log_comment',
+			       'log_params',
+			       'user_name', ),
+			array( 'log_namespace="' . $this->mTitle->getNamespace() . '"',
+			       'log_title="' . $this->mTitle->getDBkey() . '"',
+			       'log_type="delete"',
+			       'log_action="delete"',
+			       'user_id=log_user' ),
+			'EditPage::getLastDelete',
+			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ) );
+
+		if($dbr->numRows($res) == 1) {
+			while ( $x = $dbr->fetchObject ( $res ) )
+				$data = $x;
+			$dbr->freeResult ( $res ) ;
+		} else {
+			$data = null;
+		}
+		return $data;
 	}
 
 	/**
