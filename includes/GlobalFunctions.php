@@ -523,7 +523,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	if( is_object( $link ) ) {
 		$title =& $link;
 	} else {
-		$title =& Title::newFromText( $link );
+		$title = Title::newFromText( $link );
 		if( is_null( $title ) ) {
 			return false;
 		}
