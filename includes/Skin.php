@@ -549,7 +549,7 @@ END;
 
 	function getUndeleteLink() {
 		global $wgUser, $wgTitle, $wgContLang, $action;
-		if( $wgUser->isAllowed('rollback') &&
+		if( $wgUser->isAllowed('delete') &&
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) ) {
 			return wfMsg( 'thisisdeleted',
