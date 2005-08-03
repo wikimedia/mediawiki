@@ -83,12 +83,20 @@ class PageArchive {
 			       'ar_title' => $this->title->getDbkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			$fname );
+		return $this->getTextFromRow( $row );
+	}
+
+	/**
+	 * Get the text from an archive row containing ar_text, ar_flags and ar_text_id
+	 */
+	function getTextFromRow( $row ) {
 		if( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
 			return Revision::getRevisionText( $row, "ar_" );
 		} else {
 			// New-style: keyed to the text storage backend.
+			$dbr =& wfGetDB( DB_SLAVE );
 			$text = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $row->ar_text_id ),
@@ -96,6 +104,7 @@ class PageArchive {
 			return Revision::getRevisionText( $text );
 		}
 	}
+		
 
 	/**
 	 * Fetch (and decompress if necessary) the stored text of the most
@@ -108,13 +117,13 @@ class PageArchive {
 	function getLastRevisionText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
-			array( 'ar_text', 'ar_flags' ),
+			array( 'ar_text', 'ar_flags', 'ar_text_id' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::getLastRevisionText',
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		if( $row ) {
-			return Revision::getRevisionText( $row, "ar_" );
+			return $this->getTextFromRow( $row );
 		} else {
 			return NULL;
 		}
