@@ -747,16 +747,16 @@ wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArti
 		$recreate = '';
 		if ($confirmdelete) {
 			if ( 'save' != $formtype ) {
-				$wgOut->addWikiText( wfMsg('bw_deletedwhileediting'));
+				$wgOut->addWikiText( wfMsg('deletedwhileediting'));
 			} else {
 				// Hide the toolbar and edit area, use can click preview to get it back
 				// Add an confirmation checkbox and explanation.
 				$toolbar = '';
 				$hidden = 'type="hidden" style="display:none;"';
-				$recreate = $wgOut->parse( wfMsg( 'bw_confirmrecreate',  $query->user_name , $query->log_comment ));
+				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $query->user_name , $query->log_comment ));
 				$recreate .=
 					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
-					"<label for='wpRecreate' title='".wfMsg('bw_tooltip-recreate')."'>". wfMsg('bw_recreate')."</label>";
+					"<label for='wpRecreate' title='".wfMsg('tooltip-recreate')."'>". wfMsg('recreate')."</label>";
 			}
 		}
 
@@ -832,7 +832,7 @@ END
 
 	function getLastDelete() {
 		$dbr =& wfGetDB( DB_SLAVE );
-
+		$fname = 'EditPage::getLastDelete';
 		$res = $dbr->select(
 			array( 'logging', 'user' ),
 			array( 'log_type',
@@ -849,7 +849,7 @@ END
 			       'log_type="delete"',
 			       'log_action="delete"',
 			       'user_id=log_user' ),
-			'EditPage::getLastDelete',
+			$fname,
 			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ) );
 
 		if($dbr->numRows($res) == 1) {
