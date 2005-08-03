@@ -639,7 +639,11 @@ class OutputPage {
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
 		$this->mBodytext = '';
-		$this->addWikiText( wfMsg( 'loginreqtext' ) );
+		$loginpage = Title::makeTitle(NS_SPECIAL, 'Userlogin');
+		$sk = $wgUser->getSkin();
+		$loginlink = $sk->makeKnownLinkObj($loginpage, wfMsg('loginreqlink'), 
+			'returnto=' . htmlspecialchars($wgTitle->getPrefixedDBkey()));
+		$this->addHTML( wfMsgHtml( 'loginreqpagetext', $loginlink ) );
 
 		# We put a comment in the .html file so a Sysop can diagnose the page the
 		# user can't see.
