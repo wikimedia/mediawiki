@@ -2124,6 +2124,18 @@ $1
 'trackbackremove' => ' ([$1 Delete])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
+
+
+# delete conflict
+
+'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
+'confirmrecreate' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this article after you started editing with reason:
+: \'\'$2\'\'
+Please confirm that really want to recreate this article.',
+'recreate' => 'Recreate',
+'tooltip-recreate' => '',
+
+
 );
 
 /* a fake language converter */
