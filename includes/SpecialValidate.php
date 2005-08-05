@@ -493,7 +493,7 @@ class Validation {
 		global $wgRequest;
 		$this->topicList = $this->getTopicList();
 		
-		$iamsure = $wgRequest->getVal( "iamsure", "0" ) == 1;
+		$iamsure = true ; # Sure by default # $wgRequest->getVal( "iamsure", "0" ) == 1;
 		
 		if( $iamsure && $wgRequest->getVal( "m_add", "--" ) != "--" ) {
 			$new_topic = $wgRequest->getVal( "m_topic" );
@@ -529,8 +529,8 @@ class Validation {
 		$r .= '<td>1 .. <input type="text" name="m_limit" value="" size="4"/></td>' . "\n";
 		$r .= '<td><input type="submit" name="m_add" value="' . htmlspecialchars( wfMsg( 'val_add' ) ) . '"/></td>' . "\n";
 		$r .= "</tr></table>\n";
-		$r .= '<p><input type="checkbox" name="iamsure" id="iamsure" value="1"/>';
-		$r .= '<label for="iamsure">' . $this->getParsedWiki( wfMsg( 'val_iamsure' ) ) . "</label></p>\n";
+#		$r .= '<p><input type="checkbox" name="iamsure" id="iamsure" value="1"/>';
+#		$r .= '<label for="iamsure">' . $this->getParsedWiki( wfMsg( 'val_iamsure' ) ) . "</label></p>\n";
 		$r .= "</form>\n";
 		return $r;
 	}
