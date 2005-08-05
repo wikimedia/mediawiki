@@ -27,13 +27,14 @@ class Validation {
 	var $topicList;
 	var $voteCache;
 	var $page_id;
+	var $rev_fields = "rev_id,rev_page,rev_timestamp,rev_user_text,rev_user,rev_comment" ;
 
 	function getRevisionFromId( $rev_id ) {
 		if( isset( $this->id2rev[$rev_id] ) ) return $this->id2rev[$rev_id];
 
 		$db =& wfGetDB( DB_SLAVE );
 		$fname = 'SpecialValidate::getRevisionFromId';
-		$res = $db->select( 'revision', '*', array( 'rev_id' => $rev_id ), $fname, array( 'LIMIT' => 1 ) );
+		$res = $db->select( 'revision', $this->rev_fields, array( 'rev_id' => $rev_id ), $fname, array( 'LIMIT' => 1 ) );
 		$rev = $db->fetchObject($res);
 		$db->freeResult($res);
 
@@ -48,7 +49,7 @@ class Validation {
 
 		$db =& wfGetDB( DB_SLAVE );
 		$fname = 'SpecialValidate::getRevisionFromTimestamp';
-		$res = $db->select( 'revision', '*',
+		$res = $db->select( 'revision', $this->rev_fields,
 			array( 'rev_page' => $this->page_id, 'rev_timestamp' => $timestamp ),
 			$fname, array( 'LIMIT' => 1 )
 		);
@@ -75,6 +76,8 @@ class Validation {
 		$db =& wfGetDB( DB_SLAVE );
 
 		$topics = array();
+		
+		# NOTE : This query returns only the topics to vote on
 		$res = $db->select( 'validate', '*', array( 'val_page' => 0 ), 'SpecialValidate::getTopicList' );
 		while( $topic = $db->fetchObject($res) ) {
 			$topics[$topic->val_type] = $topic;
@@ -214,6 +217,10 @@ class Validation {
 	# Reads the entire vote list for this user for the given article
 	function getVoteList( $id, $user = "" ) {
 		$db =& wfGetDB( DB_SLAVE );
+		
+		# NOTE : This query gets the votes for a single user on a single page.
+		# Assuming most people will use the "merge" feature,
+		# this will be only a single entry.
 		$res = $db->select( 'validate', '*', array_merge( array( 'val_page' => $id ), $this->identifyUser($user) ) );
 
 		$revisions = array();
@@ -231,18 +238,13 @@ class Validation {
 	}
 	
 	# Reads the entire vote list for this user for all articles
-	# XXX Should be paged
 	function getAllVoteLists( $user ) {
 		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( 'validate', '*', $this->identifyUser($user) );
-
-		$votes = array();
-		while( $vote = $db->fetchObject($res) ) {
-			$votes[$vote->val_page][$vote->val_revision][$vote->val_type] = $vote;
-		}
-		$db->freeResult($res);
-
-		return $votes;
+		$this->allVoteDb = $db ;
+		$a = $this->identifyUser($user) ;
+		$b = array ( "ORDER BY" => "val_page,val_revision" ) ;
+		$res = $db->select( 'validate', '*', $a , 'getAllVotesList' , $b );
+		return $res ;
 	}
 	
 	# This functions adds a topic to the database
@@ -679,12 +681,49 @@ class Validation {
 		return $ret;
 	}
 
-	# XXX This should be paged
+	
+	var $allVotesCount ;
+	var $allVoteRes ;
+	var $allVoteDb ;
+	
+	# This function will get an SQL results handle on the first call
+	# and iterate through the results on each call, until
+	# it hits the end; after that, it will return an empty array
+	# to signal the calling function to stop
+	function iterateAllVotes ( $user ) {
+		if ( $this->allVotesCount == -1 ) return array () ; # This is the end, my friend, the end
+		
+		if ( $this->allVotesCount == 0 ) {
+			$this->allVoteRes = $this->getAllVoteLists( $user ) ;
+			$this->allVotesCount = 1 ;
+		}
+		
+		
+		$votes = array();
+		if( $vote = $this->allVoteDb->fetchObject($this->allVoteRes) ) {
+			$votes[$vote->val_page][$vote->val_revision][$vote->val_type] = $vote;
+		} else {
+			$this->allVoteDb->freeResult($this->allVoteRes);
+			$this->allVotesCount = -1 ; # Setting stop mark
+			return array () ;
+		}
+
+		$a = array () ;
+		if ( count ( $votes ) != 0 ) {
+			foreach ( $votes AS $k => $v ) {
+				$a[$k] = $v ;
+				break ; # Just once...
+			}
+			unset ( $this->allVotesCache[$k] ) ;
+		}
+		return $a ;
+	}
+	
 	function showUserStats( $user ) {
 		global $wgOut, $wgUser;
 		$this->topicList = $this->getTopicList();
-		$data = $this->getAllVoteLists( $user );
 		$sk = $wgUser->getSkin();
+		$this->allVotesCount = 0 ; # Initialize
 		
 		if( $user == $wgUser->getID() ) {
 			$wgOut->setPageTitle ( wfMsg ( 'val_my_stats_title' ) );
@@ -695,7 +734,12 @@ class Validation {
 		}
 		
 		$ret = "<table>\n";
-		foreach( $data as $articleid => $revisions ) {
+		
+		while ( 1 ) {
+			$temp = $this->iterateAllVotes ( $user ) ;
+			if ( count ( $temp ) == 0 ) break ; # All done
+			$articleid = array_shift ( array_keys ( $temp ) ) ;
+			$revisions = array_shift ( $temp ) ;
 			$title = Title::newFromID( $articleid );
 			$ret .= "<tr><th colspan='4'>";
 			$ret .= $sk->makeKnownLinkObj( $title, $title->getEscapedText() );
