@@ -735,23 +735,37 @@ class Validation {
 		
 		$ret = "<table>\n";
 		
+		$lastpage = -1 ;
+		$lastrevision = -1 ;
+		$initial = false ;
 		while ( 1 ) {
 			$temp = $this->iterateAllVotes ( $user ) ;
 			if ( count ( $temp ) == 0 ) break ; # All done
 			$articleid = array_shift ( array_keys ( $temp ) ) ;
 			$revisions = array_shift ( $temp ) ;
 			$title = Title::newFromID( $articleid );
-			$ret .= "<tr><th colspan='4'>";
-			$ret .= $sk->makeKnownLinkObj( $title, $title->getEscapedText() );
-			$ret .= "</th></tr>";
+			if ( $lastpage != $articleid ) {
+				$ret .= "<tr><th colspan='4'>";
+				$ret .= $sk->makeKnownLinkObj( $title, $title->getEscapedText() );
+				$ret .= "</th></tr>";
+				$lastpage = $articleid ;
+				$lastrevision = -1 ;
+			}
 			krsort( $revisions );
 			foreach( $revisions as $revid => $revision ) {
 				$url = $title->getLocalURL( "oldid={$revid}" );
-				$ret .= "<tr><th>";
-				$ret .= $sk->makeKnownLinkObj( $title, wfMsg('val_revision_number', $revid ), "oldid={$revid}" );
-				$ret .= "</th>";
+				if ( $lastrevision != $revid ) {
+					$initial = true ;
+					$lastrevision = $revid ;
+				}
+				$ret .= "<tr>" ;
+				if ( $initial ) {
+					$ret .= "<th>";
+					$ret .= $sk->makeKnownLinkObj( $title, wfMsg('val_revision_number', $revid ), "oldid={$revid}" );
+					$ret .= "</th>";
+				}
 				ksort( $revision );
-				$initial = true;
+				#$initial = true;
 				foreach( $revision as $topic => $rating ) {
 					if( !$initial ) {
 						$ret .= "<tr><td/>";
