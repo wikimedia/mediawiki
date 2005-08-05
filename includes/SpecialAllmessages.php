@@ -97,7 +97,7 @@ function makeHTMLText( $messages ) {
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	$txt = "
 <table border='1' cellspacing='0' width='100%' id='allmessagestable'>
-	<tr >
+	<tr>
 		<th rowspan='2'>" . wfMsgHtml('allmessagesname') . "</th>
 		<th>" . wfMsgHtml('allmessagesdefault') . "</th>
 	</tr>
