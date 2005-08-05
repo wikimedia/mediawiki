@@ -411,7 +411,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'print' => 'Print',
-'edit' => 'Edit this page',
+'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 'deletethispage' => 'Delete this page',
