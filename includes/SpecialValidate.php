@@ -238,7 +238,7 @@ class Validation {
 		return $revisions;
 	}
 	
-	# Reads the entire vote list for this user for all articles
+	# Reads a partial vote list for this user for all articles
 	function getAllVoteLists( $user , $offset , $limit ) {
 		$db =& wfGetDB( DB_SLAVE );
 		$a = $this->identifyUser($user) ;
@@ -287,6 +287,7 @@ class Validation {
 		ksort( $this->topicList );
 	}
 
+	# This function deletes a topic and all votes for it. CAREFUL!
 	function deleteTopic( $id ) {
 		$db =& wfGetDB( DB_MASTER );
 		$db->delete( 'validate', array( 'val_type' => $id ), 'SpecialValidate::deleteTopic' );
@@ -621,18 +622,21 @@ class Validation {
 		return $ret;
 	}
 	
-	# XXX This should be paged
 	function showList( &$article ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser , $wgRequest;
 		$this->page_id = $article->getID();
 		$this->topicList = $this->getTopicList();
 
 		$title = $article->getTitle();
 		$wgOut->setPageTitle( str_replace( '$1', $title->getPrefixedText(), wfMsg( 'val_validation_of' ) ) );
 		
+		$offset = $wgRequest->getVal ( "offset" , 0 ) ; 
+		$limit = $wgRequest->getVal ( "limit" , 25 ) ; 
+		
 		# Collecting statistic data
+		# Unfortunately, it has to read all the data, though it will only display a part
 		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( 'validate', '*', array( "val_page" => $this->page_id ), 'SpecialValidate::showList' );
+		$res = $db->select( 'validate', '*', array( "val_page" => $this->page_id ), 'SpecialValidate::showList' );#, $b );
 
 		$statistics = array();
 		while( $vote = $db->fetchObject($res) ) {
@@ -646,7 +650,7 @@ class Validation {
 		$db->freeResult($res);
 
 		krsort( $statistics );
-		
+
 		$ret = "<table><tr>\n";
 		$ret .= "<th>" . $this->getParsedWiki( wfMsg( "val_revision" ) ) . "</th>\n";
 		foreach( $this->topicList as $topic ) {
@@ -654,6 +658,9 @@ class Validation {
 		}
 		$ret .= "</tr>\n";
 
+		# Paging
+		$statistics = array_slice ( $statistics , $offset , $limit ) ;
+		
 		foreach( $statistics as $ts => $data ) {
 			$rev_id = $this->getRevisionId( $ts );
 			$revision_link = $this->getRevisionLink( $article, $rev_id, wfTimestamp( TS_DB, $ts ) );
@@ -671,7 +678,13 @@ class Validation {
 			$ret .= "</tr>\n";
 		}
 		$ret .= "</table>\n";
+
+		# Navbar
+		$s = $this->navBar ( $offset , $limit , count ( $statistics ) , "list" ) ;
+		$ret = $s . $ret . $s . "<p/>" ;
+
 		$ret .= "<p>" . $this->getUserRatingsLink( $wgUser->getID(), wfMsg( 'val_show_my_ratings' ) ) . "</p>";
+
 		return $ret;
 	}
 	
@@ -688,14 +701,21 @@ class Validation {
 		return $ret;
 	}
 
-	function navBar ( $offset , $limit , $lastcount ) {
-		global $wgRequest , $wgUser ;
+	function navBar ( $offset , $limit , $lastcount , $mode = "userstats" ) {
+		global $wgRequest , $wgUser , $wgTitle ;
 		$sk = $wgUser->getSkin();
 		$r = array () ;
 		$user = $wgRequest->getVal( "user" );
-		$nt = Title::newFromText( 'Special:Validate' );
 		
-		$base = "action=validate&mode=userstats&user={$user}&limit={$limit}&offset=" ;
+		if ( $mode == "userstats" ) {
+			$nt = Title::newFromText( 'Special:Validate' );
+		} else {
+			$nt = $wgTitle ;
+		}
+		
+		$base = "action=validate&mode={$mode}&" ;
+		if ( $user != "" ) $base .= "user={$user}&" ;
+		$base .= "limit={$limit}&offset=" ;
 		
 		if ( $offset > 0 ) {
 			$o = $offset - $limit ; 
