@@ -770,6 +770,7 @@ class PreferencesForm {
 <option value=\"2\"$s2>$msgUnderlinedefault</option>
 </select>
 </label>
+</div>
 ");
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
