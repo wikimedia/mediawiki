@@ -821,13 +821,13 @@ function wfSpecialValidate( $page = '' ) {
 		return;
 	}
 
-/*
+
 	# Can do?
-	if( ! $wgUser->isAllowed('change_validation') ) {
+	if( ! $wgUser->isSysop() ) {#isAllowed('change_validation') ) {
 		$wgOut->sysopRequired();
 		return;
 	}
-*/	
+	
 
 	$mode = $wgRequest->getVal( "mode" );
 	$skin = $wgUser->getSkin();
