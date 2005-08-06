@@ -636,7 +636,7 @@ class Validation {
 		# Collecting statistic data
 		# Unfortunately, it has to read all the data, though it will only display a part
 		$db =& wfGetDB( DB_SLAVE );
-		$res = $db->select( 'validate', '*', array( "val_page" => $this->page_id ), 'SpecialValidate::showList' );#, $b );
+		$res = $db->select( 'validate', 'val_revision,val_type,val_value', array( "val_page" => $this->page_id ), 'SpecialValidate::showList' );#, $b );
 
 		$statistics = array();
 		while( $vote = $db->fetchObject($res) ) {
