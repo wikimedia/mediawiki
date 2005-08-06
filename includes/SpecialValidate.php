@@ -628,7 +628,7 @@ class Validation {
 		$this->topicList = $this->getTopicList();
 
 		$title = $article->getTitle();
-		$wgOut->setPageTitle( str_replace( '$1', $title->getPrefixedText(), wfMsg( 'val_validation_of' ) ) );
+		$wgOut->setPageTitle( wfMsg( 'val_validation_of', $title->getPrefixedText() ) );
 		
 		$offset = $wgRequest->getVal ( "offset" , 0 ) ; 
 		$limit = $wgRequest->getVal ( "limit" , 25 ) ; 
