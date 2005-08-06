@@ -476,6 +476,7 @@ See $1.',
 'showtoc' => 'show',
 'hidetoc' => 'hide',
 'thisisdeleted' => "View or restore $1?",
+'restorelink1' => 'one deleted edit',
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice

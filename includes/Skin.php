@@ -555,7 +555,7 @@ END;
 			return wfMsg( 'thisisdeleted',
 				$this->makeKnownLink(
 					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
-					wfMsg( 'restorelink', $n ) ) );
+					wfMsg( 'restorelink' . ($n == 1 ? '1' : ''), $n ) ) );
 		}
 		return '';
 	}
