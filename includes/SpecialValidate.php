@@ -23,6 +23,7 @@
  * @subpackage SpecialPage
  */
 
+
 class Validation {
 	var $topicList;
 	var $voteCache;
@@ -238,13 +239,19 @@ class Validation {
 	}
 	
 	# Reads the entire vote list for this user for all articles
-	function getAllVoteLists( $user ) {
+	function getAllVoteLists( $user , $offset , $limit ) {
 		$db =& wfGetDB( DB_SLAVE );
-		$this->allVoteDb = $db ;
 		$a = $this->identifyUser($user) ;
-		$b = array ( "ORDER BY" => "val_page,val_revision" ) ;
+		$b = array ( "ORDER BY" => "val_page,val_revision" , "OFFSET" => $offset , "LIMIT" => $limit ) ;
 		$res = $db->select( 'validate', '*', $a , 'getAllVotesList' , $b );
-		return $res ;
+		
+		$votes = array();
+		while( $vote = $db->fetchObject($res) ) {
+			$votes[$vote->val_page][$vote->val_revision][$vote->val_type] = $vote;
+		}
+		$db->freeResult($res);
+		
+		return $votes ;
 	}
 	
 	# This functions adds a topic to the database
@@ -681,49 +688,43 @@ class Validation {
 		return $ret;
 	}
 
-	
-	var $allVotesCount ;
-	var $allVoteRes ;
-	var $allVoteDb ;
-	
-	# This function will get an SQL results handle on the first call
-	# and iterate through the results on each call, until
-	# it hits the end; after that, it will return an empty array
-	# to signal the calling function to stop
-	function iterateAllVotes ( $user ) {
-		if ( $this->allVotesCount == -1 ) return array () ; # This is the end, my friend, the end
+	function navBar ( $offset , $limit , $lastcount ) {
+		global $wgRequest , $wgUser ;
+		$sk = $wgUser->getSkin();
+		$r = array () ;
+		$user = $wgRequest->getVal( "user" );
+		$nt = Title::newFromText( 'Special:Validate' );
 		
-		if ( $this->allVotesCount == 0 ) {
-			$this->allVoteRes = $this->getAllVoteLists( $user ) ;
-			$this->allVotesCount = 1 ;
+		$base = "action=validate&mode=userstats&user={$user}&limit={$limit}&offset=" ;
+		
+		if ( $offset > 0 ) {
+			$o = $offset - $limit ; 
+			$t = $offset-$limit+1 ;
+			$r[] = $sk->makeKnownLinkObj( $nt, "{$t} <<" , $base.$o );
 		}
 		
+		$s1 = $offset + 1 ;
+		$s2 = $s1 + $lastcount - 1 ;
+		$r[] = $s1 . " - " . $s2 ;
 		
-		$votes = array();
-		if( $vote = $this->allVoteDb->fetchObject($this->allVoteRes) ) {
-			$votes[$vote->val_page][$vote->val_revision][$vote->val_type] = $vote;
-		} else {
-			$this->allVoteDb->freeResult($this->allVoteRes);
-			$this->allVotesCount = -1 ; # Setting stop mark
-			return array () ;
+		if ( $lastcount == $limit ) {
+			$o = $offset + $limit ; 
+			$t = $offset+$limit+1 ;
+			$r[] = $sk->makeKnownLinkObj( $nt, ">> {$t}" , $base.$o );
 		}
-
-		$a = array () ;
-		if ( count ( $votes ) != 0 ) {
-			foreach ( $votes AS $k => $v ) {
-				$a[$k] = $v ;
-				break ; # Just once...
-			}
-			unset ( $this->allVotesCache[$k] ) ;
-		}
-		return $a ;
+		
+		$r = implode ( " | " , $r ) ;
+		return $r ;
 	}
 	
-	function showUserStats( $user ) {
-		global $wgOut, $wgUser;
+	function showUserStats( $user ) {		
+		global $wgOut, $wgUser, $wgRequest;
 		$this->topicList = $this->getTopicList();
 		$sk = $wgUser->getSkin();
-		$this->allVotesCount = 0 ; # Initialize
+		
+		$offset = $wgRequest->getVal( "offset" , 0 );
+		$limit = $wgRequest->getVal( "limit" , 25 );
+		$data = $this->getAllVoteLists( $user , $offset , $limit ) ;
 		
 		if( $user == $wgUser->getID() ) {
 			$wgOut->setPageTitle ( wfMsg ( 'val_my_stats_title' ) );
@@ -733,16 +734,14 @@ class Validation {
 			$wgOut->setPageTitle( wfMsg( 'val_user_stats_title', $user ) );
 		}
 		
+		$ret = "" ;
 		$ret = "<table>\n";
 		
+		$linecount = 0 ;
 		$lastpage = -1 ;
 		$lastrevision = -1 ;
 		$initial = false ;
-		while ( 1 ) {
-			$temp = $this->iterateAllVotes ( $user ) ;
-			if ( count ( $temp ) == 0 ) break ; # All done
-			$articleid = array_shift ( array_keys ( $temp ) ) ;
-			$revisions = array_shift ( $temp ) ;
+		foreach ( $data AS $articleid => $revisions ) {
 			$title = Title::newFromID( $articleid );
 			if ( $lastpage != $articleid ) {
 				$ret .= "<tr><th colspan='4'>";
@@ -775,11 +774,16 @@ class Validation {
 					$ret .= "<td>" . $this->getRatingText( $rating->val_value, $this->topicList[$topic]->val_value ) . "</td>";
 					$ret .= "<td>" . $sk->commentBlock( $rating->val_comment ) . "</td>";
 					$ret .= "</tr>";
+					$linecount++ ;
 				}
 			}
 			$ret .= "</tr>";
 		}
 		$ret .= "</table>";
+		
+		
+		$s = $this->navBar ( $offset , $limit , $linecount ) ;
+		if ( $s != "" ) $ret = $s . "<br/>" . $ret . "<br/>" . $s ;
 		
 		return $ret;
 	}
