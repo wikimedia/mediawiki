@@ -762,6 +762,10 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
+		# Remove <noinclude> tags and <includeonly> sections
+		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
+		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
+
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
 		$text = $this->replaceVariables( $text, $args );
 
@@ -2215,12 +2219,12 @@ class Parser
 			}
 			$title = Title::newFromText( $part1, $ns );
 
-                        if ($title) {
-                            $interwiki = Title::getInterwikiLink($title->getInterwiki());
-                            if ($interwiki != '' && $title->isTrans()) {
-                                    return $this->scarytransclude($title, $interwiki);
-                            }
-                        }
+			if ($title) {
+				$interwiki = Title::getInterwikiLink($title->getInterwiki());
+				if ($interwiki != '' && $title->isTrans()) {
+					return $this->scarytransclude($title, $interwiki);
+				}
+			}
 
 			if ( !is_null( $title ) && !$title->isExternal() ) {
 				# Check for excessive inclusion
@@ -2233,11 +2237,11 @@ class Parser
 							$found = true;
 							$noparse = true;
 							$isHTML = true;
-							$this->mOutput->setCacheTime( -1 );
+							$this->disableCache();
 						}
 					} else {
 						$article = new Article( $title );
-						$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
+						$articleContent = $article->fetchContent();
 						if ( $articleContent !== false ) {
 							$found = true;
 							$text = $articleContent;
@@ -2288,6 +2292,10 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			if( $this->mOutputType == OT_HTML ) {
+				# Remove <noinclude> sections and <includeonly> tags
+				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
+				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $this->mAssocArgs );
 			}
