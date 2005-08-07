@@ -476,6 +476,7 @@ See $1.',
 'showtoc' => 'show',
 'hidetoc' => 'hide',
 'thisisdeleted' => "View or restore $1?",
+'viewdeleted' => 'View $1?',
 'restorelink1' => 'one deleted edit',
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
@@ -1335,8 +1336,9 @@ See [[Project:Protected page]] for more information.",
 'unprotectcomment' => 'Reason for unprotecting',
 
 # Undelete
-'undelete' => 'Restore deleted page',
+'undelete' => 'View deleted pages',
 'undeletepage' => 'View and restore deleted pages',
+'viewdeletedpage' => 'View deleted pages',
 'undeletepagetext' => 'The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.',
 'undeletearticle' => 'Restore deleted page',

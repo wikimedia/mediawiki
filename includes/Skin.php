@@ -549,10 +549,15 @@ END;
 
 	function getUndeleteLink() {
 		global $wgUser, $wgTitle, $wgContLang, $action;
-		if( $wgUser->isAllowed('delete') &&
-			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-			($n = $wgTitle->isDeleted() ) ) {
-			return wfMsg( 'thisisdeleted',
+		if(	(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+			($n = $wgTitle->isDeleted() ) ) 
+		{
+			if ( $wgUser->isAllowed( 'delete' ) ) {
+				$msg = 'thisisdeleted';
+			} else {
+				$msg = 'viewdeleted';
+			}
+			return wfMsg( $msg,
 				$this->makeKnownLink(
 					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
 					wfMsg( 'restorelink' . ($n == 1 ? '1' : ''), $n ) ) );
