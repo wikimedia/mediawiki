@@ -3298,6 +3298,14 @@ class Parser
 		$sk =& $this->mOptions->getSkin();
 		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
 	}
+
+	/**
+	 * Set a flag in the output object indicating that the content is dynamic and 
+	 * shouldn't be cached.
+	 */
+	function disableCache() {
+		$this->mOutput->mCacheTime = -1;
+	}
 }
 
 /**
