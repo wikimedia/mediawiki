@@ -297,7 +297,7 @@ class PageArchive {
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
-	var $mTargetTimestamp;
+	var $mTargetTimestamp, $mAllowed;
 
 	function UndeleteForm( &$request, $par = "" ) {
 		global $wgUser;
@@ -309,6 +309,13 @@ class UndeleteForm {
 			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		if( $par != "" ) {
 			$this->mTarget = $par;
+		}
+		if ( $wgUser->isAllowed( 'delete' ) ) {
+			$this->mAllowed = true;
+		} else {
+			$this->mAllowed = false;
+			$this->mTimestamp = '';
+			$this->mRestore = false;
 		}
 		if ( $this->mTarget !== "" ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
@@ -328,6 +335,8 @@ class UndeleteForm {
 	}
 
 	function execute() {
+		global $wgOut;
+		
 		if( is_null( $this->mTargetObj ) ) {
 			return $this->showList();
 		}
@@ -347,7 +356,11 @@ class UndeleteForm {
 		# List undeletable articles
 		$result = PageArchive::listAllPages();
 
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		if ( $this->mAllowed ) {
+			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		} else {
+			$wgOut->setPagetitle( wfMsg( "viewdeletedpage" ) );
+		}
 		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
 
 		$sk = $wgUser->getSkin();
@@ -387,7 +400,11 @@ class UndeleteForm {
 		global $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		if ( $this->mAllowed ) {
+			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		} else {
+			$wgOut->setPagetitle( wfMsg( 'viewdeletedpage' ) );
+		}
 
 		$archive = new PageArchive( $this->mTargetObj );
 		$text = $archive->getLastRevisionText();
@@ -395,23 +412,27 @@ class UndeleteForm {
 			$wgOut->addWikiText( wfMsg( "nohistory" ) );
 			return;
 		}
-		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n----\n" . $text );
+		if ( $this->mAllowed ) {
+			$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n----\n" . $text );
+		}
 
 		# List all stored revisions
 		$revisions = $archive->listRevisions();
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
-		$encTarget = htmlspecialchars( $this->mTarget );
-		$button = htmlspecialchars( wfMsg("undeletebtn") );
-		$token = htmlspecialchars( $wgUser->editToken() );
+		if ( $this->mAllowed ) {
+			$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
+			$action = $titleObj->escapeLocalURL( "action=submit" );
+			$encTarget = htmlspecialchars( $this->mTarget );
+			$button = htmlspecialchars( wfMsg("undeletebtn") );
+			$token = htmlspecialchars( $wgUser->editToken() );
 
-		$wgOut->addHTML("
-	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
-	<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
-	<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-	");
+			$wgOut->addHTML("
+				<form id=\"undelete\" method=\"post\" action=\"{$action}\">
+				<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
+				<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
+				<input type='hidden' name='wpEditToken' value=\"{$token}\" />
+				");
+		}
 
 		# Show relevant lines from the deletion log:
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
@@ -429,10 +450,15 @@ class UndeleteForm {
 		$target = urlencode( $this->mTarget );
 		while( $row = $revisions->fetchObject() ) {
 			$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
-			$checkBox = "<input type=\"checkbox\" name=\"ts$ts\" value=\"1\" />";
-			$pageLink = $sk->makeKnownLinkObj( $titleObj,
-				$wgLang->timeanddate( $ts, true ),
-				"target=$target&timestamp=$ts" );
+			if ( $this->mAllowed ) {
+				$checkBox = "<input type=\"checkbox\" name=\"ts$ts\" value=\"1\" />";
+				$pageLink = $sk->makeKnownLinkObj( $titleObj,
+					$wgLang->timeanddate( $ts, true ),
+					"target=$target&timestamp=$ts" );
+			} else {
+				$checkBox = '';
+				$pageLink = $wgLang->timeanddate( $ts, true );
+			}
 			$userLink = htmlspecialchars( $row->ar_user_text );
 			if( $row->ar_user ) {
 				$userLink = $sk->makeKnownLinkObj(
@@ -448,7 +474,10 @@ class UndeleteForm {
 
 		}
 		$revisions->free();
-		$wgOut->addHTML("</ul>\n</form>");
+		$wgOut->addHTML("</ul>");
+		if ( $this->mAllowed ) {
+			$wgOut->addHTML( "\n</form>" );
+		}
 
 		return true;
 	}
