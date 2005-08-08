@@ -753,6 +753,10 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
+		# Remove <noinclude> tags and <includeonly> sections
+		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
+		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
+
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
 		$text = $this->replaceVariables( $text, $args );
 
@@ -2279,6 +2283,10 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			if( $this->mOutputType == OT_HTML ) {
+				# Remove <noinclude> sections and <includeonly> tags
+				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
+				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
