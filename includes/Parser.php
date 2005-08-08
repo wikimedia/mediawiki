@@ -1238,7 +1238,6 @@ class Parser
 		if ( $useLinkPrefixExtension ) {
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];
-				$s = $m[1];
 			} else {
 				$first_prefix = false;
 			}
