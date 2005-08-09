@@ -711,6 +711,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		wfRunHooks( 'SkinTemplateContentActions', array(&$content_actions) );
+		
 		wfProfileOut( $fname );
 		return $content_actions;
 	}

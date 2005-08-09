@@ -348,5 +348,11 @@ $article: article object watched
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
+'SkinTemplateContentActions': after building the $content_action array right
+                              before returning it, see content_action.php in
+			      the extension module for a demonstration of how
+			      to use this hook.
+$content_actions: The array of content actions
+
 
 More hooks might not be available but undocumented.
