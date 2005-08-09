@@ -307,7 +307,7 @@ class QueryPage {
 			$feed->outHeader();
 
 			$dbr =& wfGetDB( DB_SLAVE );
-			$sql = $this->getSQL() . $this->getOrder()
+			$sql = $this->getSQL() . $this->getOrder();
 			$sql = $dbr->limitResult( $sql, 50, 0 );
 			$res = $dbr->query( $sql, 'QueryPage::doFeed' );
 			while( $obj = $dbr->fetchObject( $res ) ) {
