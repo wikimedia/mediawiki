@@ -154,7 +154,7 @@ class LogReader {
 			$sql .= " WHERE " . implode( ' AND ', $this->whereClauses );
 		}
 		$sql .= " ORDER BY log_timestamp DESC ";
-		$sql = $this->db->limitResult( $sql, $this->limit, $this->offset );
+		$sql = $this->db->limitResult($sql, $this->limit, $this->offset );
 		return $sql;
 	}
 
