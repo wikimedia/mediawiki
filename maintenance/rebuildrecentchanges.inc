@@ -49,7 +49,8 @@ function rebuildRecentChangesTablePass1()
 	$dbw->query( $sql );
 
 	$sql = "SELECT rc_timestamp FROM $recentchanges " .
-	  "ORDER BY rc_timestamp DESC" . $dbw->limitResult( 1, 5000 );
+	  "ORDER BY rc_timestamp DESC";
+	$sql = $dbw->limitResult($sql, 1, 5000 );
 	$res = $dbw->query( $sql );
 	$obj = $dbw->fetchObject( $res );
 	if( $obj ) {
