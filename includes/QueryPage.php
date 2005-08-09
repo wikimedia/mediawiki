@@ -160,7 +160,9 @@ class QueryPage {
 		# Clear out any old cached data
 		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 		# Do query
-		$res = $dbr->query( $this->getSQL() . $this->getOrder() . $dbr->limitResult( 1000,0 ), $fname );
+		$sql = $this->getSQL() . $this->getOrder();
+		$sql = $dbr->limitResult($sql, 1000,0);
+		$res = $dbr->query($sql, $fname);
 		$num = false;
 		if ( $res ) {
 			$num = $dbr->numRows( $res );
@@ -237,7 +239,8 @@ class QueryPage {
 			}
 		}
 
-		$sql = $dbr->limitResult($sql . $this->getOrder(), $limit, $offset);
+		$sql .= $this->getOrder();
+		$sql = $dbr->limitResult($sql, $limit, $offset);
 		$res = $dbr->query( $sql );
 		$num = $dbr->numRows($res);
 
@@ -304,7 +307,8 @@ class QueryPage {
 			$feed->outHeader();
 
 			$dbr =& wfGetDB( DB_SLAVE );
-			$sql = $this->getSQL() . $this->getOrder().$dbr->limitResult( 50, 0 );
+			$sql = $this->getSQL() . $this->getOrder()
+			$sql = $dbr->limitResult( $sql, 50, 0 );
 			$res = $dbr->query( $sql, 'QueryPage::doFeed' );
 			while( $obj = $dbr->fetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );

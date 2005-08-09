@@ -372,8 +372,8 @@ class DatabasePgsql extends Database {
 		return '';
 	}
 
-	function limitResult($limit,$offset) {
-        	return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+	function limitResult($sql, $limit,$offset) {
+        	return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 	}
 	
 	/**
