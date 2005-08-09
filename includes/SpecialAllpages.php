@@ -39,6 +39,7 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 class SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;
+	var $name='Allpages';
 
 /**
  * HTML for the top form
@@ -47,7 +48,7 @@ class SpecialAllpages {
  */
 function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgContLang, $wgScript;
-	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
+	$t = Title::makeTitle( NS_SPECIAL, $this->name );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, null);
 
@@ -192,7 +193,7 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 	$queryparams = ($namespace ? "namespace=$namespace" : '');
-	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
+	$special = Title::makeTitle( NS_SPECIAL, $this->name . '/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
 
 	$out = wfMsgHtml(
@@ -217,6 +218,9 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	$fromTitle = null;
 	if ($from!="") {
 		$fromTitle = Title::newFromURL( $from );
+		if (!$fromTitle) {
+			return;
+		}
 		$fromNS = $fromTitle->getNamespace();
 		if ($namespace == NS_MAIN)
 			$namespace = $fromNS;
