@@ -1277,12 +1277,15 @@ class Database {
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
+	 * $sql string SQL query we will append the limit too
+	 * $limit integer the SQL limit
+	 * $offset integer the SQL offset (default false)
 	 */
-	function limitResult($limit, $offset=false) {
-		return " LIMIT ".((is_numeric($offset) && $offset != 0)?"{$offset},":"")."{$limit} ";
+	function limitResult($sql, $limit, $offset=false) {
+		return " $sql LIMIT ".((is_numeric($offset) && $offset != 0)?"{$offset},":"")."{$limit} ";
 	}
-	function limitResultForUpdate($num) {
-		return $this->limitResult($num, 0);
+	function limitResultForUpdate($sql, $num) {
+		return $this->limitResult($sql, $num, 0);
 	}
 
 	/**
