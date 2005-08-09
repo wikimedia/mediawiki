@@ -1129,6 +1129,15 @@ class Database {
 	}
 
 	/**
+	 * Escape string for safe LIKE usage
+	 */
+	function escapeLike( $s ) {
+		$s=$this->strencode( $s );
+		$s=str_replace(array('%','_'),array('\%','\_'),$s);
+		return $s;
+	}
+		
+	/**
 	 * Returns an appropriately quoted sequence value for inserting a new row.
 	 * MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
 	 * subclass will return an integer, and save the value for insertId()
