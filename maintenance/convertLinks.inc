@@ -102,7 +102,8 @@ function convertLinks() {
 		performanceLog( "rows inserted vs seconds elapsed:\n" );
 		
 		for ($rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval) {
-			$sqlRead = "SELECT * FROM $links ".$dbw->limitResult($linksConvInsertInterval,$rowOffset);
+			$sqlRead = "SELECT * FROM $links ";
+			$sqlRead = $dbw->limitResult($sqlRead, $linksConvInsertInterval,$rowOffset);
 			$res = $dbw->query($sqlRead);
 			if ( $noKeys ) {
 				$sqlWrite = array("INSERT INTO $links_temp (l_from,l_to) VALUES ");
