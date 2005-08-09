@@ -362,10 +362,15 @@ class SkinTemplate extends Skin {
 
 		if ( !$wgHideInterlanguageLinks ) {
 			foreach( $wgOut->getLanguageLinks() as $l ) {
+				$tmp = explode( ':', $l, 2 );
+				$class = 'interwiki-' . $tmp[0];
+				unset($tmp);
 				$nt = Title::newFromText( $l );
-				$language_urls[] = array('href' => $nt->getFullURL(),
-				'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-				'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
+				$language_urls[] = array(
+					'href' => $nt->getFullURL(),
+					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+					'class' => $class
+				);
 			}
 		}
 		if(count($language_urls)) {
