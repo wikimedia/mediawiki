@@ -53,6 +53,7 @@ $wgSpecialPages = array(
 	'Ancientpages'	=> new SpecialPage( 'Ancientpages' ),
 	'Deadendpages'  => new SpecialPage( 'Deadendpages' ),
 	'Allpages'		=> new IncludableSpecialPage( 'Allpages' ),
+	'Prefixindex'	=> new IncludableSpecialPage( 'Prefixindex' ) ,
 	'Ipblocklist'	=> new SpecialPage( 'Ipblocklist' ),
 	'Specialpages'  => new UnlistedSpecialPage( 'Specialpages' ),
 	'Contributions' => new UnlistedSpecialPage( 'Contributions' ),
