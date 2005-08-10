@@ -69,8 +69,8 @@ class SpecialSearch {
 		} else {
 			$this->namespaces = $this->userNamespaces( $user );
 		}
-		
-		$this->searchRedirects = false;
+
+		$this->searchRedirects = $request->getcheck( 'redirs' ) ? true : false;
 	}
 	
 	/**
@@ -164,6 +164,7 @@ class SpecialSearch {
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
+		$search->showRedirects = $this->searchRedirects;
 		$titleMatches = $search->searchTitle( $term );
 		$textMatches = $search->searchText( $term );
 		
