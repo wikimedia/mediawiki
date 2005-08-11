@@ -635,6 +635,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 693) Special:Allmessages is excessively wide and redundant
 * (bug 3001) Updated and applied live hack for recentchanges-based watchlist
 * (bug 145) Finish 'exclude redirect' implementation in search form
+* Rearranged Special:Movepage form to reduce confusion between destination
+  title and reason input boxes
+
 
 === Caveats ===
 
