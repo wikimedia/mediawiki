@@ -11,6 +11,7 @@ require_once( '../languages/LanguageUtf8.php' );
 
 require_once( '../includes/SearchEngine.php' );
 
+/** @todo document */
 class SearchEngine_TestCase extends PHPUnit_TestCase {
 	var $db, $search;
 	
