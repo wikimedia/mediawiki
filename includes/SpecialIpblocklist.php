@@ -127,7 +127,9 @@ class IPUnblockForm {
 			$wgOut->setSubtitle( $msg );
 		}
 		$wgOut->addHTML( "<ul>" );
-		Block::enumBlocks( "wfAddRow", 0 );
+		// FIXME hack to solve #bug 1487
+		if(!Block::enumBlocks( "wfAddRow", 0 ))
+			$wgOut->addHTML( '<li>'.wfMsg( 'ipblocklistempty' ).'</li>' );
 		$wgOut->addHTML( "</ul>\n" );
 	}
 }
