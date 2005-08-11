@@ -717,6 +717,7 @@ pages for purposes of page relevancy ranking.
 === 1.4.8 changes ===
 
 * Fix spelling of $wgForwardSearchUrl in DefaultSettings.php
+* MSIE7 compatibility fix: correct browser version detect for IE CSS fixes
 
 
 === Caveats ===
