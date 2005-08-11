@@ -519,7 +519,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$errs["DBserver"] = "Connection failed";
 				break;
 			default:
-				$errs["DBserver"] = "Couldn't connect to database";
+				$errs["DBserver"] = "Couldn't connect to database ($err)";
 				break;
 			}
 			if( !$ok ) continue;
