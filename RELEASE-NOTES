@@ -637,6 +637,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 145) Finish 'exclude redirect' implementation in search form
 * Rearranged Special:Movepage form to reduce confusion between destination
   title and reason input boxes
+* (bug 2527) Always set destination filename when new file is selected
 
 
 === Caveats ===
