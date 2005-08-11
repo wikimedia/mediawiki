@@ -138,9 +138,9 @@ class MovePageForm {
 			</td>
 		</tr>
 		<tr>
-			<td align='right'>{$movereason}:</td>
-			<td align='left'>
-				<input type='text' size='40' name=\"wpReason\" value=\"{$encReason}\" />
+			<td align='right' valign='top'><br />{$movereason}:</td>
+			<td align='left' valign='top'><br />
+				<textarea type='text' cols='60' rows='2' name=\"wpReason\" value=\"{$encReason}\"></textarea>
 			</td>
 		</tr>" );
 
