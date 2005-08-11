@@ -13,6 +13,9 @@ Misc work going on.....
 * Rearranged Special:Movepage form to reduce confusion between destination
   title and reason input boxes
 * (bug 2527) Always set destination filename when new file is selected
+* (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
+* PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
+  if running prior to 4.2.0 as it causes the call to fail
 
 
 === Caveats ===
