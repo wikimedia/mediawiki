@@ -12,6 +12,7 @@ Misc work going on.....
 * please fill in for the last couple weeks
 * Rearranged Special:Movepage form to reduce confusion between destination
   title and reason input boxes
+* (bug 2527) Always set destination filename when new file is selected
 
 
 === Caveats ===
