@@ -143,14 +143,28 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	}
 
 	$ns = $wgTitle->getNamespace();
+
+	// Namespace might change when using redirects
+	if($action == 'view') {
+		$wgArticle = new Article( $wgTitle );
+		$rTitle = Title::newFromRedirect( $wgArticle->fetchContent() );
+		if($rTitle) {
+			if( $rTitle->getNamespace() == $ns ) {
+				$wgArticle->mContentLoaded=false;
+			}
+			$ns = $rTitle->getNamespace();
+		}
+	}
+
+	// Categories and images are handled by a different class
 	if ( $ns == NS_IMAGE ) {
+		unset($wgArticle);
 		require_once( 'includes/ImagePage.php' );
 		$wgArticle = new ImagePage( $wgTitle );
 	} elseif ( $wgUseCategoryMagic && $ns == NS_CATEGORY ) {
+		unset($wgArticle);
 		require_once( 'includes/CategoryPage.php' );
 		$wgArticle = new CategoryPage( $wgTitle );
-	} else {
-		$wgArticle = new Article( $wgTitle );
 	}
 
 	if ( in_array( $action, $wgDisabledActions ) ) {
