@@ -16,6 +16,7 @@ Misc work going on.....
 * (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
 * PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
   if running prior to 4.2.0 as it causes the call to fail
+* (bug 3117) Fix display of upload size and type with tidy on
 
 
 === Caveats ===
