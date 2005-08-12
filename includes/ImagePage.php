@@ -206,34 +206,29 @@ class ImagePage extends Article {
 
 
 			if ($showLink) {
-				$s= $sk->makeMediaLink( $this->img->getName(), '', '', true );
-				$info= wfMsg( 'fileinfo', ceil($this->img->getSize()/1024.0), $this->img->getMimeType() );
+				$filename = wfEscapeWikiText( $this->img->getName() );
+				$info = wfMsg( 'fileinfo',
+					ceil($this->img->getSize()/1024.0),
+					$this->img->getMimeType() );
 
 				if (!$this->img->isSafeFile()) {
-					$wgOut->addHTML("<div class=\"fullMedia\">");
-					$wgOut->addHTML("<span class=\"dangerousLink\">");
-					$wgOut->addHTML($s);
-					$wgOut->addHTML("</span>");
+					$warning = wfMsg( 'mediawarning' );
+					$wgOut->addWikiText( <<<END
+<div class="fullMedia">
+<span class="dangerousLink">[[Media:$filename|$filename]]</span>
+<span class="fileInfo"> ($info)</span>
+</div>
 
-					$wgOut->addHTML("<span class=\"fileInfo\"> (");
-					$wgOut->addWikiText( $info, false );
-					$wgOut->addHTML(")</span>");
-					$wgOut->addHTML("</div>");
-
-					#this should be formated a little nicer. Is CSS sufficient?
-					$wgOut->addHTML("<div class=\"mediaWarning\">");
-					$wgOut->addWikiText( wfMsg( 'mediawarning' ) );
-					$wgOut->addHTML('</div>');
-
+<div class="mediaWarning">$warning</div>
+END
+						);
 				} else {
-					$wgOut->addHTML("<div class=\"fullMedia\">");
-					$wgOut->addHTML($s);
-
-					$wgOut->addHTML("<span class=\"fileInfo\"> (");
-					$wgOut->addWikiText( $info, false );
-					$wgOut->addHTML(")</span>");
-
-					$wgOut->addHTML("</div>");
+					$wgOut->addWikiText( <<<END
+<div class="fullMedia">
+[[Media:$filename|$filename]] <span class="fileInfo"> ($info)</span>
+</div>
+END
+						);
 				}
 			}
 
