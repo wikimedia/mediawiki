@@ -853,7 +853,7 @@ if( count( $errs ) ) {
 		use Turck shared memory if the wiki will be running on a single Apache server.
 	</dl>
 
-<h2>E-mail, e-mail notification and authentification setup</h2>
+<h2>E-mail, e-mail notification and authentication setup</h2>
 
 <dl class="setup">
 	<dd>
