@@ -19,9 +19,9 @@ class ChangesList {
 	 * Returns the appropiate flags for new page, minor change and patrolling
 	 */
 	function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;' ) {
-		$f = $new ? '<span class="newpage">' . htmlspecialchars( wfMsg( 'newpageletter' ) ) . '</span>'
+		$f = $new ? '<span class="newpage">' . wfMsgHtml( 'newpageletter' ) . '</span>'
 				: $nothing;
-		$f .= $minor ? '<span class="minor">' . htmlspecialchars( wfMsg( 'minoreditletter' ) ) . '</span>'
+		$f .= $minor ? '<span class="minor">' . wfMsgHtml( 'minoreditletter' ) . '</span>'
 				: $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;

@@ -64,7 +64,7 @@ require_once( 'LanguageUtf8.php' );
 
 # User preference toggles
 'tog-underline'       => 'Alleviivaa linkit',
-'tog-highlightbroken' => 'Näytä linkit puuttuville sivuille <a href="" class="new">näin </a> (vaihtoehtoisesti näin: <a href="" class="internal">?</a>).',
+'tog-highlightbroken' => 'Näytä linkit puuttuville sivuille <a href="" class="new">näin</a> (vaihtoehtoisesti näin: <a href="" class="internal">?</a>).',
 'tog-justify'         => 'Tasaa kappaleet',
 'tog-hideminor'       => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-usenewrc'        => 'Kehittynyt tuoreet muutokset -listaus (JavaScript)',
@@ -93,6 +93,8 @@ require_once( 'LanguageUtf8.php' );
 'underline-always'    => 'Aina',
 'underline-never'     => 'Ei koskaan',
 'underline-default'   => 'Selaimen oletustapa',
+
+'skinpreview'         => '(Esikatsele...)',
 
 # dates
 'sunday'      => 'sunnuntai',
@@ -473,7 +475,7 @@ Sivun lähdekoodi:',
 'next'                => 'seur.',
 'last'                => 'edell.',
 'orig'                => 'alkup.',
-'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <b>p</b> = pieni muutos', // TODO NO WIKIMARKUP
+'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos', // TODO NO WIKIMARKUP
 'history_copyright'   => '-',
 'histfirst'           => 'Ensimmäiset',
 'histlast'            => 'Viimeisimmät',
@@ -553,7 +555,7 @@ Sivun lähdekoodi:',
 'contextlines'        => 'Rivien määrä tulosta kohti',
 'contextchars'        => 'Sisällön merkkien määrä riviä kohden',
 'stubthreshold'       => 'Tynkäsivun osoituskynnys',
-'recentchangescount'  => 'Otsikoiden määrä viimeisimmissä muutoksissa',
+'recentchangescount'  => 'Sivujen määrä viimeisimmissä muutoksissa',
 'savedprefs'          => 'Asetuksesi tallennettiin.',
 'timezonelegend'      => 'Aikavyöhyke',
 'timezonetext'        => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
@@ -570,10 +572,10 @@ Sivun lähdekoodi:',
 #
 
 # switching pan
-'groups-lookup-group' => 'Manage group rights',
+/*'groups-lookup-group' => 'Manage group rights',
 'groups-group-edit' => 'Existing groups: ',
 'editgroup' => 'Edit Group',
-'addgroup' => 'Add Group',
+'addgroup' => 'Add Group',*/
 
 'userrights-lookup-user'   => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname' => 'Käyttäjätunnus: ',
@@ -662,15 +664,15 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
 'badfilename'         => 'Tiedoston nimi vaihdettiin: $1.',
 'badfiletype'         => '".$1" ei ole suositeltava tiedostomuoto.',
-'largefile'           => 'Tiedostojen ei tulisi olla yli 100 kilotavun kokoisia.',
-'emptyfile'           => 'Tiedosto, jota yritit tallentaa näyttäisi olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein.',
-'fileexists'          => 'Tämän niminen tiedosto on jo olemassa. Tarkista $1, ellet ole varma, että haluat muuttaa sitä.',
+'largefile'           => 'Tiedostojen ei tulisi olla yli $1 kilotavun kokoisia. Tiedoston, jonka yritit tallentaa, koko on $2.',
+'emptyfile'           => 'Tiedosto, jonka yritit tallentaa näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
+'fileexists'          => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
 'successfulupload'    => 'Tallennus onnistui',
 'fileuploaded'        => 'Tiedosto \'\'\'$1\'\'\' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: \'\'\'<nowiki>[[Kuva:$1|thumb|Kuvaus]]</nowiki>\'\'\'',
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
 'uploadedimage'       => 'tallensi tiedoston [[$1]]',
-'uploaddisabled'      => 'Tiedostojen lähettäminen on poissa käytöstä.',
+'uploaddisabled'      => 'Tiedostojen tallentaminen ei ole käytöstä.',
 'uploadscripted'      => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'       => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'         => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
@@ -699,8 +701,10 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'linkstoimage'        => 'Seuraavilta sivuilta on linkki tähän tiedostoon:',
 'nolinkstoimage'      => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'sharedupload'        => 'Tämä tiedosto on jaettu ja muut projektit saattavat käyttää sitä.',
-'shareduploadwiki'    => 'Katso [$1 kuvaussivulta] lisätietoja.',
-'noimage'             => 'Tämän nimistä tiedostoa ei ole olemassa. Voit [$1 tallentaa tiedoston] {{GRAMMAR:genitive|{{SITENAME}}}}',
+'shareduploadwiki'    => 'Katso $1 lisätietoja.',
+'shareduploadwiki-linktext' => 'kuvaussivulta',
+'noimage'             => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:genitive|{{SITENAME}}}}',
+'noimage-linktext'    => 'tallentaa tiedoston',
 'uploadnewversion'    => '[$1 Tallenna] uusi versio tästä tiedostosta',
 
 # Statistics
@@ -801,7 +805,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'emailpage'           => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'       => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakeella voi lähettää yhden viestin hänelle. Omissa asetuksissasi annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi vastata viestiin.',
 'usermailererror'     => 'Postitus palautti virheen: ',
-'defemailsubject'     => '{{SITENAME}} e-mail',
+'defemailsubject'     => '{{SITENAME}}-sähköposti',
 'noemailtitle'        => 'Ei sähköpostiosoitetta',
 'noemailtext'         => 'Tämä käyttäjä ei ole määritellyt kelpoa sähköpostiosoitetta tai ei halua postia muilta käyttäjiltä.',
 'emailfrom'           => 'Lähettäjä',
@@ -955,7 +959,7 @@ Palaute ja lisäapu osoitteessa:
 #
 'whatlinkshere'       => 'Tänne viittaavat sivut',
 'notargettitle'       => 'Ei kohdetta',
-'notargettext'        => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdustuu.',
+'notargettext'        => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
 'linklistsub'         => 'Lista linkeistä',
 'linkshere'           => 'Seuraavilta sivuilta on linkki tälle sivulle:',
 'nolinkshere'         => 'Tänne ei ole linkkejä.',
@@ -969,25 +973,27 @@ Palaute ja lisäapu osoitteessa:
 'ipadressorusername'  => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry'           => 'Umpeutuu',
 'ipbreason'           => 'Syy',
-'ipbsubmit'           => 'Estä tämä osoite',
+'ipbsubmit'           => 'Estä',
 'ipbother'            => 'Vapaamuotoinen kesto',
 'ipboptions'          => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuisesti:infinite',
 'ipbotheroption'      => 'Muu kesto',
 'badipaddress'        => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'   => 'Esto onnistui',
 'blockipsuccesstext'  => 'Käyttäjä tai IP-osoite \'\'\'$1\'\'\' on estetty.<br />Nykyiset estot löytyvät [[Special:Ipblocklist|estolistalta]].',
-'unblockip'           => 'Poista IP-osoitteen muokkausesto',
-'unblockiptext'       => 'Käytä alla olevaa lomaketta poistaaksesi kirjoitusesto aikaisemmin estetyltä IP-osoitteelta.',
-'ipusubmit'           => 'Poista tämän osoitteen esto',
-'ipusuccess'          => 'IP-osoitteen \'\'\'$1\'\'\' esto poistettu',
+'unblockip'           => 'Muokkauseston poisto',
+'unblockiptext'       => 'Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.',
+'ipusubmit'           => 'Poista esto',
+'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1<b> esto poistettu', // TODO NOWIKIMARKUP
 'ipblocklist'         => 'Lista estetyistä IP-osoitteista',
-'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 (vanhenee $4)',
+'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 ($4)',
+'infiniteblock'       => 'ikuisesti',
+'expiringblock'       => 'vanhenee $1',
 'blocklink'           => 'esto',
 'unblocklink'         => 'poista esto',
 'contribslink'        => 'muokkaukset',
 'autoblocker'         => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.', // TODO: IS WIKIMARKUP?
 'blocklogpage'        => 'Estoloki',
-'blocklogentry'       => 'esti käyttäjän $1. Vanhenee: $2',
+'blocklogentry'       => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto: $2',
 'blocklogtext'        => 'Tässä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:Ipblocklist|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry'     => 'poisti käyttäjältä $1 muokkauseston',
 'range_block_disabled'=> 'Ylläpitäjän oikeis luoda alue-estoja ei ole käytöstä.',
@@ -1249,8 +1255,8 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'previousdiff'        => '← Edellinen muutos',
 'nextdiff'            => 'Seuraava muutos →',
 
-'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon: ',
-'thumbsize'           => 'Pikkukuvien koko : ',
+'imagemaxsize'        => 'Rajoita kuvien koko kuvien kuvaussivuilla arvoon ',
+'thumbsize'           => 'Pikkukuvien koko: ',
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
 
 'newimages'           => 'Uudet kuvat',
@@ -1258,12 +1264,12 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Käyttäjä: ',
-'speciallogtitlelabel'=> 'Otsikko: ',
+'speciallogtitlelabel'=> 'Kohde: ',
 
 'passwordtooshort'    => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
 
 # Media Warning
-'mediawarning' => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää This file may contain vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.
+'mediawarning' => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.
 <hr>',
 
 'fileinfo' => '$1 KiB, MIME-tyyppi: <code>$2</code>',
@@ -1301,6 +1307,8 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 'tryexact'            => 'Koita tarkkaa osumaa',
 'searchfulltext'      => 'Etsi koko tekstiä',
 'createarticle'       => 'Luo sivu',
+
+'unit-pixel' => ' px',
 
 );
 
@@ -1446,6 +1454,7 @@ class LanguageFi extends LanguageUtf8 {
     }
     return $word;
   }
+
 }
 
 ?>

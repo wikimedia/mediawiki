@@ -980,7 +980,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "ipusubmit"		=> "باز کردن این نشانی",
 "ipusuccess"	=> "«$1» باز شد",
 "ipblocklist"	=> "فهرست نشانی‌های IP و نام‌های کاربری بسته‌شده",
-"blocklistline"	=> "$1، $2 بست $3 را",
+"blocklistline"	=> "$1، $2 بست $3 را ($4)",
 "blocklink"		=> "بسته شود",
 "unblocklink"	=> "باز شود",
 "contribslink"	=> "مشارکت‌ها",

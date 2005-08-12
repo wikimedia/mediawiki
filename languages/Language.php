@@ -408,6 +408,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'go'		=> 'Go',
 "history"		=> 'Page history',
 'history_short' => 'History',
+'updatedmarker' => 'updated since my last visit',
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'print' => 'Print',
@@ -1068,9 +1069,11 @@ this old version, (rev) = revert to this old version.
 'linkstoimage'	=> 'The following pages link to this file:',
 'nolinkstoimage' => 'There are no pages that link to this file.',
 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
-'shareduploadwiki' => 'Please see the [$1 file description page] for further information.',
+'shareduploadwiki' => 'Please see the $1for further information.',
+'shareduploadwiki-linktext' => 'file description page',
 'shareddescriptionfollows' => '-',
-'noimage'       => 'No file by this name exists, you can [$1 upload it]',
+'noimage'       => 'No file by this name exists, you can $1.',
+'noimage-linktext'       => 'upload it',
 'uploadnewversion' => '[$1 Upload a new version of this file]',
 
 # Statistics
@@ -1408,6 +1411,9 @@ to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
 'ipusuccess'	=> "\"[[$1]]\" unblocked",
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
+'blocklistline'	=> "$1, $2 blocked $3 ($4)",
+'infiniteblock' => 'infinite',
+'expiringblock' => 'expires $1',
 'ipblocklistempty'	=> 'The blocklist is empty.',
 'blocklistline'	=> "$1, $2 blocked $3 (expires $4)",
 'blocklink'		=> 'block',
@@ -1632,7 +1638,7 @@ article [[Train]].
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
@@ -1763,7 +1769,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'nextdiff' => 'Next diff &rarr;',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
-'thumbsize'	=> 'Thumbnail size :',
+'thumbsize'	=> 'Thumbnail size: ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
@@ -2140,6 +2146,7 @@ Please confirm that really want to recreate this article.',
 'recreate' => 'Recreate',
 'tooltip-recreate' => '',
 
+'unit-pixel' => 'px',
 
 );
 

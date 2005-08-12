@@ -893,8 +893,10 @@ váš uživatelský účet zablokován.",
 'linkstoimage'  => 'Na soubor odkazují tyto stránky:',
 'nolinkstoimage' => 'Na tento soubor neodkazuje žádná stránka.',
 'sharedupload' => 'Tento soubor je sdílený a může být používán ostatními projekty.',
-'shareduploadwiki' => 'Více informací najdete na [$1 stránce s popisem].',
-'noimage'       => 'Soubor s tímto jménem neexistuje, můžete ho [$1 načíst]',
+'shareduploadwiki' => 'Více informací najdete na $1.',
+'shareduploadwiki-linktext' => 'stránce s popisem',
+'noimage'       => 'Soubor s tímto jménem neexistuje, můžete ho $1',
+'noimage-linxtext' => 'načíst',
 'uploadnewversion' => '[$1 Načíst novou verzi tohoto souboru]',
 
 # User list
@@ -1192,7 +1194,9 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'ipusubmit'             => 'Odblokovat',
 'ipusuccess'	=> 'IP adresa „[[$1]]“ byla úspěšně odblokována',
 'ipblocklist'   => 'Seznam blokovaných IP adres',
-'blocklistline' => '$1 $2 zablokoval $3 (čas vypršení: $4)',
+'blocklistline' => '$1 $2 zablokoval $3 ($4)',
+'infiniteblock' => 'čas vypršení: infinite', //fixme
+'expiringblock' => 'čas vypršení: $1',
 'blocklink'             => 'zablokovat',
 'unblocklink'   => 'uvolnit',
 'contribslink'  => 'příspěvky',

@@ -1017,7 +1017,7 @@ to a previously blocked IP address.", # co a fé
 "ipusubmit"		=> "Unblock this address", # co a fé
 "ipusuccess"	=> "«%s» a stî disbloké",
 "ipblocklist"	=> "Djivêye d'&nbsp;adresses IP et di nos d'&nbsp;uzeus ki sont blokés",
-"blocklistline"	=> "$1, $2 a bloké $3",
+"blocklistline"	=> "$1, $2 a bloké $3 ($4)",
 "blocklink"		=> "bloker",
 "unblocklink"	=> "disbloker",
 "contribslink"	=> "contribs", # co a fé

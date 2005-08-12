@@ -735,7 +735,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 "ipusubmit"		=> "Maak hierdie adres oop",
 "ipusuccess"	=> "IP-adres \"$1\" is oopgemaak",
 "ipblocklist"	=> "Lys van geblokkeerde IP-adresse",
-"blocklistline"	=> "$1, $2 het $3 geblok",
+'blocklistline'	=> '$1, $2 het $3 geblok ($4)',
 "blocklink"		=> "blok",
 "unblocklink"	=> "maak oop",
 "contribslink"	=> "bydraes",

@@ -145,7 +145,7 @@ accordance with [[Project:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).', */
 'blocklink' => 'asteng bike',
-'blocklistline' => '$1, $2 $3 bloke kir',
+'blocklistline' => '$1, $2 $3 bloke kir ($4)',
 'blocklogentry' => '"$1" bloke kir',
 #'blocklogpage' => 'Block_log',
 /* 'blocklogtext' => 'This is a log of user blocking and unblocking actions. Automatically
@@ -1038,7 +1038,6 @@ or has chosen not to receive e-mail from other users.', */
 
 Tu dixwazî <b><a href="$1" class="new">vê gotarê binivîsî</a></b> ?',
 #'nohistory' => 'There is no edit history for this page.',
-#'noimage' => 'No file by this name exists, you can [$1 upload it]',
 #'noimages' => 'Nothing to see.',
 'nolinkshere' => 'Ji hîç rûpel ji vê re lînk tune.',
 'nolinkstoimage' => 'Rûpeleke ku ji vê wêneyê re lînk dike tune.',
@@ -1357,7 +1356,6 @@ Please hit "back" and reload the page you came from, then try again.', */
 #'setstewardflag' => 'Set steward flag',
 #'shareddescriptionfollows' => '-',
 #'sharedupload' => 'This file is a shared upload and may be used by other projects.',
-#'shareduploadwiki' => 'Please see the [$1 file description page] for further information.',
 'shortpages' => 'Rûpelên kurt',
 'show' => 'nîşan bide',
 'showbigimage' => 'Versyona mezin bibîne an daxe ($1x$2, $3 KB).',

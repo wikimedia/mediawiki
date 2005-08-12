@@ -705,7 +705,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 "ipusubmit"		=> "Sblocca questo indirizzo IP",
 "ipusuccess"	=> "Indirizzo IP \"$1\" sbloccato",
 "ipblocklist"	=> "Lista degli indirizzi IP bloccati",
-"blocklistline"	=> "$1, $2 ha bloccato $3",
+"blocklistline"	=> "$1, $2 ha bloccato $3 ($4)",
 "blocklink"		=> "blocca",
 "unblocklink"	=> "sblocca",
 "contribslink"	=> "contributi",
