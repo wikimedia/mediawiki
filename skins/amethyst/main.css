@@ -7,6 +7,11 @@
  * Based on MonoBook by Gwicke itself based on a Plone 2.0 skin.
  * Colors by Sorwena and Sorkhiri <Amethyst> guild.
  * Adapted for MediaWiki by Ashar Voultoiz.
+ *
+ *
+ * Icons from Gartoon Gnome Icon pack
+ * Created by Zeus (zeussama@yahoo.com) http://zeus.qballcow.nl
+ * License: GPL
  */
 BODY { margin : 0; padding: 0; background : black; color:white;}
 div { font-size : small; }
@@ -93,21 +98,27 @@ H1.firstHeading { text-align: center; }
 }
 #p-navigation h5 { display : none;}
 #p-navigation ul {
-	margin : 0; padding:0;
+	margin : 0 ; padding:0;
 	list-style: none;
 }
 #p-navigation li {
+	margin:0 1em 0 0;
 	display : inline;
-	margin-left : 1em;
 	font-weight : bold;
 }
 #p-navigation a { color:white; }
 #p-navigation a : visited { color:#D0D0D0; }
+li#n-mainpage a{padding-left: 18px;background:url('mainpage.png') top left no-repeat; }
+li#n-portal  a{padding-left: 18px;background:url('portal.png') top left no-repeat; }
+li#n-currentevents  a{padding-left: 18px;background:url('currentevents.png') top left no-repeat; }
+li#n-recentchanges  a{padding-left: 18px;background:url('recentchanges.png') top left no-repeat; }
+li#n-help  a{padding-left: 18px;background:url('help.png') top left no-repeat; }
+li#n-randompage a{padding-left: 18px;background:url('random.png') top left no-repeat; }
+li#n-sitesupport a{padding-left: 18px;background:url('sitesupport.png') top left no-repeat; }
 
 
 #p-cactions {
 	width : 100%;
-	white-space:nowrap;
 	position : absolute;
 	left: 0; top: 4.2em;
 	margin:0; padding: 0;
@@ -121,17 +132,39 @@ H1.firstHeading { text-align: center; }
 }
 #p-cactions li {
 	display : inline;
-	font-weight : bold;
+	font-size: 96%;
 }
 
 #p-cactions li a { color : white;}
 #p-cactions .new a { color : red;}
+li#ca-delete  a{padding-left: 18px;background:url('delete.png') top left no-repeat; }
+li#ca-edit    a{padding-left: 18px;background:url('edit.png') top left no-repeat; }
+li#ca-history a{padding-left: 18px;background:url('history.png') top left no-repeat; }
+li#ca-talk a{padding-left: 18px;background:url('chat.png') top left no-repeat; }
+li#ca-move a{padding-left: 18px;background:url('move.png') top left no-repeat; }
+li#ca-nstab-main a{padding-left: 18px;background:url('nstab-main.png') top left no-repeat; }
+li#ca-nstab-user a{padding-left: 18px;background:url('nstab-user.png') top left no-repeat; }
+li#ca-nstab-wp a{padding-left: 18px;background:url('nstab-wp.png') top left no-repeat; }
+li#ca-article a{padding-left: 18px;background:url('article.png') top left no-repeat; }
+li#ca-protect a{padding-left: 18px;background:url('lock.png') top left no-repeat; }
+li#ca-unprotect a{padding-left: 18px;background:url('unlock.png') top left no-repeat; }
+li#ca-watch a{padding-left: 18px;background:url('watch.png') top left no-repeat; }
+li#ca-unwatch a{padding-left: 18px;background:url('unwatch.png') top left no-repeat; }
+
 
 /* other boxes */
 #p-search {	display :none; }
 #p-tb li a { color : white;}
+li#t-print  {padding-left: 18px;background:url('printer.png') top left no-repeat; }
+li#t-specialpages a{padding-left: 18px;background:url('gear.png') top left no-repeat; }
+
 #p-personal li a { color : white;}
 #p-personal li a.new { color : red;}
+li#pt-userpage a{padding-left: 18px;background:url('user.png') top left no-repeat; }
+li#pt-mytalk a{padding-left: 18px;background:url('chat.png') top left no-repeat; }
+li#pt-preferences a{padding-left: 18px;background:url('configure.png') top left no-repeat; }
+li#pt-logout      a{padding-left: 18px;background:url('connect.png') top left no-repeat; }
+li#pt-anonlogin   a{padding-left: 18px;background:url('connected.png') top left no-repeat; }
 
 .printfooter { display : none; }
 
