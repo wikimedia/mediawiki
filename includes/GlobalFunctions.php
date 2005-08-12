@@ -388,6 +388,24 @@ function wfMsgHtml( $key ) {
 }
 
 /**
+ * Return an HTML version of message
+ * Parameter replacements, if any, are done *after* parsing the wiki-text message,
+ * so parameters may contain HTML (eg links or form controls). Be sure
+ * to pre-escape them if you really do want plaintext, or just wrap
+ * the whole thing in htmlspecialchars().
+ *
+ * @param string $key
+ * @param string ... parameters
+ * @return string
+ */
+function wfMsgWikiHtml( $key ) {
+	global $wgOut;
+	$args = func_get_args();
+	array_shift( $args );
+	return wfMsgReplaceArgs( $wgOut->parse( wfMsgGetKey( $key, true ), /* can't be set to false */ true ), $args );
+}
+
+/**
  * Just like exit() but makes a note of it.
  * Commits open transactions except if the error parameter is set
  */

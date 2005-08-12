@@ -18,6 +18,7 @@ Misc work going on.....
   if running prior to 4.2.0 as it causes the call to fail
 * (bug 3117) Fix display of upload size and type with tidy on
 * (bug 3076) Support MacBinary-encoded uploads from IE/Mac
+* (bug 2323) Remove "last" tabindex from history page
 
 
 === Caveats ===
