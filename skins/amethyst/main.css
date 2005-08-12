@@ -206,7 +206,31 @@ div.prefsectiontip { font-size:95%; margin-top:1em;}
 #catlinks {
 	border: 1px solid #aaa;
 	background-color: #2A3C61; 
-	margin-top: 1em;
+	margin : 1em -1em -1.5em -1em;
+	padding : .5em;
 	clear: both;
 }
 
+
+table.diff, td.diff-otitle, td.diff-ntitle {
+	color:white;
+}
+td.diff-addedline {
+	color:black;
+    background: #9BC4AB;
+    font-size: smaller;
+}
+td.diff-deletedline {
+	color:black;
+    background: #D3D79B;
+    font-size: smaller;
+}
+td.diff-context {
+	color:white;
+    background: #2A3C61;
+    font-size: smaller;
+}
+span.diffchange {
+    color: red;
+    font-weight: bold;
+}
