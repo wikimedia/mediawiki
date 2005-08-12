@@ -903,8 +903,10 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 | [[Image:Commons without text.png|20px|Wikimedia Commons Logo]]
 |Toto je súbor z [[Commons:Main Page|Wikimedia Commons]]. Prosíme pozrite si jeho '''[[Commons:Image:{{PAGENAME}}|popisnú stránku ]]''' <!--on the Commons-->.
 |}",
-'shareduploadwiki' => "Ďalšie informácie pozrite na [stránka opisu súboru $1].",
-'noimage' => 'Súbor s takým menom neexistuje, môžete ho [$1 nahrať]',
+'shareduploadwiki' => "Ďalšie informácie pozrite na $1.",
+'shareduploadwiki-linktext' => "stránka opisu súboru",
+'noimage' => 'Súbor s takým menom neexistuje, môžete ho $1',
+'noimage-linktext' => 'nahrať',
 'uploadnewversion' => '[$1 Nahrajte novú verziu tohto súboru.]',
 
 # Statistics
@@ -1235,7 +1237,9 @@ z doteraz zablokovanej IP adresy alebo od redaktora.',
 'ipusubmit' => 'Odblokovať túto adresu',
 'ipusuccess' => "\"[[$1]]\" odblokovaný/á",
 'ipblocklist' => 'Zablokovaní/é redaktori/IP adresy',
-'blocklistline' => "$1, $2 zablokoval $3 (ukončenie $4)",
+'blocklistline' => "$1, $2 zablokoval $3 ($4)",
+'infiniteblock' => 'ukončenie infinite', //fixme
+'expiringblock' => 'ukončenie $1',
 'blocklink' => 'zablokovať',
 'unblocklink' => 'odblokuj',
 'contribslink' => 'príspevky',

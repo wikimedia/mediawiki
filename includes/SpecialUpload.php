@@ -144,7 +144,8 @@ class UploadForm {
 		 * If there was no filename or a zero size given, give up quick.
 		 */
 		if( trim( $this->mOname ) == '' || empty( $this->mUploadSize ) ) {
-			return $this->mainUploadForm('<li>'.wfMsg( 'emptyfile' ).'</li>');
+			$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
+			return;
 		}
 
 		# Chop off any directories in the given filename
@@ -167,7 +168,7 @@ class UploadForm {
 		$fullExt = implode( '.', $ext );
 		
 		if ( strlen( $partname ) < 3 ) {
-			$this->mainUploadForm( wfMsg( 'minlength' ) );
+			$this->mainUploadForm( wfMsgHtml( 'minlength' ) );
 			return;
 		}
 
@@ -178,7 +179,8 @@ class UploadForm {
 		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $basename );
 		$nt = Title::newFromText( $filtered );
 		if( is_null( $nt ) ) {
-			return $this->uploadError( wfMsg( 'illegalfilename', htmlspecialchars( $filtered ) ) );
+			$this->uploadError( wfMsgWikiHtml( 'illegalfilename', htmlspecialchars( $filtered ) ) );
+			return;
 		}
 		$nt =& Title::makeTitle( NS_IMAGE, $nt->getDBkey() );
 		$this->mUploadSaveName = $nt->getDBkey();
@@ -188,7 +190,7 @@ class UploadForm {
 		 * to modify it by uploading a new revision.
 		 */
 		if( !$nt->userCanEdit() ) {
-			return $this->uploadError( wfMsg( 'protectedpage' ) );
+			return $this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
 		}
 		
 		/* Don't allow users to override the blacklist (check file extension) */
@@ -197,7 +199,7 @@ class UploadForm {
 		if( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
 			($wgStrictFileExtensions &&
 				!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
-			return $this->uploadError( wfMsg( 'badfiletype', htmlspecialchars( $fullExt ) ) );
+			return $this->uploadError( wfMsgHtml( 'badfiletype', htmlspecialchars( $fullExt ) ) );
 		}
 		
 		/**
@@ -218,15 +220,15 @@ class UploadForm {
 		 * Check for non-fatal conditions
 		 */
 		if ( ! $this->mIgnoreWarning ) {
-			$warning = '';
+			$warning = '<ul>';
 			if( $this->mUploadSaveName != ucfirst( $filtered ) ) {
-				$warning .=  '<li>'.wfMsg( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
+				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 			}
 	
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsg( 'badfiletype', htmlspecialchars( $fullExt ) ).'</li>';
+					$warning .= '<li>'.wfMsgHtml( 'badfiletype', htmlspecialchars( $fullExt ) ).'</li>';
 				}
 			}
 	
@@ -234,17 +236,17 @@ class UploadForm {
 			if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
 				# TODO: Format $wgUploadSizeWarning to something that looks better than the raw byte
 				# value, perhaps add GB,MB and KB suffixes?
-				$warning .= '<li>'.wfMsg( 'largefile', $wgUploadSizeWarning, $this->mUploadSize ).'</li>';
+				$warning .= '<li>'.wfMsgHtml( 'largefile', $wgUploadSizeWarning, $this->mUploadSize ).'</li>';
 			}
 			if ( $this->mUploadSize == 0 ) {
-				$warning .= '<li>'.wfMsg( 'emptyfile' ).'</li>';
+				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';
 			}
 			
 			if( $nt->getArticleID() ) {
 				global $wgUser;
 				$sk = $wgUser->getSkin();
 				$dlink = $sk->makeKnownLinkObj( $nt );
-				$warning .= '<li>'.wfMsg( 'fileexists', $dlink ).'</li>';
+				$warning .= '<li>'.wfMsgHtml( 'fileexists', $dlink ).'</li>';
 			}
 			
 			if( $warning != '' ) {
@@ -252,7 +254,7 @@ class UploadForm {
 				 * Stash the file in a temporary location; the user can choose
 				 * to let it through and we'll complete the upload then.
 				 */
-				return $this->uploadWarning($warning);
+				return $this->uploadWarning($warning . "</ul>");
 			}
 		}
 		
@@ -376,7 +378,7 @@ class UploadForm {
 	 * @return int
 	 * @access private
 	 */
-	function stashSession() {		
+	function stashSession() {
 		$stash = $this->saveTempUploadedFile(
 			$this->mUploadSaveName, $this->mUploadTempName );
 
@@ -398,6 +400,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function unsaveUploadedFile() {
+		global $wgOut;
 		wfSuppressWarnings();
 		$success = unlink( $this->mUploadTempName );
 		wfRestoreWarnings();
@@ -420,8 +423,8 @@ class UploadForm {
 		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
-		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );
-		$text = wfMsg( 'fileuploaded', $ilink, $dlink );
+		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'successfulupload' ) . "</h2>\n" );
+		$text = wfMsgWikiHtml( 'fileuploaded', $ilink, $dlink );
 		$wgOut->addHTML( $text );
 		$wgOut->returnToMain( false );
 	}
@@ -432,9 +435,8 @@ class UploadForm {
 	 */
 	function uploadError( $error ) {
 		global $wgOut;
-		$sub = wfMsg( 'uploadwarning' );
-		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
-		$wgOut->addHTML( "<h4 class='error'>{$error}</h4>\n" );
+		$wgOut->addHTML( "<h2>" . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
+		$wgOut->addHTML( "<span class='error'>{$error}</span>\n" );
 	}
 
 	/**
@@ -455,14 +457,13 @@ class UploadForm {
 			return;
 		}
 
-		$sub = wfMsg( 'uploadwarning' );
-		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
+		$wgOut->addHTML( "<h2>" . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
 		$wgOut->addHTML( "<ul class='warning'>{$warning}</ul><br />\n" );
 
-		$save = wfMsg( 'savefile' );
-		$reupload = wfMsg( 'reupload' );
-		$iw = wfMsg( 'ignorewarning' );
-		$reup = wfMsg( 'reuploaddesc' );
+		$save = wfMsgHtml( 'savefile' );
+		$reupload = wfMsgHtml( 'reupload' );
+		$iw = wfMsgWikiHtml( 'ignorewarning' );
+		$reup = wfMsgWikiHtml( 'reuploaddesc' );
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
 
@@ -518,21 +519,20 @@ class UploadForm {
 		else $ew = '';
 
 		if ( '' != $msg ) {
-			$sub = wfMsg( 'uploaderror' );
+			$sub = wfMsgHtml( 'uploaderror' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
-			  "<h4 class='error'>{$msg}</h4>\n" );
+			  "<span class='error'>{$msg}</span>\n" );
 		}
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$sk = $wgUser->getSkin();
 
 
-		$sourcefilename = wfMsg( 'sourcefilename' );
-		$destfilename = wfMsg( 'destfilename' );
+		$sourcefilename = wfMsgHtml( 'sourcefilename' );
+		$destfilename = wfMsgHtml( 'destfilename' );
 		
-		$fd = wfMsg( 'filedesc' );
-		$ulb = wfMsg( 'uploadbtn' );
+		$fd = wfMsgHtml( 'filedesc' );
+		$ulb = wfMsgHtml( 'uploadbtn' );
 
-		$iw = wfMsg( 'ignorewarning' );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
 		$action = $titleObj->escapeLocalURL();
@@ -704,7 +704,7 @@ class UploadForm {
 		}
 	}
 	
-	/** Heuristig for detecting files that *could* contain JavaScript instructions or 
+	/** Heuristig for detecting files that *could* contain JavaScript instructions or
 	* things that may look like HTML to a browser and are thus
 	* potentially harmful. The present implementation will produce false positives in some situations.
 	*

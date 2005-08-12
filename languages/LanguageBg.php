@@ -1106,7 +1106,9 @@ $3...
 'ipusubmit'    => 'Отблокиране на адреса',
 'ipusuccess'  => "\"$1\" бе отблокиран",
 'ipblocklist'  => 'Списък на блокирани IP-адреси и потребители',
-'blocklistline'  => "$1, $2 е блокирал $3 (изтича на $4)",
+'blocklistline'  => "$1, $2 е блокирал $3 ($4)",
+'infiniteblock' => 'изтича на infinite', //fixme
+'expiringblock' => 'изтича на $1',
 'blocklink'    => 'блокиране',
 'unblocklink'  => 'отблокиране',
 'contribslink'  => 'приноси',

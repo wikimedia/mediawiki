@@ -790,8 +790,10 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'linkstoimage'	        => 'Dei følgjande sidene har lenkjer til denne fila:',
 'nolinkstoimage'        => 'Det finst ikkje noka side med lenkje til denne fila.',
 'sharedupload'          => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
-'shareduploadwiki'      => 'Sjå [$1 filskildringssida] for meir informasjon.',
-'noimage'               => 'Det finst ikkje noka fil med dette namnet, men du kan [$1 laste ho opp]',
+'shareduploadwiki'      => 'Sjå $1 for meir informasjon.',
+'shareduploadwiki-linktext' => 'filskildringssida',
+'noimage'               => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
+'noimage-linktext'      => 'laste ho opp',
 'uploadnewversion'      => '[$1 Last opp ny versjon av denne fila]',
 
 # Statistics
@@ -1074,7 +1076,9 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [[Help:B
 'ipusubmit'		=> 'Opphev blokkering',
 'ipusuccess'	        => '«[[$1]]» har fått oppheva blokkeringa',
 'ipblocklist'	        => 'Blokkerte IP-adresser og brukarnamn',
-'blocklistline'	        => '$1, $2 blokkerte $3 (opphørstid $4)',
+'blocklistline'	        => '$1, $2 blokkerte $3 ($4)',
+'infiniteblock' => 'opphørstid infinite', //fixme
+'expiringblock' => 'opphørstid $1',
 'blocklink'		=> 'blokker',
 'unblocklink'	        => 'opphev blokkering',
 'contribslink'	        => 'bidrag',

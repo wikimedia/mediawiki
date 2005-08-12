@@ -1011,7 +1011,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipusubmit'	=> 'Débloquer cette adresse',
 'ipusuccess'	=> 'Adresse IP « $1 » débloquée',
 'ipblocklist'	=> 'Liste des adresses IP bloquées',
-'blocklistline' => '$1, $2 a bloqué $3',
+'blocklistline' => '$1, $2 a bloqué $3 ($4)',
 'blocklink'	=> 'bloquer',
 'unblocklink'	=> 'débloquer',
 'contribslink'	=> 'contribs',

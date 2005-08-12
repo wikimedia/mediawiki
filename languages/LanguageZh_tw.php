@@ -852,7 +852,7 @@ alt=\"Google\" align=\"middle\"></a>
 "ipusubmit"		=> "解除禁封",
 "ipusuccess"	=> "網址”$1”已經被解除禁封",
 "ipblocklist"	=> "被封網址列表",
-"blocklistline"	=> "$1，$2禁封$3",
+"blocklistline"	=> "$1，$2禁封$3 ($4)",
 "blocklink"		=> "禁封",
 "unblocklink"	=> "解除禁封",
 "contribslink"	=> "貢獻",

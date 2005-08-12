@@ -848,7 +848,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "ipusubmit"		=> "解除禁封",
 "ipusuccess"	=> "IP地址“$1”已经被解除禁封",
 "ipblocklist"	=> "被封IP地址列表",
-"blocklistline"	=> "$1，$2禁封$3",
+"blocklistline"	=> "$1，$2禁封$3 ($4)",
 "blocklink"		=> "禁封",
 "unblocklink"	=> "解除禁封",
 "contribslink"	=> "贡献",

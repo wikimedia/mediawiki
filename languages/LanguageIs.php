@@ -177,7 +177,9 @@ Sjá [[Special:Ipblocklist|bannaðar notendur og IP tölur]] fyrir yfirlit yfir 
 
 Sjá [[meta:Range blocks|Range blocks]] á meta fyrir yfirlit yfir [[CIDR]] tölur, [[{{ns:Special}}:Ipblocklist|bannaða notendur og IP tölur]] fyrir lista yfir þá sem nú eru bannaðir og [[{{ns:4}}:Bönnunarskrá|bönnunarskrá]] fyrir lista sem inniheldur einnig þá sem hafa verið bannaðir í fortíðinni.",
 'blocklink' => "banna",
-'blocklistline' => "$1, $2 bannaði $3 (rennur út $4)",
+'blocklistline' => "$1, $2 bannaði $3 ($4)",
+'infiniteblock' => 'rennur út infinite', //fixme
+'expiringblock' => 'rennur út  $1',
 'blocklogpage' => "Bönnunarskrá",
 'blocklogtext' => "This is a log of user blocking and unblocking actions. Automatically 
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for

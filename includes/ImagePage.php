@@ -86,9 +86,9 @@ class ImagePage extends Article {
 		global $wgLang;
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>' .
-			($metadata ? '<li><a href="#metadata">' . wfMsg( 'metadata' ) . '</a></li>' : '') . '
-			<li><a href="#filehistory">' . wfMsg( 'imghistory' ) . '</a></li>
-			<li><a href="#filelinks">' . wfMsg( 'imagelinks' ) . '</a></li>
+			($metadata ? '<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . '
+			<li><a href="#filehistory">' . wfMsgHtml( 'imghistory' ) . '</a></li>
+			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>
 		</ul>';
 		return $r;
 	}
@@ -103,7 +103,7 @@ class ImagePage extends Article {
 	 */
 	function makeMetadataTable( $exif ) {
 		$r = "{| class=metadata align=right width=250px\n";
-		$r .= '|+ id=metadata | '. htmlspecialchars( wfMsg( 'metadata' ) ) . "\n";
+		$r .= '|+ id=metadata | '. htmlspecialchars( wfMsgHtml( 'metadata' ) ) . "\n";
 		foreach( $exif as $k => $v ) {
 			$tag = strtolower( $k );
 			$r .= "! class=$tag |" . wfMsg( "exif-$tag" ) . "\n";
@@ -159,7 +159,7 @@ class ImagePage extends Article {
 				# image
 
 				# "Download high res version" link below the image
-				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
+				$msg = wfMsgHtml('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth ) {
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
@@ -237,20 +237,29 @@ END
 			}
 		} else {
 			# Image does not exist
-			$wgOut->addWikiText( wfMsg( 'noimage', $this->getUploadUrl() ) );
+
+			$title = Title::makeTitle( NS_SPECIAL, 'Upload' );
+			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
+				'wpDestFile=' . urlencode( $this->img->getName() ) );
+			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
 		}
 	}
 
 	function printSharedImageText() {
-		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut;
+		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut, $wgUser;
 
 		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
 		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsg("sharedupload");
 		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
-			$sharedtext .= " " . wfMsg("shareduploadwiki", $url);
+
+			$sk = $wgUser->getSkin();
+			$title = Title::makeTitle( NS_SPECIAL, 'Upload' );
+			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
+			array( 'wpDestFile' => urlencode( $this->img->getName() )));
+			$sharedtext .= " " . wfMsgHtml('shareduploadwiki', $link);
 		}
 		$sharedtext .= "</div>";
-		$wgOut->addWikiText($sharedtext);
+		$wgOut->addHTML($sharedtext);
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
 			require_once("HttpFunctions.php");

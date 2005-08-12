@@ -849,7 +849,7 @@ Preencha com um motivo específico (por exemplo, citando páginas que sofreram v
 "ipusubmit"     => "Desbloquear este endereço",
 "ipusuccess"    => "Endereço de IP  \"$1\" foi desbloqueado",
 "ipblocklist"   => "Lista de IP's bloqueados",
-"blocklistline" => "$1, $2 bloqueado $3",
+"blocklistline" => "$1, $2 bloqueado $3 ($4)",
 "blocklink"     => "block",
 "unblocklink"   => "unblock",
 "contribslink"  => "contribs",

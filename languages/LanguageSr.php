@@ -928,7 +928,7 @@ $3...
 "ipusubmit"  => "Отпусти ову адресу",
 "ipusuccess" => "\"$1\" отпуштен",
 "ipblocklist" => "Списак обузданих ИП адреса и корисника",
-"blocklistline" => "$1, $2 је обуздао $3",
+"blocklistline" => "$1, $2 је обуздао $3 ($4)",
 "blocklink"  => "блокирај",
 "unblocklink" => "деблокирај",
 "contribslink" => "прилози",

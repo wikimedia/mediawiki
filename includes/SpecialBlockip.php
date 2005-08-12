@@ -50,19 +50,19 @@ class IPBlockForm {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgRequest, $wgSysopUserBans;
 
-		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
+		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
 
 		if($wgSysopUserBans) {
-			$mIpaddress = htmlspecialchars( wfMsg( 'ipadressorusername' ) );
+			$mIpaddress = wfMsgHtml( 'ipadressorusername' );
 		} else {
-			$mIpaddress = htmlspecialchars( wfMsg( 'ipaddress' ) );
+			$mIpaddress = wfMsgHtml( 'ipaddress' );
 		}
-		$mIpbexpiry = htmlspecialchars( wfMsg( 'ipbexpiry' ) );
-		$mIpbother = htmlspecialchars( wfMsg( 'ipbother' ) );
-		$mIpbothertime = htmlspecialchars( wfMsg( 'ipbotheroption' ) );
-		$mIpbreason = htmlspecialchars( wfMsg( 'ipbreason' ) );
-		$mIpbsubmit = htmlspecialchars( wfMsg( 'ipbsubmit' ) );
+		$mIpbexpiry = wfMsgHtml( 'ipbexpiry' );
+		$mIpbother = wfMsgHtml( 'ipbother' );
+		$mIpbothertime = wfMsgHtml( 'ipbotheroption' );
+		$mIpbreason = wfMsgHtml( 'ipbreason' );
+		$mIpbsubmit = wfMsgHtml( 'ipbsubmit' );
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 

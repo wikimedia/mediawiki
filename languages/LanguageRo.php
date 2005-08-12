@@ -397,7 +397,7 @@ a preveni vandalismul conform [[Project:Politica|politicii {{SITENAME}}]].
 Include un motiv specific mai jos (de exemplu citează paginile care
 au fost vandalizate de acest utilizator).",
 'blocklink' => "blochează",
-'blocklistline' => "$1, $2 a blocat $3",
+'blocklistline' => "$1, $2 a blocat $3 ($4)",
 'blocklogentry' => "blocat \"$1\"",
 'blocklogpage' => "Jurnal_blocări",
 'blocklogtext' => "Acesta este un jurnal al acţiunilor de blocare şi deblocare.

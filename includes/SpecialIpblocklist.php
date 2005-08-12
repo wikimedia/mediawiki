@@ -49,20 +49,20 @@ class IPUnblockForm {
 	
 	function showForm( $err )
 	{
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgLang, $wgSysopUserBans;
 
-		$wgOut->setPagetitle( wfMsg( "unblockip" ) );
-		$wgOut->addWikiText( wfMsg( "unblockiptext" ) );
+		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
+		$wgOut->addWikiText( wfMsg( 'unblockiptext' ) );
 
-		$ipa = wfMsg( "ipaddress" );
-		$ipr = wfMsg( "ipbreason" );
-		$ipus = htmlspecialchars( wfMsg( "ipusubmit" ) );
+		$ipa = wfMsgHtml( $wgSysopUserBans ? 'ipadressorusername' : 'ipaddress' );
+		$ipr = wfMsgHtml( 'ipbreason' );
+		$ipus = wfMsgHtml( 'ipusubmit' );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
+			$wgOut->addWikitext( "<span class='error'>{$err}</span>\n" );
 		}
 		$token = htmlspecialchars( $wgUser->editToken() );
 		
@@ -104,7 +104,7 @@ class IPUnblockForm {
 		} else {
 			$block->mAddress = $this->ip;
 		}
-		
+
 		# Delete block (if it exists)
 		# We should probably check for errors rather than just declaring success
 		$block->delete();
@@ -150,9 +150,9 @@ function wfAddRow( $block, $tag ) {
 	$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 	
 	if ( $block->mExpiry === "" ) {
-		$formattedExpiry = "indefinite";
+		$formattedExpiry = wfMsgHtml('infiniteblock');
 	} else {
-		$formattedExpiry = $wgLang->timeanddate( $block->mExpiry, true );
+		$formattedExpiry = wfMsgHtml('expiringblock', $wgLang->timeanddate( $block->mExpiry, true ) );
 	}
 	
 	$line = wfMsg( "blocklistline", $formattedTime, $ulink, $addr, $formattedExpiry );
@@ -161,17 +161,12 @@ function wfAddRow( $block, $tag ) {
 
 	if ( !$block->mAuto ) {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Contributions" );
-		$clink = "<a href=\"" . $titleObj->escapeLocalURL( "target={$block->mAddress}" ) . "\">" .
-		  wfMsg( "contribslink" ) . "</a>";
-		$wgOut->addHTML( " ({$clink})" );
+		$wgOut->addHTML( ' (' . $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'contribslink' ), "target={$block->mAddress}") . ')' );
 	}
 
 	if ( $wgUser->isAllowed('block') ) {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
-		$ublink = "<a href=\"" . 
-		  $titleObj->escapeLocalURL( "action=unblock&ip=" . urlencode( $addr ) ) . "\">" .
-		  wfMsg( "unblocklink" ) . "</a>";
-		$wgOut->addHTML( " ({$ublink})" );
+		$wgOut->addHTML( ' (' . $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'unblocklink' ), 'action=unblock&ip=' . urlencode( $addr ) ) . ')' );
 	}
 	$wgOut->addHTML( $sk->commentBlock( $block->mReason ) );
 	$wgOut->addHTML( "</li>\n" );

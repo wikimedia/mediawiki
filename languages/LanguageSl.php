@@ -767,7 +767,7 @@ Vnesi razloge spodaj (na primer z navedbo določenih strani, ki so jih po nepotr
 "ipusubmit"	=> "Poveži ta naslov",
 "ipusuccess"	=> "IP naslov \"$1\" je povezan",
 "ipblocklist"	=> "Seznam prekinjenih IP naslovov",
-"blocklistline"	=> "$1, $2 je prekinil $3",
+"blocklistline"	=> "$1, $2 je prekinil $3 ($4)",
 "blocklink"	=> "prekini",
 "unblocklink"	=> "poveži",
 "contribslink"	=> "prispevki",

@@ -828,7 +828,7 @@ Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottr
 "ipusuccess"            => "Blockeringen för IP-adressen \"$1\" har tagits bort",
 
 "ipblocklist"           => "Lista över blockerade IP-adresser",
-"blocklistline"         => "$1, $2 blockerade $3",
+"blocklistline"         => "$1, $2 blockerade $3 ($4)",
 "blocklink"             => "blockera",
 "unblocklink"           => "ta bort blockering",
 "contribslink"          => "bidrag",
