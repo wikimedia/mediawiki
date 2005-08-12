@@ -661,7 +661,7 @@ class PreferencesForm {
 			$imageLimitOptions = null;
 			foreach ( $wgImageLimits as $index => $limits ) {
 				$selected = ($index == $this->mImageSize) ? 'selected="selected"' : '';
-				$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
+				$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}×{$limits[1]}". wfMsgHtml('unit-pixel') ."</option>\n";
 			}
 
 			$imageThumbOptions = null;
@@ -669,7 +669,7 @@ class PreferencesForm {
 				<div><label>" . wfMsg('thumbsize') . "<select name=\"wpThumbSize\">");
 			foreach ( $wgThumbLimits as $index => $size ) {
 				$selected = ($index == $this->mThumbSize) ? 'selected="selected"' : '';
-				$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}px</option>\n";
+				$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}". wfMsgHtml('unit-pixel') ."</option>\n";
 			}
 			$wgOut->addHTML( "{$imageThumbOptions}</select></label></div></fieldset>\n\n");
 

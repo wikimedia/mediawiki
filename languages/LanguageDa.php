@@ -993,17 +993,6 @@ henvisning til den samme artikel i $1. Omdirigeringer og underartikler er
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider for alle brugere",
 'restrictedpheading'	=> 'Specielle sider med begrænset adgang',
-'blockpheading' => 'Blokeringsniveau',
-'createaccountpheading' => 'Opret konto-niveau',
-'deletepheading' => 'Sletteniveau',
-'userrightspheading' => 'Brugerrettighedsniveau',
-'grouprightspheading' => 'Grupperettighedsniveau',
-'siteadminpheading' => 'Webstedsadministratorniveau',
-
-/** obsoletes
-"sysopspheading" => "Specielle sider til sysop-brug",
-"developerspheading" => "Specielle sider til developer-brug",
-*/
 "protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider henvist fra \"$1\")",
@@ -1260,7 +1249,9 @@ for en tidligere blokeret IP-adresse eller bruger.",
 "ipusubmit"		=> "Ophæv blokeringen af denne adresse",
 "ipusuccess"	=> "\"$1\" har fået ophævet blokeringen",
 "ipblocklist"	=> "Liste over blokerede IP-adresser og brugernavne",
-"blocklistline"	=> "$1, $2 blokerede $3 (udløber $4)",
+'blocklistline'	=> '$1, $2 blokerede $3 ($4)',
+'infiniteblock' => 'udløber infinite', //fixme
+'expiringblock' => 'udløber $1',
 "blocklink"		=> "bloker",
 "unblocklink"	=> "ophæv blokering",
 "contribslink"	=> "bidrag",

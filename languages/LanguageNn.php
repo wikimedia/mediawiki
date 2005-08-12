@@ -849,18 +849,6 @@ Alle sidene er vortne viste \'\'\'$3\'\'\' gonger og endra \'\'\'$4\'\'\' gonger
 'specialpages'	        => 'Spesialsider',
 'spheading'		=> 'Spesialsider for alle brukarar',
 'restrictedpheading'    => 'Spesialsider med avgrensa tilgang',
-'blockpheading'         => 'Blokkering',
-'createaccountpheading' => 'Lag konto',
-'deletepheading'        => 'Slett',
-'userrightspheading'    => 'Brukartilgang',
-'grouprightspheading'   => 'gruppetilgangsnivå',
-'siteadminpheading'     => 'Administrasjon av wikinettstaden',
-
-/** obsoletes
-'sysopspheading'        => 'Berre for administrator-bruk',
-'developerspheading'    => 'Berre for utviklar-bruk',
-*/
-
 'protectpage'	        => 'Vern side',
 'recentchangeslinked'   => 'Relaterte endringar',
 'rclsub'		=> '(til sider med lenkje frå «$1»)',
@@ -1086,7 +1074,9 @@ For informasjon om korleis ein kan blokkere seriar av IP-adresser, sjå [[Help:B
 'ipusubmit'		=> 'Opphev blokkering',
 'ipusuccess'	        => '«[[$1]]» har fått oppheva blokkeringa',
 'ipblocklist'	        => 'Blokkerte IP-adresser og brukarnamn',
-'blocklistline'	        => '$1, $2 blokkerte $3 (opphørstid $4)',
+'blocklistline'	        => '$1, $2 blokkerte $3 ($4)',
+'infiniteblock' => 'opphørstid infinite', //fixme
+'expiringblock' => 'opphørstid $1',
 'blocklink'		=> 'blokker',
 'unblocklink'	        => 'opphev blokkering',
 'contribslink'	        => 'bidrag',

@@ -1134,17 +1134,6 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'specialpages'	=> 'Special pages',
 'spheading'		=> 'Special pages for all users',
 'restrictedpheading'	=> 'Restricted special pages',
-'blockpheading' => 'block level',
-'createaccountpheading' => 'createaccount level',
-'deletepheading' => 'delete level',
-'userrightspheading' => 'userrights level',
-'grouprightspheading' => 'grouprights level',
-'siteadminpheading' => 'siteadmin level',
-
-/** obsoletes
-'sysopspheading' => 'For sysop use only',
-'developerspheading' => 'For developer use only',
-*/
 'protectpage'	=> 'Protect page',
 'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",
@@ -1416,6 +1405,10 @@ to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
 'ipusuccess'	=> "\"[[$1]]\" unblocked",
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
+'blocklistline'	=> "$1, $2 blocked $3 ($4)",
+'infiniteblock' => 'infinite',
+'expiringblock' => 'expires $1',
+'ipblocklistempty'	=> 'The blocklist is empty.',
 'blocklistline'	=> "$1, $2 blocked $3 (expires $4)",
 'blocklink'		=> 'block',
 'unblocklink'	=> 'unblock',
@@ -1639,7 +1632,7 @@ article [[Train]].
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
@@ -1770,7 +1763,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'nextdiff' => 'Next diff &rarr;',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
-'thumbsize'	=> 'Thumbnail size :',
+'thumbsize'	=> 'Thumbnail size: ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
@@ -2136,6 +2129,8 @@ $1
 'trackbackremove' => ' ([$1 Delete])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
+
+'unit-pixel' => 'px',
 );
 
 /* a fake language converter */

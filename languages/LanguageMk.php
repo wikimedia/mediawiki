@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Macedonian (Македонски)
  * @package MediaWiki
  * @subpackage Language
@@ -788,13 +788,6 @@ global $wgRightsText;
 	"specialpages"			=>	"Специјални страници",
 	"spheading"			=>	"Специјални страници за сите корисници",
 	'restrictedpheading'		=>	'Специјални страници со ограничен пристап',
-	'asksqlpheading'		=>	'Ниво "прашалници до SQL"',
-	'blockpheading'			=>	'Ниво "блокирање"',
-	'createaccountpheading'		=>	'Ниво "регистрација"',
-	'deletepheading'		=>	'Ниво "бришење"',
-	'userrightspheading'		=>	'Ниво "кориснички права"',
-	'grouprightspheading'		=>	'Ниво "групни права"',
-	'siteadminpheading'		=>	' Ниво "администратор на сајтот"',
 	"protectpage"			=>	"Заштитени страници",
 	"recentchangeslinked"		=>	"Поврзани промени",
 	"rclsub"			=>	"(до страници поврзани од \"$1\")",
@@ -967,7 +960,9 @@ global $wgRightsText;
 	'ipusubmit'			=>	'Деблокирај ја оваа адреса',
 	'ipusuccess'			=>	"\"[[$1]]\" деблокиран",
 	'ipblocklist'			=>	'Листа на блокирани IP адреси и кориснички имиња',
-	'blocklistline'			=>	"$1, $2 го блокираше $3 (истекува на $4)",
+	'blocklistline'			=>	"$1, $2 го блокираше $3 ($4)",
+	'infiniteblock'			=> 'истекува на infinite', //fixme
+	'expiringblock'			=> 'истекува на $1',
 	'blocklink'			=>	'блокирај',
 	'unblocklink'			=>	'деблокирај',
 	'contribslink'			=>	'придонеси',

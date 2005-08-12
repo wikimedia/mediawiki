@@ -818,8 +818,6 @@ flotche, di cenes metowes so $1. Li scrijhaedje corek pout esse mostré inte
 "listusers"		=> "Djivêye des uzeus",
 "specialpages"	=> "Pådjes sipeciåles",
 "spheading"		=> "Pådjes sipeciåles po tos ls uzeus",
-"sysopspheading" => "Pådjes sipeciåles po les manaedjeus",
-"developerspheading" => "Pådjes sipeciåles po les diswalpeus",
 "protectpage"	=> "Protedjî l'&nbsp;pådje",
 "recentchangeslinked" => "Candjmints aloyîs",
 "rclsub"		=> "(ezès pådjes ki «$1» a-st on loyén dzeu)",
@@ -1019,7 +1017,7 @@ to a previously blocked IP address.", # co a fé
 "ipusubmit"		=> "Unblock this address", # co a fé
 "ipusuccess"	=> "«%s» a stî disbloké",
 "ipblocklist"	=> "Djivêye d'&nbsp;adresses IP et di nos d'&nbsp;uzeus ki sont blokés",
-"blocklistline"	=> "$1, $2 a bloké $3",
+"blocklistline"	=> "$1, $2 a bloké $3 ($4)",
 "blocklink"		=> "bloker",
 "unblocklink"	=> "disbloker",
 "contribslink"	=> "contribs", # co a fé
