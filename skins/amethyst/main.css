@@ -1,3 +1,13 @@
+/* Amethyst stylesheet for mediawiki.
+ *
+ * Copyright Big John, Gabriel Wicke, Sorwena, Sorkhiri, Ashar Voultoiz
+ *
+ * License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ *
+ * Based on MonoBook by Gwicke itself based on a Plone 2.0 skin.
+ * Colors by Sorwena and Sorkhiri <Amethyst> guild.
+ * Adapted for MediaWiki by Ashar Voultoiz.
+ */
 BODY { margin : 0; padding: 0; background : black; color:white;}
 div { font-size : small; }
 pre {
@@ -36,8 +46,7 @@ H1.firstHeading { text-align: center; }
 }
 
 #column-one {
-	padding-top: 5em;
-	top:0;right:0;
+	padding-top: 170px;
 	display:table-cell;
 }
 
@@ -139,6 +148,27 @@ H1.firstHeading { text-align: center; }
 #footer li { display:inline; }
 #f-poweredbyico { float:right;}
 #f-copyrightico { float: left;}
+
+#p-logo {
+	background-color:transparent;
+	z-index: 3;
+	position: absolute; /*needed to use z-index */
+	top: 1.3em; right: 1em;
+	height: 155px;
+	width: 12em;
+	overflow: visible;
+}
+#p-logo h5 { display: none; }
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	height: 155px;
+	width: 12em;
+	background-repeat: no-repeat;
+	background-position: 35% 50% !important;
+	text-decoration: none;
+}
+
 
 
 /* END OF GENERAL LAYOUT */
