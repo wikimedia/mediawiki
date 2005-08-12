@@ -202,3 +202,11 @@ div.prefsectiontip { font-size:95%; margin-top:1em;}
 }
 
 #siteSub { display:none; }
+
+#catlinks {
+	border: 1px solid #aaa;
+	background-color: #2A3C61; 
+	margin-top: 1em;
+	clear: both;
+}
+
