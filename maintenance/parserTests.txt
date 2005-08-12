@@ -1844,6 +1844,15 @@ Image caption containing a newline
 !!end
 
 
+!! test
+Bug 3090: External links other than http: in image captions
+!! input
+[[Image:Foobar.jpg|thumb|200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
+!! result
+<div class="thumb tright"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This caption has irc and Secure ext links in it."><img src="/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" alt="This caption has irc and Secure ext links in it." width="200" height="23" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div>This caption has <a href="irc://example.net" class='external text' title="irc://example.net" rel="nofollow">irc</a> and <a href="https://example.com" class='external text' title="https://example.com" rel="nofollow">Secure</a> ext links in it.</div></div></div>
+
+!! end
+
 
 ###
 ### Subpages
