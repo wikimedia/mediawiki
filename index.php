@@ -145,7 +145,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	$ns = $wgTitle->getNamespace();
 
 	// Namespace might change when using redirects
-	if($action == 'view') {
+	if($action == 'view' && !$wgRequest->getVal( 'oldid' ) ) {
 		$wgArticle = new Article( $wgTitle );
 		$rTitle = Title::newFromRedirect( $wgArticle->fetchContent() );
 		if($rTitle) {
