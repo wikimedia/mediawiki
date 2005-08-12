@@ -9,6 +9,7 @@
  *
  */
 require_once( 'Image.php' );
+require_once( 'MacBinary.php' );
 
 /**
  * Entry point
@@ -31,7 +32,7 @@ class UploadForm {
 	var $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
-	var $mOname, $mSessionKey, $mStashed, $mDestFile;
+	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile;
 	/**#@-*/
 
 	/**
@@ -70,7 +71,8 @@ class UploadForm {
 			$this->mUploadTempName   = $data['mUploadTempName'];
 			$this->mUploadSize       = $data['mUploadSize'];
 			$this->mOname            = $data['mOname'];
-			$this->mStashed	 	 = true;
+			$this->mStashed          = true;
+			$this->mRemoveTempFile   = false;
 		} else {
 			/**
 			 *Check for a newly uploaded file.
@@ -80,6 +82,7 @@ class UploadForm {
 			$this->mOname          = $request->getFileName( 'wpUploadFile' );
 			$this->mSessionKey     = false;
 			$this->mStashed        = false;
+			$this->mRemoveTempFile = false; // PHP will handle this
 		}
 	}
 
@@ -121,6 +124,8 @@ class UploadForm {
 		} else {
 			$this->mainUploadForm();
 		}
+		
+		$this->cleanupTempFile();
 	}
 
 	/* -------------------------------------------------------------- */
@@ -201,7 +206,8 @@ class UploadForm {
 		 * probably not accept it.
 		 */
 		if( !$this->mStashed ) {
-			$veri= $this->verify($this->mUploadTempName, $finalExt);
+			$this->checkMacBinary();
+			$veri = $this->verify( $this->mUploadTempName, $finalExt );
 			
 			if( $veri !== true ) { //it's a wiki error...
 				return $this->uploadError( $veri->toString() );
@@ -254,9 +260,10 @@ class UploadForm {
 		 * Try actually saving the thing...
 		 * It will show an error form on failure.
 		 */
+		$hasBeenMunged = !empty( $this->mSessionKey ) || $this->mRemoveTempFile;
 		if( $this->saveUploadedFile( $this->mUploadSaveName,
 		                             $this->mUploadTempName,
-		                             !empty( $this->mSessionKey ) ) ) {
+		                             $hasBeenMunged ) ) {
 			/**
 			 * Update the upload log and create the description page
 			 * if it's a new file.
@@ -315,27 +322,17 @@ class UploadForm {
 			$this->mUploadOldVersion = '';
 		}
 		
-		if( $useRename ) {
-			wfSuppressWarnings();
-			$success = rename( $tempName, $this->mSavedFile );
-			wfRestoreWarnings();
+		wfSuppressWarnings();
+		$success = $useRename
+			? rename( $tempName, $this->mSavedFile )
+			: move_uploaded_file( $tempName, $this->mSavedFile );
+		wfRestoreWarnings();
 
-			if( ! $success ) {
-				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
-				return false;
-			} else {
-				wfDebug("$fname: wrote tempfile $tempName to ".$this->mSavedFile."\n");
-			}
+		if( ! $success ) {
+			$wgOut->fileCopyError( $tempName, $this->mSavedFile );
+			return false;
 		} else {
-			wfSuppressWarnings();
-			$success = move_uploaded_file( $tempName, $this->mSavedFile );
-			wfRestoreWarnings();
-
-			if( ! $success ) {
-				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
-				return false;
-			}
-			else wfDebug("$fname: wrote tempfile $tempName to ".$this->mSavedFile."\n");
+			wfDebug("$fname: wrote tempfile $tempName to ".$this->mSavedFile."\n");
 		}
 		
 		chmod( $this->mSavedFile, 0644 );
@@ -359,7 +356,10 @@ class UploadForm {
 		$archive = wfImageArchiveDir( $saveName, 'temp' );
 		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
 
-		if ( !move_uploaded_file( $tempName, $stash ) ) {
+		$success = $this->mRemoveTempFile
+			? rename( $tempName, $stash )
+			: move_uploaded_file( $tempName, $stash );
+		if ( !$success ) {
 			$wgOut->fileCopyError( $tempName, $stash );
 			return false;
 		}
@@ -625,7 +625,7 @@ class UploadForm {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * @param string $tmpfile the full path opf the temporary file to verify
+	 * @param string $tmpfile the full path of the temporary file to verify
 	 * @param string $extension The filename extension that the file is to be served with
 	 * @return mixed true of the file is verified, a WikiError object otherwise.
 	 */
@@ -883,7 +883,44 @@ class UploadForm {
 			return $output;
 		}
 	}
+
+	/**
+	 * Check if the temporary file is MacBinary-encoded, as some uploads
+	 * from Internet Explorer on Mac OS Classic and Mac OS X will be.
+	 * If so, the data fork will be extracted to a second temporary file,
+	 * which will then be checked for validity and either kept or discarded.
+	 *
+	 * @access private
+	 */
+	function checkMacBinary() {
+		$macbin = new MacBinary( $this->mUploadTempName );
+		if( $macbin->isValid() ) {
+			$dataFile = tempnam( wfTempDir(), "WikiMacBinary" );
+			$dataHandle = fopen( $dataFile, 'wb' );
+			
+			wfDebug( "SpecialUpload::checkMacBinary: Extracting MacBinary data fork to $dataFile\n" );
+			$macbin->extractData( $dataHandle );
+			
+			$this->mUploadTempName = $dataFile;
+			$this->mUploadSize = $macbin->dataForkLength();
+			
+			// We'll have to manually remove the new file if it's not kept.
+			$this->mRemoveTempFile = true;
+		}
+		$macbin->close();
+	}
 	
-	
+	/**
+	 * If we've modified the upload file we need to manually remove it
+	 * on exit to clean up.
+	 * @access private
+	 */
+	function cleanupTempFile() {
+		if( $this->mRemoveTempFile && file_exists( $this->mUploadTempName ) ) {
+			wfDebug( "SpecialUpload::cleanupTempFile: Removing temporary file $this->mUploadTempName\n" );
+			unlink( $this->mUploadTempName );
+		}
+	}
+
 }
 ?>
