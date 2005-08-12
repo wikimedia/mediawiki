@@ -22,6 +22,8 @@ img { border:none; vertical-align:middle; }
 li { margin-bottom: .1em; }
 p img { margin: 0;}
 
+H1.firstHeading { text-align: center; }
+
 #column-content {
 	width:100%;
 	float: left;
@@ -188,3 +190,4 @@ p img { margin: 0;}
 	font-size: x-small;
 }
 
+#siteSub { display:none; }
