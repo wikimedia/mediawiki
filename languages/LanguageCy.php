@@ -68,7 +68,7 @@
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
     MAG_SUBST                => array( 1,    "SUBST:"                                     ),
     MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
-    MAG_END                 => array( 0, "DIWEDD"                                   ),
+    MAG_END                 => array( 0, "__DIWEDD__"                                   ),
     MAG_IMG_THUMBNAIL       => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
     MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
     MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
