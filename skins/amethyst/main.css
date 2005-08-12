@@ -157,11 +157,15 @@ li#ca-unwatch a{padding-left: 18px;background:url('unwatch.png') top left no-rep
 #p-tb li a { color : white;}
 li#t-print  {padding-left: 18px;background:url('printer.png') top left no-repeat; }
 li#t-specialpages a{padding-left: 18px;background:url('gear.png') top left no-repeat; }
+li#t-upload  {padding-left: 18px;background:url('upload.png') top left no-repeat; }
+
 
 #p-personal li a { color : white;}
 #p-personal li a.new { color : red;}
 li#pt-userpage a{padding-left: 18px;background:url('user.png') top left no-repeat; }
+li#pt-anonuserpage a{padding-left: 18px;background:url('user.png') top left no-repeat; }
 li#pt-mytalk a{padding-left: 18px;background:url('chat.png') top left no-repeat; }
+li#pt-anontalk a{padding-left: 18px;background:url('chat.png') top left no-repeat; }
 li#pt-preferences a{padding-left: 18px;background:url('configure.png') top left no-repeat; }
 li#pt-logout      a{padding-left: 18px;background:url('connect.png') top left no-repeat; }
 li#pt-anonlogin   a{padding-left: 18px;background:url('connected.png') top left no-repeat; }
