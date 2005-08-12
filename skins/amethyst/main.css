@@ -1,13 +1,23 @@
 BODY { margin : 0; padding: 0; background : black; color:white;}
 div { font-size : small; }
 pre {
-	border: 1px dashed #2F6FAB;
-	color:black;
-	background-color: #F9F9F9;
+	border: 1px dashed #2A3C61;
+	color:white;
+	background-color: #2A3C61;
+	overflow : auto;
 }
 
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+	color: yellow;
+	text-decoration: none;
+}
+a:visited {
+	color: #C0C000;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
 img { border:none; vertical-align:middle; }
 li { margin-bottom: .1em; }
 p img { margin: 0;}
@@ -15,14 +25,14 @@ p img { margin: 0;}
 #column-content {
 	width:100%;
 	float: left;
-	margin: 0 0 5em -12em;
+	margin: 0 0 0 -12em;
 	padding : 0;
 }
 
 #content {
-	background : white;
-	color : black;
-	margin: 5em 0 0 12em;
+	background : #2F333B;
+	color : white;
+	margin: 5em 1em 1em 13em;
 	padding: 0 1em 1.5em 1em;
 	position:relative;
 }
@@ -40,12 +50,21 @@ p img { margin: 0;}
     margin-bottom: 1em;
     padding: 0;
     float: none;
-    width: 12em;
+    width: 13em;
     overflow: hidden;
 	font-size: 85%;
 }
-.portlet h5 { font-size:100%; }
-
+.portlet h5 {
+	background-color: #2A3C61;
+	font-size:100%;
+	border-bottom : 1px solid white;
+	padding-bottom: .1em;
+	margin:0;
+}
+.portlet ul {
+	margin : 1em 0 1em 0; padding:0;
+	list-style: none;
+}
 
 #p-navigation {
 	width : 100%;
@@ -76,12 +95,12 @@ p img { margin: 0;}
 	white-space:nowrap;
 	position : absolute;
 	left: 0; top: 4.2em;
-	margin:0; padding:0;
+	margin:0; padding: 0;
 }
 #p-cactions h5 { display : none; }
 #p-cactions ul {
 	display : inline;
-	margin : 0; padding:0;
+	margin : 0; padding-left:1.5em;
 	list-style:none;
 }
 #p-cactions li {
@@ -98,22 +117,12 @@ p img { margin: 0;}
 #p-tb {
 	background-color: #2F333B;
 }
-#p-tb h5 { margin:0; }
-#p-tb ul {
-	margin : 0 0 1em 0; padding:0;
-	list-style: none;
-}
 #p-tb li {	margin-left : 1em; }
 #p-tb li a { color : white;}
 
 
 #p-personal {
 	background-color: #2F333B;
-}
-#p-personal h5 { margin:0; }
-#p-personal ul {
-	margin : 0 0 1em 0; padding:0;
-	list-style: none;
 }
 #p-personal li {
 	margin-left : 1em;
@@ -125,10 +134,10 @@ p img { margin: 0;}
 .printfooter { display : none; }
 
 #footer {
-	background-color: white;
-	color:black;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	background-color: #2A3C61;
+	color:#D0D0D0;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
 	text-align: center;
 	font-size: x-small;
 	margin:1em 0 1em 0;
@@ -143,8 +152,8 @@ p img { margin: 0;}
 
 /* CONTENT STYLE */
 .toc {
-	border : 1px solid #aaa;
-	background-color: #f9f9f9;
+	border : 1px solid black;
+	background-color: #2A3C61;
 	padding: 5px;
 	font-size:small;
 }
