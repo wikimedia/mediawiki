@@ -4,7 +4,7 @@
 /** */
 function wfStreamFile( $fname ) {
 	global $wgSquidMaxage;
-	$stat = stat( $fname );
+	$stat = @stat( $fname );
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
 		echo "<html><body>
@@ -15,7 +15,6 @@ does not.</p>
 		return;
 	}
 
-	header( "Cache-Control: s-maxage=$wgSquidMaxage, must-revalidate, max-age=0" );
 	header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
 
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
