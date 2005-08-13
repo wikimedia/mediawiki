@@ -1109,6 +1109,10 @@ class LanguageSr extends LanguageUtf8 {
 		else
 			return parent::getMessage($key);
  }
+
+ function formatNum( $number, $year = false ) {
+        return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+ }
  
 }
 
