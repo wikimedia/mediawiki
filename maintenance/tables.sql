@@ -439,13 +439,13 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   ss_good_articles bigint(20) unsigned default '0',
   
   -- Total pages, theoretically equal to SELECT COUNT(*) FROM page; except faster
-  ss_total_pages bigint(20) default -1,
+  ss_total_pages bigint(20) default '-1',
 
   -- Number of users, theoretically equal to SELECT COUNT(*) FROM user;
-  ss_users bigint(20) default -1,
+  ss_users bigint(20) default '-1',
 
   -- Deprecated, no longer updated as of 1.5
-  ss_admins int(10) default -1,
+  ss_admins int(10) default '-1',
 
   UNIQUE KEY ss_row_id (ss_row_id)
 
