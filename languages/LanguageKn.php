@@ -1,8 +1,18 @@
 <?php
 /**
-  * @package MediaWiki
-  * @subpackage Language
-  */
+ * Language file for Kannada.
+ * Mosty done by:
+ *   Hari Prasad Nadig <hpnadig@gmail.com>
+ *     http://en.wikipedia.org/wiki/User:Hpnadig
+ *   Ashwath Mattur <ashwatham@gmail.com>
+ *     http://en.wikipedia.org/wiki/User:Ashwatham
+ *
+ * Also see the Kannada Localisation Initiative at:
+ *      http://kannada.sourceforge.net/
+ *
+ * @package MediaWiki
+ * @subpackage Language
+ */
 
 require_once( 'LanguageUtf8.php' );
 
