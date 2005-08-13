@@ -1,9 +1,9 @@
 <?php
 /**
- * MonoBook nouveau
+ * Amethyst
  *
- * Translated from gwicke's previous TAL template version to remove
- * dependency on PHPTAL.
+ * Reuse the MonoBook template (originally a plone style
+ * ported on MediaWiki by Gabriel Wicke).
  *
  * @todo document
  * @subpackage Skins
