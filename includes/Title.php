@@ -668,7 +668,7 @@ class Title {
 		$namespace = $wgContLang->getNsText( $this->mNamespace );
 		if ( '' != $namespace ) {
 			# Can this actually happen? Interwikis shouldn't be parsed.
-			$namepace .= ':';
+			$namespace .= ':';
 		}
 		$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
 		if( $query != '' ) {
