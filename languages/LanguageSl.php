@@ -880,26 +880,22 @@ class LanguageSl extends LanguageUtf8 {
 		return $wgDateFormatsSl;
 	}
 	
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesSl;
 		return $wgValidSpecialPagesSl;
 	}
 	
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesSl;
 		return $wgSysopSpecialPagesSl;
 	}
 	
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesSl;
 		return $wgDeveloperSpecialPagesSl;
 	}
 	
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesSl;
 		if(array_key_exists($key, $wgAllMessagesSl))
 			return $wgAllMessagesSl[$key];
@@ -911,10 +907,9 @@ class LanguageSl extends LanguageUtf8 {
 		return "iso-8859-2";
 	}
 
-        function formatNum( $number, $year = false ) {
-                return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
-        }
-
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	}
 }
 
 ?>
