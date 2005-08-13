@@ -42,6 +42,7 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
         }
         function wfGetProfilingOutput( $s, $e ) {}
         function wfProfileClose() {}
+	function wfLogProfilingData() {}
 }
 
 $fname = 'Setup.php';
