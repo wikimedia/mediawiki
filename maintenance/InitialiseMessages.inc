@@ -127,7 +127,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	if ($maxitems)
 		$chunks = array_chunk($sortedArray, $maxitems);
 	else
-		$chucks = array($sortedArray);
+		$chunks = array($sortedArray);
 
 	foreach ($chunks as $chunk) {
 		$first = true;
