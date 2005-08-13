@@ -645,7 +645,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 1487) invalid html on empty list in banlist
 * (bug 3017) Hotkey conflict for delete and show changes
 * made pixel unit translateable and blocklistline now eats infiniteblock and expiringblock
-
+* (bug 3092) Wrong numerical separator for big numbers in Serbian.
 
 === Caveats ===
 
