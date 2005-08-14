@@ -1,7 +1,7 @@
 <?php
 /**
- * Compress the old table, old_flags=gzip
- *
+ * Compress the text of a wiki
+ * 
  * @package MediaWiki
  * @subpackage Maintenance
  */
@@ -12,30 +12,26 @@
  * Usage: 
  *
  * Non-wikimedia
- * php compressOld.php [-t <type>] [-c <chunk-size>] [-b <begin-date>] [-e <end-date>] [-s <start-id>]
+ * php compressOld.php [options...]
  *
  * Wikimedia
- * php compressOld.php <database> [-t <type>] [-c <chunk-size>] [-b <begin-date>] [-e <end-date>] [-s <start-id>]
- *     [-f <max-factor>] [-h <factor-threshold>]
+ * php compressOld.php <database> [options...]
  *
- * <type> is either:
- *   gzip: compress revisions independently
- *   concat: concatenate revisions and compress in chunks (default)
- * 
- * <start-id> is the old_id to start from
- * 
- * The following options apply only to the concat type:
- *    <begin-date> is the earliest date to check for uncompressed revisions
- *    <end-date> is the latest revision date to compress
- *    <chunk-size> is the maximum number of revisions in a concat chunk
- *    <max-factor> is the maximum ratio of compressed chunk bytes to uncompressed avg. revision bytes
- *    <factor-threshold> is a minimum number of KB, where <max-factor> cuts in
+ * Options are:
+ *  -t <type>           set compression type to either:
+ *                          gzip: compress revisions independently
+ *                          concat: concatenate revisions and compress in chunks (default)
+ *  -c <chunk-size>     maximum number of revisions in a concat chunk
+ *  -b <begin-date>     earliest date to check for uncompressed revisions
+ *  -e <end-date>       latest revision date to compress
+ *  -s <start-id>       the old_id to start from
+ *  -f <max-factor>     the maximum ratio of compressed chunk bytes to uncompressed avg. revision bytes
+ *  -h <threshold>      is a minimum number of KB, where <max-factor> cuts in
+ *  --extdb <cluster>   store specified revisions in an external cluster (untested)
  *
  */
 
-die( 'compressOld is known to be broken at the moment.' );
-
-$optionsWithArgs = array( 't', 'c', 's', 'f', 'h' );
+$optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb' );
 require_once( "../commandLine.inc" );
 require_once( "compressOld.inc" );
 
@@ -52,13 +48,14 @@ $defaults = array(
 	'f' => 3,
 	'h' => 100,
 	'b' => '',
-	'e' => '',
+    'e' => '',
+    'extdb' => '',
 );
 
-$args = $args + $defaults;
+$options = $options + $defaults;
 
-if ( $args['t'] != 'concat' && $args['t'] != 'gzip' ) {
-	print "Type \"{$args['t']}\" not supported\n";
+if ( $options['t'] != 'concat' && $options['t'] != 'gzip' ) {
+	print "Type \"{$options['t']}\" not supported\n";
 }
 
 print "Depending on the size of your database this may take a while!\n";
@@ -68,10 +65,11 @@ print "Press control-c to abort first (will proceed automatically in 5 seconds)\
 #sleep(5);
 
 $success = true;
-if ( $args['t'] == 'concat' ) {
-	$success = compressWithConcat( $args['s'], $args['c'], $args['f'], $args['h'], $args['b'], $args['e'] );
+if ( $options['t'] == 'concat' ) {
+    $success = compressWithConcat( $options['s'], $options['c'], $options['f'], $options['h'], $options['b'], 
+        $options['e'], $options['extdb'] );
 } else {
-	compressOldPages( $args['s'] );
+	compressOldPages( $options['s'], $options['extdb'] );
 } 
 
 if ( $success ) {
