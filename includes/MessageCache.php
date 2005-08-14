@@ -139,6 +139,9 @@ class MessageCache
 	function loadFromDB() {
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
+		if ( !$dbr ) {
+			wfDebugDieBacktrace( 'Invalid database object' );
+		}
 		$conditions = array( 'page_is_redirect' => 0,
 					'page_namespace' => NS_MEDIAWIKI);
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
@@ -243,7 +246,7 @@ class MessageCache
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
 		# If cache initialization was deferred, start it now.
-		if( $this->mDeferred ) {
+		if( $this->mDeferred && !$this->mDisable && $useDB ) {
 			$this->load();
 		}
 
