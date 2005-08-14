@@ -36,7 +36,7 @@
 die( 'compressOld is known to be broken at the moment.' );
 
 $optionsWithArgs = array( 't', 'c', 's', 'f', 'h' );
-require_once( "commandLine.inc" );
+require_once( "../commandLine.inc" );
 require_once( "compressOld.inc" );
 
 if( !function_exists( "gzdeflate" ) ) {
