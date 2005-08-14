@@ -80,12 +80,12 @@ class Profiler {
 				if ($functionname == 'close') {
 					$message = "Profile section ended by close(): {$bit[0]}\n";
 					wfDebug( $message );
-					$this->mStack[] = array( $message, 0, 0, 0 );
+					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
 				elseif ($bit[0] != $functionname) {
 					$message = "Profiling error: in({$bit[0]}), out($functionname)\n";
 					wfDebug( $message );
-					$this->mStack[] = array( $message, 0, 0, 0 );
+					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
 			//}
 			$bit[] = $time;
