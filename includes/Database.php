@@ -136,6 +136,18 @@ class Database {
 	function isOpen() { return $this->mOpened; }
 	/**#@-*/
 
+	function setFlag( $flag ) {
+		$this->mFlags |= $flag;
+	}
+
+	function clearFlag( $flag ) {
+		$this->mFlags &= ~$flag;
+	}
+
+	function getFlag( $flag ) {
+		return !!($this->mFlags & $flag);
+	}
+
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------
@@ -693,7 +705,10 @@ class Database {
 		if ( isset( $options['ORDER BY'] ) ) {
 			$tailOpts .= " ORDER BY {$options['ORDER BY']}";
 		}
-
+		if (isset($options['LIMIT'])) {
+			$tailOpts .= $this->limitResult('', $options['LIMIT'], 
+				isset($options['OFFSET']) ? $options['OFFSET'] : false);
+		}
 		if ( is_numeric( array_search( 'FOR UPDATE', $options ) ) ) {
 			$tailOpts .= ' FOR UPDATE';
 		}
@@ -739,9 +754,7 @@ class Database {
 		} else {
 			$sql = "SELECT $vars $from $useIndex $tailOpts";
 		}
-		if (isset($options['LIMIT'])) {
-			$sql = $this->limitResult($sql, $options['LIMIT'], isset($options['OFFSET']) ? $options['OFFSET'] : false);
-		}
+
 		return $this->query( $sql, $fname );
 	}
 
@@ -971,7 +984,7 @@ class Database {
 	 */
 	function makeUpdateOptions( $options ) {
 		if( !is_array( $options ) ) {
-			wfDebugDieBacktrace( 'makeUpdateOptions given non-array' );
+			$options = array( $options );
 		}
 		$opts = array();
 		if ( in_array( 'LOW_PRIORITY', $options ) )
