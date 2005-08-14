@@ -23,15 +23,20 @@ class SiteConfiguration {
 
 	/** */	
 	function get( $setting, $wiki, $suffix, $params = array() ) {
-		if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
-			$retval = $this->settings[$setting][$wiki];
-		} elseif ( array_key_exists( $suffix, $this->settings[$setting] ) ) {
-			$retval = $this->settings[$setting][$suffix];
-		} elseif ( array_key_exists( 'default', $this->settings[$setting] ) ) {
-			$retval = $this->settings[$setting]['default'];
+		if ( array_key_exists( $setting, $this->settings ) ) {
+			if ( array_key_exists( $wiki, $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting][$wiki];
+			} elseif ( array_key_exists( $suffix, $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting][$suffix];
+			} elseif ( array_key_exists( 'default', $this->settings[$setting] ) ) {
+				$retval = $this->settings[$setting]['default'];
+			} else {
+				$retval = NULL;
+			}
 		} else {
 			$retval = NULL;
 		}
+
 		if ( !is_null( $retval ) && count( $params ) ) {
 			foreach ( $params as $key => $value ) {
 				$retval = str_replace( '$' . $key, $value, $retval );
