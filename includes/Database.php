@@ -260,7 +260,6 @@ class Database {
 
 		if ( !$success ) {
 			$this->reportConnectionError();
-			$this->close();
 		}
 		$this->mOpened = $success;
 		return $success;
@@ -289,16 +288,15 @@ class Database {
 	/**
 	 * @access private
 	 * @param string $msg error message ?
-	 * @todo parameter $msg is not used
 	 */
-	function reportConnectionError( $msg = '') {
+	function reportConnectionError() {
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
 				$ff = $this->mFailFunction;
 				$ff( $this, $this->lastError() );
 			}
 		} else {
-			wfEmergencyAbort( $this, mysql_error() );
+			wfEmergencyAbort( $this, $this->lastError() );
 		}
 	}
 
@@ -614,7 +612,13 @@ class Database {
 	 */
 	function lastError() {
 		if ( $this->mConn ) {
+			# Even if it's non-zero, it can still be invalid
+			wfSuppressWarnings();
 			$error = mysql_error( $this->mConn );
+			if ( !$error ) {
+				$error = mysql_error();
+			}
+			wfRestoreWarnings();
 		} else {
 			$error = mysql_error();
 		}
@@ -1671,7 +1675,7 @@ class ResultWrapper {
  */
 function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
-	global $wgSitename, $wgServer;
+	global $wgSitename, $wgServer, $wgMessageCache;
 
 	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
 	# Hard coding strings instead.
@@ -1713,6 +1717,10 @@ border=\"0\" ALT=\"Google\"></A>
 		header( 'Cache-control: none' );
 		header( 'Pragma: nocache' );
 	}
+
+	# No database access
+	$wgMessageCache->disable();
+	
 	$msg = wfGetSiteNotice();
 	if($msg == '') {
 		$msg = str_replace( '$1', $error, $noconnect );

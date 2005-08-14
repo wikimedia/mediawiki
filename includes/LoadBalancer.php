@@ -27,7 +27,7 @@ define( 'DB_WRITE', -2 );
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads, $mGroupLoads;
-	/* private */ var $mFailFunction;
+	/* private */ var $mFailFunction, $mErrorConnection;
 	/* private */ var $mForce, $mReadIndex, $mLastIndex;
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode;
@@ -40,6 +40,7 @@ class LoadBalancer {
 		$this->mReadIndex = -1;
 		$this->mForce = -1;
 		$this->mLastIndex = -1;
+		$this->mErrorConnection = false;
 	}
 
 	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
@@ -348,6 +349,10 @@ class LoadBalancer {
 				$i = $this->getWriterIndex();
 			}
 		}
+		# Couldn't find a working server in getReaderIndex()?
+		if ( $i === false ) {
+			$this->reportConnectionError( $this->mErrorConnection );
+		}
 		# Now we have an explicit index into the servers array
 		$this->openConnection( $i, $fail );
 
@@ -375,6 +380,7 @@ class LoadBalancer {
 			if ( $fail ) {
 				$this->reportConnectionError( $this->mConnections[$i] );
 			}
+			$this->mErrorConnection = $this->mConnections[$i];
 			$this->mConnections[$i] = false;
 			$success = false;
 		}
@@ -435,7 +441,7 @@ class LoadBalancer {
 			if ( $this->mFailFunction ) {
 				$conn->failFunction( $this->mFailFunction );
 			} else {
-				$conn->failFunction( 'wfEmergencyAbort' );
+				$conn->failFunction( false );
 			}
 			$conn->reportConnectionError();
 			$reporting = false;
