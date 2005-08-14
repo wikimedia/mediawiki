@@ -8,10 +8,14 @@
  * Colors by Sorwena and Sorkhiri <Amethyst> guild.
  * Adapted for MediaWiki by Ashar Voultoiz.
  *
- *
  * Icons from Gartoon Gnome Icon pack
  * Created by Zeus (zeussama@yahoo.com) http://zeus.qballcow.nl
  * License: GPL
+ *
+ *
+ * NOTE: Internet Explorer is not able to correctly render this
+ * skin. Complain to your local software reseller or use an up
+ * to date browser such as Mozilla Firefox.
  */
 BODY { margin : 0; padding: 0; background : black; color:white;}
 div { font-size : small; }
