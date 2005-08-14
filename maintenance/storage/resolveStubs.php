@@ -55,42 +55,54 @@ function resolveStubs() {
 			wfWaitForSlaves( 5 );
 		}
 
-		$stub = unserialize( $stub );
-		if ( get_class( $stub ) !== 'historyblobstub' ) {
-			print "Error, invalid stub object\n";
-			return;
-		}
-
-		# Get the (maybe) external row
-		$externalRow = $dbr->selectRow( 'text', array( 'old_text' ), 
-			array( 'old_id' => $stub->mOldId, "old_flags LIKE '%external%'" ),
-			$fname 
-		);
-
-		if ( !$externalRow ) {
-			# Object wasn't external
-			continue;
-		}
-
-		# Preserve the legacy encoding flag, but switch from object to external
-		$flags = explode( ',', $flagsArray[$id] );
-		if ( in_array( 'utf-8', $flags ) ) {
-			$newFlags = 'external,utf-8';
-		} else {
-			$newFlags = 'external';
-		}
-
-		# Update the row
-		$dbw->update( 'text',
-			array( /* SET */
-				'old_flags' => $newFlags, 
-				'old_text' => $externalRow->old_text . '/' . $stub->mHash
-			), 
-			array( /* WHERE */ 
-				'old_id' => $id 
-			), $fname 
-		);
+		resolveStub( $id, $stub, $flagsArray[$id] );
 	}
 }
 
+/**
+ * Resolve a history stub
+ */
+function resolveStub( $id, $stubText, $flags ) {
+	$fname = 'resolveStub';
+
+	$stub = unserialize( $stubText );
+	$flags = explode( ',', $flags );
+
+	$dbr =& wfGetDB( DB_SLAVE );
+	$dbw =& wfGetDB( DB_MASTER );
+	
+	if ( get_class( $stub ) !== 'historyblobstub' ) {
+		print "Error, invalid stub object\n";
+		return;
+	}
+
+	# Get the (maybe) external row
+	$externalRow = $dbr->selectRow( 'text', array( 'old_text' ), 
+		array( 'old_id' => $stub->mOldId, "old_flags LIKE '%external%'" ),
+		$fname 
+	);
+
+	if ( !$externalRow ) {
+		# Object wasn't external
+		continue;
+	}
+
+	# Preserve the legacy encoding flag, but switch from object to external
+	if ( in_array( 'utf-8', $flags ) ) {
+		$newFlags = 'external,utf-8';
+	} else {
+		$newFlags = 'external';
+	}
+
+	# Update the row
+	$dbw->update( 'text',
+		array( /* SET */
+			'old_flags' => $newFlags, 
+			'old_text' => $externalRow->old_text . '/' . $stub->mHash
+		), 
+		array( /* WHERE */ 
+			'old_id' => $id 
+		), $fname 
+	);
+}
 ?>
