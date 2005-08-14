@@ -36,11 +36,7 @@ class ExternalStoreDB {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER );
 	}		
-		
-	function ExternalStoreDB() {
-		$this->mLoadBalancer = LoadBalancer::NewFromParams( $wgExternalServers[$cluster] );
-	}
-
+	
 	function fetchFromURL($url) {
 		global $wgExternalServers;
 		#
@@ -63,7 +59,6 @@ class ExternalStoreDB {
 			$obj = unserialize( $ret );
 			$ret = $obj->getItem( $itemID );
 		}
-		
 		return $ret;
 	}
 
