@@ -4,6 +4,7 @@
  * @subpackage Maintenance
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Ashar Voultoiz <thoane@altern.org>
  * @bug 2499
  *
  * Output is posted from time to time on:
@@ -12,7 +13,125 @@
 
 /** */
 require_once('commandLine.inc');
+if( isset($options['help']) ) { usage(); die(); }
+// default output is WikiText
+if( !isset($options['output']) ) { $options['output']='wiki'; }
 
+
+/** Print a usage message*/
+function usage() {
+print <<<END
+Usage: php transstat.php [--help] [--output:csv|text|wiki] [--noredundant]
+         --help : this helpful message
+       --output : select an output engine one of:
+                    * 'csv'  : Comma Separated Values.
+                    * 'wiki' : MediaWiki syntax.
+                    * 'text' : Text with tabs.
+	              Default output is 'wiki'
+  --noredundant : do NOT calculate redundant (takes some time)
+
+
+END;
+}
+
+
+/** A general output object. Need to be overriden */
+class statsOutput {
+	var $output; // buffer that contain the text
+	function statsOutput() { $this->output='';}
+	function getContent() { return $this->output;}
+
+	function formatPercent($subset, $total, $revert=false, $accuracy=2) {
+		return @sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
+	}
+
+	// Override the next methods
+	function heading() {}
+	function footer() {}
+	function blockstart() {}
+	function blockend() {}
+	function element($in, $heading=false) {}
+}
+
+
+/** Outputs WikiText */
+class wikiStatsOutput extends statsOutput {
+	function heading() {
+		$this->output .= "{| border=2 cellpadding=4 cellspacing=0 style=\"background: #f9f9f9; border: 1px #aaa solid; border-collapse: collapse;\" width=100%\n";
+	}
+	function footer()     { $this->output .= "|}\n"; }
+	function blockstart() { $this->output .= "|-\n"; }
+	function blockend()   { $this->output .= ''; }
+	function element($in, $heading = false) {
+		$this->output .= ($heading ? '!' : '|') . " $in\n";
+	}
+	function formatPercent($subset, $total, $revert=false, $accuracy=2) {
+		$v = @round(255 * $subset / $total);
+		if($revert) $v = 255 - $v;
+		if($v < 128) {
+			// red to yellow
+			$red = 'FF';
+			$green = sprintf('%02X', 2*$v);
+		} else {
+			// yellow to green
+			$red   = sprintf('%02X', 2*(255 -$v) );
+			$green = 'FF';
+		}
+		$blue  = '00';
+		$color = $red.$green.$blue;
+
+		$percent = statsOutput::formatPercent($subset, $total, $revert, $accuracy);
+		return 'bgcolor="#'.$color.'" | '.$percent.'%';
+	}
+}
+
+/** Output text. To be used on a terminal for example. */
+class textStatsOutput extends statsOutput {
+	function element($in, $heading = false) {
+		$this->output .= $in."\t";
+	}
+	function blockend(){ $this->output .="\n";}
+}
+
+/** csv output. Some people love excel */
+class csvStatsOutput extends statsOutput {
+	function element($in, $heading = false) {
+		$this->output .= $in.";";
+	}
+	function blockend(){ $this->output .="\n";}
+}
+
+
+/** FIXME: This takes an obscene amount of time */
+if(isset($options['noredundant'])) {
+	function redundant(&$arr) { return 'NC'; }
+} else {
+	function redundant(&$arr) {
+		global $wgAllMessagesEn;
+		
+		$redundant = 0;
+		foreach(array_keys($arr) as $key) {
+			if ( ! array_key_exists( $key, $wgAllMessagesEn) )
+				++$redundant;
+		}
+		return $redundant;
+	}
+}
+
+// Select an output engine
+switch ($options['output']) {
+	case 'csv':
+		$out = new csvStatsOutput(); break;
+	case 'text':
+		$out = new textStatsOutput(); break;
+	case 'wiki':
+		$out = new wikiStatsOutput(); break;
+	default:
+		usage(); die();
+	break;
+}
+
+// available language files
 $langs = array();
 $dir = opendir("$IP/languages");
 while ($file = readdir($dir)) {
@@ -20,16 +139,15 @@ while ($file = readdir($dir)) {
 		$langs[] = $m[1];
 	}
 }
-
 sort($langs);
 
-// Cleanup
+// Cleanup file list
 foreach($langs as $key => $lang) {
 	if ($lang == 'Utf8' || $lang == '' || $lang == 'Converter')
 		unset($langs[$key]);
 }
 
-
+//  Load message and compute stuff
 $msgs = array();
 foreach($langs as $lang) {
 	// Since they aren't loaded by default..
@@ -48,46 +166,37 @@ foreach($langs as $lang) {
 	}
 }
 
-// wiki syntax header
-$out = "{| border=2 cellpadding=4 cellspacing=0 style=\"background: #f9f9f9; border: 1px #aaa solid; border-collapse: collapse;\" width=100%\n";
-$out .= beginul();
-$out .= li('Language', true);
-$out .= li('Translated', true);
-$out .= li('%', true);
-$out .= li('Untranslated', true);
-$out .= li('%', true);
-$out .= li('Redundant', true);
-$out .= li('%', true);
-$out .= endul();
+// Top entry
+$out->heading();
+$out->blockstart();
+$out->element('Language', true);
+$out->element('Translated', true);
+$out->element('%', true);
+$out->element('Untranslated', true);
+$out->element('%', true);
+$out->element('Redundant', true);
+$out->element('%', true);
+$out->blockend();
 
-// generate table rows using wikisyntax
+// Generate rows
 foreach($msgs as $lang => $stats) {
-	$out .= beginul();
-	$out .= li($wgContLang->getLanguageName(strtr($lang, '_', '-')) . " ($lang)"); // Language
-	$out .= li($stats['total'] . '/' . $msgs['en']['total']); // Translated
-	$out .= li(percent($stats['total'], $msgs['en']['total'])); // % Translated
-	$out .= li($msgs['en']['total'] - $stats['total']); // Untranslated
-	$out .= li(percent($msgs['en']['total'] - $stats['total'], $msgs['en']['total'])); // % Untranslated
-	$out .= li($stats['redundant'] . '/' . $stats['total']); // Redundant
-	$out .= li(percent($stats['redundant'],  $stats['total'])); // % Redundant
-	$out .= endul();
-}
-$out = substr($out, 0, -3) . "|}\n";
-echo $out;
-
-function beginul() { return ''; }
-function endul() { return "|-\n"; }
-function li($in, $heading = false) { return ($heading ? '!' : '|') . " $in\n"; }
-function percent($subset, $total, $accuracy = 2) { return @sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total ); }
-
-// FIXME: This takes an obscene amount of time
-function redundant(&$arr) {
-	global $wgAllMessagesEn;
-	
-	$redundant = 0;
-	foreach(array_keys($arr) as $key) {
-		if ( ! array_key_exists( $key, $wgAllMessagesEn) )
-			++$redundant;
+	$out->blockstart();
+	$out->element($wgContLang->getLanguageName(strtr($lang, '_', '-')) . " ($lang)"); // Language
+	$out->element($stats['total'] . '/' . $msgs['en']['total']); // Translated
+	$out->element($out->formatPercent($stats['total'], $msgs['en']['total'])); // % Translated
+	$out->element($msgs['en']['total'] - $stats['total']); // Untranslated
+	$out->element($out->formatPercent($msgs['en']['total'] - $stats['total'], $msgs['en']['total'], true)); // % Untranslated
+	if($stats['redundant'] =='NC') {
+		$out->element('NC');
+		$out->element('NC');
+	} else {
+		$out->element($stats['redundant'] . '/' . $stats['total']); // Redundant
+		$out->element($out->formatPercent($stats['redundant'],  $stats['total'],true)); // % Redundant
 	}
-	return $redundant;
+	$out->blockend();
 }
+$out->footer();
+
+// Final output
+echo $out->getContent();
+?>
