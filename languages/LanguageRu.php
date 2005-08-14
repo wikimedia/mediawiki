@@ -1,7 +1,7 @@
 <?php
 /** Russian (русский язык)
   *
-  * Based on Language.php 1.628
+  * Based on Language.php 1.633.2.4
   *
   * @package MediaWiki
   * @subpackage Language
@@ -238,6 +238,7 @@ if(isset($wgExtraNamespaces)) {
 
 
 'linktrail'             => '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я)+)(.*)$/sD', 
+'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff\x4000-\x4f0f]+)$/sD',
 'mainpage'              => 'Заглавная страница',
 'mainpagetext'  => 'Програмное обеспечение вики-проекта успешно установлено.',
 "mainpagedocfooter" => "См. [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
@@ -358,6 +359,7 @@ if(isset($wgExtraNamespaces)) {
 'showtoc' => 'показать',
 'hidetoc' => 'убрать',
 'thisisdeleted' => "Просмотреть или восстановить $1?",
+'restorelink1' => 'одно удаление',
 'restorelink' => "$1 удаление(й)",
 'feedlinks' => 'В виде:',
 'sitenotice'    => '-', # the equivalent to wgSiteNotice
@@ -584,7 +586,7 @@ $1",
 'explainconflict' => "Пока вы редактировали эту статью, кто-то внёс в неё изменения. В верхнем окне для редактирования вы видите тот текст статьи, который будет сохранён при нажатии на кнопку «Записать страницу». В нижнем окне для редактирования находится ваш вариант. Чтобы сохранить ваши изменения, перенесите их из нижнего окна для редактирования в верхнее.<br/>",
 'yourtext'              => 'Ваш текст',
 'storedversion' => 'Сохранённая версия',
-'nonunicodebrowser' => "<strong>ПРЕДУПРЕЖДЕНИЕ: Ваш [[браузер]] не поддерживает кодировку [[Юникод]]. Пожалуйста, воспользуйтесь другим браузером для редактирования.</strong>",
+'nonunicodebrowser' => "<strong>ПРЕДУПРЕЖДЕНИЕ: Ваш [[браузер]] не поддерживает кодировку [[Юникод]]. При редактировании статей все не-ASCII символы будут заменены на свои шестнадцатеричные коды.</strong>",
 'editingold'    => "<strong>ПРЕДУПРЕЖДЕНИЕ: Вы редактируете устаревшую версию данной страницы. После сохранения страницы будут потеряны изменения сделанные в последующих версиях.",
 'yourdiff'              => 'Различия',
 'copyrightwarning' => "Обратите внимание, что все добавления и изменения в данном проекте попадают под действие $2 (см. $1). Внося какие-либо дополнения, вы соглашаетесь с тем, что они могут быть изменены кем угодно.
@@ -1248,8 +1250,9 @@ IP-адреса.',
 'ipusuccess'    => "IP-адрес [[$1|«$1»]] разблокирован",
 'ipblocklist'   => 'Список заблокированных IP-адресов и пользователей',
 'blocklistline' => "$1, $2 заблокировал $3 ($4)",
-'infiniteblock' => 'блокировка завершится infinite', //fixme
+'infiniteblock' => 'бессрочная блокировка', 
 'expiringblock' => 'блокировка завершится $1',
+'ipblocklistempty'      => 'Список блокировок пуст.',
 'blocklink'             => 'заблокировать',
 'unblocklink'   => 'разблокировать',
 'contribslink'  => 'вклад',
@@ -1266,6 +1269,7 @@ IP-адреса.',
 'proxyblocksuccess'     => "Выполнено.\n",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Ваш IP-адрес находится в списке отрытых прокси-серверов [http://www.sorbs.net SORBS] DNSBL.',
+'sorbs_create_account_reason' => 'Ваш IP-адрес занесён в список открытых прокси [http://www.sorbs.net SORBS] DNSBL. Вы не можете создать учётную запись.',
 
 # Developer tools
 #
@@ -1459,7 +1463,7 @@ IP-адреса.',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
@@ -1939,6 +1943,8 @@ $1
 'trackbackremove' => ' ([$1 удалить])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'Trackback был удалён.',
+
+'unit-pixel' => 'пкс',
 );
 
 /* Please, see Language.php for general function comments */
