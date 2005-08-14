@@ -395,10 +395,10 @@ class PageHistory {
 
 		$n = $dbr->numRows( $res );
 		$last = null;
-		while( $obj = $db->fetchObject( $res ) ) {
+		while( $obj = $dbr->fetchObject( $res ) ) {
 			$last = $obj->rev_timestamp;
 		}
-		$db->freeResult( $res );
+		$dbr->freeResult( $res );
 		return $last;
 	}
 
