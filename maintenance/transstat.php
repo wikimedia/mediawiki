@@ -81,7 +81,7 @@ class wikiStatsOutput extends statsOutput {
 		$color = $red.$green.$blue;
 
 		$percent = statsOutput::formatPercent($subset, $total, $revert, $accuracy);
-		return 'bgcolor="#'.$color.'" | '.$percent.'%';
+		return 'bgcolor="#'.$color.'" | '.$percent;
 	}
 }
 
