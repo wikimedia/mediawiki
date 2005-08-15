@@ -242,7 +242,7 @@ CONTROL;
 		$userLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
 		$contribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), wfMsg( 'contribslink' ),
 			'target=' . urlencode($this->mOldUser) );
-    $nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
+		$nextlink = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />$userLink " .
 			"($uTLink | $contribs)<br />" . $this->mOldComment .
 			'<br />' . $nextlink. "</div>\n";
