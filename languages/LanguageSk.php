@@ -121,11 +121,6 @@ require_once( 'LanguageUtf8.php' );
 'tog-justify' => "Zarovnávaj odstavce",
 'tog-minordefault' => "Označ všetky zmeny ako drobné",
 'tog-nocache' => "Vypni ukladanie stránok do vyrovnávacej pamäte",
-#'tog-enotifwatchlistpages' => 'Send me an email on page changes',
-#'tog-enotifusertalkpages' => 'Send me an email when my user talk page is changed',
-#'tog-enotifminoredits' => 'Send me an email also for minor edits of pages',
-#'tog-enotifrevealaddr' => 'Reveal my email address in notification mails',
-#'tog-shownumberswatching' => 'Show the number of watching users',
 'tog-numberheadings' => "Automaticky čísluj odstavce",
 'tog-previewonfirst' => "Zobraz náhľad pri prvom upravovaní",
 'tog-previewontop' => "Zobrazuj ukážku pred oknom na úpravy, a nie až za ním",
@@ -197,7 +192,7 @@ a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú pr�
 'wikititlesuffix' => '{{SITENAME}}',
 'bugreports' => 'Oznámenia o chybách',
 'bugreportspage' => 'Project:Oznámenia_o_chybách',
-'sitesupport' => 'Dotácie', # To enable, something like 'Donations', 
+'sitesupport' => 'Dotácie', # To enable, something like 'Donations',
 'sitesupport-url' => 'Project:Dotácie',
 'faq' => 'FAQ',
 'faqpage' => 'Project:FAQ',
@@ -224,7 +219,7 @@ a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú pr�
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
- 
+
 'currentevents' => 'Aktuality',
 'currentevents-url' => 'Aktuality',
 
@@ -283,9 +278,6 @@ a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú pr�
 'developertitle' => 'Je potrebné oprávnenie typu vývojár',
 'developertext' => "Požadovanú akciu môžu vykonať iba redaktori s oprávnením \"vývojár\".
 Pozri $1.",
-'bureaucrattitle' => 'Je potrebné oprávnenie typu byrokrat',
-"bureaucrattext" => "Akciu, ktorú ste vyvolali, môže použiť iba
-administrátor so statusom \"byrokrat\".",
 'nbytes' => '$1 bajtov',
 'ok' => 'OK',
 'sitetitle' => "{{SITENAME}}",
@@ -318,10 +310,10 @@ administrátor so statusom \"byrokrat\".",
 # Main script and global functions
 #
 'nosuchaction' => 'Takáto akcia neexistuje',
-'nosuchactiontext' => 'Softvér MediaWiki nepozná akciu, 
+'nosuchactiontext' => 'Softvér MediaWiki nepozná akciu,
 ktorú vyžadujete pomocou URL.',
 'nosuchspecialpage' => 'Takáto špeciálna stránka neexistuje',
-'nospecialpagetext' => 'Softvér MediaWiki nepozná takúto špeciálnu stránku, 
+'nospecialpagetext' => 'Softvér MediaWiki nepozná takúto špeciálnu stránku,
 zoznam špeciálnych stránok nájdete na [[{{ns:special}}:Specialpages]].',
 
 # General errors
@@ -344,18 +336,18 @@ $1',
 'cachederror' => 'Nasledujúca stránka je odložená kópia vyžiadanej stránky a nemusí byť aktuálna.',
 'laggedslavemode' => 'Varovanie: Je možné, že stránka neobsahuje posledné aktualizácie.',
 'readonly' => 'Databáza je zamknutá',
-'enterlockreason' => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu, 
+'enterlockreason' => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu,
 kedy očakávate odomknutie',
-'readonlytext' => "Databáza je momentálne zamknutá, 
-nové články a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. 
+'readonlytext' => "Databáza je momentálne zamknutá,
+nové články a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy.
 Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.
 Administrátor, ktorý nariadil uzamknutie, uvádza tento dôvod: $1",
-'missingarticle' => "Databáza nenašla text článku, ktorý by mala nájsť, 
+'missingarticle' => "Databáza nenašla text článku, ktorý by mala nájsť,
 konkrétne \"$1\".
 
 Toto je obyčajne zapríčinené odkazovaním na staršie verzie alebo odkazom na článok, ktorý bol zmazaný.
 
-Ak toto neplatí, pravdepodobne ste našli chybu s softvéri. 
+Ak toto neplatí, pravdepodobne ste našli chybu s softvéri.
 Prosím ohláste túto chybu administrátorovi, uveďte aj meno článku - odkaz (URL).",
 #'readonly_lag' => "The database has been automatically locked while the slave database servers catch up to the master",
 'internalerror' => 'Vnútorná chyba',
@@ -384,7 +376,6 @@ veľa dôvodov prečo je to tak, prosíme pozrite
 [[Project:Zamknutá stránka]].
 
 Môžete si pozrieť a skopírovať zdroj tejto stránky:",
-'seriousxhtmlerrors' => 'Tidy našiel vážne značkovacie chyby xhtml.',
 'sqlhidden' => '(SQL príkaz na prehľadávanie je skrytý)',
 
 # Login and logout pages
@@ -396,7 +387,7 @@ opäť prihlásiť pod rovnakým alebo odlišným redaktorským menom. Uvedomte 
 naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete
 vyrovnávaciu pamäť vášho prehliadača.\n",
 
-'welcomecreation' => "== Vitajte, $1! == 
+'welcomecreation' => "== Vitajte, $1! ==
 Vaše konto je vytvorené. Nezabudnite si nastaviť vaše redaktorské nastavenia.",
 
 'loginpagetitle' => 'Prihlásenie redaktora',
@@ -442,16 +433,13 @@ Vaše skutočné meno, ak sa rozhodnete ho uverejniť, bude priradené k vašej 
 'nosuchusershort' => "V súčasnosti neexistuje redaktor s menom \"$1\". Skontrolujte preklepy.",
 'wrongpassword' => 'Zadané heslo je nesprávne. Skúste to znovu.',
 'mailmypassword' => 'Pošlite mi e-mailom dočasné heslo',
-'mailmypasswordauthent' => 'Pošlite mi e-mailom dočasné heslo',
 'noemail' => "Redaktor \"$1\" nezadal e-mailovú adresu.",
 'passwordsent' => "Nové heslo bolo zaslané na e-mailovú adresu
 redaktora \"$1\".
 Prihláste sa znovu po jeho obdržaní.",
-#'eauthentsent' => "A confirmation email has been sent to the nominated email address. 
-#Before any other mail is sent to the account, you will have to follow the instructions in the email, 
+#'eauthentsent' => "A confirmation email has been sent to the nominated email address.
+#Before any other mail is sent to the account, you will have to follow the instructions in the email,
 #to confirm that the account is actually yours.",
-'passwordsentforemailauthentication' => "Nové heslo bolo zaslané na e-mailovú adresu, ktorá bola novo zaregistrovaná pre \"$1\".
-Prihláste sa znovu s týmto heslom na účely overenia.",
 'loginend' => '&nbsp;',
 'mailerror' => "Chyba pri posielaní e-mailu: $1",
 'acct_creation_throttle_hit' => 'Prepáčte, už máte vytvorených $1 kont. Nemôžete ich vytvoriť viac.',
@@ -513,7 +501,8 @@ Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého vášho prík
 'whitelistacctitle' => 'Nemáte dovolené vytvorenie konta',
 'whitelistacctext' => 'Na umožnenie vytvorenia účtu na tejto Wiki musíte byť [[Special:Userlogin|prihlásený/á]] a mať primerané práva.',
 'loginreqtitle' => 'Nutné prihlásenie',
-'loginreqtext' => 'Na prezeranie ďalších článkov sa musíte [[Special:Userlogin|prihlásiť]].',
+'loginreqlink' => 'prihlásiť',
+'loginreqpagetext' => 'Na prezeranie ďalších článkov sa musíte $1.',
 'accmailtitle' => 'Heslo odoslané.',
 'accmailtext' => "Heslo pre '$1' bolo poslané $2.",
 'newarticle' => '(Nový)',
@@ -552,7 +541,7 @@ verziu tejto stránky.
 Ak vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.</strong>",
 'yourdiff' => 'Rozdiely',
 'copyrightwarning' => "<div id=\"specChar\" style=\"margin-top:5px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px;text-align:center;\">
-<small>[[metawikipedia:Help:Special_characters|Zvláštne znaky]] 
+<small>[[metawikipedia:Help:Special_characters|Zvláštne znaky]]
 </small></div>
 
 Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}}
@@ -716,7 +705,7 @@ od času na serveri (UTC).',
 # group editing
 'groups-editgroup' => 'Uprav skupinu',
 'groups-addgroup' => 'Pridaj skupinu',
-'groups-editgroup-preamble' => 'Ak opis začína čiarkou, zvyšok sa bude považovať za 
+'groups-editgroup-preamble' => 'Ak opis začína čiarkou, zvyšok sa bude považovať za
 názov systémovej správy a text bude lokalizovateľný pomocou menného priestoru MediaWiki',
 'groups-editgroup-name' => 'Meno skupiny: ',
 'groups-editgroup-description' => 'Opis skupiny (max. 255 znakov):<br />',
@@ -740,7 +729,7 @@ odobrať redaktora. Neoznačené skupiny nebudú zmenené. Odobrať skupinu mož
 'userrights-logcomment' => 'Zmenená príslušnosť zo skupiny $1 na skupinu $2',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name' => 'Anonym',
 'group-anon-desc' => 'Anonymný redaktor',
 'group-loggedin-name' => 'Redaktor',
@@ -842,12 +831,9 @@ Všetky uvedené časy sú časy na servri (UTC).
 'filedesc' => 'Opis súboru',
 'filestatus' => 'Stav autorských práv',
 'filesource' => 'Zdroj',
-'affirmation' => "Vyhlasujem, že držiteľ autorských práv k tomuto súboru
-súhlasí s tým, aby bol licencovaný podľa podmienok $1.",
 'copyrightpage' => "Project:Autorské práva",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles' => 'Nahrané súbory',
-'noaffirmation' => 'Musíte potvrdiť, že vaše nahranie neporušuje žiadne autorské práva.',
 'ignorewarning' => 'Ignorovať varovanie a súbor napriek tomu uložiť.',
 'minlength' => 'Názvy obrázkov musia obsahovať najmenej tri písmená.',
 'illegalfilename' => 'Názov súboru \"$1\" obsahuje znaky, ktoré nie sú povolené v názvoch článkov. Prosím premenujte súbor a skúste ho nahrať znovu.',
@@ -899,7 +885,7 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 
 <br clear=both>
 {| align=center border=0 cellpadding=3 cellspacing=3 style=\"border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;\"
-|- 
+|-
 | [[Image:Commons without text.png|20px|Wikimedia Commons Logo]]
 |Toto je súbor z [[Commons:Main Page|Wikimedia Commons]]. Prosíme pozrite si jeho '''[[Commons:Image:{{PAGENAME}}|popisnú stránku ]]''' <!--on the Commons-->.
 |}",
@@ -1283,22 +1269,9 @@ Potvrďte, že to naozaj chcete urobiť.',
 <br>Nezabudnite po dokončení údržby odstrániť zámok.',
 'unlockdbsuccesstext' => 'Databáza bola odomknutá.',
 
-# SQL query
-#
-'asksql' => 'SQL príkaz na prehľadávanie',
-'asksqltext' => "Použite dolu uvedený formulár na priamy príkaz na prehľadávanie databázy.
-Použite apostrofy ('ako tu') na ohraničenie textu.
-Často môžete značne zvýšiť záťaž servra,
-nepoužívajte preto túto funkciu často.",
-'sqlislogged' => 'Uvedomte si, že všetky príkazy na prehľadávanie sú zaznamenávané.',
-'sqlquery' => 'Zadajte príkaz na prehľadávanie',
-'querybtn' => 'Pošli príkaz na prehľadávanie',
-'selectonly' => 'Povolené sú iba príkazy na prehľadávanie \"SELECT\".',
-'querysuccessful' => 'Prehľadávanie nebolo úspešné',
-
 # Make sysop
 'makesysoptitle' => 'Urob z redaktora administrátora',
-'makesysoptext' => 'Tento formulár používajú byrokrati na zmenu redaktorov na administrátorov. 
+'makesysoptext' => 'Tento formulár používajú byrokrati na zmenu redaktorov na administrátorov.
 Do poľa napíšte meno redaktora a potvrďte zmenu redaktora na administrátora',
 'makesysopname' => 'Meno redaktora:',
 'makesysopsubmit' => 'Urob z tohto redaktora administrátora',
@@ -1338,17 +1311,16 @@ Do poľa napíšte meno redaktora a potvrďte zmenu redaktora na administrátora
 'val_validation_of' => 'Overenie "$1"',
 'val_revision_of' => 'Verzie $1',
 'val_revision_changes_ok' => 'Vaše hodnotenie bolo zaznamenané!',
-'val_rev_stats_link' => 'Pozri štatistiku overení pre "$1" <a href="$2">tu</a>',
 'val_revision_stats_link' => '(<a href="$1">detaily</a>)',
 'val_iamsure' => 'Zaškrtnite políčko, ak to myslíte vážne!',
 'val_clear_old' => 'Vymaž moje staršie záznamy overení',
 'val_merge_old' => 'Použi moje predchádzajúce hodnotenia tam, kde je zvolené \'Nemám názor\'',
 'val_form_note' => "'''Tip:''' Zlúčiť vaše údaje znamená, že pre verziu
-článku, ktorý zvolíte, všetky možnosti, kde ste označili ''nemám názor'', 
+článku, ktorý zvolíte, všetky možnosti, kde ste označili ''nemám názor'',
 budú nastavené na hodnotu a komentár najčerstvejšej verzie, pre ktorú
 ste vyjadrili názor. Napríklad, ak chcete zmeniť jedinú nezávislú možnosť
 pre novšiu verziu, ale tiež ponechať vaše ostatné nastavenia pre tento článok
-v tejto verzii, zvoľte iba, ktorú možnosť máte v úmysle ''zmeniť'', 
+v tejto verzii, zvoľte iba, ktorú možnosť máte v úmysle ''zmeniť'',
 a zlúčením sa doplnia ostatné možnosti z vašich predchádzajúcich nastavení",
 'val_noop' => 'Nemám názor',
 'val_percent' => "'''$1%'''<br />($2 z $3 bodov<br />od $4 redaktorov)",
@@ -1420,7 +1392,7 @@ pretože už jedna existuje pod zadaným novým názvom. Zlúčte ich manuálne.
 'movereason' => 'Dôvod',
 'revertmove' => 'obnova',
 'delete_and_move' => 'Vymaž a presuň',
-'delete_and_move_text' => 
+'delete_and_move_text' =>
 '==Potreba zmazať článok==
 
 Cieľový článok "[[$1]]" už existuje. Chcete ho vymazať a vytvoriť tak priestor pre presun?',
@@ -1484,7 +1456,7 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 'tooltip-watch' => 'Pridaj túto stránku k sledovaným. [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
 #'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
@@ -1545,52 +1517,52 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 'Monobook.js' => '/* tooltips and access keys */
 ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja redaktorská stránka\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Stránka redaktora pre ip adresu, ktorú upravujete ako\'); 
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja diskusná stránka\'); 
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskusia o úpravách z tejto ip adresy\'); 
-ta[\'pt-preferences\'] = new Array(\'\',\'Moje nastavenia\'); 
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Zoznam článkov, na ktorých sledujete zmeny.\'); 
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Zoznam mojich príspevkov\'); 
-ta[\'pt-login\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\'); 
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\'); 
-ta[\'pt-logout\'] = new Array(\'o\',\'Odhlásenie\'); 
-ta[\'ca-talk\'] = new Array(\'t\',\'Diskusia o obsahu článku\'); 
-ta[\'ca-edit\'] = new Array(\'e\',\'Môžete upravovať tento článok. Prosíme, použite tlačidlo náhľad pre uložením.\'); 
-ta[\'ca-addsection\'] = new Array(\'+\',\'Pridaj komentár k tejto diskusii.\'); 
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Tento článok je zamknutý. Môžete však vidieť jeho zdrojový text.\'); 
-ta[\'ca-history\'] = new Array(\'h\',\'Minulé verzie tohto článku.\'); 
-ta[\'ca-protect\'] = new Array(\'=\',\'Zamkni tento článok\'); 
-ta[\'ca-delete\'] = new Array(\'d\',\'Vymaž tento článok\'); 
-ta[\'ca-undelete\'] = new Array(\'d\',\'Obnov úpravy tohto článku až po dobu jeho vymazania\'); 
-ta[\'ca-move\'] = new Array(\'m\',\'Presuň tento článok\'); 
-ta[\'ca-watch\'] = new Array(\'w\',\'Pridať tento článok do sledovaných článkov\'); 
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Odstrániť tento článok zo sledovaných článkov\'); 
-ta[\'search\'] = new Array(\'f\',\'Prehľadávanie tejto wiki\'); 
-ta[\'p-logo\'] = new Array(\'\',\'Hlavná stránka\'); 
-ta[\'n-mainpage\'] = new Array(\'z\',\'Navštíviť Hlavnú stránku\'); 
-ta[\'n-portal\'] = new Array(\'\',\'O projekte, ako môžete prispieť, kde čo nájsť\'); 
-ta[\'n-currentevents\'] = new Array(\'\',\'Aktuálne udalosti a ich pozadie\'); 
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Zoznam posledných úprav vo wiki.\'); 
-ta[\'n-randompage\'] = new Array(\'x\',\'Zobrazenie náhodného článku\'); 
-ta[\'n-help\'] = new Array(\'\',\'Pozrieť si pomoc.\'); 
-ta[\'n-sitesupport\'] = new Array(\'\',\'Podporte nás\'); 
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Zoznam všetkých wiki článkov, ktoré sem odkazujú\'); 
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Posledné úpravy v článkoch, ktoré odkazujú na túto stránku\'); 
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed pre túto stránku\'); 
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed pre túto stránku\'); 
-ta[\'t-contributions\'] = new Array(\'\',\'Pozrieť si zoznam príspevkov od tohto redaktora\'); 
-ta[\'t-emailuser\'] = new Array(\'\',\'Poslať e-mail tomuto redaktorovi\'); 
-ta[\'t-upload\'] = new Array(\'u\',\'Nahranie obrázkových alebo mediálnych súborov\'); 
-ta[\'t-specialpages\'] = new Array(\'q\',\'Zoznam všetkých špeciálnych stránok\'); 
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pozrieť si obsah článku\'); 
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Pozrieť si stránku redaktora\'); 
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Pozrieť si stránku médii\'); 
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Toto je špeciálna stránka, nemôžete ju upravovať.\'); 
-ta[\'ca-nstab-wp\'] = new Array(\'c\',\'Pozrieť si stránku projektu\'); 
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pozrieť si stránku obrázku\'); 
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pozrieť si systémovú stránku\'); 
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pozrieť si šablónu\'); 
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pozrieť si stránku s Pomocou\'); 
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Stránka redaktora pre ip adresu, ktorú upravujete ako\');
+ta[\'pt-mytalk\'] = new Array(\'n\',\'Moja diskusná stránka\');
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Diskusia o úpravách z tejto ip adresy\');
+ta[\'pt-preferences\'] = new Array(\'\',\'Moje nastavenia\');
+ta[\'pt-watchlist\'] = new Array(\'l\',\'Zoznam článkov, na ktorých sledujete zmeny.\');
+ta[\'pt-mycontris\'] = new Array(\'y\',\'Zoznam mojich príspevkov\');
+ta[\'pt-login\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\');
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'Odporúčame Vám prihlásiť sa, nie je to však povinné.\');
+ta[\'pt-logout\'] = new Array(\'o\',\'Odhlásenie\');
+ta[\'ca-talk\'] = new Array(\'t\',\'Diskusia o obsahu článku\');
+ta[\'ca-edit\'] = new Array(\'e\',\'Môžete upravovať tento článok. Prosíme, použite tlačidlo náhľad pre uložením.\');
+ta[\'ca-addsection\'] = new Array(\'+\',\'Pridaj komentár k tejto diskusii.\');
+ta[\'ca-viewsource\'] = new Array(\'e\',\'Tento článok je zamknutý. Môžete však vidieť jeho zdrojový text.\');
+ta[\'ca-history\'] = new Array(\'h\',\'Minulé verzie tohto článku.\');
+ta[\'ca-protect\'] = new Array(\'=\',\'Zamkni tento článok\');
+ta[\'ca-delete\'] = new Array(\'d\',\'Vymaž tento článok\');
+ta[\'ca-undelete\'] = new Array(\'d\',\'Obnov úpravy tohto článku až po dobu jeho vymazania\');
+ta[\'ca-move\'] = new Array(\'m\',\'Presuň tento článok\');
+ta[\'ca-watch\'] = new Array(\'w\',\'Pridať tento článok do sledovaných článkov\');
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Odstrániť tento článok zo sledovaných článkov\');
+ta[\'search\'] = new Array(\'f\',\'Prehľadávanie tejto wiki\');
+ta[\'p-logo\'] = new Array(\'\',\'Hlavná stránka\');
+ta[\'n-mainpage\'] = new Array(\'z\',\'Navštíviť Hlavnú stránku\');
+ta[\'n-portal\'] = new Array(\'\',\'O projekte, ako môžete prispieť, kde čo nájsť\');
+ta[\'n-currentevents\'] = new Array(\'\',\'Aktuálne udalosti a ich pozadie\');
+ta[\'n-recentchanges\'] = new Array(\'r\',\'Zoznam posledných úprav vo wiki.\');
+ta[\'n-randompage\'] = new Array(\'x\',\'Zobrazenie náhodného článku\');
+ta[\'n-help\'] = new Array(\'\',\'Pozrieť si pomoc.\');
+ta[\'n-sitesupport\'] = new Array(\'\',\'Podporte nás\');
+ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Zoznam všetkých wiki článkov, ktoré sem odkazujú\');
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Posledné úpravy v článkoch, ktoré odkazujú na túto stránku\');
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed pre túto stránku\');
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed pre túto stránku\');
+ta[\'t-contributions\'] = new Array(\'\',\'Pozrieť si zoznam príspevkov od tohto redaktora\');
+ta[\'t-emailuser\'] = new Array(\'\',\'Poslať e-mail tomuto redaktorovi\');
+ta[\'t-upload\'] = new Array(\'u\',\'Nahranie obrázkových alebo mediálnych súborov\');
+ta[\'t-specialpages\'] = new Array(\'q\',\'Zoznam všetkých špeciálnych stránok\');
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'Pozrieť si obsah článku\');
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'Pozrieť si stránku redaktora\');
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'Pozrieť si stránku médii\');
+ta[\'ca-nstab-special\'] = new Array(\'\',\'Toto je špeciálna stránka, nemôžete ju upravovať.\');
+ta[\'ca-nstab-wp\'] = new Array(\'c\',\'Pozrieť si stránku projektu\');
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'Pozrieť si stránku obrázku\');
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Pozrieť si systémovú stránku\');
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'Pozrieť si šablónu\');
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'Pozrieť si stránku s Pomocou\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriami\');
 ',
 
@@ -1607,8 +1579,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Pozrieť si stránku s kategóriam
 
 'newimages' => 'Galéria nových obrázkov',
 'noimages' => 'Nič na zobrazenie.',
-
-'sitesettings' => 'Nastavenia webu',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Redaktor: ',
@@ -1653,12 +1623,12 @@ do Vášho prehliadača pre potvrdenie, že Vaša e-mailová adresa je platná."
 'confirmemail_body' => "Niekto, pravdepodobne vy z IP adresy $1, zaregistroval účet
 \"$2\" s touto e-mailovou adresou na {{GRAMMAR:lokál|{{SITENAME}}}}.
 
-Pre potvrdenie, že tento účet skutočne patrí Vám a pre aktivovanie 
+Pre potvrdenie, že tento účet skutočne patrí Vám a pre aktivovanie
 e-mailových funkcií na {{GRAMMAR:lokál|{{SITENAME}}}}, otvorte tento odkaz vo vašom prehliadači:
 
 $3
 
-Ak ste to *neboli* Vy, neotvárajte odkaz. Tento potvrdzovací kód 
+Ak ste to *neboli* Vy, neotvárajte odkaz. Tento potvrdzovací kód
 vyprší o $4.
 ",
 
@@ -1673,9 +1643,6 @@ class LanguageSk extends LanguageUtf8 {
 		$wgNamespaceNamesSk[NS_PROJECT_TALK] = 'Diskusia_k_' . $this->convertGrammar( $wgMetaNamespace, 'datív' );
 	}
 
-	/**
-	 * @return array
-	 */
 	function getNamespaces() {
 		global $wgNamespaceNamesSk;
 		return $wgNamespaceNamesSk;
@@ -1732,7 +1699,7 @@ class LanguageSk extends LanguageUtf8 {
 		',' => "\xc2\xa0",
 		'.' => ','
 	);
- 
+
 	function formatNum( $number ) {
 		return strtr($number, $this->digitTransTable );
 	}

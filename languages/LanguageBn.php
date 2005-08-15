@@ -161,7 +161,7 @@ class LanguageBn extends LanguageUtf8 {
 		'8' => '৮',
 		'9' => '৯'
 	);
-	
+
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		if( $wgTranslateNumerals ) {

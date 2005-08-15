@@ -6,14 +6,6 @@
 
 require_once( 'LanguageUtf8.php' );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 /* private */ $wgNamespaceNamesUk = array(
 	NS_MEDIA            => 'Медіа',
 	NS_SPECIAL          => 'Спеціальні',
@@ -42,14 +34,8 @@ require_once( 'LanguageUtf8.php' );
 /* private */ $wgSkinNamesUk = array(
 	'standard' => "Стандартне",
 	'nostalgia' => "Ностальгія",
-	'cologneblue' => "Кельнське Синє",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+	'cologneblue' => "Кельнське Синє"
+) + $wgSkinNamesEn;
 
 
 /* private */ $wgDateFormatsUk = array(
@@ -96,18 +82,6 @@ require_once( 'LanguageUtf8.php' );
 'october' => "жовтень",
 'november' => "листопад",
 'december' => "грудень",
-'january-gen' => 'січня',
-'february-gen' => 'лютого',
-'march-gen' => 'березня',
-'april-gen' => 'квітня',
-'may-gen' => 'травня',
-'june-gen' => 'червня',
-'july-gen' => 'липня',
-'august-gen' => 'серпня',
-'september-gen' => 'вересня',
-'october-gen' => 'жовтня',
-'november-gen' => 'листопада',
-'december-gen' => 'грудня',
 'jan' => "січ",
 'feb' => "лют",
 'mar' => "бер",
@@ -128,18 +102,17 @@ require_once( 'LanguageUtf8.php' );
 "mainpagetext"	=> "Програмне забезпечення вікі встановлено.",
 "about"			=> "Про",
 "aboutsite"      => "Про Вікіпедію",
-"aboutpage"		=> "$wgMetaNamespace:Про",
+"aboutpage"		=> "{{ns:project}}:Про",
 "help"			=> "Довідка",
-"helppage"		=> "$wgMetaNamespace:Довідка",
-"wikititlesuffix" => "$wgSitename",
+"helppage"		=> "{{ns:project}}:Довідка",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Звіт про помилку",
-"bugreportspage" => "$wgMetaNamespace:Звіт_про_помилку",
+"bugreportspage" => "{{ns:project}}:Звіт_про_помилку",
 "sitesupport"   => "Sitesupport",
-"sitesupportpage" => "", # Не з'явиться, якщо не встановлено. Може бути вікі-сторінкою або URL
 "faq"			=> "Часті питання",
-"faqpage"		=> "$wgMetaNamespace:Часті питання",
+"faqpage"		=> "{{ns:project}}:Часті питання",
 "edithelp"		=> "Довідка про редагування",
-"edithelppage"	=> "$wgMetaNamespace:Як_редагувати_статті",
+"edithelppage"	=> "{{ns:project}}:Як_редагувати_статті",
 "cancel"		=> "Відмінити",
 "qbfind"		=> "Знайти",
 "qbbrowse"		=> "Переглянути",
@@ -176,10 +149,9 @@ require_once( 'LanguageUtf8.php' );
 "redirectedfrom" => "(Перенаправлено з $1)",
 "lastmodified"	=> "Остання зміна $1.",
 "viewcount"		=> "Цю статтю переглядали $1 разів.",
-"gnunote" => "Всі тексти доступні на умовах ліцензії <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> версії 1.2 або пізнішої версії, опублікованої Free Software Foundation; без Незмінюваних розділів, без Текстів, розміщуваних на обкладинці; неприпустимо добавляти подібні секції. All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts; no such sections allowed to be added.",
 "printsubtitle" => "(Матеріал з {{SERVER}})",
 "protectedpage" => "Захищена стаття",
-"administrators" => "$wgMetaNamespace:Адміністратори",
+"administrators" => "{{ns:project}}:Адміністратори",
 "sysoptitle"	=> "Необхідний рівень доступу Оператор",
 "sysoptext"		=> "Дана дія може бути виконана тільки користувачами з правами \"Оператор\". Див. $1.",
 "developertitle" => "Необхіден рівень доступу Розробник",
@@ -187,7 +159,7 @@ require_once( 'LanguageUtf8.php' );
 "nbytes"		=> "$1 байт(ів)",
 "go"			=> "Перейти",
 "ok"			=> "OK",
-"sitetitle"		=> $wgSitename,
+"sitetitle"		=> {{SITENAME}},
 "sitesubtitle"	=> "Вільна енциклопедія",
 "retrievedfrom" => "Отримано від \"$1\"",
 "newmessages" => "Ви отримали $1.",
@@ -250,7 +222,7 @@ MySQL повернув помилку \"$3: $4\".\n",
 "viewsource" => "Переглянути початковий текст",
 "protectedtext" => "Ця сторінка була заблокована, щоб не допустити
 зміни; для цього можуть бути різні причини, подивіться будь-ласка
-[[$wgMetaNamespace:Захищена стаття]].
+[[{{ns:project}}:Захищена стаття]].
 
 You can view and copy the source of this page:",
 
@@ -271,11 +243,6 @@ You can view and copy the source of this page:",
 "remembermypassword" => "Запам'ятовувати ваш пароль між сеансами.",
 "loginproblem"	=> "<b>Проблема при вході в систему.</b><br />попробуйте ще раз!",
 "alreadyloggedin" => "<font color=red><b>Користувач $1, ви вже ввійшли в систему!</b></font><br />\n",
-
-"areyounew"		=> "Якщо ви новачок в технології Вікіпедії й хочете стати користувачем,
-введіть ім'я користувача, а потім введіть і повторіть пароль.
-Заповніть поле с адресою вашої електронної пошти; якщо ви забудете ваш пароль, ви зможете зробити запит, щоб новий пароль був відправлений вам на вказану вами адресу.<br />\n",
-
 "login"			=> "Вхід в систему",
 "userlogin"		=> "Вхід в систему",
 "logout"		=> "Вийти з системи",
@@ -318,7 +285,7 @@ You can view and copy the source of this page:",
 "blockedtitle"	=> "Користувача заблоковано",
 "blockedtext"	=> "Ваш користувач чи IP-адреса заблоковані $1.
 Причина блокування:<br />''$2''<p>Ви можете зв'язатися з $1 чи іншим
-[[$wgMetaNamespace:Администратори|администратором]] що обговорити блокування.
+[[{{ns:project}}:Администратори|администратором]] що обговорити блокування.
 Зверніть увагу, що ви не можете використовувати функцію \"Надіслати електронного листа користувачу\", якщо ви не вказали адресу вашої електронної пошти в Ваших [[Спеціальні:Настройки|настройках]]
 Ваша IP-адреса - $3. Будь-ласка, вказуйте, якщо будете запитувати про блокування.
 ==Зауваження для користувачів America On-Line==
@@ -327,7 +294,7 @@ You can view and copy the source of this page:",
 "newarticle"	=> "(Нова)",
 "newarticletext" => "Ви перейшли на статтю, яка поки що не існує.
 Щоб створити нову статтю, наберіть текст в вікні нижче
-(див. [[$wgMetaNamespace:Довідка|довідкову статтю]] щоб отримати більше інформації).
+(див. [[{{ns:project}}:Довідка|довідкову статтю]] щоб отримати більше інформації).
 Якщо ви опинились тут помилково, просто натисніть кнопку браузера '''назад'''.",
 "anontalkpagetext" => "---- ''Це сторінка обговорення, що належить анонімному користувачу, який ще не зареєструвався або не скористався зареєстрованим ім'ям. Тому ми вимушені використовувати [[IP-адресу]] для його ідентифікації. Одна IP-адреса може використовуватися декількома користувачами. Якщо ви - анонімний користувач і вважаєте, що отримали коментарі, адресовані не вам, будь ласка [[Спеціальні:Вхід_в_систему|зареєструйтесь або ввійдіть в систему як зареєстрований користувач]], щоб в майбутньому уникнути можливої плутанини з іншими анонімними користувачами.'' ",
 "noarticletext" => "(На даний момент текст в цієї статті відсутній)",
@@ -453,7 +420,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 "prefslogintext" => "Ви ввійшли в систему як \"$1\".
 Ваш внутрішній ідентифікаційний номер - $2.
 
-Див. [[$wgMetaNamespace:Допомога по настройкам]] що розібратися з настройками.",
+Див. [[{{ns:project}}:Допомога по настройкам]] що розібратися з настройками.",
 "prefsreset"	=> "Настройки були повернуті в стандартний стан.",
 "qbsettings"	=> "Настройки панелі навігації",
 "changepassword" => "Змінити пароль",
@@ -493,7 +460,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 #
 "changes" => "редагування",
 "recentchanges" => "Нові редагування",
-# This is the default text, and can be overriden by editing [[$wgMetaNamespace::Recentchanges]]
+# This is the default text, and can be overriden by editing [[{{ns:project}}::Recentchanges]]
 "recentchangestext" => "На цій сторінці представлені останні редагування в Вікіпедії.",
 "rcloaderr"		=> "Завантаження нових редагувань",
 "rcnote"		=> "Нижче відображені останні <strong>$1</strong> редагувань за останні(й) <strong>$2</strong> день(і,ів).",
@@ -564,11 +531,9 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 ",
 "filename"		=> "Назва файлу",
 "filedesc"		=> "Опис файлу",
-"affirmation"	=> "Я підтверджую, що власник авторських прав на це файл згоден розповсюджувати його на наступних умовах  $1.",
-"copyrightpage" => "$wgMetaNamespace:Авторське право",
+"copyrightpage" => "{{ns:project}}:Авторське право",
 "copyrightpagename" => "Авторські права в Вікіпедії",
 "uploadedfiles"	=> "Завантажені файли",
-"noaffirmation" => "Ви повинні підтвердити, що дане завантаження не порушує будь-чиїх авторських прав.",
 "ignorewarning"	=> "Ігнорувати попередження й все одно записати файл.",
 "minlength"		=> "Назва зображення повинна містити хоча б три символи.",
 "badfilename"	=> "Назва зображення було змінено на \"$1\".",
@@ -667,7 +632,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 "unusedimagestext" => "<p>Будь-ласка, врахуйте, що інші веб-сайти (подібно інших мовних розділів Вікіпедії) можуть використовувати пряме посилання (URL) на це зображення, і тому зображення може активно використовуватися не дивлячись на його присутність в цьому списку.",
 "booksources"	=> "Джерела книг",
 "booksourcetext" => "Нижче наведено список посилань на інші веб-сайти, де продаються нові та такі, що були в користуванні книги, а також там  може бути інформація про книги, які ви шукаєте.
-$wgSitename ніяк не зв’язані з будь-якими з них, і цей список не може розглядатися як їх підтримка.",
+{{SITENAME}} ніяк не зв’язані з будь-якими з них, і цей список не може розглядатися як їх підтримка.",
 "alphaindexline" => "від $1 до $2",
 
 # Email this user
@@ -744,7 +709,7 @@ $3...
 "historywarning" => "Попередження: Стаття, яку ви збираєтеся вилучити, має журнал редагувань: ",
 "confirmdeletetext" => "Ви ось-ось назавжди вилучите статтю чи файл і всі її журнали редагувань з бази даних.
 Будь-ласка, підтвердіть, що ви бажаєте зробити це, що ви повністю розумієте наслідки й що ви робите це в відповідності з
-[[$wgMetaNamespace:Правила|правилами Вікіпедії]].",
+[[{{ns:project}}:Правила|правилами Вікіпедії]].",
 "actioncomplete" => "Дію виконано",
 "deletedtext"	=> "\"$1\" було вилучено.
 Див. $2 для перегляду списку останніх вилучень.",
@@ -771,7 +736,7 @@ $3...
 "revertpage"	=> "Відкинуть всі редагування до зробленого $1",
 "protectlogpage" => "Журнал_захисту",
 "protectlogtext" => "Нижче наведено список установок й зняття захисту з сторінки.
-Додаткова інформація: [[$wgMetaNamespace:Захищена стаття]].",
+Додаткова інформація: [[{{ns:project}}:Захищена стаття]].",
 "protectedarticle" => "захист на [[$1]] встановлено",
 "unprotectedarticle" => "захист з [[$1]] знято",
 
@@ -787,7 +752,7 @@ $3...
 "undeletebtn" => "Відновити!",
 "undeletedarticle" => "\"$1\" відновлена",
 "undeletedtext"   => "Статтю [[$1]] було відновлено.
-Див. [[$wgMetaNamespace:Список_вилучень]] щоб переглянути список останніх вилучень та відновлень.",
+Див. [[{{ns:project}}:Список_вилучень]] щоб переглянути список останніх вилучень та відновлень.",
 
 # Contributions
 #
@@ -814,13 +779,12 @@ $3...
 "blockip"		=> "Заблокувати IP-адресу",
 "blockiptext"	=> "Використовуйте форму що нижче, щоб заблокувати можливість збереження з вказаної IP-адреси.
 Це може бути зроблене виключно для попередження вандалізму і тільки в відповідності до
-[[$wgMetaNamespace:Правила|правил Вікіпедії]].
+[[{{ns:project}}:Правила|правил Вікіпедії]].
 Нище вкажіть конкретную причину (наприклад, процитуйте деякі статті з ознаками вандалізму).",
 "ipaddress"		=> "IP-адреса/Імя користувача",
 "ipbreason"		=> "Причина",
 "ipbsubmit"		=> "Заблокувати доступ цьому користувачу ",
 "badipaddress"	=> "Користувача з таким іменем не існує.",
-"noblockreason" => "Ви повинні описати причину блокування.",
 "blockipsuccesssub" => "Блокування проведено",
 "blockipsuccesstext" => "\"$1\" заблоковано.
 <br />См. [[Спеціальні:Список_заблокованих_IP|список заблокованих IP]] щоб взнати, які IP-адреси заблоковані.",
@@ -856,18 +820,6 @@ IP-адреси.",
 "lockdbsuccesstext" => "Базу даних Вікіпедії заблоковано.
 <br />Не забудьте її розблокувати після завершення обслуговування.",
 "unlockdbsuccesstext" => "Базу даних Вікіпедії розблоковано.",
-
-# SQL query
-#
-"asksql"		=> "SQL-запит",
-"asksqltext"	=> "Використовуйте форму що нижче, щоб виконати прямий запит до бази даних Вікіпедії.
-Використовуйте одинарні кавички ('як ось тут') для обмеження рядків (string).
-Дана функція часто призводить до перевантаження сервера, тому використовуйте її обережно (не дуже часто).",
-"sqlislogged"	=> "Будь-ласка, зверніть увагу, що всі запити протоколюються.",
-"sqlquery"		=> "Введіть запит",
-"querybtn"		=> "Підтвердіть запит",
-"selectonly"	=> "Запити, інакші чим \"SELECT\", доступні тільки розробникам Вікіпедії.",
-"querysuccessful" => "Запит виконано",
 
 # Move page
 #
@@ -953,8 +905,7 @@ class LanguageUk extends LanguageUtf8 {
 		return wfMsg( $wgMonthNamesGenEn[$key-1] );
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesUk;
 		if( isset( $wgAllMessagesUk[$key] ) ) {
 			return $wgAllMessagesUk[$key];

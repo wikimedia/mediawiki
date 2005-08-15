@@ -28,66 +28,6 @@
 	"ไม่มี", "อยู่ทางซ้าย", "อยู่ทางขวา", "ลอยทางซ้าย"
 );
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesTh = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "ตั้งค่าสำหรับผู้ใช้",
-	"Watchlist"		=> "Watchlist",
-	"Recentchanges" => "หน้าที่ได้รับการแก้ไขเมื่อเร็ว ๆ นี้",
-	"Upload"		=> "Upload ภาพ",
-	"Imagelist"		=> "รายชื่อภาพ",
-	"Listusers"		=> "ผูใช้ที่ลงทะเบียนแล้ว",
-	"Statistics"	=> "สถิติของเว็บไซต์",
-	"Randompage"	=> "สุ่มบทความ",
-
-	"Lonelypages"	=> "บทความที่ไม่ได้ลิงก์ไว้",
-	"Unusedimages"	=> "ภาพที่ไม่ได้ใช้",
-	"Popularpages"	=> "บทความที่ได้รับความนิยม",
-	"Wantedpages"	=> "บทความที่เป็นที่ต้องการมากที่สุด",
-	"Shortpages"	=> "บทความสั้น",
-	"Longpages"		=> "บทความยาว",
-	"Newpages"		=> "บทความที่สร้างมาใหม่",
-	"Ancientpages"	=> "บทความที่เก่าที่สุด",
-        "Deadendpages"  => "หน้าทางตัน",
-#	"Intl"                => "ลิงก์ระหว่างภาษา",
-	"Allpages"		=> "ทุกหน้าตามชื่อ",
-
-	"Ipblocklist"	=> "ผู้ใช้และ IP address ที่ถูกกั้นไว้",
-	"Maintenance"	=> "หน้าสำหรับการรักษาบำรุง",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "แหล่งหนังสือภายนอก",
-#	"Categories"	=> "ประเภทของหน้า",
-	"Export"		=> "การ export หน้าเป็น XML",
-	"Version"		=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesTh = array(
-	"Blockip"		=> "กั้นผู้ใช้ หรือ IP address",
-	"Asksql"		=> "ค้นหาในฐานข้อมูล",
-	"Undelete"		=> "คืนหน้าที่ถูกลบไป"
-);
-
-/* private */ $wgDeveloperSpecialPagesTh = array(
-	"Lockdb"		=> "ทำให้ฐานข้อมูลอ่านได้อย่างเดียว",
-	"Unlockdb"		=> "ทำให้ฐานข้อมูลสามารถเขียนได้",
-);
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
-
 /* private */ $wgAllMessagesTh = array(
 
 # User Toggles
@@ -158,19 +98,18 @@
 "mainpage"		=> "หน้าหลัก",
 "mainpagetext"	=> "Wiki software  ถูกติดตั้งเรียบร้อยแล้ว",
 "about"			=> "เกี่ยวกับ",
-"aboutsite"      => "เกี่ยวกับ $wgSitename",
-"aboutpage"		=> "$wgMetaNamespace:เกี่ยวกับ",
+"aboutsite"      => "เกี่ยวกับ {{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:เกี่ยวกับ",
 "help"			=> "ความช่วยเหลือ",
-"helppage"		=> "$wgMetaNamespace:ความช่วยเหลือ",
-"wikititlesuffix" => "$wgSitename",
+"helppage"		=> "{{ns:project}}:ความช่วยเหลือ",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "รายงาน bug",
-"bugreportspage" => "$wgMetaNamespace:รายงาน bug",
+"bugreportspage" => "{{ns:project}}:รายงาน bug",
 "sitesupport"   => "การบริจาค",
-"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "FAQ",
-"faqpage"		=> "$wgMetaNamespace:FAQ",
+"faqpage"		=> "{{ns:project}}:FAQ",
 "edithelp"		=> "ความช่วยเหลือในการแก้ไขหน้า",
-"edithelppage"	=> "$wgMetaNamespace:การแก้ไขหน้า",
+"edithelppage"	=> "{{ns:project}}:การแก้ไขหน้า",
 "cancel"		=> "ยกเลิก",
 "qbfind"		=> "ค้นหา",
 "qbbrowse"		=> "ค้น",
@@ -185,7 +124,7 @@
 "currentevents" => "เหตุการณ์ปัจจุบัน",
 "errorpagetitle" => "ความผิดพลาด",
 "returnto"		=> "กลับไปยัง $1.",
-"tagline"      	=> "จาก $wgSitename, สารานุกรมฟรี",
+"tagline"      	=> "จาก {{SITENAME}}, สารานุกรมฟรี",
 "whatlinkshere"	=> "หน้าที่ลิงก์มายังที่นี่",
 "help"			=> "ความช่วยเหลือ",
 "search"		=> "ค้นหา",
@@ -209,10 +148,9 @@
 "redirectedfrom" => "(Redirected from $1)",
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
-"gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Protected page",
-"administrators" => "$wgMetaNamespace:Administrators",
+"administrators" => "{{ns:project}}:Administrators",
 "sysoptitle"	=> "Sysop access required",
 "sysoptext"		=> "The action you have requested can only be
 performed by users with \"sysop\" status.
@@ -225,7 +163,7 @@ See $1.",
 "nbytes"		=> "$1 ไบต์",
 "go"			=> "ไป",
 "ok"			=> "OK",
-"sitetitle"		=> "$wgSitename",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "สารานุกรมฟรี",
 "retrievedfrom" => "Retrieved from \"$1\"",
 "newmessages" => "คุณมีข้อความใหม่ $1.",
@@ -255,7 +193,7 @@ See $1.",
 "newusersonly"	=> " (เฉพาะผู้ใช้ใหม่)",
 
 "login"			=> "ล็อกอิน",
-"loginprompt"           => "ต้อง enable cookie เพื่อล็อกอินสู่ $wgSitename ได้",
+"loginprompt"           => "ต้อง enable cookie เพื่อล็อกอินสู่ {{SITENAME}} ได้",
 "userlogin"		=> "ล็อกอิน",
 "logout"		=> "ล็อกเอาท์",
 "userlogout"	=> "ล็อกเอาท์",
@@ -271,7 +209,7 @@ See $1.",
 "newarticletext" =>
 "คุณได้ตามลิงก์ที่นำไปยังหน้าที่ยังไม่ปรากฏอยู่
 เพื่อเริ่มสร้างหน้าใหม่ พิมพ์ลงในกล่องข้างล่างนี้
-(ดู[[$wgMetaNamespace:ความช่วยเหลือ|หน้าความช่วยเหลือ]]สำหรับข้อมูลเพิ่มเติม)
+(ดู[[{{ns:project}}:ความช่วยเหลือ|หน้าความช่วยเหลือ]]สำหรับข้อมูลเพิ่มเติม)
 If you are here by mistake, just click your browser's '''back''' button.",
 "noarticletext" => "(ไม่มีข้อความในหน้านี้)",
 "updated"		=> "(ได้รับการแก้ไขแล้ว)",
@@ -296,26 +234,7 @@ class LanguageTh extends LanguageUtf8 {
 		return $wgQuickbarSettingsTh;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesTh;
-		return $wgValidSpecialPagesTh;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesTh;
-		return $wgSysopSpecialPagesTh;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesTh;
-		return $wgDeveloperSpecialPagesTh;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesTh;
 		if( isset( $wgAllMessagesTh[$key] ) ) {
 			return $wgAllMessagesTh[$key];
@@ -324,8 +243,7 @@ class LanguageTh extends LanguageUtf8 {
 		}
 	}
 
-	function getAllMessages()
-	{
+	function getAllMessages() {
 		global $wgAllMessagesTh;
 		return $wgAllMessagesTh;
 	}

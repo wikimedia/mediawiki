@@ -47,20 +47,16 @@ if($wgMetaNamespace === FALSE)
 	'standard'        => 'Klassisk',
 	'nostalgia'       => 'Nostalgi',
 	'cologneblue'     => 'Kölnerblå',
-	'davinci'         => 'DaVinci',
-	'mono'            => 'Mono',
-	'monobook'        => 'MonoBook',
-	'myskin'          => 'MiDrakt',
-	'chick'           => 'Chick'
-);
+	'myskin'          => 'MiDrakt'
+) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsNn = array(
-    'Standard',
-    '15. januar 2001 kl. 16:12',
-    '15. jan. 2001 kl. 16:12',
-    '16:12, 15. januar 2001',
-    '16:12, 15. jan. 2001',
-    'ISO 8601' => '2001-01-15 16:12:34'
+	'Standard',
+	'15. januar 2001 kl. 16:12',
+	'15. jan. 2001 kl. 16:12',
+	'16:12, 15. januar 2001',
+	'16:12, 15. jan. 2001',
+	'ISO 8601' => '2001-01-15 16:12:34'
 );
 
 /* private */ $wgBookstoreListNn = array(
@@ -81,55 +77,52 @@ if($wgMetaNamespace === FALSE)
 #
 /* private */ $wgMagicWordsNn = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    '#redirect', '#omdiriger'                                              ),
-    MAG_NOTOC                => array( 0,    '__NOTOC__', '__INGAINNHALDSLISTE__', '__INGENINNHOLDSLISTE__'         ),
-    MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__'   ),
-    MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__', '__INNHOLDSLISTE__'                    ),
-    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKREDIGERING__', '__INGENDELREDIGERING__'),
-    MAG_START                => array( 0,    '__START__'                                                            ),
-    MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                                   ),
-    MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'                       ),
-    MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'MÅNADNOKORT', 'MÅNEDNÅKORT'                     ),
-    MAG_CURRENTDAY           => array( 1,    'CURRENTDAY', 'DAGNO', 'DAGNÅ'                                         ),
-    MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGNONAMN', 'DAGNÅNAVN'                             ),
-    MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                                          ),
-    MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                                        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSSIDETAL', 'INNHOLDSSIDETALL'              ),
-    MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
-    MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
-    MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
-    MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
-    MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
-    MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),
-    MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                               ),
-    MAG_IMG_RIGHT            => array( 1,    'right', 'høgre', 'høyre'                                              ),
-    MAG_IMG_LEFT             => array( 1,    'left', 'venstre'                                                      ),
-    MAG_IMG_NONE             => array( 1,    'none', 'ingen'                                                        ),
-    MAG_IMG_WIDTH            => array( 1,    '$1px', '$1pk'                                                         ),
-    MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'sentrum'                                          ),
-    MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'ramme'                                 ),
-    MAG_INT                  => array( 0,    'INT:'                                                                 ),
-    MAG_SITENAME             => array( 1,    'SITENAME', 'NETTSTADNAMN'                                             ),
-    MAG_NS                   => array( 0,    'NS:', 'NR:'                                                           ),
-    MAG_LOCALURL             => array( 0,    'LOCALURL:', 'LOKALLENKJE:', 'LOKALLENKE:'                             ),
-    MAG_LOCALURLE            => array( 0,    'LOCALURLE:', 'LOKALLENKJEE:', 'LOKALLENKEE:'                          ),
-    MAG_SERVER               => array( 0,    'SERVER', 'TENAR', 'TJENER'                                            ),
-    MAG_SERVERNAME           => array( 0,    'SERVERNAME', 'TENARNAMN', 'TJENERNAVN'                                ),
-    MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH', 'SKRIPTSTI'                                              ),
-    MAG_GRAMMAR              => array( 0,    'GRAMMAR:', 'GRAMMATIKK:'                                              ),
-    MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'                                       ),
-    MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'                                     ),
-    MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK', 'VEKENRNO', 'UKENRNÅ'                                   ),
-    MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                              ),
-    MAG_REVISIONID           => array( 1,    'REVISIONID', 'VERSJONSID'                                             )
+	MAG_REDIRECT             => array( 0,    '#redirect', '#omdiriger'                                              ),
+	MAG_NOTOC                => array( 0,    '__NOTOC__', '__INGAINNHALDSLISTE__', '__INGENINNHOLDSLISTE__'         ),
+	MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__'   ),
+	MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__', '__INNHOLDSLISTE__'                    ),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKREDIGERING__', '__INGENDELREDIGERING__'),
+	MAG_START                => array( 0,    '__START__'                                                            ),
+	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                                   ),
+	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'                       ),
+	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'MÅNADNOKORT', 'MÅNEDNÅKORT'                     ),
+	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY', 'DAGNO', 'DAGNÅ'                                         ),
+	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGNONAMN', 'DAGNÅNAVN'                             ),
+	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                                          ),
+	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                                        ),
+	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSSIDETAL', 'INNHOLDSSIDETALL'              ),
+	MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
+	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
+	MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
+	MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
+	MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
+	MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                               ),
+	MAG_IMG_RIGHT            => array( 1,    'right', 'høgre', 'høyre'                                              ),
+	MAG_IMG_LEFT             => array( 1,    'left', 'venstre'                                                      ),
+	MAG_IMG_NONE             => array( 1,    'none', 'ingen'                                                        ),
+	MAG_IMG_WIDTH            => array( 1,    '$1px', '$1pk'                                                         ),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'sentrum'                                          ),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'ramme'                                 ),
+	MAG_INT                  => array( 0,    'INT:'                                                                 ),
+	MAG_SITENAME             => array( 1,    'SITENAME', 'NETTSTADNAMN'                                             ),
+	MAG_NS                   => array( 0,    'NS:', 'NR:'                                                           ),
+	MAG_LOCALURL             => array( 0,    'LOCALURL:', 'LOKALLENKJE:', 'LOKALLENKE:'                             ),
+	MAG_LOCALURLE            => array( 0,    'LOCALURLE:', 'LOKALLENKJEE:', 'LOKALLENKEE:'                          ),
+	MAG_SERVER               => array( 0,    'SERVER', 'TENAR', 'TJENER'                                            ),
+	MAG_SERVERNAME           => array( 0,    'SERVERNAME', 'TENARNAMN', 'TJENERNAVN'                                ),
+	MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH', 'SKRIPTSTI'                                              ),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:', 'GRAMMATIKK:'                                              ),
+	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'                                       ),
+	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'                                     ),
+	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK', 'VEKENRNO', 'UKENRNÅ'                                   ),
+	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                              ),
+	MAG_REVISIONID           => array( 1,    'REVISIONID', 'VERSJONSID'                                             )
 );
 
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesNn = array(
 # User preference toggles
@@ -240,7 +233,7 @@ if($wgMetaNamespace === FALSE)
 'metadata'                => '<b>Metadata</b> (for forklaring, sjå <a href="$1">her</a>)',
 'metadata_page'           => 'Project:Metadata',
 
-'currentevents'           => 'Aktuelt', 
+'currentevents'           => 'Aktuelt',
 'currentevents-url'       => 'Aktuelt',
 
 'disclaimers'             => 'Vilkår',
@@ -359,7 +352,7 @@ Sletta oppføringar kan vanlegvis attopprettast.
 'filedeleteerror'         => 'Kunne ikkje slette fila «$1».',
 'filenotfound'	          => 'Kunne ikkje finne fila «$1».',
 'unexpected'	          => 'Uventa verdi: «$1»=«$2».',
-'formerror'		  => 'Feil: Kunne ikkje sende skjema',	
+'formerror'		  => 'Feil: Kunne ikkje sende skjema',
 'badarticleerror'         => 'Handlinga kan ikkje utførast på denne sida.',
 'cannotdelete'	          => 'Kunne ikkje slette fila. (Ho kan vera sletta av andre.)',
 'badtitle'	 	  => 'Feil i tittelen',
@@ -486,7 +479,8 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 'whitelistacctitle'       => 'Du har ikkje løyve til å laga brukarkonto',
 'whitelistacctext'        => 'For å laga brukarkontoar på denne wikien lyt du [[{{ns:-1}}:Userlogin|logge inn]] og ha rett type tilgang',
 'loginreqtitle'	          => 'Innlogging trengst',
-'loginreqtext'	          => 'Du lyt [[{{ns:-1}}:Userlogin|logge inn]] for å lesa andre sider.',
+'loginreqlink'            => 'logge inn',
+'loginreqpagetext'        => 'Du lyt $1 for å lesa andre sider.',
 'accmailtitle'            => 'Passord er sendt.',
 'accmailtext'             => 'Passordet for «$1» er vorte sendt til $2.',
 'newarticle'	          => '(Ny)',
@@ -525,7 +519,7 @@ Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibe
 Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett (sjå $1 for detaljar).
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
-'longpagewarning'         => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsame endringar av sider som nærmar seg eller 
+'longpagewarning'         => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsame endringar av sider som nærmar seg eller
 er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
 'readonlywarning'         => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
 'protectedpagewarning'    => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
@@ -678,7 +672,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'userrights-logcomment' => 'Endra gruppemedlemskap frå $1 til $2',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anonym',
 'group-anon-desc'       => 'Anonyme brukarar',
 'group-loggedin-name'   => 'Brukar',
@@ -743,11 +737,9 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'filedesc'		=> 'Samandrag',
 'filestatus'            => 'Opphavsrettsstatus',
 'filesource'            => 'Kjelde',
-'affirmation'	        => 'Eg stadfester at innehavaren av opphavsretten åt denne fila samtykkjer i at fila blir utgjeven under vilkåra for $1.',
 'copyrightpage'         => '{{ns:4}}:Opphavsrett',
 'copyrightpagename'     => '{{SITENAME}} opphavsrett',
 'uploadedfiles'	        => 'Filer som er opplasta',
-'noaffirmation'         => 'Du lyt stadfeste at du ikkje bryt nokon sin opphavsrett med å laste opp denne fila.',
 'ignorewarning'	        => 'Sjå bort frå åtvaringa og lagre fila likevel.',
 'minlength'		=> 'Namnet på fila må ha minst tre teikn.',
 'illegalfilename'	=> 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
@@ -998,7 +990,7 @@ For hjelp og meir informasjon:
 'rollbacklink'	        => 'rull attende',
 'rollbackfailed'        => 'Kunne ikkje rulle attende',
 'cantrollback'	        => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'	        => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[{{ns:2}}:$2|$2]] ([[{{ns:3}}:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa. 
+'alreadyrolled'	        => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[{{ns:2}}:$2|$2]] ([[{{ns:3}}:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
 
 Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusjon]]).',
 # only shown if there is an edit comment
@@ -1025,7 +1017,7 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 'undeletepagetext'      => 'Dei følgjande sidene er sletta, men dei finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undeletearticle'       => 'Attopprett sletta side',
 'undeleterevisions'     => '$1 versjonar arkiverte',
-'undeletehistory'       => 'Om du attopprettar sida, vil alle versjonane i historikken også bli attoppretta. Dersom ei ny side med same namnet 
+'undeletehistory'       => 'Om du attopprettar sida, vil alle versjonane i historikken også bli attoppretta. Dersom ei ny side med same namnet
 er oppretta sidan den gamle sida vart sletta, vil dei attoppretta versjonane dukke opp i historikken, og den nyaste versjonen vil bli verande som han er.',
 'undeleterevision'      => 'Sletta versjon frå $1',
 'undeletebtn'           => 'Attopprett!',
@@ -1153,7 +1145,6 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 'val_validation_of'     => 'Vurdering av «$1»',
 'val_revision_of'       => 'Versjon $1',
 'val_revision_changes_ok' => 'Dine vurderingar er lagra!',
-'val_rev_stats_link'    => 'Sjå vurderingsstatistikk for «$1» <a href="$2">her</a>',
 'val_revision_stats_link' => 'detaljar',
 'val_iamsure'           => 'Kryss av dersom du verkeleg meiner det (det er ingen veg attende)!',
 'val_details_th'        => '<sub>Brukar</sub> \\ <sup>Emne</sup>',
@@ -1333,53 +1324,53 @@ Skriv "0" som første bokstav for å slå av den nye kategoriutsjånaden.',
 */
 /* verktøytips og snøggtastar */
 ta = new Object();
-ta[\'pt-userpage\']             = new Array(\'.\',\'Brukarsida mi\'); 
-ta[\'pt-anonuserpage\']         = new Array(\'.\',\'Brukarsida for ip-adressa du redigerer under\'); 
-ta[\'pt-mytalk\']               = new Array(\'n\',\'Diskusjonssida mi\'); 
-ta[\'pt-anontalk\']             = new Array(\'n\',\'Diskusjon om endringar gjorde av denne ip-adressa\'); 
-ta[\'pt-preferences\']          = new Array(\'\',\'Innstillingane mine\'); 
-ta[\'pt-watchlist\']            = new Array(\'l\',\'Liste over sidene du overvakar.\'); 
-ta[\'pt-mycontris\']            = new Array(\'y\',\'Liste over bidraga mine\'); 
-ta[\'pt-login\']                = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\'); 
-ta[\'pt-anonlogin\']            = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\'); 
-ta[\'pt-logout\']               = new Array(\'o\',\'Logg ut\'); 
-ta[\'ca-talk\']                 = new Array(\'t\',\'Diskusjon om innhaldssida\'); 
-ta[\'ca-edit\']                 = new Array(\'e\',\'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.\'); 
-ta[\'ca-addsection\']           = new Array(\'+\',\'Legg til ein bolk på denne diskusjonssida.\'); 
-ta[\'ca-viewsource\']           = new Array(\'e\',\'Denne sida er verna, men du kan sjå kjeldeteksten.\'); 
-ta[\'ca-history\']              = new Array(\'h\',\'Eldre versjonar av denne sida.\'); 
-ta[\'ca-protect\']              = new Array(\'=\',\'Vern denne sida\'); 
-ta[\'ca-delete\']               = new Array(\'d\',\'Slett denne sida\'); 
-ta[\'ca-undelete\']             = new Array(\'d\',\'Attopprett denne sida\'); 
-ta[\'ca-move\']                 = new Array(\'m\',\'Flytt denne sida\'); 
-ta[\'ca-watch\']                = new Array(\'w\',\'Legg denne sida til i overvakingslista di\'); 
-ta[\'ca-unwatch\']              = new Array(\'w\',\'Fjern denne sida frå overvakingslista di\'); 
-ta[\'search\']                  = new Array(\'f\',\'Søk gjennom denne wikien\'); 
-ta[\'p-logo\']                  = new Array(\'\',\'Hovudside\'); 
-ta[\'n-mainpage\']              = new Array(\'z\',\'Gå til hovudsida\'); 
-ta[\'n-portal\']                = new Array(\'\',\'Om prosjektet, kva du kan gjera, kvar du finn saker og ting\'); 
-ta[\'n-currentevents\']         = new Array(\'\',\'Aktuelt\'); 
-ta[\'n-recentchanges\']         = new Array(\'r\',\'Liste over dei siste endringane som er gjort på wikien.\'); 
-ta[\'n-randompage\']            = new Array(\'x\',\'Vis ei tilfeldig side\'); 
-ta[\'n-help\']                  = new Array(\'\',\'Hjelp til å bruke alle funksjonane.\'); 
-ta[\'n-sitesupport\']           = new Array(\'\',\'Støtt oss!\'); 
-ta[\'t-whatlinkshere\']         = new Array(\'j\',\'Liste over alle wikisidene som har lenkjer hit\'); 
-ta[\'t-recentchangeslinked\']   = new Array(\'k\',\'Siste endringar på sider denne sida lenkjer til\'); 
-ta[\'feed-rss\']                = new Array(\'\',\'RSS-mating for denne sida\'); 
-ta[\'feed-atom\']               = new Array(\'\',\'Atom-mating for denne sida\'); 
-ta[\'t-contributions\']         = new Array(\'\',\'Sjå liste over bidrag frå denne brukaren\'); 
-ta[\'t-emailuser\']             = new Array(\'\',\'Send ein e-post til denne brukaren\'); 
-ta[\'t-upload\']                = new Array(\'u\',\'Last opp filer\'); 
-ta[\'t-specialpages\']          = new Array(\'q\',\'Liste over spesialsider\'); 
-ta[\'ca-nstab-main\']           = new Array(\'c\',\'Vis innhaldssida\'); 
-ta[\'ca-nstab-user\']           = new Array(\'c\',\'Vis brukarsida\'); 
-ta[\'ca-nstab-media\']          = new Array(\'c\',\'Direktelenkje (filpeikar) til fil\'); 
-ta[\'ca-nstab-special\']        = new Array(\'\',\'Dette er ei spesialside, du kan ikkje endre ho.\'); 
-ta[\'ca-nstab-wp\']             = new Array(\'c\',\'Vis prosjektside\'); 
-ta[\'ca-nstab-image\']          = new Array(\'c\',\'Vis filside\'); 
-ta[\'ca-nstab-mediawiki\']      = new Array(\'c\',\'Vis systemmelding\'); 
-ta[\'ca-nstab-template\']       = new Array(\'c\',\'Vis mal\'); 
-ta[\'ca-nstab-help\']           = new Array(\'c\',\'Vis hjelpeside\'); 
+ta[\'pt-userpage\']             = new Array(\'.\',\'Brukarsida mi\');
+ta[\'pt-anonuserpage\']         = new Array(\'.\',\'Brukarsida for ip-adressa du redigerer under\');
+ta[\'pt-mytalk\']               = new Array(\'n\',\'Diskusjonssida mi\');
+ta[\'pt-anontalk\']             = new Array(\'n\',\'Diskusjon om endringar gjorde av denne ip-adressa\');
+ta[\'pt-preferences\']          = new Array(\'\',\'Innstillingane mine\');
+ta[\'pt-watchlist\']            = new Array(\'l\',\'Liste over sidene du overvakar.\');
+ta[\'pt-mycontris\']            = new Array(\'y\',\'Liste over bidraga mine\');
+ta[\'pt-login\']                = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\');
+ta[\'pt-anonlogin\']            = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\');
+ta[\'pt-logout\']               = new Array(\'o\',\'Logg ut\');
+ta[\'ca-talk\']                 = new Array(\'t\',\'Diskusjon om innhaldssida\');
+ta[\'ca-edit\']                 = new Array(\'e\',\'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.\');
+ta[\'ca-addsection\']           = new Array(\'+\',\'Legg til ein bolk på denne diskusjonssida.\');
+ta[\'ca-viewsource\']           = new Array(\'e\',\'Denne sida er verna, men du kan sjå kjeldeteksten.\');
+ta[\'ca-history\']              = new Array(\'h\',\'Eldre versjonar av denne sida.\');
+ta[\'ca-protect\']              = new Array(\'=\',\'Vern denne sida\');
+ta[\'ca-delete\']               = new Array(\'d\',\'Slett denne sida\');
+ta[\'ca-undelete\']             = new Array(\'d\',\'Attopprett denne sida\');
+ta[\'ca-move\']                 = new Array(\'m\',\'Flytt denne sida\');
+ta[\'ca-watch\']                = new Array(\'w\',\'Legg denne sida til i overvakingslista di\');
+ta[\'ca-unwatch\']              = new Array(\'w\',\'Fjern denne sida frå overvakingslista di\');
+ta[\'search\']                  = new Array(\'f\',\'Søk gjennom denne wikien\');
+ta[\'p-logo\']                  = new Array(\'\',\'Hovudside\');
+ta[\'n-mainpage\']              = new Array(\'z\',\'Gå til hovudsida\');
+ta[\'n-portal\']                = new Array(\'\',\'Om prosjektet, kva du kan gjera, kvar du finn saker og ting\');
+ta[\'n-currentevents\']         = new Array(\'\',\'Aktuelt\');
+ta[\'n-recentchanges\']         = new Array(\'r\',\'Liste over dei siste endringane som er gjort på wikien.\');
+ta[\'n-randompage\']            = new Array(\'x\',\'Vis ei tilfeldig side\');
+ta[\'n-help\']                  = new Array(\'\',\'Hjelp til å bruke alle funksjonane.\');
+ta[\'n-sitesupport\']           = new Array(\'\',\'Støtt oss!\');
+ta[\'t-whatlinkshere\']         = new Array(\'j\',\'Liste over alle wikisidene som har lenkjer hit\');
+ta[\'t-recentchangeslinked\']   = new Array(\'k\',\'Siste endringar på sider denne sida lenkjer til\');
+ta[\'feed-rss\']                = new Array(\'\',\'RSS-mating for denne sida\');
+ta[\'feed-atom\']               = new Array(\'\',\'Atom-mating for denne sida\');
+ta[\'t-contributions\']         = new Array(\'\',\'Sjå liste over bidrag frå denne brukaren\');
+ta[\'t-emailuser\']             = new Array(\'\',\'Send ein e-post til denne brukaren\');
+ta[\'t-upload\']                = new Array(\'u\',\'Last opp filer\');
+ta[\'t-specialpages\']          = new Array(\'q\',\'Liste over spesialsider\');
+ta[\'ca-nstab-main\']           = new Array(\'c\',\'Vis innhaldssida\');
+ta[\'ca-nstab-user\']           = new Array(\'c\',\'Vis brukarsida\');
+ta[\'ca-nstab-media\']          = new Array(\'c\',\'Direktelenkje (filpeikar) til fil\');
+ta[\'ca-nstab-special\']        = new Array(\'\',\'Dette er ei spesialside, du kan ikkje endre ho.\');
+ta[\'ca-nstab-wp\']             = new Array(\'c\',\'Vis prosjektside\');
+ta[\'ca-nstab-image\']          = new Array(\'c\',\'Vis filside\');
+ta[\'ca-nstab-mediawiki\']      = new Array(\'c\',\'Vis systemmelding\');
+ta[\'ca-nstab-template\']       = new Array(\'c\',\'Vis mal\');
+ta[\'ca-nstab-help\']           = new Array(\'c\',\'Vis hjelpeside\');
 ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 /*
 </pre>
@@ -1520,9 +1511,6 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'exif-orientation-7'    => 'Rotert 90° medsols og spegla loddrett', // 0th row: right; 0th column: bottom
 'exif-orientation-8'    => 'Rotert 90° motsols', // 0th row: left; 0th column: bottom
 
-'exif-resolutionunit-2' => 'tommar',
-'exif-resolutionunit-3' => 'centimeter',
-
 'exif-componentsconfiguration-0' => 'finst ikkje',
 
 'exif-exposureprogram-0' => 'Ikkje bestemt',
@@ -1632,7 +1620,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 'imagelistall'            => 'alle',
 'watchlistall1'           => 'alle',
 'watchlistall2'           => 'alle',
-'namespacesall'        => 'alle',
+'namespacesall'           => 'alle',
 
 # E-mail address confirmation
 'confirmemail'            => 'Stadfest e-postadresse',
@@ -1688,8 +1676,7 @@ class LanguageNn extends LanguageUtf8 {
 		return $wgBookstoreListNn ;
 	}
 
-	function getMagicWords() 
-	{
+	function getMagicWords() {
 		global $wgMagicWordsNn;
 		return $wgMagicWordsNn;
 	}
@@ -1707,12 +1694,12 @@ class LanguageNn extends LanguageUtf8 {
 		}
 
 	}
-	
+
 	function date( $ts, $adj = false, $format = true) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 		$format = $this->dateFormat($format);
-		
+
 		switch( $format ) {
 			# 15. jan. 2001 kl. 16:12 || 16:12, 15. jan. 2001
 			case '2': case '4': return (0 + substr( $ts, 6, 2 )) . '. ' .
@@ -1726,14 +1713,14 @@ class LanguageNn extends LanguageUtf8 {
 				$this->getMonthName( substr( $ts, 4, 2 ) ) . ' ' .
 				substr($ts, 0, 4);
 		}
-		
+
 	}
-	
+
 	function timeanddate( $ts, $adj = false, $format = true) {
 		global $wgUser;
-		
+
 		$format = $this->dateFormat($format);
-		
+
 		switch ( $format ) {
 			# 16:12, 15. januar 2001 || 16:12, 15. jan. 2001
 			case '3': case '4': return $this->time( $ts, $adj, $format ) . ', ' . $this->date( $ts, $adj, $format );
@@ -1749,13 +1736,12 @@ class LanguageNn extends LanguageUtf8 {
 		',' => "\xc2\xa0",
 		'.' => ','
 	);
-	
+
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), $this->digitTransTable);
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesNn;
 		if( isset( $wgAllMessagesNn[$key] ) ) {
 			return $wgAllMessagesNn[$key];

@@ -7,20 +7,20 @@
 /* Cymraeg - Welsh */
 
 /* private */ $wgNamespaceNamesCy = array(
-	-2 => "Media",
-	-1 => "Arbennig",
-	0  => "",
-	1  => "Sgwrs",
-	2  => "Defnyddiwr",
-	3  => "Sgwrs_Defnyddiwr",
-	4  => $wgMetaNamespace,
-	5  => "Sgwrs_".$wgMetaNamespace,
-	6  => "Delwedd",
-	7  => "Sgwrs_Delwedd",
-	8  => "MediaWiki",
-	9  => "Sgwrs_MediaWiki",
-	10  => "Nodyn",
-	11  => "Sgwrs_Nodyn"
+	NS_MEDIA          => "Media",
+	NS_SPECIAL        => "Arbennig",
+	NS_MAIN           => "",
+	NS_TALK           => "Sgwrs",
+	NS_USER           => "Defnyddiwr",
+	NS_USER_TALK      => "Sgwrs_Defnyddiwr",
+	NS_PROJECT        => $wgMetaNamespace,
+	NS_PROJECT_TALK   => "Sgwrs_".$wgMetaNamespace,
+	NS_IMAGE          => "Delwedd",
+	NS_IMAGE_TALK     => "Sgwrs_Delwedd",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "Sgwrs_MediaWiki",
+	NS_TEMPLATE       => "Nodyn",
+	NS_TEMPLATE_TALK  => "Sgwrs_Nodyn"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCy = array(
@@ -31,13 +31,7 @@
 	'standard' => "Safonol",
 	'nostalgia' => "Hiraeth",
 	'cologneblue' => "Glas Cwlen",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsCy = array(
 #	"Dim dewis",
@@ -48,88 +42,37 @@
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
 	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1",
-        "Amazon.co.uk" => "http://www.amazon.co.uk/exec/obidos/ISBN=$1"
+	"Amazon.co.uk" => "http://www.amazon.co.uk/exec/obidos/ISBN=$1"
 );
 
 
 /* private */ $wgMagicWordsCy = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect", "#ail-cyfeirio"                 ),
-    MAG_NOTOC                => array( 0,    "__NOTOC__", "__DIMTAFLENCYNNWYS__"          ),
-    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__DIMADRANGOLYGU__"    ),
-    MAG_START                => array( 0,    "__START__", "__DECHRAU__"                   ),
-    MAG_CURRENTMONTH        => array( 1, "CURRENTMONTH", "MISCYFOES"                ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "ENWMISCYFOES"           ),
-    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "DYDDIADCYFOES"                ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "ENWDYDDCYFOES"            ),
-    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "FLWYDDYNCYFOES"              ),
-    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
-    MAG_NUMBEROFARTICLES    => array( 1, "NUMBEROFARTICLES","NIFEROERTHYGLAU"       ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
-    MAG_SUBST                => array( 1,    "SUBST:"                                     ),
-    MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
-    MAG_END                 => array( 0, "__DIWEDD__"                                   ),
-    MAG_IMG_THUMBNAIL       => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
-    MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
-    MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
-    MAG_IMG_NONE             => array( 1,    "dim", "none"                                ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                                       ),
-    MAG_IMG_CENTER          => array( 1, "canol", "centre", "center"                ),
-    MAG_INT                  => array( 0,    "INT:"                                       )
+	MAG_REDIRECT             => array( 0,    "#redirect", "#ail-cyfeirio"                 ),
+	MAG_NOTOC                => array( 0,    "__NOTOC__", "__DIMTAFLENCYNNWYS__"          ),
+	MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__DIMADRANGOLYGU__"    ),
+	MAG_START                => array( 0,    "__START__", "__DECHRAU__"                   ),
+	MAG_CURRENTMONTH         => array( 1, "CURRENTMONTH", "MISCYFOES"                ),
+	MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "ENWMISCYFOES"           ),
+	MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "DYDDIADCYFOES"                ),
+	MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "ENWDYDDCYFOES"            ),
+	MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "FLWYDDYNCYFOES"              ),
+	MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
+	MAG_NUMBEROFARTICLES     => array( 1, "NUMBEROFARTICLES","NIFEROERTHYGLAU"       ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
+	MAG_SUBST                => array( 1,    "SUBST:"                                     ),
+	MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
+	MAG_END                  => array( 0, "__DIWEDD__"                                   ),
+	MAG_IMG_THUMBNAIL        => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
+	MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
+	MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
+	MAG_IMG_NONE             => array( 1,    "dim", "none"                                ),
+	MAG_IMG_WIDTH            => array( 1,    "$1px"                                       ),
+	MAG_IMG_CENTER           => array( 1, "canol", "centre", "center"                ),
+	MAG_INT                  => array( 0,    "INT:"                                       )
 
 );
-	
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesCy = array(
-	"Userlogin" => "",
-	"Userlogout" => "",
-	"Preferences" => "Setiwch fy ffafraethau defnyddwr",
-	"Watchlist" => "Rhestr gwylio fi",
-	"Recentchanges" => "Tudalennau wedi adnewid yn diweddar",
-	"Upload" => "Llwytho ffeiliau lluniau",
-	"Imagelist" => "Rhestr lluniau",
-	"Listusers" => "Defnyddwyr cofrestru",
-	"Statistics" => "Ystadegau'r Safle",
-	"Randompage" => "Erthygl hapgyrch",
-	"Lonelypages" => "Erthyglau heb cysylltiadau",
-	"Unusedimages" => "Lluniau heb cysylltiadau",
-	"Popularpages" => "Erthyglau poblogol",
-	"Wantedpages" => "Eisiau erthyglau am...",
-	"Shortpages" => "Erthyglau byr",
-	"Longpages" => "Erthyglau hir",
-	"Newpages" => "Erthyglau newydd",
-        "Ancientpages" => "Erthyglau hynach",
-        "Deadendpages" => "Erthyglau heb cysylltiadau",
-        "Intl" => "Cysylltiadau rhwng-ieithol",
-	"Allpages" => "Pob tudalen gan teitl",
-	"Ipblocklist" => "Cyfeiriadau IP wedi'i blocio",
-	"Maintenance" => "Tudalen arofal",
-	"Specialpages" => "",
-	"Contributions" => "",
-	"Emailuser" => "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage" => "",
-	"Booksources" => "Ffynnonellau llyfrau allanol",
-        "Categories" => "Categorïau tudalennau",
-        "Export" => "",
-        "Version" => "Dangos fersiwn MediaWiki"
-);
 
-/* private */ $wgSysopSpecialPagesCy = array(
-	"Blockip" => "Blociwch cyfeiriad IP",
-	"Asksql" => "Gofynnwch y databas",
-	"Undelete" => "Gwyliwch ac atgyweirio tundalennau wedi'u dileu",
-        "Makesysop" => "Gwnewch sysop allan o defnyddiwr"
-);
-
-/* private */ $wgDeveloperSpecialPagesCy = array(
-	"Lockdb" => "Databas darllen yn unig",
-	"Unlockdb" => "Gwnewch y databas yn ysgrifennol"
-);
 
 /* private */ $wgAllMessagesCy = array(
 # User Toggles
@@ -197,18 +140,17 @@
 "mainpagetext" => "Meddalwedd Wicipedia wedi sefydlu'n llwyddiannus",
 "about"	=> "Amdano",
 "aboutsite"      => "Amdano Wicipedia",
-"aboutpage" => "$wgMetaNamespace:Amdano",
+"aboutpage" => "{{ns:project}}:Amdano",
 "help" => "Help",
-"helppage" => "$wgMetaNamespace:Help",
-"wikititlesuffix" => "$wgSitename",
+"helppage" => "{{ns:project}}:Help",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Adroddiadau diffygion",
-"bugreportspage" => "$wgMetaNamespace:Adroddiadau_diffygion",
+"bugreportspage" => "{{ns:project}}:Adroddiadau_diffygion",
 "sitesupport" => "Rhoddion",
-"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq" => "COF",
-"faqpage" => "$wgMetaNamespace:COF",
+"faqpage" => "{{ns:project}}:COF",
 "edithelp" => "Help gyda golygu",
-"edithelppage" => "$wgMetaNamespace:Sut_ydy_chi'n_golygu_tudalen",
+"edithelppage" => "{{ns:project}}:Sut_ydy_chi'n_golygu_tudalen",
 "cancel" => "Dirymu",
 "qbfind" => "Cael",
 "qbbrowse" => "Pori",
@@ -221,7 +163,7 @@
 "mypage" => "Fy nhudalen",
 "mytalk" => "Sgwrs fi",
 "disclaimers" => "Gwadiadau",
-"disclaimerpage" => "$wgMetaNamespace:Gwadiad_cyffredin",
+"disclaimerpage" => "{{ns:project}}:Gwadiad_cyffredin",
 "currentevents" => "Digwyddiadau presennol",
 "errorpagetitle" => "Gwall",
 "returnto" => "Ewch yn ôl i $1.",
@@ -249,18 +191,15 @@
 "redirectedfrom" => "(Ail-cyfeiriad oddiwrth $1)",
 "lastmodified" => "Pryd cafodd ei newid diwethaf $1.",
 "viewcount" => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
-"gnunote" => "Mae pob testun ar gael o dan term<a class=internal href='$wgScriptPath/GNU_FDL'>Goddefiad dogfennau rhad GNU</a>.",
 "printsubtitle" => "(Oddiwrth {{SERVER}})",
 "protectedpage" => "Tudalen amddiffyniol",
-"administrators" => "$wgMetaNamespace:Gweinyddwyr",
+"administrators" => "{{ns:project}}:Gweinyddwyr",
 "sysoptitle" => "Mynediad Sysop yn unig",
 "sysoptext" => "Mae'r peth rydych wedi gofyn amdano dim ond yn bosibl i ddefnyddwyr gyda statws \"sysop\".
 Gwelwch $1.",
 "developertitle" => "Mynediad Datblygwr yn unig",
 "developertext"	=> "Mae'r peth rydych wedi gofyn amdano dim ond yn bosibl i ddefnyddwyr gyda statws \"datblygwr\".
 Gwelwch $1.",
-"bureaucrattitle" => "Mynediad Biwrocrat yn unig",
-"bureaucrattext" => "Mae'r peth rydych wedi gofyn amdano dim ond yn bosibl i ddefnyddwyr gyda statws \"biwrocrat\"",
 "nbytes" => "$1 bytes",
 "go" => "Mynd",
 "ok" => "OK",
@@ -314,7 +253,7 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi'r URL.",
 "filedeleteerror" => "Ddim yn gallu dileu ffeil \"$1\".",
 "filenotfound" => "Ddim yn gallu ffeindio ffeil \"$1\".",
 "unexpected" => "Gwerth annisgwyl: \"$1\"=\"$2\".",
-"formerror" => "Gwall: ddim yn medru ymostwng y ffurflen",	
+"formerror" => "Gwall: ddim yn medru ymostwng y ffurflen",
 "badarticleerror" => "Mae'n amhosib perfformio'r gweithred hwn ar tudalen hon.",
 "cannotdelete" => "Mae'n amhosib dileu y tudalen neu llun hwn. (Wyrach mae rhywun arall eisoes wedi eu dileu.)",
 "badtitle" => "Teitl drwg",
@@ -327,7 +266,7 @@ Query: $2
 ",
 "viewsource" => "Gwyliwch y ffynhonnell",
 "protectedtext" => "Mae tudalen hon wedi cael eu gloi i gwahardd golygu'r tudalen. Mae nifer o rheswmau paham mae hwn wedi digwydd, gwelwch y tudalen
-[[$wgMetaNamespace:Protected page]].
+[[{{ns:project}}:Protected page]].
 
 Ellwch gweld a copïo'r ffynhonnell y tudalen hon:",
 
@@ -347,10 +286,8 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "loginproblem" => "<b>Mae problem efo'ch mewngofnodi.</b><br />Triwch eto!",
 "alreadyloggedin" => "<font color=red><b>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</b></font><br />\n",
 
-"areyounew" => "Os ydych chi newydd wedi dod i Wicipedia ac yn eisiau cael accownt defnyddwr, teipiwch enw defnyddwr, felly teipiwch ac ail-teipiwch allweddair. Dydy eich cyfeiriad e-bost ddim yn gorfodol; os collwch eich allweddair mae'n bosibl i chi gofyn i gael hi eu anfon at y cyfeiriad e-bost hon.<br />\n",
-
 "login"	=> "Mewngofnodi",
-"loginprompt" => "Rhaid i chi galluogi cwcis i mewngofnodi i $wgSitename.",
+"loginprompt" => "Rhaid i chi galluogi cwcis i mewngofnodi i {{SITENAME}}.",
 "userlogin" => "Mewngofnodi",
 "logout" => "Allgofnodi",
 "userlogout" => "Allgofnodi",
@@ -363,8 +300,8 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "yournick" => "Eich llysenw (am llofnod)",
 "emailforlost" => "Os anghofiwch eich allweddair, cewch cael un newydd postwyd i'ch cyfeiriad e-bost.",
 "loginerror" => "Problem mewngofnodi",
-"nocookiesnew" => "Mae'r accownt defnyddiwr wedi gael eu creu, ond dydwch chi ddim wedi mewngofnodi. Mae $wgSitename yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, felly mewngofnodwch gyda'ch enw defnyddiwr a cyfrinair newydd.",
-"nocookieslogin" => "Mae $wgSitename yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, a triwch eto.",
+"nocookiesnew" => "Mae'r accownt defnyddiwr wedi gael eu creu, ond dydwch chi ddim wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, felly mewngofnodwch gyda'ch enw defnyddiwr a cyfrinair newydd.",
+"nocookieslogin" => "Mae {{SITENAME}} yn defnyddio cwcis i mewngofnodi defnyddwyr. Rydych chi wedi anablo cwcis. Galluogwch nhw os welwch yn dda, a triwch eto.",
 "noname" => "Dydi chi ddim wedi enwi enw defnyddwr dilys.",
 "loginsuccesstitle" => "Mewngofnod llwyddiannus",
 "loginsuccess" => "Yr ydych wedi mewngofnodi i Wicipedia fel \"$1\".",
@@ -412,7 +349,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "preview" => "Blaenwelediad",
 "showpreview" => "Gweler blaenwelediad",
 "blockedtitle"	=> "Mae'r defnyddwr wedi gael eu blocio",
-"blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br />''$2''<p>Ellwch cysylltu $1 neu un o'r 
+"blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br />''$2''<p>Ellwch cysylltu $1 neu un o'r
 [[Wicipedia:administrators|swyddogion]] eraill i trafodi'r bloc.",
 "whitelistedittitle" => "Rhaid mewngofnodi i golygu",
 "whitelistedittext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]] i olygu erthyglau.",
@@ -425,7 +362,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "newarticle" => "(Newydd)",
 "newarticletext" =>
 "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
-I creuo'r tudalen, dechreuwch teipio yn y bocs isaf 
+I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
 (gwelwch y [[Wicipedia:Help|tudalen help]] am mwy o hysbys).
 Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
 "anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r [[cyfeiriad IP]] rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.'' ",
@@ -519,7 +456,7 @@ i setio ffafraethau defnyddwr.",
 "prefslogintext"  => "Yr ydych wedi mewngofnodi fel \"$1\".
 $2 yw eich rhif hunaniaith mewnol.",
 "prefsreset" => "Mae ffafraethau wedi gael eu ail-setio oddiwrth y storfa.",
-"qbsettings" => "Gosodiadau bar-gyflym", 
+"qbsettings" => "Gosodiadau bar-gyflym",
 "changepassword" => "Newydwch allweddair",
 "skin"	=> "Croen",
 "math"	=> "Rendro mathemateg",
@@ -620,11 +557,9 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
 "filedesc" => "Crynodeb",
 "filestatus" => "Statws hawlfraint",
 "filesource" => "Ffynhonnell",
-"affirmation" => "Rwy'n addo mae'r hawlfraintiwr y ffeil hon wedi cytuno trwyddo'r ffeil o dan termau'r $1.",
-"copyrightpage" => "$wgMetaNamespace:Hawlfraint",
-"copyrightpagename" => "Hawlfraint $wgSitename",
+"copyrightpage" => "{{ns:project}}:Hawlfraint",
+"copyrightpagename" => "Hawlfraint {{SITENAME}}",
 "uploadedfiles"	=> "Ffeiliau wedi llwytho i fynu",
-"noaffirmation" => "Rhaid i chi addo dydy'r llwyth i fynu ddim y torri unrhyw hawlfraint.",
 "ignorewarning"	=> "Anwybyddwch y rhybudd, a chadwch y tudalen beth bynnag.",
 "minlength" => "Rhaid enwau lluniau bod o leia tri llythrennau.",
 "badfilename" => "Mae enw'r llun wedi newid i \"$1\".",
@@ -673,28 +608,6 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "userstatstext" => "Mae 'ne <b>$1</b> defnyddwyr wedi cofrestru.
 (Mae <b>$2</b> yn gweinyddwyr (gwelwch $3)).",
 
-# Maintenance Page
-#
-"maintenance" => "Maintenance page",
-"maintnancepagetext" => "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
-"maintenancebacklink" => "Back to Maintenance Page",
-"disambiguations" => "Disambiguation pages",
-"disambiguationspage" => "Wicipedia:Links_to_disambiguating_pages",
-"disambiguationstext" => "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
-"doubleredirects" => "Double Redirects",
-"doubleredirectstext" => "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
-"brokenredirects" => "Broken Redirects",
-"brokenredirectstext" => "The following redirects link to a non-existing article.",
-"selflinks" => "Pages with Self Links",
-"selflinkstext"	=> "The following pages contain a link to themselves, which they should not.",
-"mispeelings" => "Pages with misspellings",
-"mispeelingstext" => "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage" => "List of common misspellings",
-"missinglanguagelinks" => "Missing Language Links",
-"missinglanguagelinksbutton" => "Find missing language links for",
-"missinglanguagelinkstext" => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
-
-
 # Miscellaneous special pages
 #
 "orphans" => "Erthyglau heb cysylltiadau",
@@ -708,7 +621,7 @@ Sef <b>$5</b> golygiadau pob tudalen, ar gyfartaledd, a <b>$6</b> golygon o bob 
 "randompage" => "Erthygl hapgyrch",
 "shortpages" => "Erthyglau byr",
 "longpages" => "Erthyglau hir",
-"deadendpages" => "Tudalennau heb cysylltiadau",  
+"deadendpages" => "Tudalennau heb cysylltiadau",
 "listusers" => "Rhestr defnyddwyr",
 "specialpages" => "Erthyglau arbennig",
 "spheading" => "Erthyglau arbennig",
@@ -736,7 +649,7 @@ i anfon e-bost i ddefnyddwyr eraill.",
 "emailuser" => "Anfon e-bost i defnyddwr hwn",
 "emailpage" => "Anfon e-bost i defnyddwr",
 "emailpagetext"	 => "Os yw defnyddwr hwn wedi rhoi cyfeiriad e-bost yn eu ffafraethau, fydd y ffurf isod yn anfon un neges iddo ef. Fydd y cyfeiriad e-bost rydych chi wedi rhoi yn eich ffafraethau yn dangos yn yr \"Oddiwrth\" cyfeiriad yr e-bost, felly fydd y defnyddwr arall yn gallu ateb.",
-"defemailsubject" => "e-post $wgSitename",				       
+"defemailsubject" => "e-post {{SITENAME}}",
 "noemailtitle" => "Dim cyfeiriad e-bost",
 "noemailtext" => "Dydy defnyddwr hwn ddim wedi rhoi cyfeiriad e-bost dilys, neu mae e wedi dewis nid i dderbyn e-bost oddiwrth defnyddwyr eraill.",
 "emailfrom" => "Oddiwrth",
@@ -815,19 +728,19 @@ Gwelwch $2 am cofnod o dileuon diweddar.",
 "rollbacklink" => "rolio nôl",
 "cantrollback" => "Ddim yn gallu gwrthdroi golygiad; y cyfrannwr olaf oedd yr unrhyw awdur yr erthygl hon.",
 "alreadyrolled"	=> "Amhosib rolio nôl golygiad olaf [[$1]]
-gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl. 
+gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl.
 
 [[Defnyddwr:$3|$3]] ([[Sgwrs defnyddwr:$3|Sgwrs]] gwneuthoedd yr olygiad olaf). ",
 #   only shown if there is an edit comment
-"editcomment" => "Crynodeb y golygiad oedd: \"<i>$1</i>\".", 
+"editcomment" => "Crynodeb y golygiad oedd: \"<i>$1</i>\".",
 "revertpage" => "Wedi gwrthdroi i golygiad olaf gan $1",
 "protectlogpage" => "Log_amdiffyno",
 "protectlogtext" => "Isod mae rhestr o cloion/datgloion tudalennau.
-Gwelwch [[$wgMetaNamespace:Tudalen amddiffynol]] am mwy o wybodaeth.",
+Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 "protectedarticle" => "wedi amddiffyno [[$1]]",
 "unprotectedarticle" => "wedi di-amddiffyno [[$1]]",
 
-# Undelete   
+# Undelete
 "undelete" => "Gwrthdroi tudalen wedi dileuo",
 "undeletepage" => "Gwyliwch ac adferiwch tudalennau wedi dileuo",
 "undeletepagetext" => "Mae'r tudalennau isod wedi cael eu dileuo ond mae nhw'n dal yn yr archif ac maen bosibl adferio nhw. Mae'r archif yn cael eu glanhau o dro i dro.",
@@ -872,7 +785,6 @@ Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "ipbreason" => "Achos",
 "ipbsubmit" => "Blociwch y cyfeiriad hwn",
 "badipaddress" => "Dydy'r cyfeiriad IP ddim yn ddilys.",
-"noblockreason" => "Rhaid i chi rhoi rheswm am y bloc.",
 "blockipsuccesssub" => "Bloc yn llwyddiannus",
 "blockipsuccesstext" => "Mae cyfeiriad IP \"$1\" wedi cael eu blocio.
 <br />Gwelwch [[Arbennig:Ipblocklist|rhestr bloc IP]] i arolygu blociau.",
@@ -888,7 +800,7 @@ Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "autoblocker" => "Wedi cloi'n awtomatig am achos rydych chi'n rhannu cyfeiriad IP gyda \"$1\". Rheswm \"$2\".",
 "blocklogpage" => "Log_blociau",
 "blocklogentry"	=> 'wedi blocio "$1" efo amser diwedd o $2',
-"blocklogtext" => "Dyma log o pryd mae cyfeiriadau wedi cael eu blocio a datblocio. Dydy cyfeiriad 
+"blocklogtext" => "Dyma log o pryd mae cyfeiriadau wedi cael eu blocio a datblocio. Dydy cyfeiriad
 a sydd wedi blocio'n awtomatig ddim yn cael eu ddangos yma. Gwelwch [[Special:Ipblocklist|rhestr block IP]] am
 y rhestr o blociau a gwaharddiadau sydd yn effeithiol rwan.",
 "unblocklogentry" => 'wedi datblocio "$1"',
@@ -899,45 +811,10 @@ y rhestr o blociau a gwaharddiadau sydd yn effeithiol rwan.",
 # Developer tools - left untranslated as the developers would probably
 #  prefer them in English!
 #
-"lockdb" => "Lock database",
-"unlockdb" => "Unlock database",
-"lockdbtext" => "Locking the database will suspend the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do, and that you will
-unlock the database when your maintenance is done.",
-"unlockdbtext"	=> "Unlocking the database will restore the ability of all
-users to edit pages, change their preferences, edit their watchlists, and
-other things requiring changes in the database.
-Please confirm that this is what you intend to do.",
-"lockconfirm" => "Yes, I really want to lock the database.",
-"unlockconfirm"	=> "Yes, I really want to unlock the database.",
-"lockbtn" => "Lock database",
-"unlockbtn" => "Unlock database",
-"locknoconfirm" => "You did not check the confirmation box.",
-"lockdbsuccesssub" => "Database lock succeeded",
-"unlockdbsuccesssub" => "Database lock removed",
-"lockdbsuccesstext" => "The database has been locked.
-<br />Remember to remove the lock after your maintenance is complete.",
-"unlockdbsuccesstext" => "The database has been unlocked.",
-
-# SQL query -- left untranslated
-#
-"asksql" => "SQL query",
-"asksqltext" => "Use the form below to make a direct query of the
-Wicipedia database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",
-"sqlquery" => "Enter query",
-"querybtn" => "Submit query",
-"selectonly" => "Queries other than \"SELECT\" are restricted to
-Wicipedia developers.",
-"querysuccessful" => "Query successful",
 
 # Make sysop
 "makesysoptitle" => "Gwnewch sysop allan o defnyddiwr",
-"makesysoptext"	=> "Defnyddiwch y ffurflen hon i troi defnyddiwr cyffredin i gweinyddwr.  
+"makesysoptext"	=> "Defnyddiwch y ffurflen hon i troi defnyddiwr cyffredin i gweinyddwr.
 Teipiwch enw'r defnyddiwr yn y blwch a cliciwch y botwm i troi'r defnyddiwr i gweinyddwr",
 "makesysopname"	=> "Enw'r defnyddiwr:",
 "makesysopsubmit" => "Gwnewch y defnyddiwr hwn yn gweinyddwr",
@@ -951,7 +828,7 @@ Teipiwch enw'r defnyddiwr yn y blwch a cliciwch y botwm i troi'r defnyddiwr i gw
 #
 "movepage" => "Symud tudalen",
 "movepagetext" => "Fydd defnyddio'r ffurflen isod yn ail-enwi tudalen, symud eu hanes gyfan i'r enw newydd.
-Fydd yr hen teitl yn dod tudalen ail-cyfeiriad i'r teitl newydd. 
+Fydd yr hen teitl yn dod tudalen ail-cyfeiriad i'r teitl newydd.
 Ni fydd cysylltiadau i'r hen teitl yn newid; mae rhaid i chi gwirio mae cysylltau'n dal yn mynd i'r lle mae angen iddyn nhw mynd!
 
 Sylwch fydd y tudalen '''ddim''' yn symud os mae 'ne tudalen efo'r enw newydd yn barod ar y databas (sef os mae hi'n gwâg neu yn ail-cyfeiriad heb unrhyw hanes golygu). Mae'n posibl i chi ail-enwi tudalen yn ôl i lle oedd hi os ydych chi wedi gwneud camgymeriad, ac mae'n amhosibl i ysgrifennu dros tudalen sydd barod yn bodoli.
@@ -998,12 +875,12 @@ amusement.",
 "thumbnail-more" => "Helaethwch",
 
 #Math
-	'mw_math_png' => "Rendrwch PNG o hyd",
-	'mw_math_simple' => "HTML os yn syml iawn, PNG fel arall",
-	'mw_math_html' => "HTML os bosibl, PNG fel arall",
-	'mw_math_source' => "Gadewch fel TeX (am porwyr testun)",
-	'mw_math_modern' => "Cymeradwedig am porwyr modern",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "Rendrwch PNG o hyd",
+'mw_math_simple' => "HTML os yn syml iawn, PNG fel arall",
+'mw_math_html' => "HTML os bosibl, PNG fel arall",
+'mw_math_source' => "Gadewch fel TeX (am porwyr testun)",
+'mw_math_modern' => "Cymeradwedig am porwyr modern",
+'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1039,26 +916,7 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgDateFormatsCy;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesCy;
-		return $wgValidSpecialPagesCy;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesCy;
-		return $wgSysopSpecialPagesCy;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesCy;
-		return $wgDeveloperSpecialPagesCy;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesCy;
 		if( isset( $wgAllMessagesCy[$key] ) ) {
 			return $wgAllMessagesCy[$key];
@@ -1066,19 +924,16 @@ class LanguageCy extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
-	function getAllMessages()
-	{
+
+	function getAllMessages() {
 		global $wgAllMessagesCy;
 		return $wgAllMessagesCy;
 	}
 
-	function getMagicWords() 
-	{
+	function getMagicWords() {
 		global $wgMagicWordsCy, $wgMagicWordsEn;
 		return $wgMagicWordsCy + $wgMagicWordsEn;
 	}
-
 
 }
 

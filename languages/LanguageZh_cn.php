@@ -5,13 +5,6 @@
   */
 require_once( "LanguageUtf8.php" );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesZh_cn = array(
 	NS_MEDIA            => "Media",
 	NS_SPECIAL          => "Special",
@@ -35,92 +28,22 @@ require_once( "LanguageUtf8.php" );
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsZh_cn = array(
-	"无", /* "None" */ 
-	"左侧固定", /* "Fixed left" */ 
-	"右侧固定", /* "Fixed right" */ 
-	"左侧漂移" /* "Floating left" */ 	
+	"无", /* "None" */
+	"左侧固定", /* "Fixed left" */
+	"右侧固定", /* "Fixed right" */
+	"左侧漂移" /* "Floating left" */
 );
 
 /* private */ $wgSkinNamesZh_cn = array(
 	'standard' => "标准",
 	'nostalgia' => "怀旧",
-	'cologneblue' => "科隆香水蓝",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
-	'myskin' => "MySkin"
-);
+	'cologneblue' => "科隆香水蓝"
+) + $wgSkinNamesEn;
 
 /* private */ $wgUserTogglesZh_cn = array(
 	'nolangconversion',
 ) + $wgUserTogglesEn;
 
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesZh_cn = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "参数设置", 
-/*"Set my user preferences", */
-	"Watchlist"		=> "监视列表",
-/* "My watchlist", */
-	"Recentchanges" => "最近更新",
-/* "Recently updated pages", */
-	"Upload"		=> "上载",
-/* "Upload image files", */
-	"Imagelist"		=> "图像列表",
-/* "Image list", */
-	"Listusers"		=> "注册用户",
-/* "Registered users", */
-	"Statistics"	=> "站点统计",
-/* "Site statistics", */
-	"Randompage"	=> "随机页面",
-/* "Random article", */
-
-	"Lonelypages"	=> "孤立页面",
-/* "Orphaned articles",*/
-	"Unusedimages"	=> "孤立图像",
-/* "Orphaned images", */
-	"Popularpages"	=> "热点条目",
-/* "Popular articles", */
-	"Wantedpages"	=> "待撰页面",
-/* "Most wanted articles", */
-	"Shortpages"	=> "短条目",
-	"Longpages"		=> "长条目",
-	"Newpages"		=> "新建条目",
-#	"Intl"		=> "跨语言链接", # this page not done yet!
-	"Ancientpages"		=> "Oldest pages",
-	"Allpages"		=> "所有条目",
-
-	"Ipblocklist"	=> "被封IP地址",
-	"Maintenance" => "维护页",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "站外书源",
-#           "Categories" => "页面分类"
-	"Export" => "XML export",
-	"Version" => "Version",
-);
-
-/* private */ $wgSysopSpecialPagesZh_cn = array(
-	"Blockip"		=> "查封一个IP地址",
-	"Asksql"		=> "查询数据库",
-	"Undelete"		=> "恢复被删页面"
-);
-
-/* private */ $wgDeveloperSpecialPagesZh_cn = array(
-	"Lockdb"		=> "设置数据库只读",
-	"Unlockdb"		=> "恢复数据库修改权限",
-);
 
 /* private */ $wgAllMessagesZh_cn = array(
 # User Toggles
@@ -233,7 +156,6 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(重定向自$1)",
 "lastmodified"	=> "最后更改$1.",
 "viewcount"		=> "本页面已经被浏览$1次。",
-"gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文档协议证书 </a>下发布",
 "printsubtitle" => "(来自 {{SERVER}})",
 "protectedpage" => "被保护页",
 "administrators" => "Wikipedia:管理员",
@@ -251,7 +173,7 @@ require_once( "LanguageUtf8.php" );
 "retrievedfrom" => "取自\"$1\"",
 "newmessages" => "您有$1。",
 "newmessageslink" => "新信息",
- "editsection"=>"编辑",	 
+ "editsection"=>"编辑",
  "toc" => "目录",
 "showtoc" => "显示",
  	 "hidetoc" => "隐藏",
@@ -295,7 +217,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "filedeleteerror" => "无法删除文件 \"$1\"。",
 "filenotfound"	=> "找不到文件 \"$1\"。",
 "unexpected"	=> "不正常值: \"$1\"=\"$2\"。",
-"formerror"		=> "错误：无法提交表单",	
+"formerror"		=> "错误：无法提交表单",
 "badarticleerror" => "无法在本页上进行此项操作。",
 "cannotdelete"	=> "无法删除选定的页面或图像（它可能已经被其他人删除了）。",
 "badtitle"		=> "错误的标题",
@@ -485,7 +407,7 @@ alt=\"Google\" align=\"middle\"></a>
 "prefslogintext" => "你已经以\"$1\"的身份登录。
 你的内部ID是$2。",
 "prefsreset"	=> "参数重新设置。",
-"qbsettings"	=> "快速导航条设置", 
+"qbsettings"	=> "快速导航条设置",
 "changepassword" => "更改密码",
 "skin"			=> "Skin",
 "math"			=> "数学显示",
@@ -591,11 +513,9 @@ alt=\"Google\" align=\"middle\"></a>
 ",
 "filename"		=> "文件名",
 "filedesc"		=> "简述",
-"affirmation"	=> "我保证本文件的版权持有人同意将其在$1条款下发布。",
 "copyrightpage" => "Wikipedia:版权信息",
 "copyrightpagename" => "Wikipedia版权",
 "uploadedfiles"	=> "已上载文件",
-"noaffirmation" => "您必须保证您上载的文件并没有侵犯版权。",
 "ignorewarning"	=> "忽略警告并保存文件。",
 "minlength"		=> "图像名字必须至少有三个字母。",
 "badfilename"	=> "图像名已被改为\"$1\"。",
@@ -839,7 +759,6 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "ipbreason"		=> "原因",
 "ipbsubmit"		=> "查封该地址",
 "badipaddress"	=> "IP地址不正确。",
-"noblockreason" => "您必须说明查封的具体理由。",
 "blockipsuccesssub" => "查封成功",
 "blockipsuccesstext" => "IP地址“$1”已经被查封。
 <br />参看[[Special:被封IP地址列表|被封IP地址列表]]以复审查封。",
@@ -872,17 +791,6 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "lockdbsuccesstext" => "Wikipedia数据库已经上锁。
 <br />请记住在维护完成后重新开放数据库。",
 "unlockdbsuccesstext" => "Wikipedia数据库重新开放。",
-
-# SQL query
-#
-"asksql"		=> "SQL查询",
-"asksqltext"	=> "用下面的表单对Wikipedia数据库进行直接查询。
-使用单引号（'像这样'） 来分割字串符。
-这样做有可能增加服务器的负担，所以请慎用本功能。",
-"sqlquery"		=> "输入查询",
-"querybtn"		=> "提交查询",
-"selectonly"	=> "除了“SELECT”以外的所有查询都只限Wikipedia发展者使用。",
-"querysuccessful" => "查询成功",
 
 # Move page
 #
@@ -984,7 +892,7 @@ email address to them, and it can be used to send you a new password if you forg
 'yourrealname' => "真实姓名*", //"Your real name"
 'yourvariant' => "中文字体", //"language variant"
 
-# short names for language variants used for language conversion links. 
+# short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
 # 'variantname-zh-sg' => 'disable',
 'variantname-zh-cn' => '大陆简体',
@@ -1015,14 +923,14 @@ class LanguageZh_cn extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		# Aliases
-        if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
-        if ( 0 == strcasecmp( "", $text ) ) { return ; }
-        if ( 0 == strcasecmp( "对话", $text ) ) { return 1; }
-        if ( 0 == strcasecmp( "用户", $text ) ) { return 2; }
-        if ( 0 == strcasecmp( "用户对话", $text ) ) { return 3; }
-        if ( 0 == strcasecmp( "Wikipedia_对话", $text ) ) { return 5; }
-        if ( 0 == strcasecmp( "图像", $text ) ) { return 6; }
-        if ( 0 == strcasecmp( "图像对话", $text ) ) { return 7; }
+		if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
+		if ( 0 == strcasecmp( "", $text ) ) { return ; }
+		if ( 0 == strcasecmp( "对话", $text ) ) { return 1; }
+		if ( 0 == strcasecmp( "用户", $text ) ) { return 2; }
+		if ( 0 == strcasecmp( "用户对话", $text ) ) { return 3; }
+		if ( 0 == strcasecmp( "Wikipedia_对话", $text ) ) { return 5; }
+		if ( 0 == strcasecmp( "图像", $text ) ) { return 6; }
+		if ( 0 == strcasecmp( "图像对话", $text ) ) { return 7; }
 		return false;
 	}
 
@@ -1036,12 +944,7 @@ class LanguageZh_cn extends LanguageUtf8 {
 		return $wgSkinNamesZh_cn;
 	}
 
-# The date and time functions can be tweaked if need be
-
-	# inherit userAdjust()
- 
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = substr( $ts, 0, 4 ) . "年" .
@@ -1050,32 +953,11 @@ class LanguageZh_cn extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesZh_cn;
-		return $wgValidSpecialPagesZh_cn;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesZh_cn;
-		return $wgSysopSpecialPagesZh_cn;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesZh_cn;
-		return $wgDeveloperSpecialPagesZh_cn;
-
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesZh_cn;
 		if( isset( $wgAllMessagesZh_cn[$key] ) )
 			return $wgAllMessagesZh_cn[$key];

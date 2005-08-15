@@ -13,59 +13,30 @@
 
 require_once( "LanguageUtf8.php" );
 
-#--------------------------------------------------------------------------
-# Language-specific text
-#--------------------------------------------------------------------------
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 /* private */ $wgNamespaceNamesTt = array(
-        NS_MEDIA            => 'Media',
-        NS_SPECIAL          => 'Maxsus',
-        NS_MAIN             => '',
-        NS_TALK             => 'Bäxäs',
-        NS_USER             => 'Äğzä',
-        NS_USER_TALK        => "Äğzä_bäxäse",
-        NS_PROJECT          => "Wikipedia",
-        NS_PROJECT_TALK     => "Wikipedia_bäxäse",
-        NS_IMAGE            => "Räsem",
-        NS_IMAGE_TALK       => "Räsem_bäxäse",
-        NS_MEDIAWIKI        => "MediaWiki",
-        NS_MEDIAWIKI_TALK   => "MediaWiki_bäxäse",
-        NS_TEMPLATE         => "Ürnäk",
-        NS_TEMPLATE_TALK    => "Ürnäk_bäxäse",
-        NS_HELP             => "Yärdäm",
-        NS_HELP_TALK        => "Yärdäm_bäxäse",
-        NS_CATEGORY         => "Törkem",
-        NS_CATEGORY_TALK    => "Törkem_bäxäse"
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Maxsus',
+	NS_MAIN             => '',
+	NS_TALK             => 'Bäxäs',
+	NS_USER             => 'Äğzä',
+	NS_USER_TALK        => "Äğzä_bäxäse",
+	NS_PROJECT          => "Wikipedia",
+	NS_PROJECT_TALK     => "Wikipedia_bäxäse",
+	NS_IMAGE            => "Räsem",
+	NS_IMAGE_TALK       => "Räsem_bäxäse",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_bäxäse",
+	NS_TEMPLATE         => "Ürnäk",
+	NS_TEMPLATE_TALK    => "Ürnäk_bäxäse",
+	NS_HELP             => "Yärdäm",
+	NS_HELP_TALK        => "Yärdäm_bäxäse",
+	NS_CATEGORY         => "Törkem",
+	NS_CATEGORY_TALK    => "Törkem_bäxäse"
 ) + $wgNamespaceNamesEn;
-
-/* private */ $wgQuickbarSettingsTt = array(
-        "None", "Fixed left", "Fixed right", "Floating left"
-);
-
-/* private */ $wgSkinNamesTt = array(
-        'standard' => 'Classic',
-        'nostalgia' => 'Nostalgia',
-        'cologneblue' => 'Cologne Blue',
-        'davinci' => 'DaVinci',
-        'mono' => 'Mono',
-        'monobook' => 'MonoBook',
-        'myskin' => 'MySkin'
-);
 
 /* private */ $wgDateFormatsTt = array(
 #        "köyläwsez",
 );
-
-# Read language names
-global $wgLanguageNames;
-require_once( "Names.php" );
-
-$wgLanguageNamesTt =& $wgLanguageNames;
 
 # Note to translators:
 #   Please include the English words as synonyms.  This allows people
@@ -73,55 +44,39 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 #
 /* private */ $wgMagicWordsTt = array(
 #       ID                                 CASE  SYNONYMS
-        MAG_REDIRECT             => array( 0,    '#yünältü'               ),
-        MAG_NOTOC                => array( 0,    '__ETYUQ__'              ),
-        MAG_FORCETOC             => array( 0,    '__ETTIQ__'              ),
-        MAG_TOC                  => array( 0,    '__ET__'                 ),
-        MAG_NOEDITSECTION        => array( 0,    '__BÜLEMTÖZÄTÜYUQ__'     ),
-        MAG_START                => array( 0,    '__BAŞLAW__'             ),
-        MAG_CURRENTMONTH         => array( 1,    'AĞIMDAĞI_AY'            ),
-        MAG_CURRENTMONTHNAME     => array( 1,    'AĞIMDAĞI_AY_İSEME'      ),
-        MAG_CURRENTDAY           => array( 1,    'AĞIMDAĞI_KÖN'           ),
-        MAG_CURRENTDAYNAME       => array( 1,    'AĞIMDAĞI_KÖN_İSEME'     ),
-        MAG_CURRENTYEAR          => array( 1,    'AĞIMDAĞI_YIL'           ),
-        MAG_CURRENTTIME          => array( 1,    'AĞIMDAĞI_WAQIT'         ),
-        MAG_NUMBEROFARTICLES     => array( 1,    'MÄQÄLÄ_SANI'            ),
-        MAG_CURRENTMONTHNAMEGEN  => array( 1,    'AĞIMDAĞI_AY_İSEME_GEN'  ),
-        MAG_PAGENAME             => array( 1,    'BİTİSEME'               ),
-        MAG_NAMESPACE            => array( 1,    'İSEMARA'                ),
-        MAG_SUBST                => array( 0,    'TÖPÇEK:'                ),
-        MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
-        MAG_END                  => array( 0,    '__AZAQ__'               ),
-        MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
-        MAG_IMG_RIGHT            => array( 1,    'uñda'                   ),
-        MAG_IMG_LEFT             => array( 1,    'sulda'                  ),
-        MAG_IMG_NONE             => array( 1,    'yuq'                    ),
-        MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
-        MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
-        MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
-        MAG_INT                  => array( 0,    'EÇKE:'                   ),
-        MAG_SITENAME             => array( 1,    'SÄXİFÄİSEME'            ),
-        MAG_NS                   => array( 0,    'İA:'                    ),
-        MAG_LOCALURL             => array( 0,    'URINLIURL:'              ),
-        MAG_LOCALURLE            => array( 0,    'URINLIURLE:'             ),
-        MAG_SERVER               => array( 0,    'SERVER'                 )
+	MAG_REDIRECT             => array( 0,    '#yünältü'               ),
+	MAG_NOTOC                => array( 0,    '__ETYUQ__'              ),
+	MAG_FORCETOC             => array( 0,    '__ETTIQ__'              ),
+	MAG_TOC                  => array( 0,    '__ET__'                 ),
+	MAG_NOEDITSECTION        => array( 0,    '__BÜLEMTÖZÄTÜYUQ__'     ),
+	MAG_START                => array( 0,    '__BAŞLAW__'             ),
+	MAG_CURRENTMONTH         => array( 1,    'AĞIMDAĞI_AY'            ),
+	MAG_CURRENTMONTHNAME     => array( 1,    'AĞIMDAĞI_AY_İSEME'      ),
+	MAG_CURRENTDAY           => array( 1,    'AĞIMDAĞI_KÖN'           ),
+	MAG_CURRENTDAYNAME       => array( 1,    'AĞIMDAĞI_KÖN_İSEME'     ),
+	MAG_CURRENTYEAR          => array( 1,    'AĞIMDAĞI_YIL'           ),
+	MAG_CURRENTTIME          => array( 1,    'AĞIMDAĞI_WAQIT'         ),
+	MAG_NUMBEROFARTICLES     => array( 1,    'MÄQÄLÄ_SANI'            ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'AĞIMDAĞI_AY_İSEME_GEN'  ),
+	MAG_PAGENAME             => array( 1,    'BİTİSEME'               ),
+	MAG_NAMESPACE            => array( 1,    'İSEMARA'                ),
+	MAG_SUBST                => array( 0,    'TÖPÇEK:'                ),
+	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
+	MAG_END                  => array( 0,    '__AZAQ__'               ),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
+	MAG_IMG_RIGHT            => array( 1,    'uñda'                   ),
+	MAG_IMG_LEFT             => array( 1,    'sulda'                  ),
+	MAG_IMG_NONE             => array( 1,    'yuq'                    ),
+	MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
+	MAG_INT                  => array( 0,    'EÇKE:'                   ),
+	MAG_SITENAME             => array( 1,    'SÄXİFÄİSEME'            ),
+	MAG_NS                   => array( 0,    'İA:'                    ),
+	MAG_LOCALURL             => array( 0,    'URINLIURL:'              ),
+	MAG_LOCALURLE            => array( 0,    'URINLIURLE:'             ),
+	MAG_SERVER               => array( 0,    'SERVER'                 )
 ) + $wgMagicWordsEn;
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
-
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => ""
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => ""
-
-# NOTE: To turn off "Community portal" in the title links,
-# set "portal" => ""
 
 /* private */ $wgAllMessagesTt = array(
 
@@ -186,22 +141,12 @@ class LanguageTt extends LanguageUtf8 {
 		return $wgNamespaceNamesTt;
 	}
 
-	function getQuickbarSettings() {
-		global $wgQuickbarSettingsTt;
-		return $wgQuickbarSettingsTt;
-	}
-
-	function getSkinNames() {
-		global $wgSkinNamesTt;
-		return $wgSkinNamesTt;
-	}
-
 	function getDateFormats() {
 		global $wgDateFormatsTt;
 		return $wgDateFormatsTt;
 	}
 
-	
+
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -220,23 +165,6 @@ class LanguageTt extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
-	}
-
-		
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesTt;
-		return $wgValidSpecialPagesTt;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesTt;
-		return $wgSysopSpecialPagesTt;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesTt;
-		return $wgDeveloperSpecialPagesTt;
 	}
 
 	function getMessage( $key ) {

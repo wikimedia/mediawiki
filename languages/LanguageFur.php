@@ -12,7 +12,7 @@ require_once( 'LanguageUtf8.php' );
 	NS_MAIN				=> '',
 	NS_TALK				=> 'Discussion',
 	NS_USER				=> 'Utent',
-	NS_USER_TALK			=> 'Discussion_utent',        
+	NS_USER_TALK			=> 'Discussion_utent',
 	NS_PROJECT			=> $wgMetaNamespace,
 	NS_PROJECT_TALK			=> 'Discussion_'.$wgMetaNamespace,
 	NS_IMAGE			=> 'Figure',
@@ -35,59 +35,6 @@ require_once( 'LanguageUtf8.php' );
 	'nostalgia'		=> 'Nostalgie',
 ) + $wgSkinNamesEn;
 
-// will make them not show up on the "Special Pages" page, which
-// is the right thing for some of them (such as the "targeted" ones).
-
-/* private */ $wgValidSpecialPagesFur = array(
-	'Userlogin'     => '',
-	'Userlogout'    => '',
-	'Preferences'   => 'Preferencis',
-	'Watchlist'     => 'Tignûts di voli',
-	'Recentchanges' => 'Ultins cambiaments',
-	'Upload'        => 'Cjame sù un file',
-	'Imagelist'     => 'Liste des figuris',
-	'Listusers'     => 'Liste dai utents',
-	'Statistics'    => 'Statistichis',
-	'Randompage'    => 'Une pagjine a câs',
-
-	'Lonelypages'   => 'Pagjinis solitaris',
-	'Unusedimages'  => 'Figuris no dopradis',
-	'Popularpages'  => 'Lis plui popolârs',
-	'Wantedpages'   => 'Lis plui desideradis',
-	'Shortpages'    => 'Articui curts',
-	'Longpages'     => 'Articui luncs',
-	'Newpages'      => 'Pagjinis gnovis',
-	'Ancientpages'	=> 'Pagjinis vieris',
-	'Allpages'      => 'Ducj i articui',
-
-	'Ipblocklist'   => 'Recapits IP blocâts',
-	'Maintenance'   => 'Pagjine di manutenzion',
-	'Specialpages'  => '', // ces pages doivent rester vides !
-	'Contributions' => '',
-	'Emailuser'     => '',
-	'Whatlinkshere' => '',
-	'Recentchangeslinked' => '',
-	'Movepage'      => '',
-	'Booksources'   => 'Libreriis in linee',
-	'Categories'	=> 'Pagjine des categoriis',
-	'Export'	=> 'Espuartâ in XML',
-	'Version'	=> 'Version',
-	'Allmessages'	=> 'Ducj i messaç di sistem'
-);
-
-/* private */ $wgSysopSpecialPagesFur = array(
-	'Blockip'       => 'Bloche un recapit IP',
-	'Asksql'        => 'Acès SQL',
-	'Makesysop'		=> 'Dâ i dirits di aministradôr',
-                                               
-	'Undelete'      => 'Recupere lis pagjinis eliminadis',
-	'Import'		=> 'Impuarte une pagjine cul storic'
-);
-
-/* private */ $wgDeveloperSpecialPagesFur = array(
-	'Lockdb'        => 'Bloche la base di dâts',
-	'Unlockdb'      => 'Gjave il bloc ae base di dâts',
-);
 
 $wgAllMessagesFur = array(
 'about' => "Informazions",
@@ -101,7 +48,6 @@ $wgAllMessagesFur = array(
 'allpagessubmit' => "Va",
 'apr' => "Avr",
 'april' => "Avrîl",
-'articlenamespace' => "(articui)",
 'aug' => "Avo",
 'august' => "Avost",
 'blocklink' => "bloche",
@@ -294,7 +240,7 @@ class LanguageFur extends LanguageUtf8 {
 		global $wgNamespaceNamesFur;
 		return $wgNamespaceNamesFur;
 	}
-	
+
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFur;
 		return $wgQuickbarSettingsFur;
@@ -304,9 +250,6 @@ class LanguageFur extends LanguageUtf8 {
 		global $wgSkinNamesFur;
 		return $wgSkinNamesFur;
 	}
-
-
-	// Inherit userAdjust()
 
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -325,25 +268,9 @@ class LanguageFur extends LanguageUtf8 {
 		',' => "\xc2\xa0", // @bug 2749
 		'.' => ','
 	);
-	
+
 	function formatNum( $number ) {
 		return strtr($number, $this->digitTransTable);
-	}
-
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesFur;
-		return $wgValidSpecialPagesFur;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesFur;
-		return $wgSysopSpecialPagesFur;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesFur;
-		return $wgDeveloperSpecialPagesFur;
 	}
 
 	function getMessage( $key ) {
@@ -354,7 +281,7 @@ class LanguageFur extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 }
 
 ?>

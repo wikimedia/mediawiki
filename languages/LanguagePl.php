@@ -7,11 +7,6 @@ require_once("LanguageUtf8.php");
 
 # FIXME: Lots of hardcoded Wikipedia-related text needs to be cleaned up.
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 # Yucky hardcoding hack as polish grammar need tweaking :o)
 switch( $wgMetaNamespace ) {
 case 'Wikipedia':
@@ -25,80 +20,28 @@ default:
 }
 
 /* private */ $wgNamespaceNamesPl = array(
-    NS_MEDIA            => "Media",
-    NS_SPECIAL          => "Specjalna",
-    NS_MAIN             => "",
-    NS_TALK             => "Dyskusja",
-    NS_USER             => "Wikipedysta",
-    NS_USER_TALK        => "Dyskusja_Wikipedysty",
-    NS_PROJECT          => $wgMetaNamespace,
-    NS_PROJECT_TALK     => $wgMetaTalkNamespace,   // see above
-    NS_IMAGE            => "Grafika",
-    NS_IMAGE_TALK       => "Dyskusja_grafiki",
-    NS_MEDIAWIKI        => "MediaWiki",
-    NS_MEDIAWIKI_TALK   => "Dyskusja_MediaWiki",
-    NS_TEMPLATE         => "Szablon",
-    NS_TEMPLATE_TALK    => "Dyskusja_szablonu",
-    NS_HELP             => "Pomoc",
-    NS_HELP_TALK        => "Dyskusja_pomocy",
-    NS_CATEGORY         => "Kategoria",
-    NS_CATEGORY_TALK    => "Dyskusja_kategorii"
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Specjalna",
+	NS_MAIN             => "",
+	NS_TALK             => "Dyskusja",
+	NS_USER             => "Wikipedysta",
+	NS_USER_TALK        => "Dyskusja_Wikipedysty",
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaTalkNamespace,   // see above
+	NS_IMAGE            => "Grafika",
+	NS_IMAGE_TALK       => "Dyskusja_grafiki",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "Dyskusja_MediaWiki",
+	NS_TEMPLATE         => "Szablon",
+	NS_TEMPLATE_TALK    => "Dyskusja_szablonu",
+	NS_HELP             => "Pomoc",
+	NS_HELP_TALK        => "Dyskusja_pomocy",
+	NS_CATEGORY         => "Kategoria",
+	NS_CATEGORY_TALK    => "Dyskusja_kategorii"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsPl = array(
-        "Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesPl = array(
-        "Userlogin"     => "",
-        "Userlogout"    => "",
-        "Preferences"   => "Zmiana moich preferencji",
-        "Watchlist"     => "Obserwowane",
-        "Recentchanges" => "Ostatnio zmienione",
-        "Upload"        => "Przesyłanie plików",
-        "Imagelist"     => "Lista obrazków i multimediów",
-        "Listusers"     => "Zarejestrowani użytkownicy",
-        "Statistics"    => "Statystyka",
-        "Randompage"    => "Losowa strona",
-
-        "Lonelypages"   => "Porzucone artykuły",
-        "Unusedimages"  => "Porzucone pliki",
-        "Popularpages"  => "Najpopularniejsze",
-        "Wantedpages"   => "Najbardziej potrzebne",
-        "Shortpages"    => "Najkrótsze",
-        "Longpages"     => "Najdłuższe",
-        "Newpages"      => "Nowoutworzone",
-	"Ancientpages" => "Najstarsze",
-        "Allpages"      => "Wszystkie",
-
-        "Ipblocklist"   => "Zablokowane adresy IP",
-        "Maintenance"   => "Prosta administracja",
-        "Specialpages"  => "",
-        "Contributions" => "",
-        "Emailuser"     => "",
-        "Whatlinkshere" => "",
-        "Recentchangeslinked" => "",
-        "Movepage"      => "",
-        "Booksources"   => "Książki",
-//	"Categories"    => "Kategorie stron",
-	"Export"	=> "XML export",
-	"Version"	=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesPl = array(
-        "Blockip"       => "Zablokuj adres IP",
-        "Asksql"        => "Zapytanie SQL",
-        "Undelete"      => "Odtwarzanie skasowanych stron"
-
-);
-
-/* private */ $wgDeveloperSpecialPagesPl = array(
-        "Lockdb"        => "Zablokuj zapis do bazy danych",
-        "Unlockdb"      => "Odblokuj zapis do bazy danych",
+	"Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"
 );
 
 /* private */ $wgAllMessagesPl = array(
@@ -142,18 +85,6 @@ default:
 'october' => "październik",
 'november' => "listopad",
 'december' => "grudzień",
-'january-gen' => "stycznia",
-'february-gen' => "lutego",
-'march-gen' => "marca",
-'april-gen' => "kwietnia",
-'may-gen' => "maja",
-'june-gen' => "czerwca",
-'july-gen' => "lipca",
-'august-gen' => "sierpnia",
-'september-gen' => "września",
-'october-gen' => "października",
-'november-gen' => "listopada",
-'december-gen' => "grudnia",
 'jan' => "sty",
 'feb' => "lut",
 'mar' => "mar",
@@ -185,7 +116,6 @@ default:
 "bugreports" => "Raport o błędach",
 "bugreportspage" => "{{ns:4}}:Błędy",
 "sitesupport" => "Dary pieniężne",
-"sitesupportpage" => "http://wikimediafoundation.org/fundraising", # If not set, won't appear. Can be wiki page or URL
 "faq" => "FAQ",
 "faqpage" => "{{ns:4}}:FAQ",
 "edithelp" => "Pomoc w edycji",
@@ -216,17 +146,16 @@ default:
 "newpage" => "Nowa strona",
 "talkpage" => "Dyskusja",
 "postcomment" => "Skomentuj",
-"articlepage" => "Strona artykułu", 
+"articlepage" => "Strona artykułu",
 "subjectpage" => "Strona dyskutowana", # for compatibility
-"userpage" => "Strona wikipedysty", 
-"wikipediapage" => "Strona metaartykułu", 
-"imagepage" =>  "Strona grafiki", 
+"userpage" => "Strona wikipedysty",
+"wikipediapage" => "Strona metaartykułu",
+"imagepage" =>  "Strona grafiki",
 "viewtalkpage" => "Strona dyskusji",
 "otherlanguages" => "Wersja",
 "redirectedfrom" => "(Przekierowano z $1)",
 "lastmodified" => "Tę stronę ostatnio zmodyfikowano o $1;",
 "viewcount" => "Tę stronę obejrzano $1 razy;",
-"gnunote" => "udostępniana jest w oparciu o licencję <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>; możesz ją samodzielnie uzupełnić lub poprawić.",
 "printsubtitle" => "(z {{SERVER}})",
 "protectedpage" => "Strona zabezpieczona",
 "administrators" => "{{ns:4}}:Administratorzy",
@@ -310,7 +239,6 @@ znaki, których użycie jest zabronione lub jest pusty.",
 "perfdisabled" => "By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy
 wykonanie tej czynności. Wróć proszę i spróbuj jeszcze raz między 02.00 a 14.00
 czasu UTC. Przepraszamy!",
-"perfdisabledstub" => "Oto ostatnia zapisana wersja strony z $1",
 "viewsource" => "Tekst źródłowy",
 "protectedtext" => "Wyłączono możliwość edycji tej strony; istnieje kilka powodów
 dla których jest to robione - zobacz [[{{ns:4}}:Strona_zabezpieczona]]
@@ -358,7 +286,7 @@ Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.",
 "passwordremindertitle" => "{{SITENAME}} przypomina o haśle",
 "passwordremindertext" => "Ktoś (prawdopodobnie Ty, spod adresu $1)
 poprosił od nas o wysłanie nowego hasła dostępu do Wikipedii.
-Aktualne hasło dla użytkownika \"$2\" to \"$3\". 
+Aktualne hasło dla użytkownika \"$2\" to \"$3\".
 Najlepiej będzie jak zalogujesz się teraz i od razu zmienisz hasło.",
 "noemail" => "W bazie nie ma adresu e-mailowego dla użytkownika \"$1\".",
 "passwordsent" => "Nowe hasło zostało wysłane na adres e-mailowy użytkownika \"$1\"
@@ -477,13 +405,13 @@ spowodowany jest bardzo często szukaniem najpopularniejszych słów, takich jak
 \"jest\" czy \"nie\", które nie są indeksowane, albo z powodu podania w
 zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą się
 tylko te, które zawierają wszystkie podane słowa).",
-"powersearch" => "Szukaj", 
+"powersearch" => "Szukaj",
 "powersearchtext" => "
 Szukaj w przestrzeniach nazw :<br />
 $1<br />
 $2 Pokaż przekierowania   Szukany tekst $3 $9",
 "searchdisabled" => "<p>Ze względu na duże obciążenie serwera wyszukiwanie
-w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że 
+w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że
 po zbliżającej się modyfikacji sprzętu możliwość ta zostanie przywrócona.
 W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>
 
@@ -501,15 +429,15 @@ przez zmianą swoich preferencji.",
 
 Zobacz [[{{ns:4}}:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
 "prefsreset" => "Preferencje domyślne zostały odtworzone.",
-"qbsettings" => "Pasek szybkiego dostępu", 
+"qbsettings" => "Pasek szybkiego dostępu",
 "changepassword" => "Zmiana hasła",
 "skin" => "Skórka",
-"math" => "Prezentacja wzorów matematycznych", 
-"math_failure" => "Parser nie umiał rozpoznać", 
-"math_unknown_error" => "nieznany błąd", 
-"math_unknown_function" => "nieznana funkcja ", 
-"math_lexing_error" => "błąd leksera", 
-"math_syntax_error" => "błąd składni", 
+"math" => "Prezentacja wzorów matematycznych",
+"math_failure" => "Parser nie umiał rozpoznać",
+"math_unknown_error" => "nieznany błąd",
+"math_unknown_function" => "nieznana funkcja ",
+"math_lexing_error" => "błąd leksera",
+"math_syntax_error" => "błąd składni",
 "saveprefs" => "Zapisz preferencje",
 "resetprefs" => "Preferencje domyślne",
 "oldpassword" => "Stare hasło",
@@ -614,13 +542,9 @@ Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 ",
 "filename" => "Plik",
 "filedesc" => "Opis",
-"affirmation" => "Potwierdzam, że właściciel praw autorskich do tego pliku
-zgadza się udzielić licencji zgodnie z $1.",
 "copyrightpage" => "{{ns:4}}:Prawa_autorskie",
 "copyrightpagename" => "prawami autorskimi Wikipedii",
 "uploadedfiles" => "Przesłane pliki",
-"noaffirmation" => "Musisz potwierdzić, że Twoja przesyłka nie narusza żadnych
-praw autorskich.",
 "ignorewarning" => "Zignoruj ostrzeżenie i prześlij plik.",
 "minlength" => "Nazwa obrazku musi mieć co najmniej trzy litery.",
 "badfilename" => "Nazwę obrazku zmieniona na \"$1\".",
@@ -707,7 +631,7 @@ przekierowywać.",
 "mispeelings" => "Strony z błędami pisowni",
 "mispeelingstext" => "Poniższe strony zawierają najczęstsze błędy
 pisowni (ich listę można znaleźć w $1). Poprawna pisownia może być podana obok w
-nawiasach.", 
+nawiasach.",
 "mispeelingspage" => "Lista najczęstszych błędów pisowni",
 "missinglanguagelinks" => "Brakujące odnośniki do innych wersji językowych",
 "missinglanguagelinksbutton" => "Znajdź brakujące odnośniki, wersja",
@@ -846,7 +770,7 @@ Podane czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "reverted" => "Przywrócono starszą wersję",
 "deletecomment" => "Powód usunięcia",
 "imagereverted" => "Przywrócenie wcześniejszej wersji powiodło się.",
-"rollback" => "Cofnij edycję", 
+"rollback" => "Cofnij edycję",
 "rollbacklink" => "cofnij",
 "rollbackfailed" => "Nie udało się cofnąć zmiany",
 "cantrollback" => "Nie można cofnąć edycji; jest tylko jedna wersja tej strony.",
@@ -856,7 +780,7 @@ Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści
 Autorem ostatniej zmiany jest teraz [[Wikipedysta:$3|$3]] ([[Dyskusja_wikipedysty:$3|Dyskusja]]).",
 # only shown if there is an edit comment
 "editcomment" => "Opisano ją następująco: \"<i>$1</i>\".",
-"revertpage" => "Przywrócono przedostatnią wersję, jej autor to $1", 
+"revertpage" => "Przywrócono przedostatnią wersję, jej autor to $1",
 
 # Undelete
 #
@@ -913,7 +837,6 @@ się wandalizmu).",
 "ipbreason" => "Powód",
 "ipbsubmit" => "Zablokuj ten adres",
 "badipaddress" => "Adres IP jest źle utworzony.",
-"noblockreason" => "Musisz podać powód blokady.",
 "blockipsuccesssub" => "Zablokowanie powiodło się",
 "blockipsuccesstext" => "Adres IP \"$1\" został zablokowany.
 <br />Przejdź do [[Specjalna:Ipblocklist|Listy zablokowanych adresów IP]] by przejrzeć blokady.",
@@ -951,21 +874,6 @@ Potwierdź, proszę, że to jest zgodne z Twoimi zamiarami.",
 "lockdbsuccesstext" => "Baza danych Wikipedii została zablokowana.
 <br />Pamiętaj usunąć blokadę po zakończeniu spraw administracyjnych.",
 "unlockdbsuccesstext" => "Baza danych Wikipedii została odblokowana.",
-
-# SQL query
-#
-"asksql" => "Zapytanie SQL",
-"asksqltext" => "Użyj poniższego formularza by wysłać bezpośrednie zapytanie
-do bazy danych Wikipedii.
-Do ograniczania literałów łańcuchowych używaj pojedynczych cudzysłowów ('tak jak tu').
-Twoje zapytanie może poważnie obciążyć serwer, więc używaj tej możliwości
-z rozwagą.",
-"sqlislogged" => "Przypominamy, że wszystkie zapytania są logowane!",
-"sqlquery" => "Podaj zapytanie",
-"querybtn" => "Wyślij zapytanie",
-"selectonly" => "Zapytania inne niż \"SELECT\" są zastrzeżone tylko dla
-użytkowników o statusie Programisty.",
-"querysuccessful" => "Zapytanie zakończone sukcesem",
 
 # Move page
 #
@@ -1009,17 +917,17 @@ Wybierz, proszę, nową nazwę.",
 "talkpagemoved" => "Odpowiednia strona z <i>Dyskusją</i> także została przeniesiona.",
 "talkpagenotmoved" => "Odpowiednia strona z <i>Dyskusją</i> <strong>nie</strong> została przeniesiona.",
 # Math
-    	'mw_math_png' => "Zawsze jako PNG",
-        'mw_math_simple' => "HTML dla prostych, dla reszty PNG",
-        'mw_math_html' => "Spróbuj HTML; jeśli zawiedzie, to PNG",
-        'mw_math_source' => "Pozostaw w TeXu (tekst)",
-        'mw_math_modern' => "HTML, dla nowszych przeglądarek",
-	'mw_math_mathml' => 'MathML'
+'mw_math_png' => "Zawsze jako PNG",
+'mw_math_simple' => "HTML dla prostych, dla reszty PNG",
+'mw_math_html' => "Spróbuj HTML; jeśli zawiedzie, to PNG",
+'mw_math_source' => "Pozostaw w TeXu (tekst)",
+'mw_math_modern' => "HTML, dla nowszych przeglądarek",
+'mw_math_mathml' => 'MathML'
 
 );
 
 class LanguagePl extends LanguageUtf8 {
-	
+
 	function getNamespaces() {
 		global $wgNamespaceNamesPl;
 		return $wgNamespaceNamesPl;
@@ -1038,25 +946,10 @@ class LanguagePl extends LanguageUtf8 {
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$d = (0 + substr( $ts, 6, 2 )) . 
+		$d = (0 + substr( $ts, 6, 2 )) .
 		  " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
 		  " " . substr( $ts, 0, 4 );
 		return $d;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesPl;
-		return $wgValidSpecialPagesPl;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesPl;
-		return $wgSysopSpecialPagesPl;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesPl;
-		return $wgDeveloperSpecialPagesPl;
 	}
 
 	function getMessage( $key ) {

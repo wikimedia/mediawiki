@@ -11,7 +11,7 @@ require_once( 'LanguageUtf8.php' );
 # See Language.php for notes.
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 # Yucky hardcoding hack
 switch( $wgMetaNamespace ) {
@@ -24,35 +24,35 @@ default:
 }
 
 /* private */ $wgNamespaceNamesCs = array(
-        NS_MEDIA              => 'Média',
-        NS_SPECIAL            => 'Speciální',
-        NS_MAIN               => '',
-        NS_TALK               => 'Diskuse',
-        NS_USER               => $wgUserNamespace,
-        NS_USER_TALK          => $wgUserNamespace . '_diskuse',
-        NS_PROJECT            => $wgMetaNamespace,
-        NS_PROJECT_TALK	      => $wgMetaNamespace . '_diskuse',
-        NS_IMAGE              => 'Soubor',
-        NS_IMAGE_TALK         => 'Soubor_diskuse',
-        NS_MEDIAWIKI          => 'MediaWiki',
-        NS_MEDIAWIKI_TALK     => 'MediaWiki_diskuse',
-        NS_TEMPLATE           => 'Šablona',
-        NS_TEMPLATE_TALK      => 'Šablona_diskuse',
-        NS_HELP               => 'Nápověda',
-        NS_HELP_TALK          => 'Nápověda_diskuse',
-        NS_CATEGORY           => 'Kategorie',
-        NS_CATEGORY_TALK      => 'Kategorie_diskuse',
+	NS_MEDIA              => 'Média',
+	NS_SPECIAL            => 'Speciální',
+	NS_MAIN               => '',
+	NS_TALK               => 'Diskuse',
+	NS_USER               => $wgUserNamespace,
+	NS_USER_TALK          => $wgUserNamespace . '_diskuse',
+	NS_PROJECT            => $wgMetaNamespace,
+	NS_PROJECT_TALK	      => $wgMetaNamespace . '_diskuse',
+	NS_IMAGE              => 'Soubor',
+	NS_IMAGE_TALK         => 'Soubor_diskuse',
+	NS_MEDIAWIKI          => 'MediaWiki',
+	NS_MEDIAWIKI_TALK     => 'MediaWiki_diskuse',
+	NS_TEMPLATE           => 'Šablona',
+	NS_TEMPLATE_TALK      => 'Šablona_diskuse',
+	NS_HELP               => 'Nápověda',
+	NS_HELP_TALK          => 'Nápověda_diskuse',
+	NS_CATEGORY           => 'Kategorie',
+	NS_CATEGORY_TALK      => 'Kategorie_diskuse',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCs = array(
-        'Žádný', 'Leží vlevo', 'Leží vpravo', 'Visí vlevo'
+	'Žádný', 'Leží vlevo', 'Leží vpravo', 'Visí vlevo'
 );
 
 /* private */ $wgSkinNamesCs = array(
-        'standard'            => 'Standard',
-        'nostalgia'           => 'Nostalgie',
-        'cologneblue'         => 'Kolínská modř',
-        'chick'               => 'Kuře'
+	'standard'            => 'Standard',
+	'nostalgia'           => 'Nostalgie',
+	'cologneblue'         => 'Kolínská modř',
+	'chick'               => 'Kuře'
 ) + $wgSkinNamesEn;
 
 # Hledání knihy podle ISBN
@@ -62,59 +62,6 @@ default:
     'Státní technická knihovna' => 'http://www.stk.cz/cgi-bin/dflex/CZE/STK/BROWSE?A=01&V=$1'
 ) + $wgBookstoreListEn;
 
-# *Neměnit jména v levém sloupci, jsou to interní jména programových
-# funkcí. Pravý sloupec  obsahuje několik mezer, které mají tak zůstat,
-# aby se tyto funkce nezařadily do seznamu speciálních stránek.
-
-/* private */ $wgValidSpecialPagesCs = array(
-  'Userlogin'           => 'Přihlásit se',
-  'Userlogout'          => 'Odhlásit se',
-  'Preferences'         => 'Nastavení',
-  'Watchlist'           => 'Sledované stránky',
-  'Recentchanges'       => 'Poslední změny',
-  'Upload'              => 'Načíst soubor',
-  'Imagelist'           => 'Seznam načtených souborů',
-  'Listusers'           => 'Uživatelé',
-  'Statistics'          => 'Statistika',
-  'Randompage'          => 'Náhodná stránka',
-
-# todo
-  'Lonelypages'         => 'Sirotčí články',
-  'Unusedimages'        => 'Nepoužívané obrázky a soubory',
-  'Popularpages'        => 'Nejnavštěvovanější stránky',
-  'Wantedpages'         => 'Žádoucí články',
-  'Shortpages'          => 'Nejkratší články',
-  'Longpages'           => 'Nejdelší články',
-  'Newpages'            => 'Nejnovější články',
-  'Ancientpages'        => 'Nejdéle needitované články',
-  'Intl'                => 'Mezijazykové odkazy',
-  'Allpages'            => 'Všechny stránky',
-
-  'Ipblocklist'         => 'Seznam blokovaných IP adres',
-  'Maintenance'         => 'Nástroje pro opravy a údržbu',
-  'Specialpages'        => 'Speciální stránky',
-  'Contributions'       => 'Příspěvky uživatele',
-  'Emailuser'           => 'Poslat e-mail',
-  'Whatlinkshere'       => 'Odkazuje sem',
-  'Recentchangeslinked' => 'Související změny',
-  'Movepage'            => 'Přesunout stránku',
-  'Booksources'         => 'Zdroje knih',
-  'Categories'          => 'Kategorie',
-  'Export'              => 'Exportovat stránky',
-  'Version'             => 'Verze',
-);
-
-/* private */ $wgSysopSpecialPagesCs = array(
-  'Blockip'             => 'Zablokovat uživatele',
-  'Asksql'              => 'Dotaz pomocí SQL',
-  'Undelete'            => 'Obnovit smazanou stránku'
-);
-
-/* private */ $wgDeveloperSpecialPagesCs = array(
-  'Lockdb'              => 'Zamknout databázi',
-  'Unlockdb'            => 'Odemknout databázi',
-  'Debug'               => 'Zobrazit ladící informace'
-);
 
 # Note to translators:
 #   Please include the English words as synonyms.  This allows people
@@ -298,8 +245,6 @@ default:
 'sysoptext'      => 'Žádaný úkon může provést jen správce. Podívejte se prosím na $1.',
 'developertitle' => 'Jen pro vývojáře',
 'developertext'  => 'Žádaný úkon může provést jen vývojář. Podívejte se prosím na $1.',
-'bureaucrattitle' => 'Pouze pro byrokraty',
-'bureaucrattext'  => 'Žádaný úkon může provést jen byrokrat.',
 'nbytes'          => '$1 B',
 'ok'              => 'OK',
 'sitetitle'       => '{{SITENAME}}',
@@ -344,12 +289,12 @@ default:
 Příčinou může být chyba v programu.
 Poslední dotaz byl:
 <blockquote><tt>$1</tt></blockquote>
-z funkce \'<tt>$2</tt>\'. 
+z funkce \'<tt>$2</tt>\'.
 MySQL vrátil chybu \'<tt>$3: $4</tt>\'.',
 'dberrortextcl' => 'Při dotazu do databáze došlo k syntaktické chybě.
 Poslední dotaz byl:
 <blockquote><tt>$1</tt></blockquote>
-z funkce \'<tt>$2</tt>\'. 
+z funkce \'<tt>$2</tt>\'.
 MySQL vrátil chybu \'<tt>$3: $4</tt>\'.',
 'noconnect'             => 'Promiňte! Tato wiki má nějaké technické potíže a nepodařilo se připojit k databázovém serveru.<br />
 $1',
@@ -372,7 +317,7 @@ Správce, který databázi zamkl, zanechal následující zprávu:
 'filedeleteerror' => 'Nebylo možné smazat soubor „$1“.',
 'filenotfound'  => 'Nebylo možné najít soubor „$1“.',
 'unexpected'    => 'Neočekávaná hodnota: "$1"="$2".',
-'formerror'             => 'Chyba: nebylo možné odeslat formulář',   
+'formerror'             => 'Chyba: nebylo možné odeslat formulář',
 'badarticleerror' => 'Tento úkon nelze použít na tento článek.',
 'cannotdelete'  => 'Nebylo možné smazat zvolenou stránku ani soubor. (Možná už byla smazána někým jiným.)',
 'badtitle'              => 'Neplatný název',
@@ -385,7 +330,6 @@ Funkce: $1<br />
 Dotaz: $2',
 'viewsource' => ' Ukázat zdroj',
 'protectedtext' => 'Tato stránka byla zamčena, takže ji nelze editovat; je mnoho důvodů, proč se tak mohlo stát. Vizte prosím [[{{ns:4}}:Stránka je zamčena]]. Můžete si prohlédnout a okopírovat zdrojový text této stránky:',
-'seriousxhtmlerrors' => 'Tidy nalezl v xhtml kódu závažné chyby.',
 'sqlhidden' => '(SQL dotaz skryt)',
 
 # Login and logout pages
@@ -438,7 +382,6 @@ Tento počítač může být používán k prohlížení a editaci {{grammar:2sg
 'nosuchusershort'	=> 'Neexistuje uživatel se jménem „$1“. Zkontrolujte zápis.',
 'wrongpassword' => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
 'mailmypassword' => 'Poslat e-mailem dočasné heslo',
-'mailmypasswordauthent'	=> 'Poslat e-mailem dočasné heslo',
 'noemail'		=> 'Uživatel „$1“ nemá zaregistrovanou e-mailovou adresu.',
 'passwordsent'	=> 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlašte se, prosím, znovu, jakmile ho obdržíte.',
 'eauthentsent'             =>  'Potvrzovací e-mail byl zaslán na zadanou adresu.
@@ -460,7 +403,6 @@ K přihlášení do {{grammar:2sg|{{SITENAME}}}} musíte mít zapnuty [[w:cs:HTT
 'emailnotauthenticated'	=> 'Vaše e-mailová adresa <strong>dosud nebyla ověřena</strong> a pokročilé e-mailové funkce do té doby nejsou dostupné.<br />
 Pro ověření se přihlašte dočasným heslem, které vám bylo posláno e-mailem, nebo požádejte o nové heslo na přihlašovací stránce.',
 'invalidemailaddress'	=> 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte laskavě platnou e-mailovou adresu, nebo obsah tohoto pole vymažte.',
-'disableduntilauthent'	=> '<strong>(neověřeno)</strong>',
 'emailconfirmlink' => 'Podvrďte svou e-mailovou adresu',
 'noemailprefs'              => '<strong>Nebyla zadána e-mailová adresa</strong>, následující možnosti jsou nefunkční.',
 
@@ -544,7 +486,8 @@ okénko. Tento problém mít nebudete, pokud budete klikat jen na modré odkazy.
 'whitelistacctitle' => 'Není vám dovoleno vytvářet uživatelské účty',
 'whitelistacctext' => 'Abyste na této wiki mohl(a) vytvářet uživatelské účty, musíte se [[Special:Userlogin|přihlásit]] a mít příslušná oprávnění.',
 'loginreqtitle' => 'Vyžadováno přihlášení',
-'loginreqtext'  => ' K prohlížení jiných stránek se musíte [[Special:Userlogin|přihlásit]].',
+'loginreqlink' => 'přihlásit',
+'loginreqpagetext'  => ' K prohlížení jiných stránek se musíte $1.',
 'accmailtitle' => 'Heslo odesláno.',
 'accmailtext' => 'Heslo pro „$1“ bylo odesláno na $2.',
 'newarticle'    => '(Nový)',
@@ -639,29 +582,6 @@ Hledat ve jmenných prostorech:<br />
 $1<br />
 $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'searchdisabled' => '<p>Omlouváme se. Plnotextové vyhledávání je dočasně nedostupné, aby se zvýšila rychlost načítání běžných článků. Zatím můžete zkusit vyhledávání Googlem; je ale možné, že jeho výsledky nemusí být aktuální.</p>',
-'googlesearch' => '
-<div style="margin-left: 2em">
-
-<!-- Google search -->
-<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="padding:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
-
-<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-    
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="Vyhledat Googlem" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>
-
-</div>',
 'blanknamespace' => ' (Hlavní)',
 
 # Preferences page
@@ -673,8 +593,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 
 Podívejte se na [[{{ns:12}}:Uživatelské nastavení]] pro popis možností.',
 'prefsreset'    => 'Nastavení vráceno.', #FIXME: Hmm...
-'qbsettings'    => 'Nastavení lišty nástrojů', 
-'qbsettingsnote'	=> 'Toto nastavení funguje pouze ve stylech „Standard“ a „Kolínská modř“.',
+'qbsettings'    => 'Nastavení lišty nástrojů',
 'changepassword' => 'Změna hesla',
 'skin'                  => 'Styl',
 
@@ -758,7 +677,7 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'userrights-logcomment' => 'Změněno členství ve skupinách z $1 na $2',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anonym',
 'group-anon-desc'       => 'Anonymní uživatelé',
 'group-loggedin-name'   => 'Uživatel',
@@ -846,11 +765,9 @@ váš uživatelský účet zablokován.",
 'filedesc'              => 'Popis',
 'filestatus' => 'Autorská práva',
 'filesource' => 'Zdroj',
-'affirmation'   => 'Potvrzuji, že majitel autorských práv k tomuto souboru souhlasí s poskytnutím licence podle $1.',
 'copyrightpage' => '{{ns:4}}:Autorské právo',
 'copyrightpagename' => 'podmínek {{grammar:2sg|{{SITENAME}}}}',
 'uploadedfiles' => 'Načtené soubory',
-'noaffirmation' => 'Musíte potvrdit, že uložení tohoto souboru neporušuje autorské právo.',
 'ignorewarning' => 'Ignorovat varování a uložit soubor.',
 'minlength'             => 'Jméno souboru se musí skládat nejméně ze tří písmen.',
 'illegalfilename'       => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
@@ -896,10 +813,11 @@ váš uživatelský účet zablokován.",
 'shareduploadwiki' => 'Více informací najdete na $1.',
 'shareduploadwiki-linktext' => 'stránce s popisem',
 'noimage'       => 'Soubor s tímto jménem neexistuje, můžete ho $1',
-'noimage-linxtext' => 'načíst',
+'noimage-linktext' => 'načíst',
 'uploadnewversion' => '[$1 Načíst novou verzi tohoto souboru]',
 
 # User list
+# Obsolote??? 2005-08-15
 'userlist'		=> 'Seznam uživatelů',
 'userlisttext'	=> 'Níže je seznam $1 uživatelů, setříděných $2.',
 'ulshowmatch'	=> 'Ukázat uživatele, jejichž jména vyhovují',
@@ -935,8 +853,6 @@ váš uživatelský účet zablokován.",
 'missinglanguagelinks'  => 'Chybějící mezijazykové odkazy',
 'missinglanguagelinksbutton'    => 'Nalézt chybějící mezijazykové odkazy pro',
 'missinglanguagelinkstext'      => 'Těmto článkům chybí odkaz na ekvivalent v jazyce $1. Přesměrování a podstránky zde <i>nejsou</i> zobrazeny.',
-'linkstodisambig' => 'Odkazy na rozcestníky',
-'linkstodisambigtext' => 'Následující stránky odkazují na <i>stránku s rozcestníky</i>. Místo toho by měly by odkazovat na náležitou stránku.',
 
 # Miscellaneous special pages
 #
@@ -974,12 +890,10 @@ váš uživatelský účet zablokován.",
 'unusedimagestext' => '<p>Jiné WWW stránky mohou odkazovat přímo pomocí URL, na takové odkazy se v tomto seznamu nebere zřetel.',
 'categoriespagetext' => 'Ve wiki existují následující kategorie:',
 'booksources'   => 'Zdroje knih',
-'booksourcetext' => 'Následují odkazy na jiné WWW stránky, na kterých se prodávají knihy, nebo které mohou obsahovat další informace o knize, kterou hledáte. {{SITENAME}} nemá s těmito prodejnami žádný vztah, tyto odkazy nelze chápat jako doporučení.', 
+'booksourcetext' => 'Následují odkazy na jiné WWW stránky, na kterých se prodávají knihy, nebo které mohou obsahovat další informace o knize, kterou hledáte. {{SITENAME}} nemá s těmito prodejnami žádný vztah, tyto odkazy nelze chápat jako doporučení.',
 'userrights' => 'Správa uživatelských skupin',
 'groups' => 'Uživatelské skupiny',
 'data'	=> 'Data',
-'userlevels'	=> 'Správa uživatelských práv',
-'grouplevels' => 'Správa uživatelských skupin',
 'isbn'  => 'ISBN',
 'rfcurl' =>  'http://www.faqs.org/rfcs/rfc$1.html',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
@@ -995,7 +909,6 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 # Special:Allpages
 'nextpage'          => 'Další stránka ($1)',
 'allpagesfrom'		=> 'Všechny stránky počínaje od:',
-'articlenamespace'  => '(články)',
 'allarticles'		=> 'Všechny články',
 'allnonarticles'	=> 'Všechny nečlánky',
 'allinnamespace'	=> 'Všechny stránky (jmenný prostor $1)',
@@ -1181,12 +1094,11 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'blockiptext'   => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{ns:4}}:blokování|pravidly blokování]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Čas pro vypršení se udává ve standardním formátu GNU, který je popsán na [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html tar manual], např. „1 hour“, „2 days“, „next Wednesday“, „1 January 2017“. Alternativně můžete použít „indefinite“ (na dobu neurčitou) nebo „infinite“ (navždy). Pro informaci, jak zablokovat rozsah adres, se podívejte na [[meta:Range blocks]]. Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
 'ipaddress'			  => 'IP adresa',
 'ipadressorusername' => 'IP adresa nebo uživatelské jméno',		#TODO: remove
-'ipaddressorusername' => 'IP adresa nebo uživatelské jméno',
+#'ipaddressorusername' => 'IP adresa nebo uživatelské jméno',
 'ipbexpiry'             => 'Vyprší',
 'ipbreason'             => 'Důvod',
 'ipbsubmit'             => 'Zablokovat',
 'badipaddress'  => 'Neplatná IP adresa',
-'noblockreason' => 'Nutno uvést důvod zablokování.',
 'blockipsuccesssub' => 'Zablokování uspělo',
 'blockipsuccesstext' => 'Uživatel „$1“ je zablokován. <br />Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]], [[Project:Kniha zablokování]] zaznamenává všechny podobné úkony.',
 'unblockip'             => 'Odblokovat IP adresu',
@@ -1231,18 +1143,6 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 <br />Nezapomeňte ji po opravách odemknout.',
 'unlockdbsuccesstext' => 'Databáze {{grammar:2sg|{{SITENAME}}}} je odemčena.',
 
-# SQL query
-#
-'asksql'                => 'SQL dotaz',
-'asksqltext'    => 'Pomocí tohoto formuláře lze provést přímý dotaz do databáze.
-Pro řetězcové literály použijte apostrofy (\'takto\').
-Tato funkce může výrazně zatěžovat server, proto ji používejte s rozvahou.',
-'sqlislogged'   => 'Uvědomte si prosím, že všechny dotazy se zaznamenávají.',
-'sqlquery'              => 'Zadejte dotaz',
-'querybtn'              => 'Provést',
-'selectonly'    => 'Povoleny jsou dotazy pouze pro čtení.',
-'querysuccessful' => 'Dotaz úspěšně proveden.',
-
 # Make sysop
 'makesysoptitle'        => 'Učinit uživatele správcem',
 'makesysoptext'         => 'Tento formulář je používán byrokraty pro změnu obyčejného uživatele na správce. Vepište jméno uživatele do políčka a stiskněte tlačítko.',
@@ -1283,7 +1183,6 @@ Tato funkce může výrazně zatěžovat server, proto ji používejte s rozvaho
 'val_validation_of' => 'Hodnocení stránky „$1“',
 'val_revision_of' => 'Verze $1',
 'val_revision_changes_ok' => 'Vaše hodnocení bylo uloženo!',
-'val_rev_stats_link' => 'Statistiky hodnocení pro „$1“ vizte <a href="$2">zde</a>.',
 'val_revision_stats_link' => '(<a href="$1">podrobnosti</a>)',
 'val_iamsure' => 'Jste si opravdu jisti?',
 'val_clear_old' => 'Smazat moje starší hodnocení',
@@ -1345,7 +1244,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movereason'	=> 'Důvod',
 'revertmove'	=> 'vrátit',
 'delete_and_move' => 'Smazat a přesunout',
-'delete_and_move_text'	=> 
+'delete_and_move_text'	=>
 '==Je potřeba smazání==
 
 Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolnění místa pro přesun?',
@@ -1411,13 +1310,13 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Attribution
 
-'anonymous' => "Anonymní uživatel(é) $wgSitename",
-'siteuser' => "Uživatel $wgSitename $1",
+'anonymous' => "Anonymní uživatel(é) {{SITENAME}}",
+'siteuser' => "Uživatel {{SITENAME}} $1",
 'lastmodifiedby' => 'Tuto stránku naposledy měnil $2 v $1.',
 'and' => 'a',
 'othercontribs' => 'Založeno na textu od uživatele $1.',
 'others' => 'další',
-'siteusers' => "Uživatel(é) $wgSitename $1",
+'siteusers' => "Uživatel(é) {{SITENAME}} $1",
 'creditspage' => 'Zásluhy za stránku',
 'nocredits' => 'K této stránce neexistuje informace o zásluhách.',
 
@@ -1538,7 +1437,6 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'tog-enotifminoredits' 			=> 'Poslat e-mail i pro menší editace (které jinak nezpůsobují odeslání e-mailu)',
 'tog-enotifrevealaddr' 			=> 'Prozradit mou e-mailovou adresu v upozorňujících e-mailech (při mých změnách to umožňuje sledujícím uživatelům rychle mi odpovědět)',
 'tog-shownumberswatching' 		=> 'Zobrazovat počet sledujících uživatelů (v posledních změnách, sledovaných stránkách a patičkách stránek',
-'tog-showupdated'				=> 'Zobrazit značku úprav',
 'tog-externaleditor'			=> 'Implicitně používat externí editor',
 'tog-externaldiff'				=> 'Implicitně používat externí porovnávací program',
 
@@ -1712,9 +1610,6 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'exif-planarconfiguration-1' => 'chunky',
 'exif-planarconfiguration-2' => 'planar',
 
-'exif-resolutionunit-2' => 'palce',
-'exif-resolutionunit-3' => 'centimetry',
-
 'exif-colorspace-1' => 'sRGB',
 'exif-colorspace-ffff.h' => 'FFFF.H',
 
@@ -1884,104 +1779,75 @@ kódu vyprší $4.',
 
 class LanguageCs extends LanguageUtf8 {
 
-        function getBookstoreList () {
-                global $wgBookstoreListCs ;
-                return $wgBookstoreListCs ;
-        }
+	function getBookstoreList () {
+		global $wgBookstoreListCs ;
+		return $wgBookstoreListCs ;
+	}
 
-        function getNamespaces() {
-                global $wgNamespaceNamesCs;
-                return $wgNamespaceNamesCs;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesCs;
+		return $wgNamespaceNamesCs;
+	}
 
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesCs;
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesCs;
 
-                foreach ( $wgNamespaceNamesCs as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
+		foreach ( $wgNamespaceNamesCs as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsCs;
-                return $wgQuickbarSettingsCs;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsCs;
+		return $wgQuickbarSettingsCs;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesCs;
-                return $wgSkinNamesCs;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesCs;
+		return $wgSkinNamesCs;
+	}
 
-/*
-        function &getMagicWords()
-        {
-            global $wgMagicWordsCs;
-            return $wgMagicWordsCs;
-        }
-*/
+	# Datové a časové funkce možno upřesnit podle jazyka
+	# TODO: Umožnit nastavování formátu data a času.
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-        # Datové a časové funkce možno upřesnit podle jazyka
-        # TODO: Umožnit nastavování formátu data a času.
-        function date( $ts, $adj = false )
-        {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
+		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
+		  ' ' .
+		  substr( $ts, 0, 4 );
+		return $d;
+	}
 
-                $d = (0 + substr( $ts, 6, 2 )) . '. ' .
-                $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-                  ' ' . 
-                  substr( $ts, 0, 4 );
-                return $d;
-        }
+	function getMessage( $key ) {
+		global $wgAllMessagesCs;
+		if(array_key_exists($key, $wgAllMessagesCs))
+			return $wgAllMessagesCs[$key];
+		else
+			return parent::getMessage($key);
+	}
 
-        function getValidSpecialPages()
-        {
-                global $wgValidSpecialPagesCs;
-                return $wgValidSpecialPagesCs;
-        }
+	function getAllMessages() {
+		global $wgAllMessagesCs;
+		return $wgAllMessagesCs;
+	}
 
-        function getSysopSpecialPages()
-        {
-                global $wgSysopSpecialPagesCs;
-                return $wgSysopSpecialPagesCs;
-        }
+	function checkTitleEncoding( $s ) {
+		global $wgInputEncoding;
 
-        function getDeveloperSpecialPages()
-        {
-                global $wgDeveloperSpecialPagesCs;
-                return $wgDeveloperSpecialPagesCs;
-        }
+		# Check for non-UTF-8 URLs; assume they are WinLatin2
+		$ishigh = preg_match( '/[\x80-\xff]/', $s);
+		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
 
-        function getMessage( $key )
-        {
-                global $wgAllMessagesCs;
-                if(array_key_exists($key, $wgAllMessagesCs))
-                        return $wgAllMessagesCs[$key];
-                else
-                        return parent::getMessage($key);
-        }
+		if( $ishigh and !$isutf ) {
+			return iconv( 'cp1250', 'utf-8', $s );
+	}
 
-        function getAllMessages()
-        {
-                global $wgAllMessagesCs;
-                return $wgAllMessagesCs;
-        }
+		return $s;
+	}
 
-        function checkTitleEncoding( $s ) {
-                global $wgInputEncoding;
-
-                # Check for non-UTF-8 URLs; assume they are WinLatin2
-                $ishigh = preg_match( '/[\x80-\xff]/', $s);
-                $isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
-
-                if( $ishigh and !$isutf ) {
-                        return iconv( 'cp1250', 'utf-8', $s );
-				}
-
-                return $s;
-        }
-	
 	var $digitTransTable = array(
 			',' => "\xc2\xa0", // @bug 2749
 			'.' => ','
@@ -1991,8 +1857,8 @@ class LanguageCs extends LanguageUtf8 {
 		return strtr($number, $this->digitTransTable);
 	}
 
-        # Grammatical transformations, needed for inflected languages
-        # Invoked by putting {{grammar:case|word}} in a message
+		# Grammatical transformations, needed for inflected languages
+		# Invoked by putting {{grammar:case|word}} in a message
 		function convertGrammar( $word, $case ) {
 			# allowed values for $case:
 			#	1sg, 2sg, ..., 7sg -- nominative, genitive, ... (in singular)

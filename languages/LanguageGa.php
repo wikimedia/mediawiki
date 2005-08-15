@@ -34,8 +34,8 @@ DISCUSSION!
 	NS_USER_TALK        => 'Plé_úsáideora',
 	NS_PROJECT          => 'Vicipéid',
 	NS_PROJECT_TALK     => 'Plé_Vicipéide', # NOTE TO DEVELOPERS: A different genitive spelling is needed for
-	                            # each Wiki name, as can be seen. So the $wgMetaNamespace tag has not been used
-	                            # here for the moment in some cases, and in other places with a FIXME flag.
+	                                        # each Wiki name, as can be seen. So the $wgMetaNamespace tag has not been used
+	                                        # here for the moment in some cases, and in other places with a FIXME flag.
 	NS_IMAGE            => 'Íomhá',
 	NS_IMAGE_TALK       => 'Plé_í­omhá',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -44,12 +44,12 @@ DISCUSSION!
 	NS_TEMPLATE_TALK    => 'Plé_múnla',
 	NS_HELP             => 'Cabhair',
 	NS_HELP_TALK        => 'Plé_cabhrach',
-	NS_CATEGORY	    => 'Rang',
+	NS_CATEGORY         => 'Rang',
 	NS_CATEGORY_TALK    => 'Plé_ranga'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsGa = array(
-    "Faic", "Greamaithe ar chlé", "Greamaithe ar an taobh deas", "Ag faoileáil ar chlé"
+	"Faic", "Greamaithe ar chlé", "Greamaithe ar an taobh deas", "Ag faoileáil ar chlé"
 );
 
 /* private */ $wgSkinNamesGa = array(
@@ -61,8 +61,8 @@ DISCUSSION!
 	'davinci' => "DaVinci",
 	'mono' => "Aondath",
 	'monobook' => "ÚrLeabhar",
- "myskin" => "Sean-nós Nua"
-);
+	'myskin' => "Sean-nós Nua"
+) + $wgSkinNamesEn;
 
 
 /* private */ $wgDateFormatsGa = array(
@@ -73,90 +73,34 @@ DISCUSSION!
 
 /* private */ $wgMagicWordsGa = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect", "#athsheoladh"              ),
-    MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
-    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
-    MAG_START                => array( 0,    "__START__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH", "MÍREATHA"           ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "AINMMHÍREATHA"       ),
-    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "LÁREATHA"             ),
-    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "AINMLAEREATHA"         ),
-    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "BLIAINREATHA"            ),
-    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMREATHA"            ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "MÉIDAILT"       ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ), #FIXME - what is this?
-    MAG_SUBST                => array( 1,    "SUBST:"                 ),
-    MAG_MSGNW                => array( 1,    "MSGNW:"                 ),
+	MAG_REDIRECT             => array( 0,    "#redirect", "#athsheoladh"              ),
+	MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
+	MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
+	MAG_START                => array( 0,    "__START__"              ),
+	MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH", "MÍREATHA"           ),
+	MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "AINMMHÍREATHA"       ),
+	MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "LÁREATHA"             ),
+	MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "AINMLAEREATHA"         ),
+	MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "BLIAINREATHA"            ),
+	MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMREATHA"            ),
+	MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "MÉIDAILT"       ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ), #FIXME - what is this?
+	MAG_SUBST                => array( 1,    "SUBST:"                 ),
+	MAG_MSGNW                => array( 1,    "MSGNW:"                 ),
 	MAG_END                  => array( 0,    "__END__", "__DEIREADH__"             ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb", "reamhspléach", "beag"     ),
-    MAG_IMG_RIGHT            => array( 1,    "right", "taobhdeas"                  ),
-    MAG_IMG_LEFT             => array( 1,    "left", "clé"                   ),
-    MAG_IMG_NONE             => array( 1,    "none", "faic"                   ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
-    MAG_IMG_CENTER           => array( 1,    "center", "centre", "lár"       ),
-    MAG_INT                  => array( 0,    "INT:"                   ) #FIXME - what is this?
+	MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb", "reamhspléach", "beag"     ),
+	MAG_IMG_RIGHT            => array( 1,    "right", "taobhdeas"                  ),
+	MAG_IMG_LEFT             => array( 1,    "left", "clé"                   ),
+	MAG_IMG_NONE             => array( 1,    "none", "faic"                   ),
+	MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
+	MAG_IMG_CENTER           => array( 1,    "center", "centre", "lár"       ),
+	MAG_INT                  => array( 0,    "INT:"                   ) #FIXME - what is this?
 
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesGa = array(
-    "Userlogin"     => "",
-    "Userlogout"    => "",
-    "Preferences"   => "Athraigh mo socruithe",
-    "Watchlist"     => "Mo fairechlár", # List of pages, which the user has chosen to watch
-    "Recentchanges" => "Leathanaigh leasaithe le déanaí­",
-    "Upload"        => "Suaslódáil comhaid agus í­omhánna",
-    "Imagelist"     => "Liosta í­omhánna",
-    "Listusers"     => "Úsáideoirí­ cláraithe",
-    "Statistics"    => "Staitistic an shuí­omh",
-    "Randompage"    => "Leathanach fánach",
-
-    "Lonelypages"   => "Leathanaigh dí­lleachtaí­",
-    "Unusedimages"  => "Íomhánna dí­lleachtaí­",
-    "Popularpages"  => "Ailt coitianta",
-    "Wantedpages"   => "Ailt santaithe",
-    "Shortpages"    => "Ailt gairide",
-    "Longpages"     => "Ailt fada",
-    "Newpages"      => "Ailt nua",
-    "Ancientpages"  => "Ailt ársa",
-#   "Intl"      => "Lúibí­ní­ idirtheangacha",
-    "Allpages"      => "Gach leathanach de réir ainm",
-
-    "Ipblocklist"   => "Úsáideoirí­/IP-sheolaidh coisctha",
-    "Maintenance"   => "Leathanach coiméadta",
-    "Specialpages"  => "",
-    "Contributions" => "",
-    "Emailuser"     => "",
-    "Whatlinkshere" => "",
-    "Recentchangeslinked" => "",
-    "Movepage"      => "",
-    "Booksources"   => "Leabharfhoinsí­ seachtraí­",
-#   "Categories"    => "Ranganna leathanaigh",
-    "Export"        => "Onnmhairigh XML",
-    "Version"		=> "Leagan",
-);
-
-/* private */ $wgSysopSpecialPagesGa = array(
-    "Blockip"       => "Cuir cosc ar úsáideoir/IP-sheoladh",
-    "Asksql"        => "Cuir ceist ar an bhunachar sonraí­",
-    "Undelete"      => "Cuir leathanaigh scriosaithe ar ais"
-);
-
-/* private */ $wgDeveloperSpecialPagesGa = array(
-    "Lockdb"        => "Cuir glas ar an mbunachar sonraí­",
-    "Unlockdb"      => "Bain an glas den bunachar sonraí­",
-    "Debug"     => "Eolas chun fadhtanna a réitigh"
 );
 
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesGa = array(
 # User Toggles
@@ -306,7 +250,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "viewcount"     => "Rochtainí­odh an leathanach seo $1 uair.",
 'copyright'	=> "Tá an t-ábhar le fáil faoin $1.",
 'poweredby'	=> "Cumhachtaítear an Vicipéid le [http://www.mediawiki.org/ MediaWiki], inneall mearshuímh shaor-fhoinse.",
-"gnunote"       => "Tá an téacs ar fad le fáil faoi na téarmaí­ an <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(Ó {{SERVER}})",
 "protectedpage" => "Lch faoi ghlas",
 "administrators"    => "Vicipéid:Riarthóirí­",
@@ -318,9 +261,6 @@ Féach ar $1.",
 "developertext" => "Ní mór duit bheith i do \"cumadóir\"
 chun an gní­omh seo a dhéanamh.
 Féach ar $1.",
-'bureaucrattitle'	=> 'Tá cuntas maorlathaigh riachtanach',
-"bureaucrattext"	=> "Ní mór duit bheith i do \"maorlathach\"
-chun an gníomh seo a dhéanamh.",
 "nbytes"        => "$1 ochtáin",
 "go"            => "Dul",
 "ok"            => "Déan",
@@ -411,10 +351,10 @@ Feidhm: $1<br />
 "viewsource" => "Féach ar fhoinse",
 "protectedtext" => "Chuirtear ghlas ar an leathanach seo chun é a chosaint in aghaidh athruithe. Tá go leor
 cúiseanna féideartha don scéal seo. Féach ar
-[[$wgMetaNamespace:Leathanach faoi ghlas]] más é do thoil é.
+[[{{ns:project}}:Leathanach faoi ghlas]] más é do thoil é.
 
 Is féidir leat foinse an leathanaigh seo a féachaint agus a chóipeáil:",
-'seriousxhtmlerrors' => 'Chonacthas earráidí tábhachtacha xhtml i rith an glanadh.',
+
 
 # Login and logout pages
 #
@@ -435,11 +375,6 @@ Ná déan dearmad do sainroghanna phearsanta a athrú.",
 "remembermypassword" => "Cuimhnigh m'fhocal faire.",
 "loginproblem"  => "<b>Bhí­ fadhb leis an logáil isteach.</b><br />Déan iarracht eile!",
 "alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br />\n",
-
-"areyounew"     => "Má tá tú i do núí­osach chuig an Vicipéid agus tá cuntas úsáideora ag teastáil uait,
-iontráil ainm úsáideora, agus ansin iontráil agus athiontráil focal faire.
-Níl an seoladh rí­omhphoist ach rud roghnach; dá scríobhfá d'fhocal faire, is feidir leat a iarradh
-go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br />\n",
 
 "login"     => "Log ann",
 'loginprompt'   => "Tá chomhaid aithintáin (<i>cookies</i>) riachtanach chun logáil isteach san {{SITENAME}} a dhéanamh.",
@@ -518,7 +453,7 @@ Agus atá sé agat, logáil isteach arí­s leis le do thoil.",
 "blockedtitle"  => "Tá an úsáideoir seo faoi chosc",
 "blockedtext"   => "Chuir $1 cosc ar d'ainm úsáideora nó do seoladh IP.
 Seo é an cúis a thugadh:<br />''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
-[[$wgMetaNamespace:Riarthóirí­|riarthóirí­]] chun an cosc a phléigh.
+[[{{ns:project}}:Riarthóirí­|riarthóirí­]] chun an cosc a phléigh.
 
 Tabhair faoi deara nach bhfuil cead agat an gné \"cuir rí­omhphost chuig an úsáideoir seo\" a úsáid
 mura bhfuil seoladh rí­omhphoist bailí­ cláraithe i do [[Speisialta:Preferences|shainroghanna úsáideora]].
@@ -532,7 +467,6 @@ Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le g
 "whitelistacctitle" => "Ní­l cead agat cuntas a chruthaigh",
 "whitelistacctext" => "Chun cuntais nua a chruthaigh san Wiki seo caithfidh tú [[Speisialta:Userlogin|logáil isteach]] agus caithfidh bheith an cead riachtanach agat.",
 'loginreqtitle'	=> 'Tá logáil isteach riachtanach',
-'loginreqtext'	=> 'Ní mór duit logáil isteach chun leathanaigh eila a fhéiceáil.',
 "accmailtitle" => "Seoladh an focal faire.",
 "accmailtext" => "Seoladh an focal faire don úsáideoir '$1' chuig $2.",
 "newarticle"    => "(Nua)",
@@ -665,7 +599,6 @@ Is é $2 d'uimhir aitheantais inmhéanach.
 Féach ar [[{{ns:4}}:Cabhair do sainroghanna úsáideora]] chun cabhair a fháil mar gheall ar na roghanna.",
  "prefsreset"    => "D'athraí­odh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
 "qbsettings"    => "Sainroghanna an bosca uirlisí­",
-'qbsettingsnote'	=> 'Ní oibríonn an sainrogha seo ach sna cumaí \'Gnáth\' agus \'Gorm Colóin\'.',
 "changepassword" => "Athraigh d'fhocal faire",
 "skin"          => "Cuma",
 "math"          => "Ag aistriú an matamaitic",
@@ -787,13 +720,9 @@ Is am an friothálaí­ (UTC) iad na hamanna atá anseo thí­os.
 "filedesc"      => "Achoimriú",
 "filestatus" => "Stádas cóipchirt",
 "filesource" => "Foinse",
-"affirmation"   => "Dearbhaí­m go aontaí­onn coimeádaí­ cóipchirt an comhaid seo
-é a ceadúnaigh de réir na téarmaí­ an $1.",
 "copyrightpage" => "Vicipéid:Cóipchearta",
 "copyrightpagename" => "Cóipcheart Vicipéide",
 "uploadedfiles" => "Comhaid suaslódálaithe",
-"noaffirmation" => "Ní mór duit a dearbhaigh nach sáraí­onn do suaslódáil
-aon cóipchearta.",
 "ignorewarning" => "Scaoil tharat an rabhadh agus sábháil an comhad ar aon chaoi.",
 "minlength"     => "Caithfidh trí­ litreacha ar a laghad bheith ann sa ainm í­omhá.",
 'illegalfilename'	=> 'Tá litreacha san comhadainm  "$1" a nach ceadaítear in ainm leathanaigh. Athainmnigh an comhad agus déan athiarracht, más é do thoil é.',
@@ -1034,7 +963,7 @@ Ba é [[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an ath
 "revertpage"    => "D'athúsáideadh an athrú seo caite le $1",
 "protectlogpage" => "Cuntas_cosanta",
 "protectlogtext" => "Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
-Féach ar [[$wgMetaNamespace:Leathanach faoi ghlas]] chun a thuilleadh eolais a fháil.",
+Féach ar [[{{ns:project}}:Leathanach faoi ghlas]] chun a thuilleadh eolais a fháil.",
 "protectedarticle" => "faoi ghlas [[$1]]",
 "unprotectedarticle" => "gan ghlas [[$1]]",
 'protectsub' =>"(Ag curadh \"$1\" faoi ghlas)",
@@ -1099,7 +1028,6 @@ leathanaigh áirithe a rinne an duine damáiste ar).",
 "ipbreason"     => "Cúis",
 "ipbsubmit"     => "Coisc an úsáideoir seo",
 "badipaddress"  => "Ní­l aon úsáideoir ann leis an ainm seo.",
-"noblockreason" => "Ní mór duit cúis a thabhairt don cosc.",
 "blockipsuccesssub" => "D'éirigh leis an cosc",
 "blockipsuccesstext" => "Choisceadh \"$1\".
 <br />Féach ar [[Speisialta:Ipblocklist|Liosta coisc IP]] chun coisc a athbhreithnigh.",
@@ -1152,18 +1080,6 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 "lockdbsuccesstext" => "Cuireadh glas ar an mbunachar sonraí­ Vicipéide.
 <br />Cuimhnigh nach mór duit an glas a bhaint tar éis do chuid coinneála.",
 "unlockdbsuccesstext" => "Baineadh an glas den bunachar sonraí­ Vicipéide.",
-
-# SQL query
-#
-"asksql"        => "Órdú SQL",
-"asksqltext"    => "Úsáid an foirm anseo thí­os chun órdú dí­reach a chur chuig an bunachar sonraí­ Vicipéide.
-Úsáid comharthaí­ athfhriotail singile ('mar sin') chun teorainn a chur le litriúla sraithe. Úsáid an gné seo go coigilteach.",
-"sqlislogged"   => "Tabhair faoi deara go cuirtear gach órdú i gcuntas.",
-"sqlquery"      => "Iontráil órdú",
-"querybtn"      => "Cuir órdú",
-"selectonly"    => "Ní­l na ceisteanna ina theannta \"SELECT\" ann ach amháin do
-cumadóirí­ Vicipéide.",
-"querysuccessful" => "D'éirigh leis an t-órdú",
 
 # Make sysop
 'makesysoptitle'	=> 'Déan ceannasaí de úsáideoir',
@@ -1308,7 +1224,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.",
 
 # Attribution
 
-'anonymous' => "Úsáideoir(í) gan ainm ar $wgSitename",
+'anonymous' => "Úsáideoir(í) gan ainm ar {{SITENAME}}",
 'siteuser' => "Úsáideoir Vicipéide $1", #FIXME - genitive needed here
 'lastmodifiedby' => "Athraíodh an leathanach seo go deireanach ag $1 le $2.",
 'and' => 'agus',
@@ -1338,12 +1254,12 @@ Is dócha gur mhaith leat an gnáth-leagan seo a seiceáil chun patrúin a fheic
 
 # Math options
 
-    'mw_math_png' => "Déan PNG-í­omhá gach uair",
-    'mw_math_simple' => "Déan HTML má tá sin an-easca, nó PNG ar mhodh eile",
-    'mw_math_html' => "Déan HTML más féidir, nó PNG ar mhodh eile",
-    'mw_math_source' => "Fág mar cló TeX (do teacsleitheoirí­)",
-    'mw_math_modern' => "Inmholta do lí­onleitheoirí­ nua",
-    'mw_math_mathml' => 'MathML más féidir (turgnamhach)',
+'mw_math_png' => "Déan PNG-í­omhá gach uair",
+'mw_math_simple' => "Déan HTML má tá sin an-easca, nó PNG ar mhodh eile",
+'mw_math_html' => "Déan HTML más féidir, nó PNG ar mhodh eile",
+'mw_math_source' => "Fág mar cló TeX (do teacsleitheoirí­)",
+'mw_math_modern' => "Inmholta do lí­onleitheoirí­ nua",
+'mw_math_mathml' => 'MathML más féidir (turgnamhach)',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* leideanna uirlisí agus cnaipí rochtana */
@@ -1421,21 +1337,6 @@ class LanguageGa extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsGa;
 		return $wgDateFormatsGa;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesGa;
-		return $wgValidSpecialPagesGa;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesGa;
-		return $wgSysopSpecialPagesGa;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesGa;
-		return $wgDeveloperSpecialPagesGa;
 	}
 
 	function getMessage( $key ) {

@@ -37,68 +37,7 @@ $wgNamespaceNamesLi = array(
 	'standard' => "Standaard",
 	'nostalgia' => "Nostalgie",
 	'cologneblue' => "Keuls blauw",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
-
-/* private */ $wgUserTogglesLi = array(
- "highlightbroken" => "Links noa lege pagina's loate oplichte",
- "justify" => "Paragrafen oetvullen",
- "hideminor" => "Kleine wiezigingen verbergen in recente wijzigingen",
- "numberheadings" => "Koppen automatisch nummeren",
- "rememberpassword" => "Wachtwoord onthouwe",
- "editwidth" => "Bewirkingsveld euver ganse breidte",
- "editondblclick" => "Dubbelklikke levert bewerkingspagina (vereist JavaScript)",
- "watchdefault" => "Artikelen die u wijzigt automatisch volgen",
- "minordefault" => "Maak 'kleine' veranderingen mien standaard"
-);
-
-/* private */ $wgValidSpecialPagesLi = array(
- "Userlogin"  => "Aanmelden",
- "Userlogout" => "Afmelden",
- "Preferences" => "Mien gebroekersvoorkeuren einsjtille",
- "Watchlist"  => "Mien volgliest loate zeen",
- "Recentchanges" => "Recent biegewirkte pagina's loate zeen",
- "Upload"  => "Afbeeldingen uploade",
- "Imagelist"  => "Liest ge-uploade plètjes loate zeen",
- "Listusers"  => "Geregistreerde gebroekers loate zeen",
- "Statistics" => "Statistieken tonen",
- "Randompage" => "Ga naar een willekeurig artikel",
-
- "Lonelypages" => "Neet-gelinkte artikels tonen",
- "Unusedimages" => "Neet-gelinkte afbeeldingen tonen",
- "Popularpages" => "Populaire artikels tonen",
- "Wantedpages" => "Meist gewunsjte artikels tonen",
- "Shortpages" => "Korte artikels tonen",
- "Longpages"  => "Lange artikels tonen",
- "Newpages"  => "Nieuwe artikels tonen",
- "Allpages"  => "Alle paginatitels tonen",
-
- "Ipblocklist" => "Geblokkierde IP-adressen tonen",
- "Maintenance" => "Ongerhoudspagina",
- "Specialpages"  => "Speciale pagina's",
- "Contributions" => "Bijdragen per gebroeker",
- "Emailuser"  => "E-mail gebroeker",
- "Whatlinkshere" => "Verwijzende pagina's",
- "Recentchangeslinked" => "verwante verangeringen",
- "Movepage"  => "Pagina verplaatsen",
- "Booksources" => "Bookwinkels"
-);
-
-/* private */ $wgSysopSpecialPagesLi = array(
- "Blockip"  => "Blokkier un IP-adres",
- "Asksql"  => "Raadpleeg de database",
- "Undelete" => "Verwiederde pagina's truukzitten"
-);
-
-/* private */ $wgDeveloperSpecialPagesLi = array(
- "Lockdb"  => "Maak de database alleen-lèze",
- "Unlockdb"  => "Maak de database euversjriefbaar",
-);
+) + $wgSkinNamesEn;
 
 /* private */ $wgAllMessagesLi = array(
 
@@ -139,7 +78,6 @@ $wgNamespaceNamesLi = array(
 "linktrail" => "/^([àáèéìíòóùúâêîôûäöüïëça-z]+)(.*)$/sDu",
 "mainpage"  => "Hoofdpagina",
 "about"   => "Info",
-"aboutwikipedia" => "Euver Wikipedia",
 'aboutsite' => 'Euver {{SITENAME}}',
 "aboutpage"  => "Wikipedia:info",
 "help"   => "Help",
@@ -163,7 +101,6 @@ $wgNamespaceNamesLi = array(
 "currentevents" => "In het nuuis",
 "errorpagetitle" => "Fout",
 "returnto"  => "Truuk noa $1.",
-"fromwikipedia" => " ",
 "whatlinkshere" => "Pagina's die hierheen verwijzen",
 "help"   => "Hulp",
 "search"  => "Zeuke",
@@ -183,7 +120,6 @@ $wgNamespaceNamesLi = array(
 "redirectedfrom" => "(Doorverwezen vanaf $1)",
 "lastmodified" => "Deze pagina werd het laatst gewijzigd op $1.",
 "viewcount"  => "Deze pagina werd $1 maal bekeken.",
-"gnunote" => "Deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
 "printsubtitle" => "(Uit {{SERVER}})",
 "protectedpage" => "Beveiligde pagina",
 "administrators" => "Wikipedia:Systeembeheerders",
@@ -211,7 +147,7 @@ $wgNamespaceNamesLi = array(
 "databaseerror" => "Database fout",
 "dberrortext" => "Bie ut zeuke is un syntaxfout in de database opgetreden.
 Dit kan zijn veroorzaakt door een illegale zoekactie (zie $5),
- of het duidt op een fout in de software. 
+ of het duidt op een fout in de software.
 De laatste zoekpoging in de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit de functie \"<tt>$2</tt>\".
@@ -230,10 +166,10 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 "filedeleteerror" => "Kos bestjand \"$1\" neet weghoale.",
 "filenotfound" => "Kos bestjand \"$1\" neet vinge.",
 "unexpected" => "Onverwachte waarde: \"$1\"=\"$2\".",
-"formerror"  => "Fout: kos formulier neet verzenden", 
+"formerror"  => "Fout: kos formulier neet verzenden",
 "badarticleerror" => "Deze handeling kan op deze pagina neet worden uitgevoerd.",
 "cannotdelete" => "Kos de pagina of afbeelding neet verwijderen.",
-"badtitle"              => "Ongeldige paginatitel", 
+"badtitle"              => "Ongeldige paginatitel",
 "badtitletext"  => "De opgevraagde pagina is neet beschikbaar of leeg.",
 "perfdisabled" => "Om te veurkomme dat de database weurt euverbelast is deze pagina allein tusje 03:00 en 15:00 (West-Europese zomertied) beschikbaar.",
 
@@ -253,9 +189,6 @@ U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde
 "remembermypassword" => "mien wachtwoord onthouden voor latere sessies.",
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
 "alreadyloggedin" => "<font color=red><b>gebroeker $1, u bent al aangemeld.</b></font><br />\n",
-
-"areyounew"  => "Bent u nieuw op Wikipedia en wilt u een gebroekersprofiel aanmaken, voer dan een gebroekersnaam in en voer tweemaal hetzelfde wachtwoord in.
-Invoeren van uw e-mailadres is neet verplicht; het is handig als u uw wachtwoord bent vergeten; dat kan dan per e-mail worden opgestuurd.<br />\n",
 
 "login"   => "Aanmelden",
 "userlogin"  => "Aanmelden",
@@ -332,8 +265,6 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Search results
 # Zoek resultaten
 "searchresults" => "Zoekresultaten",
-"searchhelppage" => "Wikipedia:Zoeken",
-"searchingwikipedia" => "Zoeken op Wikipedia",
 "searchresulttext" => "Voor meer informatie over zoeken op Wikipedia: zie $1.",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
@@ -349,10 +280,10 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "showingresults" => "Hieronder de resultaten <b>$1</b> beginnend met #<b>$2</b>.",
 "nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van (in het Engels) veel voorkomende woorden zoals \"of\" en \"be\", die neet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).",
 "powersearch" => "Zoeken",
-"powersearchtext" => "   
+"powersearchtext" => "
  Zoek in naamruimten :<br />
 $1<br />
-$2 Toon redirects   Zoek: $3 $9",   
+$2 Toon redirects   Zoek: $3 $9",
 
 # Preferences page
 # Voorkeuren
@@ -361,7 +292,7 @@ $2 Toon redirects   Zoek: $3 $9",
 "prefsnologintext" => "U dient [[Special:Userlogin|aangemeld]] te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
-"qbsettings" => "Menubalkinstellingen", 
+"qbsettings" => "Menubalkinstellingen",
 "changepassword" => "Wachtwoord wijzigen",
 "skin"   => "Wikipedia-Uiterlijk",
 "saveprefs"  => "Voorkeuren opslaan",
@@ -429,7 +360,7 @@ Uploads en verwijderingen worden bijgehouden in het
 
 Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
 
-Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
+Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid.
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b><nowiki>[[afbeelding:uw_foto.jpg]]</nowiki></b> of <b><nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki></b> of <b><nowiki>[[media:uw_geluid.ogg]]</nowiki></b> voor audio.
 
 Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
@@ -441,11 +372,9 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 ",
 "filename"  => "Bestandsnaam",
 "filedesc"  => "Beschrijving",
-"affirmation" => "Ik verklaar dat de eigenaar van de rechten op dit bestand toestemt om het onder de voorwaarden van $1 te verspreiden.",
 "copyrightpage" => "Wikipedia:Auteursrechten",
 "copyrightpagename" => "Wikipedia auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
-"noaffirmation" => "U dient te bevestigen dat deze handeling geen inbreuk maakt op auteursrechten.",
 "ignorewarning" => "Negeer de waarschuwing en sla het bestand op.",
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
@@ -488,7 +417,7 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
 "userstatstext" => "Er zijn momenteel $1 geregistreerde gebroekers; hiervan zijn er $2 systeembeheerders (zie $3).",
 
-# Maintenance Page   
+# Maintenance Page
 #
 "maintenance"           => "Onderhoudspagina",
 "maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de Wikipedia te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus neet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
@@ -564,7 +493,7 @@ to send e-mail to other users.",
 te zijn.",
 "addedwatch" => "Toegevoegd aan volgliest",
 "addedwatchtext" => "De pagina \"$1\" is aan uw [[Special:Watchlist|volgliest]] toegevoegd.
-Toekomstige wijzigingen aan deze pagina en euverlikpagina zullen hier vermeld worden. 
+Toekomstige wijzigingen aan deze pagina en euverlikpagina zullen hier vermeld worden.
 Ook zullen deze pagina's in het <b>vet</b> verschijnen in de [[Special:Recentchanges|liest van recente wijzigingen]] zodat u ze eenvoudiger kan opmerken.
 
 Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volgliest verwijderen\" in de menubalk.",
@@ -636,7 +565,6 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 "ipbreason"  => "Reden",
 "ipbsubmit"  => "Blokkier dit IP-adres",
 "badipaddress" => "Het IP-adres heeft een ongeldige opmaak.",
-"noblockreason" => "U dient een reden op te geven voor het blokkeren van een IP-adres.",
 "blockipsuccesssub" => "Blokkering gelukt",
 "blockipsuccesstext" => "Het IP-adres \"$1\" is geBlokkierd.<br />
 Zie de [[Special:Ipblocklist|liest van geBlokkierde IP-adressen]].",
@@ -666,15 +594,6 @@ Zie de [[Special:Ipblocklist|liest van geBlokkierde IP-adressen]].",
 "lockdbsuccesstext" => "De database van Wikipedia LI is geblokkierd.
 Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onderhoud.",
 "unlockdbsuccesstext" => "Blokkering van de database van Wikipedia LI is opgeheven.",
-
-# SQL query
-# SQL raadplegen
-"asksql"  => "SQL raadplegen",
-"asksqltext" => "Gebroek het onderstaande formulier om een direct verzoek naar de database van Wikipedia te zenden. Gebroek enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
-"sqlquery"  => "Voer opdracht in",
-"querybtn"  => "Verstuur opdracht",
-"selectonly" => "Opdrachten anders dan \"SELECT\" zijn voorbehouden aan Wikipedia ontwikkelaars.",
-"querysuccessful" => "Opdracht succesvol",
 
 # Move page
 # Verplaats pagina
@@ -798,7 +717,8 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'lastmodifiedby' => "Dees pazjena is 't litst verangert op $1 doer $2.",
 'link_sample' => "Link titel",
 'link_tip' => "Interne link",
-'loginreqtext' => "De mos [[special:Userlogin|inglogge]] om anger pazjenas te bekieke.",
+'loginreqtext' => 'inglogge',
+'loginreqpagetext' => "De mos $1 om anger pazjenas te bekieke.",
 'longpagewarning' => "WAARSJUWING: Dees pazjena is $1 kilobytes lang; 'n aantal browsers kint probleme höbbe mit 't verangere van pazjena's in de buurt van of grotter as 32 kB. Kiek of se sjtukke van de pazjena mesjiens kins verplaatsje nao 'n nuui pazjena.",
 'mailerror' => "Fout bie 't versjture van mail: $1",
 'mainpagetext' => "Wiki software succesvol geïnsjtalleerd.",
@@ -967,30 +887,15 @@ class LanguageLi extends LanguageUtf8 {
 
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
+
 		$d = (0 + substr( $ts, 6, 2 )) . " " .
-		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " . 
+		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
 		substr( $ts, 0, 4 );
 		return $d;
 	}
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesLi;
-		return $wgValidSpecialPagesLi;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesLi;
-		return $wgSysopSpecialPagesLi;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesLi;
-		return $wgDeveloperSpecialPagesLi;
 	}
 
 	function getMessage( $key ) {

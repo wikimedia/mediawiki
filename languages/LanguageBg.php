@@ -91,71 +91,9 @@
 	MAG_SERVER               => array( 0, 'SERVER', 'СЪРВЪР'       )
 );
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesBg = array(
-	'Userlogin'           => 'Влизане',
-	'Userlogout'          => 'Излизане',
-	'Preferences'         => 'Потребителски настройки',
-	'Watchlist'           => 'Наблюдавани страници',
-	'Recentchanges'       => 'Последни промени',
-	'Upload'              => 'Качване на картинки',
-	'Imagelist'           => 'Списък на картинките',
-	'Listusers'           => 'Регистрирани потребители',
-	'Statistics'          => 'Статистика',
-	'Randompage'          => 'Случайна статия',
-
-	'Lonelypages'         => 'Статии сираци',
-	'Unusedimages'        => 'Картинки сираци',
-	'Popularpages'        => 'Известни статии',
-	'Wantedpages'         => 'Желани статии',
-	'Shortpages'          => 'Кратки статии',
-	'Longpages'           => 'Дълги статии',
-	'Newpages'            => 'Нови статии',
-	'Ancientpages'        => 'Стари статии',
-	'Deadendpages'        => 'Задънени статии',
-	# 'Intl'                => 'Междуезикови препратки',
-	'Allpages'            => 'Всички статии по заглавие',
-
-	'Ipblocklist'         => 'Блокирани потребители/IP-адреси',
-	'Maintenance'         => 'Страница за поддръжка',
-	'Specialpages'        => '',
-	'Contributions'       => '',
-	'Emailuser'           => '',
-	'Whatlinkshere'       => '',
-	'Recentchangeslinked' => '',
-	'Movepage'            => '',
-	'Blockme'             => '',
-	'Booksources'         => 'Външни източници на книги',
-	'Categories'          => 'Категории страници',
-	'Export'              => 'Изнасяне като XML',
-	'Version'             => 'Версия на МедияУики',
-	'Allmessages'         => 'Всички системни съобщения',
-	'Search'              => '',
-);
-
-/* private */ $wgSysopSpecialPagesBg = array(
-	'Blockip'    => 'Блокиране на потребител/IP-адрес',
-	'Asksql'     => 'Справка към базата данни',
-	'Undelete'   => 'Възстановяване на изтрити страници',
-	'Makesysop'  => 'Превръщане на потребител в администратор',
-	'Import'     => 'Внасяне на страница с история',
-);
-
-/* private */ $wgDeveloperSpecialPagesBg = array(
-	'Lockdb'    => 'Забрана на достъп за писане към базата данни',
-	'Unlockdb'  => 'Разрешаване на достъп за писане към базата данни',
-);
-
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
-
 # БЕЛЕЖКА: За да изключите "Текущите събития" в страничното меню,
 # въведете 'currentevents' => '-'
 
@@ -240,7 +178,6 @@
 'bugreports'  => 'Съобщения за грешки',
 'bugreportspage' => "{{ns:4}}:Съобщения_за_грешки",
 "sitesupport"   => "Дарения", # Set a URL in $wgSiteSupportPage in LocalSettings.php
-'sitesupportpage' => '', # If not set, won't appear. Can be wiki page or URL
 'faq'      => 'ЧЗВ',
 'faqpage'    => "{{ns:4}}:ЧЗВ",
 'edithelp'    => 'Помощ при редактиране',
@@ -299,8 +236,6 @@
 'redirectedfrom' => "(пренасочване от $1)",
 'lastmodified'  => "Последна промяна на страницата: $1.",
 'viewcount'    => "Страницата е била преглеждана $1 пъти.",
-# obsolete
-'gnunote' => 'Всички текстове са достъпни при условията на [[Лиценз_за_свободна_документация_на_ГНУ|лиценза за свободна документация на ГНУ]].',
 'copyright'     => "Съдържанието е достъпно при условията на $1.",
 'poweredby'     => "{{SITENAME}} се задвижва от [http://www.mediawiki.org/ МедияУики], софтуер за уики с отворен код.",
 'printsubtitle' => '(от {{SERVER}})',
@@ -312,8 +247,6 @@
 'developertitle' => 'Изискват се права на разработчик',
 'developertext'  => "Желаното действие може да се изпълни само от разработчици.
 Вижте $1.",
-'bureaucrattitle' => 'Изискват се права на бюрократ',
-'bureaucrattext'  => 'Желаното действие може да се изпълни само от бюрократи.',
 "nbytes"    => "$1 байта",
 'go'      => 'Отваряне',
 'ok'      => 'Добре',
@@ -407,7 +340,6 @@ MySQL дава грешка \"$3: $4\".\n",
 [[{{ns:4}}:Защитена_страница]].
 
 Може да прегледате и копирате изходния код на страницата:",
-'seriousxhtmlerrors' => 'tidy откри сериозни грешки в кода на XHTML.',
 
 # Login and logout pages
 #
@@ -428,13 +360,6 @@ MySQL дава грешка \"$3: $4\".\n",
 "remembermypassword" => "Запомняне на паролата между сесиите.",
 "loginproblem"  => "<b>Имаше проблем с Вашето влизане.</b><br />Опитайте отново!",
 "alreadyloggedin" => "<font color=\"red\"><b>$1, вече сте влезли в системата!</b></font><br />\n",
-
-"areyounew"    => "Ако посещавате за пръв път {{SITENAME}} и искате да си откриете
-потребителска сметка,
-моля, въведете потребителско име и парола.
-Посочването на електронна поща е незадължително, но се препоръчва:
-ако си забравите паролата, може да поискате тя да Ви бъде изпратена
-на дадения адрес.<br />\n",
 
 'login'      => 'Влизане',
 'loginprompt'  => "Бисквитките трябва да са разрешени, за да може да влезете в {{SITENAME}}.",
@@ -524,7 +449,6 @@ MySQL дава грешка \"$3: $4\".\n",
 'whitelistacctitle' => 'Не ви е позволено да създавате сметка',
 'whitelistacctext' => 'За да Ви бъде позволено създаването на сметки, трябва да [[{{ns:-1}}:Userlogin|влезете]] и да имате подходящото разрешение.',
 'loginreqtitle' => 'Изисква се влизане',
-'loginreqtext'  => 'Необходимо е да [[{{ns:-1}}:Userlogin|влезете]], за да може да разглеждате други страници.',
 'accmailtitle' => 'Паролата бе изпратена.',
 'accmailtext' => "Паролата за '$1' бе изпратена на $2.",
 'newarticle'  => '(нова)',
@@ -540,7 +464,6 @@ MySQL дава грешка \"$3: $4\".\n",
 
 Ако сте анонимен потребител и мислите, че тези неуместни коментари са отправени към Вас, моля [[{{ns:-1}}:Userlogin|регистрирайте се или влезте в системата]], за да избегнете евентуално бъдещо объркване с други анонимни потребители.''",
 'noarticletext' => "(Тази страница все още не съществува. Може да я създадете, като щракнете на '''Редактиране'''.)",
-'usercssjs' => "'''Бележка:''' След съхранението е необходимо да укажете на браузъра да вземе новата версия: '''Mozilla:''' щракнете върху ''презареждане''(или ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
 'usercssjsyoucanpreview' => "<strong>Съвет:</strong> Използвайте бутона 'Предварителен преглед', за да изпробвате новия код на css/js преди съхранението.",
 'usercsspreview' => "'''Не забравяйте, че това е само предварителен преглед на кода на CSS, страницата все още не е съхранена!'''",
 'userjspreview' => "'''Не забравяйте, че това е само изпробване/предварителен преглед на кода на Javascript, страницата все още не е съхранена!'''",
@@ -560,7 +483,6 @@ MySQL дава грешка \"$3: $4\".\n",
 версия на страницата.
 Ако съхраните, всякакви промени, направени след тази версия, ще бъдат изгубени.</strong>",
 "yourdiff"    => "Разлики",
-# REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
 "copyrightwarning" => "<div style=\"border:1px solid #333; padding:0.5em\">
 Моля, обърнете внимание на това, че
 всички приноси към {{SITENAME}} се публикуват при условията на
@@ -650,29 +572,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'searchdisabled' => "<p>Пълнотекстовото търсене бе временно изключено поради
 голямото натоварване на сървъра.
 Междувременно може да търсите чрез Google:</p>",
-'googlesearch' => "
-<!-- претърсване на сайта чрез Google -->
-<form method='GET' action='http://www.google.com/search'>
-<table bgcolor='#FFFFFF'><tr><td>
-<a href='http://www.google.com/'>
-<img src='http://www.google.com/logos/Logo_40wht.gif'
-border='0' alt='Google'/></a>
-</td>
-<td>
-<input type='text' name='q' size='31' maxlength='255' value='$1'/>
-<input type='submit' name='btnG' value='Google Search'/>
-<small>
-<input type='hidden' name='domains' value='{{SERVER}}'/><br />
-<input type='radio' name='sitesearch' value=''/> WWW
-<input type='radio' name='sitesearch' value='{{SERVER}}' checked='checked'/> {{SERVER}} <br />
-<input type='hidden' name='ie' value='$2'/>
-<input type='hidden' name='oe' value='$2'/>
-</small>
-</td></tr></table>
-</form>
-<!-- претърсване на сайта чрез  Google -->
-
-Може да използвате следната препратка, за да създадете или редактирате страницата: <a href='{{localurl:$1|action=edit}}'>$1</a>",
 'blanknamespace' => '(Основно)',
 
 # Preferences page
@@ -731,7 +630,6 @@ border='0' alt='Google'/></a>
 #
 'changes' => 'промени',
 'recentchanges' => 'Последни промени',
-# This is the default text, and can be overriden by editing [[{{SITENAME}}:Recentchanges]]
 'recentchangestext' => "Проследяване на последните промени в {{SITENAME}}.
 
 Легенда: <b>тек</b> = разлика на текущата версия,
@@ -753,7 +651,7 @@ border='0' alt='Google'/></a>
 'tableform'    => 'таблица',
 'listform'    => 'списък',
 'nchanges'    => "$1 промени",
-'minor#editletter' => 'М',
+'minoreditletter' => 'М',
 'newpageletter' => 'Н',
 
 # Upload
@@ -802,13 +700,9 @@ border='0' alt='Google'/></a>
 'filedesc'    => 'Описание',
 'filestatus' => 'Авторско право',
 'filesource' => 'Изходен код',
-'affirmation'  => "Потвърждавам, че притежателят на авторското право за този файл
-разрешава той да се използва според условията на $1.",
 'copyrightpage' => "{{ns:4}}:Авторски права",
 'copyrightpagename' => "авторските права в {{SITENAME}}",
 'uploadedfiles'  => 'Качени файлове',
-'noaffirmation' => 'Потвърдете, че с качването на файла не нарушавате
-авторски права.',
 'ignorewarning'  => 'Съхраняване на файла въпреки предупрежденията.',
 'minlength'    => 'Имената на картинките трябва да съдържат поне три знака.',
 'badfilename'  => "Картинката бе преименувана на \"$1\".",
@@ -1096,7 +990,6 @@ $3...
 'ipbreason'    => 'Причина',
 'ipbsubmit'    => 'Блокиране на потребителя',
 'badipaddress'  => 'Невалиден IP-адрес или грешно име на потребител',
-'noblockreason' => 'Необходимо е да посочите причина за блокирането.',
 'blockipsuccesssub' => 'Блокирането бе успешно',
 'blockipsuccesstext' => "\"$1\" беше блокиран.
 <br />Вижте [[{{ns:-1}}:Ipblocklist|списъка на блокираните IP-адреси]], за да прегледате блокираните.",
@@ -1150,21 +1043,6 @@ $3...
 'lockdbsuccesstext' => "Базата данни на {{SITENAME}} бе заключена.
 <br />Не забравяйте да отключите базата данни, когато привършите с работата по поддръжката.",
 'unlockdbsuccesstext' => "Базата данни на {{SITENAME}} бе отключена.",
-
-# SQL query
-#
-'asksql'    => 'Заявка на SQL',
-'asksqltext'  => "Използвайте долния формуляр, за да отправите пряка заявка
-към базата данни на {{SITENAME}}.
-Използвайте апострофи ('като тези'), за ограничители на низовете.
-
-Честите заявки доста натоварват сървъра, затова, моля,
-използвайте пестеливо тази функция.",
-'sqlislogged'  => 'Моля, обърнете внимание, че всички заявки се записват.',
-'sqlquery'    => 'Заявка',
-'querybtn'    => 'Изпращане на заявка',
-'selectonly'  => 'Позволени са единствено заявки за четене.',
-'querysuccessful' => 'Заявката бе успешна',
 
 # Make sysop
 'makesysoptitle'        => 'Превръщане на потребител в администратор',
@@ -1256,40 +1134,7 @@ $3...
 'importhistoryconflict' => 'Съществува версия от историята, която си противоречи с тази (възможно е страницата да е била вече внесена)',
 
 # Keyboard access keys for power users
-'accesskey-article' => 'a',
-'accesskey-talk' => 't',
-'accesskey-edit' => 'e',
-'accesskey-addsection' => '+',
-'accesskey-viewsource' => 'e',
-'accesskey-history' => 'h',
-'accesskey-protect' => '=',
-'accesskey-delete' => 'd',
-'accesskey-undelete' => 'd',
-'accesskey-move' => 'm',
-'accesskey-watch' => 'w',
-'accesskey-unwatch' => 'w',
-'accesskey-watchlist' => 'l',
-'accesskey-userpage' => '',
-'accesskey-anonuserpage' => '.',
-'accesskey-mytalk' => '',
-'accesskey-anontalk' => 'n',
-'accesskey-preferences' => '',
-'accesskey-mycontris' => '',
-'accesskey-login' => 'o',
-'accesskey-logout' => 'o',
 'accesskey-search' => 's',
-'accesskey-mainpage' => '',
-'accesskey-portal' => '',
-'accesskey-randompage' => 'x',
-'accesskey-currentevents' => '',
-'accesskey-sitesupport' => '',
-'accesskey-help' => '',
-'accesskey-recentchanges' => 'r',
-'accesskey-recentchangeslinked' => 'c',
-'accesskey-whatlinkshere' => 'b',
-'accesskey-specialpages' => '',
-'accesskey-specialpage' => '',
-'accesskey-upload' => 'u',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
@@ -1298,47 +1143,11 @@ $3...
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for the main actions
-'tooltip-atom'  => 'Atom feed за страницата',
-'tooltip-article' => 'Преглед на статията [alt-a]',
-'tooltip-talk' => 'Беседа относно страницата [alt-t]',
-'tooltip-edit' => 'Може да редактирате страницата. Моля, използвайте бутона за предварителен преглед преди да съхраните. [alt-e]',
-'tooltip-addsection' => 'Добавяне на коментар към страницата. [alt-+]',
-'tooltip-viewsource' => 'Страницата е защитена. Може да разгледате изходния код. [alt-e]',
-'tooltip-history' => 'Предишни версии на страницата, [alt-h]',
-'tooltip-protect' => 'Защитаване на страницата, [alt-=]',
-'tooltip-delete' => 'Изтриване на страницата, [alt-d]',
-'tooltip-undelete' => "Възстановяване на $1 изтрити редакции на страницата [alt-d]",
-'tooltip-move' => 'Преместване на страницата, [alt-m]',
 'tooltip-watch' => 'Добавяне на страницата към списъка Ви за наблюдение [alt-w]',
-'tooltip-unwatch' => 'Премахване на страницата от списъка Ви за наблюдение [alt-w]',
-'tooltip-watchlist' => 'Списък на страници, чиито промени сте избрали да наблюдавате. [alt-l]',
-'tooltip-userpage' => 'Моята потребителска страница',
-'tooltip-anonuserpage' => 'Потребителската страница за адреса, от който редактирате [alt-.]',
-'tooltip-mytalk' => 'Моята дискусионна страница',
-'tooltip-anontalk' => 'Дискусия относно редакциите от този адрес [alt-n]',
-'tooltip-preferences' => 'Моите настройки',
-'tooltip-mycontris' => 'Списък на моите приноси',
-'tooltip-login' => 'В момента не сте влезли. Насърчаваме Ви да влезете, въпреки че не е задължително, за да редактирате.',
-'tooltip-logout' => 'Излизане от {{SITENAME}} [alt-o]',
 'tooltip-search' => 'Търсене в Уикито',
-'tooltip-mainpage' => 'Началната страница',
-'tooltip-portal' => 'Информация за проекта',
-'tooltip-randompage' => 'Случайна страница [alt-x]',
-'tooltip-currentevents' => 'Информация за текущите събития по света',
-'tooltip-sitesupport' => 'Подкрепете {{SITENAME}}',
-'tooltip-help' => 'Помощната страница.',
-'tooltip-recentchanges' => 'Това е списък на последните промени в цялото Уики [alt-r]',
-'tooltip-recentchangeslinked' => 'Последните промени на страници, сочещи към тази страница [alt-c]',
-'tooltip-whatlinkshere' => 'Списък на всички страници, сочещи насам [alt-b]',
-'tooltip-specialpages' => 'Списък на всички специални страници',
-'tooltip-upload' => 'Качване на файлове [alt-u]',
-'tooltip-specialpage' => 'Това е специална страница, която не може да се редактира',
 'tooltip-minoredit' => 'Отбелязване на промяната като малка [alt-i]',
 'tooltip-save' => 'Съхраняване на промените [alt-s]',
 'tooltip-preview' => 'Предварителен преглед, моля, използвайте го преди да съхраните! [alt-p]',
-'tooltip-contributions' => 'Показване на приносите на потребителя',
-'tooltip-emailuser' => 'Изпращане на писмо на потребителя',
-'tooltip-rss' => 'RSS feed за страницата',
 'tooltip-compareselectedversions' => 'Показване на разликите между двете избрани версии на страницата [alt-v]',
 
 # Metadata
@@ -1396,24 +1205,6 @@ class LanguageBg extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsBg;
 		return $wgDateFormatsBg;
-	}
-
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesBg;
-		return $wgValidSpecialPagesBg;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesBg;
-		return $wgSysopSpecialPagesBg;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesBg;
-		return $wgDeveloperSpecialPagesBg;
 	}
 
 	function getMessage( $key ) {

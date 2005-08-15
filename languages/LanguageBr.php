@@ -1,12 +1,9 @@
-﻿<?php
+<?php
 /**
   * @package MediaWiki
   * @subpackage Language
   */
 
-// The names of the namespaces can be set here, but the numbers
-// are magical, so don't change or move them!  The Namespace class
-// encapsulates some of the magic-ness.
 require_once( 'LanguageFr.php' );
 
 /* private */ $wgNamespaceNamesBr = array(
@@ -39,71 +36,10 @@ require_once( 'LanguageFr.php' );
 	'nostalgia'		=> 'Melkoni',
 	'cologneblue'	=> 'Glaz Kologn',
 	'smarty'		=> 'Paddington',
-	'montparnasse'	=> 'Montparnasse',
-	'davinci'		=> 'DaVinci',
-	'mono'			=> 'Mono',
-	'monobook'		=> 'MonoBook',
-	'myskin'		=> 'MySkin'
-);
-
-
+	'montparnasse'	=> 'Montparnasse'
+) + $wgSkingNamesFr;
 
 /* private */ $wgBookstoreListBr = $wgBookstoreListFr;
-
-// All special pages have to be listed here: a description of ""
-// will make them not show up on the "Special Pages" page, which
-// is the right thing for some of them (such as the "targeted" ones).
-
-/* private */ $wgValidSpecialPagesBr = array(
-	'Userlogin'     => 'Krouiñ ur gont pe en em lugañ',
-	'Userlogout'    => 'Dilugañ',
-	'Preferences'   => 'Personelaat',
-	'Watchlist'     => 'Roll heuliañ',
-	'Recentchanges' => 'Kemmoù diwezhañ',
-	'Upload'        => 'Eilañ ur restr',
-	'Imagelist'     => 'Roll ar skeudennoù',
-	'Listusers'     => 'Roll an implijerien',
-	'Statistics'    => 'Stadegoù',
-	'Randompage'    => 'Ne vern pe bajenn',
-
-	'Lonelypages'   => 'Pajennoù en o-unan',
-	'Unusedimages'  => 'Skeudennoù dizimplij',
-	'Popularpages'  => 'Pajennoù a ra berzh',
-	'Wantedpages'   => 'Pajennoù a vank',
-	'Shortpages'    => 'Pennadoù berr',
-	'Longpages'     => 'Pennadoù hir',
-	'Newpages'      => 'Pajennoù nevez',
-	'Ancientpages'	=> 'Pajennoù kozh',
-	'Allpages'      => 'An holl bajennoù',
-
-	'Ipblocklist'   => 'Chomlec\'hioù IP prennet',
-	'Maintenance'   => 'Pajenn drezalc\'h',
-	'Specialpages'  => 'Pajennoù dibar',
-	'Contributions' => 'Degasadennoù an implijer-mañ',
-	'Emailuser'     => 'Kas ur gemennadenn d\'an implijer-mañ',
-	'Whatlinkshere' => 'Pajennoù liammet ouzh homañ',
-	'Recentchangeslinked' => 'Heuliañ al liammoù',
-	'Movepage'      => 'Dilec\'hiañ ur pennad',
-	'Booksources'   => 'Levraouegoù enlinenn',
-	'Categories'	=> 'Pajenn ar rummadoù',
-	'Export'	=> 'Ezporzhiañ dre XML',
-	'Version'	=> 'Doare',
-	'Allmessages'	=> 'Kemennoù ar reizhiad'
-);
-
-/* private */ $wgSysopSpecialPagesBr = array(
-	'Blockip'       => 'Prennañ ur chomlec\'h IP',
-	'Asksql'        => 'Moned SQL',
-	'Makesysop'		=> 'Reiñ ar gwirioù merour',
-
-	'Undelete'      => 'Merañ ar pajennoù diverket',
-	'Import'		=> 'Enporzhiañ ur bajenn gant hec\'h istor'
-);
-
-/* private */ $wgDeveloperSpecialPagesBr = array(
-	'Lockdb'        => 'Prennañ ar bank roadennoù',
-	'Unlockdb'      => 'Dibrennañ ar bank roadennoù',
-);
 
 /* private */ $wgAllMessagesBr = array(
 
@@ -192,7 +128,6 @@ require_once( 'LanguageFr.php' );
 'bugreports'    => 'Teul ar fazioù',
 'bugreportspage' => '{{ns:4}}:Teul ar fazioù',
 'sitesupport'	=> 'Skoazellañ dre reiñ un dra bennak',
-'sitesupportpage'	=> '{{ns:4}}:Roadoù',
 'faq'           => 'FAG',
 'faqpage'       => '{{ns:4}}:FAG',
 'edithelp'      => 'Skoazell',
@@ -250,7 +185,6 @@ require_once( 'LanguageFr.php' );
 'lastmodified'  => 'Kemmoù diwezhañ degaset d\'ar bajenn-mañ : $1.',
 'viewcount'     => 'Sellet ez eus bet ouzh ar bajenn-mañ $1 (g)wech.',
 'copyright'	=> 'Danvez a c\'haller implijout dindan $1.',
-'gnunote'       => 'Implijout a c\'haller ober an holl destennoù o toujañ da dermenoù an <a href="/wiki/GFDL">Aotre teulioù frank a wirioù GNU</a>.',
 'printsubtitle' => '(eus {{SERVER}})',
 'protectedpage' => 'Pajenn warezet',
 'administrators' => '{{ns:4}}:Merourien',
@@ -260,8 +194,6 @@ Sellet ouzh $1.',
 'developertitle' => 'Moned diorroer dre ret',
 'developertext' => 'N\'hall ar pezh hoc\'h eus klasket seveniñ bezañ graet nemet gant un implijer gantañ ar statud "Diorroer".
 Voir $1.',
-'bureaucrattitle'	=> 'Moned "Penn-bras" dre ret',
-'bureaucrattext'	=> 'N\'hall ar pezh hoc\'h eus klasket seveniñ bezañ graet nemet gant implijerien ganto ar statud "Pennoù-bras".',
 'nbytes'        => '$1 eizhbit',
 'go'            => 'Kas',
 'ok'            => 'Mat eo',
@@ -346,7 +278,6 @@ Kasit, ni ho ped, keloù eus ar fazi-mañ d\'ur merer en ur verkañ mat dezhañ 
 'protectedtext'	=> 'Stanket eo bet ar bajenn-mañ evit ma ne vo ket degaset kemmoù warni ken. Sellet ouzh [[{{ns:4}}:Pajenn warezet]] evit gwelet an abegoù a c\'hall bezañ.',
 'allmessagesnotsupportedDB' => 'N\'haller ket kaout Special:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.',
 'allmessagesnotsupportedUI' => 'Ne zegemer ket Special:AllMessages yezh hoc\'h etrefas (<b>$1</b>) war al lec\'hienn-mañ.',
-'seriousxhtmlerrors' => 'Un toullad fazioù xhtml bras zo bet kavet gant Tidy.',
 'wrong_wfQuery_params' => 'Arventennoù faziek war an urzhiad wfQuery()<br />
 Arc\'hwel : $1<br />
 Goulenn : $2',
@@ -450,15 +381,14 @@ Ho trugarez evit en em zisklêriañ kerkent ha ma vo bet resevet ganeoc\'h.",
 'whitelistreadtitle' => 'Ret eo bezañ luget evit gallout lenn',
 'whitelistreadtext' => 'Ret eo bezañ [[Special:Userlogin|luget]] evit gallout lenn ar pennadoù',
 'whitelistacctitle' => 'N_hoc\'h ket aotreet da grouiñ ur gont',
-'whitelistacctext' => 'A-benn gallout krouiñ ur gont war ar Wiki-mañ e rankit bezañ [[Special:Userlogin|luget]] ha kaout an aotreoù rekis', // Looxix 
+'whitelistacctext' => 'A-benn gallout krouiñ ur gont war ar Wiki-mañ e rankit bezañ [[Special:Userlogin|luget]] ha kaout an aotreoù rekis', // Looxix
 'loginreqtitle'	=> 'Anv implijer rekis',
-'loginreqtext'	=> "Ret eo deoc\'h en em [[Special:Userlogin|lugañ]] evit gwelet ar pajennoù all.",
 'accmailtitle' => 'Ger-tremen kaset.',
 'accmailtext' => 'Kaset eo bet ger-tremen « $1 » da $2.',
 
 'newarticle'   => '(Nevez)',
 'newarticletext' => 'Skrivit amañ testenn ho pennad.',
-'anontalkpagetext' => "---- ''Homañ eo ar bajenn gaozeal evit un implijer dianv n'eus ket c\'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar [[chomlec\'h IP]] niverel evit disklêriañ anezhañ. Gallout a ra ur chomlec\'h a seurt-se bezañ rannet etre meur a implijer. Ma'z oc\'h un implijer dianv ha ma stadit ez eus bet kaset deoc\'h kemennadennoù na sellont ket ouzhoc\'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc\'h a gemmesk.", 
+'anontalkpagetext' => "---- ''Homañ eo ar bajenn gaozeal evit un implijer dianv n'eus ket c\'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar [[chomlec\'h IP]] niverel evit disklêriañ anezhañ. Gallout a ra ur chomlec\'h a seurt-se bezañ rannet etre meur a implijer. Ma'z oc\'h un implijer dianv ha ma stadit ez eus bet kaset deoc\'h kemennadennoù na sellont ket ouzhoc\'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc\'h a gemmesk.",
 'noarticletext' => "(N'eus evit poent tamm skrid ebet war ar bajenn-mañ)",
 'clearyourcache'    => "'''Notenn:''' Goude bezañ enrollet ho pajenn e rankit adkargañ anezhi a-ratozh evit gwelet ar c\'hemmoù : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.",
 'updated'      => '(Hizivaet)',
@@ -552,7 +482,6 @@ Klask en esaouennoù :<br />
 $1<br />
 $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9",
 'searchdisabled' => "<p>Diweredekaet eo bet an arc\'hwel klask war an destenn a-bezh evit ur frapad rak ur samm re vras e oa evit ar servijer. Emichañs e vo tu d\'e adlakaat pa vo ur servijer galloudsoc\'h ganeomp. Da c\'hortoz e c\'hallit klask gant Google:</p>
-                                                                                                                                                        
 ",
 "blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
 
@@ -594,21 +523,6 @@ class LanguageBr extends LanguageFr {
 		return $wgSkinNamesBr;
 	}
 
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesBr;
-		return $wgValidSpecialPagesBr;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesBr;
-		return $wgSysopSpecialPagesBr;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesBr;
-		return $wgDeveloperSpecialPagesBr;
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesBr, $wgAllMessagesEn;
 		if( isset( $wgAllMessagesBr[$key] ) ) {
@@ -617,7 +531,7 @@ class LanguageBr extends LanguageFr {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 }
 
 ?>

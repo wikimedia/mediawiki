@@ -6,10 +6,6 @@
   */
 require_once('LanguageUtf8.php');
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-
 /* private */ $wgNamespaceNamesKo = array(
 	NS_MEDIA	    => 'Media',
 	NS_SPECIAL	  => '특수기능',
@@ -47,9 +43,9 @@ require_once('LanguageUtf8.php');
 #  in the 'date' function down at the bottom. --Brion)
 #
 # Thanks. And it's usual that the time comes after dates.
-# So I've change the timeanddate function, just exchanged $time and $date 
+# So I've change the timeanddate function, just exchanged $time and $date
 # But you should check before you install it, 'cause I'm quite stupid about
-# the programming. 
+# the programming.
 #
 
 /* private */ $wgWeekdayAbbreviationsKo = array(
@@ -255,12 +251,12 @@ require_once('LanguageUtf8.php');
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
 
-'editing'	     => '$1 고쳐쓰기', 
+'editing'	     => '$1 고쳐쓰기',
 'editconflict'	=> '고치기 충돌: $1',
 'explainconflict' => '문서를 고쳐쓰는 동안, 문서가 바뀌었습니다.
 위쪽이 바뀐 현재 문서이고, 아래쪽이 당신이 고쳐쓴 내용입니다.
 당신이 고쳐쓴 내용을 현재 문서에 다시 집어 넣어야 할 것입니다.
-지금 \'저장\'을 눌러도, 
+지금 \'저장\'을 눌러도,
 <strong>오직</strong> 위쪽에 있는 내용만 저장됩니다.<br />',
 'yourtext'	    => '당신이 고쳐쓴 것',
 'storedversion' => '바뀐 현재 문서',
@@ -339,7 +335,7 @@ text editing area as it will appear if you choose to save.',
 'prefslogintext' => '당신은 \'$1\', 맞죠?
 당신의 내부 ID 번호는 $2입니다.',
 'prefsreset'  => '개인 맞춤을 보통으로 되돌렸습니다.',
-'qbsettings'  => '빨리가기 맞춤', 
+'qbsettings'  => '빨리가기 맞춤',
 'changepassword' => '암호 바꾸기',
 'skin'			=> '옷',
 'saveprefs'	   => '맞춤 저장',
@@ -377,7 +373,7 @@ text editing area as it will appear if you choose to save.',
 {{SITENAME}}가 성공하려면, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않는 것이
 매우 중요합니다.\' [[{{ns:4}}:저작권|저작권]].
 법적 문제가 프로젝트를 망칠 수 있습니다. 저작권에 유의해 주세요.
-또, [http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도 
+또, [http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도
 읽어 보세요.',
 'rcloaderr'	   => '최근 바뀜을 받고 있습니다.',
 'rcnote'	      => '다음이 최근 <strong>$2</strong>일간 바뀐  <strong>$1</strong>개의 문서입니다.',
@@ -419,7 +415,7 @@ text editing area as it will appear if you choose to save.',
 원하는 파일을 고르면, 단추 옆의 공간에 파일이름이 채워질 것입니다.
 또한, 저작권에 저촉되지 않는 파일을 올린다는 사실도
 확인해야 합니다.
-마지막으로, \'올리기\' 단추를 누르면 올라갑니다. 누리그물 연결이 느리면, 
+마지막으로, \'올리기\' 단추를 누르면 올라갑니다. 누리그물 연결이 느리면,
 시간이 걸릴 수 있습니다.
 
 {{SITENAME}}는 사진은 JPEG형식을, 보통 그림, 아이콘은 PNG형식을, 소리는
@@ -441,13 +437,9 @@ OGG형식을 더 좋아합니다.
 ',
 'filename'	    => '파일이름',
 'filedesc'	    => '짧은설명',
-'affirmation' => '파일의 저작권자가
-$1의 조건으로 사용을 허가했음을 확인합니다.',
 'copyrightpage' => '{{ns:4}}:저작권',
 'copyrightpagename' => '{{SITENAME}} 저작권',
 'uploadedfiles'       => '파일 올리기',
-'noaffirmation' => '올리는 파일이 어떤 저작권에도 저촉되지 않음을
-확인해야 합니다.',
 'ignorewarning'       => '경고 무시하고, 파일 저장',
 
 # three alphabets and how many for Korean character?
@@ -458,7 +450,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 'largefile'	   => '그림크기는 100k이하를 권장합니다.',
 'successfulupload' => '올리기 성공',
 'fileuploaded'	=> '\'$1\'가 올라갔습니다.
-다음 고리($2)를 따라 가서, 설명문서에 파일에 대한 정보를(어디서 구했는지, 
+다음 고리($2)를 따라 가서, 설명문서에 파일에 대한 정보를(어디서 구했는지,
 누가 언제 만들었는지, 또 그 이외 필요한 사항들을) 채우세요.',
 'uploadwarning' => '올리기 경고',
 'savefile'	    => '파일 저장',
@@ -494,11 +486,11 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 'sitestats'	   => '누리터 통계',
 'userstats'	   => '사용자 통계',
 'sitestatstext' => '이곳 정보창고(DB)에는 총 <b>$1</b>개의 문서가 있습니다.
-이 숫자는 \'토론\' 문서, {{SITENAME}} 자체에 관한 문서, 자라기를 기다리는 \'씨앗\' 문서, 
+이 숫자는 \'토론\' 문서, {{SITENAME}} 자체에 관한 문서, 자라기를 기다리는 \'씨앗\' 문서,
 넘겨주기 문서, 그리고 아직 사전항목으로 부족한 문서들을 모두 포함한 것입니다.
 이들을 제외하면, <b>$2</b>개의 문서가 있습니다.<p>
-또, 무른모 업그레이드가 있었던 2002년 7월 20일 이래, 여러분은 총 <b>$3</b>번 문서를 
-읽었고, <b>$4</b>번 고쳤습니다. 
+또, 무른모 업그레이드가 있었던 2002년 7월 20일 이래, 여러분은 총 <b>$3</b>번 문서를
+읽었고, <b>$4</b>번 고쳤습니다.
 따라서, 평균적으로 문서 하나가 <b>$5</b>번 바뀌었고, 한번 바뀔 때마다 <b>$6</b>번 읽힌
 셈이 됩니다.',
 'userstatstext' => '<b>$1</b>명의 사용자가 등록되어 있습니다.
@@ -526,7 +518,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 'rclsub'	      => '(\'$1\'의 고리들이 가리키는)',
 'newpages'	    => '새 문서',
 'movethispage'	=> '문서 옮기기',
-'unusedimagestext' => '<p>다음 그림중 어떤 것은, 다른 언어의 {{SITENAME}}등 다른 
+'unusedimagestext' => '<p>다음 그림중 어떤 것은, 다른 언어의 {{SITENAME}}등 다른
 누리터에서 URL바로걸기로 사용하고 있을 지도 모릅니다.',
 'booksources' => '외부 책방',
 'booksourcetext' => '새책이나 헌책을 파는 몇몇 누리터입니다. 찾고 있는 책의
@@ -538,7 +530,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 #
 'mailnologin' => '누리편지주소 없음',
 'mailnologintext' => '{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때, 또,
-[[Special:Preferences|개인 맞춤]]에 
+[[Special:Preferences|개인 맞춤]]에
 자기의 누리편지주소를 기억시켰을 때에만,
 다른 사용자에게 편지를 보낼 수 있습니다.',
 'emailuser'	   => '사용자에게 편지쓰기',
@@ -569,7 +561,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 'addedwatch'  => '눈여겨 봅니다.',
 'addedwatchtext' => '앞으로 \'$1\'문서와 딸린 토론를
 <a href=\'{{localurle:Special:Watchlist}}\'>눈여겨보기 목록</a>에서
-관찰할 수 있으며,<a href=\'{{localurle:Special:Recentchanges}}\'>최근 바뀜</a>에는 금방 눈에 
+관찰할 수 있으며,<a href=\'{{localurle:Special:Recentchanges}}\'>최근 바뀜</a>에는 금방 눈에
 띄도록 <b>두터운 글씨체</b>로 나타납니다.</p>
 
 <p>더 이상 눈여겨 보지 않아도 될 때에는, 옆의 \'눈여겨 보지 않음\'을 누르면 됩니다.',
@@ -601,7 +593,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.',
 # Move page
 #
 'movepage'	    => '문서 옮기기',
-'movepagetext'	=> '아래 틀을 채워 문서이름을 바꾸세요. 
+'movepagetext'	=> '아래 틀을 채워 문서이름을 바꾸세요.
 문서역사도 함께 새문서로 갑니다.
 기존의 문서는 새이름의 문서로 넘겨주는 역할만 하는 넘겨주기 문서가 됩니다.
 기존 문서로의 고리도 바뀌지 않습니다. 딸린토론이 있어도, 옮기지
@@ -656,7 +648,6 @@ class LanguageKo extends LanguageUtf8 {
 		return $wgSkinNamesKo;
 	}
 
-	 
 	function date( $ts, $adj = false ) {
 		global $wgWeekdayAbbreviationsKo;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -666,7 +657,7 @@ class LanguageKo extends LanguageUtf8 {
 			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
 			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
 			(int)substr( $ts, 0, 4 )));
-	
+
 		$d = substr( $ts, 0, 4 ) . "년 " .
 			$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . "월 " .
 			(0 + substr( $ts, 6, 2 )) . "일 " .
@@ -678,32 +669,15 @@ class LanguageKo extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
-	# inherit function rfc1123( $ts )
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesKo;
-		return $wgValidSpecialPagesKo;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesKo;
-		return $wgSysopSpecialPagesKo;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesKo;
-		return $wgDeveloperSpecialPagesKo;
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesKo;
 		return isset($wgAllMessagesKo[$key]) ? $wgAllMessagesKo[$key] : parent::getMessage($key);
 	}
-	
+
 	function firstChar( $s ) {
 		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
-		
+
 		if ( isset( $matches[1] ) ) {
 			if ( strlen( $matches[1] ) != 3 ) {
 				return $matches[1];
@@ -745,7 +719,7 @@ class LanguageKo extends LanguageUtf8 {
 		} else {
 			return "";
 		}
-	}       
+	}
 }
 
 ?>

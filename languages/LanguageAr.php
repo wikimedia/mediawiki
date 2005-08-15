@@ -9,24 +9,24 @@
 require_once('LanguageUtf8.php');
 
 /* private */ $wgNamespaceNamesAr = array(
-        NS_MEDIA            => 'ملف',
-        NS_SPECIAL          => 'خاص',
-        NS_MAIN             => '',
-        NS_TALK             => 'نقاش',
-        NS_USER             => 'مستخدم',
-        NS_USER_TALK        => 'نقاش_المستخدم',
-        NS_PROJECT          => 'ويكيبيديا',
-        NS_PROJECT_TALK     => 'نقاش_ويكيبيديا',
-        NS_IMAGE            => 'صورة',
-        NS_IMAGE_TALK       => 'نقاش_الصورة',
-        NS_MEDIAWIKI        => 'ميدياويكي',
-        NS_MEDIAWIKI_TALK   => 'نقاش_ميدياويكي',
-        NS_TEMPLATE         => 'Template',
-        NS_TEMPLATE_TALK    => 'نقاش_Template',
-        NS_HELP             => 'مساعدة',
-        NS_HELP_TALK        => 'نقاش_المساعدة',
-        NS_CATEGORY         => 'تصنيف',
-        NS_CATEGORY_TALK    => 'نقاش_التصنيف'
+	NS_MEDIA            => 'ملف',
+	NS_SPECIAL          => 'خاص',
+	NS_MAIN             => '',
+	NS_TALK             => 'نقاش',
+	NS_USER             => 'مستخدم',
+	NS_USER_TALK        => 'نقاش_المستخدم',
+	NS_PROJECT          => 'ويكيبيديا',
+	NS_PROJECT_TALK     => 'نقاش_ويكيبيديا',
+	NS_IMAGE            => 'صورة',
+	NS_IMAGE_TALK       => 'نقاش_الصورة',
+	NS_MEDIAWIKI        => 'ميدياويكي',
+	NS_MEDIAWIKI_TALK   => 'نقاش_ميدياويكي',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'نقاش_Template',
+	NS_HELP             => 'مساعدة',
+	NS_HELP_TALK        => 'نقاش_المساعدة',
+	NS_CATEGORY         => 'تصنيف',
+	NS_CATEGORY_TALK    => 'نقاش_التصنيف'
 ) + $wgNamespaceNamesEn;
 
 
@@ -84,7 +84,6 @@ require_once('LanguageUtf8.php');
 <p>
 إذا كنت تريد إزالة الصفحة من قائمة المراقبة لديك، إضغط على "توقف عن مراقبة الصفحة" في اللوحة أسفل الصفحة.',
 'administrators' => 'ويكيبيديا:إداريين',
-'affirmation' => 'اؤكد أن حامل الحقوق لهذا الملف موافق على أن يوضع ملفه تحت ترخيص $1.',
 'allmessages' => 'كافة رسائل النظام',
 'allpages' => 'كل الصفحات',
 'allpagessubmit' => 'اذهب',
@@ -94,11 +93,11 @@ require_once('LanguageUtf8.php');
 'anontalkpagetext' => '----
 هذه صفحة نقاش لمستخدم مجهول، وهو المستخدم الذي لم يقم بإنشاء حساب في ويكيبيديا، أو لا يستعمل ذلك الحساب.
 لذا يتم إستعمال رقم ال IP للتعريف به. من الممكن أن يشترك عدد من المستخدمين بنفس رقم ال IP. إذا كنت مستخدم مجهول
-وترى أن رسائل خير موجهة لك قد وصلتك، من الممكن أن تقوم [[Special:Userlogin|بإنشاء حساب أو القيام بالدخول]] 
+وترى أن رسائل خير موجهة لك قد وصلتك، من الممكن أن تقوم [[Special:Userlogin|بإنشاء حساب أو القيام بالدخول]]
 حتى يزول الخلط بينك وبين المستخدمين المجهولين الآخرين.',
 'anonymous' => 'مستخدم مجهول لويكيبيديا',
 'article' => 'مقالة',
-'articleexists' => 'يوجد صفحة بهذا الإسم، 
+'articleexists' => 'يوجد صفحة بهذا الإسم،
 أو أن الإسم الذي تم إختياره غير صالح.
 يرجى إختيار إسم آخر.',
 'articlepage' => 'عرض المقالة',
@@ -151,11 +150,11 @@ require_once('LanguageUtf8.php');
 'copyright' => 'المحتويات تحت  $1.',
 'copyrightpage' => 'ويكيبيديا:حقوق النسخ',
 'copyrightpagename' => 'حقوق النسخ في ويكيبيديا',
-'copyrightwarning' => 'يرجى الملاحظة أن جميع المساهمات هنا خاضعة وصادرة تحت ترخيص 
+'copyrightwarning' => 'يرجى الملاحظة أن جميع المساهمات هنا خاضعة وصادرة تحت ترخيص
 جنو للوثائق الحرة (أنظر في $1 للمزيد من التفاصيل)
 إذا لم ترد أن تخضع كتابتك للتعديل والتوزيع الحر، لا تضعها هنا.
 <br>
-كما أنك تتعهد بأنك قمت بكتابة ما هو موجود بنفسك، أو قمت بنسخها 
+كما أنك تتعهد بأنك قمت بكتابة ما هو موجود بنفسك، أو قمت بنسخها
 من مصدر يخضع ضمن الملكية العامة، أو مصدر حر آخر.
 <strong>لا ترسل أي عمل ذو حقوق محفوظة بدون الإذن من صاحب الحق</strong>.',
 'createaccount' => 'إنشاء حساب جديد',
@@ -194,9 +193,9 @@ require_once('LanguageUtf8.php');
 'emailfrom' => 'من',
 'emailmessage' => 'نص الرسالة',
 'emailpage' => 'أرسل رسالة للمستخدم',
-'emailpagetext' => 'لو أن هذا المستخدم قد قام بإدخال عنوان بريدي صحيح في تفضيلاته، 
+'emailpagetext' => 'لو أن هذا المستخدم قد قام بإدخال عنوان بريدي صحيح في تفضيلاته،
 فسيتم إرسال رسالة واحدة له بالنموذج أدناه.
-العنوان الذي قمت أنت بإدخاله لك في تفضيلات المستخدم، 
+العنوان الذي قمت أنت بإدخاله لك في تفضيلات المستخدم،
 سيظهر في مكان المرسل في الرسالة التي سترسل له، ليتمكن من الرد عليك.',
 'emailsend' => 'إرسال',
 'emailsent' => 'تم إرسال الرسالة',
@@ -225,13 +224,6 @@ require_once('LanguageUtf8.php');
 'filerenameerror' => 'لا يمكن غيير إسم الملف من  "$1" إلى "$2".',
 'filesource' => 'مصدر',
 'go' => 'إذهب',
-'googlesearch' => '<p>
- <table border="0" bgcolor="#FFFFFF">
- <!-- SiteSearch Google -->
- <tr><td valign="top" align="center"> <a href="http://www.google.com/">
-<img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" title="Google"></a> </td>
-<td width="100%"> <form method=get action="http://www.google.com/search"> <input type="text" name="q" size=31 maxlength=255 value="$1"> <input type="submit" name="btnG" value="بحث في جووجل"> <input type="hidden" name="domains" value="http://ar.wikipedia.org"> <input type="hidden" name="ie" value="$2"> <input type="hidden" name="oe" value="$2"> <br> <font size=-1> <input type="radio" name="sitesearch" value="">إنترنت<input type="radio" name="sitesearch" value="http://en.wikipedia.org" checked>ويكيبيديا العربية</font> </form> </td></tr><!-- SiteSearch Google --> <!-- Spacing --> <tr><td colspan=2>&nbsp;</td></tr> <!-- Spacing --> <!-- Yahoo search --> <tr><td valign="top" align="center"> <a href="http://search.yahoo.com/"> <img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" border="0" alt="Yahoo!"vspace="5"> </a> </td> <td width="100%"> <form method=get action="http://search.yahoo.com/search"> <input type="hidden" name="x" value="op"> <input type="hidden" name="va_vt" value="any"> <input type="text" name="va" size="31" value="$1"> <input type="submit" value="بحث في ياهوو!"> <br> <font size=-1> <input type="radio" name="vs" value="">إنترنت<input type="radio" name="vs" value="ar.wikipedia.org" checked>الموسوعة العربية</font> </form> </td> </table>
-من الممكن تتبع الوصلة التالية لإنشاء موضوع بهذا العنوان، في حال عدم وجود الموضوع. أو تحريره في حال وجود الموضوع:  <a href="/w/wiki.phtml?title=$1&action=edit">$1</a>',
 'headline_sample' => 'نص عنوان رئيسي',
 'headline_tip' => 'عنوان من المستوى الثاني',
 'help' => 'مساعدة',
@@ -308,11 +300,11 @@ require_once('LanguageUtf8.php');
 * قمت بإزالة إختيار نقل صفحة النقاش في الأسفل.
 
 وفي الحالات أعلاه، يجب عليك نقل أو دمج محتويات صفحة النقاش يدويا، إذا رغب في ذلك.',
-'movepagetext' => 'بإستعمال النموذج أدنه، تستطيع تغيير أسم الصفحة، 
+'movepagetext' => 'بإستعمال النموذج أدنه، تستطيع تغيير أسم الصفحة،
 ونقل تاريخ الصفحة للإسم الجديد.
 سيتم أنشاء تحويل من العنوان القديم، للصفحة بالعنوان الجديد.
 لكن، لن يتم تغيير الوصلات في الصفحات التي تتصل بهذه الصفحة، لذا عليك
-[[Special:Maintenance|التأكد]] من عدم وجود وصلات مقطوعة، أو وصلات متتالية، 
+[[Special:Maintenance|التأكد]] من عدم وجود وصلات مقطوعة، أو وصلات متتالية،
 للتأكد من أن المقالات تتصل مع بعضها بشكل مناسب.
 
 يرجى الملاحظة انه \'\'\'لن يتم\'\'\' نقل الصفحة إذا وجدت صفحة بالإسم الجديد،
@@ -320,7 +312,7 @@ require_once('LanguageUtf8.php');
 وضع صفحة مكان صفحة، كما أنه من الممكن إرجاع الصفحة لمكانها في حال تم النقل بشكل خاطئ.
 
 <b>تحذير!</b>
-قد يكون لنقل الصفحة آثار كبيرة، وتغييرا غير متوقع بالنسبة للصفحات المشهورة. 
+قد يكون لنقل الصفحة آثار كبيرة، وتغييرا غير متوقع بالنسبة للصفحات المشهورة.
 يرجى فهم وإدارك عواقب نقل الصفحات قبل القيام به.',
 'movereason' => 'السبب',
 'movetalk' => 'أنقل صفحة \'\'\'النقاش\'\'\' أن أمكن.',
@@ -350,10 +342,9 @@ require_once('LanguageUtf8.php');
 'next' => 'التالي',
 'nextn' => '$1 التالية',
 'nlinks' => '$1 وصلة',
-'noaffirmation' => 'يجب عليك التأكيد أنك لم تخالف أي حقوق للنسخ أو التوزيع بتحميلك لهذا الملف.',
 'noarticletext' => '(لا يوجد حاليا أي نص في هذه الصفحة)',
 'noemail' => 'لا يوجد أي عنوان بريدي مسجل للمستخدم "$1".',
-'noemailtext' => 'لم يحدد هذا المستخدم عنوان بريد إلكتروني صحيح، 
+'noemailtext' => 'لم يحدد هذا المستخدم عنوان بريد إلكتروني صحيح،
 أو طلب عدم إستلام الرسائل من المستخدمين الآخرين.',
 'noemailtitle' => 'لا يوجد عنوان بريد إلكتروني',
 'nogomatch' => 'لا يوجد صفحة بنفس العنوان، حاول البحث بشكل مفصل أكثر من خلال إستعمال صندوق البحث أدناه. بإمكانك أيضاً إنشاء <a href="$1" class="new">صفحة جديدة</a> بالعنوان الذي طلبته.',
@@ -546,11 +537,11 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.
 'uploadnologintext' => 'يجب أن تكون <a href="/wiki/Special:Userlogin">مسجلا الدخول</a>
 لتتمكن من تحميل الملفات.',
 'uploadtext' => '<strong>توقف!</strong>
-قبل تحميل أي ملف تأكد من قرائتك وثيقة <a href="/wiki/Wikipedia:Image_use_policy">سياسة إستعمال الصور</a>. 
-إذا وجد ملف بنفس الإسم في ويكيبيديا سيتم إستبدال الملف بدون أي تحذير أو إشعار مسبق. 
-فإذا لم يكن الملف تحديثا لملف مسبق، تأكد من أن إسم الملف غير موجود من قبل. 
+قبل تحميل أي ملف تأكد من قرائتك وثيقة <a href="/wiki/Wikipedia:Image_use_policy">سياسة إستعمال الصور</a>.
+إذا وجد ملف بنفس الإسم في ويكيبيديا سيتم إستبدال الملف بدون أي تحذير أو إشعار مسبق.
+فإذا لم يكن الملف تحديثا لملف مسبق، تأكد من أن إسم الملف غير موجود من قبل.
 لعرض أو البحث في الملفات التي تم تحميلها من قبل إذهب إلى <a href="/wiki/Special:Imagelist">قائمة الملفات المحملة</a>.
-يتم تسجيل كل حالات التحميل والحذث للملفات في <a href="/wiki/Wikipedia:Upload_log">سجل التحميل</a>. 
+يتم تسجيل كل حالات التحميل والحذث للملفات في <a href="/wiki/Wikipedia:Upload_log">سجل التحميل</a>.
 <p>إستعمل النموذج الموجود الموجود في الأسفل لتحميل الصور التي تساعد على توضيح مقالاتك.
 في أغلب متصفحات الإنترنت سترى زر "إستعراض..." الذي سيفتح لك شاشة إختيار الملفات. إختيار الملف سيملأ الخانة المجاورة للزر بإسم الملف وموقعه.
 يجب عليك كذلك التأكيد على أنك لم تخالف أي حقوق نسخ من خلال تحميلك للملف.

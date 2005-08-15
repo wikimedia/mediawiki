@@ -7,46 +7,46 @@
 
 require_once( 'LanguageUtf8.php' );
 
-# Revised 2005-06-22 for MediaWiki 1.5a2 and CVS -- Nikerabbit
+# Revised 2005-08-15 for MediaWiki 1.6alpha -- Nikerabbit
 
 /* private */ $wgNamespaceNamesFi = array(
-  NS_MEDIA            => 'Media',
-  NS_SPECIAL          => 'Toiminnot',
-  NS_MAIN             => '',
-  NS_TALK             => 'Keskustelu',
-  NS_USER             => 'Käyttäjä',
-  NS_USER_TALK        => 'Keskustelu_käyttäjästä',
-  NS_PROJECT          => $wgMetaNamespace,
-  NS_PROJECT_TALK     => FALSE,  # Set in constructor
-  NS_IMAGE            => 'Kuva',
-  NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
-  NS_MEDIAWIKI        => 'MediaWiki',
-  NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-  NS_TEMPLATE         => 'Malline',
-  NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
-  NS_HELP             => 'Ohje',
-  NS_HELP_TALK        => 'Keskustelu_ohjeesta',
-  NS_CATEGORY         => 'Luokka',
-  NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Toiminnot',
+	NS_MAIN             => '',
+	NS_TALK             => 'Keskustelu',
+	NS_USER             => 'Käyttäjä',
+	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => FALSE,  # Set in constructor
+	NS_IMAGE            => 'Kuva',
+	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Malline',
+	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
+	NS_HELP             => 'Ohje',
+	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
+	NS_CATEGORY         => 'Luokka',
+	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
 
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFi = array(
-  'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla'
+	'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla'
 );
 
 /* private */ $wgSkinNamesFi = array(
-  'standard'          => 'Perus',
-  'cologneblue'       => 'Kölnin sininen',
-  'myskin'            => 'Oma tyylisivu'
+	'standard'          => 'Perus',
+	'cologneblue'       => 'Kölnin sininen',
+	'myskin'            => 'Oma tyylisivu'
 ) + $wgSkinNamesEn;
 
 /* private */ $wgBookstoreListFi = array(
-  'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
-  'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
-  'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
-  'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
-  'Tampereen seudun kirjastot'    => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1-1&lang=kaikki&mat_type=kaikki&submit=Hae&engine_tampere=ON'
+	'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
+	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
+	'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
+	'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
+	'Tampereen seudun kirjastot'    => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1-1&lang=kaikki&mat_type=kaikki&submit=Hae&engine_tampere=ON'
 ) + $wgBookstoreListEn;
 
 # Current practices (may be changed if not good ones)
@@ -590,7 +590,7 @@ Sivun lähdekoodi:',
 'userrights-groupshelp' => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anonyymi',
 'group-anon-desc'       => 'Käyttäjät, joilla ei ole tunnusta tai jotka eivät ole kirjautuneet sisään',
 'group-loggedin-name'   => 'Käyttäjä',
@@ -1313,147 +1313,146 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 );
 
 
-  #--------------------------------------------------------------------------
-  # Internationalisation code
-  #--------------------------------------------------------------------------
+	#--------------------------------------------------------------------------
+	# Internationalisation code
+	#--------------------------------------------------------------------------
 
 class LanguageFi extends LanguageUtf8 {
-  function LanguageFi() {
-    global $wgNamespaceNamesFi, $wgMetaNamespace;
-    LanguageUtf8::LanguageUtf8();
-    $wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
-  }
+	function LanguageFi() {
+		global $wgNamespaceNamesFi, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+	}
 
-  function getBookstoreList () {
-    global $wgBookstoreListFi ;
-    return $wgBookstoreListFi ;
-  }
+	function getBookstoreList () {
+		global $wgBookstoreListFi ;
+		return $wgBookstoreListFi ;
+	}
 
-  function getNamespaces() {
-    global $wgNamespaceNamesFi;
-    return $wgNamespaceNamesFi;
-  }
+	function getNamespaces() {
+		global $wgNamespaceNamesFi;
+		return $wgNamespaceNamesFi;
+	}
 
-  function getQuickbarSettings() {
-    global $wgQuickbarSettingsFi;
-    return $wgQuickbarSettingsFi;
-  }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsFi;
+		return $wgQuickbarSettingsFi;
+	}
 
-  function getSkinNames() {
-    global $wgSkinNamesFi;
-    return $wgSkinNamesFi;
-  }
+	function getSkinNames() {
+		global $wgSkinNamesFi;
+		return $wgSkinNamesFi;
+	}
 
-  function date( $ts, $adj = false ) {
-    if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-    $d = (0 + substr( $ts, 6, 2 )) . '. ' .
-    $this->getMonthName( substr( $ts, 4, 2 ) ) . 'ta ' . substr( $ts, 0, 4 );
-    return $d;
-  }
+		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
+		$this->getMonthName( substr( $ts, 4, 2 ) ) . 'ta ' . substr( $ts, 0, 4 );
+		return $d;
+	}
 
-  function time( $ts, $adj = false, $seconds = true ) {
-    if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function time( $ts, $adj = false, $seconds = true ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-    $t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-    if ( $seconds ) {
-    $t .= ':' . substr( $ts, 12, 2 );
-    }
-    return $t;
-  }
+		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+		if ( $seconds ) {
+		$t .= ':' . substr( $ts, 12, 2 );
+		}
+		return $t;
+	}
 
-  function timeanddate( $ts, $adj = false ) {
-    return $this->date( $ts, $adj ) . ' kello ' . $this->time( $ts, $adj );
-  }
+	function timeanddate( $ts, $adj = false ) {
+		return $this->date( $ts, $adj ) . ' kello ' . $this->time( $ts, $adj );
+	}
 
-  function getMessage( $key ) {
-    global $wgAllMessagesFi;
-    if( isset( $wgAllMessagesFi[$key] ) ) {
-      return $wgAllMessagesFi[$key];
-    } else {
-      return parent::getMessage( $key );
-    }
-  }
+	function getMessage( $key ) {
+		global $wgAllMessagesFi;
+		if( isset( $wgAllMessagesFi[$key] ) ) {
+			return $wgAllMessagesFi[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
 
-  /**
-   * Finnish numeric formatting is 123 456,78.
-   * Notice that the space is non-breaking.
-   */
-  function formatNum( $number, $year = false ) {
-    return $year ? $number : strtr($this->commafy($number), '.,', ", " );
-  }
+	/**
+	 * Finnish numeric formatting is 123 456,78.
+	 * Notice that the space is non-breaking.
+	 */
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ", " );
+	}
 
-  /**
-   * Avoid grouping whole numbers between 0 to 9999
-   */
-  function commafy($_) {
-    if (!preg_match('/^\d{1,4}$/',$_)) {
-      return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
-    } else {
-      return $_;
-    }
-  }
+	/**
+	 * Avoid grouping whole numbers between 0 to 9999
+	 */
+	function commafy($_) {
+		if (!preg_match('/^\d{1,4}$/',$_)) {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		} else {
+			return $_;
+		}
+	}
 
-  # Convert from the nominative form of a noun to some other case
-  # Invoked with {{GRAMMAR:case|word}}
-  function convertGrammar( $word, $case ) {
-    # These rules are not perfect, but they are currently only used for site names so it doesn't
-    # matter if they are wrong sometimes. Just add a special case for your site name if necessary.
-    switch ( $case ) {
-      case 'genitive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaattien';
-        } else {
-          $word .= 'n';
-        }
-      break;
-      case 'elative':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaateista';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'stä';
-          } else {
-            $word .= 'sta';
-          }
-        }
-        break;
-      case 'partitive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaatteja';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'ä';
-          } else {
-            $word .= 'a';
-          }
-        }
-        break;
-      case 'illative':
-        # Double the last letter and add 'n'
-        # mb_substr has a compatibility function in GlobalFunctions.php
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaatteihin';
-        } else {
-          $word = $word . mb_substr($word,-1) . 'n';
-        }
-        break;
-      case 'inessive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaateissa';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'ssä';
-          } else {
-            $word .= 'ssa';
-          }
-        }
-        break;
+	# Convert from the nominative form of a noun to some other case
+	# Invoked with {{GRAMMAR:case|word}}
+	function convertGrammar( $word, $case ) {
+		# These rules are not perfect, but they are currently only used for site names so it doesn't
+		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
+		switch ( $case ) {
+			case 'genitive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaattien';
+				} else {
+					$word .= 'n';
+				}
+			break;
+			case 'elative':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaateista';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'stä';
+					} else {
+						$word .= 'sta';
+					}
+				}
+				break;
+			case 'partitive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaatteja';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'ä';
+					} else {
+						$word .= 'a';
+					}
+				}
+				break;
+			case 'illative':
+				# Double the last letter and add 'n'
+				# mb_substr has a compatibility function in GlobalFunctions.php
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaatteihin';
+				} else {
+					$word = $word . mb_substr($word,-1) . 'n';
+				}
+				break;
+			case 'inessive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaateissa';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'ssä';
+					} else {
+						$word .= 'ssa';
+					}
+				}
+				break;
 
-
-    }
-    return $word;
-  }
+		}
+		return $word;
+	}
 
 }
 

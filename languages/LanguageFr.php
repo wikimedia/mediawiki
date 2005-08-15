@@ -4,9 +4,6 @@
   * @subpackage Language
   */
 
-// The names of the namespaces can be set here, but the numbers
-// are magical, so don't change or move them!  The Namespace class
-// encapsulates some of the magic-ness.
 require_once( 'LanguageUtf8.php' );
 
 /* private */ $wgNamespaceNamesFr = array(
@@ -40,11 +37,7 @@ require_once( 'LanguageUtf8.php' );
 	'cologneblue'	=> 'Cologne Blue',
 	'smarty'		=> 'Paddington',
 	'montparnasse'	=> 'Montparnasse',
-	'davinci'		=> 'DaVinci',
-	'mono'			=> 'Mono',
-	'monobook'		=> 'MonoBook',
-	'myskin'		=> 'MySkin'
-);
+) + $wgSkinNamesEn;
 
 
 
@@ -55,61 +48,6 @@ require_once( 'LanguageUtf8.php' );
 	'chapitre.com'	=> 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
 );
 
-
-// All special pages have to be listed here: a description of ""
-// will make them not show up on the "Special Pages" page, which
-// is the right thing for some of them (such as the "targeted" ones).
-
-/* private */ $wgValidSpecialPagesFr = array(
-	'Userlogin'     => '',
-	'Userlogout'    => '',
-	'Preferences'   => 'Préférences',
-	'Watchlist'     => 'Liste de suivi',
-	'Recentchanges' => 'Modifications récentes',
-	'Upload'        => 'Copier un fichier',
-	'Imagelist'     => 'Liste des images',
-	'Listusers'     => 'Liste des participants',
-	'Statistics'    => 'Statistiques',
-	'Randompage'    => 'Une page au hasard',
-
-	'Lonelypages'   => 'Pages orphelines',
-	'Unusedimages'  => 'Images orphelines',
-	'Popularpages'  => 'Les plus populaires',
-	'Wantedpages'   => 'Les plus demandées',
-	'Shortpages'    => 'Articles courts',
-	'Longpages'     => 'Articles longs',
-	'Newpages'      => 'Nouvelles pages',
-	'Ancientpages'	=> 'Anciennes pages',
-	'Allpages'      => 'Toutes les pages',
-
-	'Ipblocklist'   => 'Adresses IP bloquées',
-	'Maintenance'   => 'Page de maintenance',
-	'Specialpages'  => '', // ces pages doivent rester vides !
-	'Contributions' => '',
-	'Emailuser'     => '',
-	'Whatlinkshere' => '',
-	'Recentchangeslinked' => '',
-	'Movepage'      => '',
-	'Booksources'   => 'Librairies en ligne',
-	'Categories'	=> 'Page des catégories',
-	'Export'	=> 'Exporter par XML',
-	'Version'	=> 'Version',
-	'Allmessages'	=> 'Messages système'
-);
-
-/* private */ $wgSysopSpecialPagesFr = array(
-	'Blockip'       => 'Bloquer une adresse IP',
-	'Asksql'        => 'Accès SQL',
-	'Makesysop'		=> 'Donner les droits d\'administrateur',
-
-	'Undelete'      => 'Gérer les pages effacées',
-	'Import'		=> 'Importer une page avec l\'historique'
-);
-
-/* private */ $wgDeveloperSpecialPagesFr = array(
-	'Lockdb'        => 'Bloquer la base de données',
-	'Unlockdb'      => 'Débloquer la base de données',
-);
 
 /* private */ $wgAllMessagesFr = array(
 
@@ -197,6 +135,7 @@ require_once( 'LanguageUtf8.php' );
 'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
+'sitesupport'	=> 'Participer en faisant un don',
 'sitesupport'	=> 'Faire un don',
 'sitesupportpage'	=> '{{ns:4}}:Dons',
 'faq'           => 'FAQ',
@@ -256,7 +195,6 @@ require_once( 'LanguageUtf8.php' );
 'lastmodified'  => 'Dernière modification de cette page le $1.',
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
-'gnunote'       => 'Tous les textes sont disponibles sous les termes de la <a href="/wiki/GFDL">Licence de documentation libre GNU</a>.',
 'printsubtitle' => '(de {{SERVER}})',
 'protectedpage' => 'Page protégée',
 'administrators' => '{{ns:4}}:Administrateurs',
@@ -266,8 +204,6 @@ Voir $1.',
 'developertitle' => 'Accès développeur requis',
 'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de "développeur".
 Voir $1.',
-'bureaucrattitle'	=> 'Un accès de "Bureaucrate" est requis',
-'bureaucrattext'	=> 'Cette action ne peut être réalisée que par des administrateurs ayant le statut de "Bureaucrate".',
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
 'ok'            => 'OK',
@@ -354,7 +290,6 @@ ne peut utiliser le wiki.',
 'protectedtext'	=> 'Cette page a été bloquée pour empêcher sa modification. Consulter [[{{ns:4}}:Page protégée]] pour voir les différentes raisons possibles.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages n\'est pas disponible parce que wgUseDatabaseMessages est désactivé.',
 'allmessagesnotsupportedUI' => 'Special:AllMessages n\'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',
-'seriousxhtmlerrors' => 'Tidy a détecté de sérieuses erreurs xhtml.',
 'wrong_wfQuery_params' => 'Paramètres incorrects sur la commande wfQuery()<br />
 Fonction : $1<br />
 Requête : $2',
@@ -458,15 +393,16 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'whitelistreadtitle' => 'Login requis pour lire',
 'whitelistreadtext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles',
 'whitelistacctitle' => 'Vous n\'êtes pas autorisé à créer un compte',
-'whitelistacctext' => 'Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', // Looxix 
+'whitelistacctext' => 'Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', // Looxix
 'loginreqtitle'	=> 'Nom d\'utilisateur nécessaire',
-'loginreqtext'	=> "Vous devez vous [[Special:Userlogin|connecter]] pour voir les autres pages.",
+'loginreqlink' => 'connecter',
+'loginreqtext'	=> "Vous devez vous $1 pour voir les autres pages.",
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à $2.',
 
 'newarticle'   => '(Nouveau)',
 'newarticletext' => 'Saisissez ici le texte de votre article.',
-'anontalkpagetext' => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.", 
+'anontalkpagetext' => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.",
 'noarticletext' => "(Il n'y a pour l'instant aucun texte sur cette page)",
 'clearyourcache'    => "'''Note:''' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.",
 'updated'      => '(Mis à jour)',
@@ -565,7 +501,7 @@ Rechercher dans les espaces :<br />
 $1<br />
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
 'searchdisabled' => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
-                                                                                                                                                        
+
 ",
 "blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
 
@@ -580,7 +516,6 @@ pour modifier vos préférences d'utilisateur.",
 Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant les options.",
 'prefsreset'        => 'Les préférences ont été rétablies à partir de la version enregistrée.',
 'qbsettings'        => 'Personnalisation de la barre outils',
-'qbsettingsnote'	=> "Cette préférence ne fonctionne que pour les skins 'Standard' et 'CologneBlue'.",
 'changepassword'    => 'Modification du mot de passe',
 'skin'              => 'Apparence',
 'math'				=> 'Rendu des maths',
@@ -701,12 +636,10 @@ L'heure indiquée est celle du serveur (UTC).
 'filename'	=> 'Nom&nbsp;',
 'filedesc'	=> 'Description&nbsp;',
 'filestatus'	=> 'Statut du copyright',
-'filesource'	=> 'Source',	
-'affirmation'	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
+'filesource'	=> 'Source',
 'copyrightpage' => "{{ns:4}}:Copyright",
 'copyrightpagename' => "licence {{SITENAME}}",
 'uploadedfiles' => "Fichiers copiés",
-'noaffirmation' => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
 'ignorewarning' => "Ignorer l'avertissement et copier le fichier quand même.",
 'minlength'	=> "Les noms des images doivent comporter au moins trois lettres.",
 'illegalfilename'	=> 'Le fichier « $1 » contient des caractères qui ne sont pas autorisés dans le titre d\'une page. Veuillez renommer le fichier et le réenvoyer.',
@@ -778,7 +711,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 'disambiguationstext'	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 'doubleredirects'	=> "Double redirection",
 'doubleredirectstext'	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
-'brokenredirects'	=> 'Redirections cassées', 
+'brokenredirects'	=> 'Redirections cassées',
 'brokenredirectstext'	=> 'Ces redirections mènent a une page qui n\'existe pas.',
 'selflinks'		=> 'Page avec un lien circulaire',
 'selflinkstext'		=> 'Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n\'est pas permis.',
@@ -828,9 +761,6 @@ Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 'allpagesnext' => "Suivant",
 'allpagesprev' => "Précédent",
 'allpagessubmit' => "Valider",
-'allpagesformtext1' => 'Montrer les pages à partir de : $1',
-'allpagesformtext2' => 'Choisissez l\'espace : $1 $2',
-'allpagesnamespace' => '(articles)',
 
 # Email this user
 #
@@ -876,16 +806,16 @@ Les prochaines modifications de cette page et de la page discussion associée se
 'unwatchthispage' => 'Ne plus suivre',
 'notanarticle'	=> 'Aucun article',
 'watchnochange' => "Aucune des pages que vous suivez n'a été modifiée pendant la période affichée",
-'watchdetails' => "Vous suivez $1 pages, sans compter les pages de discussion.  [$4 Afficher et modifier la liste complète].", // Looxix 
-'watchmethod-recent' => "vérification des modifications récentes des pages suivies", // Looxix 
-'watchmethod-list' => "vérification des pages suivies pour des modifications récentes", // Looxix 
+'watchdetails' => "Vous suivez $1 pages, sans compter les pages de discussion.  [$4 Afficher et modifier la liste complète].", // Looxix
+'watchmethod-recent' => "vérification des modifications récentes des pages suivies", // Looxix
+'watchmethod-list' => "vérification des pages suivies pour des modifications récentes", // Looxix
 'removechecked' => "Retirer de la liste de suivi les articles sélectionnés",
 'watchlistcontains' => "Votre liste de suivi contient $1 pages",
 'watcheditlist' => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.",
 'removingchecked' => "Les articles sélectionnés sont retirés de votre liste de suivi...",
 'couldntremove' => "Impossible de retirer l'article « $1 »...",
 'iteminvalidname' => "Problème avec l'article « $1 » : le nom est invalide...",
-'wlnote' => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
+'wlnote' => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix
 'wlshowlast' => "Montrer les dernières $1 heures $2 jours $3",
 'wlsaved' => "La liste de suivi n'est remise à jour qu'une fois par heure pour alléger la charge sur le serveur.",
 
@@ -922,11 +852,11 @@ L\'heure indiquée est celle du serveur (UTC).
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback'	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
 'alreadyrolled'	=> "Impossible de révoquer la dernière modification de [[$1]]
-par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article. 
+par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article.
 
-La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
+La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix
 #   only shown if there is an edit comment
-'editcomment' => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
+'editcomment' => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix
 'revertpage'	=> 'restitution de la dernière modification de $1',
 'protectlogpage' => 'Log_de_protection',
 'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
@@ -1001,7 +931,6 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipbreason'	=> 'Motif du blocage',
 'ipbsubmit'	=> 'Bloquer cette adresse',
 'badipaddress'	=> 'L\'adresse IP n\'est pas correcte.',
-'noblockreason' => 'Vous devez indiquer le motif du blocage.',
 'blockipsuccesssub' => 'Blocage réussi',
 'blockipsuccesstext' => "L'adresse IP \"$1\" a été bloquée.
 <br />Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
@@ -1047,20 +976,6 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 
 <br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
 'unlockdbsuccesstext' => 'La base de données de {{SITENAME}} est déverrouillée.',
-
-# Special:AskSQL
-#
-'asksql'	=> 'Requête SQL',
-'asksqlpheading' => 'Onglet requête SQL',
-'asksqltext'	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de {{SITENAME}}.
-Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
-Cette opération peut surcharger considérablement le serveur, faites en usage
-avec modération.",
-'sqlislogged'	=> "Veillez noter que toutes les requêtes sont loguées",
-'sqlquery'	 => 'Saisir la requête',
-'querybtn'	=> 'Envoyer la requête',
-'selectonly'	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs du wiki.",
-'querysuccessful' => 'Requête réussie',
 
 # Special:Makesysop
 'bureaucratlog'		=> 'Log_bureaucrate',
@@ -1184,88 +1099,18 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'importtext'	=> 'Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.',
 
 # Keyboard access keys for power users
-'accesskey-anontalk'		=> 'n',
-'accesskey-anonuserpage'	=> '.',
-'accesskey-article'			=> 'a',
 'accesskey-compareselectedversions' => 'v',
-'accesskey-contributions'	=> '',
-'accesskey-currentevents'	=> '',
-'accesskey-delete'			=> 'd',
-'accesskey-edit'			=> 'e',
-'accesskey-emailuser'		=> '',
-'accesskey-help'			=> '',
-'accesskey-history'			=> 'h',
-'accesskey-login'			=> 'o',
-'accesskey-logout'			=> 'o',
-'accesskey-mainpage'		=> 'z',
 'accesskey-minoredit'		=> 'i',
-'accesskey-move'			=> 'm',
-'accesskey-mycontris'		=> 'y',
-'accesskey-mytalk'			=> 'n',
-'accesskey-portal'			=> '',
 'accesskey-preferences'		=> '',
 'accesskey-preview'			=> 'p',
-'accesskey-protect'			=> '-',
-'accesskey-randompage'		=> 'x',
-'accesskey-recentchanges'	=> 'r',
-'accesskey-recentchangeslinked' => 'c',
 'accesskey-save'			=> 's',
 'accesskey-search'			=> 'f',
-'accesskey-sitesupport'		=> '',
-'accesskey-specialpage'		=> '',
-'accesskey-specialpages'	=> 'q',
-'accesskey-talk'			=> 't',
-'accesskey-undelete'		=> 'd',
-'accesskey-unwatch'			=> 'w',
-'accesskey-upload'			=> 'u',
-'accesskey-userpage'		=> '.',
-'accesskey-viewsource'		=> 'e',
-'accesskey-watch'			=> 'w',
-'accesskey-watchlist'		=> 'l',
-'accesskey-whatlinkshere'	=> 'b',
 
 # tooltip help for the main actions
-'tooltip-anontalk' => 'Discussion des éditions faites à partir de cette adresse ip [alt-n]',
-'tooltip-anonuserpage' => 'La page d\'utilisateur pour l\'adresse ip depuis laquelle vous éditez [alt-.]',
-'tooltip-article' => 'Voir l\'article [alt-a]',
-'tooltip-atom' => 'Flux Atom pour cette page',
 'tooltip-compareselectedversions' => 'Voir les différences entre les deux versions séléctionnées de cette page. [alt-v]',
-'tooltip-contributions' => 'Voir la liste des contributions de cet utilisateur',
-'tooltip-currentevents' => 'Trouver des informations sur les évenements actuels',
-'tooltip-delete' => 'Supprimer cette page [alt-d]',
-'tooltip-edit' => 'Vous pouvez éditer cette page. Merci d\'utiliser le bouton prévisualisation avant d\'enregistrer. [alt-e]',
-'tooltip-emailuser' => 'Envoyer un mail à cet utilisateur',
-'tooltip-help' => 'L\'endroit pour découvrir.',
-'tooltip-history' => 'Versions précédentes de cette page, [alt-h]',
-'tooltip-login' => 'Vous êtes encouragés à vous identifier avant d\'éditer, ce n\'est toutefois pas nécessaire.',
-'tooltip-logout' => 'Le bouton démarrer [alt-o]',
-'tooltip-mainpage' => 'Aller à la page principale',
 'tooltip-minoredit' => 'Marquer cette modification comme mineur [alt-i]',
-'tooltip-move' => 'Déplacer cette page [alt-m]',
-'tooltip-mycontris' => 'Liste de mes contributions',
-'tooltip-mytalk' => 'Ma page de discussion',
-'tooltip-portal' => 'A propos de ce projet, ce que vous pouvez faire, où trouver les choses',
-'tooltip-preferences' => 'Mes préférences',
-'tooltip-preview' => 'Prévisualiser les changements, merci de l\'utiliser avant de sauvegarder! [alt-p]',
-'tooltip-protect' => 'Protéger cette page [alt-"-"]',
-'tooltip-randompage' => 'Aller à une page au hasard [alt-x]',
-'tooltip-recentchanges' => 'La liste des modifications récentes dans le wiki. [alt-r]',
-'tooltip-recentchangeslinked' => 'Modifications récentes des pages liant à cette page [alt-c]',
-'tooltip-rss' => 'Flux RSS pour cette page',
 'tooltip-save' => 'Sauvegarder vos modifications [alt-s]',
 'tooltip-search' => 'Rechercher dans ce wiki',
-'tooltip-sitesupport' => 'Aider {{SITENAME}}',
-'tooltip-specialpage' => 'Ceci est une page spéciale, vous ne pouvez pas l\'éditer.',
-'tooltip-specialpages' => 'Liste de toutes les pages spéciales',
-'tooltip-talk' => 'Discussion sur l\'article [alt-t]',
-'tooltip-undelete' => 'Restaurer $1 éditions supprimées de cette page [alt-d]',
-'tooltip-unwatch' => 'Retirer cette page de votre liste de suivi',
-'tooltip-upload' => 'Copier sur le serveur des fichiers [alt-u]',
-'tooltip-userpage' => 'Ma page personelle',
-'tooltip-viewsource' => 'Cette page est protégée. Vous pouvez voir la source. [alt-e]',
-'tooltip-watch' => 'Ajouter cette page à votre liste de suivi',
-'tooltip-watchlist' => 'La liste de suivi est la liste des pages que vous monitorez. [alt-l]',
-'tooltip-whatlinkshere' => 'Liste de toutes les pages qui lient à ici [alt-b]',
 
 # Metadata
 'nocreativecommons' => "Les données méta 'Creative Commons RDF' sont désactivées sur ce serveur.",
@@ -1302,9 +1147,9 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 
 
 # Math
-'mw_math_png' => "Toujours produire une image PNG",  
-'mw_math_simple' => "HTML si très simple, autrement PNG", 
-'mw_math_html' => "HTML si possible, autrement PNG", 
+'mw_math_png' => "Toujours produire une image PNG",
+'mw_math_simple' => "HTML si très simple, autrement PNG",
+'mw_math_html' => "HTML si possible, autrement PNG",
 'mw_math_source' => "Laisser le code TeX original",
 'mw_math_modern' => "Pour les navigateurs modernes",
 'mw_math_mathml' => 'MathML',
@@ -1348,10 +1193,7 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'exif-orientation-6' => 'Tournée de 90° à droite',
 'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement',
 'exif-orientation-8' => 'Tournée de 90° à gauche',
-'exif-resolutionunit-2' => 'pouces',
-'exif-resolutionunit-3' => 'centimètres',
 'exif-componentsconfiguration-0' => 'n\'existe pas',
-
 
 
 // exifgps:
@@ -1369,7 +1211,6 @@ class LanguageFr extends LanguageUtf8 {
 		global $wgNamespaceNamesFr;
 		return $wgNamespaceNamesFr;
 	}
-
 
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFr, $wgSitename;
@@ -1394,9 +1235,6 @@ class LanguageFr extends LanguageUtf8 {
 		return $wgSkinNamesFr;
 	}
 
-
-	// Inherit userAdjust()
-
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -1414,29 +1252,10 @@ class LanguageFr extends LanguageUtf8 {
 		',' => "\xc2\xa0", // @bug 2749
 		'.' => ','
 	);
-	
+
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, $this->digitTransTable ) : $number;
-	}
-
-	function isRTL() {
-		return false;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesFr;
-		return $wgValidSpecialPagesFr;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesFr;
-		return $wgSysopSpecialPagesFr;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesFr;
-		return $wgDeveloperSpecialPagesFr;
 	}
 
 	function getMessage( $key ) {
@@ -1447,7 +1266,7 @@ class LanguageFr extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 }
 
 ?>

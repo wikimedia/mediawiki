@@ -7,12 +7,6 @@
 /** */
 require_once('LanguageUtf8.php');
 
-# See language.txt
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesEo = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Speciala',
@@ -53,62 +47,6 @@ require_once('LanguageUtf8.php');
 # Se eble, trovu Esperantajn libroservoj traserĉeblaj laŭ ISBN
 # $wgBookstoreListEo = ..
 
-
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-# *Ne ŝanĝu* la nomojn en la maldekstra kolumno, ili estas internaj
-# nomoj de programfunkcioj. La dekstra kolumno enhavas kelkajn
-# malplenaĵojn; ili restu tiel, por ke tiuj funkcioj ne listiĝu
-# en la listo da specialaj paĝoj.
-/* private */ $wgValidSpecialPagesEo = array(
-	'Userlogin'		=> '',
-	'Userlogout'	=> '',
-	'Preferences'	=> 'Ŝanĝu miajn preferojn',
-	'Watchlist'		=> 'Mian atentaron', # Listo de paĝoj, kiujn la uzulo elektis por atenti
-	'Recentchanges' => 'Lastaj ŝanĝoj al paĝoj',
-	'Upload'		=> 'Alŝutu bildojn kaj dosierojn',
-	'Imagelist'		=> 'Alŝutitaj dosieroj',
-	'Listusers'		=> 'Enskribitaj uzuloj',
-	'Statistics'	=> 'Statistiko pri la paĝaro',
-	'Randompage'	=> 'Hazarda paĝo',
-
-	'Lonelypages'	=> 'Paĝoj neligitaj',
-	'Unusedimages'	=> 'Bildoj neligitaj',
-	'Popularpages'	=> 'Plej vizitataj paĝoj',
-	'Wantedpages'	=> 'Plej dezirataj paĝoj',
-	'Shortpages'	=> 'Mallongaj artikoloj',
-	'Longpages'		=> 'Longegaj artikoloj',
-	'Newpages'		=> 'Novaj artikoloj',
-	'Ancientpages'	=> 'Antikvaj artikoloj',
-	'Allpages'		=> 'Ĉiu paĝo laŭ titolo',
-
-	'Ipblocklist'	=> 'Forbaritaj IP-adresoj',
-    'Maintenance' => 'Ripariloj kaj zorgiloj', # angle 'Maintenance page'
-	'Specialpages'  => '',
-	'Contributions' => '',
-    'Emailuser'     => '',
-	'Whatlinkshere' => '',
-	'Recentchangeslinked' => '',
-	'Movepage'		=> '',
-	'Booksources'	=> 'Eksteraj libroservoj',
-	'Export'	=> 'Elkopii per XML',
-	'Version'	=> 'Versionoj de la programaro',
-);
-
-/* private */ $wgSysopSpecialPagesEo = array(
-	'Blockip'		=> 'Forbaru fi-IP-adreson',
-	'Asksql'		=> 'Informomendu je la datumbazo',
-	'Undelete'		=> 'Restarigu forigitan paĝon'
-);
-
-# FIXME
-/* private */ $wgDeveloperSpecialPagesEo = array(
-	'Lockdb'		=> 'Forŝlosi datumaron',
-	'Unlockdb'		=> 'Repermesu ŝanĝon al datumaro',
-);
 
 /* private */ $wgAllMessagesEo = array(
 # User toggles
@@ -183,7 +121,6 @@ require_once('LanguageUtf8.php');
 'bugreports'	=> 'Raportu cimojn',
 'bugreportspage' => '{{ns:4}}:Raportu_cimojn',
 'sitesupport'   => 'Subteno',
-'sitesupportpage' => '', # FIXME
 'faq'			=> 'Oftaj demandoj',
 'faqpage'		=> '{{ns:4}}:Oftaj demandoj',
 'edithelp'		=> 'Helpo pri redaktado',
@@ -210,7 +147,7 @@ require_once('LanguageUtf8.php');
 'go'			=> 'Ek',
 'history'		=> 'Malnovaj versioj',
 'history_short'	=> 'Historio',
-'printableversion' => 'Presebla versio', 
+'printableversion' => 'Presebla versio',
 'editthispage'	=> 'Redaktu la paĝon',
 'deletethispage' => 'Forigu la paĝon',
 'protectthispage' => 'Protektu la paĝon', #FIXME: Ĉu 'gardu' / 'protekti' bonas /Bertilo
@@ -230,7 +167,6 @@ require_once('LanguageUtf8.php');
 'redirectedfrom' => '(Alidirektita el $1)',
 'lastmodified'	=> 'Laste redaktita je $1.',
 'viewcount'		=> 'Montrita $1-foje.',
-"gnunote"		=> "La enhavo de {{SITENAME}} disponeblas laŭ permesilo <a class='internal' href='$wgScript/GFDL'>GNU Free Documentation License</a>.",
 'printsubtitle' => '(El {{SERVER}})',
 'protectedpage' => 'Protektita paĝo', #FIXME: ĉu 'gardita' ktp?
 'administrators' => '{{ns:4}}:Administrantoj', # FIXME?
@@ -273,7 +209,7 @@ ne agnoskas la programaro de {{SITENAME}}',
 "dberrortext"	=> "Sintakseraro okazis en informpeto al la datumaro.
 Jen la plej laste provita informmendo:
 <blockquote><tt><nowiki>$1</nowiki></tt></blockquote>
-el la funkcio \"<tt>$2</tt>\". 
+el la funkcio \"<tt>$2</tt>\".
 MySQL redonis eraron  \"<tt>$3: $4</tt>\".",
 'noconnect'		=> 'Neeblis konekti al la datumbazo; estas ia erarao aŭ oni riparadas la servilon.',
 'nodb'			=> 'Neeblis elekti datumaron $1',
@@ -297,7 +233,7 @@ Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
 'filedeleteerror' => 'Neeblis forigi dosieron "$1".',
 'filenotfound'	=> 'Neeblis trovi dosieron "$1".',
 'unexpected'	=> 'Neatendita valuto: "$1"="$2".',
-'formerror'		=> 'Eraro: neeblis liveri formulon',	
+'formerror'		=> 'Eraro: neeblis liveri formulon',
 'badarticleerror' => 'Tiu ago ne povas esti aplikata al tiu artikolo.',
 'cannotdelete'  => 'Neeblis forigi la elektitan paĝon aŭ dosieron.',
 'badtitle'		=> 'Nevalida titolo',
@@ -453,7 +389,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b",
 'searchquery'	=> 'Serĉmendo "$1"',
 'badquery'		=> 'Misformita serĉmendo',
 'badquerytext'	=> 'Via serĉmendo ne estis plenumebla.
-Eble vi provis serĉi vorton malpli longan ol tri literoj. 
+Eble vi provis serĉi vorton malpli longan ol tri literoj.
 Tion la programo ne jam povas fari. Ankaŭ eblas, ke vi mistajpis la
 esprimon'.
 #", ekzemple \"fiŝoj kaj kaj skaloj\"".   # FIXME ? eblas
@@ -493,7 +429,7 @@ kaj vi povos ŝanĝi viajn preferojn.',
 'prefslogintext' => 'Vi ensalutis kiel "$1".
 Via interna identeconumero estas $2.',
 'prefsreset'	=> 'Preferoj reprenitaj el la registro.', #FIXME: Hmm...
-'qbsettings'	=> 'Preferoj pri ilaro', 
+'qbsettings'	=> 'Preferoj pri ilaro',
 'changepassword' => 'Ŝanĝu pasvorton',
 'skin'			=> 'Aspekto',
 'math'			=> 'Tradukas matematikaĵon',
@@ -597,12 +533,9 @@ forbarita.",
 ",
 'filename'		=> 'Dosiernomo',
 'filedesc'		=> 'Priskribo',
-"affirmation"	=> "Mi asertas, ke la laŭleĝa posedanto de la kopirajto
-de ĉi tiu dosiero konsentas eldoni ĝin laŭ la $1.",
 'copyrightpage' => '{{ns:4}}:Kopirajto',
 'copyrightpagename' => 'permesilo GFDL uzata por la {{SITENAME}}',
 'uploadedfiles'	=> 'Alŝutitaj dosieroj',
-'noaffirmation' => 'Vi nepre devas aserti, ke via alŝutaĵo ne malobeas la leĝojn de kopirajto.',
 'ignorewarning'	=> 'Malatentu averton kaj tamen konservu la dosieron.',
 'minlength'		=> 'Dosiernomo devas havi pli ol du literojn.',
 'badfilename'	=> 'Dosiernomo estis ŝanĝita al "$1".',
@@ -709,7 +642,7 @@ Tio ne estus enkalkutita en la jena listo.",
 "booksourcetext" => "Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
 kaj/aŭ informumos pri la libro ligita.
 La {{SITENAME}} ne estas komerce ligita al tiuj vendejoj, kaj la listo ne estu
-komprenata kiel rekomendo aŭ reklamo.", 
+komprenata kiel rekomendo aŭ reklamo.",
 'alphaindexline' => '$1 ĝis $2',
 
 # Email this user
@@ -903,18 +836,6 @@ Bonvolu certigu, ke vi efektive intencas tion fari.',
 <br />Ne forgesu malŝlosi ĝin post kiam vi finos la riparadon.',
 'unlockdbsuccesstext' => 'La datumaro de {{SITENAME}} estas malŝlosita.',
 
-# SQL query
-#
-'asksql'		=> 'SQL-informpeto',
-'asksqltext'	=> 'Per la jena formulo vi povas rekte peti la datumbazon
-per informpeto SQL-a.
-Tio povas ege ŝarĝi la servilon, do bonvolu uzi tiun eblon ŝpare kaj singarde.',
-'sqlquery'		=> 'Tajpu informpeton',
-'querybtn'		=> 'Petu!',
-'selectonly'	=> 'Informpetojn krom "SELECT" estas limigitaj je
-{{SITENAME}}-programistoj.',
-'querysuccessful' => 'Informpeto sukcesis',
-
 # Move page
 #
 'movepage'		=> 'Movu paĝon',
@@ -961,12 +882,12 @@ Bonvolu permane kunigi ilin.',
 'talkpagemoved' => 'Ankaŭ la diskutpaĝo estas movita.',
 'talkpagenotmoved' => 'La diskutpaĝo <strong>ne</strong> estas movita.',
 # Math
-	'mw_math_png' => 'Ĉiam krei PNG-bildon',
-	'mw_math_simple' => 'HTMLigu se simple, aŭ PNG',
-	'mw_math_html' => 'HTMLigu se eble, aŭ PNG',
-	'mw_math_source' => 'Lasu TeX-fonton (por tekstfoliumiloj)',
-	'mw_math_modern' => 'Rekomendita por modernaj foliumiloj',
-	'mw_math_mathml' => 'MathML seeble (provizora)',
+'mw_math_png' => 'Ĉiam krei PNG-bildon',
+'mw_math_simple' => 'HTMLigu se simple, aŭ PNG',
+'mw_math_html' => 'HTMLigu se eble, aŭ PNG',
+'mw_math_source' => 'Lasu TeX-fonton (por tekstfoliumiloj)',
+'mw_math_modern' => 'Rekomendita por modernaj foliumiloj',
+'mw_math_mathml' => 'MathML seeble (provizora)',
 
 );
 
@@ -1010,24 +931,9 @@ class LanguageEo extends LanguageUtf8 {
 
 		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
 		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  ' ' . 
+		  ' ' .
 		  substr( $ts, 0, 4 );
 		return $d;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEo;
-		return $wgValidSpecialPagesEo;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEo;
-		return $wgSysopSpecialPagesEo;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEo;
-		return $wgDeveloperSpecialPagesEo;
 	}
 
 	function getMessage( $key ) {
@@ -1080,12 +986,12 @@ class LanguageEo extends LanguageUtf8 {
 
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
-		
+
 		# Check for X-system backwards-compatibility URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-		
+
 		if($ishigh and !$isutf) {
 			# Assume Latin1
 			$s = utf8_encode( $s );
@@ -1113,7 +1019,7 @@ class LanguageEo extends LanguageUtf8 {
 		$wgOutputEncoding = 'x';
 		$wgEditEncoding = '';
 	}
-	
+
 }
 
 ?>

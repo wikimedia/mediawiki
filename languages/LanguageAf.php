@@ -38,56 +38,6 @@ require_once( 'LanguageUtf8.php' );
 	'cologneblue' => "Keulen blou",
 ) + $wgSkinNamesEn;
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesAf = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Wysig my gebruikersvoorkeure.",
-	"Watchlist"		=> "My gunstelinge.",
-	"Recentchanges" => "Onlangs gewysig.",
-	"Upload"		=> "Laai prente.",
-	"Imagelist"		=> "Lys van prente.",
-	"Listusers"		=> "Geregistreerde gebruikers.",
-	"Statistics"	=> "Werf statistieke.",
-	"Randompage"	=> "Lukrake artikel.",
-
-	"Lonelypages"	=> "",
-	"Unusedimages"	=> "",
-	"Popularpages"	=> "",
-	"Wantedpages"	=> "Mees gevraagde artikels.",
-	"Shortpages"	=> "Kort artikels.",
-	"Longpages"		=> "Lang artikels.",
-	"Newpages"		=> "Nuwe artikels.",
-	"Ancientpages"	=> "Old articles",
-	"Allpages"		=> "Alle blaaie volgens titel.",
-
-	"Ipblocklist"	=> "Geblokkeerde IP-adresse.",
-	"Maintenance" => "Instandhoudingsbladsy.",
-	"Specialpages"  => "Spesiale bladsye.",
-	"Contributions" => "Bydraes.",
-	"Emailuser"		=> "E-pos gebruiker.",
-	"Whatlinkshere" => "Wat skakel hierheen?",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "Eksterne boekbronne.",
-	"Export"		=> "XML export",
-	"Version"		=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesAf = array(
-	"Blockip"		=> "Blokkeer 'n IP-adres.",
-	"Asksql"		=> "SQL.",
-	"Undelete"		=> "Kyk na en herstel geskrapte bladsye."
-);
-
-/* private */ $wgDeveloperSpecialPagesAf = array(
-	"Lockdb"		=> "Laat toe dat die databasis slegs gelees word.",
-	"Unlockdb"		=> "Herstel databasis skryfregte.",
-);
-
 /* private */ $wgAllMessagesAf = array(
 # User Toggles
 
@@ -104,7 +54,7 @@ require_once( 'LanguageUtf8.php' );
 "tog-watchdefault" => "Lys nuwe en gewysigde bladsye.",
 "tog-minordefault" => "Merk alle wysigings automaties as klein by verstek.",
 "tog-previewontop" => "Wys voorskou bo wysigingsboks.",
-	
+
 # Dates
 'sunday' => 'Sondag',
 'monday' => 'Maandag',
@@ -157,7 +107,7 @@ require_once( 'LanguageUtf8.php' );
 "edithelppage"	=> "{{ns:4}}:Hoe_word_'n_bladsy_gewysig",
 "cancel"		=> "Kanselleer",
 "qbfind"		=> "Vind",
-"qbbrowse"		=> "Snuffel", 
+"qbbrowse"		=> "Snuffel",
 "qbedit"		=> "Wysig",
 "qbpageoptions" => "Bladsy opsies",
 "qbpageinfo"	=> "Bladsy inligting",
@@ -190,7 +140,6 @@ require_once( 'LanguageUtf8.php' );
 "redirectedfrom" => "(Van $1 aangestuur.)",
 "lastmodified"	=> "Laaste wysiging op $1.",
 "viewcount"		=> "Hierdie bladsy is al $1 keer aangevra.",
-"gnunote" => "Alle teks is beskikbaar onder die terme van die <a class=internal href='http://en.wikipedia.org/wiki/GNU_FDL'>GNU gratis dokumentasielisensie</a>.",
 "printsubtitle" => "(Van {{SERVER}})",
 "protectedpage" => "Beskermde bladsy",
 "administrators" => "{{ns:4}}:Administreerders",
@@ -207,11 +156,11 @@ require_once( 'LanguageUtf8.php' );
 "sitesubtitle"	=> "Die gratis ensiklopedie", #fixme
 "retrievedfrom" => "Ontsluit van \"$1\"",
 "newmessages" => "Jy het $1.",
-"newmessageslink" => "nuwe boodskappe", 
+"newmessageslink" => "nuwe boodskappe",
 
 # Main script and global functions
 #
-"nosuchaction"	=> "Ongeldige aksie", 
+"nosuchaction"	=> "Ongeldige aksie",
 "nosuchactiontext" => "Onbekende aksie deur die adres gespesifeer",
 "nosuchspecialpage" => "Ongeldige spesiale bladsy",
 "nospecialpagetext" => "Ongeldige spesiale bladsy gespesifeer.",
@@ -228,7 +177,7 @@ MySQL foutboodskap \"<tt>$3: $4</tt>\".",
 "noconnect"		=> "Kon nie met databasis op $1 konnekteer nie",
 "nodb"			=> "Kon nie databasis $1 selekteer nie",
 "readonly"		=> "Databasis gesluit",
-"enterlockreason" => "Rede vir die sluiting, 
+"enterlockreason" => "Rede vir die sluiting,
 en beraming van wanneer ontsluiting sal plaas vind",
 "readonlytext"	=> "Die {{SITENAME}} databasis is tans gesluit vir nuwe
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
@@ -244,11 +193,11 @@ Raporteer die adres asseblief aan enige administrateur.",
 "filedeleteerror" => "Kon nie lêer \"$1\" skrap nie.",
 "filenotfound"	=> "Kon nie lêer \"$1\" vind nie.",
 "unexpected"	=> "Onverwagte waarde: \"$1\"=\"$2\".",
-"formerror"		=> "Fout: kon vorm nie stuur nie", 
+"formerror"		=> "Fout: kon vorm nie stuur nie",
 "badarticleerror" => "Die aksie kon nie op hierdie bladsy uitgevoer word nie.",
 "cannotdelete"	=> "Kon nie die bladsy of prent skrap nie, iemand anders het dit miskien reeds geskrap.",
 "badtitle"		=> "Ongeldige titel",
-"badtitletext"	=> "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of 
+"badtitletext"	=> "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
 "perfdisabled" => "Hierdie funksie is afgeskakel tydens spitstoegangsure vir verrigtingsredes, probeer weer tussen 02:00z en 14:00z (Universeel Gekoördineerde Tyd - UGT).",
 
@@ -258,7 +207,7 @@ Raporteer die adres asseblief aan enige administrateur.",
 "logouttext"	=> "Jy is nou uitgeteken, en kan aanhou om
 {{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.\n",
 
-"welcomecreation" => "<h2>Welkom, $1.</h2><p>Jou rekening is geskep; 
+"welcomecreation" => "<h2>Welkom, $1.</h2><p>Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.",
 
 "loginpagetitle" => "Teken in",
@@ -269,11 +218,6 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.",
 "remembermypassword" => "Onthou my wagwoord oor sessies.",
 "loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br />Probeer weer.",
 "alreadyloggedin" => "<font color=red><b>Gebruiker $1, jy is reeds ingeteken.</b></font><br />\n",
-
-"areyounew"		=> "Indien jy nuut is by {{SITENAME}}, en ingeteken,
-voer jou gebruikersnaam en wagwoord in.
-Jou e-pos is opsioneel; indien jy jou wagwoord vergeet, kan jy vra dat dit na
-die e-pos adres gestuur word.<br />\n",
 
 "login"			=> "Teken in",
 "userlogin"		=> "Teken in",
@@ -295,7 +239,7 @@ Maak seker dit is reg gespel, of gebruik die vorm hier onder om 'n nuwe rekening
 "mailmypassword" => "Stuur my wagwword na my e-pos adres.",
 "passwordremindertitle" => "Wagwoordwenk van {{SITENAME}}",
 "passwordremindertext" => "Iemand (waarskynlik jy, van IP-adres $1)
-het gevra dat ons vir jou 'n nuwe {{SITENAME}} wagwoord stuur. 
+het gevra dat ons vir jou 'n nuwe {{SITENAME}} wagwoord stuur.
 Die wagwoord vir gebruiker \"$2\" is nou \"$3\".
 Teken asseblief in en verander jou wagwoord.",
 "noemail"		=> "Daar is geen e-pos adres vir gebruiker \"$1\" nie.",
@@ -304,30 +248,30 @@ Teken asseblief in na jy dit ontvang het.",
 
 # Edit pages
 #
-"summary"		=> "Opsomming", 
-"minoredit"		=> "Klein wysiging", 
+"summary"		=> "Opsomming",
+"minoredit"		=> "Klein wysiging",
 "watchthis"		=> "Hou bladsy dop",
 "savearticle"	=> "Stoor bladsy",
 "preview"		=> "Voorskou",
 "showpreview"	=> "Wys voorskou",
 "blockedtitle"	=> "Gebruiker is geblokkeer",
 "blockedtext"	=> "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br />''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak 
+<br />''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak
 om dit te bespreek.",
-"newarticle"	=> "(Nuut)", 
-"newarticletext" => 
+"newarticle"	=> "(Nuut)",
+"newarticletext" =>
 "Die bladsy waarna geskakel is, bestaan nie.
-Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{ns:4}}:Help|hulp bladsy]] 
+Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{ns:4}}:Help|hulp bladsy]]
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
-"anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul [[IP-adres]] gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.'' ", 
+"anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul [[IP-adres]] gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.'' ",
 "noarticletext" => "(Daar is tans geen inligting vir hierdie artikel nie.)",
 "updated"		=> "(Gewysig)",
 "note"			=> "<strong>Nota:</strong> ",
 "previewnote"	=> "Onthou dat dit slegs 'n voorskou is en nog nie gestoor is nie!",
 "previewconflict" => "Hierdie voorskou reflekteer die teks in die boonste invoerboks soos dit sal lyk as jy dit stoor.",
 "editing"		=> "Besig om $1 te wysig",
-"editconflict"	=> "Wysigingskonflik: $1", 
+"editconflict"	=> "Wysigingskonflik: $1",
 "explainconflict" => "Iemand anders het hierdie bladsy gewysig sedert jy dit begin verander het.
 Die boonste invoerboks het die teks wat tans bestaan.
 Jou wysigings word in die onderste invoerboks gewys.
@@ -338,7 +282,7 @@ Jy sal jou wysigings moet saamsmelt met die huidige teks.
 "editingold"	=> "<strong>Waarskuwing: jy is besig om 'n ou weergawe van hierdie bladsy te wysig.
 As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</strong>",
 "yourdiff"		=> "Wysigings",
-"copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder 
+"copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder
 die ''GNU Free Documentation License'' (lees $1 vir meer inligting).
 As jy nie wil hê dat jou werk ongemagtig gewysig of versprei mag word nie, moet jy dit nie hier indien nie.<br />
 Jy belowe ons ook dat jy dit self geskryf het, of verkry het van 'n bron wat toelaat dat dit hier mag wees.<br />
@@ -351,7 +295,7 @@ kan probleme hê met die wysiging va blaaie langer as 32 kilogrepe. Breek assebl
 "revhistory"	=> "Wysigingsgeskiedenis",
 "nohistory"		=> "Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.",
 "revnotfound"	=> "Wysiging nie gevind nie.",
-"revnotfoundtext" => "Die ou wysiging waarvoor jy gevra het, kon nie gevind word nie. Maak asseblief seker dat die adres wat jy gebruik 
+"revnotfoundtext" => "Die ou wysiging waarvoor jy gevra het, kon nie gevind word nie. Maak asseblief seker dat die adres wat jy gebruik
 het om toegang te kry tot hierdie bladsy, reg is.\n",
 "loadhist"		=> "Besig om bladsy wysigingsgeskiedenis te laai.",
 "currentrev"	=> "Huidige wysiging",
@@ -389,7 +333,7 @@ en teks in $3 artikels.",
 "nextn"			=> "volgende $1",
 "viewprevnext"	=> "Kyk na ($1) ($2) ($3).",
 "showingresults" => "Onder <b>$1</b> resultate, beginende met #<b>$2</b>.",
-"nonefound"		=> "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene 
+"nonefound"		=> "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
 woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde
 bevat, word gewys).",
 "powersearch" => "Soek",
@@ -424,12 +368,12 @@ Jou internet ID-nommer is $2.",
 "retypenew"		=> "Tik nuwe wagwoord weer in",
 "textboxsize"	=> "Grootte van invoerboks",
 "rows"			=> "Rye",
-"columns"		=> "Kolomme", 
+"columns"		=> "Kolomme",
 "searchresultshead" => "Soekresultaat voorkeure",
 "resultsperpage" => "Aantal resultate om te wys",
 "contextlines"	=> "Aantal lyne per resultaat",
 "contextchars"	=> "Karakters konteks per lyn",
-"stubthreshold" => "Drempel vir verkorte artikels", 
+"stubthreshold" => "Drempel vir verkorte artikels",
 "recentchangescount" => "Aantal titels in onlangse wysigings",
 "savedprefs"	=> "Jou voorkeure is gestoor.",
 "timezonetext"	=> "Aantal ure wat plaaslike tyd verskil van UGT.",
@@ -441,7 +385,7 @@ Jou internet ID-nommer is $2.",
 #
 "changes" => "wysigings",
 "recentchanges" => "Onlangse wysigings",
-"recentchangestext" => "Volg wysigings wat onlangs verander het, op 
+"recentchangestext" => "Volg wysigings wat onlangs verander het, op
 [[{{ns:4}}:Welkom nuwelinge|Welkom nuwelinge]]!
 Kyk asb. ook na hierdie bladsye: [[{{ns:4}}:FAQ|{{ns:4}} FAQ]],
 [[{{ns:4}}:beleid|beleid]]
@@ -449,7 +393,7 @@ Kyk asb. ook na hierdie bladsye: [[{{ns:4}}:FAQ|{{ns:4}} FAQ]],
 [[{{ns:4}}:neutrale standpunt|neutrale standpunt]]),
 en [[{{ns:4}}:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
 
-As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie 
+As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie
 materiaal byvoeg wat deur [[{{ns:4}}:kopiereg|kopiereg]] beperk word nie.
 Die wetlike onderhewigheid kan die projek skade aandoen.", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
@@ -511,11 +455,9 @@ Alle tye is bedienertyd (UGT).
 ",
 "filename"		=> "Lêernaam",
 "filedesc"		=> "Opsomming",
-"affirmation"	=> "Ek bevestig dat die kopiereghouer van hierdie lêer toestem om dit te lisensieer volgens die terme van die $1.",
 "copyrightpage" => "{{ns:4}}:kopiereg",
 "copyrightpagename" => "{{ns:4}} kopiereg",
 "uploadedfiles"	=> "Gelaaide lêers",
-"noaffirmation" => "Jy moet bevestig dat die laai van jou lêer geen kopieregte skend nie.",
 "ignorewarning"	=> "Ignoreer waarskuwing en stoor lêer.",
 "minlength"		=> "Prentname moet ten minste drie letters lank wees.",
 "badfilename"	=> "Prentnaam is verander na \"$1\".",
@@ -726,7 +668,6 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 "ipbreason"		=> "Rede",
 "ipbsubmit"		=> "Blok hierdie adres",
 "badipaddress"	=> "Die IP-adres is nie in die regte formaat nie.",
-"noblockreason" => "Jy moet 'n rede vir die blokkering gee.",
 "blockipsuccesssub" => "Blokkering het geslaag",
 "blockipsuccesstext" => "Die IP-adres \"$1\" is geblok.
 <br />Kyk na [[Special:Ipblocklist|IP block list]] vir 'n oorsig van blokkerings.",
@@ -759,23 +700,12 @@ Bevestig asseblief dat dit is wat jy wil doen.",
 <br />Onthou om dit te ontsluit wanneer jou onderhoud afgehandel is.",
 "unlockdbsuccesstext" => "Die {{SITENAME}} databasis is ontsluit.",
 
-# SQL query
-#
-"asksql"		=> "SQL navraag",
-"asksqltext"	=> "Gebruik die vorm hier onder om 'n navraag direk op die {{SITENAME}} databasis te doen.
-Gebruik enkel aanhaligstekens ('soos hier') om karkaterkonstantes te begrens.
-Dit kan dikwels 'n groot lading op die bediener plaas, so gebruik hierdie funksie asseblief so min as moontlik.",
-"sqlquery"		=> "Tik navraag in",
-"querybtn"		=> "Stuur navraag",
-"selectonly"	=> "Net {{SITENAME}} prgrammeerders mag navrae doen wat SQL-sleutelwoorde anders as \"SELECT\" bevat.",
-"querysuccessful" => "Navraag suksesvol",
-
 # Move page
 #
 "movepage"		=> "Skuif bladsy",
 "movepagetext"	=> "Met die vorm hier onder kan jy 'n bladsy hernoem en so al sy geskiedenis na die nuwe naam skuif.
 Die ou titel sal 'n aanstuurbladsy na die nuwe titel word.
-Skakels na die ou bladsytitel sal nie verander nie; maak seker dat jy 
+Skakels na die ou bladsytitel sal nie verander nie; maak seker dat jy
 check vir dubbele of gebrekte aansture.
 Dis jou verantwoordelikheid om seker te maak dat skakels steeds wys waarheen hulle moet.
 
@@ -833,24 +763,6 @@ class LanguageAf extends LanguageUtf8 {
 		return $wgSkinNamesAf;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesAf;
-		return $wgValidSpecialPagesAf;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesAf;
-		return $wgSysopSpecialPagesAf;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesAf;
-		return $wgDeveloperSpecialPagesAf;
-	}
-
 	function getMessage( $key )
 	{
 		global $wgAllMessagesAf;
@@ -865,7 +777,7 @@ class LanguageAf extends LanguageUtf8 {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
 	}
-							
+
 }
 
 ?>

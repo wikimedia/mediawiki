@@ -9,13 +9,6 @@ require_once( "LanguageUtf8.php" );
 # NOTE: cweri après "NOTE:" po des racsegnes so des ratournaedjes
 # k' i gn a.
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesWa = array(
 	NS_MEDIA          => "Media", /* Media */
 	NS_SPECIAL        => "Sipeciås", /* Special */
@@ -23,7 +16,7 @@ require_once( "LanguageUtf8.php" );
 	NS_TALK           => "Copene", /* Talk */
 	NS_USER	          => "Uzeu", /* User */
 	NS_USER_TALK      => "Uzeu_copene", /* User_talk */
-	NS_PROJECT        => "Wikipedia", /* Wikipedia */ 
+	NS_PROJECT        => "Wikipedia", /* Wikipedia */
 	NS_PROJECT_TALK => "Wikipedia_copene", /* Wikipedia_talk */
 	NS_IMAGE          => "Imådje", /* Image */
 	NS_IMAGE_TALK     => "Imådje_copene", /* Image_talk */
@@ -41,73 +34,10 @@ require_once( "LanguageUtf8.php" );
 	"Nole bår", "Aclawêye a hintche", "Aclawêye a droete", "Flotante a hintche"
 );
 
-/* private */ $wgSkinNamesWa = array(
-	"Sitandård", "Nostaldjike", "Bleu Cologne", "Paddington", "Montparnasse"
-);
-
-
 /* private */ $wgDateFormatsWa = array( /* cwè fé chal ??? */
 #	"Nole preferince",
 );
 
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-####
-#### Li no des pådjes ni s' pout nén (co?) ratourner
-#### Name of the pages is not (yet?) translatable
-####
-/* private */ $wgValidSpecialPagesWa = array(
-	"Userlogin"	=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Candjî mes preferinces",
-	"Watchlist"	=> "Mes pådjes shuvowes",
-	"Recentchanges" => "Dierins candjmints",
-	"Upload"	=> "Eberweter des imådjes",
-	"Imagelist"	=> "Djivêye des imådjes",
-	"Listusers"	=> "Uzeus eredjîstrés",
-	"Statistics"	=> "Sitatistikes del waibe",
-	"Randompage"	=> "Årtike a l'&nbsp;astcheyance",
-
-	"Lonelypages"	=> "Årtikes ôrfulins",
-	"Unusedimages"	=> "Imådjes ôrfulinnes",
-	"Popularpages"	=> "Årtikes les pus léjhous",
-	"Wantedpages"	=> "Årtikes les pus rcwerous",
-	"Shortpages"	=> "Årtikes les pus courts",
-	"Longpages"	=> "Årtikes les pus longous",
-	"Newpages"	=> "Årtikes novelmint askepyîs",
-	"Ancientpages"	=> "Årtikes les pus vîs",
-	"Intl"		=> "Loyéns eterlingaedjes",
-	"Allpages"	=> "Totes les påjdes reléjhowes sol tite",
-
-	"Ipblocklist"	=> "Uzeus/adresses IP di blokés",
-	"Maintenance"	=> "Pådje di manaedjmint",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"	=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"	=> "",
-	"Booksources"	=> "External book sources", # co a fé
-	"Categories"	=> "Categoreyes des pådjes",
-	"Export"	=> "XML page export", # co a fé
-	
-);
-
-/* private */ $wgSysopSpecialPagesWa = array(
-	"Makesysop"		=> "Diner a èn uzeu on livea di manaedjeu",
-	"Blockip"		=> "Bloker èn uzeu/ene adresse IP",
-	"Asksql"		=> "Query the database", # co a fé
-	"Undelete"		=> "Rapexhî des disfacêyès pådjes"
-);
-
-/* private */ $wgDeveloperSpecialPagesWa = array(
-	"Lockdb"		=> "Mete li båze di dnêyes e môde seulmint-lére",
-	"Unlockdb"		=> "Rimete l'&nbsp;accès po scrire al båze di dnêyes",
-	"Debug"			=> "Informåcion di disbugaedje"
-);
 
 /* private */ $wgAllMessagesWa = array(
 # User Toggles
@@ -115,7 +45,7 @@ require_once( "LanguageUtf8.php" );
 "tog-underline" => "Sorlignî les loyéns",
 "tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Djustifyî les hagnons",
-"tog-hideminor" => "Èn nén moster les <i>dierins candjmints</i> mineurs", 
+"tog-hideminor" => "Èn nén moster les <i>dierins candjmints</i> mineurs",
 "tog-usenewrc" => "Ramidrés <i>dierins candjmints</i> (nén tos les betchteus)",
 "tog-numberheadings" => "Limerotaedje otomatike des tites",
 "tog-editondblclick" => "Candjî les pådjes avou on dobe-clitch (JavaScript)",
@@ -182,7 +112,6 @@ require_once( "LanguageUtf8.php" );
 "bugreports"	=> "Rapoirts di bugs",
 "bugreportspage" => "Wikipedia:Rapoirts di bugs",
 "sitesupport"	=> "Ecwårlaedje",
-"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "FAQ", # co a fé
 "faqpage"		=> "Wikipedia:FAQ", # co a fé
 "edithelp"		=> "Aidance",
@@ -310,7 +239,7 @@ Cweraedje: $2
 ",
 "viewsource" => "Vey côde sourdant",
 "protectedtext" => "Cisse pådje chal a stî protedjeye siconte des candjmints;
-i gn a sacwantès råjhons po çoula, loukîz 
+i gn a sacwantès råjhons po çoula, loukîz
 [[{{ns:4}}:Pådje protedjeye]] s'&nbsp;i vs plait.
 
 Mins nerén vos ploz vey eyet copyî li côde sourdant del pådje:",
@@ -336,14 +265,6 @@ Vosse conte a stî ahivé.
 "remembermypassword" => "Rimimbrer m'&nbsp;sicret inte les sessions.",
 "loginproblem"	=> "<b>Åk n'&nbsp;a nén stî tot vs elodjant.</b><br />Rissayîz!",
 "alreadyloggedin" => "<font color=red><b>Uzeu $1, vos estoz ddja elodjî!</b></font><br />",
-
-"areyounew"		=> "Si vos estoz novea so {{SITENAME}} et ki vos vloz
-on conte d'&nbsp;uzeu, tapez on no no d'&nbsp;uzeu ki vos vloz eployî,
-et poy deus côps on on scret (li minme, on côp dins tchake boesse).
-Come rawete vos ploz (mins c'&nbsp;est nén oblidjî) dner voste adresse
-emile; ça vént a pont si vos rovyîz vosse sicret, po dmander k'&nbsp;on
-vs evoye èn ôte pa emile.<br />\n",
-
 "login"			=> "S'&nbsp;elodjî",
 "loginprompt"		=> "Vos dvoz permete les coûkes po vs elodjî so Wikipedia.",
 "userlogin"		=> "S' elodjî", # pont d' "nbsp" chal
@@ -356,11 +277,11 @@ vs evoye èn ôte pa emile.<br />\n",
 "userexists"	=> "Li no d'&nbsp;uzeu ki vs avoz tchoezi est ddja eployî. Tchoezixhoz è èn ôte s'&nbsp;i vs plait.",
 "youremail"		=> "Vost emile*",
 "yournick"		=> "Vosse no metou (po les sinateures)",
-"emailforlost"	=> "Les tchamps avou ene sitoele (*) 
+"emailforlost"	=> "Les tchamps avou ene sitoele (*)
 èn sont nén obligatweres.<br />
-L'&nbsp;adresse emile, si vos ndè dnez ene, vos permetrè di rçure et 
-d'&nbsp;evoyî des emiles å dtruviè di cisse waibe chal, sins vos dveur 
-diner voste adresse emile, çoula vos srè eto foirt ahessåve si vos rovyîz 
+L'&nbsp;adresse emile, si vos ndè dnez ene, vos permetrè di rçure et
+d'&nbsp;evoyî des emiles å dtruviè di cisse waibe chal, sins vos dveur
+diner voste adresse emile, çoula vos srè eto foirt ahessåve si vos rovyîz
 måy vosse sicret (on novea scret vos pôrè-st esse evoyî pa emile).<br />
 Vosse vraiy no, si vos l'&nbsp;dinez, pôrè esse eployî po mete a costé
 di vos ovraedjes.",
@@ -421,7 +342,7 @@ If this happens to you, please email an administrator, using an AOL email addres
 "Vos avoz clitchî so on loyén viè ene pådje ki n'&nbsp;egzistêye nén co.
 Mins '''vos''' l'&nbsp;poloz askepyî! Po çoula, vos n'&nbsp;avoz k'&nbsp;a
 cmincî a taper vosse tecse dins l'&nbsp;boesse di tecse chal pa dzo
-(alez vey li [[Wikipedia:Aidance|pådje d'&nbsp;aidance]] po pus 
+(alez vey li [[Wikipedia:Aidance|pådje d'&nbsp;aidance]] po pus
 d'&nbsp;informåcion).
 Si vos n'&nbsp;voloz nén scrire cisse pådje chal, clitchîz simplumint
 sol boton '''En erî''' di vosse betchteu waibe po rivni al pådje di dvant.",
@@ -479,7 +400,7 @@ Vos dvrîz tuzer a pårti l'&nbsp;pådje e pus ptits bokets.</strong>",
 Do côp, vos n'&nbsp;såroz schaper vos candjmints asteure; motoit vos dvrîz copyî et aclaper l'&nbsp;tecse dins on fitchî da vosse pol poleur rimete sol {{SITENAME}} pus tård.</strong>",
 "protectedpagewarning" => "<strong>ASTEME: Cisse pådje chal a stî protedjeye siconte
 des candjmints, seulmint les uzeus avou èn accès di manaedjeu el polèt candjî.
-Acertinez vs ki vos shuvoz les 
+Acertinez vs ki vos shuvoz les
 [[Project:Rîles_po_les_pådjes_protedjeyes|rîles po les pådjes
 protedjeyes]].</strong>",
 
@@ -541,7 +462,7 @@ $2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9",
 pol moumint, cåze ki l'&nbsp;sierveu est fortcherdjî.
 Tot ratindant, vos ploz eployî Google po fé les rcweraedjes,
 mins çoula pout esse ene miete vî.</p>
-  
+
 <!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
@@ -554,7 +475,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT type=submit name=btnG VALUE=\"Cweri avou Google\">
 <font size=-1>
 <input type=hidden name=domains value=\"{$wgServer}\"><br />
-<input type=radio name=sitesearch value=\"\"> sol waibe 
+<input type=radio name=sitesearch value=\"\"> sol waibe
 <input type=radio name=sitesearch value=\"{$wgServer}\" checked> so {$wgServer} <br />
 <input type='hidden' name='hl' value='wa'>
 <input type='hidden' name='ie' value='$2'>
@@ -577,7 +498,7 @@ Vosse divintrin idintifiant est l'&nbsp;limero $2.
 Loukîz a [[Wikipedia:Aidance so les preferinces]] po saveur çou k'&nbsp;c'&nbsp;est tchaeke des tchuzes des preferinces des uzeus.",
 "prefsreset"	=> "Les preferinces ont stî rmetowes come d'&nbsp;avance a
 pårti des wårdêyès valixhances.",
-"qbsettings"	=> "Apontiaedjes pol bår di menu", 
+"qbsettings"	=> "Apontiaedjes pol bår di menu",
 "changepassword" => "Candjî l'&nbsp;sicret",
 "skin"			=> "Pea",
 "math"			=> "Håynaedje des formules matematikes",
@@ -648,7 +569,7 @@ dzo Wikipedia.",
 vos pleur eberweter des fitchîs.",
 "uploaderror"	=> "Aroke d'&nbsp;eberwetaedje",
 "uploadtext"	=> "'''ASTEME!''' Divant d'&nbsp;eberweter on
-fitchî chal, léjhoz et s'&nbsp;vos asseurer di bén shure 
+fitchî chal, léjhoz et s'&nbsp;vos asseurer di bén shure
 les [[Project:Rîles_po_l'_eployaedje_des_imådjes|rîles po l'&nbsp;eployaedje des imådjes]]
 di Wikipedia.
 
@@ -658,7 +579,7 @@ Dj'&nbsp;ô bén ki, a moens ki vos vôrîz mete a djoû on fitchî tot
 l'&nbsp;replaeçant pa on pus noû, vos dvrîz tofer vos acertiner
 k'&nbsp;i n'&nbsp;a nén ddja on fitchî do minme no.
 
-Po håyner ou cweri des imådjes k'&nbsp;ont ddja stî rçuvowes, 
+Po håyner ou cweri des imådjes k'&nbsp;ont ddja stî rçuvowes,
 alez sol [[Sipeciås:Imagelist|djivêye des imådjes dedja eberwetêyes]].
 Les eberwetaedjes et disfaçaedjes sont metous èn on
 [[Project:Djournå_des_eberwetaedjes|djournå des eberwetaedjes]].
@@ -679,7 +600,7 @@ londjin.
 Les cognes di fitchîs k'&nbsp;on-z a ptchî c'&nbsp;est li JPEG po
 les imådjes foto, eyet li PNG po les dessins, mapes, drapeas, imådjetes...
 et li OGG po les sons.
-S'&nbsp;i vs plait, dinez a vosse fitchî on no ki dit bén çou 
+S'&nbsp;i vs plait, dinez a vosse fitchî on no ki dit bén çou
 k'&nbsp;c'&nbsp;est, c'&nbsp;est pus åjhey insi.
 Po håyner l'&nbsp;imådje dins èn årtike, eployîz on loyén del
 foûme '''<nowiki>[[imådje:fitchî.jpg]]</nowiki>''' ou
@@ -701,14 +622,9 @@ Totes les eures sont metowes e tins univiersel (UTC).
 "filedesc"		=> "Discrijhaedje",
 "filestatus"		=> "Abondroets ey eployaedje",
 "filesource"		=> "Sourdant",
-"affirmation"	=> "Dj'&nbsp;acertinêye ki l'&nbsp;djin k'&nbsp;a les
-abondroets po ci fitchî chal est d'&nbsp;acoird di l'&nbsp;eplaidî dizo
-les condicions del $1.",
 "copyrightpage" => "Wikipedia:Abondroets",
 "copyrightpagename" => "Abondroets Wikipedia",
 "uploadedfiles"	=> "Fitchîs eberwetés",
-"noaffirmation" => "Vos dvoz acertiner ki l'&nbsp;fitchî ki vos eberwetez
-pout bén esse eployî sins aler siconte des abondroets do fitchî.",
 "ignorewarning"	=> "Passer houte des adviertixhmints eyet schaper tot l'&nbsp;minme li fitchî.",
 "minlength"		=> "Les imådjes divèt aveur des nos di pol moens troes letes.",
 "badfilename"	=> "Li no d'&nbsp;l'&nbsp;imådje a stî candjî a «$1».",
@@ -765,7 +681,7 @@ Dj'&nbsp;ô bén k'&nbsp;i gn a ene moyene di <b>$5</b> candjmints par pådje,
 eyet <b>$6</b> riwaitaedjes po on candjmint.",
 "userstatstext" => "I gn a <b>$1</b> uzeus d'&nbsp;eredjîstrés.
 <b>$2</b> di zels sont eto des manaedjeus (riloukîz a $3).
-                                                                                
+
 <p><h2>Des ôtes pus spepieusès statistikes</h2><p>
 Des pus spepieusès statistikes åd dilong des moes sont
 <a href='/stats/WA/Sitemap.htm' class='internal'>chal</a>.
@@ -795,7 +711,7 @@ Tchaeke roye a-st on loyén viè l'&nbsp;prumî eyet l'&nbsp;deujhinme redjiblae
 "mispeelings"           => "Pådjes avou des flotches",
 "mispeelingstext"               => "Les pådjes shuvantes ont ene ou sacwante
 flotche, di cenes metowes so $1. Li scrijhaedje corek pout esse mostré inte
-åtchetes a costé do mot må scrît.", 
+åtchetes a costé do mot må scrît.",
 "mispeelingspage"       => "Djivêye des flotches les pus corantes",
 "missinglanguagelinks"  => "Loyéns di lingaedjes ki mankèt",
 "missinglanguagelinksbutton"    => "Trover les loyéns di lingaedjes ki mankèt po",
@@ -842,12 +758,12 @@ chal èn doet nén esse veyowe come èn aspoya ou nerén ene reclame.",
 #
 "mailnologin"	=> "Nole adresse d'&nbsp;evoyeu",
 "mailnologintext" => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse [[Sipeciås:Userlogin|elodjî]]
-eyet aveur ene adresse emile d'&nbsp;evoyeu ki soeye valide 
+eyet aveur ene adresse emile d'&nbsp;evoyeu ki soeye valide
 dins vos [[Sipeciås:Preferences|preferinces]].",
 "emailuser"		=> "Emiler a l'&nbsp;uzeu",
 "emailpage"		=> "Emilaedje a èn uzeu",
 "emailpagetext"	=> "Si cist uzeu chal a dné ene adresse emile valide dins
-ses preferins, vos lyi ploz evoyî èn emile a pårti di cisse pådje chal. 
+ses preferins, vos lyi ploz evoyî èn emile a pårti di cisse pådje chal.
 L'&nbsp;adresse emile k'&nbsp;i gn a dins vos preferinces serè-st eployeye
 come adresse di l'&nbsp;evoyeu (adresse «From:» di l'&nbsp;emile),
 po ki l'&nbsp;riçuveu poye risponde.",
@@ -939,7 +855,7 @@ disfaçaedjes. Totes les dates et eures sont-st e tins univiersel (UTC).
 "rollbackfailed" => "Rollback failed", # co a fé
 "cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.", # co a fé
 "alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[Uzeu:$2|$2]] ([[Uzeu copene:$2|Copene]]); someone else has edited or rolled back the article already. 
+by [[Uzeu:$2|$2]] ([[Uzeu copene:$2|Copene]]); someone else has edited or rolled back the article already.
 
 Li dierin candjmint a stî fwait pa [[Uzeu:$3|$3]] ([[Uzeu copene:$3|Copene]]). ",
 #   only shown if there is an edit comment
@@ -1007,7 +923,6 @@ pages that were vandalized).", # co a fé
 "ipbreason"		=> "Råjhon",
 "ipbsubmit"		=> "Bloker cist uzeu",
 "badipaddress"	=> "Nol uzeu avou ç'&nbsp;no la.",
-"noblockreason" => "Vos dvoz dner ene råjhon pol blocaedje.",
 "blockipsuccesssub" => "Li blocaedje a stî comifåt",
 "blockipsuccesstext" => "«$1» a stî bloké.
 <br />Loukîz li [[Sipeciås:Ipblocklist|Djivêye des blocaedjes]] po candjî on blocaedje.",
@@ -1024,7 +939,7 @@ to a previously blocked IP address.", # co a fé
 "autoblocker"	=> "Bloké otomaticmint paski vos eployîz li minme adresse IP ki «%s». Råjhon do blocaedje «%s».",
 "blocklogpage"	=> "Block_log", # co a fé
 "blocklogentry"	=> '«$1» a stî bloké',
-"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
+"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.", # co a fé
 "unblocklogentry"	=> '«$1» a stî disbloké',
@@ -1052,20 +967,6 @@ Please confirm that this is what you intend to do.", # co a fé
 "lockdbsuccesstext" => "The database has been locked.
 <br />Remember to remove the lock after your maintenance is complete.", # co a fé
 "unlockdbsuccesstext" => "The database has been unlocked.", # co a fé
-
-# SQL query
-#
-"asksql"		=> "SQL query", # co a fé
-"asksqltext"	=> "Use the form below to make a direct query of the
-database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.", # co a fé
-"sqlislogged"	=> "Please note that all queries are logged.", # co a fé
-"sqlquery"		=> "Enter query", # co a fé
-"querybtn"		=> "Submit query", # co a fé
-"selectonly"	=> "Only read-only queries are allowed.", # co a fé
-"querysuccessful" => "Query successful", # co a fé
 
 # Move page
 #
@@ -1156,98 +1057,68 @@ class LanguageWa extends LanguageUtf8 {
 		return $wgQuickbarSettingsWa;
 	}
 
-	function getSkinNames() {
-		global $wgSkinNamesWa;
-		return $wgSkinNamesWa;
-	}
-
 	function getDateFormats() {
 		global $wgDateFormatsWa;
 		return $wgDateFormatsWa;
 	}
-	
-	
+
+
 	###
 	### Dates in Walloon are "1î d' <monthname>" for 1st of the month,
 	### "<day> di <monthname>" for months starting by a consoun, and
 	### "<day> d' <monthname>" for months starting with a vowel
 	###
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
+
 		$m = substr( $ts, 4, 2 );
 		$n = substr( $ts, 6, 2 );
 
 		if ($n == 1) {
-		    $d = "1î d'&nbsp;" . $this->getMonthName( $m ) . 
+		    $d = "1î d'&nbsp;" . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else if ($n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23) {
-		    $d = (0 + $n) . " d'&nbsp;" . $this->getMonthName( $m ) . 
+		    $d = (0 + $n) . " d'&nbsp;" . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else if ($m == 4 || $m == 8 || $m == 10) {
-		    $d = (0 + $n) . " d'&nbsp;" . $this->getMonthName( $m ) . 
+		    $d = (0 + $n) . " d'&nbsp;" . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else {
 		    $d = (0 + $n) . " di " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		}
-		  
+
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
+	function time( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
 		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		#return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
 		return $this->date( $ts, $adj ) . " a " . $this->time( $ts, $adj );
 	}
 
-		
-
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesWa;
-		return $wgValidSpecialPagesWa;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesWa;
-		return $wgSysopSpecialPagesWa;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesWa;
-		return $wgDeveloperSpecialPagesWa;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesWa;
-		
+
 		if(array_key_exists($key, $wgAllMessagesWa))
 			return $wgAllMessagesWa[$key];
 		else
 			return parent::getMessage($key);
 	}
 
-	function getAllMessages()
-	{
+	function getAllMessages() {
 		global $wgAllMessagesWa;
 		return $wgAllMessagesWa;
 	}
-	
+
 }
 
 ?>
