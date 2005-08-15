@@ -451,7 +451,7 @@ END;
 		foreach ($tree as $element => $parent) {
 			if (empty($parent)) {
 				# element start a new list
-				$return .= '<br />';
+				$return .= "<br />\n";
 			} else {
 				# grab the others elements
 				$return .= Skin::drawCategoryBrowser($parent, $skin) . ' &gt; ';
