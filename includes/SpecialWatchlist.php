@@ -212,8 +212,9 @@ function wfSpecialWatchlist( $par ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
+	# TODO: Consider removing the third parameter
 	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ), 
-		$wgLang->formatNum( $npages ), $y,
+		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
 	

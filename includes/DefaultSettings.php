@@ -1557,6 +1557,12 @@ $wgCountCategorizedImagesAsUsed = false;
 $wgExternalStores = false;
 
 /**
+ * An array of external mysql servers, e.g.
+ * $wgExternalServers = array( 'cluster1' => array( 'srv28', 'srv29', 'srv30' ) );
+ */
+$wgExternalServers = array();
+
+/**
 * list of trusted media-types and mime types.
 * Use the MEDIATYPE_xxx constants to represent media types.
 * This list is used by Image::isSafeFile
