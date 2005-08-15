@@ -11,7 +11,7 @@ test-light:
 	php parserTests.php --color=light
 
 doc:
-	php mwgendoc.php -all
+	php mwdocgen.php -all
 	echo 'Doc generation done. Look at ./docs/html/'
 
 doxydoc:
