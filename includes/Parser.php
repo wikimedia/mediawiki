@@ -2384,7 +2384,7 @@ class Parser
 	}
 
 	function fetchScaryTemplateMaybeFromCache($url) {
-		$dbr = wfGetDB(DB_SLAVE);
+		$dbr =& wfGetDB(DB_SLAVE);
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
 				array('tc_url' => $url));
 		if ($obj) {
@@ -2399,7 +2399,7 @@ class Parser
 		if (!$text)
 			return wfMsg('scarytranscludefailed', $url);
 
-		$dbw = wfGetDB(DB_MASTER);
+		$dbw =& wfGetDB(DB_MASTER);
 		$dbw->replace('transcache', array(), array(
 			'tc_url' => $url,
 			'tc_time' => time(),

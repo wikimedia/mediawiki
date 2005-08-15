@@ -388,7 +388,7 @@ class LinkBatch {
 
 		// Construct query
 		// This is very similar to Parser::replaceLinkHolders
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE "
 			. $this->constructSet( 'page', $dbr );
