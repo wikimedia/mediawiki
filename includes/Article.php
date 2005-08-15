@@ -486,7 +486,7 @@ class Article {
 	 * Get the database which should be used for reads
 	 */
 	function &getDB() {
-		$ret = wfGetDB( DB_MASTER );
+		$ret =& wfGetDB( DB_MASTER );
 		return $ret;
 		#if ( $this->mForUpdate ) {
 			$ret =& wfGetDB( DB_MASTER );
@@ -854,7 +854,7 @@ class Article {
 	function addTrackbacks() {
 		global $wgOut, $wgUser;
 
-		$dbr = wfGetDB(DB_SLAVE);
+		$dbr =& wfGetDB(DB_SLAVE);
 		$tbs = $dbr->select(
 				/* FROM   */ 'trackbacks',
 				/* SELECT */ array('tb_id', 'tb_title', 'tb_url', 'tb_ex', 'tb_name'),
@@ -900,7 +900,7 @@ class Article {
 			return;
 		}
 
-		$db = wfGetDB(DB_MASTER);
+		$db =& wfGetDB(DB_MASTER);
 		$db->delete('trackbacks', array('tb_id' => $wgRequest->getInt('tbid')));
 		$wgTitle->invalidateCache();
 		$wgOut->addWikiText(wfMsg('trackbackdeleteok'));
