@@ -396,7 +396,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'whitelistacctext' => 'Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', // Looxix
 'loginreqtitle'	=> 'Nom d\'utilisateur nécessaire',
 'loginreqlink' => 'connecter',
-'loginreqtext'	=> "Vous devez vous $1 pour voir les autres pages.",
+'loginreqpagetext'	=> "Vous devez vous $1 pour voir les autres pages.",
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à $2.',
 

@@ -410,7 +410,7 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 "whitelistacctitle" => "Sie sind nicht berechtigt einen Account zu erzeugen",
 "whitelistacctext" => "Um in diesem Wiki Accounts anlegen zu dürfen müssen Sie sich [[Spezial:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.",
 "loginreqtitle"	=> "Anmeldung erforderlich",
-'loginreqlink' = 'anmelden',
+'loginreqlink' => 'anmelden',
 "loginreqpagetext"	=> "Sie müssen sich $1, um andere Seiten betrachten zu können.",
 "accmailtitle" => "Passwort wurde verschickt.",
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",

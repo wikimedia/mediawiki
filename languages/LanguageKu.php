@@ -856,7 +856,6 @@ unlock the database when your maintenance is done.', */
 'loginpagetitle' => 'Qeyda bikarhêner (User login)',
 'loginproblem' => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br>Careke din biceribîne!',
 'loginprompt' => '<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di Wîkîpediya de divê ku \'\'cookies\'\' gengaz be.',
-#'loginreqtext' => 'You must [[special:Userlogin|login]] to view other pages.',
 'loginreqtitle' => 'Têketin pêwîst e',
 'loginsuccess' => 'Tu niha di Wîkîpediya de qeydkirî yî wek "$1".',
 'loginsuccesstitle' => 'Têketin serkeftî!',
