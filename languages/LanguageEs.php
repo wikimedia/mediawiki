@@ -7,10 +7,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesEs = array(
 	NS_MEDIA          => "Media",
 	NS_SPECIAL        => "Especial",
@@ -18,8 +14,8 @@ require_once( "LanguageUtf8.php" );
 	NS_TALK           => "Discusión",
 	NS_USER           => "Usuario",
 	NS_USER_TALK      => "Usuario_Discusión",
-	NS_PROJECT	      => $wgMetaNamespace,
-	NS_PROJECT_TALK   => "{$wgMetaNamespace}_Discusión",
+	NS_PROJECT	      => $wgMetNameSpace,
+	NS_PROJECT_TALK   => "{$wgMetNameSpace}_Discusión",
 	NS_IMAGE          => "Imagen",
 	NS_IMAGE_TALK     => "Imagen_Discusión",
 	NS_MEDIAWIKI      => "MediaWiki",
@@ -42,61 +38,6 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgDateFormatsEs = array();
 
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesEs = array(
-
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Preferencias de usuario",
-	"Watchlist"		=> "Mi lista de seguimiento",
-	"Recentchanges" => "Cambios recientes",
-	"Upload"		=> "Subir una imagen",
-	"Imagelist"		=> "Lista de imágenes",
-	"Listusers"		=> "Usuarios registrados",
-	"Statistics"	=> "Estadísticas del sitio",
-	"Randompage"	=> "Artículo aleatorio",
-
-	"Lonelypages"	=> "Artículos huérfanos",
-	"Unusedimages"	=> "Imágenes huérfanas",
-	"Popularpages"	=> "Artículos populares",
-	"Wantedpages"	=> "Artículos más solicitados",
-	"Shortpages"	=> "Artículos cortos",
-
-	"Longpages"		=> "Artículos largos",
-	"Newpages"		=> "Artículos nuevos",
-	"Ancientpages" => "Artículos más antiguos",
-#	"Intl"		=> "Enlaces Interlenguaje",
-	"Allpages"		=> "Todas las páginas (alfabético)",
-
-	"Ipblocklist"	=> "Direcciones IP bloqueadas",
-	"Maintenance"   => "Página de mantenimiento",
-
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"     => "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"   => "Fuentes externas de libros",
-	"Export"		=> "XML export",
-	"Version"		=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesEs = array(
-	"Blockip"		=> "Bloquear una dirección IP",
-	"Asksql"		=> "Búsqueda en la base de datos",
-	"Undelete"      => "Ver y restaurar páginas borradas"
-);
-
-/* private */ $wgDeveloperSpecialPagesEs = array(
-	"Lockdb"		=> "Cerrar acceso de escritura a la base de datos",
-	"Unlockdb"		=> "Restaurar acceso de escritura a la base de datos",
-);
-
 /* private */ $wgAllMessagesEs = array(
 # User Toggles
 
@@ -105,7 +46,7 @@ require_once( "LanguageUtf8.php" );
 "tog-justify"	=> "Ajustar párrafos",
 "tog-hideminor" => "Esconder ediciones menores en Cambios Recientes",
 "tog-usenewrc" => "Cambios recientes realzados (no para todos los navegadores)",
-"tog-numberheadings" => "Auto-numerar encabezados",        
+"tog-numberheadings" => "Auto-numerar encabezados",
 "tog-showtoolbar" => "Mostrar barra de edición",
 "tog-rememberpassword" => "Recordar la contraseña entre sesiones",
 "tog-editwidth" => "La caja de edición tiene el ancho máximo",
@@ -156,18 +97,18 @@ require_once( "LanguageUtf8.php" );
 "mainpage"		=> "Portada",
 "mainpagetext"	=> "Software wiki instalado con éxito.",
 "about"			=> "Acerca de",
-"aboutsite"      => "Acerca de $wgSitename",
-"aboutpage"		=> "$wgMetaNamespace:Acerca de",
+"aboutsite"      => "Acerca de {{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:Acerca de",
 "help"			=> "Ayuda",
-"helppage"		=> "$wgMetaNamespace:Ayuda",
-"wikititlesuffix"		=>"$wgSitename",
+"helppage"		=> "{{ns:project}}:Ayuda",
+"wikititlesuffix"		=>"{{SITENAME}}",
 "bugreports"	=> "Informes de error de software",
-"bugreportspage" => "$wgMetaNamespace:Informes_de_error",
+"bugreportspage" => "{{ns:project}}:Informes_de_error",
 
 "faq"			=> "FAQ",
-"faqpage"		=> "$wgMetaNamespace:FAQ",
+"faqpage"		=> "{{ns:project}}:FAQ",
 "edithelp"		=> "Ayuda de edición",
-"edithelppage"	=> "$wgMetaNamespace:Cómo_se_edita_una_página",
+"edithelppage"	=> "{{ns:project}}:Cómo_se_edita_una_página",
 "cancel"		=> "Cancelar",
 "qbfind"		=> "Encontrar",
 "qbbrowse"		=> "Hojear",
@@ -180,7 +121,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "Actualidad",
 "errorpagetitle" => "Error",
 "returnto"		=> "Regresa a $1.",
-"tagline"      	=> "De $wgSitename, la enciclopedia libre.",
+"tagline"      	=> "De {{SITENAME}}, la enciclopedia libre.",
 "whatlinkshere"	=> "Páginas que enlazan aquí",
 "help"			=> "Ayuda",
 "search"		=> "Buscar",
@@ -205,22 +146,21 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(Redirigido desde $1)",
 "lastmodified"	=> "Esta página fue modificada por última vez el $1.",
 "viewcount"		=> "Esta página ha sido visitada $1 veces.",
-"gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='/wiki/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
 "printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Página protegida",
-"administrators" => "$wgMetaNamespace:Administradores",
+"administrators" => "{{ns:project}}:Administradores",
 "sysoptitle"	=> "Acceso de Administrador requerido",
 "sysoptext"		=> "La acción que has requerido sólo puede ser llevada a cabo
  por usuarios con status de administrador.
 Ver $1.",
 "developertitle" => "Acceso de developer requerido",
-"developertext"	=> "La acción que has requerido sólo puede ser llevada a cabo 
+"developertext"	=> "La acción que has requerido sólo puede ser llevada a cabo
 por usuarios con status de \"developer\".
 Ver $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Ir",
 "ok"			=> "OK",
-"sitetitle"		=> "$wgSitename",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "La Enciclopedia Libre",
 "retrievedfrom" => "Obtenido de \"$1\"",
 "newmessages" => "Tienes $1.",
@@ -237,19 +177,19 @@ Ver $1.",
 #
 "nosuchaction"	=> "No existe tal acción",
 "nosuchactiontext" => "La acción especificada por el URL no es
- reconocida por el software de $wgSitename",
+ reconocida por el software de {{SITENAME}}",
 "nosuchspecialpage" => "No existe esa página especial",
 "nospecialpagetext" => "Has requerido una página especial que no es
- reconocida por el software de $wgSitename.",
+ reconocida por el software de {{SITENAME}}.",
 
 # General errors
 #
 "error"			=> "Error",
 "databaseerror" => "Error de la base de datos",
 "dberrortext"	=> "Ha ocurrido un error de sintaxis en una consulta
-a la base de datos. 
+a la base de datos.
 La última consulta que se intentó fue:
-<blockquote><tt>$1</tt></blockquote>El error de retorno de 
+<blockquote><tt>$1</tt></blockquote>El error de retorno de
 MySQL fue\"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "Ha ocurrido un error de sintaxis en una consulta
 a la base de datos.
@@ -262,7 +202,7 @@ MySQL retornó el error \"$3: $4\".\n",
 "readonly"		=> "Base de datos bloqueada",
 "cachederror"	=> "Esta es una copia guardada en el cache de la página requerida, y puede no estar actualizada.",
 "enterlockreason" => "Explica el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo",
-"readonlytext"	=> "La base de datos de $wgSitename está temporalmente
+"readonlytext"	=> "La base de datos de {{SITENAME}} está temporalmente
 bloqueada para nuevas entradas u otras modificaciones, probablemente
 para mantenimiento de rutina, después de lo cual volverá a la normalidad.
 El administrador que la bloqueó ofreció esta explicación:
@@ -281,7 +221,7 @@ incluyendo el URL.",
 "filedeleteerror" => "No se pudo borrar el archivo \"$1\".",
 "filenotfound"	=> "No se pudo encontrar el archivo \"$1\".",
 "unexpected"	=> "Valor no esperado: \"$1\"=\"$2\".",
-"formerror"		=> "Error: no se pudo enviar el formulario",	
+"formerror"		=> "Error: no se pudo enviar el formulario",
 "badarticleerror" => "Esta acción no se puede llevar a cabo en esta página.",
 "cannotdelete"	=> "No se pudo borrar la página o imagen especificada. (Puede haber sido borrada por alguien antes)",
 "badtitle"		=> "Título incorrecto",
@@ -293,11 +233,11 @@ incluyendo el URL.",
 # Login and logout pagesítulo
 "logouttitle"	=> "Fin de sesión",
 "logouttext"	=> "Has terminado tu sesión.
-Puedes continuar usando $wgSitename en forma anónima, o puedes
+Puedes continuar usando {{SITENAME}} en forma anónima, o puedes
 iniciar sesión otra vez como el mismo u otro usuario.\n",
 
-"welcomecreation" => "<h2>Bienvenido(a), $1!</h2><p>Tu cuenta ha sido creada. 
-No olvides personalizar tus preferencia de $wgSitename.",
+"welcomecreation" => "<h2>Bienvenido(a), $1!</h2><p>Tu cuenta ha sido creada.
+No olvides personalizar tus preferencia de {{SITENAME}}.",
 
 "loginpagetitle" => "Registrarse/Entrar",
 "yourname"		=> "Tu nombre de usuario",
@@ -318,18 +258,18 @@ No olvides personalizar tus preferencia de $wgSitename.",
 "userexists"	=> "El nombre que entraste ya está en uso. Por favor, elije un nombre diferente.",
 "youremail"		=> "Tu dirección electrónica (e-mail)",
 "yournick"		=> "Tu apodo (para firmas)",
-"emailforlost"	=> "Ingresar una dirección electrónica es opcional, pero permite a los demás usuarios contactarse contigo a través del sitio web sin tener que revelarles tu dirección electrónica. Además, si pierdes u olvidas tu contraseña, puedes pedir que se te envíe una nueva.", 
+"emailforlost"	=> "Ingresar una dirección electrónica es opcional, pero permite a los demás usuarios contactarse contigo a través del sitio web sin tener que revelarles tu dirección electrónica. Además, si pierdes u olvidas tu contraseña, puedes pedir que se te envíe una nueva.",
 "loginerror"	=> "Error de inicio de sesión",
 "noname"		=> "No has especificado un nombre de usuario válido.",
 "loginsuccesstitle" => "Inicio de sesión exitoso",
-"loginsuccess"	=> "Has iniciado tu sesión en $wgSitename como \"$1\".",
+"loginsuccess"	=> "Has iniciado tu sesión en {{SITENAME}} como \"$1\".",
 "nosuchuser"	=> "No existe usuario alguno llamado \"$1\".
 Revisa tu escritura, o usa el formulario de abajo para crear una nueva cuenta de usuario.",
 "wrongpassword"	=> "La contraseña que ingresaste es incorrecta. Por favor inténtalo de nuevo.",
 "mailmypassword" => "Envíame una nueva contraseña por correo electrónico",
-"passwordremindertitle" => "Recordatorio de contraseña de $wgSitename",
+"passwordremindertitle" => "Recordatorio de contraseña de {{SITENAME}}",
 "passwordremindertext" => "Alguien (probablemente tú, desde la dirección IP $1)
-solicitó que te enviáramos una nueva contraseña para iniciar sesión en $wgSitename.
+solicitó que te enviáramos una nueva contraseña para iniciar sesión en {{SITENAME}}.
 La contraseña para el usuario \"$2\" es ahora \"$3\".
 Ahora deberías iniciar sesión y cambiar tu contraseña.",
 "noemail"		=> "No hay dirección electrónica (e-mail) registrada para el(la) usuario(a) \"$1\".",
@@ -347,10 +287,10 @@ Por favor entra otra vez después de que la recibas.",
 "showpreview"	=> "Mostrar previsualización",
 "blockedtitle"	=> "El usuario está bloqueado",
 "blockedtext"	=> "Tu nombre de usuario o dirección IP ha sido bloqueada por $1.
-La razón dada es la que sigue:<br />$2<p> Puedes contactar a $1 o a otro de los [[$wgMetaNamespace:Administradores|administradores]] para
+La razón dada es la que sigue:<br />$2<p> Puedes contactar a $1 o a otro de los [[{{ns:project}}:Administradores|administradores]] para
 discutir el bloqueo.",
 "newarticle"	=> "(Nuevo)",
-"newarticletext" => "$wgSitename es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[$wgMetaNamespace:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
+"newarticletext" => "{{SITENAME}} es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[{{ns:project}}:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
 "anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su [[dirección IP]] numérica para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irrelevantes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.'' ",
 "noarticletext" => "(En este momento no hay texto en esta página)",
 
@@ -364,7 +304,7 @@ de edición superior como aparecerá si eliges grabar.",
 "editingcomment"	=> "Editando $1 (comentario)",
 "editconflict"	=> "Conflicto de edición: $1",
 "explainconflict" => "Alguien más ha cambiado esta página desde que empezaste
-a editarla. 
+a editarla.
 El área de texto superior contiene el texto de la página como existe
 actualmente. Tus cambios se muestran en el área de texto inferior.
 Vas a tener que incorporar tus cambios en el texto existente.
@@ -376,21 +316,21 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>",
 "yourdiff"		=> "Diferencias",
-"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br /><br />Nota por favor que todas las contribuciones a $wgSitename 
-se consideran hechas públicas bajo la Licencia de Documentación Libre GNU 
-(ver detalles en $1). 
- Si no deseas que la gente corrija tus escritos sin piedad 
+"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br /><br />Nota por favor que todas las contribuciones a {{SITENAME}}
+se consideran hechas públicas bajo la Licencia de Documentación Libre GNU
+(ver detalles en $1).
+ Si no deseas que la gente corrija tus escritos sin piedad
 y los distribuya libremente, entonces no los pongas aquí. <br />
-También tú nos aseguras que escribiste esto tú mismo y 
-eres dueño de los derechos de autor, o lo copiaste desde el dominio público 
+También tú nos aseguras que escribiste esto tú mismo y
+eres dueño de los derechos de autor, o lo copiaste desde el dominio público
 u otra fuente libre.
  <strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />",
 "longpagewarning" => "<strong>ADVERTENCIA: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
 Por favor considera la posibilidad de descomponer esta página en secciones más pequeñas.</strong>",
-"readonlywarning" => "<strong>ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
+"readonlywarning" => "<strong>ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento.
 Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
 intentarlo después.</strong>",
-"protectedpagewarning" => "<strong>ADVERTENCIA: Esta página ha sido bloqueada de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
+"protectedpagewarning" => "<strong>ADVERTENCIA: Esta página ha sido bloqueada de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las
 [[Project:Guías_para_páginas_protegidas|guías para páginas protegidas]].</strong>",
 
 # History pages
@@ -450,31 +390,8 @@ Buscar en espacios de nombre :<br />
 $1<br />
 $2 Listar redirecciones   Buscar $3 $9",
 "searchdisabled" => "<p>Búsqueda en todo el texto ha sido desactivada temporalmente
-debido a carga alta del servidor; esperamos tenerla otra vez en linea después de algunas actualizaciones de 
-soporte físico próximas. Mientras tanto, puedes hacer una búsqueda vía google:</p>
-
-<!--Búsqueda de Sitio Google -->
-<FORM method=GET action=\"http://www.google.es/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.es/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
+debido a carga alta del servidor; esperamos tenerla otra vez en linea después de algunas actualizaciones de
+soporte físico próximas.",
 "blanknamespace" => "(Principal)",
 # Preferences page
 #
@@ -485,7 +402,7 @@ para seleccionar preferencias de usuario.",
 "prefslogintext" => "Has entrado con el nombre \"$1\".
 Tu número de identificación interno es $2.",
 "prefsreset"	=> "Las preferencias han sido repuestas a sus valores almacenados.",
-"qbsettings"	=> "Preferencias de \"Quickbar\"", 
+"qbsettings"	=> "Preferencias de \"Quickbar\"",
 "changepassword" => "Cambiar contraseña",
 "skin"			=> "Piel",
 "math"			=> "Cómo se muestran las fórmulas",
@@ -524,15 +441,15 @@ y la hora del servidor (UTC).",
 #
 "changes" => "cambios",
 "recentchanges" => "Cambios recientes",
-"recentchangestext" => "Sigue los cambios más recientes a $wgSitename en esta página.
-¡[[$wgMetaNamespace:Bienvenidos|Bienvenidos]]!
-Por favor, lee estas páginas: [[$wgMetaNamespace:FAQ|$wgSitename FAQ]],
-[[$wgMetaNamespace:Políticas y guías|políticas de $wgSitename]]
-(especialmente [[$wgMetaNamespace:Convenciones de nombres|las convenciones para nombrar artículos]] y
-[[$wgMetaNamespace:Punto de vista neutral|punto de vista neutral]]).
+"recentchangestext" => "Sigue los cambios más recientes a {{SITENAME}} en esta página.
+¡[[{{ns:project}}:Bienvenidos|Bienvenidos]]!
+Por favor, lee estas páginas: [[{{ns:project}}:FAQ|{{SITENAME}} FAQ]],
+[[{{ns:project}}:Políticas y guías|políticas de {{SITENAME}}]]
+(especialmente [[{{ns:project}}:Convenciones de nombres|las convenciones para nombrar artículos]] y
+[[{{ns:project}}:Punto de vista neutral|punto de vista neutral]]).
 
-Si quieres que $wgSitename tenga éxito, es muy importante que no agregues
-material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]]. La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.",
+Si quieres que {{SITENAME}} tenga éxito, es muy importante que no agregues
+material restringido por [[{{ns:project}}:Copyrights|derechos de autor]]. La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.",
 "rcloaderr"		=> "cargando cambios recientes",
 "rcnote"		=> "Abajo están los últimos <b>$1</b> cambios en los últimos <b>$2</b> días.",
 "rclistfrom"	=> "Mostrar cambios nuevos desde $1",
@@ -586,7 +503,7 @@ Para incluir la imagen en un artículo, usa un enlace de la forma
 '''<nowiki>[[imagen:archivo.png|alt text]]</nowiki>''' o
 '''<nowiki>[[media:archivo.ogg]]</nowiki>''' para sonidos.
 
-Por favor recuerda que, al igual que con las páginas $wgSitename, otros pueden
+Por favor recuerda que, al igual que con las páginas {{SITENAME}}, otros pueden
 editar o borrar los archivos que has subido si piensan que es bueno para
 la enciclopedia, y se te puede bloquear, impidiéndote subir más archivos si abusas del sistema.",
 "uploadlog"		=> "registro de subidas",
@@ -598,17 +515,14 @@ subido más recientemente. Todas las horas son del servidor (UTC).
 ",
 "filename"		=> "Nombre del archivo",
 "filedesc"		=> "Sumario",
-"affirmation"	=> "Afirmo que el dueño del copyright de este archivo
-está de acuerdo en licenciarlo bajo los términos de $1.",
-"copyrightpage" => "$wgMetaNamespace:Copyrights",
-"copyrightpagename" => "$wgSitename copyright",
+"copyrightpage" => "{{ns:projec}}:Copyrights",
+"copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Archivos subidos",
-"noaffirmation" => "Tú debes afirmar que tus subidas de archivos no violan ningún copyright.",
 "ignorewarning"	=> "Ignora la advertencia y graba el archivo de todos modos.",
 "minlength"		=> "Los nombres de imágenes deben ser al menos de tres letras.",
 "badfilename"	=> "El nombre de la imagen se ha cambiado a \"$1\".",
 "badfiletype"	=> "\".$1\" no es un formato de imagen recomendado.",
-"largefile"		=> "Se recomienda que las imágenes no excedan 100k de tamaño.",
+#"largefile"		=> "Se recomienda que las imágenes no excedan 100k de tamaño.",
 "successfulupload" => "Subida exitosa",
 "fileuploaded"	=> "El archivo \"$1\" se subió en forma exitosa.
 Por favor sigue este enlace: ($2) a la página de descripción y escribe
@@ -649,12 +563,12 @@ esta versión antigua, (rev) = revertir a esta versión antigua.
 "sitestats"		=> "Estadísticas del sitio",
 "userstats"		=> "Estadísticas de usuario",
 "sitestatstext" => "Hay un total de <b>$1</b> páginas en la base de datos.
-Esto incluye páginas de discusión, páginas acerca de $wgSitename, páginas mínimas,
+Esto incluye páginas de discusión, páginas acerca de {{SITENAME}}, páginas mínimas,
 redirecciones, y otras que probablemente no puedan calificarse como artículos.
 Excluyéndolas, hay <b>$2</b> páginas que probablemente son artículos legítimos.<p>
 Ha habido un total de <b>$3</b> visitas a páginas, y <b>$4</b> ediciones de página
-desde que el software fue actualizado (Octubre 2002). 
-Esto resulta en un promedio de <b>$5</b> ediciones por página, 
+desde que el software fue actualizado (Octubre 2002).
+Esto resulta en un promedio de <b>$5</b> ediciones por página,
 y <b>$6</b> visitas por edición.",
 "userstatstext" => "Hay <b>$1</b> usuarios registrados.
 de los cuales <b>$2</b> son administradores (ver $3).",
@@ -665,8 +579,8 @@ de los cuales <b>$2</b> son administradores (ver $3).",
 "maintnancepagetext"	=> "Esta página incluye varias herramientas útiles para el mantenimiento diario de la enciclopedia. Algunas de estas funciones tienden a sobrecargar la base de datos, así que, por favor, no vuelvas a cargar la página después de cada ítem que arregles ;-)",
 "maintenancebacklink"	=> "Volver a la Página de Mantenimiento",
 "disambiguations"	=> "Páginas de desambiguación",
-"disambiguationspage"	=> "$wgMetaNamespace:Enlaces a páginas de desambiguación",
-"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br />Una página es considerada de desambiguación si está enlazada desde $1.<br />Enlaces desde otros espacios de nombre (Como $wgMetaNamespace: o usuario:) <b>no</b> son listados aquí.",
+"disambiguationspage"	=> "{{ns:project}}:Enlaces a páginas de desambiguación",
+"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br />Una página es considerada de desambiguación si está enlazada desde $1.<br />Enlaces desde otros espacios de nombre (Como {{ns:project}}: o usuario:) <b>no</b> son listados aquí.",
 "doubleredirects"	=> "Redirecciones dobles",
 "doubleredirectstext"	=> "<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />\nCada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo \"real\" al que el primer redirect debería apuntar.",
 "brokenredirects"	=> "Redirecciones incorrectas",
@@ -675,7 +589,7 @@ de los cuales <b>$2</b> son administradores (ver $3).",
 "selflinkstext"		=> "Las siguientes páginas contienen un enlace a sí mismas, lo que no se recomienda.",
 "mispeelings"       => "Páginas con faltas de ortografía",
 "mispeelingstext"               => "Las siguientes páginas contienen una falta de ortografía común de las listadas en $1. La escritura correcta se indica entre paréntesis.",
-"mispeelingspage"       => "Lista de faltas de ortografía comunes",           
+"mispeelingspage"       => "Lista de faltas de ortografía comunes",
 "missinglanguagelinks"  => "Enlaces Interleguaje Faltantes",
 "missinglanguagelinksbutton"    => "Encontrar los enlaces interlenguaje que faltan para",
 "missinglanguagelinkstext"      => "Estos artículos <b>no</b> enlazan a sus correspondientes en $1. <b>No</b> se muestran redirecciones ni subpáginas.",
@@ -712,7 +626,7 @@ con un URL directo, y de esa manera todavía estar listada aquí
 a pesar de estar en uso activo.",
 "booksources"   => "Fuentes de libros",
 "booksourcetext" => "A continuación hay una lista de enlaces a otros sitios que venden libros nuevos y usados, y también pueden contener información adicional acerca de los libros que estás buscando.
-$wgSitename no está relacionada con ninguno de estos negocios, y esta lista no debe ser considerada un patrocinio de los mismos.",
+{{SITENAME}} no está relacionada con ninguno de estos negocios, y esta lista no debe ser considerada un patrocinio de los mismos.",
 "alphaindexline" => "$1 a $2",
 
 # Email this user
@@ -766,7 +680,7 @@ $3...
 "removechecked" => "Borrar artículos seleccionados de la lista de seguimiento",
 "watchlistcontains" => "Tu lista de seguimiento posee $1 páginas.",
 "watcheditlist" => "Aquí está un listado alfabético de tu lista de seguimiento.
-Selecciona los artículos que deseas remover de tu lista de seguimiento y 
+Selecciona los artículos que deseas remover de tu lista de seguimiento y
 click el botón 'remover seleccionados' en el fin de la pantalla.",
 "removingchecked" => "Removiendo los artículos solicitados de la lista de seguimiento...",
 "couldntremove" => "No se pudo remover el artículo '$1'...",
@@ -782,11 +696,11 @@ click el botón 'remover seleccionados' en el fin de la pantalla.",
 "confirmdelete" => "Confirma el borrado",
 "deletesub"		=> "(Borrando \"$1\")",
 "historywarning" => "Atención: La página que estás por borrar tiene un historial: ",
-"confirmdeletetext" => "Estás a punto de borrar una página o imagen 
+"confirmdeletetext" => "Estás a punto de borrar una página o imagen
 en forma permanente,
 así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
-consecuencias, y que lo estás haciendo de acuerdo con [[$wgMetaNamespace:Políticas]].",
+consecuencias, y que lo estás haciendo de acuerdo con [[{{ns:project}}:Políticas]].",
 "actioncomplete" => "Acción completa",
 "deletedtext"	=> "\"$1\" ha sido borrado.
 Ve $2 para un registro de los borrados más recientes.",
@@ -810,7 +724,7 @@ por [[Colaborador:$2|$2]] ([[Colaborador Discusión:$2|Discusión]]); alguien m�
 
 La última edición fue hecha por [[Colaborador:$3|$3]] ([[Colaborador Discusión:$3|Discusión]]). ",
 #   only shown if there is an edit comment
-"editcomment" => "El resumen de la edición fue: \"<i>$1</i>\".", 
+"editcomment" => "El resumen de la edición fue: \"<i>$1</i>\".",
 "revertpage"	=> "Revertida a la última edición por $1",
 
 # Undelete
@@ -825,7 +739,7 @@ Si una nueva página con el mismo nombre ha sido creada desde el borrado, las ve
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => "restaurado \"$1\"",
 "undeletedtext"   => "El artículo [[$1]] ha sido restaurado con éxito.
-Véase [[$wgMetaNamespace:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
+Véase [[{{ns:project}}:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
 
 # Contributions
 #
@@ -854,7 +768,7 @@ llevar a cabo esta función.",
 "blockiptext"	=> "Usa el formulario siguiente para bloquear el
 acceso de escritura desde una dirección IP específica.
 Esto debería hacerse sólo para prevenir vandalismo, y de
-acuerdo a las [[$wgMetaNamespace:Políticas| políticas de $wgSitename]].
+acuerdo a las [[{{ns:project}}:Políticas|políticas de {{SITENAME}}]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 ls páginas en particular que han sido objeto de vandalismo desde la dirección IP a bloquear).",
 "ipaddress"		=> "Dirección IP",
@@ -862,12 +776,11 @@ ls páginas en particular que han sido objeto de vandalismo desde la dirección 
 "ipbsubmit"		=> "Bloquear esta dirección",
 "badipaddress"	=> "La dirección IP no tiene el formato correcto.",
 
-"noblockreason" => "Debes dar una razón para el bloqueo.",
 "blockipsuccesssub" => "Bloqueo exitoso",
 "blockipsuccesstext" => "La dirección IP  \"$1\" ha sido bloqueada.
 <br />Ver [[Especial:Ipblocklist|lista de IP bloqueadas]] para revisar bloqueos.",
 "unblockip"		=> "Desbloquear dirección IP",
-"unblockiptext"	=> "Usa el formulario que sigue para restaurar el 
+"unblockiptext"	=> "Usa el formulario que sigue para restaurar el
 acceso de escritura a una dirección IP previamente bloqueada.",
 "ipusubmit"		=> "Desbloquea esta dirección",
 "ipusuccess"	=> "Dirección IP \"$1\" desbloqueada",
@@ -892,24 +805,9 @@ acceso de escritura a una dirección IP previamente bloqueada.",
 "locknoconfirm" => "No has confirmado lo que deseas hacer.",
 "lockdbsuccesssub" => "El bloqueo se ha realizado con éxito",
 "unlockdbsuccesssub" => "El desbloqueo se ha realizado con éxito",
-"lockdbsuccesstext" => "La base de datos de $wgSitename ha sido bloqueada.
+"lockdbsuccesstext" => "La base de datos de {{SITENAME}} ha sido bloqueada.
 <br />Recuerda retirar el bloqueo después de completar las tareas de mantenimiento.",
-"unlockdbsuccesstext" => "La base de datos de $wgSitename ha sido desbloqueada.",
-
-# SQL query
-#
-"asksql"		=> "Consulta SQL",
-"asksqltext"	=> "Usa el formulario que sigue para hacer una consulta directa
-a la base de datos de $wgSitename. Usa comillas simples ('como estas') para delimitar
-cadenas de caracteres literales.
-Esto puede añadir una carga considerable al servidor, así que
-por favor usa esta función lo menos posible.",
-"sqlislogged"	=> "Por favor nota que todas las consultas son grabadas.",
-"sqlquery"		=> "Entra la consulta",
-"querybtn"		=> "Envía la consulta",
-"selectonly"	=> "Consultas diferentes a \"SELECT\" están restringidas sólo
-a $wgSitename developers.",
-"querysuccessful" => "Consulta exitosa",
+"unlockdbsuccesstext" => "La base de datos de {{SITENAME}} ha sido desbloqueada.",
 
 # Move page
 #
@@ -918,9 +816,9 @@ a $wgSitename developers.",
 moviendo todo su historial al nombre nuevo.
 El título anterior se convertirá en un redireccionamiento al nuevo título.
 Enlaces al antiguo título de la página no se cambiarán. Asegúrate de verificar no dejar redirecciones dobles o rotas.
-Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que lo deberían hacer. 
+Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que lo deberían hacer.
 
-Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historial. 
+Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historial.
 Esto significa que podrás renombrar una página a su título original si cometes un error de escritura en el nuevo título, pero que no podrás sobreescribir una página existente.
 
 <b>ADVERTENCIA!</b>
@@ -950,12 +848,12 @@ Por favor, elige otro nombre.",
 "talkpagemoved" =>  "La página de discusión correspondiente también fue renombrada.",
 "talkpagenotmoved" => "La página de discusión correspondiente <strong>no</strong> fue renombrada.",
 # Math
-	'mw_math_png' => "Producir siempre PNG",
-	'mw_math_simple' => "HTML si es muy simple, si no PNG",
-	'mw_math_html' => "HTML si es posible, si no PNG",
-	'mw_math_source' => "Dejar como TeX (para navegadores de texto)",
-        'mw_math_modern' => "Recomendado para navegadores modernos",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "Producir siempre PNG",
+'mw_math_simple' => "HTML si es muy simple, si no PNG",
+'mw_math_html' => "HTML si es posible, si no PNG",
+'mw_math_source' => "Dejar como TeX (para navegadores de texto)",
+'mw_math_modern' => "Recomendado para navegadores modernos",
+'mw_math_mathml' => 'MathML',
 
 # Bits of text used by many pages:
 #
@@ -1041,9 +939,9 @@ Por favor, elige otro nombre.",
 'tooltip-search' => "Buscar en este wiki [alt-f]",
 
 'clearyourcache' => "'''Nota:''' Tras salvar el fichero, debes refrescar la caché de tu navegador para ver los cambios:
-*'''Mozilla:'''  Pulsa el botón ''Recargar'' (o ''ctrl-r''), 
-*'''Internet Explorer / Opera:''' ''ctrl-f5'', 
-*'''Safari:''' ''cmd-r'', 
+*'''Mozilla:'''  Pulsa el botón ''Recargar'' (o ''ctrl-r''),
+*'''Internet Explorer / Opera:''' ''ctrl-f5'',
+*'''Safari:''' ''cmd-r'',
 *'''Konqueror''' ''ctrl-r''.",
 'compareselectedversions' => "Comparar versiones seleccionadas",
 
@@ -1071,53 +969,53 @@ Por favor, elige otro nombre.",
 
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
-ta['pt-userpage'] = new Array('.','Mi página de usuario'); 
-ta['pt-anonuserpage'] = new Array('.','La página de usuario de la IP desde la que editas'); 
-ta['pt-mytalk'] = new Array('n','Mi página de discusión'); 
-ta['pt-anontalk'] = new Array('n','Discusión sobre ediciones hechas desde esta dirección IP'); 
-ta['pt-preferences'] = new Array('','Mis preferencias'); 
-ta['pt-watchlist'] = new Array('l','La lista de páginas para las que estás vigilando los cambios'); 
-ta['pt-mycontris'] = new Array('y','Lista de mis contribuciones'); 
-ta['pt-login'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio'); 
-ta['pt-anonlogin'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio'); 
-ta['pt-logout'] = new Array('o','Salir de la sesión'); 
-ta['ca-talk'] = new Array('t','Discusión acerca del artículo'); 
-ta['ca-edit'] = new Array('e','Puedes editar esta página. Por favor, usa el botón de previsualización antes de grabar.'); 
-ta['ca-addsection'] = new Array('+','Añade un comentario a esta discusión'); 
-ta['ca-viewsource'] = new Array('e','Esta página está protegida, sólo puedes ver su código fuente'); 
-ta['ca-history'] = new Array('h','Versiones anteriores de esta página'); 
-ta['ca-protect'] = new Array('=','Proteger esta página'); 
-ta['ca-delete'] = new Array('d','Borrar esta página'); 
-ta['ca-undelete'] = new Array('d','Restaurar las ediciones hechas a esta página antes de que fuese borrada'); 
-ta['ca-move'] = new Array('m','Trasladar (renombrar) esta página'); 
-ta['ca-watch'] = new Array('w','Añadir esta página a tu lista de seguimiento'); 
-ta['ca-unwatch'] = new Array('w','Borrar esta página de tu lista de seguimiento'); 
-ta['search'] = new Array('f','Buscar en este wiki'); 
-ta['p-logo'] = new Array('','Portada'); 
-ta['n-mainpage'] = new Array('z','Visitar la Portada'); 
-ta['n-portal'] = new Array('','Acerca del proyecto, qué puedes hacer, dónde encontrar información'); 
-ta['n-currentevents'] = new Array('','Información de contexto sobre acontecimientos actuales'); 
-ta['n-recentchanges'] = new Array('r','La lista de cambios recientes en el wiki'); 
-ta['n-randompage'] = new Array('x','Cargar una página aleatoriamente'); 
-ta['n-help'] = new Array('','El lugar para aprender'); 
-ta['n-sitesupport'] = new Array('','Respáldanos'); 
-ta['t-whatlinkshere'] = new Array('j','Lista de todas las páginas del wiki que enlazan con ésta'); 
-ta['t-recentchangeslinked'] = new Array('k','Cambios recientes en las páginas que enlazan con esta otra'); 
-ta['feed-rss'] = new Array('','Sindicación RSS de esta página'); 
-ta['feed-atom'] = new Array('','Sindicación Atom de esta página'); 
-ta['t-contributions'] = new Array('','Ver la lista de contribuciones de este usuario'); 
-ta['t-emailuser'] = new Array('','Enviar un mensaje de correo a este usuario'); 
-ta['t-upload'] = new Array('u','Subir imágenes o archivos multimedia'); 
-ta['t-specialpages'] = new Array('q','Lista de todas las páginas especiales'); 
-ta['ca-nstab-main'] = new Array('c','Ver el artículo'); 
-ta['ca-nstab-user'] = new Array('c','Ver la página de usuario'); 
-ta['ca-nstab-media'] = new Array('c','Ver la página de multimedia'); 
-ta['ca-nstab-special'] = new Array('','Esta es una página especial, no se puede editar la página en sí'); 
-ta['ca-nstab-wp'] = new Array('a','Ver la página de proyecto'); 
-ta['ca-nstab-image'] = new Array('c','Ver la página de la imagen'); 
-ta['ca-nstab-mediawiki'] = new Array('c','Ver el mensaje de sistema'); 
-ta['ca-nstab-template'] = new Array('c','Ver la plantilla'); 
-ta['ca-nstab-help'] = new Array('c','Ver la página de ayuda'); 
+ta['pt-userpage'] = new Array('.','Mi página de usuario');
+ta['pt-anonuserpage'] = new Array('.','La página de usuario de la IP desde la que editas');
+ta['pt-mytalk'] = new Array('n','Mi página de discusión');
+ta['pt-anontalk'] = new Array('n','Discusión sobre ediciones hechas desde esta dirección IP');
+ta['pt-preferences'] = new Array('','Mis preferencias');
+ta['pt-watchlist'] = new Array('l','La lista de páginas para las que estás vigilando los cambios');
+ta['pt-mycontris'] = new Array('y','Lista de mis contribuciones');
+ta['pt-login'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio');
+ta['pt-anonlogin'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio');
+ta['pt-logout'] = new Array('o','Salir de la sesión');
+ta['ca-talk'] = new Array('t','Discusión acerca del artículo');
+ta['ca-edit'] = new Array('e','Puedes editar esta página. Por favor, usa el botón de previsualización antes de grabar.');
+ta['ca-addsection'] = new Array('+','Añade un comentario a esta discusión');
+ta['ca-viewsource'] = new Array('e','Esta página está protegida, sólo puedes ver su código fuente');
+ta['ca-history'] = new Array('h','Versiones anteriores de esta página');
+ta['ca-protect'] = new Array('=','Proteger esta página');
+ta['ca-delete'] = new Array('d','Borrar esta página');
+ta['ca-undelete'] = new Array('d','Restaurar las ediciones hechas a esta página antes de que fuese borrada');
+ta['ca-move'] = new Array('m','Trasladar (renombrar) esta página');
+ta['ca-watch'] = new Array('w','Añadir esta página a tu lista de seguimiento');
+ta['ca-unwatch'] = new Array('w','Borrar esta página de tu lista de seguimiento');
+ta['search'] = new Array('f','Buscar en este wiki');
+ta['p-logo'] = new Array('','Portada');
+ta['n-mainpage'] = new Array('z','Visitar la Portada');
+ta['n-portal'] = new Array('','Acerca del proyecto, qué puedes hacer, dónde encontrar información');
+ta['n-currentevents'] = new Array('','Información de contexto sobre acontecimientos actuales');
+ta['n-recentchanges'] = new Array('r','La lista de cambios recientes en el wiki');
+ta['n-randompage'] = new Array('x','Cargar una página aleatoriamente');
+ta['n-help'] = new Array('','El lugar para aprender');
+ta['n-sitesupport'] = new Array('','Respáldanos');
+ta['t-whatlinkshere'] = new Array('j','Lista de todas las páginas del wiki que enlazan con ésta');
+ta['t-recentchangeslinked'] = new Array('k','Cambios recientes en las páginas que enlazan con esta otra');
+ta['feed-rss'] = new Array('','Sindicación RSS de esta página');
+ta['feed-atom'] = new Array('','Sindicación Atom de esta página');
+ta['t-contributions'] = new Array('','Ver la lista de contribuciones de este usuario');
+ta['t-emailuser'] = new Array('','Enviar un mensaje de correo a este usuario');
+ta['t-upload'] = new Array('u','Subir imágenes o archivos multimedia');
+ta['t-specialpages'] = new Array('q','Lista de todas las páginas especiales');
+ta['ca-nstab-main'] = new Array('c','Ver el artículo');
+ta['ca-nstab-user'] = new Array('c','Ver la página de usuario');
+ta['ca-nstab-media'] = new Array('c','Ver la página de multimedia');
+ta['ca-nstab-special'] = new Array('','Esta es una página especial, no se puede editar la página en sí');
+ta['ca-nstab-wp'] = new Array('a','Ver la página de proyecto');
+ta['ca-nstab-image'] = new Array('c','Ver la página de la imagen');
+ta['ca-nstab-mediawiki'] = new Array('c','Ver el mensaje de sistema');
+ta['ca-nstab-template'] = new Array('c','Ver la plantilla');
+ta['ca-nstab-help'] = new Array('c','Ver la página de ayuda');
 ta['ca-nstab-category'] = new Array('c','Ver la página de categoría');",
 'navigation' => "Navegación",
 
@@ -1131,6 +1029,7 @@ ta['ca-nstab-category'] = new Array('c','Ver la página de categoría');",
 'movedto' => "renombrado a",
 'moredotdotdot' => "Más...",
 );
+
 class LanguageEs extends LanguageUtf8 {
 
 	function getNamespaces() {
@@ -1147,7 +1046,6 @@ class LanguageEs extends LanguageUtf8 {
 		global $wgSkinNamesEs;
 		return $wgSkinNamesEs;
 	}
-
 
 	function shortdate( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -1176,21 +1074,6 @@ class LanguageEs extends LanguageUtf8 {
 		return $this->time( $ts, $adj ) . " " . $this->shortdate( $ts, $adj );
 	}
 
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEs;
-		return $wgValidSpecialPagesEs;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEs;
-		return $wgSysopSpecialPagesEs;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEs;
-		return $wgDeveloperSpecialPagesEs;
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesEs;
 		if( isset( $wgAllMessagesEs[$key] ) ) {
@@ -1199,9 +1082,10 @@ class LanguageEs extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
 }
+
 ?>

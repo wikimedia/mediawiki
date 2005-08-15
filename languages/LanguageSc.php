@@ -6,80 +6,22 @@
 
 require_once( "LanguageUtf8.php" );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesSc = array(
-	-1	=> "Speciale",
-	0	=> "",
-	1	=> "Contièndha",
-	2	=> "Utente",
-	3	=> "Utente_discussioni",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_discussioni",
-	6	=> "Immàgini",
-	7	=> "Immàgini_contièndha"
+	NS_SPECIAL         => "Speciale",
+	NS_MAIN            => "",
+	NS_TALK            => "Contièndha",
+	NS_USER            => "Utente",
+	NS_USER_TALK       => "Utente_discussioni",
+	NS_PROJECT         => "Wikipedia",
+	NS_PROJECT_TALK    => "Wikipedia_discussioni",
+	NS_IMAGE           => "Immàgini",
+	NS_IMAGE_TALK      => "Immàgini_contièndha"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSc = array(
 	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"
 );
 
-/* private */ $wgSkinNamesSc = array(
-	"Standard", "Nostalgia", "Cologne Blue"
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesSc = array(
-	"Userlogin"		=> "", # These two intentionally left blank
-	"Userlogout"	=> "", #...
-	"Preferences"	=> "Preferenze Utente",
-	"Watchlist"		=> "Osservati Speciali",
-	"Recentchanges" => "Ultime pagine modificate",
-	"Upload"		=> "Salva immagini",
-	"Imagelist"		=> "Elenco Immagini",
-	"Listusers"		=> "Utenti registrati",
-	"Statistics"	=> "Statistiche del sito",
-	"Randompage"	=> "Un articolo a caso",
-
-	"Lonelypages"	=> "Articoli orfani",
-	"Unusedimages"	=> "Immagini orfane",
-	"Popularpages"	=> "Articoli più letti",
-	"Wantedpages"	=> "Articoli più richiesti",
-	"Shortpages"	=> "Articoli più corti",
-	"Longpages"		=> "Articoli più lunghi",
-	"Newpages"		=> "Articoli nuovi",
-	"Allpages"		=> "Tutti i titoli",
-
-	"Ipblocklist"	=> "Indirizzi IP bloccati",
-	"Maintenance" => "Pagina manutenzioni",
-	"Specialpages"  => "", # From here on intentionally left blank!
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> ""
-);
-
-/* private */ $wgSysopSpecialPagesSc = array(
-	"Blockip"		=> "Blocca un indirizzo IP",
-	"Asksql"		=> "Interroga il database",
-	"Undelete"		=> "Leggi e ripara pagine cancellate"
-);
-
-/* private */ $wgDeveloperSpecialPagesSc = array(
-	"Lockdb"		=> "Rendi il database read-only (di sola lettura, blocca le modifiche)",
-	"Unlockdb"		=> "Ripristina scrittura su database (lettura\/scrittura)",
-	"Debug"			=> "Informazioni per il Debugging"
-);
 
 /* private */ $wgAllMessagesSc = array(
 # User Toggles
@@ -178,7 +120,6 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(Reindirizzamento da $1)",
 "lastmodified"	=> "Ultima modifica il $1.",
 "viewcount"		=> "Questo articolo è stato letto $1 volte.",
-"gnunote" => "Questa pagina è disponibile in licenza <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(Articolo di {{SERVER}})",
 "protectedpage" => "Pagina protetta",
 "administrators" => "Wikipedia:Amministratori",
@@ -215,7 +156,7 @@ MySQL ha restituito un errore \"<tt>$3: $4</tt>\".",
 "nodb"			=> "Selezione del database $1 fallita",
 "readonly"		=> "Accesso al database temporaneamente disabilitato",
 "enterlockreason" => "Fornisci una spiegazione sui motivi del blocco, includendo le probabili data ed ora di riattivazione o di rimozione del blocco.",
-"readonlytext"	=> "Il database di Wikipedia è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile. 
+"readonlytext"	=> "Il database di Wikipedia è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile.
 L/'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 <p>$1",
 "missingarticle" => "Il database non ha trovato il testo di una pagina, che invece avrebbe dovuto trovare, intitolata \"$1\".
@@ -227,7 +168,7 @@ Per favore, segnalate l'accaduto ad un administrator, segnalando la URL e l'ora 
 "filedeleteerror" => "Non è stato possibile cancellare il file \"$1\".",
 "filenotfound"	=> " Non è stato possibile trovare il file \"$1\".",
 "unexpected"	=> "Valore imprevisto: \"$1\"=\"$2\".",
-"formerror"		=> "Errore: il modulo non è stato inviato correttamente",	
+"formerror"		=> "Errore: il modulo non è stato inviato correttamente",
 "badarticleerror" => "Questa operazione non è consentita su questa pagina.",
 "cannotdelete"	=> "Impossibile cancellare la pagina o l'immagine richiesta.",
 "badtitle"		=> "Titolo non corretto",
@@ -251,9 +192,6 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
 "alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br />\n",
 
-"areyounew"		=> "Se sei nuovo in Wikipedia e desideri creare un nuovo user account, immetti uno user name (che sarà il tuo nome per Wikipedia, poi digita una password e ripetila nella casella successiva.<br /> 
-Indicare un indirizzo e-mail non è obbligatorio, solo facoltativo (sebbene consigliato).<br />Se per caso perdessi la tua password, potrai richiedere che ti sia rispedita alla casella di posta elettronica che ci fornirai.<br />\n",
-
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",
@@ -274,7 +212,7 @@ Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare
 "mailmypassword" => "Spediscimi una nuova password in posta elettronica",
 "passwordremindertitle" => "Servizio Password Reminder di Wikipedia",
 "passwordremindertext" => "Qualcuno (probabilmente tu, con indirizzo IP $1)
-ha richiesto l'invio di una nuova password per il login a Wikipedia. 
+ha richiesto l'invio di una nuova password per il login a Wikipedia.
 La password per l'Utente \"$2\" è ora \"$3\".
 Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e cambiare la password immediatamente.",
 "noemail"		=> "Nessuna casella e-mail risulta registrata per l'Utente \"$1\".",
@@ -291,7 +229,7 @@ Per favore, fai subito un log in non appena la ricevi.",
 "showpreview"	=> "Visualizza Anteprima",
 "blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
 "blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br />
-La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri 
+La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri
 [[Wikipedia:administrators|administrators]] per discutere del blocco.",
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Scrivi qui il tuo testo.",
@@ -303,8 +241,8 @@ La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi co
 "editing"		=> "Modifica di $1",
 "editconflict"	=> "Conflitto di edizione: $1",
 "explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
-La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore. 
-Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra. 
+La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
+Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra.
 <b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone \"Salva\".<br />",
 "yourtext"		=> "Il tuo testo",
 "storedversion" => "Versione in archivio",
@@ -378,7 +316,7 @@ per poter personalizzare le tue preferenze.",
 "prefslogintext" => "Sei connesso a Wikipedia come \"$1\".
 Il tuo numero identificativo (ID) interno è $2.",
 "prefsreset"	=> "Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di Wikipedia.",
-"qbsettings"	=> "Settaggio della barra menu", 
+"qbsettings"	=> "Settaggio della barra menu",
 "changepassword" => "Cambia password",
 "skin"			=> "Aspetto",
 "saveprefs"		=> "Salva preferenze",
@@ -458,7 +396,7 @@ Il caricamento può richiedere qualche minuto se hai una connessione ad Internet
 
 I formati immagine preferibili sono il JPEG per immagini fotografiche, il PNG
 per disegni ed altre immagini iconiche o simboliche, il OGG per i suoni.
-Per cortesia, rinomina i tuoi files, prima di caricarli, usando un nome il più possibile descrittivo del contenuto, così da evitare confusioni. 
+Per cortesia, rinomina i tuoi files, prima di caricarli, usando un nome il più possibile descrittivo del contenuto, così da evitare confusioni.
 Per inserire la nuova immagine in un articolo, usa semplicemente un link nella forma
 '''<nowiki>[[image:file.jpg]]</nowiki>''' o
 '''<nowiki>[[image:file.png|alt text, testo alternativo]]</nowiki>''' o
@@ -474,11 +412,9 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 ",
 "filename"		=> "Nome del file",
 "filedesc"		=> "Oggetto",
-"affirmation"	=> "Io dichiaro che il titolare dei diritti di autore (copyright, (c)) su questo file consente a cederlo in licenza di uso nei termini del $1.",
 "copyrightpage" => "Wikipedia:Copyrights",
 "copyrightpagename" => "Wikipedia copyright",
 "uploadedfiles"	=> "Files Caricati in Wikipedia",
-"noaffirmation" => "Devi dichiarare che il caricamento di questo file non viola, in alcun modo, alcun tipo di diritto altrui, e segnatamente non infrange nessun diritto di autore (copyright - (c)).",
 "ignorewarning"	=> "Ignora le avvertenze e salva comunque il file.",
 "minlength"		=> "I nomi dei file immagine debbono essere lunghi almeno tre caratteri, ma è preferibile usare nomi lumghi, purché descrittivi.",
 "badfilename"	=> "Il nome del file immagine è stato convertito in \"$1\".",
@@ -628,7 +564,7 @@ Le future modifiche a questa pagina ed alla relativa pagina di discussione saran
 "confirmdelete" => "Conferma cancellazione",
 "deletesub"		=> "(Cancellazione di \"$1\")",
 "confirmdeletetext" => "Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.
-Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella 
+Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella
 [[Wikipedia:Policy]].",
 "actioncomplete" => "Azione completata",
 "deletedtext"	=> "La pagina \"$1\" è stata cancellata.
@@ -685,13 +621,12 @@ Vedi [[Wikipedia:Deletion_log]] per un elenco delle pagine cancellate e recupera
 #
 "blockip"		=> "Blocca indirizzo IP",
 "blockiptext"	=> "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP.
-Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[Wikipedia:Policy|policy di Wikipedia]]. Il blocco non può in nessun caso essere applicato per motivi ideologici. 
+Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[Wikipedia:Policy|policy di Wikipedia]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 "ipaddress"		=> "Indirizzo IP (IP Address)",
 "ipbreason"		=> "Motivazione",
 "ipbsubmit"		=> "Blocca questo indirizzo IP",
 "badipaddress"	=> "L'indirizzo IP indicato non è corretto.",
-"noblockreason" => "Devi obbligatoriamente fornire una motivazione per il blocco.",
 "blockipsuccesssub" => "Blocco eseguito",
 "blockipsuccesstext" => " L'indirizzo IP \"$1\" è stato bloccato.
 <br />Vedi [[Special:Ipblocklist|lista IP bloccati]].",
@@ -724,22 +659,11 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 <br />Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
 "unlockdbsuccesstext" => " Il database di Wikipedia è stato sbloccato.",
 
-# SQL query
-#
-"asksql"		=> "Interrogazione SQL",
-"asksqltext"	=> "Usa il modulo sottostante per effettuare una interrogazione diretta (query) al database di Wikipedia.
-Usa singole virgolette ('come queste') per delimitare una stringa letterale.
-Questo può considerevolmente sovraccaricare e di fatto rallentare il server, perciò per cortesia usa questa funzionalità solo quando necessario.",
-"sqlquery"		=> "Immetti stringa da ricercare",
-"querybtn"		=> "Invia interrogazione",
-"selectonly"	=> "Interrogazioni diverse da \"SELECT\" sono riservate agli sviluppatori di Wikipedia (developers).",
-"querysuccessful" => "Interrogazione riuscita",
-
 # Move page
 #
 "movepage"		=> "Spostamento di pagina",
 "movepagetext"	=> "Con il modulo sottostante puoi rinominare una pagina, spostando anche tutta la sua cronologia al nuovo nome.
-Il vecchior titolo diverrà automaticamente un redirect che punta al nuovo titolo. 
+Il vecchior titolo diverrà automaticamente un redirect che punta al nuovo titolo.
 I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect); accertati di [[Special:Manutenzioni|controllare con cura]] che non si creino doppi redirects o redirects interrotti.
 Resta nella tua responsabilità di accertarti che i link continuino a puntare verso dove devono dirigersi.
 
@@ -783,13 +707,7 @@ class LanguageSc extends LanguageUtf8 {
 		return $wgQuickbarSettingsSc;
 	}
 
-	function getSkinNames() {
-		global $wgSkinNamesSc;
-		return $wgSkinNamesSc;
-	}
-
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
@@ -798,26 +716,7 @@ class LanguageSc extends LanguageUtf8 {
 		return $d;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesSc;
-		return $wgValidSpecialPagesSc;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesSc;
-		return $wgSysopSpecialPagesSc;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesSc;
-		return $wgDeveloperSpecialPagesSc;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesSc;
 		if(array_key_exists($key, $wgAllMessagesSc))
 			return $wgAllMessagesSc[$key];

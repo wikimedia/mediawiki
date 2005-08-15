@@ -7,28 +7,28 @@
 require_once( "LanguageUtf8.php" );
 
 if ( $wgMetaNamespace == "Wikipedia" ) {
-        $wgMetaNamespace = "Wîkîpediya";
+	$wgMetaNamespace = "Wîkîpediya";
 }
 
 /* private */ $wgNamespaceNamesKu = array(
-        NS_MEDIA            => 'Medya',
-        NS_SPECIAL          => 'Taybet',
-        NS_MAIN             => '',
-        NS_TALK             => 'Nîqaş',
-        NS_USER             => 'Bikarhêner',
-        NS_USER_TALK        => 'Bikarhêner_nîqaş',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => $wgMetaNamespace . '_nîqaş',
-        NS_IMAGE            => 'Wêne',
-        NS_IMAGE_TALK       => 'Wêne_nîqaş',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
-        NS_TEMPLATE         => 'Şablon',
-        NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
-        NS_HELP             => 'Alîkarî',
-        NS_HELP_TALK        => 'Alîkarî_nîqaş',
-        NS_CATEGORY         => 'Kategorî',
-        NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Taybet',
+	NS_MAIN             => '',
+	NS_TALK             => 'Nîqaş',
+	NS_USER             => 'Bikarhêner',
+	NS_USER_TALK        => 'Bikarhêner_nîqaş',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_nîqaş',
+	NS_IMAGE            => 'Wêne',
+	NS_IMAGE_TALK       => 'Wêne_nîqaş',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
+	NS_HELP             => 'Alîkarî',
+	NS_HELP_TALK        => 'Alîkarî_nîqaş',
+	NS_CATEGORY         => 'Kategorî',
+	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgAllMessagesKy = array (
@@ -123,11 +123,11 @@ Please try another query.', */
 /* 'badtitletext' => 'The requested page title was invalid, empty, or
 an incorrectly linked inter-language or inter-wiki title.', */
 #'blanknamespace' => '(Main)',
-'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br>\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [Wikipedia:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî. 
+'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br>\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [Wikipedia:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî.
 
 Têbînî: Tu nikarî fonksiyona "Ji vê bikarhêner re E-mail bişîne" bi kar bîne eger te navnîşana email a xwe di "[[Special:Preferences|Tercîhên min]]" de nenivîsand.
 
-Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje. 
+Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje.
 
 ==Note to AOL users==
 Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused.
@@ -232,14 +232,14 @@ link in your browser to confirm that your e-mail address is valid.', */
 {|border=0|
 |
 [[metawikipedia:Help:Special_characters|Nîşanên taybet]]:
-<charinsert>Ç ç </charinsert> · 
-<charinsert>Ê ê </charinsert> · 
+<charinsert>Ç ç </charinsert> ·
+<charinsert>Ê ê </charinsert> ·
 <charinsert>Î î </charinsert> ·
-<charinsert>Ş ş </charinsert> · 
-<charinsert>Û û </charinsert> · 
-<charinsert>&ndash; &mdash; </charinsert> · 
-<charinsert>[+] [[+]] {{+}} </charinsert> · 
-<charinsert>~ | °</charinsert> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<charinsert>Ş ş </charinsert> ·
+<charinsert>Û û </charinsert> ·
+<charinsert>&ndash; &mdash; </charinsert> ·
+<charinsert>[+] [[+]] {{+}} </charinsert> ·
+<charinsert>~ | °</charinsert> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 |<div class="plainlinks" dir="rtl" align="right">
 <charinsert>ئا  </charinsert> ·
 <charinsert>ڵ </charinsert> ·
@@ -949,7 +949,7 @@ Please report this to an administrator, making note of the URL.', */
 to move a page.', */
 'movepage' => 'Vê rûpelê bigerîne',
 'movepagebtn' => 'Vê rûpelê bigerîne',
-'movepagetalktext' => 'Rûpela axaftinê (talk) giredayî ji vê rûpelê re wê bê gerandin jî. 
+'movepagetalktext' => 'Rûpela axaftinê (talk) giredayî ji vê rûpelê re wê bê gerandin jî.
 \'\'\'Îstisna:\'\'\'
 *You are moving the page across namespaces,
 *A non-empty talk page already exists under the new name, or
@@ -1034,7 +1034,7 @@ features will not work.', */
 /* 'noemailtext' => 'This user has not specified a valid e-mail address,
 or has chosen not to receive e-mail from other users.', */
 'noemailtitle' => 'Navnîşana e-name tune',
-'nogomatch' => 'Rûpeleke wek vî navî tune. 
+'nogomatch' => 'Rûpeleke wek vî navî tune.
 
 Tu dixwazî <b><a href="$1" class="new">vê gotarê binivîsî</a></b> ?',
 #'nohistory' => 'There is no edit history for this page.',
@@ -1229,15 +1229,15 @@ the text into a text file and save it for later.</strong>', */
 [[bg:Специални:Recentchanges]]
 [[bs:Special:Recentchanges]]
 [[ca:RecentChanges]]
-[[cs:Special:Recentchanges]] 
-[[cy:Special:Recentchanges]] 
+[[cs:Special:Recentchanges]]
+[[cy:Special:Recentchanges]]
 [[da:Speciel:Recentchanges]]
 [[de:Spezial:Recentchanges]]
 [[el:Special:Recentchanges]]
 [[en:Special:Recentchanges]]
 [[eo:Lastaj_Sxangxoj]]
 [[es:Cambios Recientes]]
-[[et:Recent Changes]] 
+[[et:Recent Changes]]
 [[eu:Special:Recentchanges]]
 [[fa:%D9%88%DB%8C%DA%98%D9%87:Recentchanges]]
 [[fi:Toiminnot:Recentchanges]]
@@ -1248,8 +1248,8 @@ the text into a text file and save it for later.</strong>', */
 [[he:מיוחד:Recentchanges]]
 [[hi:%E0%A4%B5%E0%A4%BF%E0%A4%B6%E0%A5%87%E0%A4%B7:Recentchanges]]
 [[hr:Special:Recentchanges]]
-[[hu:Speciális:Recentchanges]] 
-[[ia:Special:Recentchanges]]  
+[[hu:Speciális:Recentchanges]]
+[[ia:Special:Recentchanges]]
 [[id:Recent_Changes]]
 [[is:Special:Recentchanges]]
 [[it:Speciale:Recentchanges]]
@@ -1258,13 +1258,13 @@ the text into a text file and save it for later.</strong>', */
 [[ko:특수기능:Recentchanges]]
 [[la:Recent_Changes]]
 [[lb:Special:Recentchanges]]
-[[mh:Special:Recentchanges]] 
-[[ms:Special:Recentchanges]] 
+[[mh:Special:Recentchanges]]
+[[ms:Special:Recentchanges]]
 [[na:Special:Recentchanges]]
 [[nds:Special:Recentchanges]]
 [[nl:Speciaal:Recentchanges]]
 [[no:Spesial:Recentchanges]]
-[[oc:Especial:Recentchanges]] 
+[[oc:Especial:Recentchanges]]
 [[pl:Specjalna:Recentchanges]]
 [[pt:Especial:Recentchanges]]
 [[rm:Special:Recentchanges]]
@@ -1370,7 +1370,7 @@ Please hit "back" and reload the page you came from, then try again.', */
 'sitestats' => 'Statîstîkên sîteyê',
 'sitestatstext' => 'Di \'\'database\'\' de <b>$1</b> rûpel hene. Tê de rûpelên nîqaşê, rûpelên der barê Wîkîpediyayê, rûpelên pir kurt (stub), rûpelên ragihandinê (redirect) û rûpelên din ku qey ne gotar in hene.
 
-Derve wan, \'\'\'$2\'\'\' rûpel hene ku qey \'\'\'gotarên rewa\'\'\' ne. 
+Derve wan, \'\'\'$2\'\'\' rûpel hene ku qey \'\'\'gotarên rewa\'\'\' ne.
 
 Ji 28\'ê çileya 2004 heta roja îro <b>$4</b> carî rûpel hatin guherandin.
 
@@ -1410,7 +1410,7 @@ Fonksiyonên ku hîn rast naxebitin:
 'successfulupload' => 'Barkirin serkeftî',
 'summary' => 'Kurte û çavkanî',
 'sunday' => 'yekşem',
-'sysoptext' => 'Çalakiya ku te xwest bi tenê bikarhêneran bi mafên "sysop" dikarin çêkin. 
+'sysoptext' => 'Çalakiya ku te xwest bi tenê bikarhêneran bi mafên "sysop" dikarin çêkin.
 Binêre $1.',
 #'sysoptitle' => 'Sysop access required',
 'tableform' => 'tablo',
@@ -1686,8 +1686,7 @@ Query: $2
 );
 
 
-class LanguageKu extends LanguageUtf8
-{
+class LanguageKu extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesKu;
 		return $wgNamespaceNamesKu;

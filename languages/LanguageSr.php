@@ -40,7 +40,7 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgSkinNamesSr = array(
  "Обична", "Носталгија", "Келнско плаво", "Педингтон", "Монпарнас"
-);
+) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsSr = array(
 # "Без посебних жеља",
@@ -51,71 +51,19 @@ require_once( "LanguageUtf8.php" );
 /* NOT USED IN STABLE VERSION */
 /* private */ $wgMagicWordsSr = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#преусмери"              ),
-    MAG_NOTOC                => array( 0,    "__БЕЗСАДРЖАЈА__"              ),
-    MAG_START                => array( 0,    "__ПОЧЕТАК__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "{{ТРЕНУТНИМЕСЕЦ}}"       ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "{{ИМЕТРЕНУТНОГМЕСЕЦА}}"   ),
-    MAG_CURRENTDAY           => array( 1,    "{{ТРЕНУТНИДАН}}"         ),
-    MAG_CURRENTDAYNAME       => array( 1,    "{{ИМЕТРЕНУТНОГДАНА}}"     ),
-    MAG_CURRENTYEAR          => array( 1,    "{{ТРЕНУТНАГОДИНА}}"        ),
-    MAG_CURRENTTIME          => array( 1,    "{{ТРЕНУТНОВРЕМЕ}}"        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "{{БРОЈЧЛАНАКА}}"   ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{ГЕНЕРИСАНОИМЕТРЕНУТНОГМЕСЕЦА}}"),
- MAG_SUBST                => array( 1,    "{{ПОДСТ:$1}}"           ),
-    MAG_MSGNW                => array( 1,    "{{НВПОР:$1}}"           )
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesSr = array(
- "Userlogin"  => "",
- "Userlogout" => "",
- "Preferences" => "Моја корисничка подешавања",
- "Watchlist"  => "Мој списак надгледања",
- "Recentchanges" => "скорашње измене страница",
- "Upload"  => "Пошаљи слике",
- "Imagelist"  => "Листа слика",
- "Listusers"  => "Регистровани корисници",
- "Statistics" => "Статистике сајта",
- "Randompage" => "Случајни чланак",
-
- "Lonelypages" => "Чланци - сирочићи",
- "Unusedimages" => "Слике - Сирочићи",
- "Popularpages" => "Жељени чланци",
- "Wantedpages" => "Најтраженији чланци",
- "Shortpages" => "Кратки чланци",
- "Longpages"  => "Дугачки чланци",
- "Newpages"  => "Нови чланци",
- "Ancientpages" => "Најстарији чланци",
-# "Intl"  => "Међујезичке везе",
- "Allpages"  => "Све странице по наслову",
-
- "Ipblocklist" => "Блокирани корисници/ИП адресе",
- "Maintenance" => "Страница за одржавање",
- "Specialpages"  => "",
- "Contributions" => "",
- "Emailuser"  => "",
- "Whatlinkshere" => "",
- "Recentchangeslinked" => "",
- "Movepage"  => "",
- "Booksources" => "Спољњи извори литературе",
-#"Categories" => "Категорије странице",
- "Export" => "XML export",
- "Version" => "Version",
-);
-
-/* private */ $wgSysopSpecialPagesSr = array(
- "Blockip"  => "Блокирај корисника/ИП адресу",
- "Asksql"  => "Постави упит бази података",
- "Undelete"  => "Поврати обрисане странице"
-);
-
-/* private */ $wgDeveloperSpecialPagesSr = array(
- "Lockdb"  => "Омогући само право читања из базе",
- "Unlockdb"  => "Поврати право уписа у базу",
+	MAG_REDIRECT             => array( 0,    "#преусмери"              ),
+	MAG_NOTOC                => array( 0,    "__БЕЗСАДРЖАЈА__"              ),
+	MAG_START                => array( 0,    "__ПОЧЕТАК__"              ),
+	MAG_CURRENTMONTH         => array( 1,    "{{ТРЕНУТНИМЕСЕЦ}}"       ),
+	MAG_CURRENTMONTHNAME     => array( 1,    "{{ИМЕТРЕНУТНОГМЕСЕЦА}}"   ),
+	MAG_CURRENTDAY           => array( 1,    "{{ТРЕНУТНИДАН}}"         ),
+	MAG_CURRENTDAYNAME       => array( 1,    "{{ИМЕТРЕНУТНОГДАНА}}"     ),
+	MAG_CURRENTYEAR          => array( 1,    "{{ТРЕНУТНАГОДИНА}}"        ),
+	MAG_CURRENTTIME          => array( 1,    "{{ТРЕНУТНОВРЕМЕ}}"        ),
+	MAG_NUMBEROFARTICLES     => array( 1,    "{{БРОЈЧЛАНАКА}}"   ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{ГЕНЕРИСАНОИМЕТРЕНУТНОГМЕСЕЦА}}"),
+	MAG_SUBST                => array( 1,    "{{ПОДСТ:$1}}"           ),
+	MAG_MSGNW                => array( 1,    "{{НВПОР:$1}}"           )
 );
 
 /* private */ $wgAllMessagesSr = array(
@@ -233,7 +181,6 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(Преусмерено са $1)",
 "lastmodified" => "Ова страница је последњи пут измењена $1.",
 "viewcount"  => "Овој страници је приступљено $1 пута.",
-"gnunote" => "Сав текст је доступан под условима <a class=internal href='/wiki/GNU_FDL'>ГНУ лиценце за слободну документацију</a>.",
 "printsubtitle" => "(Са {{SERVER}})",
 "protectedpage" => "Заштићена страница",
 "administrators" => "{{ns:4}}:Администратори",
@@ -641,13 +588,9 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 "filedesc"  => "Опис",
 "filestatus" => "Статус ауторских права",
 "filesource" => "Извор",
-"affirmation" => "Потврђујем да se носилац ауторских права на овај фајл
-слаже да их лиценцира под условима $1.",
 "copyrightpage" => "{{ns:4}}:Ауторска_права",
 "copyrightpagename" => "{{SITENAME}} ауторска права",
 "uploadedfiles" => "Послати фајлови",
-"noaffirmation" => "Порате потврдити да ваше слање не крши
-никаква ауторска права.",
 "ignorewarning" => "Игнориши упозорење и свеједно сними фајл.",
 "minlength"  => "Имена слика морају имате бар три слова.",
 "badfilename" => "Име слике је промељено у \"$1\".",
@@ -918,7 +861,6 @@ $3...
 "ipbreason"  => "Разлог",
 "ipbsubmit"  => "Обуздај овог корисника",
 "badipaddress" => "Не постоји ниједан корисник који се тако зове",
-"noblockreason" => "Морате дати разлог за обуздавање.",
 "blockipsuccesssub" => "Обуздавање је успело",
 "blockipsuccesstext" => "\"$1\" је обуздан.
 <br />Погледајте [[Посебно:ИПсписакаобузданих|ИП списак обузданих]] за преглед обуздавања.",
@@ -933,12 +875,6 @@ $3...
 "unblocklink" => "деблокирај",
 "contribslink" => "прилози",
 "autoblocker" => "Аутоматски сте обуздани јер делите ИП адресу са \"$1\". Разлог \"$2\".",
-/*
-</pre>
-
-==Део 4==
-<pre>
-*/
 # Developer tools
 #
 "lockdb"  => "Закључај базу",
@@ -962,21 +898,6 @@ $3...
 "lockdbsuccesstext" => "Википедијина база података је закључана.
 <br />Сетите се да је откључате када завршите са одржавањем.",
 "unlockdbsuccesstext" => "Википедијина база података је откључана.",
-
-# SQL query
-#
-"asksql"  => "SQL упит",
-"asksqltext" => "Употребите доњи упитник да направите директан упит
-Википедијиној бази.
-Употребите једноструке наводнике ('овако') за разграничење словних ниски.
-Ово често може да дода значајно оптерећење серверу, молимо
-користите ову могућност штедљиво.",
-"sqlislogged" => "Обратите пажњу да су сви упити логовани.",
-"sqlquery"  => "Унесите упит",
-"querybtn"  => "Пошаљи упит",
-"selectonly" => "Сви упити осим \"SELECT\" су ограничени на
-развојни тим Википедије.",
-"querysuccessful" => "Упит успешан",
 
 # Move page
 #
@@ -1037,11 +958,11 @@ $3...
 
 # Math
 
- 'mw_math_png' => "Увек прикажи PNG",
- 'mw_math_simple' => "HTML ако је врло једноставно, иначе PNG",
- 'mw_math_html' => "HTML ако је могуће, иначе PNG",
- 'mw_math_source' => "Остави као ТеХ (за текстуалне бровсере)",
- 'mw_math_modern' => "Препоручено за савремене бровсере",
+'mw_math_png' => "Увек прикажи PNG",
+'mw_math_simple' => "HTML ако је врло једноставно, иначе PNG",
+'mw_math_html' => "HTML ако је могуће, иначе PNG",
+'mw_math_source' => "Остави као ТеХ (за текстуалне бровсере)",
+'mw_math_modern' => "Препоручено за савремене бровсере",
 
 );
 
@@ -1051,69 +972,50 @@ $3...
 
 class LanguageSr extends LanguageUtf8 {
 
- function getNamespaces() {
-  global $wgNamespaceNamesSr;
-  return $wgNamespaceNamesSr;
- }
+	function getNamespaces() {
+	global $wgNamespaceNamesSr;
+	return $wgNamespaceNamesSr;
+	}
 
- function getNsIndex( $text ) {
-  global $wgNamespaceNamesSr;
+	function getNsIndex( $text ) {
+	global $wgNamespaceNamesSr;
 
-  foreach ( $wgNamespaceNamesSr as $i => $n ) {
-   if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-  }
-  if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
-  if( 0 == strcasecmp( "User", $text ) ) { return 2; }
-  if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
-  return false;
- }
+	foreach ( $wgNamespaceNamesSr as $i => $n ) {
+		if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+	}
+	if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
+	if( 0 == strcasecmp( "User", $text ) ) { return 2; }
+	if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
+	return false;
+	}
 
- function getQuickbarSettings() {
-  global $wgQuickbarSettingsSr;
-  return $wgQuickbarSettingsSr;
- }
+	function getQuickbarSettings() {
+	global $wgQuickbarSettingsSr;
+	return $wgQuickbarSettingsSr;
+	}
 
- function getSkinNames() {
-  global $wgSkinNamesSr;
-  return $wgSkinNamesSr;
- }
+	function getSkinNames() {
+	global $wgSkinNamesSr;
+	return $wgSkinNamesSr;
+	}
 
- function getDateFormats() {
-  global $wgDateFormatsSr;
-  return $wgDateFormatsSr;
- }
+	function getDateFormats() {
+	global $wgDateFormatsSr;
+	return $wgDateFormatsSr;
+	}
 
- function getValidSpecialPages()
- {
-  global $wgValidSpecialPagesSr;
-  return $wgValidSpecialPagesSr;
- }
-
- function getSysopSpecialPages()
- {
-  global $wgSysopSpecialPagesSr;
-  return $wgSysopSpecialPagesSr;
- }
-
- function getDeveloperSpecialPages()
- {
-  global $wgDeveloperSpecialPagesSr;
-  return $wgDeveloperSpecialPagesSr;
- }
-
- function getMessage( $key )
- {
+	function getMessage( $key ) {
 		global $wgAllMessagesSr;
 		if(array_key_exists($key, $wgAllMessagesSr))
 			return $wgAllMessagesSr[$key];
 		else
 			return parent::getMessage($key);
- }
+	}
 
- function formatNum( $number, $year = false ) {
-        return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
- }
- 
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	}
+
 }
 
 ?>

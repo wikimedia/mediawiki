@@ -6,32 +6,25 @@
 
 require_once("LanguageUtf8.php");
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesHe = array(
-	-2	=> "Media",
-	-1	=> "מיוחד",
-	0	=> "",
-	1	=> "שיחה",
-	2	=> "משתמש",
-	3	=> "שיחת_משתמש",
-	4	=> $wgMetaNamespace,
-	5	=> "שיחת_" . $wgMetaNamespace,
-	6	=> "תמונה",
-	7	=> "שיחת_תמונה",
-	8	=> "MediaWiki",
-	9	=> "שיחת_MediaWiki",
-	10	=> "תבנית",
-	11	=> "שיחת_תבנית",
-	12	=> "עזרה",
-	13	=> "שיחת_עזרה",
-	14	=> "קטגוריה",
-	15	=> "שיחת_קטגוריה",
+	NS_MEDIA          => "Media",
+	NS_SPECIAL        => "מיוחד",
+	NS_MAIN           => "",
+	NS_TALK           => "שיחה",
+	NS_USER           => "משתמש",
+	NS_USER_TALK      => "שיחת_משתמש",
+	NS_PROJECT        => $wgMetaNamespace,
+	NS_PROJECT_TALK   => "שיחת_" . $wgMetaNamespace,
+	NS_IMAGE          => "תמונה",
+	NS_IMAGE_TALK     => "שיחת_תמונה",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "שיחת_MediaWiki",
+	NS_TEMPLATE       => "תבנית",
+	NS_TEMPLATE_TALK  => "שיחת_תבנית",
+	NS_HELP           => "עזרה",
+	NS_HELP_TALK      => "שיחת_עזרה",
+	NS_CATEGORY       => "קטגוריה",
+	NS_CATEGORY_TALK  => "שיחת_קטגוריה",
 ) + $wgNamespaceNamesEn;
 
 /* Custom namespaces for portal and portal_talk */
@@ -49,11 +42,7 @@ $wgExtraNamespaces = array(
 	'cologneblue' => "מים כחולים",
 	'smarty' => "Paddington",
 	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+) + $wgSkinNamesEn;
 
 
 
@@ -64,56 +53,6 @@ $wgExtraNamespaces = array(
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesHe = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "קבע העדפות משתמש",
-	"Watchlist"		=> "רשימת המעקב שלי",
-	"Recentchanges" => "דפים שעודכנו לאחרונה",
-	"Upload"		=> "העלה קובץ לשרת",
-	"Imagelist"		=> "רשימת תמונות",
-	"Listusers"		=> "משתמשים רשומים",
-	"Statistics"	=> "סטטיסטיקות האתר",
-	"Randompage"	=> "מאמר אקראי",
-
-	"Lonelypages"	=> "מאמרים יתומים",
-	"Unusedimages"	=> "תמונות יתומות",
-	"Popularpages"	=> "מאמרים פופלריים",
-	"Wantedpages"	=> "דפים מבוקשים ביותר",
-	"Shortpages"	=> "מאמרים קצרים",
-	"Longpages"		=> "מאמרים ארוכים",
-	"Newpages"		=> "מאמרים חדשים",
-	"Ancientpages"		=> "Oldest pages",
-	"Allpages"		=> "כל המאמרים לפי כותרת",
-
-	"Ipblocklist"	=> "כתובות IP חסומות",
-	"Maintenance" => "דף תחזוקה",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "משאבי ספרות חיצוניים",
-	"Export"	=> "XML export",
-	"Version"	=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesHe = array(
-	"Blockip"		=> "חסום כתובת IP",
-	"Asksql"		=> "שאילתא לבסיס-הנתונים",
-	"Undelete"		=> "צפה ושחזר דפים מחוקים"
-);
-
-/* private */ $wgDeveloperSpecialPagesHe = array(
-	"Lockdb"		=> "הפוך את בסיס-הנתונים לקריא-בלבד",
-	"Unlockdb"		=> "החזר הרשאת כתיבה לבסיס-הנתונים",
-);
 
 /* private */ $wgAllMessagesHe = array(
 
@@ -227,7 +166,6 @@ $wgExtraNamespaces = array(
 "redirectedfrom" => "(הופנה מ - $1)",
 "lastmodified"	=> "שונה לאחרונה ב $1.",
 "viewcount"		=> "דף זה נצפה $1 פעמים.",
-"gnunote" => "מוגש תחת הרשיון לשימוש חופשי <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(מ - {{SERVER}})",
 "protectedpage" => "דף מוגן",
 "administrators" => "ויקיפדיה:מפעיל_מערכת",
@@ -258,7 +196,7 @@ $wgExtraNamespaces = array(
 "error"			=> "שגיאה",
 "databaseerror" => "שגיאת בסיס-נתונים",
 "dberrortext"	=> "ארעה שגיאת תחביר בשאילתא לבסיס-הנתונים.
-השאילתה האחרונה שבוצעה לבסיס-הנתונים היתה: 
+השאילתה האחרונה שבוצעה לבסיס-הנתונים היתה:
 <blockquote><tt>$1</tt></blockquote>
 מהפונקציה \"<tt>$2</tt>\".
 בסיס-הנתונים החזיר את השגיאה: \"<tt>$3: $4</tt>\" ",
@@ -278,7 +216,7 @@ $1",
 "filedeleteerror" => "מחיקת \"$1\" לא הצליחה.",
 "filenotfound"	=> "הקובץ \"$1\" לא נמצא.",
 "unexpected"	=> "ערך לא צפוי: \"$1\"=\"$2\"",
-"formerror"		=> "שגיאה: לא יכול לשלוח טופס.",	
+"formerror"		=> "שגיאה: לא יכול לשלוח טופס.",
 "badarticleerror" => "לא ניתן לבצע פעולה זו בדף זה.",
 "cannotdelete"	=> "מחיקת הדף או קובץ התמונה לא הצליחה. (יתכן שנמחקה כבר על-ידי מישהו אחר)",
 "badtitle"		=> "כותרת שגויה",
@@ -358,7 +296,7 @@ $1",
 "editingold"	=> "<strong>זהירות: את/ה עורך/ת גירסה לא עדכנית של הדף הזה.
 אם תשמור/י, כל השינויים שנעשו מאז גירסה זו יאבדו. </strong>",
 "yourdiff"		=> "הבדלים",
-"copyrightwarning" => "אנא שים/י לב שכל תרומה לויקיפידיה מוצאת לאור תחת הרשיון לשימוש חופשי במסמכים של GNU (ראה $1 לפרטים). אם אינך רוצה שעבודתך תהיה זמינה לעריכה על ידי אחרים, ותופץ לעיני כל, אל תפרסם/י אותה פה. כמו-כן, את/ה מבטיח/ה לנו כי את/ה כתבת את הטקסט הזה בעצמך, או העתקת אותו ממקור שאינו מוגן על-ידי זכויות יוצרים. 
+"copyrightwarning" => "אנא שים/י לב שכל תרומה לויקיפידיה מוצאת לאור תחת הרשיון לשימוש חופשי במסמכים של GNU (ראה $1 לפרטים). אם אינך רוצה שעבודתך תהיה זמינה לעריכה על ידי אחרים, ותופץ לעיני כל, אל תפרסם/י אותה פה. כמו-כן, את/ה מבטיח/ה לנו כי את/ה כתבת את הטקסט הזה בעצמך, או העתקת אותו ממקור שאינו מוגן על-ידי זכויות יוצרים.
 <strong> אל תעשו שימוש בחומר המוגן בזכויות יוצרים ללא רשות! </strong>",
 "longpagewarning" => "<strong>אזהרה: גודל דף זה הוא $1 קילובייט. בדפדפנים מסוימים יהיו בעיות בעריכת דף הגדול מ32 קילובייט. אנא שיקלו לחלק דף זה לדפים קטנים יותר</strong>",
 "readonlywarning" => "<strong>אזהרה: בסיס-הנתונים ננעל לצורך תחזוקה. אי אפשר לשמור את העריכות בזמן זה. אתם יכולים להשתמש בעורך חיצוני עד שתסוים התחזוקה. אנו מתנצלים על התקלה.</strong>",
@@ -423,7 +361,7 @@ $3 $9",
 "prefsnologintext"	=> "עליך להיכנס לחשבון כדי לשנות העדפות משתמש",
 "prefslogintext" => "נכנסת בשם \"$1\", מספרך הסידורי הוא $2.",
 "prefsreset"	=> "העדפותיך שוחזרו מברירת המחדל.",
-"qbsettings"	=> "הגדרות סרגל מהיר", 
+"qbsettings"	=> "הגדרות סרגל מהיר",
 "changepassword" => "שנה סיסמא",
 "skin"			=> "רקע",
 "math"			=> "תצוגת נוסחאות מתמטיות",
@@ -498,7 +436,7 @@ $3 $9",
 הפורמט המועדף הוא JPEG לתצלומים, PNG לאיורים, שרטוטים וסמלים, ו-OGG לקבצי קול.
 
 אנא תן לקובץ שם המייצג היטב את תוכנו כדי למנוע בלבול.
-כדי לכלול את התמונה במאמר, צור קישור מסוג 
+כדי לכלול את התמונה במאמר, צור קישור מסוג
 '''<nowiki>[[image:file.jpg]]</nowiki>''' או '''<nowiki>[[image:file.png|alt text]]</nowiki>'''
 או '''<nowiki>[[media:file.ogg]]</nowiki>''' לקבצי קול.
 
@@ -512,11 +450,9 @@ $3 $9",
 ",
 "filename"		=> "שם הקובץ",
 "filedesc"		=> "תקציר",
-"affirmation"	=> "אני מצהיר/ה שבעל זכויות היוצרים על קובץ זה מתיר לי להפיץ אותו תחת תנאי $1.",
 "copyrightpage" => "ויקיפדיה:זכויות_יוצרים",
 "copyrightpagename" => "זכויות היוצרים של ויקיפדיה",
 "uploadedfiles"	=> "קבצים שהועלו",
-"noaffirmation" => "עליך להבטיח שהעלאת הקובץ אינה מפירה זכויות יוצרים.",
 "ignorewarning"	=> "התעלם מהאזהרה ושמור את הקובץ בכל זאת.",
 "minlength"		=> "שמות של קובצי תמונה צריכים להיות בני שלושה תווים לפחות.",
 "badfilename"	=> "שם התמונה שונה ל - \"$1\".",
@@ -723,7 +659,6 @@ $3 $9",
 "ipbreason"		=> "סיבה",
 "ipbsubmit"		=> "חסום כתובת זו",
 "badipaddress"	=> ".כתובת ה-IP אינה כתובה נכון",
-"noblockreason" => ".עליך לציין סיבה לחסימה",
 "blockipsuccesssub" => "החסימה הצליחה",
 "blockipsuccesstext" => "הכתובת \"$1\" נחסמה.
 <br />ראה את [[מיוחד:רשימת כתובות IP חסומות|רשימת הכתובות החסומות]] כדי לצפות בחסימות",
@@ -755,16 +690,6 @@ $3 $9",
 "lockdbsuccesstext" => "בסיס-הנתונים של ויקיפדיה ננעל.
 <br />זכור לשחרר את הנעילה לאחר שפעולת התחזוקה הסתיימה.",
 "unlockdbsuccesstext" => "שוחררה הנעילה מבסיס-הנתונים של ויקיפדיה",
-
-# SQL query
-#
-"asksql"		=> "שאילתת SQL",
-"asksqltext"	=> "השתמש/י בטופס שלהלן לביצוע שאילתא ישירה לבסיס-הנתונים של ויקיפדיה.
-אנא עשה/י שימוש בגרשיים בודדים ('כך') כדי לתחום שרשראות תווים. (String literals). פעולה זו יוצרת לעיתים קרובות עומס רב על השרת, אנא השתמשו באפשרות זו כמה שפחות.",
-"sqlquery"		=> "הזן שאילתא",
-"querybtn"		=> "בצע שאילתא",
-"selectonly"	=> "שאילתות שאינן \"SELECT\" אפשריות רק למפתחי ויקיפדיה.",
-"querysuccessful" => "השאילתא הצליחה",
 
 # Move page
 #
@@ -802,12 +727,12 @@ $3 $9",
 
 # Math
 
-	'mw_math_png' =>  "תמיד הצג כ-PNG",
-	'mw_math_simple' => "HTML אם פשוט, אחרת PNG",
-	'mw_math_html' => "HTML אם אפשר, אחרת PNG",
-	'mw_math_source' => "השאר כקוד TeX",
-	'mw_math_modern' => "מומלץ לדפדפנים עדכניים",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' =>  "תמיד הצג כ-PNG",
+'mw_math_simple' => "HTML אם פשוט, אחרת PNG",
+'mw_math_html' => "HTML אם אפשר, אחרת PNG",
+'mw_math_source' => "השאר כקוד TeX",
+'mw_math_modern' => "מומלץ לדפדפנים עדכניים",
+'mw_math_mathml' => 'MathML',
 
 );
 
@@ -839,21 +764,6 @@ class LanguageHe extends LanguageUtf8 {
 		return $wgSkinNamesHe;
 	}
 
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesHe;
-		return $wgValidSpecialPagesHe;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesHe;
-		return $wgSysopSpecialPagesHe;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesHe;
-		return $wgDeveloperSpecialPagesHe;
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesHe;
 		if(array_key_exists($key, $wgAllMessagesHe))
@@ -864,7 +774,7 @@ class LanguageHe extends LanguageUtf8 {
 
 	function isRTL() { return true; }
 
-	function fallback8bitEncoding() { return "iso8859-8"; }                
+	function fallback8bitEncoding() { return "iso8859-8"; }
 
 }
 

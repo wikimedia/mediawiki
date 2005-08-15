@@ -4,30 +4,22 @@
   * @subpackage Language
   */
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
+/** TODO: fixme */
 /* private */ $wgNamespaceNamesIa = array(
-	-2	=> "Media",
-	-1	=> "Special",
-	0	=> "",
-	1	=> "Discussion",
-	2	=> "Usator",
-	3	=> "Discussion_Usator",
-	4	=> "Wikipedia",
-	5	=> "Discussion_Wikipedia",
-	6	=> "Imagine",
-	7	=> "Discussion_Imagine",
-	8	=> "MediaWiki",
-	9	=> "Discussion_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
-
-
+	NS_MEDIA          => "Media",
+	NS_SPECIAL        => "Special",
+	NS_MAIN           => "",
+	NS_TALK           => "Discussion",
+	NS_USER           => "Usator",
+	NS_USER_TALK      => "Discussion_Usator",
+	NS_PROJECT        => "Wikipedia",
+	NS_PROJECT_TALK   => "Discussion_Wikipedia",
+	NS_IMAGE          => "Imagine",
+	NS_IMAGE_TALK     => "Discussion_Imagine",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "Discussion_MediaWiki",
+	NS_TEMPLATE       => "Template",
+	NS_TEMPLATE_TALK  => "Template_talk"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIa = array(
@@ -38,58 +30,6 @@
 	'cologneblue' => "Blau Colonia",
 ) + $wgSkinNamesEn;
 
-
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesIa = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Preferentias del usator",
-	"Watchlist"		=> "Paginas sub observation",
-	"Recentchanges" => "Modificationes recente",
-	"Upload"		=> "Cargar imagines al servitor",
-	"Imagelist"		=> "Lista de imagines",
-	"Listusers"		=> "Usatores registerate",
-	"Statistics"	=> "Statisticas de accesso",
-	"Randompage"	=> "Articulo aleatori",
-
-	"Lonelypages"	=> "Articulos orphanos",
-	"Unusedimages"	=> "Imagines orphanas",
-	"Popularpages"	=> "Articulos popular",
-	"Wantedpages"	=> "Articulos plus demandate",
-	"Shortpages"	=> "Articulos curte",
-	"Longpages"		=> "Articulos longe",
-	"Newpages"		=> "Articulos nove",
-#	"Intl"                => "Interlanguage Links",
-	"Allpages"		=> "Tote le paginas (per titulo)",
-
-	"Ipblocklist"	=> "Adresses de IP blocate",
-	"Maintenance" => "Pagina de mantenentia",
-	"Specialpages"  => "", # "Paginas special",
-	"Contributions" => "", # "Contributiones",
-	"Emailuser"		=> "", # "Inviar email al usator(?)",
-	"Whatlinkshere" => "", # "Referentias a iste pagina",
-	"Recentchangeslinked" => "", # "Ultime modificationes (?)",
-	"Movepage"		=> "", # "Mover pagina",
-	"Booksources"	=> "Fontes externe (libros)",
-#	"Categories"	=> "Page categories",
-	"Export"		=> "Exportar in XML",
-	"Version"		=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesIa = array(
-	"Blockip"		=> "Blocar un adresse de IP",
-	"Asksql"		=> "Consultar base de datos",
-	"Undelete"		=> "Vider e restaurar paginas eliminate"
-);
-
-/* private */ $wgDeveloperSpecialPagesIa = array(
-	"Lockdb"		=> "Suspender modificationes",
-	"Unlockdb"		=> "Permitter modificationes",
-);
 
 /* private */ $wgAllMessagesIa = array(
 
@@ -197,7 +137,6 @@
 "redirectedfrom" => "(Redirigite de $1)",
 "lastmodified"	=> "Ultime modification: $1.",
 "viewcount"		=> "Iste pagina esseva accessate $1 vices.",
-"gnunote" => "Tote le texto es disponibile sub le terminos del <a class=internal href='$wgScriptPath/GNU_FDL'>Licentia de documentation libere GNU</a>.",
 "printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Pagina protegite",
 "administrators" => "Wikipedia:Administratores",
@@ -259,7 +198,7 @@ indicante le URL.",
 "filedeleteerror" => "Impossibile eliminar file \"$1\".",
 "filenotfound"	=> "Impossibile trovar file \"$1\".",
 "unexpected"	=> "Valor impreviste: \"$1\"=\"$2\".",
-"formerror"		=> "Error: impossibile submitter formulario",	
+"formerror"		=> "Error: impossibile submitter formulario",
 "badarticleerror" => "Iste action non pote esser effectuate super iste pagina.",
 "cannotdelete"	=> "Impossibile eliminar le pagina o imagine specificate. (Illo pote ja haber essite eliminate per un altere persona.)",
 "badtitle"		=> "Titulo incorrecte",
@@ -440,7 +379,7 @@ pro definir tu preferentias.",
 "prefslogintext" => "Tu es identificate como \"$1\".
 Tu numero interne de ID es $2.",
 "prefsreset"	=> "Tu preferentias salvate previemente ha essite restaurate.",
-"qbsettings"	=> "Configuration del barra de utensiles", 
+"qbsettings"	=> "Configuration del barra de utensiles",
 "changepassword" => "Cambiar contrasigno",
 "skin"			=> "Apparentia",
 "math"			=> "Exhibition de formulas",
@@ -559,13 +498,9 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).
 ",
 "filename"		=> "Nomine del file",
 "filedesc"		=> "Description",
-"affirmation"	=> "Io declara que le detentor del derecto de autor de iste file
-consenti in licentiar lo sub le terminos del $1.",
 "copyrightpage" => "Wikipedia:Copyright",
 "copyrightpagename" => "Wikipedia e derectos de autor (copyright)",
 "uploadedfiles"	=> "Files cargate",
-"noaffirmation" => "Tu debe declarar que le files cargate per te non viola
-derectos de autor (copyrights).",
 "ignorewarning"	=> "Ignorar advertimentos e salvar le file totevia.",
 "minlength"		=> "Le nomines de imagines debe haber al minus tres litteras.",
 "badfilename"	=> "Le nomine del imagine esseva cambiate a \"$1\".",
@@ -812,7 +747,6 @@ specific que ha essite vandalisate).",
 "ipbreason"		=> "Motivo",
 "ipbsubmit"		=> "Blocar iste adresse",
 "badipaddress"	=> "Adresse IP mal formate.",
-"noblockreason" => "Tu debe fornir un motivo pro le blocage.",
 "blockipsuccesssub" => "Blocage con successo",
 "blockipsuccesstext" => "Le adresse IP \"$1\" ha essite blocate.
 <br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.",
@@ -850,19 +784,6 @@ Per favor confirma que iste es tu intention.",
 "lockdbsuccesstext" => "Le base de datos de Wikipedia ha essite blocate.
 <br />Rememora te de disblocar lo post completar tu mantenentia.",
 "unlockdbsuccesstext" => "Le base de datos de Wikipedia ha essite disblocate.",
-
-# SQL query
-#
-"asksql"		=> "Consulta SQL",
-"asksqltext"	=> "Usa le formulario infra pro facer un consulta directe al
-base de datos de Wikipedia.
-Usa apostrophos ('como istes') pro delimitar catenas de characteres.
-Iste function pote supercargar le servitor, alora usa lo con moderation.",
-"sqlquery"		=> "Scribe consulta",
-"querybtn"		=> "Inviar consulta",
-"selectonly"	=> "Consultas differente de \"SELECT\" es restricte al
-disveloppatores de Wikipedia.",
-"querysuccessful" => "Consulta effectuate con successo",
 
 # Move page
 #
@@ -911,12 +832,12 @@ nove titulo. Per favor fusiona los manualmente.",
 
 # Math
 
-	'mw_math_png' => "Sempre produce PNG",
-	'mw_math_simple' => "HTML si multo simple, alteremente PNG",
-	'mw_math_html' => "HTML si possibile, alteremente PNG",
-	'mw_math_source' => "Lassa lo como TeX (pro navigatores in modo texto)",
-	'mw_math_modern' => "Recommendate pro navigatores moderne",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "Sempre produce PNG",
+'mw_math_simple' => "HTML si multo simple, alteremente PNG",
+'mw_math_html' => "HTML si possibile, alteremente PNG",
+'mw_math_source' => "Lassa lo como TeX (pro navigatores in modo texto)",
+'mw_math_modern' => "Recommendate pro navigatores moderne",
+'mw_math_mathml' => 'MathML',
 
 );
 
@@ -938,9 +859,8 @@ class LanguageIa extends LanguageUtf8 {
 		global $wgSkinNamesIa;
 		return $wgSkinNamesIa;
 	}
-
-	function date( $ts, $adj = false )
-	{
+s
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
@@ -949,31 +869,11 @@ class LanguageIa extends LanguageUtf8 {
 		return $d;
 	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesIa;
-		return $wgValidSpecialPagesIa;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesIa;
-		return $wgSysopSpecialPagesIa;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesIa;
-		return $wgDeveloperSpecialPagesIa;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesIa, $wgAllMessagesEn;
 		$m = $wgAllMessagesIa[$key];
 

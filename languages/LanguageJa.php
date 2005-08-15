@@ -6,13 +6,6 @@
 global $IP;
 require_once( "LanguageUtf8.php" );
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-# 名前空間の名前はここで設定できますが、番号は特別なので、
-# 変更したり移動したりしないでね! 名前空間クラスは特殊性を幾らか
-# 隠匿します。
-#
 /* private */ $wgNamespaceNamesJa = array(
 	NS_MEDIA          => "Media", /* Media */
 	NS_SPECIAL        => "特別", /* Special */
@@ -42,13 +35,7 @@ require_once( "LanguageUtf8.php" );
 	'standard' => "標準",
 	'nostalgia' => "ノスタルジア",
 	'cologneblue' => "ケルンブルー",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
-	'myskin' => "MySkin"
-);
+) + $wgSkinNamesEn;
 
 
 
@@ -57,58 +44,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-# 全ての特殊頁はここに列挙しないといけません。
-# "" (空文字列) という説明にすると「特殊頁」頁に掲載しません。
-# これは幾つか (「targeted」とか) に対しては適当なことです。
-
-/* private */ $wgValidSpecialPagesJa = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "ユーザー設定を保存",
-	"Watchlist"		=> "ウォッチリスト",
-	"Recentchanges" => "最近更新したページ",
-	"Upload"		=> "画像をアップロードする",
-	"Imagelist"		=> "画像リスト",
-	"Listusers"		=> "登録済みユーザー",
-	"Statistics"	=> "サイトの統計",
-	"Randompage"	=> "ランダム記事",
-
-	"Lonelypages"	=> "孤立したページ",
-	"Unusedimages"	=> "孤立した画像",
-	"Popularpages"	=> "人気の記事",
-	"Wantedpages"	=> "執筆が待望されている記事",
-	"Shortpages"	=> "短い記事",
-	"Longpages"		=> "長い記事",
-	"Newpages"		=> "新しく登場した記事",
-	"Ancientpages"	=> "Oldest articles",
-	"Allpages"		=> "タイトル別全ページ",
-
-	"Ipblocklist"	=> "ブロックされたIPアドレス",
-	"Maintenance" => "管理ページ",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "外部の参考文献",
-	"Export"	=> "XML export",
-	"Version"	=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesJa = array(
-	"Blockip"		=> "IPアドレスをブロック",
-	"Asksql"		=> "データベースに問い合わせ",
-	"Undelete"		=> "消去されたページを閲覧し、復帰させる"
-);
-
-/* private */ $wgDeveloperSpecialPagesJa = array(
-	"Lockdb"		=> "データベースを読み出し専用にする",
-	"Unlockdb"		=> "データベースを書き込み可能にする",
-);
 
 /* private */ $wgAllMessagesJa = array(
 # User Toggles
@@ -398,7 +333,6 @@ Please check the URL you used to access this page.\n",
 # 検索結果（Search results）
 #
 "searchresults" => "検索結果" /* "Search results" */,
-"searchingwikipedia" => "{{SITENAME}} を検索中" /* "Searching Wikipedia" */,
 "searchresulttext" => "{{SITENAME}} の検索についての詳しい情報は、 $1 をご覧下さい。"
   /* "For more information about searching Wikipedia, see $1." */ ,
 "searchquery"	=> "問い合わせ \"$1\" について、" /* "For query \"$1\"" */,
@@ -593,19 +527,10 @@ All times shown are server time (UTC). */,
 
 "filename"		=> "ファイル名",
 "filedesc"		=> "ファイルの概要",
-"affirmation"	=> "このファイルの著作権者は$1のライセンスに基づく
-使用を許可したことをここに表明します。
-
-I affirm that the copyright holder of this file
-agrees to license it under the terms of the $1.",
 "copyrightpage" => "{{ns:4}}:Copyrights",
 
 "copyrightpagename" => "ウィキペディアの著作権",
 "uploadedfiles"	=> "アップロードされたファイル",
-"noaffirmation" => "あなたのアップロードが著作権の侵害にあたらない旨を
-表明して下さい。"
-/* "You must affirm that your upload does not violate
-any copyrights." */,
 "ignorewarning"	=> "警告を無視し、保存してしまう" /* "Ignore warning and save file anyway." */,
 "minlength"		=> "ファイル名は3文字以上である必要があります。" /* "Image names must be at least three letters." */,
 "badfilename"	=> "ファイル名は\"$1\"へ変更されました。" /* "Image name has been changed to \"$1\"." */,
@@ -834,7 +759,6 @@ pages that were vandalized).",
 "ipbreason"		=> "Reason",
 "ipbsubmit"		=> "Block this address",
 "badipaddress"	=> "The IP address is badly formed.",
-"noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "The IP address \"$1\" has been blocked.
 <br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
@@ -872,20 +796,6 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesstext" => "The {{SITENAME}} database has been locked.
 <br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The {{SITENAME}} database has been unlocked.",
-
-# SQL query     （この部分は管理者用なので当面英文を残しておきます。）
-#
-"asksql"		=> "SQL query",
-"asksqltext"	=> "Use the form below to make a direct query of the
-{{SITENAME}} database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",
-"sqlquery"		=> "Enter query",
-"querybtn"		=> "Submit query",
-"selectonly"	=> "Queries other than \"SELECT\" are restricted to
-{{SITENAME}} developers.",
-"querysuccessful" => "Query successful",
 
 # Move page ページの移動
 #
@@ -927,12 +837,12 @@ Please choose another name." */,
 
 # Math
 
-	'mw_math_png' => "常にPNG",
-	'mw_math_simple' => "シンプルな数式はHTML、それ以外はPNG",
-	'mw_math_html' => "できる限りHTML、さもなければPNG",
-	'mw_math_source' => "TeXのままにする (テキストブラウザ向け)",
-        'mw_math_modern' => "可能ならばMathMLを使う (実験中の機能)",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "常にPNG",
+'mw_math_simple' => "シンプルな数式はHTML、それ以外はPNG",
+'mw_math_html' => "できる限りHTML、さもなければPNG",
+'mw_math_source' => "TeXのままにする (テキストブラウザ向け)",
+'mw_math_modern' => "可能ならばMathMLを使う (実験中の機能)",
+'mw_math_mathml' => 'MathML',
 
 );
 
@@ -953,9 +863,8 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgSkinNamesJa;
 	}
 
-	
-	function date( $ts, $adj = false )
-	{
+
+	function date( $ts, $adj = false ) {
 		global $wgWeekdayAbbreviationsJa;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -970,41 +879,18 @@ class LanguageJa extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
+	function time( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
 		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
-		
-
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesJa;
-		return $wgValidSpecialPagesJa;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesJa;
-		return $wgSysopSpecialPagesJa;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesJa;
-		return $wgDeveloperSpecialPagesJa;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesJa;
 		if(array_key_exists($key, $wgAllMessagesJa))
 			return $wgAllMessagesJa[$key];
@@ -1041,8 +927,7 @@ class LanguageJa extends LanguageUtf8 {
 
 	# Italic is not appropriate for Japanese script
 	# Unfortunately most browsers do not recognise this, and render <em> as italic
-	function emphasize( $text )
-	{
+	function emphasize( $text ) {
 		return $text;
 	}
 }

@@ -42,9 +42,6 @@ require_once('LanguageUtf8.php');
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
-# hyphen (-). If you need more characters, you may be able to change
-# the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesPa = array(
 # Bits of text used by many pages:
@@ -127,10 +124,8 @@ require_once('LanguageUtf8.php');
 'anontalk'		=> 'ਇੱਸ ਆਈ-ਪੀ (IP) ਦੀ ਚਰਚਾ',
 'navigation'		=> 'ਨੈਵੀਗੇਸ਼ੱਨ',
 
-# NOTE: To turn off 'Current Events' in the sidebar,
-# set 'currentevents' => '-'
 'currentevents'	=> '-',
-/*'currentevents-url' => 'Current events',*/
+
 
 'disclaimers'		=> 'ਡਿਸਕਲੇਮਰ',
 'disclaimerpage'	=> 'Project:General_disclaimer',
@@ -181,8 +176,6 @@ require_once('LanguageUtf8.php');
 'sysoptext'		=> 'ਜੋ ਤੁਸੀਂ ਕਰਨਾ ਚਾਹ ਰਹੇ ਹੋ, ਓਹ ਸਿਰਫ਼ \'sysop\' ਦਰਜੇ ਵਾਲੇ ਮੈਂਬਰ ਹੀ ਕਰ ਸਕਦੇ ਹਨ. ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਵੇਖੋ: $1',
 'developertitle'	=> 'Developer ਦਰਜਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ',
 'developertext'	=> 'ਜੋ ਤੁਸੀਂ ਕਰਨਾ ਚਾਹ ਰਹੇ ਹੋ, ਓਹ ਸਿਰਫ਼ \'developer\' ਦਰਜੇ ਵਾਲੇ ਮੈਂਬਰ ਹੀ ਕਰ ਸਕਦੇ ਹਨ. ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਵੇਖੋ: $1',
-'bureaucrattitle'	=> 'Bureaucrat ਦਰਜਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ',
-'bureaucrattext'	=> 'ਜੋ ਤੁਸੀਂ ਕਰਨਾ ਚਾਹ ਰਹੇ ਹੋ, ਓਹ ਸਿਰਫ਼ \'bureaucrat\' ਦਰਜੇ ਵਾਲੇ sysop ਮੈਂਬਰ ਹੀ ਕਰ ਸਕਦੇ ਹਨ',
 'nbytes'		=> '$1 ਬਾਈਟ',
 'go'			=> 'ਜਾਓ',
 'ok'			=> 'ਠੀਕ ਹੈ',
@@ -254,15 +247,14 @@ a number of reasons why this may be so, please see
 [[{{ns:4}}:Protected page]].
 
 You can view and copy the source of this page:',
-'seriousxhtmlerrors'	=> 'Tidy ਦੁਆਰਾ ਕੁਝ ਬਹੁਤ ਹੀ ਅਹਿਮ XHTML markup ਦੀਆਂ ਗਲਤੀਆਂ ਲੱਭੀਆਂ ਗਈਆਂ ਹਨ',
 
 # Login and logout pages
 #
 'logouttitle'		=> 'ਮੈਂਬਰ ਲਾਗ ਆਊਟ',
-'logouttext'		=> 'ਹੁਣ ਤੁਸੀਂ ਲਾਗ ਆਊਟ ਹੋ ਚੁੱਕੇ ਹੋ। ਹੁਣ ਤੁਸੀਂ ਅਗਿਆਤ ਰੂਪ ਵਿੱਚ 
- {{SITENAME}} ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਓਹੀ ਮੈਂਬਰ 
-ਜਾਂ ਕਿਸੇ ਹੋਰ ਮੈਂਬਰ ਦੇ ਰੂਪ ਵਿੱਚ ਲਾਗ ਇਨ ਕਰ ਸਕਦੇ ਹੋ।  
-Note that some pages may continue to be displayed as if you were 
+'logouttext'		=> 'ਹੁਣ ਤੁਸੀਂ ਲਾਗ ਆਊਟ ਹੋ ਚੁੱਕੇ ਹੋ। ਹੁਣ ਤੁਸੀਂ ਅਗਿਆਤ ਰੂਪ ਵਿੱਚ
+ {{SITENAME}} ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਓਹੀ ਮੈਂਬਰ
+ਜਾਂ ਕਿਸੇ ਹੋਰ ਮੈਂਬਰ ਦੇ ਰੂਪ ਵਿੱਚ ਲਾਗ ਇਨ ਕਰ ਸਕਦੇ ਹੋ।
+Note that some pages may continue to be displayed as if you were
 still logged in, until you clear your browser cache\n',
 
 'welcomecreation'	=> '== ਜੀ ਆਇਆਂ ਨੂੰ, $1! ==
@@ -293,31 +285,31 @@ still logged in, until you clear your browser cache\n',
 'yourlanguage'	=> 'Interface language',
 'yourvariant'		=> 'Language variant',
 'yournick'		=> 'ਤੁਹਾਡਾ ਉਪਨਾਮ (ਦਸਤਖ਼ਤ ਲਈ)',
-'emailforlost'	=> 'Star (*) ਨਿਸ਼ਾਨ ਲੱਗੇ ਖਾਨਿਆਂ ਵਿੱਚ ਭਰਨਾ ਲਾਜ਼ਮੀ ਨਹੀਂ ਹੈ. 
-ਜੇ ਤੁਸੀਂ ਈ-ਮੇਲ ਦਿੰਦੇ ਹੋ ਤਾਂ ਬਿਨਾਂ ਤੁਹਾਡੇ ਅਸਲੀ ਈ-ਮੇਲ ਨੂੰ ਜਾਣੇ, ਇਸ website ਦੁਆਰਾ ਲੋਕ ਤੁਹਾਨੂੰ ਸੰਪੰਰਕ ਕਰ ਸਕਦੇ ਹਨ 
+'emailforlost'	=> 'Star (*) ਨਿਸ਼ਾਨ ਲੱਗੇ ਖਾਨਿਆਂ ਵਿੱਚ ਭਰਨਾ ਲਾਜ਼ਮੀ ਨਹੀਂ ਹੈ.
+ਜੇ ਤੁਸੀਂ ਈ-ਮੇਲ ਦਿੰਦੇ ਹੋ ਤਾਂ ਬਿਨਾਂ ਤੁਹਾਡੇ ਅਸਲੀ ਈ-ਮੇਲ ਨੂੰ ਜਾਣੇ, ਇਸ website ਦੁਆਰਾ ਲੋਕ ਤੁਹਾਨੂੰ ਸੰਪੰਰਕ ਕਰ ਸਕਦੇ ਹਨ
 ਅਤੇ ਜੇ ਕਦੀ ਤੁਸੀਂ ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਜਾਓ, ਤਾਂ ਇਸ ਈ-ਮੇਲ ਤੇ ਤੁਹਾਨੂੰ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜਿਆ ਜਾ ਸਕਦਾ ਹੈ. <br /><br />ਤੁਹਾਡਾ ਅਸਲੀ ਨਾਮ, ਜੇ ਤੁਸੀਂ ਇੱਥੇ ਦਿੰਦੇ ਹੋ, ਤੁਹਾਡੇ ਕੰਮ ਨੂੰ attribution ਦੇਣ ਲਈ ਵਰਤਿਆ ਜਾਵੇਗਾ',
 'prefs-help-realname'	=> '* <strong>ਅਸਲੀ ਨਾਮ</strong> (ਗੈਰ-ਜ਼ਰੂਰੀ): ਜੇ ਤੁਸੀਂ ਭਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਕੰਮ ਨੂੰ attribution ਦੇਣ ਲਈ ਵਰਤਿਆ ਜਾਵੇਗਾ<br/>',
-'prefs-help-email'	=> '* <strong>ਈ-ਮੇਲ</strong> (ਗੈਰ-ਜ਼ਰੂਰੀ): ਜੇ ਭਰਦੇ ਹੋ ਤਾਂ ਬਿਨਾਂ ਤੁਹਾਡੇ ਅਸਲੀ ਈ-ਮੇਲ ਨੂੰ ਜਾਣੇ, ਇਸ website ਦੁਆਰਾ ਲੋਗ ਤੁਹਾਨੂੰ ਸੰਪੰਰਕ ਕਰ ਸਕਦੇ ਹਨ 
+'prefs-help-email'	=> '* <strong>ਈ-ਮੇਲ</strong> (ਗੈਰ-ਜ਼ਰੂਰੀ): ਜੇ ਭਰਦੇ ਹੋ ਤਾਂ ਬਿਨਾਂ ਤੁਹਾਡੇ ਅਸਲੀ ਈ-ਮੇਲ ਨੂੰ ਜਾਣੇ, ਇਸ website ਦੁਆਰਾ ਲੋਗ ਤੁਹਾਨੂੰ ਸੰਪੰਰਕ ਕਰ ਸਕਦੇ ਹਨ
 ਅਤੇ ਜੇ ਕਦੀ ਤੁਸੀਂ ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਜਾਓ, ਤਾਂ ਇਸ ਈ-ਮੇਲ ਤੇ ਤੁਹਾਨੂੰ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜਿਆ ਜਾ ਸਕਦਾ ਹੈ.',
 'loginerror'		=> 'ਲਾਗ ਇਨ ਵਿੱਚ ਗਲਤੀ',
 'noname'		=> 'ਤੁਸੀਂ ਮੈਂਬਰ ਦਾ ਨਾਮ ਸਹੀ ਨਹੀਂ ਦੱਸਿਆ.',
 'loginsuccesstitle'	=> 'ਲਾਗ ਇਨ ਕਾਮਯਾਬ ਰਿਹਾ',
 'loginsuccess'	=> 'ਹੁਣ ਤੁਸੀਂ {{SITENAME}} ਵਿੱਚ \'$1\' ਨਾਮ ਨਾਲ ਲਾਗ ਇਨ ਹੋ',
-'nosuchuser'		=> '\'$1\' ਨਾਮ ਦਾ ਕੋਈ ਮੈਂਬਰ ਨਹੀਂ ਹੈ. 
+'nosuchuser'		=> '\'$1\' ਨਾਮ ਦਾ ਕੋਈ ਮੈਂਬਰ ਨਹੀਂ ਹੈ.
 ਕਿਰਪਾ ਕਰਕੇ ਨਾਮ ਸਹੀ ਲਿੱਖੋ ਜਾਂ ਨੀਚੇ ਦਿੱਤੇ ਗਏ ਫ਼ਾਰਮ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਇੱਕ ਨਵਾਂ ਖਾਤਾ ਬਣਾ ਲਓ.',
 'wrongpassword'	=> 'ਦਿੱਤਾ ਗਿਆ ਪਾਸਵਰਡ ਗਲਤ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਦੋਬਾਰਾ ਯਤਨ ਕਰੋ',
 'mailmypassword'	=> 'ਮੈਨੂੰ ਇੱਕ ਨਵਾਂ ਪਾਸਵਰਡ ਈ-ਮੇਲ ਰਾਹੀਂ ਭੇਜ ਦਿਓ',
 'passwordremindertitle'	=> '{{SITENAME}} ਵਲੋਂ ਪਾਸਵਰਡ ਯਾਦਦਹਾਣੀ-ਪੱਤ੍ਰ (Password Reminder from {{SITENAME}})',
-'passwordremindertext'	=> 'ਕਿਸੇ ਨੇ (ਸ਼ਾਯਿਦ ਤੁਸੀਂ ਹੀ, $1 IP address ਤੋਂ) 
- {{SITENAME}} ਲਾਗ ਇਨ ਦਾ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜਣ ਦੀ ਮੰਗ ਕੀਤੀ ਸੀ. 
-ਮੈਂਬਰ \'$1\' ਦਾ ਹੁਣ ਨਵਾਂ ਪਾਸਵਰਡ \'$3\' ਹੈ. 
+'passwordremindertext'	=> 'ਕਿਸੇ ਨੇ (ਸ਼ਾਯਿਦ ਤੁਸੀਂ ਹੀ, $1 IP address ਤੋਂ)
+ {{SITENAME}} ਲਾਗ ਇਨ ਦਾ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜਣ ਦੀ ਮੰਗ ਕੀਤੀ ਸੀ.
+ਮੈਂਬਰ \'$1\' ਦਾ ਹੁਣ ਨਵਾਂ ਪਾਸਵਰਡ \'$3\' ਹੈ.
 ਕਿਰਪਾ ਕਰਕੇ {{SITENAME}} ਵਿੱਚ ਲਾਗ ਇਨ ਕਰਕੇ ਹੁਣੇ ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲ ਲਓ.\n<br /><br />
 Someone (probably you, from IP address $1)
 requested that we send you a new {{SITENAME}} login password.
 The password for user \'$2\' is now \'$3\'.
 You should log in and change your password now.',
 'noemail'		=> 'ਮੈਂਬਰ \'$1\' ਲਈ ਕੋਈ ਈ-ਮੇਲ ਅਡ੍ਰੈੱਸ ਨਹੀਂ ਹੈ',
-'passwordsent'	=> '\'$1\' ਮੈਂਬਰ ਦੇ ਈ-ਮੇਲ ਅਡ੍ਰੈੱਸ ਤੇ ਇੱਕ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ. 
+'passwordsent'	=> '\'$1\' ਮੈਂਬਰ ਦੇ ਈ-ਮੇਲ ਅਡ੍ਰੈੱਸ ਤੇ ਇੱਕ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ.
 ਪਾਸਵਰਡ ਮਿਲੱਣ ਤੋਂ ਬਾਅਦ ਕਿਰਪਾ ਲਾਗ ਇਨ ਜ਼ਰੂਰ ਕਰੋ.',
 'loginend'		=> ' ',
 'mailerror'		=> 'ਮੇਲ (mail) $1 ਭੇਜਣ ਵਿੱਚ ਸਮੱਸਿਆ ਆ ਗਈ ਹੈ',
@@ -343,12 +335,12 @@ You should log in and change your password now.',
 'preview'		=> 'ਝਲਕ',
 'showpreview'		=> 'ਝਲਕ ਦਿਖਾਓ',
 'blockedtitle'	=> 'ਮੈਂਬਰ ਤੇ ਰੋਕ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ',
-'blockedtext'		=> 'ਤੁਹਾਡੇ ਮੈਂਬਰ ਨਾਮ ਜਾਂ IP address ਉੱਤੇ $1 ਦੁਆਰਾ ਰੋਕ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ. 
-ਕਾਰਣ ਹੈ:<br />\'\'$2\'\'<p>ਇਸ ਰੋਕ ਦੇ ਬਾਰੇ ਵਿੱਚ ਚਰਚਾ ਕਰਨ ਲਈ 
-$1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]] 
-ਨੂੰ ਸੰਪੰਰਕ ਕਰੋ. ਧਿਆਨ ਦਿਓ ਕਿ ਤੁਸੀਂ ਓਹਨਾਂ ਚਿਰ \'ਇਸ ਮੈਂਬਰ ਨੂੰ ਈ-ਮੇਲ ਕਰੋ\' ਸੁਵੀਧਾ ਦੀ ਵਰਤੋਂ 
-ਨਹੀਂ ਕਰ ਸਕਦੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ [[Special:Preferences|preferences]] 
-ਵਿੱਚ ਆਪਣਾ ਈ-ਮੇਲ ਨਹੀਂ ਦਿੰਦੇ. ਤੁਹਾਡਾ IP address ਹੈ $3. 
+'blockedtext'		=> 'ਤੁਹਾਡੇ ਮੈਂਬਰ ਨਾਮ ਜਾਂ IP address ਉੱਤੇ $1 ਦੁਆਰਾ ਰੋਕ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ.
+ਕਾਰਣ ਹੈ:<br />\'\'$2\'\'<p>ਇਸ ਰੋਕ ਦੇ ਬਾਰੇ ਵਿੱਚ ਚਰਚਾ ਕਰਨ ਲਈ
+$1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
+ਨੂੰ ਸੰਪੰਰਕ ਕਰੋ. ਧਿਆਨ ਦਿਓ ਕਿ ਤੁਸੀਂ ਓਹਨਾਂ ਚਿਰ \'ਇਸ ਮੈਂਬਰ ਨੂੰ ਈ-ਮੇਲ ਕਰੋ\' ਸੁਵੀਧਾ ਦੀ ਵਰਤੋਂ
+ਨਹੀਂ ਕਰ ਸਕਦੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ [[Special:Preferences|preferences]]
+ਵਿੱਚ ਆਪਣਾ ਈ-ਮੇਲ ਨਹੀਂ ਦਿੰਦੇ. ਤੁਹਾਡਾ IP address ਹੈ $3.
 ਕਿਰਪਾ ਕਰਕੇ ਪੁਛ-ਗਿੱਛ ਕਰਦੇ ਵਕਤ ਇਸ IP address ਦੀ ਵਰਤੋਂ ਜ਼ਰੂਰ ਕਰੋ.',
 'whitelistedittitle'	=> 'ਬਦਲਾਵ ਕਰਨ ਲਈ ਲਾੱਗ-ਇਨ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ',
 'whitelistedittext'	=> 'ਤੁਹਾਨੂੰ ਲੇਖਾਂ ਵਿੱਚ ਬਦਲਾਵ ਕਰਨ ਲਈ [[Special:Userlogin|login]] ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ',
@@ -357,14 +349,14 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
 'whitelistacctitle'	=> 'ਤੁਹਾਨੂੰ ਖਾਤਾ ਬਨਾਓਣ ਦੀ ਅਨੁਮਤੀ ਨਹੀਂ ਹੈ',
 'whitelistacctext'	=> 'ਇਸ ਵਿਕਿ ਵਿੱਚ ਖਾਤਾ ਬਨਾਓਣ ਲਈ ਤੁਹਾਨੂੰ [[Special:Userlogin|login]] ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ ਅਤੇ ਨਾਲ ਹੀ ਉਪ੍ਯੁਕਤ ਅਨੁਮਤੀ ਵੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ',
 'loginreqtitle'	=> 'ਲਾਗ ਇਨ ਜ਼ਰੂਰੀ ਹੈ',
-'loginreqtext'	=> 'ਬਾਕੀ ਦੇ ਲੇਖ ਵੇਖਣ ਲਈ [[Special:Userlogin|login]] ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ',
+'loginreqpagetext'	=> 'ਬਾਕੀ ਦੇ ਲੇਖ ਵੇਖਣ ਲਈ $1 ਕਰਨਾ ਜ਼ਰੂਰੀ ਹੈ',
 'accmailtitle'	=> 'ਪਾਸਵਰਡ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ',
 'accmailtext'		=> '\'$1\' ਦਾ ਪਾਸਵਰਡ $2 ਨੂੰ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ',
 'newarticle'		=> '(ਨਵਾਂ ਲੇਖ)',
 'newarticletext'	=> '
-ਤੁਸੀਂ ਅਜੇਹੇ ਪੰਨੇ ਤੇ ਪੁੱਜ ਗਏ ਹੋ ਜੋ ਅਜੇ ਲਿੱਖਿਆ ਨਹੀਂ ਗਿਆ ਹੈ. 
-ਜੇ ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਨੂੰ ਬਨਾਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੀ 
-ਥਾਂ ਵਿੱਚ ਲਿੱਖਣਾ ਸ਼ੁਰੂ ਕਰ ਦਿਓ(ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਵੇਖੋ [[Project:Help|help page]]). 
+ਤੁਸੀਂ ਅਜੇਹੇ ਪੰਨੇ ਤੇ ਪੁੱਜ ਗਏ ਹੋ ਜੋ ਅਜੇ ਲਿੱਖਿਆ ਨਹੀਂ ਗਿਆ ਹੈ.
+ਜੇ ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਨੂੰ ਬਨਾਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੀ
+ਥਾਂ ਵਿੱਚ ਲਿੱਖਣਾ ਸ਼ੁਰੂ ਕਰ ਦਿਓ(ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਵੇਖੋ [[Project:Help|help page]]).
 ਜੇ ਤੁਸੀਂ ਗਲਤੀ ਨਾਲ ਇੱਥੇ ਆ ਗਏ ਹੋ, ਤਾਂ ਆਪਣੇ browser ਦਾ \'\'\'back\'\'\' button ਦਬਾਓ',
 'noarticletext'	=> '(ਅਜੇ ਇਹ ਪੰਨਾ ਖਾਲੀ ਹੈ)',
 'usercssjsyoucanpreview'	=> '<strong>ਨਸੀਹਤ:</strong>CSS/JS ਵਿੱਚ ਕੀਤੇ ਗਏ ਬਦਲਾਵ  ਨੂੰ ਪੱਕਾ ਕਰਨ ਤੋਂ ਪਿਹਲਾਂ, \'ਝਲਕ ਦਿਖਾਓ\' button ਦਾ ਇਸਤੇਮਾਲ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ',
@@ -374,8 +366,6 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
 'note'		=> '<strong>ਧਿਆਨ ਦਿਓ:</strong> ',
 'previewnote'		=> 'ਯਾਦ ਰੱਖੋ ਕਿ ਇਹ ਸਿਰਫ਼ ਇਕ ਝਲਕ ਹੈ, ਅਜੇ ਇਸਨੂੰ ਪੱਕਾ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ!',
 'editing'		=> 'ਬਦਲ ਰਹੇ ਹਾਂ: $1',
-'sectionedit'		=> ' (ਵਿਭਾਗ)',
-'commentedit'		=> ' (ਟਿੱਪਣੀ)',
 'editconflict'	=> 'ਬਦਲਾਵ ਮੱਤਭੇਦ: $1',
 'yourdiff'		=> 'ਅੰਤਰ (Differences)',
 
@@ -415,26 +405,7 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
 'nchanges'		=> '$1 ਬਦਲਾਵ',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-article'	=> 'ਲੇਖ ਦਿਖਾਓ [alt-a]',
-'tooltip-talk'	=> 'ਲੇਖ ਬਾਰੇ ਚਰਚਾ [alt-t]',
-'tooltip-edit'	=> 'ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਵਿੱਚ ਬਦਲਾਵ ਕਰ ਸੱਕਦੇ ਹੋ. ਕਿਰਪਾ ਕਰਕੇ ਪੱਕਾ ਕਰਨ ਤੋਂ ਪਿਹਲਾਂ, \'ਝਲਕ ਦਿਖਾਓ\' button ਦਾ ਇੱਸਤੇਮਾਲ ਜ਼ਰੂਰ ਕਰੋ [alt-e]',
-'tooltip-viewsource'	=> 'ਇਹ ਪੰਨਾ ਸੁਰੱਖਿਅਤ ਹੈ। ਤੁਸੀਂ ਇਸਦਾ ਸ੍ਰੋਤ ਦੇਖ ਸਕਦੇ ਹੋ। [alt-e]',
-'tooltip-history'	=> 'ਇਸ ਪਣਨੇ ਦੇ ਪਹਿਲੇ ਰੁਪਾਂਤਰ, [alt-h]',
-'tooltip-protect'	=> 'ਇਸ ਪੰਨੇ ਦੀ ਰੱਖਿਆ ਕਰੋ [alt--]',
-'tooltip-delete'	=> 'ਇਹ ਪੰਨਾ ਹਟਾ ਦਿਓ [alt-d]',
-'tooltip-undelete'	=> 'Restore $1 deleted edits to this page [alt-d]',
-'tooltip-move'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਕਿਤੇ ਹੋਰ ਲਿਜਾਓ [alt-m]',
 'tooltip-watch'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਵਿੱਚ ਜਮਾਂ ਕਰੋ[alt-w]',
-'tooltip-unwatch'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਤੋਂ ਹਟਾ ਦਿਓ[alt-w]',
-'tooltip-watchlist'	=> 'ਉਹਨਾਂ ਪੰਨਿਆਂ ਦੀ ਸੂਚੀ, ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਬਦਲਾਵ ਲਈ ਨਿਗਰਾਨੀ ਰੱਖ ਰਹੇ ਹੋ। [alt-l]',
-'tooltip-preferences'	=> 'ਮੇਰੀ ਪਸੰਦ',
-'tooltip-mycontris'	=> 'ਮੇਰੇ ਯੋਗਦਾਨ ਦੀ ਸੂਚੀ [alt-y]',
-'tooltip-mainpage'	=> 'ਮੁੱਖ ਪੰਨੇ ਤੇ ਜਾਓ [alt-z]',
-'tooltip-portal'	=> 'ਪ੍ਰੋਜੈਕਟ ਦੇ ਬਾਰੇ, ਤੁਸੀਂ ਕੀ ਕਰ ਸਕਦੇ ਹੋ, ਚੀਜ਼ਾਂ ਕਿਥੋਂ ਮਿਲਣਗੀਆਂ',
-'tooltip-sitesupport'	=> '{{SITENAME}} ਦੀ ਸਹਾਇਤਾ ਕਰੋ',
-'tooltip-recentchanges'	=> 'ਵਿਕਿ ਵਿਚ ਹਾਲ ਹੀ ਵਿਚ ਹੋਈਆਂ ਤਬਦੀਲੀਆਂ ਦੀ ਸੂਚੀ। [alt-r]',
-'tooltip-specialpages'	=> 'ਸਾਰੇ ਖਾਸ ਪੰਨਿਆਂ ਦੀ ਸੂਚੀ [alt-q]',
-'tooltip-specialpage'	=> 'ਇਹ ਇਕ ਖਾਸ ਪੰਨਾ ਹੈ, ਤੁਸੀਂ ਇਸਦੇ ਵਿੱਚ ਕੋਈ ਬਦਲਾਵ ਨਹੀਂ ਕਰ ਸਕਦੇ',
 'tooltip-search'	=> 'ਇਸ ਵਿਕਿ ਵਿੱਚ ਲੱਭੋ [alt-f]',
 'tooltip-minoredit'	=> 'ਮਾਮੂਲੀ ਬਦਲਾਵ ਦੀ ਨਿਸ਼ਾਨੀ ਲਗਾਓ (Mark this as a minor edit) [alt-i]',
 'tooltip-save'	=> 'ਕੀਤੇ ਗਏ ਬਦਲਾਵ ਪੱਕੇ ਕਰੋ [alt-s]',
@@ -473,8 +444,7 @@ class LanguagePa extends LanguageUtf8 {
 		return $wgSkinNamesPa;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesPa;
 		if( isset( $wgAllMessagesPa[$key] ) ) {
 			return $wgAllMessagesPa[$key];
@@ -482,7 +452,7 @@ class LanguagePa extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 	var $digitTransTable = array(
 		'0' => '੦',
 		'1' => '੧',
@@ -495,7 +465,7 @@ class LanguagePa extends LanguageUtf8 {
 		'8' => '੮',
 		'9' => '੯'
 	);
-	
+
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		if( $wgTranslateNumerals ) {

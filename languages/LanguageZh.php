@@ -25,7 +25,7 @@ class ZhConverter extends LanguageConverter {
 		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-tw'], $this->mTables['zh-hk']);
     }
 
-	/* there shouldn't be any latin text in Chinese conversion, so no need 
+	/* there shouldn't be any latin text in Chinese conversion, so no need
 	   to mark anything
     */
 	function markNoConversion($text) {
@@ -33,7 +33,7 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	function convertCategoryKey( $key ) {
-		return $this->autoConvert( $key, 'zh-cn' ); 
+		return $this->autoConvert( $key, 'zh-cn' );
 	}
 }
 
@@ -42,20 +42,20 @@ class ZhConverter extends LanguageConverter {
    right now it only distinguish zh_cn, zh_tw, zh_sg and zh_hk.
 */
 class LanguageZh extends LanguageZh_cn {
-	
+
 	function LanguageZh() {
 		global $wgHooks;
-		$this->mConverter = new ZhConverter($this, 'zh', 
+		$this->mConverter = new ZhConverter($this, 'zh',
                                             array('zh', 'zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'),
 											array('zh'=>'zh-cn',
 												  'zh-cn'=>'zh-sg',
 												  'zh-sg'=>'zh-cn',
 												  'zh-tw'=>'zh-hk',
-												  'zh-hk'=>'zh-tw'));	   
+												  'zh-hk'=>'zh-tw'));
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
-	
+
 	# this should give much better diff info
 	function segmentForDiff( $text ) {
 		return preg_replace(
@@ -81,7 +81,7 @@ class LanguageZh extends LanguageZh_cn {
 				"' ' .\"$1\"", $string);
 
         //always convert to zh-cn before indexing. it should be
-		//better to use zh-cn for search, since conversion from 
+		//better to use zh-cn for search, since conversion from
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
 

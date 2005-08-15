@@ -8,141 +8,101 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgQuickbarSettingsLt = array(
-        "Nerodyti", "Fiksuoti kairėje", "Fiksuoti dešinėje", "Plaukiojantis kairėje"
+	"Nerodyti", "Fiksuoti kairėje", "Fiksuoti dešinėje", "Plaukiojantis kairėje"
 );
 
 /* private */ $wgSkinNamesLt = array(
-        'standard' => "Standartinė",
-        'nostalgia' => "Nostalgija",
-        'cologneblue' => "Kiolno Mėlyna",
-        'davinci' => "Da Vinči",
-        'mono' => "Mono",
-        'monobook' => "MonoBook",
-	'myskin' => "MySkin"
-);
-
-# Note to translators: 
-#   Please include the English words as synonyms.  This allows people 
-#   from other wikis to contribute more easily.
-# 
-/* private */ $wgMagicWordsLt = array(
-#   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect"              ),
-    MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
-    MAG_FORCETOC             => array( 0,    "__FORCETOC__"           ),
-    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
-    MAG_START                => array( 0,    "__START__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH"           ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME"       ),
-    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY"             ),
-    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME"         ),
-    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR"            ),
-    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME"            ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES"       ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ),
-        MAG_SUBST                => array( 0,    "SUBST:"                 ),
-    MAG_MSGNW                => array( 0,    "MSGNW:"                 ),
-        MAG_END                  => array( 0,    "__END__"                ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
-    MAG_IMG_RIGHT            => array( 1,    "right"                  ),
-    MAG_IMG_LEFT             => array( 1,    "left"                   ),
-    MAG_IMG_NONE             => array( 1,    "none"                   ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
-    MAG_IMG_CENTER           => array( 1,    "center", "centre"       ),
-    MAG_INT                  => array( 0,    "INT:"                   ),
-    MAG_SITENAME             => array( 1,    "SITENAME"               ),
-    MAG_NS                   => array( 0,    "NS:"                    ),
-        MAG_LOCALURL             => array( 0,    "LOCALURL:"              ),
-        MAG_LOCALURLE            => array( 0,    "LOCALURLE:"             ),
-        MAG_SERVER               => array( 0,    "SERVER"                 )
-);
-
+	'standard' => "Standartinė",
+	'nostalgia' => "Nostalgija",
+	'cologneblue' => "Kiolno Mėlyna",
+	'davinci' => "Da Vinči",
+) + $wgSkinNamesEn;
 
 $wgAllMessagesLt = array(
-'january' => "Sausio", 
-'february' => "Vasario", 
-'march' => "Kovo", 
-'april' => "Balandžio", 
-'may_long' => "Gegužės", 
+'january' => "Sausio",
+'february' => "Vasario",
+'march' => "Kovo",
+'april' => "Balandžio",
+'may_long' => "Gegužės",
 'june' => "Birželio",
-'july' => "Liepos", 
-'august' => "Rugpjūčio", 
+'july' => "Liepos",
+'august' => "Rugpjūčio",
 'september' => "Rugsėjo",
 'october' => "Spalio",
 'november' => "Lapkričio",
 'december' => "Gruodžio",
 
-'jan' => "Sau", 
-'feb' => "Vas", 
-'mar' => "Kov", 
-'apr' => "Bal", 
-'may' => "Geg", 
-'jun' => "Bir", 
-'jul' => "Lie", 
+'jan' => "Sau",
+'feb' => "Vas",
+'mar' => "Kov",
+'apr' => "Bal",
+'may' => "Geg",
+'jun' => "Bir",
+'jul' => "Lie",
 'aug' => "Rgp",
-'sep' => "Rgs", 
-'oct' => "Spa", 
-'nov' => "Lap", 
+'sep' => "Rgs",
+'oct' => "Spa",
+'nov' => "Lap",
 'dec' => "Gru",
 
-'sunday' => "Sekmadienis", 
-'monday' => "Pirmadienis", 
-'tuesday' => "Antradienis", 
-'wednesday' => "Trečiadienis", 
+'sunday' => "Sekmadienis",
+'monday' => "Pirmadienis",
+'tuesday' => "Antradienis",
+'wednesday' => "Trečiadienis",
 'thursday' => "Ketvirtadienis",
-'friday' => "Penktadienis", 
+'friday' => "Penktadienis",
 'saturday' => "Šeštadienis",
 
 '1movedto2' => "Straipsnis '$1' pervadintas į '$2'",
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
-ta['pt-userpage'] = new Array('.','Mano vartotojo puslapis'); 
-ta['pt-anonuserpage'] = new Array('.','Vartotojo puslapis jūsų ip ardesui'); 
-ta['pt-mytalk'] = new Array('n','Mano diskusijų puslapis'); 
-ta['pt-anontalk'] = new Array('n','Diskusijos apie pakeitimus, darytus naudojant šį IP adresą'); 
-ta['pt-preferences'] = new Array('','Mano nustatymai'); 
-ta['pt-watchlist'] = new Array('l','Sąrašas straipsnių, kuriuos jūs pasirinkote stebėti.'); 
-ta['pt-mycontris'] = new Array('y','Mano darytų keitimų sąrašas'); 
-ta['pt-login'] = new Array('o','Rekomenduojame prisijungti, nors tai nėra privaloma.'); 
-ta['pt-anonlogin'] = new Array('o','Rekomenduojame prisijungti, nors tai nėra privaloma.'); 
-ta['pt-logout'] = new Array('o','Atsijungti'); 
-ta['ca-talk'] = new Array('t','Diskusijos apie šį straipsnį'); 
-ta['ca-edit'] = new Array('e','Jūs galite redaguoti šį straipsnį. Nepamirškite peržiūrėti pakeitimų prieš užsaugodami.'); 
-ta['ca-addsection'] = new Array('+','Pradėti naują temą diskusijose.'); 
-ta['ca-viewsource'] = new Array('e','Puslapis yra užrakintas. Galite tik pažiūrėti turinį.'); 
-ta['ca-history'] = new Array('h','Ankstesnės puslapio versijos.'); 
-ta['ca-protect'] = new Array('=','Uždrausti šį puslapį'); 
-ta['ca-delete'] = new Array('d','Ištrinti šį puslapį'); 
-ta['ca-undelete'] = new Array('d','Atstatyti puslapį su visais darytais keitimais'); 
-ta['ca-move'] = new Array('m','Pervadinti straipsnį'); 
-ta['ca-watch'] = new Array('w','Pridėti straipsnį į stebimųjų sąrašą'); 
-ta['ca-unwatch'] = new Array('w','Išimti straipsnį iš stebimųjų sąrašo'); 
-ta['search'] = new Array('f','Ieškoti lietuviškoje Wikipedijoje'); 
-ta['p-logo'] = new Array('','Į pradinį puslapį'); 
-ta['n-mainpage'] = new Array('z','Apsilankykite pradiniame puslapyje'); 
-ta['n-portal'] = new Array('','About the project, what you can do, where to find things'); 
-ta['n-currentevents'] = new Array('','Find background information on current events'); 
-ta['n-recentchanges'] = new Array('r','Sąrašas paskutinių keitimų.'); 
-ta['n-randompage'] = new Array('x','Parinkti atsitiktinį straipsnį'); 
-ta['n-help'] = new Array('','Vieta, kur rasite rūpimus atsakymus.'); 
-ta['n-sitesupport'] = new Array('','Aukokite projektui'); 
-ta['t-whatlinkshere'] = new Array('j','Sąrašas straipsnių, rodančių į čia'); 
-ta['t-recentchangeslinked'] = new Array('k','Paskutiniai keitimai straipsniuose, pasiekiamuose iš šio straipsnio'); 
-ta['feed-rss'] = new Array('','RSS feed for this page'); 
-ta['feed-atom'] = new Array('','Atom feed for this page'); 
-ta['t-contributions'] = new Array('','Pažiūrėti vartotojo įnašą - darytus keitimus'); 
-ta['t-emailuser'] = new Array('','Siųsti el.laišką vartotojui'); 
-ta['t-upload'] = new Array('u','Įdėti paveikslėlį ar media failą'); 
-ta['t-specialpages'] = new Array('q','Specialiųjų puslapių sąrašas'); 
-ta['ca-nstab-main'] = new Array('c','Pereiti į straipsnio turinį'); 
-ta['ca-nstab-user'] = new Array('c','Rodyti vartotojo puslapį'); 
-ta['ca-nstab-media'] = new Array('c','Rodyti media puslapį'); 
-ta['ca-nstab-special'] = new Array('','Šis puslapis yra specialusis - jo negalima redaguoti.'); 
-ta['ca-nstab-wp'] = new Array('a','Rodyti projekto puslapį'); 
-ta['ca-nstab-image'] = new Array('c','Rodyti paveikslėlio puslapį'); 
-ta['ca-nstab-mediawiki'] = new Array('c','Rodyti sisteminį pranešimą'); 
-ta['ca-nstab-template'] = new Array('c','Rodyti šabloną'); 
-ta['ca-nstab-help'] = new Array('c','Rodyti pagalbos puslapį'); 
+ta['pt-userpage'] = new Array('.','Mano vartotojo puslapis');
+ta['pt-anonuserpage'] = new Array('.','Vartotojo puslapis jūsų ip ardesui');
+ta['pt-mytalk'] = new Array('n','Mano diskusijų puslapis');
+ta['pt-anontalk'] = new Array('n','Diskusijos apie pakeitimus, darytus naudojant šį IP adresą');
+ta['pt-preferences'] = new Array('','Mano nustatymai');
+ta['pt-watchlist'] = new Array('l','Sąrašas straipsnių, kuriuos jūs pasirinkote stebėti.');
+ta['pt-mycontris'] = new Array('y','Mano darytų keitimų sąrašas');
+ta['pt-login'] = new Array('o','Rekomenduojame prisijungti, nors tai nėra privaloma.');
+ta['pt-anonlogin'] = new Array('o','Rekomenduojame prisijungti, nors tai nėra privaloma.');
+ta['pt-logout'] = new Array('o','Atsijungti');
+ta['ca-talk'] = new Array('t','Diskusijos apie šį straipsnį');
+ta['ca-edit'] = new Array('e','Jūs galite redaguoti šį straipsnį. Nepamirškite peržiūrėti pakeitimų prieš užsaugodami.');
+ta['ca-addsection'] = new Array('+','Pradėti naują temą diskusijose.');
+ta['ca-viewsource'] = new Array('e','Puslapis yra užrakintas. Galite tik pažiūrėti turinį.');
+ta['ca-history'] = new Array('h','Ankstesnės puslapio versijos.');
+ta['ca-protect'] = new Array('=','Uždrausti šį puslapį');
+ta['ca-delete'] = new Array('d','Ištrinti šį puslapį');
+ta['ca-undelete'] = new Array('d','Atstatyti puslapį su visais darytais keitimais');
+ta['ca-move'] = new Array('m','Pervadinti straipsnį');
+ta['ca-watch'] = new Array('w','Pridėti straipsnį į stebimųjų sąrašą');
+ta['ca-unwatch'] = new Array('w','Išimti straipsnį iš stebimųjų sąrašo');
+ta['search'] = new Array('f','Ieškoti lietuviškoje Wikipedijoje');
+ta['p-logo'] = new Array('','Į pradinį puslapį');
+ta['n-mainpage'] = new Array('z','Apsilankykite pradiniame puslapyje');
+ta['n-portal'] = new Array('','About the project, what you can do, where to find things');
+ta['n-currentevents'] = new Array('','Find background information on current events');
+ta['n-recentchanges'] = new Array('r','Sąrašas paskutinių keitimų.');
+ta['n-randompage'] = new Array('x','Parinkti atsitiktinį straipsnį');
+ta['n-help'] = new Array('','Vieta, kur rasite rūpimus atsakymus.');
+ta['n-sitesupport'] = new Array('','Aukokite projektui');
+ta['t-whatlinkshere'] = new Array('j','Sąrašas straipsnių, rodančių į čia');
+ta['t-recentchangeslinked'] = new Array('k','Paskutiniai keitimai straipsniuose, pasiekiamuose iš šio straipsnio');
+ta['feed-rss'] = new Array('','RSS feed for this page');
+ta['feed-atom'] = new Array('','Atom feed for this page');
+ta['t-contributions'] = new Array('','Pažiūrėti vartotojo įnašą - darytus keitimus');
+ta['t-emailuser'] = new Array('','Siųsti el.laišką vartotojui');
+ta['t-upload'] = new Array('u','Įdėti paveikslėlį ar media failą');
+ta['t-specialpages'] = new Array('q','Specialiųjų puslapių sąrašas');
+ta['ca-nstab-main'] = new Array('c','Pereiti į straipsnio turinį');
+ta['ca-nstab-user'] = new Array('c','Rodyti vartotojo puslapį');
+ta['ca-nstab-media'] = new Array('c','Rodyti media puslapį');
+ta['ca-nstab-special'] = new Array('','Šis puslapis yra specialusis - jo negalima redaguoti.');
+ta['ca-nstab-wp'] = new Array('a','Rodyti projekto puslapį');
+ta['ca-nstab-image'] = new Array('c','Rodyti paveikslėlio puslapį');
+ta['ca-nstab-mediawiki'] = new Array('c','Rodyti sisteminį pranešimą');
+ta['ca-nstab-template'] = new Array('c','Rodyti šabloną');
+ta['ca-nstab-help'] = new Array('c','Rodyti pagalbos puslapį');
 ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 'about' => "Apie",
 'aboutsite'      => "Apie Wikipediją",
@@ -156,14 +116,12 @@ taip pat bus '''paryškinti''' [[Special:Recentchanges|naujausių keitimų sąra
 
 <p>Jei bet kuriuo metu užsinorėtumėte nustoti stebėti straipsnį, spustelkite \"nebestebėti\" viršutiniame meniu.",
 'administrators' => "Wikipedia:Administrators",
-'affirmation' => "Aš patvirtinu, kad šio failo autorius ar teisių turėtojas
-sutinka jog failas bus viešinamas $1 licenzijos sąlygomis.",
 'allmessages' => "Visi sistemos tekstai bei pranešimai",
 'allmessagestext' => "Čia pateikiami visi sisteminiai tekstai bei pranešimai, esantys MediaWiki: vardų ervėje.",
 'allpages' => "Visi straipsniai",
 'alphaindexline' => "Nuo $1 iki $2",
 'alreadyloggedin' => "<font color=red><b>Jūs jau esate prisijungęs kaip vartotojas User $1!</b></font><br />",
-'alreadyrolled' => "Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Diskusijos]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą. 
+'alreadyrolled' => "Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Diskusijos]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas vartotojo [[User:$3|$3]] ([[User talk:$3|Diskusijos]]).",
 'ancientpages' => "Seniausi straipsniai",
@@ -198,7 +156,7 @@ Pasirinkite kitą pavadinimą.",
 kartu su visa istorija iš duomenų bazės.
 Prašome patvirtinti kad jūs norite tai padaryti,
 žinote kokios yra veiksmo pasekmės,
-ir kad jūs tai darote nenusižengdamas 
+ir kad jūs tai darote nenusižengdamas
 [[Wikipedia:Policy|Wikipedijos Politikai]].",
 'confirmprotect' => "Užrakinimo patvirtinimas",
 'confirmprotecttext' => "Ar jūs tikrai norite užrakinti šį straipsnį?",
@@ -297,7 +255,7 @@ P.S.:  kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijungę
 'navigation' => "Navigacija",
 'nbytes' => "$1 B",
 'newarticletext' => "Jūs patekote į neegzistuojančio straipsnio puslapį.
-Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke 
+Norėdami sukurti straipsnį, pradėkite žemiau esančiame įvedimo lauke
 (daugiau informacijos [[Wikipedia:Help|pagalbos puslapyje]]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką 'atgal' ('''back''').",
 'newpages' => "Naujausi straipsniai",
@@ -422,43 +380,36 @@ esantį mygtuką 'Išmesti iš stebimų'.",
 #--------------------------------------------------------------------------
 
 class LanguageLt extends LanguageUtf8  {
-        # Inherent default user options unless customization is desired
+	# Inherent default user options unless customization is desired
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsLt;
-                return $wgQuickbarSettingsLt;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsLt;
+		return $wgQuickbarSettingsLt;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesLt;
-                return $wgSkinNamesLt;
-        }
-
-        function getDateFormats() {
-                global $wgDateFormatsLt;
-                return $wgDateFormatsLt;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesLt;
+		return $wgSkinNamesLt;
+	}
 
 	function fallback8bitEncoding() {
 		return "windows-1257";
 	}
 
-        function getMessage( $key )
-        {
-                global $wgAllMessagesLt;
+	function getMessage( $key ) {
+		global $wgAllMessagesLt;
 
-                if(array_key_exists($key, $wgAllMessagesLt))
-                        return $wgAllMessagesLt[$key];
-                else
-                        return parent::getMessage($key);
-        }
+		if(array_key_exists($key, $wgAllMessagesLt))
+			return $wgAllMessagesLt[$key];
+		else
+			return parent::getMessage($key);
+	}
 
-        function getAllMessages()
-        {
-                global $wgAllMessagesLt;
-                return $wgAllMessagesLt;
-        }
-	
+	function getAllMessages() {
+		global $wgAllMessagesLt;
+		return $wgAllMessagesLt;
+	}
+
 	function formatNum( $number ) {
 		return strtr($number, '.,', ',.' );
 	}

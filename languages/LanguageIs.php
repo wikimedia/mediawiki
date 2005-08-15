@@ -3,12 +3,6 @@
  * @package MediaWiki
  * @subpackage Language
  */
-   
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 
 # Most of this was written by Ævar Arnfjörð Bjarmason <avarab@gmail.com>
 
@@ -43,12 +37,8 @@ require_once( 'LanguageUtf8.php' );
 	'standard'	=> 'Klassískt',
 	'nostalgia'	=> 'Gamaldags',
 	'cologneblue'	=> 'Kölnarblátt',
-	'davinci'	=> 'DaVinci',
-	'mono'		=> 'Mono',
-	'monobook'	=> 'MonoBook',
 	'myskin'	=> 'Mitt þema',
-	'chick'		=> 'Chick'
-);
+) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsIs = array(
 	'Sjálfgefið',
@@ -81,53 +71,53 @@ $wgAllMessagesIs = array(
 ",
 'Monobook.js' => "/* tooltips and access keys */
 ta = new Object();
-ta['pt-userpage'] = new Array('.','Notendasíðan mín'); 
-ta['pt-anonuserpage'] = new Array('.','Notendasíðan fyrir IP töluna þína'); 
-ta['pt-mytalk'] = new Array('n','Spallsíðan mín'); 
-ta['pt-anontalk'] = new Array('n','Spjallsíðan fyrir þessa IP tölu'); 
-ta['pt-preferences'] = new Array('','Almennar stillingar'); 
-ta['pt-watchlist'] = new Array('l','Vaktlistinn.'); 
-ta['pt-mycontris'] = new Array('y','Listi yfir framlög þín'); 
-ta['pt-login'] = new Array('o','Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.'); 
-ta['pt-anonlogin'] = new Array('o','Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.'); 
-ta['pt-logout'] = new Array('o','Útskráning'); 
-ta['ca-talk'] = new Array('t','Spallsíða þessarar síðu'); 
-ta['ca-edit'] = new Array('e','Þú getur breytt síðu þessari, vinsamlegast notaðu „forskoða“ hnappinn áður en þú vistar'); 
-ta['ca-addsection'] = new Array('+','Viðbótarumræða.'); 
-ta['ca-viewsource'] = new Array('e','Síða þessi er vernduð, þú getur þó skoðað frumkóða hennar.'); 
-ta['ca-history'] = new Array('h','Eldri útgáfur af síðunni.'); 
-ta['ca-protect'] = new Array('=','Vernda þessa síðu'); 
-ta['ca-delete'] = new Array('d','Eyða þessari síðu'); 
-ta['ca-undelete'] = new Array('d','Endurvekja breytingar á síðu þessari fyrir en henni var tortímt'); 
-ta['ca-move'] = new Array('m','Færa þessa síðu'); 
-ta['ca-watch'] = new Array('w','Bæta þessari síðu við á vaktlistann'); 
-ta['ca-unwatch'] = new Array('w','Fjarlægja þessa síðu af vaktlistanum'); 
-ta['search'] = new Array('f','Leit'); 
-ta['p-logo'] = new Array('','Forsíða'); 
-ta['n-mainpage'] = new Array('z','Forsíða {{SITENAME}}'); 
-ta['n-portal'] = new Array('','Um verkefnið, hvernig er hægt að hjálpa og hvar á að byrja'); 
-ta['n-currentevents'] = new Array('','Líðandi stund'); 
-ta['n-recentchanges'] = new Array('r','Listi yfir nýlegar breytingar.'); 
-ta['n-randompage'] = new Array('x','Handahófsvalin síða'); 
-ta['n-help'] = new Array('','Efnisyfirlit yfir hjálparsíður.'); 
-ta['n-sitesupport'] = new Array('','Fjárframlagssíða Wikimedia'); 
-ta['t-whatlinkshere'] = new Array('j','Listi yfir síður sem tengjast í þessa'); 
-ta['t-recentchangeslinked'] = new Array('k','Nýlegar breitingar á ítengdum síðum'); 
-ta['feed-rss'] = new Array('','RSS fyrir þessa síðu'); 
-ta['feed-atom'] = new Array('','Atom fyrir þessa síðu'); 
-ta['t-contributions'] = new Array('','Sýna framlagslista þessa notanda'); 
-ta['t-emailuser'] = new Array('','Senda notanda þessum póst'); 
-ta['t-upload'] = new Array('u','Innhlaða myndum eða margmiðlunarskrám'); 
-ta['t-specialpages'] = new Array('q','Listi yfir kerfissíður'); 
-ta['ca-nstab-main'] = new Array('c','Sýna síðuna'); 
-ta['ca-nstab-user'] = new Array('c','Sýna notendasíðuna'); 
-ta['ca-nstab-media'] = new Array('c','Sýna margmiðlunarsíðuna'); 
-ta['ca-nstab-special'] = new Array('','Þetta er kerfissíða, þér er óhæft að breyta henni.'); 
-ta['ca-nstab-wp'] = new Array('a','Sýna verkefnasíðuna'); 
-ta['ca-nstab-image'] = new Array('c','Sýna myndasíðuna'); 
-ta['ca-nstab-mediawiki'] = new Array('c','Sýna kerfisskilaboðin'); 
-ta['ca-nstab-template'] = new Array('c','View the template'); 
-ta['ca-nstab-help'] = new Array('c','Sýna hjálparsíðuna'); 
+ta['pt-userpage'] = new Array('.','Notendasíðan mín');
+ta['pt-anonuserpage'] = new Array('.','Notendasíðan fyrir IP töluna þína');
+ta['pt-mytalk'] = new Array('n','Spallsíðan mín');
+ta['pt-anontalk'] = new Array('n','Spjallsíðan fyrir þessa IP tölu');
+ta['pt-preferences'] = new Array('','Almennar stillingar');
+ta['pt-watchlist'] = new Array('l','Vaktlistinn.');
+ta['pt-mycontris'] = new Array('y','Listi yfir framlög þín');
+ta['pt-login'] = new Array('o','Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.');
+ta['pt-anonlogin'] = new Array('o','Þú ert hvattur/hvött til að innskrá þig, það er hinsvegar ekki nauðsynlegt.');
+ta['pt-logout'] = new Array('o','Útskráning');
+ta['ca-talk'] = new Array('t','Spallsíða þessarar síðu');
+ta['ca-edit'] = new Array('e','Þú getur breytt síðu þessari, vinsamlegast notaðu „forskoða“ hnappinn áður en þú vistar');
+ta['ca-addsection'] = new Array('+','Viðbótarumræða.');
+ta['ca-viewsource'] = new Array('e','Síða þessi er vernduð, þú getur þó skoðað frumkóða hennar.');
+ta['ca-history'] = new Array('h','Eldri útgáfur af síðunni.');
+ta['ca-protect'] = new Array('=','Vernda þessa síðu');
+ta['ca-delete'] = new Array('d','Eyða þessari síðu');
+ta['ca-undelete'] = new Array('d','Endurvekja breytingar á síðu þessari fyrir en henni var tortímt');
+ta['ca-move'] = new Array('m','Færa þessa síðu');
+ta['ca-watch'] = new Array('w','Bæta þessari síðu við á vaktlistann');
+ta['ca-unwatch'] = new Array('w','Fjarlægja þessa síðu af vaktlistanum');
+ta['search'] = new Array('f','Leit');
+ta['p-logo'] = new Array('','Forsíða');
+ta['n-mainpage'] = new Array('z','Forsíða {{SITENAME}}');
+ta['n-portal'] = new Array('','Um verkefnið, hvernig er hægt að hjálpa og hvar á að byrja');
+ta['n-currentevents'] = new Array('','Líðandi stund');
+ta['n-recentchanges'] = new Array('r','Listi yfir nýlegar breytingar.');
+ta['n-randompage'] = new Array('x','Handahófsvalin síða');
+ta['n-help'] = new Array('','Efnisyfirlit yfir hjálparsíður.');
+ta['n-sitesupport'] = new Array('','Fjárframlagssíða Wikimedia');
+ta['t-whatlinkshere'] = new Array('j','Listi yfir síður sem tengjast í þessa');
+ta['t-recentchangeslinked'] = new Array('k','Nýlegar breitingar á ítengdum síðum');
+ta['feed-rss'] = new Array('','RSS fyrir þessa síðu');
+ta['feed-atom'] = new Array('','Atom fyrir þessa síðu');
+ta['t-contributions'] = new Array('','Sýna framlagslista þessa notanda');
+ta['t-emailuser'] = new Array('','Senda notanda þessum póst');
+ta['t-upload'] = new Array('u','Innhlaða myndum eða margmiðlunarskrám');
+ta['t-specialpages'] = new Array('q','Listi yfir kerfissíður');
+ta['ca-nstab-main'] = new Array('c','Sýna síðuna');
+ta['ca-nstab-user'] = new Array('c','Sýna notendasíðuna');
+ta['ca-nstab-media'] = new Array('c','Sýna margmiðlunarsíðuna');
+ta['ca-nstab-special'] = new Array('','Þetta er kerfissíða, þér er óhæft að breyta henni.');
+ta['ca-nstab-wp'] = new Array('a','Sýna verkefnasíðuna');
+ta['ca-nstab-image'] = new Array('c','Sýna myndasíðuna');
+ta['ca-nstab-mediawiki'] = new Array('c','Sýna kerfisskilaboðin');
+ta['ca-nstab-template'] = new Array('c','View the template');
+ta['ca-nstab-help'] = new Array('c','Sýna hjálparsíðuna');
 ta['ca-nstab-category'] = new Array('c','Sýna efnisflokkasíðuna');",
 'about' => "Um",
 'aboutpage' => "Project:Um",
@@ -137,14 +127,13 @@ ta['ca-nstab-category'] = new Array('c','Sýna efnisflokkasíðuna');",
 'acct_creation_throttle_hit' => "Fyrirgefðu, þú hefur nú þegar búið til $1 aðgang(a). Þú getur ekki búið til fleiri.",
 'actioncomplete' => "Aðgerð lokið",
 'addedwatch' => "Bætt á vaktlistann",
-'addedwatchtext' => "Síðunni „$1“ hefur verið bætt á [[Special:Watchlist|Vaktlistann]] þinn. 
+'addedwatchtext' => "Síðunni „$1“ hefur verið bætt á [[Special:Watchlist|Vaktlistann]] þinn.
 Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.
 Þar að auki verður síða þessi '''feitletruð''' á [[Special:Recentchanges|Nýlegum breytingum]]
 svo auðveldara sé að sjá hana þar meðal fjöldans.
 
 <p>Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengilinn er merktur er „afvakta“.",
 'administrators' => "{{ns:4}}:Stjórnendur",
-'affirmation' => "Ég staðfesti að rétthafi þessa efnis veitir leyfi fyrir notkun þess undir $1.. Eða að efni þetta er ekki verndað af höfundalögum.",
 'allmessages' => "Kerfismeldingar",
 'allmessagescurrent' => "Núverandi texti",
 'allmessagesdefault' => "Sjálfgefinn texti",
@@ -157,10 +146,9 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'anontalkpagetext' => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á [[IP tala|IP tölu]] sinni. Það getur gerst að margir notendur deili sömu IP tölu þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
 'apr' => "apr",
 'april' => "apríl",
-'articleexists' => "Annaðhvort er þegar til síða undir þessum titli, 
-eða sá titill sem þú hefur valið er ekki gildur. 
+'articleexists' => "Annaðhvort er þegar til síða undir þessum titli,
+eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.",
-'asksql' => "Gagnagrunnsfyrirspurn",
 'aug' => "ágú",
 'august' => "ágúst",
 'badfilename' => "Skáarnafninu hefur verið breytt í „$1“.",
@@ -181,14 +169,12 @@ Sjá [[meta:Range blocks|Range blocks]] á meta fyrir yfirlit yfir [[CIDR]] töl
 'infiniteblock' => 'rennur út infinite', //fixme
 'expiringblock' => 'rennur út  $1',
 'blocklogpage' => "Bönnunarskrá",
-'blocklogtext' => "This is a log of user blocking and unblocking actions. Automatically 
+'blocklogtext' => "This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.",
 'bold_sample' => "Feitletraður texti",
 'bold_tip' => "Feitletraður texti",
 'booksources' => "Bókabúðir",
-'bureaucratlog' => "Möppudýraskrá",
-'bureaucratlogentry' => "Réttindi „$1“ stillt á „$2“",
 'bureaucrattext' => "[[{{ns:4}}:Möppudýr|Möppudýrsréttindi]] eru skilyrði fyrir því að nota þessa kerfissíðu.",
 'bureaucrattitle' => "Möppudýrsréttinda þörf",
 'bydate' => "eftir dagsetningu",
@@ -402,7 +388,7 @@ tilvísanir, það er á þína ábyrgð að tryggja það að tenglar haldi áf
 að vísa á rétta síðu.
 
 Athugaðu að síðan mun '''ekki''' verða færð ef það er þegar síða á nafninu
-sem þú hyggst færa hana á, nema síða sú sé tóm eða tilvísun sem á sér enga 
+sem þú hyggst færa hana á, nema síða sú sé tóm eða tilvísun sem á sér enga
 breytingarsögu. Þú getur þar með fært síðuna aftur til baka án þess að
 missa breytingarsöguna, en ekki fært hana venjulega síðu.
 
@@ -433,7 +419,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'nextdiff' => "Næsta breyting →",
 'nextn' => "næstu $1",
 'nextrevision' => "Næsta útgáfa→",
-'noaffirmation' => "Staðfesta þarf að skráin brjóti ekki á höfundarrétti.",
 'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px; background: white;\">'''Það er ekki enn grein undir þessu nafni á [[{{SITENAME}}]].'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Skrifa grein undir nafninu „{{PAGENAME}}“]'''
 * [[{{ns:special}}:Search/{{PAGENAME}}|Leita að „{{PAGENAME}}“]] í öðrum greinum og síðum.
@@ -502,7 +487,6 @@ to set user preferences.",
 'protectsub' => "(Vernda „$1“)",
 'qbedit' => "Breyta",
 'qbsettings' => "Valblað",
-'querybtn' => "Senda inn fyrirspurn",
 'randompage' => "Handahófsvalin síða",
 'rclinks' => "Sýna síðustu $1 breytingar síðustu $2 daga<br/>$3",
 'rclistfrom' => "Sýna breytingar frá og með $1",
@@ -572,19 +556,18 @@ to set user preferences.",
 Þar fyrir utan eru '''$2''' síður sem líklega teljast fullgildar greinar.
 
 '''$3''' síður hafa verið skoðaðar og '''$4''' breytingar hafa verið gerðar
-síðan vefurinn var settur up. Það reiknast sem '''$5''' breytingar 
+síðan vefurinn var settur up. Það reiknast sem '''$5''' breytingar
 á hverja síðu að meðaltali, og '''$6''' fléttingar fyrir hverja breytingu.",
 'sitesubtitle' => "Frjálsa alfræðiorðabókin",
 'sitesupport' => "Framlög",
 'sitetitle' => "Wikipedia",
 'skin' => "Þema",
-'spamprotectiontext' => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+'spamprotectiontext' => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site.
 
 You might want to check the following regular expression for patterns that are currently blocked:",
 'specialpage' => "Kerfissíða",
 'specialpages' => "Kerfissíður",
 'spheading' => "Almennar",
-'sqlquery' => "Fyrirspurn",
 'statistics' => "Tölfræði",
 'storedversion' => "Geymd útgáfa",
 'stubthreshold' => "Stubbamerkja allt undir",
@@ -686,7 +669,7 @@ to upload files.",
 'wantedpages' => "Eftirsóttar síður",
 'watch' => "Vakta",
 'val_tab' => 'Votta',
-'watchdetails' => "Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að 
+'watchdetails' => "Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að
 [$4 sýna heildarlistann og breyta honum].",
 'watcheditlist' => "Þetta er listi yfir þínar vöktuðu síður raðað í
 stafrófsröð. Merktu við þær síður sem þú vilt fjarlægja
@@ -766,7 +749,7 @@ class LanguageIs extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
-	
+
 	function getAllMessages() {
 		global $wgAllMessagesIs;
 		return $wgAllMessagesIs;
@@ -776,12 +759,12 @@ class LanguageIs extends LanguageUtf8 {
 		global $wgMagicWordsIs;
 		return $wgMagicWordsIs;
 	}
-	
+
 	function date( $ts, $adj = false, $format = true) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
 		$format = $this->dateFormat($format);
-		
+
 		switch( $format ) {
 			# 15. jan. 2001 kl. 16:12 || 16:12, 15. jan. 2001
 			case '2': case '4': return (0 + substr( $ts, 6, 2 )) . '. ' .
@@ -795,15 +778,15 @@ class LanguageIs extends LanguageUtf8 {
 				$this->getMonthName( substr( $ts, 4, 2 ) ) . ' ' .
 				substr($ts, 0, 4);
 		}
-		
+
 	}
 
 	function time($ts, $adj = false, $format = true) {
 		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
-		
+
 		$format = $this->dateFormat($format);
-		
+
 		switch( $format ) {
 			# 2001-01-15 16:12:34
 			case 'ISO 8601': return substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 ) . ':' . substr( $ts, 12, 2 );
@@ -814,9 +797,9 @@ class LanguageIs extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false, $format = true) {
 		global $wgUser;
-		
+
 		$format = $this->dateFormat($format);
-		
+
 		switch ( $format ) {
 			# 16:12, 15. janúar 2001 || 16:12, 15. jan. 2001
 			case '3': case '4': return $this->time( $ts, $adj, $format ) . ', ' . $this->date( $ts, $adj, $format );
@@ -824,11 +807,11 @@ class LanguageIs extends LanguageUtf8 {
 			case 'ISO 8601': return $this->date( $ts, $adj, $format ) . ' ' . $this->time( $ts, $adj, $format );
 			# 15. janúar 2001 kl. 16:12 || 15. jan. 2001 kl. 16:12
 			default: return $this->date( $ts, $adj, $format ) . ' kl. ' . $this->time( $ts, $adj, $format );
-			
+
 		}
 
 	}
-	
+
 	/**
 	 * The Icelandic number style uses dots where English would use commas
 	 * and commas where English would use dots, e.g. 201.511,17 not 201,511.17

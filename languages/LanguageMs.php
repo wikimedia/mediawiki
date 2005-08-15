@@ -7,28 +7,21 @@
 # This localisation is based on a file kindly donated by the folks at MIMOS
 # http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesMs = array(
-	-2	=> "Media",
-	-1	=> "Istimewa", #Special
-	0	=> "",
-	1	=> "Perbualan",#Talk
-	2	=> "Pengguna",#User
-	3	=> "Perbualan_Pengguna",#User_talk
-	4	=> "Wikipedia",#Wikipedia
-	5	=> "Perbualan_Wikipedia",#Wikipedia_talk
-	6	=> "Imej",#Image
-	7	=> "Imej_Perbualan",#Image_talk
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_Perbualan",
-	10  => "Template",
-	11  => "Template_talk"
+	NS_MEDIA          => "Media",
+	NS_SPECIAL        => "Istimewa", #Special
+	NS_MAIN           => "",
+	NS_TALK           => "Perbualan",#Talk
+	NS_USER           => "Pengguna",#User
+	NS_USER_TALK      => "Perbualan_Pengguna",#User_talk
+	NS_PROJECT        => "Wikipedia",#Wikipedia
+	NS_PROJECT_TALK   => "Perbualan_Wikipedia",#Wikipedia_talk
+	NS_IMAGE          => "Imej",#Image
+	NS_IMAGE_TALK     => "Imej_Perbualan",#Image_talk
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "MediaWiki_Perbualan",
+	NS_TEMPLATE       => "Template",
+	NS_TEMPLATE_TALK  => "Template_talk"
 
 ) + $wgNamespaceNamesEn;
 
@@ -36,80 +29,8 @@
 	"Tiada", "Tetap sebelah kiri", "Tetap sebelah kanan", "Berubah-ubah sebelah kiri"
 );
 
-/* private */ $wgSkinNamesMs = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin"
-);
-
 /* private */ $wgDateFormatsMs = array(
 #	"Tiada pilihan", # "No preference",
-);
-
-
-/* private */ $wgBookstoreListMs = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesMs = array(
-	"Userlogin"		=> "Laluan masuk pengguna", #"Login Pengguna",
-	"Userlogout"	=> "Laluan keluar pengguna", #"Logout Pengguna",
-	"Preferences"	=> "Ubah konfigurasi saya", #"Set my user preferences",
-	"Watchlist"		=> "Senarai pilihan",#My watchlist",
-	"Recentchanges" => "Halaman terkini setelah diubah",#Recently updated pages",
-	"Upload"		=> "Muatnaik fail imej", #"Upload image files"
-	"Imagelist"		=> "Senarai imej",#Image list",
-	"Listusers"		=> "Senarai pengguna",#List of users",
-	"Statistics"	=> "Statistik halaman",#site statistics",
-	"Randompage"	=> "Halaman Rawak",#Random article",
-
-	"Lonelypages"	=> "Halaman yatim", # pages",
-	"Unusedimages"	=> "Imej yatim", #"Orphaned images",
-	"Popularpages"	=> "Halaman popular", #"Popular pages",
-	"Wantedpages"	=> "Halaman yang paling dikehendaki", #"Most wanted pages",
-	"Shortpages"	=> "Halaman pendek", #"Short pages",
-	"Longpages"		=> "Halaman panjang", #"Long pages",
-	"Newpages"		=> "Halaman yang baru dicipta", #"Newly created pages",
-	"Ancientpages"	=> "Rencana tertua", #Oldest articles
-	"Intl"		=> "Pautan antarabahasa", #Interlanguage links
-	"Allpages"		=> "Semua halaman mengikut tajuk", #"All pages by title",
-
-	"Ipblocklist"	=> "IP dan pengguna yang diblok", #"Blocked IPs and users",
-	"Maintenance" => "Halaman penyelenggaraan", #"Maintenance page",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "Sumber buku luaran", #"External book sources"
-	"Export"	=> "XML export",
-	"Version"	=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesMs = array(
-	"Blockip"		=> "Sekat IP dan pengguna", #"Block IP or user",
-	"Asksql"		=> "Kueri terhadap pangkalan data", #"Query the database",
-	"Undelete"		=> "Papar dan masukkan semula halaman yang telah dibuang", #"View and restore deleted pages",
-);
-
-/* private */ $wgDeveloperSpecialPagesEn = array(
-	"Lockdb"		=> "Membuat pangkalan data hanya untuk dibaca", #"Make database read-only",
-	"Unlockdb"		=> "Memperbaharui cara kemasukan pangkalan data", #"Restore database write access",
 );
 
 /* private */ $wgAllMessagesMs = array(
@@ -221,7 +142,6 @@
 "redirectedfrom"        => "(Dialih dari $1)", #"(Redirected from $1)",
 "lastmodified"	        => "Halaman ini diubah kali terakhir pada $1.", #"The page was last modified $1.",
 "viewcount"		=> "Halaman ini telah diakses sebanyak $1 kali.", #"This page has been accessed $1 times.",
-"gnunote"		=> "Halaman ini tertakluk di bawah istilah <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.", #"This page is released under the terms of the $1.",
 "printsubtitle"         => "(From {{SERVER}})",
 "protectedpage"         => "Halaman yang dilindungi", #"Protected page",
 "administrators"        => "Istimewa:Listadministrators", #"Special:Listadministrators",
@@ -276,11 +196,6 @@ kemasukan baru.
 Pentadbir yang menutup
 memberikan penjelasan berikut:
 <p>$1",
-"rencana hilang"=>"Pengkalan data tidak menjumpai teks bagi laman yang patut dijumpai, bernama\"$1\".
-
-<p>Ini biasanya disebabkan oleh lewat tarikh diff atau sejarah pautan kepada laman telah dipadamkan.
-
-<p>Jika ini bukan sebabnya, anda mungkin menjumpai pepijat dalam aturcara. Sila lapurkan kepada penyelia, catitkan URL, # If this is not the case, you may have found a bug in the software. Please report this to an administrator, making note of the URL.",
 # "missingarticle" => "The database did not find the text of a page that it should have found, named \"$1\".
 # This is usually caused by following an outdated diff or history link to a page that has been deleted.
 "internalerror" => "Ralat dalaman", # Internal error",
@@ -314,11 +229,6 @@ Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Yo
 "remembermypassword" => "Sentiasa ingatan kata laluan.", # Remember my password across sessions.",
 "loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br />Cuba semula!", # There has been a problem with your login.</b><br />Try again!",
 "alreadyloggedin" => "<font color=red><b>Pengguna $1, anda telah berjaya masuk!</b></font><br />\n",
-
-"areyounew"		=>"Sekiranya anda baru dalam Wikipedia dan ingin mendapatkan akaun pengguna,
-masukan nama pengguna, kemudia taip kata laluan dan ulang semula kata laluan.
-Alamat email anda adalah tidak diwajibkan;sekiranya kehilangan kata laluan
-boleh diminta melalui email yg diberikan.<br />\n",
 
 "login"			=> "Masuk", #Log in
 "userlogin"		=> "Laluan masuk", #Log in
@@ -570,13 +480,9 @@ Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 ",
 "filename"		=> "Filename",
 "filedesc"		=> "Ringkasan", #"Summary",
-"affirmation"	=> "Saya berikrar bahawa pemilik hak cipta fail ini
-telah bersetuju untuk melesenkannya di bawah terma $1.", #"I affirm that the copyright holder of this file agrees to license it under the terms of the $1.",
 "copyrightpage" => "Wikipedia:Hak cipta",
 "copyrightpagename" => "Hak cipta Wikipedia",
 "uploadedfiles"	=> "Fail yang telah dimuatnaik", #"Uploaded files",
-"noaffirmation" => "Anda mesti berikrar bahawa fail yang dimuatnaik tidak
-tertakluk di bawah sebarang hak cipta.", #"You must affirm that your upload does not violate any copyrights.",
 "ignorewarning"	=> "Abaikan amaran dan simpan fail sahaja", #"Ignore warning and save file anyway.",
 "minlength"		=> "Nama imej mesti sekurang-kurangnya tiga huruf.", #"Image names must be at least three letters.",
 "badfilename"	=> "Nama imej telah ditukar kepada \"$1\".", #"Image name has been changed to \"$1\".",
@@ -830,7 +736,6 @@ halaman tertentu yang telah dirosakkan).",
 "ipbreason"		=> "Alasan", #"Reason",
 "ipbsubmit"		=> "Hantar", #"Submit",
 "badipaddress"	=> "Alamat IP atau pengguna ini dalam format yang tidak betul.", #"The IP address or username is badly formed.",
-"noblockreason" => "Anda mesti sediakan alasan untuk pemblokan tersebut.", #"You must supply a reason for the block.",
 "blockipsuccesssub" => "Pemblokan berjaya", #"Block succeeded",
 "blockipsuccesstext" => "Alamat IP atau pengguna \"$1\" telah diblok.
 <br />Lihat [[Istimewa:Ipblocklist|IP and user block list]] untuk semak pemblokan.", #"The IP address or username \"$1\" has been blocked.
@@ -868,21 +773,6 @@ kemaskini terhadap pangkalan data.  Sila pastikan anda mahu berbuat demikian.",
 "lockdbsuccesstext" => "Pangkalan data Wikipedia telah dikunci.
 <br />Pastikan anda membukanya semula dari dikunci setelah penyelenggaraan selesai.",
 "unlockdbsuccesstext" => "Pangkalan data Wikipedia telah dibuka semula dari dikunci.", #"The Wikipedia database has been unlocked.",
-
-# SQL query
-#
-"asksql"		=> "Kueri SQL", #"SQL query",
-"asksqltext"	=> "Gunakan borang di bawah untuk membuat kueri langsung
-bagi pangkalan data Wikipedia.
-Gunakan pembuka kata tunggal ('seperti ini') untuk menghadkan rangkaian
-string.  Ini selalunya menambah beban terhadap pelayan, jadi sila gunakan
-fungsi ini dengan cermat.",
-"sqlislogged"	=> "Harap maklum semua pertanyaan dilogkan.",
-"sqlquery"		=> "Masukkan kueri", #"Enter query",
-"querybtn"		=> "Hantar kueri", #"Submit query",
-"selectonly"	=> "Kueri selain dari \"SELECT\" adalah tidak dibenarkan
-kepada pembangun Wikipedia.", #"Queries other than \"SELECT\" are restricted to
-"querysuccessful" => "Kueri berjaya", #"Query successful",
 
 # Move page
 #
@@ -943,11 +833,6 @@ require_once( "LanguageUtf8.php" );
 
 class LanguageMs extends LanguageUtf8 {
 
-	function getBookstoreList () {
-		global $wgBookstoreListMs;
-		return $wgBookstoreListMs;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesMs;
 		return $wgNamespaceNamesMs;
@@ -958,36 +843,12 @@ class LanguageMs extends LanguageUtf8 {
 		return $wgQuickbarSettingsMs;
 	}
 
-	function getSkinNames() {
-		global $wgSkinNamesMs;
-		return $wgSkinNamesMs;
-	}
-
 	function getDateFormats() {
 		global $wgDateFormatsMs;
 		return $wgDateFormatsMs;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesMs;
-		return $wgValidSpecialPagesMs;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesMs;
-		return $wgSysopSpecialPagesMs;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesMs;
-		return $wgDeveloperSpecialPagesMs;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesMs;
 		if( isset( $wgAllMessagesMs[$key] ) ) {
 			return $wgAllMessagesMs[$key];

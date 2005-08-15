@@ -6,13 +6,6 @@
 require_once( "LanguageUtf8.php" );
 require_once( "LanguageZh_cn.php" );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesZh_tw = array(
 	NS_MEDIA            => "媒體",
 	NS_SPECIAL          => "特殊",
@@ -45,86 +38,13 @@ require_once( "LanguageZh_cn.php" );
         "標準",/* "Standard" */
 	"懷舊",/* "Nostalgia" */
 	"科隆香水藍" /* "Cologne Blue" */
-);
-
-/* private */ $wgMathNamesZh_tw = array(
-	"永遠使用PNG圖像",    /* "Always render PNG" */
-	"如果是簡單的公式使用HTML，否則使用PNG圖像",   /* "HTML if very simple or else PNG" */
-	"如果可以用HTML，否則用PNG圖像",   /* "HTML if possible or else PNG" */
-	"顯示為TeX代碼(使用文字流覽器時)",  /* "Leave it as TeX (for text browsers)" */
-	"推薦為新版流覽器使用"  /* "Recommended for modern browsers" */
-);
-
+) + $wgSkinNamesEn;
 
 /* private */ $wgBookstoreListZh_tw = array(
 	"博客來書店" => "http://www.books.com.tw/exep/openfind_book_keyword.php?cat1=4&key1=$1",
 	"三民書店" => "http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1",
 	"天下書店" => "http://www.cwbook.com.tw/cw/TS.jsp?schType=product.isbn&schStr=$1",
 	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesZh_tw = array(
-	"Userlogin"		=> "註冊",
-	"Userlogout"	=> "註銷",
-	"Preferences"	=> "參數設置",
-/*"Set my user preferences", */
-	"Watchlist"		=> "監視列表",
-/* "My watchlist", */
-	"Recentchanges" => "最近更新",
-/* "Recently updated pages", */
-	"Upload"		=> "上載文件",
-/* "Upload image files", */
-	"Imagelist"		=> "圖像列表",
-/* "Image list", */
-	"Listusers"		=> "註冊用戶",
-/* "Registered users", */
-	"Statistics"	=> "站點統計",
-/* "Site statistics", */
-	"Randompage"	=> "隨機條目",
-/* "Random article", */
-
-	"Lonelypages"	=> "孤立條目",
-/* "Orphaned articles",*/
-	"Unusedimages"	=> "孤立圖像",
-/* "Orphaned images", */
-	"Popularpages"	=> "熱點條目",
-/* "Popular articles", */
-	"Wantedpages"	=> "待撰條目",
-/* "Most wanted articles", */
-	"Shortpages"	=> "短條目",
-	"Longpages"		=> "長條目",
-	"Newpages"		=> "新建條目",
-#	"Intl"		=> "跨語言鏈接", # this page not done yet!
-	"Ancientpages"		=> "舊條目",
-	"Allpages"		=> "所有條目",
-
-	"Ipblocklist"	=> "被封網址列表",
-	"Maintenance" => "維護頁",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "鏈入頁面",
-	"Recentchangeslinked" => "链出更改",
-	"Movepage"		=> "鏈出更改",
-	"Booksources"	=> "站外書源",
-#           "Categories" => "頁面分類"
-	"Export" => "導出為XML",
-	"Version" => "媒體維基版本",
-);
-
-/* private */ $wgSysopSpecialPagesZh_tw = array(
-	"Blockip"		=> "查封一個網址",
-	"Asksql"		=> "查詢數據庫",
-	"Undelete"		=> "恢復被刪頁面"
-);
-
-/* private */ $wgDeveloperSpecialPagesZh_tw = array(
-	"Lockdb"		=> "設置數據庫只讀",
-	"Unlockdb"		=> "恢復數據庫修改權限",
 );
 
 /* private */ $wgAllMessagesZh_tw = array(
@@ -159,7 +79,6 @@ require_once( "LanguageZh_cn.php" );
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "首頁",
 "about"			=> "關於",
-"aboutwikipedia" => "關於維基百科",
 "aboutpage"		=> "維基百科:關於",
 "help"			=> "幫助",
 "helppage"		=> "維基百科:幫助",
@@ -182,7 +101,6 @@ require_once( "LanguageZh_cn.php" );
 "currentevents" => "新聞動態",
 "errorpagetitle" => "錯誤",
 "returnto"		=> "返回到$1.",
-"fromwikipedia"	=> "維基百科，自由的百科全書",
 "whatlinkshere"	=> "鏈入頁面",
 "help"			=> "幫助",
 "search"		=> "搜索",
@@ -206,7 +124,6 @@ require_once( "LanguageZh_cn.php" );
 "redirectedfrom" => "(重定向自$1)",
 "lastmodified"	=> "最後更改$1.",
 "viewcount"		=> "本頁面已經被瀏覽$1次。",
-"gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文檔協議證書 </a>下發佈",
 "printsubtitle" => "(來自 {{SERVER}})",
 "protectedpage" => "被保護頁",
 "administrators" => "維基百科:管理員",
@@ -439,8 +356,6 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 # Search results
 #
 "searchresults" => "搜索結果",
-"searchhelppage" => "維基百科:搜索",
-"searchingwikipedia" => "搜索維基百科",
 "searchresulttext" => "有關搜索維基百科的更多詳情,參見$1。",
 "searchquery"	=> "查詢\"$1\"",
 "badquery"		=> "搜索查詢不正確",
@@ -597,11 +512,9 @@ alt=\"Google\" align=\"middle\"></a>
 ",
 "filename"		=> "文件名",
 "filedesc"		=> "簡述",
-"affirmation"	=> "我保證本文件的版權持有人同意將其在$1條款下發佈。",
 "copyrightpage" => "維基百科:版權信息",
 "copyrightpagename" => "維基百科版權",
 "uploadedfiles"	=> "已上載文件",
-"noaffirmation" => "您必須保證您上載的文件並沒有侵犯版權。",
 "ignorewarning"	=> "忽略警告並保存文件。",
 "minlength"		=> "圖像名字必須至少有三個字母。",
 "badfilename"	=> "圖像名已被改為\"$1\"。",
@@ -843,7 +756,6 @@ alt=\"Google\" align=\"middle\"></a>
 "ipbreason"		=> "原因",
 "ipbsubmit"		=> "查封該地址",
 "badipaddress"	=> "網址不正確。",
-"noblockreason" => "您必須說明查封的具體理由。",
 "blockipsuccesssub" => "查封成功",
 "blockipsuccesstext" => "網址“$1”已經被查封。
 <br />參看[[特殊:被封網址列表|被封網址列表]]以復審查封。",
@@ -876,17 +788,6 @@ alt=\"Google\" align=\"middle\"></a>
 "lockdbsuccesstext" => "維基百科數據庫已經上鎖。
 <br />請記住在維護完成後重新開放數據庫。",
 "unlockdbsuccesstext" => "維基百科數據庫重新開放。",
-
-# SQL query
-#
-"asksql"		=> "SQL查詢",
-"asksqltext"	=> "用下麵的表單對維基百科數據庫進行直接查詢。
-使用單引號（'像這樣'）來分割字串符。
-這樣做有可能增加服務器的負擔，所以請慎用本功能。",
-"sqlquery"		=> "輸入查詢",
-"querybtn"		=> "提交查詢",
-"selectonly"	=> "除了“SELECT”以外的所有查詢都只限維基百科發展者使用。",
-"querysuccessful" => "查詢成功",
 
 # Move page
 #
@@ -993,7 +894,6 @@ email address to them, and it can be used to send you a new password if you forg
 "aboutsite" => "關於 {{SITENAME}}",
 "disclaimers" => "免責聲明",
 "tog-fancysig" => "使用原始簽名 (不產生自動連結)",
-"qbsettingsnote" => '這些設定只會在 \'Standard\' 和 \'CologneBlue\' 面板生效',
 "tog-previewonfirst" => "第一次編輯時顯示原文內容的預覽",
 "copyright" => "本站所有內容允許以下方式利用: $1",
 "loginprompt" => "您必須允許瀏覽器紀錄Cookie才能成功登入 Wikipedia 並順利進行操作",
@@ -1018,14 +918,14 @@ class LanguageZh_tw extends LanguageZh_cn {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		# Aliases
-        if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
-        if ( 0 == strcasecmp( "", $text ) ) { return ; }
-        if ( 0 == strcasecmp( "對話", $text ) ) { return 1; }
-        if ( 0 == strcasecmp( "用戶", $text ) ) { return 2; }
-        if ( 0 == strcasecmp( "用戶對話", $text ) ) { return 3; }
-        if ( 0 == strcasecmp( "維基百科對話", $text ) ) { return 5; }
-        if ( 0 == strcasecmp( "圖像", $text ) ) { return 6; }
-        if ( 0 == strcasecmp( "圖像對話", $text ) ) { return 7; }
+		if ( 0 == strcasecmp( "特殊", $text ) ) { return -1; }
+		if ( 0 == strcasecmp( "", $text ) ) { return ; }
+		if ( 0 == strcasecmp( "對話", $text ) ) { return 1; }
+		if ( 0 == strcasecmp( "用戶", $text ) ) { return 2; }
+		if ( 0 == strcasecmp( "用戶對話", $text ) ) { return 3; }
+		if ( 0 == strcasecmp( "維基百科對話", $text ) ) { return 5; }
+		if ( 0 == strcasecmp( "圖像", $text ) ) { return 6; }
+		if ( 0 == strcasecmp( "圖像對話", $text ) ) { return 7; }
 		return false;
 	}
 
@@ -1044,27 +944,7 @@ class LanguageZh_tw extends LanguageZh_cn {
 		return $wgMathNamesZh_tw;
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesZh_tw;
-		return $wgValidSpecialPagesZh_tw;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesZh_tw;
-		return $wgSysopSpecialPagesZh_tw;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesZh_tw;
-		return $wgDeveloperSpecialPagesZh_tw;
-
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesZh_tw;
 		if(array_key_exists($key, $wgAllMessagesZh_tw))
 			return $wgAllMessagesZh_tw[$key];

@@ -13,32 +13,22 @@ require_once("LanguageUtf8.php");
 # Language-specific text
 #--------------------------------------------------------------------------
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
+/** TODO: fix me! */
 /* private */ $wgNamespaceNamesFa = array(
-	-2	=> "مدیا",
-	-1	=> "ویژه",
-	0	=> "",
-	1	=> "بحث",
-	2	=> "کاربر",
-	3	=> "بحث_کاربر",
-	4	=> "ویکی‌پدیا",
-	5	=> "بحث_ویکی‌پدیا",
-	6	=> "تصویر",
-	7	=> "بحث_تصویر",
-	8	=> "مدیاویکی",
-	9	=> "بحث_مدیاویکی",
-	10  => "Template",
-	11  => "Template_talk"
+	NS_MEDIA	        => "مدیا",
+	NS_SPECIAL        => "ویژه",
+	NS_MAIN	          => '',
+	NS_TALK	          => "بحث",
+	NS_USER           => "کاربر",
+	NS_USER_TALK      => "بحث_کاربر",
+	NS_PROJECT        => "ویکی‌پدیا",
+	NS_PROJECT_TALK   => "بحث_ویکی‌پدیا",
+	NS_IMAGE          => "تصویر",
+	NS_IMAGE_TALK     => "بحث_تصویر",
+	NS_MEDIAWIKI      => "مدیاویکی",
+	NS_MEDIAWIKI_TALK	=> "بحث_مدیاویکی",
+	NS_TEMPLATE       => "Template",
+	NS_TEMPLATE_TALK  => "Template_talk"
 
 ) + $wgNamespaceNamesEn;
 
@@ -52,68 +42,7 @@ require_once("LanguageUtf8.php");
 	'cologneblue' => "آبی کلون",
 	'smarty' => "پدینگتون",
 	'montparnasse' => "مون‌پارناس",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
-
-
-
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesFa = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "تنظیم ترجیحات کاربر",
-	"Watchlist"		=> "فهرست تعقیبات من",
-	"Recentchanges" => "صفحات اخیراً به‌روزشده",
-	"Upload"		=> "بار کردن پرونده‌های تصویری",
-	"Imagelist"		=> "فهرست تصاویر",
-	"Listusers"		=> "کاربران ثبت‌شده",
-	"Statistics"	=> "آمارهای وب‌گاه",
-	"Randompage"	=> "مقاله‌ی تصادفی",
-
-	"Lonelypages"	=> "مقاله‌های یتیم",
-	"Unusedimages"	=> "تصاویر یتیم",
-	"Popularpages"	=> "مقاله‌های محبوب",
-	"Wantedpages"	=> "مقاله‌های با بیشترین درخواست",
-	"Shortpages"	=> "مقاله‌های کوتاه",
-	"Longpages"		=> "مقاله‌های طولانی",
-	"Newpages"		=> "مقاله‌های تازه‌ایجادشده",
-	"Ancientpages"	=> "قدیمی‌ترین مقاله‌ها",
-        "Deadendpages"  => "صفحات بن‌بست",
-#	"Intl"                => "پیوندهای بین‌زبانی",
-	"Allpages"		=> "همه‌ی صفحات بر اساس عنوان",
-
-	"Ipblocklist"	=> "کاربران/نشانی‌های IP بسته‌شده",
-	"Maintenance"	=> "صفحه‌ی نگهداری",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "منابع خارجی کتاب‌ها",
-#	"Categories"	=> "رده‌های صفحات",
-	"Export"		=> "صدور صفحه‌ی XML",
-	"Version"		=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesFa = array(
-	"Blockip"		=> "بستن کاربر/نشانی IP",
-	"Asksql"		=> "پرس‌وجوی پایگاه داده",
-	"Undelete"		=> "احیای صفحات حذف‌شده"
-);
-
-/* private */ $wgDeveloperSpecialPagesFa = array(
-	"Lockdb"		=> "فقط‌خواندنی کردن پایگاه داده",
-	"Unlockdb"		=> "احیای دسترسی نوشتن به پایگاه داده",
-	"Debug"			=> "اطلاعات اشکال‌زدایی"
-);
+) + $wgSkinNamesEn;
 
 #-------------------------------------------------------------------
 # Default messages
@@ -192,7 +121,6 @@ require_once("LanguageUtf8.php");
 "bugreports"	=> "گزارش اشکالات",
 "bugreportspage" => "ویکی‌پدیا:گزارش اشکالات",
 "sitesupport"   => "کمک مالی",
-"sitesupportpage" => "ویکی‌پدیا:کمک_مالی", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "سؤالات معمول",
 "faqpage"		=> "ویکی‌پدیا:سؤالات معمول",
 "edithelp"		=> "راهنمای ویرایش کردن",
@@ -237,7 +165,6 @@ require_once("LanguageUtf8.php");
 "redirectedfrom" => "(تغییر مسیر از $1)",
 "lastmodified"	=> "این صفحه آخرین بار در $1 تغییر کرده است.",
 "viewcount"		=> "این صفحه $1 بار دیده شده است.",
-"gnunote" => "کلیه‌ی متون تحت شرایط <a class=internal href='http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License'>اجازه‌نامه‌ی مستندات آزاد گنو</a> در دسترسند.",
 "printsubtitle" => "(از {{SERVER}})",
 "protectedpage" => "صفحه‌ی محافظت‌شده",
 "administrators" => "ویکی‌پدیا:مدیران",
@@ -411,7 +338,7 @@ You should log in and change your password now.",
 "showpreview"	=> "پیش‌نمایش نمایش یابد",
 "blockedtitle"	=> "کاربر بسته شده است",
 "blockedtext"	=> "نام کاربری یا نشانی IP شما توسط $1 بسته شده است.
-دلیل داده‌شده این است:<br />''$2''<p>شما می‌توانید با $1 یا یکی از 
+دلیل داده‌شده این است:<br />''$2''<p>شما می‌توانید با $1 یا یکی از
 [[ویکی‌پدیا:مدیران|مدیران]] تماس بگیرید و در این باره صحبت کنید.
 
 توجه کنید که شما نمی‌توانید از امکان «فرستادن پست الکترونیکی به این کاربر» استفاده کنید مگر اینکه نشانی پست الکترونیکی
@@ -485,7 +412,7 @@ You should log in and change your password now.",
 بنابراین نمی‌توانید ویرایش‌هایتان را همین الآن ذخیره کنید.
 اگر می‌خواهید متن را در یک پرونده‌ی متنی ببرید و بچسبانید و برای آینده ذخیره‌اش کنید.</strong>",
 "protectedpagewarning" => "<strong>هشدار: این صفحه قفل شده است تا فقط کاربران با امتیاز اپراتور سیستم بتوانند ویرایشش کنند.
-مطمئن شوید که از 
+مطمئن شوید که از
 [[ویکی‌پدیا:توصیه‌های صفحات محافظت‌شده|توصیه‌های صفحات محافظت‌شده]] پیروی می‌کنید.<strong>",
 
 # History pages
@@ -646,7 +573,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "uploadnologintext"	=> "برای بار کردن پرونده‌ها باید [[ویژه:Userlogin|وارد سیستم شوید]].",
 "uploaderror"	=> "خطا در بار کردن",
 "uploadtext"	=> "'''ایست!''' قبل از این که چیزی اینجا بار کنید،
-مطمئن شوید که 
+مطمئن شوید که
 [[Project:سیاست_استفاده_از_تصاویر|سیاست استفاده از تصاویر]]
 را خوانده‌اید و از آن پیروی می‌کنید.
 
@@ -694,11 +621,9 @@ you may be blocked from uploading if you abuse the system.",
 "filedesc"		=> "خلاصه",
 "filestatus" => "وضعیت حق تکثیر",
 "filesource" => "منبع",
-"affirmation"	=> "من تأیید می‌کنم که دارنده‌ی حق انحصاری تکثیر این پرونده موافق است که تحت شرایط $1 منتشر شود.",
 "copyrightpage" => "ویکی‌پدیا:حق_تکثیر",
 "copyrightpagename" => "حق تکثیر ویکی‌پدیا",
 "uploadedfiles"	=> "پرونده‌های بارشده",
-"noaffirmation" => "شما باید تأیید کنید که این بار کردن شما هیچ حق انحصاری تکثیری را زیر پا نمی‌گذارد.",
 "ignorewarning"	=> "هشدار نادیده گرفته شود و پرونده به‌هرحال ذخیره شود.",
 "minlength"		=> "نام پرونده باید حداقل سه‌حرفی باشد.",
 "badfilename"	=> "نام پرونده به «$1» تغییر کرد.",
@@ -713,7 +638,7 @@ you may be blocked from uploading if you abuse the system.",
 "savefile"		=> "ذخیره‌ی پرونده",
 "uploadedimage" => "«[[$1]]» بار شد",
 "uploaddisabled" => "شرمنده، بار کردن از کار افتاده است.",
-				       
+
 # Image list
 #
 "imagelist"		=> "فهرست تصاویر",
@@ -789,7 +714,7 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 "randompage"	=> "صفحه‌ی تصادفی",
 "shortpages"	=> "صفحات کوتاه",
 "longpages"		=> "صفحات بلند",
-"deadendpages"  => "صفحات بن‌بست",				       
+"deadendpages"  => "صفحات بن‌بست",
 "listusers"		=> "فهرست کاربران",
 "specialpages"	=> "صفحات ویژه",
 "spheading"		=> "صفحات ویژه‌ی همه‌ی کاربران",
@@ -910,11 +835,11 @@ consequences, and that you are doing this in accordance with
 "rollbackfailed" => "Rollback failed",
 "cantrollback"	=> "نمی‌توان ویرایش را برگرداند؛ آخرین مشارکت‌کننده تنها مؤلف این مقاله است.",
 "alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 آخرین ویرایش توسط [[کاربر:$3|$3]] ([[بحث کاربر:$3|بحث]]). ",
 #   only shown if there is an edit comment
-"editcomment" => "توضیح ویرایش این بود: \"<i>$1</i>\".", 
+"editcomment" => "توضیح ویرایش این بود: \"<i>$1</i>\".",
 "revertpage"	=> "ویرایش $2 برگردانده شد، به آخرین تغییری که  $1 انجام داده است",
 "protectlogpage" => "سیاهه‌ی_محافظت",
 "protectlogtext" => "در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحات آمده است.
@@ -970,7 +895,6 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "ipbreason"		=> "دلیل",
 "ipbsubmit"		=> "این کاربر بسته شود",
 "badipaddress"	=> "کاربری با این نام وجود ندارد.",
-"noblockreason" => "شما باید دلیلی برای بستن مشخص کنید.",
 "blockipsuccesssub" => "بستن با موفقیت انجام شد",
 "blockipsuccesstext" => "«$1» بسته شده است.
 <br />برای بررسی بسته‌شدن‌ها، به [[ویژه:فهرستIPهای‌بسته|فهرست IPهای بسته]] مراجعه کنید.",
@@ -1016,18 +940,6 @@ Please confirm that this is what you intend to do.",
 <br />فراموش نکنید که پس از اتمام نگهداری قفل را بردارید.",
 "unlockdbsuccesstext" => "پایگاه داده از قفل در آمد.",
 
-# SQL query
-#
-"asksql"		=> "پرس‌وجوی SQL",
-"asksqltext"	=> "برای پرس‌وجوی مستقیم پایگاه داده از فرم زیر استفاده کنید.
-برای محدود کردن رشته‌های دقیق از نقل قول تکی ('مثل این') استفاده کنید.
-این پرس‌وجوها معمولاً بار قابل ملاحظه‌ای به خادم اضافه می‌کند، پس از این توانایی با صرفه‌جویی استفاده کنید.",
-"sqlislogged"	=> "لطفاً توجه کنید که همه‌ی پرس‌وجوها ثبت می‌شوند.",
-"sqlquery"		=> "ورود پرس‌وجو",
-"querybtn"		=> "فرستادن پرس‌وجو",
-"selectonly"	=> "فقط پرس‌وجوهای فقط‌خواندنی مجازند.",
-"querysuccessful" => "پرس‌وجو با موفقیت انجام شد",
-
 # Move page
 #
 "movepage"		=> "انتقال صفحه",
@@ -1054,7 +966,7 @@ Please confirm that this is what you intend to do.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "انتقال صفحه",
 "movenologin"	=> "به سیستم وارد نشده‌اید",
-"movenologintext" => "برای انتقال صفحات باید کاربر ثبت‌شده بوده و 
+"movenologintext" => "برای انتقال صفحات باید کاربر ثبت‌شده بوده و
 [[ویژه:Userlogin|به سیستم وارد شوید]].",
 "newtitle"		=> "به عنوان جدید",
 "movepagebtn"	=> "صفحه منتقل شود",
@@ -1088,11 +1000,11 @@ In those cases, you will have to move or merge the page manually if desired.",
 
 # Math
 
-	'mw_math_png' => "همیشه PNG کشیده شود",
-	'mw_math_simple' => "اگر خیلی ساده بودHTML وگرنه PNG",
-	'mw_math_html' => "اگر ممکن بود HTML وگرنه PNG",
-	'mw_math_source' => "در قالب TeX باقی بماند (برای مرورگرهای متنی)",
-	'mw_math_modern' => "توصیه برای مرورگرهای امروزی",
+'mw_math_png' => "همیشه PNG کشیده شود",
+'mw_math_simple' => "اگر خیلی ساده بودHTML وگرنه PNG",
+'mw_math_html' => "اگر ممکن بود HTML وگرنه PNG",
+'mw_math_source' => "در قالب TeX باقی بماند (برای مرورگرهای متنی)",
+'mw_math_modern' => "توصیه برای مرورگرهای امروزی",
 
 );
 
@@ -1105,7 +1017,7 @@ class LanguageFa extends LanguageUtf8 {
 		"0" => "۰",
 		"1" => "۱",
 		"2" => "۲",
-		"3" => "۳", 
+		"3" => "۳",
 		"4" => "۴",
 		"5" => "۵",
 		"6" => "۶",
@@ -1137,21 +1049,6 @@ class LanguageFa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesFa;
 		return $wgSkinNamesFa;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesFa;
-		return $wgValidSpecialPagesFa;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesFa;
-		return $wgSysopSpecialPagesFa;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesFa;
-		return $wgDeveloperSpecialPagesFa;
 	}
 
 	function getMessage( $key ) {

@@ -15,31 +15,31 @@ require_once( 'LanguageUtf8.php' );
 # See Language.php for notes.
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesNds = array(
-        NS_MEDIA            => 'Media',
-        NS_SPECIAL          => 'Spezial',
-        NS_MAIN             => '',
-        NS_TALK             => 'Diskuschoon',
-        NS_USER             => 'Bruker',
-        NS_USER_TALK        => 'Bruker_Diskuschoon',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => $wgMetaNamespace . '_Diskuschoon',
-        NS_IMAGE            => 'Bild',
-        NS_IMAGE_TALK       => 'Bild_Diskuschoon',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskuschoon',
-        NS_TEMPLATE         => 'Vörlaag',
-        NS_TEMPLATE_TALK    => 'Vörlaag_Diskuschoon',
-        NS_HELP             => 'Hülp',
-        NS_HELP_TALK        => 'Hülp_Diskuschoon',
-        NS_CATEGORY         => 'Kategorie',
-        NS_CATEGORY_TALK    => 'Kategorie_Diskuschoon'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskuschoon',
+	NS_USER             => 'Bruker',
+	NS_USER_TALK        => 'Bruker_Diskuschoon',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_Diskuschoon',
+	NS_IMAGE            => 'Bild',
+	NS_IMAGE_TALK       => 'Bild_Diskuschoon',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskuschoon',
+	NS_TEMPLATE         => 'Vörlaag',
+	NS_TEMPLATE_TALK    => 'Vörlaag_Diskuschoon',
+	NS_HELP             => 'Hülp',
+	NS_HELP_TALK        => 'Hülp_Diskuschoon',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Diskuschoon'
 );
 
 /* private */ $wgQuickbarSettingsNds = array(
-        'Keen', 'Links, fast', 'Rechts, fast', 'Links, sweven'
+	'Keen', 'Links, fast', 'Rechts, fast', 'Links, sweven'
 );
 
 # Note to translators:
@@ -48,110 +48,60 @@ if($wgMetaNamespace === FALSE)
 #
 /* private */ $wgMagicWordsNds = array(
 #   ID                                 CASE  SYNONYMS
-        MAG_REDIRECT             => array( 0,    '#redirect',                   '#wiederleiden'          ),
-        MAG_NOTOC                => array( 0,    '__NOTOC__',                   '__KEENINHOLTVERTEKEN__' ),
-        MAG_FORCETOC             => array( 0,    '__FORCETOC__',                '__WIESINHOLTVERTEKEN__' ),
-        MAG_TOC                  => array( 0,    '__TOC__',                     '__INHOLTVERTEKEN__'     ),
-        MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__',           '__KEENÄNNERNLINK__'     ),
-        MAG_START                => array( 0,    '__START__'                                             ),
-        MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH',                'AKTMAAND'               ),
-        MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME',            'AKTMAANDNAAM'           ),
-        MAG_CURRENTDAY           => array( 1,    'CURRENTDAY',                  'AKTDAG'                 ),
-        MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME',              'AKTDAGNAAM'             ),
-        MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR',                 'AKTJOHR'                ),
-        MAG_CURRENTTIME          => array( 1,    'CURRENTTIME',                 'AKTTIED'                ),
-        MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES',            'ARTIKELTALL'            ),
-        MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN',         'AKTMAANDNAAMGEN'        ),
-        MAG_PAGENAME             => array( 1,    'PAGENAME',                    'SIETNAAM'               ),
-        MAG_PAGENAMEE            => array( 1,    'PAGENAMEE',                   'SIETNAAME'              ),
-        MAG_NAMESPACE            => array( 1,    'NAMESPACE',                   'NAAMRUUM'               ),
-        MAG_SUBST                => array( 0,    'SUBST:'                                                ),
-        MAG_MSGNW                => array( 0,    'MSGNW:'                                                ),
-        MAG_END                  => array( 0,    '__END__',                     '__ENN__'                ),
-        MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb',          'duum'                   ),
-        MAG_IMG_RIGHT            => array( 1,    'right',                       'rechts'                 ),
-        MAG_IMG_LEFT             => array( 1,    'left',                        'links'                  ),
-        MAG_IMG_NONE             => array( 1,    'none',                        'keen'                   ),
-        MAG_IMG_WIDTH            => array( 1,    '$1px',                        '$1px'                   ),
-        MAG_IMG_CENTER           => array( 1,    'center', 'centre',            'merrn'                  ),
-        MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'rahmt'                  ),
-        MAG_INT                  => array( 0,    'INT:'                                                  ),
-        MAG_SITENAME             => array( 1,    'SITENAME',                    'STEEDNAAM'              ),
-        MAG_NS                   => array( 0,    'NS:',                         'NR:'                    ),
-        MAG_LOCALURL             => array( 0,    'LOCALURL:',                   'STEEDURL:'              ),
-        MAG_LOCALURLE            => array( 0,    'LOCALURLE:',                  'STEEDURLE:'             ),
-        MAG_SERVER               => array( 0,    'SERVER',                      'SERVER'                 ),
-        MAG_GRAMMAR              => array( 0,    'GRAMMAR:',                    'GRAMMATIK:'             )
+	MAG_REDIRECT             => array( 0,    '#redirect',                   '#wiederleiden'          ),
+	MAG_NOTOC                => array( 0,    '__NOTOC__',                   '__KEENINHOLTVERTEKEN__' ),
+	MAG_FORCETOC             => array( 0,    '__FORCETOC__',                '__WIESINHOLTVERTEKEN__' ),
+	MAG_TOC                  => array( 0,    '__TOC__',                     '__INHOLTVERTEKEN__'     ),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__',           '__KEENÄNNERNLINK__'     ),
+	MAG_START                => array( 0,    '__START__'                                             ),
+	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH',                'AKTMAAND'               ),
+	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME',            'AKTMAANDNAAM'           ),
+	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY',                  'AKTDAG'                 ),
+	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME',              'AKTDAGNAAM'             ),
+	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR',                 'AKTJOHR'                ),
+	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME',                 'AKTTIED'                ),
+	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES',            'ARTIKELTALL'            ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN',         'AKTMAANDNAAMGEN'        ),
+	MAG_PAGENAME             => array( 1,    'PAGENAME',                    'SIETNAAM'               ),
+	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE',                   'SIETNAAME'              ),
+	MAG_NAMESPACE            => array( 1,    'NAMESPACE',                   'NAAMRUUM'               ),
+	MAG_SUBST                => array( 0,    'SUBST:'                                                ),
+	MAG_MSGNW                => array( 0,    'MSGNW:'                                                ),
+	MAG_END                  => array( 0,    '__END__',                     '__ENN__'                ),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb',          'duum'                   ),
+	MAG_IMG_RIGHT            => array( 1,    'right',                       'rechts'                 ),
+	MAG_IMG_LEFT             => array( 1,    'left',                        'links'                  ),
+	MAG_IMG_NONE             => array( 1,    'none',                        'keen'                   ),
+	MAG_IMG_WIDTH            => array( 1,    '$1px',                        '$1px'                   ),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre',            'merrn'                  ),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'rahmt'                  ),
+	MAG_INT                  => array( 0,    'INT:'                                                  ),
+	MAG_SITENAME             => array( 1,    'SITENAME',                    'STEEDNAAM'              ),
+	MAG_NS                   => array( 0,    'NS:',                         'NR:'                    ),
+	MAG_LOCALURL             => array( 0,    'LOCALURL:',                   'STEEDURL:'              ),
+	MAG_LOCALURLE            => array( 0,    'LOCALURLE:',                  'STEEDURLE:'             ),
+	MAG_SERVER               => array( 0,    'SERVER',                      'SERVER'                 ),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:',                    'GRAMMATIK:'             )
 );
 
 /* private */ $wgSkinNamesNds = array(
-        'standard'      => 'Klassik',
-        'nostalgia'     => 'Nostalgie',
-        'cologneblue'   => 'Kölsch Blau',
-        'smarty'        => 'Paddington',
-        'montparnasse'  => 'Montparnasse',
-        'davinci'       => 'DaVinci',
-        'mono'          => 'Mono',
-        'monobook'      => 'MonoBook',
-        'myskin'        => 'MySkin',
-        'chick'         => 'Küken'
-);
+	'standard'      => 'Klassik',
+	'nostalgia'     => 'Nostalgie',
+	'cologneblue'   => 'Kölsch Blau',
+	'smarty'        => 'Paddington',
+	'myskin'        => 'MySkin',
+	'chick'         => 'Küken'
+) + $wgSkinNamesEn;
 
 
 /* private */ $wgBookstoreListNds = array(
-        'Verteken vun leverbore Böker' => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1=0&y=0',
-        'abebooks.de'                   => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-        'Amazon.de'                     => 'http://www.amazon.de/exec/obidos/ISBN=$1',
-        'Lehmanns Fachbuchhandlung'     => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
+	'Verteken vun leverbore Böker' => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1=0&y=0',
+	'abebooks.de'                   => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
+	'Amazon.de'                     => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'Lehmanns Fachbuchhandlung'     => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
 );
 
 
-/* private */ $wgValidSpecialPagesNds = array(
-  'Userlogin'           => '',
-  'Userlogout'          => '',
-  'Preferences'         => 'Mien Brukerinstellen',
-  'Watchlist'           => 'Mien Oppasslist',
-  'Recentchanges'       => 'Letzte Ännern',
-  'Upload'              => 'Datei hoochladen',
-  'Imagelist'           => 'Hoochladene Datein',
-  'Listusers'           => 'Registreerte Bruker',
-  'Statistics'          => 'Sietenstatistik',
-  'Randompage'          => 'Tofällige Siet',
-
-  'Lonelypages'         => 'Weetsieten',
-  'Unusedimages'        => 'Weetdatein',
-  'Popularpages'        => 'Veel opropene Sieten',
-  'Wantedpages'         => 'Wünschte Sieten',
-  'Shortpages'          => 'Kotte Sieten',
-  'Longpages'           => 'Lange Sieten',
-  'Newpages'            => 'Niege Sieten',
-  'Ancientpages'        => 'Ole Sieten',
-  'Allpages'            => 'Alle Sieten',
-
-  'Ipblocklist'         => 'Blockte IP-Adressen',
-  'Maintenance'         => 'Pleegsieten',
-  'Specialpages'        => 'Spezialsieten',
-  'Contributions'       => 'Brukerbidreeg',
-  'Movepage'            => 'Siet schuven',
-  'Emailuser'           => 'dissen Bruker en E-Mail schrieven',
-  'Whatlinkshere'       => 'Wat wiest hierher',
-  'Recentchangeslinked' => 'Ännern vun verlinkte Sieten',
-  'Booksources'         => 'Externe Bookhöker',
-  'Categories'          => 'Kategorien',
-  'Export'              => 'XML-Sietenexport',
-  'Version'              => 'Historie',
-);
-
-/* private */ $wgSysopSpecialPagesNds = array(
-        'Blockip'              => 'Block en IP-Adress',
-        'Asksql'               => 'Datenbank-Affraag',
-        'Undelete'             => 'Löschte Sieten weerholen'
-);
-
-/* private */ $wgDeveloperSpecialPagesNds = array(
-        'Lockdb'               => 'Datenbank sparren',
-        'Unlockdb'             => 'Datenbank freegeven',
-);
 
 /* private */ $wgAllMessagesNds = array(
 # Schalter för de Brukers
@@ -290,15 +240,12 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'copyright'             => 'De Inholt is verfögbor ünner de $1.',
 'poweredby'                 => '{{SITENAME}} bruukt [http://www.mediawiki.org/ MediaWiki], en Wiki-Software mit apen Borntext.',
 'printsubtitle'         => '(Vun {{SERVER}})',
-'gnunote'               => 'Disse Siet is ünner de <a class=\'internal\' href=\'$wgScriptPath/GNU_FDL\'>GNU FDL</a> verfögbor.',
 'protectedpage'         => 'Schulte Sieten',
 'administrators'        => '{{ns:4}}:Administratern',
 'sysoptitle'               => 'Sysop-Togang notwennig',
 'sysoptext'                     => 'Dissen Vörgang kann ut Sekerheitsgrünnen blots vun Brukern mit „Sysop“-Rechten dörföhrt warrn. Kiek ok $1.',
 'developertitle'        => 'Entwickler-Togang notwennig',
 'developertext'         => 'Dissen Vörgang kann ut Sekerheitsgrünnen blots vun Brukern mit „Entwickler“-Rechten dörföhrt warrn. Kiek ok $1.',
-'bureaucrattitle'       => 'Bürokraten-Rechten notwennig',
-'bureaucrattext'               => 'Dissen Vörgang kann blots vun Brukern mit „Bürokrat“-Rechten dörföhrt warrn.',
 'nbytes'                              => '$1 Bytes',
 'go'                                     => 'Los',
 'ok'                                    => 'OK',
@@ -401,7 +348,6 @@ Query: $2
 'protectedtext'         => 'Disse Siet is för dat Bearbeiden sparrt. Dorför kann dat verschedene Grünn geven; kiek [[{{ns:4}}:Schulte Sieten]].
 
 Du kannst den Borntext vun disse Siet ankieken un kopeern:',
-'seriousxhtmlerrors'    => 'Tidy hett swore Fehler in\'n XHTML-Markup funnen.',
 
 
 # Login- un Logoutsieten
@@ -438,9 +384,9 @@ Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
 'yourvariant'           => 'Dien Spraak',
 'emailforlost'          => 'Wenn du dien Password vergeten hest, kann en nieg Password an dien E-Mail-Adress send warrn.',
 // FIXME: following should be split to 'prefs-help-realname' & 'prefs-help-email'
-'prefs-help-userdata'   => '* <strong>E-Mail</strong> (kene Plicht): Wenn du en E-Mailadress angiffst, könen annere di E-Mails sennen,
-ahn dat diene Adress no buten künnig warrt. Wenn du dien ol Password vergeten hest,
-kannst du ok blots denn en nieg Passwort kriegen, wenn du en E-Mailadress angeven hest.',
+#'prefs-help-userdata'   => '* <strong>E-Mail</strong> (kene Plicht): Wenn du en E-Mailadress angiffst, könen annere di E-Mails sennen,
+#ahn dat diene Adress no buten künnig warrt. Wenn du dien ol Password vergeten hest,
+#kannst du ok blots denn en nieg Passwort kriegen, wenn du en E-Mailadress angeven hest.',
 'loginerror'               => 'Fehler bi dat Anmellen',
 'noname'                              => 'Du muttst en Brukernaam angeven.',
 'loginsuccesstitle'     => 'Anmellen hett Spood',
@@ -478,8 +424,9 @@ As Grund is angeven:<br />$2<p>Wenn du över den Block spreken willst, kontaktee
 'whitelistreadtext'      => 'Du muttst di [[Special:Userlogin|hier anmellen]] üm Sieten lesen to könen.',
 'whitelistacctitle'      => 'Du hest nich de Rechten en Konto antoleggen',
 'whitelistacctext'       => 'Üm in dissen Wiki Kontos anleggen to könen muttst du di [[Special:Userlogin|hier anmellen]] un de neudigen Rechten hebben.',
-'loginreqtitle'              => 'Anmellen neudig',
-'loginreqtext'              => 'Du muttst di [[Special:Userlogin|anmellen]], üm annere Sieten ankieken to könen.',
+'loginreqtitle'          => 'Anmellen neudig',
+'loginreqlink'           => 'anmellen',
+'loginreqpagetext'       => 'Du muttst di $1, üm annere Sieten ankieken to könen.',
 'accmailtitle'           => 'Passwort is send worrn.',
 'accmailtext'            => 'Dat Passwort vun $1 is an $2 send worrn.',
 'newarticle'                    => '(Nieg)',
@@ -612,7 +559,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 Dien interne ID-Nummer is $2.',
 'prefsreset'            => 'Instellen sünd op Standard trüchsett.',
 'qbsettings'         => 'Sietenliest',
-'qbsettingsnote'            => 'Disse Instellen funktschoneert blots mit den Skins „Standard“ un „CologneBlue“.',
 'changepassword'     => 'Password ännern',
 'skin'                          => 'Utsehn vun de Steed',
 'math'                          => 'TeX',
@@ -703,16 +649,13 @@ Alle Tieden sünd UTC.
 <ul>
 
 </ul>",
-'uploadlogtext'     => 'Hoochladene un löschte Datein warrn in $1 utwiest.',
 'filename'                      => 'Dateinaam',
 'filedesc'                      => 'Beschrieven',
 'filestatus'        => 'Copyright-Status',
 'filesource'        => 'Born',
-'affirmation'           => 'Hiermit bestätige ik, dat ik de Inhebber vun dat Copyright vun disse Datei bün, un de Datei ünner $1 apentlich maak, oder dat de Datei Gemeengood („Public Domain“) is.',
 'copyrightpage'     => '{{ns:4}}:Copyright',
 'copyrightpagename' => '{{SITENAME}} Copyright',
 'uploadedfiles'         => 'Hoochladene Datein',
-'noaffirmation'     => 'Du muttst bestätigen, dat dat Hoochladen vun de Datei kenen Copyright-Brook is.',
 'ignorewarning'         => 'Warnen ignoreern un Datei liekers spiekern.',
 'minlength'             => 'Bilddatein möten tominnst dree Bookstaven hebben.',
 'badfilename'           => 'De Bildnaam is in „$1“ ännert worrn.',
@@ -822,14 +765,12 @@ In Klammern angevene Wöör geven de korrekte Schrievwies weer.',
 'debug'                                 => 'Fehlerkorregeern',
 'newpages'                              => 'Niege Sieten',
 'ancientpages'            => 'Öllste Sieten',
-'Intl'                    => 'annere Spraken',
 'move'                    => 'Schuven',
 'movethispage'                  => 'Siet schuven',
 'unusedimagestext'        => 'Denk doran, dat annere Wikis mööglicherwies en poor vun disse Biller bruken.',
 'booksources'               => 'Bookhannel',
 'categoriespagetext'      => 'Disse Kategorien existeern in dissen Wiki',
 'data'                     => 'Daten',
-'userlevels'              => 'Brukerrechten-Verwalten',
 'booksourcetext'          => 'Dit is en List mit Links to Internetsieten, de niege un bruukte Böker verkööpt.
 Dor kann dat ok mehr Informatschonen över de Böker geven, de di interesseert.
 {{SITENAME}} is mit kenen vun disse Höker warflich verbunnen.',
@@ -911,7 +852,6 @@ $3... [$4 komplette List wiesen un bearbeiden].)',
 'historywarning'        => 'Wohrscho: De Siet, de du versöökst to löschen, hett en Versionshistorie: ',
 'confirmdeletetext'     => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{ns:4}}:Leidlienen|Leidlienen]] hannelst.',
-'confirmcheck'            => 'Ja, ik will mit den Löschvörgang wiedermaken.',
 'actioncomplete'        => 'Aktschoon beennt',
 'deletedtext'           => '„$1“ is löscht.
 In $2 kannst du en List vun de letzten Löschen finnen.',
@@ -986,7 +926,6 @@ Ok den Grund för dat Blocken indregen.',
 'ipbreason'                     => 'Grund',
 'ipbsubmit'                        => 'Adress blocken',
 'badipaddress'          => 'De IP-Adress hett en falsch Format.',
-'noblockreason'         => 'Du muttst en Grund för dat Blocken angeven.',
 'blockipsuccesssub'     => 'Blocken hett Spood',
 'blockipsuccesstext'    => 'De IP-Adress „$1“ is nu blockt.
 
@@ -1020,17 +959,6 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'lockdbsuccesstext'     => 'De {{SITENAME}}-Datenbank is sparrt.
 <br />Du muttst de Datenbank weer freegeven, wenn de Pleegarbeiden beennt sünd.',
 'unlockdbsuccesstext'   => 'De {{SITENAME}}-Datenbank is weer freegeven.',
-
-# SQL-Affraag
-#
-'asksql'                              => 'SQL-Affraag',
-'asksqltext'                 => 'Bruuk dat Formular för en direkte Datenbank-Affraag. Bruuk enkelte Hoochkommata (\'so\'), üm Text to begrenzen.
-Disse Funktschoon kann de Datenbank bannig in Anspröök nehmen, dorum vörsichtig bruken.',
-'sqlislogged'           => 'Bedenk dat alle SQL-Affragen mitprotokolleert warrn.',
-'sqlquery'                            => 'Affraag ingeven',
-'querybtn'                          => 'Affraag starten',
-'selectonly'                 => 'Annere Affragen as \'SELECT\' köönt eenzig vun Entwicklern bruukt warrn.',
-'querysuccessful'       => 'Affraag hett Spood',
 
 # Siet schuven
 #
@@ -1067,89 +995,18 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'missingimage'          => '<b>Bild fehlt</b><br /><i>$1</i>',
 
 #Tooltips:
-'tooltip-atom'          => 'Atom-Feed vun disse Siet',
-'tooltip-addsection'    => 'En Kommentar to disse Siet hentofögen. [alt-+]',
-'tooltip-article'       => 'Siet ankieken [alt-a]',
-'tooltip-talk'          => 'Disse Siet diskuteern [alt-t]',
-'tooltip-edit'          => 'Du kannst disse Siet bearbeiden. Bitte bruuk de Vörschau, vördem du de Siet spiekerst. [alt-e]',
-'tooltip-viewsource'    => 'Disse Siet is schuult. Du kannst den Borntext ankieken. [alt-e]',
-'tooltip-history'       => 'Öllere Versionen vun disse Siet. [alt-h]',
-'tooltip-protect'       => 'Disse Siet schulen [alt--]',
-'tooltip-delete'        => 'Disse Siet löschen [alt-d]',
-'tooltip-undelete'      => '$1 Versionen vun disse Siet weerholen. [alt-d]',
-'tooltip-move'          => 'Disse Siet schuven. [alt-m]',
 'tooltip-watch'         => 'Op disse Siet oppassen. [alt-w]',
-'tooltip-unwatch'       => 'Op disse Siet nich mehr oppassen. [alt-w]',
-'tooltip-watchlist'     => 'De List vun de Sieten, op de du oppasst. [alt-l]',
-'tooltip-userpage'      => 'Mien Brukersiet [alt-.]',
-'tooltip-anonuserpage'  => 'De Brukersiet vun dien IP-Adress [alt-.]',
-'tooltip-mytalk'        => 'Mien Brukerdiskuschoon [alt-n]',
-'tooltip-anontalk'      => 'Diskuschonen to Bearbeiden, de vun disse IP-Adress mookt warrn. [alt-n]',
-'tooltip-preferences'   => 'Mien Instellen',
-'tooltip-mycontris'     => 'List vun mien Bidreeg [alt-y]',
-'tooltip-login'         => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden. [alt-o]',
-'tooltip-logout'        => 'De Startknoop [alt-o]',
 'tooltip-search'        => 'Söken [alt-f]',
-'tooltip-mainpage'      => 'To de Hööftsiet [alt-z]',
-'tooltip-portal'        => 'över dat Projekt, wat du doon kannst, woans du de Saken finnen kannst',
-'tooltip-randompage'    => 'Tofällige Siet [alt-x]',
-'tooltip-currentevents' => 'Achtergrünn to aktuellen Schehn finnen',
-'tooltip-sitesupport'   => 'Hülp de {{SITENAME}} mit Gaven',
-'tooltip-help'          => 'Hier kriegst du Hülp.',
-'tooltip-recentchanges' => 'De letzten Ännern in dissen Wiki. [alt-r]',
-'tooltip-recentchangeslinked' => 'De letzten Ännern an Sieten, de vun disse Siet verlinkt sünd. [alt-c]',
-'tooltip-whatlinkshere' => 'List vun alle Sieten, de op disse Siet wiesen [alt-b]',
-'tooltip-specialpages'  => 'List vun alle Spezialsieten [alt-q]',
-'tooltip-upload'        => 'Biller oder annere Medien hoochladen [alt-u]',
-'tooltip-specialpage'   => 'Dit is en Spezialsiet, de nich bearbeid warrn kann.',
 'tooltip-minoredit'     => 'Disse Ännern as lütt markeern. [alt-i]',
 'tooltip-save'          => 'Ännern spiekern [alt-s]',
 'tooltip-preview'       => 'Vörschau vun de Ännern an disse Siet. Bruuk dat vör dat Spiekern. [alt-p]',
-'tooltip-contributions' => 'List vun de Bidreeg vun dissen Bruker.',
-'tooltip-emailuser'     => 'Send en E-Mail an dissen Bruker',
-'tooltip-rss'           => 'RSS-Feed vun disse Siet.',
 'tooltip-compareselectedversions' => 'Ünnerscheed twüschen twee utwählte Versionen vun disse Siet verglieken. [alt-v]',
 
 #Tastatur-Shortcuts
-'accesskey-article'                 => 'a',
-'accesskey-addsection'              => '+',
-'accesskey-talk'                    => 't',
-'accesskey-edit'                    => 'e',
-'accesskey-viewsource'              => 'e',
-'accesskey-history'                 => 'h',
-'accesskey-protect'                 => '-',
-'accesskey-delete'                  => 'd',
-'accesskey-undelete'                => 'd',
-'accesskey-move'                    => 'm',
-'accesskey-watch'                   => 'w',
-'accesskey-unwatch'                 => 'w',
-'accesskey-watchlist'               => 'l',
-'accesskey-userpage'                => '.',
-'accesskey-anonuserpage'            => '.',
-'accesskey-mytalk'                  => 'n',
-'accesskey-anontalk'                => 'n',
-'accesskey-preferences'             => '',
-'accesskey-mycontris'               => 'y',
-'accesskey-login'                   => 'o',
-'accesskey-logout'                  => 'o',
 'accesskey-search'                  => 'f',
-'accesskey-mainpage'                => 'z',
-'accesskey-portal'                  => '',
-'accesskey-randompage'              => 'x',
-'accesskey-currentevents'           => '',
-'accesskey-sitesupport'             => '',
-'accesskey-help'                    => '',
-'accesskey-recentchanges'           => 'r',
-'accesskey-recentchangeslinked'     => 'c',
-'accesskey-whatlinkshere'           => 'b',
-'accesskey-specialpages'            => 'q',
-'accesskey-specialpage'             => '',
-'accesskey-upload'                  => 'u',
 'accesskey-minoredit'               => 'i',
 'accesskey-save'                    => 's',
 'accesskey-preview'                 => 'p',
-'accesskey-contributions'           => '',
-'accesskey-emailuser'               => '',
 'accesskey-compareselectedversions' => 'v',
 
 'makesysoptitle'        => 'Maak en Bruker to en Administrater',
@@ -1325,7 +1182,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategoriesiet ankieken\');',
 
 'newimages'                             => 'Galeree vun niege Biller',
 
-'sitesettings'                          => 'Sietenwiet Instellen',
 
 # Validatschoon
 'val_clear_old'                         => 'Maak mien annere Validatschoonsdaten för $1 weg.',
@@ -1356,29 +1212,16 @@ sett de annern Optschonen mit dien vörige Instellen.',
 'val_page_validation_statistics'        => 'Sietenvalideer-Statistik för $1',
 
 # Schalttafel
-'userlevels-lookup-group'               => 'Gruppenrechten verwalten',
-'userlevels-group-edit'                 => 'Existeern Gruppen: ',
 'editgroup'                             => 'Grupp bearbeiden',
 'addgroup'                              => 'Grupp hentofögen',
 
-'userlevels-lookup-user'                => 'Brukergruppen verwalten',
-'userlevels-user-editname'              => 'Brukernaam ingeven: ',
 'editusergroup'                         => 'Brukergruppen bearbeiden',
 
 # Gruppen bearbeiden
-'userlevels-editgroup'                  => 'Grupp bearbeiden',
-'userlevels-addgroup'                   => 'Grupp hentofögen',
-'userlevels-editgroup-name'             => 'Gruppennaam: ',
-'userlevels-editgroup-description'      => 'Gruppenbeschrieven (max. 255 Teken):<br />',
 'savegroup'                             => 'Grupp spiekern',
 
 # Brukergruppen bearbeiden
-'userlevels-editusergroup'              => 'Brukergruppen bearbeiden',
 'saveusergroups'                        => 'Brukergruppen spiekern',
-'userlevels-groupsmember'               => 'Liddmaat vun:',
-'userlevels-groupsavailable'            => 'verfögbore Brukergruppen:',
-'userlevels-groupshelp'                 => 'Wähl de Gruppen ut, bi de de Bruker hentofögt oder rutnommen warrn schall.
-Gruppen, de nich wählt warrn, warrn nich ännert. Du kannst de Utwahl vun en Grupp trüchnehmen, wenn du Strg (CTRL) un en Klick mit de linke Muustast maakst.',
 
 # Metadata
 'nodublincore'                          => 'Dublin-Core-RDF-Metadaten sünd för dissen Server nich aktiveert.',
@@ -1424,59 +1267,44 @@ Gruppen, de nich wählt warrn, warrn nich ännert. Du kannst de Utwahl vun en Gr
 
 class LanguageNds extends LanguageUtf8 {
 
-        function getBookstoreList() {
-                global $wgBookstoreListNds;
-                return $wgBookstoreListNds;
-        }
+	function getBookstoreList() {
+		global $wgBookstoreListNds;
+		return $wgBookstoreListNds;
+	}
 
-        function getNamespaces() {
-                global $wgNamespaceNamesNds;
-                return $wgNamespaceNamesNds;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesNds;
+		return $wgNamespaceNamesNds;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsNds;
-                return $wgQuickbarSettingsNds;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsNds;
+		return $wgQuickbarSettingsNds;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesNds;
-                return $wgSkinNamesNds;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesNds;
+		return $wgSkinNamesNds;
+	}
 
-        function date( $ts, $adj = false ) {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-                $d = (0 + substr( $ts, 6, 2 )) . '. ' .
-                $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-                  ' ' .
-                  substr( $ts, 0, 4 );
-                return $d;
-        }
+		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
+		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
+		  ' ' .
+		  substr( $ts, 0, 4 );
+		return $d;
+	}
 
-        function getValidSpecialPages() {
-                global $wgValidSpecialPagesNds;
-                return $wgValidSpecialPagesNds;
-        }
-
-        function getSysopSpecialPages() {
-                global $wgSysopSpecialPagesNds;
-                return $wgSysopSpecialPagesNds;
-        }
-
-        function getDeveloperSpecialPages() {
-                global $wgDeveloperSpecialPagesNds;
-                return $wgDeveloperSpecialPagesNds;
-        }
-
-        function getMessage( $key ) {
-                global $wgAllMessagesNds;
-                if( isset( $wgAllMessagesNds[$key] ) ) {
-                        return $wgAllMessagesNds[$key];
-                } else {
+	function getMessage( $key ) {
+		global $wgAllMessagesNds;
+		if( isset( $wgAllMessagesNds[$key] ) ) {
+			return $wgAllMessagesNds[$key];
+		} else {
 			return parent::getMessage( $key );
-                }
-        }
+		}
+	}
 
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );

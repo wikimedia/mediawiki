@@ -10,103 +10,57 @@
 require_once( 'LanguageUtf8.php' );
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 
 /* private */ $wgNamespaceNamesRu = array(
-        NS_MEDIA            => 'Медиа',
-        NS_SPECIAL          => 'Служебная',
-        NS_MAIN             => '',
-        NS_TALK             => 'Обсуждение',
-        NS_USER             => 'Участник',
-        NS_USER_TALK        => 'Обсуждение_участника',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => FALSE,  #Set in constructor
-        NS_IMAGE            => 'Изображение',
-        NS_IMAGE_TALK       => 'Обсуждение_изображения',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'Обсуждение_MediaWiki',
-        NS_TEMPLATE         => 'Шаблон',
-        NS_TEMPLATE_TALK    => 'Обсуждение_шаблона',
-        NS_HELP             => 'Справка',
-        NS_HELP_TALK        => 'Обсуждение_справки',
-        NS_CATEGORY         => 'Категория',
-        NS_CATEGORY_TALK    => 'Обсуждение_категории',
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Служебная',
+	NS_MAIN             => '',
+	NS_TALK             => 'Обсуждение',
+	NS_USER             => 'Участник',
+	NS_USER_TALK        => 'Обсуждение_участника',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => FALSE,  #Set in constructor
+	NS_IMAGE            => 'Изображение',
+	NS_IMAGE_TALK       => 'Обсуждение_изображения',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Обсуждение_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Обсуждение_шаблона',
+	NS_HELP             => 'Справка',
+	NS_HELP_TALK        => 'Обсуждение_справки',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Обсуждение_категории',
 ) + $wgNamespaceNamesEn;
 
 if(isset($wgExtraNamespaces)) {
-        $wgNamespaceNamesRu=$wgNamespaceNamesRu+$wgExtraNamespaces;
+	$wgNamespaceNamesRu=$wgNamespaceNamesRu+$wgExtraNamespaces;
 }
 
 /* private */ $wgQuickbarSettingsRu = array(
-        'Не показывать', 'Неподвижная слева', 'Неподвижная справа', 'Плавающая слева', 'Плавающая справа'
+	'Не показывать', 'Неподвижная слева', 'Неподвижная справа', 'Плавающая слева', 'Плавающая справа'
 );
 
 /* private */ $wgSkinNamesRu = array(
-        'standard' => 'Стандартный',
-        'nostalgia' => 'Ностальгия',
-        'cologneblue' => 'Кёльнская тоска',
-        'davinci' => 'Да Винчи',
-        'mono' => 'Моно',
-        'monobook' => 'Моно-книга',
-        'myskin' => 'Своё',
-        'chick' => 'Цыпа'
+	'standard' => 'Стандартный',
+	'nostalgia' => 'Ностальгия',
+	'cologneblue' => 'Кёльнская тоска',
+	'davinci' => 'Да Винчи',
+	'mono' => 'Моно',
+	'monobook' => 'Моно-книга',
+	'myskin' => 'Своё',
+	'chick' => 'Цыпа'
 );
 
 
 /* private */ $wgBookstoreListRu = array(
-        'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
-        'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
-        'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
-        'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
+	'Books.Ru' => 'http://www.books.ru/shop/search/advanced?as%5Btype%5D=books&as%5Bname%5D=&as%5Bisbn%5D=$1&as%5Bauthor%5D=&as%5Bmaker%5D=&as%5Bcontents%5D=&as%5Binfo%5D=&as%5Bdate_after%5D=&as%5Bdate_before%5D=&as%5Bprice_less%5D=&as%5Bprice_more%5D=&as%5Bstrict%5D=%E4%E0&as%5Bsub%5D=%E8%F1%EA%E0%F2%FC&x=22&y=8',
+	'Яндекс.Маркет' => 'http://market.yandex.ru/search.xml?text=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
-/* private */ $wgValidSpecialPagesRu = array(
-  'Userlogin'           => '',
-  'Userlogout'          => '',
-  'Preferences'         => 'Ваши настройки',
-  'Watchlist'           => 'Ваш список наблюдения',
-  'Recentchanges'       => 'Свежие правки',
-  'Upload'              => 'Загрузить файл',
-  'Imagelist'           => 'Список изображений',
-  'Listusers'           => 'Зарегистрированные  участники',
-  'Statistics'          => 'Статистика',
-  'Randompage'          => 'Случайная статья',
-
-  'Lonelypages'         => 'Статьи-сироты',
-  'Unusedimages'        => 'Изображения-сироты',
-  'Popularpages'        => 'Популярные статьи',
-  'Wantedpages'         => 'Требуемые статьи',
-  'Shortpages'          => 'Короткие статьи',
-  'Longpages'           => 'Длинные статьи',
-  'Newpages'            => 'Новые статьи',
-  'Ancientpages'        => 'Самые старые статьи',
-  'Allpages'            => 'Все страницы по алфавиту',
-
-  'Ipblocklist'         => 'Заблокированные IP-адреса',
-  'Maintenance'         => 'Подсобная страница',
-  'Specialpages'        => '',
-  'Contributions'       => '',
-  'Movepage'            => '',
-  'Emailuser'           => '',
-  'Whatlinkshere'       => '',
-  'Recentchangeslinked' => '',
-  'Booksources'         => 'Где искать книги',
-  'Categories'          => 'Категории',
-  'Export'              => 'Экспорт в XML',
-  'Version'                     => 'Версия',
-);
-
-/* private */ $wgSysopSpecialPagesRu = array(
-        'Blockip'               => 'Заблокировать IP-адрес',
-        'Asksql'                => 'Сделать запрос к базе данных',
-        'Undelete'              => 'Посмотреть и восстановить стёртые страницы'
-);
-
-/* private */ $wgDeveloperSpecialPagesRu = array(
-        'Lockdb'                => 'Сделать базу данных доступной только для чтения',
-        'Unlockdb'              => 'Восстановить возможность записи в базу данных',
-);
 
 # Note to translators:
 #   Please include the English words as synonyms.  This allows people
@@ -114,55 +68,55 @@ if(isset($wgExtraNamespaces)) {
 #
 /* private */ $wgMagicWordsRu = array(
 #   ID                                 CASE  SYNONYMS
-        MAG_REDIRECT             => array( 0,    '#redirect', '#перенаправление', '#перенапр'),
-        MAG_NOTOC                => array( 0,    '__NOTOC__', '__БЕЗСОДЕРЖАНИЯ__'),
-        MAG_FORCETOC             => array( 0,    '__FORCETOC__'),
-        MAG_TOC                  => array( 0,    '__TOC__', '__СОДЕРЖАНИЕ__'),
-        MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__БЕЗРЕДАКТИРОВАНИЯРАЗДЕЛА__'),
-        MAG_START                => array( 0,    '__START__', '__НАЧАЛО__'),
-        MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'ТЕКУЩИЙМЕСЯЦ'),
-        MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦА'),
-        MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦАРОД'),
-        MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕТЕКУЩЕГОМЕСЯЦААБР'),
-        MAG_CURRENTDAY           => array( 1,    'CURRENTDAY','ТЕКУЩИЙДЕНЬ'),
-        MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕТЕКУЩЕГОДНЯ'),
-        MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR','ТЕКУЩИЙГОД'),
-        MAG_CURRENTTIME          => array( 1,    'CURRENTTIME','ТЕКУЩЕЕВРЕМЯ'),
-        MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES','КОЛИЧЕСТВОСТАТЕЙ'),
-        MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES', 'КОЛИЧЕСТВОФАЛОВ'),
-        MAG_PAGENAME             => array( 1,    'PAGENAME','НАЗВАНИЕСТРАНИЦЫ'),
-        MAG_PAGENAMEE            => array( 1,    'PAGENAMEE','НАЗВАНИЕСТРАНИЦЫ2'),
-        MAG_NAMESPACE            => array( 1,    'NAMESPACE','ПРОСТРАНСТВОИМЁН'),
-        MAG_MSG                  => array( 0,    'MSG:'),
-        MAG_SUBST                => array( 0,    'SUBST:','ПОДСТ:'),
-        MAG_MSGNW                => array( 0,    'MSGNW:'),
-        MAG_END                  => array( 0,    '__END__','__КОНЕЦ__'),
-        MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'мини'),
-        MAG_IMG_RIGHT            => array( 1,    'right','справа'),
-        MAG_IMG_LEFT             => array( 1,    'left','слева'),
-        MAG_IMG_NONE             => array( 1,    'none'),
-        MAG_IMG_WIDTH            => array( 1,    '$1px','$1пкс'),
-        MAG_IMG_CENTER           => array( 1,    'center', 'centre','центр'),
-        MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame','обрамить'),
-        MAG_INT                  => array( 0,    'INT:'),
-        MAG_SITENAME             => array( 1,    'SITENAME','НАЗВАНИЕСАЙТА'),
-        MAG_NS                   => array( 0,    'NS:','ПИ:'),
-        MAG_LOCALURL             => array( 0,    'LOCALURL:'),
-        MAG_LOCALURLE            => array( 0,    'LOCALURLE:'),
-        MAG_SERVER               => array( 0,    'SERVER','СЕРВЕР'),
-        MAG_SERVERNAME           => array( 0,    'SERVERNAME', 'НАЗВАНИЕСЕРВЕРА'),
-        MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH', 'ПУТЬКСКРИПТУ'),
-        MAG_GRAMMAR              => array( 0,    'GRAMMAR:'),
-        MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__БЕЗПРЕОБРАЗОВАНИЯЗАГОЛОВКА__'),
-        MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗПРЕОБРАЗОВАНИЯТЕКСТА__'),
-        MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK','ТЕКУЩАЯНЕДЕЛЯ'),
-        MAG_CURRENTDOW           => array( 1,    'CURRENTDOW','ТЕКУЩИЙДЕНЬНЕДЕЛИ'),
-        MAG_REVISIONID           => array( 1,    'REVISIONID', 'ИДВЕРСИИ'),
+	MAG_REDIRECT             => array( 0,    '#redirect', '#перенаправление', '#перенапр'),
+	MAG_NOTOC                => array( 0,    '__NOTOC__', '__БЕЗСОДЕРЖАНИЯ__'),
+	MAG_FORCETOC             => array( 0,    '__FORCETOC__'),
+	MAG_TOC                  => array( 0,    '__TOC__', '__СОДЕРЖАНИЕ__'),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__БЕЗРЕДАКТИРОВАНИЯРАЗДЕЛА__'),
+	MAG_START                => array( 0,    '__START__', '__НАЧАЛО__'),
+	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'ТЕКУЩИЙМЕСЯЦ'),
+	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦА'),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN','НАЗВАНИЕТЕКУЩЕГОМЕСЯЦАРОД'),
+	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'НАЗВАНИЕТЕКУЩЕГОМЕСЯЦААБР'),
+	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY','ТЕКУЩИЙДЕНЬ'),
+	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME','НАЗВАНИЕТЕКУЩЕГОДНЯ'),
+	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR','ТЕКУЩИЙГОД'),
+	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME','ТЕКУЩЕЕВРЕМЯ'),
+	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES','КОЛИЧЕСТВОСТАТЕЙ'),
+	MAG_NUMBEROFFILES        => array( 1,    'NUMBEROFFILES', 'КОЛИЧЕСТВОФАЛОВ'),
+	MAG_PAGENAME             => array( 1,    'PAGENAME','НАЗВАНИЕСТРАНИЦЫ'),
+	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE','НАЗВАНИЕСТРАНИЦЫ2'),
+	MAG_NAMESPACE            => array( 1,    'NAMESPACE','ПРОСТРАНСТВОИМЁН'),
+	MAG_MSG                  => array( 0,    'MSG:'),
+	MAG_SUBST                => array( 0,    'SUBST:','ПОДСТ:'),
+	MAG_MSGNW                => array( 0,    'MSGNW:'),
+	MAG_END                  => array( 0,    '__END__','__КОНЕЦ__'),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'мини'),
+	MAG_IMG_RIGHT            => array( 1,    'right','справа'),
+	MAG_IMG_LEFT             => array( 1,    'left','слева'),
+	MAG_IMG_NONE             => array( 1,    'none'),
+	MAG_IMG_WIDTH            => array( 1,    '$1px','$1пкс'),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre','центр'),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame','обрамить'),
+	MAG_INT                  => array( 0,    'INT:'),
+	MAG_SITENAME             => array( 1,    'SITENAME','НАЗВАНИЕСАЙТА'),
+	MAG_NS                   => array( 0,    'NS:','ПИ:'),
+	MAG_LOCALURL             => array( 0,    'LOCALURL:'),
+	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'),
+	MAG_SERVER               => array( 0,    'SERVER','СЕРВЕР'),
+	MAG_SERVERNAME           => array( 0,    'SERVERNAME', 'НАЗВАНИЕСЕРВЕРА'),
+	MAG_SCRIPTPATH           => array( 0,    'SCRIPTPATH', 'ПУТЬКСКРИПТУ'),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'),
+	MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__БЕЗПРЕОБРАЗОВАНИЯЗАГОЛОВКА__'),
+	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗПРЕОБРАЗОВАНИЯТЕКСТА__'),
+	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK','ТЕКУЩАЯНЕДЕЛЯ'),
+	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW','ТЕКУЩИЙДЕНЬНЕДЕЛИ'),
+	MAG_REVISIONID           => array( 1,    'REVISIONID', 'ИДВЕРСИИ'),
 );
 
 /* private */ $wgAllMessagesRu = array(
 
-# User preference toggles 
+# User preference toggles
 'tog-underline' => 'Подчёркивать ссылки',
 'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href=\"\" class=\"new\">вот так</a> (иначе вот так<a href=\"\" class=\"internal\">?</a>).',
 'tog-justify'   => 'Выравнивать текст по ширине страницы',
@@ -186,7 +140,6 @@ if(isset($wgExtraNamespaces)) {
 'tog-enotifminoredits'          => 'Уведомлять по эл. почте даже при малозначительных изменениях',
 'tog-enotifrevealaddr'          => 'Показывать мой почтовый адрес в сообщениях оповещения',
 'tog-shownumberswatching'       => 'Показывать число участников, включивших страницу в свой список наблюдения',
-'tog-showupdated'               => 'Показывать метку обновления',
 'tog-fancysig' => 'Простая подпись (без автоматической ссылки)',
 'tog-externaleditor' => 'Использовать по умолчанию внешний редактор',
 'tog-externaldiff' => 'Использовать по умолчанию внешную программу сравнения версий',
@@ -237,7 +190,7 @@ if(isset($wgExtraNamespaces)) {
 'subcategories' => 'Подкатегории',
 
 
-'linktrail'             => '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я)+)(.*)$/sD', 
+'linktrail'             => '/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я)+)(.*)$/sD',
 'linkprefix'            => '/^(.*?)([a-zA-Z\x80-\xff\x4000-\x4f0f]+)$/sD',
 'mainpage'              => 'Заглавная страница',
 'mainpagetext'  => 'Програмное обеспечение вики-проекта успешно установлено.',
@@ -409,7 +362,7 @@ $1',
 'readonlytext'  => "Добавление новых статей и другие изменения базы данных сейчас заблокированы: вероятно, в связи с плановым обслуживанием.
 Заблокировавший оператор оставил следующее разъяснение:
 $1",
-'missingarticle' => "База данных не нашла текста статьи, 
+'missingarticle' => "База данных не нашла текста статьи,
 хотя должна была найти, по имени «$1».
 
 Обычно это вызвано использованием устаревшей ссылки на журнал изменений или различий для статьи, которая была удалена.
@@ -435,7 +388,7 @@ $1",
 Функция: $1<br />
 Запрос: $2",
 'viewsource' => 'Просмотр',
-'protectedtext' => "Эта страница заблокирована для предотвращения её изменений. 
+'protectedtext' => "Эта страница заблокирована для предотвращения её изменений.
 Существуют несколько причин по которым это могло быть сделано,
 смотрите [[{{ns:project}}:Журнал защиты]] для того чтобы узнать причину, связанную с этой страницей.
 
@@ -479,7 +432,7 @@ $1",
 'yourvariant'  => 'Вариант языка',
 'yournick'              => 'Ваш псевдоним (для подписей)',
 'email'                 => 'Эл. почта',
-'emailforlost'          => "Поля отмеченные звёздочкой необязательны для заполнения. Указав адрес электронной почты, вы позволите другим участникам проекта отправлять вам сообщение через веб-форму. 
+'emailforlost'          => "Поля отмеченные звёздочкой необязательны для заполнения. Указав адрес электронной почты, вы позволите другим участникам проекта отправлять вам сообщение через веб-форму.
 Это также поможет вам в случае если вы забудете свой пароль.<br />Ваше настоящее имя будет использовано для подписи ваших работ.",
 'prefs-help-email-enotif' => 'Этот адрес также используется для отправки по электронной почте оповещений об изменении страниц если вы активировали соответствующую опцию.',
 'prefs-help-realname'   => '* Настоящее имя (необязательное поле): если вы укажите его, то оно будет использовано для того чтобы показать кем был внесена правка страницы.',
@@ -495,7 +448,6 @@ $1",
 'nosuchusershort'       => "Не существует участника с именем $1. Проверьте написание имени.",
 'wrongpassword'         => 'Введённый вами пароль неверен. Попробуйте ещё раз.',
 'mailmypassword'        => 'Выслать новый пароль',
-'mailmypasswordauthent' => 'Выслать новый пароль',
 'passwordremindertitle' => "Напоминание пароля участника {{grammar:genitive|{{SITENAME}}}}",
 'passwordremindertext' => "Кто-то (возможно вы) с IP-адресом $1 запросил,
 чтобы мы выслали вам новый пароль участника {{grammar:genitive|{{SITENAME}}}}.
@@ -509,11 +461,11 @@ $1",
 'loginend'              => ' ',
 'mailerror' => "Ошибка при посылке почты: $1",
 'acct_creation_throttle_hit' => 'К сожалению, вы уже создали $1 учётных записей. Вы не можете создать больше ни одной.',
-'emailauthenticated'    => 'Ваш почтовый адрес был сопоставлен с $1.', 
+'emailauthenticated'    => 'Ваш почтовый адрес был сопоставлен с $1.',
 'emailnotauthenticated' => 'Ваш адрес электронной почты <strong>ещё не был подтверждён</strong>, функции вики-движка по работе с эл. почтой отключены.',
 'noemailprefs'          => '<strong>Адрес электронной почты не был указан</strong>, функции вики-движка по работе с эл. почтой отключены.',
 'emailconfirmlink' => 'Подтвердить ваш адрес электронной почты',
-'invalidemailaddress'   => 'Введённый адрес не может быть принят, т. к. он не соответствует формату адресов электронной почты. Пожалуйста введите корректный адрес или оставьте поле пустым.', 
+'invalidemailaddress'   => 'Введённый адрес не может быть принят, т. к. он не соответствует формату адресов электронной почты. Пожалуйста введите корректный адрес или оставьте поле пустым.',
 
 # Edit page toolbar
 'bold_sample'=>'Жирный шрифт',
@@ -552,7 +504,7 @@ $1",
 'showdiff'      => 'Внесённые изменения',
 'blockedtitle'  => 'Участник заблокирован',
 'blockedtext'   => "Ваше имя участника или IP-адрес был заблокирован $1.
-Утверждается, что причина такова:<br />''$2''<p>Вы можете связаться с $1 или одним из других 
+Утверждается, что причина такова:<br />''$2''<p>Вы можете связаться с $1 или одним из других
 [[{{ns:project}}:Администраторы|администраторов]] чтобы обсудить блокировку.",
 'whitelistedittitle' => 'Для изменения требуется авторизаци',
 'whitelistedittext' => 'Вы должны [[{{ns:special}}:Userlogin|зарегистрироваться]] для изменения этих страниц.',
@@ -568,7 +520,7 @@ $1",
 'newarticle'    => '(Новая)',
 'newarticletext' =>
 "Вы перешли по ссылке на статью, которая пока не существует.
-Чтобы создать новую страницу, наберите текст в окне, расположенном ниже 
+Чтобы создать новую страницу, наберите текст в окне, расположенном ниже
 (см. [[{{ns:project}}:Справка|справочную страницу]] чтобы получить больше информации).
 Если вы оказались здесь по ошибке, просто нажмите кнопку '''назад''' вашего браузера.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
@@ -779,7 +731,7 @@ Cм. [[{{ns:project}}:Справка по настройкам]], чтобы р�
 # group editing
 'groups-editgroup' => 'Изменить группу',
 'groups-addgroup' => 'Добавить группу',
-'groups-editgroup-preamble' => 'Если название или описание начинаются с двоеточия, 
+'groups-editgroup-preamble' => 'Если название или описание начинаются с двоеточия,
 то их текст будет заменён на соответствующее сообщение из пространства имён MediaWiki',
 'groups-editgroup-name' => 'Название группы: ',
 'groups-editgroup-description' => 'Описание группы (максимум 255 символов):<br />',
@@ -865,7 +817,7 @@ Cм. [[{{ns:project}}:Справка по настройкам]], чтобы р�
 
 Для включения изображения в статью вы можете использовать строки вида:
 *'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>'''
-*'''<nowiki>[[{{ns:6}}:file.png|thumb|комментарий]]</nowiki>''' 
+*'''<nowiki>[[{{ns:6}}:file.png|thumb|комментарий]]</nowiki>'''
 
 Для ссылки на медиа-файл вы можете использовать строку вида:
 *'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>'''
@@ -1086,7 +1038,7 @@ Cм. [[{{ns:project}}:Справка по настройкам]], чтобы р�
 'watchlistcontains' => "Ваш список наблюдения содержит $1 страниц.",
 'watcheditlist'         => 'Ниже представлен алфавитный список наблюдаемых
 вами страниц. Отметьте страниц, которые вы хотите удалить из вашего
-списка наблюдения и щёлкните на кнопку «удалить выбранные» 
+списка наблюдения и щёлкните на кнопку «удалить выбранные»
 внизу экрана.',
 'removingchecked'       => 'Удаление выбранных элементов из списка наблюдения…',
 'couldntremove'         => "Невозможно удалить элемент «$1»…",
@@ -1256,7 +1208,7 @@ IP-адреса.',
 'ipusuccess'    => "IP-адрес [[$1|«$1»]] разблокирован",
 'ipblocklist'   => 'Список заблокированных IP-адресов и пользователей',
 'blocklistline' => "$1, $2 заблокировал $3 ($4)",
-'infiniteblock' => 'навсегда', 
+'infiniteblock' => 'навсегда',
 'expiringblock' => 'блокировка завершится $1',
 'ipblocklistempty'      => 'Список блокировок пуст.',
 'blocklink'     => 'заблокировать',
@@ -1302,7 +1254,7 @@ IP-адреса.',
 
 # Make sysop
 'makesysoptitle'        => 'Сделать пользователя администратором',
-'makesysoptext'         => 'Этот формуляр используется бюрократами, чтобы делать обычных участников администраторами. 
+'makesysoptext'         => 'Этот формуляр используется бюрократами, чтобы делать обычных участников администраторами.
 Наберите имя участника и нажмите кнопку, чтобы сделать участника администратором',
 'makesysopname'         => 'Имя участника:',
 'makesysopsubmit'       => 'Сделать этого участника администратором',
@@ -1328,8 +1280,8 @@ IP-адреса.',
 'val_of' => '$1 из $2',
 'val_revision' => 'Версия',
 'val_time' => 'Время',
-'val_user_stats_title' => 'Краткий обзор оценок участника $1', 
-'val_my_stats_title' => 'Краткий обзор моих оценок', 
+'val_user_stats_title' => 'Краткий обзор оценок участника $1',
+'val_my_stats_title' => 'Краткий обзор моих оценок',
 'val_list_header' => '<th>#</th><th>Тема</th><th>Диапазон</th><th>Действие</th>',
 'val_add' => 'Добавить',
 'val_del' => 'Удалить',
@@ -1347,7 +1299,7 @@ IP-адреса.',
 'val_clear_old' => 'Очистить мои старые оценки',
 'val_details_th' => '<sub>Участник</sub> \\ <sup>Тема</sup>',
 'val_merge_old' => 'Использовать мою предыдущую оценку там где выбрано «Нет мнения»',
-'val_form_note' => "'''Посказка:''' Слияние ваших данных означает что для версии 
+'val_form_note' => "'''Посказка:''' Слияние ваших данных означает что для версии
 статьи, которую вы выбрали, все опции где вы выбрали пункт ''нет мнения''
 будут заполнены значениями и комментариями самой последней версии для которой вы
 выразили мнение. Например, если вы хотите изменить мнение по какой-то опции
@@ -1408,7 +1360,7 @@ IP-адреса.',
 'talkexists'    => "'''Страница была переименована, но страница обсуждения
 не может быть переименована, потому что страница с таким названием уже
 существует. Пожалуйста, объедините их вручную.'''",
-'movedto'               => 'переименована в', 
+'movedto'               => 'переименована в',
 'movetalk'              => 'Переименовать также и страницу «обсуждения», если это возможно.',
 'talkpagemoved' => 'Соответствующая страница обсуждения также переименована.',
 'talkpagenotmoved' => 'Соответствующая страница обсуждения <strong>не</strong> была переименована.',
@@ -1482,7 +1434,7 @@ IP-адреса.',
 'tooltip-watch' => 'Добавить эту страницу в ваш список наблюдения [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
 #'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
@@ -1762,9 +1714,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
-'exif-resolutionunit-2' => '$1 точек на дюйм',
-'exif-resolutionunit-3' => '$1 точек на см',
-
 'exif-colorspace-1' => 'sRGB',
 'exif-colorspace-ffff.h' => 'FFFF.H',
 
@@ -1907,7 +1856,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категори�
 
 # E-mail address confirmation
 'confirmemail' => 'Подтверждение адреса электронной почты',
-'confirmemail_text' => "Вики-движок требует подтверждения адреса электронной почты перед тем, как начать с ним работать. 
+'confirmemail_text' => "Вики-движок требует подтверждения адреса электронной почты перед тем, как начать с ним работать.
 Нажмите на кнопку, чтобы на указанный адрес было отправлено письмо, сореджащее ссылку на специальную страницу, после открытия которой в браузере адрес электронной почты будет считается подтверждённым.",
 
 'confirmemail_send' => 'Отправить письмо с запросом на подтверждение',
@@ -1964,112 +1913,92 @@ $1
 
 /* Please, see Language.php for general function comments */
 class LanguageRu extends LanguageUtf8 {
-        function LanguageRu() {
-                global $wgNamespaceNamesRu, $wgMetaNamespace;
-                LanguageUtf8::LanguageUtf8();
-                $wgNamespaceNamesRu[NS_PROJECT_TALK] = 'Обсуждение_' . $this->convertGrammar( $wgMetaNamespace, 'genitive' );
-        }
+	function LanguageRu() {
+		global $wgNamespaceNamesRu, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesRu[NS_PROJECT_TALK] = 'Обсуждение_' . $this->convertGrammar( $wgMetaNamespace, 'genitive' );
+	}
 
-        function getNamespaces() {
-                global $wgNamespaceNamesRu;
-                return $wgNamespaceNamesRu;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesRu;
+		return $wgNamespaceNamesRu;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsRu;
-                return $wgQuickbarSettingsRu;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsRu;
+		return $wgQuickbarSettingsRu;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesRu;
-                return $wgSkinNamesRu;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesRu;
+		return $wgSkinNamesRu;
+	}
 
-        function getDateFormats() {
-                global $wgDateFormatsRu;
-                return $wgDateFormatsRu;
-        }
+	function getDateFormats() {
+		global $wgDateFormatsRu;
+		return $wgDateFormatsRu;
+	}
 
-        function getValidSpecialPages()
-        {
-                global $wgValidSpecialPagesRu;
-                return $wgValidSpecialPagesRu;
-        }
-
-        function getSysopSpecialPages()
-        {
-                global $wgSysopSpecialPagesRu;
-                return $wgSysopSpecialPagesRu;
-        }
-
-        function getDeveloperSpecialPages()
-        {
-                global $wgDeveloperSpecialPagesRu;
-                return $wgDeveloperSpecialPagesRu;
-        }
-
-        function getMessage( $key )
-        {
-                global $wgAllMessagesRu;
+	function getMessage( $key ) {
+		global $wgAllMessagesRu;
 		return isset($wgAllMessagesRu[$key]) ? $wgAllMessagesRu[$key] : parent::getMessage($key);
-        }
+	}
 
-        function fallback8bitEncoding() {
-                return "windows-1251";
-        }
+	function fallback8bitEncoding() {
+		return "windows-1251";
+	}
 
-        function getMagicWords()  {
-                global $wgMagicWordsRu;
-                return $wgMagicWordsRu;
-        }
+	function getMagicWords()  {
+		global $wgMagicWordsRu;
+		return $wgMagicWordsRu;
+	}
 
-        # Convert from the nominative form of a noun to some other case
-        # Invoked with {{grammar:case|word}}
-        function convertGrammar( $word, $case ) {
-                # These rules are not perfect, but they are currently only used for site names so it doesn't
-                # matter if they are wrong sometimes. Just add a special case for your site name if necessary. 
+	# Convert from the nominative form of a noun to some other case
+	# Invoked with {{grammar:case|word}}
+	function convertGrammar( $word, $case ) {
+		# These rules are not perfect, but they are currently only used for site names so it doesn't
+		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
 
-                #join and array_slice instead mb_substr
+		#join and array_slice instead mb_substr
 
-                preg_match_all( '/./us', $word, $ar );
-                if (!preg_match("/[a-zA-Z_]/us", $word))
-                        switch ( $case ) {
-                                case 'genitive': #родительный падеж  
-                                        if ((join('',array_slice($ar[0],-4))=='вики') || (join('',array_slice($ar[0],-4))=='Вики'))
-                                                {}
-                                        elseif (join('',array_slice($ar[0],-1))=='ь')
-                                                $word = join('',array_slice($ar[0],0,-1)).'я';
-                                        elseif (join('',array_slice($ar[0],-2))=='ия')
-                                                $word=join('',array_slice($ar[0],0,-2)).'ии';
-                                        elseif (join('',array_slice($ar[0],-2))=='ти')
-                                                $word=join('',array_slice($ar[0],0,-2)).'тей';
-                                        elseif (join('',array_slice($ar[0],-2))=='ды')
-                                                $word=join('',array_slice($ar[0],0,-2)).'дов';
-                                        elseif (join('',array_slice($ar[0],-3))=='ник')
-                                                $word=join('',array_slice($ar[0],0,-3)).'ника';
-                                        break;
-                                case 'dative':  #дательный падеж
-                                        #stub 
-                                        break;
-                                case 'accusative': #винительный падеж
-                                        #stub 
-                                        break;
-                                case 'instrumental':  #творительный падеж
-                                        #stub 
-                                        break;
-                                case 'prepositional': #предложный падеж
-                                        #stub 
-                                        break;
-                        }
-
-                return $word;
-        }
+		preg_match_all( '/./us', $word, $ar );
+		if (!preg_match("/[a-zA-Z_]/us", $word))
+			switch ( $case ) {
+				case 'genitive': #родительный падеж
+					if ((join('',array_slice($ar[0],-4))=='вики') || (join('',array_slice($ar[0],-4))=='Вики'))
+						{}
+					elseif (join('',array_slice($ar[0],-1))=='ь')
+						$word = join('',array_slice($ar[0],0,-1)).'я';
+					elseif (join('',array_slice($ar[0],-2))=='ия')
+						$word=join('',array_slice($ar[0],0,-2)).'ии';
+					elseif (join('',array_slice($ar[0],-2))=='ти')
+						$word=join('',array_slice($ar[0],0,-2)).'тей';
+					elseif (join('',array_slice($ar[0],-2))=='ды')
+						$word=join('',array_slice($ar[0],0,-2)).'дов';
+					elseif (join('',array_slice($ar[0],-3))=='ник')
+						$word=join('',array_slice($ar[0],0,-3)).'ника';
+					break;
+				case 'dative':  #дательный падеж
+					#stub
+					break;
+				case 'accusative': #винительный падеж
+					#stub
+					break;
+				case 'instrumental':  #творительный падеж
+					#stub
+					break;
+				case 'prepositional': #предложный падеж
+					#stub
+					break;
+			}
+		return $word;
+	}
 
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
 	}
-	
+
 }
 
 ?>

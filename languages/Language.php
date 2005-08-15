@@ -22,11 +22,6 @@ if( defined( 'MEDIAWIKI' ) ) {
 # Language-specific text
 #--------------------------------------------------------------------------
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
@@ -2520,21 +2515,6 @@ class Language {
 			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $datePreference, $timecorrection );
 		}
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEn;
-		return $wgValidSpecialPagesEn;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEn;
-		return $wgSysopSpecialPagesEn;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEn;
-		return $wgDeveloperSpecialPagesEn;
 	}
 
 	function getMessage( $key ) {
