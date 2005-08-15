@@ -859,7 +859,7 @@ class LanguageIa extends LanguageUtf8 {
 		global $wgSkinNamesIa;
 		return $wgSkinNamesIa;
 	}
-s
+
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 

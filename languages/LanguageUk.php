@@ -159,7 +159,7 @@ require_once( 'LanguageUtf8.php' );
 "nbytes"		=> "$1 байт(ів)",
 "go"			=> "Перейти",
 "ok"			=> "OK",
-"sitetitle"		=> {{SITENAME}},
+"sitetitle"		=> '{{SITENAME}}',
 "sitesubtitle"	=> "Вільна енциклопедія",
 "retrievedfrom" => "Отримано від \"$1\"",
 "newmessages" => "Ви отримали $1.",
