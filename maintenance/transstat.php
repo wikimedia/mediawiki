@@ -13,6 +13,8 @@
 
 /** */
 require_once('commandLine.inc');
+require_once('languages.inc');
+
 if( isset($options['help']) ) { usage(); die(); }
 // default output is WikiText
 if( !isset($options['output']) ) { $options['output']='wiki'; }
@@ -131,35 +133,21 @@ switch ($options['output']) {
 	break;
 }
 
-// available language files
-$langs = array();
-$dir = opendir("$IP/languages");
-while ($file = readdir($dir)) {
-	if (preg_match("/Language(.*?)\.php$/", $file, $m)) {
-		$langs[] = $m[1];
-	}
-}
-sort($langs);
-
-// Cleanup file list
-foreach($langs as $key => $lang) {
-	if ($lang == 'Utf8' || $lang == '' || $lang == 'Converter')
-		unset($langs[$key]);
-}
+$langTool = new languages();
 
 //  Load message and compute stuff
 $msgs = array();
-foreach($langs as $lang) {
+foreach($langTool->getList() as $langcode) {
 	// Since they aren't loaded by default..
-	require_once( 'languages/Language' . $lang . '.php' );
-	$arr = 'wgAllMessages' . $lang;
-	if (@is_array($$arr)) { // Some of them don't have a message array 
-		$msgs[$wgContLang->lcfirst($lang)] = array(
+	require_once( 'languages/Language' . $langcode . '.php' );
+	$arr = 'wgAllMessages'.$langcode;
+	if(@is_array($$arr)) {
+		$msgs[$wgContLang->lcfirst($langcode)] = array(
 			'total' => count($$arr),
 			'redundant' => redundant($$arr),
 		);
 	} else {
-		$msgs[$wgContLang->lcfirst($lang)] = array(
+		$msgs[$wgContLang->lcfirst($langcode)] = array(
 			'total' => 0,
 			'redundant' => 0,
 		);
@@ -181,17 +169,23 @@ $out->blockend();
 // Generate rows
 foreach($msgs as $lang => $stats) {
 	$out->blockstart();
-	$out->element($wgContLang->getLanguageName(strtr($lang, '_', '-')) . " ($lang)"); // Language
-	$out->element($stats['total'] . '/' . $msgs['en']['total']); // Translated
-	$out->element($out->formatPercent($stats['total'], $msgs['en']['total'])); // % Translated
-	$out->element($msgs['en']['total'] - $stats['total']); // Untranslated
-	$out->element($out->formatPercent($msgs['en']['total'] - $stats['total'], $msgs['en']['total'], true)); // % Untranslated
+	// Language
+	$out->element($wgContLang->getLanguageName(strtr($lang, '_', '-')) . " ($lang)");
+	// Translated
+	$out->element($stats['total'] . '/' . $msgs['en']['total']);
+	// % Translated
+	$out->element($out->formatPercent($stats['total'], $msgs['en']['total']));
+	// Untranslated
+	$out->element($msgs['en']['total'] - $stats['total']);
+	// % Untranslated
+	$out->element($out->formatPercent($msgs['en']['total'] - $stats['total'], $msgs['en']['total'], true));
+	// Redundant & % Redundant
 	if($stats['redundant'] =='NC') {
 		$out->element('NC');
 		$out->element('NC');
 	} else {
-		$out->element($stats['redundant'] . '/' . $stats['total']); // Redundant
-		$out->element($out->formatPercent($stats['redundant'],  $stats['total'],true)); // % Redundant
+		$out->element($stats['redundant'] . '/' . $stats['total']);
+		$out->element($out->formatPercent($stats['redundant'],  $stats['total'],true));
 	}
 	$out->blockend();
 }
