@@ -649,6 +649,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3092) Wrong numerical separator for big numbers in Serbian.
 * (bug 2855) Credit for a uniq author showed its realname even with
   $wgAllowRealName=false.
+* New special page: SpecialMostlinked
 
 === Caveats ===
 
