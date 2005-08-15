@@ -235,7 +235,7 @@ class User {
 	 * @return int
 	 */
 	function edits( $uid ) {
-		$fname = 'User::editCount';
+		$fname = 'User::edits';
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField(
