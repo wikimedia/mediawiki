@@ -148,7 +148,7 @@ foreach($referenceMessages as $index => $ref)
 		print "'$index' => \"$ref\",\n";
 	// Messages in the same language differs
 	} elseif( ($lang == $referenceLanguage) AND ($testMessages[$index] != $ref)) {
-		print "$index differs:\n";
+		print "\n$index differs:\n";
 		print $myParserTest->quickDiff($testMessages[$index],$ref,'tested','reference');
 	}
 }
