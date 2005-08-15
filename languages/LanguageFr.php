@@ -186,7 +186,7 @@ require_once( 'LanguageUtf8.php' );
 'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
 'mainpage'      => 'Accueil',
 'mainpagetext'	=> 'Logiciel {{SITENAME}} installé.',
-'portal'        => 'Accueil communauté',
+'portal'        => 'Communauté',
 'portal-url'	=> '{{ns:4}}:Accueil',
 'about'         => 'À propos',
 'aboutsite'     => 'À propos de {{SITENAME}}',
@@ -197,7 +197,7 @@ require_once( 'LanguageUtf8.php' );
 'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
-'sitesupport'	=> 'Participer en faisant un don',
+'sitesupport'	=> 'Faire un don',
 'sitesupportpage'	=> '{{ns:4}}:Dons',
 'faq'           => 'FAQ',
 'faqpage'       => '{{ns:4}}:FAQ',
@@ -253,7 +253,7 @@ require_once( 'LanguageUtf8.php' );
 'viewtalkpage'  => 'Page de discussion',
 'otherlanguages' => 'Autres langues',
 'redirectedfrom' => '(Redirigé depuis $1)',
-'lastmodified'  => 'Dernière modification de cette page : $1.',
+'lastmodified'  => 'Dernière modification de cette page le $1.',
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
 'gnunote'       => 'Tous les textes sont disponibles sous les termes de la <a href="/wiki/GFDL">Licence de documentation libre GNU</a>.',
@@ -284,7 +284,7 @@ Voir $1.',
 'showtoc'	=> 'afficher',
 'hidetoc'	=> 'masquer',
 'thisisdeleted' => 'Afficher ou restaurer $1 ?',
-'restorelink'	=> '1 modifications effacées',
+'restorelink'	=> '$1 modification(s) effacée(s)',
 'feedlinks'	=> 'Flux:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
@@ -293,7 +293,7 @@ Voir $1.',
 'nstab-user' => 'Page utilisateur',
 'nstab-media' => 'Média',
 'nstab-special' => 'Spécial',
-'nstab-wp' => 'A propos',
+'nstab-wp' => 'À propos',
 'nstab-image' => 'Image',
 'nstab-mediawiki' => 'Message',
 'nstab-template' => 'Modèle',
@@ -338,7 +338,7 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adress
 'filerenameerror' => 'Impossible de renommer « $1 » en « $2 ».',
 'filedeleteerror' => 'Impossible de supprimer « $1 ».',
 'filenotfound'	=> 'Fichier "$1" introuvable.',
-'unexpected' => 'Valeur inattendue : "$1"="$2".',
+'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror'	=> 'Erreur: Impossible de soumettre le formulaire',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
 'cannotdelete'	=> "Impossible de supprimer la page ou l'image indiquée.",
@@ -392,7 +392,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'userexists'    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
 'youremail'     => 'Mon adresse électronique',
 'yournick'      => 'Signature pour les discussions (avec <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
-'yourrealname'	=> 'Votre nom réél*',
+'yourrealname'	=> 'Votre nom réel*',
 'emailforlost'  => 'Si vous égarez votre mot de passe, vous pouvez demander à ce qu\'un nouveau vous soit envoyé à votre adresse électronique.',
 'prefs-help-realname' => '* <strong>Votre nom</strong> (facultatif): si vous le spécifiez, il sera utilisé pour l\'attribution de vos contributions.',
 'prefs-help-email' => '* <strong>Adresse électronique</strong> (facultatif): permet de vous contacter depuis le site sans dévoiler votre adresse, et utilisée pour vous envoyer un nouveau mot de passe si vous l\'oubliez.',
@@ -401,22 +401,22 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'nocookieslogin' => "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 'noname'        => "Vous n'avez pas saisi de nom d'utilisateur.",
 'loginsuccesstitle' => "Identification réussie.",
-'loginsuccess'  => "Vous êtes actuellement connecté sur {{SITENAME}} en tant que \"$1\".",
-'nosuchuser'    => "L'utilisateur \"$1\" n'existe pas.
+'loginsuccess'  => "Vous êtes actuellement connecté sur {{SITENAME}} en tant que « $1 ».",
+'nosuchuser'    => "L'utilisateur « $1 » n'existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
 'nosuchusershort' => 'Il n\'y a pas de contributeur avec le nom « $1 ». Vérifiez l\'orthographe.',
 'wrongpassword' => 'Le mot de passe est incorrect. Essayez à nouveau.',
 'mailmypassword' => 'Envoyez-moi un nouveau mot de passe',
-'passwordremindertitle' => "Votre nouveau mot de passe sur {{SITENAME}}",
+'passwordremindertitle' => 'Votre nouveau mot de passe sur {{SITENAME}}',
 'passwordremindertext' => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès au wiki.
-Le mot de passe de l'utilisateur \"$2\" est à présent \"$3\".
+Le mot de passe de l'utilisateur « $2 » est à présent « $3 ».
 Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
-'noemail'  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur \"$1\".",
-'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
+'noemail'  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur « $1 ».",
+'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur « $1 ».
 Veuillez vous identifier dès que vous l'aurez reçu.",
 'loginend'	=> '&nbsp;',
 'mailerror'	=> 'Erreur en envoyant le courriel : $1',
-'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 compte(s). Vous ne pouvez pas en créer de nouveaux.',
+'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 comptes. Vous ne pouvez pas en créer de nouveaux.',
 
 # Edit page toolbar
 'bold_sample'   => 'Texte gras',
@@ -438,7 +438,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'media_sample'  => 'Exemple.ogg',
 'media_tip'     => 'Lien fichier média',
 'sig_tip'       => 'Votre signature avec la date',
-'hr_tip'        => 'Lien horizontale (ne pas en abuser)',
+'hr_tip'        => 'Lien horizontal (ne pas en abuser)',
 'infobox'       => 'Cliquez ce bouton pour avoir un exemple de texte',
 'infobox_alert'	=> "Veuillez entrer le texte que vous voulez formater.\\n Il sera affiché dans la boîte pour être copié et collé.\\nExemple\\n$1\\ndeviendra:\\n$2",
 
@@ -536,7 +536,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 #
 'searchresults' => 'Résultat de la recherche',
 'searchresulttext' => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].",
-'searchquery' => "Pour la requête \"$1\"",
+'searchquery' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
 'badquerytext' => "Nous n'avons pas pu traiter votre requête.
 Vous avez probablement recherché un mot d'une longueur inférieure
@@ -544,7 +544,7 @@ Vous avez probablement recherché un mot d'une longueur inférieure
 aussi pu faire une erreur de syntaxe, telle que \"poisson et
 et écailles\".
 Veuillez essayer une autre requête.",
-'matchtotals' => "La requête \"$1\" correspond à $2 titre(s)
+'matchtotals' => "La requête « $1 » correspond à $2 titre(s)
 d'article et au texte de $3 article(s).",
 'nogomatch' => "Aucune page avec ce titre n'existe, essai avec la recherche complète.",
 'titlematches' => "Correspondances dans les titres",
@@ -647,7 +647,7 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'rcliu'	=> "; $1 modifications par des contributeurs connectés",
 'diff'            => 'diff',
 'hist'            => 'hist',
-'hide'            => 'cacher',
+'hide'            => 'masquer',
 'show'            => 'montrer',
 'tableform'       => 'table',
 'listform'        => 'liste',
@@ -743,11 +743,11 @@ Veuillez vérifer le fichier.",
 'revertimg'  => 'rétab',
 'deleteimg'  => 'suppr',
 'deleteimgcompletely'  => 'suppr',
-'imghistlegend' => "Légende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
+'imghistlegend' => "Légende : (actu) = ceci est l'image actuelle, (suppr) = supprimer
 cette ancienne version, (rétab) = rétablir cette ancienne version.
 <br /><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",
 'imagelinks' => 'Liens vers l\'image',
-'linkstoimage' => 'Les pages ci-dessous comportent un lien vers cette image:',
+'linkstoimage' => 'Les pages ci-dessous comportent un lien vers cette image :',
 'nolinkstoimage' => 'Aucune page ne comporte de lien vers cette image.',
 'showbigimage' => 'Télécharger une version haute résolution ($1x$2, $3 Ko)',
 
@@ -810,7 +810,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d\'administrateur (voir $3).',
 'spheading'     => 'Pages spéciales',
 'protectpage'   => 'Protéger la page',
 'recentchangeslinked' => 'Suivi des liens',
-'rclsub'        => "(des pages liées à \"$1\")",
+'rclsub'        => "(des pages liées à « $1 »)",
 'debug'         => 'Déboguer',
 'newpages'      => 'Nouvelles pages',
 'ancientpages'	=> 'Articles les plus anciens',
@@ -864,15 +864,15 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 'watchnologintext' => "Vous devez être [[Special:Userlogin|connecté]]
 pour modifier votre liste.",
 'addedwatch'	=> 'Ajouté à la liste',
-'addedwatchtext' => "<p>La page \"$1\" a été ajoutée à votre <a href=\"{{localurl:Special:Watchlist}}\">liste de suivi</a>.
-Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la <a href=\"{{localurl:Special:Recentchanges}}\">liste des modifications récentes</a> pour être repérée plus facilement.</p>
+'addedwatchtext' => "<p>La page \"$1\" a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
+Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra '''en gras''' dans la [[Special:Recentchanges|liste des modifications récentes]] pour être repérée plus facilement.</p>
 
-<p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.</p>",
+<p>Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre » dans le cadre de navigation.</p>",
 'removedwatch'	=> "Supprimée de la liste de suivi",
 'removedwatchtext' => "La page « $1 » a été supprimée de votre liste de suivi.",
 'watch'		=> 'Suivre',
 'watchthispage'	=> 'Suivre cette page',
-'unwatch'	=> 'ne plus suivre',
+'unwatch'	=> 'Ne plus suivre',
 'unwatchthispage' => 'Ne plus suivre',
 'notanarticle'	=> 'Aucun article',
 'watchnochange' => "Aucune des pages que vous suivez n'a été modifiée pendant la période affichée",
@@ -933,12 +933,12 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 'protectedarticle' => 'a protégé [[$1]]',
 'unprotectedarticle' => 'a déprotégé [[$1]]',
 
-'protectsub' => '(Bloque "$1")',
+'protectsub' => '(Protéger « $1 »)',
 'confirmprotect' => 'Confimer le bloquage',
 'confirmprotecttext' => 'Voulez vous vraiment protéger cette page ?',
 'protectcomment' => 'Raison du bloquage',
 
-'unprotectsub' => '(Débloque "$1")',
+'unprotectsub' => '(Débloque « $1 »)',
 'confirmunprotecttext' => 'Voulez-vous réellement déprotéger cette page ?',
 'confirmunprotect' => 'Raison du débloquage',
 'unprotectcomment' => 'Raison du débloquage',
@@ -987,7 +987,7 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 'notargettitle' => 'Pas de cible',
 'notargettext'	=> 'Indiquez une page cible ou un utilisateur cible.',
 'linklistsub'	=> '(Liste de liens)',
-'linkshere'	=> 'Les pages ci-dessous contiennent un lien vers celle-ci:',
+'linkshere'	=> 'Les pages ci-dessous contiennent un lien vers celle-ci :',
 'nolinkshere'	=> 'Aucune page ne contient de lien vers celle-ci.',
 'isredirect'	=> 'page de redirection',
 
@@ -997,7 +997,7 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 'blockiptext'	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
-'ipaddress'	=> 'Adresse IP',
+'ipaddress'	=> 'Adresse IP ou pseudonyme',
 'ipbreason'	=> 'Motif du blocage',
 'ipbsubmit'	=> 'Bloquer cette adresse',
 'badipaddress'	=> 'L\'adresse IP n\'est pas correcte.',
@@ -1009,7 +1009,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblockiptext' => 'Utilisez le formulaire ci-dessous pour rétablir l\'accès en écriture
 à partir d\'une adresse IP précédemment bloquée.',
 'ipusubmit'	=> 'Débloquer cette adresse',
-'ipusuccess'	=> 'Adresse IP « $1 » débloquée',
+'ipusuccess'	=> 'L\'adresse IP « $1 » débloquée',
 'ipblocklist'	=> 'Liste des adresses IP bloquées',
 'blocklistline' => '$1, $2 a bloqué $3 ($4)',
 'blocklink'	=> 'bloquer',
@@ -1019,7 +1019,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'blocklogpage'	=> 'Log de blocage',
 'blocklogentry'	=> 'blocage de « $1 »',
 'blocklogtext'	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
-'unblocklogentry'	=> 'déblocage de "$1"',
+'unblocklogentry'	=> 'déblocage de « $1 »',
 'ipb_expiry_invalid' => 'temps d\'expiration invalide.',
 'ip_range_invalid' => "Bloc IP incorrect.\n",
 'proxyblocker' => 'Bloqueur de proxy',
@@ -1070,13 +1070,13 @@ avec modération.",
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
 'makesysopname'		=> 'Nom de l\'utilisateur:',
 'makesysopsubmit'	=> 'Donner les droits d\'adminitrateur à cet utilisateur',
-'makesysopok'		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
-'makesysopfail'		=> "<b>L'utilisateur \"$1\" n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
+'makesysopok'		=> "<b>L'utilisateur « $1 » est désormais administrateur.</b>",
+'makesysopfail'		=> "<b>L'utilisateur « $1 » n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
 'rights'			=> 'Droits:',
-'set_user_rights'	=> "Met les droits de l'utilisateur",
-'user_rights_set'	=> "<b>Les droits de l'utilisateur \"$1\" sont mis à jour</b>",
-'setbureaucratflag'	=> "Donne les droits bureaucrate",
-'set_rights_fail'	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
+'set_user_rights'	=> 'Met les droits de l\'utilisateur',
+'user_rights_set'	=> '<b>Les droits de l\'utilisateur « $1 » sont mis à jour</b>',
+'setbureaucratflag'	=> 'Ajouter le statut de bureaucrate',
+'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>',
 'makesysop'         => 'Donner les droits d\'adminitrateur à un utilisateur',
 
 # Special:Validate
@@ -1153,7 +1153,7 @@ la page de discussion n'a pas pu être déplacée car il en existait déjà une
 sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 '1movedto2_redir' => "$1 déplacé vers $2 (redirect)",
 'movedto'  => 'renommé en',
-'movetalk'  => 'Renommer aussi la page "discussion", s\'il y a lieu.',
+'movetalk'  => 'Renommer aussi la page « discussion », s\'il y a lieu.',
 'talkpagemoved' => 'La page discussion correspondante a également été déplacée.',
 'talkpagenotmoved' => 'La page discussion correspondante n\'a <strong>pas</strong> été déplacée.',
 '1movedto2' => '$1 déplacé vers $2',
@@ -1177,10 +1177,10 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 
 # Special:Import
 'import'	=> 'Importer des pages',
-'importfailed'	=> 'L\'import a échoué: $1',
+'importfailed'	=> 'L\'import a échoué  : $1',
 'importhistoryconflict' => 'Des révisions dans l\'historique existent et sont en conflits (cette page à peut être déjà été importée avant)',
 'importnotext'	=> 'Vide ou sans texte',
-'importsuccess'	=> 'L\'import à réussi!',
+'importsuccess'	=> 'L\'import a réussi !',
 'importtext'	=> 'Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.',
 
 # Keyboard access keys for power users
@@ -1275,7 +1275,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 # Attribution
 'anonymous'	=> 'Utilisateur(s) anonyme(s) de {{SITENAME}}',
 'siteuser'	=> 'Utilisateur $1 de {{SITENAME}}',
-'lastmodifiedby' => "Cette page a été modifiée pour la dernière fois le $1 par $2",
+'lastmodifiedby' => 'Cette page a été modifiée pour la dernière fois le $1 par $2',
 'and'	=> 'et',
 'contributions' => 'Basé sur le travail de $1.',
 'siteusers'	=> 'Utilisateur(s) $1 de {{SITENAME}}',
