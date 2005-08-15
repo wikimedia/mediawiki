@@ -37,7 +37,7 @@ require_once( 'LanguageFr.php' );
 	'cologneblue'	=> 'Glaz Kologn',
 	'smarty'		=> 'Paddington',
 	'montparnasse'	=> 'Montparnasse'
-) + $wgSkingNamesFr;
+) + $wgSkinNamesFr;
 
 /* private */ $wgBookstoreListBr = $wgBookstoreListFr;
 
