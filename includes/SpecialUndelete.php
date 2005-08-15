@@ -90,6 +90,8 @@ class PageArchive {
 	 * Get the text from an archive row containing ar_text, ar_flags and ar_text_id
 	 */
 	function getTextFromRow( $row ) {
+		$fname = 'PageArchive::getTextFromRow';
+		
 		if( is_null( $row->ar_text_id ) ) {
 			// An old row from MediaWiki 1.4 or previous.
 			// Text is embedded in this row in classic compression format.
