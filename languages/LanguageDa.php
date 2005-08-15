@@ -527,7 +527,7 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 "blockedtitle"	=> "Brugeren er blokeret",
 "blockedtext"	=> "Dit brugernavn eller din IP-adresse er blevet blokeret af 
 $1. Begrundelsen er denne:<br />$2<p>Du kan kontakte $1
-eller en af de andre [[{{SITENAME}}:Administratorer|administratorer]] for at diskutere blokeringen.
+eller en af de andre [[{{ns:project}}:Administratorer|administratorer]] for at diskutere blokeringen.
 
 Din IP-adresse er $3.
 Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en administrator.
@@ -858,7 +858,7 @@ du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
 'filesource' => 'Kilde',
 "affirmation"	=> "Jeg bekræfter, at ophavsretshaveren til denne fil
 er enig i, at filen udgives under betingelserne for $1.",
-"copyrightpage" => "{{SITENAME}}:Ophavsret",
+"copyrightpage" => "{{ns:project}}:Ophavsret",
 "copyrightpagename" => "{{SITENAME}} ophavsret",
 "uploadedfiles"	=> "Filer som er lagt op",
 "noaffirmation" => "Du skal bekræfte, at du ikke bryder nogens ophavsret
@@ -1204,7 +1204,7 @@ på siden.",
 "undeletedarticle" => "gendannede \"$1\"",
 'undeletedrevisions' => "$1 versioner gendannet",
 "undeletedtext"   => "Artiklen [[$1]] er blevet gendannet med succes.
-Se [[{{SITENAME}}:Sletningslog]] for en fortegnelse over nylige 
+Se [[{{ns:project}}:Sletningslog]] for en fortegnelse over nylige 
 sletninger og gendannelser.",
 
 # Namespace form on various pages
