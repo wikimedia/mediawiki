@@ -219,7 +219,7 @@ class ParserTest {
 		$this->setupGlobals($opts);
 
 		$user =& new User();
-		$options =& ParserOptions::newFromUser( $user );
+		$options = ParserOptions::newFromUser( $user );
 
 		if (preg_match('/\\bmath\\b/i', $opts)) {
 			# XXX this should probably be done by the ParserOptions
@@ -243,7 +243,7 @@ class ParserTest {
 		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
 			$out = $parser->transformMsg( $input, $options );
 		} else {
-			$output =& $parser->parse( $input, $title, $options );
+			$output = $parser->parse( $input, $title, $options );
 			$out = $output->getText();
 
 			if (preg_match('/\\bill\\b/i', $opts)) {
