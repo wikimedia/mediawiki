@@ -171,7 +171,7 @@ if($wgMetaNamespace === FALSE)
 "nbytes"		=> "$1 byte",
 "go"			=> "Side",
 "ok"			=> "Goed",
-"sitetitle"		=> {{SITENAME}},
+"sitetitle"		=> '{{SITENAME}}',
 "sitesubtitle"	=> "De frije ensyklopedy",
 "retrievedfrom" 	=> "Untfongen fan \"$1\"",
 "newmessages" 	=> "Jo hawwe $1.",
