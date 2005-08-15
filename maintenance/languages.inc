@@ -6,7 +6,7 @@
  * file multiple time :(((
  */
 require_once('commandLine.inc');
-require_once('languages/Language.php');
+
 class languages {
 	/** Contain the list of languages available */
 	var $list = array();
@@ -45,17 +45,4 @@ class languages {
 
 	function getList() { return $this->list; }	
 }
-
-function getMessages($langcode) {
-	global $wgAllMessagesEn, $wgSkinNamesEn, $wgNamespaceNamesEn, $wgBookstoreListEn,$wgMagicWordsEn,$wgUserTogglesEn;
-
-	$arr = 'wgAllMessages'.$langcode;
-	global $$arr;
-
-	if(!isset($$arr)) {
-		require_once( 'languages/Language'.$langcode.'.php' );
-	}
-	return $$arr;
-}
-
 ?>
