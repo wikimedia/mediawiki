@@ -17,11 +17,6 @@
 
 
 /**
- *
- */
-global $wgSpecialPages, $wgUser;
-
-/**
  * @access private
  */
 $wgSpecialPages = array(
@@ -47,6 +42,7 @@ $wgSpecialPages = array(
 	'Unusedcategories'	=> new SpecialPage( 'Unusedcategories' ),
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' ),
 	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
+	'Mostlinked'	=> new SpecialPage( 'Mostlinked' ),
 	'Shortpages'	=> new SpecialPage( 'Shortpages' ),
 	'Longpages'		=> new SpecialPage( 'Longpages' ),
 	'Newpages'		=> new IncludableSpecialPage( 'Newpages' ),
@@ -76,21 +72,17 @@ $wgSpecialPages = array(
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 );
 
-global $wgUseValidation ;
 if ( $wgUseValidation )
 	$wgSpecialPages['Validate'] = new SpecialPage( 'Validate' );
 
-global $wgDisableCounters;
 if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }
 
-global $wgDisableInternalSearch;
 if( !$wgDisableInternalSearch ) {
 	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
 }
 
-global $wgEmailAuthentication;
 if( $wgEmailAuthentication ) {
 	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
 }
@@ -166,7 +158,7 @@ class SpecialPage
 	 * @static
 	 * @param string $name
 	 */
-	function &getPage( $name ) {
+	function getPage( $name ) {
 		global $wgSpecialPages;
 		if ( array_key_exists( $name, $wgSpecialPages ) ) {
 			return $wgSpecialPages[$name];
@@ -180,7 +172,7 @@ class SpecialPage
 	 * @param string $name
 	 * @return mixed Title object if the redirect exists, otherwise NULL
 	 */
-	function &getRedirect( $name ) {
+	function getRedirect( $name ) {
 		global $wgUser;
 		switch ( $name ) {
 			case 'Mypage':
@@ -241,12 +233,12 @@ class SpecialPage
 			$par = $bits[1];
 		}
 
-		$page =& SpecialPage::getPage( $name );
+		$page = SpecialPage::getPage( $name );
 		if ( is_null( $page ) ) {
 			if ( $including ) {
 				return false;
 			} else {
-				$redir =& SpecialPage::getRedirect( $name );
+				$redir = SpecialPage::getRedirect( $name );
 				if ( isset( $redir ) ) {
 					if ( isset( $par ) )
 						$wgOut->redirect( $redir->getFullURL() . '/' . $par );
