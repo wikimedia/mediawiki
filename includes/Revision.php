@@ -25,7 +25,6 @@ class Revision {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
 			       'rev_id' => IntVal( $id ) ) );
-		return $ret;
 	}
 
 	/**
