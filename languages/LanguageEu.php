@@ -35,7 +35,7 @@ require_once( 'LanguageUtf8.php' );
 	'montparnasse'	=> 'Montparnasse'
 );
 
-/* private */ $wgAllMessagesBr = array(
+/* private */ $wgAllMessagesEu = array(
 '1movedto2' => '$1 izenburua $2-en truke aldatu da.',
 #'1movedto2_redir' => '$1 moved to $2 over redirect',
 'about' => 'buruz',
