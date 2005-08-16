@@ -1010,7 +1010,7 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.
 #'nextdiff' => 'Next diff →',
 'nextn' => '$1 pêş',
 'nextpage' => 'Rûpela pêşî ($1)',
-#'nextrevision' => 'Newer revision&rarr;',
+#'nextrevision' => 'Newer revision→',
 'nlinks' => '$1 lînk',
 'noaffirmation' => 'Pêwîst e tu teyît bikî ku barkirin mafên nivîsanê îhlal neke.',
 'noarticletext' => '<div style="border: 1px solid #ccc; padding: 7px; background-color: #fff; color: #000">\'\'\'Di Wîkîpediyayê de rûpeleke bi vî navî hîn tune.\'\'\'
@@ -1139,7 +1139,7 @@ to set user preferences.', */
 text editing area as it will appear if you choose to save.', */
 'previewnote' => 'Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehat qeyd kirin!',
 #'previousdiff' => '← Previous diff',
-#'previousrevision' => '&larr;Older revision',
+#'previousrevision' => '←Older revision',
 'prevn' => '$1 paş',
 #'print' => 'Print',
 'printableversion' => 'Versiyon ji bo çapkirinê',
@@ -1337,7 +1337,7 @@ Please check the URL you used to access this page.
 'searchresults' => 'Encamên lêgerînê',
 'searchresultshead' => 'Eyarên encamên lêgerinê',
 'searchresulttext' => 'Ji bo zêdetir agahî der barê lêgerînê di Wîkîpediyayê de, binêre $1.',
-#'sectionlink' => '&rarr;',
+#'sectionlink' => '→',
 #'selectnewerversionfordiff' => 'Select a newer version for comparison',
 #'selectolderversionfordiff' => 'Select an older version for comparison',
 #'selflinks' => 'Pages with Self Links',

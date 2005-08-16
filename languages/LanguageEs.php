@@ -962,8 +962,8 @@ Por favor, elige otro nombre.",
 'newimages' => 'Galería de imágenes nuevas',
 'noimages'  => 'No hay nada que ver.',
 
-'previousdiff' => "&larr; Ir a diferencia anterior",
-'nextdiff' => "Ir a siguiente diferencia &rarr;",
+'previousdiff' => "← Ir a diferencia anterior",
+'nextdiff' => "Ir a siguiente diferencia →",
 
 'deletedrevision' => "Borrada revisión antigua $1.",
 

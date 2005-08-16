@@ -432,10 +432,10 @@ N\'eus nemet an implijerien ganto ar statud a verourien a c\'hall degas kemmoù 
 (diwez) = diforc\'hioù gant an doare kent, K = kemm bihan",
 'selectnewerversionfordiff' => 'Dibab un doare nevesoc\'h',
 'selectolderversionfordiff' => 'Dibab un doare koshoc\'h',
-'previousdiff' => '&larr; Diforc\'h kent',
-'previousrevision' => '&larr; Doare kent',
-'nextdiff' => 'Difoc\'h warlerc\'h &rarr;',
-'nextrevision' => 'Stumm war-lerc\'h &rarr;',
+'previousdiff' => '← Diforc\'h kent',
+'previousrevision' => '← Doare kent',
+'nextdiff' => 'Difoc\'h warlerc\'h →',
+'nextrevision' => 'Stumm war-lerc\'h →',
 
 
 # Category pages
