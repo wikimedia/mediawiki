@@ -1982,7 +1982,7 @@ class Article {
 
 		$from = str_replace( '_', ' ', $wgRequest->getVal( 'from' ) );
 		if( $from != $current->getUserText() ) {
-			$wgOut->setPageTitle(wfmsg('rollbackfailed'));
+			$wgOut->setPageTitle( wfMsg('rollbackfailed') );
 			$wgOut->addWikiText( wfMsg( 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText()),
 				htmlspecialchars( $from ),
