@@ -609,9 +609,8 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'badquerytext' => 'Váš text na prehľadávanie sme nemohli spracovať.
 Dôvodom je pravdepodobne to, že ste hľadali slovo
 kratšie ako tri písmená, čo zatiaľ {{SITENAME}} neumožňuje.
-Alebo ste možno výraz zle napísali, napríklad \"dom a a záhrada\". Skúste iný text na prehľadávanie.',
-'matchtotals' => "Výsledkom textu na prehľadávanie \"$1\" je $2 nadpisov článkov
-a text $3 článkov.",
+Alebo ste možno výraz zle napísali, napríklad "dom a a záhrada". Skúste iný text na prehľadávanie.',
+'matchtotals' => 'Výsledkom textu na prehľadávanie "$1" je $2 nadpisov článkov a text $3 článkov.',
 'nogomatch' => "Neexistuje článok s presne takýmto nadpisom; skúšam nájsť podobné nadpisy.
 
 <br /><br />Chcete '''<a href=\"$1\" class=\"new\">vytvoriť nový článok s týmto nadpisom</a>'''? Alebo [[Project:Žiadané články|dať žiadosť na jeho tvorbu]]?.",
@@ -836,8 +835,8 @@ Všetky uvedené časy sú časy na servri (UTC).
 'uploadedfiles' => 'Nahrané súbory',
 'ignorewarning' => 'Ignorovať varovanie a súbor napriek tomu uložiť.',
 'minlength' => 'Názvy obrázkov musia obsahovať najmenej tri písmená.',
-'illegalfilename' => 'Názov súboru \"$1\" obsahuje znaky, ktoré nie sú povolené v názvoch článkov. Prosím premenujte súbor a skúste ho nahrať znovu.',
-'badfilename' => "Meno obrázka bolo zmenené na \"$1\".",
+'illegalfilename' => 'Názov súboru "$1" obsahuje znaky, ktoré nie sú povolené v názvoch článkov. Prosím premenujte súbor a skúste ho nahrať znovu.',
+'badfilename' => 'Meno obrázka bolo zmenené na "$1".',
 'badfiletype' => "\".$1\" nie je odporúčaný formát obrázkového súboru.",
 'largefile' => 'Odporúčame, aby obrázky neprekročili veľkosť $1 bajtov, veľkosť tohto súboru je $2 bajtov',
 'emptyfile' => 'Súbor, ktorý ste nahrali sa zdá byť prázdny. Toto mohlo vzniknúť preklepom v názve súboru. Skontrolujte, či skutočne chcete nahrať tento súbor.',
@@ -1382,7 +1381,7 @@ Prosím vyberte si iný názov.',
 ale Diskusná stránka sa nedala premiestniť,
 pretože už jedna existuje pod zadaným novým názvom. Zlúčte ich manuálne.',
 'movedto' => 'presunutý na',
-'movetalk' => 'Premiestniť aj \"diskusnú\" stránku, ak je to možné.',
+'movetalk' => 'Premiestniť aj "diskusnú" stránku, ak je to možné.',
 'talkpagemoved' => 'Príslušná diskusná stránka bola tiež premiestnená.',
 'talkpagenotmoved' => 'Príslušná diskusná stránka <strong>nebola</strong> premiestnená.',
 '1movedto2' => "[[$1]] premiestnená na [[$2]]",

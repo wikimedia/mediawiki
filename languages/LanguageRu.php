@@ -118,7 +118,7 @@ if(isset($wgExtraNamespaces)) {
 
 # User preference toggles
 'tog-underline' => 'Подчёркивать ссылки',
-'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href=\"\" class=\"new\">вот так</a> (иначе вот так<a href=\"\" class=\"internal\">?</a>).',
+'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href="" class="new">вот так</a> (иначе вот так<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Выравнивать текст по ширине страницы',
 'tog-hideminor' => 'Скрывать малозначимые правки в списке свежих изменений',
 'tog-usenewrc' => 'Улучшенный список свежих изменений (JavaScript)',
@@ -413,7 +413,7 @@ $1",
 'remembermypassword' => 'Запоминать пароль',
 'yourdomainname'       => 'Ваш домен',
 'externaldberror'      => 'Произошла ошибка при аутентификации с помощью внешней базы данных, или у вас недостаточно прав для внесения изменений в свою внешнюю учётную запись.',
-'loginproblem'  => '<span style=\"color:red\">Участник неопознан.</span>',
+'loginproblem'  => '<span style="color:red">Участник неопознан.</span>',
 'alreadyloggedin' => "<strong>Участник $1, вы уже представились системе!</strong><br />",
 
 'login'                 => 'Представиться системе',
