@@ -15,7 +15,8 @@ define('ALL_LANGUAGES',    true);
 define('XGETTEXT_BIN',     'xgettext');
 define('MSGMERGE_BIN',     'msgmerge');
 
-define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg ');
+// used to generate the .pot
+define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg --keyword=wfMsgForContent ');
 
 define('LOCALE_OUTPUT_DIR', $IP.'/locale');
 
@@ -99,6 +100,18 @@ function generatePo($langcode, &$messages) {
 	}
 }
 
+function generatePot() {
+	global $IP;
+	$curdir = getcwd();
+	chdir($IP);
+	exec( XGETTEXT_BIN
+	  .' '.XGETTEXT_OPTIONS
+	  .' -o '.LOCALE_OUTPUT_DIR.'/wfMsg.pot'
+	  .' includes/*php'
+	  );
+	chdir($curdir);
+}
+
 function applyPot($langcode) {
 	$langdir = LOCALE_OUTPUT_DIR.'/'.$langcode;
 
@@ -114,11 +127,7 @@ function applyPot($langcode) {
 
 // Generate a template .pot based on source tree
 echo "Getting 'gettext' default messages from sources:";
-exec( XGETTEXT_BIN
-  .' '.XGETTEXT_OPTIONS
-  .' -o '.$IP.'/locale/wfMsg.pot'
-  .' '.$IP.'/includes/*php'
-  );
+generatePot();
 echo "done.\n";
 
 
