@@ -47,7 +47,7 @@ class Group {
 		}
 
 		// be sure it's an integer
-		$this->id = IntVal($this->id);
+		$this->id = intval($this->id);
 		
 		if($this->id) {
 			// By ID
@@ -341,7 +341,7 @@ class Group {
 	
 	function getId() { return $this->id; }
 	function setId($id) {
-		$this->id = IntVal($id);
+		$this->id = intval($id);
 		$this->dataLoaded = false;
 	}
 	

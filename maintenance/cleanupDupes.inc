@@ -47,7 +47,7 @@ END
 			echo "Just a demo...\n";
 		}
 		while( $row = $dbw->fetchObject( $res ) ) {
-			$ns = IntVal( $row->cur_namespace );
+			$ns = intval( $row->cur_namespace );
 			$title = $dbw->addQuotes( $row->cur_title );
 			
 			# Get the first responding ID; that'll be the one we keep.

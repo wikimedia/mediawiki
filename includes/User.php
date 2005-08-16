@@ -516,7 +516,7 @@ class User {
 				}
 			} else {
 				wfDebug( "$fname: adding record for $key $summary\n" );
-				$wgMemc->add( $key, 1, IntVal( $period ) );
+				$wgMemc->add( $key, 1, intval( $period ) );
 			}
 			$wgMemc->incr( $key );
 		}
@@ -596,7 +596,7 @@ class User {
 				return new User();
 			}
 		} else if ( isset( $_COOKIE["{$wgDBname}UserID"] ) ) {
-			$sId = IntVal( $_COOKIE["{$wgDBname}UserID"] );
+			$sId = intval( $_COOKIE["{$wgDBname}UserID"] );
 			$_SESSION['wsUserID'] = $sId;
 		} else {
 			return new User();
@@ -660,7 +660,7 @@ class User {
 		}
 
 		# Paranoia
-		$this->mId = IntVal( $this->mId );
+		$this->mId = intval( $this->mId );
 
 		/** Anonymous user */
 		if( !$this->mId ) {

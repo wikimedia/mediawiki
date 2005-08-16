@@ -273,7 +273,7 @@ class UserDupes {
 	 */
 	function editCountOn( $table, $field, $userid ) {
 		$fname = 'UserDupes::editCountOn';
-		return IntVal( $this->db->selectField(
+		return intval( $this->db->selectField(
 			$table,
 			'COUNT(*)',
 			array( $field => $userid ),

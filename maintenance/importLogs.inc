@@ -116,7 +116,7 @@ class LogImporter {
 					'log_type' => $this->type,
 					'log_action' => preg_replace( '!^.*/!', '', $action ),
 					'log_timestamp' => $date,
-					'log_user' => IntVal( User::idFromName( $user->getText() ) ),
+					'log_user' => intval( User::idFromName( $user->getText() ) ),
 					'log_namespace' => $target->getNamespace(),
 					'log_title' => $target->getDBkey(),
 					'log_comment' => wfUnescapeWikiText( $comment ),

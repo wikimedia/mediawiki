@@ -158,7 +158,7 @@ class Phase2Importer {
 		print " ($total total)\n";
 		
 		while( $row = wfFetchObject( $res ) ) {
-			$id = IntVal( $row->user_id );
+			$id = intval( $row->user_id );
 			$list = explode( "\n", $row->user_watch );
 			foreach( $list as $page ) {
 				$title = $this->titleCache->fetch( $page );
@@ -310,7 +310,7 @@ class Phase2Importer {
 		print " ($total total)\n";
 		
 		while( $row = wfFetchObject( $res ) ) {
-			$id = IntVal( $row->user_id );
+			$id = intval( $row->user_id );
 			$option = wfStrencode( $this->rewriteUserOptions( $row->user_options ) );
 			wfQuery( "UPDATE user SET user_options='$option' WHERE user_id=$id LIMIT 1", DB_MASTER );
 			if( ++$n % 50 == 0 ) {

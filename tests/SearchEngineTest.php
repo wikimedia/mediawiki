@@ -77,7 +77,7 @@ END
 	function fetchIds( &$results ) {
 		$matches = array();
 		while( $row = $results->fetchObject() ) {
-			$matches[] = IntVal( $row->page_id );
+			$matches[] = intval( $row->page_id );
 		}
 		$results->free();
 		# Search is not guaranteed to return results in a certain order;

@@ -332,7 +332,7 @@ class Linker {
 	 */
 	function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
-		$threshold = IntVal( $wgUser->getOption( 'stubthreshold' ) );
+		$threshold = intval( $wgUser->getOption( 'stubthreshold' ) );
 		if( $size < $threshold ) {
 			return $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {

@@ -916,7 +916,7 @@ class Image
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
 		
-		$width = IntVal( $width );
+		$width = intval( $width );
 
 		$this->load();
 		if ( ! $this->exists() )
@@ -1288,8 +1288,8 @@ class Image
 			array(
 				'img_name' => $this->name,
 				'img_size'=> $this->size,
-				'img_width' => IntVal( $this->width ),
-				'img_height' => IntVal( $this->height ),
+				'img_width' => intval( $this->width ),
+				'img_height' => intval( $this->height ),
 				'img_bits' => $this->bits,
 				'img_media_type' => $this->type,
 				'img_major_mime' => $major,
@@ -1634,12 +1634,12 @@ function wfScaleSVGUnit( $length ) {
 		'%'  => 2.0, // Fake it!
 		);
 	if( preg_match( '/^(\d+)(em|ex|px|pt|pc|cm|mm|in|%|)$/', $length, $matches ) ) {
-		$length = FloatVal( $matches[1] );
+		$length = floatval( $matches[1] );
 		$unit = $matches[2];
 		return round( $length * $unitLength[$unit] );
 	} else {
 		// Assume pixels
-		return round( FloatVal( $length ) );
+		return round( floatval( $length ) );
 	}
 }
 

@@ -573,8 +573,8 @@ class UtfNormal {
 					         | (ord( $c{1} ) & 0x3f) <<  6
 					         | (ord( $c{2} ) & 0x3f) )
 					       - UNICODE_HANGUL_FIRST;
-					$l = IntVal( $index / UNICODE_HANGUL_NCOUNT );
-					$v = IntVal( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
+					$l = intval( $index / UNICODE_HANGUL_NCOUNT );
+					$v = intval( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
 					$t = $index % UNICODE_HANGUL_TCOUNT;
 					$out .= "\xe1\x84" . chr( 0x80 + $l ) . "\xe1\x85" . chr( 0xa1 + $v );
 					if( $t >= 25 ) {

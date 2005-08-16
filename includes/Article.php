@@ -249,7 +249,7 @@ class Article {
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		if ( isset( $oldid ) ) {
-			$oldid = IntVal( $oldid );
+			$oldid = intval( $oldid );
 			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
 				$nextid = $this->mTitle->getNextRevisionID( $oldid );
 				if ( $nextid  ) {
@@ -329,7 +329,7 @@ class Article {
 
 	function pageDataFromId( &$dbr, $id ) {
 		return $this->pageData( $dbr, array(
-			'page_id' => IntVal( $id ) ) );
+			'page_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -1996,7 +1996,7 @@ class Article {
 		}
 
 		# Get the last edit not by this guy
-		$user = IntVal( $current->getUser() );
+		$user = intval( $current->getUser() );
 		$user_text = $dbw->addQuotes( $current->getUserText() );
 		$s = $dbw->selectRow( 'revision',
 			array( 'rev_id', 'rev_timestamp' ),

@@ -564,7 +564,7 @@ class SkinTemplate extends Skin {
 
 			wfProfileIn( "$fname-edit" );
 			if ( $this->mTitle->userCanEdit() ) {
-				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.IntVal( $oldid ) : false;
+				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.intval( $oldid ) : false;
 				$istalk = $this->mTitle->isTalkPage();
 				$istalkclass = $istalk?' istalk':'';
 				$content_actions['edit'] = array(
@@ -581,7 +581,7 @@ class SkinTemplate extends Skin {
 					);
 				}
 			} else {
-				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.IntVal( $oldid ) : '';
+				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.intval( $oldid ) : '';
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
@@ -664,7 +664,7 @@ class SkinTemplate extends Skin {
 			if( $wgUser->isLoggedIn() || $wgValidationForAnons ) { # and $action != 'submit' ) {
 				# Validate tab. TODO: add validation to logged-in user rights
 				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
-					if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid
+					if ( $oldid ) $oid = intval( $oldid ) ; # Use the oldid
 					else
 						{# Trying to get the current article revision through this weird stunt
 						$tid = $this->mTitle->getArticleID();

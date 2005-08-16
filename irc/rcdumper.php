@@ -89,7 +89,7 @@ while (1) {
 		if ((isset($highest) && ($a > $highest)) || (isset($lowest) && $a <= $lowest))
 			continue;
 		$user = str_replace($bad, $empty, $row->rc_user_text);
-		$lastid = IntVal($row->rc_last_oldid);
+		$lastid = intval($row->rc_last_oldid);
 		$flag = ($row->rc_minor ? "M" : "") . ($row->rc_new ? "N" : "");
 		$stupid_urlencode = array("%2F", "%3A");
 		$haha_take_that = array("/", ":");

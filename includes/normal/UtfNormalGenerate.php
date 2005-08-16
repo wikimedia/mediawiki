@@ -99,7 +99,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$source = codepointToUtf8( hexdec( $codepoint ) );
 
 	if( $canonicalCombiningClass != 0 ) {
-		$combiningClass[$source] = IntVal( $canonicalCombiningClass );
+		$combiningClass[$source] = intval( $canonicalCombiningClass );
 	}
 	
 	if( $decompositionMapping === '' ) continue;

@@ -216,7 +216,7 @@ class Title {
 		$t =& new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
-		$t->mNamespace = IntVal( $ns );
+		$t->mNamespace = intval( $ns );
 		$t->mDbkeyform = str_replace( ' ', '_', $title );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
@@ -2014,8 +2014,8 @@ wfdebug("title: articleid = ".$this->mArticleID."\n");
 	function getPreviousRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'rev_id',
-			'rev_page=' . IntVal( $this->getArticleId() ) .
-			' AND rev_id<' . IntVal( $revision ) . ' ORDER BY rev_id DESC' );
+			'rev_page=' . intval( $this->getArticleId() ) .
+			' AND rev_id<' . intval( $revision ) . ' ORDER BY rev_id DESC' );
 	}
 
 	/**
@@ -2027,8 +2027,8 @@ wfdebug("title: articleid = ".$this->mArticleID."\n");
 	function getNextRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'rev_id',
-			'rev_page=' . IntVal( $this->getArticleId() ) .
-			' AND rev_id>' . IntVal( $revision ) . ' ORDER BY rev_id' );
+			'rev_page=' . intval( $this->getArticleId() ) .
+			' AND rev_id>' . intval( $revision ) . ' ORDER BY rev_id' );
 	}
 
 	/**

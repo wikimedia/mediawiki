@@ -318,7 +318,7 @@ END;
 				$red = "&redirect={$redirect}";
 			}
 			if ( !empty($oldid) && ! isset( $diff ) ) {
-				$oid = "&oldid=" . IntVal( $oldid );
+				$oid = "&oldid=" . intval( $oldid );
 			}
 			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
 			$s = 'document.location = "' .$s .'";';

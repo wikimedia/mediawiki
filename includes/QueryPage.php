@@ -332,7 +332,7 @@ class QueryPage {
 		if( !isset( $row->title ) ) {
 			return NULL;
 		}
-		$title = Title::MakeTitle( IntVal( $row->namespace ), $row->title );
+		$title = Title::MakeTitle( intval( $row->namespace ), $row->title );
 		if( $title ) {
 			if( isset( $row->timestamp ) ) {
 				$date = $row->timestamp;

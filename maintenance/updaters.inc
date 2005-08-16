@@ -500,7 +500,7 @@ function do_pagelinks_update() {
 function do_pagelinks_namespace( $namespace ) {
 	global $wgDatabase, $wgContLang;
 
-	$ns = IntVal( $namespace );
+	$ns = intval( $namespace );
 	echo "Cleaning up broken links for namespace $ns... ";
 
 	$pagelinks = $wgDatabase->tableName( 'pagelinks' );
