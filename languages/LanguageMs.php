@@ -228,7 +228,7 @@ Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Yo
 "newusersonly"	 => "(Hanya pengguna baru)", # (new users only)",
 "remembermypassword" => "Sentiasa ingatan kata laluan.", # Remember my password across sessions.",
 "loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br />Cuba semula!", # There has been a problem with your login.</b><br />Try again!",
-"alreadyloggedin" => "<font color=red><b>Pengguna $1, anda telah berjaya masuk!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Pengguna $1, anda telah berjaya masuk!</strong><br />\n",
 
 "login"			=> "Masuk", #Log in
 "userlogin"		=> "Laluan masuk", #Log in
@@ -311,7 +311,7 @@ Jika anda tidak mahu tulisan anda disunting dan/atau disebarkan ke halaman
 web percuma yang lain, jangan hantarnya ke sini.
 Anda juga perlu akui bahawa ini adalah hasil tulisan anda sendiri, atau anda
 menyalinnya daripada domain awam atau mana-mana sumber percuma yang sama.
-<p><strong><font color=\"red\">JANGAN HANTAR SEBARANG KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN.</font></strong></p> <p><strong><font color=\"red\">JANGAN SALIN DARIPADA HALAMAN WEB YANG LAIN.</font></strong></p> ",
+<p><strong>JANGAN HANTAR SEBARANG KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN.</strong></p> <p><strong>JANGAN SALIN DARIPADA HALAMAN WEB YANG LAIN.</strong></p> ",
 "longpagewarning" => "<strong>WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>",

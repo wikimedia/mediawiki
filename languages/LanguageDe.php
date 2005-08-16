@@ -329,7 +329,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "newusersonly"	=> " (nur für neue Mitglieder)",
 "remembermypassword" => "Dauerhaftes Einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
-"alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />\n",
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
@@ -444,7 +444,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "yourdiff"		=> "Unterschiede",
 "copyrightwarning" => "
-<b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <font size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
+<b>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <p><i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
@@ -795,7 +795,7 @@ am Ende des Artikels.",
 "watchmethod-list" => "Überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
 "watchlistcontains" => "Ihre Beobachtungsliste enthält $1 Seiten.",
-"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br>
+"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br />
 Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu löschen.",
 "removingchecked" => "Wunschgemäß werden die Einträge aus der Beobachtungsliste entfernt...",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",

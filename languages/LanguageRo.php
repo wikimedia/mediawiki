@@ -148,7 +148,7 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 'allmessagestext' => "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
 'allpages' => "Toate paginile",
 'alphaindexline' => "$1 către $2",
-'alreadyloggedin' => "<font color=red><b>Eşti deja autentificat ca $1!</b></font><br>
+'alreadyloggedin' => "<strong>Eşti deja autentificat ca $1!</strong><br />
 ",
 'alreadyrolled' => "Nu se poate reveni peste ultima editare a [[$1]]
 făcută de către [[Utilizator:$2|$2]] ([[Discuţie utilizator:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
@@ -178,13 +178,13 @@ Te rugăm să încerci încă o dată.",
 'badtitletext' => "Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.",
 'blanknamespace' => "(Principală)",
 'blockedtext' => "Utilizatorul sau parola ta au fost blocate de $1.
-Motivul oferit pentru blocare a fost:<br>''$2''<p>Îl poţi contacta pe $1 sau pe unul dintre ceilalţi
+Motivul oferit pentru blocare a fost:<br />''$2''<p>Îl poţi contacta pe $1 sau pe unul dintre ceilalţi
 [[Project:administratori|administratori]] pentru a discuta această blocare.",
 'blockedtitle' => "Utilizatorul este blocat",
 'blockip' => "Blocheză adresa IP",
 'blockipsuccesssub' => "Utilizatorul a fost blocat",
 'blockipsuccesstext' => "Adresa IP \"$1\" a fost blocată.
-<br>Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
+<br />Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
 'blockiptext' => "Foloseşte chestionarul de mai jos pentru a bloca
 la scriere o adresă IP. Această funcţie trebuie folosită numai pentru
 a preveni vandalismul conform [[Project:Politica|politicii {{SITENAME}}]].
@@ -247,7 +247,7 @@ Te rugăm să îţi confirmi intenţia de a face asta, faptul că
 'copyrightpagename' => "Drepturi de autor în {{SITENAME}}",
 'copyrightwarning' => "Reţine că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând licenţa GNU Free Documentation License
 (vezi $1 pentru detalii).
-Dacă nu doreşti ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimite materialele respective aici.<br>
+Dacă nu doreşti ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimite materialele respective aici.<br />
 De asemenea, trimiţând aceste materiale aici te angajezi că le-ai scris tu sau că sunt copiate dintr-o sursă care permite includerea materialelor sub această licenţă.
 <strong>NU TRIMITE MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",
 'couldntremove' => "Elementul '$1' nu a putut fi şters...",
@@ -299,11 +299,11 @@ Vezi $1.",
 'difference' => "(Diferenţa dintre versiuni)",
 'disambiguations' => "Pagini de dezambiguizare",
 'disambiguationspage' => "Project:Legături_către_paginile_de_dezambiguizare",
-'disambiguationstext' => "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br>O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br>Legăturile dinspre alte secţiuni {{SITENAME}} <i>nu sunt</i> luate în considerare aici.",
+'disambiguationstext' => "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br />O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br />Legăturile dinspre alte secţiuni {{SITENAME}} <i>nu sunt</i> luate în considerare aici.",
 'disclaimerpage' => "Project:General_disclaimer",
 'disclaimers' => "Disclaimer",
 'doubleredirects' => "Redirijări duble",
-'doubleredirectstext' => "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirijări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br>
+'doubleredirectstext' => "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirijări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br />
 Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi prima linie din textul celei de-a doua redirijări, de obicei conţinând numele \"real\" al articolului ţintă, către care ar trebui să arate prima redirijare.",
 'edit' => "Editează pagina",
 'editcomment' => "Comentariul de editare a fost: \"<i>$1</i>\".",
@@ -393,7 +393,7 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'imgdelete' => "şterge",
 #'imgdesc' => "desc",
 'imghistlegend' => "Legendă: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
-<br><i>Apasă pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
+<br /><i>Apasă pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 'imghistory' => "Istoria imaginii",
 'imglegend' => "Legendă: (desc) = arată/editează descrierea imaginii.",
 'import' => "Importă pagini",
@@ -443,7 +443,7 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'lockdb' => "Blochează baza de date",
 'lockdbsuccesssub' => "Baza de date a fost blocată",
 'lockdbsuccesstext' => "Baza de date {{SITENAME}} a fost blocată la scriere.
-<br>Nu uita să o deblochezi după ce termini operaţiunile administrative pentru care ai blocat-o.",
+<br />Nu uita să o deblochezi după ce termini operaţiunile administrative pentru care ai blocat-o.",
 'lockdbtext' => "Blocarea bazei de date va împiedica pe toţi utilizatorii
 să editeze pagini, să-şi schimbe preferinţele, să-şi editeze listele de
 pagini urmărite şi orice alte operaţiuni care ar necesita schimări
@@ -454,14 +454,14 @@ baza de date atunci când vei încheia operaţiunile de întreţinere.",
 'login' => "Autentificare",
 'loginend' => "Pentru a crea un cont de utilizator, introdu [[Project:Nume de utilizator|numele de utilizator]] şi parola, apoi fă clic pe \"Creează cont nou\". Evită folosirea numelui unei personalităţi politice, militare sau religioase, sau a unui eveniment. Evită numele de utilizator care sunt ofensive, dăunătoare sau confuze. Te rugăm să alegi un nume citeţ, nu doar un număr.
 
-Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[Project:Cum mă înregistrez|Cum mă înregistrez]].<br><br>
+Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[Project:Cum mă înregistrez|Cum mă înregistrez]].<br /><br />
 
-După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizitezi {{SITENAME}}, va trebui să introduci doar numele de utilizator şi parola.<br><br>
+După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizitezi {{SITENAME}}, va trebui să introduci doar numele de utilizator şi parola.<br /><br />
 
 *Introducerea unei adrese de e-mail este opţională, nefiind necesară o confirmare pe e-mail în prealabil. Totuşi, aceasta permite oamenilor să te contacteze prin intermediul acestui sit web, fără să ţi-o afle şi te ajută şi în cazul în care ţi-ai uitat parola.",
 'loginerror' => "Eroare de autentificare",
 'loginpagetitle' => "Autentificare utilizator",
-'loginproblem' => "<b>A fost o problemă cu autentificarea ta</b><br>Încearcă din nou!",
+'loginproblem' => "<b>A fost o problemă cu autentificarea ta</b><br />Încearcă din nou!",
 'loginprompt' => "Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.",
 'loginreqlink' => 'autentifici',
 'loginreqpagetext' => "Trebuie să te $1 pentru a vizualiza alte pagini.",
@@ -668,11 +668,11 @@ Te rugăm să te autentifici în {{SITENAME}} după ce o primeşti.",
 'poweredby' => "{{SITENAME}} foloseşte [http://www.mediawiki.org/ MediaWiki], un motor wiki open source.",
 'powersearch' => "Caută",
 'powersearchtext' => "
-Caută în secţiunile:<br>
-$1<br>
+Caută în secţiunile:<br />
+$1<br />
 $2 Redirijări&nbsp; Căutări după $3 $9",
 'preferences' => "Preferinţe",
-'prefs-help-realname' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br/>",
+'prefs-help-realname' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br />",
 'prefs-help-email' => "* <strong>Adresa de e-mail</strong> (opţional): Permite altor utilizatori să te contacteze folosind {{SITENAME}}, fără a fi necesar să le pui la dispoziţie adresa reală de mail. În plus, aici ţi se poate trimite o nouă parolă în caz că o pierzi pe cea existentă.",
 'prefs-misc' => "Diverse reglări",
 'prefs-personal' => "Date de utilizator",
@@ -712,7 +712,7 @@ Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
 'proxyblocksuccess' => "Realizat.",
 'qbbrowse' => "Răsfoieşte",
 'qbedit' => "Editează",
-'qbfind' => "Găseşte<br>
+'qbfind' => "Găseşte<br />
 <small>Diacritice: ă â î ş ţ</small>",
 'qbmyoptions' => "Opţiunile mele",
 'qbpageinfo' => "Informaţii ale paginii",
@@ -1021,8 +1021,8 @@ Nu uita să-ţi personalizezi preferinţele în {{SITENAME}}.",
 'wlnote' => "Dedesubt găseşti ultimele $1 schimbări din ultimele <b>$2</b> ore.",
 'wlsaved' => "Aceasta este o versiune salvată a listei tale de pagini urmărite.",
 'wlshowlast' => "Arată ultimele $1 ore $2 zile $3",
-'wrong_wfQuery_params' => "Număr incorect de parametri pentru wfQuery()<br>
-Funcţia: $1<br>
+'wrong_wfQuery_params' => "Număr incorect de parametri pentru wfQuery()<br />
+Funcţia: $1<br />
 Query: $2
 ",
 'wrongpassword' => "Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.",

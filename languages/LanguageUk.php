@@ -242,7 +242,7 @@ You can view and copy the source of this page:",
 "newusersonly"	=> " (тільки для нових користувачів)",
 "remembermypassword" => "Запам'ятовувати ваш пароль між сеансами.",
 "loginproblem"	=> "<b>Проблема при вході в систему.</b><br />попробуйте ще раз!",
-"alreadyloggedin" => "<font color=red><b>Користувач $1, ви вже ввійшли в систему!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Користувач $1, ви вже ввійшли в систему!</strong><br />\n",
 "login"			=> "Вхід в систему",
 "userlogin"		=> "Вхід в систему",
 "logout"		=> "Вийти з системи",
@@ -386,29 +386,7 @@ GNU Free Documentation License без незмінюваних секцій
 Пошук в просторі імен :<br />
 $1<br />
 $2 Показувати перенаправлення   Пошук на $3 $9",
-"searchdisabled" => "<p>Повнотекстовий пошук тимчасово недоступний через перевантаження сервера; передбачається, що ця функція буде знову включена після установки нового обладнання. Поки що ми пропонуємо вам скористатися пошуковою машиною google:</p>
-
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com.ua/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com.ua/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
+"searchdisabled" => "<p>Повнотекстовий пошук тимчасово недоступний через перевантаження сервера; передбачається, що ця функція буде знову включена після установки нового обладнання. Поки що ми пропонуємо вам скористатися пошуковою машиною google:</p>",
 "blanknamespace" => "(Основне)",
 
 # Preferences page

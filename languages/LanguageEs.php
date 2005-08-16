@@ -246,7 +246,7 @@ No olvides personalizar tus preferencia de {{SITENAME}}.",
 "newusersonly"	=> " (sólo usuarios nuevos)",
 "remembermypassword" => "Quiero que recuerden mi contraseña entre sesiones.",
 "loginproblem"	=> "<b>Hubo un problema con tu entrada.</b><br />¡Inténtalo otra vez!",
-"alreadyloggedin" => "<font color=red><b>Usuario $1, ya entraste!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Usuario $1, ya entraste!</strong><br />\n",
 
 "login"			=> "Registrarse/Entrar",
 "userlogin"		=> "Registrarse/Entrar",

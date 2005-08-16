@@ -257,7 +257,7 @@ Vi rajtas daŭre Vikipediumi sennome, aŭ vi povas reensaluti
 kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 
 'welcomecreation' => "<h2>Bonvenon, $1!</h2> Via konto estas kreita.
-<font color=\"red\">Ne forgesu fari viajn {{SITENAME}}-preferojn!</font>",
+<strong>Ne forgesu fari viajn {{SITENAME}}-preferojn!</strong>",
 
 'loginpagetitle' => 'Ensalutu / enskribu', #FIXME
 'yourname'		=> 'Via salutnomo', #FIXME ĉu kaŝnomo ĉu uzantonomo ĉu kontonomo ktp?
@@ -266,7 +266,7 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 'newusersonly'	=> ' (nur novaj uzuloj)',
 'remembermypassword' => 'Rememoru mian pasvorton.',
 "loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br />Bonvolu reprovi!",
-"alreadyloggedin" => "<font color=\"red\"><b>Uzulo $1, vi jam estas ensalutinta!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Uzulo $1, vi jam estas ensalutinta!</strong><br />\n",
 
 'login'			=> 'Ensalutu', #FIXME, what exactly do the following go to?
 'userlogin'		=> 'Ensalutu',

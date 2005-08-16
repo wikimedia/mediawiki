@@ -240,7 +240,7 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préféren
 "newusersonly"       => " (nouveaux utilisateurs uniquement)",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
 "loginproblem"       => "<b>Problème d'identification.</b><br />Essayez à nouveau !",
-"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié !</b></font><br />\n",
+"alreadyloggedin"    => "<strong>Utilisateur $1, vous êtes déjà identifié !</strong><br />\n",
 
 "login"         => "Identification",
 "userlogin"     => "Identification",

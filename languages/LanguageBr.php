@@ -301,7 +301,7 @@ Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh ar bajenn Pers
 'newusersonly'       => ' (implijerien nevez hepken)',
 'remembermypassword' => 'Derc\'hel soñj eus ma ger-tremen (toupin)',
 'loginproblem'       => '<b>Kudenn disklêriañ.</b><br />Klaskit en-dro !',
-'alreadyloggedin'    => '<font color=red>\'\'\'Implijer $1, disklêriet oc\'h dija!\'\'\'</font><br />',
+'alreadyloggedin'    => '\'\'\'Implijer $1, disklêriet oc\'h dija!\'\'\'<br />',
 
 'login'         => 'Disklêriañ',
 'loginprompt'	=> 'Ret eo deoc\'h bezañ gweredekaet an toupinoù evit bezañ luget ouzh {{SITENAME}}.',

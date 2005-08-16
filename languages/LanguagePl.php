@@ -262,7 +262,7 @@ Nie zapomnij dostosować <i>preferencji</i>.",
 "newusersonly" => " (tylko nowi użytkownicy)",
 "remembermypassword" => "Pamiętaj moje hasło między sesjami.",
 "loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br />Spróbuj ponownie!",
-"alreadyloggedin" => "<font color=red><b>$1, jesteś już zalogowany!</b></font><br />\n",
+"alreadyloggedin" => "<strong>$1, jesteś już zalogowany!</strong><br />\n",
 
 "login" => "Zaloguj mnie",
 "userlogin" => "Logowanie",
@@ -332,8 +332,8 @@ By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 \"Zapisz\".<br />",
 "yourtext" => "Twój tekst",
 "storedversion" => "Zapisana wersja",
-"editingold" => "<font color=\"red\"><strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony.
-Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong></font>",
+"editingold" => "<strong>OSTRZEŻENIE: Edytujesz inną niż bieżąca wersję tej strony.
+Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong>",
 "yourdiff" => "Różnice",
 "copyrightwarning" => "Proszę pamiętać o tym, że przyjmuje się, iż wszelki
 wkład do Wikipedii jest udostępniany na zasadach <i>GNU Free Documentation License</i>

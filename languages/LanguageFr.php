@@ -313,7 +313,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'newusersonly'       => ' (nouveaux utilisateurs uniquement)',
 'remembermypassword' => 'Se souvenir de mon mot de passe (cookie)',
 'loginproblem'       => '<b>Problème d\'identification.</b><br />Essayez à nouveau !',
-'alreadyloggedin'    => '<font color=red>\'\'\'Utilisateur $1, vous êtes déjà identifié!\'\'\'</font><br />',
+'alreadyloggedin'    => '<strong>\'\'\'Utilisateur $1, vous êtes déjà identifié!\'\'\'</strong><br />',
 
 'login'         => 'Identification',
 'loginprompt'	=> 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',

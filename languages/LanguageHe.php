@@ -236,7 +236,7 @@ $1",
 "newusersonly"	=> " (רק אם את/ה משתמש חדש)",
 "remembermypassword" => "זכור את הסיסמא שלי בפעם הבאה.",
 "loginproblem"	=> "<b>ארעה שגיאה בכניסה לאתר. </b><br />!נסה שנית",
-"alreadyloggedin" => "<font color=red><b> משתמש $1, כבר ביצעת כניסה לאתר!</b></font><br />\n",
+"alreadyloggedin" => "<strong> משתמש $1, כבר ביצעת כניסה לאתר!</strong><br />\n",
 
 "login"			=> "כניסה לחשבון",
 "userlogin"		=> "כניסה לחשבון",

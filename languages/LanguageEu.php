@@ -84,7 +84,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 #'already_bureaucrat' => 'This user is already a bureaucrat',
 #'already_steward' => 'This user is already a steward',
 #'already_sysop' => 'This user is already an administrator',
-'alreadyloggedin' => '<font color=red><b>Lankide $1, barruan zaude!</b></font><br>',
+'alreadyloggedin' => '<strong>Lankide $1, barruan zaude!</strong><br />',
 /* 'alreadyrolled' => 'Cannot rollback last edit of [[$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
@@ -125,7 +125,7 @@ Please try another query.', */
 an incorrectly linked inter-language or inter-wiki title.', */
 #'blanknamespace' => '(Main)',
 'blockedtext' => 'Your user name or IP address has been blocked by $1.
-The reason given is this:<br>\'\'$2\'\'<p>You may contact $1 or one of the other
+The reason given is this:<br />\'\'$2\'\'<p>You may contact $1 or one of the other
 [[Wikipedia:Administratzaileak|administrators]] to discuss the block.
 
 Note that you may not use the "email this user" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
@@ -887,7 +887,7 @@ unlock the database when your maintenance is done.', */
 #'loginend' => '&nbsp;',
 #'loginerror' => 'Login error',
 'loginpagetitle' => 'Saio hasiera',
-'loginproblem' => '<b>Arazoren bat egon da zure saio-hasieran.</b><br>¡Saiatu berriro!',
+'loginproblem' => '<b>Arazoren bat egon da zure saio-hasieran.</b><br />¡Saiatu berriro!',
 #'loginprompt' => 'You must have cookies enabled to log in to {{SITENAME}}.',
 #'loginreqtext' => 'You must [[special:Userlogin|login]] to view other pages.',
 #'loginreqtitle' => 'Login Required',
@@ -895,7 +895,7 @@ unlock the database when your maintenance is done.', */
 #'loginsuccesstitle' => 'Login successful',
 'logout' => 'Saio-bukaera',
 'logouttext' => 'Zure saioa amaitu duzu. 
-Izena eman gabe wikipedia erabiltzen jarraitu ahal duzu, edo izen berdin edo bestearekin beste saioa hasi ahal duzu.<br>Orri batzuk saioa mantentzen duzuela adierazi dezakete arakatzailearen katxea garbitu arte.',
+Izena eman gabe wikipedia erabiltzen jarraitu ahal duzu, edo izen berdin edo bestearekin beste saioa hasi ahal duzu.<br />Orri batzuk saioa mantentzen duzuela adierazi dezakete arakatzailearen katxea garbitu arte.',
 'logouttitle' => 'Saio amaiera',
 'lonelypages' => 'Orri umezurtzak',
 'longpages' => 'Orri luzeak',
@@ -1214,7 +1214,7 @@ See [[Project:Protected page]] for more information.', */
 #'randompage-url' => 'Special:Random',
 #'range_block_disabled' => 'The sysop ability to create range blocks is disabled.',
 #'rchide' => 'in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.',
-'rclinks' => 'Erakutsi azken $1 aldaketak $2 egunetan.<br>$3',
+'rclinks' => 'Erakutsi azken $1 aldaketak $2 egunetan.<br />$3',
 'rclistfrom' => 'Erakutsi $1tik aldaketa berriak',
 'rcliu' => '; $1 erregistratu diren lankideen editaketak',
 'rcloaderr' => 'Aldaketa berriak kargatzen',
@@ -1239,7 +1239,7 @@ the text into a text file and save it for later.</strong>', */
 #'recentchangescount' => 'Titles in recent changes',
 'recentchangeslinked' => 'Lotutako orrien aldaketak',
 #'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
-'redirectedfrom' => 'Wikipediatik, entziklopedia askea.<br>
+'redirectedfrom' => 'Wikipediatik, entziklopedia askea.<br />
 (Redirected from $1)',
 'remembermypassword' => 'Gogoratu pasahitza saio tartean (cookie gorde).',
 #'removechecked' => 'Remove checked items from watchlist',
@@ -1457,7 +1457,7 @@ title. Please merge them manually.\'\'\'', */
 #'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 'trackback' => '; $4$5 : [$2 $1]',
 'trackbackbox' => '<div id=\'mw_trackbacks\'>
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>',
 #'trackbackdeleteok' => 'The trackback was successfully deleted.',

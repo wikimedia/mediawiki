@@ -349,7 +349,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "newusersonly"	=> " (ainult uued kasutajad)",
 "remembermypassword" => "Parooli meeldejätmine tulevasteks seanssideks.",
 "loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!",
-"alreadyloggedin" => "<font color=red><b>Kasutaja $1, Te olete juba sisse loginud!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Kasutaja $1, Te olete juba sisse loginud!</strong><br />\n",
 
 "login"			=> "Logi sisse",
 'loginprompt'           => "{{SITENAME}} võimaldab sisselogimist vaid siis kui küpsised on lubatud.",

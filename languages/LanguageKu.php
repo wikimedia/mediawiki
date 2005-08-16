@@ -84,7 +84,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 #'already_bureaucrat' => 'This user is already a bureaucrat',
 #'already_steward' => 'This user is already a steward',
 #'already_sysop' => 'This user is already an administrator',
-'alreadyloggedin' => '<font color=red><b>Bikarhêner $1, tu jixwe têketî!</b></font><br />',
+'alreadyloggedin' => '<strong>Bikarhêner $1, tu jixwe têketî!</strong><br />',
 /* 'alreadyrolled' => 'Cannot rollback last edit of [[$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
@@ -123,7 +123,7 @@ Please try another query.', */
 /* 'badtitletext' => 'The requested page title was invalid, empty, or
 an incorrectly linked inter-language or inter-wiki title.', */
 #'blanknamespace' => '(Main)',
-'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br>\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [Wikipedia:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî.
+'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br />\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [{{ns:project}}:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî.
 
 Têbînî: Tu nikarî fonksiyona "Ji vê bikarhêner re E-mail bişîne" bi kar bîne eger te navnîşana email a xwe di "[[Special:Preferences|Tercîhên min]]" de nenivîsand.
 
@@ -137,7 +137,7 @@ If this happens to you, please email an administrator, using an AOL email addres
 'blockip' => 'Bikarhêner asteng bike',
 'blockipsuccesssub' => 'Blok serkeftî',
 'blockipsuccesstext' => '"$1" hat asteng kirin.
-<br>Bibîne [[Special:Ipblocklist|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
+<br />Bibîne [[Special:Ipblocklist|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
 /* 'blockiptext' => 'Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
@@ -655,67 +655,13 @@ article [[Train]].
 Ji kerema xwe, biçe: $2 û agahî li der barê dosyayê binivîse (ji ku derê hat girtin, kîngê hat çêkirin, kê çêkir û hwd.)
 
 Heke ev dosya wêneyek be, bi vî rengî bi kar bîne:
-<br>
+<br />
 <tt><nowiki>[[Wêne:$1|thumb|Binnivîs]]</nowiki></tt>',
 #'formerror' => 'Error: could not submit form',
 'friday' => 'În',
 #'geo' => 'GEO coordinates',
 #'getimagelist' => 'fetching file list',
 'go' => 'Gotar',
-'googlesearch' => '<p>
-<table border="0" bgcolor="#FFFFFF">
-
-<!-- SiteSearch Google -->
-<tr><td valign="top" align="center">
-<a href="http://www.google.com/">
-<img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" title="Google">
-</a>
-</td>
-<td width="100%">
-<form method=get action="http://www.google.com/search">
-<input type="text" name="q" size=31 maxlength=255 value="$1">
-<input type="submit" name="btnG" value="Google Lêgerîn">
-<input type="hidden" name="domains" value="http://ku.wikipedia.org">
-<input type="hidden" name="ie" value="$2">
-<input type="hidden" name="oe" value="$2">
-<br>
-<font size=-1>
-<input type="radio" name="sitesearch" value="">WWW
-<input type="radio" name="sitesearch" value="http://ku.wikipedia.org" checked>http://ku.wikipedia.org
-</font>
-</form>
-</td></tr>
-<!-- SiteSearch Google -->
-
-<!-- Spacing -->
-<tr><td colspan=2>&nbsp;</td></tr>
-<!-- Spacing -->
-
-<!-- Yahoo search -->
-<tr><td valign="top" align="center">
-<a href="http://search.yahoo.com/">
-<img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" border="0" alt="Yahoo!"vspace="5">
-</a>
-</td>
-<td width="100%">
-<form method=get action="http://search.yahoo.com/search">
-<input type="hidden" name="x" value="op">
-<input type="hidden" name="va_vt" value="any">
-<input type="text" name="va" size="31" value="$1">
-<input type="submit" value="Yahoo! Lêgerîn">
-<br>
-<font size=-1>
-<input type="radio" name="vs" value="">WWW
-<input type="radio" name="vs" value="ku.wikipedia.org" checked>http://ku.wikipedia.org
-</font>
-</form>
-</td>
-
-</table>
-
-Bi vê grêdanê tu dikarî vê gotarê çêkî an biguherînî: <a href="/w/wiki.phtml?title=$1&action=edit">$1</a>
-<br><br>
-<b>Note</b>: We recommend you search Wikipedia before creating a new article to avoid duplicatory effort. <br>The article you are trying to create may already exist under a different name/spelling.',
 #'group-admin-desc' => 'Trusted users able to block users and delete articles',
 #'group-admin-name' => 'Administrator',
 #'group-anon-desc' => 'Anonymous users',
@@ -854,7 +800,7 @@ unlock the database when your maintenance is done.', */
 #'loginend' => '&nbsp;',
 'loginerror' => 'Çewtî (Login error)',
 'loginpagetitle' => 'Qeyda bikarhêner (User login)',
-'loginproblem' => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br>Careke din biceribîne!',
+'loginproblem' => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br />Careke din biceribîne!',
 'loginprompt' => '<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di Wîkîpediya de divê ku \'\'cookies\'\' gengaz be.',
 'loginreqtitle' => 'Têketin pêwîst e',
 'loginsuccess' => 'Tu niha di Wîkîpediya de qeydkirî yî wek "$1".',
@@ -991,8 +937,8 @@ proceeding.', */
 'nchanges' => '$1 guherandin',
 'newarticle' => '(Nû)',
 'newarticletext' => '<div style="font-size:small;color:#003333;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px">
-Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. \'\'\'Wêrek be\'\'\', biceribîne!<br>
-Ji bo alîkarî binêre: [[Wîkîpediya:Alîkarî|Alîkarî]].<br>
+Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. \'\'\'Wêrek be\'\'\', biceribîne!<br />
+Ji bo alîkarî binêre: [[Wîkîpediya:Alîkarî|Alîkarî]].<br />
 Eger tu bi şaştî hatî, bizivire rûpela berê.
 </div>',
 'newbies' => 'ecemî',
@@ -1148,7 +1094,7 @@ text editing area as it will appear if you choose to save.', */
 'protectcomment' => 'Sedema parastinê',
 'protectedarticle' => 'parastî [[$1]]',
 'protectedpage' => 'Rûpela parastî',
-'protectedpagewarning' => 'ŞIYARÎ:  Ev rûpel hat qefl kirin. Bi tenê bikarhênerên ku xwediyên mafan "sysop" ne dikarin vê rûpelê biguherînin. <br>
+'protectedpagewarning' => 'ŞIYARÎ:  Ev rûpel hat qefl kirin. Bi tenê bikarhênerên ku xwediyên mafan "sysop" ne dikarin vê rûpelê biguherînin. <br />
 Be sure you are following the
 <a href=\'/wiki/Wîkîpediya:Protected_page_guidelines\'>protected page
 guidelines</a>.',
@@ -1565,7 +1511,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-user-editname' => 'Enter a username:',
 'userstats' => 'Statistîkên bikarhêneran',
 'userstatstext' => '<b>$1</b> bikarhênerên qeydkirî hene. Ji wan <b>$2</b> administrator/koordînator in. (Binêre $3).
-<br><br>
+<br /><br />
 Ji bo statîstîkên din ser serûpelê biçe: <b>Statîstîk</b>',
 #'val_add' => 'Add',
 #'val_article_lists' => 'List of validated articles',

@@ -263,7 +263,7 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 "newusersonly"  => " (somente novos usuários)",
 "remembermypassword" => "Lembrar de minha senha em outras sessões.",
 "loginproblem"  => "<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!",
-"alreadyloggedin" => "<font color=red><b>Utilizador $1, você já está autenticado!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Utilizador $1, você já está autenticado!</strong><br />\n",
 
 "login"         => "Entrar",
 "userlogin"     => "Entrar",

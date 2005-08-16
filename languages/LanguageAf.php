@@ -217,7 +217,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.",
 "newusersonly"	=> " (slegs nuwe gebruikers)",
 "remembermypassword" => "Onthou my wagwoord oor sessies.",
 "loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br />Probeer weer.",
-"alreadyloggedin" => "<font color=red><b>Gebruiker $1, jy is reeds ingeteken.</b></font><br />\n",
+"alreadyloggedin" => "<strong>Gebruiker $1, jy is reeds ingeteken.</strong><br />\n",
 
 "login"			=> "Teken in",
 "userlogin"		=> "Teken in",

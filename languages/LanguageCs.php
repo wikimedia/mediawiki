@@ -339,7 +339,7 @@ Dotaz: $2',
 Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
 
 'welcomecreation' => '<h2>Vítejte, $1!</h2> Váš účet je vytvořen.
-<font color=\'red\'>Nezapomeňte si upravit své nastavení!</font>',
+<strong>Nezapomeňte si upravit své nastavení!</strong>',
 
 'loginpagetitle' => 'Přihlaste se', #FIXME
 'yourname'              => 'Název vašeho účtu', #FIXME buď heslo nebo jméno uživatele nebo název účtu atd.?
@@ -350,7 +350,7 @@ Tento počítač může být používán k prohlížení a editaci {{grammar:2sg
 'externaldberror'      => 'Buď nastalo chyba v databázi pro externí autentikaci, nebo nemáte dovoleno měnit svůj externí účet.',
 'remembermypassword' => 'Pamatovat si heslo mezi jednotlivými přihlášeními.',
 'loginproblem'  => '<b>Nastal problém při vašem přihlášení.</b><br />Zkuste to znovu!',
-'alreadyloggedin' => "<font color=\'red\'><b>Uživateli $1, již jste přihlášen!</b></font><br />\n",
+'alreadyloggedin' => "<strong>Uživateli $1, již jste přihlášen!</strong><br />\n",
 
 'login'                 => 'Přihlašte se', #FIXME, what exactly do the following go to?
 'loginprompt'   => 'K přihlášení do {{grammar:2sg|{{SITENAME}}}} musíte mít povoleny cookies.',

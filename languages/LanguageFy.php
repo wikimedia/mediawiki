@@ -256,7 +256,7 @@ Ferjit net se oan jo foarkar oan te passen.",
 "newusersonly" 	=> " (allinnich foar nije brûkers)",
 "remembermypassword" => "Oare kear fansels oanmelde.",
 "loginproblem" 	=> "<b>Der wie wat mis mei jo oanmelden.</b><br />Besykje it nochris, a.j.w.",
-"alreadyloggedin" => "<font color=red><b>Brûker $1, jo binne al oanmeld!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Brûker $1, jo binne al oanmeld!</strong><br />\n",
 "login"		=> "Oanmelde",
 "userlogin"		=> "Oanmelde",
 "logout"		=> "Ofmelde",
@@ -344,7 +344,7 @@ Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
 <b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde.<br />",
 "yourtext"		=> "Jo tekst",
 "storedversion" => "Fêstleine ferzje",
-"editingold"	=> "<strong><font color=red>Waarskôging</font>: Jo binne dwaande mei in âldere ferzje fan dizze side.
+"editingold"	=> "<strong>Waarskôging: Jo binne dwaande mei in âldere ferzje fan dizze side.
 Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>",
 "yourdiff"		=> "Feroarings",
 # REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
@@ -356,13 +356,13 @@ dan is it baas, en set it net op de {{SITENAME}}.<br />
 Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe út in
 publyk eigendom of in oare iepen boarne.
 <strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",
-"longpagewarning" => "<strong><font color=red>Waarskôging</font>: Dizze side is $1 kilobyte lang;
+"longpagewarning" => "<strong>Waarskôging: Dizze side is $1 kilobyte lang;
 der binne blêdzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
 Besykje de side yn lytsere stikken te brekken.</strong>",
-"readonlywarning" => "<strong><font color=red>Waarskôging</font>: De databank is ôfsletten foar
+"readonlywarning" => "<strong>Waarskôging: De databank is ôfsletten foar
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>",
-"protectedpagewarning" => "<strong><font color=red>Waarskôging</font>: Dizze side is beskerme, dat
+"protectedpagewarning" => "<strong>Waarskôging: Dizze side is beskerme, dat
 gewoane brûkers dy net bewurkje kinne. Tink om de
 [[Project:Beskerm-rie|rie oer beskerme siden]].</strong>",
 

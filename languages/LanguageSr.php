@@ -286,7 +286,7 @@ MySQL је вратио грешку \"$3: $4\".\n",
 "newusersonly" => " (само за нове кориснике)",
 "remembermypassword" => "Запамти моју шифру током више сеанси.",
 "loginproblem" => "<b>Било је проблема са вашим пријављивањем.</b><br />Пробајте поново!",
-"alreadyloggedin" => "<font color=red><b>Корисниче $1, већ сте пријављени!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Корисниче $1, већ сте пријављени!</strong><br />\n",
 
 "login"   => "Пријави се",
 "userlogin"  => "Пријави се",

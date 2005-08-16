@@ -223,7 +223,7 @@ Lahko nadaljujete z uporabo Wikipedije nepodpisani, ali pa se lahko ponovno vpi�
 "newusersonly"	        => " (Samo novi uporabniki)",
 "remembermypassword"    => "Zapomni si moje geslo vseskozi.",
 "loginproblem"	        => "<b>Nastala je tažava z vašim vpisom.</b><br />Poskusite znova!",
-"alreadyloggedin"       => "<font color=red><b>Uporabnik $1, ste že vpisani!</b></font><br />\n",
+"alreadyloggedin"       => "<strong>Uporabnik $1, ste že vpisani!</strong><br />\n",
 
 "login"			=> "Vpis",
 "userlogin"		=> "Vpis",
