@@ -30,9 +30,6 @@ Usage: php transstat.php [--help] [--output:csv|text|wiki] [--noredundant]
                     * 'wiki' : MediaWiki syntax.
                     * 'text' : Text with tabs.
 	              Default output is 'wiki'
-  --noredundant : do NOT calculate redundant (takes some time)
-
-
 END;
 }
 
@@ -104,20 +101,15 @@ class csvStatsOutput extends statsOutput {
 }
 
 
-/** FIXME: This takes an obscene amount of time */
-if(isset($options['noredundant'])) {
-	function redundant(&$arr) { return 'NC'; }
-} else {
-	function redundant(&$arr) {
-		global $wgAllMessagesEn;
-		
-		$redundant = 0;
-		foreach(array_keys($arr) as $key) {
-			if ( ! array_key_exists( $key, $wgAllMessagesEn) )
-				++$redundant;
-		}
-		return $redundant;
+function redundant(&$arr) {
+	global $wgAllMessagesEn;
+	
+	$redundant = 0;
+	foreach(array_keys($arr) as $key) {
+		if ( @$wgAllMessagesEn[$key] === null )
+			++$redundant;
 	}
+	return $redundant;
 }
 
 // Select an output engine
