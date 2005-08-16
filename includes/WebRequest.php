@@ -172,7 +172,7 @@ class WebRequest {
 	 * @return int
 	 */
 	function getInt( $name, $default = 0 ) {
-		return IntVal( $this->getVal( $name, $default ) );
+		return intval( $this->getVal( $name, $default ) );
 	}
 	
 	/**
@@ -185,7 +185,7 @@ class WebRequest {
 	function getIntOrNull( $name ) {
 		$val = $this->getVal( $name );
 		return is_numeric( $val )
-			? IntVal( $val )
+			? intval( $val )
 			: null;
 	}
 	

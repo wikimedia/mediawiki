@@ -133,7 +133,7 @@ if( isset( $options['quiet'] ) ) {
 	$dumper->reporting = false;
 }
 if( isset( $options['report'] ) ) {
-	$dumper->reportingInterval = IntVal( $options['report'] );
+	$dumper->reportingInterval = intval( $options['report'] );
 }
 if( isset( $options['server'] ) ) {
 	$dumper->server = $options['server'];

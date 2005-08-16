@@ -337,7 +337,7 @@ class SpecialSearch {
 
 		$lines = explode( "\n", $text );
 
-		$max = IntVal( $contextchars ) + 1;
+		$max = intval( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
 		$lineno = 0;

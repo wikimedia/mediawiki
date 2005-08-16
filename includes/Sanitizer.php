@@ -727,7 +727,7 @@ class Sanitizer {
 	}
 	
 	function decCharReference( $codepoint ) {
-		$point = IntVal( $codepoint );
+		$point = intval( $codepoint );
 		if( Sanitizer::validateCodepoint( $point ) ) {
 			return sprintf( '&#%d;', $point );
 		} else {

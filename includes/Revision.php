@@ -24,7 +24,7 @@ class Revision {
 	function newFromId( $id ) {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
-			       'rev_id' => IntVal( $id ) ) );
+			       'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Revision {
 	 */
 	function newFromTitle( &$title, $id = 0 ) {
 		if( $id ) {
-			$matchId = IntVal( $id );
+			$matchId = intval( $id );
 		} else {
 			$matchId = 'page_latest';
 		}
@@ -64,14 +64,14 @@ class Revision {
 	 */
 	function loadFromPageId( &$db, $pageid, $id = 0 ) {
 		if( $id ) {
-			$matchId = IntVal( $id );
+			$matchId = intval( $id );
 		} else {
 			$matchId = 'page_latest';
 		}
 		$ret = Revision::loadFromConds(
 			$db,
 			array( "rev_id=$matchId",
-			       'rev_page' => IntVal( $pageid ),
+			       'rev_page' => intval( $pageid ),
 			       'page_id=rev_page' ) );
 		return $ret;
 	}
@@ -89,7 +89,7 @@ class Revision {
 	 */
 	function loadFromTitle( &$db, $title, $id = 0 ) {
 		if( $id ) {
-			$matchId = IntVal( $id );
+			$matchId = intval( $id );
 		} else {
 			$matchId = 'page_latest';
 		}
@@ -240,15 +240,15 @@ class Revision {
 	 */
 	function Revision( $row ) {
 		if( is_object( $row ) ) {
-			$this->mId        = IntVal( $row->rev_id );
-			$this->mPage      = IntVal( $row->rev_page );
-			$this->mTextId    = IntVal( $row->rev_text_id );
+			$this->mId        = intval( $row->rev_id );
+			$this->mPage      = intval( $row->rev_page );
+			$this->mTextId    = intval( $row->rev_text_id );
 			$this->mComment   =         $row->rev_comment;
 			$this->mUserText  =         $row->rev_user_text;
-			$this->mUser      = IntVal( $row->rev_user );
-			$this->mMinorEdit = IntVal( $row->rev_minor_edit );
+			$this->mUser      = intval( $row->rev_user );
+			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
-			$this->mDeleted   = IntVal( $row->rev_deleted );
+			$this->mDeleted   = intval( $row->rev_deleted );
 
 			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
 			$this->mTitle     = Title::makeTitle( $row->page_namespace,
@@ -263,18 +263,18 @@ class Revision {
 			// Build a new revision to be saved...
 			global $wgUser;
 
-			$this->mId        = isset( $row['id']         ) ? IntVal( $row['id']         ) : null;
-			$this->mPage      = isset( $row['page']       ) ? IntVal( $row['page']       ) : null;
-			$this->mTextId    = isset( $row['text_id']    ) ? IntVal( $row['text_id']    ) : null;
-			$this->mUserText  = isset( $row['user_text']  ) ? StrVal( $row['user_text']  ) : $wgUser->getName();
-			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
-			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
-			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
-			$this->mDeleted   = isset( $row['deleted']    ) ? IntVal( $row['deleted']    ) : 0;
+			$this->mId        = isset( $row['id']         ) ? intval( $row['id']         ) : null;
+			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
+			$this->mTextId    = isset( $row['text_id']    ) ? intval( $row['text_id']    ) : null;
+			$this->mUserText  = isset( $row['user_text']  ) ? strval( $row['user_text']  ) : $wgUser->getName();
+			$this->mUser      = isset( $row['user']       ) ? intval( $row['user']       ) : $wgUser->getId();
+			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
+			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
+			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
 
 			// Enforce spacing trimming on supplied text
-			$this->mComment   = isset( $row['comment']    ) ?  trim( StrVal( $row['comment'] ) ) : null;
-			$this->mText      = isset( $row['text']       ) ? rtrim( StrVal( $row['text']    ) ) : null;
+			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
+			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;

@@ -139,7 +139,7 @@ class ImagePage extends Article {
 		if( $wgUser->getOption( 'imagesize' ) == '' ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );
 		} else {
-			$sizeSel = IntVal( $wgUser->getOption( 'imagesize' ) );
+			$sizeSel = intval( $wgUser->getOption( 'imagesize' ) );
 		}
 		if( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );

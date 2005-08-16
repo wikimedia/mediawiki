@@ -141,8 +141,8 @@ if( $ok ) {
 ## ------
 
 function reportResults( &$total, &$success, &$failure ) {
-	$percSucc = IntVal( $success * 100 / $total );
-	$percFail = IntVal( $failure * 100 / $total );
+	$percSucc = intval( $success * 100 / $total );
+	$percFail = intval( $failure * 100 / $total );
 	print "\n";
 	print "$success tests successful ($percSucc%)\n";
 	print "$failure tests failed ($percFail%)\n\n";

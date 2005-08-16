@@ -375,7 +375,7 @@ class FiveUpgrade {
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 			) TYPE=InnoDB", $fname );
 
-		$maxold = IntVal( $this->dbw->selectField( 'old', 'max(old_id)', '', $fname ) );
+		$maxold = intval( $this->dbw->selectField( 'old', 'max(old_id)', '', $fname ) );
 		$this->log( "Last old record is {$maxold}" );
 
 		global $wgLegacySchemaConversion;

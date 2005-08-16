@@ -52,7 +52,7 @@ if( !$wgUseSquid ) {
 	printf( "There are %d defined squid servers:\n", count( $wgSquidServers ) );
 	#echo implode( "\n", $wgSquidServers ) . "\n";
 	if( isset( $options['count'] ) ) {
-		$lengths = array( IntVal( $options['count'] ) );
+		$lengths = array( intval( $options['count'] ) );
 	} else {
 		$lengths = array( 1, 10, 100 );
 	}

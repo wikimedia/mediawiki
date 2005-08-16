@@ -83,14 +83,14 @@ function rebuildRecentChangesTablePass2()
 		$new = 0;
 		if( $obj->rc_cur_id != $lastCurId ) {
 			# Switch! Look up the previous last edit, if any
-			$lastCurId = IntVal( $obj->rc_cur_id );
+			$lastCurId = intval( $obj->rc_cur_id );
 			$emit = $obj->rc_timestamp;
 			$sql2 = "SELECT old_id FROM $old,$cur " .
 				"WHERE old_namespace=cur_namespace AND old_title=cur_title AND cur_id={$lastCurId} ".
 				"AND old_timestamp<'{$emit}' ORDER BY old_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
-				$lastOldId = IntVal( $row->old_id );
+				$lastOldId = intval( $row->old_id );
 			} else {
 				# No previous edit
 				$lastOldId = 0;
@@ -104,7 +104,7 @@ function rebuildRecentChangesTablePass2()
 			$sql3 = "UPDATE $recentchanges SET rc_last_oldid=$lastOldId,rc_new=$new,rc_type=$new " .
 				"WHERE rc_cur_id={$lastCurId} AND rc_this_oldid={$obj->rc_this_oldid}";
 			$dbw->query( $sql3 );
-			$lastOldId = IntVal( $obj->rc_this_oldid );
+			$lastOldId = intval( $obj->rc_this_oldid );
 		}
 	}
 	$dbw->freeResult( $res );

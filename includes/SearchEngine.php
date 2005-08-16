@@ -129,8 +129,8 @@ class SearchEngine {
 	 * @access public
 	 */
 	function setLimitOffset( $limit, $offset = 0 ) {
-		$this->limit = IntVal( $limit );
-		$this->offset = IntVal( $offset );
+		$this->limit = intval( $limit );
+		$this->offset = intval( $offset );
 	}
 
 	/**

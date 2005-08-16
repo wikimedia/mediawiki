@@ -115,7 +115,7 @@ if( isset( $options['quiet'] ) ) {
 	$reader->reporting = false;
 }
 if( isset( $options['report'] ) ) {
-	$reader->reportingInterval = IntVal( $options['report'] );
+	$reader->reportingInterval = intval( $options['report'] );
 }
 if( isset( $options['dry-run'] ) ) {
 	$reader->dryRun = true;
