@@ -21,7 +21,7 @@ require_once( 'LanguageUtf8.php' );
 	NS_IMAGE_TALK		=> 'Irudi_eztabaida',
 	NS_MEDIAWIKI		=> 'MediaWiki',
 	NS_MEDIAWIKI_TALK	=> 'MediaWiki_eztabaida',
-) + $wgNamespaceNamesEu;
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEu = array(
 	'Ezein ere', 'Eskuinean', 'Ezkerrean', 'Ezkerrean mugikor'
