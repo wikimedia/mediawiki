@@ -188,7 +188,7 @@ U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde
 "newusersonly" => " (alleen nieuwe gebroekers)",
 "remembermypassword" => "mien wachtwoord onthouden voor latere sessies.",
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<font color=red><b>gebroeker $1, u bent al aangemeld.</b></font><br />\n",
+"alreadyloggedin" => "<strong>gebroeker $1, u bent al aangemeld.</strong><br />\n",
 
 "login"   => "Aanmelden",
 "userlogin"  => "Aanmelden",

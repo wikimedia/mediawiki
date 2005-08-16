@@ -226,7 +226,7 @@ Non oblida personalisar Wikipedia secundo tu preferentias.",
 "newusersonly"	=> " (solmente pro nove usatores)",
 "remembermypassword" => "Recordar contrasigno inter sessiones.",
 "loginproblem"	=> "<b>Occurreva problemas pro initiar tu session.</b><br />Tenta de nove!",
-"alreadyloggedin" => "<font color=red><b>Usator $1, tu session ja es aperte!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Usator $1, tu session ja es aperte!</strong><br />\n",
 
 "login"			=> "Aperir session",
 "userlogin"		=> "Aperir session",

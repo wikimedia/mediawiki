@@ -374,7 +374,7 @@ Ná déan dearmad do sainroghanna phearsanta a athrú.",
 "newusersonly"  => " (D'úsáideoirí­ úrnua amháin)",
 "remembermypassword" => "Cuimhnigh m'fhocal faire.",
 "loginproblem"  => "<b>Bhí­ fadhb leis an logáil isteach.</b><br />Déan iarracht eile!",
-"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br />\n",
+"alreadyloggedin" => "<strong>A húsáideoir $1, tá tú logáilte isteach cheana féin!</strong><br />\n",
 
 "login"     => "Log ann",
 'loginprompt'   => "Tá chomhaid aithintáin (<i>cookies</i>) riachtanach chun logáil isteach san {{SITENAME}} a dhéanamh.",

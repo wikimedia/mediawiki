@@ -141,7 +141,7 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'allmessagestext' => "Listi yfir meldingar í „{{ns:8}}“ nafnarýminu.",
 'allpages' => "Allar síður",
 'alphaindexline' => "$1 til $2",
-'alreadyloggedin' => "<font color=red><b>Notandinn $1 er þegar innskráður!</b></font><br/>",
+'alreadyloggedin' => "<strong>Notandinn $1 er þegar innskráður!</strong><br />",
 'ancientpages' => "Elstu síður",
 'anontalkpagetext' => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á [[IP tala|IP tölu]] sinni. Það getur gerst að margir notendur deili sömu IP tölu þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
 'apr' => "apr",
@@ -157,7 +157,7 @@ Vinsamlegast veldu annan titil.",
 'badtitletext' => "Umbeðin síðutitill er ógildur.",
 'blanknamespace' => "(Aðalnafnrýmið)",
 'blockip' => "Banna notanda",
-'blockipsuccesstext' => "„$1“ hefur verið bannaður.<br/>
+'blockipsuccesstext' => "„$1“ hefur verið bannaður.<br />
 Sjá [[Special:Ipblocklist|bannaðar notendur og IP tölur]] fyrir yfirlit yfir núverandi bönn.",
 'blockiptext' => "Hægt er að hindra einstaka notendur eða IP tölur í að gera breytingar á {{SITENAME}}
 
@@ -235,7 +235,7 @@ the list of currently operational bans and blocks.",
 'diff' => "breyting",
 'difference' => "(Munur milli útgáfa)",
 'disambiguations' => "Aðgreiningarsíður",
-'disambiguationstext' => "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br/>A page is treated as dismbiguation if it is linked from $1.<br/>Links from other namespaces are <i>not</i> listed here.",
+'disambiguationstext' => "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 'disclaimerpage' => "Project:Almennur fyrirvari",
 'disclaimers' => "Fyrirvarar",
 'edit' => "Breyta",
@@ -309,7 +309,7 @@ upplýsingar um hana.",
 
 Legend: (nú) = núverandi útgáfa,
 (eyða) = eyða þessari útgáfu, (nota) = nota þessa útgáfu í stað núverandi útgáfu.
-<br/><em>Fylgdu dagsetningartenglunum til að sjá mynd sem hlaðið var inn á þeim tíma</em>.",
+<br /><em>Fylgdu dagsetningartenglunum til að sjá mynd sem hlaðið var inn á þeim tíma</em>.",
 'imghistory' => "Breytingaskrá myndar",
 'imglegend' => "Skýringar: (lýsing) = sýna og/eða breyta lýsingu skráar.",
 'ipaddress' => "IP Tala/notendanafn",
@@ -366,7 +366,7 @@ Legend: (nú) = núverandi útgáfa,
 'media_sample' => "Sýnishorn.ogg",
 'media_tip' => "Tengill í margmiðlunarskrá",
 'minoredit' => "Minniháttar breyting",
-'missingimage' => "<b>Mynd vantar</b><br/><i>$1</i>",
+'missingimage' => "<b>Mynd vantar</b><br /><i>$1</i>",
 'monday' => "mánudagur",
 'move' => "Færa",
 'movearticle' => "Færa",
@@ -459,8 +459,8 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'portal' => "Samfélagsgátt",
 'portal-url' => "Project:Samfélagsgátt",
 'powersearch' => "Leita",
-'powersearchtext' => "Leita í eftirfarandi nafnrýmum :<br/>
-$1<br/>
+'powersearchtext' => "Leita í eftirfarandi nafnrýmum :<br />
+$1<br />
 $2 Sýna tilvísarnir &nbsp; Leita að $3 $9",
 'preferences' => "Stillingar",
 'prefs-misc' => "Aðrar stillingar",
@@ -488,7 +488,7 @@ to set user preferences.",
 'qbedit' => "Breyta",
 'qbsettings' => "Valblað",
 'randompage' => "Handahófsvalin síða",
-'rclinks' => "Sýna síðustu $1 breytingar síðustu $2 daga<br/>$3",
+'rclinks' => "Sýna síðustu $1 breytingar síðustu $2 daga<br />$3",
 'rclistfrom' => "Sýna breytingar frá og með $1",
 'rclsub' => "(á síðum sem tengd er í frá „$1“)",
 'rcnote' => "Að neðan eru síðustu <strong>$1</strong> breytingar síðustu <strong>$2</strong> daga.",
@@ -700,8 +700,8 @@ Ekki gleyma að breyta Wikipedia stillingunum þínum.",
 'wlnote' => "Að neðan eru síðustu <b>$1</b> breytingar síðustu <b>$2</b> klukkutíma.",
 'wlsaved' => "Þetta er vistuð útgáfa af vaktlistanum þínum.",
 'wlshowlast' => "Sýna síðustu $1 klukkutíma, $2 daga, $3",
-'wrong_wfQuery_params' => "Incorrect parameters to wfQuery()<br/>
-Function: $1<br/>
+'wrong_wfQuery_params' => "Incorrect parameters to wfQuery()<br />
+Function: $1<br />
 Query: $2",
 'wrongpassword' => "Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.",
 'yourdiff' => "Mismunur",

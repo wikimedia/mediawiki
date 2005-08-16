@@ -120,7 +120,7 @@ taip pat bus '''paryškinti''' [[Special:Recentchanges|naujausių keitimų sąra
 'allmessagestext' => "Čia pateikiami visi sisteminiai tekstai bei pranešimai, esantys MediaWiki: vardų ervėje.",
 'allpages' => "Visi straipsniai",
 'alphaindexline' => "Nuo $1 iki $2",
-'alreadyloggedin' => "<font color=red><b>Jūs jau esate prisijungęs kaip vartotojas User $1!</b></font><br />",
+'alreadyloggedin' => "<strong>Jūs jau esate prisijungęs kaip vartotojas User $1!</strong><br />",
 'alreadyrolled' => "Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Diskusijos]]) daryto straipsnio [[$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas vartotojo [[User:$3|$3]] ([[User talk:$3|Diskusijos]]).",

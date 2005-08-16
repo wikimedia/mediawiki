@@ -274,7 +274,7 @@ igen som samma eller annan användare.\n",
 "newusersonly"          => " (bara för nya användare)",
 "remembermypassword"    => "Kom ihåg mitt lösenord till nästa gång.",
 "loginproblem"          => "<b>Det var svårt att logga in dig .</b><br />Pröva igen!",
-"alreadyloggedin"       => "<font color=red><b>Användare $1, du är redan inloggad !</b></font><br />\n",
+"alreadyloggedin"       => "<strong>Användare $1, du är redan inloggad !</strong><br />\n",
 
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",

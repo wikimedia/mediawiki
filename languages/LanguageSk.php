@@ -366,9 +366,9 @@ alebo nesprávne odkazovaný z inej jazykovej verzie {{GRAMMAR:genitív|{{SITENA
 pretože tak spomaľuje databázu, že nikto nemôže používať
 wiki.',
 'perfdisabledsub' => "Tu je uložená kópia z $1:", # obsolete?
-'perfcached' => '<font color=red><strong>Nasledujúce dáta sú z dočasnej pamäte a nemusia byť úplne aktuálne:</strong></font>',
-'wrong_wfQuery_params' => "Nesprávny parameter v wfQuery()<br>
-Funkcia: $1<br>
+'perfcached' => '<strong>Nasledujúce dáta sú z dočasnej pamäte a nemusia byť úplne aktuálne:</strong>',
+'wrong_wfQuery_params' => "Nesprávny parameter v wfQuery()<br />
+Funkcia: $1<br />
 Dotaz: $2",
 'viewsource' => 'Zobraz zdroj',
 'protectedtext' => "Táto stránka bola zamknutá na zabránenie úprav; pravdepodobne existuje
@@ -396,8 +396,8 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť vaše redaktorské nastaveni
 'yourpasswordagain' => 'Zopakujte heslo',
 'newusersonly' => ' (iba noví redaktori)',
 'remembermypassword' => 'Pamätať si heslo aj po vypnutí počítača.',
-'loginproblem' => "'''Nastal problém pri vašom prihlasovaní.'''<br>Skúste to znova!",
-'alreadyloggedin' => "<font color=red>'''Užívateľ $1, vy už ste prihlásený!'''</font><br />\n",
+'loginproblem' => "'''Nastal problém pri vašom prihlasovaní.'''<br />Skúste to znova!",
+'alreadyloggedin' => "'''Užívateľ $1, vy už ste prihlásený!'''<br />\n",
 
 'login' => 'Prihlásenie',
 'loginprompt' => "Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).",
@@ -486,7 +486,7 @@ nástroje nebudú prístupné.',
 'showdiff' => 'Zobraz rozdiely',
 'blockedtitle' => 'Redaktor je zablokovaný',
 'blockedtext' => "Vaše redaktorské meno alebo IP adresu zablokoval $1.
-Udáva tento dôvod:<br>''$2''
+Udáva tento dôvod:<br />''$2''
 
 Môžete sa skontaktovať s $1 alebo s iným [[Project:Administrátori|administrátorom]] a prediskutovať blokovanie.\",
 
@@ -548,7 +548,7 @@ Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}}
 sa považujú za príspevky uskutočnené podľa GNU Free Documentation License
 (podrobnosti pozri pod $1).
 Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej
-ľubovoľne rozširované, tak sem váš text neumiestňujte.<br>
+ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
 Týmto nám tiež sľubujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 zo spoločného vlastníctva (public domain) alebo podobného voľne prístupného zdroja.
 <strong>NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>",
@@ -614,7 +614,7 @@ Alebo ste možno výraz zle napísali, napríklad \"dom a a záhrada\". Skúste 
 a text $3 článkov.",
 'nogomatch' => "Neexistuje článok s presne takýmto nadpisom; skúšam nájsť podobné nadpisy.
 
-<br><br>Chcete '''<a href=\"$1\" class=\"new\">vytvoriť nový článok s týmto nadpisom</a>'''? Alebo [[Project:Žiadané články|dať žiadosť na jeho tvorbu]]?.",
+<br /><br />Chcete '''<a href=\"$1\" class=\"new\">vytvoriť nový článok s týmto nadpisom</a>'''? Alebo [[Project:Žiadané články|dať žiadosť na jeho tvorbu]]?.",
 'titlematches' => 'Vyhovujúce nadpisy článkov',
 'notitlematches' => 'Niet vyhovujúcich nadpisov článkov',
 'textmatches' => 'Vyhovujúce texty článkov',
@@ -629,8 +629,8 @@ a text $3 článkov.",
 pretože tieto sa neregistrujú, alebo uvedením viac ako jedného vyhľadávaného výrazu,
 pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
 'powersearch' => 'Vyhľadávanie',
-'powersearchtext' => "Vyhľadávania v menných priestoroch :<br>
-$1<br>
+'powersearchtext' => "Vyhľadávania v menných priestoroch :<br />
+$1<br />
 $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9",
 'searchdisabled' => 'Prepáčte! Fulltextové vyhľadávanie bolo dočasne vypnuté z dôvodu preťaženia. Zatiaľ môžete použiť hľadanie pomocou Google, ktoré však nemusí byť aktuálne.',
 'blanknamespace' => '(Hlavný)',
@@ -877,7 +877,7 @@ Ak je nahraný súbor obrázok, možno ho takto vložiť do článku: <tt><nowik
 'deleteimgcompletely' => 'Vymaž všetky verzie',
 'imghistlegend' => "Vysvetlivky: (aktuálna) = toto je aktuálny obrázok, (zmazať) = zmaž
 túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
-<br>''Kliknite na dátum, aby sa zobrazil obrázok nahraný v ten deň''.",
+<br />''Kliknite na dátum, aby sa zobrazil obrázok nahraný v ten deň''.",
 'imagelinks' => 'Odkazy na obrázok',
 'linkstoimage' => 'Na tento obrázok odkazujú nasledujúce články:',
 'nolinkstoimage' => 'Žiadne články neobsahujú odkazy na tento obrázok.',
@@ -918,7 +918,7 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $3).",
 'maintenancebacklink' => 'Späť na Stránku údržby',
 'disambiguations' => 'Stránky na rozlíšenie viacerých významov',
 'disambiguationspage' => "Project:Odkazy na stránky na rozlíšenie viacerých významov",
-'disambiguationstext' => "Tieto články obsahujú odkazy na ''rozlišovaciu stránku''. Namiesto toho by mali obsahovať odkazy na stránku s príslušnou témou. <br>Stránka sa považuje za rozlišovaciu stránku, ak $1 na ňu obsahuje odkaz.<br>Odkazy z iných menných priestorov tu ''nie'' sú uvedené.",
+'disambiguationstext' => "Tieto články obsahujú odkazy na ''rozlišovaciu stránku''. Namiesto toho by mali obsahovať odkazy na stránku s príslušnou témou. <br />Stránka sa považuje za rozlišovaciu stránku, ak $1 na ňu obsahuje odkaz.<br />Odkazy z iných menných priestorov tu ''nie'' sú uvedené.",
 'doubleredirects' => 'Dvojité presmerovanie',
 'doubleredirectstext' => "Každý riadok obsahuje odkaz na prvé a druhé presmerovanie, ako aj prvý riadok z textu, na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na \"skutočný\" cieľ, na ktorý má odkazovať prvé presmerovanie.",
 'brokenredirects' => 'Pokazené presmerovania',
@@ -1266,7 +1266,7 @@ Potvrďte, že to naozaj chcete urobiť.',
 'lockdbsuccesssub' => 'Zamknutie databázy úspešné',
 'unlockdbsuccesssub' => 'Databáza bola úspešne odomknutá',
 'lockdbsuccesstext' => 'Databáza bola zamknutá.
-<br>Nezabudnite po dokončení údržby odstrániť zámok.',
+<br />Nezabudnite po dokončení údržby odstrániť zámok.',
 'unlockdbsuccesstext' => 'Databáza bola odomknutá.',
 
 # Make sysop

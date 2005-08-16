@@ -219,7 +219,7 @@ Recordeu personalitzar les vostres preferències del {{SITENAME}}.",
 "newusersonly"	=> " (només usuaris nous)",
 "remembermypassword" => "Vull que recordis la meva contrasenya entre sessions.",
 "loginproblem"	=> "<b>Hi ha hagut un problema amb l'entrada.</b><br />Proveu-ho de nou!",
-"alreadyloggedin" => "<font color=red><b>Benvingut, usuari $1!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Benvingut, usuari $1!</strong><br />\n",
 
 "login"			=> "Registre/Entrada",
 "userlogin"		=> "Registre/Entrada",

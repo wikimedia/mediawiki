@@ -284,7 +284,7 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "newusersonly" => " (defnyddwyr newydd yn unig)",
 "remembermypassword" => "Cofiwch fy allweddair dros mwy nag un sesiwn.",
 "loginproblem" => "<b>Mae problem efo'ch mewngofnodi.</b><br />Triwch eto!",
-"alreadyloggedin" => "<font color=red><b>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</strong><br />\n",
 
 "login"	=> "Mewngofnodi",
 "loginprompt" => "Rhaid i chi galluogi cwcis i mewngofnodi i {{SITENAME}}.",

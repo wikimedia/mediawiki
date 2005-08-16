@@ -254,7 +254,7 @@ Hvis du vil, kan du personliggjøre brukerinnstillingene.",
 "newusersonly"	=> " (kun nye brukere)",
 "remembermypassword" => "Husk passordet til neste gang.",
 "loginproblem"	=> "<b>Du ble ikke logget inn.</b><br />Prøv igjen!",
-"alreadyloggedin" => "<font color=red><b>Bruker $1 er allerede logget inn!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Bruker $1 er allerede logget inn!</strong><br />\n",
 
 
 "login"			=> "Logg inn",

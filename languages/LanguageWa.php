@@ -264,7 +264,7 @@ Vosse conte a stî ahivé.
 "newusersonly"	=> " (seulmint po les noveas uzeus)",
 "remembermypassword" => "Rimimbrer m'&nbsp;sicret inte les sessions.",
 "loginproblem"	=> "<b>Åk n'&nbsp;a nén stî tot vs elodjant.</b><br />Rissayîz!",
-"alreadyloggedin" => "<font color=red><b>Uzeu $1, vos estoz ddja elodjî!</b></font><br />",
+"alreadyloggedin" => "<strong>Uzeu $1, vos estoz ddja elodjî!</strong><br />",
 "login"			=> "S'&nbsp;elodjî",
 "loginprompt"		=> "Vos dvoz permete les coûkes po vs elodjî so Wikipedia.",
 "userlogin"		=> "S' elodjî", # pont d' "nbsp" chal
@@ -461,29 +461,7 @@ $2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9",
 "searchdisabled" => "<p>Mande escuzes! Li cweraedje å dvins des årtikes a stî dismetou
 pol moumint, cåze ki l'&nbsp;sierveu est fortcherdjî.
 Tot ratindant, vos ploz eployî Google po fé les rcweraedjes,
-mins çoula pout esse ene miete vî.</p>
-
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Cweri avou Google\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br />
-<input type=radio name=sitesearch value=\"\"> sol waibe
-<input type=radio name=sitesearch value=\"{$wgServer}\" checked> so {$wgServer} <br />
-<input type='hidden' name='hl' value='wa'>
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
+mins çoula pout esse ene miete vî.</p>",
 "blanknamespace" => "(Mwaisse)",
 
 # Preferences page

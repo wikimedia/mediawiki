@@ -204,7 +204,7 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "newusersonly"	=> " (solo per nuovi Utenti)",
 "remembermypassword" => "Ricorda la mia password per più sessioni (richiede uso dei cookies).",
 "loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
-"alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />\n",
 
 "login"			=> "Log in",
 "userlogin"		=> "Log in",

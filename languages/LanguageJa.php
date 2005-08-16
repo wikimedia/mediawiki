@@ -224,7 +224,7 @@ again as the same or as a different user.\n",
 "newusersonly"	=> " (新規ユーザのみ)",
 "remembermypassword" => "セッションをまたがってパスワードを保持する。",
 "loginproblem"	=> "<b>ログインでエラーが発生しました。</b><br />再度実行してください。",
-"alreadyloggedin" => "<font color=red><b>ユーザ $1 は、すでにログイン済みです。</b></font><br />\n",
+"alreadyloggedin" => "<strong>ユーザ $1 は、すでにログイン済みです。</strong><br />\n",
 
 "login"			=> "ログイン",
 "userlogin"		=> "ログイン",

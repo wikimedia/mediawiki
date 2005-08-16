@@ -384,7 +384,7 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du ser gjennom brukarin
 'yourdomainname'          => 'Domenet ditt',
 'externaldberror'         => 'Det var anten ein ekstern databasefeil i tilgjengekontrollen, eller du har ikkje løyve til å oppdatera den eksterne kontoen din.',
 'loginproblem'	          => '<b>Du vart ikkje innlogga.</b><br />Prøv om att!',
-'alreadyloggedin'         => '<font color=red><b>Brukar $1, du er allereie innlogga!</b></font><br />',
+'alreadyloggedin'         => '<strong>Brukar $1, du er allereie innlogga!</strong><br />',
 'login'			  => 'Logg inn',
 'loginprompt'             => 'Nettlesaren din må godta informasjonskapslar for at du skal kunna logge inn.',
 'userlogin'		  => 'Lag brukarkonto / logg inn',

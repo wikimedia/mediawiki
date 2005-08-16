@@ -254,7 +254,7 @@ Mos harro të vendosësh preferimet e tua të uikipedias.",
 "newusersonly"	=> " (përdoruesit e rinj vetëm)",
 "remembermypassword" => "Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme.",
 "loginproblem"	=> "<b>Kishte një problem me hyrjen tënde.</b><br />Provoje përsëri!",
-"alreadyloggedin" => "<font color=red><b>Përdorues $1, ti ke hyrë brënda më parë!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Përdorues $1, ti ke hyrë brënda më parë!</strong><br />\n",
 
 "login"			=> "Hyrje",
 "userlogin"		=> "Hyrje",

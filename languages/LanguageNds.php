@@ -365,7 +365,7 @@ Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
 'newusersonly'          => ' (blots för niege Liddmaten)',
 'remembermypassword'    => 'Duersam inloggen',
 'loginproblem'           => '<b>Dor weer en Problem mit dien Anmellen.</b><br />Versöök dat noch eenmal!',
-'alreadyloggedin'       => '<font color=\'red\'><b>Bruker $1, du büst al anmellt!</b></font><br />',
+'alreadyloggedin'       => '<strong>Bruker $1, du büst al anmellt!</strong><br />',
 
 'login'                         => 'Anmellen',
 'loginprompt'           => 'Üm sik bi {{SITENAME}} antomellen, musst du Cookies aktiveert hebben.',
@@ -461,7 +461,7 @@ Föög diene Ännern in dat Textfeld baven in.
 Wenn du spiekerst, warrn alle niegeren Versionen överschrieven.</strong>',
 'yourdiff'                      => 'Ünnerscheed',
 'copyrightwarning'       => "
-<b><font size='+1'>Kopeer kene Websieten</font>, de nich dien egen sünd un bruuk <font size='+1'>kene Warken, de enen Oorheverrecht ünnerliggt,</font>
+<b><big>Kopeer kene Websieten</big>, de nich dien egen sünd un bruuk <big>kene Warken, de enen Oorheverrecht ünnerliggt,</big>
 ahn Verlööv vun de Copyright-Inhebbers!</b>
 <p>Du giffst hiermit dien Tosaag, dat du dien Text <strong>sülvst verfaat</strong> hest, dat de Text Gemeengood
 (<strong>„Public Domain“</strong>) is, oder dat de <strong>Copyright-Inhebber</strong> sien <strong>Tostimmen</strong> geven hett.

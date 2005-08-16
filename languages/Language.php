@@ -586,7 +586,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
-'alreadyloggedin' => "<font color=red><b>User $1, you are already logged in!</b></font><br />\n",
+'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />\n",
 
 'login'			=> 'Log in',
 'loginprompt'           => "You must have cookies enabled to log in to {{SITENAME}}.",
@@ -2121,7 +2121,7 @@ will expire at $4.
 
 # Trackbacks
 'trackbackbox' => "<div id='mw_trackbacks'>
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>
 ",

@@ -239,7 +239,7 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "newusersonly" => " (alleen nieuwe gebruikers)",
 "remembermypassword" => "Mijn wachtwoord onthouden voor latere sessies.",
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<font color=red><b>Gebruiker $1, u bent al aangemeld.</b></font><br />\n",
+"alreadyloggedin" => "<strong>Gebruiker $1, u bent al aangemeld.</strong><br />\n",
 
 "login"   => "Aanmelden & Inschrijven",
 "userlogin"  => "Aanmelden",
@@ -358,20 +358,7 @@ $1<br />
 $2 Toon redirects &nbsp; Zoek: $3 $9",
 "searchdisabled" => "Wegens een overbelasting van de server zijn sommige functies die het systeem extra belasten tijdelijk niet beschikbaar.
  Hierdoor is in de interne zoekfunctie van {{SITENAME}} (vermoedelijk) niet beschikbaar voor onbepaalde duur.<p>
-Via google kunt u zoeken op {{SITENAME}}. <br />
-<form method=\"get\" action=\"http://www.google.com/search\">
-<table bgcolor=\"#ffffff\" style=\"width: 752px; height: 76px;\"><tbody><tr><td>
-<a href=\"http://www.google.com/\">
-<img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\"></a>
-</td>
-<td>
-<input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"\">
-<input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in {{SITENAME}}\">
-<font size=\"-1\">
-<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br /><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">{{SITENAME}} NL<br />
-</font>
-</td></tr></tbody></table>
-</form>
+Via google kunt u zoeken op {{SITENAME}}.
 <p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen.
 Als u zoekt via google op {{SITENAME}} zal u ook treffers vinden op {{SITENAME}} die geen artikels zijn.
 {{SITENAME}} heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's.

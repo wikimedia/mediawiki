@@ -198,7 +198,7 @@ require_once('LanguageUtf8.php');
 'newusersonly'	=> ' (새내기 사용자)',
 'remembermypassword' => '세쎤동안 암호를 기억합니다.',
 'loginproblem'	=> '<b>들어가는 데 문제가 있습니다.</b><br />다시 해 보세요!',
-'alreadyloggedin' => '<font color=red><b>$1 님, 벌써 들어와 있습니다!</b></font><br />\n',
+'alreadyloggedin' => '<strong>$1 님, 벌써 들어와 있습니다!</strong><br />\n',
 
 'login'		       => '들어가기',
 'userlogin'	   => '들어가기',

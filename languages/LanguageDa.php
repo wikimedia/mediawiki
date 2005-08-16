@@ -367,7 +367,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 "loginproblem"	=> "<b>Der har været et problem med at få dig logget på.</b><br />Prøv igen!",
-"alreadyloggedin" => "<font color=red><b>Bruger $1, du er allerede logget på!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Bruger $1, du er allerede logget på!</strong><br />\n",
 
 "login"			=> "Log på",
 'loginprompt'   => "Du skal have cookies slået til for at kunne logge på {{SITENAME}}.",

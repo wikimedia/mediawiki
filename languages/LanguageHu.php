@@ -297,7 +297,7 @@ Ne felejtsd el átnézni a személyes {{SITENAME}} beállításaidat.",
 "newusersonly"	=> " (csak új felhasználóknak)",
 "remembermypassword" => "Jelszó megjegyzése a használatok között.",
 "loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br />Kérlek próbáld ismét!",
-"alreadyloggedin" => "<font color=red><b>Kedves $1, már be vagy lépve!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Kedves $1, már be vagy lépve!</strong><br />\n",
 
 "login"			=> "Belépés",
 "userlogin"		=> "Belépés",

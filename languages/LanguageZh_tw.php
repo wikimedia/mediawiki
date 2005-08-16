@@ -243,7 +243,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "newusersonly"	=> "（僅限新用戶）",
 "remembermypassword" => "下次登錄記住密碼。",
 "loginproblem"	=> "<b>登錄有問題。</b><br />再試一次！",
-"alreadyloggedin" => "<font color=red><b>用戶$1，您已經登錄了!</b></font><br />\n",
+"alreadyloggedin" => "<strong>用戶$1，您已經登錄了!</strong><br />\n",
 
 "login"			=> "登錄",
 "userlogin"		=> "用戶登錄",
@@ -383,24 +383,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "searchdisabled" => "<p>維基百科內部搜索功能由於高峰時段服務器超載而停止使用。
 您可以暫時通過
 <a href=\"http://google.com.tw/\">google</a>搜索維基百科。
-謝謝您的耐心。
-<!-- Search Google -->
-<form id=\"google\" method=\"get\" action=\"http://www.google.com.tw/custom\">
-<table bgcolor=\"#FFFFFF\" cellspacing=0 border=0>
-<tr valign=top><td>
-<a href=\"http://www.google.com.tw/search\">
-<img src=\"http://www.google.com.tw/logos/Logo_40wht.gif\" border=0
-alt=\"Google\" align=\"middle\"></a>
-</td>
-<td>
-<input type=text name=\"q\" size=31 maxlength=255 value=\"$1\">
-<input type=submit name=\"sa\" value=\"Google搜索\">
-<input type=hidden name=\"cof\" value=\"LW:135;L:http://zh-tw.wikipedia.org/upload/wiki.png;LH:133;AH:left;S:http://www.wikiped<font face=arial,sans-serif size=-1>
-<input type=hidden name=\"domains\" value=\"zh-tw.wikipedia.org\"><br />
-<input type=radio name=\"sitesearch\" value=\"\"> 搜索WWW
-<input type=radio name=\"sitesearch\" value=\"zh-tw.wikipedia.org\" checked> 搜索zh-tw.wikipedia.org </font><br />
-</td></tr></table></form>
-<!-- Search Google -->\n",
+謝謝您的耐心。",
 
 # Preferences page
 #
