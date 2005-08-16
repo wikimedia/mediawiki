@@ -419,8 +419,9 @@ class Linker {
 			}
 			
 			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
+		}
 
-		} elseif ( $width ) {
+		if ( $width && $img->exists() ) {
 
 			# Create a resized image, without the additional thumbnail
 			# features
