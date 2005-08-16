@@ -25,23 +25,23 @@ if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
 if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
-        require_once( 'Profiling.php' );
+	require_once( 'Profiling.php' );
 } else {
-        function wfProfileIn( $fn = '' ) {
-                global $hackwhere, $wgDBname;
-                $hackwhere[] = $fn;
-                if (function_exists("setproctitle"))
-                        setproctitle($fn . " [$wgDBname]");
-        }
-        function wfProfileOut( $fn = '' ) {
-                global $hackwhere, $wgDBname;
-                if (count($hackwhere))
-                        array_pop($hackwhere);
-                if (function_exists("setproctitle") && count($hackwhere))
-                        setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
-        }
-        function wfGetProfilingOutput( $s, $e ) {}
-        function wfProfileClose() {}
+	function wfProfileIn( $fn = '' ) {
+		global $hackwhere, $wgDBname;
+		$hackwhere[] = $fn;
+		if (function_exists("setproctitle"))
+			setproctitle($fn . " [$wgDBname]");
+	}
+	function wfProfileOut( $fn = '' ) {
+		global $hackwhere, $wgDBname;
+		if (count($hackwhere))
+			array_pop($hackwhere);
+		if (function_exists("setproctitle") && count($hackwhere))
+			setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
+	}
+	function wfGetProfilingOutput( $s, $e ) {}
+	function wfProfileClose() {}
 	function wfLogProfilingData() {}
 }
 
