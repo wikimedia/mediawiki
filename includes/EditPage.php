@@ -354,12 +354,12 @@ class EditPage {
 				}
 			}
 			if($addstandardintro) {
-				$wgOut->addWikiText(wfmsg('newarticletext'));				
+				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );				
 			}
 		}
 
 		if( $this->mTitle->isTalkPage() ) {
-			$wgOut->addWikiText(wfmsg('talkpagetext'));
+			$wgOut->addWikiText( wfMsg( 'talkpagetext' ) );
 		}
 
 		# Attempt submission here.  This will check for edit conflicts,
@@ -733,12 +733,11 @@ wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArti
 		}
 
 		global $wgUseMetadataEdit ;
-		if ( $wgUseMetadataEdit )
-		{
+		if ( $wgUseMetadataEdit ) {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
-			$helppage = Title::newFromText ( wfmsg("metadata_page") ) ;
-			$top = str_replace ( "$1" , $helppage->getInternalURL() , wfmsg("metadata") ) ;
+			$helppage = Title::newFromText( wfMsg( "metadata_page" ) ) ;
+			$top = wfMsg( 'metadata', $helppage->getInternalURL() );
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
 		else $metadata = "" ;
