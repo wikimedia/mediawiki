@@ -13,7 +13,8 @@ require_once('languages.inc');
 
 define('ALL_LANGUAGES',    true);
 define('XGETTEXT_BIN',     'xgettext');
-define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg');
+define('MSGINIT_BIN',      'msginit');
+define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg ');
 
 define('LOCALE_OUTPUT_DIR', $IP.'/locale');
 
@@ -33,6 +34,32 @@ END;
 
 
 /**
+ * Return a dummy header for later edition.
+ * @return string A dummy header
+ */
+function poHeader() {
+return 
+'# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2005 MediaWiki
+# This file is distributed under the same license as the MediaWiki package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: bugzilllaaaaa\n"
+"POT-Creation-Date: 2005-08-16 20:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: VARIOUS <nobody>\n"
+"Language-Team: LANGUAGE <nobody>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+';
+}
+
+/**
  * generate and write a file in .po format.
  *
  * @param string $langcode Code of a language it will process.
@@ -40,17 +67,20 @@ END;
  * @return string Filename where stuff got saved or false.
  */
 function generatePo($langcode, &$messages) {
-	$data = ''; // TODO a .po header ?
+	$data = poHeader();
 
 	// Generate .po entries
 	foreach($messages as $identifier => $content) {
 		$data .= "msgid \"$identifier\"\n";
 
-		// Double quotes escaped for $content:
-		$tmp = 'msgstr "'.str_replace('"', '\"', $content)."\"";
-		// New line should end with "\n not \n
-		$data .= str_replace("\n", "\"\n\"", $tmp);
-		$data .= "\n\n";
+		// Escape backslashes
+		$tmp = str_replace('\\', '\\\\', $content);
+		// Escape doublelquotes
+		$tmp = preg_replace( "/(?<!\\\\)\"/", '\"', $tmp);
+		// Rewrite multilines to gettext format
+		$tmp = str_replace("\n", "\"\n\"", $tmp);
+
+		$data .= 'msgstr "'. $tmp . "\"\n\n";
 	}
 
 	// Write the content to a file in locale/XX/messages.po
@@ -68,6 +98,16 @@ function generatePo($langcode, &$messages) {
 	}
 }
 
+
+// Generate a template .pot based on source tree
+echo "Getting 'gettext' default messages from sources\n";
+exec( XGETTEXT_BIN
+  .' '.XGETTEXT_OPTIONS
+  .' -o '.$IP.'/locale/wfMsg.pot'
+  .' '.$IP.'/includes/*php'
+  );
+
+
 $langTool = new languages();
 
 // Do all languages
@@ -84,14 +124,4 @@ foreach ( $langTool->getList() as $langcode) {
 		}
 	}
 }
-
-// Generate a default .po based source tree
-echo "Getting 'gettext' default messages from sources\n";
-exec( XGETTEXT_BIN
-  .' '.XGETTEXT_OPTIONS
-  .' -o '.$IP.'/locale/wfMsg.po'
-  .' '.$IP.'/includes/*php'
-  );
-
-
 ?>
