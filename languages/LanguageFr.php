@@ -113,7 +113,7 @@ require_once( 'LanguageUtf8.php' );
 #
 'categories'	=> 'Catégories de la page',
 'category'	=> 'catégorie',
-'category_header' => 'Articles dans la catégorie "$1"',
+'category_header' => 'Articles dans la catégorie « $1 »',
 'subcategories'	=> 'Sous-catégories',
 'uncategorizedcategories' => 'Catégories sans catégories',
 'uncategorizedpages' => 'Pages sans catégories',
@@ -121,7 +121,7 @@ require_once( 'LanguageUtf8.php' );
 'subcategorycount1' => 'Cette catégorie possède $1 sous-catégorie.',
 
 'allarticles'   => 'Tous les articles',
-'linktrail'     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
+'linktrail'     => '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD',
 'mainpage'      => 'Accueil',
 'mainpagetext'	=> 'Logiciel {{SITENAME}} installé.',
 'portal'        => 'Communauté',
@@ -202,7 +202,7 @@ require_once( 'LanguageUtf8.php' );
 'sysoptext'     => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d\'"administrateur".
 Voir $1.',
 'developertitle' => 'Accès développeur requis',
-'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de "développeur".
+'developertext' => 'L\'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de « développeur ».
 Voir $1.',
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
@@ -247,25 +247,25 @@ Voir $1.',
 #
 'error'		=> 'Erreur',
 'badaccess' => 'Erreur de permission',
-'badaccesstext' => 'L\'action entreprise est limitée aux utilisateurs possédant le droit "$2".
+'badaccesstext' => 'L\'action entreprise est limitée aux utilisateurs possédant le droit « $2 ».
 Voir $1',
 'databaseerror' => 'Erreur base de données',
-'dberrortext'	=> "Erreur de syntaxe dans la base de données. La dernière requête traitée par la base de données était :
+'dberrortext'	=> 'Erreur de syntaxe dans la base de données. La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
-depuis la fonction \"<tt>$2</tt>\".
-MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
+depuis la fonction « <tt>$2</tt> ».
+MySQL a renvoyé l\'erreur « <tt>$3: $4</tt> ».',
 'dberrortextcl' => 'Une requête à la base de donnée comporte une erreur de syntaxe. La dernière requête envoyée était:
-"$1"
-effectuée par la fonction "$2"
-MySQL a retourné l\'erreur "$3 : $4".',
-'noconnect'	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
+« $1 »
+effectuée par la fonction « $2 »
+MySQL a retourné l\'erreur « $3 : $4 ».',
+'noconnect'	=> 'Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.', //"Connexion impossible à la base de données sur $1",
 'nodb'		=> 'Sélection impossible de la base de données $1',
 'cachederror'	=> 'Ceci est une copie de la page demandée et peut ne pas être à jour',
 'readonly'	=> 'Mises à jour bloquées sur la base de données',
 'enterlockreason' => 'Indiquez la raison du blocage, ainsi qu\'une estimation de la durée de blocage ',
-'readonlytext'	=> "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
-<p>$1",
-'missingarticle' => 'La base de données n\'a pas pu trouver le texte d\'une page existante, dont le titre est "$1".
+'readonlytext'	=> 'Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l\'ordre. Voici la raison pour laquelle l\'administrateur a bloqué la base :
+<p>$1',
+'missingarticle' => 'La base de données n\'a pas pu trouver le texte d\'une page existante, dont le titre est « $1 ».
 Ce n\'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adresse de la page fautive.',
 'internalerror' => 'Erreur interne',
@@ -273,11 +273,11 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adress
 'fileinfo' => '$1Ko, type MIME: <tt>$2</tt>',
 'filerenameerror' => 'Impossible de renommer « $1 » en « $2 ».',
 'filedeleteerror' => 'Impossible de supprimer « $1 ».',
-'filenotfound'	=> 'Fichier "$1" introuvable.',
+'filenotfound'	=> 'Fichier « $1 » introuvable.',
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror'	=> 'Erreur: Impossible de soumettre le formulaire',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
-'cannotdelete'	=> "Impossible de supprimer la page ou l'image indiquée.",
+'cannotdelete'	=> 'Impossible de supprimer la page ou l\'image indiquée.',
 'badtitle'	=> 'Mauvais titre',
 'badtitletext'	=> 'Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide',
 'laggedslavemode' => 'Attention : la page n\'intègre peut être pas les dernières éditions',
@@ -324,7 +324,7 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'createaccount' => 'Créer un nouveau compte',
 'createaccountmail'	=> 'par courriel',
 'badretype'     => 'Les deux mots de passe que vous avez saisis ne sont pas identiques.',
-'userexists'    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
+'userexists'    => 'Le nom d\'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.',
 'youremail'     => 'Mon adresse électronique',
 'yournick'      => 'Signature pour les discussions (avec <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
 'yourrealname'	=> 'Votre nom réel*',
@@ -332,23 +332,23 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 'prefs-help-realname' => '* <strong>Votre nom</strong> (facultatif): si vous le spécifiez, il sera utilisé pour l\'attribution de vos contributions.',
 'prefs-help-email' => '* <strong>Adresse électronique</strong> (facultatif): permet de vous contacter depuis le site sans dévoiler votre adresse, et utilisée pour vous envoyer un nouveau mot de passe si vous l\'oubliez.',
 'loginerror'    => 'Problème d\'identification',
-'nocookiesnew'	=> "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
-'nocookieslogin' => "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
-'noname'        => "Vous n'avez pas saisi de nom d'utilisateur.",
-'loginsuccesstitle' => "Identification réussie.",
-'loginsuccess'  => "Vous êtes actuellement connecté sur {{SITENAME}} en tant que « $1 ».",
-'nosuchuser'    => "L'utilisateur « $1 » n'existe pas.
-Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
+'nocookiesnew'	=> 'Le compte utilisateur a été créé, mais vous n\'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.',
+'nocookieslogin' => '{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.',
+'noname'        => 'Vous n\'avez pas saisi de nom d\'utilisateur.',
+'loginsuccesstitle' => 'Identification réussie.',
+'loginsuccess'  => 'Vous êtes actuellement connecté sur {{SITENAME}} en tant que « $1 ».',
+'nosuchuser'    => 'L\'utilisateur « $1 » n\'existe pas.
+Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.',
 'nosuchusershort' => 'Il n\'y a pas de contributeur avec le nom « $1 ». Vérifiez l\'orthographe.',
 'wrongpassword' => 'Le mot de passe est incorrect. Essayez à nouveau.',
 'mailmypassword' => 'Envoyez-moi un nouveau mot de passe',
 'passwordremindertitle' => 'Votre nouveau mot de passe sur {{SITENAME}}',
-'passwordremindertext' => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès au wiki.
-Le mot de passe de l'utilisateur « $2 » est à présent « $3 ».
-Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
-'noemail'  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur « $1 ».",
-'passwordsent' => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur « $1 ».
-Veuillez vous identifier dès que vous l'aurez reçu.",
+'passwordremindertext' => 'Quelqu\'un (probablement vous) ayant l\'adresse IP $1 a demandé à ce qu\'un nouveau mot de passe vous soit envoyé pour votre accès au wiki.
+Le mot de passe de l\'utilisateur « $2 » est à présent « $3 ».
+Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.',
+'noemail'  => 'Aucune adresse électronique n\'a été enregistrée pour l\'utilisateur « $1 ».',
+'passwordsent' => 'Un nouveau mot de passe a été envoyé à l\'adresse électronique de l\'utilisateur « $1 ».
+Veuillez vous identifier dès que vous l\'aurez reçu.',
 'loginend'	=> '&nbsp;',
 'mailerror'	=> 'Erreur en envoyant le courriel : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 comptes. Vous ne pouvez pas en créer de nouveaux.',
@@ -387,7 +387,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'preview'      => 'Prévisualiser',
 'showpreview'  => 'Prévisualisation',
 'blockedtitle' => 'Utilisateur bloqué',
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateurs|administateurs]] pour en discuter.",
+'blockedtext'  => 'Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateurs|administateurs]] pour en discuter.',
 'whitelistedittitle' => 'Login requis pour rédiger',
 'whitelistedittext' => 'Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger',
 'whitelistreadtitle' => 'Login requis pour lire',
@@ -396,36 +396,36 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'whitelistacctext' => 'Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées', // Looxix
 'loginreqtitle'	=> 'Nom d\'utilisateur nécessaire',
 'loginreqlink' => 'connecter',
-'loginreqpagetext'	=> "Vous devez vous $1 pour voir les autres pages.",
+'loginreqpagetext'	=> 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle' => 'Mot de passe envoyé.',
 'accmailtext' => 'Le mot de passe de « $1 » a été envoyé à $2.',
 
 'newarticle'   => '(Nouveau)',
 'newarticletext' => 'Saisissez ici le texte de votre article.',
-'anontalkpagetext' => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.",
-'noarticletext' => "(Il n'y a pour l'instant aucun texte sur cette page)",
+'anontalkpagetext' => '---- \'\'Ceci est la page de discussion pour un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'[[adresse IP]] numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute future confusion à l\'avenir.\'\'',
+'noarticletext' => '(Il n\'y a pour l\'instant aucun texte sur cette page)',
 'clearyourcache'    => "'''Note:''' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.",
 'updated'      => '(Mis à jour)',
 'note'         => '<strong>Note :</strong> ',
-'previewnote'  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
-'previewconflict' => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
+'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé!',
+'previewconflict' => 'La prévisualisation montre le texte de cette page tel qu\'il apparaîtra une fois sauvegardé.',
 'editing'         => 'modification de $1',
 'editingsection'  => 'modification de $1 (section)',
 'editingcomment'  => 'modification de $1 (commentaire)',
 'editconflict' => 'Conflit de modification : $1',
-'explainconflict' => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
+'explainconflict' => '<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
+La zone d\'édition supérieure contient le texte tel qu\'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d\'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />',
 'yourtext'     => 'Votre texte',
 'storedversion' => 'Version enregistrée',
-"editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>",
-"yourdiff"  => "Différences",
-"copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
-"longpagewarning" => "<strong>AVERTISSEMENT : cette page a une longueur de $1 ko;
+'editingold'   => '<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'yourdiff'  => 'Différences',
+'copyrightwarning' => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu\'en apportant vos propres écrits ou des écrits issus d\'une source libre de droits. <b>N\'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>',
+'longpagewarning' => "<strong>AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.</strong>",
-"readonlywarning" => "<strong>AVERTISSEMENT : cette page a été bloquée pour maintenance,
+'readonlywarning' => "<strong>AVERTISSEMENT : cette page a été bloquée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.</strong>",
-"protectedpagewarning" => "<strong>AVERTISSEMENT : cette page a été bloquée.
+'protectedpagewarning' => "<strong>AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
 vous suivez les [[Project:Page_protégée|directives concernant les pages protégées]].<strong>",
 
@@ -455,9 +455,9 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 
 # Category pages
 #
-'categoriespagetext' => "Les catégories suivantes existent sur le wiki :",
-'categoryarticlecount' => "Il y a $1 articles dans cette catégorie.",
-'categoryarticlecount1' => "Il y a $1 article dans cette catégorie.",
+'categoriespagetext' => 'Les catégories suivantes existent sur le wiki :',
+'categoryarticlecount' => 'Il y a $1 articles dans cette catégorie.',
+'categoryarticlecount1' => 'Il y a $1 article dans cette catégorie.',
 
 
 #  Diffs
@@ -471,7 +471,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 # Search results
 #
 'searchresults' => 'Résultat de la recherche',
-'searchresulttext' => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].",
+'searchresulttext' => 'Pour plus d\'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].',
 'searchquery' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
 'badquerytext' => "Nous n'avons pas pu traiter votre requête.
@@ -480,13 +480,12 @@ Vous avez probablement recherché un mot d'une longueur inférieure
 aussi pu faire une erreur de syntaxe, telle que \"poisson et
 et écailles\".
 Veuillez essayer une autre requête.",
-'matchtotals' => "La requête « $1 » correspond à $2 titre(s)
-d'article et au texte de $3 article(s).",
-'nogomatch' => "Aucune page avec ce titre n'existe, essai avec la recherche complète.",
-'titlematches' => "Correspondances dans les titres",
-'notitlematches' => "Aucun titre d'article ne contient le(s) mot(s) demandé(s)",
-'textmatches' => "Correspondances dans les textes",
-'notextmatches' => "Aucun texte d'article ne contient le(s) mot(s) demandé(s)",
+'matchtotals' => 'La requête « $1 » correspond à $2 titre(s) d\'article et au texte de $3 article(s).',
+'nogomatch' => 'Aucune page avec ce titre n\'existe, essai avec la recherche complète.',
+'titlematches' => 'Correspondances dans les titres',
+'notitlematches' => 'Aucun titre d\'article ne contient le(s) mot(s) demandé(s)',
+'textmatches' => 'Correspondances dans les textes',
+'notextmatches' => 'Aucun texte d\'article ne contient le(s) mot(s) demandé(s)',
 'prevn'   => '$1 précédents',
 'nextn'   => '$1 suivants',
 'viewprevnext' => 'Voir ($1) ($2) ($3).',
@@ -495,7 +494,7 @@ d'article et au texte de $3 article(s).",
 'nonefound'  => "<strong>Note</strong>: l'absence de résultat est souvent due à l'emploi de termes de recherche trop courants, comme \"à\" ou \"de\",
 qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seules les pages
 contenant tous les termes apparaissent dans les résultats).",
-'powersearch' => "Recherche",
+'powersearch' => 'Recherche',
 'powersearchtext' => "
 Rechercher dans les espaces :<br />
 $1<br />
@@ -503,14 +502,13 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
 'searchdisabled' => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
 
 ",
-"blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
+'blanknamespace' => '(Principal)',	// FIXME FvdP: trad de "(Main)"
 
 # Preferences page
 #
 'preferences'       => 'Préférences',
 'prefsnologin'      => 'Non connecté',
-'prefsnologintext'  => "Vous devez être [[Special:Userlogin|connecté]]
-pour modifier vos préférences d'utilisateur.",
+'prefsnologintext'  => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier vos préférences d\'utilisateur.',
 "prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
 
 Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant les options.",
@@ -526,8 +524,8 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'math_lexing_error'	=> 'erreur lexicale',
 'math_syntax_error'	=> 'erreur de syntaxe',
 'math_image_error'	=> "La conversion en PNG a échouée, vérifiez l'installation de Latex, dvips, gs et convert",
-'math_bad_tmpdir'	=> "Ne peux pas crééer ou écrire dans le répertoire temporaire",
-'math_bad_output'	=> "Ne peux pas crééer ou écrire dans le répertoire de sortie",
+'math_bad_tmpdir'	=> 'Ne peux pas crééer ou écrire dans le répertoire temporaire',
+'math_bad_output'	=> 'Ne peux pas crééer ou écrire dans le répertoire de sortie',
 'math_notexvc'		=> "L'éxécutable 'texvc' est introuvable. Lisez math/README pour le configurer.",
 'prefs-personal'    => 'Informations personnelles',
 'prefs-rc'          => 'Modifications récentes et affichage des ébauches',
@@ -553,15 +551,15 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'timezoneoffset'    => 'Décalage horaire',
 'servertime'	    => 'Heure du serveur',
 'guesstimezone'     => 'Utiliser la valeur du navigateur',
-"emailflag"         => "Ne pas recevoir de courrier électronique<br /> des autres utilisateurs",
-"defaultns"         => "Par défaut, rechercher dans ces espaces :",
-'yourlanguage' => "Langue de l'interface&nbsp;",
+'emailflag'         => 'Ne pas recevoir de courrier électronique<br /> des autres utilisateurs',
+"defaultns"         => 'Par défaut, rechercher dans ces espaces :',
+'yourlanguage' => 'Langue de l\'interface',
 
 # Recent changes
 #
-"changes"	=> "modifications",
-"recentchanges" => "Modifications récentes",
-"recentchangestext" => "Suivez sur cette page les dernières modifications de {{SITENAME}}.
+'changes'	=> 'modifications',
+'recentchanges' => 'Modifications récentes',
+'recentchangestext' => "Suivez sur cette page les dernières modifications de {{SITENAME}}.
 [[{{ns:4}}:Bienvenue|Bienvenue]] aux nouveaux participants!
 Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[{{ns:4}}:FAQ|foire aux questions]],
 [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]]
@@ -572,12 +570,12 @@ et [[{{ns:4}}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{{ns:4}}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 'rcloaderr'  => "Chargement des dernières modifications",
 'rcnote'  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
-'rcnotefrom'	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
-'rclistfrom'	=> "Afficher les nouvelles modifications depuis le $1.",
+'rcnotefrom'	=> 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
+'rclistfrom'	=> 'Afficher les nouvelles modifications depuis le $1.',
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
-'showhideminor' => "$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés | $4 patrolled edits",
-'rclinks'	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
+'showhideminor' => '$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés | $4 patrolled edits',
+'rclinks'	=> 'Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.',
 'rchide'  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 'rcliu'	=> "; $1 modifications par des contributeurs connectés",
 'diff'            => 'diff',
@@ -601,7 +599,7 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'uploadnologin' => 'Non connecté(e)',
 'uploadnologintext' => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
-'uploaderror'  => "Erreur",
+'uploaderror'  => 'Erreur',
 'uploadtext'   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
 prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de {{SITENAME}} et assurez-vous que vous les respectez.<br />
 N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.
@@ -626,22 +624,22 @@ Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé c
 '''<nowiki>[[media:nom_du_fichier.ogg]]</nowiki>''' pour les sons.
 
 N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
-"uploadlog"  => "log d'upload",		// FIXME
-"uploadlogpage" => "Log_d'upload",	// FIXME
-"uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
-L'heure indiquée est celle du serveur (UTC).
+'uploadlog'  => 'log d\'upload',
+'uploadlogpage' => 'Log_d\'upload',
+'uploadlogpagetext' => 'Voici la liste des derniers fichiers copiés sur le serveur.
+L\'heure indiquée est celle du serveur (UTC).
 <ul>
 </ul>
-",
+',
 'filename'	=> 'Nom&nbsp;',
 'filedesc'	=> 'Description&nbsp;',
 'filestatus'	=> 'Statut du copyright',
 'filesource'	=> 'Source',
-'copyrightpage' => "{{ns:4}}:Copyright",
-'copyrightpagename' => "licence {{SITENAME}}",
-'uploadedfiles' => "Fichiers copiés",
-'ignorewarning' => "Ignorer l'avertissement et copier le fichier quand même.",
-'minlength'	=> "Les noms des images doivent comporter au moins trois lettres.",
+'copyrightpage' => '{{ns:4}}:Copyright',
+'copyrightpagename' => 'licence {{SITENAME}}',
+'uploadedfiles' => 'Fichiers copiés',
+'ignorewarning' => 'Ignorer l\'avertissement et copier le fichier quand même.',
+'minlength'	=> 'Les noms des images doivent comporter au moins trois lettres.',
 'illegalfilename'	=> 'Le fichier « $1 » contient des caractères qui ne sont pas autorisés dans le titre d\'une page. Veuillez renommer le fichier et le réenvoyer.',
 'badfilename' => 'L\'image a été renommée « $1 ».',
 'badfiletype' => '« .$1 » n\'est pas un format recommandé pour les fichiers images.',
