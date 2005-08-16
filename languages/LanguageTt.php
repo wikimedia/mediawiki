@@ -113,25 +113,6 @@ require_once( "LanguageUtf8.php" );
 'nov' => "Nöy",
 'dec' => "Dek",
 
-# User Toggles
-"tog-underline"           => "Underline links",
-"tog-highlightbroken"     => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
-"tog-justify"             => "Justify paragraphs",
-"tog-hideminor"           => "Hide minor edits in recent changes",
-"tog-usenewrc"            => "Enhanced recent changes (not for all browsers)",
-"tog-numberheadings"      => "Auto-number headings",
-"tog-showtoolbar"         =>"Show edit toolbar",
-"tog-editondblclick"      => "Edit pages on double click (JavaScript)",
-"tog-editsection"         =>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
-"tog-showtoc"             =>"Show table of contents<br />(for articles with more than 3 headings)",
-"tog-rememberpassword"    => "Remember password across sessions",
-"tog-editwidth"           => "Edit box has full width",
-"tog-watchdefault"                => "Add pages you edit to your watchlist",
-"tog-minordefault"                => "Mark all edits minor by default",
-"tog-previewontop"                => "Show preview before edit box and not after it",
-"tog-nocache"             => "Disable page caching",
-
 );
 
 class LanguageTt extends LanguageUtf8 {
