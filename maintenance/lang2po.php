@@ -13,7 +13,8 @@ require_once('languages.inc');
 
 define('ALL_LANGUAGES',    true);
 define('XGETTEXT_BIN',     'xgettext');
-define('MSGINIT_BIN',      'msginit');
+define('MSGMERGE_BIN',     'msgmerge');
+
 define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg ');
 
 define('LOCALE_OUTPUT_DIR', $IP.'/locale');
@@ -98,14 +99,27 @@ function generatePo($langcode, &$messages) {
 	}
 }
 
+function applyPot($langcode) {
+	$langdir = LOCALE_OUTPUT_DIR.'/'.$langcode;
+
+	$from = $langdir.'/fromlanguagefile.po';
+	$pot = LOCALE_OUTPUT_DIR.'/wfMsg.pot';
+	$dest = $langdir.'/messages.po';
+
+	// Merge template and generate file to get final .po	
+	exec(MSGMERGE_BIN." $from $pot -o $dest ");
+	// delete no more needed file
+	unlink($from);
+}
 
 // Generate a template .pot based on source tree
-echo "Getting 'gettext' default messages from sources\n";
+echo "Getting 'gettext' default messages from sources:";
 exec( XGETTEXT_BIN
   .' '.XGETTEXT_OPTIONS
   .' -o '.$IP.'/locale/wfMsg.pot'
   .' '.$IP.'/includes/*php'
   );
+echo "done.\n";
 
 
 $langTool = new languages();
@@ -121,6 +135,9 @@ foreach ( $langTool->getList() as $langcode) {
 		echo "ok\n";
 		if( ! generatePo($langcode, $$arr) ) {
 			echo "ERROR: Failed to wrote file.\n";
+		} else {
+			echo "Applying template:";
+			applyPot($langcode);
 		}
 	}
 }
