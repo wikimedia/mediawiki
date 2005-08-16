@@ -236,7 +236,7 @@ class WikiExporter {
 	function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if( is_null( $title ) ) {
-			return WikiError( "Can't export invalid title" );
+			return new WikiError( "Can't export invalid title" );
 		} else {
 			return $this->pageByTitle( $title );
 		}

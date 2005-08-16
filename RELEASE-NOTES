@@ -21,6 +21,8 @@ Misc work going on.....
 * (bug 2323) Remove "last" tabindex from history page
 * (bug 3141) Partial support for Breton language (thanks Fulup).
 * Partial support for Basque language (from wikipedia and meta)
+* (bug 3116) Division by zero on [[Image:Foo.png|123x123px|]]
+
 
 === Caveats ===
 
