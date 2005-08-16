@@ -334,7 +334,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
 "userlogin"		=> "Anmelden",
-'disabled_on_this_wiki'	=> '<div class=\"error\"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
+'disabled_on_this_wiki'	=> '<div class="error"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
 Durch die automatische Anmeldung beim Benutzerkonto sind eigene Benutzer-Anmeldung oder -Abmeldung nicht erforderlich.</b></div>',
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",

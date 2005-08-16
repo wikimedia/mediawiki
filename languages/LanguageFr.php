@@ -1169,7 +1169,7 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'exif-jpeginterchangeformatlength' => 'Taille en octet des données JPEG',
 'exif-transferfunction' => 'Fonction de transfert',
 'exif-datetime' => 'Date et heure de changement du fichier',
-'exif-imagedescription' => 'Titre de l\image',
+'exif-imagedescription' => 'Titre de l\'image',
 'exif-make' => 'Fabricant de l\'appareil',
 'exif-model' => 'Modèle de l\'appareil',
 'exif-software' => 'Logiciel utilisé',
