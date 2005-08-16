@@ -447,10 +447,10 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 (dern) = différence avec la version précédente, M = modification mineure",
 'selectnewerversionfordiff' => 'Choisir une version plus récente',
 'selectolderversionfordiff' => 'Choisir une version plus ancienne',
-'previousdiff' => '&larr; Différence précédente',
-'previousrevision' => '&larr; Version précédente',
-'nextdiff' => 'Différence suivante &rarr;',
-'nextrevision' => 'Version suivante &rarr;',
+'previousdiff' => '← Différence précédente',
+'previousrevision' => '← Version précédente',
+'nextdiff' => 'Différence suivante →',
+'nextrevision' => 'Version suivante →',
 
 
 # Category pages

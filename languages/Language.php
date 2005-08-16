@@ -768,8 +768,8 @@ Please check the URL you used to access this page.\n",
 'currentrev'	=> 'Current revision',
 'revisionasof'          => 'Revision as of $1',
 'revisionasofwithlink'  => 'Revision as of $1; $2<br />$3 | $4',
-'previousrevision'	=> '&larr;Older revision',
-'nextrevision'		=> 'Newer revision&rarr;',
+'previousrevision'	=> '←Older revision',
+'nextrevision'		=> 'Newer revision→',
 'currentrevisionlink'   => 'view current revision',
 'cur'			=> 'cur',
 'next'			=> 'next',
@@ -974,7 +974,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'nchanges'		=> "$1 changes",
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
-'sectionlink' => '&rarr;',
+'sectionlink' => '→',
 'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
 
@@ -1760,8 +1760,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'deletedrevision' => 'Deleted old revision $1.',
 
 # browsing diffs
-'previousdiff' => '&larr; Previous diff',
-'nextdiff' => 'Next diff &rarr;',
+'previousdiff' => '← Previous diff',
+'nextdiff' => 'Next diff →',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
 'thumbsize'	=> 'Thumbnail size: ',

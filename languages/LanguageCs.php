@@ -535,8 +535,8 @@ Všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} jsou zveřejňovány podle
 'currentrev'    => 'Aktuální verze',
 'revisionasof'          => 'Verze z $1',
 'revisionasofwithlink'  => 'Verze z $1; $2<br />$3 | $4',
-'previousrevision' => '&larr; Starší verze',
-'nextrevision'		=> 'Novější verze &rarr;',
+'previousrevision' => '← Starší verze',
+'nextrevision'		=> 'Novější verze →',
 'currentrevisionlink'   => 'zobrazit aktuální verzi',
 'cur'                   => 'teď',
 'next'                  => 'násl',
@@ -712,7 +712,7 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'nchanges'              => '$1 změn',
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
-'sectionlink' => '&rarr;',
+'sectionlink' => '→',
 'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[Sledujících uživatelů: $1]',	#TODO: plural
 
@@ -1444,8 +1444,8 @@ ta['ca-nstab-category'] = new Array('c','Zobrazit kategorii.');",
 'deletedrevision' => 'Smazána stará verze $1.',
 
 # browsing diffs
-'previousdiff' => '&larr; Předchozí porovnání',
-'nextdiff' => 'Následující porovnání &rarr;',
+'previousdiff' => '← Předchozí porovnání',
+'nextdiff' => 'Následující porovnání →',
 
 'imagemaxsize' => 'Omezit obrázky na stránkách s popiskem na: ',
 'thumbsize'	=> 'Velikost náhledu: ',

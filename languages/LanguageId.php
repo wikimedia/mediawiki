@@ -428,8 +428,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "currentrev" => "Revisi sekarang",
 "revisionasof" => "Revisi per $1",
 'revisionasofwithlink'  => 'Revisi per $1; $2<br />$3 | $4',
-'previousrevision'      => '&larr;Revisi yang lebih tua',
-'nextrevision'          => 'Revisi yang lebih baru&rarr;',
+'previousrevision'      => '←Revisi yang lebih tua',
+'nextrevision'          => 'Revisi yang lebih baru→',
 'currentrevisionlink'   => 'lihat revisi sekarang',
 "cur" => "kini",
 "next" => "berikut",
@@ -562,7 +562,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "nchanges" => "$1 perubahan",
 "minoreditletter" => "m",
 "newpageletter" => "B",
-'sectionlink' => '&rarr;',
+'sectionlink' => '→',
 
 # Upload
 #
@@ -1110,8 +1110,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');
 'deletedrevision' => 'Menghapus revisi tua $1.',
 
 # browsing diffs
-'previousdiff' => '&larr; Ke diff sebelumnya',
-'nextdiff' => 'Ke diff selanjutnya &rarr;',
+'previousdiff' => '← Ke diff sebelumnya',
+'nextdiff' => 'Ke diff selanjutnya →',
 
 'imagemaxsize' => 'Batasi gambar dalam halaman deskripsi gambar sampai: ',
 'showbigimage' => 'Download versi resolusi tinggi ($1x$2, $3 KB)',
