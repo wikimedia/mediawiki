@@ -662,8 +662,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   
   -- Timestamp when user was last sent a notification e-mail;
   -- cleared when the user visits the page.
-  -- FIXME: add proper null support etc
-  wl_notificationtimestamp varchar(14) binary NOT NULL default '0',
+  wl_notificationtimestamp varchar(14) binary,
   
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
