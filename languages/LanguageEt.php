@@ -37,6 +37,16 @@ $wgNamespaceNamesEt = array(
 	 "myskin" => "Mu oma nahk"
 );
 
+
+/* private */ $wgDateFormatsEt = array(
+        'Eelistus puudub',
+        '15.01.2001, kell 16.12',
+        '15. jaanuar 2001, kell 16.12',
+        '15. I 2005, kell 16.12',
+        'ISO 8601' => '2001-01-15 16:12:34'
+);
+
+
 /* private */ $wgQuickbarSettingsEt = array(
 	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
 );
@@ -224,7 +234,7 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "viewtalkpage" => "Arutelulehekülg",
 "otherlanguages" => "Teised keeled",
 "redirectedfrom" => "(Ümber suunatud artiklist $1)",
-"lastmodified"	=> "Viimati muudetud $1.",
+"lastmodified"	=> "Viimane muutmine: $1",
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
 # aegunud, võib vist eemaldada, asendada järgmisega:
 "copyright" => "Kogu tekst on kasutatav litsentsi <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Vaba Dokumentatsiooni Litsentsi</a> (GFDL) tingimustel.",
@@ -496,7 +506,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.\n",
 "loadhist"		=> "Lehekülje ajaloo laadimine",
 "currentrev"	=> "Viimane redaktsioon",
-"revisionasof"	=> "Redaktsioon $1",
+"revisionasof"	=> "Redaktsioon: $1",
 "cur"			=> "viim",
 "next"			=> "järg",
 "last"			=> "eel",
@@ -559,6 +569,7 @@ Teie sisemine ID-number on $2.",
 "changepassword" => "Muuda parool",
 "skin"			=> "Nahk",
 "math"			=> "Valemite näitamine",
+"dateformat"            => "Kuupäeva formaat",
 "math_failure"		=> "Arusaamatu süntaks",
 "math_unknown_error"	=> "Tundmatu viga",
 "math_unknown_function"	=> "Tundmatu funktsioon ",
@@ -989,6 +1000,11 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgBookstoreListEt ;
 	}
 
+	function getDateFormats() {
+		global $wgDateFormatsEt;
+		return $wgDateFormatsEt;
+	}
+
 	function getNamespaces() {
 		global $wgNamespaceNamesEt;
 		return $wgNamespaceNamesEt;
@@ -1031,6 +1047,121 @@ class LanguageEt extends LanguageUtf8 {
 			return $_;
 		}
 	}
+
+
+
+
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		global $wgAmericanDates, $wgUser;
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+		
+		$datePreference = $this->dateFormat($format);
+
+		if ($datePreference == '0'
+		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
+		    
+		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
+		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
+		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
+		$lat_month = $this->monthByLatinNumber( substr ($ts, 4, 2));
+
+		switch( $datePreference ) {
+			case '2': return "$day. $month $year";
+			case '3': return "$day. $lat_month $year";
+			case 'ISO 8601': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			default: return substr($ts, 6, 2). '.' . substr($ts, 4, 2). '.' .substr($ts, 0, 4);
+		}
+	}
+
+
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*	       date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*	       user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*	       default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*	       validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		global $wgUser, $wgAmericanDates;
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+		$datePreference = $this->dateFormat($format);
+
+		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
+
+		if ( $datePreference === 'ISO 8601' ) {
+			$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+			$t .= ':' . substr( $ts, 12, 2 );
+		} else {
+			$t = substr( $ts, 8, 2 ) . '&#46;' . substr( $ts, 10, 2 );
+		}
+		return $this->formatNum( $t );
+	}
+
+
+
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*	       date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*	       user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*	       default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*	       validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+		global $wgUser, $wgAmericanDates;
+
+		$datePreference = $this->dateFormat($format);
+		switch ( $datePreference ) {
+			case 'ISO 8601': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' ' .
+				$this->time( $ts, $adj, $datePreference, $timecorrection );
+			default: return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ', kell ' .
+				$this->time( $ts, $adj, $datePreference, $timecorrection );
+
+		}
+
+	}
+
+
+	/**
+	* retuns latin number corresponding to given month number
+	* @access public
+	* @param number
+	* @return string
+	*/
+	function monthByLatinNumber( $key ) {
+		$latinNumbers= array(
+			'I', 'II', 'III', 'IV', 'V', 'VI',
+			'VII','VIII','IX','X','XI','XII'
+		);
+
+		return $latinNumbers[$key-1];
+	}
+
 
 }
 ?>
