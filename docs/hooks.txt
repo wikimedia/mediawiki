@@ -1,4 +1,4 @@
-HOOKS.DOC
+hooks.txt
 
 This document describes how event hooks work in MediaWiki; how to add
 hooks for an event; and how to run hooks for an event.
