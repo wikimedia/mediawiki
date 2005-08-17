@@ -16,7 +16,8 @@ define('XGETTEXT_BIN',     'xgettext');
 define('MSGMERGE_BIN',     'msgmerge');
 
 // used to generate the .pot
-define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg --keyword=wfMsgForContent ');
+define('XGETTEXT_OPTIONS', '-n --keyword=wfMsg --keyword=wfMsgForContent --keyword=wfMsgHtml --keyword=wfMsgWikiHtml ');
+define('MSGMERGE_OPTIONS', ' -v ');
 
 define('LOCALE_OUTPUT_DIR', $IP.'/locale');
 
@@ -120,9 +121,9 @@ function applyPot($langcode) {
 	$dest = $langdir.'/messages.po';
 
 	// Merge template and generate file to get final .po	
-	exec(MSGMERGE_BIN." $from $pot -o $dest ");
+	exec(MSGMERGE_BIN.MSGMERGE_OPTIONS." $from $pot -o $dest ");
 	// delete no more needed file
-	unlink($from);
+//	unlink($from);
 }
 
 // Generate a template .pot based on source tree
