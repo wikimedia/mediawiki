@@ -238,7 +238,7 @@ function wfReadOnly() {
 
 	// Set $wgReadOnly and unset $wgReadOnlyFile, for faster access next time
 	if ( is_file( $wgReadOnlyFile ) ) {
-		$wgReadOnly = true;
+		$wgReadOnly = file_get_contents( $wgReadOnlyFile );
 	} else {
 		$wgReadOnly = false;
 	}
