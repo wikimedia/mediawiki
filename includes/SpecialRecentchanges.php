@@ -136,9 +136,10 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	// This is the big thing!
 
 	$uid = $wgUser->getID();
+        $notifts = ($wgShowUpdatedMarker?",wl_notificationtimestamp":"");
 
 	// Perform query
-	$sql2 = "SELECT *" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user".$notifts : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
