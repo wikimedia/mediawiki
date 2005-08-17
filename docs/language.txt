@@ -1,4 +1,4 @@
-LANGUAGE.DOC
+language.txt
 
 The Language object handles all readable text produced by the
 software. The most used function is getMessage(), usually

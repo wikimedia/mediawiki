@@ -1,4 +1,4 @@
-GLOBALS.DOC
+globals.txt
 
 PHP loves globals. I hate them. This is not a great
 combination, but I manage. I could get rid of most of
