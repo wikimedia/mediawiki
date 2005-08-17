@@ -651,6 +651,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   $wgAllowRealName=false.
 * New special page: SpecialMostlinked
 * (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
+* Fix display of read-only lockfile message
+
 
 === Caveats ===
 
