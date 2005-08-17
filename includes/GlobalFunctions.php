@@ -176,6 +176,22 @@ function wfDebug( $text, $logonly = false ) {
 }
 
 /**
+ * Send a line to a supplementary debug log file, if configured, or main debug log if not.
+ * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
+ * @param string $logGroup
+ * @param string $text
+ */
+function wfDebugLog( $logGroup, $text ) {
+	global $wgDebugLogGroups, $wgDBname;
+	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
+	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
+		@error_log( "$wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
+	} else {
+		wfDebug( $text, true );
+	}
+}
+
+/**
  * Log for database errors
  * @param string $text Database error message.
  */

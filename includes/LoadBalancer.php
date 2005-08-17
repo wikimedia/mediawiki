@@ -140,7 +140,7 @@ class LoadBalancer {
 			return false;
 		}
 
-		#wfDebug( var_export( $loads, true ) );
+		#wfDebugLog( 'connect', var_export( $loads, true ) );
 
 		# Return a random representative of the remainder
 		return $this->pickRandom( $loads );
@@ -183,8 +183,9 @@ class LoadBalancer {
 							$i = $this->pickRandom( $loads );
 						}
 					}
+					$serverIndex = $i;
 					if ( $i !== false ) {
-						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
+						wfDebugLog( 'connect', "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 						$this->openConnection( $i );
 
 						if ( !$this->isOpen( $i ) ) {
@@ -211,7 +212,10 @@ class LoadBalancer {
 					}
 					if ( $sleepTime ) {
 							$totalElapsed += $sleepTime;
+							$x = "{$this->mServers[$serverIndex]['host']} $sleepTime [$serverIndex]";
+							wfProfileIn( "$fname-sleep $x" );
 							usleep( $sleepTime );
+							wfProfileOut( "$fname-sleep $x" );
 					}
 				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $wgDBClusterTimeout );
 
