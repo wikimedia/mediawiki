@@ -616,6 +616,14 @@ $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
 
 /**
+ * Set to an array of log group keys to filenames.
+ * If set, wfDebugLog() output for that group will go to that file instead 
+ * of the regular $wgDebugLogFile. Useful for enabling selective logging
+ * in production.
+ */
+$wgDebugLogGroups       = array();
+
+/**
  * Whether to show "we're sorry, but there has been a database error" pages.
  * Displaying errors aids in debugging, but may display information useful
  * to an attacker.
