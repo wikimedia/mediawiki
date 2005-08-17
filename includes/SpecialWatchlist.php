@@ -234,7 +234,7 @@ function wfSpecialWatchlist( $par ) {
           rc_timestamp rev_timestamp,rc_minor rev_minor_edit,
           rc_this_oldid rev_id,
           rc_last_oldid,
-          rc_new rev_is_new,wl_notificationtimestamp
+          rc_new page_is_new,wl_notificationtimestamp
           FROM $watchlist,$recentchanges,$page
           WHERE wl_user=$uid
           AND wl_namespace=rc_namespace
