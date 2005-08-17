@@ -31,7 +31,7 @@ Misc work going on.....
 * (bug 3177) Estonian date formats not implemented in LanguageEt.php
 * Add ability to break off certain debug topics into additional log files;
   use $wgDebugLogGroups to configure and wfDebugLog() to log.
-
+* Finnish date format was hardcoded, now implemented properly
 
 === Caveats ===
 

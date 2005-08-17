@@ -41,6 +41,14 @@ require_once( 'LanguageUtf8.php' );
 	'myskin'            => 'Oma tyylisivu'
 ) + $wgSkinNamesEn;
 
+/* private */ $wgDateFormatsFi = array(
+	'Ei valintaa',
+	'15. tammikuuta 2001 kello 16.12',
+	'15. tammikuuta 2001 kello 16:12:34',
+	'15.1.2001 16.12',
+	'ISO 8601' => '2001-01-15 16:12:34'
+);
+
 /* private */ $wgBookstoreListFi = array(
 	'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
 	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
@@ -1348,26 +1356,90 @@ class LanguageFi extends LanguageUtf8 {
 		return $wgSkinNamesFi;
 	}
 
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
-		$this->getMonthName( substr( $ts, 4, 2 ) ) . 'ta ' . substr( $ts, 0, 4 );
-		return $d;
+	function getDateFormats() {
+		global $wgDateFormatsFi;
+		return $wgDateFormatsFi;
 	}
 
-	function time( $ts, $adj = false, $seconds = true ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds ) {
-		$t .= ':' . substr( $ts, 12, 2 );
+		$yyyy = substr( $ts, 0, 4 );
+		$mm = substr( $ts, 4, 2 );
+		$m = 0 + $mm;
+		$mmmm = $this->getMonthName( $mm ) . 'ta';
+		$dd = substr( $ts, 6, 2 );
+		$d = 0 + $dd;
+
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '3': return "$d.$m.$yyyy";
+			case 'ISO 8601': return "$yyyy-$mm-$dd";
+			default: return "$d. $mmmm $yyyy";
 		}
-		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . ' kello ' . $this->time( $ts, $adj );
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+
+		$hh = substr( $ts, 8, 2 );
+		$mm =  substr( $ts, 10, 2 );
+		$ss = substr( $ts, 12, 2 );
+
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '2':
+			case 'ISO 8601': return "$hh:$mm:$ss";
+			default: return "$hh.$mm";
+		}
+	}
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+		$date = $this->date( $ts, $adj, $format, $timecorrection );
+		$time = $this->time( $ts, $adj, $format, $timecorrection );
+
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '3':
+			case 'ISO 8601': return "$date $time";
+			default: return "$date kello $time";
+		}
 	}
 
 	function getMessage( $key ) {
