@@ -118,7 +118,6 @@ require_once( "LanguageUtf8.php" );
 'article'               => 'Artikel',
 "help"                  => "Hjälp",
 "helppage"              => "Wikipedia:Hjälp",
-"wikititlesuffix"       => "Wikipedia",
 "bugreports"            => "Felrapporter",
 "bugreportspage"        => "Wikipedia:Felrapporter",
 "sitesupport"           => "Donationer",

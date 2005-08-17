@@ -101,7 +101,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "{{ns:project}}:Acerca de",
 "help"			=> "Ayuda",
 "helppage"		=> "{{ns:project}}:Ayuda",
-"wikititlesuffix"		=>"{{SITENAME}}",
 "bugreports"	=> "Informes de error de software",
 "bugreportspage" => "{{ns:project}}:Informes_de_error",
 

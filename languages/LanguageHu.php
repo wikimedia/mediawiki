@@ -151,7 +151,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "aboutpage"		=> "{{{ns:project}}}:Névjegy",
 "help"			=> "Segítség",
 "helppage"		=> "{{{ns:project}}}:Segítség",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Hibajelentés",
 "bugreportspage" => "{{{ns:project}}}:Hibajelentések",
 "faq"			=> "GyIK",

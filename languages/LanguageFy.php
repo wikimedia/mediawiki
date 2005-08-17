@@ -119,7 +119,6 @@ if($wgMetaNamespace === FALSE)
 "aboutpage"		=> "{{ns:project}}:Ynfo",
 "help"		=> "Help",
 "helppage"		=> "{{ns:project}}:Help",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Brekmelding",
 "bugreportspage"	=> "{{ns:project}}:Brekmelding",
 "faq"			=> "FAQ",

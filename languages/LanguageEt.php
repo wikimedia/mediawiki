@@ -162,7 +162,6 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "article"		=> "Sisu",  # või "Artikkel" nagu praegu Vikipeedias?
 "help"			=> "Juhend", # Vikipeedias "Spikker"
 "helppage"		=> "{{ns:12}}:Juhend",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Teated programmivigadest",
 "bugreportspage" => "{{ns:4}}:Teated_programmivigadest",
 'sitesupport'   => 'Annetused', # Set a URL in $wgSiteSupportPage in LocalSettings.php

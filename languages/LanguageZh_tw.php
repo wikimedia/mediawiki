@@ -82,7 +82,6 @@ require_once( "LanguageZh_cn.php" );
 "aboutpage"		=> "維基百科:關於",
 "help"			=> "幫助",
 "helppage"		=> "維基百科:幫助",
-"wikititlesuffix" => "維基百科",
 "bugreports"	=> "錯誤報告",
 "bugreportspage" => "維基百科:錯誤報告",
 "faq"			=> "常見問題解答",

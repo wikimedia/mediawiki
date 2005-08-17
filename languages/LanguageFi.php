@@ -147,7 +147,6 @@ require_once( 'LanguageUtf8.php' );
 'article'             => 'Sivu',
 'help'                => 'Ohje',
 'helppage'            => 'Help:Ohje',
-'wikititlesuffix'     => '{{SITENAME}}',
 'bugreports'          => 'Ongelmat ja parannusehdotukset',
 'bugreportspage'      => 'Project:Ongelmat ja parannusehdotukset',
 'sitesupport'         => 'Lahjoitukset', # Set a URL in $wgSiteSupportPage in LocalSettings.php

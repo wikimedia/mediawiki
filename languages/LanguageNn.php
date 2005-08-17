@@ -205,7 +205,6 @@ if($wgMetaNamespace === FALSE)
 'article'                 => 'Innhaldsside',
 'help'			  => 'Hjelp',
 'helppage'		  => 'Help:Innhald',
-'wikititlesuffix'         => '{{SITENAME}}',
 'bugreports'	          => 'Feilmeldingar',
 'bugreportspage'          => 'Project:Feilmeldingar',
 'sitesupport'             => 'Gåver',

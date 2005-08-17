@@ -107,7 +107,6 @@ require_once("LanguageUtf8.php");
 "aboutpage"		=> "{{ns:project}}:Rreth",
 "help"			=> "Ndihmë",
 "helppage"		=> "{{ns:project}}:Ndihmë",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Raporto yçkla",
 "bugreportspage" => "{{ns:project}}:Raporto_yçkla",
 "sitesupport"   => "Dhurime",

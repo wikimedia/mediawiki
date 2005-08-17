@@ -185,7 +185,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "aboutpage"     => "Vicipéid:Faoi",
 "help"      => "Cabhair",
 "helppage"      => "Vicipéid:Cabhair",
-"wikititlesuffix" => "Vicipéid",
 "bugreports"    => "Fabht-thuairiscí­",
 "bugreportspage"    => "Vicipéid:Fabht-thuairiscí­",
 "faq"           => "Ceisteanna Coiteanta",

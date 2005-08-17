@@ -138,7 +138,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"  => "{{ns:4}}:О",
 "help"   => "Помоћ",
 "helppage"  => "{{ns:4}}:Помоћ",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Пријаве грешака",
 "bugreportspage" => "{{ns:4}}:Пријаве_грешака",
 "faq"   => "FAQ",

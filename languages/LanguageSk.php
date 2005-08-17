@@ -189,7 +189,6 @@ a [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Používateľskú pr�
 'article' => 'Stránka s obsahom',
 'help' => 'Pomoc',
 'helppage' => 'Pomoc:Obsah',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports' => 'Oznámenia o chybách',
 'bugreportspage' => 'Project:Oznámenia_o_chybách',
 'sitesupport' => 'Dotácie', # To enable, something like 'Donations',

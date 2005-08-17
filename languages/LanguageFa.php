@@ -117,7 +117,6 @@ require_once("LanguageUtf8.php");
 "aboutpage"		=> "ویکی‌پدیا:درباره",
 "help"			=> "راهنما",
 "helppage"		=> "ویکی‌پدیا:راهنما",
-"wikititlesuffix" => "ویکی‌پدیا",
 "bugreports"	=> "گزارش اشکالات",
 "bugreportspage" => "ویکی‌پدیا:گزارش اشکالات",
 "sitesupport"   => "کمک مالی",

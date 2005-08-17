@@ -146,7 +146,6 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "article" => "Artikel",
 "help"			=> "Hilfe",
 "helppage"		=> "Project:Hilfe",
-"wikititlesuffix"       => "{{SITENAME}}",
 "bugreports"	=> "Kontakt",
 "bugreportspage" => "Project:Kontakt",
 "sitesupport"   => "Spenden",

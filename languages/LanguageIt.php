@@ -94,7 +94,6 @@
 "aboutpage"		=> "Wikipedia:About",
 "help"			=> "Aiuto",
 "helppage"		=> "Wikipedia:Aiuto",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Malfunzionamenti",
 "bugreportspage" => "Wikipedia:Malfunzionamenti",
 "faq"			=> "FAQ",

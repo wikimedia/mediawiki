@@ -100,7 +100,6 @@
 "aboutpage"		=> "Wikipedia:Perihal", #"Wikipedia:About",
 "help"			=> "Bantuan",
 "helppage"		=> "Wikipedia:Bantuan",
-"wikititlesuffix"       => "Wikipedia",
 "bugreports"	        => "Laporan Pepijat",
 "bugreportspage"        => "Wikipedia:Laporan Pepijat",
 "faq"			=> "FAQ",

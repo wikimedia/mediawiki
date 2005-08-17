@@ -118,7 +118,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "விக்கிபீடியா:விபரம்",
 "help"			=> "உதவி",
 "helppage"		=> "விக்கிபீடியா:உதவி",
-"wikititlesuffix" => "விக்கிபீடியா",
 "bugreports"	=> "வழு அறிக்கை",
 "bugreportspage" => "விக்கிபீடியா:வழு அறிக்கைகள்",
 "faq"			=> "அடிக்கடி கேட்கப்படும் கேள்விகள்",

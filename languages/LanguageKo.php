@@ -114,7 +114,6 @@ require_once('LanguageUtf8.php');
 'aboutpage'	   => '{{ns:4}}:소개',
 'help'			=> '도움말',
 'helppage'	    => '{{ns:4}}:도움말',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'  => '벌레 발견',
 'bugreportspage' => '{{ns:4}}:벌레_발견',
 'faq'		 => '잦은질문(FAQ)',

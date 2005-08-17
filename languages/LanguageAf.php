@@ -98,7 +98,6 @@ require_once( 'LanguageUtf8.php' );
 "aboutpage"		=> "{{ns:4}}:Omtrent",
 "help"			=> "Help",
 "helppage"		=> "{{ns:4}}:Hulp",
-"wikititlesuffix" => "{{ns:4}}",
 "bugreports"	=> "Foutrapporte",
 "bugreportspage" => "{{ns:4}}:FoutRapporte",
 "faq"			=> "Gewilde vrae",

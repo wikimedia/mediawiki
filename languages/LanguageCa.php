@@ -107,7 +107,6 @@
 "aboutpage"		=> "{{ns:4}}: Quant a",
 "help"			=> "Ajuda",
 "helppage"		=> "{{ns:4}}:Ajuda",
-"wikititlesuffix"		=> "{{SITENAME}}",
 "bugreports"	=> "Informes d'error del programari",
 "bugreportspage" => "{{ns:4}}:Informes_d'error",
 "faq"			=> "PMF",

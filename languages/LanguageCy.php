@@ -143,7 +143,6 @@
 "aboutpage" => "{{ns:project}}:Amdano",
 "help" => "Help",
 "helppage" => "{{ns:project}}:Help",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Adroddiadau diffygion",
 "bugreportspage" => "{{ns:project}}:Adroddiadau_diffygion",
 "sitesupport" => "Rhoddion",

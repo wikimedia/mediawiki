@@ -116,7 +116,6 @@
 "aboutpage"		=> "Wikipedia:Om",
 "help"			=> "Hjelp",
 "helppage"		=> "Wikipedia:Hjelp",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Feilmeldinger",
 "bugreportspage" => "Wikipedia:Feilmeldinger",
 "sitesupport"   => "Donasjoner",

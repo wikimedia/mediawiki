@@ -107,7 +107,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "Wikipedija:O_Wikipediji",
 "help"			=> "Pomoč",
 "helppage"		=> "Wikipedija:Pomoč",
-"wikititlesuffix"       => "Wikipedija",
 "bugreports"	        => "Poročila o hroščih",
 "bugreportspage"        => "Wikipedija:Poročila_o_hroščih",
 "faq"			=> "Najpogostejša vprašanja",

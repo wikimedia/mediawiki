@@ -1603,7 +1603,6 @@ to modify your watchlist.', */
 #'whitelistreadtext' => 'You have to [[Special:Userlogin|login]] to read pages.',
 #'whitelistreadtitle' => 'Login required to read',
 'wikipediapage' => 'Rûpela meta temaşe bike',
-'wikititlesuffix' => 'Wîkîpediya, ensîklopediya azad a kurdî',
 #'wlheader-enotif' => '* Email notification is enabled.',
 #'wlheader-showupdated' => '* Pages which have been changed since you last visited them are shown in \'\'\'bold\'\'\'',
 #'wlhide' => 'Hide',
