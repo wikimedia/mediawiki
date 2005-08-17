@@ -653,6 +653,10 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
 * Fix display of read-only lockfile message
 * Added a new hook, 'AddNewAccount', which is run after account creation
+* Update all stats fields on recount.sql
+* Include software-visible client IP address in Special:Version comment
+  as a proxy debugging aid
+
 
 === Caveats ===
 
