@@ -82,7 +82,6 @@ $wgNamespaceNamesLi = array(
 "aboutpage"  => "Wikipedia:info",
 "help"   => "Help",
 "helppage"  => "Wikipedia:Help",
-"wikititlesuffix" => "Wikipedia",
 "bugreports" => "Foutenrapportage",
 "bugreportspage" => "Wikipedia:Foutenrapportage",
 "faq"   => "FAQ",

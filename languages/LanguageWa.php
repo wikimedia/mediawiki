@@ -108,7 +108,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "Wikipedia:Å dfait",
 "help"			=> "Aidance",
 "helppage"		=> "Wikipedia:Aidance",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Rapoirts di bugs",
 "bugreportspage" => "Wikipedia:Rapoirts di bugs",
 "sitesupport"	=> "Ecwårlaedje",

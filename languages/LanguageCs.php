@@ -162,7 +162,6 @@ default:
 'article' => 'Obsahová stránka',
 'help'                  => 'Nápověda',
 'helppage'              => '{{ns:12}}:Obsah',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'    => 'Hlášení chyb',
 'bugreportspage' => '{{ns:4}}:Chyby',
 'sitesupport'   => 'Sponzorství',

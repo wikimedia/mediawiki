@@ -168,7 +168,7 @@ It has been encrypted with the public key of the Election Administrators:
 
 <pre>$2</pre>
 
-The resulting encrypted version follows. It will be displayed publicly on [[Special:Boardvote/dump]]. 
+The resulting encrypted version follows. It will be displayed publicly on [[Special:Boardvote/dump]].
 
 <pre>$3</pre>
 
@@ -198,16 +198,16 @@ position. In the event of a tie, a run-off election will be held.</p>
 <ul><li><a href="http://meta.wikipedia.org/wiki/Election_FAQ_2005" class="external">Election FAQ</a></li>
 <li><a href="http://meta.wikipedia.org/wiki/Election_Candidates_2005" class="external">Candidates</a></li></ul>
 ', */
-/* 'boardvote_intro_change' => '<p>You have voted before. However you may change 
-your vote using the form below. Please check the boxes next to each candidate whom 
+/* 'boardvote_intro_change' => '<p>You have voted before. However you may change
+your vote using the form below. Please check the boxes next to each candidate whom
 you approve of.</p>', */
 #'boardvote_ip' => 'IP',
-/* 'boardvote_listintro' => '<p>This is a list of all votes which have been recorded 
+/* 'boardvote_listintro' => '<p>This is a list of all votes which have been recorded
 to date. $1 for the encrypted data.</p>', */
 #'boardvote_needadmin' => 'Only election administrators can perform this operation.',
 /* 'boardvote_notloggedin' => 'You are not logged in. To vote, you must use an account
 with at least $1 contributions before $2.', */
-/* 'boardvote_notqualified' => 'Sorry, you made only $1 edits before $2. You 
+/* 'boardvote_notqualified' => 'Sorry, you made only $1 edits before $2. You
 need at least $3 to be able to vote.', */
 #'boardvote_novotes' => 'Nobody has voted yet.',
 #'boardvote_sitenotice' => '<a href="{{localurle:Special:Boardvote/vote}}">Wikimedia Board Elections</a>:  Vote open until July 12',
@@ -780,7 +780,7 @@ using the MediaWiki namespace', */
 #'hist' => 'hist',
 #'histfirst' => 'Earliest',
 #'histlast' => 'Latest',
-'histlegend' => 'Legenda: betsionen artean desberdintasunak: (azk) = azkena, (aur) = aurrekoa; 
+'histlegend' => 'Legenda: betsionen artean desberdintasunak: (azk) = azkena, (aur) = aurrekoa;
 t = edikateka txikiak',
 'history' => 'Orriaren historia',
 #'history_copyright' => '-',
@@ -894,7 +894,7 @@ unlock the database when your maintenance is done.', */
 #'loginsuccess' => 'You are now logged in to {{SITENAME}} as "$1".',
 #'loginsuccesstitle' => 'Login successful',
 'logout' => 'Saio-bukaera',
-'logouttext' => 'Zure saioa amaitu duzu. 
+'logouttext' => 'Zure saioa amaitu duzu.
 Izena eman gabe wikipedia erabiltzen jarraitu ahal duzu, edo izen berdin edo bestearekin beste saioa hasi ahal duzu.<br />Orri batzuk saioa mantentzen duzuela adierazi dezakete arakatzailearen katxea garbitu arte.',
 'logouttitle' => 'Saio amaiera',
 'lonelypages' => 'Orri umezurtzak',
@@ -1358,7 +1358,7 @@ Please hit "back" and reload the page you came from, then try again.', */
 #'sitematrix' => 'List of Wikimedia wikis',
 #'sitenotice' => '-',
 'sitestats' => 'Gunearen estatistikak',
-'sitestatstext' => 'Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, \'\'redirect\'\'-k eta artikulu laburrak barne hartzen. 
+'sitestatstext' => 'Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, \'\'redirect\'\'-k eta artikulu laburrak barne hartzen.
 Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.<p>
 There have been a total of <b>$3</b> page views, and <b>$4</b> page edits
 since the software was upgraded (July 20, 2002).
@@ -1684,7 +1684,6 @@ Ez ahaztu zure hobespenak pertsonalizatu.',
 #'whitelistreadtext' => 'You have to [[Special:Userlogin|login]] to read pages.',
 #'whitelistreadtitle' => 'Login required to read',
 'wikipediapage' => 'Erakutsi Meta-orria',
-#'wikititlesuffix' => '{{SITENAME}}',
 #'wlheader-enotif' => '* Email notification is enabled.',
 #'wlheader-showupdated' => '* Pages which have been changed since you last visited them are shown in \'\'\'bold\'\'\'',
 #'wlhide' => 'Hide',

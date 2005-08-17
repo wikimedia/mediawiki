@@ -521,7 +521,6 @@ public domain or similar free resource.<br />
 'wednesday' => 'серада',
 'whatlinkshere' => 'Адкуль спасылаюцца на старонку',
 'whitelistacctitle' => 'Вам не дазволена ствараць рахунак',
-'wikititlesuffix' => '{{SITENAME}}',
 'youremail' => 'Ваш адрас электроннай пошты (*)',
 'yourname' => 'Ваша імя ўдзельніка/ўдзельніцы',
 'yournick' => 'Ваша мянушка (для подпісаў)',

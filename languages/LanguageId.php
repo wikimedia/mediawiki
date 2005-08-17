@@ -145,7 +145,6 @@ $wgValidationTypesId = array (
 'article' => 'Artikel',
 "help" => "Bantuan",
 "helppage" => "Help:Isi",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Laporan Bug",
 "bugreportspage" => "Project:Laporan_Bug",
 "sitesupport" => "-", # "-" untuk mematikan

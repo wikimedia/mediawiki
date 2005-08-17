@@ -102,7 +102,6 @@
 "aboutpage"		=> "{{ns:project}}:เกี่ยวกับ",
 "help"			=> "ความช่วยเหลือ",
 "helppage"		=> "{{ns:project}}:ความช่วยเหลือ",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "รายงาน bug",
 "bugreportspage" => "{{ns:project}}:รายงาน bug",
 "sitesupport"   => "การบริจาค",

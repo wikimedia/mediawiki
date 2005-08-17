@@ -124,7 +124,6 @@ require_once( 'LanguageFr.php' );
 'article'       => 'Pennad',
 'help'          => 'Skoazell',
 'helppage'      => '{{ns:4}}:Skoazell',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'    => 'Teul ar fazioù',
 'bugreportspage' => '{{ns:4}}:Teul ar fazioù',
 'sitesupport'	=> 'Skoazellañ dre reiñ un dra bennak',

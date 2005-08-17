@@ -121,7 +121,6 @@ $wgExtraNamespaces = array(
 'article' => 'מאמר', #????
 "help"			=> "עזרה",
 "helppage"		=> "ויקיפדיה:עזרה",
-"wikititlesuffix" => "ויקיפדיה",
 "bugreports"	=> "דווח על באגים",
 "bugreportspage" => "ויקיפדיה:דווח_על_באגים",
 "faq"			=> "שאלות ותשובות",

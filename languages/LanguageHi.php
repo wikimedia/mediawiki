@@ -71,7 +71,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "विकिपीडिया:अबाउट",
 "help"			=> "सहायता",
 "helppage"		=> "विकिपीडिया:सहायता",
-"wikititlesuffix"       => "विकिपीडिया",
 "bugreports"	        => "Bug reports",
 "bugreportspage"        => "विकिपीडिया:Bug_reports",
 "faq"			=> "FAQ",

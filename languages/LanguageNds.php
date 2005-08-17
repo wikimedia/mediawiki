@@ -176,7 +176,6 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'article'               => 'Artikel',
 'help'                          => 'Hülp',
 'helppage'                      => '{{ns:4}}:Hülp',
-'wikititlesuffix'       => '{{SITENAME}}',
 'bugreports'               => 'Kontakt',
 'bugreportspage'        => '{{ns:4}}:Kontakt',
 'sitesupport'           => 'Gaven',

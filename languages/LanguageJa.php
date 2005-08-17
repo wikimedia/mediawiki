@@ -107,7 +107,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "{{ns:4}}:About",
 "help"			=> "ヘルプ",
 "helppage"		=> "{{ns:4}}:Help",
-"wikititlesuffix" => "{{ns:4}}",
 "bugreports"	=> "バグの報告",
 "bugreportspage" => "{{ns:4}}:バグの報告",
 "faq"			=> "FAQ",

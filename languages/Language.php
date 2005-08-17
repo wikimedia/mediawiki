@@ -361,7 +361,6 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'article'		=> 'Content page',
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'	=> 'Bug reports',
 'bugreportspage' => 'Project:Bug_reports',
 'sitesupport'   => 'Donations',

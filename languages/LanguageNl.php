@@ -115,7 +115,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"  => "{{ns:4}}:info",
 "help"   => "Help",
 "helppage"  => "{{ns:4}}:Help",
-"wikititlesuffix" => "{{SITENAME}} NL",
 "bugreports" => "Foutenrapportage",
 "sitesupport" => "Financieel bijdragen",
 "bugreportspage" => "{{ns:4}}:Foutenrapportage",

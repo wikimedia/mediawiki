@@ -132,7 +132,6 @@ require_once( 'LanguageUtf8.php' );
 'article'       => 'Article',
 'help'          => 'Aide',
 'helppage'      => '{{ns:4}}:Aide',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
 'sitesupport'	=> 'Participer en faisant un don',

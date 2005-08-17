@@ -172,7 +172,6 @@ global $wgRightsText;
 	'article'			=>	'Статија',
 	'help'				=>	'Помош',
 	'helppage'			=>	'Help:Помош',
-	'wikititlesuffix'		=>	'{{SITENAME}}',
 	'bugreports'			=>	'Извештаи за грешки',
 	'bugreportspage'		=>	'Project:Извештаи за грешки',
 	'sitesupport'			=>	'Донации',

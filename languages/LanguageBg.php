@@ -174,7 +174,6 @@
 'article'   => 'Статия',
 'help'      => 'Помощ',
 'helppage'    => "{{ns:12}}:Помощ",
-'wikititlesuffix' => "{{SITENAME}}",
 'bugreports'  => 'Съобщения за грешки',
 'bugreportspage' => "{{ns:4}}:Съобщения_за_грешки",
 "sitesupport"   => "Дарения", # Set a URL in $wgSiteSupportPage in LocalSettings.php

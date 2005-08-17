@@ -113,7 +113,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "Wikipedia:关于",
 "help"			=> "帮助",
 "helppage"		=> "Wikipedia:帮助",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "错误报告",
 "bugreportspage" => "Wikipedia:错误报告",
 "faq"			=> "常见问题解答",

@@ -95,7 +95,6 @@
 "aboutpage"		=> "Wikipedia:A_proposito",
 "help"			=> "Adjuta",
 "helppage"		=> "Wikipedia:Adjuta",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Reportos de disfunctiones",
 "bugreportspage" => "Wikipedia:Reportos_de_disfunctiones",
 "faq"			=> "Questiones frequente",

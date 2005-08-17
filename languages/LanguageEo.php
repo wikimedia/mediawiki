@@ -117,7 +117,6 @@ require_once('LanguageUtf8.php');
 'article'		=> 'Artikolo',
 'help'			=> 'Helpo',
 'helppage'		=> '{{ns:4}}:Helpo',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'	=> 'Raportu cimojn',
 'bugreportspage' => '{{ns:4}}:Raportu_cimojn',
 'sitesupport'   => 'Subteno',

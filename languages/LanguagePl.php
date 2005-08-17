@@ -112,7 +112,6 @@ default:
 "aboutpage" => "{{ns:4}}:O_Wikipedii",
 "help" => "Pomoc",
 "helppage" => "{{ns:4}}:Pomoc",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Raport o błędach",
 "bugreportspage" => "{{ns:4}}:Błędy",
 "sitesupport" => "Dary pieniężne",

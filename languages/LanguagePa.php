@@ -100,7 +100,6 @@ require_once('LanguageUtf8.php');
 'article'		=> 'ਵਿਸ਼ਾ-ਵਸਤੂ ਵਾਲਾ ਪੰਨਾ',
 'help'		=> 'ਮਦਦ',
 'helppage'		=> 'ਮਦਦ:ਵਿਸ਼ਾ-ਵਸਤੂ',
-'wikititlesuffix'	=> '{{SITENAME}}',
 'bugreports'		=> 'ਖਾਮੀ ਸੂਚਨਾ',
 'bugreportspage'	=> 'Project:ਖਾਮੀ_ਸੂਚਨਾ',
 'sitesupport'		=> 'ਦਾਨ',

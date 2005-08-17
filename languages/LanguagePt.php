@@ -119,7 +119,6 @@
 "aboutpage"     => "{{ns:4}}:Sobre",
 "help"          => "Ajuda",
 "helppage"      => "{{ns:4}}:Ajuda",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"    => "Reportagem de 'bugs'",
 "bugreportspage" => "{{ns:4}}:Reportag_Bug",
 "faq"           => "FAQ",

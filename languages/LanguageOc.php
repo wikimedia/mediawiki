@@ -112,7 +112,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"     => "Wikipédia:À propos",
 "help"          => "Aide",
 "helppage"      => "Wikipédia:Aide",
-"wikititlesuffix" => "Wikipédia",
 "bugreports"    => "Rapport d'erreurs",
 "bugreportspage" => "Wikipédia:Rapport d'erreurs",
 "sitesupport"   => "Participer en faisant un don",

@@ -147,7 +147,6 @@ og [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] 
 'article' => 'Artikel',
 "help"			=> "Hjælp",
 "helppage"		=> "{{ns:4}}:Hjælp",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Fejlrapporter",
 "bugreportspage" => "{{ns:4}}:Fejlrapporter",
 "sitesupport"   => "Donation",

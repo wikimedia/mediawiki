@@ -81,7 +81,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "Wikipedia:About",
 "help"			=> "Aiuto",
 "helppage"		=> "Wikipedia:Aiuto",
-"wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Segnalazioni di malfunzionamento",
 "bugreportspage" => "Wikipedia:Malfunzionamenti",
 "faq"			=> "FAQ",
