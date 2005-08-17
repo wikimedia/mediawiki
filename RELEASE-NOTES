@@ -657,7 +657,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Include software-visible client IP address in Special:Version comment
   as a proxy debugging aid
 * (bug 3162) Fix 'undefined property page_is_new' error on watchlist
-
+* (bug 1734) granting db permissions failed with db usernames containg '-'
 
 === Caveats ===
 
