@@ -26,7 +26,8 @@ Misc work going on.....
 * Update all stats fields on recount.sql
 * Include software-visible client IP address in Special:Version comment
   as a proxy debugging aid
-
+* (bug 3170) Page Title failed to obey MediaWiki:Pagetitle.
+  wikititlesuffix was removed
 
 === Caveats ===
 
