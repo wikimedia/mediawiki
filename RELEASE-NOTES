@@ -28,6 +28,7 @@ Misc work going on.....
   as a proxy debugging aid
 * (bug 3170) Page Title failed to obey MediaWiki:Pagetitle.
   wikititlesuffix was removed
+* (bug 3177) Estonian date formats not implemented in LanguageEt.php
 
 === Caveats ===
 
