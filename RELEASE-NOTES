@@ -29,6 +29,9 @@ Misc work going on.....
 * (bug 3170) Page Title failed to obey MediaWiki:Pagetitle.
   wikititlesuffix was removed
 * (bug 3177) Estonian date formats not implemented in LanguageEt.php
+* Add ability to break off certain debug topics into additional log files;
+  use $wgDebugLogGroups to configure and wfDebugLog() to log.
+
 
 === Caveats ===
 
