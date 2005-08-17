@@ -113,7 +113,7 @@ require_once( 'LanguageUtf8.php' );
 #
 'categories'	=> 'Catégories de la page',
 'category'	=> 'catégorie',
-'category_header' => 'Articles dans la catégorie « $1 »',
+'category_header' => 'Articles dans la catégorie « $1 ».',
 'subcategories'	=> 'Sous-catégories',
 'uncategorizedcategories' => 'Catégories sans catégories',
 'uncategorizedpages' => 'Pages sans catégories',
@@ -131,7 +131,7 @@ require_once( 'LanguageUtf8.php' );
 'aboutpage'     => '{{ns:4}}:À propos',
 'article'       => 'Article',
 'help'          => 'Aide',
-'helppage'      => '{{ns:4}}:Aide',
+'helppage'      => '{{ns:help}}:Aide',
 'bugreports'    => 'Rapport d\'erreurs',
 'bugreportspage' => '{{ns:4}}:Rapport d\'erreurs',
 'sitesupport'	=> 'Participer en faisant un don',
@@ -140,7 +140,7 @@ require_once( 'LanguageUtf8.php' );
 'faq'           => 'FAQ',
 'faqpage'       => '{{ns:4}}:FAQ',
 'edithelp'      => 'Aide',
-'edithelppage'  => '{{ns:4}}:Comment éditer une page',
+'edithelppage'  => '{{ns:help}}:Comment éditer une page',
 'cancel'        => 'Annuler',
 'qbfind'        => 'Rechercher',
 'qbbrowse'      => 'Défiler',
@@ -220,7 +220,7 @@ Voir $1.',
 'hidetoc'	=> 'masquer',
 'thisisdeleted' => 'Afficher ou restaurer $1 ?',
 'restorelink'	=> '$1 modification(s) effacée(s)',
-'feedlinks'	=> 'Flux:',
+'feedlinks'	=> 'Flux',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -272,7 +272,7 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l\'adress
 'fileinfo' => '$1Ko, type MIME: <tt>$2</tt>',
 'filerenameerror' => 'Impossible de renommer « $1 » en « $2 ».',
 'filedeleteerror' => 'Impossible de supprimer « $1 ».',
-'filenotfound'	=> 'Fichier « $1 » introuvable.',
+'filenotfound'	=> 'Le fichier « $1 » introuvable.',
 'unexpected' => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror'	=> 'Erreur: Impossible de soumettre le formulaire',
 'badarticleerror' => 'Cette action ne peut pas être effectuée sur cette page.',
@@ -400,9 +400,9 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 
 'newarticle'   => '(Nouveau)',
 'newarticletext' => 'Saisissez ici le texte de votre article.',
-'anontalkpagetext' => '---- \'\'Ceci est la page de discussion pour un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'[[adresse IP]] numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute future confusion à l\'avenir.\'\'',
+'anontalkpagetext' => '---- \'\'Vous êtes sur la page de discussion d\'un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'[[adresse IP]] numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute future confusion.\'\'',
 'noarticletext' => '(Il n\'y a pour l\'instant aucun texte sur cette page)',
-'clearyourcache'    => '\'\'\'Note:\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.',
+'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : Mozilla / Konqueror : ctrl-r, Firefox / IE / Opera : ctrl-f5, Safari : cmd-r.',
 'updated'      => '(Mis à jour)',
 'note'         => '<strong>Note :</strong> ',
 'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé!',
@@ -442,7 +442,7 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 'last'   => 'dern',
 'orig'   => 'orig',
 'histlegend' => 'Légende : (actu) = différence avec la version actuelle ,
-(dern) = différence avec la version précédente, M = modification mineure',
+(dern) = différence avec la version précédente, <b>m</b> = modification mineure',
 'selectnewerversionfordiff' => 'Choisir une version plus récente',
 'selectolderversionfordiff' => 'Choisir une version plus ancienne',
 'previousdiff' => '← Différence précédente',
@@ -632,13 +632,13 @@ L\'heure indiquée est celle du serveur (UTC).
 'uploadedfiles' => 'Fichiers copiés',
 'ignorewarning' => 'Ignorer l\'avertissement et copier le fichier quand même.',
 'minlength'	=> 'Les noms des images doivent comporter au moins trois lettres.',
-'illegalfilename'	=> 'Le fichier « $1 » contient des caractères qui ne sont pas autorisés dans le titre d\'une page. Veuillez renommer le fichier et le réenvoyer.',
+'illegalfilename'	=> 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename' => 'L\'image a été renommée « $1 ».',
 'badfiletype' => '« .$1 » n\'est pas un format recommandé pour les fichiers images.',
-'largefile'  => 'La taille maximale conseillée pour les images est de 100Ko.',
+'largefile'  => 'La taille maximale conseillée pour les images est de 100 ko.',
 'successfulupload' => 'Copie réussie',
 'fileuploaded' => 'Le fichier « $1 » a été copié sur le serveur.
-Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.',
+Suivez ce lien ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.',
 'uploadwarning' => 'Attention !',
 'savefile'  => 'Sauvegarder le fichier',
 'uploadedimage' => '« [[$1]] » copié sur le serveur',
@@ -661,7 +661,7 @@ Veuillez vérifer le fichier.',
 'bysize'  => 'par taille',
 'imgdelete'  => 'suppr',
 'imgdesc'  => 'descr',
-'imglegend'  => 'Légende: (descr) = afficher/modifier la description de l\'image.',
+'imglegend'  => 'Légende : (descr) = afficher/modifier la description de l\'image.',
 'imghistory' => 'Historique de l\'image',
 'revertimg'  => 'rétab',
 'deleteimg'  => 'suppr',
@@ -695,10 +695,10 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'maintnancepagetext'	=> 'Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.',
 'maintenancebacklink'	=> 'Retour à la page de maintenance',
 'disambiguations'	=> 'Pages d\'homonymie',
-'disambiguationspage'	=> '{{ns:4}}:Liens_aux_pages_d\'homonymie',
-'disambiguationstext'	=> 'Les articles suivants sont liés à une <i>page d\'homonymie</i>. Or, ils devraient être liés au sujet.<br /> Une page est considérée comme page d\'homonymie si elle est liée à partir de $1.<br />Les liens à partir d\'autres <i>espaces</i> ne sont pas pris en compte.',
+'disambiguationspage'	=> '{{ns:template}}:Homonymie',
+'disambiguationstext'	=> 'Les articles suivants sont liés à une <i>page d\'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d\'homonymie si elle est liée à partir de $1.<br />Les liens à partir d\'autres <i>espaces</i> ne sont pas pris en compte.',
 'doubleredirects'	=> 'Double redirection',
-'doubleredirectstext'	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
+'doubleredirectstext'	=> '<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c\'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.',
 'brokenredirects'	=> 'Redirections cassées',
 'brokenredirectstext'	=> 'Ces redirections mènent a une page qui n\'existe pas.',
 'selflinks'		=> 'Page avec un lien circulaire',
@@ -757,9 +757,9 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]]
 pour pouvoir envoyer un message à un autre utilisateur.',
 'emailuser'  => 'Envoyer un message à cet utilisateur',
-'emailpage'  => 'Email user',
+'emailpage'  => 'Envoyer un email à l\'utilisateur',
 'emailpagetext' => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
-L\'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message, afin que le destinataire puisse vous répondre.',
+L\'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
 'noemailtitle' => 'Pas d\'adresse électronique',
 'noemailtext' => 'Cet utilisateur n\'a pas spécifié d\'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.',
 
@@ -811,18 +811,18 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre
 'deletepage'	=> 'Supprimer une page',
 'confirm'	=> 'Confirmer',
 'excontent'	=> 'contenant « $1 »',
-'exbeforeblank' => 'le contenu avant effacement était : « $1 »',
+'exbeforeblank' => 'Avant son blanchiment, cette page contenait : $1',
 'exblank'	=> 'page vide',
 'confirmdelete' => 'Confirmer la suppression',
 'deletesub'	=> '(Suppression de « $1 »)',
-'historywarning' => 'Attention: La page que vous êtes sur le point de supprimer à un historique: ',
+'historywarning' => 'Attention : La page que vous êtes sur le point de supprimer a un historique : ',
 'confirmdeletetext' => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures.
 
 Veuillez confirmer que c\'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{ns:4}}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].',
 'actioncomplete' => 'Suppression effectuée',
 'deletedtext'	=> '« $1 » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
-'deletedarticle' => 'effacement de "$1"',
+'deletedarticle' => 'a effacé « $1 »',
 'dellogpage'	=> 'Historique des effacements',
 'dellogpagetext' => 'Voici la liste des suppressions récentes.
 L\'heure indiquée est celle du serveur (UTC).',
@@ -834,13 +834,12 @@ L\'heure indiquée est celle du serveur (UTC).',
 'rollback_short' => 'Révoquer',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
-'cantrollback'	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
-'alreadyrolled'	=> "Impossible de révoquer la dernière modification de [[$1]]
-par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article.
+'cantrollback'	=> 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
+'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de « $1 » effectuée par [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu\'un d\'autre à déjà modifer ou révoquer l\'article.
 
-La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix
+La dernière modificaion a été effectuée par [[User:$3|$3]] ([[User talk:$3|Talk]]).', // FIXME: namespaces
 #   only shown if there is an edit comment
-'editcomment' => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix
+'editcomment' => 'Le résumé de la modification était: <i>« $1 »</i>.',
 'revertpage'	=> 'restitution de la dernière modification de $1',
 'protectlogpage' => 'Log_de_protection',
 'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
@@ -848,13 +847,13 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 'unprotectedarticle' => 'a déprotégé [[$1]]',
 
 'protectsub' => '(Protéger « $1 »)',
-'confirmprotect' => 'Confimer le bloquage',
-'confirmprotecttext' => 'Voulez vous vraiment protéger cette page ?',
+'confirmprotect' => 'Confimer la protection',
+'confirmprotecttext' => 'Voulez-vous réellement protéger cette page ?',
 'protectcomment' => 'Raison du bloquage',
 
 'unprotectsub' => '(Débloque « $1 »)',
 'confirmunprotecttext' => 'Voulez-vous réellement déprotéger cette page ?',
-'confirmunprotect' => 'Raison du débloquage',
+'confirmunprotect' => 'Raison de la déprotection',
 'unprotectcomment' => 'Raison du débloquage',
 'protectmoveonly' => 'Protéger uniquement les déplacements',
 
@@ -907,8 +906,8 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 
 # Block/unblock IP
 #
-'blockip'	=> 'Bloquer une adresse IP',
-'blockiptext'	=> 'Utilisez le formulaire ci-dessous pour bloquer l\'accès en écriture à partir d\'une adresse IP donnée.
+'blockip'	=> 'Bloquer une adresse IP ou un utilisateur',
+'blockiptext'	=> 'Utilisez le formulaire ci-dessous pour bloquer l\'accès en écriture à partir d\'une adresse IP donnée ou d\'un nom d\'utilisateur.
 
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).',
@@ -922,13 +921,13 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblockiptext' => 'Utilisez le formulaire ci-dessous pour rétablir l\'accès en écriture
 à partir d\'une adresse IP précédemment bloquée.',
 'ipusubmit'	=> 'Débloquer cette adresse',
-'ipusuccess'	=> 'L\'adresse IP « $1 » débloquée',
-'ipblocklist'	=> 'Liste des adresses IP bloquées',
-'blocklistline' => '$1, $2 a bloqué $3 ($4)',
+'ipusuccess'	=> 'L\'adresse IP « $1 » débloquée.',
+'ipblocklist'	=> 'Liste des blocages',
+'blocklistline' => '$1 (expire le $4): $2 a bloqué $3',
 'blocklink'	=> 'bloquer',
 'unblocklink'	=> 'débloquer',
 'contribslink'	=> 'contribs',
-'autoblocker'	=> 'Autobloqué parce que vous partagez une adresse IP avec « $1 ». Raison : « $2 ».',
+'autoblocker'	=> 'Bloqué automatiquement parce que vous partagez une adresse IP avec « $1 ». Raison : « $2 ».',
 'blocklogpage'	=> 'Log de blocage',
 'blocklogentry'	=> 'blocage de « $1 »',
 'blocklogtext'	=> 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
@@ -964,7 +963,7 @@ N\'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération
 
 # Special:Makesysop
 'bureaucratlog'		=> 'Log_bureaucrate',
-'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » passés à « $2 »',
+'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 »',
 'makesysoptitle'	=> 'Donne les droits d\'adminitrateur.',
 'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
@@ -1073,8 +1072,8 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Special:Import
 'import'	=> 'Importer des pages',
-'importfailed'	=> 'L\'import a échoué  : $1',
-'importhistoryconflict' => 'Des révisions dans l\'historique existent et sont en conflits (cette page à peut être déjà été importée avant)',
+'importfailed'	=> 'Échec de l\'import : $1',
+'importhistoryconflict' => 'Il y a un conflit dans l\'historique des versions (cette page à peut être déjà été importée avant)',
 'importnotext'	=> 'Vide ou sans texte',
 'importsuccess'	=> 'L\'import a réussi !',
 'importtext'	=> 'Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.',
@@ -1103,7 +1102,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'siteuser'	=> 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedby' => 'Cette page a été modifiée pour la dernière fois le $1 par $2',
 'and'	=> 'et',
-'contributions' => 'Basé sur le travail de $1.',
 'siteusers'	=> 'Utilisateur(s) $1 de {{SITENAME}}',
 'creditspage' => 'Page crédits',
 
@@ -1120,7 +1118,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'confirmemail_subject' => '{{SITENAME}} email address confirmation',
 'confirmemail_body' => 'Quelqu\'un, probablement vous avec l\'adresse email $1, a enregistré un compte « $2 » avec cette email sur le site {{SITENAME}}.
 
-Pour confirmer que ce compte vous appartiens vraiment et activer les fonctionalités de messagerie sur {{SITENAME}}, veuillez ouvrir le lien ci dessous dans votre navigateur :
+Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci dessous dans votre navigateur :
 
 $3
 
