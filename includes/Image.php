@@ -915,6 +915,9 @@ class Image
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
+
+		$fname = 'Image::renderThumb';
+		wfProfileIn( $fname );
 		
 		$width = intval( $width );
 
@@ -922,18 +925,22 @@ class Image
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
+			wfProfileOut( $fname );
 			return null;
 		}
 		
 		# Sanity check $width
 		if( $width <= 0 || $this->width <= 0) {
 			# BZZZT
+			wfProfileOut( $fname );
 			return null;
 		}
 
 		if( $width >= $this->width && !$this->mustRender() ) {
 			# Don't make an image bigger than the source
-			return new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+			$thumb = new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
+			wfProfileOut( $fname );
+			return $thumb;
 		}
 		
 		$height = floor( $this->height * ( $width/$this->width ) );
@@ -941,7 +948,9 @@ class Image
 		list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 		if ( $isScriptUrl && $useScript ) {
 			// Use thumb.php to render the image
-			return new ThumbnailImage( $url, $width, $height );
+			$thumb = new ThumbnailImage( $url, $width, $height );
+			wfProfileOut( $fname );
+			return $thumb;
 		}
 
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
@@ -976,7 +985,9 @@ class Image
 			}
 		}
 		
-		return new ThumbnailImage( $url, $width, $height, $thumbPath );
+		$thumb = new ThumbnailImage( $url, $width, $height, $thumbPath );
+		wfProfileOut( $fname );
+		return $thumb;
 	} // END OF function renderThumb
 
 	/**
