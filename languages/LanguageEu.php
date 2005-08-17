@@ -1134,10 +1134,10 @@ to perform this function on.', */
 'pagemovedtext' => '"$1"-ren izenburua "$2"-en truke aldatu da.',
 #'pagetitle' => '$1 - {{SITENAME}}',
 'passwordremindertext' => 'Norbaitek (zu seguruenik, IP $1 helbidetik) Wikipedian saio berria hasteko pasahitza bidaltzea eskatu du.
-\"$2\" lankidearen pasahitza orain \"$3\" da.
+"$2" lankidearen pasahitza orain "$3" da.
 Mesedez, hasi saioa eta pasahitz hau berri baten truke aldatu.',
 'passwordremindertitle' => 'Wikipediaren pasahitz oroigarria',
-'passwordsent' => 'Pasahitz oroigarria \"$1\"-ren helbide elektronikora bidali dugu.
+'passwordsent' => 'Pasahitz oroigarria "$1"-ren helbide elektronikora bidali dugu.
 Mesedez hasi saioa pasahitza hartu bezain laster.',
 #'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 #'perfcached' => 'The following data is cached and may not be completely up to date:',
