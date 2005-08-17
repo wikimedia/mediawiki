@@ -23,6 +23,9 @@ Misc work going on.....
 * Partial support for Basque language (from wikipedia and meta)
 * (bug 3116) Division by zero on [[Image:Foo.png|123x123px|]]
 * Fix display of read-only lockfile message
+* Update all stats fields on recount.sql
+* Include software-visible client IP address in Special:Version comment
+  as a proxy debugging aid
 
 
 === Caveats ===
