@@ -11,7 +11,7 @@
 require_once( "commandLine.inc" );
 require_once("memcached-client.php");
 
-$mcc = new memcached( array('persistant' => true) );
+$mcc = new memcached( array('persistant' => true, 'debug' => true) );
 $mcc->set_servers( $wgMemCachedServers );
 $mcc->set_debug( true );
 
