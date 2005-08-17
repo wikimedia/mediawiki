@@ -629,6 +629,22 @@ function do_user_groups_reformat() {
 
 }
 
+function do_watchlist_null() {
+	# Make sure wl_notificationtimestamp can be NULL,
+	# and update old broken items.
+	global $wgDatabase;
+	$info = $wgDatabase->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
+	
+	if( $info->not_null ) {
+		echo "Making wl_notificationtimestamp nullable... ";
+		dbsource( 'maintenance/archives/patch-watchlist-null.sql', $wgDatabase );
+		echo "ok\n";
+	} else {
+		echo "...wl_notificationtimestamp is already nullable.\n";
+	}
+
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 
@@ -670,6 +686,8 @@ function do_all_updates() {
 
 	do_user_unique_update(); flush();
 	do_user_groups_update(); flush();
+	
+	do_watchlist_null(); flush();
 
 	initialiseMessages(); flush();
 }
