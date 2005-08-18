@@ -89,7 +89,6 @@ if($wgMetaNamespace === FALSE)
 	'nostalgia'     => 'Nostalgie',
 	'cologneblue'   => 'Kölsch Blau',
 	'smarty'        => 'Paddington',
-	'myskin'        => 'MySkin',
 	'chick'         => 'Küken'
 ) + $wgSkinNamesEn;
 

@@ -807,9 +807,6 @@ y rhestr o blociau a gwaharddiadau sydd yn effeithiol rwan.",
 "ipb_expiry_invalid" => "Amser diwedd ddim yn dilys.",
 "ip_range_invalid" => "Dewis IP annilys.\n",
 
-# Developer tools - left untranslated as the developers would probably
-#  prefer them in English!
-#
 
 # Make sysop
 "makesysoptitle" => "Gwnewch sysop allan o defnyddiwr",

@@ -109,24 +109,7 @@ class LanguageNv extends LanguageUtf8 {
 		return $wgWeekdayNamesNv[$key-1];
 	}
 
-/*
-	function getMessage( $key )
-	{
-		global $wgAllMessagesNv;
-		return @$wgAllMessagesNv[$key];
-	}
 
-	function getAllMessages()
-	{
-		global $wgAllMessagesNv;
-		return $wgAllMessagesNv;
-	}
-*/
-
-	function &getMagicWords() {
-		global $wgMagicWordsNv;
-		return $wgMagicWordsNv;
-	}
 }
 
 ?>

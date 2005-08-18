@@ -862,10 +862,13 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgSkinNamesJa;
 	}
 
+	function getDateFormats() {
+		return false;
+	}
 
-	function date( $ts, $adj = false ) {
+	function date( $ts, $adj = false, $format = false, $tc = false ) {
 		global $wgWeekdayAbbreviationsJa;
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 
 		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ),
 			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
@@ -878,15 +881,15 @@ class LanguageJa extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function time( $ts, $adj = false, $format = false, $tc = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
 		return $t;
 	}
 
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+	function timeanddate( $ts, $adj = false, $format = false, $tc = false ) {
+		return $this->date( $ts, $adj, $format, $tc ) . " " . $this->time( $ts, $adj, $format, $tc );
 	}
 
 	function getMessage( $key ) {
