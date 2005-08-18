@@ -659,7 +659,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3162) Fix 'undefined property page_is_new' error on watchlist
 * (bug 1734) granting db permissions failed with db usernames containg '-'
 * (bug 3170) wikititlesuffix was removed, use pagetitle instead
-
+* (bug 3187) watchlist text refer to unexistent "Stop watching" action
 
 === Caveats ===
 
