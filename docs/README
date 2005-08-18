@@ -6,7 +6,7 @@ understand the most importants classes in MediaWiki.
 API documentation is sometime generated and uploaded at:
   http://wikipedia.sourceforge.net/doc/
 
-You can get a fresh version using 'make doc' or mwgendoc.php
+You can get a fresh version using 'make doc' or mwdocgen.php
 in the ../maintenance/ directory.
 
 
