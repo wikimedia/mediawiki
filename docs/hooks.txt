@@ -358,4 +358,4 @@ $catpage: CategoryPage instance
 $content_actions: The array of content actions
 
 
-More hooks might not be available but undocumented.
+More hooks might be available but undocumented.
