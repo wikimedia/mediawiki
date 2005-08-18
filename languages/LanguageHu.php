@@ -146,15 +146,15 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
 "about"			=> "Névjegy",
 "aboutsite"      => "A {{SITENAME}}ROL",
-"aboutpage"		=> "{{{ns:project}}}:Névjegy",
+"aboutpage"		=> "{{ns:project}}:Névjegy",
 "help"			=> "Segítség",
-"helppage"		=> "{{{ns:project}}}:Segítség",
+"helppage"		=> "{{ns:project}}:Segítség",
 "bugreports"	=> "Hibajelentés",
-"bugreportspage" => "{{{ns:project}}}:Hibajelentések",
+"bugreportspage" => "{{ns:project}}:Hibajelentések",
 "faq"			=> "GyIK",
-"faqpage"		=> "{{{ns:project}}}:GyIK",
+"faqpage"		=> "{{ns:project}}:GyIK",
 "edithelp"		=> "Segítség a szerkesztéshez",
-"edithelppage"	=> "{{{ns:project}}}:Hogyan_szerkessz_egy_lapot",
+"edithelppage"	=> "{{ns:project}}:Hogyan_szerkessz_egy_lapot",
 "cancel"		=> "Vissza",
 "qbfind"		=> "Keresés",
 "qbbrowse"		=> "Böngészés",
@@ -193,7 +193,7 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 "viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
 "printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Védett lap",
-"administrators" => "{{{ns:project}}}:Adminisztrátorok",
+"administrators" => "{{ns:project}}:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
 "sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
 Lásd $1.",
@@ -341,7 +341,7 @@ Lépj be a levélben található adatokkal.",
 "blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
 Az indoklás:<br />''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
-[[{{{ns:project}}}:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+[[{{ns:project}}:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
 "whitelistedittitle" => "A szerkesztéshez be kell lépned",
 "whitelistedittext" => "A szócikkek szerkesztéséhez [[Special:Userlogin|be kell lépned]].",
 "whitelistreadtitle" => "Az olvasáshoz be kell lépned",
@@ -354,7 +354,7 @@ Az indoklás:<br />''$2''
 "newarticletext" =>
 "Egy olyan lapra jutottál ami még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét lenti keretbe
-(a [[{{{ns:project}}}:Segítség|segítség]] lapon lelsz további
+(a [[{{ns:project}}:Segítség|segítség]] lapon lelsz további
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
@@ -518,13 +518,13 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 "changes" 		=> "változtatás",
 "recentchanges" => "Friss változtatások",
 "recentchangestext" => "Ezen a lapon követheted a {{SITENAME}} történt legutóbbi
-változtatásokat. [[{{{ns:project}}}:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
-Légy szíves ismerkedj meg az alábbi lapokkal: [[{{{ns:project}}}:GyIK|{{SITENAME}} GyIK]],
-[[{{{ns:project}}}:Irányelvek]] (különösen az [[{{{ns:project}}}:Elnevezési szokások|elnevezési szokásokat]],
-a [[{{{ns:project}}}:Semleges nézőpont|semleges nézőpontot]]), és a
-[[{{{ns:project}}}:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+változtatásokat. [[{{ns:project}}:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[{{ns:project}}:GyIK|{{SITENAME}} GyIK]],
+[[{{ns:project}}:Irányelvek]] (különösen az [[{{ns:project}}:Elnevezési szokások|elnevezési szokásokat]],
+a [[{{ns:project}}:Semleges nézőpont|semleges nézőpontot]]), és a
+[[{{ns:project}}:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
 Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy
-soha ne add hozzá mások [[{{{ns:project}}}:Copyright|jogvédett és nem felhasználható]]
+soha ne add hozzá mások [[{{ns:project}}:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
 ilyet.",
@@ -603,7 +603,7 @@ Minden időpont a server idejében (UTC) van megadva.
 "filedesc"		=> "Összefoglaló",
 "filestatus" 	=> "Szerzői jogi állapot",
 "filesource" 	=> "Forrás",
-"copyrightpage" => "{{{ns:project}}}:Copyright",
+"copyrightpage" => "{{ns:project}}:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Felküldött file-ok",
 "ignorewarning"	=> "Mentés a figyelmeztetés figyelmen kívül hagyásával.",
