@@ -938,10 +938,10 @@ Por favor, elige otro nombre.",
 'tooltip-search' => "Buscar en este wiki [alt-f]",
 
 'clearyourcache' => "'''Nota:''' Tras salvar el fichero, debes refrescar la caché de tu navegador para ver los cambios:
-*'''Mozilla:'''  Pulsa el botón ''Recargar'' (o ''ctrl-r''),
-*'''Internet Explorer / Opera:''' ''ctrl-f5'',
-*'''Safari:''' ''cmd-r'',
-*'''Konqueror''' ''ctrl-r''.",
+*'''Mozilla:'''  ''ctrl-shift-r'',
+*'''Internet Explorer:''' ''ctrl-f5'',
+*'''Safari:''' ''cmd-shift-r'',
+*'''Konqueror''' ''f5''.",
 'compareselectedversions' => "Comparar versiones seleccionadas",
 
 'feedlinks' => "Sindicación:",

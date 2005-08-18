@@ -182,7 +182,7 @@ this list should not be construed as an endorsement.', */
 #'changegrouplogentry' => 'Changed group $2',
 'changepassword' => 'Şîfre biguherîne',
 'changes' => 'guherandin',
-#'clearyourcache' => '\'\'\'Note:\'\'\' After saving, you have to clear your browser cache to see the changes: \'\'\'Mozilla:\'\'\' click \'\'Reload\'\' (or \'\'Ctrl-R\'\'), \'\'\'IE / Opera:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-R\'\', \'\'\'Konqueror\'\'\' \'\'Ctrl-R\'\'.',
+#'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
 'columns' => 'stûn',
 'compareselectedversions' => 'Guhertoyan bide ber hev',
 'confirm' => 'Teyît bike',

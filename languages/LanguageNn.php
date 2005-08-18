@@ -492,7 +492,7 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 'anontalkpagetext'        => '---- \'\'Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.\'\'',
 'noarticletext'           => '\'\'\'Sida «{{PAGENAME}}» finst ikkje på {{SITENAME}} enno.\'\'\'
 * Klikk på \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} endre]\'\'\' for å opprette sida.',
-'clearyourcache'          => '\'\'\'Merk:\'\'\' Etter lagring bør du tømme mellomlageret åt nettlesaren for å sjå endringane. \'\'\'Mozilla og Konqueror:\'\'\' trykk \'\'Ctrl-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-R\'\'.',
+'clearyourcache'          => '\'\'\'Merk:\'\'\' Etter lagring bør du tømme mellomlageret åt nettlesaren for å sjå endringane. \'\'\'Mozilla og Firefox:\'\'\' trykk \'\'Ctrl-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview'  => '<strong>Tip:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din føre du lagrar.',
 'usercsspreview'          => '\'\'\'Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!\'\'\'',
 'userjspreview'           => '\'\'\'Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!\'\'\'',

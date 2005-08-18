@@ -436,8 +436,7 @@ dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di d
 'noarticletext'          => '(Disse Siet hett in\'n Momang kenen Text)',
 'usercsspreview'         => "'''Denk doran, dat du blots en Vörschau vun dien CSS ankiekst, dat is noch nich spiekert!'''",
 'userjspreview'          => "'''Denk doran, dat du blots en Vörschau vun dien JS ankiekst, dat is noch nich spiekert!'''",
-'clearyourcache'         => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden:
-'''Mozilla:''' Klick op ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.',
+'clearyourcache'         => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => '<strong>Tipp:</strong> Bruuk den Vörschau-Knoop, üm dien nieg CSS/JS vör dat Spiekern to testen.',
 'updated'                       => '(Ännert)',
 'note'                          => '<strong>Henwies:</strong> ',

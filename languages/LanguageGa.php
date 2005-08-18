@@ -482,7 +482,7 @@ i do úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe n
 [[Special:Userlogin|cruthaigh cuntas nó logáil isteach]] le do thoil chun mearbhall le húsáideoirí­ eile
 gan ainmneacha a héalaigh amach anseo.'' ",
 "noarticletext" => "(Ní­l aon téacs ar an leathanach seo faoi láthair)",
-'clearyourcache' => "'''Tabhair faoi deara:''' Tar éis duit ábhar a shábháil, ní mór duit taisce do líonléitheora chun na hathruithe a fheiceáil After saving, you have to clear your browser cache to see the changes: '''Mozilla / Netscape:''' roghnaigh ''Athlódáil'' (nó ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''Tabhair faoi deara:''' Tar éis duit ábhar a shábháil, ní mór duit taisce do líonléitheora chun na hathruithe a fheiceáil: '''Mozilla / Firefox / Netscape:''' ''Ctrl-Shift-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Leid:</strong> Sula sábhálaím tú, úsáid an cnaipe 'Reamhspléach' chun do CSS/JS nua a tástáil.",
 'usercsspreview' => "'''Cuimhnigh nach bhfuil seo ach reamhspléachadh do CSS úsáideora - níor sábháladh é go fóill!'''",
 'userjspreview' => "'''Cuimhnigh nach bhfuil seo ach reamhspléachadh do JavaScript úsáideora - níor sábháladh é go fóill!'''",
