@@ -1067,12 +1067,12 @@ class LanguageEt extends LanguageUtf8 {
 		global $wgAmericanDates, $wgUser;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
-		
+
 		$datePreference = $this->dateFormat($format);
 
 		if ($datePreference == '0'
 		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
-		    
+
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
