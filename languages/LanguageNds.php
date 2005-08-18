@@ -451,7 +451,7 @@ Dat Textfeld baven wiest de aktuelle Siet.
 Dat Textfeld nerrn wiest diene Ännern.
 Föög diene Ännern in dat Textfeld baven in.
 
-<b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />",
+<b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />',
 'yourtext'                      => 'Dien Text',
 'storedversion'          => 'Spiekerte Version',
 'nonunicodebrowser'      => '<strong>Wohrscho: Dien Browser ünnerstütt keen Unicode, wähl en annern Browser, wenn du en Siet ännern wullst.</strong>',
