@@ -5,24 +5,24 @@
   */
 
 $wgNamespaceNamesEt = array(
-        NS_MEDIA            => 'Meedia',
-        NS_SPECIAL          => 'Eri',
-        NS_MAIN             => '',
-        NS_TALK             => 'Arutelu',
-        NS_USER             => 'Kasutaja',
-        NS_USER_TALK        => 'Kasutaja_arutelu',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => $wgMetaNamespace . '_arutelu',
-        NS_IMAGE            => 'Pilt',
-        NS_IMAGE_TALK       => 'Pildi_arutelu',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
-        NS_TEMPLATE         => 'Mall',
-        NS_TEMPLATE_TALK    => 'Malli_arutelu',
-        NS_HELP             => 'Juhend',
-        NS_HELP_TALK        => 'Juhendi_arutelu',
-        NS_CATEGORY         => 'Kategooria',
-        NS_CATEGORY_TALK    => 'Kategooria_arutelu'
+	NS_MEDIA            => 'Meedia',
+	NS_SPECIAL          => 'Eri',
+	NS_MAIN             => '',
+	NS_TALK             => 'Arutelu',
+	NS_USER             => 'Kasutaja',
+	NS_USER_TALK        => 'Kasutaja_arutelu',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_arutelu',
+	NS_IMAGE            => 'Pilt',
+	NS_IMAGE_TALK       => 'Pildi_arutelu',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
+	NS_TEMPLATE         => 'Mall',
+	NS_TEMPLATE_TALK    => 'Malli_arutelu',
+	NS_HELP             => 'Juhend',
+	NS_HELP_TALK        => 'Juhendi_arutelu',
+	NS_CATEGORY         => 'Kategooria',
+	NS_CATEGORY_TALK    => 'Kategooria_arutelu'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgSkinNamesEt = array(
@@ -34,8 +34,18 @@ $wgNamespaceNamesEt = array(
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook",
-	 "myskin" => "Mu oma nahk" 
+	 "myskin" => "Mu oma nahk"
 );
+
+
+/* private */ $wgDateFormatsEt = array(
+        'Eelistus puudub',
+        '15.01.2001, kell 16.12',
+        '15. jaanuar 2001, kell 16.12',
+        '15. I 2005, kell 16.12',
+        'ISO 8601' => '2001-01-15 16:12:34'
+);
+
 
 /* private */ $wgQuickbarSettingsEt = array(
 	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
@@ -57,87 +67,40 @@ $wgNamespaceNamesEt = array(
 
 /* private */ $wgMagicWordsEt = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
-    MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
-    MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
-    MAG_TOC                  => array( 0,    '__TOC__'                ),
-    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
-    MAG_START                => array( 0,    '__START__'              ),
-    MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
-    MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
-    MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
-    MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
-    MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
-    MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
-    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
-        MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
-        MAG_PAGENAMEE                    => array( 1,    'PAGENAMEE'              ),
-        MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
-        MAG_SUBST                => array( 0,    'SUBST:'                 ),
-    MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
-        MAG_END                  => array( 0,    '__END__'                ),
-    MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
-    MAG_IMG_RIGHT            => array( 1,    'right'                  ),
-    MAG_IMG_LEFT             => array( 1,    'left'                   ),
-    MAG_IMG_NONE             => array( 1,    'none'                   ),
-    MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
-    MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
-    MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
-    MAG_INT                  => array( 0,    'INT:'                   ),
-    MAG_SITENAME             => array( 1,    'SITENAME'               ),
-    MAG_NS                   => array( 0,    'NS:'                    ),
-        MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
-        MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
-        MAG_SERVER               => array( 0,    'SERVER'                 ),
-        MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
-);
-
-
-/* private */ $wgValidSpecialPagesEt = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Minu eelistuste seadmine",
-	"Watchlist"		=> "Minu jälgimisloend",
-	"Recentchanges" => "Viimati muudetud artiklid",
-	"Upload"		=> "Pildifailide üleslaadimine",
-	"Imagelist"		=> "Piltide loend",
-	"Listusers"		=> "Kasutajad",
-	"Statistics"	=> "Saidi statistika",
-	"Randompage"	=> "Juhuslik artikkel",
-
-	"Lonelypages"	=> "üksildased artiklid",
-	"Unusedimages"	=> "Kasutamata pildid",
-	"Popularpages"	=> "Kõige loetavamad artiklid",
-	"Wantedpages"	=> "Kõige oodatumad artiklid",
-	"Shortpages"	=> "Lühikesed artiklid",
-	"Longpages"		=> "Pikad artiklid",
-	"Newpages"		=> "Uued artiklid",
-#	"Intl"		=> "Keeltevahelised lingid",
-	"Allpages"		=> "Kõik artiklid pealkirja järgi",
-
-	"Ipblocklist"	=> "Blokeeritud IP-aadressid",
-	"Maintenance" => "Hoolduslehekülg",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "Raamatud",
-	"Export"		=> "Eksport XML-vormingusse",
-	"Version"		=> "Versioon",
-);
-
-/* private */ $wgSysopSpecialPagesEt = array(
-	"Blockip"		=> "Blokeeri IP-aadress",
-	"Asksql"		=> "Otsi andmebaasist",
-	"Undelete"		=> "Taasta kustutatud leheküljed"
-);
-
-/* private */ $wgDeveloperSpecialPagesEt = array(
-	"Lockdb"		=> "Võta andmebaas kirjutuskaitse alla",
-	"Unlockdb"		=> "Taasta andmebaasi kirjutuspääs",
+	MAG_REDIRECT             => array( 0,    '#redirect', "#suuna"    ),
+	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
+	MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
+	MAG_TOC                  => array( 0,    '__TOC__'                ),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
+	MAG_START                => array( 0,    '__START__'              ),
+	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
+	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
+	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
+	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
+	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
+	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
+	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
+	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
+	MAG_PAGENAMEE                    => array( 1,    'PAGENAMEE'              ),
+	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
+	MAG_SUBST                => array( 0,    'SUBST:'                 ),
+	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
+	MAG_END                  => array( 0,    '__END__'                ),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
+	MAG_IMG_RIGHT            => array( 1,    'right'                  ),
+	MAG_IMG_LEFT             => array( 1,    'left'                   ),
+	MAG_IMG_NONE             => array( 1,    'none'                   ),
+	MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
+	MAG_INT                  => array( 0,    'INT:'                   ),
+	MAG_SITENAME             => array( 1,    'SITENAME'               ),
+	MAG_NS                   => array( 0,    'NS:'                    ),
+	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
+	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
+	MAG_SERVER               => array( 0,    'SERVER'                 ),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
 );
 
 /* private */ $wgAllMessagesEt = array(
@@ -209,7 +172,6 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "article"		=> "Sisu",  # või "Artikkel" nagu praegu Vikipeedias?
 "help"			=> "Juhend", # Vikipeedias "Spikker"
 "helppage"		=> "{{ns:12}}:Juhend",
-"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Teated programmivigadest",
 "bugreportspage" => "{{ns:4}}:Teated_programmivigadest",
 'sitesupport'   => 'Annetused', # Set a URL in $wgSiteSupportPage in LocalSettings.php
@@ -272,9 +234,9 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "viewtalkpage" => "Arutelulehekülg",
 "otherlanguages" => "Teised keeled",
 "redirectedfrom" => "(Ümber suunatud artiklist $1)",
-"lastmodified"	=> "Viimati muudetud $1.",
+"lastmodified"	=> "Viimane muutmine: $1",
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
-"gnunote" => "Kogu tekst on kasutatav litsentsi <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a> tingimustel.", # aegunud, võib vist eemaldada, asendada järgmisega:
+# aegunud, võib vist eemaldada, asendada järgmisega:
 "copyright" => "Kogu tekst on kasutatav litsentsi <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Vaba Dokumentatsiooni Litsentsi</a> (GFDL) tingimustel.",
 'poweredby'     => "{{SITENAME}} kasutab avatud koodiga wiki mootorit [http://www.mediawiki.org/ MediaWiki].",
 "printsubtitle" => "(Allikas: {{SERVER}})",
@@ -285,8 +247,6 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "developertitle" => "Nõutav süsteemiarendaja staatus",
 "developertext"	=> "Seda toimingut saavad sooritada ainult süsteemiarendaja staatusega kasutajad.
 Vaata $1.",
-'bureaucrattitle'       => 'Nõutav bürokraadi staatus',
-"bureaucrattext"      => "Seda toimingut saavad sooritada ainult \"bürokraadi\" staatusega kasutajad. Vaata $1.",
 "nbytes"		=> "$1 baiti",
 "go"			=> "Mine",
 "ok"			=> "OK",
@@ -300,7 +260,7 @@ Vaata $1.",
 'toc' => 'Sisukord',
 'showtoc' => 'näita',
 'hidetoc' => 'peida',
-'thisisdeleted' => "Vaata või taasta $1?", # View or restore... 
+'thisisdeleted' => "Vaata või taasta $1?", # View or restore...
 'restorelink' => "Kustutatud muudatuste arv: $1",
 'feedlinks' => 'Sööde:', # See sõna ei meeldi, aga paremat ei tea.
 'sitenotice'    => '', # the equivalent to wgSiteNotice
@@ -349,9 +309,9 @@ MySQL andis vea \"$3: $4\".\n",
 "readonlytext"	=> "Andmebaas on praegu kirjutuskaitse all, tõenäoliselt andmebaasi rutiinseks hoolduseks, mille lõppedes normaalne olukord taastub.
 Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 <p>$1",
-"missingarticle" => "Andmebaas ei leidnud lehekülje \"$1\" teksti, kuigi see oleks pidanud olema leitav. 
+"missingarticle" => "Andmebaas ei leidnud lehekülje \"$1\" teksti, kuigi see oleks pidanud olema leitav.
 
-<p>Tavaliselt on selle põhjuseks vananenud sisuerinevuste- või ajaloolink leheküljele, mis on kustutatud. 
+<p>Tavaliselt on selle põhjuseks vananenud sisuerinevuste- või ajaloolink leheküljele, mis on kustutatud.
 
 <p>Kui ei ole tegemist sellise juhtumiga, siis võib olla tegemist tarkvaraveaga. Palun teatage sellest administraatorile, märkides ära kasutatud aadressi.",
 "internalerror" => "Sisemine viga",
@@ -360,7 +320,7 @@ Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 "filedeleteerror" => "Faili nimega \"$1\" ei ole võimalik kustutada.",
 "filenotfound"	=> "Faili nimega \"$1\" ei leitud.",
 "unexpected"	=> "Ootamatu väärtus: \"$1\"=\"$2\".",
-"formerror"		=> "Viga: vormi ei saanud salvestada",	
+"formerror"		=> "Viga: vormi ei saanud salvestada",
 "badarticleerror" => "Seda toimingut ei saa sellel leheküljel sooritada.",
 "cannotdelete"	=> "Seda lehekülge või pilti ei ole võimalik kustutada. (Võib-olla keegi teine juba kustutas selle.)",
 "badtitle"		=> "Vigane pealkiri",
@@ -378,7 +338,6 @@ Päring: $2
 mitmesuguseid põhjusi, vaata palun artiklit
 [[{{ns:4}}:Lukustatud lehekülg]].
 Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti -- ",
-'seriousxhtmlerrors' => 'tidy leidis, et xhtml-märgenduses on tõsiseid vigu.',
 
 
 
@@ -388,7 +347,7 @@ Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti -- ",
 "logouttitle"	=> "Väljalogimine",
 "logouttext"	=> "Te olete välja loginud.
 Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana uuesti sisse logida.\n",
-     # rookisin Vikipeedia välja, {{SITENAME}} oleks õige, aga vajab ümbersõnastamist.
+	 # rookisin Vikipeedia välja, {{SITENAME}} oleks õige, aga vajab ümbersõnastamist.
 
 "welcomecreation" => "<h2>Tere tulemast, $1!</h2><p>Teie konto on loodud. Ärge unustage seada oma eelistusi.",
 
@@ -399,11 +358,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "newusersonly"	=> " (ainult uued kasutajad)",
 "remembermypassword" => "Parooli meeldejätmine tulevasteks seanssideks.",
 "loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!",
-"alreadyloggedin" => "<font color=red><b>Kasutaja $1, Te olete juba sisse loginud!</b></font><br />\n",
-
-"areyounew"		=> "Kui olete siin uustulnuk ja tahate saada kasutajakontot, siis 
-sisestage kasutajanimi, seejärel parool (kaks korda).
-E-posti aadress ei ole kohustuslik; kui Te kaotate oma parooli, võite lasta selle saata Teie poolt antud aadressil.<br />\n", # aegunud -- kustutada.
+"alreadyloggedin" => "<strong>Kasutaja $1, Te olete juba sisse loginud!</strong><br />\n",
 
 "login"			=> "Logi sisse",
 'loginprompt'           => "{{SITENAME}} võimaldab sisselogimist vaid siis kui küpsised on lubatud.",
@@ -504,12 +459,12 @@ Teie IP on $3. Lisage see aadress kõigile järelpärimistele, mida kavatsete te
 "newarticle"	=> "(Uus)",
 "newarticletext" =>
 "Seda lehekülge veel ei ole.
-Lehekülje loomiseks hakake kirjutama all olevasse boksi 
+Lehekülje loomiseks hakake kirjutama all olevasse boksi
 (lisainfo saamiseks vaadake [[{{ns:4}}:Juhend|juhendit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
 "anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{{ns:4}}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.'' ",
 "noarticletext" => "(See lehekülg on praegu tühi)",
-'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' vajuta ''reload''(või ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssjsyoucanpreview' => "<strong>Vihje:</strong> Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
 'usercsspreview' => "'''Ärge unustage, et seda versiooni teie isiklikust stiililehest pole veel salvestatud!'''",
 'userjspreview' => "'''Ärge unustage, et see versioon teie isiklikust javascriptist on alles salvestamata!'''",
@@ -534,11 +489,11 @@ Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.</str
 "copyrightwarning" => "Pidage silmas, et kõik kaastööd loetakse avaldatuks vastavalt GNU Vaba Dokumentatsiooni Litsentsile
 (Üksikasjad on leheküljel $1).
 Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse ja omal äranägemisel kasutatakse, siis ärge seda siia salvestage.<br />
-Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast. 
+Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.
 <strong>ÄRGE SAATKE AUTORIÕIGUSTEGA KAITSTUD MATERJALI ILMA LOATA!</strong>", # Vikipeedia võtsin välja, {{SITENAME}} paigutada kuidagi?
 "longpagewarning" => "<strong>HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.</strong>",
 "readonlywarning" => "<strong>HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.</strong>",
-"protectedpagewarning" => "<strong>HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
+"protectedpagewarning" => "<strong>HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel
 [[Project:Juhtnöörid_kaitstud_lehekülje_kohta]]</strong>.",
 
 # History pages
@@ -550,7 +505,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.\n",
 "loadhist"		=> "Lehekülje ajaloo laadimine",
 "currentrev"	=> "Viimane redaktsioon",
-"revisionasof"	=> "Redaktsioon $1",
+"revisionasof"	=> "Redaktsioon: $1",
 "cur"			=> "viim",
 "next"			=> "järg",
 "last"			=> "eel",
@@ -571,8 +526,6 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 # Search results
 #
 "searchresults" => "Otsingu tulemid",
-"searchhelppage" => "{{ns:4}}:Otsing",
-"searchingwikipedia" => "{{ns:4}} &ndash; Otsimine",
 "searchresulttext" => "Lisainfot otsimise kohta vaata $1.",
 "searchquery"	=> "Päring \"$1\"",
 "badquery"		=> "Vigane päring",
@@ -611,10 +564,11 @@ sisse logida.",
 "prefslogintext" => "Te olete sisse loginud kasutajanimega \"$1\".
 Teie sisemine ID-number on $2.",
 "prefsreset"	=> "Teie eelistused on arvutimälu järgi taastatud.",
-"qbsettings"	=> "Kiirriba sätted", 
+"qbsettings"	=> "Kiirriba sätted",
 "changepassword" => "Muuda parool",
 "skin"			=> "Nahk",
 "math"			=> "Valemite näitamine",
+"dateformat"            => "Kuupäeva formaat",
 "math_failure"		=> "Arusaamatu süntaks",
 "math_unknown_error"	=> "Tundmatu viga",
 "math_unknown_function"	=> "Tundmatu funktsioon ",
@@ -711,13 +665,9 @@ Kellaajad on märgitud serveri ajaarvamise järele (UTC).
 ",
 "filename"		=> "Faili nimi",
 "filedesc"		=> "Lühikirjeldus",
-"affirmation"	=> "Kinnitan, et selle faili autoriõiguste valdaja
-on nõus seda litsenseerima tingimuste alusel, mille esitab $1.",
 "copyrightpage" => "{{ns:4}}:Autoriõigused",
 "copyrightpagename" => "{{SITENAME}} ja autoriõigused",
 "uploadedfiles"	=> "Üleslaetud failid",
-"noaffirmation" => "Te peate kinnitama, et Teie poolt üleslaetavad failid
-ei riku kellegi autoriõigusi.",
 "ignorewarning"	=> "Ignoreeri hoiatust ja salvesta sellest hoolimata.",
 "minlength"		=> "Pildi nimi peab sisaldama vähemalt kolme tähte.",
 "badfilename"	=> "Pildi nimi on muudetud. Uus nimi on \"$1\".",
@@ -951,7 +901,6 @@ pages that were vandalized).",
 "ipbreason"		=> "Põhjus",
 "ipbsubmit"		=> "Blokeeri see aadress",
 "badipaddress"	=> "The IP address is badly formed.",
-"noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "IP-aadress \"$1\" on blokeeritud.
 <br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
@@ -989,20 +938,6 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesstext" => "Andmebaas on nüüd kirjutuskaitse all.
 <br />Kui Teie hooldustöö on läbi, ärge unustage kirjutuspääsu taastada!",
 "unlockdbsuccesstext" => "Andmebaasi kirjutuspääs on taastatud.",
-
-# SQL query
-#
-"asksql"		=> "SQL query",
-"asksqltext"	=> "Use the form below to make a direct query of the
-Wikipedia database.
-Use single quotes ('like this') to delimit string literals.
-This can often add considerable load to the server, so please use
-this function sparingly.",
-"sqlquery"		=> "Enter query",
-"querybtn"		=> "Submit query",
-"selectonly"	=> "Queries other than \"SELECT\" are restricted to
-Wikipedia developers.",
-"querysuccessful" => "Query successful",
 
 # Move page
 #
@@ -1045,12 +980,12 @@ kasutajaks ja [[Special:Userlogin|sisse logima]]",
 "talkpagemoved" => "Ka vastav arutelulehekülg on teisaldatud.",
 "talkpagenotmoved" => "Vastav arutelulehekülg jäi teisaldamata.",
  #Math
-   'mw_math_png' => "Alati PNG",
-   'mw_math_simple' => "Kui väga lihtne, siis HTML, muidu PNG",
-   'mw_math_html' => "Võimaluse korral HTML, muidu PNG",
-   'mw_math_source' => "Säilitada TeX (tekstibrauserite puhul)",
-   'mw_math_modern' => "Soovitatav moodsate brauserite puhul",
-   'mw_math_mathml' => 'MathML',
+ 'mw_math_png' => "Alati PNG",
+ 'mw_math_simple' => "Kui väga lihtne, siis HTML, muidu PNG",
+ 'mw_math_html' => "Võimaluse korral HTML, muidu PNG",
+ 'mw_math_source' => "Säilitada TeX (tekstibrauserite puhul)",
+ 'mw_math_modern' => "Soovitatav moodsate brauserite puhul",
+ 'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1062,6 +997,11 @@ class LanguageEt extends LanguageUtf8 {
 	function getBookstoreList () {
 		global $wgBookstoreListEt ;
 		return $wgBookstoreListEt ;
+	}
+
+	function getDateFormats() {
+		global $wgDateFormatsEt;
+		return $wgDateFormatsEt;
 	}
 
 	function getNamespaces() {
@@ -1077,21 +1017,6 @@ class LanguageEt extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEt;
 		return $wgSkinNamesEt;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEt;
-		return $wgValidSpecialPagesEt;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEt;
-		return $wgSysopSpecialPagesEt;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEt;
-		return $wgDeveloperSpecialPagesEt;
 	}
 
 	function getMessage( $key ) {
@@ -1121,6 +1046,121 @@ class LanguageEt extends LanguageUtf8 {
 			return $_;
 		}
 	}
+
+
+
+
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		global $wgAmericanDates, $wgUser;
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+
+		$datePreference = $this->dateFormat($format);
+
+		if ($datePreference == '0'
+		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
+
+		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
+		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
+		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
+		$lat_month = $this->monthByLatinNumber( substr ($ts, 4, 2));
+
+		switch( $datePreference ) {
+			case '2': return "$day. $month $year";
+			case '3': return "$day. $lat_month $year";
+			case 'ISO 8601': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			default: return substr($ts, 6, 2). '.' . substr($ts, 4, 2). '.' .substr($ts, 0, 4);
+		}
+	}
+
+
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*	       date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*	       user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*	       default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*	       validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		global $wgUser, $wgAmericanDates;
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+		$datePreference = $this->dateFormat($format);
+
+		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
+
+		if ( $datePreference === 'ISO 8601' ) {
+			$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+			$t .= ':' . substr( $ts, 12, 2 );
+		} else {
+			$t = substr( $ts, 8, 2 ) . '&#46;' . substr( $ts, 10, 2 );
+		}
+		return $this->formatNum( $t );
+	}
+
+
+
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*	       date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*	       user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*	       default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*	       validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+		global $wgUser, $wgAmericanDates;
+
+		$datePreference = $this->dateFormat($format);
+		switch ( $datePreference ) {
+			case 'ISO 8601': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' ' .
+				$this->time( $ts, $adj, $datePreference, $timecorrection );
+			default: return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ', kell ' .
+				$this->time( $ts, $adj, $datePreference, $timecorrection );
+
+		}
+
+	}
+
+
+	/**
+	* retuns latin number corresponding to given month number
+	* @access public
+	* @param number
+	* @return string
+	*/
+	function monthByLatinNumber( $key ) {
+		$latinNumbers= array(
+			'I', 'II', 'III', 'IV', 'V', 'VI',
+			'VII','VIII','IX','X','XI','XII'
+		);
+
+		return $latinNumbers[$key-1];
+	}
+
 
 }
 ?>

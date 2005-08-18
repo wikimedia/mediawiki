@@ -6,13 +6,6 @@
 
 require_once("LanguageUtf8.php");
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesRo = array(
 	NS_MEDIA			=> 'Media',
 	NS_SPECIAL			=> 'Special',
@@ -32,7 +25,7 @@ require_once("LanguageUtf8.php");
 	NS_HELP_TALK		=> 'Discuţie_Ajutor',
 	NS_CATEGORY			=> 'Categorie',
 	NS_CATEGORY_TALK	=> 'Discuţie_Categorie'
-				
+
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -41,15 +34,8 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgSkinNamesRo = array(
 	'standard' => "Normală",
-	'nostalgia' => "Nostalgie",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
-);
+	'nostalgia' => "Nostalgie"
+) + $wgSkinNamesEn;
 
 
 /* private */ $wgDateFormatsRo = array(
@@ -58,221 +44,36 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgMagicWordsRo = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect"                                       ),
-    MAG_NOTOC                => array( 0,    "__NOTOC__", "__FARACUPRINS__"                    ),
-    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__FARAEDITSECTIUNE__"       ),
-    MAG_START                => array( 0,    "__START__"                                       ),
-    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH", "{{NUMARLUNACURENTA}}"            ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "{{NUMELUNACURENTA}}"         ),
-    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "{{NUMARZIUACURENTA}}"              ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "{{NUMEZIUACURENTA}}"           ),
-    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "{{ANULCURENT}}"                   ),
-    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "{{ORACURENTA}}"                   ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "{{NUMARDEARTICOLE}}"         ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "{{NUMELUNACURENTAGEN}}"   ),
+	MAG_REDIRECT             => array( 0,    "#redirect"                                       ),
+	MAG_NOTOC                => array( 0,    "__NOTOC__", "__FARACUPRINS__"                    ),
+	MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__FARAEDITSECTIUNE__"       ),
+	MAG_START                => array( 0,    "__START__"                                       ),
+	MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH", "{{NUMARLUNACURENTA}}"            ),
+	MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "{{NUMELUNACURENTA}}"         ),
+	MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "{{NUMARZIUACURENTA}}"              ),
+	MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "{{NUMEZIUACURENTA}}"           ),
+	MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "{{ANULCURENT}}"                   ),
+	MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "{{ORACURENTA}}"                   ),
+	MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "{{NUMARDEARTICOLE}}"         ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "{{NUMELUNACURENTAGEN}}"   ),
 	MAG_SUBST                => array( 0,    "SUBST:"                                          ),
-    MAG_MSGNW                => array( 0,    "MSGNW:", "MSJNOU:"                               ),
+	MAG_MSGNW                => array( 0,    "MSGNW:", "MSJNOU:"                               ),
 	MAG_END                  => array( 0,    "__END__", "__FINAL__"                            ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"                              ),
-    MAG_IMG_RIGHT            => array( 1,    "right"                                           ),
-    MAG_IMG_LEFT             => array( 1,    "left"                                            ),
-    MAG_IMG_NONE             => array( 1,    "none"                                            ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                                            ),
-    MAG_IMG_CENTER           => array( 1,    "center", "centre"                                ),
-    MAG_INT                  => array( 0,    "INT:"                                            )
+	MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"                              ),
+	MAG_IMG_RIGHT            => array( 1,    "right"                                           ),
+	MAG_IMG_LEFT             => array( 1,    "left"                                            ),
+	MAG_IMG_NONE             => array( 1,    "none"                                            ),
+	MAG_IMG_WIDTH            => array( 1,    "$1px"                                            ),
+	MAG_IMG_CENTER           => array( 1,    "center", "centre"                                ),
+	MAG_INT                  => array( 0,    "INT:"                                            )
 
 
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesRo = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Preferinţele mele",
-	"Watchlist"		=> "Articole urmărite",
-	"Recentchanges" => "Pagini actualizate recent",
-	"Upload"		=> "Trimite imagini",
-	"Imagelist"		=> "Lista imaginilor",
-	"Listusers"		=> "Utilizatori înregistraţi",
-	"Statistics"	=> "Statistici pentru site",
-	"Randompage"	=> "Articol aleator",
-
-	"Lonelypages"	=> "Articole orfane",
-	"Unusedimages"	=> "Imagini orfane",
-	"Popularpages"	=> "Articole populare",
-	"Wantedpages"	=> "Cele mai dorite articole",
-	"Shortpages"	=> "Articole scurte",
-	"Longpages"		=> "Articole lungi",
-	"Newpages"		=> "Articole noi",
-	"Ancientpages"	=> "Cele mai vechi articole",
-        "Deadendpages"  => "Pagini fără legături",
-#	"Intl"	=> "Legături între limbi",
-	"Allpages"		=> "Toate paginile după titlu",
-
-	"Ipblocklist"	=> "Adrese IP blocate",
-	"Maintenance" => "Pagina de întreţinere",
-	"Specialpages"  => "Pagini speciale",
-	"Contributions" => "Contribuţii",
-	"Emailuser"		=> "Trimite e-mail utilizatorului",
-	"Whatlinkshere" => "Ce pagini se leagă aici",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "Mută pagina",
-	"Booksources"	=> "Surse externe de cărţi",
-	"Categories"	=> "Categorii de pagini",
-	"Export"	=> "XML export",
-	"Version"	=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesRo = array(
-	"Blockip"		=> "Blochează adresa IP",
-	"Asksql"		=> "Efectuează un query în baza de date",
-	"Undelete"		=> "Afişează şi restaurează pagini şterse"
-);
-
-/* private */ $wgDeveloperSpecialPagesRo = array(
-	"Lockdb"		=> "Blochează baza de date la scriere",
-	"Unlockdb"		=> "Deblochează baza de date",
 );
 
 /* private */ $wgAllMessagesRo = array(
 '1movedto2' => "$1 a fost mutată la $2",
 #'1movedto2_redir' => "$1 a fost mutată la $2 peste redirijare",
-'Monobook.css' => " /* 
- Pentru aparenţa monobook, {{SITENAME}} vine cu o inovaţie. 
- Utilizatorii individuali pot să  adpateze formatul {{SITENAME}} la cerinţele lor.
- */
-
- /* Colori di default */ 
- #content { color : black; } 
- #content { background : white; } 
- #p-cactions li { background : white; } 
- #p-cactions li a { background : white; } 
-
- /* Colore di fondo degli articoli */
- .ns-0 * #content { color : black; } 
- .ns-0 * #content { background : white; }
- .ns-0 * #p-cactions li { background : white; }
- .ns-0 * #p-cactions li a { background : white; }
-
- /* Colore di fondo delle pagine di discussione articoli */
- .ns-1 * #content { color : black; } 
- .ns-1 * #content { background : #FFEEFF; }
- .ns-1 * #p-cactions li { background : #FFEEFF; }
- .ns-1 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine Utenti */
- .ns-2 * #content { color : black; } 
- .ns-2 * #content { background : white; }
- .ns-2 * #p-cactions li { background : white; }
- .ns-2 * #p-cactions li a { background : white; }
-
- /* Colore di fondo delle pagine di discussione Utenti */
- .ns-3 * #content { color : black; } 
- .ns-3 * #content { background : #FFEEFF; }
- .ns-3 * #p-cactions li { background : #FFEEFF; }
- .ns-3 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine {{SITENAME}} */
- .ns-4 * #content { color : black; } 
- .ns-4 * #content { background : #EEEEFF; }
- .ns-4 * #p-cactions li { background : #EEEEFF; }
- .ns-4 * #p-cactions li a { background : #EEEEFF; }
-
- /* Colore di fondo delle pagine di discussione {{SITENAME}} */
- .ns-5 * #content { color : black; } 
- .ns-5 * #content { background : #FFEEFF; }
- .ns-5 * #p-cactions li { background : #FFEEFF; }
- .ns-5 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine di discussione Immagine */
- .ns-7 * #content { background : #FFEEFF; }
- .ns-7 * #content { color : black; } 
- .ns-7 * #p-cactions li { background : #FFEEFF; }
- .ns-7 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine MediaWiki */
- .ns-8 * #content { color : black; } 
- .ns-8 * #content { background : #EEFFEE; }
- .ns-8 * #p-cactions li { background : #EEFFEE; }
- .ns-8 * #p-cactions li a { background : #EEFFEE; }
-
- /* Colore di fondo delle pagine di discussione MediaWiki */
- .ns-9 * #content { color : black; } 
- .ns-9 * #content { background : #FFEEFF; }
- .ns-9 * #p-cactions li { background : #FFEEFF; }
- .ns-9 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine di discussione Template */
- .ns-11 * #content { color : black; } 
- .ns-11 * #content { background : #FFEEFF; }
- .ns-11 * #p-cactions li { background : #FFEEFF; }
- .ns-11 * #p-cactions li a { background : #FFEEFF; }
-
- /* Colore di fondo delle pagine Aiuto */
- .ns-12 * #content { color : black; } 
- .ns-12 * #content { background : #FFEEEE; }
- .ns-12 * #p-cactions li { background : #FFEEEE; }
- .ns-12 * #p-cactions li a { background : #FFEEEE; }
-
- /* Colore di fondo delle pagine di discussione Aiuto */
- .ns-13 * #content { color : black; } 
- .ns-13 * #content { background : #FFEEEE; }
- .ns-13 * #p-cactions li { background : #FFEEEE; }
- .ns-13 * #p-cactions li a { background : #FFEEEE; }
-
- /* Colore di fondo delle pagine di discussione Categoria */
- .ns-15 * #content { color : black; } 
- .ns-15 * #content { background : #FFEEFF; }
- .ns-15 * #p-cactions li { background : #FFEEFF; }
- .ns-15 * #p-cactions li a { background : #FFEEFF; }
-
- /* numerele pare sunt pagini de discuţie
-xxx  '0': 'articol',  '2': 'utilizator',  '4': '{{SITENAME}}',  '6': 'imagine',  '8': 'mediawiki',  '10': 'format',  '12': 'ajutor',  '14': 'categorie' */
-
- /* underline links */
- a {
-   text-decoration: underline;
- }
-
- /* don't underline mouseover-links */
- a:hover {
-   text-decoration: none;
- }
-
- /* put scrollbar on pre sections instead of ugly cutoff/overlap in firefox */
- pre { overflow: auto; }
-
- /* link in selected tab */
- #p-cactions ul li.selected a {
-   /* font-weight: bold; */
- }
-
- /* Alinează textul din tabel vertical, până sus */
- table.nagore tbody {
-   vertical-align:top;
- }
-
- #siteNotice { padding: 0.3em; text-align: center; margin-bottom: 0.5em; }
- #siteNotice:after { 
- /* content: 'Pentru a sprijini creşterea proiectului {{SITENAME}}, vă rugăm vizitaţi [http://wikimediafoundation.org/fundraising pagina noastră pentru donaţii], sau citiţi despre [http://meta.wikimedia.org/wiki/What_we_use_the_money_for cum folosim noi banii].' Inactiv deocamdată */
- }
-
- /* stil pentru \"De la {{SITENAME}}, enciclopedia liberă */
- #siteSub {
-   display: inline;
-   font-weight: normal;
-   font-size: 0.95em; 
-   font-face: \"Trebuchet MS\", Verdana,sans-serif;
- }
-
- /* \"Editează pagina asta\" în aldine */
- #ca-edit a { 
-   font-weight: bold !important; 
- }",
-'Monobook.js' => 
+'Monobook.js' =>
 "/* tooltips and access keys */
 ta = new Object();
 ta['pt-userpage'] = new Array('.','Pagina mea de utilizator');
@@ -325,7 +126,6 @@ ta['ca-nstab-help'] = new Array('c','Vezi pagina de ajutor');
 ta['ca-nstab-category'] = new Array('c','Vezi categoria');",
 'about' => "Despre",
 'aboutpage' => "Project:Despre",
-'aboutwikipedia' => "Despre {{SITENAME}}",
 'accesskey-compareselectedversions' => "o",
 'accesskey-minoredit' => "m",
 #'accesskey-preview' => "p",
@@ -344,12 +144,11 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 în viitor, apasă pe \"Nu mai urmări\" în bara de comenzi în timp ce această pagină este vizibilă.",
 #'addsection' => "+",
 'administrators' => "Project:Administratori",
-'affirmation' => "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
 'allmessages' => "Toate_mesajele",
 'allmessagestext' => "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
 'allpages' => "Toate paginile",
 'alphaindexline' => "$1 către $2",
-'alreadyloggedin' => "<font color=red><b>Eşti deja autentificat ca $1!</b></font><br>
+'alreadyloggedin' => "<strong>Eşti deja autentificat ca $1!</strong><br />
 ",
 'alreadyrolled' => "Nu se poate reveni peste ultima editare a [[$1]]
 făcută de către [[Utilizator:$2|$2]] ([[Discuţie utilizator:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
@@ -364,11 +163,6 @@ Ultima editare a fost făcută de către [[Utilizator:$3|$3]] ([[Discuţie utili
 'articleexists' => "O pagină cu acelaşi nume există deja,
 sau numele pe care l-ai ales este invalid. Te rugăm să alegi un alt nume.",
 'articlepage' => "Vezi articolul",
-'asksql' => "Query SQL",
-'asksqltext' => "Foloseşte chestionarul de mai jos pentru a efectua un query direct către baza de date {{SITENAME}} (MySQL).
-Folosiţi apostrofuri ('în felul acesta') pentru a delimita şiruri de text.
-Această funcţionalitate poate solicita în mod deosebit server-ul,
-aşa că te rugăm să nu o foloseşti în exces.",
 'autoblocker' => "Autoblocat fiindcă foloseşti aceeaşi [[adresă IP]] ca şi \"$1\". Motivul este \"$2\".",
 'badarticleerror' => "Această acţiune nu poate fi efectuată pe această pagină.",
 'badfilename' => "Numele imaginii a fost schimbat; noul nume este \"$1\".",
@@ -384,13 +178,13 @@ Te rugăm să încerci încă o dată.",
 'badtitletext' => "Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.",
 'blanknamespace' => "(Principală)",
 'blockedtext' => "Utilizatorul sau parola ta au fost blocate de $1.
-Motivul oferit pentru blocare a fost:<br>''$2''<p>Îl poţi contacta pe $1 sau pe unul dintre ceilalţi
+Motivul oferit pentru blocare a fost:<br />''$2''<p>Îl poţi contacta pe $1 sau pe unul dintre ceilalţi
 [[Project:administratori|administratori]] pentru a discuta această blocare.",
 'blockedtitle' => "Utilizatorul este blocat",
 'blockip' => "Blocheză adresa IP",
 'blockipsuccesssub' => "Utilizatorul a fost blocat",
 'blockipsuccesstext' => "Adresa IP \"$1\" a fost blocată.
-<br>Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
+<br />Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
 'blockiptext' => "Foloseşte chestionarul de mai jos pentru a bloca
 la scriere o adresă IP. Această funcţie trebuie folosită numai pentru
 a preveni vandalismul conform [[Project:Politica|politicii {{SITENAME}}]].
@@ -415,9 +209,6 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 'bugreportspage' => "Project:Rapoarte_probleme",
 'bureaucratlog' => "Raport_birocrat",
 'bureaucratlogentry' => "Drepturile pentru utilizatorul \"$1\" setate \"$2\"",
-'bureaucrattext' => "Acţiunea pe care ai încercat-o poate fi realizată 
-doar de administratori cu statut de \"birocrat\".",
-'bureaucrattitle' => "Necesită acces de birocrat",
 'bydate' => "după dată",
 'byname' => "după nume",
 'bysize' => "după mărime",
@@ -431,7 +222,7 @@ doar de administratori cu statut de \"birocrat\".",
 #'categoryarticlecount' => "Sunt $1 articole în această categorie.",
 'changepassword' => "Schimbă parola",
 'changes' => "schimbări",
-#'clearyourcache' => "'''Notă:''' După salvare, poţi să-ţi goleşti fişierele din cache pentru a vedea schimbările: '''Mozilla:''' apasă ''reload''(sau ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+#'clearyourcache' => "'''Notă:''' După salvare, poţi să-ţi goleşti fişierele din cache pentru a vedea schimbările: '''Mozilla:''' apasă ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'columns' => "Coloane",
 'commentedit' => " (comentariu)",
 'compareselectedversions' => "Compară versiunile selectate",
@@ -456,7 +247,7 @@ Te rugăm să îţi confirmi intenţia de a face asta, faptul că
 'copyrightpagename' => "Drepturi de autor în {{SITENAME}}",
 'copyrightwarning' => "Reţine că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând licenţa GNU Free Documentation License
 (vezi $1 pentru detalii).
-Dacă nu doreşti ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimite materialele respective aici.<br>
+Dacă nu doreşti ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimite materialele respective aici.<br />
 De asemenea, trimiţând aceste materiale aici te angajezi că le-ai scris tu sau că sunt copiate dintr-o sursă care permite includerea materialelor sub această licenţă.
 <strong>NU TRIMITE MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",
 'couldntremove' => "Elementul '$1' nu a putut fi şters...",
@@ -508,11 +299,11 @@ Vezi $1.",
 'difference' => "(Diferenţa dintre versiuni)",
 'disambiguations' => "Pagini de dezambiguizare",
 'disambiguationspage' => "Project:Legături_către_paginile_de_dezambiguizare",
-'disambiguationstext' => "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br>O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br>Legăturile dinspre alte secţiuni {{SITENAME}} <i>nu sunt</i> luate în considerare aici.",
+'disambiguationstext' => "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br />O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br />Legăturile dinspre alte secţiuni {{SITENAME}} <i>nu sunt</i> luate în considerare aici.",
 'disclaimerpage' => "Project:General_disclaimer",
 'disclaimers' => "Disclaimer",
 'doubleredirects' => "Redirijări duble",
-'doubleredirectstext' => "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirijări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br>
+'doubleredirectstext' => "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirijări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br />
 Fiecare rând care conţine legături către prima sau a doua redirijare, ca şi prima linie din textul celei de-a doua redirijări, de obicei conţinând numele \"real\" al articolului ţintă, către care ar trebui să arate prima redirijare.",
 'edit' => "Editează pagina",
 'editcomment' => "Comentariul de editare a fost: \"<i>$1</i>\".",
@@ -572,7 +363,6 @@ pate fi transformat sau păstrat pur şi simplu fiindcă doreşti tu să-l păst
 'fileuploaded' => "Fişierul \"$1\" a fost trimis.
 Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi pentru a completa informaţii despre acesta, ca de exemplu de unde provine, când a fost creat şi de către cine, cât şi orice alte informaţii doreşti să le adaugi.",
 'formerror' => "Eroare: datele nu au putut fi trimise",
-'fromwikipedia' => "De la {{SITENAME}}, enciclopedia liberă.",
 'getimagelist' => "încarc lista de imagini",
 'go' => "Du-te",
 'guesstimezone' => "Încearcă determinarea automată a diferenţei",
@@ -603,7 +393,7 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'imgdelete' => "şterge",
 #'imgdesc' => "desc",
 'imghistlegend' => "Legendă: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
-<br><i>Apasă pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
+<br /><i>Apasă pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 'imghistory' => "Istoria imaginii",
 'imglegend' => "Legendă: (desc) = arată/editează descrierea imaginii.",
 'import' => "Importă pagini",
@@ -653,7 +443,7 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'lockdb' => "Blochează baza de date",
 'lockdbsuccesssub' => "Baza de date a fost blocată",
 'lockdbsuccesstext' => "Baza de date {{SITENAME}} a fost blocată la scriere.
-<br>Nu uita să o deblochezi după ce termini operaţiunile administrative pentru care ai blocat-o.",
+<br />Nu uita să o deblochezi după ce termini operaţiunile administrative pentru care ai blocat-o.",
 'lockdbtext' => "Blocarea bazei de date va împiedica pe toţi utilizatorii
 să editeze pagini, să-şi schimbe preferinţele, să-şi editeze listele de
 pagini urmărite şi orice alte operaţiuni care ar necesita schimări
@@ -662,16 +452,16 @@ Te rugăm să confirmi că intenţionezi acest lucru şi faptul că vei debloca
 baza de date atunci când vei încheia operaţiunile de întreţinere.",
 'locknoconfirm' => "Nu ai confirmat căsuţa de confirmare.",
 'login' => "Autentificare",
-'loginend' => "Pentru a crea un cont de utilizator, introdu [[Project:Nume de utilizator|numele de utilizator]] şi parola, apoi fă clic pe \"Creează cont nou\". Evită folosirea numelui unei personalităţi politice, militare sau religioase, sau a unui eveniment. Evită numele de utilizator care sunt ofensive, dăunătoare sau confuze. Te rugăm să alegi un nume citeţ, nu doar un număr. 
+'loginend' => "Pentru a crea un cont de utilizator, introdu [[Project:Nume de utilizator|numele de utilizator]] şi parola, apoi fă clic pe \"Creează cont nou\". Evită folosirea numelui unei personalităţi politice, militare sau religioase, sau a unui eveniment. Evită numele de utilizator care sunt ofensive, dăunătoare sau confuze. Te rugăm să alegi un nume citeţ, nu doar un număr.
 
-Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[Project:Cum mă înregistrez|Cum mă înregistrez]].<br><br> 
+Dacă ai nevoie de mai multe informaţii asupra modului de înregistrare, vezi articolul [[Project:Cum mă înregistrez|Cum mă înregistrez]].<br /><br />
 
-După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizitezi {{SITENAME}}, va trebui să introduci doar numele de utilizator şi parola.<br><br>
+După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizitezi {{SITENAME}}, va trebui să introduci doar numele de utilizator şi parola.<br /><br />
 
 *Introducerea unei adrese de e-mail este opţională, nefiind necesară o confirmare pe e-mail în prealabil. Totuşi, aceasta permite oamenilor să te contacteze prin intermediul acestui sit web, fără să ţi-o afle şi te ajută şi în cazul în care ţi-ai uitat parola.",
 'loginerror' => "Eroare de autentificare",
 'loginpagetitle' => "Autentificare utilizator",
-'loginproblem' => "<b>A fost o problemă cu autentificarea ta</b><br>Încearcă din nou!",
+'loginproblem' => "<b>A fost o problemă cu autentificarea ta</b><br />Încearcă din nou!",
 'loginprompt' => "Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.",
 'loginreqtext' => "Trebuie să te [[special:Userlogin|autentifici]] pentru a vizualiza alte pagini.",
 'loginreqtitle' => "Necesită Autentificare",
@@ -704,7 +494,7 @@ pentru a trimite e-mail altor utilizatori.",
 'makesysopname' => "Numele utilizatorului:",
 'makesysopok' => "<b>Utilizatorul \"$1\" este acum administrator</b>",
 'makesysopsubmit' => "Fă din acest utilizator un administrator",
-'makesysoptext' => "Acest formular este utilizat de birocraţi pentru a transforma utilizatori de rând în administratori. 
+'makesysoptext' => "Acest formular este utilizat de birocraţi pentru a transforma utilizatori de rând în administratori.
 Tastează numele utilizatorului în cutie şi apasă butonul pentru a face din utilizator un administrator",
 'makesysoptitle' => "Fă dintr-un utilizator un administrator",
 'matchtotals' => "Căutarea \"$1\" a produs $2 rezultate în titluri de articole şi $3 rezultate în texte de articole.",
@@ -794,12 +584,10 @@ Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ul
 'nextn' => "următoarele $1",
 #'nextpage' => "Pagina următoare ($1)",
 'nlinks' => "$1 legături",
-'noaffirmation' => "Trebuie să afirmi că fişierul pe care îl trimiţi nu violează drepturi de autor (trebuie să bifezi căsuţa aferentă de pe pagina anterioară).",
 'noarticletext' => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nu are încă un articol cu acest nume'''
 * Pentru a începe articolul, fă clic pe '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} editează pagina]'''.
 * Poate există o intrare cu numele [[Wiktionary:ro:{{PAGENAME}}|{{PAGENAME}}]] în proiectul nostru frate, în [http://ro.wiktionary.org Wikţionar].
 </div>",
-'noblockreason' => "Trebuie să incluzi un motiv pentru blocare.",
 'noconnect' => "Nu s-a putut conecta baza de date pe $1",
 'nocontribs' => "Nu a fost găsită nici o modificare care să satisfacă acest criteriu.",
 'nocookieslogin' => "{{SITENAME}} foloseşte module cookie pentru a autentifica utilizatorii. Browser-ul tău are modulele cookie dezactivate. Te rugăm să le activezi şi să încerci din nou.",
@@ -879,11 +667,11 @@ Te rugăm să te autentifici în {{SITENAME}} după ce o primeşti.",
 'poweredby' => "{{SITENAME}} foloseşte [http://www.mediawiki.org/ MediaWiki], un motor wiki open source.",
 'powersearch' => "Caută",
 'powersearchtext' => "
-Caută în secţiunile:<br>
-$1<br>
+Caută în secţiunile:<br />
+$1<br />
 $2 Redirijări&nbsp; Căutări după $3 $9",
 'preferences' => "Preferinţe",
-'prefs-help-realname' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br/>",
+'prefs-help-realname' => "* <strong>Numele tău real</strong> (opţional): Dacă decizi să  introduci numele real aici, acesta va fi folosit pentru a vă atribui munca.<br />",
 'prefs-help-email' => "* <strong>Adresa de e-mail</strong> (opţional): Permite altor utilizatori să te contacteze folosind {{SITENAME}}, fără a fi necesar să le pui la dispoziţie adresa reală de mail. În plus, aici ţi se poate trimite o nouă parolă în caz că o pierzi pe cea existentă.",
 'prefs-misc' => "Diverse reglări",
 'prefs-personal' => "Date de utilizator",
@@ -923,7 +711,7 @@ Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
 'proxyblocksuccess' => "Realizat.",
 'qbbrowse' => "Răsfoieşte",
 'qbedit' => "Editează",
-'qbfind' => "Găseşte<br>
+'qbfind' => "Găseşte<br />
 <small>Diacritice: ă â î ş ţ</small>",
 'qbmyoptions' => "Opţiunile mele",
 'qbpageinfo' => "Informaţii ale paginii",
@@ -931,8 +719,6 @@ Vezi [[Project:Pagină protejată]] pentru mai multe informaţii.",
 'qbsettings' => "Setări pentru quickbar",
 #'qbsettingsnote' => "Această funcţie funcţionează doar în straturile 'Standard' şi 'CologneBlue'.",
 'qbspecialpages' => "Pagini speciale",
-'querybtn' => "Trimite query",
-'querysuccessful' => "Query efectuat",
 'randompage' => "Pagină aleatoare",
 'range_block_disabled' => "Abilitatea dezvoltatorilor de a bloca serii de adrese este dezactivată.",
 'rchide' => "în $4 form; $1 editări minore; $2 namespace-uri secundare; $3 editări multiple.",
@@ -993,19 +779,14 @@ Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[dr
 'saveprefs' => "Salvează preferinţele",
 'search' => "Caută",
 'searchdisabled' => "<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanţă. Între timp poţi folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>",
-'searchhelppage' => "Project:Căutare",
-'searchingwikipedia' => "Căutare în {{SITENAME}}",
 'searchquery' => "Pentru căutarea \"$1\"",
 'searchresults' => "Rezultatele căutării",
 'searchresultshead' => "Setări de căutare",
 'searchresulttext' => "Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi $1.",
-'sectionedit' => " (secţiune)",
 'selectnewerversionfordiff' => "Selectează o versiunea mai nouă pentru comparare",
 'selectolderversionfordiff' => "Selectează o versiunea mai veche pentru comparaţie",
-'selectonly' => "Alte query-uri în afară de \"SELECT\" sunt accesibile numai pentru dezvoltatorii {{SITENAME}}.",
 'selflinks' => "Pagini cu legături ciclice",
 'selflinkstext' => "Următoarele pagini conţin legături către ele însele, ceea ce n-ar trebui să se întâmple.",
-'seriousxhtmlerrors' => "Tidy a detectat mai multe erori grave de marcaj xhtml.",
 'servertime' => "Ora serverului (UTC)",
 'set_rights_fail' => "<b>Nu au putut fi acordate drepturi de utilizator lui \"$1\". (Ai introdus numele corect?)</b>",
 'set_user_rights' => "Acordă drepturi de utilizator",
@@ -1038,8 +819,6 @@ de la ultima actualizare a programului (July 20, 2002).
 'specialpage' => "Pagină Specială",
 'specialpages' => "Pagini speciale",
 'spheading' => "Pagini speciale",
-'sqlislogged' => "Reţine că toate query-urile sunt reţinute în server (logged).",
-'sqlquery' => "Introdu query",
 'statistics' => "Statistici",
 'storedversion' => "Versiunea curentă",
 'stubthreshold' => "Limita de caractere pentru un ciot",
@@ -1237,12 +1016,11 @@ Nu uita să-ţi personalizezi preferinţele în {{SITENAME}}.",
 'whitelistreadtext' => "Trebuie să te [[Special:Userlogin|autentifici]] pentru a citi articole.",
 'whitelistreadtitle' => "Este necesară autentificarea pentru a citi",
 'wikipediapage' => "Vezi pagina meta",
-'wikititlesuffix' => "{{SITENAME}} în română",
 'wlnote' => "Dedesubt găseşti ultimele $1 schimbări din ultimele <b>$2</b> ore.",
 'wlsaved' => "Aceasta este o versiune salvată a listei tale de pagini urmărite.",
 'wlshowlast' => "Arată ultimele $1 ore $2 zile $3",
-'wrong_wfQuery_params' => "Număr incorect de parametri pentru wfQuery()<br>
-Funcţia: $1<br>
+'wrong_wfQuery_params' => "Număr incorect de parametri pentru wfQuery()<br />
+Funcţia: $1<br />
 Query: $2
 ",
 'wrongpassword' => "Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.",
@@ -1265,7 +1043,6 @@ class LanguageRo extends LanguageUtf8 {
 
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsRo;
-
 		return $wgQuickbarSettingsRo;
 	}
 
@@ -1274,49 +1051,28 @@ class LanguageRo extends LanguageUtf8 {
 		return $wgSkinNamesRo;
 	}
 
-        function getDateFormats() {
-                global $wgDateFormatsRo;
-                return $wgDateFormatsRo;
-        }
+	function getDateFormats() {
+		global $wgDateFormatsRo;
+		return $wgDateFormatsRo;
+	}
 
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
-	function getValidSpecialPages()
-	{
-		global $wgValidSpecialPagesRo;
-		return $wgValidSpecialPagesRo;
-	}
-
-	function getSysopSpecialPages()
-	{
-		global $wgSysopSpecialPagesRo;
-		return $wgSysopSpecialPagesRo;
-	}
-
-	function getDeveloperSpecialPages()
-	{
-		global $wgDeveloperSpecialPagesRo;
-		return $wgDeveloperSpecialPagesRo;
-	}
-
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesRo;
 		if( isset( $wgAllMessagesRo[$key] ) )
 			return $wgAllMessagesRo[$key];
 		else
 			return parent::getMessage( $key );
 	}
-	
+
 	function fallback8bitEncoding() {
 		return "iso8859-2";
 	}
 
-	function getMagicWords() 
-	{
+	function getMagicWords() {
 		global $wgMagicWordsRo;
 		return $wgMagicWordsRo;
 	}

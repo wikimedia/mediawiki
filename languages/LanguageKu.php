@@ -7,28 +7,28 @@
 require_once( "LanguageUtf8.php" );
 
 if ( $wgMetaNamespace == "Wikipedia" ) {
-        $wgMetaNamespace = "Wîkîpediya";
+	$wgMetaNamespace = "Wîkîpediya";
 }
 
 /* private */ $wgNamespaceNamesKu = array(
-        NS_MEDIA            => 'Medya',
-        NS_SPECIAL          => 'Taybet',
-        NS_MAIN             => '',
-        NS_TALK             => 'Nîqaş',
-        NS_USER             => 'Bikarhêner',
-        NS_USER_TALK        => 'Bikarhêner_nîqaş',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => $wgMetaNamespace . '_nîqaş',
-        NS_IMAGE            => 'Wêne',
-        NS_IMAGE_TALK       => 'Wêne_nîqaş',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
-        NS_TEMPLATE         => 'Şablon',
-        NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
-        NS_HELP             => 'Alîkarî',
-        NS_HELP_TALK        => 'Alîkarî_nîqaş',
-        NS_CATEGORY         => 'Kategorî',
-        NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Taybet',
+	NS_MAIN             => '',
+	NS_TALK             => 'Nîqaş',
+	NS_USER             => 'Bikarhêner',
+	NS_USER_TALK        => 'Bikarhêner_nîqaş',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_nîqaş',
+	NS_IMAGE            => 'Wêne',
+	NS_IMAGE_TALK       => 'Wêne_nîqaş',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
+	NS_HELP             => 'Alîkarî',
+	NS_HELP_TALK        => 'Alîkarî_nîqaş',
+	NS_CATEGORY         => 'Kategorî',
+	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgAllMessagesKy = array (
@@ -84,7 +84,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 #'already_bureaucrat' => 'This user is already a bureaucrat',
 #'already_steward' => 'This user is already a steward',
 #'already_sysop' => 'This user is already an administrator',
-'alreadyloggedin' => '<font color=red><b>Bikarhêner $1, tu jixwe têketî!</b></font><br />',
+'alreadyloggedin' => '<strong>Bikarhêner $1, tu jixwe têketî!</strong><br />',
 /* 'alreadyrolled' => 'Cannot rollback last edit of [[$1]]
 by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
@@ -123,11 +123,11 @@ Please try another query.', */
 /* 'badtitletext' => 'The requested page title was invalid, empty, or
 an incorrectly linked inter-language or inter-wiki title.', */
 #'blanknamespace' => '(Main)',
-'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br>\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [Wikipedia:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî. 
+'blockedtext' => 'Navê bikarhêner an jî navnîşana IP ya te ji aliyê $1 hat bloke kirin. Sedema vê ev  e:<br />\'\'$2\'\'<p>Tu dikarî bi $1 an yek ji [{{ns:project}}:Koordînator|koordînatorên din]] re ser vê blokê nîqaş bikî.
 
 Têbînî: Tu nikarî fonksiyona "Ji vê bikarhêner re E-mail bişîne" bi kar bîne eger te navnîşana email a xwe di "[[Special:Preferences|Tercîhên min]]" de nenivîsand.
 
-Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje. 
+Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje.
 
 ==Note to AOL users==
 Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused.
@@ -137,7 +137,7 @@ If this happens to you, please email an administrator, using an AOL email addres
 'blockip' => 'Bikarhêner asteng bike',
 'blockipsuccesssub' => 'Blok serkeftî',
 'blockipsuccesstext' => '"$1" hat asteng kirin.
-<br>Bibîne [[Special:Ipblocklist|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
+<br />Bibîne [[Special:Ipblocklist|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
 /* 'blockiptext' => 'Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
@@ -182,7 +182,7 @@ this list should not be construed as an endorsement.', */
 #'changegrouplogentry' => 'Changed group $2',
 'changepassword' => 'Şîfre biguherîne',
 'changes' => 'guherandin',
-#'clearyourcache' => '\'\'\'Note:\'\'\' After saving, you have to clear your browser cache to see the changes: \'\'\'Mozilla:\'\'\' click \'\'Reload\'\' (or \'\'Ctrl-R\'\'), \'\'\'IE / Opera:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-R\'\', \'\'\'Konqueror\'\'\' \'\'Ctrl-R\'\'.',
+#'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
 'columns' => 'stûn',
 'compareselectedversions' => 'Guhertoyan bide ber hev',
 'confirm' => 'Teyît bike',
@@ -232,14 +232,14 @@ link in your browser to confirm that your e-mail address is valid.', */
 {|border=0|
 |
 [[metawikipedia:Help:Special_characters|Nîşanên taybet]]:
-<charinsert>Ç ç </charinsert> · 
-<charinsert>Ê ê </charinsert> · 
+<charinsert>Ç ç </charinsert> ·
+<charinsert>Ê ê </charinsert> ·
 <charinsert>Î î </charinsert> ·
-<charinsert>Ş ş </charinsert> · 
-<charinsert>Û û </charinsert> · 
-<charinsert>&ndash; &mdash; </charinsert> · 
-<charinsert>[+] [[+]] {{+}} </charinsert> · 
-<charinsert>~ | °</charinsert> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<charinsert>Ş ş </charinsert> ·
+<charinsert>Û û </charinsert> ·
+<charinsert>&ndash; &mdash; </charinsert> ·
+<charinsert>[+] [[+]] {{+}} </charinsert> ·
+<charinsert>~ | °</charinsert> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 |<div class="plainlinks" dir="rtl" align="right">
 <charinsert>ئا  </charinsert> ·
 <charinsert>ڵ </charinsert> ·
@@ -655,67 +655,13 @@ article [[Train]].
 Ji kerema xwe, biçe: $2 û agahî li der barê dosyayê binivîse (ji ku derê hat girtin, kîngê hat çêkirin, kê çêkir û hwd.)
 
 Heke ev dosya wêneyek be, bi vî rengî bi kar bîne:
-<br>
+<br />
 <tt><nowiki>[[Wêne:$1|thumb|Binnivîs]]</nowiki></tt>',
 #'formerror' => 'Error: could not submit form',
 'friday' => 'În',
 #'geo' => 'GEO coordinates',
 #'getimagelist' => 'fetching file list',
 'go' => 'Gotar',
-'googlesearch' => '<p>
-<table border="0" bgcolor="#FFFFFF">
-
-<!-- SiteSearch Google -->
-<tr><td valign="top" align="center">
-<a href="http://www.google.com/">
-<img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" title="Google">
-</a>
-</td>
-<td width="100%">
-<form method=get action="http://www.google.com/search">
-<input type="text" name="q" size=31 maxlength=255 value="$1">
-<input type="submit" name="btnG" value="Google Lêgerîn">
-<input type="hidden" name="domains" value="http://ku.wikipedia.org">
-<input type="hidden" name="ie" value="$2">
-<input type="hidden" name="oe" value="$2">
-<br>
-<font size=-1>
-<input type="radio" name="sitesearch" value="">WWW
-<input type="radio" name="sitesearch" value="http://ku.wikipedia.org" checked>http://ku.wikipedia.org
-</font>
-</form>
-</td></tr>
-<!-- SiteSearch Google -->
-
-<!-- Spacing -->
-<tr><td colspan=2>&nbsp;</td></tr>
-<!-- Spacing -->
-
-<!-- Yahoo search -->
-<tr><td valign="top" align="center">
-<a href="http://search.yahoo.com/">
-<img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" border="0" alt="Yahoo!"vspace="5">
-</a>
-</td>
-<td width="100%">
-<form method=get action="http://search.yahoo.com/search">
-<input type="hidden" name="x" value="op">
-<input type="hidden" name="va_vt" value="any">
-<input type="text" name="va" size="31" value="$1">
-<input type="submit" value="Yahoo! Lêgerîn">
-<br>
-<font size=-1>
-<input type="radio" name="vs" value="">WWW
-<input type="radio" name="vs" value="ku.wikipedia.org" checked>http://ku.wikipedia.org
-</font>
-</form>
-</td>
-
-</table>
-
-Bi vê grêdanê tu dikarî vê gotarê çêkî an biguherînî: <a href="/w/wiki.phtml?title=$1&action=edit">$1</a>
-<br><br>
-<b>Note</b>: We recommend you search Wikipedia before creating a new article to avoid duplicatory effort. <br>The article you are trying to create may already exist under a different name/spelling.',
 #'group-admin-desc' => 'Trusted users able to block users and delete articles',
 #'group-admin-name' => 'Administrator',
 #'group-anon-desc' => 'Anonymous users',
@@ -854,9 +800,8 @@ unlock the database when your maintenance is done.', */
 #'loginend' => '&nbsp;',
 'loginerror' => 'Çewtî (Login error)',
 'loginpagetitle' => 'Qeyda bikarhêner (User login)',
-'loginproblem' => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br>Careke din biceribîne!',
+'loginproblem' => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br />Careke din biceribîne!',
 'loginprompt' => '<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di Wîkîpediya de divê ku \'\'cookies\'\' gengaz be.',
-#'loginreqtext' => 'You must [[special:Userlogin|login]] to view other pages.',
 'loginreqtitle' => 'Têketin pêwîst e',
 'loginsuccess' => 'Tu niha di Wîkîpediya de qeydkirî yî wek "$1".',
 'loginsuccesstitle' => 'Têketin serkeftî!',
@@ -949,7 +894,7 @@ Please report this to an administrator, making note of the URL.', */
 to move a page.', */
 'movepage' => 'Vê rûpelê bigerîne',
 'movepagebtn' => 'Vê rûpelê bigerîne',
-'movepagetalktext' => 'Rûpela axaftinê (talk) giredayî ji vê rûpelê re wê bê gerandin jî. 
+'movepagetalktext' => 'Rûpela axaftinê (talk) giredayî ji vê rûpelê re wê bê gerandin jî.
 \'\'\'Îstisna:\'\'\'
 *You are moving the page across namespaces,
 *A non-empty talk page already exists under the new name, or
@@ -992,8 +937,8 @@ proceeding.', */
 'nchanges' => '$1 guherandin',
 'newarticle' => '(Nû)',
 'newarticletext' => '<div style="font-size:small;color:#003333;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px">
-Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. \'\'\'Wêrek be\'\'\', biceribîne!<br>
-Ji bo alîkarî binêre: [[Wîkîpediya:Alîkarî|Alîkarî]].<br>
+Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. \'\'\'Wêrek be\'\'\', biceribîne!<br />
+Ji bo alîkarî binêre: [[Wîkîpediya:Alîkarî|Alîkarî]].<br />
 Eger tu bi şaştî hatî, bizivire rûpela berê.
 </div>',
 'newbies' => 'ecemî',
@@ -1034,11 +979,10 @@ features will not work.', */
 /* 'noemailtext' => 'This user has not specified a valid e-mail address,
 or has chosen not to receive e-mail from other users.', */
 'noemailtitle' => 'Navnîşana e-name tune',
-'nogomatch' => 'Rûpeleke wek vî navî tune. 
+'nogomatch' => 'Rûpeleke wek vî navî tune.
 
 Tu dixwazî <b><a href="$1" class="new">vê gotarê binivîsî</a></b> ?',
 #'nohistory' => 'There is no edit history for this page.',
-#'noimage' => 'No file by this name exists, you can [$1 upload it]',
 #'noimages' => 'Nothing to see.',
 'nolinkshere' => 'Ji hîç rûpel ji vê re lînk tune.',
 'nolinkstoimage' => 'Rûpeleke ku ji vê wêneyê re lînk dike tune.',
@@ -1150,7 +1094,7 @@ text editing area as it will appear if you choose to save.', */
 'protectcomment' => 'Sedema parastinê',
 'protectedarticle' => 'parastî [[$1]]',
 'protectedpage' => 'Rûpela parastî',
-'protectedpagewarning' => 'ŞIYARÎ:  Ev rûpel hat qefl kirin. Bi tenê bikarhênerên ku xwediyên mafan "sysop" ne dikarin vê rûpelê biguherînin. <br>
+'protectedpagewarning' => 'ŞIYARÎ:  Ev rûpel hat qefl kirin. Bi tenê bikarhênerên ku xwediyên mafan "sysop" ne dikarin vê rûpelê biguherînin. <br />
 Be sure you are following the
 <a href=\'/wiki/Wîkîpediya:Protected_page_guidelines\'>protected page
 guidelines</a>.',
@@ -1230,15 +1174,15 @@ the text into a text file and save it for later.</strong>', */
 [[bg:Специални:Recentchanges]]
 [[bs:Special:Recentchanges]]
 [[ca:RecentChanges]]
-[[cs:Special:Recentchanges]] 
-[[cy:Special:Recentchanges]] 
+[[cs:Special:Recentchanges]]
+[[cy:Special:Recentchanges]]
 [[da:Speciel:Recentchanges]]
 [[de:Spezial:Recentchanges]]
 [[el:Special:Recentchanges]]
 [[en:Special:Recentchanges]]
 [[eo:Lastaj_Sxangxoj]]
 [[es:Cambios Recientes]]
-[[et:Recent Changes]] 
+[[et:Recent Changes]]
 [[eu:Special:Recentchanges]]
 [[fa:%D9%88%DB%8C%DA%98%D9%87:Recentchanges]]
 [[fi:Toiminnot:Recentchanges]]
@@ -1249,8 +1193,8 @@ the text into a text file and save it for later.</strong>', */
 [[he:מיוחד:Recentchanges]]
 [[hi:%E0%A4%B5%E0%A4%BF%E0%A4%B6%E0%A5%87%E0%A4%B7:Recentchanges]]
 [[hr:Special:Recentchanges]]
-[[hu:Speciális:Recentchanges]] 
-[[ia:Special:Recentchanges]]  
+[[hu:Speciális:Recentchanges]]
+[[ia:Special:Recentchanges]]
 [[id:Recent_Changes]]
 [[is:Special:Recentchanges]]
 [[it:Speciale:Recentchanges]]
@@ -1259,13 +1203,13 @@ the text into a text file and save it for later.</strong>', */
 [[ko:특수기능:Recentchanges]]
 [[la:Recent_Changes]]
 [[lb:Special:Recentchanges]]
-[[mh:Special:Recentchanges]] 
-[[ms:Special:Recentchanges]] 
+[[mh:Special:Recentchanges]]
+[[ms:Special:Recentchanges]]
 [[na:Special:Recentchanges]]
 [[nds:Special:Recentchanges]]
 [[nl:Speciaal:Recentchanges]]
 [[no:Spesial:Recentchanges]]
-[[oc:Especial:Recentchanges]] 
+[[oc:Especial:Recentchanges]]
 [[pl:Specjalna:Recentchanges]]
 [[pt:Especial:Recentchanges]]
 [[rm:Special:Recentchanges]]
@@ -1357,7 +1301,6 @@ Please hit "back" and reload the page you came from, then try again.', */
 #'setstewardflag' => 'Set steward flag',
 #'shareddescriptionfollows' => '-',
 #'sharedupload' => 'This file is a shared upload and may be used by other projects.',
-#'shareduploadwiki' => 'Please see the [$1 file description page] for further information.',
 'shortpages' => 'Rûpelên kurt',
 'show' => 'nîşan bide',
 'showbigimage' => 'Versyona mezin bibîne an daxe ($1x$2, $3 KB).',
@@ -1372,7 +1315,7 @@ Please hit "back" and reload the page you came from, then try again.', */
 'sitestats' => 'Statîstîkên sîteyê',
 'sitestatstext' => 'Di \'\'database\'\' de <b>$1</b> rûpel hene. Tê de rûpelên nîqaşê, rûpelên der barê Wîkîpediyayê, rûpelên pir kurt (stub), rûpelên ragihandinê (redirect) û rûpelên din ku qey ne gotar in hene.
 
-Derve wan, \'\'\'$2\'\'\' rûpel hene ku qey \'\'\'gotarên rewa\'\'\' ne. 
+Derve wan, \'\'\'$2\'\'\' rûpel hene ku qey \'\'\'gotarên rewa\'\'\' ne.
 
 Ji 28\'ê çileya 2004 heta roja îro <b>$4</b> carî rûpel hatin guherandin.
 
@@ -1412,7 +1355,7 @@ Fonksiyonên ku hîn rast naxebitin:
 'successfulupload' => 'Barkirin serkeftî',
 'summary' => 'Kurte û çavkanî',
 'sunday' => 'yekşem',
-'sysoptext' => 'Çalakiya ku te xwest bi tenê bikarhêneran bi mafên "sysop" dikarin çêkin. 
+'sysoptext' => 'Çalakiya ku te xwest bi tenê bikarhêneran bi mafên "sysop" dikarin çêkin.
 Binêre $1.',
 #'sysoptitle' => 'Sysop access required',
 'tableform' => 'tablo',
@@ -1568,7 +1511,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-user-editname' => 'Enter a username:',
 'userstats' => 'Statistîkên bikarhêneran',
 'userstatstext' => '<b>$1</b> bikarhênerên qeydkirî hene. Ji wan <b>$2</b> administrator/koordînator in. (Binêre $3).
-<br><br>
+<br /><br />
 Ji bo statîstîkên din ser serûpelê biçe: <b>Statîstîk</b>',
 #'val_add' => 'Add',
 #'val_article_lists' => 'List of validated articles',
@@ -1660,7 +1603,6 @@ to modify your watchlist.', */
 #'whitelistreadtext' => 'You have to [[Special:Userlogin|login]] to read pages.',
 #'whitelistreadtitle' => 'Login required to read',
 'wikipediapage' => 'Rûpela meta temaşe bike',
-'wikititlesuffix' => 'Wîkîpediya, ensîklopediya azad a kurdî',
 #'wlheader-enotif' => '* Email notification is enabled.',
 #'wlheader-showupdated' => '* Pages which have been changed since you last visited them are shown in \'\'\'bold\'\'\'',
 #'wlhide' => 'Hide',
@@ -1688,8 +1630,7 @@ Query: $2
 );
 
 
-class LanguageKu extends LanguageUtf8
-{
+class LanguageKu extends LanguageUtf8 {
 	function getNamespaces() {
 		global $wgNamespaceNamesKu;
 		return $wgNamespaceNamesKu;

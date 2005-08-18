@@ -6,13 +6,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesHi = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'विशेष',
@@ -78,7 +71,6 @@ require_once( "LanguageUtf8.php" );
 "aboutpage"		=> "विकिपीडिया:अबाउट",
 "help"			=> "सहायता",
 "helppage"		=> "विकिपीडिया:सहायता",
-"wikititlesuffix"       => "विकिपीडिया",
 "bugreports"	        => "Bug reports",
 "bugreportspage"        => "विकिपीडिया:Bug_reports",
 "faq"			=> "FAQ",
@@ -120,7 +112,6 @@ require_once( "LanguageUtf8.php" );
 "redirectedfrom"        => "($1 से भेजा गया)",
 "lastmodified"	        => "अन्तिम परिवर्तन $1.",
 "viewcount"		=> "यह पृष्ठ $1 बार देखा गया है",
-"gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle"         => "(From {{SERVER}})",
 "protectedpage"         => "सुरक्षित पृष्ठ",
 "administrators"        => "विकिपीडिया:प्रबन्धक",
@@ -177,8 +168,7 @@ class LanguageHi extends LanguageUtf8 {
 		return $wgNamespaceNamesHi;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesHi;
 		if(array_key_exists($key, $wgAllMessagesHi))
 			return $wgAllMessagesHi[$key];
@@ -194,6 +184,7 @@ class LanguageHi extends LanguageUtf8 {
 			return $number;
 		}
 	}
+
 }
 
 ?>

@@ -10,43 +10,51 @@ require_once( 'LanguageUtf8.php' );
 # Revised 2005-06-22 for MediaWiki 1.5a2 and CVS -- Nikerabbit
 
 /* private */ $wgNamespaceNamesFi = array(
-  NS_MEDIA            => 'Media',
-  NS_SPECIAL          => 'Toiminnot',
-  NS_MAIN             => '',
-  NS_TALK             => 'Keskustelu',
-  NS_USER             => 'Käyttäjä',
-  NS_USER_TALK        => 'Keskustelu_käyttäjästä',
-  NS_PROJECT          => $wgMetaNamespace,
-  NS_PROJECT_TALK     => FALSE,  # Set in constructor
-  NS_IMAGE            => 'Kuva',
-  NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
-  NS_MEDIAWIKI        => 'MediaWiki',
-  NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-  NS_TEMPLATE         => 'Malline',
-  NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
-  NS_HELP             => 'Ohje',
-  NS_HELP_TALK        => 'Keskustelu_ohjeesta',
-  NS_CATEGORY         => 'Luokka',
-  NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Toiminnot',
+	NS_MAIN             => '',
+	NS_TALK             => 'Keskustelu',
+	NS_USER             => 'Käyttäjä',
+	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => FALSE,  # Set in constructor
+	NS_IMAGE            => 'Kuva',
+	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Malline',
+	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
+	NS_HELP             => 'Ohje',
+	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
+	NS_CATEGORY         => 'Luokka',
+	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
 
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFi = array(
-  'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla'
+	'Ei mitään', 'Tekstin mukana, vasen', 'Tekstin mukana, oikea', 'Pysyen vasemmalla'
 );
 
 /* private */ $wgSkinNamesFi = array(
-  'standard'          => 'Perus',
-  'cologneblue'       => 'Kölnin sininen',
-  'myskin'            => 'Oma tyylisivu'
+	'standard'          => 'Perus',
+	'cologneblue'       => 'Kölnin sininen',
+	'myskin'            => 'Oma tyylisivu'
 ) + $wgSkinNamesEn;
 
+/* private */ $wgDateFormatsFi = array(
+	'Ei valintaa',
+	'15. tammikuuta 2001 kello 16.12',
+	'15. tammikuuta 2001 kello 16:12:34',
+	'15.1.2001 16.12',
+	'ISO 8601' => '2001-01-15 16:12:34'
+);
+
 /* private */ $wgBookstoreListFi = array(
-  'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
-  'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
-  'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
-  'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
-  'Tampereen seudun kirjastot'    => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1-1&lang=kaikki&mat_type=kaikki&submit=Hae&engine_tampere=ON'
+	'Akateeminen kirjakauppa'       => 'http://www.akateeminen.com/search/tuotetieto.asp?tuotenro=$1',
+	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
+	'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',
+	'Pääkaupunkiseudun kirjastot'   => 'http://www.helmet.fi/search*fin/i?SEARCH=$1',
+	'Tampereen seudun kirjastot'    => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1-1&lang=kaikki&mat_type=kaikki&submit=Hae&engine_tampere=ON'
 ) + $wgBookstoreListEn;
 
 # Current practices (may be changed if not good ones)
@@ -116,18 +124,18 @@ require_once( 'LanguageUtf8.php' );
 'october'     => 'lokakuu',
 'november'    => 'marraskuu',
 'december'    => 'joulukuu',
-'jan'         => 'tammi',
-'feb'         => 'helmi',
-'mar'         => 'maalis',
-'apr'         => 'huhti',
-'may'         => 'touko',
-'jun'         => 'kesä',
-'jul'         => 'heinä',
-'aug'         => 'elo',
-'sep'         => 'syys',
-'oct'         => 'loka',
-'nov'         => 'marras',
-'dec'         => 'joulu',
+'jan'         => 'tammikuu',
+'feb'         => 'helmikuu',
+'mar'         => 'maaliskuu',
+'apr'         => 'huhtikuu',
+'may'         => 'toukokuu',
+'jun'         => 'kesäkuu',
+'jul'         => 'heinäkuu',
+'aug'         => 'elokuu',
+'sep'         => 'syyskuu',
+'oct'         => 'lokakuu',
+'nov'         => 'marraskuu',
+'dec'         => 'joulukuu',
 
 # Bits of text used by many pages:
 #
@@ -147,7 +155,6 @@ require_once( 'LanguageUtf8.php' );
 'article'             => 'Sivu',
 'help'                => 'Ohje',
 'helppage'            => 'Help:Ohje',
-'wikititlesuffix'     => '{{SITENAME}}',
 'bugreports'          => 'Ongelmat ja parannusehdotukset',
 'bugreportspage'      => 'Project:Ongelmat ja parannusehdotukset',
 'sitesupport'         => 'Lahjoitukset', # Set a URL in $wgSiteSupportPage in LocalSettings.php
@@ -245,6 +252,8 @@ require_once( 'LanguageUtf8.php' );
 'showtoc'             => 'näytä',
 'hidetoc'             => 'piilota',
 'thisisdeleted'       => 'Näytä tai palauta $1.',
+'viewdeleted'         => 'Näytä $1?',
+'restorelink1'        => 'yksi poistettu muokkaus.',
 'restorelink'         => '$1 poistettua muokkausta',
 'feedlinks'           => 'Uutissyötteet:',
 'sitenotice'          => '', # the equivalent to wgSiteNotice
@@ -319,7 +328,7 @@ Sivun lähdekoodi:',
 'yourdomainname'      => 'Verkkonimi',
 'externaldberror'     => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',
 'loginproblem'        => '<b>Sisäänkirjautuminen ei onnistunut.</b><br />Yritä uudelleen!',
-'alreadyloggedin'     => '<font color=red><b>Käyttäjä $1, olet jo kirjautunut sisään!</b></font><br />\n',
+'alreadyloggedin'     => '<strong>Käyttäjä $1, olet jo kirjautunut sisään!</strong><br />\n',
 'login'               => 'Kirjaudu sisään',
 'loginprompt'         => '<!-- -->',
 'userlogin'           => 'Kirjaudu sisään tai luo tunnus',
@@ -330,17 +339,17 @@ Sivun lähdekoodi:',
 'createaccountmail'   => 'sähköpostitse',
 'badretype'           => 'Syöttämäsi salasanat ovat erilaiset.',
 'userexists'          => 'Pyytämäsi käyttäjänimi on jo käytössä. Ole hyvä ja valitse toinen käyttäjänimi.',
-'youremail'           => 'Sähköpostiosoite²',
-'yourrealname'        => 'Nimi¹',
+'youremail'           => 'Sähköpostiosoite',
+'yourrealname'        => 'Nimi',
 'yourlanguage'        => 'Käyttöliittymän kieli',
 'yourvariant'         => 'Kielivariantti', // TODO: CHECK ME (language varian)
 'yournick'            => 'Nimimerkki allekirjoituksia varten',
 'email'               => 'Sähköpostitoiminnot',
 'emailforlost'        => '&nbsp;',
 'prefs-help-email-enotif' => 'Tätä osoitetta käytetään myös artikkelien muuttumisilmoituksiin, jos ominaisuus on käytössä.',
-'prefs-help-realname' => '¹ Nimi (vapaaehtoinen): Nimeäsi käytetään antaamaan kunnia työllesi.',
+'prefs-help-realname' => 'Nimi (vapaaehtoinen): Nimeäsi käytetään antaamaan kunnia työllesi.',
 'loginerror'          => 'Sisäänkirjautumisvirhe',
-'prefs-help-email'    => '² Sähköpostiosoite (vapaaehtoinen): Muut käyttäjät voivat ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
+'prefs-help-email'    => 'Sähköpostiosoite (vapaaehtoinen): Muut käyttäjät voivat ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
 
 'nocookiesnew'        => 'Käyttäjä luotiin, mutta et ole kirjautunut sisään. {{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeistä. Kytke ne päälle, ja sitten kirjaudu sisään juuri luomallasi käyttäjänimellä ja salasanalla.',
 'nocookieslogin'      => '{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.',
@@ -433,7 +442,7 @@ Sivun lähdekoodi:',
 'noarticletext'       => '<big>\'\'\'{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.\'\'\'</big>
 * Voit kirjoittaa uuden sivun \'\'\'<span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.\'\'\'
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].',
-'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Konqueror ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai  \'\'\'Opera:\'\'\' \'\'F5\'\'.',
+'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => '\'\'\'Vinkki:\'\'\' Käytä esikatselupainiketta testataksesi uutta CSS:ää tai JavaScriptiä ennen tallennusta.',
 'usercsspreview'      => '\'\'\'Tämä on vasta CSS:n testaus ja esikatselu.\'\'\'',
 'userjspreview'       => '\'\'\'Tämä on vasta JavaScriptin testaus ja esikatselu.\'\'\'',
@@ -451,7 +460,7 @@ Sivun lähdekoodi:',
 'nonunicodebrowser'   => '\'\'\'Varoitus: Selaimesi ei ole Unicode-yhteensopiva. Ole hyvä ja vaihda selainta, ennen kuin muokkaat sivua.\'\'\'',
 'editingold'          => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
 'yourdiff'            => 'Eroavaisuudet',
-'copyrightwarning'    => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Jos haluat harjoitella muokkaamista, ole hyvä ja käytä [[Project:Hiekkalaatikko|hiekkalaatikkoa]].<br/><br/>Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi GNU Free Documentation -lisenssin mukaisesti ([[Project:{{SITENAME}} ja tekijänoikeudet|lisätietoja]]). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
+'copyrightwarning'    => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Jos haluat harjoitella muokkaamista, ole hyvä ja käytä [[Project:Hiekkalaatikko|hiekkalaatikkoa]].<br /><br />Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi GNU Free Documentation -lisenssin mukaisesti ([[Project:{{SITENAME}} ja tekijänoikeudet|lisätietoja]]). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
 'copyrightwarning2'   => '<br />Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
 'longpagewarning'     => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'readonlywarning'     => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
@@ -555,7 +564,7 @@ Sivun lähdekoodi:',
 'contextlines'        => 'Rivien määrä tulosta kohti',
 'contextchars'        => 'Sisällön merkkien määrä riviä kohden',
 'stubthreshold'       => 'Tynkäsivun osoituskynnys',
-'recentchangescount'  => 'Otsikoiden määrä viimeisimmissä muutoksissa',
+'recentchangescount'  => 'Sivujen määrä tuoreissa muutoksissa',
 'savedprefs'          => 'Asetuksesi tallennettiin.',
 'timezonelegend'      => 'Aikavyöhyke',
 'timezonetext'        => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
@@ -572,10 +581,10 @@ Sivun lähdekoodi:',
 #
 
 # switching pan
-'groups-lookup-group' => 'Manage group rights',
+/*'groups-lookup-group' => 'Manage group rights',
 'groups-group-edit' => 'Existing groups: ',
 'editgroup' => 'Edit Group',
-'addgroup' => 'Add Group',
+'addgroup' => 'Add Group',*/
 
 'userrights-lookup-user'   => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname' => 'Käyttäjätunnus: ',
@@ -590,7 +599,7 @@ Sivun lähdekoodi:',
 'userrights-groupshelp' => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
 
 # Default group names and descriptions
-# 
+#
 'group-anon-name'       => 'Anonyymi',
 'group-anon-desc'       => 'Käyttäjät, joilla ei ole tunnusta tai jotka eivät ole kirjautuneet sisään',
 'group-loggedin-name'   => 'Käyttäjä',
@@ -983,6 +992,7 @@ Palaute ja lisäapu osoitteessa:
 'ipusubmit'           => 'Poista esto',
 'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1<b> esto poistettu', // TODO NOWIKIMARKUP
 'ipblocklist'         => 'Lista estetyistä IP-osoitteista',
+'ipblocklistempty'    => 'Estolista on tyhjä.',
 'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 ($4)',
 'infiniteblock'       => 'ikuisesti',
 'expiringblock'       => 'vanhenee $1',
@@ -1311,147 +1321,211 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 );
 
 
-  #--------------------------------------------------------------------------
-  # Internationalisation code
-  #--------------------------------------------------------------------------
+	#--------------------------------------------------------------------------
+	# Internationalisation code
+	#--------------------------------------------------------------------------
 
 class LanguageFi extends LanguageUtf8 {
-  function LanguageFi() {
-    global $wgNamespaceNamesFi, $wgMetaNamespace;
-    LanguageUtf8::LanguageUtf8();
-    $wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
-  }
+	function LanguageFi() {
+		global $wgNamespaceNamesFi, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+		$wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+	}
 
-  function getBookstoreList () {
-    global $wgBookstoreListFi ;
-    return $wgBookstoreListFi ;
-  }
+	function getBookstoreList () {
+		global $wgBookstoreListFi ;
+		return $wgBookstoreListFi ;
+	}
 
-  function getNamespaces() {
-    global $wgNamespaceNamesFi;
-    return $wgNamespaceNamesFi;
-  }
+	function getNamespaces() {
+		global $wgNamespaceNamesFi;
+		return $wgNamespaceNamesFi;
+	}
 
-  function getQuickbarSettings() {
-    global $wgQuickbarSettingsFi;
-    return $wgQuickbarSettingsFi;
-  }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsFi;
+		return $wgQuickbarSettingsFi;
+	}
 
-  function getSkinNames() {
-    global $wgSkinNamesFi;
-    return $wgSkinNamesFi;
-  }
+	function getSkinNames() {
+		global $wgSkinNamesFi;
+		return $wgSkinNamesFi;
+	}
 
-  function date( $ts, $adj = false ) {
-    if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function getDateFormats() {
+		global $wgDateFormatsFi;
+		return $wgDateFormatsFi;
+	}
 
-    $d = (0 + substr( $ts, 6, 2 )) . '. ' .
-    $this->getMonthName( substr( $ts, 4, 2 ) ) . 'ta ' . substr( $ts, 0, 4 );
-    return $d;
-  }
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-  function time( $ts, $adj = false, $seconds = true ) {
-    if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		$yyyy = substr( $ts, 0, 4 );
+		$mm = substr( $ts, 4, 2 );
+		$m = 0 + $mm;
+		$mmmm = $this->getMonthName( $mm ) . 'ta';
+		$dd = substr( $ts, 6, 2 );
+		$d = 0 + $dd;
 
-    $t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-    if ( $seconds ) {
-    $t .= ':' . substr( $ts, 12, 2 );
-    }
-    return $t;
-  }
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '3': return "$d.$m.$yyyy";
+			case 'ISO 8601': return "$yyyy-$mm-$dd";
+			default: return "$d. $mmmm $yyyy";
+		}
+	}
 
-  function timeanddate( $ts, $adj = false ) {
-    return $this->date( $ts, $adj ) . ' kello ' . $this->time( $ts, $adj );
-  }
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-  function getMessage( $key ) {
-    global $wgAllMessagesFi;
-    if( isset( $wgAllMessagesFi[$key] ) ) {
-      return $wgAllMessagesFi[$key];
-    } else {
-      return parent::getMessage( $key );
-    }
-  }
+		$hh = substr( $ts, 8, 2 );
+		$mm =  substr( $ts, 10, 2 );
+		$ss = substr( $ts, 12, 2 );
 
-  /**
-   * Finnish numeric formatting is 123 456,78.
-   * Notice that the space is non-breaking.
-   */
-  function formatNum( $number, $year = false ) {
-    return $year ? $number : strtr($this->commafy($number), '.,', ", " );
-  }
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '2':
+			case 'ISO 8601': return "$hh:$mm:$ss";
+			default: return "$hh.$mm";
+		}
+	}
 
-  /**
-   * Avoid grouping whole numbers between 0 to 9999
-   */
-  function commafy($_) {
-    if (!preg_match('/^\d{1,4}$/',$_)) {
-      return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
-    } else {
-      return $_;
-    }
-  }
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+		$date = $this->date( $ts, $adj, $format, $timecorrection );
+		$time = $this->time( $ts, $adj, $format, $timecorrection );
 
-  # Convert from the nominative form of a noun to some other case
-  # Invoked with {{GRAMMAR:case|word}}
-  function convertGrammar( $word, $case ) {
-    # These rules are not perfect, but they are currently only used for site names so it doesn't
-    # matter if they are wrong sometimes. Just add a special case for your site name if necessary.
-    switch ( $case ) {
-      case 'genitive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaattien';
-        } else {
-          $word .= 'n';
-        }
-      break;
-      case 'elative':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaateista';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'stä';
-          } else {
-            $word .= 'sta';
-          }
-        }
-        break;
-      case 'partitive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaatteja';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'ä';
-          } else {
-            $word .= 'a';
-          }
-        }
-        break;
-      case 'illative':
-        # Double the last letter and add 'n'
-        # mb_substr has a compatibility function in GlobalFunctions.php
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaatteihin';
-        } else {
-          $word = $word . mb_substr($word,-1) . 'n';
-        }
-        break;
-      case 'inessive':
-        if ( $word == 'Wikisitaatit' ) {
-          $word = 'Wikisitaateissa';
-        } else {
-          if ( mb_substr($word, -1) == 'y' ) {
-            $word .= 'ssä';
-          } else {
-            $word .= 'ssa';
-          }
-        }
-        break;
+		$datePreference = $this->dateFormat($format);
+		switch( $datePreference ) {
+			case '3':
+			case 'ISO 8601': return "$date $time";
+			default: return "$date kello $time";
+		}
+	}
 
+	function getMessage( $key ) {
+		global $wgAllMessagesFi;
+		if( isset( $wgAllMessagesFi[$key] ) ) {
+			return $wgAllMessagesFi[$key];
+		} else {
+			return parent::getMessage( $key );
+		}
+	}
 
-    }
-    return $word;
-  }
+	/**
+	 * Finnish numeric formatting is 123 456,78.
+	 * Notice that the space is non-breaking.
+	 */
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ", " );
+	}
+
+	/**
+	 * Avoid grouping whole numbers between 0 to 9999
+	 */
+	function commafy($_) {
+		if (!preg_match('/^\d{1,4}$/',$_)) {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		} else {
+			return $_;
+		}
+	}
+
+	# Convert from the nominative form of a noun to some other case
+	# Invoked with {{GRAMMAR:case|word}}
+	function convertGrammar( $word, $case ) {
+		# These rules are not perfect, but they are currently only used for site names so it doesn't
+		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
+		switch ( $case ) {
+			case 'genitive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaattien';
+				} else {
+					$word .= 'n';
+				}
+			break;
+			case 'elative':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaateista';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'stä';
+					} else {
+						$word .= 'sta';
+					}
+				}
+				break;
+			case 'partitive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaatteja';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'ä';
+					} else {
+						$word .= 'a';
+					}
+				}
+				break;
+			case 'illative':
+				# Double the last letter and add 'n'
+				# mb_substr has a compatibility function in GlobalFunctions.php
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaatteihin';
+				} else {
+					$word = $word . mb_substr($word,-1) . 'n';
+				}
+				break;
+			case 'inessive':
+				if ( $word == 'Wikisitaatit' ) {
+					$word = 'Wikisitaateissa';
+				} else {
+					if ( mb_substr($word, -1) == 'y' ) {
+						$word .= 'ssä';
+					} else {
+						$word .= 'ssa';
+					}
+				}
+				break;
+
+		}
+		return $word;
+	}
+
 }
 
 ?>

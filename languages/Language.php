@@ -22,11 +22,6 @@ if( defined( 'MEDIAWIKI' ) ) {
 # Language-specific text
 #--------------------------------------------------------------------------
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
@@ -366,7 +361,6 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'article'		=> 'Content page',
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'	=> 'Bug reports',
 'bugreportspage' => 'Project:Bug_reports',
 'sitesupport'   => 'Donations',
@@ -411,7 +405,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'print' => 'Print',
-'edit' => 'Edit this page',
+'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 'deletethispage' => 'Delete this page',
@@ -589,7 +583,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
-'alreadyloggedin' => "<font color=red><b>User $1, you are already logged in!</b></font><br />\n",
+'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />\n",
 
 'login'			=> 'Log in',
 'loginprompt'           => "You must have cookies enabled to log in to {{SITENAME}}.",
@@ -710,7 +704,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 'noarticletext' => '(There is currently no text in this page)',
-'clearyourcache' => "'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview' => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
 'userjspreview' => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
@@ -2074,7 +2068,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'edit-externally' => 'Edit this file using an external application',
 'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
 'imagelistall' => 'all',
 'watchlistall1' => 'all',
@@ -2120,7 +2114,7 @@ will expire at $4.
 
 # Trackbacks
 'trackbackbox' => "<div id='mw_trackbacks'>
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>
 ",
@@ -2131,6 +2125,7 @@ $1
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
 'unit-pixel' => 'px',
+
 );
 
 /* a fake language converter */
@@ -2503,21 +2498,6 @@ class Language {
 			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $datePreference, $timecorrection );
 		}
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEn;
-		return $wgValidSpecialPagesEn;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEn;
-		return $wgSysopSpecialPagesEn;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEn;
-		return $wgDeveloperSpecialPagesEn;
 	}
 
 	function getMessage( $key ) {
