@@ -514,7 +514,7 @@ Vaša IP adresa je $3. Prosíme zahrňte túto adresu do každého vášho prík
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "---- ''Toto je diskusná stránka anonymného redaktora, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú [[IP adresa|IP adresu]]. Je možné, že takúto IP adresu používajú viacerí redaktori. Ak ste anonymný redaktor a máte pocit, že vám boli adresované irelevantné diskusné príspevky, zriaďte si vlastný účet alebo sa prihláste ([[Special:Userlogin|Zriadenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými redaktormi''",
 'noarticletext' => '(Tento článok momentálne neobsahuje žiaden text)',
-'clearyourcache' => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla:''' kliknite ''Reload'' (alebo ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Použite tlačidlo 'Zobraz náhľad', aby sa otestovalo Vaše nové CSS/JS pred uložením.",
 'usercsspreview' => "'''Nezabudnite, že toto je iba náhľad Vášho užívateľského CSS, ešte nebolo uložené!'''",
 'userjspreview' => "'''Nezabudnite, že iba testujete/náhľad vášho užívateľského JavaScriptu, ešte nebol uložený!'''",

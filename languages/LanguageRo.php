@@ -222,7 +222,7 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 #'categoryarticlecount' => "Sunt $1 articole în această categorie.",
 'changepassword' => "Schimbă parola",
 'changes' => "schimbări",
-#'clearyourcache' => "'''Notă:''' După salvare, poţi să-ţi goleşti fişierele din cache pentru a vedea schimbările: '''Mozilla:''' apasă ''reload''(sau ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+#'clearyourcache' => "'''Notă:''' După salvare, poţi să-ţi goleşti fişierele din cache pentru a vedea schimbările: '''Mozilla:''' apasă ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'columns' => "Coloane",
 'commentedit' => " (comentariu)",
 'compareselectedversions' => "Compară versiunile selectate",

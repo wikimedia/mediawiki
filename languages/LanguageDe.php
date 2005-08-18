@@ -419,10 +419,10 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
  an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-Javascript. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
-'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",

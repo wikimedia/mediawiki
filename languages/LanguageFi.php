@@ -443,7 +443,7 @@ Sivun lähdekoodi:',
 'noarticletext'       => '<big>\'\'\'{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.\'\'\'</big>
 * Voit kirjoittaa uuden sivun \'\'\'<span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.\'\'\'
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].',
-'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Konqueror ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai  \'\'\'Opera:\'\'\' \'\'F5\'\'.',
+'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai  \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => '\'\'\'Vinkki:\'\'\' Käytä esikatselupainiketta testataksesi uutta CSS:ää tai JavaScriptiä ennen tallennusta.',
 'usercsspreview'      => '\'\'\'Tämä on vasta CSS:n testaus ja esikatselu.\'\'\'',
 'userjspreview'       => '\'\'\'Tämä on vasta JavaScriptin testaus ja esikatselu.\'\'\'',

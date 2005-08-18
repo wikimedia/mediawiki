@@ -656,7 +656,7 @@ De kins ouch 'n log type, de gebroekersname of de betriffende pazjena selectiere
 'categoryarticlecount' => "D'r zunt $1 artikele in dees kategorie.",
 'categoryarticlecount1' => "D'r is $1 artikel in dees kategorie.",
 'changes' => "verangeringe",
-'clearyourcache' => "'''Mèrk op:''' Nao 't opsjlaon, kins e diene browsercache wisse om de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''Mèrk op:''' Nao 't opsjlaon, kins e diene browsercache wisse om de verangeringe te zeen: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''' ''F5''.",
 'compareselectedversions' => "Vergeliek geselecteerde versies",
 'confirmemail_body' => "Someone, probably you from IP address $1, has registered an
 account \"$2\" with this e-mail address on {{SITENAME}}.

@@ -844,7 +844,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 'blocklogpage' => "封锁记录", //"Block_log",
 'categoriespagetext' => "以下列出所有的页面分类。", //"The following categories exists in the wiki.",
 'categoryarticlecount' => "该类页面共有 $1 条目", //There are $1 articles in this category.",
-'clearyourcache' => "'''注意：''' 保存设置后，要清掉浏览器的缓存才能生效：'''Mozilla:''' 点''刷新'' （或用快键''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''注意：''' 保存设置后，要清掉浏览器的缓存才能生效：'''Mozilla:''' ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''。",
 'edit' => "编辑", //"Edit",
 'navigation' => "导航", //"Navigation",
 'nstab-category' => "分类", //"Category",

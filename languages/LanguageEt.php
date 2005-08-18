@@ -465,7 +465,7 @@ Lehekülje loomiseks hakake kirjutama all olevasse boksi
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
 "anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{{ns:4}}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.'' ",
 "noarticletext" => "(See lehekülg on praegu tühi)",
-'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' vajuta ''reload''(või ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssjsyoucanpreview' => "<strong>Vihje:</strong> Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
 'usercsspreview' => "'''Ärge unustage, et seda versiooni teie isiklikust stiililehest pole veel salvestatud!'''",
 'userjspreview' => "'''Ärge unustage, et see versioon teie isiklikust javascriptist on alles salvestamata!'''",
