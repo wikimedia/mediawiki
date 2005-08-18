@@ -469,6 +469,31 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "powersearch" => "Cari",
 "powersearchtext" => "Cari dalam namespace :<br />$1<br />$2 Juga tampilkan peralihan   Cari $3 $9",
 "searchdisabled" => '<p style="margin: 1.5em 2em 1em">Pencarian {{SITENAME}} dimatikan sementara karena masalah performa. Dalam pada itu, Anda dapat mencari melalui Google. <span style="font-size: 89%; display: block; margin-left: .2em">Perhatikan bahwa hasil pencarian Google mungkin out-of-date.</span></p>", #"<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>',
+'googlesearch' => '
+<div style="margin-left: 2em">
+
+<!-- Google search -->
+<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="paddin
+:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
+
+<form method="get" action="http://www.google.com/search" style="margin-left:135px">
+  <div>
+    <input type="hidden" name="domains" value="{{SERVER}}" />
+    <input type="hidden" name="num" value="50" />
+    <input type="hidden" name="hl" value="id" />
+    <input type="hidden" name="ie" value="$2" />
+    <input type="hidden" name="oe" value="$2" />
+    
+    <input type="text" name="q" size="31" maxlength="255" value="$1" />
+    <input type="submit" name="btnG" value="Mesin Cari Google" />
+  </div>
+  <div style="font-size:90%">
+    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
+    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
+  </div>
+</form>
+
+</div>',
 "blanknamespace" => "(Utama)",
 
 # Preferences page

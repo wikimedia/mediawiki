@@ -34,9 +34,6 @@ if($wgMetaNamespace === FALSE)
 	NS_CATEGORY_TALK    => 'Обсуждение_категории',
 ) + $wgNamespaceNamesEn;
 
-if(isset($wgExtraNamespaces)) {
-	$wgNamespaceNamesRu=$wgNamespaceNamesRu+$wgExtraNamespaces;
-}
 
 /* private */ $wgQuickbarSettingsRu = array(
 	'Не показывать', 'Неподвижная слева', 'Неподвижная справа', 'Плавающая слева', 'Плавающая справа'

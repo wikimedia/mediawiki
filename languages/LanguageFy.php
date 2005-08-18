@@ -7,10 +7,10 @@
 require_once( "LanguageUtf8.php" );
 
 if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( " ", "_", $wgSiteName );
+	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesFy = array(
-	NS_MEDIA         => "Media",
+	NS_MEDIA          => "Media",
 	MS_SPECIAL        => "Wiki",
 	NS_MAIN           => "",
 	NS_TALK           => "Oerlis",
@@ -37,9 +37,6 @@ if($wgMetaNamespace === FALSE)
 /* private */ $wgSkinNamesFy = array(
 	'standard' => "Standert",
 	'nostalgia' => "Nostalgy",
-	'cologneblue' => "Keuls blau",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
 ) + $wgSkinNamesEn;
 
 
@@ -423,7 +420,7 @@ $2 List trochferwizings &nbsp; Sykje nei \"$3\" \"$9\"",
 "searchdisabled" => "<p>Op it stuit stjit it trochsykjen fan tekst net oan, om't de
 tsjinner it net oankin. Mei't we nije apparatuer krije wurdt it nei alle gedanken wer
 mooglik. Foar now kinne jo sykje fia Google:</p>",
-"blanknamespace" => "({{SITENAME}})",
+
 
 
 # Preferences page

@@ -34,9 +34,6 @@ require_once( 'LanguageUtf8.php' );
 /* private */ $wgSkinNamesFr = array(
 	'standard'		=> 'Standard',
 	'nostalgia'		=> 'Nostalgie',
-	'cologneblue'	=> 'Cologne Blue',
-	'smarty'		=> 'Paddington',
-	'montparnasse'	=> 'Montparnasse',
 ) + $wgSkinNamesEn;
 
 
