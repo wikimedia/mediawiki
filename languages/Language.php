@@ -1216,7 +1216,7 @@ Future changes to this page and its associated Talk page will be listed there,
 and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
 
-<p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
+<p>If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
 'removedwatch'		=> 'Removed from watchlist',
 'removedwatchtext' 	=> "The page \"$1\" has been removed from your watchlist.",
 'watch' => 'Watch',
