@@ -1,9 +1,4 @@
 <?php
-#
-# This localisation is originally based on a file kindly donated by the folks at MIMOS
-# http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
-#
-
 
 require_once( "LanguageUtf8.php" );
 
@@ -394,7 +389,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
 "anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena Ia tidak membuat akun, kami terpaksa harus memakai [[alamat IP]]-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[Special:Userlogin|membuat akun atau login]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.'' ",
 "noarticletext" => "(Tidak ada teks dalam halaman ini)",
-'clearyourcache' => "'''Catatan:''' Setelah menyimpan konfigurasi, Anda perlu membersihkan cache browser Anda untuk melihat perubahan: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.", 
+'clearyourcache' => "'''Catatan:''' Setelah menyimpan konfigurasi, Anda perlu membersihkan cache browser Anda untuk melihat perubahan: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Tips:</strong> Gunakan tombol 'Tampilkan pratilik' untuk menguji css/js baru Anda sebelum menyimpannya.", #<strong>Tip:</strong> Use the 'Show preview' button to test your new css/js before saving.
 'usercsspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratilik CSS Anda, dan bahwa pratilik tersebut belum disimpan!'''", #'''Remember that you are only previewing your user css, it has not yet been saved!'''
 'userjspreview' => "'''Ingatlah bahwa yang Anda lihat hanyalah pratilik JavaScript Anda, dan bahwa pratilik tersebut belum disimpan!'''", #'''Remember that you are only testing/previewing your user javascript, it has not yet been saved!'''
@@ -483,7 +478,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
     <input type="hidden" name="hl" value="id" />
     <input type="hidden" name="ie" value="$2" />
     <input type="hidden" name="oe" value="$2" />
-    
+
     <input type="text" name="q" size="31" maxlength="255" value="$1" />
     <input type="submit" name="btnG" value="Mesin Cari Google" />
   </div>
