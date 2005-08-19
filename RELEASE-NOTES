@@ -33,7 +33,7 @@ Misc work going on.....
   use $wgDebugLogGroups to configure and wfDebugLog() to log.
 * Finnish date format was hardcoded, now implemented properly
 * (bug 3190) Added some date format choices for language sr
-
+* (bug 1334) LanguageGa.php update
 
 === Caveats ===
 
