@@ -43,7 +43,19 @@ require_once( "LanguageUtf8.php" );
 ) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsSr = array(
-# "Без посебних жеља",
+	'Није битно',
+	'06:12, 5. јануар 2001.',
+	'06:12, 5 јануар 2001',
+	'06:12, 05.01.2001.',
+	'06:12, 5.1.2001.',
+	'06:12, 5. јан 2001.',
+	'06:12, 5 јан 2001',
+	'6:12, 5. јануар 2001.',
+	'6:12, 5 јануар 2001',
+	'6:12, 05.01.2001.',
+	'6:12, 5.1.2001.',
+	'6:12, 5. јан 2001.',
+	'6:12, 5 јан 2001',
 );
 
 
@@ -98,30 +110,30 @@ require_once( "LanguageUtf8.php" );
 'thursday' => "Четвртак",
 'friday' => "Петак",
 'saturday' => "Субота",
-'january' => "Јануар",
-'february' => "Фебруар",
-'march' => "Март",
-'april' => "Април",
-'may_long' => "Мај",
-'june' => "Јуни",
-'july' => "Јули",
-'august' => "Август",
-'september' => "Септембар",
-'october' => "Октобар",
-'november' => "Новембар",
-'december' => "Децембар",
-'jan' => "Јан",
-'feb' => "Феб",
-'mar' => "Мар",
-'apr' => "Апр",
-'may' => "Мај",
-'jun' => "Јун",
-'jul' => "Јул",
-'aug' => "Авг",
-'sep' => "Сеп",
-'oct' => "Окт",
-'nov' => "Нов",
-'dec' => "Дец",
+'january' => "јануар",
+'february' => "фебруар",
+'march' => "март",
+'april' => "април",
+'may_long' => "мај",
+'june' => "јун",
+'july' => "јул",
+'august' => "август",
+'september' => "септембар",
+'october' => "октобар",
+'november' => "новембар",
+'december' => "децембар",
+'jan' => "јан",
+'feb' => "феб",
+'mar' => "мар",
+'apr' => "апр",
+'may' => "мај",
+'jun' => "јун",
+'jul' => "јул",
+'aug' => "авг",
+'sep' => "сеп",
+'oct' => "окт",
+'nov' => "нов",
+'dec' => "дец",
 
 # Bits of text used by many pages:
 #
@@ -1014,6 +1026,105 @@ class LanguageSr extends LanguageUtf8 {
 	function formatNum( $number, $year = false ) {
 		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
 	}
+
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+
+		$mm = substr( $ts, 4, 2 );
+		$m = 0 + $mm;
+		$mmmm = $this->getMonthName( $mm );
+		$mmm = $this->getMonthAbbreviation( $mm );
+		$dd = substr( $ts, 6, 2 );
+		$d = 0 + $dd;
+		$yyyy =  substr( $ts, 0, 4 );
+		$yy =  substr( $ts, 2, 2 );
+
+		switch( $format ) {
+			case '2':
+			case '8':
+				return "$d $mmmm $yyyy";
+			case '3':
+			case '9':
+				return "$dd.$mm.$yyyy.";
+			case '4':
+			case '10':
+				return "$d.$m.$yyyy.";
+			case '5':
+			case '11':
+				return "$d. $mmm $yyyy.";
+			case '6':
+			case '12':
+				return "$d $mmm $yyyy";
+			default:
+				return "$d. $mmmm $yyyy.";
+		}
+
+	}
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+
+		global $wgOut;
+		if ($wgOut) $wgOut->addHTML($format);
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+		$hh = substr( $ts, 8, 2 );
+		$h = 0 + $hh;
+		$mm = substr( $ts, 10, 2 );
+		switch( $format ) {
+			case '7':
+			case '8':
+			case '9':
+			case '10':
+			case '11':
+			case '12':
+				return "$h:$mm";
+			default:
+				return "$hh:$mm";
+		}
+	}
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one (default true)
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+		$datePreference = $this->dateFormat($format);
+		return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' . $this->date( $ts, $adj, $datePreference, $timecorrection );
+
+	}
+
 
 }
 

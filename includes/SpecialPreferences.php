@@ -226,7 +226,7 @@ class PreferencesForm {
 		if( $wgUseTeX ) {
 			$wgUser->setOption( 'math', $this->mMath );
 		}
-		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 10 ) );
+		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 20 ) );
 		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
@@ -378,7 +378,7 @@ class PreferencesForm {
 		$checked = $wgUser->getOption( $tname ) == 1 ? ' checked="checked"' : '';
 		$trailer = $trailer ? $trailer : '';
 		return "<div class='toggle'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked />" .
-			" <span class='toggletext'><label for=\"$tname\">$ttext</label>$trailer</span></div>";
+			" <span class='toggletext'><label for=\"$tname\">$ttext</label>$trailer</span></div>\n";
 	}
 
 	function getToggles( $items ) {
@@ -769,7 +769,8 @@ class PreferencesForm {
 <option value=\"1\"$s1>$msgUnderlinealways</option>
 <option value=\"2\"$s2>$msgUnderlinedefault</option>
 </select>
-</label></div>
+</label>
+</div>
 ");
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
