@@ -142,7 +142,7 @@ require_once( "LanguageUtf8.php" );
 "category_header" => "Чланака у категорији: \"$1\"",
 "subcategories" => "Подкатегорије",
 
-"linktrail"  => "/^([а-ж�-�]+)(.*)$/sD",
+"linktrail" => "/^([абвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD",
 "mainpage"  => "Главна страна",
 "mainpagetext" => "Вики софтвер је успешно инсталиран.",
 "about"   => "О...",
