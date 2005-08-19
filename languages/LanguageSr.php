@@ -1088,8 +1088,6 @@ class LanguageSr extends LanguageUtf8 {
 	*/
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
 
-		global $wgOut;
-		if ($wgOut) $wgOut->addHTML($format);
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		$hh = substr( $ts, 8, 2 );
 		$h = 0 + $hh;
