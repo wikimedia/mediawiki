@@ -226,7 +226,7 @@ class PreferencesForm {
 		if( $wgUseTeX ) {
 			$wgUser->setOption( 'math', $this->mMath );
 		}
-		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 10 ) );
+		$wgUser->setOption( 'date', $this->validateDate( $this->mDate, 0, 20 ) );
 		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
