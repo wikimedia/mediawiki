@@ -34,6 +34,8 @@ Misc work going on.....
 * Finnish date format was hardcoded, now implemented properly
 * (bug 3190) Added some date format choices for language sr
 * (bug 1334) LanguageGa.php update
+* (bug 1020) Changing user interface language does not work immediately
+
 
 === Caveats ===
 
