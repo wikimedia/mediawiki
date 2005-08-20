@@ -11,7 +11,7 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgNamespaceNamesFy = array(
 	NS_MEDIA          => "Media",
-	MS_SPECIAL        => "Wiki",
+	NS_SPECIAL        => "Wiki",
 	NS_MAIN           => "",
 	NS_TALK           => "Oerlis",
 	NS_USER           => "Meidogger",
