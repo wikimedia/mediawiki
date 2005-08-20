@@ -3250,6 +3250,7 @@ class Parser
 		$part = explode( '|', $options);
 
 		$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
+		$mwManualThumb =& MagicWord::get( MAG_IMG_MANUALTHUMB );
 		$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
 		$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
 		$mwNone   =& MagicWord::get( MAG_IMG_NONE );
@@ -3262,14 +3263,12 @@ class Parser
 		$manual_thumb = '' ;
 
 		foreach( $part as $key => $val ) {
-			$val_parts = explode ( '=' , $val , 2 ) ;
-			$left_part = array_shift ( $val_parts ) ;
 			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
 				$thumb=true;
-			} elseif ( $wgUseImageResize && count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
+			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
 				# use manually specified thumbnail
 				$thumb=true;
-				$manual_thumb = array_shift ( $val_parts ) ;
+				$manual_thumb = $match;
 			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
 				# remember to set an alignment, don't render immediately
 				$align = 'right';
