@@ -8,6 +8,7 @@
  */
 
 /** */
+$wgUseMasterForMaintenance = true;
 $options = array( 'quick' );
 require_once( "commandLine.inc" );
 require_once( "updaters.inc" );
