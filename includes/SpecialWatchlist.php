@@ -87,14 +87,14 @@ function wfSpecialWatchlist( $par ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'page', 'revision', 'watchlist', 'recentchanges' ) );
 
-	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
-	$res = $dbr->query( $sql, $fname );
-	$s = $dbr->fetchObject( $res );
+               	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
+        	$res = $dbr->query( $sql, $fname );
+        	$s = $dbr->fetchObject( $res );
 
-#	Patch *** A1 *** (see A2 below)
+        #	Patch *** A1 *** (see A2 below)
 #	adjust for page X, talk:page X, which are both stored separately, but treated together
-#	$nitems = $s->n / 2;
-	$nitems = $s->n;
+	$nitems = floor($s->n / 2);
+#	$nitems = $s->n;
 
 	if($nitems == 0) {
 		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
@@ -127,10 +127,13 @@ function wfSpecialWatchlist( $par ) {
 	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-	        $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
-		$res = $dbr->query( $sql, $fname );
-		$s = $dbr->fetchObject( $res );
-		$npages = $s->n;
+                  /* 
+                  $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
+                  $res = $dbr->query( $sql, $fname );
+                  $s = $dbr->fetchObject( $res );
+                  $npages = $s->n;
+                  */
+                  $npages = 40000 * $days;
 
 	}
 
@@ -197,23 +200,8 @@ function wfSpecialWatchlist( $par ) {
 	# through the time-sorted page list checking for watched items.
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
-	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
-		$x = 'rev_timestamp';
-		$y = wfMsg( 'watchmethod-recent' );
-		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
-		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
-		# $z = "wl_namespace=cur_namespace & ~1";
-		$z = 'wl_namespace=page_namespace';
-	} else {
-		$x = 'page_timestamp';
-		$y = wfMsg( 'watchmethod-list' );
-		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
-		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
-		# $z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
-		$z = 'wl_namespace=page_namespace';
-	}
 
-	$andHideOwn = $hideOwn ? "AND (rev_user <> $uid)" : '';
+	$andHideOwn = $hideOwn ? "AND (rc_user <> $uid)" : '';
 
 	# Show watchlist header
 	$header = '';
@@ -224,8 +212,9 @@ function wfSpecialWatchlist( $par ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
-	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems / 2 ),
-		$wgLang->formatNum( $npages ), $y,
+	# TODO: Consider removing the third parameter
+	$header .= wfMsg( 'watchdetails', $wgLang->formatNum( $nitems ), 
+		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
 	
@@ -238,19 +227,23 @@ function wfSpecialWatchlist( $par ) {
 			"\n\n" );
 	}
 
-	$use_index = $dbr->useIndexClause( $x );
-	$sql = "SELECT
-  page_namespace,page_title,rev_comment, page_id,
-  rev_user,rev_user_text,rev_timestamp,rev_minor_edit,rev_id,page_is_new,wl_notificationtimestamp
-  FROM $watchlist,$page,$revision  $use_index
-  WHERE wl_user=$uid
-  $andHideOwn
-  AND $z
-  AND wl_title=page_title
-  AND page_latest=rev_id
-  $docutoff
-  ORDER BY rev_timestamp DESC";
-
+        $sql = "SELECT
+          rc_namespace page_namespace,rc_title page_title,
+          rc_comment rev_comment, rc_cur_id page_id,
+          rc_user rev_user,rc_user_text rev_user_text,
+          rc_timestamp rev_timestamp,rc_minor rev_minor_edit,
+          rc_this_oldid rev_id,
+          rc_last_oldid,
+          rc_new page_is_new,wl_notificationtimestamp
+          FROM $watchlist,$recentchanges,$page
+          WHERE wl_user=$uid
+          AND wl_namespace=rc_namespace
+          AND wl_title=rc_title
+          AND rc_timestamp > '$cutoff'
+          AND rc_cur_id=page_id
+          AND rc_this_oldid=page_latest
+          $andHideOwn
+          ORDER BY rc_timestamp DESC";
 
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
@@ -290,7 +283,7 @@ function wfSpecialWatchlist( $par ) {
 	$counter = 1;
 	while ( $obj = $dbr->fetchObject( $res ) ) {
 		# Make fake RC entry
-		$rc = RecentChange::newFromCurRow( $obj );
+		$rc = RecentChange::newFromCurRow( $obj, $obj->rc_last_oldid );
 		$rc->counter = $counter++;
 
 		if ( $wgShowUpdatedMarker ) {
