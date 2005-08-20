@@ -1012,6 +1012,7 @@ To include the image in a page, use a link in the form
 'uploadlogpagetext' => 'Below is a list of the most recent file uploads.',
 'filename'		=> 'Filename',
 'filedesc'		=> 'Summary',
+'fileuploadsummary' => 'Summary:',
 'filestatus' => 'Copyright status',
 'filesource' => 'Source',
 'copyrightpage' => "Project:Copyrights",
