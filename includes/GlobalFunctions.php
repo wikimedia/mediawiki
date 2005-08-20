@@ -808,6 +808,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	# This check may also protect against code injection in
 	# case of broken installations.
 	if(! file_exists( $wgDiff3 ) ){
+		wfDebug( "diff3 not found\n" );
 		return false;
 	}
 
@@ -822,7 +823,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
 
 	# Check for a conflict
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
+	$cmd = $wgDiff3 . ' -a --overlap-only ' .
 	  wfEscapeShellArg( $mytextName ) . ' ' .
 	  wfEscapeShellArg( $oldtextName ) . ' ' .
 	  wfEscapeShellArg( $yourtextName );
@@ -836,7 +837,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	pclose( $handle );
 
 	# Merge differences
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' .
+	$cmd = $wgDiff3 . ' -a -e --merge ' .
 	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 	$result = '';
@@ -849,6 +850,11 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	} while ( true );
 	pclose( $handle );
 	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
+
+	if ( $result === '' && $old !== '' && $conflict == false ) {
+		wfDebug( "Unexpected null result from diff3.\nCommand: $cmd\nOutput: " . `$cmd 2>&1` . "\n" );
+		$conflict = true;
+	}
 	return ! $conflict;
 }
 
