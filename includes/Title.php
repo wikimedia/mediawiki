@@ -1149,7 +1149,6 @@ class Title {
 				$this->mArticleID = $wgLinkCache->addLinkObj( $this );
 			}
 		}
-wfdebug("title: articleid = ".$this->mArticleID."\n");
 		return $this->mArticleID;
 	}
 

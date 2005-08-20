@@ -1080,7 +1080,6 @@ define('TS_ORACLE', 5);
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
-wfdebug("ts: $ts\n");
 	if ($ts==0) {
 		$uts=time();
 	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {

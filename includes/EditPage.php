@@ -440,7 +440,6 @@ class EditPage {
 			$this->mArticle->clear(); # Force reload of dates, etc.
 			$this->mArticle->forUpdate( true ); # Lock the article
 
-wfdebug("CONFLICT: edittime=".$this->edittime." article timestamp=".$this->mArticle->getTimestamp()."\n");
 			if( ( $this->section != 'new' ) &&
 				($this->mArticle->getTimestamp() != $this->edittime ) ) {
 				$isConflict = true;

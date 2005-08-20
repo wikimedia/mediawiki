@@ -373,7 +373,6 @@ class SqlBagOStuff extends BagOStuff {
 				$serial = $decomp;
 			}
 		}
-		wfdebug("serial: [$serial]\n");
 		$ret = unserialize( $serial );
 		return $ret;
 	}
