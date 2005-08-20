@@ -249,7 +249,7 @@ END
 		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut, $wgUser;
 
 		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
-		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsg("sharedupload");
+		$sharedtext = "<div class='sharedUploadNotice'>" wfMsgWikiHtml("sharedupload");
 		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
 
 			$sk = $wgUser->getSkin();
