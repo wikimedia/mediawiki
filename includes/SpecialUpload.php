@@ -530,7 +530,7 @@ class UploadForm {
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
 		$destfilename = wfMsgHtml( 'destfilename' );
 		
-		$fd = wfMsgHtml( 'filedesc' );
+		$summary = wfMsgWikiHtml( 'fileuploadsummary' );
 		$ulb = wfMsgHtml( 'uploadbtn' );
 
 
@@ -565,7 +565,7 @@ class UploadForm {
 	<input tabindex='1' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
 	</td></tr><tr>
 	
-	<td align='right'>{$fd}:</td><td align='left'>
+	<td align='right'>{$summary}</td><td align='left'>
 	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
 	"</textarea>
