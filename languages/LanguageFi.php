@@ -443,7 +443,7 @@ Sivun lähdekoodi:',
 'noarticletext'       => '<big>\'\'\'{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.\'\'\'</big>
 * Voit kirjoittaa uuden sivun \'\'\'<span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.\'\'\'
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].',
-'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
+'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää ehkä tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => '\'\'\'Vinkki:\'\'\' Käytä esikatselupainiketta testataksesi uutta CSS:ää tai JavaScriptiä ennen tallennusta.',
 'usercsspreview'      => '\'\'\'Tämä on vasta CSS:n testaus ja esikatselu.\'\'\'',
 'userjspreview'       => '\'\'\'Tämä on vasta JavaScriptin testaus ja esikatselu.\'\'\'',
@@ -534,7 +534,7 @@ Sivun lähdekoodi:',
 'prefsnologin'        => 'Et ole kirjautunut sisään',
 'prefsnologintext'    => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]], jotta voisit muuttaa asetuksia.',
 'prefslogintext'      => 'Olet kirjautunut sisään käyttäjänä \'\'\'$1\'\'\'. Sisäinen tunnistenumerosi on \'\'\'$2\'\'\'.',
-'prefsreset'          => 'Asetukset on palautettu talletettujen mukaisiksi.',
+'prefsreset'          => 'Asetukset on palautettu tallennetuista asetuksistasi.',
 'qbsettings'          => 'Pikavalikko',
 'changepassword'      => 'Vaihda salasanaa',
 'skin'                => 'Ulkonäkö',
@@ -553,7 +553,7 @@ Sivun lähdekoodi:',
 'prefs-rc'            => 'Tuoreet muutokset ja tyngät',
 'prefs-misc'          => 'Muut asetukset',
 'saveprefs'           => 'Tallenna asetukset',
-'resetprefs'          => 'Palauta alkuperäiset asetukset',
+'resetprefs'          => 'Palauta tallennetut asetukset',
 'oldpassword'         => 'Vanha salasana',
 'newpassword'         => 'Uusi salasana',
 'retypenew'           => 'Uusi salasana uudelleen',
@@ -566,7 +566,7 @@ Sivun lähdekoodi:',
 'contextchars'        => 'Sisällön merkkien määrä riviä kohden',
 'stubthreshold'       => 'Tynkäsivun osoituskynnys',
 'recentchangescount'  => 'Sivujen määrä tuoreissa muutoksissa',
-'savedprefs'          => 'Asetuksesi tallennettiin.',
+'savedprefs'          => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend'      => 'Aikavyöhyke',
 'timezonetext'        => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
 'localtime'           => 'Paikallinen aika',
@@ -601,16 +601,12 @@ Sivun lähdekoodi:',
 
 # Default group names and descriptions
 #
-'group-anon-name'       => 'Anonyymi',
-'group-anon-desc'       => 'Käyttäjät, joilla ei ole tunnusta tai jotka eivät ole kirjautuneet sisään',
-'group-loggedin-name'   => 'Käyttäjä',
-'group-loggedin-desc'   => 'Käyttäjät, jotka ovat kirjautuneet sisään',
-'group-admin-name'      => 'Ylläpitäjä',
-'group-admin-desc'      => 'Luotetut käyttäjät voivat estää käyttäjiä ja poistaa ja suojata artikkeleita',
-'group-bureaucrat-name' => 'Byrokraatti',
+'group-sysop-name'      => 'Ylläpitäjät',
+'group-sysop-desc'      => 'Luotetut käyttäjät voivat estää käyttäjiä ja poistaa ja suojata artikkeleita',
+'group-bureaucrat-name' => 'Byrokraatit',
 'group-bureaucrat-desc' => 'Byrokraatit voivat tehdä ylläpitäjiä',
-'group-steward-name'    => 'Ylivalvoja',
-'group-steward-desc'    => 'Ylivalvojilla on kaikki oikeudet',
+'group-bot-name'        => 'Botit',
+'group-bot-desc'        => '',
 
 # Recent changes
 #
@@ -1319,6 +1315,15 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 'tryexact'            => 'Koita tarkkaa osumaa',
 'searchfulltext'      => 'Etsi koko tekstiä',
 'createarticle'       => 'Luo sivu',
+
+# delete conflict
+
+'deletedwhileediting' => '<center>\'\'\'Varoitus\'\'\': Tämä sivu on poistettu sen jälkeen, kun aloitit sen muokkaamisen!</center>',
+'confirmrecreate' => 'Käyttäjä \'\'\'[[{{ns:user}}:$1|$1]]\'\'\' ([[{{ns:user_talk}}:$1|keskustelu]]) poisti sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
+: \'\'$2\'\'
+Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
+'recreate' => 'Luo uudelleen',
+'tooltip-recreate' => '',
 
 'unit-pixel' => ' px',
 
