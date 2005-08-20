@@ -105,7 +105,7 @@ class contribs_finder {
 			"rev_user_text = " . $this->dbr->addQuotes($this->username)
 			. $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
-		$sql = $this->dbr->limitResult($sql, $this->limit + 1, 0);
+		$sql = $this->dbr->limitResult($sql, $this->limit, 0);
 		$res = $this->dbr->query($sql);
 		$rows = array();
 		while ($obj = $this->dbr->fetchObject($res))
