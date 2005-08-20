@@ -1456,25 +1456,18 @@ class Parser
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
-			if( !$nt->isExternal() && $nt->isAlwaysKnown() ) {
-				/**
-				 * Skip lookups for special pages and self-links.
-				 * External interwiki links are not included here because
-				 * the HTTP urls would break output in the next parse step;
-				 * they will have placeholders kept.
-				 */
-				$s .= $sk->makeKnownLinkObj( $nt, $text, '', $trail, $prefix );
-			} else {
-				/**
-				 * Add a link placeholder
-				 * Later, this will be replaced by a real link, after the existence or
-				 * non-existence of all the links is known
-				 */
-				$s .= $this->makeLinkHolder( $nt, $text, '', $trail, $prefix );
-			}
+			$s .= $this->makeLinkHolder( $nt, $text, '', $trail, $prefix );
 		}
 		wfProfileOut( $fname );
 		return $s;
+	}
+
+	/**
+	 * Hardens some text possibly containing URLs against mangling by 
+	 * replaceExternalLinks()
+	 */
+	function hardenURLs( $text ) {
+		return str_replace( 'http://', 'http-noparse://', $text );
 	}
 
 	/**
@@ -3023,7 +3016,7 @@ class Parser
 				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
 
 				# Check if it's in the link cache already
-				if ( $wgLinkCache->getGoodLinkID( $pdbk ) ) {
+				if ( $title->isAlwaysKnown() || $wgLinkCache->getGoodLinkID( $pdbk ) ) {
 					$colours[$pdbk] = 1;
 				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 0;
