@@ -36,6 +36,7 @@ Misc work going on.....
 * (bug 1334) LanguageGa.php update
 * (bug 1020) Changing user interface language does not work immediately
 * (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
+* (bug 3204) Fix typo breaking special pages in fy localization
 
 
 === Caveats ===
