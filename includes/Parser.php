@@ -2245,6 +2245,7 @@ class Parser
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
+				}
 
 				# Template cache array insertion
 				if( $found ) {
