@@ -787,6 +787,21 @@ $2 பட்டியல் &nbsp; $3 $9 க்கான தேடலை மீ�
 );
 
 class LanguageTa extends LanguageUtf8 {
+
+	function getNsIndex( $text ) {
+		$ns = $this->getNamespaces();
+
+		foreach ( $ns as $i => $n ) {
+			if ( strcasecmp( $n, $text ) == 0)
+				return $i;
+		}
+
+		if ( strcasecmp( 'விக்கிபீடியா', $text) == 0) return NS_PROJECT;
+		if ( strcasecmp( 'விக்கிபீடியா_பேச்சு', $text) == 0) return NS_PROJECT_TALK;
+
+		return false;
+	}
+
 	function getNamespaces() {
 		global $wgNamespaceNamesTa;
 		return $wgNamespaceNamesTa;
