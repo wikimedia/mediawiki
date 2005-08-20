@@ -153,6 +153,8 @@ class LinkCache {
 				$db =& wfGetDB( DB_MASTER );
 				if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
 					$options = array( 'FOR UPDATE' );
+				} else {
+					$options = array();
 				}
 			} else {
 				$db =& wfGetDB( DB_SLAVE );
