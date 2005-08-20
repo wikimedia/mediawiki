@@ -22,6 +22,7 @@ class EditPage {
 	var $deletedSinceEdit = false;
 	var $formtype;
 	var $firsttime;
+	var $lastDelete;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -224,9 +225,9 @@ class EditPage {
 			 * to only perform it on saves
 			 */
 			if ( $this->mTitle->isDeleted() ) {
-				$query = $this->getLastDelete();
-				if ( !is_null($query) ) {
-					$deletetime = $query->log_timestamp;
+				$this->lastDelete = $this->getLastDelete();
+				if ( !is_null($this->lastDelete) ) {
+					$deletetime = $this->lastDelete->log_timestamp;
 					if ( ($deletetime - $this->starttime) > 0 ) {
 						$this->deletedSinceEdit = true;
 					}
@@ -761,7 +762,7 @@ class EditPage {
 				// Add an confirmation checkbox and explanation.
 				$toolbar = '';
 				$hidden = 'type="hidden" style="display:none;"';
-				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $query->user_name , $query->log_comment ));
+				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $this->lastDelete->user_name , $this->lastDelete->log_comment ));
 				$recreate .=
 					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
 					"<label for='wpRecreate' title='".wfMsg('tooltip-recreate')."'>". wfMsg('recreate')."</label>";
