@@ -1462,14 +1462,6 @@ class Parser
 	}
 
 	/**
-	 * Hardens some text possibly containing URLs against mangling by 
-	 * replaceExternalLinks()
-	 */
-	function hardenURLs( $text ) {
-		return str_replace( 'http://', 'http-noparse://', $text );
-	}
-
-	/**
 	 * Make a link placeholder. The text returned can be later resolved to a real link with
 	 * replaceLinkHolders(). This is done for two reasons: firstly to avoid further
 	 * parsing of interwiki links, and secondly to allow all extistence checks and
