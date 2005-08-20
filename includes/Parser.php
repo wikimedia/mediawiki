@@ -2240,7 +2240,7 @@ class Parser
 						}
 					} else {
 						$article = new Article( $title );
-						$articleContent = $article->fetchContent();
+						$articleContent = $article->fetchContent(0, false);
 						if ( $articleContent !== false ) {
 							$found = true;
 							$text = $articleContent;
