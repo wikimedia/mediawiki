@@ -416,6 +416,8 @@ class UndeleteForm {
 		}
 		if ( $this->mAllowed ) {
 			$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n----\n" . $text );
+		} else {
+			$wgOut->addWikiText( wfMsg( "undeletehistorynoadmin" );
 		}
 
 		# List all stored revisions
