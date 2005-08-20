@@ -1280,57 +1280,58 @@ class Title {
 
 		$this->mDbkeyform = $t;
 
-		# Initial colon indicating main namespace
+		# Initial colon indicates main namespace rather than specified default
+		# but should not create invalid {ns,title} pairs such as {0,Project:Foo}
 		if ( ':' == $t{0} ) {
-			$r = substr( $t, 1 );
 			$this->mNamespace = NS_MAIN;
-		} else {
-			# Namespace or interwiki prefix
-			$firstPass = true;
-			do {
-				if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
-					$p = $m[1];
-					$lowerNs = strtolower( $p );
-					if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
-						# Canonical namespace
-						$t = $m[2];
-						$this->mNamespace = $ns;
-					} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
-						# Ordinary namespace
-						$t = $m[2];
-						$this->mNamespace = $ns;
-					} elseif( $this->getInterwikiLink( $p ) ) {
-						if( !$firstPass ) {
-							# Can't make a local interwiki link to an interwiki link.
-							# That's just crazy!
+			$t = substr( $t, 1 ); # remove the colon but continue processing
+		}
+
+		# Namespace or interwiki prefix
+		$firstPass = true;
+		do {
+			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
+				$p = $m[1];
+				$lowerNs = strtolower( $p );
+				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
+					# Canonical namespace
+					$t = $m[2];
+					$this->mNamespace = $ns;
+				} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
+					# Ordinary namespace
+					$t = $m[2];
+					$this->mNamespace = $ns;
+				} elseif( $this->getInterwikiLink( $p ) ) {
+					if( !$firstPass ) {
+						# Can't make a local interwiki link to an interwiki link.
+						# That's just crazy!
+						wfProfileOut( $fname );
+						return false;
+					}
+
+					# Interwiki link
+					$t = $m[2];
+					$this->mInterwiki = $p;
+
+					# Redundant interwiki prefix to the local wiki
+					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
+						if( $t == '' ) {
+							# Can't have an empty self-link
 							wfProfileOut( $fname );
 							return false;
 						}
-
-						# Interwiki link
-						$t = $m[2];
-						$this->mInterwiki = $p;
-
-						# Redundant interwiki prefix to the local wiki
-						if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
-							if( $t == '' ) {
-								# Can't have an empty self-link
-								wfProfileOut( $fname );
-								return false;
-							}
-							$this->mInterwiki = '';
-							$firstPass = false;
-							# Do another namespace split...
-							continue;
-						}
+						$this->mInterwiki = '';
+						$firstPass = false;
+						# Do another namespace split...
+						continue;
 					}
-					# If there's no recognized interwiki or namespace,
-					# then let the colon expression be part of the title.
 				}
-				break;
-			} while( true );
-			$r = $t;
-		}
+				# If there's no recognized interwiki or namespace,
+				# then let the colon expression be part of the title.
+			}
+			break;
+		} while( true );
+		$r = $t;
 
 		# We already know that some pages won't be in the database!
 		#
