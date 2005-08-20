@@ -17,13 +17,18 @@ class EditPage {
 	var $mArticle;
 	var $mTitle;
 	var $mMetaData = '';
+	var $isConflict = false;
+	var $isCssJsSubpage = false;
+	var $deletedSinceEdit = false;
+	var $formtype;
+	var $firsttime;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
 	var $minoredit = false, $watchthis = false, $recreate = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '';
 	var $edittime = '', $section = '', $starttime = '';
-	var $oldid = 0;
+	var $oldid = 0, $editintro = '';
 
 	/**
 	 * @todo document
@@ -130,15 +135,28 @@ class EditPage {
 		$this->mMetaData = $s ;
 	}
 
+	function submit() {
+		$this->edit();
+	}
+
 	/**
-	 * This is the function that gets called for "action=edit".
+	 * This is the function that gets called for "action=edit". It 
+	 * sets up various member variables, then passes execution to 
+	 * another function, usually showEditForm()
+	 * 
+	 * The edit form is self-submitting, so that when things like
+	 * preview and edit conflicts occur, we get the same form back
+	 * with the extra stuff added.  Only when the final submission
+	 * is made and all is well do we actually save and redirect to
+	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgTitle;
 		// this is not an article
 		$wgOut->setArticleFlag(false);
 
 		$this->importFormData( $wgRequest );
+		$this->firsttime = false;
 
 		if( $this->live ) {
 			$this->livePreview();
@@ -166,28 +184,81 @@ class EditPage {
 		}
 		if ( wfReadOnly() ) {
 			if( $this->save || $this->preview ) {
-				$this->editForm( 'preview' );
+				$this->formtype = 'preview';
 			} else if ( $this->diff ) {
-				$this->editForm( 'diff' );
+				$this->formtype = 'diff';
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ) );
+				return;
 			}
-			return;
-		}
-		if ( $this->save ) {
-			$this->editForm( 'save' );
-		} else if ( $this->preview ) {
-			$this->editForm( 'preview' );
-		} else if ( $this->diff ) {
-			$this->editForm( 'diff' );
-		} else { # First time through
-			if( $this->previewOnOpen() ) {
-				$this->editForm( 'preview', true );
-			} else {
-				$this->extractMetaDataFromArticle () ;
-				$this->editForm( 'initial', true );
+		} else {
+			if ( $this->save ) {
+				$this->formtype = 'save';
+			} else if ( $this->preview ) {
+				$this->formtype = 'preview';
+			} else if ( $this->diff ) {
+				$this->formtype = 'diff';
+			} else { # First time through
+				$this->firsttime = true;
+				if( $this->previewOnOpen() ) {
+					$this->formtype = 'preview';
+				} else {
+					$this->extractMetaDataFromArticle () ;
+					$this->formtype = 'initial';
+				}
 			}
 		}
+		
+		$this->isConflict = false;
+		// css / js subpages of user pages get a special treatment
+		$this->isCssJsSubpage = $wgTitle->isCssJsSubpage();
+		
+		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
+		 * no matter it's current state
+		 */
+		$this->deletedSinceEdit = false;
+		if ( $this->edittime != '' ) {
+			/* Note that we rely on logging table, which hasn't been always there,
+			 * but that doesn't matter, because this only applies to brand new
+			 * deletes. This is done on every preview and save request. Move it further down
+			 * to only perform it on saves
+			 */
+			if ( $this->mTitle->isDeleted() ) {
+				$query = $this->getLastDelete();
+				if ( !is_null($query) ) {
+					$deletetime = $query->log_timestamp;
+					if ( ($deletetime - $this->starttime) > 0 ) {
+						$this->deletedSinceEdit = true;
+					}
+				}
+			}
+		}
+		
+		if(!$this->mTitle->getArticleID() && ('initial' == $this->formtype || $this->firsttime )) { # new article
+			$this->showIntro();
+		}
+		if( $this->mTitle->isTalkPage() ) {
+			$wgOut->addWikiText( wfMsg( 'talkpagetext' ) );
+		}
+
+		# Attempt submission here.  This will check for edit conflicts,
+		# and redundantly check for locked database, blocked IPs, etc.
+		# that edit() already checked just in case someone tries to sneak
+		# in the back door with a hand-edited submission URL.
+
+		if ( 'save' == $this->formtype ) {
+			if ( !$this->attemptSave() ) {
+				return;
+			}
+		}
+		
+		# First time through: get contents, set time for conflict
+		# checking, etc.
+		if ( 'initial' == $this->formtype || $this->firsttime ) {
+			$this->initialiseForm();
+		}
+
+		$this->showEditForm();
 	}
 
 	/**
@@ -270,6 +341,8 @@ class EditPage {
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 
 		$this->live = $request->getCheck( 'live' );
+		$this->editintro = $request->getText( 'editintro' );
+		
 	}
 
 	/**
@@ -290,255 +363,217 @@ class EditPage {
 		}
 	}
 
-	function submit() {
-		$this->edit();
+	function showIntro() {
+		global $wgOut;
+		$addstandardintro=true;
+		if($this->editintro) {
+			$introtitle=Title::newFromText($this->editintro);
+			if(isset($introtitle) && $introtitle->userCanRead()) {
+				$rev=Revision::newFromTitle($introtitle);
+				if($rev) {
+					$wgOut->addWikiText($rev->getText());
+					$addstandardintro=false;
+				}
+			}
+		}
+		if($addstandardintro) {
+			$wgOut->addWikiText( wfMsg( 'newarticletext' ) );				
+		}
 	}
 
 	/**
-	 * The edit form is self-submitting, so that when things like
-	 * preview and edit conflicts occur, we get the same form back
-	 * with the extra stuff added.  Only when the final submission
-	 * is made and all is well do we actually save and redirect to
-	 * the newly-edited page.
-	 *
-	 * @param string $formtype Type of form either : save, initial, diff or preview
-	 * @param bool $firsttime True to load form data from db
+	 * Attempt submission
+	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
-	function editForm( $formtype, $firsttime = false ) {
-		global $wgOut, $wgUser;
-		global $wgLang, $wgContLang, $wgParser, $wgTitle;
-		global $wgAllowAnonymousMinor, $wgRequest;
-		global $wgSpamRegex, $wgFilterCallback;
-
-		$sk = $wgUser->getSkin();
-		$isConflict = false;
-		// css / js subpages of user pages get a special treatment
-		$isCssJsSubpage = $wgTitle->isCssJsSubpage();
+	function attemptSave() {
+		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut;
 		
+		# Reintegrate metadata
+		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
+		$this->mMetaData = '' ;
 
-		/* Notice that we can't use isDeleted, because it returns true if article is ever deleted
-		 * no matter it's current state
-		 */
-		$deletetime = 0;
-		$confirmdelete = false;
-		if ( $this->edittime != '' ) {
-			/* Note that we rely on logging table, which hasn't been always there,
-			 * but that doesn't matter, because this only applies to brand new
-			 * deletes. This is done on every preview and save request. Move it further down
-			 * to only perform it on saves
-			 */
-			if ( $this->mTitle->isDeleted() ) {
-				$query = $this->getLastDelete();
-				if ( !is_null($query) ) {
-					$deletetime = $query->log_timestamp;
-					if ( ($deletetime - $this->starttime) > 0 ) {
-						$confirmdelete = true;
-					}
-				}
-			}
+		# Check for spam
+		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
+			$this->spamPage ( $matches[0] );
+			return false;
 		}
-		
-
-
-		if(!$this->mTitle->getArticleID() && ('initial' == $formtype || $firsttime )) { # new article
-			$editintro = $wgRequest->getText( 'editintro' );
-			$addstandardintro=true;
-			if($editintro) {
-				$introtitle=Title::newFromText($editintro);
-				if(isset($introtitle) && $introtitle->userCanRead()) {
-					$rev=Revision::newFromTitle($introtitle);
-					if($rev) {
-						$wgOut->addWikiText($rev->getText());
-						$addstandardintro=false;
-					}
-				}
-			}
-			if($addstandardintro) {
-				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );				
-			}
+		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
+			# Error messages or other handling should be performed by the filter function
+			return false;
+		}
+		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+			# Check block state against master, thus 'false'.
+			$this->blockedIPpage();
+			return false;
 		}
 
-		if( $this->mTitle->isTalkPage() ) {
-			$wgOut->addWikiText( wfMsg( 'talkpagetext' ) );
-		}
-
-		# Attempt submission here.  This will check for edit conflicts,
-		# and redundantly check for locked database, blocked IPs, etc.
-		# that edit() already checked just in case someone tries to sneak
-		# in the back door with a hand-edited submission URL.
-
-		if ( 'save' == $formtype ) {
-			# Reintegrate metadata
-			if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
-			$this->mMetaData = '' ;
-
-			# Check for spam
-			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-				$this->spamPage ( $matches[0] );
-				return;
-			}
-			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
-				# Error messages or other handling should be performed by the filter function
-				return;
-			}
-			if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
-				# Check block state against master, thus 'false'.
-				$this->blockedIPpage();
-				return;
-			}
-
-			if ( !$wgUser->isAllowed('edit') ) {
-				if ( $wgUser->isAnon() ) {
+		if ( !$wgUser->isAllowed('edit') ) {
+			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
-				return;
-			}
-				else {
-					$wgOut->readOnlyPage();
-					return;
-				}
-			}
-
-			if ( wfReadOnly() ) {
-				$wgOut->readOnlyPage();
-				return;
-			}
-			if ( $wgUser->pingLimiter() ) {
-				$wgOut->rateLimited();
-				return;
-			}
-
-			# If the article has been deleted while editing, don't save it without
-			# confirmation
-			if ( !$confirmdelete || $this->recreate ) {
-				
-
-			# If article is new, insert it.
-			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
-			if ( 0 == $aid ) {
-				# Don't save a new article if it's blank.
-				if ( ( '' == $this->textbox1 ) ||
-				  ( wfMsg( 'newarticletext' ) == $this->textbox1 ) ) {
-					$wgOut->redirect( $this->mTitle->getFullURL() );
-					return;
-				}
-				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
-							   &$this->summary, &$this->minoredit, &$this->watchthis, NULL)))
-				{					
-					
-					$isComment=($this->section=='new');
-					$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-													   $this->minoredit, $this->watchthis, false, $isComment);
-					wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $this->textbox1,
-															$this->summary, $this->minoredit,
-															$this->watchthis, NULL));
-				}
-				return;
-			}
-
-			# Article exists. Check for edit conflict.
-
-			$this->mArticle->clear(); # Force reload of dates, etc.
-			$this->mArticle->forUpdate( true ); # Lock the article
-
-			if( ( $this->section != 'new' ) &&
-				($this->mArticle->getTimestamp() != $this->edittime ) ) {
-				$isConflict = true;
-			}
-			$userid = $wgUser->getID();
-
-			if ( $isConflict) {
-				wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
-					$this->mArticle->getTimestamp() . "'\n" );
-				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
-					$this->section, $this->textbox1, $this->summary, $this->edittime);
+				return false;
 			}
 			else {
-				wfDebug( "EditPage::editForm getting section '$this->section'\n" );
-				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
-					$this->section, $this->textbox1, $this->summary);
+				$wgOut->readOnlyPage();
+				return false;
 			}
-			# Suppress edit conflict with self
+		}
 
-			if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
-				wfDebug( "Suppressing edit conflict, same user.\n" );
-				$isConflict = false;
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return false;
+		}
+		if ( $wgUser->pingLimiter() ) {
+			$wgOut->rateLimited();
+			return false;
+		}
+
+		# If the article has been deleted while editing, don't save it without
+		# confirmation
+		if ( $this->deletedSinceEdit && !$this->recreate ) {
+			return true;
+		}
+		
+		# If article is new, insert it.
+		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+		if ( 0 == $aid ) {
+			# Don't save a new article if it's blank.
+			if ( ( '' == $this->textbox1 ) ||
+				( wfMsg( 'newarticletext' ) == $this->textbox1 ) ) {
+					$wgOut->redirect( $this->mTitle->getFullURL() );
+					return false;
+				}
+			if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
+				&$this->summary, &$this->minoredit, &$this->watchthis, NULL)))
+			{					
+
+				$isComment=($this->section=='new');
+				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
+					$this->minoredit, $this->watchthis, false, $isComment);
+				wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $this->textbox1,
+					$this->summary, $this->minoredit,
+					$this->watchthis, NULL));
+			}
+			return false;
+		}
+
+		# Article exists. Check for edit conflict.
+
+		$this->mArticle->clear(); # Force reload of dates, etc.
+		$this->mArticle->forUpdate( true ); # Lock the article
+
+		if( ( $this->section != 'new' ) &&
+			($this->mArticle->getTimestamp() != $this->edittime ) ) 
+		{
+			$this->isConflict = true;
+		}
+		$userid = $wgUser->getID();
+
+		if ( $this->isConflict) {
+			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
+				$this->mArticle->getTimestamp() . "'\n" );
+			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+				$this->section, $this->textbox1, $this->summary, $this->edittime);
+		}
+		else {
+			wfDebug( "EditPage::editForm getting section '$this->section'\n" );
+			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+				$this->section, $this->textbox1, $this->summary);
+		}
+
+		# Suppress edit conflict with self
+		if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
+			wfDebug( "Suppressing edit conflict, same user.\n" );
+			$this->isConflict = false;
+		} else {
+			# switch from section editing to normal editing in edit conflict
+			if($this->isConflict) {
+				# Attempt merge
+				if( $this->mergeChangesInto( $text ) ){
+					// Successful merge! Maybe we should tell the user the good news?
+					$this->isConflict = false;
+					wfDebug( "Suppressing edit conflict, successful merge.\n" );
+				} else {
+					$this->section = '';
+					$this->textbox1 = $text;
+					wfDebug( "Keeping edit conflict, failed merge.\n" );
+				}
+			}
+		}
+		
+		if ( $this->isConflict ) {
+			return true;
+		}
+		
+		# All's well
+		$sectionanchor = '';
+		if( $this->section == 'new' ) {
+			if( $this->summary != '' ) {
+				$sectionanchor = $this->sectionAnchor( $this->summary );
+			}
+		} elseif( $this->section != '' ) {
+			# Try to get a section anchor from the section source, redirect to edited section if header found
+			# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
+			# for duplicate heading checking and maybe parsing
+			$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
+			# we can't deal with anchors, includes, html etc in the header for now,
+			# headline would need to be parsed to improve this
+			if($hasmatch and strlen($matches[2]) > 0) {
+				$sectionanchor = $this->sectionAnchor( $matches[2] );
+			}
+		}
+
+		// Save errors may fall down to the edit form, but we've now
+		// merged the section into full text. Clear the section field
+		// so that later submission of conflict forms won't try to
+		// replace that into a duplicated mess.
+		$this->textbox1 = $text;
+		$this->section = '';
+
+		if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
+			&$this->summary, &$this->minoredit,
+			&$this->watchthis, &$sectionanchor)))
+		{
+			# update the article here
+			if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
+				$this->watchthis, '', $sectionanchor ))
+			{
+				wfRunHooks('ArticleSaveComplete',
+					array(&$this->mArticle, &$wgUser, $text,
+					$this->summary, $this->minoredit,
+					$this->watchthis, $sectionanchor));
+				return false;
 			} else {
-				# switch from section editing to normal editing in edit conflict
-				if($isConflict) {
-					# Attempt merge
-					if( $this->mergeChangesInto( $text ) ){
-						// Successful merge! Maybe we should tell the user the good news?
-						$isConflict = false;
-						wfDebug( "Suppressing edit conflict, successful merge.\n" );
-					} else {
-						$this->section = '';
-						$this->textbox1 = $text;
-						wfDebug( "Keeping edit conflict, failed merge.\n" );
-					}
-				}
-			}
-			if ( ! $isConflict ) {
-				# All's well
-				$sectionanchor = '';
-				if( $this->section == 'new' ) {
-					if( $this->summary != '' ) {
-						$sectionanchor = $this->sectionAnchor( $this->summary );
-					}
-				} elseif( $this->section != '' ) {
-					# Try to get a section anchor from the section source, redirect to edited section if header found
-					# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
-					# for duplicate heading checking and maybe parsing
-					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
-					# we can't deal with anchors, includes, html etc in the header for now,
-					# headline would need to be parsed to improve this
-					#if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
-					if($hasmatch and strlen($matches[2]) > 0) {
-						$sectionanchor = $this->sectionAnchor( $matches[2] );
-					}
-				}
-				
-				// Save errors may fall down to the edit form, but we've now
-				// merged the section into full text. Clear the section field
-				// so that later submission of conflict forms won't try to
-				// replace that into a duplicated mess.
-				$this->textbox1 = $text;
-				$this->section = '';
-				
-				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
-								&$this->summary, &$this->minoredit,
-								&$this->watchthis, &$sectionanchor)))
-				{
-					# update the article here
-					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-									   $this->watchthis, '', $sectionanchor ))
-					{
-						wfRunHooks('ArticleSaveComplete',
-							array(&$this->mArticle, &$wgUser, $text,
-								$this->summary, $this->minoredit,
-								$this->watchthis, $sectionanchor));
-						return;
-					} else {
-						$isConflict = true;
-					}
-				}
+				$this->isConflict = true;
 			}
 		}
-		}
-		# First time through: get contents, set time for conflict
-		# checking, etc.
+		return true;
+	}
 
-		if ( 'initial' == $formtype || $firsttime ) {
-			$this->edittime = $this->mArticle->getTimestamp();
-			$this->textbox1 = $this->mArticle->getContent( true );
-			$this->summary = '';
-			$this->proxyCheck();
-		}
+	/**
+	 * Initialise form fields in the object
+	 * Called on the first invocation, e.g. when a user clicks an edit link
+	 */
+	function initialiseForm() {
+		$this->edittime = $this->mArticle->getTimestamp();
+		$this->textbox1 = $this->mArticle->getContent( true );
+		$this->summary = '';
+		$this->proxyCheck();
+	}
+
+	/**
+	 * Send the edit form and related headers to $wgOut
+	 */
+	function showEditForm() {
+		global $wgOut, $wgUser, $wgAllowAnonymousMinor, $wgLang, $wgContLang;
+
+		$sk =& $wgUser->getSkin();
+		
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		if ( $isConflict ) {
+		if ( $this->isConflict ) {
 			$s = wfMsg( 'editconflict', $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
 			$wgOut->addWikiText( wfMsg( 'explainconflict' ) );
@@ -580,7 +615,7 @@ class EditPage {
 
 		if( wfReadOnly() ) {
 			$wgOut->addWikiText( wfMsg( 'readonlywarning' ) );
-		} else if ( $isCssJsSubpage and 'preview' != $formtype) {
+		} else if ( $this->isCssJsSubpage and 'preview' != $this->formtype) {
 			$wgOut->addWikiText( wfMsg( 'usercssjsyoucanpreview' ));
 		}
 		if( $this->mTitle->isProtected('edit') ) {
@@ -624,7 +659,7 @@ class EditPage {
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]',
 				$wgRightsText ) . "\n</div>";
 
-		if( $wgUser->getOption('showtoolbar') and !$isCssJsSubpage ) {
+		if( $wgUser->getOption('showtoolbar') and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
 			$toolbar = $this->getEditToolbar();
 		} else {
@@ -664,8 +699,8 @@ class EditPage {
 		$checkboxhtml = $minoredithtml . $watchhtml . '<br />';
 
 		$wgOut->addHTML( '<div id="wikiPreview">' );
-		if ( 'preview' == $formtype) {
-			$previewOutput = $this->getPreviewText( $isConflict, $isCssJsSubpage );
+		if ( 'preview' == $this->formtype) {
+			$previewOutput = $this->getPreviewText();
 			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $previewOutput );
 				if($this->mTitle->getNamespace() == NS_CATEGORY) {
@@ -675,7 +710,7 @@ class EditPage {
 			}
 		}
 		$wgOut->addHTML( '</div>' );
-		if ( 'diff' == $formtype ) {
+		if ( 'diff' == $this->formtype ) {
 			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $this->getDiff() );
 			}
@@ -685,48 +720,23 @@ class EditPage {
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
-			if( $this->section == 'new' ) {
-				$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
-				$editsummary = '';
-			} else {
-				$commentsubject = '';
-				$editsummary="{$summary}: <input tabindex='2' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
-			}
+		if( $this->section == 'new' ) {
+			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+			$editsummary = '';
+		} else {
+			$commentsubject = '';
+			$editsummary="{$summary}: <input tabindex='2' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+		}
 
+		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
 		if( !$this->preview && !$this->diff ) {
-		# Don't select the edit box on preview; this interferes with seeing what's going on.
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
-		# Prepare a list of templates used by this page
-		$templates = '';
-		$articleTemplates = $this->mArticle->getUsedTemplates();
-		if ( count( $articleTemplates ) > 0 ) {
-			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
-			foreach ( $articleTemplates as $tpl ) {
-				if ( $titleObj = Title::makeTitle( NS_TEMPLATE, $tpl ) ) {
-					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-				}
-			}
-			$templates .= '</ul>';
-		}
+		$templates = $this->getTemplatesUsed();
 
-		global $wgLivePreview, $wgStylePath;
-		/**
-		 * Live Preview lets us fetch rendered preview page content and
-		 * add it to the page without refreshing the whole page.
-		 * Set up the button for it; if not supported by the browser
-		 * it will fall through to the normal form submission method.
-		 */
-		if( $wgLivePreview ) {
-			global $wgJsMimeType;
-			$wgOut->addHTML( '<script type="'.$wgJsMimeType.'" src="' .
-				htmlspecialchars( $wgStylePath . '/common/preview.js' ) .
-				'"></script>' . "\n" );
-			$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
-			$liveOnclick = 'onclick="return !livePreview('.
-				'getElementById(\'wikiPreview\'),' .
-				'editform.wpTextbox1.value,' .
-				htmlspecialchars( '"' . $liveAction . '"' ) . ')"';
+		global $wgLivePreview;
+		if ( $wgLivePreview ) {
+			$liveOnclick = $this->doLivePreviewScript();
 		} else {
 			$liveOnclick = '';
 		}
@@ -743,8 +753,8 @@ class EditPage {
 
 		$hidden = '';
 		$recreate = '';
-		if ($confirmdelete) {
-			if ( 'save' != $formtype ) {
+		if ($this->deletedSinceEdit) {
+			if ( 'save' != $this->formtype ) {
 				$wgOut->addWikiText( wfMsg('deletedwhileediting'));
 			} else {
 				// Hide the toolbar and edit area, use can click preview to get it back
@@ -801,12 +811,11 @@ END
 			 * CSS previews.
 			 */
 			$token = htmlspecialchars( $wgUser->editToken() );
-			$wgOut->addHTML( "
-<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+			$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 		}
 
 
-		if ( $isConflict ) {
+		if ( $this->isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
 			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
@@ -814,20 +823,61 @@ END
 
 			$wgOut->addWikiText( '==' . wfMsg( "yourtext" ) . '==' );
 			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
-. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) .
-"
-</textarea>" );
+				. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) . "\n</textarea>" );
 		}
 		$wgOut->addHTML( "</form>\n" );
-		if ( $formtype == 'preview' && !$wgUser->getOption( 'previewontop' ) ) {
+		if ( $this->formtype == 'preview' && !$wgUser->getOption( 'previewontop' ) ) {
 			$wgOut->addHTML( '<div id="wikiPreview">' . $previewOutput . '</div>' );
 		}
-		if ( $formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
+		if ( $this->formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
 			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
 			$wgOut->addHTML( $this->getDiff() );
 		}
 	}
 
+	/**
+	 * Prepare a list of templates used by this page. Returns HTML.
+	 */
+	function getTemplatesUsed() {
+		global $wgUser;
+		$sk =& $wgUser->getSkin();
+
+		$templates = '';
+		$articleTemplates = $this->mArticle->getUsedTemplates();
+		if ( count( $articleTemplates ) > 0 ) {
+			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			foreach ( $articleTemplates as $tpl ) {
+				if ( $titleObj = Title::makeTitle( NS_TEMPLATE, $tpl ) ) {
+					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+				}
+			}
+			$templates .= '</ul>';
+		}
+		return $templates;
+	}
+
+	/**
+	 * Live Preview lets us fetch rendered preview page content and
+	 * add it to the page without refreshing the whole page.
+	 * If not supported by the browser it will fall through to the normal form 
+	 * submission method.
+	 * 
+	 * This function outputs a script tag to support live preview, and 
+	 * returns an onclick handler which should be added to the attributes 
+	 * of the preview button
+	 */
+	function doLivePreviewScript() {
+		global $wgStylePath, $wgJsMimeType, $wgOut;
+		$wgOut->addHTML( '<script type="'.$wgJsMimeType.'" src="' .
+			htmlspecialchars( $wgStylePath . '/common/preview.js' ) .
+			'"></script>' . "\n" );
+		$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
+		return 'onclick="return !livePreview('.
+			'getElementById(\'wikiPreview\'),' .
+			'editform.wpTextbox1.value,' .
+			htmlspecialchars( '"' . $liveAction . '"' ) . ')"';
+	}
+	
 	function getLastDelete() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$fname = 'EditPage::getLastDelete';
@@ -863,11 +913,11 @@ END
 	/**
 	 * @todo document
 	 */
-	function getPreviewText( $isConflict, $isCssJsSubpage ) {
+	function getPreviewText() {
 		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgAllowDiffPreview, $wgEnableDiffPreviewPreference;
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<p class='previewnote'>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</p>\n";
-		if ( $isConflict ) {
+		if ( $this->isConflict ) {
 			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) .
 				"</h2>\n";
 		}
@@ -878,7 +928,7 @@ END
 		# don't parse user css/js, show message about preview
 		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
 
-		if ( $isCssJsSubpage ) {
+		if ( $this->isCssJsSubpage ) {
 			if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
 				$previewtext = wfMsg('usercsspreview');
 			} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
