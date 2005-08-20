@@ -256,7 +256,7 @@ END
 			$title = Title::makeTitle( NS_SPECIAL, 'Upload' );
 			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
 			array( 'wpDestFile' => urlencode( $this->img->getName() )));
-			$sharedtext .= " " . wfMsgHtml('shareduploadwiki', $link);
+			$sharedtext .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
 		}
 		$sharedtext .= "</div>";
 		$wgOut->addHTML($sharedtext);
