@@ -115,6 +115,10 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$fields = array( 'rev_id', 'rev_text_id' );
 		$revLoadOptions = array();
 	}
+	
+	# Don't work with current revisions
+	$tables[] = 'page';
+	$conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 	$oldReadsSinceLastSlaveWait = 0;	#check slave lag periodically
 	$totalMatchingRevisions = 0;
