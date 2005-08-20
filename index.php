@@ -149,9 +149,8 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$wgArticle = new Article( $wgTitle );
 		$rTitle = Title::newFromRedirect( $wgArticle->fetchContent() );
 		if($rTitle) {
-			if( $rTitle->getNamespace() == $ns ) {
-				$wgArticle->mContentLoaded=false;
-			}
+			# Reload from the page pointed to later
+			$wgArticle->mContentLoaded = false;
 			$ns = $rTitle->getNamespace();
 		}
 	}
