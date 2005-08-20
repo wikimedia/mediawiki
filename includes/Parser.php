@@ -111,7 +111,6 @@ class Parser
 		                // in this path. Used for loop detection.
 
 	var $mIWTransData = array();
-	var $mAssocArgs = array();
 
 	/**#@-*/
 
@@ -2246,7 +2245,6 @@ class Parser
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
-				}
 
 				# Template cache array insertion
 				if( $found ) {
@@ -2262,12 +2260,12 @@ class Parser
 			$text = wfEscapeWikiText( $text );
 		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found && !$noparse) {
 			# Clean up argument array
-			$this->mAssocArgs = array();
+			$assocArgs = array();
 			$index = 1;
 			foreach( $args as $arg ) {
 				$eqpos = strpos( $arg, '=' );
 				if ( $eqpos === false ) {
-					$this->mAssocArgs[$index++] = $arg;
+					$assocArgs[$index++] = $arg;
 				} else {
 					$name = trim( substr( $arg, 0, $eqpos ) );
 					$value = trim( substr( $arg, $eqpos+1 ) );
@@ -2275,7 +2273,7 @@ class Parser
 						$value = '';
 					}
 					if ( $name !== false ) {
-						$this->mAssocArgs[$name] = $value;
+						$assocArgs[$name] = $value;
 					}
 				}
 			}
@@ -2289,9 +2287,9 @@ class Parser
 				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
 				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
-				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $this->mAssocArgs );
+				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
-			$text = $this->replaceVariables( $text, $this->mAssocArgs );
+			$text = $this->replaceVariables( $text, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( $this->mOutputType == OT_HTML && !is_null( $title ) ) {
