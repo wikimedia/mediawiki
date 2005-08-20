@@ -782,7 +782,7 @@ class Parser
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace("http-noparse://","http://",$text);
+		$text = str_replace(UNIQ_PREFIX."NOPARSE", "", $text);
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
@@ -1397,7 +1397,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . str_replace('http://', 'http-noparse://', $this->makeImage( $nt, $text ) ) . $trail;
+						$s .= $prefix . preg_replace("/\b($wgUrlProtocols)/", UNIQ_PREFIX."NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 
 						wfProfileOut( "$fname-image" );
