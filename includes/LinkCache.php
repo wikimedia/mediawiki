@@ -164,7 +164,6 @@ class LinkCache {
 			$id = $db->selectField( 'page', 'page_id',
 					array( 'page_namespace' => $ns, 'page_title' => $t ),
 					$fname, $options );
-wfdebug("link cache: id=$id\n");
 			if ( !$id ) {
 				$id = 0;
 			}

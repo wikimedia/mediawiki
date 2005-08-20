@@ -98,7 +98,6 @@ class PageHistory {
 			$offset = 0;
 #		$offset = $dbr->timestamp($offset);
 		$dboffset = $offset === 0 ? 0 : $dbr->timestamp($offset);
-		wfdebug("offset=[$offset] dboffset=[$dboffset]\n");
 		/*
 		 * "go=last" means to jump to the last history page.
 		 */
