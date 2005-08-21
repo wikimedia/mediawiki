@@ -41,6 +41,8 @@ Misc work going on.....
 * Edit conflict on recreation of deleted page
 * (bug 3210) Fix Media: links with remote image URL path
 * (bug 1956) Hide bot uploads from Special:Newimages
+* (bug 3216) Don't show empty warning page when no warnings.
+
 
 === Caveats ===
 
