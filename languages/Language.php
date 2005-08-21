@@ -968,7 +968,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'diff'			=> 'diff',
 'hist'			=> 'hist',
 'hide'			=> 'Hide',
-'show'			=> 'show',
+'show'			=> 'Show',
 'tableform'		=> 'table',
 'listform'		=> 'list',
 'nchanges'		=> "$1 changes",
@@ -1770,6 +1770,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
+'showhidebots' => '($1 bots)',
 'noimages'  => 'Nothing to see.',
 
 # short names for language variants used for language conversion links.

@@ -15,6 +15,7 @@ define( 'LIST_COMMA', 0 );
 define( 'LIST_AND', 1 );
 define( 'LIST_SET', 2 );
 define( 'LIST_NAMES', 3);
+define( 'LIST_OR', 4);
 
 /** Number of times to re-try an operation in case of deadlock */
 define( 'DEADLOCK_TRIES', 4 );
@@ -1033,18 +1034,20 @@ class Database {
 			if ( !$first ) {
 				if ( $mode == LIST_AND ) {
 					$list .= ' AND ';
+				} elseif($mode == LIST_OR) {
+					$list .= ' OR ';
 				} else {
 					$list .= ',';
 				}
 			} else {
 				$first = false;
 			}
-			if ( $mode == LIST_AND && is_numeric( $field ) ) {
+			if ( ($mode == LIST_AND || $mode == LIST_OR) && is_numeric( $field ) ) {
 				$list .= "($value)";
 			} elseif ( $mode == LIST_AND && is_array ($value) ) {
 				$list .= $field." IN (".$this->makeList($value).") ";
 			} else {
-				if ( $mode == LIST_AND || $mode == LIST_SET ) {
+				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
 					$list .= "$field = ";
 				}
 				$list .= $mode == LIST_NAMES ? $value : $this->addQuotes( $value );
