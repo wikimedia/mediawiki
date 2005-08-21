@@ -364,20 +364,23 @@ class User {
 
 		if ( -1 != $this->mBlockedby ) { return; }
 
+		$fname = 'User::getBlockedStatus';
+		wfProfileIn( $fname );
+
 		$this->mBlockedby = 0;
 
-		# User blocking
-		if ( $this->mId ) {
-			$block = new Block();
-			$block->forUpdate( $bFromSlave );
- 			if ( $block->load( $wgIP , $this->mId ) ) {
-				$this->mBlockedby = $block->mBy;
-				$this->mBlockreason = $block->mReason;
+		# User/IP blocking
+		$block = new Block();
+		$block->forUpdate( $bFromSlave );
+		if ( $block->load( $wgIP , $this->mId ) ) {
+			$this->mBlockedby = $block->mBy;
+			$this->mBlockreason = $block->mReason;
+			if ( $this->isLoggedIn() ) {
 				$this->spreadBlock();
 			}
 		}
 
-		# IP/range blocking
+		# Range blocking
 		if ( !$this->mBlockedby ) {
 			# Check first against slave, and optionally from master.
 			$block = $wgBlockCache->get( $wgIP, true );
@@ -410,6 +413,7 @@ class User {
 				}
 			}
 		}
+		wfProfileOut( $fname );
 	}
 
 	function inSorbsBlacklist( $ip ) {
@@ -475,6 +479,8 @@ class User {
 
 		global $wgMemc, $wgIP, $wgDBname, $wgRateLimitLog;
 		$fname = 'User::pingLimiter';
+		wfProfileIn( $fname );
+
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
@@ -521,6 +527,7 @@ class User {
 			$wgMemc->incr( $key );
 		}
 
+		wfProfileOut( $fname );
 		return $triggered;
 	}
 
@@ -538,13 +545,18 @@ class User {
 	 */
 	function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
+		$fname = 'User::isBlockedFrom';
+		wfProfileIn( $fname );
+
 		if ( $wgBlockAllowsUTEdit && $title->getText() === $this->getName() &&
 		  $title->getNamespace() == NS_USER_TALK )
 		{
-			return false;
+			$blocked = false;
 		} else {
-			return $this->isBlocked( $bFromSlave );
+			$blocked = $this->isBlocked( $bFromSlave );
 		}
+		wfProfileOut( $fname );
+		return $blocked;
 	}
 
 	/**

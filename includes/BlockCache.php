@@ -40,15 +40,19 @@ class BlockCache
 	 */
 	function loadFromDB( $bFromSlave = false ) {
 		global $wgUseMemCached, $wgMemc;
+		$fname = 'BlockCache::loadFromDB';
+		wfProfileIn( $fname );
+
 		$this->mData = array();
 		# Selecting FOR UPDATE is a convenient way to serialise the memcached and DB operations,
 		# which is necessary even though we don't update the DB
 		if ( !$bFromSlave ) {
-			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_FOR_UPDATE );
+			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_FOR_UPDATE | EB_RANGE_ONLY );
 			#$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
 		} else {
-			Block::enumBlocks( 'wfBlockCacheInsert', '' );
+			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_RANGE_ONLY );
 		}
+		wfProfileOut( $fname );
 	}
 		
 	/**
@@ -98,6 +102,9 @@ class BlockCache
 	 * @param bool $bFromSlave True means to load check against slave, else check against master.
 	 */
 	function get( $ip, $bFromSlave ) {
+		$fname = 'BlockCache::get';
+		wfProfileIn( $fname );
+
 		$this->load( $bFromSlave );
 		$ipint = ip2long( $ip );
 		$blocked = false;
@@ -121,6 +128,7 @@ class BlockCache
 			$block = false;
 		}
 
+		wfProfileOut( $fname );
 		return $block;
 	}
 
