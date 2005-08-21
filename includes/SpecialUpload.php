@@ -220,7 +220,7 @@ class UploadForm {
 		 * Check for non-fatal conditions
 		 */
 		if ( ! $this->mIgnoreWarning ) {
-			$warning = '<ul>';
+			$warning = '';
 			if( $this->mUploadSaveName != ucfirst( $filtered ) ) {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 			}
@@ -254,7 +254,7 @@ class UploadForm {
 				 * Stash the file in a temporary location; the user can choose
 				 * to let it through and we'll complete the upload then.
 				 */
-				return $this->uploadWarning($warning . "</ul>");
+				return $this->uploadWarning( $warning );
 			}
 		}
 		
