@@ -182,7 +182,7 @@ $wgBlobCache = array();
  * @package MediaWiki
  */
 class HistoryBlobStub {
-	var $mOldId, $mHash;
+	var $mOldId, $mHash, $mRef;
 
 	/** @todo document */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
@@ -196,6 +196,20 @@ class HistoryBlobStub {
 	function setLocation( $id ) {
 		$this->mOldId = $id;
 	}
+
+      /**
+       * Sets the location (old_id) of the referring object
+       */
+      function setReferrer( $id ) {
+              $this->mRef = $id;
+      }
+
+      /**
+       * Gets the location of the referring object
+       */
+      function getReferrer() {
+              return $this->mRef;
+      }
 
 	/** @todo document */
 	function getText() {
