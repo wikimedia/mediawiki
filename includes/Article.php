@@ -1273,10 +1273,18 @@ class Article {
 
 		if ( $good ) {
 			if ($watchthis) {
-				if (!$this->mTitle->userIsWatching()) $this->watch();
+				if (!$this->mTitle->userIsWatching()) {
+					$dbw->immediateCommit();
+					$dbw->begin();
+					$this->watch();
+					$dbw->commit();
+				}
 			} else {
 				if ( $this->mTitle->userIsWatching() ) {
+					$dbw->immediateCommit();
+					$dbw->begin();
 					$this->unwatch();
+					$dbw->commit();
 				}
 			}
 			# standard deferred updates
