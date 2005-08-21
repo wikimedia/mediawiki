@@ -1101,7 +1101,13 @@ class Article {
 	}
 
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {
-		$fname = 'Article::getTextOfLastEditWithSectionReplacedOrAdded';
+		$this->replaceSection( $section, $text, $summary, $edittime );
+	}
+
+	function replaceSection($section, $text, $summary = '', $edittime = NULL) {
+		$fname = 'Article::replaceSection';
+		wfProfileIn( $fname );
+
 		if ($section != '') {
 			if( is_null( $edittime ) ) {
 				$rev = Revision::newFromTitle( $this->mTitle );
@@ -1179,6 +1185,7 @@ class Article {
 			}
 
 		}
+		wfProfileOut( $fname );
 		return $text;
 	}
 

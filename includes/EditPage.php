@@ -411,6 +411,7 @@ class EditPage {
 		
 		$fname = 'EditPage::attemptSave';
 		wfProfileIn( $fname );
+		wfProfileIn( "$fname-checks" );
 
 		# Reintegrate metadata
 		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
@@ -419,17 +420,20 @@ class EditPage {
 		# Check for spam
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
 			$this->spamPage ( $matches[0] );
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
 			# Error messages or other handling should be performed by the filter function
 			wfProfileOut( $fname );
+			wfProfileOut( "$fname-checks" );
 			return false;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			$this->blockedIPpage();
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return false;
 		}
@@ -437,6 +441,7 @@ class EditPage {
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
+				wfProfileOut( "$fname-checks" );
 				wfProfileOut( $fname );
 				return false;
 			}
@@ -449,11 +454,13 @@ class EditPage {
 
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgUser->pingLimiter() ) {
 			$wgOut->rateLimited();
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return false;
 		}
@@ -461,9 +468,12 @@ class EditPage {
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
 		if ( $this->deletedSinceEdit && !$this->recreate ) {
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return true;
 		}
+		
+		wfProfileOut( "$fname-checks" );
 		
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
@@ -505,13 +515,11 @@ class EditPage {
 		if ( $this->isConflict) {
 			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
 				$this->mArticle->getTimestamp() . "'\n" );
-			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
-				$this->section, $this->textbox1, $this->summary, $this->edittime);
+			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime);
 		}
 		else {
 			wfDebug( "EditPage::editForm getting section '$this->section'\n" );
-			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
-				$this->section, $this->textbox1, $this->summary);
+			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary);
 		}
 
 		# Suppress edit conflict with self
@@ -540,6 +548,7 @@ class EditPage {
 		}
 		
 		# All's well
+		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
 		if( $this->section == 'new' ) {
 			if( $this->summary != '' ) {
@@ -547,7 +556,7 @@ class EditPage {
 			}
 		} elseif( $this->section != '' ) {
 			# Try to get a section anchor from the section source, redirect to edited section if header found
-			# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
+			# XXX: might be better to integrate this into Article::replaceSection
 			# for duplicate heading checking and maybe parsing
 			$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 			# we can't deal with anchors, includes, html etc in the header for now,
@@ -556,6 +565,7 @@ class EditPage {
 				$sectionanchor = $this->sectionAnchor( $matches[2] );
 			}
 		}
+		wfProfileOut( "$fname-sectionanchor" );
 
 		// Save errors may fall down to the edit form, but we've now
 		// merged the section into full text. Clear the section field
@@ -1352,7 +1362,7 @@ END
 	function getDiff() {
 		require_once( 'DifferenceEngine.php' );
 		$oldtext = $this->mArticle->fetchContent();
-		$newtext = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 		$oldtitle = wfMsg( 'currentrev' );
 		$newtitle = wfMsg( 'yourtext' );
