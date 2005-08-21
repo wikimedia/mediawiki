@@ -71,7 +71,7 @@ define( 'LS_INDIVIDUAL', 0 );
 define( 'LS_CHUNKED', 1 );
 
 /** @todo document */
-function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, $endDate )
+function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, $endDate, $extdb="" )
 {
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
@@ -189,7 +189,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 					#$dbw->delete( 'old', array( 'old_id' => $oldid ) );
 				}
 
-				if ( $j == 0 ) {
+				if ( $extdb == "" && $j == 0 ) {
 					$chunk->setText( $text );
 					print '.';
 				} else {
@@ -201,8 +201,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 					} else {
 						$stub = $chunk->addItem( $text );
 						$stub->setLocation( $primaryOldid );
+						$stub->setReferrer( $oldid );
 						$hash = $stub->getHash();
-						$stub = serialize( $stub );
 						print '.';
 						$usedChunk = true;
 					}
@@ -213,28 +213,53 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			
 			# If we couldn't actually use any stubs because the pages were too small, do nothing
 			if ( $usedChunk ) {
-				# Store the main object
-				$dbw->update( 'text',
-					array( /* SET */
-						'old_text' => serialize( $chunk ),
-						'old_flags' => 'object,utf-8',
-					), array( /* WHERE */
-						'old_id' => $primaryOldid
-					)
-				);
-
-				# Store the stub objects
-				for ( $j = 1; $j < $thisChunkSize; $j++ ) {
-					# Skip if not compressing
-					if ( $stubs[$j] !== false ) {
+				if ( $extdb != "" ) {
+					# Move blob objects to External Storage
+					$storeObj = new ExternalStoreDB;
+					$stored = $storeObj->store( $extdb, serialize( $chunk ));
+					if ($stored === false) {
+						print "Unable to store object\n";
+						return false;
+					}
+					# Store External Storage URLs instead of Stub placeholders
+					foreach ($stubs as $stub) {
+						if ($stub===false) 
+							continue;
+						# $stored should provide base path to a BLOB
+						$url = $stored."/".$stub->getHash();
 						$dbw->update( 'text',
 							array( /* SET */
-								'old_text' => $stubs[$j],
-								'old_flags' => 'object,utf-8',
-							), array( /* WHERE */
-								'old_id' => $revs[$i + $j]->rev_text_id
+								'old_text' => $url,
+								'old_flags' => 'external,utf-8',
+							), array ( /* WHERE */
+								'old_id' => $stub->getReferrer(),
 							)
 						);
+					}
+				} else {
+					# Store the main object locally
+					$dbw->update( 'text',
+						array( /* SET */
+							'old_text' => serialize( $chunk ),
+							'old_flags' => 'object,utf-8',
+						), array( /* WHERE */
+							'old_id' => $primaryOldid
+						)
+					);
+
+					# Store the stub objects
+					for ( $j = 1; $j < $thisChunkSize; $j++ ) {
+						# Skip if not compressing
+						if ( $stubs[$j] !== false ) {
+							$dbw->update( 'text',
+								array( /* SET */
+									'old_text' => serialize($stubs[$j]),
+									'old_flags' => 'object,utf-8',
+								), array( /* WHERE */
+									'old_id' => $revs[$i + $j]->rev_text_id
+								)
+							);
+						}
 					}
 				}
 			}
