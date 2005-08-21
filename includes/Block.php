@@ -9,6 +9,7 @@
  */
 define ( 'EB_KEEP_EXPIRED', 1 );
 define ( 'EB_FOR_UPDATE', 2 );
+define ( 'EB_RANGE_ONLY', 4 );
 
 /**
  * The block class
@@ -189,14 +190,24 @@ class Block
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
 		}
+		if ( $flags & EB_RANGE_ONLY ) {
+			$cond = " WHERE ipb_address LIKE '%/%'";
+		} else {
+			$cond = '';
+		}
+
 		$ipblocks = $db->tableName( 'ipblocks' );
 
-		$sql = "SELECT * FROM $ipblocks ORDER BY ipb_timestamp DESC $options";
+		$sql = "SELECT * FROM $ipblocks $cond ORDER BY ipb_timestamp DESC $options";
 		$res = $db->query( $sql, 'Block::enumBans' );
 		$num_rows = $db->numRows( $res );
 
 		while ( $row = $db->fetchObject( $res ) ) {
 			$block->initFromRow( $row );
+			if ( ( $flags & EB_RANGE_ONLY ) && $block->getNetworkBits() == 32 ) {
+				continue;
+			}
+
 			if ( !( $flags & EB_KEEP_EXPIRED ) ) {
 				if ( !$block->deleteIfExpired() ) {
 					$callback( $block, $tag );
