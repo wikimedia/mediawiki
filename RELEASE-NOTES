@@ -39,7 +39,7 @@ Misc work going on.....
 * (bug 3204) Fix typo breaking special pages in fy localization
 * Oracle support
 * Edit conflict on recreation of deleted page
-
+* (bug 3210) Fix Media: links with remote image URL path
 
 
 === Caveats ===

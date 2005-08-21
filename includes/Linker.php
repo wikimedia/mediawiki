@@ -611,7 +611,7 @@ class Linker {
 			if( $img->exists() ) {
 				$url  = $img->getURL();
 				if( $nourl ) {
-					$url = str_replace( "http://", "http-noparse://", $url );
+					$url = str_replace( "http://", UNIQ_PREFIX . "NOPARSEhttp://", $url );
 				}
 				$class = 'internal';
 			} else {
