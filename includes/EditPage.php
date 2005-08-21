@@ -153,6 +153,10 @@ class EditPage {
 	 */
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
+
+		$fname = 'EditPage::edit';
+		wfProfileIn( $fname );
+
 		// this is not an article
 		$wgOut->setArticleFlag(false);
 
@@ -161,22 +165,26 @@ class EditPage {
 
 		if( $this->live ) {
 			$this->livePreview();
+			wfProfileOut( $fname );
 			return;
 		}
 
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
+			wfProfileOut( $fname );
 			return;
 		}
 		if ( !$this->preview && !$this->diff && $wgUser->isBlockedFrom( $this->mTitle, !$this->save ) ) {
 			# When previewing, don't check blocked state - will get caught at save time.
 			# Also, check when starting edition is done against slave to improve performance.
 			$this->blockedIPpage();
+			wfProfileOut( $fname );
 			return;
 		}
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
+				wfProfileOut( $fname );
 				return;
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
@@ -190,6 +198,7 @@ class EditPage {
 				$this->formtype = 'diff';
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ) );
+				wfProfileOut( $fname );
 				return;
 			}
 		} else {
@@ -209,6 +218,8 @@ class EditPage {
 				}
 			}
 		}
+
+		wfProfileIn( "$fname-business-end" );
 		
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
@@ -249,6 +260,8 @@ class EditPage {
 
 		if ( 'save' == $this->formtype ) {
 			if ( !$this->attemptSave() ) {
+				wfProfileOut( "$fname-business-end" );
+				wfProfileOut( $fname );
 				return;
 			}
 		}
@@ -260,6 +273,8 @@ class EditPage {
 		}
 
 		$this->showEditForm();
+		wfProfileOut( "$fname-business-end" );
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -279,6 +294,9 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
+		$fname = 'EditPage::importFormData';
+		wfProfileIn( $fname );
+
 		if( $request->wasPosted() ) {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
@@ -344,6 +362,7 @@ class EditPage {
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro' );
 		
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -389,6 +408,9 @@ class EditPage {
 	function attemptSave() {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut;
 		
+		$fname = 'EditPage::attemptSave';
+		wfProfileIn( $fname );
+
 		# Reintegrate metadata
 		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
 		$this->mMetaData = '' ;
@@ -396,41 +418,49 @@ class EditPage {
 		# Check for spam
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
 			$this->spamPage ( $matches[0] );
+			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
 			# Error messages or other handling should be performed by the filter function
+			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			$this->blockedIPpage();
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
+				wfProfileOut( $fname );
 				return false;
 			}
 			else {
 				$wgOut->readOnlyPage();
+				wfProfileOut( $fname );
 				return false;
 			}
 		}
 
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
+			wfProfileOut( $fname );
 			return false;
 		}
 		if ( $wgUser->pingLimiter() ) {
 			$wgOut->rateLimited();
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
 		if ( $this->deletedSinceEdit && !$this->recreate ) {
+			wfProfileOut( $fname );
 			return true;
 		}
 		
@@ -441,6 +471,7 @@ class EditPage {
 			if ( ( '' == $this->textbox1 ) ||
 				( wfMsg( 'newarticletext' ) == $this->textbox1 ) ) {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
+					wfProfileOut( $fname );
 					return false;
 				}
 			if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
@@ -454,6 +485,7 @@ class EditPage {
 					$this->summary, $this->minoredit,
 					$this->watchthis, NULL));
 			}
+			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -502,6 +534,7 @@ class EditPage {
 		}
 		
 		if ( $this->isConflict ) {
+			wfProfileOut( $fname );
 			return true;
 		}
 		
@@ -542,11 +575,13 @@ class EditPage {
 					array(&$this->mArticle, &$wgUser, $text,
 					$this->summary, $this->minoredit,
 					$this->watchthis, $sectionanchor));
+				wfProfileOut( $fname );
 				return false;
 			} else {
 				$this->isConflict = true;
 			}
 		}
+		wfProfileOut( $fname );
 		return true;
 	}
 
@@ -566,6 +601,9 @@ class EditPage {
 	 */
 	function showEditForm() {
 		global $wgOut, $wgUser, $wgAllowAnonymousMinor, $wgLang, $wgContLang;
+
+		$fname = 'EditPage::showEditForm';
+		wfProfileIn( $fname );
 
 		$sk =& $wgUser->getSkin();
 		
@@ -834,6 +872,8 @@ END
 			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
 			$wgOut->addHTML( $this->getDiff() );
 		}
+
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -841,6 +881,10 @@ END
 	 */
 	function getTemplatesUsed() {
 		global $wgUser;
+
+		$fname = 'EditPage::getTemplatesUsed';
+		wfProfileIn( $fname );
+
 		$sk =& $wgUser->getSkin();
 
 		$templates = '';
@@ -854,6 +898,7 @@ END
 			}
 			$templates .= '</ul>';
 		}
+		wfProfileOut( $fname );
 		return $templates;
 	}
 
@@ -916,6 +961,10 @@ END
 	 */
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgAllowDiffPreview, $wgEnableDiffPreviewPreference;
+
+		$fname = 'EditPage::getPreviewText';
+		wfProfileIn( $fname );
+
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<p class='previewnote'>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</p>\n";
 		if ( $this->isConflict ) {
@@ -937,6 +986,7 @@ END
 			}
 			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
+			wfProfileOut( $fname );
 			return $previewhead;
 		} else {
 			# if user want to see preview when he edit an article
@@ -961,6 +1011,8 @@ END
 
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
+
+			wfProfileOut( $fname );
 			return $previewhead . $previewHTML;
 		}
 	}
