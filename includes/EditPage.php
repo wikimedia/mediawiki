@@ -188,6 +188,7 @@ class EditPage {
 				return;
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
+				wfProfileOut( $fname );
 				return;
 			}
 		}
