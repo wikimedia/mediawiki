@@ -33,18 +33,23 @@ if (defined('MEDIAWIKI')) {
 	function wfRunHooks($event, $args) {
 		
 		global $wgHooks;
+		$fname = 'wfRunHooks';
+		wfProfileIn( $fname );
 
 		if (!is_array($wgHooks)) {
 			wfDieDebugBacktrace("Global hooks array is not an array!\n");
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		if (!array_key_exists($event, $wgHooks)) {
+			wfProfileOut( $fname );
 			return true;
 		}
 		
 		if (!is_array($wgHooks[$event])) {
 			wfDieDebugBacktrace("Hooks array for event '$event' is not an array!\n");
+			wfProfileOut( $fname );
 			return false;
 		}
 		
@@ -101,25 +106,34 @@ if (defined('MEDIAWIKI')) {
 				$hook_args = $args;
 			}
 			
-			/* Call the hook. */
 			
+			if ( $object ) {
+				$func = get_class( $object ) . '::' . $method;
+			}
+
+			/* Call the hook. */
+			wfProfileIn( $func );
 			if ($object) {
 				$retval = call_user_func_array(array($object, $method), $hook_args);
 			} else {
 				$retval = call_user_func_array($func, $hook_args);
 			}
+			wfProfileOut( $func );
 			
 			/* String return is an error; false return means stop processing. */
 			
 			if (is_string($retval)) {
 				global $wgOut;
 				$wgOut->fatalError($retval);
+				wfProfileOut( $fname );
 				return false;
 			} else if (!$retval) {
+				wfProfileOut( $fname );
 				return false;
 			}
 		}
 		
+		wfProfileOut( $fname );
 		return true;
 	}
 } /* if defined(MEDIAWIKI) */ 
