@@ -666,6 +666,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
 * (bug 3204) Fix typo breaking special pages in fy localization
 * (bug 3210) Fix Media: links with remote image URL path
+* (bug 3220) Fix escaping of block URLs in Recentchanges
 
 
 === Caveats ===
