@@ -43,6 +43,7 @@ Misc work going on.....
 * (bug 1956) Hide bot uploads from Special:Newimages
 * (bug 3216) Don't show empty warning page when no warnings.
 * (bug 3218) Use proper quoting on history Compare Revisions button
+* (bug 3220) Fix escaping of block URLs in Recentchanges
 
 
 === Caveats ===
