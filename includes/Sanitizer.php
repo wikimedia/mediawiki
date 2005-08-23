@@ -571,9 +571,12 @@ class Sanitizer {
 				'RFC'  => '&#82;FC',
 				'PMID' => '&#80;MID',
 			) );
-			$value = preg_replace(
-				'/(' . $wgUrlProtocols . '):/',
-				'\\1&#58;', $value );
+			
+			# Stupid hack
+			$value = preg_replace_callback(
+				'/(' . $wgUrlProtocols . ')/',
+				array( 'Sanitizer', 'armorLinksCallback' ),
+				$value );
 			
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
@@ -584,6 +587,16 @@ class Sanitizer {
 		} else {
 			return ' ' . implode( ' ', $attribs );
 		}
+	}
+	
+	/**
+	 * Regex replace callback for armoring links against further processing.
+	 * @param array $matches
+	 * @return string
+	 * @access private
+	 */
+	function armorLinksCallback( $matches ) {
+		return str_replace( ':', '&#58;', $matches[1] );
 	}
 	
 	/**

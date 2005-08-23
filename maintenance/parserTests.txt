@@ -2579,6 +2579,24 @@ Bug 2304: HTML attribute safety (named web link)
 
 !! end
 
+!! test
+Bug 3244: HTML attribute safety (extension; safe)
+!! input
+<div style="<nowiki>background:blue</nowiki>"></div>
+!! result
+<div style="background:blue"></div>
+
+!! end
+
+!! test
+Bug 3244: HTML attribute safety (extension; unsafe)
+!! input
+<div style="<nowiki>border-left:expression(alert(document.cookie))</nowiki>"></div>
+!! result
+<div></div>
+
+!! end
+
 
 TODO:
 more images
