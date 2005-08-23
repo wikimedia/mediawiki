@@ -145,7 +145,7 @@ function wfAddRow( $block, $tag ) {
 	# Hide addresses blocked by User::spreadBlocks, for privacy
 	$addr = $block->mAuto ? "#{$block->mId}" : $block->mAddress;
 
-	$name = User::whoIs( $block->mBy );
+	$name = $block->getByName();
 	$ulink = $sk->makeKnownLinkObj( Title::makeTitle( NS_USER, $name ), $name );
 	$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 	

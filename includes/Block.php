@@ -25,7 +25,7 @@ define ( 'EB_RANGE_ONLY', 4 );
 class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;
-	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate;
+	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mByName;
 
 	function Block( $address = '', $user = '', $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '' )
@@ -43,6 +43,7 @@ class Block
 		}
 
 		$this->mForUpdate = false;
+		$this->mByName = false;
 		$this->initialiseRange();
 	}
 
@@ -55,8 +56,10 @@ class Block
 
 	function clear()
 	{
-		$mAddress = $mReason = $mTimestamp = '';
-		$mUser = $mBy = 0;
+		$this->mAddress = $this->mReason = $this->mTimestamp = '';
+		$this->mUser = $this->mBy = 0;
+		$this->mByName = false;
+
 	}
 
 	/**
@@ -149,6 +152,11 @@ class Block
 		$this->mExpiry = $row->ipb_expiry ?
 			wfTimestamp(TS_MW,$row->ipb_expiry) :
 			$row->ipb_expiry;
+		if ( isset( $row->user_name ) ) {
+			$this->mByName = $row->user_name;
+		} else {
+			$this->mByName = false;
+		}
 
 		$this->initialiseRange();
 	}
@@ -191,14 +199,15 @@ class Block
 			$options = '';
 		}
 		if ( $flags & EB_RANGE_ONLY ) {
-			$cond = " WHERE ipb_address LIKE '%/%'";
+			$cond = " AND ipb_address LIKE '%/%'";
 		} else {
 			$cond = '';
 		}
 
-		$ipblocks = $db->tableName( 'ipblocks' );
+		extract( $db->tableNames( 'ipblocks', 'user' ) );
 
-		$sql = "SELECT * FROM $ipblocks $cond ORDER BY ipb_timestamp DESC $options";
+		$sql = "SELECT ipblocks.*,user_name FROM $ipblocks,$user " .
+			"WHERE user_id=ipb_by $cond ORDER BY ipb_timestamp DESC $options";
 		$res = $db->query( $sql, 'Block::enumBans' );
 		$num_rows = $db->numRows( $res );
 
@@ -323,6 +332,14 @@ class Block
 	function getNetworkBits()
 	{
 		return $this->mNetworkBits;
+	}
+
+	function getByName()
+	{
+		if ( $this->mByName === false ) {
+			$this->mByName = User::whoIs( $this->mBy );
+		}
+		return $this->mByName;
 	}
 
 	function forUpdate( $x = NULL ) {
