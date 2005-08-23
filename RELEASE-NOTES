@@ -48,6 +48,7 @@ Misc work going on.....
 * Move ArticleSave hook execution into Article insert/update functions,
   so they get called on non-EditPage actions that use these functions
   to create or update pages.
+* Fix table prefix usage in Block::enumBlocks
 
 
 === Caveats ===
