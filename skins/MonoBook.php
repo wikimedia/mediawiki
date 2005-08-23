@@ -180,7 +180,14 @@ class MonoBookTemplate extends QuickTemplate {
 	      <li id="t-print"><a href="<?php
 		    echo htmlspecialchars($this->data['nav_urls']['print']['href'])
 		    ?>"><?php echo $this->msg('printableversion') ?></a></li>
-	      <?php } ?>
+		  <?php } ?>
+	      <?php if(!empty($this->data['nav_urls']['permalink']['href'])) { ?>
+	      <li id="t-permalink"><a href="<?php
+		    echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
+		    ?>"><?php echo $this->msg('permalink') ?></a></li>
+		  <?php } elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
+		    <li id="t-ispermalink"><?php echo $this->msg('permalink') ?></li>
+		  <?php } ?>
 	    </ul>
 	  </div>
 	</div>

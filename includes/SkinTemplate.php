@@ -733,7 +733,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildNavUrls () {
-		global $wgUseTrackbacks, $wgTitle;
+		global $wgUseTrackbacks, $wgTitle, $wgArticle;
 
 		$fname = 'SkinTemplate::buildNavUrls';
 		wfProfileIn( $fname );
@@ -773,6 +773,17 @@ class SkinTemplate extends Skin {
 			$nav_urls['print'] = array(
 				'text' => wfMsg( 'printableversion' ),
 				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
+
+			// Also add a "permalink" while we're at it
+			if ( $wgRequest->getInt( 'oldid' ) ) {
+				$nav_urls['permalink'] = array(
+					'text' => wfMsg( 'permalink' ),
+					'href' => '' );
+			} else {
+				$nav_urls['permalink'] = array(
+					'text' => wfMsg( 'permalink' ),
+					'href' => $wgTitle->getLocalURL( 'oldid=' . $wgArticle->getRevIdFetched() ) );
+			}
 		}
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL) {

@@ -873,6 +873,9 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
     z-index: 3;
 }
 
+#t-ispermalink {
+    color: #999;
+}
 /*
 ** footer
 */
