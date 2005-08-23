@@ -206,7 +206,7 @@ class Block
 
 		extract( $db->tableNames( 'ipblocks', 'user' ) );
 
-		$sql = "SELECT ipblocks.*,user_name FROM $ipblocks,$user " .
+		$sql = "SELECT $ipblocks.*,user_name FROM $ipblocks,$user " .
 			"WHERE user_id=ipb_by $cond ORDER BY ipb_timestamp DESC $options";
 		$res = $db->query( $sql, 'Block::enumBans' );
 		$num_rows = $db->numRows( $res );
