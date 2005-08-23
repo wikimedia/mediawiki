@@ -757,7 +757,7 @@ class Parser
 		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
 		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
 
-		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
+		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -3303,6 +3303,21 @@ class Parser
 	 */
 	function disableCache() {
 		$this->mOutput->mCacheTime = -1;
+	}
+	
+	/**
+	 * Callback from the Sanitizer for expanding items found in HTML attribute
+	 * values, so they can be safely tested and escaped.
+	 * @param string $text
+	 * @param array $args
+	 * @return string
+	 * @access private
+	 */
+	function attributeStripCallback( &$text, $args ) {
+		$text = $this->replaceVariables( $text, $args );
+		$text = $this->unstrip( $text, $this->mStripState );
+		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		return $text;
 	}
 }
 
