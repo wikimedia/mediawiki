@@ -172,7 +172,7 @@ function wfSpecialContributions( $par = null ) {
 	}
 	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
 
-	$limit = min($wgRequest->getInt('limit', 50), 500);
+	list( $limit, $offset) = wfCheckLimits();
 	$offset = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
 	if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
