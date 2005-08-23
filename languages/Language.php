@@ -1349,6 +1349,9 @@ can be restored. The archive may be periodically cleaned out.',
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page
 will not be automatically replaced.',
+'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is 
+shown in the summary below, along with details of the users who had edited this page 
+before deletion. The actual text of these deleted revisions is only available to administrators.',
 'undeleterevision' => "Deleted revision as of $1",
 'undeletebtn' => 'Restore!',
 'undeletedarticle' => "restored \"[[$1]]\"",
