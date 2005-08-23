@@ -45,6 +45,9 @@ Misc work going on.....
 * (bug 3218) Use proper quoting on history Compare Revisions button
 * (bug 3220) Fix escaping of block URLs in Recentchanges
 * (bug 3227) Fix SQL injection introduced in experimental code
+* Move ArticleSave hook execution into Article insert/update functions,
+  so they get called on non-EditPage actions that use these functions
+  to create or update pages.
 
 
 === Caveats ===

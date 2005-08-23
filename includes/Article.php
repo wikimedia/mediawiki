@@ -1037,6 +1037,13 @@ class Article {
 		$fname = 'Article::insertNewArticle';
 		wfProfileIn( $fname );
 
+		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
+			&$summary, &$isminor, &$watchthis, NULL ) ) ) {
+			wfDebug( "$fname: ArticleSave hook aborted save!\n" );
+			wfProfileOut( $fname );
+			return false;
+		}
+		
 		$this->mGoodAdjustment = $this->isCountable( $text );
 		$this->mTotalAdjustment = 1;
 
@@ -1097,6 +1104,10 @@ class Article {
 
 		$oldid = 0; # new article
 		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
+
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text,
+			$summary, $isminor,
+			$watchthis, NULL ) );
 		wfProfileOut( $fname );
 	}
 
@@ -1204,6 +1215,14 @@ class Article {
 		$fname = 'Article::updateArticle';
 		wfProfileIn( $fname );
 		$good = true;
+
+		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
+			&$summary, &$minor,
+			&$watchthis, &$sectionanchor ) ) ) {
+			wfDebug( "$fname: ArticleSave hook aborted save!\n" );
+			wfProfileOut( $fname );
+			return false;
+		}
 
 		$isminor = ( $minor && $wgUser->isLoggedIn() );
 		if ( $this->isRedirect( $text ) ) {
@@ -1326,6 +1345,10 @@ class Article {
 
 			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
 		}
+		wfRunHooks( 'ArticleSaveComplete',
+			array( &$this, &$wgUser, $text,
+			$summary, $minor,
+			$watchthis, $sectionanchor ) );
 		wfProfileOut( $fname );
 		return $good;
 	}
