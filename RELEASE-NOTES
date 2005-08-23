@@ -24,6 +24,33 @@ current stable relase should update the installation to 1.3.13; only
 includes/Parser.php has changed from 1.3.12.
 
 
+== Version 1.3.13, 2005-08-23 ==
+
+MediaWiki 1.3.13 is a security maintenance release.
+
+A flaw in the interaction between extensions and HTML attribute
+sanitization was discovered which could allow unauthorized use
+of offsite resources in style sheets, and possible exploitation
+of a JavaScript injection feature on Microsoft Internet Explorer.
+
+The 1.3.x series is no longer maintained except for security fixes;
+new users and those seeking bug fixes should upgrade to 1.4.8 or 1.5rc1.
+Existing 1.3.x installations not willing to upgrade to the current stable
+relase should apply the change manually:
+
+In includes/Parser.php, function fixTagAttributes() add:
+
+		# Any placeholder items should have been unstripped already before
+		# we got to this point. Raw text inserted later could be dangerous.
+		if( strpos( $t, UNIQ_PREFIX ) !== false ) {
+			wfDebug( "Parser::fixTagAttributes found stripped data placeholder; dropping attributes\n" );
+			$t = '';
+		}
+
+If you are actively using extensions to generate HTML attribute values,
+upgrade to 1.4 or 1.5 for a more thorough fix.
+
+
 == Version 1.3.12, 2005-02-20 ==
 
 MediaWiki 1.3.12 is a security maintenance release.
