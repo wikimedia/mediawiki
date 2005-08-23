@@ -719,6 +719,7 @@ pages for purposes of page relevancy ranking.
 * Fix spelling of $wgForwardSearchUrl in DefaultSettings.php
 * MSIE7 compatibility fix: correct browser version detect for IE CSS fixes
 * (bug 3220) Fix escaping of block URLs in Recentchanges
+* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
 
 
 === Caveats ===

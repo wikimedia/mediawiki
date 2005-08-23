@@ -769,7 +769,7 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		$text = $this->removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
+		$text = $this->removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -3248,6 +3248,21 @@ class Parser
 
 	function forUpdate( $x = NULL ) {
 		return wfSetVar( $this->mForUpdate, $x );
+	}
+	
+	/**
+	 * Callback from the Sanitizer for expanding items found in HTML attribute
+	 * values, so they can be safely tested and escaped.
+	 * @param string $text
+	 * @param array $args
+	 * @return string
+	 * @access private
+	 */
+	function attributeStripCallback( &$text, $args ) {
+		$text = $this->replaceVariables( $text, $args );
+		$text = $this->unstrip( $text, $this->mStripState );
+		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		return $text;
 	}
 }
 
