@@ -1735,7 +1735,9 @@ border=\"0\" ALT=\"Google\"></A>
 	}
 
 	# No database access
-	$wgMessageCache->disable();
+	if ( is_object( $wgMessageCache ) ) {
+		$wgMessageCache->disable();
+	}
 	
 	$msg = wfGetSiteNotice();
 	if($msg == '') {
