@@ -78,13 +78,13 @@ class Profiler {
 		} else {
 			//if ($wgDebugProfiling) {
 				if ($functionname == 'close') {
-					$message = "Profile section ended by close(): {$bit[0]}\n";
-					wfDebug( $message );
+					$message = "Profile section ended by close(): {$bit[0]}";
+					wfDebug( "$message\n" );
 					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
 				elseif ($bit[0] != $functionname) {
-					$message = "Profiling error: in({$bit[0]}), out($functionname)\n";
-					wfDebug( $message );
+					$message = "Profiling error: in({$bit[0]}), out($functionname)";
+					wfDebug( "$message\n" );
 					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
 			//}
