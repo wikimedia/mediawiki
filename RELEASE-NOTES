@@ -49,6 +49,7 @@ Misc work going on.....
   so they get called on non-EditPage actions that use these functions
   to create or update pages.
 * Fix table prefix usage in Block::enumBlocks
+* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
 
 
 === Caveats ===
