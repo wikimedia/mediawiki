@@ -485,17 +485,11 @@ class EditPage {
 					wfProfileOut( $fname );
 					return false;
 				}
-			if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
-				&$this->summary, &$this->minoredit, &$this->watchthis, NULL)))
-			{					
 
-				$isComment=($this->section=='new');
-				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-					$this->minoredit, $this->watchthis, false, $isComment);
-				wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $this->textbox1,
-					$this->summary, $this->minoredit,
-					$this->watchthis, NULL));
-			}
+			$isComment=($this->section=='new');
+			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
+				$this->minoredit, $this->watchthis, false, $isComment);
+			
 			wfProfileOut( $fname );
 			return false;
 		}
@@ -574,23 +568,13 @@ class EditPage {
 		$this->textbox1 = $text;
 		$this->section = '';
 
-		if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
-			&$this->summary, &$this->minoredit,
-			&$this->watchthis, &$sectionanchor)))
-		{
-			# update the article here
-			if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-				$this->watchthis, '', $sectionanchor ))
-			{
-				wfRunHooks('ArticleSaveComplete',
-					array(&$this->mArticle, &$wgUser, $text,
-					$this->summary, $this->minoredit,
-					$this->watchthis, $sectionanchor));
-				wfProfileOut( $fname );
-				return false;
-			} else {
-				$this->isConflict = true;
-			}
+		# update the article here
+		if( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
+			$this->watchthis, '', $sectionanchor ) ) {
+			wfProfileOut( $fname );
+			return false;
+		} else {
+			$this->isConflict = true;
 		}
 		wfProfileOut( $fname );
 		return true;
