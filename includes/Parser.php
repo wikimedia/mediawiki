@@ -630,6 +630,13 @@ cl_sortkey" ;
 			$t='';
 		}
 		
+		# Any placeholder items should have been unstripped already before
+		# we got to this point. Raw text inserted later could be dangerous.
+		if( strpos( $t, UNIQ_PREFIX ) !== false ) {
+			wfDebug( "Parser::fixTagAttributes found stripped data placeholder; dropping attributes\n" );
+			$t = '';
+		}
+		
 		# Templates and links may be expanded in later parsing,
 		# creating invalid or dangerous output. Suppress this.
 		$t = strtr( $t, array(
