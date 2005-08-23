@@ -406,6 +406,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'updatedmarker' => 'updated since my last visit',
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
+'permalink'     => 'Permalink',
 'print' => 'Print',
 'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
