@@ -212,7 +212,7 @@ class LoadBalancer {
 					}
 					if ( $sleepTime ) {
 							$totalElapsed += $sleepTime;
-							$x = "{$this->mServers[$serverIndex]['host']} $sleepTime [$serverIndex]";
+							$x = "{$this->mServers[$serverIndex]['host']} [$serverIndex]";
 							wfProfileIn( "$fname-sleep $x" );
 							usleep( $sleepTime );
 							wfProfileOut( "$fname-sleep $x" );
