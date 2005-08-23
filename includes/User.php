@@ -119,7 +119,7 @@ class User {
 	 */
 	function whoIs( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ) );
+		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), 'User::whoIs' );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class User {
 	 */
 	function whoIsReal( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ) );
+		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), 'User::whoIsReal' );
 	}
 
 	/**
@@ -362,10 +362,14 @@ class User {
 	function getBlockedStatus( $bFromSlave = true ) {
 		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
 
-		if ( -1 != $this->mBlockedby ) { return; }
+		if ( -1 != $this->mBlockedby ) {
+			wfDebug( "User::getBlockedStatus: already loaded.\n" );
+			return;
+		}
 
 		$fname = 'User::getBlockedStatus';
 		wfProfileIn( $fname );
+		wfDebug( "$fname: checking...\n" );
 
 		$this->mBlockedby = 0;
 
@@ -373,16 +377,20 @@ class User {
 		$block = new Block();
 		$block->forUpdate( $bFromSlave );
 		if ( $block->load( $wgIP , $this->mId ) ) {
+			wfDebug( "$fname: Found block.\n" );
 			$this->mBlockedby = $block->mBy;
 			$this->mBlockreason = $block->mReason;
 			if ( $this->isLoggedIn() ) {
 				$this->spreadBlock();
 			}
+		} else {
+			wfDebug( "$fname: No block.\n" );
 		}
 
 		# Range blocking
 		if ( !$this->mBlockedby ) {
 			# Check first against slave, and optionally from master.
+			wfDebug( "$fname: Checking range blocks\n" );
 			$block = $wgBlockCache->get( $wgIP, true );
 			if ( !$block && !$bFromSlave )
 				{
@@ -536,6 +544,7 @@ class User {
 	 * @return bool True if blocked, false otherwise
 	 */
 	function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
+		wfDebug( "User::isBlocked: enter\n" );
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlockedby !== 0;
 	}
@@ -547,12 +556,15 @@ class User {
 		global $wgBlockAllowsUTEdit;
 		$fname = 'User::isBlockedFrom';
 		wfProfileIn( $fname );
+		wfDebug( "$fname: enter\n" );
 
 		if ( $wgBlockAllowsUTEdit && $title->getText() === $this->getName() &&
 		  $title->getNamespace() == NS_USER_TALK )
 		{
 			$blocked = false;
+			wfDebug( "$fname: self-talk page, ignoring any blocks\n" );
 		} else {
+			wfDebug( "$fname: asking isBlocked()\n" );
 			$blocked = $this->isBlocked( $bFromSlave );
 		}
 		wfProfileOut( $fname );
@@ -1518,7 +1530,7 @@ class User {
 	 */
 	function getMaxID() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'max(user_id)', false );
+		return $dbr->selectField( 'user', 'max(user_id)', false, 'User::getMaxID' );
 	}
 
 	/**
