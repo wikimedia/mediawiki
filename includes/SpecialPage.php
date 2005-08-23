@@ -224,6 +224,8 @@ class SpecialPage
 	 */
 	function executePath( &$title, $including = false ) {
 		global $wgSpecialPages, $wgOut, $wgTitle;
+		$fname = 'SpecialPage::executePath';
+		wfProfileIn( $fname );
 
 		$bits = split( "/", $title->getDBkey(), 2 );
 		$name = $bits[0];
@@ -236,6 +238,7 @@ class SpecialPage
 		$page = SpecialPage::getPage( $name );
 		if ( is_null( $page ) ) {
 			if ( $including ) {
+				wfProfileOut( $fname );
 				return false;
 			} else {
 				$redir = SpecialPage::getRedirect( $name );
@@ -254,6 +257,7 @@ class SpecialPage
 			}
 		} else {
 			if ( $including && !$page->includable() ) {
+				wfProfileOut( $fname );
 				return false;
 			}
 			if($par !== NULL) {
@@ -263,9 +267,13 @@ class SpecialPage
 			}
 			$page->including( $including );
 
+			$profName = 'Special:' . $page->getName();
+			wfProfileIn( $profName );
 			$page->execute( $par );
+			wfProfileOut( $profName );
 			$retVal = true;
 		}
+		wfProfileOut( $fname );
 		return $retVal;
 	}
 
