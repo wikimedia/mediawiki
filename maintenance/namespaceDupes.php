@@ -141,8 +141,7 @@ class NamespaceConflictChecker {
 	}
 	
 	function newSchema() {
-		global $wgVersion;
-		return version_compare( $wgVersion, '1.5alpha', 'ge' );
+		return class_exists( 'Revision' );
 	}
 }
 

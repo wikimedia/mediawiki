@@ -694,6 +694,12 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix URL sanitization in HTML attributes, which broke in this branch
 
 
+=== Changes since 1.5rc2 ===
+
+* Fix upgrade from 1.4 due to version number check breakage
+* Fix upgrade from 1.4 with no old revisions
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
