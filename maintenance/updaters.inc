@@ -363,7 +363,7 @@ function do_schema_restructuring() {
 		echo "......Locking tables.\n";
 		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
 
-		$maxold = $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname );
+		$maxold = intval( $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname ) );
 		echo wfTimestamp();
 		echo "......maxold is {$maxold}\n";
 
