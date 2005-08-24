@@ -7,7 +7,7 @@
 
 require_once( 'LanguageUtf8.php' );
 
-# Revised 2005-08-15 for MediaWiki 1.6alpha -- Nikerabbit
+# Revised 2005-08-25 for MediaWiki 1.6alpha -- Nikerabbit
 
 /* private */ $wgNamespaceNamesFi = array(
 	NS_MEDIA            => 'Media',
@@ -192,8 +192,10 @@ require_once( 'LanguageUtf8.php' );
 'go'                  => 'Siirry',
 'history'             => 'Historia',
 'history_short'       => 'Historia',
+'updatedmarker'       => 'päivitetty viimeisimmän käyntisi jälkeen',
 'info_short'          => 'Tiedostus',
 'printableversion'    => 'Tulostettava versio',
+'permalink'           => 'Ikilinkki',
 'edit'                => 'Muokkaa',
 'editthispage'        => 'Muokkaa tätä sivua',
 'delete'              => 'Poista',
@@ -526,6 +528,7 @@ Sivun lähdekoodi:',
 'powersearch'         => 'Etsi',
 'powersearchtext'     => 'Haku nimiavaruuksista:<br />$1<br /><b>Etsi</b> $3 $9 $2 Luettele uudelleenohjaukset', # TODO NOWIKIMARKUP
 'searchdisabled'      => '<p style="margin: 1.5em 2em 1em">Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön.<small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small></p>', # TODO NOWIKIMARKUP
+
 'blanknamespace'      => '(sivut)',
 
 # Preferences page
@@ -660,6 +663,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadlogpagetext'   => 'Alla on luettelo uusimmista tallennuksista. Kaikki ajat näytetään palvelimen aikavyöhykkeessä (UTC).',
 'filename'            => 'Tiedoston nimi',
 'filedesc'            => 'Yhteenveto',
+'fileuploadsummary'   => 'Yhteenveto:',
 'filestatus'          => 'Tiedoston tekijänoikeudet',
 'filesource'          => 'Lähde',
 'copyrightpage'       => 'Project:Tekijänoikeudet',
@@ -756,12 +760,14 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'popularpages'        => 'Suositut sivut',
 'nviews'              => '$1 latausta',
 'wantedpages'         => 'Halutut sivut',
+'mostlinked'          => 'Sivut, joihin on eniten linkkejä',
 'nlinks'              => '$1 linkkiä',
 'allpages'            => 'Kaikki sivut',
+'prefixindex'         => 'Etuliiteluettelo',
 'randompage'          => 'Satunnainen sivu',
 'shortpages'          => 'Lyhyet sivut',
 'longpages'           => 'Pitkät sivut',
-'deadendpages'        => 'Sivut, joilta ei linkkejä',
+'deadendpages'        => 'Sivut, joilla ei ole linkkejä',
 'listusers'           => 'Käyttäjälista',
 'specialpages'        => 'Toimintosivut',
 'spheading'           => 'Toimintosivut',
@@ -942,6 +948,7 @@ Palaute ja lisäapu osoitteessa:
 'undeletearticle'     => 'Palauta poistettu sivu',
 'undeleterevisions'   => '$1 versiota arkistoitu.',
 'undeletehistory'     => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan, ja olemassa olevaa versiota ei korvata automaattisesti.',
+'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undeleterevision'    => 'Poistettu versio hetkellä $1',
 'undeletebtn'         => 'Palauta!',
 'undeletedarticle'    => 'palautti sivun $1',
@@ -961,6 +968,7 @@ Palaute ja lisäapu osoitteessa:
 'uclinks'             => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'               => ' (uusin)' ,
 'newbies'             => 'tulokkaat',
+'contribs-showhideminor' => '$1 pienet muutokset',
 
 # What links here
 #
@@ -1244,6 +1252,8 @@ ta['t-contributions'] = new Array('','Näytä lista tämän käyttäjän muokkau
 ta['t-emailuser'] = new Array('','Lähetä sähköpostia tälle käyttäjälle');
 ta['t-upload'] = new Array('u','Tallenna kuvia tai muita mediatiedostoja');
 ta['t-specialpages'] = new Array('q','Näytä toimintosivut');
+ta['t-print']=new Array('', 'Lataa sivun tulostamiseen sopivalla tyylisivulla. Voit aina käyttää suoraan selaimen tulosta-toimintoa.');
+ta['t-permalink'] = new Array('', 'Ikuisesti toimiva linkki sivun tähän versioon, paitsi jos sivu poistetaan.');
 ta['ca-nstab-main'] = new Array('c','Näytä sisältösivu');
 ta['ca-nstab-user'] = new Array('c','Näytä käyttäjäsivu');
 ta['ca-nstab-media'] = new Array('c','Näytä mediasivu');
@@ -1268,6 +1278,7 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'showbigimage'        => 'Lataa korkeatarkkuuksinen versio ($1×$2, $3 KiB)',
 
 'newimages'           => 'Uudet kuvat',
+'showhidebots'        => '($1 botit)',
 'noimages'            => 'Ei uusia kuvia.',
 
 # labels for User: and Title: on Special:Log pages
@@ -1286,6 +1297,8 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'edit-externally'     => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
 'edit-externally-help'=> 'Katso [http://meta.wikimedia.org/wiki/Help:External_editors ohjeet], jos haluat lisätietoja.',
 
+'recentchangesall'    => "kaikki", // unsure
+'imagelistall'        => "kaikki", // unsure
 'watchlistall1'       => 'kaikkia',
 'watchlistall2'       => ', koko historia',
 'namespacesall'       => 'kaikki',
