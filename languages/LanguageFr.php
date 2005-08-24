@@ -137,7 +137,7 @@ require_once( 'LanguageUtf8.php' );
 'faq'           => 'FAQ',
 'faqpage'       => '{{ns:4}}:FAQ',
 'edithelp'      => 'Aide',
-'edithelppage'  => '{{ns:help}}:Comment éditer une page',
+'edithelppage'  => '{{ns:help}}:Comment modifier une page',
 'cancel'        => 'Annuler',
 'qbfind'        => 'Rechercher',
 'qbbrowse'      => 'Défiler',
@@ -399,7 +399,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'newarticletext' => 'Saisissez ici le texte de votre article.',
 'anontalkpagetext' => '---- \'\'Vous êtes sur la page de discussion d\'un utilisateur anonyme qui n\'a pas encore créé un compte ou qui ne l\'utilise pas. Pour cette raison, nous devons utiliser l\'[[adresse IP]] numérique pour l\'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d\'éviter toute future confusion.\'\'',
 'noarticletext' => '(Il n\'y a pour l\'instant aucun texte sur cette page)',
-'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : \'\'\'Mozilla / Firefox\'\'\' : \'\'ctrl-shift-r\'\', \'\'\'IE\'\'\' : \'\'ctrl-f5\'\', \'\'\'Safari\'\'\' : \'\'cmd-shift-r\'\'; \'\'\'Konqueror\'\'\' : \'\'f5\'\'.',
+'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : \'\'\'Mozilla / Konqueror / Firefox\'\'\' : \'\'ctrl-shift-r\'\', \'\'\'IE\'\'\' : \'\'ctrl-f5\'\', \'\'\'Safari\'\'\' : \'\'cmd-shift-r\'\'; \'\'\'Konqueror\'\'\' : \'\'f5\'\'.',
 'updated'      => '(Mis à jour)',
 'note'         => '<strong>Note :</strong> ',
 'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé!',
@@ -541,7 +541,7 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'timezoneoffset'    => 'Décalage horaire',
 'servertime'	    => 'Heure du serveur',
 'guesstimezone'     => 'Utiliser la valeur du navigateur',
-'emailflag'         => 'Ne pas recevoir de courrier électronique<br /> des autres utilisateurs',
+'emailflag'         => 'Ne pas recevoir d\'email<br /> des autres utilisateurs',
 'defaultns'         => 'Par défaut, rechercher dans ces espaces :',
 'yourlanguage' => 'Langue de l\'interface',
 
@@ -697,7 +697,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'doubleredirects'	=> 'Double redirection',
 'doubleredirectstext'	=> '<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c\'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.',
 'brokenredirects'	=> 'Redirections cassées',
-'brokenredirectstext'	=> 'Ces redirections mènent a une page qui n\'existe pas.',
+'brokenredirectstext'	=> 'Ces redirections mènent à une page qui n\'existe pas.',
 'selflinks'		=> 'Page avec un lien circulaire',
 'selflinkstext'		=> 'Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n\'est pas permis.',
 'mispeelings'           => 'Pages avec fautes d\'orthographe',
@@ -779,7 +779,7 @@ L\'adresse électronique que vous avez indiquée dans vos préférences apparaî
 'watchnologintext' => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'	=> 'Ajouté à la liste',
 'addedwatchtext' => 'La page « $1 » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
-Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra \'\'\'en gras\'\'\' dans la [[Special:Recentchanges|liste des modifications récentes]] pour être repérée plus facilement.
+Les prochaines modifications de cette page et de la page de discussion associée seront répertoriées ici, et la page apparaîtra \'\'\'en gras\'\'\' dans la [[Special:Recentchanges|liste des modifications récentes]] pour être repérée plus facilement.
 
 Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre » dans le cadre de navigation.',
 'removedwatch'	=> 'Supprimée de la liste de suivi',
@@ -832,9 +832,9 @@ L\'heure indiquée est celle du serveur (UTC).',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback'	=> 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de « $1 » effectuée par [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu\'un d\'autre à déjà modifer ou révoquer l\'article.
+'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de « $1 » effectuée par [[{{ns:user}}:$2|$2]] ([{{ns:user_talk}}:$2|Talk]]); quelqu\'un d\'autre à déjà modifer ou révoquer l\'article.
 
-La dernière modificaion a été effectuée par [[User:$3|$3]] ([[User talk:$3|Talk]]).', // FIXME: namespaces
+La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Talk]]).', // FIXME: namespaces
 #   only shown if there is an edit comment
 'editcomment' => 'Le résumé de la modification était: <i>« $1 »</i>.',
 'revertpage'	=> 'restitution de la dernière modification de $1',
@@ -960,7 +960,7 @@ N\'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération
 
 # Special:Makesysop
 'bureaucratlog'		=> 'Log_bureaucrate',
-'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 »',
+'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
 'makesysoptitle'	=> 'Donne les droits d\'adminitrateur.',
 'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
@@ -1076,12 +1076,12 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'importtext'	=> 'Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.',
 
 # Keyboard access keys for power users
-'accesskey-compareselectedversions' => 'v',
-'accesskey-minoredit'		=> 'i',
+'accesskey-compareselectedversions' => 'V',
+'accesskey-minoredit'		=> 'I',
 'accesskey-preferences'		=> '',
-'accesskey-preview'			=> 'p',
-'accesskey-save'			=> 's',
-'accesskey-search'			=> 'f',
+'accesskey-preview'			=> 'P',
+'accesskey-save'			=> 'S',
+'accesskey-search'			=> 'F',
 
 # tooltip help for the main actions
 'tooltip-compareselectedversions' => 'Voir les différences entre les deux versions séléctionnées de cette page. [alt-v]',
@@ -1112,7 +1112,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'confirmemail_success' => 'Votre email est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
 'confirmemail_loggedin' => 'Votre adresse est maintenant confirmée',
 'confirmemail_error' => 'Un problème est survenu en voulant enregistrer votre confirmation',
-'confirmemail_subject' => '{{SITENAME}} email address confirmation',
+'confirmemail_subject' => 'Confirmation d\'email pour {{SITENAME}}',
 'confirmemail_body' => 'Quelqu\'un, probablement vous avec l\'adresse email $1, a enregistré un compte « $2 » avec cette email sur le site {{SITENAME}}.
 
 Pour confirmer que ce compte vous appartient vraiment et activer les fonctions de messagerie sur {{SITENAME}}, veuillez suivre le lien ci dessous dans votre navigateur :
