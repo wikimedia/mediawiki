@@ -30,15 +30,15 @@ class LanguageConverter {
 	 * @param array $flags array defining the custom strings that maps to the flags
      * @access public
      */
-	function LanguageConverter($langobj, $maincode, 
-								$variants=array(), 
-								$variantfallbacks=array(), 
+	function LanguageConverter($langobj, $maincode,
+								$variants=array(),
+								$variantfallbacks=array(),
 								$markup=array(),
 								$flags = array()) {
 		global $wgDBname;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
-		$this->mVariants = $variants;		
+		$this->mVariants = $variants;
 		$this->mVariantFallbacks = $variantfallbacks;
 		$this->mCacheKey = $wgDBname . ":conversiontables";
 		$m = array('begin'=>'-{', 'flagsep'=>'|', 'codesep'=>':',
@@ -51,7 +51,7 @@ class LanguageConverter {
 	/**
      * @access public
      */
-	function getVariants() { 
+	function getVariants() {
 		return $this->mVariants;
 	}
 
@@ -61,7 +61,7 @@ class LanguageConverter {
 	 * will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
 	 * when zh-sg is preferred but not defined, we will pick zh-cn
 	 * in this case. right now this is only used by zh.
-	 *	
+	 *
 	 * @param string $v the language code of the variant
 	 * @return string the code of the fallback language or false if there is no fallback
      * @access private
@@ -70,15 +70,15 @@ class LanguageConverter {
 		return $this->mVariantFallbacks[$v];
 	}
 
-	
-	/** 
+
+	/**
      * get preferred language variants.
      * @return string the preferred language code
      * @access public
 	*/
 	function getPreferredVariant() {
 		global $wgUser, $wgRequest;
-		
+
 		if($this->mPreferredVariant)
 			return $this->mPreferredVariant;
 
@@ -89,7 +89,7 @@ class LanguageConverter {
 			return $req;
 		}
 
-		// get language variant preference from logged in users 
+		// get language variant preference from logged in users
 		if(is_object($wgUser) && $wgUser->isLoggedIn() )  {
 			$this->mPreferredVariant = $wgUser->getOption('variant');
 			return $this->mPreferredVariant;
@@ -130,7 +130,7 @@ class LanguageConverter {
 		if(!$this->mTablesLoaded)
 			$this->loadTables();
 
-		if(!$toVariant) 
+		if(!$toVariant)
 			$toVariant = $this->getPreferredVariant();
 		if(!in_array($toVariant, $this->mVariants))
 			return $text;
@@ -147,11 +147,11 @@ class LanguageConverter {
 			$ret .= substr($text, $mstart, $m[1]-$mstart);
 			$ret .= strtr($m[0], $this->mTables[$toVariant]);
 			$mstart = $m[1] + strlen($m[0]);
-		}		
+		}
 		wfProfileOut( $fname );
 		return $ret;
 	}
-    
+
 	/**
      * convert text to all supported variants
      *
@@ -175,8 +175,8 @@ class LanguageConverter {
 
 	/**
 	 * convert text to different variants of a language. the automatic
-	 * conversion is done in autoConvert(). here we parse the text 
-	 * marked with -{}-, which specifies special conversions of the 
+	 * conversion is done in autoConvert(). here we parse the text
+	 * marked with -{}-, which specifies special conversions of the
 	 * text that can not be accomplished in autoConvert()
 	 *
 	 * syntax of the markup:
@@ -184,7 +184,7 @@ class LanguageConverter {
 	 * -{text}- in which case no conversion should take place for text
      *
      * @param string $text text to be converted
-     * @param bool $isTitle whether this conversion is for the article title 
+     * @param bool $isTitle whether this conversion is for the article title
      * @return string converted text
      * @access public
      */
@@ -198,7 +198,7 @@ class LanguageConverter {
 			return $text;
 
 		if($wgDisableLangConversion)
-			return $text; 
+			return $text;
 
 		$mw =& MagicWord::get( MAG_NOTITLECONVERT );
 		if( $mw->matchAndRemove( $text ) )
@@ -282,7 +282,7 @@ class LanguageConverter {
 					/* modify the conversion table for this session*/
 
 					/* fill in the missing variants, if any,
-					    with fallbacks */ 
+					    with fallbacks */
 					foreach($this->mVariants as $v) {
 						if(!array_key_exists($v, $carray)) {
 							$vf = $this->getVariantFallback($v);
@@ -311,7 +311,7 @@ class LanguageConverter {
 			if(array_key_exists(1, $marked))
 				$text .= $this->autoConvert($marked[1]);
 		}
-		
+
 		return $text;
 	}
 
@@ -344,7 +344,7 @@ class LanguageConverter {
 	/**
 	 * if a language supports multiple variants, it is
 	 * possible that non-existing link in one variant
-	 * actually exists in another variant. this function 
+	 * actually exists in another variant. this function
 	 * tries to find it. See e.g. LanguageZh.php
 	 *
 	 * @param string $link the name of the link
@@ -382,7 +382,7 @@ class LanguageConverter {
 
     /**
      * returns language specific hash options
-     * 
+     *
      * @access public
      */
 	function getExtraHashOptions() {
@@ -412,7 +412,7 @@ class LanguageConverter {
 				break;
 			sleep(1);
 		}
-		return $success;		
+		return $success;
 	}
 
 	/**
@@ -429,7 +429,7 @@ class LanguageConverter {
 	/**
      * Load default conversion tables
      * This method must be implemented in derived class
-     * 
+     *
      * @access private
      */
 	function loadDefaultTables() {
@@ -451,7 +451,7 @@ class LanguageConverter {
 			if( !empty( $this->mTables ) ) //all done
 				return;
 		}
-		// not in cache, or we need a fresh reload. 
+		// not in cache, or we need a fresh reload.
 		// we will first load the default tables
 		// then update them using things in MediaWiki:Zhconversiontable/*
 		global $wgMessageCache;
@@ -462,13 +462,13 @@ class LanguageConverter {
 		}
 
 		$this->postLoadTables();
-		
+
 		if($this->lockCache()) {
 			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 			$this->unlockCache();
 		}
 	}
-	
+
     /**
      * Hook for post processig after conversion tables are loaded
      *
@@ -477,7 +477,7 @@ class LanguageConverter {
 
     /**
      * Reload the conversion tables
-     * 
+     *
      * @access private
      */
 	function reloadTables() {
@@ -489,7 +489,7 @@ class LanguageConverter {
 
 
 	/**
-     * parse the conversion table stored in the cache 
+     * parse the conversion table stored in the cache
      *
      * the tables should be in blocks of the following form:
 
@@ -498,7 +498,7 @@ class LanguageConverter {
      *			word => word ;
      *			...
      *		}-
-     *	
+     *
      *	to make the tables more manageable, subpages are allowed
      *	and will be parsed recursively if $recursive=true
      *
@@ -517,7 +517,7 @@ class LanguageConverter {
 
 		if(array_key_exists($key, $parsed))
 			return array();
-	
+
 
 		$txt = $wgMessageCache->get( $key, true, true, true );
 
@@ -534,7 +534,7 @@ class LanguageConverter {
 			$b = explode('/', trim($b[0]), 3);
 			if(count($b)==3)
 				$sublink = $b[2];
-			else	
+			else
 				$sublink = '';
 
 			if($b[0] == $linkhead && $b[1] == $code) {
@@ -546,7 +546,7 @@ class LanguageConverter {
 		// parse the mappings in this page
 		$blocks = explode($this->mMarkup['begin'], $txt);
 		array_shift($blocks);
-		$ret = array();	
+		$ret = array();
 		foreach($blocks as $block) {
 			$mappings = explode($this->mMarkup['end'], $block, 2);
 			$stripped = str_replace(array("'", '"', '*','#'), '', $mappings[0]);
@@ -570,7 +570,7 @@ class LanguageConverter {
 				$ret = array_merge($ret, $s);
 			}
 		}
-		
+
 		if ($this->mUcfirst) {
 			foreach ($ret as $k => $v) {
 				$ret[LanguageUtf8::ucfirst($k)] = LanguageUtf8::ucfirst($v);
@@ -582,7 +582,7 @@ class LanguageConverter {
 	/**
 	 * Enclose a string with the "no conversion" tag. This is used by
 	 * various functions in the Parser
-	 * 
+	 *
 	 * @param string $text text to be tagged for no conversion
 	 * @return string the tagged text
 	*/
@@ -597,23 +597,23 @@ class LanguageConverter {
 	}
 
 	/**
-	 * convert the sorting key for category links. this should make different 
+	 * convert the sorting key for category links. this should make different
 	 * keys that are variants of each other map to the same key
 	*/
 	function convertCategoryKey( $key ) {
 		return $key;
 	}
 	/**
-     * hook to refresh the cache of conversion tables when 
+     * hook to refresh the cache of conversion tables when
      * MediaWiki:conversiontable* is updated
      * @access private
 	*/
 	function OnArticleSaveComplete($article, $user, $text, $summary, $isminor, $iswatch, $section) {
 		$titleobj = $article->getTitle();
-		if($titleobj->getNamespace() == NS_MEDIAWIKI) { 
+		if($titleobj->getNamespace() == NS_MEDIAWIKI) {
             /*
 			global $wgContLang; // should be an LanguageZh.
-			if(get_class($wgContLang) != 'languagezh')	
+			if(get_class($wgContLang) != 'languagezh')
 				return true;
             */
 			$title = $titleobj->getDBkey();

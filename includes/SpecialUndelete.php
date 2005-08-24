@@ -40,7 +40,7 @@ class PageArchive {
 	 *
 	 * @return ResultWrapper
 	 */
-	/* static */ function &listAllPages() {
+	/* static */ function listAllPages() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$archive = $dbr->tableName( 'archive' );
 
@@ -56,7 +56,7 @@ class PageArchive {
 	 *
 	 * @return ResultWrapper
 	 */
-	function &listRevisions() {
+	function listRevisions() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->resultObject( $dbr->select( 'archive',
 			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment' ),

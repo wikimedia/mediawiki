@@ -60,6 +60,11 @@ or [http://www.gnu.org/copyleft/gpl.html read it online]
 		}
 	}
 	$wgOut->addWikiText( $out );
+	
+	global $wgIP;
+	$wgOut->addHTML( '<!-- visited from '
+		. str_replace( '--', ' - - ', htmlspecialchars( $wgIP ) )
+		. " -->\n" );
 }
 
 function formatExtensionCredits( $name, $author, $url = null, $version = null ) {

@@ -9,63 +9,56 @@
 require_once( "LanguageRu.php" );
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesOs = array(
-       NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
-        NS_SPECIAL          => 'Сæрмагонд',
-        NS_MAIN             => '',
-        NS_TALK             => 'Дискусси',
-        NS_USER             => 'Архайæг', 
-        NS_USER_TALK        => 'Архайæджы_дискусси',
-        NS_PROJECT          => $wgMetaNamespace,
-        NS_PROJECT_TALK     => 'Дискусси_'+$wgMetaNamespace,
-        NS_IMAGE            => 'Ныв',
-        NS_IMAGE_TALK       => 'Нывы_тыххæй_дискусси', 
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'Дискусси_MediaWiki',
-        NS_TEMPLATE         => 'Шаблон',
-        NS_TEMPLATE_TALK    => 'Шаблоны_тыххæй_дискусси',
-        NS_HELP             => 'Æххуыс',
-        NS_HELP_TALK        => 'Æххуысы_тыххæй_дискусси', 
-        NS_CATEGORY         => 'Категори',
-        NS_CATEGORY_TALK    => 'Категорийы_тыххæй_дискусси',
+	NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
+	NS_SPECIAL          => 'Сæрмагонд',
+	NS_MAIN             => '',
+	NS_TALK             => 'Дискусси',
+	NS_USER             => 'Архайæг',
+	NS_USER_TALK        => 'Архайæджы_дискусси',
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => 'Дискусси_'+$wgMetaNamespace,
+	NS_IMAGE            => 'Ныв',
+	NS_IMAGE_TALK       => 'Нывы_тыххæй_дискусси',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Дискусси_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблоны_тыххæй_дискусси',
+	NS_HELP             => 'Æххуыс',
+	NS_HELP_TALK        => 'Æххуысы_тыххæй_дискусси',
+	NS_CATEGORY         => 'Категори',
+	NS_CATEGORY_TALK    => 'Категорийы_тыххæй_дискусси',
 ) + $wgNamespaceNamesEn;
 
-if(isset($wgExtraNamespaces)) {
-        $wgNamespaceNamesOs=$wgNamespaceNamesOs+$wgExtraNamespaces;
-}
-
 /* private */ $wgQuickbarSettingsOs = array(
-        'Ма равдис', 'Галиуырдыгæй', 'Рахизырдыгæй', 'Рахизырдыгæй ленккæнгæ'
- ); 
+	'Ма равдис', 'Галиуырдыгæй', 'Рахизырдыгæй', 'Рахизырдыгæй ленккæнгæ'
+ );
 
 /* private */ $wgSkinNamesOs = array(
-        'standard' => 'Стандартон',
-        'nostalgia' => 'Æнкъард',
-        'cologneblue' => 'Кёльны æрхæндæг',
-        'davinci' => 'Да Винчи',
-        'mono' => 'Моно',
-        'monobook' => 'Моно-чиныг',
-        'myskin' => 'Мæхи',
-        'chick' => 'Карк'
- );
+	'standard' => 'Стандартон',
+	'nostalgia' => 'Æнкъард',
+	'cologneblue' => 'Кёльны æрхæндæг',
+	'davinci' => 'Да Винчи',
+	'mono' => 'Моно',
+	'monobook' => 'Моно-чиныг',
+	'myskin' => 'Мæхи',
+	'chick' => 'Карк'
+ ) + $wgSkinNamesEn;
 
 /* private */ $wgAllMessagesOs = array(
 'titlematches' => 'Статьяты сæргæндты æмцаутæ',
 'toc' => 'Сæргæндтæ',
 'addedwatch' => "Дæ цæст кæмæ дарыс, уыцы статьятæм бафтыд.",
-'all' => "æппæт",
 'allarticles' => "Æппæт статьятæ",
 'allmessages' => "Æппæт техникон фыстытæ",
 'allpages' => "Æппæт фæрстæ",
-'allpagesnamespace' => "Æппæт фæрстæ ($1)",
 'allpagesnext' => "дарддæр",
 'allpagesprev' => "фæстæмæ",
 'alphaindexline' => "$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2",
 'ancientpages' => "Зæронддæр фæрстæ",
 'and' => "æмæ",
-'articlenamespace' => "(статьятæ)",
 'articlepage' => "Фен статья",
 'blanknamespace' => "(Сæйраг)",
 'bold_sample' => "Ацы текст бæзджын суыдзæн",
@@ -164,7 +157,7 @@ if(isset($wgExtraNamespaces)) {
 'qbfind' => "Агур",
 'qbspecialpages' => "Сæрмагонд фæрстæ",
 'randompage' => "Æнæбары æвзæрст фарс",
-'rclinks' => "Фæстаг $1 ивддзинæдтæ (афæстаг $2 боны дæргъы чи ’рцыдысты) равдис; 
+'rclinks' => "Фæстаг $1 ивддзинæдтæ (афæстаг $2 боны дæргъы чи ’рцыдысты) равдис;
 $3",
 'rcnote' => "Дæлдæр нымад сты афæстаг <strong>$2</strong> боны дæргъы конд <strong>$1</strong> ивддзинад(ы).",
 'recentchanges' => "Фæстаг ивддзинæдтæ",
@@ -232,68 +225,44 @@ $3",
 );
 
 class LanguageOs extends LanguageRu {
-        function LanguageOs() {
-                global $wgNamespaceNamesOs, $wgMetaNamespace;
-                LanguageUtf8::LanguageUtf8();
-        }
+	function LanguageOs() {
+		global $wgNamespaceNamesOs, $wgMetaNamespace;
+		LanguageUtf8::LanguageUtf8();
+	}
 
-        function getNamespaces() {
-                global $wgNamespaceNamesOs;
-                return $wgNamespaceNamesOs;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesOs;
+		return $wgNamespaceNamesOs;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsOs;
-                return $wgQuickbarSettingsOs;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsOs;
+		return $wgQuickbarSettingsOs;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesOs;
-                return $wgSkinNamesOs;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesOs;
+		return $wgSkinNamesOs;
+	}
 
-        function getDateFormats() {
-                global $wgDateFormatsRu;
-                return $wgDateFormatsRu;
-        }
+	function getDateFormats() {
+		global $wgDateFormatsRu;
+		return $wgDateFormatsRu;
+	}
 
-        function getValidSpecialPages()
-        {
-                global $wgValidSpecialPagesRu;
-                return $wgValidSpecialPagesRu;
-        }
-
-        function getSysopSpecialPages()
-        {
-                global $wgSysopSpecialPagesRu;
-                return $wgSysopSpecialPagesRu;
-        }
-
-        function getDeveloperSpecialPages()
-        {
-                global $wgDeveloperSpecialPagesRu;
-                return $wgDeveloperSpecialPagesRu;
-        }
-
-        function getMessage( $key )
-        {
-                global $wgAllMessagesOs;
+	function getMessage( $key ) {
+		global $wgAllMessagesOs;
 		return isset($wgAllMessagesOs[$key]) ? $wgAllMessagesOs[$key] : parent::getMessage($key);
-        }
+	}
 
-        function fallback8bitEncoding() {
-                return "windows-1251";
-        }
-
-        function getMagicWords()  {
-                global $wgMagicWordsRu;
-                return $wgMagicWordsRu;
-        }
+	function fallback8bitEncoding() {
+		return "windows-1251";
+	}
 
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
 	}
-	
+
 }
 ?>

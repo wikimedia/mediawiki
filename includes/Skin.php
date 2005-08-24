@@ -555,7 +555,7 @@ END;
 			return wfMsg( 'thisisdeleted',
 				$this->makeKnownLink(
 					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
-					wfMsg( 'restorelink', $n ) ) );
+					wfMsg( 'restorelink' . ($n == 1 ? '1' : ''), $n ) ) );
 		}
 		return '';
 	}
@@ -1316,8 +1316,12 @@ END;
 					$link = wfMsgForContent( $line[0] );
 					if ($link == '-')
 						continue;
+					if (wfNoMsg($line[1], $text = wfMsg($line[1])))
+						$text = $line[1];
+					if (wfNoMsg($line[0], $link))
+						$link = $line[0];
 					$bar[$heading][] = array(
-						'text' => wfMsg( $line[1] ),
+						'text' => $text,
 						'href' => $this->makeInternalOrExternalUrl( $link ),
 						'id' => 'n-' . strtr($line[1], ' ', '-'),
 					);

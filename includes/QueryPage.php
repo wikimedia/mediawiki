@@ -29,6 +29,7 @@ $wgQueryPages = array(
     array( 'UncategorizedPagesPage',    'Uncategorizedpages'),
     array( 'UnusedimagesPage',          'Unusedimages'      ),
     array( 'WantedPagesPage',           'Wantedpages'       ),
+    array( 'MostlinkedPage',		'Mostlinked'	    ),
 );
     
 global $wgDisableCounters;

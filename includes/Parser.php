@@ -753,7 +753,11 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
+		# Remove <noinclude> tags and <includeonly> sections
+		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
+		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
+
+		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -769,7 +773,7 @@ class Parser
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace("http-noparse://","http://",$text);
+		$text = str_replace(UNIQ_PREFIX."NOPARSE", "", $text);
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
@@ -1225,7 +1229,6 @@ class Parser
 		if ( $useLinkPrefixExtension ) {
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];
-				$s = $m[1];
 			} else {
 				$first_prefix = false;
 			}
@@ -1308,7 +1311,7 @@ class Parser
 				$link = substr($link, 1);
 			}
 
-			$nt =& Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
+			$nt = Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -1385,7 +1388,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . str_replace('http://', 'http-noparse://', $this->makeImage( $nt, $text ) ) . $trail;
+						$s .= $prefix . preg_replace("/\b($wgUrlProtocols)/", UNIQ_PREFIX."NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 
 						wfProfileOut( "$fname-image" );
@@ -2279,6 +2282,10 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			if( $this->mOutputType == OT_HTML ) {
+				# Remove <noinclude> sections and <includeonly> tags
+				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
+				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
@@ -3288,6 +3295,29 @@ class Parser
 		# Linker does the rest
 		$sk =& $this->mOptions->getSkin();
 		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
+	}
+
+	/**
+	 * Set a flag in the output object indicating that the content is dynamic and 
+	 * shouldn't be cached.
+	 */
+	function disableCache() {
+		$this->mOutput->mCacheTime = -1;
+	}
+	
+	/**
+	 * Callback from the Sanitizer for expanding items found in HTML attribute
+	 * values, so they can be safely tested and escaped.
+	 * @param string $text
+	 * @param array $args
+	 * @return string
+	 * @access private
+	 */
+	function attributeStripCallback( &$text, $args ) {
+		$text = $this->replaceVariables( $text, $args );
+		$text = $this->unstrip( $text, $this->mStripState );
+		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		return $text;
 	}
 }
 

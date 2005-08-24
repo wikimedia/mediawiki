@@ -22,11 +22,6 @@ if( defined( 'MEDIAWIKI' ) ) {
 # Language-specific text
 #--------------------------------------------------------------------------
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
@@ -366,7 +361,6 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'article'		=> 'Content page',
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
-'wikititlesuffix' => '{{SITENAME}}',
 'bugreports'	=> 'Bug reports',
 'bugreportspage' => 'Project:Bug_reports',
 'sitesupport'   => 'Donations',
@@ -411,7 +405,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'info_short'	=> 'Information',
 'printableversion' => 'Printable version',
 'print' => 'Print',
-'edit' => 'Edit this page',
+'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 'deletethispage' => 'Delete this page',
@@ -476,6 +470,7 @@ See $1.',
 'showtoc' => 'show',
 'hidetoc' => 'hide',
 'thisisdeleted' => "View or restore $1?",
+'restorelink1' => 'one deleted edit',
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
@@ -588,7 +583,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
-'alreadyloggedin' => "<font color=red><b>User $1, you are already logged in!</b></font><br />\n",
+'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />\n",
 
 'login'			=> 'Log in',
 'loginprompt'           => "You must have cookies enabled to log in to {{SITENAME}}.",
@@ -709,7 +704,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 'noarticletext' => '(There is currently no text in this page)',
-'clearyourcache' => "'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview' => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
 'userjspreview' => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
@@ -769,8 +764,8 @@ Please check the URL you used to access this page.\n",
 'currentrev'	=> 'Current revision',
 'revisionasof'          => 'Revision as of $1',
 'revisionasofwithlink'  => 'Revision as of $1; $2<br />$3 | $4',
-'previousrevision'	=> '&larr;Older revision',
-'nextrevision'		=> 'Newer revision&rarr;',
+'previousrevision'	=> '←Older revision',
+'nextrevision'		=> 'Newer revision→',
 'currentrevisionlink'   => 'view current revision',
 'cur'			=> 'cur',
 'next'			=> 'next',
@@ -975,7 +970,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'nchanges'		=> "$1 changes",
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
-'sectionlink' => '&rarr;',
+'sectionlink' => '→',
 'number_of_watching_users_RCview' 	=> '[$1]',
 'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
 
@@ -1122,6 +1117,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'popularpages'	=> 'Popular pages',
 'nviews'		=> '$1 views',
 'wantedpages'	=> 'Wanted pages',
+'mostlinked'	=> 'Most linked to pages',
 'nlinks'		=> '$1 links',
 'allpages'		=> 'All pages',
 'randompage'	=> 'Random page',
@@ -1133,17 +1129,6 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'specialpages'	=> 'Special pages',
 'spheading'		=> 'Special pages for all users',
 'restrictedpheading'	=> 'Restricted special pages',
-'blockpheading' => 'block level',
-'createaccountpheading' => 'createaccount level',
-'deletepheading' => 'delete level',
-'userrightspheading' => 'userrights level',
-'grouprightspheading' => 'grouprights level',
-'siteadminpheading' => 'siteadmin level',
-
-/** obsoletes
-'sysopspheading' => 'For sysop use only',
-'developerspheading' => 'For developer use only',
-*/
 'protectpage'	=> 'Protect page',
 'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",
@@ -1226,7 +1211,7 @@ Future changes to this page and its associated Talk page will be listed there,
 and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
 
-<p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
+<p>If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
 'removedwatch'		=> 'Removed from watchlist',
 'removedwatchtext' 	=> "The page \"$1\" has been removed from your watchlist.",
 'watch' => 'Watch',
@@ -1415,7 +1400,10 @@ to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
 'ipusuccess'	=> "\"[[$1]]\" unblocked",
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
-'blocklistline'	=> "$1, $2 blocked $3 (expires $4)",
+'blocklistline'	=> "$1, $2 blocked $3 ($4)",
+'infiniteblock' => 'infinite',
+'expiringblock' => 'expires $1',
+'ipblocklistempty'	=> 'The blocklist is empty.',
 'blocklink'		=> 'block',
 'unblocklink'	=> 'unblock',
 'contribslink'	=> 'contribs',
@@ -1638,7 +1626,7 @@ article [[Train]].
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-diff' => 'd',
+'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
@@ -1765,11 +1753,11 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'deletedrevision' => 'Deleted old revision $1.',
 
 # browsing diffs
-'previousdiff' => '&larr; Previous diff',
-'nextdiff' => 'Next diff &rarr;',
+'previousdiff' => '← Previous diff',
+'nextdiff' => 'Next diff →',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
-'thumbsize'	=> 'Thumbnail size :',
+'thumbsize'	=> 'Thumbnail size: ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'Gallery of new files',
@@ -2080,12 +2068,12 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'edit-externally' => 'Edit this file using an external application',
 'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
 
-# 'all' in various places, this might be different for inflicted languages
+# 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
 'imagelistall' => 'all',
 'watchlistall1' => 'all',
 'watchlistall2' => 'all',
-'contributionsall' => 'all',
+'namespacesall' => 'all',
 
 # E-mail address confirmation
 'confirmemail' => 'Confirm E-mail address',
@@ -2126,7 +2114,7 @@ will expire at $4.
 
 # Trackbacks
 'trackbackbox' => "<div id='mw_trackbacks'>
-Trackbacks for this article:<br/>
+Trackbacks for this article:<br />
 $1
 </div>
 ",
@@ -2135,6 +2123,9 @@ $1
 'trackbackremove' => ' ([$1 Delete])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
+
+'unit-pixel' => 'px',
+
 );
 
 /* a fake language converter */
@@ -2507,21 +2498,6 @@ class Language {
 			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $datePreference, $timecorrection );
 		}
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesEn;
-		return $wgValidSpecialPagesEn;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesEn;
-		return $wgSysopSpecialPagesEn;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesEn;
-		return $wgDeveloperSpecialPagesEn;
 	}
 
 	function getMessage( $key ) {

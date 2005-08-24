@@ -19,11 +19,11 @@ if( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding('UTF-8');
 } else {
 	# Hack our own case conversion routines
-	
+
 	# Loading serialized arrays is faster than parsing code :P
 	$wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
 	$wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
-	
+
 	if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
 		require_once( "includes/Utf8Case.php" );
 		$wgMemc->set( $key1, $wikiUpperChars );
@@ -38,7 +38,7 @@ if( function_exists( 'mb_strtoupper' ) ) {
 class LanguageUtf8 extends Language {
 
 	# These two functions use mbstring library, if it is loaded
-	# or compiled and character mapping arrays otherwise. 
+	# or compiled and character mapping arrays otherwise.
 	# In case of language-specific character mismatch
 	# it should be dealt with in Language classes.
 
@@ -62,7 +62,7 @@ class LanguageUtf8 extends Language {
 		}
 		return ucfirst( $string );
 	}
-	
+
 	function lcfirst( $string ) {
 		if (function_exists('mb_strtolower')) {
 			return mb_strtolower(mb_substr($string,0,1)).mb_substr($string,1);
@@ -83,7 +83,7 @@ class LanguageUtf8 extends Language {
 		# all strtolower on stripped output or argument
 		# should be removed and all stripForSearch
 		# methods adjusted to that.
-		
+
 		wfProfileIn( "LanguageUtf8::stripForSearch" );
 		if( function_exists( 'mb_strtolower' ) ) {
 			$out = preg_replace(
@@ -117,7 +117,7 @@ class LanguageUtf8 extends Language {
 		# Check for non-UTF-8 URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		if(!$ishigh) return $s;
-		
+
 		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
                 '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 		if( $isutf8 ) return $s;
@@ -128,7 +128,7 @@ class LanguageUtf8 extends Language {
 	function firstChar( $s ) {
 		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
-		
+
 		return isset( $matches[1] ) ? $matches[1] : "";
 	}
 

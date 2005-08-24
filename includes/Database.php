@@ -37,7 +37,7 @@ class Database {
 	 */
 	var $mLastQuery = '';
 	
-	var $mServer, $mUser, $mPassword, $mConn, $mDBname;
+	var $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
 	var $mOut, $mOpened = false;
 	
 	var $mFailFunction; 
@@ -215,7 +215,14 @@ class Database {
 			@/**/$this->mConn = mysql_pconnect( $server, $user, $password );
 		} else {
 			# Create a new connection...
-			@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
+			if( version_compare( PHP_VERSION, '4.2.0', 'ge' ) ) {
+				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
+			} else {
+				# On PHP 4.1 the new_link parameter is not available. We cannot
+				# guarantee that we'll actually get a new connection, and this
+				# may cause some operations to fail possibly.
+				@/**/$this->mConn = mysql_connect( $server, $user, $password );
+			}
 		}
 
 		if ( $dbName != '' ) {
@@ -237,7 +244,6 @@ class Database {
 		
 		if ( !$success ) {
 			$this->reportConnectionError();
-			$this->close();
 		}
 		$this->mOpened = $success;
 		return $success;
@@ -266,16 +272,15 @@ class Database {
 	/**
 	 * @access private
 	 * @param string $msg error message ?
-	 * @todo parameter $msg is not used
 	 */
-	function reportConnectionError( $msg = '') {
+	function reportConnectionError() {
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
 				$ff = $this->mFailFunction;
 				$ff( $this, mysql_error() );
 			}
 		} else {
-			wfEmergencyAbort( $this, mysql_error() );
+			wfEmergencyAbort( $this, $this->lastError() );
 		}
 	}
 	
@@ -591,7 +596,13 @@ class Database {
 	 */
 	function lastError() { 
 		if ( $this->mConn ) {
-			$error = mysql_error( $this->mConn ); 
+			# Even if it's non-zero, it can still be invalid
+			wfSuppressWarnings();
+			$error = mysql_error( $this->mConn );
+			if ( !$error ) {
+				$error = mysql_error();
+			}
+			wfRestoreWarnings();
 		} else {
 			$error = mysql_error();
 		}
@@ -1120,7 +1131,10 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		return "FORCE INDEX ($index)";
+		global $wgDBmysql4;
+		return $wgDBmysql4
+			? "FORCE INDEX ($index)"
+			: "USE INDEX ($index)";
 	}
 
 	/**
@@ -1606,8 +1620,8 @@ class ResultWrapper {
  */
 function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
-	global $wgSitename, $wgServer;
-	
+	global $wgSitename, $wgServer, $wgMessageCache;
+
 	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
 	# Hard coding strings instead.
 
@@ -1648,6 +1662,10 @@ border=\"0\" ALT=\"Google\"></A>
 		header( 'Cache-control: none' );
 		header( 'Pragma: nocache' );
 	}
+
+	# No database access
+	$wgMessageCache->disable();
+	
 	$msg = wfGetSiteNotice();
 	if($msg == '') {
 		$msg = str_replace( '$1', $error, $noconnect );

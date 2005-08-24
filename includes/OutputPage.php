@@ -174,7 +174,8 @@ class OutputPage {
 				$name .= ' - '.$taction;
 			}
 		}
-		$this->setHTMLTitle( $name . ' - ' . wfMsg( 'wikititlesuffix' ) );
+		
+		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
 	}
 	function getHTMLTitle() { return $this->mHTMLtitle; }
 	function getPageTitle() { return $this->mPagetitle; }
@@ -809,13 +810,13 @@ class OutputPage {
 
 		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
-		if ( "" == $this->mHTMLtitle ) {
-			$this->mHTMLtitle = wfMsg( "pagetitle", $this->mPagetitle );
+		if ( '' == $this->getHTMLTitle() ) {
+			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 
 		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
 		$ret .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
-		$ret .= "<head>\n<title>" . htmlspecialchars( $this->mHTMLtitle ) . "</title>\n";
+		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 
 		$ret .= $this->getHeadLinks();
@@ -876,7 +877,7 @@ class OutputPage {
 			$link = $wgRequest->escapeAppendQuery( 'feed=rss' );
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='$link' />\n";
 			$link = $wgRequest->escapeAppendQuery( 'feed=atom' );
-			$ret .= "<link rel='alternate' type='application/rss+atom' title='Atom 0.3' href='$link' />\n";
+			$ret .= "<link rel='alternate' type='application/atom+xml' title='Atom 0.3' href='$link' />\n";
 		}
 
 		return $ret;
