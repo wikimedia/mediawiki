@@ -82,7 +82,6 @@ if($wgMetaNamespace === FALSE)
 	MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__'   ),
 	MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__', '__INNHOLDSLISTE__'                    ),
 	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKENDRING__', '__INGABOLKREDIGERING__', '__INGENDELENDRING__'),
-	MAG_START                => array( 0,    '__START__'                                                            ),
 	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                                   ),
 	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'                       ),
 	MAG_CURRENTMONTHABBREV   => array( 1,    'CURRENTMONTHABBREV', 'MÅNADNOKORT', 'MÅNEDNÅKORT'                     ),
@@ -95,7 +94,6 @@ if($wgMetaNamespace === FALSE)
 	MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
-	MAG_MSG                  => array( 0,    'MSG:'                                                                 ),
 	MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
 	MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
 	MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),
@@ -106,7 +104,6 @@ if($wgMetaNamespace === FALSE)
 	MAG_IMG_WIDTH            => array( 1,    '$1px', '$1pk'                                                         ),
 	MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'sentrum'                                          ),
 	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'ramme'                                 ),
-	MAG_INT                  => array( 0,    'INT:'                                                                 ),
 	MAG_SITENAME             => array( 1,    'SITENAME', 'NETTSTADNAMN'                                             ),
 	MAG_NS                   => array( 0,    'NS:', 'NR:'                                                           ),
 	MAG_LOCALURL             => array( 0,    'LOCALURL:', 'LOKALLENKJE:', 'LOKALLENKE:'                             ),
@@ -120,7 +117,8 @@ if($wgMetaNamespace === FALSE)
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK', 'VEKENRNO', 'UKENRNÅ'                                   ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                              ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID', 'VERSJONSID'                                             )
-);
+) + $wgMagicWordsEn;
+
 
 #-------------------------------------------------------------------
 # Default messages
