@@ -75,7 +75,7 @@ function ucfirstlcrest($string) {
 function getMediawikiMessages($languageCode = 'En') {
 
 	$foo = "wgAllMessages$languageCode";
-	global $$foo;
+	global $$foo, $wgSkinNamesEn;
 
 	// it might already be loaded in LocalSettings.php
 	if(!isset($$foo)) {
