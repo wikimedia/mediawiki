@@ -1992,6 +1992,17 @@ require_once( 'LanguageUtf8.php' );
 
 class LanguagePt extends LanguageUtf8 {
 
+	function timeanddate( $ts, $adj = false ) {
+		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
+	}
+
+	/**
+	 * Portuguese numeric format is 123 456,78
+	 */
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
+	}
+
 	/**
 	* Exports $wgBookstoreListPt
 	* @return array
