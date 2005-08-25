@@ -436,22 +436,30 @@ END;
 
 			# get a big array of the parents tree
 			$parenttree = $wgTitle->getParentCategoryTree();
-
 			# Skin object passed by reference cause it can not be
-			# accessed under the method subfunction walkThrough.
-			$s .= Skin::drawCategoryBrowser($parenttree, $this);
+			# accessed under the method subfunction drawCategoryBrowser
+			$tempout = explode("\n", Skin::drawCategoryBrowser($parenttree, $this) );
+			# Clean out bogus first entry and sort them
+			unset($tempout[0]);
+			asort($tempout);
+			# Output one per line
+			$s .= implode("<br />\n", $tempout);
 		}
 
 		return $s;
 	}
 
-	# Render the array as a serie of links
-	function drawCategoryBrowser ($tree, &$skin) {
+	/** Render the array as a serie of links.
+	 * @param array $tree Categories tree returned by Title::getParentCategoryTree
+	 * @param object &skin Skin passed by reference
+	 * @return string separated by &gt;, terminate with "\n"
+	 */
+	function drawCategoryBrowser($tree, &$skin) {
 		$return = '';
 		foreach ($tree as $element => $parent) {
 			if (empty($parent)) {
 				# element start a new list
-				$return .= "<br />\n";
+				$return .= "\n";
 			} else {
 				# grab the others elements
 				$return .= Skin::drawCategoryBrowser($parent, $skin) . ' &gt; ';
