@@ -156,7 +156,7 @@ require_once( 'LanguageUtf8.php' );
 'disclaimerpage' => '{{ns:4}}:Avertissements généraux',
 'errorpagetitle' => 'Erreur',
 'returnto'      => 'Revenir à la page $1.',
-'tagline'       => 'Un article de {{SITENAME}}, l\'encyclopédie libre.',
+'tagline'       => 'Un article de {{SITENAME}}.',
 'whatlinkshere' => 'Références à cette page',
 'help'          => 'Aide',
 'search'        => 'Rechercher',
