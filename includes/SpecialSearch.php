@@ -35,7 +35,7 @@ require_once( 'Revision.php' );
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
 	
-	$search = $wgRequest->getText( 'search', $par );
+	$search = Sanitizer::removeHTMLtags($wgRequest->getText( 'search', $par ));
 	$searchPage = new SpecialSearch( $wgRequest, $wgUser );
 	if( $wgRequest->getVal( 'fulltext' ) ||
 		!is_null( $wgRequest->getVal( 'offset' ) ) ||
