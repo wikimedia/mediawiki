@@ -35,7 +35,7 @@ require_once( 'Revision.php' );
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
 	
-	$search = Sanitizer::removeHTMLtags($wgRequest->getText( 'search', $par ));
+	$search = $wgRequest->getText( 'search', $par );
 	$searchPage = new SpecialSearch( $wgRequest, $wgUser );
 	if( $wgRequest->getVal( 'fulltext' ) ||
 		!is_null( $wgRequest->getVal( 'offset' ) ) ||
@@ -224,7 +224,7 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
-		$wgOut->setSubtitle( wfMsg( 'searchquery', $term ) );
+		$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'searchquery', $term ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}
