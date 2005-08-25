@@ -666,9 +666,6 @@ format. Please enter a well-formatted address or empty that field.',
 'media_tip'=>'Media file link',
 'sig_tip'=>'Your signature with timestamp',
 'hr_tip'=>'Horizontal line (use sparingly)',
-'infobox'=>'Click a button to get an example text',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'=>"Please enter the text you want to be formatted.\\n It will be shown in the infobox for copy and pasting.\\nExample:\\n$1\\nwill become:\\n$2",
 
 # Edit pages
 #

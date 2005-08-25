@@ -1,7 +1,5 @@
 // Wikipedia JavaScript support functions
-// if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
-var noOverwrite=false;
-var alertText;
+
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('khtml') == -1) && (clientPC.indexOf('netscape/7.0')==-1));
@@ -261,6 +259,11 @@ function toggleToc() {
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 
+	// Don't generate buttons for browsers which don't fully
+	// support it.
+	if(!document.selection && !is_gecko) {
+		return false;
+	}
 	imageFile=escapeQuotesHTML(imageFile);
 	speedTip=escapeQuotesHTML(speedTip);
 	tagOpen=escapeQuotes(tagOpen);
@@ -268,41 +271,11 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	sampleText=escapeQuotes(sampleText);
 	var mouseOver="";
 
-	// we can't change the selection, so we show example texts
-	// when moving the mouse instead, until the first button is clicked
-	if(!document.selection && !is_gecko) {
-		// filter backslashes so it can be shown in the infobox
-		var re=new RegExp("\\\\n","g");
-		tagOpen=tagOpen.replace(re,"");
-		tagClose=tagClose.replace(re,"");
-		mouseOver = "onMouseover=\"if(!noOverwrite){document.infoform.infobox.value='"+tagOpen+sampleText+tagClose+"'};\"";
-	}
-
 	document.write("<a href=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
-
 	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" alt=\""+speedTip+"\" title=\""+speedTip+"\""+mouseOver+">");
 	document.write("</a>");
 	return;
-}
-
-function addInfobox(infoText,text_alert) {
-	alertText=text_alert;
-	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-
-	var re=new RegExp("\\\\n","g");
-	alertText=alertText.replace(re,"\n");
-
-	// if no support for changing selection, add a small copy & paste field
-	// document.selection is an IE-only property. The full toolbar works in IE and
-	// Gecko-based browsers.
-	if(!document.selection && !is_gecko) {
- 		infoText=escapeQuotesHTML(infoText);
-	 	document.write("<form name='infoform' id='infoform'>"+
-			"<input size=80 id='infobox' name='infobox' value=\""+
-			infoText+"\" readonly='readonly'></form>");
- 	}
-
 }
 
 function escapeQuotes(text) {
@@ -364,27 +337,9 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		txtarea.selectionEnd=cPos;
 		txtarea.scrollTop=scrollTop;
 
-	// All others
-	} else {
-		var copy_alertText=alertText;
-		var re1=new RegExp("\\$1","g");
-		var re2=new RegExp("\\$2","g");
-		copy_alertText=copy_alertText.replace(re1,sampleText);
-		copy_alertText=copy_alertText.replace(re2,tagOpen+sampleText+tagClose);
-		var text;
-		if (sampleText) {
-			text=prompt(copy_alertText);
-		} else {
-			text="";
-		}
-		if(!text) { text=sampleText;}
-		text=tagOpen+text+tagClose;
-		document.infoform.infobox.value=text;
-		// in Safari this causes scrolling
-		if(!is_safari) {
-			txtarea.focus();
-		}
-		noOverwrite=true;
+	// All other browsers get no toolbar.
+	// There was previously support for a crippled "help"
+	// bar, but that caused more problems than it solved.
 	}
 	// reposition cursor if possible
 	if (txtarea.createTextRange) txtarea.caretPos = document.selection.createRange().duplicate();
