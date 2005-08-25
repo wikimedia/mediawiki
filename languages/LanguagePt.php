@@ -13,7 +13,7 @@
  * @subpackage Language
  */
 
-if( ! defined( 'MEDIAWIKI' ) ) {
+if( defined( 'MEDIAWIKI' ) ) {
 
 #
 # In general you should not make customizations in these language files
