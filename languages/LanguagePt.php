@@ -44,7 +44,7 @@ if($wgMetaNamespace === FALSE)
 	NS_USER_TALK        => 'Utilizador_Discussão', # 3
 */
 	NS_PROJECT          => $wgMetaNamespace, # 4
-	NS_PROJECT_TALK     => $wgMetaNamespace_. 'Discussão', # 5
+	NS_PROJECT_TALK     => $wgMetaNamespace.'_Discussão', # 5
 	NS_IMAGE            => 'Imagem', # 6
 	NS_IMAGE_TALK       => 'Imagem_Discussão', # 7
 	NS_MEDIAWIKI        => 'MediaWiki', # 8
