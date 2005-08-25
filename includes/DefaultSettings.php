@@ -28,7 +28,7 @@ require_once( 'includes/SiteConfiguration.php' );
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */
-$wgVersion			= '1.5beta4';
+$wgVersion			= '1.5rc3';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -614,6 +614,14 @@ $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
+
+/**
+ * Set to an array of log group keys to filenames.
+ * If set, wfDebugLog() output for that group will go to that file instead 
+ * of the regular $wgDebugLogFile. Useful for enabling selective logging
+ * in production.
+ */
+$wgDebugLogGroups       = array();
 
 /**
  * Whether to show "we're sorry, but there has been a database error" pages.
@@ -1555,6 +1563,12 @@ $wgCountCategorizedImagesAsUsed = false;
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
+
+/**
+ * An array of external mysql servers, e.g.
+ * $wgExternalServers = array( 'cluster1' => array( 'srv28', 'srv29', 'srv30' ) );
+ */
+$wgExternalServers = array();
 
 /**
 * list of trusted media-types and mime types.

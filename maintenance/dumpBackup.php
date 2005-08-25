@@ -22,6 +22,8 @@
  * @subpackage SpecialPage
  */
 
+$originalDir = getcwd();
+
 $optionsWithArgs = array( 'server', 'pagelist' );
 
 require_once( 'commandLine.inc' );
@@ -141,7 +143,7 @@ if( isset( $options['server'] ) ) {
 
 if ( isset( $options['pagelist'] ) ) {
 	$olddir = getcwd();
-	chdir( 'maintenance' );
+	chdir( $originalDir );
 	$pages = file( $options['pagelist'] );
 	chdir( $olddir );
 	if ( $pages === false ) {

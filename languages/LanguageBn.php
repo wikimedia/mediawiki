@@ -67,7 +67,6 @@ require_once( 'LanguageUtf8.php' );
 'aboutpage'   => 'উইকিপেডিয়া:বৃত্তান্ত',
 'help'      => 'সহায়িকা',
 'helppage'    => 'উইকিপেডিয়া:সহায়িকা',
-'wikititlesuffix' => 'উইকিপেডিয়া',
 'bugreports'  => 'ত্রুটি বিবরণী',
 'bugreportspage' => 'উইকিপেডিয়া:ত্রুটি_বিবরণী',
 'faq'     => 'প্রশ্নোত্তর',
@@ -161,7 +160,7 @@ class LanguageBn extends LanguageUtf8 {
 		'8' => '৮',
 		'9' => '৯'
 	);
-	
+
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		if( $wgTranslateNumerals ) {

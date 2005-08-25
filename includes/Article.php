@@ -864,7 +864,7 @@ class Article {
 
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
-			$rmvtext = "";
+			$rmvtxt = "";
 			if ($wgUser->isSysop()) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
 						. $o->tb_id . "&token=" . $wgUser->editToken());
@@ -970,6 +970,7 @@ class Article {
 			# An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
+
 		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
@@ -1582,7 +1583,7 @@ class Article {
 
 		wfDebug( "Article::confirmProtect\n" );
 
-		$sub = $this->mTitle->getPrefixedText();
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$check = '';
@@ -1706,7 +1707,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$rev =& Revision::newFromTitle( $this->mTitle );
+		$rev = Revision::newFromTitle( $this->mTitle );
 
 		# Fetch name(s) of contributors
 		$rev_name = '';

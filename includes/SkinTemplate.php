@@ -225,6 +225,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
+		$tpl->setRef('headscripts', $out->getScript() );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->setRef( 'stylename', $this->stylename );
@@ -362,10 +363,15 @@ class SkinTemplate extends Skin {
 
 		if ( !$wgHideInterlanguageLinks ) {
 			foreach( $wgOut->getLanguageLinks() as $l ) {
+				$tmp = explode( ':', $l, 2 );
+				$class = 'interwiki-' . $tmp[0];
+				unset($tmp);
 				$nt = Title::newFromText( $l );
-				$language_urls[] = array('href' => $nt->getFullURL(),
-				'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-				'class' => $wgContLang->isRTL() ? 'rtl' : 'ltr');
+				$language_urls[] = array(
+					'href' => $nt->getFullURL(),
+					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+					'class' => $class
+				);
 			}
 		}
 		if(count($language_urls)) {
@@ -711,6 +717,8 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		wfRunHooks( 'SkinTemplateContentActions', array(&$content_actions) );
+		
 		wfProfileOut( $fname );
 		return $content_actions;
 	}

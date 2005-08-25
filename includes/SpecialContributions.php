@@ -169,7 +169,7 @@ function wfSpecialContributions( $par = null ) {
 	}
 	$nt =& Title::makeTitle(NS_USER, $nt->getDBkey());
 
-	$limit = min($wgRequest->getInt('limit', 50), 500);
+	list( $limit, $offset) = wfCheckLimits();
 	$offset = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
 	if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
@@ -245,19 +245,10 @@ function wfSpecialContributions( $par = null ) {
 			"type" => "hidden",
 			"value" => $target));
 	$nsform .= "<p>";
-	$nsform .= htmlspecialchars(wfMsg('namespace')) . " <select name='namespace'>\n";
-	foreach (array("" => wfMsg('contributionsall')) + $arr as $nsn => $name) {
-		if ($nsn < 0)
-			continue;
-		$name = $nsn!==0 ? $name : wfMsg('blanknamespace');
-		$nsform .= ("$nsn" == "$ns") ?
-				wfElement("option",
-					array("value" => $nsn, "selected" => "selected"),
-					$name)
-				:
-				wfElement("option", array("value" => $nsn), $name);
-	}
-	$nsform .= "</select>\n";
+	$nsform .= wfMsgHtml('namespace');
+
+	$nsform .= HTMLnamespaceselector($ns, '');
+
 	$nsform .= wfElement("input", array(
 			"type" => "submit",
 			"value" => wfMsg('allpagessubmit')));

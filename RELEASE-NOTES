@@ -3,6 +3,45 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5 release candidate 3 ==
+
+August 24, 2005
+
+MediaWiki 1.5rc3 is a preview release of the new 1.5 release series.
+It fixes several major problems in 1.5rc2:
+
+* Fixed a cross-site scripting injection in the search form
+  (broken since 1.5beta1)
+
+* Fixed upgrades from 1.4 database schema
+  (broken since 1.5rc2)
+
+1.3 and 1.4 releases are not vulnerable to the XSS bug, but anyone
+running an earlier 1.5 beta or release candidate should upgrade
+immediately.
+
+
+== MediaWiki 1.5 release candidate 2 ==
+
+August 23, 2005
+
+MediaWiki 1.5rc2 is a preview release of the new 1.5 release series.
+Numerous bug fixes since last beta, plus a security fix; see change
+log below for full details.
+
+A flaw in the interaction between extensions and HTML attribute
+sanitization was discovered which could allow unauthorized use
+of offsite resources in style sheets, and possible exploitation
+of a JavaScript injection feature on Microsoft Internet Explorer.
+
+This version expands the returned text and properly checks it
+before output.
+
+A 1.5rc1 release was mistakenly made from the incorrect source code
+branch; 1.5rc2 is identical to the actual 1.5rc1 in revision control
+except for version number.
+
+
 == MediaWiki 1.5 beta 4 ==
 
 July 30, 2005
@@ -631,7 +670,54 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5beta4 ===
 
 * Fix Special:Allmessages under PHP 5
+* (bug 2911) Special:Watchlist allowed only one type of limit at a time
+* (bug 693) Special:Allmessages is excessively wide and redundant
+* (bug 3001) Updated and applied live hack for recentchanges-based watchlist
+* (bug 145) Finish 'exclude redirect' implementation in search form
+* Rearranged Special:Movepage form to reduce confusion between destination
+  title and reason input boxes
+* (bug 2527) Always set destination filename when new file is selected
+* (bug 3056) MySQL 3 compatibility fix: USE INDEX instead of FORCE INDEX
+* PHP 4.1 compatibility fix: don't use new_link parameter to mysql_connect
+  if running prior to 4.2.0 as it causes the call to fail
+* (bug 3117) Fix display of upload size and type with tidy on
+* (bug 1487) invalid html on empty list in banlist
+* (bug 3017) Hotkey conflict for delete and show changes
+* made pixel unit translateable and blocklistline now eats infiniteblock
+  and expiringblock
+* (bug 3092) Wrong numerical separator for big numbers in Serbian.
+* (bug 2855) Credit for a uniq author showed its realname even with
+  $wgAllowRealName=false.
+* New special page: SpecialMostlinked
+* (bug 2393) Fix MIME type for Atom feeds ( application/rss+atom )
+* Fix display of read-only lockfile message
+* Added a new hook, 'AddNewAccount', which is run after account creation
+* Update all stats fields on recount.sql
+* Include software-visible client IP address in Special:Version comment
+  as a proxy debugging aid
+* (bug 3162) Fix 'undefined property page_is_new' error on watchlist
+* (bug 1734) granting db permissions failed with db usernames containg '-'
+* (bug 3170) wikititlesuffix was removed, use pagetitle instead
+* (bug 3187) watchlist text refer to unexistent "Stop watching" action
+* (bug 3190) Added some date format choices for language sr
+* (bug 1334) LanguageGa.php update
+* (bug 1020) Changing user interface language does not work immediately
+* (bug 2753) Some namespaces were not translated in LanguageTa.php (Tamil)
+* (bug 3204) Fix typo breaking special pages in fy localization
+* (bug 3210) Fix Media: links with remote image URL path
+* (bug 3220) Fix escaping of block URLs in Recentchanges
+* (bug 3238): Updated LanguageNn.php for 1_5 branch
+* (bug 3192): properly check 'limit' parameter on Special:Contributions
+* (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
+* Fix URL sanitization in HTML attributes, which broke in this branch
 
+
+=== Changes since 1.5rc2 ===
+
+* Fix upgrade from 1.4 due to version number check breakage
+* Fix upgrade from 1.4 with no old revisions
+* (bug 2108) Sort entries when using category browser
+* XSS issue : now sanitize search query input
 
 === Caveats ===
 

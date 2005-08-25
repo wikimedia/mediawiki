@@ -70,7 +70,7 @@ class SpecialSearch {
 			$this->namespaces = $this->userNamespaces( $user );
 		}
 		
-		$this->searchRedirects = false;
+		$this->searchRedirects = $request->getcheck( 'redirs' ) ? true : false;
 	}
 	
 	/**
@@ -164,6 +164,7 @@ class SpecialSearch {
 		$search =& SearchEngine::create();
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
+		$search->showRedirects = $this->searchRedirects;
 		$titleMatches = $search->searchTitle( $term );
 		$textMatches = $search->searchText( $term );
 		
@@ -223,7 +224,7 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
-		$wgOut->setSubtitle( wfMsg( 'searchquery', $term ) );
+		$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'searchquery', $term ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}

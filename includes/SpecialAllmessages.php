@@ -96,12 +96,13 @@ function makeHTMLText( $messages ) {
 	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	$txt = "
-
-	<table border='1' cellspacing='0' width='100%'>
-	<tr bgcolor='#b2b2ff'>
-		<th>" . wfMsg('allmessagesname') . "</th>
-		<th>" . wfMsg('allmessagesdefault') . "</th>
-		<th>" . wfMsg('allmessagescurrent')  . "</th>
+<table border='1' cellspacing='0' width='100%' id='allmessagestable'>
+	<tr >
+		<th rowspan='2'>" . wfMsgHtml('allmessagesname') . "</th>
+		<th>" . wfMsgHtml('allmessagesdefault') . "</th>
+	</tr>
+	<tr>
+		<th>" . wfMsgHtml('allmessagescurrent') . "</th>
 	</tr>";
 	
 	wfProfileIn( "$fname-check" );
@@ -132,7 +133,7 @@ function makeHTMLText( $messages ) {
 		$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
 		$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
-		$colorIt = ($m['statmsg'] == $m['msg']) ? " bgcolor=\"#f0f0ff\"" : " bgcolor=\"#ffe2e2\"";
+		$changed = ($m['statmsg'] != $m['msg']);
 		$message = htmlspecialchars( $m['statmsg'] );
 		$mw = htmlspecialchars( $m['msg'] );
 		
@@ -149,15 +150,32 @@ function makeHTMLText( $messages ) {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		}
 
-		$txt .= 
-		"<tr$colorIt><td>
-		$pageLink<br />
-		$talkLink
+		if($changed) {
+
+			$txt .=
+	"<tr class='orig'>
+		<td rowspan='2'>
+			$pageLink<br />$talkLink
 		</td><td>
-		$message
+$message
+		</td>
+	</tr><tr class='new'>
+		<td>
+$mw
+		</td>
+	</tr>";
+		} else {
+
+			$txt .=
+	"<tr class='def'>
+		<td>
+			$pageLink<br />$talkLink
 		</td><td>
-		$mw
-		</td></tr>";
+$mw
+		</td>
+	</tr>";
+
+		}
 	}
 	$txt .= "</table>";
 	wfProfileOut( "$fname-output" );
