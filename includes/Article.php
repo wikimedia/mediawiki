@@ -1623,7 +1623,7 @@ class Article {
 
 		wfDebug( "Article::confirmProtect\n" );
 
-		$sub = $this->mTitle->getPrefixedText();
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$check = '';

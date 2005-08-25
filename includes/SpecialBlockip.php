@@ -67,7 +67,7 @@ class IPBlockForm {
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
+			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 
