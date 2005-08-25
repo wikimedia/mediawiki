@@ -22,7 +22,7 @@ function wfSpecialWatchlist( $par ) {
 	$fname = 'wfSpecialWatchlist';
 
 	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
-	$sub = wfMsg( 'watchlistsub', $wgUser->getName() );
+	$sub = htmlspecialchars( wfMsg( 'watchlistsub', $wgUser->getName() ) );
 	$wgOut->setSubtitle( $sub );
 	$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
