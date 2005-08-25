@@ -264,9 +264,18 @@ function wfReadOnly() {
 
 
 /**
- * Get a message from anywhere, for the current user language
+ * Get a message from anywhere, for the current user language.
  *
- * @param string
+ * Use wfMsgForContent() instead if the message should NOT 
+ * change depending on the user preferences.
+ *
+ * Note that the message may contain HTML, and is therefore
+ * not safe for insertion anywhere. Some functions such as
+ * addWikiText will do the escaping for you. Use wfMsgHtml()
+ * if you need an escaped message.
+ *
+ * @param string lookup key for the message, usually 
+ *    defined in languages/Language.php
  */
 function wfMsg( $key ) {
 	$args = func_get_args();
@@ -276,6 +285,25 @@ function wfMsg( $key ) {
 
 /**
  * Get a message from anywhere, for the current global language
+ * set with $wgLanguageCode.
+ * 
+ * Use this if the message should NOT change  dependent on the 
+ * language set in the user's preferences. This is the case for 
+ * most text written into logs, as well as link targets (such as 
+ * the name of the copyright policy page). Link titles, on the 
+ * other hand, should be shown in the UI language.
+ *
+ * Note that MediaWiki allows users to change the user interface 
+ * language in their preferences, but a single installation 
+ * typically only contains content in one language.
+ * 
+ * Be wary of this distinction: If you use wfMsg() where you should 
+ * use wfMsgForContent(), a user of the software may have to 
+ * customize over 70 messages in order to, e.g., fix a link in every
+ * possible language.
+ *
+ * @param string lookup key for the message, usually 
+ *    defined in languages/Language.php
  */
 function wfMsgForContent( $key ) {
 	global $wgForceUIMsgAsContentMsg;
