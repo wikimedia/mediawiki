@@ -207,7 +207,7 @@ Voir $1.',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
 'sitetitle'     => '{{SITENAME}}',
-'sitesubtitle'  => 'L\'encyclopédie libre',
+'sitesubtitle'  => '',
 'retrievedfrom' => 'Récupérée de « $1 »',
 'newmessages'   => 'Vous avez des $1.',
 'newmessageslink' => 'nouveaux messages',
@@ -612,7 +612,7 @@ Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé c
 '''<nowiki>[[image:nom_du_fichier.png|autre texte]]</nowiki>''' ou
 '''<nowiki>[[media:nom_du_fichier.ogg]]</nowiki>''' pour les sons.
 
-N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
+N'oubliez pas que, comme toutes les pages de {{SITENAME}}, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt du site. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
 'uploadlog'  => 'log d\'upload',
 'uploadlogpage' => 'Log_d\'upload',
 'uploadlogpagetext' => 'Voici la liste des derniers fichiers copiés sur le serveur.
