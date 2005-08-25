@@ -4,6 +4,10 @@
   * @subpackage Language
   */
 
+require_once( 'LanguageUtf8.php' );
+/** Inherit some stuff from Portuguese: */
+require_once( 'LanguagePt.php' );
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -14,7 +18,7 @@
 # This translation was made by Yves Marques Junqueira
 # and Rodrigo Calanca Nishino from Portuguese Wikipedia
 #
-/* private */ $wgNamespaceNamesPt = array(
+/* private */ $wgNamespaceNamesPt_br = array(
 	NS_MEDIA		=> "Media",
 	NS_SPECIAL		=> "Especial",
 	NS_MAIN 		=> "",
@@ -34,23 +38,23 @@
 	NS_CATEGORY		=> "Categoria",
 	NS_CATEGORY_TALK	=> "Categoria_Discussão"
 
-) + $wgNamespaceNamesEn;
+) + $wgNamespaceNamesPt;
 
-/* private */ $wgQuickbarSettingsPt = array(
+/* private */ $wgQuickbarSettingsPt_br = array(
 	"Nada", "Fixado �  esquerda", "Fixado �  direita", "Flutuando �  Esquerda"
 );
 
-/* private */ $wgSkinNamesPt = array(
+/* private */ $wgSkinNamesPt_br = array(
 	'standard' => "Padrão",
 	'nostalgia' => "Nostalgia",
 	'cologneblue' => "Azul Colonial"
-) + $wgSkinNamesEn;
+) + $wgSkinNamesPt;
 
-/* private */ $wgDateFormatsPt = array(
+/* private */ $wgDateFormatsPt_br = array(
 #	"Sem preferência",
 );
 
-/* private */ $wgAllMessagesPt = array(
+/* private */ $wgAllMessagesPt_br = array(
 # User Toggles
 "tog-underline" => "Sublinha links",
 "tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
@@ -850,50 +854,15 @@ Por favor, escolha outro nome.",
 
 );
 
-require_once( "LanguageUtf8.php" );
-
-class LanguagePt extends LanguageUtf8 {
-
-	function getNamespaces() {
-		global $wgNamespaceNamesPt;
-		return $wgNamespaceNamesPt;
-	}
-
-	function getQuickbarSettings() {
-		global $wgQuickbarSettingsPt;
-		return $wgQuickbarSettingsPt;
-	}
-
-	function getSkinNames() {
-		global $wgSkinNamesPt;
-		return $wgSkinNamesPt;
-	}
-
-	function getDateFormats() {
-		global $wgDateFormatsPt;
-		return $wgDateFormatsPt;
-	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-	}
-
+class LanguagePt_br extends LanguagePt {
 	function getMessage( $key ) {
-		 global $wgAllMessagesPt;
-		 if( isset( $wgAllMessagesPt[$key] ) ) {
-			 return $wgAllMessagesPt[$key];
+		 global $wgAllMessagesPt_br;
+		 if( isset( $wgAllMessagesPt_br[$key] ) ) {
+			 return $wgAllMessagesPt_br[$key];
 		 } else {
 			 return parent::getMessage( $key );
 		}
 	}
-
-	/**
-	 * Portuguese numeric format is 123 456,78
-	 */
-	function formatNum( $number, $year = false ) {
-		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
-	}
-
 }
 
 ?>
