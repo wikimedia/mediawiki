@@ -1304,10 +1304,7 @@ END
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="addInfobox('" . wfEscapeJsString( wfMsg( "infobox" ) ) .
-			"','" . wfEscapeJsString( wfMsg( "infobox_alert" ) ) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n";
-
 		$toolbar.="/*]]>*/\n</script>";
 		return $toolbar;
 	}
