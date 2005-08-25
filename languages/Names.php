@@ -151,7 +151,7 @@
 	'pl' => 'Polski',		# Polish
 	'ps' => 'پښتو',	# Pashto
 	'pt' => 'Português',	# Portuguese
-	'pt-br' => 'Portuguêsi do Brasil'	# Brazilian Portuguese
+	'pt-br' => 'Portuguêsi do Brasil',	# Brazilian Portuguese
 	'qu' => 'Runa Simi',	# Quechua
 	'rm' => 'Rumantsch',	# Raeto-Romance
 	'rn' => 'Kirundi',		# Kirundi
