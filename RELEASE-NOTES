@@ -5,8 +5,21 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.5 release candidate 3 ==
 
-This release solves a XSS issue with the search form. It got introduced
-in 1.5 beta1. The 1.4 series are not vulnerable.
+August 24, 2005
+
+MediaWiki 1.5rc3 is a preview release of the new 1.5 release series.
+It fixes several major problems in 1.5rc2:
+
+* Fixed a cross-site scripting injection in the search form
+  (broken since 1.5beta1)
+
+* Fixed upgrades from 1.4 database schema
+  (broken since 1.5rc2)
+
+1.3 and 1.4 releases are not vulnerable to the XSS bug, but anyone
+running an earlier 1.5 beta or release candidate should upgrade
+immediately.
+
 
 == MediaWiki 1.5 release candidate 2 ==
 
