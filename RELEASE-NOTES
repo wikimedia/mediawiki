@@ -699,6 +699,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix upgrade from 1.4 due to version number check breakage
 * Fix upgrade from 1.4 with no old revisions
 * (bug 2108) Sort entries when using category browser
+* XSS issue : now sanitize search query input
 
 === Caveats ===
 
