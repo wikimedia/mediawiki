@@ -52,7 +52,8 @@ Misc work going on.....
 * (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
 * Fix upgrade from 1.4 due to version number check breakage [for rc future]
 * Fix upgrade from 1.4 with no old revisions
-
+* Remove "info" editing toolbar that was shown in browsers which do not
+fully support the editing toolbar, but was found to be too confusing.
 
 === Caveats ===
 
