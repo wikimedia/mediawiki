@@ -152,7 +152,7 @@ wfProfileIn( $fname.'-language1' );
 
 require_once( "$IP/languages/Language.php" );
 
-function setupLangObj(&$langclass) {
+function setupLangObj($langclass) {
 	global $IP;
 
 	if( ! class_exists( $langclass ) ) {
