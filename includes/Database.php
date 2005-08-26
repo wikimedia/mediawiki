@@ -1178,10 +1178,7 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		global $wgDBmysql4;
-		return $wgDBmysql4
-			? "FORCE INDEX ($index)"
-			: "USE INDEX ($index)";
+		return "FORCE INDEX ($index)";
 	}
 
 	/**

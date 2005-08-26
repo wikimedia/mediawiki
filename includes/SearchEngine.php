@@ -178,17 +178,12 @@ class SearchEngine {
 	 * @access private
 	 */
 	function create() {
-		global $wgDBtype, $wgDBmysql4, $wgSearchType;
+		global $wgDBtype, $wgSearchType;
 		if( $wgSearchType ) {
 			$class = $wgSearchType;
 		} elseif( $wgDBtype == 'mysql' ) {
-			if( $wgDBmysql4 ) {
-				$class = 'SearchMySQL4';
-				require_once( 'SearchMySQL4.php' );
-			} else {
-				$class = 'SearchMysql3';
-				require_once( 'SearchMySQL3.php' );
-			}
+			$class = 'SearchMySQL4';
+			require_once( 'SearchMySQL4.php' );
 		} else if ( $wgDBtype == 'PostgreSQL' ) {
 			$class = 'SearchTsearch2';
 			require_once( 'SearchTsearch2.php' );
