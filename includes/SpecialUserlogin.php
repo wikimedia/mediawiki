@@ -147,7 +147,7 @@ class LoginForm {
 			$wgUser->sendConfirmationMail();
 		}
 
-		wfRunHooks( 'AddNewAccount', null );
+		wfRunHooks( 'AddNewAccount' );
 
 		if( $this->hasSessionCookie() ) {
 			return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ) );
