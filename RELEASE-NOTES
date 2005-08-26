@@ -56,6 +56,8 @@ Misc work going on.....
 fully support the editing toolbar, but was found to be too confusing.
 * (bug 2554) Tell users they are uploading too large file
 * (bug 3271) Updated LanguageNn.php for HEAD
+* (bug 3280) Respect 'move' group permission on page moves
+
 
 === Caveats ===
 

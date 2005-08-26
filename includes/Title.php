@@ -951,7 +951,8 @@ class Title {
 			}
 		}
 
-		if( $action == 'move' && !$this->isMovable() ) {
+		if( $action == 'move' &&
+			!( $this->isMovable() && $wgUser->isAllowed( 'move' ) ) ) {
 			wfProfileOut( $fname );
 			return false;
 		}

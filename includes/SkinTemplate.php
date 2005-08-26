@@ -623,14 +623,12 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
 					);
 				}
-				if ( $wgUser->isLoggedIn() ) {
-					if ( $this->mTitle->userCanMove()) {
-						$content_actions['move'] = array(
-							'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
-							'text' => wfMsg('move'),
-							'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
-						);
-					}
+				if ( $this->mTitle->userCanMove()) {
+					$content_actions['move'] = array(
+						'class' => ($this->mTitle->getDbKey() == 'Movepage' and $this->mTitle->getNamespace == NS_SPECIAL) ? 'selected' : false,
+						'text' => wfMsg('move'),
+						'href' => $this->makeSpecialUrl("Movepage/$this->thispage" )
+					);
 				}
 			} else {
 				//article doesn't exist or is deleted
