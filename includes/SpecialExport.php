@@ -61,7 +61,7 @@ function wfSpecialExport( $page = '' ) {
 <input type='hidden' name='action' value='submit' />
 <textarea name='pages' cols='40' rows='10'></textarea><br />
 <label><input type='checkbox' name='curonly' value='true' checked='checked' />
-" . wfMsg( "exportcuronly" ) . "</label><br />
+" . wfMsgHtml( 'exportcuronly' ) . "</label><br />
 <input type='submit' />
 </form>
 " );
@@ -195,10 +195,8 @@ class WikiExporter {
 	function namespaces() {
 		global $wgContLang;
 		$spaces = "<namespaces>\n";
-		foreach( $wgContLang->getNamespaces() as $ns => $title ) {
-			$spaces .= '    ' . wfElement( 'namespace',
-				array( 'key' => $ns ),
-				str_replace( '_', ' ', $title ) ) . "\n";
+		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
+			$spaces .= '    ' . wfElement( 'namespace', array( 'key' => $ns ), $title ) . "\n";
 		}
 		$spaces .= "  </namespaces>";
 		return $spaces;
@@ -374,33 +372,32 @@ class WikiExporter {
 		$fname = 'WikiExporter::dumpRev';
 		wfProfileIn( $fname );
 		
-		print "    <revision>\n";
-		print "      " . wfElement( 'id', null, $row->rev_id ) . "\n";
+		print "  <revision>\n";
+		print "    " . wfElement( 'id', null, $row->rev_id ) . "\n";
 		
 		$ts = wfTimestamp2ISO8601( $row->rev_timestamp );
-		print "      " . wfElement( 'timestamp', null, $ts ) . "\n";
+		print "    " . wfElement( 'timestamp', null, $ts ) . "\n";
 		
-		print "      <contributor>";
+		print "    <contributor>\n";
 		if( $row->rev_user ) {
-			print wfElementClean( 'username', null, $row->rev_user_text );
-			print wfElement( 'id', null, $row->rev_user );
+			print "      " . wfElementClean( 'username', null, $row->rev_user_text ) . "\n";
+			print "      " . wfElement( 'id', null, $row->rev_user ) . "\n";
 		} else {
-			print wfElementClean( 'ip', null, $row->rev_user_text );
+			print "      " . wfElementClean( 'ip', null, $row->rev_user_text ) . "\n";
 		}
-		print "</contributor>\n";
+		print "    </contributor>\n";
 		
 		if( $row->rev_minor_edit ) {
-			print  "      <minor/>\n";
+			print  "    <minor/>\n";
 		}
 		if( $row->rev_comment != '' ) {
-			print "      " . wfElementClean( 'comment', null, $row->rev_comment ) . "\n";
+			print "    " . wfElementClean( 'comment', null, $row->rev_comment ) . "\n";
 		}
 	
 		$text = Revision::getRevisionText( $row );
-		print "      " . wfElementClean( 'text',
-			array( 'xml:space' => 'preserve' ), $text ) . "\n";
+		print "    " . wfElementClean( 'text', array( 'xml:space' => 'preserve' ), $text ) . "\n";
 		
-		print "    </revision>\n";
+		print "  </revision>\n";
 		
 		wfProfileOut( $fname );
 		
