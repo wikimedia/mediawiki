@@ -1051,7 +1051,7 @@ function wfSuppressWarnings( $end = false ) {
 
 	if ( $end ) {
 		if ( $suppressCount ) {
-			$suppressCount --;
+			--$suppressCount;
 			if ( !$suppressCount ) {
 				error_reporting( $originalLevel );
 			}
@@ -1060,7 +1060,7 @@ function wfSuppressWarnings( $end = false ) {
 		if ( !$suppressCount ) {
 			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE ) );
 		}
-		$suppressCount++;
+		++$suppressCount;
 	}
 }
 
