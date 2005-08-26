@@ -447,8 +447,9 @@ $wgDBClusterTimeout = 10;
 $wgDBminWordLen     = 4;
 /** Set to true if using InnoDB tables */
 $wgDBtransactions	= false;
-/** Set to true to use enhanced fulltext search */
-$wgDBmysql4			= false;
+/** Set to true for compatibility with extensions that might be checking.
+ * MySQL 3.23.x is no longer supported. */
+$wgDBmysql4			= true;
 
 /**
  * Other wikis on this site, can be administered from a single developer

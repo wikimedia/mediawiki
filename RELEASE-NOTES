@@ -7,6 +7,10 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 Misc work going on.....
 
+Big things to note:
+* MySQL 3.23.x is no longer supported.
+
+
 == Changes since 1.5 ==
 
 * please fill in for the last couple weeks
@@ -58,6 +62,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3271) Updated LanguageNn.php for HEAD
 * (bug 3280) Respect 'move' group permission on page moves
 * (bug 2613) Clear saved passwords from the form
+* Finally dropped MySQL 3.23.x support
 
 
 === Caveats ===

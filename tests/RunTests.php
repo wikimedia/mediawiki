@@ -10,11 +10,6 @@ define( "MEDIAWIKI", true );
 require_once( 'PHPUnit.php' );
 
 $testOptions = array(
-	'mysql3' => array(
-		'server' => null,
-		'user' => null,
-		'password' => null,
-		'database' => null ),
 	'mysql4' => array(
 		'server' => null,
 		'user' => null,
@@ -34,7 +29,6 @@ if( file_exists( 'LocalTestSettings.php' ) ) {
 $tests = array(
 	'GlobalTest',
 	'DatabaseTest',
-	'SearchMySQL3Test',
 	'SearchMySQL4Test',
 	'ArticleTest',
 	'SanitizerTest',

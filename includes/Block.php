@@ -67,7 +67,7 @@ class Block
 	 */
 	function load( $address = '', $user = 0, $killExpired = true )
 	{
-		global $wgDBmysql4, $wgAntiLockFlags;
+		global $wgAntiLockFlags;
 		$fname = 'Block::load';
 		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
@@ -92,8 +92,8 @@ class Block
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_user={$user} $options";
 		} elseif ($user=="") {
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) . "' $options";
-		} elseif ( $options=='' && $wgDBmysql4 ) {
-			# If there are no optiones (e.g. FOR UPDATE), use a UNION
+		} elseif ( $options=='' ) {
+			# If there are no options (e.g. FOR UPDATE), use a UNION
 			# so that the query can make efficient use of indices
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) .
 				"' UNION SELECT * FROM $ipblocks WHERE ipb_user={$user}";
