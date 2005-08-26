@@ -30,7 +30,7 @@ if (defined('MEDIAWIKI')) {
 	 * in here than would normally be necessary.
 	 */
 	
-	function wfRunHooks($event, $args) {
+	function wfRunHooks($event, $args = null) {
 		
 		global $wgHooks;
 		$fname = 'wfRunHooks';
