@@ -72,8 +72,6 @@ class Image
 	}
 	
 	function Image( $title ) {
-		global $wgShowEXIF;
-		
 		if( !is_object( $title ) ) {
 			wfDebugDieBacktrace( 'Image constructor given bogus title.' );
 		}
