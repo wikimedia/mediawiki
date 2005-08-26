@@ -351,8 +351,7 @@ parent class in order maintain consistency across languages.
 'linkprefix'		=> '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpage'		=> 'Main Page',
 'mainpagetext'	=> 'Wiki software successfully installed.',
-"mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
-and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
+'mainpagedocfooter' => 'Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide] for usage and configuration help.',
 
 'portal'		=> 'Community portal',
 'portal-url'	=> 'Project:Community Portal',
@@ -393,10 +392,10 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'currentevents-url' => 'Current events',
 
 'disclaimers' => 'Disclaimers',
-'disclaimerpage' => "Project:General_disclaimer",
-'errorpagetitle' => "Error",
-'returnto'		=> "Return to $1.",
-'tagline'      	=> "From {{SITENAME}}",
+'disclaimerpage' => 'Project:General_disclaimer',
+'errorpagetitle' => 'Error',
+'returnto'		=> 'Return to $1.',
+'tagline'      	=> 'From {{SITENAME}}',
 'whatlinkshere'	=> 'Pages that link here',
 'help'			=> 'Help',
 'search'		=> 'Search',
@@ -438,19 +437,19 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'lastmodified'	=> 'This page was last modified $1.',
 'viewcount'		=> 'This page has been accessed $1 times.',
 'copyright'	=> 'Content is available under $1.',
-'poweredby'	=> "{{SITENAME}} is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.",
-'printsubtitle' => "(From {{SERVER}})",
+'poweredby'	=> '{{SITENAME}} is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.',
+'printsubtitle' => '(From {{SERVER}})',
 'protectedpage' => 'Protected page',
-'administrators' => "Project:Administrators",
+'administrators' => 'Project:Administrators',
 
 'sysoptitle'	=> 'Sysop access required',
-'sysoptext'		=> "The action you have requested can only be
-performed by users with \"sysop\" capability.
-See $1.",
+'sysoptext'		=> 'The action you have requested can only be
+performed by users with "sysop" capability.
+See $1.',
 'developertitle' => 'Developer access required',
-'developertext'	=> "The action you have requested can only be
-performed by users with \"developer\" capability.
-See $1.",
+'developertext'	=> 'The action you have requested can only be
+performed by users with "developer" capability.
+See $1.',
 
 'badaccess'     => 'Permission error',
 'badaccesstext' => 'The action you have requested is limited
@@ -462,20 +461,20 @@ See $1.',
 
 'nbytes'		=> '$1 bytes',
 'ok'			=> 'OK',
-'sitetitle'		=> "{{SITENAME}}",
-'pagetitle'		=> "$1 - {{SITENAME}}",
+'sitetitle'		=> '{{SITENAME}}',
+'pagetitle'		=> '$1 - {{SITENAME}}',
 'sitesubtitle'	=> 'The Free Encyclopedia', # FIXME
-'retrievedfrom' => "Retrieved from \"$1\"",
-'newmessages' => "You have $1.",
+'retrievedfrom' => 'Retrieved from "$1"',
+'newmessages' => 'You have $1.',
 'newmessageslink' => 'new messages',
 'editsection'=>'edit',
 'toc' => 'Contents',
 'showtoc' => 'show',
 'hidetoc' => 'hide',
-'thisisdeleted' => "View or restore $1?",
+'thisisdeleted' => 'View or restore $1?',
 'viewdeleted' => 'View $1?',
 'restorelink1' => 'one deleted edit',
-'restorelink' => "$1 deleted edits",
+'restorelink' => '$1 deleted edits',
 'feedlinks' => 'Feed:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
@@ -503,66 +502,59 @@ recognized by the wiki',
 #
 'error'			=> 'Error',
 'databaseerror' => 'Database error',
-'dberrortext'	=> "A database query syntax error has occurred.
+'dberrortext'	=> 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
 <blockquote><tt>$1</tt></blockquote>
-from within function \"<tt>$2</tt>\".
-MySQL returned error \"<tt>$3: $4</tt>\".",
-'dberrortextcl' => "A database query syntax error has occurred.
+from within function "<tt>$2</tt>".
+MySQL returned error "<tt>$3: $4</tt>".',
+'dberrortextcl' => 'A database query syntax error has occurred.
 The last attempted database query was:
-\"$1\"
-from within function \"$2\".
-MySQL returned error \"$3: $4\".\n",
+"$1"
+from within function "$2".
+MySQL returned error "$3: $4"'."\n",
 'noconnect'		=> 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server. <br />
 $1',
-'nodb'			=> "Could not select database $1",
-'cachederror'		=> 'The following is a cached copy of the requested page, and may not be up to date.',
+'nodb'			=> 'Could not select database $1',
+'cachederror'	=> 'The following is a cached copy of the requested page, and may not be up to date.',
 'laggedslavemode'   => 'Warning: Page may not contain recent updates.',
-'readonly'		=> 'Database locked',
-'enterlockreason' => 'Enter a reason for the lock, including an estimate
+'readonly'			=> 'Database locked',
+'enterlockreason'	=> 'Enter a reason for the lock, including an estimate
 of when the lock will be released',
-'readonlytext'	=> "The database is currently locked to new
-entries and other modifications, probably for routine database maintenance,
-after which it will be back to normal.
-The administrator who locked it offered this explanation:
-$1",
-'missingarticle' => "The database did not find the text of a page
-that it should have found, named \"$1\".
+'readonlytext'		=> 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
+
+The administrator who locked it offered this explanation: $1',
+'missingarticle' => 'The database did not find the text of a page that it should have found, named "$1".
 
 This is usually caused by following an outdated diff or history link to a
 page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
-Please report this to an administrator, making note of the URL.",
-'readonly_lag' => "The database has been automatically locked while the slave database servers catch up to the master",
+Please report this to an administrator, making note of the URL.',
+'readonly_lag' => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror' => 'Internal error',
-'filecopyerror' => "Could not copy file \"$1\" to \"$2\".",
-'filerenameerror' => "Could not rename file \"$1\" to \"$2\".",
-'filedeleteerror' => "Could not delete file \"$1\".",
-'filenotfound'	=> "Could not find file \"$1\".",
-'unexpected'	=> "Unexpected value: \"$1\"=\"$2\".",
+'filecopyerror' => 'Could not copy file "$1" to "$2".',
+'filerenameerror' => 'Could not rename file "$1" to "$2".',
+'filedeleteerror' => 'Could not delete file "$1".',
+'filenotfound'	=> 'Could not find file "$1".',
+'unexpected'	=> 'Unexpected value: "$1"="$2".',
 'formerror'		=> 'Error: could not submit form',
 'badarticleerror' => 'This action cannot be performed on this page.',
 'cannotdelete'	=> 'Could not delete the page or file specified. (It may have already been deleted by someone else.)',
 'badtitle'		=> 'Bad title',
-'badtitletext' => "The requested page title was invalid, empty, or
-an incorrectly linked inter-language or inter-wiki title.",
-'perfdisabled' => 'Sorry! This feature has been temporarily disabled
-because it slows the database down to the point that no one can use
-the wiki.',
-'perfdisabledsub' => "Here's a saved copy from $1:", # obsolete?
+'badtitletext' => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.',
+'perfdisabled' => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
+'perfdisabledsub' => 'Here is a saved copy from $1:', # obsolete?
 'perfcached' => 'The following data is cached and may not be completely up to date:',
-'wrong_wfQuery_params' => "Incorrect parameters to wfQuery()<br />
+'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
-Query: $2
-",
+Query: $2',
 'viewsource' => 'View source',
-'protectedtext' => "This page has been locked to prevent editing; there are
+'protectedtext' => 'This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
 [[Project:Protected page]].
 
-You can view and copy the source of this page:",
+You can view and copy the source of this page:',
 'sqlhidden' => '(SQL query hidden)',
 
 # Login and logout pages
@@ -590,7 +582,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />\n",
 
 'login'			=> 'Log in',
-'loginprompt'           => "You must have cookies enabled to log in to {{SITENAME}}.",
+'loginprompt'	=> 'You must have cookies enabled to log in to {{SITENAME}}.',
 'userlogin'		=> 'Create an account or log in',
 'logout'		=> 'Log out',
 'userlogout'	=> 'Log out',
