@@ -372,6 +372,18 @@ class WebRequest {
 	}
 	
 	/**
+	 * Return the upload error or 0
+	 * @param string $key
+	 * @return integer
+	 */
+	function getUploadError( $key ) {
+		if( !isset( $_FILES[$key] ) || !isset( $_FILES[$key]['error'] ) ) {
+			return 0/*UPLOAD_ERR_OK*/;
+		}
+		return $_FILES[$key]['error'];
+	}
+	
+	/**
 	 * Return the original filename of the uploaded file, as reported by
 	 * the submitting user agent. HTML-style character entities are
 	 * interpreted and normalized to Unicode normalization form C, in part
