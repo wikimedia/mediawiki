@@ -216,6 +216,8 @@ class PreferencesForm {
 				return;
 			}
 			$wgUser->setPassword( $this->mNewpass );
+			$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
+
 		}
 		$wgUser->setRealName( $this->mRealName );
 
