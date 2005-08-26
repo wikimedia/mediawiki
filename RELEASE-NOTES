@@ -719,6 +719,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2108) Sort entries when using category browser
 * XSS issue : now sanitize search query input
 
+
+=== Changes since 1.5rc3 ===
+* (bug 3280) Respect 'move' group permission on page moves
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
