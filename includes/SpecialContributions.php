@@ -229,6 +229,8 @@ function wfSpecialContributions( $par = null ) {
 
 	$wgOut->setSubtitle( wfMsgHtml( 'contribsub', $ul ) );
 
+	wfRunHooks('SpecialContributionsBeforeMainOutput', $id );
+
 	$arr =  $wgContLang->getFormattedNamespaces();
 	$nsform = "<form method='get' action=\"$wgScript\">\n";
 	$nsform .= wfElement("input", array(
