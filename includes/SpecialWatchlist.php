@@ -18,7 +18,7 @@ function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest, $wgContLang;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
-	global $wgEnotifWatchlist;
+	global $wgEnotifWatchlist, $wgFilterRobotsWL;
 	$fname = 'wfSpecialWatchlist';
 
 	$wgOut->setPagetitle( wfMsg( 'watchlist' ) );
@@ -36,6 +36,7 @@ function wfSpecialWatchlist( $par ) {
 	$defaults = array(
 	/* float */ 'days' => 3.0, /* or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => false,
+	/* bool  */ 'hideBots' => false,
 	);
 
 	extract($defaults);
@@ -43,6 +44,7 @@ function wfSpecialWatchlist( $par ) {
 	# Get query variables
 	$days = $wgRequest->getVal( 'days' );
 	$hideOwn = $wgRequest->getBool( 'hideOwn' );
+	$hideBots = $wgRequest->getBool( 'hideBots' );
 
 	# Watchlist editing
 	$action = $wgRequest->getVal( 'action' );
@@ -118,6 +120,7 @@ function wfSpecialWatchlist( $par ) {
 
 	wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'hideOwn', $hideOwn, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideBots', $hideBots, $defaults, $nondefaults);
 
 	if ( $days <= 0 ) {
 		$docutoff = '';
@@ -202,7 +205,13 @@ function wfSpecialWatchlist( $par ) {
 	# Up estimate of watched items by 15% to compensate for talk pages...
 
 	$andHideOwn = $hideOwn ? "AND (rc_user <> $uid)" : '';
-
+	if( $wgFilterRobotsWL ) {
+		$andHideBotsOptional = $hideBots ? "AND (rc_bot = 0)" : '';
+	} else {
+		$andHideBotsOptional = "AND AND  rc_this_oldid=page_latest";
+	}
+		
+	
 	# Show watchlist header
 	$header = '';
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
@@ -243,6 +252,7 @@ function wfSpecialWatchlist( $par ) {
           AND rc_cur_id=page_id
           AND rc_this_oldid=page_latest
           $andHideOwn
+          $andHideBotsOptional
           ORDER BY rc_timestamp DESC";
 
 	$res = $dbr->query( $sql, $fname );
@@ -265,8 +275,15 @@ function wfSpecialWatchlist( $par ) {
 		$wgContLang->specialPage( 'Watchlist' ),
 		(0 == $hideOwn) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
 		wfArrayToCGI( array('hideOwn' => 1-$hideOwn ), $nondefaults ) );
-
 	$wgOut->addHTML( wfMsgHtml( "wlhideshowown", $s ) );
+
+	if( $wgFilterRobotsWL ) {
+		$s = $sk->makeKnownLink(
+      $wgContLang->specialPage( 'Watchlist' ),
+		  (0 == $hideBots) ? wfMsgHtml( 'wlhide' ) : wfMsgHtml( 'wlshow' ),
+		  wfArrayToCGI( array('hideBots' => 1-$hideBots ), $nondefaults ) );
+	  $wgOut->addHTML( wfMsgHtml( "wlhideshowbots", "  $s" ) );
+	}
 	
 	if ( $numRows == 0 ) {
 		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
