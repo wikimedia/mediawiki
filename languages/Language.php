@@ -2777,6 +2777,16 @@ class Language {
 	}
 
 	/**
+	 * For translaing of expiry times
+	 * @param string The validated block time in English
+	 * @return Somehow translated block time
+	 * @see LanguageFi.php for example implementation
+	 */
+	function translateBlockExpiry( $str ) {
+		return $str;
+	}
+
+	/**
 	 * languages like Chinese need to be segmented in order for the diff
 	 * to be of any use
 	 *

@@ -521,7 +521,7 @@ Sivun lähdekoodi:',
 'notextmatches'       => 'Hakusanaa ei löytynyt sivujen teksteistä',
 'prevn'               => '← $1 edellistä',
 'nextn'               => '$1 seuraavaa →',
-'viewprevnext'        => 'Näytä [$3] kerralla.<br />$1 | $2',
+'viewprevnext'        => "Näytä [$3] kerralla.\n\n$1 | $2",
 'showingresults'      => '<b>$1</b> tulosta tuloksesta <b>$2</b> alkaen.',
 'showingresultsnum'   => 'Alla on <b>$3</b> hakutulosta alkaen <b>$2.</b> tuloksesta.',
 'nonefound'           => '\'\'\'Huomautus\'\'\': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten \'\'on\'\' ja \'\'ei\'\', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.',
@@ -983,7 +983,7 @@ Palaute ja lisäapu osoitteessa:
 # Block/unblock IP
 #
 'blockip'             => 'Aseta muokkausesto',
-'blockiptext'         => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen pitää olla syy, esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”1 January 2017”. Esto voi olla myös ”indefinite” tai ”infinite”, joka kestää siihen asti, että se poistetaan.',
+'blockiptext'         => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen pitää olla syy, esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, 2005-08-29”. Esto voi olla myös ”indefinite” tai ”infinite”, joka kestää kunnes se poistetaan.',
 'ipaddress'           => 'IP-osoite', // TODO bug
 'ipadressorusername'  => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry'           => 'Umpeutuu',
@@ -1548,6 +1548,61 @@ class LanguageFi extends LanguageUtf8 {
 		return $word;
 	}
 
+	function translateBlockExpiry( $str ) {
+    /*$from = array(
+      'ago', 'now', 'today', 'this', 'next',
+      'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth',
+      'tomorrow', 'yesterday',
+      'infinite', 'indefinite',
+          );
+    $to = array(
+      'sitten', 'nyt', 'tänään', 'tämä', 'seuraava',
+      'ensimmäinen', 'kolmas', 'neljäs', 'viides', 'kuudes', 'seitsemäs', 'kahdeksas', 'yhdeksäs', 'kymmenes', 'yhdestoista', 'kahdestoista',
+      'huomenna', 'eilen',
+      'ikuisesti', 'ikuisesti',
+       );
+		*/
+		$weekds = 'monday:maanantai,tuesday:tiistai,wednesday:keskiviikko,thursay:torstai,friday:perjantai,'.
+		          'saturday:lauantai,sunday:sunnuntai,mon:ma,tue:ti,tues:ti,wed:ke,wednes:ke,thu:to,thur:to,'.
+		          'thurs:to,fri:pe,sat:la,sun:su,next:seuraava,tomorrow:huomenna,ago:sitten,'.
+		          'seconds:sekuntia,second:sekunti,secs:s,sec:s,'.
+		          'minutes:minuuttia,minute:minuutti,mins:min,min:min,'.
+		          'days:päivää,day:päivä,hours:tuntia,hour:tunti,weeks:viikkoa,week:viikko,'.
+		          'fortnights:tuplaviikkoa,fortnight:tuplaviikko,'.
+		          'months:kuukautta,month:kuukausi,years:vuotta,year:vuosi,'.
+		          'infinite:ikuisesti,indefinite:ikuisesti';
+		$months = 'january:tammikuu,february:helmikuu,march:maaliskuu,april:huhtikuu,may:toukokuu,june:kesäkuu,' .
+		          'july:heinäkuu,august:elokuu,september:syyskuu,october:lokakuu,november:marraskuu,december:joulukuu,' .
+		          'jan:tammikuu,feb:helmikuu,mar:maaliskuu,apr:huhtikuu,jun:kesäkuu,jul:heinäkuu,aug:elokuu,sep:syyskuu,'.
+	            'oct:lokakuu,nov:marraskuu,dec:joulukuu,sept:syyskuu';
+		$weekds = explode( ',', $weekds);
+		$final = '';
+		$stop = false;
+		foreach( explode ( ' ', $str) as $item ) {
+			if ( !is_numeric($item) ) {
+				if ( count ( explode( '-', $item ) ) == 3 ) {
+					list( $yyyy, $mm, $dd ) = explode( '-', $item );
+					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}00000000");
+					continue;
+				}
+				foreach( $weekds as $item2 ) {
+					list( $from, $to) = explode( ':', $item2 );
+					if ( strcasecmp( $from, $item ) == 0 ) {
+						$final .= ' ' . $to;
+						$stop = true;
+						break;
+					}
+				}
+			}
+
+			if (!$stop) {
+				$final .= ' ' . $item;
+			} else {
+				$stop = false;
+			}
+		}
+   	return '<span class="blockexpiry" title="' . htmlspecialchars($str). '">”' . trim( $final ) . '”</span>';
+	}
 }
 
 ?>
