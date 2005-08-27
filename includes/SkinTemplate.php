@@ -864,7 +864,7 @@ class SkinTemplate extends Skin {
 			case NS_CATEGORY_TALK:
 				return 'nstab-category';
 			default:
-				return 'nstab-' . strtolower( $this->mTitle->getNsText() );
+				return 'nstab-' . strtolower( $this->mTitle->getSubjectNsText() );
 		}
 	}
 

@@ -560,9 +560,19 @@ class Title {
 	 * @access public
 	 */
 	function getNsText() { 
-		global $wgLang;
-		return $wgLang->getNsText( $this->mNamespace );
+		global $wgContLang;
+		return $wgContLang->getNsText( $this->mNamespace );
 	}
+	/**
+	 * Get the namespace text of the subject (rather than talk) page
+	 * @return string
+	 * @access public
+	 */
+	function getSubjectNsText() {
+		global $wgContLang;
+		return $wgContLang->getNsText( Namespace::getSubject( $this->mNamespace ) );
+	}
+
 	/**
 	 * Get the interwiki prefix (or null string)
 	 * @return string
