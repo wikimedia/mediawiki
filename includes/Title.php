@@ -555,6 +555,15 @@ class Title {
 	 */
 	function getNamespace() { return $this->mNamespace; }
 	/**
+	 * Get the namespace text
+	 * @return string
+	 * @access public
+	 */
+	function getNsText() { 
+		global $wgLang;
+		return $wgLang->getNsText( $this->mNamespace );
+	}
+	/**
 	 * Get the interwiki prefix (or null string)
 	 * @return string
 	 * @access public

@@ -502,9 +502,15 @@ class SkinTemplate extends Skin {
 			$classes[] = 'new';
 			$query = 'action=edit';
 		}
+		
+		$text = wfMsg( $message );
+		if ( $text == "&lt;$message&gt;" ) {
+			$text = wfMsg( 'nstab-main' );
+		}
+		
 		return array(
 			'class' => implode( ' ', $classes ),
-			'text' => wfMsg( $message ),
+			'text' => $text,
 			'href' => $title->getLocalUrl( $query ) );
 	}
 
@@ -858,7 +864,7 @@ class SkinTemplate extends Skin {
 			case NS_CATEGORY_TALK:
 				return 'nstab-category';
 			default:
-				return 'nstab-main';
+				return 'nstab-' . strtolower( $this->mTitle->getNsText() );
 		}
 	}
 
