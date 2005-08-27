@@ -20,7 +20,7 @@ require_once( "LanguageUtf8.php" );
 	NS_PROJECT        => $wgMetaNamespace,
 	NS_PROJECT_TALK   => $wgMetaNamespace . '_பேச்சு',
 	NS_IMAGE          => 'படிமம்',
-	NS_IMAGE_TALK     => 'உருவப்_பேச்சு',
+	NS_IMAGE_TALK     => 'படிமப் பேச்சு',
 	NS_MEDIAWIKI      => 'மீடியாவிக்கி',
 	NS_MEDIAWIKI_TALK => 'மீடியாவிக்கி_பேச்சு',
 	NS_TEMPLATE       => 'வார்ப்புரு',
@@ -798,6 +798,7 @@ class LanguageTa extends LanguageUtf8 {
 
 		if ( strcasecmp( 'விக்கிபீடியா', $text) == 0) return NS_PROJECT;
 		if ( strcasecmp( 'விக்கிபீடியா_பேச்சு', $text) == 0) return NS_PROJECT_TALK;
+		if ( strcasecmp( 'உருவப்_பேச்சு', $text) == 0) return NS_IMAGE_TALK;
 
 		return false;
 	}
