@@ -65,6 +65,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Finally dropped MySQL 3.23.x support
 * Experimental feature to allow translation of block expiry times
   Implementation only for Finnish currently
+* (bug 3284) Ipblocklist paging, substring search
 
 
 === Caveats ===

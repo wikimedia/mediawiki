@@ -219,10 +219,10 @@ class Block
 
 			if ( !( $flags & EB_KEEP_EXPIRED ) ) {
 				if ( !$block->deleteIfExpired() ) {
-					$callback( $block, $tag );
+					call_user_func( $callback, $block, $tag );
 				}
 			} else {
-				$callback( $block, $tag );
+				call_user_func( $callback, $block, $tag );
 			}
 		}
 		wfFreeResult( $res );
