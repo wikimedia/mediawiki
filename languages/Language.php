@@ -1014,6 +1014,7 @@ To include the image in a page, use a link in the form
 'badfilename'	=> 'File name has been changed to "$1".',
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
 'largefile'		=> 'It is recommended that images not exceed $1 bytes in size, this file is $2 bytes',
+'largefileserver' => 'This file is bigger than the server is configured to allow.',
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
