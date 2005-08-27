@@ -155,7 +155,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
+	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
 		global $wgLang;
 		static $actions = array(
 			'block/block'       => 'blocklogentry',
@@ -194,7 +194,7 @@ class LogPage {
 					$rv = wfMsg( $actions[$key], $titleLink );
 				} else {
 					array_unshift( $params, $titleLink );
-					if ( $key == 'block/block' ) {
+					if ( $translate && $key == 'block/block' ) {
 						$params[1] = $wgLang->translateBlockExpiry($params[1]);
 					}
 					$rv = wfMsgReal( $actions[$key], $params, true, false );
