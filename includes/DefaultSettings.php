@@ -1616,4 +1616,10 @@ $wgEnableScaryTranscluding = false;
  */
 $wgUseTrackbacks = false;
 
+/**
+ * Enable filtering of robots in Special:Watchlist
+ */
+
+$wgFilterRobotsWL = false;
+
 ?>
