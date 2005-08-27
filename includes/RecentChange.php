@@ -340,7 +340,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> 0,
+			'rc_bot'	=> $user->isBot() ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
