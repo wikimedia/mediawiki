@@ -322,7 +322,7 @@ class LogViewer {
 			}
 		}
 
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );
 		$out = "<li>$time $userLink $action $comment $revert</li>\n";
 		return $out;
 	}
