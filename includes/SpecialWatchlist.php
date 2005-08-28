@@ -208,7 +208,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgFilterRobotsWL ) {
 		$andHideBotsOptional = $hideBots ? "AND (rc_bot = 0)" : '';
 	} else {
-		$andHideBotsOptional = "AND AND  rc_this_oldid=page_latest";
+		$andHideBotsOptional = "AND rc_this_oldid=page_latest";
 	}
 		
 	
