@@ -67,14 +67,8 @@ class Namespace {
 	 * @return bool
 	 */
 	function isTalk( $index ) {
-		global $wgExtraNamespaces;
-		return ( $index == NS_TALK           || $index == NS_USER_TALK     ||
-				 $index == NS_PROJECT_TALK   || $index == NS_IMAGE_TALK    ||
-				 $index == NS_MEDIAWIKI_TALK || $index == NS_TEMPLATE_TALK ||
-				 $index == NS_HELP_TALK      || $index == NS_CATEGORY_TALK
-				 ||  ( (isset($wgExtraNamespaces) && $index % 2) )
-				 );
-
+		return ($index > 0)  // Special namespaces are negative
+			&& ($index % 2); // Talk namespaces are odd-numbered
 	}
 
 	/**
