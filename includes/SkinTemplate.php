@@ -225,7 +225,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
-		$tpl->setRef('headscripts', $out->getScript() );
+		$tpl->set('headscripts', $out->getScript() );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->setRef( 'stylename', $this->stylename );
