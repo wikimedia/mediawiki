@@ -721,7 +721,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 
 === Changes since 1.5rc3 ===
+
 * (bug 3280) Respect 'move' group permission on page moves
+* (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
 
 
 === Caveats ===

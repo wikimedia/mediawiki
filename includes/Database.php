@@ -1472,7 +1472,7 @@ class Database {
 	/**
 	 * @todo document
 	 */
-	function resultObject( &$result ) {
+	function resultObject( $result ) {
 		if( empty( $result ) ) {
 			return NULL;
 		} else {
