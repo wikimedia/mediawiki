@@ -1238,7 +1238,7 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'wlshowlast' 		=> 'Show last $1 hours $2 days $3',
 'wlsaved'		=> 'This is a saved version of your watchlist.',
 'wlhideshowown'   	=> '$1 my edits.',
-'wlhideshowown'   	=> '$1 robot edits.',
+'wlhideshowbots'   	=> '$1 robot edits.',
 'wlshow'		=> 'Show',
 'wlhide'		=> 'Hide',
 
