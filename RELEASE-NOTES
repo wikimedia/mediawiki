@@ -69,6 +69,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Allow filtering of robot edits in Special:Watchlist by stting 
   $wgFilterRobotsWL = true.
 * (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
+* Fix interlanguage links on special pages when extra namespaces configured
 
 
 === Caveats ===
