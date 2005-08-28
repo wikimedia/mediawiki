@@ -250,7 +250,6 @@ function wfSpecialWatchlist( $par ) {
           AND wl_title=rc_title
           AND rc_timestamp > '$cutoff'
           AND rc_cur_id=page_id
-          AND rc_this_oldid=page_latest
           $andHideOwn
           $andHideBotsOptional
           ORDER BY rc_timestamp DESC";
