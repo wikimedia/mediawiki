@@ -43,6 +43,7 @@ $wgUser = User::newFromName( $user );
 $file = fopen( $filename, 'r' );
 if ( !$file ) {
 	print "Unable to read file, exiting\n";
+	exit;
 }
 
 $dbw =& wfGetDB( DB_MASTER );
@@ -65,14 +66,16 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	}
 
 
+	print $source->getPrefixedText();
 	$dbw->begin();
 	$source->moveTo( $dest, false, $reason );
 	$dbw->immediateCommit();
+	print "\n";
 
-	wfWaitForSlaves( 5 );
 	if ( $interval ) {
 		sleep( $interval );
 	}
+	wfWaitForSlaves( 5 );
 }
 
 
