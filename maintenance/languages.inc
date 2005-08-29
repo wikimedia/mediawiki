@@ -14,7 +14,7 @@ class languages {
 	var $messages = array();
 
 	function languages() {
-		$this->clear;
+		$this->clear();
 		$this->loadList();
 	}
 
