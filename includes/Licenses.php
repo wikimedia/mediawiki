@@ -86,9 +86,11 @@ class Licenses {
 	function makeIndexes( $arr ) {
 		$str = '';
 	
+		wfSuppressWarnings();
 		foreach ( $arr as $item )
 			$str .= '["' . addslashes( $item ) . '"]';
 		
+		wfRestoreWarnings();
 		return $str;
 	}
 
@@ -99,7 +101,8 @@ class Licenses {
 				$this->html .= $this->outputOption(
 					$this->msg( $key ),
 					array(
-						'value' => ''
+						'value' => '',
+						'disabled' => 'disabled',
 					),
 					$depth
 				);
@@ -108,7 +111,8 @@ class Licenses {
 				$this->html .= $this->outputOption(
 					$this->msg( $val->text ),
 					array(
-						'value' => $val->template
+						'value' => $val->template,
+						'title' => $val->template
 					),
 					$depth
 				);
@@ -116,7 +120,7 @@ class Licenses {
 	}
 
 	function outputOption( $val, $attribs = null, $depth ) {
-		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth ) . $val;
+		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $val;
 		return str_repeat( "\t", $depth ) . wfElement( 'option', $attribs, $val ) . "\n";
 	}
 	
