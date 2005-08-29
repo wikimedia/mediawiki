@@ -318,8 +318,10 @@ function insertTags(tagOpen, tagClose, sampleText) {
 
 	// Mozilla
 	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
+		var replaced = false;
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
+		if(endPos-startPos) replaced=true;
 		var scrollTop=txtarea.scrollTop;
 		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
@@ -331,10 +333,15 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		txtarea.value = txtarea.value.substring(0, startPos) + subst +
 		  txtarea.value.substring(endPos, txtarea.value.length);
 		txtarea.focus();
-
-		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
-		txtarea.selectionStart=cPos;
-		txtarea.selectionEnd=cPos;
+		//set new selection
+		if(replaced){
+			var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
+			txtarea.selectionStart=cPos;
+			txtarea.selectionEnd=cPos;
+		}else{
+			txtarea.selectionStart=startPos+tagOpen.length;   
+			txtarea.selectionEnd=startPos+tagOpen.length+myText.length;
+		}	
 		txtarea.scrollTop=scrollTop;
 
 	// All other browsers get no toolbar.
