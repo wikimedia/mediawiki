@@ -22,9 +22,7 @@ $wgUseNormalUser = (getenv('MW_WIKIUSER') ? true : false);
 /** */
 require_once( "commandLine.inc" );
 
-$line = readconsole( "> " );
-
-while ( $line !== false ) {
+while ( ( $line = readconsole( '> ' ) ) !== false ) {
 	$val = eval( $line . ";" );
 	if( is_null( $val ) ) {
 		echo "\n";
@@ -36,7 +34,6 @@ while ( $line !== false ) {
 	if ( function_exists( "readline_add_history" ) ) {
 		readline_add_history( $line );
 	}
-	$line = readconsole( "> " );
 }
 
 print "\n";
