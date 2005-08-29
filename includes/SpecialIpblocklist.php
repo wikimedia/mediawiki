@@ -177,8 +177,14 @@ class IPUnblockForm {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
 		
 		if( $this->ip != '' ) {
-			if( stristr( $block->mAddress, $this->ip ) == false ) {
-				return;
+			if( $block->mAuto ) {
+				if( stristr( $block->mId, $this->ip ) == false ) {
+					return;
+				}
+			} else {
+				if( stristr( $block->mAddress, $this->ip ) == false ) {
+					return;
+				}
 			}
 		}
 		
