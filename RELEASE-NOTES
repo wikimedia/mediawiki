@@ -3,6 +3,25 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5 release candidate 4 ==
+
+August 29, 2005
+
+MediaWiki 1.5rc4 is a preview release of the new 1.5 release series.
+It fixes compatibility with PHP 5.1, and corrects two cross-site scripting
+security bugs:
+
+* <math> tags were handled incorrectly when TeX rendering support is off,
+  as in the default configuration.
+* Extension or <nowiki> sections in Wiki table syntax could bypass HTML
+  style attribute restrictions for cross-site scripting attacks against
+  Microsoft Internet Explorer
+
+Wikis where the optional math support has been *enabled* are not vulnerable
+to the first, but are vulnerable to the second.
+
+
+
 == MediaWiki 1.5 release candidate 3 ==
 
 August 24, 2005
@@ -724,6 +743,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * (bug 3280) Respect 'move' group permission on page moves
 * (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
+* Security fix for <math>
+* Security fix for tables
 
 
 === Caveats ===
