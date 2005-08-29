@@ -1032,6 +1032,9 @@ created and by whom, and anything else you may know about it. If this is an imag
 'sourcefilename' => 'Source filename',
 'destfilename' => 'Destination filename',
 
+'license' => 'License',	
+'nolicense' => 'None',
+
 # Image list
 #
 'imagelist'		=> 'File list',
@@ -2734,7 +2737,7 @@ class Language {
 			if ($i == $m) {
 				$s = $l[$i];
 			} else if ($i == $m - 1) {
-				$s = $l[$i] . ' ' . $this->getMessage('and') . ' ' . $s;
+				$s = $l[$i] . ' ' . wfMsg('and') . ' ' . $s;
 			} else {
 				$s = $l[$i] . ', ' . $s;
 			}

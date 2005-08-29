@@ -71,7 +71,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2885) More PHP 5.1 fixes: skin, search, log, undelete
 * Fix interlanguage links on special pages when extra namespaces configured
 * IP privacy fix for blocklist search on autoblocks
-
+* Support for a license selection box on Special:Upload, configurable from MediaWiki:Licenses
 
 === Caveats ===
 

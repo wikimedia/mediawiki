@@ -8,9 +8,9 @@
 /**
  *
  */
-require_once( 'Image.php' );
-require_once( 'MacBinary.php' );
-
+require_once 'Image.php';
+require_once 'MacBinary.php';
+require_once 'Licenses.php';
 /**
  * Entry point
  */
@@ -29,7 +29,7 @@ class UploadForm {
 	/**#@+
 	 * @access private
 	 */
-	var $mUploadFile, $mUploadDescription, $mIgnoreWarning, $mUploadError;
+	var $mUploadFile, $mUploadDescription, $mLicense ,$mIgnoreWarning, $mUploadError;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile;
@@ -53,6 +53,7 @@ class UploadForm {
 		$this->mUpload            = $request->getCheck( 'wpUpload' );
 
 		$this->mUploadDescription = $request->getText( 'wpUploadDescription' );
+		$this->mLicense           = $request->getText( 'wpLicense' );
 		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
 		$this->mUploadSource      = $request->getText( 'wpUploadSource');
 
@@ -281,6 +282,7 @@ class UploadForm {
 			$img = Image::newFromName( $this->mUploadSaveName );
 			$success = $img->recordUpload( $this->mUploadOldVersion,
 			                                $this->mUploadDescription,
+							$this->mLicense,
 			                                $this->mUploadCopyStatus,
 			                                $this->mUploadSource );
 
@@ -490,6 +492,7 @@ class UploadForm {
 		<input type='hidden' name='wpIgnoreWarning' value='1' />
 		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
 		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
+		<input type='hidden' name='wpLicense' value=\"" . htmlspecialchars( $this->mLicense ) . "\" />
 		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDestFile ) . "\" />
 	{$copyright}
 	<table border='0'>
@@ -538,6 +541,12 @@ class UploadForm {
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
 		$destfilename = wfMsgHtml( 'destfilename' );
 		$summary = wfMsgWikiHtml( 'fileuploadsummary' );
+
+		$licenses = new Licenses();
+		$license = wfMsgHtml( 'license' );
+		$nolicense = wfMsgHtml( 'nolicense' );
+		$licenseshtml = $licenses->getHtml();
+		
 		$ulb = wfMsgHtml( 'uploadbtn' );
 
 
@@ -576,8 +585,20 @@ class UploadForm {
 	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
 	"</textarea>
+	</td></tr><tr>" );
+	
+	if ( $licenseshtml != '' ) {
+		$wgOut->addHTML( "
+	<td align='right'>$license:</td>
+	<td align='left'>
+		<select name='wpLicense'>
+			<option value=''>$nolicense</option>
+			$licenseshtml
+		</select>
 	</td></tr><tr>
-	{$source}
+		");
+	}
+	$wgOut->addHtml( "{$source}
 	</tr>
 	<tr><td></td><td align='left'>
 	<input tabindex='5' type='submit' name='wpUpload' value=\"{$ulb}\" />
