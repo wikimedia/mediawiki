@@ -1253,7 +1253,7 @@ class Image
 	/**
 	 * Record an image upload in the upload log and the image table
 	 */
-	function recordUpload( $oldver, $desc, $copyStatus = '', $source = '' ) {
+	function recordUpload( $oldver, $desc, $license, $copyStatus = '', $source = '' ) {
 		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
 		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
@@ -1272,11 +1272,21 @@ class Image
 		}
 
 		if ( $wgUseCopyrightUpload ) {
+			if ( $license != '' ) {
+				$licensetxt = '== ' . wfMsg( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+			}
 			$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
 			  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+			  "$licensetxt" .
 			  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
 		} else {
-			$textdesc = $desc;
+			if ( $license != '' ) {
+				$filedesc = $desc == '' ? '' : '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n";
+				 $textdesc = $filedesc . 
+					 '== ' . wfMsg ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";	
+			} else {
+				$textdesc = $desc;
+			}
 		}
 
 		$now = $dbw->timestamp();
