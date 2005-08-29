@@ -221,16 +221,14 @@ class Parser
 		}
 
 		# math
-		$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
-		foreach( $math_content as $marker => $content ){
-			if( $render ) {
-				if( $this->mOptions->getUseTeX() ) {
+		if( $this->mOptions->getUseTeX() ) {
+			$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
+			foreach( $math_content as $marker => $content ){
+				if( $render ) {
 					$math_content[$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = "&lt;math&gt;$content&lt;math&gt;";
+					$math_content[$marker] = "<math>$content</math>";
 				}
-			} else {
-				$math_content[$marker] = "<math>$content</math>";
 			}
 		}
 
