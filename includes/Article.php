@@ -173,6 +173,7 @@ class Article {
 		$striparray=array();
 		$parser=new Parser();
 		$parser->mOutputType=OT_WIKI;
+		$parser->mOptions = new ParserOptions();
 		$striptext=$parser->strip($text, $striparray, true);
 
 		# now that we can be sure that no pseudo-sections are in the source,
@@ -1138,6 +1139,7 @@ class Article {
 				$striparray=array();
 				$parser=new Parser();
 				$parser->mOutputType=OT_WIKI;
+				$parser->mOptions = new ParserOptions();
 				$oldtext=$parser->strip($oldtext, $striparray, true);
 
 				# now that we can be sure that no pseudo-sections are in the source,
