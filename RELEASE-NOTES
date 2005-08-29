@@ -72,6 +72,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix interlanguage links on special pages when extra namespaces configured
 * IP privacy fix for blocklist search on autoblocks
 * Support for a license selection box on Special:Upload, configurable from MediaWiki:Licenses
+* Security fix for <math>
+* Security fix for tables
+
 
 === Caveats ===
 

@@ -2598,6 +2598,45 @@ Bug 3244: HTML attribute safety (extension; unsafe)
 !! end
 
 
+!! test
+Math section safety when disabled
+!! input
+<math><script>alert(document.cookies);</script></math>
+!! result
+<p>&lt;math&gt;&lt;script&gt;alert(document.cookies);&lt;/script&gt;&lt;/math&gt;
+</p>
+!! end
+
+
+!! test
+Table attribute legitimate extension
+!! input
+{|
+!+ style="<nowiki>color:blue</nowiki>"| status
+|}
+!! result
+<table>
+<tr>
+<th style="color:blue"> status
+</th></tr></table>
+
+!!end
+
+!! test
+Table attribute safety
+!! input
+{|
+!+ style="<nowiki>border-width:expression(0+alert(document.cookie))</nowiki>"| status
+|}
+!! result
+<table>
+<tr>
+<th> status
+</th></tr></table>
+
+!! end
+
+
 TODO:
 more images
 more tables
