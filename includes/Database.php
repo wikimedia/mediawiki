@@ -325,7 +325,7 @@ class Database {
 			# in MediaWiki, to provide extra safety in addition to UI-level checks.
 			# It is not intended to prevent every conceivable write query, or even
 			# to handle such queries gracefully.
-			if ( preg_match( '/^(update|insert|replace|delete)/i', $sql ) ) {
+			if ( preg_match( '/^(?:update|insert|replace|delete)/i', $sql ) ) {
 				wfDebug( "Write query from $fname blocked\n" );
 				return false;
 			}
@@ -410,10 +410,10 @@ class Database {
 		global $wgCommandLineMode, $wgFullyInitialised;
 		# Ignore errors during error handling to avoid infinite recursion
 		$ignore = $this->ignoreErrors( true );
-		$this->mErrorCount ++;
+		++$this->mErrorCount;
 
 		if( $ignore || $tempIgnore ) {
-			wfDebug("SQL ERROR (ignored): " . $error . "\n");
+			wfDebug("SQL ERROR (ignored): $error\n");
 		} else {
 			$sql1line = str_replace( "\n", "\\n", $sql );
 			wfLogDBError("$fname\t{$this->mServer}\t$errno\t$error\t$sql1line\n");
@@ -740,7 +740,7 @@ class Database {
 		if( is_array( $table ) ) {
 			$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
 		} elseif ($table!='') {
-			$from = ' FROM ' .$this->tableName( $table );
+			$from = ' FROM ' . $this->tableName( $table );
 		} else {
 			$from = '';
 		}
