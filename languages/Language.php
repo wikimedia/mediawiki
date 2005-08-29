@@ -1032,7 +1032,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'sourcefilename' => 'Source filename',
 'destfilename' => 'Destination filename',
 
-'license' => 'License',	
+'license' => 'Licensing',	
 'nolicense' => 'None',
 
 # Image list
