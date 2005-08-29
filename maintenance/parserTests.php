@@ -299,6 +299,7 @@ class ParserTest {
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
+			'wgUseTeX' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {

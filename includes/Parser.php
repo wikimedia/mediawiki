@@ -305,16 +305,14 @@ class Parser
 		}
 
 		# math
-		$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
-		foreach( $math_content as $marker => $content ){
-			if( $render ) {
-				if( $this->mOptions->getUseTeX() ) {
+		if( $this->mOptions->getUseTeX() ) {
+			$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
+			foreach( $math_content as $marker => $content ){
+				if( $render ) {
 					$math_content[$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = '&lt;math&gt;'.$content.'&lt;math&gt;';
+					$math_content[$marker] = '<math>'.$content.'</math>';
 				}
-			} else {
-				$math_content[$marker] = '<math>'.$content.'</math>';
 			}
 		}
 
@@ -666,8 +664,11 @@ class Parser
 			$fc = substr ( $x , 0 , 1 ) ;
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
+				
+				$attributes = $this->unstripForHTML( $matches[2] );
+
 				$t[$k] = str_repeat( '<dl><dd>', $indent_level ) .
-					'<table ' . $this->fixTagAttributes ( $matches[2] ) . '>' ;
+					'<table ' . $this->fixTagAttributes ( $attributes ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
@@ -694,7 +695,8 @@ class Parser
 				array_push ( $tr , false ) ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
-				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
+				$attributes = $this->unstripForHTML( $x );
+				array_push ( $ltr , $this->fixTagAttributes ( $attributes ) ) ;
 			}
 			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
 				# $x is a table row
@@ -736,7 +738,10 @@ class Parser
 					}
 					if ( count ( $y ) == 1 )
 						$y = "{$z}<{$l}>{$y[0]}" ;
-					else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
+					else {
+						$attributes = $this->unstripForHTML( $y[0] );
+						$y = "{$z}<{$l} ".$this->fixTagAttributes($attributes).">{$y[1]}" ;
+					}
 					$t[$k] .= $y ;
 					array_push ( $td , true ) ;
 				}
@@ -3260,6 +3265,11 @@ class Parser
 	 */
 	function attributeStripCallback( &$text, $args ) {
 		$text = $this->replaceVariables( $text, $args );
+		$text = $this->unstripForHTML( $text );
+		return $text;
+	}
+	
+	function unstripForHTML( $text ) {
 		$text = $this->unstrip( $text, $this->mStripState );
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		return $text;

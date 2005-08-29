@@ -3,6 +3,23 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.4.9 ==
+
+(released 2005-08-29)
+
+MediaWiki 1.4.9 is a security maintenance release. It corrects two cross-site
+scripting security bugs:
+
+* <math> tags were handled incorrectly when TeX rendering support is off,
+  as in the default configuration.
+* Extension or <nowiki> sections in Wiki table syntax could bypass HTML
+  style attribute restrictions for cross-site scripting attacks against
+  Microsoft Internet Explorer
+
+Wikis where the optional math support has been *enabled* are not vulnerable
+to the first, but are vulnerable to the second.
+
+
 == MediaWiki 1.4.8 ==
 
 (released 2005-08-23)
@@ -739,6 +756,12 @@ pages for purposes of page relevancy ranking.
 * MSIE7 compatibility fix: correct browser version detect for IE CSS fixes
 * (bug 3220) Fix escaping of block URLs in Recentchanges
 * (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
+
+
+=== 1.4.9 changes ===
+
+* Security fix for <math>
+* Security fix for tables
 
 
 === Caveats ===
