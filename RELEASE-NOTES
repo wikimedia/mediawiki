@@ -74,6 +74,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Support for a license selection box on Special:Upload, configurable from MediaWiki:Licenses
 * Security fix for <math>
 * Security fix for tables
+* Security fix for Special:Upload license selection list
 
 
 === Caveats ===
