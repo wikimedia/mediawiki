@@ -60,8 +60,7 @@ class Licenses {
 				
 				if ( strpos( $line, '|' ) !== false ) {
 					$obj = new License( $line );
-					// TODO: Do this without using eval()
-					eval( '$this->licenses' . $this->makeIndexes( $levels ) . '[] = $obj;' );
+					$this->stackItem( $this->licenses, $levels, $obj );
 				} else {
 					if ( $level < count( $levels ) )
 						$levels = array_slice( $levels, count( $levels ) - $level );
@@ -84,15 +83,14 @@ class Licenses {
 		return array( $count, ltrim( $str, '* ' ) );
 	}
 	
-	function makeIndexes( $arr ) {
-		$str = '';
-	
-		wfSuppressWarnings();
-		foreach ( $arr as $item )
-			$str .= '["' . addslashes( $item ) . '"]';
-		
-		wfRestoreWarnings();
-		return $str;
+	function stackItem( &$list, $path, $item ) {
+		$position =& $list;
+		if( $path ) {
+			foreach( $path as $key ) {
+				$position =& $position[$key];
+			}
+		}
+		$position[] = $item;
 	}
 
 	function makeHtml( &$tagset, $depth = 0 ) {
