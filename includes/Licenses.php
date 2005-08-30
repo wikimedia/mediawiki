@@ -27,7 +27,8 @@ class Licenses {
 	 * @var string
 	 */
 	var $html;
-
+	/**#@-*/
+	
 	/**
 	 * Constrictor
 	 *
@@ -163,10 +164,10 @@ class License {
 	 * @param string $str
 	 */
 	function License( $str ) {
-		list( $template, $text ) = explode( '|', $str, 2 );
+		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
 		
-		$this->template = $template;
-		$this->text = $text;
+		$this->template = strrev( $template );
+		$this->text = strrev( $text );
 	}
 }
 ?>
