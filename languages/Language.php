@@ -1514,7 +1514,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_tab' => 'Validate',
 'val_this_is_current_version' => 'this is the latest version',
 'val_version_of' => "Version of $1" ,
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>\n",
+'val_table_header' => '<tr><th>Class</th>$1<th colspan="4">Opinion</th>$1<th>Comment</th></tr>\n',
 'val_stat_link_text' => 'Validation statistics for this article',
 'val_view_version' => 'View this revision',
 'val_validate_version' => 'Validate this version',
