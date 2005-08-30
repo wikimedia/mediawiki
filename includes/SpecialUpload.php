@@ -282,7 +282,7 @@ class UploadForm {
 			$img = Image::newFromName( $this->mUploadSaveName );
 			$success = $img->recordUpload( $this->mUploadOldVersion,
 			                                $this->mUploadDescription,
-							$this->mLicense,
+			                                $this->mLicense,
 			                                $this->mUploadCopyStatus,
 			                                $this->mUploadSource );
 
