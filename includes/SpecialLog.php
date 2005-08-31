@@ -29,7 +29,7 @@
 function wfSpecialLog( $par = '' ) {
 	global $wgRequest;
 	$logReader =& new LogReader( $wgRequest );
-	if( '' == $wgRequest->getVal( 'type' ) && !empty( $par ) ) {
+	if( $wgRequest->getVal( 'type' ) == '' && $par != '' ) {
 		$logReader->limitType( $par );
 	}
 	$logViewer =& new LogViewer( $logReader );
@@ -254,7 +254,7 @@ class LogViewer {
 				$title = Title::newFromText( $paramArray[0] );
 				$batch->addObj( $title );
 			}
-			$this->numResults++;
+			++$this->numResults;
 		}
 		$batch->execute( $wgLinkCache );
 
