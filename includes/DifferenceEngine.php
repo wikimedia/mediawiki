@@ -8,6 +8,9 @@
 /** */
 require_once( 'Revision.php' );
 
+define( 'MAX_DIFF_LINE', 10000 );
+define( 'MAX_DIFF_XREF_LENGTH', 10000 );
+
 /**
  * @todo document
  * @access public
@@ -489,7 +492,9 @@ class _DiffOp_Change extends _DiffOp {
  * closingly, some ideas (subdivision by NCHUNKS > 2, and some optimizations)
  * are my own.
  *
- * @author Geoffrey T. Dairiki
+ * Line length limits for robustness added by Tim Starling, 2005-08-31
+ *
+ * @author Geoffrey T. Dairiki, Tim Starling
  * @access private
  * @package MediaWiki 
  * @subpackage DifferenceEngine
@@ -525,19 +530,21 @@ class _DiffEngine
 		}
 
 		// Ignore lines which do not exist in both files.
-		for ($xi = $skip; $xi < $n_from - $endskip; $xi++)
-			$xhash[$from_lines[$xi]] = 1;
+		for ($xi = $skip; $xi < $n_from - $endskip; $xi++) {
+			$xhash[$this->_line_hash($from_lines[$xi])] = 1;
+		}
+		
 		for ($yi = $skip; $yi < $n_to - $endskip; $yi++) {
 			$line = $to_lines[$yi];
-			if ( ($this->ychanged[$yi] = empty($xhash[$line])) )
+			if ( ($this->ychanged[$yi] = empty($xhash[$this->_line_hash($line)])) )
 				continue;
-			$yhash[$line] = 1;
+			$yhash[$this->_line_hash($line)] = 1;
 			$this->yv[] = $line;
 			$this->yind[] = $yi;
 		}
 		for ($xi = $skip; $xi < $n_from - $endskip; $xi++) {
 			$line = $from_lines[$xi];
-			if ( ($this->xchanged[$xi] = empty($yhash[$line])) )
+			if ( ($this->xchanged[$xi] = empty($yhash[$this->_line_hash($line)])) )
 				continue;
 			$this->xv[] = $line;
 			$this->xind[] = $xi;
@@ -587,6 +594,17 @@ class _DiffEngine
 		return $edits;
 	}
 
+	/**
+	 * Returns the whole line if it's small enough, or the MD5 hash otherwise
+	 */
+	function _line_hash( $line ) {
+		if ( strlen( $line ) > MAX_DIFF_XREF_LENGTH ) {
+			return md5( $line );
+		} else {
+			return $line;
+		}
+	}
+	
 
 	/* Divide the Largest Common Subsequence (LCS) of the sequences
 	 * [XOFF, XLIM) and [YOFF, YLIM) into NCHUNKS approximately equally
@@ -1342,7 +1360,6 @@ class WordLevelDiff extends MappedDiff
 		list ($orig_words, $orig_stripped) = $this->_split($orig_lines);
 		list ($closing_words, $closing_stripped) = $this->_split($closing_lines);
 
-
 		$this->MappedDiff($orig_words, $closing_words,
 						  $orig_stripped, $closing_stripped);
 		wfProfileOut( $fname );
@@ -1351,14 +1368,33 @@ class WordLevelDiff extends MappedDiff
 	function _split($lines) {
 		$fname = 'WordLevelDiff::_split';
 		wfProfileIn( $fname );
-		if (!preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
-							implode("\n", $lines),
-							$m)) {
-			wfProfileOut( $fname );
-			return array(array(''), array(''));
+
+		$words = array();
+		$stripped = array();
+		$first = true;
+		foreach ( $lines as $line ) {
+			# If the line is too long, just pretend the entire line is one big word
+			# This prevents resource exhaustion problems
+			if ( $first ) {
+				$first = false;
+			} else {
+				$words[] = "\n";
+				$stripped[] = "\n";
+			}
+			if ( strlen( $line ) > MAX_DIFF_LINE ) {
+				$words[] = $line;
+				$stripped[] = $line;
+			} else {
+				if (preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
+					$line, $m)) 
+				{
+					$words = array_merge( $words, $m[0] );
+					$stripped = array_merge( $stripped, $m[1] );
+				}
+			}
 		}
 		wfProfileOut( $fname );
-		return array($m[0], $m[1]);
+		return array($words, $stripped);
 	}
 
 	function orig () {
