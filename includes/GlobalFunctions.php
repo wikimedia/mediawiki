@@ -1058,8 +1058,9 @@ define('TS_EXIF', 4);
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
-	if ($ts==0) { 
-		$uts=time(); 
+	$uts = 0;
+	if ($ts==0) {
+		$uts=time();
 	} elseif (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
