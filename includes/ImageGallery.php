@@ -115,11 +115,11 @@ class ImageGallery
 
 			if( $this->mShowBytes ) {
 				if( $img->exists() ) {
-					$nb = wfMsg( 'nbytes', $wgLang->formatNum( $img->getSize() ) );
+					$nb = wfMsgHtml( 'nbytes', $wgLang->formatNum( $img->getSize() ) );
 				} else {
-					$nb = wfMsg( 'filemissing' );
+					$nb = wfMsgHtml( 'filemissing' );
 				}
-				$nb = htmlspecialchars( $nb ) . "<br />\n";
+				$nb = "$nb<br />\n";
 			} else {
 				$nb = '';
 			}
@@ -135,7 +135,7 @@ class ImageGallery
 			
 			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
 			# in version 4.8.6 generated crackpot html in its absence, see:
-			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 			$s .= $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div><div class="gallerytext">' . "\n" .
 				$textlink . $text . $nb .
 				'</div>';
