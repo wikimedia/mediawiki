@@ -63,12 +63,11 @@ class Licenses {
 					$this->stackItem( $this->licenses, $levels, $obj );
 				} else {
 					if ( $level < count( $levels ) )
-						$levels = array_slice( $levels, count( $levels ) - $level );
+						$levels = array_slice( $levels, 0, $level );
 					if ( $level == count( $levels ) )
 						$levels[$level - 1] = $line;
 					else if ( $level > count( $levels ) )
 						$levels[] = $line;
-	
 				}
 			}
 		}
@@ -77,8 +76,10 @@ class Licenses {
 	function trimStars( $str ) {
 		$i = $count = 0;
 		
+		wfSuppressWarnings();
 		while ($str[$i++] == '*')
 			++$count;
+		wfRestoreWarnings();
 	
 		return array( $count, ltrim( $str, '* ' ) );
 	}
@@ -96,7 +97,6 @@ class Licenses {
 	function makeHtml( &$tagset, $depth = 0 ) {
 		foreach ( $tagset as $key => $val )
 			if ( is_array( $val ) ) {
-				
 				$this->html .= $this->outputOption(
 					$this->msg( $key ),
 					array(
