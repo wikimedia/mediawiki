@@ -384,10 +384,11 @@ class SpecialPage
 		$this->setHeaders();
 
 		if ( $this->userCanExecute( $wgUser ) ) {
-			if ( $this->mFile ) {
+			$func = $this->mFunction;
+			// only load file if the function does not exist
+			if(!function_exists($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
-			$func = $this->mFunction;
 			$func( $par, $this );
 		} else {
 			$this->displayRestrictionError();
