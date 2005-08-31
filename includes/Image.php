@@ -1273,7 +1273,7 @@ class Image
 
 		if ( $wgUseCopyrightUpload ) {
 			if ( $license != '' ) {
-				$licensetxt = '== ' . wfMsg( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+				$licensetxt = '== ' . wfMsg( 'license' ) . " ==$license\n";
 			}
 			$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
 			  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
@@ -1283,7 +1283,7 @@ class Image
 			if ( $license != '' ) {
 				$filedesc = $desc == '' ? '' : '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n";
 				 $textdesc = $filedesc . 
-					 '== ' . wfMsg ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";	
+					 '== ' . wfMsg ( 'license' ) . " ==\n$license\n";	
 			} else {
 				$textdesc = $desc;
 			}
