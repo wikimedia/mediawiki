@@ -982,14 +982,10 @@ to upload files.",
 'uploaderror'	=> 'Upload error',
 'uploadtext'	=>
 "
-Use the form below to upload new files,
+Use the form below to upload files,
 to view or search previously uploaded images
 go to the [[Special:Imagelist|list of uploaded files]],
-uploads and deletions are also logged in the [[Special:Log|project log]].
-
-You must also check the box affirming that you are not
-violating any copyrights by uploading the file.
-Press the \"Upload\" button to finish the upload.
+uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
 To include the image in a page, use a link in the form
 '''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''',
