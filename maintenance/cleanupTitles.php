@@ -159,8 +159,12 @@ class TitleCleanup extends FiveUpgrade {
 	}
 	
 	function moveInconsistentPage( $row, $title ) {
-		if( $title->exists() ) {
-			$prior = $title->getDbKey();
+		if( $title->exists() || $title->getInterwiki() ) {
+			if( $title->getInterwiki() ) {
+				$prior = $title->getPrefixedDbKey();
+			} else {
+				$prior = $title->getDbKey();
+			}
 			$clean = 'Broken/' . $prior;
 			$verified = Title::makeTitleSafe( $row->page_namespace, $clean );
 			if( $verified->exists() ) {
