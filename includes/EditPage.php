@@ -516,8 +516,8 @@ class EditPage {
 			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary);
 		}
 
-		# Suppress edit conflict with self
-		if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
+		# Suppress edit conflict with self, except for section edits where merging is required.
+		if ( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
 			wfDebug( "Suppressing edit conflict, same user.\n" );
 			$this->isConflict = false;
 		} else {
