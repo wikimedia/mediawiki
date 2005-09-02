@@ -1866,7 +1866,7 @@ class Title {
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
 		$obj = $dbw->selectRow( array( 'page', 'revision', 'text'),
-			array( 'page_is_redirect','old_text' ),
+			array( 'page_is_redirect','old_text','old_flags' ),
 			array( 'page_id' => $id, 'page_latest=rev_id', 'rev_text_id=old_id' ),
 			$fname, 'FOR UPDATE' );
 
@@ -1874,14 +1874,18 @@ class Title {
 			# Not a redirect
 			return false;
 		}
+		$text = Revision::getRevisionText( $obj );
 
 		# Does the redirect point to the source?
-		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $obj->old_text, $m ) ) {
+		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
 			if( !is_object( $redirTitle ) ||
 				$redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() ) {
 				return false;
 			}
+		} else {
+			# Fail safe
+			return false;
 		}
 
 		# Does the article have a history?
