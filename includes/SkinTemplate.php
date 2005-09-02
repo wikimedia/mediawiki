@@ -650,7 +650,7 @@ class SkinTemplate extends Skin {
 			}
 			wfProfileOut( "$fname-live" );
 
-			if( $wgUser->isLoggedIn() and $action != 'submit' ) {
+			if( $this->loggedin and $action != 'submit' ) {
 				if( !$this->mTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
 						'class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
@@ -666,7 +666,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 
-			if( $wgUser->isLoggedIn() || $wgValidationForAnons ) { # and $action != 'submit' ) {
+			if( $this->loggedin || $wgValidationForAnons ) { # and $action != 'submit' ) {
 				# Validate tab. TODO: add validation to logged-in user rights
 				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
 					if ( $oldid ) $oid = intval( $oldid ) ; # Use the oldid
