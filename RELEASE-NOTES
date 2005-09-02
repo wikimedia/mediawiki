@@ -750,6 +750,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5rc4 ===
 
 * (bug 3292) Fix move-over-redirect test when current entries are not plaintext
+* (bug 2078) Don't hide watch tab on preview
 
 
 === Caveats ===
