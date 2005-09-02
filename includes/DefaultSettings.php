@@ -1387,12 +1387,36 @@ $wgBrowserBlackList = array(
  * Fake out the timezone that the server thinks it's in. This will be used for
  * date display and not for what's stored in the DB. Leave to null to retain
  * your server's OS-based timezone value. This is the same as the timezone.
+ *
+ * This variable is currently used ONLY for signature formatting, not for
+ * anything else.
  */
 # $wgLocaltimezone = 'GMT';
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
 $wgLocaltimezone = null;
+
+/**
+ * Set an offset from UTC in hours to use for the default timezone setting
+ * for anonymous users and new user accounts.
+ *
+ * This setting is used for most date/time displays in the software, and is
+ * overrideable in user preferences. It is *not* used for signature timestamps.
+ *
+ * You can set it to match the configured server timezone like this:
+ *   $wgLocalTZoffset = date("Z") / 3600;
+ *
+ * If your server is not configured for the timezone you want, you can set
+ * this in conjunction with the signature timezone and override the TZ
+ * environment variable like so:
+ *   $wgLocaltimezone="Europe/Berlin";
+ *   putenv("TZ=$wgLocaltimezone");
+ *   $wgLocalTZoffset = date("Z") / 3600;
+ *
+ * Leave at NULL to show times in universal time (UTC/GMT).
+ */
+$wgLocalTZoffset = null;
 
 
 /**

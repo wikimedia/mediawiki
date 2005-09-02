@@ -79,6 +79,7 @@ fully support the editing toolbar, but was found to be too confusing.
   should provide the expected transparency here and fits usage patterns better.
 * (bug 3292) Fix move-over-redirect test when current entries are not plaintext
 * (bug 2078) Don't hide watch tab on preview
+* (bug 3306) Document $wgLocalTZoffset
 
 
 === Caveats ===
