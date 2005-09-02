@@ -747,6 +747,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Security fix for tables
 
 
+=== Changes since 1.5rc4 ===
+
+* (bug 3292) Fix move-over-redirect test when current entries are not plaintext
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
