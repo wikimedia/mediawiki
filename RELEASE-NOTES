@@ -77,6 +77,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Security fix for Special:Upload license selection list
 * Don't override edit conflict suppression on section edits; section merging
   should provide the expected transparency here and fits usage patterns better.
+* (bug 3292) Fix move-over-redirect test when current entries are not plaintext
 
 
 === Caveats ===
