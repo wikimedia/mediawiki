@@ -393,6 +393,8 @@ class Title {
 
 		wfProfileIn( $fname );
 
+		$key = strtolower( $key );
+
 		$k = $wgDBname.':interwiki:'.$key;
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) ) {
 			wfProfileOut( $fname );
