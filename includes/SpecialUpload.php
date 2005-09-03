@@ -574,7 +574,7 @@ class UploadForm {
 	<table border='0'><tr>
 
 	<td align='right'>{$sourcefilename}:</td><td align='left'>
-	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onchange='fillDestFilename()' size='40' />
+	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
 	</td></tr><tr>
 
 	<td align='right'>{$destfilename}:</td><td align='left'>
