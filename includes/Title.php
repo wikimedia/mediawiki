@@ -1333,7 +1333,7 @@ class Title {
 
 					# Interwiki link
 					$t = $m[2];
-					$this->mInterwiki = $p;
+					$this->mInterwiki = strtolower( $p );
 
 					# Redundant interwiki prefix to the local wiki
 					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
