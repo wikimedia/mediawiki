@@ -1253,7 +1253,7 @@ class Image
 	/**
 	 * Record an image upload in the upload log and the image table
 	 */
-	function recordUpload( $oldver, $desc, $license, $copyStatus = '', $source = '' ) {
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '' ) {
 		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
 		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
