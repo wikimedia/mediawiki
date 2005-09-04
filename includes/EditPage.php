@@ -479,12 +479,11 @@ class EditPage {
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
 			# Don't save a new article if it's blank.
-			if ( ( '' == $this->textbox1 ) ||
-				( wfMsg( 'newarticletext' ) == $this->textbox1 ) ) {
+			if ( ( '' == $this->textbox1 ) ) {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
 					wfProfileOut( $fname );
 					return false;
-				}
+			}
 
 			$isComment=($this->section=='new');
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
