@@ -273,12 +273,12 @@ class User {
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
 
-		global $wgContLang, $wgIP, $wgDBname;
+		global $wgContLang, $wgDBname;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = 0;
 		$this->mNewtalk = -1;
-		$this->mName = $wgIP;
+		$this->mName = false;
 		$this->mRealName = $this->mEmail = '';
 		$this->mEmailAuthenticated = null;
 		$this->mPassword = $this->mNewpassword = '';
@@ -360,7 +360,7 @@ class User {
 	 * And it's cheaper to check slave first, then master if needed, than master always.
 	 */
 	function getBlockedStatus( $bFromSlave = true ) {
-		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
 
 		if ( -1 != $this->mBlockedby ) {
 			wfDebug( "User::getBlockedStatus: already loaded.\n" );
@@ -372,11 +372,12 @@ class User {
 		wfDebug( "$fname: checking...\n" );
 
 		$this->mBlockedby = 0;
+		$ip = wfGetIP();
 
 		# User/IP blocking
 		$block = new Block();
 		$block->forUpdate( $bFromSlave );
-		if ( $block->load( $wgIP , $this->mId ) ) {
+		if ( $block->load( $ip , $this->mId ) ) {
 			wfDebug( "$fname: Found block.\n" );
 			$this->mBlockedby = $block->mBy;
 			$this->mBlockreason = $block->mReason;
@@ -391,12 +392,12 @@ class User {
 		if ( !$this->mBlockedby ) {
 			# Check first against slave, and optionally from master.
 			wfDebug( "$fname: Checking range blocks\n" );
-			$block = $wgBlockCache->get( $wgIP, true );
+			$block = $wgBlockCache->get( $ip, true );
 			if ( !$block && !$bFromSlave )
 				{
 				# Not blocked: check against master, to make sure.
 				$wgBlockCache->clearLocal( );
-				$block = $wgBlockCache->get( $wgIP, false );
+				$block = $wgBlockCache->get( $ip, false );
 				}
 			if ( $block !== false ) {
 				$this->mBlockedby = $block->mBy;
@@ -405,17 +406,17 @@ class User {
 		}
 
 		# Proxy blocking
-		if ( !$this->isSysop() && !in_array( $wgIP, $wgProxyWhitelist ) ) {
+		if ( !$this->isSysop() && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list
-			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
+			if ( array_key_exists( $ip, $wgProxyList ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
 
 			# DNSBL
 			if ( !$this->mBlockedby && $wgEnableSorbs && !$this->getID() ) {
-				if ( $this->inSorbsBlacklist( $wgIP ) ) {
+				if ( $this->inSorbsBlacklist( $ip ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );
 				}
@@ -485,13 +486,14 @@ class User {
 			return false;
 		}
 
-		global $wgMemc, $wgIP, $wgDBname, $wgRateLimitLog;
+		global $wgMemc, $wgDBname, $wgRateLimitLog;
 		$fname = 'User::pingLimiter';
 		wfProfileIn( $fname );
 
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
+		$ip = wfGetIP();
 
 		if( isset( $limits['anon'] ) && $id == 0 ) {
 			$keys["$wgDBname:limiter:$action:anon"] = $limits['anon'];
@@ -505,9 +507,9 @@ class User {
 				$keys["$wgDBname:limiter:$action:user:$id"] = $limits['newbie'];
 			}
 			if( isset( $limits['ip'] ) ) {
-				$keys["mediawiki:limiter:$action:ip:$wgIP"] = $limits['ip'];
+				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
-			if( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $wgIP, $matches ) ) {
+			if( isset( $limits['subnet'] ) && preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
 				$subnet = $matches[1];
 				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 			}
@@ -607,7 +609,7 @@ class User {
 	}
 
 	/**
-	 * Read datas from session
+	 * Create a new user object using data from session
 	 * @static
 	 */
 	function loadFromSession() {
@@ -734,6 +736,9 @@ class User {
 
 	function getName() {
 		$this->loadFromDatabase();
+		if ( $this->mName === false ) {
+			$this->mName = wfGetIP();
+		}
 		return $this->mName;
 	}
 
@@ -765,7 +770,7 @@ class User {
 			# entire User object stored in there.
 			if( !$this->mId ) {
 				global $wgDBname, $wgMemc;
-				$key = "$wgDBname:newtalk:ip:{$this->mName}";
+				$key = "$wgDBname:newtalk:ip:" . $this->getName();
 				$newtalk = $wgMemc->get( $key );
 				if( is_integer( $newtalk ) ) {
 					$this->mNewtalk = $newtalk ? 1 : 0;
@@ -794,7 +799,7 @@ class User {
 				}
 				$dbr->freeResult( $res );
 			} else {
-				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
+				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->getName() ), $fname );
 				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
 				$dbr->freeResult( $res );
 			}
@@ -1250,8 +1255,8 @@ class User {
 		$_SESSION['wsUserID'] = $this->mId;
 		setcookie( $wgDBname.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
 
-		$_SESSION['wsUserName'] = $this->mName;
-		setcookie( $wgDBname.'UserName', $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
+		$_SESSION['wsUserName'] = $this->getName();
+		setcookie( $wgDBname.'UserName', $this->getName(), $exp, $wgCookiePath, $wgCookieDomain );
 
 		$_SESSION['wsToken'] = $this->mToken;
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
@@ -1266,7 +1271,7 @@ class User {
 	 * It will clean the session cookie
 	 */
 	function logout() {
-		global $wgCookiePath, $wgCookieDomain, $wgDBname, $wgIP;
+		global $wgCookiePath, $wgCookieDomain, $wgDBname;
 		$this->loadDefaults();
 		$this->setLoaded( true );
 
@@ -1337,7 +1342,7 @@ class User {
 				if( !$this->mId ) {
 					# Anon users have a separate memcache space for newtalk
 					# since they don't store their own info. Trim...
-					$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
+					$wgMemc->delete( "$wgDBname:newtalk:ip:" . $this->getName() );
 				}
 			}
 		} else {
@@ -1347,8 +1352,8 @@ class User {
 				$key = false;
 			} else {
 				$field = 'user_ip';
-				$value = $this->mName;
-				$key = "$wgDBname:newtalk:ip:$this->mName";
+				$value = $this->getName();
+				$key = "$wgDBname:newtalk:ip:$value";
 			}
 
 			$dbr =& wfGetDB( DB_SLAVE );
@@ -1390,7 +1395,7 @@ class User {
 		$fname = 'User::idForName';
 
 		$gotid = 0;
-		$s = trim( $this->mName );
+		$s = trim( $this->getName() );
 		if ( 0 == strcmp( '', $s ) ) return 0;
 
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -1425,7 +1430,6 @@ class User {
 	}
 
 	function spreadBlock() {
-		global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
 		$fname = 'User::spreadBlock';
@@ -1441,7 +1445,7 @@ class User {
 		}
 
 		# Check if this IP address is already blocked
-		$ipblock = Block::newFromDB( $wgIP );
+		$ipblock = Block::newFromDB( wfGetIP() );
 		if ( $ipblock->isValid() ) {
 			# Just update the timestamp
 			$ipblock->updateTimestamp();
@@ -1449,8 +1453,8 @@ class User {
 		}
 
 		# Make a new block object with the desired properties
-		wfDebug( "Autoblocking {$this->mName}@{$wgIP}\n" );
-		$ipblock->mAddress = $wgIP;
+		wfDebug( "Autoblocking {$this->mName}@" . wfGetIP() . "\n" );
+		$ipblock->mAddress = wfGetIP();
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
 		$ipblock->mReason = wfMsg( 'autoblocker', $this->getName(), $userblock->mReason );
@@ -1511,7 +1515,7 @@ class User {
 	 * @access public
 	 */
 	function getUserPage() {
-		return Title::makeTitle( NS_USER, $this->mName );
+		return Title::makeTitle( NS_USER, $this->getName() );
 	}
 
 	/**
@@ -1656,11 +1660,11 @@ class User {
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
 	function sendConfirmationMail() {
-		global $wgIP, $wgContLang;
+		global $wgContLang;
 		$url = $this->confirmationTokenUrl( $expiration );
 		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
 			wfMsg( 'confirmemail_body',
-				$wgIP,
+				wfGetIP(),
 				$this->getName(),
 				$url,
 				$wgContLang->timeanddate( $expiration, false ) ) );

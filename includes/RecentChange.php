@@ -194,8 +194,10 @@ class RecentChange
 		}
 
 		if ( !$ip ) {
-			global $wgIP;
-			$ip = empty( $wgIP ) ? '' : $wgIP;
+			$ip = wfGetIP();
+			if ( !$ip ) {
+				$ip = '';
+			}
 		}
 
 		$rc = new RecentChange;
@@ -235,8 +237,10 @@ class RecentChange
 	  $ip='', $size = 0, $newId = 0 )
 	{
 		if ( !$ip ) {
-			global $wgIP;
-			$ip = empty( $wgIP ) ? '' : $wgIP;
+			$ip = wfGetIP();
+			if ( !$ip ) {
+				$ip = '';
+			}
 		}
 		if ( $bot == 'default' ) {
 			$bot = $user->isBot();
@@ -277,9 +281,12 @@ class RecentChange
 	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
 		if ( !$ip ) {
-			global $wgIP;
-			$ip = empty( $wgIP ) ? '' : $wgIP;
+			$ip = wfGetIP();
+			if ( !$ip ) {
+				$ip = '';
+			}
 		}
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -323,9 +330,12 @@ class RecentChange
 	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='' )
 	{
 		if ( !$ip ) {
-			global $wgIP;
-			$ip = empty( $wgIP ) ? '' : $wgIP;
+			$ip = wfGetIP();
+			if ( !$ip ) {
+				$ip = '';
+			}
 		}
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
