@@ -1227,17 +1227,7 @@ class Article {
 		}
 
 		$isminor = ( $minor && $wgUser->isLoggedIn() );
-		if ( $this->isRedirect( $text ) ) {
-			# Remove all content but redirect
-			# This could be done by reconstructing the redirect from a title given by
-			# Title::newFromRedirect(), but then we wouldn't know which synonym the user
-			# wants to see
-			if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ')[^\\n]+)/i', $text, $m ) ) {
-				$redir = 1;
-				$text = $m[1] . "\n";
-			}
-		}
-		else { $redir = 0; }
+		$redir = $this->isRedirect( $text ) ? 1 : 0;
 
 		$text = $this->preSaveTransform( $text );
 		$dbw =& wfGetDB( DB_MASTER );
