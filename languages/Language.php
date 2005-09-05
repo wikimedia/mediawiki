@@ -2783,6 +2783,28 @@ class Language {
 	}
 
 	/**
+	 * Plural form transformations, needed for some languages.
+	 * For example, where are 3 form of plural in Russian and Polish,
+	 * depending on "count mod 10". See [[w:Plural]]
+	 * For English it is pretty simple.
+	 *
+	 * Invoked by putting {{pluralform:count|wordform1|wordform2}}
+	 * or {{pluralform:count|wordform1|wordform2|wordform3}}
+	 *
+	 * Example: {{pluralform:{{NUMBEROFARTICLES}}|article|articles}} 
+	 *
+	 * @param string $count
+	 * @param string $wordform1
+	 * @param string $wordform2
+	 * @param string $wordform3 (optional)
+	 * @return string
+	 */
+	function convertPluralForm( $count, $wordform1, $wordform2, $wordform3) {
+		if ($count==1) {return $wordform1;}
+		else {return $wordform2;}
+	}
+
+	/**
 	 * For translaing of expiry times
 	 * @param string The validated block time in English
 	 * @return Somehow translated block time
