@@ -410,7 +410,7 @@ class WikiExporter {
 
 function wfTimestamp2ISO8601( $ts ) {
 	#2003-08-05T18:30:02Z
-	return preg_replace( '/^(....)(..)(..)(..)(..)(..)$/', '$1-$2-$3T$4:$5:$6Z', $ts );
+	return preg_replace( '/^(....)(..)(..)(..)(..)(..)$/', '$1-$2-$3T$4:$5:$6Z', wfTimestamp( TS_MW, $ts ) );
 }
 
 function xmlsafe( $string ) {
