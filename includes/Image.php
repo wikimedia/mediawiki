@@ -1484,6 +1484,16 @@ class Image
 			$fname
 		);
 	}
+	
+	/**
+	 * Returns true if the image does not come from the shared
+	 * image repository.
+	 *
+	 * @return bool
+	 */
+	function isLocal() {
+		return !$this->fromSharedDirectory;
+	}
 
 } //class
 
