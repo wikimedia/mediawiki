@@ -339,10 +339,10 @@ class WikiExporter {
 		print "<page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		print '  ' . wfElementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
-		print '  ' . wfElement( 'id', array(), $row->page_id ) . "\n";
+		print '  ' . wfElement( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if( '' != $row->page_restrictions ) {
 			print '  ' . wfElement( 'restrictions', array(),
-				$row->page_restrictions ) . "\n";
+				strval( $row->page_restrictions ) ) . "\n";
 		}
 	}
 	
@@ -373,17 +373,17 @@ class WikiExporter {
 		wfProfileIn( $fname );
 		
 		print "  <revision>\n";
-		print "    " . wfElement( 'id', null, $row->rev_id ) . "\n";
+		print "    " . wfElement( 'id', null, strval( $row->rev_id ) ) . "\n";
 		
-		$ts = wfTimestamp2ISO8601( $row->rev_timestamp );
+		$ts = wfTimestamp2ISO8601( strval( $row->rev_timestamp ) );
 		print "    " . wfElement( 'timestamp', null, $ts ) . "\n";
 		
 		print "    <contributor>\n";
 		if( $row->rev_user ) {
-			print "      " . wfElementClean( 'username', null, $row->rev_user_text ) . "\n";
-			print "      " . wfElement( 'id', null, $row->rev_user ) . "\n";
+			print "      " . wfElementClean( 'username', null, strval( $row->rev_user_text ) ) . "\n";
+			print "      " . wfElement( 'id', null, strval( $row->rev_user ) ) . "\n";
 		} else {
-			print "      " . wfElementClean( 'ip', null, $row->rev_user_text ) . "\n";
+			print "      " . wfElementClean( 'ip', null, strval( $row->rev_user_text ) ) . "\n";
 		}
 		print "    </contributor>\n";
 		
@@ -391,10 +391,10 @@ class WikiExporter {
 			print  "    <minor/>\n";
 		}
 		if( $row->rev_comment != '' ) {
-			print "    " . wfElementClean( 'comment', null, $row->rev_comment ) . "\n";
+			print "    " . wfElementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 	
-		$text = Revision::getRevisionText( $row );
+		$text = strval( Revision::getRevisionText( $row ) );
 		print "    " . wfElementClean( 'text', array( 'xml:space' => 'preserve' ), $text ) . "\n";
 		
 		print "  </revision>\n";
