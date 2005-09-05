@@ -710,6 +710,8 @@ $wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['user' ]['read']            = true;
 $wgGroupPermissions['user' ]['edit']            = true;
 $wgGroupPermissions['user' ]['upload']          = true;
+$wgGroupPermissions['user' ]['reupload']        = true;
+$wgGroupPermissions['user' ]['reupload-shared'] = true;
 
 $wgGroupPermissions['bot'  ]['bot']             = true;
 
@@ -724,6 +726,8 @@ $wgGroupPermissions['sysop']['patrol']          = true;
 $wgGroupPermissions['sysop']['protect']         = true;
 $wgGroupPermissions['sysop']['rollback']        = true;
 $wgGroupPermissions['sysop']['upload']          = true;
+$wgGroupPermissions['sysop']['reupload']        = true;
+$wgGroupPermissions['sysop']['reupload-shared'] = true;
 
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 // Used by the Special:Renameuser extension

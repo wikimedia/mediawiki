@@ -201,6 +201,14 @@ class UploadForm {
 		if( !$nt->userCanEdit() ) {
 			return $this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
 		}
+		
+		/**
+		 * In some cases we may forbid overwriting of existing files.
+		 */
+		$overwrite = $this->checkOverwrite( $this->mUploadSaveName );
+		if( WikiError::isError( $overwrite ) ) {
+			return $this->uploadError( $overwrite->toString() );
+		}
 
 		/* Don't allow users to override the blacklist (check file extension) */
 		global $wgStrictFileExtensions;
@@ -948,6 +956,45 @@ class UploadForm {
 			wfDebug( "SpecialUpload::cleanupTempFile: Removing temporary file $this->mUploadTempName\n" );
 			unlink( $this->mUploadTempName );
 		}
+	}
+	
+	/**
+	 * Check if there's an overwrite conflict and, if so, if restrictions
+	 * forbid this user from performing the upload.
+	 *
+	 * @return mixed true on success, WikiError on failure
+	 * @access private
+	 */
+	function checkOverwrite( $name ) {
+		$img = Image::newFromName( $name );
+		if( is_null( $img ) ) {
+			// Uh... this shouldn't happen ;)
+			// But if it does, fall through to previous behavior
+			return false;
+		}
+		
+		$error = '';
+		if( $img->exists() ) {
+			global $wgUser, $wgOut;
+			if( $img->isLocal() ) {
+				if( !$wgUser->isAllowed( 'reupload' ) ) {
+					$error = 'fileexists-forbidden';
+				}
+			} else {
+				if( !$wgUser->isAllowed( 'reupload' ) ||
+				    !$wgUser->isAllowed( 'reupload-shared' ) ) {
+					$error = "fileexists-shared-forbidden";
+				}
+			}
+		}
+		
+		if( $error ) {
+			$errorText = wfMsg( $error, wfEscapeWikiText( $img->getName() ) );
+			return new WikiError( $wgOut->parse( $errorText ) );
+		}
+		
+		// Rockin', go ahead and upload
+		return true;
 	}
 
 }

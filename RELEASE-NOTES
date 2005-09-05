@@ -82,6 +82,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3306) Document $wgLocalTZoffset
 * (bug 3304) Language file for Croatian (LanguageHr.php)
 * (bug 2143) Update Vietnamese interface
+* Add 'reupload' and 'reupload-shared' permission keys to restrict new uploads
+  overwriting existing files; default is the old behavior (allowed).
 
 
 === Caveats ===
