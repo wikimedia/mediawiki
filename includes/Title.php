@@ -267,7 +267,7 @@ class Title {
 	function newFromRedirect( $text ) {
 		global $wgMwRedir;
 		$rt = NULL;
-		if ( $wgMwRedir->match( $text ) ) {
+		if ( $wgMwRedir->matchStart( $text ) ) {
 			if ( preg_match( '/\[{2}(.*?)(?:\||\]{2})/', $text, $m ) ) {
 				# categories are escaped using : for example one can enter:
 				# #REDIRECT [[:Category:Music]]. Need to remove it.
