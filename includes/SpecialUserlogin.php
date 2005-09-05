@@ -162,7 +162,7 @@ class LoginForm {
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
 		global $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
-		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
+		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
 		global $wgAuth;
 
 		// If the user passes an invalid domain, something is fishy
@@ -189,10 +189,11 @@ class LoginForm {
 			return false;
 		}
 
-		if ( $wgEnableSorbs && !in_array( $wgIP, $wgProxyWhitelist ) && 
-		  $wgUser->inSorbsBlacklist( $wgIP ) ) 
+		$ip = wfGetIP();
+		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) && 
+		  $wgUser->inSorbsBlacklist( $ip ) ) 
 		{
-			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $wgIP ) . ')' );
+			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
 			return;
 		}
 
@@ -225,7 +226,7 @@ class LoginForm {
 		}
 
 		if ( $wgAccountCreationThrottle ) {
-			$key = $wgDBname.':acctcreate:ip:'.$wgIP;
+			$key = $wgDBname.':acctcreate:ip:'.$ip;
 			$value = $wgMemc->incr( $key );
 			if ( !$value ) {
 				$wgMemc->set( $key, 1, 86400 );
@@ -376,7 +377,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPasswordInternal( $u ) {
-		global $wgPasswordSender, $wgDBname, $wgIP;
+		global $wgPasswordSender, $wgDBname;
 		global $wgCookiePath, $wgCookieDomain;
 
 		if ( '' == $u->getEmail() ) {
@@ -390,7 +391,7 @@ class LoginForm {
 
 		$u->saveSettings();
 
-		$ip = $wgIP;
+		$ip = wfGetIP();
 		if ( '' == $ip ) { $ip = '(Unknown)'; }
 
 		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np );

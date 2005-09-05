@@ -587,7 +587,7 @@ class EditPage {
 		$this->edittime = $this->mArticle->getTimestamp();
 		$this->textbox1 = $this->mArticle->getContent( true );
 		$this->summary = '';
-		$this->proxyCheck();
+		wfProxyCheck();
 	}
 
 	/**
@@ -1015,7 +1015,7 @@ END
 	 * @todo document
 	 */
 	function blockedIPpage() {
-		global $wgOut, $wgUser, $wgContLang, $wgIP;
+		global $wgOut, $wgUser, $wgContLang;
 
 		$wgOut->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -1023,7 +1023,7 @@ END
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
-		$ip = $wgIP;
+		$ip = wfGetIP();
 
 		if ( is_numeric( $id ) ) {
 			$name = User::whoIs( $id );
@@ -1066,50 +1066,6 @@ END
 			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
 		}
 		$wgOut->returnToMain( false );
-	}
-
-	/**
-	 * Forks processes to scan the originating IP for an open proxy server
-	 * MemCached can be used to skip IPs that have already been scanned
-	 */
-	function proxyCheck() {
-		global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
-		global $wgIP, $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
-
-		if ( !$wgBlockOpenProxies ) {
-			return;
-		}
-
-		# Get MemCached key
-		$skip = false;
-		if ( $wgUseMemCached ) {
-			$mcKey = $wgDBname.':proxy:ip:'.$wgIP;
-			$mcValue = $wgMemc->get( $mcKey );
-			if ( $mcValue ) {
-				$skip = true;
-			}
-		}
-
-		# Fork the processes
-		if ( !$skip ) {
-			$title = Title::makeTitle( NS_SPECIAL, 'Blockme' );
-			$iphash = md5( $wgIP . $wgProxyKey );
-			$url = $title->getFullURL( 'ip='.$iphash );
-
-			foreach ( $wgProxyPorts as $port ) {
-				$params = implode( ' ', array(
-							escapeshellarg( $wgProxyScriptPath ),
-							escapeshellarg( $wgIP ),
-							escapeshellarg( $port ),
-							escapeshellarg( $url )
-							));
-				exec( "php $params &>/dev/null &" );
-			}
-			# Set MemCached key
-			if ( $wgUseMemCached ) {
-				$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
-			}
-		}
 	}
 
 	/**

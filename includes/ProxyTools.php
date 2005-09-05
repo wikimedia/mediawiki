@@ -10,7 +10,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /** Work out the IP address based on various globals */
 function wfGetIP() {
-	global $wgSquidServers, $wgSquidServersNoPurge;
+	global $wgSquidServers, $wgSquidServersNoPurge, $wgIP;
+
+	# Return cached result
+	if ( !empty( $wgIP ) ) {
+		return $wgIP;
+	}
 
 	/* collect the originating ips */
 	# Client connecting to this webserver
@@ -45,6 +50,8 @@ function wfGetIP() {
 		}
 	}
 
+	wfDebug( "IP: $ip\n" );
+	$wgIP = $ip;
 	return $ip;
 }
 
@@ -89,5 +96,51 @@ function wfIsIPPublic( $ip ) {
 	}
 	return true;
 }
+
+/**
+ * Forks processes to scan the originating IP for an open proxy server
+ * MemCached can be used to skip IPs that have already been scanned
+ */
+function wfProxyCheck() {
+	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
+	global $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
+
+	if ( !$wgBlockOpenProxies ) {
+		return;
+	}
+
+	$ip = wfGetIP();
 	
+	# Get MemCached key
+	$skip = false;
+	if ( $wgUseMemCached ) {
+		$mcKey = "$wgDBname:proxy:ip:$ip";
+		$mcValue = $wgMemc->get( $mcKey );
+		if ( $mcValue ) {
+			$skip = true;
+		}
+	}
+
+	# Fork the processes
+	if ( !$skip ) {
+		$title = Title::makeTitle( NS_SPECIAL, 'Blockme' );
+		$iphash = md5( $ip . $wgProxyKey );
+		$url = $title->getFullURL( 'ip='.$iphash );
+
+		foreach ( $wgProxyPorts as $port ) {
+			$params = implode( ' ', array(
+						escapeshellarg( $wgProxyScriptPath ),
+						escapeshellarg( $ip ),
+						escapeshellarg( $port ),
+						escapeshellarg( $url )
+						));
+			exec( "php $params &>/dev/null &" );
+		}
+		# Set MemCached key
+		if ( $wgUseMemCached ) {
+			$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
+		}
+	}
+}
+
 ?>

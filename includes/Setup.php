@@ -80,7 +80,7 @@ if ( $wgUseDynamicDates ) {
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 
-$wgIP = wfGetIP();
+$wgIP = false; # Load on demand
 $wgRequest = new WebRequest();
 
 # Useful debug output

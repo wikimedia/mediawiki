@@ -646,7 +646,7 @@ END;
 	}
 
 	function nameAndLogin() {
-		global $wgUser, $wgTitle, $wgLang, $wgContLang, $wgShowIPinHeader, $wgIP;
+		global $wgUser, $wgTitle, $wgLang, $wgContLang, $wgShowIPinHeader;
 
 		$li = $wgContLang->specialPage( 'Userlogin' );
 		$lo = $wgContLang->specialPage( 'Userlogout' );
@@ -654,7 +654,7 @@ END;
 		$s = '';
 		if ( $wgUser->isAnon() ) {
 			if( $wgShowIPinHeader && isset( $_COOKIE[ini_get('session.name')] ) ) {
-				$n = $wgIP;
+				$n = wfGetIP();
 
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
 				  $wgLang->getNsText( NS_TALK ) );
