@@ -1329,9 +1329,9 @@ END;
 					$link = wfMsgForContent( $line[0] );
 					if ($link == '-')
 						continue;
-					if (wfNoMsg($line[1], $text = wfMsg($line[1])))
+					if (wfEmptyMsg($line[1], $text = wfMsg($line[1])))
 						$text = $line[1];
-					if (wfNoMsg($line[0], $link))
+					if (wfEmptyMsg($line[0], $link))
 						$link = $line[0];
 					$bar[$heading][] = array(
 						'text' => $text,
