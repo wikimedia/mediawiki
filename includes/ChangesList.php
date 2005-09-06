@@ -25,7 +25,6 @@ class ChangesList {
 				: $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;
-
 	}
 
 	/**
@@ -247,24 +246,17 @@ class ChangesList {
 
 		return '<div>'.$blockOut.'</div>' ;
 	}
+}
 
-	/**
-	 * Called in a loop over all displayed RC entries
-	 * Either returns the line, or caches it for later use
-	 */
-	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgUser;
-		if ( $wgUser->getOption( 'usenewrc' ) )
-			$line = $this->recentChangesLineNew ( $rc, $watched ) ;
-		else
-			$line = $this->recentChangesLineOld ( $rc, $watched ) ;
-		return $line ;
-	}
 
+/**
+ * Generate a list of changes using the good old system (no javascript)
+ */
+class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 */
-	function recentChangesLineOld( &$rc, $watched = false ) {
+	function recentChangesLine( &$rc, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol,
 			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
@@ -407,10 +399,17 @@ class ChangesList {
 		return $s;
 	}
 
+
+}
+
+/**
+ * Generate a list of changes using an Enhanced system (use javascript).
+ */
+class EnhancedChangesList extends ChangesList {
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
-	function recentChangesLineNew( &$baseRC, $watched = false ) {
+	function recentChangesLine( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser,
 			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
@@ -548,4 +547,5 @@ class ChangesList {
 	}
 
 }
+
 ?>
