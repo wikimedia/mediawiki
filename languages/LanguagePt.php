@@ -475,9 +475,9 @@ Por favor, tome nota do URL e comunique o erro a um [[Wikipedia:Administradores|
 'cannotdelete'  => 'Não foi possível eliminar a página ou imagem especificada (Pode ter sido já eliminada por outro administrador.)',
 'badtitle'              => 'Título inválido',
 'badtitletext' => "O título de página requisitada era inválido, vazio, ou
-uma ligação incorreta de inter-linguagem ou título inter-wiki.",
-'perfdisabled' => 'Esta opção foi temporariamente desabilitada
-porque tornava a base de dados lenta demais a ponto de impossibilitar o wiki.',
+uma ligação incorrecta de inter-linguagem ou título inter-wiki.",
+'perfdisabled' => 'Esta opção foi temporariamente desabilitada,
+devido a tornar a base de dados lenta demais a ponto de impossibilitar a wiki.',
 'perfdisabledsub' => "Aqui pode ver uma cópia de $1 salvaguardada:", # obsolete?
 'perfcached' => 'Os dados seguintes encontram-se na cache e podem não estar actualizados:',
 'wrong_wfQuery_params' => "Parâmetros incorrectos para wfQuery()<br />
@@ -488,7 +488,7 @@ Query: $2
 'protectedtext' => "Esta página foi protegida para não permitir edições; existem inúmeros motivos para 
 ocorrer esta situação, por favor consulte [[Project:Protected page]].
 
-Pode ver e copiar a fonte desta página:",
+Pode ver e copiar o código fonte desta página:",
 'sqlhidden' => '(Query SQL escondida)',
 
 # Login and logout pages
@@ -543,9 +543,10 @@ Verifique o nome que introduziu, ou utilize o formulário abaixo para criar uma 
 'wrongpassword'         => 'A senha que você entrou é inválida. Por favor tente novamente.',
 'mailmypassword'        => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle' => "Lembrador de senhas da {{SITENAME}}",
-'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova senha para login.
-A senha para o utilizador \"$2\" é a partir de agora \"$3\".<br />
-Você pode entrar na sua conta e mudar a senha, se assim desejar.",
+'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova senha para login para {{SERVERNAME}}.
+A senha para o utilizador \"$2\" é a partir de agora \"$3\". Deve agora entrar na sua conta e alterar a senha.
+
+Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua senha e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a senha antiga.",
 'noemail'                           => "Não existe um endereço de e-mail associado ao utilizador \"$1\".",
 'passwordsent'  => "Uma nova senha está sendo enviada para o endereço de e-mail associado ao utilizador \"$1\".
 Por favor, volte a efectuar a autentificação ao recebê-la.",
@@ -583,9 +584,6 @@ to confirm that the account is actually yours.",
 'media_tip'        => 'Ligação a ficheiro interno de multimédia',
 'sig_tip'          => 'Sua assinatura com hora e data',
 'hr_tip'           => 'Linha horizontal (utilize moderadamente)',
-'infobox'          => 'Clique um botão para inserir um exemplo',
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert' => "Por favor introduza o texto que deseja que seja formatado.\n Irá aparecer na caixa de informação para ser copiado e colado.\nExemplo:\n$1\nserá transformado em:\n$2",
 
 # Edit pages
 #
@@ -877,7 +875,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'nchanges'              => "$1 mudanças",
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
-'sectionlink' => '?',
+'sectionlink' => '→',
 'number_of_watching_users_RCview'       => '[$1]',
 'number_of_watching_users_pageview'     => '[$1 utilizador/es a vigiar]',
 
@@ -900,15 +898,11 @@ para ver ou pesquisar imagens anteriormente carregadas
 consulte a [[Special:Imagelist|lista de ficheiros carregados]], 
 carregamentos e eliminações são também registados no [[Special:Log|registo do projecto]].
 
-Também deve marcar a caixa, afirmando que não está a violar quaisquer direito autorial ao carregar o ficheiro.
-Carregue no butão \"Carregar\" para finalizar o carregamento do ficheiro.
-
 Para incluír a imagem numa página, utilize o link na forma de
 '''[[{{ns:6}}:ficheiro.jpg]]''', 
 '''[[{{ns:6}}:ficheiro.png|texto]]''' ou
 '''[[{{ns:-2}}:ficheiro.ogg]]''' para uma ligação directa ao ficheiro.
 ",
-
 'uploadlog'             => 'registo de carregamento',
 'uploadlogpage' => 'Upload_log',
 'uploadlogpagetext' => 'Segue-se uma lista dos carregamentos mais recentes.',
@@ -926,8 +920,11 @@ Para incluír a imagem numa página, utilize o link na forma de
 'badfilename'   => 'Nome do ficheiro foi alterado para "$1".',
 'badfiletype'   => "\".$1\" é um formato de ficheiro não recomendado.",
 'largefile'             => 'É recomendado que imagens não excedam $1 bytes em tamanho, o tamanho deste ficheiro é $2 bytes',
+'largefileserver' => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',
 'emptyfile'             => 'O ficheiro que está a tentar carregar parece encontrar-se vazio. Isto poderá ser devido a um erro na escrita do nome do ficheiro. Por favor verifique se realmente deseja carregar este ficheiro.',
 'fileexists'            => 'Já existe um ficheiro com este nome, por favor verifique $1 caso não tenha a certeza se deseja alterar o ficheiro actual.',
+'fileexists-forbidden' => 'Já existe um ficheiro com este nome; por favor volte atrás e carregue este ficheiro sob um novo nome. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Já existe um ficheiro com este nome no repositório de ficheiros partilhados; por favor volte atrás e carregue este ficheiro sob um novo nome. [[Image:$1|thumb|center|$1]]',
 'successfulupload' => 'Envio efectuado com sucesso',
 'fileuploaded'  => "Ficheiro $1 enviado com sucesso.
 Por favor siga este endereço: $2 para a página de descrição e preencha a informação acerca deste ficheiro, tais como a sua origem, quando foi criado e por quem, e quaisquer outros dados que tenha conhecimento sobre o mesmo. Caso este ficheiro seja uma imagem, pode inseri-lo desta forma: <tt>[[Imagem:$1|thumb|Descrição]]</tt>",
@@ -940,6 +937,9 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'uploadvirus' => 'O ficheiro contém vírus! Detalhes: $1',
 'sourcefilename' => 'Nome do ficheiro de origem',
 'destfilename' => 'Nome do ficheiro de destino',
+
+'license' => 'Licença',
+'nolicense' => 'Nenhuma seleccionada',
 
 # Image list
 #
@@ -1134,6 +1134,7 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'wlshowlast'            => 'Ver últimas $1 horas $2 dias $3',
 'wlsaved'               => 'Esta é uma versão salva de sua lista de artigos vigiados.',
 'wlhideshowown'         => '$1 minhas edições.',
+'wlhideshowbots'        => '$1 edições por robôs.',
 'wlshow'                => 'Mostrar',
 'wlhide'                => 'Esconder',
 
