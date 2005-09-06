@@ -56,7 +56,7 @@ define('MAG_SCRIPTPATH',		41);
 define('MAG_SERVERNAME',		42);
 define('MAG_NUMBEROFFILES',		43);
 define('MAG_IMG_MANUALTHUMB',		44);
-define('MAG_PLURALFORM',		45);
+define('MAG_PLURAL',			45);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
