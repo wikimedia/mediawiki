@@ -89,15 +89,16 @@ class LogReader {
 
 	/**
 	 * Set the log reader to return only entries by the given user.
-	 * @param string $name Valid user name
+	 * @param string $name (In)valid user name
 	 * @private
 	 */
 	function limitUser( $name ) {
-		$title = Title::makeTitle( NS_USER, $name );
-		if( empty( $name ) || is_null( $title ) ) {
+		if ( $name == '' )
 			return false;
-		}
-		$this->user = str_replace( '_', ' ', $title->getDBkey() );
+		$title = Title::makeTitle( NS_USER, $name );
+		if ( is_null( $title ) )
+			return false;
+		$this->user = $title->getText();
 		$safename = $this->db->strencode( $this->user );
 		$user = $this->db->tableName( 'user' );
 		$this->whereClauses[] = "user_name='$safename'";
