@@ -1283,7 +1283,7 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
  */
 function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 	global $wgContLang;
-	$s = "<select name='namespace' class='namespaceselector'>\n";
+	$s = "<select name='namespace' class='namespaceselector'>\n\t";
 	$arr = $wgContLang->getFormattedNamespaces();
 	if( !is_null($allnamespaces) ) {
 		$arr = array($allnamespaces => wfMsgHtml('namespacesall')) + $arr;
@@ -1301,7 +1301,7 @@ function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 			$s .= wfElement("option", array("value" => $index), $name);
 		}
 	}
-	$s .= "</select>\n";
+	$s .= "\n</select>\n";
 	return $s;
 }
 
