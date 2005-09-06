@@ -233,7 +233,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
-	MAG_PLURALFORM           => array( 0,    'PLURALFORM:'            ),
+	MAG_PLURAL               => array( 0,    'PLURAL:'                ),
 );
 
 #-------------------------------------------------------------------
@@ -2789,10 +2789,10 @@ class Language {
 	 * depending on "count mod 10". See [[w:Plural]]
 	 * For English it is pretty simple.
 	 *
-	 * Invoked by putting {{pluralform:count|wordform1|wordform2}}
-	 * or {{pluralform:count|wordform1|wordform2|wordform3}}
+	 * Invoked by putting {{plural:count|wordform1|wordform2}}
+	 * or {{plural:count|wordform1|wordform2|wordform3}}
 	 *
-	 * Example: {{pluralform:{{NUMBEROFARTICLES}}|article|articles}} 
+	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}} 
 	 *
 	 * @param string $count
 	 * @param string $wordform1
@@ -2800,9 +2800,8 @@ class Language {
 	 * @param string $wordform3 (optional)
 	 * @return string
 	 */
-	function convertPluralForm( $count, $wordform1, $wordform2, $wordform3) {
-		if ($count==1) {return $wordform1;}
-		else {return $wordform2;}
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		return $count == 1 ? $wordform1 : $wordform2;
 	}
 
 	/**
