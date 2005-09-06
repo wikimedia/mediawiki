@@ -87,6 +87,8 @@ class SpecialVersion {
 			'other' => 'Other',
 		);
 		
+		wfRunHooks( 'ExtensionTypes', array( &$extensionTypes ) );
+		
 		$out = "\n* Extensions:\n";
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( count( @$wgExtensionCredits[$type] ) ) {
