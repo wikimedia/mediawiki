@@ -331,6 +331,11 @@ $article: article object to be removed
 $user: user that was watching
 $article: article object removed
 
+'UploadVerification': additional chances to reject an uploaded file
+string $saveName: destination file name
+string $tempName: filesystem path to the temporary file for checks
+string &$error: output: HTML error to show if upload canceled by returning false
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    

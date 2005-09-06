@@ -232,6 +232,15 @@ class UploadForm {
 				return $this->uploadError( $veri->toString() );
 			}
 		}
+		
+		/**
+		 * Provide an opportunity for extensions to add futher checks
+		 */
+		$error = '';
+		if( !wfRunHooks( 'UploadVerification',
+				array( $this->mUploadSaveName, $this->mUploadTempName, &$error ) ) ) {
+			return $this->uploadError( $error );
+		}
 
 		/**
 		 * Check for non-fatal conditions
