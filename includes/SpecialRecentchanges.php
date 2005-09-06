@@ -189,13 +189,19 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) . "\n" );
-			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults) . '</div>');
+			$wgOut->addHTML( rcNamespaceForm( $namespace, $invert, $nondefaults) . '</div>'."\n");
 		}
 
 		// And now for the content
 		$sk = $wgUser->getSkin();
 		$wgOut->setSyndicated( true );
-		$list =& new ChangesList( $sk );
+
+		if ( $wgUser->getOption('usenewrc') ) {
+			$list =& new EnhancedChangesList( $sk );
+		} else {
+			$list =& new OldChangesList( $sk );
+		}
+
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
 		foreach( $rows as $obj ){
@@ -460,7 +466,7 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
 	$namespaceselect = HTMLnamespaceselector($namespace, '');
-	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . "\" />\n";
 	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
 	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
@@ -474,8 +480,7 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	$out .= "
 <div id='nsselect' class='recentchanges'>
 	<label for='namespace'>" . wfMsgHtml('namespace') . "</label>
-	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
-</div>";
+	{$namespaceselect}{$submitbutton}{$invertbox} <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>\n</div>";
 	$out .= '</form></div>';
 	return $out;
 }
@@ -489,7 +494,7 @@ function rcFormatDiff( $row ) {
 	wfProfileIn( $fname );
 
 	require_once( 'DifferenceEngine.php' );
-	$comment = "<p>" . htmlspecialchars( $row->rc_comment ) . "</p>\n";
+	$comment = '<p>' . htmlspecialchars( $row->rc_comment ) . "</p>\n";
 
 	if( $row->rc_namespace >= 0 ) {
 		global $wgContLang;
