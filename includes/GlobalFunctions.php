@@ -1435,7 +1435,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * @param $wfMsgOut The output of wfMsg*()
  * @return bool
  */
-function wfNoMsg( $msg, $wfMsgOut ) {
+function wfEmptyMsg( $msg, $wfMsgOut ) {
 	return $wfMsgOut === "&lt;$msg&gt;";
 }
 ?>

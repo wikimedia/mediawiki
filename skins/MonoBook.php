@@ -126,7 +126,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
 	<div class='portlet' id='p-<?php echo htmlspecialchars($bar) ?>'>
-	  <h5><?php $out = wfMsg( $bar ); if (wfNoMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
+	  <h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 	  <div class='pBody'>
 	    <ul>
 	    <?php foreach($cont as $key => $val) { ?>
