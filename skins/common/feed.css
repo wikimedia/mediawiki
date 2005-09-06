@@ -22,6 +22,7 @@ rss, feed {
 	margin: 1em;
 	font-family: "Verdana", "Tahoma", "Arial", "Helvetica", sans-serif;
 	line-height: 1.5em;
+	font-size: 76%;
 }
 
 rss:before {
