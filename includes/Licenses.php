@@ -75,19 +75,18 @@ class Licenses {
 	
 	function trimStars( $str ) {
 		$i = $count = 0;
+		$len = strlen( $str );
 		
-		wfSuppressWarnings();
-		while ($str[$i++] == '*')
+		while ($len < $i && $str[$i++] == '*')
 			++$count;
-		wfRestoreWarnings();
-	
+
 		return array( $count, ltrim( $str, '* ' ) );
 	}
 	
 	function stackItem( &$list, $path, $item ) {
 		$position =& $list;
-		if( $path ) {
-			foreach( $path as $key ) {
+		if ( $path ) {
+			foreach ( $path as $key ) {
 				$position =& $position[$key];
 			}
 		}
@@ -125,7 +124,7 @@ class Licenses {
 	
 	function msg( $str ) {
 		$out = wfMsg( $str );
-		return wfNoMsg( $str, $out ) ? $str : $out;
+		return wfEmptyMsg( $str, $out ) ? $str : $out;
 	}
 	
 	/**#@-*/
