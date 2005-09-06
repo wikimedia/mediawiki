@@ -264,12 +264,11 @@ class ChangesList {
 		return $line ;
 	}
 
-
 	function recentChangesLineOld( &$rc, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol,
 			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
-		$fname = 'Skin::recentChangesLineOld';
+		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
 
 		static $message;
