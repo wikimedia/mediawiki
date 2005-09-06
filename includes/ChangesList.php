@@ -1,6 +1,10 @@
 <?php
 /**
  * @package MediaWiki
+ * Contain class to show various lists of change:
+ * - what's link here
+ * - related changes
+ * - recent changes
  */
 
 /**
@@ -138,10 +142,11 @@ class ChangesList {
 		asort ( $userlinks ) ;
 		$users = array () ;
 		foreach ( $userlinks as $userlink => $count) {
-			$text = $userlink ;
-			if ( $count > 1 ) $text .= " ({$count}&times;)" ;
+			$text = $userlink;
+			if ( $count > 1 ) $text .= ' ('.$count.'&times;)' ;
 			array_push ( $users , $text ) ;
 		}
+
 		$users = ' <span class="changedby">['.implode('; ',$users).']</span>';
 
 		# Arrow
@@ -155,7 +160,6 @@ class ChangesList {
 		$r .= $tl ;
 
 		# Main line
-
 		$r .= '<tt>' ;
 		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled );
 
@@ -206,9 +210,9 @@ class ChangesList {
 				$o = 'oldid='.$rc_last_oldid ;
 			}
 			if ( $rc_type == RC_LOG ) {
-				$link = $rcObj->timestamp ;
+				$link = $rcObj->timestamp;
 			} else {
-				$link = $this->skin->makeKnownLinkObj( $rcObj->getTitle(), $rcObj->timestamp , "{$curIdEq}&$o" ) ;
+				$link = $this->skin->makeKnownLinkObj( $rcObj->getTitle(), $rcObj->timestamp , $curIdEq.'&'.$o );
 			}
 			$link = '<tt>'.$link.'</tt>' ;
 
@@ -246,6 +250,11 @@ class ChangesList {
 
 		return '<div>'.$blockOut.'</div>' ;
 	}
+
+// FORMATTING STUFF
+
+
+
 }
 
 
@@ -283,7 +292,7 @@ class OldChangesList extends ChangesList {
 		$s = '';
 		if ( $date != $this->lastdate ) {
 			if ( '' != $this->lastdate ) { $s .= "</ul>\n"; }
-			$s .= "<h4>{$date}</h4>\n<ul class=\"special\">";
+			$s .= '<h4>'.$date."</h4>\n<ul class=\"special\">";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
@@ -308,18 +317,17 @@ class OldChangesList extends ChangesList {
 			$s .= '(' . $this->skin->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
 		} else {
 			wfProfileIn("$fname-page");
+
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
 				$diffLink = $message['diff'];
 			} else {
-				if ( $unpatrolled )
-					$rcidparam = "&rcid={$rc_id}";
-				else
-					$rcidparam = "";
+				$rcidparam = $unpatrolled ? '&rcid='.$rc_id : '';
 				$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['diff'],
-				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}{$rcidparam}",
-				  '', '', ' tabindex="'.$rc->counter.'"');
+				            $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid.$rcidparam,
+				            '', '', ' tabindex="'.$rc->counter.'"');
 			}
+
 			$s .= '('.$diffLink.') (';
 
 			# History link
@@ -332,10 +340,11 @@ class OldChangesList extends ChangesList {
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
 			# patrolled yet, we need to give users a way to do so
-			if ( $unpatrolled && $rc_type == RC_NEW )
+			if ( $unpatrolled && $rc_type == RC_NEW ) {
 				$articleLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
-			else
+			} else {
 				$articleLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
+			}
 
 			if ( $watched ) {
 				$articleLink = '<strong>'.$articleLink.'</strong>';
