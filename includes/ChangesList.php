@@ -53,7 +53,8 @@ class ChangesList {
 	}
 
 	/**
-	 * Enhanced RC ungrouped line
+	 * Enhanced RC ungrouped line.
+	 * @return string a HTML formated line (generated using $r)
 	 */
 	function recentChangesBlockLine ( $rcObj ) {
 		global $wgStylePath, $wgContLang ;
@@ -62,9 +63,9 @@ class ChangesList {
 		extract( $rcObj->mAttribs ) ;
 		$curIdEq = 'curid='.$rc_cur_id;
 
-		# Spacer image
 		$r = '' ;
 
+		# Spacer image
 		$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" border="0" />' ;
 		$r .= '<tt>' ;
 
@@ -75,25 +76,22 @@ class ChangesList {
 		}
 
 		# Timestamp
-		$r .= ' '.$rcObj->timestamp.' ' ;
-		$r .= '</tt>' ;
+		$r .= ' '.$rcObj->timestamp.' </tt>' ;
 
 		# Article link
 		$link = $rcObj->link ;
+		// FIXME: should be handled with a css class
 		if ( $rcObj->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
 
 		# Diff
-		$r .= ' (' ;
-		$r .= $rcObj->difflink ;
-		$r .= '; ' ;
+		$r .= ' ('. $rcObj->difflink .'; ' ;
 
 		# Hist
 		$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
 
 		# User/talk
-		$r .= ') . . '.$rcObj->userlink ;
-		$r .= $rcObj->usertalklink ;
+		$r .= ') . . '.$rcObj->userlink . $rcObj->usertalklink ;
 
 		# Comment
 		 if ( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
@@ -256,14 +254,16 @@ class ChangesList {
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
 		global $wgUser;
-		$usenew = $wgUser->getOption( 'usenewrc' );
-		if ( $usenew )
+		if ( $wgUser->getOption( 'usenewrc' ) )
 			$line = $this->recentChangesLineNew ( $rc, $watched ) ;
 		else
 			$line = $this->recentChangesLineOld ( $rc, $watched ) ;
 		return $line ;
 	}
 
+	/**
+	 * Format a line using the old system (aka without any javascript).
+	 */
 	function recentChangesLineOld( &$rc, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol,
 			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
@@ -407,6 +407,9 @@ class ChangesList {
 		return $s;
 	}
 
+	/**
+	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
+	 */
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser,
 			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
