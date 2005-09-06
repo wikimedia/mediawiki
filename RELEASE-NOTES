@@ -86,6 +86,7 @@ fully support the editing toolbar, but was found to be too confusing.
   overwriting existing files; default is the old behavior (allowed).
 * Use strval() to make sure we don't accidentally get null on bad revision
   text loads or other fields mucking up XML export output
+* Add UploadVerification hook for custom file upload validation/security checks
 
 
 === Caveats ===
