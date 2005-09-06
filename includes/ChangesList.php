@@ -231,7 +231,7 @@ class ChangesList {
 			$s .= $openParenthesis ? ' | ' : '(';
 			$this->insertUserBlockLink($s,$rc);
 		}
-		$s .= $openParenthesis ? ' ) ' : '';
+		$s .= $openParenthesis ? ') ' : '';
 	}
 
 	/** insert a formatted link to the user page */
