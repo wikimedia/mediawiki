@@ -1022,8 +1022,8 @@ class Image
 			# Specify white background color, will be used for transparent images
 			# in Internet Explorer/Windows instead of default black.
 			$cmd  =  $wgImageMagickConvertCommand .
-				" -quality 85 -background white -geometry {$width} ".
-				wfEscapeShellArg($this->imagePath) . " " .
+				" -quality 85 -background white -size {$width}x{$height} ".
+				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} " .
 				wfEscapeShellArg($thumbPath);				
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd");
 			$conv = shell_exec( $cmd );
