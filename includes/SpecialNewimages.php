@@ -11,13 +11,14 @@ require_once( 'ImageGallery.php' );
 /**
  *
  */
-function wfSpecialNewimages() {
+function wfSpecialNewimages( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest,
 	       $wgGroupPermissions;
 
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 	$dbr =& wfGetDB( DB_SLAVE );
 	$sk = $wgUser->getSkin();
+	$shownav = !$specialPage->including();
 	$hidebots = $wgRequest->getBool('hidebots',1);
 
 	if($hidebots) {
@@ -65,6 +66,10 @@ function wfSpecialNewimages() {
 
 	/** Hardcode this for now. */
 	$limit = 48;
+
+	if ( $parval = intval( $par ) )
+		if ( $parval <= $limit && $parval > 0 )
+			$limit = $parval;
 
 	$where = array();
 	if ( $wpIlMatch != '' ) {
@@ -141,9 +146,10 @@ function wfSpecialNewimages() {
 
 	$bydate = wfMsg( 'bydate' );
 	$lt = $wgLang->formatNum( min( $shownImages, $limit ) );
-	$text = wfMsg( "imagelisttext",
-		"<strong>{$lt}</strong>", "<strong>{$bydate}</strong>" );
-	$wgOut->addHTML( "<p>{$text}\n</p>" );
+	if ($shownav) {
+		$text = wfMsg( 'imagelisttext', "<strong>{$lt}</strong>", "<strong>{$bydate}</strong>" );
+		$wgOut->addHTML( "<p>{$text}\n</p>" );
+	}
 
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
@@ -151,11 +157,13 @@ function wfSpecialNewimages() {
 	if(!$hidebots) {
 		$action.='&hidebots=0';
 	}
-	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
-	  "{$action}\">" .
-	  "<input type='text' size='20' name=\"wpIlMatch\" value=\"" .
-	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
-	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
+	if ($shownav) {
+		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
+		  "{$action}\">" .
+		  "<input type='text' size='20' name=\"wpIlMatch\" value=\"" .
+		  htmlspecialchars( $wpIlMatch ) . "\" /> " .
+		  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
+	}
 	$here = $wgContLang->specialPage( 'Newimages' );
 
 	/**
@@ -186,11 +194,13 @@ function wfSpecialNewimages() {
 
 	$prevnext = '<p>' . $botLink . ' '. wfMsg( 'viewprevnext', $prevLink, $nextLink, $dateLink ) .'</p>';
 
-	$wgOut->addHTML( $prevnext );
+	if ($shownav)
+		$wgOut->addHTML( $prevnext );
 
 	if( count( $images ) ) {
 		$wgOut->addHTML( $gallery->toHTML() );
-		$wgOut->addHTML( $prevnext );
+		if ($shownav)
+			$wgOut->addHTML( $prevnext );
 	} else {
 		$wgOut->addWikiText( wfMsg( 'noimages' ) );
 	}
