@@ -57,10 +57,18 @@ function copydirectory( $source, $dest ) {
 }
 
 function readconsole( $prompt = '' ) {
-	if ( function_exists( 'readline' ) ) {
+	if ( function_exists( 'posix_isatty' ) && posix_isatty( STDIN ) ) {
+		$isatty = true;
+	} else {
+		$isatty = false;
+	}
+
+	if ( $isatty && function_exists( 'readline' ) ) {
 		return readline( $prompt );
 	} else {
-		print $prompt;
+		if ( $isatty ) {
+			print $prompt;
+		}
 		$fp = fopen( 'php://stdin', 'r' );
 		$st = fgets($fp, 1024);
 		if ($st === false) return false;
