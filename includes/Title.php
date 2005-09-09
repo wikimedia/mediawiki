@@ -316,24 +316,8 @@ class Title {
 	 * @access public
 	 */
 	function legalChars() {
-		# Missing characters:
-		#  * []|# Needed for link syntax
-		#  * % and + are corrupted by Apache when they appear in the path
-		#
-		# % seems to work though
-		#
-		# The problem with % is that URLs are double-unescaped: once by Apache's
-		# path conversion code, and again by PHP. So %253F, for example, becomes "?".
-		# Our code does not double-escape to compensate for this, indeed double escaping
-		# would break if the double-escaped title was passed in the query string
-		# rather than the path. This is a minor security issue because articles can be
-		# created such that they are hard to view or edit. -- TS
-		#
-		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
-		# this breaks interlanguage links
-
-		$set = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
-		return $set;
+		global $wgLegalTitleChars;
+		return $wgLegalTitleChars;
 	}
 
 	/**
