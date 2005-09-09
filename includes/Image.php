@@ -195,7 +195,7 @@ class Image
 				'metadata'   => $this->metadata,
 				'size'       => $this->size );
 
-			$wgMemc->set( $keys[0], $cachedValues );
+			$wgMemc->set( $keys[0], $cachedValues, 60 * 60 * 24 * 7 ); // A week
 		} else {
 			// However we should clear them, so they aren't leftover
 			// if we've deleted the file.
@@ -1450,6 +1450,7 @@ class Image
 		$newver = Exif::version();
 		
 		if ( !count( $ret ) || $purge || $oldver != $newver ) {
+			$this->purgeCache();
 			$this->updateExifData( $newver );
 		}
 		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
