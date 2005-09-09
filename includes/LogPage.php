@@ -32,17 +32,21 @@
  * @package MediaWiki
  */
 class LogPage {
-	/* private */ var $type, $action, $comment, $params, $target;
-	var $updateRecentChanges = true;
+	/* @access private */
+	var $type, $action, $comment, $params, $target;
+	/* @acess public */
+	var $updateRecentChanges;
 
 	/**
 	  * Constructor
 	  *
 	  * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	  *               'upload', 'move'
+	  * @param bool $rc Whether to update recent changes as well as the logging table
 	  */
-	function LogPage( $type ) {
+	function LogPage( $type, $rc = true ) {
 		$this->type = $type;
+		$this->updateRecentChanges = $rc;
 	}
 
 	function saveContent() {
@@ -89,7 +93,7 @@ class LogPage {
 	 */
 	function validTypes() {
 		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload', 'move' );
-		wfRunHooks( 'LogPageValidTypes', array( &$types) );
+		wfRunHooks( 'LogPageValidTypes', array( &$types ) );
 		return $types;
 	}
 
@@ -129,7 +133,7 @@ class LogPage {
 			'upload'  => 'uploadlogpage',
 			'move'    => 'movelogpage'
 		);
-		wfRunHooks( 'LogPageLogName', array( &$typeText) );
+		wfRunHooks( 'LogPageLogName', array( &$typeText ) );
 		
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
