@@ -998,7 +998,7 @@ Palaute ja lisäapu osoitteessa:
 'unblockip'           => 'Muokkauseston poisto',
 'unblockiptext'       => 'Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.',
 'ipusubmit'           => 'Poista esto',
-'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1<b> esto poistettu', // TODO NOWIKIMARKUP
+'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1</b> esto poistettu', // TODO NOWIKIMARKUP
 'ipblocklist'         => 'Lista estetyistä IP-osoitteista',
 'ipblocklistempty'    => 'Estolista on tyhjä.',
 'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 ($4)',
@@ -1549,57 +1549,78 @@ class LanguageFi extends LanguageUtf8 {
 	}
 
 	function translateBlockExpiry( $str ) {
-    /*$from = array(
-      'ago', 'now', 'today', 'this', 'next',
-      'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth',
-      'tomorrow', 'yesterday',
-      'infinite', 'indefinite',
-          );
-    $to = array(
-      'sitten', 'nyt', 'tänään', 'tämä', 'seuraava',
-      'ensimmäinen', 'kolmas', 'neljäs', 'viides', 'kuudes', 'seitsemäs', 'kahdeksas', 'yhdeksäs', 'kymmenes', 'yhdestoista', 'kahdestoista',
-      'huomenna', 'eilen',
-      'ikuisesti', 'ikuisesti',
-       );
+		/*
+			'ago', 'now', 'today', 'this', 'next',
+			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth',
+			'tomorrow', 'yesterday'
+
+			$months = 'january:tammikuu,february:helmikuu,march:maaliskuu,april:huhtikuu,may:toukokuu,june:kesäkuu,' .
+				'july:heinäkuu,august:elokuu,september:syyskuu,october:lokakuu,november:marraskuu,december:joulukuu,' .
+				'jan:tammikuu,feb:helmikuu,mar:maaliskuu,apr:huhtikuu,jun:kesäkuu,jul:heinäkuu,aug:elokuu,sep:syyskuu,'.
+				'oct:lokakuu,nov:marraskuu,dec:joulukuu,sept:syyskuu';
 		*/
-		$weekds = 'monday:maanantai,tuesday:tiistai,wednesday:keskiviikko,thursay:torstai,friday:perjantai,'.
-		          'saturday:lauantai,sunday:sunnuntai,mon:ma,tue:ti,tues:ti,wed:ke,wednes:ke,thu:to,thur:to,'.
-		          'thurs:to,fri:pe,sat:la,sun:su,next:seuraava,tomorrow:huomenna,ago:sitten,'.
-		          'seconds:sekuntia,second:sekunti,secs:s,sec:s,'.
-		          'minutes:minuuttia,minute:minuutti,mins:min,min:min,'.
-		          'days:päivää,day:päivä,hours:tuntia,hour:tunti,weeks:viikkoa,week:viikko,'.
-		          'fortnights:tuplaviikkoa,fortnight:tuplaviikko,'.
-		          'months:kuukautta,month:kuukausi,years:vuotta,year:vuosi,'.
-		          'infinite:ikuisesti,indefinite:ikuisesti';
-		$months = 'january:tammikuu,february:helmikuu,march:maaliskuu,april:huhtikuu,may:toukokuu,june:kesäkuu,' .
-		          'july:heinäkuu,august:elokuu,september:syyskuu,october:lokakuu,november:marraskuu,december:joulukuu,' .
-		          'jan:tammikuu,feb:helmikuu,mar:maaliskuu,apr:huhtikuu,jun:kesäkuu,jul:heinäkuu,aug:elokuu,sep:syyskuu,'.
-	            'oct:lokakuu,nov:marraskuu,dec:joulukuu,sept:syyskuu';
-		$weekds = explode( ',', $weekds);
+		$weekds = array(
+			'monday' => 'maanantai',
+			'tuesday' => 'tiistai',
+			'wednesday' => 'keskiviikko',
+			'thursay' => 'torstai',
+			'friday' => 'perjantai',
+			'saturday' => 'lauantai',
+			'sunday' => 'sunnuntai',
+			'mon' => 'ma',
+			'tue' => 'ti',
+			'tues' => 'ti',
+			'wed' => 'ke',
+			'wednes' => 'ke',
+			'thu' => 'to',
+			'thur' => 'to',
+			'thurs' => 'to',
+			'fri' => 'pe',
+			'sat' => 'la',
+			'sun' => 'su',
+			'next' => 'seuraava',
+			'tomorrow' => 'huomenna',
+			'ago' => 'sitten',
+			'seconds' => 'sekuntia',
+			'second' => 'sekunti',
+			'secs' => 's',
+			'sec' => 's',
+			'minutes' => 'minuuttia',
+			'minute' => 'minuutti',
+			'mins' => 'min',
+			'min' => 'min',
+			'days' => 'päivää',
+			'day' => 'päivä',
+			'hours' => 'tuntia',
+			'hour' => 'tunti',
+			'weeks' => 'viikkoa',
+			'week' => 'viikko',
+			'fortnights' => 'tuplaviikkoa',
+			'fortnight' => 'tuplaviikko',
+			'months' => 'kuukautta',
+			'month' => 'kuukausi',
+			'years' => 'vuotta',
+			'year' => 'vuosi',
+			'infinite' => 'ikuisesti',
+			'indefinite' => 'ikuisesti'
+		);
+
 		$final = '';
-		$stop = false;
-		foreach( explode ( ' ', $str) as $item ) {
+		$tokens = explode ( ' ', $str);
+		foreach( $tokens as $item ) {
 			if ( !is_numeric($item) ) {
-				if ( count ( explode( '-', $item ) ) == 3 ) {
+				if ( count ( explode( '-', $item ) ) == 3 && strlen($item) == 10 ) {
 					list( $yyyy, $mm, $dd ) = explode( '-', $item );
 					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}00000000");
 					continue;
 				}
-				foreach( $weekds as $item2 ) {
-					list( $from, $to) = explode( ':', $item2 );
-					if ( strcasecmp( $from, $item ) == 0 ) {
-						$final .= ' ' . $to;
-						$stop = true;
-						break;
-					}
+				if( isset( $weekds[$item] ) ) {
+					$final .= ' ' . $weekds[$item];
+					continue;
 				}
 			}
 
-			if (!$stop) {
-				$final .= ' ' . $item;
-			} else {
-				$stop = false;
-			}
+			$final .= ' ' . $item;
 		}
    	return '<span class="blockexpiry" title="' . htmlspecialchars($str). '">”' . trim( $final ) . '”</span>';
 	}
