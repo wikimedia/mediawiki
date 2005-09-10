@@ -168,8 +168,7 @@ class ImagePage extends Article {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
 				}
-				if ( !$this->img->mustRender()
-				   && ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) ) {
+				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
 						if ( $thumbnail == null ) {
