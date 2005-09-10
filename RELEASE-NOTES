@@ -90,6 +90,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3063) Remove some hardcodings from Hebrew localisation
 * Support SVG rendering with rsvg
 * Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
+* (bug 3127) Render large SVGs at image page size correctly
 
 
 === Caveats ===
