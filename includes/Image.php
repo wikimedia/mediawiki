@@ -580,7 +580,7 @@ class Image
 		
 		if (!$mime || $mime==='unknown' || $mime==='unknown/unknown') return false;
 		
-		#if it's SVG, check if ther's a converter enabled    
+		#if it's SVG, check if there's a converter enabled    
 		if ($mime === 'image/svg') {
 			global $wgSVGConverters, $wgSVGConverter;
 			
@@ -934,7 +934,11 @@ class Image
 			return null;
 		}
 
-		if( $width >= $this->width && !$this->mustRender() ) {
+		global $wgSVGMaxSize;
+		$maxsize = $this->mustRender()
+			? max( $this->width, $wgSVGMaxSize )
+			: $this->width - 1;
+		if( $width > $maxsize ) {
 			# Don't make an image bigger than the source
 			$thumb = new ThumbnailImage( $this->getViewURL(), $this->getWidth(), $this->getHeight() );
 			wfProfileOut( $fname );
@@ -1007,12 +1011,14 @@ class Image
 			if( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 				global $wgSVGConverterPath;
 				$cmd = str_replace(
-					array( '$path/', '$width', '$input', '$output' ),
-					array( $wgSVGConverterPath,
-						   $width,
+					array( '$path/', '$width', '$height', '$input', '$output' ),
+					array( $wgSVGConverterPath ? "$wgSVGConverterPath/" : "",
+						   intval( $width ),
+						   intval( $height ),
 						   wfEscapeShellArg( $this->imagePath ),
 						   wfEscapeShellArg( $thumbPath ) ),
 					$wgSVGConverters[$wgSVGConverter] );
+				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
 				$conv = shell_exec( $cmd );
 			} else {
 				$conv = false;
@@ -1025,7 +1031,7 @@ class Image
 				" -quality 85 -background white -size {$width}x{$height} ".
 				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} " .
 				wfEscapeShellArg($thumbPath);				
-			wfDebug("reallyRenderThumb: running ImageMagick: $cmd");
+			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
 			$conv = shell_exec( $cmd );
 		} else {
 			# Use PHP's builtin GD library functions.
