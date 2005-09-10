@@ -1117,11 +1117,14 @@ $wgSVGConverters = array(
 	'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
 	'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
 	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
+	'rsvg' => '$path/rsvg -w$width -h$height $input $output',
 	);
 /** Pick one of the above */
 $wgSVGConverter = 'ImageMagick';
 /** If not in the executable PATH, specify */
 $wgSVGConverterPath = '';
+/** Don't scale a SVG larger than this unless its native size is larger */
+$wgSVGMaxSize = 1024;
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
