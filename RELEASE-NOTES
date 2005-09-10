@@ -752,6 +752,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3292) Fix move-over-redirect test when current entries are not plaintext
 * (bug 2078) Don't hide watch tab on preview
 * (bug 3306) Document $wgLocalTZoffset
+* Support SVG rendering with rsvg
+* Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
+* (bug 3127) Render large SVGs at image page size correctly
 
 
 === Caveats ===
