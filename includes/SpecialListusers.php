@@ -40,13 +40,34 @@ require_once('QueryPage.php');
 class ListUsersPage extends QueryPage {
 	var $requestedGroup = '';
 	var $requestedUser = '';
-	var $previousResult = null;
-	var $concatGroups = '';
 	
 	function getName() {
 		return 'Listusers';
 	}
 	function isSyndicated() { return false; }
+
+	/**
+	 * Not expensive, this class won't work properly with the caching system anyway
+	 */
+	function isExpensive() {
+		return false;
+	}
+
+	/**
+	 * Fetch user page links and cache their existence
+	 */
+	function preprocessResults( &$db, &$res ) {
+		global $wgLinkCache;
+		
+		$batch = new LinkBatch;
+		while ( $row = $db->fetchObject( $res ) ) {
+			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->title ) );
+		}
+		$batch->execute( $wgLinkCache );
+
+		// Back to start for display
+		$db->dataSeek( $res, 0 );
+	}
 
 	/**
 	 * Show a drop down list to select a group as well as a user name
