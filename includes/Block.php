@@ -204,11 +204,13 @@ class Block
 			$cond = '';
 		}
 
+		$now = wfTimestampNow();
+
 		extract( $db->tableNames( 'ipblocks', 'user' ) );
 
 		$sql = "SELECT $ipblocks.*,user_name FROM $ipblocks,$user " .
 			"WHERE user_id=ipb_by $cond ORDER BY ipb_timestamp DESC $options";
-		$res = $db->query( $sql, 'Block::enumBans' );
+		$res = $db->query( $sql, 'Block::enumBlocks' );
 		$num_rows = $db->numRows( $res );
 
 		while ( $row = $db->fetchObject( $res ) ) {
@@ -218,7 +220,9 @@ class Block
 			}
 
 			if ( !( $flags & EB_KEEP_EXPIRED ) ) {
-				if ( !$block->deleteIfExpired() ) {
+				if ( $block->mExpiry && $now > $block->mExpiry ) {
+					$block->delete();
+				} else {
 					call_user_func( $callback, $block, $tag );
 				}
 			} else {
