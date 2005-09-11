@@ -363,7 +363,11 @@ class LinkBatch {
 	}
 
 	function addObj( $title ) {
-		$this->add( $title->getNamespace(), $title->getDBkey() );
+		if ( is_object( $title ) ) {
+			$this->add( $title->getNamespace(), $title->getDBkey() );
+		} else {
+			wfDebug( "Warning: LinkBatch::addObj got invalid title object\n" );
+		}
 	}
 
 	function add( $ns, $dbkey ) {
