@@ -245,6 +245,8 @@ class QueryPage {
 		$res = $dbr->query( $sql );
 		$num = $dbr->numRows($res);
 
+		$this->preprocessResults( $dbr, $res );
+
 		$sk = $wgUser->getSkin( );
 
 		if($shownavigation) {
@@ -293,6 +295,11 @@ class QueryPage {
 		}
 		return $num;
 	}
+
+	/**
+	 * Do any necessary preprocessing of the result object
+	 */
+	function preprocessResults( &$db, &$res ) {}
 
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
