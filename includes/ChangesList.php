@@ -182,15 +182,24 @@ class ChangesList {
 		if ( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
 		} else {
-			$rcidparam = $unpatrolled ? '&rcid='.$rc->mAttribs['rc_id'] : '';
+			$rcidparam = $unpatrolled
+				? array( 'rcid' => $rc->mAttribs['rc_id'] )
+				: array();
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
-						$curIdEq.'&diff='.$rc->mAttribs['rc_this_oldid'].'&oldid='.$rc->mAttribs['rc_last_oldid'].$rcidparam,
-						'', '', ' tabindex="'.$rc->counter.'"');
+				wfArrayToCGI( array(
+					'curid' => $rc->mAttribs['rc_cur_id'],
+					'diff'  => $rc->mAttribs['rc_this_oldid'],
+					'oldid' => $rc->mAttribs['rc_last_oldid'] ),
+					$rcidparam ),
+				'', '', ' tabindex="'.$rc->counter.'"');
 		}
 		$s .= '('.$diffLink.') (';
 
 		# History link
-		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'], 'curid='.$this->mAttribs['rc_cur_id'].'&action=history' );
+		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
+			wfArrayToCGI( array(
+				'curid' => $rc->mAttribs['rc_cur_id'],
+				'action' => 'history' ) ) );
 		$s .= ') . . ';
 	}
 
@@ -198,11 +207,10 @@ class ChangesList {
 		# Article link
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
-		if ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW ) {
-			$articlelink .= ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'rcid='.$this->mAttribs['rc_id'] );
-		} else {
-			$articlelink .= ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
-		}
+		$params = ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW )
+			? 'rcid='.$rc->mAttribs['rc_id']
+			: '';
+		$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		if($watched) $articlelink = '<strong>'.$articlelink.'</strong>';
 
 		$s .= ' '.$articlelink;
@@ -263,7 +271,7 @@ class ChangesList {
 		# Block link
 		$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
 		$blockLink = $this->skin->makeKnownLinkObj( $blockLinkPage,
-		htmlspecialchars( $this->message['blocklink'] ), 'ip=' . urlencode( $rc->mAttribs['user_text'] ) );
+		htmlspecialchars( $this->message['blocklink'] ), 'ip=' . urlencode( $rc->mAttribs['rc_user_text'] ) );
 		$s .= $blockLink;
 	}
 
