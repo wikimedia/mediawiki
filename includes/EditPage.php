@@ -447,6 +447,7 @@ class EditPage {
 			}
 			else {
 				$wgOut->readOnlyPage();
+				wfProfileOut( "$fname-checks" );
 				wfProfileOut( $fname );
 				return false;
 			}
