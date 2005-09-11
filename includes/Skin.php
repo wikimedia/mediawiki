@@ -311,7 +311,7 @@ END;
 		}
 		else $a = array( 'bgcolor' => '#FFFFFF' );
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
-		  (!$wgTitle->isProtected() || $wgUser->isAllowed('protect')) ) {
+		  $wgTitle->userCanEdit() ) {
 			$t = wfMsg( 'editthispage' );
 			$oid = $red = '';
 			if ( !empty($redirect) && $redirect == 'no' ) {
