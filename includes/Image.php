@@ -1427,6 +1427,7 @@ class Image
 			}
 		}
 		$db->freeResult( $res );
+		wfProfileOut( $fname );
 		return $retVal;
 	}
 	/**
