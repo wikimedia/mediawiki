@@ -137,6 +137,8 @@ class MessageCache
 	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
+		global $wgAllMessagesEn, $wgLang;
+		
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( !$dbr ) {
@@ -155,21 +157,23 @@ class MessageCache
 			$this->mCache[$row->page_title] = Revision::getRevisionText( $row );
 		}
 
-		$dbr->freeResult( $res );
-		/*
-		# FIXME: This is too slow currently.
-		# We need to bulk-fetch revisions, but in a portable way...
-		$resultSet = Revision::fetchFromConds( $dbr, array(
-			'page_namespace'   => NS_MEDIAWIKI,
-			'page_is_redirect' => 0,
-			'page_id=rev_page' ) );
-		while( $row = $resultSet->fetchObject() ) {
-			$revision = new Revision( $row );
-			$title = $revision->getTitle();
-			$this->mCache[$title->getDBkey()] = $revision->getText();
+		# Negative caching
+		# Go through the language array and the extension array and make a note of 
+		# any keys missing from the cache
+		foreach ( $wgAllMessagesEn as $key => $value ) {
+			$uckey = $wgLang->ucfirst( $key );
+			if ( !array_key_exists( $uckey, $this->mCache ) ) {
+				$this->mCache[$uckey] = false;
+			}
 		}
-		$resultSet->free();
-		*/
+		foreach ( $this->mExtensionMessages as $key => $value ) {
+			$uckey = $wgLang->ucfirst( $key );
+			if ( !array_key_exists( $uckey, $this->mCache ) ) {
+				$this->mCache[$uckey] = false;
+			}
+		}	
+
+		$dbr->freeResult( $res );
 	}
 
 	/**
@@ -259,33 +263,33 @@ class MessageCache
 			$message = $this->getFromCache( $title );
 		}
 		# Try the extension array
-		if( !$message ) {
-			$message = @$this->mExtensionMessages[$key];
+		if( $message === false && array_key_exists( $key, $this->mExtensionMessages ) ) {
+			$message = $this->mExtensionMessages[$key];
 		}
 
 		# Try the array in the language object
-		if( !$message ) {
+		if( $message === false ) {
 			wfSuppressWarnings();
 			$message = $lang->getMessage( $key );
 			wfRestoreWarnings();
 		}
 
 		# Try the English array
-		if( !$message && $langcode != 'en' ) {
+		if( $message === false && $langcode != 'en' ) {
 			wfSuppressWarnings();
 			$message = Language::getMessage( $key );
 			wfRestoreWarnings();
 		}
 
 		# Is this a custom message? Try the default language in the db...
-		if( !$message &&
+		if( $message === false &&
 			!$this->mDisable && $useDB &&
 			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 			$message = $this->getFromCache( $lang->ucfirst( $key ) );
 		}
 
 		# Final fallback
-		if( !$message ) {
+		if( $message === false ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
 
@@ -299,29 +303,34 @@ class MessageCache
 
 		# Try the cache
 		if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
-			$message = $this->mCache[$title];
+			return $this->mCache[$title];
 		}
 
-		if ( !$message && $this->mUseCache ) {
+		# Try individual message cache
+		if ( $this->mUseCache ) {
 			$message = $this->mMemc->get( $this->mMemcKey . ':' . $title );
-			if( $message ) {
+			if( !is_null( $message ) ) {
 				$this->mCache[$title] = $message;
+				return $message;
+			} else {
+				$message = false;
 			}
 		}
 
 		# If it wasn't in the cache, load each message from the DB individually
-		if ( !$message ) {
-			$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
-			if( $revision ) {
-				$message = $revision->getText();
-				if ($this->mUseCache) {
-					$this->mCache[$title]=$message;
-					/* individual messages may be often
-					   recached until proper purge code exists
-					*/
-					$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
-				}
+		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+		if( $revision ) {
+			$message = $revision->getText();
+			if ($this->mUseCache) {
+				$this->mCache[$title]=$message;
+				/* individual messages may be often
+				   recached until proper purge code exists
+				*/
+				$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
 			}
+		} else {
+			# Negative caching
+			$this->mMemc->set( $this->mMemcKey . ':' . $title, false, $this->mExpiry );
 		}
 
 		return $message;

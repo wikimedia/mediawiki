@@ -380,10 +380,10 @@ function wfMsgGetKey( $key, $useDB, $forContent = false ) {
 		if( is_object( $lang ) ) {
 			$message = $lang->getMessage( $key );
 		} else {
-			$message = '';
+			$message = false;
 		}
 		wfRestoreWarnings();
-		if(!$message)
+		if($message === false)
 			$message = Language::getMessage($key);
 		if(strstr($message, '{{' ) !== false) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
