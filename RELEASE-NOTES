@@ -96,6 +96,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix scaling of non-integer SVG unit sizes
 * (bug 3408) Bulgarian formatNum corrected
 * (bug 3448) Set page_len on undelete
+* (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
 
 
 === Caveats ===
