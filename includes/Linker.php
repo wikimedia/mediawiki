@@ -415,7 +415,7 @@ class Linker {
 					 $wopt = User::getDefaultOption( 'thumbsize' );
 				}
 				
-				$width = $wgThumbLimits[$wopt];
+				$width = min( $img->getWidth(), $wgThumbLimits[$wopt] );
 			}
 			
 			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
