@@ -227,10 +227,22 @@ class PageArchive {
 			);
 		$revision = null;
 		while( $row = $dbw->fetchObject( $result ) ) {
+			if( $row->ar_text_id ) {
+				// Revision was deleted in 1.5+; text is in
+				// the regular text table, use the reference.
+				// Specify null here so the so the text is
+				// dereferenced for page length info if needed.
+				$revText = null;
+			} else {
+				// Revision was deleted in 1.4 or earlier.
+				// Text is squashed into the archive row, and
+				// a new text table entry will be created for it.
+				$revText = Revision::getRevisionText( $row, 'ar_' );
+			}
 			$revision = new Revision( array(
 				'page'       => $pageId,
 				'id'         => $row->ar_rev_id,
-				'text'       => Revision::getRevisionText( $row, 'ar_' ),
+				'text'       => $revText,
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
 				'user_text'  => $row->ar_user_text,

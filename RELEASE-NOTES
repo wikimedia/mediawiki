@@ -95,6 +95,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix edit on double-click for move-protected pages in Classic skin
 * Fix scaling of non-integer SVG unit sizes
 * (bug 3408) Bulgarian formatNum corrected
+* (bug 3448) Set page_len on undelete
+
 
 === Caveats ===
 
