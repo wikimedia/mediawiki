@@ -1670,7 +1670,7 @@ function wfScaleSVGUnit( $length ) {
 		''   => 1.0, // "User units" pixels by default
 		'%'  => 2.0, // Fake it!
 		);
-	if( preg_match( '/^(\d+)(em|ex|px|pt|pc|cm|mm|in|%|)$/', $length, $matches ) ) {
+	if( preg_match( '/^(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)$/', $length, $matches ) ) {
 		$length = floatval( $matches[1] );
 		$unit = $matches[2];
 		return round( $length * $unitLength[$unit] );
