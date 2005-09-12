@@ -755,6 +755,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Support SVG rendering with rsvg
 * Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
 * (bug 3127) Render large SVGs at image page size correctly
+* (bug 3448) Set page_len on undelete
 
 
 === Caveats ===
