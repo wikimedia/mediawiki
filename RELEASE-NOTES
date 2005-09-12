@@ -756,6 +756,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Cap arbitrary SVG renders to given image size or $wgSVGMaxSize pixels wide
 * (bug 3127) Render large SVGs at image page size correctly
 * (bug 3448) Set page_len on undelete
+* (bug 2800) Don't scale up small iamges on |thumb| without explicit size
 
 
 === Caveats ===
