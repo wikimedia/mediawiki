@@ -7,7 +7,7 @@
 
 require_once( 'LanguageUtf8.php' );
 
-# Revised 2005-06-22 for MediaWiki 1.5a2 and CVS -- Nikerabbit
+# Revised 2005-09-12 for MediaWiki 1.5rc4 -- Nikerabbit
 
 /* private */ $wgNamespaceNamesFi = array(
 	NS_MEDIA            => 'Media',
@@ -442,7 +442,7 @@ Sivun lähdekoodi:',
 'noarticletext'       => '<big>\'\'\'{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.\'\'\'</big>
 * Voit kirjoittaa uuden sivun \'\'\'<span class="plainlinks">[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.\'\'\'
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].',
-'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
+'clearyourcache'      => '\'\'\'Huomautus:\'\'\' Selaimen välimuisti pitää ehkä tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan: \'\'\'Mozilla, Firefox ja Safari:\'\'\' napsauta shift-näppäin pohjassa päivitä tai  paina \'\'shift-ctrl-r\'\' / \'\'shift-cmd-r\'\', \'\'\'IE:\'\'\' \'\'ctrl-f5\'\' tai \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => '\'\'\'Vinkki:\'\'\' Käytä esikatselupainiketta testataksesi uutta CSS:ää tai JavaScriptiä ennen tallennusta.',
 'usercsspreview'      => '\'\'\'Tämä on vasta CSS:n testaus ja esikatselu.\'\'\'',
 'userjspreview'       => '\'\'\'Tämä on vasta JavaScriptin testaus ja esikatselu.\'\'\'',
@@ -518,7 +518,7 @@ Sivun lähdekoodi:',
 'notextmatches'       => 'Hakusanaa ei löytynyt sivujen teksteistä',
 'prevn'               => '← $1 edellistä',
 'nextn'               => '$1 seuraavaa →',
-'viewprevnext'        => 'Näytä [$3] kerralla.<br />$1 | $2',
+'viewprevnext'        => "Näytä [$3] kerralla.\n\n$1 | $2",
 'showingresults'      => '<b>$1</b> tulosta tuloksesta <b>$2</b> alkaen.',
 'showingresultsnum'   => 'Alla on <b>$3</b> hakutulosta alkaen <b>$2.</b> tuloksesta.',
 'nonefound'           => '\'\'\'Huomautus\'\'\': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten \'\'on\'\' ja \'\'ei\'\', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.',
@@ -533,7 +533,7 @@ Sivun lähdekoodi:',
 'prefsnologin'        => 'Et ole kirjautunut sisään',
 'prefsnologintext'    => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]], jotta voisit muuttaa asetuksia.',
 'prefslogintext'      => 'Olet kirjautunut sisään käyttäjänä \'\'\'$1\'\'\'. Sisäinen tunnistenumerosi on \'\'\'$2\'\'\'.',
-'prefsreset'          => 'Asetukset on palautettu talletettujen mukaisiksi.',
+'prefsreset'          => 'Asetukset on palautettu tallennetuista asetuksistasi.',
 'qbsettings'          => 'Pikavalikko',
 'changepassword'      => 'Vaihda salasanaa',
 'skin'                => 'Ulkonäkö',
@@ -552,7 +552,7 @@ Sivun lähdekoodi:',
 'prefs-rc'            => 'Tuoreet muutokset ja tyngät',
 'prefs-misc'          => 'Muut asetukset',
 'saveprefs'           => 'Tallenna asetukset',
-'resetprefs'          => 'Palauta alkuperäiset asetukset',
+'resetprefs'          => 'Palauta tallennetut asetukset',
 'oldpassword'         => 'Vanha salasana',
 'newpassword'         => 'Uusi salasana',
 'retypenew'           => 'Uusi salasana uudelleen',
@@ -565,7 +565,7 @@ Sivun lähdekoodi:',
 'contextchars'        => 'Sisällön merkkien määrä riviä kohden',
 'stubthreshold'       => 'Tynkäsivun osoituskynnys',
 'recentchangescount'  => 'Sivujen määrä tuoreissa muutoksissa',
-'savedprefs'          => 'Asetuksesi tallennettiin.',
+'savedprefs'          => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend'      => 'Aikavyöhyke',
 'timezonetext'        => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
 'localtime'           => 'Paikallinen aika',
@@ -600,16 +600,12 @@ Sivun lähdekoodi:',
 
 # Default group names and descriptions
 #
-'group-anon-name'       => 'Anonyymi',
-'group-anon-desc'       => 'Käyttäjät, joilla ei ole tunnusta tai jotka eivät ole kirjautuneet sisään',
-'group-loggedin-name'   => 'Käyttäjä',
-'group-loggedin-desc'   => 'Käyttäjät, jotka ovat kirjautuneet sisään',
-'group-admin-name'      => 'Ylläpitäjä',
-'group-admin-desc'      => 'Luotetut käyttäjät voivat estää käyttäjiä ja poistaa ja suojata artikkeleita',
-'group-bureaucrat-name' => 'Byrokraatti',
+'group-sysop-name'      => 'Ylläpitäjät',
+'group-sysop-desc'      => 'Luotetut käyttäjät voivat estää käyttäjiä ja poistaa ja suojata artikkeleita',
+'group-bureaucrat-name' => 'Byrokraatit',
 'group-bureaucrat-desc' => 'Byrokraatit voivat tehdä ylläpitäjiä',
-'group-steward-name'    => 'Ylivalvoja',
-'group-steward-desc'    => 'Ylivalvojilla on kaikki oikeudet',
+'group-bot-name'        => 'Botit',
+'group-bot-desc'        => '',
 
 # Recent changes
 #
@@ -644,7 +640,7 @@ Sivun lähdekoodi:',
 'uploadlink'          => 'Tallenna kuvia',
 'reupload'            => 'Uusi tallennus',
 'reuploaddesc'        => 'Paluu tallennuslomakkeelle.',
-'uploadnologin'       => 'Et ole kirjaunut sisään',
+'uploadnologin'       => 'Et ole kirjautunut sisään',
 'uploadnologintext'   => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
 'upload_directory_read_only' => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon "$1".',
 'uploaderror'         => 'Tallennusvirhe',
@@ -762,7 +758,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'randompage'          => 'Satunnainen sivu',
 'shortpages'          => 'Lyhyet sivut',
 'longpages'           => 'Pitkät sivut',
-'deadendpages'        => 'Sivut, joilta ei linkkejä',
+'deadendpages'        => 'Sivut, joilla ei ole linkkejä',
 'listusers'           => 'Käyttäjälista',
 'specialpages'        => 'Toimintosivut',
 'spheading'           => 'Toimintosivut',
@@ -975,7 +971,7 @@ Palaute ja lisäapu osoitteessa:
 # Block/unblock IP
 #
 'blockip'             => 'Aseta muokkausesto',
-'blockiptext'         => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen pitää olla syy, esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, ”1 January 2017”. Esto voi olla myös ”indefinite” tai ”infinite”, joka kestää siihen asti, että se poistetaan.',
+'blockiptext'         => 'Tällä lomakkeella voit estää käyttäjän tai IP-osoitteen muokkausoikeudet. Muokkausoikeuksien poistamiseen pitää olla syy, esimerkiksi sivujen vandalisointi. Kirjoita syy siihen varattuun kenttään.<br />Vanhenemisajat noudattavat GNUn standardimuotoa, joka on kuvattu tar-manuaalissa ([http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html] [EN]), esimerkiksi ”1 hour”, ”2 days”, ”next Wednesday”, 2005-08-29”. Esto voi olla myös ”indefinite” tai ”infinite”, joka kestää kunnes se poistetaan.',
 'ipaddress'           => 'IP-osoite', // TODO bug
 'ipadressorusername'  => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry'           => 'Umpeutuu',
@@ -990,7 +986,7 @@ Palaute ja lisäapu osoitteessa:
 'unblockip'           => 'Muokkauseston poisto',
 'unblockiptext'       => 'Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.',
 'ipusubmit'           => 'Poista esto',
-'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1<b> esto poistettu', // TODO NOWIKIMARKUP
+'ipusuccess'          => 'IP-osoitteen tai käyttäjän <b>$1</b> esto poistettu', // TODO NOWIKIMARKUP
 'ipblocklist'         => 'Lista estetyistä IP-osoitteista',
 'ipblocklistempty'    => 'Estolista on tyhjä.',
 'blocklistline'       => '$1 — $2 on estänyt käyttäjän $3 ($4)',
@@ -1039,7 +1035,7 @@ Palaute ja lisäapu osoitteessa:
 'setbureaucratflag'   => 'Tee käyttäjästä myös byrokraatti',
 'bureaucratlog'       => 'Byrokraattiloki',
 'rightslogtext'       => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
-'bureaucratlogentry'  => 'Käyttäjän $1 ryhmäoikeudet muutettiin ryhmästä $2 ryhmään $3', // TODO: Inflect me
+'bureaucratlogentry'  => 'Käyttäjän [[$1|]] sai oikeudet$3', // TODO: Inflect me
 'rights'              => 'Oikeudet:',
 'set_user_rights'     => 'Aseta käyttäjän oikeudet',
 'user_rights_set'     => 'Käyttäjän <b>$1</b> oikeudet päivitetty.',
