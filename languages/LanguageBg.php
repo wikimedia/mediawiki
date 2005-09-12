@@ -2000,9 +2000,27 @@ class LanguageBg extends LanguageUtf8 {
 		return $wgMagicWordsBg;
 	}
 	
-	
+
+	/**
+	 * Translation table for numbers
+	 * @var array
+	 */
+	var $digitTransTable = array(
+		',' => "\xC2\xA0", // @bug 2749
+		'.' => ','
+	);
+
+	/**
+	 * ISO number formatting: 123 456 789,99.
+	 * Avoid tripple grouping by numbers with whole part up to 4 digits.
+	 * @param string $number
+	 * @return string
+	 */
 	function formatNum( $number ) {
-		return str_replace(array('.', ','), array(',', '&nbsp;'), $number);
+		if ( preg_match('/^\d{5}/', $number) ) {
+			$number = $this->commafy($number);
+		}
+		return strtr($number, $this->digitTransTable);
 	}
 }
 ?>
