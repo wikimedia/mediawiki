@@ -109,7 +109,7 @@ require_once('LanguageUtf8.php');
 'subcategories' => 'Subkategorioj',
 
 # Tiuj literoj, kiuj aperu kiel parto de la ligilo en formo "[[lingvo]]jn" ktp:
-'linktrail'     => '/^([a-z]+)(.*)\$/sD',
+'linktrail'     => '/^([a-z]+)(.*)$/sD',
 'mainpage'		=> 'Ĉefpaĝo',
 'about'			=> 'Enkonduko',
 'aboutsite'      => 'Pri {{SITENAME}}', #FIXME
