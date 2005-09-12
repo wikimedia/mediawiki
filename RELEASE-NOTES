@@ -93,6 +93,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3127) Render large SVGs at image page size correctly
 * Fix regressions in ChangesList traditional layout
 * Fix edit on double-click for move-protected pages in Classic skin
+* Fix scaling of non-integer SVG unit sizes
 
 
 === Caveats ===
