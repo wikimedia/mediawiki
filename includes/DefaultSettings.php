@@ -499,6 +499,7 @@ $wgLinkCacheMemcached = false; # Not fully tested
  * Memcached-specific settings
  * See docs/memcached.txt
  */
+$wgUseMemCached     = false;
 $wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server isn't working
 $wgMemCachedServers = array( '127.0.0.1:11000' );
 $wgMemCachedDebug   = false;
