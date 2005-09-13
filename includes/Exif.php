@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
 /**#@+
  * Exif tag type definition
  */
-define('MW_EXIF_BYTE', 1);		# An 8-bit unsigned integer.
+define('MW_EXIF_BYTE', 1);		# An 8-bit (1-byte) unsigned integer.
 define('MW_EXIF_ASCII', 2);		# An 8-bit byte containing one 7-bit ASCII code. The final byte is terminated with NULL.
 define('MW_EXIF_SHORT', 3);		# A 16-bit (2-byte) unsigned integer.
 define('MW_EXIF_LONG', 4);		# A 32-bit (4-byte) unsigned integer.
@@ -81,6 +81,14 @@ class Exif {
 	var $mFormattedExifData;
 	
 	/**#@-*/
+
+	/**
+	 * The private log to log to
+	 *
+	 * @var string
+	 * @access private
+	 */
+	var $log = 'exif';
 
 	/**
 	 * Constructor
@@ -273,12 +281,19 @@ class Exif {
 			),
 		);
 
+		$basename = basename( $file );
+		
 		$this->makeFlatExifTags();
+		
+		$this->debugFile( $basename, __FUNCTION__, true );
 		wfSuppressWarnings();
 		$this->mRawExifData = exif_read_data( $file );
 		wfRestoreWarnings();
+		
 		$this->makeFilteredData();
 		$this->makeFormattedData();
+		
+		$this->debugFile( $basename, __FUNCTION__, false );
 	}
 	
 	/**#@+
@@ -528,13 +543,30 @@ class Exif {
 			$in = print_r( $in, true ); 
 	 
 		if ( $action === true )
-			wfDebug( "$class::$fname: accepted: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: accepted: '$in' (type: $type)\n");
 		elseif ( $action === false ) 
-			wfDebug( "$class::$fname: rejected: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: rejected: '$in' (type: $type)\n");
 		elseif ( $action === null )
-			wfDebug( "$class::$fname: input was: '$in' (type: $type)\n");
+			wfDebugLog( $this->log, "$class::$fname: input was: '$in' (type: $type)\n");
 		else
-			wfDebug( "$class::$fname: $action (type: $type; content: '$in')\n");
+			wfDebugLog( $this->log, "$class::$fname: $action (type: $type; content: '$in')\n");
+	}
+
+	/**
+	 * Conviniance function for debugging output
+	 *
+	 * @access private
+	 *
+	 * @param string $basename The name of the file being processed
+	 * @paran string $fname The name of the function calling this function
+	 * @param bool $bool $io Specify whether we're beginning or ending
+	 */
+	function debugFile( $basename, $fname, $io ) {
+		$class = ucfirst( __CLASS__ );
+		if ( $io )
+			wfDebugLog( $this->log, "$class::$fname: begin processing: '$basename'\n" );
+		else
+			wfDebugLog( $this->log, "$class::$fname: end processing: '$basename'\n" );
 	}
 
 }
