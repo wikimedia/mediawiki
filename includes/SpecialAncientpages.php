@@ -51,7 +51,7 @@ class AncientPagesPage extends QueryPage {
 
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->makeKnownLinkObj( $title, $wgContLang->convert( $title->getPrefixedText() ) );
+		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
 		return "{$link} ({$d})";
 	}
 }
