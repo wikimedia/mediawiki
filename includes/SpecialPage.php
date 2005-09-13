@@ -70,6 +70,7 @@ $wgSpecialPages = array(
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
+	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
 );
 
 if ( $wgUseValidation )
@@ -80,7 +81,7 @@ if( !$wgDisableCounters ) {
 }
 
 if( !$wgDisableInternalSearch ) {
-	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
+	$wgSpecialPages['Search'] = new SpecialPage( 'Search' );
 }
 
 if( $wgEmailAuthentication ) {
