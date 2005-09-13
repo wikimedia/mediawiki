@@ -1274,6 +1274,10 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 	return wfElement( $element, $attribs, $contents );
 }
 
+// Shortcuts
+function wfOpenElement( $element ) { return "<$element>"; }
+function wfCloseElement( $element ) { return "</$element>"; }
+
 /**
  * Create a namespace selector
  *
