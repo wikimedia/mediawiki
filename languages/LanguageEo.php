@@ -1000,8 +1000,8 @@ class LanguageEo extends LanguageUtf8 {
 			return $s;
 		}
 
-		if( preg_match( '/[cghjsu]x/i', $s ) )
-			return $this->iconv( 'x', 'utf-8', $s );
+		//if( preg_match( '/[cghjsu]x/i', $s ) )
+		//	return $this->iconv( 'x', 'utf-8', $s );
 		return $s;
 	}
 

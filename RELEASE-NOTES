@@ -101,6 +101,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Use the real file link instead of the default-size rasterized version for
   large SVG images on image description page
 * Include the file name/type/size line for non-resized images
+* (bug 1512) Disable x-code interp on Esperanto URLs for now, it does more
+  harm than good under current system by breaking incoming URLs with "ux".
+  (Editing is not affected, just URLs.)
 
 
 === Caveats ===
