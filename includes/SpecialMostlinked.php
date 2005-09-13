@@ -14,13 +14,8 @@ require_once ( 'QueryPage.php' ) ;
  */
 class MostlinkedPage extends QueryPage {
 
-	function getName() {
-		return 'Mostlinked';
-	}
-
-	function isExpensive() {
-		return true;
-	}
+	function getName() { return 'Mostlinked'; }
+	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 
 	function getSQL() {
@@ -31,6 +26,7 @@ class MostlinkedPage extends QueryPage {
 				pl_namespace AS namespace,
 				pl_title AS title,
 				COUNT(*) AS value,
+				-- FIXME: The presence of this is a bug
 				page_namespace
 			FROM $pagelinks
 			LEFT JOIN $page ON pl_namespace=page_namespace AND pl_title=page_title
