@@ -552,6 +552,10 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   -- Used by Special:Imagelist for sort-by-size
   INDEX img_size (img_size),
+
+  -- Used by Special:MIMEsearch for searching
+  INDEX img_major_mime (img_major_mime),
+  INDEX img_minor_mime (img_minor_mime),
   
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
@@ -559,7 +563,7 @@ CREATE TABLE /*$wgDBprefix*/image (
 ) TYPE=InnoDB;
 
 --
--- Previous revisions of uploaded files.
+-- Previous ervisions of uploaded files.
 -- Awkwardly, image rows have to be moved into
 -- this table at re-upload time.
 --

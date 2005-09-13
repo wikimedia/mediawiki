@@ -157,6 +157,20 @@ function do_index_update() {
 	return false;
 }
 
+function do_image_index_update() {
+	global $wgDatabase;
+	
+	$meta = $wgDatabase->fieldInfo( "image", "img_major_mime" );
+	if( $meta->multiple_key == 0 ) {
+		echo "Updating indexes to 20050912: ";
+		dbsource( archive("patch-mimesearch-indexes.sql") );
+		echo "ok\n";
+		return true;
+	}
+	echo "...indexes seem up to 20050912 standards\n";
+	return false;
+}
+
 function do_image_name_unique_update() {
 	global $wgDatabase;
 	if( $wgDatabase->indexExists( 'image', 'PRIMARY' ) ) {
@@ -688,6 +702,8 @@ function do_all_updates() {
 	do_user_groups_update(); flush();
 	
 	do_watchlist_null(); flush();
+
+	do_image_index_update(); flush();
 
 	initialiseMessages(); flush();
 }
