@@ -461,6 +461,7 @@ See $1.',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
 
 'nbytes'		=> '$1 bytes',
+'widthheight'		=> '$1x$2',
 'ok'			=> 'OK',
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
@@ -1068,6 +1069,12 @@ this old version, (rev) = revert to this old version.
 'noimage'       => 'No file by this name exists, you can $1.',
 'noimage-linktext'       => 'upload it',
 'uploadnewversion' => '[$1 Upload a new version of this file]',
+
+# Mime search
+#
+'mimesearch' => 'MIME search',
+'mimetype' => 'MIME type: ',
+'download' => 'download',
 
 # Statistics
 #
