@@ -760,6 +760,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Use the real file link instead of the default-size rasterized version for
   large SVG images on image description page
 * Include the file name/type/size line for non-resized images
+* (bug 3412) Clean up date format handling so ~~~~-sigs work with default
+  format as designed. Documentation comments updated.
 
 
 === Caveats ===
