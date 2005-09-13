@@ -42,11 +42,11 @@ require_once( 'LanguageUtf8.php' );
 ) + $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsFi = array(
-	'Ei valintaa',
-	'15. tammikuuta 2001 kello 16.12',
-	'15. tammikuuta 2001 kello 16:12:34',
-	'15.1.2001 16.12',
-	'ISO 8601' => '2001-01-15 16:12:34'
+	MW_DATE_DEFAULT => 'Ei valintaa',
+	1               => '15. tammikuuta 2001 kello 16.12',
+	2               => '15. tammikuuta 2001 kello 16:12:34',
+	3               => '15.1.2001 16.12',
+	MW_DATE_ISO     => '2001-01-15 16:12:34'
 );
 
 /* private */ $wgBookstoreListFi = array(
@@ -1380,16 +1380,7 @@ class LanguageFi extends LanguageUtf8 {
 	}
 
 	/**
-	 * @access public
-	 * @param mixed  $ts the time format which needs to be turned into a
-	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param bool   $adj whether to adjust the time output according to the
-	 *               user configured offset ($timecorrection)
-	 * @param mixed  $format what format to return, if it's false output the
-	 *               default one.
-	 * @param string $timecorrection the time offset as returned by
-	 *               validateTimeZone() in Special:Preferences
-	 * @return string
+	 * See Language.php for documentation
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
@@ -1404,23 +1395,14 @@ class LanguageFi extends LanguageUtf8 {
 		$datePreference = $this->dateFormat($format);
 		switch( $datePreference ) {
 			case '3': return "$d.$m.$yyyy";
-			case 'ISO 8601': return "$yyyy-$mm-$dd";
+			case MW_DATE_ISO: return "$yyyy-$mm-$dd";
 			default: return "$d. $mmmm $yyyy";
 		}
 	}
 
 	/**
-	* @access public
-	* @param mixed  $ts the time format which needs to be turned into a
-	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	* @param bool   $adj whether to adjust the time output according to the
-	*               user configured offset ($timecorrection)
-	* @param mixed  $format what format to return, if it's false output the
-	*               default one (default true)
-	* @param string $timecorrection the time offset as returned by
-	*               validateTimeZone() in Special:Preferences
-	* @return string
-	*/
+	 * See Language.php for documentation
+	 */
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
@@ -1431,23 +1413,14 @@ class LanguageFi extends LanguageUtf8 {
 		$datePreference = $this->dateFormat($format);
 		switch( $datePreference ) {
 			case '2':
-			case 'ISO 8601': return "$hh:$mm:$ss";
+			case MW_DATE_ISO: return "$hh:$mm:$ss";
 			default: return "$hh.$mm";
 		}
 	}
 
 	/**
-	* @access public
-	* @param mixed  $ts the time format which needs to be turned into a
-	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	* @param bool   $adj whether to adjust the time output according to the
-	*               user configured offset ($timecorrection)
-	* @param mixed  $format what format to return, if it's false output the
-	*               default one (default true)
-	* @param string $timecorrection the time offset as returned by
-	*               validateTimeZone() in Special:Preferences
-	* @return string
-	*/
+	 * See Language.php for documentation
+	 */
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		$date = $this->date( $ts, $adj, $format, $timecorrection );
 		$time = $this->time( $ts, $adj, $format, $timecorrection );
@@ -1455,7 +1428,7 @@ class LanguageFi extends LanguageUtf8 {
 		$datePreference = $this->dateFormat($format);
 		switch( $datePreference ) {
 			case '3':
-			case 'ISO 8601': return "$date $time";
+			case MW_DATE_ISO: return "$date $time";
 			default: return "$date kello $time";
 		}
 	}
