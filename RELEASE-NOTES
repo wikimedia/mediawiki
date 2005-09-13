@@ -757,6 +757,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3127) Render large SVGs at image page size correctly
 * (bug 3448) Set page_len on undelete
 * (bug 2800) Don't scale up small iamges on |thumb| without explicit size
+* Use the real file link instead of the default-size rasterized version for
+  large SVG images on image description page
+* Include the file name/type/size line for non-resized images
 
 
 === Caveats ===
