@@ -107,7 +107,7 @@ class ListUsersPage extends QueryPage {
 		$out .= wfMsgHtml( 'specialloguserlabel' ) . '<input type="text" name="username" /> ';
 
 		// OK button, end of form.
-		$out .= '<input type="submit" /></form>';
+		$out .= '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" /></form>';
 		// congratulations the form is now build
 		return $out;	
 	}
