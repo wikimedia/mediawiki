@@ -762,8 +762,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Include the file name/type/size line for non-resized images
 * (bug 3412) Clean up date format handling so ~~~~-sigs work with default
   format as designed. Documentation comments updated.
-
-
+* (bug 1423) LanguageJa.php update
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
