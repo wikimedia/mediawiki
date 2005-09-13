@@ -241,7 +241,7 @@ parent class in order maintain consistency across languages.
 'underline-never' => 'Nunca',
 'underline-default' => 'Padrão',
 
-'skinpreview' => '(Preview)',
+'skinpreview' => '(Pré-visualizar)',
 
 # dates
 'sunday' => 'Domingo',
@@ -402,10 +402,10 @@ executada por utilizadores com status de \"desenvolvedor\".<br />Veja $1.",
 'retrievedfrom' => "Retirado de \"$1\"",
 'newmessages' => "Você tem $1.",
 'newmessageslink' => 'novas mensagens',
-'editsection'=>'Editar',
+'editsection'=>'editar',
 'toc' => 'Tabela de conteúdo',
-'showtoc' => 'Mostrar',
-'hidetoc' => 'Esconder',
+'showtoc' => 'mostrar',
+'hidetoc' => 'esconder',
 'thisisdeleted' => "Ver ou restaurar $1?",
 'viewdeleted' => 'Ver $1?',
 'restorelink1' => 'uma edição eliminada',
@@ -609,9 +609,9 @@ Note que não poderá usar a funcionalidade \"Contactar utilizador\" se não pos
 'whitelistedittext' => 'Para poder editar as páginas terá que se [[Special:Userlogin|identificar]]',
 'whitelistreadtext' => 'Para poder visualizar as páginas terá que se [[Special:Userlogin|identificar]].',
 'whitelistacctitle' => 'Não lhe é permitido criar uma conta',
-'whitelistacctext' => 'Para poder criar contas nesta Wiki terá que se [[Special:Userlogin|identificar]] e possuir as devias permissões.',
-'loginreqtitle' => 'Login Requesitado',
-'loginreqlink' => 'login',
+'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autentificar]] e possuir as devidas permissões.',
+'loginreqtitle' => 'Autentificação Requesitada',
+'loginreqlink' => 'autentificar-se',
 'loginreqtext'  => 'Precisa de $1 para visualizar outras páginas.',
 'accmailtitle' => 'Password enviada.',
 'accmailtext' => "A password para '$1' foi enviada para $2.",
@@ -904,7 +904,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 '''[[{{ns:-2}}:ficheiro.ogg]]''' para uma ligação directa ao ficheiro.
 ",
 'uploadlog'             => 'registo de carregamento',
-'uploadlogpage' => 'Upload_log',
+'uploadlogpage' => 'Registo de carregamento',
 'uploadlogpagetext' => 'Segue-se uma lista dos carregamentos mais recentes.',
 'filename'              => 'Nome do ficheiro',
 'filedesc'              => 'Descrição do ficheiro',
@@ -1079,8 +1079,7 @@ e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|prefe
 para enviar um e-mail a outros utilizadores.",
 'emailuser'             => 'Contactar este utilizador',
 'emailpage'             => 'Contactar utilizador',
-'emailpagetext' => 'If this user has entered a valid e-mail address in
-                    Se o utilizador introduziu um endereço válido de e-mail 
+'emailpagetext' => 'Se o utilizador introduziu um endereço válido de e-mail 
 nas suas preferências, poderá usar o formulário abaixo para lhe enviar uma mensagem.
 O endereço que introduziu nas suas preferências irá aparecer no campo "From" do e-mail 
 para que o destinatário lhe possa responder.',
@@ -1185,7 +1184,7 @@ Por favor confirme que entende fazer isto, e que compreende as consequências, e
 'deletedtext'   => "\"$1\" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.",
 'deletedarticle' => "eliminada \"[[$1]]\"",
-'dellogpage'    => 'Deletion_log',
+'dellogpage'    => 'Registo de eliminação',
 'dellogpagetext' => 'Abaixo uma lista das eliminações mais recentes.',
 'deletionlog'   => 'registo de eliminação',
 'reverted'              => 'Revertido para versão mais nova',
@@ -1207,7 +1206,7 @@ A última edição foi de [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Discussã
 'sessionfailure' => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
 Experimente usar o botão "Voltar atrás" e refrescar a página de onde veio, e repita o processo.',
-'protectlogpage' => 'Protection_log',
+'protectlogpage' => 'Registo de protecção',
 'protectlogtext' => "Abaixo encontra-se o registo de protecção e desprotecção de páginas.
 Veja [[Project:Página protegida]] para mais informações.",
 'protectedarticle' => 'protegeu "[[$1]]"',
@@ -1267,11 +1266,11 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as revisõ
 # Block/unblock IP
 #
 'blockip'               => 'Bloquear utilizador',
-'blockiptext'   => "Utilize o formulário a seguir para bloquear o acesso à escrita de um endereço específico de IP.
-Isto só pode ser feito para prevenir vandalismo e de acordo com a [[{{ns:4}}:Política|política da {{SITENAME}}]]. Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
+'blockiptext'   => "Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de utilizador.
+Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:4}}:Política|política da {{SITENAME}}]]. Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
 'ipaddress'             => 'Endereço de IP',
 'ipadressorusername' => 'Endereço de IP ou nome de utilizador',
-'ipbexpiry'             => 'Expira',
+'ipbexpiry'             => 'Prazo',
 'ipbreason'             => 'Motivo',
 'ipbsubmit'             => 'Bloquear este utilizador',
 'ipbother'              => 'Outro tempo',
@@ -1335,7 +1334,7 @@ Introduza o nome do utilizador na caixa e clique no botão para tornar o utiliza
 'makesysopfail'         => "<b>Não foi possível tornar o utilizador \"$1\" num administrador. (Introduziu o nome correctamente?)</b>",
 'setbureaucratflag' => 'Colocar flag de burocrata',
 'setstewardflag'    => 'Colocar flag de steward',
-'bureaucratlog'         => 'Bureaucrat_log',
+'bureaucratlog'         => 'Registo de acções burocráticas',
 'rightslogtext'         => 'Este é um registo de mudanças nos direitos dos utilizadores.',
 'bureaucratlogentry'    => "Alterado grupo do membro de $1 de $2 para $3",
 'rights'                        => 'Direitos:',
@@ -1412,7 +1411,7 @@ Isto pode ser uma mudança drástica e inesperada para uma página popular; por 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se desejar.',
 'movearticle'   => 'Mover página',
 'movenologin'   => 'Não autentificado',
-'movenologintext' => "Você deve ser um utilizador registado e <a href=\"{{localurle:Special:Userlogin}}\">autentificado</a>
+'movenologintext' => "Você deve ser um utilizador registado e [[Special:Userlogin|autentificado]]</a>
 para mover uma página.",
 'newtitle'              => 'Para novo título',
 'movepagebtn'   => 'Mover página',
@@ -1457,8 +1456,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 'allmessagesdefault' => 'Texto padrão',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
-'allmessagesnotsupportedDB' => 'Especial:AllMessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
+'allmessagesnotsupportedUI' => 'O seu actual interface de língua <b>$1</b> não não possui suporte do {{ns:special}}:AllMessages deste sítio. ',
+'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
 
 # Thumbnails
 
@@ -1468,13 +1467,13 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 
 # Special:Import
 'import'        => 'Importar páginas',
-'importinterwiki' => 'Transwiki import',
+'importinterwiki' => 'Importação transwiki',
 'importtext'    => 'Por favor exporte o ficheiro da fonte wiki utilizando o utilitário Especial:Export, salve o ficheiro para o seu disco e importe-o aqui.',
 'importfailed'  => "Importação falhou: $1",
 'importnotext'  => 'Vazio ou sem texto',
 'importsuccess' => 'Importação bem sucedida!',
 'importhistoryconflict' => 'Existem conflitos de revisões no histórico (poderá já ter importado esta página antes)',
-'importnosources' => 'No transwiki import sources have been defined and direct history uploads are disabled.',
+'importnosources' => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',
@@ -1488,19 +1487,19 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 'tooltip-search' => 'Pesquisar na {{SITENAME}} [alt-f]',
 'tooltip-minoredit' => 'Marcar como edição menor [alt-i]',
 'tooltip-save' => 'Salvar as alterações [alt-s]',
-'tooltip-preview' => 'Prever as alterações, por favor utilizar isto antes de salvar! [alt-p]',
+'tooltip-preview' => 'Prever as alterações, por favor utilizar antes de salvar! [alt-p]',
 'tooltip-diff' => 'Mostrar alterações que fez a este texto. [alt-d]',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página. [alt-v]',
 'tooltip-watch' => 'Adicionar esta página à sua lista de artigos vigiados [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+'Monobook.css' => '/* edite este ficheiro para alterar a skin monobook para o site inteiro */',
 #'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',
 'nocreativecommons' => 'Creative Commons RDF metadata disabled for this server.',
-'notacceptable' => 'The wiki server can\'t provide data in a format your client can read.',
+'notacceptable' => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
 
@@ -1608,11 +1607,11 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'deletedrevision' => 'Versão antiga $1 apagada.',
 
 # browsing diffs
-'previousdiff' => '? Ver a alteração anterior',
-'nextdiff' => 'Ver a alteração posterior ?',
+'previousdiff' => '← Ver a alteração anterior',
+'nextdiff' => 'Ver a alteração posterior →',
 
 'imagemaxsize' => 'Limitar imagens nas página de descrição a: ',
-'thumbsize'     => 'Thumbnail size : ',
+'thumbsize'     => 'Tamanho de miniaturas: ',
 'showbigimage' => 'Descarregar versão de maior resolução ($1x$2, $3 KB)',
 
 'newimages' => 'Galeria de novos ficheiros',
@@ -1653,9 +1652,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-samplesperpixel' =>'Número de componentes',
 'exif-planarconfiguration' =>'Data arrangement',
 'exif-ycbcrsubsampling' =>'Subsampling ratio of Y to C',
-'exif-ycbcrpositioning' =>'Y and C positioning',
-'exif-xresolution' =>'Horizontal resolution',
-'exif-yresolution' =>'Vertical resolution',
+'exif-ycbcrpositioning' =>'Posicionamento Y e C',
+'exif-xresolution' =>'Resolução horizontal',
+'exif-yresolution' =>'Resolução vertical',
 'exif-resolutionunit' =>'Unit of X and Y resolution',
 'exif-stripoffsets' =>'Localização de dados da imagem',
 'exif-rowsperstrip' =>'Number of rows per strip',
@@ -1667,7 +1666,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-primarychromaticities' =>'Chromaticities of primarities',
 'exif-ycbcrcoefficients' =>'Color space transformation matrix coefficients',
 'exif-referenceblackwhite' =>'Pair of black and white reference values',
-'exif-datetime' =>'File change date and time',
+'exif-datetime' =>'Data e hora de modificação do ficheiro',
 'exif-imagedescription' =>'Título',
 'exif-make' =>'Fabricante da câmara',
 'exif-model' =>'Modelo da câmara',
@@ -1689,7 +1688,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-subsectime' =>'DateTime subseconds',
 'exif-subsectimeoriginal' =>'DateTimeOriginal subseconds',
 'exif-subsectimedigitized' =>'DateTimeDigitized subseconds',
-'exif-exposuretime' =>'Exposure time',
+'exif-exposuretime' =>'Tempo de exposição',
 'exif-fnumber' =>'F Number',
 'exif-exposureprogram' =>'Exposure Program',
 'exif-spectralsensitivity' =>'Spectral sensitivity',
@@ -1913,9 +1912,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-gpsmeasuremode-3' => '3-dimensional measurement',
 
 // Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
-'exif-gpsspeed-k' => 'Kilometres per hour',
-'exif-gpsspeed-m' => 'Miles per hour',
-'exif-gpsspeed-n' => 'Knots',
+'exif-gpsspeed-k' => 'Quilómetros por hora',
+'exif-gpsspeed-m' => 'Milhas por hora',
+'exif-gpsspeed-n' => 'Nós',
 
 // Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'True direction',
@@ -1973,14 +1972,14 @@ $1
 ",
 'trackback' => "; $4$5 : [$2 $1]\n",
 'trackbackexcerpt' => "; $4$5 : [$2 $1]: $3\n",
-'trackbackremove' => ' ([$1 Delete])',
+'trackbackremove' => ' ([$1 Eliminar])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
 # delete conflict
 
 'deletedwhileediting' => 'Aviso: Esta página foi eliminada após você ter começado a editar!',
-'confirmrecreate' => 'O utilizador [[User:$1|$1]] ([[User talk:$1|discussão]]) eliminou este artigo após você ter começado a editar, pelo seguinte motivo:
+'confirmrecreate' => 'O utilizador [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Discussão]]) eliminou este artigo após você ter começado a editar, pelo seguinte motivo:
 : \'\'$2\'\'
 Por favor confirme que realmente deseja recriar este artigo.',
 'recreate' => 'Recriar',
