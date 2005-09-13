@@ -1438,20 +1438,21 @@ class Image
 	 *
 	 * @return array
 	 */
-	function retrieveExifData () {
-		if ( $this->getMimeType() !== "image/jpeg" ) return array ();
+	function retrieveExifData() {
+		if ( $this->getMimeType() !== "image/jpeg" ) 
+			return array();
 
 		$exif = new Exif( $this->imagePath );
 		return $exif->getFilteredData();
 	}
 		
-	function getExifData () {
+	function getExifData() {
 		global $wgRequest;
 		if ( $this->metadata === '0' )
 			return array();
 		
 		$purge = $wgRequest->getVal( 'action' ) == 'purge';
-		$ret = unserialize ( $this->metadata );
+		$ret = unserialize( $this->metadata );
 
 		$oldver = isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) ? $ret['MEDIAWIKI_EXIF_VERSION'] : 0;
 		$newver = Exif::version();
@@ -1463,6 +1464,7 @@ class Image
 		if ( isset( $ret['MEDIAWIKI_EXIF_VERSION'] ) )
 			unset( $ret['MEDIAWIKI_EXIF_VERSION'] );
 		$format = new FormatExif( $ret );
+		
 		return $format->getFormattedData();
 	}
 
