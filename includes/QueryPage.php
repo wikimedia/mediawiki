@@ -306,7 +306,7 @@ class QueryPage {
 	 */
 	function doFeed( $class = '' ) {
 		global $wgFeedClasses;
-		global $wgOut, $wgLanguageCode, $wgLang;
+		
 		if( isset($wgFeedClasses[$class]) ) {
 			$feed = new $wgFeedClasses[$class](
 				$this->feedTitle(),
@@ -341,12 +341,7 @@ class QueryPage {
 		}
 		$title = Title::MakeTitle( intval( $row->namespace ), $row->title );
 		if( $title ) {
-			if( isset( $row->timestamp ) ) {
-				$date = $row->timestamp;
-			} else {
-				$date = '';
-			}
-
+			$date = isset( $row->timestamp ) ? $row->timestamp : '';
 			$comments = '';
 			if( $title ) {
 				$talkpage = $title->getTalkPage();
@@ -366,21 +361,15 @@ class QueryPage {
 	}
 
 	function feedItemDesc( $row ) {
-		return isset( $row->comment )
-			? htmlspecialchars( $row->comment )
-			: '';
+		return isset( $row->comment ) ? htmlspecialchars( $row->comment ) : '';
 	}
 
 	function feedItemAuthor( $row ) {
-		if( isset( $row->user_text ) ) {
-			return $row->user_text;
-		} else {
-			return '';
-		}
+		return isset( $row->user_text ) ? $row->user_text : '';
 	}
 
 	function feedTitle() {
-		global $wgLanguageCode, $wgSitename, $wgLang;
+		global $wgLanguageCode, $wgSitename;
 		$page = SpecialPage::getPage( $this->getName() );
 		$desc = $page->getDescription();
 		return "$wgSitename - $desc [$wgLanguageCode]";
@@ -391,7 +380,6 @@ class QueryPage {
 	}
 
 	function feedUrl() {
-		global $wgLang;
 		$title = Title::MakeTitle( NS_SPECIAL, $this->getName() );
 		return $title->getFullURL();
 	}
@@ -409,7 +397,7 @@ class PageQueryPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		return $skin->makeKnownLinkObj( $nt, $wgContLang->convert( $nt->getPrefixedText() ) );
+		return $skin->makeKnownLinkObj( $nt, htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) ) );
 	}
 }
 
