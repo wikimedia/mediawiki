@@ -104,6 +104,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 1512) Disable x-code interp on Esperanto URLs for now, it does more
   harm than good under current system by breaking incoming URLs with "ux".
   (Editing is not affected, just URLs.)
+* (bug 3412) Clean up date format handling so ~~~~-sigs work with default
+  format as designed. Documentation comments updated.
 
 
 === Caveats ===

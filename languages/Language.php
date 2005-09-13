@@ -110,11 +110,11 @@ if(isset($wgExtraNamespaces)) {
 # Whether to use user or default setting in Language::date()
 
 /* private */ $wgDateFormatsEn = array(
-	'No preference',
-	'16:12, January 15, 2001',
-	'16:12, 15 January 2001',
-	'16:12, 2001 January 15',
-	'ISO 8601' => '2001-01-15 16:12:34'
+	MW_DATE_DEFAULT => 'No preference',
+	MW_DATE_MDY => '16:12, January 15, 2001',
+	MW_DATE_DMY => '16:12, 15 January 2001',
+	MW_DATE_YMD => '16:12, 2001 January 15',
+	MW_DATE_ISO => '2001-01-15 16:12:34'
 );
 
 /* private */ $wgUserTogglesEn = array(
@@ -2415,23 +2415,28 @@ class Language {
 	 * all children.
 	 *
 	 *<code>
-	 * function timeanddate([...], $format = '0') {
+	 * function timeanddate([...], $format = true) {
 	 * 	$datePreference = $this->dateFormat($format);
 	 * [...]
 	 *</code>
 	 *
-	 * @param mixed $format
+	 * @param bool $usePrefs: if false, the site/language default is used
 	 * @return string
 	 */
-	function dateFormat( $format ) {
-		global $wgUser;
+	function dateFormat( $usePrefs = true ) {
+		global $wgUser, $wgAmericanDates;
 
-		if ( !$wgUser->isLoggedIn() || $format === false ) {
-			$options = $this->getDefaultUserOptions();
-			return (string)$options['date'];
+		if( $usePrefs ) {
+			$datePreference = $wgUser->getOption( 'date' );
 		} else {
-			return $wgUser->getOption( 'date' );
+			$options = $this->getDefaultUserOptions();
+			$datePreference = (string)$options['date'];
 		}
+
+		if( $datePreference == MW_DATE_DEFAULT || $datePreference == '' ) {
+			return $wgAmericanDates ? MW_DATE_MDY : MW_DATE_DMY;
+		}
+		return $datePreference;
 	}
 
 	/**
@@ -2440,30 +2445,26 @@ class Language {
 	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool   $adj whether to adjust the time output according to the
 	 *               user configured offset ($timecorrection)
-	 * @param mixed  $format what format to return, if it's false output the
-	 *               default one.
+	 * @param bool   $format true to use user's date format preference
 	 * @param string $timecorrection the time offset as returned by
 	 *               validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgAmericanDates, $wgUser;
+		global $wgUser;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
-		$datePreference = $this->dateFormat($format);
-
-		if ($datePreference == '0'
-		    || $datePreference == '' ) {$datePreference = $wgAmericanDates ? '0' : '2';}
+		$datePreference = $this->dateFormat( $format );
 
 		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
 
 		switch( $datePreference ) {
-			case '2': return "$day $month $year";
-			case '3': return "$year $month $day";
-			case 'ISO 8601': return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+			case MW_DATE_DMY: return "$day $month $year";
+			case MW_DATE_YMD: return "$year $month $day";
+			case MW_DATE_ISO: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
 			default: return "$month $day, $year";
 		}
 	}
@@ -2474,23 +2475,20 @@ class Language {
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
-	* @param mixed  $format what format to return, if it's false output the
-	*               default one (default true)
+	* @param bool   $format true to use user's date format preference
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
-		global $wgUser, $wgAmericanDates;
+		global $wgUser;
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
-		$datePreference = $this->dateFormat($format);
-
-		if ($datePreference == '0') {$datePreference = $wgAmericanDates ? '0' : '2';}
+		$datePreference = $this->dateFormat( $format );
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
 
-		if ( $datePreference === 'ISO 8601' ) {
+		if ( $datePreference == MW_DATE_ISO ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
@@ -2502,22 +2500,20 @@ class Language {
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
-	* @param mixed  $format what format to return, if it's false output the
-	*               default one (default true)
+	* @param bool   $format true to use user's date format preference
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
 	*/
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
-		global $wgUser, $wgAmericanDates;
+		global $wgUser;
 
 		$datePreference = $this->dateFormat($format);
-
 		switch ( $datePreference ) {
-			case 'ISO 8601': return $this->date( $ts, $adj, $datePreference, $timecorrection ) . ' ' .
-				$this->time( $ts, $adj, $datePreference, $timecorrection );
-			default: return $this->time( $ts, $adj, $datePreference, $timecorrection ) . ', ' .
-				$this->date( $ts, $adj, $datePreference, $timecorrection );
+			case MW_DATE_ISO: return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
+				$this->time( $ts, $adj, $format, $timecorrection );
+			default: return $this->time( $ts, $adj, $format, $timecorrection ) . ', ' .
+				$this->date( $ts, $adj, $format, $timecorrection );
 		}
 	}
 
