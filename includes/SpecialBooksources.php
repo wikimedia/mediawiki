@@ -64,7 +64,7 @@ class BookSourceList {
 		}
 		
 		# Otherwise, use the list of links in the default Language.php file.
-		$s = wfMsgHtml( "booksourcetext" ) . "<ul>\n";
+		$s = wfMsgWikiHtml( 'booksourcetext' ) . "<ul>\n";
 		$bs = $wgContLang->getBookstoreList() ;
 		$bsn = array_keys ( $bs ) ;
 		foreach ( $bsn as $name ) {
