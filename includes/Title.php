@@ -901,7 +901,7 @@ class Title {
 	}
 
  	/**
-	 * Is $wgUser perform $action this page?
+	 * Can $wgUser perform $action this page?
 	 * @param string $action action that permission needs to be checked for
 	 * @return boolean
 	 * @access private
