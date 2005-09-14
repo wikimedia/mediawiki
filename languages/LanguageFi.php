@@ -526,7 +526,7 @@ Sivun lähdekoodi:',
 'showingresultsnum'   => 'Alla on <b>$3</b> hakutulosta alkaen <b>$2.</b> tuloksesta.',
 'nonefound'           => '\'\'\'Huomautus\'\'\': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten \'\'on\'\' ja \'\'ei\'\', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.',
 'powersearch'         => 'Etsi',
-'powersearchtext'     => 'Haku nimiavaruuksista:<br />$1<br /><b>Etsi</b> $3 $9 $2 Luettele uudelleenohjaukset', # TODO NOWIKIMARKUP
+'powersearchtext'     => 'Hae nimiavaruuksista:<br />$1<br /><b>Etsi</b> $3 $9 $2 Luettele uudelleenohjaukset', # TODO NOWIKIMARKUP
 'searchdisabled'      => '<p style="margin: 1.5em 2em 1em">Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön.<small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small></p>', # TODO NOWIKIMARKUP
 
 'blanknamespace'      => '(sivut)',
