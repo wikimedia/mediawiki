@@ -229,6 +229,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
+'permalink'     => 'Permanentlink',
 
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
 'nstab-main' => 'Artikel',
@@ -725,7 +726,6 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "nviews"		=> "$1 Abfragen",
 "wantedpages"	=> "Gewünschte Seiten",
 "nlinks"		=> "$1 Verweise",
-"allpages"		=> "Alle Artikel",
 "randompage"	=> "Zufälliger Artikel",
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
@@ -743,6 +743,26 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "booksources"	=> "Buchhandlungen",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
+'newimages'	=> 'Neue Dateien',
+'mimesearch'	=> 'Suche nach MIME-Typ',
+'mimetype'	=> 'MIME-Typ: ',
+'download'	=> 'Herunterladen',
+'mostlinked'	=> 'Meistverlinke Seiten',
+'uncategorizedpages'	=> 'Nicht kategorisierte Artikel',
+'uncategorizedcategories'	=> 'Nicht kategorisierte Kategorien',
+'unusedcategories' => 'Verwaiste Kategorien',
+
+# Special:Allpages
+'allpages'	=> 'Alle Artikel',
+'nextpage'	=> "Nächste Seite ($1)",
+'allpagesfrom'	=> 'Zeige Artikel, beginnend ab:',
+'allarticles'	=> 'Alle Artikel',
+'allnonarticles'	=> 'Alle Nicht-Artikel',
+'allinnamespace'	=> "Alle Seiten im Namensraum: $1",
+'allnotinnamespace'	=> "Alle Seiten (ohne Namensraum: $1)",
+'allpagesprev'	=> 'Vorherige',
+'allpagesnext'	=> 'Nächste',
+'allpagessubmit'	=> 'Zeige',
 
 # Email this user
 #
@@ -953,6 +973,23 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
 <br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
+
+# User levels special page
+#
+'userrights' => 'Benutzerrechtsverwaltung',
+
+'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
+'userrights-user-editname' => 'Benutzername: ',
+'editusergroup' => 'Bearbeite Benutzerrechte',
+
+# user groups editing
+#
+'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
+'saveusergroups' => 'Speichere Gruppenzugehörigkeit',
+'userrights-groupsmember' => 'Mitglied von: ',
+'userrights-groupsavailable' => 'Verfügbare Gruppen: ',
+'userrights-groupshelp' => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
 
 # Move page
 #
