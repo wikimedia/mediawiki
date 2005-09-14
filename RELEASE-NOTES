@@ -763,6 +763,9 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3412) Clean up date format handling so ~~~~-sigs work with default
   format as designed. Documentation comments updated.
 * (bug 1423) LanguageJa.php update
+* (bug 3405) Don't use raw letters as aliases of MSGNW: and SUBST:
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
