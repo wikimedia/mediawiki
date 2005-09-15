@@ -107,6 +107,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3412) Clean up date format handling so ~~~~-sigs work with default
   format as designed. Documentation comments updated.
 * (bug 1423) LanguageJa.php update
+* Clean up duplicate code for selection of changeslist style
+
 
 === Caveats ===
 

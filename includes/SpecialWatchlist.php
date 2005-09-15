@@ -293,13 +293,7 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( "</p>\n" );
 	/* End bottom header */
 
-	$sk = $wgUser->getSkin();
-
-	if ( $wgUser->getOption('usenewrc') ) {
-		$list =& new EnhancedChangesList( $sk );
-	} else {
-		$list =& new OldChangesList( $sk );
-	}
+	$list = ChangesList::newFromUser( $wgUser );
 
 	$s = $list->beginRecentChangesList();
 	$counter = 1;

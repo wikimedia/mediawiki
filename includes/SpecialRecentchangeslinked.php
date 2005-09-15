@@ -112,11 +112,7 @@ ORDER BY rev_timestamp DESC
 
 	$wgOut->addHTML( $note."\n" );
 
-	if ( $wgUser->getOption('usenewrc') ) {
-		$list =& new EnhancedChangesList( $sk );
-	} else {
-		$list =& new OldChangesList( $sk );
-	}
+	$list = ChangesList::newFromUser( $wgUser );
 	$s = $list->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
 	

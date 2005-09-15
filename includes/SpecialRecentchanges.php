@@ -196,11 +196,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		$sk = $wgUser->getSkin();
 		$wgOut->setSyndicated( true );
 
-		if ( $wgUser->getOption('usenewrc') ) {
-			$list =& new EnhancedChangesList( $sk );
-		} else {
-			$list =& new OldChangesList( $sk );
-		}
+		$list = ChangesList::newFromUser( $wgUser );
 
 		$s = $list->beginRecentChangesList();
 		$counter = 1;
