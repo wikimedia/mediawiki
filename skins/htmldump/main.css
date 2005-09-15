@@ -1,0 +1,7 @@
+@import "../monobook/main.css";
+
+#footer li {
+	display: block;
+}
+head:first-child + body #footer li { white-space: normal; }
+
