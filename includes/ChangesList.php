@@ -19,6 +19,15 @@ class ChangesList {
 		$this->skin =& $skin;
 		$this->preCacheMessages();
 	}
+	
+	function newFromUser( &$user ) {
+		$sk =& $user->getSkin();
+		if ( $user->getOption('usenewrc') ) {
+			return new EnhancedChangesList( $sk );
+		} else {
+			return new OldChangesList( $sk );
+		}
+	}
 
 	/**
 	 * As we use the same small set of messages in various methods and that
