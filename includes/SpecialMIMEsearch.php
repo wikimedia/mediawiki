@@ -55,6 +55,7 @@ class MIMEsearchPage extends QueryPage {
 				img_size,
 				img_width,
 				img_height,
+				img_user_text,
 				img_timestamp
 			FROM $image
 			WHERE img_major_mime = $major AND img_minor_mime = $minor
@@ -65,25 +66,26 @@ class MIMEsearchPage extends QueryPage {
 		global $wgContLang, $wgLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getPrefixedText() );
+		$text = $wgContLang->convert( $nt->getText() );
 		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
 
 		$download = $skin->makeMediaLink( $nt->getText(), 'fuck me!', wfMsgHtml( 'download' ) );
 		$bytes = wfMsg( 'nbytes', $wgLang->formatNum( $result->img_size ) );
 		$dimensions = wfMsg( 'widthheight', $result->img_width, $result->img_height );
+		$user = $skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
 		$time = $wgLang->timeanddate( $result->img_timestamp );
 		
-		return "($download) $plink .. $dimensions .. $bytes .. $time";
+		return "($download) $plink .. $dimensions .. $bytes .. $user .. $time";
 	}
 }
 
 /**
  * constructor
  */
-function wfSpecialMIMEsearch() {
+function wfSpecialMIMEsearch( $par = null ) {
 	global $wgRequest, $wgTitle, $wgOut;
 
-	$mime = $wgRequest->getText( 'mime' );
+	$mime = isset( $par ) ? $par : $wgRequest->getText( 'mime' );
 
 	$wgOut->addHTML(
 		wfElement( 'form',
