@@ -70,7 +70,9 @@ function wfSpecialLicensesearch( $par = null ) {
 	global $wgRequest, $wgTitle, $wgOut;
 
 	$license = isset( $par ) ? $par : $wgRequest->getText( 'license' );
-
+	$license = Title::newFromText( $license );
+	$license = is_object( $license ) ? $license->getText() : '';
+	
 	$wgOut->addHTML(
 		wfElement( 'form',
 			array(
@@ -101,8 +103,7 @@ function wfSpecialLicensesearch( $par = null ) {
 		wfCloseElement( 'form' )
 	);
 
-	$license =  trim( $license, ' ' );
-	if ($license == '')
+	if ( $license == '' )
 		return;
 
 	$license = wfSpecialLicensesearchLicense( $license );
