@@ -729,6 +729,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3192): properly check 'limit' parameter on Special:Contributions
 * (bug 3244) Fix remote image loading hack, JavaScript injection on MSIE
 * Fix URL sanitization in HTML attributes, which broke in this branch
+* (bug 3475) anon contrib links on Special:Newpages
 
 
 === Changes since 1.5rc2 ===
