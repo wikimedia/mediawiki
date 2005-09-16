@@ -108,6 +108,7 @@ fully support the editing toolbar, but was found to be too confusing.
   format as designed. Documentation comments updated.
 * (bug 1423) LanguageJa.php update
 * Clean up duplicate code for selection of changeslist style
+* (bug 3475) anon contrib links on Special:Newpages
 
 
 === Caveats ===
