@@ -97,6 +97,18 @@ class QueryPage {
 	}
 
 	/**
+	 * Whether or not the output of the page in question is retrived from
+	 * the database cache.
+	 *
+	 * @return bool
+	 */
+	function isCached() {
+		global $wgMiserMode;
+		
+		return $this->isExpensive() && $wgMiserMode;
+	}
+
+	/**
 	 * Sometime we dont want to build rss / atom feeds.
 	 */
 	function isSyndicated() {
@@ -218,8 +230,7 @@ class QueryPage {
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
-		global $wgMiserMode;
-
+		
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
 		$sql = $this->getSQL();
@@ -229,15 +240,12 @@ class QueryPage {
 
 		$wgOut->setSyndicated( $this->isSyndicated() );
 
-		if ( $this->isExpensive() ) {
-			// Disabled recache parameter due to retry problems -- TS
-			if( $wgMiserMode ) {
-				$type = $dbr->strencode( $sname );
-				$sql =
-					"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
-					 FROM $querycache WHERE qc_type='$type'";
-				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
-			}
+		if ( $this->isCached() ) {
+			$type = $dbr->strencode( $sname );
+			$sql =
+				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
+				 FROM $querycache WHERE qc_type='$type'";
+			$wgOut->addWikiText( wfMsg( 'perfcached' ) );
 		}
 
 		$sql .= $this->getOrder();
