@@ -128,6 +128,7 @@ class WikiRevision {
 	var $user_text = "";
 	var $text = "";
 	var $comment = "";
+	var $minor = false;
 	
 	function setTitle( $text ) {
 		$this->title = Title::newFromText( $text );
@@ -154,6 +155,10 @@ class WikiRevision {
 		$this->comment = $text;
 	}
 	
+	function setMinor( $minor ) {
+		$this->minor = (bool)$minor;
+	}
+	
 	function getTitle() {
 		return $this->title;
 	}
@@ -172,6 +177,10 @@ class WikiRevision {
 	
 	function getComment() {
 		return $this->comment;
+	}
+	
+	function getMinor() {
+		return $this->minor;
 	}
 
 	function importOldRevision() {
@@ -211,7 +220,7 @@ class WikiRevision {
 			'user'       => $userId,
 			'user_text'  => $userText,
 			'timestamp'  => $this->timestamp,
-			'minor_edit' => 0
+			'minor_edit' => $this->minor,
 			) );
 		$revId = $revision->insertOn( $dbw );
 		$article->updateIfNewerOn( $dbw, $revision );
@@ -239,6 +248,7 @@ class WikiImporter {
 	
 	function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
+		wfDebug( "WikiImporter XML error: $err\n" );
 	}
 	
 	# --------------
@@ -256,11 +266,14 @@ class WikiImporter {
 		xml_set_object( $parser, &$this );
 		xml_set_element_handler( $parser, "in_start", "" );
 		
+		$offset = 0; // for context extraction on error reporting
 		do {
 			$chunk = $this->mSource->readChunk();
 			if( !xml_parse( $parser, $chunk, $this->mSource->atEnd() ) ) {
-				return new WikiXmlError( $parser );
+				wfDebug( "WikiImporter::doImport encountered XML parsing error\n" );
+				return new WikiXmlError( $parser, 'XML import parse failure', $chunk, $offset );
 			}
+			$offset += strlen( $chunk );
 		} while( $chunk !== false && !$this->mSource->atEnd() );
 		xml_parser_free( $parser );
 		
@@ -380,6 +393,7 @@ class WikiImporter {
 		$this->debug( "in_siteinfo $name" );
 		switch( $name ) {
 		case "sitename":
+		case "base":
 		case "generator":
 		case "case":
 		case "namespaces":
@@ -466,6 +480,9 @@ class WikiImporter {
 		case "comment":
 			$this->workRevision->setComment( $this->appenddata );
 			break;
+		case "minor":
+			$this->workRevision->setMinor( true );
+			break;
 		default:
 			$this->debug( "Bad append: {$this->appendfield}" );
 		}
@@ -479,6 +496,7 @@ class WikiImporter {
 		case "id":
 		case "timestamp":
 		case "comment":
+		case "minor":
 		case "text":
 			$this->parenttag = "revision";
 			$this->appendfield = $name;
@@ -514,6 +532,7 @@ class WikiImporter {
 		switch( $name ) {
 		case "username":
 		case "ip":
+		case "id":
 			$this->parenttag = "contributor";
 			$this->appendfield = $name;
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
