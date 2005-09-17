@@ -764,6 +764,11 @@ pages for purposes of page relevancy ranking.
 * Security fix for tables
 
 
+=== 1.4.10 changes ===
+
+* (bug 3153) Fix for compressOld.php -t gzip
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not

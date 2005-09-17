@@ -11,7 +11,6 @@ function compressOldPages( $start = 0 ) {
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";
 	$dbr =& wfGetDB( DB_SLAVE );
-	$old = $dbw->tableName( 'old' );
 	do {
 		$end = $start + $chunksize;
 		$res = $dbr->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
