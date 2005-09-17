@@ -16,55 +16,37 @@ function rebuildRecentChangesTablePass1()
 
 	$dbw->delete( 'recentchanges', '*' );
 
-	print( "Loading from CUR table...\n" );
+	print( "Loading from page and revision tables...\n" );
 	
-	$dbw->insertSelect( 'recentchanges', 'cur', 
+	global $wgRCMaxAge;
+	$cutoff = time() - $wgRCMaxAge;
+	$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 		array(
-			'rc_timestamp' => 'cur_timestamp',
-			'rc_cur_time' => 'cur_timestamp',
-			'rc_user' => 'cur_user',
-			'rc_user_text' => 'cur_user_text',
-			'rc_namespace' => 'cur_namespace',
-			'rc_title' => 'cur_title',
-			'rc_comment' => 'cur_comment',
-			'rc_minor' => 'cur_minor_edit',
-			'rc_bot' => 0,
-			'rc_new' => 'cur_is_new',
-			'rc_cur_id' => 'cur_id',
-			'rc_this_oldid' => 0,
-			'rc_last_oldid' => 0,
-			'rc_type' => $dbw->conditional( 'cur_is_new != 0', RC_NEW, RC_EDIT ),
-		), '*', $fname, array( 'ORDER BY' => 'cur_timestamp DESC', 'LIMIT' => 5000 )
+			'rc_timestamp'  => 'rev_timestamp',
+			'rc_cur_time'   => 'rev_timestamp',
+			'rc_user'       => 'rev_user',
+			'rc_user_text'  => 'rev_user_text',
+			'rc_namespace'  => 'page_namespace',
+			'rc_title'      => 'page_title',
+			'rc_comment'    => 'rev_comment',
+			'rc_minor'      => 'rev_minor_edit',
+			'rc_bot'        => 0,
+			'rc_new'        => 'page_is_new',
+			'rc_cur_id'     => 'page_id',
+			'rc_this_oldid' => 'rev_id',
+			'rc_last_oldid' => 0, // is this ok?
+			'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
+		), array(
+			'rev_timestamp > ' . $dbw->timestamp( $cutoff ),
+			'rev_page=page_id'
+		), $fname, array( 'ORDER BY' => 'rev_timestamp', 'LIMIT' => 5000 )
 	);
-	
-	print( "Loading from OLD table...\n" );
-
-	$sql = "INSERT INTO $recentchanges (rc_timestamp,rc_cur_time,rc_user," .
-      "rc_user_text,rc_namespace,rc_title,rc_comment,rc_minor,rc_bot,rc_new," .
-      "rc_cur_id,rc_this_oldid,rc_last_oldid,rc_type) SELECT old_timestamp,cur_timestamp," .
-	  "old_user,old_user_text,old_namespace,old_title,old_comment," .
-	  "old_minor_edit,0,0,cur_id,old_id,0,0 FROM $old,$cur " .
-	  "WHERE old_namespace=cur_namespace AND old_title=cur_title ORDER BY old_timestamp DESC " .
-	  "LIMIT 5000";
-	$dbw->query( $sql );
-
-	$sql = "SELECT rc_timestamp FROM $recentchanges " .
-	  "ORDER BY rc_timestamp DESC";
-	$sql = $dbw->limitResult($sql, 1, 5000 );
-	$res = $dbw->query( $sql );
-	$obj = $dbw->fetchObject( $res );
-	if( $obj ) {
-		$ts = $obj->rc_timestamp;
-	
-		$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$ts}'";
-		$dbw->query( $sql );
-	}
 }
 
 function rebuildRecentChangesTablePass2()
 {
 	$dbw =& wfGetDB( DB_MASTER );
-	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' ) );
+	extract( $dbw->tableNames( 'recentchanges', 'revision' ) );
 
 	$ns = $id = $count = 0;
 	$title = $ct =  "";
@@ -85,9 +67,9 @@ function rebuildRecentChangesTablePass2()
 			# Switch! Look up the previous last edit, if any
 			$lastCurId = intval( $obj->rc_cur_id );
 			$emit = $obj->rc_timestamp;
-			$sql2 = "SELECT old_id FROM $old,$cur " .
-				"WHERE old_namespace=cur_namespace AND old_title=cur_title AND cur_id={$lastCurId} ".
-				"AND old_timestamp<'{$emit}' ORDER BY old_timestamp DESC LIMIT 1";
+			$sql2 = "SELECT rev_id FROM $revision " .
+				"WHERE rev_page={$lastCurId} ".
+				"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
 				$lastOldId = intval( $row->old_id );

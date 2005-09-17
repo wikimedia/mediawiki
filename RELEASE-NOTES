@@ -111,6 +111,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3475) anon contrib links on Special:Newpages
 * Correct blob caching to reduce redundant blob loads on backups
 * (bug 3485) Fix bogus warning about filename capitalization when off
+* (bug 2792) Update rebuildrecentchanges.inc for new schema
 
 
 === Caveats ===
