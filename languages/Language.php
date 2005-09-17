@@ -2802,7 +2802,7 @@ class Language {
 	 *
 	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}} 
 	 *
-	 * @param string $count
+	 * @param integer $count
 	 * @param string $wordform1
 	 * @param string $wordform2
 	 * @param string $wordform3 (optional)
