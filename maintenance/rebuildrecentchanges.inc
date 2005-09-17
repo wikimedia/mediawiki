@@ -72,7 +72,7 @@ function rebuildRecentChangesTablePass2()
 				"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
-				$lastOldId = intval( $row->old_id );
+				$lastOldId = intval( $row->rev_id );
 			} else {
 				# No previous edit
 				$lastOldId = 0;
