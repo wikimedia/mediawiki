@@ -247,7 +247,12 @@ class UploadForm {
 		 */
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
-			if( $this->mUploadSaveName != ucfirst( $filtered ) ) {
+			
+			global $wgCapitalLinks;
+			if( $wgCapitalLinks ) {
+				$filtered = ucfirst( $filtered );
+			}
+			if( $this->mUploadSaveName != $filtered ) {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 			}
 

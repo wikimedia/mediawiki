@@ -110,6 +110,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Clean up duplicate code for selection of changeslist style
 * (bug 3475) anon contrib links on Special:Newpages
 * Correct blob caching to reduce redundant blob loads on backups
+* (bug 3485) Fix bogus warning about filename capitalization when off
 
 
 === Caveats ===
