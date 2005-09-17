@@ -112,6 +112,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Correct blob caching to reduce redundant blob loads on backups
 * (bug 3485) Fix bogus warning about filename capitalization when off
 * (bug 2792) Update rebuildrecentchanges.inc for new schema
+* Special:Import/importDump fixes: report XML parse errors, accept <minor/>
 
 
 === Caveats ===
