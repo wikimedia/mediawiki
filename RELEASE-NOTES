@@ -769,7 +769,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2792) Update rebuildrecentchanges.inc for new schema
 * Special:Import/importDump fixes: report XML parse errors, accept <minor/>
 * (bug 3489) PHP 5.1 compat problem with captioned images
-
+* (bug 3350) Missing label for move talk page checkbox.
 
 === Caveats ===
 

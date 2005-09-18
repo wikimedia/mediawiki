@@ -148,9 +148,9 @@ class MovePageForm {
 			$wgOut->addHTML( "
 		<tr>
 			<td align='right'>
-				<input type='checkbox' name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
+				<input type='checkbox' id=\"wpMovetalk\" name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
 			</td>
-			<td>{$movetalk}</td>
+			<td><label for=\"wpMovetalk\">{$movetalk}</label></td>
 		</tr>" );
 		}
 		$wgOut->addHTML( "
