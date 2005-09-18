@@ -1076,11 +1076,6 @@ this old version, (rev) = revert to this old version.
 'mimetype' => 'MIME type: ',
 'download' => 'download',
 
-# License search
-#
-'licensesearch' => 'License search',
-'licensesearch_license' => 'License: ',
-
 # Statistics
 #
 'statistics'	=> 'Statistics',
