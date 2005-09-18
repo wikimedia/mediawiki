@@ -1054,7 +1054,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Export page
 'export'	=> 'Exporter des pages',
-'exporttext'	=> 'Vous pouvez exporter en XML le texte et l\'historique d\'une page ou d\'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.',
+'exporttext'	=> 'Vous pouvez exporter en XML le texte et l\'historique d\'une page ou d\'un ensemble de pages; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.',
 'exportcuronly'	=> 'Exporter uniquement la version courante sans l\'historique',
 
 # Namespace 8 related
