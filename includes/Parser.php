@@ -1345,7 +1345,8 @@ class Parser
 					$found = false;
 					while (isset ($a[$k+1]) ) {
 						#look at the next 'line' to see if we can close it there
-						$next_line =  array_shift(array_splice( $a, $k + 1, 1) );
+						$spliced = array_splice( $a, $k + 1, 1 );
+						$next_line = array_shift( $spliced );
 						if( preg_match("/^(.*?]].*?)]](.*)$/sD", $next_line, $m) ) {
 						# the first ]] closes the inner link, the second the image
 							$found = true;
