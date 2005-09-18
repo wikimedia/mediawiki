@@ -1981,6 +1981,8 @@ class LanguageRu extends LanguageUtf8 {
 						$word = join('',array_slice($ar[0],0,-1)).'я';
 					elseif (join('',array_slice($ar[0],-2))=='ия')
 						$word=join('',array_slice($ar[0],0,-2)).'ии';
+					elseif (join('',array_slice($ar[0],-2))=='ка')
+						$word=join('',array_slice($ar[0],0,-2)).'ки';
 					elseif (join('',array_slice($ar[0],-2))=='ти')
 						$word=join('',array_slice($ar[0],0,-2)).'тей';
 					elseif (join('',array_slice($ar[0],-2))=='ды')
