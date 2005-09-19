@@ -324,12 +324,16 @@ END
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
 					$this->mTitle->getDBkey(),  $line->img_user,
-					$line->img_user_text, $line->img_size, $line->img_description );
+					$line->img_user_text, $line->img_size, $line->img_description,
+					$line->img_width, $line->img_height
+				);
 
 			while ( $line = $this->img->nextHistoryLine() ) {
 				$s .= $list->imageHistoryLine( false, $line->img_timestamp,
-			  	$line->oi_archive_name, $line->img_user,
-			  	$line->img_user_text, $line->img_size, $line->img_description );
+			  		$line->oi_archive_name, $line->img_user,
+			  		$line->img_user_text, $line->img_size, $line->img_description,
+					$line->img_width, $line->img_height
+				);
 			}
 			$s .= $list->endImageHistoryList();
 		} else { $s=''; }
@@ -642,7 +646,7 @@ class ImageHistoryList {
 		return $s;
 	}
 
-	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description ) {
+	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $width, $height ) {
 		global $wgUser, $wgLang, $wgContLang, $wgTitle;
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
@@ -688,10 +692,10 @@ class ImageHistoryList {
 				$usertext );
 		}
 		$nbytes = wfMsg( 'nbytes', $size );
+		$widthheight = wfMsg( 'widthheight', $width, $height );
 		$style = $this->skin->getInternalLinkAttributes( $url, $datetime );
 
-		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a>"
-		  . " . . {$userlink} ({$nbytes})";
+		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$datetime}</a> . . {$userlink} . . {$widthheight} ({$nbytes})";
 
 		$s .= $this->skin->commentBlock( $description, $wgTitle );
 		$s .= "</li>\n";
