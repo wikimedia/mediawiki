@@ -21,10 +21,11 @@ class checkUsernames {
 			$fname
 		);
 
-		fwrite( $this->stderr, "Checking $wgDBname\n" );
+		#fwrite( $this->stderr, "Checking $wgDBname\n" );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( ! User::isValidUserName( $row->user_name ) ) {
-				$out = sprintf( "%s: %6d: %s\n", $wgDBname, $row->user_id, $row->user_name );
+				$out = sprintf( "%s: %6d: '%s'\n", $wgDBname, $row->user_id, $row->user_name );
+				fwrite( $this->stderr, $out );
 				fwrite( $this->log, $out );
 			}
 		}
