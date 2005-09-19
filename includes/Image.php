@@ -667,7 +667,7 @@ class Image
 	 * This is used to show a warning on the description page of non-safe files.
 	 * It may also be used to disallow direct [[media:...]] links to such files.
 	 *
-	 * Note that this function will always return ture if allowInlineDisplay() 
+	 * Note that this function will always return true if allowInlineDisplay() 
 	 * or isTrustedFile() is true for this file.
 	 */
 	function isSafeFile() {
@@ -689,14 +689,14 @@ class Image
 		return false;
 	}
 	
-	/** Returns true if the file is flagegd as trusted. Files flagged that way
+	/** Returns true if the file is flagged as trusted. Files flagged that way
 	* can be linked to directly, even if that is not allowed for this type of
 	* file normally.
 	*
 	* This is a dummy function right now and always returns false. It could be
 	* implemented to extract a flag from the database. The trusted flag could be
 	* set on upload, if the user has sufficient privileges, to bypass script-
-	* and html-filters. It may even be coupeled with cryptographics signatures
+	* and html-filters. It may even be coupled with cryptographics signatures
 	* or such.
 	*/
 	function isTrustedFile() {
@@ -1196,7 +1196,15 @@ class Image
 		
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur 
 			$this->historyRes = $dbr->select( 'image', 
-				array( 'img_size','img_description','img_user','img_user_text','img_timestamp', "'' AS oi_archive_name" ), 
+				array(
+					'img_size',
+					'img_description',
+					'img_user','img_user_text',
+					'img_timestamp', 
+					'img_width',
+					'img_height',
+					"'' AS oi_archive_name"
+				), 
 				array( 'img_name' => $this->title->getDBkey() ),
 				$fname
 			);
@@ -1205,9 +1213,19 @@ class Image
 			}
 		} else if ( $this->historyLine == 1 ) {
 			$this->historyRes = $dbr->select( 'oldimage', 
-				array( 'oi_size AS img_size', 'oi_description AS img_description', 'oi_user AS img_user',
-					'oi_user_text AS img_user_text', 'oi_timestamp AS img_timestamp', 'oi_archive_name'
-				), array( 'oi_name' => $this->title->getDBkey() ), $fname, array( 'ORDER BY' => 'oi_timestamp DESC' ) 
+				array(
+					'oi_size AS img_size',
+					'oi_description AS img_description',
+					'oi_user AS img_user',
+					'oi_user_text AS img_user_text',
+					'oi_timestamp AS img_timestamp',
+					'oi_width as img_width',
+					'oi_height as img_height',
+					'oi_archive_name'
+				),
+				array( 'oi_name' => $this->title->getDBkey() ),
+				$fname,
+				array( 'ORDER BY' => 'oi_timestamp DESC' ) 
 			);
 		}
 		$this->historyLine ++;
@@ -1331,7 +1349,9 @@ class Image
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
 				'img_metadata' => $this->metadata,
-			), $fname, 'IGNORE' 
+			),
+			$fname,
+			'IGNORE' 
 		);
 		$descTitle = $this->getTitle();
 		$purgeURLs = array();
