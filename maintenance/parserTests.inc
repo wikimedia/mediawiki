@@ -32,6 +32,8 @@ require_once( 'commandLine.inc' );
 require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/includes/BagOStuff.php" );
 require_once( "$IP/languages/LanguageUtf8.php" );
+require_once( "$IP/includes/Hooks.php" );
+require_once( "$IP/maintenance/parserTestsParserHook.php" );
 
 /**
  * @package MediaWiki
@@ -236,6 +238,7 @@ class ParserTest {
 		}
 
 		$parser =& new Parser();
+		wfRunHooks( 'ParserTestParser', array( &$parser ) );
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		if (preg_match('/\\bpst\\b/i', $opts)) {
