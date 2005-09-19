@@ -9,14 +9,14 @@
 /**
  * Constructor
  */
-function wfSpecialBlockip() {
+function wfSpecialBlockip( $par ) {
 	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isAllowed('block') ) {
 		$wgOut->sysopRequired();
 		return;
 	}
-	$ipb = new IPBlockForm();
+	$ipb = new IPBlockForm( $par );
 
 	$action = $wgRequest->getVal( 'action' );
 	if ( 'success' == $action ) {
@@ -38,9 +38,10 @@ function wfSpecialBlockip() {
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
 
-	function IPBlockForm() {
+	function IPBlockForm( $par ) {
 		global $wgRequest;
-		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip' ) );
+
+		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
 		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
