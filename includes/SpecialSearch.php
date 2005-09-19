@@ -105,6 +105,7 @@ class SpecialSearch {
 		if( is_null( $t ) ) {
 			$editurl = ''; # hrm...
 		} else {
+			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
 			# If the feature is enabled, go straight to the edit page
 			if ( $wgGoToEdit ) {
 				$wgOut->redirect( $t->getFullURL( 'action=edit' ) );
