@@ -36,7 +36,7 @@ class SpecialVersion {
 		global $wgOut;
 		
 		$wgOut->setRobotpolicy( 'index,follow' );
-		$wgOut->addWikiText( $this->MediaWikiCredits() . $this->extensionCredits() );
+		$wgOut->addWikiText( $this->MediaWikiCredits() . $this->extensionCredits() . $this->wgHooks() );
 		$wgOut->addHTML( $this->IPInfo() );
 	}
 
@@ -138,6 +138,18 @@ class SpecialVersion {
 			$ret .= ' by ' . $this->langObj->listToText( (array)$author );
 
 		return "$ret\n";
+	}
+
+	function wgHooks() {
+		global $wgHooks;
+
+		$ret = "* Hooks:\n";
+
+		foreach ($wgHooks as $hook => $hooks) {
+			$ret .= "** $hook: " . $this->langObj->listToText( $hooks ) . "\n";
+		}
+
+		return $ret;
 	}
 
 	function IPInfo() {
