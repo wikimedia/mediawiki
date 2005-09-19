@@ -114,6 +114,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2792) Update rebuildrecentchanges.inc for new schema
 * Special:Import/importDump fixes: report XML parse errors, accept <minor/>
 * (bug 3489) PHP 5.1 compat problem with captioned images
+* (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
+  by default when 'watchdefault' option is on
 
 
 === Caveats ===
