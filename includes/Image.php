@@ -61,7 +61,11 @@ class Image
 	 */
 	function newFromName( $name ) {
 		$title = Title::makeTitleSafe( NS_IMAGE, $name );
-		return new Image( $title );
+		if ( is_object( $title ) ) {
+			return new Image( $title );
+		} else {
+			return NULL;
+		}
 	}
 
 	/** 
@@ -224,7 +228,7 @@ class Image
 			# capitalize the first letter of the filename before 
 			# looking it up in the shared repository.
 			$sharedImage = Image::newFromName( $wgLang->ucfirst($this->name) );
-			$this->fileExists = file_exists( $sharedImage->getFullPath(true) );
+			$this->fileExists = $sharedImage && file_exists( $sharedImage->getFullPath(true) );
 			if ( $this->fileExists ) {
 				$this->name = $sharedImage->name;
 				$this->imagePath = $this->getFullPath(true);
@@ -585,7 +589,10 @@ class Image
 			global $wgSVGConverters, $wgSVGConverter;
 			
 			if ($wgSVGConverter && isset( $wgSVGConverters[$wgSVGConverter])) {
+				wfDebug( "Image::canRender: SVG is ready!\n" );
 				return true;
+			} else {
+				wfDebug( "Image::canRender: SVG renderer missing\n" );
 			}
 		}
 		
