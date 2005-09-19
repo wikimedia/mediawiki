@@ -2253,9 +2253,8 @@ Table multiple attributes correction
 !! result
 <table>
 <tr>
-<th class="awesome">status</th>
-</tr>
-</table>
+<th class="awesome"> status
+</th></tr></table>
 
 !!end
 
@@ -2635,6 +2634,89 @@ Table attribute safety
 </th></tr></table>
 
 !! end
+
+###
+### Parser hooks
+###
+!! test
+Parser hook: empty input
+!! input
+<tag></tag>
+!! result
+!! end
+
+!! test
+Parser hook: basic input
+!! input
+<tag>input</tag>
+!! result
+<p>input
+</p>
+!! end
+
+!! test
+Parser hook: case insensetive
+!! input
+<TaG>input</TAg>
+!! result
+<p>input
+</p>
+!! end
+
+!! test
+Parser hook: basic arguments
+!! input
+<tag width=200 height = "100" depth = '50' square></tag>
+!! result
+<pre>
+Array
+(
+    [width] => 200
+    [height] => 100
+    [depth] => 50
+    [square] => square
+)
+</pre>
+
+!! end
+
+!! test
+Parser hook: empty input using terminated empty elements (bug 2374)
+!! input
+<tag foo=bar/>text
+!! result
+<pre>
+Array
+(
+    [foo] => bar
+)
+</pre>
+text
+!! end
+
+# </tag> should be output literally since there is no matching tag that begins it
+!! test
+Parser hook: basic arguments using terminated empty elements (bug 2374)
+!! input
+<tag width=200 height = "100" depth = '50' square/>
+other stuff
+</tag>
+!! result
+<pre>
+Array
+(
+    [width] => 200
+    [height] => 100
+    [depth] => 50
+    [square] => square
+)
+</pre>
+other stuff
+</tag>
+
+!! end
+
+
 
 
 TODO:
