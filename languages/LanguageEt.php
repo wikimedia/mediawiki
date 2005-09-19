@@ -1112,9 +1112,9 @@ class LanguageEt extends LanguageUtf8 {
 			$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
 			$t .= ':' . substr( $ts, 12, 2 );
 		} else {
-			$t = substr( $ts, 8, 2 ) . '&#46;' . substr( $ts, 10, 2 );
+			$t = substr( $ts, 8, 2 ) . '.' . substr( $ts, 10, 2 );
 		}
-		return $this->formatNum( $t );
+		return $t;
 	}
 
 
