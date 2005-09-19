@@ -178,15 +178,18 @@ function wfDebug( $text, $logonly = false ) {
 /**
  * Send a line to a supplementary debug log file, if configured, or main debug log if not.
  * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
+ *
  * @param string $logGroup
  * @param string $text
+ * @param bool $public Whether to log the event in the public log if no private
+ *                     log file is specified, (default true)
  */
-function wfDebugLog( $logGroup, $text ) {
+function wfDebugLog( $logGroup, $text, $public = true ) {
 	global $wgDebugLogGroups, $wgDBname;
 	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		@error_log( "$wgDBname: $text", 3, $wgDebugLogGroups[$logGroup] );
-	} else {
+	} else if ( $public === true ) {
 		wfDebug( $text, true );
 	}
 }
