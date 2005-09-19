@@ -1266,7 +1266,7 @@ class Image
 	/**
 	 * Record an image upload in the upload log and the image table
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '' ) {
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
 		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
 		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
@@ -1336,15 +1336,7 @@ class Image
 		$descTitle = $this->getTitle();
 		$purgeURLs = array();
 
-		if ( $dbw->affectedRows() ) {
-			# Successfully inserted, this is a new image
-			$id = $descTitle->getArticleID();
-
-			if ( $id == 0 ) {
-				$article = new Article( $descTitle );
-				$article->insertNewArticle( $textdesc, $desc, false, false, true );
-			}
-		} else {
+		if( $dbw->affectedRows() == 0 ) {
 			# Collision, this is an update of an image
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image', 
@@ -1381,12 +1373,27 @@ class Image
 					'img_name' => $this->name
 				), $fname
 			);
+		}
+
+		$article = new Article( $descTitle );
+		$minor = false;
+		$watch = $watch || $wgUser->isWatched( $descTitle );
+		$suppressRC = true; // There's already a log entry, so don't double the RC load
+		
+		if( $descTitle->exists() ) {
+			// TODO: insert a null revision into the page history for this update.
+			if( $watch ) {
+				$wgUser->addWatch( $descTitle );
+			}
 			
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$purgeURLs[] = $descTitle->getInternalURL();
+		} else {
+			// New image; create the description page.
+			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
 		}
-
+		
 		# Invalidate cache for all pages using this image
 		$linksTo = $this->getLinksTo();
 		

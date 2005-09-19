@@ -55,7 +55,9 @@ class UploadForm {
 		$this->mUploadDescription = $request->getText( 'wpUploadDescription' );
 		$this->mLicense           = $request->getText( 'wpLicense' );
 		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
-		$this->mUploadSource      = $request->getText( 'wpUploadSource');
+		$this->mUploadSource      = $request->getText( 'wpUploadSource' );
+		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
+		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
 
 		$this->mAction            = $request->getVal( 'action' );
 
@@ -306,7 +308,8 @@ class UploadForm {
 			                                $this->mUploadDescription,
 			                                $this->mLicense,
 			                                $this->mUploadCopyStatus,
-			                                $this->mUploadSource );
+			                                $this->mUploadSource,
+			                                $this->mWatchthis );
 
 			if ( $success ) {
 				$this->showSuccess();
@@ -516,6 +519,7 @@ class UploadForm {
 		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
 		<input type='hidden' name='wpLicense' value=\"" . htmlspecialchars( $this->mLicense ) . "\" />
 		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDestFile ) . "\" />
+		<input type='hidden' name='wpWatchthis' value=\"" . htmlspecialchars( intval( $this->mWatchthis ) ) . "\" />
 	{$copyright}
 	<table border='0'>
 		<tr>
@@ -591,6 +595,10 @@ class UploadForm {
 	" ;
 		  }
 
+		$watchChecked = $wgUser->getOption( 'watchdefault' )
+			? 'checked="checked"'
+			: '';
+		
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 	<table border='0'><tr>
@@ -607,6 +615,11 @@ class UploadForm {
 	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
 	"</textarea>
+	</td></tr><tr>
+	
+	<td></td><td align='left'>
+	<input type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
+	<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
 	</td></tr><tr>" );
 	
 	if ( $licenseshtml != '' ) {
