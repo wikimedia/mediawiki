@@ -117,6 +117,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
   by default when 'watchdefault' option is on
 * Skip update of disused 'rc_cur_time' field (todo: discard the field)
+* (bug 3506) Avoid MySQL error when Listusers returns no results
 
 
 === Caveats ===
