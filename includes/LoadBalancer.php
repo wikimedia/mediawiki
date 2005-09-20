@@ -19,6 +19,12 @@ define( 'DB_LAST', -3 );     # Whatever database was used last
 define( 'DB_READ', -1 );
 define( 'DB_WRITE', -2 );
 
+
+# Scale polling time so that under overload conditions, the database server
+# receives a SHOW STATUS query at an average interval of this many microseconds
+define( 'AVG_STATUS_POLL', 2000 );
+
+
 /**
  * Database load balancing object
  *
@@ -198,7 +204,7 @@ class LoadBalancer {
 							  $status['Threads_running'] > $this->mServers[$i]['max threads'] )
 							{
 								# Slave is lagged, wait for a while
-								$sleepTime = 5000 * $status['Threads_connected'];
+								$sleepTime = AVG_STATUS_POLL * $status['Threads_connected'];
 
 								# If we reach the timeout and exit the loop, don't use it
 								$i = false;
