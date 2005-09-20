@@ -1965,7 +1965,6 @@ class Parser
 		wfProfileIn( $fname );
 
 		$titleChars = Title::legalChars();
-		$dtitleChars = "$titleChars|{}\[\]"; // [] so that {{{arg|[[foo|bar]]}} will work
 
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
@@ -1973,12 +1972,9 @@ class Parser
 		# Variable substitution
 		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", array( &$this, 'variableSubstitution' ), $text );
 
-		if ( $this->mOutputType == OT_WIKI ) {
+		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
 			# Argument substitution
-			$text = preg_replace_callback( "/{{{([$dtitleChars]*?)}}}/", array( &$this, 'argSubstitution' ), $text );
-		} elseif ( $this->mOutputType == OT_HTML ) {
-			# Argument substitution + default argument substitution
-			$text = preg_replace_callback( "/{{{([$dtitleChars]*?)}}}/", array( &$this, 'argSubstitutionWDefaults' ), $text );
+			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", array( &$this, 'argSubstitution' ), $text );
 		}
 		# Template substitution
 		$regex = '/(\\n|{)?{{(['.$titleChars.']*)(\\|.*?|)}}/s';
@@ -2423,31 +2419,6 @@ class Parser
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $inputArgs[$arg];
 		}
-		
-		return $text;
-	}
-
-	/**
-	 * Triple brace replacement with default arguments-- used for template arguments
-	 * @access private
-	 */
-	function argSubstitutionWDefaults( $matches ) {
-		$arg = trim( $matches[1] );
-		
-		if ( strpos( $arg, '|' ) !== false ) {
-			list( $arg, $default ) = explode( '|', $arg, 2 );
-			$arg = rtrim( $arg );
-			$default = ltrim( $default );
-		} else 
-			$default = null;
-
-		$text = $matches[0];
-		$inputArgs = end( $this->mArgStack );
-
-		if ( array_key_exists( $arg, $inputArgs ) ) {
-			$text = $inputArgs[$arg];
-		} else if ( $default !== null )
-			$text = $default;
 
 		return $text;
 	}
