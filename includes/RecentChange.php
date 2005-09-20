@@ -153,8 +153,8 @@ class RecentChange
 			}
 
 			# Update rc_cur_time
-			$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
-				array( 'rc_cur_id' => $curId ), $fname );
+			#$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
+			#	array( 'rc_cur_id' => $curId ), $fname );
 		}
 
 		# Notify external application via UDP
