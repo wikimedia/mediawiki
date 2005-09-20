@@ -2717,7 +2717,29 @@ other stuff
 !! end
 
 
+# Nested template calls; this case was broken by Parser.php rev 1.506,
+# since reverted.
 
+!! article
+Template:One-parameter
+!! text
+(My parameter is: {{{1}}})
+!! endarticle
+
+!! article
+Template:Map-one-parameter
+!! text
+{{{{{1}}}|{{{2}}}}}
+!! endarticle
+
+!! test
+Nested template calls
+!! input
+{{Map-one-parameter|One-parameter|param}}
+!! result
+<p>(My parameter is: param)
+</p>
+!! end
 
 TODO:
 more images
