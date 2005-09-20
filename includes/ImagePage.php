@@ -103,11 +103,13 @@ class ImagePage extends Article {
 	 */
 	function makeMetadataTable( $exif ) {
 		$r = "{| class=metadata align=right width=250px\n";
-		$r .= '|+ id=metadata | '. htmlspecialchars( wfMsgHtml( 'metadata' ) ) . "\n";
+		$r .= '|+ id=metadata | '. wfMsg( 'metadata' )  . "\n";
 		foreach( $exif as $k => $v ) {
 			$tag = strtolower( $k );
-			$r .= "! class=$tag |" . wfMsg( "exif-$tag" ) . "\n";
-			$r .= "| class=$tag |" . htmlspecialchars( $v ) . "\n";
+			$msg = wfMsg( "exif-$tag" );
+			
+			$r .= "! class=$tag | $msg\n";
+			$r .= "| class=$tag | $v\n";
 			$r .= "|-\n";
 		}
 		return substr($r, 0, -3) . '|}';
