@@ -120,7 +120,6 @@ class Parser
 	 * @access public
 	 */
 	function Parser() {
-		global $wgContLang;
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
@@ -221,7 +220,7 @@ class Parser
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
-		global $wgUseTidy;
+		
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
 		}
@@ -825,7 +824,7 @@ class Parser
 	function doExponent( $text ) {
 		$fname = 'Parser::doExponent';
 		wfProfileIn( $fname );
-		$text = preg_replace('/\^\^(.*)\^\^/','<small><sup>\\1</sup></small>', $text);
+		$text = preg_replace('/\^\^(.*?)\^\^/','<small><sup>\\1</sup></small>', $text);
 		wfProfileOut( $fname );
 		return $text;
 	}
