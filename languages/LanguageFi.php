@@ -922,7 +922,7 @@ Palaute ja lisäapu osoitteessa:
 'cantrollback'        => 'Aiempaan versioon ei voi palauttaa; viimeisin kirjoittaja on sivun ainoa tekijä.',
 'alreadyrolled'       => 'Käyttäjän [[User:$2|$2]] ([[User_talk:$2|keskustelu]]) tekemiä muutoksia sivuun $1 ei voi palauttaa. Käyttäjä [[User:$3|$3]] ([[User_talk:$3|keskustelu]]) on tehnyt uudempia muutoksia.',
 'editcomment'         => 'Muokkauksen yhteenveto oli: <i>$1</i>.', // TODO NOWIKIMARKUP
-'revertpage'          => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]]) muokkaukset palautettiin viimeisimpään käyttäjän $1 tekemään muutokseen.',
+'revertpage'          => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän $1 tekemään versioon.',
 
 'sessionfailure'      => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja koita uudelleen.',
 'protectlogpage'      => 'Suojausloki',
