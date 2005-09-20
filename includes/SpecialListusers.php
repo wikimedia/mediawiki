@@ -66,7 +66,10 @@ class ListUsersPage extends QueryPage {
 		$batch->execute( $wgLinkCache );
 
 		// Back to start for display
-		$db->dataSeek( $res, 0 );
+		if( $db->numRows( $res ) > 0 ) {
+			// If there are no rows we get an error seeking.
+			$db->dataSeek( $res, 0 );
+		}
 	}
 
 	/**
