@@ -74,7 +74,8 @@ class EditPage {
 
 		$this->preview = $request->getCheck( 'wpPreview' );
 		if( $this->tokenOk( $request ) ) {
-			$this->save    = $request->wasPosted() && !$this->preview;
+			$this->save    = $request->getVal( 'action' ) == 'submit' &&
+			                 $request->wasPosted() && !$this->preview;
 		} else {
 			# Page might be a hack attempt posted from
 			# an external site. Preview instead of saving.
