@@ -81,7 +81,7 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
-		if( $request->wasPosted() ) {
+		if( $request->getVal( 'action' ) == 'submit' && $request->wasPosted() ) {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
 			# whitespace from the text boxes. This may be significant formatting.

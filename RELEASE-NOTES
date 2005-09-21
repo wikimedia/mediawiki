@@ -3,6 +3,32 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.4.10 ==
+
+(released 2005-09-21)
+
+MediaWiki 1.4.10 is a security maintenance release. A bug in edit submission
+handling could cause corruption of the previous revision in the database if
+an abnormal URL was used, such as those used by some spambots.
+
+Affected releases:
+* 1.4.x <= 1.4.9; fixed in 1.4.10
+* 1.3.x <= 1.3.15; fixed in 1.3.16
+
+1.5 release candidates are not affected by this problem.
+
+All publicly editable wikis are strongly recommended to upgrade immediately.
+1.4 releases can be manually patched by changing this bit in EditPage.php:
+
+    function importFormData( &$request ) {
+        if( $request->wasPosted() ) {
+
+to:
+
+    function importFormData( &$request ) {
+        if( $request->getVal( 'action' ) == 'submit' && $request->wasPosted() ) {
+
+
 == MediaWiki 1.4.9 ==
 
 (released 2005-08-29)
@@ -767,6 +793,7 @@ pages for purposes of page relevancy ranking.
 === 1.4.10 changes ===
 
 * (bug 3153) Fix for compressOld.php -t gzip
+* Fix for corruption on page save
 
 
 === Caveats ===
