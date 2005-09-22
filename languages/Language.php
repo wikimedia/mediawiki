@@ -1076,6 +1076,10 @@ this old version, (rev) = revert to this old version.
 'mimetype' => 'MIME type: ',
 'download' => 'download',
 
+# Unwatchedpages
+#
+'unwatchedpages' => 'Unwatched pages',
+
 # Statistics
 #
 'statistics'	=> 'Statistics',
