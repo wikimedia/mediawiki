@@ -1318,6 +1318,13 @@ $wgUseSiteCss = true;
 /** Filter for Special:Randompage. Part of a WHERE clause */
 $wgExtraRandompageSQL = false;
 
+/**
+ * Enable the Special:Unwatchedpages special page, turned off by default  since
+ * most would consider this privelaged information as it could be used as a
+ * list of pages to vandalize.
+ */
+$wgEnableUnwatchedpages = false;
+
 /** Allow the "info" action, very inefficient at the moment */
 $wgAllowPageInfo = false;
 
