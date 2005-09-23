@@ -234,6 +234,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
 	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),
 	MAG_PLURAL               => array( 0,    'PLURAL:'                ),
+	MAG_FULLURL              => array( 0,    'FULLURL:'               ),
+	MAG_FULLURLE             => array( 0,    'FULLURLE:'              ),
 );
 
 #-------------------------------------------------------------------

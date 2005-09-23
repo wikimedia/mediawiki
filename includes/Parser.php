@@ -2139,20 +2139,27 @@ class Parser
 			}
 		}
 
-		# LOCALURL and LOCALURLE
+		# LOCALURL and FULLURL
 		if ( !$found ) {
-			$mwLocal = MagicWord::get( MAG_LOCALURL );
-			$mwLocalE = MagicWord::get( MAG_LOCALURLE );
+			$mwLocal =& MagicWord::get( MAG_LOCALURL );
+			$mwLocalE =& MagicWord::get( MAG_LOCALURLE );
+			$mwFull =& MagicWord::get( MAG_FULLURL );
+			$mwFullE =& MagicWord::get( MAG_FULLURLE );
+			
 
 			if ( $mwLocal->matchStartAndRemove( $part1 ) ) {
 				$func = 'getLocalURL';
 			} elseif ( $mwLocalE->matchStartAndRemove( $part1 ) ) {
 				$func = 'escapeLocalURL';
+			} elseif ( $mwFull->matchStartAndRemove( $part1 ) ) {
+				$func = 'getFullURL';
+			} elseif ( $mwFullE->matchStartAndRemove( $part1 ) ) {
+				$func = 'escapeFullURL';
 			} else {
-				$func = '';
+				$func = false;
 			}
 
-			if ( $func !== '' ) {
+			if ( $func !== false ) {
 				$title = Title::newFromText( $part1 );
 				if ( !is_null( $title ) ) {
 					if ( $argc > 0 ) {
