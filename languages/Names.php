@@ -45,7 +45,7 @@
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German
 	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
-	'dv' => 'ހިބަސް',		# Dhivehi
+	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
 	'ee' => 'Ɛʋɛ',	# Ewe
 	'el' => 'Ελληνικά',	# Greek
