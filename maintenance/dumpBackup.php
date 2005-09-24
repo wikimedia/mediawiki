@@ -24,7 +24,7 @@
 
 $originalDir = getcwd();
 
-$optionsWithArgs = array( 'server', 'pagelist' );
+$optionsWithArgs = array( 'server', 'pagelist', 'start', 'end' );
 
 require_once( 'commandLine.inc' );
 require_once( 'SpecialExport.php' );
@@ -36,6 +36,10 @@ class BackupDumper {
 	var $revCount  = 0;
 	var $server    = null; // use default
 	var $pages     = null; // all pages
+	var $skipHeader = false; // don't output <mediawiki> and <siteinfo>
+	var $skipFooter = false; // don't output </mediawiki>
+	var $startId    = 0;
+	var $endId      = 0;
 	
 	function BackupDumper() {
 		$this->stderr = fopen( "php://stderr", "wt" );
@@ -60,15 +64,21 @@ class BackupDumper {
 		$exporter->setPageCallback( array( &$this, 'reportPage' ) );
 		$exporter->setRevisionCallback( array( &$this, 'revCount' ) );
 		
-		$exporter->openStream();
+		if( !$this->skipHeader )
+			$exporter->openStream();
 
-		if ( is_null( $this->pages ) ) {
-			$exporter->allPages();
+		if( is_null( $this->pages ) ) {
+			if( $this->startId || $this->endId ) {
+				$exporter->pagesByRange( $this->startId, $this->endId );
+			} else {
+				$exporter->allPages();
+			}
 		} else {
 			$exporter->pagesByName( $this->pages );
 		}
 
-		$exporter->closeStream();
+		if( !$this->skipFooter )
+			$exporter->closeStream();
 		
 		$this->report( true );
 	}
@@ -154,6 +164,15 @@ if ( isset( $options['pagelist'] ) ) {
 	$dumper->pages = array_filter( $pages, create_function( '$x', 'return $x !== "";' ) );
 }
 
+if( isset( $options['start'] ) ) {
+	$dumper->startId = intval( $options['start'] );
+}
+if( isset( $options['end'] ) ) {
+	$dumper->endId = intval( $options['end'] );
+}
+$dumper->skipHeader = isset( $options['skip-header'] );
+$dumper->skipFooter = isset( $options['skip-footer'] );
+
 if( isset( $options['full'] ) ) {
 	$dumper->dump( MW_EXPORT_FULL );
 } elseif( isset( $options['current'] ) ) {
@@ -169,10 +188,16 @@ Usage: php dumpBackup.php <action> [<options>]
 Actions:
   --full      Dump complete history of every page.
   --current   Includes only the latest revision of each page.
+
 Options:
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
               (Default: 100)
+  --server=h  Force reading from MySQL server h
+  --start=n   Start from page_id n
+  --end=n     Stop before page_id n (exclusive)
+  --skip-header Don't output the <mediawiki> header
+  --skip-footer Don't output the </mediawiki> footer
 END
 );
 }

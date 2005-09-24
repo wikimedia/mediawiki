@@ -214,12 +214,24 @@ class WikiExporter {
 	 * Dumps a series of page and revision records for all pages
 	 * in the database, either including complete history or only
 	 * the most recent version.
-	 *
-	 *
-	 * @param Database $db
 	 */
 	function allPages() {
 		return $this->dumpFrom( '' );
+	}
+	
+	/**
+	 * Dumps a series of page and revision records for those pages
+	 * in the database falling within the page_id range given.
+	 * @param int $start Inclusive lower limit (this id is included)
+	 * @param int $end   Exclusive upper limit (this id is not included)
+	 *                   If 0, no upper limit.
+	 */
+	function pagesByRange( $start, $end ) {
+		$condition = 'page_id >= ' . intval( $start );
+		if( $end ) {
+			$condition .= ' AND page_id < ' . intval( $end );
+		}
+		return $this->dumpFrom( $condition );
 	}
 	
 	/**
