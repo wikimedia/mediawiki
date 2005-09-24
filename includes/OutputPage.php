@@ -505,32 +505,13 @@ class OutputPage {
 	/**
 	 * Returns a HTML comment with the elapsed time since request.
 	 * This method has no side effects.
+	 * Use wfReportTime() instead.
 	 * @return string
+	 * @deprecated
 	 */
 	function reportTime() {
-		global $wgRequestTime;
-
-		$now = wfTime();
-		list( $usec, $sec ) = explode( ' ', $wgRequestTime );
-		$start = (float)$sec + (float)$usec;
-		$elapsed = $now - $start;
-
-		# Use real server name if available, so we know which machine
-		# in a server farm generated the current page.
-		if ( function_exists( 'posix_uname' ) ) {
-			$uname = @posix_uname();
-		} else {
-			$uname = false;
-		}
-		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
-			$hostname = $uname['nodename'];
-		} else {
-			# This may be a virtual server.
-			$hostname = $_SERVER['SERVER_NAME'];
-		}
-		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
-		  $hostname, $elapsed );
-		return $com;
+		$time = wfReportTime();
+		return $time;
 	}
 
 	/**

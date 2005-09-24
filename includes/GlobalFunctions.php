@@ -504,10 +504,42 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		} else {
 			$msg .= "\n<p>Backtrace:</p>\n$backtrace";
 		}
-	 }
-	 echo $msg;
-	 die( -1 );
+	}
+	echo $msg;
+	echo wfReportTime();
+	die( -1 );
 }
+
+	/**
+	 * Returns a HTML comment with the elapsed time since request.
+	 * This method has no side effects.
+	 * @return string
+	 */
+	function wfReportTime() {
+		global $wgRequestTime;
+
+		$now = wfTime();
+		list( $usec, $sec ) = explode( ' ', $wgRequestTime );
+		$start = (float)$sec + (float)$usec;
+		$elapsed = $now - $start;
+
+		# Use real server name if available, so we know which machine
+		# in a server farm generated the current page.
+		if ( function_exists( 'posix_uname' ) ) {
+			$uname = @posix_uname();
+		} else {
+			$uname = false;
+		}
+		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+			$hostname = $uname['nodename'];
+		} else {
+			# This may be a virtual server.
+			$hostname = $_SERVER['SERVER_NAME'];
+		}
+		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		  $hostname, $elapsed );
+		return $com;
+	}
 
 function wfBacktrace() {
 	global $wgCommandLineMode;
