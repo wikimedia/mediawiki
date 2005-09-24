@@ -197,6 +197,10 @@ class WikiRevision {
 			$userText = $this->getUser();
 		}
 
+		// avoid memory leak...?
+		global $wgLinkCache;
+		$wgLinkCache->clear();
+		
 		$article = new Article( $this->title );
 		$pageId = $article->getId();
 		if( $pageId == 0 ) {

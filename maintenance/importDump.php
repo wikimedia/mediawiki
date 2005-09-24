@@ -45,6 +45,7 @@ class BackupReader {
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if (!$title) {
+			$this->progress( "Got bogus revision with null title!" );
 			return;
 		}
 		$display = $title->getPrefixedText();
