@@ -772,6 +772,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3350) Missing label for move talk page checkbox.
 * (bug 2570) Add 'watch this page' checkbox on uploads, watch uploads
   by default when 'watchdefault' option is on
+* (bug 3182) Clear link cache during import to prevent memory leak
 
 
 === Caveats ===
