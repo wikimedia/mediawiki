@@ -757,8 +757,6 @@ $wgGroupPermissions['sysop']['reupload']        = true;
 $wgGroupPermissions['sysop']['reupload-shared'] = true;
 
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
-// Used by the Special:Renameuser extension
-$wgGroupPermissions['bureaucrat']['renameuser'] = true;
 
 /**
  * The developer group is deprecated, but can be activated if need be
