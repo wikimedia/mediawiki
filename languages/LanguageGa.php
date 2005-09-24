@@ -2125,7 +2125,7 @@ class LanguageGa extends LanguageUtf8 {
 	# Convert day names
 	# Invoked with {{GRAMMAR:transformation|word}}
 	function convertGrammar( $word, $what ) {
-		switch ( $case ) {
+		switch ( $what ) {
 		case 'ainmlae':
 			switch ($word) {
 			case 'an Domhnach':
