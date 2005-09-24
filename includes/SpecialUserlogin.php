@@ -163,7 +163,7 @@ class LoginForm {
 		global $wgUser, $wgOut;
 		global $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
-		global $wgAuth;
+		global $wgAuth, $wgMinimalPasswordLength;
 
 		// If the user passes an invalid domain, something is fishy
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
