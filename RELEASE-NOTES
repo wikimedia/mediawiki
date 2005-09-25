@@ -121,6 +121,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3182) Clear link cache during import to prevent memory leak
 * Add options to dumpBackup.php for making split/partial dumps by page id
 * Fix language name for dv
+* (bug 3503) Update LanguageSq.php from sq.wikipedia.org messages
 
 
 === Caveats ===
