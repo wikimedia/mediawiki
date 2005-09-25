@@ -109,6 +109,7 @@
 	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Kırgızca',	# Kirghiz
 	'la' => 'Latina',		# Latin
+	'lad' => 'Ladino',	# Ladino
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
@@ -131,6 +132,7 @@
 	'my' => 'Myanmasa',		# Burmese
 	'na' => 'Ekakairũ Naoero',		# Nauruan
 	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
+	'nap' => 'Nnapulitano',	# Neapolitan
 	'nb' => 'Norsk (bokmål)',		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
 	'ne' => 'नेपाली',	# Nepali
@@ -208,6 +210,7 @@
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
+	'war' => 'Samar-Leyte Visayan', # Waray-Waray
 	'wo' => 'Wollof',		# Wolof
 	'xh' => 'isiXhosa',		# Xhosan
 	'yi' => 'ייִדיש',	# Yiddish
