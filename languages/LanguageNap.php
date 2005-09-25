@@ -9,7 +9,7 @@
 require_once( 'LanguageIt.php' );
 
 /** @package MediaWiki */
-class LanguageEn extends LanguageIt {
+class LanguageNap extends LanguageIt {
 	# Inherit everything
 }
 
