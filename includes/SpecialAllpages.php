@@ -39,6 +39,8 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 class SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;
+	var $maxPerPage=20;
+	var $topLevelMax=50;
 	var $name='Allpages';
 
 /**
@@ -270,6 +272,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 		$out .= '</tr>';
 	}
 	$out .= '</table>';
+
 
 	if ( $including ) {
 		$out2 = '';

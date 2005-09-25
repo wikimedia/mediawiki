@@ -506,7 +506,7 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		}
 	}
 	echo $msg;
-	echo wfReportTime();
+	echo wfReportTime()."\n";
 	die( -1 );
 }
 
