@@ -39,8 +39,6 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 class SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;
-	var $maxPerPage=20;
-	var $topLevelMax=50;
 	var $name='Allpages';
 
 /**
