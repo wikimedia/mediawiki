@@ -222,7 +222,8 @@ pre {
 #siteSub {
     display: none;
 }
-#contentSub {
+
+#contentSub, #contentSub2 {
     font-size: 84%;
     line-height: 1.2em;
     margin: 0 0 1.4em 1em;

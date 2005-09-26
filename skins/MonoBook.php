@@ -82,7 +82,7 @@ class MonoBookTemplate extends QuickTemplate {
 	  <div id="bodyContent">
 	    <h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
 	    <div id="contentSub"><?php $this->html('subtitle') ?></div>
-	    <?php if($this->data['undelete']) { ?><div id="contentSub"><?php     $this->html('undelete') ?></div><?php } ?>
+	    <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
 	    <?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
 	    <!-- start content -->
 	    <?php $this->html('bodytext') ?>
