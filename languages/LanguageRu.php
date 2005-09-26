@@ -886,10 +886,9 @@ Cм. [[{{ns:project}}:Справка по настройкам]], чтобы р�
 'mimetype' => 'MIME-тип: ',
 'download' => 'загрузить',
 
-# License search
+# Unwatchedpages
 #
-'licensesearch' => 'Поиск по лицензии',
-'licensesearch_license' => 'Лицензия: ',
+'unwatchedpages' => 'Страницы, за которыми никто не следит',
 
 # Statistics
 #
