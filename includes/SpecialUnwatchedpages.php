@@ -6,6 +6,7 @@
  * @subpackage SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
