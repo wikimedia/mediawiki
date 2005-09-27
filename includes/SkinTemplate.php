@@ -251,6 +251,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'username', $this->username );
 		$tpl->setRef( 'userpage', $this->userpage);
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
+		$tpl->setRef( 'pagecss', $this->setupPageCss() );
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
@@ -934,6 +935,21 @@ class SkinTemplate extends Skin {
 			}
 		}
 		wfProfileOut( $fname );
+	}
+
+	/**
+	 * Code for extensions to hook into to provide per-page CSS, see
+	 * extension/PageCSS/PageCSS.php for an implementation of this.
+	 *
+	 * @access private
+	 */
+	function setupPageCss() {
+		$fname = 'SkinTemplate::setupPageCss';
+		wfProfileIn( $fname );
+		$out = false;
+		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out ) );
+		wfProfileOut( $fname );
+		return $out;
 	}
 
 	/**
