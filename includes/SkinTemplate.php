@@ -775,19 +775,25 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
-			$nav_urls['print'] = array(
-				'text' => wfMsg( 'printableversion' ),
-				'href' => $wgRequest->appendQuery( 'printable=yes' ) );
+			$revid = $wgArticle->getRevIdFetched();
+			if ( !( $revid == 0 )  )
+				$nav_urls['print'] = array(
+					'text' => wfMsg( 'printableversion' ),
+					'href' => $wgRequest->appendQuery( 'printable=yes' )
+				);
 
 			// Also add a "permalink" while we're at it
-			if ( $wgRequest->getInt( 'oldid' ) ) {
+			if ( (int)$oldid ) {
 				$nav_urls['permalink'] = array(
 					'text' => wfMsg( 'permalink' ),
-					'href' => '' );
+					'href' => ''
+				);
 			} else {
-				$nav_urls['permalink'] = array(
-					'text' => wfMsg( 'permalink' ),
-					'href' => $wgTitle->getLocalURL( 'oldid=' . $wgArticle->getRevIdFetched() ) );
+				if ( !( $revid == 0 )  ) 
+					$nav_urls['permalink'] = array(
+						'text' => wfMsg( 'permalink' ),
+						'href' => $wgTitle->getLocalURL( "oldid=$revid" )
+					);
 			}
 		}
 
