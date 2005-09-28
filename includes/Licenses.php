@@ -75,21 +75,20 @@ class Licenses {
 	
 	function trimStars( $str ) {
 		$i = $count = 0;
-		$len = strlen( $str );
 		
-		while ($len < $i && $str[$i++] == '*')
+		wfSuppressWarnings();
+		while ($str[$i++] == '*')
 			++$count;
-
+		wfRestoreWarnings();
+	
 		return array( $count, ltrim( $str, '* ' ) );
 	}
 	
 	function stackItem( &$list, $path, $item ) {
 		$position =& $list;
-		if ( $path ) {
-			foreach ( $path as $key ) {
+		if ( $path )
+			foreach( $path as $key )
 				$position =& $position[$key];
-			}
-		}
 		$position[] = $item;
 	}
 
@@ -110,7 +109,7 @@ class Licenses {
 					$this->msg( $val->text ),
 					array(
 						'value' => $val->template,
-						'title' => $val->template
+						'title' => '{{' . $val->template . '}}'
 					),
 					$depth
 				);
