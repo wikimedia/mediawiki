@@ -430,6 +430,12 @@ class EditPage {
 			wfProfileOut( "$fname-checks" );
 			return false;
 		}
+		if ( !wfRunHooks( 'EditFilter', array( &$this, $this->textbox1, $this->section ) ) ) {
+			# Error messages or other handling should be performed by the filter function
+			wfProfileOut( $fname );
+			wfProfileOut( "$fname-checks" );
+			return false;
+		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			$this->blockedIPpage();
@@ -593,8 +599,11 @@ class EditPage {
 
 	/**
 	 * Send the edit form and related headers to $wgOut
+	 * @param $formCallback Optional callable that takes an OutputPage
+	 *                      parameter; will be called during form output
+	 *                      near the top, for captchas and the like.
 	 */
-	function showEditForm() {
+	function showEditForm( $formCallback=null ) {
 		global $wgOut, $wgUser, $wgAllowAnonymousMinor, $wgLang, $wgContLang;
 
 		$fname = 'EditPage::showEditForm';
@@ -810,6 +819,12 @@ class EditPage {
 {$toolbar}
 <form id="editform" name="editform" method="post" action="$action"
 enctype="multipart/form-data">
+END
+);
+		if( is_callable( $formCallback ) ) {
+			call_user_func_array( $formCallback, array( &$wgOut ) );
+		}
+		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
