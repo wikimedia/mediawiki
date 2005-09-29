@@ -251,7 +251,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'username', $this->username );
 		$tpl->setRef( 'userpage', $this->userpage);
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
-		$tpl->setRef( 'pagecss', $this->setupPageCss() );
+		$tpl->set( 'pagecss', $this->setupPageCss() );
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
