@@ -580,20 +580,6 @@ class UploadForm {
 		$action = $titleObj->escapeLocalURL();
 
 		$encDestFile = htmlspecialchars( $this->mDestFile );
-		$source = null;
-
-		if ( $wgUseCopyrightUpload )
-		  {
-			$source = "
-	<td align='right' nowrap='nowrap'>" . wfMsg ( 'filestatus' ) . ":</td>
-	<td><input tabindex='3' type='text' name=\"wpUploadCopyStatus\" value=\"" .
-	htmlspecialchars($this->mUploadCopyStatus). "\" size='40' /></td>
-	</tr><tr>
-	<td align='right'>". wfMsg ( 'filesource' ) . ":</td>
-	<td><input tabindex='4' type='text' name='wpUploadSource' value=\"" .
-	htmlspecialchars($this->mUploadSource). "\" size='40' /></td>
-	" ;
-		  }
 
 		$watchChecked = $wgUser->getOption( 'watchdefault' )
 			? 'checked="checked"'
@@ -608,35 +594,58 @@ class UploadForm {
 	</td></tr><tr>
 
 	<td align='right'>{$destfilename}:</td><td align='left'>
-	<input tabindex='1' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
+	<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
 	</td></tr><tr>
 
 	<td align='right'>{$summary}</td><td align='left'>
-	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
+	<textarea tabindex='3' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
 	"</textarea>
-	</td></tr><tr>
-	
-	<td></td><td align='left'>
-	<input type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
-	<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
 	</td></tr><tr>" );
 	
 	if ( $licenseshtml != '' ) {
 		$wgOut->addHTML( "
-	<td align='right'>$license:</td>
-	<td align='left'>
-		<select name='wpLicense'>
-			<option value=''>$nolicense</option>
-			$licenseshtml
-		</select>
-	</td></tr><tr>
+			<td align='right'>$license:</td>
+			<td align='left'>
+				<select name='wpLicense' tabindex='4'>
+					<option value=''>$nolicense</option>
+					$licenseshtml
+				</select>
+			</td>
+			</tr><tr>
 		");
 	}
-	$wgOut->addHtml( "{$source}
+
+	if ( $wgUseCopyrightUpload ) {
+		$filestatus = wfMsgHtml ( 'filestatus' );
+		$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
+		$filesource = wfMsgHtml ( 'filesource' );
+		$uploadsource = htmlspecialchars( $this->mUploadSource );
+		
+		$wgOut->addHTML( "
+		        <td align='right' nowrap='nowrap'>$filestatus:</td>
+		        <td>
+				<input tabindex='5' type='text' name='wpUploadCopyStatus' value=\"$copystatus\" size='40' />
+			</td>
+		        </tr><tr>
+		        <td align='right'>$filesource:</td>
+		        <td>
+				<input tabindex='6' type='text' name='wpUploadSource' value=\"$uploadsource\" size='40' />
+			</td>
+			</tr><tr>
+		");
+	}
+	
+	
+	$wgOut->addHtml( "
+	<td></td><td align='left'>
+	<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
+	<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
+	</td></tr><tr>
+
 	</tr>
 	<tr><td></td><td align='left'>
-	<input tabindex='5' type='submit' name='wpUpload' value=\"{$ulb}\" />
+	<input tabindex='8' type='submit' name='wpUpload' value=\"{$ulb}\" />
 	</td></tr></table></form>\n" );
 	}
 
