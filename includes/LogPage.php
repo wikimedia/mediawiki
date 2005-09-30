@@ -100,22 +100,6 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function validActions( $type ) {
-		static $actions = array(
-			'' => NULL,
-			'block' => array( 'block', 'unblock' ),
-			'protect' => array( 'protect', 'unprotect' ),
-			'rights' => array( 'rights' ),
-			'delete' => array( 'delete', 'restore' ),
-			'upload' => array( 'upload' ),
-			'move' => array( 'move' )
-		);
-		return $actions[$type];
-	}
-
-	/**
-	 * @static
-	 */
 	function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
@@ -177,6 +161,8 @@ class LogPage {
 			'move/move'         => '1movedto2',
 			'move/move_redir'   => '1movedto2_redir'
 		);
+		wfRunHooks( 'LogPageActionText', array( &$actions ) );
+
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
 			if( is_null( $title ) ) {
@@ -201,7 +187,7 @@ class LogPage {
 					if ( $translate && $key == 'block/block' ) {
 						$params[1] = $wgLang->translateBlockExpiry($params[1]);
 					}
-					$rv = wfMsgReal( $actions[$key], $params, true, false );
+					$rv = wfMsgReal( $actions[$key], $params, true, false ); // FIXME: use wfMsgForContent() ?
 				}
 			}
 		} else {
