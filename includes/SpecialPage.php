@@ -36,6 +36,7 @@ $wgSpecialPages = array(
 	'Listusers'         => new SpecialPage( 'Listusers' ),
 	'Statistics'        => new SpecialPage( 'Statistics' ),
 	'Random'        => new SpecialPage( 'Randompage' ),
+	'RandomFA'          => new SpecialPage( 'RandomFA' ),
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
