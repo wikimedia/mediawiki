@@ -1026,7 +1026,7 @@ $wgDisableHardRedirects = false;
 /**
  * Use http.dnsbl.sorbs.net to check for open proxies
  */
-$wgEnableSorbs = true;
+$wgEnableSorbs = false;
 
 /**
  * Use opm.blitzed.org to check for open proxies.
