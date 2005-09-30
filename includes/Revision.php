@@ -475,6 +475,7 @@ class Revision {
 			global $wgInputEncoding, $wgContLang;
 			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
 		}
+		wfRunHooks( 'RevisionAfterGetRevisionText', array( &$text ) );
 		wfProfileOut( $fname );
 		return $text;
 	}
