@@ -51,7 +51,7 @@ class NewPagesPage extends QueryPage {
 			        page_latest as rev_id
 			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND rc_new=1
-			  AND rc_namespace=".NS_MAIN." AND page_is_redirect=0";
+			AND rc_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {
