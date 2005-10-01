@@ -211,7 +211,7 @@ parent class in order maintain consistency across languages.
 
 # User preference toggles
 'tog-underline' => 'Sublinhar links',
-'tog-highlightbroken' => 'Formatar links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternativa: como isto<a href=\"\" class=\"internal\">?</a>).',
+'tog-highlightbroken' => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href=\"\" class=\"internal\">?</a>).',
 'tog-justify'   => 'Justificar parágrafos',
 'tog-hideminor' => 'Esconder edições secundárias nas mudanças recentes',
 'tog-usenewrc' => 'Mudanças recentes melhoradas (JavaScript)',
@@ -219,7 +219,7 @@ parent class in order maintain consistency across languages.
 'tog-showtoolbar'               => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick' => 'Editar páginas quando houver clique duplo (JavaScript)',
 'tog-editsection'               => 'Habilitar edição de secção via links [editar]',
-'tog-editsectiononrightclick'   => 'Habilitar seção de edição por clique <br /> com o botão direito no título da seção (JavaScript)',
+'tog-editsectiononrightclick'   => 'Habilitar edição de secção por clique <br /> com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                   => 'Mostrar Tabela de Conteúdos (para artigos com mais de 3 cabeçalhos)',
 'tog-rememberpassword' => 'Lembrar senha entre sessões',
 'tog-editwidth' => 'Caixa de edição com largura completa',
@@ -227,7 +227,7 @@ parent class in order maintain consistency across languages.
 'tog-minordefault' => 'Marcar todas as edições como secundárias, por padrão',
 'tog-previewontop' => 'Mostrar Previsão antes da caixa de edição ao invés de ser após',
 'tog-previewonfirst' => 'Mostrar Previsão na primeira edição',
-'tog-nocache' => 'Desabilitar caching de página',
+'tog-nocache' => 'Desactivar caching de páginas',
 'tog-enotifwatchlistpages'      => 'Enviar-me um email quando houver mudanças nas páginas',
 'tog-enotifusertalkpages'       => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'          => 'Enviar-me um email também quando forem edições menores',
@@ -644,7 +644,7 @@ Você terá que mesclar suas modificações no texto existente.
 <b>SOMENTE</b> o texto na área acima será salvo quando você pressionar \"Salvar página\".\n<br />",
 'yourtext'              => 'Seu texto',
 'storedversion' => 'Versão guardada',
-'nonunicodebrowser' => "<strong>WARNING: Your browser is not unicode compliant. A workaround is in place to allow you to safely edit articles: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>",
+'nonunicodebrowser' => "<strong>AVISO: O seu navegador não segue as especificações Unicode. Existe uma maneira para que possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>",
 'editingold'    => "<strong>CUIDADO: Você está editando uma revisão desactualizada deste artigo.
 Se salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>\n",
 'yourdiff'              => 'Diferenças',
@@ -778,7 +778,7 @@ Consulte [[{{ns:12}}:Preferências]] saber mais sobre cada opção.",
 'oldpassword'   => 'Password antiga',
 'newpassword'   => 'Nova password',
 'retypenew'             => 'Redigite a nova senha',
-'textboxsize'   => 'Tamanho da Caixa de texto',
+'textboxsize'   => 'Opções de edição',
 'rows'                  => 'Linhas',
 'columns'               => 'Colunas',
 'searchresultshead' => 'Pesquisa',
@@ -786,7 +786,7 @@ Consulte [[{{ns:12}}:Preferências]] saber mais sobre cada opção.",
 'contextlines'  => 'Linhas por resultados',
 'contextchars'  => 'Contexto por linha',
 'stubthreshold' => 'Variação para a visualização de esboços',
-'recentchangescount' => 'Número de títulos nas \"mudanças recentes\"',
+'recentchangescount' => 'Número de artigos nas mudanças recentes',
 'savedprefs'    => 'As suas preferências foram salvas.',
 'timezonelegend' => 'Fuso horário',
 'timezonetext'  => 'Número de horas que o seu horário local difere do horário do servidor (UTC).',
@@ -870,7 +870,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'hist'                  => 'hist',
 'hide'                  => 'Esconder',
 'show'                  => 'Mostrar',
-'tableform'             => 'table',
+'tableform'             => 'tabela',
 'listform'              => 'lista',
 'nchanges'              => "$1 mudanças",
 'minoreditletter' => 'm',
@@ -970,6 +970,10 @@ Por favor siga este endereço: $2 para a página de descrição e preencha a inf
 'noimage'       => 'Nenhum ficheiro com este nome existe, se desejar pode $1',
 'noimage-linktext'       => 'carrega-lo',
 'uploadnewversion' => '[$1 Carregar uma nova versão deste ficheiro]',
+
+# Unwatchedpages
+#
+'unwatchedpages' => 'Páginas não vigiadas',
 
 # Statistics
 #
@@ -1534,12 +1538,12 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 'numtalkauthors' => 'Número de autores distintos (página de discussão): $1',
 
 # Math options
-'mw_math_png' => 'Always render PNG',
-'mw_math_simple' => 'HTML if very simple or else PNG',
-'mw_math_html' => 'HTML if possible or else PNG',
-'mw_math_source' => 'Leave it as TeX (for text browsers)',
-'mw_math_modern' => 'Recommended for modern browsers',
-'mw_math_mathml' => 'MathML if possible (experimental)',
+'mw_math_png' => 'Gerar sempre PNG',
+'mw_math_simple' => 'HTML caso seja simples, caso contrário PNG',
+'mw_math_html' => 'HTML se possível, caso contrário PNG',
+'mw_math_source' => 'Deixar como TeX (para navegadores de texto)',
+'mw_math_modern' => 'Recomendado para navegadores modernos',
+'mw_math_mathml' => 'MathML se possível (experimental)',
 
 # Patrolling
 'markaspatrolleddiff'   => "Mark as patrolled",
@@ -1631,7 +1635,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'specialloguserlabel' => 'Utilizador: ',
 'speciallogtitlelabel' => 'Título: ',
 
-'passwordtooshort' => 'A sua senha é muito curta. Deve ter no mínimo $1 caracteres.',
+'passwordtooshort' => 'A sua senha é demasiado curta. Deve ter no mínimo $1 caracteres.',
 
 # Media Warning
 'mediawarning' => '\'\'\'Aviso\'\'\': Este ficheiro pode conter código malicioso, ao executar o seu sistema poderá estar comprometido.
@@ -1705,7 +1709,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-flash' =>'Flash',
 'exif-focallength' =>'Lens focal length',
 'exif-subjectarea' =>'Subject area',
-'exif-flashenergy' =>'Flash energy',
+'exif-flashenergy' =>'Energia do flash',
 'exif-spatialfrequencyresponse' =>'Spatial frequency response',
 'exif-focalplanexresolution' =>'Focal plane X resolution',
 'exif-focalplaneyresolution' =>'Focal plane Y resolution',
@@ -1713,7 +1717,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-subjectlocation' =>'Subject location',
 'exif-exposureindex' =>'Exposure index',
 'exif-sensingmethod' =>'Sensing method',
-'exif-filesource' =>'File source',
+'exif-filesource' =>'Fonte do ficheiro',
 'exif-scenetype' =>'Scene type',
 'exif-cfapattern' =>'CFA pattern',
 'exif-customrendered' =>'Custom image processing',
@@ -1823,13 +1827,13 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-meteringmode-6' => 'Partial',
 'exif-meteringmode-255' => 'Other',
 
-'exif-lightsource-0' => 'Unknown',
-'exif-lightsource-1' => 'Daylight',
-'exif-lightsource-2' => 'Fluorescent',
+'exif-lightsource-0' => 'Desconhecida',
+'exif-lightsource-1' => 'Luz do dia',
+'exif-lightsource-2' => 'Fluorescente',
 'exif-lightsource-3' => 'Tungsten (incandescent light)',
 'exif-lightsource-4' => 'Flash',
 'exif-lightsource-9' => 'Fine weather',
-'exif-lightsource-10' => 'Clody weather',
+'exif-lightsource-10' => 'Tempo nublado',
 'exif-lightsource-11' => 'Shade',
 'exif-lightsource-12' => 'Daylight fluorescent (D 5700 â€“ 7100K)',
 'exif-lightsource-13' => 'Day white fluorescent (N 4600 â€“ 5400K)',
