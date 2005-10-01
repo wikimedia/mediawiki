@@ -71,7 +71,6 @@ $wgSpecialPages = array(
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
-	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages' )
 );
 
 if ( $wgUseValidation )
