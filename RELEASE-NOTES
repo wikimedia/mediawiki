@@ -124,6 +124,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3503) Update LanguageSq.php from sq.wikipedia.org messages
 * Added EditFilter hook, and output callback on EditPage::showEditForm()
   for a place to add in captcha-type extensions in the edit flow
+* Added filter options, compression piping, and multiple output streams for
+  dumpBackup.php
 
 
 === Caveats ===

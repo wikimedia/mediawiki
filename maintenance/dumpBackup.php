@@ -40,9 +40,76 @@ class BackupDumper {
 	var $skipFooter = false; // don't output </mediawiki>
 	var $startId    = 0;
 	var $endId      = 0;
+	var $sink       = null; // Output filters
 	
-	function BackupDumper() {
+	function BackupDumper( $args ) {
 		$this->stderr = fopen( "php://stderr", "wt" );
+		$this->sink = $this->processArgs( $args );
+	}
+	
+	/**
+	 * @param array $args
+	 * @return array
+	 * @static
+	 */
+	function processArgs( $args ) {
+		$outputTypes = array(
+			'file'  => 'DumpFileOutput',
+			'gzip'  => 'DumpGZipOutput',
+			'bzip2' => 'DumpBZip2Output',
+			'7zip'  => 'Dump7ZipOutput' );
+		$filterTypes = array(
+			'latest'    => 'DumpLatestFilter',
+			'notalk'    => 'DumpNotalkFilter',
+			'namespace' => 'DumpNamespaceFilter' );
+		$sink = null;
+		$sinks = array();
+		foreach( $args as $arg ) {
+			if( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
+				@list( $full, $opt, $val, $param ) = $matches;
+				switch( $opt ) {
+				case "output":
+					if( !is_null( $sink ) ) {
+						$sinks[] = $sink;
+					}
+					if( !isset( $outputTypes[$val] ) ) {
+						die( "Unrecognized output sink type '$val'\n" );
+					}
+					$type = $outputTypes[$val];
+					$sink = new $type( $param );
+					break;
+				case "filter":
+					if( is_null( $sink ) ) {
+						$this->progress( "Warning: assuming stdout for filter output\n" );
+						$sink = new DumpOutput();
+					}
+					if( !isset( $filterTypes[$val] ) ) {
+						die( "Unrecognized filter type '$val'\n" );
+					}
+					$type = $filterTypes[$val];
+					$filter = new $type( $sink, $param );
+					
+					// references are lame in php...
+					unset( $sink );
+					$sink = $filter;
+					
+					break;
+				default:
+					//die( "Unrecognized dump option'$opt'\n" );
+				}
+			}
+		}
+		
+		if( is_null( $sink ) ) {
+			$sink = new DumpOutput();
+		}
+		$sinks[] = $sink;
+		
+		if( count( $sinks ) > 1 ) {
+			return new DumpMultiWriter( $sinks );
+		} else {
+			return $sink;
+		}
 	}
 	
 	function dump( $history ) {
@@ -61,8 +128,9 @@ class BackupDumper {
 		
 		$db =& $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, MW_EXPORT_STREAM );
-		$exporter->setPageCallback( array( &$this, 'reportPage' ) );
-		$exporter->setRevisionCallback( array( &$this, 'revCount' ) );
+		
+		$wrapper = new ExportProgressFilter( $this->sink, $this );
+		$exporter->setOutputSink( $wrapper );
 		
 		if( !$this->skipHeader )
 			$exporter->openStream();
@@ -100,12 +168,12 @@ class BackupDumper {
 			: $wgDBserver;
 	}
 
-	function reportPage( $page ) {
+	function reportPage() {
 		$this->pageCount++;
 		$this->report();
 	}
 	
-	function revCount( $rev ) {
+	function revCount() {
 		$this->revCount++;
 	}
 	
@@ -140,7 +208,25 @@ class BackupDumper {
 	}
 }
 
-$dumper = new BackupDumper();
+class ExportProgressFilter extends DumpFilter {
+	function ExportProgressFilter( &$sink, &$progress ) {
+		parent::DumpFilter( $sink );
+		$this->progress = $progress;
+	}
+
+	function writeClosePage( $string ) {
+		parent::writeClosePage( $string );
+		$this->progress->reportPage();
+	}
+	
+	function writeRevision( $rev, $string ) {
+		parent::writeRevision( $rev, $string );
+		$this->progress->revCount();
+	}
+}
+
+$dumper = new BackupDumper( $argv );
+
 if( isset( $options['quiet'] ) ) {
 	$dumper->reporting = false;
 }
