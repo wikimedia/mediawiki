@@ -718,7 +718,7 @@ class Database {
 			$tailOpts .= ' LOCK IN SHARE MODE';
 		}
 
-		if ( isset( $options['USE INDEX'] ) ) {
+		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
 			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
 		} else {
 			$useIndex = '';
@@ -738,7 +738,10 @@ class Database {
 			$options = array( $options );
 		}
 		if( is_array( $table ) ) {
-			$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
+			if ( @is_array( $options['USE INDEX'] ) )
+				$from = ' FROM ' . $this->tableNamesWithUseIndex( $table, $options['USE INDEX'] );
+			else
+				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
 		} elseif ($table!='') {
 			$from = ' FROM ' . $this->tableName( $table );
 		} else {
@@ -1128,6 +1131,21 @@ class Database {
 			$retVal[$name] = $this->tableName( $name );
 		}
 		return $retVal;
+	}
+
+	/**
+	 * @access private
+	 */
+	function tableNamesWithUseIndex( $tables, $use_index ) {
+		$ret = array();
+
+		foreach ( $tables as $table )
+			if ( @$use_index[$table] !== null )
+				$ret[] = $this->tableName( $table ) . ' ' . $this->useIndexClause( implode( ',', (array)$use_index[$table] ) );
+			else
+				$ret[] = $this->tableName( $table );
+
+		return implode( ',', $ret );
 	}
 
 	/**
