@@ -43,7 +43,8 @@ class TitleCleanup extends FiveUpgrade {
 	}
 	
 	function cleanup() {
-		$this->runTable( 'page', 'WHERE page_namespace=0',
+		$this->runTable( 'page',
+			'', //'WHERE page_namespace=0',
 			array( &$this, 'processPage' ) );
 	}
 	
@@ -108,6 +109,7 @@ class TitleCleanup extends FiveUpgrade {
 		$display = $current->getPrefixedText();
 		
 		$verified = UtfNormal::cleanUp( $display );
+		
 		$title = Title::newFromText( $verified );
 		
 		if( is_null( $title ) ) {
