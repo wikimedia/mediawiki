@@ -522,7 +522,7 @@ class DumpFilter {
  */
 class DumpNotalkFilter extends DumpFilter {
 	function pass( $page ) {
-		return Namespace::isTalk( $page->page_namespace );
+		return !Namespace::isTalk( $page->page_namespace );
 	}
 }
 
@@ -531,7 +531,7 @@ class DumpNotalkFilter extends DumpFilter {
  */
 class DumpNamespaceFilter extends DumpFilter {
 	var $invert = false;
-	var $match = array();
+	var $namespaces = array();
 	
 	function DumpNamespaceFilter( &$sink, $param ) {
 		parent::DumpFilter( $sink );
@@ -561,12 +561,14 @@ class DumpNamespaceFilter extends DumpFilter {
 		
 		foreach( explode( ',', $param ) as $key ) {
 			$key = trim( $key );
-			if( isset( $contants[$key] ) ) {
+			if( isset( $constants[$key] ) ) {
 				$ns = $constants[$key];
 				$this->namespaces[$ns] = true;
 			} elseif( is_numeric( $key ) ) {
 				$ns = intval( $key );
 				$this->namespaces[$ns] = true;
+			} else {
+				die( "Unrecognized namespace key '$key'\n" );
 			}
 		}
 	}
