@@ -126,6 +126,7 @@ fully support the editing toolbar, but was found to be too confusing.
   for a place to add in captcha-type extensions in the edit flow
 * Added filter options, compression piping, and multiple output streams for
   dumpBackup.php
+* Warn and abort if importDump.php called in read-only mode.
 
 
 === Caveats ===
