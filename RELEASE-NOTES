@@ -774,6 +774,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   by default when 'watchdefault' option is on
 * (bug 3182) Clear link cache during import to prevent memory leak
 * (bug 3573) Full Greek Translation
+* (bug 3595) Warn and abort if importDump.php called in read-only mode.
 
 
 === Caveats ===
