@@ -2397,8 +2397,14 @@ class Article {
 		}
 	}
 
-	function onArticleDelete($title_obj) {
-		$title_obj->touchLinks();
+	function onArticleDelete( $title ) {
+		global $wgMessageCache;
+		
+		$title->touchLinks();
+		
+		if( $title->getNamespace() == NS_MEDIAWIKI) {
+			$wgMessageCache->replace( $title->getDBkey(), false );
+		}
 	}
 
 	function onArticleEdit($title_obj) {
