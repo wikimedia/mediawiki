@@ -839,7 +839,7 @@ $NEWPAGE
 'linklistsub' => '(списак веза)',
 'linkshere' => 'Следеће странице су повезане овде:',
 'linkstoimage' => 'Следеће странице користе ову слику:',
-'linktrail' => '/^([а-ж]+)(.*)$/sD',
+'linktrail' => "/^([абвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD",
 'listform' => 'списак',
 'listingcontinuesabbrev' => ' наст.',
 'listusers' => 'Списак корисника',
