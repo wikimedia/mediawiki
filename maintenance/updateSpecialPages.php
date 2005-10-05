@@ -8,7 +8,7 @@ require_once( 'commandLine.inc' );
 require_once( 'SpecialPage.php' );
 require_once( 'QueryPage.php' );
 
-if($options['help']) {
+if(@$options['help']) {
 	print "usage:updateSpecialPages.php [--help] [--only=page]\n";
 	print "  --help      : this help message\n";
 	print "  --only=page : only update 'page'. Ex: --only=BrokenRedirects\n";
