@@ -775,6 +775,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3182) Clear link cache during import to prevent memory leak
 * (bug 3573) Full Greek Translation
 * (bug 3595) Warn and abort if importDump.php called in read-only mode.
+* (bug 3598) Update message cache on message page deletion, patch by Tietew
 
 
 === Caveats ===
