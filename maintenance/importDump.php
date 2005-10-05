@@ -111,6 +111,10 @@ class BackupReader {
 	}
 }
 
+if( wfReadOnly() ) {
+	die( "Wiki is in read-only mode; you'll need to disable it for import to work.\n" );
+}
+
 $reader = new BackupReader();
 if( isset( $options['quiet'] ) ) {
 	$reader->reporting = false;
