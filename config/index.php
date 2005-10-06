@@ -141,11 +141,9 @@ require_once( "includes/Namespace.php" );
 /* Check for existing configurations and bug out! */
 
 if( file_exists( "../LocalSettings.php" ) ) {
-	dieout( "<h2>Already configured</h2>
+	dieout( "	<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
 
-	<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
-
-	<p>Please delete the /config directory for extra security.</p>" );
+	<p>Please delete the /config directory for extra security.</p></div></div></div></div>" );
 }
 
 if( file_exists( "./LocalSettings.php" ) ) {
