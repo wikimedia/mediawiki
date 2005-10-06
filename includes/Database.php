@@ -1711,8 +1711,7 @@ function wfEmergencyAbort( &$conn, $error ) {
 	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
 	# Hard coding strings instead.
 
-	$noconnect = 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server: $1. <br />
-$1';
+	$noconnect = '<h1>Wiki currently offline</h1><p><strong>Sorry! This site is experiencing technical difficulties.</strong></p><p><small>(Can\'t contact the database server: $1)</small></p>';
 	$mainpage = 'Main Page';
 	$searchdisabled = <<<EOT
 <p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
