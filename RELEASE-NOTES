@@ -810,6 +810,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Blacklist additional MSIE CSS safety tricks
 
 
+=== Changes since 1.5.0 ===
+
+* (bug 3629) Fix date & time format for Frisian
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
