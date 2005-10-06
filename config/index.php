@@ -197,15 +197,17 @@ $conf = new ConfigData;
 
 install_version_checks();
 
-print "<li>PHP " . phpversion() . ": ok</li>\n";
+print "<li>PHP " . phpversion() . " installed</li>\n";
 
 if( ini_get( "register_globals" ) ) {
 	?>
-	<li><b class='error'>Warning:</b> <strong>PHP's
-	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
-	option is enabled.</strong> MediaWiki will work correctly, but this setting
-	increases your exposure to potential security vulnerabilities in PHP-based
-	software running on your server. <strong>You should disable it if you are able.</strong></li>
+	<li>
+		<div style="font-size:110%">
+		<strong class="error">Warning:</strong>
+		<strong>PHP's	<tt><a href="http://php.net/register_globals">register_globals</a></tt>	option is enabled. Disable it if you can.</strong>
+		</div>
+		MediaWiki will work, but your server is more exposed to PHP-based security vulnerabilities.
+	</li>
 	<?php
 }
 
@@ -367,7 +369,7 @@ print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["PHP_SELF"] ); # was SCRIPT_NAME
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
-print "<li style='font-weight:bold;color:green'>Environment checked. You can install MediaWiki.</li>\n";
+print "<li style='font-weight:bold;color:green;font-size:110%'>Environment checked. You can install MediaWiki.</li>\n";
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
 	$conf->Sitename = ucfirst( importPost( "Sitename", "" ) );
@@ -392,7 +394,7 @@ print "<li style='font-weight:bold;color:green'>Environment checked. You can ins
 $errs = array();
 
 if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename == "Mediawiki" ) {
-	$errs["Sitename"] = "Must not be blank or \"MediaWiki\".";
+	$errs["Sitename"] = "Must not be blank or \"MediaWiki\"";
 }
 if( $conf->DBuser == "" ) {
 	$errs["DBuser"] = "Must not be blank";
@@ -740,7 +742,8 @@ if( count( $errs ) ) {
 		?>
 	</div>
 	<p class="config-desc">
-		Preferably a short word without punctuation, i.e. "Wikipedia". Will appear as the namespace name for "meta" pages, and throughout the interface.
+		Preferably a short word without punctuation, i.e. "Wikipedia".<br>
+		Will appear as the namespace name for "meta" pages, and throughout the interface.
 	</p>
 
 	<div class="config-input">
@@ -809,10 +812,8 @@ if( count( $errs ) ) {
 		<?php aField( $conf, "SysopPass2", "Password confirm:", "password" ) ?>
 	</div>
 	<p class="config-desc">
-		An admin user account can lock or delete pages, block problematic IP
-		addresses from editing, and other maintenance tasks. If creating a new
-		wiki database, an admin account will be created with the given name
-		and password.
+		An admin can lock/delete pages, block users from editing, and other maintenance tasks.<br>
+		A new account will be added only when creating a new wiki database.
 	</p>
 
 	<div class="config-input">
@@ -874,8 +875,8 @@ if( count( $errs ) ) {
 		<label class='column'>E-mail notification:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Enotif", "Disabled", "radio", "enotif_disabled" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for changes of watch-listed and user_talk pages (recommended for small wikis; perhaps not suited for large wikis)", "radio", "enotif_allpages" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "Enabled for changes of user_talk pages only (suited for small and large wikis)", "radio", "enotif_usertalk" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for user_talk changes only", "radio", "enotif_usertalk" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for user_talk and watch list changes (not recommended for large wikis)", "radio", "enotif_allpages" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
