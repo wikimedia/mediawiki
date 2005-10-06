@@ -3,6 +3,147 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.0 final ==
+
+October 5, 2005
+
+MediaWiki 1.5.0 is the new stable release branch of MediaWiki, and is
+recommended for all new installations.
+
+Any wikis running a 1.5 beta or release candidate are strongly recommended
+to upgrade to the final release, which includes a number of bug fixes and
+a security fix for CSS bugs in Microsoft Internet Explorer.
+
+IMPORTANT: Running a 1.3 or 1.4 wiki and don't want to jump to 1.5 yet?
+Be sure to upgrade to 1.3.17 or 1.4.11, also released today. Versions
+prior to 1.3.16 and 1.4.10 have a serious data corruption bug which is
+triggered by a spambot known to operate in the wild.
+
+
+=== What's new in 1.5? ===
+
+Schema:
+  The core table schema has changed significantly. This should make better
+  use of the database's cache and disk I/O, and make significantly speed up
+  rename and delete operations on pages with very long edit histories.
+  
+  Unfortunately this does mean upgrading a wiki of size from 1.4 will require
+  some downtime for the schema restructuring, but future storage backend
+  changes should be able to integrate into the new system more easily.
+
+Permalinks:
+  The current revision of a page now has a permanent 'oldid' number assigned
+  immediately, and the id numbers are now preserved across deletion/undeletion.
+  A permanent reference to the current revision of a page is now just a matter
+  of going to the 'history' tab and copying the first link in the list.
+
+Page move log:
+  Renames of pages are now recorded in Special:Log and the page history.
+  A handy revert link is available from the log for sysops.
+
+Editing diff:
+  Ever lost track of what you'd done so far during an edit? A 'Show diff'
+  button on the edit page now makes it easy to remember.
+
+Uploads:
+  It's now possible to specify the final filename of an upload distinct
+  from the original filename on your disk.
+  
+  An image link for a missing file will now take you straight to the upload page.
+  
+  More metadata is pre-extracted from uploaded images, which will ease pressure
+  on disk or NFS volumes used to store images. EXIF metadata is displayed on
+  the image description page if PHP is configured with the necessary module.
+  
+  If .svg files are added to the upload whitelist, you can choose to render
+  them to rasterized .png images for inline display using one of several
+  external helper programs. See DefaultSettings.php for SVG options.
+
+User accounts:
+  There are some changes to the user permissions system, with assignable
+  groups. Note that this does *not* allow you to make pages which are only
+  accessible to certain groups.
+  
+  For details see: http://meta.wikimedia.org/wiki/Help:User_rights
+
+E-mail:
+  User-to-user e-mail can now be restricted to require a mail-back confirmation
+  first to reduce potential for abuse with false addresses.
+  
+  Updates to user talk pages and watchlist entries can optionally send e-mail
+  notifications.
+
+External hooks:
+  A somewhat experimental interface for hooking in an external editor
+  application is included.
+
+And...
+  A bunch of stuff we forgot to mention.
+
+
+=== What's gone? ===
+
+Latin-1:
+  Wikis must now be encoded in Unicode UTF-8; this has been the default for
+  some time, but some languages could optionally be installed in Latin-1 mode.
+  This is no longer supported.
+  
+  You can check if your current wiki is in Latin-1 mode by using your browser's
+  "view source"; look for a line like this:
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  If it says charset=utf-8, you're ready. If it says charset=iso8859-1,
+  you may need to convert your data. (English-language wikis avoiding
+  any accented characters may be able to get away without conversion.)
+
+MySQL 3.x:
+  Some optimization hacks for MySQL 3.x have been removed as part of the schema
+  clean-up (specifically, the inverse_timestamp fields).
+  
+  MediaWiki 1.5 may still run on 3.x, but wikis of non-trivial size should
+  very seriously consider upgrading to a more modern release. MySQL 3.x support
+  will probably be entirely dropped in the next major release.
+
+Special:Maintenance
+  These tools were, ironically enough, not really maintained. This special
+  page has been removed; insofar as some of its pieces were useful and haven't
+  already been supplanted by other special pages they should be rewritten in
+  an efficient and safe manner in the future.
+
+
+=== Caveats ===
+
+Upgrade:
+  Wikis in Latin-1 encoding are no longer supported; only Unicode UTF-8.
+  A new option $wgLegacyEncoding is provided to allow on-the-fly recoding of
+  old page text entries, but other metadata fields (titles, comments etc) need
+  to be pre-converted. The standard upgrade process does not yet fully automate
+  this, but you can try the alternate partial-upgrader in upgrade1_5.php.
+  
+  The upgrade from 1.4 to 1.5 schema has not been tested for all cases, so
+  it's possible you may experience problems in some combinations.
+
+Backups:
+  The text entries of deleted pages are no longer removed from the main
+  text table on deletion. If you provide public backup dumps of your databases,
+  you will probably want to use the new XML-format dump generator, available
+  as maintenance/dumpBackup.php.
+  
+  For more information on how we run our own public data dumps at Wikimedia,
+  see http://meta.wikimedia.org/wiki/Data_dumps
+
+PostgreSQL:
+  The table definitions for PostgreSQL install are out of date. PostgreSQL
+  support may return in later releases, pending appropriate patches.
+
+MySQL 4.1+:
+  Some users may encounter installation problems with MySQL 4.1 or higher
+  due to strange charset encoding / collation configurations. Try setting
+  to 'latin1' or 'utf8' if you encounter problems.
+
+
+
 == MediaWiki 1.5 release candidate 4 ==
 
 August 29, 2005
@@ -167,117 +308,7 @@ NOT to run a live production web site on this alpha release.
 **  DON'T SAY WE DIDN'T WARN YOU, MAN. WE TOTALLY DID RIGHT HERE.  **
 
 
-=== Big changes ===
-
-Schema:
-  The core table schema has changed significantly. This should make better
-  use of the database's cache and disk I/O, and make significantly speed up
-  rename and delete operations on pages with very long edit histories.
-  
-  Unfortunately this does mean upgrading a wiki of size from 1.4 will require
-  some downtime for the schema restructuring, but future storage backend
-  changes should be able to integrate into the new system more easily.
-
-Permalinks:
-  The current revision of a page now has a permanent 'oldid' number assigned
-  immediately, and the id numbers are now preserved across deletion/undeletion.
-  A permanent reference to the current revision of a page is now just a matter
-  of going to the 'history' tab and copying the first link in the list.
-
-Page move log:
-  Renames of pages are now recorded in Special:Log and the page history.
-  A handy revert link is available from the log for sysops.
-
-Editing diff:
-  Ever lost track of what you'd done so far during an edit? A 'Show diff'
-  button on the edit page now makes it easy to remember.
-
-Uploads:
-  It's now possible to specify the final filename of an upload distinct
-  from the original filename on your disk.
-  
-  An image link for a missing file will now take you straight to the upload page.
-  
-  More metadata is pre-extracted from uploaded images, which will ease pressure
-  on disk or NFS volumes used to store images. EXIF metadata is displayed on
-  the image description page if PHP is configured with the necessary module.
-
-User accounts:
-  There are some changes to the user permissions system, with assignable
-  groups. This is still somewhat in flux; do not rely on the present system
-  that you see in this alpha to still be there.
-
-E-mail:
-  User-to-user e-mail can now be restricted to require a mail-back confirmation
-  first to reduce potential for abuse with false addresses.
-  
-  Updates to user talk pages and watchlist entries can optionally send e-mail
-  notifications.
-
-External hooks:
-  A somewhat experimental interface for hooking in an external editor
-  application is included. This may not be on by default in final release,
-  depending on support.
-
-And...
-  A bunch of stuff we forgot to mention.
-
-
-=== What's gone? ===
-
-Latin-1:
-  Wikis must now be encoded in Unicode UTF-8; this has been the default for
-  some time, but some languages could optionally be installed in Latin-1 mode.
-  This is no longer supported.
-
-MySQL 3.x:
-  Some optimization hacks for MySQL 3.x have been removed as part of the schema
-  clean-up (specifically, the inverse_timestamp fields). MediaWiki 1.5 should
-  still run, but wikis of significant size should very seriously consider
-  upgrading to a more modern release. MySQL 3.x support will probably be
-  entirely dropped in the next major release later this year.
-
-Special:Maintenance
-  These tools were, ironically enough, not really maintained. This special
-  page has been removed; insofar as some of its pieces were useful and haven't
-  already been supplanted by other special pages they should be rewritten in
-  an efficient and safe manner in the future.
-
-
-=== What's still waiting? ===
-
-These things should be fixed by the time 1.5.0 final is released:
-
-Upgrade:
-  Wikis in Latin-1 encoding are no longer supported; only Unicode UTF-8.
-  A new option $wgLegacyEncoding is provided to allow on-the-fly recoding of
-  old page text entries, but other metadata fields (titles, comments etc) need
-  to be pre-converted. The upgrade process does not yet fully automate this.
-  
-  In general the upgrade from 1.4 to 1.5 schema has not been tested for all
-  cases, and there may be problems.
-
-Backups:
-  The text entries of deleted pages are no longer removed from the main
-  text table on deletion. If you provide public backup dumps of your databases,
-  you will probably want to use the new XML-format dump generator... but
-  this hasn't been finished yet.
-
-PostgreSQL:
-  The table definitions for PostgreSQL install are out of date, and patches
-  to support PostgreSQL from the main installer are still pending.
-
-MySQL 4.1+:
-  Proper charset encoding / collation configuration for installs on MySQL 4.1
-  and higher still needs to be fiddled with. Some bits may fail on the UTF-8
-  setting due to some long field keys.
-
-Authentication plugin fixes:
-  The AuthPlugin interface needs some improvements to work better with LDAP,
-  HTTP basic auth, and other such environments. Some patches are pending.
-
-
-=== Smaller changes ===
+=== Smaller changes since 1.4 ===
 
 Various bugfixes, small features, and a few experimental things:
 
@@ -776,6 +807,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3573) Full Greek Translation
 * (bug 3595) Warn and abort if importDump.php called in read-only mode.
 * (bug 3598) Update message cache on message page deletion, patch by Tietew
+* Blacklist additional MSIE CSS safety tricks
 
 
 === Caveats ===
