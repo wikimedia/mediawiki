@@ -131,6 +131,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Added separate noarticletext and newarticletext messages for logged in and anon users.
 * Blacklist additional MSIE CSS safety tricks
 * (bug 3332) Installation now uses Monobook, validates, plus usability improvements.
+* (bug 3629) Fix date & time format for Frisian
 
 
 === Caveats ===
