@@ -398,7 +398,7 @@ class EditPage {
 			}
 		}
 		if($addstandardintro) {
-			if ( $wgUser->getID() ) 
+			if ( $wgUser->isLoggedIn() ) 
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
 			else
 				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
