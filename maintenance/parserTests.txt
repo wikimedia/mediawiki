@@ -2741,6 +2741,46 @@ Nested template calls
 </p>
 !! end
 
+
+# More MSIE fun discovered by Tom Gilder
+
+!! test
+MSIE CSS safety test: spurious slash
+!! input
+<div style="background-image:u\rl(javascript:alert('boo'))">evil</div>
+!! result
+<div>evil</div>
+
+!! end
+
+!! test
+MSIE CSS safety test: hex code
+!! input
+<div style="background-image:u\72l(javascript:alert('boo'))">evil</div>
+!! result
+<div>evil</div>
+
+!! end
+
+!! test
+MSIE CSS safety test: comment in url
+!! input
+<div style="background-image:u/**/rl(javascript:alert('boo'))">evil</div>
+!! result
+<div style="background-image:u rl(javascript:alert('boo'))">evil</div>
+
+!! end
+
+!! test
+MSIE CSS safety test: comment in expression
+!! input
+<div style="background-image:expres/**/sion(alert('boo4'))">evil4</div>
+!! result
+<div style="background-image:expres sion(alert('boo4'))">evil4</div>
+
+!! end
+
+
 TODO:
 more images
 more tables

@@ -554,11 +554,19 @@ class Sanitizer {
 			
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
-			if( $attribute == 'style' && preg_match(
-				'/(expression|tps*:\/\/|url\\s*\().*/is',
-					Sanitizer::decodeCharReferences( $value ) ) ) {
-				# haxx0r
-				continue;
+			if( $attribute == 'style' ) {
+				// Remove any comments; IE gets token splitting wrong
+				$value = preg_replace( '!/\\*.*?\\*/!S', ' ', $value );
+				
+				$stripped = Sanitizer::decodeCharReferences( $value );
+				$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
+					'codepointToUtf8(hexdec("$1"))', $stripped );
+				$stripped = str_replace( '\\', '', $stripped );
+				if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+						$stripped ) ) {
+					# haxx0r
+					continue;
+				}
 			}
 			
 			# Templates and links may be expanded in later parsing,
