@@ -201,8 +201,8 @@ function wfSpecialContributions( $par = null ) {
 		return;
 	}
 
-	if ($wgRequest->getText('go') == "first") {
-		$prevts = $finder->get_first_offset_for_paging();
+	if ($wgRequest->getText('go') == "first" && $target!="newbies") {
+                $prevts = $finder->get_first_offset_for_paging();
 		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl");
 		$wgOut->redirect($prevurl);
 		return;
@@ -296,7 +296,11 @@ function wfSpecialContributions( $par = null ) {
 		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl&amp;go=first\">$firsttext</a>";
 		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl\">$nexttext</a>";
 	}
-	$firstlast = "($lastlink | $firstlink)";
+        if ($target == "newbies") {
+            $firstlast ="($lastlink)";
+        } else {
+            $firstlast = "($lastlink | $firstlink)";
+        }
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
