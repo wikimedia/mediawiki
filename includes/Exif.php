@@ -287,8 +287,14 @@ class Exif {
 		
 		$this->debugFile( $basename, __FUNCTION__, true );
 		wfSuppressWarnings();
-		$this->mRawExifData = exif_read_data( $file );
+		$data = exif_read_data( $file );
 		wfRestoreWarnings();
+		/**
+		 * exif_read_data() will return false on invalid input, such as
+		 * when somebody uploads a file called something.jpeg
+		 * containing random gibberish.
+		 */
+		$this->mRawExifData = $data ? $data : array();
 		
 		$this->makeFilteredData();
 		$this->makeFormattedData();
