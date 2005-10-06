@@ -385,7 +385,7 @@ class EditPage {
 	}
 
 	function showIntro() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		$addstandardintro=true;
 		if($this->editintro) {
 			$introtitle=Title::newFromText($this->editintro);
@@ -398,7 +398,10 @@ class EditPage {
 			}
 		}
 		if($addstandardintro) {
-			$wgOut->addWikiText( wfMsg( 'newarticletext' ) );				
+			if ( $wgUser->getID() ) 
+				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
+			else
+				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
 		}
 	}
 
