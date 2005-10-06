@@ -621,11 +621,19 @@ cl_sortkey" ;
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
-		if( preg_match(
-			'/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is',
-			wfMungeToUtf8( $t ) ) )
-		{
-			$t='';
+		if( preg_match( '/style\\s*=/is', $t ) ) {
+			// Remove any comments; IE gets token splitting wrong
+			$t = preg_replace( '!/\\*.*?\\*/!S', ' ', $t );
+			
+			$stripped = wfMungeToUtf8( $t );
+			$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
+				'chr(hexdec("$1"))', $stripped );
+			$stripped = str_replace( '\\', '', $stripped );
+			if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+					$stripped ) ) {
+				# haxx0r
+				$t = '';
+			}
 		}
 		
 		# Any placeholder items should have been unstripped already before
