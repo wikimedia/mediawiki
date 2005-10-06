@@ -3,6 +3,24 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.4.11 ==
+
+(released 2005-10-05)
+
+MediaWiki 1.4.11 is a security maintenance release. Unsafe handling of CSS
+by Microsoft Internet Explorer could be exploited to produce cross-site
+scripting attacks by JavaScript injection to clients running that browser.
+
+This release blacklists several additional variants from use in HTML inline
+style attributes.
+
+All publicly accessible wikis are recommended to upgrade to reduce the risk
+to visitors using Microsoft web browsers.
+
+Note: the MediaWiki 1.4.x series is not compatible with PHP 5.0.5 or higher.
+Upgrade to the 1.5.0 release if you require this version of PHP 5.
+
+
 == MediaWiki 1.4.10 ==
 
 (released 2005-09-21)
@@ -794,6 +812,11 @@ pages for purposes of page relevancy ranking.
 
 * (bug 3153) Fix for compressOld.php -t gzip
 * Fix for corruption on page save
+
+
+=== 1.4.11 changes ==
+
+* Blacklist additional MSIE CSS safety tricks
 
 
 === Caveats ===

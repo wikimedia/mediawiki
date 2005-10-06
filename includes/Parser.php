@@ -502,12 +502,19 @@ class Parser
 
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
-
-		if( preg_match(
-			'/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is',
-			wfMungeToUtf8( $out ) ) )
-		{
-			$out = '';
+		if( preg_match( '/style\\s*=/is', $out ) ) {
+			// Remove any comments; IE gets token splitting wrong
+			$out = preg_replace( '!/\\*.*?\\*/!S', ' ', $out );
+			
+			$stripped = wfMungeToUtf8( $out );
+			$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
+				'codepointToUtf8(hexdec("$1"))', $stripped );
+			$stripped = str_replace( '\\', '', $stripped );
+			if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+					$stripped ) ) {
+				# haxx0r
+				$out = '';
+			}
 		}
 		
 		# Templates and links may be expanded in later parsing,
