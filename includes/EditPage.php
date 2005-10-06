@@ -1315,13 +1315,15 @@ END
 	 * @return string HTML
 	 */
 	function getDiff() {
+		global $wgUser;
+
 		require_once( 'DifferenceEngine.php' );
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 		$oldtitle = wfMsg( 'currentrev' );
 		$newtitle = wfMsg( 'yourtext' );
-		if ( $oldtext != wfMsg( 'noarticletext' ) || $newtext != '' ) {
+		if ( $oldtext != wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) || $newtext != '' ) {
 			$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
 		}
 

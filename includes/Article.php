@@ -105,7 +105,7 @@ class Article {
 			}
 			wfProfileOut( $fname );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
-			return wfMsg( 'noarticletext' );
+			return wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 		} else {
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
@@ -2421,7 +2421,7 @@ class Article {
 	 * @access public
 	 */
 	function info() {
-		global $wgLang, $wgOut, $wgAllowPageInfo;
+		global $wgLang, $wgOut, $wgAllowPageInfo, $wgUser;
 		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {
@@ -2437,7 +2437,7 @@ class Article {
 		# first, see if the page exists at all.
 		$exists = $page->getArticleId() != 0;
 		if( !$exists ) {
-			$wgOut->addHTML( wfMsg('noarticletext') );
+			$wgOut->addHTML( wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) );
 		} else {
 			$dbr =& $this->getDB( DB_SLAVE );
 			$wl_clause = array(
