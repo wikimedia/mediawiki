@@ -45,31 +45,22 @@ function indexNamespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$arr = $wgContLang->getFormattedNamespaces();
-	foreach ( $arr as $ns => $name ) {
-		if ($ns < NS_MAIN)
-			continue;
-		$n = $ns == 0 ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $ns == $namespace ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";	
-	}
-	$namespaceselect .= '</select>';
+	$namespaceselect = HTMLnamespaceselector($namespace, null);
 
 	$frombox = "<input type='text' size='20' name='from' id='nsfrom' value=\""
 	            . htmlspecialchars ( $from ) . '"/>';
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
 	
-	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
+	$out = "<div class='namespaceoptions'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <table id='nsselect' class='allpages'>
 	<tr>
-		<td align='right'>" . wfMsg('allpagesfrom') . "</td>
+		<td align='right'>" . wfMsgHtml('allpagesfrom') . "</td>
 		<td align='left'><label for='nsfrom'>$frombox</label></td>
 	</tr>
 	<tr>    
-		<td align='right'><label for='nsselectbox'>" . wfMsg('namespace') . "</label></td>
+		<td align='right'><label for='namespace'>" . wfMsgHtml('namespace') . "</label></td>
 		<td align='left'>
 			$namespaceselect $submitbutton
 		</td>

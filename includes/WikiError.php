@@ -89,15 +89,36 @@ class WikiXmlError extends WikiError {
 	 * @param resource $parser
 	 * @param string $message
 	 */
-	function WikiXmlError( $parser, $message = '' ) {
+	function WikiXmlError( $parser, $message = 'XML parsing error', $context = null, $offset = 0 ) {
 		$this->mXmlError = xml_get_error_code( $parser );
+		$this->mColumn = xml_get_current_column_number( $parser );
+		$this->mLine = xml_get_current_line_number( $parser );
+		$this->mByte = xml_get_current_byte_index( $parser );
+		$this->mContext = $this->_extractContext( $context, $offset );
 		$this->mMessage = $message;
 		xml_parser_free( $parser );
+		wfDebug( "WikiXmlError: " . $this->getMessage() . "\n" );
 	}
 
 	/** @return string */	
 	function getMessage() {
-		return $this->mMessage . ': ' . xml_error_string( $this->mXmlError );
+		return sprintf( '%s at line %d, col %d (byte %d%s): %s',
+			$this->mMessage,
+			$this->mLine,
+			$this->mColumn,
+			$this->mByte,
+			$this->mContext,
+			xml_error_string( $this->mXmlError ) );
+	}
+	
+	function _extractContext( $context, $offset ) {
+		if( is_null( $context ) ) {
+			return null;
+		} else {
+			// Hopefully integer overflow will be handled transparently here
+			$inlineOffset = $this->mByte - $offset;
+			return '; "' . substr( $context, $inlineOffset, 16 ) . '"';
+		}
 	}
 }
 

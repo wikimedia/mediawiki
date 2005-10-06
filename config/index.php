@@ -519,7 +519,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$errs["DBserver"] = "Connection failed";
 				break;
 			default:
-				$errs["DBserver"] = "Couldn't connect to database";
+				$errs["DBserver"] = "Couldn't connect to database ($err)";
 				break;
 			}
 			if( !$ok ) continue;
@@ -824,7 +824,7 @@ if( count( $errs ) ) {
 		use Turck shared memory if the wiki will be running on a single Apache server.
 	</dl>
 
-<h2>E-mail, e-mail notification and authentification setup</h2>
+<h2>E-mail, e-mail notification and authentication setup</h2>
 
 <dl class="setup">
 	<dd>
@@ -885,10 +885,8 @@ if( count( $errs ) ) {
 		</ul>
 	</dd>
 	<dt>
-		<p>
-		E-mail address authentication uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or who changes his/her stored e-mail address
-		gets a one-time temporary password mailed to that address. The user can use the original password as long as wanted, however, the stored e-mail address
-		is only authenticated at the moment when the user logs in with the one-time temporary password.<p>
+		<p>E-mail address authentication uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or changes his/her stored e-mail address
+		gets a link with a token mailed to that address. The stored e-mail address is authenticated at the moment the user comes back to the wiki via the link.</p>
 
 		<p>The e-mail address stays authenticated as long as the user does not change it; the time of authentication is indicated
 		on the user preference page.</p>

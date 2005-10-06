@@ -303,6 +303,7 @@ class ParserTest {
 			'wgDefaultUserOptions' => array(),
 			'wgNoFollowLinks' => true,
 			'wgThumbnailScriptPath' => false,
+			'wgUseTeX' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {

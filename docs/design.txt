@@ -22,7 +22,7 @@ Primary source files/objects:
     Can be queried for things like the user's settings, name, etc.
     Handles the details of getting and saving to the "user" table
     of the database, and dealing with sessions and cookies.
-    More details in USER.DOC.
+    More details in USER.TXT.
 
   OutputPage
     Encapsulates the entire HTML page that will be sent in
@@ -64,7 +64,7 @@ Primary source files/objects:
     A global one is allocated in $wgLang.
 
   LinkCache
-    Keeps information on existence of articles. See LINKCACHE.DOC.
+    Keeps information on existence of articles. See LINKCACHE.TXT.
 
 Naming/coding conventions:
 

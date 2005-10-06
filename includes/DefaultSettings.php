@@ -28,7 +28,7 @@ require_once( 'includes/SiteConfiguration.php' );
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */
-$wgVersion			= '1.5beta4';
+$wgVersion			= '1.5.0';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -616,6 +616,14 @@ $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
 
 /**
+ * Set to an array of log group keys to filenames.
+ * If set, wfDebugLog() output for that group will go to that file instead 
+ * of the regular $wgDebugLogFile. Useful for enabling selective logging
+ * in production.
+ */
+$wgDebugLogGroups       = array();
+
+/**
  * Whether to show "we're sorry, but there has been a database error" pages.
  * Displaying errors aids in debugging, but may display information useful
  * to an attacker.
@@ -1078,11 +1086,14 @@ $wgSVGConverters = array(
 	'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
 	'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
 	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
+	'rsvg' => '$path/rsvg -w$width -h$height $input $output',
 	);
 /** Pick one of the above */
 $wgSVGConverter = 'ImageMagick';
 /** If not in the executable PATH, specify */
 $wgSVGConverterPath = '';
+/** Don't scale a SVG larger than this unless its native size is larger */
+$wgSVGMaxSize = 1024;
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
@@ -1378,12 +1389,36 @@ $wgBrowserBlackList = array(
  * Fake out the timezone that the server thinks it's in. This will be used for
  * date display and not for what's stored in the DB. Leave to null to retain
  * your server's OS-based timezone value. This is the same as the timezone.
+ *
+ * This variable is currently used ONLY for signature formatting, not for
+ * anything else.
  */
 # $wgLocaltimezone = 'GMT';
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
 $wgLocaltimezone = null;
+
+/**
+ * Set an offset from UTC in hours to use for the default timezone setting
+ * for anonymous users and new user accounts.
+ *
+ * This setting is used for most date/time displays in the software, and is
+ * overrideable in user preferences. It is *not* used for signature timestamps.
+ *
+ * You can set it to match the configured server timezone like this:
+ *   $wgLocalTZoffset = date("Z") / 3600;
+ *
+ * If your server is not configured for the timezone you want, you can set
+ * this in conjunction with the signature timezone and override the TZ
+ * environment variable like so:
+ *   $wgLocaltimezone="Europe/Berlin";
+ *   putenv("TZ=$wgLocaltimezone");
+ *   $wgLocalTZoffset = date("Z") / 3600;
+ *
+ * Leave at NULL to show times in universal time (UTC/GMT).
+ */
+$wgLocalTZoffset = null;
 
 
 /**
@@ -1555,6 +1590,12 @@ $wgCountCategorizedImagesAsUsed = false;
  * CAUTION: Access to database might lead to code execution
  */
 $wgExternalStores = false;
+
+/**
+ * An array of external mysql servers, e.g.
+ * $wgExternalServers = array( 'cluster1' => array( 'srv28', 'srv29', 'srv30' ) );
+ */
+$wgExternalServers = array();
 
 /**
 * list of trusted media-types and mime types.

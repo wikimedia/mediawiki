@@ -1,4 +1,4 @@
-TITLE.DOC
+title.txt
 
 The MediaWiki software's "Title" class represents article
 titles, which are used for many purposes: as the human-readable
