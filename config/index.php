@@ -32,9 +32,13 @@ header( "Content-type: text/html; charset=utf-8" );
 
 		@import "../skins/monobook/main.css"; 
 
-		.license {
-			font-size: 85%;
-			padding-top: 3em;
+		.env-check {
+			font-size: 90%;
+			margin: 1em 0 1em 2.5em;
+		}
+
+		.config-section {
+			margin-top: 2em;
 		}
 
 		.config-section label.column {
@@ -79,7 +83,7 @@ header( "Content-type: text/html; charset=utf-8" );
 			font-size: 130%;
 			font-weight: bold;
 			padding: 1em 1.5em;
-			float: left;
+			margin: 2em 0 1em;
 		}
 
 		ul.plain {
@@ -90,10 +94,15 @@ header( "Content-type: text/html; charset=utf-8" );
 			padding: 0;
 		}
 
-		h2 {
-			border-bottom: 1px solid #aaa;
-			margin-bottom: 1em;
-			clear: left;
+		.btn-install {
+			font-weight: bold;
+			font-size: 110%;
+			padding: .2em .3em;
+		}
+
+		.license {
+			font-size: 85%;
+			padding-top: 3em;
 		}
 
 	</style>
@@ -179,7 +188,7 @@ class ConfigData {
 
 <h2>Checking environment...</h2>
 <p><em>Please include all of the lines below when reporting installation problems.</em></p>
-<ul>
+<ul class="env-check">
 <?php
 $endl = "
 ";
@@ -727,15 +736,11 @@ if( count( $errs ) ) {
 <div class="config-section">
 	<div class="config-input">
 		<?php
-		aField( $conf, "Sitename", "Site name:" );
+		aField( $conf, "Sitename", "Wiki name:" );
 		?>
 	</div>
 	<p class="config-desc">
-		Your site name should be a relatively short word. It'll appear as the namespace
-		name for 'meta' pages as well as throughout the user interface. Good site names
-		are things like "<a href="http://www.wikipedia.org/">Wikipedia</a>" and
-		"<a href="http://openfacts.berlios.de/">OpenFacts</a>"; avoid punctuation,
-		which may cause problems.
+		Preferably a short word without punctuation, i.e. "Wikipedia". Will appear as the namespace name for "meta" pages, and throughout the interface.
 	</p>
 
 	<div class="config-input">
@@ -744,10 +749,7 @@ if( count( $errs ) ) {
 		?>
 	</div>
 	<p class="config-desc">
-		This will be used as the return address for password reminders and
-		may be displayed in some error conditions so visitors can get in
-		touch with you. It is also be used as the default sender address of e-mail
-		notifications (enotifs).
+		Displayed to users in some error messages, used as the return address for password reminders, and used as the default sender address of e-mail notifications.
 	</p>
 
 	<div class="config-input">
@@ -764,19 +766,17 @@ if( count( $errs ) ) {
 		</select>
 	</div>
 	<p class="config-desc">
-		You may select the language for the user interface of the wiki...
-		Some localizations are less complete than others. Unicode (UTF-8 encoding)
-		is used for all localizations.
+		Select the language for your wiki's interface. Some localizations aren't fully complete. Unicode (UTF-8) used for all localizations.
 	</p>
 
 	<div class="config-input">
 		<label class='column'>Copyright/license:</label>
 
 		<ul class="plain">
-		<li><?php aField( $conf, "License", "no license metadata", "radio", "none" ); ?></li>
+		<li><?php aField( $conf, "License", "No license metadata", "radio", "none" ); ?></li>
 		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl" ); ?></li>
 		<li><?php
-			aField( $conf, "License", "a Creative Commons license...", "radio", "cc" );
+			aField( $conf, "License", "A Creative Commons license - ", "radio", "cc" );
 			$partner = "MediaWiki";
 			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/index.php?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
@@ -795,10 +795,7 @@ if( count( $errs ) ) {
 		</ul>
 	</div>
 	<p class="config-desc">
-		MediaWiki can include a basic license notice, icon, and machine-readable
-		copyright metadata if your wiki's content is to be licensed under
-		the GNU FDL or a Creative Commons license. If you're not sure, leave
-		it at "none".
+		A notice, icon, and machine-readable copyright metadata will be displayed for the license you pick.
 	</p>
 
 
@@ -806,10 +803,10 @@ if( count( $errs ) ) {
 		<?php aField( $conf, "SysopName", "Admin username:" ) ?>
 	</div>
 	<div class="config-input">
-		<?php aField( $conf, "SysopPass", "password:", "password" ) ?>
+		<?php aField( $conf, "SysopPass", "Password:", "password" ) ?>
 	</div>
 	<div class="config-input">
-		<?php aField( $conf, "SysopPass2", "again:", "password" ) ?>
+		<?php aField( $conf, "SysopPass2", "Password confirm:", "password" ) ?>
 	</div>
 	<p class="config-desc">
 		An admin user account can lock or delete pages, block problematic IP
@@ -822,7 +819,7 @@ if( count( $errs ) ) {
 		<label class='column'>Shared memory caching:</label>
 
 		<ul class="plain">
-		<li><?php aField( $conf, "Shm", "no caching", "radio", "none" ); ?></li>
+		<li><?php aField( $conf, "Shm", "No caching", "radio", "none" ); ?></li>
 		<?php
 			if ( $conf->turck ) {
 				echo "<li>";
@@ -855,8 +852,8 @@ if( count( $errs ) ) {
 	<div class="config-input">
 		<label class='column'>E-mail (general):</label>
 		<ul class="plain">
-		<li><?php aField( $conf, "Email", "enabled", "radio", "email_enabled" ); ?></li>
-		<li><?php aField( $conf, "Email", "disabled", "radio", "email_disabled" ); ?></li>
+		<li><?php aField( $conf, "Email", "Enabled", "radio", "email_enabled" ); ?></li>
+		<li><?php aField( $conf, "Email", "Disabled", "radio", "email_disabled" ); ?></li>
 		</ul>
 	</div>
 	<p class="config-desc">
@@ -866,8 +863,8 @@ if( count( $errs ) ) {
 	<div class="config-input">
 		<label class='column'>User-to-user e-mail:</label>
 		<ul class="plain">
-		<li><?php aField( $conf, "Emailuser", "enabled", "radio", "emailuser_enabled" ); ?></li>
-		<li><?php aField( $conf, "Emailuser", "disabled", "radio", "emailuser_disabled" ); ?></li>
+		<li><?php aField( $conf, "Emailuser", "Enabled", "radio", "emailuser_enabled" ); ?></li>
+		<li><?php aField( $conf, "Emailuser", "Disabled", "radio", "emailuser_disabled" ); ?></li>
 		</ul>
 	</div>
 	<p class="config-desc">
@@ -876,9 +873,9 @@ if( count( $errs ) ) {
 	<div class="config-input">
 		<label class='column'>E-mail notification:</label>
 		<ul class="plain">
-		<li><?php aField( $conf, "Enotif", "disabled", "radio", "enotif_disabled" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "enabled for changes of watch-listed and user_talk pages (recommended for small wikis; perhaps not suited for large wikis)", "radio", "enotif_allpages" ); ?></li>
-		<li><?php aField( $conf, "Enotif", "enabled for changes of user_talk pages only (suited for small and large wikis)", "radio", "enotif_usertalk" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Disabled", "radio", "enotif_disabled" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for changes of watch-listed and user_talk pages (recommended for small wikis; perhaps not suited for large wikis)", "radio", "enotif_allpages" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "Enabled for changes of user_talk pages only (suited for small and large wikis)", "radio", "enotif_usertalk" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
@@ -897,8 +894,8 @@ if( count( $errs ) ) {
 	<div class="config-input">
 		<label class='column'>E-mail authentication:</label>
 		<ul class="plain">
-		<li><?php aField( $conf, "Eauthent", "disabled", "radio", "eauthent_disabled" ); ?></li>
-		<li><?php aField( $conf, "Eauthent", "enabled", "radio", "eauthent_enabled" ); ?></li>
+		<li><?php aField( $conf, "Eauthent", "Disabled", "radio", "eauthent_disabled" ); ?></li>
+		<li><?php aField( $conf, "Eauthent", "Enabled", "radio", "eauthent_enabled" ); ?></li>
 		</ul>
 	</div>
 	<div class="config-desc">
@@ -946,7 +943,7 @@ if( count( $errs ) ) {
 		aField( $conf, "DBpassword", "DB password:", "password" );
 	?></div>
 	<div class="config-input"><?php
-		aField( $conf, "DBpassword2", "again:", "password" );
+		aField( $conf, "DBpassword2", "DB password confirm:", "password" );
 	?></div>
 	<p class="config-desc">
 		If you only have a single user account and database available,
@@ -980,7 +977,7 @@ if( count( $errs ) ) {
 
 	<div class="config-input" style="padding:2em 0 3em">
 		<label class='column'>&nbsp;</label>
-		<input type="submit" value="Install MediaWiki!" style="font-weight: bold; font-size: 110%; padding: .2em .5em;" />
+		<input type="submit" value="Install MediaWiki!" class="btn-install" />
 	</div>
 
 </div>
