@@ -1404,18 +1404,20 @@ function testMemcachedServer( $server ) {
 <div id="column-one">
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-	    href="/phase3/index.php/Main_Page"
+	    href="http://www.mediawiki.org/"
 	    title="Main Page"></a>
 	</div>
 	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class='portlet'><div class='pBody'>
-		<p style="font-size:90%"><strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is Copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
 		<ul>
+			<li><strong><a href="http://www.mediawiki.org/">MediaWiki home</a></strong></li>
 			<li><a href="../README">Readme</a></li>
 			<li><a href="../RELEASE-NOTES">Release notes</a></li>
-			<li><a href="../docs/">doc/</a></li>
+			<li><a href="../docs/">Documentation</a></li>
 			<li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
+			<li><a href="http://meta.wikimedia.org/wiki/MediaWiki_FAQ">FAQ</a></li>
 		</ul>
+		<p style="font-size:90%;margin-top:1em">MediaWiki is Copyright &copy; 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
 	</div></div>
 </div>
 
