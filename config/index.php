@@ -30,43 +30,79 @@ header( "Content-type: text/html; charset=utf-8" );
 	<meta name="robots" content="noindex,nofollow">
 	<title>MediaWiki installation</title>
 	<style type="text/css">
+	
+	body {
+		font-family: sans-serif;
+		font-size: 80%;
+	}
+
 	#credit {
 		float: right;
 		width: 200px;
-		font-size: 0.7em;
+		font-size: 85%;
 		background-color: #eee;
 		color: black;
 		border: solid 1px #444;
-		padding: 8px;
-		margin-left: 8px;
+		padding: .8em;
+		margin-left: .8em;
 	}
 
-	dl.setup dd {
-		margin-left: 0;
-	}
-	dl.setup dd label.column {
+	.config-section label.column {
 		clear: left;
 		font-weight: bold;
-		width: 12em;
+		width: 13em;
 		float: left;
 		text-align: right;
 		padding-right: 1em;
+		padding-top: .2em;
 	}
-	dl.setup dt {
+
+	.config-input {
 		clear: left;
-		font-size: 0.8em;
-		margin-left: 10em;
-		/* margin-right: 200px; */
-		margin-bottom: 2em;
+		zoom: 100%; /* IE hack */
 	}
+
+	.config-section .config-desc {
+		clear: left;
+		margin: 0 0 2em 18em;
+		padding-top: 1em;
+		font-size: 85%;
+	}
+
+	.iput-text, .iput-password {
+		width: 14em;
+	}
+
 	.error {
 		color: red;
+		background-color: #fff;
+		font-weight: bold;
+		padding-left: 1em;
 	}
+
+	.error-top {
+		color: red;
+		background-color: #FFF0F0;
+		border: 2px solid	 red;
+		font-size: 130%;
+		font-weight: bold;
+		padding: 1em 1.5em;
+		float: left;
+	}
+
 	ul.plain {
 		list-style: none;
-		clear: both;
-		margin-left: 12em;
+		float: left;
+		margin: 0;
+		padding: 0;
 	}
+
+	h2 {
+		border-bottom: 1px solid #aaa;
+		margin-bottom: 1em;
+		clear: left;
+	}
+
 	</style>
 </head>
 
@@ -376,7 +412,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
-	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
+	$conf->SysopName = importPost( "SysopName", "WikiAdmin" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
 
@@ -716,7 +752,7 @@ if( count( $errs ) ) {
 	/* Display options form */
 
 	if( $conf->posted ) {
-		echo "<p class='error'>Something's not quite right yet; make sure everything below is filled out correctly.</p>\n";
+		echo "<p class='error-top'>Something's not quite right yet; make sure everything below is filled out correctly.</p>\n";
 	}
 ?>
 
@@ -725,34 +761,34 @@ if( count( $errs ) ) {
 
 <h2>Site config</h2>
 
-<dl class="setup">
-	<dd>
+<div class="config-section">
+	<div class="config-input">
 		<?php
 		aField( $conf, "Sitename", "Site name:" );
 		?>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		Your site name should be a relatively short word. It'll appear as the namespace
 		name for 'meta' pages as well as throughout the user interface. Good site names
 		are things like "<a href="http://www.wikipedia.org/">Wikipedia</a>" and
 		"<a href="http://openfacts.berlios.de/">OpenFacts</a>"; avoid punctuation,
 		which may cause problems.
-	</dt>
+	</p>
 
-	<dd>
+	<div class="config-input">
 		<?php
-		aField( $conf, "EmergencyContact", "Contact e-mail" );
+		aField( $conf, "EmergencyContact", "Contact e-mail:" );
 		?>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		This will be used as the return address for password reminders and
 		may be displayed in some error conditions so visitors can get in
 		touch with you. It is also be used as the default sender address of e-mail
 		notifications (enotifs).
-	</dt>
+	</p>
 
-	<dd>
-		<label class='column' for="LanguageCode">Language</label>
+	<div class="config-input">
+		<label class='column' for="LanguageCode">Language:</label>
 		<select id="LanguageCode" name="LanguageCode">
 
 		<?php
@@ -763,16 +799,15 @@ if( count( $errs ) ) {
 			}
 		?>
 		</select>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		You may select the language for the user interface of the wiki...
 		Some localizations are less complete than others. Unicode (UTF-8 encoding)
 		is used for all localizations.
-	</dt>
+	</p>
 
-	<dd>
-		<label class='column'>Copyright/license metadata</label>
-		<div>Select one:</div>
+	<div class="config-input">
+		<label class='column'>Copyright/license:</label>
 
 		<ul class="plain">
 		<li><?php aField( $conf, "License", "no license metadata", "radio", "none" ); ?></li>
@@ -783,8 +818,8 @@ if( count( $errs ) ) {
 			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/index.php?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
 			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
-			print "<a href=\"$ccApp\">choose</a>";
-			?> (link will wipe out any other data in this form!)
+			print "<a href=\"$ccApp\" target='_blank'>choose</a>";
+			?>
 		<?php if( $conf->License == "cc" ) { ?>
 			<ul>
 				<li><?php aField( $conf, "RightsIcon", "<img src=\"" . htmlspecialchars( $conf->RightsIcon ) . "\" alt='icon' />", "hidden" ); ?></li>
@@ -795,34 +830,33 @@ if( count( $errs ) ) {
 		<?php } ?>
 			</li>
 		</ul>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		MediaWiki can include a basic license notice, icon, and machine-readable
 		copyright metadata if your wiki's content is to be licensed under
 		the GNU FDL or a Creative Commons license. If you're not sure, leave
 		it at "none".
-	</dt>
+	</p>
 
 
-	<dd>
-		<?php aField( $conf, "SysopName", "Sysop account name:", "" ) ?>
-	</dd>
-	<dd>
+	<div class="config-input">
+		<?php aField( $conf, "SysopName", "Admin username:" ) ?>
+	</div>
+	<div class="config-input">
 		<?php aField( $conf, "SysopPass", "password:", "password" ) ?>
-	</dd>
-	<dd>
+	</div>
+	<div class="config-input">
 		<?php aField( $conf, "SysopPass2", "again:", "password" ) ?>
-	</dd>
-	<dt>
-		A sysop user account can lock or delete pages, block problematic IP
+	</div>
+	<p class="config-desc">
+		An admin user account can lock or delete pages, block problematic IP
 		addresses from editing, and other maintenance tasks. If creating a new
-		wiki database, a sysop account will be created with the given name
+		wiki database, an admin account will be created with the given name
 		and password.
-	</dt>
+	</p>
 
-	<dd>
-		<label class='column'>Shared memory caching</label>
-		<div>Select one:</div>
+	<div class="config-input">
+		<label class='column'>Shared memory caching:</label>
 
 		<ul class="plain">
 		<li><?php aField( $conf, "Shm", "no caching", "radio", "none" ); ?></li>
@@ -841,55 +875,50 @@ if( count( $errs ) ) {
 			}
 		?>
 		<li><?php aField( $conf, "Shm", "Memcached", "radio", "memcached" ); ?></li>
-		<li><?php aField( $conf, "MCServers", "Memcached servers", "" ) ?></li>
 		</ul>
-	</dd>
-	<dt>
+		<div style="clear:left"><?php aField( $conf, "MCServers", "Memcached servers:", "text" ) ?></div>
+	</div>
+	<p class="config-desc">
 		Using a shared memory system such as Turck MMCache, eAccelerator, or Memcached will speed
 		up MediaWiki significantly. Memcached is the best solution but needs to be
 		installed. Specify the server addresses and ports in a comma-separted list. Only
 		use Turck shared memory if the wiki will be running on a single Apache server.
-	</dl>
+	</p>
+</div>
 
 <h2>E-mail, e-mail notification and authentication setup</h2>
 
-<dl class="setup">
-	<dd>
-		<label class='column'>E-mail (general)</label>
-		<div>Select one:</div>
-
+<div class="config-section">
+	<div class="config-input">
+		<label class='column'>E-mail (general):</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Email", "enabled", "radio", "email_enabled" ); ?></li>
 		<li><?php aField( $conf, "Email", "disabled", "radio", "email_disabled" ); ?></li>
 		</ul>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		Use this to disable all e-mail functions (send a password reminder, user-to-user e-mail and e-mail notification),
 		if sending e-mails on your server doesn't work.
-	</dt>
-	<dd>
-		<label class='column'>User-to-user e-mail</label>
-		<div>Select one:</div>
-
+	</p>
+	<div class="config-input">
+		<label class='column'>User-to-user e-mail:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Emailuser", "enabled", "radio", "emailuser_enabled" ); ?></li>
 		<li><?php aField( $conf, "Emailuser", "disabled", "radio", "emailuser_disabled" ); ?></li>
 		</ul>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		Use this to disable only the user-to-user e-mail function (EmailUser).
-	</dt>
-	<dd>
-		<label class='column'>E-mail notification</label>
-		<div>Select one:</div>
-
+	</p>
+	<div class="config-input">
+		<label class='column'>E-mail notification:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Enotif", "disabled", "radio", "enotif_disabled" ); ?></li>
 		<li><?php aField( $conf, "Enotif", "enabled for changes of watch-listed and user_talk pages (recommended for small wikis; perhaps not suited for large wikis)", "radio", "enotif_allpages" ); ?></li>
 		<li><?php aField( $conf, "Enotif", "enabled for changes of user_talk pages only (suited for small and large wikis)", "radio", "enotif_usertalk" ); ?></li>
 		</ul>
-	</dd>
-	<dt>
+	</div>
+	<div class="config-desc">
 		<p>
 		E-mail notification sends a notification e-mail to a user, when the user_talk page is changed
                 and/or when watch-listed pages are changed, depending on the above settings.
@@ -900,18 +929,16 @@ if( count( $errs ) ) {
 		The user options are not shown on the preference page, if e-mail notification is disabled.</p>
 
 		<p>There are additional options for fine tuning in /includes/DefaultSettings.php .</p>
-	</dt>
+	</div>
 
-	<dd>
-		<label class='column'>E-mail address authentication</label>
-		<div>Select one:</div>
-
+	<div class="config-input">
+		<label class='column'>E-mail authentication:</label>
 		<ul class="plain">
 		<li><?php aField( $conf, "Eauthent", "disabled", "radio", "eauthent_disabled" ); ?></li>
 		<li><?php aField( $conf, "Eauthent", "enabled", "radio", "eauthent_enabled" ); ?></li>
 		</ul>
-	</dd>
-	<dt>
+	</div>
+	<div class="config-desc">
 		<p>E-mail address authentication uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or changes his/her stored e-mail address
 		gets a link with a token mailed to that address. The stored e-mail address is authenticated at the moment the user comes back to the wiki via the link.</p>
 
@@ -920,83 +947,80 @@ if( count( $errs ) ) {
 
 		<p>If the option is enabled, only authenticated e-mail addresses can receive EmailUser mails and/or
 		e-mail notification mails.</p>
-	</dt>
+	</div>
 
-	</dl>
+</div>
 
 <h2>Database config</h2>
 
-<dl class="setup">
-	<dd>
-		<label class='column'>Database type</label>
-		<div>Select the database server software:</div>
+<div class="config-section">
+<div class="config-input">
+		<label class='column'>Database type:</label>
 		<ul class='plain'>
-		<?php
-			aField( $conf, "DBtype", "MySQL", "radio", "mysql");
-			aField( $conf, "DBtype", "Oracle", "radio", "oracle" );
-		?>
+			<li><?php aField( $conf, "DBtype", "MySQL", "radio", "mysql"); ?></li>
+			<li><?php aField( $conf, "DBtype", "Oracle", "radio", "oracle" ); ?></li>
 		</ul>
-	</dd>
+	</div>
 
-	<dd><?php
-		aField( $conf, "DBserver", "SQL server host" );
-	?></dd>
-	<dt>
+	<div class="config-input" style="clear:left"><?php
+		aField( $conf, "DBserver", "SQL server host:" );
+	?></div>
+	<p class="config-desc">
 		If your database server isn't on your web server, enter the name
 		or IP address here.  MySQL only.
-	</dt>
+	</p>
 
-	<dd><?php
-		aField( $conf, "DBname", "Database name" );
-	?></dd>
-	<dt>
+	<div class="config-input"><?php
+		aField( $conf, "DBname", "Database name:" );
+	?></div>
+	<div class="config-desc">
 		If using Oracle, set this to your connection identifier.
-	</dt>
-	<dd><?php
-		aField( $conf, "DBuser", "DB username" );
-	?></dd>
-	<dd><?php
-		aField( $conf, "DBpassword", "DB password", "password" );
-	?></dd>
-	<dd><?php
-		aField( $conf, "DBpassword2", "again", "password" );
-	?></dd>
-	<dt>
+	</div>
+	<div class="config-input"><?php
+		aField( $conf, "DBuser", "DB username:" );
+	?></div>
+	<div class="config-input"><?php
+		aField( $conf, "DBpassword", "DB password:", "password" );
+	?></div>
+	<div class="config-input"><?php
+		aField( $conf, "DBpassword2", "again:", "password" );
+	?></div>
+	<p class="config-desc">
 		If you only have a single user account and database available,
 		enter those here. If you have database root access (see below)
 		you can specify new accounts/databases to be created.
-	</dt>
+	</p>
 
-	<dd><?php
-		aField( $conf, "DBprefix", "Database table prefix" );
-	?></dd>
-	<dt>
+	<div class="config-input"><?php
+		aField( $conf, "DBprefix", "Database table prefix:" );
+	?></div>
+	<div class="config-desc">
 		<p>If you need to share one database between multiple wikis, or
 		MediaWiki and another web application, you may choose to
 		add a prefix to all the table names to avoid conflicts.</p>
 
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
-	</dt>
+	</div>
 
-	<dd>
+	<div class="config-input">
 		<?php
-		aField( $conf, "RootPW", "DB root password", "password" );
+		aField( $conf, "RootPW", "DB root password:", "password" );
 		?>
-	</dd>
-	<dt>
+	</div>
+	<p class="config-desc">
 		You will only need this if the database and/or user account
 		above don't already exist.
 		Do <em>not</em> type in your machine's root password! MySQL
 		has its own "root" user with a separate password. (It might
 		even be blank, depending on your configuration.)
-	</dt>
+	</p>
 
-	<dd>
+	<div class="config-input" style="padding:2em 0 3em">
 		<label class='column'>&nbsp;</label>
-		<input type="submit" value="Install!" />
-	</dd>
-</dl>
+		<input type="submit" value="Install MediaWiki!" style="font-weight: bold; font-size: 110%; padding: .2em .5em;" />
+	</div>
 
+</div>
 
 </form>
 
@@ -1250,7 +1274,10 @@ function importRequest( $name, $default = "" ) {
 	return importVar( $_REQUEST, $name, $default );
 }
 
-function aField( &$conf, $field, $text, $type = "", $value = "" ) {
+$radioCount = 0;
+
+function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
+	global $radioCount; 
 	if( $type != "" ) {
 		$xtype = "type=\"$type\"";
 	} else {
@@ -1259,6 +1286,10 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 
 	if(!(isset($id)) or ($id == "") ) $id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
+	
+	if ($type == 'radio')
+		$id .= $radioCount++;
+	
 	if( $nolabel ) {
 		echo "\t\t<label>";
 	} else {
@@ -1270,7 +1301,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 	} else {
 		$checked = "";
 	}
-	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" $checked value=\"";
+	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" class=\"iput-$type\" $checked value=\"";
 	if( $type == "radio" ) {
 		echo htmlspecialchars( $value );
 	} else {
