@@ -27,120 +27,84 @@ header( "Content-type: text/html; charset=utf-8" );
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="robots" content="noindex,nofollow">
 	<title>MediaWiki installation</title>
 	<style type="text/css">
-	
-	body {
-		font-family: sans-serif;
-		font-size: 80%;
-	}
 
-	#credit {
-		float: right;
-		width: 200px;
-		font-size: 85%;
-		background-color: #eee;
-		color: black;
-		border: solid 1px #444;
-		padding: .8em;
-		margin-left: .8em;
-	}
+		@import "../skins/monobook/main.css"; 
 
-	.config-section label.column {
-		clear: left;
-		font-weight: bold;
-		width: 13em;
-		float: left;
-		text-align: right;
-		padding-right: 1em;
-		padding-top: .2em;
-	}
+		.license {
+			font-size: 85%;
+			padding-top: 3em;
+		}
 
-	.config-input {
-		clear: left;
-		zoom: 100%; /* IE hack */
-	}
+		.config-section label.column {
+			clear: left;
+			font-weight: bold;
+			width: 13em;
+			float: left;
+			text-align: right;
+			padding-right: 1em;
+			padding-top: .2em;
+		}
 
-	.config-section .config-desc {
-		clear: left;
-		margin: 0 0 2em 18em;
-		padding-top: 1em;
-		font-size: 85%;
-	}
+		.config-input {
+			clear: left;
+			zoom: 100%; /* IE hack */
+		}
 
-	.iput-text, .iput-password {
-		width: 14em;
-	}
+		.config-section .config-desc {
+			clear: left;
+			margin: 0 0 2em 18em;
+			padding-top: 1em;
+			font-size: 85%;
+		}
 
-	.error {
-		color: red;
-		background-color: #fff;
-		font-weight: bold;
-		padding-left: 1em;
-	}
+		.iput-text, .iput-password {
+			width: 14em;
+			margin-right: 1em;
+		}
 
-	.error-top {
-		color: red;
-		background-color: #FFF0F0;
-		border: 2px solid	 red;
-		font-size: 130%;
-		font-weight: bold;
-		padding: 1em 1.5em;
-		float: left;
-	}
+		.error {
+			color: red;
+			background-color: #fff;
+			font-weight: bold;
+			left: 1em;
+			font-size: 100%;
+		}
 
-	ul.plain {
-		list-style: none;
-		float: left;
-		margin: 0;
-		padding: 0;
-	}
+		.error-top {
+			color: red;
+			background-color: #FFF0F0;
+			border: 2px solid	 red;
+			font-size: 130%;
+			font-weight: bold;
+			padding: 1em 1.5em;
+			float: left;
+		}
 
-	h2 {
-		border-bottom: 1px solid #aaa;
-		margin-bottom: 1em;
-		clear: left;
-	}
+		ul.plain {
+			list-style-type: none;
+			list-style-image: none;
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+
+		h2 {
+			border-bottom: 1px solid #aaa;
+			margin-bottom: 1em;
+			clear: left;
+		}
 
 	</style>
 </head>
 
 <body>
+<div id="globalWrapper">
+<div id="column-content">
+<div id="content">
+<div id="bodyContent">
 
-<div id="credit">
- <center>
-  <a href="http://www.mediawiki.org/">
-   <img src="../skins/common/images/mediawiki.png" width="135" height="135" alt="" border="0" />
-  </a>
- </center>
-
- <p><strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is
- Copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
-
- <ul>
-  <li><a href="../README">Readme</a></li>
-  <li><a href="../RELEASE-NOTES">Release notes</a></li>
-  <li><a href="../docs/">doc/</a></li>
-  <li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
- </ul>
-
- <p>This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.</p>
-
- <p>This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.</p>
-
- <p>You should have received <a href="../COPYING">a copy of the GNU General Public License</a>
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- or <a href="http://www.gnu.org/copyleft/gpl.html">read it online</a></p>
-</div>
 
 <?php
 
@@ -163,17 +127,16 @@ require_once( "includes/Namespace.php" );
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
 
-
 <?php
 
 /* Check for existing configurations and bug out! */
 
 if( file_exists( "../LocalSettings.php" ) ) {
-	dieout( "<h2>Wiki is configured.</h2>
+	dieout( "<h2>Already configured</h2>
 
-	<p>Already configured... <a href='../index.php'>return to the wiki</a>.</p>
+	<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
 
-	<p>(You should probably remove this directory for added security.)</p>" );
+	<p>Please delete the /config directory for extra security.</p>" );
 }
 
 if( file_exists( "./LocalSettings.php" ) ) {
@@ -214,9 +177,8 @@ class ConfigData {
 
 ?>
 
-<p><em>Please include all of the lines below when reporting installation problems.</em></p>
-
 <h2>Checking environment...</h2>
+<p><em>Please include all of the lines below when reporting installation problems.</em></p>
 <ul>
 <?php
 $endl = "
@@ -257,7 +219,7 @@ if( ini_get( "magic_quotes_sybase" ) ) {
 }
 
 if( $fatal ) {
-	dieout( "</ul><p>Cannot install wiki.</p>" );
+	dieout( "</ul><p>Cannot install Mediawiki.</p>" );
 }
 
 if( ini_get( "safe_mode" ) ) {
@@ -396,6 +358,7 @@ print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["PHP_SELF"] ); # was SCRIPT_NAME
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
+print "<li style='font-weight:bold;color:green'>Environment checked. You can install MediaWiki.</li>\n";
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
 	$conf->Sitename = ucfirst( importPost( "Sitename", "" ) );
@@ -1418,6 +1381,47 @@ function testMemcachedServer( $server ) {
 	return $errstr;
 }
 ?>
+
+	<div class="license">
+	<hr>
+	<p>This program is free software; you can redistribute it and/or modify
+	 it under the terms of the GNU General Public License as published by
+	 the Free Software Foundation; either version 2 of the License, or
+	 (at your option) any later version.</p>
+
+	 <p>This program is distributed in the hope that it will be useful,
+	 but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 GNU General Public License for more details.</p>
+
+	 <p>You should have received <a href="../COPYING">a copy of the GNU General Public License</a>
+	 along with this program; if not, write to the Free Software
+	 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+	 or <a href="http://www.gnu.org/copyleft/gpl.html">read it online</a></p>
+	</div>
+
+</div></div></div>
+
+
+<div id="column-one">
+	<div class="portlet" id="p-logo">
+	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
+	    href="/phase3/index.php/Main_Page"
+	    title="Main Page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='portlet'><div class='pBody'>
+		<p style="font-size:90%"><strong><a href="http://www.mediawiki.org/">MediaWiki</a></strong> is Copyright (C) 2001-2005 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
+		<ul>
+			<li><a href="../README">Readme</a></li>
+			<li><a href="../RELEASE-NOTES">Release notes</a></li>
+			<li><a href="../docs/">doc/</a></li>
+			<li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
+		</ul>
+	</div></div>
+</div>
+
+</div>
 
 </body>
 </html>
