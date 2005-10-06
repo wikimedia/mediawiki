@@ -20,18 +20,17 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 	$IP = "." ;
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
 ?>
-<!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
 	<head>
 		<title>MediaWiki <?php echo $wgVersion ?></title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-
 		<style type='text/css' media='screen, projection'>
 			html, body {
 				color: #000;
 				background-color: #fff;
-				font-family: serif;
-				text-align:center;
+				font-family: sans-serif;
+				text-align: center;
 			}
 
 			h1 {
@@ -48,7 +47,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 		if ( file_exists( 'config/LocalSettings.php' ) ) {
 			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
 		} else {
-			echo( "You'll have to <a href='config/index.php' title='setup'>set the wiki up</a> first!" );
+			echo( "Please <a href='config/index.php' title='setup'>setup the wiki</a> first." );
 		}
 		?>
 
