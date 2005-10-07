@@ -752,12 +752,16 @@ class UploadForm {
 	function verifyExtension( $mime, $extension ) {
 		$fname = 'SpecialUpload::verifyExtension';
 
-		if (!$mime || $mime=="unknown" || $mime=="unknown/unknown") {
-			wfDebug( "$fname: passing file with unknown mime type\n" );
-			return true;
-		}
+		$magic =& wfGetMimeMagic();
 
-		$magic=& wfGetMimeMagic();
+		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
+			if ( ! $magic->getTypesForExtension( $extension ) ) {
+				wfDebug( "$fname: passing file with unknown mime type and unknown extension\n" );
+				return true;
+			} else {
+				wfDebug( "$fname: rejecting file with unknown mime type but known extension\n" );
+				return false;
+			}
 
 		$match= $magic->isMatchingExtension($extension,$mime);
 
