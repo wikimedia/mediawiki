@@ -2133,7 +2133,6 @@ class Article {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
-		/*
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
 			# Periodically flush old entries from the recentchanges table.
@@ -2147,7 +2146,7 @@ class Article {
 			// re-enabled for commit of unrelated live changes -- TS
 			$dbw->query( $sql );
 		}
-		*/
+		
 		$id = $this->getID();
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
