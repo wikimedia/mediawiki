@@ -1211,3 +1211,11 @@ p.revision_saved {
 	background-color: #f0f0ff;
 }
 
+
+/* noarticletext */
+div.noarticletext {
+	border: 1px solid #ccc;
+	padding: 7px;
+	background: white;
+}
+
