@@ -86,6 +86,7 @@
 	'ig' => 'Igbo',			# Igbo
 	'ii' => 'ꆇꉙ',	# Sichuan Yi
 	'ik' => 'Iñupiak',	# Inupiak
+	'ilo' => 'Ilokano',	# Ilokano
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
 	'it' => 'Italiano',		# Italian
