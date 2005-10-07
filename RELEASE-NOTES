@@ -814,6 +814,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * (bug 3629) Fix date & time format for Frisian
 * (bug 3641) Fix handling of unrecognized file uploads with known extensions
+* (bug 3643) Fix image page display of large images with resizing disabled
 
 
 === Caveats ===
