@@ -813,6 +813,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 === Changes since 1.5.0 ===
 
 * (bug 3629) Fix date & time format for Frisian
+* (bug 3641) Fix handling of unrecognized file uploads with known extensions
 
 
 === Caveats ===
