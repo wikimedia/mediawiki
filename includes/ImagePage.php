@@ -174,14 +174,14 @@ class ImagePage extends Article {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
 						if ( $thumbnail == null ) {
-							$url = $img->getViewURL();
+							$url = $this->img->getViewURL();
 						} else {
 							$url = $thumbnail->getURL();
 						}
 					} else {
 						# No resize ability? Show the full image, but scale
 						# it down in the browser so it fits on the page.
-						$url = $img->getViewURL();
+						$url = $this->img->getViewURL();
 					}
 					$anchoropen  = "<a href=\"{$full_url}\">";
 					$anchorclose = "</a><br />";
