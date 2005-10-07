@@ -105,7 +105,9 @@ class Article {
 			}
 			wfProfileOut( $fname );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
-			return wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+			
+			$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+			return "<div class='noarticletext'>$ret</div>";
 		} else {
 			$this->loadContent( $noredir );
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
@@ -2131,6 +2133,7 @@ class Article {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
+		/*
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
 			# Periodically flush old entries from the recentchanges table.
@@ -2144,6 +2147,7 @@ class Article {
 			// re-enabled for commit of unrelated live changes -- TS
 			$dbw->query( $sql );
 		}
+		*/
 		$id = $this->getID();
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
