@@ -22,6 +22,18 @@
 
 $optionsWithArgs = array( 's', 'd', 'e' );
 
+$profiling = false;
+
+if ( $profiling ) {
+	define( 'MW_CMDLINE_CALLBACK', 'wfSetupDump' );
+	function wfSetupDump() {
+		global $wgProfiling, $wgProfileToDatabase, $wgProfileSampleRate;
+		$wgProfiling = true;
+		$wgProfileToDatabase = false;
+		$wgProfileSampleRate = 1;
+	}
+}
+
 require_once( "commandLine.inc" );
 require_once( "dumpHTML.inc" );
 
@@ -64,10 +76,16 @@ if ( $options['special'] ) {
 } else {
 	print("Creating static HTML dump in directory $dest. \n".
 		"Starting from page_id $start of $end.\n");
+
+	$dbr =& wfGetDB( DB_SLAVE );
+	print "Using database {$dbr->mServer}\n";
+
 	$d->doArticles( $start, $end );
-	$d->doImageDescriptions();
-	$d->doCategories();
-	$d->doSpecials();
+	if ( !isset( $options['e'] ) ) {
+		$d->doImageDescriptions();
+		$d->doCategories();
+		$d->doSpecials();
+	}
 	
 	/*
 	if ( $end - $start > CHUNK_SIZE * 2 ) {
@@ -94,6 +112,12 @@ if ( $options['special'] ) {
 	*/
 }
 
-exit();
+if ( isset( $options['debug'] ) ) {
+	print_r($GLOBALS);
+}
+
+if ( $profiling ) {
+	echo $wgProfiler->getOutput();
+}
 
 ?>
