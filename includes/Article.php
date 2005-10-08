@@ -2133,20 +2133,21 @@ class Article {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
-		wfSeedRandom();
-		if ( 0 == mt_rand( 0, 999 ) ) {
-			# Periodically flush old entries from the recentchanges table.
-			global $wgRCMaxAge;
-			$dbw =& wfGetDB( DB_MASTER );
-			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
-			$recentchanges = $dbw->tableName( 'recentchanges' );
-			$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
-			//$dbw->query( $sql ); // HACK: disabled for now, slowness
-
-			// re-enabled for commit of unrelated live changes -- TS
-			$dbw->query( $sql );
-		}
 		
+		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', &$this ) ) {
+			wfSeedRandom();
+			if ( 0 == mt_rand( 0, 999 ) ) {
+				# Periodically flush old entries from the recentchanges table.
+				global $wgRCMaxAge;
+				
+				$dbw =& wfGetDB( DB_MASTER );
+				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
+				$recentchanges = $dbw->tableName( 'recentchanges' );
+				$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
+				$dbw->query( $sql );
+			}
+		}
+
 		$id = $this->getID();
 		$title = $this->mTitle->getPrefixedDBkey();
 		$shortTitle = $this->mTitle->getDBkey();
