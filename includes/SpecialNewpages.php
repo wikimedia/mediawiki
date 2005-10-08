@@ -78,12 +78,13 @@ class NewPagesPage extends QueryPage {
 
 		# Since there is no diff link, we need to give users a way to
 		# mark the article as patrolled if it isn't already
+		$ns = $wgContLang->getNsText( $result->namespace );
 		if ( $wgUseRCPatrol && !is_null ( $result->usepatrol ) && $result->usepatrol &&
 		     $result->patrolled == 0 && $wgUser->isLoggedIn() &&
 		     ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
-			$link = $skin->makeKnownLink( $result->title, '', "rcid={$result->rcid}" );
+			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '', "rcid={$result->rcid}" );
 		else
-			$link = $skin->makeKnownLink( $result->title, '' );
+			$link = $skin->makeKnownLink( $ns . ':' . $result->title, '' );
 
 		$s = "{$d} {$link} ({$length}) . . {$ul}";
 
