@@ -188,7 +188,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 #
 /* private */ $wgMagicWordsEn = array(
 #   ID                                 CASE  SYNONYMS
-	MAG_REDIRECT             => array( 0,    '#redirect'              ),
+	MAG_REDIRECT             => array( 0,    '#REDIRECT'              ),
 	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
 	MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
 	MAG_TOC                  => array( 0,    '__TOC__'                ),
