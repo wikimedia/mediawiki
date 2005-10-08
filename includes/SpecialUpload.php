@@ -755,11 +755,11 @@ class UploadForm {
 		$magic =& wfGetMimeMagic();
 
 		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
-			if ( ! $magic->getTypesForExtension( $extension ) ) {
-				wfDebug( "$fname: passing file with unknown mime type and unknown extension\n" );
+			if ( ! $magic->isRecognizableExtension( $extension ) ) {
+				wfDebug( "$fname: passing file with unknown detected mime type; unrecognized extension '$extension', can't verify\n" );
 				return true;
 			} else {
-				wfDebug( "$fname: rejecting file with unknown mime type but known extension\n" );
+				wfDebug( "$fname: rejecting file with unknown detected mime type; recognized extension '$extension', so probably invalid file\n" );
 				return false;
 			}
 
