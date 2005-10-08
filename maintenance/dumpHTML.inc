@@ -54,8 +54,12 @@ class DumpHTML {
 
 		
 		for ($id = $start; $id <= $end; $id++) {
+			wfWaitForSlaves( 20 );
 			if ( !($id % REPORTING_INTERVAL) ) {
 				print "Processing ID: $id\r";
+			}
+			if ( !($id % (REPORTING_INTERVAL*10) ) ) {
+				print "\n";
 			}
 			$title = Title::newFromID( $id );
 			if ( $title ) {
@@ -120,6 +124,7 @@ class DumpHTML {
 		print "Writing image description pages for local images\n";
 		$num = $dbr->numRows( $res );
 		while ( $row = $dbr->fetchObject( $res ) ) {
+			wfWaitForSlaves( 10 );
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
 				print "Done $i of $num\r";
 			}
@@ -168,6 +173,7 @@ class DumpHTML {
 		print "\nWriting " . $dbr->numRows( $res ).  " category pages\n";
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
+			wfWaitForSlaves( 10 );
 			if ( !(++$i % REPORTING_INTERVAL ) ) {
 				print "$i\r";
 			}
@@ -265,6 +271,7 @@ class DumpHTML {
 		$wgHideInterlangageLinks = !$this->interwiki;
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
 		$wgEnableParserCache = false;
+		$wgMathPath = "$wgScriptPath/math";
 
 		$wgUser = new User;
 		$wgUser->setOption( 'skin', 'htmldump' );
@@ -276,10 +283,11 @@ class DumpHTML {
 
 	/** Reads the content of a title object, executes the skin and captures the result */
 	function getArticleHTML( &$title ) {
-		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgUseCategoryMagic;
+		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgUseCategoryMagic, $wgLinkCache;
 		
 		$wgOut = new OutputPage;
 		$wgOut->setParserOptions( new ParserOptions );
+		$wgLinkCache = new LinkCache;
 		
 		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
@@ -297,7 +305,14 @@ class DumpHTML {
 			} else {
 				$wgArticle = new Article( $wgTitle );
 			}
-			$wgArticle->view();
+			$rt = Title::newFromRedirect( $wgArticle->fetchContent() );
+			if ( $rt != NULL ) {
+				$wgOut->addMeta( 'http:Refresh', '3;url=' . $rt->escapeLocalURL() );
+				$wgOut->setPageTitle( $wgTitle->getPrefixedText() );
+				$wgOut->addWikiText( wfMsg( 'redirectingto', $rt->getPrefixedText() ) );
+			} else {
+				$wgArticle->view();
+			}
 		}
 
 		$sk =& $wgUser->getSkin();
@@ -327,12 +342,18 @@ class DumpHTML {
 	 * This is necessary even if you intend to distribute all of commons, because
 	 * the directory contents is used to work out which image description pages
 	 * are needed.
+	 * 
+	 * Also copies math images
+	 *
 	 */
 	function copyImages( $images ) {
-		global $wgSharedUploadPath, $wgSharedUploadDirectory;
+		global $wgSharedUploadPath, $wgSharedUploadDirectory, $wgMathPath, $wgMathDirectory;
 		# Find shared uploads and copy them into the static directory
 		$sharedPathLength = strlen( $wgSharedUploadPath ); 
-		foreach ( $images as $image => $dummy ) {
+		$mathPathLength = strlen( $wgMathPath );
+		foreach ( $images as $escapedImage => $dummy ) {
+			$image = urldecode( $escapedImage );
+
 			# Is it shared?
 			if ( substr( $image, 0, $sharedPathLength ) == $wgSharedUploadPath ) {
 				# Reconstruct full filename
@@ -366,6 +387,15 @@ class DumpHTML {
 							copy( $sourceLoc, $staticLoc );
 						}
 					}
+				}
+			} else
+			# Is it math?
+			if ( substr( $image, 0, $mathPathLength ) == $wgMathPath ) {
+				$rel = substr( $image, $mathPathLength + 1 ); // +1 for slash
+				$source = "$wgMathDirectory/$rel";
+				$dest = "{$this->dest}/math/$rel";
+				if ( !file_exists( $dest ) ) {
+					copy( $source, $dest );
 				}
 			}
 		}
