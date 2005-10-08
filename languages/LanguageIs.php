@@ -50,7 +50,7 @@ require_once( 'LanguageUtf8.php' );
 );
 
 $wgMagicWordsIs = array(
-	MAG_REDIRECT             => array( 0,    '#redirect', '#tilvísun', '#TILVÍSUN' ), // MagicWord::initRegex() sucks
+	MAG_REDIRECT             => array( 0, '#tilvísun', '#TILVÍSUN', '#redirect' ), // MagicWord::initRegex() sucks
 ) + $wgMagicWordsEn;
 
 #-------------------------------------------------------------------
