@@ -144,8 +144,8 @@ class DumpHTML {
 		$i = 0;
 		for ( $hash = 0; $hash < 256; $hash++ ) {				
 			$dir = sprintf( "%01x/%02x", intval( $hash / 16 ), $hash );
-			$paths = glob( "{$this->sharedStaticPath}/$dir/*" );
-			$paths += glob( "{$this->sharedStaticPath}/thumb/$dir/*" );
+			$paths = array_merge( glob( "{$this->sharedStaticPath}/$dir/*" ),
+				glob( "{$this->sharedStaticPath}/thumb/$dir/*" ) );
 
 			foreach ( $paths as $path ) {
 				$file = basename( $path );
