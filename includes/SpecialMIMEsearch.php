@@ -31,7 +31,7 @@ class MIMEsearchPage extends QueryPage {
 	 * Due to this page relying upon extra fields being passed in the SELECT it
 	 * will fail if it's set as expensive and misermode is on
 	 */
-	function isExpensive() { return false; }
+	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	
 	function linkParameters() {
