@@ -1446,6 +1446,13 @@ class User {
 		# Check if this IP address is already blocked
 		$ipblock = Block::newFromDB( wfGetIP() );
 		if ( $ipblock->isValid() ) {
+			# If the user is already blocked. Then check if the autoblock would
+			# excede the user block. If it would excede, then do nothing, else
+			# prolong block time
+			if ($userblock->mExpiry &&
+				($userblock->mExpiry < Block::getAutoblockExpiry($ipblock->mTimestamp))) {
+				return;
+			}
 			# Just update the timestamp
 			$ipblock->updateTimestamp();
 			return;
