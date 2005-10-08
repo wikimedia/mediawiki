@@ -64,13 +64,14 @@ function makePhp($messages) {
 	$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
 	foreach( $messages as $key => $m ) {
 		if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
-			if (strstr($m['msg'],"\n")) {
-				$txt.='/* ';
-				$comment=' */';
-			} else {
-				$txt .= '#';
-				$comment = '';
-			}
+			//if (strstr($m['msg'],"\n")) {
+			//	$txt.='/* ';
+			//	$comment=' */';
+			//} else {
+			//	$txt .= '#';
+			//	$comment = '';
+			//}
+			continue;
 		} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
 			$m['msg'] = '';
 			$comment = ' #empty';
