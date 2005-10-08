@@ -159,12 +159,19 @@ class User {
 	/**
 	 * does the string match an anonymous IPv4 address?
 	 *
+	 * Note: We match \d{1,3}\.\d{1,3}\.\d{1,3}\.xxx as an anonymous IP
+	 * address because the usemod software would "cloak" anonymous IP
+	 * addresses like this, if we allowed accounts like this to be created
+	 * new users could get the old edits of these anonymous users.
+	 *
+	 * @bug 3631
+	 *
 	 * @static
 	 * @param string $name Nickname of a user
 	 * @return bool
 	 */
 	function isIP( $name ) {
-		return preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/",$name);
+		return preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/",$name);
 		/*return preg_match("/^
 			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
 			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
