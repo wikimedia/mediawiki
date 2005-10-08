@@ -295,6 +295,7 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
+		global $wgLang ;
 		$fname = 'EditPage::importFormData';
 		wfProfileIn( $fname );
 
@@ -305,7 +306,8 @@ class EditPage {
 			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
 			$this->textbox2 = $this->safeUnicodeInput( $request, 'wpTextbox2' );
 			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
-			$this->summary   =        $request->getText( 'wpSummary'  );
+			# Truncate for whole multibyte characters. +5 bytes for ellipsis
+			$this->summary   = $wgLang->truncate( $request->getText( 'wpSummary'  ), 250 );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
