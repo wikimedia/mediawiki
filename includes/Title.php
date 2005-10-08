@@ -664,8 +664,13 @@ class Title {
 		if ( '' == $this->mInterwiki ) {
 			return $wgServer . $this->getLocalUrl( $query );
 		} elseif ( $wgMakeDumpLinks && $wgContLang->getLanguageName( $this->mInterwiki ) ) {
-			$baseUrl = str_replace( '$1', "../../{$this->mInterwiki}/$1", $wgArticlePath );
-			$baseUrl = str_replace( '$1', $this->getHashedDirectory() . '/$1', $baseUrl );
+			if ( $this->getDBkey() == '' ) {
+				$url = str_replace( '$1', "../{$this->mInterwiki}/index.html", $wgArticlePath );
+			} else {
+				$url = str_replace( '$1', "../{$this->mInterwiki}/" . $this->getHashedFilename() , 
+					$wgArticlePath );
+			}
+			return $url;
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
 		}
@@ -695,35 +700,45 @@ class Title {
 	 */
 	function getHashedDirectory() {
 		global $wgMakeDumpLinks, $wgInputEncoding;
-		$dbkey = $this->getDBkey();
+		if ( '' != $this->mInterwiki ) {
+			$pdbk = $this->mDbkeyform;
+		} else {
+			$pdbk = $this->getPrefixedDBkey();
+		}
 
 		# Split into characters
 		if ( $wgInputEncoding == 'UTF-8' ) {
-			preg_match_all( '/./us', $dbkey, $m );
+			preg_match_all( '/./us', $pdbk, $m );
 		} else {
-			preg_match_all( '/./s', $dbkey, $m );
+			preg_match_all( '/./s', $pdbk, $m );
 		}
 		$chars = $m[0];
 		$length = count( $chars );
 		$dir = '';
 
 		for ( $i = 0; $i < $wgMakeDumpLinks; $i++ ) {
+			$c = $chars[$i];
 			if ( $i ) {
 				$dir .= '/';
 			}
 			if ( $i >= $length ) {
 				$dir .= '_';
-			} elseif ( ord( $chars[$i] ) > 32 ) {
-				$dir .= strtolower( $chars[$i] );
+			} elseif ( ord( $c ) >= 128 || ctype_alnum( $c ) ) {
+				$dir .= strtolower( $c );
 			} else {
-				$dir .= sprintf( "%02X", ord( $chars[$i] ) );
+				$dir .= sprintf( "%02X", ord( $c ) );
 			}
 		}
 		return $dir;
 	}
 
 	function getHashedFilename() {
-		$dbkey = $this->getPrefixedDBkey();
+		if ( '' != $this->mInterwiki ) {
+			$dbkey = $this->getDBkey();
+		} else {
+			$dbkey = $this->getPrefixedDBkey();
+		}
+
 		$mainPage = Title::newMainPage();
 		if ( $mainPage->getPrefixedDBkey() == $dbkey ) {
 			return 'index.html';
@@ -736,7 +751,7 @@ class Title {
 
 		# Work out lower case form. We assume we're on a system with case-insensitive
 		# filenames, so unless the case is of a special form, we have to disambiguate
-		$lowerCase = $this->prefix( ucfirst( strtolower( $this->getDBkey() ) ) );
+		$lowerCase = ucfirst( strtolower( $dbkey ) );
 
 		# Make it mostly unique
 		if ( $lowerCase != $friendlyName  ) {
