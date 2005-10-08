@@ -16,6 +16,11 @@ require_once( 'QueryPage.php' );
  * @subpackage SpecialPage
  */
 class NewPagesPage extends QueryPage {
+	var $namespace;
+	
+	function NewPagesPage( $namespace ) {
+		$this->namespace = $namespace;
+	}
 
 	function getName() {
 		return 'Newpages';
@@ -24,7 +29,6 @@ class NewPagesPage extends QueryPage {
 	function isExpensive() {
 		# Indexed on RC, and will *not* work with querycache yet.
 		return false;
-		#return parent::isExpensive();
 	}
 
 	function getSQL() {
@@ -51,7 +55,7 @@ class NewPagesPage extends QueryPage {
 			        page_latest as rev_id
 			FROM $recentchanges,$page
 			WHERE rc_cur_id=page_id AND rc_new=1
-			AND rc_namespace=".NS_MAIN." AND page_is_redirect=0";
+			AND rc_namespace=" . $this->namespace . " AND page_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {
@@ -103,35 +107,34 @@ class NewPagesPage extends QueryPage {
 /**
  * constructor
  */
-function wfSpecialNewpages($par, $specialPage)
-{
-	global $wgRequest;
+function wfSpecialNewpages($par, $specialPage) {
+	global $wgRequest, $wgContLang;
+	
 	list( $limit, $offset ) = wfCheckLimits();
-	if( $par ) {
+	
+	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
-			if ( 'shownav' == $bit ) $shownavigation = 1;
-			if ( is_numeric( $bit ) ) {
+			if ( 'shownav' == $bit )
+				$shownavigation = true;
+			if ( is_numeric( $bit ) )
 				$limit = $bit;
-			}
 
-			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
+			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
 				$limit = intval($m[1]);
-			}
-			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) ) {
+			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
 				$offset = intval($m[1]);
-			}
+			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) )
+				$namespace = $wgContLang->getNsIndex( $m[1] );
 		}
 	}
-	if(!isset($shownavigation)) {
-		$shownavigation=!$specialPage->including();
-	}
+	if ( ! isset( $shownavigation ) )
+		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage();
+	$npp = new NewPagesPage( isset( $namespace ) ? $namespace : NS_MAIN );
 
-	if( !$npp->doFeed( $wgRequest->getVal( 'feed' ) ) ) {
+	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ) ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
-	}
 }
 
 ?>
