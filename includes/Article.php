@@ -760,14 +760,14 @@ class Article {
 				$wgOut->setRobotpolicy( 'noindex,follow' );
 			}
 			if ( '' != $this->mRedirectedFrom ) {
-				$sk = $wgUser->getSkin();
-				$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '',
-				  'redirect=no' );
-				$s = wfMsg( 'redirectedfrom', $redir );
-				$wgOut->setSubtitle( $s );
-
-				# Can't cache redirects
-				$pcache = false;
+				if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+					$sk = $wgUser->getSkin();
+					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
+					$s = wfMsg( 'redirectedfrom', $redir );
+					$wgOut->setSubtitle( $s );
+					# Can't cache redirects
+					$pcache = false;
+				}
 			} elseif ( !empty( $rdfrom ) ) {
 				global $wgRedirectSources;
 				if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
