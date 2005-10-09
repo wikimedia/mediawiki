@@ -607,7 +607,7 @@ class Title {
 	 */
 	function getPrefixedText() {
 		global $wgContLang;
-		if ( empty( $this->mPrefixedText ) ) {
+		if ( empty( $this->mPrefixedText ) ) { // FIXME: bad usage of empty() ?
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
@@ -922,7 +922,7 @@ class Title {
 	 * @access private
  	 */
 	function userCan($action) {
-		$fname = 'Title::userCanEdit';
+		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
 		global $wgUser;
@@ -930,11 +930,14 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
+		// XXX: This is the code that prevents unprotecting a page in NS_MEDIAWIKI
+		// from taking effect -ævar
 		if( NS_MEDIAWIKI == $this->mNamespace &&
 		    !$wgUser->isAllowed('editinterface') ) {
 			wfProfileOut( $fname );
 			return false;
 		}
+		
 		if( $this->mDbkeyform == '_' ) {
 			# FIXME: Is this necessary? Shouldn't be allowed anyway...
 			wfProfileOut( $fname );
