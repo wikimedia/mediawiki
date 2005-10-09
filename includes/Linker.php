@@ -584,7 +584,7 @@ class Linker {
 	}
 	
 	/** @todo document */
-	function makeMediaLink( $name, $url, $alt = '' ) {
+	function makeMediaLink( $name, /* wtf?! */ $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
@@ -716,7 +716,7 @@ class Linker {
 				$thelink = $this->makeMediaLink( $submatch[1], "", $text );
 			} else {
 				# Other kind of link
-				if( preg_match( wfMsgForContent( "linktrail" ), $match[4], $submatch ) ) {
+				if( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
 					$trail = $submatch[1];
 				} else {
 					$trail = "";
