@@ -316,8 +316,8 @@ if (!$conf->turck && !$conf->eaccel) {
 }
 
 $conf->diff3 = false;
-$diff3locations = array("/usr/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode(":", getenv("PATH"));
-$diff3names = array("gdiff3", "diff3");
+$diff3locations = array("/usr/bin", "/opt/csw/bin", "/usr/gnu/bin", "/usr/sfw/bin") + explode($sep, getenv("PATH"));
+$diff3names = array("gdiff3", "diff3", "diff3.exe");
 
 $diff3versioninfo = array('$1 --version 2>&1', 'diff3 (GNU diffutils)');
 foreach ($diff3locations as $loc) {
@@ -1312,13 +1312,14 @@ function locate_executable($loc, $names, $versioninfo = false) {
 		$names = array($names);
 
 	foreach ($names as $name) {
-		if (file_exists("$loc/$name")) {
+		$command = "$loc".DIRECTORY_SEPARATOR."$name";
+		if (file_exists($command)) {
 			if (!$versioninfo)
-				return "$loc/$name";
+				return $command;
 
-			$file = str_replace('$1', "$loc/$name", $versioninfo[0]);
+			$file = str_replace('$1', $command, $versioninfo[0]);
 			if (strstr(`$file`, $versioninfo[1]) !== false)
-				return "$loc/$name";
+				return $command;
 		}
 	}
 	return false;

@@ -134,6 +134,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3629) Fix date & time format for Frisian
 * (bug 3643) Fix image page display of large images with resizing disabled
 * (bug 3334) Namespace changes for Polish
+* (bug 3660) Update diff3 detection to work with Windows/Cygwin
 
 
 === Caveats ===
