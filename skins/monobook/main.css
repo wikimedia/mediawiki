@@ -1,4 +1,4 @@
-﻿/*
+/*
 ** MediaWiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://wikidev.net/
 ** License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -1071,9 +1071,13 @@ span.changedby {
 }
 
 .previewnote {
-	text-align: center;
-	color: #cc0000;
+  text-indent: 3em;
+	color: #c00;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
 }
+
 .editExternally {
 	border: 1px solid gray;
 	background-color: #ffffff;

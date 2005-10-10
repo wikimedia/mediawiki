@@ -981,7 +981,7 @@ END
 		wfProfileIn( $fname );
 
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
-			"<p class='previewnote'>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</p>\n";
+			"<p class='previewnote'><strong>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</strong></p>\n";
 		if ( $this->isConflict ) {
 			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) .
 				"</h2>\n";
