@@ -919,7 +919,7 @@ head:first-child+body #footer li { white-space: nowrap; }
     margin: 1px -2px 1px 2px;
     float: left;
     padding: 2px 0 3px 0;
-    background-color: #ece9d8;
+    background-color: #f0f0f0;
     color: #000;
     border: 1px solid #fff;
     border-right-color: #716f64;
@@ -949,6 +949,7 @@ head:first-child+body #footer li { white-space: nowrap; }
     color: #000;
     padding: 0 .7em;
     position: relative;
+    text-decoration: none;
 }
 #preftoc li.selected a {
     cursor: default;
