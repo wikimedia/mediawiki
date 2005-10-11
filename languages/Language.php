@@ -2165,6 +2165,9 @@ Please confirm that really want to recreate this article.',
 
 'unit-pixel' => 'px',
 
+# HTML dump
+'redirectingto' => 'Redirecting to [[$1]]...',
+
 );
 
 /* a fake language converter */
