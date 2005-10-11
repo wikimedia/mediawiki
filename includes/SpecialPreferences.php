@@ -804,7 +804,7 @@ class PreferencesForm {
 	<input type='hidden' name='wpEditToken' value='{$token}' />
 	</div></form>\n" );
 
-	$wgOut->addWikiText( wfMsg('clearyourcache') );
+	$wgOut->addWikiText( '<div class="prefcache">' . wfMsg('clearyourcache') . '</div>' );
 
 	}
 }

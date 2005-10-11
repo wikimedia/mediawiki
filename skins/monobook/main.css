@@ -969,6 +969,14 @@ head:first-child+body #footer li { white-space: nowrap; }
     padding: 0;
     margin: 0;
 }
+.prefsection fieldset {
+    border: 1px solid #aaa;
+    float: left;
+    margin-right: 2em;
+}
+.prefsection legend {
+    font-weight: bold;   
+}
 .prefsection table, .prefsection legend {
     background-color: #F9F9F9;
 }
@@ -980,6 +988,7 @@ div.prefsectiontip {
     margin-top: 0;
     background-color: #FFC1C1;
     padding: .2em .7em;
+    clear: left;
 }
 .btnSavePrefs {
     font-weight: bold;
@@ -997,6 +1006,11 @@ div.prefsectiontip {
 .preferences-login {
     clear: both;
     margin-bottom: 1.5em;
+}
+
+.prefcache {
+    font-size: 90%;
+    margin-top: 2em;
 }
 
 /*

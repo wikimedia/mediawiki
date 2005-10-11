@@ -295,9 +295,9 @@ parent class in order maintain consistency across languages.
 'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
-'tog-enotifwatchlistpages' 	=> 'Send me an email on page changes',
-'tog-enotifusertalkpages' 	=> 'Send me an email when my user talk page is changed',
-'tog-enotifminoredits' 		=> 'Send me an email also for minor edits of pages',
+'tog-enotifwatchlistpages' 	=> 'Email me on page changes',
+'tog-enotifusertalkpages' 	=> 'Email me when my user talk page is changed',
+'tog-enotifminoredits' 		=> 'Email me also for minor edits of pages',
 'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails',
 'tog-shownumberswatching' 	=> 'Show the number of watching users',
 'tog-fancysig' => 'Raw signatures (without automatic link)',
@@ -639,8 +639,7 @@ to confirm that the account is actually yours.",
 'emailauthenticated'        => 'Your email address was authenticated on $1.',
 'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>No email address has been specified</strong>, the following
-features will not work.',
+'noemailprefs'              => '<strong>Specify an email address for these features to work.</strong>',
 'emailconfirmlink' => 'Confirm your e-mail address',
 'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
