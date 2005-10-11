@@ -135,6 +135,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3643) Fix image page display of large images with resizing disabled
 * (bug 3334) Namespace changes for Polish
 * (bug 3660) Update diff3 detection to work with Windows/Cygwin
+* Fix meta robots tag on Special:Version again to avoid listing vulnerable
+  versions for convenient harvesting by automated worms
 
 
 === Caveats ===
