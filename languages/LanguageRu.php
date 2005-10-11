@@ -2020,10 +2020,6 @@ class LanguageRu extends LanguageUtf8 {
 		}
 	}
 
-	function truncate( $string, $length, $ellipsis = "" ) {
-		return parent::truncate( $string, $length, $ellipsis = "…" );
-	}
-
 	function formatNum( $number ) {
 		global $wgTranslateNumerals;
 		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
