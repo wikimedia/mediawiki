@@ -440,10 +440,6 @@ class PreferencesForm {
 		} else if ( '' != $status ) {
 			$wgOut->addWikitext( $message . "\n----" );
 		}
-		$uname = $wgUser->getName();
-		$uid = $wgUser->getID();
-
-		$wgOut->addWikiText( '<div class="preferences-login">' . wfMsg( 'prefslogintext', $uname, $uid ) . '</div>' );
 
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
@@ -506,6 +502,21 @@ class PreferencesForm {
 
 		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table>\n");
 
+		$wgOut->addHTML(
+			$this->addRow(
+				wfMsg( 'username'),
+				$wgUser->getName()
+			)
+		);
+
+		$wgOut->addHTML(
+			$this->addRow(
+				wfMsg( 'uid' ),
+				$wgUser->getID()
+			)
+		);
+				
+		
 		if ($wgAllowRealName) {
 			$wgOut->addHTML(
 				$this->addRow(
