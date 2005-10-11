@@ -48,7 +48,6 @@ class MonoBookTemplate extends QuickTemplate {
 	 */
 	function execute() {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
-		global $action;
 		wfSuppressWarnings();
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -132,7 +131,9 @@ class MonoBookTemplate extends QuickTemplate {
 	  <div class='pBody'>
 	    <ul>
 	    <?php foreach($cont as $key => $val) { 
-				echo '<li id="' . htmlspecialchars($val['id']) . '">';
+				echo '<li id="' . htmlspecialchars($val['id']) . '"';
+				if ( $val['active'] ) echo ' class="active"';
+				echo '>';
 				if ( $val['active'] ) echo '<strong>';
 				if ( $val['dolink'] ) echo '<a href="' . htmlspecialchars($val['href']) . '">';
 				echo htmlspecialchars($val['text']); 
