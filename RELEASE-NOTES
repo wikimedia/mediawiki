@@ -140,7 +140,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3580) Change default Dutch language file to more neutral
 * (bug 3656) Minor LanguageHr.php update - added convertPlural() code
 * (bug 3414) Add plural forms support to Belarusian
-* (bug 3163) Full translation complete of languagebr.php
+* (bug 3163) Full translation of LanguageBr
+* (bug 3617) Update for portuguese language (pt)
 
 
 === Caveats ===
