@@ -434,17 +434,16 @@ class PreferencesForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if ( $this->mSuccess || 'success' == $status ) {
-			$wgOut->addWikitext( '<span class="preferences-save-success">'. wfMsg( 'savedprefs' ) . "</span>\n----" );
+			$wgOut->addWikitext( '<div class="preferences-save-success"><strong>'. wfMsg( 'savedprefs' ) . '</strong></div>' );
 		} else	if ( 'error' == $status ) {
-			$wgOut->addWikitext( "<span class='error'>" . $message  . "</span>\n----" );
+			$wgOut->addWikitext( '<div class="error"><strong>' . $message  . '</strong></div>' );
 		} else if ( '' != $status ) {
 			$wgOut->addWikitext( $message . "\n----" );
 		}
 		$uname = $wgUser->getName();
 		$uid = $wgUser->getID();
 
-		$wgOut->addWikiText( wfMsg( 'prefslogintext', $uname, $uid ) );
-		$wgOut->addWikiText( wfMsg('clearyourcache'));
+		$wgOut->addWikiText( '<div class="preferences-login">' . wfMsg( 'prefslogintext', $uname, $uid ) . '</div>' );
 
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
@@ -499,7 +498,8 @@ class PreferencesForm {
 
 		# </FIXME>
 
-		$wgOut->addHTML( "<form id='preferences' name='preferences' action=\"$action\" method='post'>" );
+		$wgOut->addHTML( "<form action=\"$action\" method='post'>" );
+		$wgOut->addHTML( "<div id='preferences'>" );
 
 		# User data
 		#
@@ -606,7 +606,7 @@ class PreferencesForm {
                         if ($wgEnableUserEmail) {
 				$emf = wfMsg( 'emailflag' );
                                 $wgOut->addHTML(
-                                "<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>" );
+                                "<div><input type='checkbox' $emfc value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label></div>" );
                         }
 
 			$wgOut->addHTML( '</fieldset>' );
@@ -700,7 +700,7 @@ class PreferencesForm {
 			foreach($dateopts as $key => $option) {
 				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
 				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
-					"value=\"$key\"$checked />$option</label></div>\n" );
+					"value=\"$key\"$checked /> $option</label></div>\n" );
 			}
 			$wgOut->addHTML( "</fieldset>\n\n");
 		}
@@ -803,7 +803,7 @@ class PreferencesForm {
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
 	<div>
-		<input type='submit' name='wpSaveprefs' value=\"" . wfMsg( 'saveprefs' ) . "\" accesskey=\"".
+		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsg( 'saveprefs' ) . "\" accesskey=\"".
 		wfMsg('accesskey-save')."\" title=\"[alt-".wfMsg('accesskey-save')."]\" />
 		<input type='submit' name='wpReset' value=\"" . wfMsg( 'resetprefs' ) . "\" />
 	</div>
@@ -811,7 +811,10 @@ class PreferencesForm {
 	</div>
 
 	<input type='hidden' name='wpEditToken' value='{$token}' />
-	</form>\n" );
+	</div></form>\n" );
+
+	$wgOut->addWikiText( wfMsg('clearyourcache') );
+
 	}
 }
 ?>

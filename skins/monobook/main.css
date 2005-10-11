@@ -911,33 +911,91 @@ head:first-child+body #footer li { white-space: nowrap; }
 
 /* js pref toc */
 #preftoc {
-    float: left;
-    margin: 1em;
-    width: 13em;
+    margin: 0;
+    width: 100%;
 }
 #preftoc li {
-    border: 1px solid white;
+    margin: 1px -2px 1px 2px;
+    float: left;
+    padding: 2px 0 3px 0;
+    background: ThreeDFace;
+    border: 1px solid;
+    border-color:	ThreeDHighlight ThreeDDarkShadow ThreeDDarkShadow ThreeDHighlight;
+    border-bottom: 0;
+    position: relative;
+    white-space: nowrap;
+    list-style-type: none;
+    list-style-image: none;
 }
 #preftoc li.selected {
-    background-color: #f9f9f9;
-    border: 1px dashed #aaa;
+    font-weight: bold;
+    background-color: #F9F9F9;
+    border: 1px solid #aaa;
+    border-bottom: none;
+    cursor: default;
+    z-index: 3;
+    padding: 2px 6px 5px 7px;
+    margin: 1px -3px -2px 0px;
+    position: relative;
+    top: -1px;
+}
+#preftoc > li.selected {
+    top: 0;
 }
 #preftoc a,
 #preftoc a:active {
     display: block;
-    color: #0014a6;
+    color: #000;
+    padding: 0 .7em;
+    position: relative;
+}
+#preftoc li.selected a {
+    cursor: default;
+    text-decoration: none;
 }
 #prefcontrol {
-    clear: both;
-    float: left;
-    margin-top: 1em;
+    padding-top: 2em;
+}
+#preferences {
+    margin: 0;
+    border: 1px solid #aaa;
+    clear: left;
+    padding: 1.5em;
+    background-color: #F9F9F9;
+}
+.prefsection {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.prefsection table, .prefsection legend {
+    background-color: #F9F9F9;
+}
+.mainLegend {
+    display: none;
 }
 div.prefsectiontip {
     font-size: 95%;
-    margin-top: 1em;
+    margin-top: 0;
+    background-color: #FFC1C1;
+    padding: .2em .7em;
 }
-fieldset.operaprefsection {
-    margin-left: 15em;
+.btnSavePrefs {
+    font-weight: bold;
+}
+
+.preferences-save-success {
+    border: 2px solid green;
+    color: #000;
+    padding: .5em 1.2em;
+    background-color: #ddffdd;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.preferences-login {
+    clear: both;
+    margin-bottom: 1.5em;
 }
 
 /*

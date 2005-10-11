@@ -108,7 +108,7 @@ function diffcheck() {
 // XXX: needs testing on IE/Mac and safari
 // more comments to follow
 function tabbedprefs() {
-    prefform = document.getElementById('preferences');
+    var prefform = document.getElementById('preferences');
     if(!prefform || !document.createElement) return;
     if(prefform.nodeName.toLowerCase() == 'a') return; // Occasional IE problem
     prefform.className = prefform.className + 'jsprefs';
@@ -116,12 +116,13 @@ function tabbedprefs() {
     children = prefform.childNodes;
     var seci = 0;
     for(i=0;i<children.length;i++) {
-        if(children[i].nodeName.toLowerCase().indexOf('fieldset') != -1) {
+        if(children[i].nodeName.toLowerCase() == 'fieldset') {
             children[i].id = 'prefsection-' + seci;
             children[i].className = 'prefsection';
             if(is_opera || is_khtml) children[i].className = 'prefsection operaprefsection';
             legends = children[i].getElementsByTagName('legend');
             sections[seci] = new Object();
+            legends[0].className = 'mainLegend';
             if(legends[0] && legends[0].firstChild.nodeValue)
                 sections[seci].text = legends[0].firstChild.nodeValue;
             else
@@ -146,7 +147,7 @@ function tabbedprefs() {
         li.appendChild(a);
         toc.appendChild(li);
     }
-    prefform.insertBefore(toc, children[0]);
+    prefform.parentNode.insertBefore(toc, prefform.parentNode.childNodes[0]);
     document.getElementById('prefsubmit').id = 'prefcontrol';
 }
 function uncoversection() {
@@ -200,7 +201,7 @@ function fetchTimezone() {
 }
 
 function guessTimezone(box) {
-	document.preferences.wpHourDiff.value = fetchTimezone();
+	document.getElementsByName("wpHourDiff")[0].value = fetchTimezone();
 }
 
 function showTocToggle() {
