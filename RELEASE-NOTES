@@ -142,6 +142,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3414) Add plural forms support to Belarusian
 * (bug 3163) Full translation of LanguageBr
 * (bug 3617) Update for portuguese language (pt)
+* Namespaces hacks on LanguagePl
 
 
 === Caveats ===
