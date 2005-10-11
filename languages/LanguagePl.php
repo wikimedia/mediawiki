@@ -26,9 +26,11 @@ case 'Wikiźródła':
         $wgMetaUserNamespace = 'Wikiskryba';
     $wgMetaUserTalkNamespace = 'Dyskusja_Wikiskryby'; break;
 case 'Wikibooks':
+        $wgMetaTalkNamespace = 'Dyskusja_Wikibooks';
         $wgMetaUserNamespace = 'Wikipedysta';
     $wgMetaUserTalkNamespace = 'Dyskusja_Wikipedysty'; break;
 case 'Wikinews':
+        $wgMetaTalkNamespace = 'Dyskusja_Wikinews';
         $wgMetaUserNamespace = 'Wikireporter';
     $wgMetaUserTalkNamespace = 'Dyskusja_Wikireportera'; break;
 default:
