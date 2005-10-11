@@ -914,6 +914,7 @@ head:first-child+body #footer li { white-space: nowrap; }
     margin: 0;
     padding: 0;
     width: 100%;
+    clear: both;
 }
 #preftoc li {
     margin: 1px -2px 1px 2px;
@@ -957,12 +958,12 @@ head:first-child+body #footer li { white-space: nowrap; }
 }
 #prefcontrol {
     padding-top: 2em;
-    clear: left;
+    clear: both;
 }
 #preferences {
     margin: 0;
     border: 1px solid #aaa;
-    clear: left;
+    clear: both;
     padding: 1.5em;
     background-color: #F9F9F9;
 }
@@ -990,10 +991,12 @@ div.prefsectiontip {
     margin-top: 0;
     background-color: #FFC1C1;
     padding: .2em .7em;
-    clear: left;
+    clear: both;
 }
 .btnSavePrefs {
     font-weight: bold;
+    padding-left: .3em;
+    padding-right: .3em;
 }
 
 .preferences-save-success {

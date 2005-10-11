@@ -141,7 +141,7 @@ function tabbedprefs() {
         if(i == 0) li.className = 'selected';
         var a =  document.createElement('a');
         a.href = '#' + sections[i].secid;
-        a.onclick = uncoversection;
+        a.onmousedown = a.onclick = uncoversection;
         a.appendChild(document.createTextNode(sections[i].text));
         a.secid = sections[i].secid;
         li.appendChild(a);

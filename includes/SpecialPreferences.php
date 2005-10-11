@@ -51,7 +51,7 @@ class PreferencesForm {
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
 		$this->mRealName = $wgAllowRealName ? $request->getVal( 'wpRealName' ) : '';
-		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
+		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 0 : 1;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mUserLanguage = $request->getVal( 'wpUserLanguage' );
 		$this->mUserVariant = $request->getVal( 'wpUserVariant' );
@@ -385,15 +385,16 @@ class PreferencesForm {
 	}
 
 
-	function getToggle( $tname, $trailer = false) {
+	function getToggle( $tname, $trailer = false, $disabled = false ) {
 		global $wgUser, $wgLang;
 
 		$this->mUsedToggles[$tname] = true;
 		$ttext = $wgLang->getUserToggle( $tname );
 
 		$checked = $wgUser->getOption( $tname ) == 1 ? ' checked="checked"' : '';
+		$disabled = $disabled ? ' disabled="disabled"' : '';
 		$trailer = $trailer ? $trailer : '';
-		return "<div class='toggle'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked />" .
+		return "<div class='toggle'><input type='checkbox' value='1' id=\"$tname\" name=\"wpOp$tname\"$checked$disabled />" .
 			" <span class='toggletext'><label for=\"$tname\">$ttext</label>$trailer</span></div>\n";
 	}
 
@@ -463,13 +464,16 @@ class PreferencesForm {
 		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
 		$this->mRealName = htmlspecialchars( $this->mRealName );
 		$this->mNick = htmlspecialchars( $this->mNick );
-		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
+		if ( !$this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ''; }
+
 
 		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
 			if( $wgUser->getEmailAuthenticationTimestamp() ) {
 				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationTimestamp(), true ) ).'<br />';
+				$disableEmailPrefs = false;
 			} else {
+				$disableEmailPrefs = true;
 				$skin = $wgUser->getSkin();
 				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
 					$skin->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Confirmemail' ),
@@ -477,6 +481,7 @@ class PreferencesForm {
 			}
 		} else {
 			$emailauthenticated = '';
+			$disableEmailPrefs = false;
 		}
 
 		if ($this->mUserEmail == '') {
@@ -485,10 +490,10 @@ class PreferencesForm {
 
 		$ps = $this->namespacesCheckboxes();
 
-		$enotifwatchlistpages = ($wgEnotifWatchlist) ? $this->getToggle( 'enotifwatchlistpages' ) : '';
-		$enotifusertalkpages = ($wgEnotifUserTalk) ? $this->getToggle( 'enotifusertalkpages' ) : '';
-		$enotifminoredits = ($wgEnotifWatchlist && $wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits' ) : '';
-		$enotifrevealaddr = (($wgEnotifWatchlist || $wgEnotifUserTalk) && $wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr' ) : '';
+		$enotifwatchlistpages = ($wgEnotifWatchlist) ? $this->getToggle( 'enotifwatchlistpages', false, $disableEmailPrefs ) : '';
+		$enotifusertalkpages = ($wgEnotifUserTalk) ? $this->getToggle( 'enotifusertalkpages', false, $disableEmailPrefs ) : '';
+		$enotifminoredits = ($wgEnotifWatchlist && $wgEnotifMinorEdits) ? $this->getToggle( 'enotifminoredits', false, $disableEmailPrefs ) : '';
+		$enotifrevealaddr = (($wgEnotifWatchlist || $wgEnotifUserTalk) && $wgEnotifRevealEditorAddress) ? $this->getToggle( 'enotifrevealaddr', false, $disableEmailPrefs ) : '';
 		$prefs_help_email_enotif = ( $wgEnotifWatchlist || $wgEnotifUserTalk) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
 		$prefs_help_realname = '';
 
@@ -520,24 +525,24 @@ class PreferencesForm {
 		if ($wgAllowRealName) {
 			$wgOut->addHTML(
 				$this->addRow(
-					wfMsg('yourrealname'),
-					"<input type='text' name='wpRealName' value=\"{$this->mRealName}\" size='25' />"
+					'<label for="wpRealName">' . wfMsg('yourrealname') . '</label>',
+					"<input type='text' name='wpRealName' id='wpRealName' value=\"{$this->mRealName}\" size='25' />"
 				)
 			);
 		}
 		if ($wgEnableEmail) {
 			$wgOut->addHTML(
 				$this->addRow(
-					wfMsg( 'youremail' ),
-					"<input type='text' name='wpUserEmail' value=\"{$this->mUserEmail}\" size='25' />"
+					'<label for="wpUserEmail">' . wfMsg( 'youremail' ) . '</label>',
+					"<input type='text' name='wpUserEmail' id='wpUserEmail' value=\"{$this->mUserEmail}\" size='25' />"
 				)
 			);
 		}
 
 		$wgOut->addHTML(
 			$this->addRow(
-				wfMsg( 'yournick' ),
-				"<input type='text' name='wpNick' value=\"{$this->mNick}\" size='25' />"
+				'<label for="wpNick">' . wfMsg( 'yournick' ) . '</label>',
+				"<input type='text' name='wpNick' id='wpNick' value=\"{$this->mNick}\" size='25' />"
 			) .
 			# FIXME: The <input> part should be where the &nbsp; is, getToggle() needs
 			# to be changed to out return its output in two parts. -ævar
@@ -564,7 +569,12 @@ class PreferencesForm {
 				$selbox .= "<option value=\"$code\"$sel>$code - $name</option>\n";
 			}
 		}
-		$wgOut->addHTML( $this->addRow( wfMsg('yourlanguage'), "<select name='wpUserLanguage'>$selbox</select>" ));
+		$wgOut->addHTML(
+			$this->addRow(
+				'<label for="wpUserLanguage">' . wfMsg('yourlanguage') . '</label>',
+				"<select name='wpUserLanguage' id='wpUserLanguage'>$selbox</select>"
+			)
+		);
 
 		/* see if there are multiple language variants to choose from*/
 		if(!$wgDisableLangConversion) {
@@ -614,11 +624,12 @@ class PreferencesForm {
                                 $enotifwatchlistpages.
                                 $enotifusertalkpages.
                                 $enotifminoredits );
-                        if ($wgEnableUserEmail) {
-				$emf = wfMsg( 'emailflag' );
-                                $wgOut->addHTML(
-                                "<div><input type='checkbox' $emfc value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label></div>" );
-                        }
+			if ($wgEnableUserEmail) {
+			$emf = wfMsg( 'emailflag' );
+				$disabled = $disableEmailPrefs ? ' disabled="disabled"' : '';
+				$wgOut->addHTML(
+				"<div><input type='checkbox' $emfc $disabled value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label></div>" );
+			}
 
 			$wgOut->addHTML( '</fieldset>' );
                 }
