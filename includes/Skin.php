@@ -1312,7 +1312,10 @@ END;
 	 * @access private
 	 */
 	function buildSidebar() {
+		global $wgTitle, $action;
+
 		$fname = 'SkinTemplate::buildSidebar';
+		$pageurl = $wgTitle->getLocalURL();
 		wfProfileIn( $fname );
 
 		$bar = array();
@@ -1333,10 +1336,14 @@ END;
 						$text = $line[1];
 					if (wfEmptyMsg($line[0], $link))
 						$link = $line[0];
+					$href = $this->makeInternalOrExternalUrl( $link );
+					$active = ( $pageurl == $href );
 					$bar[$heading][] = array(
 						'text' => $text,
-						'href' => $this->makeInternalOrExternalUrl( $link ),
+						'href' => $href,
 						'id' => 'n-' . strtr($line[1], ' ', '-'),
+						'active' => $active,
+						'dolink' => ( !$active || ($action != 'view' && $action != 'purge' ) )
 					);
 				} else { continue; }
 			}

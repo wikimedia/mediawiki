@@ -48,6 +48,7 @@ class MonoBookTemplate extends QuickTemplate {
 	 */
 	function execute() {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
+		global $action;
 		wfSuppressWarnings();
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -97,11 +98,11 @@ class MonoBookTemplate extends QuickTemplate {
 	<div id="p-cactions" class="portlet">
 	  <h5><?php $this->msg('views') ?></h5>
 	  <ul>
-	    <?php foreach($this->data['content_actions'] as $key => $action) {
+	    <?php foreach($this->data['content_actions'] as $key => $tab) {
 	       ?><li id="ca-<?php echo htmlspecialchars($key) ?>"
-	       <?php if($action['class']) { ?>class="<?php echo htmlspecialchars($action['class']) ?>"<?php } ?>
-	       ><a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
-	       echo htmlspecialchars($action['text']) ?></a></li><?php
+	       <?php if($tab['class']) { ?>class="<?php echo htmlspecialchars($tab['class']) ?>"<?php } ?>
+	       ><a href="<?php echo htmlspecialchars($tab['href']) ?>"><?php
+	       echo htmlspecialchars($tab['text']) ?></a></li><?php
 	     } ?>
 	  </ul>
 	</div>
@@ -130,9 +131,15 @@ class MonoBookTemplate extends QuickTemplate {
 	  <h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 	  <div class='pBody'>
 	    <ul>
-	    <?php foreach($cont as $key => $val) { ?>
-	      <li id="<?php echo htmlspecialchars($val['id']) ?>"><a href="<?php echo htmlspecialchars($val['href']) ?>"><?php echo htmlspecialchars($val['text'])?></a></li>
-	     <?php } ?>
+	    <?php foreach($cont as $key => $val) { 
+				echo '<li id="' . htmlspecialchars($val['id']) . '">';
+				if ( $val['active'] ) echo '<strong>';
+				if ( $val['dolink'] ) echo '<a href="' . htmlspecialchars($val['href']) . '">';
+				echo htmlspecialchars($val['text']); 
+				if ( $val['active'] ) echo '</strong>';
+				if ( $val['dolink'] ) echo '</a>';
+				echo '</li>';
+			} ?>
 	    </ul>
 	  </div>
 	</div>
