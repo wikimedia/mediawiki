@@ -682,6 +682,10 @@ special external link styling */
     z-index: 3;
 }
 
+#p-navigation strong {
+    font-weight: normal;
+}
+
 /*
 ** Search portlet
 */
