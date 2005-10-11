@@ -918,7 +918,8 @@ head:first-child+body #footer li { white-space: nowrap; }
     margin: 1px -2px 1px 2px;
     float: left;
     padding: 2px 0 3px 0;
-    background: ThreeDFace;
+    background: ButtonFace;
+    color: ButtonText;
     border: 1px solid;
     border-color:	ThreeDHighlight ThreeDDarkShadow ThreeDDarkShadow ThreeDHighlight;
     border-bottom: 0;
@@ -926,21 +927,21 @@ head:first-child+body #footer li { white-space: nowrap; }
     white-space: nowrap;
     list-style-type: none;
     list-style-image: none;
+    z-index: 3;
 }
 #preftoc li.selected {
     font-weight: bold;
     background-color: #F9F9F9;
+    color: #000;
     border: 1px solid #aaa;
     border-bottom: none;
     cursor: default;
-    z-index: 3;
-    padding: 2px 6px 5px 7px;
-    margin: 1px -3px -2px 0px;
-    position: relative;
-    top: -1px;
+    top: 3px;
+    margin-top: -1px;
+    margin-right: -3px;
 }
 #preftoc > li.selected {
-    top: 0;
+    top: 4px;
 }
 #preftoc a,
 #preftoc a:active {
