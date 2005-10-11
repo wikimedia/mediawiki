@@ -93,6 +93,9 @@ if($wgMetaNamespace === FALSE)
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
 'tog-shownumberswatching' 	=> 'Zeige die Anzahl seitenbeobachtender Benutzer (in Letzte Änderungen, Beobachtungsliste und Artikelseiten)',
 'tog-fancysig'			=> 'Einfache Unterschrift (Spitzname ohne Link)',
+'tog-externaleditor' => 'Benutze standardmäßig externen Editor',
+'tog-externaldiff' => 'Benutze standardmäßig externen Diff',
+
 # Dates
 'sunday' => "Sonntag",
 'monday' => "Montag",
@@ -230,6 +233,14 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
 
+# Namespace form on various pages
+'namespace' => 'Namensraum:',
+'invert' => 'Kehre Selektion um',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'Alles',
+'namespacesall' => 'Alle',
+
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
 'nstab-main' => 'Artikel',
 'nstab-user' => 'Benutzerseite',
@@ -238,6 +249,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-image' => 'Bild',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
+'nstab-wp' => 'Projektseite',
 
 # Editier-Werkzeugleiste
 "bold_sample"=>"Fetter Text",
@@ -565,6 +577,11 @@ Ihre interne ID-Nummer ist $2.",
 "emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
 'enotifnewpages'	=> 'Sende mir eine Benachrichtigungsmail, wenn jemand eine neue Seite anlegt.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
+'skinpreview' => '(Vorschau)',
+'yourlanguage'	=> 'Sprache',
+'imagemaxsize' => 'Verkleinere Bilder auf Bildbeschreibungsseiten auf: ',
+'thumbsize'	=> 'Thumbnail-	Größe: ',
+'files'			=> 'Bilder',
 
 # Recent changes
 #
@@ -632,6 +649,8 @@ Alle Zeiten sind UTC.
 "filedesc"		=> "Beschreibung",
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
+'sourcefilename' => 'Quelldatei',
+'destfilename' => 'Dateiname ändern',
 "copyrightpage" => "Project:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
@@ -641,6 +660,7 @@ Alle Zeiten sind UTC.
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
+'fileexists'		=> 'Eine Datei mit diesem Namen existiert schon. Bitte überprüfen Sie $1, falls Sie sich nicht sicher sind, ob Sie diese Datei überschreiben wollen.',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
@@ -651,7 +671,7 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
  aus, insbesondere seine Herkunft, von wem und wann es
  gemacht wurde und besondere Angaben zum Copyright, falls notwendig.
  Falls es sich um ein Bild handelte, so können Sie mit
- <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild
+ <tt><nowiki>[[Bild:$1|thumb|Beschreibung]]</nowiki></tt> ein Vorschaubild
  auf der Seite erzeugen lassen.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
@@ -724,24 +744,53 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "nviews"		=> "$1 Abfragen",
 "wantedpages"	=> "Gewünschte Seiten",
 "nlinks"		=> "$1 Verweise",
-"allpages"		=> "Alle Artikel",
 "randompage"	=> "Zufälliger Artikel",
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
 "listusers"		=> "Benutzerverzeichnis",
 "specialpages"	=> "Spezialseiten",
 "spheading"		=> "Spezialseiten",
+'restrictedpheading'	=> 'Spezialseiten für Administratoren',
 "protectpage"	=> "Artikel schützen",
 "recentchangeslinked" => "Verlinkte Seiten",
 "rclsub"		=> "(auf Artikel von \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "Neue Artikel",
+'newimages'	=> 'Neue Dateien',
 "ancientpages" => "Älteste Artikel",
 "movethispage"	=> "Artikel verschieben",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
+'mostlinked'	=> 'Meistverlinke Seiten',
+'uncategorizedpages'	=> 'Nicht kategorisierte Artikel',
+'uncategorizedcategories'	=> 'Nicht kategorisierte Kategorien',
+'unusedcategories' => 'Verwaiste Kategorien',
+
+# Special:Allpages
+'allpages'	=> 'Alle Artikel',
+'nextpage'	=> "Nächste Seite ($1)",
+'allpagesfrom'	=> 'Seiten anzeigen ab:',
+'allarticles'	=> 'Alle Artikel',
+'allnonarticles'	=> 'Alle Nicht-Artikel',
+'allinnamespace'	=> "Alle Seiten im Namensraum: $1",
+'allnotinnamespace'	=> "Alle Seiten (ohne Namensraum: $1)",
+'allpagesprev'	=> 'Vorherige',
+'allpagesnext'	=> 'Nächste',
+'allpagessubmit'	=> 'Zeige',
+
+#Special:Logs
+'log'		=> 'Logbücher',
+'alllogstext'	=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Verschiebungs-, Benutzerblockaden- und Bürokraten-Logbücher.
+Sie können die Anzeige einschränken, indem Sie ein Logbuch auswählen und/oder einen Benutzernamen, bzw. eine Seite angeben..',
+'specialloguserlabel' => 'Benutzer: ',
+'speciallogtitlelabel' => 'Titel: ',
+"1movedto2"		=> "$1 wurde nach $2 verschoben",
+"1movedto2_redir" => "$1 wurde nach $2 verschoben und überschrieb einen Redirect",
+'movelogpage' => 'Verschiebungslogbuch',
+'movelogpagetext' => 'Liste verschobener Seiten',
+'rightslogtext'		=> 'Dies ist ein Logbuch für Änderungen an Benutzerrechten.',
 
 # Email this user
 #
@@ -839,6 +888,7 @@ Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 "deletepage"	=> "Seite löschen",
 "confirm"		=> "Bestätigen",
 "excontent" => "Alter Inhalt: '$1'",
+"excontentauthor" => "Alter Inhalt: '$1' (einziger Autor war '$2')",
 "exbeforeblank" => "Inhalt vor dem Leeren der Seite: '$1'",
 "exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
@@ -900,7 +950,7 @@ dieses Artikels erscheinen.",
 "nocontribs"	=> "Es wurden keine Änderungen für diese Kriterien gefunden.",
 "ucnote"		=> "Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.",
 "uclinks"		=> "Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.",
-"uctop"		=> " (top)" ,
+"uctop"		=> " (aktuell)" ,
 
 # What links here
 #
@@ -919,8 +969,12 @@ dieses Artikels erscheinen.",
 Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
+'ipadressorusername' => 'IP-Adresse oder Benutzername',
 "ipbreason"		=> "Grund",
 "ipbsubmit"		=> "Adresse blockieren",
+'ipbother'		=> 'Andere Zeit',
+'ipboptions'		=> '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unendlich:infinite',
+'ipbotheroption'	=> 'Andere',
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
@@ -952,6 +1006,24 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
 <br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
+
+
+# User levels special page
+#
+'userrights' => 'Benutzerrechtsverwaltung',
+
+'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
+'userrights-user-editname' => 'Benutzername: ',
+'editusergroup' => 'Bearbeite Benutzerrechte',
+
+# user groups editing
+#
+'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
+'saveusergroups' => 'Speichere Gruppenzugehörigkeit',
+'userrights-groupsmember' => 'Mitglied von: ',
+'userrights-groupsavailable' => 'Verfügbare Gruppen: ',
+'userrights-groupshelp' => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
 
 # Move page
 #
@@ -1015,7 +1087,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "set_user_rights"	=> "Benutzerrechte setzen",
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
 "set_rights_fail"	=> "<b>Benutzerrechte für \"$1\" konnten nicht gesetzt werden. (Haben Sie den Namen korrekt eingegeben?)</b>",
-"1movedto2"		=> "$1 wurde nach $2 verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
 "thumbnail-more"	=> "vergrößern",
@@ -1028,7 +1099,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
+"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[{{SITENAME}}:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
@@ -1078,6 +1149,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
 "categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
+'categoryarticlecount1' => "Dieser Kategorie gehört $1 Artikel an.",
+'categoriespagetext' => 'In diesem Wiki gibt es die folgenden Kategorien:',
+'unusedcategoriestext' => 'Die folgenden Kategorieseiten existieren, obwohl sie nicht verwendet werden.',
+'groups-editgroup-name'     => 'Gruppenname: ',
 # math
 	'mw_math_png' => "Immer als PNG darstellen",
 	'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
@@ -1085,9 +1160,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 	'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
 	'mw_math_modern' => "Empfehlenswert für moderne Browser",
 	'mw_math_mathml' => 'MathML (experimentell)',
-# labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Benutzer: ',
-'speciallogtitlelabel' => 'Titel: ',
+	
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
 # Media Warning
