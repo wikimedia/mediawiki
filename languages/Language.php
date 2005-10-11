@@ -596,6 +596,8 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'badretype'		=> 'The passwords you entered do not match.',
 'userexists'	=> 'The user name you entered is already in use. Please choose a different name.',
 'youremail'		=> 'Email *',
+'username'		=> 'Username: ',
+'uid'			=> 'User ID: ',
 'yourrealname'		=> 'Real name *',
 'yourlanguage'	=> 'Language',
 'yourvariant'  => 'Variant',
@@ -848,9 +850,6 @@ $2 List redirects &nbsp; Search for $3 $9",
 'preferences'	=> 'Preferences',
 'prefsnologin' => 'Not logged in',
 'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]] to set user preferences.",
-'prefslogintext' => "You are logged in as \"$1\". Your internal ID number is $2.
-
-See [[Project:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
 'qbsettings'	=> 'Quickbar',
 'changepassword' => 'Change password',
