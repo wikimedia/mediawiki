@@ -379,7 +379,7 @@ class PreferencesForm {
 			if ( empty($name) )
 				$name = wfMsg( 'blanknamespace' );
 
-			$r1 .= "<label><input type='checkbox' value='1' name='wpNs$i' {$checked}/>{$name}</label>\n";
+			$r1 .= "<label><input type='checkbox' value='1' name='wpNs$i' {$checked}/> {$name}</label><br />\n";
 		}
 		return $r1;
 	}
@@ -695,23 +695,25 @@ class PreferencesForm {
 
                 # Date format
                 #
+		# Date/Time
+		#
+
+		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'datetime' ) . "</legend>\n" );
+
 		if ($dateopts) {
-			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('dateformat') . "</legend>\n" );
+			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
 			foreach($dateopts as $key => $option) {
 				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
 				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
 					"value=\"$key\"$checked /> $option</label></div>\n" );
 			}
-			$wgOut->addHTML( "</fieldset>\n\n");
+			$wgOut->addHTML( "</fieldset>\n" );
 		}
-
-		# Time zone
-		#
 
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
 
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ) . '</legend><table>' .
+		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'timezonelegend' ). '</legend><table>' .
 		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
 			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
 			$this->addRow(
@@ -720,7 +722,7 @@ class PreferencesForm {
 			) . "<tr><td colspan='2'>
 				<input type='button' value=\"" . wfMsg( 'guesstimezone' ) ."\"
 				onclick='javascript:guessTimezone()' id='guesstimezonebutton' style='display:none;' />
-				</td></tr></table>
+				</td></tr></table></fieldset>
 			<div class='prefsectiontip'>¹" .  wfMsg( 'timezonetext' ) . "</div>
 		</fieldset>\n\n" );
 

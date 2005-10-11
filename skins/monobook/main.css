@@ -956,6 +956,7 @@ head:first-child+body #footer li { white-space: nowrap; }
 }
 #prefcontrol {
     padding-top: 2em;
+    clear: left;
 }
 #preferences {
     margin: 0;
