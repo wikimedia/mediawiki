@@ -463,6 +463,7 @@ See $1.',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
 
 'nbytes'		=> '$1 bytes',
+'ncategories'		=> '$1 categories',
 'nrevisions'		=> '$1 revisions',
 'widthheight'		=> '$1x$2',
 'ok'			=> 'OK',
