@@ -912,6 +912,7 @@ head:first-child+body #footer li { white-space: nowrap; }
 /* js pref toc */
 #preftoc {
     margin: 0;
+    padding: 0;
     width: 100%;
 }
 #preftoc li {

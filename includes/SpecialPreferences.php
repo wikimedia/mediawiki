@@ -746,17 +746,8 @@ class PreferencesForm {
 			) . '</fieldset>'
 		);
 
-		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>
-				<table>' .
-					$this->addRow(
-						wfMsg ( 'stubthreshold' ),
-						"<input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' />"
-					) .
-					$this->addRow(
-						wfMsg( 'recentchangescount' ),
-						"<input type='text' name='wpRecent' value=\"$this->mRecent\" size='6' />"
-					) .
-				'</table>' .
+		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' . 
+					wfMsg ( 'recentchangescount' ) . " <input type='text' name='wpRecent' value=\"$this->mRecent\" size='6' />" .
 			$this->getToggles( array(
 				'hideminor',
 				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
@@ -773,7 +764,7 @@ class PreferencesForm {
 		# Misc
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
-
+		$wgOut->addHTML( htmlspecialchars ( wfMsg ( 'stubthreshold' ) ) . " <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' />");
 		$msgUnderline = htmlspecialchars(wfMsg("tog-underline"));
 		$msgUnderlinenever = htmlspecialchars(wfMsg("underline-never"));
 		$msgUnderlinealways = htmlspecialchars(wfMsg("underline-always"));
