@@ -36,7 +36,6 @@ class SpecialVersion {
 	function execute() {
 		global $wgOut;
 		
-		$wgOut->setRobotpolicy( 'index,follow' );
 		$wgOut->addWikiText( $this->MediaWikiCredits() . $this->extensionCredits() . $this->wgHooks() );
 		$wgOut->addHTML( $this->IPInfo() );
 	}
