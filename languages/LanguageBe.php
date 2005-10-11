@@ -88,7 +88,7 @@ require_once('LanguageUtf8.php');
 	MAG_NOCONTENTCONVERT	=> array( 0,	'__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗ_КАНВЭРТАЦЫІ_ТЭКСТУ__'),
 	MAG_CURRENTWEEK		=> array( 1,	'CURRENTWEEK', 'БЯГУЧЫ_ТЫДЗЕНЬ'),
 	MAG_CURRENTDOW		=> array( 1,	'CURRENTDOW', 'БЯГУЧЫ_ДЗЕНЬ_ТЫДНЯ'),
-);
+) + $wgMagicWordsEn;
 
 /* private */ $wgAllMessagesBe = array(
 # Belarusian Cyrillic alphabet:
@@ -583,8 +583,22 @@ class LanguageBe extends LanguageUtf8 {
 		}
 	}
 
-	function formatNum( $number ) {
-		return strtr($number, '.,', ',.' );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ',.' );
+	}
+
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3) {
+		if ($count > 10 && floor(($count % 100) / 10) == 1) {
+			return $wordform3;
+		} else {
+			switch ($count % 10) {
+				case 1: return $wordform1;
+				case 2:
+				case 3:
+				case 4: return $wordform2;
+				default: return $wordform3;
+			}
+		}
 	}
 }
 ?>
