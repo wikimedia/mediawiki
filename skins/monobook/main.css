@@ -936,12 +936,12 @@ head:first-child+body #footer li { white-space: nowrap; }
     border: 1px solid #aaa;
     border-bottom: none;
     cursor: default;
-    top: 3px;
-    margin-top: -1px;
+    top: 1px;
+    padding-top: 2px;
     margin-right: -3px;
 }
 #preftoc > li.selected {
-    top: 4px;
+    top: 2px;
 }
 #preftoc a,
 #preftoc a:active {
