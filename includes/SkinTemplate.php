@@ -430,35 +430,45 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildPersonalUrls() {
+		global $wgTitle, $wgShowIPinHeader;
+
 		$fname = 'SkinTemplate::buildPersonalUrls';
+		$pageurl = $wgTitle->getLocalURL();
 		wfProfileIn( $fname );
 
 		/* set up the default links for the personal toolbar */
-		global $wgShowIPinHeader;
 		$personal_urls = array();
 		if ($this->loggedin) {
 			$personal_urls['userpage'] = array(
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
-				'class' => $this->userpageUrlDetails['exists']?false:'new'
+				'class' => $this->userpageUrlDetails['exists']?false:'new',
+				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 			$personal_urls['mytalk'] = array(
 				'text' => wfMsg('mytalk'),
 				'href' => &$usertalkUrlDetails['href'],
-				'class' => $usertalkUrlDetails['exists']?false:'new'
+				'class' => $usertalkUrlDetails['exists']?false:'new',
+				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
 			);
+			$href = $this->makeSpecialUrl('Preferences');
 			$personal_urls['preferences'] = array(
 				'text' => wfMsg('preferences'),
-				'href' => $this->makeSpecialUrl('Preferences')
+				'href' => $this->makeSpecialUrl('Preferences'),
+				'active' => ( $href == $pageurl )
 			);
+			$href = $this->makeSpecialUrl('Watchlist');
 			$personal_urls['watchlist'] = array(
 				'text' => wfMsg('watchlist'),
-				'href' => $this->makeSpecialUrl('Watchlist')
+				'href' => $href,
+				'active' => ( $href == $pageurl )
 			);
+			$href = $this->makeSpecialUrl("Contributions/$this->username");
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg('mycontris'),
-				'href' => $this->makeSpecialUrl("Contributions/$this->username")
+				'href' => $href,
+				'active' => ( $href == $pageurl . '/' . $this->username )
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
@@ -466,26 +476,32 @@ class SkinTemplate extends Skin {
 			);
 		} else {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
+				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
 					'text' => $this->username,
-					'href' => &$this->userpageUrlDetails['href'],
-					'class' => $this->userpageUrlDetails['exists']?false:'new'
+					'href' => $href,
+					'class' => $this->userpageUrlDetails['exists']?false:'new',
+					'active' => ( $pageurl == $href )
 				);
 				$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
+				$href = &$usertalkUrlDetails['href'];
 				$personal_urls['anontalk'] = array(
 					'text' => wfMsg('anontalk'),
-					'href' => &$usertalkUrlDetails['href'],
-					'class' => $usertalkUrlDetails['exists']?false:'new'
+					'href' => $href,
+					'class' => $usertalkUrlDetails['exists']?false:'new',
+					'active' => ( $pageurl == $href )
 				);
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg('userlogin'),
-					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )
+					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
+					'active' => ( NS_SPECIAL == $wgTitle->getNamespace() && 'Userlogin' == $wgTitle->getDBkey() )
 				);
 			} else {
 
 				$personal_urls['login'] = array(
 					'text' => wfMsg('userlogin'),
-					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl )
+					'href' => $this->makeSpecialUrl('Userlogin', 'returnto=' . $this->thisurl ),
+					'active' => ( NS_SPECIAL == $wgTitle->getNamespace() && 'Userlogin' == $wgTitle->getDBkey() )
 				);
 			}
 		}
