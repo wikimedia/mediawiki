@@ -693,6 +693,7 @@ special external link styling */
 #p-navigation li.active a, #p-navigation li.active a:hover {
     text-decoration: none;
     display: inline;
+    font-weight: bold;
 }
 
 
