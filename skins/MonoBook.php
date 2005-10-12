@@ -135,10 +135,8 @@ class MonoBookTemplate extends QuickTemplate {
 				if ( $val['active'] ) echo ' class="active"';
 				echo '>';
 				if ( $val['active'] ) echo '<strong>';
-				if ( $val['dolink'] ) echo '<a href="' . htmlspecialchars($val['href']) . '">';
-				echo htmlspecialchars($val['text']); 
+				echo '<a href="' . htmlspecialchars($val['href']) . '">' . htmlspecialchars($val['text']) . '</a>'; 
 				if ( $val['active'] ) echo '</strong>';
-				if ( $val['dolink'] ) echo '</a>';
 				echo '</li>';
 			} ?>
 	    </ul>

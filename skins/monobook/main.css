@@ -682,9 +682,20 @@ special external link styling */
     z-index: 3;
 }
 
-#p-navigation strong {
-    font-weight: normal;
+#p-navigation .pBody {
+    padding-right: 0;
 }
+
+#p-navigation a {
+    display: block;
+}
+
+#p-navigation li.active a, #p-navigation li.active a:hover {
+    color: #000;
+    text-decoration: none;
+    display: inline;
+}
+
 
 /*
 ** Search portlet
