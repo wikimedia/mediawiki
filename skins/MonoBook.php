@@ -110,11 +110,11 @@ class MonoBookTemplate extends QuickTemplate {
 	  <div class="pBody">
 	    <ul>
 	    <?php foreach($this->data['personal_urls'] as $key => $item) {
-	       ?><li id="pt-<?php echo htmlspecialchars($key) ?>"><?php if ($item['active']) echo '<strong>' ?><a href="<?php
+	       ?><li id="pt-<?php echo htmlspecialchars($key) ?>"><a href="<?php
 	       echo htmlspecialchars($item['href']) ?>"<?php
 	       if(!empty($item['class'])) { ?> class="<?php
 	       echo htmlspecialchars($item['class']) ?>"<?php } ?>><?php
-	       echo htmlspecialchars($item['text']) ?></a><?php if ($item['active']) echo '</strong>' ?></li><?php
+	       echo htmlspecialchars($item['text']) ?></a></li><?php
 	    } ?>
 	    </ul>
 	  </div>
@@ -134,9 +134,7 @@ class MonoBookTemplate extends QuickTemplate {
 				echo '<li id="' . htmlspecialchars($val['id']) . '"';
 				if ( $val['active'] ) echo ' class="active"';
 				echo '>';
-				if ( $val['active'] ) echo '<strong>';
 				echo '<a href="' . htmlspecialchars($val['href']) . '">' . htmlspecialchars($val['text']) . '</a>'; 
-				if ( $val['active'] ) echo '</strong>';
 				echo '</li>';
 			} ?>
 	    </ul>
