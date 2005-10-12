@@ -691,7 +691,6 @@ special external link styling */
 }
 
 #p-navigation li.active a, #p-navigation li.active a:hover {
-    color: #000;
     text-decoration: none;
     display: inline;
 }
@@ -837,6 +836,7 @@ li#pt-login {
 #p-cactions li.selected {
     border-color: #fabd23;
     padding: 0 0 .2em 0;
+    font-weight: bold;
 }
 #p-cactions li a {
     background-color: white;
