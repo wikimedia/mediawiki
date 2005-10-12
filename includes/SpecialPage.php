@@ -182,7 +182,7 @@ class SpecialPage
 	function getRedirect( $name ) {
 		global $wgUser;
 
-		static $redirects = array(
+		$redirects = array(
 			'Mypage' => Title::makeTitle( NS_USER, $wgUser->getName() ),
 			'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
 			'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
