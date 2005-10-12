@@ -57,6 +57,10 @@ body { font-size: xx-small; }
 #p-cactions li a:hover {
     padding-bottom: 0.17em;
 }
+#p-navigation a {
+    display: inline-block;
+    width: 100%;
+}
 .portlet {
     overflow:hidden;
 }

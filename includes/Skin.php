@@ -1337,13 +1337,11 @@ END;
 					if (wfEmptyMsg($line[0], $link))
 						$link = $line[0];
 					$href = $this->makeInternalOrExternalUrl( $link );
-					$active = ( $pageurl == $href );
 					$bar[$heading][] = array(
 						'text' => $text,
 						'href' => $href,
 						'id' => 'n-' . strtr($line[1], ' ', '-'),
-						'active' => $active,
-						'dolink' => ( !$active || ($action != 'view' && $action != 'purge' ) )
+						'active' => ( $pageurl == $href )
 					);
 				} else { continue; }
 			}
