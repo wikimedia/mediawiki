@@ -7,14 +7,15 @@
 /**
  *
  */
-require_once ( 'Feed.php' );
+require_once 'Feed.php';
 
 /**
  * List of query page classes and their associated special pages, for periodic update purposes
  */
+global $wgQueryPages; // not redundant
 $wgQueryPages = array(
-//         QueryPage subclass           Special page name
-//------------------------------------------------------------
+//         QueryPage subclass           Special page name         Limit (false for none, none for the default)
+//----------------------------------------------------------------------------
     array( 'AncientPagesPage',          'Ancientpages'      ),
     array( 'BrokenRedirectsPage',       'BrokenRedirects'   ),
     array( 'DeadendPagesPage',          'Deadendpages'      ),
@@ -29,9 +30,10 @@ $wgQueryPages = array(
     array( 'UncategorizedPagesPage',    'Uncategorizedpages'),
     array( 'UnusedimagesPage',          'Unusedimages'      ),
     array( 'WantedPagesPage',           'Wantedpages'       ),
-    array( 'MostlinkedPage',		'Mostlinked'	    ),
+    array( 'MostlinkedPage',		'Mostlinked'        ),
 );
-    
+wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
+
 global $wgDisableCounters;
 if( !$wgDisableCounters ) {
 	$wgQueryPages[] = array( 'PopularPagesPage',          'Popularpages'      );
@@ -155,7 +157,7 @@ class QueryPage {
 	/**
 	 * Clear the cache and save new results
 	 */
-	function recache( $ignoreErrors = true ) {
+	function recache( $limit, $ignoreErrors = true ) {
 		$fname = get_class($this) . '::recache';
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbr =& wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
@@ -174,7 +176,8 @@ class QueryPage {
 		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 		# Do query
 		$sql = $this->getSQL() . $this->getOrder();
-		$sql = $dbr->limitResult($sql, 1000,0);
+		if ($limit !== false)
+			$sql = $dbr->limitResult($sql, $limit, 0);
 		$res = $dbr->query($sql, $fname);
 		$num = false;
 		if ( $res ) {
