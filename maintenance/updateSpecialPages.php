@@ -19,7 +19,7 @@ $wgOut->disable();
 $dbw =& wfGetDB( DB_MASTER );
 
 foreach ( $wgQueryPages as $page ) {
-	list( $class, $special ) = $page;
+	@list( $class, $special, $limit ) = $page;
 
 	$specialObj = SpecialPage::getPage( $special );
 	if ( !$specialObj ) {
@@ -38,7 +38,7 @@ foreach ( $wgQueryPages as $page ) {
 	if ( $queryPage->isExpensive() ) {
 		$t1 = explode( ' ', microtime() );
 		# Do the query
-		$num = $queryPage->recache();
+		$num = $queryPage->recache( $limit === null ? 1000 : $limit );
 		$t2 = explode( ' ', microtime() );
 
 		if ( $num === false ) {
