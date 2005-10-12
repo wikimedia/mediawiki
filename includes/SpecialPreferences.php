@@ -625,7 +625,7 @@ class PreferencesForm {
                                 $enotifusertalkpages.
                                 $enotifminoredits );
 			if ($wgEnableUserEmail) {
-			$emf = wfMsg( 'emailflag' );
+			$emf = wfMsg( 'allowemail' );
 				$disabled = $disableEmailPrefs ? ' disabled="disabled"' : '';
 				$wgOut->addHTML(
 				"<div><input type='checkbox' $emfc $disabled value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label></div>" );
