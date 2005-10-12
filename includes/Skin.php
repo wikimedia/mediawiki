@@ -1341,7 +1341,7 @@ END;
 						'text' => $text,
 						'href' => $href,
 						'id' => 'n-' . strtr($line[1], ' ', '-'),
-						'active' => ( $pageurl == $href )
+						'active' => $pageurl == $href
 					);
 				} else { continue; }
 			}
