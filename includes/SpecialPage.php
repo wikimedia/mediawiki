@@ -340,14 +340,29 @@ class SpecialPage
 		}
 	}
 
-	# Accessor functions, see the descriptions of the associated variables above
+	/**#@+
+	  * Accessor
+	  *
+	  * @deprecated
+	  */
 	function getName() { return $this->mName; }
 	function getRestriction() { return $this->mRestriction; }
-	function isListed() { return $this->mListed; }
 	function getFile() { return $this->mFile; }
-	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
+	function isListed() { return $this->mListed; }
+	/**#@-*/
+	
+	/**#@+
+	  * Accessor and mutator
+	  */
+	function name( $x = NULL ) { return wfSetVar( $this->mName, $x ); }
+	function restrictions( $x = NULL) { return wfSetVar( $this->mRestrictions, $x ); }
+	function listed( $x = NULL) { return wfSetVar( $this->mListed, $x ); }
+	function func( $x = NULL) { return wfSetVar( $this->mFunction, $x ); }
+	function file( $x = NULL) { return wfSetVar( $this->mFile, $x ); }
 	function includable( $x = NULL ) { return wfSetVar( $this->mIncludable, $x ); }
-
+	function including( $x = NULL ) { return wfSetVar( $this->mIncluding, $x ); }
+	/**#@-*/
+	
 	/**
 	 * Checks if the given user (identified by an object) can execute this
 	 * special page (as defined by $mRestriction)
