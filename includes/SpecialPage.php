@@ -257,8 +257,9 @@ class SpecialPage
 					$retVal = $redir;
 				} else {
 					$wgOut->setArticleRelated( false );
-					$wgOut->setRobotpolicy( "noindex,follow" );
-					$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+					$wgOut->setRobotpolicy( 'noindex,follow' );
+					$wgOut->setStatusCode( 404 );
+					$wgOut->errorpage( 'nosuchspecialpage', 'nospecialpagetext' );
 					$retVal = false;
 				}
 			}
