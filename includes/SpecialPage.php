@@ -181,20 +181,17 @@ class SpecialPage
 	 */
 	function getRedirect( $name ) {
 		global $wgUser;
-		switch ( $name ) {
-			case 'Mypage':
-				return Title::makeTitle( NS_USER, $wgUser->getName() );
-			case 'Mytalk':
-				return Title::makeTitle( NS_USER_TALK, $wgUser->getName() );
-			case 'Mycontributions':
-				return Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() );
-			case 'Listadmins':
-				return Title::makeTitle( NS_SPECIAL, 'Listusers/sysop' ); # @bug 2832
-			case 'Randompage':
-				return Title::makeTitle( NS_SPECIAL, 'Random' );
-			default:
-				return NULL;
-		}
+
+		static $redirects = array(
+			'Mypage' => Title::makeTitle( NS_USER, $wgUser->getName() ),
+			'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
+			'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
+			'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers/sysop' ), # @bug 2832
+			'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' )
+		);
+		wfRunHooks( 'SpecialPageGetRedirect', array( &$redirects ) );
+
+		return isset( $redirects[$name] ) ? $redirects[$name] : null;
 	}
 
 	/**
