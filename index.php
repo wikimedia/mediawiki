@@ -112,6 +112,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	wfSpecialSearch();
 } else if( !$wgTitle or $wgTitle->getDBkey() == '' ) {
 	$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+	$wgOut->setStatusCode( 404 );
 	$wgOut->errorpage( 'badtitle', 'badtitletext' );
 } else if ( $wgTitle->getInterwiki() != '' ) {
 	if( $rdfrom = $wgRequest->getVal( 'rdfrom' ) ) {
@@ -124,6 +125,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$wgOut->redirect( $url );
 	} else {
 		$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
+		$wgOut->setStatusCode( 404 );
 		$wgOut->errorpage( 'badtitle', 'badtitletext' );
 	}
 } else if ( ( $action == 'view' ) &&
@@ -139,6 +141,10 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 } else {
 	if ( NS_MEDIA == $wgTitle->getNamespace() ) {
 		$wgTitle = Title::makeTitle( NS_IMAGE, $wgTitle->getDBkey() );
+	}
+
+	if ( !$wgTitle->exists() ) {
+		$wgOut->setStatusCode( 404 );
 	}
 
 	$ns = $wgTitle->getNamespace();
@@ -166,6 +172,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	}
 
 	if ( in_array( $action, $wgDisabledActions ) ) {
+		$wgOut->setStatusCode( 404 );
 		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 	} else {
 		switch( $action ) {
@@ -254,6 +261,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 				break;
 			default:
 				if (wfRunHooks('UnknownAction', array($action, $wgArticle))) {
+					$wgOut->setStatusCode( 404 );
 					$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
