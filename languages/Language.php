@@ -1194,6 +1194,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'allpagesprev'		=> 'Previous',
 'allpagesnext'		=> 'Next',
 'allpagessubmit'	=> 'Go',
+'allpagesprefix'	=> 'Display pages with prefix:',
 
 # E this user
 #

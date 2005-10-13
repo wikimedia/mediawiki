@@ -44,6 +44,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;
 	var $name='Prefixindex';
+	# Determines, which message describes the input field 'nsfrom', used in function namespaceForm (see superclass SpecialAllpages)
+	var $nsfromMsg='allpagesprefix';
 
 /**
  * @param integer $namespace (Default NS_MAIN)
