@@ -1274,6 +1274,9 @@ input#wpSave, input#wpDiff {
 	margin-right: 0.33em;
 }
 
+#wpSave {
+  font-weight: bold;
+}
 
 /* Classes for article validation */
 
