@@ -99,7 +99,7 @@ class Parser
 	var $mTagHooks;
 
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array(), $mCurrentParams = array();
+	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders;
 
@@ -141,7 +141,6 @@ class Parser
 		$this->mStripState = array();
 		$this->mArgStack = array();
 		$this->mInPre = false;
-		$this->mCurrentParams = array();
 		$this->mInterwikiLinkHolders = array(
 			'texts' => array(),
 			'titles' => array()
@@ -423,7 +422,6 @@ class Parser
 			$text = Parser::extractTagsAndParams( $tag, $text, $ext_content[$tag],
 				$ext_tags[$tag], $ext_params[$tag], $uniq_prefix );
 			foreach( $ext_content[$tag] as $marker => $content ) {
-				$content = $this->replaceVariables( $content, $this->mCurrentParams );
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
 				if ( $render ) {
@@ -2303,7 +2301,6 @@ class Parser
 				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
 				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
 				# Strip <nowiki>, <pre>, etc.
-				$this->mCurrentParams = $assocArgs;
 				$text = $this->strip( $text, $this->mStripState );
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
