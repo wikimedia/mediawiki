@@ -850,18 +850,20 @@ li#pt-login {
     font-weight: bold;
 }
 #p-cactions li a {
-    background-color: white;
+    background-color: #fbfbfb;
     color: #002bb8;
     border: none;
-    padding: 0 .8em .3em .8em;
+    padding: 0 .8em .3em;
     text-decoration: none;
     text-transform: lowercase;
     position: relative;
     z-index: 0;
     margin: 0;
 }
-#p-cactions .selected a {
+#p-cactions li.selected a {
     z-index: 3;
+		background-color: #fff;
+    padding: 0 1em .2em!important;
 }
 #p-cactions .new a {
     color: #ba0000;
@@ -869,6 +871,7 @@ li#pt-login {
 #p-cactions li a:hover {
     z-index: 3;
     text-decoration: none;
+		background-color: #fff;
 }
 #p-cactions h5 {
     display: none;
