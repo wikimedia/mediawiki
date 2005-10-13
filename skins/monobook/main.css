@@ -1335,7 +1335,8 @@ p.revision_saved {
 /* noarticletext */
 div.noarticletext {
 	border: 1px solid #ccc;
-	padding: 7px;
-	background: white;
+	background: #fff;
+	padding: .2em 1em;
+	color: #000;
 }
 
