@@ -768,6 +768,7 @@ input.searchButton {
     list-style: none;
     z-index: 0;
     background: none;
+    cursor: default;
 }
 #p-personal li {
     z-index: 0;
@@ -778,6 +779,9 @@ input.searchButton {
     margin-left: 1em;
     line-height: 1.2em;
     background: none;
+}
+#p-personal li.active {
+    font-weight: bold;
 }
 #p-personal li a {
     text-decoration: none;
@@ -790,7 +794,9 @@ input.searchButton {
     padding-bottom: .2em;
     text-decoration: none;
 }
-
+#p-personal li.active a:hover {
+    background-color: transparent;
+}
 /* the icon in front of the user name, single quotes
 in bg url to hide it from iemac */
 li#pt-userpage,
