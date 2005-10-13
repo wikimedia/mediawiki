@@ -754,8 +754,10 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 
 # Special:Allpages
 'allpages'	=> 'Alle Artikel',
+'prefixindex'	=> 'Alle Artikel (mit Präfix)',
 'nextpage'	=> "Nächste Seite ($1)",
-'allpagesfrom'	=> 'Zeige Artikel, beginnend ab:',
+'allpagesfrom'	=> 'Seiten anzeigen ab:',
+'allpagesprefix'	=> 'Seiten anzeigen mit Präfix:',
 'allarticles'	=> 'Alle Artikel',
 'allnonarticles'	=> 'Alle Nicht-Artikel',
 'allinnamespace'	=> "Alle Seiten im Namensraum: $1",

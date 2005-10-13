@@ -40,6 +40,8 @@ class SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;
 	var $name='Allpages';
+	# Determines, which message describes the input field 'nsfrom' (->SpecialPrefixindex.php)
+	var $nsfromMsg='allpagesfrom';
 
 /**
  * HTML for the top form
@@ -61,7 +63,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	$out .= "
 <table id='nsselect' class='allpages'>
 	<tr>
-		<td align='right'>" . wfMsgHtml('allpagesfrom') . "</td>
+		<td align='right'>" . wfMsgHtml($this->nsfromMsg) . "</td>
 		<td align='left'><label for='nsfrom'>$frombox</label></td>
 	</tr>
 	<tr>    
