@@ -48,7 +48,7 @@ class MostimagesPage extends QueryPage {
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
 
-		return "{$plink} ({$nlink})";
+		return "$plink ($nlink)";
 	}
 }
 
