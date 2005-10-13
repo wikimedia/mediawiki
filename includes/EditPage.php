@@ -981,10 +981,9 @@ END
 		wfProfileIn( $fname );
 
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
-			"<p class='previewnote'><strong>" . htmlspecialchars( wfMsg( 'previewnote' ) ) . "</strong></p>\n";
+			"<div class='previewnote'>" . $wgOut->parse( wfMsg( 'previewnote' ) ) . "</div>\n";
 		if ( $this->isConflict ) {
-			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) .
-				"</h2>\n";
+			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );

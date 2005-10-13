@@ -717,7 +717,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'userjspreview' => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
 'updated'		=> '(Updated)',
 'note'			=> '<strong>Note:</strong> ',
-'previewnote'	=> 'This is only a preview, changes have not yet been saved!',
+'previewnote'	=> '<strong>This is only a preview; changes have not yet been saved!</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
 'editing'		=> "Editing $1",
