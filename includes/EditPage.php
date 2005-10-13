@@ -744,7 +744,7 @@ class EditPage {
 					htmlspecialchars(wfMsg('tooltip-watch'))."\">{$watchthis}</label>";
 		}
 
-		$checkboxhtml = $minoredithtml . $watchhtml . '<br />';
+		$checkboxhtml = $minoredithtml . $watchhtml;
 
 		$wgOut->addHTML( '<div id="wikiPreview">' );
 		if ( 'preview' == $this->formtype) {
@@ -769,11 +769,11 @@ class EditPage {
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
 		if( $this->section == 'new' ) {
-			$commentsubject="<label for='wpSummary'>{$subject}:</label> <input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
+			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}:</label></span> <div class='editOptions'><input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 			$editsummary = '';
 		} else {
 			$commentsubject = '';
-			$editsummary="<label for='wpSummary'>{$summary}:</label> <input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
+			$editsummary="<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}:</label></span> <div class='editOptions'><input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
@@ -837,18 +837,23 @@ cols='{$cols}'{$ew} $hidden>
 END
 . htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
 "
-</textarea>
+</textarea><br />
 {$metadata}
-<br />{$editsummary}
+{$editsummary}
 {$checkboxhtml}
 {$safemodehtml}
+<div class='editButtons'>
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' $liveOnclick value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <input tabindex='7' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
-" title=\"".wfMsg('tooltip-diff')."\"/>
-<em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}" );
+" title=\"".wfMsg('tooltip-diff')."\"/> <span class='editHelp'>{$cancel} | {$edithelp}</span></div>
+</div>
+<div class='templatesUsed'>
+{$templates}
+</div>
+" );
 		$wgOut->addWikiText( $copywarn );
 		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
