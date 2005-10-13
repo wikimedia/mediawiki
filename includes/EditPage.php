@@ -769,11 +769,11 @@ class EditPage {
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
 		if( $this->section == 'new' ) {
-			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+			$commentsubject="<label for='wpSummary'>{$subject}:</label> <input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 			$editsummary = '';
 		} else {
 			$commentsubject = '';
-			$editsummary="{$summary}: <input tabindex='2' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+			$editsummary="<label for='wpSummary'>{$summary}:</label> <input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' /><br />";
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
