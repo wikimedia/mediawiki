@@ -47,12 +47,12 @@ class MostrevisionsPage extends QueryPage {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 		
-		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->makeKnownLinkObj( $nt, $text );
 		
 		$nl = wfMsg( 'nrevisions', $result->value );
 		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
 
-		return "{$plink} ({$nlink})";
+		return "$plink ($nlink)";
 	}
 }
 
