@@ -395,3 +395,6 @@ div.prefsectiontip {
 	padding: 0.2em;
 }
 
+#jump-to-nav {
+  display: none;
+}

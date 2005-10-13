@@ -305,3 +305,7 @@ span.diffchange {
     color: red;
     font-weight: bold;
 }
+
+#jump-to-nav {
+  display: none;
+}
