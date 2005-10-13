@@ -373,3 +373,6 @@ table.exif td.spacer {
 	background-color: #f0f0ff;
 }
 
+#jump-to-nav {
+  display: none;
+}

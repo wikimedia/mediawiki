@@ -444,6 +444,9 @@ parent class in order maintain consistency across languages.
 'printsubtitle' => '(From {{SERVER}})',
 'protectedpage' => 'Protected page',
 'administrators' => 'Project:Administrators',
+'jumpto' => 'Jump to:',
+'jumptonavigation' => 'navigation',
+'jumptosearch' => 'search',
 
 'sysoptitle'	=> 'Sysop access required',
 'sysoptext'		=> 'The action you have requested can only be
