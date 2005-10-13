@@ -818,6 +818,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix meta robots tag on Special:Version again to avoid listing vulnerable
   versions for convenient harvesting by automated worms
 * (bug 3684) Fix typo in fatal error backtraces in Hooks.php
+* Backport fix for reference usage notice in Special:Search on PHP 4.4.0
 
 
 === Caveats ===
