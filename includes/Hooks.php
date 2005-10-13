@@ -107,13 +107,13 @@ if (defined('MEDIAWIKI')) {
 			}
 			
 			
-			if ( $object ) {
+			if ( isset( $object ) ) {
 				$func = get_class( $object ) . '::' . $method;
 			}
 
 			/* Call the hook. */
 			wfProfileIn( $func );
-			if ($object) {
+			if( isset( $object ) ) {
 				$retval = call_user_func_array(array($object, $method), $hook_args);
 			} else {
 				$retval = call_user_func_array($func, $hook_args);
