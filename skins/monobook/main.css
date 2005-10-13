@@ -1178,6 +1178,11 @@ span.changedby {
   margin-bottom: 1em;
 }
 
+.previewnote p {
+  margin: 0;
+  padding: 0;
+}
+
 .editExternally {
 	border: 1px solid gray;
 	background-color: #ffffff;
