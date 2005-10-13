@@ -1922,7 +1922,7 @@ $1
 'recreate' => 'Создать заново',
 'tooltip-recreate' => '',
 
-'unit-pixel' => 'пикс.',
+'unit-pixel' => ' пикс.',
 
 # HTML dump
 'redirectingto' => 'Перенаправление на страницу [[$1]]…',
