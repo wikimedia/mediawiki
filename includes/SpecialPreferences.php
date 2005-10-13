@@ -379,7 +379,7 @@ class PreferencesForm {
 			if ( empty($name) )
 				$name = wfMsg( 'blanknamespace' );
 
-			$r1 .= "<label><input type='checkbox' value='1' name='wpNs$i' {$checked}/> {$name}</label><br />\n";
+			$r1 .= "<input type='checkbox' value='1' name='wpNs$i' id='wpNs$i' {$checked}/> <label for='wpNs$i'>{$name}</label><br />\n";
 		}
 		return $r1;
 	}
@@ -608,9 +608,18 @@ class PreferencesForm {
 
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'changepassword' ) . '</legend><table>');
 		$wgOut->addHTML(
-			$this->addRow( wfMsg( 'oldpassword' ), "<input type='password' name='wpOldpass' value=\"{$this->mOldpass}\" size='20' />" ) .
-			$this->addRow( wfMsg( 'newpassword' ), "<input type='password' name='wpNewpass' value=\"{$this->mNewpass}\" size='20' />" ) .
-			$this->addRow( wfMsg( 'retypenew' ), "<input type='password' name='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />" ) .
+			$this->addRow(
+				'<label for="wpOldpass">' . wfMsg( 'oldpassword' ) . '</label>',
+				"<input type='password' name='wpOldpass' id='wpOldpass' value=\"{$this->mOldpass}\" size='20' />"
+			) .
+			$this->addRow(
+				'<label for="wpNewpass">' . wfMsg( 'newpassword' ) . '</label>',
+				"<input type='password' name='wpNewpass' id='wpNewpass' value=\"{$this->mNewpass}\" size='20' />"
+			) .
+			$this->addRow(
+				'<label for="wpRetypePass">' . wfMsg( 'retypenew' ) . '</label>',
+				"<input type='password' name='wpRetypePass' id='wpRetypePass' value=\"{$this->mRetypePass}\" size='20' />"
+			) .
 			"</table>\n" .
 			$this->getToggle( "rememberpassword" ) . "</fieldset>\n\n" );
 
@@ -678,7 +687,7 @@ class PreferencesForm {
 			$previewlink = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
 			if( $skinkey == $wgDefaultSkin )
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
-			$wgOut->addHTML( "<input type='radio' name='wpSkin' value=\"$skinkey\"$checked /> {$sn} $previewlink<br/>\n" );
+			$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br/>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
@@ -698,7 +707,7 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML("<fieldset>
 			<legend>" . wfMsg( 'files' ) . "</legend>
-			<div><label>" . wfMsg('imagemaxsize') . "<select name=\"wpImageSize\">");
+			<div><label for='wpImageSize'>" . wfMsg('imagemaxsize') . "</label> <select id='wpImageSize' name='wpImageSize'>");
 
 			$imageLimitOptions = null;
 			foreach ( $wgImageLimits as $index => $limits ) {
@@ -707,13 +716,13 @@ class PreferencesForm {
 			}
 
 			$imageThumbOptions = null;
-			$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>
-				<div><label>" . wfMsg('thumbsize') . "<select name=\"wpThumbSize\">");
+			$wgOut->addHTML( "{$imageLimitOptions}</select></div>
+				<div><label for='wpThumbSize'>" . wfMsg('thumbsize') . "</label> <select name='wpThumbSize' id='wpThumbSize'>");
 			foreach ( $wgThumbLimits as $index => $size ) {
 				$selected = ($index == $this->mThumbSize) ? 'selected="selected"' : '';
 				$imageThumbOptions .= "<option value=\"{$index}\" {$selected}>{$size}". wfMsgHtml('unit-pixel') ."</option>\n";
 			}
-			$wgOut->addHTML( "{$imageThumbOptions}</select></label></div></fieldset>\n\n");
+			$wgOut->addHTML( "{$imageThumbOptions}</select></div></fieldset>\n\n");
 
                 # Date format
                 #
@@ -724,10 +733,12 @@ class PreferencesForm {
 
 		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
+			$idCnt = 0;
 			foreach($dateopts as $key => $option) {
 				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
-				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
-					"value=\"$key\"$checked /> $option</label></div>\n" );
+				$wgOut->addHTML( "<div><input type='radio' name=\"wpDate\" id=\"wpDate$idCnt\" ".
+					"value=\"$key\"$checked /> <label for=\"wpDate$idCnt\">$option</label></div>\n" );
+				$idCnt++;
 			}
 			$wgOut->addHTML( "</fieldset>\n" );
 		}
@@ -739,8 +750,8 @@ class PreferencesForm {
 		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
 			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
 			$this->addRow(
-				wfMsg( 'timezoneoffset' ),
-				"<input type='text' name='wpHourDiff' value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' />"
+				'<label for="wpHourDiff">' . wfMsg( 'timezoneoffset' ) . '</label>',
+				"<input type='text' name='wpHourDiff' id='wpHourDiff' value=\"" . htmlspecialchars( $this->mHourDiff ) . "\" size='6' />"
 			) . "<tr><td colspan='2'>
 				<input type='button' value=\"" . wfMsg( 'guesstimezone' ) ."\"
 				onclick='javascript:guessTimezone()' id='guesstimezonebutton' style='display:none;' />
@@ -752,8 +763,8 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
 			<div>
-				<label>' . wfMsg( 'rows' ) . ": <input type='text' name='wpRows' value=\"{$this->mRows}\" size='6' /></label>
-				<label>" . wfMsg( 'columns' ) . ": <input type='text' name='wpCols' value=\"{$this->mCols}\" size='6' /></label>
+				<label for="wpRows">' . wfMsg( 'rows' ) . "</label> <input type='text' name='wpRows' id='wpRows' value=\"{$this->mRows}\" size='3' />
+				<label for='wpCols'>" . wfMsg( 'columns' ) . "</label> <input type='text' name='wpCols' id='wpCols' value=\"{$this->mCols}\" size='3' />
 			</div>" .
 			$this->getToggles( array(
 				'editsection',
@@ -771,7 +782,8 @@ class PreferencesForm {
 		);
 
 		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' . 
-					wfMsg ( 'recentchangescount' ) . " <input type='text' name='wpRecent' value=\"$this->mRecent\" size='6' />" .
+					'<label for="wpRecent">' . wfMsg ( 'recentchangescount' ) .
+					"</label> <input type='text' name='wpRecent' id='wpRecent' value=\"$this->mRecent\" size='3' />" .
 			$this->getToggles( array(
 				'hideminor',
 				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
@@ -780,31 +792,42 @@ class PreferencesForm {
 		);
 
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
-			$this->addRow( wfMsg( 'resultsperpage' ), "<input type='text' name='wpSearch' value=\"$this->mSearch\" size='4' />" ) .
-			$this->addRow( wfMsg( 'contextlines' ), "<input type='text' name='wpSearchLines' value=\"$this->mSearchLines\" size='4' />" ) .
-			$this->addRow( wfMsg( 'contextchars' ), "<input type='text' name='wpSearchChars' value=\"$this->mSearchChars\" size='4' />" ) .
+			$this->addRow(
+				'<label for="wpSearch">' . wfMsg( 'resultsperpage' ) . '</label>',
+				"<input type='text' name='wpSearch' id='wpSearch' value=\"$this->mSearch\" size='4' />"
+			) .
+			$this->addRow(
+				'<label for="wpSearchLines">' . wfMsg( 'contextlines' ) . '</label>',
+				"<input type='text' name='wpSearchLines' id='wpSearchLines' value=\"$this->mSearchLines\" size='4' />"
+			) .
+			$this->addRow(
+				'<label for="wpSearchChars">' . wfMsg( 'contextchars' ) . '</label>',
+				"<input type='text' name='wpSearchChars' id='wpSearchChars' value=\"$this->mSearchChars\" size='4' />"
+			) .
 		"</table><fieldset><legend>" . wfMsg( 'defaultns' ) . "</legend>$ps</fieldset></fieldset>" );
 
 		# Misc
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
-		$wgOut->addHTML( htmlspecialchars ( wfMsg ( 'stubthreshold' ) ) . " <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' />");
-		$msgUnderline = htmlspecialchars(wfMsg("tog-underline"));
-		$msgUnderlinenever = htmlspecialchars(wfMsg("underline-never"));
-		$msgUnderlinealways = htmlspecialchars(wfMsg("underline-always"));
-		$msgUnderlinedefault = htmlspecialchars(wfMsg("underline-default"));
+		$wgOut->addHTML(
+			'<label for="wpStubs">' . htmlspecialchars ( wfMsg ( 'stubthreshold' ) ) . '</label>' .
+			" <input type='text' name='wpStubs' id='wpStubs' value=\"$this->mStubs\" size='6' />"
+		);
+		$msgUnderline = htmlspecialchars( wfMsg ( 'tog-underline' ) );
+		$msgUnderlinenever = htmlspecialchars( wfMsg ( 'underline-never' ) );
+		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always ' ) );
+		$msgUnderlinedefault = htmlspecialchars( wfMsg ( 'underline-default' ) );
 		$uopt = $wgUser->getOption("underline");
 		$s0 = $uopt == 0 ? " selected=\"selected\"" : "";
 		$s1 = $uopt == 1 ? " selected=\"selected\"" : "";
 		$s2 = $uopt == 2 ? " selected=\"selected\"" : "";
 		$wgOut->addHTML("
-<div class='toggle'><label>$msgUnderline
-<select name=\"wpOpunderline\">
+<div class='toggle'><label for='wpOpunderline'>$msgUnderline</label> 
+<select name='wpOpunderline' id='wpOpunderline'>
 <option value=\"0\"$s0>$msgUnderlinenever</option>
 <option value=\"1\"$s1>$msgUnderlinealways</option>
 <option value=\"2\"$s2>$msgUnderlinedefault</option>
 </select>
-</label>
 </div>
 ");
 		foreach ( $togs as $tname ) {
