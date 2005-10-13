@@ -467,8 +467,8 @@ class SkinTemplate extends Skin {
 			$href = $this->makeSpecialUrl("Contributions/$this->username");
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg('mycontris'),
-				'href' => $href,
-				'active' => ( $href == $pageurl . '/' . $this->username )
+				'href' => $href
+				# FIXME #  'active' => ( $href == $pageurl . '/' . $this->username )
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
