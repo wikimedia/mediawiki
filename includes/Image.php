@@ -211,7 +211,7 @@ class Image
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgLang,
+		global $wgUseSharedUploads, $wgSharedUploadDirectory, $wgContLang,
 		       $wgShowEXIF;
 		$fname = 'Image::loadFromFile';
 		wfProfileIn( $fname );
@@ -227,7 +227,7 @@ class Image
 			# In case we're on a wgCapitalLinks=false wiki, we 
 			# capitalize the first letter of the filename before 
 			# looking it up in the shared repository.
-			$sharedImage = Image::newFromName( $wgLang->ucfirst($this->name) );
+			$sharedImage = Image::newFromName( $wgContLang->ucfirst($this->name) );
 			$this->fileExists = $sharedImage && file_exists( $sharedImage->getFullPath(true) );
 			if ( $this->fileExists ) {
 				$this->name = $sharedImage->name;
@@ -304,7 +304,7 @@ class Image
 	 * Load image metadata from the DB
 	 */
 	function loadFromDB() {
-		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgSharedUploadDBprefix, $wgLang;
+		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgSharedUploadDBprefix, $wgContLang;
 		$fname = 'Image::loadFromDB';
 		wfProfileIn( $fname );
 		
@@ -329,7 +329,7 @@ class Image
 			# In case we're on a wgCapitalLinks=false wiki, we 
 			# capitalize the first letter of the filename before 
 			# looking it up in the shared repository.
-			$name = $wgLang->ucfirst($this->name);
+			$name = $wgContLang->ucfirst($this->name);
 
 			$row = $dbr->selectRow( "`$wgSharedUploadDBname`.{$wgSharedUploadDBprefix}image",
 				array( 
@@ -760,9 +760,8 @@ class Image
 	 * @access private
 	 */
 	function thumbUrl( $width, $subdir='thumb') {
-		global $wgUploadPath, $wgUploadBaseUrl,
-		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-			   $wgSharedThumbnailScriptPath, $wgThumbnailScriptPath;
+		global $wgUploadPath, $wgUploadBaseUrl, $wgSharedUploadPath;
+		global $wgSharedThumbnailScriptPath, $wgThumbnailScriptPath;
 
 		// Generate thumb.php URL if possible
 		$script = false;
@@ -1657,9 +1656,6 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
  *   use different hash settings from the local one.
  */
 function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
-	global $wgHashedSharedUploadDirectory, $wgSharedUploadDirectory;
-	global $wgHashedUploadDirectory;
-	
 	if( Image::isHashed( $fromSharedDirectory ) ) {
 		$hash = md5($dbkey);
 		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . '/';
