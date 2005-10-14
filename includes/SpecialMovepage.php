@@ -131,16 +131,16 @@ class MovePageForm {
 			<td align='left'><strong>{$oldTitle}</strong></td>
 		</tr>
 		<tr>
-			<td align='right'>{$newtitle}:</td>
+			<td align='right'><label for='wpNewTitle'>{$newtitle}:</label></td>
 			<td align='left'>
-				<input type='text' size='40' name=\"wpNewTitle\" value=\"{$encNewTitle}\" />
+				<input type='text' size='40' name='wpNewTitle' id='wpNewTitle' value=\"{$encNewTitle}\" />
 				<input type='hidden' name=\"wpOldTitle\" value=\"{$encOldTitle}\" />
 			</td>
 		</tr>
 		<tr>
-			<td align='right' valign='top'><br />{$movereason}:</td>
+			<td align='right' valign='top'><br /><label for='wpReason'>{$movereason}:</label></td>
 			<td align='left' valign='top'><br />
-				<textarea type='text' cols='60' rows='2' name=\"wpReason\" value=\"{$encReason}\"></textarea>
+				<textarea type='text' cols='60' rows='2' name='wpReason' id='wpReason' value=\"{$encReason}\"></textarea>
 			</td>
 		</tr>" );
 
