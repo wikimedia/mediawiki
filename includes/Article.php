@@ -1650,7 +1650,7 @@ class Article {
 			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
 		}
 
-		$confirm = htmlspecialchars( wfMsg( 'confirm' ) );
+		$confirm = htmlspecialchars( wfMsg( 'protectpage' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "
@@ -1826,7 +1826,7 @@ class Article {
 
 		$formaction = $this->mTitle->escapeLocalURL( 'action=delete' . $par );
 
-		$confirm = htmlspecialchars( wfMsg( 'confirm' ) );
+		$confirm = htmlspecialchars( wfMsg( 'deletepage' ) );
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
