@@ -703,7 +703,7 @@ function do_all_updates() {
 	
 	do_watchlist_null(); flush();
 
-	do_image_index_update(); flush();
+	//do_image_index_update(); flush();
 
 	initialiseMessages(); flush();
 }
