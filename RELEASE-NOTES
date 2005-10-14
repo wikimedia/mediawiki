@@ -147,6 +147,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2585) Return proper 404 code when pages don't exist
 * (bug 3684) Fix typo in fatal error backtraces in Hooks.php
 * (bug 3682) LanguageSr.php - added convertPlural
+* (bug 3694) LanguageTr.php update
 * (bug 2369) Add separate message for input box on Special:Prefixindex
 * Fix for hook callbacks on objects containing no fields
 
