@@ -54,14 +54,16 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Usernames must be unique, must not be in the form of
   -- an IP address. _Shouldn't_ allow slashes or case
   -- conflicts. Spaces are allowed, and are _not_ converted
-  -- to underscores like titles. (Conflicts?)
+  -- to underscores like titles. See the User::newFromName() for
+  -- the specific tests that usernames have to pass.
   user_name varchar(255) binary NOT NULL default '',
   
   -- Optional 'real name' to be displayed in credit listings
   user_real_name varchar(255) binary NOT NULL default '',
   
   -- Password hashes, normally hashed like so:
-  -- MD5(CONCAT(user_id,'-',MD5(plaintext_password)))
+  -- MD5(CONCAT(user_id,'-',MD5(plaintext_password))), see
+  -- wfEncryptPassword() in GlobalFunctions.php
   user_password tinyblob NOT NULL default '',
   
   -- When using 'mail me a new password', a random
@@ -76,7 +78,8 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Same with passwords.
   user_email tinytext NOT NULL default '',
   
-  -- Newline-separated list of name=value pairs.
+  -- Newline-separated list of name=value defining the user
+  -- preferences
   user_options blob NOT NULL default '',
   
   -- This is a timestamp which is updated when a user
@@ -100,7 +103,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- is set and a confirmation test mail sent.
   user_email_token CHAR(32) BINARY,
   
-  -- Expiration date for the 
+  -- Expiration date for the user_email_token
   user_email_token_expires CHAR(14) BINARY,
 
   PRIMARY KEY user_id (user_id),
@@ -138,10 +141,13 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
 -- Stores notifications of user talk page changes, for the display
 -- of the "you have new messages" box
 CREATE TABLE /*$wgDBprefix*/user_newtalk (
- user_id int(5) NOT NULL default '0',
- user_ip varchar(40) NOT NULL default '',
- INDEX user_id (user_id),
- INDEX user_ip (user_ip)
+  -- Key to user.user_id
+  user_id int(5) NOT NULL default '0',
+  -- If the user is an anonymous user hir IP address is stored here
+  -- since the user_id of 0 is ambiguous
+  user_ip varchar(40) NOT NULL default '',
+  INDEX user_id (user_id),
+  INDEX user_ip (user_ip)
 );
 
 
@@ -156,7 +162,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   
   -- A page name is broken into a namespace and a title.
   -- The namespace keys are UI-language-independent constants,
-  -- defined in Namespace.php.
+  -- defined in includes/Defines.php
   page_namespace int NOT NULL,
   
   -- The rest of the title, as text.
@@ -223,10 +229,10 @@ CREATE TABLE /*$wgDBprefix*/revision (
   
   -- Text comment summarizing the change.
   -- This text is shown in the history and other changes lists,
-  -- rendered in a subset of wiki markup.
+  -- rendered in a subset of wiki markup by Linker::formatComment()
   rev_comment tinyblob NOT NULL default '',
   
-  -- Key to user_id of the user who made this edit.
+  -- Key to user.user_id of the user who made this edit.
   -- Stores 0 for anonymous edits and for some mass imports.
   rev_user int(5) unsigned NOT NULL default '0',
   
@@ -437,7 +443,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   -- * in namespace 0
   -- * not a redirect
   -- * contains the text '[['
-  -- See isCountable() in includes/Article.php
+  -- See Article::isCountable() in includes/Article.php
   ss_good_articles bigint(20) unsigned default '0',
   
   -- Total pages, theoretically equal to SELECT COUNT(*) FROM page; except faster
@@ -555,17 +561,13 @@ CREATE TABLE /*$wgDBprefix*/image (
   -- Used by Special:Imagelist for sort-by-size
   INDEX img_size (img_size),
 
-  -- Used by Special:MIMEsearch for searching
-  INDEX img_major_mime (img_major_mime),
-  INDEX img_minor_mime (img_minor_mime),
-  
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
 
 ) TYPE=InnoDB;
 
 --
--- Previous ervisions of uploaded files.
+-- Previous revisions of uploaded files.
 -- Awkwardly, image rows have to be moved into
 -- this table at re-upload time.
 --
@@ -595,7 +597,7 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
 --
 -- Primarily a summary table for Special:Recentchanges,
 -- this table contains some additional info on edits from
--- the last few days.
+-- the last few days, see Article::editUpdates()
 --
 CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_id int(8) NOT NULL auto_increment,
@@ -657,11 +659,11 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
 ) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/watchlist (
-  -- Key to user_id
+  -- Key to user.user_id
   wl_user int(5) unsigned NOT NULL,
   
   -- Key to page_namespace/page_title
-  -- Note that users may watch patches which do not exist yet,
+  -- Note that users may watch pages which do not exist yet,
   -- or existed in the past but have been deleted.
   wl_namespace int NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
@@ -677,7 +679,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
 
 
 --
--- Used by texvc math-rendering extension to keep track
+-- Used by the math module to keep track
 -- of previously-rendered items.
 --
 CREATE TABLE /*$wgDBprefix*/math (
@@ -821,27 +823,13 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
 ) TYPE=InnoDB;
 
-
-
-
-
--- Hold group name and description
---CREATE TABLE /*$wgDBprefix*/groups (
---  gr_id int(5) unsigned NOT NULL auto_increment,
---  gr_name varchar(50) NOT NULL default '',
---  gr_description varchar(255) NOT NULL default '',
---  gr_rights tinyblob,
---  PRIMARY KEY  (gr_id)
---
---) TYPE=InnoDB;
-
 CREATE TABLE /*$wgDBprefix*/trackbacks (
-	tb_id		INTEGER AUTO_INCREMENT PRIMARY KEY,
-	tb_page		INTEGER REFERENCES page(page_id) ON DELETE CASCADE,
-	tb_title	VARCHAR(255) NOT NULL,
-	tb_url		VARCHAR(255) NOT NULL,
-	tb_ex		TEXT,
-	tb_name		VARCHAR(255),
+	tb_id integer AUTO_INCREMENT PRIMARY KEY,
+	tb_page	integer REFERENCES page(page_id) ON DELETE CASCADE,
+	tb_title varchar(255) NOT NULL,
+	tb_url	varchar(255) NOT NULL,
+	tb_ex text,
+	tb_name varchar(255),
 
 	INDEX (tb_page)
 );
