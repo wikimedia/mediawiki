@@ -265,6 +265,8 @@ CREATE TABLE /*$wgDBprefix*/text (
   -- Unique text storage key number.
   -- Note that the 'oldid' parameter used in URLs does *not*
   -- refer to this number anymore, but to rev_id.
+  --
+  -- revision.rev_text_id is a key to this column
   old_id int(8) unsigned NOT NULL auto_increment,
   
   -- Depending on the contents of the old_flags field, the text
