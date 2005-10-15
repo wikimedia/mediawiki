@@ -939,7 +939,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'undeletebtn' => 'Khôi phục',
 'undeletedarticle' => "đã khôi phục \"$1\"",
 'undeletedrevisions' => "$1 bản được khôi phục",
-'undeletedtext'   => "[[$1]] đã được khôi phục. Xem danh sách các xóa bỏ và khôi phục tại [[Đặc_biệt:Log/delete]].",
+'undeletedtext'   => "[[:$1|$1]] đã được khôi phục. Xem danh sách các xóa bỏ và khôi phục tại [[Đặc_biệt:Log/delete]].",
 
 # Contributions
 'contributions' => 'Đóng góp',

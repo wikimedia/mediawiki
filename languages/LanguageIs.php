@@ -624,8 +624,6 @@ You might want to check the following regular expression for patterns that are c
 'undelete_short' => "Endurvekja $1 breyting(u/ar)",
 'undeletearticle' => "Endurvekja eydda síðu",
 'undeletebtn' => "Endurvekja!",
-'undeletedtext' => "[[$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
 'undeletepage' => "Skoða og endurvekja síður",
 'undeletepagetext' => "Eftirfarandi síðum hefur verið eitt en eru þó enn í gagnagrunninum og geta verið endurvaknar. Athugið að síður þessar eru reglulega fjarlægðar endanlega úr gagnagrunninum.",
 'undeleterevisions' => "$1 breyting(ar)",

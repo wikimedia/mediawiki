@@ -746,7 +746,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 "undeleterevision" => "Revisões deletadas de  $1",
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => " \"$1\" restaurado",
-"undeletedtext"   => "O artigo [[$1]] foi restaurado com sucesso.
+"undeletedtext"   => "O artigo [[:$1|$1]] foi restaurado com sucesso.
 Veja [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions

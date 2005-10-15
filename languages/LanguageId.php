@@ -833,7 +833,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "undeletebtn" => "Kembalikan!",
 "undeletedarticle" => "\"$1\" telah dikembalikan",
 'undeletedrevisions' => "$1 revisi telah dikembalikan",
-"undeletedtext" => "Halaman [[$1]] berhasil dikembalikan. Lihat [[Project:Catatan/Penghapusan]] untuk catatan terkini penghapusan dan pengembalian halaman.",
+"undeletedtext" => "Halaman [[:$1|$1]] berhasil dikembalikan. Lihat [[Project:Catatan/Penghapusan]] untuk catatan terkini penghapusan dan pengembalian halaman.",
 
 # Contributions
 #

@@ -535,7 +535,7 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 "undeleterevision" => "Verwijderde versie van $1",
 "undeletebtn" => "Terugplaatsen!",
 "undeletedarticle" => "\"$1\" is teruggeplaatst.",
-"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[Wikipedia:Logboek verwijderde pagina's]] voor een liest van de meest recente verwijderingen en terugplaatsingen.",
+"undeletedtext" =>"Het artikel [[:$1|$1]] is teruggeplaatst. Zie [[Wikipedia:Logboek verwijderde pagina's]] voor een liest van de meest recente verwijderingen en terugplaatsingen.",
 
 # Contributions
 # Bijdragen

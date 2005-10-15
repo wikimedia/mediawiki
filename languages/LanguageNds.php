@@ -890,7 +890,7 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'undeleterevision'      => 'Löschte Version vun de $1',
 'undeletebtn'           => 'Weerholen!',
 'undeletedarticle'      => '„$1“ weerholt',
-'undeletedtext'         => 'De Siet [[$1]] is mit Spood weerholt worrn.',
+'undeletedtext'         => 'De Siet [[:$1|$1]] is mit Spood weerholt worrn.',
 
 # Bidreeg
 #

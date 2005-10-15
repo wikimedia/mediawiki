@@ -1262,7 +1262,7 @@ leathanaigh go huathoibríoch.",
 "undeleterevision" => "Leagan scriosta den dáta $1",
 "undeletebtn" => "Díscrios!",
 "undeletedarticle" => "Díscriosadh \"$1\" ar ais",
-"undeletedtext"   => "Díscriosadh an alt [[$1]] go rathúil.
+"undeletedtext"   => "Díscriosadh an alt [[:$1|$1]] go rathúil.
 Féach ar [[{{ns:4}}:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchóirithe deireanacha a fháil.",
 
 

@@ -797,7 +797,7 @@ på siden.",
 "undeleterevision" => "Slettet versjon fra $1",
 "undeletebtn" => "Gjenopprett!",
 "undeletedarticle" => "gjenopprettet \"$1\"",
-"undeletedtext"   => "Artikkelen [[$1]] er gjenopprettet.
+"undeletedtext"   => "Artikkelen [[:$1|$1]] er gjenopprettet.
 Se [[Wikipedia:Slettingslogg]] for en oversikt over nylige
 slettinger og gjenopprettelser.",
 

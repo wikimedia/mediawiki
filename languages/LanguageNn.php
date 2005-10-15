@@ -1043,7 +1043,7 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 'undeletebtn'           => 'Attopprett!',
 'undeletedarticle'      => 'attoppretta «[[$1]]»',
 'undeletedrevisions'    => '$1 versjonar attoppretta',
-'undeletedtext'         => 'Sida [[$1]] er attoppretta. Sjå [[Special:Log/delete]] for oversyn over nylege slettingar og attopprettingar.',
+'undeletedtext'         => 'Sida [[:$1|$1]] er attoppretta. Sjå [[Special:Log/delete]] for oversyn over nylege slettingar og attopprettingar.',
 
  # Namespace form on various pages
 'namespace'             => 'Namnerom:',

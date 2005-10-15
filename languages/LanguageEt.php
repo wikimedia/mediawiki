@@ -866,7 +866,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 "undeleterevision" => "Kustutatud versioon seisuga $1",
 "undeletebtn" => "Taasta!",
 "undeletedarticle" => "\"$1\" taastatud",
-"undeletedtext"   => "Artikkel [[$1]] on taastatud.
+"undeletedtext"   => "Artikkel [[:$1|$1]] on taastatud.
 Viimaste kustutamiste ja taastamiste logi on esitatud lehel [[{{ns:4}}:Kustutatud_leheküljed]].",
 
 # Contributions

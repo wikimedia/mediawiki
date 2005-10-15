@@ -759,7 +759,7 @@ versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭi
 'undeleterevision' => 'Forigita versio de $1', # ( estas tempo)
 'undeletebtn' => 'Restarigu!',
 'undeletedarticle' => 'restarigis "$1"',
-'undeletedtext'   => 'La artikolo [[$1]] estas sukcese restarigita.
+'undeletedtext'   => 'La artikolo [[:$1|$1]] estas sukcese restarigita.
 Vidu [[{{ns:4}}:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj restarigoj.',
 
 # Contributions

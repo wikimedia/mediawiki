@@ -913,7 +913,7 @@ dieses Artikels erscheinen.",
 "undeleterevision" => "Gelöschte Version vom $1",
 "undeletebtn" => "Wiederherstellen!",
 "undeletedarticle" => "\"$1\" wiederhergestellt",
-"undeletedtext"   => "Der Artikel [[$1]] wurde erfolgreich wiederhergestellt.",
+"undeletedtext"   => "Der Artikel [[:$1|$1]] wurde erfolgreich wiederhergestellt.",
 
 # Contributions
 #

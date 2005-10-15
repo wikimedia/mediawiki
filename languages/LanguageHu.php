@@ -842,7 +842,7 @@ will not be automatically replaced.",
 "undeleterevision" => "Deleted revision as of $1",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
-"undeletedtext"   => "The article [[$1]] has been successfully restored.
+"undeletedtext"   => "The article [[:$1|$1]] has been successfully restored.
 See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions

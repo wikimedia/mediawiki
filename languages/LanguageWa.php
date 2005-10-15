@@ -862,7 +862,7 @@ srè håynêye.",
 "undeleterevision" => "Modêye disfacêye li $1",
 "undeletebtn" => "Rapexhî!",
 "undeletedarticle" => "a rapexhî l'&nbsp;pådje «$1»",
-"undeletedtext"   => "L'&nbsp;årtike [[$1]] a stî rapexhî comifåt.
+"undeletedtext"   => "L'&nbsp;årtike [[:$1|$1]] a stî rapexhî comifåt.
 Loukîz [[Wikipedia:Djournå_des_disfaçaedjes]] po ene djivêye des dierins
 disfaçaedjes eyet rapexhaedjes.",
 

@@ -876,7 +876,7 @@ Si une nouvelle page avec le même nom a été crée depuis la suppression, les 
 'undeleterevision' => 'Version effacée ($1)',
 'undeletebtn'	=> 'Restaurer!',
 'undeletedarticle' => 'restauré « $1 »',
-'undeletedtext'   => 'L\'article [[$1]] a été restauré avec succès.
+'undeletedtext'   => 'L\'article [[:$1|$1]] a été restauré avec succès.
 
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.',
 'undeletedrevisions' => '$1 versions ont été restaurées',

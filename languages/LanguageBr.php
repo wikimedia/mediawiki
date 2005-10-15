@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
   * @package MediaWiki
   * @subpackage Language
@@ -879,7 +879,7 @@ Ma\'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, 
 "undeleterevision" => "Stumm diverket ($1)",
 'undeletebtn'	=> 'Diziverkañ!',
 'undeletedarticle' => "Diziverket\"$1\"",
-'undeletedtext'   => "Diziverket eo bet ar pennad [[$1]] da vat.
+'undeletedtext'   => "Diziverket eo bet ar pennad [[:$1|$1]] da vat.
 Sellet ouzh [[{{ns:4}}:Aspadennoù an diverkadennoù]] evit kaout roll an diverkadennoù hag an diziverkadennoù diwezhañ.",
 'undeletedrevisions' => "$1 stumm bet diziverket",
 

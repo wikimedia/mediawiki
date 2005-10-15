@@ -786,7 +786,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.",
 "undeleterevision" => "Wiske side, sa't dy $1 wie.",
 "undeletebtn" 	=> "Weromset!",
 "undeletedarticle" => "\"$1\" weromset",
-"undeletedtext"   => "It weromsette fan side [[$1]] is slagge.
+"undeletedtext"   => "It weromsette fan side [[:$1|$1]] is slagge.
 (List fan resint [[{{ns:project}}:wisk-loch|wiske of weromsette siden]].",
 
 # Contributions

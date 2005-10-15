@@ -709,7 +709,7 @@ hamna i den äldre versionshanteraren och den senaste versionen av sidan kommer 
 "undeleterevision"      => "Tog bort version $1",
 "undeletebtn"           => "Återställd!",
 "undeletedarticle"      => "återställd \"$1\"",
-"undeletedtext"         => "Artikeln [[$1]] har blivit återställd
+"undeletedtext"         => "Artikeln [[:$1|$1]] har blivit återställd
 Se [[Wikipedia:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
 
 // Contributions
