@@ -828,7 +828,7 @@ pozostanie bez zmian.",
 "undeleterevision" => "Skasowano wersję z $1",
 "undeletebtn" => "Odtwórz!",
 "undeletedarticle" => "odtworzono \"$1\"",
-"undeletedtext" => "Pomyślnie odtworzono stronę [[$1]].
+"undeletedtext" => "Pomyślnie odtworzono stronę [[:$1|$1]].
 Zobacz [[{{ns:4}}:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
 skasowanych i odtworzonych stron.",
 

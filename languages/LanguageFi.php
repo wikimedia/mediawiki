@@ -961,7 +961,7 @@ Palaute ja lisäapu osoitteessa:
 'undeletebtn'         => 'Palauta!',
 'undeletedarticle'    => 'palautti sivun $1',
 'undeletedrevisions'  => '$1 versiota palautettiin',
-'undeletedtext'       => 'Sivu [[$1]] on palautettu onnistuneesti. Lista viimeisimmistä poistoista ja palautuksista on [[Special:Log/delete|poistolokissa]].',
+'undeletedtext'       => 'Sivu [[:$1|$1]] on palautettu onnistuneesti. Lista viimeisimmistä poistoista ja palautuksista on [[Special:Log/delete|poistolokissa]].',
 
 'namespace'           => 'Nimiavaruus',
 'invert'              => 'Käännä nimiavaruusvalinta päinvastaiseksi',
@@ -1055,7 +1055,7 @@ Palaute ja lisäapu osoitteessa:
 'setbureaucratflag'   => 'Tee käyttäjästä myös byrokraatti',
 'bureaucratlog'       => 'Byrokraattiloki',
 'rightslogtext'       => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
-'bureaucratlogentry'  => 'Käyttäjän $1 ryhmäoikeudet muutettiin ryhmästä $2 ryhmään $3', // TODO: Inflect me
+'bureaucratlogentry'  => 'Käyttäjän [[$1|]] sai oikeudet$3', // TODO: Inflect me
 'rights'              => 'Oikeudet:',
 'set_user_rights'     => 'Aseta käyttäjän oikeudet',
 'user_rights_set'     => 'Käyttäjän <b>$1</b> oikeudet päivitetty.',

@@ -1097,7 +1097,7 @@ Tekst izbrisanih inačica dostupan je samo administratorima.',
 "undeleterevision" => "Izbrisana inačica od $1",
 "undeletebtn" => "Vrati!",
 "undeletedarticle" => "vraćen \"$1\"",
-"undeletedtext"   => "Članak [[$1]] je uspješno vraćen.
+"undeletedtext"   => "Članak [[:$1|$1]] je uspješno vraćen.
 Vidi [[Project:Evidencija_brisanja]] za popis nedavnih brisanja i vraćanja.",
 
 # Namespace form on various pages

@@ -737,7 +737,7 @@ Si una nueva página con el mismo nombre ha sido creada desde el borrado, las ve
 "undeleterevision" => "Revisión borrada al $1",
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => "restaurado \"$1\"",
-"undeletedtext"   => "El artículo [[$1]] ha sido restaurado con éxito.
+"undeletedtext"   => "El artículo [[:$1|$1]] ha sido restaurado con éxito.
 Véase [[{{ns:project}}:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
 
 # Contributions

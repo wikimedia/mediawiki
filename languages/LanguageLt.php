@@ -930,7 +930,7 @@ $1
 'undeletebtn' => 'Atstatyti!',
 'undeletedarticle' => 'atstatyta "[[$1]]"',
 'undeletedrevisions' => 'atstatyta $1 revizijų',
-'undeletedtext' => 'Straipsnis [[$1]] sėkmingai atstatytas.
+'undeletedtext' => 'Straipsnis [[:$1|$1]] sėkmingai atstatytas.
 [[Special:Log/delete|Ištrinimų sąraše]] galite peržiūrėti nesenų trynimų ir atstatymų sąrašą.',
 'undeletehistory' => 'Jei atstatysite straipsnį, istorijoje bus atstatytos visos versijos.
 Jei po ištrynimo buvo sukurtas straipsnis tokiu pačiu pavadinimu,

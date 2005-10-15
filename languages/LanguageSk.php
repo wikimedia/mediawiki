@@ -1168,7 +1168,7 @@ nebude automaticky nahradená.',
 'undeletebtn' => 'Obnov!',
 'undeletedarticle' => "obnovený \"[[$1]]\"",
 'undeletedrevisions' => "$1 verzií obnovených",
-'undeletedtext' => "Článok [[$1]] bol úspešne obnovený.
+'undeletedtext' => "Článok [[:$1|$1]] bol úspešne obnovený.
 Pozri [[Special:Log/delete]] - zoznam posledných zmazaní a obnovení.",
 
 # Namespace form on various pages

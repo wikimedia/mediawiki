@@ -708,7 +708,7 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 "undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",
 "undeletebtn"	=> "Restaurer !", // Looxix "Restore!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
-"undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
+"undeletedtext"   => "L'article [[:$1|$1]] a été restauré avec succès.
 Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix
 # Contributions
 #

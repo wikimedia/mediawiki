@@ -698,7 +698,7 @@ dan revisi terkini bagi halaman baru tidak akan digantikan secara automatik.", #
 "undeleterevision" => "Revisi yang telah dikeluarkan seperti $1", #"Deleted revision as of $1",
 "undeletebtn" => "Masukkan semula!", #"Restore!",
 "undeletedarticle" => "telah dimasukkan", #"restored \"$1\"",
-"undeletedtext"   => "Halaman [[$1]] telah berjaya dimasukkan semula.
+"undeletedtext"   => "Halaman [[:$1|$1]] telah berjaya dimasukkan semula.
 Lihat [[Wikipedia:Log_penghapusan]] untuk rekod terkini penghapusan dan kemasukan semula halaman.",
 
 # Contributions

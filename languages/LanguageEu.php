@@ -1483,8 +1483,6 @@ to a previously blocked IP address or username.', */
 #'undeletebtn' => 'Restore!',
 #'undeletedarticle' => 'restored "[[$1]]"',
 #'undeletedrevisions' => '$1 revisions restored',
-/* 'undeletedtext' => '[[$1]] has been successfully restored.
-See [[Special:Log/delete]] for a record of recent deletions and restorations.', */
 /* 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page

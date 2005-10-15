@@ -667,7 +667,7 @@ Zadnja sprememba od uporabnika [[Uporabnik:$3|$3]] ([[Pogovor z uporabnikom:$3|P
 "undeleterevision" => "Zbrisana različica od $1",
 "undeletebtn" => "Obnovi!",
 "undeletedarticle" => "obnovljen \"$1\"",
-"undeletedtext"   => "Članek [[$1]] se je uspešno obnovil.
+"undeletedtext"   => "Članek [[:$1|$1]] se je uspešno obnovil.
 Glej [[Wikipedija:Dnevnik_brisanja]] za zabeležbe nedavnih brisanj in obnovitev.",
 
 # Contributions

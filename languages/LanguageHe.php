@@ -624,7 +624,7 @@ $3 $9",
 "undeleterevision" => ".מחקתי גירסאות החל מ-$1",
 "undeletebtn" => "שחזר!",
 "undeletedarticle" => "\"$1\" שוחזר",
-"undeletedtext"   => "המאמר [[$1]] שוחזר בהצלחה.
+"undeletedtext"   => "המאמר [[:$1|$1]] שוחזר בהצלחה.
 ראה את [[{{ns:special}}:יומן_מחיקות]] לרשימה של מחיקות ושיחזורים אחרונים.",
 
 # Contributions

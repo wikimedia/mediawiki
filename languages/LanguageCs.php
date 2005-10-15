@@ -1083,7 +1083,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'undeletebtn' => 'Obnovit',
 'undeletedarticle' => 'obnovuje „$1“',
 'undeletedrevisions' => 'Obnoveno $1 verzí',
-'undeletedtext'   => 'Stránka [[$1]] byla úspěšně obnovena. Vizte [[Special:Log/delete|knihu smazaných stránek]] na záznam posledních smazání a obnovení.',
+'undeletedtext'   => 'Stránka [[:$1|$1]] byla úspěšně obnovena. Vizte [[Special:Log/delete|knihu smazaných stránek]] na záznam posledních smazání a obnovení.',
 
 # Namespace form on various pages
 'namespace' => 'Jmenný prostor:',

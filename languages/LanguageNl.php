@@ -658,7 +658,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "undeleterevision" => "Verwijderde versie van $1",
 "undeletebtn" => "Terugplaatsen!",
 "undeletedarticle" => "\"$1\" is teruggeplaatst.",
-"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[{{ns:4}}:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
+"undeletedtext" =>"Het artikel [[:$1|$1]] is teruggeplaatst. Zie [[{{ns:4}}:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
 
 # Contributions
 # Bijdragen

@@ -1137,7 +1137,7 @@ på siden.",
 "undeletebtn" => "Gendan!",
 "undeletedarticle" => "gendannede \"$1\"",
 'undeletedrevisions' => "$1 versioner gendannet",
-"undeletedtext"   => "Artiklen [[$1]] er blevet gendannet med succes.
+"undeletedtext"   => "Artiklen [[:$1|$1]] er blevet gendannet med succes.
 Se [[{{ns:project}}:Sletningslog]] for en fortegnelse over nylige
 sletninger og gendannelser.",
 

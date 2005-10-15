@@ -1166,7 +1166,7 @@ $NEWPAGE
 'undeletebtn' => 'Восстановить!',
 'undeletedarticle' => '«[[$1]]» восстановлена',
 'undeletedrevisions' => '$1 изменений восстановлено',
-'undeletedtext'   => 'Статья [[$1]] была восстановлена.
+'undeletedtext'   => 'Статья [[:$1|$1]] была восстановлена.
 См. [[{{ns:project}}:Список_удалений]] для просмотра списка свежих удалений и восстановлений.',
 
 # Namespace form on various pages

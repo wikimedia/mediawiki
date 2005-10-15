@@ -840,7 +840,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "undeleterevision" => "حذف نسخه‌ی به تاریخ $1",
 "undeletebtn" => "احیا شود!",
 "undeletedarticle" => "«$1» احیا شد",
-"undeletedtext"   => "مقاله‌ی [[$1]] با موفقیت احیا شد.
+"undeletedtext"   => "مقاله‌ی [[:$1|$1]] با موفقیت احیا شد.
 برای سوابق حذف‌ها و احیاهای اخیر به [[ویکی‌پدیا:سیاهه‌ی_حذف]] مراجعه کنید.",
 
 # Contributions

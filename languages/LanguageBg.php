@@ -1146,7 +1146,7 @@ Feedback and further assistance:
 'undeletebtn' => 'Възстановяване!',
 'undeletedarticle' => '„[[$1]]“ беше възстановена',
 'undeletedrevisions' => '$1 версии бяха възстановени',
-'undeletedtext'   => 'Страницата [[$1]] беше успешно възстановена.
+'undeletedtext'   => 'Страницата [[:$1|$1]] беше успешно възстановена.
 Вижте [[Special:Log/delete|дневника на изтриванията]] за запис на последните изтривания и възстановявания.',
 
 # Namespace form on various pages

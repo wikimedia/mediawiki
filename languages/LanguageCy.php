@@ -750,7 +750,7 @@ Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 "undeletebtn" => "Adferiwch!",
 "undeletedarticle" => "wedi adferio \"$1\"",
 
-"undeletedtext" => "Mae'r erthygl [[$1]] wedi cael eu adferio'n llwyddiannus.
+"undeletedtext" => "Mae'r erthygl [[:$1|$1]] wedi cael eu adferio'n llwyddiannus.
 Gwyliwch [[Wicipedia:Log_dileuon]] am record dileuon ac adferion diweddar.",
 
 # Contributions

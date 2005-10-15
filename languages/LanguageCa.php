@@ -673,7 +673,7 @@ revisió actual del la pàgina \"viva\" no serà substituïda automàticament.",
 "undeleterevision" => "Revisió esborrada al $1",
 "undeletebtn" => "Restaura!",
 "undeletedarticle" => "restaurat \"$1\"",
-"undeletedtext"   => "L'article [[$1]] ha estat restaurat amb èxit.
+"undeletedtext"   => "L'article [[:$1|$1]] ha estat restaurat amb èxit.
 Vegeu [[{{ns:4}}:Registre_d'esborrats]] per un llistat d'esborrats i restauracions recents.",
 
 # Contributions

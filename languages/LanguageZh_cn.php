@@ -708,7 +708,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "undeleterevision" => "删除$1时的版本",
 "undeletebtn" => "恢复！",
 "undeletedarticle" => "已经恢复“$1”",
-"undeletedtext"   => "[[$1]]已经被成功复原。
+"undeletedtext"   => "[[:$1|$1]]已经被成功复原。
 有关Wikipedia最近的删除与复原，参见[[Wikipedia:删除纪录]]",
 
 # Contributions

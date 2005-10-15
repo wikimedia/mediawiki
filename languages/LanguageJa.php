@@ -1074,7 +1074,7 @@ $NEWPAGE
 'undeletebtn' => '復帰!',
 'undeletedarticle' => '"$1" を復帰しました。',
 'undeletedrevisions' => '$1 版を復帰',
-'undeletedtext' => '[[:$1]]を無事復帰しました。最近の削除と復帰の記録は[[Special:Log/delete]]を参照してください。',
+'undeletedtext' => '[[:$1|$1]]を無事復帰しました。最近の削除と復帰の記録は[[Special:Log/delete]]を参照してください。',
 
 # Namespace form on various pages
 'namespace' => '名前空間:',

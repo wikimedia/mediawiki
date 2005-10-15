@@ -940,7 +940,7 @@ një përdoruesi ose IP adreseje të bllokuar.',
 'undeletearticle' => 'Restauro artikullin e grisur',
 'undeletebtn' => 'Restauro!',
 'undeletedarticle' => 'u restaurua "$1"',
-'undeletedtext' => 'Faqja [[$1]] është restauruar me sukses. Shikoni [[Speciale:Log/delete|rregjistrin e grisjeve]] për një listë të grisjeve dhe restaurimeve të fundit.',
+'undeletedtext' => 'Faqja [[:$1|$1]] është restauruar me sukses. Shikoni [[Speciale:Log/delete|rregjistrin e grisjeve]] për një listë të grisjeve dhe restaurimeve të fundit.',
 'undeletehistory' => 'N.q.s. restauroni një faqe, të gjitha versionet do të restaurohen në histori. N.q.s. një faqe e re me të njëjtin titull është krijuar që nga grisja, versionet e restauruara do të duken më përpara në histori, dhe versioni i faqes së fundit nuk do të shkëmbehet automatikisht.',
 'undeletepage' => 'Shikoni ose restauroni faqet e grisura',
 'undeletepagetext' => 'Më poshtë janë faqet që janë grisur por që gjënden akoma në arkiv dhe

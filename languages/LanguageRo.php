@@ -895,7 +895,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..",
 'undeletearticle' => "Recuperează articol şters",
 'undeletebtn' => "Recuperează!",
 'undeletedarticle' => "\"$1\" a fost recuperat",
-'undeletedtext' => "Articolul [[$1]] a fost recuperat.
+'undeletedtext' => "Articolul [[:$1|$1]] a fost recuperat.
 Vezi [[Project:Raport_ştergeri]] pentru o listă a ştergerilor şi recuperărilor recente.",
 'undeletehistory' => "Dacă recuperezi pagina, toate versiunile asociate
 vor fi adăugate retroactiv în istorie. Dacă o pagină nouă cu acelaşi nume
