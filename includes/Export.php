@@ -31,6 +31,9 @@ define( 'MW_EXPORT_CURRENT',  1 );
 define( 'MW_EXPORT_BUFFER',   0 );
 define( 'MW_EXPORT_STREAM',   1 );
 
+define( 'MW_EXPORT_TEXT',     0 );
+define( 'MW_EXPORT_STUB',     1 );
+
 
 /**
  * @package MediaWiki
@@ -49,12 +52,13 @@ class WikiExporter {
 	 * @param int $buffer one of MW_EXPORT_BUFFER or MW_EXPORT_STREAM
 	 */
 	function WikiExporter( &$db, $history = MW_EXPORT_CURRENT,
-			$buffer = MW_EXPORT_BUFFER ) {
+			$buffer = MW_EXPORT_BUFFER, $text = MW_EXPORT_TEXT ) {
 		$this->db =& $db;
 		$this->history = $history;
 		$this->buffer  = $buffer;
 		$this->writer  = new XmlDumpWriter();
 		$this->sink    = new DumpOutput();
+		$this->text    = $text;
 	}
 	
 	/**
@@ -158,13 +162,21 @@ class WikiExporter {
 			$pageindex = '';
 			$revindex = '';
 		}
-		$result = $this->db->query(
-			"SELECT * FROM
-				$page $pageindex,
-				$revision $revindex,
-				$text
-				WHERE $where $join AND rev_text_id=old_id
-				ORDER BY page_id", $fname );
+		if( $this->text == MW_EXPORT_STUB ) {
+			$sql = "SELECT * FROM
+					$page $pageindex,
+					$revision $revindex
+					WHERE $where $join
+					ORDER BY page_id";
+		} else {
+			$sql = "SELECT * FROM
+					$page $pageindex,
+					$revision $revindex,
+					$text
+					WHERE $where $join AND rev_text_id=old_id
+					ORDER BY page_id";
+		}
+		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
 		$this->outputStream( $wrapper );
 		
@@ -363,11 +375,19 @@ class XmlDumpWriter {
 		if( $row->rev_comment != '' ) {
 			$out .= "      " . wfElementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
-	
-		$text = strval( Revision::getRevisionText( $row ) );
-		$out .= "      " . wfElementClean( 'text',
-			array( 'xml:space' => 'preserve' ),
-			strval( $text ) ) . "\n";
+		
+		if( isset( $row->old_text ) ) {
+			// Raw text from the database may have invalid chars
+			$text = strval( Revision::getRevisionText( $row ) );
+			$out .= "      " . wfElementClean( 'text',
+				array( 'xml:space' => 'preserve' ),
+				strval( $text ) ) . "\n";
+		} else {
+			// Stub output
+			$out .= "      " . wfElement( 'text',
+				array( 'id' => $row->rev_text_id ),
+				"" ) . "\n";
+		}
 		
 		$out .= "    </revision>\n";
 		
