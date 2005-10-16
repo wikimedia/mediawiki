@@ -47,6 +47,21 @@ if( !$wgDisableCounters ) {
  * @package MediaWiki
  */
 class QueryPage {
+	/**
+	 * Whether or not we want plain listoutput rather than an ordered list
+	 *
+	 * @var bool
+	 */
+	var $listoutput = false;
+
+	/**
+	 * A mutator for $this->listoutput;
+	 *
+	 * @param bool $bool
+	 */
+	function setListoutput( $bool ) {
+		$this->listoutput = $bool;
+	}
 
 	/**
 	 * Subclasses return their name here. Make sure the name is also
@@ -266,7 +281,7 @@ class QueryPage {
 			$wgOut->addHTML( "<p>{$top}\n" );
 
 			# often disable 'next' link when we reach the end
-			if($num < $limit) { $atend = true; } else { $atend = false; }
+			$atend = $num < $limit;
 
 			$sl = wfViewPrevNext( $offset, $limit ,
 				$wgContLang->specialPage( $sname ),
@@ -274,7 +289,9 @@ class QueryPage {
 			$wgOut->addHTML( "<br />{$sl}</p>\n" );
 		}
 		if ( $num > 0 ) {
-			$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
+			$s = array();
+			if ( ! $this->listoutput )
+				$s[] = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
 
 			# Only read at most $num rows, because $res may contain the whole 1000
 			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
@@ -282,7 +299,7 @@ class QueryPage {
 				if ( $format ) {
 					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
 										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
-					$s .= "<li{$attr}>{$format}</li>\n";
+					$s[] = $this->listoutput ? $format : "<li{$attr}>{$format}</li>\n";
 				}
 			}
 
@@ -293,13 +310,15 @@ class QueryPage {
 				if( $format ) {
 					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
 										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
-					$s .= "<li{$attr}>{$format}</li>\n";
+					$s[] = "<li{$attr}>{$format}</li>\n";
 				}
 			}
 
 			$dbr->freeResult( $res );
-			$s .= '</ol>';
-			$wgOut->addHTML( $s );
+			if ( ! $this->listoutput )
+				$s[] = '</ol>';
+			$str = $this->listoutput ? $wgContLang->listToText( $s ) : implode( '', $s );
+			$wgOut->addHTML( $str );
 		}
 		if($shownavigation) {
 			$wgOut->addHTML( "<p>{$sl}</p>\n" );
