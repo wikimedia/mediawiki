@@ -1620,13 +1620,12 @@ class ResultWrapper {
  */
 function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
-	global $wgSitename, $wgServer, $wgMessageCache;
+	global $wgSitename, $wgServer, $wgMessageCache, $wgLogo;
 
 	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
 	# Hard coding strings instead.
 
-	$noconnect = 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server. <br />
-$1';
+	$noconnect = "<h1><img src='$wgLogo' style='float:left;margin-right:1em' alt=''>$wgSitename has a problem</h1><p><strong>Sorry! This site is experiencing technical difficulties.</strong></p><p>Try waiting a few minutes and reloading.</p><p><small>(Can't contact the database server: $1)</small></p>";
 	$mainpage = 'Main Page';
 	$searchdisabled = <<<EOT
 <p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
@@ -1664,11 +1663,13 @@ border=\"0\" ALT=\"Google\"></A>
 	}
 
 	# No database access
-	$wgMessageCache->disable();
+	if ( is_object( $wgMessageCache ) ) {
+		$wgMessageCache->disable();
+	}
 	
 	$msg = wfGetSiteNotice();
 	if($msg == '') {
-		$msg = str_replace( '$1', $error, $noconnect );
+		$msg = str_replace( '$1', htmlspecialchars( $error ), $noconnect );
 	}
 	$text = $msg;
 
