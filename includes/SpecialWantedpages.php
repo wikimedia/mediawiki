@@ -8,7 +8,7 @@
 /**
  *
  */
-require_once ( 'QueryPage.php' ) ;
+require_once 'QueryPage.php';
 
 /**
  *
@@ -16,6 +16,9 @@ require_once ( 'QueryPage.php' ) ;
  * @subpackage SpecialPage
  */
 class WantedPagesPage extends QueryPage {
+	function WantedPagesPage( $inc ) {
+		$this->setListoutput( $inc );
+	}
 
 	function getName() {
 		return 'Wantedpages';
@@ -50,23 +53,28 @@ class WantedPagesPage extends QueryPage {
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), $text );
 		
-		$nl = wfMsg( "nlinks", $result->value );
-		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( "Whatlinkshere" ), $nl,
-		  "target=" . $nt->getPrefixedURL() );
+		$nl = wfMsg( 'nlinks', $result->value );
+		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
 
-		return "{$plink} ({$nlink})";
+		return "$plink ($nlink)";
 	}
 }
 
 /**
  * constructor
  */
-function wfSpecialWantedpages() {
-	list( $limit, $offset ) = wfCheckLimits();
+function wfSpecialWantedpages( $par = null, $specialPage ) {
+	$inc = $specialPage->including();
+	
+	if ( $inc ) {
+		$limit = (int)$par;
+		$offset = 0;
+	} else
+		list( $limit, $offset ) = wfCheckLimits();
 
-	$wpp = new WantedPagesPage();
+	$wpp = new WantedPagesPage( $inc );
 
-	$wpp->doQuery( $offset, $limit );
+	$wpp->doQuery( $offset, $limit, !$inc );
 }
 
 ?>
