@@ -62,7 +62,6 @@ div.thumb div a img {
 }
 div.thumb div div.thumbcaption {
     border: none;
-    text-align: left;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify { display: none; }
@@ -120,7 +119,6 @@ ul {
     font-size: 11pt;
     padding: 0 ! important;
     margin: 0 ! important;
-    text-align: left;
 }
 #footer {
 	background : white;
