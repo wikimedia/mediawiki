@@ -703,20 +703,19 @@ $wgUseCommaCount = false;
 */
 $wgHitcounterUpdateFreq = 1;
 
-# User rights settings
-#
-#  It's not 100% safe, there could be security hole using that one. Use at your
-# own risks.
-
-$wgWhitelistRead = false;	# Pages anonymous user may see, like: = array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
-
+# Basic user rights and block settings
 $wgAllowAnonymousMinor = false; # Allow anonymous users to mark changes as 'minor'
-
 $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgSysopRangeBans		= true; # Allow sysops to ban IP ranges
-
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user talk page
+
+# Pages anonymous user may see as an array, e.g.:
+# array ( "Main Page", "Special:Userlogin", "Wikipedia:Help");
+# NOTE: This will only work if $wgGroupPermissions['*']['read'] 
+# is false -- see below. Otherwise, ALL pages are accessible,
+# regardless of this setting.
+$wgWhitelistRead = false;	
 
 /**
  * Permission keys given to users in each group.
@@ -725,6 +724,9 @@ $wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user tal
  * combined with the permissions of all groups that a given user is listed
  * in in the user_groups table.
  *
+ * Functionality to make pages inaccessible has not been extensively tested 
+ * for security. Use at your own risk!
+ * 
  * This replaces wgWhitelistAccount and wgWhitelistEdit
  */
 $wgGroupPermissions = array();
