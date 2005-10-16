@@ -228,16 +228,6 @@ class Article {
 	}
 
 	/**
-	 * Return an array of the columns of the "cur"-table
-	 */
-	function getContentFields() {
-		return $wgArticleContentFields = array(
-		  'old_text','old_flags',
-		  'rev_timestamp','rev_user', 'rev_user_text', 'rev_comment','page_counter',
-		  'page_namespace', 'page_title', 'page_restrictions','page_touched','page_is_redirect' );
-	}
-
-	/**
 	 * Return the oldid of the article that is to be shown.
 	 * For requests with a "direction", this is not the oldid of the
 	 * query
