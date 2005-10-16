@@ -263,7 +263,8 @@ class QueryPage {
 			$sql =
 				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
 				 FROM $querycache WHERE qc_type='$type'";
-			$wgOut->addWikiText( wfMsg( 'perfcached' ) );
+			if ( ! $this->listoutput )
+				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
 		}
 
 		$sql .= $this->getOrder();
