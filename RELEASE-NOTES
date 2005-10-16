@@ -152,6 +152,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix for hook callbacks on objects containing no fields
 * (bug 3711) Removed invisible unicode characters from LanguageHu
 * (bug 2330) Don't do funny thinks with "links" in MediaWiki:Undeletedtext
+* Two-pass data dump for friendliness to the DB (--stub, then dumpTextPass.php)
+* Data dump 'prefetch' mode to read normalized text from a prior dump
+  (requires PHP 5, XMLReader extension)
 
 
 === Caveats ===
