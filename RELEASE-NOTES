@@ -820,6 +820,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3684) Fix typo in fatal error backtraces in Hooks.php
 * Backport fix for reference usage notice in Special:Search on PHP 4.4.0
 * Backport database connect error display fix from HEAD
+* (bug 2773) Print style sheet no longer overrides RTL text direction
 
 
 === Caveats ===
