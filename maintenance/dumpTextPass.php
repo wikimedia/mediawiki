@@ -62,7 +62,20 @@ class TextPassDumper extends BackupDumper {
 	function processOption( $opt, $val, $param ) {
 		if( $opt == 'prefetch' ) {
 			require_once 'maintenance/backupPrefetch.inc';
-			$this->prefetch = new BaseDump( $val );
+			switch( $val ) {
+			case "file":
+				$filename = $param;
+				break;
+			case "gzip":
+				$filename = "compress.gzip://$param";
+				break;
+			case "bzip2":
+				$filename = "compress.bzip2://$param";
+				break;
+			default:
+				$filename = $val;
+			}
+			$this->prefetch = new BaseDump( $filename );
 		}
 	}
 	
