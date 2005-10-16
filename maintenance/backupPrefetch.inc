@@ -92,6 +92,9 @@ class BaseDump {
 	 * @access private
 	 */
 	function skipTo( $name ) {
+		if( $this->atEnd ) {
+			return false;
+		}
 		while( $this->reader->read() ) {
 			if( $this->reader->nodeType == XMLREADER_ELEMENT &&
 				$this->reader->name == $name ) {
@@ -109,6 +112,9 @@ class BaseDump {
 	 * @access private
 	 */
 	function nodeContents() {
+		if( $this->atEnd ) {
+			return false;
+		}
 		if( $this->reader->isEmptyElement ) {
 			return "";
 		}
@@ -132,7 +138,6 @@ class BaseDump {
 	 */
 	function close() {
 		$this->reader->close();
-		$this->reader = null;
 		$this->atEnd = true;
 		return false;
 	}
