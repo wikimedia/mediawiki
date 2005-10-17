@@ -43,7 +43,7 @@ class ShortPagesPage extends QueryPage {
 					page_namespace as namespace,
 			        page_title as title,
 			        page_len AS value
-			FROM $page
+			FROM $page FORCE INDEX (page_len)
 			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 	
