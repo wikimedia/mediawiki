@@ -1618,12 +1618,11 @@ set of pages wrapped in some XML. In the future, this may then be imported into 
 wiki running MediaWiki software, although there is no support for this feature in the
 current version.
 
-To export article pages, enter the titles in the text box below, one title per line, and
+To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
 history lines, or just the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the
-article [[Train]].
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] for the page {{Mediawiki:mainpage}}.
 ',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
 
