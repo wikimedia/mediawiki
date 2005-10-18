@@ -16,8 +16,11 @@ require_once 'QueryPage.php';
  * @subpackage SpecialPage
  */
 class WantedPagesPage extends QueryPage {
-	function WantedPagesPage( $inc = false ) {
+	var $nlinks;
+	
+	function WantedPagesPage( $inc = false, $nlinks = true ) {
 		$this->setListoutput( $inc );
+		$this->nlinks = $nlinks;
 	}
 
 	function getName() {
@@ -76,7 +79,7 @@ class WantedPagesPage extends QueryPage {
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
 
-		return "$plink ($nlink)";
+		return $this->nlinks ? "$plink ($nlink)" : $plink;
 	}
 }
 
@@ -87,12 +90,16 @@ function wfSpecialWantedpages( $par = null, $specialPage ) {
 	$inc = $specialPage->including();
 	
 	if ( $inc ) {
-		$limit = (int)$par;
+		@list( $limit, $nlinks ) = explode( '/', $par, 2 );
+		$limit = (int)$limit;
+		$nlinks = $nlinks === 'nlinks';
 		$offset = 0;
-	} else
+	} else {
 		list( $limit, $offset ) = wfCheckLimits();
+		$nlinks = true;
+	}
 
-	$wpp = new WantedPagesPage( $inc );
+	$wpp = new WantedPagesPage( $inc, $nlinks );
 
 	$wpp->doQuery( $offset, $limit, !$inc );
 }
