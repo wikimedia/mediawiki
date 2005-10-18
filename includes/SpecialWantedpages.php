@@ -16,7 +16,7 @@ require_once 'QueryPage.php';
  * @subpackage SpecialPage
  */
 class WantedPagesPage extends QueryPage {
-	function WantedPagesPage( $inc ) {
+	function WantedPagesPage( $inc = false ) {
 		$this->setListoutput( $inc );
 	}
 
@@ -46,12 +46,32 @@ class WantedPagesPage extends QueryPage {
 			 HAVING COUNT(*) > 1";
 	}
 
+	/**
+	 * Fetch user page links and cache their existence
+	 */
+	function preprocessResults( &$db, &$res ) {
+		global $wgLinkCache;
+
+		$batch = new LinkBatch;
+		while ( $row = $db->fetchObject( $res ) )
+			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->title ) );
+		$batch->execute( $wgLinkCache );
+
+		// Back to start for display
+		if ( $db->numRows( $res ) > 0 )
+			// If there are no rows we get an error seeking.
+			$db->dataSeek( $res, 0 );
+	}
+	
+	
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		$plink = $skin->makeBrokenLink( $nt->getPrefixedText(), $text );
+		$plink = $this->isCached() ?
+			$skin->makeLinkObj( $nt, $text ) :
+			$skin->makeBrokenLink( $nt->getPrefixedText(), $text );
 		
 		$nl = wfMsg( 'nlinks', $result->value );
 		$nlink = $skin->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ), $nl, 'target=' . $nt->getPrefixedURL() );
