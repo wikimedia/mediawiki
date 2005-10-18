@@ -156,6 +156,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Data dump 'prefetch' mode to read normalized text from a prior dump
   (requires PHP 5, XMLReader extension)
 * (bug 2773) Print style sheet no longer overrides RTL text direction
+* (bug 2938) Update MediaWiki:Exporttext to be more general
 
 
 === Caveats ===

@@ -1116,7 +1116,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 
 Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
 
-Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi [[Juna]]sivun saa vietyä linkistä [[Special:Export/Juna]].',
+Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[Special:Export/{{Mediawiki:mainpage}}]].',
 'exportcuronly'       => 'Liitä mukaan ainoastaan uusin versio, ei koko historiaa.',
 
 # Namespace 8 related
