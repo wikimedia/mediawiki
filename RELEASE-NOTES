@@ -157,6 +157,8 @@ fully support the editing toolbar, but was found to be too confusing.
   (requires PHP 5, XMLReader extension)
 * (bug 2773) Print style sheet no longer overrides RTL text direction
 * (bug 2938) Update MediaWiki:Exporttext to be more general
+* Fixed possible infinite loop in formatComment
+* Added a limit to the size of image files which can be thumbnailed
 
 
 === Caveats ===

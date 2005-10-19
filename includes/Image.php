@@ -919,6 +919,7 @@ class Image
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
+		global $wgSVGMaxSize, $wgMaxImageArea;
 
 		$fname = 'Image::renderThumb';
 		wfProfileIn( $fname );
@@ -940,7 +941,14 @@ class Image
 			return null;
 		}
 
-		global $wgSVGMaxSize;
+		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
+		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
+		# an exception for it.
+		if ( $this->getMimeType() !== "image/jpeg" && $this->width * $this->height > $wgMaxImageArea ) {
+			wfProfileOut( $fname );
+			return null;
+		}
+
 		$maxsize = $this->mustRender()
 			? max( $this->width, $wgSVGMaxSize )
 			: $this->width - 1;
