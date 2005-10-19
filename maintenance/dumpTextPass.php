@@ -118,7 +118,10 @@ class TextPassDumper extends BackupDumper {
 			array( 'old_text', 'old_flags' ),
 			array( 'old_id' => $id ),
 			'TextPassDumper::getText' );
-		return UtfNormal::cleanUp( strval( Revision::getRevisionText( $row ) ) );
+		$text = Revision::getRevisionText( $row );
+		$stripped = str_replace( "\r", "", $text );
+		$normalized = UtfNormal::cleanUp( $stripped );
+		return $normalized;
 	}
 	
 	function startElement( $parser, $name, $attribs ) {
