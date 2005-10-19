@@ -16,28 +16,36 @@ global $wgQueryPages; // not redundant
 $wgQueryPages = array(
 //         QueryPage subclass           Special page name         Limit (false for none, none for the default)
 //----------------------------------------------------------------------------
-    array( 'AncientPagesPage',          'Ancientpages'      ),
-    array( 'BrokenRedirectsPage',       'BrokenRedirects'   ),
-    array( 'DeadendPagesPage',          'Deadendpages'      ),
-    array( 'DisambiguationsPage',       'Disambiguations'   ),
-    array( 'DoubleRedirectsPage',       'DoubleRedirects'   ),
-    array( 'ListUsersPage',             'Listusers'         ),
-    array( 'LonelyPagesPage',           'Lonelypages'       ),
-    array( 'LongPagesPage',             'Longpages'         ),
-    array( 'NewPagesPage',              'Newpages'          ),
-    array( 'ShortPagesPage',            'Shortpages'        ),
-    array( 'UncategorizedCategoriesPage','Uncategorizedcategories'),
-    array( 'UncategorizedPagesPage',    'Uncategorizedpages'),
-    array( 'UnusedimagesPage',          'Unusedimages'      ),
-    array( 'WantedPagesPage',           'Wantedpages'       ),
-    array( 'MostlinkedPage',		'Mostlinked'        ),
+	array( 'AncientPagesPage',		'Ancientpages'			),
+	array( 'BrokenRedirectsPage',		'BrokenRedirects'		),
+	array( 'CategoriesPage',		'Categories'			),
+	array( 'DeadendPagesPage',		'Deadendpages'			),
+	array( 'DisambiguationsPage',		'Disambiguations'		),
+	array( 'DoubleRedirectsPage',		'DoubleRedirects'		),
+	array( 'ListUsersPage',			'Listusers'			),
+	array( 'LonelyPagesPage',		'Lonelypages'			),
+	array( 'LongPagesPage',			'Longpages'			),
+	array( 'MostcategoriesPage',		'Mostcategories'		),
+	array( 'MostimagesPage',		'Mostimages'			),
+	array( 'MostlinkedPage',		'Mostlinked'			),
+	array( 'MostrevisionsPage',		'Mostrevisions'			),
+	array( 'NewPagesPage',			'Newpages'			),
+	array( 'ShortPagesPage',		'Shortpages'			),
+	array( 'UncategorizedCategoriesPage',	'Uncategorizedcategories'	),
+	array( 'UncategorizedPagesPage',	'Uncategorizedpages'		),
+	array( 'UnusedCategoriesPage',		'Unusedcategories'		),
+	array( 'UnusedimagesPage',		'Unusedimages'			),
+	array( 'WantedPagesPage',		'Wantedpages'			),
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 
 global $wgDisableCounters;
-if( !$wgDisableCounters ) {
-	$wgQueryPages[] = array( 'PopularPagesPage',          'Popularpages'      );
-}
+if ( !$wgDisableCounters )
+	$wgQueryPages[] = array( 'PopularPagesPage',		'Popularpages'		);
+global $wgEnableUnwatchedpages;
+if ( $wgEnableUnwatchedpages )
+	$wgQueryPages[] = array( 'UnwatchedPagesPage',		'Unwatchedpages'	);
+
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
