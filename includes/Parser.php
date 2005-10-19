@@ -1941,6 +1941,180 @@ class Parser
 	}
 
 	/**
+	 * parse any parentheses in format ((title|part|part))
+	 * and call callbacks to get a replacement text for any found piece
+	 *
+	 * @param string $text The text to parse
+	 * @param array $callbacks rules in form:
+	 *     '{' => array(				# opening parentheses
+	 *					'end' => '}',   # closing parentheses
+	 *					'cb' => array(2 => callback,	# replacement callback to call if {{..}} is found
+	 *								  4 => callback 	# replacement callback to call if {{{{..}}}} is found
+	 *								  )
+	 *					)
+	 * @access private
+	 */
+	function replace_callback ($text, $callbacks) {
+		$openingBraceStack = array();	# this array will hold a stack of parentheses which are not closed yet
+		$lastOpeningBrace = -1;			# last not closed parentheses
+
+		for ($i = 0; $i < strlen($text); $i++) {
+			# check for any opening brace
+			$rule = null;
+			$nextPos = -1;
+			foreach ($callbacks as $key => $value) {
+				$pos = strpos ($text, $key, $i);
+				if (false !== $pos && (-1 == $nextPos || $pos < $nextPos)) {
+					$rule = $value;
+					$nextPos = $pos;
+				}
+			}
+
+			if ($lastOpeningBrace >= 0) {
+				$pos = strpos ($text, $openingBraceStack[$lastOpeningBrace]['braceEnd'], $i);
+			
+				if (false !== $pos && (-1 == $nextPos || $pos < $nextPos)){
+					$rule = null;
+					$nextPos = $pos;
+				}
+
+				$pos = strpos ($text, '|', $i);
+				
+				if (false !== $pos && (-1 == $nextPos || $pos < $nextPos)){
+					$rule = null;
+					$nextPos = $pos;
+				}
+			}
+
+			if ($nextPos == -1)
+				break;
+
+			$i = $nextPos;
+
+			# found openning brace, lets add it to parentheses stack
+			if (null != $rule) {
+				$piece = array('brace' => $text[$i],
+							   'braceEnd' => $rule['end'],
+							   'count' => 1,
+							   'title' => '',
+							   'parts' => null);
+
+				# count openning brace characters 
+				while ($i+1 < strlen($text) && $text[$i+1] == $piece['brace']) {
+					$piece['count']++;
+					$i++;
+				}
+
+				$piece['startAt'] = $i+1; 
+				$piece['partStart'] = $i+1; 
+
+				# we need to add to stack only if openning brace count is enough for any given rule
+				foreach ($rule['cb'] as $cnt => $fn) {
+					if ($piece['count'] >= $cnt) {
+						$lastOpeningBrace ++;
+						$openingBraceStack[$lastOpeningBrace] = $piece;
+						break;
+					}
+				}
+
+				continue;
+			}
+			else if ($lastOpeningBrace >= 0) {
+				# first check if it is a closing brace
+				if ($openingBraceStack[$lastOpeningBrace]['braceEnd'] == $text[$i]) {
+					# lets check if it is enough characters for closing brace
+					$count = 1;
+					while ($i+$count < strlen($text) && $text[$i+$count] == $text[$i])
+						$count++;
+
+					# if there are more closing parentheses than opening ones, we parse less
+					if ($openingBraceStack[$lastOpeningBrace]['count'] < $count)
+						$count = $openingBraceStack[$lastOpeningBrace]['count'];
+
+					# check for maximum matching characters (if there are 5 closing characters, we will probably need only 3 - depending on the rules)
+					$matchingCount = 0;
+					$matchingCallback = null;
+					foreach ($callbacks[$openingBraceStack[$lastOpeningBrace]['brace']]['cb'] as $cnt => $fn) {
+						if ($count >= $cnt && $matchingCount < $cnt) {
+							$matchingCount = $cnt;
+							$matchingCallback = $fn;
+						}
+					}
+					
+					if ($matchingCount == 0) {
+						$i += $count - 1;
+						continue;
+					}
+
+					# lets set a title or last part (if '|' was found)
+					if (null === $openingBraceStack[$lastOpeningBrace]['parts'])
+						$openingBraceStack[$lastOpeningBrace]['title'] = substr($text, $openingBraceStack[$lastOpeningBrace]['partStart'], $i - $openingBraceStack[$lastOpeningBrace]['partStart']);
+					else
+						$openingBraceStack[$lastOpeningBrace]['parts'][] = substr($text, $openingBraceStack[$lastOpeningBrace]['partStart'], $i - $openingBraceStack[$lastOpeningBrace]['partStart']);
+
+					$pieceStart = $openingBraceStack[$lastOpeningBrace]['startAt'] - $matchingCount;
+					$pieceEnd = $i + $matchingCount;
+					
+					if( is_callable( $matchingCallback ) ) {
+						$cbArgs = array (
+										 'text' => substr($text, $pieceStart, $pieceEnd - $pieceStart),
+										 'title' => trim($openingBraceStack[$lastOpeningBrace]['title']),
+										 'parts' => $openingBraceStack[$lastOpeningBrace]['parts'],
+										 'lineStart' => (($pieceStart > 0) && ($text[$pieceStart-1] == '\n')),
+										 );
+						# finally we can call a user callback and replace piece of text
+						$replaceWith = call_user_func( $matchingCallback, $cbArgs );
+						$text = substr($text, 0, $pieceStart) . $replaceWith . substr($text, $pieceEnd);
+						$i = $pieceStart + strlen($replaceWith) - 1;
+					}
+					else {
+						# null value for callback means that parentheses should be parsed, but not replaced
+						$i += $matchingCount - 1;
+					}
+
+					# reset last openning parentheses, but keep it in case there are unused characters
+					$piece = array('brace' => $openingBraceStack[$lastOpeningBrace]['brace'],
+								   'braceEnd' => $openingBraceStack[$lastOpeningBrace]['braceEnd'],
+								   'count' => $openingBraceStack[$lastOpeningBrace]['count'],
+								   'title' => '',
+								   'parts' => null,
+								   'startAt' => $openingBraceStack[$lastOpeningBrace]['startAt']);
+					$openingBraceStack[$lastOpeningBrace--] = null;
+
+					if ($matchingCount < $piece['count']) {
+						$piece['count'] -= $matchingCount;
+						$piece['startAt'] -= $matchingCount;
+						$piece['partStart'] = $piece['startAt'];
+						# do we still qualify for any callback with remaining count?
+						foreach ($callbacks[$piece['brace']]['cb'] as $cnt => $fn) {
+							if ($piece['count'] >= $cnt) {
+								$lastOpeningBrace ++;
+								$openingBraceStack[$lastOpeningBrace] = $piece;
+								break;
+							}
+						}
+					}
+					continue;
+				}
+
+				# lets set a title if it is a first separator, or next part otherwise
+				if ($text[$i] == '|') {
+					if (null === $openingBraceStack[$lastOpeningBrace]['parts']) {
+						$openingBraceStack[$lastOpeningBrace]['title'] = substr($text, $openingBraceStack[$lastOpeningBrace]['partStart'], $i - $openingBraceStack[$lastOpeningBrace]['partStart']);
+						$openingBraceStack[$lastOpeningBrace]['parts'] = array();
+					}
+					else
+						$openingBraceStack[$lastOpeningBrace]['parts'][] = substr($text, $openingBraceStack[$lastOpeningBrace]['partStart'], $i - $openingBraceStack[$lastOpeningBrace]['partStart']);
+					
+					$openingBraceStack[$lastOpeningBrace]['partStart'] = $i + 1;
+				}
+			}
+		}
+
+		return $text;
+	}
+
+	/**
 	 * Replace magic variables, templates, and template arguments
 	 * with the appropriate text. Templates are substituted recursively,
 	 * taking care to avoid infinite loops.
@@ -1955,7 +2129,6 @@ class Parser
 	 * @access private
 	 */
 	function replaceVariables( $text, $args = array() ) {
-
 		# Prevent too big inclusions
 		if( strlen( $text ) > MAX_INCLUDE_SIZE ) {
 			return $text;
@@ -1969,16 +2142,15 @@ class Parser
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
 
-		# Variable substitution
-		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", array( &$this, 'variableSubstitution' ), $text );
-
+		$braceCallbacks = array();
+		$braceCallbacks[2] = array( &$this, 'braceSubstitution' );
 		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
-			# Argument substitution
-			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", array( &$this, 'argSubstitution' ), $text );
+			$braceCallbacks[3] = array( &$this, 'argSubstitution' );
 		}
-		# Template substitution
-		$regex = '/(\\n|{)?{{(['.$titleChars.']*)(\\|.*?|)}}/s';
-		$text = preg_replace_callback( $regex, array( &$this, 'braceSubstitution' ), $text );
+		$callbacks = array();
+		$callbacks['{'] = array('end' => '}', 'cb' => $braceCallbacks);
+		$callbacks['['] = array('end' => ']', 'cb' => array(2=>null));
+		$text = $this->replace_callback ($text, $callbacks);
 
 		array_pop( $this->mArgStack );
 
@@ -2047,13 +2219,14 @@ class Parser
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
 	 *
-	 * @param array $matches The parts of the template
-	 *  $matches[1]: the title, i.e. the part before the |
-	 *  $matches[2]: the parameters (including a leading |), if  any
+	 * @param array $piece The parts of the template
+	 *  $piece['text']: matched text
+	 *  $piece['title']: the title, i.e. the part before the |
+	 *  $piece['parts']: the parameter array
 	 * @return string the text of the template
 	 * @access private
 	 */
-	function braceSubstitution( $matches ) {
+	function braceSubstitution( $piece ) {
 		global $wgLinkCache, $wgContLang;
 		$fname = 'Parser::braceSubstitution';
 		wfProfileIn( $fname );
@@ -2064,26 +2237,25 @@ class Parser
 
 		$title = NULL;
 
-		# Need to know if the template comes at the start of a line,
-		# to treat the beginning of the template like the beginning
-		# of a line for tables and block-level elements.
-		$linestart = $matches[1];
+		$linestart = '';
 
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
 
-		$part1 = $matches[2];
+		$part1 = $piece['title'];
 		# If the third subpattern matched anything, it will start with |
 
-		$args = $this->getTemplateArgs($matches[3]);
-		$argc = count( $args );
-
-		# Don't parse {{{}}} because that's only for template arguments
-		if ( $linestart === '{' ) {
-			$text = $matches[0];
-			$found = true;
-			$noparse = true;
+		if (null == $piece['parts']) {
+			$replaceWith = $this->variableSubstitution (array ($piece['text'], $piece['title']));
+			if ($replaceWith != $piece['text']) {
+				$text = $replaceWith;
+				$found = true;
+				$noparse = true;
+			}
 		}
+
+		$args = (null == $piece['parts']) ? array() : $piece['parts'];
+		$argc = count( $args );
 
 		# SUBST
 		if ( !$found ) {
@@ -2093,7 +2265,7 @@ class Parser
 				# 1) Found SUBST but not in the PST phase
 				# 2) Didn't find SUBST and in the PST phase
 				# In either case, return without further processing
-				$text = $matches[0];
+				$text = $piece['text'];
 				$found = true;
 				$noparse = true;
 			}
@@ -2313,7 +2485,7 @@ class Parser
 
 			# If the template begins with a table or block-level
 			# element, it should be treated as beginning a new line.
-			if ($linestart !== '\n' && preg_match('/^({\\||:|;|#|\*)/', $text)) {
+			if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) {
 				$text = "\n" . $text;
 			}
 		}
@@ -2322,7 +2494,7 @@ class Parser
 
 		if ( !$found ) {
 			wfProfileOut( $fname );
-			return $matches[0];
+			return $piece['text'];
 		} else {
 			if ( $isHTML ) {
 				# Replace raw HTML by a placeholder
@@ -2364,7 +2536,7 @@ class Parser
 
 		if ( !$found ) {
 			wfProfileOut( $fname );
-			return $matches[0];
+			return $piece['text'];
 		} else {
 			wfProfileOut( $fname );
 			return $text;
@@ -2419,12 +2591,14 @@ class Parser
 	 * @access private
 	 */
 	function argSubstitution( $matches ) {
-		$arg = trim( $matches[1] );
-		$text = $matches[0];
+		$arg = trim( $matches['title'] );
+		$text = $matches['text'];
 		$inputArgs = end( $this->mArgStack );
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $inputArgs[$arg];
+		} else if ($this->mOutputType == OT_HTML && null != $matches['parts'] && count($matches['parts']) > 0) {
+			$text = $matches['parts'][0];
 		}
 
 		return $text;
