@@ -18,6 +18,7 @@
 class BaseDump {
 	var $reader = null;
 	var $atEnd = false;
+	var $atPageEnd = false;
 	var $lastPage = 0;
 	var $lastRev = 0;
 	
@@ -36,27 +37,31 @@ class BaseDump {
 	 * @return string or null
 	 */
 	function prefetch( $page, $rev ) {
+		$page = intval( $page );
+		$rev = intval( $rev );
 		while( $this->lastPage < $page && !$this->atEnd ) {
+			$this->debug( "BaseDump::prefetch at page $this->lastPage, looking for $page" );
 			$this->nextPage();
 		}
 		if( $this->lastPage > $page || $this->atEnd ) {
-			$this->debug( "BaseDump::prefetch already past page $page looking for rev $rev\n" );
+			$this->debug( "BaseDump::prefetch already past page $page looking for rev $rev  [$this->lastPage, $this->lastRev]" );
 			return null;
 		}
-		while( $this->lastRev < $rev && !$this->atEnd ) {
+		while( $this->lastRev < $rev && !$this->atEnd && !$this->atPageEnd ) {
+			$this->debug( "BaseDump::prefetch at page $this->lastPage, rev $this->lastRev, looking for $page, $rev" );
 			$this->nextRev();
 		}
-		if( $this->lastRev == $rev ) {
-			$this->debug( "BaseDump::prefetch hit on $page, $rev\n" );
+		if( $this->lastRev == $rev && !$this->atEnd ) {
+			$this->debug( "BaseDump::prefetch hit on $page, $rev [$this->lastPage, $this->lastRev]" );
 			return $this->nextText();
 		} else {
-			$this->debug( "BaseDump::prefetch already past rev $rev on page $page\n" );
+			$this->debug( "BaseDump::prefetch already past rev $rev on page $page  [$this->lastPage, $this->lastRev]" );
 			return null;
 		}
 	}
 	
 	function debug( $str ) {
-		wfDebug( $str );
+		wfDebug( $str . "\n" );
 		//global $dumper;
 		//$dumper->progress( $str );
 	}
@@ -65,19 +70,28 @@ class BaseDump {
 	 * @access private
 	 */
 	function nextPage() {
-		$this->skipTo( 'page' );
-		$this->skipTo( 'id' );
-		$this->lastPage = intval( $this->nodeContents() );
-		$this->lastRev = 0;
+		if( $this->skipTo( 'page', 'mediawiki' ) ) {
+			if( $this->skipTo( 'id' ) ) {
+				$this->lastPage = intval( $this->nodeContents() );
+				$this->lastRev = 0;
+				$this->atPageEnd = false;
+			}
+		} else {
+			$this->atEnd = true;
+		}
 	}
 	
 	/**
 	 * @access private
 	 */
 	function nextRev() {
-		$this->skipTo( 'revision' );
-		$this->skipTo( 'id' );
-		$this->lastRev = intval( $this->nodeContents() );
+		if( $this->skipTo( 'revision' ) ) {
+			if( $this->skipTo( 'id' ) ) {
+				$this->lastRev = intval( $this->nodeContents() );
+			}
+		} else {
+			$this->atPageEnd = true;
+		}
 	}
 	
 	/**
@@ -91,7 +105,7 @@ class BaseDump {
 	/**
 	 * @access private
 	 */
-	function skipTo( $name ) {
+	function skipTo( $name, $parent='page' ) {
 		if( $this->atEnd ) {
 			return false;
 		}
@@ -99,6 +113,11 @@ class BaseDump {
 			if( $this->reader->nodeType == XMLREADER_ELEMENT &&
 				$this->reader->name == $name ) {
 				return true;
+			}
+			if( $this->reader->nodeType == XMLREADER_END_ELEMENT &&
+				$this->reader->name == $parent ) {
+				$this->debug( "BaseDump::skipTo found </$parent> searching for <$name>" );
+				return false;
 			}
 		}
 		return $this->close();
@@ -113,7 +132,7 @@ class BaseDump {
 	 */
 	function nodeContents() {
 		if( $this->atEnd ) {
-			return false;
+			return null;
 		}
 		if( $this->reader->isEmptyElement ) {
 			return "";
@@ -139,7 +158,7 @@ class BaseDump {
 	function close() {
 		$this->reader->close();
 		$this->atEnd = true;
-		return false;
+		return null;
 	}
 }
 

@@ -159,9 +159,11 @@ class TextPassDumper extends BackupDumper {
 		if( $name == 'revision' ) {
 			$this->egress->writeRevision( null, $this->buffer );
 			$this->buffer = "";
+			$this->thisRev = "";
 		} elseif( $name == 'page' ) {
 			$this->egress->writeClosePage( $this->buffer );
 			$this->buffer = "";
+			$this->thisPage = "";
 		} elseif( $name == 'mediawiki' ) {
 			$this->egress->writeCloseStream( $this->buffer );
 			$this->buffer = "";
@@ -172,9 +174,9 @@ class TextPassDumper extends BackupDumper {
 		$this->clearOpenElement( null );
 		if( $this->lastName == "id" ) {
 			if( $this->state == "revision" ) {
-				$this->thisRev = intval( $data );
+				$this->thisRev .= $data;
 			} elseif( $this->state == "page" ) {
-				$this->thisPage = intval( $data );
+				$this->thisPage .= $data;
 			}
 		}
 		$this->buffer .= htmlspecialchars( $data );
