@@ -1126,6 +1126,12 @@ $wgSVGConverter = 'ImageMagick';
 $wgSVGConverterPath = '';
 /** Don't scale a SVG larger than this unless its native size is larger */
 $wgSVGMaxSize = 1024;
+/** 
+ * Don't thumbnail an image if it will use too much working memory 
+ * Default is 50 MB if decompressed to RGBA form, which corresponds to 
+ * 12.5 million pixels or 3500x3500
+ */
+$wgMaxImageArea = 1.25e7;
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
