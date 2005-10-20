@@ -1361,6 +1361,151 @@ Template unnamed parameter
 </p>
 !! end
 
+!! article
+Template:templatesimple
+!! text
+(test)
+!! endarticle
+
+!! article
+Template:templateredirect
+!! text
+#redirect [[Template:templatesimple]]
+!! endarticle
+
+!! article
+Template:templateasargtestnum
+!! text
+{{{{{1}}}}}
+!! endarticle
+
+!! article
+Template:templateasargtest
+!! text
+{{template{{{templ}}}}}
+!! endarticle
+
+!! article
+Template:templateasargtest2
+!! text
+{{{{{templ}}}}}
+!! endarticle
+
+!! test
+Template with template name as unnamed argument
+!! input
+{{templateasargtestnum|templatesimple}}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! test
+Template with template name as argument
+!! input
+{{templateasargtest|templ=simple}}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! test
+Template with template name as argument (2)
+!! input
+{{templateasargtest2|templ=templatesimple}}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! article
+Template:templateasargtestdefault
+!! text
+{{{{{templ|templatesimple}}}}}
+!! endarticle
+
+!! article
+Template:templa
+!! text
+'''templ'''
+!! endarticle
+
+!! test
+Template with default value
+!! input
+{{templateasargtestdefault}}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! test
+Template with default value (value set)
+!! input
+{{templateasargtestdefault|templ=templa}}
+!! result
+<p><b>templ</b>
+</p>
+!! end
+
+!! test
+Template redirect
+!! input
+{{templateredirect}}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! test
+Template with argument in separate line
+!! input
+{{ templateasargtest  |
+ templ = simple }}
+!! result
+<p>(test)
+</p>
+!! end
+
+!! test
+Template with complex template as argument
+!! input
+{{paramtest|
+  param ={{ templateasargtest  |
+ templ = simple }}}}
+!! result
+<p>This is a test template with parameter (test)
+</p>
+!! end
+
+!! test
+Template with thumb image (wiht link in description)
+!! input
+{{paramtest|
+  param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
+!! result
+This is a test template with parameter <div class="thumb tright"><div style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="Image:Noimage.png">Image:Noimage.png</a>  <div class="thumbcaption" ><a href="/index.php?title=No_link&amp;action=edit" class="new" title="No link">link</a> <a href="/index.php?title=No_link&amp;action=edit" class="new" title="No link">caption</a></div></div></div>
+
+!! end
+
+!! article
+Template:complextemplate
+!! text
+{{{1}}} {{paramtest|
+  param ={{{param}}}}}
+!! endarticle
+
+!! test
+Template with complex arguments
+!! input
+{{complextemplate|
+  param ={{ templateasargtest  |
+ templ = simple }}|[[Template:complextemplate|link]]}}
+!! result
+<p><a href="/wiki/Template:Complextemplate" title="Template:Complextemplate">link</a> This is a test template with parameter (test)
+</p>
+!! end
+
 !! test
 BUG 553: link with two variables in a piped link
 !! input
@@ -1945,7 +2090,7 @@ ill
 [[fr:Nourriture]]
 [[zh:&#39135;&#21697;]]
 !! result
-es:Alimento fr:Nourriture zh:é£Ÿå“
+es:Alimento fr:Nourriture zh:é£Ÿå"
 !! end
 
 ###
