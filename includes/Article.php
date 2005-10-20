@@ -783,7 +783,7 @@ class Article {
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );
 
-				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'" alt="#REDIRECT" />' .
+				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
 
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
