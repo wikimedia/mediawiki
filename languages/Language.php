@@ -1481,28 +1481,6 @@ Please confirm that this is what you intend to do.',
 <br />Remember to remove the lock after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 
-# Make sysop
-'makesysoptitle'	=> 'Make a user into a sysop',
-'makesysoptext'		=> 'This form is used by bureaucrats to turn ordinary users into administrators.
-Type the name of the user in the box and press the button to make the user an administrator',
-'makesysopname'		=> 'Name of the user:',
-'makesysopsubmit'	=> 'Make this user into a sysop',
-'makesysopok'		=> "<b>User \"$1\" is now a sysop</b>",
-'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
-'setbureaucratflag' => 'Set bureaucrat flag',
-'setstewardflag'    => 'Set steward flag',
-'bureaucratlog'		=> 'Bureaucrat_log',
-'rightslogtext'		=> 'This is a log of changes to user rights.',
-'bureaucratlogentry'	=> "Changed group membership for $1 from $2 to $3",
-'rights'			=> 'Rights:',
-'set_user_rights'	=> 'Set user rights',
-'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
-'set_rights_fail'	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
-'makesysop'         => 'Make a user into a sysop',
-'already_sysop'     => 'This user is already an administrator',
-'already_bureaucrat' => 'This user is already a bureaucrat',
-'already_steward'   => 'This user is already a steward',
-
 # Validation
 'val_yes' => 'Yes',
 'val_no' => 'No',
