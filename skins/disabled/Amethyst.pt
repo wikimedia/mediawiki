@@ -19,7 +19,7 @@
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
-	  <a name="top" id="contentTop"></a>
+	  <a name="top" id="top"></a>
 	  <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
