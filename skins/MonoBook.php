@@ -77,7 +77,7 @@ class MonoBookTemplate extends QuickTemplate {
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
-	  <a name="top" id="contentTop"></a>
+	  <a name="top" id="top"></a>
 	  <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 	  <h1 class="firstHeading"><?php $this->text('title') ?></h1>
 	  <div id="bodyContent">
