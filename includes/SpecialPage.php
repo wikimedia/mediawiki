@@ -42,6 +42,7 @@ $wgSpecialPages = array(
 	'Unusedcategories'	=> new SpecialPage( 'Unusedcategories' ),
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' ),
 	'Wantedpages'	=> new IncludableSpecialPage( 'Wantedpages' ),
+	'Wantedcategories' => new SpecialPage( 'Wantedcategories' ),
 	'Mostlinked'	=> new SpecialPage( 'Mostlinked' ),
 	'Mostcategories' => new SpecialPage( 'Mostcategories' ),
 	'Mostimages' => new SpecialPage( 'Mostimages' ),
