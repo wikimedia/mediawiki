@@ -143,7 +143,7 @@ require_once( 'LanguageUtf8.php' );
 'category'            => 'Luokka',
 'category_header'     => 'Sivut, jotka ovat luokassa $1',
 'subcategories'       => 'Alaluokat',
-'linktrail'           => '/^((?:[a-z]|ä|ö|å)+)(.*)$/sD',
+'linktrail'           => '/^((?:[a-z]|ä|ö)+)(.*)$/sD',
 'mainpage'            => 'Etusivu',
 'mainpagetext'        => 'Mediawiki on onnistuneesti asennettu.',
 'mainpagedocfooter'   => 'Lisätietoja käytöstä ja asetusten tekoa varten on sivuilla [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] ja [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User\'s Guide].<br />Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LanguageFi.php:n <tt>convertGrammar</tt>-funktioon.<br />{{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).',
@@ -325,7 +325,7 @@ Sivun lähdekoodi:',
 #
 'logouttitle'         => 'Uloskirjautuminen',
 'logouttext'          => 'Olet nyt kirjautunut ulos {{GRAMMAR:elative|{{SITENAME}}}}. Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai kirjautua uudelleen sisään.',
-'welcomecreation'     => '== Tervetuloa, $1! == <p>Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}]] asetuksiasi]].</p>',
+'welcomecreation'     => '== Tervetuloa, $1! == <p>Käyttäjätunnuksesi on luotu. Älä unohda virittää [[{{ns:special}}:Preferences|{{GRAMMAR:genitive|{{SITENAME}}]] asetuksiasi]].</p>',
 'loginpagetitle'      => 'Sisäänkirjautuminen',
 'yourname'            => 'Käyttäjätunnus',
 'yourpassword'        => 'Salasana',
@@ -927,8 +927,8 @@ Palaute ja lisäapu osoitteessa:
 'rollback_short'      => 'Palautus',
 'rollbacklink'        => 'palauta',
 'rollbackfailed'      => 'Palautus epäonnistui',
-'cantrollback'        => 'Aiempaan versioon ei voi palauttaa; viimeisin kirjoittaja on sivun ainoa tekijä.',
-'alreadyrolled'       => 'Käyttäjän [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|keskustelu]]) tekemiä muutoksia sivuun $1 ei voi palauttaa. Käyttäjä [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|keskustelu]]) on tehnyt uudempia muutoksia.',
+'cantrollback'        => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
+'alreadyrolled'       => 'Käyttäjän [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|keskustelu]]) tekemiä muutoksia sivuun $1 ei voi kumota, koska käyttäjä [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|keskustelu]]) on tehnyt uudempia muutoksia.',
 'editcomment'         => 'Muokkauksen yhteenveto oli: <i>$1</i>.', // TODO NOWIKIMARKUP
 'revertpage'          => 'Käyttäjän [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän $1 tekemään versioon.',
 
@@ -959,7 +959,7 @@ Palaute ja lisäapu osoitteessa:
 'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undeleterevision'    => 'Poistettu versio hetkellä $1',
 'undeletebtn'         => 'Palauta!',
-'undeletedarticle'    => 'palautti sivun $1',
+'undeletedarticle'    => 'palautti sivun [[$1]]',
 'undeletedrevisions'  => '$1 versiota palautettiin',
 'undeletedtext'       => 'Sivu [[:$1|$1]] on palautettu onnistuneesti. Lista viimeisimmistä poistoista ja palautuksista on [[Special:Log/delete|poistolokissa]].',
 
