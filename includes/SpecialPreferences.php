@@ -815,14 +815,14 @@ class PreferencesForm {
 		);
 		$msgUnderline = htmlspecialchars( wfMsg ( 'tog-underline' ) );
 		$msgUnderlinenever = htmlspecialchars( wfMsg ( 'underline-never' ) );
-		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always ' ) );
+		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always' ) );
 		$msgUnderlinedefault = htmlspecialchars( wfMsg ( 'underline-default' ) );
 		$uopt = $wgUser->getOption("underline");
-		$s0 = $uopt == 0 ? " selected=\"selected\"" : "";
-		$s1 = $uopt == 1 ? " selected=\"selected\"" : "";
-		$s2 = $uopt == 2 ? " selected=\"selected\"" : "";
+		$s0 = $uopt == 0 ? ' selected="selected"' : '';
+		$s1 = $uopt == 1 ? ' selected="selected"' : '';
+		$s2 = $uopt == 2 ? ' selected="selected"' : '';
 		$wgOut->addHTML("
-<div class='toggle'><label for='wpOpunderline'>$msgUnderline</label> 
+<div class='toggle'><label for='wpOpunderline'>$msgUnderline</label>
 <select name='wpOpunderline' id='wpOpunderline'>
 <option value=\"0\"$s0>$msgUnderlinenever</option>
 <option value=\"1\"$s1>$msgUnderlinealways</option>
