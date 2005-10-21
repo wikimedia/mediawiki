@@ -21,8 +21,8 @@ require_once('LanguageUtf8.php');
 	NS_IMAGE_TALK       => 'نقاش_الصورة',
 	NS_MEDIAWIKI        => 'ميدياويكي',
 	NS_MEDIAWIKI_TALK   => 'نقاش_ميدياويكي',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'نقاش_Template',
+	NS_TEMPLATE         => 'قالب',
+	NS_TEMPLATE_TALK    => 'نقاش_قالب',
 	NS_HELP             => 'مساعدة',
 	NS_HELP_TALK        => 'نقاش_المساعدة',
 	NS_CATEGORY         => 'تصنيف',
@@ -619,7 +619,6 @@ class LanguageAr extends LanguageUtf8 {
 		'7' => '٧',
 		'8' => '٨',
 		'9' => '٩',
-		'%' => '٪',
 		'.' => '٫',
 		',' => '٬'
 	);
