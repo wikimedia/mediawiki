@@ -772,14 +772,14 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
 
-		$msgUnderline = htmlspecialchars(wfMsg("tog-underline"));
-		$msgUnderlinenever = htmlspecialchars(wfMsg("underline-never"));
-		$msgUnderlinealways = htmlspecialchars(wfMsg("underline-always"));
-		$msgUnderlinedefault = htmlspecialchars(wfMsg("underline-default"));
-		$uopt = $wgUser->getOption("underline");
-		$s0 = $uopt == 0 ? " selected=\"selected\"" : "";
-		$s1 = $uopt == 1 ? " selected=\"selected\"" : "";
-		$s2 = $uopt == 2 ? " selected=\"selected\"" : "";
+		$msgUnderline = htmlspecialchars(wfMsg('tog-underline'));
+		$msgUnderlinenever = htmlspecialchars(wfMsg('underline-never'));
+		$msgUnderlinealways = htmlspecialchars(wfMsg('underline-always'));
+		$msgUnderlinedefault = htmlspecialchars(wfMsg('underline-default'));
+		$uopt = $wgUser->getOption('underline');
+		$s0 = $uopt == 0 ? ' selected="selected"' : '';
+		$s1 = $uopt == 1 ? ' selected="selected"' : '';
+		$s2 = $uopt == 2 ? ' selected="selected"' : '';
 		$wgOut->addHTML("
 <div class='toggle'><label>$msgUnderline
 <select name=\"wpOpunderline\">
