@@ -40,7 +40,7 @@ class ShortPagesPage extends QueryPage {
 		
 		return
 			"SELECT $name as type,
-					page_namespace as namespace,
+				page_namespace as namespace,
 			        page_title as title,
 			        page_len AS value
 			FROM $page FORCE INDEX (page_len)
