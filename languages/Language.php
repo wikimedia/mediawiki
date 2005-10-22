@@ -238,6 +238,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_FULLURLE             => array( 0,    'FULLURLE:'              ),
 	MAG_LCFIRST		 => array( 0,    'LCFIRST:'               ),
 	MAG_UCFIRST		 => array( 0,    'UCFIRST:'               ),
+	MAG_LC			 => array( 0,    'LC:'                    ),
+	MAG_UC			 => array( 0,    'UC:'                    ),
 );
 
 #-------------------------------------------------------------------

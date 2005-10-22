@@ -2311,16 +2311,24 @@ class Parser
 			}
 		}
 
-		# LCFIRST and UCFIRST
+		# LCFIRST, UCFIRST, LC and UC
 		if ( !$found ) {
 			$lcfirst =& MagicWord::get( MAG_LCFIRST );
 			$ucfirst =& MagicWord::get( MAG_UCFIRST );
+			$lc =& MagicWord::get( MAG_LC );
+			$uc =& MagicWord::get( MAG_UC );
 			if ( $lcfirst->matchStartAndRemove( $part1 ) ) {
 				$text = $linestart . $wgContLang->lcfirst( $part1 );
 				$found = true;
 			} else if ( $ucfirst->matchStartAndRemove( $part1 ) ) {
 				$text = $linestart . $wgContLang->ucfirst( $part1 );
 				$found = true;
+			} else if ( $lc->matchStartAndRemove( $part1 ) ) {
+				$text = $linestart . $wgContLang->lc( $part1 );
+				$found = true;
+			} else if ( $uc->matchStartAndRemove( $part1 ) ) {
+				 $text = $linestart . $wgContLang->uc( $part1 );
+				 $found = true;
 			}
 		}
 

@@ -61,6 +61,8 @@ define('MAG_FULLURL',			46);
 define('MAG_FULLURLE',			47);
 define('MAG_LCFIRST',			48);
 define('MAG_UCFIRST',			49);
+define('MAG_LC',			50);
+define('MAG_UC',			51);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
