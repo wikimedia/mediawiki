@@ -120,6 +120,9 @@ class HTMLDumpTemplate extends QuickTemplate {
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/htmldump/utf8.js"></script>
     <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/htmldump/lookup.js"></script>
     <?php if($this->data['pagecss'   ]) { ?><style type="text/css"><?php              $this->html('pagecss'   ) ?></style><?php    } ?>
+    <?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php              $this->html('usercss'   ) ?></style><?php    } ?>
+    <?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
+    <?php if($this->data['userjsprev']) { ?><script type="<?php $this->text('jsmimetype') ?>"><?php      $this->html('userjsprev') ?></script><?php   } ?>
   </head>
   <body 
     <?php if($this->data['nsclass'        ]) { ?>class="<?php      $this->text('nsclass')         ?>"<?php } ?>>
