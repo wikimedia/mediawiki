@@ -4,4 +4,6 @@
 	display: block;
 }
 head:first-child + body #footer li { white-space: normal; }
+.usermessage { display: none; }
+.editsection { display: none; }
 

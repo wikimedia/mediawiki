@@ -275,14 +275,18 @@ class Block
 
 	function deleteIfExpired()
 	{
+		$fname = 'Block::deleteIfExpired';
+		wfProfileIn( $fname );
 		if ( $this->isExpired() ) {
 			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
-			return true;
+			$retVal = true;
 		} else {
 			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
-			return false;
+			$retVal = false;
 		}
+		wfProfileOut( $fname );
+		return $retVal;
 	}
 
 	function isExpired()

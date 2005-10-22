@@ -156,6 +156,7 @@ class EditPage {
 
 		$fname = 'EditPage::edit';
 		wfProfileIn( $fname );
+		wfDebug( "$fname: enter\n" );
 
 		// this is not an article
 		$wgOut->setArticleFlag(false);
@@ -170,29 +171,35 @@ class EditPage {
 		}
 
 		if ( ! $this->mTitle->userCanEdit() ) {
+			wfDebug( "$fname: user can't edit\n" );
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 			wfProfileOut( $fname );
 			return;
 		}
+		wfDebug( "$fname: Checking blocks\n" );
 		if ( !$this->preview && !$this->diff && $wgUser->isBlockedFrom( $this->mTitle, !$this->save ) ) {
 			# When previewing, don't check blocked state - will get caught at save time.
 			# Also, check when starting edition is done against slave to improve performance.
+			wfDebug( "$fname: user is blocked\n" );
 			$this->blockedIPpage();
 			wfProfileOut( $fname );
 			return;
 		}
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
+				wfDebug( "$fname: user must log in\n" );
 				$this->userNotLoggedInPage();
 				wfProfileOut( $fname );
 				return;
 			} else {
+				wfDebug( "$fname: read-only page\n" );
 				$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 				wfProfileOut( $fname );
 				return;
 			}
 		}
 		if ( wfReadOnly() ) {
+			wfDebug( "$fname: read-only mode is engaged\n" );
 			if( $this->save || $this->preview ) {
 				$this->formtype = 'preview';
 			} else if ( $this->diff ) {
@@ -313,6 +320,8 @@ class EditPage {
 			$this->starttime = $request->getVal( 'wpStarttime' );
 			if( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
+				wfDebug( "$fname: Form data appears to be incomplete\n" );
+				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
 				$this->preview  = true;
 			} else {
 				if( $this->tokenOk( $request ) ) {
@@ -320,11 +329,13 @@ class EditPage {
 					# if the user hits enter in the comment box.
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
+					wfDebug( "$fname: Passed token check.\n" );
 					$this->preview = $request->getCheck( 'wpPreview' );
 					$this->diff = $request->getCheck( 'wpDiff' );
 				} else {
 					# Page might be a hack attempt posted from
 					# an external site. Preview instead of saving.
+					wfDebug( "$fname: Failed token check; forcing preview\n" );
 					$this->preview = true;
 				}
 			}
@@ -343,6 +354,7 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 		} else {
 			# Not a posted form? Start with nothing.
+			wfDebug( "$fname: Not a posted form.\n" );
 			$this->textbox1  = '';
 			$this->textbox2  = '';
 			$this->mMetaData = '';

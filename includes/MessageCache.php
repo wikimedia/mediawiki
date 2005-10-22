@@ -272,6 +272,9 @@ class MessageCache
 			wfSuppressWarnings();
 			$message = $lang->getMessage( $key );
 			wfRestoreWarnings();
+			if ( is_null( $message ) ) {
+				$message = false;
+			}
 		}
 
 		# Try the English array
@@ -279,6 +282,9 @@ class MessageCache
 			wfSuppressWarnings();
 			$message = Language::getMessage( $key );
 			wfRestoreWarnings();
+			if ( is_null( $message ) ) {
+				$message = false;
+			}
 		}
 
 		# Is this a custom message? Try the default language in the db...

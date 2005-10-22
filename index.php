@@ -82,7 +82,7 @@ if ( '' == $title && 'delete' != $action ) {
 	/* check variant links so that interwiki links don't have to worry about
 	   the possible different language variants
 	*/
-	if( !is_null($wgTitle) && $wgTitle->getArticleID() == 0 )
+	if( count($wgContLang->getVariants()) > 1 && !is_null($wgTitle) && $wgTitle->getArticleID() == 0 )
 		$wgContLang->findVariantLink( $title, $wgTitle );
 
 }
