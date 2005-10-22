@@ -112,12 +112,12 @@ CONTROL;
 
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
-		$mtext = wfMsg( 'missingarticle', $t );
+		$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadText() ) {
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addHTML( $mtext );
+			$wgOut->addWikitext( $mtext );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -221,9 +221,9 @@ CONTROL;
 		if ( ! $this->loadText() ) {
 			$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 			  "{$this->mNewid})";
-			$mtext = wfMsg( 'missingarticle', $t );
+			$mtext = wfMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addHTML( $mtext );
+			$wgOut->addWikitext( $mtext );
 			wfProfileOut( $fname );
 			return;
 		}
