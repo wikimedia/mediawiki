@@ -161,6 +161,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Added a limit to the size of image files which can be thumbnailed
 * (bug 2981) Linktrail for Tamil (ta)
 * (bug 3722) Update of Arabic language (ar) Namespace changes
+* Wrap message page insertions in a transaction to speed up installation
 
 
 === Caveats ===
