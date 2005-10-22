@@ -26,7 +26,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 if ( $argc < 2) {
-	print "Usage: php generateSitemap.sql servername [options]\n";
+	print "Usage: php generateSitemap.php servername [options]\n";
 	print " servername is the name of the website, e.g. mywiki.mydomain.org\n";
 	exit ;
 }
