@@ -174,8 +174,8 @@ require_once( 'LanguageUtf8.php' );
 'qbmyoptions'         => 'Asetukset',
 'qbspecialpages'      => 'Toimintosivut',
 'moredotdotdot'       => 'Lisää...',
-'mypage'              => 'Oma käyttäjäsivu',
-'mytalk'              => 'Oma keskustelusivu',
+'mypage'              => 'Käyttäjäsivu',
+'mytalk'              => 'Keskustelusivu',
 'anontalk'            => 'Keskustele tämän IP:n kanssa',
 'navigation'          => 'Valikko',
 'currentevents'       => 'Ajankohtaista',
@@ -297,7 +297,7 @@ require_once( 'LanguageUtf8.php' );
 'readonly'            => 'Tietokanta on lukittu',
 'enterlockreason'     => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
 'readonlytext'        => '{{GRAMMAR:genitive|{{SITENAME}}}} tietokanta on tällä hetkellä lukittu. Uusia sivuja ei voi luoda eikä muitakaan muutoksia tehdä. Syynä ovat todennäköisimmin rutiininomaiset tietokannan ylläpitotoimet. Tietokannan lukinneen ylläpitäjän selitys: <p>$1',
-'missingarticle'      => 'Tietokannasta ei löytynyt sivua <b>$1</b>. Koita hetken päästä uudelleen. Jos ongelma ei katoa, ota yhteyttä ylläpitäjään ja anna mukaan tämän sivun URL-osoite.',
+'missingarticle'      => 'Tietokannasta ei löytynyt sivua \'\'\'$1\'\'\'. Sivu on saatettu poistaa, tai palvelin ei ole ehtinyt vielä käsitellä sitä. Jälkimmäisessä tapauksessa koita hetken päästä uudelleen. Jos ongelma ei katoa, ota yhteyttä ylläpitäjään ja anna mukaan tämän sivun URL-osoite.',
 'readonly_lag'        => 'Tietokanta on automaattisesti lukittu, jotta kaikki tietokantapalvelimet saisivat kaikki tuoreet muutokset',
 'internalerror'       => 'Sisäinen virhe',
 'filecopyerror'       => 'Tiedostoa <b>$1</b> ei voitu kopioida tiedostoksi <b>$2</b>.',
@@ -758,7 +758,6 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 # Miscellaneous special pages
 #
 'orphans'             => 'Orposivut',
-'geo'                 => 'GEO-koordinaatit',
 'validate'            => 'Kelpuuta sivu',
 'lonelypages'         => 'Yksinäiset sivut',
 'uncategorizedpages'  => 'Luokittelemattomat sivut',
@@ -767,8 +766,12 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'unusedimages'        => 'Käyttämättömät tiedostot',
 'popularpages'        => 'Suositut sivut',
 'nviews'              => '$1 latausta',
+'wantedcategories'    => 'Halutut luokat',
 'wantedpages'         => 'Halutut sivut',
 'mostlinked'          => 'Sivut, joihin on eniten linkkejä',
+'mostcategories'      => 'Luokat, joihin on eniten linkkejä',
+'mostimages'          => 'Kuvat, joihin on eniten linkkejä',
+'mostrevisions'       => 'Sivut, joilla on eniten muutoksia',
 'nlinks'              => '$1 linkkiä',
 'allpages'            => 'Kaikki sivut',
 'prefixindex'         => 'Etuliiteluettelo',
@@ -969,7 +972,7 @@ Palaute ja lisäapu osoitteessa:
 # Contributions
 #
 'contributions'       => 'Käyttäjän muokkaukset',
-'mycontris'           => 'Omat muokkaukset',
+'mycontris'           => 'Muokkaukset',
 'contribsub'          => 'Käyttäjän $1 muokkaukset',
 'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
 'ucnote'              => 'Alla on \'\'\'$1\'\'\' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten \'\'\'$2\'\'\' päivän aikana.',
@@ -1347,6 +1350,9 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 'tooltip-recreate' => '',
 
 'unit-pixel' => ' px',
+
+# HTML dump
+'redirectingto' => 'Uudelleenohjataan sivulle [[$1]]...',
 
 );
 
