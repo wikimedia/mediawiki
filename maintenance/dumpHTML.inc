@@ -220,11 +220,6 @@ class DumpHTML {
 
 	/** Write an article specified by title */
 	function doArticle( $title ) {
-		// Testing
-		if ( $title->getNamespace() == 8 ) {
-			return;
-		}
-
 		global $wgTitle, $wgSharedUploadPath, $wgSharedUploadDirectory;
 		global $wgUploadDirectory;
 

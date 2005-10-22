@@ -80,7 +80,7 @@ function getFriendlyName(name) {
 
 	// Make it mostly unique
 	if (lowerCase != friendlyName) {
-		friendlyName += "_" + hex_md5(name).substring(0, 4);
+		friendlyName += "_" + hex_md5(_to_utf8(name)).substring(0, 4);
 	}
 	// Handle colon specially by replacing it with tilde
 	// Thus we reduce the number of paths with hashes appended
