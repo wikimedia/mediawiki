@@ -183,6 +183,27 @@ class DumpHTML {
 		print "\n";
 	}
 
+	function doRedirects() {
+		global $wgLinkCache;
+		
+		print "Doing redirects...\n";
+		$fname = 'DumpHTML::doRedirects';
+		$this->setupGlobals();
+		$dbr =& wfGetDB( DB_SLAVE );
+
+		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ), 
+			array( 'page_is_redirect' => 1 ), $fname );
+		$num = $dbr->numRows( $res );
+		print "$num redirects to do...\n";
+		$i = 0;
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+                        if ( !(++$i % (REPORTING_INTERVAL*10) ) ) {
+                                print "Done $i of $num\n";
+                        }
+			$this->doArticle( $title );
+		}
+	}
 
 	/** Write an article specified by title */
 	function doArticle( $title ) {
@@ -190,6 +211,7 @@ class DumpHTML {
 		global $wgUploadDirectory;
 		
 		$text = $this->getArticleHTML( $title );
+
 		if ( $text === false ) {
 			return;
 		}
@@ -285,10 +307,6 @@ class DumpHTML {
 	function getArticleHTML( &$title ) {
 		global $wgOut, $wgTitle, $wgArticle, $wgUser, $wgUseCategoryMagic, $wgLinkCache;
 		
-		$wgOut = new OutputPage;
-		$wgOut->setParserOptions( new ParserOptions );
-		$wgLinkCache = new LinkCache;
-		
 		$wgTitle = $title;
 		if ( is_null( $wgTitle ) ) {
 			return false;
@@ -307,10 +325,12 @@ class DumpHTML {
 			}
 			$rt = Title::newFromRedirect( $wgArticle->fetchContent() );
 			if ( $rt != NULL ) {
-				$wgOut->addMeta( 'http:Refresh', '3;url=' . $rt->escapeLocalURL() );
-				$wgOut->setPageTitle( $wgTitle->getPrefixedText() );
-				$wgOut->addWikiText( wfMsg( 'redirectingto', $rt->getPrefixedText() ) );
+				return $this->getRedirect( $rt );
 			} else {
+				$wgOut = new OutputPage;
+				$wgOut->setParserOptions( new ParserOptions );
+				$wgLinkCache = new LinkCache;
+		
 				$wgArticle->view();
 			}
 		}
@@ -322,6 +342,23 @@ class DumpHTML {
 		ob_end_clean();
 
 		return $text;
+	}
+
+	function getRedirect( $rt ) {
+		$url = $rt->escapeLocalURL();
+		$text = $rt->getPrefixedText();
+		return <<<ENDTEXT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Refresh" content="0;url=$url" />
+</head>
+<body>
+  <p>Redirecting to <a href="$url">$text</a></p>
+</body>
+</html>
+ENDTEXT;
 	}
 
 	/** Returns image paths used in an XHTML document */
@@ -394,6 +431,7 @@ class DumpHTML {
 				$rel = substr( $image, $mathPathLength + 1 ); // +1 for slash
 				$source = "$wgMathDirectory/$rel";
 				$dest = "{$this->dest}/math/$rel";
+				@mkdir( "{$this->dest}/math", 0755 );
 				if ( !file_exists( $dest ) ) {
 					copy( $source, $dest );
 				}

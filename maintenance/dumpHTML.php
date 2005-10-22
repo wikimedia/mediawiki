@@ -14,6 +14,7 @@
  * -e <end>       end ID
  * --images       only do image description pages
  * --categories   only do category pages
+ * --redirects    only do redirects
  * --special      only do miscellaneous stuff
  * --force-copy   copy commons instead of symlink, needed for Wikimedia
  * --interlang    allow interlanguage links
@@ -73,6 +74,8 @@ if ( $options['special'] ) {
 	$d->doImageDescriptions();
 } elseif ( $options['categories'] ) {
 	$d->doCategories();
+} elseif ( $options['redirects'] ) {
+	$d->doRedirects();
 } else {
 	print("Creating static HTML dump in directory $dest. \n".
 		"Starting from page_id $start of $end.\n");
