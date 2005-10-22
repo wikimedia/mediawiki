@@ -344,6 +344,7 @@ parent class in order maintain consistency across languages.
 'dec' => 'Dec',
 # Bits of text used by many pages:
 #
+'categories1' => 'Category',
 'categories' => 'Categories',
 'category' => 'category',
 'category_header' => 'Articles in category "$1"',
@@ -1129,7 +1130,6 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 # Miscellaneous special pages
 #
 'orphans'		=> 'Orphaned pages',
-'geo'		=> 'GEO coordinates',
 'validate'		=> 'Validate page',
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
