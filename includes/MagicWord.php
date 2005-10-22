@@ -59,6 +59,8 @@ define('MAG_IMG_MANUALTHUMB',		44);
 define('MAG_PLURAL',			45);
 define('MAG_FULLURL',			46);
 define('MAG_FULLURLE',			47);
+define('MAG_LCFIRST',			48);
+define('MAG_UCFIRST',			49);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,

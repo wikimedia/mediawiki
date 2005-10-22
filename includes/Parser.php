@@ -2311,6 +2311,19 @@ class Parser
 			}
 		}
 
+		# LCFIRST and UCFIRST
+		if ( !$found ) {
+			$lcfirst =& MagicWord::get( MAG_LCFIRST );
+			$ucfirst =& MagicWord::get( MAG_UCFIRST );
+			if ( $lcfirst->matchStartAndRemove( $part1 ) ) {
+				$text = $linestart . $wgContLang->lcfirst( $part1 );
+				$found = true;
+			} else if ( $ucfirst->matchStartAndRemove( $part1 ) ) {
+				$text = $linestart . $wgContLang->ucfirst( $part1 );
+				$found = true;
+			}
+		}
+
 		# LOCALURL and FULLURL
 		if ( !$found ) {
 			$mwLocal =& MagicWord::get( MAG_LOCALURL );
