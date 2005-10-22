@@ -178,7 +178,14 @@ class SkinTemplate extends Skin {
 		$this->username = $wgUser->getName();
 		$userPage = $wgUser->getUserPage();
 		$this->userpage = $userPage->getPrefixedText();
-		$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
+
+		if ( $wgUser->isLoggedIn() || $this->showIPinHeader() ) {
+			$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
+		} else {
+			# This won't be used in the standard skins, but we define it to preserve the interface
+			# To save time, we check for existence
+			$this->userpageUrlDetails = $this->makeKnownUrlDetails($this->userpage);
+		}
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
 		$this->setupUserCss();
@@ -509,6 +516,13 @@ class SkinTemplate extends Skin {
 		return $personal_urls;
 	}
 
+	/**
+	 * Returns true if the IP should be shown in the header
+	 */
+	function showIPinHeader() {
+		global $wgShowIPinHeader;
+		return $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] );
+	}
 
 	function tabAction( $title, $message, $selected, $query='', $checkEdit=false ) {
 		$classes = array();

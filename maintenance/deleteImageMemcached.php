@@ -1,5 +1,5 @@
 <?php
-// php deleteImageMemcached.php --until "2003-09-04 04:40:00" --wait 500
+// php deleteImageMemcached.php --until "2005-09-05 00:00:00" --sleep 0 --report 10
 $optionsWithArgs = array( 'until', 'sleep', 'report' );
 
 require_once 'commandLine.inc';
@@ -16,6 +16,8 @@ class DeleteImageCache {
 	function main() {
 		global $wgMemc, $wgDBname;
 		$fname = 'DeleteImageCache::main';
+
+		ini_set( 'display_errors', false );
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		

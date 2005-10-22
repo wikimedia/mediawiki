@@ -285,7 +285,7 @@ class DumpHTML {
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
-		global $wgRightsUrl, $wgRightsText;
+		global $wgRightsUrl, $wgRightsText, $wgCopyrightIcon;
 
 		static $oldLogo = NULL;
 		
@@ -329,6 +329,12 @@ class DumpHTML {
 			# Rewrite an absolute logo path to one relative to the the script path
 			$wgLogo = $wgScriptPath . $wgLogo;
 		}
+
+		# Another ugly hack
+		$wgCopyrightIcon = str_replace( 'src="/images', 
+			'src="' . htmlspecialchars( $wgScriptPath ) . '/images', $wgCopyrightIcon );
+
+
 
 		$wgStylePath = "$wgScriptPath/skins";
 		$wgUploadPath = "$wgScriptPath/{$this->imageRel}";

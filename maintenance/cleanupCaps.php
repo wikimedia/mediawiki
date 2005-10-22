@@ -35,11 +35,12 @@ require_once( 'commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 class CapsCleanup extends FiveUpgrade {
-	function CapsCleanup( $dryrun = false ) {
+	function CapsCleanup( $dryrun = false, $namespace=0 ) {
 		parent::FiveUpgrade();
 		
 		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
 		$this->dryrun = $dryrun;
+		$this->namespace = intval( $namespace );
 	}
 	
 	function cleanup() {
@@ -49,7 +50,7 @@ class CapsCleanup extends FiveUpgrade {
 			return false;
 		}
 		
-		$this->runTable( 'page', 'WHERE page_namespace=0',
+		$this->runTable( 'page', 'WHERE page_namespace=' . $this->namespace,
 			array( &$this, 'processPage' ) );
 	}
 	
@@ -134,10 +135,10 @@ class CapsCleanup extends FiveUpgrade {
 		if( $ok === true ) {
 			$this->progress( 1 );
 			
-			if( $row->page_namespace == NS_MAIN ) {
-				$talk = Title::makeTitle( NS_TALK, $row->page_title );
+			if( $row->page_namespace == $this->namespace ) {
+				$talk = $target->getTalkPage();
 				$xrow = $row;
-				$row->page_namespace = NS_TALK;
+				$row->page_namespace = $talk->getNamespace();
 				if( $talk->exists() ) {
 					return $this->processPage( $row );
 				}
@@ -150,7 +151,8 @@ class CapsCleanup extends FiveUpgrade {
 }
 
 $wgUser->setName( 'Conversion script' );
-$caps = new CapsCleanup( isset( $options['dry-run'] ) );
+$ns = isset( $options['namespace'] ) ? $options['namespace'] : 0;
+$caps = new CapsCleanup( isset( $options['dry-run'] ), $ns );
 $caps->cleanup();
 
 ?>

@@ -334,7 +334,11 @@ class Database {
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
 			# logging size most of the time. The substr is really just a sanity check.
-			$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
+
+			# Who's been wasting my precious column space? -- TS
+			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
+			$profName = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
+
 			wfProfileIn( 'Database::query' );
 			wfProfileIn( $profName );
 		}

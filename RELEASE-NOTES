@@ -163,6 +163,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3722) Update of Arabic language (ar) Namespace changes
 * Wrap message page insertions in a transaction to speed up installation
 * Avoid notice warning on edit with no User-Agent header
+* Various fixes
 
 
 === Caveats ===

@@ -1295,6 +1295,18 @@ END;
 		);
 	}
 
+	/**
+	 * Make URL details where the article exists (or at least it's convenient to think so)
+	 */
+	function makeKnownUrlDetails( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$this->checkTitle($title, $name);
+		return array(
+			'href' => $title->getLocalURL( $urlaction ),
+			'exists' => true
+		);
+	}
+
 	# make sure we have some title to operate on
 	/*static*/ function checkTitle ( &$title, &$name ) {
 		if(!is_object($title)) {

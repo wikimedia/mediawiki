@@ -579,11 +579,13 @@ class LoadBalancer {
 	 * Results are cached for a short time in memcached
 	 */
 	function getLagTimes() {
+		global $wgDBname;
+		
 		$expiry = 5;
 		$requestRate = 10;
 
 		global $wgMemc;
-		$times = $wgMemc->get( 'lag_times' );
+		$times = $wgMemc->get( "$wgDBname:lag_times" );
 		if ( $times ) {
 			# Randomly recache with probability rising over $expiry
 			$elapsed = time() - $times['timestamp'];
@@ -605,7 +607,7 @@ class LoadBalancer {
 
 		# Add a timestamp key so we know when it was cached
 		$times['timestamp'] = time();
-		$wgMemc->set( 'lag_times', $times, $expiry );
+		$wgMemc->set( "$wgDBname:lag_times", $times, $expiry );
 
 		# But don't give the timestamp to the caller
 		unset($times['timestamp']);

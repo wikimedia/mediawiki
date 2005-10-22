@@ -1003,19 +1003,36 @@ class memcached
     * 
     * @return bool false on failure, true on success
     */
+    /*
    function _safe_fwrite($f, $buf, $len = false) {
       stream_set_blocking($f, 0);
 
+      if ($len === false) {
+         wfDebug("Writing " . strlen( $buf ) . " bytes\n");
+         $bytesWritten = fwrite($f, $buf);
+      } else {
+         wfDebug("Writing $len bytes\n");
+         $bytesWritten = fwrite($f, $buf, $len);
+      }
+      $n = stream_select($r=NULL, $w = array($f), $e = NULL, 10, 0);
+      #   $this->_timeout_seconds, $this->_timeout_microseconds);
+
+      wfDebug("stream_select returned $n\n");
+      stream_set_blocking($f, 1);
+      return $n == 1;
+      return $bytesWritten;
+   }*/
+
+   /**
+    * Original behaviour
+    */
+   function _safe_fwrite($f, $buf, $len = false) {
       if ($len === false) {
          $bytesWritten = fwrite($f, $buf);
       } else {
          $bytesWritten = fwrite($f, $buf, $len);
       }
-      $n = stream_select($r=NULL, $w = array($f), $e = NULL, 
-         $this->_timeout_seconds, $this->_timeout_microseconds);
-
-      stream_set_blocking($f, 1);
-      return $n == 1;
+      return $bytesWritten;
    }
 
    /**

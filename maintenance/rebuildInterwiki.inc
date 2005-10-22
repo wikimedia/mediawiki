@@ -30,19 +30,26 @@ class Site {
 }
 
 function getRebuildInterwikiSQL() {
-	global $langlist, $languageAliases, $wgDBname;
+	global $langlist, $languageAliases, $prefixRewrites, $wgDBname;
 
-	# Initialise lists of wikis
+	# Multi-language sites
+	# db suffix => db suffix, iw prefix, hostname
 	$sites = array( 
 		'wiki' => new Site( 'wiki', 'w', 'wikipedia.org' ),
 		'wiktionary' => new Site( 'wiktionary', 'wikt', 'wiktionary.org' ),
 		'wikiquote' => new Site( 'wikiquote', 'q', 'wikiquote.org' ),
 		'wikibooks' => new Site( 'wikibooks', 'b', 'wikibooks.org' ),
 		'wikinews' => new Site( 'wikinews', 'n', 'wikinews.org' ),
+		'wikisource' => new Site( 'wikisource', 's', 'wikisource.org' ),
 	);
+
+	# List of language prefixes likely to be found in multi-language sites
 	$langlist = array_map( "trim", file( "/home/wikipedia/common/langlist" ) );
+
+	# List of all database names
 	$dblist = array_map( "trim", file( "/home/wikipedia/common/all.dblist" ) );
 	
+	# Special-case hostnames
 	$specials = array( 
 		'sourceswiki' => 'sources.wikipedia.org',
 		'quotewiki' => 'wikiquote.org',
@@ -52,17 +59,28 @@ function getRebuildInterwikiSQL() {
 		'commonswiki' => 'commons.wikimedia.org',
 	);
 
+	# Extra interwiki links that can't be in the intermap for some reason
 	$extraLinks = array(
 		array( 'm', 'http://meta.wikimedia.org/wiki/$1', 1 ),
 		array( 'meta', 'http://meta.wikimedia.org/wiki/$1', 1 ),
 		array( 'sep11', 'http://sep11.wikipedia.org/wiki/$1', 1 ),
 	);
 
+	# Language aliases, usually configured as redirects to the real wiki in apache
+	# Interlanguage links are made directly to the real wiki
+	# Something horrible happens if you forget to list an alias here, I can't 
+	#   remember what
 	$languageAliases = array(
 		'zh-cn' => 'zh',
 		'zh-tw' => 'zh',
 		'dk' => 'da',
 		'nb' => 'no',
+	);
+
+	# Special case prefix rewrites, for the benefit of Swedish which uses s:t
+	# as an abbreviation for saint
+	$prefixRewrites = array(
+		'svwiki' => array( 's' => 'src' ),
 	);
 
 	# Construct a list of reserved prefixes
@@ -81,7 +99,7 @@ function getRebuildInterwikiSQL() {
 	$intermap = wfGetHTTP( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw' );
 	$lines = array_map( 'trim', explode( "\n", trim( $intermap ) ) );
 
-	if ( !$lines ) {
+	if ( !$lines || count( $lines ) < 2 ) {
 		die( "m:Interwiki_map not found" );
 	}
 
@@ -120,20 +138,20 @@ function getRebuildInterwikiSQL() {
 			
 			# Intermap links
 			foreach ( $iwArray as $iwEntry ) {
-				$sql .= makeLink( $iwEntry, $first );
+				$sql .= makeLink( $iwEntry, $first, $db );
 			}
 
 			# Links to multilanguage sites
 			foreach ( $sites as $targetSite ) {
-				$sql .= makeLink( array( $targetSite->lateral, $targetSite->getURL( 'en' ), 1 ), $first );
+				$sql .= makeLink( array( $targetSite->lateral, $targetSite->getURL( 'en' ), 1 ), $first, $db );
 			}
 			
 			# Interlanguage links to wikipedia
-			$sql .= makeLanguageLinks( $sites['wiki'], $first );
+			$sql .= makeLanguageLinks( $sites['wiki'], $first, $db );
 
 			# Extra links
 			foreach ( $extraLinks as $link ) {
-				$sql .= makeLink( $link, $first );
+				$sql .= makeLink( $link, $first, $db );
 			}
 			
 			$sql .= ";\n";
@@ -166,7 +184,7 @@ function getRebuildInterwikiSQL() {
 				if ( ( $suffix == 'wiki' && $iwEntry['iw_prefix'] != 'wikipedia' ) || 
 				  ( $suffix != 'wiki' && $suffix != $iwEntry['iw_prefix'] ) ) 
 				{
-					$sql .= makeLink( $iwEntry, $first );
+					$sql .= makeLink( $iwEntry, $first, $db );
 				}
 			}
 
@@ -174,22 +192,22 @@ function getRebuildInterwikiSQL() {
 			foreach ( $sites as $targetSite ) {
 				# Suppress link to self
 				if ( $targetSite->suffix != $site->suffix ) {
-					$sql .= makeLink( array( $targetSite->lateral, $targetSite->getURL( $lang ), 1 ), $first );
+					$sql .= makeLink( array( $targetSite->lateral, $targetSite->getURL( $lang ), 1 ), $first, $db );
 				}
 			}
 
 			# Interlanguage links
-			$sql .= makeLanguageLinks( $site, $first );
+			$sql .= makeLanguageLinks( $site, $first, $db );
 
 			# w link within wikipedias
 			# Other sites already have it as a lateral link
 			if ( $site->suffix == "wiki" ) {
-				$sql .= makeLink( array("w", "http://en.wikipedia.org/wiki/$1", 1), $first );
+				$sql .= makeLink( array("w", "http://en.wikipedia.org/wiki/$1", 1), $first, $db );
 			}
 			
 			# Extra links
 			foreach ( $extraLinks as $link ){ 
-					$sql .= makeLink( $link, $first );
+					$sql .= makeLink( $link, $first, $db );
 			}
 			$sql .= ";\n\n";
 		}
@@ -200,25 +218,31 @@ function getRebuildInterwikiSQL() {
 # ------------------------------------------------------------------------------------------
 
 # Returns part of an INSERT statement, corresponding to all interlanguage links to a particular site
-function makeLanguageLinks( &$site, &$first ) {
+function makeLanguageLinks( &$site, &$first, $source ) {
 	global $langlist, $languageAliases;
 
 	$sql = "";
 
 	# Actual languages with their own databases
 	foreach ( $langlist as $targetLang ) {
-		$sql .= makeLink( array( $targetLang, $site->getURL( $targetLang ), 1 ), $first );
+		$sql .= makeLink( array( $targetLang, $site->getURL( $targetLang ), 1 ), $first, $source );
 	}
 
 	# Language aliases
 	foreach ( $languageAliases as $alias => $lang ) {
-		$sql .= makeLink( array( $alias, $site->getURL( $lang ), 1 ), $first );
+		$sql .= makeLink( array( $alias, $site->getURL( $lang ), 1 ), $first, $source );
 	}
 	return $sql;
 }
 
 # Make SQL for a single link from an array
-function makeLink( $entry, &$first ) {
+function makeLink( $entry, &$first, $source ) {
+	global $prefixRewrites;
+
+	if ( isset( $prefixRewrites[$source] ) && isset( $prefixRewrites[$source][$entry[0]] ) ) {
+		$entry[0] = $prefixRewrites[$source][$entry[0]];
+	}
+
 	$sql = "";
 	# Add comma
 	if ( $first ) {

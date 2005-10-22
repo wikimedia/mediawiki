@@ -944,7 +944,10 @@ class Image
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
-		if ( $this->getMimeType() !== "image/jpeg" && $this->width * $this->height > $wgMaxImageArea ) {
+		if ( $this->getMediaType() == MEDIATYPE_BITMAP && 
+			$this->getMimeType() !== 'image/jpeg' &&
+			$this->width * $this->height > $wgMaxImageArea ) 
+		{
 			wfProfileOut( $fname );
 			return null;
 		}

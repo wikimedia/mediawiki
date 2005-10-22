@@ -428,6 +428,10 @@ class User {
 				}
 			}
 		}
+
+		# Extensions
+		wfRunHooks( 'GetBlockedStatus', array( &$this ) );
+
 		wfProfileOut( $fname );
 	}
 
@@ -1510,7 +1514,7 @@ class User {
 	}
 
 	function isAllowedToCreateAccount() {
-		return $this->isAllowed( 'createaccount' );
+		return $this->isAllowed( 'createaccount' ) && !$this->isBlocked();
 	}
 
 	/**

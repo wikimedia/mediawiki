@@ -968,6 +968,7 @@ $wgDebugSquid = false;
 
 $wgDisableCounters = false;
 $wgDisableTextSearch = false;
+$wgDisableSearchContext = false;
 /**
  * If you've disabled search semi-permanently, this also disables updates to the
  * table. If you ever re-enable, be sure to rebuild the search table.

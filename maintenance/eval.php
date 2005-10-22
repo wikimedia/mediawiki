@@ -18,9 +18,31 @@
 
 $wgForceLoadBalancing = (getenv('MW_BALANCE') ? true : false);
 $wgUseNormalUser = (getenv('MW_WIKIUSER') ? true : false);
+if (getenv('MW_PROFILING')) {
+	define('MW_CMDLINE_CALLBACK', 'wfSetProfiling');
+}
+function wfSetProfiling() { $GLOBALS['wgProfiling'] = true; }
+
+$optionsWithArgs = array( 'd' );
 
 /** */
 require_once( "commandLine.inc" );
+
+if ( isset( $options['d'] ) ) {
+	$d = $options['d'];
+	if ( $d > 0 ) {
+		$wgDebugLogFile = '/dev/stdout';
+	}
+	if ( $d > 1 ) {
+		foreach ( $wgLoadBalancer->mServers as $i => $server ) {
+			$wgLoadBalancer->mServers[$i]['flags'] |= DBO_DEBUG;
+		}
+	}
+	if ( $d > 2 ) {
+		$wgDebugFunctionEntry = true;
+	}
+}
+
 
 while ( ( $line = readconsole( '> ' ) ) !== false ) {
 	$val = eval( $line . ";" );

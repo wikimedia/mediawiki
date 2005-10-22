@@ -279,7 +279,7 @@ class Profiler {
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
-			$prof .= sprintf($format, $fname, $calls, (float) ($elapsed * 1000), (float) ($elapsed * 1000) / $calls, $percent, $memory, ($this->mMin[$fname] * 1000.0), ($this->mMax[$fname] * 1000.0), $this->mOverhead[$fname]);
+			$prof .= sprintf($format, substr($fname, 0, $nameWidth), $calls, (float) ($elapsed * 1000), (float) ($elapsed * 1000) / $calls, $percent, $memory, ($this->mMin[$fname] * 1000.0), ($this->mMax[$fname] * 1000.0), $this->mOverhead[$fname]);
 
 			global $wgProfileToDatabase;
 			if ($wgProfileToDatabase) {
@@ -313,24 +313,37 @@ class Profiler {
 	 * @static
 	 */
 	function logToDB($name, $timeSum, $eventCount) {
+		# Warning: $wguname is a live patch, it should be moved to Setup.php
+		global $wguname;
+
 		$fname = 'Profiler::logToDB';
 		$dbw = & wfGetDB(DB_MASTER);
 		$profiling = $dbw->tableName('profiling');
 
 		$name = substr($name, 0, 255);
 		$encname = $dbw->strencode($name);
-		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, "."pf_time=pf_time + {$timeSum} "."WHERE pf_name='{$encname}'";
+		$sql = "UPDATE $profiling "."SET pf_count=pf_count+{$eventCount}, "."pf_time=pf_time + {$timeSum} ".
+			"WHERE pf_name='{$encname}' AND pf_server='{$wguname['nodename']}'";
 		$dbw->query($sql);
 
 		$rc = $dbw->affectedRows();
 		if ($rc == 0) {
-			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount, 'pf_time' => $timeSum), $fname, array ('IGNORE'));
+			$dbw->insert('profiling', array ('pf_name' => $name, 'pf_count' => $eventCount, 
+				'pf_time' => $timeSum, 'pf_server' => $wguname['nodename'] ), $fname, array ('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:
 		//     "ON DUPLICATE KEY UPDATE ".
 		//     "pf_count=pf_count + VALUES(pf_count), ".
 		//     "pf_time=pf_time + VALUES(pf_time)"; 
+	}
+
+	/**
+	 * Get the function name of the current profiling section
+	 */
+	function getCurrentSection() {
+		$elt =& end($this->mWorkStack);
+		return $elt[0];
 	}
 
 }
