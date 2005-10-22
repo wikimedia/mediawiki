@@ -404,15 +404,16 @@ function wfMsgGetKey( $key, $useDB, $forContent = false ) {
  * @access private
  */
 function wfMsgReplaceArgs( $message, $args ) {
-	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
-
 	# Fix windows line-endings
 	# Some messages are split with explode("\n", $msg)
 	$message = str_replace( "\r", '', $message );
 
 	# Replace arguments
 	if( count( $args ) ) {
-		$message = str_replace( $replacementKeys, $args, $message );
+		foreach( $args as $n => $param ) {
+			$replacementKeys['$' . ($n + 1)] = $param;
+		}
+		$message = strtr( $message, $replacementKeys );
 	}
 	return $message;
 }
