@@ -826,6 +826,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Wrap message page insertions in a transaction to speed up installation
 * Fix Special:MovePage invalid HTML attribute for reason textarea
 * Avoid notice warning on edit with no User-Agent header
+* (bug 3734) Swapped out obsolete recount.sql with initStats.php
 
 
 === Caveats ===
