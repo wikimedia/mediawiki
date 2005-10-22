@@ -31,7 +31,7 @@
  *
  */
 
-$optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb' );
+$optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb', 'endid' );
 require_once( "../commandLine.inc" );
 require_once( "compressOld.inc" );
 
@@ -50,6 +50,7 @@ $defaults = array(
 	'b' => '',
     'e' => '',
     'extdb' => '',
+    'endid' => false,
 );
 
 $options = $options + $defaults;
@@ -58,16 +59,16 @@ if ( $options['t'] != 'concat' && $options['t'] != 'gzip' ) {
 	print "Type \"{$options['t']}\" not supported\n";
 }
 
-print "Depending on the size of your database this may take a while!\n";
-print "If you abort the script while it's running it shouldn't harm anything,\n";
-print "but if you haven't backed up your data, you SHOULD abort now!\n\n";
-print "Press control-c to abort first (will proceed automatically in 5 seconds)\n";
-#sleep(5);
+if ( $options['extdb'] != '' ) {
+	print "Compressing database $wgDBname to external cluster {$options['extdb']}\n" . str_repeat('-', 76) . "\n\n";
+} else {
+	print "Compressing database $wgDBname\n" . str_repeat('-', 76) . "\n\n";
+}
 
 $success = true;
 if ( $options['t'] == 'concat' ) {
     $success = compressWithConcat( $options['s'], $options['c'], $options['f'], $options['h'], $options['b'], 
-        $options['e'], $options['extdb'] );
+        $options['e'], $options['extdb'], $options['endid'] );
 } else {
 	compressOldPages( $options['s'], $options['extdb'] );
 } 

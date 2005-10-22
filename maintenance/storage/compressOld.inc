@@ -71,7 +71,8 @@ define( 'LS_INDIVIDUAL', 0 );
 define( 'LS_CHUNKED', 1 );
 
 /** @todo document */
-function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, $endDate, $extdb="" )
+function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorThreshold, $beginDate, 
+	$endDate, $extdb="", $maxPageId = false )
 {
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
@@ -79,8 +80,16 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$dbr =& wfGetDB( DB_SLAVE );
 	$dbw =& wfGetDB( DB_MASTER );
 
+	# Set up external storage
+	if ( $extdb != '' ) {
+		$storeObj = new ExternalStoreDB;
+	}
+
 	# Get all articles by page_id
-	$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', $fname );
+	if ( !$maxPageId ) {
+		$maxPageId = $dbr->selectField( 'page', 'max(page_id)', '', $fname );
+	} 
+	print "Starting from $startId of $maxPageId\n";
 	$pageConds = array();
 
 	/*
@@ -124,6 +133,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$totalMatchingRevisions = 0;
 	$masterPos = false;
 	for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
+		wfWaitForSlaves( 10 );
+
 		$pageRes = $dbr->select( 'page', array('page_id', 'page_namespace', 'page_title'), 
 			$pageConds + array('page_id' => $pageId), $fname );
 		if ( $dbr->numRows( $pageRes ) == 0 ) {
@@ -215,7 +226,6 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 			if ( $usedChunk ) {
 				if ( $extdb != "" ) {
 					# Move blob objects to External Storage
-					$storeObj = new ExternalStoreDB;
 					$stored = $storeObj->store( $extdb, serialize( $chunk ));
 					if ($stored === false) {
 						print "Unable to store object\n";
