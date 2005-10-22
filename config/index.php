@@ -384,7 +384,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
-	$conf->SysopName = importPost( "SysopName", "WikiAdmin" );
+	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
 
