@@ -395,8 +395,8 @@ class SpecialSearch {
 			: '';
 		$redirect = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
 		
-		$searchField = "<input type='text' name=\"search\" value=\"" .
-			htmlspecialchars( $term ) ."\" width=\"80\" />\n";
+		$searchField = '<input type="text" name="search" value="' .
+			htmlspecialchars( $term ) ."\" size=\"16\" />\n";
 		
 		$searchButton = '<input type="submit" name="searchx" value="' .
 		  htmlspecialchars( wfMsg('powersearch') ) . "\" />\n";
