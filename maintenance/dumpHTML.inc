@@ -8,6 +8,7 @@ define( 'REPORTING_INTERVAL', 10 );
 
 require_once( 'includes/ImagePage.php' );
 require_once( 'includes/CategoryPage.php' );
+require_once( 'includes/RawPage.php' );
 
 class DumpHTML {
 	# Destination directory
@@ -32,6 +33,15 @@ class DumpHTML {
 	# the destination
 	var $alternateScriptPath = false;
 
+	# Original article path, for "current version" links
+	var $oldArticlePath = false;
+
+	# Has setupGlobals been called?
+	var $setupDone = false;
+
+	# List of raw pages used in the current article
+	var $rawPages;
+	
 	function DumpHTML( $settings ) {
 		foreach ( $settings as $var => $value ) {
 			$this->$var = $value;
@@ -52,6 +62,9 @@ class DumpHTML {
 			$end = $dbr->selectField( 'page', 'max(page_id)', false, $fname );
 		}
 
+		$mainPageObj = Title::newMainPage();
+		$mainPage = $mainPageObj->getPrefixedDBkey();
+
 		
 		for ($id = $start; $id <= $end; $id++) {
 			wfWaitForSlaves( 20 );
@@ -64,7 +77,7 @@ class DumpHTML {
 			$title = Title::newFromID( $id );
 			if ( $title ) {
 				$ns = $title->getNamespace() ;
-				if ( $ns != NS_CATEGORY ) { 
+				if ( $ns != NS_CATEGORY && $title->getPrefixedDBkey() != $mainPage ) { 
 					$this->doArticle( $title );
 				}
 			}
@@ -207,9 +220,15 @@ class DumpHTML {
 
 	/** Write an article specified by title */
 	function doArticle( $title ) {
+		// Testing
+		if ( $title->getNamespace() == 8 ) {
+			return;
+		}
+
 		global $wgTitle, $wgSharedUploadPath, $wgSharedUploadDirectory;
 		global $wgUploadDirectory;
-		
+
+		$this->rawPages = array();
 		$text = $this->getArticleHTML( $title );
 
 		if ( $text === false ) {
@@ -222,11 +241,34 @@ class DumpHTML {
 
 		# Write to file
 		$this->writeArticle( $title, $text );
+
+		# Do raw pages
+		wfMkdirParents( "{$this->dest}/raw", 0755 );
+		foreach( $this->rawPages as $record ) {
+			list( $file, $title, $params ) = $record;
+
+			$path = "{$this->dest}/raw/$file";
+			if ( !file_exists( $path ) ) {
+				$article = new Article( $title );
+				$request = new FauxRequest( $params );
+				$rp = new RawPage( $article, $request );
+				$text = $rp->getRawText();
+
+				print "Writing $file\n";
+				$file = fopen( $path, 'w' );
+				if ( !$file ) {
+					print("Can't open file $fullName for writing\n");
+					continue;
+				}
+				fwrite( $file, $text );
+				fclose( $file );
+			}
+		}
 	}
 
 	/** Write the given text to the file identified by the given title object */
 	function writeArticle( &$title, $text ) {
-		$filename = $title->getHashedFilename();
+		$filename = $this->getHashedFilename( $title );
 		$fullName = "{$this->dest}/$filename";
 		$fullDir = dirname( $fullName );
 
@@ -247,10 +289,17 @@ class DumpHTML {
 		global $wgUser, $wgTitle, $wgMakeDumpLinks, $wgStylePath, $wgArticlePath;
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
-		global $wgSharedThumbnailScriptPath, $wgEnableParserCache;
+		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
+		global $wgRightsUrl, $wgRightsText;
 
 		static $oldLogo = NULL;
 		
+		if ( !$this->setupDone ) {
+			$wgHooks['GetLocalURL'][] =& $this;
+			$wgHooks['GetFullURL'][] =& $this;
+			$this->oldArticlePath = $wgServer . $wgArticlePath;
+		}
+
 		if ( is_null( $depth ) ) {
 			$wgMakeDumpLinks = $this->depth;
 		} else {
@@ -294,6 +343,10 @@ class DumpHTML {
 		$wgThumbnailScriptPath = $wgSharedThumbnailScriptPath = false;
 		$wgEnableParserCache = false;
 		$wgMathPath = "$wgScriptPath/math";
+		
+		if ( !empty( $wgRightsText ) ) {
+			$wgRightsUrl = "$wgScriptPath/COPYING.html";
+		}
 
 		$wgUser = new User;
 		$wgUser->setOption( 'skin', 'htmldump' );
@@ -301,6 +354,7 @@ class DumpHTML {
 
 		$this->sharedStaticPath = "$wgUploadDirectory/shared";
 
+		$this->setupDone = true;
 	}
 
 	/** Reads the content of a title object, executes the skin and captures the result */
@@ -438,6 +492,138 @@ ENDTEXT;
 			}
 		}
 	}
+
+	function onGetFullURL( &$title, &$url, $query ) {
+		global $wgContLang, $wgArticlePath;
+
+		$iw = $title->getInterwiki();
+		if ( $title->isExternal() && $wgContLang->getLanguageName( $iw ) ) {
+			if ( $title->getDBkey() == '' ) {
+				$url = str_replace( '$1', "../$iw/index.html", $wgArticlePath );
+			} else {
+				$url = str_replace( '$1', "../$iw/" . wfUrlencode( $this->getHashedFilename( $title ) ), 
+					$wgArticlePath );
+			}
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	function onGetLocalURL( &$title, &$url, $query ) {
+		global $wgArticlePath;
+
+		if ( $title->isExternal() ) {
+			# Default is fine for interwiki
+			return true;
+		}
+
+		$url = false;
+		if ( $query != '' ) {
+			parse_str( $query, $params );
+			if ( isset($params['action']) && $params['action'] == 'raw' ) {
+				if ( $params['gen'] == 'css' || $params['gen'] == 'js' ) {
+					$file = 'gen.' . $params['gen'];
+				} else {
+					$file = $this->getFriendlyName( $title->getPrefixedDBkey() );
+					// Clean up Monobook.css etc.
+					if ( preg_match( '/^(.*)\.(css|js)_[0-9a-f]{4}$/', $file, $matches ) ) {
+						$file = $matches[1] . '.' . $matches[2];
+					}
+				}
+				$this->rawPages[$file] = array( $file, $title, $params );
+				$url = str_replace( '$1', "raw/" . wfUrlencode( $file ), $wgArticlePath );
+			}
+		}
+		if ( $url === false ) {
+			$url = str_replace( '$1', wfUrlencode( $this->getHashedFilename( $title ) ), $wgArticlePath );
+		}
+		return false;
+	}
+
+	function getHashedFilename( &$title ) {
+		if ( '' != $title->mInterwiki ) {
+			$dbkey = $title->getDBkey();
+		} else {
+			$dbkey = $title->getPrefixedDBkey();
+		}
+
+		$mainPage = Title::newMainPage();
+		if ( $mainPage->getPrefixedDBkey() == $dbkey ) {
+			return 'index.html';
+		}
+
+		return $this->getHashedDirectory( $title ) . '/' . 
+			$this->getFriendlyName( $dbkey ) . '.html';
+	}
+
+	function getFriendlyName( $name ) {
+		# Replace illegal characters for Windows paths with underscores
+		$friendlyName = strtr( $name, '/\\*?"<>|~', '_________' );
+
+		# Work out lower case form. We assume we're on a system with case-insensitive
+		# filenames, so unless the case is of a special form, we have to disambiguate
+		$lowerCase = ucfirst( strtolower( $name ) );
+
+		# Make it mostly unique
+		if ( $lowerCase != $friendlyName  ) {
+			$friendlyName .= '_' . substr(md5( $name ), 0, 4);
+		}
+		# Handle colon specially by replacing it with tilde
+		# Thus we reduce the number of paths with hashes appended
+		$friendlyName = str_replace( ':', '~', $friendlyName );
+
+		return $friendlyName;
+	}
+	
+	/**
+	 * Get a relative directory for putting a title into
+	 */
+	function getHashedDirectory( &$title ) {
+		if ( '' != $title->getInterwiki() ) {
+			$pdbk = $title->getDBkey();
+		} else {
+			$pdbk = $title->getPrefixedDBkey();
+		}
+
+		# Find the first colon if there is one, use characters after it
+		$p = strpos( $pdbk, ':' );
+		if ( $p !== false ) {
+			$dbk = substr( $pdbk, $p + 1 );
+			$dbk = substr( $dbk, strspn( $dbk, '_' ) );
+		} else {
+			$dbk = $pdbk;
+		}
+
+		# Split into characters
+		preg_match_all( '/./us', $dbk, $m );
+
+		$chars = $m[0];
+		$length = count( $chars );
+		$dir = '';
+
+		for ( $i = 0; $i < $this->depth; $i++ ) {
+			if ( $i ) {
+				$dir .= '/';
+			}
+			if ( $i >= $length ) {
+				$dir .= '_';
+			} else {
+				$c = $chars[$i];
+				if ( ord( $c ) >= 128 || ctype_alnum( $c ) ) {
+					if ( function_exists( 'mb_strtolower' ) ) {
+						$dir .= mb_strtolower( $c );
+					} else {
+						$dir .= strtolower( $c );
+					}
+				} else {
+					$dir .= sprintf( "%02X", ord( $c ) );
+				}
+			}
+		}
+		return $dir;
+	}
+
 }
 
 /** XML parser callback */

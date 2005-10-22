@@ -60,7 +60,7 @@ if ( !empty( $options['d'] ) ) {
 	$dest = 'static';
 }
 
-$d = new DumpHTML( array( 
+$wgHTMLDump = new DumpHTML( array( 
 	'dest' => $dest, 
 	'forceCopy' => $options['force-copy'],
 	'alternateScriptPath' => $options['interlang'],
@@ -69,13 +69,13 @@ $d = new DumpHTML( array(
 
 
 if ( $options['special'] ) {
-	$d->doSpecials();
+	$wgHTMLDump->doSpecials();
 } elseif ( $options['images'] ) {
-	$d->doImageDescriptions();
+	$wgHTMLDump->doImageDescriptions();
 } elseif ( $options['categories'] ) {
-	$d->doCategories();
+	$wgHTMLDump->doCategories();
 } elseif ( $options['redirects'] ) {
-	$d->doRedirects();
+	$wgHTMLDump->doRedirects();
 } else {
 	print("Creating static HTML dump in directory $dest. \n".
 		"Starting from page_id $start of $end.\n");
@@ -83,11 +83,11 @@ if ( $options['special'] ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	print "Using database {$dbr->mServer}\n";
 
-	$d->doArticles( $start, $end );
+	$wgHTMLDump->doArticles( $start, $end );
 	if ( !isset( $options['e'] ) ) {
-		$d->doImageDescriptions();
-		$d->doCategories();
-		$d->doSpecials();
+		$wgHTMLDump->doImageDescriptions();
+		$wgHTMLDump->doCategories();
+		$wgHTMLDump->doSpecials();
 	}
 	
 	/*
