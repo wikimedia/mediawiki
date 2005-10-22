@@ -1477,4 +1477,15 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 function wfEmptyMsg( $msg, $wfMsgOut ) {
 	return $wfMsgOut === "&lt;$msg&gt;";
 }
+
+/**
+ * Find out whether or not a mixed variable exists in a string
+ *
+ * @param mixed  needle
+ * @param string haystack
+ * @return bool
+ */
+function in_string( $needle, $str ) {
+	return strpos( $str, $needle ) !== false;
+}
 ?>
