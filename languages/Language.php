@@ -1376,7 +1376,7 @@ before deletion. The actual text of these deleted revisions is only available to
 'undeletebtn' => 'Restore!',
 'undeletedarticle' => "restored \"[[$1]]\"",
 'undeletedrevisions' => "$1 revisions restored",
-'undeletedtext'   => "[[$1]] has been successfully restored.
+'undeletedtext'   => "[[:$1|$1]] has been successfully restored.
 See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 
 # Namespace form on various pages
