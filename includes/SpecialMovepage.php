@@ -140,7 +140,7 @@ class MovePageForm {
 		<tr>
 			<td align='right' valign='top'><br />{$movereason}:</td>
 			<td align='left' valign='top'><br />
-				<textarea type='text' cols='60' rows='2' name=\"wpReason\" value=\"{$encReason}\"></textarea>
+				<textarea cols='60' rows='2' name='wpReason' id='wpReason'>{$encReason}</textarea>
 			</td>
 		</tr>" );
 
