@@ -2542,8 +2542,16 @@ class Language {
 		return ucfirst( $string );
 	}
 
+	function uc( $str ) {
+		return strtoupper( $str );
+	}
+
 	function lcfirst( $s ) {
 		return strtolower( $s{0} ). substr( $s, 1 );
+	}
+
+	function lc( $str ) {
+		return strtolower( $str );
 	}
 
 	function checkTitleEncoding( $s ) {
