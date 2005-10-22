@@ -18,19 +18,27 @@ require_once( 'Revision.php' );
  * @package MediaWiki
  */
 class RawPage {
+	var $mArticle, $mTitle, $mRequest;
 
-	function RawPage( $article ) {
+	function RawPage( &$article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
+
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
+
+		if ( $request === false ) { 
+			$this->mRequest =& $wgRequest;
+		} else {
+			$this->mRequest = $request;
+		}
 			
-		$ctype = $wgRequest->getText( 'ctype' );
-		$smaxage = $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
-		$maxage = $wgRequest->getInt( 'maxage', $wgSquidMaxage );
-		$this->mOldId = $wgRequest->getInt( 'oldid' );
+		$ctype = $this->mRequest->getText( 'ctype' );
+		$smaxage = $this->mRequest->getInt( 'smaxage', $wgSquidMaxage );
+		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
+		$this->mOldId = $this->mRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
-		$gen = $wgRequest->getText( 'gen' );
+		$gen = $this->mRequest->getText( 'gen' );
 		if($gen == 'css') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
@@ -53,7 +61,7 @@ class RawPage {
 	}
 	
 	function view() {
-		global $wgUser, $wgOut, $wgScript;
+		global $wgOut, $wgScript;
 
 		if( isset( $_SERVER['SCRIPT_URL'] ) ) {
 			# Normally we use PHP_SELF to get the URL to the script
@@ -91,24 +99,26 @@ class RawPage {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
+		echo $this->getRawText();
+		$wgOut->disable();
+	}
+
+	function getRawText() {
+		global $wgUser, $wgOut;
 		if($this->mGen) {
 			$sk = $wgUser->getSkin();
 			$sk->initPage($wgOut);
 			if($this->mGen == 'css') {
-				echo $sk->getUserStylesheet();
+				return $sk->getUserStylesheet();
 			} else if($this->mGen == 'js') {
-				echo $sk->getUserJs();
+				return $sk->getUserJs();
 			}
 		} else {
-			echo $this->getrawtext();
+			return $this->getArticleText();
 		}
-		$wgOut->disable();
-	}
-	
-	function getrawtext () {
-		global $wgInputEncoding, $wgContLang;
-		$fname = 'RawPage::getrawtext';
-		
+	}		
+
+	function getArticleText () {
 		if( $this->mTitle ) {
 			# Special case for MediaWiki: messages; we can hit the message cache.
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
