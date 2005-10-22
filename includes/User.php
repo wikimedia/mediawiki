@@ -218,7 +218,11 @@ class User {
 	}
 
 	/**
-	 * does the string match roughly an email address ?
+	 * Does the string match roughly an email address ?
+	 *
+	 * There used to be a regular expression here, it got removed because it
+	 * rejected valid addresses. Actually just check if there is '@' somewhere
+	 * in the given address.
 	 *
 	 * @todo Check for RFC 2822 compilance
 	 * @bug 959
@@ -228,8 +232,6 @@ class User {
 	 * @return bool
 	 */
 	function isValidEmailAddr ( $addr ) {
-		# There used to be a regular expression here, it got removed because it
-		# rejected valid addresses.
 		return ( trim( $addr ) != '' ) &&
 			(false !== strpos( $addr, '@' ) );
 	}
