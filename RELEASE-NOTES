@@ -823,6 +823,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2773) Print style sheet no longer overrides RTL text direction
 * MonoBook skin top link id changed from "contentTop" to "top" (shared with
   name attribute)
+* Wrap message page insertions in a transaction to speed up installation
 
 
 === Caveats ===
