@@ -11,6 +11,7 @@ require_once( 'QueryPage.php' );
 if(@$options['help']) {
 	print "usage:updateSpecialPages.php [--help] [--only=page]\n";
 	print "  --help      : this help message\n";
+	print "  --list      : list special pages names\n";
 	print "  --only=page : only update 'page'. Ex: --only=BrokenRedirects\n";
 	die();
 }
@@ -20,6 +21,12 @@ $dbw =& wfGetDB( DB_MASTER );
 
 foreach ( $wgQueryPages as $page ) {
 	@list( $class, $special, $limit ) = $page;
+
+	# --list : just show the name of pages
+	if( @$options['list'] ) {
+		print "$special\n";
+		continue;
+	}
 
 	$specialObj = SpecialPage::getPage( $special );
 	if ( !$specialObj ) {
