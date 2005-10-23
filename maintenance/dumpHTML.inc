@@ -559,12 +559,17 @@ ENDTEXT;
 	}
 
 	function getFriendlyName( $name ) {
+		global $wgLang;
 		# Replace illegal characters for Windows paths with underscores
 		$friendlyName = strtr( $name, '/\\*?"<>|~', '_________' );
 
 		# Work out lower case form. We assume we're on a system with case-insensitive
 		# filenames, so unless the case is of a special form, we have to disambiguate
-		$lowerCase = ucfirst( strtolower( $name ) );
+		if ( function_exists( 'mb_strtolower' ) ) {
+			$lowerCase = $wgLang->ucfirst( mb_strtolower( $name ) );
+		} else {
+			$lowerCase = ucfirst( strtolower( $name ) );
+		}
 
 		# Make it mostly unique
 		if ( $lowerCase != $friendlyName  ) {
