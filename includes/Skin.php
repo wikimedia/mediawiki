@@ -253,10 +253,11 @@ class Skin extends Linker {
 	 * Some styles that are set by user through the user settings interface.
 	 */
 	function doGetUserStyles() {
-		global $wgUser, $wgContLang;
+		global $wgUser, $wgContLang, $wgSquidMaxage;
 
-		$csspage = $wgContLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
-		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
+		$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
+		$s = '@import "' . $this->makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .
+			'@import "'.$this->makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
 
 		return $s . $this->reallyDoGetUserStyles();
 	}
