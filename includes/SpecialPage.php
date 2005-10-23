@@ -44,6 +44,7 @@ $wgSpecialPages = array(
 	'Wantedpages'	=> new IncludableSpecialPage( 'Wantedpages' ),
 	'Wantedcategories' => new SpecialPage( 'Wantedcategories' ),
 	'Mostlinked'	=> new SpecialPage( 'Mostlinked' ),
+	'Mostlinkedcategories' => new SpecialPage( 'Mostlinkedcategories' ),
 	'Mostcategories' => new SpecialPage( 'Mostcategories' ),
 	'Mostimages' => new SpecialPage( 'Mostimages' ),
 	'Mostrevisions' => new SpecialPage( 'Mostrevisions' ),

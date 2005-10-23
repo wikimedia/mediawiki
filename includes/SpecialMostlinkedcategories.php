@@ -1,0 +1,85 @@
+<?php
+/**
+ * A querypage to show categories ordered in descending order by the pages  in them
+ *
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
+/* */
+require_once 'QueryPage.php';
+
+/**
+ * @package MediaWiki
+ * @subpackage SpecialPage
+ */
+class MostlinkedCategoriesPage extends QueryPage {
+
+	function getName() { return 'Mostlinkedcategories'; }
+	function isExpensive() { return true; }
+	function isSyndicated() { return false; }
+
+	function getSQL() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		extract( $dbr->tableNames( 'categorylinks', 'page' ) );
+		$name = $dbr->addQuotes( $this->getName() );
+		return
+			"
+			SELECT 
+				$name as type,
+				" . NS_CATEGORY . " as namespace,
+				cl_to as title,
+				COUNT(*) as value
+			FROM $categorylinks
+			GROUP BY cl_to
+			";
+	}
+	
+	function sortDescending() { return true; }
+
+	/**
+	 * Fetch user page links and cache their existence
+	 */
+	function preprocessResults( &$db, &$res ) {
+		global $wgLinkCache;
+
+		$batch = new LinkBatch;
+		while ( $row = $db->fetchObject( $res ) )
+			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->title ) );
+		$batch->execute( $wgLinkCache );
+
+		// Back to start for display
+		if ( $db->numRows( $res ) > 0 )
+			// If there are no rows we get an error seeking.
+			$db->dataSeek( $res, 0 );
+	}
+
+	function formatResult( $skin, $result ) {
+		global $wgContLang;
+
+		$nt = Title::makeTitle( $result->namespace, $result->title );
+		$text = $wgContLang->convert( $nt->getText() );
+		
+		$plink = $skin->makeLinkObj( $nt, htmlspecialchars( $text ) );
+		
+		$nlinks = wfMsg( 'ncategories', $result->value );
+		return "$plink ($nlinks)";
+	}
+}
+
+/**
+ * constructor
+ */
+function wfSpecialMostlinkedCategories() {
+	list( $limit, $offset ) = wfCheckLimits();
+
+	$wpp = new MostlinkedCategoriesPage();
+
+	$wpp->doQuery( $offset, $limit );
+}
+
+?>
