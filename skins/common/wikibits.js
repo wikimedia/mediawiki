@@ -12,13 +12,17 @@ if (clientPC.indexOf('opera')!=-1) {
 }
 
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
+
+var doneOnloadHook;
+
 function onloadhook () {
     // don't run anything below this for non-dom browsers
-    if(!(document.getElementById && document.getElementsByTagName)) return;
+    if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) return;
     histrowinit();
     unhidetzbutton();
     tabbedprefs();
     akeytt();
+    doneOnloadHook = true;
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
 else if (window.attachEvent) window.attachEvent("onload",onloadhook);
