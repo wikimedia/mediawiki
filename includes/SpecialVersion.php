@@ -86,8 +86,7 @@ class SpecialVersion {
 			'parserhook' => 'Parser hooks',
 			'other' => 'Other',
 		);
-		
-		wfRunHooks( 'ExtensionTypes', array( &$extensionTypes ) );
+		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$extensionTypes ) );
 		
 		$out = "\n* Extensions:\n";
 		foreach ( $extensionTypes as $type => $text ) {
@@ -144,16 +143,13 @@ class SpecialVersion {
 		global $wgHooks;
 
 		$ret = "* Hooks:\n";
-
-		foreach ($wgHooks as $hook => $hooks) {
+		foreach ($wgHooks as $hook => $hooks)
 			$ret .= "** $hook: " . $this->langObj->listToText( $hooks ) . "\n";
-		}
 
 		return $ret;
 	}
 
 	function IPInfo() {
-		
 		$ip =  str_replace( '--', ' - - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n";
 	}
