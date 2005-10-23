@@ -47,10 +47,13 @@ under the GPL for use of the whole code or other sections thereof.
 
 Many thanks to the Wikipedia regulars for testing and suggestions.
 
+The official website for mediawiki is located at:
+  http://www.mediawiki.org/
+
 The code is currently maintained at SourceForge under the project "wikipedia",
 module name "phase3". You can view the code in CVS there:
 
-  http://www.mediawiki.org/
+  http://cvs.sourceforge.net/viewcvs.py/wikipedia/phase3/
 
 Please report bugs and make feature requests in our Bugzilla system:
 
