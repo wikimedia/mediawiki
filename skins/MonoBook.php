@@ -177,7 +177,7 @@ class MonoBookTemplate extends QuickTemplate {
 	        ?><span id="feed-<?php echo htmlspecialchars($key) ?>"><a href="<?php
 	        echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
 	        <?php } ?></li><?php } ?>
-	      <?php foreach( array('contributions', 'emailuser', 'upload', 'specialpages') as $special ) { ?>
+	      <?php foreach( array('contributions', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) { ?>
 	      <?php if($this->data['nav_urls'][$special]) {?><li id="t-<?php echo $special ?>"><a href="<?php
 	        echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
 	        ?>"><?php $this->msg($special) ?></a></li><?php } ?>
