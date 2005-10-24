@@ -616,7 +616,7 @@ ENDTEXT;
 				$dir .= '_';
 			} else {
 				$c = $chars[$i];
-				if ( ord( $c ) >= 128 || ctype_alnum( $c ) ) {
+				if ( ord( $c ) >= 128 || preg_match( '/[a-zA-Z0-9!#$%&()+,[\]^_`{}-]/', $c ) ) {
 					if ( function_exists( 'mb_strtolower' ) ) {
 						$dir .= mb_strtolower( $c );
 					} else {

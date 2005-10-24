@@ -56,10 +56,10 @@ function getHashedDirectory(pdbk, depth) {
 			c = dbk.charAt(i);
 			cc = dbk.charCodeAt(i);
 			
-			if (cc >= 128 || /[a-zA-Z0-9]/.exec(c)) {
+			if (cc >= 128 || /[a-zA-Z0-9!#$%&()+,[\]^_`{}-]/.exec(c)) {
 				dir += c.toLowerCase();
 			} else {
-				dir += binl2hex([cc]);
+				dir += binl2hex([cc]).substr(0,2).toUpperCase();
 			}
 		}
 	}
