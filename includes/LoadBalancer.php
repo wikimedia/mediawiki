@@ -36,7 +36,7 @@ class LoadBalancer {
 	/* private */ var $mFailFunction, $mErrorConnection;
 	/* private */ var $mForce, $mReadIndex, $mLastIndex;
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
-	/* private */ var $mLaggedSlaveMode;
+	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 
 	function LoadBalancer()
 	{
@@ -225,6 +225,10 @@ class LoadBalancer {
 					}
 				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $wgDBClusterTimeout );
 
+				if ( $totalElapsed / 1e6 >= $wgDBClusterTimeout ) {
+					$this->mLastError = 'All servers busy';
+				}
+				
 				if ( $i !== false && $this->isOpen( $i ) ) {
 					# Wait for the session master pos for a short time
 					if ( $this->mWaitForFile ) {
@@ -446,14 +450,23 @@ class LoadBalancer {
 		if ( !$reporting ) {
 			$reporting = true;
 			if ( !is_object( $conn ) ) {
+				// No last connection, probably due to all servers being too busy
 				$conn = new Database;
-			}
-			if ( $this->mFailFunction ) {
-				$conn->failFunction( $this->mFailFunction );
+				if ( $this->mFailFunction ) {
+					$conn->failFunction( $this->mFailFunction );
+					$conn->reportConnectionError();
+				} else {
+					// If all servers were busy, mLastError will contain something sensible
+					wfEmergencyAbort( $conn, $this->mLastError );
+				}
 			} else {
-				$conn->failFunction( false );
+				if ( $this->mFailFunction ) {
+					$conn->failFunction( $this->mFailFunction );
+				} else {
+					$conn->failFunction( false );
+				}
+				$conn->reportConnectionError();
 			}
-			$conn->reportConnectionError();
 			$reporting = false;
 		}
 		wfProfileOut( $fname );
