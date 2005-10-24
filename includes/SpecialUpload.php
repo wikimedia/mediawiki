@@ -587,21 +587,26 @@ class UploadForm {
 		
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
-	<table border='0'><tr>
-
-	<td align='right'>{$sourcefilename}:</td><td align='left'>
-	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
-	</td></tr><tr>
-
-	<td align='right'>{$destfilename}:</td><td align='left'>
-	<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
-	</td></tr><tr>
-
-	<td align='right'>{$summary}</td><td align='left'>
-	<textarea tabindex='3' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
-	  . htmlspecialchars( $this->mUploadDescription ) .
-	"</textarea>
-	</td></tr><tr>" );
+		<table border='1'>
+		<tr>
+			<td align='right'>{$sourcefilename}:</td>
+			<td align='left'>
+				<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
+			</td>
+		</tr>
+		<tr>
+			<td align='right'>{$destfilename}:</td>
+			<td align='left'>
+				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
+			</td>
+		</tr>
+		<tr>
+			<td align='right'>{$summary}</td>
+			<td align='left'>
+				<textarea tabindex='3' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>" . htmlspecialchars( $this->mUploadDescription ) . "</textarea>
+			</td>
+		</tr>
+		<tr>" );
 	
 	if ( $licenseshtml != '' ) {
 		$wgOut->addHTML( "
@@ -612,7 +617,8 @@ class UploadForm {
 					$licenseshtml
 				</select>
 			</td>
-			</tr><tr>
+			</tr>
+			<tr>
 		");
 	}
 
@@ -623,30 +629,36 @@ class UploadForm {
 		$uploadsource = htmlspecialchars( $this->mUploadSource );
 		
 		$wgOut->addHTML( "
-		        <td align='right' nowrap='nowrap'>$filestatus:</td>
-		        <td>
-				<input tabindex='5' type='text' name='wpUploadCopyStatus' value=\"$copystatus\" size='40' />
-			</td>
-		        </tr><tr>
-		        <td align='right'>$filesource:</td>
-		        <td>
-				<input tabindex='6' type='text' name='wpUploadSource' value=\"$uploadsource\" size='40' />
-			</td>
-			</tr><tr>
+			        <td align='right' nowrap='nowrap'>$filestatus:</td>
+			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
+		        </tr>
+			<tr>
+		        	<td align='right'>$filesource:</td>
+			        <td><input tabindex='6' type='text' name='wpUploadSource' value=\"$uploadsource\" size='40' /></td>
+			</tr>
+			<tr>
 		");
 	}
 	
 	
 	$wgOut->addHtml( "
-	<td></td><td align='left'>
-	<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
-	<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
-	</td></tr><tr>
+		<td></td>
+		<td>
+			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
+			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
+			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' />
+			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarning' ) . "</label>
+		</td>
+	</tr>
+	<tr>
 
 	</tr>
-	<tr><td></td><td align='left'>
-	<input tabindex='8' type='submit' name='wpUpload' value=\"{$ulb}\" />
-	</td></tr></table></form>\n" );
+	<tr>
+		<td></td>
+		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
+	</tr>
+	</table>
+	</form>" );
 	}
 
 	/* -------------------------------------------------------------- */
