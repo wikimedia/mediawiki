@@ -587,7 +587,7 @@ class UploadForm {
 		
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
-		<table border='1'>
+		<table border='0'>
 		<tr>
 			<td align='right'>{$sourcefilename}:</td>
 			<td align='left'>
@@ -647,7 +647,7 @@ class UploadForm {
 			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
 			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
 			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' />
-			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarning' ) . "</label>
+			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
 		</td>
 	</tr>
 	<tr>
