@@ -29,6 +29,7 @@
 	'bo' => 'བོད་ཡིག',	# Tibetan
 	'br' => 'Brezhoneg',	# Breton
 	'bs' => 'Bosanski',		# Bosnian
+	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Buginese
 	'ca' => 'Català',	# Catalan
 	'ce' => 'Нохчийн',	# Chechen
 	'ceb' => 'Cebuano',     # Cebuano
@@ -114,6 +115,7 @@
 	'lb' => 'Lëtzebuergesch',	# Luxemburguish
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
+	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingala',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
@@ -150,6 +152,7 @@
 	'os' => 'Иронау', # Ossetic
 	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
 	'pam' => 'Pampangan',   # Pampanga
+	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pi' => 'पािऴ',	# Pali
 	'pl' => 'Polski',		# Polish
 	'ps' => 'پښتو',	# Pashto
@@ -203,11 +206,13 @@
 	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi, (FIXME!)
 	'ty' => 'Reo Mā`ohi',	# Tahitian
+	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'Oyghurque',	# Uyghur
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
 	'uz' => 'Ўзбек',	# Uzbek
 	've' => 'Tshivenda',		# Venda
+	'vec' => 'Vèneto',	# Venetian
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
