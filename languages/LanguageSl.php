@@ -476,7 +476,6 @@ Vsi prikazani časi so strežnikov čas (UTC).
 "copyrightpage"         => "Wikipedija:Avtorske pravice",
 "copyrightpagename"     => "Avtorske pravice Wikipedije",
 "uploadedfiles"	        => "Naložene datoteke",
-"ignorewarning"	        => "Zanemari opozorilo in vseeno shrani.",
 "minlength"		=> "Imena slik morajo vsebovati vsaj tri črke.",
 "badfilename"	        => "Slika se je spremenila v \"$1\".",
 "badfiletype"	        => "\".$1\" ni priporočen format datotek slik.",

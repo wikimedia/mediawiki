@@ -460,7 +460,6 @@ carregat més recentement. Totes les hores són les del servidor (UTC).
 "copyrightpage" => "{{ns:4}}:Copyrights",
 "copyrightpagename" => "{{ns:4}} copyright",
 "uploadedfiles"	=> "Arxius carregats",
-"ignorewarning"	=> "Ignora l'advertència i desa l'arxiu de totes maneres.",
 "minlength"		=> "Els noms de les imatges han de tenir un mínim de tres lletres.",
 "badfilename"	=> "El nom de la imatge s'ha canviat a \"$1\".",
 "badfiletype"	=> "\".$1\" no és un format recomanat d'imatge.",

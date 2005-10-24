@@ -926,7 +926,6 @@ Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.
 "copyrightpage" => "{{ns:4}}:Cóipchearta",
 "copyrightpagename" => "Cóipcheart Vicipéide",
 "uploadedfiles" => "Comhaid uaslódáilte",
-"ignorewarning" => "Scaoil tharat an rabhadh agus sábháil an comhad ar aon chaoi.",
 "minlength"     => "Caithfidh trí litreacha ar a laghad bheith ann sa comhadainm.",
 'illegalfilename'       => 'Tá litreacha san comhadainm  "$1" nach ceadaítear in ainm leathanaigh. Athainmnigh
 an comhad agus déan athiarracht, más é do thoil é.',

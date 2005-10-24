@@ -602,7 +602,6 @@ Totes les eures sont metowes e tins univiersel (UTC).
 "copyrightpage" => "Wikipedia:Abondroets",
 "copyrightpagename" => "Abondroets Wikipedia",
 "uploadedfiles"	=> "Fitchîs eberwetés",
-"ignorewarning"	=> "Passer houte des adviertixhmints eyet schaper tot l'&nbsp;minme li fitchî.",
 "minlength"		=> "Les imådjes divèt aveur des nos di pol moens troes letes.",
 "badfilename"	=> "Li no d'&nbsp;l'&nbsp;imådje a stî candjî a «$1».",
 "badfiletype"	=> "«.$1» n'&nbsp;est nén ene sôre d'&nbsp;imådje ricmandêye.",

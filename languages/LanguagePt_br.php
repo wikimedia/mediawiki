@@ -538,7 +538,6 @@ Todas as datas mostradas são do servidor (UTC).
 "copyrightpagename" => "Direitos Autorais da {{SITENAME}}",
 
 "uploadedfiles" => "Arquivos carregados",
-"ignorewarning" => "Ignorar aviso e salvar de qualquer forma.",
 "minlength"     => "Os nomes das imagens devem ter ao menos três letras.",
 "badfilename"   => "O nome da imagem mudou para \"$1\".",
 "badfiletype"   => "\".$1\" não está em um formato recomendável.",

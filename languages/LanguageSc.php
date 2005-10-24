@@ -414,7 +414,6 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 "copyrightpage" => "Wikipedia:Copyrights",
 "copyrightpagename" => "Wikipedia copyright",
 "uploadedfiles"	=> "Files Caricati in Wikipedia",
-"ignorewarning"	=> "Ignora le avvertenze e salva comunque il file.",
 "minlength"		=> "I nomi dei file immagine debbono essere lunghi almeno tre caratteri, ma è preferibile usare nomi lumghi, purché descrittivi.",
 "badfilename"	=> "Il nome del file immagine è stato convertito in \"$1\".",
 "badfiletype"	=> "\".$1\" non è un tipo di file raccomandato per le immagini, almeno ai nostri fini.",

@@ -480,7 +480,6 @@ border="0" ALT="Google"></A>
 'history_short' => 'Istorija',
 'historywarning' => 'Dėmesio: Trinamas puslapis turi istoriją:',
 'hr_tip' => 'Horizontali linija (nepernaudoti)',
-'ignorewarning' => 'Ignoruoti perspėjimą ir užrašyti failą ant viršaus.',
 'illegalfilename' => 'Failo varde "$1" yra simbolių, netinkamų straipsnio pavadinimui. Prašome pervadint failą ir mėginti įkelti iš naujo.',
 'ilsubmit' => 'Ieškoti',
 'image_sample' => 'Pavyzdys.jpg',

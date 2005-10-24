@@ -128,7 +128,6 @@ $wgNamespaceNamesCsb = array(
 'history' => 'Historëjô starnë',
 'history_short' => 'Historëjô',
 'hr_tip' => 'Wòdorównô (horizontalnô) linijô (brëkùjë szpôrowno)',
-'ignorewarning' => 'Ignorëjë òstrzegã ë wëslë lopk.',
 'ilsubmit' => 'Szëkôj',
 'imagelinks' => 'Lënczi do lopka',
 'imagelist' => 'Lësta òbrôzków',

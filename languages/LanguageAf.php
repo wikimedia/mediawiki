@@ -457,7 +457,6 @@ Alle tye is bedienertyd (UGT).
 "copyrightpage" => "{{ns:4}}:kopiereg",
 "copyrightpagename" => "{{ns:4}} kopiereg",
 "uploadedfiles"	=> "Gelaaide lêers",
-"ignorewarning"	=> "Ignoreer waarskuwing en stoor lêer.",
 "minlength"		=> "Prentname moet ten minste drie letters lank wees.",
 "badfilename"	=> "Prentnaam is verander na \"$1\".",
 "badfiletype"	=> "\".$1\" is nie 'n aanbevole lêerformaat vir prente nie.",

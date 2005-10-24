@@ -606,7 +606,6 @@ Minden időpont a server idejében (UTC) van megadva.
 "copyrightpage" => "{{ns:project}}:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Felküldött file-ok",
-"ignorewarning"	=> "Mentés a figyelmeztetés figyelmen kívül hagyásával.",
 "minlength"		=> "A kép nevének legalább három betűből kell állnia.",
 "badfilename"	=> "A kép új neve \"$1\".",
 "badfiletype"	=> "\".$1\" nem javasolt képformátumnak.",

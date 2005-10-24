@@ -469,7 +469,6 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "copyrightpage" => "{{ns:4}}:Auteursrechten",
 "copyrightpagename" => "{{SITENAME}} NL auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
-"ignorewarning" => "Negeer de waarschuwing en sla het bestand op.",
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
 "badfiletype" => "\".$1\" is geen aanbevolen afbeeldings bestandsformaat.",

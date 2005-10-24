@@ -703,7 +703,6 @@ using the MediaWiki namespace', */
 'history_short' => 'Dîrok',
 #'historywarning' => 'Warning: The page you are about to delete has a history: ',
 'hr_tip' => 'Rastexêza berwarî (kêm bi kar bîne)',
-'ignorewarning' => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
 #'illegalfilename' => 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
 'ilsubmit' => 'Lêbigere',
 'image_sample' => 'Mînak.jpg',

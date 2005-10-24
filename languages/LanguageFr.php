@@ -627,7 +627,6 @@ L\'heure indiquée est celle du serveur (UTC).
 'copyrightpage' => '{{ns:4}}:Copyright',
 'copyrightpagename' => 'licence {{SITENAME}}',
 'uploadedfiles' => 'Fichiers copiés',
-'ignorewarning' => 'Ignorer l\'avertissement et copier le fichier quand même.',
 'minlength'	=> 'Les noms des images doivent comporter au moins trois lettres.',
 'illegalfilename'	=> 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename' => 'L\'image a été renommée « $1 ».',

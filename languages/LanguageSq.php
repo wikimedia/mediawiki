@@ -415,7 +415,6 @@ informacion për skedarin, si p.sh. ku e gjetët, kur u bë, kush e bëri, dhe �
 'history_short' => 'Historiku',
 'historywarning' => 'Kujdes: Faqja që jeni bërë gati për të grisur ka histori:',
 'hr_tip' => 'vijë horizontale (përdoreni rallë)',
-'ignorewarning' => 'Shpërfille shënimin e kujdesisë dhe ruaje skedarin.',
 'illegalfilename' => 'Skedari "$1" përmban gërma që nuk lejohen tek titujt e faqeve. Ju lutem ndërrojani emrin dhe provoni ta ngarkoni përsëri.',
 'ilsubmit' => 'Kërko',
 'image_sample' => 'Shëmbull.jpg',

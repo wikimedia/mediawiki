@@ -753,7 +753,6 @@ For å laste opp ei fil bruker du «Bla gjennom...» eller «Browse...»-knappen
 'copyrightpage'         => '{{ns:4}}:Opphavsrett',
 'copyrightpagename'     => '{{SITENAME}} opphavsrett',
 'uploadedfiles'	        => 'Filer som er opplasta',
-'ignorewarning'	        => 'Sjå bort frå åtvaringa og lagre fila likevel.',
 'minlength'		=> 'Namnet på fila må ha minst tre teikn.',
 'illegalfilename'	=> 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
 'badfilename'	        => 'Namnet på fila har vorte endra til «$1».',
