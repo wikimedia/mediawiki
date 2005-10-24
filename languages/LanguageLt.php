@@ -1076,8 +1076,8 @@ class LanguageLt extends LanguageUtf8  {
 		return $wgAllMessagesLt;
 	}
 
-	function formatNum( $number ) {
-		return strtr($number, '.,', ',.' );
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), array("." => ",", "," => "&nbsp;") );
 	}
 
 }
