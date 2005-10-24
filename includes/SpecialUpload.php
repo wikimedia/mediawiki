@@ -560,7 +560,9 @@ class UploadForm {
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
 			  "<span class='error'>{$msg}</span>\n" );
 		}
+		$wgOut->addHTML( '<div id="uploadtext">' );
 		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
+		$wgOut->addHTML( '</div>' );
 		$sk = $wgUser->getSkin();
 
 
