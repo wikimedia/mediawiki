@@ -169,7 +169,7 @@
 	'sd' => 'सिनधि',	# Sindhi
 	'se' => 'Sámegiella',	# Northern Sami
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
-	'sh' => 'Srpskohrvatski/Српскохрватски', # Serbocroatian
+	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
 	'si' => 'සිංහල',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Slovenčina',	# Slovak
