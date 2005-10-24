@@ -1451,7 +1451,6 @@ class Article {
 
 		if ( !$wgUseValidation ) # Are we using article validation at all?
 		{
-			$wgOut->setStatusCode( 404 );
 			$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
 			return ;
 		}
@@ -2420,7 +2419,6 @@ class Article {
 		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {
-			$wgOut->setStatusCode( 400 );
 			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 			return;
 		}

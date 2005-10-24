@@ -144,7 +144,6 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3617) Update for portuguese language (pt)
 * Namespaces hacks on LanguagePl
 * New preferences design and reorganisation
-* (bug 2585) Return proper 404 code when pages don't exist
 * (bug 3684) Fix typo in fatal error backtraces in Hooks.php
 * (bug 3682) LanguageSr.php - added convertPlural
 * (bug 3694) LanguageTr.php update
