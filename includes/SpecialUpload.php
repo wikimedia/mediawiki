@@ -591,30 +591,30 @@ class UploadForm {
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 		<table border='0'>
 		<tr>
-			<td align='right'>{$sourcefilename}:</td>
+			<td align='right'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
 			<td align='left'>
 				<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
 			</td>
 		</tr>
 		<tr>
-			<td align='right'>{$destfilename}:</td>
+			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='left'>
 				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
 			</td>
 		</tr>
 		<tr>
-			<td align='right'>{$summary}</td>
+			<td align='right'><label for='wpUploadDescription'>{$summary}</label></td>
 			<td align='left'>
-				<textarea tabindex='3' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>" . htmlspecialchars( $this->mUploadDescription ) . "</textarea>
+				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>" . htmlspecialchars( $this->mUploadDescription ) . "</textarea>
 			</td>
 		</tr>
 		<tr>" );
 	
 	if ( $licenseshtml != '' ) {
 		$wgOut->addHTML( "
-			<td align='right'>$license:</td>
+			<td align='right'><label for='wpLicense'>$license:</label></td>
 			<td align='left'>
-				<select name='wpLicense' tabindex='4'>
+				<select name='wpLicense' id='wpLicense' tabindex='4'>
 					<option value=''>$nolicense</option>
 					$licenseshtml
 				</select>
@@ -631,12 +631,12 @@ class UploadForm {
 		$uploadsource = htmlspecialchars( $this->mUploadSource );
 		
 		$wgOut->addHTML( "
-			        <td align='right' nowrap='nowrap'>$filestatus:</td>
-			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
+			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
+			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
 		        </tr>
 			<tr>
-		        	<td align='right'>$filesource:</td>
-			        <td><input tabindex='6' type='text' name='wpUploadSource' value=\"$uploadsource\" size='40' /></td>
+		        	<td align='right'><label for='wpUploadCopyStatus'>$filesource:</label></td>
+			        <td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' value=\"$uploadsource\" size='40' /></td>
 			</tr>
 			<tr>
 		");
