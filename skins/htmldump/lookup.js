@@ -31,11 +31,11 @@ function getStaticURL(text, depth) {
 
 function getPDBK(text) {
 	// Spaces to underscores
-	text = text.replace(" ", "_");
+	text = text.replace(/ /g, "_");
 
 	// Trim leading and trailing space
-	text = text.replace(/^_+/, "");
-	text = text.replace(/_+$/, "");
+	text = text.replace(/^_+/g, "");
+	text = text.replace(/_+$/g, "");
 
 	// Capitalise first letter
 	return ucfirst(text);
