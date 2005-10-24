@@ -656,7 +656,6 @@ Sau khi truyền hình lên:
 'copyrightpage' => "{{ns:4}}:Bản quyền",
 'copyrightpagename' => "giấy phép {{SITENAME}}",
 'uploadedfiles' => "Đã tải xong",
-'ignorewarning' => "Cứ lưu tập tin, bỏ qua cảnh báo.",
 'minlength'	=> "Tên phải dài hơn hai chữ.",
 'illegalfilename'	=> 'Tên « $1 » có chứa ký tự không dùng được cho tên trang. Xin hãy đổi tên và tải lại.',
 'badfilename' => 'Đổi thành tên « $1 ».',

@@ -559,7 +559,6 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
 "copyrightpage" => "{{ns:project}}:Hawlfraint",
 "copyrightpagename" => "Hawlfraint {{SITENAME}}",
 "uploadedfiles"	=> "Ffeiliau wedi llwytho i fynu",
-"ignorewarning"	=> "Anwybyddwch y rhybudd, a chadwch y tudalen beth bynnag.",
 "minlength" => "Rhaid enwau lluniau bod o leia tri llythrennau.",
 "badfilename" => "Mae enw'r llun wedi newid i \"$1\".",
 "badfiletype" => "Nid yw \".$1\" yn fformat ffeil lluniau cymeradwy.",

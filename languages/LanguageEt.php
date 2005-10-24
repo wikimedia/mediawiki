@@ -669,7 +669,6 @@ Kellaajad on märgitud serveri ajaarvamise järele (UTC).
 "copyrightpage" => "{{ns:4}}:Autoriõigused",
 "copyrightpagename" => "{{SITENAME}} ja autoriõigused",
 "uploadedfiles"	=> "Üleslaetud failid",
-"ignorewarning"	=> "Ignoreeri hoiatust ja salvesta sellest hoolimata.",
 "minlength"		=> "Pildi nimi peab sisaldama vähemalt kolme tähte.",
 "badfilename"	=> "Pildi nimi on muudetud. Uus nimi on \"$1\".",
 "badfiletype"	=> "\".$1\" ei ole soovitatav formaat.",

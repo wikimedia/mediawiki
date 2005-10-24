@@ -625,7 +625,6 @@ An eur merket eo hini ar servijer (UTC).
 'copyrightpage' => "{{ns:4}}:Gwirioù aozer (Copyright)",
 'copyrightpagename' => "aotre {{SITENAME}}",
 'uploadedfiles' => "Restroù eilet",
-'ignorewarning' => "Mont dreist ar c\'hemenn diwall hag eilañ memes tra.",
 'minlength'	=> "Teir lizherenn da nebeutañ a rank bezañ lakaet da anvioù evit ar skeudennoù.",
 'illegalfilename'	=> 'Lakaet ez eus bet er restr « $1 » arouezennoù n\'int ket aotreet evit titl ur bajenn. Mar plij, adanvit ar restr hag adkasit anezhi.',
 'badfilename' => 'Anvet eo bet ar skeudenn « $1 ».',

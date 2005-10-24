@@ -536,7 +536,6 @@ opp sist. Alle de viste tidene er tjenerens tid (UTC).
 "copyrightpage" => "Wikipedia:Opphavsrett",
 "copyrightpagename" => "Wikipedia opphavsrett",
 "uploadedfiles"	=> "Filer som er lastet opp",
-"ignorewarning"	=> "Ignorer advarselen og lagre filen likevel.",
 "minlength"		=> "Navnet på filen må bestå av minst tre bokstaver.",
 "badfilename"	=> "Navnet på filen er blitt endret til \"$1\".",
 "badfiletype"	=> "\".$1\" er ikke et av de anbefalte filformatene.",

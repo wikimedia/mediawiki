@@ -576,7 +576,6 @@ Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "copyrightpage" => "{{ns:4}}:Prawa_autorskie",
 "copyrightpagename" => "prawami autorskimi Wikipedii",
 "uploadedfiles" => "Przesłane pliki",
-"ignorewarning" => "Zignoruj ostrzeżenie i prześlij plik.",
 "minlength" => "Nazwa obrazku musi mieć co najmniej trzy litery.",
 "badfilename" => "Nazwę obrazku zmieniona na \"$1\".",
 "badfiletype" => "\".$1\" nie jest zalecanym formatem pliku.",

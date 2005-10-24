@@ -439,7 +439,6 @@ OGG형식을 더 좋아합니다.
 'copyrightpage' => '{{ns:4}}:저작권',
 'copyrightpagename' => '{{SITENAME}} 저작권',
 'uploadedfiles'       => '파일 올리기',
-'ignorewarning'       => '경고 무시하고, 파일 저장',
 
 # three alphabets and how many for Korean character?
 'minlength'	   => '그림이름은 두글자가 넘어야 합니다.',

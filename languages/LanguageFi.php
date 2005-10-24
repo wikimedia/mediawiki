@@ -677,7 +677,6 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'copyrightpage'       => 'Project:Tekijänoikeudet',
 'copyrightpagename'   => '{{SITENAME}} ja tekijänoikeudet',
 'uploadedfiles'       => 'Tallennetut tiedostot',
-'ignorewarning'       => 'Jätä tämä varoitus huomiotta, ja tallenna tiedosto.',
 'minlength'           => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
 'badfilename'         => 'Tiedoston nimi vaihdettiin: $1.',

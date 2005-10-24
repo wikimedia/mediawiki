@@ -482,7 +482,6 @@ Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 "copyrightpage" => "Wikipedia:Hak cipta",
 "copyrightpagename" => "Hak cipta Wikipedia",
 "uploadedfiles"	=> "Fail yang telah dimuatnaik", #"Uploaded files",
-"ignorewarning"	=> "Abaikan amaran dan simpan fail sahaja", #"Ignore warning and save file anyway.",
 "minlength"		=> "Nama imej mesti sekurang-kurangnya tiga huruf.", #"Image names must be at least three letters.",
 "badfilename"	=> "Nama imej telah ditukar kepada \"$1\".", #"Image name has been changed to \"$1\".",
 "badfiletype"	=> "\".$1\" ialah fail format imej yg tidak di sarankan.",

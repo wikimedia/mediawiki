@@ -760,7 +760,6 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 "copyrightpage"         => "Project:Autorska prava",
 "copyrightpagename"     => "Autorska prava na projektu {{SITENAME}}",
 "uploadedfiles"	        => "Postavljene datoteke",
-"ignorewarning"	        => "Zanemari upozorenje i snimi.",
 "minlength"		=> "Imena slika moraju imati najmanje tri slova.",
 'illegalfilename' => 'Ime datoteke "$1" sadrži znakove koji nisu dozvoljeni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 "badfilename"	        => "Ime slike automatski je promijenjeno u \"$1\".",

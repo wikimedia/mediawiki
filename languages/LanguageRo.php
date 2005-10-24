@@ -380,7 +380,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'history_short' => "Istoric",
 'historywarning' => "Atenţie! Pagina pe care o ştergi are istorie: ",
 'hr_tip' => "Linie orizontală (foloseşte-o cumpătat)",
-'ignorewarning' => "Ignoră atenţionarea şi salvează.",
 #'illegalfilename' => "Numele fişierului \"$1\" conţine caractere care nu sunt permise în titlurile paginilor. Redenumeşte fişierul şi încearcă să-l trimiţi din nou.",
 'ilsubmit' => "Caută",
 'image_sample' => "Exemplu.jpg",

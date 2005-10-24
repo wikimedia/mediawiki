@@ -500,7 +500,6 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).
 "copyrightpage" => "Wikipedia:Copyright",
 "copyrightpagename" => "Wikipedia e derectos de autor (copyright)",
 "uploadedfiles"	=> "Files cargate",
-"ignorewarning"	=> "Ignorar advertimentos e salvar le file totevia.",
 "minlength"		=> "Le nomines de imagines debe haber al minus tres litteras.",
 "badfilename"	=> "Le nomine del imagine esseva cambiate a \"$1\".",
 "badfiletype"	=> "\".$1\" non es un formato de file de imagine recommendate.",

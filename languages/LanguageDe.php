@@ -637,7 +637,6 @@ Alle Zeiten sind UTC.
 "copyrightpage" => "Project:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
-"ignorewarning"	=> "Warnung ignorieren und Datei trotzdem speichern.",
 "minlength"		=> "Bilddateien müssen mindestens drei Buchstaben haben.",
 "badfilename"	=> "Der Bildname wurde in \"$1\" geändert.",
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",

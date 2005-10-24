@@ -653,7 +653,6 @@ Alle Tieden sünd UTC.
 'copyrightpage'     => '{{ns:4}}:Copyright',
 'copyrightpagename' => '{{SITENAME}} Copyright',
 'uploadedfiles'         => 'Hoochladene Datein',
-'ignorewarning'         => 'Warnen ignoreern un Datei liekers spiekern.',
 'minlength'             => 'Bilddatein möten tominnst dree Bookstaven hebben.',
 'badfilename'           => 'De Bildnaam is in „$1“ ännert worrn.',
 'badfiletype'           => '„.$1“ is keen anratenswert Dateiformat.',

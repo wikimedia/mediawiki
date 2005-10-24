@@ -517,7 +517,6 @@ subido más recientemente. Todas las horas son del servidor (UTC).
 "copyrightpage" => "{{ns:projec}}:Copyrights",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Archivos subidos",
-"ignorewarning"	=> "Ignora la advertencia y graba el archivo de todos modos.",
 "minlength"		=> "Los nombres de imágenes deben ser al menos de tres letras.",
 "badfilename"	=> "El nombre de la imagen se ha cambiado a \"$1\".",
 "badfiletype"	=> "\".$1\" no es un formato de imagen recomendado.",

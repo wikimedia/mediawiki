@@ -510,7 +510,6 @@ Alla tider visas efter serverns tid (UTC).
 "copyrightpage"         => "Wikipedia:copyright",
 "copyrightpagename"     => "Wikipedia copyright",
 "uploadedfiles"         => "Uppladdade filer",
-"ignorewarning"         => "Ignorera varning och spara fil.",
 "minlength"             => "Namnet på bildfilen ska vara minst tre bokstäver",
 "badfilename"           => "Bildnamn har blivit ändrat till \"$1\".",
 "badfiletype"           => "\".$1\" är inte ett rekomenderat bildformat.",

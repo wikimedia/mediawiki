@@ -509,7 +509,6 @@ Eğer bu bir resim ise <tt><nowiki>[[Resim:$1|thumb|açıklama]]</nowiki></tt> �
 'histlast' => 'En yeni',
 'histlegend' => '(fark)  = güncel sürümle aradaki fark,
 (son)  = önceki sürümle aradaki fark, K= küçük değişiklik',
-'ignorewarning' => 'Uyarıyı önemsemeyip dosyayı yükle',
 'imagelinks' => 'Kullanıldığı sayfalar',
 'imagelist' => 'Dosya listesi',
 'imagelistall' => 'Tümü',

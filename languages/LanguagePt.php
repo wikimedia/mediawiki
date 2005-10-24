@@ -915,7 +915,6 @@ Para incluír a imagem numa página, utilize o link na forma de
 'copyrightpage' => "Project:Direitos_de_autor",
 'copyrightpagename' => "Direitos autorais da {{SITENAME}}",
 'uploadedfiles' => 'Ficheiros carregados',
-'ignorewarning' => 'Ignorar aviso e salvar de qualquer forma.',
 'minlength'             => 'O nome de um ficheiro tem de ter no mínimo três letras.',
 'illegalfilename'       => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'   => 'Nome do ficheiro foi alterado para "$1".',

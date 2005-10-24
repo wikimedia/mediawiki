@@ -832,7 +832,6 @@ Všetky uvedené časy sú časy na servri (UTC).
 'copyrightpage' => "Project:Autorské práva",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles' => 'Nahrané súbory',
-'ignorewarning' => 'Ignorovať varovanie a súbor napriek tomu uložiť.',
 'minlength' => 'Názvy obrázkov musia obsahovať najmenej tri písmená.',
 'illegalfilename' => 'Názov súboru "$1" obsahuje znaky, ktoré nie sú povolené v názvoch článkov. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename' => 'Meno obrázka bolo zmenené na "$1".',

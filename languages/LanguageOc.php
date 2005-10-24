@@ -494,7 +494,6 @@ L'heure indiquée est celle du serveur (UTC).
 "copyrightpage" => "Wikipédia:Copyright",
 "copyrightpagename" => "licence Wikipédia",
 "uploadedfiles" => "Fichiers copiés",
-"ignorewarning" => "Ignorer l'avertissement et copier le fichier quand même.",
 "minlength"  => "Les noms des images doivent comporter au moins trois lettres.",
 "badfilename" => "L'image a été renommée \"$1\".",
 "badfiletype" => "\".$1\" n'est pas un format recommandé pour les fichiers images.",
