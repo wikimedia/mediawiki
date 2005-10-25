@@ -827,6 +827,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix Special:MovePage invalid HTML attribute for reason textarea
 * Avoid notice warning on edit with no User-Agent header
 * (bug 3734) Swapped out obsolete recount.sql with initStats.php
+* (bug 3735) Fix to run under MySQL 5's strict mode
 
 
 === Caveats ===
