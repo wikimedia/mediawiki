@@ -258,11 +258,6 @@ $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, availab
 $wgTrivialMimeDetection= false;
 
 /**
- * Produce hashed HTML article paths. Used internally, do not set.
- */
-$wgMakeDumpLinks = false;
-
-/**
  * To set 'pretty' URL paths for actions other than
  * plain page views, add to this array. For instance:
  *   'edit' => "$wgScriptPath/edit/$1"
