@@ -1694,6 +1694,70 @@ int keyword
 </p>
 !! end
 
+!! article
+Template:Includes
+!! text
+Foo<noinclude>zar</noinclude><includeonly>bar</includeonly>
+!! endarticle
+
+!! test
+<includeonly> and <noinclude> being included
+!! input
+{{Includes}}
+!! result
+<p>Foobar
+</p>
+!! end
+
+!! article
+Template:Includes2
+!! text
+<onlyinclude>Foo</onlyinclude>bar
+!! endarticle
+
+!! test
+<onlyinclude> being included
+!! input
+{{Includes2}}
+!! result
+<p>Foo
+</p>
+!! end
+
+
+!! article
+Template:Includes3
+!! text
+<onlyinclude>Foo</onlyinclude>bar<includeonly>zar</includeonly>
+!! endarticle
+
+!! test
+<onlyinclude> and <includeonly> being included
+!! input
+{{Includes3}}
+!! result
+<p>Foo
+</p>
+!! end
+
+!! test
+<includeonly> and <noinclude> on a page
+!! input
+Foo<noinclude>zar</noinclude><includeonly>bar</includeonly>
+!! result
+<p>Foozar
+</p>
+!! end
+
+!! test
+<onlyinclude> on a page
+!! input
+<onlyinclude>Foo</onlyinclude>bar
+!! result
+<p>Foobar
+</p>
+!! end
+
 ###
 ### Pre-save transform tests
 ###
