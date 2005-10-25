@@ -96,16 +96,12 @@ class DumpHTML {
 
 	/** Write the main page as index.html */
 	function doMainPage() {
-		global $wgMakeDumpLinks;
 
 		print "Making index.html  ";
 
 		// Set up globals with no ../../.. in the link URLs
 		$this->setupGlobals( 0 );
 
-		// But still use that directory style
-		$wgMakeDumpLinks = 3;
-		
 		$title = Title::newMainPage();
 		$text = $this->getArticleHTML( $title );
 		$file = fopen( "{$this->dest}/index.html", "w" );
@@ -123,7 +119,7 @@ class DumpHTML {
 		
 		$fname = 'DumpHTML::doImageDescriptions';
 		
-		$this->setupGlobals( 3 );
+		$this->setupGlobals();
 
 		/** 
 		 * Dump image description pages that don't have an associated article, but do 
@@ -280,8 +276,8 @@ class DumpHTML {
 	}
 
 	/** Set up globals required for parsing */
-	function setupGlobals( $depth = NULL ) {
-		global $wgUser, $wgTitle, $wgMakeDumpLinks, $wgStylePath, $wgArticlePath;
+	function setupGlobals( $currentDepth = NULL ) {
+		global $wgUser, $wgTitle, $wgStylePath, $wgArticlePath;
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
@@ -295,23 +291,21 @@ class DumpHTML {
 			$this->oldArticlePath = $wgServer . $wgArticlePath;
 		}
 
-		if ( is_null( $depth ) ) {
-			$wgMakeDumpLinks = $this->depth;
-		} else {
-			$wgMakeDumpLinks = $depth;
+		if ( is_null( $currentDepth ) ) {
+			$currentDepth = $this->depth;
 		}
 		
 		if ( $this->alternateScriptPath ) {
-			if ( $wgMakeDumpLinks == 0 ) {
+			if ( $currentDepth == 0 ) {
 				$wgScriptPath = '.';
 			} else {
-				$wgScriptPath = '..' . str_repeat( '/..', $wgMakeDumpLinks - 1 );
+				$wgScriptPath = '..' . str_repeat( '/..', $currentDepth - 1 );
 			}
 		} else {
-			$wgScriptPath = '..' . str_repeat( '/..', $wgMakeDumpLinks );
+			$wgScriptPath = '..' . str_repeat( '/..', $currentDepth );
 		}
 
-		$wgArticlePath = str_repeat( '../', $wgMakeDumpLinks ) . '$1';
+		$wgArticlePath = str_repeat( '../', $currentDepth ) . '$1';
 
 		# Logo image
 		# Allow for repeated setup
@@ -369,6 +363,9 @@ class DumpHTML {
 		
 		$ns = $wgTitle->getNamespace();
 		if ( $ns == NS_SPECIAL ) {
+			$wgOut = new OutputPage;
+			$wgOut->setParserOptions( new ParserOptions );
+			$wgLinkCache = new LinkCache;
 			SpecialPage::executePath( $wgTitle );
 		} else {
 			if ( $ns == NS_IMAGE ) {
@@ -539,6 +536,7 @@ ENDTEXT;
 		if ( $url === false ) {
 			$url = str_replace( '$1', wfUrlencode( $this->getHashedFilename( $title ) ), $wgArticlePath );
 		}
+		
 		return false;
 	}
 
