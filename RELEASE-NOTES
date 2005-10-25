@@ -165,6 +165,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Various fixes
 * Fix wfMsg*() replacements; args containing literal $[2-9] were wiped
 * Added @import for [[MediaWiki:Common.css]] to all skins
+* Removed hardcoded Norwegian (no) project namespaces
+
 
 === Caveats ===
 
