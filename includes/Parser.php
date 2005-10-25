@@ -766,6 +766,7 @@ class Parser
 		wfProfileIn( $fname );
 
 		# Remove <noinclude> tags and <includeonly> sections
+		$text = strtr( $text, array( '<onlyinclude>' => '' , '</onlyinclude>' => '' ) );
 		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
 		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
 
@@ -2490,6 +2491,12 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			if( $this->mOutputType == OT_HTML ) {
+				if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
+					preg_match_all( '/<onlyinclude>(.*?)<\/onlyinclude>/s', $text, $m );
+					$text = '';
+					foreach ($m[1] as $piece)
+						$text .= $piece;
+				}
 				# Remove <noinclude> sections and <includeonly> tags
 				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
 				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
