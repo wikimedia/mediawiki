@@ -196,6 +196,7 @@ require_once( 'LanguageUtf8.php' );
 'info_short'          => 'Tiedostus',
 'printableversion'    => 'Tulostettava versio',
 'permalink'           => 'Ikilinkki',
+'print'               => 'Tulosta',
 'edit'                => 'Muokkaa',
 'editthispage'        => 'Muokkaa tätä sivua',
 'delete'              => 'Poista',
@@ -215,6 +216,7 @@ require_once( 'LanguageUtf8.php' );
 'articlepage'         => 'Näytä varsinainen sivu',
 'subjectpage'         => 'Näytä aihe', # For compatibility
 'talk'                => 'Keskustelu',
+'views'               => 'Näkymät',
 'toolbox'             => 'Työkalut',
 'userpage'            => 'Näytä käyttäjän sivu',
 'wikipediapage'       => 'Näytä erikoissivu',
@@ -246,6 +248,9 @@ require_once( 'LanguageUtf8.php' );
 'versionrequiredtext' => 'Mediawikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
 'nbytes'              => '$1 tavua',
+'ncategories'         => '$1 luokkaa',
+'nrevisions'          => '$1 muutosta',
+'widthheight'         => '$1×$2',
 'go'                  => 'Siirry',
 'ok'                  => 'OK',
 'sitetitle'           => '{{SITENAME}}',
@@ -604,11 +609,12 @@ Sivun lähdekoodi:',
 
 # user groups editing
 #
-'userrights-editusergroup' => 'Käyttäjän ryhmät',
-'saveusergroups' => 'Tallenna',
-'userrights-groupsmember' => 'Jäsenenä ryhmissä:',
+'userrights-editusergroup'   => 'Käyttäjän ryhmät',
+'saveusergroups'             => 'Tallenna',
+'userrights-groupsmember'    => 'Jäsenenä ryhmissä:',
 'userrights-groupsavailable' => 'Saatavilla olevat ryhmät:',
-'userrights-groupshelp' => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
+'userrights-groupshelp'      => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
+'userrights-logcomment'      => 'Ryhmäoikeuden muutos ryhmistä ”$1” ryhmiin ”$2”',
 
 # Default group names and descriptions
 #
@@ -677,13 +683,17 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'copyrightpage'       => 'Project:Tekijänoikeudet',
 'copyrightpagename'   => '{{SITENAME}} ja tekijänoikeudet',
 'uploadedfiles'       => 'Tallennetut tiedostot',
+'ignorewarnings'      => 'Ohita kaikki varoitukset',
 'minlength'           => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
 'badfilename'         => 'Tiedoston nimi vaihdettiin: $1.',
 'badfiletype'         => '".$1" ei ole suositeltava tiedostomuoto.',
 'largefile'           => 'Tiedostojen ei tulisi olla yli $1 kilotavun kokoisia. Tiedoston, jonka yritit tallentaa, koko on $2.',
+'largefileserver'     => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'           => 'Tiedosto, jonka yritit tallentaa näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'          => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
+'fileexists-forbidden'=> 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[{ns:image}:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'    => 'Tallennus onnistui',
 'fileuploaded'        => 'Tiedosto \'\'\'$1\'\'\' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: \'\'\'<nowiki>[[Kuva:$1|thumb|Kuvaus]]</nowiki>\'\'\'',
 'uploadwarning'       => 'Tallennusvaroitus',
@@ -695,6 +705,9 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadvirus'         => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
 'sourcefilename'      => 'Lähdenimi',
 'destfilename'        => 'Kohdenimi',
+
+'license'             => 'Lisenssi',
+'nolicense'           => 'Ei lisenssiä',
 
 # Image list
 #
@@ -723,6 +736,17 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'noimage'             => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:genitive|{{SITENAME}}}}',
 'noimage-linktext'    => 'tallentaa tiedoston',
 'uploadnewversion'    => '[$1 Tallenna] uusi versio tästä tiedostosta',
+
+# Mime search
+#
+'mimesearch'          => 'MIME-haku',
+'mimetype'            => 'MIME-tyyppi: ',
+'download'            => 'lataa',
+
+# Unwatchedpages
+#
+'unwatchedpages'      => 'Tarkkailemattomat sivut',
+
 
 # Statistics
 #
@@ -818,6 +842,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'allpagesprev'        => 'Edellinen',
 'allpagesnext'        => 'Seuraava',
 'allpagessubmit'      => 'Vaihda',
+'allpagesprefix'      => 'Näytä sivut, jotka alkavat merkkijonolla ',
 
 # Email this user
 #
@@ -870,6 +895,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'wlshowlast'          => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
 'wlsaved'             => 'Tämä on tallennettu versio tarkkailulistastasi.',
 'wlhideshowown'       => '$1 omat muokkaukset.',
+'wlhideshowbots'      => '$1 bottien muokkaukset.',
 'wlshow'              => 'Näytä',
 'wlhide'              => 'Piilota',
 
@@ -1028,8 +1054,10 @@ Palaute ja lisäapu osoitteessa:
 'proxyblocker'        => 'Välityspalvelinesto',
 'proxyblockreason'    => 'IP-osoitteestasi on estetty muokkaukset, koska se on avoin välityspalvelin. Ota yhteyttä Internet-palveluntarjoajaasi tai tekniseen tukeen ja kerro heillä tästä tietoturvaongelmasta.',
 'proxyblocksuccess'   => 'Valmis.',
-'sorbs'               => 'SORBS DNSBL',
+'sorbs'               => 'SORBS-DNSBL',
 'sorbsreason'         => 'IP-osoitteesti on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla.',
+'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla. Et voi luoda käyttäjätunnusta.',
+
 
 # Developer tools
 #
@@ -1055,6 +1083,7 @@ Palaute ja lisäapu osoitteessa:
 'makesysopok'         => 'Käyttäjä <b>$1</b> on nyt ylläpitäjä.',
 'makesysopfail'       => 'Käyttäjästä <b>$1</b> ei voitu tehdä ylläpitäjää. Kirjoititko nimen oikein?', // TODO: NOWIKIMARKUP
 'setbureaucratflag'   => 'Tee käyttäjästä myös byrokraatti',
+'setstewardflag'      => 'Tee käyttäjästä ylivalvoja',
 'bureaucratlog'       => 'Byrokraattiloki',
 'rightslogtext'       => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
 'bureaucratlogentry'  => 'Käyttäjän [[$1|]] sai oikeudet$3', // TODO: Inflect me
@@ -1138,14 +1167,14 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun 
 'filemissing'         => 'Tiedosto puuttuu',
 
 # Special:Import
-'import'            => 'Tuo sivuja',
-'importinterwiki'   => 'Tuo sivuja lähiwikeistä',
-'importtext'        => 'Vie sivuja lähdewikistä käyttäen Special:Export-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
-'importfailed'      => 'Tuonti epäonnistui: $1',
-'importnotext'      => 'Tyhjä tai ei tekstiä',
-'importsuccess'     => 'Tuonti onnistui!',
+'import'              => 'Tuo sivuja',
+'importinterwiki'     => 'Tuo sivuja lähiwikeistä',
+'importtext'          => 'Vie sivuja lähdewikistä käyttäen Special:Export-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
+'importfailed'        => 'Tuonti epäonnistui: $1',
+'importnotext'        => 'Tyhjä tai ei tekstiä',
+'importsuccess'       => 'Tuonti onnistui!',
 'importhistoryconflict' => 'Sivusta on olemassa tuonnin kanssa ristiriitainen muokkausversio. Tämä sivu on saatettu tuoda jo aikaisemmin.',
-'importnosources'   => 'Wikienvälisiä tuontilähteitä ei ole määritelty ja suorat historiatallennukset on poistettu käytöstä.',
+'importnosources'     => 'Wikienvälisiä tuontilähteitä ei ole määritelty ja suorat historiatallennukset on poistettu käytöstä.',
 
 # Keyboard access keys for power users
 'accesskey-search'    => 'f',
@@ -1209,7 +1238,6 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun 
 'mw_math_modern'      => 'Suositus nykyselaimille',
 'mw_math_mathml'      => 'Näytä MathML:nä jos mahdollista (kokeellinen)',
 
-// HOX
 # Patrolling
 'markaspatrolleddiff'   => 'Merkitse tarkastetuksi',
 'markaspatrolledlink'   => '[$1]',
@@ -1302,6 +1330,286 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 <hr>',
 
 'fileinfo' => '$1 KiB, MIME-tyyppi: <code>$2</code>',
+
+# Metadata
+'metadata' => 'Sisältökuvaukset',
+
+# Exif tags
+'exif-imagewidth'     =>'Leveys',
+'exif-imagelength'    =>'Korkeus',
+'exif-bitspersample'  =>'Bittiä komponentissa',
+'exif-compression'    =>'Pakkaustapa',
+'exif-photometricinterpretation' =>'Kuvapisteen koostumus',
+'exif-orientation'               =>'Suunta',
+'exif-samplesperpixel'           =>'Komponenttien lukumäärä',
+'exif-planarconfiguration'       =>'Tiedon järjestely',
+'exif-ycbcrsubsampling'          =>'Y:n ja C:n alinäytteistyssuhde',
+'exif-ycbcrpositioning'          =>'Y:n ja C:n asemointi',
+'exif-xresolution'    =>'Kuvan resoluutio leveyssuunnassa',
+'exif-yresolution'    =>'Kuvan resoluutio korkeussuunnassa',
+'exif-resolutionunit' =>'Resoluution yksikkö X- ja Y-suunnassa',
+'exif-stripoffsets'   =>'Kuvatiedon sijainti',
+'exif-rowsperstrip'   =>'Kaistan rivien lukumäärä',
+'exif-stripbytecounts'=>'Tavua pakatussa kaistassa',
+'exif-jpeginterchangeformat'       =>'Etäisyys JPEG SOI:hin',
+'exif-jpeginterchangeformatlength' =>'JPEG-tiedon tavujen lukumäärä',
+'exif-transferfunction'            =>'Siirtofunktio',
+'exif-whitepoint'                  =>'Valkoisen pisteen väriarvot',
+'exif-primarychromaticities'       =>'Päävärien väriarvot',
+'exif-ycbcrcoefficients'           =>'Väriavaruuden muuntomatriisin kertoimet',
+'exif-referenceblackwhite'         =>'Musta-valkoparin vertailuarvot',
+'exif-datetime'                    =>'Viimeksi muokattu',
+'exif-imagedescription'            =>'Kuvan nimi',
+'exif-make'           =>'Kameran valmistaja',
+'exif-model'          =>'Kameran malli',
+'exif-software'       =>'Käytetty ohjelmisto',
+'exif-artist'         =>'Tekijä',
+'exif-copyright'      =>'Tekijänoikeuden omistaja',
+'exif-exifversion'    =>'Exif-versio',
+'exif-flashpixversion'=>'Tuettu Flashpix-versio',
+'exif-colorspace'     =>'Väriavaruus',
+'exif-componentsconfiguration' =>'Kunkin komponentin määritelmä',
+'exif-compressedbitsperpixel'  =>'Kuvan pakkaustapa',
+'exif-pixelydimension'         =>'Käyttökelpoinen kuvan leveys',
+'exif-pixelxdimension'         =>'Käyttökelpoinen kuvan korkeus',
+'exif-makernote'               =>'Valmistajan merkinnät',
+'exif-usercomment'             =>'Käyttäjän kommentit',
+'exif-relatedsoundfile'        =>'Liitetty äänitiedosto',
+'exif-datetimeoriginal'        =>'Luontipäivämäärä',
+'exif-datetimedigitized'       =>'Digitointipäivämäärä',
+'exif-subsectime'              =>'Aikaleiman sekunninosat',
+'exif-subsectimeoriginal'      =>'Luontiaikaleiman sekunninosat',
+'exif-subsectimedigitized'     =>'Digitointiaikaleiman sekunninosat',
+'exif-exposuretime'            =>'Valotusaika',
+'exif-fnumber'                 =>'Aukkosuhde',
+'exif-exposureprogram'         =>'Valotusohjelma',
+'exif-spectralsensitivity'     =>'Värikirjoherkkyys',
+'exif-isospeedratings'         =>'Herkkyys (ISO)',
+'exif-oecf'                    =>'Optoelektroninen muuntokerroin',
+'exif-shutterspeedvalue'       =>'Suljinaika',
+'exif-aperturevalue'           =>'Aukko',
+'exif-brightnessvalue'         =>'Kirkkaus',
+'exif-exposurebiasvalue'       =>'Valotuksen korjaus',
+'exif-maxaperturevalue'        =>'Suurin aukko',
+'exif-subjectdistance'=>'Kohteen etäisyys',
+'exif-meteringmode'   =>'Mittaustapa',
+'exif-lightsource'    =>'Valolähde',
+'exif-flash'          =>'Salama',
+'exif-focallength'    =>'Linssin polttoväli',
+'exif-subjectarea'    =>'Kohteen ala',
+'exif-flashenergy'    =>'Salaman teho',
+'exif-spatialfrequencyresponse' =>'Tilataajuusvaste',
+'exif-focalplanexresolution'    =>'Tarkennustason X-resoluutio',
+'exif-focalplaneyresolution'    =>'Tarkennustason Y-resoluutio',
+'exif-focalplaneresolutionunit' =>'Tarkennustason resoluution yksikkö',
+'exif-subjectlocation'=>'Kohteen sijainti',
+'exif-exposureindex'  =>'Valotusindeksi',
+'exif-sensingmethod'  =>'Mittausmenetelmä',
+'exif-filesource'     =>'Tiedostolähde',
+'exif-scenetype'      =>'Kuvatyyppi',
+'exif-cfapattern'     =>'CFA-kuvio',
+'exif-customrendered' =>'Muokattu kuvankäsittely',
+'exif-exposuremode'   =>'Valotustapa',
+'exif-whitebalance'   =>'Valkotasapaino',
+'exif-digitalzoomratio'      =>'Digitaalinen suurennoskerroin',
+'exif-focallengthin35mmfilm' =>'35 mm:n filmiä vastaava polttoväli',
+'exif-scenecapturetype'      =>'Kuvan kaappaustapa',
+'exif-gaincontrol'    =>'Kuvasäätö',
+'exif-contrast'       =>'Kontrasti',
+'exif-saturation'     =>'Värikylläisyys',
+'exif-sharpness'      =>'Terävyys',
+'exif-devicesettingdescription' =>'Laitteen asetuskuvaus',
+'exif-subjectdistancerange'     =>'Kohteen etäisyysväli',
+'exif-imageuniqueid'  =>'Kuvan yksilöivä tunniste',
+'exif-gpsversionid'   =>'GPS-muotoilukoodin versio',
+'exif-gpslatituderef' =>'Pohjoinen tai eteläinen leveysaste',
+'exif-gpslatitude'    =>'Leveysaste',
+'exif-gpslongituderef'=>'Itäinen tai läntinen pituusaste',
+'exif-gpslongitude'   =>'Pituusaste',
+'exif-gpsaltituderef' =>'Korkeuden vertailukohta',
+'exif-gpsaltitude'    =>'Korkeus',
+'exif-gpstimestamp'   =>'GPS-aika (atomikello)',
+'exif-gpssatellites'  =>'Mittaukseen käytetyt satelliitit',
+'exif-gpsstatus'      =>'Vastaanottimen tila',
+'exif-gpsmeasuremode' =>'Mittaustila',
+'exif-gpsdop'         =>'Mittatarkkuus',
+'exif-gpsspeedref'    =>'Nopeuden yksikkö',
+'exif-gpsspeed'       =>'GPS-vastaanottimen nopeus',
+'exif-gpstrackref'    =>'Liikesuunnan vertailukohta',
+'exif-gpstrack'       =>'Liikesuunta',
+'exif-gpsimgdirectionref' =>'Kuvan suunnan vertailukohta',
+'exif-gpsimgdirection'    =>'Kuvan suunta',
+'exif-gpsmapdatum'        =>'Käytetty geodeettinen maanmittaustieto',
+'exif-gpsdestlatituderef' =>'Loppupisteen leveysasteen vertailukohta',
+'exif-gpsdestlatitude'    =>'Loppupisteen leveysaste',
+'exif-gpsdestlongituderef'=>'Loppupisteen pituusasteen vertailukohta',
+'exif-gpsdestlongitude'   =>'Loppupisteen pituusaste',
+'exif-gpsdestbearingref'  =>'Loppupisteen suuntiman vertailukohta',
+'exif-gpsdestbearing'     =>'Loppupisteen suuntima',
+'exif-gpsdestdistanceref' =>'Loppupisteen etäisyyden vertailukohta',
+'exif-gpsdestdistance'    =>'Loppupisteen etäisyys',
+'exif-gpsprocessingmethod'=>'GPS-käsittelymenetelmän nimi',
+'exif-gpsareainformation' =>'GPS-alueen nimi',
+'exif-gpsdatestamp'       =>'GPS-päivämäärä',
+'exif-gpsdifferential'    =>'GPS-differentiaalikorjaus',
+
+# Make & model, can be wikified in order to link to the camera and model name
+
+'exif-make-value'     => '$1',
+'exif-model-value'    =>'$1',
+'exif-software-value' => '$1',
+
+# Exif attributes
+
+'exif-compression-1'  => 'Pakkaamaton',
+'exif-compression-6'  => 'JPEG',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-orientation-1'  => 'Normaali', // 0th row: top; 0th column: left
+'exif-orientation-2'  => 'Käännetty vaakasuunnassa', // 0th row: top; 0th column: right
+'exif-orientation-3'  => 'Käännetty 180°', // 0th row: bottom; 0th column: right
+'exif-orientation-4'  => 'Käännetty pystysuunnassa', // 0th row: bottom; 0th column: left
+'exif-orientation-5'  => 'Käännetty 90° vastapäivään ja pystysuunnassa', // 0th row: left; 0th column: top
+'exif-orientation-6'  => 'Käännetty 90° myötäpäivään', // 0th row: right; 0th column: top
+'exif-orientation-7'  => 'Käännetty 90° myötäpäivään ja pystysuunnassa', // 0th row: right; 0th column: bottom
+'exif-orientation-8'  => 'Käännetty 90° vastapäivään', // 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'chunky format',
+'exif-planarconfiguration-2' => 'planar format',
+
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => 'ei ole',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
+'exif-exposureprogram-0' => 'Ei määritelty',
+'exif-exposureprogram-1' => 'Käsinsäädetty',
+'exif-exposureprogram-2' => 'Perusohjelma',
+'exif-exposureprogram-3' => 'Aukon etuoikeus',
+'exif-exposureprogram-4' => 'Suljinajan etuoikeus',
+'exif-exposureprogram-5' => 'Luova ohjelma (painotettu syvyysterävyyttä)',
+'exif-exposureprogram-6' => 'Toimintaohjelma (painotettu nopeaa suljinaikaa)',
+'exif-exposureprogram-7' => 'Muotokuvatila (lähikuviin, joissa tausta on epätarkka)',
+'exif-exposureprogram-8' => 'Maisematila (maisemakuviin, joissa tausta on tarkka)',
+
+'exif-subjectdistance-value' => '$1 metriä',
+
+'exif-meteringmode-0' => 'Tuntematon',
+'exif-meteringmode-1' => 'Keskiarvo',
+'exif-meteringmode-2' => 'Keskustapainotteinen keskiarvo',
+'exif-meteringmode-3' => 'Piste',
+'exif-meteringmode-4' => 'Monipiste',
+'exif-meteringmode-5' => 'Kuvio',
+'exif-meteringmode-6' => 'Osittainen',
+'exif-meteringmode-255' => 'Muu',
+
+'exif-lightsource-0'  => 'Tuntematon',
+'exif-lightsource-1'  => 'Päivänvalo',
+'exif-lightsource-2'  => 'Loisteputki',
+'exif-lightsource-3'  => 'Hehkulamppu (keinovalo)',
+'exif-lightsource-4'  => 'Salama',
+'exif-lightsource-9'  => 'Hyvä sää',
+'exif-lightsource-10' => 'Pilvinen sää',
+'exif-lightsource-11' => 'Varjoinen',
+'exif-lightsource-12' => 'Päivänvaloloisteputki (D 5700 �7100K)',
+'exif-lightsource-13' => 'Päivänvalkoinen loisteputki (N 4600 �5400K)',
+'exif-lightsource-14' => 'Kylmä valkoinen loisteputki (W 3900 �4500K)',
+'exif-lightsource-15' => 'Valkoinen loisteputki (WW 3200 �3700K)',
+'exif-lightsource-17' => 'Oletusvalo A',
+'exif-lightsource-18' => 'Oletusvalo B',
+'exif-lightsource-19' => 'Oletusvalo C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
+'exif-lightsource-24' => 'ISO-studiohehkulamppu',
+'exif-lightsource-255'=> 'Muu valonlähde',
+
+'exif-focalplaneresolutionunit-2' => 'tuumaa',
+
+'exif-sensingmethod-1' => 'Määrittelemätön',
+'exif-sensingmethod-2' => 'Yksisiruinen värikenno',
+'exif-sensingmethod-3' => 'Kaksisiruinen värikenno',
+'exif-sensingmethod-4' => 'Kolmisiruinen värikenno',
+'exif-sensingmethod-5' => 'Sarjavärikenno',
+'exif-sensingmethod-7' => 'Trilineaarikenno',
+'exif-sensingmethod-8' => 'Sarjalineaarivärikenno',
+
+'exif-filesource-3'   => 'DSC',
+
+'exif-scenetype-1'    => 'Suoraan valokuvattu kuva',
+
+'exif-customrendered-0' => 'Normaali käsittely',
+'exif-customrendered-1' => 'Muokattu käsittely',
+
+'exif-exposuremode-0' => 'Automaattinen valotus',
+'exif-exposuremode-1' => 'Käsinsäädetty valotus',
+'exif-exposuremode-2' => 'Automaattinen haarukointi',
+
+'exif-whitebalance-0' => 'Automaattinen valkotasapaino',
+'exif-whitebalance-1' => 'Käsinsäädetty valkotasapaino',
+
+'exif-scenecapturetype-0' => 'Perus',
+'exif-scenecapturetype-1' => 'Maisema',
+'exif-scenecapturetype-2' => 'Henkilökuva',
+'exif-scenecapturetype-3' => 'Yökuva',
+
+'exif-gaincontrol-0'  => 'Ei ole',
+'exif-gaincontrol-1'  => 'Matala ylävahvisus',
+'exif-gaincontrol-2'  => 'Korkea ylävahvistus',
+'exif-gaincontrol-3'  => 'Matala alavahvistus',
+'exif-gaincontrol-4'  => 'Korkea alavahvistus',
+
+'exif-contrast-0'     => 'Normaali',
+'exif-contrast-1'     => 'Pehmeä',
+'exif-contrast-2'     => 'Kova',
+
+'exif-saturation-0'   => 'Normaali',
+'exif-saturation-1'   => 'Alhainen värikylläisyys',
+'exif-saturation-2'   => 'Korkea värikylläisyys',
+
+'exif-sharpness-0'    => 'Normaali',
+'exif-sharpness-1'    => 'Pehmeä',
+'exif-sharpness-2'    => 'Kova',
+
+'exif-subjectdistancerange-0' => 'Tuntematon',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Lähikuva',
+'exif-subjectdistancerange-3' => 'Kaukokuva',
+
+// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n'  => 'Pohjoista leveyttä',
+'exif-gpslatitude-s'  => 'Eteläistä leveyttä',
+
+// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Itäistä pituutta',
+'exif-gpslongitude-w' => 'Läntistä pituustta',
+
+'exif-gpsstatus-a'    => 'Mittaus käynnissä',
+'exif-gpsstatus-v'    => 'Ristiinmittaus',
+
+'exif-gpsmeasuremode-2' => '2-ulotteinen mittaus',
+'exif-gpsmeasuremode-3' => '3-ulotteinen mittaus',
+
+// Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k'     => 'km/h',
+'exif-gpsspeed-m'     => 'mailia tunnissa',
+'exif-gpsspeed-n'     => 'solmua',
+
+// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Todellinen suunta',
+'exif-gpsdirection-m' => 'Magneettinen suunta',
 
 # external editor support
 'edit-externally'     => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
