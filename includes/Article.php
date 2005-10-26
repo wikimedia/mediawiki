@@ -671,7 +671,7 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang;
+		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang, $wgContLang;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		global $wgEnotif, $wgParser, $wgParserCache, $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
@@ -778,7 +778,9 @@ class Article {
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
-				$imageUrl = $wgStylePath.'/common/images/redirect.png';
+				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
+				$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );

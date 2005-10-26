@@ -442,6 +442,7 @@ parent class in order maintain consistency across languages.
 'viewtalkpage' => 'View discussion',
 'otherlanguages' => 'In other languages',
 'redirectedfrom' => '(Redirected from $1)',
+'redirectpagesub' => 'Redirect page',
 'lastmodified'	=> 'This page was last modified $1.',
 'viewcount'		=> 'This page has been accessed $1 times.',
 'copyright'	=> 'Content is available under $1.',
