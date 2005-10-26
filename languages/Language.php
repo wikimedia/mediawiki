@@ -1048,7 +1048,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'sourcefilename' => 'Source filename',
 'destfilename' => 'Destination filename',
 
-'license' => 'Licensing',	
+'license' => 'Licensing',
 'nolicense' => 'None selected',
 
 # Image list
@@ -1119,6 +1119,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as disambiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 'doubleredirects'	=> 'Double redirects',
 'doubleredirectstext'	=> "Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
+'doubleredirectsarrow'	=> ' →  ',
 'brokenredirects'	=> 'Broken Redirects',
 'brokenredirectstext'	=> 'The following redirects link to a non-existing pages.',
 'selflinks'		=> 'Pages with Self Links',

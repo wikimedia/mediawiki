@@ -172,6 +172,7 @@ fully support the editing toolbar, but was found to be too confusing.
   work for all Unicode characters due to MySQL limitations.
 * Sanitizer CSS comment processing order fix
 * Edit box now remembers scrollbar position on preview
+* (bug 3798) DoubleRedirects no longer has hard coded arrows
 
 
 === Caveats ===
