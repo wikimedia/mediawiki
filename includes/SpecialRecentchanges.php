@@ -131,14 +131,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem .= $hidebots ? ' AND rc_bot=0' : '';
 	$hidem .= $hideliu ? ' AND rc_user=0' : '';
 	$hidem .= $hidepatrolled ? ' AND rc_patrolled=0' : '';
-	$hidem .= is_null( $namespace ) ?  ''	: ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 
 	// This is the big thing!
 
 	$uid = $wgUser->getID();
+        $notifts = ($wgShowUpdatedMarker?",wl_notificationtimestamp":"");
 
 	// Perform query
-	$sql2 = "SELECT *" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user".$notifts : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
@@ -176,15 +177,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 			// Dump everything here
 			$nondefaults = array();
 		
-			appendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
-			appendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'days', $days, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'limit', $limit , $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideminor', $hideminor, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidebots', $hidebots, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hideliu', $hideliu, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'hidepatrolled', $hidepatrolled, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'from', $from, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'namespace', $namespace, $defaults, $nondefaults);
+			wfAppendToArrayIfNotDefault( 'invert', $invert, $defaults, $nondefaults);
 
 			// Add end of the texts
 			$wgOut->addHTML( '<div class="rcoptions">' . rcOptionsPanel( $defaults, $nondefaults ) );
@@ -458,34 +459,22 @@ function rcNamespaceForm ( $namespace, $invert, $nondefaults ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
 
-	$namespaceselect = "<select name='namespace' id='nsselectbox'>";
-	$namespaceselect .= '<option value="" ' . ($namespace === '' ? ' selected="selected"' : '') . '>' . wfMsg( 'contributionsall' ) . '</option>';
-	$arr =  $wgContLang->getFormattedNamespaces();
-	foreach ( $arr as $ns => $name ) {
-		if( $ns < NS_MAIN )
-			continue;
-		$n = $ns === NS_MAIN ? wfMsg ( 'blanknamespace' ) : $name;
-		$sel = $namespace === (string) $ns ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='$ns'$sel>$n</option>";
-	}
-	$namespaceselect .= '</select>';
+	$namespaceselect = HTMLnamespaceselector($namespace, '');
+	$submitbutton = '<input type="submit" value="' . wfMsgHtml( 'allpagessubmit' ) . '" />';
+	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
 
-	$out = '';
-	$out .= "<div class='namespaceselector'><form method='get' action='{$wgScript}'>\n";
+	$out = "<div class='namespacesettings'><form method='get' action='{$wgScript}'>\n";
+
 	foreach ( $nondefaults as $key => $value ) {
 		if ($key != 'namespace' && $key != 'invert')
-			$out .= "<input type='hidden' name='$key' value='$value' />";
+			$out .= wfElement('input', array( 'type' => 'hidden', 'name' => $key, 'value' => $value));
 	}
 
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
-	$invertbox = "<input type='checkbox' name='invert' value='1' id='nsinvert'" . ( $invert ? ' checked="checked"' : '' ) . ' />';
-	
-	
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
 	$out .= "
 <div id='nsselect' class='recentchanges'>
-	<label for='nsselectbox'>" . wfMsg('namespace') . "</label>
-	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsg('invert') . "</label>
+	<label for='namespace'>" . wfMsgHtml('namespace') . "</label>
+	$namespaceselect $submitbutton $invertbox <label for='nsinvert'>" . wfMsgHtml('invert') . "</label>
 </div>";
 	$out .= '</form></div>';
 	return $out;
@@ -561,20 +550,6 @@ function rcFormatDiff( $row ) {
 	
 	wfProfileOut( $fname );
 	return $comment;	
-}
-
-
-/**
- * Appends to second array if $value differs from that in $default
- */
-function appendToArrayIfNotDefault( $key, $value, $default, &$changed )
-{
-	if ( is_null( $changed ) ) {
-		die();
-	}
-	if ( $default[$key] !== $value ) {
-		$changed[$key] = $value;
-	}
 }
 
 ?>

@@ -406,7 +406,7 @@ class Linker {
 					 $wopt = User::getDefaultOption( 'thumbsize' );
 				}
 				
-				$width = $wgThumbLimits[$wopt];
+				$width = min( $img->getWidth(), $wgThumbLimits[$wopt] );
 			}
 			
 			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
@@ -601,7 +601,7 @@ class Linker {
 			if( $img->exists() ) {
 				$url  = $img->getURL();
 				if( $nourl ) {
-					$url = str_replace( "http://", "http-noparse://", $url );
+					$url = str_replace( "http://", UNIQ_PREFIX . "NOPARSEhttp://", $url );
 				}
 				$class = 'internal';
 			} else {

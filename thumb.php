@@ -51,6 +51,7 @@ if ( file_exists( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePa
 
 // OK, no valid thumbnail, time to get out the heavy machinery
 require_once( 'Setup.php' );
+wfProfileIn( 'thumb.php' );
 
 $img = Image::newFromName( $fileName );
 if ( $img ) {
@@ -71,6 +72,8 @@ if ( $thumb && $thumb->path ) {
 <p>$badtitletext</p>
 </body></html>";
 }
+
+wfProfileOut( 'thumb.php' );
 
 
 ?>

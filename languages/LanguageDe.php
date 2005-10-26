@@ -11,7 +11,7 @@ require_once( 'LanguageUtf8.php' );
 # See Language.php for notes.
 
 if($wgMetaNamespace === FALSE)
-        $wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 
 /* private */ $wgNamespaceNamesDe = array(
 	NS_MEDIA            => 'Media',
@@ -59,55 +59,6 @@ if($wgMetaNamespace === FALSE)
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
 );
 
-
-/* private */ $wgValidSpecialPagesDe = array(
-  'Userlogin'           => '',
-  'Userlogout'          => '',
-  'Preferences'         => 'Meine Benutzereinstellungen',
-  'Watchlist'           => 'Meine Beobachtungsliste',
-  'Recentchanges'       => 'Letzte Änderungen',
-  'Upload'              => 'Dateien hochladen',
-  'Imagelist'           => 'Hochgeladene Dateien',
-  'Listusers'           => 'Registrierte Benutzer',
-  'Statistics'          => 'Seitenstatistik',
-  'Randompage'          => 'Zufälliger Artikel',
-
-  'Lonelypages'         => 'Verwaiste Artikel',
-  'Unusedimages'        => 'Verwaiste Dateien',
-  'Popularpages'        => 'Beliebte Artikel',
-  'Wantedpages'         => 'Gewünschte Artikel',
-  'Shortpages'          => 'Kurze Artikel',
-  'Longpages'           => 'Lange Artikel',
-  'Newpages'            => 'Neue Artikel',
-  'Ancientpages'        => 'Älteste Artikel',
-/*  "Intl"                => "Interlanguage Links", */
-  'Allpages'            => 'Alle Artikel (alphabetisch)',
-
-  'Ipblocklist'         => 'Blockierte IP-Adressen',
-  'Maintenance'         => 'Wartungsseite',
-  'Specialpages'        => '',
-  "Contributions"       => '',
-  "Movepage"            => '',
-  "Emailuser"           => '',
-  "Whatlinkshere"       => '',
-  "Recentchangeslinked" => '',
-  "Booksources"         => "Externe Buchhandlungen",
-  "Categories"          => "Seiten-Kategorien",
-  "Export"              => "XML-Seitenexport",
-  "Version"				=> "Version",
-);
-
-/* private */ $wgSysopSpecialPagesDe = array(
-	"Blockip"		=> "Blockiere eine IP-Adresse",
-	"Asksql"		=> "Datenbank-Abfrage",
-	"Undelete"              => "Gelöschte Seiten wiederherstellen"
-);
-
-/* private */ $wgDeveloperSpecialPagesDe = array(
-	"Lockdb"		=> "Datenbank sperren",
-	"Unlockdb"		=> "Datenbank freigeben",
-);
-
 /* private */ $wgAllMessagesDe = array(
 'Monobook.css' =>
 '/** Do not force \'lowercase\' */
@@ -118,7 +69,6 @@ if($wgMetaNamespace === FALSE)
 	text-transform: none;
 }',
 # User toggles
-'tog-hover'		=> 'Tooltips anzeigen',
 "tog-underline"               => "Verweise unterstreichen",
 "tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
 "tog-justify"                 => "Text als Blocksatz",
@@ -142,9 +92,10 @@ if($wgMetaNamespace === FALSE)
 'tog-enotifminoredits' 		=> 'Benachrichtigungsmails auch für kleine Seitenänderungen',
 'tog-enotifrevealaddr' 		=> 'Ihre E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
 'tog-shownumberswatching' 	=> 'Zeige die Anzahl seitenbeobachtender Benutzer (in Letzte Änderungen, Beobachtungsliste und Artikelseiten)',
-'tog-rccurrevonly' 		=> 'Zeige nur die letzte Seitenversion in Letzte Änderungen.',
-'tog-showupdated'		=> 'Zeige bei beobachteten Seiten mit ungesehenen Änderungen die Markierung ',
 'tog-fancysig'			=> 'Einfache Unterschrift (Spitzname ohne Link)',
+'tog-externaleditor' => 'Benutze standardmäßig externen Editor',
+'tog-externaldiff' => 'Benutze standardmäßig externen Diff',
+
 # Dates
 'sunday' => "Sonntag",
 'monday' => "Montag",
@@ -194,18 +145,17 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "portal-url"		=> "{{ns:4}}:Portal",
 "about"			=> "Über",
 "aboutsite"      => "Über {{SITENAME}}",
-"aboutpage"		=> "Project:Über_{{SITENAME}}",
+"aboutpage"		=> "{{ns:project}}:Über_{{SITENAME}}",
 "article" => "Artikel",
 "help"			=> "Hilfe",
 "helppage"		=> "Project:Hilfe",
-"wikititlesuffix"       => "{{SITENAME}}",
 "bugreports"	=> "Kontakt",
 "bugreportspage" => "Project:Kontakt",
 "sitesupport"   => "Spenden",
 "faq"			=> "FAQ",
-"faqpage"		=> "{{SITENAME}}:Häufig_gestellte_Fragen",
+"faqpage"		=> "{{ns:project}}:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
-"edithelppage"	=> "{{SITENAME}}:Editierhilfe",
+"edithelppage"	=> "{{ns:project}}:Editierhilfe",
 "cancel"		=> "Abbruch",
 "qbfind"		=> "Finden",
 "qbbrowse"		=> "Blättern",
@@ -259,15 +209,12 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
 "poweredby"	=> "{{SITENAME}} benutzt [http://www.mediawiki.org/ MediaWiki], eine Open Source Wiki-Engine.",
 "printsubtitle" => "(Von {{SERVER}})",
-"gnunote" => "Diese Seite ist unter der <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a> verfügbar.",
 "protectedpage" => "Geschützte Seite",
 "administrators" => "Project:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
 'sysoptext'		=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Sysop"-Status durchgeführt werden. Siehe auch $1.',
 "developertitle" => "Entwickler-Zugang notwendig",
 'developertext'	=> 'Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit"Entwickler"-Status durchgeführt werden. Siehe auch $1.',
-'bureaucrattitle'	=> 'Bürokraten-Rechte notwendig',
-'bureaucrattext'	=> 'Dieser Vorgang kann nur von Benutzern mit "Bürokrat"-Status durchgeführt werden.',
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
@@ -278,10 +225,6 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'retrievedfrom' => 'Von "$1"',
 "newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
-'newmsg' => 'Sie haben neue Nachrichten auf Ihrer $1.',
-'newmsg_user' => 'Benutzerseite',
-'newmsg_usertalk' => 'Diskussionsseite',
-'newmsg_and' => 'und',
 "editsection" => "bearbeiten",
 "toc" => "Inhaltsverzeichnis",
 "showtoc" => "Anzeigen",
@@ -289,6 +232,14 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 "feedlinks" => "Feed:",
+
+# Namespace form on various pages
+'namespace' => 'Namensraum:',
+'invert' => 'Kehre Selektion um',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'Alles',
+'namespacesall' => 'Alle',
 
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
 'nstab-main' => 'Artikel',
@@ -298,6 +249,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 'nstab-image' => 'Bild',
 'nstab-help' => 'Hilfe',
 'nstab-category' => 'Kategorie',
+'nstab-wp' => 'Projektseite',
 
 # Editier-Werkzeugleiste
 "bold_sample"=>"Fetter Text",
@@ -370,7 +322,6 @@ Query: $2
 "protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:4}}:Geschützte Seiten]].
 
 Sie können den Quelltext dieser Seite betrachten und kopieren:",
-'seriousxhtmlerrors' => 'Tidy entdeckte schwere Fehler im XHTML-Markup.',
 
 
 # Login and logout pages
@@ -389,12 +340,12 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "newusersonly"	=> " (nur für neue Mitglieder)",
 "remembermypassword" => "Dauerhaftes Einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
-"alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br />\n",
+"alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />\n",
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
 "userlogin"		=> "Anmelden",
-'disabled_on_this_wiki'	=> '<div class=\"error\"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
+'disabled_on_this_wiki'	=> '<div class="error"><b>Diese Funktion ist bei diesem Wiki dauerhaft abeschaltet.
 Durch die automatische Anmeldung beim Benutzerkonto sind eigene Benutzer-Anmeldung oder -Abmeldung nicht erforderlich.</b></div>',
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",
@@ -478,12 +429,11 @@ Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, u
 "anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte
  an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
-'usercssjs' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
 'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview' => "== Vorschau Ihres Benutzer-Javascript. ==
-'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
-'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'clearyourcache' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",
@@ -504,7 +454,7 @@ Bitte fügen Sie Ihre Änderungen in das obere Textfeld ein.
 Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>",
 "yourdiff"		=> "Unterschiede",
 "copyrightwarning" => "
-<b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <font size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
+<b>Bitte <big>kopieren Sie keine Webseiten</big>, die nicht Ihre eigenen sind, benutzen Sie <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
 <p><i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "<strong>WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
@@ -527,13 +477,11 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
 'revisionasofwithlink'	=> 'Version vom $1; $2<br />$3 | $4',
-'nextrevision'		=> '&larr;Nächstjüngere Version',
-'previousrevision'	=> 'Nächstältere Version&rarr;',
+'nextrevision'		=> '←Nächstjüngere Version',
+'previousrevision'	=> 'Nächstältere Version→',
 "cur"			=> "Aktuell",
-'cur_tooltiptext'	=> 'Zeige Differenz zwischen dieser und aktueller Version von ',
 "next"			=> "Nächste",
 "last"			=> "Vorherige",
-'last_tooltiptext'	=> 'Zeige Differenz zwischen dieser und vorheriger Version von ',
 "orig"			=> "Original",
 "histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
 Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br />
@@ -629,6 +577,11 @@ Ihre interne ID-Nummer ist $2.",
 "emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
 'enotifnewpages'	=> 'Sende mir eine Benachrichtigungsmail, wenn jemand eine neue Seite anlegt.',
 "defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
+'skinpreview' => '(Vorschau)',
+'yourlanguage'	=> 'Sprache',
+'imagemaxsize' => 'Verkleinere Bilder auf Bildbeschreibungsseiten auf: ',
+'thumbsize'	=> 'Thumbnail-	Größe: ',
+'files'			=> 'Bilder',
 
 # Recent changes
 #
@@ -644,13 +597,7 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "rclistfrom"	=> "Zeige neue Änderungen seit $1",
 "rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
 "diff"			=> "Unterschied",
-'diff_tooltiptext'	=> 'Zeige Differenz zwischen dieser und der vorherigen Version von ',
-'diff-to-lvr'		=> 'Diff.z.zuletzt gesehenen',
-'diff-to-lvr_tooltiptext' => 'Zeige Differenz zwischen dieser und der zuletzt gesehenen Version von ',
-'lvr'			=> '<span class=\'updatedmarker\'>zuletzt gesehen</span>',
-'lvr_tooltiptext'  	=> 'Das ist die zuletzt gesehene Version von ',
 "hist"			=> "Versionen",
-"hist_tooltiptext"      => "Zeige ältere Versionen von ",
 "hide"			=> "Ausblenden",
 "show"			=> "Einblenden",
 "tableform"		=> "Tabelle",
@@ -698,22 +645,22 @@ Alle Zeiten sind UTC.
 <ul>
 </ul>
 ",
-"uploadlogtext" => "Hochgeladene und gelöschte Dateien werden im $1 verzeichnet.",
 "filename"		=> "Dateiname",
 "filedesc"		=> "Beschreibung",
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
-"affirmation"	=> "Hiermit bestätige ich, dass ich das Copyright dieser Datei habe, und diese hiermit unter $1 veröffentliche, bzw. dass die Datei 'Public Domain' ist.",
+'sourcefilename' => 'Quelldatei',
+'destfilename' => 'Dateiname ändern',
 "copyrightpage" => "Project:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
-"noaffirmation" => "Sie müssen bestätigen, dass das Hochladen der Datei keine Copyright-Verletzung darstellt.",
 "ignorewarning"	=> "Warnung ignorieren und Datei trotzdem speichern.",
 "minlength"		=> "Bilddateien müssen mindestens drei Buchstaben haben.",
 "badfilename"	=> "Der Bildname wurde in \"$1\" geändert.",
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
+'fileexists'		=> 'Eine Datei mit diesem Namen existiert schon. Bitte überprüfen Sie $1, falls Sie sich nicht sicher sind, ob Sie diese Datei überschreiben wollen.',
 "uploadedimage" => "\"[[$1]]\" hochgeladen",
 'uploadscripted' => 'Diese Datei enthält HTML- oder Scriptcode der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadvirus' => 'Diese Datei enthält einen Virus! Details: $1',
@@ -724,7 +671,7 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
  aus, insbesondere seine Herkunft, von wem und wann es
  gemacht wurde und besondere Angaben zum Copyright, falls notwendig.
  Falls es sich um ein Bild handelte, so können Sie mit
- <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild
+ <tt><nowiki>[[Bild:$1|thumb|Beschreibung]]</nowiki></tt> ein Vorschaubild
  auf der Seite erzeugen lassen.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
@@ -797,26 +744,53 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "nviews"		=> "$1 Abfragen",
 "wantedpages"	=> "Gewünschte Seiten",
 "nlinks"		=> "$1 Verweise",
-"allpages"		=> "Alle Artikel",
 "randompage"	=> "Zufälliger Artikel",
 "shortpages"	=> "Kurze Artikel",
 "longpages"		=> "Lange Artikel",
 "listusers"		=> "Benutzerverzeichnis",
 "specialpages"	=> "Spezialseiten",
 "spheading"		=> "Spezialseiten",
-"sysopspheading" => "Spezialseiten für Sysops",
-"developerspheading" => "Spezialseiten für Entwickler",
+'restrictedpheading'	=> 'Spezialseiten für Administratoren',
 "protectpage"	=> "Artikel schützen",
 "recentchangeslinked" => "Verlinkte Seiten",
 "rclsub"		=> "(auf Artikel von \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "Neue Artikel",
+'newimages'	=> 'Neue Dateien',
 "ancientpages" => "Älteste Artikel",
 "movethispage"	=> "Artikel verschieben",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
+'mostlinked'	=> 'Meistverlinke Seiten',
+'uncategorizedpages'	=> 'Nicht kategorisierte Artikel',
+'uncategorizedcategories'	=> 'Nicht kategorisierte Kategorien',
+'unusedcategories' => 'Verwaiste Kategorien',
+
+# Special:Allpages
+'allpages'	=> 'Alle Artikel',
+'nextpage'	=> "Nächste Seite ($1)",
+'allpagesfrom'	=> 'Seiten anzeigen ab:',
+'allarticles'	=> 'Alle Artikel',
+'allnonarticles'	=> 'Alle Nicht-Artikel',
+'allinnamespace'	=> "Alle Seiten im Namensraum: $1",
+'allnotinnamespace'	=> "Alle Seiten (ohne Namensraum: $1)",
+'allpagesprev'	=> 'Vorherige',
+'allpagesnext'	=> 'Nächste',
+'allpagessubmit'	=> 'Zeige',
+
+#Special:Logs
+'log'		=> 'Logbücher',
+'alllogstext'	=> 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Verschiebungs-, Benutzerblockaden- und Bürokraten-Logbücher.
+Sie können die Anzeige einschränken, indem Sie ein Logbuch auswählen und/oder einen Benutzernamen, bzw. eine Seite angeben..',
+'specialloguserlabel' => 'Benutzer: ',
+'speciallogtitlelabel' => 'Titel: ',
+"1movedto2"		=> "$1 wurde nach $2 verschoben",
+"1movedto2_redir" => "$1 wurde nach $2 verschoben und überschrieb einen Redirect",
+'movelogpage' => 'Verschiebungslogbuch',
+'movelogpagetext' => 'Liste verschobener Seiten',
+'rightslogtext'		=> 'Dies ist ein Logbuch für Änderungen an Benutzerrechten.',
 
 # Email this user
 #
@@ -868,7 +842,7 @@ am Ende des Artikels.",
 "watchmethod-list" => "Überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
 "watchlistcontains" => "Ihre Beobachtungsliste enthält $1 Seiten.",
-"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br>
+"watcheditlist" => "Alphabetische Liste der von Ihnen beobachteten Seiten.<br />
 Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu löschen.",
 "removingchecked" => "Wunschgemäß werden die Einträge aus der Beobachtungsliste entfernt...",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
@@ -881,7 +855,6 @@ Hier können Sie Seiten markieren, um Sie dann von der Beobachtungsliste zu lös
 'wlhide'         => 'Verstecke ',
 
 'updatedmarker'			=> '<span class=\'updatedmarker\'>&nbsp;(geändert)&nbsp;</span>',
-'updatedmarker_tooltiptext' 	=> 'Zeige Differenz zwischen aktueller und zuletzt gesehener Version von ',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
 'enotif_reset'			=> 'Alle Benachrichtigungsmarker zurücksetzen (alle Seiten als "gesehen" markieren)',
 'enotif_newpagetext'		=> 'Dies ist eine neue Seite.',
@@ -915,6 +888,7 @@ Hilfe zur Benutzung gibt {{SERVER}}{{localurl:WikiHelpdesk}}',
 "deletepage"	=> "Seite löschen",
 "confirm"		=> "Bestätigen",
 "excontent" => "Alter Inhalt: '$1'",
+"excontentauthor" => "Alter Inhalt: '$1' (einziger Autor war '$2')",
 "exbeforeblank" => "Inhalt vor dem Leeren der Seite: '$1'",
 "exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
@@ -976,7 +950,7 @@ dieses Artikels erscheinen.",
 "nocontribs"	=> "Es wurden keine Änderungen für diese Kriterien gefunden.",
 "ucnote"		=> "Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.",
 "uclinks"		=> "Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.",
-"uctop"		=> " (top)" ,
+"uctop"		=> " (aktuell)" ,
 
 # What links here
 #
@@ -995,10 +969,13 @@ dieses Artikels erscheinen.",
 Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
+'ipadressorusername' => 'IP-Adresse oder Benutzername',
 "ipbreason"		=> "Grund",
 "ipbsubmit"		=> "Adresse blockieren",
+'ipbother'		=> 'Andere Zeit',
+'ipboptions'		=> '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unendlich:infinite',
+'ipbotheroption'	=> 'Andere',
 "badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
-"noblockreason" => "Sie müssen einen Grund für die Blockade angeben.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
 <br />Auf [[Spezial:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
@@ -1007,7 +984,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "ipusubmit"		=> "Diese Adresse freigeben",
 "ipusuccess"	=> "IP-Adresse \"$1\" wurde freigegeben",
 "ipblocklist"	=> "Liste blockierter IP-Adressen",
-"blocklistline"	=> "$1, $2 blockierte $3",
+"blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
 "contribslink"	=> "Beiträge",
@@ -1030,19 +1007,23 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 <br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
 
-# SQL query
+
+# User levels special page
 #
-"asksql"		=> "SQL-Abfrage",
-"asksqltext"	=> "Benutzen Sie das Formular für eine direkte
-Datenbank-Abfrage. Benutze einzelne Hochkommata ('so'), um Text zu begrenzen.
-Bitte diese Funktion vorsichtig benutzen! Das abschließende ';' wird
-automatisch ergänzt.",
-"sqlislogged" => "Bitte beachten Sie das alle SQL-Abfrage mitprotokolliert
-werden.",
-"sqlquery"		=> "Abfrage eingeben",
-"querybtn"		=> "Abfrage starten",
-"selectonly"	=> "Andere Abfragen als \"SELECT\" können nur von Entwicklern benutzt werden.",
-"querysuccessful" => "Abfrage erfolgreich",
+'userrights' => 'Benutzerrechtsverwaltung',
+
+'userrights-lookup-user' => 'Verwalte Gruppenzugehörigkeit',
+'userrights-user-editname' => 'Benutzername: ',
+'editusergroup' => 'Bearbeite Benutzerrechte',
+
+# user groups editing
+#
+'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
+'saveusergroups' => 'Speichere Gruppenzugehörigkeit',
+'userrights-groupsmember' => 'Mitglied von: ',
+'userrights-groupsavailable' => 'Verfügbare Gruppen: ',
+'userrights-groupshelp' => 'Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg + Linksklick (bzw. Ctrl + Linksklick) entfernt werden.',
 
 # Move page
 #
@@ -1078,91 +1059,20 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>\n",
 
 #Tooltips:
-'tooltip-atom'	=> 'Atom-Feed von dieser Seite',
-'tooltip-addsection' => 'Einen Kommentar zu dieser Seite hinzufügen. [alt-+]',
-'tooltip-article' => 'Artikel betrachten [alt-a]',
-'tooltip-talk' => 'Diesen Artikel diskutieren [alt-t]',
-'tooltip-edit' => 'Sie können diesen Artikel bearbeiten. Benutzen Sie die Vorschau, bevor Sie die Seite speichern. [alt-e]',
-'tooltip-viewsource' => 'Diese Seite ist geschützt. Sie können ihren Quelltext betrachten. [alt-e]',
-'tooltip-history' => 'Ältere Versionen dieser Seite. [alt-h]',
-'tooltip-protect' => 'Diese Seite schützen [alt--]',
-'tooltip-delete' => 'Diese Seite löschen [alt-d]',
-'tooltip-undelete' => "$1 Versionen diese Artikels wieder herstellen. [alt-d]",
-'tooltip-move' => 'Diese Seite verschieben. [alt-m]',
 'tooltip-watch' => 'Diese Seite beobachten. [alt-w]',
-'tooltip-unwatch' => 'Diese Seite nicht mehr beobachten. [alt-w]',
-'tooltip-watchlist' => 'Die Liste der Artikel, die Sie auf Änderungen beobachten. [alt-l]',
-'tooltip-userpage' => 'Meine Benutzerseite  [alt-.]',
-'tooltip-anonuserpage' => 'Die Benutzerseite Ihrer IP-Adresse [alt-.]',
-'tooltip-mytalk' => 'Meine Benutzerdiskussion  [alt-n]',
-'tooltip-anontalk' => 'Diskussionen zu Bearbeitungen, die von dieser IP-Adresse gemacht wurden. [alt-n]',
-'tooltip-preferences' => 'Meine Einstellungen',
-'tooltip-mycontris' => 'Liste meiner Beiträge [alt-y]',
-'tooltip-login' => 'Sie können sich gerne anmelden, es ist aber nicht notwendig, um Artikel zu bearbeiten. [alt-o]',
-'tooltip-logout' => 'The start button [alt-o]',
 'tooltip-search' => 'Suchen [alt-f]',
-'tooltip-mainpage' => 'Zur Hauptseite [alt-z]',
-'tooltip-portal' => 'Über das Projekt, was Sie tun können, wo Sie Dinge finden können',
-'tooltip-randompage' => 'Zufälliger Artikel [alt-x]',
-'tooltip-currentevents' => 'Hintergründe zu aktuellen Ereignissen finden',
-'tooltip-sitesupport' => 'Unterstützen Sie {{SITENAME}}',
-'tooltip-help' => 'Hier bekommen Sie Hilfe.',
-'tooltip-recentchanges' => 'Die letzten Änderungen in diesem Wiki. [alt-r]',
-'tooltip-recentchangeslinked' => 'Die letzten Änderungen an Seiten, die von dieser Seite verlinkt wurden. [alt-c]',
-'tooltip-whatlinkshere' => 'Liste aller Seiten, die auf diese verweisen [alt-b]',
-'tooltip-specialpages' => 'Liste aller Spezialseiten [alt-q]',
-'tooltip-upload' => 'Bilder oder andere Medien hochladen [alt-u]',
-'tooltip-specialpage' => 'Dies ist eine Spezialseite, die nicht bearbeitet werden kann.',
 'tooltip-minoredit' => 'Diese Änderung als klein markieren. [alt-i]',
 'tooltip-save' => 'Änderungen speichern [alt-s]',
 'tooltip-preview' => 'Vorschau der Änderungen an dieser Seite. Benutzen Sie dies vor dem Speichern! [alt-p]',
 'tooltip-diff' => 'Zeigt Ihre Änderungen am Text tabellarisch an [alt-d]',
-'tooltip-contributions' => 'Liste der beiträge dieses Benutzers.',
-'tooltip-emailuser' => 'Senden Sie eine Mail an diesen Benutzer',
-'tooltip-rss' => 'RSS-Feed von dieser Seite.',
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen. [alt-v]',
 
 #Tastatur-Shortcuts
-'accesskey-article' => 'a',
-'accesskey-addsection' => '+',
-'accesskey-talk' => 't',
-'accesskey-edit' => 'e',
-'accesskey-viewsource' => 'e',
-'accesskey-history' => 'h',
-'accesskey-protect' => '-',
-'accesskey-delete' => 'd',
-'accesskey-undelete' => 'd',
-'accesskey-move' => 'm',
-'accesskey-watch' => 'w',
-'accesskey-unwatch' => 'w',
-'accesskey-watchlist' => 'l',
-'accesskey-userpage' => '.',
-'accesskey-anonuserpage' => '.',
-'accesskey-mytalk' => 'n',
-'accesskey-anontalk' => 'n',
-'accesskey-preferences' => '',
-'accesskey-mycontris' => 'y',
-'accesskey-login' => 'o',
-'accesskey-logout' => 'o',
 'accesskey-search' => 'f',
-'accesskey-mainpage' => 'z',
-'accesskey-portal' => '',
-'accesskey-randompage' => 'x',
-'accesskey-currentevents' => '',
-'accesskey-sitesupport' => '',
-'accesskey-help' => '',
-'accesskey-recentchanges' => 'r',
-'accesskey-recentchangeslinked' => 'c',
-'accesskey-whatlinkshere' => 'b',
-'accesskey-specialpages' => 'q',
-'accesskey-specialpage' => '',
-'accesskey-upload' => 'u',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
 'accesskey-diff' => 'd',
-'accesskey-contributions' => '',
-'accesskey-emailuser' => '',
 'accesskey-compareselectedversions' => 'v',
 
 "makesysoptitle"        => "Mache einen Benutzer zum Administrator",
@@ -1177,7 +1087,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "set_user_rights"	=> "Benutzerrechte setzen",
 "user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
 "set_rights_fail"	=> "<b>Benutzerrechte für \"$1\" konnten nicht gesetzt werden. (Haben Sie den Namen korrekt eingegeben?)</b>",
-"1movedto2"		=> "$1 wurde nach $2 verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
 "thumbnail-more"	=> "vergrößern",
@@ -1190,7 +1099,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
+"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[{{SITENAME}}:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
@@ -1240,6 +1149,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
 "categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
+'categoryarticlecount1' => "Dieser Kategorie gehört $1 Artikel an.",
+'categoriespagetext' => 'In diesem Wiki gibt es die folgenden Kategorien:',
+'unusedcategoriestext' => 'Die folgenden Kategorieseiten existieren, obwohl sie nicht verwendet werden.',
+'groups-editgroup-name'     => 'Gruppenname: ',
 # math
 	'mw_math_png' => "Immer als PNG darstellen",
 	'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
@@ -1247,9 +1160,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 	'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
 	'mw_math_modern' => "Empfehlenswert für moderne Browser",
 	'mw_math_mathml' => 'MathML (experimentell)',
-# labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'Benutzer: ',
-'speciallogtitlelabel' => 'Titel: ',
+	
 'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
 # Media Warning
@@ -1379,21 +1290,6 @@ class LanguageDe extends LanguageUtf8 {
 		  " " .
 		  substr( $ts, 0, 4 );
 		return $d;
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesDe;
-		return $wgValidSpecialPagesDe;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesDe;
-		return $wgSysopSpecialPagesDe;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesDe;
-		return $wgDeveloperSpecialPagesDe;
 	}
 
 	function getMessage( $key ) {

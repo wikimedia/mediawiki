@@ -27,7 +27,7 @@ define( 'DB_WRITE', -2 );
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads, $mGroupLoads;
-	/* private */ var $mFailFunction;
+	/* private */ var $mFailFunction, $mErrorConnection;
 	/* private */ var $mForce, $mReadIndex, $mLastIndex;
 	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode;
@@ -40,6 +40,7 @@ class LoadBalancer {
 		$this->mReadIndex = -1;
 		$this->mForce = -1;
 		$this->mLastIndex = -1;
+		$this->mErrorConnection = false;
 	}
 
 	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
@@ -139,7 +140,7 @@ class LoadBalancer {
 			return false;
 		}
 
-		#wfDebug( var_export( $loads, true ) );
+		#wfDebugLog( 'connect', var_export( $loads, true ) );
 
 		# Return a random representative of the remainder
 		return $this->pickRandom( $loads );
@@ -182,8 +183,9 @@ class LoadBalancer {
 							$i = $this->pickRandom( $loads );
 						}
 					}
+					$serverIndex = $i;
 					if ( $i !== false ) {
-						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
+						wfDebugLog( 'connect', "Using reader #$i: {$this->mServers[$i]['host']}...\n" );
 						$this->openConnection( $i );
 						
 						if ( !$this->isOpen( $i ) ) {
@@ -210,7 +212,10 @@ class LoadBalancer {
 					}
 					if ( $sleepTime ) {
 							$totalElapsed += $sleepTime;
+							$x = "{$this->mServers[$serverIndex]['host']} $sleepTime [$serverIndex]";
+							wfProfileIn( "$fname-sleep $x" );
 							usleep( $sleepTime );
+							wfProfileOut( "$fname-sleep $x" );
 					}
 				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $wgDBClusterTimeout );
 
@@ -348,6 +353,10 @@ class LoadBalancer {
 				$i = $this->getWriterIndex();
 			}
 		}
+		# Couldn't find a working server in getReaderIndex()?
+		if ( $i === false ) {
+			$this->reportConnectionError( $this->mErrorConnection );
+		}
 		# Now we have an explicit index into the servers array
 		$this->openConnection( $i, $fail );
 		
@@ -374,6 +383,7 @@ class LoadBalancer {
 			if ( $fail ) {
 				$this->reportConnectionError( $this->mConnections[$i] );
 			}
+			$this->mErrorConnection = $this->mConnections[$i];
 			$this->mConnections[$i] = false;
 			$success = false;
 		}
@@ -434,7 +444,7 @@ class LoadBalancer {
 			if ( $this->mFailFunction ) {
 				$conn->failFunction( $this->mFailFunction );
 			} else {
-				$conn->failFunction( 'wfEmergencyAbort' );
+				$conn->failFunction( false );
 			}
 			$conn->reportConnectionError();
 			$reporting = false;

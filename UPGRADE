@@ -20,9 +20,9 @@ Basically, to upgrade a wiki you:
 == IMPORTANT: Upgrading to 1.5 ==
 
 Major changes have been made to the schema from 1.4.x. The updater
-has not been fully tested for all conditions, and might well break.
+has not been fully tested for all conditions, and might well break
+under some combinations of versions.
 
-DO NOT ATTEMPT TO UPGRADE A LIVE, PUBLIC SITE TO 1.5 AT THIS TIME.
 NEVER EVER ATTEMPT TO PERFORM AN UPGRADE WITHOUT BACKING UP FIRST!
 
 On a large site, the schema update might take a long time. It might

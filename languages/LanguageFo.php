@@ -35,15 +35,6 @@ require_once( 'LanguageUtf8.php');
 	"Standardur", "Nostalgiskur", "Cologne-bláur", "Paddington", "Montparnasse"
 );
 
-/* private */ $wgMathNamesFo = array(
-	MW_MATH_PNG => 'mw_math_png',
-	MW_MATH_SIMPLE => 'mw_math_simple',
-	MW_MATH_HTML => 'mw_math_html',
-	MW_MATH_SOURCE => 'mw_math_source',
-	MW_MATH_MODERN => 'mw_math_modern',
-	MW_MATH_MATHML => 'mw_math_mathml'
-);
-
 /* private */ $wgDateFormatsFo = array(
 #	"Ongi forrættindi",
 );
@@ -52,59 +43,6 @@ require_once( 'LanguageUtf8.php');
 	"Bokasolan.fo" => "http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1",
 ) + $wgBookstoreListEn;
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesFo = array(
-	"Userlogin" => "",
-	"Userlogout" => "",
-	"Preferences" => "Minar brúkarainnstillingar",
-	"Watchlist" => "Mín vaka yvur listi",
-	"Recentchanges" => "Seinsastu broytingar",
-	"Upload" => "Leg fílur upp",
-	"Imagelist" => "Myndalisti",
-	"Listusers" => "Skrásettir brúkarir",
-	"Statistics" => "Hagtøl um síðuna",
-	"Randompage" => "Tilvildarlig grein",
-
-	"Lonelypages" => "Foreldreleysar greinir",
-	"Unusedimages" => "Foreldreleysir fílur",
-	"Popularpages" => "Umtóktar greinir",
-	"Wantedpages" => "Mest ynsktu greinir",
-	"Shortpages" => "Stytstu greinir",
-	"Longpages" => "Langar greinir",
-	"Newpages" => "Nýggjastu greinir",
-	"Ancientpages" => "Elstu greinir",
-	"Deadendpages" => "Blindsíður",
-	"Intl" => "Málávísing",
-	"Allpages" => "Allar síður eftur yvurskrift",
-
-	"Ipblocklist" => "Bannaðar IP-adressur",
-	"Maintenance" => "Viðlíkahaldssíðir",
-	"Specialpages" => "",
-	"Contributions" => "",
-	"Emailuser" => "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage" => "",
-	"Booksources" => "Útvortis bókakelda",
-	"Categories" => "síðubólkur",
-	"Export" => "Útflyt síðu í XML sniði",
-	"Version" => "Vís MediaWiki útgávu",
-);
-
-/* private */ $wgSysopSpecialPagesFo = array(
-	"Blockip"	      => "Bannað eina IP-adressu",
-	"Asksql"	      => "Ger ein fyrispurning í dátagrunnin",
-	"Undelete"	      => "Síggj og endurstovna strikaðar síður",
-	"Makesysop"	      => "Ber ein brúkara til umboðsstjóra"
-);
-
-/* private */ $wgDeveloperSpecialPagesFo = array(
-	"Lockdb"	      => "Skriviverj dátagrunnin", # Skrivivardur
-	"Unlockdb"	      => "Endurstovna skriviatgongd til dátagrunnin",
-);
 
 /* private */ $wgAllMessagesFo = array(
 
@@ -128,12 +66,12 @@ require_once( 'LanguageUtf8.php');
 "tog-nocache" => "Minst ikki til síðurnar til næstu ferð",
 
 # Dates
-'sunday' => 'sunnudagur', 
-'monday' => 'mánadagur', 
-'tuesday' => 'týsdagur', 
-'wednesday' => 'mikudagur', 
+'sunday' => 'sunnudagur',
+'monday' => 'mánadagur',
+'tuesday' => 'týsdagur',
+'wednesday' => 'mikudagur',
 'thursday' => 'hósdagur',
-'friday' => 'fríggjadagur', 
+'friday' => 'fríggjadagur',
 'saturday' => 'leygardagur',
 'january' => 'januar',
 'february' => 'februar',
@@ -197,7 +135,7 @@ class LanguageFo extends LanguageUtf8 {
 		return $wgDateFormatsFo;
 	}
 
-	
+
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -209,21 +147,6 @@ class LanguageFo extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
-	}
-
-	function getValidSpecialPages() {
-		global $wgValidSpecialPagesFo;
-		return $wgValidSpecialPagesFo;
-	}
-
-	function getSysopSpecialPages() {
-		global $wgSysopSpecialPagesFo;
-		return $wgSysopSpecialPagesFo;
-	}
-
-	function getDeveloperSpecialPages() {
-		global $wgDeveloperSpecialPagesFo;
-		return $wgDeveloperSpecialPagesFo;
 	}
 
 	function getMessage( $key ) {

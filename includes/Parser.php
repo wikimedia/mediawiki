@@ -377,16 +377,14 @@ class Parser
 		}
 
 		# math
-		$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
-		foreach( $math_content as $marker => $content ){
-			if( $render ) {
-				if( $this->mOptions->getUseTeX() ) {
+		if( $this->mOptions->getUseTeX() ) {
+			$text = Parser::extractTags('math', $text, $math_content, $uniq_prefix);
+			foreach( $math_content as $marker => $content ){
+				if( $render ) {
 					$math_content[$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = '&lt;math&gt;'.$content.'&lt;math&gt;';
+					$math_content[$marker] = '<math>'.$content.'</math>';
 				}
-			} else {
-				$math_content[$marker] = '<math>'.$content.'</math>';
 			}
 		}
 
@@ -650,8 +648,11 @@ class Parser
 			$fc = substr ( $x , 0 , 1 ) ;
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
+				
+				$attributes = $this->unstripForHTML( $matches[2] );
+
 				$t[$k] = str_repeat( '<dl><dd>', $indent_level ) .
-					'<table' . Sanitizer::fixTagAttributes ( $matches[2], 'table' ) . '>' ;
+					'<table' . Sanitizer::fixTagAttributes ( $attributes, 'table' ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
@@ -678,7 +679,8 @@ class Parser
 				array_push ( $tr , false ) ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
-				array_push ( $ltr , Sanitizer::fixTagAttributes ( $x, 'tr' ) ) ;
+				$attributes = $this->unstripForHTML( $x );
+				array_push ( $ltr , Sanitizer::fixTagAttributes ( $attributes, 'tr' ) ) ;
 			}
 			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
 				# $x is a table row
@@ -720,7 +722,10 @@ class Parser
 					}
 					if ( count ( $y ) == 1 )
 						$y = "{$z}<{$l}>{$y[0]}" ;
-					else $y = $y = "{$z}<{$l}".Sanitizer::fixTagAttributes($y[0], $l).">{$y[1]}" ;
+					else {
+						$attributes = $this->unstripForHTML( $y[0] );
+						$y = "{$z}<{$l}".Sanitizer::fixTagAttributes($attributes, $l).">{$y[1]}" ;
+					}
 					$t[$k] .= $y ;
 					array_push ( $td , true ) ;
 				}
@@ -753,7 +758,11 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
-		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ) );
+		# Remove <noinclude> tags and <includeonly> sections
+		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
+		$text = preg_replace( '/<includeonly>.*?<\/includeonly>/s', '', $text );
+
+		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 		$text = $this->replaceVariables( $text, $args );
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
@@ -769,7 +778,7 @@ class Parser
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace("http-noparse://","http://",$text);
+		$text = str_replace(UNIQ_PREFIX."NOPARSE", "", $text);
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
@@ -1225,7 +1234,6 @@ class Parser
 		if ( $useLinkPrefixExtension ) {
 			if ( preg_match( $e2, $s, $m ) ) {
 				$first_prefix = $m[2];
-				$s = $m[1];
 			} else {
 				$first_prefix = false;
 			}
@@ -1308,7 +1316,7 @@ class Parser
 				$link = substr($link, 1);
 			}
 
-			$nt =& Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
+			$nt = Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -1329,7 +1337,8 @@ class Parser
 					$found = false;
 					while (isset ($a[$k+1]) ) {
 						#look at the next 'line' to see if we can close it there
-						$next_line =  array_shift(array_splice( $a, $k + 1, 1) );
+						$spliced = array_splice( $a, $k + 1, 1 );
+						$next_line = array_shift( $spliced );
 						if( preg_match("/^(.*?]].*?)]](.*)$/sD", $next_line, $m) ) {
 						# the first ]] closes the inner link, the second the image
 							$found = true;
@@ -1385,7 +1394,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . str_replace('http://', 'http-noparse://', $this->makeImage( $nt, $text ) ) . $trail;
+						$s .= $prefix . preg_replace("/\b($wgUrlProtocols)/", UNIQ_PREFIX."NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 
 						wfProfileOut( "$fname-image" );
@@ -2279,6 +2288,10 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			if( $this->mOutputType == OT_HTML ) {
+				# Remove <noinclude> sections and <includeonly> tags
+				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
+				$text = strtr( $text, array( '<includeonly>' => '' , '</includeonly>' => '' ) );
+				# Strip <nowiki>, <pre>, etc.
 				$text = $this->strip( $text, $this->mStripState );
 				$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'replaceVariables' ), $assocArgs );
 			}
@@ -3288,6 +3301,34 @@ class Parser
 		# Linker does the rest
 		$sk =& $this->mOptions->getSkin();
 		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb );
+	}
+
+	/**
+	 * Set a flag in the output object indicating that the content is dynamic and 
+	 * shouldn't be cached.
+	 */
+	function disableCache() {
+		$this->mOutput->mCacheTime = -1;
+	}
+	
+	/**
+	 * Callback from the Sanitizer for expanding items found in HTML attribute
+	 * values, so they can be safely tested and escaped.
+	 * @param string $text
+	 * @param array $args
+	 * @return string
+	 * @access private
+	 */
+	function attributeStripCallback( &$text, $args ) {
+		$text = $this->replaceVariables( $text, $args );
+		$text = $this->unstripForHTML( $text );
+		return $text;
+	}
+	
+	function unstripForHTML( $text ) {
+		$text = $this->unstrip( $text, $this->mStripState );
+		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		return $text;
 	}
 }
 

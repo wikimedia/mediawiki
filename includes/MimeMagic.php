@@ -304,6 +304,27 @@ class MimeMagic {
 		return in_array( $mime, $types );
 	}
 	
+	/**
+	 * Returns true if the extension represents a type which can
+	 * be reliably detected from its content. Use this to determine
+	 * whether strict content checks should be applied to reject
+	 * invalid uploads; if we can't identify the type we won't
+	 * be able to say if it's invalid.
+	 *
+	 * @todo Be more accurate when using fancy mime detector plugins;
+	 *       right now this is the bare minimum getimagesize() list.
+	 * @return bool
+	 */
+	function isRecognizableExtension( $extension ) {
+		static $types = array(
+			'gif', 'jpeg', 'jpg', 'png', 'swf', 'psd',
+			'bmp', 'tiff', 'tif', 'jpc', 'jp2',
+			'jpx', 'jb2', 'swc', 'iff', 'wbmp',
+			'xbm'
+		);
+		return in_array( strtolower( $extension ), $types );
+	}
+	
 	
 	/** mime type detection. This uses detectMimeType to detect the mim type of the file,
 	* but applies additional checks to determine some well known file formats that may be missed
