@@ -227,7 +227,7 @@ class MonoBookTemplate extends QuickTemplate {
 	  <?php if($this->data['tagline']) { ?><li id="f-tagline"><?php echo $this->data['tagline'] ?></li><?php } ?>
 	</ul>
       </div>
-    <script type="text/javascript"> if (window.onloadhook) onloadhook(); </script>
+    <script type="text/javascript"> if (window.runOnloadHook) runOnloadHook(); </script>
     </div>
     <?php $this->html('reporttime') ?>
   </body>

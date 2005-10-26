@@ -14,19 +14,41 @@ if (clientPC.indexOf('opera')!=-1) {
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 
 var doneOnloadHook;
+var onloadFuncts = [];
 
-function onloadhook () {
+function addOnloadHook( hookFunct )
+{
+  // Allows add-on scripts to add onload functions
+  onloadFuncts[onloadFuncts.length] = hookFunct;
+}
+
+function runOnloadHook()
+  {
     // don't run anything below this for non-dom browsers
-    if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) return;
+    if ( doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) )
+      return;
+
     histrowinit();
     unhidetzbutton();
     tabbedprefs();
     akeytt();
+
+    // Run any added-on functions
+    for ( var i = 0; i < onloadFuncts.length; i++ )
+      onloadFuncts[i]();
+
     doneOnloadHook = true;
 }
-if (window.addEventListener) window.addEventListener("load",onloadhook,false);
-else if (window.attachEvent) window.attachEvent("onload",onloadhook);
 
+function hookEvent( hookName, hookFunct )
+{
+  if ( window.addEventListener )
+    addEventListener( hookName, hookFunct, false );
+  else if ( window.attachEvent )
+    attachEvent( "on" + hookName, hookFunct );
+}
+
+hookEvent( "load", runOnloadHook );
 
 // document.write special stylesheet links
 if(typeof stylepath != 'undefined' && typeof skin != 'undefined') {
