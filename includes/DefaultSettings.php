@@ -473,6 +473,24 @@ $wgDBtransactions	= false;
 $wgDBmysql4			= true;
 
 /**
+ * Set to true to engage MySQL 4.1/5.0 charset-related features;
+ * for now will just cause sending of 'SET NAMES=utf8' on connect.
+ *
+ * WARNING: THIS IS EXPERIMENTAL!
+ *
+ * May break if you're not using the table defs from mysql5/tables.sql.
+ * May break if you're upgrading an existing wiki if set differently.
+ * Broken symptoms likely to include incorrect behavior with page titles,
+ * usernames, comments etc containing non-ASCII characters.
+ * Might also cause failures on the object cache and other things.
+ *
+ * Even correct usage may cause failures with Unicode supplementary
+ * characters (those not in the Basic Multilingual Plane) unless MySQL
+ * has enhanced their Unicode support.
+ */
+$wgDBmysql5			= false;
+
+/**
  * Other wikis on this site, can be administered from a single developer
  * account.
  * Array, interwiki prefix => database name
