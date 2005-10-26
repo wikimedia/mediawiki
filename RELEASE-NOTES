@@ -831,6 +831,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3786) Experimental support for MySQL 4.1/5.0 utf8 charset mode
   NOTE: Enabling this may break existing wikis, and still doesn't
   work for all Unicode characters due to MySQL limitations.
+* Sanitizer CSS comment processing order fix
 
 
 === Caveats ===
