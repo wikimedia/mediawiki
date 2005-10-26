@@ -43,23 +43,6 @@ class WantedCategoriesPage extends QueryPage {
 	
 	function sortDescending() { return true; }
 
-	/**
-	 * Fetch user page links and cache their existence
-	 */
-	function preprocessResults( &$db, &$res ) {
-		global $wgLinkCache;
-
-		$batch = new LinkBatch;
-		while ( $row = $db->fetchObject( $res ) )
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->title ) );
-		$batch->execute( $wgLinkCache );
-
-		// Back to start for display
-		if ( $db->numRows( $res ) > 0 )
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
-	}
-
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
@@ -68,7 +51,7 @@ class WantedCategoriesPage extends QueryPage {
 		
 		$plink = $this->isCached() ?
 			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
-			$skin->makeBrokenLink( $nt->getText(), $text );
+			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 		
 		$nlinks = wfMsg( 'nlinks', $result->value );
 		return "$plink ($nlinks)";
