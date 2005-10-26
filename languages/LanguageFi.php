@@ -139,6 +139,7 @@ require_once( 'LanguageUtf8.php' );
 
 # Bits of text used by many pages:
 #
+'categories1'         => 'Luokka',
 'categories'          => 'Luokat',
 'category'            => 'Luokka',
 'category_header'     => 'Sivut, jotka ovat luokassa $1',
@@ -792,7 +793,8 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'wantedcategories'    => 'Halutut luokat',
 'wantedpages'         => 'Halutut sivut',
 'mostlinked'          => 'Sivut, joihin on eniten linkkejä',
-'mostcategories'      => 'Luokat, joihin on eniten linkkejä',
+'mostlinkedcategories'=> 'Luokat, joihin on eniten linkkejä',
+'mostcategories'      => 'Sivut, jotka ovat useissa luokissa',
 'mostimages'          => 'Kuvat, joihin on eniten linkkejä',
 'mostrevisions'       => 'Sivut, joilla on eniten muutoksia',
 'nlinks'              => '$1 linkkiä',
@@ -1522,10 +1524,10 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'exif-lightsource-9'  => 'Hyvä sää',
 'exif-lightsource-10' => 'Pilvinen sää',
 'exif-lightsource-11' => 'Varjoinen',
-'exif-lightsource-12' => 'Päivänvaloloisteputki (D 5700 �7100K)',
-'exif-lightsource-13' => 'Päivänvalkoinen loisteputki (N 4600 �5400K)',
-'exif-lightsource-14' => 'Kylmä valkoinen loisteputki (W 3900 �4500K)',
-'exif-lightsource-15' => 'Valkoinen loisteputki (WW 3200 �3700K)',
+'exif-lightsource-12' => 'Päivänvaloloisteputki (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Päivänvalkoinen loisteputki (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Kylmä valkoinen loisteputki (W 3900 – 4500K)',
+'exif-lightsource-15' => 'Valkoinen loisteputki (WW 3200 – 3700K)',
 'exif-lightsource-17' => 'Oletusvalo A',
 'exif-lightsource-18' => 'Oletusvalo B',
 'exif-lightsource-19' => 'Oletusvalo C',
