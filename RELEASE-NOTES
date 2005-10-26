@@ -173,6 +173,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Sanitizer CSS comment processing order fix
 * Edit box now remembers scrollbar position on preview
 * (bug 3798) DoubleRedirects no longer has hard coded arrows
+* (bug 2324) image for redirects should be without text and oriented according to content language
 
 
 === Caveats ===
