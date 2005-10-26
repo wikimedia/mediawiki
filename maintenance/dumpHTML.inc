@@ -33,8 +33,8 @@ class DumpHTML {
 	# the destination
 	var $alternateScriptPath = false;
 
-	# Original article path, for "current version" links
-	var $oldArticlePath = false;
+	# Original values of various globals
+	var $oldArticlePath = false, $oldCopyrightIcon = false;
 
 	# Has setupGlobals been called?
 	var $setupDone = false;
@@ -325,8 +325,11 @@ class DumpHTML {
 		}
 
 		# Another ugly hack
+		if ( !$this->setupDone ) {
+			$this->oldCopyrightIcon = $wgCopyrightIcon;
+		}
 		$wgCopyrightIcon = str_replace( 'src="/images', 
-			'src="' . htmlspecialchars( $wgScriptPath ) . '/images', $wgCopyrightIcon );
+			'src="' . htmlspecialchars( $wgScriptPath ) . '/images', $this->oldCopyrightIcon );
 
 
 
