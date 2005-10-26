@@ -171,6 +171,7 @@ fully support the editing toolbar, but was found to be too confusing.
   NOTE: Enabling this may break existing wikis, and still doesn't
   work for all Unicode characters due to MySQL limitations.
 * Sanitizer CSS comment processing order fix
+* Edit box now remembers scrollbar position on preview
 
 
 === Caveats ===
