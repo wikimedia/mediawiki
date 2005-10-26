@@ -274,6 +274,14 @@ class Database {
 		if ( !$success ) {
 			$this->reportConnectionError();
 		}
+		
+		global $wgDBmysql5;
+		if( $wgDBmysql5 ) {
+			// Tell the server we're communicating with it in UTF-8.
+			// This may engage various charset conversions.
+			$this->query( 'SET NAMES utf8' );
+		}
+		
 		$this->mOpened = $success;
 		return $success;
 	}

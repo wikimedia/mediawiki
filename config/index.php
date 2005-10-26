@@ -382,6 +382,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->DBprefix = importPost( "DBprefix" );
+	$conf->DBmysql5 = (importPost( "DBmysql5" ) == "true") ? "true" : "false";
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
@@ -570,6 +571,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			 	<a href='http://dev.mysql.com/doc/mysql/en/old-client.html'
 			 	>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
 		}
+		if( $wgDBmysql5 ) {
+			if( $mysqlNewAuth ) {
+				print "; enabling MySQL 4.1/5.0 charset mode";
+			} else {
+				print "; <b class='error'>MySQL 4.1/5.0 charset mode enabled,
+					but older version detected; will likely fail.</b>";
+			}
+		}
 		print "</li>\n";
 
 		if ($conf->DBtype == 'mysql') {
@@ -627,7 +636,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
-				dbsource( "../maintenance/tables.sql", $wgDatabase );
+				if( $wgDBmysql5 ) {
+					print " using MySQL 5 table defs...";
+					dbsource( "../maintenance/mysql5/tables.sql", $wgDatabase );
+				} else {
+					print " using MySQL 4 table defs...";
+					dbsource( "../maintenance/tables.sql", $wgDatabase );
+				}
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
 			} else {
 				dbsource( "../maintenance/oracle/tables.sql", $wgDatabase );
@@ -960,6 +975,20 @@ if( count( $errs ) ) {
 
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</div>
+	
+	<div class="config-input"><label class="column">Database charset</label>
+		<div>Select one:</div>
+		<ul class="plain">
+		<li><?php aField( $conf, "DBmysql5", "Backwards-compatible UTF-8", "radio", "false" ); ?></li>
+		<li><?php aField( $conf, "DBmysql5", "Experimental MySQL 4.1/5.0 UTF-8", "radio", "true" ); ?></li>
+		</ul>
+	</div>
+	<p class="config-desc">
+		<b>EXPERIMENTAL:</b> You can enable explicit Unicode charset support
+		for MySQL 4.1 and 5.0 servers. This is not well tested and may
+		cause things to break. <b>If upgrading an older installation, leave
+		in backwards-compatible mode.</b>
+	</p>
 
 	<div class="config-input">
 		<?php
@@ -1157,6 +1186,9 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 \$wgDBtype           = \"{$slconf['DBtype']}\";
+
+# Experimental charset support for MySQL 4.1/5.0.
+\$wgDBmysql5 = {$conf->DBmysql5};
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
