@@ -936,6 +936,15 @@ $wgDisableCookieCheck = false;
 /**  Whether to allow inline image pointing to other websites */
 $wgAllowExternalImages = true;
 
+/** If the above is false, you can specify an exception here. Image URLs 
+  * that start with this string are then rendered, while all others are not.
+  * You can use this to set up a trusted, simple repository of images.
+  *
+  * Example: 
+  * $wgAllowExternalImagesFrom = 'http://127.0.0.1/'; 
+  */
+$wgAllowExternalImagesFrom = '';
+
 /** Disable database-intensive features */
 $wgMiserMode = false;
 /** Disable all query pages if miser mode is on, not just some */

@@ -1183,13 +1183,17 @@ class Parser
 	}
 
 	/**
-	 * make an image if it's allowed
+	 * make an image if it's allowed, either through the global
+	 * option or through the exception
 	 * @access private
 	 */
 	function maybeMakeExternalImage( $url ) {
 		$sk =& $this->mOptions->getSkin();
+		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
+		$imagesexception = !empty($imagesfrom);
 		$text = false;
-		if ( $this->mOptions->getAllowExternalImages() ) {
+		if ( $this->mOptions->getAllowExternalImages() 
+		     || ( $imagesexception && strpos( $url, $imagesfrom ) === 0 ) ) {
 			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
 				$text = $sk->makeExternalImage( htmlspecialchars( $url ) );
@@ -3617,6 +3621,7 @@ class ParserOptions
 	var $mUseDynamicDates;           # Use DateFormatter to format dates
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
+	var $mAllowExternalImagesFrom;   # If not, any exception?
 	var $mSkin;                      # Reference to the preferred skin
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
@@ -3627,6 +3632,7 @@ class ParserOptions
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
+	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
 	function &getSkin()                         { return $this->mSkin; }
 	function getDateFormat()                    { return $this->mDateFormat; }
 	function getEditSection()                   { return $this->mEditSection; }
@@ -3638,6 +3644,7 @@ class ParserOptions
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
+	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
 	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
@@ -3663,7 +3670,7 @@ class ParserOptions
 	/** Get user options */
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
-		       $wgAllowSpecialInclusion;
+		       $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -3677,6 +3684,7 @@ class ParserOptions
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
+		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
 		wfProfileIn( $fname.'-skin' );
 		$this->mSkin =& $user->getSkin();
 		wfProfileOut( $fname.'-skin' );
