@@ -29,7 +29,7 @@ class EditPage {
 	var $minoredit = false, $watchthis = false, $recreate = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '';
 	var $edittime = '', $section = '', $starttime = '';
-	var $oldid = 0, $editintro = '';
+	var $oldid = 0, $editintro = '', $scrolltop = null;
 
 	/**
 	 * @todo document
@@ -319,7 +319,7 @@ class EditPage {
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
-			$this->scrolltop = htmlentities( $request->getVal( 'wpScrolltop' ) );
+			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
 			if( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
