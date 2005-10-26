@@ -870,6 +870,11 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Sanitizer CSS comment processing order fix
 
 
+=== Changes since 1.5.1 ===
+
+* Fix Special:BrokenRedirects on MySQL 5.0
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
