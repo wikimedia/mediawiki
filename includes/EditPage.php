@@ -318,6 +318,9 @@ class EditPage {
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
+
+			$this->scrolltop = htmlentities( $request->getVal( 'wpScrolltop' ) );
+
 			if( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
 				wfDebug( "$fname: Form data appears to be incomplete\n" );
@@ -844,7 +847,7 @@ END
 		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
-<textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
+<textarea tabindex='1' accesskey="," name="wpTextbox1" id="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew} $hidden>
 END
 . htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
@@ -870,7 +873,8 @@ END
 		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
-<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
+<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
+<input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
 
 		if ( $wgUser->isLoggedIn() ) {
 			/**
