@@ -3,6 +3,42 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.1 ==
+
+October 26, 2005
+
+MediaWiki 1.5.1 is a bugfix and security maintenance release, and is a
+recommended upgrade for all installations.
+
+This release includes further corrections to the inline CSS style sanitation
+which works around a JavaScript "feature" on Microsoft Internet Explorer.
+Users of Microsoft Internet Explorer for Windows may be vulnerable to
+XSS injections on prior versions; users of standards-compliant browsers
+are not vulnerable.
+
+Major fixes include:
+* Image pages work again with resizing disabled
+* Works in MySQL 5.0 strict mode
+
+There is experimental support in this release for explicitly declaring
+the UTF-8 charset in the database; this has been tested with MySQL 5.0.15
+but should work on 4.1 as well.
+
+IMPORTANT: Changing this setting on an existing wiki may produce interesting
+data corruption, depending on server configuration. Page contents should,
+usually, be unaffected, but page titles and other items may be. Limitations
+in MySQL's Unicode support mean that characters outside the BMP cannot be used
+in page titles or various other fields when using this mode.
+
+Table definitions are in maintenance/mysql5/tables.sql, and the runtime
+option to send 'SET NAMES utf8' is set by $wgDBmysql5 = true.
+
+(MySQL 3.23.x and 4.0.x do not support character set declarations; on these
+versions MediaWiki simply works with UTF-8 data and MySQL is blissfully
+unaware of it.)
+
+
+
 == MediaWiki 1.5.0 final ==
 
 October 5, 2005
