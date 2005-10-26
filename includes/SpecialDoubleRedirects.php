@@ -91,7 +91,8 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
 		$linkC = $skin->makeKnownLinkObj( $titleC );
 		
-		return "$linkA $edit &rarr; $linkB &rarr; $linkC";
+		return "$linkA $edit" . wfMsgHtml( 'doubleredirectsarrow' )
+			. $linkB . wfMsgHtml( 'doubleredirectsarrow' ) . $linkC;
 	}
 }
 
