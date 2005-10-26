@@ -342,7 +342,7 @@ class Profiler {
 	 * Get the function name of the current profiling section
 	 */
 	function getCurrentSection() {
-		$elt =& end($this->mWorkStack);
+		$elt = end($this->mWorkStack);
 		return $elt[0];
 	}
 
