@@ -1028,7 +1028,6 @@ class User {
 
 	/**
 	 * Check if a user is sysop
-	 * Die with backtrace. Use User:isAllowed() instead.
 	 * @deprecated
 	 */
 	function isSysop() {
