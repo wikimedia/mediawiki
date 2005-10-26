@@ -425,9 +425,10 @@ END;
 		# Taken out so that they will be displayed in previews -- TS
 		#if( !$wgOut->isArticle() ) return '';
 
-		$t = implode ( ' | ' , $wgOut->mCategoryLinks ) ;
+		$t = implode ( ' | ' , $wgOut->mCategoryLinks );
+		$msg = count( $wgOut->mCategoryLinks ) === 1 ? 'categories1' : 'categories';
 		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
-			wfMsg( 'categories' ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
+			wfMsg( $msg ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ': ' . $t;
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
