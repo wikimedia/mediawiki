@@ -81,6 +81,7 @@ if(isset($wgExtraNamespaces)) {
 	'fancysig' 		=> 0,
 	'externaleditor' 	=> 0,
 	'externaldiff' 		=> 0,
+	'showjumplinks' 		=> 1,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -143,6 +144,7 @@ if(isset($wgExtraNamespaces)) {
 	'fancysig',
 	'externaleditor',
 	'externaldiff',
+	'showjumplinks',
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -307,6 +309,7 @@ parent class in order maintain consistency across languages.
 'tog-fancysig' => 'Raw signatures (without automatic link)',
 'tog-externaleditor' => 'Use external editor by default',
 'tog-externaldiff' => 'Use external diff by default',
+'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
