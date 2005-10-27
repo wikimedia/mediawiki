@@ -38,8 +38,6 @@ print $argv[1] . "\n";
 require_once( "commandLine.inc" );
  print "DB name: $wgDBname\n";
  print "DB user: $wgDBuser\n";
-# print "DB password: $wgDBpassword\n";
-
 
 $priorities = array (
         NS_MAIN             => 0.9,
@@ -64,7 +62,7 @@ $dbr =& wfGetDB( DB_SLAVE );
 $page = $dbr->tableName( 'page' );
 $rev = $dbr->tableName( 'revision' );
 
-$findex = fopen( "sitemap_index.xml", "wb" );
+$findex = fopen( "sitemap-index-$wgDBname.xml", "wb" );
 fwrite( $findex, '<?xml version="1.0" encoding="UTF-8"?>
    <sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">
    ' );
@@ -86,7 +84,7 @@ foreach ( $priorities as $ns => $priority) {
 				gzclose( $gzfile );
 			}
 			$sitemapcount ++;
-			$fname = "sitemap-NS".$ns."-".$sitemapcount.".xml.gz";
+			$fname = "sitemap-{$wgDBname}-NS{$ns}-{$sitemapcount}.xml.gz";
 			$gzfile = gzopen( $fname, "wb" );
 			gzwrite( $gzfile, '<?xml version="1.0" encoding="UTF-8"?>
 					< urlset xmlns="http://www.google.com/schemas/sitemap/0.84">' );
