@@ -112,6 +112,7 @@ function wfSpecialNewpages($par, $specialPage) {
 	global $wgRequest, $wgContLang;
 	
 	list( $limit, $offset ) = wfCheckLimits();
+	$namespace = NS_MAIN;
 	
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -125,14 +126,18 @@ function wfSpecialNewpages($par, $specialPage) {
 				$limit = intval($m[1]);
 			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
 				$offset = intval($m[1]);
-			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) )
-				$namespace = $wgContLang->getNsIndex( $m[1] );
+			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
+				$ns = $wgContLang->getNsIndex( $m[1] );
+				if( $ns !== false ) {
+					$namespace = $ns;
+				}
+			}
 		}
 	}
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage( isset( $namespace ) ? $namespace : NS_MAIN );
+	$npp = new NewPagesPage( $namespace );
 
 	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ) ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
