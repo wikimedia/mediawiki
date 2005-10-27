@@ -916,7 +916,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
 
 	if ( $result === '' && $old !== '' && $conflict == false ) {
-		wfDebug( "Unexpected null result from diff3.\nCommand: $cmd\nOutput: " . `$cmd 2>&1` . "\n" );
+		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
 		$conflict = true;
 	}
 	return ! $conflict;
