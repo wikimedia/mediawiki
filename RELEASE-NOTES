@@ -176,6 +176,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2324) image for redirects should be without text and oriented according to content language
 * (bug 3803) Fix links on Special:Wantedcategories with miser mode off
 * Fix Special:BrokenRedirects on MySQL 5.0
+* (bug 3807) Fix 'all' in namespaces drop-down on contribs, rc
 
 
 === Caveats ===

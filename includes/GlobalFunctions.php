@@ -1323,6 +1323,15 @@ function wfCloseElement( $element ) { return "</$element>"; }
  */
 function &HTMLnamespaceselector($selected = '', $allnamespaces = null) {
 	global $wgContLang;
+	if( $selected !== '' ) {
+		if( is_null( $selected ) ) {
+			// No namespace selected; let exact match work without hitting Main
+			$selected = '';
+		} else {
+			// Let input be numeric strings without breaking the empty match.
+			$selected = intval( $selected );
+		}
+	}
 	$s = "<select name='namespace' class='namespaceselector'>\n\t";
 	$arr = $wgContLang->getFormattedNamespaces();
 	if( !is_null($allnamespaces) ) {
