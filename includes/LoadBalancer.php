@@ -226,6 +226,7 @@ class LoadBalancer {
 				} while ( count( $loads ) && !$done && $totalElapsed / 1e6 < $wgDBClusterTimeout );
 
 				if ( $totalElapsed / 1e6 >= $wgDBClusterTimeout ) {
+					$this->mErrorConnection = false;
 					$this->mLastError = 'All servers busy';
 				}
 				
@@ -454,7 +455,7 @@ class LoadBalancer {
 				$conn = new Database;
 				if ( $this->mFailFunction ) {
 					$conn->failFunction( $this->mFailFunction );
-					$conn->reportConnectionError();
+					$conn->reportConnectionError( $this->mLastError );
 				} else {
 					// If all servers were busy, mLastError will contain something sensible
 					wfEmergencyAbort( $conn, $this->mLastError );
@@ -465,7 +466,7 @@ class LoadBalancer {
 				} else {
 					$conn->failFunction( false );
 				}
-				$conn->reportConnectionError();
+				$conn->reportConnectionError( "{$this->mLastError} ({$conn->mServer})" );
 			}
 			$reporting = false;
 		}
