@@ -531,7 +531,11 @@ class Linker {
 		$textalign = $wgContLang->isRTL() ? ' style="text-align:right"' : '';
 
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
-		if ( $thumbUrl == '' ) {
+		if( $thumbUrl == '' ) {
+			// Couldn't generate thumbnail? Scale the image client-side.
+			$thumbUrl = $url;
+		}
+		if( !$img->exists() ) {
 			$s .= $this->makeBrokenImageLinkObj( $img->getTitle() );
 			$zoomicon = '';
 		} else {
