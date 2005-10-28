@@ -874,6 +874,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 
 * Fix Special:BrokenRedirects on MySQL 5.0
 * (bug 3809) Backport fix for detecting diff3 failure
+* MySQL 5.0 strict mode fix for moving unwatched pages
 
 
 === Caveats ===
