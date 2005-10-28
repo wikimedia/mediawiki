@@ -221,6 +221,8 @@ class Database {
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
+		global $wguname;
+		
 		# Test for missing mysql.so
 		# First try to load it
 		if (!@extension_loaded('mysql')) {
@@ -258,7 +260,9 @@ class Database {
 			if ( $this->mConn !== false ) {
 				$success = @/**/mysql_select_db( $dbName, $this->mConn );
 				if ( !$success ) {
-					wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
+					$error = "Error selecting database $dbname on server {$this->mServer} " .
+						"from client host {$wguname['nodename']}\n";
+					wfDebug( $error );
 				}
 			} else {
 				wfDebug( "DB connection error\n" );
@@ -308,16 +312,21 @@ class Database {
 
 	/**
 	 * @access private
-	 * @param string $msg error message ?
+	 * @param string $error fallback error message, used if none is given by MySQL
 	 */
-	function reportConnectionError() {
+	function reportConnectionError( $error = 'Unknown error' ) {
+		$myError = $this->lastError();
+		if ( $myError ) {
+			$error = $myError;
+		}
+		
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
 				$ff = $this->mFailFunction;
-				$ff( $this, $this->lastError() );
+				$ff( $this, $error );
 			}
 		} else {
-			wfEmergencyAbort( $this, $this->lastError() );
+			wfEmergencyAbort( $this, $error );
 		}
 	}
 
@@ -1764,6 +1773,12 @@ border=\"0\" ALT=\"Google\"></A>
 	if ( is_object( $wgMessageCache ) ) {
 		$wgMessageCache->disable();
 	}
+
+	if ( trim( $error ) == '' ) {
+		$error = $this->mServer;
+	}
+
+	wfLogDBError( "Connection error: $error\n" );
 	
 	$msg = wfGetSiteNotice();
 	if($msg == '') {
