@@ -183,6 +183,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * MySQL 5.0 strict mode fix for moving unwatched pages
 * (bug 3816) Throw edit conflict instead of fatal error when a page is
   moved or deleted during section edit
+* (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
+  Why do people invent these crazy options that change language semantics?
+
 
 === Caveats ===
 

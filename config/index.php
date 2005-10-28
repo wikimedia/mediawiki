@@ -227,6 +227,14 @@ if( ini_get( "magic_quotes_sybase" ) ) {
 	<?php
 }
 
+if( ini_get( "mbstring.func_overload" ) ) {
+	$fatal = true;
+	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload'>mbstring.func_overload</a> is active!</strong>
+	This option causes errors and may corrupt data unpredictably;
+	you cannot install or use MediaWiki unless this option is disabled.
+	<?php
+}
+
 if( $fatal ) {
 	dieout( "</ul><p>Cannot install Mediawiki.</p>" );
 }
