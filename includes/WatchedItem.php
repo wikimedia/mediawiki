@@ -160,6 +160,11 @@ class WatchedItem {
 			);
 		}
 		$dbw->freeResult( $res );
+		
+		if( empty( $values ) ) {
+			// Nothing to do
+			return true;
+		}
 
 		# Perform replace
 		# Note that multi-row replace is very efficient for MySQL but may be inefficient for
