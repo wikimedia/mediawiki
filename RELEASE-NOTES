@@ -188,6 +188,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3762) Define missing Special:Import UI messages
 * (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
 * (bug 3649) Remove obsolete, broken moveCustomMessages script
+* (bug 3291) 'last' diff link for last history line when not at end
+* Avoid numerous redundant latest-revision lookups in history
 
 
 === Caveats ===

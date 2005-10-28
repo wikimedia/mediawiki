@@ -28,6 +28,7 @@ class PageHistory {
 	var $lastdate;
 	var $linesonpage;
 	var $mNotificationTimestamp;
+	var $mLatestId = null;
 
 	/**
 	 * Construct a new PageHistory.
@@ -302,8 +303,17 @@ class PageHistory {
 	function lastLink( $row, $next, $counter ) {
 		global $wgUser;
 		$last = htmlspecialchars( wfMsg( 'last' ) );
-		if( is_null( $next )
-			|| ( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) ) {
+		if( is_null( $next ) ) {
+			if( $row->rev_timestamp == $this->getEarliestOffset() ) {
+				return $last;
+			} else {
+				// Cut off by paging; there are more behind us...
+				return $this->mSkin->makeKnownLinkObj(
+					$this->mTitle,
+					$last,
+					"diff={$row->rev_id}&oldid=prev" );
+			}
+		} elseif( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
 			return $last;
 		} else {
 			return $this->mSkin->makeKnownLinkObj(
@@ -384,13 +394,16 @@ class PageHistory {
 	}
 
 	/** @todo document */
-	function getLatestID( $id = null ) {
-		if ( $id === null) $id = $this->mTitle->getArticleID();
-		$db =& wfGetDB(DB_SLAVE);
-		return $db->selectField( 'revision',
-			"max(rev_id)",
-			array( 'rev_page' => $id ),
-			'PageHistory::getLatestID' );
+	function getLatestId() {
+		if( is_null( $this->mLatestId ) ) {
+			$id = $this->mTitle->getArticleID();
+			$db =& wfGetDB(DB_SLAVE);
+			$this->mLatestId = $db->selectField( 'revision',
+				"max(rev_id)",
+				array( 'rev_page' => $id ),
+				'PageHistory::getLatestID' );
+		}
+		return $this->mLatestId;
 	}
 
 	/** @todo document */
