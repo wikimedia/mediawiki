@@ -541,6 +541,11 @@ class EditPage {
 			wfDebug( "EditPage::editForm getting section '$this->section'\n" );
 			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary);
 		}
+		if( is_null( $text ) ) {
+			wfDebug( "EditPage::editForm activating conflict; section replace failed.\n" );
+			$this->isConflict = true;
+			$text = $this->textbox1;
+		}
 
 		# Suppress edit conflict with self, except for section edits where merging is required.
 		if ( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {

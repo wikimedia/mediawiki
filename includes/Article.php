@@ -1111,6 +1111,9 @@ class Article {
 		$this->replaceSection( $section, $text, $summary, $edittime );
 	}
 
+	/**
+	 * @return string Complete article text, or null if error
+	 */
 	function replaceSection($section, $text, $summary = '', $edittime = NULL) {
 		$fname = 'Article::replaceSection';
 		wfProfileIn( $fname );
@@ -1121,6 +1124,11 @@ class Article {
 			} else {
 				$dbw =& wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+			}
+			if( is_null( $rev ) ) {
+				wfDebug( "Article::replaceSection asked for bogus section (page: " .
+					$this->getId() . "; section: $section; edittime: $edittime)\n" );
+				return null;
 			}
 			$oldtext = $rev->getText();
 
