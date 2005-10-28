@@ -1662,6 +1662,8 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'importsuccess'	=> 'Import succeeded!',
 'importhistoryconflict' => 'Conflicting history revision exists (may have imported this page before)',
 'importnosources' => 'No transwiki import sources have been defined and direct history uploads are disabled.',
+'importnofile' => 'No import file was uploaded.',
+'importuploaderror' => 'Upload of import file failed; perhaps the file is bigger than the allowed upload size.',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',
