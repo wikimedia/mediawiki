@@ -187,6 +187,7 @@ fully support the editing toolbar, but was found to be too confusing.
   Why do people invent these crazy options that change language semantics?
 * (bug 3762) Define missing Special:Import UI messages
 * (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
+* (bug 3649) Remove obsolete, broken moveCustomMessages script
 
 
 === Caveats ===
