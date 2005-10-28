@@ -468,8 +468,8 @@ function wfAbruptExit( $error = false ){
 	if( function_exists( 'debug_backtrace' ) ){ // PHP >= 4.3
 		$bt = debug_backtrace();
 		for($i = 0; $i < count($bt) ; $i++){
-			$file = $bt[$i]['file'];
-			$line = $bt[$i]['line'];
+			$file = isset($bt[$i]['file']) ? $bt[$i]['file'] : "unknown";
+			$line = isset($bt[$i]['line']) ? $bt[$i]['line'] : "unknown";
 			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
 		}
 	} else {
