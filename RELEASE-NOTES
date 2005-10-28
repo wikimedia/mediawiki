@@ -178,6 +178,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix Special:BrokenRedirects on MySQL 5.0
 * (bug 3807) Fix 'all' in namespaces drop-down on contribs, rc
 * Fail gracefully on invalid namespace in Special:Newpages
+* (bug 3806) Gracefully fall back to client-side scaling on |thumb| image
+  that passes $wgMaxImageArea
 
 
 === Caveats ===
