@@ -878,6 +878,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3782) Throw fatal installation warning if mbstring.func_overload on.
   Why do people invent these crazy options that change language semantics?
 * (bug 3762) Define missing Special:Import UI messages
+* (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
 
 
 === Caveats ===
