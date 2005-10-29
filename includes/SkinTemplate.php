@@ -481,7 +481,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
 				'href' => $this->makeSpecialUrl( 'Userlogout',
-					$this->thisurl === $wgContLang->getNsText( NS_SPECIAL ) . ':' . 'Preferences' ? '' : "returnto={$this->thisurl}" 
+					$wgTitle->getNamespace() === NS_SPECIAL && $wgTitle->getText() === 'Preferences' ? '' : "returnto={$this->thisurl}" 
 				)
 			);
 		} else {
