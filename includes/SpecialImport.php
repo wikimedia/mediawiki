@@ -267,7 +267,7 @@ class WikiImporter {
 		# case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 		
-		xml_set_object( $parser, &$this );
+		xml_set_object( $parser, $this );
 		xml_set_element_handler( $parser, "in_start", "" );
 		
 		$offset = 0; // for context extraction on error reporting
@@ -522,9 +522,8 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_page", "out_page" );
 		
-		$out = call_user_func( $this->mRevisionCallback,
-			&$this->workRevision,
-			&$this );
+		$out = call_user_func_array( $this->mRevisionCallback,
+			array( &$this->workRevision, &$this ) );
 		if( !empty( $out ) ) {
 			global $wgOut;
 			$wgOut->addHTML( "<li>" . $out . "</li>\n" );
