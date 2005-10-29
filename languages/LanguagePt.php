@@ -221,7 +221,7 @@ parent class in order maintain consistency across languages.
 'tog-editsection'               => 'Habilitar edição de secção via links [editar]',
 'tog-editsectiononrightclick'   => 'Habilitar edição de secção por clique <br /> com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                   => 'Mostrar Tabela de Conteúdos (para artigos com mais de 3 cabeçalhos)',
-'tog-rememberpassword' => 'Lembrar senha entre sessões',
+'tog-rememberpassword' => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth' => 'Caixa de edição com largura completa',
 'tog-watchdefault' => 'Adicionar páginas editadas à sua lista de artigos vigiados',
 'tog-minordefault' => 'Marcar todas as edições como secundárias, por padrão',
@@ -278,6 +278,7 @@ parent class in order maintain consistency across languages.
 
 # Bits of text used by many pages:
 #
+'categories1' => 'Categoria',
 'categories' => 'Categorias',
 'category' => 'Categoria',
 'category_header' => 'Artigos na categoria "$1"',
@@ -372,6 +373,7 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 'viewtalkpage' => 'Ver discussão',
 'otherlanguages' => 'Outras línguas',
 'redirectedfrom' => '(Redireccionado de <b>$1</b> para <b>{{PAGENAME}}</b>.)',
+'redirectpagesub' => 'Página de redireccionamento',
 'lastmodified'  => 'Esta página foi modificada pela última vez a $1.',
 'viewcount'             => 'Esta página foi acedida $1 vezes.',
 'copyright'     => 'Conteúdo disponível sob $1.',
@@ -385,8 +387,8 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 executada por utilizadores com status de \"sysop\".<br />
 Veja $1.",
 'developertitle' => 'Necessário acesso de desenvolvedor',
-'developertext' => "A acção que requisitou só pode ser 
-executada por utilizadores com status de \"desenvolvedor\".<br />Veja $1.",
+'developertext' => 'A acção que requisitou só pode ser
+executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 
 'badaccess'     => 'Erro de permissão',
 'badaccesstext' => 'A acção que requesitou está limitada a utilizadores com permissão de "$2". Ver $1.',
@@ -508,7 +510,7 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'yourpassword'  => 'Palavra-chave',
 'yourpasswordagain' => 'Reintroduza a sua palavra-chave',
 'newusersonly'  => ' (somente novos utilizadores)',
-'remembermypassword' => 'Lembrar minha senha entre sessões.',
+'remembermypassword' => 'Lembrar a minha palavra-chave entre sessões.',
 'yourdomainname'       => 'Seu domínio',
 'externaldberror'      => 'Ocorreu um erro externo à base de dados durante a autenticação, ou não lhe é permitido actualizar a sua conta externa.',
 'loginproblem'  => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
@@ -521,7 +523,7 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'notloggedin'   => 'Não autentificado',
 'createaccount' => 'Criar nova conta',
 'createaccountmail'     => 'por email',
-'badretype'             => 'As senhas que introduziu não são iguais.',
+'badretype'             => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'    => 'O nome de utilizador que introduziu já existe. Por favor, escolha um nome diferente.',
 'youremail'             => 'Email *',
 'username'              => 'Utilizador: ',
@@ -531,7 +533,7 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
 'email'                 => 'Email',
-'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua senha.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
+'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
 'prefs-help-realname'   => '* Nome verdadeiro (opcional): caso decida indicar, este será utilizado para lhe dar atributo do seu trabalho.',
 'loginerror'    => 'Erro de autentificação',
@@ -617,8 +619,8 @@ Note que não poderá usar a funcionalidade \"Contactar utilizador\" se não pos
 'loginreqtitle' => 'Autentificação Requesitada',
 'loginreqlink' => 'autentificar-se',
 'loginreqtext'  => 'Precisa de $1 para visualizar outras páginas.',
-'accmailtitle' => 'Password enviada.',
-'accmailtext' => "A password para '$1' foi enviada para $2.",
+'accmailtitle' => 'Palavra-chave enviada.',
+'accmailtext' => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'    => '(Novo)',
 'newarticletext' =>
 "Seguiu um link para um artigo que ainda não existe. Para criá-lo, escreva o seu conteúdo na caixa abaixo, mas se chegou aqui por engano clique no botão '''volta''' (ou ''back'') do seu navegador. Por favor, '''NÃO''' crie páginas apenas para fazer [[Project:Artigos pedidos|pedidos]] ou [[Project:Página de testes|testes]].
@@ -758,8 +760,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefsreset'    => 'Preferências restauradas da base de dados.',
 'qbsettings'    => 'Barra Rápida',
 'changepassword' => 'Alterar palavra-chave',
-'skin'                  => 'Tema (aparência)',
-'math'                  => 'Renderização matemática',
+'skin'                  => 'Tema',
+'math'                  => 'Matemática',
 'dateformat'            => 'Formato da data',
 'datetime'              => 'Data e hora',
 'math_failure'          => 'Falhou ao verificar gramática',
@@ -915,6 +917,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'copyrightpage' => "Project:Direitos_de_autor",
 'copyrightpagename' => "Direitos autorais da {{SITENAME}}",
 'uploadedfiles' => 'Ficheiros carregados',
+'ignorewarnings'        => 'Ignorar todos os avisos',
 'minlength'             => 'O nome de um ficheiro tem de ter no mínimo três letras.',
 'illegalfilename'       => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'   => 'Nome do ficheiro foi alterado para "$1".',
@@ -1000,6 +1003,7 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 'disambiguationstext'   => "As seguintes páginas ligam com uma <i>página de desambiguação</i>. Estas páginas deviam ligar com o tópico apropriado.<br />Qualquer página ligada com $1 é considerada página de desambiguação.<br />As ligações de outros domínios não são listadas aqui.",
 'doubleredirects'       => 'Redireccionamentos duplos',
 'doubleredirectstext'   => "Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino \"real\", que devia ser o destino do primeiro redireccionamento.",
+'doubleredirectsarrow'	=> '→',
 'brokenredirects'       => 'Redireccionamentos quebrados',
 'brokenredirectstext'   => 'Os seguintes redireccionamentos ligam para páginas inexistentes.',
 'selflinks'             => 'Páginas que ligam consigo próprias',
@@ -1014,7 +1018,6 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 # Miscellaneous special pages
 #
 'orphans'               => 'Páginas órfãs',
-'geo'           => 'Coordenadas geográficas',
 'validate'              => 'Validar página',
 'lonelypages'   => 'Páginas órfãs',
 'uncategorizedpages'    => 'Páginas não categorizadas',
@@ -1023,9 +1026,10 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 'unusedimages'  => 'Ficheiros não utilizados',
 'popularpages'  => 'Páginas populares',
 'nviews'                => '$1 visitas',
+'wantedcategories' => 'Categorias pedidas',
 'wantedpages'   => 'Páginas pedidas',
 'mostlinked'    => 'Páginas com mais afluentes',
-'mostcategories' => 'Categorias com mais afluentes',
+'mostcategories' => 'Artigos com mais categorias',
 'mostimages'    => 'Imagens com mais afluentes',
 'mostrevisions' => 'Artigos com mais revisões',
 'nlinks'                => '$1 links',
@@ -1454,7 +1458,7 @@ O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mo
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo, um título por linha, e seleccione se deseja apenas a versão actual ou todas versões.
 
-Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comboio]] para o artigo [[Comboio]].
+Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para o artigo [[{{Mediawiki:mainpage}}]].
 ',
 'exportcuronly' => 'Incluir apenas a revisão actual, não o histórico inteiro',
 
@@ -1465,7 +1469,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 'allmessagesdefault' => 'Texto padrão',
 'allmessagescurrent' => 'Texto actual',
 'allmessagestext'       => 'Esta é uma lista de todas mensagens de sistema disponíveis no domínio MediaWiki:.',
-'allmessagesnotsupportedUI' => 'O seu actual interface de língua <b>$1</b> não não possui suporte do {{ns:special}}:AllMessages deste sítio. ',
+'allmessagesnotsupportedUI' => 'O seu actual idioma de interface <b>$1</b> não é suportado pelo {{ns:special}}:AllMessages deste sítio. ',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages não encontra-se operacional devido ao wgUseDatabaseMessages encontrar-se desligado.',
 
 # Thumbnails
@@ -1483,6 +1487,8 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/Comb
 'importsuccess' => 'Importação bem sucedida!',
 'importhistoryconflict' => 'Existem conflitos de revisões no histórico (poderá já ter importado esta página antes)',
 'importnosources' => 'Não foram definidas fontes de importação transwiki e o carregamento directo de históricos encontra-se desactivado.',
+'importnofile' => 'Nenhum ficheiro de importação foi carregado.',
+'importuploaderror' => 'O carregamento do ficheiro de importação falhou; talvez o ficheiro seja maior do que o tamanho de carregamento permitido.',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',
@@ -1640,7 +1646,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'specialloguserlabel' => 'Utilizador: ',
 'speciallogtitlelabel' => 'Título: ',
 
-'passwordtooshort' => 'A sua senha é demasiado curta. Deve ter no mínimo $1 caracteres.',
+'passwordtooshort' => 'A sua palavra-chave é demasiado curta. Deve ter no mínimo $1 caracteres.',
 
 # Media Warning
 'mediawarning' => '\'\'\'Aviso\'\'\': Este ficheiro pode conter código malicioso, ao executar o seu sistema poderá estar comprometido.
