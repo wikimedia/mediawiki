@@ -454,6 +454,7 @@ class Validation {
 		$ret = "";
 		$this->page_id = $article->getID();
 		$this->topicList = $this->getTopicList();
+		if ( $this->getNoTopicsWarning() ) return "" ;
 		$this->voteCache = $this->getVoteList( $article->getID() );
 		
 		# Check for POST data
@@ -500,16 +501,21 @@ class Validation {
 	
 	# This function performs the "management" mode on Special:Validate
 	function manageTopics() {
-		global $wgRequest;
+		global $wgRequest, $wgValidationMaxTopics;
 		$this->topicList = $this->getTopicList();
 		
-		$iamsure = true ; # Sure by default # $wgRequest->getVal( "iamsure", "0" ) == 1;
+		$r = "" ; # Return value
+		$iamsure = true ; # Sure by default, see checkbox below # $wgRequest->getVal( "iamsure", "0" ) == 1;
 		
 		if( $iamsure && $wgRequest->getVal( "m_add", "--" ) != "--" ) {
-			$new_topic = $wgRequest->getVal( "m_topic" );
-			$new_limit = $wgRequest->getVal( "m_limit" );
-			if( $new_topic != "" && $new_limit > 1 ) {
-				$this->addTopic( $new_topic, $new_limit );
+			if ( count ( $this->topicList ) >= $wgValidationMaxTopics ) { # Catching this in case someone tries a manually edited URL...
+				$ret .= "<p><b>" . wfMsg ( 'val_max_topics' , $wgValidationMaxTopics ) . "</b></p>" ;
+			} else {
+				$new_topic = $wgRequest->getVal( "m_topic" );
+				$new_limit = $wgRequest->getVal( "m_limit" );
+				if( $new_topic != "" && $new_limit > 1 ) {
+					$this->addTopic( $new_topic, $new_limit );
+				}
 			}
 		}
 
@@ -521,7 +527,7 @@ class Validation {
 		}
 		
 		# FIXME: Wikitext this
-		$r = "<p>" . $this->getParsedWiki( wfMsg( 'val_warning' ) ) . "</p>\n";
+		$r .= "<p>" . $this->getParsedWiki( wfMsg( 'val_warning' ) ) . "</p>\n";
 		$r .= "<form method='post'>\n";
 		$r .= "<table>\n";
 		$r .= "<tr>" . wfMsg( 'val_list_header' ) . "</tr>\n";
@@ -533,14 +539,29 @@ class Validation {
 			$r .= "<td><input type='submit' name='m_del[" . intval( $x ) . "]' value='" . htmlspecialchars( wfMsg( 'val_del' ) ) . "'/></td>\n";
 			$r .= "</tr>\n";
 		}
-		$r .= "<tr>\n";
-		$r .= "<td></td>\n";
-		$r .= '<td><input type="text" name="m_topic" value=""/></td>' . "\n";
-		$r .= '<td>1 .. <input type="text" name="m_limit" value="" size="4"/></td>' . "\n";
-		$r .= '<td><input type="submit" name="m_add" value="' . htmlspecialchars( wfMsg( 'val_add' ) ) . '"/></td>' . "\n";
-		$r .= "</tr></table>\n";
+		
+		# Add topic, or too-many-topics warning
+		if ( count ( $this->topicList ) >= $wgValidationMaxTopics ) {
+			$r .= "<tr><td colspan='4' align='center'>" ;
+			$r .= wfMsg ( 'val_max_topics' , $wgValidationMaxTopics ) ;
+			$r .= "</td></tr>" ;
+		} else {
+			$r .= "<tr>\n";
+			$r .= "<td></td>\n";
+			$r .= '<td><input type="text" name="m_topic" value=""/></td>' . "\n";
+			$r .= '<td>1 .. <input type="text" name="m_limit" value="" size="4"/></td>' . "\n";
+			$r .= '<td>' ;
+			$r .= '<input type="submit" name="m_add" value="' . htmlspecialchars( wfMsg( 'val_add' ) ) . '"/>' ;
+			$r .= '</td>' . "\n";
+			$r .= "</tr>" ;
+			}
+		
+		$r .= "</table>\n";
+
+#		This is fot the checkbox "I am sure" for actions, which was found to be unituitive		
 #		$r .= '<p><input type="checkbox" name="iamsure" id="iamsure" value="1"/>';
 #		$r .= '<label for="iamsure">' . $this->getParsedWiki( wfMsg( 'val_iamsure' ) ) . "</label></p>\n";
+
 		$r .= "</form>\n";
 		return $r;
 	}
@@ -554,6 +575,7 @@ class Validation {
 		global $wgOut, $wgUser;
 		$this->page_id = $article->getID();
 		$this->topicList = $this->getTopicList();
+		if ( $this->getNoTopicsWarning() ) return "" ;
 
 		$sk = $wgUser->getSkin();
 		$title = $article->getTitle();
@@ -626,6 +648,7 @@ class Validation {
 		global $wgOut, $wgUser , $wgRequest;
 		$this->page_id = $article->getID();
 		$this->topicList = $this->getTopicList();
+		if ( $this->getNoTopicsWarning() ) return "" ;
 
 		$title = $article->getTitle();
 		$wgOut->setPageTitle( wfMsg( 'val_validation_of', $title->getPrefixedText() ) );
@@ -740,6 +763,7 @@ class Validation {
 	function showUserStats( $user ) {		
 		global $wgOut, $wgUser, $wgRequest;
 		$this->topicList = $this->getTopicList();
+		if ( $this->getNoTopicsWarning() ) return "" ;
 		$sk = $wgUser->getSkin();
 		
 		$offset = $wgRequest->getVal( "offset" , 0 );
@@ -806,6 +830,15 @@ class Validation {
 		if ( $s != "" ) $ret = $s . "<br/>" . $ret . "<br/>" . $s ;
 		
 		return $ret;
+	}
+	
+	function getNoTopicsWarning () {
+		global $wgOut ;
+		if ( !isset ( $this->topicList ) ) # Just making sure, shouldn't be necessary...
+			$this->topicList = $this->getTopicList();
+		if ( count ( $this->topicList ) > 0 ) return false ; # Topics set, all right
+		$wgOut->errorpage( "val_no_topics_defined", "val_no_topics_defined_text" );
+		return true ;
 	}
 
 }

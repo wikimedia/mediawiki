@@ -599,6 +599,7 @@ $wgDisableLangConversion = false;
 
 # Use article validation feature; turned off by default
 $wgUseValidation = false;
+$wgValidationMaxTopics = 25; # Maximum number of topics
 $wgValidationForAnons = true ;
 
 # Whether to use zhdaemon to perform Chinese text processing

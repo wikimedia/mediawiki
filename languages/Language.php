@@ -1560,6 +1560,9 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_validated' => 'Validation done.',
 'val_article_lists' => 'List of validated articles',
 'val_page_validation_statistics' => 'Page validation statistics for $1',
+'val_max_topics' => 'Maximum number of $1 topics reached',
+'val_no_topics_defined' => 'No topics defined',
+'val_no_topics_defined_text' => 'You have no topics defined which can be rated. Go to [[Special:Validate]], and have an administrator run the "Manage" function to add at least one topic and point range.',
 
 # Move page
 #
