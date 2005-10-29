@@ -438,7 +438,9 @@ class LoadBalancer {
 		}
 
 		# Create object
-		return new $class( $host, $user, $password, $dbname, 1, $flags );
+		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
+		$db->setLBInfo( $server );
+		return $db;
 	}
 
 	function reportConnectionError( &$conn )

@@ -54,6 +54,14 @@ class ExternalStoreDB {
 		$lb =& $this->getLoadBalancer( $cluster );
 		return $lb->getConnection( DB_MASTER );
 	}		
+
+	function getTable( &$db ) {
+		$table = $db->getLBInfo( 'blobs table' );
+		if ( is_null( $table ) ) {
+			$table = 'blobs';
+		}
+		return $table;
+	}
 	
 	function fetchFromURL($url) {
 		global $wgExternalServers;
@@ -95,7 +103,7 @@ class ExternalStoreDB {
 		wfDebug( "ExternalStoreDB::fetchBlob cache miss on $cacheID\n" );
 		
 		$dbr =& $this->getSlave( $cluster );
-		$ret = $dbr->selectField( 'blobs', 'blob_text', array( 'blob_id' => $id ) );
+		$ret = $dbr->selectField( $this->getTable( $dbr ), 'blob_text', array( 'blob_id' => $id ) );
 		if( $itemID !== false ) {
 			// Unserialise object; caller extracts item
 			$ret = unserialize( $ret );
@@ -119,7 +127,7 @@ class ExternalStoreDB {
 		$dbw =& $this->getMaster( $cluster );
 
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
-		$dbw->insert( 'blobs', array( 'blob_id' => $id, 'blob_text' => $data ), $fname );
+		$dbw->insert( $this->getTable( $dbw ), array( 'blob_id' => $id, 'blob_text' => $data ), $fname );
 		return "DB://$cluster/" . $dbw->insertId();
 	}
 }

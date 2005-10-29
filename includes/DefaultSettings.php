@@ -446,6 +446,12 @@ $wgSharedDB = null;
 #                   DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
 #                   DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
 #
+#   max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
+#   max threads: (optional) Maximum number of running threads
+#
+#   These and any other user-defined properties will be assigned to the mLBInfo member 
+#   variable of the Database object.
+#
 # Leave at false to use the single-server variables above
 $wgDBservers		= false;
 
