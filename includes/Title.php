@@ -1659,6 +1659,7 @@ class Title {
 			$u->doUpdate();
 		}
 
+		global $wgUser;
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
 	}

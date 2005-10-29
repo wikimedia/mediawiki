@@ -880,6 +880,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3762) Define missing Special:Import UI messages
 * (bug 3771) Handle internal functions in backtrace in wfAbruptExit()
 * (bug 3649) Remove obsolete, broken moveCustomMessages script
+* (bug 3667) Add missing global in page move code
 
 
 === Caveats ===
