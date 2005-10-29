@@ -62,6 +62,7 @@ class Database {
 	var $mFlags;
 	var $mTrxLevel = 0;
 	var $mErrorCount = 0;
+	var $mLBInfo = array();
 	/**#@-*/
 
 #------------------------------------------------------------------------------
@@ -128,6 +129,29 @@ class Database {
 	 */
 	function errorCount( $count = NULL ) {
 		return wfSetVar( $this->mErrorCount, $count );
+	}
+
+	/**
+	 * Properties passed down from the server info array of the load balancer
+	 */
+	function getLBInfo( $name = NULL ) {
+		if ( is_null( $name ) ) {
+			return $this->mLBInfo;
+		} else {
+			if ( array_key_exists( $name, $this->mLBInfo ) ) {
+				return $this->mLBInfo[$name];
+			} else {
+				return NULL;
+			}
+		}
+	}
+
+	function setLBInfo( $name, $value = NULL ) {
+		if ( is_null( $value ) ) {
+			$this->mLBInfo = $name;
+		} else {
+			$this->mLBInfo[$name] = $value;
+		}
 	}
 
 	/**#@+
