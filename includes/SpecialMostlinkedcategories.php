@@ -49,7 +49,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 
 		$batch = new LinkBatch;
 		while ( $row = $db->fetchObject( $res ) )
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->title ) );
+			$batch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
 		$batch->execute( $wgLinkCache );
 
 		// Back to start for display
