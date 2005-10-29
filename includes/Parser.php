@@ -3096,7 +3096,10 @@ class Parser
 		if( $user->getOption( 'fancysig' ) ) {
 			$sigText = $k;
 		} else {
-			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
+			$ns_user = $wgContLang->getFormattedNsText( NS_USER );
+			$ns_talk = $wgContLang->getFormattedNsText( NS_TALK );
+			$ns_user_talk = $wgContLang->getFormattedNsText( NS_USER_TALK );
+			$sigText = "[[$ns_user:$n|$k]] ([[$ns_user_talk:$n|$ns_talk]])";
 		}
 		$text = preg_replace( '/~~~~~/', $d, $text );
 		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
