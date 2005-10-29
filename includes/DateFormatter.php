@@ -41,18 +41,11 @@ class DateFormatter
 		
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {
-			$this->xMonths[strtolower( $wgContLang->getMonthName( $i ) )] = $i;
+			$this->xMonths[$wgContLang->lc( $wgContLang->getMonthName( $i ) )] = $i;
+			$this->xMonths[$wgContLang->lc( $wgContLang->getMonthAbbreviation( $i ) )] = $i;
 		}
-		for ( $i=1; $i<=12; $i++ ) {
-			$this->xMonths[strtolower( $wgContLang->getMonthAbbreviation( $i ) )] = $i;
-		}
-		
-		# Attempt at UTF-8 support, untested at the moment
-		if ( $wgInputEncoding == 'UTF-8' ) {
-			$this->regexTrail = '(?![a-z])/iu';
-		} else {
-			$this->regexTrail = '(?![a-z])/i';
-		}
+
+		$this->regexTrail = '(?![a-z])/iu';
 
 		# Partial regular expressions
 		$this->prxDM = '\[\[(\d{1,2})[ _](' . $this->monthNames . ')]]';
@@ -247,7 +240,9 @@ class DateFormatter
 	 * @return string ISO month name
 	 */
 	function makeIsoMonth( $monthName ) {
-		$n = $this->xMonths[strtolower( $monthName )];
+		global $wgContLang;
+
+		$n = $this->xMonths[$wgContLang->lc( $monthName )];
 		return sprintf( '%02d', $n );
 	}
 
