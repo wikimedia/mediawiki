@@ -192,6 +192,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Avoid numerous redundant latest-revision lookups in history
 * Ability to set the table name for external storage servers
 * (bug 3667) Add missing global in page move code
+* (bug 3761) Avoid deprecation warnings in Special:Import
 
 
 === Caveats ===
