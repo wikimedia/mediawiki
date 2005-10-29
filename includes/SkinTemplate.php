@@ -438,7 +438,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildPersonalUrls() {
-		global $wgTitle, $wgShowIPinHeader;
+		global $wgTitle, $wgShowIPinHeader, $wgContLang;
 
 		$fname = 'SkinTemplate::buildPersonalUrls';
 		$pageurl = $wgTitle->getLocalURL();
@@ -480,7 +480,9 @@ class SkinTemplate extends Skin {
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg('userlogout'),
-				'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl )
+				'href' => $this->makeSpecialUrl( 'Userlogout',
+					$this->thisurl === $wgContLang->getNsText( NS_SPECIAL ) . ':' . 'Preferences' ? '' : "returnto={$this->thisurl}" 
+				)
 			);
 		} else {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
