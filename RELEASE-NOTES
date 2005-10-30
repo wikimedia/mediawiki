@@ -882,6 +882,8 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3649) Remove obsolete, broken moveCustomMessages script
 * (bug 3667) Add missing global in page move code
 * (bug 3761) Avoid deprecation warnings in Special:Import
+* (bug 2885) Remove unnecessary reference parameter which broke classic skin
+  talk notification on PHP 5.0.5
 
 
 === Caveats ===
