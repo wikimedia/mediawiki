@@ -148,9 +148,19 @@ $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
 
 
 /**
- * The external URL protocols (regexp)
+ * The external URL protocols
  */
-$wgUrlProtocols = 'http:\/\/|https:\/\/|ftp:\/\/|irc:\/\/|gopher:\/\/|news:|mailto:';
+$wgUrlProtocols = array(
+	'http://',
+	'https://',
+	'ftp://',
+	'irc://',
+	'gopher://',
+	'nntp://', // @bug 3808 RFC 1738
+	'worldwind://',
+	'mailto:',
+	'news:'
+);
 
 /** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.
  * Set this to NULL to disable virus scanning. If not null, every file uploaded will be scanned for viruses.
