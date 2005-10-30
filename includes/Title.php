@@ -1993,7 +1993,7 @@ class Title {
 	 * @param Title $title
 	 * @return bool
 	 */
-	function equals( &$title ) {
+	function equals( $title ) {
 		return $this->getInterwiki() == $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
 			&& $this->getDbkey() == $title->getDbkey();
