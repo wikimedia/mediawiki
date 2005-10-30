@@ -14,7 +14,9 @@ if (clientPC.indexOf('opera')!=-1) {
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 
 var doneOnloadHook;
-var onloadFuncts = [];
+
+if ( !window.onloadFuncts )
+  var onloadFuncts = [];
 
 function addOnloadHook( hookFunct )
 {
