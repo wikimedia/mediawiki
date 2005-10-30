@@ -1272,8 +1272,7 @@ END;
 	# If url string starts with http, consider as external URL, else
 	# internal
 	/*static*/ function makeInternalOrExternalUrl( $name ) {
-		global $wgUrlProtocols;
-		if ( preg_match( '/^(?:' . $wgUrlProtocols . ')/', $name ) ) {
+		if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
 			return $this->makeUrl( $name );

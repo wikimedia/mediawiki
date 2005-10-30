@@ -1498,4 +1498,20 @@ function wfEmptyMsg( $msg, $wfMsgOut ) {
 function in_string( $needle, $str ) {
 	return strpos( $str, $needle ) !== false;
 }
+
+/**
+ * Returns a regular expression of url protocols
+ *
+ * @return string
+ */
+function wfUrlProtocols() {
+	global $wgUrlProtocols;
+
+	$x = array();
+	foreach ($wgUrlProtocols as $protocol)
+		$x[] = preg_quote( $protocol, '/' );
+	
+	return implode( '|', $x );
+}
+
 ?>
