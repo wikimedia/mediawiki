@@ -525,7 +525,6 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	function fixTagAttributes( $text, $element ) {
-		global $wgUrlProtocols;
 		if( trim( $text ) == '' ) {
 			return '';
 		}
@@ -585,7 +584,7 @@ class Sanitizer {
 			
 			# Stupid hack
 			$value = preg_replace_callback(
-				'/(' . $wgUrlProtocols . ')/',
+				'/(' . wfUrlProtocols() . ')/',
 				array( 'Sanitizer', 'armorLinksCallback' ),
 				$value );
 			
