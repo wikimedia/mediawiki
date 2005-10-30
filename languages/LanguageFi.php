@@ -97,6 +97,7 @@ require_once( 'LanguageUtf8.php' );
 'tog-fancysig'        => 'Muotoilematon allekirjoitus ilman automaattista linkkiä',
 'tog-externaleditor'  => 'Käytä ulkoista tekstieditoria oletuksena',
 'tog-externaldiff'    => 'Käytä ulkoista diff-ohjelmaa oletuksena',
+'tog-showjumplinks'   => 'Lisää loikkaa-käytettävyyslinkit sivun alkuun',
 
 'underline-always'    => 'Aina',
 'underline-never'     => 'Ei koskaan',
@@ -225,6 +226,7 @@ require_once( 'LanguageUtf8.php' );
 'viewtalkpage'        => 'Näytä keskustelusivu',
 'otherlanguages'      => 'Muut kielet',
 'redirectedfrom'      => 'Uudelleenohjattu sivulta $1',
+'redirectpagesub'     => 'Uudelleenohjaussivu',
 'lastmodified'        => 'Sivua on viimeksi muutettu  $1.',
 'viewcount'           => 'Tämä sivu on näytetty $1 kertaa.',
 'copyright'           => 'Sisältö on käytettävissä lisenssillä $1.',
@@ -768,6 +770,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'disambiguationstext' => 'Seuraavat artikkelit linkittävät <i>tarkennussivuun</i>. Sen sijasta niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan tarkennussivuna jos siihen on linkki sivulta $1.<br />Linkkejä muihin nimiavaruuksiin <i>ei</i> ole listattu tässä.',
 'doubleredirects'     => 'Kaksinkertaiset uudelleenohjaukset',
 'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECTin jälkeen on tekstiä.<br />\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä \'oikeaan\' kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.',
+'doubleredirectsarrow'=> '→',
 'brokenredirects'     => 'Virheelliset uudelleenohjaukset',
 'brokenredirectstext' => 'Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.',
 'selflinks'           => 'Sivut, jotka linkittävät itseensä',
@@ -1177,6 +1180,9 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun 
 'importsuccess'       => 'Tuonti onnistui!',
 'importhistoryconflict' => 'Sivusta on olemassa tuonnin kanssa ristiriitainen muokkausversio. Tämä sivu on saatettu tuoda jo aikaisemmin.',
 'importnosources'     => 'Wikienvälisiä tuontilähteitä ei ole määritelty ja suorat historiatallennukset on poistettu käytöstä.',
+'importnofile'        => 'Mitään tuotavaa tiedostoa ei lähetetty.',
+'importuploaderror'   => 'Tiedoston lähettäminen epäonnistui. Tiedosto saattaa olla liian suuri.',
+
 
 # Keyboard access keys for power users
 'accesskey-search'    => 'f',
