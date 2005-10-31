@@ -30,7 +30,7 @@
  * @subpackage SpecialPage
  */
 
-require_once './commandLine.inc';
+require_once 'commandLine.inc';
 
 $dbr =& wfGetDB( DB_SLAVE );
 $result = $dbr->select( array( 'pagelinks', 'page' ),
