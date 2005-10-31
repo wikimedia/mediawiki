@@ -471,11 +471,10 @@ class Parser
 		}
 		
 		# Must expand in reverse order, otherwise nested tags will be corrupted
-		$contentDict = end( $state );
-		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
-			if( key($state) != 'nowiki' && key($state) != 'html') {
-				for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
-					$text = str_replace( key( $contentDict ), $content, $text );
+		foreach( array_reverse( $state, true ) as $tag => $contentDict ) {
+			if( $tag != 'nowiki' && $tag != 'html' ) {
+				foreach( array_reverse( $contentDict, true ) as $uniq => $content ) {
+					$text = str_replace( $uniq, $content, $text );
 				}
 			}
 		}
