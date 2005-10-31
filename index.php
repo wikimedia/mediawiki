@@ -9,6 +9,10 @@ $wgRequestTime = microtime();
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
 
+if ( isset( $_REQUEST['GLOBALS'] ) ) {
+	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+}
+
 # Valid web server entry point, enable includes.
 # Please don't move this line to includes/Defines.php. This line essentially defines
 # a valid entry point. If you put it in includes/Defines.php, then any script that includes

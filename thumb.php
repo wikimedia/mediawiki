@@ -7,6 +7,10 @@
 
 define( 'MEDIAWIKI', true );
 unset( $IP );
+if ( isset( $_REQUEST['GLOBALS'] ) ) {
+	die( '<a href="http://www.hardened-php.net/index.76.html">$GLOBALS overwrite vulnerability</a>');
+}
+
 $wgNoOutputBuffer = true;
 
 require_once( './includes/Defines.php' );
