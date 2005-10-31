@@ -23,6 +23,7 @@ class EditPage {
 	var $formtype;
 	var $firsttime;
 	var $lastDelete;
+	var $mTokenOk = true;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -327,19 +328,22 @@ class EditPage {
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
 				$this->preview  = true;
 			} else {
-				if( $this->tokenOk( $request ) ) {
-					# Some browsers will not report any submit button
-					# if the user hits enter in the comment box.
-					# The unmarked state will be assumed to be a save,
-					# if the form seems otherwise complete.
-					wfDebug( "$fname: Passed token check.\n" );
-					$this->preview = $request->getCheck( 'wpPreview' );
-					$this->diff = $request->getCheck( 'wpDiff' );
-				} else {
-					# Page might be a hack attempt posted from
-					# an external site. Preview instead of saving.
-					wfDebug( "$fname: Failed token check; forcing preview\n" );
-					$this->preview = true;
+				$this->preview = $request->getCheck( 'wpPreview' );
+				$this->diff = $request->getCheck( 'wpDiff' );
+				
+				if( !$this->preview ) {
+					if ( $this->tokenOk( $request ) ) {
+						# Some browsers will not report any submit button
+						# if the user hits enter in the comment box.
+						# The unmarked state will be assumed to be a save,
+						# if the form seems otherwise complete.
+						wfDebug( "$fname: Passed token check.\n" );
+					} else {
+						# Page might be a hack attempt posted from
+						# an external site. Preview instead of saving.
+						wfDebug( "$fname: Failed token check; forcing preview\n" );
+						$this->preview = true;
+					}
 				}
 			}
 			$this->save    = ! ( $this->preview OR $this->diff );
@@ -395,10 +399,11 @@ class EditPage {
 		if( $wgUser->isAnon() ) {
 			# Anonymous users may not have a session
 			# open. Don't tokenize.
-			return true;
+			$this->mTokenOk = true;
 		} else {
-			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+			$this->mTokenOk = $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		}
+		return $this->mTokenOk;
 	}
 
 	function showIntro() {
@@ -1006,8 +1011,13 @@ END
 		$fname = 'EditPage::getPreviewText';
 		wfProfileIn( $fname );
 
+		if ( $this->mTokenOk ) {
+			$msg = 'previewnote';
+		} else {
+			$msg = 'session_fail_preview';
+		}
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
-			"<div class='previewnote'>" . $wgOut->parse( wfMsg( 'previewnote' ) ) . "</div>\n";
+			"<div class='previewnote'>" . $wgOut->parse( wfMsg( $msg ) ) . "</div>\n";
 		if ( $this->isConflict ) {
 			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
 		}

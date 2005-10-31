@@ -730,6 +730,8 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'updated'		=> '(Updated)',
 'note'			=> '<strong>Note:</strong> ',
 'previewnote'	=> '<strong>This is only a preview; changes have not yet been saved!</strong>',
+'session_fail_preview' => '<strong>Sorry! We could not process your edit due to a loss of session data. 
+Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
 'editing'		=> "Editing $1",
