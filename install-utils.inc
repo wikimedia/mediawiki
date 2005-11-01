@@ -57,10 +57,16 @@ function copydirectory( $source, $dest ) {
 }
 
 function readconsole( $prompt = '' ) {
-	if ( function_exists( 'posix_isatty' ) && posix_isatty( STDIN ) ) {
-		$isatty = true;
-	} else {
-		$isatty = false;
+	static $isatty = null, $fp = null;
+	if ( is_null( $fp ) ) {
+		$fp = fopen( 'php://stdin', 'r' );
+	}
+	if ( is_null( $isatty ) ) {
+		if ( !function_exists( 'posix_isatty' ) || posix_isatty( $fp ) ) {
+			$isatty = true;
+		} else {
+			$isatty = false;
+		}
 	}
 
 	if ( $isatty && function_exists( 'readline' ) ) {
@@ -69,11 +75,12 @@ function readconsole( $prompt = '' ) {
 		if ( $isatty ) {
 			print $prompt;
 		}
-		$fp = fopen( 'php://stdin', 'r' );
+		if ( feof( $fp ) ) {
+			return false;
+		}
 		$st = fgets($fp, 1024);
 		if ($st === false) return false;
 		$resp = trim( $st );
-		fclose( $fp );
 		return $resp;
 	}
 }
