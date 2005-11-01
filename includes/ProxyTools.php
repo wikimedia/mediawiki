@@ -58,7 +58,7 @@ function wfGetIP() {
 /** */
 function wfIP2Unsigned( $ip ) {
 	$n = ip2long( $ip );
-	if ( $n == -1 ) {
+	if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
 		$n = false;
 	} elseif ( $n < 0 ) {
 		$n += pow( 2, 32 );
