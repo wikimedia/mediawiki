@@ -749,6 +749,7 @@ class Article {
 				$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
 				$wgOut->setRobotpolicy( 'noindex,follow' );
 			}
+			$wasRedirected = false;
 			if ( '' != $this->mRedirectedFrom ) {
 				if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
 					$sk = $wgUser->getSkin();
@@ -757,6 +758,7 @@ class Article {
 					$wgOut->setSubtitle( $s );
 					# Can't cache redirects
 					$pcache = false;
+					$wasRedirected = true;
 				}
 			} elseif ( !empty( $rdfrom ) ) {
 				global $wgRedirectSources;
@@ -765,6 +767,7 @@ class Article {
 					$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
 					$s = wfMsg( 'redirectedfrom', $redir );
 					$wgOut->setSubtitle( $s );
+					$wasRedirected = true;
 				}
 			}
 
@@ -780,7 +783,9 @@ class Article {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
-				$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+				if( !$wasRedirected ) {
+					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+				}
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );

@@ -196,6 +196,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2885) Remove unnecessary reference parameter which broke classic skin
   talk notification on PHP 5.0.5
 * Fix Parser::unstrip on PHP 5.1.0RC4
+* (bug 3852) "Redirected from" link no longer obscured on double-redirects
 
 
 === Caveats ===
