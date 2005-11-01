@@ -1,4 +1,5 @@
 <?php
+require_once 'counter.php';
 /**
  * Run all updaters.
  *
@@ -24,11 +25,11 @@ print "Depending on the size of your database this may take a while!\n";
 if( !isset( $options['quick'] ) ) {
 	print "Abort with control-c in the next five seconds... ";
 
-	for ($i = 5; $i >= 0; --$i) {
-		echo $i;
+	for ($i = 6; $i >= 1;) {
+		print_c($i, --$i);
 		sleep(1);
-		echo( ($i == 0) ? "\n" : chr(8) );
 	}
+	die();
 }
 
 do_all_updates();
