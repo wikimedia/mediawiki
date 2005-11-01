@@ -17,7 +17,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 	$start = intval( $start );
 	
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
-	$wgUser->setOption("math", 3);
+	$wgUser->setOption('math', MW_MATH_SOURCE);
 
 	# Don't generate extension images (e.g. Timeline)
 	$wgParser->mTagHooks = array();
@@ -27,8 +27,13 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 
 	if ( $newOnly ) {
 		print "Refreshing links from ";
-		$res = $dbr->select( 'page', array( 'page_id' ), 
-		  array( 'page_is_new' => 1, "page_id > $start" ), $fname );
+		$res = $dbr->select( 'page',
+			array( 'page_id' ), 
+			array(
+				'page_is_new' => 1,
+				"page_id > $start" ),
+			$fname
+		);
 		$num = $dbr->numRows( $res );
 		print "$num new articles...\n";
 		
