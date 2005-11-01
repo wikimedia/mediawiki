@@ -28,6 +28,11 @@ function wfGetHTTP( $url, $timeout = 'default' ) {
 		curl_exec( $c );
 		$text = ob_get_contents();
 		ob_end_clean();
+
+		# Don't return the text of error messages, return false on error
+		if ( curl_getinfo( $c, CURLINFO_HTTP_CODE ) != 200 ) {
+			$text = false;
+		}
 		curl_close( $c );
 	} else {
 		# Otherwise use file_get_contents, or its compatibility function from GlobalFunctions.php
@@ -43,7 +48,11 @@ function wfGetHTTP( $url, $timeout = 'default' ) {
  * Check if the URL can be served by localhost
  */
 function wfIsLocalURL( $url ) {
-	global $wgConf;
+	global $wgCommandLineMode, $wgConf;
+	if ( $wgCommandLineMode ) {
+		return false;
+	}
+
 	// Extract host part
 	if ( preg_match( '!^http://([\w.-]+)[/:].*$!', $url, $matches ) ) {
 		$host = $matches[1];
