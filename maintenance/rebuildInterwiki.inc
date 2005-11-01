@@ -96,7 +96,7 @@ function getRebuildInterwikiSQL() {
 	}
 
 	# Extract the intermap from meta
-	$intermap = wfGetHTTP( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw' );
+	$intermap = wfGetHTTP( 'http://meta.wikimedia.org/w/index.php?title=Interwiki_map&action=raw', 30 );
 	$lines = array_map( 'trim', explode( "\n", trim( $intermap ) ) );
 
 	if ( !$lines || count( $lines ) < 2 ) {
