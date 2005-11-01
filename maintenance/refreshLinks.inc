@@ -1,4 +1,5 @@
 <?php
+require_once 'counter.php';
 /**
  * @todo document
  * @package MediaWiki
@@ -6,7 +7,7 @@
  */
 
 /** */
-define( "REPORTING_INTERVAL", 100 );
+define( 'REPORTING_INTERVAL', 10 );
 
 function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 	global $wgUser, $wgParser, $wgUseImageResize;
@@ -40,7 +41,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( !( ++$i % REPORTING_INTERVAL ) ) {
-				print "$i\n";
+				print_c( $i - 1, $i );
 				wfWaitForSlaves( $maxLag );
 			}
 
@@ -54,7 +55,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false ) {
 		for ($id = $start; $id <= $end; $id++) {
 			
 			if ( !($id % REPORTING_INTERVAL) ) {
-				print "$id\n";
+				print_c(  $id - 1, $id );
 				wfWaitForSlaves( $maxLag );
 			}
 			fixLinksFromArticle( $id );
