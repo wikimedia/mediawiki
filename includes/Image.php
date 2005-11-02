@@ -1314,17 +1314,17 @@ class Image
 
 		if ( $wgUseCopyrightUpload ) {
 			if ( $license != '' ) {
-				$licensetxt = '== ' . wfMsg( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+				$licensetxt = '== ' . wfMsgForContent( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
 			}
 			$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
-			  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+			  '== ' . wfMsgForContent ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
 			  "$licensetxt" .
-			  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
+			  '== ' . wfMsgForContent ( 'filesource' ) . " ==\n" . $source ;
 		} else {
 			if ( $license != '' ) {
 				$filedesc = $desc == '' ? '' : '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n";
 				 $textdesc = $filedesc . 
-					 '== ' . wfMsg ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";	
+					 '== ' . wfMsgForContent ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";	
 			} else {
 				$textdesc = $desc;
 			}
