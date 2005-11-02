@@ -31,7 +31,7 @@ class MathRenderer {
 	}
 
 	function render() {
-		global $wgMathDirectory, $wgTmpDirectory, $wgInputEncoding;
+		global $wgTmpDirectory, $wgInputEncoding;
 		global $wgTexvc;
 		$fname = 'MathRenderer::render';
 	
@@ -42,11 +42,13 @@ class MathRenderer {
 		
 		if( !$this->_recall() ) {
 			# Ensure that the temp and output directories are available before continuing...
-			if( !file_exists( $wgMathDirectory ) ) {
-				if( !@mkdir( $wgMathDirectory ) ) {
+			$hashpath = $this->_getHashPath();
+
+			if( !file_exists( $hashpath ) ) {
+				if( !@wfMkdirParents( $hashpath, 0755 ) ) {
 					return $this->_error( 'math_bad_output' );
 				}
-			} elseif( !is_dir( $wgMathDirectory ) || !is_writable( $wgMathDirectory ) ) {
+			} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
 				return $this->_error( 'math_bad_output' );
 			}
 			if( !file_exists( $wgTmpDirectory ) ) {
@@ -62,7 +64,7 @@ class MathRenderer {
 			}
 			$cmd = $wgTexvc . ' ' . 
 					escapeshellarg( $wgTmpDirectory ).' '.
-					escapeshellarg( $wgMathDirectory ).' '.
+					escapeshellarg( $hashpath ).' '.
 					escapeshellarg( $this->tex ).' '.
 					escapeshellarg( $wgInputEncoding );
 					
@@ -125,7 +127,7 @@ class MathRenderer {
 				return $this->_error( 'math_unknown_error' );
 			}
 		
-			if( !file_exists( "$wgMathDirectory/{$this->hash}.png" ) ) {
+			if( !file_exists( "$hashpath/{$this->hash}.png" ) ) {
 				return $this->_error( 'math_image_error' );
 			}
 			
@@ -181,9 +183,29 @@ class MathRenderer {
 			$this->html = $rpage->math_html;
 			$this->mathml = $rpage->math_mathml;
 			
-			if( file_exists( "$wgMathDirectory/{$this->hash}.png" ) ) {
+			if( file_exists( $this->_getHashPath() . "/{$this->hash}.png" ) ) {
 				return true;
 			}
+
+			if( file_exists( $wgMathDirectory . "/{$this->hash}.png" ) ) {
+				$hashpath = $this->_getHashPath();
+
+				if( !file_exists( $hashpath ) ) {
+					if( !@wfMkdirParents( $hashpath, 0755 ) ) {
+						return false;
+					}
+				} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
+					return false;
+				}
+				if ( function_exists( "link" ) ) {
+					return link ( $wgMathDirectory . "/{$this->hash}.png",
+							$hashpath . "/{$this->hash}.png" );
+				} else {
+					return rename ( $wgMathDirectory . "/{$this->hash}.png",
+							$hashpath . "/{$this->hash}.png" );
+				}
+			}
+				
 		}
 		
 		# Missing from the database and/or the render cache
@@ -208,10 +230,20 @@ class MathRenderer {
 
 	function _linkToMathImage() {
 		global $wgMathPath;
-		$url = htmlspecialchars( "$wgMathPath/{$this->hash}.png" );
+		$url = htmlspecialchars( "$wgMathPath/" . substr($this->hash, 0, 1)
+					.'/'. substr($this->hash, 1, 1) .'/'. substr($this->hash, 2, 1)
+					. "/{$this->hash}.png" );
 		$alt = trim(str_replace("\n", ' ', htmlspecialchars( $this->tex )));
 		return "<img class='tex' src=\"$url\" alt=\"$alt\" />";
 	}
+
+	function _getHashPath() {
+		global $wgMathDirectory;
+		return $wgMathDirectory .'/'. substr($this->hash, 0, 1)
+					.'/'. substr($this->hash, 1, 1)
+					.'/'. substr($this->hash, 2, 1);
+	}
+
 
 }
 
