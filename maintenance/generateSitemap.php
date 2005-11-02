@@ -63,9 +63,8 @@ $page = $dbr->tableName( 'page' );
 $rev = $dbr->tableName( 'revision' );
 
 $findex = fopen( "sitemap-index-$wgDBname.xml", "wb" );
-fwrite( $findex, '<?xml version="1.0" encoding="UTF-8"?>
-   <sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">
-   ' );
+fwrite( $findex, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . 
+'<sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">' . "\n" );
 
 foreach ( $priorities as $ns => $priority) {
 	$sql = "SELECT page_namespace,page_title,page_is_redirect,rev_timestamp  FROM $page, $rev ".
@@ -86,9 +85,9 @@ foreach ( $priorities as $ns => $priority) {
 			$sitemapcount ++;
 			$fname = "sitemap-{$wgDBname}-NS{$ns}-{$sitemapcount}.xml.gz";
 			$gzfile = gzopen( $fname, "wb" );
-			gzwrite( $gzfile, '<?xml version="1.0" encoding="UTF-8"?>
-					< urlset xmlns="http://www.google.com/schemas/sitemap/0.84">' );
-			fwrite( $findex, '<sitemap><loc>'.$wgServer.'/'.$fname."</loc></sitemap>\n" );
+			gzwrite( $gzfile, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . 
+				'<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">' . "\n" );
+			fwrite( $findex, "\t<sitemap>\n\t\t<loc>$wgServer/$fname</loc>\n\t</sitemap>\n" );
 			print "$fname\n";
 		}
 		$rowcount ++;
@@ -96,10 +95,10 @@ foreach ( $priorities as $ns => $priority) {
 		$date = substr($row->rev_timestamp, 0, 4). '-' .
 			substr($row->rev_timestamp, 4, 2). '-' .
 			substr($row->rev_timestamp, 6, 2);
-		gzwrite( $gzfile, "<url>\n  <loc>" . $nt->getFullURL() . 
-			  	"</loc>\n  <lastmod>".$date."</lastmod>\n  " .
-				'<priority>' . $priority . '</priority>' .
-				"\n</url>\n" );
+		gzwrite( $gzfile, "\t<url>\n\t\t<loc>" . $nt->getFullURL() . 
+			  	"</loc>\n\t\t<lastmod>$date</lastmod>\n" .
+				"\t\t<priority>$priority</priority>\n" .
+				"\t</url>\n" );
 	}
 	if ( $gzfile ) {
 		gzwrite( $gzfile, "</urlset>\n" );
