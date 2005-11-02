@@ -60,15 +60,13 @@ $priorities = array (
 
 $dbr =& wfGetDB( DB_SLAVE );
 $page = $dbr->tableName( 'page' );
-$rev = $dbr->tableName( 'revision' );
 
 $findex = fopen( "sitemap-index-$wgDBname.xml", "wb" );
 fwrite( $findex, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . 
 '<sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">' . "\n" );
 
 foreach ( $priorities as $ns => $priority) {
-	$sql = "SELECT page_namespace,page_title,page_is_redirect,rev_timestamp  FROM $page, $rev ".
-		"WHERE page_namespace = $ns AND page_latest = rev_id ";
+	$sql = "SELECT page_namespace,page_title,page_is_redirect,page_touched FROM $page WHERE page_namespace = $ns";
 	print "DB query : $sql\nprocessing ...";
 	$res = $dbr->query( $sql );
 	print " done\n";
@@ -92,9 +90,9 @@ foreach ( $priorities as $ns => $priority) {
 		}
 		$rowcount ++;
 		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$date = substr($row->rev_timestamp, 0, 4). '-' .
-			substr($row->rev_timestamp, 4, 2). '-' .
-			substr($row->rev_timestamp, 6, 2);
+		$date = substr($row->page_touched, 0, 4). '-' .
+			substr($row->page_touched, 4, 2). '-' .
+			substr($row->page_touched, 6, 2);
 		gzwrite( $gzfile, "\t<url>\n\t\t<loc>" . $nt->getFullURL() . 
 			  	"</loc>\n\t\t<lastmod>$date</lastmod>\n" .
 				"\t\t<priority>$priority</priority>\n" .
