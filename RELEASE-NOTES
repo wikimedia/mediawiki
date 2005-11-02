@@ -198,6 +198,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix Parser::unstrip on PHP 5.1.0RC4
 * (bug 3852) "Redirected from" link no longer obscured on double-redirects
 * (bug 3845) Update attribute.php for 1.5 schema
+* changed directory hierarchy in images/math/. System upgrades from old to
+  new hierarchy on the fly.
 
 
 === Caveats ===
