@@ -1412,7 +1412,7 @@ function wfTempDir() {
 function wfMkdirParents( $fullDir, $mode ) {
 	$parts = explode( '/', $fullDir );
 	$path = '';
-	$success = false;
+	
 	foreach ( $parts as $dir ) {
 		$path .= $dir . '/';
 		if ( !is_dir( $path ) ) {
