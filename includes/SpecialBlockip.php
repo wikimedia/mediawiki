@@ -191,10 +191,10 @@ class IPBlockForm {
 		if ( $expirestr == 'infinite' || $expirestr == 'indefinite' ) {
 			$expiry = '';
 		} else {
-			# Convert GNU-style date, returns -1 on error
+			# Convert GNU-style date, on error returns -1 for PHP <5.1 and false for PHP >=5.1
 			$expiry = strtotime( $expirestr );
 
-			if ( $expiry < 0 ) {
+			if ( $expiry < 0 || $expiry === false ) {
 				$this->showForm( wfMsg( 'ipb_expiry_invalid' ) );
 				return;
 			}
