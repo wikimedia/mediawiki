@@ -819,6 +819,12 @@ pages for purposes of page relevancy ranking.
 * Blacklist additional MSIE CSS safety tricks
 
 
+=== 1.4.12 changes ==
+
+* Fix version number
+* Fix Parser::unstrip on PHP 4.4.1
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
