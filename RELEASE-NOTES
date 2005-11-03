@@ -200,6 +200,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3845) Update attribute.php for 1.5 schema
 * changed directory hierarchy in images/math/. System upgrades from old to
   new hierarchy on the fly.
+* (bug 3487) Fix category edit preview with preview-on-bottom
 
 
 === Caveats ===
