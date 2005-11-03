@@ -136,7 +136,7 @@ class GenerateSitemap {
 		$this->stderr = fopen( 'php://stderr', 'wt' );
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
-		$this->generateLimit( NS_MAIN );
+		$this->generateTimestamp();
 		$this->findex = fopen( "{$this->fspath}sitemap-index-$wgDBname.xml", 'wb' );
 	}
 
@@ -217,6 +217,7 @@ class GenerateSitemap {
 
 		fwrite( $this->findex, $this->openIndex() );
 		
+		$this->generateLimit( NS_MAIN );
 		foreach ( $this->namespaces as $namespace ) {
 			$res = $this->getPageRes( $namespace );
 			$this->file = false;
@@ -230,7 +231,6 @@ class GenerateSitemap {
 						$this->close( $this->file );
 					}
 					$this->generateLimit( $namespace );
-					$this->generateTimestamp();
 					$filename = $this->sitemapFilename( $namespace, $smcount++ );
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
