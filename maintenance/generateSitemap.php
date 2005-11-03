@@ -1,111 +1,202 @@
 <?php
 /**
+ * Creates a Google sitemap for the site
+ *
  * @package MediaWiki
  * @subpackage Maintenance
  *
- * Creates a Google sitemap.
- * https://www.google.com/webmasters/sitemaps/docs/en/about.html
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
+ * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>
+ * @copyright Copyright © 2005, Brion Vibber <brion@pobox.com>
+ *
+ * @link https://www.google.com/webmasters/sitemaps/docs/en/about.html
+ * @link http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
+ *
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-# Copyright (C) 2005 Jens Frank <jeluf@gmx.de>, Brion Vibber <brion@pobox.com>
-# http://www.mediawiki.org/
-# 
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-# http://www.gnu.org/copyleft/gpl.html
+$optionsWithArgs = array( 'host' );
+/* */
+require_once 'commandLine.inc';
 
-if ( $argc < 2) {
-	print "Usage: php generateSitemap.php servername [options]\n";
-	print " servername is the name of the website, e.g. mywiki.mydomain.org\n";
-	exit ;
+if ( ! isset( $options['host'] ) ) {
+	echo "Usage: php generateSitemap.php --host=hostname\n";
+	exit(1);
+} else {
+	$_SERVER['HOSTNAME'] = $options['host'];
 }
-$_SERVER['HOSTNAME'] = $argv[1];
-print $argv[1] . "\n";
 
+$gs = new GenerateSitemap( $options['host'] );
+$gs->main();
 
-/** */
-require_once( "commandLine.inc" );
- print "DB name: $wgDBname\n";
- print "DB user: $wgDBuser\n";
+class GenerateSitemap {
+	var $host;
+	var $cutoff = 9000;
+	var $priorities = array(
+		// Custom main namespaces
+		-2			=> '0.5',
+		// Custom talk namesspaces
+		-1			=> '0.1',	
+		NS_MAIN			=> '1.0',
+		NS_TALK			=> '0.1',
+		NS_USER			=> '0.5',
+		NS_USER_TALK		=> '0.1',
+		NS_PROJECT		=> '0.5',
+		NS_PROJECT_TALK		=> '0.5',
+		NS_IMAGE		=> '0.5',
+		NS_IMAGE_TALK		=> '0.1',
+		NS_MEDIAWIKI		=> '0.0',
+		NS_MEDIAWIKI_TALK	=> '0.0',
+		NS_TEMPLATE		=> '0.0',
+		NS_TEMPLATE_TALK	=> '0.0',
+		NS_HELP			=> '0.5',
+		NS_HELP_TALK		=> '0.1',
+		NS_CATEGORY		=> '0.5',
+		NS_CATEGORY_TALK	=> '0.1',
+	);
+	var $namespaces = array();
+	var $dbr;
+	var $file, $findex;
+	var $stderr;
+	
+	function GenerateSitemap( $host ) {
+		global $wgDBname;
 
-$priorities = array (
-        NS_MAIN             => 0.9,
-        NS_TALK             => 0.4,
-        NS_USER             => 0.3,
-        NS_USER_TALK        => 0.3,
-        NS_PROJECT          => 0.5,
-        NS_PROJECT_TALK     => 0.2,
-        NS_IMAGE            => 0.2,
-        NS_IMAGE_TALK       => 0.1,
-        NS_MEDIAWIKI        => 0.1,
-        NS_MEDIAWIKI_TALK   => 0.1,
-        NS_TEMPLATE         => 0.1,
-        NS_TEMPLATE_TALK    => 0.1,
-        NS_HELP             => 0.3,
-        NS_HELP_TALK        => 0.1,
-        NS_CATEGORY         => 0.3,
-        NS_CATEGORY_TALK    => 0.1,
-);
+		$this->stderr = fopen( 'php://stderr', 'wt' );
+		
+		$this->host = $host;
+		$this->dbr =& wfGetDB( DB_SLAVE );
+		$this->generateNamespaces();
+		$this->findex = fopen( "sitemap-index-$wgDBname.xml", 'wb' );
+	}
 
-$dbr =& wfGetDB( DB_SLAVE );
-$page = $dbr->tableName( 'page' );
+	function generateNamespaces() {
+		$fname = 'GenerateSitemap::generateNamespaces';
+		
+		$res = $this->dbr->select( 'page',
+			array( 'page_namespace' ),
+			array(),
+			$fname,
+			array(
+				'GROUP BY' => 'page_namespace',
+				'ORDER BY' => 'page_namespace',
+			)
+		);
 
-$findex = fopen( "sitemap-index-$wgDBname.xml", "wb" );
-fwrite( $findex, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . 
-'<sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">' . "\n" );
+		while ( $row = $this->dbr->fetchObject( $res ) )
+			$this->namespaces[] = $row->page_namespace;
+	}
 
-foreach ( $priorities as $ns => $priority) {
-	$sql = "SELECT page_namespace,page_title,page_is_redirect,page_touched FROM $page WHERE page_namespace = $ns";
-	print "DB query : $sql\nprocessing ...";
-	$res = $dbr->query( $sql );
-	print " done\n";
+	function priority( $namespace ) {
+		return isset( $this->priorities[$namespace] ) ? $this->priorities[$namespace] : $this->guessPriority( $namespace );
+	}
 
-	$gzfile = false;
-	$rowcount=0;
-	$sitemapcount=0;
-	while ( $row = $dbr->fetchObject( $res ) ) {
-		if ( $rowcount % 9000 == 0 ) {
-			if ( $gzfile !== false ) {
-				gzwrite( $gzfile, '</urlset>' );
-				gzclose( $gzfile );
+	function guessPriority( $namespace ) {
+		return Namespace::isTalk( $namespace ) ? $this->priorities[-1] : $this->priorities[-2];
+	}
+
+	function getPageRes( $namespace ) {
+		$fname = 'GenerateSitemap::getPageRes';
+
+		return $this->dbr->select( 'page',
+			array( 
+				'page_namespace',
+				'page_title',
+				'page_is_redirect',
+				'page_touched',
+			),
+			array( 'page_namespace' => $namespace ),
+			$fname
+		);
+	}
+
+	function main() {
+		global $wgDBname;
+
+		fwrite( $this->findex, $this->openIndex() );
+		
+		foreach ( $this->namespaces as $namespace ) {
+			$res = $this->getPageRes( $namespace );
+			$this->file = false;
+			$i = $smcount = 0;
+			
+			while ( $row = $this->dbr->fetchObject( $res ) ) {
+				if ( $i % $this->cutoff == 0 ) {
+					if ( $this->file !== false ) {
+						gzwrite( $this->file, $this->closeFile() );
+						gzclose( $this->file );
+					}
+					++$smcount;
+					$filename = "sitemap-$wgDBname-NS$namespace-$smcount.xml.gz";
+					$this->file = gzopen( $filename, 'wb' );
+					$this->debug( $namespace );
+					gzwrite( $this->file, $this->openFile() );
+					fwrite( $this->findex, $this->indexEntry( $filename ) );
+					$this->debug( "\t$filename" );
+				}
+				++$i;
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$date = $this->ISO8601( $row->page_touched );
+				gzwrite( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
 			}
-			$sitemapcount ++;
-			$fname = "sitemap-{$wgDBname}-NS{$ns}-{$sitemapcount}.xml.gz";
-			$gzfile = gzopen( $fname, "wb" );
-			gzwrite( $gzfile, '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . 
-				'<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">' . "\n" );
-			fwrite( $findex, "\t<sitemap>\n\t\t<loc>$wgServer/$fname</loc>\n\t</sitemap>\n" );
-			print "$fname\n";
+			if ( $this->file ) {
+				gzwrite( $this->file, $this->closeFile() );
+				gzclose( $this->file );
+			}
 		}
-		$rowcount ++;
-		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$date = substr($row->page_touched, 0, 4). '-' .
-			substr($row->page_touched, 4, 2). '-' .
-			substr($row->page_touched, 6, 2);
-		gzwrite( $gzfile, "\t<url>\n\t\t<loc>" . $nt->getFullURL() . 
-			  	"</loc>\n\t\t<lastmod>$date</lastmod>\n" .
-				"\t\t<priority>$priority</priority>\n" .
-				"\t</url>\n" );
+		fwrite( $this->findex, $this->closeIndex() );
+		fclose( $this->findex );
 	}
-	if ( $gzfile ) {
-		gzwrite( $gzfile, "</urlset>\n" );
-		gzclose( $gzfile );
-	}
-	print "\n";
-}
-fwrite( $findex, "</sitemapindex>\n" );
-fclose( $findex );
 
+	function xmlHead() {
+		return '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+	}
+
+	function xmlSchema() {
+		return 'http://www.google.com/schemas/sitemap/0.84';
+	}
+
+	function openIndex() {
+		return $this->xmlHead() . '<sitemapindex xmlns="' . $this->xmlSchema() . '">' . "\n";
+	}
+
+	function indexEntry( $filename ) {
+		global $wgServer;
+		
+		return
+			"\t<sitemap>\n" .
+			"\t\t<loc>$wgServer/$filename</log>\n" .
+			"\t</sitemap>\n";
+	}
+
+	function closeIndex() {
+		return "</sitemapindex>\n";
+	}
+
+	function openFile() {
+		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
+	}
+	
+	function fileEntry( $url, $date, $priority ) {
+		return
+			"\t<url>\n" .
+			"\t\t<loc>$url</loc>\n" .
+			"\t\t<lastmod>$date</lastmod>\n" .
+			"\t\t<priority>$priority</priority>\n" .
+			"\t</url>\n";
+	}
+
+	function closeFile() {
+		return "</urlset>\n";
+	}
+	
+	function ISO8601( $timestamp ) {
+		return substr( wfTimestamp( TS_DB, $timestamp ), 0, 4 + 1 + 2 + 1 + 2 );
+	}
+
+	function debug( $str ) {
+		fwrite( $this->stderr, "$str\n" );
+	}
+}
 
 ?>
