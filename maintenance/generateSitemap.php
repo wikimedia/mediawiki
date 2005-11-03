@@ -9,7 +9,7 @@
  * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>
  * @copyright Copyright © 2005, Brion Vibber <brion@pobox.com>
  *
- * @link https://www.google.com/webmasters/sitemaps/docs/en/about.html
+ * @link http://www.google.com/webmasters/sitemaps/docs/en/about.html
  * @link http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
  *
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -137,7 +137,7 @@ class GenerateSitemap {
 				}
 				++$i;
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$date = $this->ISO8601( $row->page_touched );
+				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
 				gzwrite( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
 			}
 			if ( $this->file ) {
@@ -191,10 +191,6 @@ class GenerateSitemap {
 		return "</urlset>\n";
 	}
 	
-	function ISO8601( $timestamp ) {
-		return substr( wfTimestamp( TS_DB, $timestamp ), 0, 4 + 1 + 2 + 1 + 2 );
-	}
-
 	function debug( $str ) {
 		fwrite( $this->stderr, "$str\n" );
 	}
