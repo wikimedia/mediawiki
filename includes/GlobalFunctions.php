@@ -1130,18 +1130,25 @@ define('TS_DB', 2);
 define('TS_RFC2822', 3);
 
 /**
+ * ISO 8601 format with no timezone: 1986-02-09T20:00:00Z
+ *
+ * This is used by Special:Export 
+ */
+define('TS_ISO_8601', 4);
+
+/**
  * An Exif timestamp (YYYY:MM:DD HH:MM:SS)
  *
  * @link http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
  *       DateTime tag and page 36 for the DateTimeOriginal and
  *       DateTimeDigitized tags.
  */
-define('TS_EXIF', 4);
+define('TS_EXIF', 5);
 
 /**
  * Oracle format time.
  */
-define('TS_ORACLE', 5);
+define('TS_ORACLE', 6);
 
 /**
  * @param mixed $outputtype A timestamp in one of the supported formats, the
@@ -1172,6 +1179,10 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		# TS_ORACLE
 		$uts = strtotime(preg_replace('/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
 				str_replace("+00:00", "UTC", $ts)));
+	} elseif (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z$/', $ts, $da)) {
+		# TS_ISO_8601
+		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
+			(int)$da[2],(int)$da[3],(int)$da[1]);
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
@@ -1186,6 +1197,8 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 			return gmdate( 'YmdHis', $uts );
 		case TS_DB:
 			return gmdate( 'Y-m-d H:i:s', $uts );
+		case TS_ISO_8601:
+			return gmdate( 'Y-m-d\TH:i:s\Z', $uts );
 		// This shouldn't ever be used, but is included for completeness
 		case TS_EXIF:
 			return gmdate(  'Y:m:d H:i:s', $uts );
