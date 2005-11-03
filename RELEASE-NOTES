@@ -885,6 +885,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 2885) Remove unnecessary reference parameter which broke classic skin
   talk notification on PHP 5.0.5
 * (bug 3845) Update attribute.php for 1.5 schema
+* Fix Parser::unstrip on PHP 4.4.1 and PHP 5.1.0RC4
 
 
 === Caveats ===
