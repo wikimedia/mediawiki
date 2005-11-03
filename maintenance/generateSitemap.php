@@ -15,18 +15,18 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-$optionsWithArgs = array( 'host' );
+$optionsWithArgs = array( 'host', 'path' );
 /* */
 require_once 'commandLine.inc';
 
 if ( ! isset( $options['host'] ) ) {
-	echo "Usage: php generateSitemap.php --host=hostname\n";
+	echo "Usage: php generateSitemap.php --host=hostname [--path=/pa/th/]\n";
 	exit(1);
 } else {
 	$_SERVER['HOSTNAME'] = $options['host'];
 }
 
-$gs = new GenerateSitemap( $options['host'] );
+$gs = new GenerateSitemap( $options['host'], $options['path'] );
 $gs->main();
 
 class GenerateSitemap {
@@ -42,13 +42,13 @@ class GenerateSitemap {
 		NS_USER			=> '0.5',
 		NS_USER_TALK		=> '0.1',
 		NS_PROJECT		=> '0.5',
-		NS_PROJECT_TALK		=> '0.5',
+		NS_PROJECT_TALK		=> '0.1',
 		NS_IMAGE		=> '0.5',
 		NS_IMAGE_TALK		=> '0.1',
 		NS_MEDIAWIKI		=> '0.0',
-		NS_MEDIAWIKI_TALK	=> '0.0',
+		NS_MEDIAWIKI_TALK	=> '0.1',
 		NS_TEMPLATE		=> '0.0',
-		NS_TEMPLATE_TALK	=> '0.0',
+		NS_TEMPLATE_TALK	=> '0.1',
 		NS_HELP			=> '0.5',
 		NS_HELP_TALK		=> '0.1',
 		NS_CATEGORY		=> '0.5',
@@ -56,18 +56,19 @@ class GenerateSitemap {
 	);
 	var $namespaces = array();
 	var $dbr;
-	var $file, $findex;
+	var $path, $file, $findex;
 	var $stderr;
 	
-	function GenerateSitemap( $host ) {
+	function GenerateSitemap( $host, $path ) {
 		global $wgDBname;
 
+		$this->path = isset( $path ) ? $path : '';
 		$this->stderr = fopen( 'php://stderr', 'wt' );
 		
 		$this->host = $host;
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
-		$this->findex = fopen( "sitemap-index-$wgDBname.xml", 'wb' );
+		$this->findex = fopen( "{$this->path}sitemap-index-$wgDBname.xml", 'wb' );
 	}
 
 	function generateNamespaces() {
@@ -92,7 +93,7 @@ class GenerateSitemap {
 	}
 
 	function guessPriority( $namespace ) {
-		return Namespace::isTalk( $namespace ) ? $this->priorities[-1] : $this->priorities[-2];
+		return Namespace::isMain( $namespace ) ? $this->priorities[-2] : $this->priorities[-1];
 	}
 
 	function getPageRes( $namespace ) {
@@ -120,16 +121,16 @@ class GenerateSitemap {
 			$this->file = false;
 			$i = $smcount = 0;
 			
+			$this->debug( $namespace );
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
 				if ( $i % $this->cutoff == 0 ) {
 					if ( $this->file !== false ) {
 						gzwrite( $this->file, $this->closeFile() );
 						gzclose( $this->file );
 					}
+					$filename = "{$this->path}sitemap-$wgDBname-NS_$namespace-$smcount.xml.gz";
 					++$smcount;
-					$filename = "sitemap-$wgDBname-NS$namespace-$smcount.xml.gz";
 					$this->file = gzopen( $filename, 'wb' );
-					$this->debug( $namespace );
 					gzwrite( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
 					$this->debug( "\t$filename" );
@@ -172,7 +173,7 @@ class GenerateSitemap {
 	function closeIndex() {
 		return "</sitemapindex>\n";
 	}
-
+	
 	function openFile() {
 		return $this->xmlHead() . '<urlset xmlns="' . $this->xmlSchema() . '">' . "\n";
 	}
