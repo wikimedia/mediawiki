@@ -622,7 +622,9 @@ cl_sortkey" ;
 
 		if( preg_match( '/style\\s*=/is', $t ) ) {
 			// Remove any comments; IE gets token splitting wrong
-			$t = preg_replace( '!/\\*.*?\\*/!S', ' ', $t );
+			$star = '(?:\*|&#0*42;|&#x0*2a;)';
+			$slash = '(?:/|&#0*47;|&#x0*2f;)';
+			$t = preg_replace( "!$slash$star.*?$star$slash!iS", ' ', $t );
 			
 			$stripped = wfMungeToUtf8( $t );
 			$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
