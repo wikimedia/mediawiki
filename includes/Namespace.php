@@ -63,6 +63,14 @@ class Namespace {
 	}
 
 	/**
+	 * Check if the given namespace is not a talk page
+	 * @return bool
+	 */
+	function isMain( $index ) {
+		return ! Namespace::isTalk( $index );
+	}
+
+	/**
 	 * Check if the give namespace is a talk page
 	 * @return bool
 	 */
