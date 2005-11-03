@@ -50,8 +50,6 @@ class User {
 	 * @static
 	 */
 	function newFromName( $name ) {
-		$u = new User();
-
 		# Force usernames to capital
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
@@ -71,6 +69,7 @@ class User {
 			return null;
 		}
 
+		$u = new User();
 		$u->setName( $canonicalName );
 		$u->setId( $u->idFromName( $canonicalName ) );
 		return $u;

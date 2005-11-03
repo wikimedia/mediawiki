@@ -365,7 +365,7 @@ class ChangesList {
 				$rc_user_text, 'target=' . $rc_user_text );
 		} else {
 			$userPage =& Title::makeTitle( NS_USER, $rc_user_text );
-			$userLink = $this->skin->makeLinkObj( $userPage, $rc_user_text );
+			$userLink = $this->skin->makeLinkObj( $userPage, htmlspecialchars( $rc_user_text ) );
 		}
 		$s .= $userLink;
 
@@ -376,14 +376,14 @@ class ChangesList {
 			$userTalkLink = '';
 		} else {
 			$userTalkPage =& Title::makeTitle( NS_USER_TALK, $rc_user_text );
-			$userTalkLink= $this->skin->makeLinkObj( $userTalkPage, $talkname );
+			$userTalkLink= $this->skin->makeLinkObj( $userTalkPage, htmlspecialchars( $talkname ) );
 		}
 		# Block link
 		$blockLink='';
 		if ( ( $wgSysopUserBans || 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
 			$blockLink = $this->skin->makeKnownLinkObj( $blockLinkPage,
-				$message['blocklink'], 'ip='.$rc_user_text );
+				htmlspecialchars( $message['blocklink'] ), 'ip=' . urlencode( $rc_user_text ) );
 
 		}
 		if($blockLink) {

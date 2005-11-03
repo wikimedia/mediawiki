@@ -554,11 +554,22 @@ class Sanitizer {
 			
 			# Strip javascript "expression" from stylesheets.
 			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
-			if( $attribute == 'style' && preg_match(
-				'/(expression|tps*:\/\/|url\\s*\().*/is',
-					Sanitizer::decodeCharReferences( $value ) ) ) {
-				# haxx0r
-				continue;
+			if( $attribute == 'style' ) {
+				$stripped = Sanitizer::decodeCharReferences( $value );
+				
+				// Remove any comments; IE gets token splitting wrong
+				$stripped = preg_replace( '!/\\*.*?\\*/!S', ' ', $stripped );
+				$value = htmlspecialchars( $stripped );
+				
+				// ... and continue checks
+				$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
+					'codepointToUtf8(hexdec("$1"))', $stripped );
+				$stripped = str_replace( '\\', '', $stripped );
+				if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+						$stripped ) ) {
+					# haxx0r
+					continue;
+				}
 			}
 			
 			# Templates and links may be expanded in later parsing,
@@ -571,9 +582,12 @@ class Sanitizer {
 				'RFC'  => '&#82;FC',
 				'PMID' => '&#80;MID',
 			) );
-			$value = preg_replace(
-				'/(' . $wgUrlProtocols . '):/',
-				'\\1&#58;', $value );
+			
+			# Stupid hack
+			$value = preg_replace_callback(
+				'/(' . $wgUrlProtocols . ')/',
+				array( 'Sanitizer', 'armorLinksCallback' ),
+				$value );
 			
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
@@ -584,6 +598,16 @@ class Sanitizer {
 		} else {
 			return ' ' . implode( ' ', $attribs );
 		}
+	}
+	
+	/**
+	 * Regex replace callback for armoring links against further processing.
+	 * @param array $matches
+	 * @return string
+	 * @access private
+	 */
+	function armorLinksCallback( $matches ) {
+		return str_replace( ':', '&#58;', $matches[1] );
 	}
 	
 	/**

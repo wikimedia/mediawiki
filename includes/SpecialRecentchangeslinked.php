@@ -36,7 +36,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	}
 	$id = $nt->getArticleId();
 	
-	$wgOut->setSubtitle( wfMsg( 'rclsub', $nt->getPrefixedText() ) );
+	$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'rclsub', $nt->getPrefixedText() ) ) );
 
 	if ( ! $days ) {
 		$days = $wgUser->getOption( 'rcdays' );

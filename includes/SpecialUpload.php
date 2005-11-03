@@ -53,8 +53,10 @@ class UploadForm {
 		
 		$this->mUploadDescription = $request->getText( 'wpUploadDescription' );
 		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
-		$this->mUploadSource      = $request->getText( 'wpUploadSource');
-		
+		$this->mUploadSource      = $request->getText( 'wpUploadSource' );
+		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
+		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
+
 		$this->mAction            = $request->getVal( 'action' );
 		
 		$this->mSessionKey        = $request->getInt( 'wpSessionKey' );
@@ -213,7 +215,12 @@ class UploadForm {
 		 */
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
-			if( $this->mUploadSaveName != ucfirst( $filtered ) ) {
+			
+			global $wgCapitalLinks;
+			if( $wgCapitalLinks ) {
+				$filtered = ucfirst( $filtered );
+			}
+			if( $this->mUploadSaveName != $filtered ) {
 				$warning .=  '<li>'.wfMsg( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 			}
 	
@@ -265,7 +272,8 @@ class UploadForm {
 			$success = $img->recordUpload( $this->mUploadOldVersion,
 			                                $this->mUploadDescription,
 			                                $this->mUploadCopyStatus,
-			                                $this->mUploadSource );
+			                                $this->mUploadSource,
+			                                $this->mWatchthis );
 
 			if ( $success ) {
 				$this->showSuccess();
@@ -482,6 +490,7 @@ class UploadForm {
 		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
 		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
 		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDestFile ) . "\" />
+		<input type='hidden' name='wpWatchthis' value=\"" . htmlspecialchars( intval( $this->mWatchthis ) ) . "\" />
 	{$copyright}
 	<table border='0'>
 		<tr>
@@ -553,12 +562,16 @@ class UploadForm {
 	" ;
 		  }
 
+		$watchChecked = $wgUser->getOption( 'watchdefault' )
+			? 'checked="checked"'
+			: '';
+		
 		$wgOut->addHTML( "
 	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
 	<table border='0'><tr>
 
 	<td align='right'>{$sourcefilename}:</td><td align='left'>
-	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onchange='fillDestFilename()' size='40' />
+	<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . ($this->mDestFile?"":"onchange='fillDestFilename()' ") . "size='40' />
 	</td></tr><tr>
 
 	<td align='right'>{$destfilename}:</td><td align='left'>
@@ -569,6 +582,11 @@ class UploadForm {
 	<textarea tabindex='2' name='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>"	
 	  . htmlspecialchars( $this->mUploadDescription ) .
 	"</textarea>
+	</td></tr><tr>
+	
+	<td></td><td align='left'>
+	<input type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
+	<label for='wpWatchthis'>" . wfMsgHtml( 'watchthis' ) . "</label>
 	</td></tr><tr>
 	{$source}
 	</tr>
@@ -679,14 +697,18 @@ class UploadForm {
 	 */
 	function verifyExtension( $mime, $extension ) {
 		$fname = 'SpecialUpload::verifyExtension';
-		
-		if (!$mime || $mime=="unknown" || $mime=="unknown/unknown") {
-			wfDebug( "$fname: passing file with unknown mime type\n" );
-			return true; 
-		}
-		
-		$magic=& wfGetMimeMagic();
-		
+
+		$magic =& wfGetMimeMagic();
+
+		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
+			if ( ! $magic->isRecognizableExtension( $extension ) ) {
+				wfDebug( "$fname: passing file with unknown detected mime type; unrecognized extension '$extension', can't verify\n" );
+				return true;
+			} else {
+				wfDebug( "$fname: rejecting file with unknown detected mime type; recognized extension '$extension', so probably invalid file\n" );
+				return false;
+			}
+
 		$match= $magic->isMatchingExtension($extension,$mime);
 		
 		if ($match===NULL) {

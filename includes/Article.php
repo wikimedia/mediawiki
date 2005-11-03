@@ -173,6 +173,7 @@ class Article {
 		$striparray=array();
 		$parser=new Parser();
 		$parser->mOutputType=OT_WIKI;
+		$parser->mOptions = new ParserOptions();
 		$striptext=$parser->strip($text, $striparray, true);
 
 		# now that we can be sure that no pseudo-sections are in the source,
@@ -755,14 +756,14 @@ class Article {
 				$wgOut->setRobotpolicy( 'noindex,follow' );
 			}
 			if ( '' != $this->mRedirectedFrom ) {
-				$sk = $wgUser->getSkin();
-				$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '',
-				  'redirect=no' );
-				$s = wfMsg( 'redirectedfrom', $redir );
-				$wgOut->setSubtitle( $s );
-
-				# Can't cache redirects
-				$pcache = false;
+				if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+					$sk = $wgUser->getSkin();
+					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
+					$s = wfMsg( 'redirectedfrom', $redir );
+					$wgOut->setSubtitle( $s );
+					# Can't cache redirects
+					$pcache = false;
+				}
 			} elseif ( !empty( $rdfrom ) ) {
 				global $wgRedirectSources;
 				if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
@@ -864,7 +865,7 @@ class Article {
 
 		$tbtext = "";
 		while ($o = $dbr->fetchObject($tbs)) {
-			$rmvtext = "";
+			$rmvtxt = "";
 			if ($wgUser->isSysop()) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
 						. $o->tb_id . "&token=" . $wgUser->editToken());
@@ -939,6 +940,7 @@ class Article {
 			'page_random'       => wfRandom(),
 			'page_touched'      => $dbw->timestamp(),
 			'page_latest'       => 0, # Fill this in shortly...
+			'page_len'          => 0, # Fill this in shortly...
 		), $fname );
 		$newid = $dbw->insertId();
 
@@ -970,13 +972,14 @@ class Article {
 			# An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
+
 		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 1 : 0,
-				'page_is_redirect' => Article::isRedirect( $text ),
+				'page_is_redirect' => Article::isRedirect( $text ) ? 1 : 0,
 				'page_len'         => strlen( $text ),
 			),
 			$conditions,
@@ -1118,6 +1121,7 @@ class Article {
 				$striparray=array();
 				$parser=new Parser();
 				$parser->mOutputType=OT_WIKI;
+				$parser->mOptions = new ParserOptions();
 				$oldtext=$parser->strip($oldtext, $striparray, true);
 
 				# now that we can be sure that no pseudo-sections are in the source,
@@ -1582,7 +1586,7 @@ class Article {
 
 		wfDebug( "Article::confirmProtect\n" );
 
-		$sub = $this->mTitle->getPrefixedText();
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$check = '';
@@ -1706,7 +1710,7 @@ class Article {
 		}
 
 		# Fetch cur_text
-		$rev =& Revision::newFromTitle( $this->mTitle );
+		$rev = Revision::newFromTitle( $this->mTitle );
 
 		# Fetch name(s) of contributors
 		$rev_name = '';
@@ -2354,8 +2358,14 @@ class Article {
 		}
 	}
 
-	function onArticleDelete($title_obj) {
-		$title_obj->touchLinks();
+	function onArticleDelete( $title ) {
+		global $wgMessageCache;
+		
+		$title->touchLinks();
+		
+		if( $title->getNamespace() == NS_MEDIAWIKI) {
+			$wgMessageCache->replace( $title->getDBkey(), false );
+		}
 	}
 
 	function onArticleEdit($title_obj) {

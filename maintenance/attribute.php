@@ -24,7 +24,7 @@ $source = $args[0];
 $dest = $args[1];
 
 $dbr =& wfGetDB( DB_SLAVE );
-extract( $dbr->tableNames( 'cur','old','user' ));
+extract( $dbr->tableNames( 'page', 'revision','user' ));
 $eSource = $dbr->strencode( $source );
 $eDest = $dbr->strencode( $dest );
 
@@ -52,10 +52,12 @@ fwrite( $sqlfile,
 
 $omitTitle = "Wikipedia:Changing_attribution_for_an_edit";
 
-# Get old entries
-print "\nOld entries\n\n";
+# Get revisions
+print "\nPage revisions\n\n";
 
-$res = $dbr->query( "SELECT old_namespace, old_title, old_id, old_timestamp FROM $old WHERE old_user_text='$eSource'" );
+$res = $dbr->query( "SELECT page_namespace, page_title, rev_id, rev_timestamp
+FROM $revision,$page
+WHERE rev_user_text='$eSource' and rev_page=page_id" );
 $row = $dbr->fetchObject( $res );
 
 if ( $row ) {
@@ -65,23 +67,18 @@ if ( $row ) {
 		break;
 	}
 */
-	fwrite( $logfile, "**Old IDs: " );
-	fwrite( $sqlfile, "UPDATE old SET old_user=$uid, old_user_text='$eDest' WHERE old_id IN (\n" );
+	fwrite( $logfile, "**Revision IDs: " );
+	fwrite( $sqlfile, "UPDATE $revision SET rev_user=$uid, rev_user_text='$eDest' WHERE rev_id IN (\n" );
 	
 	for ( $first=true; $row; $row = $dbr->fetchObject( $res ) ) {
-		$ns = $wgLang->getNsText( $row->old_namespace );
-		if ( $ns ) {
-			$fullTitle = "$ns:{$row->old_title}";
-		} else {
-			$fullTitle = $row->old_title;
-		}
+		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$fullTitle = $title->getPrefixedDbKey();
 		if ( $fullTitle == $omitTitle ) {
 			continue;
 		}
 
 		print "$fullTitle\n";
-		$url = "http://$lang.wikipedia.org/w/wiki.phtml?title=" . urlencode( $fullTitle );
-		$url .= "&oldid={$row->old_id}";
+		$url = $title->getFullUrl( "oldid={$row->rev_id}" );
 		
 		# Output
 		fwrite( $sqlfile, "      " );
@@ -92,45 +89,14 @@ if ( $row ) {
 			fwrite( $logfile, ", " );
 		}
 
-		fwrite( $sqlfile, "{$row->old_id} -- $url\n" );
-		fwrite( $logfile, "[$url {$row->old_id}]" );
+		fwrite( $sqlfile, "{$row->rev_id} -- $url\n" );
+		fwrite( $logfile, "[$url {$row->rev_id}]" );
 
 	}
 	fwrite( $sqlfile, ");\n" );
 	fwrite( $logfile, "\n" );
 }
 
-# Get cur entries
-print "\n\nCur entries\n\n";
-
-$res = $dbr->query( "SELECT cur_title, cur_namespace, cur_timestamp, cur_id FROM $cur WHERE cur_user_text='$eSource'" );
-$row = $dbr->fetchObject( $res );
-if ( $row ) {
-	fwrite( $sqlfile, "\n\nUPDATE cur SET cur_user=$uid, cur_user_text='$eDest' WHERE cur_id IN(\n" );
-	fwrite( $logfile, "**Cur entries:\n" );
-	for ( $first=true; $row; $row = $dbr->fetchObject( $res ) ) {
-		$ns = $wgLang->getNsText( $row->cur_namespace );
-		if ( $ns ) {
-			$fullTitle = "$ns:{$row->cur_title}";
-		} else {
-			$fullTitle = $row->cur_title;
-		}
-		if ( $fullTitle == $omitTitle ) {
-			continue;
-		}
-		$url = "http://$lang.wikipedia.org/wiki/" . urlencode($fullTitle);
-		if ( $first ) {
-			fwrite( $sqlfile, "      " );
-			$first = false;
-		} else {
-			fwrite( $sqlfile, "    , " );
-		}
-		fwrite( $sqlfile, "{$row->cur_id} -- $url\n" );
-		fwrite( $logfile, "***[[$fullTitle]] {$row->cur_timestamp}\n" );
-		print "$fullTitle\n";
-	}
-	fwrite( $sqlfile, ");\n" );
-}
 print "\n";
 
 fclose( $sqlfile );
