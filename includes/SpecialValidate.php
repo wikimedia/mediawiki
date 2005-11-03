@@ -856,7 +856,7 @@ function wfSpecialValidate( $page = '' ) {
 
 
 	# Can do?
-	if( ! $wgUser->isSysop() ) {#isAllowed('change_validation') ) {
+	if( ! $wgUser->isBureaucrat() ) {#isAllowed('change_validation') ) {
 		$wgOut->sysopRequired();
 		return;
 	}
