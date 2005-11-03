@@ -1,4 +1,6 @@
 <?php
+define( 'GS_MAIN', -2 );
+define( 'GS_TALK', -1 );
 /**
  * Creates a Google sitemap for the site
  *
@@ -15,20 +17,28 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-if ( isset( $argv[1] ) )
-	$_SERVER['SERVER_NAME'] = $argv[1];
-
-$optionsWithArgs = array( 'path' );
-/* */
-require_once 'commandLine.inc';
-
-define( 'GS_MAIN', -2 );
-define( 'GS_TALK', -1 );
-
-$gs = new GenerateSitemap( @$options['path'] );
-$gs->main();
-
 class GenerateSitemap {
+	/**
+	 * The path to prepend to the filename
+	 *
+	 * @var string
+	 */
+	var $fspath;
+
+	/**
+	 * The path to append to the domain name
+	 *
+	 * @var string
+	 */
+	var $path;
+	
+	/**
+	 * Whether or not to use compression
+	 *
+	 * @var bool
+	 */
+	var $compress;
+	
 	/**
 	 * The number of entries to save in each sitemap file
 	 *
@@ -73,6 +83,13 @@ class GenerateSitemap {
 	var $namespaces = array();
 
 	/**
+	 * When this sitemap batch was generated
+	 *
+	 * @var string
+	 */
+	var $startts;
+
+	/**
 	 * A database slave object
 	 *
 	 * @var object
@@ -104,19 +121,25 @@ class GenerateSitemap {
 	/**
 	 * Constructor
 	 *
-	 * @param string $path The path to prepend to the filenames, used to
+	 * @param string $fspath The path to prepend to the filenames, used to
 	 *                     save them somewhere else than in the root directory
+	 * @param string $path The path to append to the domain name
+	 * @param bool $compress Whether to compress the sitemap files
 	 */
-	function GenerateSitemap( $path ) {
-		global $wgDBname;
-
-		$this->path = isset( $path ) ? $path : '';
-		$this->stderr = fopen( 'php://stderr', 'wt' );
+	function GenerateSitemap( $fspath, $path, $compress ) {
+		global $wgDBname, $wgScriptPath;
 		
+		$this->fspath = isset( $fspath ) ? $fspath : '';
+		$this->path = isset( $path ) ? $path : $wgScriptPath;
+		$this->compress = $compress;
+
+		$this->startts = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
+		
+		$this->stderr = fopen( 'php://stderr', 'wt' );
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->generateLimit( NS_MAIN );
-		$this->findex = fopen( "{$this->path}sitemap-index-$wgDBname.xml", 'wb' );
+		$this->findex = fopen( "{$this->fspath}sitemap-index-$wgDBname.xml", 'wb' );
 	}
 
 	/**
@@ -205,29 +228,75 @@ class GenerateSitemap {
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
 				if ( $i % $this->limit === 0 ) {
 					if ( $this->file !== false ) {
-						gzwrite( $this->file, $this->closeFile() );
-						gzclose( $this->file );
+						$this->write( $this->file, $this->closeFile() );
+						$this->close( $this->file );
 					}
 					$this->generateLimit( $namespace );
-					$filename = "sitemap-$wgDBname-NS_$namespace-$smcount.xml.gz";
-					++$smcount;
-					$this->file = gzopen( $this->path . $filename, 'wb' );
-					gzwrite( $this->file, $this->openFile() );
+					$filename = $this->sitemapFilename( $namespace, $smcount++ );
+					$this->file = $this->open( $this->fspath . $filename, 'wb' );
+					$this->write( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
 					$this->debug( "\t$filename" );
 				}
 				++$i;
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
-				gzwrite( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
+				$this->write( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
 			}
 			if ( $this->file ) {
-				gzwrite( $this->file, $this->closeFile() );
-				gzclose( $this->file );
+				$this->write( $this->file, $this->closeFile() );
+				$this->close( $this->file );
 			}
 		}
 		fwrite( $this->findex, $this->closeIndex() );
 		fclose( $this->findex );
+	}
+
+	/**
+	 * gzopen() / fopen() wrapper
+	 *
+	 * @return resource
+	 */
+	function open( $file, $flags ) {
+		return $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+	}
+	
+	/**
+	 * gzwrite() / fwrite() wrapper
+	 */
+	function write( &$handle, $str ) {
+		if ( $this->compress )
+			gzwrite( $handle, $str );
+		else 
+			fwrite( $handle, $str );
+	}
+
+	/**
+	 * gzclose() / fclose() wrapper
+	 */
+	function close( &$handle ) {
+		if ( $this->compress )
+			gzclose( $handle );
+		else
+			fclose( $handle );
+	}
+
+	/**
+	 * Get a sitemap filename
+	 *
+	 * @static
+	 *
+	 * @param int $namespace The namespace
+	 * @param int $count The count
+	 *
+	 * @return string
+	 */
+	function sitemapFilename( $namespace, $count ) {
+		global $wgDBname;
+		
+		$ext = $this->compress ? '.gz' : '';
+		
+		return "sitemap-$wgDBname-NS_$namespace-$count.xml$ext";
 	}
 
 	/**
@@ -271,11 +340,12 @@ class GenerateSitemap {
 	 * @return string
 	 */
 	function indexEntry( $filename ) {
-		global $wgServer, $wgScriptPath;
+		global $wgServer;
 		
 		return
 			"\t<sitemap>\n" .
-			"\t\t<loc>$wgServer$wgScriptPath/$filename</log>\n" .
+			"\t\t<loc>$wgServer{$this->path}/$filename</log>\n" .
+			"\t\t<lastmod>{$this->startts}</lastmod>\n" . 
 			"\t</sitemap>\n";
 	}
 
@@ -308,7 +378,6 @@ class GenerateSitemap {
 	 * @param string $date A ISO 8601 date
 	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
 	 *
-	 r
 	 * @return string
 	 */
 	function fileEntry( $url, $date, $priority ) {
@@ -358,4 +427,23 @@ class GenerateSitemap {
 	}
 }
 
+if ( in_array( '--help', $argv ) )
+	die(
+		"Usage: php generateSitemap.php [host] [options]\n" .
+		"\thost = hostname\n" .
+		"\toptions:\n" .
+		"\t\t--help\tshow this message\n" .
+		"\t\t--fspath\tThe file system path to save to, e.g /tmp/sitemap/\n" .
+		"\t\t--path\tThe http path to use, e.g. /wiki\n" .
+		"\t\t--compress=[yes|no]\tcompress the sitemap files, default yes\n"
+	);
+
+if ( isset( $argv[1] ) && strpos( $argv[1], '--' ) !== 0 )
+	$_SERVER['SERVER_NAME'] = $argv[1];
+
+$optionsWithArgs = array( 'fspath', 'path', 'compress' );
+require_once 'commandLine.inc';
+
+$gs = new GenerateSitemap( @$options['fspath'], @$options['path'], @$options['compress'] !== 'no' );
+$gs->main();
 ?>
