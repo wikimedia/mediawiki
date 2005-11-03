@@ -19,6 +19,24 @@ define( 'GS_TALK', -1 );
 
 class GenerateSitemap {
 	/**
+	 * The maximum amount of urls in a sitemap file
+	 *
+	 * @link http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
+	 *
+	 * @var int
+	 */
+	var $url_limit;
+
+	/**
+	 * The maximum size of a sitemap file
+	 *
+	 * @link http://www.google.com/webmasters/sitemaps/docs/en/protocol.html#faq_sitemap_size
+	 *
+	 * @var int
+	 */
+	var $size_limit;
+	
+	/**
 	 * The path to prepend to the filename
 	 *
 	 * @var string
@@ -42,9 +60,9 @@ class GenerateSitemap {
 	/**
 	 * The number of entries to save in each sitemap file
 	 *
-	 * @var int
+	 * @var array
 	 */
-	var $limit;
+	var $limit = array();
 
 	/**
 	 * Key => value entries of namespaces and their priorities
@@ -129,6 +147,8 @@ class GenerateSitemap {
 	function GenerateSitemap( $fspath, $path, $compress ) {
 		global $wgDBname, $wgScriptPath;
 		
+		$this->url_limit = 50000;
+		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = isset( $fspath ) ? $fspath : '';
 		$this->path = isset( $path ) ? $path : $wgScriptPath;
 		$this->compress = $compress;
@@ -136,7 +156,7 @@ class GenerateSitemap {
 		$this->stderr = fopen( 'php://stderr', 'wt' );
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
-		$this->generateTimestamp();
+		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 		$this->findex = fopen( "{$this->fspath}sitemap-index-$wgDBname.xml", 'wb' );
 	}
 
@@ -213,19 +233,21 @@ class GenerateSitemap {
 	 * @access public
 	 */
 	function main() {
-		global $wgDBname;
+		global $wgDBname, $wgContLang;
 
 		fwrite( $this->findex, $this->openIndex() );
 		
 		foreach ( $this->namespaces as $namespace ) {
 			$res = $this->getPageRes( $namespace );
 			$this->file = false;
-			$i = $smcount = 0;
 			$this->generateLimit( $namespace );
+			$length = $this->limit[0];
+			$i = $smcount = 0;
 			
-			$this->debug( $namespace );
+			$fns = $wgContLang->getFormattedNsText( $namespace );
+			$this->debug( "$namespace ($fns)" );
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
-				if ( $i++ % $this->limit === 0 ) {
+				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
 						$this->close( $this->file );
@@ -235,10 +257,14 @@ class GenerateSitemap {
 					$this->write( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
 					$this->debug( "\t$filename" );
+					$length = $this->limit[0];
+					$i = 1;
 				}
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
-				$this->write( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
+				$entry = $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) );
+				$length += strlen( $entry );
+				$this->write( $this->file, $entry );
 			}
 			if ( $this->file ) {
 				$this->write( $this->file, $this->closeFile() );
@@ -404,42 +430,16 @@ class GenerateSitemap {
 	}
 
 	/**
-	 * According to the sitemap specification each sitemap must contain no
-	 * more than 50,000 urls and no more than 2^20 bytes (10MB), this
-	 * function calculates how many urls we can have in each file assuming
-	 * that we have the worst case of 63 four byte characters and 1 three
-	 * byte character in the title (63*4+1*3 = 255)
+	 * Populate $this->limit
 	 */
 	function generateLimit( $namespace ) {
-		//$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
-		$count = $this->getAveragePageLength( $namespace );
-		$title = Title::makeTitle( $namespace, str_repeat( 'a', $count ) );
+		$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
 		
-		$olen = strlen( $this->openFile() );
-		$elen = strlen( $this->fileEntry( $title->getFullUrl(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), '1.0' ) );
-		$clen = strlen( $this->closeFile() );
-
-		for ( $i = 1, $etot = $elen; $olen + $clen + $etot + $elen <= pow( 2, 20 ) * 10; ++$i )
-			$etot += $elen;
-		
-		$this->limit = $i;
-	}
-
-	function getAveragePageLength( $namespace ) {
-		$fname = 'GenerateSitemap::getAveragePageLength';
-		
-		return $this->dbr->selectField( 'page',
-			'CEIL(AVG(LENGTH(page_title)))',
-			array( 'page_namespace' => $namespace ),
-			$fname
-		);	
-	}
-
-	/**
-	 * Update $this->timestamp to the current time
-	 */
-	function generateTimestamp() {
-		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
+		$this->limit = array(
+			strlen( $this->openFile() ),
+			strlen( $this->fileEntry( $title->getFullUrl(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),
+			strlen( $this->closeFile() )
+		);
 	}
 }
 
