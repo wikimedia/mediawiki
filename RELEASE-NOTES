@@ -201,6 +201,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * changed directory hierarchy in images/math/. System upgrades from old to
   new hierarchy on the fly.
 * (bug 3487) Fix category edit preview with preview-on-bottom
+* (bug 918) Search index incorrectly joined words at == headings ==
 
 
 === Caveats ===

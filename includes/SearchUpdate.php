@@ -54,8 +54,8 @@ class SearchUpdate {
 		wfProfileIn( $fname.'-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][A-Za-z0-9]*\\s*([^>]*?)>/",
 		  ' ', strtolower( " " . $text /*$this->mText*/ . " " ) ); # Strip HTML markup
-		$text = preg_replace( "/(^|\\n)\\s*==\\s+([^\\n]+)\\s+==\\s/sD",
-		  "\\2 \\2 \\2 ", $text ); # Emphasize headings
+		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
+		  "\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
 		# Strip external URLs
 		$uc = "A-Za-z0-9_\\/:.,~%\\-+&;#?!=()@\\xA0-\\xFF";
