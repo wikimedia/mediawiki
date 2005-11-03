@@ -357,7 +357,7 @@ class XmlDumpWriter {
 		$out  = "    <revision>\n";
 		$out .= "      " . wfElement( 'id', null, strval( $row->rev_id ) ) . "\n";
 		
-		$ts = wfTimestamp2ISO8601( strval( $row->rev_timestamp ) );
+		$ts = wfTimestamp( TS_ISO_8601, $row->rev_timestamp );
 		$out .= "      " . wfElement( 'timestamp', null, $ts ) . "\n";
 		
 		$out .= "      <contributor>\n";
@@ -669,13 +669,6 @@ class DumpMultiWriter {
 			$this->sinks[$i]->writeRevision( $rev, $string );
 		}
 	}
-}
-
-
-
-function wfTimestamp2ISO8601( $ts ) {
-	#2003-08-05T18:30:02Z
-	return preg_replace( '/^(....)(..)(..)(..)(..)(..)$/', '$1-$2-$3T$4:$5:$6Z', wfTimestamp( TS_MW, $ts ) );
 }
 
 function xmlsafe( $string ) {

@@ -136,7 +136,7 @@ class WikiRevision {
 	
 	function setTimestamp( $ts ) {
 		# 2003-08-05T18:30:02Z
-		$this->timestamp = preg_replace( '/^(....)-(..)-(..)T(..):(..):(..)Z$/', '$1$2$3$4$5$6', $ts );
+		$this->timestamp = wfTimestamp( TS_MW, $ts );
 	}
 	
 	function setUsername( $user ) {
