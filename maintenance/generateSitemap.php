@@ -87,7 +87,7 @@ class GenerateSitemap {
 	 *
 	 * @var string
 	 */
-	var $startts;
+	var $timestamp;
 
 	/**
 	 * A database slave object
@@ -133,8 +133,6 @@ class GenerateSitemap {
 		$this->path = isset( $path ) ? $path : $wgScriptPath;
 		$this->compress = $compress;
 
-		$this->startts = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
-		
 		$this->stderr = fopen( 'php://stderr', 'wt' );
 		$this->dbr =& wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
@@ -226,19 +224,19 @@ class GenerateSitemap {
 			
 			$this->debug( $namespace );
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
-				if ( $i % $this->limit === 0 ) {
+				if ( $i++ % $this->limit === 0 ) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );
 						$this->close( $this->file );
 					}
 					$this->generateLimit( $namespace );
+					$this->generateTimestamp();
 					$filename = $this->sitemapFilename( $namespace, $smcount++ );
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
 					$this->debug( "\t$filename" );
 				}
-				++$i;
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
 				$this->write( $this->file, $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) ) );
@@ -345,7 +343,7 @@ class GenerateSitemap {
 		return
 			"\t<sitemap>\n" .
 			"\t\t<loc>$wgServer{$this->path}/$filename</log>\n" .
-			"\t\t<lastmod>{$this->startts}</lastmod>\n" . 
+			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" . 
 			"\t</sitemap>\n";
 	}
 
@@ -424,6 +422,13 @@ class GenerateSitemap {
 			$etot += $elen;
 		
 		$this->limit = $i;
+	}
+
+	/**
+	 * Update $this->timestamp to the current time
+	 */
+	function generateTimestamp() {
+		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 	}
 }
 
