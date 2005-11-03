@@ -3,6 +3,21 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+
+== MediaWiki 1.5.2 ==
+
+November 2, 2005
+
+MediaWiki 1.5.2 is a bugfix maintenance release.
+
+A change in PHP 4.4.1 and PHP 5.1.0RC broke handling of extension and
+<pre> sections, causing garbage data to be inserted in output and saved
+edits. This version works around the change.
+
+Several other glitches with MySQL 5.0 and PHP 5.0.5 were also fixed;
+see the change log below for a complete list.
+
+
 == MediaWiki 1.5.1 ==
 
 October 26, 2005
