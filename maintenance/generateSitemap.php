@@ -217,11 +217,11 @@ class GenerateSitemap {
 
 		fwrite( $this->findex, $this->openIndex() );
 		
-		$this->generateLimit( NS_MAIN );
 		foreach ( $this->namespaces as $namespace ) {
 			$res = $this->getPageRes( $namespace );
 			$this->file = false;
 			$i = $smcount = 0;
+			$this->generateLimit( $namespace );
 			
 			$this->debug( $namespace );
 			while ( $row = $this->dbr->fetchObject( $res ) ) {
@@ -230,7 +230,6 @@ class GenerateSitemap {
 						$this->write( $this->file, $this->closeFile() );
 						$this->close( $this->file );
 					}
-					$this->generateLimit( $namespace );
 					$filename = $this->sitemapFilename( $namespace, $smcount++ );
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
@@ -412,16 +411,28 @@ class GenerateSitemap {
 	 * byte character in the title (63*4+1*3 = 255)
 	 */
 	function generateLimit( $namespace ) {
-		$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
+		//$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
+		$count = $this->getAveragePageLength( $namespace );
+		$title = Title::makeTitle( $namespace, str_repeat( 'a', $count ) );
 		
 		$olen = strlen( $this->openFile() );
 		$elen = strlen( $this->fileEntry( $title->getFullUrl(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), '1.0' ) );
 		$clen = strlen( $this->closeFile() );
 
-		for ( $i = 1, $etot = $elen; ( $olen + $clen + $etot + $elen ) <= pow( 2, 20 ); ++$i )
+		for ( $i = 1, $etot = $elen; $olen + $clen + $etot + $elen <= pow( 2, 20 ) * 10; ++$i )
 			$etot += $elen;
 		
 		$this->limit = $i;
+	}
+
+	function getAveragePageLength( $namespace ) {
+		$fname = 'GenerateSitemap::getAveragePageLength';
+		
+		return $this->dbr->selectField( 'page',
+			'CEIL(AVG(LENGTH(page_title)))',
+			array( 'page_namespace' => $namespace ),
+			$fname
+		);	
 	}
 
 	/**
