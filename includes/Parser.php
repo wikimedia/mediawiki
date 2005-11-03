@@ -503,7 +503,9 @@ class Parser
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 		if( preg_match( '/style\\s*=/is', $out ) ) {
 			// Remove any comments; IE gets token splitting wrong
-			$out = preg_replace( '!/\\*.*?\\*/!S', ' ', $out );
+			$star = '(?:\*|&#0*42;|&#x0*2a;)';
+			$slash = '(?:/|&#0*47;|&#x0*2f;)';
+			$out = preg_replace( "!$slash$star.*?$star$slash!iS", ' ', $out );
 			
 			$stripped = wfMungeToUtf8( $out );
 			$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
