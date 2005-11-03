@@ -104,7 +104,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix, $wgUseRCPatrol;
 		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -124,6 +124,11 @@ class RecentChange
 
 		# Insert new row
 		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
+
+		if ( $wgUseRCPatrol ) {
+			# Retrieve the id assigned by the db, but only if we'll use it later
+			$this->mAttribs['rc_id'] = $dbw->insertId();
+		}
 
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
@@ -422,6 +427,8 @@ class RecentChange
 	}
 
 	function getIRCLine() {
+		global $wgUseRCPatrol;
+
 		extract($this->mAttribs);
 		extract($this->mExtra);
 
@@ -434,6 +441,8 @@ class RecentChange
 
 		if ( $rc_new ) {
 			$url = $titleObj->getFullURL();
+		} else if ( $wgUseRCPatrol ) {
+			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid&rcid=$rc_id");
 		} else {
 			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid");
 		}
