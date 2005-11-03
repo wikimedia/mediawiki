@@ -771,18 +771,9 @@ class EditPage {
 
 		$checkboxhtml = $minoredithtml . $watchhtml;
 
-		$wgOut->addHTML( '<div id="wikiPreview">' );
-		if ( 'preview' == $this->formtype) {
-			$previewOutput = $this->getPreviewText();
-			if ( $wgUser->getOption('previewontop' ) ) {
-				$wgOut->addHTML( $previewOutput );
-				if($this->mTitle->getNamespace() == NS_CATEGORY) {
-					$this->mArticle->closeShowCategory();
-				}
-				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
-			}
+		if ( 'preview' == $this->formtype && $wgUser->getOption( 'previewontop' ) ) {
+			$this->showPreview();
 		}
-		$wgOut->addHTML( '</div>' );
 		if ( 'diff' == $this->formtype ) {
 			if ( $wgUser->getOption('previewontop' ) ) {
 				$wgOut->addHTML( $this->getDiff() );
@@ -912,7 +903,7 @@ END
 		}
 		$wgOut->addHTML( "</form>\n" );
 		if ( $this->formtype == 'preview' && !$wgUser->getOption( 'previewontop' ) ) {
-			$wgOut->addHTML( '<div id="wikiPreview">' . $previewOutput . '</div>' );
+			$this->showPreview();
 		}
 		if ( $this->formtype == 'diff' && !$wgUser->getOption( 'previewontop' ) ) {
 			#$wgOut->addHTML( '<div id="wikiPreview">' . $difftext . '</div>' );
@@ -920,6 +911,26 @@ END
 		}
 
 		wfProfileOut( $fname );
+	}
+	
+	/**
+	 * Append preview output to $wgOut.
+	 * Includes category rendering if this is a category page.
+	 * @access private
+	 */
+	function showPreview() {
+		global $wgOut;
+		$wgOut->addHTML( '<div id="wikiPreview">' );
+		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+			$this->mArticle->openShowCategory();
+		}
+		$previewOutput = $this->getPreviewText();
+		$wgOut->addHTML( $previewOutput );
+		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+			$this->mArticle->closeShowCategory();
+		}
+		$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
+		$wgOut->addHTML( '</div>' );
 	}
 
 	/**
