@@ -364,7 +364,7 @@ class GenerateSitemap {
 	function indexEntry( $filename ) {
 		return
 			"\t<sitemap>\n" .
-			"\t\t<loc>$filename</log>\n" .
+			"\t\t<loc>$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" . 
 			"\t</sitemap>\n";
 	}
