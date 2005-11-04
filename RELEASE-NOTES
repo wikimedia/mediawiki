@@ -204,6 +204,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 918) Search index incorrectly joined words at == headings ==
 * (bug 3877) Render math images into temp directory, then move to hashed
   subdir so you can render new math images and have them work
+* (bug 3797) Don't expand variables and sigs in comments
+
 
 === Caveats ===
 
