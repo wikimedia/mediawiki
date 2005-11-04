@@ -42,15 +42,6 @@ class MathRenderer {
 		
 		if( !$this->_recall() ) {
 			# Ensure that the temp and output directories are available before continuing...
-			$hashpath = $this->_getHashPath();
-
-			if( !file_exists( $hashpath ) ) {
-				if( !@wfMkdirParents( $hashpath, 0755 ) ) {
-					return $this->_error( 'math_bad_output' );
-				}
-			} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
-				return $this->_error( 'math_bad_output' );
-			}
 			if( !file_exists( $wgTmpDirectory ) ) {
 				if( !@mkdir( $wgTmpDirectory ) ) {
 					return $this->_error( 'math_bad_tmpdir' );
@@ -64,7 +55,7 @@ class MathRenderer {
 			}
 			$cmd = $wgTexvc . ' ' . 
 					escapeshellarg( $wgTmpDirectory ).' '.
-					escapeshellarg( $hashpath ).' '.
+					escapeshellarg( $wgTmpDirectory ).' '.
 					escapeshellarg( $this->tex ).' '.
 					escapeshellarg( $wgInputEncoding );
 					
@@ -127,8 +118,21 @@ class MathRenderer {
 				return $this->_error( 'math_unknown_error' );
 			}
 		
-			if( !file_exists( "$hashpath/{$this->hash}.png" ) ) {
+			if( !file_exists( "$wgTmpDirectory/{$this->hash}.png" ) ) {
 				return $this->_error( 'math_image_error' );
+			}
+			
+			$hashpath = $this->_getHashPath();
+			if( !file_exists( $hashpath ) ) {
+				if( !@wfMkdirParents( $hashpath, 0755 ) ) {
+					return $this->_error( 'math_bad_output' );
+				}
+			} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
+				return $this->_error( 'math_bad_output' );
+			}
+			
+			if( !rename( "$wgTmpDirectory/{$this->hash}.png", "$hashpath/{$this->hash}.png" ) ) {
+				return $this->_error( 'math_output_error' );
 			}
 			
 			# Now save it back to the DB:
@@ -239,9 +243,11 @@ class MathRenderer {
 
 	function _getHashPath() {
 		global $wgMathDirectory;
-		return $wgMathDirectory .'/'. substr($this->hash, 0, 1)
+		$path = $wgMathDirectory .'/'. substr($this->hash, 0, 1)
 					.'/'. substr($this->hash, 1, 1)
 					.'/'. substr($this->hash, 2, 1);
+		wfDebug( "TeX: getHashPath, hash is: $this->hash, path is: $path\n" );
+		return $path;
 	}
 
 
