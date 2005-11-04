@@ -154,6 +154,9 @@ class EditPage {
 	 */
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
+		$l = strlen ( $wgOut->mBodytext ) ;
+		wfRunHooks( 'AlternateEdit', array( &$this  ) ) ;
+		if ( $l != strlen ( $wgOut->mBodytext ) ) return ; # Something's changed the text, my work here is done
 
 		$fname = 'EditPage::edit';
 		wfProfileIn( $fname );
