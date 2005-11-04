@@ -3052,7 +3052,7 @@ class Parser
 			"\r\n" => "\n",
 		);
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
-		$text = $this->strip( $text, $stripState, false );
+		$text = $this->strip( $text, $stripState, true );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->unstrip( $text, $stripState );
 		$text = $this->unstripNoWiki( $text, $stripState );
