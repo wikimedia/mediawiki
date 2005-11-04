@@ -219,7 +219,6 @@ class GenerateSitemap {
 			array( 
 				'page_namespace',
 				'page_title',
-				'page_is_redirect',
 				'page_touched',
 			),
 			array( 'page_namespace' => $namespace ),
