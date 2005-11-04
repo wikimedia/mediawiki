@@ -734,6 +734,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
+'importing'		=> "Importing $1",
 'editing'		=> "Editing $1",
 'editingsection'		=> "Editing $1 (section)",
 'editingcomment'		=> "Editing $1 (comment)",
