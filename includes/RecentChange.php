@@ -439,7 +439,9 @@ class RecentChange
 		$title = $titleObj->getPrefixedText();
 		$title = str_replace($bad, $empty, $title);
 
-		if ( $rc_new ) {
+		if ( $rc_new && $wgUseRCPatrol ) {
+			$url = $titleObj->getFullURL("rcid=$rc_id");
+		} else if ( $rc_new ) {
 			$url = $titleObj->getFullURL();
 		} else if ( $wgUseRCPatrol ) {
 			$url = $titleObj->getFullURL("diff=0&oldid=$rc_last_oldid&rcid=$rc_id");
