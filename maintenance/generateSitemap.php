@@ -362,11 +362,9 @@ class GenerateSitemap {
 	 * @return string
 	 */
 	function indexEntry( $filename ) {
-		global $wgServer;
-		
 		return
 			"\t<sitemap>\n" .
-			"\t\t<loc>$wgServer{$this->path}/$filename</log>\n" .
+			"\t\t<loc>$filename</log>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" . 
 			"\t</sitemap>\n";
 	}
