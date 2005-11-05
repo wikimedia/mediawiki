@@ -208,6 +208,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3666) Don't spew PHP warnings in prefs on unrecognized site language
 * (bug 2392) Fix Atom items content type, upgrade to Atom 1.0
 * Allow $wgFeedCacheTimeout of 0 to disable feed caching
+* Fix WebRequest::getRequestURL() to strip off the host bits squid prepends
 
 === Caveats ===
 

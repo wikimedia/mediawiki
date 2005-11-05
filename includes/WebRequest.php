@@ -281,7 +281,13 @@ class WebRequest {
 	 * @return string
 	 */
 	function getRequestURL() {
-		return $_SERVER['REQUEST_URI'];
+		$base = $_SERVER['REQUEST_URI'];
+		if( $base{0} == '/' ) {
+			return $base;
+		} else {
+			// We may get paths with a host prepended; strip it.
+			return preg_replace( '!^[^:]+://[^/]+/!', '/', $base );
+		}
 	}
 	
 	/**
