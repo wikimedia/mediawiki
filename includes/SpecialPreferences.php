@@ -553,11 +553,20 @@ class PreferencesForm {
 		);
 
 		/**
+		 * Make sure the site language is in the list; a custom language code
+		 * might not have a defined name...
+		 */
+		$languages = $wgLang->getLanguageNames();
+		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
+			$languages[$wgContLanguageCode] = $wgContLanguageCode;
+		}
+		ksort( $languages );
+		
+		/**
 		 * If a bogus value is set, default to the content language.
 		 * Otherwise, no default is selected and the user ends up
 		 * with an Afrikaans interface since it's first in the list.
 		 */
-		$languages = $wgLang->getLanguageNames();
 		$selectedLang = isset( $languages[$this->mUserLanguage] ) ? $this->mUserLanguage : $wgContLanguageCode;
 		$selbox = null;
 		foreach($languages as $code => $name) {
@@ -579,11 +588,13 @@ class PreferencesForm {
 		/* see if there are multiple language variants to choose from*/
 		if(!$wgDisableLangConversion) {
 			$variants = $wgContLang->getVariants();
+			$variantArray = array();
 
 			foreach($variants as $v) {
 				$v = str_replace( '_', '-', strtolower($v));
-				if($name = $languages[$v]) {
-					$variantArray[$v] = $name;
+				if( array_key_exists( $v, $languages ) ) {
+					// If it doesn't have a name, we'll pretend it doesn't exist
+					$variantArray[$v] = $languages[$v];
 				}
 			}
 

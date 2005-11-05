@@ -205,6 +205,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3877) Render math images into temp directory, then move to hashed
   subdir so you can render new math images and have them work
 * (bug 3797) Don't expand variables and sigs in comments
+* (bug 3666) Don't spew PHP warnings in prefs on unrecognized site language
 
 
 === Caveats ===
