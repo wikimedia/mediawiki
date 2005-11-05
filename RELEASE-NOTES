@@ -206,7 +206,8 @@ fully support the editing toolbar, but was found to be too confusing.
   subdir so you can render new math images and have them work
 * (bug 3797) Don't expand variables and sigs in comments
 * (bug 3666) Don't spew PHP warnings in prefs on unrecognized site language
-
+* (bug 2392) Fix Atom items content type, upgrade to Atom 1.0
+* Allow $wgFeedCacheTimeout of 0 to disable feed caching
 
 === Caveats ===
 

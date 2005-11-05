@@ -240,14 +240,38 @@ class AtomFeed extends ChannelFeed {
 		global $wgVersion, $wgOut;
 		
 		$this->outXmlHeader();
-		?><feed version="0.3" xml:lang="<?php print $this->getLanguage() ?>">	
+		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">	
+		<id><?php print $this->getFeedId() ?></id>
 		<title><?php print $this->getTitle() ?></title>
+		<link rel="self" type="application/atom+xml" href="<?php print $this->getSelfUrl() ?>"/>
 		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
-		<modified><?php print $this->formatTime( wfTimestampNow() ) ?>Z</modified>
-		<tagline><?php print $this->getDescription() ?></tagline>
+		<updated><?php print $this->formatTime( wfTimestampNow() ) ?>Z</updated>
+		<subtitle><?php print $this->getDescription() ?></subtitle>
 		<generator>MediaWiki <?php print $wgVersion ?></generator>
 		
 <?php
+	}
+	
+	/**
+	 * Atom 1.0 requires a unique, opaque IRI as a unique indentifier
+	 * for every feed we create.
+	 * @return string
+	 * @access private
+	 */
+	function getFeedId() {
+		global $wgServer, $wgScript;
+		return htmlspecialchars( "$wgServer$wgScript?atom-feed-id/" .
+			wfTimestamp( TS_MW ) . "/" . wfRandom() );
+	}
+	
+	/**
+	 * Atom 1.0 requests a self-reference to the feed.
+	 * @return string
+	 * @access private
+	 */
+	function getSelfUrl() {
+		global $wgRequest;
+		return htmlspecialchars( $wgRequest->getFullRequestURL() );
 	}
 	
 	/**
@@ -257,16 +281,15 @@ class AtomFeed extends ChannelFeed {
 		global $wgMimeType;
 	?>
 	<entry>
+		<id><?php print $item->getUrl() ?></id>
 		<title><?php print $item->getTitle() ?></title>
 		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print $item->getUrl() ?>"/>
 		<?php if( $item->getDate() ) { ?>
-		<modified><?php print $this->formatTime( $item->getDate() ) ?>Z</modified>
-		<issued><?php print $this->formatTime( $item->getDate() ) ?></issued>
-		<created><?php print $this->formatTime( $item->getDate() ) ?>Z</created><?php } ?>
+		<updated><?php print $this->formatTime( $item->getDate() ) ?>Z</updated>
+		<?php } ?>
 	
-		<summary type="text/plain"><?php print $item->getDescription() ?></summary>
-		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name><!-- <url></url><email></email> --></author><?php }?>
-		<comment>foobar</comment>
+		<summary type="html"><?php print $item->getDescription() ?></summary>
+		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name></author><?php }?>
 	</entry>
 
 <?php /* FIXME need to add comments

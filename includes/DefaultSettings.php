@@ -1389,7 +1389,11 @@ $wgFeedLimit = 50;
 
 /** _Minimum_ timeout for cached Recentchanges feed, in seconds.
  * A cached version will continue to be served out even if changes
- * are made, until this many seconds runs out since the last render. */
+ * are made, until this many seconds runs out since the last render.
+ *
+ * If set to 0, feed caching is disabled. Use this for debugging only;
+ * feed generation can be pretty slow with diffs.
+ */
 $wgFeedCacheTimeout = 60;
 
 /** When generating Recentchanges RSS/Atom feed, diffs will not be generated for
