@@ -2190,6 +2190,10 @@ Please confirm that really want to recreate this article.',
 # HTML dump
 'redirectingto' => 'Redirecting to [[$1]]...',
 
+# action=purge
+'confirm_purge' => "Clear the cache of this page?\n\n$1",
+'confirm_purge_button' => 'OK',
+
 );
 
 /* a fake language converter */

@@ -912,6 +912,38 @@ class Article {
 		$wgOut->setArticleBodyOnly(true);
 		$this->view();
 	}
+	
+	function purge() {
+		global $wgRequest, $wgOut, $wgUseSquid;
+
+		if ( $wgRequest->wasPosted() ) {
+			// Invalidate the cache
+			$this->mTitle->invalidateCache();
+
+			if ( $wgUseSquid ) {
+				// Commit the transaction before the purge is sent
+				$dbw = wfGetDB( DB_MASTER );
+				$dbw->immediateCommit();
+
+				// Send purge
+				$update = SquidUpdate::newSimplePurge( $this->mTitle );
+				$update->doUpdate();
+			}
+			// Redirect to the article
+			$wgOut->redirect( $this->mTitle->getFullURL() );
+		} else {
+			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
+			$action = $this->mTitle->escapeLocalURL( 'action=purge' );
+			$button = htmlspecialchars( wfMsg( 'confirm_purge_button' ) );
+			$msg = str_replace( '$1', 
+				"<form method=\"post\" action=\"$action\">\n" .
+				"<input type=\"submit\" name=\"submit\" value=\"$button\" />\n" .
+				"</form>\n", $msg );
+
+			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+			$wgOut->addHTML( $msg );
+		}
+	}
 
 	/**
 	 * Insert a new empty page record for this article.
