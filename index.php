@@ -189,6 +189,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 			case 'validate':
 			case 'render':
 			case 'deletetrackback':
+			case 'purge':
 				$wgArticle->$action();
 				break;
 			case 'print':
@@ -249,12 +250,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 				require_once( 'includes/RawPage.php' );
 				$raw = new RawPage( $wgArticle );
 				$raw->view();
-				break;
-			case 'purge':
-				wfPurgeSquidServers(array($wgTitle->getInternalURL()));
-				$wgOut->setSquidMaxage( $wgSquidMaxage );
-				$wgTitle->invalidateCache();
-				$wgArticle->view();
 				break;
 			default:
 				if (wfRunHooks('UnknownAction', array($action, $wgArticle))) {
