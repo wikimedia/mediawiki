@@ -2497,7 +2497,7 @@ class Parser
 					preg_match_all( '/<onlyinclude>(.*?)<\/onlyinclude>/s', $text, $m );
 					$text = '';
 					foreach ($m[1] as $piece)
-						$text .= $piece;
+						$text .= $this->trimOnlyinclude( $piece );
 				}
 				# Remove <noinclude> sections and <includeonly> tags
 				$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
@@ -2571,6 +2571,19 @@ class Parser
 			wfProfileOut( $fname );
 			return $text;
 		}
+	}
+	
+	/**
+	 * Trim the first and last newlines of a string, this is not equivalent
+	 * to trim( $str, "\n" ) which would trim them all.
+	 *
+	 * @param string $str The string to trim
+	 * @return string
+	 */
+	function trimOnlyinclude( $str ) {
+		$str = preg_replace( "/^\n/", '', $str );
+		$str = preg_replace( "/\n$/", '', $str );
+		return $str;
 	}
 
 	/**
