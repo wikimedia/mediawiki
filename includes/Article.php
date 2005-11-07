@@ -941,6 +941,7 @@ class Article {
 				"</form>\n", $msg );
 
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( $msg );
 		}
 	}
