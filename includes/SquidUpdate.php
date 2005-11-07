@@ -65,7 +65,7 @@ class SquidUpdate {
 
 	/* static */ function newSimplePurge( &$title ) {
 		$urlArr = $title->getSquidURLs();
-		return new SquidUpdate( $blurlArr );
+		return new SquidUpdate( $urlArr );
 	}
 
 	function doUpdate() {
