@@ -212,7 +212,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Require POST for action=purge, to stop bots from purging the cache
 * (bug 3817) Use localized date formats in preferences; 'no preference' option
   localizable as 'datedefault' message. Tweaked lots of languages files...
-
+* Added local message cache feature ($wgLocalMessageCache), to reduce bandwidth
+  requirements to the memcached server.
 
 === Caveats ===
 

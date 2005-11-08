@@ -30,6 +30,7 @@ class MessageCache
 	var $mDeferred = true;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
+		global $wgLocalMessageCache;
 		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
 
@@ -58,13 +59,65 @@ class MessageCache
 		wfProfileOut( $fname );
 	}
 
+	/** 
+	 * Try to load the cache from a local file
+	 */
+	function loadFromLocal( $hash ) {
+		global $wgLocalMessageCache, $wgDBname;
+
+		$this->mCache = false;
+		if ( $wgLocalMessageCache === false ) {
+			return;
+		}
+		
+		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+
+		$file = fopen( $filename, 'r' );
+		if ( !$file ) {
+			return;
+		}
+
+		// Check to see if the file has the hash specified
+		$localHash = fread( $file, 32 );
+		if ( $hash == $localHash ) {
+			// All good, get the rest of it
+			$serialized = fread( $file, 1000000 );
+			$this->mCache = unserialize( $serialized );
+		}
+		fclose( $file );
+	}
+
+	/**
+	 * Save the cache to a local file
+	 */
+	function saveToLocal( $serialized, $hash ) {
+		global $wgLocalMessageCache, $wgDBname;
+
+		if ( $wgLocalMessageCache === false ) {
+			return;
+		}
+		
+		$filename = "$wgLocalMessageCache/messages-$wgDBname";
+		wfMkdirParents( $wgLocalMessageCache, 0777 );
+
+		$file = fopen( $filename, 'w' );
+		if ( !$file ) {
+			wfDebug( "Unable to open local cache file for writing\n" );
+			return;
+		}
+
+		fwrite( $file, $hash . $serialized );
+		fclose( $file );
+	}
+
+
 	/**
 	 * Loads messages either from memcached or the database, if not disabled
 	 * On error, quietly switches to a fallback mode
 	 * Returns false for a reportable error, true otherwise
 	 */
 	function load() {
-		global $wgAllMessagesEn;
+		global $wgAllMessagesEn, $wgLocalMessageCache;
 
 		if ( $this->mDisable ) {
 			static $shownDisabled = false;
@@ -79,9 +132,33 @@ class MessageCache
 		$success = true;
 
 		if ( $this->mUseCache ) {
-			wfProfileIn( $fname.'-fromcache' );
-			$this->mCache = $this->mMemc->get( $this->mMemcKey );
-			wfProfileOut( $fname.'-fromcache' );
+			$this->mCache = false;
+
+			# Try local cache
+			wfProfileIn( $fname.'-fromlocal' );
+			$hash = $this->mMemc->get( "{$this->mMemcKey}-hash" );
+			if ( $hash ) {
+				$this->loadFromLocal( $hash );
+			}
+			wfProfileOut( $fname.'-fromlocal' );
+
+			# Try memcached
+			if ( !$this->mCache ) {
+				wfProfileIn( $fname.'-fromcache' );
+				$this->mCache = $this->mMemc->get( $this->mMemcKey );
+
+				# Save to local cache
+				if ( $wgLocalMessageCache !== false ) { 
+					$serialized = serialize( $this->mCache );
+					if ( !$hash ) {
+						$hash = md5( $serialized );
+						$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
+					}
+					$this->saveToLocal( $serialized, $hash );
+				}
+				wfProfileOut( $fname.'-fromcache' );
+			}
+
 
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
@@ -93,6 +170,7 @@ class MessageCache
 					wfProfileIn( $fname.'-load' );
 					$this->loadFromDB();
 					wfProfileOut( $fname.'-load' );
+
 					# Save in memcached
 					# Keep trying if it fails, this is kind of important
 					wfProfileIn( $fname.'-save' );
@@ -101,6 +179,15 @@ class MessageCache
 					     $i++ ) {
 						usleep(mt_rand(500000,1500000));
 					}
+
+					# Save to local cache
+					if ( $wgLocalMessageCache !== false ) { 
+						$serialized = serialize( $this->mCache );
+						$hash = md5( $serialized );
+						$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
+						$this->saveToLocal( $serialized, $hash );
+					}
+
 					wfProfileOut( $fname.'-save' );
 					if ( $i == 20 ) {
 						$this->mMemc->set( $this->mMemcKey.'-status', 'error', 60*5 );
@@ -199,11 +286,23 @@ class MessageCache
 	}
 
 	function replace( $title, $text ) {
+		global $wgLocalMessageCache;
+
 		$this->lock();
 		$this->load();
 		if ( is_array( $this->mCache ) ) {
 			$this->mCache[$title] = $text;
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
+			
+			# Save to local cache
+			if ( $wgLocalMessageCache !== false ) { 
+				$serialized = serialize( $this->mCache );
+				$hash = md5( $serialized );
+				$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
+				$this->saveToLocal( $serialized, $hash );
+			}
+
+
 		}
 		$this->unlock();
 	}
