@@ -645,6 +645,10 @@ class LanguageKo extends LanguageUtf8 {
 		global $wgSkinNamesKo;
 		return $wgSkinNamesKo;
 	}
+	
+	function getDateFormats() {
+		return false;
+	}
 
 	function date( $ts, $adj = false ) {
 		global $wgWeekdayAbbreviationsKo;

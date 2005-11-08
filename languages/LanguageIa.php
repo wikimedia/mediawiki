@@ -858,19 +858,6 @@ class LanguageIa extends LanguageUtf8 {
 		return $wgSkinNamesIa;
 	}
 
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  " " . (0 + substr( $ts, 6, 2 )) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
-	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
-	}
-
 	function getMessage( $key ) {
 		global $wgAllMessagesIa, $wgAllMessagesEn;
 		$m = $wgAllMessagesIa[$key];

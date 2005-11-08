@@ -716,14 +716,9 @@ class LanguageIt extends LanguageUtf8 {
 		global $wgQuickbarSettingsIt;
 		return $wgQuickbarSettingsIt;
 	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  " " . (0 + substr( $ts, 6, 2 )) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
+	
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
 	}
 
 	function getMessage( $key ) {

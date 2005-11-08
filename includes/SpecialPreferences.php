@@ -745,10 +745,16 @@ class PreferencesForm {
 		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg( 'dateformat' ) . "</legend>\n" );
 			$idCnt = 0;
+			$epoch = '20010115161234';
 			foreach($dateopts as $key => $option) {
+				if( $key == MW_DATE_DEFAULT ) {
+					$formatted = wfMsgHtml( 'datedefault' );
+				} else {
+					$formatted = htmlspecialchars( $wgLang->timeanddate( $epoch, false, $key ) );
+				}
 				($key == $this->mDate) ? $checked = ' checked="checked"' : $checked = '';
 				$wgOut->addHTML( "<div><input type='radio' name=\"wpDate\" id=\"wpDate$idCnt\" ".
-					"value=\"$key\"$checked /> <label for=\"wpDate$idCnt\">$option</label></div>\n" );
+					"value=\"$key\"$checked /> <label for=\"wpDate$idCnt\">$formatted</label></div>\n" );
 				$idCnt++;
 			}
 			$wgOut->addHTML( "</fieldset>\n" );

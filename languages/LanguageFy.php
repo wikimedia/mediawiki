@@ -440,6 +440,7 @@ Jo Wiki-nûmer is $2.
 "skin"			=> "Side-oansjen",
 "math"			=> "Formules",
 "dateformat"		=> "Datum",
+'datedefault' => 'Gjin foarkar',
 "math_failure"		=> "Untsjutbere formule",
 "math_unknown_error"	=> "Unbekinde fout",
 "math_unknown_function"	=> "Unbekinde funksje",

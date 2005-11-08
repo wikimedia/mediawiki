@@ -45,7 +45,6 @@ require_once( 'LanguageUtf8.php' );
 	'chapitre.com'	=> 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
 );
 
-
 /* private */ $wgAllMessagesFr = array(
 
 # User Toggles
@@ -1209,18 +1208,13 @@ class LanguageFr extends LanguageUtf8 {
 		global $wgSkinNamesFr;
 		return $wgSkinNamesFr;
 	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . ' ' .
-		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  ' ' . substr( $ts, 0, 4 );
-		return $d;
+	
+	function timeBeforeDate( $format ) {
+		return false;
 	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . ' à ' . $this->time( $ts, $adj );
+	
+	function timeDateSeparator( $format ) {
+		return " à ";
 	}
 
 	var $digitTransTable = array(

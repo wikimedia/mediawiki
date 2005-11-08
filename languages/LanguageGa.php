@@ -745,6 +745,7 @@ Féach ar [[{{ns:4}}:Cabhair do sainroghanna úsáideora]] chun cabhair a fháil
 "skin"	  => "Craiceann",
 "math"	  => "Ag aistriú na matamaitice",
 "dateformat"    => "Formáid dáta",
+'datedefault' => 'Is cuma liom',
 "math_failure"      => "Theip anailís an fhoirmle",
 "math_unknown_error"    => "earráid anaithnid",
 "math_unknown_function" => "foirmle anaithnid ",
