@@ -533,6 +533,10 @@ $wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server 
 $wgMemCachedServers = array( '127.0.0.1:11000' );
 $wgMemCachedDebug   = false;
 
+/**
+ * Directory for local copy of message cache, for use in addition to memcached
+ */
+$wgLocalMessageCache = false;
 
 
 # Language settings
