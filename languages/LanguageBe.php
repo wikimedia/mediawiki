@@ -553,24 +553,26 @@ class LanguageBe extends LanguageUtf8 {
 		global $wgMagicWordsBe;
 		return $wgMagicWordsBe;
 	}
+	
+	function getDateFormats() {
+		return $wgDateFormatsBe = array(
+			MW_DATE_DEFAULT => MW_DATE_DEFAULT,
+			'16:12, 15.01.2001' => '16:12, 15.01.2001',
+			MW_DATE_ISO => MW_DATE_ISO
+		);
+	}
 
 	// The date and time format
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
-		// 20050310001506 => 10.03.2005
-		$date = (substr( $ts, 6, 2 )) . '.' . substr( $ts, 4, 2 ) . '.' . substr( $ts, 0, 4 );
-		return $date;
-	}
-
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		// 20050310001506 => 00:15
-		$time = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		return $time;
-	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . ', ' .$this->date( $ts, $adj );
+	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		$datePreference = $this->dateFormat( $format );
+		if( $datePreference == MW_DATE_ISO ) {
+			return parent::date( $ts, $adj, $datePreference, $timecorrection );
+		} else {
+			if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); } # Adjust based on the timezone setting.
+			// 20050310001506 => 10.03.2005
+			$date = (substr( $ts, 6, 2 )) . '.' . substr( $ts, 4, 2 ) . '.' . substr( $ts, 0, 4 );
+			return $date;
+		}
 	}
 
 	function getMessage( $key ) {

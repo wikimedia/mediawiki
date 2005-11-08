@@ -953,26 +953,24 @@ class LanguageNo extends LanguageUtf8 {
 		global $wgSkinNamesNo;
 		return $wgSkinNamesNo;
 	}
-
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . ". " .
-		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-		  substr( $ts, 0, 4 );
-		return $d;
+	
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
 	}
-
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
+	
+	function formatDay( $day, $format ) {
+		return parent::formatDay( $day, $format ) . '.';
 	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
+	
+	function timeanddate( $ts, $adj = false, $format = false, $timecorrection = false ) {
+		$format = $this->dateFormat( $format );
+		if( $format == MW_DATE_ISO ) {
+			return parent::timeanddate( $ts, $adj, $format, $timecorrection );
+		} else {
+			return $this->date( $ts, $adj, $format, $timecorrection ) .
+				" kl." .
+				$this->time( $ts, $adj, $format, $timecorrection );
+		}
 	}
 
 	function formatNum( $number ) {

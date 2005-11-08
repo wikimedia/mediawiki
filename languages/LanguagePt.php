@@ -763,6 +763,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'skin'                  => 'Tema',
 'math'                  => 'Matemática',
 'dateformat'            => 'Formato da data',
+'datedefault' => 'Sem preferência',
 'datetime'              => 'Data e hora',
 'math_failure'          => 'Falhou ao verificar gramática',
 'math_unknown_error'    => 'Erro desconhecido',

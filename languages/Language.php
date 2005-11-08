@@ -108,12 +108,22 @@ if(isset($wgExtraNamespaces)) {
 	MW_MATH_MATHML => 'mw_math_mathml'
 );
 
-# Whether to use user or default setting in Language::date()
-
-/* private */ $wgDateFormatsEn = array(
+/**
+ * Whether to use user or default setting in Language::date()
+ *
+ * NOTE: the array string values are no longer important!
+ * The actual date format functions are now called for the selection in
+ * Special:Preferences, and the 'datedefault' message for MW_DATE_DEFAULT.
+ *
+ * The array keys make up the set of formats which this language allows
+ * the user to select. It's exposed via Language::getDateFormats().
+ *
+ * @access private
+ */
+$wgDateFormatsEn = array(
 	MW_DATE_DEFAULT => 'No preference',
-	MW_DATE_MDY => '16:12, January 15, 2001',
 	MW_DATE_DMY => '16:12, 15 January 2001',
+	MW_DATE_MDY => '16:12, January 15, 2001',
 	MW_DATE_YMD => '16:12, 2001 January 15',
 	MW_DATE_ISO => '2001-01-15 16:12:34'
 );
@@ -873,6 +883,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 'skin'			=> 'Skin',
 'math'			=> 'Math',
 'dateformat'		=> 'Date format',
+'datedefault'		=> 'No preference',
 'datetime'		=> 'Date and time',
 'math_failure'		=> 'Failed to parse',
 'math_unknown_error'	=> 'unknown error',
@@ -2467,17 +2478,23 @@ class Language {
 	 * [...]
 	 *</code>
 	 *
-	 * @param bool $usePrefs: if false, the site/language default is used
+	 * @param mixed $usePrefs: if true, the user's preference is used
+	 *                         if false, the site/language default is used
+	 *                         if int/string, assumed to be a format.
 	 * @return string
 	 */
 	function dateFormat( $usePrefs = true ) {
 		global $wgUser, $wgAmericanDates;
 
-		if( $usePrefs ) {
-			$datePreference = $wgUser->getOption( 'date' );
+		if( is_bool( $usePrefs ) ) {
+			if( $usePrefs ) {
+				$datePreference = $wgUser->getOption( 'date' );
+			} else {
+				$options = $this->getDefaultUserOptions();
+				$datePreference = (string)$options['date'];
+			}
 		} else {
-			$options = $this->getDefaultUserOptions();
-			$datePreference = (string)$options['date'];
+			$datePreference = (string)$usePrefs;
 		}
 
 		if( $datePreference == MW_DATE_DEFAULT || $datePreference == '' ) {
@@ -2492,7 +2509,7 @@ class Language {
 	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param bool   $adj whether to adjust the time output according to the
 	 *               user configured offset ($timecorrection)
-	 * @param bool   $format true to use user's date format preference
+	 * @param mixed  $format true to use user's date format preference
 	 * @param string $timecorrection the time offset as returned by
 	 *               validateTimeZone() in Special:Preferences
 	 * @return string
@@ -2504,8 +2521,8 @@ class Language {
 
 		$datePreference = $this->dateFormat( $format );
 
-		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
-		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
+		$month = $this->formatMonth( substr( $ts, 4, 2 ), $datePreference );
+		$day = $this->formatDay( substr( $ts, 6, 2 ), $datePreference );
 		$year = $this->formatNum( substr( $ts, 0, 4 ), true );
 
 		switch( $datePreference ) {
@@ -2522,7 +2539,7 @@ class Language {
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
-	* @param bool   $format true to use user's date format preference
+	* @param mixed  $format true to use user's date format preference
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
@@ -2532,13 +2549,53 @@ class Language {
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 		$datePreference = $this->dateFormat( $format );
-
-		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+		
+		$sep = ($datePreference == MW_DATE_ISO)
+			? ':'
+			: $this->timeSeparator( $format );
+		
+		$t = substr( $ts, 8, 2 ) . $sep . substr( $ts, 10, 2 );
 
 		if ( $datePreference == MW_DATE_ISO ) {
-			$t .= ':' . substr( $ts, 12, 2 );
+			$t .= $sep . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
+	}
+	
+	/**
+	 * Default separator character between hours, minutes, and seconds.
+	 * Will be used by Language::time() for non-ISO formats.
+	 * (ISO will always use a colon.)
+	 * @return string
+	 */
+	function timeSeparator( $format ) {
+		return ':';
+	}
+	
+	/**
+	 * String to insert between the time and the date in a combined
+	 * string. Should include any relevant whitespace.
+	 * @return string
+	 */
+	function timeDateSeparator( $format ) {
+		return ', ';
+	}
+	
+	/**
+	 * Return true if the time should display before the date.
+	 * @return bool
+	 * @access private
+	 */
+	function timeBeforeDate() {
+		return true;
+	}
+
+	function formatMonth( $month, $format ) {
+		return $this->getMonthName( $month );
+	}
+	
+	function formatDay( $day, $format ) {
+		return $this->formatNum( 0 + $day );
 	}
 
 	/**
@@ -2547,7 +2604,7 @@ class Language {
 	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	* @param bool   $adj whether to adjust the time output according to the
 	*               user configured offset ($timecorrection)
-	* @param bool   $format true to use user's date format preference
+	* @param mixed  $format true to use user's date format preference
 	* @param string $timecorrection the time offset as returned by
 	*               validateTimeZone() in Special:Preferences
 	* @return string
@@ -2559,8 +2616,13 @@ class Language {
 		switch ( $datePreference ) {
 			case MW_DATE_ISO: return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
 				$this->time( $ts, $adj, $format, $timecorrection );
-			default: return $this->time( $ts, $adj, $format, $timecorrection ) . ', ' .
-				$this->date( $ts, $adj, $format, $timecorrection );
+			default:
+				$time = $this->time( $ts, $adj, $format, $timecorrection );
+				$sep = $this->timeDateSeparator( $datePreference );
+				$date = $this->date( $ts, $adj, $format, $timecorrection );
+				return $this->timeBeforeDate( $datePreference )
+					? $time . $sep . $date
+					: $date . $sep . $time;
 		}
 	}
 

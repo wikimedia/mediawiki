@@ -1283,14 +1283,12 @@ class LanguageNds extends LanguageUtf8 {
 		return $wgSkinNamesNds;
 	}
 
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
-		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  ' ' .
-		  substr( $ts, 0, 4 );
-		return $d;
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
+	}
+	
+	function formatDay( $day, $format ) {
+		return parent::formatDay( $day, $format ) . '.';
 	}
 
 	function getMessage( $key ) {

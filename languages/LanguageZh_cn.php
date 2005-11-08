@@ -924,6 +924,10 @@ class LanguageZh_cn extends LanguageUtf8 {
 		global $wgSkinNamesZh_cn;
 		return $wgSkinNamesZh_cn;
 	}
+	
+	function getDateFormats() {
+		return false;
+	}
 
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }

@@ -820,32 +820,8 @@ class LanguageCa extends LanguageUtf8 {
 		return $wgSkinNamesCa;
 	}
 
-
-	function shortdate( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . " " .$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
-	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . " de " .$this->getMonthName( substr( $ts, 4, 2 ) ) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
-	}
-
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . " " . $this->shortdate( $ts, $adj );
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
 	}
 
 	function getMessage( $key ) {

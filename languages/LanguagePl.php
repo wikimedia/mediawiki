@@ -972,14 +972,9 @@ class LanguagePl extends LanguageUtf8 {
 		global $wgMonthNamesGenEn;
 		return wfMsg( $wgMonthNamesGenEn[$key-1] );
 	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) .
-		  " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  " " . substr( $ts, 0, 4 );
-		return $d;
+	
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
 	}
 
 	function getMessage( $key ) {

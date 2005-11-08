@@ -449,6 +449,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 'currentrev' => 'Güncel sürüm',
 'currentrevisionlink' => 'en güncel halini göster',
 'dateformat' => 'Tarih gösterimi',
+'datedefault' => 'Tercih yok',
 'datetime' => 'Tarih ve saat',
 'deadendpages' => 'Başka sayfalara bağlantısı olmayan sayfalar',
 'default' => 'orjinal',

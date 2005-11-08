@@ -1044,33 +1044,15 @@ class LanguageEs extends LanguageUtf8 {
 		global $wgSkinNamesEs;
 		return $wgSkinNamesEs;
 	}
-
-	function shortdate( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . " " .$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
+	
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
 	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . " de " .$this->getMonthName( substr( $ts, 4, 2 ) ) . ", " .
-		  substr( $ts, 0, 4 );
-		return $d;
+	
+	function timeDateSeparator( $format ) {
+		return ' ';
 	}
-
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->time( $ts, $adj ) . " " . $this->shortdate( $ts, $adj );
-	}
+	
 
 	function getMessage( $key ) {
 		global $wgAllMessagesEs;

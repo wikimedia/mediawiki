@@ -608,6 +608,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'skin'			=> 'Drakt',
 'math'			=> 'Matematiske formlar',
 'dateformat'            => 'Datoformat',
+'datedefault' => 'Standard',
 'math_failure'		    => 'Klarte ikkje å tolke formelen',
 'math_unknown_error'	=> 'ukjend feil',
 'math_unknown_function'	=> 'ukjend funksjon ',

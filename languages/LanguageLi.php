@@ -882,20 +882,19 @@ class LanguageLi extends LanguageUtf8 {
 		global $wgSkinNamesLi;
 		return $wgSkinNamesLi;
 	}
-
-	function date( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . " " .
-		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-		substr( $ts, 0, 4 );
-		return $d;
+	
+	function timeBeforeDate( $format ) {
+		return false;
 	}
-
-	function timeanddate( $ts, $adj = false ) {
-		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+	
+	function timeDateSeparator( $format ) {
+		return ' ';
 	}
-
+	
+	function formatMonth( $month, $format ) {
+		return $this->getMonthAbbreviation( $month );
+	}
+	
 	function getMessage( $key ) {
 		global $wgAllMessagesLi;
 		if( isset( $wgAllMessagesLi[$key] ) ) {

@@ -210,6 +210,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Allow $wgFeedCacheTimeout of 0 to disable feed caching
 * Fix WebRequest::getRequestURL() to strip off the host bits squid prepends
 * Require POST for action=purge, to stop bots from purging the cache
+* (bug 3817) Use localized date formats in preferences; 'no preference' option
+  localizable as 'datedefault' message. Tweaked lots of languages files...
+
 
 === Caveats ===
 
