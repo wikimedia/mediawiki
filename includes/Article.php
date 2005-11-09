@@ -756,8 +756,13 @@ class Article {
 					$redir = $sk->makeKnownLink( $this->mRedirectedFrom, '', 'redirect=no' );
 					$s = wfMsg( 'redirectedfrom', $redir );
 					$wgOut->setSubtitle( $s );
-					# Can't cache redirects
-					$pcache = false;
+					
+					// Check the parser cache again, for the target page
+					if( $pcache ) {
+						if( $wgOut->tryParserCache( $this, $wgUser ) ) {
+							$outputDone = true;
+						}
+					}
 					$wasRedirected = true;
 				}
 			} elseif ( !empty( $rdfrom ) ) {
@@ -770,7 +775,8 @@ class Article {
 					$wasRedirected = true;
 				}
 			}
-
+		}
+		if( !$outputDone ) {
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
