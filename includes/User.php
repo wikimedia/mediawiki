@@ -201,6 +201,14 @@ class User {
 		|| strlen( $name ) > $wgMaxNameChars
 		|| $name != $wgContLang->ucfirst( $name ) )
 			return false;
+		
+		// Ensure that the name can't be misresolved as a different title,
+		// such as with extra namespace keys at the start.
+		$parsed = Title::newFromText( $name );
+		if( is_null( $parsed )
+			|| $parsed->getNamespace()
+			|| strcmp( $name, $parsed->getPrefixedText() ) )
+			return false;
 		else
 			return true;
 	}
