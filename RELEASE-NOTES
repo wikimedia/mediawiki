@@ -216,6 +216,8 @@ fully support the editing toolbar, but was found to be too confusing.
   requirements to the memcached server.
 * Forbid usernames that can be interpreted as titles with namespaces, as that
   leads to hard-to-manage names.
+* (bug 2721) Regression: Use European number separators for vi: wikis
+
 
 === Caveats ===
 
