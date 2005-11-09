@@ -1559,7 +1559,7 @@ class LanguageVi extends LanguageUtf8 {
 	}
 
 	var $digitTransTable = array(
-		',' => '',
+		',' => '.',
 		'.' => ','
 	);
 
