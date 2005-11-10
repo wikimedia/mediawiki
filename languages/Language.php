@@ -265,10 +265,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 global $wgRightsText;
 
 /* private */ $wgAllMessagesEn = array(
-
-# The navigation toolbar, int: is used here to make sure that the appropriate
-# messages are automatically pulled from the user-selected language file.
-
 /*
 The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
