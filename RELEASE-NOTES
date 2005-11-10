@@ -218,6 +218,7 @@ fully support the editing toolbar, but was found to be too confusing.
   leads to hard-to-manage names.
 * (bug 2721) Regression: Use European number separators for vi: wikis
 * Allow parser cache on redirect targets
+* (bug 3562) for go search, try Caps-Variants-Broken-At-Non-Whitespace
 
 
 === Caveats ===
