@@ -800,7 +800,10 @@ class SkinTemplate extends Skin {
 				$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 			}
 		} else {
-			$nav_urls['upload'] = false;
+			if ($wgUploadNavigationUrl)
+				$nav_urls['upload'] = array('href' => $wgUploadNavigationUrl );
+			else
+				$nav_urls['upload'] = false;
 		}
 		$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
 
