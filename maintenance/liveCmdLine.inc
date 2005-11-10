@@ -38,7 +38,7 @@ if ( $_ENV['USER'] != "apache" ) {
 	$wgDBadminpassword = trim(`wikiadmin_pass`);
 }
 
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
+$sep = PATH_SEPARATOR;
 putenv( "wikilang=$lang");
 $newpath = "/home/wikipedia/common/php-new$sep";
 

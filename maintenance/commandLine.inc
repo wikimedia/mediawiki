@@ -76,7 +76,7 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 $wgCommandLineMode = true;
 # Turn off output buffering if it's on
 @ob_end_flush();
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
+$sep = PATH_SEPARATOR;
 
 if (!isset( $wgUseNormalUser ) ) {
 	$wgUseNormalUser = false;
