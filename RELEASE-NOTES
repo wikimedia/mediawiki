@@ -9,6 +9,7 @@ Misc work going on.....
 
 Big things to note:
 * MySQL 3.23.x is no longer supported.
+* PHP 4.1/4.2 is no longer supported.
 
 
 == Changes since 1.5 ==
@@ -219,6 +220,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2721) Regression: Use European number separators for vi: wikis
 * Allow parser cache on redirect targets
 * (bug 3562) for go search, try Caps-Variants-Broken-At-Non-Whitespace
+* (bug 2569) Use PATH_SEPARATOR instead of trying to guess based on
+  DIRECTORY_SEPARATOR (was wrong on NetWare)
+* Require PHP 4.3.2 or higher strictly now.
 
 
 === Caveats ===

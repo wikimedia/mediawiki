@@ -7,10 +7,10 @@ function install_version_checks() {
 
 	if( !function_exists( 'version_compare' ) ) {
 		# version_compare was introduced in 4.1.0
-		die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
+		die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is required. ABORTING.\n" );
 	}
 	if( version_compare( phpversion(), '4.3.2' ) < 0 ) {
-		echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
+		die( "PHP 4.3.2 or higher is required. ABORTING.\n" );
 	}
 
 	if (!extension_loaded('mysql')) {
