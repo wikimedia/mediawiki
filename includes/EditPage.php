@@ -154,10 +154,10 @@ class EditPage {
 	 */
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
-		$l = strlen ( $wgOut->mBodytext ) ;
-		wfRunHooks( 'AlternateEdit', array( &$this  ) ) ;
-		if ( $l != strlen ( $wgOut->mBodytext ) ) return ; # Something's changed the text, my work here is done
-
+		
+		if ( ! wfRunHooks( 'AlternateEdit', array( &$this  ) ) )
+			return;
+		
 		$fname = 'EditPage::edit';
 		wfProfileIn( $fname );
 		wfDebug( "$fname: enter\n" );
