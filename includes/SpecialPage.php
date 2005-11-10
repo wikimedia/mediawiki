@@ -411,10 +411,21 @@ class SpecialPage
 			if(!function_exists($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
+			$this->outputHeader();
 			$func( $par, $this );
 		} else {
 			$this->displayRestrictionError();
 		}
+	}
+
+	function outputHeader() {
+		global $wgOut, $wgContLang;
+
+		$msg = $wgContLang->lc( $this->name() ) . '-summary';
+		$out = wfMsg( $msg );
+		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() )
+			$wgOut->addWikiText( $out );
+
 	}
 
 	# Returns the name that goes in the <h1> in the special page itself, and also the name that
