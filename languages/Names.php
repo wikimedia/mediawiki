@@ -130,7 +130,7 @@
 	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
-	'mt' => 'bil-Malti',	# Maltese
+	'mt' => 'Malti',	# Maltese
 	'mus' => 'Muscogee',	# Creek, should possibly be Muskogee
 	'my' => 'Myanmasa',		# Burmese
 	'na' => 'Ekakairũ Naoero',		# Nauruan
