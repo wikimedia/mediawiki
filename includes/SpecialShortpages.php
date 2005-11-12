@@ -26,7 +26,7 @@ class ShortPagesPage extends QueryPage {
 	 * This query is indexed as of 1.5
 	 */
 	function isExpensive() {
-		return false;
+		return true;
 	}
 	
 	function isSyndicated() {
