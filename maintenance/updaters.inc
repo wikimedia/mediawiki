@@ -182,6 +182,18 @@ function do_image_name_unique_update() {
 	}
 }
 
+function do_logging_timestamp_index() {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( 'logging', 'times' ) ) {
+		echo "...timestamp key on logging already exists.\n";
+	} else {
+		echo "Adding timestamp key on logging table... ";
+		dbsource( archive("patch-logging-times-index.sql"), $wgDatabase );
+		echo "ok\n";
+	}
+}
+
+
 function do_watchlist_update() {
 	global $wgDatabase;
 	if( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
@@ -704,6 +716,8 @@ function do_all_updates() {
 	do_watchlist_null(); flush();
 
 	//do_image_index_update(); flush();
+
+	do_logging_timestamp_index(); flush();
 
 	initialiseMessages(); flush();
 }

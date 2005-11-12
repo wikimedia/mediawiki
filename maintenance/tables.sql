@@ -819,7 +819,8 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
-  KEY page_time (log_namespace, log_title, log_timestamp)
+  KEY page_time (log_namespace, log_title, log_timestamp),
+  KEY times (log_timestamp)
 
 ) TYPE=InnoDB;
 
