@@ -388,7 +388,7 @@ class Database {
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		if ( $fname ) {
-			$commentedSql = "/* $fname */ $sql";
+			$commentedSql = preg_replace("/\s/", " /* $fname */ ", $sql, 1);
 		} else {
 			$commentedSql = $sql;
 		}
