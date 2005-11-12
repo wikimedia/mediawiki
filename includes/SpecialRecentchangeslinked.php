@@ -72,7 +72,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
          rev_user_text,rev_timestamp,rev_minor_edit,
          page_is_new
     FROM $categorylinks, $revision, $page
-   WHERE rev_timestamp > '{$cutoff}'
+   WHERE rev_timestamp > '{$cutoff}' AND page_timestamp > '{$cutoff}'
          {$cmq}
      AND rev_page=page_id
      AND cl_from=page_id
