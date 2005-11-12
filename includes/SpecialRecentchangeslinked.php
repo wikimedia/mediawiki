@@ -62,7 +62,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rev_minor_edit=0';
 	} else { $cmq = ''; }
 
-	extract( $dbr->tableNames( 'categorylinks', 'pagelinks', 'revision', 'page' ) );
+	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' ) );
 	
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
@@ -84,15 +84,22 @@ ORDER BY rev_timestamp DESC
    LIMIT {$limit}";
 	} else {
 		$sql =
- "SELECT page_id,page_namespace,page_title,
-         rev_user,rev_comment,rev_user_text,rev_id,rev_timestamp,rev_minor_edit,
-         page_is_new
-    FROM $pagelinks, $revision, $page
-   WHERE rev_timestamp > '{$cutoff}' AND page_touched > '{$cutoff}'
-         {$cmq}
-     AND rev_page=page_id
-     AND pl_namespace=page_namespace
-     AND pl_title=page_title
+"SELECT /* wfSpecialRecentchangeslinked */ 
+			rc_cur_id page_id,
+			rc_namespace page_namespace,
+			rc_title page_title,
+         		rc_user rev_user,
+			rc_comment rev_comment,
+			rc_user_text rev_user_text,
+			rc_this_oldid,
+			rc_timestamp rev_timestamp,
+			rc_minor rev_minor_edit,
+         rc_new page_is_new
+    FROM $pagelinks, $recentchanges
+   WHERE rc_timestamp > '{$cutoff}'
+	{$cmq}
+     AND pl_namespace=rc_namespace
+     AND pl_title=rc_title
      AND pl_from=$id
 GROUP BY page_id,page_namespace,page_title,
          rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
