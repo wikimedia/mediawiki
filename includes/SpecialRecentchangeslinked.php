@@ -88,7 +88,7 @@ ORDER BY rev_timestamp DESC
          rev_user,rev_comment,rev_user_text,rev_id,rev_timestamp,rev_minor_edit,
          page_is_new
     FROM $pagelinks, $revision, $page
-   WHERE rev_timestamp > '{$cutoff}'
+   WHERE rev_timestamp > '{$cutoff}' AND page_timestamp > '{$cutoff}'
          {$cmq}
      AND rev_page=page_id
      AND pl_namespace=page_namespace
