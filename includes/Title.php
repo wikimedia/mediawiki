@@ -9,6 +9,8 @@
 require_once( 'normal/UtfNormal.php' );
 
 $wgTitleInterwikiCache = array();
+$wgTitleCache = array();
+
 define ( 'GAID_FOR_UPDATE', 1 );
 
 # Title::newFromTitle maintains a cache to avoid
@@ -103,6 +105,7 @@ class Title {
 	 * @access public
 	 */
 	function newFromText( $text, $defaultNamespace = NS_MAIN ) {
+		global $wgTitleCache;
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 
@@ -118,10 +121,9 @@ class Title {
 		 *
 		 * In theory these are value objects and won't get changed...
 		 */
-		static $titleCache = array();
-		if( $defaultNamespace == NS_MAIN && isset( $titleCache[$text] ) ) {
+		if( $defaultNamespace == NS_MAIN && isset( $wgTitleCache[$text] ) ) {
 			wfProfileOut( $fname );
-			return $titleCache[$text];
+			return $wgTitleCache[$text];
 		}
 
 		/**
@@ -135,11 +137,11 @@ class Title {
 
 		if( $t->secureAndSplit() ) {
 			if( $defaultNamespace == NS_MAIN ) {
-				if( count( $titleCache ) >= MW_TITLECACHE_MAX ) {
+				if( count( $wgTitleCache ) >= MW_TITLECACHE_MAX ) {
 					# Avoid memory leaks on mass operations...
-					$titleCache = array();
+					$wgTitleCache = array();
 				}
-				$titleCache[$text] =& $t;
+				$wgTitleCache[$text] =& $t;
 			}
 			wfProfileOut( $fname );
 			return $t;
