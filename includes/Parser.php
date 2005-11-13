@@ -275,32 +275,39 @@ class Parser
 			$start = '/<!--()/';
 			$end   = '/-->/';
 		} else {
-			$start = "/<$tag(\\s+[^>]*|\\s*)>/i";
+			$start = "/<$tag(\\s+[^\\/>]*|\\s*)(\\/?)>/i";
 			$end   = "/<\\/$tag\\s*>/i";
 		}
 
 		while ( '' != $text ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
 			$stripped .= $p[0];
-			if( count( $p ) < 3 ) {
+			if( count( $p ) < 4 ) {
 				break;
 			}
 			$attributes = $p[1];
-			$inside     = $p[2];
+			$empty      = $p[2];
+			$inside     = $p[3];
 
 			$marker = $rnd . sprintf('%08X', $n++);
 			$stripped .= $marker;
 
-			$tags[$marker] = "<$tag$attributes>";
+			$tags[$marker] = "<$tag$attributes$empty>";
 			$params[$marker] = Sanitizer::decodeTagAttributes( $attributes );
 
-			$q = preg_split( $end, $inside, 2 );
-			$content[$marker] = $q[0];
-			if( count( $q ) < 2 ) {
-				# No end tag -- let it run out to the end of the text.
-				break;
+			if ( $empty === '/' ) {
+				// Empty element tag, <tag />
+				$content[$marker] = null;
+				$text = $inside;
 			} else {
-				$text = $q[1];
+				$q = preg_split( $end, $inside, 2 );
+				$content[$marker] = $q[0];
+				if( count( $q ) < 2 ) {
+					# No end tag -- let it run out to the end of the text.
+					break;
+				} else {
+					$text = $q[1];
+				}
 			}
 		}
 		return $stripped;
@@ -427,7 +434,12 @@ class Parser
 				if ( $render ) {
 					$ext_content[$tag][$marker] = $callback( $content, $params, $this );
 				} else {
-					$ext_content[$tag][$marker] = "$full_tag$content</$tag>";
+					if ( is_null( $content ) ) {
+						// Empty element tag
+						$ext_content[$tag][$marker] = $full_tag;
+					} else {
+						$ext_content[$tag][$marker] = "$full_tag$content</$tag>";
+					}
 				}
 			}
 		}
