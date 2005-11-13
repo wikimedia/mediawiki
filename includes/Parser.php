@@ -272,7 +272,7 @@ class Parser
 		}
 
 		if( $tag == STRIP_COMMENTS ) {
-			$start = '/<!--()/';
+			$start = '/<!--()()/';
 			$end   = '/-->/';
 		} else {
 			$start = "/<$tag(\\s+[^\\/>]*|\\s*)(\\/?)>/i";
