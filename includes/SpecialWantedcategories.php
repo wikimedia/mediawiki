@@ -36,7 +36,7 @@ class WantedCategoriesPage extends QueryPage {
 				COUNT(*) as value
 			FROM $categorylinks
 			LEFT JOIN $page ON cl_to = page_title AND page_namespace = ". NS_CATEGORY ."
-                        WHERE page_title IS NULL
+			WHERE page_title IS NULL
 			GROUP BY cl_to
 			";
 	}
