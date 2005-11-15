@@ -212,21 +212,16 @@ class Skin extends Linker {
 
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgOut, $wgStylePath, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
+		global $wgOut, $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
-		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
-			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
-				$s .= $wgRequest->getText('wpTextbox1');
-			} else {
-				$userpage = $wgUser->getUserPage();
-				$s.= '@import "'.$this->makeUrl(
-					$userpage->getPrefixedText().'/'.$this->getSkinName().'.css',
-					'action=raw&ctype=text/css').'";'."\n";
-			}
-		}
+
+		$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
+		$s .= '@import "' . $this->makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .
+			'@import "'.$this->makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
+
 		$s .= $this->doGetUserStyles();
 		return $s."\n";
 	}
@@ -253,11 +248,20 @@ class Skin extends Linker {
 	 * Some styles that are set by user through the user settings interface.
 	 */
 	function doGetUserStyles() {
-		global $wgUser, $wgContLang, $wgSquidMaxage;
+		global $wgUser, $wgContLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 
-		$query = "action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
-		$s = '@import "' . $this->makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .
-			'@import "'.$this->makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
+		$s = '';
+		
+		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
+			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
+				$s .= $wgRequest->getText('wpTextbox1');
+			} else {
+				$userpage = $wgUser->getUserPage();
+				$s.= '@import "'.$this->makeUrl(
+					$userpage->getPrefixedText().'/'.$this->getSkinName().'.css',
+					'action=raw&ctype=text/css').'";'."\n";
+			}
+		}
 
 		return $s . $this->reallyDoGetUserStyles();
 	}
