@@ -1423,14 +1423,10 @@ class Article {
 			}
 		}
 
-		# Parse the text and replace links with placeholders
+		# Parse the text and save it to the parser cache
 		$wgOut = new OutputPage();
-
-		# Pass the current title along in case we're creating a wiki page
-		# which is different than the currently displayed one (e.g. image
-		# pages created on file uploads); otherwise, link updates will
-		# go wrong.
-		$wgOut->addWikiTextWithTitle( $text, $this->mTitle );
+		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+		$wgOut->addPrimaryWikiText( $text, $this );
 
 		if ( !$wgUseDumbLinkUpdate ) {
 			# Move the current links back to the second register
