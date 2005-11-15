@@ -987,7 +987,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Code for extensions to hook into to provide per-page CSS, see
-	 * extension/PageCSS/PageCSS.php for an implementation of this.
+	 * extensions/PageCSS/PageCSS.php for an implementation of this.
 	 *
 	 * @access private
 	 */
