@@ -897,8 +897,10 @@ END
 		if ( $this->isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addWikiText( '==' . wfMsg( "yourdiff" ) . '==' );
-			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
-			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
+
+			$de = new DifferenceEngine( $this->mTitle );
+			$de->setText( $this->textbox2, $this->textbox1 );
+			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addWikiText( '==' . wfMsg( "yourtext" ) . '==' );
 			$wgOut->addHTML( "<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
@@ -1384,8 +1386,12 @@ END
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 		$oldtitle = wfMsg( 'currentrev' );
 		$newtitle = wfMsg( 'yourtext' );
-		if ( $oldtext != wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) || $newtext != '' ) {
-			$difftext = DifferenceEngine::getDiff( $oldtext, $newtext, $oldtitle, $newtitle );
+		if ( $oldtext !== false  || $newtext != '' ) {
+			$de = new DifferenceEngine( $this->mTitle );
+			$de->setText( $oldtext, $newtext );
+			$difftext = $de->getDiff( $oldtitle, $newtitle );
+		} else {
+			$difftext = '';
 		}
 
 		return '<div id="wikiDiff">' . $difftext . '</div>';

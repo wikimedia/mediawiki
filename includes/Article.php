@@ -693,7 +693,7 @@ class Article {
 			require_once( 'DifferenceEngine.php' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
-			$de = new DifferenceEngine( $oldid, $diff, $rcid );
+			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid );
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage();
