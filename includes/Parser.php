@@ -3097,30 +3097,23 @@ class Parser
 
 		# Signatures
 		#
-		$n = $user->getName();
-		$k = $user->getOption( 'nickname' );
-		if ( '' == $k ) { $k = $n; }
-		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = getenv( 'TZ' );
-			putenv( 'TZ='.$wgLocaltimezone );
-		}
+		$sigText = $this->getUserSig( $user );
 
 		/* Note: This is the timestamp saved as hardcoded wikitext to
 		 * the database, we use $wgContLang here in order to give
 		 * everyone the same signiture and use the default one rather
 		 * than the one selected in each users preferences.
 		 */
+		if ( isset( $wgLocaltimezone ) ) {
+			$oldtz = getenv( 'TZ' );
+			putenv( 'TZ='.$wgLocaltimezone );
+		}
 		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
 			putenv( 'TZ='.$oldtz );
 		}
 
-		if( $user->getOption( 'fancysig' ) ) {
-			$sigText = $k;
-		} else {
-			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
-		}
 		$text = preg_replace( '/~~~~~/', $d, $text );
 		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
 		$text = preg_replace( '/~~~/', $sigText, $text );
@@ -3159,6 +3152,62 @@ class Parser
 		$mw->matchAndRemove( $text );
 
 		return $text;
+	}
+	
+	/**
+	 * Fetch the user's signature text, if any, and normalize to
+	 * validated, ready-to-insert wikitext.
+	 *
+	 * @param User $user
+	 * @return string
+	 * @access private
+	 */
+	function getUserSig( &$user ) {
+		$name = $user->getName();
+		$nick = trim( $user->getOption( 'nickname' ) );
+		if ( '' == $nick ) {
+			$nick = $name;
+		}
+		
+		if( $user->getOption( 'fancysig' ) ) {
+			// A wikitext signature.
+			$valid = $this->validateSig( $nick );
+			if( $valid === false ) {
+				// Fall back to default sig
+				$nick = $name;
+				wfDebug( "Parser::getUserSig: $name has bad XML tags in signature.\n" );
+			} else {
+				return $nick;
+			}
+		}
+		
+		// Plain text linking to the user's homepage
+		global $wgContLang;
+		$page = $user->getUserPage();
+		return '[[' .
+			$page->getPrefixedText() .
+			"|" .
+			wfEscapeWikIText( $nick ) .
+			"]]";
+	}
+	
+	/**
+	 * We want to enforce two rules on wikitext sigs here:
+	 * 1) Expand any templates at save time (forced subst:)
+	 * 2) Check for unbalanced XML tags, and reject if so.
+	 *
+	 * @param string $text
+	 * @return mixed An expanded string, or false if invalid.
+	 *
+	 * @todo Run brace substitutions
+	 * @todo ?? Check for unbalanced '' and ''' quotes, etc
+	 */
+	function validateSig( $text ) {
+		if( wfIsWellFormedXmlFragment( $text ) ) {
+			return $text;
+		} else {
+			return false;
+		}
 	}
 
 	/**

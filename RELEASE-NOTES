@@ -223,6 +223,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2569) Use PATH_SEPARATOR instead of trying to guess based on
   DIRECTORY_SEPARATOR (was wrong on NetWare)
 * Require PHP 4.3.2 or higher strictly now.
+* Run wikitext-escaping on plaintext sigs (no wiki markup, just name)
+* Check for unbalanced HTML tags on raw sigs (markup allowed, but show
+  a warning in prefs and use default sig if not balanced)
 
 
 === Caveats ===

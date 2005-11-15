@@ -463,6 +463,7 @@ class PreferencesForm {
 		# <FIXME>
 		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
 		$this->mRealName = htmlspecialchars( $this->mRealName );
+		$rawNick = $this->mNick;
 		$this->mNick = htmlspecialchars( $this->mNick );
 		if ( !$this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ''; }
@@ -539,11 +540,23 @@ class PreferencesForm {
 			);
 		}
 
+		global $wgParser;
+		if( !empty( $this->mToggles['fancysig'] ) &&
+			false === $wgParser->validateSig( $rawNick ) ) {
+			$invalidSig = $this->addRow(
+				'&nbsp;',
+				'<span class="error">' . wfMsgHtml( 'badsig' ) . '<span>'
+			);
+		} else {
+			$invalidSig = '';
+		}
+		
 		$wgOut->addHTML(
 			$this->addRow(
 				'<label for="wpNick">' . wfMsg( 'yournick' ) . '</label>',
 				"<input type='text' name='wpNick' id='wpNick' value=\"{$this->mNick}\" size='25' />"
 			) .
+			$invalidSig .
 			# FIXME: The <input> part should be where the &nbsp; is, getToggle() needs
 			# to be changed to out return its output in two parts. -ævar
 			$this->addRow(
