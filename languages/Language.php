@@ -2556,7 +2556,7 @@ class Language {
 		if ( $datePreference == MW_DATE_ISO ) {
 			$t .= $sep . substr( $ts, 12, 2 );
 		}
-		return $this->formatNum( $t );
+		return $t;
 	}
 	
 	/**
