@@ -266,9 +266,9 @@ class OutputPage {
 	 * Saves the text into the parser cache if possible
 	 */
 	function addPrimaryWikiText( $text, $cacheArticle ) {
-		global $wgParser, $wgParserCache, $wgUser, $wgTitle, $wgUseTidy;
+		global $wgParser, $wgParserCache, $wgUser, $wgUseTidy;
 
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, true );
+		$parserOutput = $wgParser->parse( $text, $cacheArticle->mTitle, $this->mParserOptions, true );
 
 		$text = $parserOutput->getText();
 

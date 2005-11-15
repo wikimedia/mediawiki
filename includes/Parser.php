@@ -3674,7 +3674,7 @@ class ParserOutput
 	function expired( $touched ) {
 		global $wgCacheEpoch;
 		return $this->getCacheTime() == -1 || // parser says it's uncacheable
-		       $this->getCacheTime() <= $touched ||
+		       $this->getCacheTime() < $touched ||
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
