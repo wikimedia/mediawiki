@@ -227,6 +227,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Check for unbalanced HTML tags on raw sigs (markup allowed, but show
   a warning in prefs and use default sig if not balanced)
 * (bug 2740) Accept image deletions on 'enter' submit from MSIE
+* (bug 3939) Don't try to load text for interwiki redirect target
 
 
 === Caveats ===
