@@ -81,7 +81,8 @@ if(isset($wgExtraNamespaces)) {
 	'fancysig' 		=> 0,
 	'externaleditor' 	=> 0,
 	'externaldiff' 		=> 0,
-	'showjumplinks' 		=> 1,
+	'showjumplinks'		=> 1,
+	'numberheadings'	=> 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
