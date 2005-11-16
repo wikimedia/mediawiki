@@ -231,6 +231,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Respect <noinclude> and <includeonly> during {{subst:}} expansion as well as
   ordinary templates.
 * (bug 3948) Avoid notice warning in debug statement in bad search
+* (bug 3961) minor languageDe changes
 
 
 === Caveats ===
