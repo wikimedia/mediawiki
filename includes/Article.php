@@ -421,15 +421,17 @@ class Article {
 						return false;
 					}
 				}
-				$redirData = $this->pageDataFromTitle( $dbr, $rt );
-				if( $redirData ) {
-					$redirRev = Revision::newFromId( $redirData->page_latest );
-					if( !is_null( $redirRev ) ) {
-						$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
-						$this->mTitle = $rt;
-						$data = $redirData;
-						$this->loadPageData( $data );
-						$revision = $redirRev;
+				if( $rt->getInterwiki() == '' ) {
+					$redirData = $this->pageDataFromTitle( $dbr, $rt );
+					if( $redirData ) {
+						$redirRev = Revision::newFromId( $redirData->page_latest );
+						if( !is_null( $redirRev ) ) {
+							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+							$this->mTitle = $rt;
+							$data = $redirData;
+							$this->loadPageData( $data );
+							$revision = $redirRev;
+						}
 					}
 				}
 			}
