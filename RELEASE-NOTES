@@ -233,6 +233,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3948) Avoid notice warning in debug statement in bad search
 * (bug 3961) minor languageDe changes
 * (bug 1984) LanguageKo.php (Korean) update
+* (bug 3804) update of LanguageWa.php file
 
 
 === Caveats ===
