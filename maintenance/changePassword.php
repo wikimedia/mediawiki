@@ -35,7 +35,11 @@ class ChangePassword {
 		);
 	}
 }
-if ( in_array( '--help', $argv ) )
+
+$optionsWithArgs = array( 'user', 'password' );
+require_once 'commandLine.inc';
+
+if( in_array( '--help', $argv ) )
 	die(
 		"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
 		"\toptions:\n" .
@@ -43,9 +47,6 @@ if ( in_array( '--help', $argv ) )
 		"\t\t--user\tthe username to operate on\n" .
 		"\t\t--password\tthe password to use\n"
 	);
-
-$optionsWithArgs = array( 'user', 'password' );
-require_once 'commandLine.inc';
 
 $cp = new ChangePassword( @$options['user'], @$options['password'] );
 $cp->main();
