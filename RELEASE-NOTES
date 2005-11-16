@@ -909,6 +909,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
   The working version is in maintenance/storage/compressOld.php
 * (bug 2740) Accept image deletions on 'enter' submit from MSIE
 * (bug 3933) specify XML namespace for Atom 0.3 feeds
+* (bug 3939) Don't try to load text for interwiki redirect target
 
 
 === Caveats ===
