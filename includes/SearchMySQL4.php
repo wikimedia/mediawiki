@@ -64,7 +64,7 @@ class SearchMySQL4 extends SearchMySQL {
 			wfDebug( "Would search with '$searchon'\n" );
 			wfDebug( "Match with /\b" . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
 		} else {
-			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
+			wfDebug( "Can't understand search query '{$filteredText}'\n" );
 		}
 		
 		$searchon = $this->db->strencode( $searchon );
