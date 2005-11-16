@@ -383,7 +383,7 @@ END
 	{
 		global $wgUser, $wgOut, $wgRequest;
 
-		$confirm = $wgRequest->getBool( 'wpConfirmB' );
+		$confirm = $wgRequest->wasPosted();
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
