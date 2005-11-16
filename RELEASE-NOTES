@@ -908,6 +908,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3612) Remove old broken version of maintenance/compressOld.php
   The working version is in maintenance/storage/compressOld.php
 * (bug 2740) Accept image deletions on 'enter' submit from MSIE
+* (bug 3933) specify XML namespace for Atom 0.3 feeds
 
 
 === Caveats ===
