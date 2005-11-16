@@ -14,9 +14,11 @@ require_once('LanguageUtf8.php');
 	NS_USER	     => '사용자',
 	NS_USER_TALK	=> '사용자토론',
 	NS_PROJECT	  => $wgMetaNamespace,
-	NS_PROJECT_TALK     => "${wgMetaNamespace}토론",
+	NS_PROJECT_TALK     => $wgMetaNamespace.'토론',
 	NS_IMAGE	    => '그림',
 	NS_IMAGE_TALK       => '그림토론',
+	NS_HELP             => '도움말',
+	NS_HELP_TALK        => '도움말토론',
 	NS_CATEGORY	 => '분류',
 	NS_CATEGORY_TALK    => '분류토론',
 ) + $wgNamespaceNamesEn;
@@ -30,6 +32,11 @@ require_once('LanguageUtf8.php');
 	'standard' => '보통',
 	'nostalgia' => '그리움',
 	'cologneblue' => '쾰른 파랑',
+	'davinci' => '다빈치',
+	'mono' => '모노',
+	'monobook' => '모노북(기본값)',
+	'my skin' => '내 스킨',
+	'chick' => '칙(Chick)',
 ) + $wgSkinNamesEn;
 
 
@@ -49,8 +56,8 @@ require_once('LanguageUtf8.php');
 #
 
 /* private */ $wgWeekdayAbbreviationsKo = array(
-	'日', '月', '火', '水', '木',
-	'金', '土'
+	'일', '월', '화', '수', '목',
+	'금', '토'
 );
 
 # I'll leave this part in english, for it's more likely that
@@ -63,15 +70,40 @@ require_once('LanguageUtf8.php');
 # User Toggles
 
 'tog-underline' => '고리에 밑줄치기',
-'tog-highlightbroken' => '없는 문서로의 고리 돋보이기',
+'tog-highlightbroken' => '없는 문서로 가는 고리를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify' => '문단 정렬',
 'tog-hideminor' => '사소한 편집 최근 바뀜에서 숨기기',
+'tog-usenewrc' => '향상된 최근 바뀜(자바스크립트)',
 'tog-numberheadings' => '머릿글 번호 매기기',
-'tog-showtoolbar' => 'Show edit toolbar',
-'tog-rememberpassword' => '세션동안 암호 기억',
+'tog-showtoolbar' => '편집창에 툴바 보이기(자바스크립트)',
+'tog-editondblclick' => '더블클릭으로 문서 고침(자바스크립트)',
+'tog-editsection'		=> '[수정]을 눌러 섹션 고치기 허용',
+'tog-editsectiononrightclick'	=> '섹션 제목을 눌러 섹션 고치기 허용(자바스크립트)',
+'tog-showtoc'			=> '문서의 차례 보이기(머릿글이 4개 이상인 글에 한함)',
+'tog-rememberpassword' => '자동 로그인',
 'tog-editwidth' => '편집상자 너비 최대',
-# Dates
+'tog-watchdefault' => '고치는 글을 항상 주시 목록에 추가함',
+'tog-minordefault' => '\'사소한 편집\'을 항상 선택함',
+'tog-previewontop' => 'Show preview before edit box',
+'tog-previewonfirst' => '고칠 때마다 미리 보기를 항상 보임',
+'tog-nocache' => 'Disable page caching',
+'tog-enotifwatchlistpages' 	=> 'Email me on page changes',
+'tog-enotifusertalkpages' 	=> 'Email me when my user talk page is changed',
+'tog-enotifminoredits' 		=> 'Email me also for minor edits of pages',
+'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails',
+'tog-shownumberswatching' 	=> 'Show the number of watching users',
+'tog-fancysig' => '서명에 고리를 걸지 않음',
+'tog-externaleditor' => 'Use external editor by default',
+'tog-externaldiff' => 'Use external diff by default',
+'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 
+'underline-always' => '항상',
+'underline-never' => '치지 않음',
+'underline-default' => '브라우저 설정을 따름',
+
+'skinpreview' => '(미리보기)',
+
+# Dates
 'sunday' => '일요일',
 'monday' => '월요일',
 'tuesday' => '화요일',
@@ -105,125 +137,224 @@ require_once('LanguageUtf8.php');
 'dec' => '12',
 # Bits of text used by many pages:
 #
+'categories1' => '분류',
+'categories' => '분류',
+'category' => '분류',
+'category_header' => '\'$1\' 분류에 들어있는 문서',
 'subcategories' => '하위 분류',
 
 
-'mainpage'	    => '대문',
-'about'		       => '소개',
+'mainpage'    => '대문',
+'about'	        => '소개',
 'aboutsite'      => '{{SITENAME}}란',
-'aboutpage'	   => '{{ns:4}}:소개',
-'help'			=> '도움말',
-'helppage'	    => '{{ns:4}}:도움말',
-'bugreports'  => '벌레 발견',
-'bugreportspage' => '{{ns:4}}:벌레_발견',
+'aboutpage'    => '{{ns:4}}:소개',
+'article'		=> 'Content page',
+'help'	 	=> '도움말',
+'helppage'     => '{{ns:4}}:도움말',
+'bugreports' => '버그 신고',
+'bugreportspage' => '{{ns:4}}:버그_신고',
 'faq'		 => '잦은질문(FAQ)',
 'faqpage'	     => '{{ns:4}}:잦은질문(FAQ)',
 'edithelp'	    => '편집 도움말',
+'newwindow'		=> '(새 창으로 열림)',
 'edithelppage'	=> '{{ns:4}}:문서_편집_방법',
 'cancel'	      => '취소',
 'qbfind'	      => '찾기',
+'qbbrowse'		=> '탐색',
+'qbedit'		=> '고치기',
+'qbpageoptions'		=> '문서 기능',
+'qbpageinfo'		=> '문서 정보',
+'qbmyoptions'		=> '나의 문서',
+'qbspecialpages'	=> '특수기능',
+'moredotdotdot'		=> '더 보기...',
+'mypage'		=> '나의 사용자 문서',
+'mytalk'		=> '나의 토론',
+'anontalk'		=> '익명 사용자 토론',
+'navigation'		=> 'Navigation',
 
-# where does this 'browse' appear? I haven't seen it.
-# and therefore no idea what its function is.
+# NOTE: To turn off "Current Events" in the sidebar,
+# set "currentevents" => "-"
+"currentevents"		=> "요즘 화제",
+"currentevents-url"	=> "요즘 화제",
 
-# (Select the Cologne Blue skin; it's a section header
-#  in the sidebar over 'main page', 'recent changes', etc.)
-
-'qbbrowse'	    => '항해판',
-'qbedit'	      => '고치기',
-'qbpageoptions' => '문서 기능',
-'qbpageinfo'  => '문서 정보',
-'qbmyoptions' => '자기 기능',
-'mypage'	      => '자기 문서',
-'mytalk'	      => '자기 토론',
-'currentevents' => '요즘의 화제',
 'errorpagetitle' => '오류',
 'returnto'	    => '$1(으)로 돌아가기.',
 'tagline'	     => '{{SITENAME}}, 우리 모두의 백과사전.',
 'whatlinkshere'       => '여길 가리키는 문서',
 'help'			=> '도움말',
 'search'	      => '찾기',
+'go'			=> '이동',
 'history'	     => '문서역사',
+'info_short'		=> 'Information',
 'printableversion' => '인쇄용',
-'editthispage'	=> '문서 고치기',
-'deletethispage' => '문서 지우기',
-'protectthispage' => '문서 보호',
-'unprotectthispage' => '문서 보호 해제',
+'editthispage'	=> '이 문서 고치기',
+'delete' => '지우기',
+'deletethispage' => '이 문서 지우기',
+'protect' => '보호',
+'protectthispage' => '이 문서 보호하기',
+'unprotect' => '보호 해제',
+'unprotectthispage' => '문서 보호 해제하기',
+'newpage'	    => '새 문서',
 'talkpage'	    => '토론',
+'specialpage' => 'Special Page',
+'personaltools' => 'Personal tools',
+'postcomment'   => 'Post a comment',
+'addsection'   => '+',
 'subjectpage' => '본 문서',
+'talk' => 'Discussion',
+'views' => 'Views',
+'toolbox' => 'Toolbox',
+'userpage' => 'View user page',
+'wikipediapage' => 'View project page',
+'imagepage' => 	'View image page',
+'viewtalkpage' => 'View discussion',
 'otherlanguages' => '다른 언어',
 'redirectedfrom' => '($1에서 넘어옴.)',
-'lastmodified'	=> '이 문서는 최근 $1에 바뀌었습니다.',
-
-'viewcount'	   => '이 문서는 총 $1번 읽혔습니다.',
+'lastmodified'	=> '이 문서는 $1에 마지막으로바뀌었습니다.',
+'viewcount'	   => '이 문서는 모두 $1번 읽혔습니다.',
 'printsubtitle' => '({{SERVER}}에서)',
-'protectedpage' => '보호되는 문서',
+'protectedpage' => '보호받는 문서',
 'administrators' => '{{ns:4}}:관리자',
-'sysoptitle'  => 'Sysop 권한 필요',
-'sysoptext'	   => '해당 action은 \'Sysop\'만 실행할 수 있습니다.
-참조 $1.',
-'developertitle' => 'Developer 권한 필요',
-'developertext'       => '해당 action은 \'developer\'만 실행할 수 있습니다.
-참조 $1.',
+'sysoptitle'  => '관리자 권한 필요',
+'sysoptext'	   => '해당 동작은 \'관리자\'만 실행할 수 있습니다.
+$1을(를) 보십시오.',
+'developertitle' => '개발자 권한 필요',
+'developertext'       => '해당 동작은 \'개발자\'만 실행할 수 있습니다.
+$1을(를) 보십시오.',
 'nbytes'	      => '$1 바이트',
 'go'		  => '가기',
 'ok'		  => '확인',
 'sitetitle'	   => '{{SITENAME}}',
 'sitesubtitle'	=> '우리 모두의 백과사전',
-'retrievedfrom' => '\'$1\'에서',
+'retrievedfrom' => '원본 주소 - \'$1\'',
+'newmessages'		=> '$1에 메시지가 들어왔습니다.',
+'newmessageslink'	=> '사용자 토론',
+'editsection'		=> '편집',
+'toc'			=> '목차',
+'showtoc'		=> '보이기',
+'hidetoc'		=> '숨기기',
+'thisisdeleted'		=> 'View or restore $1?',
+'restorelink'		=> '$1 deleted edits',
+'feedlinks'		=> 'Feed:',
+'sitenotice'		=> '-', # the equivalent to wgSiteNotice
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main'		=> '문서',
+'nstab-user'		=> '사용자',
+'nstab-media'		=> 'Media',
+'nstab-special'		=> '특수기능',
+'nstab-wp'		=> '프로젝트',
+'nstab-image'		=> '그림',
+'nstab-mediawiki'	=> '메시지',
+'nstab-template'	=> '양식',
+'nstab-help'		=> '도움말',
+'nstab-category'	=> '분류',
 
 # Main script and global functions
 #
-'nosuchaction'	=> '그런 action은 없습니다.',
-'nosuchactiontext' => '{{SITENAME}} 무른모는 URL로 주어진 action을
-모릅니다.',
-'nosuchspecialpage' => '틀린 특수기능',
-'nospecialpagetext' => '{{SITENAME}}는 요청한 특수기능을
-모릅니다.',
+'nosuchaction'	=> '그런 동작은 없습니다.',
+'nosuchactiontext' => 'URL로 요청한 동작을 위키가 지원하지 않습니다.',
+'nosuchspecialpage' => '특수기능 없음',
+'nospecialpagetext' => '요청한 특수기능을 위키가 지원하지 않습니다.',
+
+# General errors
+#
+'error'			=> '오류',
+'databaseerror'		=> '데이터베이스 오류',
+'dberrortext'		=> '데이터베이스 쿼리 구문 오류가 발생했습니다.
+소프트웨어의 버그가 있을 수 있습니다.
+마지막으로 요청한 데이터베이스 쿼리는
+\'<tt>$2</tt>\' 함수에서 쓰인
+<blockquote><tt>$1</tt></blockquote>입니다.
+MySQL은 \'<tt>$3: $4</tt>\' 오류를 냈습니다.',
+'dberrortextcl' => '데이터베이스 쿼리 구문 오류가 발생했습니다.
+마지막으로 요청한 데이터베이스 쿼리는
+\'$2\' 함수에서 쓰인
+\'$1\'입니다.
+MySQL은 \'$3: $4\'. 오류를 냈습니다.\n',
+'noconnect'		=> '죄송합니다. 기술적인 문제로 위키가 데이터베이스 서버에 접근할 수 없습니다. <br />
+$1',
+'nodb'			=> '$1 데이터베이스를 선택할 수 없습니다',
+'cachederror'		=> '아래는 요청한 문서의 캐시이며, 최근 것이 아닐 수 있습니다.',
+'laggedslavemode'	=> '경고: 문서가 최근 것이 아닐 수 있습니다.',
+'readonly'		=> '데이터베이스가 잠겼습니다',
+'enterlockreason'	=> '데이터베이스를 잠그는 이유와 언제 풀리게 될 지를 입력하세요',
+'readonlytext'		=> '현재 데이터베이스가 추가나 변경을 하지 못하도록 잠겨 있습니다. 대부분의 경우 데이터베이스 관리 때문이며, 곧 정상으로 돌아올 것입니다.
+데이터베이스를 잠근 관리자의 설명은 다음과 같습니다:
+<p>$1',
+'missingarticle'	=> '데이터베이스가 \'$1\' 문서의 찾아야 할 글을 찾지 못했습니다.
+
+<p>이것은 보통 시간이 지나서 지워진 문서의 역사를 보려고 했을 때 일어납니다.
+
+<p>만약 그렇지 않다면, 이것은 소프트웨어의 버그일 수 있습니다.
+관리자에게 URL과 함께 신고해 주십시오.',
+'internalerror'		=> '내부 오류',
+'filecopyerror'		=> 'Could not copy file \'$1\' to \'$2\'.',
+'filerenameerror'	=> 'Could not rename file \'$1\' to \'$2\'.',
+'filedeleteerror'	=> 'Could not delete file \'$1\'.',
+'filenotfound'		=> 'Could not find file \'$1\'.',
+'unexpected'		=> 'Unexpected value: \'$1\'=\'$2\'.',
+'formerror'		=> 'Error: could not submit form', 
+'badarticleerror'	=> 'This action cannot be performed on this page.',
+'cannotdelete'		=> 'Could not delete the page or image specified.',
 
 # Login and logout pages
 #
-'logouttitle' => '나옴',
+'logouttitle' => '로그아웃',
 'logouttext'  => '{{SITENAME}}에서 나왔습니다.
-이대로 이름없이 {{SITENAME}}를 이용하거나, 방금 사용했던 또이름, 혹은 다른 또이름으로 들어가서 이용하세요.\n',
+이대로 이름없이 {{SITENAME}}를 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 로그인해서 이용할 수 있습니다. 아울러 웹 브라우저의 캐시를 지우지 않으면 몇몇 페이지는 로그인이 되어 있는 것처럼 보일 수 있음을 알려드립니다.\n',
 
-'welcomecreation' => '<h2>$1 님, 환영합니다!</h2><p>또이름이 만들어 졌습니다.
-개인 맞춤에서 자잘한 환경들을 바꾸어 보세요.',
+'welcomecreation' => '== $1 님, 환영합니다! ==
 
-'loginpagetitle' => '들어가기',
-'yourname'	    => '또이름은',
-'yourpassword'	=> '암호는',
-'yourpasswordagain' => '암호 또 한번',
-'newusersonly'	=> ' (새내기 사용자)',
-'remembermypassword' => '세쎤동안 암호를 기억합니다.',
-'loginproblem'	=> '<b>들어가는 데 문제가 있습니다.</b><br />다시 해 보세요!',
-'alreadyloggedin' => '<strong>$1 님, 벌써 들어와 있습니다!</strong><br />\n',
+계정이 만들어졌습니다. 개인 맞춤에서 {{SITENAME}}의 환경을 바꾸어 보세요.',
 
-'login'		       => '들어가기',
-'userlogin'	   => '들어가기',
-'logout'	      => '나가기',
-'userlogout'  => '나오기',
-'createaccount'       => '또이름 새로 만들기',
+'loginpagetitle' => '들어가기(로그인)',
+'yourname'	    => '계정',
+'yourpassword'	=> '암호',
+'yourpasswordagain' => '암호 확인',
+'newusersonly'	=> ' (새내기 사용자만)',
+'remembermypassword' => '로그인 상태를 저장합니다.',
+'loginproblem'	=> '<b>로그인에 문제가 있습니다.</b><br />다시 해 보세요!',
+'alreadyloggedin' => '<font color=red><b>이미 $1 계정으로 접속해 있습니다!</b></font><br />\n',
+
+'login'		       => '들어가기(로그인)',
+'loginprompt'		=> '{{SITENAME}}에 들어오기 위해서는 웹 브라우저가 쿠키를 사용할 수 있어야 합니다.',
+'userlogin'		=> '계정을 만들거나 로그인하십시오',
+'logout'	      => '나가기(로그아웃)',
+'userlogout'  => '나오기(로그아웃)',
+'createaccount'       => '계정 만들기',
 'badretype'	   => '암호가 서로 다릅니다.',
-'userexists'  => '또이름이 벌써 사용중입니다. 다른 또이름을 지으세요.',
-'youremail'	   => '당신의 누리편지',
-'yournick'	    => '당신의 별명 (서명용)',
-'emailforlost'	=> '암호를 잊었을 때, 새 암호를 누리편지로 받을 수 있습니다.',
-'loginerror'  => '들어가기 오류',
-'noname'	      => '또이름이 틀립니다.',
-'loginsuccesstitle' => '들어가기 성공',
-'loginsuccess'	=> '\'$1\' {{SITENAME}}에 들어왔습니다.',
-'nosuchuser'  => '\'$1\'란 또이름은 없습니다.'.
-'철자가 맞는지 확인하고, 아직 또이름이 없다면, 아래를 채워 또이름을 새로이 만드세요.',
+'userexists'  => '계정의 이름이 사용중입니다. 다른 이름을 지으세요.',
+'youremail'	   => '전자우편(선택)',
+'yourrealname'		=> '본명(선택)',
+'yourlanguage'		=> '언어',
+'yourvariant'		=> 'Variant',
+'yournick'	    => '별명(서명용)',
+'emailforlost'		=> '전자우편은 선택사항입니다. 전자우편 주소를 넣으면 다른 사용자들이 전자우편 주소를 알지 못한 상태에서 전자우편을 보낼 수 있습니다. 암호를 잊었을 때, 새 암호를 전자우편으로 받을 수 있습니다.<br /><br />본명은 참여한 사람을 밝히는 데에 쓰일 수 있습니다.',
+'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
+'prefs-help-realname' 	=> '¹ Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
+'loginerror'	=> 'Login error',
+'prefs-help-email'      => '² Email (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
+'loginerror'		=> '로그인 오류',
+'noname'	      => '계정 이름이 올바르지 않습니다.',
+'loginsuccesstitle' => '로그인 성공',
+'loginsuccess'	=> '\'$1\' 계정으로 {{SITENAME}}에 들어왔습니다.',
+'nosuchuser'  => '\'$1\'란 계정 이름이 존재하지 않습니다.'.
+'철자가 맞는지 확인하고, 아직 계정이 없다면 아래를 채워 새로이 만드십시오.',
 'wrongpassword'       => '암호가 틀립니다. 다시 시도하세요.',
-'mailmypassword' => '새 암호를 누리편지로 보냅니다.',
+'mailmypassword' => '새 암호를 전자우편로 보냅니다.',
+'mailmypasswordauthent' => '새 암호를 전자우편로 보냅니다.',
 'passwordremindertitle' => '{{SITENAME}}에서 보내는 새 암호',
-'passwordremindertext' => '누군가가 (IP $1 을 사용했던, 아마도 당신이)
-새 {{SITENAME}} 암호를 보내달라고 부탁했습니다.
-또이름 \'$2\'의 암호는 이제 \'$3\'입니다.
-새 암호로 {{SITENAME}}에 들어와서, 암호를 바꾸세요.',
-'noemail'	     => '또이름 \'$1\'에 딸린 누리편지주소정보가 없습니다.',
-'passwordsent'	=> '\'$1\'의 새 암호를 누리편지로 보냈습니다.
+'passwordremindermailsubject'	=> '{{SITENAME}} 전자우편 인증과 임시 로그인',
+'passwordremindertext'	=> 'IP 주소 $1에서 새 {{SITENAME}} 암호를 보내 달라고 요청했습니다.
+ \'$2\' 계정의 암호는 이제 \'$4\'입니다.
+
+이것은 임시 암호로, 이 암호로는 {{SITENAME}}에 한 번 로그인할 수 있습니다.
+예전 암호가 기억난다면 계속 쓰거나 새 암호를 만드세요.
+
+{{SERVER}}{{localurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}',
+'noemail'		=> '계정 \'$1\'에 딸린 전자우편주소 정보가 없습니다.',
+'passwordsent'		=> '\'$1\' 계정의 새 암호를 전자우편으로 보냈습니다.
 암호를 받고 다시 들어오세요.',
 
 # Edit pages
@@ -234,22 +365,20 @@ require_once('LanguageUtf8.php');
 'preview'	     => '미리보기',
 'showpreview' => '미리보기',
 'blockedtitle'	=> '사용자 접근금지',
-'blockedtext' => '$1 가 당신의 또이름이나 IP를 막았습니다.
-이유는 다음과 같습니다:<br />$2<p> 접근금지에 대해선 관리자와 상의하십시오.',
+'blockedtext' => '$1(이)가 당신의 계정 또는 IP 주소를 막았습니다.
+이유는 다음과 같습니다:<br />$2<p> 접근금지에 대해선 [[{{ns:4}}:관리자|관리자]]와 상의하십시오.
+
+[[Special:Preferences|환경설정]]에 전자우편 주소를 쓰지 않았다면 전자우편 기능을 쓸 수 없습니다.
+
+당신의 IP 주소는 $3입니다.',
 'newarticle'  => '(새문서)',
 'newarticletext' => '새문서에 내용을 써 넣으세요.',
 'noarticletext' => '(현재 문서는 비어 있습니다.)',
 'updated'	     => '(바뀜)',
 'note'			=> '<strong>주의:</strong> ',
 'previewnote' => '지금 미리보기로 보고 있는 내용은 아직 저장되지 않았습니다!',
-
-# when does this message show up? I have encountered it yet, I guess.
-# And what does it have to do with conflict? The message sound quite normal.
-# (I don't think it _can_ show up. It's only used if you preview and get
-# an edit conflict, but edit conflict is tripped only if you're saving.)
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
-
 'editing'	     => '$1 고쳐쓰기',
 'editconflict'	=> '고치기 충돌: $1',
 'explainconflict' => '문서를 고쳐쓰는 동안, 문서가 바뀌었습니다.
@@ -285,7 +414,7 @@ text editing area as it will appear if you choose to save.',
 'last'			=> '이전',
 'orig'			=> '처음',
 'histlegend'  => '상세설명: (현재) = 현재 버젼과의 차이,
-(이전) = 바로 이전 버전과의 차이, 少 = 사소한 편집',
+(이전) = 바로 이전 버전과의 차이, 잔글 = 사소한 편집',
 
 # Diffs
 #
@@ -327,21 +456,20 @@ text editing area as it will appear if you choose to save.',
 
 # Preferences page
 #
-'preferences' => '개인 맞춤',
-'prefsnologin' => '나와 있습니다.',
-'prefsnologintext'    => '[[Special:Userlogin|들어와]] 있을 때에만,
-# Special:Userlogin => 특수기능:들어가기 개인 환경을 맞출 수 있습니다.',
-'prefslogintext' => '당신은 \'$1\', 맞죠?
-당신의 내부 ID 번호는 $2입니다.',
-'prefsreset'  => '개인 맞춤을 보통으로 되돌렸습니다.',
+'preferences' => '개인 설정',
+'prefsnologin' => '로그인해야 합니다',
+'prefsnologintext'    => '[[Special:Userlogin|로그인]]한 상태에서만 개인 설정을 할 수 있습니다.",
+'prefslogintext' => '당신의 계정은 \"$1\"이고, 내부 아이디 번호는 $2입니다.',
+'prefsreset'  => '개인 맞춤을 기본값으로 되돌렸습니다.',
 'qbsettings'  => '빨리가기 맞춤',
 'changepassword' => '암호 바꾸기',
-'skin'			=> '옷',
+'skin'			=> '옷(스킨)',
+'math'			=> '수식',
 'saveprefs'	   => '맞춤 저장',
 'resetprefs'  => '맞춤 보통으로',
 'oldpassword' => '현재 암호',
 'newpassword' => '새 암호',
-'retypenew'	   => '새 암호 또 한번',
+'retypenew'	   => '새 암호 확인',
 'textboxsize' => '문서상자 크기',
 'rows'			=> '줄수',
 'columns'	     => '너비',
@@ -355,25 +483,26 @@ text editing area as it will appear if you choose to save.',
 'timezonetext'	=> '현지 시간과 서버 시간(UTC)과 차이를 써 넣으세요.',
 'localtime'   => '현지 시각',
 'timezoneoffset' => '시간차',
-'emailflag'	   => '다른 사용자에게서 누리편지 안 받음',
+'emailflag'	   => '다른 사용자에게서 전자우편을 받지 않음',
 
 # Recent changes
 #
 'recentchanges' => '최근 바뀜',
 'recentchangestext' => '아래 나열된 문서들이 최근에 바뀌었습니다.
 
-[[{{ns:4}}:새내기_환영|새내기, 환영합니다]]!
-새내기들은 다음 문서를 읽어 보세요.: [[{{ns:4}}:잦은질문(FAQ)|{{SITENAME}} 잦은질문(FAQ)]],
-[[{{ns:4}}:정책과 지침|{{SITENAME}} 정책]]
+[[{{ns:4}}:어서오세요|어서오세요]]!
+처음 오신 분들은 다음 문서를 읽어 보세요.: [[{{ns:4}}:잦은질문|잦은질문]],
+[[{{ns:4}}:정책과 지침|위키백과 정책]]
 (특별히 [[{{ns:4}}:제목달기 규칙|제목달기 규칙]],
 [[{{ns:4}}:중립적인 시각|중립적인 시각]]),
-그리고 [[{{ns:4}}:범하기_쉬운_실수|범하기 쉬운 실수]].
+그리고 [[{{ns:4}}:범하기 쉬운 실수|범하기 쉬운 실수]].
 
-{{SITENAME}}가 성공하려면, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않는 것이
-매우 중요합니다.\' [[{{ns:4}}:저작권|저작권]].
-법적 문제가 프로젝트를 망칠 수 있습니다. 저작권에 유의해 주세요.
-또, [http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도
-읽어 보세요.',
+위키백과 프로젝트의 성공을 위해선, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않아야 합니다.
+법적문제로 프로젝트가 위협받을 수 있습니다. 저작권 문제에 각별히 유의해 주세요.
+자세한 내용은 [[{{ns:4}}:저작권|저작권]]을 참고하세요.
+
+[http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도 
+읽어 보시고, 국제적인 위키백과 공동체에 참여해 보세요.',
 'rcloaderr'	   => '최근 바뀜을 받고 있습니다.',
 'rcnote'	      => '다음이 최근 <strong>$2</strong>일간 바뀐  <strong>$1</strong>개의 문서입니다.',
 'rclinks'	     => '최근 $2일 동안에 바뀐 $1개의 문서를 봅니다.',
@@ -385,8 +514,8 @@ text editing area as it will appear if you choose to save.',
 'tableform'	   => '표로',
 'listform'	    => '목록으로',
 'nchanges'	    => '$1개 바뀜',
-'minoreditletter' => '少',
-'newpageletter' => '新',
+'minoreditletter' => '잔글',
+'newpageletter' => '새글',
 
 # Upload
 #
@@ -396,9 +525,7 @@ text editing area as it will appear if you choose to save.',
 'reupload'	    => '다시 올리기',
 'reuploaddesc'	=> '올리기 틀로 돌아감',
 'uploadnologin' => '나와있습니다.',
-'uploadnologintext'   => '{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때에만
-# special:userlogin 특수기능:들어가기
-파일을 올릴 수 있습니다.',
+'uploadnologintext'   => '{{SITENAME}}에 [[Special:Userlogin|로그인]]한 상태에서만 파일을 올릴 수 있습니다.',
 'uploaderror' => '올리기 오류',
 'uploadtext'  => "'''잠깐!''' 여기 그림을 올리기 전에,
 {{SITENAME}}의 [[Project:Image_use_policy|그림 사용 정책]]읽고 따라 주세요.
@@ -436,16 +563,19 @@ OGG형식을 더 좋아합니다.
 ',
 'filename'	    => '파일이름',
 'filedesc'	    => '짧은설명',
+'affirmation' => '파일의 저작권자가 $1의 조건으로 사용을 허가했음을 확인합니다.',
 'copyrightpage' => '{{ns:4}}:저작권',
 'copyrightpagename' => '{{SITENAME}} 저작권',
 'uploadedfiles'       => '파일 올리기',
+'noaffirmation' => '올리는 파일이 어떤 저작권에도 저촉되지 않음을 확인해야 합니다.',
+'ignorewarning'       => '경고 무시하고, 파일 저장',
 
-# three alphabets and how many for Korean character?
-'minlength'	   => '그림이름은 두글자가 넘어야 합니다.',
+# three alphabets. two Korean character.
+'minlength'	   => '그림 파일의 이름은 두글자가 넘어야 합니다.',
 
 'badfilename' => '그림이름이 \'$1\'로 바뀌었습니다.',
 'badfiletype' => '\'.$1\' 형식은 권장하지 않습니다.',
-'largefile'	   => '그림크기는 100k이하를 권장합니다.',
+'largefile'	   => '그림크기는 100KB 이하를 권장합니다.',
 'successfulupload' => '올리기 성공',
 'fileuploaded'	=> '\'$1\'가 올라갔습니다.
 다음 고리($2)를 따라 가서, 설명문서에 파일에 대한 정보를(어디서 구했는지,
@@ -526,20 +656,16 @@ OGG형식을 더 좋아합니다.
 
 # Email this user
 #
-'mailnologin' => '누리편지주소 없음',
-'mailnologintext' => '{{SITENAME}}에 [[Special:Userlogin|들어와]] 있을 때, 또,
-[[Special:Preferences|개인 맞춤]]에
-자기의 누리편지주소를 기억시켰을 때에만,
-다른 사용자에게 편지를 보낼 수 있습니다.',
+'mailnologin' => '전자우편주소 없음',
+'mailnologintext' => '다른 사용자에게 편지를 보내려면 {{SITENAME}}에 [[Special:Userlogin|로그인]]한 상태에서 [[Special:Preferences|개인 맞춤]]에 자신의 전자우편 주소를 저장해야 합니다.',
 'emailuser'	   => '사용자에게 편지쓰기',
-'emailpage'	   => '누리편지 쓰기',
+'emailpage'	   => '전자우편 쓰기',
 'emailpagetext'       => '이 사용자가 개인맞춤에 옳바른 주소를 써 넣었다면,
 아래 틀을 이용하여 편지를 보낼 수 있습니다.
 이 사용자가 바로 답장할 수 있도록, 당신의 개인맞춤에 넣었던 주소가,
 \'보낸이\' 주소에 들어갑니다.',
-'noemailtitle'	=> '누리편지 없음',
-'noemailtext' => '이 사용자는 누리편지를 받지않음에 맞추어 놓았거나,
-옳바른 주소를 써 넣지 않았습니다.',
+'noemailtitle'	=> '전자우편 없음',
+'noemailtext' => '이 사용자는 전자우편을 받지 않도록 설정해 놓았거나 올바른 주소를 써 넣지 않았습니다.',
 'emailfrom'	   => '보낸이',
 'emailto'	     => '받는이',
 'emailsubject'	=> '제목',
@@ -568,6 +694,47 @@ OGG형식을 더 좋아합니다.
 'watchthispage'       => '눈여겨보기',
 'unwatchthispage' => '눈여겨 보지 않음',
 'notanarticle'	=> '문서가 아님',
+
+# Delete/protect/revert
+'deletepage'  => '글삭제',
+'confirm'             => '확인',
+'confirmdelete' => '삭제 확인',
+'deletesub'           => '(Deleting \'$1\')',
+'confirmdeletetext' => '자료목록에서 그간의 내용을 완전히 지우려고 하고 있습니다.
+Please confirm that you intend to do this, that you understand the
+consequences, and that you are doing this in accordance with
+[[위키백과:Policy]].',
+'confirmcheck'        => 'Yes, I really want to delete this.',
+
+'actioncomplete' => 'Action complete',
+'deletedtext' => '\'$1\' has been deleted.
+See $2 for a record of recent deletions.',
+'deletedarticle' => 'deleted \'$1\'',
+'dellogpage'  => 'Deletion_log',
+'dellogpagetext' => 'Below is a list of the most recent deletions.
+All times shown are server time (UTC).
+<ul>
+</ul>
+',
+'deletionlog' => '삭제 목록',
+'reverted'            => '이전판으로 되돌렸습니다.',
+'deletecomment'       => '삭제 이유',
+'imagereverted' => '이전판으로 되돌렸습니다.',
+'undelete' => '삭제된 글 복구',
+'undeletepage' => '삭제된 글을 복구합니다.',
+'undeletepagetext' => 'The following pages have been deleted but are still in the archive and
+can be restored. The archive may be periodically cleaned out.',
+'undeletearticle' => 'Restore deleted article',
+'undeleterevisions' => '$1 revisions archived',
+'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
+If a new page with the same name has been created since the deletion, the restored
+revisions will appear in the prior history, and the current revision of the live page
+will not be automatically replaced.',
+'undeleterevision' => 'Deleted revision as of $1',
+'undeletebtn' => 'Restore!',
+'undeletedarticle' => 'restored \'$1\'',
+'undeletedtext'   => 'The article [[$1]] has been successfully restored.
+See [[위키백과:Deletion_log]] for a record of recent deletions and restorations.',
 
 # Contributions
 #

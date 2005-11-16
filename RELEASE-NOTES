@@ -232,6 +232,7 @@ fully support the editing toolbar, but was found to be too confusing.
   ordinary templates.
 * (bug 3948) Avoid notice warning in debug statement in bad search
 * (bug 3961) minor languageDe changes
+* (bug 1984) LanguageKo.php (Korean) update
 
 
 === Caveats ===
