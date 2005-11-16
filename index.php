@@ -95,6 +95,13 @@ wfProfileOut( 'main-misc-setup' );
 # Debug statement for user levels
 // print_r($wgUser);
 
+$search = $wgRequest->getText( 'search' );
+if( !is_null( $search ) && $search !== '' ) {
+	// Compatibility with old search URLs which didn't use Special:Search
+	// Do this above the read whitelist check for security...
+	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
+}
+
 # If the user is not logged in, the Namespace:title of the article must be in
 # the Read array in order for the user to see it. (We have to check here to
 # catch special pages etc. We check again in Article::view())
@@ -105,10 +112,6 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 }
 
 wfProfileIn( 'main-action' );
-$search = $wgRequest->getText( 'search' );
-if( $wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
-	$wgTitle = Title::makeTitle( NS_SPECIAL, 'Search' );
-}
 
 if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	require_once( 'includes/SpecialSearch.php' );
