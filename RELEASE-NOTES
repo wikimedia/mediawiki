@@ -903,6 +903,12 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Fix Parser::unstrip on PHP 4.4.1 and PHP 5.1.0RC4
 
 
+=== Changes since 1.5.2 ===
+
+* (bug 3612) Remove old broken version of maintenance/compressOld.php
+  The working version is in maintenance/storage/compressOld.php
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
