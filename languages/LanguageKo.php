@@ -458,7 +458,7 @@ text editing area as it will appear if you choose to save.',
 #
 'preferences' => '개인 설정',
 'prefsnologin' => '로그인해야 합니다',
-'prefsnologintext'    => '[[Special:Userlogin|로그인]]한 상태에서만 개인 설정을 할 수 있습니다.",
+'prefsnologintext'    => '[[Special:Userlogin|로그인]]한 상태에서만 개인 설정을 할 수 있습니다.',
 'prefslogintext' => '당신의 계정은 \"$1\"이고, 내부 아이디 번호는 $2입니다.',
 'prefsreset'  => '개인 맞춤을 기본값으로 되돌렸습니다.',
 'qbsettings'  => '빨리가기 맞춤',
