@@ -230,6 +230,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3939) Don't try to load text for interwiki redirect target
 * Respect <noinclude> and <includeonly> during {{subst:}} expansion as well as
   ordinary templates.
+* (bug 3948) Avoid notice warning in debug statement in bad search
 
 
 === Caveats ===
