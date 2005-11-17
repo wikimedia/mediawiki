@@ -254,14 +254,15 @@ class AtomFeed extends ChannelFeed {
 	
 	/**
 	 * Atom 1.0 requires a unique, opaque IRI as a unique indentifier
-	 * for every feed we create.
+	 * for every feed we create. For now just use the URL, but who
+	 * can tell if that's right? If we put options on the feed, do we
+	 * have to change the id? Maybe? Maybe not.
+	 *
 	 * @return string
 	 * @access private
 	 */
 	function getFeedId() {
-		global $wgServer, $wgScript;
-		return htmlspecialchars( "$wgServer$wgScript?atom-feed-id/" .
-			wfTimestamp( TS_MW ) . "/" . wfRandom() );
+		return $this->getSelfUrl();
 	}
 	
 	/**
