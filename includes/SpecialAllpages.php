@@ -150,7 +150,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
-		$this->showChunk( $namespace, '', false, $including );
+		$this->showChunk( $namespace, '', $including );
 		return;
 	}
 
