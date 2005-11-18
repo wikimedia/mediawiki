@@ -240,6 +240,7 @@ fully support the editing toolbar, but was found to be too confusing.
   which someone else will probably whine about because it's not 'perma'
   enough or something.
 * (bug 4014) Fix include mode for Allpages on small page sets
+* (bug 3996) Fix text for new entries in RC RSS/Atom feed
 
 
 === Caveats ===
