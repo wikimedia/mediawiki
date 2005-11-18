@@ -913,6 +913,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3948) Avoid notice warning in debug statement in bad search
 * Recognize Special:Search consistently so read whitelist works
 * (bug 4013) typo in fr
+* (bug 3996) Fix text for new entries in RC RSS/Atom feed
 
 
 === Caveats ===

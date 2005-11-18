@@ -540,7 +540,13 @@ function rcFormatDiff( $row ) {
 			}
 			wfProfileOut( "$fname-dodiff" );
 		} else {
-			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' . 
+			$rev = Revision::newFromId( $row->rc_this_oldid );
+			if( is_null( $rev ) ) {
+				$newtext = '';
+			} else {
+				$newtext = $rev->getText();
+			}
+			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
 				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
 		}
 		
