@@ -1140,7 +1140,7 @@ Si il ne s\'agit pas de vous, n\'ouvrez pas le lien. Ce code de confirmation exp
 'exif-compression' => 'Type de compression',
 'exif-samplesperpixel' => 'Nombre d\'échantillons',
 'exif-xresolution' => 'Résolution de l\'image en largeur',
-'exif-yresolution' => 'Résolution de l\'image en hauter',
+'exif-yresolution' => 'Résolution de l\'image en hauteur',
 'exif-jpeginterchangeformat' => 'Position du SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Taille en octet des données JPEG',
 'exif-transferfunction' => 'Fonction de transfert',
