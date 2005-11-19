@@ -2152,8 +2152,6 @@ class Parser
 		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
 
-		$titleChars = Title::legalChars();
-
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
 
