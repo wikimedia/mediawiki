@@ -1906,11 +1906,16 @@ class Parser
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
 				return $this->mTitle->getPartialURL();
+			case MAG_FULLPAGENAME:
+				return $this->mTitle->getPrefixedText();
+			case MAG_FULLPAGENAMEE:
+				return wfUrlencode( $this->mTitle->getPrefixedText() );
 			case MAG_REVISIONID:
 				return $wgArticle->getRevIdFetched();
 			case MAG_NAMESPACE:
-				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
-				return $wgContLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori
+				return $wgContLang->getNsText( $this->mTitle->getNamespace() );
+			case MAG_NAMESPACEE:
+				return wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case MAG_CURRENTDAYNAME:
 				return $varCache[$index] = $wgContLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
