@@ -922,9 +922,9 @@ class Article {
 	}
 	
 	function purge() {
-		global $wgRequest, $wgOut, $wgUseSquid;
+		global $wgUser, $wgRequest, $wgOut, $wgUseSquid;
 
-		if ( $wgRequest->wasPosted() ) {
+		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() ) {
 			// Invalidate the cache
 			$this->mTitle->invalidateCache();
 
@@ -2176,7 +2176,6 @@ class Article {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
-		
 		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', &$this ) ) {
 			wfSeedRandom();
 			if ( 0 == mt_rand( 0, 999 ) ) {
