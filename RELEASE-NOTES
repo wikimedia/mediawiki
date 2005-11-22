@@ -242,6 +242,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4014) Fix include mode for Allpages on small page sets
 * (bug 3996) Fix text for new entries in RC RSS/Atom feed
 * (bug 3886) Update for Portuguese language (pt)
+* (bug 4020) Update namespaces for ms
 
 
 === Caveats ===

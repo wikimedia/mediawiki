@@ -18,10 +18,14 @@
 	NS_PROJECT_TALK   => "Perbualan_Wikipedia",#Wikipedia_talk
 	NS_IMAGE          => "Imej",#Image
 	NS_IMAGE_TALK     => "Imej_Perbualan",#Image_talk
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "MediaWiki_Perbualan",
-	NS_TEMPLATE       => "Template",
-	NS_TEMPLATE_TALK  => "Template_talk"
+	NS_MEDIAWIKI      => "MediaWiki",#MediaWiki
+	NS_MEDIAWIKI_TALK => "MediaWiki_Perbualan",#MediaWiki_talk
+	NS_TEMPLATE       => "Templat",#Template
+	NS_TEMPLATE_TALK  => "Perbualan_Templat",#Template_talk
+	NS_CATEGORY       => "Kategori",#Category
+	NS_CATEGORY_TALK  => "Perbualan_Kategori",#Category_talk
+	NS_HELP           => "Bantuan",#Help
+	NS_HELP_TALK      => "Perbualan_Bantuan" #Help_talk
 
 ) + $wgNamespaceNamesEn;
 
