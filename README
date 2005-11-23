@@ -6,8 +6,8 @@ MediaWiki
 MediaWiki is the software used for Wikipedia (http://www.wikipedia.org) and the
 other Wikimedia Foundation websites. Compared to other wikis, it has an
 excellent range of features and support for high-traffic websites using
-multiple servers (Wikipedia peaks in the 2500+ requests per second range
-as of June 2005).
+multiple servers (Wikimedia sites peak in the 5000+ requests per second range
+as of November 2005).
 
 While quite usable on smaller sites, you may find you have to "roll your own"
 local documentation, and some aspects of configuration may seem overcomplicated
@@ -35,13 +35,14 @@ The MediaWiki software was written by:
  * Several others
 
 These developers hold the copyright to this work, and it is licensed under the
-terms of the GNU General Public License, version 2 (see
-http://www.fsf.org/licenses/gpl.html). Derivative works and later versions of
-the code will also be considered free software licensed under the same terms.
+terms of the GNU General Public License, version 2 or later (see
+http://www.fsf.org/licenses/gpl.html). Derivative works, including
+"extensions" which use the MediaWiki code) and later versions of the code
+will also be considered free software licensed under the same terms.
 
-The newly-founded Wikimedia Foundation currently has no legal rights to the
-software, although copyright may be assigned to it at a later date. Wikimedia
-has not funded any of the development work.
+The Wikimedia Foundation currently has no legal rights to the software,
+although copyright may be assigned to it by individual contributors at a later
+date. Wikimedia has not funded any of the development work.
 
 Sections of code written exclusively by Lee Crocker or Erik Moeller are also
 released into the public domain, which does not impair the obligations of users
