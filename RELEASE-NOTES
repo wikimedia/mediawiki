@@ -243,6 +243,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3996) Fix text for new entries in RC RSS/Atom feed
 * (bug 3886) Update for Portuguese language (pt)
 * (bug 4020) Update namespaces for ms
+* (bug 2894) Enhanced Recent Changes link fixes
 
 
 === Caveats ===
