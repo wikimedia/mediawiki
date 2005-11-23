@@ -59,7 +59,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}
 	if ( $hideminor ) {
-		$cmq = 'AND rev_minor_edit=0';
+		$cmq = 'AND rc_minor=0';
 	} else { $cmq = ''; }
 
 	extract( $dbr->tableNames( 'recentchanges', 'categorylinks', 'pagelinks', 'revision', 'page' ) );
