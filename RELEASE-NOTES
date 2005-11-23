@@ -914,6 +914,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Recognize Special:Search consistently so read whitelist works
 * (bug 4013) typo in fr
 * (bug 3996) Fix text for new entries in RC RSS/Atom feed
+* (bug 2894) Enhanced Recent Changes link fixes
 
 
 === Caveats ===

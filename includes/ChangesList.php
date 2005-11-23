@@ -205,8 +205,8 @@ class ChangesList {
 			$r .= '&nbsp;</tt>' ;
 
 			$o = '' ;
-			if ( $rc_last_oldid != 0 ) {
-				$o = 'oldid='.$rc_last_oldid ;
+			if ( $rc_this_oldid != 0 ) {
+				$o = 'oldid='.$rc_this_oldid ;
 			}
 			if ( $rc_type == RC_LOG ) {
 				$link = $rcObj->timestamp ;
@@ -475,16 +475,17 @@ class ChangesList {
 		} else {
 			$rcIdQuery = '';
 		}
-		$query = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid";
+		$querycur = $curIdEq."&diff=0&oldid=$rc_this_oldid";
+		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid";
 		$aprops = ' tabindex="'.$baseRC->counter.'"';
-		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $query, '' ,'' , $aprops );
+		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $querycur, '' ,'' , $aprops );
 		if( $rc_type == RC_NEW || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			if( $rc_type != RC_NEW ) {
 				$curLink = $message['cur'];
 			}
 			$diffLink = $message['diff'];
 		} else {
-			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['diff'], $query . $rcIdQuery, '' ,'' , $aprops );
+			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['diff'], $querydiff . $rcIdQuery, '' ,'' , $aprops );
 		}
 
 		# Make "last" link
