@@ -34,8 +34,8 @@ The MediaWiki software was written by:
  * Niklas Laxström
  * Several others
 
-These developers hold the copyright to this work, and it is licensed
-under the terms of the GNU General Public License, version 2 or later
+The contributors hold the copyright to this work, and it is licensed
+under the terms of the GNU General Public License, version 2 or later[1]
 (see http://www.fsf.org/licenses/gpl.html). Derivative works and later
 versions of the code must be free software licensed under the same
 terms. This includes "extensions" that use MediaWiki functions or
@@ -46,9 +46,9 @@ The Wikimedia Foundation currently has no legal rights to the software,
 although copyright may be assigned to it by individual contributors at a later
 date. Wikimedia has not funded any of the development work.
 
-Sections of code written exclusively by Lee Crocker or Erik Moeller are also
-released into the public domain, which does not impair the obligations of users
-under the GPL for use of the whole code or other sections thereof.
+[1] Sections of code written exclusively by Lee Crocker or Erik Moeller are
+also released into the public domain, which does not impair the obligations of
+users under the GPL for use of the whole code or other sections thereof.
 
 Many thanks to the Wikipedia regulars for testing and suggestions.
 
