@@ -38,15 +38,15 @@ function wfSpecialMaintenance( $par=NULL ) {
 
 	# Call the subfunction requested by the user
 	switch( $subfunction ) {
-	case 'disambiguations': return wfSpecialDisambiguations() ; break;
+	case 'disambiguations': return wfSpecialDisambiguations();
 	
 	# doubleredirects & brokenredirects are old maintenance subpages.
-	case 'doubleredirects': return wfSpecialDoubleRedirects() ; break;
-	case 'brokenredirects': return wfSpecialBrokenRedirects() ; break;
+	case 'doubleredirects': return wfSpecialDoubleRedirects();
+	case 'brokenredirects': return wfSpecialBrokenRedirects();
 	
-	case 'selflinks':       return wfSpecialSelfLinks()       ; break;
-	case 'mispeelings':     return wfSpecialMispeelings()     ; break;
-	case 'missinglanguagelinks': return wfSpecialMissingLanguageLinks() ; break;
+	case 'selflinks':       return wfSpecialSelfLinks()      ;
+	case 'mispeelings':     return wfSpecialMispeelings()    ;
+	case 'missinglanguagelinks': return wfSpecialMissingLanguageLinks();
 	}
 	
 	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
