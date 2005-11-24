@@ -246,6 +246,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 2894) Enhanced Recent Changes link fixes
 * (bug 4059) fix 'hide minor edits' on Recentchangeslinked
 * (bug 3922) bidi embedding overrides on category links
+* (bug 146) List number of category members in Special:Categories
+  (patch by Joel Nothman)
 
 
 === Caveats ===
