@@ -34,9 +34,10 @@ require_once( "LanguageUtf8.php" );
 	NS_IMAGE_TALK     => "Pogovor_k_sliki",
 	NS_MEDIAWIKI      => "MediaWiki",
 	NS_MEDIAWIKI_TALK => "MediaWiki_talk",
-	NS_TEMPLATE       => "Template",
-	NS_TEMPLATE_TALK  => "Template_talk"
-
+	NS_TEMPLATE       => "Predloga",
+	NS_TEMPLATE_TALK  => "Pogovor_k_predlogi",
+	NS_CATEGORY       => "Kategorija",
+	NS_CATEGORY_TALK  => "Pogovor_k_kategoriji"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSl = array(
