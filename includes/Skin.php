@@ -421,15 +421,18 @@ END;
 
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgParser;
-		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
+		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgContLang;
 
 		if( !$wgUseCategoryMagic ) return '' ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
 
-		# Taken out so that they will be displayed in previews -- TS
-		#if( !$wgOut->isArticle() ) return '';
-
-		$t = implode ( ' | ' , $wgOut->mCategoryLinks );
+		// Use Unicode bidi embedding override characters,
+		// to make sure links don't smash each other up in ugly ways.
+		// FIXME: should we use 'dir=emded' or something on links instead?
+		$embed = $wgContLang->isRTL() ? '&#x202b;' : '&#x202a;';
+		$pop = '&#x202c;';
+		$t = $embed . implode ( "$pop | $embed" , $wgOut->mCategoryLinks ) . $pop;
+		
 		$msg = count( $wgOut->mCategoryLinks ) === 1 ? 'categories1' : 'categories';
 		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
 			wfMsg( $msg ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
