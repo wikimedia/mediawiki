@@ -3,7 +3,6 @@
  * Main wiki script; see docs/design.txt
  * @package MediaWiki
  */
-
 $wgRequestTime = microtime();
 
 unset( $IP );
