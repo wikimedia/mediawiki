@@ -1016,6 +1016,10 @@ class LanguageEo extends LanguageUtf8 {
 		$wgEditEncoding = '';
 	}
 
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
+	}
 }
 
 ?>
