@@ -28,7 +28,7 @@ function dropTextIndex( &$database )
 function createTextIndex( &$database )
 {
 	$searchindex = $database->tableName( 'searchindex' );
-	echo "Rebuild the index...\n";
+	echo "\nRebuild the index...\n";
 	$sql = "ALTER TABLE $searchindex ADD FULLTEXT si_title (si_title), " .
 	  "ADD FULLTEXT si_text (si_text)";
 	$database->query($sql, "createTextIndex" );
