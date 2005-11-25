@@ -1939,7 +1939,11 @@ class Parser
 			case MAG_SCRIPTPATH:
 				return $wgScriptPath;
 			default:
-				return NULL;
+				$ret = null;
+				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$varCache, &$index, &$ret ) ) )
+					return $ret;
+				else
+					return null;
 		}
 	}
 
