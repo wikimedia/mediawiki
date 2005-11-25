@@ -1016,9 +1016,8 @@ class LanguageEo extends LanguageUtf8 {
 		$wgEditEncoding = '';
 	}
 
-	function formatNum( $number ) {
-		global $wgTranslateNumerals;
-		return $wgTranslateNumerals ? strtr($number, '.,', ', ' ) : $number;
+	function formatNum( $number, $year = false ) {
+		return $year ? $number : strtr($this->commafy($number), '.,', ', ' );
 	}
 }
 
