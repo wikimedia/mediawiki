@@ -69,6 +69,7 @@ $magicWords = array(
 	'MAG_FULLPAGENAME',
 	'MAG_FULLPAGENAMEE',
 );
+wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
 
 for ( $i = 0; $i < count( $magicWords ); ++$i )
 	define( $magicWords[$i], $i );
@@ -98,6 +99,7 @@ $wgVariableIDs = array(
 	MAG_CURRENTDOW,
 	MAG_REVISIONID,
 );
+wfRunHooks( 'MagicWordwgVariableIDs', array( &$wgVariableIDs ) );
 
 /**
  * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.

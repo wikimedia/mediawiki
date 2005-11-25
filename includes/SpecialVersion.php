@@ -84,6 +84,7 @@ class SpecialVersion {
 		$extensionTypes = array(
 			'specialpage' => 'Special pages',
 			'parserhook' => 'Parser hooks',
+			'variable' => 'Variables',
 			'other' => 'Other',
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$extensionTypes ) );
