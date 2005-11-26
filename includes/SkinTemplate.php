@@ -831,6 +831,8 @@ class SkinTemplate extends Skin {
 						'href' => $wgTitle->getLocalURL( "oldid=$revid" )
 					);
 			}
+			
+			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink', array( &$this, &$nav_urls, &$oldid, &$revid ) );
 		}
 
 		if( $this->mTitle->getNamespace() != NS_SPECIAL) {
