@@ -940,8 +940,7 @@ class Article {
 				$update = SquidUpdate::newSimplePurge( $this->mTitle );
 				$update->doUpdate();
 			}
-			// Redirect to the article
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+			$this->view();
 		} else {
 			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
 			$action = $this->mTitle->escapeLocalURL( 'action=purge' );
