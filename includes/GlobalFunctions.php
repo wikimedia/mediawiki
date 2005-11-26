@@ -1584,12 +1584,16 @@ function wfIsWellFormedXmlFragment( $text ) {
 function wfShellExec( $cmd )
 {
 	global $IP;
+	
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
 		$mem = ini_get( 'memory_limit' );
 		if ( $time > 0 && $mem > 0 ) {
-			$memKB = intval( $mem / 1024 );
-			$cmd = escapeshellarg( "$IP/bin/ulimit.sh" ) . " $time $memKB $cmd";
+			$script = "$IP/bin/ulimit.sh";
+			if ( is_executable( $script ) ) {
+				$memKB = intval( $mem / 1024 );
+				$cmd = escapeshellarg( $script ) . " $time $memKB $cmd";
+			}
 		}
 	}
 	return shell_exec( $cmd );

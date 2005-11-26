@@ -1036,7 +1036,7 @@ class Image
 						   wfEscapeShellArg( $thumbPath ) ),
 					$wgSVGConverters[$wgSVGConverter] );
 				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
-				$conv = shell_exec( $cmd );
+				$conv = wfShellExec( $cmd );
 			} else {
 				$conv = false;
 			}
@@ -1049,7 +1049,7 @@ class Image
 				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} " .
 				wfEscapeShellArg($thumbPath);				
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
-			$conv = shell_exec( $cmd );
+			$conv = wfShellExec( $cmd );
 		} else {
 			# Use PHP's builtin GD library functions.
 			#
