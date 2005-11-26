@@ -194,6 +194,7 @@ class MonoBookTemplate extends QuickTemplate {
 		  <?php } elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
 		    <li id="t-ispermalink"><?php echo $this->msg('permalink') ?></li>
 		  <?php } ?>
+	      <?php wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) ); ?>
 	    </ul>
 	  </div>
 	</div>
