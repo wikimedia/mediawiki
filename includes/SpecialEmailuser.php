@@ -104,7 +104,7 @@ class EmailUserForm {
 
 		$wgOut->addHTML( "
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
-<table border='0'><tr>
+<table border='0' id='mailheader><tr>
 <td align='right'>{$emf}:</td>
 <td align='left'><strong>" . htmlspecialchars( $sender ) . "</strong></td>
 </tr><tr>
@@ -113,17 +113,14 @@ class EmailUserForm {
 </tr><tr>
 <td align='right'>{$emr}:</td>
 <td align='left'>
-<input type='text' name=\"wpSubject\" value=\"{$encSubject}\" />
+<input type='text' size='60' maxlength='200' name=\"wpSubject\" value=\"{$encSubject}\" />
 </td>
-</tr><tr>
-<td align='right'>{$emm}:</td>
-<td align='left'>
-<textarea name=\"wpText\" rows='10' cols='60' wrap='virtual'>" . htmlspecialchars( $this->text ) .
+</tr>
+</table>
+<span id='wpTextLabel'><label for=\"wpText\">{$emm}:</label><br></span>
+<textarea name=\"wpText\" rows='20' cols='80' wrap='virtual' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
 "</textarea>
-</td></tr><tr>
-<td>&nbsp;</td><td align='left'>
 <input type='submit' name=\"wpSend\" value=\"{$ems}\" />
-</td></tr></table>
 <input type='hidden' name='wpEditToken' value=\"$token\" />
 </form>\n" );
 
