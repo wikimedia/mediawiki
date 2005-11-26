@@ -253,7 +253,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3065) Update both watched namespaces when renaming pages
 * Changed mail form to have a bigger message entry box (like for editing
   a page
-
+* Support <includeonly> in templates loaded through preload= parameter
 
 === Caveats ===
 
