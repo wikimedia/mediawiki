@@ -250,6 +250,7 @@ fully support the editing toolbar, but was found to be too confusing.
   (patch by Joel Nothman)
 * (bug 4061) Update of Slovene namespace names (LanguageSl.php)
 * (bug 4064) LanguageDe comma changes
+* (bug 3065) Update both watched namespaces when renaming pages
 
 
 === Caveats ===
