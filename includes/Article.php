@@ -142,7 +142,8 @@ class Article {
 	/**
 		This function accepts a title string as parameter
 		($preload). If this string is non-empty, it attempts
-		to fetch the current revision text.
+		to fetch the current revision text. It respects
+		<includeonly>.
 	*/
 	function getPreloadedText($preload) {
 		if($preload) {
@@ -150,7 +151,9 @@ class Article {
 			if(isset($preloadTitle) && $preloadTitle->userCanRead()) {
 			$rev=Revision::newFromTitle($preloadTitle);
 			if($rev) {
-				return $rev->getText();
+				$text=$rev->getText();
+				$text=preg_replace('/<\/?includeonly>/i','',$text);
+				return $text;
 				}
 			}
 		}
