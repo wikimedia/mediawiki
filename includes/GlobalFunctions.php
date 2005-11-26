@@ -288,6 +288,15 @@ function wfMsg( $key ) {
 }
 
 /**
+ * Same as above except doesn't transform the message
+ */
+function wfMsgNoTrans( $key ) {
+	$args = func_get_args();
+	array_shift( $args );
+	return wfMsgReal( $key, $args, true, false );
+}
+
+/**
  * Get a message from anywhere, for the current global language
  * set with $wgLanguageCode.
  * 
@@ -321,6 +330,20 @@ function wfMsgForContent( $key ) {
 }
 
 /**
+ * Same as above except doesn't transform the message
+ */
+function wfMsgForContentNoTrans( $key ) {
+	global $wgForceUIMsgAsContentMsg;
+	$args = func_get_args();
+	array_shift( $args );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key, $wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, true, $forcontent, false );
+}
+
+/**
  * Get a message from the language file, for the UI elements
  */
 function wfMsgNoDB( $key ) {
@@ -347,11 +370,11 @@ function wfMsgNoDBForContent( $key ) {
 /**
  * Really get a message
  */
-function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
+function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) {
 	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
 
-	$message = wfMsgGetKey( $key, $useDB, $forContent );
+	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
 	wfProfileOut( $fname );
 	return $message;
@@ -365,12 +388,14 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
  * @return string
  * @access private
  */
-function wfMsgGetKey( $key, $useDB, $forContent = false ) {
+function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
 	global $wgMessageCache, $wgLang;
 
 	if( is_object( $wgMessageCache ) ) {
+		if ( ! $transform )
+			$wgMessageCache->disableTransform();
 		$message = $wgMessageCache->get( $key, $useDB, $forContent );
 	} else {
 		if( $forContent ) {
@@ -389,7 +414,7 @@ function wfMsgGetKey( $key, $useDB, $forContent = false ) {
 		wfRestoreWarnings();
 		if($message === false)
 			$message = Language::getMessage($key);
-		if(strstr($message, '{{' ) !== false) {
+		if ( $transform && strstr( $message, '{{' ) !== false ) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
 	}
