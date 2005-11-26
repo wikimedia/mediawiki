@@ -1588,6 +1588,9 @@ function wfShellExec( $cmd )
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
 		$mem = ini_get( 'memory_limit' );
+		if( preg_match( '/^([0-9]+)[Mm]$/', trim( $mem ), $m ) ) {
+			$mem = intval( $m[1] * (1024*1024) );
+		}
 		if ( $time > 0 && $mem > 0 ) {
 			$script = "$IP/bin/ulimit.sh";
 			if ( is_executable( $script ) ) {
