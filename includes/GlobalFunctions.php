@@ -201,7 +201,8 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog;
 	if ( $wgDBerrorLog ) {
-		$text = date('D M j G:i:s T Y') . "\t".$text;
+		$host = trim(`hostname`);
+		$text = date('D M j G:i:s T Y') . "\t$host\t".$text;
 		error_log( $text, 3, $wgDBerrorLog );
 	}
 }
@@ -1585,8 +1586,11 @@ function wfShellExec( $cmd )
 	global $IP;
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = ini_get( 'max_execution_time' );
-		$memKB = intval( ini_get( 'memory_limit' ) / 1024 );
-		$cmd = escapeshellarg( "$IP/ulimit.sh" ) . " $time $memKB $cmd";
+		$mem = ini_get( 'memory_limit' );
+		if ( $time > 0 && $mem > 0 ) {
+			$memKB = intval( $mem / 1024 );
+			$cmd = escapeshellarg( "$IP/bin/ulimit.sh" ) . " $time $memKB $cmd";
+		}
 	}
 	return shell_exec( $cmd );
 }
