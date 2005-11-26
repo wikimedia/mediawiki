@@ -104,7 +104,7 @@ class EmailUserForm {
 
 		$wgOut->addHTML( "
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
-<table border='0' id='mailheader><tr>
+<table border='0' id='mailheader'><tr>
 <td align='right'>{$emf}:</td>
 <td align='left'><strong>" . htmlspecialchars( $sender ) . "</strong></td>
 </tr><tr>
