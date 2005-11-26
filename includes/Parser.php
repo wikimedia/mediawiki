@@ -97,6 +97,7 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks;
+	var $mTagHookObjects;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
@@ -123,6 +124,7 @@ class Parser
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
+		$this->mTagHookObjects = array();
 		$this->clearState();
 	}
 
@@ -432,7 +434,16 @@ class Parser
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
 				if ( $render ) {
-					$ext_content[$tag][$marker] = $callback( $content, $params, $this );
+					if ( isset( $this->mTagHookObjects[$tag] ) )
+						$ext_content[$tag][$marker] = call_user_func_array(
+							array( &$this->mTagHookObjects[$tag], $callback ),
+							array( $content, $params, $this )
+						);
+					else
+						$ext_content[$tag][$marker] = call_user_func_array(
+							$callback,
+							array( $content, $params, $this )
+						);
 				} else {
 					if ( is_null( $content ) ) {
 						// Empty element tag
@@ -1889,19 +1900,26 @@ class Parser
 		 * expensive to check many times.
 		 */
 		static $varCache = array();
-		if( isset( $varCache[$index] ) ) return $varCache[$index];
+		if ( wfRunHooks( 'ParserGetVariableValueVarCache', array( &$this, &$varCache ) ) )
+			if ( isset( $varCache[$index] ) )
+				return $varCache[$index];
+
+		$ts = time();
+		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
+		$revid = $wgArticle->getRevIdFetched();
+		wfRunHooks( 'ParserGetVariableValueRevid', array( &$this, &$revid ) );
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'm' ) );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'm', $ts ) );
 			case MAG_CURRENTMONTHNAME:
-				return $varCache[$index] = $wgContLang->getMonthName( date('n') );
+				return $varCache[$index] = $wgContLang->getMonthName( date( 'n', $ts ) );
 			case MAG_CURRENTMONTHNAMEGEN:
-				return $varCache[$index] = $wgContLang->getMonthNameGen( date('n') );
+				return $varCache[$index] = $wgContLang->getMonthNameGen( date( 'n', $ts ) );
 			case MAG_CURRENTMONTHABBREV:
-				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date('n') );
+				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date( 'n', $ts ) );
 			case MAG_CURRENTDAY:
-				return $varCache[$index] = $wgContLang->formatNum( date('j') );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'j', $ts ) );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
@@ -1911,21 +1929,21 @@ class Parser
 			case MAG_FULLPAGENAMEE:
 				return wfUrlencode( $this->mTitle->getPrefixedText() );
 			case MAG_REVISIONID:
-				return $wgArticle->getRevIdFetched();
+				return $revid;
 			case MAG_NAMESPACE:
 				return $wgContLang->getNsText( $this->mTitle->getNamespace() );
 			case MAG_NAMESPACEE:
 				return wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case MAG_CURRENTDAYNAME:
-				return $varCache[$index] = $wgContLang->getWeekdayName( date('w')+1 );
+				return $varCache[$index] = $wgContLang->getWeekdayName( date( 'w', $ts ) + 1 );
 			case MAG_CURRENTYEAR:
-				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ), true );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'Y', $ts ), true );
 			case MAG_CURRENTTIME:
-				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
+				return $varCache[$index] = $wgContLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 			case MAG_CURRENTWEEK:
-				return $varCache[$index] = $wgContLang->formatNum( date('W') );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'W', $ts ) );
 			case MAG_CURRENTDOW:
-				return $varCache[$index] = $wgContLang->formatNum( date('w') );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'w', $ts ) );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_NUMBEROFFILES:
@@ -3265,11 +3283,24 @@ class Parser
 	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
 	 * Callback will be called with the text within
 	 * Transform and return the text within
+	 *
 	 * @access public
+	 *
+	 * @param mixed $tag The tag to use, e.g. 'hook' for <hook>
+	 * @param mixed $callback The callback function to use for the tag
+	 * @param mixed $object The object which contains the callback function, optional
+	 *
+	 * @return The old value of the mTagHooks array associated with the hook
 	 */
-	function setHook( $tag, $callback ) {
+	function setHook( $tag, $callback, $object = null ) {
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
+		
+		if ( isset( $object ) )
+			$this->mTagHookObjects[$tag] =& $object;
+		else
+			$this->mTagHookObjects[$tag] = null;
+
 		return $oldVal;
 	}
 
