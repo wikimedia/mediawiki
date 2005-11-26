@@ -408,13 +408,17 @@ function wfMsgReplaceArgs( $message, $args ) {
 	# Some messages are split with explode("\n", $msg)
 	$message = str_replace( "\r", '', $message );
 
-	# Replace arguments
-	if( count( $args ) ) {
-		foreach( $args as $n => $param ) {
+	// Replace arguments
+	if ( count( $args ) )
+		if ( is_array( $args[0] ) )
+			foreach ( $args[0] as $key => $val )
+				$message = str_replace( '$' . $key, $val, $message );
+	else {
+		foreach( $args as $n => $param )
 			$replacementKeys['$' . ($n + 1)] = $param;
-		}
 		$message = strtr( $message, $replacementKeys );
 	}
+	
 	return $message;
 }
 
