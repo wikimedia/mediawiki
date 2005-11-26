@@ -254,6 +254,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Changed mail form to have a bigger message entry box (like for editing
   a page
 * Support <includeonly> in templates loaded through preload= parameter
+* Fix ulimit parameters for wfShellExec when memory_limit is specified in 'm'
+
 
 === Caveats ===
 
