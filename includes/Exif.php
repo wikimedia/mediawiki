@@ -81,14 +81,28 @@ class Exif {
 	var $mFormattedExifData;
 	
 	/**#@-*/
-
-	/**
-	 * The private log to log to
-	 *
+	
+	/**#@+
 	 * @var string
 	 * @access private
 	 */
+	
+	/**
+	 * The file being processed
+	 */
+	var $file;
+
+	/**
+	 * The basename of the file being processed
+	 */
+	var $basename;
+	
+	/**
+	 * The private log to log to
+	 */
 	var $log = 'exif';
+	
+	/**#@-*/
 
 	/**
 	 * Constructor
@@ -281,13 +295,14 @@ class Exif {
 			),
 		);
 
-		$basename = basename( $file );
+		$this->file = $file;
+		$this->basename = basename( $this->file );
 		
 		$this->makeFlatExifTags();
 		
-		$this->debugFile( $basename, __FUNCTION__, true );
+		$this->debugFile( $this->basename, __FUNCTION__, true );
 		wfSuppressWarnings();
-		$data = exif_read_data( $file );
+		$data = exif_read_data( $this->file );
 		wfRestoreWarnings();
 		/**
 		 * exif_read_data() will return false on invalid input, such as
@@ -299,7 +314,7 @@ class Exif {
 		$this->makeFilteredData();
 		$this->makeFormattedData();
 		
-		$this->debugFile( $basename, __FUNCTION__, false );
+		$this->debugFile( __FUNCTION__, false );
 	}
 	
 	/**#@+
@@ -567,12 +582,12 @@ class Exif {
 	 * @paran string $fname The name of the function calling this function
 	 * @param bool $bool $io Specify whether we're beginning or ending
 	 */
-	function debugFile( $basename, $fname, $io ) {
+	function debugFile( $fname, $io ) {
 		$class = ucfirst( __CLASS__ );
 		if ( $io )
-			wfDebugLog( $this->log, "$class::$fname: begin processing: '$basename'\n" );
+			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'\n" );
 		else
-			wfDebugLog( $this->log, "$class::$fname: end processing: '$basename'\n" );
+			wfDebugLog( $this->log, "$class::$fname: end processing: '{$this->basename}'\n" );
 	}
 
 }
@@ -999,9 +1014,11 @@ class FormatExif {
 	 * @return string A wfMsg of "exif-$tag-$val" in lower case
 	 */
 	function msg( $tag, $val, $arg = null ) {
+		global $wgContLang;
+		
 		if ($val === '')
 			$val = 'value';
-		return wfMsg( strtolower( "exif-$tag-$val" ), $arg );
+		return wfMsg( $wgContLang->lc( "exif-$tag-$val" ), $arg );
 	}
 
 	/**
