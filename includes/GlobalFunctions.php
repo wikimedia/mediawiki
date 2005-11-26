@@ -1572,4 +1572,19 @@ function wfIsWellFormedXmlFragment( $text ) {
 	return wfIsWellFormedXml( $html );
 }
 
+/**
+ * shell_exec() with time and memory limits mirrored from the PHP configuration,
+ * if supported.
+ */
+function wfShellExec( $cmd )
+{
+	global $IP;
+	if ( php_uname( 's' ) == 'Linux' ) {
+		$time = ini_get( 'max_execution_time' );
+		$memKB = intval( ini_get( 'memory_limit' ) / 1024 );
+		$cmd = escapeshellarg( "$IP/ulimit.sh" ) . " $time $memKB $cmd";
+	}
+	return shell_exec( $cmd );
+}
+
 ?>
