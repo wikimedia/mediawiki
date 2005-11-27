@@ -194,16 +194,20 @@ function wfSpecialContributions( $par = null ) {
 		$finder->set_namespace($ns);
 	}
 
+	$boturl = '';
+	if ($wgUser->isAllowed('rollback') && $wgRequest->getBool( 'bot' ))
+		$boturl = '&amp;bot=1';
+
 	if ($wgRequest->getText('go') == 'prev') {
 		$prevts = $finder->get_previous_offset_for_paging();
-		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl");
+		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl$boturl");
 		$wgOut->redirect($prevurl);
 		return;
 	}
 
 	if ($wgRequest->getText('go') == 'first' && $target != 'newbies') {
                 $prevts = $finder->get_first_offset_for_paging();
-		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl");
+		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl$boturl");
 		$wgOut->redirect($prevurl);
 		return;
 	}
@@ -284,8 +288,8 @@ function wfSpecialContributions( $par = null ) {
 		$lastlink = $lasttext;
 		$prevlink = $prevtext;
 	} else {
-		$lastlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl\">$lasttext</a>";
-		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit$xnsurl&amp;go=prev\">$prevtext</a>";
+		$lastlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl$boturl\">$lasttext</a>";
+		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit$xnsurl$boturl&amp;go=prev\">$prevtext</a>";
 	}
 
 	$nexttext = wfMsg('nextn', $limit);
@@ -293,8 +297,8 @@ function wfSpecialContributions( $par = null ) {
 		$firstlink = $firsttext;
 		$nextlink = $nexttext;
 	} else {
-		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl&amp;go=first\">$firsttext</a>";
-		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl\">$nexttext</a>";
+		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl$boturl&amp;go=first\">$firsttext</a>";
+		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl$boturl\">$nexttext</a>";
 	}
         if ($target == 'newbies') {
             $firstlast ="($lastlink)";
@@ -304,7 +308,7 @@ function wfSpecialContributions( $par = null ) {
 
 	$urls = array();
 	foreach (array(20, 50, 100, 250, 500) as $num)
-		$urls[] = "<a href=\"$myurl&amp;offset=$offset&amp;limit={$num}$xnsurl\">".$wgLang->formatNum($num)."</a>";
+		$urls[] = "<a href=\"$myurl&amp;offset=$offset&amp;limit={$num}$xnsurl$boturl\">".$wgLang->formatNum($num)."</a>";
 	$bits = implode($urls, ' | ');
 
 	$prevnextbits = $firstlast .' '. wfMsgHtml('viewprevnext', $prevlink, $nextlink, $bits);
