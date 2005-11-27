@@ -257,6 +257,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix ulimit parameters for wfShellExec when memory_limit is specified in 'm'
 * (bug 3979) Save correct {{REVISIONID}} into parser cache on edit
 * Substitute {{REVISIONID}} correctly in diff display
+* (bug 4090) Fix diff links in Special:Recentchangeslinked
 
 
 === Caveats ===
