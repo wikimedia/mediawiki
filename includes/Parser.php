@@ -97,7 +97,6 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks;
-	var $mTagHookObjects;
 
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
@@ -124,7 +123,6 @@ class Parser
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
-		$this->mTagHookObjects = array();
 		$this->clearState();
 	}
 
@@ -433,18 +431,9 @@ class Parser
 			foreach( $ext_content[$tag] as $marker => $content ) {
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
-				if ( $render ) {
-					if ( isset( $this->mTagHookObjects[$tag] ) )
-						$ext_content[$tag][$marker] = call_user_func_array(
-							array( &$this->mTagHookObjects[$tag], $callback ),
-							array( $content, $params, $this )
-						);
-					else
-						$ext_content[$tag][$marker] = call_user_func_array(
-							$callback,
-							array( $content, $params, $this )
-						);
-				} else {
+				if ( $render )
+					$ext_content[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, $this ) );
+				else {
 					if ( is_null( $content ) ) {
 						// Empty element tag
 						$ext_content[$tag][$marker] = $full_tag;
@@ -3287,20 +3276,14 @@ class Parser
 	 * @access public
 	 *
 	 * @param mixed $tag The tag to use, e.g. 'hook' for <hook>
-	 * @param mixed $callback The callback function to use for the tag
-	 * @param mixed $object The object which contains the callback function, optional
+	 * @param mixed $callback The callback function (and object) to use for the tag
 	 *
 	 * @return The old value of the mTagHooks array associated with the hook
 	 */
-	function setHook( $tag, $callback, $object = null ) {
+	function setHook( $tag, $callback ) {
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
 		
-		if ( isset( $object ) )
-			$this->mTagHookObjects[$tag] =& $object;
-		else
-			$this->mTagHookObjects[$tag] = null;
-
 		return $oldVal;
 	}
 
