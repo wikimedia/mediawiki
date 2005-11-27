@@ -50,10 +50,10 @@ require_once( 'LanguageUtf8.php' );
 # User Toggles
 
 'tog-editwidth' => 'La fenêtre d\'édition s\'affiche en pleine largeur',
-'tog-editondblclick' => 'Double cliquer pour éditer une page (JavaScript)',
+'tog-editondblclick' => 'Double-cliquer pour modifier une page (nécessite JavaScript)',
 'tog-editsection'	=> 'Éditer une section via les liens [éditer]',
 'tog-editsectiononrightclick'	=> 'Éditer une section en cliquant à droite<br /> sur le titre de la section',
-'tog-fancysig' => 'Signatures brutes (sans lien automatique)',
+'tog-fancysig' => 'Signature brute (sans lien automatique)',
 'tog-hideminor' => 'Cacher les <i>Modifications récentes</i> mineures',
 'tog-highlightbroken' => 'Liens vers les sujets non existants en rouge',
 'tog-justify' => 'Paragraphes justifiés',
@@ -173,8 +173,8 @@ require_once( 'LanguageUtf8.php' );
 'unprotectthispage' => 'Déprotéger cette page',
 'newpage'       => 'Nouvelle page',
 'talkpage'      => 'Page de discussion',
-'specialpage'	=> 'Page Spéciale',
-'personaltools'	=> 'Outils personels',
+'specialpage'	=> 'Page spéciale',
+'personaltools'	=> 'Outils personnels',
 'postcomment'	=> 'Ajouter un commentaire',
 'addsection'   => '+',
 'articlepage'	=> 'Voir l\'article',
@@ -208,13 +208,13 @@ Voir $1.',
 'sitetitle'     => '{{SITENAME}}',
 'sitesubtitle'  => '',
 'retrievedfrom' => 'Récupérée de « $1 »',
-'newmessages'   => 'Vous avez des $1.',
+'newmessages'   => 'Vous avez de $1.',
 'newmessageslink' => 'nouveaux messages',
 'editsection'	=> 'modifier',
 'toc'		=> 'Sommaire',
 'showtoc'	=> 'afficher',
 'hidetoc'	=> 'masquer',
-'thisisdeleted' => 'Afficher ou restaurer $1 ?',
+'thisisdeleted' => 'Désirez-vous Afficher ou restaurer $1 ?',
 'restorelink'	=> '$1 modification(s) effacée(s)',
 'feedlinks'	=> 'Flux',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
@@ -360,7 +360,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'headline_tip'  => 'Sous-titre niveau 2',
 'math_sample'   => 'Entrez votre formule ici',
 'math_tip'      => 'Formule mathématique (LaTeX)',
-'nowiki_sample' => 'Entrez le texte non formatté ici',
+'nowiki_sample' => 'Entrez le texte non formaté ici',
 'nowiki_tip'    => 'Ignorer la syntaxe wiki',
 'image_sample'  => 'Exemple.jpg',
 'image_tip'     => 'Image insérée',
@@ -401,7 +401,7 @@ Veuillez vous identifier dès que vous l\'aurez reçu.',
 'clearyourcache'    => '\'\'\'Note :\'\'\' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : \'\'\'Mozilla / Konqueror / Firefox\'\'\' : \'\'ctrl-shift-r\'\', \'\'\'IE\'\'\' : \'\'ctrl-f5\'\', \'\'\'Safari\'\'\' : \'\'cmd-shift-r\'\'; \'\'\'Konqueror\'\'\' : \'\'f5\'\'.',
 'updated'      => '(Mis à jour)',
 'note'         => '<strong>Note :</strong> ',
-'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé!',
+'previewnote'  => 'Attention, ce texte n\'est qu\'une prévisualisation et n\'a pas encore été sauvegardé !',
 'previewconflict' => 'La prévisualisation montre le texte de cette page tel qu\'il apparaîtra une fois sauvegardé.',
 'editing'         => 'modification de $1',
 'editingsection'  => 'modification de $1 (section)',
@@ -417,9 +417,9 @@ La zone d\'édition supérieure contient le texte tel qu\'il est enregistré act
 'longpagewarning' => '\'\'\'AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.\'\'\'',
-'readonlywarning' => '\'\'\'AVERTISSEMENT : cette page a été bloquée pour maintenance,
+'readonlywarning' => '\'\'\'AVERTISSEMENT : cette page est protégée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.\'\'\'',
-'protectedpagewarning' => '\'\'\'AVERTISSEMENT : cette page a été bloquée.
+'protectedpagewarning' => '\'\'\'AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d\'administrateur peuvent la modifier. Soyez certain que
 vous suivez les [[Project:Page_protégée|directives concernant les pages protégées]].\'\'\'',
 
@@ -465,14 +465,16 @@ vous suivez les [[Project:Page_protégée|directives concernant les pages proté
 # Search results
 #
 'searchresults' => 'Résultat de la recherche',
-'searchresulttext' => 'Pour plus d\'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].',
+'searchresulttext' => 'Pour plus d\'informations sur la recherche dans {{SITENAME}}, voir [[Aide:Recherche|Chercher dans {{SITENAME}}]].',
 'searchquery' => 'Pour la requête « $1 »',
 'badquery'  => 'Requête mal formulée',
 'badquerytext' => 'Nous n\'avons pas pu traiter votre requête.
 Vous avez probablement recherché un mot d\'une longueur inférieure à trois lettres, ce qui n\'est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et écailles ». 
 Veuillez essayer une autre requête.', // FIXME
 'matchtotals' => 'La requête « $1 » correspond à $2 titre(s) d\'article et au texte de $3 article(s).',
-'nogomatch' => 'Aucune page avec ce titre n\'existe, essai avec la recherche complète.',
+'nogomatch' => 'Aucune page avec ce titre n\'existe, essai avec la recherche complète.
+
+Voulez-vous [[$1|créer cet article]] ?',
 'titlematches' => 'Correspondances dans les titres',
 'notitlematches' => 'Aucun titre d\'article ne contient le(s) mot(s) demandé(s)',
 'textmatches' => 'Correspondances dans les textes',
@@ -517,18 +519,18 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'math_bad_output'	=> 'Ne peux pas crééer ou écrire dans le répertoire de sortie',
 'math_notexvc'		=> 'L\'éxécutable « texvc » est introuvable. Lisez math/README pour le configurer.',
 'prefs-personal'    => 'Informations personnelles',
-'prefs-rc'          => 'Modifications récentes et affichage des ébauches',
+'prefs-rc'          => 'Modifications récentes',
 'prefs-misc'        => 'Préférences diverses',
 'saveprefs'         => 'Enregistrer les préférences',
 'resetprefs'        => 'Rétablir les préférences',
 'oldpassword'       => 'Ancien mot de passe',
-'newpassword'       => 'Nouveau mot de passe&nbsp;',
+'newpassword'       => 'Nouveau mot de passe',
 'retypenew'         => 'Confirmer le nouveau mot de passe',
-'textboxsize'       => 'Taille de la fenêtre d\'édition',
-'rows'              => 'Rangées&nbsp;',
+'textboxsize'       => 'Fenêtre d\'édition',
+'rows'              => 'Rangées',
 'columns'           => 'Colonnes',
 'searchresultshead' => 'Affichage des résultats de recherche',
-'resultsperpage'    => 'Nombre de réponses par page&nbsp;',
+'resultsperpage'    => 'Nombre de réponses par page',
 'contextlines'      => 'Nombre de lignes par réponse',
 'contextchars'      => 'Nombre de caractères de contexte par ligne',
 'stubthreshold'     => 'Taille minimale des articles courts',
@@ -570,7 +572,7 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 'diff'            => 'diff',
 'hist'            => 'hist',
 'hide'            => 'masquer',
-'show'            => 'montrer',
+'show'            => 'afficher',
 'tableform'       => 'table',
 'listform'        => 'liste',
 'nchanges'        => '$1 modification(s)',
@@ -665,8 +667,8 @@ Veuillez vérifer le fichier.',
 cette ancienne version, (rétab) = rétablir cette ancienne version.
 <br /><i>Cliquez sur la date pour voir l\'image copiée à cette date</i>.',
 'imagelinks' => 'Liens vers l\'image',
-'linkstoimage' => 'Les pages ci-dessous comportent un lien vers cette image :',
-'nolinkstoimage' => 'Aucune page ne comporte de lien vers cette image.',
+'linkstoimage' => 'Les pages ci-dessous contiennent cette image :',
+'nolinkstoimage' => 'Aucune page ne contient cette image.',
 'showbigimage' => 'Télécharger une version haute résolution ($1x$2, $3 Ko)',
 
 # Statistics
@@ -730,7 +732,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'debug'         => 'Déboguer',
 'newpages'      => 'Nouvelles pages',
 'ancientpages'	=> 'Articles les plus anciens',
-'move'		=> 'renommer',
+'move'		=> 'Renommer',
 'movethispage'  => 'Renommer la page',
 'unusedimagestext' => '<p>N\'oubliez pas que d\'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu\'elle est en réalité utilisée.',
 'booksources'   => 'Ouvrages de référence',
@@ -740,7 +742,7 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 
 # All pages
 #
-'allinnamespace' => 'Toutes les pages (espace $1)',
+'allinnamespace' => 'Toutes les pages (espace de nom $1)',
 'allpagesnext' => 'Suivant',
 'allpagesprev' => 'Précédent',
 'allpagessubmit' => 'Valider',
@@ -791,7 +793,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « Ne plus suivre
 'watchdetails' => 'Vous suivez $1 pages, sans compter les pages de discussion.  [$4 Afficher et modifier la liste complète].',
 'watchmethod-recent' => 'vérification des modifications récentes des pages suivies',
 'watchmethod-list' => 'vérification des pages suivies pour des modifications récentes',
-'removechecked' => 'Retirer de la liste de suivi les articles sélectionnés',
+'removechecked' => 'Retirer de la liste de suivi les pages sélectionnées',
 'watchlistcontains' => 'Votre liste de suivi contient $1 pages',
 'watcheditlist' => 'Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton « retirer de la liste de suivi » en bas de l\'écran.',
 'removingchecked' => 'Les articles sélectionnés sont retirés de votre liste de suivi...',
@@ -830,23 +832,23 @@ L\'heure indiquée est celle du serveur (UTC).',
 'rollbacklink'	=> 'révoquer',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback'	=> 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de « $1 » effectuée par [[{{ns:user}}:$2|$2]] ([{{ns:user_talk}}:$2|Talk]]); quelqu\'un d\'autre à déjà modifer ou révoquer l\'article.
+'alreadyrolled'	=> 'Impossible de révoquer la dernière modification de l\'article « $1 » effectuée par [[{{ns:user}}:$2|$2]] ([{{ns:user_talk}}:$2|Talk]]); quelqu\'un d\'autre à déjà modifié ou révoqué l\'article.
 
 La dernière modificaion a été effectuée par [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Talk]]).', // FIXME: namespaces
 #   only shown if there is an edit comment
 'editcomment' => 'Le résumé de la modification était: <i>« $1 »</i>.',
 'revertpage'	=> 'restitution de la dernière modification de $1',
-'protectlogpage' => 'Log_de_protection',
-'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
-'protectedarticle' => 'a protégé [[$1]]',
-'unprotectedarticle' => 'a déprotégé [[$1]]',
+'protectlogpage' => 'Historique des protections',
+'protectlogtext' => 'Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].',
+'protectedarticle' => 'a protégé « $1 »',
+'unprotectedarticle' => 'a déprotégé « $1 »',
 
 'protectsub' => '(Protéger « $1 »)',
 'confirmprotect' => 'Confimer la protection',
 'confirmprotecttext' => 'Voulez-vous réellement protéger cette page ?',
-'protectcomment' => 'Raison du bloquage',
+'protectcomment' => 'Raison de la protection',
 
-'unprotectsub' => '(Débloque « $1 »)',
+'unprotectsub' => '(Déprotéger « $1 »)',
 'confirmunprotecttext' => 'Voulez-vous réellement déprotéger cette page ?',
 'confirmunprotect' => 'Raison de la déprotection',
 'unprotectcomment' => 'Raison du débloquage',
@@ -872,9 +874,9 @@ La corbeille peut être effacée périodiquement.',
 
 Si une nouvelle page avec le même nom a été crée depuis la suppression, les révisions restaurées apparaîtront dans l\'historique antérieur et la version courante ne sera pas automatiquement remplacée.',
 'undeleterevision' => 'Version effacée ($1)',
-'undeletebtn'	=> 'Restaurer!',
-'undeletedarticle' => 'restauré « $1 »',
-'undeletedtext'   => 'L\'article [[:$1|$1]] a été restauré avec succès.
+'undeletebtn'	=> 'Procéder à la restauration !',
+'undeletedarticle' => 'a restauré « [[$1]] »',
+'undeletedtext'   => 'L\'article [[$1]] a été restauré avec succès.
 
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.',
 'undeletedrevisions' => '$1 versions ont été restaurées',
@@ -959,19 +961,19 @@ N\'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération
 # Special:Makesysop
 'bureaucratlog'		=> 'Log_bureaucrate',
 'bureaucratlogentry'	=> 'Droits de l\'utilisateur « $1 » mis à « $2 ».',
-'makesysoptitle'	=> 'Donne les droits d\'adminitrateur.',
+'makesysoptitle'	=> 'Donne les droits d\'administrateur.',
 'makesysoptext'		=> 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d\'administrateur.
 Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
 'makesysopname'		=> 'Nom de l\'utilisateur:',
-'makesysopsubmit'	=> 'Donner les droits d\'adminitrateur à cet utilisateur',
+'makesysopsubmit'	=> 'Donner les droits d\'administrateur à cet utilisateur',
 'makesysopok'		=> '<b>L\'utilisateur « $1 » est désormais administrateur.</b>',
-'makesysopfail'		=> '<b>L\'utilisateur « $1 » n\'a pas pu recevoir les droits d\'adminitrateurs. (Avez vous entré le nom correctement?)</b>',
+'makesysopfail'		=> '<b>L\'utilisateur « $1 » ne peut être converti en adminitrateur. (Avez vous entré le nom correctement?)</b>',
 'rights'			=> 'Droits:',
-'set_user_rights'	=> 'Met les droits de l\'utilisateur',
+'set_user_rights'	=> 'Appliquer les droits à l\'utilisateur',
 'user_rights_set'	=> '<b>Les droits de l\'utilisateur « $1 » sont mis à jour</b>',
 'setbureaucratflag'	=> 'Ajouter le statut de bureaucrate',
-'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>',
-'makesysop'         => 'Donner les droits d\'adminitrateur à un utilisateur',
+'set_rights_fail'	=> '<b>Les droits de l\'utilisateur « $1 » n\'ont pas pu être mis à jour. (Avez vous entré le nom correctement?)</b>',
+'makesysop'         => 'Donner les droits d\'administrateur à un utilisateur',
 
 # Special:Validate
 'val_article_lists' => 'Liste d\'articles validés',
@@ -1032,13 +1034,15 @@ Il peut s\'agir d\'un changement radical et inattendu pour un article souvent co
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.',
 
-'movearticle'	=> 'Déplacer l\'article',
+'movearticle'	=> 'Renommer l\'article',
 'movenologin'	=> 'Non connecté',
 'movenologintext' => 'Pour pouvoir renommer un article, vous devez être [[Special:Userlogin|connecté]] en tant qu\'utilisateur enregistré.',
 'newtitle'	=> 'Nouveau titre',
 'movepagebtn'	=> 'Renommer l\'article',
-'pagemovedsub' => 'Déplacement réussi',
-'pagemovedtext' => 'L\'article « [[$1]] » a été déplacé vers « [[$2]] ».',
+'pagemovedsub' => 'Renommage réussi',
+'pagemovedtext' => 'L\'article « [[$1]] » a été renommé en « [[$2]] ».
+
+Veuillez [[{{ns:Special}}:Whatlinkshere/$2|vérifier]] que ce renommage n\'a pas créé de doubles redirections et faites la correction le cas échéant.',
 'articleexists' => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n\'est pas valide. Veuillez en choisir un autre.',
 'talkexists'	=> 'La page elle-même a été déplacée avec succès, mais la page de discussion n\'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S\'il vous plait, fusionnez les manuellement.',
 '1movedto2_redir' => '$1 déplacé vers $2 (redirect)',
@@ -1057,7 +1061,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Namespace 8 related
 
-'allmessages'	=> 'Tous les messages',
+'allmessages'	=> 'Liste de messages système',
 'allmessagestext'	=> 'Ceci est la liste de tous les messages disponibles dans l\'espace MediaWiki',
 
 # Thumbnails
@@ -1089,7 +1093,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Metadata
 'nocreativecommons' => 'Les données méta « Creative Commons RDF » sont désactivées sur ce serveur.',
-'nodublincore' => 'Les données méta « Dublin Core RDF » sont désactivées sur ce serveur.',
+'nodublincore' => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
 'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
@@ -1097,7 +1101,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'siteuser'	=> 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedby' => 'Cette page a été modifiée pour la dernière fois le $1 par $2',
 'and'	=> 'et',
-'siteusers'	=> 'Utilisateur(s) $1 de {{SITENAME}}',
+'siteusers'	=> 'Utilisateur(s) $1',
 'creditspage' => 'Page crédits',
 
 # confirmemail
