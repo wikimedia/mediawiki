@@ -810,6 +810,7 @@ class Article {
 				$skin = $wgUser->getSkin();
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
+				$wgOut->setRevisionId( $this->getRevIdFetched() );
 				$wgOut->addPrimaryWikiText( $text, $this );
 			} else {
 				# Display content, don't attempt to save to parser cache
@@ -818,6 +819,7 @@ class Article {
 				if( !$this->isCurrent() ) {
 					$oldEditSectionSetting = $wgOut->mParserOptions->setEditSection( false );
 				}
+				$wgOut->setRevisionId( $this->getRevIdFetched() );
 				$wgOut->addWikiText( $text );
 
 				if( !$this->isCurrent() ) {
@@ -1147,7 +1149,7 @@ class Article {
 		$this->editUpdates( $text, $summary, $isminor, $now );
 
 		$oldid = 0; # new article
-		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid );
+		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid, $revisionId );
 
 		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text,
 			$summary, $isminor,
@@ -1396,7 +1398,7 @@ class Article {
 				@unlink($cm->fileCacheName());
 			}
 
-			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision );
+			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision, $revisionId );
 		}
 		wfRunHooks( 'ArticleSaveComplete',
 			array( &$this, &$wgUser, $text,
@@ -1410,7 +1412,7 @@ class Article {
 	 * After we've either updated or inserted the article, update
 	 * the link tables and redirect to the new page.
 	 */
-	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
+	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid, $newid ) {
 		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
 		global $wgUseEnotif;
 
@@ -1430,6 +1432,7 @@ class Article {
 		# Parse the text and save it to the parser cache
 		$wgOut = new OutputPage();
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+		$wgOut->setRevisionId( $newid );
 		$wgOut->addPrimaryWikiText( $text, $this );
 
 		if ( !$wgUseDumbLinkUpdate ) {

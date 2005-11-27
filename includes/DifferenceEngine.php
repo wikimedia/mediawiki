@@ -204,6 +204,9 @@ CONTROL;
 		}
 
 		$this->loadNewText();
+		if( is_object( $this->mNewRev ) ) {
+			$wgOut->setRevisionId( $this->mNewRev->getId() );
+		}
 		$wgOut->addWikiText( $this->mNewtext );
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -269,6 +272,9 @@ CONTROL;
 		# Show current revision
 		#
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
+		if( is_object( $this->mNewRev ) ) {
+			$wgOut->setRevisionId( $this->mNewRev->getId() );
+		}
 		$wgOut->addWikiText( $this->mNewtext );
 
 		wfProfileOut( $fname );

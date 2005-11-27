@@ -55,6 +55,7 @@ class OutputPage {
 		$this->mSquidMaxage = 0;
 		$this->mScripts = '';
 		$this->mETag = false;
+		$this->mRevisionId = null;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
@@ -235,6 +236,17 @@ class OutputPage {
 	function setParserOptions( $options ) {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
+	
+	/**
+	 * Set the revision ID which will be seen by the wiki text parser
+	 * for things such as embedded {{REVISIONID}} variable use.
+	 * @param mixed $revid an integer, or NULL
+	 * @return mixed previous value
+	 */
+	function setRevisionId( $revid ) {
+		$val = is_null( $revid ) ? null : intval( $revid );
+		return wfSetVar( $this->mRevisionId, $val );
+	}
 
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
@@ -252,7 +264,8 @@ class OutputPage {
 
 	function addWikiTextTitle($text, &$title, $linestart) {
 		global $wgParser, $wgUseTidy;
-		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions, $linestart );
+		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
+			$linestart, true, $this->mRevisionId );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		if ( $parserOutput->getCacheTime() == -1 ) {
@@ -268,7 +281,8 @@ class OutputPage {
 	function addPrimaryWikiText( $text, $cacheArticle ) {
 		global $wgParser, $wgParserCache, $wgUser, $wgUseTidy;
 
-		$parserOutput = $wgParser->parse( $text, $cacheArticle->mTitle, $this->mParserOptions, true );
+		$parserOutput = $wgParser->parse( $text, $cacheArticle->mTitle,
+			$this->mParserOptions, true, true, $this->mRevisionId );
 
 		$text = $parserOutput->getText();
 
@@ -300,7 +314,8 @@ class OutputPage {
 	 */
 	function parse( $text, $linestart = true ) {
 		global $wgParser, $wgTitle;
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions,
+			$linestart, true, $this->mRevision );
 		return $parserOutput->getText();
 	}
 

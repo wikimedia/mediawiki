@@ -255,6 +255,8 @@ fully support the editing toolbar, but was found to be too confusing.
   a page
 * Support <includeonly> in templates loaded through preload= parameter
 * Fix ulimit parameters for wfShellExec when memory_limit is specified in 'm'
+* (bug 3979) Save correct {{REVISIONID}} into parser cache on edit
+* Substitute {{REVISIONID}} correctly in diff display
 
 
 === Caveats ===
