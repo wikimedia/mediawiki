@@ -51,18 +51,18 @@ class contribs_finder {
 	}
 
 	function get_user_cond() {
-		$condition = "";
+		$condition = '';
 
 		if ($this->username == 'newbies') {
-			$max = $this->dbr->selectField('user', 'max(user_id)', false, "make_sql");
+			$max = $this->dbr->selectField('user', 'max(user_id)', false, 'make_sql');
 			$condition = '>' . (int)($max - $max / 100);
 		}
 
-		if ($condition == "") {
-			$condition = " rev_user_text=" . $this->dbr->addQuotes($this->username);
+		if ($condition == '') {
+			$condition = ' rev_user_text=' . $this->dbr->addQuotes($this->username);
 			$index = 'usertext_timestamp';
 		} else {
-			$condition = " rev_user {$condition}";
+			$condition = ' rev_user '.$condition ;
 			$index = 'user_timestamp';
 		}
 		return array($index, $condition);
@@ -70,8 +70,8 @@ class contribs_finder {
 
 	function get_namespace_cond() {
 		if ($this->namespace !== false)
-			return " AND page_namespace = " . (int)$this->namespace;
-		return "";
+			return ' AND page_namespace = ' . (int)$this->namespace;
+		return '';
 	}
 
 	function get_previous_offset_for_paging() {
@@ -120,7 +120,7 @@ class contribs_finder {
 		extract($this->dbr->tableNames('page', 'revision'));
 		list($index, $userCond) = $this->get_user_cond();
 
-		$limitQuery = "LIMIT {$this->limit}";
+		$limitQuery = 'LIMIT '.$this->limit;
 		if ($this->offset)
 			$offsetQuery = "AND rev_timestamp <= '{$this->offset}'";
 
@@ -139,7 +139,7 @@ class contribs_finder {
 
 	function find() {
 		$contribs = array();
-		$res = $this->dbr->query($this->make_sql(), "contribs_finder::find");
+		$res = $this->dbr->query($this->make_sql(), 'contribs_finder::find');
 		while ($c = $this->dbr->fetchObject($res))
 			$contribs[] = $c;
 		$this->dbr->freeResult($res);
@@ -175,11 +175,11 @@ function wfSpecialContributions( $par = null ) {
 	list( $limit, $offset) = wfCheckLimits();
 	$offset = $wgRequest->getVal('offset');
 	/* Offset must be an integral. */
-	if (!strlen($offset) || !preg_match("/^[0-9]+$/", $offset))
+	if (!strlen($offset) || !preg_match('/^[0-9]+$/', $offset))
 		$offset = 0;
 
-	$title = Title::makeTitle(NS_SPECIAL, "Contributions");
-	$urlbits = "target=" . wfUrlEncode($target);
+	$title = Title::makeTitle(NS_SPECIAL, 'Contributions');
+	$urlbits = 'target=' . wfUrlEncode($target);
 	$myurl = $title->escapeLocalURL($urlbits);
 
 	$finder = new contribs_finder(($target == 'newbies') ? 'newbies' : $nt->getText());
@@ -187,21 +187,21 @@ function wfSpecialContributions( $par = null ) {
 	$finder->set_limit($limit);
 	$finder->set_offset($offset);
 
-	$nsurl = $xnsurl = "";
+	$nsurl = $xnsurl = '';
 	if (($ns = $wgRequest->getVal('namespace', null)) !== null && $ns !== '') {
-		$nsurl = "&namespace=$ns";
+		$nsurl = '&namespace='.$ns;
 		$xnsurl = htmlspecialchars($nsurl);
 		$finder->set_namespace($ns);
 	}
 
-	if ($wgRequest->getText('go') == "prev") {
+	if ($wgRequest->getText('go') == 'prev') {
 		$prevts = $finder->get_previous_offset_for_paging();
 		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl");
 		$wgOut->redirect($prevurl);
 		return;
 	}
 
-	if ($wgRequest->getText('go') == "first" && $target!="newbies") {
+	if ($wgRequest->getText('go') == 'first' && $target != 'newbies') {
                 $prevts = $finder->get_first_offset_for_paging();
 		$prevurl = $title->getLocalURL($urlbits . "&offset=$prevts&limit=$limit$nsurl");
 		$wgOut->redirect($prevurl);
@@ -233,30 +233,30 @@ function wfSpecialContributions( $par = null ) {
 
 	$arr =  $wgContLang->getFormattedNamespaces();
 	$nsform = "<form method='get' action=\"$wgScript\">\n";
-	$nsform .= wfElement("input", array(
-			"name" => "title",
-			"type" => "hidden",
-			"value" => $wgTitle->getPrefixedText()));
-	$nsform .= wfElement("input", array(
-			"name" => "offset",
-			"type" => "hidden",
-			"value" => $offset));
-	$nsform .= wfElement("input", array(
-			"name" => "limit",
-			"type" => "hidden",
-			"value" => $limit));
-	$nsform .= wfElement("input", array(
-			"name" => "target",
-			"type" => "hidden",
-			"value" => $target));
-	$nsform .= "<p>";
+	$nsform .= wfElement('input', array(
+			'name' => 'title',
+			'type' => 'hidden',
+			'value' => $wgTitle->getPrefixedText()));
+	$nsform .= wfElement('input', array(
+			'name' => 'offset',
+			'type' => 'hidden',
+			'value' => $offset));
+	$nsform .= wfElement('input', array(
+			'name' => 'limit',
+			'type' => 'hidden',
+			'value' => $limit));
+	$nsform .= wfElement('input', array(
+			'name' => 'target',
+			'type' => 'hidden',
+			'value' => $target));
+	$nsform .= '<p>';
 	$nsform .= wfMsgHtml('namespace');
 
 	$nsform .= HTMLnamespaceselector( $ns, '' );
 
-	$nsform .= wfElement("input", array(
-			"type" => "submit",
-			"value" => wfMsg('allpagessubmit')));
+	$nsform .= wfElement('input', array(
+			'type' => 'submit',
+			'value' => wfMsg('allpagessubmit')));
 	$nsform .= "</p></form>\n";
 
 	$wgOut->addHTML($nsform);
@@ -265,7 +265,7 @@ function wfSpecialContributions( $par = null ) {
 	$contribs = $finder->find();
 
 	if (count($contribs) == 0) {
-		$wgOut->addWikiText( wfMsg( "nocontribs" ) );
+		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
 		return;
 	}
 
@@ -276,10 +276,10 @@ function wfSpecialContributions( $par = null ) {
 
 	$lasturl = $wgTitle->escapeLocalURL("action=history&limit={$limit}");
 
-	$firsttext = wfMsgHtml("histfirst");
-	$lasttext = wfMsgHtml("histlast");
+	$firsttext = wfMsgHtml('histfirst');
+	$lasttext = wfMsgHtml('histlast');
 
-	$prevtext = wfMsg("prevn", $limit);
+	$prevtext = wfMsg('prevn', $limit);
 	if ($atstart) {
 		$lastlink = $lasttext;
 		$prevlink = $prevtext;
@@ -288,7 +288,7 @@ function wfSpecialContributions( $par = null ) {
 		$prevlink = "<a href=\"$myurl&amp;offset=$offset&amp;limit=$limit$xnsurl&amp;go=prev\">$prevtext</a>";
 	}
 
-	$nexttext = wfMsg("nextn", $limit);
+	$nexttext = wfMsg('nextn', $limit);
 	if ($atend) {
 		$firstlink = $firsttext;
 		$nextlink = $nexttext;
@@ -296,7 +296,7 @@ function wfSpecialContributions( $par = null ) {
 		$firstlink = "<a href=\"$myurl&amp;limit=$limit$xnsurl&amp;go=first\">$firsttext</a>";
 		$nextlink = "<a href=\"$myurl&amp;offset=$lastts&amp;limit=$limit$xnsurl\">$nexttext</a>";
 	}
-        if ($target == "newbies") {
+        if ($target == 'newbies') {
             $firstlast ="($lastlink)";
         } else {
             $firstlast = "($lastlink | $firstlink)";
@@ -307,7 +307,7 @@ function wfSpecialContributions( $par = null ) {
 		$urls[] = "<a href=\"$myurl&amp;offset=$offset&amp;limit={$num}$xnsurl\">".$wgLang->formatNum($num)."</a>";
 	$bits = implode($urls, ' | ');
 
-	$prevnextbits = "$firstlast " . wfMsgHtml("viewprevnext", $prevlink, $nextlink, $bits);
+	$prevnextbits = $firstlast .' '. wfMsgHtml('viewprevnext', $prevlink, $nextlink, $bits);
 
 	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n");
 
