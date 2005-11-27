@@ -2181,7 +2181,7 @@ class Article {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache, $wgUser, $wgUseEnotif;
 
-		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', &$this ) ) {
+		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			wfSeedRandom();
 			if ( 0 == mt_rand( 0, 999 ) ) {
 				# Periodically flush old entries from the recentchanges table.
