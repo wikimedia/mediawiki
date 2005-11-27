@@ -355,7 +355,7 @@ function ucListEdit( $sk, $row ) {
 	if( $row->rev_id == $row->page_latest ) {
 		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
 		if( !$row->page_is_new ) {
-			$difftext .= $sk->makeKnownLinkObj( $page, '(' . $messages['diff'] . ')', 'diff=0' );
+			$difftext .= '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=0' ) . ')';
 		} else {
 			$difftext .= $messages['newarticle'];
 		}
@@ -373,7 +373,7 @@ function ucListEdit( $sk, $row ) {
 	if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
 		$difftext = '(' . $messages['diff'] . ')';
 	} else {
-		$difftext = $sk->makeKnownLinkObj( $page, '(' . $messages['diff'].')', 'diff=prev&oldid='.$row->rev_id );
+		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 	}
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
