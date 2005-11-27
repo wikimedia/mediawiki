@@ -68,50 +68,58 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
 		$sql = "SELECT /* wfSpecialRecentchangeslinked */ 
-        			rc_cur_id page_id,
-        			rc_namespace page_namespace,
-        			rc_title page_title,
-        			rc_this_oldid rev_id,
-        			rc_user rev_user,
-        			rc_comment rev_comment,
-                 rc_user_text rev_user_text,
-        			rc_timestamp rev_timestamp,
-        			rc_minor rev_minor_edit,
-                 rc_new page_is_new
+        			rc_id,
+        			rc_cur_id,
+        			rc_namespace,
+        			rc_title,
+        			rc_this_oldid,
+        			rc_last_oldid,
+        			rc_user,
+        			rc_comment,
+                 	rc_user_text,
+        			rc_timestamp,
+        			rc_minor,
+					rc_new,
+					rc_patrolled,
+					rc_type
             FROM $categorylinks, $recentchanges
            WHERE rc_timestamp > '{$cutoff}'
              {$cmq}
              AND cl_from=rc_cur_id
              AND cl_to=$catkey
-        GROUP BY page_id,page_namespace,page_title,
-                 rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
-                 page_is_new
-        ORDER BY rev_timestamp DESC
+        GROUP BY rc_cur_id,rc_namespace,rc_title,
+                 rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
+                 rc_new
+        ORDER BY rc_timestamp DESC
            LIMIT {$limit};
  ";
 	} else {
 		$sql =
 "SELECT /* wfSpecialRecentchangeslinked */ 
-			rc_cur_id page_id,
-			rc_namespace page_namespace,
-			rc_title page_title,
-         		rc_user rev_user,
-			rc_comment rev_comment,
-			rc_user_text rev_user_text,
+			rc_id,
+			rc_cur_id,
+			rc_namespace,
+			rc_title,
+         	rc_user,
+			rc_comment,
+			rc_user_text,
 			rc_this_oldid,
-			rc_timestamp rev_timestamp,
-			rc_minor rev_minor_edit,
-         rc_new page_is_new
+			rc_last_oldid,
+			rc_timestamp,
+			rc_minor,
+			rc_new,
+			rc_patrolled,
+			rc_type
     FROM $pagelinks, $recentchanges
    WHERE rc_timestamp > '{$cutoff}'
 	{$cmq}
      AND pl_namespace=rc_namespace
      AND pl_title=rc_title
      AND pl_from=$id
-GROUP BY page_id,page_namespace,page_title,
-         rev_user,rev_comment,rev_user_text,rev_timestamp,rev_minor_edit,
-         page_is_new
-ORDER BY rev_timestamp DESC
+GROUP BY rc_cur_id,rc_namespace,rc_title,
+         rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,
+         rc_new
+ORDER BY rc_timestamp DESC
    LIMIT {$limit}";
 	}
 	$res = $dbr->query( $sql, $fname );
@@ -136,7 +144,7 @@ ORDER BY rev_timestamp DESC
 		$obj = $dbr->fetchObject( $res );
 		--$count;
 
-		$rc = RecentChange::newFromCurRow( $obj );
+		$rc = RecentChange::newFromRow( $obj );
 		$rc->counter = $counter++;
 		$s .= $list->recentChangesLine( $rc );
 		--$limit;
