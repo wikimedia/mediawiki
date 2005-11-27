@@ -152,6 +152,7 @@ class Parser
 			'texts' => array(),
 			'titles' => array()
 		);
+		$this->mRevisionId = null;
 	}
 
 	/**
@@ -164,9 +165,10 @@ class Parser
 	 * @param array $options
 	 * @param boolean $linestart
 	 * @param boolean $clearState
+	 * @param int $revid number to pass in {{REVISIONID}}
 	 * @return ParserOutput a ParserOutput
 	 */
-	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
+	function parse( $text, &$title, $options, $linestart = true, $clearState = true, $revid = null ) {
 		global $wgUseTidy, $wgContLang;
 		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
@@ -177,6 +179,7 @@ class Parser
 
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
+		$this->mRevisionId = $revid;
 		$this->mOutputType = OT_HTML;
 
 		$this->mStripState = NULL;
@@ -1882,7 +1885,7 @@ class Parser
 	 * @access private
 	 */
 	function getVariableValue( $index ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgArticle, $wgScriptPath;
+		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgScriptPath;
 
 		/**
 		 * Some of these require message or data lookups and can be
@@ -1895,8 +1898,6 @@ class Parser
 
 		$ts = time();
 		wfRunHooks( 'ParserGetVariableValueTs', array( &$this, &$ts ) );
-		$revid = $wgArticle->getRevIdFetched();
-		wfRunHooks( 'ParserGetVariableValueRevid', array( &$this, &$revid ) );
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
@@ -1918,7 +1919,7 @@ class Parser
 			case MAG_FULLPAGENAMEE:
 				return wfUrlencode( $this->mTitle->getPrefixedText() );
 			case MAG_REVISIONID:
-				return $revid;
+				return $this->mRevisionId;
 			case MAG_NAMESPACE:
 				return $wgContLang->getNsText( $this->mTitle->getNamespace() );
 			case MAG_NAMESPACEE:
