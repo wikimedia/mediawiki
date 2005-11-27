@@ -916,7 +916,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3996) Fix text for new entries in RC RSS/Atom feed
 * (bug 2894) Enhanced Recent Changes link fixes
 * (bug 3065) Update both watched namespaces when renaming pages
-
+* Move parentheses out of <a> link in Special:Contributions
 
 === Caveats ===
 
