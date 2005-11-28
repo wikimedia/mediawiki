@@ -259,6 +259,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Substitute {{REVISIONID}} correctly in diff display
 * (bug 4090) Fix diff links in Special:Recentchangeslinked
 * (bug 4093) '&bot=1' in Special:Contributions now propagate to other links
+* Fix display of old recentchanges records for page moves
+
 
 === Caveats ===
 

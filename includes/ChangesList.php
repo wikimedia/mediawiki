@@ -153,7 +153,7 @@ class ChangesList {
 	}
 
 
-	function insertMove(&$s) {
+	function insertMove( &$s, $rc ) {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
@@ -161,7 +161,7 @@ class ChangesList {
 			') . . ';
 
 		# "[[x]] moved to [[y]]"
-		$msg = ( $rc_type == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
+		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 	}
@@ -323,7 +323,7 @@ class OldChangesList extends ChangesList {
 
 		// moved pages
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$this->insertMove($s);
+			$this->insertMove( $s, $rc );
 		// log entries
 		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
 			$this->insertLog($s, $rc->getTitle(), $matches[1]);
