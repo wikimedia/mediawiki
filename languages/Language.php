@@ -1849,6 +1849,18 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
 # Metadata
 'metadata' => 'Metadata',
+'metadata-help' => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
+'metadata-expand' => 'Show extended details',
+'metadata-collapse' => 'Hide extended details',
+'metadata-fields' => 'EXIF metadata fields listed in this message will
+be included on image page display when the metadata table
+is collapsed. Others will be hidden by default.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # Exif tags
 'exif-imagewidth' =>'Width',
@@ -1897,7 +1909,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-subsectimeoriginal' =>'DateTimeOriginal subseconds',
 'exif-subsectimedigitized' =>'DateTimeDigitized subseconds',
 'exif-exposuretime' =>'Exposure time',
+'exif-exposuretime-format' => '$1 sec ($2)',
 'exif-fnumber' =>'F Number',
+'exif-fnumber-format' =>'f/$1',
 'exif-exposureprogram' =>'Exposure Program',
 'exif-spectralsensitivity' =>'Spectral sensitivity',
 'exif-isospeedratings' =>'ISO speed rating',
@@ -1912,6 +1926,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'exif-lightsource' =>'Light source',
 'exif-flash' =>'Flash',
 'exif-focallength' =>'Lens focal length',
+'exif-focallength-format' =>'$1 mm',
 'exif-subjectarea' =>'Subject area',
 'exif-flashenergy' =>'Flash energy',
 'exif-spatialfrequencyresponse' =>'Spatial frequency response',

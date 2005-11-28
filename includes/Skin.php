@@ -79,7 +79,7 @@ class Skin extends Linker {
 	}
 
 	/** @return string path to the skin stylesheet */
-	function getStylesheet() { return 'common/wikistandard.css'; }
+	function getStylesheet() { return 'common/wikistandard.css?1'; }
 
 	/** @return string skin name */
 	function getSkinName() {

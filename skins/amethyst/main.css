@@ -309,3 +309,7 @@ span.diffchange {
 #jump-to-nav {
   display: none;
 }
+
+table.collapsed tr.collapsable {
+	display: none;
+}
