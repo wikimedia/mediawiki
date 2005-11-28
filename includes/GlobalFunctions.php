@@ -393,6 +393,8 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 	global $wgContLang, $wgLanguageCode;
 	global $wgMessageCache, $wgLang;
 
+	$transstat = $wgMessageCache->getTransform();
+	
 	if( is_object( $wgMessageCache ) ) {
 		if ( ! $transform )
 			$wgMessageCache->disableTransform();
@@ -418,6 +420,10 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
 	}
+
+	if ( ! $transform )
+		$wgMessageCache->setTransform( $transstat );
+	
 	return $message;
 }
 
