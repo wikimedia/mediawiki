@@ -457,6 +457,8 @@ class MessageCache
 	function enable() { $this->mDisable = false; }
 	function disableTransform() { $this->mDisableTransform = true; }
 	function enableTransform() { $this->mDisableTransform = false; }
+	function setTransform( $x ) { $this->mDisableTransform = $x; }
+	function getTransform() { return $this->mDisableTransform; }
 
 	/**
 	 * Add a message to the cache
