@@ -994,6 +994,23 @@ class FormatExif {
 			case 'Software':
 				$tags[$tag] = $this->msg( $tag, '', $val );
 				break;
+			
+			case 'ExposureTime':
+				// Show the pretty fraction as well as decimal version
+				$tags[$tag] = wfMsg( 'exif-exposuretime-format',
+					$val, $this->formatNum( $val ) );
+				break;
+			
+			case 'FNumber':
+				$tags[$tag] = wfMsg( 'exif-fnumber-format',
+					$this->formatNum( $val ) );
+				break;
+			
+			case 'FocalLength':
+				$tags[$tag] = wfMsg( 'exif-focallength-format',
+					$this->formatNum( $val ) );
+				break;
+			
 			default:
 				$tags[$tag] = $this->formatNum( $val );
 				break;

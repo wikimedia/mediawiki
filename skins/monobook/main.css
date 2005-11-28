@@ -1219,43 +1219,49 @@ li span.deleted {
 }
 
 /* Classes for EXIF data display */
-table.metadata {
+table.mw_metadata {
 	font-size: 0.8em;
 	margin-left: 0.5em;
 	margin-bottom: 0.5em;
+	width: 300px;
 }
 
-table.metadata caption {
+table.mw_metadata caption {
 	font-weight: bold;
 }
 
-table.metadata th {
+table.mw_metadata th {
 	font-weight: normal;
 }
 
-table.metadata td {
+table.mw_metadata td {
 	padding: 0.1em;
 }
 
-table.metadata {
+table.mw_metadata {
 	border: none;
 	border-collapse: collapse;
 }
 
-table.metadata td, table.metadata th {
+table.mw_metadata td, table.mw_metadata th {
 	text-align: center;
 	border: 1px solid #aaaaaa;
 	padding-left: 0.1em;
 	padding-right: 0.1em;
 }
 
-table.metadata th {
+table.mw_metadata th {
 	background-color: #f9f9f9;
 }
 
-table.metadata td {
+table.mw_metadata td {
 	background-color: #fcfcfc;
 }
+
+table.collapsed tr.collapsable {
+	display: none;
+}
+
 
 /* filetoc */
 ul#filetoc {
