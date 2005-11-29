@@ -414,6 +414,8 @@ parent class in order maintain consistency across languages.
 
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:General_disclaimer',
+'privacy' => 'Privacy policy',
+'privacypage' => 'Project:Privacy_policy',
 'errorpagetitle' => 'Error',
 'returnto'		=> 'Return to $1.',
 'tagline'      	=> 'From {{SITENAME}}',

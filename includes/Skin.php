@@ -526,6 +526,10 @@ END;
 		if( $disclaimer ) {
 			$s .= ' | ' . $disclaimer;
 		}
+		$privacy = $this->privacyLink(); # may be empty too
+		if( $privacy ) {
+			$s .= ' | ' . $privacy;
+		}
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == NS_IMAGE ) {
@@ -981,12 +985,20 @@ END;
 		return $s;
 	}
 
+	function privacyLink() {
+		$privacy = wfMsg( 'privacy' );
+		if ($privacy == '-') {
+			return '';
+		} else {
+			return $this->makeKnownLink( wfMsgForContent( 'privacypage' ), $privacy);
+		}
+	}
+
 	function aboutLink() {
 		$s = $this->makeKnownLink( wfMsgForContent( 'aboutpage' ),
 		  wfMsg( 'aboutsite' ) );
 		return $s;
 	}
-
 
 	function disclaimerLink() {
 		$disclaimers = wfMsg( 'disclaimers' );
