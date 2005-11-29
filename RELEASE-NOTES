@@ -261,6 +261,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4093) '&bot=1' in Special:Contributions now propagate to other links
 * Fix display of old recentchanges records for page moves
 * (bug 2111) Collapsable exif metadata table, clean up display
+* Reduce fractions in display of exif exposure time
 
 
 === Caveats ===
