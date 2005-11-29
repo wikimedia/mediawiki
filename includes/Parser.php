@@ -832,19 +832,6 @@ class Parser
 	}
 
 	/**
-	 * Parse ^^ tokens and return html
-	 *
-	 * @access private
-	 */
-	function doExponent( $text ) {
-		$fname = 'Parser::doExponent';
-		wfProfileIn( $fname );
-		$text = preg_replace('/\^\^(.*?)\^\^/','<small><sup>\\1</sup></small>', $text);
-		wfProfileOut( $fname );
-		return $text;
-	}
-
-	/**
 	 * Parse headers and return html
 	 *
 	 * @access private
@@ -853,7 +840,7 @@ class Parser
 		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
-			$h = substr( '======', 0, $i );
+			$h = str_repeat( '=', $i );
 			$text = preg_replace( "/^{$h}(.+){$h}(\\s|$)/m",
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
