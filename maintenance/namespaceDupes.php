@@ -17,11 +17,23 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-$options = array( 'fix', 'suffix' );
+$options = array( 'fix', 'suffix', 'help' );
 
 /** */
 require_once( 'commandLine.inc' );
 #require_once( 'maintenance/userDupes.inc' );
+
+if(isset( $options['help'] ) ) {
+print <<<END
+usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
+    --help          : this help message
+    --fix           : attempt to automaticly fix errors
+    --suffix=<text> : dupes will be renamed with correct namespace with <text>
+                      appended after the article name.
+
+END;
+die;
+}
 
 class NamespaceConflictChecker {
 	function NamespaceConflictChecker( &$db ) {
