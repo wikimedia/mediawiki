@@ -262,6 +262,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix display of old recentchanges records for page moves
 * (bug 2111) Collapsable exif metadata table, clean up display
 * Reduce fractions in display of exif exposure time
+* (bug 3922) Further tweaks to bidi overrides in category list for old
+  versions of Safari and Konqueror
 
 
 === Caveats ===

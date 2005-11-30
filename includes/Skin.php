@@ -428,7 +428,8 @@ END;
 
 		// Use Unicode bidi embedding override characters,
 		// to make sure links don't smash each other up in ugly ways.
-		$embed = "<span dir='" . ($wgContLang->isRTL() ? 'rtl' : 'ltr') . "'>";
+		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 		$t = $embed . implode ( "$pop | $embed" , $wgOut->mCategoryLinks ) . $pop;
 		
