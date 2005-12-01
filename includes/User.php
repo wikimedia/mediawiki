@@ -268,13 +268,16 @@ class User {
 	 * @todo Check what is doing really [AV]
 	 */
 	function randomPassword() {
+		global $wgMinimalPasswordLength;
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
 
-		$np = $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
-		  $pwchars{mt_rand( 0, $l )} . chr( mt_rand(48, 57) ) .
-		  $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
-		  $pwchars{mt_rand( 0, $l )};
+		$pwlength = max( 7, $wgMinimalPasswordLength );
+		$digit = mt_rand(0, $pwlength - 1);
+		$np = '';
+		for ( $i = 0; $i < $pwlength; $i++ ) {
+			$np .= $i == $digit ? chr( mt_rand(48, 57) ) : $pwchars{ mt_rand(0, $l)};
+		}
 		return $np;
 	}
 
