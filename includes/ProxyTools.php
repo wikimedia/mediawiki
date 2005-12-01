@@ -55,13 +55,27 @@ function wfGetIP() {
 	return $ip;
 }
 
-/** */
+/** 
+ * Given an IP address in dotted-quad notation, returns an unsigned integer.
+ * Like ip2long() except that it actually works and has a consistent error return value.
+ */
 function wfIP2Unsigned( $ip ) {
 	$n = ip2long( $ip );
 	if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
 		$n = false;
 	} elseif ( $n < 0 ) {
 		$n += pow( 2, 32 );
+	}
+	return $n;
+}
+
+/**
+ * Return a zero-padded hexadecimal representation of an IP address
+ */
+function wfIP2Hex( $ip ) {
+	$n = wfIP2Unsigned( $ip );
+	if ( $n !== false ) {
+		$n = sprintf( '%08X', $n );
 	}
 	return $n;
 }
@@ -141,6 +155,24 @@ function wfProxyCheck() {
 			$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
 		}
 	}
+}
+
+/**
+ * Convert a network specification in CIDR notation to an integer network and a number of bits
+ */
+function wfParseCIDR( $range ) {
+	$parts = explode( '/', $range, 2 );
+	if ( count( $parts ) != 2 ) {
+		return array( false, false );
+	}
+	$network = wfIP2Unsigned( $parts[0] );
+	if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
+		$bits = $parts[1];
+	} else {
+		$network = false;
+		$bits = false;
+	}
+	return array( $network, $bits );
 }
 
 ?>
