@@ -29,7 +29,7 @@ if( !isset( $options['quick'] ) ) {
 		print_c($i, --$i);
 		sleep(1);
 	}
-	die();
+	echo "\n";
 }
 
 do_all_updates();
