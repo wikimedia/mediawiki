@@ -511,7 +511,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   PRIMARY KEY ipb_id (ipb_id),
   INDEX ipb_address (ipb_address),
   INDEX ipb_user (ipb_user),
-  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
+  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8))
 
 ) TYPE=InnoDB;
 
