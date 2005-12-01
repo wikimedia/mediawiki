@@ -1030,7 +1030,9 @@ END;
 	 * @access private
 	 */
 	function editUrlOptions() {
-		if( $this->mRevisionId ) {
+		global $wgArticle;
+		
+		if( $this->mRevisionId && ! $wgArticle->isCurrent() ) {
 			return "action=edit&oldid=" . intval( $this->mRevisionId );
 		} else {
 			return "action=edit";
