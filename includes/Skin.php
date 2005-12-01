@@ -102,6 +102,8 @@ class Skin extends Linker {
 		$out->addLink( array( 'rel' => 'shortcut icon', 'href' => '/favicon.ico' ) );
 
 		$this->addMetadataLinks($out);
+		
+		$this->mRevisionId = $out->mRevisionId;
 
 		wfProfileOut( $fname );
 	}
@@ -318,15 +320,8 @@ END;
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
 		  $wgTitle->userCanEdit() ) {
 			$t = wfMsg( 'editthispage' );
-			$oid = $red = '';
-			if ( !empty($redirect) && $redirect == 'no' ) {
-				$red = "&redirect={$redirect}";
-			}
-			if ( !empty($oldid) && ! isset( $diff ) ) {
-				$oid = "&oldid=" . intval( $oldid );
-			}
-			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
-			$s = 'document.location = "' .$s .'";';
+			$s = $wgTitle->getFullURL( $this->editUrlOptions() );
+			$s = 'document.location = "' .wfEscapeJSString( $s ) .'";';
 			$a += array ('ondblclick' => $s);
 
 		}
@@ -1013,10 +1008,6 @@ END;
 	function editThisPage() {
 		global $wgOut, $wgTitle, $wgRequest;
 
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
-		$redirect = $wgRequest->getVal( 'redirect' );
-
 		if ( ! $wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
 		} else {
@@ -1025,15 +1016,25 @@ END;
 			} else {
 				$t = wfMsg( 'viewsource' );
 			}
-			$oid = $red = '';
 
-			if ( !is_null( $redirect ) ) { $red = "&redirect={$redirect}"; }
-			if ( $oldid && ! isset( $diff ) ) {
-				$oid = '&oldid='.$oldid;
-			}
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, "action=edit{$oid}{$red}" );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, $this->editUrlOptions() );
 		}
 		return $s;
+	}
+	
+	/**
+	 * Return URL options for the 'edit page' link.
+	 * This may include an 'oldid' specifier, if the current page view is such.
+	 *
+	 * @return string
+	 * @access private
+	 */
+	function editUrlOptions() {
+		if( $this->mRevisionId ) {
+			return "action=edit&oldid=" . intval( $this->mRevisionId );
+		} else {
+			return "action=edit";
+		}
 	}
 
 	function deleteThisPage() {

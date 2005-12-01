@@ -266,6 +266,10 @@ fully support the editing toolbar, but was found to be too confusing.
   versions of Safari and Konqueror
 * Don't die() when update.php reaches the end of the warning count
 * (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
+* (bug 1915) Fix edit links when 'direction' used with 'oldid';
+  using revision ID reported via OutputPage; Skin::editUrlOptions()
+* Remove obsolete 'redirect=no' on some edit links
+* Include oldid for the second revision on edit link on diff view
 
 
 === Caveats ===
