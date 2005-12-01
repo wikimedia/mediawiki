@@ -284,7 +284,7 @@ class Database {
 			if ( $this->mConn !== false ) {
 				$success = @/**/mysql_select_db( $dbName, $this->mConn );
 				if ( !$success ) {
-					$error = "Error selecting database $dbname on server {$this->mServer} " .
+					$error = "Error selecting database $dbName on server {$this->mServer} " .
 						"from client host {$wguname['nodename']}\n";
 					wfDebug( $error );
 				}
