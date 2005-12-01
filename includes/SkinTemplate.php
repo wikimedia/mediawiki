@@ -582,8 +582,6 @@ class SkinTemplate extends Skin {
 		global $wgUser, $wgRequest;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
 		$content_actions = array();
 
 		if( $this->iscontent ) {
@@ -606,13 +604,12 @@ class SkinTemplate extends Skin {
 
 			wfProfileIn( "$fname-edit" );
 			if ( $this->mTitle->userCanEdit() ) {
-				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.intval( $oldid ) : false;
 				$istalk = $this->mTitle->isTalkPage();
 				$istalkclass = $istalk?' istalk':'';
 				$content_actions['edit'] = array(
 					'class' => ((($action == 'edit' or $action == 'submit') and $section != 'new') ? 'selected' : '').$istalkclass,
 					'text' => wfMsg('edit'),
-					'href' => $this->mTitle->getLocalUrl( 'action=edit'.$oid )
+					'href' => $this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
 
 				if ( $istalk ) {
@@ -623,11 +620,10 @@ class SkinTemplate extends Skin {
 					);
 				}
 			} else {
-				$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.intval( $oldid ) : '';
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
-					'href' => $this->mTitle->getLocalUrl( 'action=edit'.$oid )
+					'href' => $this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
 			}
 			wfProfileOut( "$fname-edit" );
@@ -704,7 +700,7 @@ class SkinTemplate extends Skin {
 			if( $this->loggedin || $wgValidationForAnons ) { # and $action != 'submit' ) {
 				# Validate tab. TODO: add validation to logged-in user rights
 				if($wgUseValidation && ( $action == "" || $action=='view' ) ){ # && $wgUser->isAllowed('validate')){
-					if ( $oldid ) $oid = intval( $oldid ) ; # Use the oldid
+					if ( $this->mRevisionId ) $oid = intval( $this->mRevisionId ) ; # Use the oldid
 					else
 						{# Trying to get the current article revision through this weird stunt
 						$tid = $this->mTitle->getArticleID();
