@@ -2508,10 +2508,10 @@ class Parser
 
 			# If there are any <onlyinclude> tags, only include them
 			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
-				preg_match_all( '/<onlyinclude>(.*?)<\/onlyinclude>/s', $text, $m );
+				preg_match_all( '/<onlyinclude>(.*?)<\/onlyinclude>\n?/s', $text, $m );
 				$text = '';
 				foreach ($m[1] as $piece)
-					$text .= $this->trimOnlyinclude( $piece );
+					$text .= $piece;
 			}
 			# Remove <noinclude> sections and <includeonly> tags
 			$text = preg_replace( '/<noinclude>.*?<\/noinclude>/s', '', $text );
@@ -2589,19 +2589,6 @@ class Parser
 		}
 	}
 	
-	/**
-	 * Trim the first and last newlines of a string, this is not equivalent
-	 * to trim( $str, "\n" ) which would trim them all.
-	 *
-	 * @param string $str The string to trim
-	 * @return string
-	 */
-	function trimOnlyinclude( $str ) {
-		$str = preg_replace( "/^\n/", '', $str );
-		$str = preg_replace( "/\n$/", '', $str );
-		return $str;
-	}
-
 	/**
 	 * Translude an interwiki link.
 	 */
