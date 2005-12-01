@@ -315,7 +315,7 @@ class OutputPage {
 	function parse( $text, $linestart = true ) {
 		global $wgParser, $wgTitle;
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions,
-			$linestart, true, $this->mRevision );
+			$linestart, true, $this->mRevisionId );
 		return $parserOutput->getText();
 	}
 
