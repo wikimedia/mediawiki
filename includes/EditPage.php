@@ -678,13 +678,12 @@ class EditPage {
 			}
 			$wgOut->setPageTitle( $s );
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
-				$this->mArticle->setOldSubtitle();
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}
 			if ( isset( $this->mArticle )
 			     && isset( $this->mArticle->mRevision )
 			     && !$this->mArticle->mRevision->isCurrent() ) {
-				$this->mArticle->setOldSubtitle();
+				$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
 				$wgOut->addWikiText( wfMsg( 'editingold' ) );
 			}
 		}
