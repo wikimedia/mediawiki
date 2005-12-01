@@ -17,15 +17,16 @@ define ( 'EB_RANGE_ONLY', 4 );
  * loaded or filled. It is not load-on-demand. There are no accessors.
  *
  * To use delete(), you only need to fill $mAddress
- * Globals used: $wgBlockCache, $wgAutoblockExpiry
+ * Globals used: $wgAutoblockExpiry, $wgAntiLockFlags
  *
  * @todo This could be used everywhere, but it isn't.
  * @package MediaWiki
  */
 class Block
 {
-	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;
-	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mByName;
+	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
+		            $mRangeStart, $mRangeEnd;
+	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
 
 	function Block( $address = '', $user = '', $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '' )
@@ -43,6 +44,7 @@ class Block
 		}
 
 		$this->mForUpdate = false;
+		$this->mFromMaster = false;
 		$this->mByName = false;
 		$this->initialiseRange();
 	}
@@ -63,19 +65,14 @@ class Block
 	}
 
 	/**
-	 * Get a ban from the DB, with either the given address or the given username
+	 * Get the DB object and set the reference parameter to the query options
 	 */
-	function load( $address = '', $user = 0, $killExpired = true )
+	function &getDBOptions( &$options ) 
 	{
 		global $wgAntiLockFlags;
-		$fname = 'Block::load';
-		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
-
-		$ret = false;
-		$killed = false;
-		if ( $this->forUpdate() ) {
+		if ( $this->mForUpdate || $this->mFromMaster ) {
 			$db =& wfGetDB( DB_MASTER );
-			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
+			if ( !$this->mForUpdate || ($wgAntiLockFlags & ALF_NO_BLOCK_LOCK) ) {
 				$options = '';
 			} else {
 				$options = 'FOR UPDATE';
@@ -84,15 +81,33 @@ class Block
 			$db =& wfGetDB( DB_SLAVE );
 			$options = '';
 		}
+		return $db;
+	}
+
+	/**
+	 * Get a ban from the DB, with either the given address or the given username
+	 */
+	function load( $address = '', $user = 0, $killExpired = true )
+	{
+		$fname = 'Block::load';
+		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
+
+		$options = '';
+		$db =& $this->getDBOptions( $options );
+
+		$ret = false;
+		$killed = false;
 		$ipblocks = $db->tableName( 'ipblocks' );
 
-		if ( 0 == $user && $address=='' ) {
-			$sql = "SELECT * from $ipblocks $options";
-		} elseif ($address=="") {
+		if ( 0 == $user && $address == '' ) {
+			# Invalid user specification, not blocked
+			$this->clear();
+			return false;
+		} elseif ( $address == '' ) {
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_user={$user} $options";
-		} elseif ($user=="") {
-			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) . "' $options";
-		} elseif ( $options=='' ) {
+		} elseif ( $user == '' ) {
+			$sql = "SELECT * FROM $ipblocks WHERE ipb_address=" . $db->addQuotes( $address ) . " $options";
+		} elseif ( $options == '' ) {
 			# If there are no options (e.g. FOR UPDATE), use a UNION
 			# so that the query can make efficient use of indices
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) .
@@ -105,10 +120,7 @@ class Block
 		}
 
 		$res = $db->query( $sql, $fname );
-		if ( 0 == $db->numRows( $res ) ) {
-			# User is not blocked
-			$this->clear();
-		} else {
+		if ( 0 != $db->numRows( $res ) ) {
 			# Get first block
 			$row = $db->fetchObject( $res );
 			$this->initFromRow( $row );
@@ -137,7 +149,70 @@ class Block
 			}
 		}
 		$db->freeResult( $res );
+
+		# No blocks found yet? Try looking for range blocks
+		if ( !$ret && $address != '' ) {
+			$ret = $this->loadRange( $address, $killExpired );
+		}
+		if ( !$ret ) {
+			$this->clear();
+		}
+
 		return $ret;
+	}
+
+	/**
+	 * Search the database for any range blocks matching the given address, and 
+	 * load the row if one is found.
+	 */
+	function loadRange( $address, $killExpired = true )
+	{
+		$fname = 'Block::loadRange';
+
+		$iaddr = wfIP2Hex( $address );
+		if ( $iaddr === false ) {
+			# Invalid address
+			return false;
+		}
+
+		# Only scan ranges which start in this /16, this improves search speed
+		# Blocks should not cross a /16 boundary.
+		$range = substr( $iaddr, 0, 4 );
+		
+		$options = '';
+		$db =& $this->getDBOptions( $options );
+		$ipblocks = $db->tableName( 'ipblocks' );
+		$sql = "SELECT * FROM $ipblocks WHERE ipb_range_start LIKE '$range%' ".
+			"AND ipb_range_start <= '$iaddr' AND ipb_range_end >= '$iaddr' $options";
+		$res = $db->query( $sql, $fname );
+		$row = $db->fetchObject( $res );
+
+		$success = false;
+		if ( $row ) {
+			# Found a row, initialise this object
+			$this->initFromRow( $row );
+
+			# Is it expired?
+			if ( !$killExpired || !$this->deleteIfExpired() ) {
+				# No, return true
+				$success = true;
+			} 
+		}
+		
+		$db->freeResult( $res );
+		return $success;
+	}
+
+	/**
+	 * Determine if a given integer IPv4 address is in a given CIDR network
+	 */
+	function isAddressInRange( $addr, $range ) {
+		list( $network, $bits ) = wfParseCIDR( $range );
+		if ( $network !== false && $addr >> ( 32 - $bits ) == $network >> ( 32 - $bits ) ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	function initFromRow( $row )
@@ -157,24 +232,21 @@ class Block
 		} else {
 			$this->mByName = false;
 		}
-
-		$this->initialiseRange();
+		$this->mRangeStart = $row->ipb_range_start;
+		$this->mRangeEnd = $row->ipb_range_end;
 	}
 
 	function initialiseRange()
 	{
+		$this->mRangeStart = '';
+		$this->mRangeEnd = '';
 		if ( $this->mUser == 0 ) {
-			$rangeParts = explode( '/', $this->mAddress );
-			if ( count( $rangeParts ) == 2 ) {
-				$this->mNetworkBits = $rangeParts[1];
-			} else {
-				$this->mNetworkBits = 32;
+			list( $network, $bits ) = wfParseCIDR( $this->mAddress );
+			if ( $network !== false ) {
+				$this->mRangeStart = sprintf( '%08X', $network );
+				$this->mRangeEnd = sprintf( '%08X', $network + (1 << (32 - $bits)) - 1 );
 			}
-			$this->mIntegerAddr = ip2long( $rangeParts[0] );
-		} else {
-			$this->mNetworkBits = false;
-			$this->mIntegerAddr = false;
-		}
+		}	
 	}
 
 	/**
@@ -199,7 +271,7 @@ class Block
 			$options = '';
 		}
 		if ( $flags & EB_RANGE_ONLY ) {
-			$cond = " AND ipb_address LIKE '%/%'";
+			$cond = " AND ipb_range_start <> ''";
 		} else {
 			$cond = '';
 		}
@@ -215,7 +287,7 @@ class Block
 
 		while ( $row = $db->fetchObject( $res ) ) {
 			$block->initFromRow( $row );
-			if ( ( $flags & EB_RANGE_ONLY ) && $block->getNetworkBits() == 32 ) {
+			if ( ( $flags & EB_RANGE_ONLY ) && $block->mRangeStart == '' ) {
 				continue;
 			}
 
@@ -247,7 +319,6 @@ class Block
 			$condition = array( 'ipb_address' => $this->mAddress );
 		}
 		$dbw->delete( 'ipblocks', $condition, $fname );
-		$this->clearCache();
 	}
 
 	function insert()
@@ -267,10 +338,10 @@ class Block
 				'ipb_expiry' => $this->mExpiry ?
 					$dbw->timestamp($this->mExpiry) :
 					$this->mExpiry,
+				'ipb_range_start' => $this->mRangeStart,
+				'ipb_range_end' => $this->mRangeEnd,
 			), 'Block::insert'
 		);
-
-		$this->clearCache();
 	}
 
 	function deleteIfExpired()
@@ -319,19 +390,10 @@ class Block
 					'ipb_address' => $this->mAddress
 				), 'Block::updateTimestamp'
 			);
-
-			$this->clearCache();
 		}
 	}
 
-	/* private */ function clearCache()
-	{
-		global $wgBlockCache;
-		if ( is_object( $wgBlockCache ) ) {
-			$wgBlockCache->loadFromDB();
-		}
-	}
-
+	/*
 	function getIntegerAddr()
 	{
 		return $this->mIntegerAddr;
@@ -340,7 +402,7 @@ class Block
 	function getNetworkBits()
 	{
 		return $this->mNetworkBits;
-	}
+	}*/
 
 	function getByName()
 	{
@@ -354,6 +416,10 @@ class Block
 		return wfSetVar( $this->mForUpdate, $x );
 	}
 
+	function fromMaster( $x = NULL ) {
+		return wfSetVar( $this->mFromMaster, $x );
+	}
+
 	/* static */ function getAutoblockExpiry( $timestamp )
 	{
 		global $wgAutoblockExpiry;
@@ -365,7 +431,7 @@ class Block
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
-			$ipint = ip2long( $parts[0] );
+			$ipint = wfIP2Unsigned( $parts[0] );
 			$ipint = $ipint >> $shift << $shift;
 			$newip = long2ip( $ipint );
 			$range = "$newip/{$parts[1]}";

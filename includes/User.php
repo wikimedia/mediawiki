@@ -372,14 +372,9 @@ class User {
 	 * @param bool $bFromSlave Specify whether to check slave or master. To improve performance,
 	 *  non-critical checks are done against slaves. Check when actually saving should be done against
 	 *  master.
-	 *
-	 * Note that even if $bFromSlave is false, the check is done first against slave, then master.
-	 * The logic is that if blocked on slave, we'll assume it's either blocked on master or
-	 * just slightly outta sync and soon corrected - safer to block slightly more that less.
-	 * And it's cheaper to check slave first, then master if needed, than master always.
 	 */
 	function getBlockedStatus( $bFromSlave = true ) {
-		global $wgBlockCache, $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
 
 		if ( -1 != $this->mBlockedby ) {
 			wfDebug( "User::getBlockedStatus: already loaded.\n" );
@@ -395,7 +390,7 @@ class User {
 
 		# User/IP blocking
 		$block = new Block();
-		$block->forUpdate( $bFromSlave );
+		$block->fromMaster( !$bFromSlave );
 		if ( $block->load( $ip , $this->mId ) ) {
 			wfDebug( "$fname: Found block.\n" );
 			$this->mBlockedby = $block->mBy;
@@ -405,23 +400,6 @@ class User {
 			}
 		} else {
 			wfDebug( "$fname: No block.\n" );
-		}
-
-		# Range blocking
-		if ( !$this->mBlockedby ) {
-			# Check first against slave, and optionally from master.
-			wfDebug( "$fname: Checking range blocks\n" );
-			$block = $wgBlockCache->get( $ip, true );
-			if ( !$block && !$bFromSlave )
-				{
-				# Not blocked: check against master, to make sure.
-				$wgBlockCache->clearLocal( );
-				$block = $wgBlockCache->get( $ip, false );
-				}
-			if ( $block !== false ) {
-				$this->mBlockedby = $block->mBy;
-				$this->mBlockreason = $block->mReason;
-			}
 		}
 
 		# Proxy blocking

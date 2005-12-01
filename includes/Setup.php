@@ -62,7 +62,6 @@ require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
 require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
-require_once( 'BlockCache.php' );
 require_once( 'Parser.php' );
 require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
@@ -269,11 +268,6 @@ wfProfileIn( $fname.'-OutputPage' );
 $wgOut = new OutputPage();
 
 wfProfileOut( $fname.'-OutputPage' );
-wfProfileIn( $fname.'-BlockCache' );
-
-$wgBlockCache = new BlockCache( true );
-
-wfProfileOut( $fname.'-BlockCache' );
 wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();

@@ -49,7 +49,8 @@ $wgNewFields = array(
 	array( 'image',         'img_media_type',   'patch-img_media_type.sql' ),
 	array( 'validate',      'val_ip',           'patch-val_ip.sql' ),
 	array( 'site_stats',    'ss_total_pages',   'patch-ss_total_articles.sql' ),
-	array( 'interwiki',	'iw_trans',	    'patch-interwiki-trans.sql' ),
+	array( 'interwiki',     'iw_trans',         'patch-interwiki-trans.sql' ),
+	array( 'ipblocks',      'ipb_range_start',  'patch-ipb_range_start.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {

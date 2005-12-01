@@ -502,10 +502,16 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
-
+  
+  -- Start and end of an address range, in hexadecimal
+  -- Size chosen to allow IPv6
+  ipb_range_start varchar(32) NOT NULL default '',
+  ipb_range_end varchar(32) NOT NULL default '',
+  
   PRIMARY KEY ipb_id (ipb_id),
   INDEX ipb_address (ipb_address),
-  INDEX ipb_user (ipb_user)
+  INDEX ipb_user (ipb_user),
+  INDEX ipb_range (ipb_range_start(8), ipb_range_end(8)),
 
 ) TYPE=InnoDB;
 
