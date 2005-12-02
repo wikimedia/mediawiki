@@ -435,9 +435,9 @@ class PreferencesForm {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if ( $this->mSuccess || 'success' == $status ) {
-			$wgOut->addWikitext( '<div class="preferences-save-success"><strong>'. wfMsg( 'savedprefs' ) . '</strong></div>' );
+			$wgOut->addWikitext( '<div class="successbox"><strong>'. wfMsg( 'savedprefs' ) . '</strong></div>' );
 		} else	if ( 'error' == $status ) {
-			$wgOut->addWikitext( '<div class="error"><strong>' . $message  . '</strong></div>' );
+			$wgOut->addWikitext( '<div class="errorbox"><strong>' . $message  . '</strong></div>' );
 		} else if ( '' != $status ) {
 			$wgOut->addWikitext( $message . "\n----" );
 		}

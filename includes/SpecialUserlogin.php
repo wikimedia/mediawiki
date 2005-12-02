@@ -366,7 +366,7 @@ class LoginForm {
 		if( WikiError::isError( $result ) ) {
 			$this->mainLoginForm( wfMsg( 'mailerror', $result->getMessage() ) );
 		} else {
-			$this->mainLoginForm( wfMsg( 'passwordsent', $u->getName() ) );
+			$this->mainLoginForm( wfMsg( 'passwordsent', $u->getName() ), 'success' );
 		}
 	}
 
@@ -435,7 +435,7 @@ class LoginForm {
 	/**
 	 * @access private
 	 */
-	function mainLoginForm( $err ) {
+	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDBname, $wgAllowRealName, $wgEnableEmail;
 		global $wgAuth;
@@ -456,12 +456,12 @@ class LoginForm {
 			$template =& new UsercreateTemplate();
 			$q = 'action=submitlogin&type=signup';
 			$linkq = 'type=login';
-			$msg = 'gotaccount';
+			$linkmsg = 'gotaccount';
 		} else {
 			$template =& new UserloginTemplate();
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
-			$msg = 'nologin';
+			$linkmsg = 'nologin';
 		}
 
 		if ( !empty( $this->mReturnto ) ) {
@@ -471,10 +471,10 @@ class LoginForm {
 		}
 
 		$link = '<a href="' . htmlspecialchars ( $titleObj->getLocalUrl( $linkq ) ) . '">';
-		$link .= wfMsgHtml( $msg . 'link' );
+		$link .= wfMsgHtml( $linkmsg . 'link' );
 		$link .= '</a>';
 
-		$template->set( 'link', wfMsgHtml( $msg, $link ) );
+		$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
 		
 		$template->set( 'name', $this->mName );
 		$template->set( 'password', $this->mPassword );
@@ -484,7 +484,8 @@ class LoginForm {
 		$template->set( 'domain', $this->mDomain );
 
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
-		$template->set( 'error', $err );
+		$template->set( 'message', $msg );
+		$template->set( 'messagetype', $msgtype );
 		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
 		$template->set( 'createemail', $wgEnableEmail && $wgUser->isLoggedIn() );
 		$template->set( 'userealname', $wgAllowRealName );
