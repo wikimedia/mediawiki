@@ -91,7 +91,10 @@ class UsercreateTemplate extends QuickTemplate {
 	function execute() {
 		if( $this->data['message'] ) {
 ?>
-	<div class="<?php $this->text('messageclass') ?>">
+	<div class="<?php $this->text('messagetype') ?>box">
+		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
+			<h2><?php $this->msg('loginerror') ?>:</h2>
+		<?php } ?>
 		<?php $this->html('message') ?>
 	</div>
 	<div class="visualClear"></div>
