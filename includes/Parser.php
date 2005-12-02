@@ -435,7 +435,7 @@ class Parser
 				$full_tag = $ext_tags[$tag][$marker];
 				$params = $ext_params[$tag][$marker];
 				if ( $render )
-					$ext_content[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, $this ) );
+					$ext_content[$tag][$marker] = call_user_func_array( $callback, array( $content, $params, &$this ) );
 				else {
 					if ( is_null( $content ) ) {
 						// Empty element tag
