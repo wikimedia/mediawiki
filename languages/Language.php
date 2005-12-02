@@ -590,7 +590,7 @@ You can view and copy the source of this page:',
 # Login and logout pages
 #
 'logouttitle'	=> 'User logout',
-'logouttext' 		=> "You are now logged out.<br />
+'logouttext' 		=> "<strong>You are now logged out.</strong><br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
@@ -613,14 +613,18 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 
 'login'			=> 'Log in',
 'loginprompt'	=> 'You must have cookies enabled to log in to {{SITENAME}}.',
-'userlogin'		=> 'Create an account or log in',
+'userlogin'		=> 'Log in / create account',
 'logout'		=> 'Log out',
 'userlogout'	=> 'Log out',
 'notloggedin'	=> 'Not logged in',
-'createaccount'	=> 'Create new account',
+'nologin'	=> 'Don\'t have a login? $1.',
+'nologinlink'	=> 'Create an account',
+'createaccount'	=> 'Create account',
+'gotaccount'	=> 'Already got an account? $1.',
+'gotaccountlink'	=> 'Log in',
 'createaccountmail'	=> 'by email',
 'badretype'		=> 'The passwords you entered do not match.',
-'userexists'	=> 'The user name you entered is already in use. Please choose a different name.',
+'userexists'	=> 'Username entered already in use. Please choose a different name.',
 'youremail'		=> 'Email *',
 'username'		=> 'Username: ',
 'uid'			=> 'User ID: ',
@@ -630,8 +634,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yournick'		=> 'Nickname:',
 'badsig'		=> 'Invalid raw signature; check HTML tags.',
 'email'			=> 'Email',
-'emailforlost'		=> "Fields marked with superscripts are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
-email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
+'emailforlost'		=> "<div style='width:30em'>* Optional. An email lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>",
 'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
 'prefs-help-realname' 	=> '* Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'	=> 'Login error',
@@ -640,12 +643,12 @@ email address to them, and it can be used to send you a new password if you forg
 'nocookieslogin'	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 'noname'		=> 'You have not specified a valid user name.',
 'loginsuccesstitle' => 'Login successful',
-'loginsuccess'	=> "You are now logged in to {{SITENAME}} as \"$1\".",
-'nosuchuser'	=> "There is no user by the name \"$1\".
-Check your spelling, or use the form below to create a new user account.",
+'loginsuccess'	=> "'''You are now logged in to {{SITENAME}} as \"$1\".'''",
+'nosuchuser'	=> "There is no user by the name \"$1\". Check your spelling, or create a new account.",
 'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
-'wrongpassword'		=> 'The password you entered is incorrect (or missing). Please try again.',
-'mailmypassword' 	=> 'Mail me a new password',
+'wrongpassword'		=> 'Incorrect password entered. Please try again.',
+'wrongpasswordempty'		=> 'Password entered was blank. Please try again.',
+'mailmypassword' 	=> 'Email password',
 'passwordremindertitle' => "Password reminder from {{SITENAME}}",
 'passwordremindertext' => "Someone (probably you, from IP address $1)
 requested that we send you a new {{SITENAME}} login password for {{SERVERNAME}}.
@@ -662,7 +665,8 @@ Please log in again after you receive it.",
 'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address.
 Before any other mail is sent to the account, you will have to follow the instructions in the email,
 to confirm that the account is actually yours.",
-'loginend'		            => '&nbsp;',
+'loginend'		            => '',
+'signupend'		            => '{{int:loginend}}',
 'mailerror'                 => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated'        => 'Your email address was authenticated on $1.',

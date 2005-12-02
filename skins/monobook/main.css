@@ -271,6 +271,21 @@ span.subpages {
     color: red;
     font-size: larger;
 }
+.errorbox {
+    font-size: larger;
+    border: 2px solid red;
+    padding: .5em 1em;
+    float: left;
+    margin-bottom: 2em;
+    background-color: #fff2f2;
+}
+.errorbox h2 {
+    font-size: 1em;
+    font-weight: bold;
+    display: inline;
+    margin: 0 .5em 0 0;
+    border: none;
+}
 #catlinks {
     border: 1px solid #aaa;
     background-color: #f9f9f9;
@@ -1048,6 +1063,41 @@ div.prefsectiontip {
 .prefcache {
     font-size: 90%;
     margin-top: 2em;
+}
+
+#userlogin {
+    margin: 0 3em 1em 0;
+    border: 1px solid #aaa;
+    clear: both;
+    padding: 1.5em 2em;
+    background-color: #f9f9f9;
+    float: left;
+}
+
+#userlogin table {
+    background-color: #f9f9f9;
+}
+
+#userlogin h2 {
+    padding-top: 0;
+}
+
+#userloginprompt {
+    font-size: 85%;
+}
+
+#login-emailforlost {
+    font-size: 85%;
+    line-height: 1.2;
+    padding-top: 2em;
+}
+
+#userlogin .loginText, #userlogin .loginPassword {
+    width: 12em;
+}
+
+#userloginlink a, #wpLoginattempt, #wpCreateaccount {
+    font-weight: bold;
 }
 
 /*
