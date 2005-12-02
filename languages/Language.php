@@ -311,10 +311,10 @@ parent class in order maintain consistency across languages.
 'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
-'tog-enotifwatchlistpages' 	=> 'Email me on page changes',
-'tog-enotifusertalkpages' 	=> 'Email me when my user talk page is changed',
-'tog-enotifminoredits' 		=> 'Email me also for minor edits of pages',
-'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails',
+'tog-enotifwatchlistpages' 	=> 'E-mail me on page changes',
+'tog-enotifusertalkpages' 	=> 'E-mail me when my user talk page is changed',
+'tog-enotifminoredits' 		=> 'E-mail me also for minor edits of pages',
+'tog-enotifrevealaddr' 		=> 'Reveal my e-mail address in notification mails',
 'tog-shownumberswatching' 	=> 'Show the number of watching users',
 'tog-fancysig' => 'Raw signatures (without automatic link)',
 'tog-externaleditor' => 'Use external editor by default',
@@ -622,10 +622,10 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'createaccount'	=> 'Create account',
 'gotaccount'	=> 'Already got an account? $1.',
 'gotaccountlink'	=> 'Log in',
-'createaccountmail'	=> 'by email',
+'createaccountmail'	=> 'by e-mail',
 'badretype'		=> 'The passwords you entered do not match.',
 'userexists'	=> 'Username entered already in use. Please choose a different name.',
-'youremail'		=> 'Email *',
+'youremail'		=> 'E-mail *',
 'username'		=> 'Username: ',
 'uid'			=> 'User ID: ',
 'yourrealname'		=> 'Real name *',
@@ -633,12 +633,12 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourvariant'  => 'Variant',
 'yournick'		=> 'Nickname:',
 'badsig'		=> 'Invalid raw signature; check HTML tags.',
-'email'			=> 'Email',
-'emailforlost'		=> "<div style='width:30em'>* Optional. An email lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>",
-'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
+'email'			=> 'E-mail',
+'emailforlost'		=> "<div style='width:30em'>* Optional. An e-mail lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>",
+'prefs-help-email-enotif' => 'This address is also used to send you e-mail notifications if you enabled the options.',
 'prefs-help-realname' 	=> '* Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'	=> 'Login error',
-'prefs-help-email'      => '* Email (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
+'prefs-help-email'      => '* E-mail (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
 'nocookiesnew'	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
 'nocookieslogin'	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 'noname'		=> 'You have not specified a valid user name.',
@@ -648,7 +648,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
 'wrongpassword'		=> 'Incorrect password entered. Please try again.',
 'wrongpasswordempty'		=> 'Password entered was blank. Please try again.',
-'mailmypassword' 	=> 'Email password',
+'mailmypassword' 	=> 'E-mail password',
 'passwordremindertitle' => "Password reminder from {{SITENAME}}",
 'passwordremindertext' => "Someone (probably you, from IP address $1)
 requested that we send you a new {{SITENAME}} login password for {{SERVERNAME}}.
@@ -662,19 +662,19 @@ your old password.",
 'passwordsent'	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
-'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address.
-Before any other mail is sent to the account, you will have to follow the instructions in the email,
+'eauthentsent'             =>  "A confirmation e-mail has been sent to the nominated e-mail address.
+Before any other mail is sent to the account, you will have to follow the instructions in the e-mail,
 to confirm that the account is actually yours.",
 'loginend'		            => '',
 'signupend'		            => '{{int:loginend}}',
 'mailerror'                 => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
-'emailauthenticated'        => 'Your email address was authenticated on $1.',
-'emailnotauthenticated'     => 'Your email address is <strong>not yet authenticated</strong>. No email
+'emailauthenticated'        => 'Your e-mail address was authenticated on $1.',
+'emailnotauthenticated'     => 'Your e-mail address is <strong>not yet authenticated</strong>. No e-mail
 will be sent for any of the following features.',
-'noemailprefs'              => '<strong>Specify an email address for these features to work.</strong>',
+'noemailprefs'              => '<strong>Specify an e-mail address for these features to work.</strong>',
 'emailconfirmlink' => 'Confirm your e-mail address',
-'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid
+'invalidemailaddress'	=> 'The e-mail address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.',
 
 # Edit page toolbar
@@ -714,7 +714,7 @@ format. Please enter a well-formatted address or empty that field.',
 The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
 [[Project:Administrators|administrators]] to discuss the block.
 
-Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
+Note that you may not use the \"e-mail this user\" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.
 ",
@@ -925,7 +925,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 'timezoneoffset' => 'Offset¹',
 'servertime'	=> 'Server time',
 'guesstimezone' => 'Fill in from browser',
-'allowemail'		=> 'Enable email from other users',
+'allowemail'		=> 'Enable e-mail from other users',
 'defaultns'		=> 'Search in these namespaces by default:',
 'default'		=> 'default',
 'files'			=> 'Files',
@@ -1282,7 +1282,7 @@ make it easier to pick out.
 'watchdetails'		=> "* $1 pages watched not counting talk pages
 * [[Special:Watchlist/edit|Show and edit complete watchlist]]
 ",
-'wlheader-enotif' 		=> "* Email notification is enabled.",
+'wlheader-enotif' 		=> "* E-mail notification is enabled.",
 'wlheader-showupdated'   => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'=> 'checking recent edits for watched pages',
 'watchmethod-list'	=> 'checking watched pages for recent edits',
