@@ -15,11 +15,13 @@ require_once( 'includes/SkinTemplate.php' );
  */
 class UserloginTemplate extends QuickTemplate {
 	function execute() {
-		if( $this->data['error'] ) {
+		if( $this->data['message'] ) {
 ?>
-	<div class="errorbox">
-		<h2><?php $this->msg('loginerror') ?>:</h2>
-		<?php $this->html('error') ?>
+	<div class="<?php $this->text('messagetype') ?>box">
+		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
+			<h2><?php $this->msg('loginerror') ?>:</h2>
+		<?php } ?>
+		<?php $this->html('message') ?>
 	</div>
 	<div class="visualClear"></div>
 <?php } ?>
@@ -71,7 +73,7 @@ class UserloginTemplate extends QuickTemplate {
 		<tr>
 			<td></td>
 			<td align='left' style="white-space:nowrap">
-				<input type='submit' name="wpLoginattempt" id="wpLoginattempt" value="<?php $this->msg('login') ?>" />&nbsp;<?php if( $this->data['useemail'] ) { ?><input type='submit' name="wpMailmypassword"
+				<input type='submit' name="wpLoginattempt" id="wpLoginattempt" value="<?php $this->msg('login') ?>" />&nbsp;<?php if( $this->data['useemail'] ) { ?><input type='submit' name="wpMailmypassword" id="wpMailmypassword"
 									value="<?php $this->msg('mailmypassword') ?>" />
 				<?php } ?>
 			</td>
@@ -87,11 +89,10 @@ class UserloginTemplate extends QuickTemplate {
 
 class UsercreateTemplate extends QuickTemplate {
 	function execute() {
-		if( $this->data['error'] ) {
+		if( $this->data['message'] ) {
 ?>
-	<div class="errorbox">
-		<h2><?php $this->msg('loginerror') ?>:</h2>
-		<?php $this->html('error') ?>
+	<div class="<?php $this->text('messageclass') ?>">
+		<?php $this->html('message') ?>
 	</div>
 	<div class="visualClear"></div>
 <?php } ?>

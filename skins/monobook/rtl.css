@@ -195,7 +195,7 @@ li#pt-login {
 	margin-right: 1em;
 }
 
-.preferences-save-success, #preftoc li, .prefsection fieldset {
+.errorbox, .successbox, #preftoc li, .prefsection fieldset {
 	float: right;
 }
 
