@@ -659,6 +659,16 @@ class UploadForm {
 		<td></td>
 		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>
+	
+	<tr>
+		<td></td>
+		<td align='left'>
+		" );
+	$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+	$wgOut->addHTML( "
+		</td>
+	</tr>
+		
 	</table>
 	</form>" );
 	}
