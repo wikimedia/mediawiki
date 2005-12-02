@@ -271,6 +271,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Remove obsolete 'redirect=no' on some edit links
 * Include oldid for the second revision on edit link on diff view
 * (bug 4035) Fix prev/next revision links on edit page
+* Fix custom namespaces on wikis set for Portuguese
 
 
 === Caveats ===

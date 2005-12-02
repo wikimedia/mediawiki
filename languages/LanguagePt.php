@@ -55,7 +55,7 @@ if($wgMetaNamespace === FALSE)
 	NS_HELP_TALK        => 'Ajuda_Discussão', # 13
 	NS_CATEGORY         => 'Categoria', # 14
 	NS_CATEGORY_TALK    => 'Categoria_Discussão' # 15
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsPt = array(
 	'Nenhuma', 'Fixo à esquerda', 'Fixo à direita', 'Flutuando à esquerda', 'Flutuando à direita'
