@@ -37,6 +37,7 @@ class LoginForm {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
 		global $wgAuth;
 
+		$this->mType = $request->getText( 'type' );
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
 		$this->mRetype = $request->getText( 'wpRetype' );
@@ -311,7 +312,7 @@ class LoginForm {
 		}
 
 		if (!$u->checkPassword( $this->mPassword )) {
-			$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
+			$this->mainLoginForm( wfMsg( $this->mPassword == '' ? 'wrongpasswordempty' : 'wrongpassword' ) );
 			return;
 		}
 
@@ -447,14 +448,33 @@ class LoginForm {
 			}
 		}
 
-		$q = 'action=submitlogin';
-		if ( !empty( $this->mReturnto ) ) {
-			$q .= '&returnto=' . wfUrlencode( $this->mReturnto );
-		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 
 		require_once( 'templates/Userlogin.php' );
-		$template =& new UserloginTemplate();
+
+		if ( $this->mType == 'signup' ) {
+			$template =& new UsercreateTemplate();
+			$q = 'action=submitlogin&type=signup';
+			$linkq = 'type=login';
+			$msg = 'gotaccount';
+		} else {
+			$template =& new UserloginTemplate();
+			$q = 'action=submitlogin&type=login';
+			$linkq = 'type=signup';
+			$msg = 'nologin';
+		}
+
+		if ( !empty( $this->mReturnto ) ) {
+			$returnto = '&returnto=' . wfUrlencode( $this->mReturnto );
+			$q .= $returnto;
+			$linkq .= $returnto;
+		}
+
+		$link = '<a href="' . htmlspecialchars ( $titleObj->getLocalUrl( $linkq ) ) . '">';
+		$link .= wfMsgHtml( $msg . 'link' );
+		$link .= '</a>';
+
+		$template->set( 'link', wfMsgHtml( $msg, $link ) );
 		
 		$template->set( 'name', $this->mName );
 		$template->set( 'password', $this->mPassword );

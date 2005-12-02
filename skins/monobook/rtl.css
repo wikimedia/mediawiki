@@ -218,3 +218,7 @@ input#wpSave, input#wpDiff {
 	margin-left: 0.33em;
 }
 
+#userlogin {
+    float: right;
+    margin: 0 0 1em 3em;
+}
