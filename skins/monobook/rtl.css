@@ -23,32 +23,32 @@ To test:
 
 */
 body {
-    direction: rtl;
+	direction: rtl;
 /*    unicode-bidi: bidi-override;*/
-    unicode-bidi: embed;
+	unicode-bidi: embed;
 }
 #column-content {
 	margin: 0 -12.2em 0 0;
-        float: left;
+	float: left;
 }
 #column-content #content{
 	margin-left: 0;
 	margin-right: 12.2em;
-    border-right: 1px solid #aaaaaa;
-    border-left: none;
+	border-right: 1px solid #aaaaaa;
+	border-left: none;
 }
 html>body .portlet {
-    float: right;
-    clear: right;
+	float: right;
+	clear: right;
 }
 /* recover IEMac (might be fine with the float, but usually it's close to IE */
 *>body .portlet {
-    float: none;
-    clear: none;
+	float: none;
+	clear: none;
 }
 .pBody {
-    padding-right: 0.8em;
-    padding-left: 0.5em;
+	padding-right: 0.8em;
+	padding-left: 0.5em;
 }
 
 /* Fix alignment */
@@ -77,28 +77,28 @@ div.magnify,
 #p-cactions {
 	left: auto;
 	right: 11.5em;
-        padding-left: 0;
-        padding-right: 1em;
+	padding-left: 0;
+	padding-right: 1em;
 }
 #p-cactions li {
-    margin-left: 0.3em;
-    margin-right: 0;
-    float: right;
+	margin-left: 0.3em;
+	margin-right: 0;
+	float: right;
 }
 * html #p-cactions li a {
-    display: block;
-    padding-bottom: 0;
+	display: block;
+	padding-bottom: 0;
 }
 * html #p-cactions li a:hover {
-    padding-bottom: 0.2em;
+	padding-bottom: 0.2em;
 }
 /* offsets to distinguish the tab groups */
 li#ca-talk {
-    margin-right: auto;
-    margin-left: 1.6em;
+	margin-right: auto;
+	margin-left: 1.6em;
 }
 li#ca-watch,li#ca-unwatch {
-    margin-right: 1.6em !important;
+	margin-right: 1.6em !important;
 }
 
 /* Fix margins */
@@ -125,16 +125,16 @@ dd {
 	margin-right: 2em;
 }
 div.tright {
-    clear: none;
+	clear: none;
 }
 div.tleft {
-    clear: left;
+	clear: left;
 }
 div.floatright, table.floatright {
-    clear: none;
+	clear: none;
 }
 div.floatleft, table.floatleft {
-    clear: left;
+	clear: left;
 }
 div.townBox {
 	margin-left: 0;
@@ -156,7 +156,7 @@ li#ca-watch {
 }
 
 #p-personal li {
-    float: left;
+	float: left;
 }
 /* Fix link icons */
 li#pt-userpage,
@@ -166,59 +166,59 @@ li#pt-login {
 	padding-left: 0;
 }
 .external {
-    padding: 0 !important;
-    background: none !important;
+	padding: 0 !important;
+	background: none !important;
 }
 #footer {
-    clear: both;
+	clear: both;
 }
 * html #footer {
-    margin-left: 0;
-    margin-right: 13.6em;
-    border-left: 0;
-    border-right: 1px solid #fabd23;
+	margin-left: 0;
+	margin-right: 13.6em;
+	border-left: 0;
+	border-right: 1px solid #fabd23;
 } 
 * html #column-content { 
-    float: none;
-    margin-left: 0;
-    margin-right: 0;
+	float: none;
+	margin-left: 0;
+	margin-right: 0;
 }
 * html #column-content #content {
-    margin-left: 0;
-    margin-top: 3em;
+	margin-left: 0;
+	margin-top: 3em;
 }
 * html #column-one { right: 0; }
 
 /* js pref toc */
 
 #preftoc {
-    margin-right: 1em;
+	margin-right: 1em;
 }
 
 .preferences-save-success, #preftoc li, .prefsection fieldset {
-    float: right;
+	float: right;
 }
 
 .prefsection {
-    padding-right: 2em;
+	padding-right: 2em;
 }
 
 /* workaround for moz bug, displayed bullets on left side */
 
 #toc ul {
-    text-align: right;
+	text-align: right;
 }
 
 #toc ul ul {
-    margin: 0 2em 0 0;
+	margin: 0 2em 0 0;
 }
 
 input#wpSave, input#wpDiff {
 	margin-right: 0;
-	margin-left: 0.33em;
+	margin-left: .33em;
 }
 
 #userlogin {
-    float: right;
-    margin: 0 0 1em 3em;
+	float: right;
+	margin: 0 0 1em 3em;
 }
