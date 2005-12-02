@@ -847,6 +847,14 @@ END
 		if( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
+
+		// Put these up at the top to ensure they aren't lost on early form submission
+		$wgOut->addHTML( "
+<input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
+<input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
+<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
+<input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
+
 		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
@@ -855,11 +863,20 @@ cols='{$cols}'{$ew} $hidden>
 END
 . htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
 "
-</textarea><br />
+</textarea>
+
+		" );
+		
+		$wgOut->addWikiText( $copywarn );
+
+		$wgOut->addHTML( "
 {$metadata}
 {$editsummary}
 {$checkboxhtml}
 {$safemodehtml}
+");
+
+		$wgOut->addHTML( "
 <div class='editButtons'>
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
@@ -868,16 +885,15 @@ END
 <input tabindex='7' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
 " title=\"".wfMsg('tooltip-diff')."\"/> <span class='editHelp'>{$cancel} | {$edithelp}</span></div>
 </div>
+" );
+
+		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+
+		$wgOut->addHTML( "
 <div class='templatesUsed'>
 {$templates}
 </div>
 " );
-		$wgOut->addWikiText( $copywarn );
-		$wgOut->addHTML( "
-<input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
-<input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
-<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
-<input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
 
 		if ( $wgUser->isLoggedIn() ) {
 			/**

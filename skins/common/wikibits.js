@@ -333,7 +333,14 @@ function escapeQuotesHTML(text) {
 // copied and adapted from phpBB
 function insertTags(tagOpen, tagClose, sampleText) {
 
-	var txtarea = document.editform.wpTextbox1;
+	if (document.editform)
+		var txtarea = document.editform.wpTextbox1;
+	else {
+		// some alternate form? take the first one we can find
+		var areas = document.getElementsByTagName('textarea');
+		var txtarea = areas[0];
+	}
+	
 	// IE
 	if(document.selection  && !is_gecko) {
 		var theSelection = document.selection.createRange().text;
