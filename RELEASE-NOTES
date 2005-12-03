@@ -278,6 +278,7 @@ fully support the editing toolbar, but was found to be too confusing.
   on Special:Upload as well as edit, rearrange edit page pieces a bit.
   Copyright warning now above the buttons to ensure it's visible,
   template list at the bottom so it can grow.
+* Tweak infinite-template-handling loop for PHP 5.1.1 string handling change
 
 
 === Caveats ===
