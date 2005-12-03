@@ -42,6 +42,10 @@ function mccShowHelp($command) {
 			print "delete: deletes something\n";
 		if($onlyone) { break; }
 
+		case 'history':
+			print "history: show command line history\n";
+		if($onlyone) { break; }
+
 		case 'dumpmcc':
 			print "dumpmcc: shows the whole thing\n";
 		if($onlyone) { break; }
@@ -120,6 +124,14 @@ do {
 			if ( !$mcc->delete( $key ) ) {
 				#print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
+			}
+			break;
+
+		case 'history':
+			if ( function_exists( 'readline_list_history' ) ) {
+				print_r(readline_list_history());
+			} else {
+				print "readline_list_history() not available\n";
 			}
 			break;
 
