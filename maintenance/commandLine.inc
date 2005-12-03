@@ -12,7 +12,7 @@ if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	exit();
 }
 
-define("MEDIAWIKI",true);
+define('MEDIAWIKI',true);
 
 # Process command line arguments
 # $options becomes an array with keys set to the option names
@@ -26,11 +26,14 @@ if ( !isset( $optionsWithArgs ) ) {
 
 $self = array_shift( $argv );
 $self = __FILE__;
-$IP = realpath( dirname( $self ) . "/.." );
+$IP = realpath( dirname( $self ) . '/..' );
 chdir( $IP );
 
 $options = array();
 $args = array();
+
+
+# Parse arguments
 
 for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 	if ( substr( $arg, 0, 2 ) == '--' ) {
@@ -71,6 +74,7 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 	}
 }
 
+
 # General initialisation
 
 $wgCommandLineMode = true;
@@ -84,10 +88,10 @@ if (!isset( $wgUseNormalUser ) ) {
 
 if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$wgWikiFarm = true;
-	require_once( "$IP/includes/SiteConfiguration.php" );
+	require_once( $IP.'/includes/SiteConfiguration.php' );
 
 	# Get $conf
-	require( "$IP/InitialiseSettings.php" );
+	require( $IP.'/InitialiseSettings.php' );
 
 	if ( empty( $wgNoDBParam ) ) {
 		# Check if we were passed a db name
@@ -97,45 +101,45 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 		# If not, work out the language and site the old way
 		if ( is_null( $site ) || is_null( $lang ) ) {
 			if ( !$db ) {	
-				$lang = "aa";
+				$lang = 'aa';
 			} else {
 				$lang = $db;
 			}
 			if ( isset( $args[0] ) ) {
 				$site = array_shift( $args );
 			} else {
-				$site = "wikipedia";
+				$site = 'wikipedia';
 			}
 		}
 	} else {
-		$lang = "aa";
-		$site = "wikipedia";
+		$lang = 'aa';
+		$site = 'wikipedia';
 	}
 
 	# This is for the IRC scripts, which now run as the apache user
 	# The apache user doesn't have access to the wikiadmin_pass command
-	if ( $_ENV['USER'] == "apache" ) {
+	if ( $_ENV['USER'] == 'apache' ) {
 		$wgUseNormalUser = true;
 	}
 
-	putenv( "wikilang=$lang");
+	putenv( 'wikilang='.$lang);
 
 	$DP = $IP;
-	ini_set( "include_path", ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
+	ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
-	require_once( "$IP/includes/Defines.php" );
-	require_once( "$IP/CommonSettings.php" );
+	require_once( $IP.'/includes/Defines.php' );
+	require_once( $IP.'/CommonSettings.php' );
 
 	if ( $wgUseRootUser ) {
-		$wgDBuser = $wgDBadminuser = "root";
+		$wgDBuser = $wgDBadminuser = 'root';
 		$wgDBpassword = $wgDBadminpassword = trim(`mysql_root_pass`);
 	} elseif ( !$wgUseNormalUser ) {
-		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBuser = $wgDBadminuser = 'wikiadmin';
 		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
 	}
 } else {
 	$wgWikiFarm = false;
-	$settingsFile = "$IP/LocalSettings.php";
+	$settingsFile = $IP.'/LocalSettings.php';
 
 	if ( ! is_readable( $settingsFile ) ) {
 		print "A copy of your installation's LocalSettings.php\n" .
@@ -144,12 +148,12 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
-	require_once( "$IP/includes/Defines.php" );
+	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );
-	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
+	ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
 	
-	if ( is_readable( "$IP/AdminSettings.php" ) ) {
-		require_once( "$IP/AdminSettings.php" );
+	if ( is_readable( $IP.'/AdminSettings.php' ) ) {
+		require_once( $IP.'/AdminSettings.php' );
 	}
 }
 
@@ -175,9 +179,9 @@ if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
 
 ini_set( 'memory_limit', -1 );
 
-require_once( "Setup.php" );
-require_once( "install-utils.inc" );
-$wgTitle = Title::newFromText( "Command line script" );
+require_once( 'Setup.php' );
+require_once( 'install-utils.inc' );
+$wgTitle = Title::newFromText( 'Command line script' );
 set_time_limit(0);
 
 // --------------------------------------------------------------------
