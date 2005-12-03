@@ -1057,6 +1057,7 @@ To include the image in a page, use a link in the form
 'copyrightpage' => "Project:Copyrights",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles'	=> 'Uploaded files',
+'ignorewarning'        => 'Ignore warning and save file anyway.',
 'ignorewarnings'	=> 'Ignore any warnings',
 'minlength'		=> 'File names must be at least three letters.',
 'illegalfilename'	=> 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
