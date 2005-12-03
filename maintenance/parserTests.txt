@@ -1073,7 +1073,7 @@ Inline interwiki link
 !! input
 [[MeatBall:SoftSecurity]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw' title="MeatBall:SoftSecurity">MeatBall:SoftSecurity</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw' title="meatball:SoftSecurity">MeatBall:SoftSecurity</a>
 </p>
 !! end
 
@@ -1082,7 +1082,7 @@ Inline interwiki link with empty title (bug 2372)
 !! input
 [[MeatBall:]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?" class='extiw' title="MeatBall:">MeatBall:</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?" class='extiw' title="meatball:">MeatBall:</a>
 </p>
 !! end
 
@@ -1092,8 +1092,8 @@ Interwiki link encoding conversion (bug 1636)
 *[[Wikipedia:ro:Olteni&#0355;a]]
 *[[Wikipedia:ro:Olteni&#355;a]]
 !! result
-<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
-</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="Wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
+</li><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class='extiw' title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a>
 </li></ul>
 
 !! end
@@ -1103,7 +1103,7 @@ Interwiki link with fragment (bug 2130)
 !! input
 [[MeatBall:SoftSecurity#foo]]
 !! result
-<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class='extiw' title="MeatBall:SoftSecurity">MeatBall:SoftSecurity#foo</a>
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class='extiw' title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
 </p>
 !! end
 
