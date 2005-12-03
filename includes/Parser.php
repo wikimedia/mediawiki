@@ -2508,7 +2508,7 @@ class Parser
 
 			# If there are any <onlyinclude> tags, only include them
 			if ( in_string( '<onlyinclude>', $text ) && in_string( '</onlyinclude>', $text ) ) {
-				preg_match_all( '/<onlyinclude>\n?(.*?)\n?<\/onlyinclude>/s', $text, $m );
+				preg_match_all( '/<onlyinclude>(.*?)\n?<\/onlyinclude>/s', $text, $m );
 				$text = '';
 				foreach ($m[1] as $piece)
 					$text .= $piece;
