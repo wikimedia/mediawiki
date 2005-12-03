@@ -279,6 +279,8 @@ fully support the editing toolbar, but was found to be too confusing.
   Copyright warning now above the buttons to ensure it's visible,
   template list at the bottom so it can grow.
 * Tweak infinite-template-handling loop for PHP 5.1.1 string handling change
+* (bug 1850) Allow red-links on image pages linked with [[:image:foo]]
+* (bug 360) Let Whatlinkshere track [[:image:foo]] links
 
 
 === Caveats ===
