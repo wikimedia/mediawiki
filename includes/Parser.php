@@ -2413,7 +2413,7 @@ class Parser
 				$noparse = true;
 				$found = true;
 				$text = $linestart .
-					"\{\{$part1}}" .
+					'{{' . $part1 . '}}' .
 					'<!-- WARNING: template loop detected -->';
 				wfDebug( "$fname: template loop broken at '$part1'\n" );
 			} else {
