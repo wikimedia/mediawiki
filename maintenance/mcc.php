@@ -11,9 +11,9 @@
 require_once( 'commandLine.inc' );
 require_once( 'memcached-client.php' );
 
-$mcc = new memcached( array('persistant' => true, 'debug' => true) );
+$mcc = new memcached( array('persistant' => true/*, 'debug' => true*/) );
 $mcc->set_servers( $wgMemCachedServers );
-$mcc->set_debug( true );
+#$mcc->set_debug( true );
 
 function mccShowHelp($command) {
 
@@ -46,6 +46,10 @@ function mccShowHelp($command) {
 			print "history: show command line history\n";
 		if($onlyone) { break; }
 
+		case 'server':
+			print "server: show current memcached server\n";
+		if($onlyone) { break; }
+
 		case 'dumpmcc':
 			print "dumpmcc: shows the whole thing\n";
 		if($onlyone) { break; }
@@ -73,7 +77,7 @@ do {
 
 	$line = readconsole( '> ' );
 	if ($line === false) exit;
-
+	
 	$args = explode( ' ', $line );
 	$command = array_shift( $args );
 
@@ -104,6 +108,11 @@ do {
 			$res = $mcc->get( $args[0] );
 			$sock = $mcc->get_sock( $args[0] );
 			var_dump( $sock );
+			break;
+
+		case 'server':
+			$res = $mcc->get( $args[0] );
+			print $mcc->_buckets[$mcc->_hashfunc( $args[0] ) % $mcc->_bucketcount] . "\n";
 			break;
 
 		case 'set':
