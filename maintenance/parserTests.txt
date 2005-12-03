@@ -2154,7 +2154,7 @@ ill
 [[fr:Nourriture]]
 [[zh:&#39135;&#21697;]]
 !! result
-es:Alimento fr:Nourriture zh:é£Ÿå"
+es:Alimento fr:Nourriture zh:é£Ÿå“
 !! end
 
 ###
