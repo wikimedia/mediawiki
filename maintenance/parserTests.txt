@@ -2546,6 +2546,24 @@ Media link to nonexistent file (bug 1702)
 </p>
 !! end
 
+!! test
+Image link to nonexistent file (bug 1850 - good)
+!! input
+[[Image:No such.jpg]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="Image:No such.jpg">Image:No such.jpg</a>
+</p>
+!! end
+
+!! test
+:Image link to nonexistent file (bug 1850 - bad)
+!! input
+[[:Image:No such.jpg]]
+!! result
+<p><a href="/index.php?title=Image:No_such.jpg&amp;action=edit" class="new" title="Image:No such.jpg">Image:No such.jpg</a>
+</p>
+!! end
+
 
 
 !! test
