@@ -26,7 +26,7 @@ class UserloginTemplate extends QuickTemplate {
 	<div class="visualClear"></div>
 <?php } ?>
 
-<div id="userlogin">
+<div id="userloginForm">
 <form name="userlogin" method="post" action="<?php $this->text('action') ?>">
 	<h2><?php $this->msg('login') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
