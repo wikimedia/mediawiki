@@ -282,6 +282,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 1850) Allow red-links on image pages linked with [[:image:foo]]
 * (bug 360) Let Whatlinkshere track [[:image:foo]] links
 * (bug 4153) Fix block length localizations in Greek
+* Fix XML validity checks in parser tests on PHP 5.1
 
 
 === Caveats ===
