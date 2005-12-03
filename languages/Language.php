@@ -432,7 +432,7 @@ $TEMPLATES
 'help'			=> 'Help',
 'search'		=> 'Search',
 'go'		=> 'Go',
-"history"		=> 'Page history',
+'history'		=> 'Page history',
 'history_short' => 'History',
 'updatedmarker' => 'updated since my last visit',
 'info_short'	=> 'Information',
@@ -643,40 +643,40 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yournick'		=> 'Nickname:',
 'badsig'		=> 'Invalid raw signature; check HTML tags.',
 'email'			=> 'E-mail',
-'emailforlost'		=> "<div style='width:30em'>* Optional. An e-mail lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>",
+'emailforlost' => '<div style="width:30em">* Optional. An e-mail lets others contact you on this site without revealing your address, and lets us send you a new password if you forget it.<br /><br />Your real name will be used to give you attribution for your work.</div>',
 'prefs-help-email-enotif' => 'This address is also used to send you e-mail notifications if you enabled the options.',
 'prefs-help-realname' 	=> '* Real name (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'	=> 'Login error',
 'prefs-help-email'      => '* E-mail (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
-'nocookiesnew'	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
-'nocookieslogin'	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
+'nocookiesnew'	=> 'The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.',
+'nocookieslogin'	=> '{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.',
 'noname'		=> 'You have not specified a valid user name.',
 'loginsuccesstitle' => 'Login successful',
 'loginsuccess'	=> "'''You are now logged in to {{SITENAME}} as \"$1\".'''",
-'nosuchuser'	=> "There is no user by the name \"$1\". Check your spelling, or create a new account.",
-'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
+'nosuchuser'	=> 'There is no user by the name "$1". Check your spelling, or create a new account.',
+'nosuchusershort'	=> 'There is no user by the name "$1". Check your spelling.',
 'wrongpassword'		=> 'Incorrect password entered. Please try again.',
 'wrongpasswordempty'		=> 'Password entered was blank. Please try again.',
 'mailmypassword' 	=> 'E-mail password',
-'passwordremindertitle' => "Password reminder from {{SITENAME}}",
-'passwordremindertext' => "Someone (probably you, from IP address $1)
+'passwordremindertitle' => 'Password reminder from {{SITENAME}}',
+'passwordremindertext' => 'Someone (probably you, from IP address $1)
 requested that we send you a new {{SITENAME}} login password for {{SERVERNAME}}.
-The password for user \"$2\" is now \"$3\".
+The password for user "$2" is now "$3".
 You should log in and change your password now.
 
 If someone else made this request or if you have remembered your password and
 you no longer wish to change it, you may ignore this message and continue using
-your old password.",
-'noemail'		            => "There is no e-mail address recorded for user \"$1\".",
-'passwordsent'	=> "A new password has been sent to the e-mail address
-registered for \"$1\".
-Please log in again after you receive it.",
-'eauthentsent'             =>  "A confirmation e-mail has been sent to the nominated e-mail address.
+your old password.',
+'noemail' => 'There is no e-mail address recorded for user "$1".',
+'passwordsent'	=> 'A new password has been sent to the e-mail address
+registered for "$1".
+Please log in again after you receive it.',
+'eauthentsent' =>  'A confirmation e-mail has been sent to the nominated e-mail address.
 Before any other mail is sent to the account, you will have to follow the instructions in the e-mail,
-to confirm that the account is actually yours.",
+to confirm that the account is actually yours.',
 'loginend'		            => '',
 'signupend'		            => '{{int:loginend}}',
-'mailerror'                 => "Error sending mail: $1",
+'mailerror'                 => 'Error sending mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated'        => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'     => 'Your e-mail address is <strong>not yet authenticated</strong>. No e-mail
@@ -719,14 +719,14 @@ format. Please enter a well-formatted address or empty that field.',
 'showpreview'	=> 'Show preview',
 'showdiff'	=> 'Show changes',
 'blockedtitle'	=> 'User is blocked',
-'blockedtext'	=> "Your user name or IP address has been blocked by $1.
-The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
+'blockedtext'	=> 'Your user name or IP address has been blocked by $1.
+The reason given is this:<br />\'\'$2\'\'<p>You may contact $1 or one of the other
 [[Project:Administrators|administrators]] to discuss the block.
 
-Note that you may not use the \"e-mail this user\" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
+Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.
-",
+',
 'whitelistedittitle' => 'Login required to edit',
 'whitelistedittext' => 'You have to [[Special:Userlogin|login]] to edit pages.',
 'whitelistreadtitle' => 'Login required to read',
@@ -737,7 +737,7 @@ Your IP address is $3. Please include this address in any queries you make.
 'loginreqlink' => 'login',
 'loginreqpagetext'	=> 'You must $1 to view other pages.',
 'accmailtitle' => 'Password sent.',
-'accmailtext' => "The password for '$1' has been sent to $2.",
+'accmailtext' => 'The password for "$1" has been sent to $2.',
 'newarticle'	=> '(New)',
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
@@ -750,28 +750,27 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'noarticletext' => 'There is currently no text in this page, you can [[{{ns:special}}:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon' => '{{int:noarticletext}}',
 'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools&rarr;Preferences''.",
-'usercssjsyoucanpreview' => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview' => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
-'userjspreview' => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
-'updated'		=> '(Updated)',
-'note'			=> '<strong>Note:</strong> ',
-'previewnote'	=> '<strong>This is only a preview; changes have not yet been saved!</strong>',
+'usercssjsyoucanpreview' => '<strong>Tip:</strong> Use the \'Show preview\' button to test your new CSS/JS before saving.',
+'usercsspreview' => '\'\'\'Remember that you are only previewing your user CSS, it has not yet been saved!\'\'\'',
+'userjspreview' => '\'\'\'Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!\'\'\'',
+'updated' => '(Updated)',
+'note' => '<strong>Note:</strong> ',
+'previewnote' => '<strong>This is only a preview; changes have not yet been saved!</strong>',
 'session_fail_preview' => '<strong>Sorry! We could not process your edit due to a loss of session data. 
 Please try again. If it still doesn\'t work, try logging out and logging back in.</strong>',
 'previewconflict' => 'This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.',
-'importing'		=> "Importing $1",
-'editing'		=> "Editing $1",
-'editingsection'		=> "Editing $1 (section)",
-'editingcomment'		=> "Editing $1 (comment)",
-'editconflict'	=> 'Edit conflict: $1',
-'explainconflict' => "Someone else has changed this page since you
-started editing it.
+'importing' => 'Importing $1',
+'editing' => 'Editing $1',
+'editingsection' => 'Editing $1 (section)',
+'editingcomment' => 'Editing $1 (comment)',
+'editconflict' => 'Edit conflict: $1',
+'explainconflict' => 'Someone else has changed this page since you started editing it.
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
 <b>Only</b> the text in the upper text area will be saved when you
-press \"Save page\".<br />",
+press "Save page".<br />',
 'yourtext'		=> 'Your text',
 'storedversion' => 'Stored version',
 'nonunicodebrowser' => "<strong>WARNING: Your browser is not unicode compliant. A workaround is in place to allow you to safely edit articles: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>",
@@ -779,19 +778,13 @@ press \"Save page\".<br />",
 revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>",
 'yourdiff'		=> 'Differences',
-'copyrightwarning' => "Please note that all contributions to {{SITENAME}} are
-considered to be released under the $2 (see $1 for details).
-If you don't want your writing to be edited mercilessly and redistributed
-at will, then don't submit it here.<br />
-You are also promising us that you wrote this yourself, or copied it from a
-public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'copyrightwarning2' => "Please note that all contributions to {{SITENAME}}
-may be edited, altered, or removed by other contributors.
-If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
+'copyrightwarning' => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don\'t want your writing to be edited mercilessly and redistributed at will, then don\'t submit it here.<br />
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
+'copyrightwarning2' => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you don\'t want your writing to be edited mercilessly, then don\'t submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a
 public domain or similar free resource (see $1 for details).
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
 'longpagewarning' => "<strong>WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>",
@@ -871,7 +864,7 @@ containing all of the search terms will appear in the result).",
 Search in namespaces :<br />
 $1<br />
 $2 List redirects &nbsp; Search for $3 $9",
-"searchdisabled" => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
+'searchdisabled' => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
 
 'googlesearch' => '
 <form method="get" action="http://www.google.com/search" id="googlesearch">
@@ -1033,19 +1026,12 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 to upload files.",
 'upload_directory_read_only' => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'	=> 'Upload error',
-'uploadtext'	=>
-"
-Use the form below to upload files,
-to view or search previously uploaded images
-go to the [[Special:Imagelist|list of uploaded files]],
-uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
+'uploadtext'	=> "Use the form below to upload files, to view or search previously uploaded images go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
 To include the image in a page, use a link in the form
 '''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''',
 '''<nowiki>[[{{ns:6}}:file.png|alt text]]</nowiki>''' or
-'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for directly linking to the file.
-",
-
+'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' for directly linking to the file.",
 'uploadlog'		=> 'upload log',
 'uploadlogpage' => 'Upload_log',
 'uploadlogpagetext' => 'Below is a list of the most recent file uploads.',
@@ -1290,9 +1276,8 @@ make it easier to pick out.
 'unwatchthispage' 	=> 'Stop watching',
 'notanarticle'		=> 'Not a content page',
 'watchnochange' 	=> 'None of your watched items was edited in the time period displayed.',
-'watchdetails'		=> "* $1 pages watched not counting talk pages
-* [[Special:Watchlist/edit|Show and edit complete watchlist]]
-",
+'watchdetails'		=> '* $1 pages watched not counting talk pages
+* [[Special:Watchlist/edit|Show and edit complete watchlist]]',
 'wlheader-enotif' 		=> "* E-mail notification is enabled.",
 'wlheader-showupdated'   => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'=> 'checking recent edits for watched pages',
@@ -2208,11 +2193,11 @@ will expire at $4.
 'scarytranscludetoolong' => '[URL is too long; sorry]',
 
 # Trackbacks
-'trackbackbox' => "<div id='mw_trackbacks'>
+'trackbackbox' => '<div id="mw_trackbacks">
 Trackbacks for this article:<br />
 $1
 </div>
-",
+',
 'trackback' => "; $4$5 : [$2 $1]\n",
 'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
 'trackbackremove' => ' ([$1 Delete])',
