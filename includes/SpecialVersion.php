@@ -137,7 +137,7 @@ class SpecialVersion {
 		if ( isset( $author ) )
 			$ret .= ' by ' . $this->langObj->listToText( (array)$author );
 
-		return htmlspecialchars( $ret ) . "\n";
+		return "$ret\n";
 	}
 
 	function wgHooks() {
