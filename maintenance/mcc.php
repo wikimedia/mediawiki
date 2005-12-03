@@ -15,8 +15,56 @@ $mcc = new memcached( array('persistant' => true, 'debug' => true) );
 $mcc->set_servers( $wgMemCachedServers );
 $mcc->set_debug( true );
 
+function mccShowHelp($command) {
+
+	if(! $command ) { $command = 'fullhelp'; }
+	$onlyone = true;
+
+	switch ( $command ) {
+
+		case 'fullhelp':
+			// will show help for all commands
+			$onlyone = false;
+
+		case 'get':
+			print "get: grabs something\n";
+		if($onlyone) { break; }
+
+		case 'getsock':
+			print "getsock: lists sockets\n";
+		if($onlyone) { break; }
+
+		case 'set':
+			print "set: changes something\n";
+		if($onlyone) { break; }
+
+		case 'delete':
+			print "delete: deletes something\n";
+		if($onlyone) { break; }
+
+		case 'dumpmcc':
+			print "dumpmcc: shows the whole thing\n";
+		if($onlyone) { break; }
+
+		case 'exit':
+		case 'quit':
+			print "exit or quit: exit mcc\n";
+		if($onlyone) { break; }
+
+		case 'help':
+			print "help: help about a command\n";
+		if($onlyone) { break; }
+
+		default:
+			if($onlyone) {
+				print "$command: command does not exist or no help for it\n";
+			}
+	}
+}
+
 do {
 	$bad = false;
+	$showhelp = false;
 	$quit = false;
 
 	$line = readconsole( '> ' );
@@ -25,7 +73,12 @@ do {
 	$args = explode( ' ', $line );
 	$command = array_shift( $args );
 
+	// process command
 	switch ( $command ) {
+		case 'help':
+			// show an help message
+			mccShowHelp(array_shift($args));
+		break;
 
 		case 'get':
 			print "Getting {$args[0]}[{$args[1]}]\n";
@@ -41,7 +94,7 @@ do {
 			} else {
 				var_dump( $res );
 			}
-			break;
+		break;
 
 		case 'getsock':
 			$res = $mcc->get( $args[0] );
@@ -81,7 +134,8 @@ do {
 
 		default:
 			$bad = true;
-	}
+	} // switch() end
+
 	if ( $bad ) {
 		if ( $command ) {
 			print "Bad command\n";
