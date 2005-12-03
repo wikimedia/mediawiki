@@ -3,27 +3,27 @@
   * @package MediaWiki
   * @subpackage Language
   */
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 /* private */ $wgNamespaceNamesZh_cn = array(
-	NS_MEDIA            => "Media",
-	NS_SPECIAL          => "Special",
-	NS_MAIN             => "",
-	NS_TALK             => "Talk",
-	NS_USER             => "User",
-	NS_USER_TALK        => "User_talk",
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_MAIN             => '',
+	NS_TALK             => 'Talk',
+	NS_USER             => 'User',
+	NS_USER_TALK        => 'User_talk',
 	NS_PROJECT          => $wgMetaNamespace,
-	NS_PROJECT_TALK     => $wgMetaNamespace . "_talk",
-	NS_IMAGE            => "Image",
-	NS_IMAGE_TALK       => "Image_talk",
-	NS_MEDIAWIKI        => "MediaWiki",
-	NS_MEDIAWIKI_TALK   => "MediaWiki_talk",
-	NS_TEMPLATE         => "Template",
-	NS_TEMPLATE_TALK    => "Template_talk",
-	NS_HELP             => "Help",
-	NS_HELP_TALK        => "Help_talk",
-	NS_CATEGORY         => "Category",
-	NS_CATEGORY_TALK    => "Category_talk"
+	NS_PROJECT_TALK     => $wgMetaNamespace . '_talk',
+	NS_IMAGE            => 'Image',
+	NS_IMAGE_TALK       => 'Image_talk',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Template_talk',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Help_talk',
+	NS_CATEGORY         => 'Category',
+	NS_CATEGORY_TALK    => 'Category_talk'
 
 ) + $wgNamespaceNamesEn;
 
