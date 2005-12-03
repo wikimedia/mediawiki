@@ -1,5 +1,5 @@
 <?php
-/** Zhuang (壮语)
+/** Avar (Авар)
   *
   * @package MediaWiki
   * @subpackage Language
@@ -7,18 +7,20 @@
   * @bug 3844
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
+  * @author Ashar Voultoiz <hashar@altern.org>
+  *
+  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Ashar Voultoiz
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
 /**
  *
  */
-require_once 'LanguageZh_cn.php';
+require_once 'LanguageRu.php';
 
 /**
  *
  */
-class LanguageZa extends LanguageZh_cn {}
+class LanguageAv extends LanguageRu {}
 
 ?>

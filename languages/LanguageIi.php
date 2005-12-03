@@ -14,11 +14,11 @@
 /**
  *
  */
-require_once 'LanguageZh.php';
+require_once 'LanguageZh_cn.php';
 
 /**
  *
  */
-class LanguageIi extends LanguageZh {}
+class LanguageIi extends LanguageZh_cn {}
 
 ?>
