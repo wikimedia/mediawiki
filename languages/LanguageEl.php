@@ -1218,7 +1218,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'ipbreason' => 'Αιτιολογία',
 'ipbsubmit' => 'Φραγή σε αυτό το χρήστη',
 'ipbother' => 'Άλλη ώρα',
-'ipboptions' => '2 hours:2 ώρες,1 day:1 ημέρα,3 days:3 ημέρες,1 week:1 εβδομάδα,2 weeks:2 εβδομάδες,1month:1 μήνα,3 months:3 μήνες,6 months:6 μήνες,1 year:1 χρόνο,infinite:επ΄αόριστον',
+'ipboptions' => '2 ώρες:2 hours,1 ημέρα:1 day,3 ημέρες:3 days,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,επ΄αόριστον:infinite',
 'ipbotheroption' => 'άλλη',
 'badipaddress' => 'Άκυρη διεύθυνση IP.',
 'blockipsuccesssub' => 'Η φραγή ολοκληρώθηκε επιτυχώς.',
