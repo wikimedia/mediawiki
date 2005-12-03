@@ -866,17 +866,8 @@ END
 </textarea>
 
 		" );
-		
-		$wgOut->addWikiText( $copywarn );
 
-		$wgOut->addHTML( "
-{$metadata}
-{$editsummary}
-{$checkboxhtml}
-{$safemodehtml}
-");
-
-		$wgOut->addHTML( "
+		$editbuttons = "
 <div class='editButtons'>
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
@@ -884,17 +875,22 @@ END
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <input tabindex='7' id='wpDiff' type='submit' value=\"{$diff}\" name=\"wpDiff\" accesskey=\"".wfMsg('accesskey-diff')."\"".
 " title=\"".wfMsg('tooltip-diff')."\"/> <span class='editHelp'>{$cancel} | {$edithelp}</span></div>
-</div>
-" );
+</div>";
 
-		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
-
-		$wgOut->addHTML( "
-<div class='templatesUsed'>
-{$templates}
-</div>
-" );
-
+		$wgOut->addHTML(
+			wfMsgForContent( 'editpage-template',
+				array(
+					'METADATA' => $metadata,
+					'SUMMARY' => $editsummary,
+					'CHECKBOXES' => $checkboxhtml . $safemodehtml,
+					'BUTTONS' => $editbuttons,
+					'EDITTOOLS' => $wgOut->parse( wfMsgForContent( 'edittools' ) ),
+					'COPYRIGHTWARNING' => $wgOut->parse( $copywarn ),
+					'TEMPLATES' => "<div class='templatesUsed'>$templates</div>"
+				)
+			)
+		);
+		
 		if ( $wgUser->isLoggedIn() ) {
 			/**
 			 * To make it harder for someone to slip a user a page

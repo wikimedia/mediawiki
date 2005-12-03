@@ -292,6 +292,15 @@ parent class in order maintain consistency across languages.
 ** sitesupport-url|sitesupport
 ',
 
+'editpage-template' => '
+$SUMMARY
+$CHECKBOXES
+$BUTTONS
+$EDITTOOLS
+$COPYRIGHTWARNING
+$TEMPLATES
+',
+
 # User preference toggles
 'tog-underline' => 'Underline links:',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
