@@ -8,8 +8,8 @@
  */
 
 /** */
-require_once( "commandLine.inc" );
-require_once("memcached-client.php");
+require_once( 'commandLine.inc' );
+require_once( 'memcached-client.php' );
 
 $mcc = new memcached( array('persistant' => true, 'debug' => true) );
 $mcc->set_servers( $wgMemCachedServers );
@@ -18,12 +18,16 @@ $mcc->set_debug( true );
 do {
 	$bad = false;
 	$quit = false;
-	$line = readconsole( "> " );
+
+	$line = readconsole( '> ' );
 	if ($line === false) exit;
-	$args = explode( " ", $line );
+
+	$args = explode( ' ', $line );
 	$command = array_shift( $args );
+
 	switch ( $command ) {
-		case "get":
+
+		case 'get':
 			print "Getting {$args[0]}[{$args[1]}]\n";
 			$res = $mcc->get( $args[0] );
 			if ( array_key_exists( 1, $args ) ) {
@@ -38,37 +42,43 @@ do {
 				var_dump( $res );
 			}
 			break;
-		case "getsock":
+
+		case 'getsock':
 			$res = $mcc->get( $args[0] );
 			$sock = $mcc->get_sock( $args[0] );
 			var_dump( $sock );
 			break;
-		case "set":
+
+		case 'set':
 			$key = array_shift( $args );
 			if ( $args[0] == "#" && is_numeric( $args[1] ) ) {
-				$value = str_repeat( "*", $args[1] );
+				$value = str_repeat( '*', $args[1] );
 			} else {
-				$value = implode( " ", $args );
+				$value = implode( ' ', $args );
 			}
 			if ( !$mcc->set( $key, $value, 0 ) ) {
 				#print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
 			}
 			break;
-		case "delete":
-			$key = implode( " ", $args );
+
+		case 'delete':
+			$key = implode( ' ', $args );
 			if ( !$mcc->delete( $key ) ) {
 				#print 'Error: ' . $mcc->error_string() . "\n";
 				print "MemCached error\n";
 			}
-			break;				       
-		case "dumpmcc":
+			break;
+
+		case 'dumpmcc':
 			var_dump( $mcc );
 			break;
-		case "quit":
-		case "exit":
+
+		case 'quit':
+		case 'exit':
 			$quit = true;
 			break;
+
 		default:
 			$bad = true;
 	}
@@ -77,7 +87,7 @@ do {
 			print "Bad command\n";
 		}
 	} else {
-		if ( function_exists( "readline_add_history" ) ) {
+		if ( function_exists( 'readline_add_history' ) ) {
 			readline_add_history( $line );
 		}
 	}
