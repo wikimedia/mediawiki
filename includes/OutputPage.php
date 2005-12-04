@@ -515,8 +515,6 @@ class OutputPage {
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$this->transformBuffer();
-
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
 
@@ -620,7 +618,6 @@ class OutputPage {
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
-		$sk = $wgUser->getSkin();
 		$this->addWikiText( wfMsg( 'versionrequiredtext', $version ) );
 		$this->returnToMain();
 	}
@@ -935,13 +932,6 @@ class OutputPage {
 
 		return $ret;
 	}
-
-	/**
-	 * Run any necessary pre-output transformations on the buffer text
-	 */
-	function transformBuffer( $options = 0 ) {
-	}
-
 
 	/**
 	 * Turn off regular page output and return an error reponse

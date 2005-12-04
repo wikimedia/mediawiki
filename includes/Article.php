@@ -854,9 +854,6 @@ class Article {
 		if ($wgUseTrackbacks)
 			$this->addTrackbacks();
 
-		# Put link titles into the link cache
-		$wgOut->transformBuffer();
-
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
 
