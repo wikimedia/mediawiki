@@ -3,6 +3,23 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.5.3 ==
+
+December 4, 2005
+
+MediaWiki 1.5.3 is a security and bugfix maintenance release.
+
+Validation of the user language option was broken by a code change in
+May 2005, opening the possibility of remote code execution as this
+parameter is used in forming a class name dynamically created with
+eval().
+
+The validation has been corrected in this version. All prior 1.5 release
+and prelease versions are affected; 1.4 and earlier and not affected.
+
+Additionally several bugs have been fixed; see the changelog later in
+this file for a complete list.
+
 
 == MediaWiki 1.5.2 ==
 
@@ -919,6 +936,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Move parentheses out of <a> link in Special:Contributions
 * (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
 * (bug 4035) Fix prev/next revision links on edit page
+* (bug 4165) Correct validation for user language selection (data taint)
 
 
 === Caveats ===
