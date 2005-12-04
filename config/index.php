@@ -1328,6 +1328,7 @@ function getLanguageList() {
 
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
+		$m = array();
 		if( preg_match( '/Language([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
 			if( isset( $wgLanguageNames[$code] ) ) {
