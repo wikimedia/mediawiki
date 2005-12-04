@@ -72,12 +72,13 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		$mailResult =& $mail_object->send($to, $headers, $body);
 
 		# Based on the result return an error string,
-		if ($mailResult === true)
+		if ($mailResult === true) {
 			return '';
-		else if (is_object($mailResult))
+		} elseif (is_object($mailResult)) {
 			return $mailResult->getMessage();
-		else
+		} else {
 			return 'Mail object return unknown error.';
+		}
 	} else	{
 		# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 		# (fifth parameter of the PHP mail function, see some lines below)
@@ -105,11 +106,14 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 }
 
 /**
- * @todo document
+ * Get the mail error message in global $wgErrorString
+ *
+ * @parameter $code error number
+ * @parameter $string error message
  */
 function mailErrorHandler( $code, $string ) {
 	global $wgErrorString;
-	$wgErrorString = preg_replace( "/^mail\(\): /", "", $string );
+	$wgErrorString = preg_replace( "/^mail\(\): /", '', $string );
 }
 
 
@@ -224,6 +228,7 @@ class EmailNotification {
 					'wl_namespace' => $title->getNamespace(),
 				), 'UserMailer::NotifyOnChange'
 			);
+			# FIXME what do we do on failure ?
 		}
 
 	} # function NotifyOnChange
@@ -295,10 +300,7 @@ class EmailNotification {
 
 		if( $wgUser->isIP( $name ) ) {
 			#real anon (user:xxx.xxx.xxx.xxx)
-			$anon    = $name . ' (anonymous user)';
-			$anonUrl = wfUrlencode( $name ) . ' (anonymous user)';
 			$subject = str_replace('$PAGEEDITOR', 'anonymous user '. $name, $subject);
-
 			$keys['$PAGEEDITOR']       = 'anonymous user ' . $name;
 			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
 		} else {
