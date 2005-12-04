@@ -532,6 +532,7 @@ class Sanitizer {
 		# Unquoted attribute
 		# Since we quote this later, this can be anything distinguishable 
 		# from the end of the attribute
+		$pairs = array();
 		if( !preg_match_all(
 			MW_ATTRIBS_REGEX,
 			$text,
@@ -623,7 +624,8 @@ class Sanitizer {
 		if( trim( $text ) == '' ) {
 			return $attribs;
 		}
-		
+
+		$pairs = array();	
 		if( !preg_match_all(
 			MW_ATTRIBS_REGEX,
 			$text,
