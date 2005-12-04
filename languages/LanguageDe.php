@@ -133,7 +133,7 @@ if($wgMetaNamespace === FALSE)
 'category' => 'Kategorie',
 'category_header' => 'Artikel in der Kategorie \'$1\'',
 'subcategories' => 'Unterkategorien',
-'linktrail'		=> '/^([ä|ö|ü|ß|a-z]+)(.*)\$/sD',
+'linktrail'		=> '/^([ä|ö|ü|ß|a-z]+)(.*)$/sD',
 'mainpage'		=> 'Hauptseite',
 'mainpagetext'          => 'Die Wiki Software wurde erfolgreich installiert.',
 'mainpagedocfooter' => 'Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
