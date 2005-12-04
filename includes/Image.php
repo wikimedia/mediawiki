@@ -859,25 +859,18 @@ class Image
 	 * @access public
 	 */
 	function getThumbnail( $width, $height=-1 ) {
-		if ( $height == -1 ) {
+		if ( $height <= 0 ) {
 			return $this->renderThumb( $width );
 		}
 		$this->load();
 		
 		if ($this->canRender()) {
-			if ( $width < $this->width ) {
-				$thumbheight = $this->height * $width / $this->width;
-				$thumbwidth = $width;
-			} else {
-				$thumbheight = $this->height;
-				$thumbwidth = $this->width;
-			}
-			if ( $thumbheight > $height ) {
-				$thumbwidth = $thumbwidth * $height / $thumbheight;
-				$thumbheight = $height;
-			}
-			
-			$thumb = $this->renderThumb( $thumbwidth );
+			if ( $width > $this->width * $height / $this->height )
+				$width = floor( $this->width * $height / $this->height );
+				# Note this is the largest width such that the thumbnail's
+				# height is at most $height.
+
+			$thumb = $this->renderThumb( $width );
 		}
 		else $thumb= NULL; #not a bitmap or renderable image, don't try.
 		
@@ -962,7 +955,7 @@ class Image
 			return $thumb;
 		}
 		
-		$height = floor( $this->height * ( $width/$this->width ) );
+		$height = round( $this->height * $width / $this->width );
 		
 		list( $isScriptUrl, $url ) = $this->thumbUrl( $width );
 		if ( $isScriptUrl && $useScript ) {
@@ -1046,8 +1039,12 @@ class Image
 			# use ImageMagick
 			# Specify white background color, will be used for transparent images
 			# in Internet Explorer/Windows instead of default black.
+
+			# Note, we specify "-size {$width}" and NOT "-size {$width}x{$height}".
+			# It seems that ImageMagick has a bug wherein it produces thumbnails of
+			# the wrong size in the second case.
 			$cmd  =  $wgImageMagickConvertCommand .
-				" -quality 85 -background white -size {$width}x{$height} ".
+				" -quality 85 -background white -size {$width} ".
 				wfEscapeShellArg($this->imagePath) . " -resize {$width}x{$height} " .
 				wfEscapeShellArg($thumbPath);				
 			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
@@ -1800,8 +1797,11 @@ class ThumbnailImage {
 	 */
 	function ThumbnailImage( $url, $width, $height, $path = false ) {
 		$this->url = $url;
-		$this->width = $width;
-		$this->height = $height;
+		$this->width = round( $width );
+		$this->height = round( $height );
+			# These should be integers when they get here.
+			# If not, there's a bug somewhere.  But let's at
+			# least produce valid HTML code regardless.
 		$this->path = $path;
 	}
 
