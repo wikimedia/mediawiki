@@ -158,8 +158,6 @@ class WatchedItem {
 		$newtitle = $nt->getDBkey();
 
 		$dbw =& wfGetDB( DB_MASTER );
-		$watchlist = $dbw->tableName( 'watchlist' );
-
 		$res = $dbw->select( 'watchlist', 'wl_user',
 			array( 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ),
 			$fname, 'FOR UPDATE'
