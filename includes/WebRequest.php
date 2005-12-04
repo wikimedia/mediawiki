@@ -101,13 +101,13 @@ class WebRequest {
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
 	 *
-	 * @param array &$arr
+	 * @param array $arr
 	 * @param string $name
 	 * @param mixed $default
 	 * @return mixed
 	 * @private
 	 */
-	function getGPCVal( &$arr, $name, $default ) {
+	function getGPCVal( $arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
 			global $wgContLang;
 			$data = $arr[$name];
@@ -458,7 +458,7 @@ class FauxRequest extends WebRequest {
 		wfDebugDieBacktrace( 'FauxRequest::getRequestURL() not implemented' );
 	}
 	
-	function appendQuery( $query ) {
+	function appendQuery( ) {
 		wfDebugDieBacktrace( 'FauxRequest::appendQuery() not implemented' );
 	}
 	
