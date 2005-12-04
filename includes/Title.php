@@ -372,7 +372,7 @@ class Title {
 	 * @static (arguably)
 	 * @access public
 	 */
-	function getInterwikiLink( $key, $transludeonly = false ) {
+	function getInterwikiLink( $key )  {
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
 
@@ -476,8 +476,8 @@ class Title {
 		if ( $timestamp == '' ) {
 			$timestamp = $dbw->timestamp();
 		}
-		$page = $dbw->tableName( 'page' );
 		/*
+		$page = $dbw->tableName( 'page' );
 		$sql = "UPDATE $page SET page_touched='{$timestamp}' WHERE page_id IN (";
 		$first = true;
 
@@ -1147,7 +1147,6 @@ class Title {
 			return;
 		}
 
-		$now = wfTimestampNow();
 		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'page',
 			array( /* SET */
@@ -1498,7 +1497,7 @@ class Title {
 	 * @return mixed true on success, message name on failure
 	 * @access public
 	 */
-	function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
+	function isValidMoveOperation( &$nt, $auth = true ) {
 		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
@@ -1510,7 +1509,6 @@ class Title {
 			return 'immobile_namespace';
 		}
 
-		$fname = 'Title::move';
 		$oldid = $this->getArticleID();
 		$newid = $nt->getArticleID();
 
@@ -1550,7 +1548,7 @@ class Title {
 	 * @access public
 	 */
 	function moveTo( &$nt, $auth = true, $reason = '' ) {
-		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
+		$err = $this->isValidMoveOperation( $nt, $auth );
 		if( is_string( $err ) ) {
 			return $err;
 		}
@@ -1636,7 +1634,6 @@ class Title {
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
-		$links = $dbw->tableName( 'links' );
 
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
@@ -1886,8 +1883,6 @@ class Title {
 		global $wgContLang,$wgUser;
 
 		$titlekey = $this->getArticleId();
-		$sk =& $wgUser->getSkin();
-		$parents = array();
 		$dbr =& wfGetDB( DB_SLAVE );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
@@ -1920,8 +1915,7 @@ class Title {
 		$parents = $this->getParentCategories();
 
 		if($parents != '') {
-			foreach($parents as $parent => $current)
-			{
+			foreach($parents as $parent => $current) {
 				if ( array_key_exists( $parent, $children ) ) {
 					# Circular reference
 					$stack[$parent] = array();
@@ -2038,7 +2032,6 @@ class Title {
 			return;
 		}
 
-		$arr = array();
 		$toucharr = array();
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$toucharr[] = $row->pl_from;
