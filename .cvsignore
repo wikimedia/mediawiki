@@ -6,3 +6,4 @@ AdminSettings.php
 project.index
 .metadata*
 .settings
+static*
