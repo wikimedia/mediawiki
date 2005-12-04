@@ -152,7 +152,7 @@ wfProfileIn( $fname.'-language1' );
 
 require_once( "$IP/languages/Language.php" );
 
-function setupLangObj(&$langclass) {
+function setupLangObj($langclass) {
 	global $IP;
 
 	if( ! class_exists( $langclass ) ) {
@@ -217,7 +217,7 @@ $wgLanguageCode = $wgRequest->getText('uselang', '');
 if ($wgLanguageCode == '')
 	$wgLanguageCode = $wgUser->getOption('language');
 # Validate $wgLanguageCode, which will soon be sent to an eval()
-if( empty( $wgLanguageCode ) || preg_match( '/^[^a-z-]*$/', $wgLanguageCode ) ) {
+if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z]+(-[a-z]+)?$/', $wgLanguageCode ) ) {
 	$wgLanguageCode = $wgContLanguageCode;
 }
 

@@ -68,15 +68,14 @@ function getCredits($article, $cnt, $showIfMax=true) {
  *
  */
 function getAuthorCredits($article) {
-    global $wgLang;
+    global $wgLang, $wgAllowRealName;
 
     $last_author = $article->getUser();
 
     if ($last_author == 0) {
 		$author_credit = wfMsg('anonymous');
     } else {
-
-		$real_name = User::whoIsReal($last_author);
+		if($wgAllowRealName) { $real_name = User::whoIsReal($last_author); }
 		$user_name = User::whoIs($last_author);
 
 		if (!empty($real_name)) {

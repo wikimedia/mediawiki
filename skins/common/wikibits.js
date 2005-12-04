@@ -479,10 +479,7 @@ function fillDestFilename() {
 
 	// Output result
 	var destFile = document.getElementById('wpDestFile');
-	if (destFile.value == '' || destFile.value == document.fname ) {
-		document.getElementById('wpDestFile').value = fname;
-	}
-	document.fname = fname;
+	if (destFile) destFile.value = fname;
 }
 	
 

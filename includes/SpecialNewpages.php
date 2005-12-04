@@ -62,11 +62,13 @@ class NewPagesPage extends QueryPage {
 		$length = wfMsg( 'nbytes', $wgLang->formatNum( $result->length ) );
 
 		if ( $u == 0 ) { # not by a logged-in user
-			$ul = $ut;
+			$userPage = Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$linkParams = 'target=' . urlencode( $ut );
+		} else {
+			$userPage = Title::makeTitle( NS_USER, $ut );
+			$linkParams = '';
 		}
-		else {
-			$ul = $skin->makeLink( $wgContLang->getNsText(NS_USER) . ":{$ut}", $ut );
-		}
+		$ul = $skin->makeLinkObj( $userPage, htmlspecialchars( $ut ), $linkParams );
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
 
