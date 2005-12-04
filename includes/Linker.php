@@ -784,17 +784,19 @@ class Linker {
 	/** @todo document */
 	function tocList($toc) {
 		global $wgJsMimeType;
-		return "<table id='toc' class='toc'><tr><td>" 
-			   . "<div id='toctitle'><h2>" . wfMsgForContent('toc') . "</h2></div>\n"
-		     . $toc
-				 . "</ul>\n</td></tr></table>\n"
-				 . '<script type="'.$wgJsMimeType.'">'
-				 . ' if (window.showTocToggle) {'
-				 . ' var tocShowText = "' . wfEscapeJsString( wfMsgForContent('showtoc') ) . '";'
-				 . ' var tocHideText = "' . wfEscapeJsString( wfMsgForContent('hidetoc') ) . '";'
-				 . ' showTocToggle();'
-				 . ' } '
-				 . "</script>\n";
+		$title =  wfMsgForContent('toc') ;
+		return
+		   '<table id="toc" class="toc" summary="' . $title .'"><tr><td>' 
+		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
+		 . $toc
+		 . "</ul>\n</td></tr></table>\n"
+		 . '<script type="' . $wgJsMimeType . '">'
+		 . ' if (window.showTocToggle) {'
+		 . ' var tocShowText = "' . wfEscapeJsString( wfMsgForContent('showtoc') ) . '";'
+		 . ' var tocHideText = "' . wfEscapeJsString( wfMsgForContent('hidetoc') ) . '";'
+		 . ' showTocToggle();'
+		 . ' } '
+		 . "</script>\n";
 	}
 
 	/** @todo document */
