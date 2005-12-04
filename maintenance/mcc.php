@@ -138,7 +138,9 @@ do {
 
 		case 'history':
 			if ( function_exists( 'readline_list_history' ) ) {
-				print_r(readline_list_history());
+				foreach( readline_list_history() as $num => $line) {
+					print "$num: $line\n";
+				}
 			} else {
 				print "readline_list_history() not available\n";
 			}
