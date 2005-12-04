@@ -2119,15 +2119,17 @@ class Article {
 			);
 		}
 
-		# Save it!
+		# Get the edit summary
 		$target = Revision::newFromId( $s->rev_id );
-		$newcomment = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
+		$newComment = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
+		$newComment = $wgRequest->getText( 'summary', $newComment );
 
+		# Save it!
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newcomment ) . "</h2>\n<hr />\n" );
+		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newComment ) . "</h2>\n<hr />\n" );
 
-		$this->updateArticle( $target->getText(), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
+		$this->updateArticle( $target->getText(), $newComment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
 
 		$dbw->commit();
