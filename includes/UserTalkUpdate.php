@@ -45,7 +45,7 @@ class UserTalkUpdate {
 	 * @param $timestamp
 	 */
 	function UserTalkUpdate( $action, $ns, $title, $summary, $minoredit, $timestamp) {
-		global $wgUser, $wgLang, $wgMemc, $wgDBname;
+		global $wgUser, $wgMemc, $wgDBname;
 		$fname = 'UserTalkUpdate::UserTalkUpdate';
 
 		$this->mAction = $action;

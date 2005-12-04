@@ -3,7 +3,6 @@
 
 /** */
 function wfStreamFile( $fname ) {
-	global $wgSquidMaxage;
 	$stat = @stat( $fname );
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );

@@ -144,8 +144,8 @@ class SkinTemplate extends Skin {
 	 */
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
-		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
-		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
+		global $wgScript, $wgStylePath, $wgContLanguageCode;
+		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
@@ -1117,7 +1117,7 @@ class QuickTemplate {
 	 * @access private
 	 */
 	function msgWiki( $str ) {
-		global $wgParser, $wgTitle, $wgOut, $wgUseTidy;
+		global $wgParser, $wgTitle, $wgOut;
 
 		$text = $this->translator->translate( $str );
 		$parserOutput = $wgParser->parse( $text, $wgTitle,

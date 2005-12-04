@@ -230,7 +230,6 @@ class Linker {
 	 * @return the a-element
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
-		global $wgTitle;
 
 		$fname = 'Linker::makeKnownLinkObj';
 		wfProfileIn( $fname );
@@ -800,7 +799,6 @@ class Linker {
 
 	/** @todo document */
 	function editSectionLinkForOther( $title, $section ) {
-		global $wgRequest;
 		global $wgContLang;
 
 		$title = Title::newFromText($title);

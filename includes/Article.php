@@ -676,9 +676,9 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang, $wgContLang;
-		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
-		global $wgEnotif, $wgParser, $wgParserCache, $wgUseTrackbacks;
+		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgContLang;
+		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
+		global $wgParserCache, $wgUseTrackbacks;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
@@ -1077,8 +1077,7 @@ class Article {
 	 * @private
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
-		global $wgOut, $wgUser;
-		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
+		global $wgOut, $wgUser, $wgUseSquid;
 
 		$fname = 'Article::insertNewArticle';
 		wfProfileIn( $fname );
@@ -1263,9 +1262,8 @@ class Article {
 	 * first set $wgUser, and clean up $wgDeferredUpdates after each edit.
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
-		global $wgOut, $wgUser;
-		global $wgDBtransactions, $wgMwRedir;
-		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList, $wgUseFileCache;
+		global $wgOut, $wgUser, $wgDBtransactions, $wgMwRedir, $wgUseSquid;
+		global $wgPostCommitUpdateList, $wgUseFileCache;
 
 		$fname = 'Article::updateArticle';
 		wfProfileIn( $fname );
@@ -1747,7 +1745,7 @@ class Article {
 	 * UI entry point for page deletion
 	 */
 	function delete() {
-		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
+		global $wgUser, $wgOut, $wgRequest;
 		$fname = 'Article::delete';
 		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
@@ -1935,9 +1933,8 @@ class Article {
 	 * Returns success
 	 */
 	function doDeleteArticle( $reason ) {
-		global $wgUser;
-		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer, $wgPostCommitUpdateList;
-		global $wgUseTrackbacks;
+		global $wgUser, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgPostCommitUpdateList, $wgUseTrackbacks;
 
 		$fname = 'Article::doDeleteArticle';
 		wfDebug( $fname."\n" );
@@ -2180,8 +2177,7 @@ class Article {
 	 * @param string $text
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange) {
-		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
-		global $wgMessageCache, $wgUser, $wgUseEnotif;
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgUseEnotif;
 
 		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			wfSeedRandom();

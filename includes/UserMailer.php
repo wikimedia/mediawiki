@@ -48,7 +48,7 @@ function wfRFC822Phrase( $phrase ) {
  * @param string $replyto optional reply-to email (default : false)
  */
 function userMailer( $to, $from, $subject, $body, $replyto=false ) {
-	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEmergencyContact;
+	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
 
 	if (is_array( $wgSMTP )) {
 		require_once( 'Mail.php' );
@@ -155,13 +155,8 @@ class EmailNotification {
 	function notifyOnPageChange(&$title, $timestamp, $summary, $minorEdit, $oldid=false) {
 
 		# we use $wgEmergencyContact as sender's address
-		global $wgUser, $wgLang, $wgEmergencyContact;
-		global $wgEnotifWatchlist, $wgEnotifMinorEdits;
-		global $wgEnotifUserTalk;
-		global $wgEnotifRevealEditorAddress;
-		global $wgEnotifFromEditor;
-		global $wgEmailAuthentication;
-		global $wgShowUpdatedMarker;
+		global $wgUser, $wgEnotifWatchlist;
+		global $wgEnotifMinorEdits, $wgEnotifUserTalk, $wgShowUpdatedMarker;
 
 		$fname = 'UserMailer::notifyOnPageChange';
 		wfProfileIn( $fname );
@@ -237,10 +232,8 @@ class EmailNotification {
 	 * @access private
 	 */
 	function composeCommonMailtext() {
-		global $wgLang, $wgUser, $wgEmergencyContact;
-		global $wgEnotifRevealEditorAddress;
-		global $wgEnotifFromEditor;
-		global $wgNoReplyAddress;
+		global $wgUser, $wgEmergencyContact, $wgNoReplyAddress;
+		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 
 		$summary = ($this->summary == '') ? ' - ' : $this->summary;
 		$medit   = ($this->minorEdit) ? wfMsg( 'minoredit' ) : '';

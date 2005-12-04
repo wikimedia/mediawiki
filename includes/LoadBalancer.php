@@ -159,9 +159,8 @@ class LoadBalancer {
 	 *
 	 * Side effect: opens connections to databases
 	 */
-	function getReaderIndex()
-	{
-		global $wgMaxLag, $wgReadOnly, $wgDBClusterTimeout;
+	function getReaderIndex() {
+		global $wgReadOnly, $wgDBClusterTimeout;
 
 		$fname = 'LoadBalancer::getReaderIndex';
 		wfProfileIn( $fname );

@@ -676,7 +676,6 @@ class User {
 	 * Load a user from the database
 	 */
 	function loadFromDatabase() {
-		global $wgCommandLineMode;
 		$fname = "User::loadFromDatabase";
 
 		# Counter-intuitive, breaks various things, use User::setLoaded() if you want to suppress

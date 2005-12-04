@@ -56,7 +56,6 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 	
 	function formatResult( $skin, $result ) {
-		global $wgContLang ;
 		$title = Title::newFromId( $result->value );
         $dp = Title::makeTitle( $result->namespace, $result->title );
 

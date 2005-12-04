@@ -79,7 +79,7 @@ class EmailUserForm {
 	}
 
 	function showForm() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
@@ -127,7 +127,7 @@ class EmailUserForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
+		global $wgOut, $wgUser;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
 		$subject = wfQuotedPrintable( $this->subject );

@@ -155,9 +155,7 @@ class PageArchive {
 	 * @return bool
 	 */
 	function undelete( $timestamps ) {
-		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
-		global $wgUseSquid, $wgInternalServer, $wgLinkCache;
-		global $wgDBtype;
+		global $wgDeferredUpdateList, $wgLinkCache, $wgDBtype;
 
 		$fname = "doUndeleteArticle";
 		$restoreAll = empty( $timestamps );
@@ -349,12 +347,11 @@ class UndeleteForm {
 	}
 
 	function execute() {
-		global $wgOut;
 		
 		if( is_null( $this->mTargetObj ) ) {
 			return $this->showList();
 		}
-		if( $this->mTimestamp !== "" ) {
+		if( $this->mTimestamp !== '' ) {
 			return $this->showRevision( $this->mTimestamp );
 		}
 		if( $this->mRestore && $this->mAction == "submit" ) {

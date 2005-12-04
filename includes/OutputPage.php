@@ -93,7 +93,7 @@ class OutputPage {
 	 * returns true iff cache-ok headers was sent.
 	 */
 	function checkLastModified ( $timestamp ) {
-		global $wgLang, $wgCachePages, $wgUser;
+		global $wgCachePages, $wgUser;
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( "CACHE DISABLED, NO TIMESTAMP\n" );
 			return;
@@ -263,7 +263,7 @@ class OutputPage {
 	}
 
 	function addWikiTextTitle($text, &$title, $linestart) {
-		global $wgParser, $wgUseTidy;
+		global $wgParser;
 		$parserOutput = $wgParser->parse( $text, $title, $this->mParserOptions,
 			$linestart, true, $this->mRevisionId );
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
@@ -279,7 +279,7 @@ class OutputPage {
 	 * Saves the text into the parser cache if possible
 	 */
 	function addPrimaryWikiText( $text, $cacheArticle ) {
-		global $wgParser, $wgParserCache, $wgUser, $wgUseTidy;
+		global $wgParser, $wgParserCache, $wgUser;
 
 		$parserOutput = $wgParser->parse( $text, $cacheArticle->mTitle,
 			$this->mParserOptions, true, true, $this->mRevisionId );
@@ -420,9 +420,8 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	function output() {
-		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
-		global $wgInputEncoding, $wgOutputEncoding, $wgContLanguageCode;
-		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
+		global $wgUser, $wgCookieExpiration, $wgOutputEncoding;
+		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType, $wgProfiler;
 
 		if( $this->mDoNothing ){
 			return;

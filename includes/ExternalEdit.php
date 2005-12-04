@@ -31,8 +31,7 @@ class ExternalEdit {
 	}
 	
 	function edit() {
-		global $wgUser, $wgOut, $wgScript, $wgScriptPath, $wgServer,
-		       $wgLang;
+		global $wgOut, $wgScript, $wgScriptPath, $wgServer, $wgLang;
 		$wgOut->disable();
 		$name=$this->mTitle->getText();
 		$pos=strrpos($name,".")+1;

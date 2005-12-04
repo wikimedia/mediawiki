@@ -37,7 +37,7 @@ class DateFormatter
 	 * @todo document
 	 */
 	function DateFormatter() {
-		global $wgContLang, $wgInputEncoding;
+		global $wgContLang;
 		
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {

@@ -176,7 +176,6 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
 		
 		$userPage = Title::makeTitle( $result->namespace, $result->title );
 		$name = $skin->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );

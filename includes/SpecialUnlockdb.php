@@ -36,7 +36,7 @@ function wfSpecialUnlockdb() {
 class DBUnlockForm {
 	function showForm( $err )
 	{
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->addWikiText( wfMsg( "unlockdbtext" ) );
@@ -76,8 +76,7 @@ END
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgLang;
-		global $wgRequest, $wgReadOnlyFile;
+		global $wgOut, $wgUser, $wgRequest, $wgReadOnlyFile;
 
 		$wpLockConfirm = $wgRequest->getCheck( 'wpLockConfirm' );
 		if ( ! $wpLockConfirm ) {

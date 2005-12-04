@@ -47,9 +47,8 @@ class IPUnblockForm {
 		$this->reason = $reason;
 	}
 	
-	function showForm( $err )
-	{
-		global $wgOut, $wgUser, $wgLang, $wgSysopUserBans;
+	function showForm( $err ) {
+		global $wgOut, $wgUser, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
 		$wgOut->addWikiText( wfMsg( 'unblockiptext' ) );
@@ -94,7 +93,7 @@ class IPUnblockForm {
 	}
 	
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$block = new Block();
 		$this->ip = trim( $this->ip );
@@ -174,7 +173,7 @@ class IPUnblockForm {
 	 * Callback function to output a block
 	 */
 	function addRow( $block, $tag ) {
-		global $wgOut, $wgUser, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgLang;
 		
 		if( $this->ip != '' ) {
 			if( $block->mAuto ) {

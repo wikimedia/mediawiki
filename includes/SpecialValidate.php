@@ -847,25 +847,22 @@ class Validation {
  * constructor
  */
 function wfSpecialValidate( $page = '' ) {
-	global $wgOut, $wgRequest, $wgUseValidation, $wgUser, $wgContLang;
+	global $wgOut, $wgRequest, $wgUseValidation, $wgUser;
 	
 	if( !$wgUseValidation ) {
 		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
 		return;
 	}
 
-
 	# Can do?
 	if( ! $wgUser->isBureaucrat() ) {#isAllowed('change_validation') ) {
 		$wgOut->sysopRequired();
 		return;
 	}
-	
 
 	$mode = $wgRequest->getVal( "mode" );
 	$skin = $wgUser->getSkin();
 
-	
 	if( $mode == "manage" ) {
 		$v = new Validation();
 		$html = $v->manageTopics();

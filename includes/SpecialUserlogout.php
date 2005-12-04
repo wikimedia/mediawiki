@@ -9,7 +9,7 @@
  * constructor
  */
 function wfSpecialUserlogout() {
-	global $wgUser, $wgOut, $returnto;
+	global $wgUser, $wgOut;
 
 	if (wfRunHooks('UserLogout', array(&$wgUser))) {
 		

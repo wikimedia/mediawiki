@@ -59,7 +59,7 @@ class MovePageForm {
 	}
 	
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
@@ -167,9 +167,7 @@ class MovePageForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgLang;
-		global $wgDeferredUpdateList, $wgMessageCache;
-		global  $wgUseSquid, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
 		
 		if ( $wgUser->pingLimiter( 'move' ) ) {

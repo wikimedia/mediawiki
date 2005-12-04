@@ -35,7 +35,6 @@ class SiteStatsUpdate {
 	}
 
 	function doUpdate() {
-		global $wgDBname;
 		$fname = 'SiteStatsUpdate::doUpdate';
 		$dbw =& wfGetDB( DB_MASTER );
 

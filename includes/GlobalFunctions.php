@@ -212,7 +212,7 @@ function wfLogDBError( $text ) {
  */
 function logProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
+	global $wgProfiling, $wgUser;
 	$now = wfTime();
 
 	list( $usec, $sec ) = explode( ' ', $wgRequestTime );
@@ -389,9 +389,7 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false, $transform = true ) 
  * @access private
  */
 function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
-	global $wgParser, $wgMsgParserOptions;
-	global $wgContLang, $wgLanguageCode;
-	global $wgMessageCache, $wgLang;
+	global $wgParser, $wgMsgParserOptions, $wgContLang, $wgMessageCache, $wgLang;
 
 	if ( is_object( $wgMessageCache ) )
 		$transstat = $wgMessageCache->getTransform();

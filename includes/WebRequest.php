@@ -109,7 +109,7 @@ class WebRequest {
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			global $wgServer, $wgContLang;
+			global $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) && !is_array( $data ) ) {
 				# Check for alternate/legacy character encoding.

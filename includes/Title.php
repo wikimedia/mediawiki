@@ -161,7 +161,6 @@ class Title {
 	 * @access public
 	 */
 	function newFromURL( $url ) {
-		global $wgLang, $wgServer;
 		$t = new Title();
 
 		# For compatibility with old buggy URLs. "+" is not valid in titles,
@@ -332,7 +331,7 @@ class Title {
 	 * 	search index
 	 */
 	/* static */ function indexTitle( $ns, $title ) {
-		global $wgDBminWordLen, $wgContLang;
+		global $wgContLang;
 		require_once( 'SearchEngine.php' );
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
@@ -469,7 +468,6 @@ class Title {
 	 * @access public
 	 */
 	function touchArray( $titles, $timestamp = '' ) {
-		global $wgUseFileCache;
 
 		if ( count( $titles ) == 0 ) {
 			return;

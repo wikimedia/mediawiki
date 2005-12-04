@@ -302,8 +302,8 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	function recentChangesLine( &$rc, $watched = false ) {
-		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol,
-			$wgOnlySysopsCanPatrol, $wgSysopUserBans;
+		global $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol;
+		global $wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
 		$fname = 'ChangesList::recentChangesLineOld';
 		wfProfileIn( $fname );
@@ -368,8 +368,8 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgTitle, $wgLang, $wgContLang, $wgUser,
-			$wgUseRCPatrol, $wgOnlySysopsCanPatrol, $wgSysopUserBans;
+		global $wgLang, $wgContLang, $wgUser, $wgUseRCPatrol;
+		global $wgOnlySysopsCanPatrol, $wgSysopUserBans;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
