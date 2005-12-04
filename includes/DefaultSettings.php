@@ -1179,6 +1179,15 @@ $wgSVGMaxSize = 1024;
  * 12.5 million pixels or 3500x3500
  */
 $wgMaxImageArea = 1.25e7;
+/**
+ * If rendered thumbnail files are older than this timestamp, they
+ * will be rerendered on demand as if the file didn't already exist.
+ * Update if there is some need to force thumbs and SVG rasterizations
+ * to rerender, such as fixes to rendering bugs.
+ */
+$wgThumbnailEpoch = '20030516000000';
+
+
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {

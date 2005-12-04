@@ -289,6 +289,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Optional summary parameter to action=rollback, for user javascript
 * (bug 153) Adjust thumbnail size calculations to match consistently;
   patch by David Benbennick
+* (bug 4162) Add $wgThumbnailEpoch timestamp to force old thumbs to
+  be rerendered on demand, sitewide
 
 
 === Caveats ===
