@@ -426,18 +426,18 @@ class Linker {
 			# Create a resized image, without the additional thumbnail
 			# features
 
-			if ( $height !== false && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
-				$width = $img->getWidth() * $height / $img->getHeight();
-			}
+			if ( $height == false )
+				$height = -1;
 			if ( $manual_thumb == '') {
-				$thumb = $img->getThumbnail( $width );
+				$thumb = $img->getThumbnail( $width, $height );
 				if ( $thumb ) {
-					if( $width > $thumb->width ) {
+					if( $width > $img->width && ( $height == -1 || $height > $img->height )) {
 						// Requested a display size larger than the actual image;
 						// fake it up!
-						$height = floor($thumb->height * $width / $thumb->width);
+						$height = round($thumb->height * $width / $thumb->width);
 						wfDebug( "makeImageLinkObj: client-size height set to '$height'\n" );
 					} else {
+						$width = $thumb->width;
 						$height = $thumb->height;
 						wfDebug( "makeImageLinkObj: thumb height set to '$height'\n" );
 					}
@@ -494,20 +494,19 @@ class Linker {
 		{
 			// Use image dimensions, don't scale
 			$boxwidth  = $width;
-			$oboxwidth = $boxwidth + 2;
 			$boxheight = $height;
 			$thumbUrl  = $url;
 		} else {
-			$h  = round( $height/($width/$boxwidth) );
-			$oboxwidth = $boxwidth + 2;
-			if ( ( ! $boxheight === false ) &&  ( $h > $boxheight ) )
-			{
-				$boxwidth *= $boxheight/$h;
-			} else {
-				$boxheight = $h;
+			if ( $boxheight === false )
+				$boxheight = -1;
+			if ( '' == $manual_thumb ) {
+				$thumb = $img->getThumbnail( $boxwidth, $boxheight );
+				$thumbUrl = $thumb->getUrl();
+				$boxwidth = $thumb->width;
+				$boxheight = $thumb->height;
 			}
-			if ( '' == $manual_thumb ) $thumbUrl = $img->createThumb( $boxwidth );
 		}
+		$oboxwidth = $boxwidth + 2;
 
 		if ( $manual_thumb != '' ) # Use manually specified thumbnail
 		{

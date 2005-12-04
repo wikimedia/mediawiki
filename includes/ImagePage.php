@@ -193,15 +193,23 @@ class ImagePage extends Article {
 
 				# "Download high res version" link below the image
 				$msg = wfMsgHtml('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
-				if ( $width > $maxWidth ) {
-					$height = floor( $height * $maxWidth / $width );
-					$width  = $maxWidth;
-				}
-				if ( $height > $maxHeight ) {
-					$width = floor( $width * $maxHeight / $height );
-					$height = $maxHeight;
-				}
-				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
+
+				# We'll show a thumbnail of this image
+				if ( $width > $maxWidth || $height > $maxHeight ) {
+					# Calculate the thumbnail size.
+					# First case, the limiting factor is the width, not the height.
+					if ( $width / $height >= $maxWidth / $maxHeight ) {
+						$height = round( $height * $maxWidth / $width);
+						$width = $maxWidth;
+						# Note that $height <= $maxHeight now.
+					} else {
+						$newwidth = floor( $width * $maxHeight / $height);
+						$height = round( $height * $newwidth / $width );
+						$width = $newwidth;
+						# Note that $height <= $maxHeight now, but might not be identical
+						# because of rounding.
+					}
+
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
 						if ( $thumbnail == null ) {

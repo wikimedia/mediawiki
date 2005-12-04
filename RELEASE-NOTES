@@ -287,6 +287,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3844) ab: av: ba: ce: & kv: now inherit from LanguageRu.php
              ii: & za: now inherit from LanguageZn_cn.php
 * Optional summary parameter to action=rollback, for user javascript
+* (bug 153) Adjust thumbnail size calculations to match consistently;
+  patch by David Benbennick
 
 
 === Caveats ===
