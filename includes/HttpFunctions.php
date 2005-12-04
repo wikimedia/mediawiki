@@ -53,6 +53,7 @@ function wfIsLocalURL( $url ) {
 	}
 
 	// Extract host part
+	$matches = array();
 	if ( preg_match( '!^http://([\w.-]+)[/:].*$!', $url, $matches ) ) {
 		$host = $matches[1];
 		// Split up dotwise

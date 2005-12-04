@@ -234,6 +234,7 @@ class MagicWord {
 	 * is one.
 	 */
 	function matchVariableStartToEnd( $text ) {
+		$matches = array();
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
 			return NULL;
@@ -282,7 +283,6 @@ class MagicWord {
 	 * Input word must contain $1
 	 */
 	function substituteCallback( $text, $callback ) {
-		$regex = $this->getVariableRegex();
 		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
 		$this->mModified = !($res === $text);
 		return $res;
