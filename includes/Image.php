@@ -912,7 +912,7 @@ class Image
 	function renderThumb( $width, $useScript = true ) {
 		global $wgUseSquid, $wgInternalServer;
 		global $wgThumbnailScriptPath, $wgSharedThumbnailScriptPath;
-		global $wgSVGMaxSize, $wgMaxImageArea;
+		global $wgSVGMaxSize, $wgMaxImageArea, $wgThumbnailEpoch;
 
 		$fname = 'Image::renderThumb';
 		wfProfileIn( $fname );
@@ -968,7 +968,8 @@ class Image
 		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
 		$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ).'/'.$thumbName;
 
-		if ( !file_exists( $thumbPath ) ) {
+		if ( !file_exists( $thumbPath ) ||
+			filemtime( $thumbPath ) < wfTimestamp( TS_UNIX, $wgThumbnailEpoch ) ) {
 			$oldThumbPath = wfDeprecatedThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).
 				'/'.$thumbName;
 			$done = false;
