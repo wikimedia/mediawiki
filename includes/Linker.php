@@ -500,6 +500,9 @@ class Linker {
 				$boxheight = -1;
 			if ( '' == $manual_thumb ) {
 				$thumb = $img->getThumbnail( $boxwidth, $boxheight );
+				if ( is_null( $thumb ) ) {
+					return '<b>FATAL ERROR: Thumb object NULL in Linker.php:504</b>';
+				}
 				$thumbUrl = $thumb->getUrl();
 				$boxwidth = $thumb->width;
 				$boxheight = $thumb->height;
