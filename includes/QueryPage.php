@@ -263,7 +263,6 @@ class QueryPage {
 		$fname = get_class($this) . '::doQuery';
 		$sql = $this->getSQL();
 		$dbr =& wfGetDB( DB_SLAVE );
-		$dbw =& wfGetDB( DB_MASTER );
 		$querycache = $dbr->tableName( 'querycache' );
 
 		$wgOut->setSyndicated( $this->isSyndicated() );
@@ -338,9 +337,10 @@ class QueryPage {
 	}
 
 	/**
-	 * Do any necessary preprocessing of the result object
+	 * Do any necessary preprocessing of the result object.
+	 * You should pass this by reference: &$db , &$res
 	 */
-	function preprocessResults( &$db, &$res ) {}
+	function preprocessResults( $db, $res ) {}
 
 	/**
 	 * Similar to above, but packaging in a syndicated feed instead of a web page
