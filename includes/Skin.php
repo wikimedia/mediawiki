@@ -109,8 +109,8 @@ class Skin extends Linker {
 	}
 
 	function addMetadataLinks( &$out ) {
-		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf, $wgRdfMimeType, $action;
-		global $wgRightsPage, $wgRightsUrl, $wgUseTrackbacks;
+		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
+		global $wgRightsPage, $wgRightsUrl;
 
 		if( $out->isArticleRelated() ) {
 			# note: buggy CC software only reads first "meta" link
@@ -176,7 +176,7 @@ class Skin extends Linker {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgContLang, $wgAllowUserJs, $wgJsMimeType;
+		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType;
 		$r = "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
 		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
@@ -237,7 +237,7 @@ class Skin extends Linker {
 	 * Return html code that include User stylesheets
 	 */
 	function getUserStyles() {
-		global $wgOut, $wgStylePath, $wgLang;
+		global $wgOut, $wgStylePath;
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= $this->getUserStylesheet();
@@ -309,7 +309,7 @@ END;
 	}
 
 	function getBodyOptions() {
-		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $wgRequest;
+		global $wgUser, $wgTitle, $wgOut, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
 
@@ -415,8 +415,8 @@ END;
 
 
 	function getCategoryLinks () {
-		global $wgOut, $wgTitle, $wgParser;
-		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgContLang;
+		global $wgOut, $wgTitle, $wgUseCategoryMagic, $wgUseCategoryBrowser;
+		global $wgContLang;
 
 		if( !$wgUseCategoryMagic ) return '' ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';

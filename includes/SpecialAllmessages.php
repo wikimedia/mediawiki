@@ -10,7 +10,6 @@
  */
 function wfSpecialAllmessages() {
 	global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
-	global $wgLanguageCode, $wgContLanguageCode, $wgContLang;
 	global $wgUseDatabaseMessages;
 
 	if(!$wgUseDatabaseMessages) {
@@ -88,7 +87,7 @@ function makePhp($messages) {
  *
  */
 function makeHTMLText( $messages ) {
-	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode, $wgContLang;
+	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode;
 	$fname = "makeHTMLText";
 	wfProfileIn( $fname );
 	

@@ -30,7 +30,7 @@ require_once( 'Export.php' );
  *
  */
 function wfSpecialExport( $page = '' ) {
-	global $wgOut, $wgLang, $wgRequest;
+	global $wgOut, $wgRequest;
 	
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
 		$page = $wgRequest->getText( 'pages' );

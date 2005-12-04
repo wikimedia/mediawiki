@@ -30,8 +30,7 @@ require_once( 'WikiError.php' );
  * Constructor
  */
 function wfSpecialImport( $page = '' ) {
-	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgTitle;
-	global $wgImportSources;
+	global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources;
 	
 	###
 #	$wgOut->addWikiText( "Special:Import is not ready for this beta release, sorry." );

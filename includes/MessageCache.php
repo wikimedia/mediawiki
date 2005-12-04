@@ -21,8 +21,7 @@ define( 'MSG_WAIT_TIMEOUT', 10);
  *
  * @package MediaWiki
  */
-class MessageCache
-{
+class MessageCache {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages = array();
@@ -30,7 +29,6 @@ class MessageCache
 	var $mDeferred = true;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
-		global $wgLocalMessageCache;
 		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
 
@@ -117,7 +115,7 @@ class MessageCache
 	 * Returns false for a reportable error, true otherwise
 	 */
 	function load() {
-		global $wgAllMessagesEn, $wgLocalMessageCache;
+		global $wgLocalMessageCache;
 
 		if ( $this->mDisable ) {
 			static $shownDisabled = false;

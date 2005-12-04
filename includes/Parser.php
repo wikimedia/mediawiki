@@ -2680,7 +2680,7 @@ class Parser
 	 * @access private
 	 */
 	function formatHeadings( $text, $isMain=true ) {
-		global $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
+		global $wgMaxTocLevel, $wgContLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = true;
@@ -3514,8 +3514,7 @@ class Parser
 	 * Parse image options text and use it to make an image
 	 */
 	function makeImage( &$nt, $options ) {
-		global $wgContLang, $wgUseImageResize;
-		global $wgUser, $wgThumbLimits;
+		global $wgContLang, $wgUseImageResize, $wgUser;
 
 		$align = '';
 

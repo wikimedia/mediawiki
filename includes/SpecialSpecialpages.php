@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialSpecialpages() {
-	global $wgLang, $wgOut, $wgUser, $wgAvailableRights;
+	global $wgOut, $wgUser, $wgAvailableRights;
 	
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();
@@ -41,7 +41,7 @@ function wfSpecialSpecialpages() {
  * @param $sk skin object ???
  */
 function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
-	global $wgLang, $wgOut, $wgSortSpecialPages;
+	global $wgOut, $wgSortSpecialPages;
 
 	if( count( $pages ) == 0 ) {
 		# Yeah, that was pointless. Thanks for coming.

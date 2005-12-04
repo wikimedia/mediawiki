@@ -1269,7 +1269,6 @@ class Image
 	*/
 	function getFullPath( $fromSharedRepository = false ) {
 		global $wgUploadDirectory, $wgSharedUploadDirectory;
-		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
 		
 		$dir      = $fromSharedRepository ? $wgSharedUploadDirectory :
 		                                    $wgUploadDirectory;
@@ -1297,8 +1296,7 @@ class Image
 	 * Record an image upload in the upload log and the image table
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
-		global $wgUser, $wgLang, $wgTitle, $wgDeferredUpdateList;
-		global $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
+		global $wgUser, $wgUseCopyrightUpload, $wgUseSquid, $wgPostCommitUpdateList;
 
 		$fname = 'Image::recordUpload';
 		$dbw =& wfGetDB( DB_MASTER );

@@ -227,9 +227,8 @@ class DatabasePgsql extends Database {
 		return $retVal;
 	}
 	
-	function startTimer( $timeout )
-	{
-		global $IP;
+	/** @todo FIXME */
+	function startTimer( $timeout ) {
 		wfDebugDieBacktrace( 'Database::startTimer() error : mysql_thread_id() not implemented for postgre' );
 		/*$tid = mysql_thread_id( $this->mConn );
 		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );*/

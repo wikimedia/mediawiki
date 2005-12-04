@@ -33,8 +33,7 @@ class LinksUpdate {
 	 */
 	
 	function doUpdate() {
-		global $wgUseDumbLinkUpdate, $wgLinkCache, $wgDBtransactions;
-		global $wgUseCategoryMagic;
+		global $wgUseDumbLinkUpdate, $wgLinkCache, $wgUseCategoryMagic;
 
 		if ( $wgUseDumbLinkUpdate ) {
 			$this->doDumbUpdate();
@@ -189,7 +188,7 @@ class LinksUpdate {
 	  * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
 	 */
 	function doDumbUpdate() {
-		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
+		global $wgLinkCache, $wgUseCategoryMagic;
 		$fname = 'LinksUpdate::doDumbUpdate';
 		wfProfileIn( $fname );
 		

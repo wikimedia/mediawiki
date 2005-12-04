@@ -9,7 +9,7 @@
 * constructor
 */
 function wfSpecialStatistics() {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgOut, $wgLang, $wgRequest;
 	$fname = 'wfSpecialStatistics';
 
 	$action = $wgRequest->getVal( 'action' );

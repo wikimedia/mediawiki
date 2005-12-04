@@ -9,8 +9,7 @@
  * if $timeout is 'default', $wgHTTPTimeout is used
  */
 function wfGetHTTP( $url, $timeout = 'default' ) {
-	global $wgServer, $wgHTTPTimeout, $wgHTTPProxy;
-	
+	global $wgHTTPTimeout, $wgHTTPProxy;
 
 	# Use curl if available
 	if ( function_exists( 'curl_init' ) ) {

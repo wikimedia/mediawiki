@@ -41,9 +41,8 @@ class DBLockForm {
 		$this->reason = $wgRequest->getText( 'wpLockReason' );
 	}
 	
-	function showForm( $err )
-	{
-		global $wgOut, $wgUser, $wgLang;
+	function showForm( $err ) {
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( 'lockdb' ) );
 		$wgOut->addWikiText( wfMsg( 'lockdbtext' ) );

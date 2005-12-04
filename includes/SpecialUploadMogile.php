@@ -34,7 +34,7 @@ class UploadFormMogile extends UploadForm {
 	 * @param bool $useRename  Not used in this implementation
 	 */
 	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
-		global $wgUploadDirectory, $wgOut;
+		global $wgOut;
 		$mfs = MogileFS::NewMogileFS();
 
 		$this->mSavedFile = "image!{$saveName}";

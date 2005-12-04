@@ -257,7 +257,7 @@ class QueryPage {
 	 * @param $shownavigation show navigation like "next 200"?
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
-		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
+		global $wgUser, $wgOut, $wgContLang;
 		
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';

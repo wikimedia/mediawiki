@@ -48,8 +48,7 @@ class IPBlockForm {
 	}
 	
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgLang;
-		global $wgRequest, $wgSysopUserBans;
+		global $wgOut, $wgUser, $wgRequest, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
@@ -143,8 +142,7 @@ class IPBlockForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgLang;
-		global $wgSysopUserBans, $wgSysopRangeBans;
+		global $wgOut, $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
 		
 		$userId = 0;
 		$this->BlockAddress = trim( $this->BlockAddress );

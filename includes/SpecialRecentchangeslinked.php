@@ -15,7 +15,7 @@ require_once( 'SpecialRecentchanges.php' );
  * @param string $par parent page we will look at
  */
 function wfSpecialRecentchangeslinked( $par = NULL ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgRequest;
+	global $wgUser, $wgOut, $wgContLang, $wgRequest;
 	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );

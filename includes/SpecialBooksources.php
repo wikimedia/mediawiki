@@ -47,7 +47,7 @@ class BookSourceList {
 	}
 	
 	function showList() {
-		global $wgOut, $wgUser, $wgContLang;
+		global $wgOut, $wgContLang;
 		$fname = "BookSourceList::showList()";
 		
 		# First, see if we have a custom list setup in
@@ -90,7 +90,7 @@ class BookSourceList {
 	}
 	
 	function askForm() {
-		global $wgOut, $wgLang, $wgTitle;
+		global $wgOut, $wgTitle;
 		$fname = "BookSourceList::askForm()";
 		
 		$action = $wgTitle->escapeLocalUrl();

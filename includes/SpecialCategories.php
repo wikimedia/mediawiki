@@ -49,7 +49,6 @@ class CategoriesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		$plink = $skin->makeLinkObj( $title, $title->getText() );
 		$nlinks = wfMsg( 'nlinks', $result->count );

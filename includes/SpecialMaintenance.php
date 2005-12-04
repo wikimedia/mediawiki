@@ -18,7 +18,7 @@ function sns() {
  * Entry point
  */
 function wfSpecialMaintenance( $par=NULL ) {
-	global $wgUser, $wgOut, $wgContLang, $wgTitle, $wgRequest, $wgContLanguageCode;
+	global $wgUser, $wgOut, $wgContLang, $wgRequest, $wgContLanguageCode;
 	global $wgMiserMode;
 
 	# This pages is expensive ressource wise
@@ -96,7 +96,7 @@ function wfSpecialMaintenance( $par=NULL ) {
  * Generate a maintenance page link
  */
 function getMPL ( $x ) {
-	global $wgUser , $wgLang;
+	global $wgUser;
 	$sk = $wgUser->getSkin() ;
 	return $sk->makeKnownLink( sns().":Maintenance" , wfMsg($x), 'subfunction='.$x ) ;
 }
@@ -150,7 +150,7 @@ function wfSpecialDisambiguations() {
  * @deprecated
  */
 function wfSpecialSelfLinks() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
+	global $wgUser, $wgOut;
 	$fname = 'wfSpecialSelfLinks';
 
 	list( $limit, $offset ) = wfCheckLimits();
@@ -186,7 +186,7 @@ function wfSpecialSelfLinks() {
  * 
  */
 function wfSpecialMispeelings () {
-	global $wgUser, $wgOut, $wgContLang, $wgTitle;
+	global $wgUser, $wgOut, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$fname = 'wfSpecialMispeelings';
 
@@ -255,7 +255,7 @@ function wfSpecialMispeelings () {
  *
  */
 function wfSpecialMissingLanguageLinks() {
-	global $wgUser, $wgOut, $wgContLang, $wgTitle, $wgRequest;
+	global $wgUser, $wgOut, $wgContLang, $wgRequest;
 	
 	$fname = 'wfSpecialMissingLanguageLinks';
 	$thelang = $wgRequest->getText( 'thelang' );

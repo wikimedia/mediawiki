@@ -32,7 +32,7 @@ class CacheManager {
 	}
 	
 	function fileCacheName() {
-		global $wgFileCacheDirectory, $wgContLang;
+		global $wgFileCacheDirectory;
 		if( !$this->mFileCache ) {
 			$key = $this->mTitle->getPrefixedDbkey();
 			$hash = md5( $key );

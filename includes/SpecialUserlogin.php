@@ -162,7 +162,7 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgUseLatin1, $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgEnableSorbs, $wgProxyWhitelist;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname;
 		global $wgAuth, $wgMinimalPasswordLength;
 
@@ -343,8 +343,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPassword() {
-		global $wgUser, $wgDeferredUpdateList, $wgOutputEncoding;
-		global $wgCookiePath, $wgCookieDomain, $wgDBname;
+		global $wgUser, $wgDBname;
 
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
@@ -376,8 +375,7 @@ class LoginForm {
 	 * @access private
 	 */
 	function mailPasswordInternal( $u ) {
-		global $wgPasswordSender, $wgDBname;
-		global $wgCookiePath, $wgCookieDomain;
+		global $wgDBname, $wgCookiePath, $wgCookieDomain;
 
 		if ( '' == $u->getEmail() ) {
 			return wfMsg( 'noemail', $u->getName() );

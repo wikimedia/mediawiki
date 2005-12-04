@@ -88,7 +88,7 @@ class ImageGallery
 	 *
 	 */
 	function toHTML() {
-		global $wgLang, $wgContLang, $wgUser;
+		global $wgLang, $wgUser;
 
 		$sk = $wgUser->getSkin();
 

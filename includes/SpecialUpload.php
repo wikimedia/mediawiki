@@ -141,9 +141,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function processUpload() {
-		global $wgUser, $wgOut, $wgLang, $wgContLang;
-		global $wgUploadDirectory;
-		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
+		global $wgUser, $wgOut, $wgUploadDirectory;
 
 		/* Check for PHP error if any, requires php 4.2 or newer */
 		if ( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
@@ -483,7 +481,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function uploadWarning( $warning ) {
-		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
+		global $wgOut, $wgUser, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
 
 		$this->mSessionKey = $this->stashSession();
@@ -547,7 +545,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function mainUploadForm( $msg='' ) {
-		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
+		global $wgOut, $wgUser, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
 
 		$cols = intval($wgUser->getOption( 'cols' ));

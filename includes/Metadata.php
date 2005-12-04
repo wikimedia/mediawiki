@@ -71,7 +71,7 @@ function wfCreativeCommonsRdf($article) {
  * @private
  */
 function rdfSetup() {
-	global $wgOut, $wgRdfMimeType, $_SERVER;
+	global $wgOut, $_SERVER;
 
 	$rdftype = wfNegotiateType(wfAcceptToPrefs($_SERVER['HTTP_ACCEPT']), wfAcceptToPrefs(RDF_TYPE_PREFS));
 

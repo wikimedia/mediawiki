@@ -16,9 +16,7 @@ require_once( 'Revision.php' );
  * Constructor
  */
 function wfSpecialRecentchanges( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
-	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
-	global $wgFeedClasses, $wgUseRCPatrol;
+	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	global $wgLinkCache;
 	$fname = 'wfSpecialRecentchanges';

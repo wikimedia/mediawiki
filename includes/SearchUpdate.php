@@ -29,7 +29,7 @@ class SearchUpdate {
 	}
 
 	function doUpdate() {
-		global $wgDBminWordLen, $wgContLang, $wgDisableSearchUpdate;
+		global $wgContLang, $wgDisableSearchUpdate;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;

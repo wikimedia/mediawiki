@@ -53,8 +53,7 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function history() {
-		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker, $wgRequest,
-			$wgTitle, $wgUseValidation;
+		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgUseValidation;
 
 		/*
 		 * Allow client caching.
@@ -232,7 +231,6 @@ class PageHistory {
 
 	/** @todo document */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
-		global $wgLang, $wgContLang;
 
 		if ( 0 == $row->rev_user ) {
 			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );

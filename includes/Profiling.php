@@ -65,7 +65,7 @@ class Profiler {
 		$memory = memory_get_usage();
 		$time = $this->getTime();
 
-		global $wgDebugProfiling, $wgDebugFunctionEntry;
+		global $wgDebugFunctionEntry;
 
 		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
 			wfDebug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");

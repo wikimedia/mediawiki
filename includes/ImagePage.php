@@ -27,7 +27,7 @@ class ImagePage extends Article {
 	}
 
 	function view() {
-		global $wgUseExternalEditor, $wgOut, $wgShowEXIF;
+		global $wgOut, $wgShowEXIF;
 
 		$this->img = new Image( $this->mTitle );
 
@@ -160,11 +160,9 @@ class ImagePage extends Article {
 		return Article::getContent( $noredir );
 	}
 
-	function openShowImage()
-	{
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,
-		       $wgUseImageResize, $wgRepositoryBaseUrl,
-		       $wgUseExternalEditor, $wgServer, $wgFetchCommonsDescriptions;
+	function openShowImage() {
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
+
 		$full_url  = $this->img->getURL();
 		$anchoropen = '';
 		$anchorclose = '';
@@ -470,10 +468,10 @@ END
 		return $this->confirmDelete( $q, $wgRequest->getText( 'wpReason' ) );
 	}
 
-	function doDelete()
-	{
-		global $wgOut, $wgUser, $wgContLang, $wgRequest;
-		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList;
+	function doDelete()	{
+		global $wgOut, $wgUser, $wgRequest, $wgUseSquid, $wgInternalServer;
+		global $wgPostCommitUpdateList;
+		
 		$fname = 'ImagePage::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );
@@ -590,10 +588,8 @@ END
 		}
 	}
 
-	function revert()
-	{
-		global $wgOut, $wgRequest, $wgUser;
-		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
+	function revert() {
+		global $wgOut, $wgRequest, $wgUser, $wgUseSquid, $wgInternalServer;
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16 ) {
@@ -688,7 +684,7 @@ class ImageHistoryList {
 	}
 
 	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $width, $height ) {
-		global $wgUser, $wgLang, $wgContLang, $wgTitle;
+		global $wgUser, $wgLang, $wgTitle;
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
 		$del = wfMsg( 'deleteimg' );

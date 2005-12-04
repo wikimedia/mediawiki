@@ -1037,7 +1037,7 @@ END
 	 * @todo document
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgAllowDiffPreview, $wgEnableDiffPreviewPreference;
+		global $wgOut, $wgUser, $wgTitle, $wgParser;
 
 		$fname = 'EditPage::getPreviewText';
 		wfProfileIn( $fname );
@@ -1243,7 +1243,7 @@ END
 	 * The necessary JavaScript code can be found in style/wikibits.js.
 	 */
 	function getEditToolbar() {
-		global $wgStylePath, $wgLang, $wgMimeType, $wgJsMimeType;
+		global $wgStylePath, $wgLang, $wgJsMimeType;
 
 		/**
 		 * toolarray an array of arrays which each include the filename of
