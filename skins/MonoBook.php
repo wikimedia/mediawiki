@@ -63,10 +63,10 @@ class MonoBookTemplate extends QuickTemplate {
 		<!--[if gte IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
 		<!--[if IE]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-		<?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php                                   $this->text('stylepath' ) ?>/common/wikibits.js"></script>
-		<?php if($this->data['pagecss'   ]) { ?><style type="text/css"><?php              $this->html('pagecss'   ) ?></style><?php    } ?>
-		<?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php              $this->html('usercss'   ) ?></style><?php    } ?>
+		<?php if($this->data['jsvarurl'  ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"><!-- site js --></script><?php } ?>
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php           $this->text('stylepath' ) ?>/common/wikibits.js"><!-- wikibits js --></script>
+		<?php if($this->data['pagecss'   ]) { ?><style type="text/css"><?php   $this->html('pagecss'   ) ?></style><?php    } ?>
+		<?php if($this->data['usercss'   ]) { ?><style type="text/css"><?php   $this->html('usercss'   ) ?></style><?php    } ?>
 		<?php if($this->data['userjs'    ]) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs'    ) ?>"></script><?php } ?>
 		<?php if($this->data['userjsprev']) { ?><script type="<?php $this->text('jsmimetype') ?>"><?php      $this->html('userjsprev') ?></script><?php   } ?>
 		<?php if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
@@ -146,16 +146,13 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div class="pBody">
 			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
-				<input id="searchInput" name="search" type="text"
-					<?php if($this->haveMsg('accesskey-search')) {
+				<input id="searchInput" name="search" type="text" <?php
+					if($this->haveMsg('accesskey-search')) {
 						?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php }
 					if( isset( $this->data['search'] ) ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
-				<input type='submit' name="go" class="searchButton" id="searchGoButton"
-					value="<?php $this->msg('go') ?>"
-					/>&nbsp;<input type='submit' name="fulltext"
-					class="searchButton"
-					value="<?php $this->msg('search') ?>" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('go') ?>" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" value="<?php $this->msg('search') ?>" />
 			</div></form>
 		</div>
 	</div>
@@ -229,7 +226,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<?php if($this->data['tagline']) { ?><li id="f-tagline"><?php echo $this->data['tagline'] ?></li><?php } ?>
 	</ul>
 			</div>
-		<script type="text/javascript"> if (window.runOnloadHook) runOnloadHook(); </script>
+		<script type="text/javascript"> if (window.runOnloadHook) runOnloadHook();</script>
 		</div>
 		<?php $this->html('reporttime') ?>
 	</body>
