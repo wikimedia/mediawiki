@@ -332,6 +332,8 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => "Project:General_disclaimer",
+'privacy' => 'Política de privacidade',
+'privacypage' => 'Project:Política_de_privacidade',
 'errorpagetitle' => "Erro",
 'returnto'              => "Retornar para $1.",
 'tagline'       => "Origem: {{SITENAME}}, a enciclopédia livre",
@@ -498,7 +500,7 @@ Pode ver e copiar o código fonte desta página:",
 # Login and logout pages
 #
 'logouttitle'   => 'Saída de utilizador',
-'logouttext'            => "Não está mais autenticado.
+'logouttext'            => "<strong>Não está mais autentificado.</strong><br />
 Pode continuar a utilizar a Wikipédia anonimamente, ou pode autenticar-se
 novamente como o mesmo utilizador ou como um utilizador diferente. Atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autenticado, até limpar a cache do seu navegador.\n",
 
@@ -521,6 +523,11 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'logout'                => 'Sair',
 'userlogout'    => 'Sair',
 'notloggedin'   => 'Não autentificado',
+'nologin'       => 'Não possui uma conta? $1.',
+'nologinlink'   => 'Criar uma conta',
+'createaccount' => 'Create account',
+'gotaccount'    => 'Já possui uma conta? $1.',
+'gotaccountlink'        => 'Entrar',
 'createaccount' => 'Criar nova conta',
 'createaccountmail'     => 'por email',
 'badretype'             => 'As palavras-chaves que introduziu não são iguais.',
@@ -532,6 +539,7 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'yourlanguage'  => 'Idioma:',
 'yourvariant'  => 'Variante',
 'yournick'              => 'Alcunha:',
+'badsig'                => 'Assinatura inválida; verifique o código HTML utilizado.',
 'email'                 => 'Email',
 'emailforlost'          => "Os campos marcados são opcionais. Colocando o seu endereço de e-mail permite outras pessoas entrem em contacto consigo sem que tenha que revelar o seu e-mail a elas, e também é útil caso se esquecer da sua palavra-chave.<br /><br />O seu nome real, se o indicar, será utilizado para dar atribuição do seu trabalho.",
 'prefs-help-email-enotif' => 'Este endereço é também utilizado para enviar-lhe notificações caso as active nas preferências.',
@@ -542,24 +550,26 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'nocookieslogin'        => "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 'noname'                => 'Não colocou um nome de utilizador válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
-'loginsuccess'  => "Está agora você está logado na {{SITENAME}} como \"$1\".",
-'nosuchuser'    => "Não há nenhum utilizador com o nome \"$1\".
-Verifique o nome que introduziu, ou utilize o formulário abaixo para criar uma nova conta de utilizador.",
+'loginsuccess'  => "'''Encontra-se agora ligado à {{SITENAME}} como \"$1\"'''.",
+'nosuchuser'    => "Não existe nenhum utilizador com o nome \"$1\".
+Verifique o nome que introduziu, ou crie uma nova conta de utilizador.",
 'nosuchusershort'       => "Não existe um utilizador com o nome \"$1\". Verifique o nome que introduziu.",
-'wrongpassword'         => 'A senha que você entrou é inválida. Por favor tente novamente.',
-'mailmypassword'        => 'Enviar uma nova senha por e-mail',
-'passwordremindertitle' => "Lembrador de senhas da {{SITENAME}}",
-'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova senha para login para {{SERVERNAME}}.
-A senha para o utilizador \"$2\" é a partir de agora \"$3\". Deve agora entrar na sua conta e alterar a senha.
+'wrongpassword'         => 'A palavra-chave que introduziu é inválida. Por favor tente novamente.',
+'wrongpasswordempty'            => 'Palavra-chave introduzida está em branco. Por favor tente novamente.',
+'mailmypassword'        => 'Enviar uma nova palavra-chave por e-mail',
+'passwordremindertitle' => "Lembrador de palavras-chave da {{SITENAME}}",
+'passwordremindertext' => "Alguém (provavelmente você, do endereço de IP $1) solicitou que fosse lhe envido uma nova palavra-chave para {{SERVERNAME}}.
+A palavra para o utilizador \"$2\" é a partir de agora \"$3\". Pode agora entrar na sua conta e alterar a palavra-chave.
 
-Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua senha e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a senha antiga.",
+Caso tenha sido outra pessoa a fazer este pedido ou caso você já se tenha lembrado da sua palavra-chave e se não a desejar alterar, pode ignorar esta mensagem e continuar a utilizar a palavra-chave antiga.",
 'noemail'                           => "Não existe um endereço de e-mail associado ao utilizador \"$1\".",
-'passwordsent'  => "Uma nova senha está sendo enviada para o endereço de e-mail associado ao utilizador \"$1\".
+'passwordsent'  => "Uma nova palavra-chave encontra-se a ser enviada para o endereço de email associado ao utilizador \"$1\".
 Por favor, volte a efectuar a autentificação ao recebê-la.",
-'eauthentsent'             =>  "A confirmation email has been sent to the nominated email address. 
-Before any other mail is sent to the account, you will have to follow the instructions in the email, 
-to confirm that the account is actually yours.",
-'loginend'                          => ' ',
+'eauthentsent'             =>  "Um email de confirmação foi enviado para o endereço de correio electrónico nomeado. 
+Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email, 
+de modo a confirmar que a conta é mesmo sua.",
+'loginend'                          => '',
+'signupend'                         => '{{int:loginend}}',
 'mailerror'                 => "Erro a enviar o mail: $1",
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
 'emailauthenticated'        => 'O seu endereço de e-mail foi autenticado em $1.',
@@ -639,7 +649,7 @@ Note que não poderá usar a funcionalidade \"Contactar utilizador\" se não pos
 'note'                  => '<strong>Nota:</strong> ',
 'previewnote'   => '<strong>Isto é apenas uma previsão, as modificações ainda não foram salvas!</strong>',
 'session_fail_preview' => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão. 
-Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a se ligar.</strong>',
+Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
 'previewconflict' => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'importing'		=> "Importando $1",
 'editing'               => "Editando $1",
@@ -921,6 +931,7 @@ Para incluír a imagem numa página, utilize o link na forma de
 'copyrightpage' => "Project:Direitos_de_autor",
 'copyrightpagename' => "Direitos autorais da {{SITENAME}}",
 'uploadedfiles' => 'Ficheiros carregados',
+'ignorewarning'        => 'Ignorar aviso e salvar de qualquer forma.',
 'ignorewarnings'        => 'Ignorar todos os avisos',
 'minlength'             => 'O nome de um ficheiro tem de ter no mínimo três letras.',
 'illegalfilename'       => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor altere o nome do ficheiro e tente carregar novamente.',
@@ -1660,7 +1671,18 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 
 # Metadata
 'metadata' => 'Metadata',
-
+'metadata-help' => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizar a imagem. Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
+'metadata-expand' => 'Mostrar restantes detalhes',
+'metadata-collapse' => 'Esconder restantes detalhes',
+'metadata-fields' => 'Os campos EXIF metadata listados nesta mensagem serão
+incluídos na apresentação da página de detalhes da imagem quando a tabela da metadata
+for minimizada. Outros serão escondidos por defeito.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 # Exif tags
 'exif-imagewidth' =>'Largura',
 'exif-imagelength' =>'Altura',
@@ -1708,7 +1730,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-subsectimeoriginal' =>'DateTimeOriginal subseconds',
 'exif-subsectimedigitized' =>'DateTimeDigitized subseconds',
 'exif-exposuretime' =>'Tempo de exposição',
+'exif-exposuretime-format' => '$1 sec ($2)',
 'exif-fnumber' =>'Número F',
+'exif-fnumber-format' =>'f/$1',
 'exif-exposureprogram' =>'Programa de exposição',
 'exif-spectralsensitivity' =>'Spectral sensitivity',
 'exif-isospeedratings' =>'Taxa de velocidade ISO',
@@ -1723,6 +1747,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
 'exif-lightsource' =>'Fonte de luz',
 'exif-flash' =>'Flash',
 'exif-focallength' =>'Lens focal length',
+'exif-focallength-format' =>'$1 mm',
 'exif-subjectarea' =>'Subject area',
 'exif-flashenergy' =>'Energia do flash',
 'exif-spatialfrequencyresponse' =>'Spatial frequency response',
