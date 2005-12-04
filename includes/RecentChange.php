@@ -132,20 +132,22 @@ class RecentChange
 
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
-			$oldid = $this->mAttribs['rc_last_oldid'];
-			$ns = $this->mAttribs['rc_namespace'];
-			$title = $this->mAttribs['rc_title'];
 			$lastTime = $this->mExtra['lastTimestamp'];
-			$now = $this->mAttribs['rc_timestamp'];
-			$curId = $this->mAttribs['rc_cur_id'];
+			#$now = $this->mAttribs['rc_timestamp'];
+			#$curId = $this->mAttribs['rc_cur_id'];
 
 			# Don't bother looking for entries that have probably
 			# been purged, it just locks up the indexes needlessly.
 			global $wgRCMaxAge;
 			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
 			if( $age < $wgRCMaxAge ) {
-                                # live hack, will commit once tested - kate
+				# live hack, will commit once tested - kate
 				# Update rc_this_oldid for the entries which were current
+				#
+				#$oldid = $this->mAttribs['rc_last_oldid'];
+				#$ns = $this->mAttribs['rc_namespace'];
+				#$title = $this->mAttribs['rc_title'];
+				#
 				#$dbw->update( 'recentchanges',
 				#	array( /* SET */
 				#		'rc_this_oldid' => $oldid
@@ -327,7 +329,7 @@ class RecentChange
 	}
 
 	/* static */ function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
-		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip='', true );
+		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
 	# A log entry is different to an edit in that previous revisions are
@@ -451,11 +453,12 @@ class RecentChange
 
 		if ( isset( $oldSize ) && isset( $newSize ) ) {
 			$szdiff = $newSize - $oldSize;
-			if ($szdiff < -500)
+			if ($szdiff < -500) {
 				$szdiff = "\002$szdiff\002";
-			else if ($szdiff >= 0)
-				$szdiff = "+$szdiff";
-			$szdiff = "($szdiff)";
+			} elseif ($szdiff >= 0) {
+				$szdiff = '+' . $szdiff ;
+			}
+			$szdiff = '(' . $szdiff . ')' ;
 		} else {
 			$szdiff = '';
 		}
