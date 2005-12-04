@@ -95,7 +95,6 @@ function fixLinksFromArticle( $id ) {
 	$wgOut->addWikiText( $text );
 	
 	# Look up the links in the DB and add them to the link cache
-	$wgOut->transformBuffer();
 	$wgOut->clearHTML();
 
 	$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
