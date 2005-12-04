@@ -32,9 +32,6 @@ class SquidUpdate {
 		$id = $title->getArticleID();
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		$links = $dbr->tableName( 'links' );
-		$page = $dbr->tableName( 'page' );
-
 		$res = $dbr->select( array( 'links', 'page' ),
 			array( 'page_namespace', 'page_title' ),
 			array(
@@ -117,6 +114,7 @@ class SquidUpdate {
 					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
 					#$this->debug("Opening socket to $server:$port");
+					$error = $errstr = false;
 					$socket = @fsockopen($server, $port, $error, $errstr, 3);
 					#$this->debug("\n");
 					if (!$socket) {
