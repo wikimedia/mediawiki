@@ -15,7 +15,7 @@ $wgNamespaceNamesLi = array(
 	NS_USER				=> 'Gebroeker',
 	NS_USER_TALK		=> 'Euverlik_gebroeker',
 	NS_PROJECT			=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> 'Euverlik_Wikipedia',
+	NS_PROJECT_TALK		=> 'Euverlik_'.$wgMetaNamespace,
 	NS_IMAGE			=> 'Aafbeilding',
 	NS_IMAGE_TALK		=> 'Euverlik_afbeelding',
 	NS_MEDIAWIKI		=> 'MediaWiki',
@@ -79,15 +79,15 @@ $wgNamespaceNamesLi = array(
 "mainpage"  => "Hoofdpagina",
 "about"   => "Info",
 'aboutsite' => 'Euver {{SITENAME}}',
-"aboutpage"  => "Wikipedia:info",
+"aboutpage"  => "{{ns:project}}:info",
 "help"   => "Help",
-"helppage"  => "Wikipedia:Help",
+"helppage"  => "{{ns:project}}:Help",
 "bugreports" => "Foutenrapportage",
-"bugreportspage" => "Wikipedia:Foutenrapportage",
+"bugreportspage" => "{{ns:project}}:Foutenrapportage",
 "faq"   => "FAQ",
-"faqpage"  => "Wikipedia:Veulgestjilde vroage",
+"faqpage"  => "{{ns:project}}:Veulgestjilde vroage",
 "edithelp"  => "Hulp bie bewirken",
-"edithelppage" => "Wikipedia:Instructies",
+"edithelppage" => "{{ns:project}}:Instructies",
 "cancel"  => "Annulere",
 "qbfind"  => "Zeuke",
 "qbbrowse"  => "Bladere",
@@ -121,7 +121,7 @@ $wgNamespaceNamesLi = array(
 "viewcount"  => "Deze pagina werd $1 maal bekeken.",
 "printsubtitle" => "(Uit {{SERVER}})",
 "protectedpage" => "Beveiligde pagina",
-"administrators" => "Wikipedia:Systeembeheerders",
+"administrators" => "{{ns:project}}:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",
 "sysoptext"  => "De gevraagde handeling kan enkel uitgevoerd worden door systeembeheerders. Zie $1.",
 "developertitle" => "Toegang alleen voor systeemontwikkelaars",
@@ -129,16 +129,16 @@ $wgNamespaceNamesLi = array(
 "nbytes"  => "$1 bytes",
 "go"   => "OK",
 "ok"   => "OK",
-"sitetitle"  => "Wikipedia",
-"sitesubtitle" => "De vrije encyclopedie",
-"retrievedfrom" => "Afkomstig van Wikipedia, de Vrije Encyclopedie. \"$1\"",
+'sitetitle'  => '{{SITENAME}}',
+'sitesubtitle' => '',
+'retrievedfrom' => 'Afkomstig van {{SITENAME}}. "$1"',
 
 # Main script and global functions
 # Algemene functies
 "nosuchaction" => "Gevraagde handeling bestjit neet",
-"nosuchactiontext" => "De door de URL gespecifieerde handeling wordt neet herkend door de Wikipedia software",
+"nosuchactiontext" => "De door de URL gespecifieerde handeling wordt neet herkend door de MediaWiki software",
 "nosuchspecialpage" => "De gevraagde speciale pagina is onvindbaar",
-"nospecialpagetext" => "U heeft een speciale pagina aangevraagd die neet wordt herkend door de Wikipedia software",
+"nospecialpagetext" => "U heeft een speciale pagina aangevraagd die neet wordt herkend door de MediaWiki software",
 
 # General errors
 # Algemene foutmeldingen
@@ -155,7 +155,7 @@ MySQL gaf the foutmelding \"<tt>$3: $4</tt>\".",
 "nodb"   => "Selectie van database $1 neet mogelijk",
 "readonly"  => "Database geblokeerd",
 "enterlockreason" => "Geef un reden veur de blokkiering en wielang ut waarschijnlijk git doere. De ingegeven reden zal aan de gebroekers getoond worden.",
-"readonlytext" => "De database van Wikipedia is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
+"readonlytext" => "De database van {{SITENAME}} is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
 De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 <p>$1",
 "missingarticle" => "De database heeft een paginatekst (\"$1\") die het zou moeten vinden neet gevonden. Dit is geen fout in de database, maar waarschijnlijk in de software. Meld dit a.u.b. aan een beheerder, met vermelding van de URL.",
@@ -176,7 +176,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 # Aanmelden en afmelden
 "logouttitle" => "Afmelden gebroeker",
 "logouttext" => "U bent nu afgemeld.
-U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
+U kan {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
 
 "welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebroekersprofiel is aangemaakt. U kan nu uw persoonlijke voorkeuren instellen.",
 
@@ -202,12 +202,12 @@ U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebroekersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
-"loginsuccess" => "U bent nu aangemeld bij Wikipedia als \"$1\".",
+"loginsuccess" => "U bent nu aangemeld bij {{SITENAME}} als \"$1\".",
 "nosuchuser" => "Er bestaat geen gebroeker met de naam \"$1\". Controleer uw spelling, of gebruik onderstaand formulier om een nieuw gebroekersprofiel aan te maken.",
 "wrongpassword" => "Het ingegeven wachtwoord is neet juist. Probeer het opnieuw.",
 "mailmypassword" => "Stuur mij een nieuw wachtwoord op",
-"passwordremindertitle" => "Herinnering wachtwoord Wikipedia Li",
-"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor Wikipedia toe te zenden. Het nieuwe wachtwoord voor gebroeker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
+"passwordremindertitle" => "Herinnering wachtwoord {{SITENAME}} Li",
+"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor {{SITENAME}} toe te zenden. Het nieuwe wachtwoord voor gebroeker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
 "noemail"  => "Er is geen e-mailadres geregistreerd voor \"$1\".",
 "passwordsent" => "Er is een nieuw wachtwoord verzonden naar het e-mailadres wat geregistreerd staat voor \"$1\".
 Gelieve na ontvangst opnieuw aan te melden.",
@@ -221,7 +221,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Noakieke",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "gebroeker is geBlokkierd",
-"blockedtext" => "Uw gebroekersnaam of IP-adres is door $1 geBlokkierd. De opgegeven reden:<br />$2<p>. U kunt voor euverlik contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]].",
+"blockedtext" => "Uw gebroekersnaam of IP-adres is door $1 geBlokkierd. De opgegeven reden:<br />$2<p>. U kunt voor euverlik contact opnemen met de [[{{ns:project}}:Systeembeheerders|systeembeheerders]].",
 "newarticle" => "(Nieuw)",
 "newarticletext" => "Verwijder dit en beschrijf hier de nieuwe pagina.",
 "noarticletext" => "(Deze pagina bevat momenteel geen tekst)",
@@ -236,7 +236,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgesjlage versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.</strong>",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "Opgelet: Alle bijdragen aan Wikipedia worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
+"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 
 
 # History pages
@@ -264,7 +264,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Search results
 # Zoek resultaten
 "searchresults" => "Zoekresultaten",
-"searchresulttext" => "Voor meer informatie over zoeken op Wikipedia: zie $1.",
+"searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie $1.",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
 "badquerytext" => "Uw zoekopdracht kon neet worden uitgevoerd. Dit komt wellicht doordat u heeft geprobeerd een woord van minder dan drie letters te zoeken; dat wordt door de software neet ondersteund. Het is ook mogelijk dat u de zoekterm verkeerd hebt ingetypt, zoals bij \"vissen en en schubben\".",
@@ -293,7 +293,7 @@ $2 Toon redirects   Zoek: $3 $9",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen",
 "changepassword" => "Wachtwoord wijzigen",
-"skin"   => "Wikipedia-Uiterlijk",
+"skin"   => "{{SITENAME}}-Uiterlijk",
 "saveprefs"  => "Voorkeuren opslaan",
 "resetprefs" => "Standaardvoorkeuren herstellen",
 "oldpassword" => "Huidig wachtwoord",
@@ -317,9 +317,9 @@ $2 Toon redirects   Zoek: $3 $9",
 # Recent changes
 # Recente wijzigingen
 "recentchanges" => "Recente wijzigingen",
-"recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan Wikipedia.
-Mocht u hier nieuw zijn, dan welkom bij Wikipedia! Bekijk AUB de volgende pagina's eens: [[Wikipedia:Veel gestelde vragen|Veel gestelde vragen]], [[Wikipedia:Instructies|Instructies]], [[Wikipedia:Objectiviteit|Objectiviteit]] en [[Wikipedia:Wat je neet moet doen|Wat je NIET moet doen]].
-Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussiëren, ga naar [[Wikipedia:euverlik gewenst|euverlik gewenst]]. Er is ook een email-liest voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
+"recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan {{SITENAME}}.
+Mocht u hier nieuw zijn, dan welkom bij {{SITENAME}}! Bekijk AUB de volgende pagina's eens: [[{{ns:project}}:Veel gestelde vragen|Veel gestelde vragen]], [[{{ns:project}}:Instructies|Instructies]], [[{{ns:project}}:Objectiviteit|Objectiviteit]] en [[{{ns:project}}:Wat je neet moet doen|Wat je NIET moet doen]].
+Als u pagina's wilt verwijderen, ga naar [[{{ns:project}}:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussiëren, ga naar [[Wikipedia:euverlik gewenst|euverlik gewenst]]. Er is ook een email-liest voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
 <br />Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
@@ -350,8 +350,8 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 om bestanden te uploaden.",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het Wikipedia
-[[Wikipedia:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
+wees zeker dat het in overeenkomst is met het {{SITENAME}}
+[[{{ns:project}}:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
 
 Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de . [[Special:Imagelist|liest van ge-uploade bestanden]].
 Uploads en verwijderingen worden bijgehouden in het
@@ -362,7 +362,7 @@ Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbes
 Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid.
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b><nowiki>[[afbeelding:uw_foto.jpg]]</nowiki></b> of <b><nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki></b> of <b><nowiki>[[media:uw_geluid.ogg]]</nowiki></b> voor audio.
 
-Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
+Vergeet neet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de liest met de meest recent ge-uploade bestanden. Alle tieden zijn servertied (UTC).
@@ -371,8 +371,8 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 ",
 "filename"  => "Bestandsnaam",
 "filedesc"  => "Beschrijving",
-"copyrightpage" => "Wikipedia:Auteursrechten",
-"copyrightpagename" => "Wikipedia auteursrechten",
+"copyrightpage" => "{{ns:project}}:Auteursrechten",
+"copyrightpagename" => "{{SITENAME}} auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
@@ -409,7 +409,7 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 # Statistics
 # Statistieken
 "statistics" => "Statistieken",
-"sitestats"  => "Statistieken betreffende Wikipedia LI",
+"sitestats"  => "Statistieken betreffende {{SITENAME}} LI",
 "userstats"  => "Statistieken betreffende gebroekers",
 "sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"euverlik\" pagina's, pagina's over Wikipedia, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk neet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
@@ -418,11 +418,11 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # Maintenance Page
 #
 "maintenance"           => "Onderhoudspagina",
-"maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de Wikipedia te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus neet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
+"maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de {{SITENAME}} te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus neet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
 "maintenancebacklink"   => "Terug naar de Onderhoudspagina",
 "disambiguations"       => "Doorverwijspagina's",
-"disambiguationspage"   => "Wikipedia:Doorverwijspagina",
-"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[Wikipedia:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br />Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br />Opmerking: Deze liest toont alleen pagina's vanuit de hoofdnaamruimte, en dus neet euverlikpagina's, Wikipedia:pagina's en dergelijke.",
+"disambiguationspage"   => "{{ns:project}}:Doorverwijspagina",
+"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[{{ns:project}}:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br />Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br />Opmerking: Deze liest toont alleen pagina's vanuit de hoofdnaamruimte, en dus neet euverlikpagina's, {{ns:project}}:pagina's en dergelijke.",
 "doubleredirects"       => "Dubbele redirects",
 "doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze liest redirects staan die er neet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br />\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
 "brokenredirects"       => "Gebroken redirects",
@@ -458,9 +458,9 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "debug"   => "Bugreparatie",
 "newpages"  => "Nieuwe pagina's",
 "movethispage" => "Verplaats deze pagina",
-"unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige Wikipedia. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
+"unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige {{SITENAME}}. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekwinkels",
-"booksourcetext" => "Hieronder is een liest van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kan u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. Wikipedia heeft <u>geen enkele</u> relatie met deze websites.",
+"booksourcetext" => "Hieronder is een liest van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kan u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. {{SITENAME}} heeft <u>geen enkele</u> relatie met deze websites.",
 
 # Email this user
 # E-mail deze gebroeker
@@ -508,7 +508,7 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 "confirm"  => "Bevestig",
 "confirmdelete" => "Bevestig verwijdering",
 "deletesub"  => "(Verwijderen \"$1\")",
-"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[Wikipedia:Instructies]].",
+"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[{{ns:project}}:Instructies]].",
 
 "actioncomplete" => "Actie voltooid",
 "deletedtext" => "\"$1\" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.",
@@ -534,7 +534,7 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 "undeleterevision" => "Verwijderde versie van $1",
 "undeletebtn" => "Terugplaatsen!",
 "undeletedarticle" => "\"$1\" is teruggeplaatst.",
-"undeletedtext" =>"Het artikel [[:$1|$1]] is teruggeplaatst. Zie [[Wikipedia:Logboek verwijderde pagina's]] voor een liest van de meest recente verwijderingen en terugplaatsingen.",
+"undeletedtext" =>"Het artikel [[:$1|$1]] is teruggeplaatst. Zie [[{{ns:project}}:Logboek verwijderde pagina's]] voor een liest van de meest recente verwijderingen en terugplaatsingen.",
 
 # Contributions
 # Bijdragen
@@ -558,7 +558,7 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 # Block/unblock IP
 #
 "blockip"  => "Blokkier IP-adres",
-"blockiptext" => "Gebroek het onderstaande formulier om schrijftoegang van een bepaald IP-adres te verbieden. Dit mag enkel gedaan worden om vandalisme te voorkomen en moet in overeenstemming zijn met de [[Wikipedia:spelregels|spelregels]] van Wikipedia. Vul een specifieke reden in.",
+"blockiptext" => "Gebroek het onderstaande formulier om schrijftoegang van een bepaald IP-adres te verbieden. Dit mag enkel gedaan worden om vandalisme te voorkomen en moet in overeenstemming zijn met de [[{{ns:project}}:spelregels|spelregels]] van {{SITENAME}}. Vul een specifieke reden in.",
 "ipaddress"  => "IP-adres",
 "ipbreason"  => "Reden",
 "ipbsubmit"  => "Blokkier dit IP-adres",
@@ -589,9 +589,9 @@ Zie de [[Special:Ipblocklist|liest van geBlokkierde IP-adressen]].",
 "locknoconfirm" => "U heeft neet het vakje aangevinkt om uw keuze te bevestigen.",
 "lockdbsuccesssub" => "Blokkering database succesvol",
 "unlockdbsuccesssub" => "Blokkering van de database opgeheven",
-"lockdbsuccesstext" => "De database van Wikipedia LI is geblokkierd.
+"lockdbsuccesstext" => "De database van {{SITENAME}} is geblokkierd.
 Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onderhoud.",
-"unlockdbsuccesstext" => "Blokkering van de database van Wikipedia LI is opgeheven.",
+"unlockdbsuccesstext" => "Blokkering van de database van {{SITENAME}} is opgeheven.",
 
 # Move page
 # Verplaats pagina
@@ -639,7 +639,7 @@ De kins ouch 'n log type, de gebroekersname of de betriffende pazjena selectiere
 'and' => "en",
 'anontalk' => "Euverlik veur dit IP adres",
 'anontalkpagetext' => "----''Dit is de euverlikpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemak of dae 't neet gebroek. Daorom gebroeke v'r 't [[IP adres]] om de gebroeker te identificere. Dat adres kint weure gedeild doer miedere gebroekers. As e 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r onrillevante commentare aan dich gericht zint, kins e 't biste [[Special:Userlogin|'n account crëere of inlogge]] om toekomstige verwarring mit angere anonieme gebroekers te veurkomme.''",
-'anonymous' => "Anonieme gebroeker(s) van Wikipedia",
+'anonymous' => "Anonieme gebroeker(s) van {{SITENAME}}",
 'article' => "Contentpazjena",
 'autoblocker' => "Omdas e 'n IP addres deils mit \"$1\" (rede \"$2\") bis e automatisch geblokkierd.",
 'blocklogentry' => "\"$1\" geblokkierd veur de tied van $2",
@@ -758,7 +758,7 @@ De beluifs os auch das e dees tèks zelf höbs gesjreve, of gekopieerd van 'n [[
 'perfdisabledsub' => "Hie is 'n opgesjlage kopie van $1:",
 'personaltools' => "Persoenlike hulpmiddele",
 'portal' => "Gebroekersportaal",
-'portal-url' => "Wikipedia:Gebroekersportaal",
+'portal-url' => "{{ns:project}}:Gebroekersportaal",
 'poweredby' => "{{SITENAME}} dreit op [http://www.mediawiki.org/ MediaWiki], 'n vriej software wiki.",
 'prefs-misc' => "Anger insjtèllinge",
 'prefs-personal' => "Gebroekersinfo",
@@ -786,8 +786,8 @@ De kins de brontèks van dees pazjena bekieke en kopiëre:",
 'showbigimage' => "Download versie met hoege resolutie ($1x$2, $3 kB)",
 'showhideminor' => "$1 klein verangeringe | $2 bots | $3 ingelogde gebroekers | $4 patrolled edits",
 'showingresultsnum' => "Hieonger de <b>$3</b> resultate vanaaf #<b>$2</b>.",
-'siteuser' => "Wikipedia gebroeker $1",
-'siteusers' => "Wikipedia gebroekers(s) $1",
+'siteuser' => "{{SITENAME}} gebroeker $1",
+'siteusers' => "{{SITENAME}} gebroekers(s) $1",
 'specialpage' => "Speciaal Pazjena",
 'subcategories' => "Subkattegorië",
 'subcategorycount' => "Dees kategorie haet $1 subkategorieë.",

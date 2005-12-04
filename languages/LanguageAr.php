@@ -109,7 +109,7 @@ require_once('LanguageUtf8.php');
 'blanknamespace' => 'مقالات',
 'blockedtext' => 'إسم المستخدم أو عنوان ال IP الخاص بك تم منعه من قبل $1.
 سبب المنع هو: <br />\'\'$2\'\' <p>
-من الممكن الإتصال مع $1 للنقاش حول المنع، أو من الممكن الإتصال مع أحد [[Wikipedia:Administrators|الإداريين]] حول ذلك.
+من الممكن الإتصال مع $1 للنقاش حول المنع، أو من الممكن الإتصال مع أحد [[{{ns:project}}:Administrators|الإداريين]] حول ذلك.
 
 تذكر أنه لا يمكن لك إستعمال خاصية إرسال رسائل إلكترونية للمستخدمين إلا إذا كنت قد وضعت عنوان بريدي صحيح في صفحة [[Special:Preferences|التفضيلات]] الخاصة بك.
 
@@ -471,12 +471,11 @@ require_once('LanguageUtf8.php');
 
 <div dir="ltr">
 There are <b>$1</b> total pages in the database.
-This includes "talk" pages, pages about Wikipedia, minimal "stub"
+This includes "talk" pages, pages about {{SITENAME}}, minimal "stub"
 pages, redirects, and others that probably don\'t qualify as articles.
 Excluding those, there are <b>$2</b> pages that are probably legitimate
 articles.<p>
-There have been a total of <b>$3</b> page views, and <b>$4</b> page edits
-since the Arabic wikipedia creation in July 2003.
+There have been a total of <b>$3</b> page views, and <b>$4</b> page edits.
 That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.
 
 </div>',
@@ -537,7 +536,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.
 'uploadnologintext' => 'يجب أن تكون <a href="/wiki/Special:Userlogin">مسجلا الدخول</a>
 لتتمكن من تحميل الملفات.',
 'uploadtext' => '<strong>توقف!</strong>
-قبل تحميل أي ملف تأكد من قرائتك وثيقة <a href="/wiki/Wikipedia:Image_use_policy">سياسة إستعمال الصور</a>.
+قبل تحميل أي ملف تأكد من قرائتك وثيقة [[{{ns:project}}Image_use_policy|سياسة إستعمال الصور]].
 إذا وجد ملف بنفس الإسم في ويكيبيديا سيتم إستبدال الملف بدون أي تحذير أو إشعار مسبق.
 فإذا لم يكن الملف تحديثا لملف مسبق، تأكد من أن إسم الملف غير موجود من قبل.
 لعرض أو البحث في الملفات التي تم تحميلها من قبل إذهب إلى <a href="/wiki/Special:Imagelist">قائمة الملفات المحملة</a>.

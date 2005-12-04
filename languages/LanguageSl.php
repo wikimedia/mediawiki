@@ -105,15 +105,15 @@ require_once( "LanguageUtf8.php" );
 "mainpage"		=> "Glavna stran",
 "about"			=> "O",
 "aboutsite"             => "O Wikipediji",
-"aboutpage"		=> "Wikipedija:O_Wikipediji",
+"aboutpage"		=> "{{ns:project}}:O_Wikipediji",
 "help"			=> "Pomoč",
-"helppage"		=> "Wikipedija:Pomoč",
+"helppage"		=> "{{ns:project}}:Pomoč",
 "bugreports"	        => "Poročila o hroščih",
-"bugreportspage"        => "Wikipedija:Poročila_o_hroščih",
+"bugreportspage"        => "{{ns:project}}:Poročila_o_hroščih",
 "faq"			=> "Najpogostejša vprašanja",
-"faqpage"		=> "Wikipedija:Najpogostejša_vprašanja",
+"faqpage"		=> "{{ns:project}}:Najpogostejša_vprašanja",
 "edithelp"		=> "Pomoč pri urejanju",
-"edithelppage"	        => "Wikipedija:Urejevanje_slovenskih_strani",
+"edithelppage"	        => "{{ns:project}}:Urejevanje_slovenskih_strani",
 "cancel"		=> "Prekini",
 "qbfind"		=> "Najdi",
 "qbbrowse"		=> "Pobrskaj",
@@ -151,7 +151,7 @@ require_once( "LanguageUtf8.php" );
 "viewcount"		=> "To stran so pogledali $1 krat.",
 "printsubtitle"         => "(Iz {{SERVER}})",
 "protectedpage"         => "Zaščitena stran",
-"administrators"        => "Wikipedija:Administratorji",
+"administrators"        => "{{ns:project}}:Administratorji",
 "sysoptitle"	        => "Zahtevan dostop sistemskega operaterja",
 "sysoptext"		=> "To dejanje, ki ste ga zahtevali, lahko izvedejo le uporabniki s statusom \"sysop\". Glej še $1.",
 "developertitle" => "Zahtevan dostop razvijalca",
@@ -159,8 +159,8 @@ require_once( "LanguageUtf8.php" );
 "nbytes"		=> "$1 bitov",
 "go"			=> "Pojdi",
 "ok"			=> "V redu",
-"sitetitle"		=> "Wikipedija",
-"sitesubtitle"	        => "Prosta enciklopedija",
+"sitetitle"		=> "{{SITENAME}}",
+"sitesubtitle"	        => '',
 "retrievedfrom"         => "Vzpostavljeno iz \"$1\"",
 "newmessages"           => "Imaš $1.",
 "newmessageslink"       => "novih sporočil",
@@ -261,12 +261,12 @@ Sedaj se lahko vpišete in spremenite vaše geslo.",
 "blockedtitle"	        => "Uporabnik je zaprt",
 "blockedtext"	        => "Vaše uporabniško ime ali IP naslov je zaprl $1.
 Vzrok za to je naslednji:<br />''$2''<p>Lahko pokličete $1 ali katerega drugega
-[[Wikipedija:Administratorji|administratorja]] za pogovor o zaprtju.",
+[[{{ns:project}}:Administratorji|administratorja]] za pogovor o zaprtju.",
 "newarticle"	        => "(Nov)",
 "newarticletext" =>
 "Sledili ste povezavi, ki še ne obstaja.
 Za izdelavo strani, začnite vnašati besedilo v spodnjo škatlo
-(poglejte [[Wikipedija:Pomoč|stran o pomoči]] za več sporočil).
+(poglejte [[{{ns:project}}:Pomoč|stran o pomoči]] za več sporočil).
 Če ste tukaj po pomoti, samo kliknite gumb za '''nazaj''' vašega brskljalnika.",
 "anontalkpagetext"      => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja. Zaradi tega moramo uporabiti števčen [[IP address]] za njegovo/njeno ugotavljanje istovetnosti. Takšen IP naslov si lahko deli več uporabnikov. Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:Userlogin|ustvarite račun ali pa se vpišite]], da preprečite naslednje zmede z drugimi nepodpisanimi uporabniki.'' ",
 "noarticletext" => "(Trenutno ni besedila na tej strani)",
@@ -322,7 +322,7 @@ Prosimo preverite URL, ki ste ga uporabili za dostop do te strani.\n",
 # Search results
 #
 "searchresults"         => "Izidi iskanja",
-"searchresulttext"      => "Za več sporočil o iskanju v Wikipediji glej [[Wikipedija:Iskanje|Iščem v Wikipediji]].",
+"searchresulttext"      => "Za več sporočil o iskanju v Wikipediji glej [[{{ns:project}}:Iskanje|Iščem v Wikipediji]].",
 "searchquery"	        => "Za povpraševanje \"$1\"",
 "badquery"		=> "Slabo oblikovano iskalno povpraševanje",
 "badquerytext"	        => "Ne moremo obdelati vašega povpraševanja.
@@ -395,14 +395,14 @@ Notranja ID števka je $2.",
 "changes"               => "spremembe",
 "recentchanges"         => "Trenutne spremembe",
 "recentchangestext"     => "Sledi najpoznejšim spremembam v Wikipediji na tej strani.
-[[Wikipedija:Dobrodošli,_novinci|Dobrodošli, novinci]]!
-Prosimo poglejte na naslednje strani: [[Wikipedija:Najpogostejša vprašanja|Najpogostejša vprašanja]],
-[[Wikipedija:Primernosti in smernice|Smernice]]
-(še posebej [[Wikipedija:Dogovori o poimenovanjih|Dogovori o poimenovanjih]],
-[[Wikipedija:Nepristransko stališče videnja|Nepristransko stališče videnja (NSV)]]),
-in [[Wikipedija:Najpogostejše stranpoti Wikipedije|Najpogostejše stranpoti Wikipedije]].
-Če bi radi, da Wikipedija uspe, je zelo pomembno, da ne dodajate
-snovi, ki je pridržana z drugimi [[wikipedia:Avtorske pravice|avtorskimi pravicami]].
+[[{{ns:project}}:Dobrodošli,_novinci|Dobrodošli, novinci]]!
+Prosimo poglejte na naslednje strani: [[{{ns:project}}:Najpogostejša vprašanja|Najpogostejša vprašanja]],
+[[{{ns:project}}:Primernosti in smernice|Smernice]]
+(še posebej [[{{ns:project}}:Dogovori o poimenovanjih|Dogovori o poimenovanjih]],
+[[{{ns:project}}:Nepristransko stališče videnja|Nepristransko stališče videnja (NSV)]]),
+in [[{{ns:project}}:Najpogostejše stranpoti Wikipedije|Najpogostejše stranpoti Wikipedije]].
+Če bi radi, da {{SITENAME}} uspe, je zelo pomembno, da ne dodajate
+snovi, ki je pridržana z drugimi [[{{ns:project}}:Avtorske pravice|avtorskimi pravicami]].
 Zakonita obveza lahko v resnici škodi opravilu, zatorej ne počnite tega.
 Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Nalagam trenutne spremembe",
@@ -474,7 +474,7 @@ Vsi prikazani časi so strežnikov čas (UTC).
 "filename"		=> "Imedatoteke",
 "filedesc"		=> "Povzetek",
 
-"copyrightpage"         => "Wikipedija:Avtorske pravice",
+"copyrightpage"         => "{{ns:project}}:Avtorske pravice",
 "copyrightpagename"     => "Avtorske pravice Wikipedije",
 "uploadedfiles"	        => "Naložene datoteke",
 "minlength"		=> "Imena slik morajo vsebovati vsaj tri črke.",
@@ -535,7 +535,7 @@ na eno urejevanje.",
 "maintnancepagetext"	=> "Ta stran vsebuje več pripravnih pripomočkov za vsakdanje vzdrževanje. Nekatere teh funkcij obremenjujejo podatkovno bazo, zato prosim ne poženite novega nalaganja pri vsakem popravljanju ;-)",
 "maintenancebacklink"	=> "Nazaj na vzdrževalno stran",
 "disambiguations"	=> "Razjasnjevalne strani",
-"disambiguationspage"	=> "Wikipedija:Povezave_na_razjasnjevalne_strani",
+"disambiguationspage"	=> "{{ns:project}}:Povezave_na_razjasnjevalne_strani",
 "disambiguationstext"	=> "Naslednji članki so povezani na <i>razjasnjevalno stran</i>. Morajo biti povezani na pripadajočo vsebino.<br />Stran je razjasnjevalna, če je povezana iz $1.<br />Povezave iz drugih imenskih področij tukaj <i>niso</i> prikazane.",
 "doubleredirects"	=> "Dvojne preusmeritve",
 "doubleredirectstext"	=> "<b>Pozor:</b> ta seznam lahko vsebuje nepravilne člene. To ponavadi pomeni, da obstaja dodatno besedilo s povezavami pod prvim ukazom #REDIRECT.<br />\nVsaka vrsta vsebuje povezave k prvi in drugi preusmeritvi, kot tudi prvo vrstico drugega preusmerjenega besedila, kar ponavadi da \"resnični\" ciljni članek, na katerega mora kazati prva preusmeritev.",
@@ -576,7 +576,7 @@ na eno urejevanje.",
 "unusedimagestext" => "<p>Prosimo upoštevajte, da so lahko druge spletne strani, kot so mednarodne Wikipedije povezane s sliko z neposrednim URL-jem in so tukaj navedene, navkljub aktivni uporabi.",
 "booksources"	=> "Knjižni viri",
 "booksourcetext" => "Spodaj je seznam k drugim stranem, ki prodajajo nove ali rabljene knjige in kjer so lahko dodatne informacije o knjigah, ki jih iščete.
-Wikipedija ne služi z nobenim od teh poslov in ta spisek ni pokazatelj njihovih uspehov.",
+{{SITENAME}} ne služi z nobenim od teh poslov in ta spisek ni pokazatelj njihovih uspehov.",
 
 # Email this user
 #
@@ -630,7 +630,7 @@ Morebitne spremembe te strani in njena pripadajoča pogovorna stran bosta navede
 "deletesub"	=> "(Brišem \"$1\")",
 "historywarning" => "OPOZORILO: stran, ki jo želite brisati ima zgodovino: ",
 "confirmdeletetext" => "Za stalno boste zbrisali stran ali sliko skupaj z zgodovino iz podatkovne baze.
-Prosimo potrdite vaš namen, da razumete posledice in da to počnete v skladu s [[Wikipedija:Pravila|pravili]].",
+Prosimo potrdite vaš namen, da razumete posledice in da to počnete v skladu s [[{{ns:project}}:Pravila|pravili]].",
 "actioncomplete" => "Poseg zaključen",
 "deletedtext"	 => "\"$1\" je zbrisana.
 Glej $2 za zabeležbe nadavnih brisanj.",
@@ -668,7 +668,7 @@ Zadnja sprememba od uporabnika [[Uporabnik:$3|$3]] ([[Pogovor z uporabnikom:$3|P
 "undeletebtn" => "Obnovi!",
 "undeletedarticle" => "obnovljen \"$1\"",
 "undeletedtext"   => "Članek [[:$1|$1]] se je uspešno obnovil.
-Glej [[Wikipedija:Dnevnik_brisanja]] za zabeležbe nedavnih brisanj in obnovitev.",
+Glej [[{{ns:project}}:Dnevnik_brisanja]] za zabeležbe nedavnih brisanj in obnovitev.",
 
 # Contributions
 #
@@ -695,7 +695,7 @@ Glej [[Wikipedija:Dnevnik_brisanja]] za zabeležbe nedavnih brisanj in obnovitev
 "blockip"	=> "Prekini IP naslov",
 "blockiptext"	=> "Uporabi spodnjo obliko za prekinitev dostopa zapisa iz določenega IP naslova.
 To naredimo samo zaradi zaščite pred nepotrebnim uničevanjem in v skladu s
-[[Wikipedija:Pravila|pravili Wikipedije]].
+[[{{ns:project}}:Pravila|pravili {{SITENAME}}]].
 Vnesi razloge spodaj (na primer z navedbo določenih strani, ki so jih po nepotrebnem uničili).",
 "ipaddress"	=> "IP naslov",
 "ipbreason"	=> "Razlog",
