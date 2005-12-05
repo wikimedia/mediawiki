@@ -474,23 +474,20 @@ class Linker {
 	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgContLang;
 		$url  = $img->getViewURL();
+		$thumbUrl = '';
 
 		$width = $height = 0;
-		if ( $img->exists() )
-		{
+		if ( $img->exists() ) {
 			$width  = $img->getWidth();
 			$height = $img->getHeight();
 		}
-		if ( 0 == $width || 0 == $height )
-		{
+		if ( 0 == $width || 0 == $height ) {
 			$width = $height = 200;
 		}
-		if ( $boxwidth == 0 )
-		{
+		if ( $boxwidth == 0 ) {
 			$boxwidth = 200;
 		}
-		if ( $framed )
-		{
+		if ( $framed ) {
 			// Use image dimensions, don't scale
 			$boxwidth  = $width;
 			$boxheight = $height;
