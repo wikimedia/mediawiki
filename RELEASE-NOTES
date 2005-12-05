@@ -292,6 +292,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4162) Add $wgThumbnailEpoch timestamp to force old thumbs to
   be rerendered on demand, sitewide
 * (bug 4165) Correct validation for user language selection (data taint)
+* Add createpage and createtalk permission keys, allowing a quick
+  switch to disable page creation for anonymous users.
 
 
 === Caveats ===
