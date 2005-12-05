@@ -937,7 +937,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4071) Generate passwords long enough for $wgMinimalPasswordLength
 * (bug 4035) Fix prev/next revision links on edit page
 * (bug 4165) Correct validation for user language selection (data taint)
-
+* Clearer message in DefaultSettings.php: edit LocalSettings.php instead
 
 === Caveats ===
 
