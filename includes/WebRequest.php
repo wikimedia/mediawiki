@@ -458,7 +458,7 @@ class FauxRequest extends WebRequest {
 		wfDebugDieBacktrace( 'FauxRequest::getRequestURL() not implemented' );
 	}
 	
-	function appendQuery( ) {
+	function appendQuery( $query ) {
 		wfDebugDieBacktrace( 'FauxRequest::appendQuery() not implemented' );
 	}
 	
