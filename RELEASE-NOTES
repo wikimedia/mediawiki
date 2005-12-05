@@ -297,6 +297,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4167) Fix regression caused by patch for bug 153
 * (bug 1850) Additional fixes so existing local and remote images
   get a blue link even if there's no local description page
+* (bug 4169) Use $wgLegalTitleChars in pipe trick conversions
 
 
 === Caveats ===

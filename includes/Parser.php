@@ -3120,8 +3120,10 @@ class Parser
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
-		$tc = "[&;%\\-,.\\(\\)' _0-9A-Za-z\\/:\\x80-\\xff]";
-		$np = "[&;%\\-,.' _0-9A-Za-z\\/:\\x80-\\xff]"; # No parens
+		global $wgLegalTitleChars;
+		$tc = "[$wgLegalTitleChars]";
+		$np = str_replace( array( '(', ')' ), array( '', '' ), $tc ); # No parens
+		
 		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
 		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
 
