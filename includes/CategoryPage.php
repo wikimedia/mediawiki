@@ -258,8 +258,8 @@ class CategoryPage extends Article {
 					}
 					$cont_msg = "";
 					if ( $articles_start_char[$index] == $prev_start_char )
-						$cont_msg = wfMsg('listingcontinuesabbrev');
-					$r .= "<h3>{$articles_start_char[$index]}$cont_msg</h3>\n<ul>";
+						$cont_msg = wfMsgHtml('listingcontinuesabbrev');
+					$r .= "<h3>" . htmlspecialchars( $articles_start_char[$index] ) . "$cont_msg</h3>\n<ul>";
 					$prev_start_char = $articles_start_char[$index];
 				}
 
@@ -284,13 +284,13 @@ class CategoryPage extends Article {
 	 * @access private
 	 */
 	function shortList( $articles, $articles_start_char ) {
-		$r = '<h3>'.$articles_start_char[0]."</h3>\n";
+		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>'.$articles[0].'</li>';
 		for ($index = 1; $index < count($articles); $index++ )
 		{
 			if ($articles_start_char[$index] != $articles_start_char[$index - 1])
 			{
-				$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+				$r .= "</ul><h3>" . htmlspecialchars( $articles_start_char[$index] ) . "</h3>\n<ul>";
 			}
 
 			$r .= "<li>{$articles[$index]}</li>";
