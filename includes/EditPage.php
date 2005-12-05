@@ -202,6 +202,12 @@ class EditPage {
 				return;
 			}
 		}
+		if ( !$this->mTitle->userCan( 'create' ) && !$this->mTitle->exists() ) {
+			wfDebug( "$fname: no create permission\n" );
+			$this->noCreatePermission();
+			wfProfileOut( $fname );
+			return;
+		}
 		if ( wfReadOnly() ) {
 			wfDebug( "$fname: read-only mode is engaged\n" );
 			if( $this->save || $this->preview ) {
@@ -513,6 +519,14 @@ class EditPage {
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
+			// Late check for create permission, just in case *PARANOIA*
+			if ( !$this->mTitle->userCan( 'create' ) ) {
+				wfDebug( "$fname: no create permission\n" );
+				$this->noCreatePermission();
+				wfProfileOut( $fname );
+				return;
+			}
+			
 			# Don't save a new article if it's blank.
 			if ( ( '' == $this->textbox1 ) ) {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
@@ -1527,6 +1541,11 @@ END
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
 	
+	function noCreatePermission() {
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );
+		$wgOut->addWikiText( wfMsg( 'nocreatetext' ) );
+	}
 
 }
 

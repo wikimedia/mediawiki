@@ -906,6 +906,13 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
+		
+		if( $action == 'create' ) {
+			if( (  $this->isTalkPage() && !$wgUser->isAllowed( 'createtalk' ) ) ||
+				( !$this->isTalkPage() && !$wgUser->isAllowed( 'createpage' ) ) ) {
+				return false;
+			}
+		}
 
 		wfProfileOut( $fname );
 		return true;

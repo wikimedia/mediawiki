@@ -785,6 +785,9 @@ the text into a text file and save it for later.</strong>',
 'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it. Be sure you are following the [[Project:Protected_page_guidelines|protected page guidelines]].</strong>",
 'templatesused'	=> 'Templates used on this page:',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
+'nocreatetitle' => 'Page creation limited',
+'nocreatetext' => 'This site has restricted the ability to create new pages.
+You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
 
 # History pages
 #
