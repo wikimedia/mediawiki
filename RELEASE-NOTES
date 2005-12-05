@@ -295,6 +295,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Add createpage and createtalk permission keys, allowing a quick
   switch to disable page creation for anonymous users.
 * (bug 4167) Fix regression caused by patch for bug 153
+* (bug 1850) Additional fixes so existing local and remote images
+  get a blue link even if there's no local description page
 
 
 === Caveats ===

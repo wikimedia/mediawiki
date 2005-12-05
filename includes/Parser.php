@@ -1464,6 +1464,15 @@ class Parser
 			} elseif( $ns == NS_SPECIAL ) {
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
+			} elseif( $ns == NS_IMAGE ) {
+				$img = Image::newFromTitle( $nt );
+				if( $img->exists() ) {
+					// Force a blue link if the file exists; may be a remote
+					// upload on the shared repository, and we want to see its
+					// auto-generated page.
+					$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
+					continue;
+				}
 			}
 			$s .= $this->makeLinkHolder( $nt, $text, '', $trail, $prefix );
 		}
