@@ -1434,6 +1434,7 @@ class Parser
 					} else {
 						$sortkey = $text;
 					}
+					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = $wgContLang->convertCategoryKey( $sortkey );
 					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 					$this->mOutput->addCategoryLink( $t );
