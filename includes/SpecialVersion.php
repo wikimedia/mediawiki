@@ -1,5 +1,5 @@
 <?php
-/**
+/**#@+
  * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
  * @package MediaWiki
@@ -21,6 +21,7 @@ function wfSpecialVersion() {
 class SpecialVersion {
 	/**
 	 * @var object
+	 * @access private
 	 */
 	var $langObj;
 	
@@ -32,14 +33,28 @@ class SpecialVersion {
 		$this->langObj = setupLangObj( 'LanguageEn' );
 		$this->langObj->initEncoding();
 	}
-	
+
+	/**
+	 * main()
+	 */
 	function execute() {
 		global $wgOut;
 		
-		$wgOut->addWikiText( $this->MediaWikiCredits() . $this->extensionCredits() . $this->wgHooks() );
+		$wgOut->addWikiText(
+			$this->MediaWikiCredits() .
+			$this->extensionCredits() .
+			$this->wgHooks()
+		);
 		$wgOut->addHTML( $this->IPInfo() );
 	}
 
+	/**#@+
+	 * @access private
+	 */
+	
+	/**
+	 * @static
+	 */
 	function MediaWikiCredits() {
 		global $wgVersion;
 		
@@ -87,12 +102,15 @@ class SpecialVersion {
 			'variable' => 'Variables',
 			'other' => 'Other',
 		);
-		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$extensionTypes ) );
+		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 		
 		$out = "\n* Extensions:\n";
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( count( @$wgExtensionCredits[$type] ) ) {
 				$out .= "** $text:\n";
+				
+				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
+				
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					wfSuppressWarnings();
 					$out .= $this->formatCredits(
@@ -120,6 +138,13 @@ class SpecialVersion {
 		return $out;
 	}
 
+	function compare( $a, $b ) {
+		if ( $a['name'] === $b['name'] )
+			return 0;
+		else
+			return $this->langObj->lc( $a['name'] ) > $this->langObj->lc( $b['name'] ) ? 1 : -1;
+	}
+
 	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null) {
 		$ret = '*** ';
 		if ( isset( $url ) )
@@ -143,16 +168,26 @@ class SpecialVersion {
 	function wgHooks() {
 		global $wgHooks;
 
-		$ret = "* Hooks:\n";
-		foreach ($wgHooks as $hook => $hooks)
-			$ret .= "** $hook: " . $this->langObj->listToText( $hooks ) . "\n";
+		$myWgHooks = $wgHooks;
+		ksort( $myWgHooks );
 
+		$ret = "* Hooks:\n";
+		foreach ($myWgHooks as $hook => $hooks)
+			$ret .= "** $hook:" . $this->langObj->listToText( $hooks ) . "\n";
+		
 		return $ret;
 	}
 
+	/**
+	 * @static
+	 */
 	function IPInfo() {
-		$ip =  str_replace( '--', ' - - ', htmlspecialchars( wfGetIP() ) );
+		$ip =  str_replace( '--', '-', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n";
 	}
+	
+	/**#@-*/
 }
+
+/**#@-*/
 ?>
