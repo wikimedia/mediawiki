@@ -44,14 +44,19 @@ if (!function_exists('memory_get_usage')) {
 class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
-	/*
+	
 	function Profiler()
 	{
-		$this->mProfileStack = array();
-		$this->mWorkStack = array();
-		$this->mCollated = array();
+		// Push an entry for the pre-profile setup time onto the stack
+		global $wgRequestTime;
+		if ( !empty( $wgRequestTime ) ) {
+			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, 0 );
+			$this->mStack[] = array( '-setup', 1, $wgRequestTime, 0, microtime(), 0 );
+		} else {
+			$this->profileIn( '-total' );
+		}
+			
 	}
-	*/
 
 	function profileIn($functionname) {
 		global $wgDebugFunctionEntry;
@@ -349,5 +354,5 @@ class Profiler {
 }
 
 $wgProfiler = new Profiler();
-$wgProfiler->profileIn('-total');
+
 ?>
