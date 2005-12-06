@@ -123,7 +123,7 @@ require_once( "LanguageUtf8.php" );
 "go"			=> "Go",
 "ok"			=> "OK",
 "sitetitle"		=> "विकिपीडिया ",
-"sitesubtitle"	        => "निःशुल्क ज्ञान संग्रह ",
+"sitesubtitle"	        => "",
 "retrievedfrom"         => "\"$1\" से लिया गया",
 "newmessages"           => "आपके लिये $1 हैं.",
 "newmessageslink"       => "नये सन्देश",

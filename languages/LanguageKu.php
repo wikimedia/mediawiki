@@ -1324,7 +1324,7 @@ Fonksiyonên ku hîn rast naxebitin:
 *<b>$3</b> total page views and
 *<b>$5</b> average edits per page
 *<b>$6</b> views per edit.',
-'sitesubtitle' => 'Ensîklopediya azad',
+'sitesubtitle' => '',
 'sitesupport' => 'Ji bo Weqfa Wikimedia Beş',
 #'sitesupport-url' => 'Project:Site support',
 'sitetitle' => 'Wîkîpediya Kurdî',

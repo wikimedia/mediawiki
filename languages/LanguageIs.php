@@ -558,7 +558,7 @@ to set user preferences.",
 '''$3''' síður hafa verið skoðaðar og '''$4''' breytingar hafa verið gerðar
 síðan vefurinn var settur up. Það reiknast sem '''$5''' breytingar
 á hverja síðu að meðaltali, og '''$6''' fléttingar fyrir hverja breytingu.",
-'sitesubtitle' => "Frjálsa alfræðiorðabókin",
+'sitesubtitle' => "",
 'sitesupport' => "Framlög",
 'sitetitle' => "Wikipedia",
 'skin' => "Þema",

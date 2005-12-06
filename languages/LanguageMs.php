@@ -159,7 +159,7 @@ Lihat $1.", # "The action you have requested can only be performed by users with
 "go"			=> "Pergi",
 "ok"			=> "OK",
 "sitetitle"		=> "Wikipedia",
-"sitesubtitle"	        => "Ensaiklopedia Bebas",
+"sitesubtitle"	        => "",
 "retrievedfrom"         => "Diperolehi daripada \"$1\"", #"Retrieved from \"$1\"",
 "newmessages"           => "Anda ada $1.",
 "newmessageslink"       => "pesanan baru",

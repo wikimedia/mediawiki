@@ -168,7 +168,7 @@ if($wgMetaNamespace === FALSE)
 "go"			=> "Side",
 "ok"			=> "Goed",
 "sitetitle"		=> '{{SITENAME}}',
-"sitesubtitle"	=> "De frije ensyklopedy",
+"sitesubtitle"	=> "",
 "retrievedfrom" 	=> "Untfongen fan \"$1\"",
 "newmessages" 	=> "Jo hawwe $1.",
 "newmessageslink" => "nije berjochten",

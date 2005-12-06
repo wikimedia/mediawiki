@@ -493,7 +493,7 @@ See $1.',
 'ok'			=> 'OK',
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
-'sitesubtitle'	=> 'The Free Encyclopedia', # FIXME
+'sitesubtitle'	=> '',
 'retrievedfrom' => 'Retrieved from "$1"',
 'newmessages' => 'You have $1.',
 'newmessageslink' => 'new messages',

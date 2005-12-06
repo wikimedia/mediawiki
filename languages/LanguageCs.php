@@ -248,7 +248,7 @@ default:
 'ok'              => 'OK',
 'sitetitle'       => '{{SITENAME}}',
 'pagetitle'       => '$1 – {{SITENAME}}',
-'sitesubtitle'  => '{{SITENAME}}: Otevřená Encyklopedie',
+'sitesubtitle'  => '',
 'retrievedfrom' => 'Citováno z „$1“', #FIXME: Ukazuje se po tisku strany
 'newmessages' => 'Máte $1.',
 'newmessageslink' => 'nové zprávy',

@@ -300,6 +300,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4169) Use $wgLegalTitleChars in pipe trick conversions
 * (bug 4170) Decode HTML character escapes in sort key
 * Avoid FATAL ERROR when creating thumbnail of non-existing image
+* (bug 4192) Remove silly 'The Free Encyclopedia' default sitesubtitle
 
 
 === Caveats ===

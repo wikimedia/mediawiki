@@ -482,7 +482,7 @@ Gjavant chestis, o vin '''$2''' pagjinis che a son probabilmentri pagjinis di co
 
 O vin vût in dut '''$3''' viodudis de pagjinis e '''$4''' modifichis aes pagjinis di cuant che la wiki e je stade implantade.
 Chest al vûl dî une medie di '''$5''' modifichis par pagjine, e '''$6''' viodudis par modifiche.",
-'sitesubtitle' => "L'enciclopedie libare",
+'sitesubtitle' => "",
 'sitesupport' => 'Doninus',
 'sitesupport-url' => 'Project:Supuarte il sît',
 'siteuser' => 'Utent di {{SITENAME}} $1',

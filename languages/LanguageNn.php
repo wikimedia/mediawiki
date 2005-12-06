@@ -302,7 +302,7 @@ if($wgMetaNamespace === FALSE)
 'ok'			  => 'OK',
 'sitetitle'		  => '{{SITENAME}}',
 'pagetitle'		  => '$1 - {{SITENAME}}',
-'sitesubtitle'	          => 'Det frie oppslagsverket',
+'sitesubtitle'	          => '',
 'retrievedfrom'           => 'Henta frå «$1»',
 'newmessages'             => 'Du har $1.',
 'newmessageslink'         => 'nye meldingar',

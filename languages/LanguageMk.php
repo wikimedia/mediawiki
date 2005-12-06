@@ -254,7 +254,7 @@ global $wgRightsText;
 	'ok'				=>	'Во ред',
 	'sitetitle'			=>	"{{SITENAME}}",
 	'pagetitle'			=>	"$1 - {{SITENAME}}",
-	'sitesubtitle'			=>	'Слободна Енциклопедија',
+	'sitesubtitle'			=>	'',
 	'retrievedfrom'			=>	"Преземено од \"$1\"",
 	'newmessages'			=>	"Имате $1.",
 	'newmessageslink'		=>	'нови пораки',

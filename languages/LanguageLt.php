@@ -847,7 +847,7 @@ Be šių puslapių, tikrų straipsnių yra apie \'\'\'$2\'\'\'.
 Nuo wiki pradžios yra atlikta \'\'\'$4\'\'\' puslapių redagavimų - vidutiniškai kiekvienas puslapis keistas \'\'\'$5\'\'\' kartų.
 
 <!-- peržiūrėta: $3 vidutiniškai puslapiui: $6 -->',
-'sitesubtitle' => 'Laisvoji enciklopedija',
+'sitesubtitle' => '',
 'sitesupport' => 'Parama',
 'sitesupport-url' => 'Wikimedia:Fundraising',
 'skin' => 'Išvaizda',

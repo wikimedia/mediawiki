@@ -248,7 +248,7 @@ un dat [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'go'                                     => 'Los',
 'ok'                                    => 'OK',
 'sitetitle'                        => '{{SITENAME}}',
-'sitesubtitle'          => 'De fre\'e Nokieksel',
+'sitesubtitle'          => '',
 'pagetitle'                        => '$1 - {{SITENAME}}',
 
 'retrievedfrom'         => 'Vun „$1“',
