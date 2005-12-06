@@ -180,11 +180,18 @@ require_once( 'LanguageUtf8.php' );
 'mytalk'              => 'Keskustelusivu',
 'anontalk'            => 'Keskustele tämän IP:n kanssa',
 'navigation'          => 'Valikko',
+
+# Metadata in edit box
+'metadata'            => '<b>Sisältökuvaukset</b> (<a href="$1">selitys</a>)',
+'metadata_page'       => 'Wikipedia:Sisältökuvaukset',
+
 'currentevents'       => 'Ajankohtaista',
 'currentevents-url'   => 'Project:Ajankohtaista',
 
 'disclaimers'         => 'Vastuuvapaus',
 'disclaimerpage'      => 'Project:Vastuuvapaus',
+'privacy'             => 'Tietosuojakäytäntö',
+'privacypage'         => 'Project:Tietosuojakäytäntö',
 'errorpagetitle'      => 'Virhe',
 'returnto'            => 'Palaa sivulle $1.',
 'tagline'             => '{{SITENAME}}',
@@ -350,7 +357,11 @@ Sivun lähdekoodi:',
 'logout'              => 'Kirjaudu ulos',
 'userlogout'          => 'Kirjaudu ulos',
 'notloggedin'         => 'Et ole kirjautunut',
+'nologin'             => 'Jos sinulla ei ole vielä käyttäjätunnusta, voit $1 sellaisen.',
+'nologinlink'         => 'luoda',
 'createaccount'       => 'Luo uusi käyttäjätunnus',
+'gotaccount'          => "Jos sinulla on jo tunnus, voit $1.",
+'gotaccountlink'      => "kirjautua sisään",
 'createaccountmail'   => 'sähköpostitse',
 'badretype'           => 'Syöttämäsi salasanat ovat erilaiset.',
 'userexists'          => 'Pyytämäsi käyttäjänimi on jo käytössä. Ole hyvä ja valitse toinen käyttäjänimi.',
@@ -361,6 +372,7 @@ Sivun lähdekoodi:',
 'yourlanguage'        => 'Käyttöliittymän kieli:',
 'yourvariant'         => 'Kielivariantti', // TODO: CHECK ME (language varian)
 'yournick'            => 'Nimimerkki allekirjoituksia varten:',
+'badsig'              => 'Allekirjoitus on epävalidi.',
 'email'               => 'Sähköpostitoiminnot',
 'emailforlost'        => '&nbsp;',
 'prefs-help-email-enotif' => 'Tätä osoitetta käytetään myös artikkelien muuttumisilmoituksiin, jos ominaisuus on käytössä.',
@@ -376,6 +388,7 @@ Sivun lähdekoodi:',
 'nosuchuser'          => 'Käyttäjää <strong>$1</strong> ei ole olemassa. Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.', // TODO NOWIKIMARKUP
 'nosuchusershort'     => 'Käyttäjää nimellä <b>$1</b> ei ole. Kirjoititko nimen oikein?', // TODO NO WIKIMARKUP
 'wrongpassword'       => 'Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.',
+'wrongpasswordempty'  => 'Et voi antaa tyhjää salasanaa.',
 'mailmypassword'      => 'Lähetä minulle uusi salasana sähköpostilla',
 'passwordremindertitle' => 'Salasanamuistutus {{GRAMMAR:elative|{{SITENAME}}}}',
 
@@ -422,11 +435,7 @@ Sivun lähdekoodi:',
 'media_sample'        => 'Esimerkki.ogg',
 'media_tip'           => 'Mediatiedostolinkki',
 'sig_tip'             => 'Allekirjoitus aikamerkinnällä',
-'hr_tip'              => 'Vaakasuora viiva (käytä rajoitetusti)',
-'infobox'             => 'Napsauta painiketta saadaksesi esimerkkitekstin',
-
-# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'       => "Syötä teksti, jonka haluat muotoilluksi.\\n Se näytetään toisessa laatikossa leikkaa-liimaamista varten.\\nEsimerkki:\\n$1\\n muuttuu seuraavaksi:\\n$2",
+'hr_tip'              => 'Vaakasuora viiva',
 
 # Edit pages
 #
@@ -442,9 +451,9 @@ Sivun lähdekoodi:',
 'blockedtext'         => 'Yritit muokata sivua tai luoda uuden sivun. $1 on estänyt pääsysi {{GRAMMAR:illative|{{SITENAME}}}} joko käyttäjänimesi tai IP-osoitteesi perusteella. Annettu syy estolle on: <br />\'\'$2\'\'<p>Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[Project:Ylläpitäjät|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassaolevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] ==Syytön?== Ajoittain kokonaisia IP-alueita tai yhteiskäytössä olevia osoitteita estetään. Se tarkoittaa, että myös viattomat käyttäjät voivat joutua estetyksi. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Jos tämä ongelma toistuu jatkuvasti, ota yhteyttä Internet-palveluntarjoajaasi tai {{GRAMMAR:genitive|{{SITENAME}}}} ylläpitäjään. Ilmoita IP-osoitteesi, joka on $3.',
 
 'whitelistedittitle'  => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
-'whitelistedittext'   => 'Sinun täytyy kirjautua [[Special:Userlogin|sisään]] muokataksesi sivuja.',
+'whitelistedittext'   => 'Sinun täytyy kirjautua [[{{ns:special}}:Userlogin|sisään]] muokataksesi sivuja.',
 'whitelistreadtitle'  => 'Sisäänkirjautuminen vaaditaan lukemiseen',
-'whitelistreadtext'   => 'Sinun täytyy kirjautua [[Special:Userlogin|sisään]] lukeaksesi sivuja.',
+'whitelistreadtext'   => 'Sinun täytyy kirjautua [[{{ns:special}}:Userlogin|sisään]] lukeaksesi sivuja.',
 'whitelistacctitle'   => 'Sinun ei ole sallittu luoda tunnusta',
 'whitelistacctext'    => 'Saadaksesi oikeudet luoda tunnus sinun täytyy kirjautua [[Special:Userlogin|sisään]] ja sinulla tulee olla asiaankuuluvat oikeudet.',
 'loginreqtitle'       => 'Sisäänkirjautuminen vaaditaan',
@@ -467,7 +476,9 @@ Sivun lähdekoodi:',
 'updated'             => '(Päivitetty)',
 'note'                => 'Huomautus: ', // TODO: NO WIKI MARKUP
 'previewnote'         => '<strong>Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!</strong>',
+'session_fail_preview'=> '<strong>Muokkaustasi ei voitu tallentaa, koska sessiosi tiedot ovat kadonneet. Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.</strong>',
 'previewconflict'     => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
+'importing'           => 'Tuodaan sivua $1',
 'editing'             => 'Muokataan sivua $1',
 'editingsection'      => 'Muokataan osiota sivusta $1',
 'editingcomment'      => 'Muokataan kommenttia sivulla $1',
@@ -484,6 +495,9 @@ Sivun lähdekoodi:',
 'readonlywarning'     => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
 'protectedpagewarning'=> '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'templatesused'       => 'Tällä sivulla käytetyt mallineet:',
+'edittools'           => '<!-- Tässä oleva teksi näytetään muokkauskentän alla. -->',
+'nocreatetitle'       => 'Sivujen luominen on rajoitettu',
+'nocreatetext'        => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[{{ns:special}}:Userlogin|käyttäjätunnukssen]].',
 
 # History pages
 #
@@ -549,9 +563,8 @@ Sivun lähdekoodi:',
 # Preferences page
 #
 'preferences'         => 'Asetukset',
-'prefsnologin'        => 'Et ole kirjautunut sisään',
-'prefsnologintext'    => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]], jotta voisit muuttaa asetuksia.',
-'prefslogintext'      => 'Olet kirjautunut sisään käyttäjänä \'\'\'$1\'\'\'. Sisäinen tunnistenumerosi on \'\'\'$2\'\'\'.',
+'prefsnologin'        => 'Et ole kirjautunut sisään.',
+'prefsnologintext'    => 'Sinun täytyy [[{{ns:special}}:Userlogin|kirjautua sisään]], jotta voisit muuttaa asetuksiasi.',
 'prefsreset'          => 'Asetukset on palautettu tallennetuista asetuksistasi.',
 'qbsettings'          => 'Pikavalikko',
 'changepassword'      => 'Vaihda salasanaa',
@@ -687,6 +700,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'copyrightpage'       => 'Project:Tekijänoikeudet',
 'copyrightpagename'   => '{{SITENAME}} ja tekijänoikeudet',
 'uploadedfiles'       => 'Tallennetut tiedostot',
+'ignorewarning'       => 'Tallenna tiedosto varoituksesta huolimatta.',
 'ignorewarnings'      => 'Ohita kaikki varoitukset',
 'minlength'           => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
 'illegalfilename'     => 'Tiedoston nimessä \'\'\'$1\'\'\' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä tallentamista uudelleen.',
@@ -703,7 +717,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
 'uploadedimage'       => 'tallensi tiedoston [[$1]]',
-'uploaddisabled'      => 'Tiedostojen tallentaminen ei ole käytöstä.',
+'uploaddisabled'      => 'Tähän wikiin ei voi tallentaa tiedostoja.',
 'uploadscripted'      => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'       => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'         => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
@@ -833,7 +847,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 
 # No reason to overwrite
 //  'rfcurl'              => 'http://www.faqs.org/rfcs/rfc$1.html',
-'alphaindexline'      => '$1 → $2',
+'alphaindexline'      => '$1…$2',
 'version'             => 'Versio',
 'log'                 => 'Lokit',
 'alllogstext'         => 'Yhdistetty tallennus-, poisto-, suojaus-, esto- ja ylläpitolokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
@@ -1134,8 +1148,8 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'movetalk'            => 'Siirrä myös keskustelusivu, jos mahdollista.',
 'talkpagemoved'       => 'Myös sivun keskustelusivu siirrettiin.',
 'talkpagenotmoved'    => 'Sivun keskustelusivua \'\'\'ei\'\'\' siirretty.',
-'1movedto2'           => 'siirsi sivun $1 uudelle nimelle $2',
-'1movedto2_redir'     => 'siirsi sivun $1 uudelleenohjauksen $2 päälle',
+'1movedto2'           => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
+'1movedto2_redir'     => 'siirsi sivun ”$1” uudelleenohjauksen ”$2” päälle',
 'movelogpage'         => 'Siirtoloki',
 'movelogpagetext'     => 'Anna on loki siirretyistä sivuista.',
 'movereason'          => 'Syy',
@@ -1335,13 +1349,26 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'passwordtooshort'    => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
 
 # Media Warning
-'mediawarning' => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.
+'mediawarning'        => '\'\'\'Varoitus\'\'\': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.
 <hr>',
 
-'fileinfo' => '$1 KiB, MIME-tyyppi: <code>$2</code>',
+'fileinfo'            => '$1 KiB, MIME-tyyppi: <code>$2</code>',
 
 # Metadata
-'metadata' => 'Sisältökuvaukset',
+'metadata'            => 'Sisältökuvaukset',
+'metadata-help'       => 'Tämä tiedosto sisältää esimerkiksi kuvanlukijan, digikameran tai kuvankäsittelyohjelman lisäämiä lisätietoja. Kaikki tiedot eivät enää välttämättä vastaa todellisuutta, jos kuvaa on muokattu sen alkuperäisen luonnin jälkeen.
+
+This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
+'metadata-expand'     => 'Näytä kaikki sisältökuvakset',
+'metadata-collapse'   => 'Näytä vain tärkeimmät sisältökuvaukset',
+'metadata-fields'     => 'Tässä luetellut EXIF-sisältökuvaukset näkyvät kuvasivulla, kun vain tärkeimmät sisältökuvaukset näytetään.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
+
 
 # Exif tags
 'exif-imagewidth'     =>'Leveys',
@@ -1390,7 +1417,9 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'exif-subsectimeoriginal'      =>'Luontiaikaleiman sekunninosat',
 'exif-subsectimedigitized'     =>'Digitointiaikaleiman sekunninosat',
 'exif-exposuretime'            =>'Valotusaika',
+'exif-exposuretime-format'     => '$1 s ($2)',
 'exif-fnumber'                 =>'Aukkosuhde',
+'exif-fnumber-format'          =>'f/$1',
 'exif-exposureprogram'         =>'Valotusohjelma',
 'exif-spectralsensitivity'     =>'Värikirjoherkkyys',
 'exif-isospeedratings'         =>'Herkkyys (ISO)',
@@ -1400,17 +1429,18 @@ ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 'exif-brightnessvalue'         =>'Kirkkaus',
 'exif-exposurebiasvalue'       =>'Valotuksen korjaus',
 'exif-maxaperturevalue'        =>'Suurin aukko',
-'exif-subjectdistance'=>'Kohteen etäisyys',
-'exif-meteringmode'   =>'Mittaustapa',
-'exif-lightsource'    =>'Valolähde',
-'exif-flash'          =>'Salama',
-'exif-focallength'    =>'Linssin polttoväli',
-'exif-subjectarea'    =>'Kohteen ala',
-'exif-flashenergy'    =>'Salaman teho',
-'exif-spatialfrequencyresponse' =>'Tilataajuusvaste',
-'exif-focalplanexresolution'    =>'Tarkennustason X-resoluutio',
-'exif-focalplaneyresolution'    =>'Tarkennustason Y-resoluutio',
-'exif-focalplaneresolutionunit' =>'Tarkennustason resoluution yksikkö',
+'exif-subjectdistance'         =>'Kohteen etäisyys',
+'exif-meteringmode'            =>'Mittaustapa',
+'exif-lightsource'             =>'Valolähde',
+'exif-flash'                   =>'Salama',
+'exif-focallength'             =>'Linssin polttoväli',
+'exif-focallength-format'      =>'$1 mm',
+'exif-subjectarea'             =>'Kohteen ala',
+'exif-flashenergy'             =>'Salaman teho',
+'exif-spatialfrequencyresponse'=>'Tilataajuusvaste',
+'exif-focalplanexresolution'   =>'Tarkennustason X-resoluutio',
+'exif-focalplaneyresolution'   =>'Tarkennustason Y-resoluutio',
+'exif-focalplaneresolutionunit'=>'Tarkennustason resoluution yksikkö',
 'exif-subjectlocation'=>'Kohteen sijainti',
 'exif-exposureindex'  =>'Valotusindeksi',
 'exif-sensingmethod'  =>'Mittausmenetelmä',
@@ -1659,16 +1689,21 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 # delete conflict
 
 'deletedwhileediting' => '<center>\'\'\'Varoitus\'\'\': Tämä sivu on poistettu sen jälkeen, kun aloitit sen muokkaamisen!</center>',
-'confirmrecreate' => 'Käyttäjä \'\'\'[[{{ns:user}}:$1|$1]]\'\'\' ([[{{ns:user_talk}}:$1|keskustelu]]) poisti sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
+'confirmrecreate'     => 'Käyttäjä \'\'\'[[{{ns:user}}:$1|$1]]\'\'\' ([[{{ns:user_talk}}:$1|keskustelu]]) poisti sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
 : \'\'$2\'\'
 Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 'recreate' => 'Luo uudelleen',
-'tooltip-recreate' => '',
+'tooltip-recreate'    => '',
 
-'unit-pixel' => ' px',
+'unit-pixel'          => ' px',
 
 # HTML dump
-'redirectingto' => 'Uudelleenohjataan sivulle [[$1]]...',
+'redirectingto'       => 'Uudelleenohjataan sivulle [[$1]]...',
+
+# action=purge
+'confirm_purge'       => "Poistetaanko tämän sivun välimuistikopiot?\n\n$1",
+'confirm_purge_button'=> 'Poista',
+
 
 );
 
