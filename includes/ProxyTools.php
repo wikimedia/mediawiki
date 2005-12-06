@@ -175,4 +175,38 @@ function wfParseCIDR( $range ) {
 	return array( $network, $bits );
 }
 
+/**
+ * Check if an IP address is in the local proxy list
+ */
+function wfIsLocallyBlockedProxy( $ip ) {
+	global $wgProxyList;
+	$fname = 'wfIsLocallyBlockedProxy';
+	
+	if ( !$wgProxyList ) {
+		return false;
+	} 
+	wfProfileIn( $fname );
+	
+	if ( !is_array( $wgProxyList ) ) {
+		# Load from the specified file
+		$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
+	}
+	
+	if ( !is_array( $wgProxyList ) ) {
+		$ret = false;
+	} elseif ( array_search( $ip, $wgProxyList ) !== false ) {
+		$ret = true;
+	} elseif ( array_key_exists( $ip, $wgProxyList ) ) {
+		# Old-style flipped proxy list
+		$ret = true;
+	} else {
+		$ret = false;
+	}
+	wfProfileOut( $fname );
+	return $ret;
+}
+
+
+
+
 ?>
