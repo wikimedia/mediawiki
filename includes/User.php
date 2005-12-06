@@ -374,7 +374,7 @@ class User {
 	 *  master.
 	 */
 	function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyList, $wgEnableSorbs, $wgProxyWhitelist;
+		global $wgEnableSorbs, $wgProxyWhitelist;
 
 		if ( -1 != $this->mBlockedby ) {
 			wfDebug( "User::getBlockedStatus: already loaded.\n" );
@@ -406,7 +406,7 @@ class User {
 		if ( !$this->isSysop() && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list
-			if ( array_key_exists( $ip, $wgProxyList ) ) {
+			if ( wfIsLocallyBlockedProxy( $ip ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
