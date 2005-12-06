@@ -480,9 +480,7 @@ class Linker {
 		if ( $img->exists() ) {
 			$width  = $img->getWidth();
 			$height = $img->getHeight();
-		} else {
-			return $this->makeBrokenLinkObj( $img->getTitle() );
-		}
+		} 
 		if ( 0 == $width || 0 == $height ) {
 			$width = $height = 200;
 		}
