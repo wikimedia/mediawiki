@@ -40,7 +40,7 @@ $wgSitename         = 'MediaWiki';
 $wgMetaNamespace    = FALSE;
 
 
-/** URL of the server. It will be automaticly build including https mode */
+/** URL of the server. It will be automatically built including https mode */
 $wgServer = '';
 
 if( isset( $_SERVER['SERVER_NAME'] ) ) {
@@ -244,13 +244,13 @@ $wgVerifyMimeType= true;
 */
 #$wgMimeTypeFile= "/etc/mime.types";
 $wgMimeTypeFile= "includes/mime.types";
-#$wgMimeTypeFile= NULL; #use build in defaults only.
+#$wgMimeTypeFile= NULL; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php.
 * @global string $wgMimeInfoFile
 */
 $wgMimeInfoFile= "includes/mime.info";
-#$wgMimeInfoFile= NULL; #use build in defaults only.
+#$wgMimeInfoFile= NULL; #use built-in defaults only.
 
 /** Switch for loading the FileInfo extension by PECL at runtime.
 * This should be used only if fileinfo is installed as a shared object / dynamic libary
@@ -263,7 +263,7 @@ $wgLoadFileinfoExtension= false;
 * If not set or NULL, mime_content_type will be used if available.
 */
 $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
-#$wgMimeDetectorCommand= "file -bi" #use external mime detector (linux)
+#$wgMimeDetectorCommand= "file -bi"; #use external mime detector (Linux)
 
 /** Switch for trivial mime detection. Used by thumb.php to disable all fance things,
 * because only a few types of images are needed and file extensions can be trusted.
