@@ -871,9 +871,9 @@ class PreferencesForm {
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
 	<div>
-		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsg( 'saveprefs' ) . "\" accesskey=\"".
-		wfMsg('accesskey-save')."\" title=\"[alt-".wfMsg('accesskey-save')."]\" />
-		<input type='submit' name='wpReset' value=\"" . wfMsg( 'resetprefs' ) . "\" />
+		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . "\" accesskey=\"".
+		wfMsgHtml('accesskey-save')."\" title=\"".wfMsgHtml('tooltip-save')."\" />
+		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" />
 	</div>
 
 	</div>
