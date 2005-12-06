@@ -438,7 +438,7 @@ public domain or similar free resource.<br />
 'showpreview' => 'Праглядзець',
 'showtoc' => 'паказаць',
 'sig_tip' => 'Ваш подпіс і момант часу',
-'sitesubtitle' => 'Вольная энцыкляпэдыя',
+'sitesubtitle' => '',
 'sitesupport' => 'Ахвяраваньні',
 'sitetitle' => '{{SITENAME}}',
 'siteuser' => 'Удзельнік/удзельніца $1',

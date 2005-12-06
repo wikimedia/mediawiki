@@ -181,7 +181,7 @@ Vidu $1.',
 'ok'			=> 'Ek!', #FIXME
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
-'sitesubtitle'	=> 'La Libera Enciklopedio', # FIXME
+'sitesubtitle'	=> '',
 'retrievedfrom' => 'Citita el "$1"', #FIXME: Aperas post presita paĝo
 'newmessages'	=> 'Jen $1 por vi.',
 'newmessageslink' => 'nova mesaĝo',

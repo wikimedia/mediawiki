@@ -1362,7 +1362,7 @@ Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.<p>
 There have been a total of <b>$3</b> page views, and <b>$4</b> page edits
 since the software was upgraded (July 20, 2002).
 That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.',
-#'sitesubtitle' => 'The Free Encyclopedia',
+'sitesubtitle' => '',
 'sitesupport' => 'Emariak',
 #'sitesupport-url' => 'Project:Site support',
 #'sitetitle' => '{{SITENAME}}',

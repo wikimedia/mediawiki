@@ -236,7 +236,7 @@ Pogledajte $1.',
 "nbytes"		=> "$1 bajtova",
 "ok"			=> "U redu",
 "sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	        => "Slobodna enciklopedija", # POPRAVI
+"sitesubtitle"	        => "",
 "pagetitle"		=> "$1 - {{SITENAME}}",
 "retrievedfrom"         => "Dobavljeno iz \"$1\"",
 "newmessages"           => "Imaš $1.",

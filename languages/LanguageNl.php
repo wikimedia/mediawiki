@@ -169,7 +169,7 @@ require_once( "LanguageUtf8.php" );
 "go"   => "OK",
 "ok"   => "OK",
 "sitetitle"  => "<span style=\"text-transform: none\">{{SITENAME}} NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
-"sitesubtitle" => "De vrije encyclopedie",
+"sitesubtitle" => "",
 "retrievedfrom" => "Afkomstig van {{SITENAME}} NL, de Vrije Encyclopedie. \"$1\"",
 "newmessages" => "U heeft $1.",
 "newmessageslink" => "een nieuw bericht",

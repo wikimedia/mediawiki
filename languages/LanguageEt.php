@@ -252,7 +252,7 @@ Vaata $1.",
 "ok"			=> "OK",
 "sitetitle"		=> "{{SITENAME}}",
 'pagetitle'             => "$1 - {{SITENAME}}",
-"sitesubtitle"	=> "Vaba entsüklopeedia", # sõltub saidist (FIXME)
+"sitesubtitle"	=> "",
 "retrievedfrom" => "Välja otsitud andmebaasist \"$1\"", # parandaks sõnastust?
 "newmessages" => "Teile on uusi sõnumeid ($1).",
 "newmessageslink" => "Vaata sõnumeid.",

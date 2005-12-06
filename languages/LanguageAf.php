@@ -152,7 +152,7 @@ require_once( 'LanguageUtf8.php' );
 "go"			=> "Doen",
 "ok"			=> "Aanvaar", #fixMe
 "sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "Die gratis ensiklopedie", #fixme
+"sitesubtitle"	=> "",
 "retrievedfrom" => "Ontsluit van \"$1\"",
 "newmessages" => "Jy het $1.",
 "newmessageslink" => "nuwe boodskappe",

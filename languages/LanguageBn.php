@@ -117,7 +117,7 @@ require_once( 'LanguageUtf8.php' );
 'go'      => 'চল',
 'ok'      => 'ঠিক আছে',
 'sitetitle'   => 'উইকিপেডিয়া',
-'sitesubtitle'  => 'মুক্ত বিশ্বকোষ ',
+'sitesubtitle'  => '',
 'retrievedfrom' => '\'$1\' থেকে আনীত',
 'newmessages' => 'আপনার $1 এসেছে।',
 'newmessageslink' => 'নতুন বার্তা',

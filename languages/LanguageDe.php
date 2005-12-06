@@ -216,7 +216,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "go"			=> "Los",
 "ok"			=> "OK",
 "sitetitle"		=> "{{SITENAME}}",
-"sitesubtitle"	=> "Die freie Enzyklopädie",
+"sitesubtitle"	=> "",
 "pagetitle"		=> "$1 - {{SITENAME}}",
 "sitesubtitle"	=> "Die freie Wissensdatenbank",
 'retrievedfrom' => 'Von "$1"',

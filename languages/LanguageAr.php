@@ -479,7 +479,7 @@ There have been a total of <b>$3</b> page views, and <b>$4</b> page edits.
 That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.
 
 </div>',
-'sitesubtitle' => ' الموسوعة الحرة',
+'sitesubtitle' => '',
 'sitesupport' => 'التبرعات',
 'sitetitle' => 'ويكيبيديا',
 'specialpage' => 'صفحة خاصة',

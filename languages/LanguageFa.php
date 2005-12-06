@@ -177,7 +177,7 @@ require_once("LanguageUtf8.php");
 "go"			=> "برو",
 "ok"			=> "باشد",
 "sitetitle"		=> "ویکی‌پدیا",
-"sitesubtitle"	=> "دایرةالمعارف آزاد",
+"sitesubtitle"	=> "",
 "retrievedfrom" => "گرفته شده از «$1»",
 "newmessages" => "$1 دارید.",
 "newmessageslink" => "پیغام جدید",
