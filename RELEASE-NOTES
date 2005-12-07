@@ -302,6 +302,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Avoid FATAL ERROR when creating thumbnail of non-existing image
 * (bug 4192) Remove silly 'The Free Encyclopedia' default sitesubtitle
 * (bug 4201) Fix user-talk mode for Enotif, and general code cleanup
+* (bug 4207) Wrong image size when using 100x200px syntax to scale image up
+  patch by David Benbennick
 
 
 === Caveats ===
