@@ -1668,13 +1668,6 @@ class Database {
 	function encodeBlob($b) {
 		return $b;
 	}
-
-	function notNullTimestamp() {
-		return "!= 0";
-	}
-	function isNullTimestamp() {
-		return "= '0'";
-	}
 }
 
 /**

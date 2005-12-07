@@ -1413,7 +1413,7 @@ class Article {
 	 * the link tables and redirect to the new page.
 	 */
 	function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid, $newid ) {
-		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache, $wgEnotif;
+		global $wgUseDumbLinkUpdate, $wgAntiLockFlags, $wgOut, $wgUser, $wgLinkCache;
 		global $wgUseEnotif;
 
 		$fname = 'Article::showArticle';
@@ -1457,8 +1457,8 @@ class Article {
 		if ( $wgUseEnotif  ) {
 			# this would be better as an extension hook
 			include_once( "UserMailer.php" );
-			$wgEnotif = new EmailNotification ();
-			$wgEnotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
+			$enotif = new EmailNotification ();
+			$enotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
 		}
 		wfProfileOut( $fname );
 	}
@@ -2141,7 +2141,7 @@ class Article {
 	 * @private
 	 */
 	function viewUpdates() {
-		global $wgDeferredUpdateList, $wgUseEnotif;
+		global $wgDeferredUpdateList;
 
 		if ( 0 != $this->getID() ) {
 			global $wgDisableCounters;
@@ -2152,24 +2152,9 @@ class Article {
 			}
 		}
 
-		# Update newtalk status if user is reading their own
-		# talk page
-
+		# Update newtalk / watchlist notification status
 		global $wgUser;
-		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
-			$this->mTitle->getText() == $wgUser->getName())
-		{
-			if ( $wgUseEnotif ) {
-				require_once( 'UserTalkUpdate.php' );
-				$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(), $this->mTitle->getDBkey(), false, false, false );
-			} else {
-				$wgUser->setNewtalk(0);
-				$wgUser->saveNewtalk();
-			}
-		} elseif ( $wgUseEnotif ) {
-			$wgUser->clearNotification( $this->mTitle );
-		}
-
+		$wgUser->clearNotification( $this->mTitle );
 	}
 
 	/**
@@ -2179,7 +2164,7 @@ class Article {
 	 * @param string $text
 	 */
 	function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange) {
-		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgUseEnotif;
+		global $wgDeferredUpdateList, $wgMessageCache, $wgUser;
 
 		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			wfSeedRandom();
@@ -2210,21 +2195,14 @@ class Article {
 			# If this is another user's talk page, update newtalk
 
 			if ($this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getName()) {
-				if ( $wgUseEnotif ) {
-					require_once( 'UserTalkUpdate.php' );
-					$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle, $summary,
-					  $minoredit, $timestamp_of_pagechange);
-				} else {
-					$other = User::newFromName( $shortTitle );
-					if( is_null( $other ) && User::isIP( $shortTitle ) ) {
-						// An anonymous user
-						$other = new User();
-						$other->setName( $shortTitle );
-					}
-					if( $other ) {
-						$other->setNewtalk(1);
-						$other->saveNewtalk();
-					}
+				$other = User::newFromName( $shortTitle );
+				if( is_null( $other ) && User::isIP( $shortTitle ) ) {
+					// An anonymous user
+					$other = new User();
+					$other->setName( $shortTitle );
+				}
+				if( $other ) {
+					$other->setNewtalk( true );
 				}
 			}
 

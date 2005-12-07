@@ -462,12 +462,6 @@ class DatabaseOracle extends Database {
 #		return "TO_TIMESTAMP('" . $this->strencode(wfTimestamp(TS_DB, $ts)) . "', 'RRRR-MM-DD HH24:MI:SS')";
 	}
 
-	function notNullTimestamp() {
-		return "IS NOT NULL";
-	}
-	function isNullTimestamp() {
-		return "IS NULL";
-	}
         /**
          * Return aggregated value function call
          */
