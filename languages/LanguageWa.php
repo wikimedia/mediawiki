@@ -230,7 +230,7 @@ Loukîz a $1.',
 'ok' => '\'l est bon',
 'sitetitle' => '{{SITENAME}}',
 'pagetitle' => '$1 - {{SITENAME}}',
-'sitesubtitle' => 'Li libe eciclopedeye', # FIXME
+'sitesubtitle' => '',
 'retrievedfrom' => 'Prin del pådje «$1»',
 'newmessages' => 'Vos avoz des $1.',
 'newmessageslink' => 'noveas messaedjes',

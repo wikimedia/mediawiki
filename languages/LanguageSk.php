@@ -281,7 +281,7 @@ Pozri $1.",
 'ok' => 'OK',
 'sitetitle' => "{{SITENAME}}",
 'pagetitle' => "$1 - {{SITENAME}}",
-'sitesubtitle' => 'Slobodná encyklopédia', # FIXME
+'sitesubtitle' => '',
 'retrievedfrom' => "Zdroj: \"$1\"",
 'newmessages' => "Máte $1.",
 'newmessageslink' => 'nové správy',

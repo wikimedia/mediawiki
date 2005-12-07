@@ -180,7 +180,7 @@ require_once('LanguageUtf8.php');
 'ok'			=> 'ਠੀਕ ਹੈ',
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
-'sitesubtitle'	=> 'ਇੱਕ ਆਜ਼ਾਦ ਵਿਸ਼ਵਕੌਸ਼', # FIXME
+'sitesubtitle'	=> '',
 'retrievedfrom'	=> '\'$1\' ਤੋਂ ਪ੍ਰਾਪਤ ਕੀਤਾ ਗਿਆ ਹੈ',
 'newmessages'		=> 'ਤੁਹਾਡੇ ਲਈ $1 ਹਨ',
 'newmessageslink'	=> 'ਨਵੇਂ ਸੰਦੇਸ਼',
