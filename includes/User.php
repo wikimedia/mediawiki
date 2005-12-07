@@ -758,13 +758,11 @@ class User {
 	}
 
 	function getNewtalk() {
-		global $wgUseEnotif;
-		$fname = 'User::getNewtalk';
 		$this->loadFromDatabase();
 
 		# Load the newtalk status if it is unloaded (mNewtalk=-1)
-		if( $this->mNewtalk == -1 ) {
-			$this->mNewtalk = 0; # reset talk page status
+		if( $this->mNewtalk === -1 ) {
+			$this->mNewtalk = false; # reset talk page status
 
 			# Check memcached separately for anons, who have no
 			# entire User object stored in there.
@@ -773,49 +771,122 @@ class User {
 				$key = "$wgDBname:newtalk:ip:" . $this->getName();
 				$newtalk = $wgMemc->get( $key );
 				if( is_integer( $newtalk ) ) {
-					$this->mNewtalk = $newtalk ? 1 : 0;
-					return (bool)$this->mNewtalk;
+					$this->mNewtalk = (bool)$newtalk;
+				} else {
+					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName() );
+					$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
 				}
-			}
-
-			$dbr =& wfGetDB( DB_SLAVE );
-			if ( $wgUseEnotif ) {
-				$res = $dbr->select( 'watchlist',
-					array( 'wl_user' ),
-					array( 'wl_title'     => $this->getTitleKey(),
-						   'wl_namespace' => NS_USER_TALK,
-						   'wl_user'      => $this->mId,
-						   'wl_notificationtimestamp ' . $dbr->notNullTimestamp() ),
-					'User::getNewtalk' );
-				if( $dbr->numRows($res) > 0 ) {
-					$this->mNewtalk = 1;
-				}
-				$dbr->freeResult( $res );
-			} elseif ( $this->mId ) {
-				$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
-
-				if ( $dbr->numRows($res)>0 ) {
-					$this->mNewtalk= 1;
-				}
-				$dbr->freeResult( $res );
 			} else {
-				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->getName() ), $fname );
-				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
-				$dbr->freeResult( $res );
-			}
-
-			if( !$this->mId ) {
-				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
+				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
 			}
 		}
 
-		return ( 0 != $this->mNewtalk );
+		return (bool)$this->mNewtalk;
 	}
 
+	/**
+	 * Perform a user_newtalk check on current slaves; if the memcached data
+	 * is funky we don't want newtalk state to get stuck on save, as that's
+	 * damn annoying.
+	 *
+	 * @param string $field
+	 * @param mixed $id
+	 * @return bool
+	 * @access private
+	 */
+	function checkNewtalk( $field, $id ) {
+		$fname = 'User::checkNewtalk';
+		$dbr =& wfGetDB( DB_SLAVE );
+		$ok = $dbr->selectField( 'user_newtalk', $field,
+			array( $field => $id ), $fname );
+		return $ok !== false;
+	}
+	
+	/**
+	 * Add or update the 
+	 * @param string $field
+	 * @param mixed $id
+	 * @access private
+	 */
+	function updateNewtalk( $field, $id ) {
+		$fname = 'User::updateNewtalk';
+		if( $this->checkNewtalk( $field, $id ) ) {
+			wfDebug( "$fname already set ($field, $id), ignoring\n" );
+			return false;
+		}
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->insert( 'user_newtalk',
+			array( $field => $id ),
+			$fname,
+			'IGNORE' );
+		wfDebug( "$fname: set on ($field, $id)\n" );
+		return true;
+	}
+	
+	/**
+	 * @param string $field
+	 * @param mixed $id
+	 * @access private
+	 */
+	function deleteNewtalk( $field, $id ) {
+		$fname = 'User::deleteNewtalk';
+		if( !$this->checkNewtalk( $field, $id ) ) {
+			wfDebug( "$fname: already gone ($field, $id), ignoring\n" );
+			return false;
+		}
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->delete( 'user_newtalk',
+			array( $field => $id ),
+			$fname );
+		wfDebug( "$fname: killed on ($field, $id)\n" );
+		return true;
+	}
+	
+	/**
+	 * Update the 'You have new messages!' status.
+	 * @param bool $val
+	 */
 	function setNewtalk( $val ) {
+		if( wfReadOnly() ) {
+			return;
+		}
+		
 		$this->loadFromDatabase();
 		$this->mNewtalk = $val;
-		$this->invalidateCache();
+
+		$fname = 'User::setNewtalk';
+		
+		if( $this->isAnon() ) {
+			$field = 'user_ip';
+			$id = $this->getName();
+		} else {
+			$field = 'user_id';
+			$id = $this->getId();
+		}
+		
+		if( $val ) {
+			$changed = $this->updateNewtalk( $field, $id );
+		} else {
+			$changed = $this->deleteNewtalk( $field, $id );
+		}
+		
+		if( $changed ) {
+			if( $this->isAnon() ) {
+				// Anons have a separate memcached space, since
+				// user records aren't kept for them.
+				global $wgDBname, $wgMemc;
+				$key = "$wgDBname:newtalk:ip:$value";
+				$wgMemc->set( $key, $val ? 1 : 0 );
+			} else {
+				if( $val ) {
+					// Make sure the user page is watched, so a notification
+					// will be sent out if enabled.
+					$this->addWatch( $this->getTalkPage() );
+				}
+			}
+			$this->invalidateCache();
+			$this->saveSettings();
+		}
 	}
 
 	function invalidateCache() {
@@ -1150,12 +1221,17 @@ class User {
 	function clearNotification( &$title ) {
 		global $wgUser, $wgUseEnotif;
 
-		if ( !$wgUseEnotif ) {
+		if ($title->getNamespace() == NS_USER_TALK &&
+			$title->getText() == $this->getName() ) {
+			$this->setNewtalk( false );
+		}
+		
+		if( !$wgUseEnotif ) {
 			return;
 		}
 
-		$userid = $this->getID();
-		if ($userid==0) {
+		if( $this->isAnon() ) {
+			// Nothing else to do...
 			return;
 		}
 
@@ -1202,6 +1278,7 @@ class User {
 	function clearAllNotifications( $currentUser ) {
 		global $wgUseEnotif;
 		if ( !$wgUseEnotif ) {
+			$this->setNewtalk( false );
 			return;
 		}
 		if( $currentUser != 0 )  {
@@ -1291,7 +1368,6 @@ class User {
 		$fname = 'User::saveSettings';
 
 		if ( wfReadOnly() ) { return; }
-		$this->saveNewtalk();
 		if ( 0 == $this->mId ) { return; }
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1313,79 +1389,6 @@ class User {
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
-	/**
-	 * Save value of new talk flag.
-	 */
-	function saveNewtalk() {
-		global $wgDBname, $wgMemc, $wgUseEnotif;
-
-		$fname = 'User::saveNewtalk';
-
-		$changed = false;
-
-		if ( wfReadOnly() ) { return ; }
-		$dbr =& wfGetDB( DB_SLAVE );
-		$dbw =& wfGetDB( DB_MASTER );
-		$changed = false;
-		if ( $wgUseEnotif ) {
-			if ( ! $this->getNewtalk() ) {
-				# Delete the watchlist entry for user_talk page X watched by user X
-				$dbw->delete( 'watchlist',
-					array( 'wl_user'      => $this->mId,
-						   'wl_title'     => $this->getTitleKey(),
-						   'wl_namespace' => NS_USER_TALK ),
-					$fname );
-				if ( $dbw->affectedRows() ) {
-					$changed = true;
-				}
-				if( !$this->mId ) {
-					# Anon users have a separate memcache space for newtalk
-					# since they don't store their own info. Trim...
-					$wgMemc->delete( "$wgDBname:newtalk:ip:" . $this->getName() );
-				}
-			}
-		} else {
-			if ($this->getID() != 0) {
-				$field = 'user_id';
-				$value = $this->getID();
-				$key = false;
-			} else {
-				$field = 'user_ip';
-				$value = $this->getName();
-				$key = "$wgDBname:newtalk:ip:$value";
-			}
-
-			$dbr =& wfGetDB( DB_SLAVE );
-			$dbw =& wfGetDB( DB_MASTER );
-
-			$res = $dbr->selectField('user_newtalk', $field,
-									 array($field => $value), $fname);
-
-			$changed = true;
-			if ($res !== false && $this->mNewtalk == 0) {
-				$dbw->delete('user_newtalk', array($field => $value), $fname);
-				if ( $key ) {
-					$wgMemc->set( $key, 0 );
-				}
-			} else if ($res === false && $this->mNewtalk == 1) {
-				$dbw->insert('user_newtalk', array($field => $value), $fname);
-				if ( $key ) {
-					$wgMemc->set( $key, 1 );
-				}
-			} else {
-				$changed = false;
-			}
-		}
-
-		# Update user_touched, so that newtalk notifications in the client cache are invalidated
-		if ( $changed && $this->getID() ) {
-			$dbw->update('user',
-				/*SET*/ array( 'user_touched' => $this->mTouched ),
-				/*WHERE*/ array( 'user_id' => $this->getID() ),
-				$fname);
-			$wgMemc->set( "$wgDBname:user:id:{$this->mId}", $this, 86400 );
-		}
-	}
 
 	/**
 	 * Checks if a user with the given name exists, returns the ID

@@ -68,7 +68,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		// Create the mail object using the Mail::factory method
 		$mail_object =& Mail::factory('smtp', $wgSMTP);
-		wfDebug( "Sending mail via PEAR::Mail\n" );
+		wfDebug( "Sending mail via PEAR::Mail to $to\n" );
 		$mailResult =& $mail_object->send($to, $headers, $body);
 
 		# Based on the result return an error string,
@@ -94,7 +94,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
-		wfDebug( "Sending mail via internal mail() function\n" );
+		wfDebug( "Sending mail via internal mail() function to $to\n" );
 		mail( $to, $subject, $body, $headers );
 		restore_error_handler();
 
@@ -171,47 +171,67 @@ class EmailNotification {
 
 		$isUserTalkPage = ($title->getNamespace() == NS_USER_TALK);
 		$enotifusertalkpage = ($isUserTalkPage && $wgEnotifUserTalk);
-		$enotifwatchlistpage = (!$isUserTalkPage && $wgEnotifWatchlist);
+		$enotifwatchlistpage = $wgEnotifWatchlist;
 
-
-		if ( ($enotifusertalkpage || $enotifwatchlistpage) && (!$minorEdit || $wgEnotifMinorEdits) ) {
-			$dbr =& wfGetDB( DB_MASTER );
-			extract( $dbr->tableNames( 'watchlist' ) );
-			$res = $dbr->select( 'watchlist', array( 'wl_user' ),
-				array(
-					'wl_title' => $title->getDBkey(),
-					'wl_namespace' => $title->getNamespace(),
-					'wl_user <> ' . $wgUser->getID(),
-					'wl_notificationtimestamp ' . $dbr->isNullTimestamp(),
-				), $fname );
-
-			# if anyone is watching ... set up the email message text which is
-			# common for all receipients ...
-			if ( $dbr->numRows( $res ) > 0 ) {
-				$this->user &= $wgUser;
-				$this->title =& $title;
-				$this->timestamp = $timestamp;
-				$this->summary = $summary;
-				$this->minorEdit = $minorEdit;
-				$this->oldid = $oldid;
-
-				$this->composeCommonMailtext();
-				$watchingUser = new User();
-
-				# ... now do for all watching users ... if the options fit
-				for ($i = 1; $i <= $dbr->numRows( $res ); $i++) {
-
-					$wuser = $dbr->fetchObject( $res );
-					$watchingUser->setID($wuser->wl_user);
-					if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
-						( $enotifusertalkpage && $watchingUser->getOption('enotifusertalkpages') )
-					&& (!$minorEdit || ($wgEnotifMinorEdits && $watchingUser->getOption('enotifminoredits') ) )
-					&& ($watchingUser->isEmailConfirmed() ) ) {
-						# ... adjust remaining text and page edit time placeholders
-						# which needs to be personalized for each user
-						$this->composeAndSendPersonalisedMail( $watchingUser );
-
-					} # if the watching user has an email address in the preferences
+		if ( (!$minorEdit || $wgEnotifMinorEdits) ) {
+			if( $wgEnotifWatchlist ) {
+				// Send updates to watchers other than the current editor
+				$userCondition = 'wl_user <> ' . intval( $wgUser->getId() );
+			} elseif( $wgEnotifUserTalk && $title->getNamespace() == NS_USER_TALK ) {
+				$targetUser = User::newFromName( $title->getText() );
+				if( is_null( $targetUser ) ) {
+					wfDebug( "$fname: user-talk-only mode; no such user\n" );
+					$userCondition = false;
+				} elseif( $targetUser->getId() == $wgUser->getId() ) {
+					wfDebug( "$fname: user-talk-only mode; editor is target user\n" );
+					$userCondition = false;
+				} else {
+					// Don't notify anyone other than the owner of the talk page
+					$userCondition = 'wl_user = ' . intval( $targetUser->getId() );
+				}
+			} else {
+				// Notifications disabled
+				$userCondition = false;
+			}
+			if( $userCondition ) {
+				$dbr =& wfGetDB( DB_MASTER );
+				extract( $dbr->tableNames( 'watchlist' ) );
+				
+				$res = $dbr->select( 'watchlist', array( 'wl_user' ),
+					array(
+						'wl_title' => $title->getDBkey(),
+						'wl_namespace' => $title->getNamespace(),
+						$userCondition,
+						'wl_notificationtimestamp IS NULL',
+					), $fname );
+	
+				# if anyone is watching ... set up the email message text which is
+				# common for all receipients ...
+				if ( $dbr->numRows( $res ) > 0 ) {
+					$this->title =& $title;
+					$this->timestamp = $timestamp;
+					$this->summary = $summary;
+					$this->minorEdit = $minorEdit;
+					$this->oldid = $oldid;
+	
+					$this->composeCommonMailtext();
+					$watchingUser = new User();
+	
+					# ... now do for all watching users ... if the options fit
+					for ($i = 1; $i <= $dbr->numRows( $res ); $i++) {
+	
+						$wuser = $dbr->fetchObject( $res );
+						$watchingUser->setID($wuser->wl_user);
+						if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
+							( $enotifusertalkpage && $watchingUser->getOption('enotifusertalkpages') )
+						&& (!$minorEdit || ($wgEnotifMinorEdits && $watchingUser->getOption('enotifminoredits') ) )
+						&& ($watchingUser->isEmailConfirmed() ) ) {
+							# ... adjust remaining text and page edit time placeholders
+							# which needs to be personalized for each user
+							$this->composeAndSendPersonalisedMail( $watchingUser );
+	
+						} # if the watching user has an email address in the preferences
+					}
 				}
 			} # if anyone is watching
 		} # if $wgEnotifWatchlist = true
