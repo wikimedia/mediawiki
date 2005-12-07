@@ -265,7 +265,7 @@ global $wgRightsText;
 'history'	=> 'Lịch sử trang',
 'history_short' => 'Lịch sử',
 'sitetitle'     => '{{SITENAME}}',
-'sitesubtitle'  => 'Dự án mở',
+'sitesubtitle'  => '',
 'retrievedfrom' => 'Lấy từ « $1 »',
 'newmessages'   => 'Bạn có $1.',
 'newmessageslink' => 'tin nhắn mới',

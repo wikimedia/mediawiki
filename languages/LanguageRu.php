@@ -311,7 +311,7 @@ if($wgMetaNamespace === FALSE)
 'ok'                    => 'OK',
 'sitetitle'             => '{{SITENAME}}',
 'pagetitle'             => '$1 — {{SITENAME}}',
-'sitesubtitle'  => 'Свободная энциклопедия',
+'sitesubtitle'  => '',
 'retrievedfrom' => 'Получено с $1',
 'newmessages' => 'Вы получили $1.',
 'newmessageslink' => 'новые сообщения',

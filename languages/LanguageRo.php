@@ -808,7 +808,7 @@ Acest număr include paginile de \"discuţii\", paginile despre {{SITENAME}}, pa
 În total au fost <b>$3</b> vizite (accesări) şi <b>$4</b> editări
 de la ultima actualizare a programului (July 20, 2002).
 În medie rezultă <b>$5</b> editări per pagină sau <b>$6</b> vizualizări la fiecare editare.",
-'sitesubtitle' => "Enciclopedia liberă",
+'sitesubtitle' => "",
 'sitesupport' => "Donaţii",
 'sitetitle' => "{{SITENAME}}",
 'siteuser' => "Utilizator {{SITENAME}} $1",

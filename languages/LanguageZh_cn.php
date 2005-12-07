@@ -168,7 +168,7 @@ require_once( 'LanguageUtf8.php' );
 "go"			=> "进入",
 "ok"			=> "OK",
 "sitetitle"		=> "Wikipedia",
-"sitesubtitle"	=> "自由的百科全书",
+"sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
 "newmessages" => "您有$1。",
 "newmessageslink" => "新信息",

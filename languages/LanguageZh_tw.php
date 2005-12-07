@@ -136,7 +136,7 @@ require_once( "LanguageZh_cn.php" );
 "go"			=> "進入",
 "ok"			=> "好",
 "sitetitle"		=> "維基百科",
-"sitesubtitle"	=> "自由的百科全書",
+"sitesubtitle"	=> "",
 "retrievedfrom" => "取自\"$1\"",
 "newmessages" => "您有$1。",
 "newmessageslink" => "新信息",

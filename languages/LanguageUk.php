@@ -171,7 +171,7 @@ require_once( 'LanguageUtf8.php' );
 "go"			=> "Перейти",
 "ok"			=> "OK",
 "sitetitle"		=> '{{SITENAME}}',
-"sitesubtitle"	=> "Вільна енциклопедія",
+"sitesubtitle"	=> "",
 "retrievedfrom" => "Отримано від \"$1\"",
 "newmessages" => "Ви отримали $1.",
 "newmessageslink" => "нові повідомлення",

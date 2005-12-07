@@ -178,7 +178,7 @@ require_once( "LanguageUtf8.php" );
 'ok' => 'TAMAM',
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
-'sitesubtitle' => 'Sitemiz',
+'sitesubtitle' => '',
 'newmessages' => '$1.',
 'newmessageslink' => 'Yeni mesajınız var!',
 'editingsection' => '"$1" sayfasında bölüm değiştirmekteseniz',

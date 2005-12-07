@@ -404,7 +404,7 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 'ok'                    => 'OK',
 'sitetitle'             => "{{SITENAME}}",
 'pagetitle'             => "$1 - {{SITENAME}}",
-'sitesubtitle'  => 'A enciclopédia livre', # FIXME
+'sitesubtitle'  => '',
 'retrievedfrom' => "Retirado de \"$1\"",
 'newmessages' => "Você tem $1.",
 'newmessageslink' => 'novas mensagens',
