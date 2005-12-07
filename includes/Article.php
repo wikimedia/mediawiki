@@ -300,8 +300,7 @@ class Article {
 	 * @access private
 	 */
 	function pageData( &$dbr, $conditions ) {
-		return $dbr->selectRow( 'page',
-			array(
+		$fields = array(
 				'page_id',
 				'page_namespace',
 				'page_title',
@@ -312,9 +311,14 @@ class Article {
 				'page_random',
 				'page_touched',
 				'page_latest',
-				'page_len' ),
+				'page_len' ) ;
+		wfRunHooks( 'ArticlePageDataBefore', array( &$this , &$fields ) )	;
+		$row = $dbr->selectRow( 'page',
+			$fields,
 			$conditions,
 			'Article::pageData' );
+		wfRunHooks( 'ArticlePageDataAfter', array( &$this , &$row ) )	;
+		return $row ;
 	}
 
 	function pageDataFromTitle( &$dbr, $title ) {
@@ -782,6 +786,7 @@ class Article {
 			}
 		}
 		if( !$outputDone ) {
+			wfRunHooks( 'ArticleViewHeader', array( &$this ) ) ;
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
