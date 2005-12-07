@@ -182,7 +182,7 @@ class SpecialVersion {
 	 * @static
 	 */
 	function IPInfo() {
-		$ip =  str_replace( '--', '-', htmlspecialchars( wfGetIP() ) );
+		$ip =  str_replace( '--', ' - ', htmlspecialchars( wfGetIP() ) );
 		return "<!-- visited from $ip -->\n";
 	}
 	
