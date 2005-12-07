@@ -430,16 +430,19 @@ class Linker {
 			if ( $manual_thumb == '') {
 				$thumb = $img->getThumbnail( $width, $height );
 				if ( $thumb ) {
-					if( $width > $img->width && ( $height == -1 || $height > $img->height )) {
-						// Requested a display size larger than the actual image;
-						// fake it up!
-						$height = round($thumb->height * $width / $thumb->width);
-						wfDebug( "makeImageLinkObj: client-size height set to '$height'\n" );
-					} else {
-						$width = $thumb->width;
-						$height = $thumb->height;
-						wfDebug( "makeImageLinkObj: thumb height set to '$height'\n" );
+					// In most cases, $width = $thumb->width or $height = $thumb->height.
+					// If not, we're scaling the image larger than it can be scaled,
+					// so we send to the browser a smaller thumbnail, and let the client do the scaling.
+
+					if ($height != -1 && $width > $thumb->width * $height / $thumb->height) {
+						// $height is the limiting factor, not $width
+						// set $width to the largest it can be, such that the resulting
+						// scaled height is at most $height
+						$width = floor($thumb->width * $height / $thumb->height);
 					}
+					$height = round($thumb->height * $width / $thumb->width);
+
+					wfDebug( "makeImageLinkObj: client-size set to '$width x $height'\n" );
 					$url = $thumb->getUrl();
 				}
 			}
