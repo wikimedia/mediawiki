@@ -142,20 +142,17 @@ class OutputPage {
 		global $action;
 		switch($action) {
 			case 'edit':
-				return wfMsg('edit');
+			case 'delete':
+			case 'protect':
+			case 'unprotect':
+			case 'watch':
+			case 'unwatch':
+				// Display title is already customized
+				return '';
 			case 'history':
 				return wfMsg('history_short');
-			case 'protect':
-				return wfMsg('protect');
-			case 'unprotect':
-				return wfMsg('unprotect');
-			case 'delete':
-				return wfMsg('delete');
-			case 'watch':
-				return wfMsg('watch');
-			case 'unwatch':
-				return wfMsg('unwatch');
 			case 'submit':
+				// FIXME: bug 2735; not correct for special pages etc
 				return wfMsg('preview');
 			case 'info':
 				return wfMsg('info_short');

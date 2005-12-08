@@ -304,6 +304,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4201) Fix user-talk mode for Enotif, and general code cleanup
 * (bug 4207) Wrong image size when using 100x200px syntax to scale image up
   patch by David Benbennick
+* (bug 4214) Skip redundant action text inserts into the HTML <title>
 
 
 === Caveats ===
