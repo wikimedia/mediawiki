@@ -374,14 +374,14 @@ function ucListEdit( $sk, $row ) {
 		}
 
 	}
-	if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+	if( $row->rev_deleted && !$wgUser->isAllowed( 'delete' ) ) {
 		$difftext = '(' . $messages['diff'] . ')';
 	} else {
 		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 	}
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	$comment = $sk->commentBlock( $row->rev_comment, $page );
+	$comment = $sk->commentBlock( $row->rev_comment, $page, (bool)$row->rev_deleted );
 	$d = $wgLang->timeanddate( wfTimestamp(TS_MW, $row->rev_timestamp), true );
 
 	if( $row->rev_minor_edit ) {
@@ -392,7 +392,7 @@ function ucListEdit( $sk, $row ) {
 
 	$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
 	if( $row->rev_deleted ) {
-		$ret = '<span class="deleted">' . $ret . '</span> ' . htmlspecialchars( wfMsg( 'deletedrev' ) );
+		$ret = "<span class='deleted'>$ret</span>";
 	}
 	$ret = "<li>$ret</li>\n";
 	wfProfileOut( $fname );
