@@ -672,6 +672,21 @@ function do_watchlist_null() {
 
 }
 
+/**
+ * @bug 3946
+ */
+function do_page_random_update() {
+	global $wgDatabase;
+
+	echo "Setting page_random to a random value on rows where it equals 0...";
+
+	$page = $wgDatabase->tableName( 'page' );
+	$wgDatabase->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", 'do_page_random_update' );
+	$rows = $wgDatabase->affectedRows();
+	
+	echo "changed $rows rows\n";
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables;
 
@@ -719,6 +734,8 @@ function do_all_updates() {
 	//do_image_index_update(); flush();
 
 	do_logging_timestamp_index(); flush();
+
+	do_page_random_update(); flush();
 
 	initialiseMessages(); flush();
 }
