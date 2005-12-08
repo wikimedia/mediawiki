@@ -1257,7 +1257,7 @@ span.changedby {
 	color: gray;
 }
 
-li span.deleted {
+li span.deleted, span.history-deleted {
 	text-decoration: line-through;
 	color: #888;
 	font-style: italic;
