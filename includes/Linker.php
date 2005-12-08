@@ -744,15 +744,23 @@ class Linker {
 	 *
 	 * @param string $comment
 	 * @param Title $title
+	 * @param bool $deleted
+	 *
 	 * @return string
-	 * @access public
 	 */
-	function commentBlock( $comment, $title = NULL ) {
+	function commentBlock( $comment, $title = NULL, $deleted = false ) {
+		// '*' used to be the comment inserted by the software way back
+		// in antiquity in case none was provided, here for backwards
+		// compatability, acc. to brion -ævar
 		if( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
-			$formatted = $this->formatComment( $comment, $title );
-			return " <span class='comment'>($formatted)</span>";
+			if ( $deleted )
+				return " <span class='comment'>(...)</span>";
+			else {
+				$formatted = $this->formatComment( $comment, $title );
+				return " <span class='comment'>($formatted)</span>";
+			}
 		}
 	}
 
