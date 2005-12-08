@@ -900,9 +900,13 @@ class OutputPage {
 			}
 			$ret .= "<meta $a=\"{$tag[0]}\" content=\"{$tag[1]}\" />\n";
 		}
+		
 		$p = $this->mRobotpolicy;
-		if ( '' == $p ) { $p = 'index,follow'; }
-		$ret .= "<meta name=\"robots\" content=\"$p\" />\n";
+		if( $p !== '' && $p != 'index,follow' ) {
+			// http://www.robotstxt.org/wc/meta-user.html
+			// Only show if it's different from the default robots policy
+			$ret .= "<meta name=\"robots\" content=\"$p\" />\n";
+		}
 
 		if ( count( $this->mKeywords ) > 0 ) {
 			$strip = array(
