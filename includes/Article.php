@@ -1309,6 +1309,7 @@ class Article {
 		$oldsize = strlen( $oldtext );
 		$newsize = strlen( $text );
 		$lastRevision = 0;
+		$revisionId = 0;
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
 			$this->mGoodAdjustment = $this->isCountable( $text )
