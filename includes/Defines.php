@@ -75,10 +75,25 @@ define( 'MW_MATH_MATHML', 5 );
  * database.
  * @todo Is this necessary?
  */
-$wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
-'protect', 'block', 'userrights', 'createaccount', 'upload',
-'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot', 'validate', 
-'import', 'importupload' );
+$wgAvailableRights = array(
+	'read',
+	'edit',
+	'move',
+	'delete',
+	'protect',
+	'block',
+	'userrights',
+	'createaccount',
+	'upload',
+	'rollback',
+	'patrol',
+	'editinterface',
+	'siteadmin',
+	'bot',
+	'validate', 
+	'import',
+	'importupload'
+);
 
 /**#@+
  * Cache type
