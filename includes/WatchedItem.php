@@ -66,27 +66,27 @@ class WatchedItem {
 	function addWatch() {
 		$fname = 'WatchedItem::addWatch';
 		wfProfileIn( $fname );
-		# REPLACE instead of INSERT because occasionally someone
-		# accidentally reloads a watch-add operation.
+		
+		// Use INSERT IGNORE to avoid overwriting the notification timestamp
+		// if there's already an entry for this page
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
+		$dbw->insert( 'watchlist',
 		  array(
 		    'wl_user' => $this->id,
 			'wl_namespace' => ($this->ns & ~1),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => NULL
-		  ), $fname );
+		  ), $fname, 'IGNORE' );
 
-		# the following code compensates the new behaviour, introduced by the enotif patch,
-		# that every single watched page needs now to be listed in watchlist
-		# namespace:page and namespace_talk:page need separate entries: create them
-		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
+		// Every single watched page needs now to be listed in watchlist;
+		// namespace:page and namespace_talk:page need separate entries:
+		$dbw->insert( 'watchlist',
 		  array(
 			'wl_user' => $this->id,
 			'wl_namespace' => ($this->ns | 1 ),
 			'wl_title' => $this->ti,
 			'wl_notificationtimestamp' => NULL
-		  ), $fname );
+		  ), $fname, 'IGNORE' );
 
 		global $wgMemc;
 		$wgMemc->set( $this->watchkey(), 1 );

@@ -1343,8 +1343,10 @@ class Article {
 				RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
 					$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 					$revisionId );
-				Article::onArticleEdit( $this->mTitle );
 				$dbw->commit();
+				
+				// Update caches outside the main transaction
+				Article::onArticleEdit( $this->mTitle );
 			}
 		}
 
@@ -1371,32 +1373,6 @@ class Article {
 			# standard deferred updates
 			$this->editUpdates( $text, $summary, $minor, $now );
 
-
-			$urls = array();
-			# Template namespace
-			# Purge all articles linking here
-			if ( $this->mTitle->getNamespace() == NS_TEMPLATE) {
-				$titles = $this->mTitle->getLinksTo();
-				Title::touchArray( $titles );
-				if ( $wgUseSquid ) {
-						foreach ( $titles as $title ) {
-							$urls[] = $title->getInternalURL();
-						}
-				}
-			}
-
-			# Squid updates
-			if ( $wgUseSquid ) {
-				$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
-				$u = new SquidUpdate( $urls );
-				array_push( $wgPostCommitUpdateList, $u );
-			}
-
-			# File cache
-			if ( $wgUseFileCache ) {
-				$cm = new CacheManager($this->mTitle);
-				@unlink($cm->fileCacheName());
-			}
 
 			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $isminor, $now, $summary, $lastRevision, $revisionId );
 		}
@@ -1453,13 +1429,7 @@ class Article {
 		else
 			$r = '';
 		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
-
-		if ( $wgUseEnotif  ) {
-			# this would be better as an extension hook
-			include_once( "UserMailer.php" );
-			$enotif = new EmailNotification ();
-			$enotif->notifyOnPageChange( $this->mTitle, $now, $summary, $me2, $oldid );
-		}
+		
 		wfProfileOut( $fname );
 	}
 
@@ -2436,9 +2406,38 @@ class Article {
 		}
 	}
 
-	function onArticleEdit($title_obj) {
-		// This would be an appropriate place to purge caches.
-		// Why's this not in here now?
+	/**
+	 * Purge caches on page update etc
+	 */
+	function onArticleEdit( $title ) {
+		global $wgUseSquid, $wgPostCommitUpdateList, $wgUseFileCache;
+		
+		$urls = array();
+		
+		// Template namespace? Purge all articles linking here.
+		// FIXME: When a templatelinks table arrives, use it for all includes.
+		if ( $title->getNamespace() == NS_TEMPLATE) {
+			$titles = $title->getLinksTo();
+			Title::touchArray( $titles );
+			if ( $wgUseSquid ) {
+				foreach ( $titles as $link ) {
+					$urls[] = $link->getInternalURL();
+				}
+			}
+		}
+
+		# Squid updates
+		if ( $wgUseSquid ) {
+			$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
+			$u = new SquidUpdate( $urls );
+			array_push( $wgPostCommitUpdateList, $u );
+		}
+
+		# File cache
+		if ( $wgUseFileCache ) {
+			$cm = new CacheManager( $title );
+			@unlink( $cm->fileCacheName() );
+		}
 	}
 
 	/**#@-*/

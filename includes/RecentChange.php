@@ -173,6 +173,21 @@ class RecentChange
 				socket_close( $conn );
 			}
 		}
+		
+		// E-mail notifications
+		global $wgUseEnotif;
+		if( $wgUseEnotif ) {
+			# this would be better as an extension hook
+			include_once( "UserMailer.php" );
+			$enotif = new EmailNotification();
+			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
+			$enotif->notifyOnPageChange( $title,
+				$this->mAttribs['rc_timestamp'],
+				$this->mAttribs['rc_comment'],
+				$this->mAttribs['rc_minor'],
+				$this->mAttribs['rc_last_oldid'] );
+		}
+		
 	}
 
 	# Marks a certain row as patrolled
