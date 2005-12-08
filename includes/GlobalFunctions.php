@@ -1288,7 +1288,7 @@ function wfGetSiteNotice() {
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 
-	$notice = wfMsg( 'sitenotice' );
+	$notice = wfMsgForContent( 'sitenotice' );
 	if( $notice == '&lt;sitenotice&gt;' || $notice == '-' ) {
 		$notice = '';
 	}
