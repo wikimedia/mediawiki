@@ -2429,7 +2429,7 @@ class Article {
 
 		# Squid updates
 		if ( $wgUseSquid ) {
-			$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
+			$urls = array_merge( $urls, $title->getSquidURLs() );
 			$u = new SquidUpdate( $urls );
 			array_push( $wgPostCommitUpdateList, $u );
 		}
