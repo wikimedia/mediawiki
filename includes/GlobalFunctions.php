@@ -1262,9 +1262,9 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 }
 
 /**
- * Check where as the operating system is Windows
+ * Check if the operating system is Windows
  *
- * @return bool True if it's windows, False otherwise.
+ * @return bool True if it's Windows, False otherwise.
  */
 function wfIsWindows() {
 	if (substr(php_uname(), 0, 7) == 'Windows') {
@@ -1330,9 +1330,7 @@ function wfElement( $element, $attribs = null, $contents = '') {
 		if( $contents == '' ) {
 			$out .= ' />';
 		} else {
-			$out .= '>';
-			$out .= htmlspecialchars( $contents );
-			$out .= "</$element>";
+			$out .= '>' . htmlspecialchars( $contents ) . "</$element>";
 		}
 	}
 	return $out;
@@ -1359,7 +1357,7 @@ function wfElementClean( $element, $attribs = array(), $contents = '') {
 }
 
 // Shortcuts
-function wfOpenElement( $element ) { return "<$element>"; }
+function wfOpenElement( $element, $attribs = null ) { return wfElement( $element, $attribs, null ); }
 function wfCloseElement( $element ) { return "</$element>"; }
 
 /**
@@ -1555,11 +1553,11 @@ function in_string( $needle, $str ) {
 function wfUrlProtocols() {
 	global $wgUrlProtocols;
 
-	$x = array();
+	$protocols = array();
 	foreach ($wgUrlProtocols as $protocol)
-		$x[] = preg_quote( $protocol, '/' );
+		$protocols[] = preg_quote( $protocol, '/' );
 	
-	return implode( '|', $x );
+	return implode( '|', $protocols );
 }
 
 /**
