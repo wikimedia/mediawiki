@@ -1542,8 +1542,14 @@ class User {
 	 * @static
 	 */
 	function getMaxID() {
-		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'max(user_id)', false, 'User::getMaxID' );
+		static $res; // cache
+
+		if ( isset( $res ) )
+			return $res;
+		else {
+			$dbr =& wfGetDB( DB_SLAVE );
+			return $res = $dbr->selectField( 'user', 'max(user_id)', false, 'User::getMaxID' );
+		}
 	}
 
 	/**
