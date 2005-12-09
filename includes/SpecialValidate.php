@@ -429,9 +429,9 @@ class Validation {
 					$vote .= " &nbsp; ";
 				}
 			}			
-			$ret .= "<td>{$vote}</td>\n";
+			$ret .= "<td nowrap>{$vote}</td>\n";
 			
-			$ret .= "<td><input size='50' style='width:98%' maxlength='250' type='text' name='re_c{$idx}' value='{$y->comment}'/>";
+			$ret .= "<td width='100%'><input size='50' style='width:98%' maxlength='250' type='text' name='re_c{$idx}' value='{$y->comment}'/>";
 			$ret .= "</td></tr>\n";
 		}
 		$checked = $focus ? " checked='checked'" : "";
