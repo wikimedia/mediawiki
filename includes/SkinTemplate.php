@@ -696,6 +696,8 @@ class SkinTemplate extends Skin {
 					);
 				}
 			}
+			
+			wfRunHooks( 'SkinTemplateTabs', array( &$this , &$content_actions ) )	;
 
 			if( $this->loggedin || $wgValidationForAnons ) { # and $action != 'submit' ) {
 				# Validate tab. TODO: add validation to logged-in user rights
