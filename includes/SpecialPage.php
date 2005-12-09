@@ -69,7 +69,7 @@ $wgSpecialPages = array(
 	'Version'		=> new SpecialPage( 'Version' ),
 	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
 	'Log'           => new SpecialPage( 'Log' ),
-	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
+	'Block'		=> new SpecialPage( 'Blockip', 'block' ),
 	'Undelete'		=> new SpecialPage( 'Undelete' ),
 	"Import"		=> new SpecialPage( "Import", 'import' ),
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
@@ -189,7 +189,8 @@ class SpecialPage
 			'Mytalk' => Title::makeTitle( NS_USER_TALK, $wgUser->getName() ),
 			'Mycontributions' => Title::makeTitle( NS_SPECIAL, 'Contributions/' . $wgUser->getName() ),
 			'Listadmins' => Title::makeTitle( NS_SPECIAL, 'Listusers/sysop' ), # @bug 2832
-			'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' )
+			'Randompage' => Title::makeTitle( NS_SPECIAL, 'Random' ),
+			'Blockip' => Title::makeTitle( NS_SPECIAL, 'Block' )
 		);
 		wfRunHooks( 'SpecialPageGetRedirect', array( &$redirects ) );
 
@@ -204,9 +205,9 @@ class SpecialPage
 	function getPages() {
 		global $wgSpecialPages;
 		$pages = array(
-		  '' => array(),
-		  'sysop' => array(),
-		  'developer' => array()
+			'' => array(),
+			'sysop' => array(),
+			'developer' => array()
 		);
 
 		foreach ( $wgSpecialPages as $name => $page ) {
