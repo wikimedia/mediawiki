@@ -198,6 +198,8 @@ class MovePageForm {
 			$this->showForm( $error );
 			return;
 		}
+
+		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
 		
 		# Move talk page if
 		# (1) the checkbox says to,
@@ -214,6 +216,7 @@ class MovePageForm {
 			$error = $ott->moveTo( $ntt, true, $this->reason );
 			if ( $error === true ) {
 				$talkmoved = 1;
+				wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ott , &$ntt ) )	;
 			} else {
 				$talkmoved = $error;
 			}
