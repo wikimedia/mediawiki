@@ -188,7 +188,7 @@ MySQL returned error \"<tt>$3: $4</tt>\".",
 Percubaan terakhir permintaan pangkalan data ialah :
 \"$1\"
 from within function \"$2\".
-MySQL returned error \"$3: $4\".\n",
+MySQL returned error \"$3: $4\".",
 "noconnect"		=> "Tidak dapat menghubungkan ke DB oleh $1", #"Could not connect to DB on $1",
 "nodb"			=> "Tidak dapat memilih pangkalan data $1", #"Could not select database $1",
 "readonly"		=> "Pangkalan data dikunci", #"Database locked",
@@ -219,7 +219,7 @@ memberikan penjelasan berikut:
 #
 "logouttitle"	=> "Pengguna Keluar", #User logout
 "logouttext"	=> "Anda telah keluar dari sistem.
-Anda boleh terus membaca maklumat, tetapi tidak boleh mengemaskininya atau anda boleh masuk semula sebagai pengguna yang sama atau pengguna berbeza.\n",
+Anda boleh terus membaca maklumat, tetapi tidak boleh mengemaskininya atau anda boleh masuk semula sebagai pengguna yang sama atau pengguna berbeza.",
 
 "welcomecreation" => "<h2>Selamat datang, $1!</h2><p>Akaun anda telah dibuka.
 Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Your account has been created.Don't forget to personalize your preferences.",
@@ -231,7 +231,7 @@ Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Yo
 "newusersonly"	 => "(Hanya pengguna baru)", # (new users only)",
 "remembermypassword" => "Sentiasa ingatan kata laluan.", # Remember my password across sessions.",
 "loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br />Cuba semula!", # There has been a problem with your login.</b><br />Try again!",
-"alreadyloggedin" => "<strong>Pengguna $1, anda telah berjaya masuk!</strong><br />\n",
+"alreadyloggedin" => "<strong>Pengguna $1, anda telah berjaya masuk!</strong><br />",
 
 "login"			=> "Masuk", #Log in
 "userlogin"		=> "Laluan masuk", #Log in
@@ -331,7 +331,7 @@ users with sysop privileges can edit it. Be sure you are following the
 "nohistory"		=> "Tidak ada sejarah kemaskini untuk halaman ini", #"There is no edit history for this page.",
 "revnotfound"	=> "Revisi tidak dijumpai", #"Revision not found",
 "revnotfoundtext" => "Revisi lama untuk halaman ini yang anda minta tidak dapat dijumpai.
-Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revision of the page you asked for could not be found. Please check the URL you used to access this page.\n",
+Sila semak URL yang digunakan untuk mengakses halaman ini.", #"The old revision of the page you asked for could not be found. Please check the URL you used to access this page.",
 "loadhist"		=> "Muatturun halaman sejarah", #"Loading page history",
 "currentrev"	=> "Revisi terkini", #"Current revision",
 "revisionasof"	=> "Revisi sebagai $1", #"Revision as of $1",

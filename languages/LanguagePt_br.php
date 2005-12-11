@@ -212,7 +212,7 @@ de dados ocorreu.
 A última tentativa de pesquisa no banco de dados foi:
 \"$1\"
 com a função\"$2\".
-MySQL retornou o erro \"$3: $4\".\n",
+MySQL retornou o erro \"$3: $4\".",
 "noconnect"     => "Desculpe! O wiki está passando por algumas
 dificuldades técnicas, e não pode contatar o servidor de bando de dados.",
 "nodb"          => "Não foi possível selecionar o banco de dados $1",
@@ -254,7 +254,7 @@ porque tornava o banco de dados lento demais a ponto de impossibilitar o wiki.",
 "logouttitle"   => "Saída de utilizador",
 "logouttext"    => "Você agora não está mais autenticado.
 Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode se autenticar
-novamente como o mesmo utilizador ou como um utilizador diferente.\n",
+novamente como o mesmo utilizador ou como um utilizador diferente.",
 
 "welcomecreation" => "<h2>Bem-vindo, $1!</h2><p>Sua conta foi criada.
 Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
@@ -266,7 +266,7 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 "newusersonly"  => " (somente novos usuários)",
 "remembermypassword" => "Lembrar de minha senha em outras sessões.",
 "loginproblem"  => "<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!",
-"alreadyloggedin" => "<strong>Utilizador $1, você já está autenticado!</strong><br />\n",
+"alreadyloggedin" => "<strong>Utilizador $1, você já está autenticado!</strong><br />",
 
 "login"         => "Entrar",
 "userlogin"     => "Entrar",
@@ -363,7 +363,7 @@ você não está habilitado a salvar suas edições. Você pode copiar e colar o
 "nohistory"     => "Não há histórico de revisões para esta página.",
 "revnotfound"   => "Revisão não encontrada",
 "revnotfoundtext" => "A antiga revisão da página que você está procurando não pode ser encontrada.
-Por favor verifique a URL que você usou para acessar esta página.\n",
+Por favor verifique a URL que você usou para acessar esta página.",
 "loadhist"      => "Carregando histórico",
 "currentrev"    => "Revisão atual",
 "revisionasof"  => "Revisão de $1",

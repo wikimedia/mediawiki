@@ -192,7 +192,7 @@ Per favore, segnalate l'accaduto ad un amministratore di sistema, segnalando la 
 #
 "logouttitle"	=> "Logout Utente",
 "logouttext"	=> "Logout effettuato.
-Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.\n",
+Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.",
 
 "welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
 
@@ -203,7 +203,7 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 "newusersonly"	=> " (solo per nuovi Utenti)",
 "remembermypassword" => "Ricorda la mia password per più sessioni (richiede uso dei cookies).",
 "loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
-"alreadyloggedin" => "<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />\n",
+"alreadyloggedin" => "<strong>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</strong><br />",
 
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
@@ -273,7 +273,7 @@ Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo
 "nohistory"		=> "Cronologia delle versioni di questa pagina non reperibile.",
 "revnotfound"	=> "Versione non trovata ",
 "revnotfoundtext" => "La versione precedente di questo articolo che hai richiesto, non è stata trovata.
-Controlla per favore la URL che hai usato per accedere a questa pagina.\n",
+Controlla per favore la URL che hai usato per accedere a questa pagina.",
 "loadhist"		=> "Caricamento cronologia di questa pagina",
 "currentrev"	=> "Versione attuale",
 "revisionasof"	=> "Revisione $1",
@@ -498,22 +498,22 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Pagine orfane",
-"lonelypages"	=> "Pagine solitarie",
-"unusedimages"	=> "Immagini non utilizzate",
-"popularpages"	=> "Pagine più viste",
-"nviews"		=> "$1 visite",
-"wantedpages"	=> "Articoli più richiesti",
-"nlinks"		=> "$1 links",
-"allpages"		=> "Tutte le pagine",
-"randompage"	=> "Una pagina a caso",
-"shortpages"	=> "Pagine corte",
-"longpages"		=> "Pagine lunghe",
-"listusers"		=> "Elenco degli Utenti",
-"specialpages"	=> "Pagine speciali",
-"spheading"		=> "Pagine speciali",
-"protectpage"	=> "Proteggi questa pagina ",
-"recentchangeslinked" => "Modifiche correlate",
+'orphans'		=> 'Pagine orfane',
+'lonelypages'	=> 'Pagine solitarie',
+'unusedimages'	=> 'Immagini non utilizzate',
+'popularpages'	=> 'Pagine più viste',
+'nviews'		=> '$1 visite',
+'wantedpages'	=> 'Articoli più richiesti',
+'nlinks'		=> '$1 links',
+'allpages'		=> 'Tutte le pagine',
+'randompage'	=> 'Una pagina a caso',
+'shortpages'	=> 'Pagine corte',
+'longpages'		=> 'Pagine lunghe',
+'listusers'		=> 'Elenco degli Utenti',
+'specialpages'	=> 'Pagine speciali',
+'spheading'		=> 'Pagine speciali',
+'protectpage'	=> 'Proteggi questa pagina ',
+'recentchangeslinked' => 'Modifiche correlate',
 "rclsub"		=> "(alle pagine linkate da \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "Pagine nuove",

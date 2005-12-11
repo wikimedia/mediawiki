@@ -227,7 +227,7 @@ ne peut utiliser le wiki.", // Looxix
 #
 "logouttitle"	=> "Déconnexion",
 "logouttext"	=> "Vous êtes à présent déconnecté(e).
-Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
+Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.",
 
 "welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
 N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
@@ -239,7 +239,7 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préféren
 "newusersonly"       => " (nouveaux utilisateurs uniquement)",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
 "loginproblem"       => "<b>Problème d'identification.</b><br />Essayez à nouveau !",
-"alreadyloggedin"    => "<strong>Utilisateur $1, vous êtes déjà identifié !</strong><br />\n",
+"alreadyloggedin"    => "<strong>Utilisateur $1, vous êtes déjà identifié !</strong><br />",
 
 "login"         => "Identification",
 "userlogin"     => "Identification",
@@ -319,7 +319,7 @@ vous suivez les [[Project:Page protégée|directives concernant les pages proté
 "revhistory"   => "Versions précédentes",
 "nohistory"    => "Il n'existe pas d'historique pour cette page.",
 "revnotfound"  => "Version introuvable",
-"revnotfoundtext" => "La version précédente de cette page n'a pas pu être retrouvée. Vérifiez l'URL que vous avez utilisée pour accéder à cette page.\n",
+"revnotfoundtext" => "La version précédente de cette page n'a pas pu être retrouvée. Vérifiez l'URL que vous avez utilisée pour accéder à cette page.",
 
 "loadhist"     => "Chargement de l'historique de la page",
 "currentrev"   => "Version actuelle",

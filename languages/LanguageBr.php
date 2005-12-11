@@ -299,7 +299,7 @@ Goulenn : $2',
 #
 'logouttitle'	=> 'Dilugañ',
 'logouttext'	=> "Diluget oc\'h bremañ.
-Gallout a rit kenderc\'hel da implijout {{SITENAME}} en un doare dizanv, pe en em lugañ en-dro gant un anv all mar fell deoc\'h.\n",
+Gallout a rit kenderc\'hel da implijout {{SITENAME}} en un doare dizanv, pe en em lugañ en-dro gant un anv all mar fell deoc\'h.",
 
 'welcomecreation' => "<h2>Degemer mat, $1!</h2><p>Krouet eo bet ho kont implijer.
 Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndibaboù.",
@@ -427,7 +427,7 @@ N\'eus nemet an implijerien ganto ar statud a verourien a c\'hall degas kemmoù 
 'revhistory'   => 'Stummoù kent',
 'nohistory'    => "Ar bajenn-mañ n\'he deus tamm istor ebet.",
 'revnotfound'  => 'N\'eo ket bet kavet ar stumm-mañ',
-'revnotfoundtext' => "N\'eo ket bet kavet stumm kent ar bajenn-mañ. Gwiriit an URL lakaet ganeoc\'h evit mont d\'ar bajenn-mañ.\n",
+'revnotfoundtext' => "N\'eo ket bet kavet stumm kent ar bajenn-mañ. Gwiriit an URL lakaet ganeoc\'h evit mont d\'ar bajenn-mañ.",
 
 'loadhist'     => 'O kargañ istor ar bajenn',
 'currentrev'   => 'Stumm a-vremañ pe stumm red',
@@ -930,10 +930,10 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'blocklogtext'	=> "Setu roud stankadennoù ha distankadennoù an implijerien. N\'eo ket bet rollet ar chomlec\'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:Ipblocklist|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
 'unblocklogentry'	=> 'o tistankañ "$1"',
 'ipb_expiry_invalid' => 'amzer termen direizh.',
-'ip_range_invalid' => "Stankañ IP direizh.\n",
+'ip_range_invalid' => "Stankañ IP direizh.",
 'proxyblocker' => 'Stanker proksi',
 'proxyblockreason' => "Stanket eo bet hoc\'h IP rak ur proksi digor eo. Trugarez da gelaouiñ ho pourvezer moned ouzh ar Genrouedad pe ho skoazell deknikel eus ar gudenn surentez-mañ.",
-'proxyblocksuccess' => "Echu.\n",
+'proxyblocksuccess' => "Echu.",
 'ipbexpiry' => 'Pad ar stankadenn',
 
 # Developer tools
@@ -989,7 +989,7 @@ Lakait anv an implijer er voest ha pouezit war ar bouton evit reiñ ar gwirioù 
 'val_revision' => 'Divankadenn',
 'val_show_my_ratings' => 'Sellet ouzh ma c\'hadarnadennoù',
 'val_stat_link_text' => 'Stadegoù kadarnaat evit ar pennad-mañ',
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Soñj</th>$1<th>Evezhiadenn</th></tr>\n",
+'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Soñj</th>$1<th>Evezhiadenn</th></tr>",
 'val_tab' => 'Kadarnaat',
 'val_this_is_current_version' => 'hemañ eo ar stumm diwezhañ',
 'val_total' => 'Total',
@@ -1066,7 +1066,7 @@ Dibabit unan all mar plij.",
 # Thumbnails
 
 'thumbnail-more'	=> 'Brasaat',
-'missingimage'		=> "<b>Skeudenn a vank</b><br /><i>$1</i>\n",
+'missingimage'		=> "<b>Skeudenn a vank</b><br /><i>$1</i>",
 
 # Special:Import
 'import'	=> 'Enporzhiañ pajennoù',

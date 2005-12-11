@@ -280,14 +280,14 @@ aus der Funktion \"<tt>$2</tt>\".
 MySQL meldete den Fehler \"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: \"$1\" aus der Funktion \"<tt>$2</tt>\".
-MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
+MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".",
 "noconnect"		=> "Konnte keine Verbindung zur Datenbank auf $1 herstellen",
 "nodb"			=> "Konnte Datenbank $1 nicht auswählen",
 "cachederror" => "Das folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.",
 "readonly"		=> "Datenbank ist gesperrt",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
-"readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
+"readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.",
 "missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
@@ -317,7 +317,7 @@ Sie können den Quelltext dieser Seite betrachten und kopieren:",
 #
 "logouttitle"	=> "Benutzer-Abmeldung",
 "logouttext"	=> "Sie sind nun abgemeldet.
-Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
+Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.",
 
 "welcomecreation" => "<h2>Willkommen, $1!</h2><p>Ihr Benutzerkonto wurde eingerichtet.
 Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
@@ -329,7 +329,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "newusersonly"	=> " (nur für neue Mitglieder)",
 "remembermypassword" => "Dauerhaftes Einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
-"alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />\n",
+"alreadyloggedin" => "<strong>Benutzer $1, Sie sind bereits angemeldet!</strong><br />",
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
@@ -462,7 +462,7 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 "revhistory"	=> "Frühere Versionen",
 "nohistory"		=> "Es gibt keine früheren Versionen von diesem Artikel.",
 "revnotfound"	=> "Keine früheren Versionen gefunden",
-"revnotfoundtext" => "Die Version dieses Artikels, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.\n",
+"revnotfoundtext" => "Die Version dieses Artikels, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.",
 "loadhist"		=> "Lade Liste mit früheren Versionen",
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
@@ -1023,7 +1023,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "export"        => "Seiten exportieren",
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
-"missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>\n",
+"missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>",
 
 #Tooltips:
 'tooltip-watch' => 'Diese Seite beobachten. [alt-w]',
@@ -1088,7 +1088,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "unprotectcomment"	=> "Grund für das Aufheben der Sperrung",
 "proxyblocker"  	=> "Proxyblocker",
 "proxyblockreason"      => "Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.",
-"proxyblocksuccess"     => "Fertig.\n",
+"proxyblocksuccess"     => "Fertig.",
 "math_image_error"	=> "die PNG-Konvertierung schlug fehl.",
 "math_bad_tmpdir"	=> "Kann das Temporärverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",
 "math_bad_output"	=> "Kann das Zielverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",

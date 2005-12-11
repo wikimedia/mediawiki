@@ -205,7 +205,7 @@ MySQL returnerte feilen \"<tt>$3: $4</tt>\".",
 Den sist forsøkte forespørselen var:
 \"$1\"
 fra funksjonen \"$2\".
-MySQL returnerte feilen \"$3: $4\".\n",
+MySQL returnerte feilen \"$3: $4\".",
 "noconnect"		=> "Kunne ikke koble til databasen på $1",
 "nodb"			=> "Kunne ikke velge databasen $1",
 "cachederror"	=> "Det følgende er en lagret kopi av den ønskede siden, og er ikke nødvendigvis oppdatert.",
@@ -241,7 +241,7 @@ Du kan se og kopiere kildekoden til denne siden:",
 "logouttitle"	=> "Logg ut",
 "logouttext"	=> "Du er nå logget ut.
 Du kan fortsette å bruke Wikipedia anonymt, eller du kan logge inn
-igjen med samme konto eller med en annen en.\n",
+igjen med samme konto eller med en annen en.",
 
 "welcomecreation" => "<h2>Hjertelig velkommen til Wikipedia, $1!</h2><p>Vi har opprettet din brukerkonto.
 Hvis du vil, kan du personliggjøre brukerinnstillingene.",
@@ -253,7 +253,7 @@ Hvis du vil, kan du personliggjøre brukerinnstillingene.",
 "newusersonly"	=> " (kun nye brukere)",
 "remembermypassword" => "Husk passordet til neste gang.",
 "loginproblem"	=> "<b>Du ble ikke logget inn.</b><br />Prøv igjen!",
-"alreadyloggedin" => "<strong>Bruker $1 er allerede logget inn!</strong><br />\n",
+"alreadyloggedin" => "<strong>Bruker $1 er allerede logget inn!</strong><br />",
 
 
 "login"			=> "Logg inn",
@@ -351,7 +351,7 @@ kan redigere den. Sørg for at du følger
 "revhistory"	=> "Historikk",
 "nohistory"		=> "Det er ingen historikk for denne siden.",
 "revnotfound"	=> "Versjonen er ikke funnet",
-"revnotfoundtext" => "Den gamle versjonen av den siden du spurte etter, finnes ikke. Kontroller den URL-en du brukte for å få adgang til denne siden.\n",
+"revnotfoundtext" => "Den gamle versjonen av den siden du spurte etter, finnes ikke. Kontroller den URL-en du brukte for å få adgang til denne siden.",
 "loadhist"		=> "Laster historikk",
 "currentrev"	=> "Nåværende versjon",
 "revisionasof"	=> "Versjonen fra $1",

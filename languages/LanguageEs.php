@@ -8,32 +8,32 @@
 require_once( "LanguageUtf8.php" );
 
 /* private */ $wgNamespaceNamesEs = array(
-	NS_MEDIA          => "Media",
-	NS_SPECIAL        => "Especial",
-	NS_MAIN           => "",
-	NS_TALK           => "Discusión",
-	NS_USER           => "Usuario",
-	NS_USER_TALK      => "Usuario_Discusión",
+	NS_MEDIA          => 'Media',
+	NS_SPECIAL        => 'Especial',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discusión',
+	NS_USER           => 'Usuario',
+	NS_USER_TALK      => 'Usuario_Discusión',
 	NS_PROJECT	      => $wgMetaNamespace,
 	NS_PROJECT_TALK   => "{$wgMetaNamespace}_Discusión",
-	NS_IMAGE          => "Imagen",
-	NS_IMAGE_TALK     => "Imagen_Discusión",
-	NS_MEDIAWIKI      => "MediaWiki",
-	NS_MEDIAWIKI_TALK => "MediaWiki_Discusión",
-	NS_TEMPLATE       => "Plantilla",
-	NS_TEMPLATE_TALK  => "Plantilla_Discusión",
-	NS_HELP           => "Ayuda",
-	NS_HELP_TALK      => "Ayuda_Discusión",
-	NS_CATEGORY       => "Categoría",
-	NS_CATEGORY_TALK  => "Categoría_Discusión",
+	NS_IMAGE          => 'Imagen',
+	NS_IMAGE_TALK     => 'Imagen_Discusión',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_Discusión',
+	NS_TEMPLATE       => 'Plantilla',
+	NS_TEMPLATE_TALK  => 'Plantilla_Discusión',
+	NS_HELP           => 'Ayuda',
+	NS_HELP_TALK      => 'Ayuda_Discusión',
+	NS_CATEGORY       => 'Categoría',
+	NS_CATEGORY_TALK  => 'Categoría_Discusión',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEs = array(
-	"Ninguna", "Fija a la izquierda", "Fija a la derecha", "Flotante a la izquierda"
+	'Ninguna', 'Fija a la izquierda', 'Fija a la derecha', 'Flotante a la izquierda'
 );
 
 /* private */ $wgSkinNamesEs = array(
-	'standard' => "Estándar",
+	'standard' => 'Estándar',
 ) +  $wgSkinNamesEn;
 
 /* private */ $wgDateFormatsEs = array();
@@ -195,7 +195,7 @@ a la base de datos.
 La última consulta que se intentó fue:
 \"$1\"
 desde la función \"$2\".
-MySQL retornó el error \"$3: $4\".\n",
+MySQL retornó el error \"$3: $4\".",
 "noconnect"		=> "No se pudo conectar a la base de datos en $1",
 "nodb"			=> "No se pudo seleccionar la base de datos $1",
 "readonly"		=> "Base de datos bloqueada",
@@ -233,7 +233,7 @@ incluyendo el URL.",
 "logouttitle"	=> "Fin de sesión",
 "logouttext"	=> "Has terminado tu sesión.
 Puedes continuar usando {{SITENAME}} en forma anónima, o puedes
-iniciar sesión otra vez como el mismo u otro usuario.\n",
+iniciar sesión otra vez como el mismo u otro usuario.",
 
 "welcomecreation" => "<h2>Bienvenido(a), $1!</h2><p>Tu cuenta ha sido creada.
 No olvides personalizar tus preferencia de {{SITENAME}}.",
@@ -245,7 +245,7 @@ No olvides personalizar tus preferencia de {{SITENAME}}.",
 "newusersonly"	=> " (sólo usuarios nuevos)",
 "remembermypassword" => "Quiero que recuerden mi contraseña entre sesiones.",
 "loginproblem"	=> "<b>Hubo un problema con tu entrada.</b><br />¡Inténtalo otra vez!",
-"alreadyloggedin" => "<strong>Usuario $1, ya entraste!</strong><br />\n",
+"alreadyloggedin" => "<strong>Usuario $1, ya entraste!</strong><br />",
 
 "login"			=> "Registrarse/Entrar",
 "userlogin"		=> "Registrarse/Entrar",
@@ -338,7 +338,7 @@ intentarlo después.</strong>",
 "nohistory"		=> "No hay un historial de ediciones para esta página.",
 "revnotfound"	=> "Revisión no encontrada",
 "revnotfoundtext" => "La revisión antigua de la página por la que preguntaste no se pudo encontrar.
-Por favor revisa el URL que usaste para acceder a esta página.\n",
+Por favor revisa el URL que usaste para acceder a esta página.",
 "loadhist"		=> "Recuperando el historial de la página",
 "currentrev"	=> "Revisión actual",
 "revisionasof"	=> "Revisión de $1",

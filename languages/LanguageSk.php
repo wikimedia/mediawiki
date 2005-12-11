@@ -328,7 +328,7 @@ MySQL vrátil chybu \"<tt>$3: $4</tt>\".",
 Posledný pokus o prehľadávanie bol:
 \"$1\"
 z funkcie \"$2\".
-MySQL vrátil chybu \"$3: $4\".\n",
+MySQL vrátil chybu \"$3: $4\".",
 'noconnect' => 'Prepáčte! Wiki má technické problémy a nemôže kontaktovať databázový server. <br />
 $1',
 'nodb' => "Neviem vybrať databázu $1",
@@ -384,7 +384,7 @@ Môžete si pozrieť a skopírovať zdroj tejto stránky:",
 Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný redaktor alebo sa môžete
 opäť prihlásiť pod rovnakým alebo odlišným redaktorským menom. Uvedomte si, že niektoré stránky sa môžu
 naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete
-vyrovnávaciu pamäť vášho prehliadača.\n",
+vyrovnávaciu pamäť vášho prehliadača.",
 
 'welcomecreation' => "== Vitajte, $1! ==
 Vaše konto je vytvorené. Nezabudnite si nastaviť vaše redaktorské nastavenia.",
@@ -396,7 +396,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť vaše redaktorské nastaveni
 'newusersonly' => ' (iba noví redaktori)',
 'remembermypassword' => 'Pamätať si heslo aj po vypnutí počítača.',
 'loginproblem' => "'''Nastal problém pri vašom prihlasovaní.'''<br />Skúste to znova!",
-'alreadyloggedin' => "'''Užívateľ $1, vy už ste prihlásený!'''<br />\n",
+'alreadyloggedin' => "'''Užívateľ $1, vy už ste prihlásený!'''<br />",
 
 'login' => 'Prihlásenie',
 'loginprompt' => "Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).",
@@ -572,7 +572,7 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'nohistory' => 'Pre tento článok neexistuje história.',
 'revnotfound' => 'Predchádzajúca verzia nebola nájdená',
 'revnotfoundtext' => "Požadovaná staršia verzia článku nebola nájdená.
-Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.\n",
+Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.",
 'loadhist' => 'Otváram históriu stránky',
 'currentrev' => 'Aktuálna verzia',
 'revisionasof' => 'Verzia zo dňa a času $1',
@@ -1236,10 +1236,10 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'unblocklogentry' => 'odblokovaný/á "$1"',
 'range_block_disabled' => 'Schopnosť sysopa vytvárať bloky rozpätí je deaktivovaná.',
 'ipb_expiry_invalid' => 'Neplatný čas ukončenia.',
-'ip_range_invalid' => "Neplatné rozpätie IP.\n",
+'ip_range_invalid' => "Neplatné rozpätie IP.",
 'proxyblocker' => 'Blokovač proxy',
 'proxyblockreason' => 'Vaša IP adresa bola zablokovaná, pretože je otvorená proxy. Prosím kontaktujte vášho internetového poskytovateľa alebo technickú podporu a informujte ich o tomto vážnom bezpečnostnom probléme.',
-'proxyblocksuccess' => "Hotovo.\n",
+'proxyblocksuccess' => "Hotovo.",
 'sorbs' => 'SORBS DNSBL',
 'sorbsreason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v [http://www.sorbs.net SORBS] DNSBL.',
 
@@ -1328,7 +1328,7 @@ a zlúčením sa doplnia ostatné možnosti z vašich predchádzajúcich nastave
 'val_tab' => 'Overenie',
 'val_this_is_current_version' => 'toto je aktuálna verzia',
 'val_version_of' => "Verzie $1" ,
-'val_table_header' => "<tr><th>Trieda</th>$1<th colspan=4>Názor</th>$1<th>Poznámka</th></tr>\n",
+'val_table_header' => "<tr><th>Trieda</th>$1<th colspan=4>Názor</th>$1<th>Poznámka</th></tr>",
 'val_stat_link_text' => 'Štatistiky overení pre tento článok',
 'val_view_version' => 'Zobraz túto verziu',
 'val_validate_version' => 'Over túto verziu',
@@ -1425,7 +1425,7 @@ Ak chcete iba posledné úpravy, ako napr. [[Special:Export/Tank]] pre článok 
 # Thumbnails
 
 'thumbnail-more' => 'Zväčšiť',
-'missingimage' => "'''Chýbajúci obrázok'''<br />''$1''\n",
+'missingimage' => "'''Chýbajúci obrázok'''<br />''$1''",
 'filemissing' => 'Chýbajúci súbor',
 
 # Special:Import

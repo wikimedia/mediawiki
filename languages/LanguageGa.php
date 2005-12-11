@@ -377,7 +377,7 @@ Chuir MySQL an earráid seo ar ais: \"<tt>$3: $4</tt>\".",
 sonraí.
 \"$1\", ón suim \"$2\",
 ab ea an iarratas fiosraithe deireanach chuig an bhunachar sonrai,
-Chuir MySQL an earráid seo ar ais: \"$3: $4\".\n",
+Chuir MySQL an earráid seo ar ais: \"$3: $4\".",
 "noconnect"     => "Tá brón orainn! Tá roinnt deacrachtaí teicniúla ag an vicí faoi
 
 láthair,
@@ -439,7 +439,7 @@ Is féidir leat foinse an leathanaigh seo a féachaint agus a chóipeáil:",
 "logouttext" => "Tá tú logáilte amach anois.
 Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat logáil isteach
 arís mar an úsáideoir céanna, nó mar úsáideoir eile. Tabhair faoi deara go taispeáinfear roinnt
-leathanaigh mar atá tú logtha ann fós, go dtí go ghlanfá amach do thaisce brabhsálaí\n",
+leathanaigh mar atá tú logtha ann fós, go dtí go ghlanfá amach do thaisce brabhsálaí",
 
 "welcomecreation" => "== Tá fáilte romhat, $1! ==
 
@@ -454,7 +454,7 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta Vicipéi
 "yourdomainname"       => "D'fhearann",
 'externaldberror'      => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
 "loginproblem"  => "<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br>Déan iarracht eile!",
-"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br>\n",
+"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br>",
 
 "login"     => "Logáil isteach",
 'loginprompt'   => "Tá fianáin de dhíth chun logáil isteach a dhéanamh ag {{SITENAME}}.",
@@ -610,11 +610,11 @@ Sa bhosca seo thuas feiceann tú téacs an leathanaigh mar atá sé faoi láthai
 Tá do chuid athruithe sa bhosca thíos.
 Caithfidh tú do chuid athruithe a chumasadh leis an leagan láithreach.
 Nuair a brúann tú ar an cnaipe \"Sábháil an leathanach\", ní shábhálfar aon rud <b>ach
-amháin</b> an téacs sa bhosca thuas.\n<p>",
+amháin</b> an téacs sa bhosca thuas.<p>",
 "yourtext"      => "Do chuid téacs",
 "storedversion" => "Eagrán sábháilte",
 "editingold"    => "<strong>AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
-Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>\n",
+Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>",
 "yourdiff"      => "Difríochtaí",
 "copyrightwarning" => "Tabhair faoi dearadh go scaoiltear gach ceart le Vicipéid de réir tearmaí an <i>GNU Free Documentation License</i> (féach ar $1 le haghaidh tuilleadh eolais).
 Munar mian leat go gcuirfí do chuid scríbhinn in eagar go héadrócaireach agus go n-athdálfaí gan teorainn iad, ná
@@ -639,7 +639,7 @@ glasáilte</a>.",
 "nohistory"     => "Níl aon stáir athraithe ag an leathanach seo.",
 "revnotfound"   => "Ní bhfuarthas an athrú",
 "revnotfoundtext" => "Ní bhfuarthas seaneagrán an leathanaigh a d'iarr tú ar.
-Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.\n",
+Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 "loadhist"      => "Ag lódáil stáir an leathanaigh",
 "currentrev"    => "Leagan láithreach",
 "revisionasof"  => "Leagan ó $1",
@@ -1337,12 +1337,12 @@ liosta a fháil de coisc atá i bhfeidhm faoi láthair.",
 "unblocklogentry"   => 'díchoisceadh $1',
 'range_block_disabled'  => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
 'ipb_expiry_invalid'    => 'Am éaga neamhbhailí.',
-'ip_range_invalid'      => "Réimse IP neamhbhailí.\n",
+'ip_range_invalid'      => "Réimse IP neamhbhailí.",
 'proxyblocker'  => 'Cosc ar seachfhreastalaithe',
 'proxyblockreason'      => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
 neamhshlándála is ea é. Déan teagmháil le do chomhlacht idirlín nó le do lucht cabhrach teicneolaíochta
 go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
-'proxyblocksuccess'     => "Rinneadh.\n",
+'proxyblocksuccess'     => "Rinneadh.",
 'sorbs'	 => 'DNSBL SORBS',
 'sorbsreason'   => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL [http://www.sorbs.net SORBS].',
 
@@ -1439,7 +1439,7 @@ cumaisc líonfar na roghanna eile de réir na roghanna a raibh agat roimhe ré.'
 'val_version_of' => "Leagan ó $1" ,
 'val_table_header' => "<tr><th>Rang</th>$1<th
 
-colspan=4>Tuairim</th>$1<th>Trácht</th></tr>\n",
+colspan=4>Tuairim</th>$1<th>Trácht</th></tr>",
 'val_stat_link_text' => 'Staitistic bhailíochta don alt seo',
 'val_view_version' => 'Féach ar an leagan seo',
 'val_validate_version' => 'Bailíochtaigh an leagan seo',
@@ -1529,7 +1529,7 @@ go bhfuil wgUseDatabaseMessages druidte.',
 # Thumbnails
 
 'thumbnail-more'	=> 'Méadaigh',
-'missingimage'	  => "<b>Íomhá ar iarraidh</b><br /><i>$1</i>\n",
+'missingimage'	  => "<b>Íomhá ar iarraidh</b><br /><i>$1</i>",
 'filemissing'		=> 'Comhad ar iarraidh',
 
 # Special:Import

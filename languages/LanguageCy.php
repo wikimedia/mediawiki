@@ -234,7 +234,7 @@ Dwedodd MySQL mae 'ne côd gwall \"<tt>$3: $4</tt>\".",
 Y gofyniad olaf triodd y databas oedd:
 \"$1\"
 oddiwrth ffwythiant \"$2\".
-Dwedodd MySQL mae 'ne côd gwall \"$3: $4\".\n",
+Dwedodd MySQL mae 'ne côd gwall \"$3: $4\".",
 "noconnect" => "Ddim yn gallu cysylltu i'r databas ar $1",
 "nodb" => "Ddim yn gallu dewis databas $1",
 "cachederror" => "Dyma copi o'r stôr o'r tudalen rydych wedi gofyn, ac efallai dydi hi ddim yn cyfoes.",
@@ -273,7 +273,7 @@ Ellwch gweld a copïo'r ffynhonnell y tudalen hon:",
 #
 "logouttitle" => "Allgofnodi'r defnyddwr",
 "logouttext" => "Yr ydych wedi allgofnodi.
-Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.\n",
+Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.",
 
 "welcomecreation" => "<h2>Croeso, $1!</h2><p>Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr Wicipedia.",
 "loginpagetitle" => "Mewngofnodi'r defnyddwr",
@@ -283,7 +283,7 @@ Gallwch chi defnyddio'r Wicipedia yn anhysbys, neu gallwch chi mewngofnodi eto f
 "newusersonly" => " (defnyddwyr newydd yn unig)",
 "remembermypassword" => "Cofiwch fy allweddair dros mwy nag un sesiwn.",
 "loginproblem" => "<b>Mae problem efo'ch mewngofnodi.</b><br />Triwch eto!",
-"alreadyloggedin" => "<strong>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</strong><br />\n",
+"alreadyloggedin" => "<strong>Defnyddwr $1, yr ydych eisioes wedi mewngofnodi!</strong><br />",
 
 "login"	=> "Mewngofnodi",
 "loginprompt" => "Rhaid i chi galluogi cwcis i mewngofnodi i {{SITENAME}}.",
@@ -399,7 +399,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 "revhistory" => "Hanes cywiriadau",
 "nohistory" => "Does dim hanes cywiriadau am tudalen hon.",
 "revnotfound" => "Cywiriad nid wedi darganfod",
-"revnotfoundtext" => "Ni ellir darganfod yr hen cywiriad y tudalen rydych wedi gofyn amdano. Gwiriwch yr URL rydych wedi defnyddio i darganfod y tudalen hon.\n",
+"revnotfoundtext" => "Ni ellir darganfod yr hen cywiriad y tudalen rydych wedi gofyn amdano. Gwiriwch yr URL rydych wedi defnyddio i darganfod y tudalen hon.",
 "loadhist" => "Yn llwytho hanes y tudalen",
 "currentrev" => "Diwygiad cyfoes",
 "revisionasof"	=> "Diwygiad $1",
@@ -804,7 +804,7 @@ y rhestr o blociau a gwaharddiadau sydd yn effeithiol rwan.",
 "unblocklogentry" => 'wedi datblocio "$1"',
 "range_block_disabled" => "Mae gallu sysop i creu dewis o blociau wedi anablo.",
 "ipb_expiry_invalid" => "Amser diwedd ddim yn dilys.",
-"ip_range_invalid" => "Dewis IP annilys.\n",
+"ip_range_invalid" => "Dewis IP annilys.",
 
 
 # Make sysop

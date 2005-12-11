@@ -228,7 +228,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 #
 "logouttitle"	=> "用户退出",
 "logouttext"	=> "您现在已经退出。
-您可以继续以匿名方式使用Wikipeida，或再次以相同或不同用户身份登录。\n",
+您可以继续以匿名方式使用Wikipeida，或再次以相同或不同用户身份登录。",
 
 "welcomecreation" => "<h2>欢迎，$1!</h2><p>您的帐号已经建立，不要忘记设置Wikipedia个人参数。",
 
@@ -239,7 +239,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "newusersonly"	=> "（仅限新用户）",
 "remembermypassword" => "下次登录记住密码。",
 "loginproblem"	=> "<b>登录有问题。</b><br />再试一次！",
-"alreadyloggedin" => "<strong>用户$1，您已经登录了!</strong><br />\n",
+"alreadyloggedin" => "<strong>用户$1，您已经登录了!</strong><br />",
 
 "login"			=> "登录",
 "userlogin"		=> "用户登录",
@@ -332,7 +332,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "nohistory"		=> "没有本页的修订记录。",
 "revnotfound"	=> "没有找到修订记录",
 "revnotfoundtext" => "您请求的更早版本的修订记录没有找到。
-请检查您请求本页面用的 URL 是否正确。\n",
+请检查您请求本页面用的 URL 是否正确。",
 "loadhist"		=> "载入页面修订历史",
 "currentrev"	=> "当前修订版本",
 "revisionasof"	=> "$1的修订版本",

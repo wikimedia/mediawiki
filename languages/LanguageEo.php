@@ -221,7 +221,7 @@ novaj aldonaj kaj aliaj ŝanĝoj, probable pro laŭkutima flegado de la datumaro
 Bonvolu reprovu post iom da tempo.
 
 La ŝlosinto lasis la jenan mesaĝon:
-<p>$1</p>\n",
+<p>$1</p>",
 'missingarticle' => 'La datumbazo ne trovis la tekston de
 artikolo, kiun ĝi devus trovi, nomita "$1".
 Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
@@ -253,7 +253,7 @@ Vi ja rajtas vidi kaj kopii la fontotekston de la vikipaĝo:',
 'logouttitle'	=> 'Elsalutu!',
 'logouttext'	=> "Vi elsalutis kaj finis vian seancon.
 Vi rajtas daŭre Vikipediumi sennome, aŭ vi povas reensaluti
-kiel la sama aŭ kiel alia uzulo.\n", #FIXME
+kiel la sama aŭ kiel alia uzulo.", #FIXME
 
 'welcomecreation' => "<h2>Bonvenon, $1!</h2> Via konto estas kreita.
 <strong>Ne forgesu fari viajn {{SITENAME}}-preferojn!</strong>",
@@ -265,7 +265,7 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 'newusersonly'	=> ' (nur novaj uzuloj)',
 'remembermypassword' => 'Rememoru mian pasvorton.',
 "loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br />Bonvolu reprovi!",
-"alreadyloggedin" => "<strong>Uzulo $1, vi jam estas ensalutinta!</strong><br />\n",
+"alreadyloggedin" => "<strong>Uzulo $1, vi jam estas ensalutinta!</strong><br />",
 
 'login'			=> 'Ensalutu', #FIXME, what exactly do the following go to?
 'userlogin'		=> 'Ensalutu',

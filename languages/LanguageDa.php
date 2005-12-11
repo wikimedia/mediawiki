@@ -6,7 +6,7 @@
   */
 
 /** */
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 #--------------------------------------------------------------------------
 # Language-specific text
@@ -294,7 +294,7 @@ MySQL returnerede fejlen \"<tt>$3: $4</tt>\".",
 Den seneste forsøgte databaseforespørgsel var:
 \"$1\"
 fra funktionen \"$2\".
-MySQL returnerede fejlen \"$3: $4\".\n",
+MySQL returnerede fejlen \"$3: $4\".",
 'noconnect'		=> 'Der er problemer med {{SITENAME}}s database, vi kan desværre ikke komme i kontakt med den for øjeblikket. Prøv igen senere. <br />
 $1',
 "nodb"			=> "Kunne ikke vælge databasen $1",
@@ -351,7 +351,7 @@ Du kan sé og kopiere sidens indhold:",
 "logouttitle"	=> "Bruger-log-af",
 "logouttext"	=> "Du er nu logget af.
 Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan logge på
-igen som den samme eller en anden bruger.\n",
+igen som den samme eller en anden bruger.",
 
 "welcomecreation" => "== Velkommen, $1! ==
 
@@ -366,7 +366,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 "loginproblem"	=> "<b>Der har været et problem med at få dig logget på.</b><br />Prøv igen!",
-"alreadyloggedin" => "<strong>Bruger $1, du er allerede logget på!</strong><br />\n",
+"alreadyloggedin" => "<strong>Bruger $1, du er allerede logget på!</strong><br />",
 
 "login"			=> "Log på",
 'loginprompt'   => "Du skal have cookies slået til for at kunne logge på {{SITENAME}}.",
@@ -530,7 +530,7 @@ kan redigere den. Sørg for at du følger
 "nohistory"		=> "Der er ingen versionshistorik for denne side.",
 "revnotfound"	=> "Versionen er ikke fundet",
 "revnotfoundtext" => "Den gamle version af den side du spurgte efter kan
-ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.\n",
+ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.",
 "loadhist"		=> "Indlæser sidens historik",
 "currentrev"	=> "Nuværende version",
 "revisionasof"	=> "Versionen fra $1",
@@ -1197,10 +1197,10 @@ for en tidligere blokeret IP-adresse eller bruger.",
 'unblocklogentry'	=> 'ophævede blokering af "$1"',
 'range_block_disabled'	=> 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
 'ipb_expiry_invalid'	=> 'Udløbstiden er ugyldig.',
-'ip_range_invalid'	=> "Ugyldigt IP-interval.\n",
+'ip_range_invalid'	=> "Ugyldigt IP-interval.",
 'proxyblocker'	=> 'Proxy-blokering',
 'proxyblockreason'	=> 'Din IP-adresse er blevet blokeret fordi den er en såkaldt \'\'åben proxy\'\'. Kontakt din Internet-udbyder eller tekniske hotline og oplyse dem om dette alvorlige sikkerhedsproblem.',
-'proxyblocksuccess'	=> "Færdig.\n",
+'proxyblocksuccess'	=> "Færdig.",
 
 # Developer tools
 #
@@ -1279,7 +1279,7 @@ Indsæt navnet på brugeren i tekstboksen og tryk på knappen for at ændre rett
 'val_tab' => 'Validér',
 'val_this_is_current_version' => 'dette er den seneste version',
 'val_version_of' => "Version af $1" ,
-'val_table_header' => "<tr><th>Klasse</th>$1<th colspan=4>Vurdering</th>$1<th>Kommentar</th></tr>\n",
+'val_table_header' => "<tr><th>Klasse</th>$1<th colspan=4>Vurdering</th>$1<th>Kommentar</th></tr>",
 'val_stat_link_text' => 'Valideringsstatistik for denne artikel',
 'val_view_version' => 'Se denne version',
 'val_validate_version' => 'Validér denne version',
@@ -1369,7 +1369,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 # Thumbnails
 
 'thumbnail-more'	=> 'Forstør ',
-'missingimage'		=> "<b>Mangler billede</b><br /><i>$1</i>\n",
+'missingimage'		=> "<b>Mangler billede</b><br /><i>$1</i>",
 'filemissing'		=> 'Filen mangler',
 
 # Special:Import

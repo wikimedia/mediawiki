@@ -349,7 +349,7 @@ Tento počítač může být používán k prohlížení a editaci {{grammar:2sg
 'externaldberror'      => 'Buď nastalo chyba v databázi pro externí autentikaci, nebo nemáte dovoleno měnit svůj externí účet.',
 'remembermypassword' => 'Pamatovat si heslo mezi jednotlivými přihlášeními.',
 'loginproblem'  => '<b>Nastal problém při vašem přihlášení.</b><br />Zkuste to znovu!',
-'alreadyloggedin' => "<strong>Uživateli $1, již jste přihlášen!</strong><br />\n",
+'alreadyloggedin' => "<strong>Uživateli $1, již jste přihlášen!</strong><br />",
 
 'login'                 => 'Přihlašte se', #FIXME, what exactly do the following go to?
 'loginprompt'   => 'K přihlášení do {{grammar:2sg|{{SITENAME}}}} musíte mít povoleny cookies.',
@@ -1222,7 +1222,7 @@ hodnoty jejich předešlým nastavením.',
 'val_tab' => 'Hodnocení',
 'val_this_is_current_version' => 'toto je nejnovější verze',
 'val_version_of' => 'Verze z $1',
-'val_table_header' => "<tr><th>Třída</th>$1<th colspan=4>Názor</th>$1<th>Komentář</th></tr>\n",
+'val_table_header' => "<tr><th>Třída</th>$1<th colspan=4>Názor</th>$1<th>Komentář</th></tr>",
 'val_stat_link_text' => 'Statistiky hodnocení tohoto článku',
 'val_view_version' => 'Prohlédnout tuto verzi',
 'val_validate_version' => 'Hodnotit tuto verzi',
@@ -1292,7 +1292,7 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 # Thumbnails
 
 'thumbnail-more'        => 'Zvětšit',
-'missingimage'          => "<b>Chybějící obrázek</b><br /><i>$1</i>\n",
+'missingimage'          => "<b>Chybějící obrázek</b><br /><i>$1</i>",
 'filemissing'		=> 'Chybějící soubor',
 
 # Special:Import

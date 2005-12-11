@@ -235,7 +235,7 @@ MySQL zgłosił błąd \"<tt>$3: $4</tt>\".",
 Ostatnie, nieudane zapytanie to:
 \"$1\"
 wywołane zostało przez funkcję \"$2\".
-MySQL zgłosił błąd \"$3: $4\".\n",
+MySQL zgłosił błąd \"$3: $4\".",
 "noconnect" => "{{SITENAME}} ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
 "nodb" => "Nie można odnaleźć bazy danych $1",
 "cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już niekatualny.",
@@ -281,7 +281,7 @@ Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.",
 "logouttitle" => "Wylogowanie użytkownika",
 "logouttext" => "Wylogowano Cię.
 Możesz kontynuować pracę z Wikipedią jako niezarejestrowany użytkownik
-albo zalogować się ponownie jako ten sam lub inny użytkownik.\n",
+albo zalogować się ponownie jako ten sam lub inny użytkownik.",
 
 "welcomecreation" => "<h2>Witaj, $1!</h2><p>Właśnie utworzyliśmy dla Ciebie konto.
 Nie zapomnij dostosować <i>preferencji</i>.",
@@ -293,7 +293,7 @@ Nie zapomnij dostosować <i>preferencji</i>.",
 "newusersonly" => " (tylko nowi użytkownicy)",
 "remembermypassword" => "Pamiętaj moje hasło między sesjami.",
 "loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br />Spróbuj ponownie!",
-"alreadyloggedin" => "<strong>$1, jesteś już zalogowany!</strong><br />\n",
+"alreadyloggedin" => "<strong>$1, jesteś już zalogowany!</strong><br />",
 
 "login" => "Zaloguj mnie",
 "userlogin" => "Logowanie",
@@ -391,7 +391,7 @@ Upewnij się, że postępujesz zgodnie z
 "nohistory" => "Ta strona nie ma swojej historii edycji.",
 "revnotfound" => "Wersja nie została odnaleziona",
 "revnotfoundtext" => "Ta (starsza) wersja strony nie może zostać odnaleziona.
-Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.\n",
+Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.",
 "loadhist" => "Pobieranie historii tej strony",
 "currentrev" => "Aktualna wersja",
 

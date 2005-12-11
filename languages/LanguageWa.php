@@ -1290,7 +1290,7 @@ wgUseDatabaseMessages est dismetou.',
 
 # Thumbnails
 'thumbnail-more' => 'Ragrandi',
-'missingimage' => '<b>Imådje mancante:</b><br /><i>$1</i>\n',
+'missingimage' => '<b>Imådje mancante:</b><br /><i>$1</i>',
 'filemissing' => 'Fitchî mancant',
 
 # Special:Import
@@ -1332,7 +1332,7 @@ wgUseDatabaseMessages est dismetou.',
 'subcategorycount1' => 'I gn a $1 dizo-categoreye e cisse categoreye ci.',
 'categoryarticlecount' => 'I gn a $1 årtikes e cisse categoreye ci.',
 'categoryarticlecount1' => 'I gn a $1 årtike e cisse categoreye ci.',
-'usenewcategorypage' => '1\n\nCandjîz l\' prumî caractere a «0» po dismete li novea epådjnaedje des pådjes di categoreye.',
+'usenewcategorypage' => "1\n\nCandjîz l\' prumî caractere a «0» po dismete li novea epådjnaedje des pådjes di categoreye.",
 'listingcontinuesabbrev' => ' cont.',
 
 # Info page
@@ -1771,8 +1771,8 @@ will expire at $4.
 
 
 # Trackbacks
-'trackback' => "; $4$5 : [$2 $1]\n",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
+'trackback' => '; $4$5 : [$2 $1]',
+'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 
 
 
