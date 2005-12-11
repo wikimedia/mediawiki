@@ -549,7 +549,7 @@ class EditPage {
 		
 		if( $this->mArticle->getTimestamp() != $this->edittime ) {
 			$this->isConflict = true;
-			if( $this->section = 'new' ) {
+			if( $this->section == 'new' ) {
 				if( $this->mArticle->getUserText() == $wgUser->getName() &&
 					$this->mArticle->getComment() == $this->summary ) {
 					// Probably a duplicate submission of a new comment.
