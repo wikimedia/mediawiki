@@ -658,6 +658,8 @@ class EditPage {
 
 		$sk =& $wgUser->getSkin();
 		
+		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
+		
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		# Enabled article-related sidebar, toplinks, etc.
