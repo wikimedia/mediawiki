@@ -309,6 +309,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Use content-lang for sitenotice
 * (bug 4233) Update LanguageJa.php
 * Fix regression: old version missing from edit links in Nostalgia skin
+* (bug 1600) Trigger edit conflict on duplicate section=new submissions
 
 
 === Caveats ===
