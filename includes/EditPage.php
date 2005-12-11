@@ -546,11 +546,22 @@ class EditPage {
 
 		$this->mArticle->clear(); # Force reload of dates, etc.
 		$this->mArticle->forUpdate( true ); # Lock the article
-
-		if( ( $this->section != 'new' ) &&
-			($this->mArticle->getTimestamp() != $this->edittime ) ) 
-		{
+		
+		if( $this->mArticle->getTimestamp() != $this->edittime ) {
 			$this->isConflict = true;
+			if( $this->section = 'new' ) {
+				if( $this->mArticle->getUserText() == $wgUser->getName() &&
+					$this->mArticle->getComment() == $this->summary ) {
+					// Probably a duplicate submission of a new comment.
+					// This can happen when squid resends a request after
+					// a timeout but the first one actually went through.
+					wfDebug( "EditPage::editForm duplicate new section submission; trigger edit conflict!\n" );
+				} else {
+					// New comment; suppress conflict.
+					$this->isConflict = false;
+					wfDebug( "EditPage::editForm conflict suppressed; new section\n" );
+				}
+			}
 		}
 		$userid = $wgUser->getID();
 
