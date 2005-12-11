@@ -584,6 +584,9 @@ class SkinTemplate extends Skin {
 		$section = $wgRequest->getText( 'section' );
 		$content_actions = array();
 
+		$prevent_active_tabs = false ;
+		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this , &$prevent_active_tabs ) )	;
+
 		if( $this->iscontent ) {
 			$subjpage = $this->mTitle->getSubjectPage();
 			$talkpage = $this->mTitle->getTalkPage();
@@ -592,13 +595,13 @@ class SkinTemplate extends Skin {
 			$content_actions[$nskey] = $this->tabAction(
 				$subjpage,
 				$nskey,
-				!$this->mTitle->isTalkPage(),
+				!$this->mTitle->isTalkPage() && !$prevent_active_tabs,
 				'', true);
 
 			$content_actions['talk'] = $this->tabAction(
 				$talkpage,
 				'talk',
-				$this->mTitle->isTalkPage(),
+				$this->mTitle->isTalkPage() && !$prevent_active_tabs,
 				'',
 				true);
 
