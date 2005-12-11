@@ -216,9 +216,6 @@ function wfSpecialContributions( $par = null ) {
 
 	$id = User::idFromName($nt->getText());
 
-	if ( ! wfRunHooks( 'wfSpecialContributionsAfterId', array( &$this, &$id ) ) )
-		return;
-
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
