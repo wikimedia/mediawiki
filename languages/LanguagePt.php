@@ -236,6 +236,7 @@ parent class in order maintain consistency across languages.
 'tog-fancysig' => 'Assinaturas sem atalhos automáticos.',
 'tog-externaleditor' => 'Utilizar editor externo por padrão',
 'tog-externaldiff' => 'Utilizar diferenças externas por padrão',
+'tog-showjumplinks' => 'Activar hiperligações de acessibilidade "ir para"',
 
 'underline-always' => 'Sempre',
 'underline-never' => 'Nunca',
@@ -294,7 +295,7 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 
 'portal'                => 'Portal comunitário',
 'portal-url'            => 'Project:Portal comunitário',
-'about'                 => 'About',
+'about'                 => 'Sobre',
 'aboutsite'      => 'Sobre',
 'aboutpage'             => 'Project:Sobre',
 'article' => 'Artigo',
@@ -383,6 +384,9 @@ e o [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Guia dos Utilizador
 'printsubtitle' => "(De {{SERVER}})",
 'protectedpage' => 'Página protegida',
 'administrators' => "Project:Administradores",
+'jumpto' => 'Ir para:',
+'jumptonavigation' => 'navegação',
+'jumptosearch' => 'pesquisa',
 
 'sysoptitle'    => 'Necessário acesso de Sysop',
 'sysoptext'             => "A acção que requisitou só pode ser
@@ -501,11 +505,12 @@ Pode ver e copiar o código fonte desta página:",
 #
 'logouttitle'   => 'Saída de utilizador',
 'logouttext'            => "<strong>Não está mais autentificado.</strong><br />
-Pode continuar a utilizar a Wikipédia anonimamente, ou pode autenticar-se
-novamente como o mesmo utilizador ou como um utilizador diferente. Atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autenticado, até limpar a cache do seu navegador.",
+Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode autentificar-se
+novamente como o mesmo nome de utilizador utilizador ou com um nome de utilizador diferente. Tenha em atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autentificado, até limpar a cache do seu navegador.\n",
 
-'welcomecreation' => "<h2>Bem-vindo, $1!</h2><p>Sua conta foi criada.
-Não se esqueça de personalizar suas preferências na Wikipédia.",
+'welcomecreation' => "== Bem-vindo, $1! ==
+
+A sua conta foi criada. Não se esqueça de personalizar as suas [[Special:Preferences|preferências]] na {{SITENAME}}.",
 
 'loginpagetitle' => 'Login de utilizador',
 'yourname'              => 'Seu nome de utilizador',
@@ -618,12 +623,13 @@ O motivo é: ''$2''
 Pode contactar [[{{ns:special}}:emailuser/$4|$4]] ou outro
 [[{{ns:4}}:Administradores|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá usar a funcionalidade \"Contactar utilizador\" se não possuir uma conta na Wikipédia e um email válido indicado nas suas preferências de utilizador. E lembre-se que só se encontra impossibilitado de editar páginas.<br /><br />
+Note que não poderá utilizar a funcionalidade \"Contactar utilizador\" se não possuir uma conta na Wikipédia e um endereço de email válido indicado nas suas preferências de utilizador. E lembre-se que só se encontra impossibilitado de editar páginas.<br /><br />
 
-'''O seu endereço de IP é $3.''' Por favor inclua o seu endereço ao contactar um administrador sobre o bloqueio.",
-'whitelistedittitle' => 'Terá que se indentificar para editar',
-'whitelistedittext' => 'Para poder editar as páginas terá que se [[Special:Userlogin|identificar]]',
-'whitelistreadtext' => 'Para poder visualizar as páginas terá que se [[Special:Userlogin|identificar]].',
+'''O seu endereço de IP é $3.''' Por favor inclua o seu endereço de IP ao contactar um administrador sobre o bloqueio.",
+'whitelistedittitle' => 'Autentificação necessária para visualizar',
+'whitelistedittext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
+'whitelistreadtitle' => 'Autentificação necessária para visualizar',
+'whitelistreadtext' => 'Precisa de se [[Special:Userlogin|autentificar]] para poder visualizar páginas.',
 'whitelistacctitle' => 'Não lhe é permitido criar uma conta',
 'whitelistacctext' => 'De modo a poder criar contas de utilizador nesta Wiki terá que se [[Special:Userlogin|autentificar]] e possuir as devidas permissões.',
 'loginreqtitle' => 'Autentificação Requesitada',
@@ -664,7 +670,7 @@ Você terá que mesclar suas modificações no texto existente.
 'yourtext'              => 'Seu texto',
 'storedversion' => 'Versão guardada',
 'nonunicodebrowser' => "<strong>AVISO: O seu navegador não segue as especificações Unicode. Existe uma maneira para que possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>",
-'editingold'    => "<strong>CUIDADO: Você está editando uma revisão desactualizada deste artigo.
+'editingold'    => "<strong>CUIDADO: Encontra-se a editar uma revisão desactualizada deste artigo.
 Se salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>",
 'yourdiff'              => 'Diferenças',
 'copyrightwarning' => "Por favor note que todas as contribuições para a {{SITENAME}} são imediatamente colocadas sob a <b>GNU Free Documentation License</b> (consulte $1 para detalhes). Se você não quer que seu texto esteja sujeito a estes termos, então não o envie.<br/>
@@ -681,6 +687,10 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'readonlywarning' => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
 'protectedpagewarning' => "<strong>AVISO: Esta página foi protegida e apenas poderá ser editada por utilizadores com privilégios sysop (administradores). Certifique-se que está a respeitar as [[Project:Protected_page_guidelines|linhas de orientação para páginas protegidas]].</strong>",
 'templatesused' => 'Predefinições utilizadas nesta página:',
+'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
+'nocreatetitle' => 'Limitada a criação de páginas',
+'nocreatetext' => 'Este website tem restringida a habilidade de criar novas páginas.
+Pode voltar atrás e editar uma página já existente, ou [[Special:Userlogin|autentificar-se ou criar uma conta]].',
 
 # History pages
 #
@@ -721,7 +731,7 @@ Legenda: (actu) = diferenças da versão actual,
 #
 'searchresults' => 'Resultados de pesquisa',
 'searchresulttext' => "Para mais informações de como pesquisar na {{SITENAME}}, consulte [[Project:Pesquisa|Pesquisando {{SITENAME}}]].",
-'searchquery'   => "For query \"$1\"",
+'searchquery'   => "Para consulta \"$1\"",
 'badquery'              => 'Linha de pesquisa inválida',
 'badquerytext'  => 'Não foi possível processar seu pedido de pesquisa.
 Aconteceu provavelmente porque tentou procurar uma palavra com menos de três letras. Isto também pode ter ocorrido porque digitou incorrectamente a expressão, por
@@ -906,7 +916,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'uploadnologin' => 'Não autentificado',
 'uploadnologintext'     => "Deve estar <a href=\"{{localurle:Special:Userlogin}}\">autentificado</a>
 para carregar ficheiros.",
-'upload_directory_read_only' => 'The upload directory ($1) is not writable by the webserver.',
+'upload_directory_read_only' => 'A directoria de envio ($1) não tem permissões de escrita pelo servidor Web.',
 'uploaderror'   => 'Erro ao carregar',
 'uploadtext'    =>
 "
@@ -1037,7 +1047,7 @@ Destes, '''$2''' (ou '''$4''') são administradores (consulte $3).",
 'lonelypages'   => 'Páginas órfãs',
 'uncategorizedpages'    => 'Páginas não categorizadas',
 'uncategorizedcategories'       => 'Categorias não categorizadas',
-'unusedcategories' => 'Unused categories',
+'unusedcategories' => 'Categorias não utilizadas',
 'unusedimages'  => 'Ficheiros não utilizados',
 'popularpages'  => 'Páginas populares',
 'nviews'                => '$1 visitas',
@@ -1328,8 +1338,8 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:4}}:P
 'ipb_expiry_invalid'    => 'Tempo de expiração inválido.',
 'ip_range_invalid'      => "Gama de IPs inválida.",
 'proxyblocker'  => 'Bloqueador de proxy',
-'proxyblockreason'      => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
-'proxyblocksuccess'     => "Done.",
+'proxyblockreason'      => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
+'proxyblocksuccess'     => "Terminado.",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'O seu endereço IP encontra-se listado como proxy aberto em [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto no [http://www.sorbs.net SORBS] DNSBL. Não pode criar uma conta',
@@ -1746,9 +1756,9 @@ for minimizada. Outros serão escondidos por defeito.
 'exif-meteringmode' =>'Metering mode',
 'exif-lightsource' =>'Fonte de luz',
 'exif-flash' =>'Flash',
-'exif-focallength' =>'Lens focal length',
+'exif-focallength' =>'Comprimento de foco da lente',
 'exif-focallength-format' =>'$1 mm',
-'exif-subjectarea' =>'Subject area',
+'exif-subjectarea' =>'Área de sujeito',
 'exif-flashenergy' =>'Energia do flash',
 'exif-spatialfrequencyresponse' =>'Spatial frequency response',
 'exif-focalplanexresolution' =>'Focal plane X resolution',
