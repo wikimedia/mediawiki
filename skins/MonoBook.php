@@ -160,10 +160,14 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
 			<ul>
-			<?php if($this->data['notspecialpage']) { foreach( array( 'whatlinkshere', 'recentchangeslinked' ) as $special ) { ?>
-			<li id="t-<?php echo $special?>"><a href="<?php
-				echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
-				?>"><?php echo $this->msg($special) ?></a></li>
+			<?php if($this->data['notspecialpage']) { ?>
+			<li id="t-whatlinkshere"><a href="<?php
+				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
+				?>"><?php echo $this->msg('whatlinkshere') ?></a></li>
+			<?php if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
+			<li id="t-recentchangeslinked"><a href="<?php
+				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
+				?>"><?php echo $this->msg('recentchangeslinked') ?></a></li>
 			<?php } } ?>
 							<?php if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
 			<li id="t-trackbacklink"><a href="<?php

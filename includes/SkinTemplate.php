@@ -841,9 +841,11 @@ class SkinTemplate extends Skin {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => $this->makeSpecialUrl("Whatlinkshere/$this->thispage")
 			);
-			$nav_urls['recentchangeslinked'] = array(
-				'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
-			);
+			if( $this->mTitle->getArticleId() ) {
+				$nav_urls['recentchangeslinked'] = array(
+					'href' => $this->makeSpecialUrl("Recentchangeslinked/$this->thispage")
+				);
+			}
 			if ($wgUseTrackbacks)
 				$nav_urls['trackbacklink'] = array(
 					'href' => $wgTitle->trackbackURL()
