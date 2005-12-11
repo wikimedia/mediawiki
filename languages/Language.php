@@ -542,7 +542,7 @@ MySQL returned error "<tt>$3: $4</tt>".',
 The last attempted database query was:
 "$1"
 from within function "$2".
-MySQL returned error "$3: $4"'."\n",
+MySQL returned error "$3: $4"',
 'noconnect'		=> 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server. <br />
 $1',
 'nodb'			=> 'Could not select database $1',
@@ -590,11 +590,11 @@ You can view and copy the source of this page:',
 # Login and logout pages
 #
 'logouttitle'	=> 'User logout',
-'logouttext' 		=> "<strong>You are now logged out.</strong><br />
+'logouttext'	=> '<strong>You are now logged out.</strong><br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
-your browser cache.\n",
+your browser cache.',
 
 'welcomecreation' => "== Welcome, $1! ==
 
@@ -609,7 +609,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourdomainname'       => 'Your domain',
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'	=> '<b>There has been a problem with your login.</b><br />Try again!',
-'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />\n",
+'alreadyloggedin' => "<strong>User $1, you are already logged in!</strong><br />",
 
 'login'			=> 'Log in',
 'loginprompt'	=> 'You must have cookies enabled to log in to {{SITENAME}}.',
@@ -795,7 +795,7 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 'nohistory'		=> 'There is no edit history for this page.',
 'revnotfound'	=> 'Revision not found',
 'revnotfoundtext' => "The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.\n",
+Please check the URL you used to access this page.",
 'loadhist'		=> 'Loading page history',
 'currentrev'	=> 'Current revision',
 'revisionasof'          => 'Revision as of $1',
@@ -1470,10 +1470,10 @@ the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked $1',
 'range_block_disabled'	=> 'The sysop ability to create range blocks is disabled.',
 'ipb_expiry_invalid'	=> 'Expiry time invalid.',
-'ip_range_invalid'	=> "Invalid IP range.\n",
+'ip_range_invalid'	=> 'Invalid IP range.',
 'proxyblocker'	=> 'Proxy blocker',
 'proxyblockreason'	=> 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
-'proxyblocksuccess'	=> "Done.\n",
+'proxyblocksuccess'	=> 'Done.',
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the [http://www.sorbs.net SORBS] DNSBL. You cannot create an account',
@@ -1561,7 +1561,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_tab' => 'Validate',
 'val_this_is_current_version' => 'this is the latest version',
 'val_version_of' => "Version of $1" ,
-'val_table_header' => '<tr><th>Class</th>$1<th colspan="4">Opinion</th>$1<th>Comment</th></tr>\n',
+'val_table_header' => '<tr><th>Class</th>$1<th colspan="4">Opinion</th>$1<th>Comment</th></tr>',
 'val_stat_link_text' => 'Validation statistics for this article',
 'val_view_version' => 'View this revision',
 'val_validate_version' => 'Validate this version',
@@ -1664,7 +1664,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 # Thumbnails
 
 'thumbnail-more'	=> 'Enlarge',
-'missingimage'		=> "<b>Missing image</b><br /><i>$1</i>\n",
+'missingimage'		=> '<b>Missing image</b><br /><i>$1</i>',
 'filemissing'		=> 'File missing',
 
 # Special:Import
@@ -2192,8 +2192,8 @@ Trackbacks for this article:<br />
 $1
 </div>
 ',
-'trackback' => "; $4$5 : [$2 $1]\n",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
+'trackback' => '; $4$5 : [$2 $1]',
+'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Delete])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
