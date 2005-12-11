@@ -945,6 +945,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 3805) Clear 'new messages' flag properly in enotif mode
   for usernames containing spaces
 * (bug 2714) Backlink from special:whatlinkshere was hard set as 'existing'
+* (bug 4249) Typo in entities2literals.pl
 
 === Caveats ===
 
