@@ -321,7 +321,7 @@ Možda se radi o bugu u softveru.
 Posljednji pokušaj upita je glasio:
 \"$1\"
 iz funkcije \"<tt>$2</tt>\".
-MySQL je vratio pogrešku \"<tt>$3: $4</tt>\".\n",
+MySQL je vratio pogrešku \"<tt>$3: $4</tt>\".",
 "noconnect"		=> "Oprostite! Wiki trenutno ima tehničkih problema i ne može se povezati s bazom podataka. $1",
 "nodb"			=> "Nije bilo moguće odabrati bazu podataka $1",
 'laggedslavemode' => 'Upozorenje: na stranici se možda ne nalaze najnovije promjene.',
@@ -366,7 +366,7 @@ Možete pogledati izvorni kod ove stranice i kopirati ga:",
 "logouttext"	        => "Odjavili ste se.<br />
 Možete nastaviti s korištenjem projekta {{SITENAME}} anonimno,
 ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mogu
-prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.\n",
+prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
 "welcomecreation"       => "== Dobrodošli, $1! ==
 
 Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.",
@@ -383,7 +383,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'yourdomainname'       => 'Vaša domena',
 'externaldberror'      => 'Došlo je do greške s vanjskom autorizacijom ili vam nije dozvoljeno osvježavanje vanjskog suradničkog računa.',
 "loginproblem"	        => "<b>Došlo je do greške s vašom prijavom.</b><br />Pokušajte iznova!",
-"alreadyloggedin"       => "<strong>Suradniče $1, već ste prijavljeni!</strong><br />\n",
+"alreadyloggedin"       => "<strong>Suradniče $1, već ste prijavljeni!</strong><br />",
 "login"			=> "Prijavi se",
 "loginprompt"           => "Za prijavu na sustav {{SITENAME}} morate u pregledniku uključiti kolačiće (cookies).",
 "userlogin"		=> "Prijavi se",
@@ -492,12 +492,12 @@ ako pritisnete \"Sačuvaj stranicu\".",
 "editconflict"	        => "Istovremeno uređivanje: $1",
 "explainconflict"       => "Netko je u međuvremenu promijenio stranicu. Gornje polje sadrži sadašnji tekst stranice.
 U donjem polju prikazane su vaše promjene. Morat ćete unijeti vaše promjene u sadašnji tekst. <b>Samo</b> će tekst
-u u gornjem polju biti sačuvan kad pritisnete \"Snimi stranicu\".\n",
+u u gornjem polju biti sačuvan kad pritisnete \"Snimi stranicu\".",
 "yourtext"		=> "Vaš tekst",
 "storedversion"         => "Pohranjena inačica",
 'nonunicodebrowser' => '<strong>UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molim promijenite ga prije sljedećeg uređivanja članaka.</strong>',
 "editingold"	        => "<strong>UPOZORENJE: Uređujete stariju inačicu
-ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>\n",
+ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>",
 "yourdiff"		=> "Razlike",
 "copyrightwarning"      => "Molimo uočite da se svi doprinosi projektu {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation licence (vidi $1 za detalje).
 Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga slati.<br>
@@ -520,7 +520,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 "nohistory"		=> "Ova stranica nema starijih izmjena.",
 "revnotfound"	        => "Stara izmjena nije nađena.",
 "revnotfoundtext"       => "Ne mogu pronaći staru izmjenu stranice koju ste zatražili.
-Molimo provjerite URL koji vas je doveo ovamo.\n",
+Molimo provjerite URL koji vas je doveo ovamo.",
 "loadhist"		=> "Učitavam stare izmjene",
 "currentrev"	        => "Trenutna inačica",
 "revisionasof"	        => "Inačica od $1",
@@ -844,7 +844,7 @@ na odgovarajući sadržaj.<br />Stranica je razdvojbena ako je povezana iz $1.<b
 iz sekundarnih prostora ovdje <i>nisu</i> prikazane.",
 "doubleredirects"	=> "Dvostruko preusmjeravanje",
 "doubleredirectstext"	=> "<b>Pozor:</b>ovaj popis može sadržavati nepravilne članove. To obično znači
-da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />\n
+da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />
 Svaki red sadrži poveznice na prvo i drugo preusmjeravanje, te te prvu liniju teksta drugog preusmjeravanja
 koja obično ukazuje na \"pravu\" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.",
 "brokenredirects"	=> "Kriva preusmjeravanja",
@@ -1169,7 +1169,7 @@ blokiranja vidi [[Special:Ipblocklist|listu IP blokiranja]].',
 'ip_range_invalid' => 'Raspon IP adresa nije valjan.',
 'proxyblocker' => 'Zaštita od otvorenih posrednika (proxyja)',
 'proxyblockreason' => 'Vaša je IP adresa blokirana jer se radi o otvorenom posredniku (proxyju). Molim stupite u vezu s vašim davateljem internetskih usluga (ISP-om) ili službom tehničke podrške i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
-'proxyblocksuccess'	=> "Napravljeno.\n",
+'proxyblocksuccess'	=> "Napravljeno.",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju [http://www.sorbs.net SORBS] DNSBL. Ne možete otvoriti račun.',
@@ -1251,7 +1251,7 @@ kao u prethodnoj inačici koju ste ocijenili, izaberite željene izmjene, a osta
 'val_tab' => 'Potvrdi',
 'val_this_is_current_version' => 'ovo je posljednja inačica',
 'val_version_of' => "Inačica $1" ,
-'val_table_header' => "<tr><th>Klasa</th>$1<th colspan=4>Mišljenje</th>$1<th>Komentar</th></tr>\n",
+'val_table_header' => "<tr><th>Klasa</th>$1<th colspan=4>Mišljenje</th>$1<th>Komentar</th></tr>",
 'val_stat_link_text' => 'Statistike potvrde ovog članka',
 'val_view_version' => 'Pogledaj ovu inačicu',
 'val_validate_version' => 'Potvrdi ovu inačicu',
@@ -1847,8 +1847,8 @@ Valjanost ovog potvrdnog koda istječe $4.',
 $1
 </div>
 ",
-'trackback' => "; $4$5 : [$2 $1]\n",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
+'trackback' => "; $4$5 : [$2 $1]",
+'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove' => ' ([$1 izbrisati])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'Trackback izbrisan.',

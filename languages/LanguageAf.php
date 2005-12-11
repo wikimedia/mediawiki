@@ -204,7 +204,7 @@ Raporteer die adres asseblief aan enige administrateur.",
 #
 "logouttitle"	=> "Teken uit",
 "logouttext"	=> "Jy is nou uitgeteken, en kan aanhou om
-{{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.\n",
+{{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.",
 
 "welcomecreation" => "<h2>Welkom, $1.</h2><p>Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.",
@@ -216,7 +216,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.",
 "newusersonly"	=> " (slegs nuwe gebruikers)",
 "remembermypassword" => "Onthou my wagwoord oor sessies.",
 "loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br />Probeer weer.",
-"alreadyloggedin" => "<strong>Gebruiker $1, jy is reeds ingeteken.</strong><br />\n",
+"alreadyloggedin" => "<strong>Gebruiker $1, jy is reeds ingeteken.</strong><br />",
 
 "login"			=> "Teken in",
 "userlogin"		=> "Teken in",
@@ -295,7 +295,7 @@ kan probleme hê met die wysiging va blaaie langer as 32 kilogrepe. Breek assebl
 "nohistory"		=> "Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.",
 "revnotfound"	=> "Wysiging nie gevind nie.",
 "revnotfoundtext" => "Die ou wysiging waarvoor jy gevra het, kon nie gevind word nie. Maak asseblief seker dat die adres wat jy gebruik
-het om toegang te kry tot hierdie bladsy, reg is.\n",
+het om toegang te kry tot hierdie bladsy, reg is.",
 "loadhist"		=> "Besig om bladsy wysigingsgeskiedenis te laai.",
 "currentrev"	=> "Huidige wysiging",
 "revisionasof"	=> "Wysiging soos op $1",

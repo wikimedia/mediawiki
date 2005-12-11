@@ -300,7 +300,7 @@ MySQL andis vea \"<tt>$3: $4</tt>\".",
 Viimane andmebaasipäring oli:
 \"$1\"
 ja see kutsuti funktsioonist \"$2\".
-MySQL andis vea \"$3: $4\".\n",
+MySQL andis vea \"$3: $4\".",
 "noconnect"		=> "Vabandame! Wikil on tehnilisi probleeme ning ta ei saa andmebaasiserveriga $1 ühendust",
 "nodb"			=> "Andmebaasi $1 ei õnnestunud kätte saada",
 'cachederror'           => 'Järgnev lehekülg on puhverdatud koopia soovitud leheküljest ja ei pruugi seega olla värskeim.',
@@ -346,7 +346,7 @@ Sa saad aga vaadata ja kopeerida selle lehekülje lähteteksti -- ",
 #
 "logouttitle"	=> "Väljalogimine",
 "logouttext"	=> "Te olete välja loginud.
-Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana uuesti sisse logida.\n",
+Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana uuesti sisse logida.",
 	 # rookisin Vikipeedia välja, {{SITENAME}} oleks õige, aga vajab ümbersõnastamist.
 
 "welcomecreation" => "<h2>Tere tulemast, $1!</h2><p>Teie konto on loodud. Ärge unustage seada oma eelistusi.",
@@ -358,7 +358,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "newusersonly"	=> " (ainult uued kasutajad)",
 "remembermypassword" => "Parooli meeldejätmine tulevasteks seanssideks.",
 "loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!",
-"alreadyloggedin" => "<strong>Kasutaja $1, Te olete juba sisse loginud!</strong><br />\n",
+"alreadyloggedin" => "<strong>Kasutaja $1, Te olete juba sisse loginud!</strong><br />",
 
 "login"			=> "Logi sisse",
 'loginprompt'           => "{{SITENAME}} võimaldab sisselogimist vaid siis kui küpsised on lubatud.",
@@ -503,7 +503,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 "nohistory"		=> "Sellel leheküljel ei ole eelmisi redaktsioone.",
 "revnotfound"	=> "Redaktsiooni ei leitud",
 "revnotfoundtext" => "Teie poolt päritud vana redaktsiooni ei leitud.
-Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.\n",
+Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.",
 "loadhist"		=> "Lehekülje ajaloo laadimine",
 "currentrev"	=> "Viimane redaktsioon",
 "revisionasof"	=> "Redaktsioon: $1",

@@ -176,7 +176,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 # Aanmelden en afmelden
 "logouttitle" => "Afmelden gebroeker",
 "logouttext" => "U bent nu afgemeld.
-U kan {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
+U kan {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.",
 
 "welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebroekersprofiel is aangemaakt. U kan nu uw persoonlijke voorkeuren instellen.",
 
@@ -187,7 +187,7 @@ U kan {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezel
 "newusersonly" => " (alleen nieuwe gebroekers)",
 "remembermypassword" => "mien wachtwoord onthouden voor latere sessies.",
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<strong>gebroeker $1, u bent al aangemeld.</strong><br />\n",
+"alreadyloggedin" => "<strong>gebroeker $1, u bent al aangemeld.</strong><br />",
 
 "login"   => "Aanmelden",
 "userlogin"  => "Aanmelden",
@@ -244,7 +244,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "revhistory" => "Bewirkingsgeschiedenis",
 "nohistory"  => "Deze pagina hèt nog gein bewirkinge ondergaan.",
 "revnotfound" => "Wieziging neet gevonge",
-"revnotfoundtext" => "De opgevroagde ouwe versie van deze pagina is onvindbaar. Controleer a.u.b. de URL die u gebruikte om naar deze pagina te gaan.\n",
+"revnotfoundtext" => "De opgevroagde ouwe versie van deze pagina is onvindbaar. Controleer a.u.b. de URL die u gebruikte om naar deze pagina te gaan.",
 "loadhist"  => "Bezig met het laden van de paginageschiedenis",
 "currentrev" => "Huidige versie",
 "revisionasof" => "Versie op $1",
@@ -446,10 +446,10 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "wantedpages" => "Gewenste pagina's",
 "nlinks"  => "$1 verwijzingen",
 "allpages"  => "Alle pagina's",
-"randompage" => "Willekeurig artikel",
-"shortpages" => "Korte artikels",
-"longpages"  => "Lange artikels",
-"listusers"  => "liest van gebroekers",
+'randompage' => 'Willekeurig artikel',
+'shortpages' => 'Korte artikels',
+'longpages'  => 'Lange artikels',
+'listusers'  => 'liest van gebroekers',
 "specialpages" => "Speciale pagina's",
 "spheading"  => "Speciale pagina's",
 "protectpage" => "Beveilig pagina",

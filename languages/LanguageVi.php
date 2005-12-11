@@ -351,7 +351,7 @@ Truy vấn : $2',
 #
 'logouttitle'	=> 'Đăng xuất',
 'logouttext'	=> "Bạn đã đang xuất.
-Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nhập lại, có thể dưới tài khoản khác.\n",
+Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nhập lại, có thể dưới tài khoản khác.",
 
 'welcomecreation' => "<h2>Chào mừng, $1!</h2><p>Tài khoản của bạn đã mở. Mời bạn vào trang Lựa chọn cá nhân dành cho bạn.",
 
@@ -482,7 +482,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'revhistory'   => 'Bản cũ',
 'nohistory'    => "Trang này chưa có lịch sử.",
 'revnotfound'  => 'Không thấy',
-'revnotfoundtext' => "Không thấy phiên bản trước của trang này. Xin kiểm tra lại.\n",
+'revnotfoundtext' => "Không thấy phiên bản trước của trang này. Xin kiểm tra lại.",
 
 'loadhist'     => 'Đang mở lịch sử...',
 'currentrev'   => 'Hiện nay',
@@ -990,10 +990,10 @@ Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và
 'unblocklogentry'   => 'đã hết cấm "$1"',
 'range_block_disabled'  => 'Không được cấm hàng loạt.',
 'ipb_expiry_invalid'    => 'Thời điểm hết hạn không hợp lệ.',
-'ip_range_invalid'  => "Dải IP không hợp lệ.\n",
+'ip_range_invalid'  => "Dải IP không hợp lệ.",
 'proxyblocker'  => 'Chặn proxy',
 'proxyblockreason'  => 'Địa chỉ IP của bạn đã bị cấm vì là proxy mở. Xin hãy liên hệ nhà cung cấp dịch vụ Internet hoặc bộ phận hỗ trợ kỹ thuật của bạn và thông báo với họ về vấn đề an ninh nghiêm trọng này.',
-'proxyblocksuccess' => "Đã xong.\n",
+'proxyblocksuccess' => "Đã xong.",
 // Chỗ này có thể lỗi
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo [http://www.sorbs.net SORBS] DNSBL.',
@@ -1047,7 +1047,7 @@ Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và
 'val_tab' => 'Duyệt',
 'val_this_is_current_version' => 'đây là bản mới nhất',
 'val_version_of' => "Phiên bản của $1" ,
-'val_table_header' => "<tr><th>Lớp</th>$1<th colspan=4>Ý kiến</th>$1<th>Bình luận</th></tr>\n",
+'val_table_header' => "<tr><th>Lớp</th>$1<th colspan=4>Ý kiến</th>$1<th>Bình luận</th></tr>",
 'val_stat_link_text' => 'Thống kê về duyệt cho bài này',
 'val_view_version' => 'Xem bản này',
 'val_validate_version' => 'Duyệt bản này',
@@ -1138,7 +1138,7 @@ Xin hãy hợp nhất chúng lại.',
 
 # Thumbnails
 'thumbnail-more'    => 'Phóng lớn',
-'missingimage'      => "<b>Không có hình</b><br /><i>$1</i>\n",
+'missingimage'      => "<b>Không có hình</b><br /><i>$1</i>",
 'filemissing'       => 'Không có tệp tin',
 
 # Special:Import
@@ -1453,7 +1453,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'noimage' => 'Không có hình này, bạn có thể [$1 tải nó lên]',
 'setstewardflag' => 'Đặt cờ tiếp viên',
 'val_time' => 'Thời gian',
-'proxyblocksuccess'	=> "Xong.\n",
+'proxyblocksuccess'	=> "Xong.",
 
 'namespacesall' => 'tất cả',
 'fileuploadsummary' => 'tóm tắt',

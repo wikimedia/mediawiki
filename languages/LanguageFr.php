@@ -990,7 +990,7 @@ Tapez le nom de l\'utilisateur dans la boite et pressez le bouton pour lui donne
 'val_revision' => 'Révision',
 'val_show_my_ratings' => 'Voir mes validations',
 'val_stat_link_text' => 'Statistiques de validation pour cet article',
-'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>\n",
+'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>",
 'val_tab' => 'Valider',
 'val_this_is_current_version' => 'ceci est la dernière version',
 'val_total' => 'Total',

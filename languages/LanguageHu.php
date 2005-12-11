@@ -238,7 +238,7 @@ A MySQL hiba \"<tt>$3: $4</tt>\".",
 Az utolsó lekérési próbálkozás:
 \"$1\"
 a \"$2\" függvényből történt.
-A MySQL hiba \"$3: $4\".\n",
+A MySQL hiba \"$3: $4\".",
 "noconnect"		=> "Nem tudok a $1 adatbázis gépre csatlakozni",
 "nodb"			=> "Nem tudom elérni a $1 adatbázist",
 "cachederror"	=> "Ez a kért cikk egy régebben elmentett példánya, lehetséges, hogy nem tartalmazza a legújabb módosításokat.",
@@ -281,7 +281,7 @@ wikit használni.",
 "logouttitle"	=> "Kilépés",
 "logouttext"	=> "Kiléptél.
 Folytathatod a {{SITENAME}} használatát név nélkül, vagy beléphetsz
-újra vagy másik felhasználóként.\n",
+újra vagy másik felhasználóként.",
 
 "welcomecreation" => "<h2>Üdvözöllek, $1!</h2><p>A felhasználói környezeted
 létrehoztam.
@@ -294,7 +294,7 @@ Ne felejtsd el átnézni a személyes {{SITENAME}} beállításaidat.",
 "newusersonly"	=> " (csak új felhasználóknak)",
 "remembermypassword" => "Jelszó megjegyzése a használatok között.",
 "loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br />Kérlek próbáld ismét!",
-"alreadyloggedin" => "<strong>Kedves $1, már be vagy lépve!</strong><br />\n",
+"alreadyloggedin" => "<strong>Kedves $1, már be vagy lépve!</strong><br />",
 
 "login"			=> "Belépés",
 "userlogin"		=> "Belépés",
@@ -410,7 +410,7 @@ betartod a [[Project:Zárt_lapok_irányelve|zárt lapok irányelvét]].</strong>
 "nohistory"		=> "Nincs szerkesztési történet ehhez a laphoz.",
 "revnotfound"	=> "A változat nem található",
 "revnotfoundtext" => "A lap általad kért régi változatát nem találom.
-Kérlek ellenőrizd az URL-t amivel erre a lapra jutottál.\n",
+Kérlek ellenőrizd az URL-t amivel erre a lapra jutottál.",
 "loadhist"		=> "Laptörténet beolvasása",
 "currentrev"	=> "Aktuális változat",
 "revisionasof"	=> "$1 változat",

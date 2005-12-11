@@ -241,7 +241,7 @@ dat gjinien de wiki brûke kin.",
 "logouttitle" 	=> "Ofmelde",
 "logouttext"	=> "Jo binne no ôfmeld.
 Jo kinne de {{SITENAME}} fierders anonym brûke,
-of jo op 'e nij [[Wiki:Userlogin|oanmelde]] ûnder in oare namme.\n",
+of jo op 'e nij [[Wiki:Userlogin|oanmelde]] ûnder in oare namme.",
 "welcomecreation" => "<h2>Wolkom, $1!</h2><p>Jo ynstellings bin oanmakke.
 Ferjit net se oan jo foarkar oan te passen.",
 
@@ -252,7 +252,7 @@ Ferjit net se oan jo foarkar oan te passen.",
 "newusersonly" 	=> " (allinnich foar nije brûkers)",
 "remembermypassword" => "Oare kear fansels oanmelde.",
 "loginproblem" 	=> "<b>Der wie wat mis mei jo oanmelden.</b><br />Besykje it nochris, a.j.w.",
-"alreadyloggedin" => "<strong>Brûker $1, jo binne al oanmeld!</strong><br />\n",
+"alreadyloggedin" => "<strong>Brûker $1, jo binne al oanmeld!</strong><br />",
 "login"		=> "Oanmelde",
 "userlogin"		=> "Oanmelde",
 "logout"		=> "Ofmelde",
@@ -368,7 +368,7 @@ gewoane brûkers dy net bewurkje kinne. Tink om de
 "nohistory"		=> "Dit is de earste ferzje fan de side.",
 "revnotfound"	=> "Ferzje net fûn",
 "revnotfoundtext" => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
-Gean nei of de keppeling dy jo brûkt hawwe wol goed is.\n",
+Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 "loadhist"		=> "Sideskiednis ...",
 "currentrev"	=> "Dizze ferzje",
 "revisionasof"	=> "Ferzje op $1",

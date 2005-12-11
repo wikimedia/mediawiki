@@ -446,12 +446,12 @@ executada por utilizadores com direitos de "desenvolvedor".<br />Veja $1.',
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função \"<tt>$2</tt>\".
-MySQL retornou o erro \"<tt>$3: $4</tt>\".\n",
+MySQL retornou o erro \"<tt>$3: $4</tt>\".",
 'dberrortextcl' => "Ocorre um erro de sintaxe na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função \"<tt>$2</tt>\".
-MySQL retornou o erro \"<tt>$3: $4</tt>\".\n",
+MySQL retornou o erro \"<tt>$3: $4</tt>\".",
 'noconnect'             => 'Pedimos desculpas, mas esta wiki está passando por algumas
 dificuldades técnicas e não pode contactar o servidor da base de dados.',
 'nodb'                  => "Não foi possível seleccionar a base de dados $1",
@@ -462,7 +462,7 @@ dificuldades técnicas e não pode contactar o servidor da base de dados.',
 'readonlytext'  => "A base de dados da {{SITENAME}} está actualmente trancada para novos
 artigos e outras modificações, provavelmente por uma manutenção de rotina à base de dados, mais tarde voltará ao normal.
 
-O administrador que fez o bloqueio oferece a seguinte explicação: $1\n",
+O administrador que fez o bloqueio oferece a seguinte explicação: $1",
 'missingarticle' => "A base de dados não encontrou o texto de uma página que deveria ter encontrado: \"$1\".
 
 Isto é geralmente causado pela procura de uma diferença num antigo ou num histórico que leva a uma página que foi eliminada.
@@ -502,7 +502,7 @@ Pode ver e copiar o código fonte desta página:",
 'logouttitle'   => 'Saída de utilizador',
 'logouttext'            => "<strong>Não está mais autentificado.</strong><br />
 Pode continuar a utilizar a Wikipédia anonimamente, ou pode autenticar-se
-novamente como o mesmo utilizador ou como um utilizador diferente. Atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autenticado, até limpar a cache do seu navegador.\n",
+novamente como o mesmo utilizador ou como um utilizador diferente. Atenção que algumas páginas poderão continuar a ser mostradas como se tivesse ainda autenticado, até limpar a cache do seu navegador.",
 
 'welcomecreation' => "<h2>Bem-vindo, $1!</h2><p>Sua conta foi criada.
 Não se esqueça de personalizar suas preferências na Wikipédia.",
@@ -516,7 +516,7 @@ Não se esqueça de personalizar suas preferências na Wikipédia.",
 'yourdomainname'       => 'Seu domínio',
 'externaldberror'      => 'Ocorreu um erro externo à base de dados durante a autenticação, ou não lhe é permitido actualizar a sua conta externa.',
 'loginproblem'  => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
-'alreadyloggedin' => "<strong>Utilizador $1, você já está autentificado!</strong><br />\n",
+'alreadyloggedin' => "<strong>Utilizador $1, você já está autentificado!</strong><br />",
 'login'                 => 'Entrar',
 'loginprompt'           => "Você necessita de ter os <i>cookies</i> ligados para poder autentificar-se na {{SITENAME}}.",
 'userlogin'             => 'Criar uma conta ou entrar',
@@ -665,7 +665,7 @@ Você terá que mesclar suas modificações no texto existente.
 'storedversion' => 'Versão guardada',
 'nonunicodebrowser' => "<strong>AVISO: O seu navegador não segue as especificações Unicode. Existe uma maneira para que possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>",
 'editingold'    => "<strong>CUIDADO: Você está editando uma revisão desactualizada deste artigo.
-Se salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>\n",
+Se salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>",
 'yourdiff'              => 'Diferenças',
 'copyrightwarning' => "Por favor note que todas as contribuições para a {{SITENAME}} são imediatamente colocadas sob a <b>GNU Free Documentation License</b> (consulte $1 para detalhes). Se você não quer que seu texto esteja sujeito a estes termos, então não o envie.<br/>
 Você também garante que está nos enviando um artigo escrito por você mesmo, ou extraído de uma fonte em domínio público.
@@ -687,7 +687,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'revhistory'    => 'Histórico de revisões',
 'nohistory'             => 'Não há histórico de edições para esta página.',
 'revnotfound'   => 'Revisão não encontrada',
-'revnotfoundtext' => "A antiga revisão desta página que requesitou não pode ser encontrada. Por favor verifique o URL que utilizou para aceder esta página.\n",
+'revnotfoundtext' => "A antiga revisão desta página que requesitou não pode ser encontrada. Por favor verifique o URL que utilizou para aceder esta página.",
 'loadhist'              => 'Carregando histórico',
 'currentrev'    => 'Revisão actual',
 'revisionasof'          => 'Revisão de $1',
@@ -1326,10 +1326,10 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{ns:4}}:P
 'unblocklogentry'       => 'desbloqueou $1',
 'range_block_disabled'  => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'    => 'Tempo de expiração inválido.',
-'ip_range_invalid'      => "Gama de IPs inválida.\n",
+'ip_range_invalid'      => "Gama de IPs inválida.",
 'proxyblocker'  => 'Bloqueador de proxy',
 'proxyblockreason'      => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
-'proxyblocksuccess'     => "Done.\n",
+'proxyblocksuccess'     => "Done.",
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'O seu endereço IP encontra-se listado como proxy aberto em [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto no [http://www.sorbs.net SORBS] DNSBL. Não pode criar uma conta',
@@ -1410,7 +1410,7 @@ Introduza o nome do utilizador na caixa e clique no botão para tornar o utiliza
 'val_tab' => 'Validar',
 'val_this_is_current_version' => 'esta é a versão mais recente',
 'val_version_of' => "Versão de $1" ,
-'val_table_header' => '<tr><th>Classe</th>$1<th colspan="4">Opinião</th>$1<th>Comentário</th></tr>\n',
+'val_table_header' => '<tr><th>Classe</th>$1<th colspan="4">Opinião</th>$1<th>Comentário</th></tr>',
 'val_stat_link_text' => 'Estatísticas de validação para este artigo',
 'val_view_version' => 'Ver esta revisão',
 'val_validate_version' => 'Validar esta versão',
@@ -1490,7 +1490,7 @@ Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Me
 # Thumbnails
 
 'thumbnail-more'        => 'Ampliar',
-'missingimage'          => "<b>Imagem não encontrada</b><br /><i>$1</i>\n",
+'missingimage'          => "<b>Imagem não encontrada</b><br /><i>$1</i>",
 'filemissing'           => 'Ficheiro não encontrado',
 
 # Special:Import
@@ -2014,8 +2014,8 @@ Trackbacks for this article:<br/>
 $1
 </div>
 ",
-'trackback' => "; $4$5 : [$2 $1]\n",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: $3\n",
+'trackback' => "; $4$5 : [$2 $1]",
+'trackbackexcerpt' => "; $4$5 : [$2 $1]: $3",
 'trackbackremove' => ' ([$1 Eliminar])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',

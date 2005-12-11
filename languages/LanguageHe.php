@@ -226,7 +226,7 @@ $wgExtraNamespaces = array(
 # Login and logout pages
 #
 "logouttitle"	=> "יציאה מהחשבון",
-"logouttext"	=> "יצאת עתה מהחשבון. את/ה יכול/ה להמשיך ולעשות שימוש ב-{{SITENAME}} בצורה אנונימית, או שתוכל/י לשוב ולהכנס לאתר שנית עם שם משתמש זהה או אחר. \n",
+"logouttext"	=> "יצאת עתה מהחשבון. את/ה יכול/ה להמשיך ולעשות שימוש ב-{{SITENAME}} בצורה אנונימית, או שתוכל/י לשוב ולהכנס לאתר שנית עם שם משתמש זהה או אחר. ",
 "welcomecreation" => "<b>ברוך הבא $1!</b>, חשבונך נפתח. אל תשכח להתאים את הגדרות המשתמש שלך.",
 "loginpagetitle" => "כניסת משתמש",
 "yourname"		=> "שם משתמש",
@@ -235,7 +235,7 @@ $wgExtraNamespaces = array(
 "newusersonly"	=> " (רק אם את/ה משתמש חדש)",
 "remembermypassword" => "זכור את הסיסמא שלי בפעם הבאה.",
 "loginproblem"	=> "<b>ארעה שגיאה בכניסה לאתר. </b><br />!נסה שנית",
-"alreadyloggedin" => "<strong> משתמש $1, כבר ביצעת כניסה לאתר!</strong><br />\n",
+"alreadyloggedin" => "<strong> משתמש $1, כבר ביצעת כניסה לאתר!</strong><br />",
 
 "login"			=> "כניסה לחשבון",
 "userlogin"		=> "כניסה לחשבון",
@@ -307,7 +307,7 @@ $wgExtraNamespaces = array(
 "revhistory"	=> "היסטוריית שינויים",
 "nohistory"		=> "אין היסטוריית שינויים עבור דף זה",
 "revnotfound"	=> "גירסה זו לא נמצאה",
-"revnotfoundtext" => "הגירסה הישנה של דף זה לא נמצאה. אנא בדוק/י את כתובת הקישור \n",
+"revnotfoundtext" => "הגירסה הישנה של דף זה לא נמצאה. אנא בדוק/י את כתובת הקישור ",
 "loadhist"		=> "טוען את היסטוריית השינויים של הדף",
 "currentrev"	=> "גירסה נוכחית",
 "revisionasof"	=> "גירסה מתאריך $1",

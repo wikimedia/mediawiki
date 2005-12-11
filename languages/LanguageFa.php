@@ -7,7 +7,7 @@
 
 # Wikipedia localization for Persian
 
-require_once("LanguageUtf8.php");
+require_once('LanguageUtf8.php');
 
 #--------------------------------------------------------------------------
 # Language-specific text
@@ -203,7 +203,7 @@ require_once("LanguageUtf8.php");
 The last attempted database query was:
 \"$1\"
 from within function \"$2\".
-MySQL returned error \"$3: $4\".\n",
+MySQL returned error \"$3: $4\".",
 "noconnect"		=> "شرمنده! ویکی مشکلات فنی دارد، و نمی‌تواند با خادم پایگاه داده تماس بگیرد.",
 "nodb"			=> "نمی‌توان پایگاه داده‌ی $1 را انتخاب کرد",
 "cachederror"		=> "در زیر یک نسخه‌ی بایگانی‌شده‌ی صفحه‌ی درخواستی می‌آید، و ممکن است به‌روز نباشد.",
@@ -250,7 +250,7 @@ The administrator who locked it offered this explanation:
 "logouttext" => "اکنون از سیستم خارج شدید.
 شما می‌توانید به استفاده‌ی گمنام از ویکی‌پدیا ادامه دهید، یا می‌توانید با همین کاربر یا کاربر دیگری
 به سیستم وارد شوید. توجه کنید که تا زمانی که cache مرورگرتان را پاک کنید،
-بعضی صفحات ممکن است به شکلی نمایش یابند که انگار هنوز وارد سیستم هستید.\n",
+بعضی صفحات ممکن است به شکلی نمایش یابند که انگار هنوز وارد سیستم هستید.",
 
 "welcomecreation" => "<h2>$1، خوش آمدید!</h2><p>حساب شما ایجاد شد.
 فراموش نکنید که ترجیحات ویکی‌پدیاتان را تنظیم کنید.",
@@ -262,7 +262,7 @@ The administrator who locked it offered this explanation:
 "newusersonly"	=> " (فقط کاربران جدید)",
 "remembermypassword" => "کلمه‌ی عبور بین نشست‌ها به خاطر سپرده شود.",
 "loginproblem"	=> "<b>ورود شما به سیستم با مشکلی مواجه شد.</b><br />دوباره تلاش کنید!",
-"alreadyloggedin" => "<strong>کاربر $1, شما از قبل وارد سیستم شده‌اید!</strong><br />\n",
+"alreadyloggedin" => "<strong>کاربر $1, شما از قبل وارد سیستم شده‌اید!</strong><br />",
 
 "login"			=> "ورود به سیستم",
 "loginprompt"           => "برای ورود به ویکی‌پدیا باید cookieها را فعال کنید.",
@@ -420,7 +420,7 @@ You should log in and change your password now.",
 "nohistory"		=> "این صفحه تاریخچه‌ی ویرایش ندارد.",
 "revnotfound"	=> "نسخه یافت نشد",
 "revnotfoundtext" => "نسخه‌ی قدیمی‌از از صفحه که درخواست کرده بودید یافت نشد.
-لطفاً URLی را که برای دسترسی به این صفحه استفاده کرده‌اید بررسی کنید.\n",
+لطفاً URLی را که برای دسترسی به این صفحه استفاده کرده‌اید بررسی کنید.n",
 "loadhist"		=> "در حال خواندن تاریخچه‌ی صفحه",
 "currentrev"	=> "نسخه‌ی فعلی",
 "revisionasof"	=> "نسخه‌ی $1",

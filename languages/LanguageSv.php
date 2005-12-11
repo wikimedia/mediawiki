@@ -262,7 +262,7 @@ URL:en.",
 "logouttitle"           => "Logga ut Användare",
 "logouttext"            => "Du är nu utloggad.
 Du kan fortsätta som anonym Wikipediaanvändare, eller så kan du logga in
-igen som samma eller annan användare.\n",
+igen som samma eller annan användare.",
 
 "welcomecreation"       => "<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att anpassa dina Wikipediainställningar.",
 
@@ -273,7 +273,7 @@ igen som samma eller annan användare.\n",
 "newusersonly"          => " (bara för nya användare)",
 "remembermypassword"    => "Kom ihåg mitt lösenord till nästa gång.",
 "loginproblem"          => "<b>Det var svårt att logga in dig .</b><br />Pröva igen!",
-"alreadyloggedin"       => "<strong>Användare $1, du är redan inloggad !</strong><br />\n",
+"alreadyloggedin"       => "<strong>Användare $1, du är redan inloggad !</strong><br />",
 
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",
@@ -359,7 +359,7 @@ Försäkra dig om att du följer rekommendationerna för [[Project:Skyddade sido
 "revhistory"            => "Versionshistoria",
 "nohistory"             => "Det finns ingen versionshistoria för den här sidan.",
 "revnotfound"           => "Versionen hittades inte",
-"revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.\n",
+"revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.",
 "loadhist"              => "Läser sidans versioner",
 "currentrev"            => "Nuvarande version",
 "revisionasof"          => "Versionen från $1",
@@ -866,7 +866,7 @@ wiki som kör MediaWiki-programvara, konverterad, eller bara sparad som syns sku
 # Thumbnails
 
 "thumbnail-more"	=> "Förstora",
-"missingimage"		=> "<b>Bild saknas</b><br /><i>$1</i>\n",
+"missingimage"		=> "<b>Bild saknas</b><br /><i>$1</i>",
 
 # tooltip help for the main actions
 'tooltip-watch' => 'Lägg till den här sidan till din bevakningslista [alt-w]',

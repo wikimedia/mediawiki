@@ -212,7 +212,7 @@ retorna inter 02:00 e 14:00 UTC e tenta de nove.",
 "logouttitle"	=> "Fin de session",
 "logouttext"	=> "Tu claudeva tu session.
 Tu pote continuar a usar Wikipedia anonymemente, o initiar un
-nove session como le mesme o como un altere usator.\n",
+nove session como le mesme o como un altere usator.",
 
 "welcomecreation" => "<h2>Benvenite, $1!</h2>
 <p>Tu conto de usator esseva create.
@@ -225,7 +225,7 @@ Non oblida personalisar Wikipedia secundo tu preferentias.",
 "newusersonly"	=> " (solmente pro nove usatores)",
 "remembermypassword" => "Recordar contrasigno inter sessiones.",
 "loginproblem"	=> "<b>Occurreva problemas pro initiar tu session.</b><br />Tenta de nove!",
-"alreadyloggedin" => "<strong>Usator $1, tu session ja es aperte!</strong><br />\n",
+"alreadyloggedin" => "<strong>Usator $1, tu session ja es aperte!</strong><br />",
 
 "login"			=> "Aperir session",
 "userlogin"		=> "Aperir session",
@@ -315,7 +315,7 @@ Considera fragmentar le pagina in sectiones minor.",
 "nohistory"		=> "Iste pagina non ha versiones precedente.",
 "revnotfound"	=> "Revision non trovate",
 "revnotfoundtext" => "Impossibile trovar le version anterior del pagina que tu ha demandate.
-Verifica le URL que tu ha usate pro accessar iste pagina.\n",
+Verifica le URL que tu ha usate pro accessar iste pagina.",
 "loadhist"		=> "Carga del chronologia del pagina",
 "currentrev"	=> "Revision currente",
 "revisionasof"	=> "Revision de $1",

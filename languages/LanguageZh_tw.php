@@ -231,7 +231,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 #
 "logouttitle"	=> "用戶退出",
 "logouttext"	=> "您現在已經退出。
-您可以繼續以匿名方式使用維基百科，或再次以相同或不同用戶身份登錄。\n",
+您可以繼續以匿名方式使用維基百科，或再次以相同或不同用戶身份登錄。",
 
 "welcomecreation" => "<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置維基百科個人參數。",
 
@@ -242,7 +242,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "newusersonly"	=> "（僅限新用戶）",
 "remembermypassword" => "下次登錄記住密碼。",
 "loginproblem"	=> "<b>登錄有問題。</b><br />再試一次！",
-"alreadyloggedin" => "<strong>用戶$1，您已經登錄了!</strong><br />\n",
+"alreadyloggedin" => "<strong>用戶$1，您已經登錄了!</strong><br />",
 
 "login"			=> "登錄",
 "userlogin"		=> "用戶登錄",
@@ -335,7 +335,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "nohistory"		=> "沒有本頁的修訂記錄。",
 "revnotfound"	=> "沒有找到修訂記錄",
 "revnotfoundtext" => "您請求的更早版本的修訂記錄沒有找到。
-請檢查您請求本頁面用的URL是否正確。\n",
+請檢查您請求本頁面用的URL是否正確。",
 "loadhist"		=> "載入頁面修訂歷史",
 "currentrev"	=> "當前修訂版本",
 "revisionasof"	=> "$1的修訂版本",

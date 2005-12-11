@@ -353,7 +353,7 @@ MySQL дава грешка „<tt>$3: $4</tt>“.',
 Последната заявка беше:
 „$1“
 при функцията „$2“.
-MySQL дава грешка „$3: $4“.'."\n",
+MySQL дава грешка „$3: $4“.',
 'noconnect'    => '<p>В момента има технически трудности и не може да се осъществи връзка с базата от данни.</p>
 <p>$1</p>
 <p>Моля, опитайте отново по-късно. Извиняваме се за неудобството.</p>',
@@ -402,7 +402,7 @@ $1',
 'logouttitle'  => 'Излизане на потребител',
 'logouttext'  => 'Излязохте от системата.
 
-Можете да продължите да използвате {{SITENAME}} анонимно или да влезете отново като друг потребител. Обърнете внимание, че някои страници все още ще се показват така, сякаш сте влезли, докато не изтриете кеш-паметта на браузъра.'."\n",
+Можете да продължите да използвате {{SITENAME}} анонимно или да влезете отново като друг потребител. Обърнете внимание, че някои страници все още ще се показват така, сякаш сте влезли, докато не изтриете кеш-паметта на браузъра.',
 
 'welcomecreation' => '== Добре дошли, $1! ==
 
@@ -418,7 +418,7 @@ $1',
 # TODO
 'externaldberror'      => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'  => '<b>Имаше проблем с влизането Ви.</b><br />Опитайте отново!',
-'alreadyloggedin' => '<strong>$1, вече сте влезли в системата!</strong>'."\n",
+'alreadyloggedin' => '<strong>$1, вече сте влезли в системата!</strong>',
 'login'      => 'Влизане',
 'loginprompt'  => "За влизане в {{SITENAME}} е необходимо да въведете потребителското си име и парола и да натиснете бутона '''Влизане''', като за да бъде това успешно, бисквитките (cookies) трябва да са разрешени в браузъра Ви.
 
@@ -593,7 +593,7 @@ Before any other mail is sent to the account, you will have to follow the instru
 'nohistory'       => 'Няма редакционна история за тази страница.',
 'revnotfound'     => 'Версията не е открита',
 'revnotfoundtext' => 'Желаната стара версия на страницата не беше открита.
-Моля, проверете адреса, който използвахте за достъп до страницата.'."\n",
+Моля, проверете адреса, който използвахте за достъп до страницата.',
 'loadhist'        => 'Зареждане история на страницата',
 'currentrev'      => 'Текуща версия',
 'revisionasof'    => 'Версия от $1',
@@ -1216,10 +1216,10 @@ Feedback and further assistance:
 'unblocklogentry'       => 'отблокиране на „$1“',
 'range_block_disabled'  => 'Възможността на администраторите да задават интервали при IP-адресите е изключена.',
 'ipb_expiry_invalid'    => 'Невалиден срок на изтичане.',
-'ip_range_invalid'      => 'Невалиден интервал за IP-адреси.'."\n",
+'ip_range_invalid'      => 'Невалиден интервал за IP-адреси.',
 'proxyblocker'  => 'Блокировач на проксита',
 'proxyblockreason'      => 'Вашият IP-адрес беше блокиран, тъй като е отворено прокси. Моля, свържете се с Вашия доставчик на интернет и го информирайте за този сериозен проблем в сигурността.',
-'proxyblocksuccess'     => 'Готово.'."\n",
+'proxyblocksuccess'     => 'Готово.',
 'sorbs'         => 'SORBS DNSBL',
 'sorbsreason'   => 'Вашият IP-адрес е записан като отворено прокси в [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'Вашият IP-адрес е записан като отворено прокси в [http://www.sorbs.net SORBS] DNSBL. Не можете да създадете сметка.',
@@ -1304,7 +1304,7 @@ Feedback and further assistance:
 'val_tab' => 'Валидиране',
 'val_this_is_current_version' => 'това е последната версия',
 'val_version_of' => 'Версия от $1' ,
-'val_table_header' => '<tr><th>Клас</th>$1<th colspan="4">Мнение</th>$1<th>Коментар</th></tr>'."\n",
+'val_table_header' => '<tr><th>Клас</th>$1<th colspan="4">Мнение</th>$1<th>Коментар</th></tr>',
 'val_stat_link_text' => 'Validation statistics for this article',
 'val_view_version' => 'Преглед на версията',
 'val_validate_version' => 'Валидиране на версията',
@@ -1383,7 +1383,7 @@ Feedback and further assistance:
 'allmessagesnotsupportedDB' => 'Възможността за използване на страници от именното пространство „МедияУики“ за генериране на интерфейсните съобщения е изключена (<code>LocalSettings.php: wgUseDatabaseMessages = false</code>).',
 # Thumbnails
 'thumbnail-more' => 'Увеличаване',
-'missingimage'   => '<b>Липсваща картинка</b><br /><i>$1</i>'."\n",
+'missingimage'   => '<b>Липсваща картинка</b><br /><i>$1</i>',
 'filemissing'    => 'Липсващ файл',
 
 # Special:Import
@@ -1900,8 +1900,8 @@ Trackbacks for this article:<br/>
 $1
 </div>
 ',
-'trackback' => '; $4$5 : [$2 $1]'."\n",
-'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>'."\n",
+'trackback' => '; $4$5 : [$2 $1]',
+'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Изтриване])',
 'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',

@@ -206,7 +206,7 @@ fent-ne arribar l'URL.",
 "logouttitle"	=> "Fin de sessió",
 "logouttext"	=> "Heu acabat la vostra sessió.
 Podeu continuar emprant la {{SITENAME}} de forma anònima, o podeu
-iniciar sessió un altre cop amb el mateix o un altre nom d'usuari.\n",
+iniciar sessió un altre cop amb el mateix o un altre nom d'usuari.",
 
 "welcomecreation" => "<h2>Benvingut, $1!</h2><p>El vostre compte ha estat creat.
 Recordeu personalitzar les vostres preferències del {{SITENAME}}.",
@@ -218,7 +218,7 @@ Recordeu personalitzar les vostres preferències del {{SITENAME}}.",
 "newusersonly"	=> " (només usuaris nous)",
 "remembermypassword" => "Vull que recordis la meva contrasenya entre sessions.",
 "loginproblem"	=> "<b>Hi ha hagut un problema amb l'entrada.</b><br />Proveu-ho de nou!",
-"alreadyloggedin" => "<strong>Benvingut, usuari $1!</strong><br />\n",
+"alreadyloggedin" => "<strong>Benvingut, usuari $1!</strong><br />",
 
 "login"			=> "Registre/Entrada",
 "userlogin"		=> "Registre/Entrada",
@@ -293,7 +293,7 @@ o una altra font lliura.
 "nohistory"		=> "No hi ha una història de revisions per a aquesta pàgina.",
 "revnotfound"	=> "Revisió no trobada",
 "revnotfoundtext" => "No s'ha pogut trobar la revisió antiga de la pàgina.
-Revidseu l'URL que heu emprat per accedir-hi.\n",
+Revidseu l'URL que heu emprat per accedir-hi.",
 "loadhist"		=> "Recuperant la història de la pàgina",
 "currentrev"	=> "Revisió actual",
 "revisionasof"	=> "Revisió de $1",

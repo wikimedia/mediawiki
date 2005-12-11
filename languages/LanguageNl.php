@@ -199,7 +199,7 @@ MySQL gaf the foutmelding \"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "Bij het opvragen van de database is een syntaxfout opgetreden. De laatste opdracht was:
 \"$1\"
 Vanuit de functie \"$2\"
-MySQL gaf de volgende foutmelding: \"$3: $4\".\n",
+MySQL gaf de volgende foutmelding: \"$3: $4\".",
 "noconnect"  => "De database is momenteel niet bereikbaar.",
 "nodb"   => "Selectie van database $1 niet mogelijk",
 "cachederror" => "Hieronder wordt een versie uit de cache getoond. Dit is mogelijk niet de meest recente versie.",
@@ -227,7 +227,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 # Aanmelden en afmelden
 "logouttitle" => "Afmelden gebruiker",
 "logouttext" => "U bent nu afgemeld.
-U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
+U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.",
 
 "welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebruikersprofiel is aangemaakt. U kunt nu uw persoonlijke voorkeuren instellen.",
 
@@ -238,7 +238,7 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "newusersonly" => " (alleen nieuwe gebruikers)",
 "remembermypassword" => "Mijn wachtwoord onthouden voor latere sessies.",
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<strong>Gebruiker $1, u bent al aangemeld.</strong><br />\n",
+"alreadyloggedin" => "<strong>Gebruiker $1, u bent al aangemeld.</strong><br />",
 
 "login"   => "Aanmelden & Inschrijven",
 "userlogin"  => "Aanmelden",
@@ -311,7 +311,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "revhistory" => "Bewerkingsgeschiedenis",
 "nohistory"  => "Deze pagina heeft nog geen bewerkingen ondergaan.",
 "revnotfound" => "Wijziging niet gevonden",
-"revnotfoundtext" => "De opgevraagde oude versie van deze pagina is onvindbaar. Controleer a.u.b. de URL die u gebruikte om naar deze pagina te gaan.\n",
+"revnotfoundtext" => "De opgevraagde oude versie van deze pagina is onvindbaar. Controleer a.u.b. de URL die u gebruikte om naar deze pagina te gaan.",
 "loadhist"  => "Bezig met het laden van de paginageschiedenis",
 "currentrev" => "Huidige versie",
 "revisionasof" => "Versie op $1",

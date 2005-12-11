@@ -465,7 +465,7 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'hr_tip'                  => 'Vassrett line',
 'infobox'                 => 'Klikk på ein knapp for å få eksempeltekst',
 # alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
-'infobox_alert'           => 'Skriv inn teksten du vil ha formatert.\n Han vil bli vist i boksen slik at han kan kopierast og limast inn.\nEksempel:\n$1\nblir til:\n$2',
+'infobox_alert'           => "Skriv inn teksten du vil ha formatert.\n Han vil bli vist i boksen slik at han kan kopierast og limast inn.\nEksempel:\n$1\nblir til:\n$2",
 
 # Edit pages
 #
@@ -1699,8 +1699,8 @@ Attendelenkjer for denne sida:<br />
 $1
 </div>
 ",
-'trackback' => "; $4$5 : [$2 $1]\n",
-'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>\n",
+'trackback' => "; $4$5 : [$2 $1]",
+'trackbackexcerpt' => "; $4$5 : [$2 $1]: <nowiki>$3</nowiki>",
 'trackbackremove'        => ' ([$1 Slett])',
 'trackbacklink'          => 'Attendelenkje',
 'trackbackdeleteok'      => 'Attendelenkja vart sletta.',
