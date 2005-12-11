@@ -17,10 +17,6 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinNostalgia extends Skin {
 
-	function initPage() {
-		# ...
-	}
-
 	function getStylesheet() {
 		return 'common/nostalgia.css?1';
 	}

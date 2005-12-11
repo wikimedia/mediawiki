@@ -308,6 +308,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 4212) Skip redundant meta-robots tag for default settings
 * Use content-lang for sitenotice
 * (bug 4233) Update LanguageJa.php
+* Fix regression: old version missing from edit links in Nostalgia skin
 
 
 === Caveats ===
