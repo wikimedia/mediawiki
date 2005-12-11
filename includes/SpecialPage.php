@@ -412,8 +412,13 @@ class SpecialPage
 			if(!function_exists($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
-			$this->outputHeader();
+			if ( wfRunHooks( 'SpecialPageExecuteBeforeHeader', array( &$this, &$par, &$func ) ) )
+				$this->outputHeader();
+			if ( ! wfRunHooks( 'SpecialPageExecuteBeforePage', array( &$this, &$par, &$func ) ) )
+				return;
 			$func( $par, $this );
+			if ( ! wfRunHooks( 'SpecialPageExecuteAfterPage', array( &$this, &$par, &$func ) ) )
+				return;
 		} else {
 			$this->displayRestrictionError();
 		}
