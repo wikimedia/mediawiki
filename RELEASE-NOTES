@@ -311,6 +311,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix regression: old version missing from edit links in Nostalgia skin
 * (bug 1600) Trigger edit conflict on duplicate section=new submissions
 * (bug 4001) Use local variables properly in wikibits.js akeytt()
+* Fix regression: old version missing from edit links on CSS/JS pages
 
 
 === Caveats ===
