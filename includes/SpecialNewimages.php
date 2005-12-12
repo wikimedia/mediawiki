@@ -72,6 +72,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 			$limit = $parval;
 
 	$where = array();
+	$searchpar = '';
 	if ( $wpIlMatch != '' ) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if($nt ) {
@@ -79,6 +80,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 			$m = str_replace( '%', "\\%", $m );
 			$m = str_replace( '_', "\\_", $m );
 			$where[] = "LCASE(img_name) LIKE '%{$m}%'";
+			$searchpar = '&wpIlMatch=' . urlencode( $wpIlMatch );
 		}
 	}
 
@@ -153,7 +155,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
-	$action = $titleObj->escapeLocalURL(  "limit={$limit}" );
+	$action = $titleObj->escapeLocalURL();
 	if(!$hidebots) {
 		$action.='&hidebots=0';
 	}
@@ -178,18 +180,18 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	}
 	$now = wfTimestampNow();
 	$date = $wgLang->timeanddate( $now );
-	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsg( 'rclistfrom', $date ), 'from='.$now.$botpar );
+	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsg( 'rclistfrom', $date ), 'from='.$now.$botpar.$searchpar );
 
-	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsg( 'showhidebots', ($hidebots ? wfMsg('show') : wfMsg('hide'))),'hidebots='.($hidebots ? '0' : '1'));
+	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsg( 'showhidebots', ($hidebots ? wfMsg('show') : wfMsg('hide'))),'hidebots='.($hidebots ? '0' : '1').$searchpar);
 
 	$prevLink = wfMsg( 'prevn', $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
-		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar );
+		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar );
 	}
 
 	$nextLink = wfMsg( 'nextn', $wgLang->formatNum( $limit ) );
 	if( $shownImages > $limit && $lastTimestamp ) {
-		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar );
+		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar );
 	}
 
 	$prevnext = '<p>' . $botLink . ' '. wfMsg( 'viewprevnext', $prevLink, $nextLink, $dateLink ) .'</p>';
