@@ -314,6 +314,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fix regression: old version missing from edit links on CSS/JS pages
 * (bug 3073) Keep search parameter on paging in Special:Newimages
 * (bug 3211) Include Date, To mail headers when using PEAR::Mail
+* (bug 3407) Fix encoding of subject and from/to headers on notification
+  mails; userMailer() now takes a MailAddress wrapper object instead of
+  a raw string to abstract things a level.
 
 
 === Caveats ===

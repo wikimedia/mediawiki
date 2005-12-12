@@ -1701,7 +1701,9 @@ class User {
 		}
 
 		require_once( 'UserMailer.php' );
-		$error = userMailer( $this->getEmail(), $from, $subject, $body );
+		$to = new MailAddress( $this );
+		$sender = new MailAddress( $from );
+		$error = userMailer( $to, $sender, $subject, $body );
 
 		if( $error == '' ) {
 			return true;
