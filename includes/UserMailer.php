@@ -35,14 +35,42 @@ function wfRFC822Phrase( $phrase ) {
 	return '"' . $phrase . '"';
 }
 
+class MailAddress {
+	/**
+	 * @param mixed $address String with an email address, or a User object
+	 * @param string $name Human-readable name if a string address is given
+	 */
+	function MailAddress( $address, $name=null ) {
+		if( is_object( $address ) && is_a( $address, 'User' ) ) {
+			$this->address = $address->getEmail();
+			$this->name = $address->getName();
+		} else {
+			$this->address = strval( $address );
+			$this->name = strval( $name );
+		}
+	}
+	
+	/**
+	 * Return formatted and quoted address to insert into SMTP headers
+	 * @return string
+	 */
+	function toString() {
+		if( $this->name != '' ) {
+			return wfQuotedPrintable( $this->name ) . " <" . $this->address . ">";
+		} else {
+			return $this->address;
+		}
+	}
+}
+
 /**
  * This function will perform a direct (authenticated) login to
  * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
  * array of parameters. It requires PEAR:Mail to do that.
  * Otherwise it just uses the standard PHP 'mail' function.
  *
- * @param string $to recipient's email
- * @param string $from sender's email
+ * @param MailAddress $to recipient's email
+ * @param MailAddress $from sender's email
  * @param string $subject email's subject
  * @param string $body email's text
  * @param string $replyto optional reply-to email (default : false)
@@ -54,24 +82,25 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		require_once( 'Mail.php' );
 
 		$timestamp = time();
-
-		$headers['From'] = $from;
-		$headers['To'] = $to;
+		$dest = $to->toString();
+		
+		$headers['From'] = $from->toString();
+		$headers['To'] = $dest;
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto;
 		}
-		$headers['Subject'] = $subject;
+		$headers['Subject'] = wfQuotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
 		$headers['Content-transfer-encoding'] = '8bit';
-		$headers['Message-ID'] = "<{$timestamp}" . $wgUser->getName() . '@' . $wgSMTP['IDHost'] . '>';
+		$headers['Message-ID'] = "<{$timestamp}" . $wgUser->getName() . '@' . $wgSMTP['IDHost'] . '>'; // FIXME
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 
 		// Create the mail object using the Mail::factory method
 		$mail_object =& Mail::factory('smtp', $wgSMTP);
-		wfDebug( "Sending mail via PEAR::Mail to $to\n" );
-		$mailResult =& $mail_object->send($to, $headers, $body);
+		wfDebug( "Sending mail via PEAR::Mail to $dest" );
+		$mailResult =& $mail_object->send($dest, $headers, $body);
 
 		# Based on the result return an error string,
 		if ($mailResult === true) {
@@ -91,15 +120,17 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 			"Content-type: text/plain; charset={$wgOutputEncoding}\n" .
 			"Content-Transfer-Encoding: 8bit\n" .
 			"X-Mailer: MediaWiki mailer\n".
-			'From: ' . $from . "\n";
+			'From: ' . $from->toString() . "\n";
 		if ($replyto) {
 			$headers .= "Reply-To: $replyto\n";
 		}
 
+		$dest = $to->toString();
+		
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
-		wfDebug( "Sending mail via internal mail() function to $to\n" );
-		mail( $to, $subject, $body, $headers );
+		wfDebug( "Sending mail via internal mail() function to $dest\n" );
+		mail( $dest, wfQuotedPrintable( $subject ), $body, $headers );
 		restore_error_handler();
 
 		if ( $wgErrorString ) {
@@ -306,8 +337,8 @@ class EmailNotification {
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
 		$name    = $wgUser->getName();
-		$adminAddress = 'WikiAdmin <' . $wgEmergencyContact . '>';
-		$editorAddress = wfRFC822Phrase( $name ) . ' <' . $wgUser->getEmail() . '>';
+		$adminAddress = new MailAddress( $wgEmergencyContact, 'WikiAdmin' );
+		$editorAddress = new MailAddress( $wgUser );
 		if( $wgEnotifRevealEditorAddress
 		    && ( $wgUser->getEmail() != '' )
 		    && $wgUser->getOption( 'enotifrevealaddr' ) ) {
@@ -362,7 +393,7 @@ class EmailNotification {
 		// From the PHP manual:
 		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
 		//     The mail command will not parse this properly while talking with the MTA.
-		$to = $watchingUser->getEmail();
+		$to = new MailAddress( $watchingUser );
 		$body = str_replace( '$WATCHINGUSERNAME', $watchingUser->getName() , $this->body );
 
 		$timecorrection = $watchingUser->getOption( 'timecorrection' );

@@ -46,8 +46,7 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 
-	$address = $nu->getEmail();
-	$f = new EmailUserForm( $nu->getName() . " <{$address}>", $target );
+	$f = new EmailUserForm( $nu );
 
 	if ( "success" == $action ) {
 		$f->showSuccess();
@@ -66,13 +65,14 @@ function wfSpecialEmailuser( $par ) {
  */
 class EmailUserForm {
 
-	var $mAddress;
 	var $target;
 	var $text, $subject;
 
-	function EmailUserForm( $addr, $target ) {
+	/**
+	 * @param User $target
+	 */
+	function EmailUserForm( $target ) {
 		global $wgRequest;
-		$this->mAddress = $addr;
 		$this->target = $target;
 		$this->text = $wgRequest->getText( 'wpText' );
 		$this->subject = $wgRequest->getText( 'wpSubject' );
@@ -91,7 +91,7 @@ class EmailUserForm {
 		$emf = wfMsg( "emailfrom" );
 		$sender = $wgUser->getName();
 		$emt = wfMsg( "emailto" );
-		$rcpt = str_replace( "_", " ", $this->target );
+		$rcpt = $this->target->getName();
 		$emr = wfMsg( "emailsubject" );
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
@@ -99,7 +99,7 @@ class EmailUserForm {
 		
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
 		$action = $titleObj->escapeLocalURL( "target=" .
-			urlencode( $this->target ) . "&action=submit" );
+			urlencode( $this->target->getName() ) . "&action=submit" );
 		$token = $wgUser->editToken();
 
 		$wgOut->addHTML( "
@@ -129,20 +129,21 @@ class EmailUserForm {
 	function doSubmit() {
 		global $wgOut, $wgUser;
 	    
-		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
-		$subject = wfQuotedPrintable( $this->subject );
+		$to = new MailAddress( $this->target );
+		$from = new MailAddress( $wgUser );
+		$subject = $this->subject;
 		
-		if (wfRunHooks('EmailUser', array(&$this->mAddress, &$from, &$subject, &$this->text))) {
+		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 			
-			$mailResult = userMailer( $this->mAddress, $from, $subject, $this->text );
+			$mailResult = userMailer( $to, $from, $subject, $this->text );
 			
 			if( WikiError::isError( $mailResult ) ) {
 				$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-				$encTarget = wfUrlencode( $this->target );
+				$encTarget = wfUrlencode( $this->target->getName() );
 				$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
-				wfRunHooks('EmailUserComplete', array($this->mAddress, $from, $subject, $this->text));
+				wfRunHooks( 'EmailUserComplete', array( $to, $from, $subject, $this->text ) );
 			}
 		}
 	}
