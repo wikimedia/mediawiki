@@ -414,15 +414,15 @@ function akeytt() {
 	if (typeof ta == "undefined" || !ta)
 		return;
 	pref = 'alt-';
-	if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1
-		|| navigator.userAgent.toLowerCase().indexOf( 'konqueror' ) + 1 )
+	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
+		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 )
 		pref = 'control-';
-	if(is_opera)
+	if (is_opera)
 		pref = 'shift-esc-';
 
 	for (id in ta) {
 		n = document.getElementById(id);
-		if (n){
+		if (n) {
 			// Are we putting accesskey in it
 			if (ta[id][0].length > 0) {
 				// Is this object a object? If not assume it's the next child.
