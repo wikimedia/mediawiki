@@ -56,10 +56,12 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		$timestamp = time();
 
 		$headers['From'] = $from;
+		$headers['To'] = $to;
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto;
 		}
 		$headers['Subject'] = $subject;
+		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
 		$headers['Content-transfer-encoding'] = '8bit';
@@ -75,8 +77,10 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		if ($mailResult === true) {
 			return '';
 		} elseif (is_object($mailResult)) {
+			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
 			return $mailResult->getMessage();
 		} else {
+			wfDebug( "PEAR::Mail failed, unknown error result\n" );
 			return 'Mail object return unknown error.';
 		}
 	} else	{
