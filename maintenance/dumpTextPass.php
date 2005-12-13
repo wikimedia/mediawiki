@@ -43,7 +43,7 @@ class TextPassDumper extends BackupDumper {
 		
 		$this->startTime = wfTime();
 		
-		$this->db =& wfGetDB( DB_SLAVE );
+		$this->db =& $this->backupDb();
 		$this->maxCount = $this->db->selectField( 'page', 'MAX(page_id)', '', 'BackupDumper::dump' );
 		$this->startTime = wfTime();
 		
@@ -195,6 +195,9 @@ class TextPassDumper extends BackupDumper {
 
 
 $dumper = new TextPassDumper( $argv );
+if( isset( $options['server'] ) ) {
+	$dumper->server = $options['server'];
+}
 
 if( true ) {
 	$dumper->dump();
@@ -213,6 +216,7 @@ Options:
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
               (Default: 100)
+  --server=h  Force reading from MySQL server h
 END
 );
 }
