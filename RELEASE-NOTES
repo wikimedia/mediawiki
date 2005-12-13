@@ -317,6 +317,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 3407) Fix encoding of subject and from/to headers on notification
   mails; userMailer() now takes a MailAddress wrapper object instead of
   a raw string to abstract things a level.
+* (bug 4258) Use ugly urls for ISAPI by default
+  patch by Rob Church
 
 
 === Caveats ===
