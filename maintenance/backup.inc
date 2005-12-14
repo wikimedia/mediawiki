@@ -39,7 +39,48 @@ class BackupDumper {
 	
 	function BackupDumper( $args ) {
 		$this->stderr = fopen( "php://stderr", "wt" );
+		
+		// Built-in output and filter plugins
+		$this->registerOutput( 'file', 'DumpFileOutput' );
+		$this->registerOutput( 'gzip', 'DumpGZipOutput' );
+		$this->registerOutput( 'bzip2', 'DumpBZip2Output' );
+		$this->registerOutput( '7zip', 'Dump7ZipOutput' );
+		
+		$this->registerFilter( 'latest', 'DumpLatestFilter' );
+		$this->registerFilter( 'notalk', 'DumpNotalkFilter' );
+		$this->registerFilter( 'namespace', 'DumpNamespaceFilter' );
+		
 		$this->sink = $this->processArgs( $args );
+	}
+	
+	/**
+	 * @param string $name
+	 * @param string $class name of output filter plugin class
+	 */
+	function registerOutput( $name, $class ) {
+		$this->outputTypes[$name] = $class;
+	}
+	
+	/**
+	 * @param string $name
+	 * @param string $class name of filter plugin class
+	 */
+	function registerFilter( $name, $class ) {
+		$this->filterTypes[$name] = $class;
+	}
+	
+	/**
+	 * Load a plugin and register it
+	 * @param string $class Name of plugin class; must have a static 'register'
+	 *                      method that takes a BackupDumper as a parameter.
+	 * @param string $file Full or relative path to the PHP file to load, or empty
+	 */
+	function loadPlugin( $class, $file ) {
+		if( $file != '' ) {
+			require_once( $file );
+		}
+		$register = array( $class, 'register' );
+		call_user_func_array( $register, array( &$this ) );
 	}
 	
 	/**
@@ -48,29 +89,23 @@ class BackupDumper {
 	 * @static
 	 */
 	function processArgs( $args ) {
-		$outputTypes = array(
-			'file'  => 'DumpFileOutput',
-			'gzip'  => 'DumpGZipOutput',
-			'bzip2' => 'DumpBZip2Output',
-			'7zip'  => 'Dump7ZipOutput' );
-		$filterTypes = array(
-			'latest'    => 'DumpLatestFilter',
-			'notalk'    => 'DumpNotalkFilter',
-			'namespace' => 'DumpNamespaceFilter' );
 		$sink = null;
 		$sinks = array();
 		foreach( $args as $arg ) {
 			if( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
 				@list( $full, $opt, $val, $param ) = $matches;
 				switch( $opt ) {
+				case "plugin":
+					$this->loadPlugin( $val, $param );
+					break;
 				case "output":
 					if( !is_null( $sink ) ) {
 						$sinks[] = $sink;
 					}
-					if( !isset( $outputTypes[$val] ) ) {
+					if( !isset( $this->outputTypes[$val] ) ) {
 						die( "Unrecognized output sink type '$val'\n" );
 					}
-					$type = $outputTypes[$val];
+					$type = $this->outputTypes[$val];
 					$sink = new $type( $param );
 					break;
 				case "filter":
@@ -78,10 +113,10 @@ class BackupDumper {
 						$this->progress( "Warning: assuming stdout for filter output\n" );
 						$sink = new DumpOutput();
 					}
-					if( !isset( $filterTypes[$val] ) ) {
+					if( !isset( $this->filterTypes[$val] ) ) {
 						die( "Unrecognized filter type '$val'\n" );
 					}
-					$type = $filterTypes[$val];
+					$type = $this->filterTypes[$val];
 					$filter = new $type( $sink, $param );
 					
 					// references are lame in php...
