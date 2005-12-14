@@ -191,7 +191,7 @@ wfProfileIn( $fname.'-User' );
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
 foreach ( $wgSkinExtensionFunctions as $func ) {
-	$func();
+	call_user_func( $func );
 }
 
 if( !is_object( $wgAuth ) ) {
@@ -300,7 +300,7 @@ wfProfileIn( $fname.'-extensions' );
 # of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
-	$func();
+	call_user_func( $func );
 }
 
 wfDebug( "\n" );
