@@ -322,6 +322,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Fixed --server override on dumpTextPass.php
 * Added plugin interface for dumpBackup, so additional filters and output
   sink types can be registered at runtime from an extension
+* (bug 4279) Small correction to LanguageDa.php
 
 
 === Caveats ===

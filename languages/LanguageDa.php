@@ -571,7 +571,7 @@ eksempel \"fisk og og skaldyr\".
 Prøv en anden forespørgsel.",
 "matchtotals"	=> "Forespørgslen \"$1\" opfyldte $2 artikeltitler
 og teksten i $3 artikler.",
-"nogomatch" => "<span style=\"font-size: 135%; font-weight: bold; margin-left: .6em\">{{SITENAME}} har ingen artikel med dette navn</span> <span style=\"display: block; margin: 1.5em 2em\"> Du kan <strong><a href=\"$1\" class=\"new\">oprette en artikel med dette navn</a></strong> eller <a href=\"/wiki/{{ns:4}}:Efterspurgte_artikler\">efterspørge den</a>. <span style=\"display:block; font-size: 89%; margin-left:.2em\">For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.</span> </span>",
+"nogomatch" => "{{SITENAME}} har ingen artikel med dette navn. Du kan [[$1|oprette en artikel med dette navn]] eller [[{{ns:4}}:Efterspurgte_artikler|efterspørge den]]. For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.",
 "titlematches"	=> "Artikeltitler der opfyldte forespørgslen",
 "notitlematches" => "Ingen artikeltitler opfyldte forespørgslen",
 "textmatches"	=> "Artikeltekster der opfyldte forespørgslen",
