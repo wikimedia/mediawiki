@@ -323,6 +323,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Added plugin interface for dumpBackup, so additional filters and output
   sink types can be registered at runtime from an extension
 * (bug 4279) Small correction to LanguageDa.php
+* (bug 349) Fix for some numeric differences not being highlighted
+  patch by Andrius Ramanauskas
 
 
 === Caveats ===
