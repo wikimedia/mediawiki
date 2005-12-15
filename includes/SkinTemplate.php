@@ -734,6 +734,8 @@ class SkinTemplate extends Skin {
 				'text' => wfMsg('specialpage'),
 				'href' => $wgRequest->getRequestURL(), // @bug 2457, 2510
 			);
+
+			wfRunHooks( 'SkinTemplateBuildContentActionUrlsAfterSpecialPage', array( &$this, &$content_actions ) );
 		}
 
 		/* show links to different language variants */
