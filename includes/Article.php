@@ -1585,10 +1585,18 @@ class Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+
+		// bug 2261
+		if ( $this->mTitle->isProtected() && $limit == 'sysop' ) {
+			$this->view();
+			return;
+		}
+
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
+
 		$id = $this->mTitle->getArticleID();
 		if ( 0 == $id ) {
 			$wgOut->fatalError( wfMsg( 'badarticleerror' ) );
@@ -1719,7 +1727,13 @@ class Article {
 	 * Unprotect the pages
 	 */
 	function unprotect() {
-		return $this->protect( '' );
+		// bug 2261
+		if ( $this->mTitle->isProtected() ) {
+			return $this->protect( '' );
+		} else {
+			$this->view();
+			return;
+		}
 	}
 
 	/*
