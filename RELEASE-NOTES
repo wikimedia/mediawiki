@@ -948,6 +948,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * (bug 4249) Typo in entities2literals.pl
 * (bug 4233) Update for japanese language
 * (bug 4279) Small correction to LanguageDa.php
+* (bug 4267) Switch dv sd ug ks arc languages to RTL
 
 
 === Caveats ===
