@@ -1668,7 +1668,7 @@ class Article {
 			$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
 			$wgOut->setSubtitle( wfMsg( 'protectsub', $sub ) );
 			$wgOut->addWikiText( wfMsg( 'confirmprotecttext' ) );
-			$moveonly = htmlspecialchars( wfMsg( 'protectmoveonly' ) );
+			$moveonly = wfMsg( 'protectmoveonly' ) ; // add it using addWikiText to prevent xss. bug:3991
 			$protcom = htmlspecialchars( wfMsg( 'protectcomment' ) );
 			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
 		}
@@ -1694,7 +1694,10 @@ class Article {
 				<input type='checkbox' name='wpMoveOnly' value='1' id='wpMoveOnly' />
 			</td>
 			<td align='left'>
-				<label for='wpMoveOnly'>{$moveonly}</label>
+				<label for='wpMoveOnly'> ");
+			$wgOut->addWikiText( $moveonly ); // bug 3991
+			$wgOut->addHTML( "
+				</label>
 			</td>
 		</tr> " );
 		}
