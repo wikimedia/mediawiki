@@ -1298,9 +1298,7 @@ function wfGetSiteNotice() {
 		$notice = $wgSiteNotice;
 	}
 	if($notice != '-' && $notice != '') {
-		$specialparser = new Parser();
-		$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
-		$notice = $parserOutput->getText();
+		$notice = $wgOut->parse( $notice );
 	}
 	wfProfileOut( $fname );
 	return $notice;
