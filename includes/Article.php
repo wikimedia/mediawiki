@@ -1157,6 +1157,9 @@ class Article {
 		$oldid = 0; # new article
 		$this->showArticle( $text, wfMsg( 'newarticle' ), false, $isminor, $now, $summary, $oldid, $revisionId );
 
+		wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
+			$summary, $isminor,
+			$watchthis, NULL ) );
 		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text,
 			$summary, $isminor,
 			$watchthis, NULL ) );
