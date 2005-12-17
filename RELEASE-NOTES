@@ -331,6 +331,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * (bug 1586) Fix interwiki generator for wikimedia obscure domains
 * (bug 3493) Mark edits patrolled when they are reverted
   patch by Leon Planken
+* Add a hook for additional user creation throttle / limiter extensions
 
 
 === Caveats ===
