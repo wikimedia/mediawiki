@@ -2025,7 +2025,7 @@ class Article {
 	 * Revert a modification
 	 */
 	function rollback() {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 		$fname = 'Article::rollback';
 
 		if ( ! $wgUser->isAllowed('rollback') ) {
@@ -2098,12 +2098,19 @@ class Article {
 			return;
 		}
 
+		$set = array();
 		if ( $bot ) {
 			# Mark all reverted edits as bot
-			$dbw->update( 'recentchanges',
-				array( /* SET */
-					'rc_bot' => 1
-				), array( /* WHERE */
+			$set['rc_bot'] = 1;
+		}
+		if ( $wgUseRCPatrol ) {
+			# Mark all reverted edits as patrolled
+			$set['rc_patrolled'] = 1;
+		}
+
+		if ( $set ) {
+			$dbw->update( 'recentchanges', $set,
+				array( /* WHERE */
 					'rc_cur_id'    => $current->getPage(),
 					'rc_user_text' => $current->getUserText(),
 					"rc_timestamp > '{$s->rev_timestamp}'",
