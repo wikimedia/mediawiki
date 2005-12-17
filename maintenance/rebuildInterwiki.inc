@@ -25,7 +25,8 @@ class Site {
 	}
 
 	function getURL( $lang ) {
-		return "http://$lang.{$this->url}/wiki/\$1";
+		$xlang = str_replace( '_', '-', $lang );
+		return "http://$xlang.{$this->url}/wiki/\$1";
 	}
 }
 
@@ -41,6 +42,7 @@ function getRebuildInterwikiSQL() {
 		'wikibooks' => new Site( 'wikibooks', 'b', 'wikibooks.org' ),
 		'wikinews' => new Site( 'wikinews', 'n', 'wikinews.org' ),
 		'wikisource' => new Site( 'wikisource', 's', 'wikisource.org' ),
+		'wikimedia' => new Site( 'wikimedia', 'chapter', 'wikimedia.org' ),
 	);
 
 	# List of language prefixes likely to be found in multi-language sites
