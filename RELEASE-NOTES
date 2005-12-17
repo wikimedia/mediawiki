@@ -328,6 +328,9 @@ fully support the editing toolbar, but was found to be too confusing.
 * Removed FulltextStoplist.php, no longer used (was for MySQL 3.x workaround)
 * (bug 4298) Include rc_id on enhanced RC singleton diff links for patrolling
 * Did some refactoring on ChangesList.php merging dupe code
+* (bug 1586) Fix interwiki generator for wikimedia obscure domains
+* (bug 3493) Mark edits patrolled when they are reverted
+  patch by Leon Planken
 
 
 === Caveats ===
