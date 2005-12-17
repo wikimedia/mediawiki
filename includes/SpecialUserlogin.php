@@ -237,6 +237,12 @@ class LoginForm {
 				return false;
 			}
 		}
+		
+		if( !wfRunHooks( 'AbortNewAccount', array( $u ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
+			return false;
+		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
 			$this->mainLoginForm( wfMsg( 'externaldberror' ) );
