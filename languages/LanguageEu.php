@@ -21,6 +21,11 @@ require_once( 'LanguageUtf8.php' );
 	NS_IMAGE_TALK		=> 'Irudi_eztabaida',
 	NS_MEDIAWIKI		=> 'MediaWiki',
 	NS_MEDIAWIKI_TALK	=> 'MediaWiki_eztabaida',
+	NS_TEMPLATE			=> 'Txantiloi',
+	NS_TEMPLATE_TALK	=> 'Txantiloi_eztabaida',
+
+	NS_CATEGORY			=> 'Kategoria',
+	NS_CATEGORY_TALK	=> 'Kategoria_eztabaida',
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEu = array(
