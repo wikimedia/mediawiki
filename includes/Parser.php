@@ -3625,6 +3625,10 @@ class Parser
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 		return $text;
 	}
+
+	function Title( $x = NULL ) { return wfSetVar( $this->mTitle, $x ); }
+	function Options( $x = NULL ) { return wfSetVar( $this->mOptions, $x ); }
+	function OutputType( $x = NULL ) { return wfSetVar( $this->mOutputType, $x ); }
 }
 
 /**
