@@ -1,39 +1,33 @@
 <?php
 /**
- * Amethyst skin
- * Original design by Sorkhiri and Sorwena members of the EverQuest
- * <Amethyst> guild
- * Ported to MediaWiki by Ashar Voultoiz
+ * Amethyst
  *
- * See skin.txt for documentation
+ * Reuse the MonoBook template (originally a plone style
+ * ported on MediaWiki by Gabriel Wicke).
  *
  * @todo document
- * @package MediaWiki
  * @subpackage Skins
  */
 
 if( !defined( 'MEDIAWIKI' ) )
 	die();
 
-/** */
-require_once('includes/SkinPHPTal.php');
-if( class_exists( 'SkinPHPTal' ) ) {
+/** Skin reuse monobook template */
+require_once('MonoBook.php');
 
 /**
- * See skin.txt
- *
+ * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
- * @package MediaWiki
  * @subpackage Skins
  */
-class SkinAmethyst extends SkinPHPTal {
+class SkinAmethyst extends SkinTemplate {
+	/** Using monobook. */
 	function initPage( &$out ) {
-		SkinPHPTal::initPage( $out );
+		SkinTemplate::initPage( $out );
 		$this->skinname  = 'amethyst';
 		$this->stylename = 'amethyst';
-		$this->template  = 'Amethyst';
+		$this->template  = 'MonobookTemplate';
 	}
 }
 
-}
 ?>
