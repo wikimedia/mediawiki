@@ -331,7 +331,7 @@ class PreferencesForm {
 		$this->mNick = $wgUser->getOption( 'nickname' );
 
 		$this->mQuickbar = $wgUser->getOption( 'quickbar' );
-		$this->mSkin = $wgUser->getOption( 'skin' );
+		$this->mSkin = Skin::normalizeKey( $wgUser->getOption( 'skin' ) );
 		$this->mMath = $wgUser->getOption( 'math' );
 		$this->mDate = $wgUser->getOption( 'date' );
 		$this->mRows = $wgUser->getOption( 'rows' );

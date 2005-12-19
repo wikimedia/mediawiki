@@ -1137,46 +1137,9 @@ class User {
 
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
-			$userSkin = $wgRequest->getText('useskin', $userSkin);
-			if ( $userSkin == '' ) { $userSkin = 'standard'; }
-
-			if ( !isset( $skinNames[$userSkin] ) ) {
-				# in case the user skin could not be found find a replacement
-				$fallback = array(
-					0 => 'Standard',
-					1 => 'Nostalgia',
-					2 => 'CologneBlue');
-				# if phptal is enabled we should have monobook skin that
-				# superseed the good old SkinStandard.
-				if ( isset( $skinNames['monobook'] ) ) {
-					$fallback[0] = 'MonoBook';
-				}
-
-				if(is_numeric($userSkin) && isset( $fallback[$userSkin]) ){
-					$sn = $fallback[$userSkin];
-				} else {
-					$sn = 'Standard';
-				}
-			} else {
-				# The user skin is available
-				$sn = $skinNames[$userSkin];
-			}
-
-			# Grab the skin class and initialise it. Each skin checks for PHPTal
-			# and will not load if it's not enabled.
-			require_once( $IP.'/skins/'.$sn.'.php' );
-
-			# Check if we got if not failback to default skin
-			$className = 'Skin'.$sn;
-			if( !class_exists( $className ) ) {
-				# DO NOT die if the class isn't found. This breaks maintenance
-				# scripts and can cause a user account to be unrecoverable
-				# except by SQL manipulation if a previously valid skin name
-				# is no longer valid.
-				$className = 'SkinStandard';
-				require_once( $IP.'/skins/Standard.php' );
-			}
-			$this->mSkin =& new $className;
+			$userSkin = $wgRequest->getVal('useskin', $userSkin);
+			
+			$this->mSkin =& Skin::newFromKey( $userSkin );
 			wfProfileOut( $fname );
 		}
 		return $this->mSkin;

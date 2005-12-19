@@ -335,6 +335,8 @@ fully support the editing toolbar, but was found to be too confusing.
 * Use $wgOut->parse() in wfGetSiteNotice() instead of creating a new parser
   instance. This allows use of extension hooks if required.
 * Removed experimental Amethyst skin from default set
+* Upgrade old skin preferences properly at Special:Preferences
+  (used to spontaneously switch to Classic skin for old numeric pref records)
 
 
 === Caveats ===
