@@ -334,6 +334,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Add a hook for additional user creation throttle / limiter extensions
 * Use $wgOut->parse() in wfGetSiteNotice() instead of creating a new parser
   instance. This allows use of extension hooks if required.
+* Removed experimental Amethyst skin from default set
 
 
 === Caveats ===
