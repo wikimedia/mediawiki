@@ -73,13 +73,93 @@ class Skin extends Linker {
 	/** Constructor, call parent constructor */
 	function Skin() { parent::Linker(); }
 
+	/**
+	 * Fetch the set of available skins.
+	 * @return array of strings
+	 * @static
+	 */
 	function getSkinNames() {
 		global $wgValidSkinNames;
 		return $wgValidSkinNames;
 	}
+	
+	/**
+	 * Normalize a skin preference value to a form that can be loaded.
+	 * If a skin can't be found, it will fall back to the configured
+	 * default (or the old 'Classic' skin if that's broken).
+	 * @param string $key
+	 * @return string
+	 * @static
+	 */
+	function normalizeKey( $key ) {
+		global $wgDefaultSkin;
+		$skinNames = Skin::getSkinNames();
+		
+		if( $key == '' ) {
+			// Don't return the default immediately;
+			// in a misconfiguration we need to fall back.
+			$key = $wgDefaultSkin;
+		}
+
+		if( isset( $skinNames[$key] ) ) {
+			return $key;
+		}
+		
+		// Older versions of the software used a numeric setting
+		// in the user preferences.
+		$fallback = array(
+			0 => $wgDefaultSkin,
+			1 => 'nostalgia',
+			2 => 'cologneblue' );
+
+		if( isset( $fallback[$key] ) ){
+			$key = $fallback[$key];
+		}
+		
+		if( isset( $skinNames[$key] ) ) {
+			return $key;
+		} else {
+			// The old built-in skin
+			return 'standard';
+		}
+	}
+	
+	/**
+	 * Factory method for loading a skin of a given type
+	 * @param string $key 'monobook', 'standard', etc
+	 * @return Skin
+	 * @static
+	 */
+	function &newFromKey( $key ) {
+		$key = Skin::normalizeKey( $key );
+		
+		$skinNames = Skin::getSkinNames();
+		$skinName = $skinNames[$key];
+		
+		global $IP;
+
+		# Grab the skin class and initialise it. Each skin checks for PHPTal
+		# and will not load if it's not enabled.
+		require_once( $IP.'/skins/'.$skinName.'.php' );
+
+		# Check if we got if not failback to default skin
+		$className = 'Skin'.$skinName;
+		if( !class_exists( $className ) ) {
+			# DO NOT die if the class isn't found. This breaks maintenance
+			# scripts and can cause a user account to be unrecoverable
+			# except by SQL manipulation if a previously valid skin name
+			# is no longer valid.
+			$className = 'SkinStandard';
+			require_once( $IP.'/skins/Standard.php' );
+		}
+		$skin =& new $className;
+		return $skin;
+	}
 
 	/** @return string path to the skin stylesheet */
-	function getStylesheet() { return 'common/wikistandard.css?1'; }
+	function getStylesheet() {
+		return 'common/wikistandard.css?1';
+	}
 
 	/** @return string skin name */
 	function getSkinName() {
