@@ -19,6 +19,9 @@ require_once( 'Revision.php' );
  */
 class RawPage {
 	var $mArticle, $mTitle, $mRequest;
+	var $mOldId, $mGen, $mCharset;
+	var $mSmaxage, $mMaxage;
+	var $mContentType, $mExpandTemplates;
 
 	function RawPage( &$article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
@@ -36,9 +39,11 @@ class RawPage {
 		$ctype = $this->mRequest->getText( 'ctype' );
 		$smaxage = $this->mRequest->getInt( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
+		$this->mExpandTemplates = $this->mRequest->getText( 'templates' ) === 'expand';
 		$this->mOldId = $this->mRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
 		$gen = $this->mRequest->getText( 'gen' );
+		
 		if($gen == 'css') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
@@ -53,7 +58,7 @@ class RawPage {
 		$this->mCharset = $wgInputEncoding;
 		$this->mSmaxage = $smaxage;
 		$this->mMaxage = $maxage;
-		if(empty($ctype) or !in_array($ctype, $allowedCTypes)) {
+		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
 			$this->mContentType = $ctype;
@@ -118,21 +123,27 @@ class RawPage {
 		}
 	}		
 
-	function getArticleText () {
+	function getArticleText() {
+		global $wgParser;
+		
 		if( $this->mTitle ) {
-			# Special case for MediaWiki: messages; we can hit the message cache.
-			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
-				$rawtext = wfMsgForContent( $this->mTitle->getDbkey() );
-				return $rawtext;
+			$text = '';
+
+			// If it's a MediaWiki message we can just hit the message cache
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI )
+				$text = wfMsgForContentNoTrans( $this->mTitle->getDbkey() );
+			else {
+				// Get it from the DB
+				$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
+				if ( $rev ) {
+					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+					header( "Last-modified: $lastmod" );
+					$text = $rev->isDeleted() ? '' : $rev->getText();
+				} else
+					$text = '';
 			}
-			
-			# else get it from the DB
-			$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
-			if( $rev ) {
-				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-				header( 'Last-modified: ' . $lastmod );
-				return $rev->getText();
-			}
+
+			return $this->parseArticleText( $text );
 		}
 		
 		# Bad title or page does not exist
@@ -144,6 +155,23 @@ class RawPage {
 			header( "HTTP/1.0 404 Not Found" );
 		}
 		return '';
+	}
+
+	function parseArticleText( $text ) {
+		if ( $text === '' )
+			return '';
+		else
+			if ( $this->mExpandTemplates ) {
+				global $wgTitle;
+
+				$parser = new Parser();
+				$parser->Options( new ParserOptions() ); // We don't want this to be user-specific
+				$parser->Title( $wgTitle );
+				$parser->OutputType( OT_HTML );
+				
+				return $parser->replaceVariables( $text );
+			} else
+				return $text;
 	}
 }
 ?>
