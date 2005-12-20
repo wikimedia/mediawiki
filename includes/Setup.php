@@ -206,7 +206,11 @@ if( $wgCommandLineMode ) {
 	# Prevent loading User settings from the DB.
 	$wgUser->setLoaded( true );
 } else {
-	$wgUser = User::loadFromSession();
+	$wgUser = null;
+	wfRunHooks('AutoAuthenticate',array(&$wgUser));
+	if ($wgUser === null) {
+		$wgUser = User::loadFromSession();
+	}
 }
 
 wfProfileOut( $fname.'-User' );

@@ -285,6 +285,9 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
+'AutoAuthenticate': called to authenticate users on external/environmental means
+$user: writes user object to this parameter
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
