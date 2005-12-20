@@ -2035,14 +2035,25 @@ class Title {
 				'pl_namespace' => $this->getNamespace(),
 				'pl_title'     => $this->getDbKey() ),
 			$fname );
-		if ( 0 == $dbw->numRows( $res ) ) {
-			return;
-		}
 
 		$toucharr = array();
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$toucharr[] = $row->pl_from;
 		}
+		$dbw->freeResult( $res );
+		
+		if( $this->getNamespace() == NS_CATEGORY ) {
+			// Categories show up in a separate set of links as well
+			$res = $dbw->select( 'categorylinks',
+				array( 'cl_from' ),
+				array( 'cl_to' => $this->getDbKey() ),
+				$fname );
+			while( $row = $dbw->fetchObject( $res ) ) {
+				$toucharr[] = $row->cl_from;
+			}
+			$dbw->freeResult( $res );
+		}
+		
 		if (!count($toucharr))
 			return;
 		$dbw->update( 'page', /* SET */ array( 'page_touched' => $dbw->timestamp() ),
