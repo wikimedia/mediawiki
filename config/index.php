@@ -1144,7 +1144,9 @@ function writeLocalSettings( $conf ) {
 # file, not there.
 
 \$IP = \"{$slconf['IP']}\";
-ini_set( \"include_path\", \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" );
+if( !ini_set( \"include_path\", \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" ) ) {
+	set_include_path( \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" );
+}
 require_once( \"includes/DefaultSettings.php\" );
 
 # If PHP's memory limit is very low, some operations may fail.
