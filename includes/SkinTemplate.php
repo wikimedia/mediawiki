@@ -540,7 +540,7 @@ class SkinTemplate extends Skin {
 		
 		$text = wfMsg( $message );
 		if ( $text == "&lt;$message&gt;" ) {
-			$text = wfMsg( 'nstab-main' );
+			$text = html_entity_decode($text); 
 		}
 		
 		return array(
