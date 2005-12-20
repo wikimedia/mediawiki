@@ -124,7 +124,10 @@ header( "Content-type: text/html; charset=utf-8" );
 #
 $IP = dirname( dirname( __FILE__ ) );
 $sep = PATH_SEPARATOR;
-ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" );
+if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
+	set_include_path( ".$sep$IP$sep$IP/includes$sep$IP/languages" );
+}
+
 
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
@@ -1026,7 +1029,6 @@ if( count( $errs ) ) {
 
 /* -------------------------------------------------------------------------------------- */
 function writeSuccessMessage() {
-	global $conf;
 	if ( ini_get( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
 		echo <<<EOT
 <p>Installation successful!</p>
