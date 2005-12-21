@@ -38,15 +38,13 @@ $wgQueryPages = array(
 	array( 'UnusedimagesPage',		'Unusedimages'			),
 	array( 'WantedCategoriesPage',		'Wantedcategories'		),
 	array( 'WantedPagesPage',		'Wantedpages'			),
+	array( 'UnwatchedPagesPage',		'Unwatchedpages'		),
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 
 global $wgDisableCounters;
 if ( !$wgDisableCounters )
 	$wgQueryPages[] = array( 'PopularPagesPage',		'Popularpages'		);
-global $wgEnableUnwatchedpages;
-if ( $wgEnableUnwatchedpages )
-	$wgQueryPages[] = array( 'UnwatchedPagesPage',		'Unwatchedpages'	);
 
 
 /**

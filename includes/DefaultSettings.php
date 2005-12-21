@@ -802,6 +802,7 @@ $wgGroupPermissions['sysop']['rollback']        = true;
 $wgGroupPermissions['sysop']['upload']          = true;
 $wgGroupPermissions['sysop']['reupload']        = true;
 $wgGroupPermissions['sysop']['reupload-shared'] = true;
+$wgGroupPermissions['sysop']['unwatchedpages']	= true;
 
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
@@ -1387,19 +1388,6 @@ $wgUseSiteCss = true;
 
 /** Filter for Special:Randompage. Part of a WHERE clause */
 $wgExtraRandompageSQL = false;
-
-/**
- * Enable the Special:Unwatchedpages special page, turned off by default  since
- * most would consider this privelaged information as it could be used as a
- * list of pages to vandalize.
- */
-$wgEnableUnwatchedpages = false;
-
-/**
- * Users must have this permission to view Special:Unwatchedpages, e.g.
- * 'protect' for only allowing >sysops. '' for none
- */
-$wgUnwatchedPagesPermission = '';
 
 /** Allow the "info" action, very inefficient at the moment */
 $wgAllowPageInfo = false;
