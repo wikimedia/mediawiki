@@ -191,6 +191,8 @@ wfProfileIn( $fname.'-User' );
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
 foreach ( $wgSkinExtensionFunctions as $func ) {
+	require_once 'PersistentObject.php';
+
 	call_user_func( $func );
 }
 
@@ -304,6 +306,8 @@ wfProfileIn( $fname.'-extensions' );
 # of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
+	require_once 'PersistentObject.php';
+
 	call_user_func( $func );
 }
 
