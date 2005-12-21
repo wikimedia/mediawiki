@@ -230,7 +230,12 @@ class OutputPage {
 	function getHTML() { return $this->mBodytext; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
+	/* @deprecated */
 	function setParserOptions( $options ) {
+		return $this->ParserOptions( $options );
+	}
+
+	function ParserOptions( $options = null ) {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
 	
@@ -838,7 +843,7 @@ class OutputPage {
 		);
 		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
 
-		$wgOut->addMeta ( 'KEYWORDS' , $a ) ;
+		$wgOut->addMeta( 'keywords' , $a ) ;
 	}
 
 	/**
