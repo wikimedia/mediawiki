@@ -623,13 +623,12 @@ END;
 		}
 
 		if ( $wgUser->getNewtalk() ) {
-		# do not show "You have new messages" text when we are viewing our
-		# own talk page
-
+			# do not show "You have new messages" text when we are viewing our
+			# own talk page
 			if( !$wgTitle->equals( $wgUser->getTalkPage() ) ) {
-				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
-						wfMsg('newmessageslink') );
-				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl ) . '</strong>';
+				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ) );
+				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ) );
+				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl, $dl ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage(0);
 				$wgOut->enableClientCache(false);
