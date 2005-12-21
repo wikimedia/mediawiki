@@ -56,10 +56,7 @@ class Namespace {
 	 * @return bool
 	 */
 	function isMovable( $index ) {
-		if ( $index < NS_MAIN || $index == NS_IMAGE  || $index == NS_CATEGORY ) {
-			return false;
-		}
-		return true;
+		return !( $index < NS_MAIN || $index == NS_IMAGE  || $index == NS_CATEGORY );
 	}
 
 	/**
@@ -75,7 +72,7 @@ class Namespace {
 	 * @return bool
 	 */
 	function isTalk( $index ) {
-		return ($index > 0)  // Special namespaces are negative
+		return ($index > NS_MAIN)  // Special namespaces are negative
 			&& ($index % 2); // Talk namespaces are odd-numbered
 	}
 
