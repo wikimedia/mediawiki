@@ -277,7 +277,7 @@ class SkinTemplate extends Skin {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
-				$ntl = wfMsg( 'newmessages',
+				$ntl = wfMsg( 'youhavenewmessages',
 					$this->makeKnownLinkObj(
 						$usertalktitle,
 						wfMsgHtml( 'newmessageslink' )
