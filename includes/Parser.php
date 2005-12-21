@@ -43,9 +43,6 @@ define( 'OT_MSG' , 3 );
 # may want to use in wikisyntax
 define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 
-# prefix for escaping, used in two functions at least
-define( 'UNIQ_PREFIX', 'NaodW29');
-
 # Constants needed for external link processing
 define( 'HTTP_PROTOCOLS', 'http:\/\/|https:\/\/' );
 # Everything except bracket, space, or control characters
@@ -101,7 +98,7 @@ class Parser
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
-	var $mInterwikiLinkHolders, $mLinkHolders;
+	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
 
 	# Temporary:
 	var $mOptions, $mTitle, $mOutputType,
@@ -153,6 +150,7 @@ class Parser
 			'titles' => array()
 		);
 		$this->mRevisionId = null;
+		$this->mUniqPrefix = 'UNIQ' . Parser::getRandomString();
 	}
 
 	/**
@@ -362,7 +360,7 @@ class Parser
 		$gallery_content = array();
 
 		# Replace any instances of the placeholders
-		$uniq_prefix = UNIQ_PREFIX;
+		$uniq_prefix = $this->mUniqPrefix;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
 		# html
@@ -534,7 +532,7 @@ class Parser
 	 * @access private
 	 */
 	function insertStripItem( $text, &$state ) {
-		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
+		$rnd = $this->mUniqPrefix . '-item' . Parser::getRandomString();
 		if ( !$state ) {
 			$state = array(
 			  'html' => array(),
@@ -804,7 +802,7 @@ class Parser
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace(UNIQ_PREFIX."NOPARSE", "", $text);
+		$text = str_replace($this->mUniqPrefix."NOPARSE", "", $text);
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
@@ -1410,7 +1408,7 @@ class Parser
 						$text = $this->replaceInternalLinks($text);
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
-						$s .= $prefix . preg_replace( "/\b(" . wfUrlProtocols() . ')/', UNIQ_PREFIX."NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
+						$s .= $prefix . preg_replace( "/\b(" . wfUrlProtocols() . ')/', "{$this->mUniqPrefix}NOPARSE$1", $this->makeImage( $nt, $text) ) . $trail;
 						$wgLinkCache->addImageLinkObj( $nt );
 
 						wfProfileOut( "$fname-image" );
@@ -1463,7 +1461,9 @@ class Parser
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them
 			if( $ns == NS_MEDIA ) {
-				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text, true ) . $trail;
+				$link = $sk->makeMediaLinkObj( $nt, $text );
+				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
+				$s .= $prefix . str_replace( 'http://', "http{$this->mUniqPrefix}NOPARSE://", $link ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {
@@ -1763,12 +1763,11 @@ class Parser
 			if( 0 == $prefixLength ) {
 				wfProfileIn( "$fname-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
-				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
 				$openmatch = preg_match('/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
 					'/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
-					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$uniq_prefix.'-pre|<\\/li|<\\/ul)/iS', $t );
+					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix.'-pre|<\\/li|<\\/ul)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
