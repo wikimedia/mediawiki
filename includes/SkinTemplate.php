@@ -280,7 +280,12 @@ class SkinTemplate extends Skin {
 				$ntl = wfMsg( 'newmessages',
 					$this->makeKnownLinkObj(
 						$usertalktitle,
-						wfMsg('newmessageslink')
+						wfMsgHtml( 'newmessageslink' )
+					),
+					$this->makeKnownLinkObj(
+						$usertalktitle,
+						wfMsgHtml( 'newmessagesdifflink' ),
+						'diff=cur'
 					)
 				);
 				# Disable Cache
