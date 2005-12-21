@@ -35,7 +35,7 @@ class UnwatchedpagesPage extends QueryPage {
 				page_namespace as value
 			FROM $page
 			LEFT JOIN $watchlist ON wl_namespace = page_namespace AND page_title = wl_title
-			WHERE wl_title IS NULL
+			WHERE wl_title IS NULL AND page_is_redirect = 0
 			";
 	}
 	
@@ -57,10 +57,10 @@ class UnwatchedpagesPage extends QueryPage {
  * constructor
  */
 function wfSpecialUnwatchedpages() {
-	global $wgUser, $wgUnwatchedPagesPermission, $wgOut;
+	global $wgUser, $wgOut;
 	
-	if ( ! $wgUser->isAllowed( $wgUnwatchedPagesPermission ) )
-		return $wgOut->permissionRequired( $wgUnwatchedPagesPermission );
+	if ( ! $wgUser->isAllowed( 'unwatchedpages' ) )
+		return $wgOut->permissionRequired( 'unwatchedpages' );
 	
 	list( $limit, $offset ) = wfCheckLimits();
 
