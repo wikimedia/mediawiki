@@ -192,6 +192,10 @@ class Parser
 		$text = $this->strip( $text, $x );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$x ) );
 
+		# Hook to suspend the parser in this state
+		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$x ) ) )
+			return $text ;
+
 		$text = $this->internalParse( $text );
 
 		$text = $this->unstrip( $text, $this->mStripState );
