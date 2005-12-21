@@ -76,6 +76,7 @@ $wgSpecialPages = array(
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
 	'Userrights'	=> new SpecialPage( 'Userrights', 'userrights' ),
 	'MIMEsearch'    => new SpecialPage( 'MIMEsearch' ),
+	'Unwatchedpages' => new SpecialPage( 'Unwatchedpages', 'unwatchedpages' )
 );
 
 if ( $wgUseValidation )
@@ -92,9 +93,6 @@ if( !$wgDisableInternalSearch ) {
 if( $wgEmailAuthentication ) {
 	$wgSpecialPages['Confirmemail'] = new UnlistedSpecialPage( 'Confirmemail' );
 }
-
-if ( $wgEnableUnwatchedpages )
-	 $wgSpecialPages['Unwatchedpages'] = new SpecialPage( 'Unwatchedpages' );
 
 /**
  * Parent special page class, also static functions for handling the special
