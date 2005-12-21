@@ -331,8 +331,7 @@ valesti viidatud keelte- või wikidevaheline pealkiri.",
 'perfcached' => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad:',
 'wrong_wfQuery_params' => "Valed parameeterid funktsioonile wfQuery()<br />
 Funktsioon: $1<br />
-Päring: $2
-",
+Päring: $2",
 'viewsource' => 'Vaata lähteteksti',
 'protectedtext' => "See lehekülg on lukustatud, et muudatusi vältida. Selleks võib olla
 mitmesuguseid põhjusi, vaata palun artiklit
@@ -663,8 +662,7 @@ võidakse sinu ligipääs sulgeda.",
 "uploadlogpagetext" => "Järgnev on nimekiri viimastest üleslaadimistest.
 Kellaajad on märgitud serveri ajaarvamise järele (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Faili nimi",
 "filedesc"		=> "Lühikirjeldus",
 "copyrightpage" => "{{ns:4}}:Autoriõigused",
@@ -842,8 +840,7 @@ Viimaste kustutuste loendit näed siit: $2.",
 "dellogpagetext" => "Allpool on esitatud nimekiri viimastest kustutamistest.
 Kõik toodud kellaajad järgivad serveriaega (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "Kustutatud leheküljed",
 "reverted"		=> "Pöörduti tagasi varasemale versioonile",
 "deletecomment"	=> "Kustutamise põhjus",

@@ -367,8 +367,7 @@ Vergeet neet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de liest met de meest recent ge-uploade bestanden. Alle tieden zijn servertied (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"  => "Bestandsnaam",
 "filedesc"  => "Beschrijving",
 "copyrightpage" => "{{ns:project}}:Auteursrechten",

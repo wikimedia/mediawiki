@@ -148,8 +148,7 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 'allmessagestext' => "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
 'allpages' => "Toate paginile",
 'alphaindexline' => "$1 către $2",
-'alreadyloggedin' => "<strong>Eşti deja autentificat ca $1!</strong><br />
-",
+'alreadyloggedin' => "<strong>Eşti deja autentificat ca $1!</strong><br />",
 'alreadyrolled' => "Nu se poate reveni peste ultima editare a [[$1]]
 făcută de către [[Utilizator:$2|$2]] ([[Discuţie utilizator:$2|Discuţie]]); altcineva a editat articolul sau a revenit deja.
 
@@ -270,8 +269,7 @@ MySQL a returnat eroarea \"<tt>$3: $4</tt>\".",
 Ultimul query încercat a fost:
 \"$1\"
 din funcţia \"$2\".
-MySQL a returnat eroarea \"$3: $4\".
-",
+MySQL a returnat eroarea \"$3: $4\".",
 'deadendpages' => "Pagini fără legături",
 #'debug' => "Debug",
 'defaultns' => "Caută în aceste secţiuni implicit:",
@@ -290,8 +288,7 @@ Vezi $2 pentru o listă a elementelor şterse recent.",
 'dellogpage' => "Raport_ştergeri",
 'dellogpagetext' => "Găseşti dedesubt o listă a celor mai recente elemente şterse. Toate datele/orele sunt listate în timp universal (UTC).
 <ul>
-</ul>
-",
+</ul>",
 'developertext' => "Acţiunea pe care ai încercat-o necesită drepturi de dezvoltator.
 Vezi $1.",
 'developertitle' => "Ai nevoie de acces ca dezvoltator",
@@ -469,8 +466,7 @@ După ce te înregistrezi, pentru a te autentifica dăţile viitoare când vizit
 'loginsuccesstitle' => "Autentificare reuşită",
 'logout' => "Închide sesiunea",
 'logouttext' => "Sesiunea ta în {{SITENAME}} a fost închisă.
-Poţi continua să foloseşti {{SITENAME}} anonim, sau poţi să te reautentifici ca acelaşi sau ca alt utilizator.
-",
+Poţi continua să foloseşti {{SITENAME}} anonim, sau poţi să te reautentifici ca acelaşi sau ca alt utilizator.",
 'logouttitle' => "Sesiune închisă",
 'lonelypages' => "Pagini orfane",
 'longpages' => "Pagini lungi",
@@ -764,8 +760,7 @@ Este foarte important să nu adaugi în {{SITENAME}} materiale protejate de [[dr
 'revhistory' => "Istoria versiunilor",
 'revisionasof' => "Versiunea de la data $1",
 'revnotfound' => "Versiunea nu a fost găsită",
-'revnotfoundtext' => "Versiunea mai veche a paginii pe care ai cerut-o nu a fost găsită. Te rugăm să verifici legătura pe care ai folosit-o pentru a accesa această pagină.
-",
+'revnotfoundtext' => "Versiunea mai veche a paginii pe care ai cerut-o nu a fost găsită. Te rugăm să verifici legătura pe care ai folosit-o pentru a accesa această pagină.",
 #'rfcurl' => "http://www.faqs.org/rfcs/rfc$1.html",
 'rights' => "Drepturi:",
 'rollback' => "Editări de revenire",
@@ -939,8 +934,7 @@ Te rugăm să-ţi confirmi intenţia de a face acest lucru.",
 'uploadlogpagetext' => "Găseşti mai jos lista ultimelor fişiere trimise.
 Toate datele/orele sunt afişate ca timp universal (UTC).
 <ul>
-</ul>
-",
+</ul>",
 'uploadnologin' => "Nu eşti autentificat",
 'uploadnologintext' => "Trebuie să fi [[Special:Userlogin|autentificat]]
 ca să trimiţi fişiere.",
@@ -1021,8 +1015,7 @@ Nu uita să-ţi personalizezi preferinţele în {{SITENAME}}.",
 'wlshowlast' => "Arată ultimele $1 ore $2 zile $3",
 'wrong_wfQuery_params' => "Număr incorect de parametri pentru wfQuery()<br />
 Funcţia: $1<br />
-Query: $2
-",
+Query: $2",
 'wrongpassword' => "Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.",
 'yourdiff' => "Diferenţe",
 'youremail' => "Adresa de e-mail (opţional)*",

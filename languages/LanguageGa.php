@@ -422,8 +422,7 @@ teideal idirtheangach nó idirvicí nasctha go mícheart.",
 "perfdisabledsub" => "Is cóip i dtaisce é seo, ó $1:",
 "wrong_wfQuery_params" => "Paraiméadair míchearta don wfQuery()<br>
 Feidhm: $1<br>
-Iarratas: $2
-",
+Iarratas: $2",
 'perfcached' => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad suas chun dáta:',
 "viewsource" => "Féach ar fhoinse",
 "protectedtext" => "Glasáladh an leathanach seo chun é a chosaint i gcoinne athruithe. Tá go leor
@@ -562,8 +561,7 @@ Seo é an cúis a thugadh:<br>''$2''<p>Is féidir leat teagmháil a dhéanamh le
 Tabhair faoi deara nach bhfuil cead agat an gné \"cuir ríomhphost chuig an úsáideoir seo\" a úsáid
 mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Speisialta:Preferences|shainroghanna úsáideora]].
 
-Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le gach ceist a chuirfeá.
-",
+Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le gach ceist a chuirfeá.",
 "whitelistedittitle" => "Logáil isteach chun athrú a dhéanamh",
 "whitelistedittext" => "Ní mór duit [[Speisialta:Userlogin|logáil isteach]] chun ailt a athrú.",
 "whitelistreadtitle" => "Logáil isteach chun ailt a léamh",
@@ -918,8 +916,7 @@ go gcoscfar ón gcóras tú.",
 "uploadlogpagetext" => "Is liosta é seo a leanas de na uaslódáil comhad is deanaí.
 Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.
 <ul>
-</ul>
-",
+</ul>",
 "filename"      => "Comhadainm",
 "filedesc"      => "Achoimriú",
 "filestatus" => "Stádas cóipchirt",
@@ -1214,8 +1211,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.",
 "dellogpagetext" => "Seo é liosta de na scriosaidh is deireanacha.
 Is in am an freastalaí (UTC) iad na hamanna anseo thíos.
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"   => "cuntas scriosaidh",
 "reverted"      => "Tá eagrán níos luaithe in úsáid anois",
 "deletecomment" => "Cúis don scriosadh",
@@ -2039,8 +2035,7 @@ $3
 
 *Muna* bhfuil tú an duine atá i gceist, ná roghnaigh an nasc. Rachfaidh an cód deimhnithe
 
-seo as feidhm ag $4.
-",
+seo as feidhm ag $4.",
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Déan iarracht ar meaitseáil cruinn',

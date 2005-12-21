@@ -493,8 +493,7 @@ de carga blocate si tu abusa del systema.",
 "uploadlogpagetext" => "Infra es un lista del plus recente cargas de files.
 Tote le tempores monstrate es in le fuso horari del servitor (UCT).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Nomine del file",
 "filedesc"		=> "Description",
 "copyrightpage" => "Wikipedia:Copyright",
@@ -683,8 +682,7 @@ Vide $2 pro un registro de eliminationes recente.",
 "dellogpagetext" => "Infra es un lista del plus recente eliminationes.
 Tote le horas es in le fuso horari del servitor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "registro de eliminationes",
 "reverted"		=> "Revertite a revision anterior",
 "deletecomment"	=> "Motivo del elimination",

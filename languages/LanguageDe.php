@@ -305,8 +305,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
 "wrong_wfQuery_params" => "Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
-Query: $2
-",
+Query: $2",
 "viewsource" => "Quelltext betrachten",
 "protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt. Dafür kann es diverse Gründe geben; siehe [[{{ns:4}}:Geschützte Seiten]].
 
@@ -628,8 +627,7 @@ Bitte beachten Sie, dass, genau wie bei den Artikeln, andere Benutzer Ihre Datei
 "uploadlogpagetext" => "Hier ist die Liste der letzten hochgeladenen Dateien.
 Alle Zeiten sind UTC.
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Dateiname",
 "filedesc"		=> "Beschreibung",
 "filestatus" => "Copyright-Status",
@@ -807,8 +805,7 @@ am Ende des Artikels.",
 "notanarticle"	=> "Kein Artikel",
 "watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "* Sie beobachten zur Zeit insgesamt $1 Artikel (Diskussionsseiten wurden hier nicht mitgezählt).
-* [[Special:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.
-",
+* [[Special:Watchlist/edit|Gesamte Beobachtungsliste]] anzeigen und bearbeiten.",
 'wlheader-enotif' 		=> "* E-Mail-Benachrichtigungsdienst ist eingeschaltet.",
 'wlheader-showupdated'   => "* Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.",
 "watchmethod-recent" => "Überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
@@ -876,8 +873,7 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "dellogpage"	=> "Lösch-Logbuch",
 "dellogpagetext" => "Hier ist eine Liste der letzten Löschungen (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "Lösch-Logbuch",
 "reverted"		=> "Auf eine alte Version zurückgesetzt",
 "deletecomment"	=> "Grund der Löschung",
@@ -1139,9 +1135,7 @@ und unbekannter Programmcode zur Ausführung kommt.
 
 Die Betreiber dieses Wikis können keine Verantwortung für den Inhalte
 dieser Datei übernehmen. Sollte diese Datei tatsächlich böswilligen Programmcode enthalten,
-sollte umgehend ein Administrator informiert werden!
-
-',
+sollte umgehend ein Administrator informiert werden!',
 
 'fileinfo' => '$1KB, [http://de.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions $2]',
 

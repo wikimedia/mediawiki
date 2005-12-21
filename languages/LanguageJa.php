@@ -306,8 +306,7 @@ from within function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
 The last attempted database query was:
 "$1"
 from within function "$2".
-MySQL returned error "$3: $4".
-',
+MySQL returned error "$3: $4".',
 'noconnect' => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br/>$1',
 'nodb' => 'データベース $1 を選択できません。',
 'cachederror' => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
@@ -346,8 +345,7 @@ The database has been automatically locked while the slave database servers catc
 'perfcached' => '以下のデータはキャッシュであり、しばらく更新されていません。',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
-Query: $2
-',
+Query: $2',
 'viewsource' => 'ソースを表示',
 'protectedtext' => 'このページは編集できないように保護されています。これにはいくつか理由があります。詳しくは[[{{ns:Project}}:保護されたページ]]をご覧ください。
 
@@ -1179,8 +1177,7 @@ $NEWPAGE
 'proxyblockreason' => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
 
 :あなたの使用しているIPアドレスはオープン・プロクシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
-'proxyblocksuccess' => 'Done.
-',
+'proxyblocksuccess' => 'Done.',
 'sorbs' => 'SORBS DNSBL',
 'sorbsreason' => 'あなたのIPアドレスはオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されています。',
 'sorbs_create_account_reason' => 'あなたのIPアドレスがオープンプロクシであると、[http://www.sorbs.net/ SORBS] DNSBLに掲載されているため、アカウントを作成できません。',
@@ -1345,8 +1342,7 @@ $NEWPAGE
 # Thumbnails
 
 'thumbnail-more' => '拡大',
-'missingimage' => '<b>Missing image</b><br /><i>$1</i>
-',
+'missingimage' => '<b>Missing image</b><br /><i>$1</i>',
 'filemissing' => '<i>ファイルがありません</i>',
 
 # Special:Import

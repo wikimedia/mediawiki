@@ -453,8 +453,7 @@ l'enciclopèdia, i se us pot bloquejar, impedint-vos carregar arxius si abuseu d
 "uploadlogpagetext" => "A sota hi ha un llistat dels arxius que s'han
 carregat més recentement. Totes les hores són les del servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Nom de l'arxiu",
 "filedesc"		=> "Sumari",
 "copyrightpage" => "{{ns:4}}:Copyrights",
@@ -646,8 +645,7 @@ Mostra $2 per a un registre dels esborrats més recents.",
 "dellogpagetext" => "A sota hi ha un llistat dels esborrats més recents.
 Tots els temps es mostren en l'hora del servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "Registre d'esborrats",
 "reverted"		=> "Invertit amb una revisió anterior",
 "deletecomment"	=> "Raó per ser esborrat",

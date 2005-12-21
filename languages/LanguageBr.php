@@ -489,9 +489,7 @@ termenoù n\'int ket menegeret, pe ouzh an implij a meur a dermen klask (en diso
 Klask en esaouennoù :<br />
 $1<br />
 $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9",
-'searchdisabled' => "<p>Diweredekaet eo bet an arc\'hwel klask war an destenn a-bezh evit ur frapad rak ur samm re vras e oa evit ar servijer. Emichañs e vo tu d\'e adlakaat pa vo ur servijer galloudusoc\'h ganeomp. Da c\'hortoz e c\'hallit klask gant Google:</p>
-                                                                                                                                                        
-",
+'searchdisabled' => "<p>Diweredekaet eo bet an arc\'hwel klask war an destenn a-bezh evit ur frapad rak ur samm re vras e oa evit ar servijer. Emichañs e vo tu d\'e adlakaat pa vo ur servijer galloudusoc\'h ganeomp. Da c\'hortoz e c\'hallit klask gant Google:</p>",
 "blanknamespace" => "(Principal)",	// FIXME FvdP: troet eus "(Main)"
 
 # Preferences page
@@ -616,8 +614,7 @@ Na zisoñjit ket e c\'hall bezañ degaset kemmoù er restroù eilet ganeoc\'h, e
 "uploadlogpagetext" => "Setu roll ar restroù diwezhañ bet eilet war ar servijer.
 An eur merket eo hini ar servijer (UTC).
 <ul>
-</ul>
-",
+</ul>",
 'filename'	=> 'Anv&nbsp;',
 'filedesc'	=> 'Deskrivadur&nbsp;',
 'filestatus'	=> 'Statud ar gwirioù aozer',
@@ -822,8 +819,7 @@ Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
 'dellogpagetext' => 'Setu roll an diverkadennoù diwezhañ.
 Eur ar servijer (UTC) eo an eur merket.
 <ul>
-</ul>
-',
+</ul>',
 'deletionlog'	=> 'istor an diverkadennoù',
 'reverted'	=> 'Adlakaat ar stumm kent',
 'deletecomment' => 'Abeg an diverkadenn',

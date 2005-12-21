@@ -407,8 +407,7 @@ Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modi
 "uploadlogpagetext" => "Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Nome del file",
 "filedesc"		=> "Oggetto",
 "copyrightpage" => "{{ns:project}}:Copyrights",
@@ -572,8 +571,7 @@ Vedi $2 per un elenco delle pagine cancellate di recente.",
 "dellogpagetext" => "Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "deletion log",
 "reverted"		=> "Ripristinata versione precedente",
 "deletecomment"	=> "Motivazione della cancellazione ",

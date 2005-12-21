@@ -542,8 +542,7 @@ Sivun lähdekoodi:',
 'nogomatch'           => '<big>Täsmälleen tällä otsikolla ei ole sivua.</big>
 
 :Voit [[$1|luoda aiheesta uuden sivun]].
-:<small>Etsi ensin vastaavaa sivua, joka voi olla kirjoitusasultaan hieman erilainen</small>
-',
+:<small>Etsi ensin vastaavaa sivua, joka voi olla kirjoitusasultaan hieman erilainen</small>',
 'titlematches'        => 'Osumat sivujen otsikoissa',
 'notitlematches'      => 'Hakusanaa ei löytynyt minkään sivun otsikosta',
 'textmatches'         => 'Osumat sivujen teksteissä',
@@ -1677,8 +1676,7 @@ Varmenna, että tämä tunnus kuuluu sinulle avamaalla seuraava linkki selaimell
 
 $3
 
-Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $4.
-',
+Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $4.',
 
 
 # Inputbox extension, may be useful in other contexts as well

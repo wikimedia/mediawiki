@@ -728,8 +728,7 @@ yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydısayfasında da]
 Sayfaya resim koymak için 
 '''<nowiki>[[{{ns:6}}:Örnek.jpg]]</nowiki>''',
 '''<nowiki>[[{{ns:6}}:Örnek.png|açıklama]]</nowiki>'''  veya doğrudan bağlantı için
-'''<nowiki>[[{{ns:-2}}:Örnek.ogg]]</nowiki>''' .
-",
+'''<nowiki>[[{{ns:-2}}:Örnek.ogg]]</nowiki>''' .",
 'uploadvirus' => 'Bu dosya virüslüdür! Detayları: $1',
 'uploadwarning' => 'Yükleme uyarısı',
 'userrights-user-editname' => 'Enter a username:',

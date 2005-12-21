@@ -491,8 +491,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "uploadlogpagetext" => "以下是最近上载的文件的一览表。
 所有显示的时间都是服务器时间（UTC）。
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "文件名",
 "filedesc"		=> "简述",
 "copyrightpage" => "Wikipedia:版权信息",
@@ -672,8 +671,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "confirmdelete" => "确认删除",
 "deletesub"		=> "（正在删除“$1”）",
 "confirmdeletetext" => "您即将从数据库中永远删除一个页面或图像以及其历史。
-请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。
-",
+请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。",
 "actioncomplete" => "操作完成",
 "deletedtext"	=> "“$1”已经被删除。
 最近删除的纪录请参见$2。",
@@ -683,8 +681,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "dellogpagetext" => "以下是最近删除的纪录列表。
 所有的时间都是使用服务器时间(UTC)。
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "删除纪录",
 "reverted"		=> "恢复到早期版本",
 "deletecomment"	=> "删除理由",

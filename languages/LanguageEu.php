@@ -201,8 +201,7 @@ position. In the event of a tie, a run-off election will be held.</p>
 
 <p>For more information, see:</p>
 <ul><li><a href="http://meta.wikipedia.org/wiki/Election_FAQ_2005" class="external">Election FAQ</a></li>
-<li><a href="http://meta.wikipedia.org/wiki/Election_Candidates_2005" class="external">Candidates</a></li></ul>
-', */
+<li><a href="http://meta.wikipedia.org/wiki/Election_Candidates_2005" class="external">Candidates</a></li></ul>', */
 /* 'boardvote_intro_change' => '<p>You have voted before. However you may change
 your vote using the form below. Please check the boxes next to each candidate whom
 you approve of.</p>', */
@@ -328,8 +327,7 @@ MySQL returned error "<tt>$3: $4</tt>".', */
 The last attempted database query was:
 "$1"
 from within function "$2".
-MySQL returned error "$3: $4".
-', */
+MySQL returned error "$3: $4".', */
 'deadendpages' => 'Artikulu itsuak',
 #'debug' => 'Debug',
 #'dec' => 'Dec',
@@ -706,8 +704,7 @@ select whether you want the current version as well as all old versions, with th
 history lines, or just the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the
-article [[Train]].
-', */
+article [[Train]].', */
 #'externaldberror' => 'There was either an external authentication database error or you are not allowed to update your external account.',
 #'extlink_sample' => 'http://www.example.com link title',
 #'extlink_tip' => 'External link (remember http:// prefix)',
@@ -829,8 +826,7 @@ this old version, (rev) = revert to this old version.
 /* 'invalidemailaddress' => 'The email address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.', */
 #'invert' => 'Invert selection',
-/* 'ip_range_invalid' => 'Invalid IP range.
-', */
+/* 'ip_range_invalid' => 'Invalid IP range.', */
 #'ipaddress' => 'IP Address',
 #'ipadressorusername' => 'IP Address or username',
 #'ipb_expiry_invalid' => 'Expiry time invalid.',
@@ -977,8 +973,7 @@ page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.', */
-/* 'missingimage' => '<b>Missing image</b><br /><i>$1</i>
-', */
+/* 'missingimage' => '<b>Missing image</b><br /><i>$1</i>', */
 #'missinglanguagelinks' => 'Missing Language Links',
 #'missinglanguagelinksbutton' => 'Find missing language links for',
 #'missinglanguagelinkstext' => 'These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.',
@@ -1203,8 +1198,7 @@ See [[Project:Protected page]] for more information.', */
 #'protectthispage' => 'Protect this page',
 #'proxyblocker' => 'Proxy blocker',
 #'proxyblockreason' => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
-/* 'proxyblocksuccess' => 'Done.
-', */
+/* 'proxyblocksuccess' => 'Done.', */
 #'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 #'qbbrowse' => 'Browse',
 #'qbedit' => 'Edit',
@@ -1282,8 +1276,7 @@ the text into a text file and save it for later.</strong>', */
 #'revisionasofwithlink' => 'Revision as of $1; $2<br />$3 | $4',
 #'revnotfound' => 'Revision not found',
 /* 'revnotfoundtext' => 'The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.
-', */
+Please check the URL you used to access this page.', */
 #'rfcurl' => 'http://www.ietf.org/rfc/rfc$1.txt',
 #'rights' => 'Rights:',
 #'rightslogtext' => 'This is a log of changes to user rights.',
@@ -1306,10 +1299,8 @@ Please check the URL you used to access this page.
 #'searchdidyoumean' => 'Did you mean: "<a href="$1">$2</a>"?',
 #'searchdisabled' => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
 #'searchfulltext' => 'Search full text',
-/* 'searchnearmatch' => '<li>$1</li>
-', */
-/* 'searchnearmatches' => '<b>These pages have similar titles to your query:</b>
-', */
+/* 'searchnearmatch' => '<li>$1</li>', */
+/* 'searchnearmatches' => '<b>These pages have similar titles to your query:</b>', */
 #'searchnext' => '<span style=\'font-size: small\'>Next</span> &#x00BB;',
 #'searchnoresults' => 'Sorry, there were no exact matches to your query.',
 #'searchnumber' => '<strong>Results $1-$2 of $3</strong>',
@@ -1624,8 +1615,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 #'val_show_my_ratings' => 'Show my validations',
 #'val_stat_link_text' => 'Validation statistics for this article',
 #'val_tab' => 'Validate',
-/* 'val_table_header' => '<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>
-', */
+/* 'val_table_header' => '<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>', */
 #'val_this_is_current_version' => 'this is the latest version',
 #'val_time' => 'Time',
 #'val_topic_desc_page' => 'Project:Validation topics',
@@ -1696,8 +1686,7 @@ Ez ahaztu zure hobespenak pertsonalizatu.',
 #'wlshowlast' => 'Show last $1 hours $2 days $3',
 /* 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
-Query: $2
-', */
+Query: $2', */
 'wrongpassword' => 'Pasahitza ez da zuzena. Saiatu berriro.',
 'yourdiff' => 'Desberdintasunak',
 #'yourdomainname' => 'Your domain',

@@ -503,8 +503,7 @@ Kom ihåg att det här är en wiki, vilket gör att andra kan redigera eller ta 
 "uploadlogpagetext"     => "Nedan följer en lista med de senaste uppladdade filerna.
 Alla tider visas efter serverns tid (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"              => "Filnamn",
 "filedesc"              => "Beskrivning",
 "copyrightpage"         => "Wikipedia:copyright",
@@ -687,8 +686,7 @@ Se $2 för lista över senaste borttagningar",
 "dellogpagetext"        => "Nedan är en lista över de senaste borttagningarna.
 De tidsangivelser som anges följer serverns klocka (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"           => "borttagningslogg",
 "reverted"              => "Återgått till yngre version",
 "deletecomment"         => "Anledningen till borttagning",

@@ -289,8 +289,7 @@ parent class in order maintain consistency across languages.
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
 ** helppage|help
-** sitesupport-url|sitesupport
-',
+** sitesupport-url|sitesupport',
 
 # User preference toggles
 'tog-underline' => 'Underline links:',
@@ -717,8 +716,7 @@ The reason given is this:<br />\'\'$2\'\'<p>You may contact $1 or one of the oth
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
-Your IP address is $3. Please include this address in any queries you make.
-',
+Your IP address is $3. Please include this address in any queries you make.',
 'whitelistedittitle' => 'Login required to edit',
 'whitelistedittext' => 'You have to [[Special:Userlogin|login]] to edit pages.',
 'whitelistreadtitle' => 'Login required to read',
@@ -1648,8 +1646,7 @@ To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
 history lines, or just the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] for the page {{Mediawiki:mainpage}}.
-',
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] for the page {{Mediawiki:mainpage}}.',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
 
 # Namespace 8 related
@@ -1805,8 +1802,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',
@@ -2174,8 +2170,7 @@ e-mail features on {{SITENAME}}, open this link in your browser:
 $3
 
 If this is *not* you, don't follow the link. This confirmation code
-will expire at $4.
-",
+will expire at $4.",
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Try exact match',
@@ -2191,8 +2186,7 @@ will expire at $4.
 'trackbackbox' => '<div id="mw_trackbacks">
 Trackbacks for this article:<br />
 $1
-</div>
-',
+</div>',
 'trackback' => '; $4$5 : [$2 $1]',
 'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove' => ' ([$1 Delete])',

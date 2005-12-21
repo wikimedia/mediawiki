@@ -206,8 +206,7 @@ parent class in order maintain consistency across languages.
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
 ** helppage|help
-** sitesupport-url|sitesupport
-',
+** sitesupport-url|sitesupport',
 
 # User preference toggles
 'tog-underline' => 'Sublinhar links',
@@ -492,8 +491,7 @@ devido a tornar a base de dados lenta demais a ponto de impossibilitar a wiki.',
 'perfcached' => 'Os dados seguintes encontram-se na cache e podem não estar actualizados:',
 'wrong_wfQuery_params' => "Parâmetros incorrectos para wfQuery()<br />
 Function: $1<br />
-Query: $2
-",
+Query: $2",
 'viewsource' => 'Ver fonte',
 'protectedtext' => "Esta página foi protegida para não permitir edições; existem inúmeros motivos para 
 ocorrer esta situação, por favor consulte [[Project:Protected page]].
@@ -928,8 +926,7 @@ carregamentos e eliminações são também registados no [[Special:Log|registo d
 Para incluír a imagem numa página, utilize o link na forma de
 '''[[{{ns:6}}:ficheiro.jpg]]''', 
 '''[[{{ns:6}}:ficheiro.png|texto]]''' ou
-'''[[{{ns:-2}}:ficheiro.ogg]]''' para uma ligação directa ao ficheiro.
-",
+'''[[{{ns:-2}}:ficheiro.ogg]]''' para uma ligação directa ao ficheiro.",
 'uploadlog'             => 'registo de carregamento',
 'uploadlogpage' => 'Registo de carregamento',
 'uploadlogpagetext' => 'Segue-se uma lista dos carregamentos mais recentes.',
@@ -1153,16 +1150,14 @@ Se desejar remover o artigo da sua lista de artigos vigiados, clique em \"Desint
 'notanarticle'          => 'Não é um artigo',
 'watchnochange'         => 'Nenhum dos itens vigiados foram editados no período exibido.',
 'watchdetails'          => "* $1 páginas vigiadas, excluindo páginas de discussão
-* [[Special:Watchlist/edit|Mostrar e editar a lista completa]]
-",
+* [[Special:Watchlist/edit|Mostrar e editar a lista completa]]",
 'wlheader-enotif'               => "* Notificação por email encontra-se activada.",
 'wlheader-showupdated'   => "* Páginas modificadas desde a sua última visita são mostradas a '''negrito'''",
 'watchmethod-recent'=> 'verificando edições recentes para os artigos vigiados',
 'watchmethod-list'      => 'verificando páginas vigiadas para edições recentes',
 'removechecked'         => 'Remover itens seleccionados',
 'watchlistcontains' => "Sua lista contém $1 páginas.",
-'watcheditlist'         => 'Aqui está uma lista alfabética de sua lista de artigos vigiados. Marque as caixas dos artigos que você deseja remover da lista e clique no botão \'Remover itens seleccionados\' na parte de baixo do ecrã (removendo uma página de discussão remove também a página associada e vice versa).
-',
+'watcheditlist'         => 'Aqui está uma lista alfabética de sua lista de artigos vigiados. Marque as caixas dos artigos que você deseja remover da lista e clique no botão \'Remover itens seleccionados\' na parte de baixo do ecrã (removendo uma página de discussão remove também a página associada e vice versa).',
 'removingchecked'       => 'Removendo os itens solicitados de sua lista de artigos vigiados...',
 'couldntremove'         => "Não foi possível remover o item '$1'...",
 'iteminvalidname'       => "Problema com item '$1', nome inválido...",
@@ -1483,8 +1478,7 @@ O artigo destinatário "[[$1]]" já existe. Deseja o eliminar de modo a poder mo
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo, um título por linha, e seleccione se deseja apenas a versão actual ou todas versões.
 
-Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para o artigo [[{{Mediawiki:mainpage}}]].
-',
+Se desejar pode utilizar uma ligação, por exemplo [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] para o artigo [[{{Mediawiki:mainpage}}]].',
 'exportcuronly' => 'Incluir apenas a revisão actual, não o histórico inteiro',
 
 # Namespace 8 related
@@ -1640,8 +1634,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Ver a página de imagem\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Ver a mensagem de sistema\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Ver a predefinição\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Ver a página de ajuda\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Ver a página da categoria\');',
 
 # image deletion
 'deletedrevision' => 'Versão antiga $1 apagada.',
@@ -2005,8 +1998,7 @@ as funcionalidades de e-mail na {{SITENAME}}, abra o seguinte endereço no seu n
 $3
 
 Caso este *não* seja você, não siga o endereço. Este código de confirmação
-irá expirar a $4.
-",
+irá expirar a $4.",
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact' => 'Try exact match',
@@ -2022,8 +2014,7 @@ irá expirar a $4.
 'trackbackbox' => "<div id='mw_trackbacks'>
 Trackbacks for this article:<br/>
 $1
-</div>
-",
+</div>",
 'trackback' => "; $4$5 : [$2 $1]",
 'trackbackexcerpt' => "; $4$5 : [$2 $1]: $3",
 'trackbackremove' => ' ([$1 Eliminar])',

@@ -510,8 +510,7 @@ la enciclopedia, y se te puede bloquear, impidiéndote subir más archivos si ab
 "uploadlogpagetext" => "Abajo hay una lista de los archivos que se han
 subido más recientemente. Todas las horas son del servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "Nombre del archivo",
 "filedesc"		=> "Sumario",
 "copyrightpage" => "{{ns:projec}}:Copyrights",
@@ -707,8 +706,7 @@ Ve $2 para un registro de los borrados más recientes.",
 "dellogpagetext" => "Abajo hay una lista de los borrados más recientes.
 Todos los tiempos se muestran en hora del servidor (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "registro de borrados",
 "reverted"		=> "Recuperar una revisión anterior",
 "deletecomment"	=> "Razón para el borrado",

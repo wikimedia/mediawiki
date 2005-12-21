@@ -236,8 +236,7 @@ The administrator who locked it offered this explanation:
 "perfdisabledsub" => "این نسخه‌ی ذخیره‌شده‌ای از $1 است: ",
 "wrong_wfQuery_params" => "پارامترهای wfQuery() نادرست است<br />
 تابع: $1<br />
-پرس‌وجو: $2
-",
+پرس‌وجو: $2",
 "viewsource" => "نمایش مبدأ",
 "protectedtext" => "این صفحه برای جلوگیری از ویرایش قفل شده است؛ این کار ممکن است دلایل مختلفی داشته باشد. لطفاً به
 [[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.
@@ -351,8 +350,7 @@ You should log in and change your password now.",
 از دردسر ایجاد شده عذر می‌خواهیم.
 
 اگر این اتفاق برای شما افتاد، لطفاً به یکی از مدیران از یک نشانی پست الکترونیک AOL پیغام بفرستید. حتماً نشانی IPی را در فوق داده شده
-ذکر کنید.
-",
+ذکر کنید.",
 "whitelistedittitle" => "برای ویرایش باید به سیستم وارد شوید",
 "whitelistedittext" => "برای ویرایش مقاله‌ها باید به سیستم [[ویژه:Userlogin|وارد]] شوید.",
 "whitelistreadtitle" => "برای خواندن باید به سیستم وارد شوید",
@@ -595,8 +593,7 @@ you may be blocked from uploading if you abuse the system.",
 "uploadlogpagetext" => "فهرست زیر فهرستی از آخرین بارکردن‌های پرونده‌های است.
 همه‌ی زمان‌های نشان‌داده‌شده زمان خادم هستند (وقت گرینیچ).
 <ul>
-</ul>
-",
+</ul>",
 "filename"		=> "نام پرونده",
 "filedesc"		=> "خلاصه",
 "filestatus" => "وضعیت حق تکثیر",
@@ -803,8 +800,7 @@ consequences, and that you are doing this in accordance with
 "dellogpagetext" => "فهرست زیر فهرستی از اخیرترین حذف‌ها است.
 همه‌ی زمان‌های نشان‌داده‌شده زمان خادم (وقت گرینیچ) است.
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "سیاهه‌ی حذف",
 "reverted"		=> "به نسخه‌ی قدیمی‌تر برگردانده شد",
 "deletecomment"	=> "دلیل حذف",

@@ -339,6 +339,9 @@ fully support the editing toolbar, but was found to be too confusing.
   (used to spontaneously switch to Classic skin for old numeric pref records)
 * Added AutoAuthenticate hook for external User object suppliers
 * (bug 3424) Update page_touched for category members on category page creation
+* (bug 4108, 4336) Remove trailing whitespace from various messages, which
+  mucks up message updating to create dupe entries
+
 
 === Caveats ===
 

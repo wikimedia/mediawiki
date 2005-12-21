@@ -648,8 +648,7 @@ Sau khi truyền hình lên:
 "uploadlogpage" => "Nhật_trình_tải_lên",	
 "uploadlogpagetext" => "Danh sách các tệp tin đã tải lên, theo giờ máy chủ (UTC).
 <ul>
-</ul>
-",
+</ul>",
 'filename'	=> 'Tên&nbsp;',
 'filedesc'	=> 'Mô tả&nbsp;',
 'filestatus'	=> 'Bản quyền',
@@ -850,8 +849,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'dellogpage'    => 'Nhật trình xóa',
 'dellogpagetext' => 'Danh sách xóa mới, theo giờ máy chủ (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'deletionlog'   => 'nhật trình xóa',
 'reverted'      => 'Đã quay lại phiên bản cũ',
 'deletecomment' => 'Lý do',
@@ -1264,8 +1262,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Xem trang hình\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Xem thông báo hệ thống\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Xem tiêu bản\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Xem trang trợ giúp\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');
-',
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Xem trang thể loại\');',
 
 
 # EXIF

@@ -287,8 +287,7 @@ MySQL returned error "<tt>$3: $4</tt>".', */
 The last attempted database query was:
 "$1"
 from within function "$2".
-MySQL returned error "$3: $4".
-', */
+MySQL returned error "$3: $4".', */
 'deadendpages' => 'Rûpelên bê dergeh',
 #'debug' => 'Debug',
 'dec' => 'ber',
@@ -629,8 +628,7 @@ select whether you want the current version as well as all old versions, with th
 history lines, or just the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the
-article [[Train]].
-', */
+article [[Train]].', */
 #'externaldberror' => 'There was either an external authentication database error or you are not allowed to update your external account.',
 'extlink_sample' => 'http://www.minak.com navê lînkê',
 'extlink_tip' => 'Lînka derve (http:// di destpêkê de ji bîr neke)',
@@ -739,8 +737,7 @@ this old version, (rev) = revert to this old version.
 /* 'invalidemailaddress' => 'The email address cannot be accepted as it appears to have an invalid
 format. Please enter a well-formatted address or empty that field.', */
 #'invert' => 'Invert selection',
-/* 'ip_range_invalid' => 'Invalid IP range.
-', */
+/* 'ip_range_invalid' => 'Invalid IP range.', */
 #'ipaddress' => 'IP Address',
 #'ipadressorusername' => 'IP Address or username',
 #'ipb_expiry_invalid' => 'Expiry time invalid.',
@@ -876,8 +873,7 @@ page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.', */
-/* 'missingimage' => '<b>Missing image</b><br /><i>$1</i>
-', */
+/* 'missingimage' => '<b>Missing image</b><br /><i>$1</i>', */
 #'missinglanguagelinks' => 'Missing Language Links',
 #'missinglanguagelinksbutton' => 'Find missing language links for',
 #'missinglanguagelinkstext' => 'These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.',
@@ -1254,8 +1250,7 @@ the text into a text file and save it for later.</strong>', */
 #'revisionasofwithlink' => 'Revision as of $1; $2<br />$3 | $4',
 'revnotfound' => 'Revîzyon nehat dîtin',
 /* 'revnotfoundtext' => 'The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.
-', */
+Please check the URL you used to access this page.', */
 #'rfcurl' => 'http://www.faqs.org/rfcs/rfc$1.html',
 #'rights' => 'Rights:',
 #'rightslogtext' => 'This is a log of changes to user rights.',
@@ -1538,8 +1533,7 @@ Ji bo statîstîkên din ser serûpelê biçe: <b>Statîstîk</b>',
 #'val_show_my_ratings' => 'Show my validations',
 #'val_stat_link_text' => 'Validation statistics for this article',
 #'val_tab' => 'Validate',
-/* 'val_table_header' => '<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>
-', */
+/* 'val_table_header' => '<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>', */
 #'val_this_is_current_version' => 'this is the latest version',
 #'val_time' => 'Time',
 #'val_topic_desc_page' => 'Project:Validation topics',
@@ -1610,8 +1604,7 @@ to modify your watchlist.', */
 #'wlshowlast' => 'Show last $1 hours $2 days $3',
 /* 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
-Query: $2
-', */
+Query: $2', */
 'wrongpassword' => 'Şifreya ku te nivîsand şaş e. Ji kerema xwe careke din biceribîne.',
 'yourdiff' => 'Cudahî',
 #'yourdomainname' => 'Your domain',

@@ -261,8 +261,7 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi'r URL.",
 "perfdisabledsub" => "Dyma copi rydym wedi cadw ers $1:",
 "wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br />
 Function: $1<br />
-Query: $2
-",
+Query: $2",
 "viewsource" => "Gwyliwch y ffynhonnell",
 "protectedtext" => "Mae tudalen hon wedi cael eu gloi i gwahardd golygu'r tudalen. Mae nifer o rheswmau paham mae hwn wedi digwydd, gwelwch y tudalen
 [[{{ns:project}}:Protected page]].
@@ -550,8 +549,7 @@ Sylwch -- fel efo tudalennau Wicipedia, ellith pobl eraill golygu neu dileu eich
 "uploadlogpagetext" => "Isod mae rhestr o'r llwythu ffeil diweddarach.
 Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename" => "Enw ffeil",
 "filedesc" => "Crynodeb",
 "filestatus" => "Statws hawlfraint",
@@ -716,8 +714,7 @@ Gwelwch $2 am cofnod o dileuon diweddar.",
 "dellogpage" => "Log_dileuo",
 "dellogpagetext" => "Isod mae rhestr o'r dileuon diweddarach.
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog" => "Log dileuon",
 "reverted" => "Wedi mynd nôl i fersiwn gynt",
 "deletecomment"	=> "Achos dileuad",

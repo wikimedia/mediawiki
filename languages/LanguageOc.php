@@ -487,8 +487,7 @@ N'oubliez pas que, comme toutes les pages de Wikipédia, les fichiers que vous c
 "uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "filename"  => "Nom",
 "filedesc"  => "Description",
 "copyrightpage" => "Wikipédia:Copyright",
@@ -673,8 +672,7 @@ Voir $2 pour une liste des suppressions récentes.",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
-</ul>
-",
+</ul>",
 "deletionlog"	=> "trace des effacements",
 "reverted"	=> "Rétablissement de la version précédente",
 "deletecomment" => "Motif de la suppression",

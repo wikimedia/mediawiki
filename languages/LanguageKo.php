@@ -552,15 +552,13 @@ OGG형식을 더 좋아합니다.
 됩니다.
 
 다른 사람들이 올린 파일을 고치거나 지울 수 있다는 것을 알아두십시오.
-또한, 시스템을 남용할 때에는, 파일 올리기가 금지될 수도 있습니다.
-",
+또한, 시스템을 남용할 때에는, 파일 올리기가 금지될 수도 있습니다.",
 'uploadlog'	   => '올리기 기록',
 'uploadlogpage' => '올리기_기록',
 'uploadlogpagetext' => '최근 올라온 그림 목록입니다.
 모든 시간은 서버 기준(UTC)입니다.
 <ul>
-</ul>
-',
+</ul>',
 'filename'	    => '파일이름',
 'filedesc'	    => '짧은설명',
 'affirmation' => '파일의 저작권자가 $1의 조건으로 사용을 허가했음을 확인합니다.',
@@ -714,8 +712,7 @@ See $2 for a record of recent deletions.',
 'dellogpagetext' => 'Below is a list of the most recent deletions.
 All times shown are server time (UTC).
 <ul>
-</ul>
-',
+</ul>',
 'deletionlog' => '삭제 목록',
 'reverted'            => '이전판으로 되돌렸습니다.',
 'deletecomment'       => '삭제 이유',
