@@ -1118,6 +1118,10 @@ class User {
 	 * @return boolean True: action is allowed, False: action should not be allowed
 	 */
 	function isAllowed($action='') {
+		if ( $action === '' )
+			// In the spirit of DWIM
+			return true;
+
 		$this->loadFromDatabase();
 		return in_array( $action , $this->mRights );
 	}
